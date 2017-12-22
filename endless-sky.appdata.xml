@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-  <id>endless-sky.desktop</id>
+  <id>io.github.EndlessSky.endless-sky</id>
   <name>Endless Sky</name>
   <name xml:lang="de">Weltraumspiel</name>
   <name xml:lang="fr">Jeu spatial</name>
