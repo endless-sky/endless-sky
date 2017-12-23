@@ -149,8 +149,13 @@ const string &Government::GetName() const
 
 
 // Get the name used for this government in the data files.
-const string &Government::GetTrueName() const
+const string &Government::GetTrueName(bool evenIfUndefined) const
 {
+	if(name.empty() && evenIfUndefined)
+		for(const auto &it : GameData::Governments())
+			if(&it.second == this)
+				return it.first;
+	
 	return name;
 }
 

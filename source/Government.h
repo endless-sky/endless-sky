@@ -48,7 +48,7 @@ public:
 	// Get the display name of this government.
 	const std::string &GetName() const;
 	// Get the name used for this government in the data files.
-	const std::string &GetTrueName() const;
+	const std::string &GetTrueName(bool evenIfUndefined = false) const;
 	// Get the color swizzle to use for ships of this government.
 	int GetSwizzle() const;
 	// Get the color to use for displaying this government on the map.

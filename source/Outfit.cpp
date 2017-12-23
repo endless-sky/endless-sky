@@ -243,8 +243,13 @@ void Outfit::Load(const DataNode &node)
 
 
 
-const string &Outfit::Name() const
+const string &Outfit::Name(bool evenIfUndefined) const
 {
+	if(name.empty() && evenIfUndefined)
+		for(const auto &it : GameData::Outfits())
+			if(&it.second == this)
+				return it.first;
+	
 	return name;
 }
 

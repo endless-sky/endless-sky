@@ -42,9 +42,9 @@ public:
 	void Load(const DataNode &node);
 	
 	// Get the name of the planet.
-	const std::string &Name() const;
+	const std::string &Name(bool evenIfUndefined = false) const;
 	// Get the name used for this planet in the data files.
-	const std::string &TrueName() const;
+	const std::string &TrueName(bool evenIfUndefined = false) const;
 	// Get the planet's descriptive text.
 	const std::string &Description() const;
 	// Get the landscape sprite.

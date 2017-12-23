@@ -2650,9 +2650,9 @@ void PlayerInfo::Save(const string &path) const
 	out.Write("pilot", firstName, lastName);
 	out.Write("date", date.Day(), date.Month(), date.Year());
 	if(system)
-		out.Write("system", system->Name());
+		out.Write("system", system->Name(true));
 	if(planet)
-		out.Write("planet", planet->TrueName());
+		out.Write("planet", planet->TrueName(true));
 	if(planet && planet->CanUseServices())
 		out.Write("clearance");
 	out.Write("playtime", playTime);
@@ -2661,9 +2661,9 @@ void PlayerInfo::Save(const string &path) const
 	if(shouldLaunch)
 		out.Write("launching");
 	for(const System *system : travelPlan)
-		out.Write("travel", system->Name());
+		out.Write("travel", system->Name(true));
 	if(travelDestination)
-		out.Write("travel destination", travelDestination->TrueName());
+		out.Write("travel destination", travelDestination->TrueName(true));
 	
 	// Save the current setting for the map coloring;
 	out.Write("map coloring", mapColoring);
@@ -2752,7 +2752,7 @@ void PlayerInfo::Save(const string &path) const
 				[&out](const StockElement &it)
 				{
 					if(it.second)
-						out.Write(it.first->Name(), it.second);
+						out.Write(it.first->Name(true), it.second);
 				});
 		}
 		out.EndChild();
@@ -2822,8 +2822,7 @@ void PlayerInfo::Save(const string &path) const
 			{ return (*lhs)->Name() < (*rhs)->Name(); },
 		[&out](const System *system)
 		{
-			if(!system->Name().empty())
-				out.Write("visited", system->Name());
+			out.Write("visited", system->Name(true));
 		});
 	
 	// Save a list of planets the player has visited.
@@ -2832,8 +2831,7 @@ void PlayerInfo::Save(const string &path) const
 			{ return (*lhs)->TrueName() < (*rhs)->TrueName(); },
 		[&out](const Planet *planet)
 		{
-			if(!planet->TrueName().empty())
-				out.Write("visited planet", planet->TrueName());
+			out.Write("visited planet", planet->TrueName(true));
 		});
 	
 	if(!harvested.empty())
@@ -2859,7 +2857,7 @@ void PlayerInfo::Save(const string &path) const
 				[&out](const HarvestLog &it)
 				{
 					if(it.first && it.second)
-						out.Write(it.first->Name(), it.second->Name());
+						out.Write(it.first->Name(true), it.second->Name(true));
 				});
 		}
 		out.EndChild();

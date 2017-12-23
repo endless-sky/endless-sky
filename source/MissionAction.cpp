@@ -315,9 +315,9 @@ void MissionAction::Save(DataWriter &out) const
 		for(const auto &it : giftShips)
 			out.Write("give", "ship", it.first->VariantName(), it.second);
 		for(const auto &it : giftOutfits)
-			out.Write("outfit", it.first->Name(), it.second);
+			out.Write("outfit", it.first->Name(true), it.second);
 		for(const auto &it : requiredOutfits)
-			out.Write("require", it.first->Name(), it.second);
+			out.Write("require", it.first->Name(true), it.second);
 		if(payment)
 			out.Write("payment", payment);
 		for(const auto &it : events)
