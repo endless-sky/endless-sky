@@ -99,16 +99,13 @@ ship "Centipede"
 		`"Basrem" Atomic Steering`
 		Hyperdrive
 		
-	engine -41 78.5 0.4
-	engine 41 78.5 0.4
-	engine -14 112 0.8
-	engine 14 112 0.8
-	engine 0 112 0.8
-	gun -10 -116.5
-	gun 10 -116.5
-	turret 0 -14.5
-	turret -36 56.5
-	turret 36 56.5
+	engine -15 103.5
+	engine 15 103.5
+	gun -11 -116.5 "Hai Tracker Pod"
+	gun 11 -116.5 "Hai Tracker Pod"
+	turret 0 -21 "Bullfrog Anti-Missile"
+	turret -39 60 "Bullfrog Anti-Missile"
+	turret 39 60 "Bullfrog Anti-Missile"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -200,17 +197,17 @@ ship "Geocoris"
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		Hyperdrive
-	engine -64 77
-	engine 64 77
-	gun -25 -109 "Pulse Cannon"
-	gun 25 -109 "Pulse Cannon"
-	turret -47 -73 "Pulse Turret"
-	turret 47 -73 "Pulse Turret"
-	turret -37 6.5 "Bullfrog Anti-Missile"
-	turret 37 6.5 "Bullfrog Anti-Missile"
-	turret -65 25 "Bullfrog Anti-Missile"
-	turret 65 25 "Bullfrog Anti-Missile"
-	turret 0 63 "Bullfrog Anti-Missile"
+	engine -88 35
+	engine 88 35
+	gun 22 -104 "Pulse Cannon"
+	gun -22 -104 "Pulse Cannon"
+	turret 16 -19 "Pulse Turret"
+	turret -16 -19 "Pulse Turret"
+	turret 101 -19 "Bullfrog Anti-Missile"
+	turret -101 -19 "Bullfrog Anti-Missile"
+	turret 31 82 "Bullfrog Anti-Missile"
+	turret -31 82 "Bullfrog Anti-Missile"
+	turret 0 -79 "Bullfrog Anti-Missile"
 	explode "tiny explosion" 50
 	explode "small explosion" 50
 	explode "medium explosion" 50
