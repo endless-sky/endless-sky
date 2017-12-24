@@ -43,7 +43,7 @@ public:
 	
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
-	const std::string &Name() const;
+	const std::string &Name(bool evenIfUndefined = false) const;
 	
 	const Date &GetDate() const;
 	void SetDate(const Date &date);

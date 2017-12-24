@@ -323,9 +323,9 @@ void MissionAction::Save(DataWriter &out) const
 		for(const auto &it : events)
 		{
 			if(it.second.first == it.second.second)
-				out.Write("event", it.first->Name(), it.second.first);
+				out.Write("event", it.first->Name(true), it.second.first);
 			else
-				out.Write("event", it.first->Name(), it.second.first, it.second.second);
+				out.Write("event", it.first->Name(true), it.second.first, it.second.second);
 		}
 		for(const auto &name : fail)
 			out.Write("fail", name);

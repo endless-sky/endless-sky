@@ -89,18 +89,18 @@ void GameEvent::Save(DataWriter &out) const
 		conditionsToApply.Save(out);
 		
 		for(const System *system : systemsToUnvisit)
-			if(system && !system->Name().empty())
-				out.Write("unvisit", system->Name());
+			if(system)
+				out.Write("unvisit", system->Name(true));
 		for(const Planet *planet : planetsToUnvisit)
-			if(planet && !planet->TrueName().empty())
-				out.Write("unvisit planet", planet->TrueName());
+			if(planet)
+				out.Write("unvisit planet", planet->TrueName(true));
 		
 		for(const System *system : systemsToVisit)
-			if(system && !system->Name().empty())
-				out.Write("visit", system->Name());
+			if(system)
+				out.Write("visit", system->Name(true));
 		for(const Planet *planet : planetsToVisit)
-			if(planet && !planet->TrueName().empty())
-				out.Write("visit planet", planet->TrueName());
+			if(planet)
+				out.Write("visit planet", planet->TrueName(true));
 		
 		for(const DataNode &change : changes)
 			out.Write(change);
@@ -110,8 +110,13 @@ void GameEvent::Save(DataWriter &out) const
 
 
 
-const string &GameEvent::Name() const
+const string &GameEvent::Name(bool evenIfUndefined) const
 {
+	if(name.empty() && evenIfUndefined)
+		for(const auto &it : GameData::Events())
+			if(&it.second == this)
+				return it.first;
+	
 	return name;
 }
 

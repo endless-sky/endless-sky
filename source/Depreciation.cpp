@@ -102,7 +102,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 				{ return lhs->first->Name() < rhs->first->Name(); },
 			[=, &out](const OutfitElement &oit)
 			{
-				out.Write("outfit", oit.first->Name());
+				out.Write("outfit", oit.first->Name(true));
 				out.BeginChild();
 				{
 					for(const auto &it : oit.second)
