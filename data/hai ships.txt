@@ -111,8 +111,7 @@ ship "Centipede"
 	explode "medium explosion" 25
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description `The introduction of humans to the Hai civilization has led to many interesting inventions that mix aspects of the different cultures. While some may vehemently argue that pickled acorns have been the greatest invention to come out of this relationship, many more will point to this luxury transport ship as the exemplar of human-Hai cooperation.`
-description `	The Centipede is the newest ship to be sold by the Hai. Designed by a human and built by a Hai shipyard, the Centipede was put on the market around the turn of the 31st century, but has already seen massive use among Hai fleets.`
+	description `The introduction of humans to the Hai civilization has led to a substantial amount of cultural exchange. While some may argue that pickled acorns have been the greatest product of this relationship, many more will point to this luxury transport ship. The product of human-Hai cooperation from the project's inception, the Centipede was released around the turn of the 31st century, but has already become quite popular among Hai fleets.`
 
 ship "Centipede" "Centipede (Pulse)"
 	outfits
@@ -214,7 +213,7 @@ ship "Geocoris"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description "The introduction of humans to Hai space caused quite a stir among Hai society, especially in the economy where large human freighters were out competing the smaller native Hai freighters. In order to prevent humans from taking over large parts of the Hai economy, the Geocoris was developed, a heavy freighter that surpassed anything humanity had to offer at the time."
+	description "After large human freighters began to out-compete traditionally smaller Hai ships, the Hai responded by developing the Geocoris: a heavy freighter that surpassed anything humanity had to offer at the time."
 
 ship "Geocoris" "Geocoris (Tracker)"
 	outfits
