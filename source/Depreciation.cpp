@@ -83,7 +83,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 				{ return lhs->first->ModelName() < rhs->first->ModelName(); },
 			[=, &out](const ShipElement &sit)
 			{
-				out.Write("ship", sit.first->ModelName());
+				out.Write("ship", sit.first->ModelName(true));
 				out.BeginChild();
 				{
 					// If this is a planet's stock, remember how many outfits in

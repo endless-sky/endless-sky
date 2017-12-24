@@ -439,17 +439,14 @@ void System::Unlink(System *other)
 
 // Get this system's name. When creating the player's save, the name used to
 // refer to this system should always be written, even if the system was not
-// fully defined (e.g. belongs to a plugin that is not currently active).
+// fully defined (i.e. belongs to a plugin that is not currently active).
 const string &System::Name(bool evenIfUndefined) const
 {
 	if(name.empty() && evenIfUndefined)
-	{
-		// Find the reference to this object in GameData and return the label.
-		// This preserves the system name in the player's save.
 		for(const auto &it : GameData::Systems())
 			if(&it.second == this)
 				return it.first;
-	}
+	
 	return name;
 }
 

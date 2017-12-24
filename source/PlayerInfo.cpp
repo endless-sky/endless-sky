@@ -41,6 +41,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <cmath>
 #include <ctime>
+#include <iterator>
 #include <sstream>
 
 using namespace std;
@@ -2539,9 +2540,8 @@ void PlayerInfo::CreateMissions()
 
 // Updates each mission upon landing, to perform landing actions (Stopover,
 // Visit, Complete, Fail), and remove now-complete or now-failed missions.
-// Whether loading or landing, any missions that reference invalid systems,
-// planets, ships, or events (i.e. missions from a now-removed plugin) are
-// made inactive to preserve undefined references.
+// Whether loading or landing, any missions that utilize components that are not
+// fully defined (e.g. a system from a now-removed plugin) are made inactive.
 void PlayerInfo::StepMissions(UI *ui)
 {
 	// Check for NPCs that have been destroyed without their destruction
@@ -2560,10 +2560,18 @@ void PlayerInfo::StepMissions(UI *ui)
 	{
 		if(ui)
 		{
+			// Prompt the player about any paused missions, but if there are many
+			// do not name them all (since this would overflow the screen).
 			string message = "These active missions or jobs were deactivated due to a missing definition - perhaps you recently removed a plugin?\n";
 			auto it = mit;
-			while(it != missions.end())
-				message += "\t\"" + (*it++).Name() + "\"\n";
+			int named = 0;
+			while(it != missions.end() && (++named < 10))
+			{
+				message += "\t\"" + (*it).Name() + "\"\n";
+				++it;
+			}
+			if(named >= 10 && it != missions.end())
+				message += " and " + to_string(distance(it, missions.end())) + " more.\n";
 			message += "They will be reactivated when the necessary plugin is reinstalled.";
 			ui->Push(new Dialog(message));
 		}

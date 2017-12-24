@@ -243,6 +243,8 @@ void Outfit::Load(const DataNode &node)
 
 
 
+// When writing to the player's save, the reference name is used even if this
+// outfit was not fully defined (i.e. belongs to an inactive plugin).
 const string &Outfit::Name(bool evenIfUndefined) const
 {
 	if(name.empty() && evenIfUndefined)

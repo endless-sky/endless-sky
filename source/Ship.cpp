@@ -612,11 +612,12 @@ void Ship::FinishLoading(bool isNewInstance)
 	}
 	// Add the attributes of all your outfits to the ship's base attributes.
 	attributes = baseAttributes;
+	set<string> undefinedOutfits;
 	for(const auto &it : outfits)
 	{
 		if(it.first->Name().empty())
 		{
-			Files::LogError("Unrecognized outfit in " + modelName + " \"" + name + "\"");
+			undefinedOutfits.emplace("\"" + it.first->Name(true) + "\"");
 			continue;
 		}
 		attributes.Add(*it.first, it.second);
@@ -634,13 +635,24 @@ void Ship::FinishLoading(bool isNewInstance)
 				armament.Add(it.first, count);
 		}
 	}
+	if(!undefinedOutfits.empty())
+	{
+		// Print the ship name once, then all undefined outfits.
+		string message = "ship " + modelName + " \"" + name + "\":";
+		string PREFIX = undefinedOutfits.size() > 1 ? "\n\tUndefined outfit " : " undefined outfit ";
+		for(const string &outfit : undefinedOutfits)
+			message += PREFIX + outfit;
+		Files::LogError(message);
+	}
 	// Inspect the ship's armament to ensure that guns are in gun ports and
 	// turrets are in turret mounts. This can only happen when the armament
-	// is configured incorrectly in a ship or variant definition.
+	// is configured incorrectly in a ship or variant definition. Do not
+	// bother printing this warning if the outfit is not fully defined.
 	for(const Hardpoint &hardpoint : armament.Get())
 	{
 		const Outfit *outfit = hardpoint.GetOutfit();
-		if(outfit && (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
+		if(outfit && !outfit->Name().empty()
+				&& (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
 		{
 			string warning = modelName;
 			if(!name.empty())
@@ -917,8 +929,15 @@ const string &Ship::Name() const
 
 
 
-const string &Ship::ModelName() const
+// Get the name of this class of ships, e.g. "Marauder Raven." If this class was
+// referenced somewhere but not actually loaded, GameData can supply the name.
+const string &Ship::ModelName(bool evenIfUndefined) const
 {
+	if(modelName.empty() && evenIfUndefined)
+		for(const auto &it : GameData::Ships())
+			if(&it.second == this)
+				return it.first;
+	
 	return modelName;
 }
 

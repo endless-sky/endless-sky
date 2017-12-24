@@ -41,7 +41,10 @@ public:
 	// Load a planet's description from a file.
 	void Load(const DataNode &node);
 	
-	// Get the name of the planet.
+	// Get the name of the planet (all wormholes use the same name).
+	// When saving missions or writing the player's save, the reference name
+	// associated with this planet is used even if the planet was not fully
+	// defined (i.e. it belongs to an inactive plugin).
 	const std::string &Name(bool evenIfUndefined = false) const;
 	// Get the name used for this planet in the data files.
 	const std::string &TrueName(bool evenIfUndefined = false) const;

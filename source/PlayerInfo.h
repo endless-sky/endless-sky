@@ -320,9 +320,8 @@ private:
 	// they will not change if you reload the game.
 	std::list<Mission> availableJobs;
 	std::list<Mission> availableMissions;
-	// If a mission references a system, planet, or ship model that is not
-	// fully defined, it is made inactive until its references are fully
-	// evaluable (e.g. its plugin is re-installed).
+	// If any mission component is not fully defined, the mission is deactivated
+	// until its components are fully evaluable (i.e. needed plugins are reinstalled).
 	std::list<Mission> inactiveMissions;
 	// Missions that are failed or aborted, but not yet deleted, and any
 	// missions offered while in-flight are not saved.
