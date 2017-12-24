@@ -399,6 +399,51 @@ bool Mission::IsVisible() const
 
 
 
+// Check if this mission uses any systems, planets, or ships that are not
+// fully defined. If everything is fully defined, this is a valid mission.
+bool Mission::IsValid() const
+{
+	// Planets must be defined and in a system. A source system does not necessarily exist.
+	if(source && (source->Name().empty() || !source->GetSystem()))
+		return false;
+	// Every mission is required to have a destination.
+	if(destination->Name().empty() || !destination->GetSystem())
+		return false;
+	for(const set<const Planet *> &usedPlanets : {stopovers, visitedStopovers})
+		for(const Planet *planet : usedPlanets)
+			if(planet->Name().empty() || !planet->GetSystem())
+				return false;
+	// Systems must have a name and a non-default position.
+	for(const set<const System *> &usedSystems : {waypoints, visitedWaypoints, didEnter})
+		for(const System *system : usedSystems)
+			if(system->Name().empty() || !system->Position())
+				return false;
+	for(const pair<const System *, MissionAction> &it : onEnter)
+	{
+		// The system of an 'on enter' may be nullptr.
+		if(it.first && (it.first->Name().empty() || !it.first->Position()))
+			return false;
+		if(!it.second.IsValid())
+			return false;
+	}
+	for(const pair<Trigger, MissionAction> &it : actions)
+		if(!it.second.IsValid())
+			return false;
+	
+	for(const NPC &npc : npcs)
+		for(const shared_ptr<Ship> &ship : npc.Ships())
+		{
+			if(ship->ModelName().empty())
+				return false;
+			for(const auto &outfit : ship->Outfits())
+				if(outfit.first->Name().empty())
+					return false;
+		}
+	
+	return true;
+}
+
+
 // Check if this mission has high priority. If any high-priority missions
 // are available, no others will be shown at landing or in the spaceport.
 // This is to be used for missions that are part of a series.

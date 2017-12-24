@@ -337,6 +337,25 @@ void MissionAction::Save(DataWriter &out) const
 
 
 
+// Check this MissionAction's gifted outfits and activated events to see if any
+// are not fully defined (e.g. the plugin defining it has been removed).
+bool MissionAction::IsValid() const
+{
+	for(const auto &outfit : giftOutfits)
+		if(outfit.first->Name().empty())
+			return false;
+	for(const auto &outfit : requiredOutfits)
+		if(outfit.first->Name().empty())
+			return false;
+	for(const auto &event : events)
+		if(event.first->Name().empty())
+			return false;
+	
+	return true;
+}
+
+
+
 int MissionAction::Payment() const
 {
 	return payment;

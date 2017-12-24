@@ -1178,7 +1178,7 @@ void PlayerInfo::Land(UI *ui)
 	if(!freshlyLoaded)
 		UpdateMissionNPCs();
 	
-	// Update missions that are completed, or should be failed.
+	// Update missions that are completed, should be failed, or should be made inactive.
 	StepMissions(ui);
 	UpdateCargoCapacities();
 	
@@ -1186,7 +1186,9 @@ void PlayerInfo::Land(UI *ui)
 	// new missions are created and new fines may be levied.
 	if(!freshlyLoaded)
 	{
+		// Create whatever missions this planet has to offer.
 		CreateMissions();
+		// Check if the player is doing anything illegal.
 		Fine(ui);
 	}
 	
@@ -2537,6 +2539,9 @@ void PlayerInfo::CreateMissions()
 
 // Updates each mission upon landing, to perform landing actions (Stopover,
 // Visit, Complete, Fail), and remove now-complete or now-failed missions.
+// Whether loading or landing, any missions that reference invalid systems,
+// planets, ships, or events (i.e. missions from a now-removed plugin) are
+// made inactive to preserve undefined references.
 void PlayerInfo::StepMissions(UI *ui)
 {
 	// Check for NPCs that have been destroyed without their destruction
@@ -2547,6 +2552,30 @@ void PlayerInfo::StepMissions(UI *ui)
 				if(ship->IsDestroyed())
 					mission.Do(ShipEvent(nullptr, ship, ShipEvent::DESTROY), *this, ui);
 	
+	// Move all invalid missions to the end of the mission list, so they may be easily removed.
+	missions.sort([](const Mission &lhs, const Mission &rhs) noexcept -> bool { return lhs.IsValid(); });
+	auto isInvalidMission = [](const Mission &m) noexcept -> bool { return !m.IsValid(); };
+	auto mit = find_if(missions.begin(), missions.end(), isInvalidMission);
+	if(mit != missions.end())
+	{
+		if(ui)
+		{
+			string message = "These active missions or jobs were deactivated due to a missing definition - perhaps you recently removed a plugin?\n";
+			auto it = mit;
+			while(it != missions.end())
+				message += "\t\"" + (*it++).Name() + "\"\n";
+			message += "They will be reactivated when the necessary plugin is reinstalled.";
+			ui->Push(new Dialog(message));
+		}
+		// Store any invalid missions on the inactive list.
+		inactiveMissions.splice(inactiveMissions.end(), missions, mit, missions.end());
+	}
+	// Invalid available jobs or missions are erased (since there is no guarantee
+	// the player will be on the correct planet when a plugin is re-added).
+	availableJobs.remove_if(isInvalidMission);
+	availableMissions.remove_if(isInvalidMission);
+	
+	// Check the remaining, valid missions for status changes from landing.
 	string visitText;
 	int missionVisits = 0;
 	auto substitutions = map<string, string>{
@@ -2556,7 +2585,7 @@ void PlayerInfo::StepMissions(UI *ui)
 	if(Flagship())
 		substitutions["<ship>"] = Flagship()->Name();
 	
-	auto mit = missions.begin();
+	mit = missions.begin();
 	while(mit != missions.end())
 	{
 		Mission &mission = *mit;
@@ -2765,8 +2794,10 @@ void PlayerInfo::Save(const string &path) const
 	out.Write();
 	out.WriteComment("What you've done:");
 	
-	// Save all missions (accepted or available).
+	// Save all missions (accepted, accepted-but-invalid, and available).
 	for(const Mission &mission : missions)
+		mission.Save(out);
+	for(const Mission &mission : inactiveMissions)
 		mission.Save(out);
 	for(const Mission &mission : availableJobs)
 		mission.Save(out, "available job");
