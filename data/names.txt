@@ -1072,6 +1072,7 @@ phrase "standalone civilian ship names"
 		"Stapleton"
 		"Righteous"
 		"Venerable"
+		"Mjolnir"
 
 
 # Final phrases that make ship names
@@ -2005,6 +2006,7 @@ phrase "sinister names"
 		"Koklir"
 		"Dracula"
 		"Usha"
+		"Grendel"
 
 phrase "pirate adjectives"
 	word
@@ -2194,6 +2196,7 @@ phrase "pirate nouns"
 		"Siren"
 		"Corpse"
 		"Butcher"
+		"Mother"
 
 phrase "bad outcomes"
 	word
@@ -2381,6 +2384,9 @@ phrase "pirate"
 		"La Llorona"
 		"Eaten Alive"
 		"Mongol Hordes"
+		"Death Blow"
+		"Death's Head"
+		"Black Hand"
 
 phrase "pirate"
 	phrase
