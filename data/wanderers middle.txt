@@ -309,7 +309,7 @@ mission "Wanderers: Rek To Kor Efret"
 	to offer
 		has "Wanderers: First Mereti Attack: done"
 	on offer
-		log `Iktat Rek has survived the Molt, but in a completely new form. Rek is now female, and is only the size of a Wanderer child, and has chosen the name "Ektasi Rek" for herself, meaning something like "communicator" or "bridge-builder."`
+		log `Rek has survived the Molt, but in a completely new form. Rek is now female, and is only the size of a Wanderer child, and has chosen the name "Ektasi Rek" for herself, meaning something like "communicator" or "bridge-builder."`
 		log "People" "Iktat Rek" `Rek underwent the Molt, a mysterious process in which the body of a Wanderer who is exposed to novel stimuli transforms into a completely new species while still maintaining that individual's memories and personality. The new Rek is a female and goes by the name "Ektasi Rek."`
 		log "People" "Ektasi Rek" `Ektasi Rek is the first Wanderer in millennia to undergo the Molt, changing into a completely different species with new capabilities. As more Wanderers go through the Molt, the Wanderers as a whole will have to decide which of these mutations represents the best way for their species to survive and flourish in Korath space.`
 		conversation

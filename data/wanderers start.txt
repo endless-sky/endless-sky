@@ -2227,7 +2227,7 @@ mission "Wanderers Rek 1"
 	to offer
 		has "Wanderers Rek 0: done"
 	on offer
-		log "Brought Iktat Rek to a Wanderer hospital facility. His illness, or molt, is progressing, and he has grown much weaker. But his mind is still as sharp as ever, and in fact he has somehow managed to pick up human language just by listening to the words of the translation machine."
+		log "Brought Rek to a Wanderer hospital facility. His illness, or molt, is progressing, and he has grown much weaker. But his mind is still as sharp as ever, and in fact he has somehow managed to pick up human language just by listening to the words of the translation machine."
 		conversation
 			`A Wanderer hospital is not too different from a human one. You stand in a corner trying not to get in the way as they transfer Rek to a bed and connect him to various tubes and wires. Without his feathers he looks unbelievably fragile, almost skeletal, but the Wanderer nurses and doctors are handling him as gently as possible.`
 			`	Eventually you are left alone with him. For a while he seems to just be gazing off into the distance, his eyes unfocused. Then he seems to realize that you are here and his eyes take on a new depth and alertness as he turns to look at you. Again speaking in your own language, he says, "Go visit the Sko'karak system and tell me what you find there." Then he shuts his eyes and falls asleep.`
@@ -2250,7 +2250,7 @@ mission "Wanderers Rek 2"
 		event "wanderers: more systems lost"
 		conversation
 			`When you arrive, you can tell that the locals are agitated about something. Finally one of them switches into the Hai language and explains to you what is going on. "We have just heard that the Unfettered have [stolen, captured] three more of our worlds," he says, "but do not tell Rek the news."`
-			`	You visit Iktat Rek and tell him that you found nothing out of the ordinary in the Sko'karak system. He barely even opens his eyes as you speak to him. "Go back and look again," he says.`
+			`	You visit Rek and tell him that you found nothing out of the ordinary in the Sko'karak system. He barely even opens his eyes as you speak to him. "Go back and look again," he says.`
 			choice
 				`	"Okay, I'll go and look again."`
 					accept
@@ -2300,7 +2300,7 @@ mission "Wanderers Ap'arak 1"
 	to offer
 		has "Wanderers Rek 3: done"
 	on offer
-		log "Iktat Rek has been placed in protective quarantine in a germ-free room, where he will receive drugs that will suppress his immune system and allow the genetic change that is taking place in his body to be completed. Even if he survives the process, it may change him beyond recognition."
+		log "Rek has been placed in protective quarantine in a germ-free room, where he will receive drugs that will suppress his immune system and allow the genetic change that is taking place in his body to be completed. Even if he survives the process, it may change him beyond recognition."
 		conversation
 			`You hurry into the hospital room. Rek's skin is now almost entirely bare aside from the withered, stringy black feathers that have grown in place of the once rich plumage. Rek's eyes spring open when you enter the room. "You have news," Rek says. "I can see it in your expression. What did you see?" Given how hard it is to read alien facial expressions, it would be quite remarkable if Rek could actually tell anything from looking at your face, but it would not be polite to say so.`
 			choice
