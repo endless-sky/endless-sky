@@ -2237,7 +2237,7 @@ mission "FW Syndicate Extremists 1A"
 			
 			`	"We gave the Alphas most of the alien technology we recovered," he says, "but one device, we managed to keep secret from them. We found it in a Korath cargo hold, and it took us a long time to even figure out how to activate it. But when we did, we discovered that it's a cloaking device. It obscures a ship not just from the visible spectrum, but from radar as well, and every other sensor we've tested except for gravitational ones. I'm certain it would hide you from the tracking systems on the nukes."`
 			`	Freya says, "But it would only hide one ship. That doesn't sound like it would do much good."`
-			`	Alastair says, "They have a limited number of nukes. Our plan was to send a ship in cloaked, have it uncloak long enough to draw their fire, and then cloak to avoid the missiles. Basically, see how many of missiles we can get them to spend before the main attack fleet arrives."`
+			`	Alastair says, "They have a limited number of nukes. Our plan was to send a ship in cloaked, have it uncloak long enough to draw their fire, and then cloak to avoid the missiles. Basically, see how many missiles we can get them to spend before the main attack fleet arrives."`
 			`	Danforth says, "That's not a bad idea. Captain <last>, would you be willing to serve as the decoy?"`
 			choice
 				`	"It sounds risky, but I'll do it."`
