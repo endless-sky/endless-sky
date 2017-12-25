@@ -1549,7 +1549,7 @@ event "capture of ik'kara'ka"
 		fleet "Large Unfettered" 400
 	planet "Varu Mer'ek"
 		attributes "unfettered" "factory"
-		description `This Wanderer factory world was recently captured by the Unfettered Hai, who are now busy trying to repurpose the Wanderer factories and equipment that were left behind, to build more ships for their war fleets. The Wanderers did not have time to demolish any of their equipment or to carry it off-world before the planet was lost. As a result, they have given the Unfettered a significant technological advantage here.`
+		description `This Wanderer factory world was recently captured by the Unfettered Hai, who are now busy trying to repurpose the Wanderer factories and equipment that were left behind to build more ships for their war fleets. The Wanderers did not have time to demolish any of their equipment or to carry it off-world before the planet was lost. As a result, they have given the Unfettered a significant technological advantage here.`
 		spaceport `The Unfettered seem to be quite at home in the tree house dwellings that the Wanderers left behind, and the Unfettered youth living here scramble up trunks and leap from tree to tree with reckless abandon, exulting in this new world they have captured and trying to outdo each other with their daredevil escapades.`
 		shipyard clear
 		outfitter clear
