@@ -656,7 +656,7 @@ ship "Winter Gale"
 	explode "small explosion" 40
 	explode "medium explosion" 30
 	"final explode" "final explosion medium"
-	description "The Wanderers designed the Winter Gale as a hardier and better-armed alternative to their existing light patrol ships. The Gale's large number of weapon hardpoints makes it flexible enough to reconfigure for facing a wide variety of enemies."
+	description "The Winter Gale was designed by the Wanderers as a hardier and better-armed alternative to their existing light patrol ships. The Gale's large number of weapon hardpoints makes it flexible enough to reconfigure for facing a wide variety of enemies."
 
 ship "Winter Gale" "Winter Gale (Heavy)"
 	outfits
