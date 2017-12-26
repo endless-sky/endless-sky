@@ -142,7 +142,7 @@ mission "Smuggler's Den, Part 1"
 			
 			label search
 			`	As you are conversing a bearded man and a rough-looking teenage boy enter the bar and begin looking around the room. "That's our captain," she says. "Please, you have to help us. There's a service tunnel that connects to the back entrance of the bar. We can escape through there."`
-			`	You've heard of these service passageways: the most dangerous part of this lawless station, dimly lit and seldom travelled, except by drug addicts and prostitutes. This whole thing might just be a ruse to lure you into one, where they can attack you without anyone interfering. "No," says the boy, "if we head for the service tunnel, they'll be sure to notice us. Let's just stay at the table until they go away."`
+			`	You've heard of these service passageways: the most dangerous part of this lawless station, dimly lit and seldom traveled, except by drug addicts and prostitutes. This whole thing might just be a ruse to lure you into one, where they can attack you without anyone interfering. "No," says the boy, "if we head for the service tunnel, they'll be sure to notice us. Let's just stay at the table until they go away."`
 			`	The baby begins to cry, softly, and she bounces it gently, trying desperately to quiet it. "Shh. Shh." For the moment, it falls silent.`
 			choice
 				`	(Try the service tunnel.)`
