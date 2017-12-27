@@ -823,7 +823,7 @@ mission "Wanderers: Alpha Surveillance B"
 	
 	on complete
 		conversation
-			`When you arrive at the spaceport, you contact Iktat Rek and send him a copy of the encrypted recordings. You also mention to him that the Unfettered attacked you after you send out the data retrieval signal. "That is [unfortunate, regrettable]," says Rek. "I hope they will [cool off, calm down] in time. I suspect you could buy their [friendship, favor] back with another jump drive, or just ignore their [attacks, antagonism] for now."`
+			`When you arrive at the spaceport, you contact Iktat Rek and send him a copy of the encrypted recordings. You also mention to him that the Unfettered attacked you after you sent out the data retrieval signal. "That is [unfortunate, regrettable]," says Rek. "I hope they will [cool off, calm down] in time. I suspect you could buy their [friendship, favor] back with another jump drive, or just ignore their [attacks, antagonism] for now."`
 			`	You ask what you should do next, and Rek says, "We need some time to [analyze, inspect] the sensor logs. Meet me in the spaceport in an hour."`
 
 
