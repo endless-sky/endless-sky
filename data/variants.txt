@@ -9,7 +9,6 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 ship "Argosy" "Argosy (Blaster)"
- description
 	outfits
 		"Energy Blaster" 4
 		"Quad Blaster Turret" 2
