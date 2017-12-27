@@ -308,7 +308,7 @@ outfit "Brig"
 	"mass" 3
 	"outfit space" -3
 	"unplunderable" 1
-	description "With the addition of some reinforced doors, locks, and security systems, any ship's passenger compartment can be turned into a brig, making it suitable for transporting criminals and prisoners... or worse, participating in the highly illegal galactic slave trade. These cells are often found on ships owned by bounty hunters, pirates, and of course, the Republic's interstellar law enforcement."
+	description "With the addition of some reinforced doors, locks, and security systems, any ship's passenger compartment can be turned into a brig. This makes it suitable for transporting criminals and prisoners, or participating in the highly illegal galactic slave trade. These cells are often found on ships owned by bounty hunters, pirates, and of course, the Republic's interstellar law enforcement."
 
 outfit "Fuel Pod"
 	category "Systems"
