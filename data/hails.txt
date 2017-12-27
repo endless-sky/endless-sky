@@ -2411,6 +2411,115 @@ phrase "hostile navy"
 	word
 		"."
 
+
+phrase "friendly deep"
+	word
+		"We"
+		"Our ships"
+		"Our security forces"
+		"Our fleets"
+		"Our forces"
+	word
+		" "
+	word
+		""
+		""
+		""
+		"are called to "
+		"are diligent to "
+		"must constantly "
+		"diligently "
+		"always "
+		"must "
+		"shall "
+	word
+		"defend against"
+		"hold back"
+		"keep watch for"
+		"protect you from"
+		"patrol for"
+		"look out for"
+		"ferret out"
+	word
+		" "
+	word
+		""
+		""
+		""
+		"the forces of "
+		"perpetrators of "
+		"those who bring "
+		"the ones who serve "
+		"agents of "
+	word
+		"mere anarchy"
+		"chaos"
+		"disruption"
+		"piracy"
+		"social regression"
+		"corruption"
+	word
+		"."
+
+phrase "hostile deep"
+	word
+		"You must"
+		"Please"
+		"Surely you"
+		"You ought to"
+	word
+		" "
+	word
+		"realize"
+		"recognize"
+		"understand"
+		"comprehend"
+		"admit"
+		"see"
+	word
+		" "
+	word
+		"that"
+		"how"
+		"the truth, that"
+	word
+		" your "
+	word
+		"deeds"
+		"actions"
+		"misdeeds"
+		"crimes"
+		"breaches of the law"
+	word
+		" "
+	word
+		"weaken"
+		"disrupt"
+		"tear at"
+		"harm"
+		"unsettle"
+	word
+		" the "
+	word
+		"fabric"
+		"balance"
+		"common good"
+		"cohesion"
+		"unity"
+		"health"
+	word
+		" of "
+	word
+		"our society"
+		"civilization"
+		"the commonwealth"
+		"society"
+		"our civilization"
+		"human society"
+	word
+		"."
+
+
 phrase "hostile pirate"
 	word
 		"Prepare to fight"
@@ -2888,7 +2997,7 @@ phrase "hostile syndicate"
 	word
 		"like you!"
 
-phrase "hostile Syndicate"
+phrase "hostile syndicate"
 	word
 		"You are attacking the Syndicate; we must defend it."
 		"You have made a bad commercial move."

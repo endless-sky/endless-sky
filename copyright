@@ -89,7 +89,10 @@ Files:
 Copyright: Matthew Smestad
 License: CC-BY-SA-4.0
 
-Files: images/ship/vanguard*
+Files:
+ images/ship/vanguard*
+ images/outfit/proton turret*
+ images/hardpoint/proton turret*
 Copyright: Nate Graham <pointedstick@zoho.com>
 License: CC-BY-SA-4.0
 
@@ -245,6 +248,22 @@ License: CC-BY-SA-4.0
 Files: images/land/*-spfld*
 Copyright: Eric Denni (spfldsatellite@gmail.com)
 License: CC-BY-SA-4.0
+
+Files: images/land/sivael*
+Copyright: Tymoteusz Kapuściński (Sivael)
+License: CC-BY-SA-4.0
+Comment: Screenshots of environments created with assets purchased by Tymoteusz
+ Kapuściński from the Unity Asset Store. Post-processing applied by Michael
+ Zahniser to make the images look less artificial.
+ 
+Files: images/outfit/tactical?scanner*
+Copyright: Zachary Siple
+License: CC-BY-SA-4.0
+
+Files: images/outfit/korath?rifle*
+Copyright: Evan Fluharty (Evanfluharty@gmai.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (from under the same license).
 
 Files:
  images/land/badlands0*

@@ -79,9 +79,9 @@ void BankPanel::Draw()
 	table.DrawAt(Point(0., FIRST_Y));
 	
 	// Use stock colors from the game data.
-	Color back = *GameData::Colors().Get("faint");
-	Color unselected = *GameData::Colors().Get("medium");
-	Color selected = *GameData::Colors().Get("bright");
+	const Color &back = *GameData::Colors().Get("faint");
+	const Color &unselected = *GameData::Colors().Get("medium");
+	const Color &selected = *GameData::Colors().Get("bright");
 	
 	// Draw the heading of the table.
 	table.DrawUnderline(unselected);

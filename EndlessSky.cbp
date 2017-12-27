@@ -91,6 +91,10 @@
 		<Unit filename="source/Audio.h" />
 		<Unit filename="source/BankPanel.cpp" />
 		<Unit filename="source/BankPanel.h" />
+		<Unit filename="source/BatchDrawList.cpp" />
+		<Unit filename="source/BatchDrawList.h" />
+		<Unit filename="source/BatchShader.cpp" />
+		<Unit filename="source/BatchShader.h" />
 		<Unit filename="source/BoardingPanel.cpp" />
 		<Unit filename="source/BoardingPanel.h" />
 		<Unit filename="source/Body.cpp" />
@@ -172,6 +176,8 @@
 		<Unit filename="source/HiringPanel.h" />
 		<Unit filename="source/ImageBuffer.cpp" />
 		<Unit filename="source/ImageBuffer.h" />
+		<Unit filename="source/ImageSet.cpp" />
+		<Unit filename="source/ImageSet.h" />
 		<Unit filename="source/Information.cpp" />
 		<Unit filename="source/Information.h" />
 		<Unit filename="source/Interface.cpp" />

@@ -136,9 +136,9 @@ void Dialog::Draw()
 	pos.Y() += bottom->Height() * .5 - 25.;
 	
 	// Draw the buttons, including optionally the cancel button.
-	Color bright = *GameData::Colors().Get("bright");
-	Color dim = *GameData::Colors().Get("medium");
-	Color back = *GameData::Colors().Get("faint");
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &dim = *GameData::Colors().Get("medium");
+	const Color &back = *GameData::Colors().Get("faint");
 	if(canCancel)
 	{
 		string cancelText = isMission ? "Decline" : "Cancel";

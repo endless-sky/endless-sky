@@ -41,9 +41,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 #include "StartConditions.h"
 #include "System.h"
+#include "WrappedText.h"
 
 #include <algorithm>
 #include <cmath>
+#include <string>
 
 using namespace std;
 
@@ -106,6 +108,46 @@ namespace {
 		objects.insert(objects.end(), make_move_iterator(added.begin()), make_move_iterator(added.end()));
 		added.clear();
 	}
+	
+	bool CanSendHail(const shared_ptr<const Ship> &ship, const System *playerSystem)
+	{
+		if(!ship || !playerSystem)
+			return false;
+		
+		// Make sure this ship is in the same system as the player.
+		if(ship->GetSystem() != playerSystem)
+			return false;
+		
+		// Player ships shouldn't send hails.
+		if(!ship->GetGovernment() || ship->GetGovernment()->IsPlayer())
+			return false;
+		
+		// Make sure this ship is able to send a hail.
+		if(ship->IsDisabled() || !ship->Crew()
+				|| ship->Cloaking() >= 1. || ship->GetPersonality().IsMute())
+			return false;
+		
+		return true;
+	}
+	
+	// Author the given message from the given ship.
+	void SendMessage(const shared_ptr<const Ship> &ship, const string &message)
+	{
+		if(message.empty())
+			return;
+		
+		// If this ship has no name, show its model name instead.
+		string tag;
+		const string &gov = ship->GetGovernment()->GetName();
+		if(!ship->Name().empty())
+			tag = gov + " " + ship->Noun() + " \"" + ship->Name() + "\": ";
+		else
+			tag = ship->ModelName() + " (" + gov + "): ";
+		
+		Messages::Add(tag + message);
+	}
+	
+	const double RADAR_SCALE = .025;
 }
 
 
@@ -372,7 +414,7 @@ void Engine::Step(bool isActive)
 	{
 		highlightSprite = flagship->GetSprite();
 		highlightUnit = flagship->Unit() * zoom;
-		highlightFrame = flagship->GetFrameIndex();
+		highlightFrame = flagship->GetFrame();
 	}
 	else
 		highlightSprite = nullptr;
@@ -484,17 +526,16 @@ void Engine::Step(bool isActive)
 	if(flagship && flagship->IsOverheated())
 		Messages::Add("Your ship has overheated.");
 	
+	// Clear the HUD information from the previous frame.
+	info = Information();
 	if(flagship && flagship->Hull())
 	{
-		int frame = flagship->GetFrameIndex(step);
 		Point shipFacingUnit(0., -1.);
 		if(Preferences::Has("Rotate flagship in HUD"))
 			shipFacingUnit = flagship->Facing().Unit();
 		
-		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, frame);
+		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step));
 	}
-	else
-		info.SetSprite("player sprite", nullptr);
 	if(currentSystem)
 		info.SetString("location", currentSystem->Name());
 	info.SetString("date", player.GetDate().ToString());
@@ -506,14 +547,6 @@ void Engine::Step(bool isActive)
 		info.SetBar("heat", flagship->Heat());
 		info.SetBar("shields", flagship->Shields());
 		info.SetBar("hull", flagship->Hull(), 20.);
-	}
-	else
-	{
-		info.SetBar("fuel", 0.);
-		info.SetBar("energy", 0.);
-		info.SetBar("heat", 0.);
-		info.SetBar("shields", 0.);
-		info.SetBar("hull", 0.);
 	}
 	info.SetString("credits",
 		Format::Number(player.Accounts().Credits()) + " credits");
@@ -530,9 +563,10 @@ void Engine::Step(bool isActive)
 		
 		targets.push_back({
 			object->Position() - center,
-			Angle(45.),
+			object->Facing(),
 			object->Radius(),
-			object->GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE});
+			object->GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE,
+			5});
 	}
 	else if(flagship && flagship->GetTargetSystem())
 	{
@@ -550,26 +584,44 @@ void Engine::Step(bool isActive)
 	// Use the radar that was just populated. (The draw tick-tock has not
 	// yet been toggled, but it will be at the end of this function.)
 	shared_ptr<const Ship> target;
-	targetAngle = Point();
+	shared_ptr<const Minable> targetAsteroid;
+	targetVector = Point();
 	if(flagship)
-		target = flagship->GetTargetShip();
-	if(!target)
 	{
-		info.SetSprite("target sprite", nullptr);
-		info.SetString("target name", "no target");
-		info.SetString("target type", "");
-		info.SetString("target government", "");
-		info.SetString("mission target", "");
-		info.SetBar("target shields", 0.);
-		info.SetBar("target hull", 0.);
+		target = flagship->GetTargetShip();
+		targetAsteroid = flagship->GetTargetAsteroid();
+		// Record that the player knows this type of asteroid is available here.
+		if(targetAsteroid)
+			for(const pair<const Outfit *, int> &it : targetAsteroid->Payload())
+				player.Harvest(it.first);
+	}
+	if(!target)
 		targetSwizzle = -1;
+	if(!target && !targetAsteroid)
+		info.SetString("target name", "no target");
+	else if(!target)
+	{
+		info.SetSprite("target sprite",
+			targetAsteroid->GetSprite(),
+			targetAsteroid->Facing().Unit(),
+			targetAsteroid->GetFrame(step));
+		info.SetString("target name", Format::Capitalize(targetAsteroid->Name()) + " Asteroid");
+		
+		targetVector = targetAsteroid->Position() - center;
+		
+		if(flagship->Attributes().Get("tactical scan power"))
+		{
+			info.SetCondition("range display");
+			int targetRange = round(targetAsteroid->Position().Distance(flagship->Position()));
+			info.SetString("target range", to_string(targetRange));
+		}
 	}
 	else
 	{
 		const Font &font = FontSet::Get(14);
 		if(target->GetSystem() == player.GetSystem() && target->Cloaking() < 1.)
 			targetUnit = target->Facing().Unit();
-		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrameIndex(step));
+		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
 		info.SetString("target name", font.TruncateMiddle(target->Name(), 150));
 		info.SetString("target type", target->ModelName());
 		if(!target->GetGovernment())
@@ -593,20 +645,32 @@ void Engine::Step(bool isActive)
 				target->Position() - center,
 				Angle(45.) + target->Facing(),
 				size,
-				targetType});
+				targetType,
+				4});
 			
-			// Don't show the angle to the target if it is very close.
-			targetAngle = target->Position() - center;
-			double length = targetAngle.Length();
-			if(length > 20.)
-				targetAngle /= length;
-			else
-				targetAngle = Point();
-		}
-		else
-		{
-			info.SetBar("target shields", 0.);
-			info.SetBar("target hull", 0.);
+			targetVector = target->Position() - center;
+			
+			// Check if the target is close enough to show tactical information.
+			double tacticalRange = 100. * sqrt(flagship->Attributes().Get("tactical scan power"));
+			double targetRange = target->Position().Distance(flagship->Position());
+			if(tacticalRange)
+			{
+				info.SetCondition("range display");
+				info.SetString("target range", to_string(static_cast<int>(round(targetRange))));
+			}
+			// Actual tactical information requires a scrutable
+			// target that is within the tactical scanner range.
+			if(targetRange <= tacticalRange && !target->Attributes().Get("inscrutable"))
+			{
+				info.SetCondition("tactical display");
+				info.SetString("target crew", to_string(target->Crew()));
+				int fuel = round(target->Fuel() * target->Attributes().Get("fuel capacity"));
+				info.SetString("target fuel", to_string(fuel));
+				int energy = round(target->Energy() * target->Attributes().Get("energy capacity"));
+				info.SetString("target energy", to_string(energy));
+				int heat = round(100. * target->Heat());
+				info.SetString("target heat", to_string(heat) + "%");
+			}
 		}
 	}
 	if(target && target->IsTargetable() && target->GetSystem() == currentSystem
@@ -646,7 +710,7 @@ void Engine::Step(bool isActive)
 			if(!stack.empty())
 				doClick = !player.SelectShips(stack, hasShift);
 			else
-				clickPoint /= isRadarClick ? .025 : zoom;
+				clickPoint /= isRadarClick ? RADAR_SCALE : zoom;
 		}
 	}
 	
@@ -662,9 +726,27 @@ void Engine::Step(bool isActive)
 				ship->Position() - center,
 				Angle(45.) + ship->Facing(),
 				size,
-				Radar::PLAYER});
+				Radar::PLAYER,
+				4});
 		}
 	}
+	
+	// Draw crosshairs on any minables in range of the flagship's scanners.
+	double scanRange = flagship ? 100. * sqrt(flagship->Attributes().Get("asteroid scan power")) : 0.;
+	if(flagship && scanRange && !flagship->IsHyperspacing())
+		for(const shared_ptr<Minable> &minable : asteroids.Minables())
+		{
+			Point offset = minable->Position() - center;
+			if(offset.Length() > scanRange)
+				continue;
+			
+			targets.push_back({
+				offset,
+				minable->Facing(),
+				.8 * minable->Radius(),
+				minable == flagship->GetTargetAsteroid() ? Radar::SPECIAL : Radar::INACTIVE,
+				3});
+		}
 }
 
 
@@ -682,7 +764,9 @@ void Engine::Go()
 
 
 
-const list<ShipEvent> &Engine::Events() const
+// Pass the list of game events to MainPanel for handling by the player, and any
+// UI element generation.
+list<ShipEvent> &Engine::Events()
 {
 	return events;
 }
@@ -694,12 +778,14 @@ void Engine::Draw() const
 {
 	GameData::Background().Draw(center, centerVelocity, zoom);
 	static const Set<Color> &colors = GameData::Colors();
+	const Interface *interface = GameData::Interfaces().Get("hud");
 	
 	// Draw any active planet labels.
 	for(const PlanetLabel &label : labels)
 		label.Draw();
 	
 	draw[drawTickTock].Draw();
+	batchDraw[drawTickTock].Draw();
 	
 	for(const auto &it : statuses)
 	{
@@ -732,35 +818,33 @@ void Engine::Draw() const
 	if(flash)
 		FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), Color(flash, flash));
 	
-	// Draw messages.
+	// Draw messages. Draw the most recent messages first, as some messages
+	// may be wrapped onto multiple lines.
 	const Font &font = FontSet::Get(14);
 	const vector<Messages::Entry> &messages = Messages::Get(step);
-	Point messagePoint(
-		Screen::Left() + 120.,
-		Screen::Bottom() - 20. * messages.size());
-	auto it = messages.begin();
-	double firstY = Screen::Top() - font.Height();
-	if(messagePoint.Y() < firstY)
+	Rectangle messageBox = interface->GetBox("messages");
+	WrappedText messageLine(font);
+	messageLine.SetWrapWidth(messageBox.Width());
+	messageLine.SetParagraphBreak(0.);
+	Point messagePoint = Point(messageBox.Left(), messageBox.Bottom());
+	for(auto it = messages.rbegin(); it != messages.rend(); ++it)
 	{
-		int skip = (firstY - messagePoint.Y()) / 20.;
-		it += skip;
-		messagePoint.Y() += 20. * skip;
-	}
-	for( ; it != messages.end(); ++it)
-	{
+		messageLine.Wrap(it->message);
+		messagePoint.Y() -= messageLine.Height();
+		if(messagePoint.Y() < messageBox.Top())
+			break;
 		float alpha = (it->step + 1000 - step) * .001f;
 		Color color(alpha, 0.);
-		font.Draw(it->message, messagePoint, color);
-		messagePoint.Y() += 20.;
+		messageLine.Draw(messagePoint, color);
 	}
 	
 	// Draw crosshairs around anything that is targeted.
 	for(const Target &target : targets)
 	{
 		Angle a = target.angle;
-		Angle da(90.);
+		Angle da(360. / target.count);
 		
-		for(int i = 0; i < 4; ++i)
+		for(int i = 0; i < target.count; ++i)
 		{
 			PointerShader::Draw(target.center * zoom, a.Unit(), 12., 14., -target.radius * zoom,
 				Radar::GetColor(target.type));
@@ -768,33 +852,28 @@ void Engine::Draw() const
 		}
 	}
 	
-	const Interface *interfaces[2] = {
-		GameData::Interfaces().Get("status"),
-		GameData::Interfaces().Get("targets")
-	};
-	for(const Interface *interface : interfaces)
+	// Draw the heads-up display.
+	interface->Draw(info);
+	if(interface->HasPoint("radar"))
 	{
-		interface->Draw(info);
-		if(interface->HasPoint("radar"))
-		{
-			radar[drawTickTock].Draw(
-				interface->GetPoint("radar"),
-				.025,
-				.5 * interface->GetSize("radar").X(),
-				.5 * interface->GetSize("radar").Y());
-		}
-		if(interface->HasPoint("target") && targetAngle)
-		{
-			Point center = interface->GetPoint("target");
-			double radius = .5 * interface->GetSize("target").X();
-			PointerShader::Draw(center, targetAngle, 10., 10., radius, Color(1.));
-		}
+		radar[drawTickTock].Draw(
+			interface->GetPoint("radar"),
+			RADAR_SCALE,
+			interface->GetValue("radar radius"),
+			interface->GetValue("radar pointer radius"));
 	}
+	if(interface->HasPoint("target") && targetVector.Length() > 20.)
+	{
+		Point center = interface->GetPoint("target");
+		double radius = interface->GetValue("target radius");
+		PointerShader::Draw(center, targetVector.Unit(), 10., 10., radius, Color(1.));
+	}
+	
 	// Draw the faction markers.
-	if(targetSwizzle >= 0 && interfaces[1]->HasPoint("faction markers"))
+	if(targetSwizzle >= 0 && interface->HasPoint("faction markers"))
 	{
 		int width = font.Width(info.GetString("target government"));
-		Point center = interfaces[1]->GetPoint("faction markers");
+		Point center = interface->GetPoint("faction markers");
 		
 		const Sprite *mark[2] = {SpriteSet::Get("ui/faction left"), SpriteSet::Get("ui/faction right")};
 		// Round the x offsets to whole numbers so the icons are sharp.
@@ -806,20 +885,32 @@ void Engine::Draw() const
 		MapPanel::DrawMiniMap(player, .5 * min(1., jumpCount / 30.), jumpInProgress, step);
 	
 	// Draw ammo status.
-	Point pos(Screen::Right() - 80, Screen::Bottom());
+	static const double ICON_SIZE = 30.;
+	static const double AMMO_WIDTH = 80.;
+	Rectangle ammoBox = interface->GetBox("ammo");
+	// Pad the ammo list by the same amount on all four sides.
+	double ammoPad = .5 * (ammoBox.Width() - AMMO_WIDTH);
 	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
 	const Sprite *unselectedSprite = SpriteSet::Get("ui/ammo unselected");
 	Color selectedColor = *colors.Get("bright");
 	Color unselectedColor = *colors.Get("dim");
+	
+	// This is the top left corner of the ammo display.
+	Point pos(ammoBox.Left() + ammoPad, ammoBox.Bottom() - ammoPad);
+	// These offsets are relative to that corner.
+	Point boxOff(AMMO_WIDTH - .5 * selectedSprite->Width(), .5 * ICON_SIZE);
+	Point textOff(AMMO_WIDTH - .5 * ICON_SIZE, .5 * (ICON_SIZE - font.Height()));
+	Point iconOff(.5 * ICON_SIZE, .5 * ICON_SIZE);
 	for(const pair<const Outfit *, int> &it : ammo)
 	{
-		pos.Y() -= 30.;
+		pos.Y() -= ICON_SIZE;
+		if(pos.Y() < ammoBox.Top() + ammoPad)
+			break;
 		
 		bool isSelected = it.first == player.SelectedWeapon();
 		
-		SpriteShader::Draw(it.first->Icon(), pos);
-		SpriteShader::Draw(
-			isSelected ? selectedSprite : unselectedSprite, pos + Point(35., 0.));
+		SpriteShader::Draw(it.first->Icon(), pos + iconOff);
+		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
 		
 		// Some secondary weapons may not have limited ammo. In that case, just
 		// show the icon without a number.
@@ -827,12 +918,12 @@ void Engine::Draw() const
 			continue;
 		
 		string amount = to_string(it.second);
-		Point textPos = pos + Point(55 - font.Width(amount), -(30 - font.Height()) / 2);
+		Point textPos = pos + textOff + Point(-font.Width(amount), 0.);
 		font.Draw(amount, textPos, isSelected ? selectedColor : unselectedColor);
 	}
 	
 	// Draw escort status.
-	escorts.Draw();
+	escorts.Draw(interface->GetBox("escorts"));
 	
 	// Upload any preloaded sprites that are now available. This is to avoid
 	// filling the entire backlog of sprites before landing on a planet.
@@ -858,16 +949,19 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 	isRightClick = false;
 	
 	// Determine if the left-click was within the radar display.
-	const Point &radarCenter = GameData::Interfaces().Get("targets")->GetPoint("radar");
-	const double &radarDiameter = GameData::Interfaces().Get("targets")->GetSize("radar").Y();
-	if(Preferences::Has("Clickable radar display") && (from - radarCenter).Length() <= .5 * radarDiameter)
+	const Interface *interface = GameData::Interfaces().Get("hud");
+	Point radarCenter = interface->GetPoint("radar");
+	double radarRadius = interface->GetValue("radar radius");
+	if(Preferences::Has("Clickable radar display") && (from - radarCenter).Length() <= radarRadius)
 		isRadarClick = true;
 	else
 		isRadarClick = false;
 	
 	clickPoint = isRadarClick ? from - radarCenter : from;
 	if(isRadarClick)
-		clickBox = Rectangle::WithCorners((from - radarCenter) / .025 + center, (to - radarCenter) / .025  + center);
+		clickBox = Rectangle::WithCorners(
+			(from - radarCenter) / RADAR_SCALE + center,
+			(to - radarCenter) / RADAR_SCALE  + center);
 	else
 		clickBox = Rectangle::WithCorners(from / zoom + center, to / zoom + center);
 }
@@ -881,10 +975,11 @@ void Engine::RClick(const Point &point)
 	isRightClick = true;
 	
 	// Determine if the right-click was within the radar display, and if so, rescale.
-	const Point &radarCenter = GameData::Interfaces().Get("targets")->GetPoint("radar");
-	const double &radarDiameter = GameData::Interfaces().Get("targets")->GetSize("radar").Y();
-	if(Preferences::Has("Clickable radar display") && (point - radarCenter).Length() <= .5 * radarDiameter)
-		clickPoint = (point - radarCenter) / .025;
+	const Interface *interface = GameData::Interfaces().Get("hud");
+	Point radarCenter = interface->GetPoint("radar");
+	double radarRadius = interface->GetValue("radar radius");
+	if(Preferences::Has("Clickable radar display") && (point - radarCenter).Length() <= radarRadius)
+		clickPoint = (point - radarCenter) / RADAR_SCALE;
 	else
 		clickPoint = point / zoom;
 }
@@ -1048,6 +1143,7 @@ void Engine::CalculateStep()
 	
 	// Clear the list of objects to draw.
 	draw[calcTickTock].Clear(step, zoom);
+	batchDraw[calcTickTock].Clear(step, zoom);
 	radar[calcTickTock].Clear();
 	
 	if(!player.GetSystem())
@@ -1159,6 +1255,7 @@ void Engine::CalculateStep()
 		newCenterVelocity = flagship->Velocity();
 	}
 	draw[calcTickTock].SetCenter(newCenter, newCenterVelocity);
+	batchDraw[calcTickTock].SetCenter(newCenter);
 	radar[calcTickTock].SetCenter(newCenter);
 	
 	// Populate the radar.
@@ -1210,16 +1307,10 @@ void Engine::CalculateStep()
 	}
 	// Draw the projectiles.
 	for(const Projectile &projectile : projectiles)
-	{
-		// The motion blur should be reduced depending on how much motion blur
-		// is in the sprite itself:
-		double innateVelocity = 2. * projectile.GetWeapon().Velocity();
-		Point relativeVelocity = projectile.Velocity() - projectile.Unit() * innateVelocity;
-		draw[calcTickTock].AddProjectile(projectile, relativeVelocity, projectile.Clip());
-	}
+		batchDraw[calcTickTock].Add(projectile, projectile.Clip());
 	// Draw the visuals.
 	for(const Visual &visual : visuals)
-		draw[calcTickTock].AddUnblurred(visual);
+		batchDraw[calcTickTock].Add(visual);
 	
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();
@@ -1371,15 +1462,26 @@ void Engine::SpawnPersons()
 		sum -= person.Frequency(player.GetSystem());
 		if(sum < 0)
 		{
-			shared_ptr<Ship> ship = person.GetShip();
-			ship->Recharge();
-			ship->SetName(it.first);
-			ship->SetGovernment(person.GetGovernment());
-			ship->SetPersonality(person.GetPersonality());
-			ship->SetHail(person.GetHail());
-			Fleet::Enter(*player.GetSystem(), *ship);
+			const System *source = nullptr;
+			shared_ptr<Ship> parent;
+			for(const shared_ptr<Ship> &ship : person.Ships())
+			{
+				ship->Recharge();
+				if(ship->Name().empty())
+					ship->SetName(it.first);
+				ship->SetGovernment(person.GetGovernment());
+				ship->SetPersonality(person.GetPersonality());
+				ship->SetHail(person.GetHail());
+				if(!parent)
+					parent = ship;
+				else
+					ship->SetParent(parent);
+				// Make sure all ships in a "person" definition enter from the
+				// same source system.
+				source = Fleet::Enter(*player.GetSystem(), *ship, source);
+				newShips.push_back(ship);
+			}
 			
-			newShips.push_back(ship);
 			break;
 		}
 	}
@@ -1402,32 +1504,11 @@ void Engine::SendHails()
 			break;
 		}
 	
-	// Player ships shouldn't send hails.
-	const Government *government = source->GetGovernment();
-	if(!government || government->IsPlayer())
+	if(!CanSendHail(source, player.GetSystem()))
 		return;
 	
-	// Make sure this ship is in the same system as you.
-	if(source->GetSystem() != player.GetSystem())
-		return;
-	
-	// Make sure this ship is able to send a hail.
-	if(source->IsDisabled() || !source->Crew() || source->Cloaking() >= 1.)
-		return;
-	
-	// Generate a random hail message, and make sure it's not empty.
-	string message = source->GetHail();
-	if(message.empty())
-		return;
-	
-	// If this ship has no name, show its model name instead.
-	string tag;
-	const string &gov = government->GetName();
-	if(!source->Name().empty())
-		tag = gov + " " + source->Noun() + " \"" + source->Name() + "\": ";
-	else
-		tag = source->ModelName() + " (" + gov + "): ";
-	Messages::Add(tag + message);
+	// Generate a random hail message.
+	SendMessage(source, source->GetHail());
 }
 
 
@@ -1509,6 +1590,24 @@ void Engine::HandleMouseClicks()
 	}
 	else if(isRightClick)
 		ai.IssueMoveTarget(player, clickPoint + center, playerSystem);
+	else if(flagship->Attributes().Get("asteroid scan power"))
+	{
+		// If the click was not on any ship, check if it was on a minable.
+		double scanRange = 100. * sqrt(flagship->Attributes().Get("asteroid scan power"));
+		for(const shared_ptr<Minable> &minable : asteroids.Minables())
+		{
+			Point position = minable->Position() - flagship->Position();
+			if(position.Length() > scanRange)
+				continue;
+			
+			double range = clickPoint.Distance(position) - minable->Radius();
+			if(range <= clickRange)
+			{
+				clickRange = range;
+				flagship->SetTargetAsteroid(minable);
+			}
+		}
+	}
 }
 
 
@@ -1671,14 +1770,8 @@ void Engine::DoCollection(Flotsam &flotsam)
 		return;
 	
 	// One of your ships picked up this flotsam. Describe who it was.
-	string name;
-	if(collector->IsYours())
-	{
-		if(collector->GetParent())
-			name = "Your ship \"" + collector->Name() + "\" picked up ";
-		else
-			name = "You picked up ";
-	}
+	string name = (!collector->GetParent() ? "You" :
+			"Your ship \"" + collector->Name() + "\"") + " picked up ";
 	// Describe what they collected from this flotsam.
 	string commodity;
 	string message;
@@ -1869,17 +1962,16 @@ void Engine::AddSprites(const Ship &ship)
 
 
 // If a ship just damaged another ship, update information on who has asked the
-// player for assistance.
+// player for assistance (and ask for assistance if appropriate).
 void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker)
 {
 	if(attacker->IsPlayer())
 	{
 		shared_ptr<const Ship> previous = grudge[target->GetGovernment()].lock();
-		if(previous && previous->GetSystem() == player.GetSystem() && !previous->IsDisabled())
+		if(CanSendHail(previous, player.GetSystem()))
 		{
 			grudge[target->GetGovernment()].reset();
-			Messages::Add(previous->GetGovernment()->GetName() + " " + previous->Noun() + " \""
-				+ previous->Name() + "\": Thank you for your assistance, Captain "
+			SendMessage(previous, "Thank you for your assistance, Captain "
 				+ player.LastName() + "!");
 		}
 		return;
@@ -1892,27 +1984,27 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	if(grudge.count(attacker))
 	{
 		shared_ptr<const Ship> previous = grudge[attacker].lock();
-		if(!previous || (previous->GetSystem() == player.GetSystem() && !previous->IsDisabled()))
+		// If the previous ship is destroyed, or was able to send a
+		// "thank you" already, skip sending a new thanks.
+		if(!previous || CanSendHail(previous, player.GetSystem()))
 			return;
 	}
 	
-	// Do not ask the player's help if they are your enemy or are not an enemy
-	// of the ship that is attacking you.
-	if(target->GetGovernment()->IsPlayer())
+	// If an enemy of the player, or being attacked by those that are
+	// not enemies of the player, do not request help.
+	if(target->GetGovernment()->IsEnemy() || !attacker->IsEnemy())
 		return;
-	if(!attacker->IsEnemy())
+	// Ensure that this attacked ship is able to send hails (e.g. not mute,
+	// a player ship, automaton, etc.)
+	if(!CanSendHail(target, player.GetSystem()))
 		return;
-	if(target->GetGovernment()->IsEnemy())
-		return;
-	if(target->GetPersonality().IsMute())
-		return;
+	// If the hailer has a special language, the player must understand it.
 	if(!target->GetGovernment()->Language().empty())
 		if(!player.GetCondition("language: " + target->GetGovernment()->Language()))
 			return;
 	
 	// No active ship has a grudge already against this government.
 	// Check the relative strength of this ship and its attackers.
-	double targetStrength = (target->Shields() + target->Hull()) * target->Cost();
 	double attackerStrength = 0.;
 	int attackerCount = 0;
 	for(const shared_ptr<Ship> &ship : ships)
@@ -1922,6 +2014,8 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 			attackerStrength += (ship->Shields() + ship->Hull()) * ship->Cost();
 		}
 	
+	// Only ask for help if outmatched.
+	double targetStrength = (target->Shields() + target->Hull()) * target->Cost();
 	if(attackerStrength <= targetStrength)
 		return;
 	
@@ -1932,24 +2026,24 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	
 	grudge[attacker] = target;
 	grudgeTime = 120;
-	string message = target->GetGovernment()->GetName() + " ship \"" + target->Name() + "\": ";
+	string message;
 	if(target->GetPersonality().IsHeroic())
 	{
-		message += "Please assist us in destroying ";
+		message = "Please assist us in destroying ";
 		message += (attackerCount == 1 ? "this " : "these ");
 		message += attacker->GetName();
 		message += (attackerCount == 1 ? " ship." : " ships.");
 	}
 	else
 	{
-		message += "We are under attack by ";
+		message = "We are under attack by ";
 		if(attackerCount == 1)
 			message += "a ";
 		message += attacker->GetName();
 		message += (attackerCount == 1 ? " ship" : " ships");
 		message += ". Please assist us!";
 	}
-	Messages::Add(message);
+	SendMessage(target, message);
 }
 
 

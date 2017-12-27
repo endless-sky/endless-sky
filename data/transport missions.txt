@@ -17,8 +17,8 @@ mission "Immigrant Workers"
 		random < 50
 	source "New Iceland"
 	destination
-		attributes core
-		attributes factory textile
+		attributes "core"
+		attributes "factory" "textile"
 	on complete
 		payment
 		payment 10000
@@ -416,23 +416,23 @@ mission "Transport Workers C"
 
 mission "WR Star 1"
 	name "Star Research"
-	description "Fly through the Ildaria system with this team of scientists, then return them to <destination>."
+	description "Fly through the <waypoints> system with this team of scientists, then return them to <destination>."
 	minor
 	source
-		attributes deep
-		attributes urban research
-	waypoint Ildaria
+		attributes "deep"
+		attributes "urban" "research"
+	waypoint "Ildaria"
 	to offer
 		random < 20
 	passengers 3
 	cargo "sensors" 2
 	
 	on offer
-		dialog `A group of scientists approaches you and asks if you will be headed to the Rim any time soon. "We're doing research on Wolf-Rayet stars," they explain, "and we're hoping to find a captain who can do a fly-by of Ildaria." Scientific research in the Deep is notoriously well-funded, so they will probably pay you quite well.`
+		dialog `A group of scientists approaches you and asks if you will be headed to the Rim any time soon. "We're doing research on Wolf-Rayet stars," they explain, "and we're hoping to find a captain who can do a fly-by of <waypoints>." Scientific research in the Deep is notoriously well-funded, so they will probably pay you quite well.`
 	
 	on complete
 		payment 250000
-		dialog `The team of scientists thanks you for bringing them to Ildaria and back, and pays you <payment>. They seem eager to get back to their lab and start analyzing their measurements.`
+		dialog `The team of scientists thanks you for bringing them to <waypoints> and back, and pays you <payment>. They seem eager to get back to their lab and start analyzing their measurements.`
 
 
 
@@ -441,7 +441,7 @@ mission "Deep Archaeology 1"
 	description "Drop this archaeologist off on <destination>, before making a trip to Midgard in the Deep to collect some samples."
 	minor
 	source
-		attributes paradise north "near earth"
+		attributes "paradise" "north" "near earth"
 		near Miaplacidus 1 20
 	destination Vinci
 	to offer
@@ -1225,7 +1225,7 @@ mission "Rim Archaeology 5B"
 
 event "rim archaeology results"
 	planet Zug
-		attributes rim farming factory tourism
+		add attributes "tourism"
 		description `Zug is a pleasant world of rolling hills, fertile fields, and a few small oceans. Hundreds of millions of people live here, with more immigrants arriving every day, almost faster than the construction industry can keep up with them. In addition to the larger cities, many people live in smaller farming villages, making this one of the few worlds in the region that is truly self-sufficient both in industry and in agriculture.`
 		description `	The largest industry on Zug is Southbound Shipyards. However, in the wake of some extraordinary archaeological discoveries of a lost civilization, Zug has suddenly also become a popular destination for tourists.`
 
@@ -1235,7 +1235,7 @@ mission "Rim Archaeology 6"
 	landing
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
-		near Sol 100
+		near "Sol" 100
 		attributes spaceport
 	to offer
 		has "event: rim archaeology results"
@@ -1258,7 +1258,7 @@ mission "Drug Running 1"
 	source
 		attributes "near earth" "dirt belt" "north"
 	destination
-		attributes paradise
+		attributes "paradise"
 		distance 1 100
 	cargo "illegal drugs" 5 2 .1
 		illegal 40000
@@ -1289,7 +1289,7 @@ mission "Drug Running 2"
 	source
 		attributes "near earth" "dirt belt" "north"
 	destination
-		attributes rich
+		attributes "rich"
 		distance 1 100
 	cargo "illegal drugs" 5 2 .1
 		illegal 50000
@@ -1315,7 +1315,7 @@ mission "Drug Running 3"
 	source
 		attributes "near earth" "dirt belt" "north"
 	destination
-		attributes urban
+		attributes "urban"
 		distance 1 100
 	cargo "illegal drugs" 5 2 .1
 		illegal 70000
@@ -1346,7 +1346,6 @@ effect "puff"
 	"velocity scale" -.005
 
 outfit "Imaginary Weapon"
-	category "Missiles"
 	"gun ports" -1
 	weapon
 		sprite "projectile/rainbow"
@@ -1417,11 +1416,11 @@ mission "Rescue Miners 1"
 	name "Rescue Miners"
 	minor
 	source
-		attributes core
-		attributes urban
+		attributes "core"
+		attributes "urban"
 	destination
-		attributes core
-		attributes mining
+		attributes "core"
+		attributes "mining"
 		distance 1 100
 	passengers 15
 	cargo "emergency supplies" 15
@@ -1439,8 +1438,8 @@ mission "Rescue Miners 2"
 	name "Rescue Miners"
 	minor
 	destination
-		attributes core
-		attributes urban
+		attributes "core"
+		attributes "urban"
 		distance 2 10
 	passengers 15
 	to offer
@@ -1535,7 +1534,7 @@ mission "Courier 4"
 	destination
 		distance 7 14
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
-		attributes rich
+		attributes "rich"
 	on offer
 		conversation
 			`A man wearing a very complicated hat waves to you from the other side of a landing pad. "Yoo-hoo, Captain!" he says. "I have a courier mission for you if you're interested."`
@@ -1896,9 +1895,9 @@ mission "A wolf, a goat, and a cabbage"
 
 mission "Terminus exploration"
 	name "Missing drone"
-	description "Travel to the Terminus system to see if you can find any sign of a probe drone that had been launched by a team of scientists before they were attacked by pirates and forced to flee."
-	source Bounty
-	waypoint Terminus
+	description "Travel to the <waypoints> system to see if you can find any sign of a probe drone that had been launched by a team of scientists before they were attacked by pirates and forced to flee."
+	source "Bounty"
+	waypoint "Terminus"
 	to offer
 		"combat rating" > 20
 	on offer
@@ -1919,14 +1918,14 @@ mission "Terminus exploration"
 			`	"Thank you so much!" he says. "All I need you to do is board the drone and download its database. Unless the pirates have already stripped out the computer, of course. The drone is in the Terminus system, a few jumps away from here."`
 				accept
 	npc assist
-		system Terminus
-		government Uninhabited
+		system "Terminus"
+		government "Uninhabited"
 		personality derelict target
 		ship "Science Drone" "Beagle"
 		dialog `You board the science drone and discover that the pirates have stripped just about everything of value from it: the engines, the sensors, and the fuel cell that powered it. But the computer system is either too deeply integrated into the drone, or too specialized, to be of any value to the pirates. You transfer enough power to the drone's batteries to reactivate it, and are able to retrieve the data that the scientist was looking for. But it's clear that this drone, or what's left of it, is not going anywhere. You'll have to leave it behind.`
 	npc
-		system Terminus
-		government Pirate
+		system "Terminus"
+		government "Pirate"
 		personality staying
 		fleet "Small Southern Pirates" 2
 	on complete
