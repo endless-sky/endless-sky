@@ -174,8 +174,8 @@ public:
 	int GetCondition(const std::string &name) const;
 	std::map<std::string, int> &Conditions();
 	const std::map<std::string, int> &Conditions() const;
-	// Set and check the reputation conditions, which missions can use to modify
-	// the player's reputation.
+	// Set and check the reputation conditions, which missions and events
+	// can use to modify the player's reputation with other governments.
 	void SetReputationConditions();
 	void CheckReputationConditions();
 	
@@ -184,6 +184,7 @@ public:
 	bool HasVisited(const System *system) const;
 	bool HasVisited(const Planet *planet) const;
 	bool KnowsName(const System *system) const;
+	// Marking a system as visited also "sees" its neighbors.
 	void Visit(const System *system);
 	void Visit(const Planet *planet);
 	// Mark a system and its planets as unvisited, even if visited previously.

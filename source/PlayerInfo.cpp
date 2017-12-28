@@ -1590,8 +1590,8 @@ const map<string, int> &PlayerInfo::Conditions() const
 
 
 
-// Set and check the reputation conditions, which missions can use to modify
-// the player's reputation.
+// Set and check the reputation conditions, which missions and events can use to
+// modify the player's reputation with other governments.
 void PlayerInfo::SetReputationConditions()
 {
 	for(const auto &it : GameData::Governments())
@@ -2177,6 +2177,7 @@ void PlayerInfo::UpdateAutoConditions()
 	conditions["unpaid fines"] = min(limit, accounts.TotalDebt("Fine"));
 	conditions["unpaid salaries"] = min(limit, accounts.SalariesOwed());
 	conditions["credit score"] = accounts.CreditScore();
+	// Serialize the current reputation with other governments.
 	SetReputationConditions();
 	// Clear any existing ships: conditions. (Note: '!' = ' ' + 1.)
 	auto first = conditions.lower_bound("ships: ");
