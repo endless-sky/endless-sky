@@ -1831,7 +1831,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 					goto thanks
 			
 			label glad1
-			`	"I am! The attacking ships weren't big, but they were tough: our four heavy laser turrets couldn't even produce a dent in their shields," the captain says. "We even hired a beefy Leviathan to protect us from the pirate raids as we travelled to Farpoint, but when these hostile ships jumped in from the northwest, they made short work of our escort and nearly disabled our ship, too. I had to jump out of the system while in atmosphere to save the ship, but now I'm in debt to all my crew because I didn't meet a rush delivery deadline."`
+			`	"I am! The attacking ships weren't big, but they were tough: our four heavy laser turrets couldn't even produce a dent in their shields," the captain says. "We even hired a beefy Leviathan to protect us from the pirate raids as we traveled to Farpoint, but when these hostile ships jumped in from the northwest, they made short work of our escort and nearly disabled our ship, too. I had to jump out of the system while in atmosphere to save the ship, but now I'm in debt to all my crew because I didn't meet a rush delivery deadline."`
 			choice
 				`	"You really are lucky as hell to be here today."`
 					goto glad
