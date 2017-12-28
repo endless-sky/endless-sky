@@ -1502,7 +1502,7 @@ mission "Raider Attack 1"
 		fleet "Small Syndicate"
 	on offer
 		conversation
-			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by alien raiders! We need every combat-worthy ship to join in the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
+			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by alien raiders! We need every combat-worthy ship to join in the defense!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
 			choice
 				`    (Stay here until the fight is over.)`
 					decline
@@ -1537,7 +1537,7 @@ mission "Raider Attack 2"
 		fleet "Large Syndicate" 2
 	on offer
 		conversation
-			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by alien raiders! We need every combat-worthy ship to join in the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
+			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by alien raiders! We need every combat-worthy ship to join in the defense!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
 			choice
 				`    (Stay here until the fight is over.)`
 					decline
