@@ -265,6 +265,12 @@ Copyright: Evan Fluharty (Evanfluharty@gmai.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (from under the same license).
 
+Files: images/portrait/*
+Copyright: Various
+License: public-domain
+ Taken from unsplash.com, a collection of photographs that have been donated and
+ placed in the public domain.
+
 Files:
  images/land/badlands0*
  images/land/badlands1*

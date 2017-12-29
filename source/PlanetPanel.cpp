@@ -155,6 +155,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(key == 'p' && flagship && planet.HasSpaceport() && hasAccess)
 	{
 		selectedPanel = spaceport.get();
+		spaceport->UpdateNews();
 		GetUI()->Push(spaceport);
 	}
 	else if(key == 's' && planet.HasShipyard() && hasAccess)
