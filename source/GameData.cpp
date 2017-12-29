@@ -35,6 +35,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Minable.h"
 #include "Mission.h"
 #include "Music.h"
+#include "News.h"
 #include "Outfit.h"
 #include "OutlineShader.h"
 #include "Person.h"
@@ -42,6 +43,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PointerShader.h"
 #include "Politics.h"
+#include "Random.h"
 #include "RingShader.h"
 #include "Sale.h"
 #include "Set.h"
@@ -102,6 +104,7 @@ namespace {
 	map<const Sprite *, string> landingMessages;
 	map<const Sprite *, double> solarPower;
 	map<const Sprite *, double> solarWind;
+	Set<News> news;
 	map<string, vector<string>> ratings;
 	
 	StarField background;
@@ -501,6 +504,8 @@ void GameData::Change(const DataNode &node)
 		shipSales.Get(node.Token(1))->Load(node, ships);
 	else if(node.Token(0) == "system" && node.Size() >= 2)
 		systems.Get(node.Token(1))->Load(node, planets);
+	else if(node.Token(0) == "news" && node.Size() >= 2)
+		news.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "link" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "unlink" && node.Size() >= 3)
@@ -724,6 +729,20 @@ double GameData::SolarWind(const Sprite *sprite)
 
 
 
+// Pick a random news object that applies to the given planet. If there is
+// no applicable news, this returns null.
+const News *GameData::PickNews(const Planet *planet)
+{
+	vector<const News *> matches;
+	for(const auto &it : news)
+		if(it.second.Matches(planet))
+			matches.push_back(&it.second);
+	
+	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];
+}
+
+
+
 // Strings for combat rating levels, etc.
 const string &GameData::Rating(const string &type, int level)
 {
@@ -915,6 +934,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 					child.PrintTrace("Unrecognized star attribute:");
 			}
 		}
+		else if(key == "news" && node.Size() >= 2)
+			news.Get(node.Token(1))->Load(node);
 		else if(key == "rating" && node.Size() >= 2)
 		{
 			vector<string> &list = ratings[node.Token(1)];
