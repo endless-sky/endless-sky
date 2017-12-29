@@ -275,7 +275,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 	
 	// Certain events only count towards the NPC's status if originated by
 	// the player: scanning, boarding, or assisting.
-	if(!event.ActorGovernment()->IsPlayer())
+	if(event.ActorGovernment() && !event.ActorGovernment()->IsPlayer())
 		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS
 				| ShipEvent::ASSIST | ShipEvent::BOARD);
 	
