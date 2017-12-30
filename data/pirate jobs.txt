@@ -2467,8 +2467,7 @@ mission "Cargo Theft (South)"
 
 mission "Capture Smuggler"
 	name "Capture rogue smuggler"
-	minor
-	description `A smuggler absconded with his illegal cargo near <system>. The unknown person he stole it from wants it back. Recover the cargo and return both it and the smuggler to <origin> for <payment>.`
+	description `A smuggler absconded with his illegal cargo near <system>. The unknown person he stole it from wants it back. Recover the cargo from the <npc> and return both it and the smuggler to <origin> for <payment>.`
 	to offer
 		random < 5
 		"combat rating" > 2000
