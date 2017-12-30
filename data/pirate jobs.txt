@@ -2507,7 +2507,7 @@ mission "Capture Smuggler"
 				accept
 
 			label mistake
-			`	The man looks down at you with no change in expression. "This is great shame. I will tell my employer, '<first> <last> was not so reliable. I hade to make example.'" The man grabs your neck with one monstrous hand. The last thing you see as your vision fades to black is a mouth full of pointed teeth.`
+			`	The man looks down at you with no change in expression. "This is great shame. I will tell my employer, '<first> <last> was not so reliable. I had to make example.'" The man grabs your neck with one monstrous hand. The last thing you see as your vision fades to black is a mouth full of pointed teeth.`
 				die
 	on visit
 		dialog "You land on <origin>, but you don't have the smuggler and the cargo he stole. You should probably be careful not to run into your contact until you do."
