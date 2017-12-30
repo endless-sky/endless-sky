@@ -2487,7 +2487,7 @@ mission "Capture Smuggler"
 			variant
 				"Modified Argosy (Smuggler)"
 	on fail
-		dialog "You have failed to capture the smuggler and the stolen cargo. This will probably not be good for your reputation."
+		dialog "You have failed to capture the smuggler and recover the stolen cargo. This will probably not be good for your reputation."
 		"reputation: Pirate" <?= -10
 	on offer
 		conversation
