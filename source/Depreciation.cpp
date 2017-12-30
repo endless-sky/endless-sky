@@ -27,8 +27,8 @@ namespace {
 	// Names for the two kinds of depreciation records.
 	string NAME[2] = {"fleet depreciation", "stock depreciation"};
 	// Depreciation parameters.
-	double FULL_DEPRECIATION = 0.25;
-	double DAILY_DEPRECIATION = 0.99;
+	double FULL_DEPRECIATION = 0.2;
+	double DAILY_DEPRECIATION = 0.995;
 	int MAX_AGE = 1000;
 }
 
