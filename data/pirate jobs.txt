@@ -2477,7 +2477,7 @@ mission "Capture Smuggler"
 		government Pirate
 	npc board
 		conversation
-			`"After neutralizing the crew and capturing the captain, you have your men sweep the ship. Ultimately they find the stolen cargo in the captain's cabin, hidden behind a false panel. The cargo is a nondescript storage container, but upon closer inspection you see that it's code-locked, interference shielded, and vacuum sealed. You return to you ship and hide the box under your bunk."`
+			`"After neutralizing the crew and capturing the captain, you have your men sweep the ship. Ultimately they find the stolen cargo in the captain's cabin, hidden behind a false panel. The cargo is a nondescript storage container, but upon closer inspection you see that it's code-locked, interference shielded, and vacuum sealed. You return to your ship and hide the box under your bunk."`
 		government "Merchant"
 		personality staying timid target marked
 		system
