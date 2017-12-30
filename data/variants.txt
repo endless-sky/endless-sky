@@ -1264,8 +1264,7 @@ ship "Modified Argosy" "Modified Argosy (Missile)"
 
 ship "Modified Argosy" "Modified Argosy (Smuggler)"
 	outfits
-		"Heavy Laser" 2
-		"Beam Laser" 2
+		"Beam Laser" 4
 		"Heavy Laser Turret"
 		"Heavy Anti-Missile Turret"
 		"Fission Reactor"
@@ -1275,7 +1274,7 @@ ship "Modified Argosy" "Modified Argosy (Smuggler)"
 		"Interference Plating" 3
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
-		"Hyperdrive"
+		"Scram Drive"
 
 
 ship "Mule" "Mule (Hai Engines)"
