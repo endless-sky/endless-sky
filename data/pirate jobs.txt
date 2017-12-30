@@ -2496,6 +2496,8 @@ mission "Capture Smuggler"
 				`	"I'm sorry, sir, but I'm not taking new jobs today. Please give your employer my most gracious thanks for this kind offer."`
 				`	"Of course. I won't say a word."`
 					goto accept
+				`	"Get out of my way. I don't take jobs from any schlub who bothers me when I need a drink."`
+					goto mistake
 
 			`	The man looks down at you with no change in expression. "My employer, he will not be happy. I will tell him, '<first> <last> is not so reliable.' I hope next time, you are reliable." As the man speaks, you notice that his teeth are filed to vicious points. Every patron in the bar stares at you in shock as you sit down for a badly-needed drink.`
 				decline
@@ -2503,6 +2505,10 @@ mission "Capture Smuggler"
 			label accept
 			`	The man looks down at you with no change in expression. "This is good. To be reliable, it is a great thing on <origin>." As the man speaks, you notice that his teeth are filed to vicious points. He hands you a datachip containing details of the job. As the man leaves, you see every patron in the bar staring warily at his back.`
 				accept
+
+			label mistake
+			`	The man looks down at you with no change in expression. "This is great shame. I will tell my employer, '<first> <last> was not so reliable. I hade to make example.'" The man grabs your neck with one monstrous hand. The last thing you see as your vision fades to black is a mouth full of pointed teeth.`
+				die
 	on visit
 		dialog "You land on <origin>, but you don't have the smuggler and the cargo he stole. You should probably be careful not to run into your contact until you do."
 	on complete
