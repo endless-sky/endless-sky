@@ -569,7 +569,7 @@ system "14 Summer Above"
 			distance 388
 			period 26.9553
 	object "Second Viridian"
-		sprite planet/forest5
+		sprite planet/forest5-b
 		distance 1256.26
 		period 476.009
 	object
@@ -632,7 +632,7 @@ system "14 Winter Below"
 		distance 504.388
 		period 135.899
 	object "Midway Emerald"
-		sprite planet/forest1
+		sprite planet/forest1-b
 		distance 917.748
 		period 333.546
 	object
@@ -1764,7 +1764,7 @@ system Ablub
 		sprite star/m4
 		period 10
 	object "Ablub's Invention"
-		sprite planet/forest1
+		sprite planet/forest1-b
 		distance 203.76
 		period 76.1728
 	object
@@ -1875,7 +1875,7 @@ system Achernar
 		distance 211.24
 		period 49.1229
 	object Foundry
-		sprite planet/forest1
+		sprite planet/forest1-b
 		distance 548
 		period 205.254
 		object
@@ -2383,7 +2383,7 @@ system Aldebaran
 		distance 165.81
 		period 34.1614
 	object Ada
-		sprite planet/forest2
+		sprite planet/forest2-b
 		distance 549.02
 		period 205.827
 	object
@@ -3357,7 +3357,7 @@ system Alnitak
 		period 15.4564
 		offset 180
 	object Farpoint
-		sprite planet/forest0
+		sprite planet/forest0-b
 		distance 292.484
 		period 107.045
 	object
@@ -3906,7 +3906,7 @@ system Aludra
 		distance 162.5
 		period 38.8183
 	object Midgard
-		sprite planet/forest5
+		sprite planet/forest5-b
 		distance 449.99
 		period 178.879
 	object
@@ -3974,7 +3974,7 @@ system "Ancient Hope"
 		distance 241.734
 		period 70.479
 	object "Bright Echo"
-		sprite planet/forest4
+		sprite planet/forest4-b
 		distance 596.624
 		period 273.278
 	object
@@ -5264,7 +5264,7 @@ system Betelgeuse
 		distance 535.69
 		period 150.91
 	object Prime
-		sprite planet/forest2
+		sprite planet/forest2-b
 		distance 1081.98
 		period 433.189
 	object
@@ -6839,7 +6839,7 @@ system Companion
 		distance 211.56
 		period 59.6412
 	object "Far Garden"
-		sprite planet/forest4
+		sprite planet/forest4-b
 		distance 497.8
 		period 215.267
 	object
@@ -7070,7 +7070,7 @@ system "Da Lest"
 		distance 192.61
 		period 59.7728
 	object Frostmark
-		sprite planet/forest3
+		sprite planet/forest3-b
 		distance 416.7
 		period 190.204
 	object
@@ -7128,7 +7128,7 @@ system Dabih
 		distance 288.034
 		period 75.5418
 	object "New Britain"
-		sprite planet/forest6
+		sprite planet/forest6-b
 		distance 742.074
 		period 312.387
 	object
@@ -10401,7 +10401,7 @@ system "Gamma Corvi"
 			distance 262
 			period 14.9572
 	object Bourne
-		sprite planet/forest1
+		sprite planet/forest1-b
 		distance 1321.68
 		period 490.466
 	object
@@ -11668,7 +11668,7 @@ system Homeward
 		distance 218.61
 		period 62.6471
 	object "Far Home"
-		sprite planet/forest3
+		sprite planet/forest3-b
 		distance 420.7
 		period 167.246
 	object
@@ -11781,7 +11781,7 @@ system Hunter
 		distance 256.01
 		period 79.3928
 	object "Shadow of Leaves"
-		sprite planet/forest2
+		sprite planet/forest2-b
 		distance 485.62
 		period 207.415
 	object
@@ -13050,7 +13050,7 @@ system Kiro'ku
 		distance 664.814
 		period 205.646
 	object "Var' Kar'i'i"
-		sprite planet/forest1
+		sprite planet/forest1-b
 		distance 948.574
 		period 350.491
 	object
@@ -13948,7 +13948,7 @@ system "Last Word"
 			distance 136
 			period 19.1658
 	object "Gentle Rain"
-		sprite planet/forest6
+		sprite planet/forest6-b
 		distance 649
 		period 264.537
 	object
@@ -14828,7 +14828,7 @@ system Mebsuta
 		distance 305.544
 		period 82.5342
 	object Featherweight
-		sprite planet/forest3
+		sprite planet/forest3-b
 		distance 655.034
 		period 259.071
 		object
@@ -15424,7 +15424,7 @@ system Merak
 		distance 789.024
 		period 269.686
 	object "New China"
-		sprite planet/forest4
+		sprite planet/forest4-b
 		distance 1107.51
 		period 448.483
 	object
@@ -15623,7 +15623,7 @@ system Miblulub
 		distance 627.65
 		period 191.392
 	object "Miblulub's Plenty"
-		sprite planet/forest0
+		sprite planet/forest0-b
 		distance 1074.29
 		period 428.579
 		object
@@ -16331,7 +16331,7 @@ system Naos
 			distance 147
 			period 17.0438
 	object Asgard
-		sprite planet/forest1
+		sprite planet/forest1-b
 		distance 698.29
 		period 295.239
 	object
@@ -17630,7 +17630,7 @@ system Pherkad
 		sprite star/m4
 		period 10
 	object Solace
-		sprite planet/forest5
+		sprite planet/forest5-b
 		distance 161.25
 		period 70.4925
 	object
@@ -17740,7 +17740,7 @@ system Pik'ro'iyak
 		sprite star/m4
 		period 10
 	object "Var' Kayi"
-		sprite planet/forest1
+		sprite planet/forest1-b
 		distance 243.09
 		period 99.2595
 	object
@@ -19138,7 +19138,7 @@ system Sabik
 		distance 182.25
 		period 39.366
 	object Longjump
-		sprite planet/forest6
+		sprite planet/forest6-b
 		distance 647.5
 		period 263.621
 	object
@@ -19583,7 +19583,7 @@ system Sarin
 		distance 484.8
 		period 129.925
 	object "Big Sky"
-		sprite planet/forest6
+		sprite planet/forest6-b
 		distance 783.64
 		period 267.007
 	object
@@ -19865,7 +19865,7 @@ system Seginus
 		sprite star/m4
 		period 10
 	object Clark
-		sprite planet/forest6
+		sprite planet/forest6-b
 		distance 140.09
 		period 57.0826
 	object
@@ -20088,7 +20088,7 @@ system Sevrelect
 		distance 168.61
 		period 48.9565
 	object "Setar Fort"
-		sprite planet/forest4
+		sprite planet/forest4-b
 		distance 364.42
 		period 155.557
 	object
@@ -20958,7 +20958,7 @@ system "Sol Arach"
 		distance 176.84
 		period 42.6392
 	object Ahr
-		sprite planet/forest2
+		sprite planet/forest2-b
 		distance 465.3
 		period 181.986
 	object
@@ -21288,7 +21288,7 @@ system Speloog
 		distance 243.56
 		period 60.8176
 	object "Dwelling of Speloog"
-		sprite planet/forest4
+		sprite planet/forest4-b
 		distance 627.77
 		period 251.664
 		object
@@ -21355,7 +21355,7 @@ system Spica
 		distance 112.25
 		period 19.0283
 	object Oasis
-		sprite planet/forest0
+		sprite planet/forest0-b
 		distance 401.46
 		period 128.701
 	object
@@ -22803,7 +22803,7 @@ system Vindemiatrix
 		distance 542.69
 		period 153.878
 	object "New Argentina"
-		sprite planet/forest0
+		sprite planet/forest0-b
 		distance 943.05
 		period 352.493
 	object
@@ -23170,7 +23170,7 @@ system Wazn
 		distance 263.027
 		period 73.8139
 	object Glory
-		sprite planet/forest1
+		sprite planet/forest1-b
 		distance 542.917
 		period 218.896
 	object
@@ -23370,7 +23370,7 @@ system "Ya Hai"
 		period 34.6709
 		offset 249.973
 	object Hai-home
-		sprite planet/forest2
+		sprite planet/forest2-b
 		distance 512.61
 		period 224.945
 		offset 94.4538
@@ -23497,7 +23497,7 @@ system Zaurak
 		distance 143.49
 		period 27.5013
 	object Canyon
-		sprite planet/forest0
+		sprite planet/forest0-b
 		distance 453.13
 		period 154.331
 	object
@@ -23888,7 +23888,7 @@ system Zubeneschamali
 		distance 880
 		period 295.345
 	object Zug
-		sprite planet/forest2
+		sprite planet/forest2-b
 		distance 1146.84
 		period 439.399
 	object
