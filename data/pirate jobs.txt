@@ -2491,17 +2491,17 @@ mission "Capture Smuggler"
 		"reputation: Pirate" <?= -10
 	on offer
 		conversation
-			`As you step into a dive bar for a quick drink, the biggest man you've ever seen stands up and blocks your path. "<first> <last>," he says in a thick accent. "My employer hears you do certain jobs, take money, do not ask questions. He hears you are reliable. A man, a smuggler, he steals cargo from my employer. My employer very much wants cargo returned, and this man as well."`
+			`As you step into a dive bar for a quick drink, the largest man you've ever seen stands up and blocks your path. "<first> <last>," he says in a thick accent. "My employer hears you do certain jobs, take money, do not ask questions. He hears you are reliable. A man, a smuggler, he steals cargo from my employer. My employer very much wants cargo returned, and this man as well."`
 			choice
 				`	"I'm sorry, sir, but I'm not taking new jobs today. Please give your employer my most gracious thanks for this kind offer."`
 				`	"Of course. I won't say a word."`
 					goto accept
 
-			`	The man smiles, showing a mouth full of teeth filed to vicious points. "My employer, he will not be happy. I will tell him, '<first> <last> is not so reliable.' I hope next time, you are reliable." As the man leaves, you see every patron in the bar staring at you in shock.`
+			`	The man looks down at you with no change in expression. "My employer, he will not be happy. I will tell him, '<first> <last> is not so reliable.' I hope next time, you are reliable." As the man speaks, you notice that his teeth are filed to vicious points. Every patron in the bar stares at you in shock as you sit down for a badly-needed drink.`
 				decline
 
 			label accept
-			`	The man smiles, showing a mouth full of teeth filed to vicious points. "This is good. To be reliable, it is a great thing on <origin>." He hands you a datachip containing details of the job. As the man leaves, you see every patron in the bar staring warily at his back.`
+			`	The man looks down at you with no change in expression. "This is good. To be reliable, it is a great thing on <origin>." As the man speaks, you notice that his teeth are filed to vicious points. He hands you a datachip containing details of the job. As the man leaves, you see every patron in the bar staring warily at his back.`
 				accept
 	on visit
 		dialog "You land on <origin>, but you don't have the smuggler and the cargo he stole. You should probably be careful not to run into your contact until you do."
