@@ -2470,7 +2470,7 @@ mission "Capture Smuggler"
 	minor
 	description `A smuggler absconded with his illegal cargo near <system>. The unknown person he stole it from wants it back. Recover the cargo from the <npc> and return both it and the smuggler to <origin> for <payment>.`
 	to offer
-		random < 5
+		random < 15
 		"combat rating" > 2000
 		"reputation: Pirate" > 10
 	source
