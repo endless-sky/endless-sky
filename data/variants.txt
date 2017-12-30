@@ -1262,6 +1262,20 @@ ship "Modified Argosy" "Modified Argosy (Missile)"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 
+ship "Modified Argosy" "Modified Argosy (Smuggler)"
+	outfits
+		"Heavy Laser" 2
+		"Beam Laser" 2
+		"Heavy Laser Turret"
+		"Heavy Anti-Missile Turret"
+		"Fission Reactor"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Water Coolant System"
+		"Interference Plating" 3
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
 
 
 ship "Mule" "Mule (Hai Engines)"
