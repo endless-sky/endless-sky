@@ -2465,6 +2465,51 @@ mission "Cargo Theft (South)"
 		payment 1500000
 		dialog "The pirates of <planet> take the secret cargo from your cargo hold and pay you <payment>."
 
+mission "Capture Smuggler"
+	name "Capture rogue smuggler"
+	minor
+	description `A smuggler absconded with his illegal cargo near <system>. The unknown person he stole it from wants it back. Recover the cargo and return both it and the smuggler to <origin> for <payment>.`
+	to offer
+		random < 5
+		"combat rating" > 2000
+		"reputation: Pirate" > 10
+	source
+		government Pirate
+	npc board
+		conversation
+			`"After neutralizing the crew and capturing the captain, you have your men sweep the ship. Ultimately they find the stolen cargo in the captain's cabin, hidden behind a false panel. The cargo is a nondescript storage container, but upon closer inspection you see that it's code-locked, interference shielded, and vacuum sealed. You return to you ship and hide the box under your bunk."`
+		government "Merchant"
+		personality staying timid target marked
+		system
+			distance 2 3
+		fleet
+			names "civilian"
+			variant
+				"Modified Argosy (Smuggler)"
+	on fail
+		dialog "You have failed to capture the smuggler and the stolen cargo. This will probably not be good for your reputation."
+		"reputation: Pirate" <?= -10
+	on offer
+		conversation
+			`As you step into a dive bar for a quick drink, the biggest man you've ever seen stands up and blocks your path. "<first> <last>," he says in a thick accent. "My employer hears you do certain jobs, take money, do not ask questions. He hears you are reliable. A man, a smuggler, he steals cargo from my employer. My employer very much wants cargo returned, and this man as well."`
+			choice
+				`	"I'm sorry, sir, but I'm not taking new jobs today. Please give your employer my most gracious thanks for this kind offer."`
+				`	"Of course. I won't say a word."`
+					goto accept
+
+			`	The man smiles, showing a mouth full of teeth filed to vicious points. "My employer, he will not be happy. I will tell him, '<first> <last> is not so reliable'. I hope next time, you are reliable." As the man leaves, you see every patron in the bar staring at you in shock.`
+				decline
+
+			label accept
+			`	The man smiles, showing a mouth full of teeth filed to vicious points. "This is good. To be reliable, it is a great thing on <origin>." He hands you a datachip containing details of the job. As the man leaves, you see every patron in the bar staring warily at his back.`
+				accept
+	on visit
+		dialog "You land on <origin>, but you don't have the smuggler and the cargo he stole. You should probably be careful not to run into your contact until you do."
+	on complete
+		payment 150000
+		conversation
+			`The huge man drags the unconscious smuggler out of the cargo container with one hand and carries the cargo box with the other. He stops in front of you. "<first> <last>," he says. "My employer, he will be very happy. Your payment, you will receive soon. Is it not good, to be reliable?" With one more shark-toothed grin, the man leaves your ship. A moment later, you receive a message. <payment> have been transferred to you from an anonymous account.`
+
 # Must destroy hunters and land to fail
 mission "Hunted by State [0]"
 	invisible
