@@ -2497,7 +2497,7 @@ mission "Capture Smuggler"
 				`	"Of course. I won't say a word."`
 					goto accept
 
-			`	The man smiles, showing a mouth full of teeth filed to vicious points. "My employer, he will not be happy. I will tell him, '<first> <last> is not so reliable'. I hope next time, you are reliable." As the man leaves, you see every patron in the bar staring at you in shock.`
+			`	The man smiles, showing a mouth full of teeth filed to vicious points. "My employer, he will not be happy. I will tell him, '<first> <last> is not so reliable.' I hope next time, you are reliable." As the man leaves, you see every patron in the bar staring at you in shock.`
 				decline
 
 			label accept
@@ -2508,7 +2508,7 @@ mission "Capture Smuggler"
 	on complete
 		payment 150000
 		conversation
-			`The huge man drags the unconscious smuggler out of the cargo container with one hand and carries the cargo box with the other. He stops in front of you. "<first> <last>," he says. "My employer, he will be very happy. Your payment, you will receive soon. Is it not good, to be reliable?" With one more shark-toothed grin, the man leaves your ship. A moment later, you receive a message. <payment> have been transferred to you from an anonymous account.`
+			`The huge man drags the unconscious smuggler out of the cargo container with one hand and carries the cargo box with the other. He stops in front of you. "<first> <last>," he says. "My employer, he will be very happy. Your payment, you will receive soon. Is it not good, to be reliable?" With one more shark-toothed grin, the man leaves your ship. A moment later, you receive a message: '<payment> have been transferred to you from an anonymous account.'`
 
 # Must destroy hunters and land to fail
 mission "Hunted by State [0]"
