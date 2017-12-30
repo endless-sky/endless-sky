@@ -2479,7 +2479,7 @@ mission "Capture Smuggler"
 		conversation
 			`After neutralizing the crew and capturing the captain, you have your men sweep the ship. Ultimately they find the stolen cargo in the captain's cabin, hidden behind a false panel. The cargo is a nondescript storage container, but upon closer inspection you see that it's code-locked and covered with interference plating.`
 		government "Merchant"
-		personality staying timid target marked
+		personality staying uninterested timid target marked
 		system
 			distance 2 3
 		fleet
