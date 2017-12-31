@@ -169,10 +169,10 @@ void Depreciation::Buy(const Ship &ship, int day, Depreciation *source)
 
 
 // Add a single outfit to the depreciation record.
-void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
+bool Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source, int unlimitedStockDay)
 {
 	if(outfit->Get("installable") < 0.)
-		return;
+		return true;
 	
 	if(source)
 	{
@@ -192,8 +192,13 @@ void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 		}
 	}
 	
+	// Put new outfits in the infinite stock
+	if(day == unlimitedStockDay)
+		return false;
+	
 	// Increment our count for this outfit on this day.
 	++outfits[outfit][day];
+	return true;
 }
 
 

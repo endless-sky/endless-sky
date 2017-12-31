@@ -164,11 +164,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 			font.Draw(label, labelPos, bright);
 		}
 	}
-	// Don't show the "in stock" amount if the outfit has an unlimited stock or
-	// if it is not something that you can buy.
-	int stock = 0;
-	if(!outfitter.Has(outfit) && outfit->Get("installable") >= 0.)
-		stock = max(0, player.Stock(outfit));
+	int stock = max(0, player.Stock(outfit));
 	int cargo = player.Cargo().Get(outfit);
 	
 	string message;
@@ -504,7 +500,7 @@ void OutfitterPanel::Sell(bool toCargo)
 		player.Cargo().Remove(selectedOutfit);
 		int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
 		player.Accounts().AddCredits(price);
-		player.AddStock(selectedOutfit, 1);
+		player.AddStock(selectedOutfit, 1, outfitter.Has(selectedOutfit));
 	}
 	else
 	{
@@ -525,7 +521,7 @@ void OutfitterPanel::Sell(bool toCargo)
 			{
 				int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
 				player.Accounts().AddCredits(price);
-				player.AddStock(selectedOutfit, 1);
+				player.AddStock(selectedOutfit, 1, outfitter.Has(selectedOutfit));
 			}
 			
 			const Outfit *ammo = selectedOutfit->Ammo();
@@ -546,7 +542,7 @@ void OutfitterPanel::Sell(bool toCargo)
 					{
 						int64_t price = player.FleetDepreciation().Value(ammo, day, mustSell);
 						player.Accounts().AddCredits(price);
-						player.AddStock(ammo, mustSell);
+						player.AddStock(ammo, mustSell, outfitter.Has(selectedOutfit));
 					}
 				}
 			}

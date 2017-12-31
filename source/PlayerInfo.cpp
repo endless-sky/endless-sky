@@ -1991,30 +1991,33 @@ int PlayerInfo::Stock(const Outfit *outfit) const
 
 
 // Transfer outfits from the player to the planet or vice versa.
-void PlayerInfo::AddStock(const Outfit *outfit, int count)
+void PlayerInfo::AddStock(const Outfit *outfit, int count, bool unlimitedStock)
 {
-	// If you sell an individual outfit that is not sold here and that you
-	// acquired by buying a ship here, have it appear as "in stock" in case you
-	// change your mind about selling it. (On the other hand, if you sell an
-	// entire ship right after buying it, its outfits will not be "in stock.")
-	if(count > 0 && stock[outfit] < 0)
-		stock[outfit] = 0;
-	stock[outfit] += count;
-	
+	int stocked = 0;
 	int day = date.DaysSinceEpoch();
 	if(count > 0)
 	{
+		// If you sell an individual outfit that is not sold here and that you
+		// acquired by buying a ship here, have it appear as "in stock" in case you
+		// change your mind about selling it. (On the other hand, if you sell an
+		// entire ship right after buying it, its outfits will not be "in stock.")
+		if(stock[outfit] < 0)
+			stock[outfit] = 0;
+		
 		// Remember how depreciated these items are.
 		for(int i = 0; i < count; ++i)
-			stockDepreciation.Buy(outfit, day, &depreciation);
+			if(stockDepreciation.Buy(outfit, day, &depreciation, unlimitedStock ? day : -1))
+				++stocked;
 	}
 	else
 	{
 		// If the count is negative, outfits are being transferred from stock
 		// into the player's possession.
 		for(int i = 0; i < -count; ++i)
-			depreciation.Buy(outfit, day, &stockDepreciation);
+			if(depreciation.Buy(outfit, day, &stockDepreciation))
+				--stocked;
 	}
+	stock[outfit] += stocked;
 }
 
 
