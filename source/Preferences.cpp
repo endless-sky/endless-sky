@@ -31,6 +31,8 @@ namespace {
 	// Strings for ammo expenditure:
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
+	// String for repair strategy of carried ships
+	const string FIGHTER_REPAIR = "Repair fighters by";
 	
 	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
 	int zoomIndex = 4;
@@ -44,8 +46,8 @@ void Preferences::Load()
 	// values for settings that are off by default.
 	settings["Automatic aiming"] = true;
 	settings["Render motion blur"] = true;
-	settings["Escorts use ammo frugally"] = true;
-	settings["Escorts expend ammo"] = true;
+	settings[FRUGAL_ESCORTS] = true;
+	settings[EXPEND_AMMO] = true;
 	settings["Warning siren"] = true;
 	settings["Show mini-map"] = true;
 	settings["Show planet labels"] = true;
@@ -53,6 +55,7 @@ void Preferences::Load()
 	settings["Draw background haze"] = true;
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
+	settings[FIGHTER_REPAIR] = true;
 	
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)
