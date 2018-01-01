@@ -282,27 +282,30 @@ void ShopPanel::DrawButtons()
 	font.Draw(credits, point, bright);
 	
 	const Font &bigFont = FontSet::Get(18);
+	const Color &hover = *GameData::Colors().Get("hover");
+	const Color &active = *GameData::Colors().Get("active");
+	const Color &inactive = *GameData::Colors().Get("inactive");
 	
 	Point buyCenter = Screen::BottomRight() - Point(210, 25);
 	FillShader::Fill(buyCenter, Point(60, 30), back);
 	string BUY = (playerShip && selectedOutfit && player.Cargo().Get(selectedOutfit)) ? "_Install" : "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
-		CanBuy() ? bright : dim);
+		CanBuy() ? hoverButton == 'b' ? hover : active : inactive);
 	
 	Point sellCenter = Screen::BottomRight() - Point(130, 25);
 	FillShader::Fill(sellCenter, Point(60, 30), back);
 	static const string SELL = "_Sell";
 	bigFont.Draw(SELL,
 		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
-		CanSell() ? bright : dim);
+		CanSell() ? hoverButton == 's' ? hover : active : inactive);
 	
 	Point leaveCenter = Screen::BottomRight() - Point(45, 25);
 	FillShader::Fill(leaveCenter, Point(70, 30), back);
 	static const string LEAVE = "_Leave";
 	bigFont.Draw(LEAVE,
 		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
-		bright);
+		hoverButton == 'l' ? hover : active);
 	
 	int modifier = Modifier();
 	if(modifier > 1)
@@ -627,23 +630,9 @@ bool ShopPanel::Click(int x, int y, int clicks)
 {
 	dragShip = nullptr;
 	// Handle clicks on the buttons.
-	if(x >= Screen::Right() - SIDE_WIDTH && y >= Screen::Bottom() - BUTTON_HEIGHT)
-	{
-		// Make sure the click was actually within the buttons, not the space
-		// above them that shows your credits or the padding below them.
-		if(y < Screen::Bottom() - 40 || y >= Screen::Bottom() - 10)
-			return true;
-		
-		x -= Screen::Right() - SIDE_WIDTH;
-		if(x < 80)
-			DoKey(SDLK_b);
-		else if(x < 160)
-			DoKey(SDLK_s);
-		else
-			DoKey(SDLK_l);
-		
-		return true;
-	}
+	char button = CheckButton(x, y);
+	if(button)
+		return DoKey(button);
 	
 	// Check for clicks in the scroll arrows.
 	if(x >= Screen::Right() - 20)
@@ -735,7 +724,8 @@ bool ShopPanel::Hover(int x, int y)
 {
 	Point point(x, y);
 	// Check that the point is not in the button area.
-	if(x >= Screen::Right() - SIDE_WIDTH && y >= Screen::Bottom() - BUTTON_HEIGHT)
+	hoverButton = CheckButton(x, y);
+	if(hoverButton)
 	{
 		shipInfo.ClearHover();
 		outfitInfo.ClearHover();
@@ -1135,4 +1125,27 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::MainStart() const
 		++start;
 	
 	return start;
+}
+
+
+
+// Check if the given point is within the button zone, and if so return the
+// letter of the button (or ' ' if it's not on a button).
+char ShopPanel::CheckButton(int x, int y)
+{
+	if(x < Screen::Right() - SIDE_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
+		return '\0';
+	
+	if(y < Screen::Bottom() - 40 || y >= Screen::Bottom() - 10)
+		return ' ';
+	
+	x -= Screen::Right() - SIDE_WIDTH;
+	if(x < 80)
+		return 'b';
+	else if(x < 160)
+		return 's';
+	else
+		return 'l';
+	
+	return ' ';
 }
