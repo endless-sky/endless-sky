@@ -605,6 +605,21 @@ void OutfitterPanel::FailSell(bool toCargo) const
 
 
 
+bool OutfitterPanel::ShouldHighlight(const Ship *ship)
+{
+	if(!selectedOutfit)
+		return false;
+	
+	if(hoverButton == 'b')
+		return CanBuy() && ShipCanBuy(ship, selectedOutfit);
+	else if(hoverButton == 's')
+		return CanSell() && ShipCanSell(ship, selectedOutfit);
+	
+	return false;
+}
+
+
+
 void OutfitterPanel::DrawKey()
 {
 	const Sprite *back = SpriteSet::Get("ui/outfitter key");

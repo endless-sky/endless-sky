@@ -63,6 +63,7 @@ protected:
 	virtual void Sell(bool toCargo = false) = 0;
 	virtual void FailSell(bool toCargo = false) const;
 	virtual bool CanSellMultiple() const;
+	virtual bool ShouldHighlight(const Ship *ship);
 	virtual void DrawKey();
 	virtual void ToggleForSale();
 	virtual void ToggleCargo();
