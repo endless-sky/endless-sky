@@ -99,26 +99,27 @@ void PlanetPanel::Draw()
 	Information info;
 	info.SetSprite("land", planet.Landscape());
 	bool hasAccess = planet.CanUseServices();
-	bool hasShip = false;
-	for(const auto &it : player.Ships())
-		if(it->GetSystem() == player.GetSystem() && !it->IsDisabled())
-		{
-			hasShip = true;
-			break;
-		}
-	if(flagship && flagship->CanBeFlagship())
-		info.SetCondition("has ship");
-	if(flagship && planet.IsInhabited() && planet.GetSystem()->HasTrade() && hasAccess)
-		info.SetCondition("has trade");
-	if(planet.IsInhabited() && hasAccess)
-		info.SetCondition("has bank");
 	if(flagship && planet.IsInhabited() && hasAccess)
 		info.SetCondition("is inhabited");
-	if(flagship && planet.HasSpaceport() && hasAccess)
-		info.SetCondition("has spaceport");
-	if(planet.HasShipyard() && hasAccess)
+	if(CanShowDepart())
+	{
+		info.SetCondition("has ship");
+		
+		// Only when you have a flagship can you take on jobs, new crew, missions, or trade.
+		if(CanShowTrading(hasAccess))
+			info.SetCondition("has trade");
+		if(CanShowJobs(hasAccess))
+			info.SetCondition("has jobs");
+		if(CanShowCrew(hasAccess))
+			info.SetCondition("has crew");
+		if(CanShowSpaceport(hasAccess))
+			info.SetCondition("has spaceport");
+	}
+	if(CanShowBanking(hasAccess))
+		info.SetCondition("has bank");
+	if(CanShowShipyard(hasAccess))
 		info.SetCondition("has shipyard");
-	if(hasShip && planet.HasOutfitter() && hasAccess)
+	if(CanShowOutfitter(hasAccess))
 		info.SetCondition("has outfitter");
 	
 	ui.Draw(info, this);
@@ -133,55 +134,46 @@ void PlanetPanel::Draw()
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	Panel *oldPanel = selectedPanel;
-	const Ship *flagship = player.Flagship();
 	
 	bool hasAccess = planet.CanUseServices();
-	if(key == 'd' && flagship && flagship->CanBeFlagship())
+	if(key == 'd' && CanShowDepart())
 		requestedLaunch = true;
 	else if(key == 'l')
 	{
 		selectedPanel = nullptr;
 	}
-	else if(key == 't' && flagship && planet.IsInhabited() && planet.GetSystem()->HasTrade() && hasAccess)
+	else if(key == 't' && CanShowTrading(hasAccess))
 	{
 		selectedPanel = trading.get();
 		GetUI()->Push(trading);
 	}
-	else if(key == 'b' && planet.IsInhabited() && hasAccess)
+	else if(key == 'b' && CanShowBanking(hasAccess))
 	{
 		selectedPanel = bank.get();
 		GetUI()->Push(bank);
 	}
-	else if(key == 'p' && flagship && planet.HasSpaceport() && hasAccess)
+	else if(key == 'p' && CanShowSpaceport(hasAccess))
 	{
 		selectedPanel = spaceport.get();
 		spaceport->UpdateNews();
 		GetUI()->Push(spaceport);
 	}
-	else if(key == 's' && planet.HasShipyard() && hasAccess)
+	else if(key == 's' && CanShowShipyard(hasAccess))
 	{
 		GetUI()->Push(new ShipyardPanel(player));
 		return true;
 	}
-	else if(key == 'o' && planet.HasOutfitter() && hasAccess)
+	else if(key == 'o' && CanShowOutfitter(hasAccess))
 	{
-		bool hasShip = false;
-		for(const auto &it : player.Ships())
-			if(it->GetSystem() == player.GetSystem() && !it->IsDisabled())
-			{
-				hasShip = true;
-				break;
-			}
-		if(hasShip)
-			GetUI()->Push(new OutfitterPanel(player));
+		GetUI()->Push(new OutfitterPanel(player));
 		return true;
 	}
-	else if(key == 'j' && flagship && planet.IsInhabited() && hasAccess)
+	else if(key == 'j' && CanShowJobs(hasAccess))
 	{
 		GetUI()->Push(new MissionPanel(player));
 		return true;
 	}
-	else if(key == 'h' && flagship && planet.IsInhabited() && hasAccess)
+	else if(key == 'h' && CanShowCrew(hasAccess))
 	{
 		selectedPanel = hiring.get();
 		GetUI()->Push(hiring);
@@ -343,4 +335,67 @@ void PlanetPanel::TakeOff()
 			GetUI()->Pop(selectedPanel);
 		GetUI()->Pop(this);
 	}
+}
+
+
+
+bool PlanetPanel::CanShowDepart() const
+{
+	return player.Flagship() && player.Flagship()->CanBeFlagship();
+}
+
+
+
+bool PlanetPanel::CanShowTrading(bool hasAccess) const
+{
+	return player.Flagship() && planet.HasTrading() && hasAccess;
+}
+
+
+
+bool PlanetPanel::CanShowJobs(bool hasAccess) const
+{
+	return player.Flagship() && planet.HasJobs() && hasAccess;
+}
+
+
+
+bool PlanetPanel::CanShowBanking(bool hasAccess) const
+{
+	return planet.HasBanking() && hasAccess;
+}
+
+
+
+bool PlanetPanel::CanShowCrew(bool hasAccess) const
+{
+	return player.Flagship() && planet.HasCrew() && hasAccess;
+}
+
+
+
+bool PlanetPanel::CanShowSpaceport(bool hasAccess) const
+{
+	return player.Flagship() && planet.HasSpaceport() && hasAccess;
+}
+
+
+
+bool PlanetPanel::CanShowShipyard(bool hasAccess) const
+{
+	return planet.HasShipyard() && hasAccess;
+}
+
+
+
+bool PlanetPanel::CanShowOutfitter(bool hasAccess) const
+{
+	bool hasShip = false;
+	for(const auto &it : player.Ships())
+		if(it->GetSystem() == player.GetSystem() && !it->IsDisabled())
+		{
+			hasShip = true;
+			break;
+		}
+	return hasShip && planet.HasOutfitter() && hasAccess;
 }

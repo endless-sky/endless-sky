@@ -58,8 +58,8 @@ public:
 	// Get planet's noun descriptor from attributes
 	const std::string &Noun() const;
 	
-	// Check whether there is a spaceport (which implies there is also trading,
-	// jobs, banking, and hiring).
+	// Check whether there is a spaceport (which implies that by default
+	// there is also trading, jobs, banking, and hiring).
 	bool HasSpaceport() const;
 	// Get the spaceport's descriptive text.
 	const std::string &SpaceportDescription() const;
@@ -67,6 +67,15 @@ public:
 	// Check if this planet is inhabited (i.e. it has a spaceport, and does not
 	// have the "uninhabited" attribute).
 	bool IsInhabited() const;
+	// Check if this planet has trading (i.e. is inhabited and does not have "no trading" attribute)
+	bool HasTrading() const;
+	// Check if this planet has a job board (i.e. is inhabited and does not have "no jobs" attribute)
+	bool HasJobs() const;
+	// Check if this planet has a bank (i.e. is inhabited and does not have "no banking" attribute)
+	bool HasBanking() const;
+	// Check if this planet has crew to hire (i.e. is inhabited and does not have "no crew" attribute)
+	bool HasCrew() const;
+	
 	
 	// Check if this planet has a shipyard.
 	bool HasShipyard() const;
