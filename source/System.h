@@ -90,6 +90,9 @@ public:
 	// Get the name of the ambient audio to play in this system.
 	const std::string &MusicName() const;
 	
+	// Get the list of "attributes" of the planet.
+	const std::set<std::string> &Attributes() const;
+	
 	// Get a list of systems you can travel to through hyperspace from here.
 	const std::set<const System *> &Links() const;
 	// Get a list of systems you can "see" from here, whether or not there is a
@@ -183,6 +186,9 @@ private:
 	
 	// Commodity prices.
 	std::map<std::string, Price> trade;
+	
+	// Attributes, for use in location filters.
+	std::set<std::string> attributes;
 };
 
 
