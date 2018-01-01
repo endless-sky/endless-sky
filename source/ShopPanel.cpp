@@ -186,6 +186,8 @@ void ShopPanel::DrawSidebar()
 	
 	static const Color selected(.8, 1.);
 	static const Color unselected(.4, 1.);
+	
+	const bool showInstallable = Preferences::Has("Show outfit install status");
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		// Skip any ships that are "absent" for whatever reason.
@@ -207,7 +209,23 @@ void ShopPanel::DrawSidebar()
 		{
 			double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 			Point size(sprite->Width() * scale, sprite->Height() * scale);
-			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+			if(!isSelected)
+				OutlineShader::Draw(sprite, point, size, unselected);
+			else
+			{
+				OutlineShader::Draw(sprite, point, size, selected);
+				// Draw the checkbox in one of 4 states depending on its install status.
+				if(showInstallable && selectedOutfit && playerShips.size() > 1)
+				{
+					const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
+					Point offset(-ICON_SIZE / 2 + (box[0]->Width() / 4),
+							ICON_SIZE / 2 - (box[0]->Height() / 4));
+					int spriteIndex = (ship->OutfitCount(selectedOutfit) > 0);
+					int totalDraws = ship->Attributes().CanAdd(*selectedOutfit) ? 8 : 1;
+					for(int i = 0; i < totalDraws; ++i)
+						SpriteShader::Draw(box[spriteIndex], point + offset);
+				}
+			}
 		}
 		
 		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
