@@ -1,0 +1,627 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+#
+# ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### #
+# THIS FILE							  #
+# Copyright (c) 2017 by Endros Gunderberg, www.endros.de	  #
+# ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### #
+
+
+
+fleet "Johns Small Pirates"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders harvests
+		confusion 25
+	variant 4
+		"Sparrow"
+	variant 2
+		"Berserker"
+	variant 2
+		"Wasp"
+	variant 1
+		"Fury"
+	variant 1
+		"Sparrow" 2
+
+fleet "Johns Large Pirates"
+	government "Pirate"
+	names "pirate"
+	cargo 2
+	personality
+		plunders harvests
+		confusion 20
+	variant 8
+		"Sparrow" 2
+	variant 4
+		"Sparrow"
+		"Berserker"
+	variant 4
+		"Sparrow"
+		"Hawk"
+	variant 4
+		"Sparrow"
+		"Wasp"
+	variant 4
+		"Sparrow"
+		"Fury"
+	variant 2
+		"Sparrow" 3
+	variant 1
+		"Sparrow" 4
+	variant 1
+		"Berserker" 2
+	variant 1
+		"Headhunter"
+	variant 1
+		"Quicksilver"
+
+
+
+mission "John Verhoefen: First Contact"
+	name "Bring John Verhoefen to <destination>"
+	description "John Verhoefen needs a lift to <destination> where he wants to negotiate a <commodity> contract. He will pay you <payment>."
+	cargo "Heavy Metals" 0
+	passengers 1
+	to offer
+		random < 20
+		"reputation: Merchant" >= 10
+	source
+		government Republic "Free Worlds" Syndicate Neutral Independent
+	destination
+		government Republic "Free Worlds" Syndicate Neutral Independent
+		attributes station shipyard military factory
+		distance 2 5
+
+	on offer
+		conversation
+			`A young man in a business suit approaches you. "Can you please take me to <destination>?" he asks you.`
+			`	"My name is John Verhoefen and I have just started this new job as commercial agent for a Rand-based mining company. I hope to negotiate a <commodity> contract on <planet> and need a transfer over there.`
+			choice
+				`	"Okay, I'll take you to <planet>."`
+					goto thanks
+				`	"Sorry, I'm not headed in that direction."`
+					decline
+			label thanks
+			`	"Thank you, Captain," he says, shaking your hand. You bring him aboard your ship and show him to one of the empty bunks.`
+				accept
+	on accept
+		"John Verhoefen: home: <origin>" = 1
+		"John Verhoefen: credits" = 10000
+	on decline
+		"John Verhoefen: declined" ++
+	on fail
+		"John Verhoefen: stage" = -1
+		"reputation: Merchant" -= 2
+	on complete
+		payment
+		"John Verhoefen: credits" -= <paymentNum>
+		"John Verhoefen: location: <planet>" = 1
+		"John Verhoefen: stage" = 1
+		# generate some randomized income for John, averaging some 12.5k (range: 5k-20k)
+		"Johns income" = random
+		"Johns income" *= 150
+		"Johns income" += 5000
+		"John Verhoefen: credits" += "Johns income"
+		clear "Johns income"
+		dialog `John thanks you for the passage and pays you <payment>. "If you want to help me further, answer my posting on the local job board."`
+
+
+
+mission "John Verhoefen: Transport [stage 1]"
+	name "Bring John to <planet>"
+	description "John Verhoefen needs a transfer to <destination> where he wants to negotiate a contract selling <commodity>. He will pay you <payment>."
+	job
+	repeat
+	cargo "Heavy Metals" 0
+	passengers 1
+	to offer
+		"reputation: Merchant" >= 10
+		"John Verhoefen: location: <origin>" == 1
+		"John Verhoefen: stage" == 1
+		"John Verhoefen: credits" >= 200
+		"John Verhoefen: credits" < 600000
+	destination
+		government Republic "Free Worlds" Syndicate Neutral Independent
+		attributes station shipyard military factory
+		distance 2 5
+
+	on accept
+		clear "John Verhoefen: location: <origin>"
+	on fail
+		"John Verhoefen: stage" = -1
+		"reputation: Merchant" -= 2
+	on complete
+		payment
+		"John Verhoefen: credits" -= <paymentNum>
+		"John Verhoefen: location: <planet>" = 1
+		# generate some randomized income for John, averaging some 12.5k (range: 5k-20k), players payment is between 4.5k and 9k
+		"Johns income" = random
+		"Johns income" *= 150
+		"Johns income" += 5000
+		"John Verhoefen: credits" += "Johns income"
+		clear "Johns income"
+		dialog `John thanks you for the passage and pays you <payment>. He reminds you again of his upcoming offer on the local job board."`
+
+
+
+mission "John Verhoefen: Bankrupt [stage 1]"
+	name "Bring John to <planet>"
+	description "You agreed to give John Verhoefen a free transfer to <destination> where he wants to negotiate a contract selling <commodity>."
+	landing
+	repeat
+	cargo "Heavy Metals" 0
+	passengers 1
+	to offer
+		"reputation: Merchant" >= 10
+		"John Verhoefen: location: <origin>" == 1
+		"John Verhoefen: stage" == 1
+		"John Verhoefen: credits" < 200
+		"John Verhoefen: free transfers" < 5
+		"John Verhoefen: declined" < 2
+	destination
+		government Republic "Free Worlds" Syndicate Neutral Independent
+		attributes station shipyard military factory
+		distance 4 7
+
+	on offer
+		conversation
+			`It does not take long until John arrives at your ship. He looks pretty depressed.`
+			`	"I am pretty much bankrupt.", he says. "The last few negotiations didn't go well and I am afraid I cant pay you for the next passage. I hereby want to ask you if you would give me a free transfer to <destination> this time. It is a bit further than our usual trips, but the <commodity> market there is more promising."`
+			choice
+				`	"Okay, I'll give you a free ride to <planet>."`
+					goto thanks
+				`	"Sorry, I'm not headed in that direction."`
+					decline
+			label thanks
+			`	"Thank you, Captain <last>," he says. "I will let other merchants know you helped me once we arrive."`
+				accept
+
+	on accept
+		clear "John Verhoefen: location: <origin>"
+		"John Verhoefen: free transfers" ++
+	on decline
+		"John Verhoefen: declined" ++
+		"reputation: Merchant" --
+	on fail
+		"John Verhoefen: stage" = -1
+		"reputation: Merchant" -= 2
+	on complete
+		# Merchants reputation increases and that depends on the number of given free rides (i.e. +1 for the first free ride, +2 for the 2nd free ride, ...)
+		"reputation: Merchant" += "John Verhoefen: free transfers"
+		"John Verhoefen: location: <planet>" = 1
+		# generate some randomized income for John, averaging some 15.5k (range: 5k-26k) - higher than in Transport [stage 1] due to the higher distance and to help John a bit
+		"Johns income" = random
+		"Johns income" *= 210
+		"Johns income" += 5000
+		"John Verhoefen: credits" += "Johns income"
+		clear "Johns income"
+		dialog `John heartily thanks you for the free passage. He hopes you will be the one who answers his new job board offer.`
+
+
+
+mission "John Verhoefen: Buying a Flivver"
+	name "John wants to buy a Flivver"
+	description "Bring John Verhoefen to <destination> where he wants to buy a Flivver. He will pay you <payment>."
+	landing
+	to offer
+		"John Verhoefen: location: <origin>" == 1
+		"John Verhoefen: stage" == 1
+		"John Verhoefen: credits" >= 600000
+	destination
+		# the government filter should be not necessary due to the attribute deep filter
+		government Republic "Free Worlds" Syndicate Neutral Independent
+		attributes deep
+		attributes shipyard
+
+	npc
+		personality nemesis staying
+		system destination
+		government Pirate
+		fleet "Small Northern Pirates"
+
+	on offer
+		conversation
+			`Soon after John left your ship, he returns to you in a happy mood. "I have finally saved up enough credits to buy an appropriate ship for my current job position. I intend to buy a Flivver on <planet>. Can you bring me there? I can pay you as much as <payment> this time."`
+			choice
+				`	"Okay, I'll give you a free ride to <planet>."`
+					goto thanks
+				`	"Sorry, I'm not headed in that direction."`
+					decline
+			label thanks
+			`	"Thank you, Captain <last>," he says. "I will let other merchants know you helped me once we arrive."`
+				accept
+	on accept
+		clear "John Verhoefen: location: <origin>"
+	on fail
+		"John Verhoefen: stage" = -1
+		"reputation: Merchant" -= 2
+	on complete
+		payment 10000
+		"John Verhoefen: credits" -= <paymentNum>
+		"John Verhoefen: location: <planet>" = 1
+		"John Verhoefen: stage" = 2
+		# deduct cash for the Flivver
+		"John Verhoefen: credits" -= 524000
+		dialog `John thanks you for the safe passage to <planet> and pays you <payment>. Before he heads to the shipyard, he notifies you of his new offer on the local job board.`
+
+
+
+mission "John Verhoefen: Escort [stage 2a]"
+	name "Escort John to <planet>"
+	description "John Verhoefen asks you to escort him to <destination> where he wants to negotiate a contract selling <commodity>. He will pay you <payment>."
+	job
+	repeat
+	cargo "Heavy Metals" 0
+	passengers 1
+	to offer
+		"reputation: Merchant" >= 10
+		"John Verhoefen: location: <origin>" == 1
+		"John Verhoefen: stage" == 2
+		"John Verhoefen: credits" >= 500
+		"John Verhoefen: credits" < 1000000
+	destination
+		government Republic "Free Worlds" Syndicate Neutral Independent
+		attributes station shipyard military factory
+		distance 2 7
+
+	npc accompany save
+		government Merchant
+		personality
+			confusion 45
+			escort timid frugal appeasing disables
+		ship "Flivver" "John the Hopeful"
+
+	on accept
+		clear "John Verhoefen: location: <origin>"
+	on fail
+		"John Verhoefen: stage" = -2
+		"reputation: Merchant" -= 4
+	on complete
+		payment 3000 200
+		"John Verhoefen: credits" -= <paymentNum>
+		"John Verhoefen: location: <planet>" = 1
+		# generate some randomized income for John, averaging some 24k (range: 8k-40k), players payment is between 9k and 19k
+		"Johns income" = random
+		"Johns income" *= 320
+		"Johns income" += 8000
+		"John Verhoefen: credits" += "Johns income"
+		clear "Johns income"
+		dialog `John thanks you for the escort and pays you <payment>. You know that you will find his post on the local job board.`
+
+
+
+mission "John Verhoefen: Escort [stage 2b]"
+	name "Escort John to <planet>"
+	description "John Verhoefen asks you to escort him to <destination> where he wants to negotiate a contract selling <commodity>. He will pay you <payment>."
+	job
+	repeat
+	cargo "Heavy Metals" 0
+	passengers 1
+	to offer
+		"reputation: Merchant" >= 10
+		"John Verhoefen: location: <origin>" == 1
+		"John Verhoefen: stage" == 2
+		"John Verhoefen: credits" >= 1000000
+		"John Verhoefen: credits" < 1800000
+	destination
+		government Republic "Free Worlds" Syndicate Neutral Independent
+		attributes station shipyard military factory
+		distance 2 7
+
+	npc
+		personality nemesis staying
+		system destination
+		government Pirate
+		fleet "Johns Small Pirates"
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Johns Small Pirates"
+	npc accompany save
+		government Merchant
+		personality
+			confusion 45
+			escort timid frugal appeasing disables
+		ship "Flivver" "John the Hopeful"
+
+	on accept
+		clear "John Verhoefen: location: <origin>"
+	on fail
+		"John Verhoefen: stage" = -2
+		"reputation: Merchant" -= 4
+	on complete
+		payment 6000 200
+		"John Verhoefen: credits" -= <paymentNum>
+		"John Verhoefen: location: <planet>" = 1
+		# generate some randomized income for John, averaging some 24k (range: 8k-40k), players payment is between 12k and 22k
+		"Johns income" = random
+		"Johns income" *= 320
+		"Johns income" += 8000
+		"John Verhoefen: credits" += "Johns income"
+		clear "Johns income"
+		dialog `John thanks you for the escort and pays you <payment>. You know that you will find his post on the local job board.`
+
+
+
+mission "John Verhoefen: Bankrupt [stage 2]"
+	name "Escort John to <planet>"
+	description "You agreed to give John Verhoefen a free escort to <destination> where he wants to negotiate a contract selling <commodity>."
+	landing
+	repeat
+	cargo "Heavy Metals" 0
+	passengers 1
+	to offer
+		"reputation: Merchant" >= 10
+		"John Verhoefen: location: <origin>" == 1
+		"John Verhoefen: stage" == 2
+		"John Verhoefen: credits" < 500
+		"John Verhoefen: free transfers" < 6
+		"John Verhoefen: declined" < 3
+	destination
+		government Republic "Free Worlds" Syndicate Neutral Independent
+		attributes station syMajor military
+		distance 4 10
+
+	npc accompany save
+		government Merchant
+		personality
+			confusion 45
+			escort timid frugal appeasing disables
+		ship "Flivver" "John the Hopeful"
+
+	on offer
+		conversation
+			`It does not take long until John arrives at your ship. He looks pretty depressed.`
+			`	"I am pretty much bankrupt.", he says. "The last few negotiations didn't go well and I am afraid I cant pay you for the next passage. I hereby want to ask you if you would give me a free escort to <destination> this time. It is a bit further than our usual trips, but the <commodity> market there is more promising."`
+			choice
+				`	"Okay, I'll give you a free ride to <planet>."`
+					goto thanks
+				`	"Sorry, I'm not headed in that direction."`
+					decline
+			label thanks
+			`	"Thank you, Captain <last>," he says. "I will let other merchants know you helped me once we arrive."`
+				accept
+	on accept
+		clear "John Verhoefen: location: <origin>"
+		"John Verhoefen: free transfers" ++
+	on decline
+		"John Verhoefen: declined" ++
+		"reputation: Merchant" --
+	on fail
+		"John Verhoefen: stage" = -2
+		"reputation: Merchant" -= 4
+	on complete
+		# Merchants reputation increases and that depends on the number of given free rides (i.e. +1 for the first free ride, +2 for the 2nd free ride, ...)
+		"reputation: Merchant" += "John Verhoefen: free transfers"
+		"John Verhoefen: location: <planet>" = 1
+		# generate some randomized income for John, averaging some 28k (range: 8k-48k) - higher than in Escort [stage 2] due to the higher distance and to help John a bit
+		"Johns income" = random
+		"Johns income" *= 400
+		"Johns income" += 8000
+		"John Verhoefen: credits" += "Johns income"
+		clear "Johns income"
+		dialog `John heartily thanks you for the free passage. He hopes you will be the one who answers his new job board offer.`
+
+
+
+mission "John Verhoefen: Buying a Bounder"
+	name "John wants to buy a Bounder"
+	description "Bring John Verhoefen to <destination> where he wants to buy a Bounder. He will pay you <payment>."
+	landing
+	to offer
+		"John Verhoefen: location: <origin>" == 1
+		"John Verhoefen: stage" == 2
+		"John Verhoefen: credits" >= 1800000
+	destination
+		# the government filter should be not necessary due to the attribute core filter
+		government Republic "Free Worlds" Syndicate Neutral Independent
+		attributes core
+		attributes shipyard
+
+	npc
+		personality nemesis staying
+		system destination
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Small Core Pirates"
+	npc accompany save
+		government Merchant
+		personality
+			confusion 45
+			escort timid frugal appeasing disables
+		ship "Flivver" "John the Hopeful"
+
+	on offer
+		conversation
+			`Soon after John left your ship, he returns to you in a happy mood. "I have finally saved up enough credits to buy a new ship more fitting of my position. I intend to buy a Bounder on <planet>. Would you please escort me there? I will pay you as much as <payment> this time."`
+			choice
+				`	"Okay, I'll give you a free ride to <planet>."`
+					goto thanks
+				`	"Sorry, I'm not headed in that direction."`
+					decline
+			label thanks
+			`	"Thank you, Captain <last>," he says. "I will let other merchants know you helped me once we arrive."`
+				accept
+	on accept
+		clear "John Verhoefen: location: <origin>"
+	on fail
+		"John Verhoefen: stage" = -2
+		"reputation: Merchant" -= 4
+	on complete
+		payment 20000 300
+		"John Verhoefen: credits" -= <paymentNum>
+		"John Verhoefen: location: <planet>" = 1
+		"John Verhoefen: stage" = 3
+		# sell the Flivver for some 38%
+		"John Verhoefen: credits" += 200000
+		# deduct cash for the Bounder
+		"John Verhoefen: credits" -= 1600000
+		dialog `John thanks you for the safe passage to <planet> and pays you <payment>. Before he heads to the shipyard, he notifies you of his new offer on the local job board.`
+
+
+
+mission "John Verhoefen: Escort [stage 3]"
+	name "Escort John to <planet>"
+	description "John Verhoefen asks you to escort him to <destination> where he wants to negotiate a contract selling <commodity>. He will pay you <payment>."
+	job
+	repeat
+	cargo "Heavy Metals" 0
+	passengers 1
+	to offer
+		"reputation: Merchant" >= 10
+		"John Verhoefen: location: <origin>" == 1
+		"John Verhoefen: stage" == 3
+		"John Verhoefen: credits" >= 2500
+		or
+			"John Verhoefen: credits" < 4000000
+			"John Verhoefen: home: <origin>" == 0
+	destination
+		government Republic "Free Worlds" Syndicate Neutral Independent
+		attributes station shipyard military factory
+		distance 3 7
+
+	npc
+		personality nemesis staying
+		system destination
+		government Pirate
+		fleet "Johns Large Pirates"
+	npc
+		personality nemesis waiting
+		system destination
+		distance 1
+		government Pirate
+		fleet "Johns Large Pirates"
+	npc accompany save
+		government Merchant
+		personality
+			confusion 40
+			escort timid frugal appeasing disables
+		ship "Bounder" "John the Faithful"
+
+	on accept
+		clear "John Verhoefen: location: <origin>"
+	on fail
+		"John Verhoefen: stage" = -3
+		"reputation: Merchant" -= 6
+	on complete
+		payment 8000 250
+		"John Verhoefen: credits" -= <paymentNum>
+		"John Verhoefen: location: <planet>" = 1
+		# generate some randomized income for John, averaging some 40k (range: 10k-70k), players payment is between 18k and 28k
+		"Johns income" = random
+		"Johns income" *= 600
+		"Johns income" += 10000
+		"John Verhoefen: credits" += "Johns income"
+		clear "Johns income"
+		dialog `John thanks you for the escort and pays you <payment>. You know that you will find his post on the local job board.`
+
+
+
+mission "John Verhoefen: Bankrupt [stage 3]"
+	name "Escort John to <planet>"
+	description "You agreed to give John Verhoefen a free escort to <destination> where he wants to negotiate a contract selling <commodity>."
+	landing
+	repeat
+	cargo "Heavy Metals" 0
+	passengers 1
+	to offer
+		"reputation: Merchant" >= 10
+		"John Verhoefen: location: <origin>" == 1
+		"John Verhoefen: stage" == 3
+		"John Verhoefen: credits" < 2500
+		"John Verhoefen: free transfers" < 8
+		"John Verhoefen: declined" < 4
+	destination
+		government Republic "Free Worlds" Syndicate Neutral Independent
+		attributes station syMajor military
+		distance 4 12
+	on offer
+		conversation
+			`It does not take long until John arrives at your ship. He looks pretty depressed.`
+			`	"I am pretty much bankrupt.", he says. "The last few negotiations didn't go well and I am afraid I cant pay you for the next passage. I hereby want to ask you if you would give me a free escort to <destination> this time. It is a bit further than our usual trips, but the <commodity> market there is more promising."`
+			choice
+				`	"Okay, I'll give you a free ride to <planet>."`
+					goto thanks
+				`	"Sorry, I'm not headed in that direction."`
+					decline
+			label thanks
+			`	"Thank you, Captain <last>," he says. "I will let other merchants know you helped me once we arrive."`
+				accept
+
+	npc accompany save
+		government Merchant
+		personality
+			confusion 40
+			escort timid frugal appeasing disables
+		ship "Bounder" "John the Faithful"
+
+	on accept
+		clear "John Verhoefen: location: <origin>"
+		"John Verhoefen: free transfers" ++
+	on decline
+		"John Verhoefen: declined" ++
+		"reputation: Merchant" --
+	on fail
+		"John Verhoefen: stage" = -3
+		"reputation: Merchant" -= 6
+	on complete
+		# Merchants reputation increases and that depends on the number of given free rides (i.e. +1 for the first free ride, +2 for the 2nd free ride, ...)
+		"reputation: Merchant" += "John Verhoefen: free transfers"
+		"John Verhoefen: location: <planet>" = 1
+		# generate some randomized income for John, averaging some 50k (range: 10k-90k) - higher than in Escort [stage 3] due to the higher distance and to help John a bit
+		"Johns income" = random
+		"Johns income" *= 800
+		"Johns income" += 10000
+		"John Verhoefen: credits" += "Johns income"
+		clear "Johns income"
+		dialog `John heartly thanks you for the free passage. He hopes you will be the one who answers his new job board offer.`
+
+
+
+mission "John Verhoefen: Returning Home"
+	name "John returned home"
+	description "John Verhoefen returned home with enough money to start his own company."
+	landing
+	to offer
+		"John Verhoefen: location: <origin>" == 1
+		"John Verhoefen: home: <origin>" == 1
+		"John Verhoefen: stage" == 3
+		"John Verhoefen: credits" >= 4000000
+
+	on offer
+		"John Verhoefen: stage" = 4
+		"reputation: Merchant" += 10
+		"reputation: <originGov>" += 10
+		payment 50000
+		"John Verhoefen: credits" -= <paymentNum>
+		conversation
+			`John already was 30 meters away from your ship before he made a turn and returned to you.`
+			`	"Captain <last>, finally, I am home again. I have learned a lot since we met first when I started this job. I earned more money than I ever expected and I really have to thank you for your assistance in my travels. I will write a letter of recommendation to the merchants I know and to our local government. Please also accept these <payment> as expression of my gratitude."`
+			`	"Our common journey ends here for now. I will start my own company with the money I saved up in the last months. But perhaps we will meet again once things are running smoothly here."`
+				decline
+
+
+
+# potential follow-up :
+# Since John currently only owns the one Bounder (he sold the Flivver when he bought the Bounder), his new company might want to rent some freighters / cargo space to deliver the heavy metals he will be selling. -> additional jobs, eventually with a slightly better payment than the vanilla jobs.
+# Once John's company grows, he might want to establish branches / offices on other planets. -> the player could become involved in that process.
+
+# known issue :
+# there is currently no way to directly access the information about the home location of John, i.e. there is no reliable way to create a mission with destination Johns Home
