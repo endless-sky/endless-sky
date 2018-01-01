@@ -27,11 +27,13 @@ shipyard "Southbound Basics"
 	"Fury"
 	"Argosy"
 	"Hauler"
+	"Harvester"
 
 shipyard "Southbound Advanced"
 	"Hauler II"
 	"Hauler III"
 	"Bastion"
+	"Scavenger"
 
 shipyard "Lionheart Basics"
 	"Scout"

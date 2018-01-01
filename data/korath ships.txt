@@ -904,6 +904,19 @@ ship "Model 8"
 	description "The primary role of the smallest Kor Mereti drones is asteroid mining, but their lasers can also be employed as offensive weapons when necessary."
 
 
+ship "Model 8" "Model 8 (Jump)"
+	outfits
+		"Korath Slicer"
+		"Generator (Furnace Class)"
+		"Generator (Candle Class)"
+		"Systems Core (Small)"
+		"Reasoning Node"
+		"Thruster (Comet Class)"
+		"Steering (Comet Class)"
+		"Fuel Pod" 2
+		"Jump Drive"
+
+
 ship "Model 16"
 	sprite "ship/model 16"
 	attributes
@@ -954,6 +967,23 @@ ship "Model 16"
 	explode "large explosion" 10
 	"final explode" "final explosion small"
 	description "The Kor Mereti war drones are constructed in a modular fashion, which allows them to grow over time as more materials become available. This one is recently built, and relatively small."
+
+
+ship "Model 16" "Model 16 (Jump Miner)"
+	outfits
+		"Korath Slicer"
+		"Korath Disruptor"
+		"Korath Slicer Turret"
+		"Double Plasma Core"
+		"Generator (Candle Class)"
+		"Systems Core (Small)"
+		"Small Heat Shunt" 3
+		"Reasoning Node"
+		"Thruster (Asteroid Class)"
+		"Steering (Asteroid Class)"
+		"Thruster (Lunar Class)"
+		"Steering (Lunar Class)"
+		"Jump Drive"
 
 
 ship "Model 32"

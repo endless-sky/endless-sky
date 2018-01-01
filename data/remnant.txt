@@ -65,6 +65,18 @@ fleet "Large Remnant"
 		"Albatross (Turret)"
 
 
+fleet "Remnant Miners"
+	government "Remnant"
+	names "remnant"
+	cargo 0
+	personality
+		timid appeasing mining harvests
+	variant 10
+		"Starling (Heavy)"
+	variant 5
+		"Starling (Hunter)" 2
+
+
 
 phrase "remnant"
 	word

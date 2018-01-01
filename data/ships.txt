@@ -1480,6 +1480,44 @@ ship "Gunboat"
 
 
 
+ship "Harvester"
+	sprite "ship/harvester"
+	attributes
+		category "Drone"
+		"cost" 70000
+		"hull" 500
+		"mass" 22
+		"drag" .6
+		"heat dissipation" .85
+		"cargo space" 15
+		"outfit space" 56
+		"weapon capacity" 6
+		"engine capacity" 28
+		"automaton" 1
+		weapon
+			"blast radius" 4
+			"shield damage" 40
+			"hull damage" 20
+			"hit force" 60
+	outfits
+		"Plasma Drill" 2
+
+		"nGVF-AA Fuel Cell"
+		"Supercapacitor"
+
+		"X1200 Ion Steering"
+		"X1700 Ion Thruster"
+
+	gun 15.5 -39
+	gun -15.5 -39
+	engine 6.5 37.5
+	engine -6.5 37.5
+	explode "tiny explosion" 15
+	description `Rather than attempt to retrofit freighters to be nimble enough to catch and destroy asteroids, Southbound Shipyards developed a remote-operated drone able to be licensed for public and corporate use due to its minuscule armament.`
+	description `While not very popular with private pilots, the Scavenger-Harvester combination proved very popular among corporations seeking to capitalize on recent spikes in mineral futures.`
+
+
+
 ship "Hauler"
 	sprite "ship/hauler i"
 	attributes
@@ -2335,6 +2373,60 @@ ship "Raven"
 	explode "small explosion" 40
 	"final explode" "final explosion small"
 	description "The Lionheart Raven is their most popular warship, an agile and elegant vessel that can nevertheless deal out and absorb considerable damage. Ravens are a favorite ship for bounty hunters, because they are more than a match for pirate interceptors and can be used by a skilled pilot to take down much larger ships as well."
+
+
+
+ship "Scavenger"
+	sprite "ship/scavenger"
+	attributes
+		category "Heavy Freighter"
+		"cost" 1950000
+		"shields" 2500
+		"hull" 4900
+		"required crew" 13
+		"bunks" 18
+		"mass" 330
+		"drag" 10.5
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 220
+		"outfit space" 280
+		"weapon capacity" 60
+		"engine capacity" 100
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Quad Blaster Turret"
+		"Heavy Anti-Missile Turret"
+		
+		"Asteroid Scanner"
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Small Radar Jammer"
+		"Water Coolant System"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine 16.5 171
+	engine -16.5 171
+	engine 30.5 156
+	engine -30.5 156
+	turret 0 -83.5
+	turret 0 88
+	drone 26.5 -24.5 under right
+	drone -26.5 -24.5 under left
+	explode "tiny explosion" 15
+	explode "small explosion" 30
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description `To pair with the Harvester drone, Southbound Shipyards released the first civilian drone carrier, the Scavenger. Like most other freighters, it is not well known for its maneuverability or armament, but rather its cargo space. The automated cargo transfer mechanisms are particularly useful for in-flight unloading of the drones' harvest.`
 
 
 

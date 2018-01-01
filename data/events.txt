@@ -557,7 +557,16 @@ event "southern carriers 2"
 			"Roost" 3
 			"Finch" 6
 			"Boxwing" 6
-
+	
+	fleet "Human Miners"
+		fighters "civilian"
+		add variant
+			"Nest (Harvesting)"
+			"Finch (Mining)" 2
+		add variant
+			"Nest (Harvesting)"
+			"Finch (Harvesting)" 2
+	
 	fleet "Small Independent"
 		fighters "free worlds fighter"
 		add variant 1
@@ -592,7 +601,7 @@ event "southern carriers 3"
 			"Skein" 2
 			"Finch" 8
 			"Boxwing" 4
-
+	
 	fleet "Small Southern Pirates"
 		add variant 1
 			"Nest"
@@ -600,6 +609,11 @@ event "southern carriers 3"
 		add variant 1
 			"Nest"
 			"Barb (Gatling)" 2
+	
+	fleet "Southern Pirate Miners"
+		add variant
+			"Nest (Harvesting)"
+			"Barb (Harvesting)" 2
 
 event "southern carriers 4"
 	fleet "Large Northern Merchants"
@@ -626,7 +640,16 @@ event "southern carriers 4"
 			"Lance (Gatling)" 4
 			"Lance" 4
 			"Boxwing" 4
-
+	
+	fleet "Human Miners"
+		add variant
+			"Roost (Harvesting)"
+			"Boxwing (Harvesting)"
+			"Finch (Mining)" 3
+		add variant
+			"Roost (Harvesting)"
+			"Finch (Harvesting)" 4
+	
 	fleet "Large Southern Pirates"
 		add variant 1
 			"Roost"
@@ -634,7 +657,7 @@ event "southern carriers 4"
 		add variant 1
 			"Roost"
 			"Barb (Gatling)" 4
-
+	
 	fleet "Large Independent"
 		fighters "free worlds fighter"
 		add variant 2
@@ -644,12 +667,12 @@ event "southern carriers 4"
 			"Roost"
 			"Barb" 2
 			"Boxwing" 2
-
+	
 	fleet "Small Northern Pirates"
 		add variant 1
 			"Nest"
 			"Lance" 2
-
+	
 	fleet "Large Northern Pirates"
 		add variant 1
 			"Roost"
@@ -657,6 +680,11 @@ event "southern carriers 4"
 		add variant 1
 			"Roost"
 			"Lance (Gatling)" 4
+	
+	fleet "Northern Pirate Miners"
+		add variant
+			"Nest (Harvesting)"
+			"Lance (Harvesting)" 2
 
 event "initial deployment 4"
 	date 17 9 3014
