@@ -201,6 +201,10 @@ void ShopPanel::DrawSidebar()
 		bool isSelected = playerShips.count(ship.get());
 		const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
 		SpriteShader::Draw(background, point);
+		// If this is one of the selected ships, check if the currently hovered
+		// button (if any) applies to it. If so, brighten the background.
+		if(isSelected && ShouldHighlight(ship.get()))
+			SpriteShader::Draw(background, point);
 		
 		const Sprite *sprite = ship->GetSprite();
 		if(sprite)
@@ -485,6 +489,13 @@ void ShopPanel::FailSell(bool toCargo) const
 bool ShopPanel::CanSellMultiple() const
 {
 	return true;
+}
+
+
+
+bool ShopPanel::ShouldHighlight(const Ship *ship)
+{
+	return (hoverButton == 's');
 }
 
 
