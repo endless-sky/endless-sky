@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include <string>
 
 using namespace std;
 

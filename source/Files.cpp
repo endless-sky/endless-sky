@@ -21,8 +21,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #endif
 
 #include <sys/stat.h>
+
+#ifndef _MSC_VER
 #include <dirent.h>
 #include <unistd.h>
+#endif
 
 #include <cstdlib>
 #include <fstream>
@@ -36,7 +39,7 @@ namespace {
 	string resources;
 	string config;
 	
-	string data;
+	string es_data;
 	string images;
 	string sounds;
 	string saves;
@@ -138,7 +141,7 @@ void Files::Init(const char * const *argv)
 			throw runtime_error("Unable to find the resource directories!");
 		resources.erase(pos + 1);
 	}
-	data = resources + "data/";
+	es_data = resources + "data/";
 	images = resources + "images/";
 	sounds = resources + "sounds/";
 	
@@ -178,7 +181,7 @@ void Files::Init(const char * const *argv)
 	}
 	
 	// Check that all the directories exist.
-	if(!Exists(data) || !Exists(images) || !Exists(sounds))
+	if(!Exists(es_data) || !Exists(images) || !Exists(sounds))
 		throw runtime_error("Unable to find the resource directories!");
 	if(!Exists(saves))
 		throw runtime_error("Unable to create config directory!");
@@ -202,7 +205,7 @@ const string &Files::Config()
 
 const string &Files::Data()
 {
-	return data;
+	return es_data;
 }
 
 

@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{9CA34920-61AE-4135-937C-EAD98A0F6021}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)\..\..\</OutDir>
+    <IntDir>..\..\build\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)-$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)\..\..\</OutDir>
+    <IntDir>..\..\build\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)-$(Configuration)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\dev64\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;libglew32.dll.a;libjpeg.dll.a;libmad.dll.a;libopenal32.dll.a;libpng.dll.a;libsdl2.dll.a;libsdl2main.a;libturbojpeg.dll.a;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProgramFiles)\Windows Kits\8.1\Lib\winv6.3\um\x64;..\dev64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\..\dev64-vs\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>..\..\..\dev64-vs\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libpng16.lib;jpeg-static.lib;zlibstat.lib;legacy_stdio_definitions.lib;winmm.lib;OpenAL32.lib;opengl32.lib;glu32.lib;glew32.lib;libmad.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Link>
+      <AdditionalDependencies>libpng16.lib;jpeg-static.lib;zlibstat.lib;legacy_stdio_definitions.lib;winmm.lib;OpenAL32.lib;opengl32.lib;glu32.lib;glew32.lib;libmad.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\dev64-vs\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\..\dev64-vs\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\source\Account.h" />
+    <ClInclude Include="..\..\source\AI.h" />
+    <ClInclude Include="..\..\source\Angle.h" />
+    <ClInclude Include="..\..\source\Armament.h" />
+    <ClInclude Include="..\..\source\AsteroidField.h" />
+    <ClInclude Include="..\..\source\Audio.h" />
+    <ClInclude Include="..\..\source\BankPanel.h" />
+    <ClInclude Include="..\..\source\BoardingPanel.h" />
+    <ClInclude Include="..\..\source\Body.h" />
+    <ClInclude Include="..\..\source\CaptureOdds.h" />
+    <ClInclude Include="..\..\source\CargoHold.h" />
+    <ClInclude Include="..\..\source\ClickZone.h" />
+    <ClInclude Include="..\..\source\CollisionSet.h" />
+    <ClInclude Include="..\..\source\Color.h" />
+    <ClInclude Include="..\..\source\Command.h" />
+    <ClInclude Include="..\..\source\ConditionSet.h" />
+    <ClInclude Include="..\..\source\Conversation.h" />
+    <ClInclude Include="..\..\source\ConversationPanel.h" />
+    <ClInclude Include="..\..\source\DataFile.h" />
+    <ClInclude Include="..\..\source\DataNode.h" />
+    <ClInclude Include="..\..\source\DataWriter.h" />
+    <ClInclude Include="..\..\source\Date.h" />
+    <ClInclude Include="..\..\source\Depreciation.h" />
+    <ClInclude Include="..\..\source\Dialog.h" />
+    <ClInclude Include="..\..\source\DistanceMap.h" />
+    <ClInclude Include="..\..\source\DrawList.h" />
+    <ClInclude Include="..\..\source\Effect.h" />
+    <ClInclude Include="..\..\source\Engine.h" />
+    <ClInclude Include="..\..\source\EscortDisplay.h" />
+    <ClInclude Include="..\..\source\File.h" />
+    <ClInclude Include="..\..\source\Files.h" />
+    <ClInclude Include="..\..\source\FillShader.h" />
+    <ClInclude Include="..\..\source\Fleet.h" />
+    <ClInclude Include="..\..\source\Flotsam.h" />
+    <ClInclude Include="..\..\source\FogShader.h" />
+    <ClInclude Include="..\..\source\Font.h" />
+    <ClInclude Include="..\..\source\FontSet.h" />
+    <ClInclude Include="..\..\source\Format.h" />
+    <ClInclude Include="..\..\source\FrameTimer.h" />
+    <ClInclude Include="..\..\source\Galaxy.h" />
+    <ClInclude Include="..\..\source\GameData.h" />
+    <ClInclude Include="..\..\source\GameEvent.h" />
+    <ClInclude Include="..\..\source\gl_header.h" />
+    <ClInclude Include="..\..\source\Government.h" />
+    <ClInclude Include="..\..\source\HailPanel.h" />
+    <ClInclude Include="..\..\source\Hardpoint.h" />
+    <ClInclude Include="..\..\source\HiringPanel.h" />
+    <ClInclude Include="..\..\source\ImageBuffer.h" />
+    <ClInclude Include="..\..\source\Information.h" />
+    <ClInclude Include="..\..\source\Interface.h" />
+    <ClInclude Include="..\..\source\ItemInfoDisplay.h" />
+    <ClInclude Include="..\..\source\LineShader.h" />
+    <ClInclude Include="..\..\source\LoadPanel.h" />
+    <ClInclude Include="..\..\source\LocationFilter.h" />
+    <ClInclude Include="..\..\source\LogbookPanel.h" />
+    <ClInclude Include="..\..\source\MainPanel.h" />
+    <ClInclude Include="..\..\source\MapDetailPanel.h" />
+    <ClInclude Include="..\..\source\MapOutfitterPanel.h" />
+    <ClInclude Include="..\..\source\MapPanel.h" />
+    <ClInclude Include="..\..\source\MapSalesPanel.h" />
+    <ClInclude Include="..\..\source\MapShipyardPanel.h" />
+    <ClInclude Include="..\..\source\Mask.h" />
+    <ClInclude Include="..\..\source\MenuPanel.h" />
+    <ClInclude Include="..\..\source\Messages.h" />
+    <ClInclude Include="..\..\source\Minable.h" />
+    <ClInclude Include="..\..\source\Mission.h" />
+    <ClInclude Include="..\..\source\MissionAction.h" />
+    <ClInclude Include="..\..\source\MissionPanel.h" />
+    <ClInclude Include="..\..\source\Mortgage.h" />
+    <ClInclude Include="..\..\source\Music.h" />
+    <ClInclude Include="..\..\source\NPC.h" />
+    <ClInclude Include="..\..\source\Outfit.h" />
+    <ClInclude Include="..\..\source\OutfitInfoDisplay.h" />
+    <ClInclude Include="..\..\source\OutfitterPanel.h" />
+    <ClInclude Include="..\..\source\OutlineShader.h" />
+    <ClInclude Include="..\..\source\Panel.h" />
+    <ClInclude Include="..\..\source\Person.h" />
+    <ClInclude Include="..\..\source\Personality.h" />
+    <ClInclude Include="..\..\source\Phrase.h" />
+    <ClInclude Include="..\..\source\pi.h" />
+    <ClInclude Include="..\..\source\Planet.h" />
+    <ClInclude Include="..\..\source\PlanetLabel.h" />
+    <ClInclude Include="..\..\source\PlanetPanel.h" />
+    <ClInclude Include="..\..\source\PlayerInfo.h" />
+    <ClInclude Include="..\..\source\PlayerInfoPanel.h" />
+    <ClInclude Include="..\..\source\Point.h" />
+    <ClInclude Include="..\..\source\PointerShader.h" />
+    <ClInclude Include="..\..\source\Politics.h" />
+    <ClInclude Include="..\..\source\Preferences.h" />
+    <ClInclude Include="..\..\source\PreferencesPanel.h" />
+    <ClInclude Include="..\..\source\Projectile.h" />
+    <ClInclude Include="..\..\source\Radar.h" />
+    <ClInclude Include="..\..\source\Random.h" />
+    <ClInclude Include="..\..\source\Rectangle.h" />
+    <ClInclude Include="..\..\source\RingShader.h" />
+    <ClInclude Include="..\..\source\Sale.h" />
+    <ClInclude Include="..\..\source\SavedGame.h" />
+    <ClInclude Include="..\..\source\Screen.h" />
+    <ClInclude Include="..\..\source\Set.h" />
+    <ClInclude Include="..\..\source\Shader.h" />
+    <ClInclude Include="..\..\source\shift.h" />
+    <ClInclude Include="..\..\source\Ship.h" />
+    <ClInclude Include="..\..\source\ShipEvent.h" />
+    <ClInclude Include="..\..\source\ShipInfoDisplay.h" />
+    <ClInclude Include="..\..\source\ShipInfoPanel.h" />
+    <ClInclude Include="..\..\source\ShipyardPanel.h" />
+    <ClInclude Include="..\..\source\ShopPanel.h" />
+    <ClInclude Include="..\..\source\Sound.h" />
+    <ClInclude Include="..\..\source\SpaceportPanel.h" />
+    <ClInclude Include="..\..\source\Sprite.h" />
+    <ClInclude Include="..\..\source\SpriteQueue.h" />
+    <ClInclude Include="..\..\source\SpriteSet.h" />
+    <ClInclude Include="..\..\source\SpriteShader.h" />
+    <ClInclude Include="..\..\source\StarField.h" />
+    <ClInclude Include="..\..\source\StartConditions.h" />
+    <ClInclude Include="..\..\source\StellarObject.h" />
+    <ClInclude Include="..\..\source\System.h" />
+    <ClInclude Include="..\..\source\Table.h" />
+    <ClInclude Include="..\..\source\Trade.h" />
+    <ClInclude Include="..\..\source\TradingPanel.h" />
+    <ClInclude Include="..\..\source\UI.h" />
+    <ClInclude Include="..\..\source\Weapon.h" />
+    <ClInclude Include="..\..\source\WrappedText.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\Account.cpp" />
+    <ClCompile Include="..\..\source\AI.cpp" />
+    <ClCompile Include="..\..\source\Angle.cpp" />
+    <ClCompile Include="..\..\source\Armament.cpp" />
+    <ClCompile Include="..\..\source\AsteroidField.cpp" />
+    <ClCompile Include="..\..\source\Audio.cpp" />
+    <ClCompile Include="..\..\source\BankPanel.cpp" />
+    <ClCompile Include="..\..\source\BoardingPanel.cpp" />
+    <ClCompile Include="..\..\source\Body.cpp" />
+    <ClCompile Include="..\..\source\CaptureOdds.cpp" />
+    <ClCompile Include="..\..\source\CargoHold.cpp" />
+    <ClCompile Include="..\..\source\CollisionSet.cpp" />
+    <ClCompile Include="..\..\source\Color.cpp" />
+    <ClCompile Include="..\..\source\Command.cpp" />
+    <ClCompile Include="..\..\source\ConditionSet.cpp" />
+    <ClCompile Include="..\..\source\Conversation.cpp" />
+    <ClCompile Include="..\..\source\ConversationPanel.cpp" />
+    <ClCompile Include="..\..\source\DataFile.cpp" />
+    <ClCompile Include="..\..\source\DataNode.cpp" />
+    <ClCompile Include="..\..\source\DataWriter.cpp" />
+    <ClCompile Include="..\..\source\Date.cpp" />
+    <ClCompile Include="..\..\source\Depreciation.cpp" />
+    <ClCompile Include="..\..\source\Dialog.cpp" />
+    <ClCompile Include="..\..\source\DistanceMap.cpp" />
+    <ClCompile Include="..\..\source\DrawList.cpp" />
+    <ClCompile Include="..\..\source\Effect.cpp" />
+    <ClCompile Include="..\..\source\Engine.cpp" />
+    <ClCompile Include="..\..\source\EscortDisplay.cpp" />
+    <ClCompile Include="..\..\source\File.cpp" />
+    <ClCompile Include="..\..\source\Files.cpp" />
+    <ClCompile Include="..\..\source\FillShader.cpp" />
+    <ClCompile Include="..\..\source\Fleet.cpp" />
+    <ClCompile Include="..\..\source\Flotsam.cpp" />
+    <ClCompile Include="..\..\source\FogShader.cpp" />
+    <ClCompile Include="..\..\source\Font.cpp" />
+    <ClCompile Include="..\..\source\FontSet.cpp" />
+    <ClCompile Include="..\..\source\Format.cpp" />
+    <ClCompile Include="..\..\source\FrameTimer.cpp" />
+    <ClCompile Include="..\..\source\Galaxy.cpp" />
+    <ClCompile Include="..\..\source\GameData.cpp" />
+    <ClCompile Include="..\..\source\GameEvent.cpp" />
+    <ClCompile Include="..\..\source\Government.cpp" />
+    <ClCompile Include="..\..\source\HailPanel.cpp" />
+    <ClCompile Include="..\..\source\Hardpoint.cpp" />
+    <ClCompile Include="..\..\source\HiringPanel.cpp" />
+    <ClCompile Include="..\..\source\ImageBuffer.cpp" />
+    <ClCompile Include="..\..\source\Information.cpp" />
+    <ClCompile Include="..\..\source\Interface.cpp" />
+    <ClCompile Include="..\..\source\ItemInfoDisplay.cpp" />
+    <ClCompile Include="..\..\source\LineShader.cpp" />
+    <ClCompile Include="..\..\source\LoadPanel.cpp" />
+    <ClCompile Include="..\..\source\LocationFilter.cpp" />
+    <ClCompile Include="..\..\source\LogbookPanel.cpp" />
+    <ClCompile Include="..\..\source\main.cpp" />
+    <ClCompile Include="..\..\source\MainPanel.cpp" />
+    <ClCompile Include="..\..\source\MapDetailPanel.cpp" />
+    <ClCompile Include="..\..\source\MapOutfitterPanel.cpp" />
+    <ClCompile Include="..\..\source\MapPanel.cpp" />
+    <ClCompile Include="..\..\source\MapSalesPanel.cpp" />
+    <ClCompile Include="..\..\source\MapShipyardPanel.cpp" />
+    <ClCompile Include="..\..\source\Mask.cpp" />
+    <ClCompile Include="..\..\source\MenuPanel.cpp" />
+    <ClCompile Include="..\..\source\Messages.cpp" />
+    <ClCompile Include="..\..\source\Minable.cpp" />
+    <ClCompile Include="..\..\source\Mission.cpp" />
+    <ClCompile Include="..\..\source\MissionAction.cpp" />
+    <ClCompile Include="..\..\source\MissionPanel.cpp" />
+    <ClCompile Include="..\..\source\Mortgage.cpp" />
+    <ClCompile Include="..\..\source\Music.cpp" />
+    <ClCompile Include="..\..\source\NPC.cpp" />
+    <ClCompile Include="..\..\source\Outfit.cpp" />
+    <ClCompile Include="..\..\source\OutfitInfoDisplay.cpp" />
+    <ClCompile Include="..\..\source\OutfitterPanel.cpp" />
+    <ClCompile Include="..\..\source\OutlineShader.cpp" />
+    <ClCompile Include="..\..\source\Panel.cpp" />
+    <ClCompile Include="..\..\source\Person.cpp" />
+    <ClCompile Include="..\..\source\Personality.cpp" />
+    <ClCompile Include="..\..\source\Phrase.cpp" />
+    <ClCompile Include="..\..\source\Planet.cpp" />
+    <ClCompile Include="..\..\source\PlanetLabel.cpp" />
+    <ClCompile Include="..\..\source\PlanetPanel.cpp" />
+    <ClCompile Include="..\..\source\PlayerInfo.cpp" />
+    <ClCompile Include="..\..\source\PlayerInfoPanel.cpp" />
+    <ClCompile Include="..\..\source\Point.cpp" />
+    <ClCompile Include="..\..\source\PointerShader.cpp" />
+    <ClCompile Include="..\..\source\Politics.cpp" />
+    <ClCompile Include="..\..\source\Preferences.cpp" />
+    <ClCompile Include="..\..\source\PreferencesPanel.cpp" />
+    <ClCompile Include="..\..\source\Projectile.cpp" />
+    <ClCompile Include="..\..\source\Radar.cpp" />
+    <ClCompile Include="..\..\source\Random.cpp" />
+    <ClCompile Include="..\..\source\Rectangle.cpp" />
+    <ClCompile Include="..\..\source\RingShader.cpp" />
+    <ClCompile Include="..\..\source\SavedGame.cpp" />
+    <ClCompile Include="..\..\source\Screen.cpp" />
+    <ClCompile Include="..\..\source\Shader.cpp" />
+    <ClCompile Include="..\..\source\Ship.cpp" />
+    <ClCompile Include="..\..\source\ShipEvent.cpp" />
+    <ClCompile Include="..\..\source\ShipInfoDisplay.cpp" />
+    <ClCompile Include="..\..\source\ShipInfoPanel.cpp" />
+    <ClCompile Include="..\..\source\ShipyardPanel.cpp" />
+    <ClCompile Include="..\..\source\ShopPanel.cpp" />
+    <ClCompile Include="..\..\source\Sound.cpp" />
+    <ClCompile Include="..\..\source\SpaceportPanel.cpp" />
+    <ClCompile Include="..\..\source\Sprite.cpp" />
+    <ClCompile Include="..\..\source\SpriteQueue.cpp" />
+    <ClCompile Include="..\..\source\SpriteSet.cpp" />
+    <ClCompile Include="..\..\source\SpriteShader.cpp" />
+    <ClCompile Include="..\..\source\StarField.cpp" />
+    <ClCompile Include="..\..\source\StartConditions.cpp" />
+    <ClCompile Include="..\..\source\StellarObject.cpp" />
+    <ClCompile Include="..\..\source\System.cpp" />
+    <ClCompile Include="..\..\source\Table.cpp" />
+    <ClCompile Include="..\..\source\Trade.cpp" />
+    <ClCompile Include="..\..\source\TradingPanel.cpp" />
+    <ClCompile Include="..\..\source\UI.cpp" />
+    <ClCompile Include="..\..\source\Weapon.cpp" />
+    <ClCompile Include="..\..\source\WrappedText.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\source\WinApp.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
