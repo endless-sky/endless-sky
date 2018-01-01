@@ -251,7 +251,7 @@ bool OutfitterPanel::CanBuy() const
 	
 	if(!playerShip)
 	{
-		double mass = selectedOutfit->Get("mass");
+		double mass = selectedOutfit->Mass();
 		return (!mass || player.Cargo().Free() >= mass);
 	}
 	
