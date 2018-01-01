@@ -74,6 +74,8 @@ mission "Corporate espionage"
 	on complete
 		dialog `You transmit your scans and receive a hearty congratulations, as well as <payment>. "This will save us months!" you hear someone say in the background as you close the audio link.`
 		payment 50000
+	on fail
+		dialog "You failed to make the requested scans of the <npc>'s cargo before it could deliver them."
 
 
 mission "Document delivery to <planet>"

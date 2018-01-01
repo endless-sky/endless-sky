@@ -370,8 +370,8 @@ bool NPC::HasFailed() const
 			return true;
 	
 		// If we still need to perform an action on this NPC, then that ship
-		// being destroyed should cause the mission to fail.
-		if((~it.second & succeedIf) && (it.second & ShipEvent::DESTROY))
+		// fleeing or being destroyed should cause the mission to fail.
+		if((~it.second & succeedIf) && (it.second & (ShipEvent::FLEE | ShipEvent::DESTROY)))
 			return true;
 	}
 

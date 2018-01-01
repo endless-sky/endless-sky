@@ -1339,10 +1339,22 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	// Bail out if the ship just died.
 	if(ship->ShouldBeRemoved())
 	{
+		// Regular ships are silent about being removed.
+		if(!ship->IsSpecial())
+			return;
+		
 		// Make sure this ship's destruction was recorded, even if it died from
 		// self-destruct.
 		if(ship->IsDestroyed())
 			eventQueue.emplace_back(nullptr, ship, ShipEvent::DESTROY);
+		// The ship was able to flee. Carried ships only flee with the parent.
+		else if(!ship->CanBeCarried() || !ship->GetParent() || ship->GetParent()->ShouldBeRemoved())
+		{
+			eventQueue.emplace_back(nullptr, ship, ShipEvent::FLEE);
+			for(auto &bay : ship->Bays())
+				if(bay.ship)
+					eventQueue.emplace_back(nullptr, bay.ship, ShipEvent::FLEE);
+		}
 		return;
 	}
 	
