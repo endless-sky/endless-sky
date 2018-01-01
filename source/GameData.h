@@ -120,6 +120,9 @@ public:
 	// Get the solar power and wind output of the given stellar object sprite.
 	static double SolarPower(const Sprite *sprite);
 	static double SolarWind(const Sprite *sprite);
+	// Check if this sprite is associated with being a "galactic phenomenon",
+	// e.g. a wormhole or elaborate star.
+	static bool IsGalacticPhenomenon(const Sprite *sprite);
 	
 	// Pick a random news object that applies to the given planet. If there is
 	// no applicable news, this returns null.

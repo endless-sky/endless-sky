@@ -77,3 +77,13 @@ star "star/nova"
 star "star/wr"
 	power 0.4
 	wind 4
+
+
+
+# Sprites which classify as "galactic phenomena" - any system in which
+# these can be found will have the attribute "galactic phenomena".
+phenomena
+	"star/nova"
+	"star/wr"
+	"planet/wormhole"
+	"planet/wormhole-red"

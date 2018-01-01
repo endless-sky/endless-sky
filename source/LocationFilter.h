@@ -50,10 +50,10 @@ public:
 private:
 	// Load one particular line of conditions.
 	void LoadChild(const DataNode &child);
-	// Check if the filter matches the given system. If it did not, return true
-	// only if the filter wasn't looking for planet characteristics or if the
-	// didPlanet argument is set (meaning we already checked those).
-	bool Matches(const System *system, const System *origin, bool didPlanet) const;
+	// Check if the filter matches the given system. If so, returns true if
+	// a planet in the system already matched, if the system's attributes,
+	// match, or if the filter wasn't looking for attributes or planets.
+	bool Matches(const System *system, const System *origin, bool hasMatch) const;
 	
 	
 private:
