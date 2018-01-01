@@ -147,7 +147,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
 			gifts[GameData::Outfits().Get(child.Token(1))] = count;
 		}
-		else if(key == "require" && hasValue))
+		else if(key == "require" && hasValue)
 		{
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
 			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;			
