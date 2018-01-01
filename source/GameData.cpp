@@ -1012,7 +1012,7 @@ void GameData::PrintShipTable()
 		const Outfit &attributes = ship.Attributes();
 		cout << attributes.Get("shields") << '\t';
 		cout << attributes.Get("hull") << '\t';
-		cout << attributes.Get("mass") << '\t';
+		cout << attributes.Mass() << '\t';
 		cout << attributes.Get("required crew") << '\t';
 		cout << attributes.Get("cargo space") << '\t';
 		cout << attributes.Get("bunks") << '\t';
@@ -1022,8 +1022,8 @@ void GameData::PrintShipTable()
 		cout << ship.BaseAttributes().Get("weapon capacity") << '\t';
 		cout << ship.BaseAttributes().Get("engine capacity") << '\t';
 		cout << 60. * attributes.Get("thrust") / attributes.Get("drag") << '\t';
-		cout << 3600. * attributes.Get("thrust") / attributes.Get("mass") << '\t';
-		cout << 60. * attributes.Get("turn") / attributes.Get("mass") << '\t';
+		cout << 3600. * attributes.Get("thrust") / attributes.Mass() << '\t';
+		cout << 60. * attributes.Get("turn") / attributes.Mass() << '\t';
 		
 		double energy = attributes.Get("thrusting energy")
 			+ attributes.Get("turning energy");
@@ -1041,7 +1041,7 @@ void GameData::PrintShipTable()
 		cout << 60. * heat << '\t';
 		// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000
 		// per 60th of a second, so:
-		cout << 60. * ship.Mass() * .1 * attributes.Get("heat dissipation") << '\n';
+		cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << '\n';
 	}
 	cout.flush();
 }
