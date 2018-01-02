@@ -2364,7 +2364,9 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		double blastRadius = max(1., weapon.BlastRadius());
 		double radiusRatio = weapon.TriggerRadius() / blastRadius;
 		double k = !radiusRatio ? 1. : (1. + .25 * radiusRatio * radiusRatio);
-		double d = GetMask().Range(projectile.Position() - position, angle);
+		// Rather than exactly compute the distance between the explosion and
+		// the closest point on the ship, estimate it using the mask's Radius.
+		double d = max(0., (projectile.Position() - position).Length() - GetMask().Radius());
 		double rSquared = d * d / (blastRadius * blastRadius);
 		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
 	}
