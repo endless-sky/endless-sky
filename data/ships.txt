@@ -2695,7 +2695,7 @@ ship "Star Queen"
 		"cost" 5500000
 		"shields" 4100
 		"hull" 2200
-		"required crew" 43
+		"required crew" 27
 		"bunks" 112
 		"mass" 230
 		"drag" 5.5
