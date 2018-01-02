@@ -1301,7 +1301,7 @@ mission "Bounty Hunting (Big)"
 		dialog "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 250000
-		dialog "A local <government: destination> official gratefully pays you <payment> for eliminating the <npc>."
+		dialog `A local <government: destination> official gratefully pays you <payment> for eliminating the <npc>.`
 
 mission "Bounty Hunting (Medium)"
 	name "Hunt down <npc>"
@@ -1336,7 +1336,7 @@ mission "Bounty Hunting (Medium)"
 		dialog "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 200000
-		dialog "A local <government: destination> official gratefully pays you <payment> for eliminating the <npc>."
+		dialog `A local <government: destination> official gratefully pays you <payment> for eliminating the <npc>.`
 
 mission "Bounty Hunting (Small)"
 	name "Hunt down <npc>"
@@ -1377,7 +1377,7 @@ mission "Bounty Hunting (Small)"
 		dialog "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 150000
-		dialog "A local <government: destination> official gratefully pays you <payment> for eliminating the <npc>."
+		dialog `A local <government: destination> official gratefully pays you <payment> for eliminating the <npc>.`
 
 mission "Southern Pirate Attack"
 	name "Defend <planet>"
@@ -1470,28 +1470,21 @@ mission "Raider Attack 1"
 		planet "Sundive"
 		planet "Shangri-La"
 		planet "Nimbus"
-	npc evade
-		government "Korath"
-		personality target timid unconstrained uninterested harvests plunders
-		fleet "Korath Raid" 2
 	npc
 		government "Syndicate"
 		personality heroic staying vindictive
 		fleet "Large Syndicate"
 		fleet "Small Syndicate"
+	npc evade
+		government "Korath"
+		personality target timid unconstrained uninterested harvests plunders
+		fleet "Korath Raid" 2
 	on offer
-		conversation
-			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by alien raiders! We need every combat-worthy ship to join the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
-			choice
-				`	(Stay here until the fight is over.)`
-					decline
-				`	(Join the defense fleet.)`
-			`The local Syndicate defense forces are preparing to repel the alien attack. You join them, and take off together...`
-				launch
+		conversation "alien attack"
 	on complete
 		payment 550000
-		dialog `The government of <planet> pays you <payment> for helping to drive off the raiders.`
-		
+		dialog `A <government: destination> official pays you <payment> for helping to drive off the raiders.`
+
 mission "Raider Attack 2"
 	name "Defend <planet>"
 	description "Defeat an alien raid on <destination>."
@@ -1505,27 +1498,19 @@ mission "Raider Attack 2"
 		planet "Sundive"
 		planet "Shangri-La"
 		planet "Nimbus"
-	npc evade
-		government "Korath"
-		personality target timid unconstrained uninterested harvests plunders
-		fleet "Korath Raid" 3
-		
 	npc
 		government "Syndicate"
 		personality heroic staying vindictive
 		fleet "Large Syndicate" 2
+	npc evade
+		government "Korath"
+		personality target timid unconstrained uninterested harvests plunders
+		fleet "Korath Raid" 3
 	on offer
-		conversation
-			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by alien raiders! We need every combat-worthy ship to join the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
-			choice
-				`	(Stay here until the fight is over.)`
-					decline
-				`	(Join the defense fleet.)`
-			`The local Syndicate defense forces are preparing to repel the alien attack. You join them, and take off together...`
-				launch
+		conversation "alien attack"
 	on complete
 		payment 750000
-		dialog `The government of <planet> pays you <payment> for helping to drive off the raiders.`
+		dialog `A <government: destination> official pays you <payment> for helping to drive off the raiders.`
 
 mission "Cargo [0]"
 	name "Delivery to <planet>"
@@ -2383,7 +2368,7 @@ mission "Bounty Hunting (Marauder I)"
 		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 300000
-		dialog "A local <government: destination> official gratefully pays you <payment> for eliminating the <npc> and their fleet."
+		dialog `A local <government: destination> official gratefully pays you <payment> for eliminating the <npc> and their fleet.`
 
 mission "Bounty Hunting (Marauder II)"
 	name "Hunt down <npc>"
@@ -2409,7 +2394,7 @@ mission "Bounty Hunting (Marauder II)"
 		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 350000
-		dialog "A local <government: destination> official gratefully pays you <payment> for eliminating the <npc> and their fleet."
+		dialog `A local <government: destination> official gratefully pays you <payment> for eliminating the <npc> and their fleet.`
 
 mission "Bounty Hunting (Marauder III)"
 	name "Hunt down <npc>"
@@ -2435,7 +2420,7 @@ mission "Bounty Hunting (Marauder III)"
 		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 400000
-		dialog "A local <government: destination> official gratefully pays you <payment> for eliminating the <npc> and their fleet."
+		dialog `A local <government: destination> official gratefully pays you <payment> for eliminating the <npc> and their fleet.`
 
 mission "Bounty Hunting (Marauder IV)"
 	name "Hunt down <npc>"
@@ -2461,7 +2446,7 @@ mission "Bounty Hunting (Marauder IV)"
 		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 425000
-		dialog "A local <government: destination> official gratefully pays you <payment> for eliminating the <npc> and their fleet."
+		dialog `A local <government: destination> official gratefully pays you <payment> for eliminating the <npc> and their fleet.`
 
 mission "Bounty Hunting (Marauder V)"
 	name "Hunt down <npc>"
@@ -2487,7 +2472,7 @@ mission "Bounty Hunting (Marauder V)"
 		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 450000
-		dialog "A local <government: destination> official gratefully pays you <payment> for eliminating the <npc> and their fleet."
+		dialog `A local <government: destination> official gratefully pays you <payment> for eliminating the <npc> and their fleet.`
 
 
 mission "Bounty Hunting (Marauder VI)"
@@ -2514,7 +2499,7 @@ mission "Bounty Hunting (Marauder VI)"
 		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 475000
-		dialog "A local <government: destination> official gratefully pays you <payment> for eliminating the <npc> and their fleet."
+		dialog `A local <government: destination> official gratefully pays you <payment> for eliminating the <npc> and their fleet.`
 
 mission "Bounty Hunting (Marauder VII)"
 	name "Hunt down <npc>"
@@ -2536,7 +2521,7 @@ mission "Bounty Hunting (Marauder VII)"
 		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 500000
-		dialog "A local <government: destination> official gratefully pays you <payment> for eliminating the <npc> and their fleet."
+		dialog `A local <government: destination> official gratefully pays you <payment> for eliminating the <npc> and their fleet.`
 
 mission "Bounty Hunting (Marauder VIII)"
 	name "Hunt down <npc>"
@@ -2558,7 +2543,7 @@ mission "Bounty Hunting (Marauder VIII)"
 		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 550000
-		dialog "A local <government: destination> official gratefully pays you <payment> for eliminating the <npc> and their fleet."
+		dialog `A local <government: destination> official gratefully pays you <payment> for eliminating the <npc> and their fleet.`
 
 mission "Bounty Hunting (Marauder IX)"
 	name "Hunt down <npc>"
@@ -2580,7 +2565,7 @@ mission "Bounty Hunting (Marauder IX)"
 		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 600000
-		dialog "A local <government: destination> official gratefully pays you <payment> for eliminating the <npc> and their fleet."
+		dialog `A local <government: destination> official gratefully pays you <payment> for eliminating the <npc> and their fleet.`
 
 # Must destroy hunters and land to fail
 mission "Marauder Hunted"
