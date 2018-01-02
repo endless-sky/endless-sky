@@ -2419,7 +2419,10 @@ void Ship::ApplyForce(const Point &force)
 	if(!currentMass)
 		return;
 	
-	acceleration += force / currentMass;
+	// Reduce acceleration of small ships and increase acceleration of large
+	// ones by having half the force be based on a fixed mass of 400, i.e. the
+	// mass of a typical light warship:
+	acceleration += force * (.5 / 400. + .5 / currentMass);
 }
 
 
