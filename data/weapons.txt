@@ -139,6 +139,32 @@ outfit "Modified Blaster Turret"
 		"hull damage" 8
 	description "This is a turreted version of the Modified Blaster, which is an Energy Blaster modified for greater power at the cost of higher energy consumption and heat. These turrets are popular with pirates and others who are trying to cram as much firepower into their ships as possible."
 
+outfit "Modified Quad Blaster Turret"
+	category "Turrets"
+	cost 350000
+	thumbnail "outfit/mod quad blaster turret"
+	"mass" 30
+	"outfit space" -30
+	"weapon capacity" -30
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/mod blaster"
+		"hardpoint sprite" "hardpoint/mod quad blaster turret"
+		"hardpoint offset" 9.
+		sound "mod blaster"
+		"hit effect" "blaster impact"
+		"inaccuracy" 7
+		"turret turn" 3
+		"velocity" 8
+		"lifetime" 60
+		"reload" 3
+		"firing energy" 13
+		"firing heat" 50
+		"shield damage" 14.5
+		"hull damage" 9.5
+	description "This jury-rigged weapon is a turbocharged version of the Modified Blaster Turret, mounting double the number of guns and fed with an even higher energy input. The crystals glow and crackle with power, and from 20 feet away you can feel the heat they're giving off. Each of these formidable turrets would likely require a dedicated cooling system to prevent its ship from going into thermal shutdown."
+
 
 outfit "Beam Laser"
 	category "Guns"
