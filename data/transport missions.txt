@@ -2028,7 +2028,7 @@ mission "Lost Boy 2"
 			distance 2 4
 		ship "Vanguard (Particle)" "Lord Ligonier"
 		conversation
-			`When you breach the ship's hull, you find the crew of the <npc> more concerned with containing the fires caused by your weapons than they are you walking onto their ship. Almost every one of the crew members is a teenager. One looks at you and the laser pistol in your hand with mortal fear in his eyes.`
+			`When you breach the ship's hull, you find the crew of the <npc> more concerned with containing the fires caused by your weapons than with you walking onto their ship. Almost every one of the crew members is a teenager. One looks at you and the laser pistol in your hand with mortal fear in his eyes.`
 			`	Through the smoke and steam, you see a boy running toward you who fits the description of Tod Copper.`
 			choice
 				`	"Get on my ship!"`
