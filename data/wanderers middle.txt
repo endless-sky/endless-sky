@@ -2093,7 +2093,7 @@ mission "Wanderers: Sestor: Bomb Zenith 1"
 				`	"Do you have a plan for destroying the Alphas?"`
 
 			`	Danforth says, "The base is several kilometers underground. Before it was guarded by Sestor drones, we had a chance. We could have landed dozens of troop transports and fought our way inside, albeit with heavy losses. But now, I doubt our troops could even make it to the surface."`
-			`	As he is speaking, two Navy officers approach your ship with a hover-cart carrying something that looks a little bit like a retro-fitted Typhoon Torpedo. They salute Danforth, and he tells them, "Put it aboard Captain <last>'s ship." Then he turns to you. "I'm going to give you the coordinates of the Alpha base," he says. "It's on the polar continent, deep under the ice. Fortunately there are no other human settlements nearby."`
+			`	As he is speaking, two Navy officers approach your ship with a hover-cart carrying something that looks a little bit like a retrofitted Typhoon Torpedo. They salute Danforth, and he tells them, "Put it aboard Captain <last>'s ship." Then he turns to you. "I'm going to give you the coordinates of the Alpha base," he says. "It's on the polar continent, deep under the ice. Fortunately there are no other human settlements nearby."`
 			`	He pauses, as if to resign himself to what he is about to command you to do, and then says, "Land on the planet, drop this device at the coordinates, and then get the hell out of there. You'll have fifteen seconds after you deploy the device to get at least a thousand kilometers away."`
 			choice
 				`	"Wait, is this a nuke? I thought the Navy was too principled to use them."`
