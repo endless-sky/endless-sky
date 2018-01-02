@@ -503,6 +503,7 @@ void Ship::Save(DataWriter &out) const
 		{
 			out.Write("category", baseAttributes.Category());
 			out.Write("cost", baseAttributes.Cost());
+			out.Write("mass", baseAttributes.Mass());
 			for(const pair<const char *, double> &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
