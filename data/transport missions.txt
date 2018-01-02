@@ -1862,6 +1862,7 @@ mission "Terraforming 5"
 	
 	on complete
 		payment 60000
+		event "terraforming timer" 4 8
 		conversation
 			`When you get back to <planet>, Amy has you fly in a random path a few kilometers above the surface while she periodically dumps loads of seeds and plant material out the airlock. In the process, you fly through several rainstorms. This world's climate has indeed been altered. But you can't help wonder how a few tons of seed spread out over the entire surface of a planet is really going to help anything.`
 			`	Then you meet up with Eric and Alaric. Eric is elated. "We just got a massive rainstorm here!" he says. "We haven't had that much precipitation in a decade!"`
@@ -1875,17 +1876,6 @@ mission "Terraforming 5"
 event "terraforming Rand"
 	planet Rand
 		add description `	Recent terraforming experiments have caused an increase in precipitation. Flash floods have scoured the landscape in some areas, but sandstorms are also less frequent, and the locals say the heat is a bit less oppressive than it used to be.`
-
-
-
-mission "terraforming timer"
-	landing
-	invisible
-	to offer
-		has "Terraforming 5: done"
-	on offer
-		event "terraforming timer" 4 8
-		fail
 
 event "terraforming timer"
 
@@ -2112,7 +2102,7 @@ mission "Terraforming 12"
 	
 	on complete
 		payment 200000
-		event "terraforming timer 2" 365 730
+		event "terraforming timer 2" 730 912
 		event "terraforming Tundra"
 		conversation
 			`A plume of debris has formed in a mushroom cloud shape above where the asteroid hit. The scientists are viewing their instruments in anticipation for what happens next.`
@@ -2144,8 +2134,6 @@ event "terraforming Tundra"
 
 event "terraforming timer 2"
 
-
-
 mission "Terraforming Follow-up"
 	landing
 	source
@@ -2170,7 +2158,7 @@ event "terraforming follow-up"
 	planet "Rand"
 		add attribute "tourism"
 		description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
-		description `	Due to the results of recent terraforming experiments, Rand has become a far more habitable place. Fascination of this rapid change in climate has lead to Rand becoming a popular tourist destination of the Dirt Belt.`
+		description `	Due to the results of recent terraforming experiments, Rand has become a moderately more habitable place. Fascination with this change in climate has lead to Rand becoming a semi-popular tourist destination of the Dirt Belt.`
 	planet "Tundra"
 		spaceport `The spaceport village consists of several large domes, which keep out the wind and driving snow; ships enter and exit the largest of the domes through a hatch that closes as soon as they have come through. Before the planet was terraformed, enough snow would pile up on top of one of the domes every decade or so that it became a danger of collapsing under its own weight; the locals would simply move out of that dome and build another one higher up on the snowpack, but the changing climate has reduced the amount of snow enough that the locals may never need to build another dome again.`
 
