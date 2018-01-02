@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "AI.h"
 #include "AsteroidField.h"
+#include "BatchDrawList.h"
 #include "CollisionSet.h"
 #include "DrawList.h"
 #include "EscortDisplay.h"
@@ -27,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Rectangle.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "Visual.h"
 
 #include <condition_variable>
 #include <list>
@@ -65,7 +67,8 @@ public:
 	void Go();
 	
 	// Get any special events that happened in this step.
-	const std::list<ShipEvent> &Events() const;
+	// MainPanel::Step will clear this list.
+	std::list<ShipEvent> &Events();
 	
 	// Draw a frame.
 	void Draw() const;
@@ -109,6 +112,7 @@ private:
 		Angle angle;
 		double radius;
 		int type;
+		int count;
 	};
 	
 	class Status {
@@ -128,16 +132,16 @@ private:
 	PlayerInfo &player;
 	
 	std::list<std::shared_ptr<Ship>> ships;
-	std::list<Projectile> projectiles;
+	std::vector<Projectile> projectiles;
 	std::list<std::shared_ptr<Flotsam>> flotsam;
-	std::list<Effect> effects;
+	std::vector<Visual> visuals;
 	AsteroidField asteroids;
 	
 	// New objects created within the latest step:
 	std::list<std::shared_ptr<Ship>> newShips;
-	std::list<Projectile> newProjectiles;
+	std::vector<Projectile> newProjectiles;
 	std::list<std::shared_ptr<Flotsam>> newFlotsam;
-	std::list<Effect> newEffects;
+	std::vector<Visual> newVisuals;
 	
 	// Track which ships currently have anti-missiles ready to fire.
 	std::vector<Ship *> hasAntiMissile;
@@ -153,6 +157,7 @@ private:
 	bool terminate = false;
 	bool wasActive = false;
 	DrawList draw[2];
+	BatchDrawList batchDraw[2];
 	Radar radar[2];
 	// Viewport position and velocity.
 	Point center;
@@ -160,7 +165,7 @@ private:
 	// Other information to display.
 	Information info;
 	std::vector<Target> targets;
-	Point targetAngle;
+	Point targetVector;
 	Point targetUnit;
 	int targetSwizzle = -1;
 	EscortDisplay escorts;
@@ -171,7 +176,7 @@ private:
 	const System *jumpInProgress[2] = {nullptr, nullptr};
 	const Sprite *highlightSprite = nullptr;
 	Point highlightUnit;
-	int highlightFrame = 0;
+	float highlightFrame = 0.f;
 	
 	int step = 0;
 	

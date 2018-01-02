@@ -371,9 +371,9 @@ mission "Coalition: Saryd Interspecies 1"
 		has "known to the heliarchs"
 		random < 70
 	source
-		attributes saryd
+		attributes "saryd"
 	destination
-		attributes kimek arach
+		attributes "kimek" "arach"
 	on complete
 		"coalition jobs" ++
 		payment
@@ -390,9 +390,9 @@ mission "Coalition: Saryd Interspecies 2"
 		has "known to the heliarchs"
 		random < 30
 	source
-		attributes saryd
+		attributes "saryd"
 	destination
-		attributes kimek arach
+		attributes "kimek" "arach"
 	on complete
 		"coalition jobs" ++
 		payment
@@ -409,9 +409,9 @@ mission "Coalition: Kimek Interspecies 1"
 		has "known to the heliarchs"
 		random < 70
 	source
-		attributes kimek
+		attributes "kimek"
 	destination
-		attributes saryd arach
+		attributes "saryd" "arach"
 	on complete
 		"coalition jobs" ++
 		payment
@@ -428,9 +428,9 @@ mission "Coalition: Kimek Interspecies 2"
 		has "known to the heliarchs"
 		random < 30
 	source
-		attributes kimek
+		attributes "kimek"
 	destination
-		attributes saryd arach
+		attributes "saryd" "arach"
 	on complete
 		"coalition jobs" ++
 		payment
@@ -447,9 +447,9 @@ mission "Coalition: Arach Interspecies 1"
 		has "known to the heliarchs"
 		random < 70
 	source
-		attributes arach
+		attributes "arach"
 	destination
-		attributes saryd kimek
+		attributes "saryd" "kimek"
 	on complete
 		"coalition jobs" ++
 		payment
@@ -466,9 +466,9 @@ mission "Coalition: Arach Interspecies 2"
 		has "known to the heliarchs"
 		random < 30
 	source
-		attributes arach
+		attributes "arach"
 	destination
-		attributes saryd kimek
+		attributes "saryd" "kimek"
 	on complete
 		"coalition jobs" ++
 		payment
@@ -489,7 +489,7 @@ mission "Coalition: Transfer 1"
 		government "Coalition"
 	destination
 		government "Coalition"
-		attributes mining farming factory oil
+		attributes "mining" "farming" "factory" "oil"
 		distance 2 20
 	on complete
 		"coalition jobs" ++
@@ -510,7 +510,7 @@ mission "Coalition: Transfer 2"
 		government "Coalition"
 	destination
 		government "Coalition"
-		attributes mining farming factory oil
+		attributes "mining" "farming" "factory" "oil"
 		distance 2 20
 	on complete
 		"coalition jobs" ++
@@ -531,7 +531,7 @@ mission "Coalition: Transfer 3"
 		government "Coalition"
 	destination
 		government "Coalition"
-		attributes mining farming factory oil
+		attributes "mining" "farming" "factory" "oil"
 		distance 2 20
 	on complete
 		"coalition jobs" ++
@@ -554,7 +554,7 @@ mission "Coalition: Tourists Out 1"
 		government "Coalition"
 	destination
 		government "Coalition"
-		attributes tourism
+		attributes "tourism"
 		distance 5 20
 	on complete
 		"coalition jobs" ++
@@ -576,7 +576,7 @@ mission "Coalition: Tourists Out 2"
 		government "Coalition"
 	destination
 		government "Coalition"
-		attributes tourism
+		attributes "tourism"
 		distance 5 20
 	on complete
 		"coalition jobs" ++
@@ -598,7 +598,7 @@ mission "Coalition: Tourists Out 3"
 		government "Coalition"
 	destination
 		government "Coalition"
-		attributes tourism
+		attributes "tourism"
 		distance 5 20
 	on complete
 		"coalition jobs" ++
@@ -619,9 +619,9 @@ mission "Coalition: Tourists Home 1"
 		random < 40
 	source
 		government "Coalition"
+		attributes "tourism"
 	destination
 		government "Coalition"
-		attributes tourism
 		distance 5 20
 	on complete
 		"coalition jobs" ++
@@ -641,9 +641,9 @@ mission "Coalition: Tourists Home 2"
 		random < 30
 	source
 		government "Coalition"
+		attributes "tourism"
 	destination
 		government "Coalition"
-		attributes tourism
 		distance 5 20
 	on complete
 		"coalition jobs" ++
@@ -663,9 +663,9 @@ mission "Coalition: Tourists Home 3"
 		random < 20
 	source
 		government "Coalition"
+		attributes "tourism"
 	destination
 		government "Coalition"
-		attributes tourism
 		distance 5 20
 	on complete
 		"coalition jobs" ++

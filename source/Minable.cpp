@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Projectile.h"
 #include "Random.h"
 #include "SpriteSet.h"
+#include "Visual.h"
 
 #include <algorithm>
 #include <cmath>
@@ -127,7 +128,7 @@ void Minable::Place(double energy, double beltRadius)
 // Move the object forward one step. If it has been reduced to zero hull, it
 // will "explode" instead of moving, creating flotsam and explosion effects.
 // In that case it will return false, meaning it should be deleted.
-bool Minable::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
+bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
 	if(hull < 0)
 	{
@@ -140,8 +141,7 @@ bool Minable::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 				// Add a random velocity.
 				Point dp = (Random::Real() * scale) * Angle::Random().Unit();
 				
-				effects.push_back(*it.first);
-				effects.back().Place(position + 2. * dp, velocity + dp, angle);
+				visuals.emplace_back(*it.first, position + 2. * dp, velocity + dp, angle);
 			}
 		}
 		for(const auto &it : payload)
@@ -176,17 +176,16 @@ bool Minable::Move(list<Effect> &effects, list<shared_ptr<Flotsam>> &flotsam)
 
 
 
-// Check if the given projectile collides with this object. If so, a value
-// is returned indicating how far along its path the collision occurs.
-double Minable::Collide(const Projectile &projectile, int step) const
-{
-	return GetMask(step).Collide(projectile.Position() - position, projectile.Velocity(), angle);
-}
-
-
-
 // Damage this object (because a projectile collided with it).
 void Minable::TakeDamage(const Projectile &projectile)
 {
 	hull -= projectile.GetWeapon().HullDamage();
+}
+
+
+	
+// Determine what flotsam this asteroid will create.
+const map<const Outfit *, int> &Minable::Payload() const
+{
+	return payload;
 }

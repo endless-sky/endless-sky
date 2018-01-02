@@ -14,6 +14,9 @@ tip "afterburner heat:"
 tip "afterburner thrust:"
 	`Thrust produced by this afterburner.`
 
+tip "asteroid scan power:"
+	`The range of this asteroid scanner is proportional to the square root of this value.`
+
 tip "atmosphere scan:"
 	`This type of scanning cannot be performed by your ship, but this outfit might be useful for certain missions.`
 
@@ -214,6 +217,9 @@ tip "slowing resistance:"
 
 tip "solar collection:"
 	`Produces a variable amount of energy depending on how far this ship is from the star at the center of the system.`
+
+tip "tactical scan power:"
+	`Tactical scanners allow you to view your current target's crew complement, fuel, heat, and energy levels when it is within range. The range is proportional to the square root of this value.`
 
 tip "max speed:"
 	`The fastest this ship can travel when using ordinary thrusters (as opposed to an afterburner).`

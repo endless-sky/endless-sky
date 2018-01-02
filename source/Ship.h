@@ -39,6 +39,7 @@ class Planet;
 class Projectile;
 class StellarObject;
 class System;
+class Visual;
 
 
 
@@ -154,7 +155,9 @@ public:
 	const Command &Commands() const;
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.
-	void Move(std::list<Effect> &effects, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	// Generate energy, heat, etc. (This is called by Move().)
+	void DoGeneration();
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships);
 	// Check if this ship is boarding another ship. If it is, it either plunders
@@ -171,9 +174,9 @@ public:
 	// Fire any weapons that are ready to fire. If an anti-missile is ready,
 	// instead of firing here this function returns true and it can be fired if
 	// collision detection finds a missile in range.
-	bool Fire(std::list<Projectile> &projectiles, std::list<Effect> &effects);
+	bool Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
 	// Fire an anti-missile. Returns true if the missile was killed.
-	bool FireAntiMissile(const Projectile &projectile, std::list<Effect> &effects);
+	bool FireAntiMissile(const Projectile &projectile, std::vector<Visual> &visuals);
 	
 	// Get the system this ship is in.
 	const System *GetSystem() const;
@@ -202,7 +205,7 @@ public:
 	// Check if this ship is hyperspacing, specifically via a jump drive.
 	bool IsUsingJumpDrive() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
-	bool IsReadyToJump() const;
+	bool IsReadyToJump(bool waitingIsReady = false) const;
 	// Get this ship's custom swizzle.
 	int CustomSwizzle() const;
 	
@@ -211,7 +214,8 @@ public:
 	// Get the points from which engine flares should be drawn.
 	const std::vector<EnginePoint> &EnginePoints() const;
 	
-	// Mark a ship as destroyed, or bring back a destroyed ship.
+	// Make a ship disabled or destroyed, or bring back a destroyed ship.
+	void Disable();
 	void Destroy();
 	void SelfDestruct();
 	void Restore();
@@ -232,6 +236,8 @@ public:
 	double Energy() const;
 	double Heat() const;
 	double Fuel() const;
+	// Get the ship's "health," where 0 is disabled and 1 means full health.
+	double Health() const;
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
 	int JumpsRemaining() const;
@@ -244,6 +250,10 @@ public:
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
+	// Get the heat dissipation, in heat units per heat unit per frame.
+	double HeatDissipation() const;
+	// Get the maximum heat level, in heat units (not temperature).
+	double MaximumHeat() const;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
 	
@@ -316,10 +326,10 @@ public:
 	const std::vector<Hardpoint> &Weapons() const;
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
-	bool CanFire(const Outfit *outfit) const;
+	bool CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
 	// and add whatever heat it generates. Assume that CanFire() is true.
-	void ExpendAmmo(const Outfit *outfit);
+	void ExpendAmmo(const Weapon *weapon);
 	
 	// Each ship can have a target system (to travel to), a target planet (to
 	// land on) and a target ship (to move to, and attack if hostile).
@@ -354,17 +364,13 @@ private:
 	void RemoveEscort(const Ship &ship);
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
-	// Add to this ship's hull or shields, and return the amount added. If the
-	// ship is carrying fighters, add to them as well.
-	double AddHull(double rate);
-	double AddShields(double rate);
 	// Find out how much fuel is consumed by the hyperdrive of the given type.
 	double BestFuel(const std::string &type, const std::string &subtype, double defaultFuel) const;
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
-	void CreateExplosion(std::list<Effect> &effects, bool spread = false);
+	void CreateExplosion(std::vector<Visual> &visuals, bool spread = false);
 	// Place a "spark" effect, like ionization or disruption.
-	void CreateSparks(std::list<Effect> &effects, const std::string &name, double amount);
+	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	
 	
 private:
@@ -426,6 +432,8 @@ private:
 	std::list<std::shared_ptr<Flotsam>> jettisoned;
 	
 	std::vector<Bay> bays;
+	// Cache the mass of carried ships to avoid repeatedly recomputing it.
+	double carriedMass = 0.;
 	
 	std::vector<EnginePoint> enginePoints;
 	Armament armament;

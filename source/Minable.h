@@ -21,12 +21,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <memory>
 #include <string>
+#include <vector>
 
 class DataNode;
 class Effect;
 class Flotsam;
 class Outfit;
 class Projectile;
+class Visual;
 
 
 
@@ -53,14 +55,13 @@ public:
 	// Move the object forward one step. If it has been reduced to zero hull, it
 	// will "explode" instead of moving, creating flotsam and explosion effects.
 	// In that case it will return false, meaning it should be deleted.
-	bool Move(std::list<Effect> &effects, std::list<std::shared_ptr<Flotsam>> &flotsam);
-	
-	// Check if the given projectile collides with this object. If so, a value
-	// is returned indicating how far along its path the collision occurs.
-	double Collide(const Projectile &projectile, int step) const;
+	bool Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	
 	// Damage this object (because a projectile collided with it).
 	void TakeDamage(const Projectile &projectile);
+	
+	// Determine what flotsam this asteroid will create.
+	const std::map<const Outfit *, int> &Payload() const;
 	
 	
 private:

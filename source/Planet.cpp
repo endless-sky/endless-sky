@@ -327,7 +327,7 @@ const Sale<Outfit> &Planet::Outfitter() const
 // Get this planet's government. Most planets follow the government of the system they are in.
 const Government *Planet::GetGovernment() const
 {
-	return government ? government : GetSystem()->GetGovernment();
+	return government ? government : systems.empty() ? nullptr : GetSystem()->GetGovernment();
 }
 
 
@@ -421,6 +421,13 @@ const System *Planet::WormholeDestination(const System *from) const
 	
 	++it;
 	return (it == systems.end() ? systems.front() : *it);
+}
+
+
+
+const vector<const System *> &Planet::WormholeSystems() const
+{
+	return systems;
 }
 
 

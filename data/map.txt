@@ -2008,10 +2008,12 @@ system Adhara
 	trade Medical 608
 	trade Metal 210
 	trade Plastic 440
-	fleet "Small Northern Merchants" 300
-	fleet "Large Northern Merchants" 400
-	fleet "Small Deep" 500
-	fleet "Large Deep" 1000
+	fleet "Small Northern Merchants" 600
+	fleet "Large Northern Merchants" 800
+	fleet "Small Deep Security" 900
+	fleet "Small Deep Merchants" 600
+	fleet "Large Deep Security" 2400
+	fleet "Large Deep Merchants" 900
 	fleet "Small Northern Pirates" 2000
 	object
 		sprite star/k0
@@ -2371,6 +2373,7 @@ system Aldebaran
 	trade Plastic 479
 	fleet "Small Northern Merchants" 600
 	fleet "Large Northern Merchants" 600
+	fleet "Paradise Merchants" 1000
 	fleet "Small Republic" 800
 	fleet "Large Republic" 400
 	object
@@ -3654,9 +3657,10 @@ system Alphard
 	trade Medical 665
 	trade Metal 284
 	trade Plastic 496
-	fleet "Small Northern Merchants" 400
-	fleet "Large Northern Merchants" 700
-	fleet "Small Deep" 3000
+	fleet "Small Northern Merchants" 500
+	fleet "Large Northern Merchants" 900
+	fleet "Paradise Merchants" 1500
+	fleet "Small Deep Merchants" 2000
 	fleet "Small Republic" 2400
 	fleet "Large Republic" 6000
 	fleet "Human Miners" 2000
@@ -3889,10 +3893,12 @@ system Aludra
 	trade Medical 703
 	trade Metal 392
 	trade Plastic 289
-	fleet "Small Deep" 600
-	fleet "Large Deep" 1000
-	fleet "Small Northern Merchants" 300
-	fleet "Large Northern Merchants" 900
+	fleet "Small Deep Security" 1800
+	fleet "Small Deep Merchants" 500
+	fleet "Large Deep Security" 3000
+	fleet "Large Deep Merchants" 1000
+	fleet "Small Northern Merchants" 500
+	fleet "Large Northern Merchants" 1200
 	fleet "Human Miners" 5000
 	object
 		sprite star/k0
@@ -4607,10 +4613,11 @@ system Aspidiske
 	trade Medical 678
 	trade Metal 247
 	trade Plastic 295
-	fleet "Small Northern Merchants" 500
-	fleet "Large Northern Merchants" 1500
-	fleet "Small Deep" 1000
-	fleet "Large Deep" 4000
+	fleet "Small Northern Merchants" 800
+	fleet "Large Northern Merchants" 2000
+	fleet "Small Deep Security" 2000
+	fleet "Small Deep Merchants" 1400
+	fleet "Large Deep Merchants" 3000
 	object
 		sprite star/m4
 		period 10
@@ -4733,10 +4740,12 @@ system Avior
 	trade Medical 741
 	trade Metal 331
 	trade Plastic 299
-	fleet "Small Northern Merchants" 600
-	fleet "Large Northern Merchants" 1800
-	fleet "Small Deep" 1200
-	fleet "Large Deep" 4000
+	fleet "Small Northern Merchants" 900
+	fleet "Large Northern Merchants" 3000
+	fleet "Small Deep Security" 2800
+	fleet "Small Deep Merchants" 1500
+	fleet "Large Deep Security" 10000
+	fleet "Large Deep Merchants" 4000
 	object
 		sprite star/g0
 		distance 11
@@ -5958,6 +5967,7 @@ system Capella
 	trade Plastic 499
 	fleet "Small Northern Merchants" 500
 	fleet "Large Northern Merchants" 800
+	fleet "Paradise Merchants" 700
 	fleet "Small Republic" 800
 	fleet "Large Republic" 1400
 	fleet "Human Miners" 2000
@@ -6215,6 +6225,7 @@ system Castor
 	trade Plastic 467
 	fleet "Small Northern Merchants" 600
 	fleet "Large Northern Merchants" 800
+	fleet "Paradise Merchants" 800
 	fleet "Small Republic" 1000
 	fleet "Large Republic" 500
 	object
@@ -7890,10 +7901,12 @@ system Dubhe
 	trade Medical 521
 	trade Metal 262
 	trade Plastic 489
-	fleet "Small Northern Merchants" 1000
-	fleet "Large Northern Merchants" 2500
-	fleet "Small Deep" 4000
-	fleet "Large Deep" 9000
+	fleet "Small Northern Merchants" 1200
+	fleet "Large Northern Merchants" 4000
+	fleet "Small Deep Security" 2000
+	fleet "Small Deep Merchants" 3000
+	fleet "Large Deep Security" 7000
+	fleet "Large Deep Merchants" 7000
 	fleet "Small Northern Pirates" 12000
 	fleet "Large Northern Pirates" 8000
 	object
@@ -8592,6 +8605,7 @@ system Elnath
 	trade Plastic 476
 	fleet "Small Northern Merchants" 4000
 	fleet "Large Northern Merchants" 9000
+	fleet "Paradise Merchants" 8000
 	fleet "Small Republic" 7000
 	fleet "Large Republic" 20000
 	fleet "Small Northern Pirates" 5000
@@ -8854,10 +8868,12 @@ system "Epsilon Leonis"
 	trade Medical 599
 	trade Metal 216
 	trade Plastic 389
-	fleet "Small Northern Merchants" 400
-	fleet "Large Northern Merchants" 1000
-	fleet "Small Deep" 1000
-	fleet "Large Deep" 3000
+	fleet "Small Northern Merchants" 700
+	fleet "Large Northern Merchants" 1400
+	fleet "Small Deep Security" 2000
+	fleet "Small Deep Merchants" 1600
+	fleet "Large Deep Security" 6000
+	fleet "Large Deep Merchants" 2500
 	object
 		sprite star/g0
 		distance 25.8286
@@ -10630,10 +10646,12 @@ system Gomeisa
 	trade Medical 585
 	trade Metal 228
 	trade Plastic 451
-	fleet "Small Northern Merchants" 400
-	fleet "Large Northern Merchants" 1000
-	fleet "Small Deep" 1200
-	fleet "Large Deep" 2400
+	fleet "Small Northern Merchants" 600
+	fleet "Large Northern Merchants" 1300
+	fleet "Small Deep Security" 1800
+	fleet "Small Deep Merchants" 3000
+	fleet "Large Deep Security" 4000
+	fleet "Large Deep Merchants" 5000
 	object
 		sprite star/k0
 		distance 55.5
@@ -13862,6 +13880,7 @@ system Kursa
 	trade Plastic 441
 	fleet "Small Northern Merchants" 2000
 	fleet "Large Northern Merchants" 3000
+	fleet "Paradise Merchants" 3000
 	fleet "Small Northern Pirates" 4000
 	fleet "Large Northern Pirates" 8000
 	fleet "Small Republic" 5000
@@ -14621,10 +14640,12 @@ system Markeb
 	trade Medical 787
 	trade Metal 389
 	trade Plastic 306
-	fleet "Small Northern Merchants" 800
-	fleet "Large Northern Merchants" 2000
-	fleet "Small Deep" 1500
-	fleet "Large Deep" 3000
+	fleet "Small Northern Merchants" 1000
+	fleet "Large Northern Merchants" 2500
+	fleet "Small Deep Security" 4000
+	fleet "Small Deep Merchants" 2000
+	fleet "Large Deep Security" 8000
+	fleet "Large Deep Merchants" 4000
 	fleet "Large Northern Pirates" 5000
 	object
 		sprite star/k0
@@ -15510,6 +15531,7 @@ system Miaplacidus
 	trade Plastic 489
 	fleet "Small Northern Merchants" 600
 	fleet "Large Northern Merchants" 900
+	fleet "Paradise Merchants" 900
 	fleet "Small Republic" 1500
 	fleet "Large Republic" 3000
 	object
@@ -16297,10 +16319,12 @@ system Naos
 	trade Medical 750
 	trade Metal 339
 	trade Plastic 297
-	fleet "Small Northern Merchants" 400
-	fleet "Large Northern Merchants" 1000
-	fleet "Small Deep" 1000
-	fleet "Large Deep" 2000
+	fleet "Small Northern Merchants" 600
+	fleet "Large Northern Merchants" 1500
+	fleet "Small Deep Security" 2400
+	fleet "Small Deep Merchants" 1200
+	fleet "Large Deep Security" 5000
+	fleet "Large Deep Merchants" 2800
 	fleet "Human Miners" 2000
 	object
 		sprite star/g5
@@ -16508,6 +16532,7 @@ system Nihal
 	trade Plastic 481
 	fleet "Small Northern Merchants" 800
 	fleet "Large Northern Merchants" 1200
+	fleet "Paradise Merchants" 1800
 	fleet "Small Northern Pirates" 3000
 	fleet "Large Northern Pirates" 5000
 	fleet "Small Republic" 4000
@@ -17879,6 +17904,7 @@ system Pollux
 	trade Plastic 481
 	fleet "Small Northern Merchants" 500
 	fleet "Large Northern Merchants" 800
+	fleet "Paradise Merchants" 600
 	fleet "Small Republic" 1000
 	fleet "Large Republic" 2000
 	object
@@ -18074,6 +18100,7 @@ system Procyon
 	trade Plastic 472
 	fleet "Small Northern Merchants" 700
 	fleet "Large Northern Merchants" 1200
+	fleet "Paradise Merchants" 900
 	fleet "Small Republic" 1500
 	fleet "Large Republic" 3000
 	object
@@ -18701,10 +18728,12 @@ system Regor
 	trade Medical 753
 	trade Metal 255
 	trade Plastic 277
-	fleet "Small Northern Merchants" 1000
-	fleet "Large Northern Merchants" 3000
-	fleet "Small Deep" 2000
-	fleet "Large Deep" 5000
+	fleet "Small Northern Merchants" 2000
+	fleet "Large Northern Merchants" 6000
+	fleet "Small Deep Security" 3600
+	fleet "Small Deep Merchants" 2400
+	fleet "Large Deep Security" 8000
+	fleet "Large Deep Merchants" 5000
 	object
 		sprite star/k0
 		period 10
@@ -20623,6 +20652,7 @@ system Sirius
 	trade Plastic 366
 	fleet "Small Northern Merchants" 500
 	fleet "Large Northern Merchants" 700
+	fleet "Paradise Merchants" 800
 	fleet "Small Republic" 1000
 	fleet "Large Republic" 1500
 	object
@@ -20845,6 +20875,7 @@ system Sol
 	trade Plastic 272
 	fleet "Small Northern Merchants" 300
 	fleet "Large Northern Merchants" 500
+	fleet "Paradise Merchants" 800
 	fleet "Small Republic" 600
 	fleet "Large Republic" 900
 	fleet "Small Core Merchants" 1000
@@ -21511,10 +21542,11 @@ system Suhail
 	trade Medical 774
 	trade Metal 259
 	trade Plastic 277
-	fleet "Small Northern Merchants" 2000
-	fleet "Large Northern Merchants" 5000
-	fleet "Small Deep" 4000
-	fleet "Large Deep" 7000
+	fleet "Small Northern Merchants" 4000
+	fleet "Large Northern Merchants" 9000
+	fleet "Small Deep Security" 10000
+	fleet "Small Deep Merchants" 3000
+	fleet "Large Deep Merchants" 7000
 	fleet "Large Northern Pirates" 9000
 	object
 		sprite star/f5
@@ -21753,6 +21785,7 @@ system Talita
 	trade Plastic 469
 	fleet "Small Northern Merchants" 600
 	fleet "Large Northern Merchants" 900
+	fleet "Paradise Merchants" 800
 	fleet "Small Republic" 1000
 	fleet "Large Republic" 2000
 	fleet "Human Miners" 3000
@@ -22009,6 +22042,7 @@ system Tejat
 	trade Plastic 492
 	fleet "Small Northern Merchants" 700
 	fleet "Large Northern Merchants" 1500
+	fleet "Paradise Merchants" 1200
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 2000
 	object
@@ -23134,6 +23168,7 @@ system Wazn
 	trade Plastic 433
 	fleet "Small Northern Merchants" 700
 	fleet "Large Northern Merchants" 1500
+	fleet "Paradise Merchants" 1800
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 4000
 	object
@@ -23251,10 +23286,12 @@ system Wezen
 	trade Medical 796
 	trade Metal 365
 	trade Plastic 306
-	fleet "Small Northern Merchants" 1000
-	fleet "Large Northern Merchants" 2000
-	fleet "Small Deep" 1500
-	fleet "Large Deep" 4000
+	fleet "Small Northern Merchants" 2000
+	fleet "Large Northern Merchants" 4000
+	fleet "Small Deep Security" 5000
+	fleet "Small Deep Merchants" 1600
+	fleet "Large Deep Security" 10000
+	fleet "Large Deep Merchants" 5000
 	fleet "Small Northern Pirates" 8000
 	object
 		sprite star/f0
@@ -23644,10 +23681,13 @@ system Zosma
 	trade Medical 567
 	trade Metal 271
 	trade Plastic 498
-	fleet "Small Northern Merchants" 600
-	fleet "Large Northern Merchants" 1000
-	fleet "Small Deep" 2000
-	fleet "Large Deep" 4000
+	fleet "Small Northern Merchants" 800
+	fleet "Large Northern Merchants" 1200
+	fleet "Paradise Merchants" 2500
+	fleet "Small Deep Security" 1000
+	fleet "Small Deep Merchants" 4000
+	fleet "Large Deep Security" 2000
+	fleet "Large Deep Merchants" 8000
 	fleet "Small Republic" 4000
 	fleet "Small Northern Pirates" 5000
 	fleet "Large Northern Pirates" 9000
@@ -23959,7 +23999,7 @@ planet Alfheim
 	security 0.7
 	tribute 1200
 		threshold 5000
-		fleet "Small Deep Military" 27
+		fleet "Small Deep Security" 27
 
 planet Allhome
 	attributes hai farming "human tourism"
@@ -24013,7 +24053,7 @@ planet Arabia
 
 planet "Arachne Station"
 	attributes south station
-	landscape land/space1
+	landscape land/sivael0
 	music ambient/machinery
 	description `Arachne Station is privately owned by Tarazed Corporation, and there are no services available here for people who are not Tarazed employees.`
 	"required reputation" 20
@@ -24046,7 +24086,7 @@ planet Asgard
 	security 0.7
 	tribute 4000
 		threshold 7000
-		fleet "Large Deep Military" 39
+		fleet "Large Deep Security" 39
 
 planet "Ashy Reach"
 	attributes kimek shipping moon
@@ -24111,7 +24151,7 @@ planet Bivrost
 	security 0.8
 	tribute 3600
 		threshold 7000
-		fleet "Large Deep Military" 35
+		fleet "Large Deep Security" 35
 
 planet Bloodsea
 	attributes pirate
@@ -24271,7 +24311,7 @@ planet Canyon
 
 planet "Carbuncle Station"
 	attributes north station research
-	landscape land/space6
+	landscape land/sivael4
 	music ambient/machinery
 	description `Carbuncle is a tiny station owned and operated by Lovelace Labs. You assume that like most such stations, it is primarily a deuterium refinery, but aside from the docking bay the rest of the station is closed off to visitors. Given the reputation of Lovelace Labs for exotic research, there could be almost anything beyond those sealed-off bulkheads.`
 	"required reputation" 100
@@ -24296,7 +24336,7 @@ planet "Celestial Third"
 
 planet "Charon Station"
 	attributes south station
-	landscape land/station3
+	landscape land/sivael6
 	music ambient/machinery
 	description `Charon Station provides hyperspace fuel for much of the southern galactic rim. It is a tiny, cramped, and aging station, with twice as many workers here as it was originally designed for. Centuries ago, before much of the Dirt Belt was settled, this was the first spot below Algorel where merchant caravan fleets from the Deep could stop over on their way to the worlds farther up the Rim.`
 	description `	The close quarters have fostered an extreme scrupulosity about personal space. It is unnerving to walk down a densely crowded hallway and fail to make eye contact with anyone.`
@@ -24308,7 +24348,7 @@ planet "Charon Station"
 
 planet "Charybdis Station"
 	attributes core station
-	landscape land/space0
+	landscape land/sivael8
 	music ambient/machinery
 	description `Charybdis Station is privately owned by the Syndicate. It is a massive deuterium refinery, with harvester drones constantly flying in and out to scoop hydrogen gas out of the upper atmosphere of the planet below. If you need to repair or refuel in this system, you will need to visit the neighboring world of Delve, instead of this station.`
 	"required reputation" 20
@@ -24661,11 +24701,14 @@ planet "Elek Kartanu"
 
 planet "Ember Reaches"
 	attributes "requires: quantum keystone"
+	description ""
 
 planet "Ember Threshold"
 	attributes "requires: quantum keystone"
+	description ""
 
 planet "Ember Wormhole"
+	description ""
 
 planet "Esayaku Fen"
 	attributes korath
@@ -24797,7 +24840,7 @@ planet "Fek Rembatu"
 
 planet "Fenrir Station"
 	attributes deep station
-	landscape land/space5
+	landscape land/sivael1
 	music ambient/machinery
 	description `Fenrir Station is a bustling refinery, and from the way the foremen looked at you when you stepped off your ship, they seem to be eager for new recruits. In addition to harvesting deuterium, this is one of the few refinery stations in human space which also collects helium-3, an isotope with some exotic uses in medical imaging and in energy research.`
 	description `	The diversity of isotopes found here is partly due to the station being a relatively new construction and benefiting from modern technology. But the gas giant which the station harvests from also has a composition unlike any other known planet. One theory is that it is on the cusp of becoming a brown dwarf star, in which case the isotopes now being stirred into the upper atmosphere by convection will eventually be depleted by fusion.`
@@ -24806,7 +24849,7 @@ planet "Fenrir Station"
 	security 0.8
 	tribute 600
 		threshold 3000
-		fleet "Small Deep Military" 14
+		fleet "Small Deep Security" 14
 
 planet Firelode
 	attributes unfettered
@@ -24843,7 +24886,7 @@ planet "Flowing Fields"
 planet Follower
 	attributes paradise factory
 	landscape land/city10
-	description `Follower is on the edge of the "paradise planets" region of space; not really one of them yet, but aspiring to be. It is prosperous, but from manufacturing rather than law or finance or venture capitalism. A significant fraction of the local taxes collected here are being spent on terraforming, raising global temperatures and reducing seasonal fluctuations. The goods produced here always have a ready market to purchase them, so Follower's job economy is considered very stable.`
+	description `Follower is on the edge of the Paradise Planets region of space: not really one of them yet, but aspiring to be. It is prosperous, but from manufacturing rather than law or finance or venture capitalism. A significant fraction of the local taxes collected here are being spent on terraforming, raising global temperatures and reducing seasonal fluctuations. The goods produced here always have a ready market to purchase them, so Follower's job economy is considered very stable.`
 	description `	As one of the few planets still actively engaged in terraforming, Follower has been the location of several experiments with new technology, trying to leapfrog the centuries-slow process that other worlds have gone through. Unfortunately most of these experiments have failed, sometimes spectacularly.`
 	spaceport `The spaceport is a single skyscraper, fifty floors tall and as wide as it is high, with the floors twisting around each other in a helical patterns so that on each level, the landing bays are approached from a slightly different angle. The whole structure is built of steel and gleaming glass. Inside, the soaring ceilings give you more of a sense of opulence than of comfort.`
 	shipyard "Betelgeuse Basics"
@@ -25141,7 +25184,7 @@ planet Haze
 	security 0.6
 	tribute 2600
 		threshold 5500
-		fleet "Large Deep Military" 26
+		fleet "Large Deep Security" 26
 
 planet Heartland
 	attributes "dirt belt" farming
@@ -25172,7 +25215,7 @@ planet Helheim
 	security 0.6
 	tribute 700
 		threshold 3000
-		fleet "Small Deep Military" 15
+		fleet "Small Deep Security" 15
 
 planet Hephaestus
 	attributes core factory urban
@@ -25255,7 +25298,7 @@ planet Hopper
 
 planet "Huginn Station"
 	attributes deep station
-	landscape land/station2
+	landscape land/sivael2
 	music ambient/machinery
 	description `Huginn and Muninn stations, together, are the gateway to the Deep, the region of space north of here. The Deep was the first large region of space to have a democratic government, predating the Republic by nearly two centuries.`
 	description `	Huginn Station is a prison station where convicted pirates must work at harvesting and refining deuterium to atone for their crimes against humanity. There are no services available for you here and the security guards, surprised by your visit and wondering at your motives, watch you closely.`
@@ -25264,7 +25307,7 @@ planet "Huginn Station"
 	security 0.9
 	tribute 1800
 		threshold 5500
-		fleet "Large Deep Military" 18
+		fleet "Large Deep Security" 18
 
 planet Humanika
 	attributes south farming
@@ -25280,7 +25323,7 @@ planet Humanika
 
 planet "Hydra Station"
 	attributes "dirt belt" station
-	landscape land/space4
+	landscape land/sivael5
 	music ambient/machinery
 	description `This station is so run down that most of the workers carry oxygen masks in case a meteorite punctures the hull, and a few of them are even dressed in full space suits. The deuterium refinery here is barely operating, the number of workers is minimal, and nearly half of them seem to be busy just welding patches onto the hull to hold the station together. At the moment there are no repair or refueling services available here.`
 	security 0.3
@@ -25406,7 +25449,7 @@ planet "Kort Vek'kri"
 
 planet "Kraken Station"
 	attributes "near earth" station
-	landscape land/station0
+	landscape land/sivael7
 	music ambient/machinery
 	description `Kraken Station is seven centuries old; it was the first space station built outside of the Sol system. The station has been modified and repaired so often since that time that in all likelihood not a single deck panel or bulkhead that was part of the original station remains. Four centuries ago it was nearly destroyed by an asteroid impact, but other than that it has been a working deuterium refinery for its entire lifetime.`
 	spaceport `The main ring of the station consists of three different levels, with living quarters, repair shops, a few small cafeterias, and even a barber. The lower levels also house some of the refinery equipment, but much of the harvesting is done automatically by robotic drones. For a station that is so old, everything feels surprisingly sturdy; the bolts and beams that make up the station are much thicker than they probably need to be.`
@@ -25441,7 +25484,7 @@ planet "Laki Nemparu"
 
 planet "Leviathan Station"
 	attributes deep station
-	landscape land/space2
+	landscape land/sivael3
 	music ambient/machinery
 	description `Leviathan Station is the Deep's most productive deuterium harvesting station. Built nearly four hundred years ago, the station was one of the first to fuel the massive cargo caravans sent out from the Deep back when this was one of the only regions of the galaxy with a prosperous economy and a democratic government. Today it remains under government control, because the citizens of the Deep are wary of any private corporation controlling the industry that makes interstellar travel possible.`
 	spaceport `This is a refinery, not a tourist destination. You were allowed to dock here, and the massive cafeteria used by the local workers is available to you if you want to eat, but beyond that no one seems particularly interested in entertaining you or interacting with you.`
@@ -25451,7 +25494,7 @@ planet "Leviathan Station"
 	security 0.9
 	tribute 1200
 		threshold 3500
-		fleet "Small Deep Military" 27
+		fleet "Small Deep Security" 27
 
 planet Lichen
 	attributes south farming frontier
@@ -25571,7 +25614,7 @@ planet Mani
 	security 0.6
 	tribute 500
 		threshold 3000
-		fleet "Small Deep Military" 11
+		fleet "Small Deep Security" 11
 
 planet "Market of Gupta"
 	attributes arach shipping
@@ -25620,7 +25663,7 @@ planet Memory
 	security 0.8
 	tribute 700
 		threshold 4000
-		fleet "Small Deep Military" 16
+		fleet "Small Deep Security" 16
 
 planet "Merask Fortuno"
 	attributes korath station
@@ -25674,7 +25717,7 @@ planet Midgard
 	security 0.8
 	tribute 3000
 		threshold 6000
-		fleet "Large Deep Military" 30
+		fleet "Large Deep Security" 30
 
 planet "Midway Emerald"
 	attributes kimek shipping urban wealthy
@@ -25719,7 +25762,7 @@ planet Moonshake
 
 planet "Muninn Station"
 	attributes deep station military
-	landscape land/space7
+	landscape land/sivael6
 	music ambient/machinery
 	description `Muninn Station, along with its brother station Huginn, serves as the gateway to the region of space known as the Deep. They both harvest and refine deuterium for use as rocket fuel, and in addition Muninn Station is used as a military base for the local defense fleets.`
 	spaceport `Most of the station is closed off to you, but you are told that if you want you may visit the large military mess hall, where hundreds of Navy members and local militia sit and eat or watch the news videos. You would normally expect a military mess hall to be a noisy, rowdy place, but this one is almost eerily silent, with a few quiet conversations going on in the corners but otherwise no noise except the video screens.`
@@ -25728,7 +25771,7 @@ planet "Muninn Station"
 	security 0.8
 	tribute 1100
 		threshold 5500
-		fleet "Small Deep Military" 25
+		fleet "Small Deep Security" 25
 
 planet Muspel
 	attributes deep mining factory
@@ -25740,7 +25783,7 @@ planet Muspel
 	security 0.6
 	tribute 600
 		threshold 3000
-		fleet "Small Deep Military" 14
+		fleet "Small Deep Security" 14
 
 planet Mutiny
 	attributes pirate
@@ -25985,7 +26028,7 @@ planet Nifel
 	security 0.7
 	tribute 1500
 		threshold 4000
-		fleet "Large Deep Military" 16
+		fleet "Large Deep Security" 16
 
 planet Nimbus
 	attributes core fishing medical
@@ -26014,7 +26057,7 @@ planet Norn
 	security 0.6
 	tribute 500
 		threshold 3000
-		fleet "Small Deep Military" 12
+		fleet "Small Deep Security" 12
 
 planet Oasis
 	attributes rim farming textiles
@@ -26029,7 +26072,7 @@ planet Oasis
 
 planet "Oberon Station"
 	attributes core station
-	landscape land/station1
+	landscape land/sivael9
 	music ambient/machinery
 	description `Oberon Station is a deuterium refinery owned and operated by the Syndicate, and aside from a few docking bays for visiting ships to use in an emergency, the rest of the station is sealed off to non-employees.`
 	"required reputation" 10
@@ -26064,7 +26107,7 @@ planet Pearl
 
 planet "Phoenix Station"
 	attributes deep station
-	landscape land/space1
+	landscape land/sivael4
 	music ambient/machinery
 	description `As with all refineries in the Deep, Phoenix Station is government-owned. You cannot imagine who would want to live here; despite reflective hull plating and active cooling systems, the station is uncomfortably hot. Nearly all the work is done by robots and computers, with only a skeleton crew of people supervising. Every time the station's orbit brings it through the planet's shadow, the temperature drops briefly and the entire station creaks ominously as it cools.`
 	"required reputation" 10
@@ -26072,7 +26115,7 @@ planet "Phoenix Station"
 	security 0.7
 	tribute 500
 		threshold 2000
-		fleet "Large Deep Military" 5
+		fleet "Large Deep Security" 5
 
 planet Pilot
 	attributes north research
@@ -26217,6 +26260,7 @@ planet Relic
 
 planet "Remnant Wormhole"
 	attributes "requires: quantum keystone"
+	description ""
 
 planet "Remote Blue"
 	attributes kimek urban
@@ -26402,7 +26446,7 @@ planet "Secret Sky"
 planet "Sek Alarfarat"
 	attributes korath
 	landscape land/bwerner2
-	description `A hideously powerful weapon tore open scars on this planets surface so deep that the molten rock of the mantle bled out through them. Presumably these wounds were inflicted on the planet by yet another Korath super-weapon devised in the final years of their civil war. A few ruined cities remain, some of which were sliced in two by the trail of weapon fire.`
+	description `A hideously powerful weapon tore open scars on this planet's surface so deep that pools of magma bled out through them. Presumably these wounds were inflicted on the planet by yet another Korath super-weapon devised in the final years of their civil war. A few ruined cities remain, some of which were sliced in two by the trail of weapon fire.`
 	security 0
 
 planet "Selefkar Refinery"
@@ -26866,7 +26910,7 @@ planet Trinket
 
 planet "Triton Station"
 	attributes north station military
-	landscape land/space3
+	landscape land/sivael0
 	music ambient/machinery
 	description `Triton Station serves both as a refinery for hyperspace fuel, and as a garrison for ships of the Republic Navy. Patrol ships are constantly landing here and then taking off to scour the surrounding systems for pirates. Since pirates are scarce in this part of space, it seems like a very tedious job.`
 	spaceport `The mess hall is empty except for one table where some Navy officers are playing a card game. They are sitting right under a ventilation duct, and the cards keep blowing off the table; the station's low simulated gravity is not enough to hold them there.`
@@ -26919,7 +26963,7 @@ planet Twinstar
 
 planet "Typhon Station"
 	attributes rim station
-	landscape land/station4
+	landscape land/sivael1
 	music ambient/machinery
 	description `Typhon Station is one of the major fuel refining stations in the galactic Rim. It is privately owned by Southbound Shipyards, and all the fuel produced here is shipped directly to them rather than being made available to visiting ships.`
 	security 0.3
@@ -26955,7 +26999,7 @@ planet Valhalla
 	security 0.8
 	tribute 3600
 		threshold 7000
-		fleet "Large Deep Military" 35
+		fleet "Large Deep Security" 35
 
 planet "Var' Kar'i'i"
 	attributes wanderer urban farming
@@ -26992,7 +27036,7 @@ planet "Vara K'chrai"
 	landscape land/sea16-harro
 	description `This is the most populous Wanderer world, with dozens of large cities. The tallest buildings branch and cantilever out from their bases like metallic trees. More than half the surface of the planet is ocean, with a few small settlements built on massive living rafts of algae and seaweed, perhaps ten meters thick and up to several kilometers wide. Much of the land is forests, with villages built entirely in the treetops.`
 	description `	There are also farms here, but more like gardens or parks than a human farm: each with dozens of species of plants growing side by side, and harvested by autonomous robots.`
-	spaceport `The streets in Wanderer capital city seem to be mostly reserved for cargo vehicles; the Wanderers themselves fly from one building to another instead, and the skyscrapers have balconies dozens of stories above the ground where visitors can land or take off. The air traffic seems utterly chaotic, but somehow they avoid colliding with each other in midair, and certain columns of airspace have been reserved for ships taking off and landing so that flying Wanderers will not get caught in the backwash from the ship engines.`
+	spaceport `The streets in the Wanderer capital city seem to be mostly reserved for cargo vehicles; the Wanderers themselves fly from one building to another instead, and the skyscrapers have balconies dozens of stories above the ground where visitors can land or take off. The air traffic seems utterly chaotic, but somehow they avoid colliding with each other in midair, and certain columns of airspace have been reserved for ships taking off and landing so that flying Wanderers will not get caught in the backwash from the ship engines.`
 	shipyard "Wanderer Advanced"
 	outfitter "Wanderer Advanced"
 	bribe 0
@@ -27193,7 +27237,7 @@ planet Windblain
 	security 0.6
 	tribute 800
 		threshold 3500
-		fleet "Small Deep Military" 18
+		fleet "Small Deep Security" 18
 
 planet Winter
 	attributes south factory frontier
@@ -27208,10 +27252,11 @@ planet Winter
 		fleet "Large Militia" 5
 
 planet "Wormhole Alpha"
+	description ""
 
 planet "Wyvern Station"
 	attributes rim station
-	landscape land/station0
+	landscape land/sivael7
 	music ambient/machinery
 	description `Wyvern Station was once one of the end destinations for the merchant caravans traveling along the Rim, back in the days before the Republic existed when most systems were not policed and the only way to avoid being plundered by pirates was for ships to travel in large convoys. It has also been a continuously operating hyperspace fuel refinery for more than three centuries.`
 	spaceport `This station is old, and some parts are dirty and in need of repair, but it is at least structurally sound, and the workers here seem optimistic and energetic. The cafeteria is loud and raucous, and the repair shop is more than willing to work on starships as a break from the tedium of repairing the harvester drones that dip into the planet's atmosphere to bring back pressurized tanks full of hydrogen gas.`
