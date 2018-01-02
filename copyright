@@ -405,9 +405,10 @@ Copyright: Copyright Mike Koenig
 License: CC-BY-SA-3.0
 Comment: Taken from http://soundbible.com/1151-Grenade.html
 
-Files: images/ship/vanguard*
-Copyright: Copyright Nate Graham <pointedstick@zoho.com>
+Files: images/ship/mosprey*
+Copyright: tehhowch (https://github.com/tehhowch)
 License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
