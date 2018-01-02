@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "SpriteSet.h"
 
+#include <cstring>
 #include <cmath>
 
 using namespace std;
@@ -217,9 +218,11 @@ void Outfit::Add(const Outfit &other, int count)
 // Modify this outfit's attributes.
 void Outfit::Add(const char *attribute, double value)
 {
-	attributes[attribute] += value;
-	if(fabs(attributes[attribute]) < EPS)
-		attributes[attribute] = 0.;
+	auto &attr = (strcmp(attribute, "mass") == 0) ? mass : attributes[attribute];
+	value += attr;
+	if(fabs(value) < EPS)
+		value = 0.;
+	attr = value;
 }
 
 
@@ -227,7 +230,10 @@ void Outfit::Add(const char *attribute, double value)
 // Modify this outfit's attributes.
 void Outfit::Reset(const char *attribute, double value)
 {
-	attributes[attribute] = value;
+	if(strcmp(attribute, "mass") == 0)
+		mass = value;
+	else
+		attributes[attribute] = value;
 }
 
 
