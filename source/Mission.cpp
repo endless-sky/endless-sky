@@ -205,11 +205,18 @@ void Mission::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{
-			const System *system = nullptr;
+			// "on enter" nodes may either name a specific system or use a LocationFilter
+			// to control the triggering system.
 			if(child.Size() >= 3)
-				system = GameData::Systems().Get(child.Token(2));
-			MissionAction &action = onEnter[system];
-			action.Load(child, name);
+			{
+				MissionAction &action = onEnter[GameData::Systems().Get(child.Token(2))];
+				action.Load(child, name);
+			}
+			else
+			{
+				genericOnEnter.emplace_back();
+				genericOnEnter.back().Load(child, name);
+			}
 		}
 		else if(child.Token(0) == "on" && child.Size() >= 2)
 		{
@@ -335,9 +342,14 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		// has not been received yet but must still be included in the saved game.
 		for(const auto &it : actions)
 			it.second.Save(out);
+		// Save any "on enter" actions that have not been performed.
 		for(const auto &it : onEnter)
 			if(!didEnter.count(it.first))
 				it.second.Save(out);
+		// Generic "on enter" actions are erased after being performed,
+		// so any that remain should be saved.
+		for(const MissionAction &action : genericOnEnter)
+			action.Save(out);
 	}
 	out.EndChild();
 }
@@ -813,10 +825,8 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 			waypoints.erase(system);
 			visitedWaypoints.insert(system);
 		}
-		
+		// Perform an "on enter" action for this system, if possible.
 		Enter(system, player, ui);
-		// Allow special "on enter" conditions that match any system.
-		Enter(nullptr, player, ui);
 	}
 	
 	for(NPC &npc : npcs)
@@ -1053,6 +1063,8 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 		result.actions[it.first] = it.second.Instantiate(subs, jumps, payload);
 	for(const auto &it : onEnter)
 		result.onEnter[it.first] = it.second.Instantiate(subs, jumps, payload);
+	for(const MissionAction &action : genericOnEnter)
+		result.genericOnEnter.emplace_back(action.Instantiate(subs, jumps, payload));
 	
 	// Perform substitution in the name and description.
 	result.displayName = Format::Replace(displayName, subs);
@@ -1068,15 +1080,27 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 
 
 
+// Perform an "on enter" MissionAction associated with the current system.
 void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 {
-	auto eit = onEnter.find(system);
+	const auto &eit = onEnter.find(system);
 	if(eit != onEnter.end() && !didEnter.count(eit->first)
 			&& eit->second.CanBeDone(player))
 	{
 		eit->second.Do(player, ui);
 		didEnter.insert(eit->first);
 	}
+	// If this system has not yet matched to an "on enter" action for this mission,
+	// consider matching a generic "on enter" to it. A generic "on enter" action
+	// may have a LocationFilter that governs which systems it can be performed in.
+	if(!genericOnEnter.empty() && !didEnter.count(system))
+		for(auto it = genericOnEnter.begin(); it != genericOnEnter.end(); ++it)
+			if((*it).CanBeDone(player))
+			{
+				(*it).Do(player, ui);
+				genericOnEnter.erase(it);
+				break;
+			}
 }
 
 

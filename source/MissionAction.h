@@ -46,7 +46,8 @@ public:
 	int Payment() const;
 	
 	// Check if this action can be completed right now. It cannot be completed
-	// if it takes away money or outfits that the player does not have.
+	// if it takes away money or outfits that the player does not have, or should
+	// take place in a system that does not match the specified LocationFilter.
 	bool CanBeDone(const PlayerInfo &player) const;
 	// Perform this action. If a conversation is shown, the given destination
 	// will be highlighted in the map if you bring it up.
