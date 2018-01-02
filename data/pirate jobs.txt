@@ -2254,13 +2254,15 @@ mission "Raid on Merchants (South)"
 		payment 150000
 		dialog "After counting up the loot from the destroyed merchant fleet, you are given your cut. <payment>"
 
+
+
 mission "Northern Pirate Defense"
 	name "Defend <planet>"
 	repeat
 	minor
 	description "Local Navy forces are attacking <destination>! Defeat them to defend anarchy!"
 	to offer
-		random < 20
+		random < 15
 		"reputation: Pirate" >= 0
 	source
 		government "Pirate"
@@ -2276,17 +2278,38 @@ mission "Northern Pirate Defense"
 		fleet "Large Northern Pirates"
 		fleet "Small Northern Pirates"
 	on offer
-		conversation
-			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by the militia! We need every combat-worthy ship to join in the defenses!" This could also be an easy way to get yourself killed, and you can't even guarantee that you will be paid for your work.`
-			choice
-				"	(Stay here until the fight is over.)"
-					decline
-				"	(Join the defense fleet.)"
-			"Local pirate forces are preparing to repel the militia attack. You join them, and take off together..."
-				launch
+		conversation "northern pirate defense"
 	on complete
 		payment 200000
-		dialog "Many locals of <planet> thank you and collectively pay you <payment> for helping to drive off the Navy."
+		dialog `Many locals of <planet> thank you and collectively pay you <payment> for helping to drive off the Navy.`
+
+mission "Northern Pirate Defense [Unpaid]"
+	name "Defend <planet>"
+	repeat
+	minor
+	description "Local Navy forces are attacking <destination>! Defeat them to defend anarchy!"
+	to offer
+		random < 5
+		"reputation: Pirate" >= 0
+	source
+		government "Pirate"
+		attributes "north pirate"
+	npc evade
+		government "Republic"
+		personality heroic staying waiting
+		fleet "Large Republic"
+		fleet "Small Republic"
+		dialog "The Navy fleets have been eliminated. Return to <destination>."
+	npc
+		government "Pirate"
+		personality plunders staying
+		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates"
+	on offer
+		conversation "northern pirate defense"
+	on complete
+		dialog `Many locals of <planet> thank you for helping to drive off the Navy.`
+
 
 mission "Core Pirate Defense"
 	name "Defend <planet>"
@@ -2294,7 +2317,7 @@ mission "Core Pirate Defense"
 	minor
 	description "Local Syndicate forces are attacking <destination>! Defeat them to defend anarchy!"
 	to offer
-		random < 20
+		random < 15
 		"reputation: Pirate" >= 0
 	source
 		government "Pirate"
@@ -2310,17 +2333,37 @@ mission "Core Pirate Defense"
 		personality plunders staying
 		fleet "Small Core Pirates" 2
 	on offer
-		conversation
-			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by the Syndicate! We need every combat-worthy ship to join in the defenses!" This could also be an easy way to get yourself killed, and you can't even guarantee that you will be paid for your work.`
-			choice
-				"	(Stay here until the fight is over.)"
-					decline
-				"	(Join the defense fleet.)"
-			"Local pirate forces are preparing to repel the Syndicate attack. You join them, and take off together..."
-				launch
+		conversation "core pirate defense"
 	on complete
 		payment 200000
-		dialog "Many locals of <planet> thank you and collectively pay you <payment> for helping to drive off the Navy."
+		dialog `Many locals of <planet> thank you and collectively pay you <payment> for helping to drive off the Syndicate.`
+
+mission "Core Pirate Defense [Unpaid]"
+	name "Defend <planet>"
+	repeat
+	minor
+	description "Local Syndicate forces are attacking <destination>! Defeat them to defend anarchy!"
+	to offer
+		random < 5
+		"reputation: Pirate" >= 0
+	source
+		government "Pirate"
+		attributes "core pirate"
+	npc evade
+		government "Syndicate"
+		personality heroic staying waiting
+		fleet "Small Syndicate" 2
+		fleet "Large Syndicate"
+		dialog "The Syndicate fleets have been eliminated. Return to <destination>."
+	npc
+		government "Pirate"
+		personality plunders staying
+		fleet "Small Core Pirates" 2
+	on offer
+		conversation "core pirate defense"
+	on complete
+		dialog `Many locals of <planet> thank you for helping to drive off the <government: npc>.`
+
 
 mission "Southern Pirate Defense"
 	name "Defend <planet>"
@@ -2328,7 +2371,7 @@ mission "Southern Pirate Defense"
 	minor
 	description "Local militia forces are attacking <destination>! Defeat them to defend anarchy!"
 	to offer
-		random < 20
+		random < 15
 		"reputation: Pirate" >= 0
 	source
 		government "Pirate"
@@ -2344,17 +2387,38 @@ mission "Southern Pirate Defense"
 		personality plunders staying
 		fleet "Small Southern Pirates" 2
 	on offer
-		conversation
-			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by the militia! We need every combat-worthy ship to join in the defenses!" This could also be an easy way to get yourself killed, and you can't even guarantee that you will be paid for your work.`
-			choice
-				"	(Stay here until the fight is over.)"
-					decline
-				"	(Join the defense fleet.)"
-			"Local pirate forces are preparing to repel the militia attack. You join them, and take off together..."
-				launch
+		conversation "southern pirate defense"
 	on complete
 		payment 200000
-		dialog "Many locals of <planet> thank you and collectively pay you <payment> for helping to drive off the Navy."
+		dialog `Many locals of <planet> thank you and collectively pay you <payment> for helping to drive off the militia forces.`
+
+mission "Southern Pirate Defense [Unpaid]"
+	name "Defend <planet>"
+	repeat
+	minor
+	description "Local militia forces are attacking <destination>! Defeat them to defend anarchy!"
+	to offer
+		random < 5
+		"reputation: Pirate" >= 0
+	source
+		government "Pirate"
+		attributes "south pirate"
+	npc evade
+		government "Militia"
+		personality heroic staying waiting
+		fleet "Small Militia" 2
+		fleet "Large Militia"
+		dialog "The militia fleets have been eliminated. Return to <destination>."
+	npc
+		government "Pirate"
+		personality plunders staying
+		fleet "Small Southern Pirates" 2
+	on offer
+		conversation "southern pirate defense"
+	on complete
+		dialog `Many locals of <planet> thank you for helping to drive off the militia forces.`
+
+
 
 outfit "Secret Cargo"
 	category "Special"

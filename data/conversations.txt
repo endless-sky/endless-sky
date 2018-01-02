@@ -19,6 +19,9 @@ conversation "intro"
 	`	The elevator is so well-tuned that you do not even realize it is moving until it has deposited you back in the lobby. But as you leave the bank, you are smiling. This crazy adventure suddenly feels real to you. You are going to do it. You are finally going to get off this planet.`
 	`	Compared to the bank, you feel much more at home in the shipyard, walking among the rusted out hulks and newer ships that gleam in the sunlight. You smell grease and dirt and rocket fuel; wonderful smells. There are three ship models within your price range. Which one you choose will determine your future...`
 
+
+
+# Conversations shown when launching from a planet with insufficiently equipped ships.
 conversation "flight check: no energy!"
 	scene "scene/engine2"
 	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check.`
@@ -38,3 +41,33 @@ conversation "flight check: overheating!"
 	scene "scene/engine"
 	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of "<ship>" warming up, you run through a mental checklist. Computers: check. Life support: check.`
 	`	By the time you reach the end of the checklist, it has grown uncomfortably warm. The air smells like ozone and hot metal, and your cameras are showing a plume of steam or smoke escaping from the hull near the engines. If your systems are running this hot while still in the atmosphere, they're likely to overheat the moment you hit hard vacuum. You are going to have to either install cooling systems, or trade out some components for lower-heat alternatives.`
+
+
+
+# Planetary defense mission conversations.
+conversation "northern pirate defense"
+	`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by the Navy! We need every combat-worthy ship to join in the defenses!" This could also be an easy way to get yourself killed, and you can't even guarantee that you will be paid for your work.`
+	choice
+		"	(Stay here until the fight is over.)"
+			decline
+		"	(Join the defense fleet.)"
+	"Local pirate forces are preparing to repel the Navy attack. You join them, and take off together..."
+		launch
+
+conversation "core pirate defense"
+	`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by the Syndicate! We need every combat-worthy ship to join in the defenses!" This could also be an easy way to get yourself killed, and you can't even guarantee that you will be paid for your work.`
+	choice
+		"	(Stay here until the fight is over.)"
+			decline
+		"	(Join the defense fleet.)"
+	"Local pirate forces are preparing to repel the Syndicate attack. You join them, and take off together..."
+		launch
+
+conversation "southern pirate defense"
+	`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by the militia! We need every combat-worthy ship to join in the defenses!" This could also be an easy way to get yourself killed, and you can't even guarantee that you will be paid for your work.`
+	choice
+		"	(Stay here until the fight is over.)"
+			decline
+		"	(Join the defense fleet.)"
+	"Local pirate forces are preparing to repel the militia attack. You join them, and take off together..."
+		launch
