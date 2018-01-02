@@ -27,8 +27,8 @@ namespace {
 }
 
 const vector<string> Outfit::CATEGORIES = {
-	"Guns",
 	"Turrets",
+	"Guns",
 	"Secondary Weapons",
 	"Ammunition",
 	"Systems",
