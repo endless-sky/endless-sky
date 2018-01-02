@@ -1030,13 +1030,13 @@ ship "Dreadnought"
 	sprite "ship/dreadnought"
 	attributes
 		category "Heavy Warship"
-		"cost" 11900000
+		"cost" 13500000
 		"shields" 18100
 		"hull" 7300
 		"required crew" 84
 		"bunks" 147
 		"mass" 630
-		"drag" 10.1
+		"drag" 11.1
 		"heat dissipation" .65
 		"fuel capacity" 600
 		"cargo space" 100
