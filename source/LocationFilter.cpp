@@ -194,17 +194,18 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 	if(!planet || !planet->GetSystem())
 		return false;
 	
-	for(const LocationFilter &filter : notFilters)
-		if(filter.Matches(planet, origin))
-			return false;
+	if(!governments.empty() && !governments.count(planet->GetGovernment()))
+		return false;
 	
 	if(!planets.empty() && !planets.count(planet))
 		return false;
 	for(const set<string> &attr : attributes)
 		if(!SetsIntersect(attr, planet->Attributes()))
 			return false;
-	if(!governments.empty() && !governments.count(planet->GetGovernment()))
-		return false;
+	
+	for(const LocationFilter &filter : notFilters)
+		if(filter.Matches(planet, origin))
+			return false;
 	
 	return Matches(planet->GetSystem(), origin, true);
 }
@@ -220,24 +221,22 @@ bool LocationFilter::Matches(const System *system, const System *origin) const
 
 bool LocationFilter::Matches(const Ship &ship) const
 {
-	for(const LocationFilter &filter : notFilters)
-		if(filter.Matches(ship))
-			return false;
-	
-	if(!systems.empty() && !systems.count(ship.GetSystem()))
+	const System *origin = ship.GetSystem();
+	if(!systems.empty() && !systems.count(origin))
 		return false;
 	if(!governments.empty() && !governments.count(ship.GetGovernment()))
 		return false;
 	
-	if(center)
-	{
-		// Distance() will return -1 if the system was not within the given max
-		// distance, so this checks for that as well as for the minimum:
-		if(Distance(center, ship.GetSystem(), centerMaxDistance) < centerMinDistance)
+	for(const LocationFilter &filter : notFilters)
+		if(filter.Matches(ship))
 			return false;
-	}
 	
-	if(!MatchesNeighborFilters(neighborFilters, ship.GetSystem(), ship.GetSystem()))
+	if(!MatchesNeighborFilters(neighborFilters, origin, origin))
+		return false;
+	
+	// Check if this ship's current system meets a "near <system>" criterion.
+	// (Ships only offer missions, so no "distance" criteria need to be checked.)
+	if(center && Distance(center, origin, centerMaxDistance) < centerMinDistance)
 		return false;
 	
 	return true;
@@ -320,52 +319,46 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 {
 	if(!system)
 		return false;
+	if(!systems.empty() && !systems.count(system))
+		return false;
 	
 	// Don't check these filters again if they were already checked as a part of
 	// checking if a planet matches.
 	if(!didPlanet)
-		for(const LocationFilter &filter : notFilters)
-			if(filter.Matches(system, origin))
-				return false;
-	
-	if(!systems.empty() && !systems.count(system))
-		return false;
-	if(!didPlanet && !governments.empty() && !governments.count(system->GetGovernment()))
-		return false;
-	
-	if(!didPlanet && !attributes.empty())
 	{
+		if(!governments.empty() && !governments.count(system->GetGovernment()))
+			return false;
+		
 		// This filter is being applied to a system, not a planet.
 		// Check whether the system, or any planet within it, has one of the
 		// required attributes from each set.
-		for(const set<string> &attr : attributes)
+		if(!attributes.empty())
 		{
-			bool matches = SetsIntersect(attr, system->Attributes());
-			for(const StellarObject &object : system->Objects())
-				if(object.GetPlanet())
-					matches |= SetsIntersect(attr, object.GetPlanet()->Attributes());
-			
-			if(!matches)
-				return false;
+			for(const set<string> &attr : attributes)
+			{
+				bool matches = SetsIntersect(attr, system->Attributes());
+				for(const StellarObject &object : system->Objects())
+					if(object.GetPlanet())
+						matches |= SetsIntersect(attr, object.GetPlanet()->Attributes());
+				
+				if(!matches)
+					return false;
+			}
 		}
-	}
-	
-	if(center)
-	{
-		// Distance() will return -1 if the system was not within the given max
-		// distance, so this checks for that as well as for the minimum:
-		if(Distance(center, system, centerMaxDistance) < centerMinDistance)
-			return false;
-	}
-	if(origin && originMaxDistance >= 0)
-	{
-		// Distance() will return -1 if the system was not within the given max
-		// distance, so this checks for that as well as for the minimum:
-		if(Distance(origin, system, originMaxDistance) < originMinDistance)
-			return false;
+		
+		for(const LocationFilter &filter : notFilters)
+			if(filter.Matches(system, origin))
+				return false;
 	}
 	
 	if(!MatchesNeighborFilters(neighborFilters, system, origin))
+		return false;
+	
+	// Check this system's distance from the desired reference system.
+	if(center && Distance(center, system, centerMaxDistance) < centerMinDistance)
+		return false;
+	if(origin && originMaxDistance >= 0
+			&& Distance(origin, system, originMaxDistance) < originMinDistance)
 		return false;
 	
 	return true;
