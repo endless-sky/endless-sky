@@ -63,6 +63,7 @@ protected:
 	virtual void Sell(bool toCargo = false) = 0;
 	virtual void FailSell(bool toCargo = false) const;
 	virtual bool CanSellMultiple() const;
+	virtual bool ShouldHighlight(const Ship *ship);
 	virtual void DrawKey();
 	virtual void ToggleForSale();
 	virtual void ToggleCargo();
@@ -125,6 +126,7 @@ protected:
 	bool scrollDetailsIntoView = false;
 	double selectedTopY = 0.;
 	bool sameSelectedTopY = false;
+	char hoverButton = '\0';
 	
 	std::vector<Zone> zones;
 	std::vector<ClickZone<std::string>> categoryZones;
@@ -150,6 +152,9 @@ private:
 	void MainDown();
 	std::vector<Zone>::const_iterator Selected() const;
 	std::vector<Zone>::const_iterator MainStart() const;
+	// Check if the given point is within the button zone, and if so return the
+	// letter of the button (or ' ' if it's not on a button).
+	char CheckButton(int x, int y);
 };
 
 

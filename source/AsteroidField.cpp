@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "Screen.h"
 
+#include <algorithm>
 #include <cmath>
 #include <cstdlib>
 

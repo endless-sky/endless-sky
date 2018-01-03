@@ -311,6 +311,19 @@ int Account::CreditScore() const
 
 
 
+// Get the total amount owed for "Mortgage", "Fine", or both.
+int64_t Account::TotalDebt(const string &type) const
+{
+	int64_t total = 0;
+	for(const Mortgage &mortgage : mortgages)
+		if(type.empty() || mortgage.Type() == type)
+			total += mortgage.Principal();
+	
+	return total;
+}
+
+
+
 // Extrapolate from the player's current net worth history to determine how much
 // their net worth is expected to change over the course of the next year.
 int64_t Account::YearlyRevenue() const

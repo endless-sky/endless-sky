@@ -333,6 +333,23 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 	if(!didPlanet && !governments.empty() && !governments.count(system->GetGovernment()))
 		return false;
 	
+	if(!didPlanet && !attributes.empty())
+	{
+		// This filter is being applied to a system, not a planet.
+		// Check whether the system, or any planet within it, has one of the
+		// required attributes from each set.
+		for(const set<string> &attr : attributes)
+		{
+			bool matches = SetsIntersect(attr, system->Attributes());
+			for(const StellarObject &object : system->Objects())
+				if(object.GetPlanet())
+					matches |= SetsIntersect(attr, object.GetPlanet()->Attributes());
+			
+			if(!matches)
+				return false;
+		}
+	}
+	
 	if(center)
 	{
 		// Distance() will return -1 if the system was not within the given max
@@ -351,7 +368,5 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 	if(!MatchesNeighborFilters(neighborFilters, system, origin))
 		return false;
 	
-	// Special case: if this filter specifies planets or attributes, but was
-	// only called on a system, it never matches.
-	return didPlanet || (attributes.empty() && planets.empty());
+	return true;
 }

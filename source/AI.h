@@ -140,7 +140,7 @@ private:
 		int type = 0;
 		std::weak_ptr<Ship> target;
 		Point point;
-		const System *targetSystem;
+		const System *targetSystem = nullptr;
 	};
 
 

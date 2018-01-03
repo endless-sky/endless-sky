@@ -33,7 +33,7 @@ public:
 	Mask();
 	
 	// Construct a mask from the alpha channel of an image.
-	void Create(ImageBuffer *image);
+	void Create(const ImageBuffer &image, int frame = 0);
 	
 	// Check whether a mask was successfully loaded.
 	bool IsLoaded() const;

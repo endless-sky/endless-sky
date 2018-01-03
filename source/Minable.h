@@ -60,6 +60,9 @@ public:
 	// Damage this object (because a projectile collided with it).
 	void TakeDamage(const Projectile &projectile);
 	
+	// Determine what flotsam this asteroid will create.
+	const std::map<const Outfit *, int> &Payload() const;
+	
 	
 private:
 	std::string name;
