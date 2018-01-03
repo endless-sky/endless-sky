@@ -1379,6 +1379,7 @@ mission "Bounty Hunting (Small)"
 		payment 150000
 		dialog `A local <government: destination> official gratefully pays you <payment> for eliminating the <npc>.`
 
+
 mission "Southern Pirate Attack"
 	name "Defend <planet>"
 	description "Defeat a pirate raid on <destination>."
@@ -1457,6 +1458,16 @@ mission "Core Pirate Attack"
 		payment 200000
 		dialog `A <government: destination> official pays you <payment> for helping to drive off the pirates.`
 
+conversation "pirate attack"
+	`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by pirates! We need every combat-worthy ship to join the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
+	choice
+		`	(Stay here until the fight is over.)`
+			decline
+		`	(Join the defense fleet.)`
+	`	A few <government: npc> pilots have gathered to repel the pirate attack. You join them, and take off together...`
+		launch
+
+
 mission "Raider Attack 1"
 	name "Defend <planet>"
 	description "Defeat an alien raid on <destination>."
@@ -1511,6 +1522,16 @@ mission "Raider Attack 2"
 	on complete
 		payment 750000
 		dialog `A <government: destination> official pays you <payment> for helping to drive off the raiders.`
+
+conversation "alien attack"
+	`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by alien raiders! We need every combat-worthy ship to join the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
+	choice
+		`    (Stay here until the fight is over.)`
+			decline
+		`    (Join the defense fleet.)`
+	`The local <government: origin> defense forces are preparing to repel the alien attack. You join them, and take off together...`
+		launch
+
 
 mission "Cargo [0]"
 	name "Delivery to <planet>"
