@@ -251,7 +251,7 @@ bool OutfitterPanel::CanBuy() const
 	
 	if(!playerShip)
 	{
-		double mass = selectedOutfit->Get("mass");
+		double mass = selectedOutfit->Mass();
 		return (!mass || player.Cargo().Free() >= mass);
 	}
 	
@@ -601,6 +601,21 @@ void OutfitterPanel::FailSell(bool toCargo) const
 				"because something else in your ship depends on it."));
 		}
 	}
+}
+
+
+
+bool OutfitterPanel::ShouldHighlight(const Ship *ship)
+{
+	if(!selectedOutfit)
+		return false;
+	
+	if(hoverButton == 'b')
+		return CanBuy() && ShipCanBuy(ship, selectedOutfit);
+	else if(hoverButton == 's')
+		return CanSell() && ShipCanSell(ship, selectedOutfit);
+	
+	return false;
 }
 
 

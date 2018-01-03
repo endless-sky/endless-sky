@@ -318,6 +318,60 @@ fleet "Large Core Merchants"
 	variant 2
 		"Arrow"
 
+fleet "Paradise Merchants"
+	government "Merchant"
+	names "civilian"
+	cargo 2
+	personality
+		confusion 50
+		timid frugal appeasing
+	variant 20
+		"Shuttle"
+	variant 20
+		"Heavy Shuttle"
+		"Shuttle" 2
+	variant 40
+		"Star Queen"
+	variant 3
+		"Star Queen"
+		"Sparrow" 5
+	variant 3
+		"Star Queen"
+		"Wasp" 4
+	variant 3
+		"Star Queen"
+		"Wasp (Proton)" 3
+	variant 2
+		"Star Queen"
+		"Quicksilver" 2
+	variant 10
+		"Arrow"
+	variant 5
+		"Arrow"
+		"Sparrow" 2
+	variant 10
+		"Arrow"
+		"Flivver"
+	variant 10
+		"Bounder"
+	variant 50
+		"Flivver"
+	variant 10
+		"Flivver" 3
+	variant 20
+		"Flivver (Racing)"
+	variant 2
+		"Flivver (Racing)" 3
+	variant 2
+		"Flivver (Racing)" 6
+	variant 3
+		"Blackbird"
+		"Sparrow" 2
+	variant 3
+		"Blackbird"
+		"Berserker" 2
+
+
 fleet "Small Northern Merchants"
 	government "Merchant"
 	names "civilian"

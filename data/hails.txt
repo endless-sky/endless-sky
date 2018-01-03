@@ -1997,6 +1997,37 @@ phrase "friendly pirate"
 		" I know I should have installed more interference plating."
 		" If only I was strong enough to stand up to them."
 
+phrase "friendly author"
+	word
+		"This game "
+		"Endless Sky "
+	word
+		"is open source. You can "
+	word
+		"help out "
+		"improve the game "
+		"get involved "
+		"help make it a better game "
+		"assist us "
+		"make your mark on the universe "
+		"give back to the community "
+	word
+		"by contributing "
+	word
+		"detailed bug reports."
+		"typo fixes."
+		"constructive feedback."
+		"ideas for improvements."
+		"landscape photos."
+		"artwork."
+		"new ships of your own design."
+		"plugins."
+		"new special missions."
+		"new weapons or other outfits."
+		"improved planet descriptions."
+		"more varied hail messages."
+
+
 phrase "friendly disabled"
 	word
 		"Our ship has been disabled! Please come board our ship and patch us up!"

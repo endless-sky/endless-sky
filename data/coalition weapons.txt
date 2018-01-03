@@ -132,7 +132,7 @@ outfit "Active Finisher"
 		"missile strength" 50
 		"shield damage" 1500
 		"hull damage" 1900
-		"hit force" 240
+		"hit force" 1500
 
 outfit "Finisher Torpedo"
 	plural "Finisher Torpedoes"
