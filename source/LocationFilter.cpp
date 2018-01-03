@@ -206,9 +206,6 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 	if(!governments.empty() && !governments.count(planet->GetGovernment()))
 		return false;
 	
-	if(!MatchesNeighborFilters(neighborFilters, planet->GetSystem(), origin))
-		return false;
-	
 	return Matches(planet->GetSystem(), origin, true);
 }
 
@@ -351,7 +348,7 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 			return false;
 	}
 	
-	if(!didPlanet && !MatchesNeighborFilters(neighborFilters, system, origin))
+	if(!MatchesNeighborFilters(neighborFilters, system, origin))
 		return false;
 	
 	// Special case: if this filter specifies planets or attributes, but was
