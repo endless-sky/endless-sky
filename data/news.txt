@@ -1,0 +1,123 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+news "human merchant"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	name
+		word
+			"Merchant captain"
+	portrait
+		portrait/human00
+		portrait/human02
+		portrait/human04
+		portrait/human06
+		portrait/human10
+		portrait/human12
+		portrait/human15
+		portrait/human16
+		portrait/human17
+	message
+		word
+			"Pirate attacks keep getting more and more frequent, even in star systems that used to be perfectly safe. Why isn't the Navy doing something about it?"
+
+
+
+news "human farming"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "farming"
+	name
+		word
+			"Local farmer"
+	portrait
+		portrait/human01
+		portrait/human03
+		portrait/human05
+		portrait/human08
+		portrait/human09
+		portrait/human10
+		portrait/human11
+		portrait/human14
+		portrait/human15
+	message
+		word
+			"My neighbor is using some sort of newfangled pesticides. The wind carried the residue of them into my fields and destroyed half my crops."
+			"This year, only the farms with enough money to pay for irrigation are thriving. In most of my fields, there's nothing growing but knotweed and razor grass."
+			"The corporate farms keep buying out more and more small farmers to expand their own operations. Pretty soon there won't be any of us left."
+
+
+
+news "human textiles"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "textiles"
+	name
+		word
+			"Textile worker"
+	portrait
+		portrait/human00
+		portrait/human01
+		portrait/human04
+		portrait/human06
+		portrait/human07
+		portrait/human10
+		portrait/human11
+		portrait/human14
+		portrait/human15
+		portrait/human17
+		portrait/human18
+	message
+		word
+			"Two days ago I ran over my finger with an industrial sewing machine. Put a hole straight through my thumb. But at least they paid my medical bill and gave me a week of sick leave."
+
+
+
+news "human financial analyst"
+	location
+		attributes "paradise"
+	name
+		word
+			"Financial analyst"
+	portrait
+		portrait/human00
+		portrait/human04
+		portrait/human06
+		portrait/human10
+		portrait/human12
+		portrait/human13
+		portrait/human14
+		portrait/human15
+		portrait/human16
+	message
+		word
+			"You must be a very brave captain, if you have traveled to some of the... less civilized parts of human space."
+
+
+
+news "syndicate manager"
+	location
+		government "Syndicate"
+	name
+		word
+			"Syndicate manager"
+	portrait
+		portrait/human00
+		portrait/human02
+		portrait/human08
+		portrait/human12
+		portrait/human16
+	message
+		word
+			"We've had to ask everyone to work sixty-hour weeks just to meet this month's quotas. The workers complain to me, but I tell them I'm in the same boat as they are."
+			"The Syndicate makes us take the same stupid workspace harassment training every single year. How would you like it if some bohemian outside consultant was telling you what you can and can't do in your social life?"
+			"In general, the women in my factory are much more conscientious workers than most of the men. Too bad so few of them have the sort of assertiveness and commanding presence you need in a manager."
+			"I had to resign my union membership when I was promoted to a manager, but I still try to do what's best for the folks who report to me."
+			"Outside of Syndicate space, kids aren't allowed to work until they turn eighteen. No wonder their economies are so much less productive than ours."

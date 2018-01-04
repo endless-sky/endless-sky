@@ -1471,7 +1471,8 @@ void PlayerInfo::MissionCallback(int response)
 	
 	Mission &mission = missionList.front();
 	
-	shouldLaunch |= Conversation::RequiresLaunch(response);
+	// If landed, this conversation may require the player to immediately depart.
+	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
@@ -1503,6 +1504,16 @@ void PlayerInfo::MissionCallback(int response)
 	}
 	else if(response == Conversation::DIE)
 		Die(true);
+}
+
+
+
+// Basic callback, allowing conversations to force the player to depart from a
+// planet without requiring a mission to offer.
+void PlayerInfo::BasicCallback(int response)
+{
+	// If landed, this conversation may require the player to immediately depart.
+	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
 }
 
 
@@ -1590,8 +1601,8 @@ const map<string, int> &PlayerInfo::Conditions() const
 
 
 
-// Set and check the reputation conditions, which missions can use to modify
-// the player's reputation.
+// Set and check the reputation conditions, which missions and events can use to
+// modify the player's reputation with other governments.
 void PlayerInfo::SetReputationConditions()
 {
 	for(const auto &it : GameData::Governments())
@@ -2177,6 +2188,7 @@ void PlayerInfo::UpdateAutoConditions()
 	conditions["unpaid fines"] = min(limit, accounts.TotalDebt("Fine"));
 	conditions["unpaid salaries"] = min(limit, accounts.SalariesOwed());
 	conditions["credit score"] = accounts.CreditScore();
+	// Serialize the current reputation with other governments.
 	SetReputationConditions();
 	// Clear any existing ships: conditions. (Note: '!' = ' ' + 1.)
 	auto first = conditions.lower_bound("ships: ");

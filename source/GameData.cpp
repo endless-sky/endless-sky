@@ -35,6 +35,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Minable.h"
 #include "Mission.h"
 #include "Music.h"
+#include "News.h"
 #include "Outfit.h"
 #include "OutlineShader.h"
 #include "Person.h"
@@ -42,6 +43,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PointerShader.h"
 #include "Politics.h"
+#include "Random.h"
 #include "RingShader.h"
 #include "Sale.h"
 #include "Set.h"
@@ -102,6 +104,7 @@ namespace {
 	map<const Sprite *, string> landingMessages;
 	map<const Sprite *, double> solarPower;
 	map<const Sprite *, double> solarWind;
+	Set<News> news;
 	map<string, vector<string>> ratings;
 	
 	StarField background;
@@ -211,6 +214,9 @@ void GameData::BeginLoad(const char * const *argv)
 // Check for objects that are referred to but never defined.
 void GameData::CheckReferences()
 {
+	for(const auto &it : conversations)
+		if(it.second.IsEmpty())
+			Files::LogError("Warning: conversation \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : effects)
 		if(it.second.Name().empty())
 			Files::LogError("Warning: effect \"" + it.first + "\" is referred to, but never defined.");
@@ -501,6 +507,8 @@ void GameData::Change(const DataNode &node)
 		shipSales.Get(node.Token(1))->Load(node, ships);
 	else if(node.Token(0) == "system" && node.Size() >= 2)
 		systems.Get(node.Token(1))->Load(node, planets);
+	else if(node.Token(0) == "news" && node.Size() >= 2)
+		news.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "link" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "unlink" && node.Size() >= 3)
@@ -724,6 +732,20 @@ double GameData::SolarWind(const Sprite *sprite)
 
 
 
+// Pick a random news object that applies to the given planet. If there is
+// no applicable news, this returns null.
+const News *GameData::PickNews(const Planet *planet)
+{
+	vector<const News *> matches;
+	for(const auto &it : news)
+		if(it.second.Matches(planet))
+			matches.push_back(&it.second);
+	
+	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];
+}
+
+
+
 // Strings for combat rating levels, etc.
 const string &GameData::Rating(const string &type, int level)
 {
@@ -915,6 +937,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 					child.PrintTrace("Unrecognized star attribute:");
 			}
 		}
+		else if(key == "news" && node.Size() >= 2)
+			news.Get(node.Token(1))->Load(node);
 		else if(key == "rating" && node.Size() >= 2)
 		{
 			vector<string> &list = ratings[node.Token(1)];
@@ -991,7 +1015,7 @@ void GameData::PrintShipTable()
 		const Outfit &attributes = ship.Attributes();
 		cout << attributes.Get("shields") << '\t';
 		cout << attributes.Get("hull") << '\t';
-		cout << attributes.Get("mass") << '\t';
+		cout << attributes.Mass() << '\t';
 		cout << attributes.Get("required crew") << '\t';
 		cout << attributes.Get("cargo space") << '\t';
 		cout << attributes.Get("bunks") << '\t';
@@ -1001,8 +1025,8 @@ void GameData::PrintShipTable()
 		cout << ship.BaseAttributes().Get("weapon capacity") << '\t';
 		cout << ship.BaseAttributes().Get("engine capacity") << '\t';
 		cout << 60. * attributes.Get("thrust") / attributes.Get("drag") << '\t';
-		cout << 3600. * attributes.Get("thrust") / attributes.Get("mass") << '\t';
-		cout << 60. * attributes.Get("turn") / attributes.Get("mass") << '\t';
+		cout << 3600. * attributes.Get("thrust") / attributes.Mass() << '\t';
+		cout << 60. * attributes.Get("turn") / attributes.Mass() << '\t';
 		
 		double energy = attributes.Get("thrusting energy")
 			+ attributes.Get("turning energy");
@@ -1020,7 +1044,7 @@ void GameData::PrintShipTable()
 		cout << 60. * heat << '\t';
 		// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000
 		// per 60th of a second, so:
-		cout << 60. * ship.Mass() * .1 * attributes.Get("heat dissipation") << '\n';
+		cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << '\n';
 	}
 	cout.flush();
 }

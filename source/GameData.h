@@ -35,6 +35,7 @@ class ImageSet;
 class Interface;
 class Minable;
 class Mission;
+class News;
 class Outfit;
 class Person;
 class Phrase;
@@ -119,6 +120,10 @@ public:
 	// Get the solar power and wind output of the given stellar object sprite.
 	static double SolarPower(const Sprite *sprite);
 	static double SolarWind(const Sprite *sprite);
+	
+	// Pick a random news object that applies to the given planet. If there is
+	// no applicable news, this returns null.
+	static const News *PickNews(const Planet *planet);
 	
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);

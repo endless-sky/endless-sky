@@ -255,7 +255,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			
 			int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
 			profit += value;
-			tonsSold += static_cast<int>(it.second * it.first->Get("mass"));
+			tonsSold += static_cast<int>(it.second * it.first->Mass());
 			
 			player.AddStock(it.first, it.second);
 			player.Accounts().AddCredits(value);

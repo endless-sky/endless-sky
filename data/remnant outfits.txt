@@ -354,3 +354,8 @@ outfit "Smelter-Class Steering"
 	"turning energy" 5.21
 	"turning heat" 6.2
 	description "It's unclear whether the Remnant's powerful engine systems are purely their own invention, or whether they are partly inspired by alien technology."
+
+outfit "Remnant License"
+	category "Special"
+	thumbnail "outfit/license"
+	description "The prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."

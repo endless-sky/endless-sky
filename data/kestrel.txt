@@ -318,56 +318,14 @@ ship "Kestrel"
 
 
 ship "Kestrel" "Kestrel (More Weapons)"
-	attributes
-		category "Heavy Warship"
-		"cost" 14700000
-		"shields" 17400
-		"hull" 6200
-		"required crew" 64
-		"bunks" 128
-		"mass" 740
-		"drag" 9.8
-		"heat dissipation" .6
-		"fuel capacity" 600
-		"cargo space" 120
-		"outfit space" 810
-		"weapon capacity" 420
-		"engine capacity" 210
-
-
+	add attributes
+		"weapon capacity" 30
 
 ship "Kestrel" "Kestrel (More Engines)"
-	attributes
-		category "Heavy Warship"
-		"cost" 14700000
-		"shields" 17400
-		"hull" 6200
-		"required crew" 64
-		"bunks" 128
-		"mass" 740
-		"drag" 9.8
-		"heat dissipation" .6
-		"fuel capacity" 600
-		"cargo space" 120
-		"outfit space" 810
-		"weapon capacity" 390
-		"engine capacity" 230
-
-
+	add attributes
+		"engine capacity" 20
 
 ship "Kestrel" "Kestrel (More Shields)"
-	attributes
-		category "Heavy Warship"
-		"cost" 14700000
-		"shields" 20100
-		"hull" 7500
-		"required crew" 64
-		"bunks" 128
-		"mass" 760
-		"drag" 9.8
-		"heat dissipation" .6
-		"fuel capacity" 600
-		"cargo space" 120
-		"outfit space" 810
-		"weapon capacity" 390
-		"engine capacity" 210
+	add attributes
+		"shields" 2700
+		"hull" 1300
