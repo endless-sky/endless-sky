@@ -286,9 +286,11 @@ mission "FW Reinforcements [0]"
 		not "event: fw armistice"
 	source
 		government "Free Worlds"
-		not neighbor government "Republic"
-		not neighbor
+		not
 			neighbor government "Republic"
+		not
+			neighbor
+				neighbor government "Republic"
 	destination
 		distance 2 10
 		government "Free Worlds"
@@ -311,9 +313,11 @@ mission "FW Reinforcements [1]"
 		not "event: fw armistice"
 	source
 		government "Free Worlds"
-		not neighbor government "Republic"
-		not neighbor
+		not
 			neighbor government "Republic"
+		not
+			neighbor
+				neighbor government "Republic"
 	destination
 		distance 2 10
 		government "Free Worlds"
@@ -464,9 +468,11 @@ mission "FW Frontline Resupply [0]"
 		not "event: fw armistice"
 	source
 		government "Free Worlds"
-		not neighbor government "Republic"
-		not neighbor
+		not
 			neighbor government "Republic"
+		not
+			neighbor
+				neighbor government "Republic"
 	destination
 		distance 2 10
 		government "Free Worlds"
@@ -489,9 +495,11 @@ mission "FW Frontline Resupply [1]"
 		not "event: fw armistice"
 	source
 		government "Free Worlds"
-		not neighbor government "Republic"
-		not neighbor
+		not
 			neighbor government "Republic"
+		not
+			neighbor
+				neighbor government "Republic"
 	destination
 		distance 2 10
 		government "Free Worlds"
@@ -514,9 +522,11 @@ mission "FW Frontline Resupply [2]"
 		not "event: fw armistice"
 	source
 		government "Free Worlds"
-		not neighbor government "Republic"
-		not neighbor
+		not
 			neighbor government "Republic"
+		not
+			neighbor
+				neighbor government "Republic"
 	destination
 		distance 2 10
 		government "Free Worlds"
@@ -539,9 +549,11 @@ mission "FW Bulk Frontline Resupply [0]"
 		not "event: fw armistice"
 	source
 		government "Free Worlds"
-		not neighbor government "Republic"
-		not neighbor
+		not
 			neighbor government "Republic"
+		not
+			neighbor
+				neighbor government "Republic"
 	destination
 		distance 3 12
 		government "Free Worlds"
@@ -564,9 +576,11 @@ mission "FW Bulk Frontline Resupply [1]"
 		not "event: fw armistice"
 	source
 		government "Free Worlds"
-		not neighbor government "Republic"
-		not neighbor
+		not
 			neighbor government "Republic"
+		not
+			neighbor
+				neighbor government "Republic"
 	destination
 		distance 3 12
 		government "Free Worlds"
@@ -678,9 +692,11 @@ mission "FW Refugees [0]"
 	destination
 		distance 2 10
 		government "Free Worlds"
-		not neighbor government "Republic"
-		not neighbor
+		not
 			neighbor government "Republic"
+		not
+			neighbor
+				neighbor government "Republic"
 	on complete
 		payment 2000 180
 		dialog `Your passengers thank you graciously for taking them away from the dangerous frontlines of the war. You wish them the best of luck on <planet>, and collect your payment of <payment>.`
@@ -703,9 +719,11 @@ mission "FW Refugees [1]"
 	destination
 		distance 2 10
 		government "Free Worlds"
-		not neighbor government "Republic"
-		not neighbor
+		not
 			neighbor government "Republic"
+		not
+			neighbor
+				neighbor government "Republic"
 	on complete
 		payment 2000 180
 		dialog `Your passengers thank you graciously for taking them away from the dangerous frontlines of the war. You wish them the best of luck on <planet>, and collect your payment of <payment>.`
@@ -728,9 +746,11 @@ mission "FW Refugees [2]"
 	destination
 		distance 2 10
 		government "Free Worlds"
-		not neighbor government "Republic"
-		not neighbor
+		not
 			neighbor government "Republic"
+		not
+			neighbor
+				neighbor government "Republic"
 	on complete
 		payment 2000 180
 		dialog `Your passengers thank you graciously for taking them away from the dangerous frontlines of the war. You wish them the best of luck on <planet>, and collect your payment of <payment>.`
@@ -753,9 +773,11 @@ mission "FW Bulk Refugees [0]"
 	destination
 		distance 2 10
 		government "Free Worlds"
-		not neighbor government "Republic"
-		not neighbor
+		not
 			neighbor government "Republic"
+		not
+			neighbor
+				neighbor government "Republic"
 	on complete
 		payment 5000 180
 		dialog `Your passengers thank you graciously for taking them away from the dangerous frontlines of the war. You wish them the best of luck on <planet>, and collect your payment of <payment>.`
