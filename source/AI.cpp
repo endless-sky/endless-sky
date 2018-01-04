@@ -984,6 +984,9 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			range -= 1000 * Has(*it, gov, ShipEvent::BOARD);
 			// Focus on nearly dead ships.
 			range += 500. * (it->Shields() + it->Hull());
+			// If a target is extremely overheated, focus on ships that can attack back.
+			if(it->IsOverheated())
+				range += 3000. * (it->Heat() - .9);
 			if((isPotentialNemesis && !hasNemesis) || range < closest)
 			{
 				closest = range;
