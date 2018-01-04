@@ -214,6 +214,9 @@ void GameData::BeginLoad(const char * const *argv)
 // Check for objects that are referred to but never defined.
 void GameData::CheckReferences()
 {
+	for(const auto &it : conversations)
+		if(it.second.IsEmpty())
+			Files::LogError("Warning: conversation \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : effects)
 		if(it.second.Name().empty())
 			Files::LogError("Warning: effect \"" + it.first + "\" is referred to, but never defined.");
