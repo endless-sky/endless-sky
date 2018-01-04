@@ -164,7 +164,7 @@ effect "antimatter dust"
 	"random spin" 50
 
 
-ship Archon
+ship "Archon"
 	noun "entity"
 	sprite ship/archon
 		"frame rate" 0.87
@@ -223,31 +223,9 @@ ship Archon
 	explode "nuke explosion" 3
 	"final explode" "final explosion large"
 
-ship Archon "Archon (Cloaked)"
+ship "Archon" "Archon (Cloaked)"
 	"never disabled"
-	attributes
-		category "Heavy Warship"
-		"cost" 1000000000
-		"shields" 4000000
-		"hull" 1000000
-		"required crew" 1
-		"bunks" 1
-		"mass" 1000
-		"drag" 27
-		"heat dissipation" 40
-		"fuel capacity" 800
-		"cargo space" 0
-		"outfit space" 800
-		"weapon capacity" 600
-		"engine capacity" 200
-		"energy capacity" 10000
-		"energy generation" 500
-		"shield generation" 100
-		"shield energy" 100
-		"hull repair rate" 100
-		"hull energy" 100
-		"heat generation" 17
-		"ramscoop" 100
+	add attributes
 		"cloak" .04
 	turret "Drak Anti-Missile Field"
 	turret "Drak Anti-Missile Field"
