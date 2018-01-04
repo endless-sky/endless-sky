@@ -1504,9 +1504,9 @@ mission "Raider Attack 1"
 		conversation
 			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by alien raiders! We need every combat-worthy ship to join the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
 			choice
-				`    (Stay here until the fight is over.)`
+				`	(Stay here until the fight is over.)`
 					decline
-				`    (Join the defense fleet.)`
+				`	(Join the defense fleet.)`
 			`The local Syndicate defense forces are preparing to repel the alien attack. You join them, and take off together...`
 				launch
 	on complete
@@ -1539,9 +1539,9 @@ mission "Raider Attack 2"
 		conversation
 			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by alien raiders! We need every combat-worthy ship to join the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
 			choice
-				`    (Stay here until the fight is over.)`
+				`	(Stay here until the fight is over.)`
 					decline
-				`    (Join the defense fleet.)`
+				`	(Join the defense fleet.)`
 			`The local Syndicate defense forces are preparing to repel the alien attack. You join them, and take off together...`
 				launch
 	on complete
