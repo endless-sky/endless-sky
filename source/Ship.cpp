@@ -44,8 +44,8 @@ namespace {
 	
 	const double SCAN_TIME = 60.;
 	
-	// Helper function to transfer energy to a given stat if it is less than the
-	// given maximum value.
+	// Helper function to transfer a quantity to a given stat if it is less
+	// than the given maximum value and has no cost (i.e. energy and fuel).
 	void DoRepair(double &stat, double &available, double maximum)
 	{
 		double transfer = max(0., min(available, maximum - stat));
@@ -1394,18 +1394,32 @@ void Ship::DoGeneration()
 		// 4. Shields of carried fighters
 		// 5. Transfer of excess energy and fuel to carried fighters.
 		
-		double hullAvailable = attributes.Get("hull repair rate");
-		double hullEnergy = attributes.Get("hull energy") / hullAvailable;
-		double hullHeat = attributes.Get("hull heat") / hullAvailable;
+		const double hullAvailable = attributes.Get("hull repair rate");
 		double hullRemaining = hullAvailable;
-		DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy);
+		// "per hull point" heat and energy costs of hull repair.
+		double hullEnergy = 0.;
+		double hullHeat = 0.;
+		if(hullAvailable)
+		{
+			hullEnergy = attributes.Get("hull energy") / hullAvailable;
+			hullHeat = attributes.Get("hull heat") / hullAvailable;
+			DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy);
+		}
 		
-		double shieldsAvailable = attributes.Get("shield generation");
-		double shieldsEnergy = attributes.Get("shield energy") / shieldsAvailable;
-		double shieldsHeat = attributes.Get("shield heat") / shieldsAvailable;
+		const double shieldsAvailable = attributes.Get("shield generation");
 		double shieldsRemaining = shieldsAvailable;
-		DoRepair(shields, shieldsRemaining, attributes.Get("shields"), energy, shieldsEnergy);
+		// "per shield point" heat and energy costs of shield generation.
+		double shieldsEnergy = 0.;
+		double shieldsHeat = 0.;
+		if(shieldsAvailable)
+		{
+			shieldsEnergy = attributes.Get("shield energy") / shieldsAvailable;
+			shieldsHeat = attributes.Get("shield heat") / shieldsAvailable;
+			DoRepair(shields, shieldsRemaining, attributes.Get("shields"), energy, shieldsEnergy);
+		}
 		
+		// Apply remaining shield & hull repair, and also attempt to recharge
+		// & refuel carried fighters.
 		if(!bays.empty())
 		{
 			// If this ship is carrying fighters, determine their repair priority.
@@ -1416,14 +1430,18 @@ void Ship::DoGeneration()
 			for(const Bay &bay : bays)
 				if(bay.ship)
 					carried.emplace_back(1. - bay.ship->Health(), bay.ship.get());
-			
-			// Apply shield and hull repair to carried fighters.
 			sort(carried.begin(), carried.end());
+			
+			// Apply shield and hull repair.
 			for(const pair<double, Ship *> &it : carried)
 			{
+				if(!hullRemaining && !shieldsRemaining)
+					break;
 				Ship &ship = *it.second;
-				DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"), energy, hullEnergy);
-				DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"), energy, shieldsEnergy);
+				if(hullRemaining)
+					DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"), energy, hullEnergy);
+				if(shieldsRemaining)
+					DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"), energy, shieldsEnergy);
 			}
 			
 			// Now that there is no more need to use energy for hull and shield
@@ -1432,17 +1450,23 @@ void Ship::DoGeneration()
 			double fuelRemaining = min(0., fuel - attributes.Get("fuel capacity"));
 			for(const pair<double, Ship *> &it : carried)
 			{
+				if(!energyRemaining && !fuelRemaining)
+					break;
 				Ship &ship = *it.second;
-				DoRepair(ship.energy, energyRemaining, ship.attributes.Get("energy capacity"));
-				DoRepair(ship.fuel, fuelRemaining, ship.attributes.Get("fuel capacity"));
+				if(energyRemaining)
+					DoRepair(ship.energy, energyRemaining, ship.attributes.Get("energy capacity"));
+				if(fuelRemaining)
+					DoRepair(ship.fuel, fuelRemaining, ship.attributes.Get("fuel capacity"));
 			}
 		}
 		
 		// Add to this ship's heat based on how much repair was actually done.
 		// This can be done at the end of everything else because unlike energy,
 		// heat does not limit how much repair can actually be done.
-		heat += (hullAvailable - hullRemaining) * hullHeat / hullAvailable;
-		heat += (shieldsAvailable - shieldsRemaining) * shieldsHeat / shieldsAvailable;
+		if(hullAvailable)
+			heat += (hullAvailable - hullRemaining) * hullHeat;
+		if(shieldsAvailable)
+			heat += (shieldsAvailable - shieldsRemaining) * shieldsHeat;
 	}
 	// Handle ionization effects, etc.
 	if(ionization)
@@ -2258,7 +2282,7 @@ double Ship::IdleHeat() const
 	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool)
 	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
 	double production = max(0., attributes.Get("heat generation") - cooling);
-	double dissipation = HeatDissipation() + activeCooling / (cargo.Used() + attributes.Mass());
+	double dissipation = HeatDissipation() + activeCooling / MaximumHeat();
 	return production / dissipation;
 }
 
