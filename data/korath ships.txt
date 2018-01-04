@@ -25,6 +25,7 @@ ship "Korath Raider"
 		"outfit space" 721
 		"weapon capacity" 284
 		"engine capacity" 159
+		"ramscoop" 2
 		weapon
 			"blast radius" 250
 			"shield damage" 3600
@@ -39,7 +40,6 @@ ship "Korath Raider"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
-		"Ramscoop"
 		"Korath Repeater Rifle" 196
 		
 		"Thruster (Planetary Class)"
@@ -75,7 +75,6 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
-		"Ramscoop"
 		"Korath Repeater Rifle" 196
 		
 		"Thruster (Planetary Class)"
@@ -146,6 +145,7 @@ ship "Korath World-Ship"
 		"outfit space" 778
 		"weapon capacity" 314
 		"engine capacity" 165
+		"ramscoop" 2
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -159,7 +159,6 @@ ship "Korath World-Ship"
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
-		"Ramscoop"
 		"Korath Repeater Rifle" 150
 		
 		"Thruster (Planetary Class)"
@@ -216,7 +215,6 @@ ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
-		"Ramscoop"
 		"Korath Repeater Rifle" 150
 		
 		"Thruster (Planetary Class)"
@@ -242,7 +240,6 @@ ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
-		"Ramscoop"
 		"Korath Repeater Rifle" 150
 		
 		"Thruster (Planetary Class)"
@@ -268,7 +265,6 @@ ship "Korath World-Ship" "Korath World-Ship C (Jump)"
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
-		"Ramscoop"
 		"Korath Repeater Rifle" 150
 		
 		"Thruster (Planetary Class)"
