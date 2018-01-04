@@ -131,18 +131,6 @@ event "war begins"
 	planet "Bourne"
 		description `Bourne is a well-developed industrial world that was first settled four centuries ago. Its cities are home to some of the richest individuals in this section of the galaxy, but also home to tens of thousands of homeless people, and many others whose factory jobs are barely providing enough to make ends meet.`
 		description `Bourne is also the seat of government for the newly formed Coalition of Free Worlds.`
-	planet "Deep"
-		add attributes "frontline"
-	planet "Glaze"
-		add attributes "frontline"
-	planet "Longjump"
-		add attributes "frontline"
-	planet "Lichen"
-		add attributes "frontline"
-	planet "Trinket"
-		add attributes "frontline"
-	planet "Sundrinker"
-		add attributes "frontline"
 
 mission "event: war begins"
 	landing
@@ -1232,16 +1220,6 @@ event "fw southern expansion"
 	planet "New Iceland"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
 		description `	In the wake of their defeat in the south, the Navy has begun to set up a massive new base here on New Iceland, in order to allow them to continue to have a strong presence in this sector.`
-	planet "Dancer"
-		add attributes "frontline"
-	planet "New Portland"
-		add attributes "frontline"
-	planet "New India"
-		add attributes "frontline"
-	planet "Sundrinker"
-		remove attributes "frontline"
-	planet "Lichen"
-		remove attributes "frontline"
 
 
 
@@ -1293,20 +1271,6 @@ event "fw northern expansion"
 		government "Free Worlds"
 	system Wei
 		government "Free Worlds"
-	planet "New Tibet"
-		add attributes "frontline"
-	planet "New Holland"
-		add attributes "frontline"
-	planet "Clark"
-		add attributes "frontline"
-	planet "Deep"
-		remove attributes "frontline"
-	planet "Longjump"
-		remove attributes "frontline"
-	planet "Glaze"
-		remove attributes "frontline"
-	planet "Trinket"
-		remove attributes "frontline"
 
 
 
@@ -1492,14 +1456,6 @@ event "fw expanded and cut"
 		fleet "Small Republic" 800
 		fleet "Large Republic" 1000
 		fleet "Large Free Worlds" 3000
-	planet "Oblivion"
-		add attributes "frontline"
-	planet "Rand"
-		add attributes "frontline"
-	planet "Arabia"
-		add attributes "frontline"
-	planet "New India"
-		remove attributes "frontline"
 
 
 
@@ -1574,22 +1530,6 @@ event "fw armistice"
 		fleet "Small Republic" 2000
 		fleet "Large Republic" 3000
 		fleet "Navy Surveillance" 1600
-	planet "New Tibet"
-		remove attributes "frontline"
-	planet "New Holland"
-		remove attributes "frontline"
-	planet "Clark"
-		remove attributes "frontline"
-	planet "Oblivion"
-		remove attributes "frontline"
-	planet "Rand"
-		remove attributes "frontline"
-	planet "Arabia"
-		remove attributes "frontline"
-	planet "New Portland"
-		remove attributes "frontline"
-	planet "Dancer"
-		remove attributes "frontline"
 
 
 
@@ -2195,8 +2135,6 @@ event "fwc capture kaus borealis"
 		fleet "Large Republic" 2000
 	planet "New Iceland"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
-	planet "New Iceland"
-		add attributes "frontline"
 
 
 
@@ -2221,16 +2159,6 @@ event "fwc capture cebalrai"
 		fleet "Large Southern Merchants" 4000
 		fleet "Small Free Worlds" 600
 		fleet "Large Free Worlds" 700
-	planet "Tundra"
-		add attributes "frontline"
-	planet "Dancer"
-		remove attributes "frontline"
-	planet "New Portland"
-		remove attributes "frontline"
-	planet "Rand"
-		remove attributes "frontline"
-	planet "Arabia"
-		remove attributes "frontline"
 
 
 
@@ -2503,18 +2431,6 @@ event "fwc peace with the navy"
 		fleet "Small Pug" 800
 		fleet "Large Pug" 1200
 		fleet "Human Miners" 5000
-	planet "Tundra"
-		remove attributes "frontline"
-	planet "New Iceland"
-		remove attributes "frontline"
-	planet "Oblivion"
-		remove attributes "frontline"
-	planet "New Tibet"
-		remove attributes "frontline"
-	planet "New Holland"
-		remove attributes "frontline"
-	planet "Clark"
-		remove attributes "frontline"
 
 
 
