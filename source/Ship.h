@@ -240,9 +240,11 @@ public:
 	// Get characteristics of this ship, as a fraction between 0 and 1.
 	double Shields() const;
 	double Hull() const;
-	double Energy() const;
-	double Heat() const;
 	double Fuel() const;
+	double Energy() const;
+	// A ship's heat is generally between 0 and 1, but if it receives
+	// heat damage the value can increase above 1.
+	double Heat() const;
 	// Get the ship's "health," where <=0 is disabled and 1 means full health.
 	double Health() const;
 	// Get the number of jumps this ship can make before running out of fuel.
