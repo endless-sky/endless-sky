@@ -355,18 +355,17 @@ void ConversationPanel::Exit()
 	{
 		// A forced-launch ending (LAUNCH, FLEE, or DEPART) destroys any NPC.
 		if(Conversation::RequiresLaunch(node))
-			// TODO: This may need a ShipEvent, but not all instances
-			// are necessarily caused by the player.
 			ship->Destroy();
 		// Only show the BoardingPanel for a hostile NPC that is being boarded.
 		// (NPC completion conversations can result from non-boarding events.)
-		else if(ship->Position().Distance(player.Flagship()->Position()) <= 1.
-				&& ship->GetGovernment()->IsEnemy()
-				&& node != Conversation::ACCEPT)
+		// TODO: Is there a better / more robust boarding check than relative position?
+		else if(node != Conversation::ACCEPT && ship->GetGovernment()->IsEnemy()
+				&& !ship->IsDestroyed() && ship->IsDisabled()
+				&& ship->Position().Distance(player.Flagship()->Position()) <= 1.)
 			GetUI()->Push(new BoardingPanel(player, ship));
 	}
-	// Call the exit response handler (PlayerInfo::MissionCallback)
-	// to manage the conversation's effect on the player's missions.
+	// Call the exit response handler to manage the conversation's effect
+	// on the player's missions, or force takeoff from a planet.
 	if(callback)
 		callback(node);
 }
