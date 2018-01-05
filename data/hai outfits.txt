@@ -600,3 +600,12 @@ outfit `"Bufaer" Atomic Steering`
 	"turning energy" 5.2
 	"turning heat" 13.8
 	description "Nine out of ten human captains interviewed in Hai space say that they would choose Hai atomic engines over those of Deep Sky any day... that is, if they could afford such expensive engines."
+
+outfit "Pulse Rifle"
+	category "Hand to Hand"
+	cost 11000
+	thumbnail "outfit/hai rifle"
+	"capture attack" .8
+	"capture defense" 1.3
+	"unplunderable" 1
+	description ""
