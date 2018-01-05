@@ -36,6 +36,7 @@ ship "Aphid"
 		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
+		"Pulse Rifle"
 		`"Basrem" Atomic Thruster`
 		`"Basrem" Atomic Steering`
 		"Hyperdrive"
@@ -55,6 +56,7 @@ ship "Aphid" "Aphid (Anti-Missile)"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
+		"Pulse Rifle"
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
@@ -124,6 +126,7 @@ ship "Lightning Bug"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
+		"Pulse Rifle" 5
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
@@ -147,6 +150,7 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 		"Geode Reactor"
 		"Hai Gorge Batteries"
 		"Hai Corundum Regenerator"
+		"Pulse Rifle" 5
 		`"Biroo" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
@@ -185,6 +189,7 @@ ship "Pond Strider"
 		"Hai Chasm Batteries"
 		"Hai Gorge Batteries"
 		"Geode Reactor"
+		"Pulse Rifle" 11
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		"Hai Williwaw Cooling" 3
@@ -250,6 +255,7 @@ ship "Shield Beetle"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
 		"Quantum Keystone"
+		"Pulse Rifle" 52
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
@@ -286,6 +292,7 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
 		"Quantum Keystone"
+		"Pulse Rifle" 52
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
@@ -300,6 +307,7 @@ ship "Shield Beetle" "Shield Beetle (Pulse)"
 		"Hai Ravine Batteries"
 		"Hai Diamond Regenerator" 2
 		"Hai Williwaw Cooling" 3
+		"Pulse Rifle" 52
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
@@ -326,6 +334,7 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
 		"Hai Williwaw Cooling" 4
+		"Pulse Rifle" 67
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Jump Drive"
@@ -353,6 +362,7 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
 		"Hai Williwaw Cooling" 6
+		"Pulse Rifle" 67
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Jump Drive"
@@ -395,6 +405,7 @@ ship "Solifuge"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 6
 		"Quantum Keystone"
+		"Pulse Rifle" 75
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
@@ -439,6 +450,7 @@ ship "Solifuge" "Solifuge (Pulse)"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 8
+		"Pulse Rifle" 75
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
@@ -461,6 +473,7 @@ ship "Solifuge" "Solifuge (Tracker)"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator" 2
 		"Hai Williwaw Cooling" 6
+		"Pulse Rifle" 75
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
@@ -478,6 +491,7 @@ ship "Solifuge" "Solifuge (Jump)"
 		"Hai Gorge Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 6
+		"Pulse Rifle" 75
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
@@ -494,6 +508,7 @@ ship "Solifuge" "Solifuge (Jump, Pulse)"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 8
+		"Pulse Rifle" 75
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
@@ -516,6 +531,7 @@ ship "Solifuge" "Solifuge (Jump, Tracker)"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator" 2
 		"Hai Williwaw Cooling" 6
+		"Pulse Rifle" 75
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
@@ -549,6 +565,7 @@ ship "Violin Spider"
 		"Pebble Core"
 		Supercapacitor
 		"Hai Williwaw Cooling"
+		"Pulse Rifle"
 		`"Basrem" Atomic Steering`
 		`"Basrem" Atomic Thruster`
 
@@ -567,6 +584,7 @@ ship "Violin Spider" "Violin Spider (Pulse)"
 		"Hai Chasm Batteries"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
+		"Pulse Rifle"
 		`"Basrem" Atomic Steering`
 		`"Basrem" Atomic Thruster`
 
@@ -605,6 +623,7 @@ ship "Water Bug"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
+		"Pulse Rifle" 7
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
@@ -632,6 +651,7 @@ ship "Water Bug" "Water Bug (Pulse)"
 		"Hai Chasm Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling"
+		"Pulse Rifle" 7
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
@@ -648,6 +668,7 @@ ship "Water Bug" "Water Bug (Jump)"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
+		"Pulse Rifle" 7
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Jump Drive"
