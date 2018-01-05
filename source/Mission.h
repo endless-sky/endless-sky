@@ -143,8 +143,6 @@ public:
 	
 private:
 	void Enter(const System *system, PlayerInfo &player, UI *ui);
-	const System *PickSystem(const LocationFilter &filter, const PlayerInfo &player) const;
-	const Planet *PickPlanet(const LocationFilter &filter, const PlayerInfo &player) const;
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
 	bool ParseContraband(const DataNode &node);
