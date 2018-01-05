@@ -51,7 +51,7 @@ outfit "Pug Zapper Turret"
 		sound "zapper"
 		"hit effect" "skylance impact"
 		"inaccuracy" .3
-		"turret turn" 3
+		"turret turn" 2.5
 		"velocity" 320
 		"lifetime" 1
 		"reload" 1
@@ -649,6 +649,8 @@ system "World's End"
 		distance 812
 		period 360
 		offset 290
+
+planet "Pug Wormhole"
 
 planet Ruin
 	attributes uninhabited

@@ -66,7 +66,7 @@ namespace {
 			player.Cargo().Remove(outfit, moved);
 			didCargo = true;
 		}
-		while(flagship && count)
+		while(count)
 		{
 			int moved = (count > 0) ? 1 : -1;
 			if(flagship->Attributes().CanAdd(*outfit, moved))
@@ -86,7 +86,7 @@ namespace {
 			player.Cargo().Add(outfit, count);
 			player.Cargo().SetSize(size);
 			didCargo = true;
-			if(count > 0 && ui)
+			if(ui)
 			{
 				string special = "The " + nameWas;
 				special += " put in your cargo hold because there is not enough space to install ";
@@ -148,7 +148,10 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			gifts[GameData::Outfits().Get(child.Token(1))] = count;
 		}
 		else if(key == "require" && hasValue)
-			gifts[GameData::Outfits().Get(child.Token(1))] = 0;
+		{
+			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
+			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;			
+		}
 		else if(key == "payment")
 		{
 			if(child.Size() == 1)
@@ -164,10 +167,15 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			int maxDays = (child.Size() >= 4 ? child.Value(3) : minDays);
 			if(maxDays < minDays)
 				swap(minDays, maxDays);
-			events[child.Token(1)] = make_pair(minDays, maxDays);
+			events[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
 		}
 		else if(key == "fail")
-			fail.insert(child.Size() >= 2 ? child.Token(1) : missionName);
+		{
+			string toFail = child.Size() >= 2 ? child.Token(1) : missionName;
+			fail.insert(toFail);
+			// Create a GameData reference to this mission name.
+			GameData::Missions().Get(toFail);
+		}
 		else
 			conditions.Add(child);
 	}
@@ -224,14 +232,16 @@ void MissionAction::Save(DataWriter &out) const
 		
 		for(const auto &it : gifts)
 			out.Write("outfit", it.first->Name(), it.second);
+		for(const auto &it : requiredOutfits)
+			out.Write("require", it.first->Name(), it.second);
 		if(payment)
 			out.Write("payment", payment);
 		for(const auto &it : events)
 		{
 			if(it.second.first == it.second.second)
-				out.Write("event", it.first, it.second.first);
+				out.Write("event", it.first->Name(), it.second.first);
 			else
-				out.Write("event", it.first, it.second.first, it.second.second);
+				out.Write("event", it.first->Name(), it.second.first, it.second.second);
 		}
 		for(const auto &name : fail)
 			out.Write("fail", name);
@@ -276,8 +286,26 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 			available += flagship->OutfitCount(it.first);
 		
 		// If the gift "count" is 0, that means to check that the player has at
-		// least one of these items.
+		// least one of these items. This is for backward compatibility before
+		// requiredOutfits was introduced.
 		if(available < -it.second + !it.second)
+			return false;
+	}
+	
+	for(const auto &it : requiredOutfits)
+	{
+		// The required outfit can be in the player's cargo or from the flagship.
+		int available = player.Cargo().Get(it.first);
+		for(const auto &ship : player.Ships())
+			available += ship->Cargo().Get(it.first);
+		if(flagship)
+			available += flagship->OutfitCount(it.first);		
+		
+		if(available < it.second)
+			return false;
+		
+		// If the required count is 0, the player must not have any of the outfit.	
+		if(it.second == 0 && available > 0)
 			return false;
 	}
 	return true;
@@ -293,6 +321,10 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 		ConversationPanel *panel = new ConversationPanel(player, conversation, destination);
 		if(isOffer)
 			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
+		// Use a basic callback to handle forced departure outside of `on offer`
+		// conversations.
+		else
+			panel->SetCallback(&player, &PlayerInfo::BasicCallback);
 		ui->Push(panel);
 	}
 	else if(!dialogText.empty() && ui)
@@ -331,7 +363,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 		player.Accounts().AddCredits(payment);
 	
 	for(const auto &it : events)
-		player.AddEvent(*GameData::Events().Get(it.first), player.GetDate() + it.second.first);
+		player.AddEvent(*it.first, player.GetDate() + it.second.first);
 	
 	if(!fail.empty())
 	{

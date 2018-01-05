@@ -214,10 +214,28 @@ outfit "Outfit Scanner"
 	"outfit scan speed" 1
 	description "This scanner allows you to determine what outfits are installed in the ship you are currently targeting, if you are willing to risk flying close enough to it to get a reading! The Republic Navy uses these scanners to detect when ships are equipped with illegal weaponry. Installing more than one increases the scan range and speed."
 
+outfit "Asteroid Scanner"
+	category "Systems"
+	cost 192000
+	thumbnail "outfit/asteroid scanner"
+	"mass" 6
+	"outfit space" -6
+	"asteroid scan power" 40
+	description "This highly specialized scanning system can analyze the mineral composition of nearby asteroids and identify the ones that contain valuable materials."
+
+outfit "Tactical Scanner"
+	category "Systems"
+	cost 144000
+	thumbnail "outfit/tactical scanner"
+	"mass" 4
+	"outfit space" -4
+	"tactical scan power" 32
+	description "A tactical scanner allows your ship to determine the fuel, energy, heat, and crew complement of nearby targets. For centuries tactical scanners were only employed by the Navy, but recently Kraz Cybernetics has begun manufacturing them for use by militia ships."
+
 outfit "Surveillance Pod"
 	category "Systems"
-	cost 42000
-	thumbnail "outfit/outfit scanner"
+	cost 122500
+	thumbnail "outfit/surveillance pod"
 	"mass" 5
 	"outfit space" -5
 	"outfit scan power" 16
@@ -225,7 +243,8 @@ outfit "Surveillance Pod"
 	"cargo scan power" 4
 	"cargo scan speed" 2
 	"atmosphere scan" 100
-	description "This is Republic military technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want. Installing more than one increases the scan range and speed."
+	"tactical scan power" 9
+	description "This is Navy technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want. Installing more than one increases the scan range and speed."
 
 
 outfit "Cloaking Device"
@@ -356,3 +375,23 @@ outfit "Pilot's License"
 	cost 50000
 	thumbnail "outfit/license"
 	description "Without a pilot's license, you cannot purchase a ship on a Republic planet. And if you buy an unlicensed ship on another planet and then bring it into Republic space, you can be fined until you cough up the money for a license. Needless to say, this policy is not terribly popular with freelance merchant captains."
+
+outfit "Navy License"
+	category "Special"
+	thumbnail "outfit/navy license"
+	description "It is unusual, but not unheard of, for private citizens to be given the right to purchase Navy ships for their own private use. Recently, certain rich worlds have also begun petitioning Parliament for special permission to purchase Navy warships for their private security forces."
+
+outfit "Cruiser License"
+	category "Special"
+	thumbnail "outfit/cruiser license"
+	description "It is a very rare privilege to be permitted to purchase a Navy capital ship for private use - not just because of a Cruiser's firepower, but because it is a potent symbol of the Republic's strength."
+
+outfit "Carrier License"
+	category "Special"
+	thumbnail "outfit/carrier license"
+	description "Only a handful of people in the past century have been given permission to purchase a Navy Carrier, even a decommissioned one, for private use."
+
+outfit "Militia Carrier License"
+	category "Special"
+	thumbnail "outfit/militia license"
+	description "Officially joined the Free Worlds. Received permission to purchase their Militia-only carriers."

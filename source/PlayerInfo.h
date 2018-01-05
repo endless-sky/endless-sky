@@ -32,7 +32,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class Government;
 class Outfit;
-class Person;
 class Planet;
 class Rectangle;
 class Ship;
@@ -164,6 +163,8 @@ public:
 	void HandleBlockedMissions(Mission::Location location, UI *ui);
 	// Callback for accepting or declining whatever mission has been offered.
 	void MissionCallback(int response);
+	// Basic callback for handling forced departure from a planet.
+	void BasicCallback(int response);
 	// Complete or fail a mission.
 	void RemoveMission(Mission::Trigger trigger, const Mission &mission, UI *ui);
 	// Mark a mission as failed, but do not remove it from the mission list yet.
@@ -175,8 +176,8 @@ public:
 	int GetCondition(const std::string &name) const;
 	std::map<std::string, int> &Conditions();
 	const std::map<std::string, int> &Conditions() const;
-	// Set and check the reputation conditions, which missions can use to modify
-	// the player's reputation.
+	// Set and check the reputation conditions, which missions and events
+	// can use to modify the player's reputation with other governments.
 	void SetReputationConditions();
 	void CheckReputationConditions();
 	
@@ -185,6 +186,7 @@ public:
 	bool HasVisited(const System *system) const;
 	bool HasVisited(const Planet *planet) const;
 	bool KnowsName(const System *system) const;
+	// Marking a system as visited also "sees" its neighbors.
 	void Visit(const System *system);
 	void Visit(const Planet *planet);
 	// Mark a system and its planets as unvisited, even if visited previously.
@@ -250,11 +252,18 @@ private:
 	// New missions are generated each time you land on a planet.
 	void UpdateAutoConditions();
 	void CreateMissions();
+	void StepMissions(UI *ui);
 	void Autosave() const;
 	void Save(const std::string &path) const;
 	
+	// Check for and apply any punitive actions from planetary security.
+	void Fine(UI *ui);
+	
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
+	
+	// Check that this player's current state can be saved.
+	bool CanBeSaved() const;
 	
 	
 private:
@@ -310,7 +319,7 @@ private:
 	std::list<DataNode> dataChanges;
 	DataNode economy;
 	// Persons that have been killed in this player's universe:
-	std::list<const Person *> destroyedPersons;
+	std::vector<std::string> destroyedPersons;
 	// Events that are going to happen some time in the future:
 	std::list<GameEvent> gameEvents;
 	

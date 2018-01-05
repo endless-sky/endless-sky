@@ -45,7 +45,7 @@ ship "Aphid"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "The Aphid is a light freighter designed by the Hai. It has only minimal armament."
+	description "The Aphid is the lightest freighter used by the Hai and was for many millennia the backbone of the Hai inter-planetary economy. Because of how peaceful Hai space has been for much of its history, Aphids are only lightly armed and mainly rely on larger Hai ships for protection."
 
 ship "Aphid" "Aphid (Anti-Missile)"
 	outfits
@@ -137,7 +137,7 @@ ship "Lightning Bug"
 	explode "medium explosion" 24
 	explode "large explosion" 8
 	"final explode" "final explosion small"
-	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. In its stock configuration, its only offensive weapon is a single ion cannon."
+	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. The Lightning Bug, as with many insects, works best in a swarm: even a small number of Lightning Bugs can manage to leave the largest of ships helpless with their stock-fitted ion cannons."
 
 ship "Lightning Bug" "Lightning Bug (Pulse)"
 	outfits
@@ -273,7 +273,7 @@ ship "Shield Beetle"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description "The Shield Beetle is a versatile warship used by the Hai to guard their merchant convoys."
+	description "This ship was first built millenia ago, near the end of a more violent time in Hai history. Since then, it has served as the only heavy warship at the disposal of the Hai. The Shield Beetle is a versatile warship used by the Hai to guard their merchant convoys, or by the Unfettered to attack those very same convoys."
 
 ship "Shield Beetle" "Shield Beetle (Tracker)"
 	outfits
@@ -401,7 +401,7 @@ ship "Solifuge"
 		Hyperdrive
 			
 	engine -28 135.5
-	engine 28 135,5
+	engine 28 135.5
 	gun 0 -140 "Hai Tracker Pod"
 	gun -11.5 -138.5 "Ion Cannon"
 	gun 11.5 -138.5 "Ion Cannon"
@@ -426,7 +426,7 @@ ship "Solifuge"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description `Impressed by the Alpha's "Giftbringer", the Unfettered endeavoured to build their own fighter carrier to take more advantage of their supply of Jump Drives.`
+	description `Impressed by the Alpha's "Giftbringer", the Unfettered endeavoured to build their own fighter carrier to take more advantage of their supply of jump drives.`
 
 ship "Solifuge" "Solifuge (Pulse)"
 	outfits
@@ -620,7 +620,7 @@ ship "Water Bug"
 	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion medium"
-	description "The Water Bug is the primary freight ship used by the Hai."
+	description "The design of the Water Bug is almost as old as the Aphid, but until recently it never saw much use. A spike in aggression from the Unfettered Hai has lead the tougher and more well-defended Water Bug to see an increase in popularity over its little brother, the Aphid. The Water Bug is now the most widely used Hai freighter, comprising the bulk of all Hai merchant fleets."
 
 ship "Water Bug" "Water Bug (Pulse)"
 	outfits

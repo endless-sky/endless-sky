@@ -48,7 +48,8 @@ void Armament::Add(const Outfit *outfit, int count)
 	if(!count || !outfit || !outfit->IsWeapon())
 		return;
 	
-	int total = 0;
+	int existing = 0;
+	int added = 0;
 	bool isTurret = outfit->Get("turret mounts");
 	
 	// To start out with, check how many instances of this weapon are already
@@ -67,7 +68,7 @@ void Armament::Add(const Outfit *outfit, int count)
 				++count;
 			}
 			else
-				++total;
+				++existing;
 		}
 		else if(!hardpoint.GetOutfit() && hardpoint.IsTurret() == isTurret)
 		{
@@ -78,15 +79,20 @@ void Armament::Add(const Outfit *outfit, int count)
 			{
 				hardpoint.Install(outfit);
 				--count;
-				++total;
+				++added;
 			}
 		}
 	}
 	
+	// If a stream counter already exists for this outfit (because we did not
+	// just add the first one or remove the last one), do nothing.
+	if(existing)
+		return;
+	
 	// If this weapon is streamed, create a stream counter. If it is not
 	// streamed, or if the last of this weapon has been uninstalled, erase the
 	// stream counter (if there is one).
-	if(total && outfit->IsStreamed())
+	if(added && outfit->IsStreamed())
 		streamReload[outfit] = 0;
 	else
 		streamReload.erase(outfit);
@@ -183,7 +189,7 @@ void Armament::Aim(const Command &command)
 
 // Fire the given weapon, if it is ready. If it did not fire because it is
 // not ready, return false.
-void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, list<Effect> &effects)
+void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals)
 {
 	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
 		return;
@@ -199,17 +205,17 @@ void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, list<E
 			it->second += it->first->Reload() * hardpoints[index].BurstRemaining();
 		}
 	}
-	hardpoints[index].Fire(ship, projectiles, effects);
+	hardpoints[index].Fire(ship, projectiles, visuals);
 }
 
 
 
-bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projectile, list<Effect> &effects)
+bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projectile, vector<Visual> &visuals)
 {
 	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
 		return false;
 	
-	return hardpoints[index].FireAntiMissile(ship, projectile, effects);
+	return hardpoints[index].FireAntiMissile(ship, projectile, visuals);
 }
 
 

@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "SpriteSet.h"
 
+#include <cstring>
 #include <cmath>
 
 using namespace std;
@@ -78,6 +79,8 @@ void Outfit::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "cost" && child.Size() >= 2)
 			cost = child.Value(1);
+		else if(child.Token(0) == "mass" && child.Size() >= 2)
+			mass = child.Value(1);
 		else if(child.Token(0) == "licenses")
 		{
 			for(const DataNode &grand : child)
@@ -90,7 +93,7 @@ void Outfit::Load(const DataNode &node)
 	}
 	
 	// Legacy support for turrets that don't specify a turn rate:
-	if(IsWeapon() && attributes.count("turret mounts") && !TurretTurn() && !AntiMissile())
+	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
 		SetTurretTurn(4.);
 }
 
@@ -140,15 +143,21 @@ const Sprite *Outfit::Thumbnail() const
 
 
 
-double Outfit::Get(const string &attribute) const
+double Outfit::Get(const char *attribute) const
 {
-	auto it = attributes.find(attribute);
-	return (it == attributes.end()) ? 0. : it->second;
+	return attributes.Get(attribute);
 }
 
 
 
-const map<string, double> &Outfit::Attributes() const
+double Outfit::Get(const string &attribute) const
+{
+	return Get(attribute.c_str());
+}
+
+
+
+const Dictionary &Outfit::Attributes() const
 {
 	return attributes;
 }
@@ -178,6 +187,7 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 void Outfit::Add(const Outfit &other, int count)
 {
 	cost += other.cost * count;
+	mass += other.mass * count;
 	for(const auto &at : other.attributes)
 	{
 		attributes[at.first] += at.second * count;
@@ -206,19 +216,24 @@ void Outfit::Add(const Outfit &other, int count)
 
 
 // Modify this outfit's attributes.
-void Outfit::Add(const string &attribute, double value)
+void Outfit::Add(const char *attribute, double value)
 {
-	attributes[attribute] += value;
-	if(fabs(attributes[attribute]) < EPS)
-		attributes[attribute] = 0.;
+	auto &attr = (strcmp(attribute, "mass") == 0) ? mass : attributes[attribute];
+	value += attr;
+	if(fabs(value) < EPS)
+		value = 0.;
+	attr = value;
 }
 
 
 
 // Modify this outfit's attributes.
-void Outfit::Reset(const string &attribute, double value)
+void Outfit::Reset(const char *attribute, double value)
 {
-	attributes[attribute] = value;
+	if(strcmp(attribute, "mass") == 0)
+		mass = value;
+	else
+		attributes[attribute] = value;
 }
 
 

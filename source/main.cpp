@@ -403,25 +403,20 @@ void PrintVersion()
 void SetIcon(SDL_Window *window)
 {
 	// Load the icon file.
-	ImageBuffer *buffer = ImageBuffer::Read(Files::Resources() + "icon.png");
-	if(!buffer)
+	ImageBuffer buffer;
+	if(!buffer.Read(Files::Resources() + "icon.png"))
 		return;
-	if(!buffer->Pixels() || !buffer->Width() || !buffer->Height())
-	{
-		delete buffer;
+	if(!buffer.Pixels() || !buffer.Width() || !buffer.Height())
 		return;
-	}
 	
 	// Convert the icon to an SDL surface.
-	SDL_Surface *surface = SDL_CreateRGBSurfaceFrom(buffer->Pixels(), buffer->Width(), buffer->Height(),
-		32, 4 * buffer->Width(), 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
+	SDL_Surface *surface = SDL_CreateRGBSurfaceFrom(buffer.Pixels(), buffer.Width(), buffer.Height(),
+		32, 4 * buffer.Width(), 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
 	if(surface)
 	{
 		SDL_SetWindowIcon(window, surface);
 		SDL_FreeSurface(surface);
 	}
-	// Free the image buffer.
-	delete buffer;
 }
 
 

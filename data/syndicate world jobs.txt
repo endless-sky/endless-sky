@@ -169,31 +169,10 @@ mission "Syndicate target practice [0]"
 		"combat rating" < 50
 		"destroyed Syndicate target ship" < 3
 	npc save disable "scan cargo"
-		personality staying heroic target
 		government "Test Dummy"
-		ship "Berserker" "Syndicate Test Vessel"
-			attributes
-				category "Interceptor"
-				"cost" 520000
-				"shields" 2200
-				"hull" 500
-				"automaton" 1
-				"self destruct" 1
-				"bunks" 2
-				"mass" 110
-				"drag" 2.2
-				"heat dissipation" .85
-				"fuel capacity" 400
-				"cargo space" 10
-				"outfit space" 200
-				"weapon capacity" 35
-				"engine capacity" 65
-				weapon
-					"blast radius" 30
-					"shield damage" 300
-					"hull damage" 150
-					"hit force" 450
+		personality staying heroic target
 		system destination
+		ship "Berserker Test Dummy" "Syndicate Test Vessel"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
@@ -223,31 +202,10 @@ mission "Syndicate target practice [1]"
 		"combat rating" < 200
 		"destroyed Syndicate target ship" < 3
 	npc save disable "scan cargo"
-		personality staying heroic target
 		government "Test Dummy"
-		ship "Quicksilver" "Syndicate Test Vessel"
-			attributes
-				category "Light Warship"
-				"cost" 1090000
-				"shields" 3000
-				"hull" 800
-				"automaton" 1
-				"self destruct" 1
-				"bunks" 6
-				"mass" 120
-				"drag" 2.7
-				"heat dissipation" .8
-				"fuel capacity" 400
-				"cargo space" 10
-				"outfit space" 240
-				"weapon capacity" 60
-				"engine capacity" 70
-				weapon
-					"blast radius" 40
-					"shield damage" 400
-					"hull damage" 200
-					"hit force" 600
+		personality staying heroic target
 		system destination
+		ship "Quicksilver Test Dummy" "Syndicate Test Vessel"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
@@ -277,31 +235,10 @@ mission "Syndicate target practice [2]"
 		"combat rating" < 1000
 		"destroyed Syndicate target ship" < 3
 	npc save disable "scan cargo"
-		personality staying heroic target
 		government "Test Dummy"
-		ship "Splinter" "Syndicate Test Vessel"
-			attributes
-				category "Medium Warship"
-				"cost" 3100000
-				"shields" 5200
-				"hull" 1700
-				"automaton" 1
-				"self destruct" 1
-				"bunks" 21
-				"mass" 250
-				"drag" 4.0
-				"heat dissipation" .7
-				"fuel capacity" 600
-				"cargo space" 75
-				"outfit space" 400
-				"weapon capacity" 150
-				"engine capacity" 100
-				weapon
-					"blast radius" 60
-					"shield damage" 600
-					"hull damage" 300
-					"hit force" 900
+		personality staying heroic target
 		system destination
+		ship "Splinter Test Dummy" "Syndicate Test Vessel"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
@@ -330,31 +267,10 @@ mission "Syndicate target practice [3]"
 		"combat rating" > 1000
 		"destroyed Syndicate target ship" < 3
 	npc save disable "scan cargo"
-		personality staying heroic target
 		government "Test Dummy"
-		ship "Vanguard" "Syndicate Test Vessel"
-			attributes
-				category "Heavy Warship"
-				"cost" 7200000
-				"shields" 9800
-				"hull" 6000
-				"automaton" 1
-				"self destruct" 1
-				"bunks" 45
-				"mass" 500
-				"drag" 8
-				"heat dissipation" .6
-				"fuel capacity" 400
-				"cargo space" 50
-				"outfit space" 560
-				"weapon capacity" 220
-				"engine capacity" 120
-				weapon
-					"blast radius" 160
-					"shield damage" 1600
-					"hull damage" 800
-					"hit force" 2400
+		personality staying heroic target
 		system destination
+		ship "Vanguard Test Dummy" "Syndicate Test Vessel"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
@@ -366,3 +282,23 @@ mission "Syndicate target practice [3]"
 	on complete
 		payment 100000
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
+
+ship "Berserker" "Berserker Test Dummy"
+	add attributes
+		"automaton" 1
+		"self destruct" 1
+
+ship "Quicksilver" "Quicksilver Test Dummy"
+	add attributes
+		"automaton" 1
+		"self destruct" 1
+
+ship "Splinter" "Splinter Test Dummy"
+	add attributes
+		"automaton" 1
+		"self destruct" 1
+
+ship "Vanguard" "Vanguard Test Dummy"
+	add attributes
+		"automaton" 1
+		"self destruct" 1

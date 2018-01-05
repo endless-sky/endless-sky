@@ -68,8 +68,9 @@ private:
 	const Conversation *stockConversation = nullptr;
 	Conversation conversation;
 	
-	std::map<std::string, std::pair<int, int>> events;
+	std::map<const GameEvent *, std::pair<int, int>> events;
 	std::map<const Outfit *, int> gifts;
+	std::map<const Outfit *, int> requiredOutfits;
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	

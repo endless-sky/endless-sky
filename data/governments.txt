@@ -44,6 +44,15 @@ government "Deep"
 	swizzle 0
 	"player reputation" -1000
 
+government "Deep Security"
+	swizzle 0
+	"player reputation" 1
+	"attitude toward"
+		"Merchant" .5
+		"Pirate" -.2
+	"friendly hail" "friendly deep"
+	"hostile hail" "hostile deep"
+
 government "Drak"
 	swizzle 5
 	color 1 1 1
@@ -269,8 +278,8 @@ government "Pug"
 	
 	"player reputation" 1
 	"attitude toward"
-		"Merchant" .1
-		"Pirate" -.1
+		"Drak" -.01
+		"Quarg" -.01
 	"friendly hail" "friendly pug"
 	"hostile hail" "hostile pug"
 

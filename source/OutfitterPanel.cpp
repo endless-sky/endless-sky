@@ -55,6 +55,17 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 	for(const pair<const string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].insert(it.first);
 	
+	// Add owned licenses
+	const string PREFIX = "license: ";
+	for(auto &it : player.Conditions())
+		if(it.first.compare(0, PREFIX.length(), PREFIX) == 0 && it.second > 0)
+		{
+			const string name = it.first.substr(PREFIX.length()) + " License";
+			const Outfit *outfit = GameData::Outfits().Get(name);
+			if(outfit)
+				catalog[outfit->Category()].insert(name);
+		}
+	
 	if(player.GetPlanet())
 		outfitter = player.GetPlanet()->Outfitter();
 }
@@ -99,6 +110,9 @@ bool OutfitterPanel::HasItem(const string &name) const
 	for(const Ship *ship : playerShips)
 		if(ship->OutfitCount(outfit))
 			return true;
+	
+	if(showForSale && HasLicense(name))
+		return true;
 	
 	return false;
 }
@@ -237,7 +251,7 @@ bool OutfitterPanel::CanBuy() const
 	
 	if(!playerShip)
 	{
-		double mass = selectedOutfit->Get("mass");
+		double mass = selectedOutfit->Mass();
 		return (!mass || player.Cargo().Free() >= mass);
 	}
 	
@@ -519,7 +533,7 @@ void OutfitterPanel::Sell(bool toCargo)
 			{
 				// Determine how many of this ammo I must sell to also sell the launcher.
 				int mustSell = 0;
-				for(const auto &it : ship->Attributes().Attributes())
+				for(const pair<const char *, double> &it : ship->Attributes().Attributes())
 					if(it.second < 0.)
 						mustSell = max<int>(mustSell, it.second / ammo->Get(it.first));
 				
@@ -565,7 +579,7 @@ void OutfitterPanel::FailSell(bool toCargo) const
 		else
 		{
 			for(const Ship *ship : playerShips)
-				for(const auto &it : selectedOutfit->Attributes())
+				for(const pair<const char *, double> &it : selectedOutfit->Attributes())
 					if(ship->Attributes().Get(it.first) < it.second)
 					{
 						for(const auto &sit : ship->Outfits())
@@ -591,6 +605,21 @@ void OutfitterPanel::FailSell(bool toCargo) const
 
 
 
+bool OutfitterPanel::ShouldHighlight(const Ship *ship)
+{
+	if(!selectedOutfit)
+		return false;
+	
+	if(hoverButton == 'b')
+		return CanBuy() && ShipCanBuy(ship, selectedOutfit);
+	else if(hoverButton == 's')
+		return CanSell() && ShipCanSell(ship, selectedOutfit);
+	
+	return false;
+}
+
+
+
 void OutfitterPanel::DrawKey()
 {
 	const Sprite *back = SpriteSet::Get("ui/outfitter key");
@@ -604,32 +633,48 @@ void OutfitterPanel::DrawKey()
 	Point off = Point(10., -.5 * font.Height());
 	SpriteShader::Draw(box[showForSale], pos);
 	font.Draw("Show outfits for sale", pos + off, color[showForSale]);
-	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ showForSale = !showForSale; });
+	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleForSale(); });
 	
 	bool showCargo = !playerShip;
 	pos.Y() += 20.;
 	SpriteShader::Draw(box[showCargo], pos);
 	font.Draw("Show outfits in cargo", pos + off, color[showCargo]);
-	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){
+	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleCargo(); });
+}
+
+
+
+void OutfitterPanel::ToggleForSale()
+{
+	showForSale = !showForSale;
+	
+	ShopPanel::ToggleForSale();
+}
+
+
+
+void OutfitterPanel::ToggleCargo()
+{
+	if(playerShip)
+	{
+		previousShip = playerShip;
+		playerShip = nullptr;
+		previousShips = playerShips;
+		playerShips.clear();
+	}
+	else if(previousShip)
+	{
+		playerShip = previousShip;
+		playerShips = previousShips;
+	}
+	else
+	{
+		playerShip = player.Flagship();
 		if(playerShip)
-		{
-			previousShip = playerShip;
-			playerShip = nullptr;
-			previousShips = playerShips;
-			playerShips.clear();
-		}
-		else if(previousShip)
-		{
-			playerShip = previousShip;
-			playerShips = previousShips;
-		}
-		else
-		{
-			playerShip = player.Flagship();
-			if(playerShip)
-				playerShips.insert(playerShip);
-		}
-	});
+			playerShips.insert(playerShip);
+	}
+	
+	ShopPanel::ToggleCargo();
 }
 
 

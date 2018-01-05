@@ -223,7 +223,6 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 	// Set up to draw the image.
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
-	glActiveTexture(GL_TEXTURE0);
 	
 	GLfloat corner[2] = {
 		static_cast<float>((left - .5f * GRID * zoom) / (.5f * Screen::Width())),
