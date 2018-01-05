@@ -90,9 +90,6 @@ namespace {
 
 
 
-// There is no need to save a location filter, because any mission that is
-// in the saved game will already have "applied" the filter to choose a
-// particular planet or system.
 void LocationFilter::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
@@ -241,6 +238,34 @@ bool LocationFilter::Matches(const Ship &ship) const
 	
 	return true;
 }
+
+
+
+// Convert a "distance" filter into a "near" filter.
+LocationFilter LocationFilter::SetOrigin(const System *origin) const
+{
+	// If there is no distance filter, then no conversion is needed.
+	if(IsEmpty() || originMaxDistance < 0)
+		return *this;
+	
+	// If the system is invalid, or a "near <system>" filter already
+	// exists, do not convert "distance" to "near".
+	if(!origin || center)
+		return *this;
+	
+	// Copy all parts of this instantiated filter into the result.
+	LocationFilter result = *this;
+	// Perform the conversion.
+	result.center = origin;
+	result.centerMinDistance = originMinDistance;
+	result.centerMaxDistance = originMaxDistance;
+	// Revert "distance" parameters to their default.
+	result.originMinDistance = 0;
+	result.originMaxDistance = -1;
+	
+	return result;
+}
+
 
 
 

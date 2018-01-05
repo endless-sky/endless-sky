@@ -190,8 +190,6 @@ private:
 	// Systems that must be visited:
 	std::set<const System *> waypoints;
 	std::list<LocationFilter> waypointFilters;
-	std::map<const System *, MissionAction> onEnter;
-	std::set<const System *> didEnter;
 	std::set<const Planet *> stopovers;
 	std::list<LocationFilter> stopoverFilters;
 	std::set<const Planet *> visitedStopovers;
@@ -202,6 +200,12 @@ private:
 	
 	// Actions to perform:
 	std::map<Trigger, MissionAction> actions;
+	// "on enter" actions may name a specific system, or rely on matching a
+	// LocationFilter in order to designate the matched system.
+	std::map<const System *, MissionAction> onEnter;
+	std::list<MissionAction> genericOnEnter;
+	// Track which `on enter` MissionActions have triggered.
+	std::set<const MissionAction *> didEnter;
 };
 
 
