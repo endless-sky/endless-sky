@@ -369,8 +369,8 @@ const System *LocationFilter::PickSystem(const System *origin) const
 	vector<const System *> options;
 	for(const auto &it : GameData::Systems())
 	{
-		// Skip entries with incomplete data.
-		if(it.second.Name().empty())
+		// Skip systems that have not been positioned (i.e. only referred to).
+		if(!it.second.Position())
 			continue;
 		if(Matches(&it.second, origin))
 			options.push_back(&it.second);

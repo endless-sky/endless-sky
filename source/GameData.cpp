@@ -518,6 +518,7 @@ void GameData::WriteEconomy(DataWriter &out)
 	out.Write("economy");
 	out.BeginChild();
 	{
+		// Write each system and the commodity quantities purchased there.
 		if(!purchases.empty())
 		{
 			out.Write("purchases");
@@ -533,15 +534,17 @@ void GameData::WriteEconomy(DataWriter &out)
 				});
 			out.EndChild();
 		}
+		// Write the "header" row.
 		out.WriteToken("system");
 		for(const auto &cit : GameData::Commodities())
 			out.WriteToken(cit.name);
 		out.Write();
 		
-		for(const auto &sit : GameData::Systems())
+		// Write the per-system data for all systems, even those from inactive plugins.
+		for(const pair<string, const System> &sit : GameData::Systems())
 		{
-			// Skip systems that have no name.
-			if(sit.first.empty() || sit.second.Name().empty())
+			// Only systems which somehow have no referring name will have no name.
+			if(sit.first.empty())
 				continue;
 			
 			out.WriteToken(sit.second.Name());

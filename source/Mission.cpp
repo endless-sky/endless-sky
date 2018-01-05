@@ -416,12 +416,12 @@ bool Mission::IsValid() const
 	// Systems must have a name and a non-default position.
 	for(const set<const System *> &usedSystems : {waypoints, visitedWaypoints, didEnter})
 		for(const System *system : usedSystems)
-			if(system->Name().empty() || !system->Position())
+			if(!system->Position())
 				return false;
 	for(const pair<const System *, MissionAction> &it : onEnter)
 	{
 		// The system of an 'on enter' may be nullptr.
-		if(it.first && (it.first->Name().empty() || !it.first->Position()))
+		if(it.first && !it.first->Position())
 			return false;
 		if(!it.second.IsValid())
 			return false;

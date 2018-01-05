@@ -2350,7 +2350,7 @@ void PlayerInfo::ApplyChanges()
 	// specified its location, but this is to avoid null locations.)
 	for(shared_ptr<Ship> &ship : ships)
 	{
-		if(!ship->GetSystem() || ship->GetSystem()->Name().empty())
+		if(!ship->GetSystem() || !ship->GetSystem()->Position())
 			ship->SetSystem(system);
 		if(ship->GetSystem() == system && (!ship->GetPlanet() || ship->GetPlanet()->Name().empty()))
 			ship->SetPlanet(planet);

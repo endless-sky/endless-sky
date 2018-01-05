@@ -726,10 +726,10 @@ void MapPanel::UpdateCache()
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
-		// Referring to a non-existent system in a mission can create a spurious
-		// system record. Ignore those.
-		if(system.Name().empty())
+		// Ignore systems which have been referred to, but not actually defined.
+		if(!system.Position())
 			continue;
+		// Ignore systems the player has never seen, unless they have a pending mission that lets them see it.
 		if(!player.HasSeen(&system) && &system != specialSystem)
 			continue;
 		
