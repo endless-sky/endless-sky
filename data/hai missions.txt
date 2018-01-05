@@ -391,8 +391,8 @@ mission "Unfettered returning home"
 	description "This Hai has asked you to smuggle him out of Unfettered space and bring him to <destination>."
 	minor
 	source
-		attributes unfettered
-	destination Hai-home
+		attributes "unfettered"
+	destination "Hai-home"
 	clearance
 	passengers 1
 	to offer

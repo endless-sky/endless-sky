@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "Conversation.h"
+#include "LocationFilter.h"
 
 #include <map>
 #include <set>
@@ -45,7 +46,8 @@ public:
 	int Payment() const;
 	
 	// Check if this action can be completed right now. It cannot be completed
-	// if it takes away money or outfits that the player does not have.
+	// if it takes away money or outfits that the player does not have, or should
+	// take place in a system that does not match the specified LocationFilter.
 	bool CanBeDone(const PlayerInfo &player) const;
 	// Perform this action. If a conversation is shown, the given destination
 	// will be highlighted in the map if you bring it up.
@@ -53,12 +55,13 @@ public:
 	
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.
-	MissionAction Instantiate(std::map<std::string, std::string> &subs, int jumps, int payload) const;
+	MissionAction Instantiate(std::map<std::string, std::string> &subs, const System *origin, int jumps, int payload) const;
 	
 	
 private:
 	std::string trigger;
 	std::string system;
+	LocationFilter systemFilter;
 	
 	std::string logText;
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
@@ -68,8 +71,9 @@ private:
 	const Conversation *stockConversation = nullptr;
 	Conversation conversation;
 	
-	std::map<std::string, std::pair<int, int>> events;
+	std::map<const GameEvent *, std::pair<int, int>> events;
 	std::map<const Outfit *, int> gifts;
+	std::map<const Outfit *, int> requiredOutfits;
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	

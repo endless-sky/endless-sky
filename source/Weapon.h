@@ -95,6 +95,9 @@ public:
 	// everything else, including asteroids.
 	bool IsSafe() const;
 	bool IsPhasing() const;
+	// Blast radius weapons will scale damage and hit force based on distance,
+	// unless the "no damage scaling" keyphrase is used in the weapon definition.
+	bool IsDamageScaled() const;
 	
 	// These values include all submunitions:
 	double ShieldDamage() const;
@@ -145,6 +148,7 @@ private:
 	bool isStreamed = false;
 	bool isSafe = false;
 	bool isPhasing = false;
+	bool isDamageScaled = true;
 	
 	// Attributes.
 	int lifetime = 0;
@@ -243,6 +247,7 @@ inline double Weapon::HitForce() const { return hitForce; }
 
 inline bool Weapon::IsSafe() const { return isSafe; }
 inline bool Weapon::IsPhasing() const { return isPhasing; }
+inline bool Weapon::IsDamageScaled() const { return isDamageScaled; }
 
 inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELD_DAMAGE); }
 inline double Weapon::HullDamage() const { return TotalDamage(HULL_DAMAGE); }

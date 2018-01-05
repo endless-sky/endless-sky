@@ -54,8 +54,8 @@ public:
 	
 private:
 	static int Glyph(char c, bool isAfterSpace);
-	void LoadTexture(ImageBuffer *image);
-	void CalculateAdvances(ImageBuffer *image);
+	void LoadTexture(ImageBuffer &image);
+	void CalculateAdvances(ImageBuffer &image);
 	void SetUpShader(float glyphW, float glyphH);
 	
 	

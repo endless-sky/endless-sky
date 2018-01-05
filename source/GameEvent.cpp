@@ -31,7 +31,10 @@ void GameEvent::Load(const DataNode &node)
 	// If the event has a name, a condition should be automatically created that
 	// represents the fact that this event has occurred.
 	if(node.Size() >= 2)
-		conditionsToApply.Add("set", "event: " + node.Token(1));
+	{
+		name = node.Token(1);
+		conditionsToApply.Add("set", "event: " + name);
+	}
 	
 	static const set<string> allowedChanges = {
 		"fleet",
@@ -98,6 +101,13 @@ void GameEvent::Save(DataWriter &out) const
 
 
 
+const string &GameEvent::Name() const
+{
+	return name;
+}
+
+
+
 const Date &GameEvent::GetDate() const
 {
 	return date;
@@ -114,22 +124,18 @@ void GameEvent::SetDate(const Date &date)
 
 void GameEvent::Apply(PlayerInfo &player)
 {
-	for(const auto &it : GameData::Governments())
-	{
-		int rep = it.second.Reputation();
-		player.Conditions()["reputation: " + it.first] = rep;
-	}
+	// Serialize the current reputation with other governments.
+	player.SetReputationConditions();
 	
+	// Apply this event's ConditionSet to the player's conditions.
 	conditionsToApply.Apply(player.Conditions());
+	// Apply (and store a record of applying) this event's other general
+	// changes (e.g. updating an outfitter's inventory).
 	player.AddChanges(changes);
 	
-	for(const auto &it : GameData::Governments())
-	{
-		int rep = it.second.Reputation();
-		int newRep = player.Conditions()["reputation: " + it.first];
-		if(rep != newRep)
-			it.second.AddReputation(newRep - rep);
-	}
+	// Update the current reputation with other governments (e.g. this
+	// event's ConditionSet may have altered some reputations).
+	player.CheckReputationConditions();
 	
 	for(const System *system : systemsToUnvisit)
 		player.Unvisit(system);

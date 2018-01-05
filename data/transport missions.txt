@@ -17,8 +17,8 @@ mission "Immigrant Workers"
 		random < 50
 	source "New Iceland"
 	destination
-		attributes core
-		attributes factory textile
+		attributes "core"
+		attributes "factory" "textile"
 	on complete
 		payment
 		payment 10000
@@ -138,11 +138,10 @@ mission "Smuggler's Den, Part 1"
 			label payment
 			`	They are silent for a long moment, looking down at the table. Finally, the boy says, "We're crew on a pirate ship, hardly better than slaves. The captain keeps our wages. We don't get paid anything unless they agree to let us go. But if you help us start a new life, we'll work hard and some day we'll pay you back."`
 			`	The girl adds, "You don't know what it's like for a little girl to grow up on a pirate ship. We want something better than that for our daughter."`
-				goto search
 			
 			label search
 			`	As you are conversing a bearded man and a rough-looking teenage boy enter the bar and begin looking around the room. "That's our captain," she says. "Please, you have to help us. There's a service tunnel that connects to the back entrance of the bar. We can escape through there."`
-			`	You've heard of these service passageways: the most dangerous part of this lawless station, dimly lit and seldom travelled, except by drug addicts and prostitutes. This whole thing might just be a ruse to lure you into one, where they can attack you without anyone interfering. "No," says the boy, "if we head for the service tunnel, they'll be sure to notice us. Let's just stay at the table until they go away."`
+			`	You've heard of these service passageways: the most dangerous part of this lawless station, dimly lit and seldom traveled, except by drug addicts and prostitutes. This whole thing might just be a ruse to lure you into one, where they can attack you without anyone interfering. "No," says the boy, "if we head for the service tunnel, they'll be sure to notice us. Let's just stay at the table until they go away."`
 			`	The baby begins to cry, softly, and she bounces it gently, trying desperately to quiet it. "Shh. Shh." For the moment, it falls silent.`
 			choice
 				`	(Try the service tunnel.)`
@@ -155,7 +154,7 @@ mission "Smuggler's Den, Part 1"
 				decline
 			
 			label `tunnel`
-			`	The boy stands up. "Wait ten seconds, then head to the tunnel," he says. He walks into the bathroom, which is right next to back entrance that she pointed out. You wait for a few seconds, then stand up. "Don't run," says the girl. "Walk slowly. Pretend. You've had a bit too much to drink. We're headed out back to find some privacy." You don't dare look behind you to see if the men in the doorway are watching you.`
+			`	The boy stands up. "Wait ten seconds, then head to the tunnel," he says. He walks into the bathroom, which is right next to the back entrance that she pointed out. You wait for a few seconds, then stand up. "Don't run," says the girl. "Walk slowly. Pretend. You've had a bit too much to drink. We're headed out back to find some privacy." You don't dare look behind you to see if the men in the doorway are watching you.`
 			`	Finally, you reach the back entrance, and she spins the wheel to unlock it. The hinges squeal, but it opens enough for you to squeeze through. You find yourselves in a narrow corridor lit only by flickering sodium lamps. In the yellow lamplight her face and hands look pale, jaundiced. The floor of the corridor is littered with beer bottles and discarded hypodermic needles. To one side of the door are several over-stuffed trash cans. As you step into the corridor, a rat scurries away into the darkness.`
 			`	A few second later, watching through the open airlock, you see the boy walk out of the bathroom. He can't help stealing a quick glance towards the men in the doorway, after which he quickly ducks through the airlock and slams the door shut. "Run!" he whispers.`
 			`	You begin running down the corridor, in the direction of your ship. You pass a man, slumped over in a corner; there is no time to see if he is dead, or just sleeping. In places the lights have gone out, and it is so dim that you can barely see the floor beneath you. Your footsteps pounding on the metal decking ring terribly loud up and down the empty hallway.`
@@ -416,23 +415,23 @@ mission "Transport Workers C"
 
 mission "WR Star 1"
 	name "Star Research"
-	description "Fly through the Ildaria system with this team of scientists, then return them to <destination>."
+	description "Fly through the <waypoints> system with this team of scientists, then return them to <destination>."
 	minor
 	source
-		attributes deep
-		attributes urban research
-	waypoint Ildaria
+		attributes "deep"
+		attributes "urban" "research"
+	waypoint "Ildaria"
 	to offer
 		random < 20
 	passengers 3
 	cargo "sensors" 2
 	
 	on offer
-		dialog `A group of scientists approaches you and asks if you will be headed to the Rim any time soon. "We're doing research on Wolf-Rayet stars," they explain, "and we're hoping to find a captain who can do a fly-by of Ildaria." Scientific research in the Deep is notoriously well-funded, so they will probably pay you quite well.`
+		dialog `A group of scientists approaches you and asks if you will be headed to the Rim any time soon. "We're doing research on Wolf-Rayet stars," they explain, "and we're hoping to find a captain who can do a fly-by of <waypoints>." Scientific research in the Deep is notoriously well-funded, so they will probably pay you quite well.`
 	
 	on complete
 		payment 250000
-		dialog `The team of scientists thanks you for bringing them to Ildaria and back, and pays you <payment>. They seem eager to get back to their lab and start analyzing their measurements.`
+		dialog `The team of scientists thanks you for bringing them to <waypoints> and back, and pays you <payment>. They seem eager to get back to their lab and start analyzing their measurements.`
 
 
 
@@ -441,7 +440,7 @@ mission "Deep Archaeology 1"
 	description "Drop this archaeologist off on <destination>, before making a trip to Midgard in the Deep to collect some samples."
 	minor
 	source
-		attributes paradise north "near earth"
+		attributes "paradise" "north" "near earth"
 		near Miaplacidus 1 20
 	destination Vinci
 	to offer
@@ -1225,7 +1224,7 @@ mission "Rim Archaeology 5B"
 
 event "rim archaeology results"
 	planet Zug
-		attributes rim farming factory tourism
+		add attributes "tourism"
 		description `Zug is a pleasant world of rolling hills, fertile fields, and a few small oceans. Hundreds of millions of people live here, with more immigrants arriving every day, almost faster than the construction industry can keep up with them. In addition to the larger cities, many people live in smaller farming villages, making this one of the few worlds in the region that is truly self-sufficient both in industry and in agriculture.`
 		description `	The largest industry on Zug is Southbound Shipyards. However, in the wake of some extraordinary archaeological discoveries of a lost civilization, Zug has suddenly also become a popular destination for tourists.`
 
@@ -1235,7 +1234,7 @@ mission "Rim Archaeology 6"
 	landing
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
-		near Sol 100
+		near "Sol" 100
 		attributes spaceport
 	to offer
 		has "event: rim archaeology results"
@@ -1258,7 +1257,7 @@ mission "Drug Running 1"
 	source
 		attributes "near earth" "dirt belt" "north"
 	destination
-		attributes paradise
+		attributes "paradise"
 		distance 1 100
 	cargo "illegal drugs" 5 2 .1
 		illegal 40000
@@ -1289,7 +1288,7 @@ mission "Drug Running 2"
 	source
 		attributes "near earth" "dirt belt" "north"
 	destination
-		attributes rich
+		attributes "rich"
 		distance 1 100
 	cargo "illegal drugs" 5 2 .1
 		illegal 50000
@@ -1315,7 +1314,7 @@ mission "Drug Running 3"
 	source
 		attributes "near earth" "dirt belt" "north"
 	destination
-		attributes urban
+		attributes "urban"
 		distance 1 100
 	cargo "illegal drugs" 5 2 .1
 		illegal 70000
@@ -1346,7 +1345,6 @@ effect "puff"
 	"velocity scale" -.005
 
 outfit "Imaginary Weapon"
-	category "Missiles"
 	"gun ports" -1
 	weapon
 		sprite "projectile/rainbow"
@@ -1417,11 +1415,11 @@ mission "Rescue Miners 1"
 	name "Rescue Miners"
 	minor
 	source
-		attributes core
-		attributes urban
+		attributes "core"
+		attributes "urban"
 	destination
-		attributes core
-		attributes mining
+		attributes "core"
+		attributes "mining"
 		distance 1 100
 	passengers 15
 	cargo "emergency supplies" 15
@@ -1439,8 +1437,8 @@ mission "Rescue Miners 2"
 	name "Rescue Miners"
 	minor
 	destination
-		attributes core
-		attributes urban
+		attributes "core"
+		attributes "urban"
 		distance 2 10
 	passengers 15
 	to offer
@@ -1535,7 +1533,7 @@ mission "Courier 4"
 	destination
 		distance 7 14
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
-		attributes rich
+		attributes "rich"
 	on offer
 		conversation
 			`A man wearing a very complicated hat waves to you from the other side of a landing pad. "Yoo-hoo, Captain!" he says. "I have a courier mission for you if you're interested."`
@@ -1749,6 +1747,7 @@ ship Asteroid
 		"thrusting energy" 1
 		"turning energy" 1
 		"energy generation" 3
+    "inscrutable" 1
 	explode "small explosion" 25
 	explode "medium explosion" 35
 	explode "large explosion" 45
@@ -1777,7 +1776,7 @@ mission "Terraforming 3"
 				`	"Are you suggesting melting the ice caps somehow?"`
 					goto melting
 			label rotate
-			`	"Of course not," she says. But what we can do is introduce a sudden variation in the planet's climate that will allow water to be distributed more evenly across the surface again."`
+			`	"Of course not," she says. "But what we can do is introduce a sudden variation in the planet's climate that will allow water to be distributed more evenly across the surface again."`
 				goto danger
 			label melting
 			`	"That would be the traditional terraforming approach," she says, "using orbital mirrors, or geothermal power, or something similar to evaporate the ice caps at a faster rate than new ice is being deposited. That approach would take a century or so."`
@@ -2178,8 +2177,12 @@ mission "A wolf, a goat, and a cabbage"
 	cargo "wolf" 1
 	
 	on enter
+	on enter
 		dialog
-			`As soon as you take off, you hear a worrisome munching sound from the cargo hold, followed by a horrific shrieking bleating noise and then an equally horrific silence. Turning on your cargo hold's security camera, you discover that there is nothing left of the goat and the cabbage that you were transporting except a few scraps of cabbage, some bones, and a lot of blood.`
+			`You hear a strange crunching sound coming from your cargo hold.`
+	on enter
+		dialog
+			`The worrisome munching sound in your ship's hold is followed by a horrific shrieking bleating noise and then an equally horrific silence. Turning on your cargo hold's security camera, you discover that there is nothing left of the goat and the cabbage that you were transporting except a few scraps of cabbage, some bones, and a lot of blood.`
 			`	Meanwhile, the wolf is calmly gnawing on what you suspect is the goat's femur, with a rather self-satisfied look in its eyes. Apparently the goat ate the cabbage, and shortly after that the wolf ate the goat.`
 	
 	on complete
@@ -2192,9 +2195,9 @@ mission "A wolf, a goat, and a cabbage"
 
 mission "Terminus exploration"
 	name "Missing drone"
-	description "Travel to the Terminus system to see if you can find any sign of a probe drone that had been launched by a team of scientists before they were attacked by pirates and forced to flee."
-	source Bounty
-	waypoint Terminus
+	description "Travel to the <waypoints> system to see if you can find any sign of a probe drone that had been launched by a team of scientists before they were attacked by pirates and forced to flee."
+	source "Bounty"
+	waypoint "Terminus"
 	to offer
 		"combat rating" > 20
 	on offer
@@ -2215,14 +2218,14 @@ mission "Terminus exploration"
 			`	"Thank you so much!" he says. "All I need you to do is board the drone and download its database. Unless the pirates have already stripped out the computer, of course. The drone is in the Terminus system, a few jumps away from here."`
 				accept
 	npc assist
-		system Terminus
-		government Uninhabited
+		system "Terminus"
+		government "Uninhabited"
 		personality derelict target
 		ship "Science Drone" "Beagle"
 		dialog `You board the science drone and discover that the pirates have stripped just about everything of value from it: the engines, the sensors, and the fuel cell that powered it. But the computer system is either too deeply integrated into the drone, or too specialized, to be of any value to the pirates. You transfer enough power to the drone's batteries to reactivate it, and are able to retrieve the data that the scientist was looking for. But it's clear that this drone, or what's left of it, is not going anywhere. You'll have to leave it behind.`
 	npc
-		system Terminus
-		government Pirate
+		system "Terminus"
+		government "Pirate"
 		personality staying
 		fleet "Small Southern Pirates" 2
 	on complete

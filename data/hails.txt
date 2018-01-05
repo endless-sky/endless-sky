@@ -1997,6 +1997,37 @@ phrase "friendly pirate"
 		" I know I should have installed more interference plating."
 		" If only I was strong enough to stand up to them."
 
+phrase "friendly author"
+	word
+		"This game "
+		"Endless Sky "
+	word
+		"is open source. You can "
+	word
+		"help out "
+		"improve the game "
+		"get involved "
+		"help make it a better game "
+		"assist us "
+		"make your mark on the universe "
+		"give back to the community "
+	word
+		"by contributing "
+	word
+		"detailed bug reports."
+		"typo fixes."
+		"constructive feedback."
+		"ideas for improvements."
+		"landscape photos."
+		"artwork."
+		"new ships of your own design."
+		"plugins."
+		"new special missions."
+		"new weapons or other outfits."
+		"improved planet descriptions."
+		"more varied hail messages."
+
+
 phrase "friendly disabled"
 	word
 		"Our ship has been disabled! Please come board our ship and patch us up!"
@@ -2410,6 +2441,115 @@ phrase "hostile navy"
 		"terminate you"
 	word
 		"."
+
+
+phrase "friendly deep"
+	word
+		"We"
+		"Our ships"
+		"Our security forces"
+		"Our fleets"
+		"Our forces"
+	word
+		" "
+	word
+		""
+		""
+		""
+		"are called to "
+		"are diligent to "
+		"must constantly "
+		"diligently "
+		"always "
+		"must "
+		"shall "
+	word
+		"defend against"
+		"hold back"
+		"keep watch for"
+		"protect you from"
+		"patrol for"
+		"look out for"
+		"ferret out"
+	word
+		" "
+	word
+		""
+		""
+		""
+		"the forces of "
+		"perpetrators of "
+		"those who bring "
+		"the ones who serve "
+		"agents of "
+	word
+		"mere anarchy"
+		"chaos"
+		"disruption"
+		"piracy"
+		"social regression"
+		"corruption"
+	word
+		"."
+
+phrase "hostile deep"
+	word
+		"You must"
+		"Please"
+		"Surely you"
+		"You ought to"
+	word
+		" "
+	word
+		"realize"
+		"recognize"
+		"understand"
+		"comprehend"
+		"admit"
+		"see"
+	word
+		" "
+	word
+		"that"
+		"how"
+		"the truth, that"
+	word
+		" your "
+	word
+		"deeds"
+		"actions"
+		"misdeeds"
+		"crimes"
+		"breaches of the law"
+	word
+		" "
+	word
+		"weaken"
+		"disrupt"
+		"tear at"
+		"harm"
+		"unsettle"
+	word
+		" the "
+	word
+		"fabric"
+		"balance"
+		"common good"
+		"cohesion"
+		"unity"
+		"health"
+	word
+		" of "
+	word
+		"our society"
+		"civilization"
+		"the commonwealth"
+		"society"
+		"our civilization"
+		"human society"
+	word
+		"."
+
 
 phrase "hostile pirate"
 	word
@@ -2888,7 +3028,7 @@ phrase "hostile syndicate"
 	word
 		"like you!"
 
-phrase "hostile Syndicate"
+phrase "hostile syndicate"
 	word
 		"You are attacking the Syndicate; we must defend it."
 		"You have made a bad commercial move."

@@ -90,6 +90,9 @@ public:
 	// Get the name of the ambient audio to play in this system.
 	const std::string &MusicName() const;
 	
+	// Get the list of "attributes" of the planet.
+	const std::set<std::string> &Attributes() const;
+	
 	// Get a list of systems you can travel to through hyperspace from here.
 	const std::set<const System *> &Links() const;
 	// Get a list of systems you can "see" from here, whether or not there is a
@@ -107,6 +110,9 @@ public:
 	double HabitableZone() const;
 	// Get the radius of the asteroid belt.
 	double AsteroidBelt() const;
+	// Get the rate of solar collection and ramscoop refueling.
+	double SolarPower() const;
+	double SolarWind() const;
 	// Check if this system is inhabited.
 	bool IsInhabited(const Ship *ship) const;
 	// Check if ships of the given government can refuel in this system.
@@ -171,13 +177,18 @@ private:
 	// proper position before that object is updated).
 	std::vector<StellarObject> objects;
 	std::vector<Asteroid> asteroids;
-	const Sprite *haze;
+	const Sprite *haze = nullptr;
 	std::vector<FleetProbability> fleets;
 	double habitable = 1000.;
 	double asteroidBelt = 1500.;
+	double solarPower = 0.;
+	double solarWind = 0.;
 	
 	// Commodity prices.
 	std::map<std::string, Price> trade;
+	
+	// Attributes, for use in location filters.
+	std::set<std::string> attributes;
 };
 
 

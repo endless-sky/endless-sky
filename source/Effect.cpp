@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "DataNode.h"
-#include "Random.h"
 
 using namespace std;
 
@@ -53,38 +52,4 @@ void Effect::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-}
-
-
-
-// If creating a new effect, the animation and lifetime are copied,
-// but position, velocity, and angle are specific to this new effect.
-void Effect::Place(Point pos, Point vel, Angle facing, Point hitVelocity)
-{
-	angle = facing + Angle::Random(randomAngle) - Angle::Random(randomAngle);
-	spin = Angle::Random(randomSpin) - Angle::Random(randomSpin);
-	
-	position = pos;
-	velocity = (vel - hitVelocity) * velocityScale + hitVelocity
-		+ angle.Unit() * Random::Real() * randomVelocity;
-	
-	if(sound)
-		Audio::Play(sound, position);
-	
-	if(randomFrameRate)
-		AddFrameRate(randomFrameRate * Random::Real());
-}
-
-
-
-// This returns false if it is time to delete this effect.
-bool Effect::Move()
-{
-	if(lifetime-- <= 0)
-		return false;
-	
-	position += velocity;
-	angle += spin;
-	
-	return true;
 }
