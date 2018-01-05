@@ -37,6 +37,10 @@ class System;
 // the player the next time they land  on a planet after that event happens.
 class GameEvent {
 public:
+	GameEvent() = default;
+	// Construct and Load() at the same time.
+	GameEvent(const DataNode &node);
+	
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
 	const std::string &Name() const;

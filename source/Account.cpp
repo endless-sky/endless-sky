@@ -55,10 +55,7 @@ void Account::Load(const DataNode &node)
 		else if(child.Token(0) == "score" && child.Size() >= 2)
 			creditScore = child.Value(1);
 		else if(child.Token(0) == "mortgage")
-		{
-			mortgages.push_back(Mortgage(0, 0, 0));
-			mortgages.back().Load(child);
-		}
+			mortgages.emplace_back(child);
 		else if(child.Token(0) == "history")
 			for(const DataNode &grand : child)
 				history.push_back(grand.Value(0));

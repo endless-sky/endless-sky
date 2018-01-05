@@ -107,6 +107,14 @@ namespace {
 
 
 
+// Construct and Load() at the same time.
+MissionAction::MissionAction(const DataNode &node, const string &missionName)
+{
+	Load(node, missionName);
+}
+
+
+
 void MissionAction::Load(const DataNode &node, const string &missionName)
 {
 	if(node.Size() >= 2)
