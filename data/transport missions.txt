@@ -1881,7 +1881,6 @@ mission "A wolf, a goat, and a cabbage"
 	cargo "wolf" 1
 	
 	on enter
-	on enter
 		dialog
 			`You hear a strange crunching sound coming from your cargo hold.`
 	on enter
