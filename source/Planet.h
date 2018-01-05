@@ -40,6 +40,7 @@ class Planet {
 public:
 	// Load a planet's description from a file.
 	void Load(const DataNode &node);
+	bool IsValid() const;
 	
 	// Get the name of the planet (all wormholes use the same name).
 	// When saving missions or writing the player's save, the reference name
@@ -134,6 +135,7 @@ public:
 	
 	
 private:
+	bool isLoaded = false;
 	std::string name;
 	std::string description;
 	std::string spaceport;

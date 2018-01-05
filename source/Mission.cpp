@@ -404,14 +404,14 @@ bool Mission::IsVisible() const
 bool Mission::IsValid() const
 {
 	// Planets must be defined and in a system. A source system does not necessarily exist.
-	if(source && (source->Name().empty() || !source->GetSystem()))
+	if(source && !source->IsValid())
 		return false;
 	// Every mission is required to have a destination.
-	if(destination->Name().empty() || !destination->GetSystem())
+	if(!destination->IsValid())
 		return false;
 	for(const set<const Planet *> &usedPlanets : {stopovers, visitedStopovers})
 		for(const Planet *planet : usedPlanets)
-			if(planet->Name().empty() || !planet->GetSystem())
+			if(!planet->IsValid())
 				return false;
 	// Systems must have a name and a non-default position.
 	for(const set<const System *> &usedSystems : {waypoints, visitedWaypoints, didEnter})

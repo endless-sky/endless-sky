@@ -54,6 +54,9 @@ void Planet::Load(const DataNode &node)
 	if(node.Size() < 2)
 		return;
 	name = node.Token(1);
+	// The planet's name is needed to save references to this object, so a
+	// flag is used to test whether Load() was called at least once for it.
+	isLoaded = true;
 	
 	// If this planet has been loaded before, these sets of items should be
 	// reset instead of appending to them:
@@ -224,6 +227,14 @@ void Planet::Load(const DataNode &node)
 	// Precalculate commonly used values that can only change due to Load().
 	inhabited = (HasSpaceport() || requiredReputation || !defenseFleets.empty()) && !attributes.count("uninhabited");
 	SetRequiredAttributes(Attributes(), requiredAttributes);
+}
+
+
+
+// Test if this planet has been loaded, or just referred to.
+bool Planet::IsValid() const
+{
+	return isLoaded && GetSystem() && GetSystem()->Position();
 }
 
 

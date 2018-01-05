@@ -1913,7 +1913,7 @@ void PlayerInfo::Visit(const System *system)
 // Mark the given planet as visited.
 void PlayerInfo::Visit(const Planet *planet)
 {
-	if(planet && !planet->TrueName().empty())
+	if(planet && planet->IsValid())
 		visitedPlanets.insert(planet);
 }
 
@@ -2339,7 +2339,7 @@ void PlayerInfo::ApplyChanges()
 	// them to the starting system to avoid crashing.
 	if(planet && !system)
 		system = planet->GetSystem();
-	if(!planet || planet->Name().empty() || !system || system->Name().empty())
+	if(!planet || !planet->IsValid() || !system || !system->Position())
 	{
 		system = GameData::Start().GetSystem();
 		planet = GameData::Start().GetPlanet();
