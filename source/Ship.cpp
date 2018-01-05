@@ -1441,8 +1441,10 @@ void Ship::DoGeneration()
 		// Add to this ship's heat based on how much repair was actually done.
 		// This can be done at the end of everything else because unlike energy,
 		// heat does not limit how much repair can actually be done.
-		heat += (hullAvailable - hullRemaining) * hullHeat / hullAvailable;
-		heat += (shieldsAvailable - shieldsRemaining) * shieldsHeat / shieldsAvailable;
+		if(hullAvailable)
+			heat += (hullAvailable - hullRemaining) * hullHeat / hullAvailable;
+		if(shieldsAvailable)
+			heat += (shieldsAvailable - shieldsRemaining) * shieldsHeat / shieldsAvailable;
 	}
 	// Handle ionization effects, etc.
 	if(ionization)
@@ -2258,7 +2260,7 @@ double Ship::IdleHeat() const
 	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool)
 	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
 	double production = max(0., attributes.Get("heat generation") - cooling);
-	double dissipation = HeatDissipation() + activeCooling / (cargo.Used() + attributes.Mass());
+	double dissipation = HeatDissipation() + activeCooling / MaximumHeat();
 	return production / dissipation;
 }
 
