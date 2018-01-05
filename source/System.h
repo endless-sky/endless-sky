@@ -96,7 +96,8 @@ public:
 	void Unlink(System *other);
 	
 	// Get this system's name and position (in the star map).
-	const std::string &Name(bool evenIfUndefined = false) const;
+	const std::string &Name() const;
+	void SetName(const std::string &name);
 	const Point &Position() const;
 	// Get this system's government.
 	const Government *GetGovernment() const;

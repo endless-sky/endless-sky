@@ -256,7 +256,7 @@ void NPC::Save(DataWriter &out) const
 		}
 		
 		if(government)
-			out.Write("government", government->GetTrueName(true));
+			out.Write("government", government->GetTrueName());
 		personality.Save(out);
 		
 		if(!dialogText.empty())

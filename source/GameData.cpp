@@ -128,6 +128,19 @@ namespace {
 	map<const Sprite *, int> preloaded;
 	
 	const Government *playerGovernment = nullptr;
+	
+	// Overload for those objects that don't get written to a save (and thus do not need SetName).
+	void Warn(const string &noun, const string &name)
+	{
+		Files::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but never defined.");
+	}
+	// Set the name of an undefined class object, so that it can be written to the player's save.
+	template <class Type>
+	void NameAndWarn(const string &noun, Type &it)
+	{
+		it.second.SetName(it.first);
+		Warn(noun, it.first);
+	}
 }
 
 
@@ -228,7 +241,9 @@ bool GameData::BeginLoad(const char * const *argv)
 
 
 
-// Check for objects that are referred to but never defined.
+// Check for objects that are referred to but never defined. Some elements, like
+// fleets, don't need to be given a name if undefined. Others (like outfits and
+// planets) are written to the player's save and need a name to prevent data loss.
 void GameData::CheckReferences()
 {
 	// Parse all GameEvents for object definitions & references.
@@ -243,12 +258,14 @@ void GameData::CheckReferences()
 		"shipyard",
 		"system"
 	};
-	for(const auto &it : events)
+	for(auto &&it : events)
 	{
+		// Pending events are serialized.
 		if(it.second.Name().empty())
-			Files::LogError("Warning: event \"" + it.first + "\" is referred to, but never defined.");
+			NameAndWarn("event", it);
 		else
 		{
+			// Any already-named event (i.e. loaded) may alter the universe.
 			for(const DataNode &node : it.second.Changes())
 				if(node.Size() >= 2)
 				{
@@ -259,45 +276,65 @@ void GameData::CheckReferences()
 		}
 	}
 	
+	// Stock conversations are never serialized.
 	for(const auto &it : conversations)
 		if(it.second.IsEmpty())
-			Files::LogError("Warning: conversation \"" + it.first + "\" is referred to, but never defined.");
-	for(const auto &it : effects)
+			Warn("conversation", it.first);
+	// Effects are serialized as a part of ships.
+	for(auto &&it : effects)
 		if(it.second.Name().empty())
-			Files::LogError("Warning: effect \"" + it.first + "\" is referred to, but never defined.");
+			NameAndWarn("effect", it);
+	// Fleets are not serialized. Any changes via events are written as DataNodes and thus self-define.
 	for(const auto &it : fleets)
 		if(!it.second.GetGovernment() && !deferred["fleet"].count(it.first))
-			Files::LogError("Warning: fleet \"" + it.first + "\" is referred to, but never defined.");
-	for(const auto &it : governments)
+			Warn("fleet", it.first);
+	// Government names are used in mission NPC blocks and LocationFilters.
+	for(auto &&it : governments)
 		if(it.second.GetTrueName().empty() && !deferred["government"].count(it.first))
-			Files::LogError("Warning: government \"" + it.first + "\" is referred to, but never defined.");
+			NameAndWarn("government", it);
+	// Minables are not serialized.
 	for(const auto &it : minables)
 		if(it.second.Name().empty())
-			Files::LogError("Warning: minable \"" + it.first + "\" is referred to, but never defined.");
+			Warn("minable", it.first);
+	// Stock missions are never serialized, and an accepted mission is
+	// always fully defined (though possibly not "valid").
 	for(const auto &it : missions)
 		if(it.second.Name().empty())
-			Files::LogError("Warning: mission \"" + it.first + "\" is referred to, but never defined.");
-	for(const auto &it : outfits)
+			Warn("mission", it.first);
+	
+	// News are never serialized or named, except by events (which would then define them).
+	
+	// Outfit names are used by a number of classes.
+	for(auto &&it : outfits)
 		if(it.second.Name().empty())
-			Files::LogError("Warning: outfit \"" + it.first + "\" is referred to, but never defined.");
+			NameAndWarn("outfit", it);
+	// Outfitters are never serialized.
 	for(const auto &it : outfitSales)
 		if(it.second.empty() && !deferred["outfitter"].count(it.first))
 			Files::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
+	// Phrases are never serialized.
 	for(const auto &it : phrases)
 		if(it.second.Name().empty())
-			Files::LogError("Warning: phrase \"" + it.first + "\" is referred to, but never defined.");
-	for(const auto &it : planets)
+			Warn("phrase", it.first);
+	// Planet names are used by a number of classes.
+	for(auto &&it : planets)
 		if(it.second.TrueName().empty() && !deferred["planet"].count(it.first))
-			Files::LogError("Warning: planet \"" + it.first + "\" is referred to, but never defined.");
-	for(const auto &it : ships)
+			NameAndWarn("planet", it);
+	// Ship model names are used by missions and depreciation.
+	for(auto &&it : ships)
 		if(it.second.ModelName().empty())
-			Files::LogError("Warning: ship \"" + it.first + "\" is referred to, but never defined.");
+		{
+			it.second.SetModelName(it.first);
+			Warn("ship", it.first);
+		}
+	// Shipyards are never serialized.
 	for(const auto &it : shipSales)
 		if(it.second.empty() && !deferred["shipyard"].count(it.first))
 			Files::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
-	for(const auto &it : systems)
+	// System names are used by a number of classes.
+	for(auto &&it : systems)
 		if(it.second.Name().empty() && !deferred["system"].count(it.first))
-			Files::LogError("Warning: system \"" + it.first + "\" is referred to, but never defined.");
+			NameAndWarn("system", it);
 }
 
 

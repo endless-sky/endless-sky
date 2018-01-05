@@ -148,14 +148,16 @@ const string &Government::GetName() const
 
 
 
-// Get the name used for this government in the data files.
-const string &Government::GetTrueName(bool evenIfUndefined) const
+// Set / Get the name used for this government in the data files.
+void Government::SetName(const string &trueName)
 {
-	if(name.empty() && evenIfUndefined)
-		for(const auto &it : GameData::Governments())
-			if(&it.second == this)
-				return it.first;
-	
+	this->name = trueName;
+}
+
+
+
+const string &Government::GetTrueName() const
+{
 	return name;
 }
 

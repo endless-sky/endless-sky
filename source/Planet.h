@@ -45,9 +45,10 @@ public:
 	// When saving missions or writing the player's save, the reference name
 	// associated with this planet is used even if the planet was not fully
 	// defined (i.e. it belongs to an inactive plugin).
-	const std::string &Name(bool evenIfUndefined = false) const;
+	const std::string &Name() const;
+	void SetName(const std::string &name);
 	// Get the name used for this planet in the data files.
-	const std::string &TrueName(bool evenIfUndefined = false) const;
+	const std::string &TrueName() const;
 	// Get the planet's descriptive text.
 	const std::string &Description() const;
 	// Get the landscape sprite.

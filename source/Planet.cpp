@@ -229,29 +229,27 @@ void Planet::Load(const DataNode &node)
 
 
 // Get the name of the planet.
-const string &Planet::Name(bool evenIfUndefined) const
+const string &Planet::Name() const
 {
 	static const string UNKNOWN = "???";
 	if(IsWormhole())
 		return UNKNOWN;
-	else if(name.empty() && evenIfUndefined)
-		for(const auto &it : GameData::Planets())
-			if(&it.second == this)
-				return it.first;
 	
 	return name;
 }
 
 
 
-// Get the name used for this planet in the data files.
-const string &Planet::TrueName(bool evenIfUndefined) const
+void Planet::SetName(const string &name)
 {
-	if(name.empty() && evenIfUndefined)
-		for(const auto &it : GameData::Planets())
-			if(&it.second == this)
-				return it.first;
-	
+	this->name = name;
+}
+
+
+
+// Get the name used for this planet in the data files.
+const string &Planet::TrueName() const
+{
 	return name;
 }
 

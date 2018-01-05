@@ -579,7 +579,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			string warning = modelName;
 			if(!name.empty())
 				warning += " \"" + name + "\"";
-			warning += ": outfit \"" + it.first->Name(true) + "\" equipped but not included in outfit list.";
+			warning += ": outfit \"" + it.first->Name() + "\" equipped but not included in outfit list.";
 			Files::LogError(warning);
 		}
 		else if(!it.first->IsWeapon())
@@ -590,7 +590,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			string warning = modelName;
 			if(!name.empty())
 				warning += " \"" + name + "\"";
-			warning += ": outfit \"" + it.first->Name(true) + "\" is not a weapon, but is installed as one.";
+			warning += ": outfit \"" + it.first->Name() + "\" is not a weapon, but is installed as one.";
 			Files::LogError(warning);
 		}
 	}
@@ -617,7 +617,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		if(it.first->Name().empty())
 		{
-			undefinedOutfits.emplace("\"" + it.first->Name(true) + "\"");
+			undefinedOutfits.emplace("\"" + it.first->Name() + "\"");
 			continue;
 		}
 		attributes.Add(*it.first, it.second);
@@ -657,10 +657,10 @@ void Ship::FinishLoading(bool isNewInstance)
 			string warning = modelName;
 			if(!name.empty())
 				warning += " \"" + name + "\"";
-			warning += ": outfit \"" + outfit->Name(true) + "\" installed as a ";
+			warning += ": outfit \"" + outfit->Name() + "\" installed as a ";
 			warning += (hardpoint.IsTurret() ? "turret but is a gun.\n\tturret" : "gun but is a turret.\n\tgun");
 			warning += to_string(2. * hardpoint.GetPoint().X()) + " " + to_string(2. * hardpoint.GetPoint().Y());
-			warning += " \"" + outfit->Name(true) + "\"";
+			warning += " \"" + outfit->Name() + "\"";
 			Files::LogError(warning);
 		}
 	}
@@ -800,9 +800,9 @@ void Ship::Save(DataWriter &out) const
 					{ return lhs->first->Name() < rhs->first->Name(); },
 				[&out](const OutfitElement &it){
 					if(it.second == 1)
-						out.Write(it.first->Name(true));
+						out.Write(it.first->Name());
 					else
-						out.Write(it.first->Name(true), it.second);
+						out.Write(it.first->Name(), it.second);
 				});
 		}
 		out.EndChild();
@@ -848,7 +848,7 @@ void Ship::Save(DataWriter &out) const
 			const char *type = (hardpoint.IsTurret() ? "turret" : "gun");
 			if(hardpoint.GetOutfit())
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y(),
-					hardpoint.GetOutfit()->Name(true));
+					hardpoint.GetOutfit()->Name());
 			else
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y());
 			double hardpointAngle = hardpoint.GetBaseAngle().Degrees();
@@ -903,15 +903,16 @@ void Ship::Save(DataWriter &out) const
 		});
 		
 		if(currentSystem)
-			out.Write("system", currentSystem->Name(true));
+			out.Write("system", currentSystem->Name());
 		else
 		{
+			// A carried ship is saved in its carrier's system.
 			shared_ptr<const Ship> parent = GetParent();
 			if(parent && parent->currentSystem)
-				out.Write("system", parent->currentSystem->Name(true));
+				out.Write("system", parent->currentSystem->Name());
 		}
 		if(landingPlanet)
-			out.Write("planet", landingPlanet->TrueName(true));
+			out.Write("planet", landingPlanet->TrueName());
 		if(targetSystem && !targetSystem->Name().empty())
 			out.Write("destination system", targetSystem->Name());
 		if(isParked)
@@ -929,15 +930,16 @@ const string &Ship::Name() const
 
 
 
-// Get the name of this class of ships, e.g. "Marauder Raven." If this class was
-// referenced somewhere but not actually loaded, GameData can supply the name.
-const string &Ship::ModelName(bool evenIfUndefined) const
+// Set / Get the name of this class of ships, e.g. "Marauder Raven."
+void Ship::SetModelName(const string &model)
 {
-	if(modelName.empty() && evenIfUndefined)
-		for(const auto &it : GameData::Ships())
-			if(&it.second == this)
-				return it.first;
-	
+	this->modelName = model;
+}
+
+
+
+const string &Ship::ModelName() const
+{
 	return modelName;
 }
 

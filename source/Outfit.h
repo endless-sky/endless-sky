@@ -46,7 +46,8 @@ public:
 	// "attributes" node.
 	void Load(const DataNode &node);
 	
-	const std::string &Name(bool evenIfUndefined = false) const;
+	const std::string &Name() const;
+	void SetName(const std::string &name);
 	const std::string &PluralName() const;
 	const std::string &Category() const;
 	const std::string &Description() const;

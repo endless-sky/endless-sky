@@ -131,8 +131,9 @@ public:
 	// Get the name of this particular ship.
 	const std::string &Name() const;
 	
-	// Get the name of this model of ship.
-	const std::string &ModelName(bool evenIfUndefined = false) const;
+	// Set / Get the name of this model of ship.
+	void SetModelName(const std::string &model);
+	const std::string &ModelName() const;
 	const std::string &PluralModelName() const;
 	// Get the name of this ship as a variant.
 	const std::string &VariantName() const;

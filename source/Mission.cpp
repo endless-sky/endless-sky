@@ -344,16 +344,16 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.EndChild();
 		}
 		if(destination)
-			out.Write("destination", destination->Name(true));
+			out.Write("destination", destination->Name());
 		for(const System *system : waypoints)
-			out.Write("waypoint", system->Name(true));
+			out.Write("waypoint", system->Name());
 		for(const System *system : visitedWaypoints)
-			out.Write("waypoint", system->Name(true), "visited");
+			out.Write("waypoint", system->Name(), "visited");
 		
 		for(const Planet *planet : stopovers)
-			out.Write("stopover", planet->TrueName(true));
+			out.Write("stopover", planet->TrueName());
 		for(const Planet *planet : visitedStopovers)
-			out.Write("stopover", planet->TrueName(true), "visited");
+			out.Write("stopover", planet->TrueName(), "visited");
 		
 		for(const NPC &npc : npcs)
 			npc.Save(out);
