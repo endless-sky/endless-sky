@@ -397,13 +397,13 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 
 
 
-MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, int payload) const
+MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin, int jumps, int payload) const
 {
 	MissionAction result;
 	result.trigger = trigger;
 	result.system = system;
 	// Convert any "distance" specifiers into "near <system>" specifiers.
-	result.systemFilter = systemFilter.SetOrigin(GameData::Planets().Get(subs["<origin>"])->GetSystem());
+	result.systemFilter = systemFilter.SetOrigin(origin);
 	
 	for(const auto &it : events)
 	{

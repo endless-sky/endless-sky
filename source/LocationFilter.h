@@ -69,9 +69,11 @@ private:
 	// The system must satisfy these conditions:
 	std::set<const System *> systems;
 	std::set<const Government *> governments;
+	// The reference point and distance limits of a "near <system>" filter.
 	const System *center = nullptr;
 	int centerMinDistance = 0;
 	int centerMaxDistance = 1;
+	// Distance limits used in a "distance" filter.
 	int originMinDistance = 0;
 	int originMaxDistance = -1;
 	

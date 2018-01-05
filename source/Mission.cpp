@@ -1060,11 +1060,11 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
 	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(subs, jumps, payload);
+		result.actions[it.first] = it.second.Instantiate(subs, player.GetSystem(), jumps, payload);
 	for(const auto &it : onEnter)
-		result.onEnter[it.first] = it.second.Instantiate(subs, jumps, payload);
+		result.onEnter[it.first] = it.second.Instantiate(subs, player.GetSystem(), jumps, payload);
 	for(const MissionAction &action : genericOnEnter)
-		result.genericOnEnter.emplace_back(action.Instantiate(subs, jumps, payload));
+		result.genericOnEnter.emplace_back(action.Instantiate(subs, player.GetSystem(), jumps, payload));
 	
 	// Perform substitution in the name and description.
 	result.displayName = Format::Replace(displayName, subs);
