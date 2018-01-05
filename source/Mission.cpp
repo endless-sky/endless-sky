@@ -344,12 +344,11 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			it.second.Save(out);
 		// Save any "on enter" actions that have not been performed.
 		for(const auto &it : onEnter)
-			if(!didEnter.count(it.first))
+			if(!didEnter.count(&it.second))
 				it.second.Save(out);
-		// Generic "on enter" actions are erased after being performed,
-		// so any that remain should be saved.
 		for(const MissionAction &action : genericOnEnter)
-			action.Save(out);
+			if(!didEnter.count(&action))
+				action.Save(out);
 	}
 	out.EndChild();
 }
@@ -1084,21 +1083,20 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 {
 	const auto &eit = onEnter.find(system);
-	if(eit != onEnter.end() && !didEnter.count(eit->first)
+	if(eit != onEnter.end() && !didEnter.count(&eit->second)
 			&& eit->second.CanBeDone(player))
 	{
 		eit->second.Do(player, ui);
-		didEnter.insert(eit->first);
+		didEnter.insert(&eit->second);
 	}
-	// If this system has not yet matched to an "on enter" action for this mission,
-	// consider matching a generic "on enter" to it. A generic "on enter" action
-	// may have a LocationFilter that governs which systems it can be performed in.
-	if(!genericOnEnter.empty() && !didEnter.count(system))
+	// If no specific `on enter` was performed, try matching to a generic "on enter,"
+	// which may use a LocationFilter to govern which systems it can be performed in.
+	else if(!genericOnEnter.empty())
 		for(auto it = genericOnEnter.begin(); it != genericOnEnter.end(); ++it)
-			if((*it).CanBeDone(player))
+			if(!didEnter.count(&*it) && (*it).CanBeDone(player))
 			{
 				(*it).Do(player, ui);
-				genericOnEnter.erase(it);
+				didEnter.insert(&*it);
 				break;
 			}
 }
