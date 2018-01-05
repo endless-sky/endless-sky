@@ -46,6 +46,10 @@ public:
 	bool Matches(const System *system, const System *origin = nullptr) const;
 	bool Matches(const Ship &ship) const;
 	
+	// Return a new LocationFilter with any "distance" conditions converted
+	// into "near" references, relative to the given system.
+	LocationFilter SetOrigin(const System *origin) const;
+	
 	
 private:
 	// Load one particular line of conditions.
@@ -65,9 +69,11 @@ private:
 	// The system must satisfy these conditions:
 	std::set<const System *> systems;
 	std::set<const Government *> governments;
+	// The reference point and distance limits of a "near <system>" filter.
 	const System *center = nullptr;
 	int centerMinDistance = 0;
 	int centerMaxDistance = 1;
+	// Distance limits used in a "distance" filter.
 	int originMinDistance = 0;
 	int originMaxDistance = -1;
 	

@@ -150,7 +150,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		else if(key == "require" && hasValue)
 		{
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
-			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;			
+			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
 		}
 		else if(key == "payment")
 		{
@@ -176,6 +176,13 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			// Create a GameData reference to this mission name.
 			GameData::Missions().Get(toFail);
 		}
+		else if(key == "system")
+		{
+			if(system.empty() && child.HasChildren())
+				systemFilter.Load(child);
+			else
+				child.PrintTrace("Unsupported use of \"system\" LocationFilter:");
+		}
 		else
 			conditions.Add(child);
 	}
@@ -193,6 +200,12 @@ void MissionAction::Save(DataWriter &out) const
 		out.Write("on", trigger, system);
 	out.BeginChild();
 	{
+		if(!systemFilter.IsEmpty())
+		{
+			out.Write("system");
+			// LocationFilter indentation is handled by its Save method.
+			systemFilter.Save(out);
+		}
 		if(!logText.empty())
 		{
 			out.Write("log");
@@ -299,15 +312,20 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 		for(const auto &ship : player.Ships())
 			available += ship->Cargo().Get(it.first);
 		if(flagship)
-			available += flagship->OutfitCount(it.first);		
+			available += flagship->OutfitCount(it.first);
 		
 		if(available < it.second)
 			return false;
 		
-		// If the required count is 0, the player must not have any of the outfit.	
+		// If the required count is 0, the player must not have any of the outfit.
 		if(it.second == 0 && available > 0)
 			return false;
 	}
+	
+	// An `on enter` MissionAction may have defined a LocationFilter that
+	// specifies the systems in which it can occur.
+	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player.GetSystem()))
+		return false;
 	return true;
 }
 
@@ -383,11 +401,13 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 
 
 
-MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, int payload) const
+MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin, int jumps, int payload) const
 {
 	MissionAction result;
 	result.trigger = trigger;
 	result.system = system;
+	// Convert any "distance" specifiers into "near <system>" specifiers.
+	result.systemFilter = systemFilter.SetOrigin(origin);
 	
 	for(const auto &it : events)
 	{
