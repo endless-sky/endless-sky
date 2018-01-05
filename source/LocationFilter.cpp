@@ -90,6 +90,14 @@ namespace {
 
 
 
+// Construct and Load() at the same time.
+LocationFilter::LocationFilter(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 void LocationFilter::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)

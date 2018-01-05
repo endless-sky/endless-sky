@@ -65,6 +65,14 @@ namespace {
 
 
 
+// Construct and Load() at the same time.
+Mission::Mission(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 // Load a mission, either from the game data or from a saved game.
 void Mission::Load(const DataNode &node)
 {
@@ -183,10 +191,7 @@ void Mission::Load(const DataNode &node)
 			set.insert(GameData::Systems().Get(child.Token(1)));
 		}
 		else if(child.Token(0) == "waypoint" && child.HasChildren())
-		{
-			waypointFilters.emplace_back();
-			waypointFilters.back().Load(child);
-		}
+			waypointFilters.emplace_back(child);
 		else if(child.Token(0) == "stopover" && child.Size() >= 2)
 		{
 			set<const Planet *> &set = (child.Size() >= 3 && child.Token(2) == "visited")
@@ -194,15 +199,9 @@ void Mission::Load(const DataNode &node)
 			set.insert(GameData::Planets().Get(child.Token(1)));
 		}
 		else if(child.Token(0) == "stopover" && child.HasChildren())
-		{
-			stopoverFilters.emplace_back();
-			stopoverFilters.back().Load(child);
-		}
+			stopoverFilters.emplace_back(child);
 		else if(child.Token(0) == "npc")
-		{
-			npcs.push_back(NPC());
-			npcs.back().Load(child);
-		}
+			npcs.emplace_back(child);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter
@@ -213,10 +212,7 @@ void Mission::Load(const DataNode &node)
 				action.Load(child, name);
 			}
 			else
-			{
-				genericOnEnter.emplace_back();
-				genericOnEnter.back().Load(child, name);
-			}
+				genericOnEnter.emplace_back(child, name);
 		}
 		else if(child.Token(0) == "on" && child.Size() >= 2)
 		{
