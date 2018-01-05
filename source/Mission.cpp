@@ -1083,20 +1083,19 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 {
 	const auto &eit = onEnter.find(system);
-	if(eit != onEnter.end() && !didEnter.count(&eit->second)
-			&& eit->second.CanBeDone(player))
+	if(eit != onEnter.end() && !didEnter.count(&eit->second) && eit->second.CanBeDone(player))
 	{
 		eit->second.Do(player, ui);
 		didEnter.insert(&eit->second);
 	}
 	// If no specific `on enter` was performed, try matching to a generic "on enter,"
 	// which may use a LocationFilter to govern which systems it can be performed in.
-	else if(!genericOnEnter.empty())
-		for(auto it = genericOnEnter.begin(); it != genericOnEnter.end(); ++it)
-			if(!didEnter.count(&*it) && (*it).CanBeDone(player))
+	else
+		for(MissionAction &action : genericOnEnter)
+			if(!didEnter.count(&action) && action.CanBeDone(player))
 			{
-				(*it).Do(player, ui);
-				didEnter.insert(&*it);
+				action.Do(player, ui);
+				didEnter.insert(&action);
 				break;
 			}
 }
