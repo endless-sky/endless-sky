@@ -1787,6 +1787,7 @@ mission "Terraforming 3"
 				"thrusting energy" 1
 				"turning energy" 1
 				"energy generation" 3
+				"inscrutable" 1
 			explode "small explosion" 25
 			explode "medium explosion" 35
 			explode "large explosion" 45
