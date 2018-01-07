@@ -303,7 +303,7 @@ mission "Expedition to Hope 2"
 
 mission "Transport Workers A"
 	name "Transport Family"
-	description "Transport this family to <destination>, where they hope that steady work will be more easy to come by."
+	description "Transport this family to <destination>, where they hope that steady work will be easier to come by."
 	minor
 	source
 		attributes "dirt belt"
