@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "BankPanel.h"
 #include "Command.h"
+#include "ConversationPanel.h"
 #include "Dialog.h"
 #include "GameData.h"
 #include "FontSet.h"
@@ -154,6 +155,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(key == 'p' && flagship && planet.HasSpaceport() && hasAccess)
 	{
 		selectedPanel = spaceport.get();
+		spaceport->UpdateNews();
 		GetUI()->Push(spaceport);
 	}
 	else if(key == 's' && planet.HasShipyard() && hasAccess)
@@ -214,6 +216,10 @@ void PlanetPanel::TakeOffIfReady()
 			&& !GetUI()->IsTop(spaceport.get()) && !GetUI()->IsTop(hiring.get()))
 		return;
 	
+	// If something happens here that cancels the order to take off, don't try
+	// to take off until the button is clicked again.
+	requestedLaunch = false;
+	
 	// Check for any landing missions that have not been offered.
 	Mission *mission = player.MissionToOffer(Mission::LANDING);
 	if(mission)
@@ -229,6 +235,22 @@ void PlanetPanel::TakeOffIfReady()
 		return;
 	}
 	
+	// Check if any of the player's ships are configured in such a way that they
+	// will be impossible to fly.
+	for(const shared_ptr<Ship> &ship : player.Ships())
+	{
+		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled() || ship->IsParked())
+			continue;
+		
+		string check = ship->FlightCheck();
+		if(!check.empty() && check.back() == '!')
+		{
+			GetUI()->Push(new ConversationPanel(player,
+				*GameData::Conversations().Get("flight check: " + check), nullptr, ship.get()));
+			return;
+		}
+	}
+	
 	// The checks that follow are typically cause by parking or selling
 	// ships or changing outfits.
 	const Ship *flagship = player.Flagship();
@@ -237,7 +259,7 @@ void PlanetPanel::TakeOffIfReady()
 	// ship can't hold the required crew, count it as having no fireable
 	// crew rather than a negative number.
 	const CargoHold &cargo = player.Cargo();
-	int overbooked = -cargo.Bunks() - max(0, flagship->Crew() - flagship->RequiredCrew());
+	int overbooked = -cargo.BunksFree() - max(0, flagship->Crew() - flagship->RequiredCrew());
 	int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
 	// Will you have to sell something other than regular cargo?
 	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
@@ -300,7 +322,6 @@ void PlanetPanel::TakeOffIfReady()
 		}
 		out << " Are you sure you want to continue?";
 		GetUI()->Push(new Dialog(this, &PlanetPanel::TakeOff, out.str()));
-		requestedLaunch = false;
 		return;
 	}
 	

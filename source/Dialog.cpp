@@ -34,11 +34,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const int WIDTH = 250;
+	const int WIDTH = 250;
 	
 	// Map any conceivable numeric keypad keys to their ASCII values. Most of
 	// these will presumably only exist on special programming keyboards.
-	static const map<SDL_Keycode, char> KEY_MAP = {
+	const map<SDL_Keycode, char> KEY_MAP = {
 		{SDLK_KP_0, '0'},
 		{SDLK_KP_1, '1'},
 		{SDLK_KP_2, '2'},
@@ -136,9 +136,9 @@ void Dialog::Draw()
 	pos.Y() += bottom->Height() * .5 - 25.;
 	
 	// Draw the buttons, including optionally the cancel button.
-	Color bright = *GameData::Colors().Get("bright");
-	Color dim = *GameData::Colors().Get("medium");
-	Color back = *GameData::Colors().Get("faint");
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &dim = *GameData::Colors().Get("medium");
+	const Color &back = *GameData::Colors().Get("faint");
 	if(canCancel)
 	{
 		string cancelText = isMission ? "Decline" : "Cancel";
@@ -180,7 +180,8 @@ void Dialog::Draw()
 bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	auto it = KEY_MAP.find(key);
-	if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun))
+	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
+	if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun) && !isCloseRequest)
 	{
 		int ascii = (it != KEY_MAP.end()) ? it->second : key;
 		char c = ((mod & KMOD_SHIFT) ? SHIFT[ascii] : ascii);
@@ -204,12 +205,13 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		okIsActive = !canCancel;
 	else if(key == SDLK_RIGHT)
 		okIsActive = true;
-	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER || (isMission && (key == 'a' || key == 'd')))
+	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER || isCloseRequest
+			|| (isMission && (key == 'a' || key == 'd')))
 	{
 		// Shortcuts for "accept" and "decline."
-		if(key == 'a')
+		if(key == 'a' || (!canCancel && isCloseRequest))
 			okIsActive = true;
-		if(key == 'd')
+		if(key == 'd' || (canCancel && isCloseRequest))
 			okIsActive = false;
 		if(okIsActive || isMission)
 			DoCallback();

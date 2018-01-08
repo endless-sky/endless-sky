@@ -25,17 +25,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 
 #include <cmath>
-#include <iostream>
 
 using namespace std;
 
 namespace {
-	static const double LINE_ANGLE[4] = {60., 120., 300., 240.};
-	static const double LINE_LENGTH = 60.;
-	static const double INNER_SPACE = 10.;
-	static const double LINE_GAP = 1.7;
-	static const double GAP = 6.;
-	static const double MIN_DISTANCE = 30.;
+	const double LINE_ANGLE[4] = {60., 120., 300., 240.};
+	const double LINE_LENGTH = 60.;
+	const double INNER_SPACE = 10.;
+	const double LINE_GAP = 1.7;
+	const double GAP = 6.;
+	const double MIN_DISTANCE = 30.;
 }
 
 
@@ -50,12 +49,9 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 	else if(planet.GetGovernment())
 	{
 		government = "(" + planet.GetGovernment()->GetName() + ")";
-		if(planet.CanLand())
-		{
-			color = planet.GetGovernment()->GetColor();
-			color = Color(color.Get()[0] * .5 + .3, color.Get()[1] * .5 + .3, color.Get()[2] * .5 + .3);
-		}
-		else
+		color = planet.GetGovernment()->GetColor();
+		color = Color(color.Get()[0] * .5 + .3, color.Get()[1] * .5 + .3, color.Get()[2] * .5 + .3);
+		if(!planet.CanLand())
 			hostility = 3 + 2 * planet.GetGovernment()->IsEnemy();
 	}
 	else

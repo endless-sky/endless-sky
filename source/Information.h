@@ -28,10 +28,10 @@ class Sprite;
 // of how that information is laid out or shown.
 class Information {
 public:
-	void SetSprite(const std::string &name, const Sprite *sprite, const Point &unit = Point(0., -1.), int frame = 0);
+	void SetSprite(const std::string &name, const Sprite *sprite, const Point &unit = Point(0., -1.), float frame = 0.f);
 	const Sprite *GetSprite(const std::string &name) const;
 	const Point &GetSpriteUnit(const std::string &name) const;
-	int GetSpriteFrame(const std::string &namme) const;
+	float GetSpriteFrame(const std::string &name) const;
 	
 	void SetString(const std::string &name, const std::string &value);
 	const std::string &GetString(const std::string &name) const;
@@ -50,7 +50,7 @@ public:
 private:
 	std::map<std::string, const Sprite *> sprites;
 	std::map<std::string, Point> spriteUnits;
-	std::map<std::string, int> spriteFrames;
+	std::map<std::string, float> spriteFrames;
 	std::map<std::string, std::string> strings;
 	std::map<std::string, double> bars;
 	std::map<std::string, double> barSegments;

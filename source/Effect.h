@@ -24,8 +24,11 @@ class Sound;
 
 
 
-// Class representing a graphic such as an explosion which is drawn for effect but
-// has no impact on any other objects in the game.
+// Class representing the template for a visual effect such as an explosion,
+// which is drawn for effect but  has no impact on any other objects in the
+// game. Because this class is more heavyweight than it needs to be, actual
+// visual effects when they are placed use the Visual class, based on the
+// template provided by an Effect.
 class Effect : public Body {
 public:
 	/* Functions provided by the Body base class:
@@ -40,20 +43,12 @@ public:
 	const std::string &Name() const;
 	
 	void Load(const DataNode &node);
-	// If creating a new effect, the animation and lifetime are copied,
-	// but position, velocity, and angle are specific to this new effect.
-	void Place(Point pos, Point vel, Angle facing, Point hitVelocity = Point());
-	
-	// This returns false if it is time to delete this effect.
-	bool Move();
 	
 	
 private:
 	std::string name;
 	
 	const Sound *sound = nullptr;
-	
-	Angle spin;
 	
 	// Parameters used for randomizing spin and velocity. The random angle is
 	// added to the parent angle, and then a random velocity in that direction
@@ -65,6 +60,9 @@ private:
 	double randomFrameRate = 0.;
 	
 	int lifetime = 0;
+	
+	// Allow the Visual class to access all these private members.
+	friend class Visual;
 };
 
 

@@ -29,10 +29,10 @@ namespace {
 	int scrollSpeed = 60;
 	
 	// Strings for ammo expenditure:
-	static const string EXPEND_AMMO = "Escorts expend ammo";
-	static const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
+	const string EXPEND_AMMO = "Escorts expend ammo";
+	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	
-	static const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
+	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
 	int zoomIndex = 4;
 }
 
@@ -46,6 +46,7 @@ void Preferences::Load()
 	settings["Render motion blur"] = true;
 	settings["Escorts use ammo frugally"] = true;
 	settings["Escorts expend ammo"] = true;
+	settings["Damaged fighters retreat"] = true;
 	settings["Warning siren"] = true;
 	settings["Show mini-map"] = true;
 	settings["Show planet labels"] = true;
@@ -119,6 +120,8 @@ string Preferences::AmmoUsage()
 {
 	return Has(EXPEND_AMMO) ? Has(FRUGAL_ESCORTS) ? "frugally" : "always" : "never";
 }
+
+
 
 // Scroll speed preference.
 int Preferences::ScrollSpeed()

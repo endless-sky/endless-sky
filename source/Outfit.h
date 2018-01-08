@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define OUTFIT_H_
 
 #include "Body.h"
+#include "Dictionary.h"
 #include "Weapon.h"
 
 #include <map>
@@ -54,13 +55,16 @@ public:
 	const int64_t IllegalCargoFine() const;
 	// Get the amount of credits charged for each outfit detected beyond the first
 	const int64_t AdditionalCargoFine() const;
+	double Mass() const;
+
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
 	// Get the image to display in the outfitter when buying this item.
 	const Sprite *Thumbnail() const;
 	
+	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
-	const std::map<std::string, double> &Attributes() const;
+	const Dictionary &Attributes() const;
 	
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
@@ -70,8 +74,8 @@ public:
 	// instances of the given outfit to this outfit.
 	void Add(const Outfit &other, int count = 1);
 	// Modify this outfit's attributes.
-	void Add(const std::string &attribute, double value = 1.);
-	void Reset(const std::string &attribute, double value = 0.);
+	void Add(const char *attribute, double value = 1.);
+	void Reset(const char *attribute, double value = 0.);
 	
 	// Get this outfit's engine flare sprites, if any.
 	const std::vector<std::pair<Body, int>> &FlareSprites() const;
@@ -91,10 +95,11 @@ private:
 	int64_t cost = 0;
 	int64_t illegalCargoFine = 0;
 	int64_t additionalCargoFine = 0;
+	double mass = 0.;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
 	
-	std::map<std::string, double> attributes;
+	Dictionary attributes;
 	
 	std::vector<std::pair<Body, int>> flareSprites;
 	std::map<const Sound *, int> flareSounds;
@@ -104,8 +109,9 @@ private:
 
 
 
-// This gets called a lot, so inline it for speed.
+// These get called a lot, so inline them for speed.
 inline int64_t Outfit::Cost() const { return cost; }
+inline double Outfit::Mass() const { return mass; }
 
 
 

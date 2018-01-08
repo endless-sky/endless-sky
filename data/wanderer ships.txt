@@ -83,6 +83,7 @@ ship "Flycatcher"
 
 
 ship "Summer Leaf"
+	plural "Summer Leaves"
 	sprite "ship/summer leaf"
 	attributes
 		category "Light Warship"
@@ -130,6 +131,7 @@ ship "Summer Leaf"
 
 
 ship "Autumn Leaf"
+	plural "Autumn Leaves"
 	sprite "ship/autumn leaf"
 	attributes
 		category "Light Warship"
@@ -175,6 +177,18 @@ ship "Autumn Leaf"
 	explode "medium explosion" 20
 	"final explode" "final explosion small"
 	description "The Autumn Leaf is based on the Wanderer Summer Leaf light warship, but slightly larger and better equipped for combat. Unlike Wanderer peacetime ships, it is equipped with a turret mount in addition to the ports for fixed guns."
+
+ship "Autumn Leaf" "Autumn Leaf (Heavy)"
+	outfits
+		"Sunbeam" 2
+		"Moonbeam Turret"
+		
+		"White Sun Reactor"
+		"Bright Cloud Shielding"
+		
+		"Type 3 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Hyperdrive"
 
 
 
@@ -536,6 +550,164 @@ ship "Hurricane" "Hurricane (Tough)"
 
 
 
+ship "Cool Breeze"
+	sprite "ship/cool breeze"
+	attributes
+		category "Interceptor"
+		licenses
+			"Wanderer Military"
+		"cost" 4530000
+		"shields" 7700
+		"hull" 3100
+		"required crew" 1
+		"bunks" 3
+		"mass" 50
+		"drag" 1.8
+		"heat dissipation" .9
+		"fuel capacity" 400
+		"cargo space" 14
+		"outfit space" 192
+		"weapon capacity" 41
+		"engine capacity" 62
+		weapon
+			"blast radius" 36
+			"shield damage" 360
+			"hull damage" 180
+			"hit force" 540
+	outfits
+		"Moonbeam" 2
+		
+		"Red Sun Reactor"
+		"Bright Cloud Shielding"
+		
+		"Type 2 Radiant Thruster"
+		"Type 3 Radiant Steering"
+		"Hyperdrive"
+	
+	engine -10 47
+	engine 10 47
+	gun -15 -10
+	gun 15 -10
+	explode "tiny explosion" 30
+	explode "small explosion" 10
+	"final explode" "final explosion small"
+	description "This is the first ship the Wanderers have built in millennia that is designed to be operated by a single pilot instead of a crew. They are flown mostly by young warriors eager to prove their mettle by winning individual glory in battle."
+
+ship "Cool Breeze" "Cool Breeze (Sunbeam)"
+	outfits
+		"Sunbeam"
+		
+		"Red Sun Reactor"
+		"Bright Cloud Shielding"
+		
+		"Type 3 Radiant Thruster"
+		"Type 2 Radiant Steering"
+		"Hyperdrive"
+
+
+
+ship "Winter Gale"
+	sprite "ship/winter gale"
+	attributes
+		category "Light Warship"
+		licenses
+			"Wanderer Military"
+		"cost" 14100000
+		"shields" 22400
+		"hull" 14800
+		"required crew" 14
+		"bunks" 23
+		"mass" 240
+		"drag" 5.6
+		"heat dissipation" .7
+		"fuel capacity" 600
+		"cargo space" 28
+		"outfit space" 478
+		"weapon capacity" 171
+		"engine capacity" 120
+		weapon
+			"blast radius" 120
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
+	outfits
+		"Moonbeam" 4
+		"Sunbeam" 2
+		"Wanderer Anti-Missile"
+		
+		"White Sun Reactor"
+		"Dark Storm Shielding"
+		
+		"Type 3 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Type 3 Radiant Steering"
+		"Hyperdrive"
+		
+	engine -13 94
+	engine 13 94
+	gun -15 -55 "Moonbeam"
+	gun 15 -55 "Moonbeam"
+	gun -20 -48 "Moonbeam"
+	gun 20 -48 "Moonbeam"
+	gun -41 -10 "Sunbeam"
+	gun 41 -10 "Sunbeam"
+	turret 0 -28 "Wanderer Anti-Missile"
+	explode "tiny explosion" 20
+	explode "small explosion" 40
+	explode "medium explosion" 30
+	"final explode" "final explosion medium"
+	description "The Winter Gale was designed by the Wanderers as a hardier and better-armed alternative to their existing light patrol ships. The Gale's large number of weapon hardpoints makes it flexible enough to reconfigure for facing a wide variety of enemies."
+
+ship "Winter Gale" "Winter Gale (Heavy)"
+	outfits
+		"Sunbeam" 4
+		"Moonbeam Turret"
+		
+		"White Sun Reactor"
+		"Dark Storm Shielding"
+		
+		"Type 3 Radiant Thruster"
+		"Type 1 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Type 1 Radiant Steering"
+		"Hyperdrive"
+		
+	engine -13 94
+	engine 13 94
+	gun "Sunbeam"
+	gun "Sunbeam"
+	gun "Sunbeam"
+	gun "Sunbeam"
+	gun
+	gun
+	turret "Moonbeam Turret"
+
+ship "Winter Gale" "Winter Gale (Missile)"
+	outfits
+		"Thunderhead Launcher" 4
+		"Thunderhead Missile" 160
+		"Moonbeam" 2
+		"Wanderer Anti-Missile"
+		
+		"White Sun Reactor"
+		"Dark Storm Shielding"
+		
+		"Type 4 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Hyperdrive"
+		
+	engine -13 94
+	engine 13 94
+	gun "Thunderhead Launcher"
+	gun "Thunderhead Launcher"
+	gun "Thunderhead Launcher"
+	gun "Thunderhead Launcher"
+	gun "Moonbeam"
+	gun "Moonbeam"
+	turret "Wanderer Anti-Missile"
+
+
+
 ship "Deep River"
 	sprite "ship/deep river"
 	attributes
@@ -576,11 +748,11 @@ ship "Deep River"
 	engine 0 345
 	engine -53 345 .7
 	gun -56 -217
+	gun 56 -217
 	gun -40 -217
+	gun 40 -217
 	gun -18 -217
 	gun 18 -217
-	gun 40 -217
-	gun 56 -217
 	explode "small explosion" 80
 	explode "medium explosion" 60
 	explode "large explosion" 30
@@ -590,93 +762,38 @@ ship "Deep River"
 
 ship "Deep River" "Deep River 0"
 	sprite "ship/deep river 0"
-	attributes
-		category "Heavy Freighter"
-		"cost" 18300000
-		"shields" 17600
-		"hull" 47500
-		"required crew" 13
-		"bunks" 22
-		"mass" 350
-		"drag" 7.4
-		"heat dissipation" .6
-		"fuel capacity" 500
-		"cargo space" 0
-		"outfit space" 363
-		"weapon capacity" 177
-		"engine capacity" 83
+	add attributes
+		"mass" -400
+		"drag" -2
+		"cargo space" -1140
 
 ship "Deep River" "Deep River 1"
 	sprite "ship/deep river 1"
-	attributes
-		category "Heavy Freighter"
-		"cost" 18300000
-		"shields" 17600
-		"hull" 47500
-		"required crew" 13
-		"bunks" 22
-		"mass" 430
-		"drag" 7.8
-		"heat dissipation" .6
-		"fuel capacity" 500
-		"cargo space" 228
-		"outfit space" 363
-		"weapon capacity" 177
-		"engine capacity" 83
+	add attributes
+		"mass" -320
+		"drag" -1.6
+		"cargo space" -912
 
 ship "Deep River" "Deep River 2"
 	sprite "ship/deep river 2"
-	attributes
-		category "Heavy Freighter"
-		"cost" 18300000
-		"shields" 17600
-		"hull" 47500
-		"required crew" 13
-		"bunks" 22
-		"mass" 510
-		"drag" 8.2
-		"heat dissipation" .6
-		"fuel capacity" 500
-		"cargo space" 456
-		"outfit space" 363
-		"weapon capacity" 177
-		"engine capacity" 83
+	add attributes
+		"mass" -240
+		"drag" -1.2
+		"cargo space" -684
 
 ship "Deep River" "Deep River 3"
 	sprite "ship/deep river 3"
-	attributes
-		category "Heavy Freighter"
-		"cost" 18300000
-		"shields" 17600
-		"hull" 47500
-		"required crew" 13
-		"bunks" 22
-		"mass" 590
-		"drag" 8.6
-		"heat dissipation" .6
-		"fuel capacity" 500
-		"cargo space" 684
-		"outfit space" 363
-		"weapon capacity" 177
-		"engine capacity" 83
+	add attributes
+		"mass" -160
+		"drag" -.8
+		"cargo space" -456
 
 ship "Deep River" "Deep River 4"
 	sprite "ship/deep river 4"
-	attributes
-		category "Heavy Freighter"
-		"cost" 18300000
-		"shields" 17600
-		"hull" 47500
-		"required crew" 13
-		"bunks" 22
-		"mass" 670
-		"drag" 9.0
-		"heat dissipation" .6
-		"fuel capacity" 500
-		"cargo space" 912
-		"outfit space" 363
-		"weapon capacity" 177
-		"engine capacity" 83
+	add attributes
+		"mass" -80
+		"drag" -.4
+		"cargo space" -228
 
 ship "Deep River Transport"
 	sprite "ship/deep river"

@@ -10,9 +10,9 @@
 
 mission "Kestrel Testing"
 	name "Warship Testing"
-	description "Travel to the Umbral system to fight and disable a prototype warship that Tarazed Corporation is testing. Do not destroy the ship, or you will lose your payment and your opportunity to buy one."
-	source Wayfarer
-	waypoint Umbral
+	description "Travel to the <waypoints> system to fight and disable a prototype warship that Tarazed Corporation is testing. Do not destroy the ship, or you will lose your payment and your opportunity to buy one."
+	source "Wayfarer"
+	waypoint "Umbral"
 	to offer
 		"combat rating" > 8000
 	
@@ -46,13 +46,13 @@ mission "Kestrel Testing"
 				`	"No problem. Where will I battle this ship?"`
 				`	"Sorry, I don't think I can agree to that."`
 					decline
-			`	"We do most of our starship testing in the Umbral system," he says. "The test ship is unmistakable. Journey there, disable it without destroying it, then return here and we'll ask you about any weaknesses you found or improvements you would make. And if you destroy the ship or steal it, naturally you will forfeit your payment."`
+			`	"We do most of our starship testing in the <waypoints> system," he says. "The test ship is unmistakable. Journey there, disable it without destroying it, then return here and we'll ask you about any weaknesses you found or improvements you would make. And if you destroy the ship or steal it, naturally you will forfeit your payment."`
 				accept
 	
 	npc disable save
 		government "Test Dummy"
 		personality staying nemesis heroic
-		system Umbral
+		system "Umbral"
 		ship "Unknown Ship Type" "Tarazed Prototype"
 	
 	on complete
@@ -184,9 +184,11 @@ mission "Kestrel: More Shields"
 
 mission "Kestrel Available"
 	landing
+	source
+		near "Tarazed" 100
 	to offer
 		has "kestrel available"
-	destination Wayfarer
+	destination "Wayfarer"
 	on offer
 		conversation
 			scene ship/kestrel
@@ -316,56 +318,14 @@ ship "Kestrel"
 
 
 ship "Kestrel" "Kestrel (More Weapons)"
-	attributes
-		category "Heavy Warship"
-		"cost" 10300000
-		"shields" 17400
-		"hull" 6200
-		"required crew" 72
-		"bunks" 128
-		"mass" 740
-		"drag" 12.5
-		"heat dissipation" .45
-		"fuel capacity" 500
-		"cargo space" 120
-		"outfit space" 810
-		"weapon capacity" 400
-		"engine capacity" 210
-
-
+	add attributes
+		"weapon capacity" 20
 
 ship "Kestrel" "Kestrel (More Engines)"
-	attributes
-		category "Heavy Warship"
-		"cost" 10300000
-		"shields" 17400
-		"hull" 6200
-		"required crew" 72
-		"bunks" 128
-		"mass" 740
-		"drag" 12.5
-		"heat dissipation" .45
-		"fuel capacity" 500
-		"cargo space" 120
-		"outfit space" 810
-		"weapon capacity" 380
-		"engine capacity" 230
-
-
+	add attributes
+		"engine capacity" 20
 
 ship "Kestrel" "Kestrel (More Shields)"
-	attributes
-		category "Heavy Warship"
-		"cost" 10300000
-		"shields" 20100
-		"hull" 7500
-		"required crew" 72
-		"bunks" 128
-		"mass" 760
-		"drag" 12.5
-		"heat dissipation" .45
-		"fuel capacity" 500
-		"cargo space" 120
-		"outfit space" 810
-		"weapon capacity" 380
-		"engine capacity" 210
+	add attributes
+		"shields" 2700
+		"hull" 1300

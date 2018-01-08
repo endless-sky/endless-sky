@@ -30,12 +30,12 @@ using namespace std;
 namespace {
 	// Dynamic economy parameters: how much of its production each system keeps
 	// and exports each day:
-	static const double KEEP = .89;
-	static const double EXPORT = .10;
+	const double KEEP = .89;
+	const double EXPORT = .10;
 	// Standard deviation of the daily production of each commodity:
-	static const double VOLUME = 2000.;
+	const double VOLUME = 2000.;
 	// Above this supply amount, price differences taper off:
-	static const double LIMIT = 20000.;
+	const double LIMIT = 20000.;
 }
 
 const double System::NEIGHBOR_DISTANCE = 100.;
@@ -114,7 +114,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
-	set<string> shouldOverwrite = {"link", "asteroids", "fleet", "object"};
+	set<string> shouldOverwrite = {"asteroids", "attributes", "fleet", "link", "object"};
 	
 	for(const DataNode &child : node)
 	{
@@ -149,6 +149,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				government = nullptr;
 			else if(key == "music")
 				music.clear();
+			else if(key == "attributes")
+				attributes.clear();
 			else if(key == "link")
 				links.clear();
 			else if(key == "asteroids" || key == "minables")
@@ -183,7 +185,16 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			child.PrintTrace("Expected key to have a value:");
 			continue;
 		}
-		else if(key == "link")
+		else if(key == "attributes")
+		{
+			if(remove)
+				for(int i = valueIndex; i < child.Size(); ++i)
+					attributes.erase(child.Token(i));
+			else
+				for(int i = valueIndex; i < child.Size(); ++i)
+					attributes.insert(child.Token(i));
+		}
+ 		else if(key == "link")
 		{
 			if(remove)
 				links.erase(GameData::Systems().Get(value));
@@ -324,6 +335,22 @@ void System::UpdateNeighbors(const Set<System> &systems)
 	for(const auto &it : systems)
 		if(&it.second != this && it.second.Position().Distance(position) <= NEIGHBOR_DISTANCE)
 			neighbors.insert(&it.second);
+	
+	// Calculate the solar power and solar wind.
+	solarPower = 0.;
+	solarWind = 0.;
+	for(const StellarObject &object : objects)
+	{
+		solarPower += GameData::SolarPower(object.GetSprite());
+		solarWind += GameData::SolarWind(object.GetSprite());
+	}
+	
+	// Systems only have a single auto-attribute, "uninhabited." It is set if
+	// the system has no inhabited planets that are accessible to all ships.
+	if(IsInhabited(nullptr))
+		attributes.erase("uninhabited");
+	else
+		attributes.insert("uninhabited");
 }
 
 
@@ -395,6 +422,14 @@ const Government *System::GetGovernment() const
 const string &System::MusicName() const
 {
 	return music;
+}
+
+
+
+// Get the list of "attributes" of the planet.
+const set<string> &System::Attributes() const
+{
+	return attributes;
 }
 
 
@@ -481,6 +516,21 @@ double System::AsteroidBelt() const
 
 
 
+// Get the rate of solar collection and ramscoop refueling.
+double System::SolarPower() const
+{
+	return solarPower;
+}
+
+
+
+double System::SolarWind() const
+{
+	return solarWind;
+}
+
+
+
 // Check if this system is inhabited.
 bool System::IsInhabited(const Ship *ship) const
 {
@@ -488,7 +538,7 @@ bool System::IsInhabited(const Ship *ship) const
 		if(object.GetPlanet())
 		{
 			const Planet &planet = *object.GetPlanet();
-			if(!planet.IsWormhole() && planet.HasSpaceport() && planet.IsAccessible(ship))
+			if(!planet.IsWormhole() && planet.IsInhabited() && planet.IsAccessible(ship))
 				return true;
 		}
 	
@@ -501,12 +551,8 @@ bool System::IsInhabited(const Ship *ship) const
 bool System::HasFuelFor(const Ship &ship) const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet())
-		{
-			const Planet &planet = *object.GetPlanet();
-			if(!planet.IsWormhole() && planet.HasSpaceport() && planet.CanLand(ship))
-				return true;
-		}
+		if(object.GetPlanet() && object.GetPlanet()->HasFuelFor(ship))
+			return true;
 	
 	return false;
 }
@@ -639,9 +685,10 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 	StellarObject &object = objects.back();
 	object.parent = parent;
 	
-	if(node.Size() >= 2)
+	bool isAdded = (node.Token(0) == "add");
+	if(node.Size() >= 2 + isAdded)
 	{
-		Planet *planet = planets.Get(node.Token(1));
+		Planet *planet = planets.Get(node.Token(1 + isAdded));
 		object.planet = planet;
 		planet->SetSystem(this);
 	}

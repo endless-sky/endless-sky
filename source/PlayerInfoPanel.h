@@ -65,13 +65,13 @@ private:
 	// recently selected, which ship is currently being dragged, and all ships
 	// that are currently selected.
 	int hoverIndex = -1;
-	int draggingIndex = -1;
 	int selectedIndex = -1;
 	std::set<int> allSelected;
 	// This is the index of the ship at the top of the fleet listing.
 	int scroll = 0;
 	Point hoverPoint;
 	bool canEdit = false;
+	bool isDragging = false;
 };
 
 

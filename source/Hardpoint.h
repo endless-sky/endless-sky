@@ -16,12 +16,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Angle.h"
 
-#include <list>
+#include <vector>
 
 class Effect;
 class Outfit;
 class Projectile;
 class Ship;
+class Visual;
 
 
 
@@ -63,19 +64,23 @@ public:
 	// Fire this weapon. If it is a turret, it automatically points toward
 	// the given ship's target. If the weapon requires ammunition, it will
 	// be subtracted from the given ship.
-	void Fire(Ship &ship, std::list<Projectile> &projectiles, std::list<Effect> &effects);
+	void Fire(Ship &ship, std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
 	// Fire an anti-missile. Returns true if the missile should be killed.
-	bool FireAntiMissile(Ship &ship, const Projectile &projectile, std::list<Effect> &effects);
+	bool FireAntiMissile(Ship &ship, const Projectile &projectile, std::vector<Visual> &visuals);
 	
 	// Install a weapon here (assuming it is empty). This is only for
 	// Armament to call internally.
 	void Install(const Outfit *outfit);
+	// Reload this weapon.
+	void Reload();
 	// Uninstall the outfit from this port (if it has one).
 	void Uninstall();
+	
 	
 private:
 	// Reset the reload counters and expend ammunition, if any.
 	void Fire(Ship &ship, const Point &start, const Angle &aim);
+	
 	
 private:
 	// The weapon installed in this hardpoint.

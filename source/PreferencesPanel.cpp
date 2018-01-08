@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Dialog.h"
 #include "Files.h"
+#include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
 #include "Information.h"
@@ -33,18 +34,23 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "gl_header.h"
 #include <SDL2/SDL.h>
 
+#include <algorithm>
+
 using namespace std;
 
 namespace {
 	// Settings that require special handling.
-	static const string ZOOM_FACTOR = "Main zoom factor";
-	static const string VIEW_ZOOM_FACTOR = "View zoom factor";
-	static const string EXPEND_AMMO = "Escorts expend ammo";
-	static const string TURRET_TRACKING = "Turret tracking";
-	static const string FOCUS_PREFERENCE = "Turrets focus fire";
-	static const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
-	static const string REACTIVATE_HELP = "Reactivate first-time help";
-	static const string SCROLL_SPEED = "Scroll speed";
+	const string ZOOM_FACTOR = "Main zoom factor";
+	const int ZOOM_FACTOR_MIN = 100;
+	const int ZOOM_FACTOR_MAX = 200;
+	const int ZOOM_FACTOR_INCREMENT = 10;
+	const string VIEW_ZOOM_FACTOR = "View zoom factor";
+	const string EXPEND_AMMO = "Escorts expend ammo";
+	const string TURRET_TRACKING = "Turret tracking";
+	const string FOCUS_PREFERENCE = "Turrets focus fire";
+	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
+	const string REACTIVATE_HELP = "Reactivate first-time help";
+	const string SCROLL_SPEED = "Scroll speed";
 }
 
 
@@ -134,20 +140,20 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 		{
 			if(zone.Value() == ZOOM_FACTOR)
 			{
-				int currentZoom = Screen::Zoom();
-				int newZoom = currentZoom == 100 ? 150 : currentZoom == 150 ? 200 : 100;
+				int newZoom = Screen::Zoom() + ZOOM_FACTOR_INCREMENT;
+				if(newZoom > ZOOM_FACTOR_MAX)
+					newZoom = ZOOM_FACTOR_MIN;
 				Screen::SetZoom(newZoom);
 				// Make sure there is enough vertical space for the full UI.
 				if(Screen::Height() < 700)
 				{
 					// Notify the user why setting the zoom any higher isn't permitted.
-					// Only show this if it's not possible to zoom the view at all,
-					// because otherwise if the user is toggling between 100 and 150 the
-					// dialog will show every time, which is annoying.
-					if(newZoom == 150)
+					// Only show this if it's not possible to zoom the view at all, as
+					// otherwise the dialog will show every time, which is annoying.
+					if(newZoom == ZOOM_FACTOR_MIN + ZOOM_FACTOR_INCREMENT)
 						GetUI()->Push(new Dialog(
 							"Your screen resolution is too low to support a zoom level above 100%."));
-					Screen::SetZoom(100);
+					Screen::SetZoom(ZOOM_FACTOR_MIN);
 				}
 				// Convert to raw window coordinates, at the new zoom level.
 				point *= Screen::Zoom() / 100.;
@@ -216,6 +222,7 @@ bool PreferencesPanel::Hover(int x, int y)
 
 
 
+// Change the value being hovered over in the direction of the scroll.
 bool PreferencesPanel::Scroll(double dx, double dy)
 {
 	if(!dy || hoverPreference.empty())
@@ -224,16 +231,16 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 	if(hoverPreference == ZOOM_FACTOR)
 	{
 		int zoom = Screen::Zoom();
-		if(dy < 0. && zoom > 100)
-			zoom -= 50;
-		if(dy > 0. && zoom < 200)
-			zoom += 50;
+		if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
+			zoom -= ZOOM_FACTOR_INCREMENT;
+		if(dy > 0. && zoom < ZOOM_FACTOR_MAX)
+			zoom += ZOOM_FACTOR_INCREMENT;
 		
 		Screen::SetZoom(zoom);
 		// Make sure there is enough vertical space for the full UI.
-		while(Screen::Height() < 700 && zoom > 100)
+		while(Screen::Height() < 700 && zoom > ZOOM_FACTOR_MIN)
 		{
-			zoom -= 50;
+			zoom -= ZOOM_FACTOR_INCREMENT;
 			Screen::SetZoom(zoom);
 		}
 		
@@ -272,10 +279,10 @@ void PreferencesPanel::EndEditing()
 
 void PreferencesPanel::DrawControls()
 {
-	Color back = *GameData::Colors().Get("faint");
-	Color dim = *GameData::Colors().Get("dim");
-	Color medium = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
+	const Color &back = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("dim");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
 	
 	// Check for conflicts.
 	Color red(.3, 0., 0., .3);
@@ -396,10 +403,10 @@ void PreferencesPanel::DrawControls()
 
 void PreferencesPanel::DrawSettings()
 {
-	Color back = *GameData::Colors().Get("faint");
-	Color dim = *GameData::Colors().Get("dim");
-	Color medium = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
+	const Color &back = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("dim");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
 	
 	Table table;
 	table.AddColumn(-115, Table::LEFT);
@@ -433,7 +440,9 @@ void PreferencesPanel::DrawSettings()
 		"Show hyperspace flash",
 		"\n",
 		"Other",
+		"Clickable radar display",
 		REACTIVATE_HELP,
+		"Rehire extra crew when lost",
 		SCROLL_SPEED,
 		"Warning siren",
 		"Hide unexplored map regions"
@@ -520,9 +529,9 @@ void PreferencesPanel::DrawSettings()
 
 void PreferencesPanel::DrawPlugins()
 {
-	Color back = *GameData::Colors().Get("faint");
-	Color medium = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
+	const Color &back = *GameData::Colors().Get("faint");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
 	
 	Table table;
 	table.AddColumn(-115, Table::LEFT);
@@ -534,18 +543,20 @@ void PreferencesPanel::DrawPlugins()
 	table.Draw("Installed plugins:", bright);
 	table.DrawGap(5);
 	
-	for(const auto &it : GameData::PluginAboutText())
+	const int MAX_TEXT_WIDTH = 230;
+	const Font &font = FontSet::Get(14);
+	for(const pair<string, string> &plugin : GameData::PluginAboutText())
 	{
-		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), it.first);
+		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin.first);
 		
-		bool isSelected = (it.first == selectedPlugin);
-		if(isSelected || it.first == hoverPlugin)
+		bool isSelected = (plugin.first == selectedPlugin);
+		if(isSelected || plugin.first == hoverPlugin)
 			table.DrawHighlight(back);
-		table.Draw(it.first, isSelected ? bright : medium);
+		table.Draw(font.TruncateMiddle(plugin.first, MAX_TEXT_WIDTH), isSelected ? bright : medium);
 		
 		if(isSelected)
 		{
-			const Sprite *sprite = SpriteSet::Get(it.first);
+			const Sprite *sprite = SpriteSet::Get(plugin.first);
 			Point top(15., firstY);
 			if(sprite)
 			{
@@ -554,10 +565,10 @@ void PreferencesPanel::DrawPlugins()
 				top.Y() += sprite->Height() + 10.;
 			}
 			
-			WrappedText wrap(FontSet::Get(14));
-			wrap.SetWrapWidth(230);
-			static const string empty = "(No description given.)";
-			wrap.Wrap(it.second.empty() ? empty : it.second);
+			WrappedText wrap(font);
+			wrap.SetWrapWidth(MAX_TEXT_WIDTH);
+			static const string EMPTY = "(No description given.)";
+			wrap.Wrap(plugin.second.empty() ? EMPTY : plugin.second);
 			wrap.Draw(top, medium);
 		}
 	}

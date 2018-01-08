@@ -89,7 +89,10 @@ Files:
 Copyright: Matthew Smestad
 License: CC-BY-SA-4.0
 
-Files: images/ship/vanguard*
+Files:
+ images/ship/vanguard*
+ images/outfit/proton turret*
+ images/hardpoint/proton turret*
 Copyright: Nate Graham <pointedstick@zoho.com>
 License: CC-BY-SA-4.0
 
@@ -246,9 +249,34 @@ Files: images/land/*-spfld*
 Copyright: Eric Denni (spfldsatellite@gmail.com)
 License: CC-BY-SA-4.0
 
+Files: images/land/sivael*
+Copyright: Tymoteusz Kapuściński (Sivael)
+License: CC-BY-SA-4.0
+Comment: Screenshots of environments created with assets purchased by Tymoteusz
+ Kapuściński from the Unity Asset Store. Post-processing applied by Michael
+ Zahniser to make the images look less artificial.
+ 
+Files: images/outfit/tactical?scanner*
+Copyright: Zachary Siple
+License: CC-BY-SA-4.0
+
+Files: images/outfit/korath?rifle*
+Copyright: Evan Fluharty (Evanfluharty@gmai.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (from under the same license).
+
+Files: images/portrait/*
+Copyright: Various
+License: public-domain
+ Taken from unsplash.com, a collection of photographs that have been donated and
+ placed in the public domain.
+
 Files:
  images/land/badlands0*
+ images/land/badlands1*
+ images/land/badlands2*
  images/land/badlands5*
+ images/land/badlands6*
  images/land/badlands7*
  images/land/badlands8*
  images/land/beach0*
@@ -258,9 +286,13 @@ Files:
  images/land/beach5*
  images/land/beach6*
  images/land/canyon0*
+ images/land/canyon1*
  images/land/canyon7*
+ images/land/canyon8*
+ images/land/city2*
  images/land/city4*
  images/land/city6*
+ images/land/city7*
  images/land/city8*
  images/land/city9*
  images/land/city10*
@@ -268,24 +300,30 @@ Files:
  images/land/city12*
  images/land/desert1*
  images/land/desert2*
+ images/land/dune1*
  images/land/fields1*
  images/land/fields2*
+ images/land/fields3*
  images/land/fields5*
  images/land/fields6*
  images/land/fields7*
  images/land/fields9*
  images/land/fog0*
+ images/land/fog1*
  images/land/fog2*
  images/land/fog4*
+ images/land/fog6*
  images/land/forest1*
  images/land/forest2*
  images/land/forest3*
  images/land/forest4*
  images/land/forest5*
+ images/land/hills0*
  images/land/hills2*
  images/land/lava1*
  images/land/lava2*
  images/land/lava6*
+ images/land/mountain0*
  images/land/mountain1*
  images/land/mountain3*
  images/land/mountain4*
@@ -294,11 +332,16 @@ Files:
  images/land/mountain7*
  images/land/mountain8*
  images/land/mountain9*
+ images/land/sea1*
  images/land/sea3*
+ images/land/sea5*
+ images/land/sea7*
  images/land/sea8*
  images/land/sky0*
  images/land/sky2*
  images/land/sky3*
+ images/land/sky4*
+ images/land/sky5*
  images/land/sky7*
  images/land/sky8*
  images/land/sky9*
@@ -307,11 +350,14 @@ Files:
  images/land/snow2*
  images/land/snow3*
  images/land/snow4*
+ images/land/snow5*
  images/land/snow6*
  images/land/snow7*
  images/land/snow10*
  images/land/space2*
  images/land/water0*
+ images/land/water3*
+ images/land/water4*
  images/land/water8*
 Copyright: Various
 License: public-domain
@@ -359,9 +405,10 @@ Copyright: Copyright Mike Koenig
 License: CC-BY-SA-3.0
 Comment: Taken from http://soundbible.com/1151-Grenade.html
 
-Files: images/ship/vanguard*
-Copyright: Copyright Nate Graham <pointedstick@zoho.com>
+Files: images/ship/mosprey*
+Copyright: tehhowch (https://github.com/tehhowch)
 License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

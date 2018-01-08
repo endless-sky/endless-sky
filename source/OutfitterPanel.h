@@ -19,10 +19,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 #include <string>
+#include <vector>
 
 class Outfit;
 class PlayerInfo;
 class Point;
+class Ship;
 
 
 
@@ -51,11 +53,13 @@ protected:
 	virtual bool CanBuy() const override;
 	virtual void Buy() override;
 	virtual void FailBuy() const override;
-	virtual bool CanSell() const override;
-	virtual void Sell() override;
-	virtual void FailSell() const override;
-	virtual bool FlightCheck() override;
-	virtual void DrawKey();
+	virtual bool CanSell(bool toCargo = false) const override;
+	virtual void Sell(bool toCargo = false) override;
+	virtual void FailSell(bool toCargo = false) const override;
+	virtual bool ShouldHighlight(const Ship *ship) override;
+	virtual void DrawKey() override;
+	virtual void ToggleForSale() override;
+	virtual void ToggleCargo() override;
 	
 	
 private:
@@ -68,7 +72,9 @@ private:
 	std::string LicenseName(const std::string &name) const;
 	void CheckRefill();
 	void Refill();
-	
+	// Shared code for reducing the selected ships to those that have the
+	// same quantity of the selected outfit.
+	const std::vector<Ship *> GetShipsToOutfit(bool isBuy = false) const;
 	
 private:
 	// Record whether we've checked if the player needs ammo refilled.

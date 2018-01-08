@@ -76,7 +76,7 @@ outfit "Large Battery Module"
 	"mass" 18
 	"outfit space" -18
 	"energy capacity" 4500
-	description "This battery pack stores enough power to allow a Heliarch ship to continue maneuvering even when its solar panels are only producing a fraction of their peak output."
+	description "This battery pack stores enough power to allow a Coalition ship to continue maneuvering even when its solar panels are only producing a fraction of their peak output."
 
 
 outfit "Small Shield Module"
@@ -156,7 +156,7 @@ outfit "Small Thrust Module"
 	"thrust" 6.6
 	"thrusting energy" 0.46
 	"thrusting heat" 3.5
-	"flare sprite" "effect/coalition small flare"
+	"flare sprite" "effect/coalition flare/small"
 		"frame rate" 4.8
 	"flare sound" "atomic tiny"
 	description "This tiny thruster produces a considerable amount of thrust... but also a considerable amount of heat."
@@ -173,7 +173,7 @@ outfit "Large Thrust Module"
 	"thrust" 26.2
 	"thrusting energy" 1.7
 	"thrusting heat" 12.5
-	"flare sprite" "effect/coalition large flare"
+	"flare sprite" "effect/coalition flare/large"
 		"frame rate" 3.5
 	"flare sound" "atomic small"
 	description "Coalition engineers prefer to focus on perfecting a few versatile designs rather than producing a wide range of them. This thruster is quite efficient, but large ships will need several of them stacked together to produce sufficient thrust."
@@ -205,3 +205,8 @@ outfit "Large Steering Module"
 	"turning energy" 1.0
 	"turning heat" 8.2
 	description "By focusing on small, modular engines rather than the massive capital ship drives that most other species develop, the Coalition loses some of the potential efficiency for very large ships, but gains a considerable amount of flexibility."
+
+outfit "Coalition License"
+	category "Special"
+	thumbnail "outfit/coalition license"
+	description "Completed a lot of Coalition jobs and received permission to purchase civilian technology and ships."

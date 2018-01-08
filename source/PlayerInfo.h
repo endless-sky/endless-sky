@@ -32,7 +32,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class Government;
 class Outfit;
-class Person;
 class Planet;
 class Rectangle;
 class Ship;
@@ -71,8 +70,6 @@ public:
 	// are multiple pilots with the same name it may have a digit appended.)
 	std::string Identifier() const;
 	
-	// Apply any "changes" saved in this player info to the global game state.
-	void ApplyChanges();
 	// Apply the given changes and store them in the player's saved game file.
 	void AddChanges(std::list<DataNode> &changes);
 	// Add an event that will happen at the given date.
@@ -105,7 +102,7 @@ public:
 	// must leave the planet immediately (without time to do anything else).
 	bool ShouldLaunch() const;
 	
-	// Access the player's accountign information.
+	// Access the player's accounting information.
 	const Account &Accounts() const;
 	Account &Accounts();
 	// Calculate the daily salaries for crew, not counting crew on "parked" ships.
@@ -128,6 +125,9 @@ public:
 	void RenameShip(const Ship *selected, const std::string &name);
 	// Change the order of the given ship in the list.
 	void ReorderShip(int fromIndex, int toIndex);
+	int ReorderShips(const std::set<int> &fromIndices, int toIndex);
+	// Get the attraction factors of the player's fleet to raid fleets.
+	std::pair<double, double> RaidFleetFactors() const;
 	
 	// Get cargo information.
 	CargoHold &Cargo();
@@ -145,6 +145,9 @@ public:
 	// Get the player's logbook.
 	const std::multimap<Date, std::string> &Logbook() const;
 	void AddLogEntry(const std::string &text);
+	const std::map<std::string, std::map<std::string, std::string>> &SpecialLogs() const;
+	void AddSpecialLog(const std::string &type, const std::string &name, const std::string &text);
+	bool HasLogs() const;
 	
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
@@ -160,6 +163,8 @@ public:
 	void HandleBlockedMissions(Mission::Location location, UI *ui);
 	// Callback for accepting or declining whatever mission has been offered.
 	void MissionCallback(int response);
+	// Basic callback for handling forced departure from a planet.
+	void BasicCallback(int response);
 	// Complete or fail a mission.
 	void RemoveMission(Mission::Trigger trigger, const Mission &mission, UI *ui);
 	// Mark a mission as failed, but do not remove it from the mission list yet.
@@ -171,8 +176,8 @@ public:
 	int GetCondition(const std::string &name) const;
 	std::map<std::string, int> &Conditions();
 	const std::map<std::string, int> &Conditions() const;
-	// Set and check the reputation conditions, which missions can use to modify
-	// the player's reputation.
+	// Set and check the reputation conditions, which missions and events
+	// can use to modify the player's reputation with other governments.
 	void SetReputationConditions();
 	void CheckReputationConditions();
 	
@@ -181,6 +186,7 @@ public:
 	bool HasVisited(const System *system) const;
 	bool HasVisited(const Planet *planet) const;
 	bool KnowsName(const System *system) const;
+	// Marking a system as visited also "sees" its neighbors.
 	void Visit(const System *system);
 	void Visit(const Planet *planet);
 	// Mark a system and its planets as unvisited, even if visited previously.
@@ -209,7 +215,8 @@ public:
 	bool SelectShips(const std::vector<const Ship *> &stack, bool hasShift);
 	void SelectShip(const Ship *ship, bool hasShift);
 	void SelectGroup(int group, bool hasShift);
-	void SetGroup(int group);
+	void SetGroup(int group, const std::set<Ship *> *newShips = nullptr);
+	std::set<Ship *> GetGroup(int group);
 	
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
@@ -239,14 +246,24 @@ private:
 	PlayerInfo(const PlayerInfo &) = default;
 	PlayerInfo &operator=(const PlayerInfo &) = default;
 	
+	// Apply any "changes" saved in this player info to the global game state.
+	void ApplyChanges();
+	
 	// New missions are generated each time you land on a planet.
 	void UpdateAutoConditions();
 	void CreateMissions();
+	void StepMissions(UI *ui);
 	void Autosave() const;
 	void Save(const std::string &path) const;
 	
+	// Check for and apply any punitive actions from planetary security.
+	void Fine(UI *ui);
+	
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
+	
+	// Check that this player's current state can be saved.
+	bool CanBeSaved() const;
 	
 	
 private:
@@ -271,6 +288,7 @@ private:
 	std::map<std::string, int64_t> costBasis;
 	
 	std::multimap<Date, std::string> logbook;
+	std::map<std::string, std::map<std::string, std::string>> specialLogs;
 	
 	std::list<Mission> missions;
 	// These lists are populated when you land on a planet, and saved so that
@@ -301,7 +319,7 @@ private:
 	std::list<DataNode> dataChanges;
 	DataNode economy;
 	// Persons that have been killed in this player's universe:
-	std::list<const Person *> destroyedPersons;
+	std::vector<std::string> destroyedPersons;
 	// Events that are going to happen some time in the future:
 	std::list<GameEvent> gameEvents;
 	
@@ -312,6 +330,7 @@ private:
 	std::map<std::string, std::set<std::string>> collapsed;
 	
 	bool freshlyLoaded = true;
+	int desiredCrew = 0;
 };
 
 

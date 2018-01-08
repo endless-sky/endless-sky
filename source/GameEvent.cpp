@@ -19,7 +19,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "System.h"
 
+#include <set>
+#include <string>
+
 using namespace std;
+
+
+
+// Construct and Load() at the same time.
+GameEvent::GameEvent(const DataNode &node)
+{
+	Load(node);
+}
 
 
 
@@ -28,20 +39,37 @@ void GameEvent::Load(const DataNode &node)
 	// If the event has a name, a condition should be automatically created that
 	// represents the fact that this event has occurred.
 	if(node.Size() >= 2)
-		conditionsToApply.Add("set", "event: " + node.Token(1));
+	{
+		name = node.Token(1);
+		conditionsToApply.Add("set", "event: " + name);
+	}
+	
+	static const set<string> allowedChanges = {
+		"fleet",
+		"galaxy",
+		"government",
+		"link",
+		"outfitter",
+		"planet",
+		"shipyard",
+		"system",
+		"unlink"
+	};
 	
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "date" && child.Size() >= 4)
+		const string &key = child.Token(0);
+		if(key == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
-		else if(child.Token(0) == "unvisit" && child.Size() >= 2)
+		else if(key == "unvisit" && child.Size() >= 2)
 			systemsToUnvisit.push_back(GameData::Systems().Get(child.Token(1)));
-		else if(child.Token(0) == "unvisit planet" && child.Size() >= 2)
+		else if(key == "visit" && child.Size() >= 2)
+			systemsToVisit.push_back(GameData::Systems().Get(child.Token(1)));
+		else if(key == "unvisit planet" && child.Size() >= 2)
 			planetsToUnvisit.push_back(GameData::Planets().Get(child.Token(1)));
-		else if(child.Token(0) == "system" || child.Token(0) == "planet" || child.Token(0) == "galaxy"
-				|| child.Token(0) == "shipyard" || child.Token(0) == "outfitter"
-				|| child.Token(0) == "fleet" || child.Token(0) == "government"
-				|| child.Token(0) == "link" || child.Token(0) == "unlink")
+		else if(key == "visit planet" && child.Size() >= 2)
+			planetsToVisit.push_back(GameData::Planets().Get(child.Token(1)));
+		else if(allowedChanges.count(key))
 			changes.push_back(child);
 		else
 			conditionsToApply.Add(child);
@@ -66,10 +94,24 @@ void GameEvent::Save(DataWriter &out) const
 			if(planet && !planet->Name().empty())
 				out.Write("unvisit planet", planet->Name());
 		
+		for(const System *system : systemsToVisit)
+			if(system && !system->Name().empty())
+				out.Write("visit", system->Name());
+		for(const Planet *planet : planetsToVisit)
+			if(planet && !planet->Name().empty())
+				out.Write("visit planet", planet->Name());
+		
 		for(const DataNode &change : changes)
 			out.Write(change);
 	}
 	out.EndChild();
+}
+
+
+
+const string &GameEvent::Name() const
+{
+	return name;
 }
 
 
@@ -90,25 +132,28 @@ void GameEvent::SetDate(const Date &date)
 
 void GameEvent::Apply(PlayerInfo &player)
 {
-	for(const auto &it : GameData::Governments())
-	{
-		int rep = it.second.Reputation();
-		player.Conditions()["reputation: " + it.first] = rep;
-	}
+	// Serialize the current reputation with other governments.
+	player.SetReputationConditions();
 	
+	// Apply this event's ConditionSet to the player's conditions.
 	conditionsToApply.Apply(player.Conditions());
+	// Apply (and store a record of applying) this event's other general
+	// changes (e.g. updating an outfitter's inventory).
 	player.AddChanges(changes);
 	
-	for(const auto &it : GameData::Governments())
-	{
-		int rep = it.second.Reputation();
-		int newRep = player.Conditions()["reputation: " + it.first];
-		if(rep != newRep)
-			it.second.AddReputation(newRep - rep);
-	}
+	// Update the current reputation with other governments (e.g. this
+	// event's ConditionSet may have altered some reputations).
+	player.CheckReputationConditions();
 	
 	for(const System *system : systemsToUnvisit)
 		player.Unvisit(system);
 	for(const Planet *planet : planetsToUnvisit)
 		player.Unvisit(planet);
+	
+	// Perform visits after unvisits, as "unvisit <system>"
+	// will unvisit any planets in that system.
+	for(const System *system : systemsToVisit)
+		player.Visit(system);
+	for(const Planet *planet : planetsToVisit)
+		player.Visit(planet);
 }

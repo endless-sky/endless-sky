@@ -17,21 +17,25 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Shader.h"
 #include "Sprite.h"
 
+#include <vector>
+
 using namespace std;
 
 namespace {
 	Shader shader;
 	GLint scaleI;
-	GLint transformI;
+	GLint frameI;
+	GLint frameCountI;
 	GLint positionI;
+	GLint transformI;
 	GLint blurI;
 	GLint clipI;
-	GLint fadeI;
+	GLint alphaI;
 	
 	GLuint vao;
 	GLuint vbo;
 
-	static const GLint SWIZZLE[9][4] = {
+	const vector<vector<GLint>> SWIZZLE = {
 		{GL_RED, GL_GREEN, GL_BLUE, GL_ALPHA}, // red + yellow markings (republic)
 		{GL_RED, GL_BLUE, GL_GREEN, GL_ALPHA}, // red + magenta markings
 		{GL_GREEN, GL_RED, GL_BLUE, GL_ALPHA}, // green + yellow (freeholders)
@@ -50,9 +54,9 @@ namespace {
 void SpriteShader::Init()
 {
 	static const char *vertexCode =
-		"uniform mat2 transform;\n"
-		"uniform vec2 position;\n"
 		"uniform vec2 scale;\n"
+		"uniform vec2 position;\n"
+		"uniform mat2 transform;\n"
 		"uniform vec2 blur;\n"
 		"uniform float clip;\n"
 		
@@ -65,51 +69,64 @@ void SpriteShader::Init()
 		"  vec2 texCoord = vert + vec2(.5, .5);\n"
 		"  fragTexCoord = vec2(texCoord.x, max(clip, texCoord.y)) + blurOff;\n"
 		"}\n";
-
+	
 	static const char *fragmentCode =
-		"uniform sampler2D tex0;\n"
-		"uniform sampler2D tex1;\n"
-		"uniform float fade;\n"
+		"uniform sampler2DArray tex;\n"
+		"uniform float frame;\n"
+		"uniform float frameCount;\n"
 		"uniform vec2 blur;\n"
+		"uniform float alpha;\n"
 		"const int range = 5;\n"
 		
 		"in vec2 fragTexCoord;\n"
+		
 		"out vec4 finalColor;\n"
 		
 		"void main() {\n"
+		"  float first = floor(frame);\n"
+		"  float second = mod(ceil(frame), frameCount);\n"
+		"  float fade = frame - first;\n"
+		"  vec4 color;\n"
 		"  if(blur.x == 0 && blur.y == 0)\n"
 		"  {\n"
 		"    if(fade != 0)\n"
-		"     finalColor = mix(texture(tex0, fragTexCoord), texture(tex1, fragTexCoord), fade);\n"
+		"      color = mix(\n"
+		"        texture(tex, vec3(fragTexCoord, first)),\n"
+		"        texture(tex, vec3(fragTexCoord, second)), fade);\n"
 		"    else\n"
-		"      finalColor = texture(tex0, fragTexCoord);\n"
-		"    return;\n"
+		"      color = texture(tex, vec3(fragTexCoord, first));\n"
 		"  }\n"
-		"  const float divisor = range * (range + 2) + 1;\n"
-		"  vec4 color = vec4(0., 0., 0., 0.);\n"
-		"  for(int i = -range; i <= range; ++i)\n"
+		"  else\n"
 		"  {\n"
-		"    float scale = (range + 1 - abs(i)) / divisor;\n"
-		"    vec2 coord = fragTexCoord + (blur * i) / range;\n"
-		"    if(fade != 0)\n"
-		"      color += scale * mix(texture(tex0, coord), texture(tex1, coord), fade);\n"
-		"    else\n"
-		"      color += scale * texture(tex0, coord);\n"
+		"    color = vec4(0., 0., 0., 0.);\n"
+		"    const float divisor = range * (range + 2) + 1;\n"
+		"    for(int i = -range; i <= range; ++i)\n"
+		"    {\n"
+		"      float scale = (range + 1 - abs(i)) / divisor;\n"
+		"      vec2 coord = fragTexCoord + (blur * i) / range;\n"
+		"      if(fade != 0)\n"
+		"        color += scale * mix(\n"
+		"          texture(tex, vec3(coord, first)),\n"
+		"          texture(tex, vec3(coord, second)), fade);\n"
+		"      else\n"
+		"        color += scale * texture(tex, vec3(coord, first));\n"
+		"    }\n"
 		"  }\n"
-		"  finalColor = color;\n"
+		"  finalColor = color * alpha;\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);
 	scaleI = shader.Uniform("scale");
-	transformI = shader.Uniform("transform");
+	frameI = shader.Uniform("frame");
+	frameCountI = shader.Uniform("frameCount");
 	positionI = shader.Uniform("position");
+	transformI = shader.Uniform("transform");
 	blurI = shader.Uniform("blur");
 	clipI = shader.Uniform("clip");
-	fadeI = shader.Uniform("fade");
+	alphaI = shader.Uniform("alpha");
 	
 	glUseProgram(shader.Object());
-	glUniform1i(shader.Uniform("tex0"), 0);
-	glUniform1i(shader.Uniform("tex1"), 1);
+	glUniform1i(shader.Uniform("tex"), 0);
 	glUseProgram(0);
 	
 	// Generate the vertex data for drawing sprites.
@@ -137,17 +154,26 @@ void SpriteShader::Init()
 
 
 
-void SpriteShader::Draw(const Sprite *sprite, const Point &position, float zoom, int swizzle)
+void SpriteShader::Draw(const Sprite *sprite, const Point &position, float zoom, int swizzle, float frame)
 {
 	if(!sprite)
 		return;
 	
-	float pos[2] = {
-		static_cast<float>(position.X()), static_cast<float>(position.Y())};
-	float trans[4] = {sprite->Width() * zoom, 0.f, 0.f, sprite->Height() * zoom};
+	Item item;
+	item.texture = sprite->Texture();
+	item.frame = frame;
+	item.frameCount = sprite->Frames();
+	// Position.
+	item.position[0] = static_cast<float>(position.X());
+	item.position[1] = static_cast<float>(position.Y());
+	// Rotation (none) and scale.
+	item.transform[0] = sprite->Width() * zoom;
+	item.transform[3] = sprite->Height() * zoom;
+	// Swizzle.
+	item.swizzle = swizzle;
 	
 	Bind();
-	Add(sprite->Texture(), 0, pos, trans, swizzle, 1.f, 0.f);
+	Add(item);
 	Unbind();
 }
 
@@ -157,7 +183,6 @@ void SpriteShader::Bind()
 {
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
-	glActiveTexture(GL_TEXTURE0);
 	
 	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
 	glUniform2fv(scaleI, 1, scale);
@@ -165,30 +190,25 @@ void SpriteShader::Bind()
 
 
 
-void SpriteShader::Add(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle, float clip, float fade, const float blur[2])
+void SpriteShader::Add(const Item &item, bool withBlur)
 {
-	glUniformMatrix2fv(transformI, 1, false, transform);
-	glUniform2fv(positionI, 1, position);
-	glBindTexture(GL_TEXTURE_2D, tex0);
+	glBindTexture(GL_TEXTURE_2D_ARRAY, item.texture);
+
+	glUniform1f(frameI, item.frame);
+	glUniform1f(frameCountI, item.frameCount);
+	glUniform2fv(positionI, 1, item.position);
+	glUniformMatrix2fv(transformI, 1, false, item.transform);
+	// Special case: check if the blur should be applied or not.
+	static const float UNBLURRED[2] = {0.f, 0.f};
+	glUniform2fv(blurI, 1, withBlur ? item.blur : UNBLURRED);
+	// Clipping has the oppostie sense in the shader.
+	glUniform1f(clipI, 1.f - item.clip);
+	glUniform1f(alphaI, item.alpha);
 	
-	if(fade && tex1)
-	{
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, tex1);
-		glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[swizzle]);
-		glActiveTexture(GL_TEXTURE0);
-	}
-	else
-		fade = 0.f;
-	
+	// Bounds check for the swizzle value:
+	int swizzle = (static_cast<size_t>(item.swizzle) >= SWIZZLE.size() ? 0 : item.swizzle);
 	// Set the color swizzle.
-	glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[swizzle]);
-	
-	// Set the clipping.
-	glUniform1f(clipI, 1.f - clip);
-	glUniform1f(fadeI, fade);
-	const float noBlur[2] = {0.f, 0.f};
-	glUniform2fv(blurI, 1, blur ? blur : noBlur);
+	glTexParameteriv(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[swizzle].data());
 	
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
@@ -199,4 +219,7 @@ void SpriteShader::Unbind()
 {
 	glBindVertexArray(0);
 	glUseProgram(0);
+	
+	// Reset the swizzle.
+	glTexParameteriv(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[0].data());
 }

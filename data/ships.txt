@@ -266,7 +266,7 @@ ship "Barb"
 	turret 8 6 "Blaster Turret"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
-	description `Though the Syndicate doesn't build Fighter carriers, it is testing the waters with the Barb, a cheap and flexible carrier-launched craft featuring newly-developed miniaturized ion engines. The design philosophy of the Barb seems to have been "uglier than the Protector," and as you look at the cockpit nestled between the massive gun port and turret mount, you wonder where the power systems are supposed to go. Though an awkward-looking ship, it seems flexible enough to become a dangerous addition to any fleet with carriers.`
+	description `Though the Syndicate doesn't build fighter carriers, it is testing the waters with the Barb, a cheap and flexible carrier-launched craft featuring newly-developed miniaturized ion engines. The design philosophy of the Barb seems to have been "uglier than the Protector," and as you look at the cockpit nestled between the massive gun port and turret mount, you wonder where the power systems are supposed to go. Though an awkward-looking ship, it seems flexible enough to become a dangerous addition to any fleet with carriers.`
 
 
 
@@ -315,8 +315,8 @@ ship "Bastion"
 		"cost" 3560000
 		"shields" 6700
 		"hull" 4200
-		"required crew" 32
-		"bunks" 47
+		"required crew" 17
+		"bunks" 40
 		"mass" 580
 		"drag" 10.3
 		"heat dissipation" .5
@@ -2459,7 +2459,7 @@ ship "Shuttle"
 		"bunks" 6
 		"mass" 70
 		"drag" 1.7
-		"heat dissipation" .7
+		"heat dissipation" .8
 		"fuel capacity" 400
 		"cargo space" 20
 		"outfit space" 120
@@ -2602,7 +2602,7 @@ ship "Splinter"
 		"cost" 3100000
 		"shields" 5200
 		"hull" 1700
-		"required crew" 12
+		"required crew" 7
 		"bunks" 21
 		"mass" 250
 		"drag" 4.0
@@ -2658,7 +2658,7 @@ ship "Star Barge"
 		"bunks" 3
 		"mass" 70
 		"drag" 2.4
-		"heat dissipation" .7
+		"heat dissipation" .8
 		"fuel capacity" 300
 		"cargo space" 50
 		"outfit space" 130
@@ -2818,7 +2818,7 @@ ship "Vanguard"
 	gun 21 -45 "Proton Gun"
 	gun -31 -45 "Proton Gun"
 	gun 31 -45 "Proton Gun"
-	turret 0 40 "Anti-Missile Turret"
+	turret 0 42 "Anti-Missile Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24

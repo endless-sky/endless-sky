@@ -23,31 +23,49 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	ImageBuffer *ReadPNG(const string &path);
-	ImageBuffer *ReadJPG(const string &path);
-	void Premultiply(ImageBuffer *buffer, int additive);
+	bool ReadPNG(const string &path, ImageBuffer &buffer, int frame);
+	bool ReadJPG(const string &path, ImageBuffer &buffer, int frame);
+	void Premultiply(ImageBuffer &buffer, int frame, int additive);
 }
 
 
 
-ImageBuffer::ImageBuffer()
-	: width(0), height(0), pixels(nullptr)
+ImageBuffer::ImageBuffer(int frames)
+	: width(0), height(0), frames(frames), pixels(nullptr)
 {
-}
-
-
-
-ImageBuffer::ImageBuffer(int width, int height)
-	: width(width), height(height)
-{
-	pixels = new uint32_t[width * height];
 }
 
 
 
 ImageBuffer::~ImageBuffer()
 {
+	Clear();
+}
+
+
+
+// Set the number of frames. This must be called before allocating.
+void ImageBuffer::Clear(int frames)
+{
 	delete [] pixels;
+	pixels = nullptr;
+	this->frames = frames;
+}
+
+
+
+// Allocate the internal buffer. This must only be called once for each
+// image buffer; subsequent calls will be ignored.
+void ImageBuffer::Allocate(int width, int height)
+{
+	// Do nothing if the buffer is already allocated or if any of the dimensions
+	// is set to zero.
+	if(pixels || !width || !height || !frames)
+		return;
+	
+	this->width = width;
+	this->height = height;
+	pixels = new uint32_t[width * height * frames];
 }
 
 
@@ -65,6 +83,14 @@ int ImageBuffer::Height() const
 }
 
 
+
+int ImageBuffer::Frames() const
+{
+	return frames;
+}
+
+
+
 const uint32_t *ImageBuffer::Pixels() const
 {
 	return pixels;
@@ -79,27 +105,29 @@ uint32_t *ImageBuffer::Pixels()
 
 
 
-const uint32_t *ImageBuffer::Begin(int y) const
+const uint32_t *ImageBuffer::Begin(int y, int frame) const
 {
-	return pixels + y * Width();
+	return pixels + width * (y + height * frame);
 }
 
 
 
-uint32_t *ImageBuffer::Begin(int y)
+uint32_t *ImageBuffer::Begin(int y, int frame)
 {
-	return pixels + y * Width();
+	return pixels + width * (y + height * frame);
 }
 
 
 
 void ImageBuffer::ShrinkToHalfSize()
 {
-	ImageBuffer result(width / 2, height / 2);
+	ImageBuffer result(frames);
+	result.Allocate(width / 2, height / 2);
 	
 	unsigned char *begin = reinterpret_cast<unsigned char *>(pixels);
 	unsigned char *out = reinterpret_cast<unsigned char *>(result.pixels);
-	for(int y = 0; y < result.height; ++y)
+	// Loop through every line of every frame of the buffer.
+	for(int y = 0; y < result.height * frames; ++y)
 	{
 		unsigned char *aIt = begin + (4 * width) * (2 * y);
 		unsigned char *aEnd = aIt + 4 * 2 * result.width;
@@ -118,68 +146,68 @@ void ImageBuffer::ShrinkToHalfSize()
 
 
 
-ImageBuffer *ImageBuffer::Read(const string &path)
+bool ImageBuffer::Read(const string &path, int frame)
 {
 	// First, make sure this is a JPG or PNG file.
 	if(path.length() < 4)
-		return nullptr;
+		return false;
 	
 	string extension = path.substr(path.length() - 4);
 	bool isPNG = (extension == ".png" || extension == ".PNG");
 	bool isJPG = (extension == ".jpg" || extension == ".JPG");
 	if(!isPNG && !isJPG)
-		return nullptr;
+		return false;
 	
-	ImageBuffer *buffer = isPNG ? ReadPNG(path) : ReadJPG(path);
-	if(!buffer)
-		return nullptr;
+	if(isPNG && !ReadPNG(path, *this, frame))
+		return false;
+	if(isJPG && !ReadJPG(path, *this, frame))
+		return false;
 	
-	// Check if the sprite uses additive blending.
+	// Check if the sprite uses additive blending. Start by getting the index of
+	// the last character before the frame number (if one is specified).
 	int pos = path.length() - 4;
 	if(pos > 3 && !path.compare(pos - 3, 3, "@2x"))
 		pos -= 3;
 	while(--pos)
 		if(path[pos] < '0' || path[pos] > '9')
 			break;
-	// Special case: the PNG is already premultiplied alpha.
-	if(path[pos] == '=')
-		return buffer;
-	int additive = (path[pos] == '+') ? 2 : (path[pos] == '~') ? 1 : 0;
-	
-	if(isPNG || (isJPG && additive == 2))
-		Premultiply(buffer, additive);
-	
-	return buffer;
+	// Special case: if the image is already in premultiplied alpha format,
+	// there is no need to apply premultiplication here.
+	if(path[pos] != '=')
+	{
+		int additive = (path[pos] == '+') ? 2 : (path[pos] == '~') ? 1 : 0;
+		if(isPNG || (isJPG && additive == 2))
+			Premultiply(*this, frame, additive);
+	}
+	return true;
 }
 
 
 
 namespace {
-	ImageBuffer *ReadPNG(const string &path)
+	bool ReadPNG(const string &path, ImageBuffer &buffer, int frame)
 	{
 		// Open the file, and make sure it really is a PNG.
 		File file(path);
 		if(!file)
-			return nullptr;
+			return false;
 		
 		// Set up libpng.
 		png_struct *png = png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
 		if(!png)
-			return nullptr;
+			return false;
 		
 		png_info *info = png_create_info_struct(png);
 		if(!info)
 		{
 			png_destroy_read_struct(&png, nullptr, nullptr);
-			return nullptr;
+			return false;
 		}
 		
-		ImageBuffer *buffer = nullptr;
 		if(setjmp(png_jmpbuf(png)))
 		{
 			png_destroy_read_struct(&png, &info, nullptr);
-			delete buffer;
-			return nullptr;
+			return false;
 		}
 		
 		png_init_io(png, file);
@@ -188,8 +216,14 @@ namespace {
 		png_read_info(png, info);
 		int width = png_get_image_width(png, info);
 		int height = png_get_image_height(png, info);
-		if(!width || !height)
-			return nullptr;
+		// If the buffer is not yet allocated, allocate it.
+		buffer.Allocate(width, height);
+		// Make sure this frame's dimensions are valid.
+		if(!width || !height || width != buffer.Width() || height != buffer.Height())
+		{
+			png_destroy_read_struct(&png, &info, nullptr);
+			return false;
+		}
 		
 		// Adjust settings to make sure the result will be a BGRA file.
 		int colorType = png_get_color_type(png, info);
@@ -201,31 +235,32 @@ namespace {
 			png_set_palette_to_rgb(png);
 		if(colorType == PNG_COLOR_TYPE_GRAY && bitDepth < 8)
 			png_set_expand_gray_1_2_4_to_8(png);
+		if(colorType == PNG_COLOR_TYPE_GRAY || colorType == PNG_COLOR_TYPE_GRAY_ALPHA)
+			png_set_gray_to_rgb(png);
 		if(colorType & PNG_COLOR_MASK_COLOR)
 			png_set_bgr(png);
 		png_read_update_info(png, info);
 		
 		// Read the file.
-		buffer = new ImageBuffer(width, height);
 		vector<png_byte *> rows(height, nullptr);
 		for(int y = 0; y < height; ++y)
-			rows[y] = reinterpret_cast<png_byte *>(buffer->Begin(y));
+			rows[y] = reinterpret_cast<png_byte *>(buffer.Begin(y, frame));
 		
 		png_read_image(png, &rows.front());
 		
 		// Clean up. The file will be closed automatically.
 		png_destroy_read_struct(&png, &info, nullptr);
 		
-		return buffer;
+		return true;
 	}
 	
 	
 	
-	ImageBuffer *ReadJPG(const string &path)
+	bool ReadJPG(const string &path, ImageBuffer &buffer, int frame)
 	{
 		File file(path);
 		if(!file)
-			return nullptr;
+			return false;
 		
 		jpeg_decompress_struct cinfo;
 		struct jpeg_error_mgr jerr;
@@ -239,12 +274,20 @@ namespace {
 		jpeg_start_decompress(&cinfo);
 		int width = cinfo.image_width;
 		int height = cinfo.image_height;
+		// If the buffer is not yet allocated, allocate it.
+		buffer.Allocate(width, height);
+		// Make sure this frame's dimensions are valid.
+		if(!width || !height || width != buffer.Width() || height != buffer.Height())
+		{
+			jpeg_finish_decompress(&cinfo);
+			jpeg_destroy_decompress(&cinfo);
+			return false;
+		}
 		
 		// Read the file.
-		ImageBuffer *buffer = new ImageBuffer(width, height);
 		vector<JSAMPLE *> rows(height, nullptr);
 		for(int y = 0; y < height; ++y)
-			rows[y] = reinterpret_cast<JSAMPLE *>(buffer->Begin(y));
+			rows[y] = reinterpret_cast<JSAMPLE *>(buffer.Begin(y, frame));
 		
 		while(height)
 			height -= jpeg_read_scanlines(&cinfo, &rows.front() + cinfo.output_scanline, height);
@@ -252,21 +295,18 @@ namespace {
 		jpeg_finish_decompress(&cinfo);
 		jpeg_destroy_decompress(&cinfo);
 		
-		return buffer;
+		return true;
 	}
 	
 	
 	
-	void Premultiply(ImageBuffer *buffer, int additive)
+	void Premultiply(ImageBuffer &buffer, int frame, int additive)
 	{
-		if(!buffer)
-			return;
-		
-		for(int y = 0; y < buffer->Height(); ++y)
+		for(int y = 0; y < buffer.Height(); ++y)
 		{
-			uint32_t *it = buffer->Begin(y);
+			uint32_t *it = buffer.Begin(y, frame);
 			
-			for(uint32_t *end = it + buffer->Width(); it != end; ++it)
+			for(uint32_t *end = it + buffer.Width(); it != end; ++it)
 			{
 				uint64_t value = *it;
 				uint64_t alpha = (value & 0xFF000000) >> 24;

@@ -43,6 +43,7 @@ public:
 	int Width(const char *str, char after = ' ') const;
 	std::string Truncate(const std::string &str, int width) const;
 	std::string TruncateFront(const std::string &str, int width) const;
+	std::string TruncateMiddle(const std::string &str, int width) const;
 	
 	int Height() const;
 	
@@ -53,8 +54,8 @@ public:
 	
 private:
 	static int Glyph(char c, bool isAfterSpace);
-	void LoadTexture(ImageBuffer *image);
-	void CalculateAdvances(ImageBuffer *image);
+	void LoadTexture(ImageBuffer &image);
+	void CalculateAdvances(ImageBuffer &image);
 	void SetUpShader(float glyphW, float glyphH);
 	
 	

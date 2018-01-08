@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Random.h"
 
+#include <algorithm>
 #include <cmath>
 
 using namespace std;
@@ -47,6 +48,14 @@ namespace {
 		auto it = opMap.find(op);
 		return (it != opMap.end() ? it->second : nullptr);
 	}
+}
+
+
+
+// Construct and Load() at the same time.
+ConditionSet::ConditionSet(const DataNode &node)
+{
+	Load(node);
 }
 
 
@@ -120,8 +129,7 @@ void ConditionSet::Add(const DataNode &node)
 	else if(node.Size() == 1 && (node.Token(0) == "and" || node.Token(0) == "or"))
 	{
 		// The "and" and "or" keywords introduce a nested condition set.
-		children.emplace_back();
-		children.back().Load(node);
+		children.emplace_back(node);
 	}
 	else
 		node.PrintTrace("Unrecognized condition expression:");
@@ -158,7 +166,7 @@ bool ConditionSet::Add(const string &name, const string &op, int value)
 {
 	// If the operator is recognized, map it to a binary function.
 	BinFun fun = Op(op);
-	if(!fun || isnan(value))
+	if(!fun)
 		return false;
 	
 	expressions.emplace_back(name, op, value);

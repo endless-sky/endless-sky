@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Trade.h"
 
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -30,9 +31,11 @@ class Fleet;
 class Galaxy;
 class GameEvent;
 class Government;
+class ImageSet;
 class Interface;
 class Minable;
 class Mission;
+class News;
 class Outfit;
 class Person;
 class Phrase;
@@ -81,6 +84,12 @@ public:
 	// that a change creates or moves a system.
 	static void UpdateNeighbors();
 	
+	// Re-activate any special persons that were created previously but that are
+	// still alive.
+	static void ResetPersons();
+	// Mark all persons in the given list as dead.
+	static void DestroyPersons(std::vector<std::string> &names);
+	
 	static const Set<Color> &Colors();
 	static const Set<Conversation> &Conversations();
 	static const Set<Effect> &Effects();
@@ -108,9 +117,16 @@ public:
 	// Custom messages to be shown when trying to land on certain stellar objects.
 	static bool HasLandingMessage(const Sprite *sprite);
 	static const std::string &LandingMessage(const Sprite *sprite);
+	// Get the solar power and wind output of the given stellar object sprite.
+	static double SolarPower(const Sprite *sprite);
+	static double SolarWind(const Sprite *sprite);
 	
-	// Strings for combat rating levels.
-	static const std::vector<std::string> &CombatRatings();
+	// Pick a random news object that applies to the given planet. If there is
+	// no applicable news, this returns null.
+	static const News *PickNews(const Planet *planet);
+	
+	// Strings for combat rating levels, etc.
+	static const std::string &Rating(const std::string &type, int level);
 	
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite);
@@ -125,9 +141,7 @@ public:
 private:
 	static void LoadSources();
 	static void LoadFile(const std::string &path, bool debugMode);
-	static void LoadImages(std::map<std::string, std::string> &images);
-	static void LoadImage(const std::string &path, std::map<std::string, std::string> &images, size_t start);
-	static std::string Name(const std::string &path);
+	static std::map<std::string, std::shared_ptr<ImageSet>> FindImages();
 	
 	static void PrintShipTable();
 	static void PrintWeaponTable();

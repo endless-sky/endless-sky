@@ -44,6 +44,15 @@ government "Deep"
 	swizzle 0
 	"player reputation" -1000
 
+government "Deep Security"
+	swizzle 0
+	"player reputation" 1
+	"attitude toward"
+		"Merchant" .5
+		"Pirate" -.2
+	"friendly hail" "friendly deep"
+	"hostile hail" "hostile deep"
+
 government "Drak"
 	swizzle 5
 	color 1 1 1
@@ -78,6 +87,7 @@ government "Hai"
 	"player reputation" 0
 	"attitude toward"
 		"Hai (Unfettered)" -.5
+		"Merchant" .01
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly hai"
@@ -251,10 +261,11 @@ government "Pirate"
 	
 	"player reputation" -10
 	"attitude toward"
+		"Author" -.01
+		"Hai" -.01
+		"Korath" -.01
 		"Merchant" -.1
-		"Syndicate" -.1
-		"Korath" -.1
-		"Author" -.1
+		"Syndicate" -.01
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly pirate"
@@ -267,8 +278,8 @@ government "Pug"
 	
 	"player reputation" 1
 	"attitude toward"
-		"Merchant" .1
-		"Pirate" -.1
+		"Drak" -.01
+		"Quarg" -.01
 	"friendly hail" "friendly pug"
 	"hostile hail" "hostile pug"
 
@@ -340,6 +351,8 @@ government "Syndicate (Extremist)"
 government "Test Dummy"
 	swizzle 3
 	"player reputation" -1000
+	"hostile hail" "test dummy"
+	"hostile disabled hail" "disabled test dummy"
 
 government "Uninhabited"
 	color .3 .3 .3

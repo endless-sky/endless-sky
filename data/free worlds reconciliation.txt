@@ -29,6 +29,9 @@ mission "FW Reconciliation 1"
 		dialog "You have reached <planet>, but you left Raven's ship behind! Better depart and wait for them to arrive in this star system."
 	
 	on offer
+		log "Decided to rescue the Syndicate defector rather than turning him over to the Syndicate. A Questioner who works with Navy Intelligence has confirmed that he is telling the truth, and a ceasefire has been declared. Also, the Navy has agreed to release Katya now that there is evidence proving her innocence."
+		log "People" "Raven" `Raven, whose full name is unknown, is a Questioner who works for Navy Intelligence. Through some combination of training and natural ability, she is able to reliably detect whether or not someone is telling the truth.`
+		log "Factions" "Navy Intelligence" `It is unclear why the Navy needs their own intelligence force, since the Republic already has a Department of Intelligence that is incredibly powerful and well-funded. Rumors say that one of the main purposes of Navy Intelligence is to watch for human rights abuses being committed by the Republic itself and for other questionable activities that the Department of Intelligence might turn a blind eye toward or even collude with.`
 		event "fw conservatory founded"
 		conversation
 			`On your way to the spaceport, you fill Katya in on the state of the war. She says that Intelligence has been keeping her in a relatively comfortable but totally isolated cell; she's not even sure what world it was on. From the fact that her questioners seemed to be growing increasingly frustrated about the Free Worlds, she knew that you were still managing to resist the Navy, but they did not share any details with her.`
@@ -164,6 +167,7 @@ mission "FW Reconciliation 1C"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Collected atmospheric samples from Mutiny, a planet deep in Syndicate space, and verified that a nuclear test has been performed here using isotopes that match those from the attacks on Geminus and Martini. Also found carefully hidden signs of an underground test site."
 		conversation
 			`You skim low over the surface of <origin>, with the airlock slightly open to allow Ijs to collect atmospheric samples. He's dressed in a pressure suit, and over the suit's radio he says, "Any residue that's here will be very faint. Just a few more minutes."`
 			`	Sawyer directs you to the site where the secret development took place. Nothing is left but a wide and slightly overgrown clearing. After checking your radar and seeing no incoming ships, you risk landing. Sawyer says that there were buildings here a few years ago, but now not even their foundations remain, and a sensor sweep for metallic objects turns up nothing, not even as small as a single nail.`
@@ -226,6 +230,8 @@ mission "FW Reconciliation 2"
 		dialog "You have reached <planet>, but you left Raven's ship behind! Better depart and wait for them to arrive in this star system."
 	
 	on offer
+		"reputation: Deep Security" >?= 1
+		log "Parliament still refuses to believe that the Syndicate could have been behind the attacks; the Syndicate has far too much power and influence in the government of the Republic. But, the people of the Deep might be more open to the defector's story."
 		event "deep sky tech available"
 		conversation
 			`As you came fleeing out of Syndicate space with their ships in hot pursuit, you couldn't help noticing that no Republic ships moved to help you or attack your pursuers. Apparently, they are not ready to strike the Syndicate until Parliament has made a decision. As you are waiting for Parliament to hear your evidence, Katya asks you quietly, "So, how are you feeling about our chances here?"`
@@ -254,7 +260,7 @@ mission "FW Reconciliation 2"
 
 mission "FW Navy Out Of Rastaban"
 	landing
-	destination Rastaban
+	destination "Dancer"
 	to offer
 		has "FW Reconciliation 2: offered"
 		karma > 0
@@ -282,6 +288,7 @@ mission "FW Reconciliation 2A"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log `The governor of Valhalla, in the Deep, has proposed a "police action" to arrest one or more of the Syndicate leaders and bring them to justice. It will be a secret joint operation between the Free Worlds, the Deep, and the Oathkeepers.`
 		conversation
 			`When you land on Valhalla, a man shows up at your ship and introduces himself as Edrick Flint, the governor of Valhalla. He invites all of you to join him for dinner at his home, which turns out to be an apartment on the twenty-third floor of one of the downtown skyscrapers. There, he introduces you to several other regional governors and authorities.`
 			`	"You may be aware," Edrick says, "that the Deep was self-governing before the formation of the Republic. Indeed, during some of the darkest centuries of the space age, the Deep stood out as a beacon of civilization, a place where piracy was not tolerated and all travelers were safe. When we joined the Republic, we retained the authority to police our own territory, and that authority includes the right to track down fugitives who have fled beyond our usual jurisdiction."`
@@ -362,6 +369,7 @@ mission "FW Reconciliation 2C"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Visited a village on a lawless world in northern Syndicate space, and purchased information on the whereabouts of several of the Syndicate executives who were implicated in the terrorist attacks."
 		conversation
 			`You land near one of the small villages on Stormhold, and after handing out a few small bribes from the money Danforth gave you, finally one of the villagers recalls that a local gang of pirates is led by a former Syndicate manager. With some trepidation, you fly to his stronghold, and he agrees to "do business" with you.`
 			`	Katya shows him Sawyer's list of names. "So, these are the bad boys, huh?" he says. Clearly the news of Sawyer's revelations has spread even to this remote world. He looks through the list, and is able to tell you where three of the five men live. "I'd love to see all these bastards taken down," he says.`
@@ -517,6 +525,7 @@ mission "FW Reconciliation Break"
 	
 	on offer
 		event "fw reconciliation break" 30
+		log "Dropped off a team of Republic diplomats on Bourne. It seems like for now, the ceasefire is holding, and public opinion is slowly turning to favor the Free Worlds rather than the Syndicate. But the Syndicate leaders must still be brought to justice. The Council will be in touch when they are ready to help launch an attack on the Syndicate."
 		conversation
 			`From the way Alondo's eyes light up when he sees Katya, you can tell that all he wants to do right now is to get caught up with her and celebrate her freedom. But he plays the part of a good diplomat, escorting the Republic ambassadors to their new quarters. Along the way he makes pleasant small talk with them, complimenting their style and sophistication. Knowing him as well as you do, you can tell he is saving up his more scathing comments about them until they are out of earshot.`
 			`	The moment they are dealt with he gives Katya a hug and says, "Katya! So good to have you back with us. The Council has five members once more. I assume you've been told about Tomek's... departure, and <first>'s promotion?" She nods.`
@@ -547,7 +556,7 @@ mission "FW Reconciliation Break"
 	
 	on complete
 		conversation
-			`	You drop Ijs and Katya off on Skymoot, and wish them well. They both seem eager for a chance to relax, enjoy one another's company, and forget about matters of galactic importance for a while. "We'll see you soon, <first>," says Katya. "Just be sure your ship is in good fighting shape when the time comes to bring the Syndicate to justice."`
+			`You drop Ijs and Katya off on Skymoot, and wish them well. They both seem eager for a chance to relax, enjoy one another's company, and forget about matters of galactic importance for a while. "We'll see you soon, <first>," says Katya. "Just be sure your ship is in good fighting shape when the time comes to bring the Syndicate to justice."`
 
 
 
@@ -556,7 +565,7 @@ mission "FW Reconciliation Break Ends"
 	description "Rejoin Ijs, Katya, and Alondo on <destination>."
 	landing
 	source
-		near "Gamma Corvi" 1 1000
+		near "Gamma Corvi" 1 100
 	destination Bourne
 	to offer
 		has "event: fw reconciliation break"
@@ -650,6 +659,7 @@ mission "FW Syndicate Capture 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Preparing to invade Syndicate space with a joint strike force made up of Free Worlds, Deep security, and Oathkeeper ships. The plan is to capture one of the Syndicate executives and bring him to trial."
 		conversation
 			`You land on Earth and make a show of being very busy ensuring that the Free Worlds ambassadors are comfortable and well cared for, until finally you receive a secure message from Edrick. He tells you that the convoy from the Deep is landing on Mars right now, and an Oathkeeper cruiser is visiting the shipyard on Luna. As soon as you are ready, you can take off, and travel together into the heart of Syndicate space.`
 			`	You make an excuse to depart, and return to your ship. "Well," says Ijs, "this is it. If we're lucky, they won't see us coming, but no matter what, getting back out of Syndicate space will be a nightmare. Good luck, all."`
@@ -658,6 +668,7 @@ mission "FW Syndicate Capture 1"
 	npc accompany save
 		personality escort heroic
 		ship "Dreadnought" "F.S. Gibraltar"
+		government "Free Worlds"
 	
 	npc accompany save
 		personality escort heroic waiting
@@ -666,11 +677,24 @@ mission "FW Syndicate Capture 1"
 	
 	npc accompany save
 		personality escort heroic waiting
-		government "Republic"
+		government "Deep Security"
 		ship "Bactrian" "Unbreakable"
 		ship "Aerie" "Eagle's Eye"
 
 
+
+event "fw begin syndicate capture"
+	"reputation: Syndicate" <?= -100
+	government "Syndicate"
+		"attitude toward"
+			"Deep Security" -.01
+			"Navy (Oathkeeper)" -.01
+
+event "fw end syndicate capture"
+	government "Syndicate"
+		"attitude toward"
+			"Deep Security" 0
+			"Navy (Oathkeeper)" 0
 
 mission "FW Syndicate Capture 1B"
 	landing
@@ -685,16 +709,20 @@ mission "FW Syndicate Capture 1B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		event "fw begin syndicate capture"
 		conversation
 			`As you approach the planet, your ships spread out and begin scanning the ocean surface for a yacht matching the description you were given. After a few tense moments of wondering if Soylent is off-world at the moment, you find the ship.`
 			`	With neither deflector shields nor any weaponry that you can see, the yacht clearly poses no threat to an armed starship. The Aerie that Edrick sent launches its two fighters; when they land on the yacht's deck, armed police officers emerge. Meanwhile your fleet is ready to open fire at the first sign of resistance.`
 			`	The officers soon radio you that they have found Soylent, and they bring him aboard your ship. Amid all the confusion, you notice a figure in diving gear who jumps off the rear of the yacht and disappears beneath the waves - one of Soylent's men, trying to escape. But since his leader is now in your custody, and your mission is accomplished, you see no reason to chase after him.`
 			`	The Oathkeeper captain sends you a brief message: "Your first priority is to reach the Deep with the prisoner. Our crew is prepared to serve as a rearguard, staying behind if necessary to ensure that you survive. Good luck, Captain."`
 				accept
+	on complete
+		event "fw end syndicate capture"
 	
 	npc
 		personality escort heroic
 		ship "Dreadnought" "F.S. Gibraltar"
+		government "Free Worlds"
 	npc
 		personality escort heroic waiting
 		government "Navy (Oathkeeper)"
@@ -705,7 +733,7 @@ mission "FW Syndicate Capture 1B"
 		ship "Combat Drone" "Red Four"
 	npc
 		personality escort heroic waiting
-		government "Republic"
+		government "Deep Security"
 		ship "Bactrian" "Unbreakable"
 		ship "Aerie" "Eagle's Eye"
 		ship "Dagger" "Alpha One"
@@ -836,6 +864,7 @@ mission "FW Syndicate Capture 1C"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log `Succeeded in capturing a Syndicate executive named Alexander Soylent, but the Syndicate has responded by sending a massive fleet to Sol, supposedly to "protect" Earth but more likely to put pressure on Parliament and the people of Earth to side with the Syndicate.`
 		event "syndicate occupies sol"
 		conversation
 			`Edrick meets you soon after you land, and oversees the transfer of your captive to a local, well-defended jail. You tell him about your narrow escape from Syndicate space, and the fact that the Syndicate used nuclear weapons against your fleet, in violation of the rules of war that humankind has abided by for centuries.`
@@ -878,6 +907,7 @@ mission "FW Pug 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "All communications with Rand, which recently joined the Free Worlds but is close to Syndicate territory, have been cut off. It is possible that this is the beginning of a Syndicate invasion."
 		event "pug invasion"
 		event "pug invasion 2" 6
 		event "pug invasion 3" 10
@@ -890,10 +920,10 @@ mission "FW Pug 1"
 			`	"Our fleet is still scattered throughout this quadrant," he says, "and I'll need Katya to command a part of it. Right now I just need you to travel to Rand, if possible, and find out what's going on. It could just be a communications malfunction, but I seriously doubt it. Meanwhile, Katya and Ijs can help me with organizing the fleet."`
 				accept
 	
-	on enter Cebalrai
+	on enter "Cebalrai"
 		dialog
 			`Based on your previous maps of this sector, there should be a hyperspace link from here to the Rasalhague system. But your sensors show nothing. Something has severed the link.`
-	on enter Ascella
+	on enter "Ascella"
 		dialog
 			`The Ascella system used to be linked to Rasalhague and Delta Capricorni, but no longer. Either the Syndicate has discovered the ability to alter hyperspace links, and is using it to block the Free Worlds from interfering with them, or you have a much stranger problem on your hands...`
 
@@ -901,11 +931,12 @@ mission "FW Pug 1"
 
 mission "FW Pug 1 Tundra"
 	landing
-	source Tundra
+	source "Tundra"
 	to offer
 		has "FW Pug 1: active"
 	
 	on offer
+		log "No one on Tundra, which is one of Rand's neighbors, has any idea how the hyperspace link was cut off. They wonder if this might have something to do with a star system near Rand that was inaccessible by hyperdrive."
 		conversation
 			`You land on Tundra and ask around to see if anyone knows why the hyperspace link to Rasalhague is gone. Everyone is talking about it, but no one seems to have a believable theory. "Maybe that odd star out past Rasalhague, the one you can't jump to, went nova," suggests one captain.`
 			`	You also talk with several people who mention that the northern lights have been spectacular the last few days, unlike anything they had ever seen before.`
@@ -920,6 +951,7 @@ mission "FW Pug 1 Arabia"
 		has "FW Pug 1: active"
 	
 	on offer
+		log "No one on Arabia knows what has caused hyperspace links in this region of space to suddenly disappear. There are stories of graviton surges and an alien ship, but they may all just be rumors."
 		conversation
 			`You land on Arabia and try to find someone who knows what is going on, but everyone seems just as confused as you are. The spaceport authorities say that their sensors picked up a massive graviton surge when the hyperlinks collapsed, but they are not sure whether the surge caused the collapse, or was a result of it.`
 			`	One merchant captain claims that he was in orbit at the time, and he saw a ship unlike anything he'd ever seen before, that appeared and then disappeared in a flash "just like those Quarg ships do." You aren't sure whether or not to believe him.`
@@ -955,6 +987,7 @@ mission "FW Pug 2"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "The Syndicate may be cutting off the hyperspace links that join their territory to the rest of human space, in order to escape being punished for their crimes. People are worried that they will try to take over even more territory, including Earth itself."
 		conversation
 			`By the time you arrive, Alondo and Freya have joined JJ and Katya on New Tibet; the entire Council is present. "Here's the story," says JJ. "A few weeks ago, hyperspace links on the edge of Syndicate space began collapsing. We weren't sure why. Then, more recently, the Syndicate fleet that had been occupying the Sol system retreated to Syndicate space - and the moment the last of their ships left, the hyperspace link disappeared behind them. We think the Syndicate has found a way to alter hyperspace links and is using it to wall themselves in, to escape retribution from the rest of humanity now that their guilt is so conclusively proven."`
 			choice
@@ -987,16 +1020,8 @@ mission "FW Pug 2"
 		system "Sol"
 		personality heroic uninterested staying
 		government "Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
+		fleet "Large Republic" 5
+		fleet "Small Republic" 5
 
 
 
@@ -1015,6 +1040,7 @@ mission "FW Pug 2A"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Agreed to travel to Syndicate space through the one remaining hyperspace path that is still open, through the uninhabited star systems to the north."
 		event "fw syndicate welcoming" 11
 		conversation
 			`A palpable sense of fear and near-panic hangs over the spaceport on Earth. At any minute, this system that serves as the very hub of human government could disappear into the same unknown abyss that has swallowed up its neighbors.`
@@ -1049,16 +1075,8 @@ mission "FW Pug 2A"
 		system "Sol"
 		personality heroic uninterested staying
 		government "Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
+		fleet "Large Republic" 5
+		fleet "Small Republic" 5
 
 
 
@@ -1092,6 +1110,8 @@ mission "FW Pug 2B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "The Syndicate CEO claims that the disappearing hyperspace links are not their doing, and that in fact they are under attack by aliens. In fact, they say that the Syndicate has had contact with two different alien species in this region - raiders and scavengers known as the Korath coming from the galactic core, and an enigmatic and irrational species named the Pug who occupy the system adjacent to the ones that recently got cut off from human space."
+		log "By plundering the Korath raiders, the Syndicate has acquired some jump drives, which allow a ship to travel between systems that are not connected by hyperspace links. They are willing to part with one of these jump drives in order to prove the truth of their story to the rest of humanity."
 		conversation
 			`As you are coming in for a landing you announce yourselves to the spaceport authorities as diplomatic representatives of the Free Worlds and the Republic. The moment you have landed, a Syndicate employee meets you and escorts you to their headquarters, to the incredibly fancy corner office of Alastair Korban, the CEO of the entire Syndicate Corporation. "I'm very glad you've come," says Alastair. "It seems unlikely that we can defeat this attack unless we work together."`
 			`	"Wait," says Alondo, "you're saying this whole thing is not the Syndicate's doing?"`
@@ -1236,6 +1256,7 @@ mission "FW Pug 2C: Side"
 		not "FW Pug 3: offered"
 	
 	on offer
+		log "Visited one of the human worlds that has been captured by the Pug. The Pug do not seem to be mistreating the people here, but they have stationed armed guards throughout the spaceport."
 		conversation
 			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens who you assume are the Pug. Each one is holding a metal staff: probably some sort of weapon.`
 			`	Soon after you land, you spot a man making his way towards your ship, ducking behind other ships and crates every time a group of Pug look in his direction. If he is some sort of fugitive from them, it might be unwise to throw your lot in with him. On the other hand, he could have valuable information for you.`
@@ -1327,6 +1348,8 @@ mission "FW Pug 3"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Located the Pug homeworld, and met with some of them. They say that they have annexed the neighboring systems into the Pug Protectorate in order to stop the human civil war. However, their idea of bringing peace seems to involve conquering human space and replacing the Republic with their own government."
+		log "Factions" "Pug" `The Pug are aliens with barrel-shaped bodies, spindly legs, and milky blue blood. They claim to have intervened in the human civil war purely for the sake of preventing more bloodshed and helping humans to live together in peace.`
 		conversation
 			`This is an entirely alien world. The buildings have strangely flowing, tapered shapes not unlike the Pug starships, and from orbit you count dozens of large cities covering a large portion of the land mass. If this were a human world, you would estimate its population at over a billion. You follow one of the Pug ships that is landing, and discover a large spaceport where a surprising number of human merchant ships are parked, in addition to the aliens.`
 			`	Elsewhere they have mostly ignored you, but here your ship is quickly approached by a small group of the pale-skinned, delicate aliens. The Pug are oddly proportioned, with long arms and legs but short, barrel-shaped torsos and large heads, and although they only have two legs, their gait is vaguely insectoid. "You came from outside," one of them says. "You are not pledged to the Protectorate. Do you wish to make your vow of loyalty and peacefulness at this time?"`
@@ -1367,11 +1390,13 @@ mission "FW Pug 3: Deep"
 		has "FW Pug 3A: done"
 	
 	on complete
+		log "The governor of Valhalla, in the Deep, says that the Pug secretly assisted the people of the Deep to fight against the Alphas centuries ago, during the Alpha Wars. He thinks that the Pug have humanity's best interests at heart, but agrees that they can't be allowed to overthrow the Republic."
+		log "Factions" "Pug" `It is possible that the Pug secretly assisted the humans of the Deep centuries ago by providing them with weapons that helped to turn the tide of the Alpha Wars.`
 		conversation
 			`As you are coming in for a landing, you contact Edrick Flint and see if he's available to talk. A few minutes later, you and Alondo are sitting with him in his office in the government center. "I assume you've heard about the alien invasion?" says Alondo. Edrick nods. "The aliens claimed that they had had dealings with the Deep in the past. Do you know anything about that?"`
 			`	Edrick says, "Can you describe what these aliens look like?"`
 			`	"Pale skin, delicate physique, most of them a little under two meters tall," says Alondo. "Long legs, short torsos. And they probably have blue blood."`
-			`	Edrick pauses for several seconds, then says, "Yes, we had contact with a species that matches that description, back during the Alpha War. Some of the folk traditions about 'elves' that still persist here in the Deep are a result of those encounters."`
+			`	Edrick pauses for several seconds, then says, "Yes, we had contact with a species that matches that description, back during the Alpha Wars. Some of the folk traditions about 'elves' that still persist here in the Deep are a result of those encounters."`
 			choice
 				`	"Do you know what they wanted from humanity, back then?"`
 				`	"What strengths and weaknesses do their ships have?"`
@@ -1401,6 +1426,9 @@ mission "FW Pug 3: Quarg"
 		has "FW Pug 3A: done"
 	
 	on complete
+		log "Learned from the Quarg that they have long been aware of the presence of the Pug in the Deneb system. Apparently the Pug are from another galaxy and possess such advanced technology that even the Quarg do not dare to interfere with them."
+		log "However, the Pug are known to treat warfare like a game, intentionally using weaker technology when fighting less advanced species in order to give them a fair chance at winning the battle. So, fighting them will not be a lost cause, but the Quarg are unwilling to provide any assistance."
+		log "Factions" "Pug" `The Quarg claim that the Pug are powerful enough that they could defeat the Quarg, or even the Drak, if they chose to. But the Pug treat warfare like a game. When battling another species, the Pug will limit themselves to ships and weapons that are weak enough that the other species has a chance of defeating them.`
 		conversation
 			`When you land on the station, Alondo says, "From what I understand of Quarg diplomacy, we're just supposed to ask any one of them to direct us to someone who can answer our questions." He walks up to a Quarg who is standing near your docking bay and says, "Excuse me, can you lead us to someone we can talk to?"`
 			`	It nods and gestures for you to follow, and leads you to a nook in one of the main hallways, where another Quarg stands behind a desk. You are struck by how little you know about this species: are you speaking to a tour guide, or to a diplomat? Were you led to this individual because this is the governor of the station, or just because this is one who speaks human languages? The Quarg behind the desk says, "Do you have questions for me?"`
@@ -1523,6 +1551,7 @@ mission "FW Pug 3C"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "The Free Worlds and Republic Navy are sending a joint fleet into Syndicate space, where they will be fitted with jump drives to make an assault on Pug territory. The Syndicate only has six jump drives available, so this fleet will have to survive without reinforcements until a way is found to reopen the connection to the rest of human space."
 		conversation
 			`You land at the Republic Navy Yard on Geminus escorting the two Dreadnoughts that are the Free Worlds contribution to the war against the Pug. You are met by the shipyard supervisor and a team of engineers who are preparing the Navy ships to join you. "So, these are your Dreadnoughts," one of them says. "I'm glad to finally have the chance to see one up close. I don't suppose one of the captains would be willing to give me a tour."`
 			choice
@@ -1637,34 +1666,13 @@ mission "FW Pug 4"
 		personality disables staying
 		system "Delta Capricorni"
 		government Pug
-		fleet
+		fleet 2
 			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 4
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1686,6 +1694,7 @@ mission "FW Pug 4A"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Succeeded in driving the Pug out of the Delta Capricorni system for long enough to land on Maker and explore the technology that the Pug left behind. Freya thinks that she has discovered the device that is used for creating or destroying hyperspace links, but it will take time for her to figure out how to operate it."
 		conversation
 			branch lost
 				has "FW Pug 4: Escorts: done"
@@ -1729,17 +1738,7 @@ mission "FW Pug 4A"
 				"Pug Maboro"
 				"Pug Enfolta" 
 				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Enfolta"
-				"Pug Zibruka" 2
-		fleet
+		fleet 3
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1798,25 +1797,7 @@ mission "FW Pug 4B: Enemies"
 		personality waiting disables
 		system Deneb
 		government Pug
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
+		fleet 4
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -1888,6 +1869,7 @@ mission "FW Pug 5"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Freya succeeded in reopening the hyperspace link to one of the Syndicate systems. If the same can be done for the link to Sol, the entire Navy will be able to join the battle against the Pug."
 		event "battle for altair"
 		conversation
 			`Freya is overjoyed that she has found a way to reverse the Pug technology and restore a hyperspace connection to human space. "Now we actually have a chance," she says. "Before, with just you and six other ships, victory seemed unlikely."`
@@ -1905,19 +1887,7 @@ mission "FW Pug 5"
 		personality staying disables
 		system Altair
 		government Pug
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
+		fleet 3
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -1944,25 +1914,7 @@ mission "FW Pug 5A: Enemies"
 		personality waiting disables
 		system Deneb
 		government Pug
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 
-				"Pug Zibruka" 2
-		fleet
+		fleet 4
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -2027,6 +1979,7 @@ mission "FW Pug 5B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Succeeded in rendezvousing with the Navy in the Sol system and reopening a link to the Pug territory. But now Shiver is under attack by a massive Pug fleet."
 		event "reconnected altair"
 		conversation
 			`You help some Navy engineers on Earth to set up the graviton reflector according to Freya's instructions. As before, soon after the reflector is operational the ground seems to tilt and roll as Freya's beam hones in on the reflector and sets up a harmonic oscillation between the two. "The link is reopening!" says one of the engineers. "We're beginning to receive hyperspace communications from Altair again, and from the Syndicate too."`
@@ -2036,14 +1989,7 @@ mission "FW Pug 5B"
 	npc
 		government Republic
 		personality escort disables waiting
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2063,27 +2009,7 @@ mission "FW Pug 5B"
 		government Pug
 		personality staying disables
 		system Altair
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
-			names "pug"
-			variant
-				"Pug Maboro"
-				"Pug Enfolta" 2
-		fleet
+		fleet 5
 			names "pug"
 			variant
 				"Pug Maboro"
@@ -2110,6 +2036,7 @@ mission "FW Pug 6"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Preparing for the final assault on the Pug homeworld. There seems to be no other option but to force them to surrender, but with the help of the Navy that no longer seems like an impossible task."
 		event "pug flee"
 		conversation
 			`The tiny spaceport on Shiver is packed with people as more and more Navy ships come in for a landing. The Navy admirals have decided that there is no sense in delaying: you will be launching an attack on the Pug homeworld in the morning. Despite your success so far in battling the Pug, you know that if their entire fleet opposes you, even the Navy may not be strong enough to defeat them. This may be the last time you see many of these officers and crew members alive.`
@@ -2126,29 +2053,14 @@ mission "FW Pug 6"
 	npc
 		government "Navy (Oathkeeper)"
 		personality disables waiting
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Gunboat (Mark II)" 3
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Frigate (Mark II)" 2
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2159,29 +2071,14 @@ mission "FW Pug 6"
 	npc
 		government Republic
 		personality disables
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate" 2
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier"
-				"Lance" 4
-				"Combat Drone" 6
-				"Gunboat" 3
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Cruiser"
-				"Combat Drone" 4
-				"Frigate" 2
-		fleet
+		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
 			variant
@@ -2192,28 +2089,21 @@ mission "FW Pug 6"
 	npc
 		personality disables waiting
 		government Syndicate
-		fleet
+		fleet 2
 			names "syndicate capital"
 			variant
 				"Splinter (Mark II)"
 				"Manta (Mark II)" 2
 				"Quicksilver (Mark II)" 4
-		fleet
-			names "syndicate capital"
-			variant
-				"Protector" 2
-		fleet
-			names "syndicate capital"
-			variant
-				"Splinter (Mark II)"
-				"Manta (Mark II)" 2
-				"Quicksilver (Mark II)" 4
-		fleet
+		fleet 2
 			names "syndicate capital"
 			variant
 				"Protector" 2
 	
 	on complete
+		log `The Pug have fled, apparently traveling through an artificial wormhole back to whatever galaxy they came from. And, it turns out that many of their cities on "Pugglemug" were only for show: buildings with no inhabitants, and with holograms creating the appearance of a heavily populated world. They left no advanced technology behind, and no sign of what their true intentions were, but it turns out that the fake cities here were designed for human habitation. They must have been planning this departure for a very long time.`
+		log `Now that the Pug are gone, the Navy will be able to use the "graviton reflectors" to repair the broken hyperspace links and to reconnect all of human space.`
+		log "Factions" "Pug" `The Pug disappeared from human space, and left behind more questions than answers. It is possible that the true purpose of their attack was to give human beings a common enemy that would force them to band together and forget their internal struggles.`
 		event "pug territory liberated"
 		event "pug link restoration 1" 10
 		event "pug link restoration 2" 25
@@ -2257,7 +2147,7 @@ mission "FW Pug 6"
 				goto house
 			
 			label house
-			`	You continue to explore for a while. Aside from the illusions, the city seems to be deserted. "Let's check inside one of the houses," Freya says at last. You climb up the steps to what looks like an apartment building and find that all the doors are unlocked. Inside one of the living spaces, you explore the different rooms and find that the water fixtures and electricity are working, but a thick layer of dust covers everything. Freya, meanwhile, is staring at one of the electrical outlets. "<first>, she says, "do you see anything odd about this?"`
+			`	You continue to explore for a while. Aside from the illusions, the city seems to be deserted. "Let's check inside one of the houses," Freya says at last. You climb up the steps to what looks like an apartment building and find that all the doors are unlocked. Inside one of the living spaces, you explore the different rooms and find that the water fixtures and electricity are working, but a thick layer of dust covers everything. Freya, meanwhile, is staring at one of the electrical outlets. "<first>," she says, "do you see anything odd about this?"`
 			choice
 				`	"No, it's just an ordinary electric outlet."`
 				`	"Everything here is odd. The city, the holograms, all of it."`
@@ -2317,6 +2207,7 @@ mission "FW Syndicate Extremists 1A"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "With the Pug defeated, it is finally time to deal with the Syndicate extremists and the Alphas that they allied with. The extremists are armed with nuclear missiles, but the Syndicate CEO has agreed to provide a cloaking device that will make it possible to dodge the missiles."
 		conversation
 			`The presence of a Navy cruiser in orbit seldom goes unnoticed, especially a cruiser captained by someone as famous as William Danforth. As soon as you land, a Syndicate employee meets you and escorts you, Freya, and Danforth to the office of Alastair Korban, the CEO. He does not seem very happy to see you. "I only just got word that the aliens were defeated a few days ago," he says. "I'm surprised you're back here already."`
 			`	Danforth says, "I've got a whole Navy fleet just a few jumps away from here who are itching to destroy something. So here's the deal. You name me some targets: the men who were responsible for the terrorist attack. Then I will do you a favor and take them off your hands. Fair enough?"`
@@ -2346,7 +2237,7 @@ mission "FW Syndicate Extremists 1A"
 			
 			`	"We gave the Alphas most of the alien technology we recovered," he says, "but one device, we managed to keep secret from them. We found it in a Korath cargo hold, and it took us a long time to even figure out how to activate it. But when we did, we discovered that it's a cloaking device. It obscures a ship not just from the visible spectrum, but from radar as well, and every other sensor we've tested except for gravitational ones. I'm certain it would hide you from the tracking systems on the nukes."`
 			`	Freya says, "But it would only hide one ship. That doesn't sound like it would do much good."`
-			`	Alastair says, "They have a limited number of nukes. Our plan was to send a ship in cloaked, have it uncloak long enough to draw their fire, and then cloak to avoid the missiles. Basically, see how many of missiles we can get them to spend before the main attack fleet arrives."`
+			`	Alastair says, "They have a limited number of nukes. Our plan was to send a ship in cloaked, have it uncloak long enough to draw their fire, and then cloak to avoid the missiles. Basically, see how many missiles we can get them to spend before the main attack fleet arrives."`
 			`	Danforth says, "That's not a bad idea. Captain <last>, would you be willing to serve as the decoy?"`
 			choice
 				`	"It sounds risky, but I'll do it."`
@@ -2426,28 +2317,15 @@ mission "FW Syndicate Extremists 1B"
 		government "Syndicate (Extremist)"
 		system Algenib
 		personality staying heroic
-		fleet
+		fleet 3
 			names "syndicate capital"
 			variant
 				"Protector" 2
-		fleet
+		fleet 2
 			names "syndicate capital"
 			variant
 				"Splinter"
 				"Quicksilver" 3
-		fleet
-			names "syndicate capital"
-			variant
-				"Splinter"
-				"Quicksilver" 3
-		fleet
-			names "syndicate capital"
-			variant
-				"Protector" 2
-		fleet
-			names "syndicate capital"
-			variant
-				"Protector" 2
 	
 	npc
 		government "Navy (Oathkeeper)"
@@ -2457,21 +2335,11 @@ mission "FW Syndicate Extremists 1B"
 			names "republic capital"
 			fighters "republic fighter"
 			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
-				"Cruiser (Mark II)"
-				"Combat Drone" 4
+				"Carrier (Mark II)" 3
+				"Lance" 12
+				"Combat Drone" 18
+				"Cruiser (Mark II)" 3
+				"Combat Drone" 12
 
 
 
@@ -2489,6 +2357,7 @@ mission "FW Syndicate Extremists 1C"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		log "Succeeded in drawing the fire of the Syndicate extremists for long enough for a Navy fleet to safely arrive in-system and assist in destroying them. This cloaking device will come in very handy in the future."
 		event "navy occupies algenib"
 		event "navy done with algenib" 50
 		conversation
@@ -2506,6 +2375,7 @@ mission "FW Syndicate Extremists 1C"
 				accept
 	
 	on complete
+		log "Received an official commendation from Parliament and a promise that the war with the Free Worlds is officially over. Humanity is at peace once more, but new challenges may await in the star systems out beyond human space that are accessible only by jump drive."
 		payment 5000000
 		set "main plot completed"
 		set "free worlds plot completed"

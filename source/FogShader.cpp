@@ -28,15 +28,15 @@ using namespace std;
 
 namespace {
 	// Scale of the mask image:
-	static const int GRID = 16;
+	const int GRID = 16;
 	// Distance represented by one orthogonal or diagonal step:
-	static const int ORTH = 5;
-	static const int DIAG = 7;
+	const int ORTH = 5;
+	const int DIAG = 7;
 	// Limit distances to the size of an unsigned char.
-	static const int LIMIT = 255;
+	const int LIMIT = 255;
 	// Pad beyond the screen enough to include any system that might "cast light"
 	// on the on-screen view.
-	static const int PAD = LIMIT / ORTH;
+	const int PAD = LIMIT / ORTH;
 	
 	// OpenGL objects:
 	Shader shader;
@@ -223,7 +223,6 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 	// Set up to draw the image.
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
-	glActiveTexture(GL_TEXTURE0);
 	
 	GLfloat corner[2] = {
 		static_cast<float>((left - .5f * GRID * zoom) / (.5f * Screen::Width())),

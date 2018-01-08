@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define DRAW_LIST_H_
 
 #include "Point.h"
+#include "SpriteShader.h"
 
 #include <cstdint>
 #include <vector>
@@ -52,32 +53,10 @@ private:
 	
 	
 private:
-	class Item {
-	public:
-		// Get the color swizzle.
-		uint32_t Swizzle() const;
-		
-		float Clip() const;
-		float Fade() const;
-		
-		void Cloak(double cloak);
-		
-	public:
-		uint32_t tex0;
-		uint32_t tex1;
-		float position[2];
-		float transform[4];
-		float blur[2];
-		float clip;
-		uint32_t flags;
-	};
-	
-	
-private:
 	int step = 0;
 	double zoom = 1.;
 	bool isHighDPI = false;
-	std::vector<Item> items;
+	std::vector<SpriteShader::Item> items;
 	
 	Point center;
 	Point centerVelocity;

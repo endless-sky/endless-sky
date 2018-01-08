@@ -358,7 +358,7 @@ void Files::RecursiveList(string directory, vector<string> *list)
 #if defined _WIN32
 	WIN32_FIND_DATAW ffd;
 	HANDLE hFind = FindFirstFileW(ToUTF16(directory + '*').c_str(), &ffd);
-	if(!hFind)
+	if(hFind == INVALID_HANDLE_VALUE)
 		return;
 	
 	do {
@@ -419,7 +419,7 @@ bool Files::Exists(const string &filePath)
 
 
 
-time_t Files::Timestamp(const std::string &filePath)
+time_t Files::Timestamp(const string &filePath)
 {
 #if defined _WIN32
 	struct _stat buf;
@@ -439,6 +439,17 @@ void Files::Copy(const string &from, const string &to)
 	CopyFileW(ToUTF16(from).c_str(), ToUTF16(to).c_str(), false);
 #else
 	Write(to, Read(from));
+#endif
+}
+
+
+
+void Files::Move(const string &from, const string &to)
+{
+#if defined _WIN32
+	MoveFileExW(ToUTF16(from).c_str(), ToUTF16(to).c_str(), MOVEFILE_REPLACE_EXISTING);
+#else
+	rename(from.c_str(), to.c_str());
 #endif
 }
 

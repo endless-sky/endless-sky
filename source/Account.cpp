@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Format.h"
 
 #include <algorithm>
 #include <sstream>
@@ -23,7 +24,7 @@ using namespace std;
 namespace {
 	// For tracking the player's average income, store daily net worth over this
 	// number of days.
-	static const unsigned HISTORY = 100;
+	const unsigned HISTORY = 100;
 }
 
 
@@ -54,10 +55,7 @@ void Account::Load(const DataNode &node)
 		else if(child.Token(0) == "score" && child.Size() >= 2)
 			creditScore = child.Value(1);
 		else if(child.Token(0) == "mortgage")
-		{
-			mortgages.push_back(Mortgage(0, 0, 0));
-			mortgages.back().Load(child);
-		}
+			mortgages.emplace_back(child);
 		else if(child.Token(0) == "history")
 			for(const DataNode &grand : child)
 				history.push_back(grand.Value(0));
@@ -212,18 +210,18 @@ string Account::Step(int64_t assets, int64_t salaries)
 	// If you made payments of all three types, the punctuation needs to
 	// include commas, so just handle that separately here.
 	if(salariesPaid && mortgagesPaid && finesPaid)
-		out << salariesPaid << " credits in crew salaries, " << mortgagesPaid
-			<< " in mortgages, and " << finesPaid << " in fines.";
+		out << Format::Number(salariesPaid) << " credits in crew salaries, " << Format::Number(mortgagesPaid)
+			<< " in mortgages, and " << Format::Number(finesPaid) << " in fines.";
 	else
 	{
 		if(salariesPaid)
-			out << salariesPaid << ((mortgagesPaid || finesPaid) ?
+			out << Format::Number(salariesPaid) << ((mortgagesPaid || finesPaid) ?
 				" credits in crew salaries and " : " credits in crew salaries.");
 		if(mortgagesPaid)
-			out << mortgagesPaid << (salariesPaid ? " " : " credits ")
+			out << Format::Number(mortgagesPaid) << (salariesPaid ? " " : " credits ")
 				<< (finesPaid ? "in mortgage payments and " : "in mortgage payments.");
 		if(finesPaid)
-			out << finesPaid << ((salariesPaid || mortgagesPaid) ?
+			out << Format::Number(finesPaid) << ((salariesPaid || mortgagesPaid) ?
 				" in fines." : " credits in fines.");
 	}
 	return out.str();
@@ -306,6 +304,19 @@ int64_t Account::NetWorth() const
 int Account::CreditScore() const
 {
 	return creditScore;
+}
+
+
+
+// Get the total amount owed for "Mortgage", "Fine", or both.
+int64_t Account::TotalDebt(const string &type) const
+{
+	int64_t total = 0;
+	for(const Mortgage &mortgage : mortgages)
+		if(type.empty() || mortgage.Type() == type)
+			total += mortgage.Principal();
+	
+	return total;
 }
 
 

@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Personality.h"
 #include "Random.h"
 #include "Ship.h"
+#include "Visual.h"
 
 #include <cmath>
 #include <map>
@@ -29,14 +30,11 @@ using namespace std;
 
 namespace {
 	// Create all the effects in the given list, at the given location, velocity, and angle.
-	void CreateEffects(const map<const Effect *, int> &m, Point pos, Point vel, Angle angle, list<Effect> &effects)
+	void CreateEffects(const map<const Effect *, int> &m, Point pos, Point vel, Angle angle, vector<Visual> &visuals)
 	{
 		for(const auto &it : m)
 			for(int i = 0; i < it.second; ++i)
-			{
-				effects.push_back(*it.first);
-				effects.back().Place(pos, vel, angle);
-			}
+				visuals.emplace_back(*it.first, pos, vel, angle);
 	}
 }
 
@@ -185,7 +183,7 @@ void Hardpoint::Aim(double amount)
 // Fire this weapon. If it is a turret, it automatically points toward
 // the given ship's target. If the weapon requires ammunition, it will
 // be subtracted from the given ship.
-void Hardpoint::Fire(Ship &ship, list<Projectile> &projectiles, list<Effect> &effects)
+void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals)
 {
 	// Since this is only called internally by Armament (no one else has non-
 	// const access), assume Armament checked that this is a valid call.
@@ -204,7 +202,7 @@ void Hardpoint::Fire(Ship &ship, list<Projectile> &projectiles, list<Effect> &ef
 	projectiles.emplace_back(ship, start, aim, outfit);
 	
 	// Create any effects this weapon creates when it is fired.
-	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, effects);
+	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
 	
 	// Update the reload and burst counters, and expend ammunition if applicable.
 	Fire(ship, start, aim);
@@ -213,7 +211,7 @@ void Hardpoint::Fire(Ship &ship, list<Projectile> &projectiles, list<Effect> &ef
 
 
 // Fire an anti-missile. Returns true if the missile should be killed.
-bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, list<Effect> &effects)
+bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector<Visual> &visuals)
 {
 	// Make sure this hardpoint really is an anti-missile.
 	int strength = outfit->AntiMissile();
@@ -234,14 +232,14 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, list<E
 	Angle aim(offset);
 	angle = aim - ship.Facing();
 	start += outfit->HardpointOffset() * aim.Unit();
-	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, effects);
+	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
 	
 	// Figure out where the effect should be placed. Anti-missiles do not create
 	// projectiles; they just create a blast animation.
-	CreateEffects(outfit->HitEffects(), start + (.5 * range) * aim.Unit(), ship.Velocity(), aim, effects);
+	CreateEffects(outfit->HitEffects(), start + (.5 * range) * aim.Unit(), ship.Velocity(), aim, visuals);
 	
 	// Die effects are displayed at the projectile, whether or not it actually "dies."
-	CreateEffects(outfit->DieEffects(), projectile.Position(), projectile.Velocity(), aim, effects);
+	CreateEffects(outfit->DieEffects(), projectile.Position(), projectile.Velocity(), aim, visuals);
 	
 	// Update the reload and burst counters, and expend ammunition if applicable.
 	Fire(ship, start, aim);
@@ -264,9 +262,7 @@ void Hardpoint::Install(const Outfit *outfit)
 	{
 		// Reset all the reload counters.
 		this->outfit = outfit;
-		reload = 0.;
-		burstReload = 0.;
-		burstCount = outfit->BurstCount();
+		Reload();
 		
 		// For fixed weapons, apply "gun harmonization," pointing them slightly
 		// inward so the projectiles will converge. For turrets, start them out
@@ -276,6 +272,16 @@ void Hardpoint::Install(const Outfit *outfit)
 		else
 			angle = Angle(point);
 	}
+}
+
+
+
+// Reload this weapon.
+void Hardpoint::Reload()
+{
+	reload = 0.;
+	burstReload = 0.;
+	burstCount = outfit ? outfit->BurstCount() : 0;
 }
 
 

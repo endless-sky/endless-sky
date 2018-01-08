@@ -42,7 +42,7 @@ protected:
 	
 	
 private:
-	void Update();
+	void Update(bool selectLast = true);
 	
 	
 private:
@@ -50,7 +50,8 @@ private:
 	PlayerInfo &player;
 	
 	// Current month being displayed:
-	Date selected;
+	Date selectedDate;
+	std::string selectedName;
 	std::multimap<Date, std::string>::const_iterator begin;
 	std::multimap<Date, std::string>::const_iterator end;
 	// Other months available for display:

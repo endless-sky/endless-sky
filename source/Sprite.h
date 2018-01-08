@@ -36,32 +36,42 @@ public:
 	
 	const std::string &Name() const;
 	
-	void AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is2x);
+	// Upload the given frames. The given buffer will be cleared afterwards.
+	void AddFrames(ImageBuffer &buffer, bool is2x);
+	// Move the given masks into this sprite's internal storage. The given
+	// vector will be cleared.
+	void AddMasks(std::vector<Mask> &masks);
 	// Free up all textures loaded for this sprite.
 	void Unload();
 	
+	// Image dimensions, in pixels.
 	float Width() const;
 	float Height() const;
+	// Number of frames in the animation. If high DPI frames exist, the code has
+	// ensured that they have the same number of frames.
 	int Frames() const;
 	
 	// Get the offset of the center from the top left corner; this is for easy
 	// shifting of corner to center coordinates.
 	Point Center() const;
 	
-	uint32_t Texture(int frame = 0) const;
-	uint32_t Texture(int frame, bool isHighDPI) const;
+	// Get the texture index, either looking it up based on the Screen's HighDPI
+	// setting or specifying it manually.
+	uint32_t Texture() const;
+	uint32_t Texture(bool isHighDPI) const;
+	// Get the collision mask for the given frame of the animation.
 	const Mask &GetMask(int frame = 0) const;
 	
 	
 private:
 	std::string name;
 	
-	std::vector<uint32_t> textures;
-	std::vector<uint32_t> textures2x;
+	uint32_t texture[2] = {0, 0};
 	std::vector<Mask> masks;
 	
-	float width;
-	float height;
+	float width = 0.f;
+	float height = 0.f;
+	int frames = 0;
 };
 
 

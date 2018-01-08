@@ -90,13 +90,26 @@ public:
 	double BlastRadius() const;
 	double HitForce() const;
 	
+	// A "safe" weapon hits only hostile ships (even if it has a blast radius).
+	// A "phasing" weapon hits only its intended target; it passes through
+	// everything else, including asteroids.
+	bool IsSafe() const;
+	bool IsPhasing() const;
+	// Blast radius weapons will scale damage and hit force based on distance,
+	// unless the "no damage scaling" keyphrase is used in the weapon definition.
+	bool IsDamageScaled() const;
+	
 	// These values include all submunitions:
 	double ShieldDamage() const;
 	double HullDamage() const;
+	double FuelDamage() const;
 	double HeatDamage() const;
 	double IonDamage() const;
 	double DisruptionDamage() const;
 	double SlowingDamage() const;
+	// Check if this weapon does damage. If not, attacking a ship with this
+	// weapon is not a provocation (even if you push or pull it).
+	bool DoesDamage() const;
 	
 	double Piercing() const;
 	
@@ -133,6 +146,9 @@ private:
 	// This stores whether or not the weapon has been loaded.
 	bool isWeapon = false;
 	bool isStreamed = false;
+	bool isSafe = false;
+	bool isPhasing = false;
+	bool isDamageScaled = true;
 	
 	// Attributes.
 	int lifetime = 0;
@@ -170,18 +186,21 @@ private:
 	double blastRadius = 0.;
 	double hitForce = 0.;
 	
+	static const int DAMAGE_TYPES = 7;
 	static const int SHIELD_DAMAGE = 0;
 	static const int HULL_DAMAGE = 1;
-	static const int HEAT_DAMAGE = 2;
-	static const int ION_DAMAGE = 3;
-	static const int DISRUPTION_DAMAGE = 4;
-	static const int SLOWING_DAMAGE = 5;
-	mutable double damage[6] = {0., 0., 0., 0., 0., 0.};
+	static const int FUEL_DAMAGE = 2;
+	static const int HEAT_DAMAGE = 3;
+	static const int ION_DAMAGE = 4;
+	static const int DISRUPTION_DAMAGE = 5;
+	static const int SLOWING_DAMAGE = 6;
+	mutable double damage[DAMAGE_TYPES] = {0., 0., 0., 0., 0., 0., 0.};
 	
 	double piercing = 0.;
 	
 	// Cache the calculation of these values, for faster access.
-	mutable bool calculatedDamage[6] = {false, false, false, false, false, false};
+	mutable bool calculatedDamage = true;
+	mutable bool doesDamage = false;
 	mutable double totalLifetime = -1.;
 };
 
@@ -226,12 +245,19 @@ inline double Weapon::TriggerRadius() const { return triggerRadius; }
 inline double Weapon::BlastRadius() const { return blastRadius; }
 inline double Weapon::HitForce() const { return hitForce; }
 
+inline bool Weapon::IsSafe() const { return isSafe; }
+inline bool Weapon::IsPhasing() const { return isPhasing; }
+inline bool Weapon::IsDamageScaled() const { return isDamageScaled; }
+
 inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELD_DAMAGE); }
 inline double Weapon::HullDamage() const { return TotalDamage(HULL_DAMAGE); }
+inline double Weapon::FuelDamage() const { return TotalDamage(FUEL_DAMAGE); }
 inline double Weapon::HeatDamage() const { return TotalDamage(HEAT_DAMAGE); }
 inline double Weapon::IonDamage() const { return TotalDamage(ION_DAMAGE); }
 inline double Weapon::DisruptionDamage() const { return TotalDamage(DISRUPTION_DAMAGE); }
 inline double Weapon::SlowingDamage() const { return TotalDamage(SLOWING_DAMAGE); }
+
+inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); return doesDamage; }
 
 
 

@@ -40,7 +40,7 @@ ship "Korath Raider"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
 		"Ramscoop"
-		"Intrusion Countermeasures" 4
+		"Korath Repeater Rifle" 196
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -48,10 +48,10 @@ ship "Korath Raider"
 	
 	engine -20 130
 	engine 20 130
-	turret -34 -143 "Korath Grab-Strike"
-	turret 34 -143 "Korath Grab-Strike"
 	turret -8 -145 "Korath Grab-Strike"
 	turret 8 -145 "Korath Grab-Strike"
+	turret -34 -143 "Korath Grab-Strike"
+	turret 34 -143 "Korath Grab-Strike"
 	turret 0 35 "Korath Banisher"
 	turret 0 90 "Korath Warder"
 	fighter -75 100
@@ -63,6 +63,31 @@ ship "Korath Raider"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "The Korath Raider is their warship of choice for plundering neighboring species."
+
+ship "Korath Raider" "Korath Raider (Hyperdrive)"
+	sprite "ship/raider"
+	outfits
+		"Korath Grab-Strike" 4
+		"Korath Banisher"
+		"Korath Warder"
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
+		"Ramscoop"
+		"Korath Repeater Rifle" 196
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Hyperdrive"
+
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Banisher"
+	turret "Korath Warder"
 
 
 
@@ -91,6 +116,7 @@ ship "Korath Chaser"
 		
 		"Generator (Furnace Class)"
 		"Small Heat Shunt"
+		"Korath Repeater Rifle" 
 		
 		"Thruster (Asteroid Class)"
 		"Steering (Asteroid Class)"
@@ -134,7 +160,7 @@ ship "Korath World-Ship"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Ramscoop"
-		"Intrusion Countermeasures" 6
+		"Korath Repeater Rifle" 150
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -172,14 +198,14 @@ ship "Korath World-Ship" "Korath World-Ship B"
 
 ship "Korath World-Ship" "Korath World-Ship C"
 	sprite "ship/world-ship c"
-	turret -45 -247 "Korath Warder"
-	turret 45 -247 "Korath Grab-Strike"
-	turret -47 -140 "Korath Grab-Strike"
-	turret 47 -140 "Korath Banisher"
-	turret -70 53 "Korath Warder"
-	turret 70 53 "Korath Banisher"
-	turret -91 286 "Korath Banisher"
-	turret 91 286 "Korath Warder"
+	turret -45 -243 "Korath Warder"
+	turret 45 -243 "Korath Grab-Strike"
+	turret -47 -136 "Korath Grab-Strike"
+	turret 47 -136 "Korath Banisher"
+	turret -70 57 "Korath Warder"
+	turret 70 57 "Korath Banisher"
+	turret -91 290 "Korath Banisher"
+	turret 91 290 "Korath Warder"
 
 ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 	outfits
@@ -191,7 +217,7 @@ ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Ramscoop"
-		"Intrusion Countermeasures" 6
+		"Korath Repeater Rifle" 150
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -217,7 +243,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Ramscoop"
-		"Intrusion Countermeasures" 6
+		"Korath Repeater Rifle" 150
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -243,7 +269,7 @@ ship "Korath World-Ship" "Korath World-Ship C (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Ramscoop"
-		"Intrusion Countermeasures" 6
+		"Korath Repeater Rifle" 150
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -1026,8 +1052,8 @@ ship "Model 64"
 	engine 19 159
 	gun 0 -159 "Korath Minelayer"
 	turret 20 -74 "Korath Slicer Turret"
-	turret -29 71 "Korath Slicer Turret"
 	turret -35 -69 "Korath Disruptor"
+	turret -29 71 "Korath Slicer Turret"
 	turret 34 77 "Korath Disruptor"
 	explode "tiny explosion" 100
 	explode "small explosion" 70

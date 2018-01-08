@@ -10,7 +10,7 @@
 
 mission "FW Epilogue: Ijs and Katya"
 	landing
-	source Winter
+	source "Winter"
 	to offer
 		has "free worlds plot completed"
 	
@@ -54,7 +54,7 @@ mission "FW Epilogue: Ijs and Katya"
 
 mission "FW Epilogue: Alondo"
 	landing
-	source Bourne
+	source "Bourne"
 	to offer
 		has "free worlds plot completed"
 	
@@ -91,7 +91,7 @@ mission "FW Epilogue: Alondo"
 
 mission "FW Epilogue: Freya"
 	landing
-	source Pugglemug
+	source "Pugglemug"
 	to offer
 		has "free worlds plot completed"
 	
@@ -142,7 +142,7 @@ mission "FW Epilogue: Freya"
 
 mission "FW Epilogue: Danforth"
 	landing
-	source Farpoint
+	source "Farpoint"
 	to offer
 		has "free worlds plot completed"
 		not "Wanderers: Alpha Surveillance E: offered"

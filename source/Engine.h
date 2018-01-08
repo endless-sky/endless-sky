@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "AI.h"
 #include "AsteroidField.h"
+#include "BatchDrawList.h"
 #include "CollisionSet.h"
 #include "DrawList.h"
 #include "EscortDisplay.h"
@@ -27,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Rectangle.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "Visual.h"
 
 #include <condition_variable>
 #include <list>
@@ -65,7 +67,8 @@ public:
 	void Go();
 	
 	// Get any special events that happened in this step.
-	const std::list<ShipEvent> &Events() const;
+	// MainPanel::Step will clear this list.
+	std::list<ShipEvent> &Events();
 	
 	// Draw a frame.
 	void Draw() const;
@@ -81,6 +84,22 @@ private:
 	
 	void ThreadEntryPoint();
 	void CalculateStep();
+	
+	void MoveShip(const std::shared_ptr<Ship> &ship);
+	
+	void SpawnFleets();
+	void SpawnPersons();
+	void SendHails();
+	void HandleMouseClicks();
+	
+	void FillCollisionSets();
+	
+	void DoCollisions(Projectile &projectile);
+	void DoCollection(Flotsam &flotsam);
+	void DoScanning(const std::shared_ptr<Ship> &ship);
+	
+	void FillRadar();
+	
 	void AddSprites(const Ship &ship);
 	
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
@@ -93,6 +112,7 @@ private:
 		Angle angle;
 		double radius;
 		int type;
+		int count;
 	};
 	
 	class Status {
@@ -111,6 +131,21 @@ private:
 private:
 	PlayerInfo &player;
 	
+	std::list<std::shared_ptr<Ship>> ships;
+	std::vector<Projectile> projectiles;
+	std::list<std::shared_ptr<Flotsam>> flotsam;
+	std::vector<Visual> visuals;
+	AsteroidField asteroids;
+	
+	// New objects created within the latest step:
+	std::list<std::shared_ptr<Ship>> newShips;
+	std::vector<Projectile> newProjectiles;
+	std::list<std::shared_ptr<Flotsam>> newFlotsam;
+	std::vector<Visual> newVisuals;
+	
+	// Track which ships currently have anti-missiles ready to fire.
+	std::vector<Ship *> hasAntiMissile;
+	
 	AI ai;
 	
 	std::thread calcThread;
@@ -122,6 +157,7 @@ private:
 	bool terminate = false;
 	bool wasActive = false;
 	DrawList draw[2];
+	BatchDrawList batchDraw[2];
 	Radar radar[2];
 	// Viewport position and velocity.
 	Point center;
@@ -129,8 +165,9 @@ private:
 	// Other information to display.
 	Information info;
 	std::vector<Target> targets;
-	Point targetAngle;
+	Point targetVector;
 	Point targetUnit;
+	int targetSwizzle = -1;
 	EscortDisplay escorts;
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
@@ -139,25 +176,15 @@ private:
 	const System *jumpInProgress[2] = {nullptr, nullptr};
 	const Sprite *highlightSprite = nullptr;
 	Point highlightUnit;
-	int highlightFrame = 0;
+	float highlightFrame = 0.f;
 	
 	int step = 0;
-	
-	std::list<std::shared_ptr<Ship>> ships;
-	std::list<Projectile> projectiles;
-	std::list<std::shared_ptr<Flotsam>> flotsam;
-	std::list<Effect> effects;
-	// Keep track of which ships we have not seen for long enough that it is
-	// time to stop tracking their movements.
-	std::map<std::list<Ship>::iterator, int> forget;
 	
 	std::list<ShipEvent> eventQueue;
 	std::list<ShipEvent> events;
 	// Keep track of who has asked for help in fighting whom.
 	std::map<const Government *, std::weak_ptr<const Ship>> grudge;
 	int grudgeTime = 0;
-	
-	AsteroidField asteroids;
 	
 	CollisionSet shipCollisions;
 	CollisionSet cloakedCollisions;
@@ -173,6 +200,7 @@ private:
 	bool hasShift = false;
 	bool hasControl = false;
 	bool isRightClick = false;
+	bool isRadarClick = false;
 	Point clickPoint;
 	Rectangle clickBox;
 	int groupSelect = -1;

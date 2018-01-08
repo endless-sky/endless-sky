@@ -37,6 +37,10 @@ class System;
 // names are chosen based on a given random "phrase" generator.
 class Fleet {
 public:
+	Fleet() = default;
+	// Construct and Load() at the same time.
+	Fleet(const DataNode &node);
+	
 	void Load(const DataNode &node);
 	
 	// Get the government of this fleet.
@@ -47,7 +51,8 @@ public:
 	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships, bool carried = true) const;
 	
 	// Do the randomization to make a ship enter or be in the given system.
-	static void Enter(const System &system, Ship &ship);
+	// Return the system that was chosen for the ship to enter from.
+	static const System *Enter(const System &system, Ship &ship, const System *source = nullptr);
 	static void Place(const System &system, Ship &ship);
 	
 	int64_t Strength() const;

@@ -118,11 +118,11 @@ void BoardingPanel::Draw()
 	DrawBackdrop();
 	
 	// Draw the list of plunder.
-	Color opaque(.1, 1.);
-	Color back = *GameData::Colors().Get("faint");
-	Color dim = *GameData::Colors().Get("dim");
-	Color medium = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
+	const Color &opaque = *GameData::Colors().Get("panel background");
+	const Color &back = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("dim");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
 	FillShader::Fill(Point(-155., -60.), Point(360., 250.), opaque);
 	
 	int index = (scroll - 10) / 20;
@@ -260,7 +260,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			victim->AddOutfit(outfit, -remaining);
 		}
 		else
-			count = victim->Cargo().Transfer(plunder[selected].Name(), count, &cargo);
+			count = victim->Cargo().Transfer(plunder[selected].Name(), count, cargo);
 		
 		// If all of the plunder of this type was taken, remove it from the list.
 		// Otherwise, just update the count in the list item.
@@ -384,6 +384,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			else if(!victim->Crew())
 			{
 				messages.push_back("You have succeeded in capturing this ship.");
+				victim->GetGovernment()->Offend(ShipEvent::CAPTURE, victim->RequiredCrew());
 				victim->WasCaptured(you);
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
 					you->TransferFuel(victim->JumpFuelMissing(), &*victim);
@@ -635,5 +636,5 @@ void BoardingPanel::Plunder::UpdateStrings()
 // Commodities come in units of one ton.
 double BoardingPanel::Plunder::UnitMass() const
 {
-	return outfit ? outfit->Get("mass") : 1.;
+	return outfit ? outfit->Mass() : 1.;
 }

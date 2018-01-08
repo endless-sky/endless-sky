@@ -91,6 +91,10 @@
 		<Unit filename="source/Audio.h" />
 		<Unit filename="source/BankPanel.cpp" />
 		<Unit filename="source/BankPanel.h" />
+		<Unit filename="source/BatchDrawList.cpp" />
+		<Unit filename="source/BatchDrawList.h" />
+		<Unit filename="source/BatchShader.cpp" />
+		<Unit filename="source/BatchShader.h" />
 		<Unit filename="source/BoardingPanel.cpp" />
 		<Unit filename="source/BoardingPanel.h" />
 		<Unit filename="source/Body.cpp" />
@@ -124,6 +128,8 @@
 		<Unit filename="source/Depreciation.h" />
 		<Unit filename="source/Dialog.cpp" />
 		<Unit filename="source/Dialog.h" />
+		<Unit filename="source/Dictionary.cpp" />
+		<Unit filename="source/Dictionary.h" />
 		<Unit filename="source/DistanceMap.cpp" />
 		<Unit filename="source/DistanceMap.h" />
 		<Unit filename="source/DrawList.cpp" />
@@ -170,6 +176,8 @@
 		<Unit filename="source/HiringPanel.h" />
 		<Unit filename="source/ImageBuffer.cpp" />
 		<Unit filename="source/ImageBuffer.h" />
+		<Unit filename="source/ImageSet.cpp" />
+		<Unit filename="source/ImageSet.h" />
 		<Unit filename="source/Information.cpp" />
 		<Unit filename="source/Information.h" />
 		<Unit filename="source/Interface.cpp" />
@@ -214,6 +222,8 @@
 		<Unit filename="source/Mortgage.h" />
 		<Unit filename="source/Music.cpp" />
 		<Unit filename="source/Music.h" />
+		<Unit filename="source/News.cpp" />
+		<Unit filename="source/News.h" />
 		<Unit filename="source/NPC.cpp" />
 		<Unit filename="source/NPC.h" />
 		<Unit filename="source/Outfit.cpp" />
@@ -274,10 +284,10 @@
 		<Unit filename="source/Ship.h" />
 		<Unit filename="source/ShipEvent.cpp" />
 		<Unit filename="source/ShipEvent.h" />
-		<Unit filename="source/ShipInfoPanel.cpp" />
-		<Unit filename="source/ShipInfoPanel.h" />
 		<Unit filename="source/ShipInfoDisplay.cpp" />
 		<Unit filename="source/ShipInfoDisplay.h" />
+		<Unit filename="source/ShipInfoPanel.cpp" />
+		<Unit filename="source/ShipInfoPanel.h" />
 		<Unit filename="source/ShipyardPanel.cpp" />
 		<Unit filename="source/ShipyardPanel.h" />
 		<Unit filename="source/ShopPanel.cpp" />
@@ -310,6 +320,8 @@
 		<Unit filename="source/TradingPanel.h" />
 		<Unit filename="source/UI.cpp" />
 		<Unit filename="source/UI.h" />
+		<Unit filename="source/Visual.cpp" />
+		<Unit filename="source/Visual.h" />
 		<Unit filename="source/Weapon.cpp" />
 		<Unit filename="source/Weapon.h" />
 		<Unit filename="source/WinApp.rc">

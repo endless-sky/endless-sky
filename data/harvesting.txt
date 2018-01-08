@@ -17,6 +17,7 @@ minable "aluminum"
 	explode "final explosion large"
 
 outfit "Aluminum"
+	plural "Aluminum"
 	category "Special"
 	cost 1800
 	thumbnail "outfit/harvested aluminum"
@@ -35,6 +36,7 @@ minable "copper"
 	explode "final explosion small"
 
 outfit "Copper"
+	plural "Copper"
 	category "Special"
 	cost 3000
 	thumbnail "outfit/harvested copper"
@@ -53,6 +55,7 @@ minable "gold"
 	explode "final explosion small"
 
 outfit "Gold"
+	plural "Gold"
 	category "Special"
 	cost 8000
 	thumbnail "outfit/harvested gold"
@@ -71,6 +74,7 @@ minable "iron"
 	explode "final explosion large"
 
 outfit "Iron"
+	plural "Iron"
 	category "Special"
 	cost 1200
 	thumbnail "outfit/harvested iron"
@@ -89,6 +93,7 @@ minable "lead"
 	explode "final explosion medium"
 
 outfit "Lead"
+	plural "Lead"
 	category "Special"
 	cost 900
 	thumbnail "outfit/harvested lead"
@@ -107,6 +112,7 @@ minable "neodymium"
 	explode "final explosion large"
 
 outfit "Neodymium"
+	plural "Neodymium"
 	category "Special"
 	cost 3800
 	thumbnail "outfit/harvested neodymium"
@@ -125,6 +131,7 @@ minable "platinum"
 	explode "final explosion small"
 
 outfit "Platinum"
+	plural "Platinum"
 	category "Special"
 	cost 10000
 	thumbnail "outfit/harvested platinum"
@@ -143,6 +150,7 @@ minable "silicon"
 	explode "final explosion large"
 
 outfit "Silicon"
+	plural "Silicon"
 	category "Special"
 	cost 400
 	thumbnail "outfit/harvested silicon"
@@ -161,6 +169,7 @@ minable "silver"
 	explode "final explosion small"
 
 outfit "Silver"
+	plural "Silver"
 	category "Special"
 	cost 6000
 	thumbnail "outfit/harvested silver"
@@ -179,6 +188,7 @@ minable "titanium"
 	explode "final explosion medium"
 
 outfit "Titanium"
+	plural "Titanium"
 	category "Special"
 	cost 2500
 	thumbnail "outfit/harvested titanium"
@@ -197,6 +207,7 @@ minable "tungsten"
 	explode "final explosion medium"
 
 outfit "Tungsten"
+	plural "Tungsten"
 	category "Special"
 	cost 4500
 	thumbnail "outfit/harvested tungsten"
@@ -215,6 +226,7 @@ minable "uranium"
 	explode "final explosion medium"
 
 outfit "Uranium"
+	plural "Uranium"
 	category "Special"
 	cost 5000
 	thumbnail "outfit/harvested uranium"

@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dialog.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "Government.h"
@@ -24,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LineShader.h"
 #include "MapDetailPanel.h"
 #include "Messages.h"
+#include "Phrase.h"
 #include "Planet.h"
 #include "PlanetPanel.h"
 #include "PlayerInfo.h"
@@ -31,10 +33,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Preferences.h"
 #include "Random.h"
 #include "Screen.h"
+#include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
 
+#include <cmath>
 #include <sstream>
 #include <string>
 
@@ -43,7 +47,7 @@ using namespace std;
 
 
 MainPanel::MainPanel(PlayerInfo &player)
-	: player(player), engine(player), load(0.), loadSum(0.), loadCount(0)
+	: player(player), engine(player)
 {
 	SetIsFullScreen(true);
 }
@@ -54,8 +58,11 @@ void MainPanel::Step()
 {
 	engine.Wait();
 	
+	// Depending on what UI element is on top, the game is "paused." This
+	// checks only already-drawn panels.
 	bool isActive = GetUI()->IsTop(this);
 	
+	// Display any requested panels.
 	if(show.Has(Command::MAP))
 	{
 		GetUI()->Push(new MapDetailPanel(player));
@@ -68,7 +75,6 @@ void MainPanel::Step()
 	}
 	else if(show.Has(Command::HAIL))
 		isActive = !ShowHailPanel();
-	
 	show = Command::NONE;
 	
 	// If the player just landed, pop up the planet panel. When it closes, it
@@ -79,6 +85,8 @@ void MainPanel::Step()
 		player.Land(GetUI());
 		isActive = false;
 	}
+	
+	// Display any relevant help/tutorial messages.
 	const Ship *flagship = player.Flagship();
 	if(flagship)
 	{
@@ -89,46 +97,32 @@ void MainPanel::Step()
 			isActive = !DoHelp("dead");
 		if(isActive && flagship->IsDisabled())
 			isActive = !DoHelp("disabled");
-		bool canRefuel = player.GetSystem()->IsInhabited(flagship);
+		bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
 		if(isActive && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
 			isActive = !DoHelp("stranded");
+		if(isActive && flagship->Position().Length() > 10000. && player.GetDate() <= GameData::Start().GetDate() + 4)
+		{
+			++lostness;
+			int count = 1 + lostness / 3600;
+			if(count > lostCount && count <= 7)
+			{
+				string message = "lost 1";
+				message.back() += lostCount;
+				++lostCount;
+				
+				GetUI()->Push(new Dialog(GameData::HelpMessage(message)));
+			}
+		}
 	}
 	
 	engine.Step(isActive);
 	
-	for(const ShipEvent &event : engine.Events())
-	{
-		const Government *actor = event.ActorGovernment();
-		
-		player.HandleEvent(event, GetUI());
-		if((event.Type() & (ShipEvent::BOARD | ShipEvent::ASSIST)) && isActive && actor->IsPlayer()
-				&& event.Actor().get() == player.Flagship())
-		{
-			// Boarding events are only triggered by your flagship.
-			Mission *mission = player.BoardingMission(event.Target());
-			if(mission)
-				mission->Do(Mission::OFFER, player, GetUI());
-			else if(event.Type() == ShipEvent::BOARD)
-			{
-				GetUI()->Push(new BoardingPanel(player, event.Target()));
-				isActive = false;
-			}
-		}
-		if(event.Type() & (ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS))
-		{
-			if(actor->IsPlayer() && isActive)
-				ShowScanDialog(event);
-			else if(event.TargetGovernment()->IsPlayer())
-			{
-				string message = actor->Fine(player, event.Type(), &*event.Target());
-				if(!message.empty())
-				{
-					GetUI()->Push(new Dialog(message));
-					isActive = false;
-				}
-			}
-		}
-	}
+	// Splice new events onto the eventQueue for (eventual) handling. No
+	// other classes use Engine::Events() after Engine::Step() completes.
+	eventQueue.splice(eventQueue.end(), engine.Events());
+	// Handle as many ShipEvents as possible (stopping if no longer active
+	// and updating the isActive flag).
+	StepEvents(isActive);
 	
 	if(isActive)
 		engine.Go();
@@ -148,17 +142,22 @@ void MainPanel::Draw()
 	
 	if(isDragging)
 	{
-		Color color(.2, 1., 0., 0.);
-		LineShader::Draw(dragSource, Point(dragSource.X(), dragPoint.Y()), .8, color);
-		LineShader::Draw(Point(dragSource.X(), dragPoint.Y()), dragPoint, .8, color);
-		LineShader::Draw(dragPoint, Point(dragPoint.X(), dragSource.Y()), .8, color);
-		LineShader::Draw(Point(dragPoint.X(), dragSource.Y()), dragSource, .8, color);
+		if(canDrag)
+		{
+			const Color &dragColor = *GameData::Colors().Get("drag select");
+			LineShader::Draw(dragSource, Point(dragSource.X(), dragPoint.Y()), .8, dragColor);
+			LineShader::Draw(Point(dragSource.X(), dragPoint.Y()), dragPoint, .8, dragColor);
+			LineShader::Draw(dragPoint, Point(dragPoint.X(), dragSource.Y()), .8, dragColor);
+			LineShader::Draw(Point(dragPoint.X(), dragSource.Y()), dragSource, .8, dragColor);
+		}
+		else
+			isDragging = false;
 	}
 	
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
-		string loadString = to_string(static_cast<int>(load * 100. + .5)) + "% GPU";
-		Color color = *GameData::Colors().Get("medium");
+		string loadString = to_string(lround(load * 100.)) + "% GPU";
+		const Color &color = *GameData::Colors().Get("medium");
 		FontSet::Get(14).Draw(loadString, Point(10., Screen::Height() * -.5 + 5.), color);
 	
 		loadSum += loadTimer.Time();
@@ -181,8 +180,8 @@ void MainPanel::OnCallback()
 	engine.Go();
 	engine.Wait();
 	engine.Step(true);
-	// Start the next step of the simulatip because Step() above still thinks
-	// the planet panel is up and therefore will not start it.
+	// Start the next step of the simulation because Step() above still
+	// thinks the planet panel is up and therefore will not start it.
 	engine.Go();
 }
 
@@ -310,8 +309,14 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << "This " + target->Noun() + " is carrying:\n";
 				first = false;
 		
-				out << "\t" << it.second << " "
-					<< (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
+				out << "\t" << it.second;
+				if(it.first->Get("installable") < 0.)
+				{
+					int tons = ceil(it.second * it.first->Mass());
+					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName()) << "\n";
+				}
+				else	
+					out << " " << (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
 			}
 		if(first)
 			out << "This " + target->Noun() + " is not carrying any cargo.\n";
@@ -394,23 +399,14 @@ bool MainPanel::ShowHailPanel()
 	else if(flagship->GetTargetStellar())
 	{
 		const Planet *planet = flagship->GetTargetStellar()->GetPlanet();
-		if(planet && planet->IsWormhole())
+		if(!planet)
+			Messages::Add("Unable to send hail.");
+		else if(planet->IsWormhole())
 		{
-			static const vector<string> messages = {
-				"The gaping hole in the fabric of the universe does not respond to your hail.",
-				"Wormholes do not understand the language of finite beings like yourself.",
-				"You stare into the swirling abyss, but with appalling bad manners it refuses to stare back.",
-				"All the messages you try to send disappear into the wormhole without a trace.",
-				"The spatial anomaly pointedly ignores your attempts to engage it in conversation.",
-				"Like most wormholes, this one does not appear to be very talkative.",
-				"The wormhole says nothing, but silently beckons you to explore its mysteries.",
-				"You can't talk to wormholes. Maybe you should try landing on it instead.",
-				"Your words cannot travel through wormholes, but maybe your starship can.",
-				"Unable to send hail: this unfathomable void is not inhabited."
-			};
-			Messages::Add(messages[Random::Int(messages.size())]);
+			static const Phrase *wormholeHail = GameData::Phrases().Get("wormhole hail");
+			Messages::Add(wormholeHail->Get());
 		}
-		else if(planet && planet->IsInhabited())
+		else if(planet->IsInhabited())
 		{
 			GetUI()->Push(new HailPanel(player, flagship->GetTargetStellar()));
 			return true;
@@ -422,4 +418,88 @@ bool MainPanel::ShowHailPanel()
 		Messages::Add("Unable to send hail: no target selected.");
 	
 	return false;
+}
+
+
+
+// Handle ShipEvents from this and previous Engine::Step calls. Start with the
+// oldest and then process events until any create a new UI element.
+void MainPanel::StepEvents(bool &isActive)
+{
+	while(isActive && !eventQueue.empty())
+	{
+		const ShipEvent &event = eventQueue.front();
+		const Government *actor = event.ActorGovernment();
+		
+		// Pass this event to the player, to update conditions and make
+		// any new UI elements (e.g. an "on enter" dialog) from their
+		// active missions.
+		if(!handledFront)
+			player.HandleEvent(event, GetUI());
+		handledFront = true;
+		isActive = (GetUI()->Top().get() == this);
+		
+		// If we can't safely display a new UI element (i.e. an active
+		// mission created a UI element), then stop processing events
+		// until the current Conversation or Dialog is resolved. This
+		// will keep the current event in the queue, so we can still
+		// check it for various special cases involving the player.
+		if(!isActive)
+			break;
+		
+		// Handle boarding events.
+		// 1. Boarding an NPC may "complete" it (i.e. "npc board"). Any UI element that
+		// completion created has now closed, possibly destroying the event target.
+		// 2. Boarding an NPC may create a mission (e.g. it thanks you for the repair/refuel,
+		// asks you to complete a quest, bribes you into leaving it alone, or silently spawns
+		// hostile ships). If boarding creates a mission with an "on offer" conversation, the
+		// ConversationPanel will only let the player plunder a hostile NPC if the mission is
+		// declined or deferred - an "accept" is assumed to have bought the NPC its life.
+		// 3. Boarding a hostile NPC that does not display a mission UI element will display
+		// the BoardingPanel, allowing the player to plunder it.
+		const Ship *flagship = player.Flagship();
+		if((event.Type() & (ShipEvent::BOARD | ShipEvent::ASSIST)) && actor->IsPlayer()
+				&& !event.Target()->IsDestroyed() && flagship && event.Actor().get() == flagship)
+		{
+			Mission *mission = player.BoardingMission(event.Target());
+			const CargoHold &cargo = flagship->Cargo();
+			if(mission && mission->CargoSize() <= cargo.Free() && mission->Passengers() <= cargo.BunksFree())
+				mission->Do(Mission::OFFER, player, GetUI());
+			else if(mission)
+				player.HandleBlockedMissions((event.Type() & ShipEvent::BOARD)
+						? Mission::BOARDING : Mission::ASSISTING, GetUI());
+			// Determine if a Dialog or ConversationPanel is being drawn next frame.
+			isActive = (GetUI()->Top().get() == this);
+			
+			if(isActive && (event.Type() == ShipEvent::BOARD) && !event.Target()->IsDestroyed())
+			{
+				// Either no mission activated, or the one that did was "silent."
+				GetUI()->Push(new BoardingPanel(player, event.Target()));
+				isActive = false;
+			}
+		}
+		
+		// Handle scan events of or by the player.
+		if(event.Type() & (ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS))
+		{
+			if(actor->IsPlayer())
+			{
+				ShowScanDialog(event);
+				isActive = false;
+			}
+			else if(event.TargetGovernment()->IsPlayer())
+			{
+				string message = actor->Fine(player, event.Type(), &*event.Target());
+				if(!message.empty())
+				{
+					GetUI()->Push(new Dialog(message));
+					isActive = false;
+				}
+			}
+		}
+		
+		// Remove the fully-handled event.
+		eventQueue.pop_front();
+		handledFront = false;
+	}
 }
