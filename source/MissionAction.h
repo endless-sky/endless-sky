@@ -58,8 +58,14 @@ public:
 	
 	// Determine how many (and which) gifts are needed to complete this action.
 	const std::map<const Outfit *, int> Gifts() const;
+	const std::map<const Outfit *, int> OutfitsReceived() const;
+	const std::map<const Outfit *, int> OutfitsTaken() const;
+	const std::map<const Outfit *, int> OutfitsRequired() const;
+	const std::map<const Outfit *, int> OutfitsForbidden() const;
 	// The total cargo space needed to hold this action's gifts.
 	double MaxGiftSize() const;
+	// The value of this action's gifts at the desired depreciation level.
+	int64_t NetGiftValue(double depreciation = 1.) const;
 	// Check if this action can be completed right now. It cannot be completed
 	// if it takes away money or outfits that the player does not have, or should
 	// take place in a system that does not match the specified LocationFilter.

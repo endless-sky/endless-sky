@@ -465,6 +465,58 @@ const map<const Outfit *, int> MissionAction::Gifts() const
 
 
 
+// Return a map of the outfits that the player is given.
+const map<const Outfit *, int> MissionAction::OutfitsReceived() const
+{
+	map<const Outfit *, int> giftsReceived;
+	for(const auto &gift : gifts)
+		if(gift.second > 0)
+			giftsReceived.emplace(gift);
+	
+	return giftsReceived;
+}
+
+
+
+// Return a map of the outfits that the player must have and give.
+const map<const Outfit *, int> MissionAction::OutfitsTaken() const
+{
+	map<const Outfit *, int> giftsTaken;
+	for(const auto &gift : gifts)
+		if(gift.second < 0)
+			giftsTaken.emplace(gift);
+	
+	return giftsTaken;
+}
+
+
+
+// Return a map of the outfits the player must have (but gets to keep).
+const map<const Outfit *, int> MissionAction::OutfitsRequired() const
+{
+	map<const Outfit *, int> giftsRequired;
+	for(const auto &list : {gifts, requiredOutfits})
+		for(const auto &gift : list)
+			if(gift.second > 0)
+				giftsRequired.emplace(gift);
+	
+	return giftsRequired;
+}
+
+
+
+// Return a map of the outfits the player must not have.
+const map<const Outfit *, int> MissionAction::OutfitsForbidden() const
+{
+	map<const Outfit *, int> forbidden;
+	for(const auto &gift : requiredOutfits)
+		if(!gift.second)
+			forbidden.emplace(gift);
+	
+	return forbidden;
+}
+
+
 // Return the space needed to store these gifts in cargo, without regard to the
 // gifting direction.
 double MissionAction::MaxGiftSize() const
@@ -474,6 +526,19 @@ double MissionAction::MaxGiftSize() const
 		total += abs(gift.second) * gift.first->Get("mass");
 	
 	return total;
+}
+
+
+
+// Return the net cost of the gifts incurred by the player. If positive,
+// the player would lose "net worth" by completing this action.
+int64_t MissionAction::NetGiftValue(double depreciation) const
+{
+	int64_t total = 0.;
+	for(const pair<const Outfit *, int> &gift : gifts)
+		total -= gift.second * gift.first->Cost();
+	
+	return depreciation * total;
 }
 
 
