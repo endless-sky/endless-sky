@@ -282,9 +282,9 @@ ship "Albatross" "Albatross (Heavy)"
 
 
 
-ship Gascraft
-	plural Gascraft
-	sprite ship/gascraft
+ship "Gascraft"
+	plural "Gascraft"
+	sprite "ship/gascraft"
 	attributes
 		category Transport
 		cost 530000
