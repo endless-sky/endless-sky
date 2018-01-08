@@ -43,8 +43,13 @@ public:
 	
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
+	
 	const std::string &Name() const;
 	void SetName(const std::string &name);
+	
+	// Check if this GameEvent has been loaded (vs. simply referred to) and
+	// if it references any items that have not been defined.
+	bool IsValid() const;
 	
 	const Date &GetDate() const;
 	void SetDate(const Date &date);
@@ -57,6 +62,7 @@ public:
 private:
 	Date date;
 	std::string name;
+	bool isDefined = false;
 	ConditionSet conditionsToApply;
 	std::list<DataNode> changes;
 	std::vector<const System *> systemsToVisit;

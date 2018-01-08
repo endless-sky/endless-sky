@@ -43,6 +43,7 @@ void GameEvent::Load(const DataNode &node)
 		name = node.Token(1);
 		conditionsToApply.Add("set", "event: " + name);
 	}
+	isDefined = true;
 	
 	static const set<string> allowedChanges = {
 		"fleet",
@@ -106,6 +107,7 @@ void GameEvent::Save(DataWriter &out) const
 
 
 
+// All events held by GameData have a name, but those loaded from a save do not.
 const string &GameEvent::Name() const
 {
 	return name;
@@ -113,6 +115,7 @@ const string &GameEvent::Name() const
 
 
 
+// "Stock" GameEvents require a name to be serialized with an accepted mission.
 void GameEvent::SetName(const string &name)
 {
 	this->name = name;
@@ -123,6 +126,28 @@ void GameEvent::SetName(const string &name)
 const Date &GameEvent::GetDate() const
 {
 	return date;
+}
+
+
+
+// Check that this GameEvent has been loaded from a file (vs. referred to only
+// by name), and that the systems & planets it references are similarly defined.
+bool GameEvent::IsValid() const
+{
+	// Systems without a position in the map are not valid.
+	for(const auto &systems : {systemsToVisit, systemsToUnvisit})
+		for(const auto &system : systems)
+			if(!system->Position())
+				return false;
+	for(const auto &planets : {planetsToVisit, planetsToUnvisit})
+		for(const auto &planet : planets)
+			if(!planet->IsValid())
+				return false;
+	
+	// TODO: the DataNodes in `changes` generate definitions for elements
+	// they operate on, but these changes may not be well-defined.
+	
+	return isDefined;
 }
 
 

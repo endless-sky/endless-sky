@@ -348,7 +348,7 @@ bool MissionAction::IsValid() const
 		if(outfit.first->Name().empty())
 			return false;
 	for(const auto &event : events)
-		if(event.first->Name().empty())
+		if(!event.first->IsValid())
 			return false;
 	
 	return true;

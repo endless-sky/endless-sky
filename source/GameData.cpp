@@ -260,7 +260,7 @@ void GameData::CheckReferences()
 	};
 	for(auto &&it : events)
 	{
-		// Pending events are serialized.
+		// Stock GameEvents are serialized in MissionActions by name.
 		if(it.second.Name().empty())
 			NameAndWarn("event", it);
 		else
