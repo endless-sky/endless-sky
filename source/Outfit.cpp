@@ -123,6 +123,7 @@ void Outfit::Load(const DataNode &node)
 		name = node.Token(1);
 		pluralName = name + 's';
 	}
+	isDefined = true;
 	
 	for(const DataNode &child : node)
 	{
@@ -239,6 +240,14 @@ void Outfit::Load(const DataNode &node)
 	};
 	convertScan("outfit");
 	convertScan("cargo");
+}
+
+
+
+// Check if this outfit has been defined via Outfit::Load (vs. only being referred to).
+bool Outfit::IsDefined() const
+{
+	return isDefined;
 }
 
 

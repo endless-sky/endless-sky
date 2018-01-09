@@ -342,10 +342,10 @@ void MissionAction::Save(DataWriter &out) const
 bool MissionAction::IsValid() const
 {
 	for(const auto &outfit : giftOutfits)
-		if(outfit.first->Name().empty())
+		if(!outfit.first->IsDefined())
 			return false;
 	for(const auto &outfit : requiredOutfits)
-		if(outfit.first->Name().empty())
+		if(!outfit.first->IsDefined())
 			return false;
 	for(const auto &event : events)
 		if(!event.first->IsValid())

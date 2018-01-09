@@ -615,7 +615,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	set<string> undefinedOutfits;
 	for(const auto &it : outfits)
 	{
-		if(it.first->Name().empty())
+		if(!it.first->IsDefined())
 		{
 			undefinedOutfits.emplace("\"" + it.first->Name() + "\"");
 			continue;
@@ -651,7 +651,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	for(const Hardpoint &hardpoint : armament.Get())
 	{
 		const Outfit *outfit = hardpoint.GetOutfit();
-		if(outfit && !outfit->Name().empty()
+		if(outfit && outfit->IsDefined()
 				&& (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
 		{
 			string warning = modelName;

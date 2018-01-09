@@ -45,6 +45,7 @@ public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
 	void Load(const DataNode &node);
+	bool IsDefined() const;
 	
 	const std::string &Name() const;
 	void SetName(const std::string &name);
@@ -95,6 +96,7 @@ public:
 	
 	
 private:
+	bool isDefined = false;
 	std::string name;
 	std::string pluralName;
 	std::string category;
