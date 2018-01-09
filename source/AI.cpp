@@ -3198,26 +3198,31 @@ bool AI::Has(const Ship &ship, const Government *government, int type) const
 void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const System *playerSystem)
 {
 	// Tally the strength of a government by the cost of its present and able ships.
+	map<const Government *, vector<const Ship *>> governmentRosters;
 	for(const auto &it : ships)
-		if(it->GetGovernment() && it->GetSystem() == playerSystem && !it->IsDisabled())
-			strength[it->GetGovernment()] += it->Cost();
+		if(it->GetGovernment() && it->GetSystem() == playerSystem)
+		{
+			governmentRosters[it->GetGovernment()].emplace_back(it.get());
+			if(!it->IsDisabled())
+				strength[it->GetGovernment()] += it->Cost();
+		}
 	
 	// Strengths of enemies and allies are rebuilt every step.
 	enemyStrength.clear();
 	allyStrength.clear();
-	for(const auto &it : strength)
+	for(const auto &gov : strength)
 	{
 		set<const Government *> allies;
 		for(const auto &enemy : strength)
-			if(enemy.first->IsEnemy(it.first))
+			if(enemy.first->IsEnemy(gov.first))
 			{
 				// "Know your enemies."
-				enemyStrength[it.first] += enemy.second;
+				enemyStrength[gov.first] += enemy.second;
 				for(const auto &ally : strength)
 					if(ally.first->IsEnemy(enemy.first) && !allies.count(ally.first))
 					{
 						// "The enemy of my enemy is my friend."
-						allyStrength[it.first] += ally.second;
+						allyStrength[gov.first] += ally.second;
 						allies.insert(ally.first);
 					}
 			}
@@ -3232,14 +3237,14 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 			continue;
 		
 		int64_t &myStrength = shipStrength[it.get()];
-		for(const auto &oit : ships)
+		for(const auto &allies : governmentRosters)
 		{
-			const Government *ogov = oit->GetGovernment();
-			if(!ogov || oit->GetSystem() != playerSystem || oit->IsDisabled())
+			// If this is not an allied government, its ships will not assist this ship when attacked.
+			if(allies.first->AttitudeToward(gov) <= 0.)
 				continue;
-			
-			if(ogov->AttitudeToward(gov) > 0. && oit->Position().Distance(it->Position()) < 2000.)
-				myStrength += oit->Cost();
+			for(const auto &ally : allies.second)
+				if(!ally->IsDisabled() && ally->Position().Distance(it->Position()) < 2000.)
+					myStrength += ally->Cost();
 		}
 	}
 }
