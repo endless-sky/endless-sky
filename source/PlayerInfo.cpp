@@ -143,6 +143,7 @@ void PlayerInfo::Load(const string &path)
 			playTime = child.Value(1);
 		else if(child.Token(0) == "travel" && child.Size() >= 2)
 		{
+			// Do not create travel plans involving invalid plugin systems.
 			const System *next = GameData::Systems().Find(child.Token(1));
 			if(next)
 				travelPlan.push_back(next);
@@ -239,20 +240,16 @@ void PlayerInfo::Load(const string &path)
 		
 		// Records of things you have discovered:
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
-			Visit(GameData::Systems().Find(child.Token(1)));
+			Visit(GameData::Systems().Get(child.Token(1)));
 		else if(child.Token(0) == "visited planet" && child.Size() >= 2)
-			Visit(GameData::Planets().Find(child.Token(1)));
+			Visit(GameData::Planets().Get(child.Token(1)));
 		else if(child.Token(0) == "harvested")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
-				{
-					auto item = make_pair(
-						GameData::Systems().Find(grand.Token(0)),
+					harvested.emplace(
+						GameData::Systems().Get(grand.Token(0)),
 						GameData::Outfits().Get(grand.Token(1)));
-					if(item.first)
-						harvested.insert(item);
-				}
 		}
 		else if(child.Token(0) == "logbook")
 		{
@@ -297,15 +294,18 @@ void PlayerInfo::Load(const string &path)
 	// If a system was not specified in the player data, but the flagship is in
 	// a particular system, set the system to that.
 	if(!planet && !ships.empty())
-	{
 		for(shared_ptr<Ship> &ship : ships)
 			if(ship->GetPlanet() && !ship->IsDisabled() && !ship->IsParked() && !ship->CanBeCarried())
 			{
 				planet = ship->GetPlanet();
+				if(!planet->IsValid())
+				{
+					planet = nullptr;
+					continue;
+				}
 				system = ship->GetSystem();
 				break;
 			}
-	}
 	
 	// If no depreciation record was loaded, every item in the player's fleet
 	// will count as non-depreciated.
@@ -1913,7 +1913,7 @@ void PlayerInfo::Visit(const System *system)
 // Mark the given planet as visited.
 void PlayerInfo::Visit(const Planet *planet)
 {
-	if(planet && planet->IsValid())
+	if(planet)
 		visitedPlanets.insert(planet);
 }
 
@@ -2379,7 +2379,8 @@ void PlayerInfo::ApplyChanges()
 		planet->Bribe();
 	hasFullClearance = false;
 	
-	// Check if any special persons have been destroyed.
+	// Check if any special persons have been destroyed. Those that belong to
+	// inactive plugins will be kept "destroyed."
 	GameData::DestroyPersons(destroyedPersons);
 	destroyedPersons.clear();
 	
@@ -2395,7 +2396,7 @@ void PlayerInfo::ApplyChanges()
 			GameData::GetPolitics().DominatePlanet(planet);
 	}
 	
-	// Make sure all data defined in this saved game is valid.
+	// Issue warnings for any data which has been mentioned but not actually defined.
 	GameData::CheckReferences();
 }
 
@@ -2895,8 +2896,7 @@ void PlayerInfo::Save(const string &path) const
 				},
 				[&out](const HarvestLog &it)
 				{
-					if(it.first && it.second)
-						out.Write(it.first->Name(), it.second->Name());
+					out.Write(it.first->Name(), it.second->Name());
 				});
 		}
 		out.EndChild();

@@ -56,7 +56,7 @@ void Planet::Load(const DataNode &node)
 	name = node.Token(1);
 	// The planet's name is needed to save references to this object, so a
 	// flag is used to test whether Load() was called at least once for it.
-	isLoaded = true;
+	isDefined = true;
 	
 	// If this planet has been loaded before, these sets of items should be
 	// reset instead of appending to them:
@@ -231,10 +231,10 @@ void Planet::Load(const DataNode &node)
 
 
 
-// Test if this planet has been loaded, or just referred to.
+// Test if this planet has been loaded and it belongs to a valid system (vs. just referred to).
 bool Planet::IsValid() const
 {
-	return isLoaded && GetSystem() && GetSystem()->Position();
+	return isDefined && GetSystem() && GetSystem()->Position();
 }
 
 

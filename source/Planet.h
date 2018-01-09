@@ -40,6 +40,7 @@ class Planet {
 public:
 	// Load a planet's description from a file.
 	void Load(const DataNode &node);
+	// Check if both this planet and its containing system(s) have been defined.
 	bool IsValid() const;
 	
 	// Get the name of the planet (all wormholes use the same name).
@@ -135,7 +136,7 @@ public:
 	
 	
 private:
-	bool isLoaded = false;
+	bool isDefined = false;
 	std::string name;
 	std::string description;
 	std::string spaceport;
