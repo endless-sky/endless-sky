@@ -68,6 +68,9 @@ template <class Type>
 	
 	
 private:
+	// Check if a ship can pursue its target (i.e. beyond the "fence").
+	bool CanPursue(const Ship &ship, const Ship &target) const;
+	// Disabled or stranded ships coordinate with other ships to get assistance.
 	void AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship);
 	static bool CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel);
 	bool HasHelper(const Ship &ship, const bool needsFuel);
