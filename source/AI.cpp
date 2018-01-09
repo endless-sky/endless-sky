@@ -686,12 +686,15 @@ void AI::Step(const PlayerInfo &player)
 		// which is in the same system as them.
 		else if(parent->GetGovernment()->IsEnemy(gov))
 		{
-			// If your parent is your enemy, move toward them until you have
-			// selected a target to fight. Then, fight it.
-			if(target || !parent->IsTargetable())
+			// Fight your target, if you have one.
+			if(target)
 				MoveIndependent(*it, command);
-			else
+			// Otherwise try to find and fight your parent. If your parent
+			// can't be both targeted and pursued, then don't follow them.
+			else if(parent->IsTargetable() && CanPursue(*it, *parent))
 				MoveEscort(*it, command);
+			else
+				MoveIndependent(*it, command);
 		}
 		else if(parent->IsDisabled() && !it->CanBeCarried())
 		{
@@ -742,6 +745,23 @@ int64_t AI::EnemyStrength(const Government *government)
 {
 	auto it = enemyStrength.find(government);
 	return (it == enemyStrength.end() ? 0 : it->second);
+}
+
+
+
+// Check if the given target can be pursued by this ship.
+bool AI::CanPursue(const Ship &ship, const Ship &target) const
+{
+	// If this ship does not care about the "invisible fence", it can always pursue.
+	if(ship.GetPersonality().IsUnconstrained())
+		return true;
+	
+	// Check if the target is beyond the "invisible fence" for this system.
+	const auto &fit = fenceCount.find(&target);
+	if(fit == fenceCount.end())
+		return true;
+	else
+		return (fit->second != FENCE_MAX);
 }
 
 
@@ -924,13 +944,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 				continue;
 			if(!it->IsYours() && person.IsMarked())
 				continue;
-			if(!person.IsUnconstrained())
-			{
-				// Makes sure this ship isn't parked outside the invisible fence.
-				auto fit = fenceCount.find(&*it);
-				if(fit != fenceCount.end() && fit->second == FENCE_MAX)
-					continue;
-			}
+			if(!CanPursue(ship, *it))
+				continue;
 			
 			// Calculate what the range will be a second from now, so that ships
 			// will prefer targets that they are headed toward.
