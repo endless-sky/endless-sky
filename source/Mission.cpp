@@ -431,13 +431,8 @@ bool Mission::IsValid() const
 	
 	for(const NPC &npc : npcs)
 		for(const shared_ptr<Ship> &ship : npc.Ships())
-		{
-			if(ship->ModelName().empty())
+			if(!ship->IsValid())
 				return false;
-			for(const auto &outfit : ship->Outfits())
-				if(!outfit.first->IsDefined())
-					return false;
-		}
 	
 	return true;
 }

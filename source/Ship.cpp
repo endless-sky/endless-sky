@@ -174,6 +174,7 @@ void Ship::Load(const DataNode &node)
 		base = GameData::Ships().Get(modelName);
 		variantName = node.Token(2);
 	}
+	isDefined = true;
 	
 	government = GameData::PlayerGovernment();
 	equipped.clear();
@@ -711,6 +712,18 @@ void Ship::FinishLoading(bool isNewInstance)
 	
 	// Cache this ship's jump range so that it doesn't need calculated when needed.
 	jumpRange = JumpRange(false);
+}
+
+
+
+// Check if this ship (model) and its outfits have been defined.
+bool Ship::IsValid() const
+{
+	for(const auto &outfit : outfits)
+		if(!outfit.first->IsDefined())
+			return false;
+	
+	return isDefined;
 }
 
 

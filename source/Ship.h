@@ -125,6 +125,8 @@ public:
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
 	void FinishLoading(bool isNewInstance);
+	// Check that this ship model and all its outfits have been loaded.
+	bool IsValid() const;
 	// Save a full description of this ship, as currently configured.
 	void Save(DataWriter &out) const;
 	
@@ -439,6 +441,7 @@ private:
 	*/
 	
 	// Characteristics of the chassis:
+	bool isDefined = false;
 	const Ship *base = nullptr;
 	std::string modelName;
 	std::string pluralModelName;
