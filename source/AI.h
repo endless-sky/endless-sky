@@ -27,11 +27,11 @@ class Body;
 class Flotsam;
 class Government;
 class Minable;
+class PlayerInfo;
 class Ship;
 class ShipEvent;
 class StellarObject;
 class System;
-class PlayerInfo;
 
 
 
@@ -126,6 +126,9 @@ private:
 	bool Has(const Government *government, const std::weak_ptr<const Ship> &other, int type) const;
 	// True if the ship has performed the indicated event against any member of the government.
 	bool Has(const Ship &ship, const Government *government, int type) const;
+	
+	// Functions to classify ships based on government and system.
+	void UpdateStrengths(std::map<const Government *, int64_t> &strength, const System *playerSystem);
 	
 	
 private:

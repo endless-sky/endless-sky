@@ -291,46 +291,9 @@ void AI::Clean()
 void AI::Step(const PlayerInfo &player)
 {
 	// First, figure out the comparative strengths of the present governments.
+	const System *playerSystem = player.GetSystem();
 	map<const Government *, int64_t> strength;
-	for(const auto &it : ships)
-		if(it->GetGovernment() && it->GetSystem() == player.GetSystem() && !it->IsDisabled())
-			strength[it->GetGovernment()] += it->Cost();
-	enemyStrength.clear();
-	allyStrength.clear();
-	for(const auto &it : strength)
-	{
-		set<const Government *> allies;
-		for(const auto &eit : strength)
-			if(eit.first->IsEnemy(it.first))
-			{
-				enemyStrength[it.first] += eit.second;
-				for(const auto &ait : strength)
-					if(ait.first->IsEnemy(eit.first) && !allies.count(ait.first))
-					{
-						allyStrength[it.first] += ait.second;
-						allies.insert(ait.first);
-					}
-			}
-	}
-	
-	for(const auto &it : ships)
-	{
-		const Government *gov = it->GetGovernment();
-		// Only have ships update their strength estimate once per second on average.
-		if(!gov || it->GetSystem() != player.GetSystem() || it->IsDisabled() || Random::Int(60))
-			continue;
-		
-		int64_t &strength = shipStrength[it.get()];
-		for(const auto &oit : ships)
-		{
-			const Government *ogov = oit->GetGovernment();
-			if(!ogov || oit->GetSystem() != player.GetSystem() || oit->IsDisabled())
-				continue;
-			
-			if(ogov->AttitudeToward(gov) > 0. && oit->Position().Distance(it->Position()) < 2000.)
-				strength += oit->Cost();
-		}
-	}
+	UpdateStrengths(strength, playerSystem);
 	
 	// Update the counts of how long ships have been outside the "invisible fence."
 	// If a ship ceases to exist, this also ensures that it will be removed from
@@ -3228,6 +3191,57 @@ bool AI::Has(const Ship &ship, const Government *government, int type) const
 		return false;
 	
 	return (git->second & type);
+}
+
+
+
+void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const System *playerSystem)
+{
+	// Tally the strength of a government by the cost of its present and able ships.
+	for(const auto &it : ships)
+		if(it->GetGovernment() && it->GetSystem() == playerSystem && !it->IsDisabled())
+			strength[it->GetGovernment()] += it->Cost();
+	
+	// Strengths of enemies and allies are rebuilt every step.
+	enemyStrength.clear();
+	allyStrength.clear();
+	for(const auto &it : strength)
+	{
+		set<const Government *> allies;
+		for(const auto &enemy : strength)
+			if(enemy.first->IsEnemy(it.first))
+			{
+				// "Know your enemies."
+				enemyStrength[it.first] += enemy.second;
+				for(const auto &ally : strength)
+					if(ally.first->IsEnemy(enemy.first) && !allies.count(ally.first))
+					{
+						// "The enemy of my enemy is my friend."
+						allyStrength[it.first] += ally.second;
+						allies.insert(ally.first);
+					}
+			}
+	}
+	
+	// Ships with nearby allies consider their allies strength as well as their own.
+	for(const auto &it : ships)
+	{
+		const Government *gov = it->GetGovernment();
+		// Only have ships update their strength estimate once per second on average.
+		if(!gov || it->GetSystem() != playerSystem || it->IsDisabled() || Random::Int(60))
+			continue;
+		
+		int64_t &myStrength = shipStrength[it.get()];
+		for(const auto &oit : ships)
+		{
+			const Government *ogov = oit->GetGovernment();
+			if(!ogov || oit->GetSystem() != playerSystem || oit->IsDisabled())
+				continue;
+			
+			if(ogov->AttitudeToward(gov) > 0. && oit->Position().Distance(it->Position()) < 2000.)
+				myStrength += oit->Cost();
+		}
+	}
 }
 
 
