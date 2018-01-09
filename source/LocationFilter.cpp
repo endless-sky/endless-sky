@@ -105,6 +105,36 @@ namespace {
 		}
 		return true;
 	}
+	
+	// Validity check for this filter's sets.
+	template <class Type>
+	bool CheckValidity(const set<const Type *> &c)
+	{
+		if(c.empty())
+			return true;
+		bool valid = false;
+		for(const auto &t : c)
+			if(t->IsValid())
+			{
+				valid = true;
+				break;
+			}
+		return valid;
+	}
+	template <class Container>
+	bool CheckValidity(const Container &list)
+	{
+		if(list.empty())
+			return true;
+		bool valid = false;
+		for(const auto &filter : list)
+			if(filter.IsValid())
+			{
+				valid = true;
+				break;
+			}
+		return valid;
+	}
 }
 
 
@@ -239,67 +269,16 @@ bool LocationFilter::IsEmpty() const
 // from every restriction is valid, then this filter is valid.
 bool LocationFilter::IsValid() const
 {
-	if(!planets.empty())
-	{
-		bool hasValidPlanet = false;
-		for(const Planet *planet : planets)
-			if(planet->IsValid())
-			{
-				hasValidPlanet = true;
-				break;
-			}
-		if(!hasValidPlanet)
-			return false;
-	}
-	
-	if(!systems.empty())
-	{
-		bool hasValidSystem = false;
-		for(const System *system : systems)
-			if(system->Position())
-			{
-				hasValidSystem = true;
-				break;
-			}
-		if(!hasValidSystem)
-			return false;
-	}
-	
-	if(!governments.empty())
-	{
-		// Governments are always considered valid.
-	}
-	
-	// The "center" of a "near <system>" filter must be valid.
-	if(center && !center->Position())
+	if(!CheckValidity(planets) || !CheckValidity(systems))
+		return false;
+	if(!CheckValidity(notFilters) || !CheckValidity(neighborFilters))
 		return false;
 	
-	if(!notFilters.empty())
-	{
-		bool hasValidNotFilter = false;
-		for(const auto &filter : notFilters)
-			if(filter.IsValid())
-			{
-				hasValidNotFilter = true;
-				break;
-			}
-		if(!hasValidNotFilter)
-			return false;
-	}
+	// The "center" of a "near <system>" filter must be valid.
+	if(center && !center->IsValid())
+		return false;
 	
-	if(!neighborFilters.empty())
-	{
-		bool hasValidNeighborFilter = false;
-		for(const auto &filter : neighborFilters)
-			if(filter.IsValid())
-			{
-				hasValidNeighborFilter = true;
-				break;
-			}
-		if(!hasValidNeighborFilter)
-			return false;
-	}
-	
+	// Governments are always considered valid.
 	return true;
 }
 
@@ -308,7 +287,7 @@ bool LocationFilter::IsValid() const
 // If the player is in the given system, does this filter match?
 bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 {
-	if(!planet || !planet->GetSystem())
+	if(!planet || !planet->IsValid())
 		return false;
 	
 	// If a ship class was given, do not match planets.
@@ -440,8 +419,8 @@ const System *LocationFilter::PickSystem(const System *origin) const
 	vector<const System *> options;
 	for(const auto &it : GameData::Systems())
 	{
-		// Skip systems that have not been positioned (i.e. only referred to).
-		if(!it.second.Position())
+		// Skip entries with incomplete data.
+		if(!it.second.IsValid())
 			continue;
 		if(Matches(&it.second, origin))
 			options.push_back(&it.second);
@@ -581,7 +560,7 @@ void LocationFilter::LoadChild(const DataNode &child)
 
 bool LocationFilter::Matches(const System *system, const System *origin, bool didPlanet) const
 {
-	if(!system)
+	if(!system || !system->IsValid())
 		return false;
 	if(!systems.empty() && !systems.count(system))
 		return false;

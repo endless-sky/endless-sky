@@ -134,6 +134,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	if(node.Size() < 2)
 		return;
 	name = node.Token(1);
+	isDefined = true;
 	
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
@@ -292,7 +293,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			continue;
 		}
 		else if(key == "pos" && child.Size() >= 3)
+		{
 			position.Set(child.Value(valueIndex), child.Value(valueIndex + 1));
+			hasPosition = true;
+		}
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
 		else if(key == "music")
@@ -375,7 +379,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 	}
 	// Print a warning if this system has a position that is the galactic origin.
-	if(!position)
+	if(!hasPosition)
 		node.PrintTrace("Warning: system will be ignored due to implicit default position:");
 }
 
@@ -436,6 +440,14 @@ void System::Unlink(System *other)
 {
 	links.erase(other);
 	other->links.erase(this);
+}
+
+
+
+// Check that this system has been loaded and given a position.
+bool System::IsValid() const
+{
+	return isDefined && hasPosition;
 }
 
 

@@ -95,6 +95,7 @@ public:
 	void Link(System *other);
 	void Unlink(System *other);
 	
+	bool IsValid() const;
 	// Get this system's name and position (in the star map).
 	const std::string &Name() const;
 	void SetName(const std::string &name);
@@ -191,6 +192,8 @@ private:
 	
 	
 private:
+	bool isDefined = false;
+	bool hasPosition = false;
 	// Name and position (within the star map) of this system.
 	std::string name;
 	Point position;

@@ -209,7 +209,7 @@ void MapShipyardPanel::Init()
 	catalog.clear();
 	set<const Ship *> seen;
 	for(const auto &it : GameData::Planets())
-		if(player.HasVisited(it.second.GetSystem()))
+		if(it.second.IsValid() && player.HasVisited(it.second.GetSystem()))
 			for(const Ship *ship : it.second.Shipyard())
 				if(!seen.count(ship))
 				{

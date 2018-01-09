@@ -145,11 +145,16 @@ void PlayerInfo::Load(const string &path)
 		{
 			// Do not create travel plans involving invalid plugin systems.
 			const System *next = GameData::Systems().Find(child.Token(1));
-			if(next)
+			if(next && next->IsValid())
 				travelPlan.push_back(next);
 		}
 		else if(child.Token(0) == "travel destination" && child.Size() >= 2)
-			travelDestination = GameData::Planets().Find(child.Token(1));
+		{
+			// Do not persist invalid landing destinations.
+			const Planet *planet = GameData::Planets().Find(child.Token(1));
+			if(planet && planet->IsValid())
+				travelDestination = planet;
+		}
 		else if(child.Token(0) == "map coloring" && child.Size() >= 2)
 			mapColoring = child.Value(1);
 		else if(child.Token(0) == "map zoom" && child.Size() >= 2)
@@ -2339,7 +2344,7 @@ void PlayerInfo::ApplyChanges()
 	// them to the starting system to avoid crashing.
 	if(planet && !system)
 		system = planet->GetSystem();
-	if(!planet || !planet->IsValid() || !system || !system->Position())
+	if(!planet || !planet->IsValid() || !system || !system->IsValid())
 	{
 		system = GameData::Start().GetSystem();
 		planet = GameData::Start().GetPlanet();
@@ -2350,7 +2355,7 @@ void PlayerInfo::ApplyChanges()
 	// specified its location, but this is to avoid null locations.)
 	for(shared_ptr<Ship> &ship : ships)
 	{
-		if(!ship->GetSystem() || !ship->GetSystem()->Position())
+		if(!ship->GetSystem() || !ship->GetSystem()->IsValid())
 			ship->SetSystem(system);
 		if(ship->GetSystem() == system && (!ship->GetPlanet() || ship->GetPlanet()->Name().empty()))
 			ship->SetPlanet(planet);

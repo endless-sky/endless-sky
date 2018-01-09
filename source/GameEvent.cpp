@@ -137,7 +137,7 @@ bool GameEvent::IsValid() const
 	// Systems without a position in the map are not valid.
 	for(const auto &systems : {systemsToVisit, systemsToUnvisit})
 		for(const auto &system : systems)
-			if(!system->Position())
+			if(!system->IsValid())
 				return false;
 	for(const auto &planets : {planetsToVisit, planetsToUnvisit})
 		for(const auto &planet : planets)

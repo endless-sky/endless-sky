@@ -417,12 +417,12 @@ bool Mission::IsValid() const
 	// Systems must have a non-default position.
 	for(const set<const System *> &usedSystems : {waypoints, visitedWaypoints})
 		for(const System *system : usedSystems)
-			if(!system->Position())
+			if(!system->IsValid())
 				return false;
 	
 	// Actions triggered when entering a system should reference valid systems.
 	for(const pair<const System *, MissionAction> &it : onEnter)
-		if(!it.first->Position() || !it.second.IsValid())
+		if(!it.first->IsValid() || !it.second.IsValid())
 			return false;
 	for(const pair<Trigger, MissionAction> &it : actions)
 		if(!it.second.IsValid())

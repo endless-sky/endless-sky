@@ -232,7 +232,7 @@ void MapOutfitterPanel::Init()
 	catalog.clear();
 	set<const Outfit *> seen;
 	for(const auto &it : GameData::Planets())
-		if(player.HasVisited(it.second.GetSystem()))
+		if(it.second.IsValid() && player.HasVisited(it.second.GetSystem()))
 			for(const Outfit *outfit : it.second.Outfitter())
 				if(!seen.count(outfit))
 				{

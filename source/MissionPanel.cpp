@@ -385,7 +385,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 	Point click = Point(x, y) / Zoom() - center;
 	const System *system = nullptr;
 	for(const auto &it : GameData::Systems())
-		if(click.Distance(it.second.Position()) < 10.
+		if(it.second.IsValid() && click.Distance(it.second.Position()) < 10.
 				&& (player.HasSeen(&it.second) || &it.second == specialSystem))
 		{
 			system = &it.second;

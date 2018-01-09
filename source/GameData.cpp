@@ -541,12 +541,8 @@ void GameData::WriteEconomy(DataWriter &out)
 		out.Write();
 		
 		// Write the per-system data for all systems, even those from inactive plugins.
-		for(const pair<string, const System> &sit : GameData::Systems())
+		for(const auto &sit : GameData::Systems())
 		{
-			// Only systems which somehow have no referring name will have no name.
-			if(sit.first.empty())
-				continue;
-			
 			out.WriteToken(sit.second.Name());
 			for(const auto &cit : GameData::Commodities())
 				out.WriteToken(static_cast<int>(sit.second.Supply(cit.name)));

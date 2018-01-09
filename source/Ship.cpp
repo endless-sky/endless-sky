@@ -926,7 +926,7 @@ void Ship::Save(DataWriter &out) const
 		}
 		if(landingPlanet)
 			out.Write("planet", landingPlanet->TrueName());
-		if(targetSystem && targetSystem->Position())
+		if(targetSystem && targetSystem->IsValid())
 			out.Write("destination system", targetSystem->Name());
 		if(isParked)
 			out.Write("parked");

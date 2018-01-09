@@ -408,7 +408,7 @@ bool MapPanel::Click(int x, int y, int clicks)
 	// Figure out if a system was clicked on.
 	Point click = Point(x, y) / Zoom() - center;
 	for(const auto &it : GameData::Systems())
-		if(click.Distance(it.second.Position()) < 10.
+		if(it.second.IsValid() && click.Distance(it.second.Position()) < 10.
 				&& (player.HasSeen(&it.second) || &it.second == specialSystem))
 		{
 			Select(&it.second);
@@ -631,7 +631,7 @@ void MapPanel::Find(const string &name)
 {
 	int bestIndex = 9999;
 	for(const auto &it : GameData::Systems())
-		if(player.HasVisited(&it.second))
+		if(it.second.IsValid() && player.HasVisited(&it.second))
 		{
 			int index = Search(it.first, name);
 			if(index >= 0 && index < bestIndex)
@@ -647,7 +647,7 @@ void MapPanel::Find(const string &name)
 			}
 		}
 	for(const auto &it : GameData::Planets())
-		if(player.HasVisited(it.second.GetSystem()))
+		if(it.second.IsValid() && player.HasVisited(it.second.GetSystem()))
 		{
 			int index = Search(it.first, name);
 			if(index >= 0 && index < bestIndex)
@@ -727,7 +727,7 @@ void MapPanel::UpdateCache()
 	{
 		const System &system = it.second;
 		// Ignore systems which have been referred to, but not actually defined.
-		if(!system.Position())
+		if(!system.IsValid())
 			continue;
 		// Ignore systems the player has never seen, unless they have a pending mission that lets them see it.
 		if(!player.HasSeen(&system) && &system != specialSystem)
@@ -842,7 +842,7 @@ void MapPanel::UpdateCache()
 	for(const auto &it : GameData::Systems())
 	{
 		const System *system = &it.second;
-		if(!player.HasSeen(system))
+		if(!system->IsValid() || !player.HasSeen(system))
 			continue;
 		
 		for(const System *link : system->Links())
@@ -851,7 +851,7 @@ void MapPanel::UpdateCache()
 				// Only draw links between two systems if one of the two is
 				// visited. Also, avoid drawing twice by only drawing in the
 				// direction of increasing pointer values.
-				if(!player.HasVisited(system) && !player.HasVisited(link))
+				if((!player.HasVisited(system) && !player.HasVisited(link)) || !link->IsValid())
 					continue;
 				
 				bool isClose = (system == playerSystem || link == playerSystem);
@@ -996,7 +996,8 @@ void MapPanel::DrawWormholes()
 	// share a link vector. If a wormhole's planet has no description, no link will be drawn.
 	for(const auto &it : GameData::Planets())
 	{
-		if(!it.second.IsWormhole() || !player.HasVisited(&it.second) || it.second.Description().empty())
+		if(!it.second.IsValid() || !it.second.IsWormhole() || !player.HasVisited(&it.second)
+				|| it.second.Description().empty())
 			continue;
 		
 		const vector<const System *> &waypoints = it.second.WormholeSystems();
