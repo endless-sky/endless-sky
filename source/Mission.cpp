@@ -413,11 +413,13 @@ bool Mission::IsValid() const
 		for(const Planet *planet : usedPlanets)
 			if(!planet->IsValid())
 				return false;
+	
 	// Systems must have a non-default position.
 	for(const set<const System *> &usedSystems : {waypoints, visitedWaypoints})
 		for(const System *system : usedSystems)
 			if(!system->Position())
 				return false;
+	
 	// Actions triggered when entering a system should reference valid systems.
 	for(const pair<const System *, MissionAction> &it : onEnter)
 		if(!it.first->Position() || !it.second.IsValid())
@@ -425,9 +427,12 @@ bool Mission::IsValid() const
 	for(const pair<Trigger, MissionAction> &it : actions)
 		if(!it.second.IsValid())
 			return false;
-	// TODO: Is there a possible check for "Generic" on enter actions that is useful?
-	// They may use a LocationFilter that does not currently match a system, but will
-	// after some GameEvent. They may also name some systems or planets that can be checked.
+	// Generic "on enter" may use a LocationFilter that exclusively references invalid content.
+	for(const MissionAction &action : genericOnEnter)
+		if(!action.IsValid())
+			return false;
+	if(!clearanceFilter.IsEmpty() && !clearanceFilter.IsValid())
+		return false;
 	
 	for(const NPC &npc : npcs)
 		for(const shared_ptr<Ship> &ship : npc.Ships())

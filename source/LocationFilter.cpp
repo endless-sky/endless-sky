@@ -234,6 +234,77 @@ bool LocationFilter::IsEmpty() const
 
 
 
+// Check if all of this filter's named content is invalid (e.g. its known members only
+// match to content that is currently unavailable). If at least one valid parameter
+// from every restriction is valid, then this filter is valid.
+bool LocationFilter::IsValid() const
+{
+	if(!planets.empty())
+	{
+		bool hasValidPlanet = false;
+		for(const Planet *planet : planets)
+			if(planet->IsValid())
+			{
+				hasValidPlanet = true;
+				break;
+			}
+		if(!hasValidPlanet)
+			return false;
+	}
+	
+	if(!systems.empty())
+	{
+		bool hasValidSystem = false;
+		for(const System *system : systems)
+			if(system->Position())
+			{
+				hasValidSystem = true;
+				break;
+			}
+		if(!hasValidSystem)
+			return false;
+	}
+	
+	if(!governments.empty())
+	{
+		// Governments are always considered valid.
+	}
+	
+	// The "center" of a "near <system>" filter must be valid.
+	if(center && !center->Position())
+		return false;
+	
+	if(!notFilters.empty())
+	{
+		bool hasValidNotFilter = false;
+		for(const auto &filter : notFilters)
+			if(filter.IsValid())
+			{
+				hasValidNotFilter = true;
+				break;
+			}
+		if(!hasValidNotFilter)
+			return false;
+	}
+	
+	if(!neighborFilters.empty())
+	{
+		bool hasValidNeighborFilter = false;
+		for(const auto &filter : neighborFilters)
+			if(filter.IsValid())
+			{
+				hasValidNeighborFilter = true;
+				break;
+			}
+		if(!hasValidNeighborFilter)
+			return false;
+	}
+	
+	return true;
+}
+
+
+
 // If the player is in the given system, does this filter match?
 bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 {
