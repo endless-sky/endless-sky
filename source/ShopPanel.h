@@ -95,9 +95,11 @@ protected:
 		const Outfit *outfit = nullptr;
 	};
 	
+	int DetailsWidth() const; // ???
 	
 protected:
 	static const int SIDE_WIDTH = 250;
+	static const int DETAILS_WIDTH = 250; //
 	static const int BUTTON_HEIGHT = 70;
 	static const int SHIP_SIZE = 250;
 	static const int OUTFIT_SIZE = 180;
@@ -118,12 +120,16 @@ protected:
 	
 	double mainScroll = 0.;
 	double sideScroll = 0.;
+	double detailsScroll = 0; //
 	double maxMainScroll = 0.;
 	double maxSideScroll = 0.;
+	double maxDetailsScroll = 0.; //changed from mutable int
 	bool dragMain = true;
+	bool dragDetails = true; // 
 	int mainDetailHeight = 0;
 	int sideDetailHeight = 0;
 	bool scrollDetailsIntoView = false;
+	bool detailsInWithMain = false; // 
 	double selectedTopY = 0.;
 	bool sameSelectedTopY = false;
 	char hoverButton = '\0';
