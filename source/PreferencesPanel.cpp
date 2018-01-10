@@ -51,6 +51,8 @@ namespace {
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
+	const string OUTFIT_PRICE_LABEL = "Outfit price labels"; // ?
+	const string DETAILS_TILES_SHOP = "Details with tiles in shop"; // ?
 }
 
 
