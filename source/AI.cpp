@@ -376,6 +376,7 @@ void AI::Step(const PlayerInfo &player)
 				continue;
 			}
 		}
+		// Overheated ships are effectively disabled, and cannot fire, cloak, etc.
 		if(it->IsOverheated())
 			continue;
 		
@@ -412,15 +413,41 @@ void AI::Step(const PlayerInfo &player)
 			it->SetParent(parent);
 		}
 		
+		// Pick a target and automatically fire weapons.
+		shared_ptr<Ship> target = it->GetTargetShip();
+		if(isPresent && !personality.IsSwarming())
+		{
+			// Each ship only switches targets twice a second, so that it can
+			// focus on damaging one particular ship.
+			targetTurn = (targetTurn + 1) & 31;
+			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled()
+					&& personality.Disables()) || !target->IsTargetable())
+				it->SetTargetShip(FindTarget(*it));
+		}
+		if(isPresent)
+		{
+			AimTurrets(*it, command, it->IsYours() ? opportunisticEscorts : personality.IsOpportunistic());
+			AutoFire(*it, command);
+		}
+		
+		// If this ship is hyperspacing, or in the act of
+		// launching or landing, it can't do anything else.
+		if(it->IsHyperspacing() || it->Zoom() < 1.)
+		{
+			it->SetCommands(command);
+			continue;
+		}
+		
 		// Special actions when a ship is near death:
 		if(health < 1.)
 		{
+			// Cowards abandon their fleets.
 			if(parent && personality.IsCoward())
 			{
-				// Cowards abandon their fleets.
 				parent.reset();
 				it->SetParent(parent);
 			}
+			// Appeasing ships jettison cargo to distract their pursuers.
 			if(personality.IsAppeasing() && it->Cargo().Used())
 			{
 				double &threshold = appeasmentThreshold[it.get()];
@@ -442,28 +469,6 @@ void AI::Step(const PlayerInfo &player)
 			}
 		}
 		
-		// Pick a target and automatically fire weapons.
-		shared_ptr<Ship> target = it->GetTargetShip();
-		if(isPresent && !personality.IsSwarming())
-		{
-			// Each ship only switches targets twice a second, so that it can
-			// focus on damaging one particular ship.
-			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step || !target || !target->IsTargetable() || target->IsDestroyed()
-					|| (target->IsDisabled() && personality.Disables()))
-				it->SetTargetShip(FindTarget(*it));
-			
-			AimTurrets(*it, command, it->IsYours() ? opportunisticEscorts : personality.IsOpportunistic());
-			AutoFire(*it, command);
-		}
-		
-		// If this ship is hyperspacing, it can't do anything else.
-		if(it->IsHyperspacing())
-		{
-			it->SetCommands(command);
-			continue;
-		}
-		
 		// If recruited to assist a ship, follow through on the commitment
 		// instead of ignoring it due to other personality traits.
 		shared_ptr<Ship> shipToAssist = it->GetShipToAssist();
@@ -471,8 +476,8 @@ void AI::Step(const PlayerInfo &player)
 		{
 			if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem()
 					|| shipToAssist->IsLanding() || shipToAssist->IsHyperspacing()
-					|| (!shipToAssist->IsDisabled() && shipToAssist->JumpsRemaining())
-					|| shipToAssist->GetGovernment()->IsEnemy(gov))
+					|| shipToAssist->GetGovernment()->IsEnemy(gov)
+					|| (!shipToAssist->IsDisabled() && shipToAssist->JumpsRemaining()))
 			{
 				shipToAssist.reset();
 				it->SetShipToAssist(shipToAssist);
@@ -803,9 +808,8 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 {
 	// Fighters, drones, and disabled / absent ships can't offer assistance.
-	if(helper.IsDisabled() || helper.IsOverheated() || !helper.IsTargetable()
-			|| helper.CanBeCarried() || helper.IsHyperspacing()
-			|| helper.GetSystem() != ship.GetSystem())
+	if(helper.CanBeCarried() || helper.GetSystem() != ship.GetSystem() || helper.Cloaking() == 1.
+			|| helper.IsDisabled() || helper.IsOverheated() || helper.IsHyperspacing())
 		return false;
 	
 	// An enemy cannot provide assistance, and only ships of the same government will repair disabled ships.
@@ -1868,8 +1872,8 @@ void AI::DoSwarming(Ship &ship, Command &command, shared_ptr<Ship> &target)
 			target.reset();
 			ship.SetTargetShip(target);
 		}
-		// If launching or landing, this ship should not seek a new target.
-		if(ship.Zoom() < 1.)
+		// If here just because we are about to land, do not seek a new target.
+		if(ship.IsLanding())
 			return;
 		
 		int lowestCount = 7;
@@ -2425,7 +2429,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 {
 	const Personality &person = ship.GetPersonality();
-	if(person.IsPacifist())
+	if(person.IsPacifist() || ship.CannotAct())
 		return;
 	
 	bool beFrugal = (ship.IsYours() && !escortsUseAmmo);
