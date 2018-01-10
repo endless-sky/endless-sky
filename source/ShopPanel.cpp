@@ -54,6 +54,7 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 		playerShips.insert(playerShip);
 	SetIsFullScreen(true);
 	SetInterruptible(false);
+	detailsInWithMain = Preferences::Has("Details with tiles in shop");
 }
 
 
@@ -330,6 +331,7 @@ void ShopPanel::DrawMain()
 	const Color &dim = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 	mainDetailHeight = 0;
+	int sideWidth = SIDE_WIDTH + DetailsWidth(); //
 	
 	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 	const Sprite *expandedArrow = SpriteSet::Get("ui/expanded");
@@ -337,7 +339,7 @@ void ShopPanel::DrawMain()
 	// Draw all the available ships.
 	// First, figure out how many columns we can draw.
 	const int TILE_SIZE = TileSize();
-	int mainWidth = (Screen::Width() - SIDE_WIDTH - 1);
+	int mainWidth = (Screen::Width() - sideWidth - 1);
 	int columns = mainWidth / TILE_SIZE;
 	int columnWidth = mainWidth / columns;
 	
@@ -345,7 +347,7 @@ void ShopPanel::DrawMain()
 		(Screen::Width() - columnWidth) / -2,
 		(Screen::Height() - TILE_SIZE) / -2 - mainScroll);
 	Point point = begin;
-	float endX = Screen::Right() - (SIDE_WIDTH + 1);
+	float endX = Screen::Right() - (sideWidth + 1);
 	double nextY = begin.Y() + TILE_SIZE;
 	int scrollY = 0;
 	for(const string &category : categories)
@@ -446,9 +448,9 @@ void ShopPanel::DrawMain()
 	// bottom of the screen? (Also leave space for the "key" at the bottom.)
 	maxMainScroll = max(0., nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2 + 40.);
 	
-	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Top() + 10),
+	PointerShader::Draw(Point(Screen::Right() - 10 - sideWidth, Screen::Top() + 10),
 		Point(0., -1.), 10., 10., 5., Color(mainScroll > 0 ? .8 : .2, 0.));
-	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Bottom() - 10),
+	PointerShader::Draw(Point(Screen::Right() - 10 - sideWidth, Screen::Bottom() - 10),
 		Point(0., 1.), 10., 10., 5., Color(mainScroll < maxMainScroll ? .8 : .2, 0.));
 }
 
@@ -653,7 +655,9 @@ bool ShopPanel::Click(int x, int y, int clicks)
 		if(y < Screen::Bottom() - BUTTON_HEIGHT && y >= Screen::Bottom() - BUTTON_HEIGHT - 20)
 			return Scroll(0, -4);
 	}
-	else if(x >= Screen::Right() - SIDE_WIDTH - 20 && x < Screen::Right() - SIDE_WIDTH)
+	// else if(x >= Screen::Right() - SIDE_WIDTH - 20 && x < Screen::Right() - SIDE_WIDTH)	
+	else if( (x >= Screen::Right() - SIDE_WIDTH - 20 && x < Screen::Right() - SIDE_WIDTH)
+		|| (x >= Screen::Right() - SIDE_WIDTH - DetailsWidth() - 20 && x < Screen::Right() - SIDE_WIDTH - DetailsWidth()))
 	{
 		if(y < Screen::Top() + 20)
 			return Scroll(0, 4);
@@ -747,7 +751,9 @@ bool ShopPanel::Hover(int x, int y)
 		outfitInfo.Hover(point);
 	}
 	
-	dragMain = (x < Screen::Right() - SIDE_WIDTH);
+	//dragMain = (x < Screen::Right() - SIDE_WIDTH);
+	dragMain = (x < Screen::Right() - SIDE_WIDTH - DetailsWidth());
+	dragDetails = !dragMain && (x < Screen::Right() - SIDE_WIDTH);
 	return true;
 }
 
@@ -864,8 +870,10 @@ double ShopPanel::Zone::ScrollY() const
 
 bool ShopPanel::DoScroll(double dy)
 {
-	double &scroll = dragMain ? mainScroll : sideScroll;
-	const double &maximum = dragMain ? maxMainScroll : maxSideScroll;
+	double &scroll = dragMain ? mainScroll : dragDetails ? detailsScroll : sideScroll;
+	const int &maximum = dragMain ? maxMainScroll : dragDetails ? detailsScroll : maxSideScroll;
+//	double &scroll = dragMain ? mainScroll : sideScroll;
+//	const double &maximum = dragMain ? maxMainScroll : maxSideScroll;
 	
 	scroll = max(0., min(maximum, scroll - dy));
 	
@@ -1159,4 +1167,9 @@ char ShopPanel::CheckButton(int x, int y)
 		return 'l';
 	
 	return ' ';
+}
+
+int ShopPanel::DetailsWidth() const
+{
+	return detailsInWithMain ? 0 : DETAILS_WIDTH;
 }
