@@ -67,6 +67,18 @@ namespace {
 		return target.IsDisabled();
 	}
 	
+	// Check if the given ship can "swarm" the targeted ship, e.g. to provide anti-missile cover.
+	bool CanSwarm(const Ship &ship, const Ship &target)
+	{
+		if(target.GetPersonality().IsSwarming() || target.IsHyperspacing())
+			return false;
+		if(target.GetGovernment()->IsEnemy(ship.GetGovernment()))
+			return false;
+		if(target.GetSystem() != ship.GetSystem())
+			return false;
+		return target.IsTargetable();
+	}
+	
 	double AngleDiff(double a, double b)
 	{
 		a = abs(a - b);
@@ -335,7 +347,7 @@ void AI::Step(const PlayerInfo &player)
 		const Government *gov = it->GetGovernment();
 		const Personality &personality = it->GetPersonality();
 		double health = .5 * it->Shields() + it->Hull();
-		bool isPresent = (it->GetSystem() == player.GetSystem());
+		bool isPresent = (it->GetSystem() == playerSystem);
 		bool isStranded = IsStranded(*it);
 		bool thisIsLaunching = (isLaunching && isPresent);
 		if(isStranded || it->IsDisabled())
@@ -432,7 +444,7 @@ void AI::Step(const PlayerInfo &player)
 		}
 		
 		// Pick a target and automatically fire weapons.
-		shared_ptr<const Ship> target = it->GetTargetShip();
+		shared_ptr<Ship> target = it->GetTargetShip();
 		if(isPresent)
 		{
 			// Each ship only switches targets twice a second, so that it can
@@ -480,6 +492,7 @@ void AI::Step(const PlayerInfo &player)
 			}
 		}
 		
+		// This ship may have updated its target ship.
 		double targetDistance = numeric_limits<double>::infinity();
 		target = it->GetTargetShip();
 		if(target)
@@ -488,47 +501,21 @@ void AI::Step(const PlayerInfo &player)
 		// Behave in accordance with personality traits.
 		if(isPresent && personality.IsSwarming() && !isStranded)
 		{
-			parent.reset();
-			it->SetParent(parent);
-			if(!target || target->IsHyperspacing() || !target->IsTargetable()
-					|| target->GetSystem() != it->GetSystem() || !Random::Int(600))
+			// Swarming ships should not wait for or be waited for by any ship.
+			if(parent)
 			{
-				if(target)
-				{
-					auto sit = swarmCount.find(target.get());
-					if(sit != swarmCount.end() && sit->second > 0)
-						--sit->second;
-					it->SetTargetShip(shared_ptr<Ship>());
-				}
-				int lowestCount = 7;
-				for(const shared_ptr<Ship> &other : ships)
-					if(!other->GetPersonality().IsSwarming() && !other->GetGovernment()->IsEnemy(gov)
-							&& other->GetSystem() == it->GetSystem() && other->IsTargetable()
-							&& !other->IsHyperspacing())
-					{
-						int count = swarmCount[other.get()] + Random::Int(4);
-						if(count < lowestCount)
-						{
-							it->SetTargetShip(other);
-							lowestCount = count;
-						}
-					}
-				target = it->GetTargetShip();
-				if(target)
-					++swarmCount[target.get()];
+				parent.reset();
+				it->SetParent(parent);
 			}
-			if(target)
-				Swarm(*it, command, *target);
-			else if(it->Zoom() == 1.)
-				Refuel(*it, command);
-			
+			// Flock between allied, in-system ships.
+			DoSwarming(*it, command, target);
 			it->SetCommands(command);
 			continue;
 		}
 		
 		if(isPresent && personality.IsSurveillance() && !isStranded)
 		{
-			DoSurveillance(*it, command);
+			DoSurveillance(*it, command, target);
 			it->SetCommands(command);
 			continue;
 		}
@@ -1140,7 +1127,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 	
 	const bool shouldStay = ship.GetPersonality().IsStaying()
-			||  (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(ship.GetGovernment()));
+			|| (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(ship.GetGovernment()));
 	if(!ship.GetTargetSystem() && !ship.GetTargetStellar() && !shouldStay)
 	{
 		int jumps = ship.JumpsRemaining();
@@ -1613,15 +1600,16 @@ void AI::CircleAround(Ship &ship, Command &command, const Ship &target)
 }
 
 
-	
+
 void AI::Swarm(Ship &ship, Command &command, const Ship &target)
 {
 	Point direction = target.Position() - ship.Position();
-	double rendezvousTime = RendezvousTime(direction, target.Velocity(), ship.MaxVelocity());
+	double maxSpeed = ship.MaxVelocity();
+	double rendezvousTime = RendezvousTime(direction, target.Velocity(), maxSpeed);
 	if(rendezvousTime != rendezvousTime || rendezvousTime > 600.)
 		rendezvousTime = 600.;
 	direction += rendezvousTime * target.Velocity();
-	MoveTo(ship, command, target.Position() + direction, Point(), 50., 2.);
+	MoveTo(ship, command, target.Position() + direction, .5 * maxSpeed * direction.Unit(), 50., 2.);
 }
 
 
@@ -1864,11 +1852,56 @@ bool AI::ShouldUseAfterburner(Ship &ship)
 
 
 
-void AI::DoSurveillance(Ship &ship, Command &command) const
+// Find a target ship to flock around at high speed.
+void AI::DoSwarming(Ship &ship, Command &command, shared_ptr<Ship> &target)
+{
+	// Find a new ship to target on average every 10 seconds, or if the current target
+	// is no longer eligible. If landing, release the old target so others can swarm it.
+	if(ship.IsLanding() || !target || !CanSwarm(ship, *target) || !Random::Int(600))
+	{
+		if(target)
+		{
+			// Allow another swarming ship to consider the target.
+			auto sit = swarmCount.find(target.get());
+			if(sit != swarmCount.end() && sit->second > 0)
+				--sit->second;
+			// Release the current target.
+			target.reset();
+			ship.SetTargetShip(target);
+		}
+		// If launching or landing, this ship should not seek a new target.
+		if(ship.Zoom() < 1.)
+			return;
+		
+		int lowestCount = 7;
+		for(const shared_ptr<Ship> &other : ships)
+			if(CanSwarm(ship, *other))
+			{
+				// Prefer to swarm ships that are not already being heavily swarmed.
+				int count = swarmCount[other.get()] + Random::Int(4);
+				if(count < lowestCount)
+				{
+					target = other;
+					lowestCount = count;
+				}
+			}
+		ship.SetTargetShip(target);
+		if(target)
+			++swarmCount[target.get()];
+	}
+	// If a friendly ship to flock with was not found, return to an available planet.
+	if(target)
+		Swarm(ship, command, *target);
+	else if(ship.Zoom() == 1.)
+		Refuel(ship, command);
+}
+
+
+
+void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) const
 {
 	// Since DoSurveillance is called after target-seeking and firing, if this
 	// ship has a target, that target is guaranteed to be targetable.
-	shared_ptr<Ship> target = ship.GetTargetShip();
 	if(target && (target->GetSystem() != ship.GetSystem() || target->IsEnteringHyperspace()))
 	{
 		target.reset();
