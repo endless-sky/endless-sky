@@ -352,8 +352,7 @@ void AI::Step(const PlayerInfo &player)
 		bool thisIsLaunching = (isLaunching && isPresent);
 		if(isStranded || it->IsDisabled())
 		{
-			// Derelicts never ask for help, to make sure that only the player
-			// will repair them.
+			// Derelicts never ask for help (only the player should repair them).
 			if(it->IsDestroyed() || it->GetPersonality().IsDerelict())
 				continue;
 			
@@ -445,7 +444,7 @@ void AI::Step(const PlayerInfo &player)
 		
 		// Pick a target and automatically fire weapons.
 		shared_ptr<Ship> target = it->GetTargetShip();
-		if(isPresent)
+		if(isPresent && !personality.IsSwarming())
 		{
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
@@ -501,7 +500,7 @@ void AI::Step(const PlayerInfo &player)
 		// Behave in accordance with personality traits.
 		if(isPresent && personality.IsSwarming() && !isStranded)
 		{
-			// Swarming ships should not wait for or be waited for by any ship.
+			// Swarming ships should not wait for (or be waited for by) any ship.
 			if(parent)
 			{
 				parent.reset();
