@@ -26938,7 +26938,7 @@ planet Twinstar
 	attributes south tourism frontier moon
 	landscape land/lava3
 	description `The only settlement on this small world is Twinstar Depot, a village created mostly just to service the spaceport, where food and equipment from the southern galactic arm is stored and sent out in all directions to supply the rest of human space. The gravity is far less than ideal for human development, but the atmosphere is breathable and some tourists come to the planet just for the experience of being able to run and jump in low gravity without the need for a suit or oxygen tanks.`
-	spaceport `The depot consists mostly of large storage racks, with automatic lifts constantly clanking up and down. Very few people are in sight, aside from a small cafe near the center of the port. It is not a very hospitable place.`
+	spaceport `The depot consists mostly of large storage racks, with automatic lifts constantly clanking up and down. Very few people are in sight, aside from a small cafe near the center of the port. It is not a hospitable place.`
 	outfitter "Ammo South"
 	security 0.2
 	tribute 200
