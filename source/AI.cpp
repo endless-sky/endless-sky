@@ -124,7 +124,7 @@ namespace {
 	}
 	
 	const double MAX_DISTANCE_FROM_CENTER = 10000.;
-	// Constance for the invisible fence timer.
+	// Constants for the invisible fence timer.
 	const int FENCE_DECAY = 4;
 	const int FENCE_MAX = 600;
 }
@@ -565,40 +565,41 @@ void AI::Step(const PlayerInfo &player)
 		}
 		
 		// Handle fighters:
-		const string &category = it->Attributes().Category();
-		bool isFighter = (category == "Fighter");
 		if(it->CanBeCarried())
 		{
-			bool hasSpace = (parent && parent->BaysFree(isFighter) && !parent->GetGovernment()->IsEnemy(gov));
-			if(!hasSpace || parent->IsDestroyed() || parent->GetSystem() != it->GetSystem())
+			bool isFighter = (it->Attributes().Category() == "Fighter");
+			// A fighter must belong to the same government as its parent to dock with it.
+			bool hasParent = parent && parent->GetGovernment() == gov;
+			bool hasSpace = hasParent && parent->BaysFree(isFighter);
+			if(!hasParent || (!hasSpace && !Random::Int(600)) || parent->IsDestroyed()
+					|| parent->GetSystem() != it->GetSystem())
 			{
-				// Handle orphaned fighters and drones.
+				// Find a parent for orphaned fighters and drones.
 				parent.reset();
 				it->SetParent(parent);
 				vector<shared_ptr<Ship>> parentChoices;
 				parentChoices.reserve(ships.size() * .1);
 				for(const auto &other : ships)
-				{
 					if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
 					{
 						if(!other->IsDisabled() && other->CanCarry(*it.get()))
 						{
 							parent = other;
 							it->SetParent(other);
-							if(other->BaysFree(isFighter))
-								break;
+							break;
 						}
 						else
 							parentChoices.emplace_back(other);
 					}
-				}
+				
 				if(!parent && !parentChoices.empty())
 				{
 					parent = parentChoices[Random::Int(parentChoices.size())];
 					it->SetParent(parent);
 				}
 			}
-			else if(parent)
+			// Otherwise, check if this ship wants to return to its parent (e.g. to repair).
+			else if(hasSpace)
 			{
 				// A fighter should retreat if its parent is calling it back, or
 				// it is a player's ship and is not in the current system, or if
@@ -627,20 +628,19 @@ void AI::Step(const PlayerInfo &player)
 			// to its mothership. So, it should continue to be deployed.
 			command |= Command::DEPLOY;
 		}
+		// If this ship has decided to recall all of its fighters because combat has ceased,
+		// it comes to a stop to facilitate their reboarding process.
 		bool mustRecall = false;
-		if(it->HasBays() && !(it->IsYours() ? thisIsLaunching : it->Commands().Has(Command::DEPLOY)) && !target)
+		if(!target && it->HasBays() && !(it->IsYours() ?
+				thisIsLaunching : it->Commands().Has(Command::DEPLOY)))
 			for(const weak_ptr<Ship> &ptr : it->GetEscorts())
 			{
 				shared_ptr<const Ship> escort = ptr.lock();
 				if(escort && escort->CanBeCarried() && escort->GetSystem() == it->GetSystem()
-						&& !escort->IsDisabled())
+						&& !escort->IsDisabled() && it->BaysFree(escort->Attributes().Category() == "Fighter"))
 				{
-					const string &category = escort->Attributes().Category();
-					if(it->BaysFree(category == "Fighter"))
-					{
-						mustRecall = true;
-						break;
-					}
+					mustRecall = true;
+					break;
 				}
 			}
 		
