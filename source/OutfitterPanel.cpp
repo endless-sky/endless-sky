@@ -211,13 +211,35 @@ int OutfitterPanel::DrawDetails(const Point &center)
 		return 0;
 	
 	outfitInfo.Update(*selectedOutfit, player, CanSell());
-	Point offset(outfitInfo.PanelWidth(), 0.);
 	
-	outfitInfo.DrawDescription(center - offset * 1.5 - Point(0., 10.));
-	outfitInfo.DrawRequirements(center - offset * .5 - Point(0., 10.));
-	outfitInfo.DrawAttributes(center + offset * .5 - Point(0., 10.));
+	if (detailsInWithMain)
+	{
+		Point offset(outfitInfo.PanelWidth(), 0.);
+
+		outfitInfo.DrawDescription(center - offset * 1.5 - Point(0., 10.));
+		outfitInfo.DrawRequirements(center - offset * .5 - Point(0., 10.));
+		outfitInfo.DrawAttributes(center + offset * .5 - Point(0., 10.));
+	}
+	else 
+	{
+		Point drawPoint = Point(Screen::Right() - SideWidth() - PlayerShipWidth() - outfitInfo.PanelWidth(), Screen::Top() + 10. - detailsScroll);
+		
+		DrawOutfit(*selectedOutfit, drawPoint + Point(DetailsWidth()/2, TileSize()/2), true, false);
+		drawPoint += Point(0, TileSize());
+		
+		outfitInfo.DrawRequirements(drawPoint);
+		drawPoint += Point(0, outfitInfo.RequirementsHeight() + 10);
+		
+		outfitInfo.DrawAttributes(drawPoint);
+		drawPoint += Point(0, outfitInfo.AttributesHeight() + 10);
+
+		outfitInfo.DrawDescription(drawPoint);
+		drawPoint += Point(0, outfitInfo.DescriptionHeight() + 10);
+
+		maxDetailsScroll = max(0, TileSize() + outfitInfo.RequirementsHeight() + outfitInfo.AttributesHeight() + outfitInfo.DescriptionHeight() + 30 - Screen::Height());
+	}
 	
-	return outfitInfo.MaximumHeight();
+	return detailsInWithMain ? outfitInfo.MaximumHeight() : 0;
 }
 
 
