@@ -111,7 +111,7 @@ outfit "Modified Blaster"
 		"firing heat" 42
 		"shield damage" 12
 		"hull damage" 8
-	description "This is an Energy Blaster that has been tampered with to increase its power and range slightly, at the cost of a significant increase in its energy requirements. Modified Blasters also produce an extreme amount of heat when firing, increasing the risk that your ship will overheat."
+	description "This is an Energy Blaster that has been tampered with to increase its power slightly, at the cost of reduced range and higher energy consumption. Modified Blasters also produce an extreme amount of heat when firing, increasing the risk that your ship will overheat."
 
 outfit "Modified Blaster Turret"
 	category "Turrets"
