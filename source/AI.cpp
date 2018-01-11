@@ -127,6 +127,9 @@ namespace {
 	// Constants for the invisible fence timer.
 	const int FENCE_DECAY = 4;
 	const int FENCE_MAX = 600;
+	// The health remaining before becoming disabled, at which fighters and
+	// other ships consider retreating from battle.
+	const double RETREAT_HEALTH = .25;
 }
 
 
@@ -144,7 +147,7 @@ void AI::IssueShipTarget(const PlayerInfo &player, const shared_ptr<Ship> &targe
 	Orders newOrders;
 	bool isEnemy = target->GetGovernment()->IsEnemy();
 	newOrders.type = (!isEnemy ? Orders::KEEP_STATION
-		: target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK); 
+		: target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK);
 	newOrders.target = target;
 	string description = (isEnemy ? "focusing fire on" : "following") + (" \"" + target->Name() + "\".");
 	IssueOrders(player, newOrders, description);
@@ -611,7 +614,7 @@ void AI::Step(const PlayerInfo &player)
 				// If a fighter has repair abilities, avoid having it get stuck
 				// oscillating between retreating and attacking when at exactly
 				// 25% health by adding hysteresis to the check.
-				double minHealth = .25 + .1 * !it->Commands().Has(Command::DEPLOY);
+				double minHealth = RETREAT_HEALTH + .1 * !it->Commands().Has(Command::DEPLOY);
 				if(it->Health() < minHealth && (!it->IsYours() || fightersRetreat))
 					shouldRetreat = true;
 				
@@ -994,8 +997,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	
 	// Run away if your target is not disabled and you are badly damaged.
 	if(!isDisabled && target && !ship.IsYours() && (person.IsFleeing() || 
-			(.5 * ship.Shields() + ship.Hull() < 1.
-				&& !person.IsHeroic() && !person.IsStaying() && !parentIsEnemy)))
+			(ship.Health() < RETREAT_HEALTH && !person.IsHeroic() && !person.IsStaying() && !parentIsEnemy)))
 	{
 		// Make sure the ship has somewhere to flee to.
 		const System *system = ship.GetSystem();
