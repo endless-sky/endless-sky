@@ -855,8 +855,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(!gov || ship.GetPersonality().IsPacifist())
 		return target;
 	
-	bool isPlayerEscort = ship.IsYours();
-	if(isPlayerEscort)
+	bool isYours = ship.IsYours();
+	if(isYours)
 	{
 		auto it = orders.find(&ship);
 		if(it != orders.end() && (it->second.type == Orders::ATTACK || it->second.type == Orders::FINISH_OFF))
@@ -905,7 +905,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(!person.IsHeroic() && strengthIt != shipStrength.end())
 		maxStrength = 2 * strengthIt->second;
 	for(const auto &it : ships)
-		if(it->GetSystem() == system && it->IsTargetable() && gov->IsEnemy(it->GetGovernment()))
+		if(it->GetSystem() == system && it->GetGovernment()->IsEnemy(gov) && it->IsTargetable())
 		{
 			// If this is a "nemesis" ship and it has found one of the player's
 			// ships to target, it will only consider the player's owned fleet,
@@ -914,9 +914,9 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 					&& (it->GetGovernment()->IsPlayer() || it->GetPersonality().IsEscort());
 			if(hasNemesis && !isPotentialNemesis)
 				continue;
-			if(!ship.IsYours() && it->GetPersonality().IsMarked())
+			if(!isYours && it->GetPersonality().IsMarked())
 				continue;
-			if(!it->IsYours() && ship.GetPersonality().IsMarked())
+			if(!it->IsYours() && person.IsMarked())
 				continue;
 			if(!person.IsUnconstrained())
 			{
@@ -973,18 +973,21 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			}
 		}
 	
-	bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
-	bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
-	if(!target && (cargoScan || outfitScan) && !isPlayerEscort)
+	// AI ships without an in-range hostile target consider scanning other ships.
+	if(!isYours && !target)
 	{
-		closest = numeric_limits<double>::infinity();
-		for(const auto &it : ships)
-			if(it->GetSystem() == system && it->GetGovernment() != gov && it->IsTargetable())
-			{
-				// Scan friendly ships that are as-yet unscanned by this ship's government.
-				if((cargoScan && !Has(gov, it, ShipEvent::SCAN_CARGO))
-						|| (outfitScan && !Has(gov, it, ShipEvent::SCAN_OUTFITS)))
+		bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
+		bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
+		if(cargoScan || outfitScan)
+		{
+			closest = numeric_limits<double>::infinity();
+			for(const auto &it : ships)
+				if(it->GetSystem() == system && it->GetGovernment() != gov && it->IsTargetable())
 				{
+					if((!cargoScan || Has(ship, it, ShipEvent::SCAN_CARGO))
+							&& (!outfitScan || Has(ship, it, ShipEvent::SCAN_OUTFITS)))
+						continue;
+					
 					double range = it->Position().Distance(ship.Position());
 					if(range < closest)
 					{
@@ -992,15 +995,17 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 						target = it;
 					}
 				}
-			}
+		}
 	}
 	
-	// Run away if your target is not disabled and you are badly damaged.
-	if(!isDisabled && target && !ship.IsYours() && (person.IsFleeing() || 
-			(ship.Health() < RETREAT_HEALTH && !person.IsHeroic() && !person.IsStaying() && !parentIsEnemy)))
+	// Run away if your hostile target is not disabled and you are badly damaged.
+	// Player ships never stop targeting hostiles, while hostile mission NPCs will
+	// do so only if they are allowed to leave.
+	if(!isYours && target && target->GetGovernment()->IsEnemy(gov) && !isDisabled
+			&& (person.IsFleeing() || (ship.Health() < RETREAT_HEALTH && !person.IsHeroic()
+				&& !person.IsStaying() && !parentIsEnemy)))
 	{
 		// Make sure the ship has somewhere to flee to.
-		const System *system = ship.GetSystem();
 		if(ship.JumpsRemaining() && (!system->Links().empty() || ship.Attributes().Get("jump drive")))
 			target.reset();
 		else
@@ -1012,10 +1017,13 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 					break;
 				}
 	}
+	
+	// Vindictive personalities without in-range hostile targets keep firing at an old
+	// target (instead of perhaps moving about and finding one that is still alive).
 	if(!target && person.IsVindictive())
 	{
 		target = ship.GetTargetShip();
-		if(target && (target->Cloaking() == 1. || target->GetSystem() != ship.GetSystem()))
+		if(target && (target->Cloaking() == 1. || target->GetSystem() != system))
 			target.reset();
 	}
 	
