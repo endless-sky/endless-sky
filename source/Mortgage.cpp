@@ -51,6 +51,14 @@ Mortgage::Mortgage(int64_t principal, int creditScore, int term)
 
 
 
+// Construct and Load() at the same time.
+Mortgage::Mortgage(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 // Load or save mortgage data.
 void Mortgage::Load(const DataNode &node)
 {

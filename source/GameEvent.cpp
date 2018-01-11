@@ -26,6 +26,14 @@ using namespace std;
 
 
 
+// Construct and Load() at the same time.
+GameEvent::GameEvent(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 void GameEvent::Load(const DataNode &node)
 {
 	// If the event has a name, a condition should be automatically created that

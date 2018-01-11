@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Planet.h"
+#include "Random.h"
 #include "Ship.h"
 #include "System.h"
 
@@ -90,9 +91,14 @@ namespace {
 
 
 
-// There is no need to save a location filter, because any mission that is
-// in the saved game will already have "applied" the filter to choose a
-// particular planet or system.
+// Construct and Load() at the same time.
+LocationFilter::LocationFilter(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 void LocationFilter::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
@@ -240,6 +246,73 @@ bool LocationFilter::Matches(const Ship &ship) const
 		return false;
 	
 	return true;
+}
+
+
+
+// Convert a "distance" filter into a "near" filter.
+LocationFilter LocationFilter::SetOrigin(const System *origin) const
+{
+	// If there is no distance filter, then no conversion is needed.
+	if(IsEmpty() || originMaxDistance < 0)
+		return *this;
+	
+	// If the system is invalid, or a "near <system>" filter already
+	// exists, do not convert "distance" to "near".
+	if(!origin || center)
+		return *this;
+	
+	// Copy all parts of this instantiated filter into the result.
+	LocationFilter result = *this;
+	// Perform the conversion.
+	result.center = origin;
+	result.centerMinDistance = originMinDistance;
+	result.centerMaxDistance = originMaxDistance;
+	// Revert "distance" parameters to their default.
+	result.originMinDistance = 0;
+	result.originMaxDistance = -1;
+	
+	return result;
+}
+
+
+
+// Pick a random system that matches this filter, based on the given origin.
+const System *LocationFilter::PickSystem(const System *origin) const
+{
+	// Find a planet that satisfies the filter.
+	vector<const System *> options;
+	for(const auto &it : GameData::Systems())
+	{
+		// Skip entries with incomplete data.
+		if(it.second.Name().empty())
+			continue;
+		if(Matches(&it.second, origin))
+			options.push_back(&it.second);
+	}
+	return options.empty() ? nullptr : options[Random::Int(options.size())];
+}
+
+
+
+// Pick a random planet that matches this filter, based on the given origin.
+const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance) const
+{
+	// Find a planet that satisfies the filter.
+	vector<const Planet *> options;
+	for(const auto &it : GameData::Planets())
+	{
+		const Planet &planet = it.second;
+		// Skip entries with incomplete data.
+		if(planet.Name().empty() || !planet.GetSystem())
+			continue;
+		// Skip planets that do not offer jobs or missions.
+		if(planet.IsWormhole() || !planet.HasSpaceport() || (!hasClearance && !planet.CanLand()))
+			continue;
+		if(Matches(&planet, origin))
+			options.push_back(&planet);
+	}
+	return options.empty() ? nullptr : options[Random::Int(options.size())];
 }
 
 

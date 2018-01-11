@@ -41,6 +41,10 @@ class UI;
 // exactly the same every time you replay the game.
 class Mission {
 public:
+	Mission() = default;
+	// Construct and Load() at the same time.
+	Mission(const DataNode &node);
+	
 	// Load a mission, either from the game data or from a saved game.
 	void Load(const DataNode &node);
 	// Save a mission. It is safe to assume that any mission that is being saved
@@ -139,8 +143,6 @@ public:
 	
 private:
 	void Enter(const System *system, PlayerInfo &player, UI *ui);
-	const System *PickSystem(const LocationFilter &filter, const PlayerInfo &player) const;
-	const Planet *PickPlanet(const LocationFilter &filter, const PlayerInfo &player) const;
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
 	bool ParseContraband(const DataNode &node);
@@ -190,8 +192,6 @@ private:
 	// Systems that must be visited:
 	std::set<const System *> waypoints;
 	std::list<LocationFilter> waypointFilters;
-	std::map<const System *, MissionAction> onEnter;
-	std::set<const System *> didEnter;
 	std::set<const Planet *> stopovers;
 	std::list<LocationFilter> stopoverFilters;
 	std::set<const Planet *> visitedStopovers;
@@ -202,6 +202,12 @@ private:
 	
 	// Actions to perform:
 	std::map<Trigger, MissionAction> actions;
+	// "on enter" actions may name a specific system, or rely on matching a
+	// LocationFilter in order to designate the matched system.
+	std::map<const System *, MissionAction> onEnter;
+	std::list<MissionAction> genericOnEnter;
+	// Track which `on enter` MissionActions have triggered.
+	std::set<const MissionAction *> didEnter;
 };
 
 
