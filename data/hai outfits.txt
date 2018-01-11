@@ -608,4 +608,4 @@ outfit "Pulse Rifle"
 	"capture attack" .8
 	"capture defense" 1.3
 	"unplunderable" 1
-	description "The Pulse Rifle was first developed by the Hai to help protect their ships from boarders during the Korath raids, and while its since been adapted to not be lethal outright if enough bolts hit in a short period of time the nerves will fry, shutting down the body and killing the target."
+	description "The Pulse Rifle was first developed by the Hai to help protect their ships from boarders during the Korath raids. While it has since been adapted to not be lethal outright, if several bolts hit a target rapidly, it will shut down the nervous system, killing the target."
