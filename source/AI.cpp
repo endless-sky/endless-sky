@@ -1928,15 +1928,10 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		return;
 	}
 	
-	bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
-	bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
-	double atmosphereScan = ship.Attributes().Get("atmosphere scan");
-	bool jumpDrive = ship.Attributes().Get("jump drive");
-	bool hyperdrive = ship.Attributes().Get("hyperdrive");
-	
-	// This function is only called for ships that are in the player's system.
+	// Choose a surveillance behavior.
 	if(ship.GetTargetSystem())
 	{
+		// Unload surveillance drones in this system before leaving.
 		PrepareForHyperspace(ship, command);
 		command |= Command::JUMP;
 		if(ship.HasBays())
@@ -1947,7 +1942,9 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 	}
 	else if(ship.GetTargetStellar())
 	{
+		// Approach the planet and "land" on it (i.e. scan it).
 		MoveToPlanet(ship, command);
+		double atmosphereScan = ship.Attributes().Get("atmosphere scan");
 		double distance = ship.Position().Distance(ship.GetTargetStellar()->Position());
 		if(distance < atmosphereScan && !Random::Int(100))
 			ship.SetTargetStellar(nullptr);
@@ -1956,6 +1953,9 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 	}
 	else if(target)
 	{
+		// Approach and scan the targeted, friendly ship's cargo or outfits.
+		bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
+		bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
 		// If the pointer to the target ship exists, it is targetable and in-system.
 		bool mustScanCargo = cargoScan && !Has(ship, target, ShipEvent::SCAN_CARGO);
 		bool mustScanOutfits = outfitScan && !Has(ship, target, ShipEvent::SCAN_OUTFITS);
@@ -1969,14 +1969,16 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 	}
 	else
 	{
-		vector<shared_ptr<Ship>> targetShips;
-		vector<const StellarObject *> targetPlanets;
-		vector<const System *> targetSystems;
+		const System *system = ship.GetSystem();
+		const Government *gov = ship.GetGovernment();
 		
+		// Consider scanning any ship in this system that you haven't yet personally scanned.
+		vector<shared_ptr<Ship>> targetShips;
+		bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
+		bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
 		if(cargoScan || outfitScan)
 			for(const auto &it : ships)
-				if(it->GetGovernment() != ship.GetGovernment() && it->IsTargetable()
-						&& it->GetSystem() == ship.GetSystem())
+				if(it->GetGovernment() != gov && it->GetSystem() == system && it->IsTargetable())
 				{
 					if((!cargoScan || Has(ship, it, ShipEvent::SCAN_CARGO))
 							&& (!outfitScan || Has(ship, it, ShipEvent::SCAN_OUTFITS)))
@@ -1985,16 +1987,20 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 					targetShips.push_back(it);
 				}
 		
+		// Consider scanning any planetary object in the system, if able.
+		vector<const StellarObject *> targetPlanets;
+		double atmosphereScan = ship.Attributes().Get("atmosphere scan");
 		if(atmosphereScan)
-			for(const StellarObject &object : ship.GetSystem()->Objects())
-				if(!object.IsStar() && object.Radius() < 130.)
+			for(const StellarObject &object : system->Objects())
+				if(!object.IsStar() && !object.IsStation())
 					targetPlanets.push_back(&object);
 		
-		if(ship.JumpsRemaining() && (jumpDrive || hyperdrive))
+		// If this ship can jump away, consider traveling to a nearby system.
+		vector<const System *> targetSystems;
+		if(ship.JumpsRemaining())
 		{
-			const set<const System *> &links = jumpDrive ? ship.GetSystem()->Neighbors() : ship.GetSystem()->Links();
-			for(const System *link : links)
-				targetSystems.push_back(link);
+			const auto &links  = ship.Attributes().Get("jump drive") ? system->Neighbors() : system->Links();
+			targetSystems.insert(targetSystems.end(), links.begin(), links.end());
 		}
 		
 		unsigned total = targetShips.size() + targetPlanets.size() + targetSystems.size();
