@@ -1920,6 +1920,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		target.reset();
 		ship.SetTargetShip(target);
 	}
+	// If you have a hostile target, pursuing and destroying it has priority.
 	if(target && ship.GetGovernment()->IsEnemy(target->GetGovernment()))
 	{
 		// Automatic aiming and firing already occurred.
@@ -1968,13 +1969,6 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 	}
 	else
 	{
-		shared_ptr<Ship> newTarget = FindTarget(ship);
-		if(newTarget && ship.GetGovernment()->IsEnemy(newTarget->GetGovernment()))
-		{
-			ship.SetTargetShip(newTarget);
-			return;
-		}
-		
 		vector<shared_ptr<Ship>> targetShips;
 		vector<const StellarObject *> targetPlanets;
 		vector<const System *> targetSystems;
