@@ -394,8 +394,11 @@ void AI::Step(const PlayerInfo &player)
 					Deploy(*it, !(it->IsYours() && fightersRetreat));
 				}
 				// Avoid jettisoning cargo as soon as this ship is repaired.
-				double &threshold = appeasmentThreshold[it.get()];
-				threshold = max((1. - health) + .1, threshold);
+				if(personality.IsAppeasing())
+				{
+					double &threshold = appeasmentThreshold[it.get()];
+					threshold = max((1. - health) + .1, threshold);
+				}
 				continue;
 			}
 		}
@@ -452,13 +455,13 @@ void AI::Step(const PlayerInfo &player)
 					// "Appeasing" ships will dump some fraction of their cargo.
 					int toDump = 11 + (1. - health) * .5 * it->Cargo().Size();
 					for(const auto &commodity : it->Cargo().Commodities())
-					{
-						it->Jettison(commodity.first, min(commodity.second, toDump));
-						toDump -= commodity.second;
-						if(toDump <= 0)
-							break;
-					}
-					Messages::Add(it->GetGovernment()->GetName() + " ship \"" + it->Name()
+						if(commodity.second && toDump > 0)
+						{
+							int dumped = min(commodity.second, toDump);
+							it->Jettison(commodity.first, dumped);
+							toDump -= dumped;
+						}
+					Messages::Add(gov->GetName() + " " + it->Noun() + " \"" + it->Name()
 						+ "\": Please, just take my cargo and leave me alone.");
 					threshold = (1. - health) + .1;
 				}
