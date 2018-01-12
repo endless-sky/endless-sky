@@ -237,6 +237,511 @@ news "human factory"
 			"I don't like those news shows that tell you what to think! When I'm in the voting booth it's only MY opinion that counts!"
 
 
+
+news "street vendor"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "urban"
+		not
+			attributes "paradise"
+	name
+		word
+			"Street vendor"
+			"Food stall operator"
+	portrait
+		portrait/human26
+		portrait/human31
+		portrait/human57
+		portrait/human68
+	message
+		word
+			"With the right marinade, rat meat can be delicious. Of course, they don't let us sell the ones that were already dead when we collected them."
+
+
+
+news "company psychologist"
+	location
+		government "Syndicate"
+	name
+		word
+			"Company psychologist"
+	portrait
+		portrait/human12
+		portrait/human28
+		portrait/human47
+		portrait/human93
+	message
+		word
+			"Studies have shown that ultimate fulfillment in life comes from doing valuable work. My calling is to help all our workers achieve that sort of self-actualization by being as productive as possible."
+
+
+
+news "genetic counselor"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rich" "urban"
+	name
+		word
+			"Genetic counselor"
+			"Personal geneticist"
+	portrait
+		portrait/human43
+		portrait/human71
+		portrait/human72
+		portrait/human90
+	message
+		word
+			"Of course the technology to manipulate genes is tightly controlled. But just reading a person's genome, and advising them based on the results, is perfectly legal."
+
+
+
+news "unemployed youth"
+	location
+		government "Republic" "Free Worlds" "Neutral" "Independent"
+		attributes "urban" "near earth" "dirt belt" "south"
+	name
+		word
+			"Unemployed youth"
+	portrait
+		portrait/human27
+		portrait/human34
+		portrait/human39
+		portrait/human98
+	message
+		word
+			"I may be living on the street, but at least I haven't let myself get trapped in debt slavery like the workers on Syndicate worlds."
+			"Actually, I'm working on a novel. Well, right now I'm just doing world-building and research, so I haven't written much of the actual story yet."
+
+
+
+news "union organizer"
+	location
+		government "Syndicate"
+	name
+		word
+			"Union organizer"
+	portrait
+		portrait/human08
+		portrait/human33
+		portrait/human38
+		portrait/human56
+	message
+		word
+			"Capitalism is the best system ever invented for driving a productive economy. But without organized labor, the fruits of that productivity will not be shared with the workers."
+
+
+
+news "dock worker"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "dirt belt" "rim" "factory" "south" "core"
+	name
+		word
+			"Dock worker"
+	portrait
+		portrait/human03
+		portrait/human45
+		portrait/human69
+		portrait/human92
+	message
+		word
+			"It seems crazy to me that people on other planets would be willing to pay money for the sort of junk that we're loading into starships here."
+
+
+
+news "housekeeper"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rich" "paradise"
+	name
+		word
+			"Housekeeper"
+			"Domestic worker"
+	portrait
+		portrait/human18
+		portrait/human23
+		portrait/human65
+		portrait/human75
+	message
+		word
+			"How is it possible that a man who manages a billion-credit corporation can still be so incompetent or so careless that he routinely misses the toilet bowl when he takes a piss?"
+
+
+
+news "groundskeeper"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rich" "paradise"
+	name
+		word
+			"Groundskeeper"
+			"Gardener"
+	portrait
+		portrait/human05
+		portrait/human22
+		portrait/human26
+		portrait/human63
+	message
+		word
+			"The family I work for has an odd fascination with carnivorous plants. I have to keep rotting piles of refuse around just to produce enough flies to feed them all."
+
+
+
+news "hair stylist"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rich" "urban" "paradise"
+	name
+		word
+			"Hair stylist"
+	portrait
+		portrait/human17
+		portrait/human40
+		portrait/human67
+		portrait/human79
+	message
+		word
+			"For too long, the creativity of trend-setting stylists like myself has been held in check by the limited height of the doorways in most houses."
+
+
+
+news "tour guide"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "tourism"
+	name
+		word
+			"Tour guide"
+	portrait
+		portrait/human15
+		portrait/human25
+		portrait/human52
+		portrait/human77
+	message
+		word
+			"I've delivered the same speech so many times now that the whole thing runs on continuous repeat in my head when I'm trying to sleep."
+
+
+
+news "human resources worker"
+	location
+		government "Syndicate"
+	name
+		word
+			"Human resources worker"
+	portrait
+		portrait/human04
+		portrait/human11
+		portrait/human33
+		portrait/human72
+	message
+		word
+			"We always put our employees first. But sometimes they do things that are bad for their careers. Like, accusing a high-ranking manager of harassment."
+
+
+
+news "loan officer"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	name
+		word
+			"Loan officer"
+			"Mortgage broker"
+	portrait
+		portrait/human02
+		portrait/human29
+		portrait/human83
+		portrait/human86
+	message
+		word
+			"You probably think the interest rates we charge are exorbitant, but with all the ships getting blown up by pirates these days, we barely break even."
+
+
+
+news "hyperspace relay engineer"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	name
+		word
+			"Hyperspace relay engineer"
+	portrait
+		portrait/human13
+		portrait/human42
+		portrait/human76
+		portrait/human96
+	message
+		word
+			"All of human space is linked into a single communications network by relay beacons. It's something that most people just take for granted."
+
+
+
+news "geological engineer"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "mining"
+	name
+		word
+			"Geological engineer"
+	portrait
+		portrait/human07
+		portrait/human35
+		portrait/human50
+		portrait/human75
+	message
+		word
+			"With the right equipment, you can see inside a planet as easily as if it were... um... a tomato held up in front of an arc lamp. Sorry, I'm awful at similes."
+
+
+
+news "agricultural scientist"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "farming"
+	name
+		word
+			"Agricultural scientist"
+	portrait
+		portrait/human39
+		portrait/human53
+		portrait/human95
+		portrait/human97
+	message
+		word
+			"I hope you checked your shoes for invasive species before setting foot on my planet. The last thing we want is for our crops to get infected with the Arcturan Blight."
+
+
+
+news "epidemiologist"
+	location
+		government "Republic"
+	name
+		word
+			"Epidemiologist"
+	portrait
+		portrait/human01
+		portrait/human10
+		portrait/human37
+		portrait/human79
+	message
+		word
+			"People always worry about extra-terrestrial viruses and bacteria, but the deadliest diseases are very often caused by microbes we brought with us to the stars from good old Mother Earth."
+
+
+
+news "economist"
+	location
+		government "Syndicate"
+	name
+		word
+			"Economist"
+	portrait
+		portrait/human20
+		portrait/human49
+		portrait/human83
+		portrait/human91
+	message
+		word
+			"We're actually required by local law to predict that the economy will continue to do well, because the government thinks that any dire predictions will be a self-fulfilling prophecy."
+
+
+
+news "nuclear technician"
+	location
+		government "Syndicate"
+	name
+		word
+			"Nuclear technician"
+	portrait
+		portrait/human15
+		portrait/human41
+		portrait/human51
+		portrait/human75
+	message
+		word
+			"Last year all the hair on the left hand side of my face turned white and fell out. The company swears it was just a weird illness and had nothing to do with my work."
+
+
+
+news "substance abuse counselor"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "poor" "dirt belt" "near earth" "south"
+	name
+		word
+			"Substance abuse counselor"
+	portrait
+		portrait/human37
+		portrait/human61
+		portrait/human64
+		portrait/human93
+	message
+		word
+			"I know some folks try to talk captains like you into carrying drugs on the side. I wish all of you could see the real human cost of that industry."
+
+
+
+news "reporter"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	name
+		word
+			"Reporter"
+	portrait
+		portrait/human00
+		portrait/human14
+		portrait/human68
+		portrait/human80
+	message
+		word
+			"I'm doing a human interest story about a llama that stowed away in a ship's cargo hold. Llamas are so cute, people will watch anything that involves them."
+
+
+
+news "museum curator"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "tourism" "near earth" "paradise" "rich"
+	name
+		word
+			"Museum curator"
+	portrait
+		portrait/human36
+		portrait/human66
+		portrait/human73
+		portrait/human92
+	message
+		word
+			"You would not believe the sorts of things that the inhabitants of ancient Earth did for entertainment back before interstellar travel was a reality."
+
+
+
+news "actor"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "south" "paradise" "near earth"
+	name
+		word
+			"Actor"
+	portrait
+		portrait/human02
+		portrait/human06
+		portrait/human51
+		portrait/human84
+	message
+		word
+			"We're doing a production of the Scottish Play where the three witches are made up to look like Quarg. I know it sounds weird, but it works in our context."
+
+
+
+news "technical writer"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "north" "rim" "core" "near earth"
+	name
+		word
+			"Technical writer"
+	portrait
+		portrait/human27
+		portrait/human52
+		portrait/human64
+		portrait/human94
+	message
+		word
+			"Do you have a few minutes to listen to my thoughts on the importance of the serial comma?"
+
+
+
+news "dietitian"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rich" "paradise" "rim" "near earth"
+	name
+		word
+			"Dietitian"
+	portrait
+		portrait/human04
+		portrait/human37
+		portrait/human57
+		portrait/human66
+	message
+		word
+			"I actually have several recipes that can make processed algae delicious. Or at least, visually appealing. Quite edible. I mean, it's not that hard to mask the taste."
+
+
+
+news "chef"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rich" "paradise"
+	name
+		word
+			"Chef"
+	portrait
+		portrait/human00
+		portrait/human18
+		portrait/human31
+		portrait/human48
+	message
+		word
+			"For a recent corporate gala, I constructed a fire pit large enough to roast an entire Antarean thunder-lizard. The fat was perfectly rendered. It was amazing."
+
+
+
+news "insurance agent"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rich" "urban" "paradise" "near earth"
+	name
+		word
+			"Insurance agent"
+	portrait
+		portrait/human43
+		portrait/human49
+		portrait/human78
+		portrait/human97
+	message
+		word
+			"No, we don't sell insurance policies on private starships in this day and age. We also don't insure buildings in flood plains and houses inhabited by convicted serial arsonists."
+
+
+
+news "excavation specialist"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "mining"
+	name
+		word
+			"Excavation specialist"
+			"Explosives worker"
+	portrait
+		portrait/human24
+		portrait/human41
+		portrait/human42
+		portrait/human75
+	message
+		word
+			"Those newfangled mining lasers are pretty cool, but there's nothing like good old-fashioned dynamite for shifting a lot of rock in a hurry."
+
+
+
+news "chauffeur"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rich" "paradise"
+	name
+		word
+			"Chauffeur"
+	portrait
+		portrait/human07
+		portrait/human41
+		portrait/human67
+		portrait/human83
+	message
+		word
+			"I fly the missus to her appointments in a private shuttlecraft, because she hates being stuck in traffic."
+
+
+
 # Visual suggestion: old
 news "human retiree"
 	location
