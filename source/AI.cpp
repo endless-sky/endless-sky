@@ -710,8 +710,10 @@ void AI::Step(const PlayerInfo &player)
 		// jump, always follow.
 		else if(parent->Commands().Has(Command::JUMP) && it->JumpsRemaining())
 			MoveEscort(*it, command);
-		// Timid ships always stay near their parent.
-		else if(personality.IsTimid() && parent->Position().Distance(it->Position()) > 500.)
+		// Timid ships always stay near their parent. Injured player
+		// escorts will stay nearby until they have repaired a bit.
+		else if((personality.IsTimid() || (it->IsYours() && it->Health() < RETREAT_HEALTH))
+				&& parent->Position().Distance(it->Position()) > 500.)
 			MoveEscort(*it, command);
 		// Otherwise, attack targets depending on how heroic you are.
 		else if(target && (targetDistance < 2000. || personality.IsHeroic()))
