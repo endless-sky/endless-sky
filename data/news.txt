@@ -947,7 +947,7 @@ news "human mercenary"
 		portrait/human89
 	message
 		word
-			"I've tracked fugitives halfway across the galaxy, and they have me on... guard duty. These guys must really be desperate given the kind of money they waved in my face.
+			"I've tracked fugitives halfway across the galaxy, and they have me on... guard duty. These guys must really be desperate given the kind of money they waved in my face."
 			"Security may be expensive, but think of it this way: it's better to be poor than dead."
 			"Nothing beats the thrill of boarding a crippled starship, laser rifle in your hands."
 			"Have you ever been to a pirate world? The conditions there are nearly inhuman!"
