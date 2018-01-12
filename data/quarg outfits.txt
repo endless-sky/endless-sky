@@ -40,6 +40,7 @@ outfit "Quarg Skylance"
 		sprite "projectile/skylance"
 			"frame rate" 1
 		"hardpoint sprite" "hardpoint/skylance"
+		"hardpoint offset" 9.
 		sound "skylance"
 		"hit effect" "skylance impact"
 		"inaccuracy" .4
@@ -51,7 +52,7 @@ outfit "Quarg Skylance"
 		"shield damage" 50
 		"hull damage" 40
 		"ion damage" .1
-	description "The skylance is seemingly built from a smooth, black, granite-like material, although obviously it is actually made of a far more advanced and sophisticated substance."
+	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them."
 
 effect "skylance impact"
 	sprite "effect/skylance impact"
