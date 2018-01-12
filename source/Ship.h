@@ -243,7 +243,7 @@ public:
 	double Energy() const;
 	double Heat() const;
 	double Fuel() const;
-	// Get the ship's "health," where 0 is disabled and 1 means full health.
+	// Get the ship's "health," where <=0 is disabled and 1 means full health.
 	double Health() const;
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.

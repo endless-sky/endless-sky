@@ -2200,15 +2200,19 @@ double Ship::Fuel() const
 
 
 
-// Get the ship's "health," where 0 is disabled and 1 means full health.
+// Get the ship's "health," where <=0 is disabled and 1 means full health.
 double Ship::Health() const
 {
 	double minimumHull = MinimumHull();
-	double divisor = attributes.Get("shields") + attributes.Get("hull") - minimumHull;
-	if(divisor <= 0)
+	double hullDivisor = attributes.Get("hull") - minimumHull;
+	double divisor = attributes.Get("shields") + hullDivisor;
+	// This should not happen, but just in case.
+	if(divisor <= 0. || hullDivisor <= 0.)
 		return 0.;
 	
-	return (shields + hull - minimumHull) / divisor;
+	double spareHull = hull - minimumHull;
+	// Consider hull-only and pooled health, compensating for any reductions by disruption damage.
+	return min(spareHull / hullDivisor, (spareHull + shields / (1. + disruption * .01)) / divisor);
 }
 
 
