@@ -1110,17 +1110,29 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 void AI::MoveIndependent(Ship &ship, Command &command) const
 {
 	shared_ptr<const Ship> target = ship.GetTargetShip();
-	if(target && !ship.IsYours() && !ship.GetPersonality().IsUnconstrained())
+	// NPCs should not be beyond the "fence" unless their target is
+	// fairly close to it (or they are intended to be there).
+	if(!ship.IsYours() && !ship.GetPersonality().IsUnconstrained())
 	{
-		Point extrapolated = target->Position() + 120. * (target->Velocity() - ship.Velocity());
-		if(extrapolated.Length() >= MAX_DISTANCE_FROM_CENTER)
+		if(target)
 		{
-			MoveTo(ship, command, Point(), Point(), 40., .8);
-			if(ship.Velocity().Dot(ship.Position()) > 0.)
-				command |= Command::FORWARD;
+			Point extrapolated = target->Position() + 120. * (target->Velocity() - ship.Velocity());
+			if(extrapolated.Length() >= MAX_DISTANCE_FROM_CENTER)
+			{
+				MoveTo(ship, command, Point(), Point(), 40., .8);
+				if(ship.Velocity().Dot(ship.Position()) > 0.)
+					command |= Command::FORWARD;
+				return;
+			}
+		}
+		else if(ship.Position().Length() >= MAX_DISTANCE_FROM_CENTER)
+		{
+			// This ship should not be beyond the fence.
+			MoveTo(ship, command, Point(), Point(), 40, .8);
 			return;
 		}
 	}
+	
 	bool friendlyOverride = false;
 	if(ship.IsYours())
 	{
