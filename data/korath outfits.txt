@@ -318,4 +318,4 @@ outfit "Korath Repeater Rifle"
 	"capture attack" 1.6
 	"capture defense" 2.4
 	"unplunderable" 1
-	description "This rifle is commonplace among the Korath and predates the creation of the Repeater by at least two centuries. By using superheated plasma instead of lasers the rifle is slow to fire and can sometimes burn the users hands if they aren't careful. It makes up for these setbacks guaranteeing those hit won't live long enough to fire back."
+	description "This rifle is commonplace among the Korath, predating the creation of the Repeater by at least two centuries. As it uses superheated plasma instead of lasers, the rifle is slow to fire and can sometimes burn its user's hands if they aren't careful. It makes up for these setbacks by guaranteeing that those hit won't live long enough to fire back."
