@@ -39,7 +39,7 @@ outfit "Quarg Skylance"
 	weapon
 		sprite "projectile/skylance"
 			"frame rate" 1
-			"hardpoint sprite" "hardpoint/skylance"
+		"hardpoint sprite" "hardpoint/skylance"
 		sound "skylance"
 		"hit effect" "skylance impact"
 		"inaccuracy" .4
