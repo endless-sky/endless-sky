@@ -139,7 +139,6 @@ news "human farming"
 		portrait/human52
 		portrait/human53
 		portrait/human78
-		portrait/human106
 	message
 		word
 			"My neighbor is using some sort of newfangled pesticides. The wind carried their residue onto my fields and destroyed half my crops."
@@ -229,7 +228,6 @@ news "human factory"
 		portrait/human92
 		portrait/human94
 		portrait/human97
-		portrait/human103
 	message
 		word
 			"Everybody I know wound up working in the plant, so I guess I was gonna go, too. It was inevitable or something, right?"
@@ -358,12 +356,6 @@ news "human student"
 		portrait/human90
 		portrait/human93
 		portrait/human96
-		portrait/human100
-		portrait/human101
-		portrait/human104
-		portrait/human105
-		portrait/human107
-		portrait/human109
 	message
 		word
 			"I'm going to be a teacher some day!"
@@ -392,7 +384,6 @@ news "human religious"
 		portrait/human45
 		portrait/human57
 		portrait/human61
-		portrait/human102
 	message
 		word
 			"May God be with you!"
@@ -425,7 +416,6 @@ news "human tourism"
 		portrait/human84
 		portrait/human86
 		portrait/human95
-		portrait/human108
 	message
 		word
 			"This place is so romantic. I wish I could stay forever."
