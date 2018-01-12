@@ -51,8 +51,7 @@ namespace {
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
-	const string OUTFIT_PRICE_LABEL = "Outfit price labels"; // ?
-	const string DETAILS_TILES_SHOP = "Details with tiles in shop"; // ?
+	//const string NB_SHIPS_EXPAND_SIDEPANEL = "Nb Ships Expand Sidepanel" //= 24; // int ?
 }
 
 
@@ -447,7 +446,8 @@ void PreferencesPanel::DrawSettings()
 		"Rehire extra crew when lost",
 		SCROLL_SPEED,
 		"Warning siren",
-		"Hide unexplored map regions"
+		"Hide unexplored map regions",
+		"Expand side panel in shops"
 	};
 	bool isCategory = true;
 	for(const string &setting : SETTINGS)
