@@ -157,24 +157,24 @@ void ShopPanel::DrawSidebar()
 
 	// Fill in the background.
 	FillShader::Fill(
-		Point(Screen::Right() - DETAILS_WIDTH / 2, 0.),
-		Point(DETAILS_WIDTH, Screen::Height()),
+		Point(Screen::Right() - SIDE_WIDTH / 2, 0.),
+		Point(SIDE_WIDTH, Screen::Height()),
 		*GameData::Colors().Get("panel background"));
 	FillShader::Fill(
-		Point(Screen::Right() - DETAILS_WIDTH , 0.),
+		Point(Screen::Right() - SIDE_WIDTH , 0.),
 		Point(1, Screen::Height()),
 		*GameData::Colors().Get("shop side panel background"));
 
 	// Draw this string, centered in the side panel:
 	static const string YOURS = "Your Ships:";
 	Point yoursPoint(
-		Screen::Right() - DETAILS_WIDTH / 2 - font.Width(YOURS) / 2,
+		Screen::Right() - SIDE_WIDTH / 2 - font.Width(YOURS) / 2,
 		Screen::Top() + 10 - sideScroll);
 	font.Draw(YOURS, yoursPoint, bright);
 
 	// Start below the "Your Ships" label, and draw them.
 	Point point(
-		Screen::Right() - DETAILS_WIDTH + ICON_TILE / 2,
+		Screen::Right() - SIDE_WIDTH + ICON_TILE / 2,
 		Screen::Top() - sideScroll + ICON_TILE / 2 + 40);
 
 	// Recalculate shipsHere
@@ -239,25 +239,25 @@ void ShopPanel::DrawSidebar()
 	{
 		//Background
 		FillShader::Fill(
-			Point(Screen::Right() - DETAILS_WIDTH - PlayerShipWidth() / 2, 0.),
+			Point(Screen::Right() - SIDE_WIDTH - PlayerShipWidth() / 2, 0.),
 			Point(PlayerShipWidth() - 2, Screen::Height()),
 			COLOR_DETAILS_BG);
 		//Thin dividing line.
 		FillShader::Fill(
-			Point(Screen::Right() - DETAILS_WIDTH - PlayerShipWidth(), 0.),
+			Point(Screen::Right() - SIDE_WIDTH - PlayerShipWidth(), 0.),
 			Point(1, Screen::Height()),
 			COLOR_DIVIDERS);
 		// Top scroll arrow
-		PointerShader::Draw(Point(Screen::Right() - DETAILS_WIDTH - 10, Screen::Top() + 10),
+		PointerShader::Draw(Point(Screen::Right() - SIDE_WIDTH - 10, Screen::Top() + 10),
 			Point(0., -1.), 10., 10., 5., Color(playerShipScroll > 0 ? .8 : .2, 0.));
 		// Bottom scroll arrow
-		PointerShader::Draw(Point(Screen::Right() - DETAILS_WIDTH - 10, Screen::Bottom() - 10),
+		PointerShader::Draw(Point(Screen::Right() - SIDE_WIDTH - 10, Screen::Bottom() - 10),
 			Point(0., 1.), 10., 10., 5., Color(playerShipScroll < maxPlayerShipScroll ? .8 : .2, 0.));
 
 		// A label "Selected Ship: "
 		string label = playerShip ? "Selected Ship:" : "Your Fleet's Cargo:";
 		Point labelPoint(
-			Screen::Right() - DETAILS_WIDTH - PlayerShipWidth() / 2 - font.Width(label) / 2,
+			Screen::Right() - SIDE_WIDTH - PlayerShipWidth() / 2 - font.Width(label) / 2,
 			Screen::Top() + 10 - playerShipScroll);
 		font.Draw(label, labelPoint, bright);
 
@@ -269,16 +269,16 @@ void ShopPanel::DrawSidebar()
 		if (playerShip)
 		{
 			point.Y() += SHIP_SIZE / 2;
-			point.X() = Screen::Right() - DETAILS_WIDTH / 2;
+			point.X() = Screen::Right() - SIDE_WIDTH / 2;
 			DrawShip(*playerShip, point, true);
 
-			Point offset(DETAILS_WIDTH / -2, SHIP_SIZE / 2);
+			Point offset(SIDE_WIDTH / -2, SHIP_SIZE / 2);
 			sideDetailHeight = DrawPlayerShipInfo(point + offset);
 			point.Y() += sideDetailHeight + SHIP_SIZE / 2;
 		}
 		else if (player.Cargo().Size())
 		{
-			point.X() = Screen::Right() - DETAILS_WIDTH + 10;
+			point.X() = Screen::Right() - SIDE_WIDTH + 10;
 			font.Draw("cargo space:", point, medium);
 
 			string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
@@ -289,7 +289,7 @@ void ShopPanel::DrawSidebar()
 	}
 	else
 	{
-		Point playerShipPoint(Screen::Right() - DETAILS_WIDTH - PlayerShipWidth() / 2, Screen::Top() + SHIP_SIZE / 2 + 40 - playerShipScroll);
+		Point playerShipPoint(Screen::Right() - SIDE_WIDTH - PlayerShipWidth() / 2, Screen::Top() + SHIP_SIZE / 2 + 40 - playerShipScroll);
 		int playerShipDetailsHeight = 0;
 		if (playerShip)
 		{
@@ -305,7 +305,7 @@ void ShopPanel::DrawSidebar()
 			font.Draw("cargo space:", Pt, medium);
 
 			string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
-			Point right(Screen::Right() - font.Width(space) - DETAILS_WIDTH - 10, Pt.Y());
+			Point right(Screen::Right() - font.Width(space) - SIDE_WIDTH - 10, Pt.Y());
 			font.Draw(space, right, bright);
 			//playerShipPoint.Y() += 20.;
 		}
@@ -330,11 +330,11 @@ void ShopPanel::DrawSidebar()
 void ShopPanel::DrawButtons()
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
-	Point buttonSize(DETAILS_WIDTH, BUTTON_HEIGHT);
+	Point buttonSize(SIDE_WIDTH, BUTTON_HEIGHT);
 	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize, *GameData::Colors().Get("shop side panel background"));
 	FillShader::Fill(
-		Point(Screen::Right() - DETAILS_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
-		Point(DETAILS_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
+		Point(Screen::Right() - SIDE_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
+		Point(SIDE_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
 
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
@@ -342,12 +342,12 @@ void ShopPanel::DrawButtons()
 	const Color &back = *GameData::Colors().Get("panel background");
 
 	Point point(
-		Screen::Right() - DETAILS_WIDTH + 10,
+		Screen::Right() - SIDE_WIDTH + 10,
 		Screen::Bottom() - 65);
 	font.Draw("You have:", point, dim);
 
 	string credits = Format::Number(player.Accounts().Credits()) + " credits";
-	point.X() += (DETAILS_WIDTH - 20) - font.Width(credits);
+	point.X() += (SIDE_WIDTH - 20) - font.Width(credits);
 	font.Draw(credits, point, bright);
 
 	const Font &bigFont = FontSet::Get(18);
@@ -395,7 +395,7 @@ void ShopPanel::DrawMain()
 	const Color &dim = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 	mainDetailHeight = 0;
-	int sideWidth = DETAILS_WIDTH + PlayerShipWidth(); //
+	int sideWidth = SIDE_WIDTH + PlayerShipWidth(); //
 
 	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 	const Sprite *expandedArrow = SpriteSet::Get("ui/expanded");
@@ -530,7 +530,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 	// Draw the ship name.
 	const Font &font = FontSet::Get(14);
-	const string &name = ship.Name().empty() ? ship.ModelName() : font.TruncateMiddle(ship.Name(), DETAILS_WIDTH - 61);
+	const string &name = ship.Name().empty() ? ship.ModelName() : font.TruncateMiddle(ship.Name(), SIDE_WIDTH - 61);
 	Point offset(-.5f * font.Width(name), -.5f * SHIP_SIZE + 10.f);
 	font.Draw(name, center + offset, *GameData::Colors().Get("bright"));
 
@@ -720,8 +720,8 @@ bool ShopPanel::Click(int x, int y, int clicks)
 			return Scroll(0, -4);
 	}
 	// else if(x >= Screen::Right() - SIDE_WIDTH - 20 && x < Screen::Right() - SIDE_WIDTH)
-	else if ((x >= Screen::Right() - DETAILS_WIDTH - 20 && x < Screen::Right() - DETAILS_WIDTH)
-		 || (x >= Screen::Right() - DETAILS_WIDTH - PlayerShipWidth() - 20 && x < Screen::Right() - DETAILS_WIDTH - PlayerShipWidth()))
+	else if ((x >= Screen::Right() - SIDE_WIDTH - 20 && x < Screen::Right() - SIDE_WIDTH)
+		 || (x >= Screen::Right() - SIDE_WIDTH - PlayerShipWidth() - 20 && x < Screen::Right() - SIDE_WIDTH - PlayerShipWidth()))
 	{
 		if(y < Screen::Top() + 20)
 			return Scroll(0, 4);
@@ -815,7 +815,7 @@ bool ShopPanel::Hover(int x, int y)
 		outfitInfo.Hover(point);
 	}
 	// Figure out which panel the point (x,y) is in.
-	int cutoff = Screen::Right() - DETAILS_WIDTH - PlayerShipWidth();
+	int cutoff = Screen::Right() - SIDE_WIDTH - PlayerShipWidth();
 	dragMain = (x < cutoff);
 
 		cutoff += PlayerShipWidth();
@@ -1203,7 +1203,7 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 vector<ShopPanel::Zone>::const_iterator ShopPanel::MainStart() const
 {
 	// Find the first non-player-ship click zone.
-	int margin = Screen::Right() - DETAILS_WIDTH;
+	int margin = Screen::Right() - SIDE_WIDTH;
 	vector<Zone>::const_iterator start = zones.begin();
 	while(start != zones.end() && start->Center().X() > margin)
 		++start;
@@ -1217,13 +1217,13 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::MainStart() const
 // letter of the button (or ' ' if it's not on a button).
 char ShopPanel::CheckButton(int x, int y)
 {
-	if(x < Screen::Right() - DETAILS_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
+	if(x < Screen::Right() - SIDE_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
 		return '\0';
 
 	if(y < Screen::Bottom() - 40 || y >= Screen::Bottom() - 10)
 		return ' ';
 
-	x -= Screen::Right() - DETAILS_WIDTH;
+	x -= Screen::Right() - SIDE_WIDTH;
 	if(x < 80)
 		return 'b';
 	else if(x < 160)
@@ -1245,8 +1245,8 @@ bool ShopPanel::ShipIsHere(shared_ptr<Ship> ship) const
 // Zero if the player does not have a large fleet or the screen is to small.
 int ShopPanel::PlayerShipWidth() const
 {
-	if (SidePanelShop && shipsHere > NbSidePanelShop && (Screen::Width() > DETAILS_WIDTH * 5))
-		return DETAILS_WIDTH;
+	if (SidePanelShop && shipsHere > NbSidePanelShop && (Screen::Width() > SIDE_WIDTH * 5))
+		return SIDE_WIDTH;
 	return 0;
 }
 
@@ -1254,5 +1254,5 @@ int ShopPanel::PlayerShipWidth() const
 
 int ShopPanel::IconCols() const
 {
-	return DETAILS_WIDTH / ICON_TILE;
+	return SIDE_WIDTH / ICON_TILE;
 }

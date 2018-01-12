@@ -105,7 +105,7 @@ protected:
 
 
 protected:
-	static const int DETAILS_WIDTH = 250;
+	static const int SIDE_WIDTH = 250;
 	static const int BUTTON_HEIGHT = 70;
 	static const int SHIP_SIZE = 250;
 	static const int OUTFIT_SIZE = 180;
