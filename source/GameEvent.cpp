@@ -26,6 +26,14 @@ using namespace std;
 
 
 
+// Construct and Load() at the same time.
+GameEvent::GameEvent(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 void GameEvent::Load(const DataNode &node)
 {
 	// If the event has a name, a condition should be automatically created that
@@ -124,22 +132,18 @@ void GameEvent::SetDate(const Date &date)
 
 void GameEvent::Apply(PlayerInfo &player)
 {
-	for(const auto &it : GameData::Governments())
-	{
-		int rep = it.second.Reputation();
-		player.Conditions()["reputation: " + it.first] = rep;
-	}
+	// Serialize the current reputation with other governments.
+	player.SetReputationConditions();
 	
+	// Apply this event's ConditionSet to the player's conditions.
 	conditionsToApply.Apply(player.Conditions());
+	// Apply (and store a record of applying) this event's other general
+	// changes (e.g. updating an outfitter's inventory).
 	player.AddChanges(changes);
 	
-	for(const auto &it : GameData::Governments())
-	{
-		int rep = it.second.Reputation();
-		int newRep = player.Conditions()["reputation: " + it.first];
-		if(rep != newRep)
-			it.second.AddReputation(newRep - rep);
-	}
+	// Update the current reputation with other governments (e.g. this
+	// event's ConditionSet may have altered some reputations).
+	player.CheckReputationConditions();
 	
 	for(const System *system : systemsToUnvisit)
 		player.Unvisit(system);

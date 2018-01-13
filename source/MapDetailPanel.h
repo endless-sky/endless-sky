@@ -33,6 +33,7 @@ public:
 	explicit MapDetailPanel(PlayerInfo &player, const System *system = nullptr);
 	explicit MapDetailPanel(const MapPanel &panel);
 	
+	virtual void Step() override;
 	virtual void Draw() override;
 	
 	
@@ -43,7 +44,6 @@ protected:
 	
 	
 private:
-	void DoFind(const std::string &text);
 	void DrawKey();
 	void DrawInfo();
 	void DrawOrbits();

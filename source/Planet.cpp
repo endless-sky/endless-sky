@@ -425,6 +425,13 @@ const System *Planet::WormholeDestination(const System *from) const
 
 
 
+const vector<const System *> &Planet::WormholeSystems() const
+{
+	return systems;
+}
+
+
+
 // Check if the given ship has all the attributes necessary to allow it to
 // land on this planet.
 bool Planet::IsAccessible(const Ship *ship) const

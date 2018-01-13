@@ -23,6 +23,7 @@ using namespace std;
 namespace {
 	Shader shader;
 	GLint scaleI;
+	GLint offI;
 	GLint transformI;
 	GLint positionI;
 	GLint frameI;
@@ -46,12 +47,9 @@ void OutlineShader::Init()
 		"in vec2 vertTexCoord;\n"
 		
 		"out vec2 fragTexCoord;\n"
-		"out vec2 off;\n"
 		
 		"void main() {\n"
 		"  fragTexCoord = vertTexCoord;\n"
-		"  mat2 sq = matrixCompMult(transform, transform);\n"
-		"  off = vec2(.5 / sqrt(sq[0][0] + sq[0][1]), .5 / sqrt(sq[1][0] + sq[1][1]));\n"
 		"  gl_Position = vec4((transform * vert + position) * scale, 0, 1);\n"
 		"}\n";
 	
@@ -70,46 +68,47 @@ void OutlineShader::Init()
 		"uniform float frame = 0;\n"
 		"uniform float frameCount = 0;\n"
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
+		"uniform vec2 off;\n"
+		"const vec4 weight = vec4(.4, .4, .4, 1.);\n"
 		
 		"in vec2 fragTexCoord;\n"
-		"in vec2 off;\n"
 		
 		"out vec4 finalColor;\n"
 		
-		"void main() {\n"
-		"  float first = floor(frame);\n"
-		"  float second = mod(ceil(frame), frameCount);\n"
-		"  float fade = frame - first;\n"
+		"float Sobel(float layer) {\n"
 		"  float sum = 0;\n"
-		
-		"  vec2 d[8];\n"
-		"  d[0] = vec2(-off.x, -off.y);\n" "  d[1] = vec2(0, -off.y);\n" "  d[2] = vec2(off.x, -off.y);\n"
-		"  d[7] = vec2(-off.x, 0);\n"                                    "  d[3] = vec2(off.x, 0);\n"
-		"  d[6] = vec2(-off.x, off.y);\n"  "  d[5] = vec2(0, off.y);\n"  "  d[4] = vec2(off.x, off.y);\n"
-		"  float p[8];\n"
-		
-		"  vec4 weight = vec4(.4, .4, .4, 1.);\n"
 		"  for(int dy = -1; dy <= 1; ++dy)\n"
 		"  {\n"
 		"    for(int dx = -1; dx <= 1; ++dx)\n"
 		"    {\n"
 		"      vec2 center = fragTexCoord + .618034 * off * vec2(dx, dy);\n"
-		"      for(int i = 0; i < 8; ++i)\n"
-		"      {\n"
-		"        p[i] = dot(mix(\n"
-		"          texture(tex, vec3(center + d[i], first)),\n"
-		"          texture(tex, vec3(center + d[i], second)), fade), weight);\n"
-		"      }\n"
-		"      float h = (p[6] + 2 * p[7] + p[0]) - (p[2] + 2 * p[3] + p[4]);\n"
-		"      float v = (p[0] + 2 * p[1] + p[2]) - (p[4] + 2 * p[5] + p[6]);\n"
+		"      float nw = dot(texture(tex, vec3(center + vec2(-off.x, -off.y), layer)), weight);\n"
+		"      float ne = dot(texture(tex, vec3(center + vec2(off.x, -off.y), layer)), weight);\n"
+		"      float sw = dot(texture(tex, vec3(center + vec2(-off.x, off.y), layer)), weight);\n"
+		"      float se = dot(texture(tex, vec3(center + vec2(off.x, off.y), layer)), weight);\n"
+		"      float h = nw + sw - ne - se + 2 * (\n"
+		"        dot(texture(tex, vec3(center + vec2(-off.x, 0), layer)), weight)\n"
+		"          - dot(texture(tex, vec3(center + vec2(off.x, 0), layer)), weight));\n"
+		"      float v = nw + ne - sw - se + 2 * (\n"
+		"        dot(texture(tex, vec3(center + vec2(0, -off.y), layer)), weight)\n"
+		"          - dot(texture(tex, vec3(center + vec2(0, off.y), layer)), weight));\n"
 		"      sum += h * h + v * v;\n"
 		"    }\n"
 		"  }\n"
+		"  return sum;\n"
+		"}\n"
+		
+		"void main() {\n"
+		"  float first = floor(frame);\n"
+		"  float second = mod(ceil(frame), frameCount);\n"
+		"  float fade = frame - first;\n"
+		"  float sum = mix(Sobel(first), Sobel(second), fade);\n"
 		"  finalColor = color * sqrt(sum / 180);\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);
 	scaleI = shader.Uniform("scale");
+	offI = shader.Uniform("off");
 	transformI = shader.Uniform("transform");
 	positionI = shader.Uniform("position");
 	frameI = shader.Uniform("frame");
@@ -117,7 +116,7 @@ void OutlineShader::Init()
 	colorI = shader.Uniform("color");
 	
 	glUseProgram(shader.Object());
-	glUniform1ui(shader.Uniform("tex"), 0);
+	glUniform1i(shader.Uniform("tex"), 0);
 	glUseProgram(0);
 	
 	// Generate the vertex data for drawing sprites.
@@ -157,6 +156,11 @@ void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &si
 	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
 	glUniform2fv(scaleI, 1, scale);
 	
+	GLfloat off[2] = {
+		static_cast<float>(.5 / size.X()),
+		static_cast<float>(.5 / size.Y())};
+	glUniform2fv(offI, 1, off);
+	
 	glUniform1f(frameI, frame);
 	glUniform1f(frameCountI, sprite->Frames());
 	
@@ -176,7 +180,7 @@ void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &si
 	
 	glUniform4fv(colorI, 1, color.Get());
 	
-	glBindTexture(GL_TEXTURE_2D_ARRAY, sprite->Texture());
+	glBindTexture(GL_TEXTURE_2D_ARRAY, sprite->Texture(unit.Length() * Screen::Zoom() > 50.));
 	
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	

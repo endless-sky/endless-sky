@@ -28,7 +28,7 @@ outfit "Korath Grab-Strike"
 		"hit effect" "grab-strike impact"
 		"die effect" "grab-strike impact"
 		"inaccuracy" 1
-		"turret turn" 4
+		"turret turn" 1.9
 		"velocity" 10
 		"lifetime" 100
 		"reload" 20
@@ -70,7 +70,7 @@ outfit "Korath Banisher"
 		sound "banisher"
 		"hit effect" "banisher impact"
 		"inaccuracy" .4
-		"turret turn" 6
+		"turret turn" 4.2
 		"velocity" 590
 		"lifetime" 1
 		"reload" 1
@@ -209,7 +209,7 @@ outfit "Korath Repeater Turret"
 		sound "repeater"
 		"hit effect" "repeater impact"
 		"inaccuracy" 3
-		"turret turn" 4
+		"turret turn" 2.6
 		"velocity" 13
 		"lifetime" 40
 		"reload" 5
@@ -277,7 +277,7 @@ outfit "Korath Piercer Launcher"
 		"shield damage" 290
 		"hull damage" 440
 		"piercing" .2
-		"hit force" 30
+		"hit force" 600
 		"missile strength" 73
 		"stream"
 	description "Korath Piercer missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
@@ -449,7 +449,7 @@ outfit "Korath Mine Submunition"
 		"drag" .05
 		"shield damage" 350
 		"hull damage" 280
-		"hit force" 50
+		"hit force" 400
 		"missile strength" 22
 
 effect "minelayer fire"
@@ -491,7 +491,7 @@ outfit "Korath Disruptor"
 		sound "disruptor"
 		"hit effect" "disruptor impact"
 		"inaccuracy" 1
-		"turret turn" 4
+		"turret turn" 1.5
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
@@ -555,7 +555,7 @@ outfit "Korath Slicer Turret"
 		sound "slicer"
 		"hit effect" "slicer impact"
 		"inaccuracy" 0
-		"turret turn" 3
+		"turret turn" 2.9
 		"velocity" 520
 		"lifetime" 1
 		"reload" 1.62

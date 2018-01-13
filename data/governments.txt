@@ -278,8 +278,8 @@ government "Pug"
 	
 	"player reputation" 1
 	"attitude toward"
-		"Merchant" .1
-		"Pirate" -.1
+		"Drak" -.01
+		"Quarg" -.01
 	"friendly hail" "friendly pug"
 	"hostile hail" "hostile pug"
 

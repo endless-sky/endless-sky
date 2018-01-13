@@ -43,6 +43,26 @@ using namespace std;
 
 namespace {
 	const int SIDE_WIDTH = 280;
+	
+	// Check if the mission involves the given system,
+	bool Involves(const Mission &mission, const System *system)
+	{
+		if(!system)
+			return false;
+		
+		if(mission.Destination()->IsInSystem(system))
+			return true;
+		
+		for(const System *waypoint : mission.Waypoints())
+			if(waypoint == system)
+				return true;
+		
+		for(const Planet *stopover : mission.Stopovers())
+			if(stopover->IsInSystem(system))
+				return true;
+		
+		return false;
+	}
 }
 
 
@@ -344,9 +364,9 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			if(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 				continue;
 			
-			if(availableIt != available.end() && availableIt->Destination()->IsInSystem(system))
+			if(availableIt != available.end() && Involves(*availableIt, system))
 				break;
-			if(acceptedIt != accepted.end() && acceptedIt->Destination()->IsInSystem(system))
+			if(acceptedIt != accepted.end() && Involves(*acceptedIt, system))
 				break;
 		}
 		// Make sure invisible missions are never selected, even if there were
@@ -506,9 +526,9 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 Point MissionPanel::DrawPanel(Point pos, const string &label, int entries) const
 {
 	const Font &font = FontSet::Get(14);
-	Color back(.125, 1.);
-	Color unselected = *GameData::Colors().Get("medium");
-	Color selected = *GameData::Colors().Get("bright");
+	const Color &back = *GameData::Colors().Get("map side panel background");
+	const Color &unselected = *GameData::Colors().Get("medium");
+	const Color &selected = *GameData::Colors().Get("bright");
 	
 	// Draw the panel.
 	Point size(SIDE_WIDTH, 20 * entries + 40);
@@ -549,10 +569,10 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries) const
 Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
 {
 	const Font &font = FontSet::Get(14);
-	Color highlight = *GameData::Colors().Get("faint");
-	Color unselected = *GameData::Colors().Get("medium");
-	Color selected = *GameData::Colors().Get("bright");
-	Color dim = *GameData::Colors().Get("dim");
+	const Color &highlight = *GameData::Colors().Get("faint");
+	const Color &unselected = *GameData::Colors().Get("medium");
+	const Color &selected = *GameData::Colors().Get("bright");
+	const Color &dim = *GameData::Colors().Get("dim");
 	
 	for(auto it = list.begin(); it != list.end(); ++it)
 	{

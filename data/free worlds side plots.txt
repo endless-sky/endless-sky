@@ -158,7 +158,7 @@ mission "FW Wolf Pack 1"
 	description "Travel to <planet> in the Deep, where Free Worlds sympathizers will share details of a new ramscoop technology. (You may have to bribe planets along the way to get permission to refuel.)"
 	source
 		government "Free Worlds"
-	destination Memory
+	destination "Memory"
 	clearance
 	minor
 	to offer
@@ -198,7 +198,7 @@ mission "FW Wolf Pack 1B"
 	landing
 	name "Ramscoop Technology"
 	description "Return to Free space with the plans for a new, more efficient ramscoop, and deliver them to Delta V Corporation on <destination>."
-	destination Solace
+	destination "Solace"
 	to offer
 		has "FW Wolf Pack 1: done"
 		not "event: fw armistice"
@@ -234,7 +234,7 @@ mission "FW Wolf Pack 2"
 	description `A group identifying themselves as the "Free Worlds Wolf Pack" has asked you to visit them on <planet> if you want to aid their work against the Republic.`
 	source
 		government "Free Worlds"
-	destination Solace
+	destination "Solace"
 	to offer
 		has "FW Wolf Pack 1B: done"
 		has "event: fw gets catalytic ramscoop"
@@ -259,9 +259,9 @@ mission "FW Wolf Pack 2"
 mission "FW Wolf Pack 2A"
 	landing
 	name "Attack Food Convoy"
-	description "Destroy three Republic freighters in the Sarin system that are carrying food, then report back to <planet> for payment."
-	source Solace
-	waypoint Sarin
+	description "Destroy three Republic freighters in the <waypoints> system that are carrying food, then report back to <planet> for payment."
+	source "Solace"
+	waypoint "Sarin"
 	to offer
 		has "FW Wolf Pack 2: done"
 		not "event: fw armistice"
@@ -300,8 +300,8 @@ mission "FW Wolf Pack 2A"
 				accept
 	
 	npc kill
-		government Republic
-		system Sarin
+		government "Republic"
+		system "Sarin"
 		personality timid staying target
 		ship "Freighter" "Horn of Plenty"
 		ship "Freighter" "Autumn Twilight"
@@ -309,8 +309,8 @@ mission "FW Wolf Pack 2A"
 		dialog "You have destroyed all the target freighters. Time to report back to the Wolf Pack on Solace."
 	
 	npc
-		government Republic
-		system Sarin
+		government "Republic"
+		system "Sarin"
 		personality heroic staying
 		ship "Gunboat (Mark II)" "R.N.S. Atherstone"
 		ship "Gunboat (Mark II)" "R.N.S. Tyndale"
@@ -328,7 +328,7 @@ mission "FW Wolf Pack 2A"
 event "wolf pack 3 ready"
 
 event "wolf pack gacrux start"
-	system Gacrux
+	system "Gacrux"
 		fleet "Small Southern Merchants" 2000
 		fleet "Large Southern Merchants" 5000
 		fleet "Small Southern Pirates" 2000
@@ -336,7 +336,7 @@ event "wolf pack gacrux start"
 		fleet "Small Republic" 8000
 
 event "wolf pack gacrux end"
-	system Gacrux
+	system "Gacrux"
 		fleet "Small Southern Merchants" 2000
 		fleet "Large Southern Merchants" 5000
 		fleet "Small Southern Pirates" 2000
@@ -353,8 +353,8 @@ mission "FW Wolf Pack 3"
 	description "Destroy two Republic bulk freighters in the Gacrux system that are carrying food, then report back to <planet> for payment."
 	source
 		government "Free Worlds"
-	destination Solace
-	waypoint Gacrux
+	destination "Solace"
+	waypoint "Gacrux"
 	to offer
 		has "FW Wolf Pack 2A: done"
 		has "event: wolf pack 3 ready"
@@ -373,16 +373,16 @@ mission "FW Wolf Pack 3"
 		event "wolf pack gacrux end"
 
 	npc kill
-		government Republic
-		system Gacrux
+		government "Republic"
+		system "Gacrux"
 		personality timid staying target
 		ship "Bulk Freighter" "Dew of the Morning"
 		ship "Bulk Freighter" "Heaven's Blessing"
 		dialog "The food convoy has been destroyed. You can now return to Solace."
 	
 	npc
-		government Republic
-		system Gacrux
+		government "Republic"
+		system "Gacrux"
 		personality heroic staying
 		ship "Protector (Laser)" "R.N.S. Bulwark"
 		ship "Protector" "R.N.S. Citadel"
@@ -402,14 +402,14 @@ mission "FW Wolf Pack 3"
 event "wolf pack 4 ready"
 
 event "wolf pack mizar start"
-	system Mizar
+	system "Mizar"
 		fleet "Small Southern Merchants" 1400
 		fleet "Large Southern Merchants" 4500
 		fleet "Small Republic" 5000
 		fleet "Small Southern Pirates" 9000
 
 event "wolf pack mizar end"
-	system Mizar
+	system "Mizar"
 		fleet "Small Southern Merchants" 1400
 		fleet "Large Southern Merchants" 4500
 		fleet "Small Republic" 1000
@@ -422,11 +422,11 @@ event "wolf pack mizar end"
 mission "FW Wolf Pack 4"
 	landing
 	name "Attack Food Convoy"
-	description "Destroy a Republic Bactrian freighter in the Mizar system that is carrying food, then report back to <planet> for payment."
+	description "Destroy a Republic Bactrian freighter in the <waypoints> system that is carrying food, then report back to <planet> for payment."
 	source
 		government "Free Worlds"
-	destination Solace
-	waypoint Mizar
+	destination "Solace"
+	waypoint "Mizar"
 	to offer
 		has "FW Wolf Pack 3: done"
 		has "event: wolf pack 4 ready"
@@ -436,7 +436,7 @@ mission "FW Wolf Pack 4"
 	
 	on offer
 		dialog
-			`You receive another message from the Wolf Pack: "Hello Captain. If nothing else, we've certainly succeeded in getting some of the Navy's ships diverted from the front, to serve as escorts! Your next target, if you're willing to help us again, will be a bit tougher: a Bactrian freighter, probably with Navy escorts. The freighter is passing through the Mizar system. Interested?`
+			`You receive another message from the Wolf Pack: "Hello Captain. If nothing else, we've certainly succeeded in getting some of the Navy's ships diverted from the front, to serve as escorts! Your next target, if you're willing to help us again, will be a bit tougher: a Bactrian freighter, probably with Navy escorts. The freighter is passing through the <waypoints> system. Interested?`
 	
 	on accept
 		event "wolf pack mizar start"
@@ -444,15 +444,15 @@ mission "FW Wolf Pack 4"
 		event "wolf pack mizar end"
 
 	npc kill
-		government Republic
-		system Mizar
+		government "Republic"
+		system "Mizar"
 		personality timid staying target
 		ship "Bactrian" "Golden Fleece"
 		dialog "You have eliminated the Bactrian that was carrying food to the Republic. Time to report back to the Wolf Pack and receive your reward."
 	
 	npc
-		government Republic
-		system Mizar
+		government "Republic"
+		system "Mizar"
 		personality heroic staying
 		fleet
 			names "republic capital"
@@ -477,7 +477,7 @@ mission "FW Stack Core 1"
 	name "Escort convoy from Rand"
 	description "Freya asked you to stop by Rand if you are able, to help escort a freighter convoy carrying vital supplies for building some exciting new equipment."
 	landing
-	destination Rand
+	destination "Rand"
 	to offer
 		has "FW Reconciliation Break: offered"
 	
@@ -492,7 +492,7 @@ mission "FWC Stack Core 1"
 	name "Escort convoy from Rand"
 	description "Freya asked you to stop by Rand if you are able, to help escort a freighter convoy carrying vital supplies for building some exciting new equipment."
 	landing
-	destination Rand
+	destination "Rand"
 	to offer
 		has "FW Liberate Delta Sagittarii: done"
 	
@@ -505,8 +505,8 @@ mission "FW Stack Core 1B"
 	landing
 	name "Escort convoy from Rand"
 	description "Freya asked you to escort this convoy carrying vital supplies for building some exciting new equipment, to <destination>."
-	source Rand
-	destination Solace
+	source "Rand"
+	destination "Solace"
 	to offer
 		has "FW Stack Core 1: done"
 	
@@ -527,7 +527,7 @@ mission "FW Stack Core 1B"
 	
 	npc
 		government "Republic"
-		system Menkent
+		system "Menkent"
 		personality surveillance
 		fleet
 			names "republic capital"
@@ -547,7 +547,7 @@ mission "FW Stack Core 1C"
 	landing
 	minor
 	source
-		near Pherkad 100
+		near "Pherkad" 100
 	to offer
 		has "event: stack core for sale"
 	

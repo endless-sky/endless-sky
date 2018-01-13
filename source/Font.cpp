@@ -255,6 +255,9 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 		
 		previous = glyph;
 	}
+	
+	glBindVertexArray(0);
+	glUseProgram(0);
 }
 
 
@@ -508,6 +511,8 @@ void Font::SetUpShader(float glyphW, float glyphH)
 	
 	shader = Shader(vertexCode, fragmentCode);
 	glUseProgram(shader.Object());
+	glUniform1i(shader.Uniform("tex"), 0);
+	glUseProgram(0);
 	
 	// Create the VAO and VBO.
 	glGenVertexArrays(1, &vao);
@@ -532,12 +537,15 @@ void Font::SetUpShader(float glyphW, float glyphH)
 	glVertexAttribPointer(shader.Attrib("corner"), 2, GL_FLOAT, GL_FALSE,
 		4 * sizeof(GLfloat), (const GLvoid*)(2 * sizeof(GLfloat)));
 	
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+	
 	// We must update the screen size next time we draw.
 	screenWidth = 0;
 	screenHeight = 0;
 	
 	// The texture always comes from texture unit 0.
-	glUniform1ui(shader.Uniform("tex"), 0);
+	glUniform1i(shader.Uniform("tex"), 0);
 
 	colorI = shader.Uniform("color");
 	scaleI = shader.Uniform("scale");

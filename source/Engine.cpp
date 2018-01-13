@@ -41,6 +41,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 #include "StartConditions.h"
 #include "System.h"
+#include "WrappedText.h"
 
 #include <algorithm>
 #include <cmath>
@@ -106,6 +107,44 @@ namespace {
 	{
 		objects.insert(objects.end(), make_move_iterator(added.begin()), make_move_iterator(added.end()));
 		added.clear();
+	}
+	
+	bool CanSendHail(const shared_ptr<const Ship> &ship, const System *playerSystem)
+	{
+		if(!ship || !playerSystem)
+			return false;
+		
+		// Make sure this ship is in the same system as the player.
+		if(ship->GetSystem() != playerSystem)
+			return false;
+		
+		// Player ships shouldn't send hails.
+		if(!ship->GetGovernment() || ship->GetGovernment()->IsPlayer())
+			return false;
+		
+		// Make sure this ship is able to send a hail.
+		if(ship->IsDisabled() || !ship->Crew()
+				|| ship->Cloaking() >= 1. || ship->GetPersonality().IsMute())
+			return false;
+		
+		return true;
+	}
+	
+	// Author the given message from the given ship.
+	void SendMessage(const shared_ptr<const Ship> &ship, const string &message)
+	{
+		if(message.empty())
+			return;
+		
+		// If this ship has no name, show its model name instead.
+		string tag;
+		const string &gov = ship->GetGovernment()->GetName();
+		if(!ship->Name().empty())
+			tag = gov + " " + ship->Noun() + " \"" + ship->Name() + "\": ";
+		else
+			tag = ship->ModelName() + " (" + gov + "): ";
+		
+		Messages::Add(tag + message);
 	}
 	
 	const double RADAR_SCALE = .025;
@@ -546,7 +585,7 @@ void Engine::Step(bool isActive)
 	// yet been toggled, but it will be at the end of this function.)
 	shared_ptr<const Ship> target;
 	shared_ptr<const Minable> targetAsteroid;
-	targetAngle = Point();
+	targetVector = Point();
 	if(flagship)
 	{
 		target = flagship->GetTargetShip();
@@ -567,6 +606,8 @@ void Engine::Step(bool isActive)
 			targetAsteroid->Facing().Unit(),
 			targetAsteroid->GetFrame(step));
 		info.SetString("target name", Format::Capitalize(targetAsteroid->Name()) + " Asteroid");
+		
+		targetVector = targetAsteroid->Position() - center;
 		
 		if(flagship->Attributes().Get("tactical scan power"))
 		{
@@ -607,13 +648,7 @@ void Engine::Step(bool isActive)
 				targetType,
 				4});
 			
-			// Don't show the angle to the target if it is very close.
-			targetAngle = target->Position() - center;
-			double length = targetAngle.Length();
-			if(length > 20.)
-				targetAngle /= length;
-			else
-				targetAngle = Point();
+			targetVector = target->Position() - center;
 			
 			// Check if the target is close enough to show tactical information.
 			double tacticalRange = 100. * sqrt(flagship->Attributes().Get("tactical scan power"));
@@ -623,7 +658,10 @@ void Engine::Step(bool isActive)
 				info.SetCondition("range display");
 				info.SetString("target range", to_string(static_cast<int>(round(targetRange))));
 			}
-			if(targetRange <= tacticalRange)
+			// Actual tactical information requires a scrutable
+			// target that is within the tactical scanner range.
+			if((targetRange <= tacticalRange && !target->Attributes().Get("inscrutable"))
+					|| (tacticalRange && target->IsYours()))
 			{
 				info.SetCondition("tactical display");
 				info.SetString("target crew", to_string(target->Crew()));
@@ -727,7 +765,9 @@ void Engine::Go()
 
 
 
-const list<ShipEvent> &Engine::Events() const
+// Pass the list of game events to MainPanel for handling by the player, and any
+// UI element generation.
+list<ShipEvent> &Engine::Events()
 {
 	return events;
 }
@@ -779,24 +819,24 @@ void Engine::Draw() const
 	if(flash)
 		FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), Color(flash, flash));
 	
-	// Draw messages.
+	// Draw messages. Draw the most recent messages first, as some messages
+	// may be wrapped onto multiple lines.
 	const Font &font = FontSet::Get(14);
 	const vector<Messages::Entry> &messages = Messages::Get(step);
 	Rectangle messageBox = interface->GetBox("messages");
-	Point messagePoint = Point(messageBox.Left(), messageBox.Bottom() - 20. * messages.size());
-	auto it = messages.begin();
-	if(messagePoint.Y() < messageBox.Top())
+	WrappedText messageLine(font);
+	messageLine.SetWrapWidth(messageBox.Width());
+	messageLine.SetParagraphBreak(0.);
+	Point messagePoint = Point(messageBox.Left(), messageBox.Bottom());
+	for(auto it = messages.rbegin(); it != messages.rend(); ++it)
 	{
-		int skip = (messageBox.Top() - messagePoint.Y()) / 20.;
-		it += skip;
-		messagePoint.Y() += 20. * skip;
-	}
-	for( ; it != messages.end(); ++it)
-	{
+		messageLine.Wrap(it->message);
+		messagePoint.Y() -= messageLine.Height();
+		if(messagePoint.Y() < messageBox.Top())
+			break;
 		float alpha = (it->step + 1000 - step) * .001f;
 		Color color(alpha, 0.);
-		font.Draw(it->message, messagePoint, color);
-		messagePoint.Y() += 20.;
+		messageLine.Draw(messagePoint, color);
 	}
 	
 	// Draw crosshairs around anything that is targeted.
@@ -823,11 +863,11 @@ void Engine::Draw() const
 			interface->GetValue("radar radius"),
 			interface->GetValue("radar pointer radius"));
 	}
-	if(interface->HasPoint("target") && targetAngle)
+	if(interface->HasPoint("target") && targetVector.Length() > 20.)
 	{
 		Point center = interface->GetPoint("target");
 		double radius = interface->GetValue("target radius");
-		PointerShader::Draw(center, targetAngle, 10., 10., radius, Color(1.));
+		PointerShader::Draw(center, targetVector.Unit(), 10., 10., radius, Color(1.));
 	}
 	
 	// Draw the faction markers.
@@ -846,23 +886,32 @@ void Engine::Draw() const
 		MapPanel::DrawMiniMap(player, .5 * min(1., jumpCount / 30.), jumpInProgress, step);
 	
 	// Draw ammo status.
+	static const double ICON_SIZE = 30.;
+	static const double AMMO_WIDTH = 80.;
 	Rectangle ammoBox = interface->GetBox("ammo");
-	Point pos(ammoBox.Left(), ammoBox.Bottom());
+	// Pad the ammo list by the same amount on all four sides.
+	double ammoPad = .5 * (ammoBox.Width() - AMMO_WIDTH);
 	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
 	const Sprite *unselectedSprite = SpriteSet::Get("ui/ammo unselected");
 	Color selectedColor = *colors.Get("bright");
 	Color unselectedColor = *colors.Get("dim");
+	
+	// This is the top left corner of the ammo display.
+	Point pos(ammoBox.Left() + ammoPad, ammoBox.Bottom() - ammoPad);
+	// These offsets are relative to that corner.
+	Point boxOff(AMMO_WIDTH - .5 * selectedSprite->Width(), .5 * ICON_SIZE);
+	Point textOff(AMMO_WIDTH - .5 * ICON_SIZE, .5 * (ICON_SIZE - font.Height()));
+	Point iconOff(.5 * ICON_SIZE, .5 * ICON_SIZE);
 	for(const pair<const Outfit *, int> &it : ammo)
 	{
-		pos.Y() -= 30.;
-		if(pos.Y() < ammoBox.Top())
+		pos.Y() -= ICON_SIZE;
+		if(pos.Y() < ammoBox.Top() + ammoPad)
 			break;
 		
 		bool isSelected = it.first == player.SelectedWeapon();
 		
-		SpriteShader::Draw(it.first->Icon(), pos);
-		SpriteShader::Draw(
-			isSelected ? selectedSprite : unselectedSprite, pos + Point(35., 0.));
+		SpriteShader::Draw(it.first->Icon(), pos + iconOff);
+		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
 		
 		// Some secondary weapons may not have limited ammo. In that case, just
 		// show the icon without a number.
@@ -870,7 +919,7 @@ void Engine::Draw() const
 			continue;
 		
 		string amount = to_string(it.second);
-		Point textPos = pos + Point(55 - font.Width(amount), -(30 - font.Height()) / 2);
+		Point textPos = pos + textOff + Point(-font.Width(amount), 0.);
 		font.Draw(amount, textPos, isSelected ? selectedColor : unselectedColor);
 	}
 	
@@ -1456,32 +1505,11 @@ void Engine::SendHails()
 			break;
 		}
 	
-	// Player ships shouldn't send hails.
-	const Government *government = source->GetGovernment();
-	if(!government || government->IsPlayer())
+	if(!CanSendHail(source, player.GetSystem()))
 		return;
 	
-	// Make sure this ship is in the same system as you.
-	if(source->GetSystem() != player.GetSystem())
-		return;
-	
-	// Make sure this ship is able to send a hail.
-	if(source->IsDisabled() || !source->Crew() || source->Cloaking() >= 1.)
-		return;
-	
-	// Generate a random hail message, and make sure it's not empty.
-	string message = source->GetHail();
-	if(message.empty())
-		return;
-	
-	// If this ship has no name, show its model name instead.
-	string tag;
-	const string &gov = government->GetName();
-	if(!source->Name().empty())
-		tag = gov + " " + source->Noun() + " \"" + source->Name() + "\": ";
-	else
-		tag = source->ModelName() + " (" + gov + "): ";
-	Messages::Add(tag + message);
+	// Generate a random hail message.
+	SendMessage(source, source->GetHail());
 }
 
 
@@ -1743,14 +1771,8 @@ void Engine::DoCollection(Flotsam &flotsam)
 		return;
 	
 	// One of your ships picked up this flotsam. Describe who it was.
-	string name;
-	if(collector->IsYours())
-	{
-		if(collector->GetParent())
-			name = "Your ship \"" + collector->Name() + "\" picked up ";
-		else
-			name = "You picked up ";
-	}
+	string name = (!collector->GetParent() ? "You" :
+			"Your ship \"" + collector->Name() + "\"") + " picked up ";
 	// Describe what they collected from this flotsam.
 	string commodity;
 	string message;
@@ -1941,17 +1963,16 @@ void Engine::AddSprites(const Ship &ship)
 
 
 // If a ship just damaged another ship, update information on who has asked the
-// player for assistance.
+// player for assistance (and ask for assistance if appropriate).
 void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker)
 {
 	if(attacker->IsPlayer())
 	{
 		shared_ptr<const Ship> previous = grudge[target->GetGovernment()].lock();
-		if(previous && previous->GetSystem() == player.GetSystem() && !previous->IsDisabled())
+		if(CanSendHail(previous, player.GetSystem()))
 		{
 			grudge[target->GetGovernment()].reset();
-			Messages::Add(previous->GetGovernment()->GetName() + " " + previous->Noun() + " \""
-				+ previous->Name() + "\": Thank you for your assistance, Captain "
+			SendMessage(previous, "Thank you for your assistance, Captain "
 				+ player.LastName() + "!");
 		}
 		return;
@@ -1964,27 +1985,27 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	if(grudge.count(attacker))
 	{
 		shared_ptr<const Ship> previous = grudge[attacker].lock();
-		if(!previous || (previous->GetSystem() == player.GetSystem() && !previous->IsDisabled()))
+		// If the previous ship is destroyed, or was able to send a
+		// "thank you" already, skip sending a new thanks.
+		if(!previous || CanSendHail(previous, player.GetSystem()))
 			return;
 	}
 	
-	// Do not ask the player's help if they are your enemy or are not an enemy
-	// of the ship that is attacking you.
-	if(target->GetGovernment()->IsPlayer())
+	// If an enemy of the player, or being attacked by those that are
+	// not enemies of the player, do not request help.
+	if(target->GetGovernment()->IsEnemy() || !attacker->IsEnemy())
 		return;
-	if(!attacker->IsEnemy())
+	// Ensure that this attacked ship is able to send hails (e.g. not mute,
+	// a player ship, automaton, etc.)
+	if(!CanSendHail(target, player.GetSystem()))
 		return;
-	if(target->GetGovernment()->IsEnemy())
-		return;
-	if(target->GetPersonality().IsMute())
-		return;
+	// If the hailer has a special language, the player must understand it.
 	if(!target->GetGovernment()->Language().empty())
 		if(!player.GetCondition("language: " + target->GetGovernment()->Language()))
 			return;
 	
 	// No active ship has a grudge already against this government.
 	// Check the relative strength of this ship and its attackers.
-	double targetStrength = (target->Shields() + target->Hull()) * target->Cost();
 	double attackerStrength = 0.;
 	int attackerCount = 0;
 	for(const shared_ptr<Ship> &ship : ships)
@@ -1994,6 +2015,8 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 			attackerStrength += (ship->Shields() + ship->Hull()) * ship->Cost();
 		}
 	
+	// Only ask for help if outmatched.
+	double targetStrength = (target->Shields() + target->Hull()) * target->Cost();
 	if(attackerStrength <= targetStrength)
 		return;
 	
@@ -2004,24 +2027,24 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	
 	grudge[attacker] = target;
 	grudgeTime = 120;
-	string message = target->GetGovernment()->GetName() + " ship \"" + target->Name() + "\": ";
+	string message;
 	if(target->GetPersonality().IsHeroic())
 	{
-		message += "Please assist us in destroying ";
+		message = "Please assist us in destroying ";
 		message += (attackerCount == 1 ? "this " : "these ");
 		message += attacker->GetName();
 		message += (attackerCount == 1 ? " ship." : " ships.");
 	}
 	else
 	{
-		message += "We are under attack by ";
+		message = "We are under attack by ";
 		if(attackerCount == 1)
 			message += "a ";
 		message += attacker->GetName();
 		message += (attackerCount == 1 ? " ship" : " ships");
 		message += ". Please assist us!";
 	}
-	Messages::Add(message);
+	SendMessage(target, message);
 }
 
 

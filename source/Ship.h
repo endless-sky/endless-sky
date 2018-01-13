@@ -100,6 +100,10 @@ public:
 	const Government *GetGovernment() const;
 	*/
 
+	Ship() = default;
+	// Construct and Load() at the same time.
+	Ship(const DataNode &node);
+	
 	// Load data for a type of ship:
 	void Load(const DataNode &node);
 	// When loading a ship, some of the outfits it lists may not have been
@@ -156,6 +160,8 @@ public:
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.
 	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	// Generate energy, heat, etc. (This is called by Move().)
+	void DoGeneration();
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships);
 	// Check if this ship is boarding another ship. If it is, it either plunders
@@ -212,7 +218,8 @@ public:
 	// Get the points from which engine flares should be drawn.
 	const std::vector<EnginePoint> &EnginePoints() const;
 	
-	// Mark a ship as destroyed, or bring back a destroyed ship.
+	// Make a ship disabled or destroyed, or bring back a destroyed ship.
+	void Disable();
 	void Destroy();
 	void SelfDestruct();
 	void Restore();
@@ -233,6 +240,8 @@ public:
 	double Energy() const;
 	double Heat() const;
 	double Fuel() const;
+	// Get the ship's "health," where 0 is disabled and 1 means full health.
+	double Health() const;
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
 	int JumpsRemaining() const;
@@ -245,6 +254,10 @@ public:
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
+	// Get the heat dissipation, in heat units per heat unit per frame.
+	double HeatDissipation() const;
+	// Get the maximum heat level, in heat units (not temperature).
+	double MaximumHeat() const;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
 	
@@ -267,6 +280,7 @@ public:
 	// type, which may be a combination of PROVOKED, DISABLED, and DESTROYED.
 	// If isBlast, this ship was caught in the blast radius of a weapon but was
 	// not necessarily its primary target.
+	// Blast damage is dependent on the distance to the damage source.
 	int TakeDamage(const Projectile &projectile, bool isBlast = false);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
@@ -317,10 +331,10 @@ public:
 	const std::vector<Hardpoint> &Weapons() const;
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
-	bool CanFire(const Outfit *outfit) const;
+	bool CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
 	// and add whatever heat it generates. Assume that CanFire() is true.
-	void ExpendAmmo(const Outfit *outfit);
+	void ExpendAmmo(const Weapon *weapon);
 	
 	// Each ship can have a target system (to travel to), a target planet (to
 	// land on) and a target ship (to move to, and attack if hostile).
@@ -355,10 +369,6 @@ private:
 	void RemoveEscort(const Ship &ship);
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
-	// Add to this ship's hull or shields, and return the amount added. If the
-	// ship is carrying fighters, add to them as well.
-	double AddHull(double rate);
-	double AddShields(double rate);
 	// Find out how much fuel is consumed by the hyperdrive of the given type.
 	double BestFuel(const std::string &type, const std::string &subtype, double defaultFuel) const;
 	// Create one of this ship's explosions, within its mask. The explosions can
@@ -427,6 +437,8 @@ private:
 	std::list<std::shared_ptr<Flotsam>> jettisoned;
 	
 	std::vector<Bay> bays;
+	// Cache the mass of carried ships to avoid repeatedly recomputing it.
+	double carriedMass = 0.;
 	
 	std::vector<EnginePoint> enginePoints;
 	Armament armament;

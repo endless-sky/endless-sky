@@ -199,7 +199,7 @@ namespace {
 	
 	
 	// Find the radius of the object.
-	double Radius(const vector<Point> &outline)
+	double ComputeRadius(const vector<Point> &outline)
 	{
 		double radius = 0.;
 		for(const Point &p : outline)
@@ -229,7 +229,7 @@ void Mask::Create(const ImageBuffer &image, int frame)
 	
 	Simplify(raw, &outline);
 	
-	radius = Radius(outline);
+	radius = ComputeRadius(outline);
 }
 
 
@@ -323,6 +323,13 @@ double Mask::Range(Point point, Angle facing) const
 		range = min(range, p.Distance(point));
 	
 	return range;
+}
+
+
+
+double Mask::Radius() const
+{
+	return radius;
 }
 
 

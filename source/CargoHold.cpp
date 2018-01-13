@@ -37,7 +37,7 @@ namespace {
 		sort(sortedOutfits.begin(), sortedOutfits.end(),
 			[] (const Outfit *lhs, const Outfit *rhs)
 			{
-				return lhs->Get("mass") > rhs->Get("mass");
+				return lhs->Mass() > rhs->Mass();
 			}
 		);
 		
@@ -198,7 +198,7 @@ int CargoHold::OutfitsSize() const
 {
 	double size = 0.;
 	for(const auto &it : outfits)
-		size += it.second * it.first->Get("mass");
+		size += it.second * it.first->Mass();
 	return ceil(size);
 }
 
@@ -347,6 +347,9 @@ const map<const Mission *, int> &CargoHold::PassengerList() const
 // Transfer ordinary commodities from one cargo hold to another.
 int CargoHold::Transfer(const string &commodity, int amount, CargoHold &to)
 {
+	if(!amount)
+		return 0;
+	
 	// Remove up to the specified tons of cargo from this cargo hold, adding
 	// them to the given cargo hold if possible. If not possible, add the
 	// remainder back to this cargo hold, even if there is not space for it.
@@ -362,6 +365,9 @@ int CargoHold::Transfer(const string &commodity, int amount, CargoHold &to)
 // Transfer outfits from one cargo hold to another.
 int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold &to)
 {
+	if(!amount)
+		return 0;
+	
 	// Remove up to the specified number of items from this cargo hold, adding
 	// them to the given cargo hold if possible. If not possible, add the
 	// remainder back to this cargo hold, even if there is not space for it.
@@ -413,9 +419,11 @@ int CargoHold::TransferPassengers(const Mission *mission, int amount, CargoHold 
 	if(to.bunks >= 0)
 		amount = max(0, min(amount, to.BunksFree()));
 	
-	passengers[mission] -= amount;
-	to.passengers[mission] += amount;
-	
+	if(amount)
+	{
+		passengers[mission] -= amount;
+		to.passengers[mission] += amount;
+	}
 	return amount;
 }
 
@@ -471,7 +479,7 @@ int CargoHold::Add(const Outfit *outfit, int amount)
 		return -Remove(outfit, -amount);
 	
 	// If the outfit has mass and this cargo hold has a size limit, apply it.
-	double mass = outfit->Get("mass");
+	double mass = outfit->Mass();
 	if(size >= 0 && mass > 0.)
 		amount = max(0, min(amount, static_cast<int>(Free() / mass)));
 	outfits[outfit] += amount;
