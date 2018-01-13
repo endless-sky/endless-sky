@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "AtlasGlyphs.h"
 #include "Files.h"
+#include "FreeTypeGlyphs.h"
 #include "Point.h"
 
 #include <algorithm>
@@ -84,6 +85,16 @@ bool Font::Load(const string &path, int size)
 	{
 		auto glyphs = make_shared<AtlasGlyphs>();
 		if(glyphs->Load(path))
+		{
+			glyphs->SetUpShader();
+			source = glyphs;
+			return true;
+		}
+	}
+	else
+	{
+		auto glyphs = make_shared<FreeTypeGlyphs>();
+		if(glyphs->Load(path, size))
 		{
 			glyphs->SetUpShader();
 			source = glyphs;
