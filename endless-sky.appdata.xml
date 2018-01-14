@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-  <id>io.github.EndlessSky.endless-sky</id>
+  <id>io.github.endless_sky.endless_sky</id>
   <launchable type="desktop-id">endless-sky.desktop</launchable>
   <name>Endless Sky</name>
   <name xml:lang="de">Weltraumspiel</name>
