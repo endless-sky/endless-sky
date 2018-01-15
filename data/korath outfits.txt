@@ -93,7 +93,7 @@ outfit "Large Heat Shunt"
 
 outfit "Fuel Collector"
 	category "Systems"
-	cost "101000"
+	cost 101000
 	thumbnail "outfit/unknown"
 	"mass" 20
 	"outfit space" -20
