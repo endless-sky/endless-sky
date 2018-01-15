@@ -622,20 +622,6 @@ ship "Water Bug"
 	"final explode" "final explosion medium"
 	description "The design of the Water Bug is almost as old as the Aphid, but until recently it never saw much use. A spike in aggression from the Unfettered Hai has lead the tougher and more well-defended Water Bug to see an increase in popularity over its little brother, the Aphid. The Water Bug is now the most widely used Hai freighter, comprising the bulk of all Hai merchant fleets."
 
-ship "Water Bug" "Water Bug (Pulse)"
-	outfits
-		"Hai Tracker Pod" 2
-		"Hai Tracker" 112
-		"Pulse Turret" 3
-		"Geode Reactor"
-		"Hai Gorge Batteries"
-		"Hai Chasm Batteries"
-		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling"
-		`"Benga" Atomic Thruster`
-		`"Benga" Atomic Steering`
-		"Hyperdrive"
-
 ship "Water Bug" "Water Bug (Jump)"
 	outfits
 		"Hai Tracker Pod" 2
@@ -651,3 +637,17 @@ ship "Water Bug" "Water Bug (Jump)"
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Jump Drive"
+
+ship "Water Bug" "Water Bug (Pulse)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Pulse Turret" 3
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Chasm Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
