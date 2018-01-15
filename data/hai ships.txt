@@ -275,43 +275,6 @@ ship "Shield Beetle"
 	"final explode" "final explosion large"
 	description "This ship was first built millenia ago, near the end of a more violent time in Hai history. Since then, it has served as the only heavy warship at the disposal of the Hai. The Shield Beetle is a versatile warship used by the Hai to guard their merchant convoys, or by the Unfettered to attack those very same convoys."
 
-ship "Shield Beetle" "Shield Beetle (Tracker)"
-	outfits
-		"Hai Tracker Pod" 8
-		"Hai Tracker" 448
-		"Pulse Turret" 4
-		"Boulder Reactor"
-		"Geode Reactor"
-		"Hai Valley Batteries"
-		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 2
-		"Quantum Keystone"
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-		"Hyperdrive"
-
-ship "Shield Beetle" "Shield Beetle (Pulse)"
-	outfits
-		"Ion Cannon" 2
-		"Pulse Cannon" 6
-		"Pulse Turret" 4
-		"Boulder Reactor"
-		"Geode Reactor"
-		"Hai Ravine Batteries"
-		"Hai Diamond Regenerator" 2
-		"Hai Williwaw Cooling" 3
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-		"Hyperdrive"
-	gun "Ion Cannon"
-	gun "Ion Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-
 ship "Shield Beetle" "Shield Beetle (Jump)"
 	outfits
 		"Ion Cannon" 4
@@ -356,6 +319,43 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Jump Drive"
+
+ship "Shield Beetle" "Shield Beetle (Pulse)"
+	outfits
+		"Ion Cannon" 2
+		"Pulse Cannon" 6
+		"Pulse Turret" 4
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator" 2
+		"Hai Williwaw Cooling" 3
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+
+ship "Shield Beetle" "Shield Beetle (Tracker)"
+	outfits
+		"Hai Tracker Pod" 8
+		"Hai Tracker" 448
+		"Pulse Turret" 4
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Valley Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Quantum Keystone"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
 
 
 
