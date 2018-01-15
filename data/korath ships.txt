@@ -17,12 +17,12 @@ ship "Korath Raider"
 		"hull" 9000
 		"required crew" 145
 		"bunks" 250
-		"mass" 726
+		"mass" 730
 		"drag" 12
 		"heat dissipation" .5
 		"fuel capacity" 600
 		"cargo space" 175
-		"outfit space" 715
+		"outfit space" 705
 		"weapon capacity" 284
 		"engine capacity" 159
 		"ramscoop" 2
@@ -137,12 +137,12 @@ ship "Korath World-Ship"
 		hull 34000
 		"required crew" 794
 		"bunks" 1492
-		"mass" 1733
+		"mass" 1745
 		"drag" 21
 		"heat dissipation" .4
 		"fuel capacity" 1000
 		"cargo space" 264
-		"outfit space" 780
+		"outfit space" 768
 		"weapon capacity" 314
 		"engine capacity" 165
 		"ramscoop" 2
