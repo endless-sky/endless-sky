@@ -398,7 +398,7 @@ ship "Solifuge"
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
-		Hyperdrive
+		"Hyperdrive"
 			
 	engine -28 135.5
 	engine 28 135.5
@@ -497,7 +497,7 @@ ship "Solifuge" "Solifuge (Pulse)"
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
-		Hyperdrive
+		"Hyperdrive"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
@@ -519,7 +519,7 @@ ship "Solifuge" "Solifuge (Tracker)"
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
-		Hyperdrive
+		"Hyperdrive"
 
 
 
