@@ -55,7 +55,7 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 	for(const pair<const string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].insert(it.first);
 	
-	// Add owned licenses
+	// Add owned licenses.
 	const string PREFIX = "license: ";
 	for(auto &it : player.Conditions())
 		if(it.first.compare(0, PREFIX.length(), PREFIX) == 0 && it.second > 0)
@@ -98,19 +98,30 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 
 
 
+// Return true for a given name if that outfit should be drawn in the shop.
 bool OutfitterPanel::HasItem(const string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
+	
+	// Is this outfit full price, but we are showing only discount items?
+	if(showOnlyDiscounts && ((showForSale && player.StockDepreciation().Value(outfit, day) == outfit->Cost())
+			|| (!playerShip && player.FleetDepreciation().Value(outfit, day) == outfit->Cost())))
+		return false;
+	
+	// Is this outfit sold here normally, or did the player sell this outfit today already?
 	if((outfitter.Has(outfit) || player.Stock(outfit) > 0) && showForSale)
 		return true;
 	
+	// Is this outfit in the player's cargo hold and we are showing cargo items or items for sale?
 	if(player.Cargo().Get(outfit) && (!playerShip || showForSale))
 		return true;
 	
+	// Is this outfit installed on a selected ship?
 	for(const Ship *ship : playerShips)
 		if(ship->OutfitCount(outfit))
 			return true;
 	
+	// Show any licenses you own (that have an associated outfit).
 	if(showForSale && HasLicense(name))
 		return true;
 	
@@ -244,6 +255,10 @@ bool OutfitterPanel::CanBuy() const
 	cost += licenseCost;
 	// If you have this in your cargo hold, installing it is free.
 	if(cost > player.Accounts().Credits() && !isInCargo)
+		return false;
+	
+	// If only discount items are to be shown, but this is full price, do not buy.
+	if(cost == selectedOutfit->Cost() && showOnlyDiscounts)
 		return false;
 	
 	if(HasLicense(selectedOutfit->Name()))
@@ -605,6 +620,7 @@ void OutfitterPanel::FailSell(bool toCargo) const
 
 
 
+// Determine if this ship will be affected by the next call to "buy", "install", "sell", etc.
 bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 {
 	if(!selectedOutfit)
@@ -620,6 +636,7 @@ bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 
 
 
+// Draw the checkboxes that allow altering the displayed outfits.
 void OutfitterPanel::DrawKey()
 {
 	const Sprite *back = SpriteSet::Get("ui/outfitter key");
@@ -629,17 +646,26 @@ void OutfitterPanel::DrawKey()
 	Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
 	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
 	
-	Point pos = Screen::BottomLeft() + Point(10., -30.);
+	Point pos = Screen::BottomLeft() + Point(10., -50.);
 	Point off = Point(10., -.5 * font.Height());
+	
+	// Display the toggle for switching between installed-only and any available.
 	SpriteShader::Draw(box[showForSale], pos);
 	font.Draw("Show outfits for sale", pos + off, color[showForSale]);
 	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleForSale(); });
 	
+	// Display the toggle for switching between the player's ships and the player's cargo.
 	bool showCargo = !playerShip;
 	pos.Y() += 20.;
 	SpriteShader::Draw(box[showCargo], pos);
 	font.Draw("Show outfits in cargo", pos + off, color[showCargo]);
 	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleCargo(); });
+	
+	// Display the toggle for switching between only-discount/installed and any price.
+	pos.Y() += 20.;
+	SpriteShader::Draw(box[showOnlyDiscounts], pos);
+	font.Draw("Show only discounts", pos + off, color[showOnlyDiscounts]);
+	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleDiscounts(); });
 }
 
 
@@ -653,6 +679,8 @@ void OutfitterPanel::ToggleForSale()
 
 
 
+// Swap between showing outfits installed on the selected ship(s), and those in
+// the player's cargo hold. The selected ships are tracked to allow re-selection.
 void OutfitterPanel::ToggleCargo()
 {
 	if(playerShip)
@@ -675,6 +703,16 @@ void OutfitterPanel::ToggleCargo()
 	}
 	
 	ShopPanel::ToggleCargo();
+}
+
+
+
+// Swap between showing outfits of any price, and only those available at reduced price.
+void OutfitterPanel::ToggleDiscounts()
+{
+	showOnlyDiscounts = !showOnlyDiscounts;
+	
+	ShopPanel::ToggleDiscounts();
 }
 
 
@@ -724,6 +762,7 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 
 
 
+// Check if the player has visited all the systems that this map has information about.
 bool OutfitterPanel::HasMapped(int mapSize) const
 {
 	DistanceMap distance(player.GetSystem(), mapSize);
@@ -736,6 +775,7 @@ bool OutfitterPanel::HasMapped(int mapSize) const
 
 
 
+// Check if this name corresponds to a license outfit.
 bool OutfitterPanel::IsLicense(const string &name) const
 {
 	static const string &LICENSE = " License";
@@ -749,6 +789,7 @@ bool OutfitterPanel::IsLicense(const string &name) const
 
 
 
+// Check if the player has already obtained the named license.
 bool OutfitterPanel::HasLicense(const string &name) const
 {
 	return (IsLicense(name) && player.GetCondition(LicenseName(name)) > 0);
@@ -756,6 +797,7 @@ bool OutfitterPanel::HasLicense(const string &name) const
 
 
 
+// Convert this name into the corresponding player.Conditions() entry.
 string OutfitterPanel::LicenseName(const string &name) const
 {
 	static const string &LICENSE = " License";

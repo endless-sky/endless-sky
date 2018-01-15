@@ -60,6 +60,7 @@ protected:
 	virtual void DrawKey() override;
 	virtual void ToggleForSale() override;
 	virtual void ToggleCargo() override;
+	virtual void ToggleDiscounts() override;
 	
 	
 private:
@@ -82,6 +83,9 @@ private:
 	// Allow toggling whether outfits that are for sale are shown. If turned
 	// off, only outfits in the currently selected ships are shown.
 	bool showForSale = true;
+	// Allow restricting the displayed outfits to only those that
+	// are less than full price (whether installed or in stock).
+	bool showOnlyDiscounts = false;
 	// Remember what ships are selected if the player switches to cargo.
 	Ship *previousShip = nullptr;
 	std::set<Ship *> previousShips;
