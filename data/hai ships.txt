@@ -428,44 +428,6 @@ ship "Solifuge"
 	"final explode" "final explosion large"
 	description `Impressed by the Alpha's "Giftbringer", the Unfettered endeavoured to build their own fighter carrier to take more advantage of their supply of jump drives.`
 
-ship "Solifuge" "Solifuge (Pulse)"
-	outfits
-		"Ion Cannon" 2
-		"Pulse Cannon" 3
-		"Pulse Turret" 5
-		"Bullfrog Anti-Missile" 2
-		"Boulder Reactor" 2
-		"Hai Fissure Batteries"
-		"Hai Corundum Regenerator"
-		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 8
-		`"Benga" Atomic Steering`
-		`"Bufaer" Atomic Steering`
-		`"Bondir" Atomic Thruster`
-		Hyperdrive
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Ion Cannon"
-	gun "Ion Cannon"
-
-ship "Solifuge" "Solifuge (Tracker)"
-	outfits
-		"Hai Tracker Pod" 5
-		"Hai Tracker" 280
-		"Pulse Turret" 4
-		"Chameleon Anti-Missile"
-		"Bullfrog Anti-Missile" 2
-		"Boulder Reactor" 2
-		"Hai Gorge Batteries"
-		"Hai Corundum Regenerator"
-		"Hai Diamond Regenerator" 2
-		"Hai Williwaw Cooling" 6
-		`"Benga" Atomic Steering`
-		`"Bufaer" Atomic Steering`
-		`"Bondir" Atomic Thruster`
-		Hyperdrive
-
 ship "Solifuge" "Solifuge (Jump)"
 	outfits
 		"Hai Tracker Pod"
@@ -520,6 +482,44 @@ ship "Solifuge" "Solifuge (Jump, Tracker)"
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Jump Drive"
+
+ship "Solifuge" "Solifuge (Pulse)"
+	outfits
+		"Ion Cannon" 2
+		"Pulse Cannon" 3
+		"Pulse Turret" 5
+		"Bullfrog Anti-Missile" 2
+		"Boulder Reactor" 2
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 8
+		`"Benga" Atomic Steering`
+		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		Hyperdrive
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+
+ship "Solifuge" "Solifuge (Tracker)"
+	outfits
+		"Hai Tracker Pod" 5
+		"Hai Tracker" 280
+		"Pulse Turret" 4
+		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile" 2
+		"Boulder Reactor" 2
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator" 2
+		"Hai Williwaw Cooling" 6
+		`"Benga" Atomic Steering`
+		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		Hyperdrive
 
 
 
