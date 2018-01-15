@@ -22,7 +22,7 @@ ship "Korath Raider"
 		"heat dissipation" .5
 		"fuel capacity" 600
 		"cargo space" 175
-		"outfit space" 705
+		"outfit space" 711
 		"weapon capacity" 284
 		"engine capacity" 159
 		"ramscoop" 2
