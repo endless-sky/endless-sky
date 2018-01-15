@@ -319,11 +319,11 @@ ship "Kestrel"
 
 ship "Kestrel" "Kestrel (More Weapons)"
 	add attributes
-		"weapon capacity" 30
+		"weapon capacity" 40
 
 ship "Kestrel" "Kestrel (More Engines)"
 	add attributes
-		"engine capacity" 20
+		"engine capacity" 30
 
 ship "Kestrel" "Kestrel (More Shields)"
 	add attributes
