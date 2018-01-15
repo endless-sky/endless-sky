@@ -17,12 +17,11 @@ ship "Korath Raider"
 		"hull" 9000
 		"required crew" 145
 		"bunks" 250
-		"mass" 720
+		"mass" 650
 		"drag" 12
 		"heat dissipation" .5
-		"fuel capacity" 600
 		"cargo space" 175
-		"outfit space" 721
+		"outfit space" 791
 		"weapon capacity" 284
 		"engine capacity" 159
 		weapon
@@ -39,7 +38,7 @@ ship "Korath Raider"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
-		"Ramscoop"
+		"Fuel Collector" 3
 		"Korath Repeater Rifle" 196
 		
 		"Thruster (Planetary Class)"
@@ -75,7 +74,7 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
-		"Ramscoop"
+		"Fuel Collector" 3
 		"Korath Repeater Rifle" 196
 		
 		"Thruster (Planetary Class)"
@@ -138,12 +137,11 @@ ship "Korath World-Ship"
 		hull 34000
 		"required crew" 794
 		"bunks" 1492
-		"mass" 1735
+		"mass" 1645
 		"drag" 21
 		"heat dissipation" .4
-		"fuel capacity" 1000
 		"cargo space" 264
-		"outfit space" 778
+		"outfit space" 868
 		"weapon capacity" 314
 		"engine capacity" 165
 		weapon
@@ -159,7 +157,7 @@ ship "Korath World-Ship"
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
-		"Ramscoop"
+		"Fuel Collector" 5
 		"Korath Repeater Rifle" 150
 		
 		"Thruster (Planetary Class)"
@@ -216,7 +214,7 @@ ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
-		"Ramscoop"
+		"Fuel Collector" 5
 		"Korath Repeater Rifle" 150
 		
 		"Thruster (Planetary Class)"
@@ -242,7 +240,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
-		"Ramscoop"
+		"Fuel Collector" 5
 		"Korath Repeater Rifle" 150
 		
 		"Thruster (Planetary Class)"
@@ -268,7 +266,7 @@ ship "Korath World-Ship" "Korath World-Ship C (Jump)"
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
-		"Ramscoop"
+		"Fuel Collector" 5
 		"Korath Repeater Rifle" 150
 		
 		"Thruster (Planetary Class)"
