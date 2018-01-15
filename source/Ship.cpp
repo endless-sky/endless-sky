@@ -2554,6 +2554,7 @@ void Ship::UnloadBays()
 	for(Bay &bay : bays)
 		if(bay.ship)
 		{
+			carriedMass -= bay.ship->Mass();
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetPlanet(landingPlanet);
 			bay.ship.reset();
