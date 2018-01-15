@@ -275,43 +275,6 @@ ship "Shield Beetle"
 	"final explode" "final explosion large"
 	description "This ship was first built millenia ago, near the end of a more violent time in Hai history. Since then, it has served as the only heavy warship at the disposal of the Hai. The Shield Beetle is a versatile warship used by the Hai to guard their merchant convoys, or by the Unfettered to attack those very same convoys."
 
-ship "Shield Beetle" "Shield Beetle (Tracker)"
-	outfits
-		"Hai Tracker Pod" 8
-		"Hai Tracker" 448
-		"Pulse Turret" 4
-		"Boulder Reactor"
-		"Geode Reactor"
-		"Hai Valley Batteries"
-		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 2
-		"Quantum Keystone"
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-		"Hyperdrive"
-
-ship "Shield Beetle" "Shield Beetle (Pulse)"
-	outfits
-		"Ion Cannon" 2
-		"Pulse Cannon" 6
-		"Pulse Turret" 4
-		"Boulder Reactor"
-		"Geode Reactor"
-		"Hai Ravine Batteries"
-		"Hai Diamond Regenerator" 2
-		"Hai Williwaw Cooling" 3
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-		"Hyperdrive"
-	gun "Ion Cannon"
-	gun "Ion Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-
 ship "Shield Beetle" "Shield Beetle (Jump)"
 	outfits
 		"Ion Cannon" 4
@@ -357,6 +320,43 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		`"Bufaer" Atomic Steering`
 		"Jump Drive"
 
+ship "Shield Beetle" "Shield Beetle (Pulse)"
+	outfits
+		"Ion Cannon" 2
+		"Pulse Cannon" 6
+		"Pulse Turret" 4
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator" 2
+		"Hai Williwaw Cooling" 3
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+
+ship "Shield Beetle" "Shield Beetle (Tracker)"
+	outfits
+		"Hai Tracker Pod" 8
+		"Hai Tracker" 448
+		"Pulse Turret" 4
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Valley Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Quantum Keystone"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+
 
 
 ship "Solifuge"
@@ -398,7 +398,7 @@ ship "Solifuge"
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
-		Hyperdrive
+		"Hyperdrive"
 			
 	engine -28 135.5
 	engine 28 135.5
@@ -427,44 +427,6 @@ ship "Solifuge"
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
 	description `Impressed by the Alpha's "Giftbringer", the Unfettered endeavoured to build their own fighter carrier to take more advantage of their supply of jump drives.`
-
-ship "Solifuge" "Solifuge (Pulse)"
-	outfits
-		"Ion Cannon" 2
-		"Pulse Cannon" 3
-		"Pulse Turret" 5
-		"Bullfrog Anti-Missile" 2
-		"Boulder Reactor" 2
-		"Hai Fissure Batteries"
-		"Hai Corundum Regenerator"
-		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 8
-		`"Benga" Atomic Steering`
-		`"Bufaer" Atomic Steering`
-		`"Bondir" Atomic Thruster`
-		Hyperdrive
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Ion Cannon"
-	gun "Ion Cannon"
-
-ship "Solifuge" "Solifuge (Tracker)"
-	outfits
-		"Hai Tracker Pod" 5
-		"Hai Tracker" 280
-		"Pulse Turret" 4
-		"Chameleon Anti-Missile"
-		"Bullfrog Anti-Missile" 2
-		"Boulder Reactor" 2
-		"Hai Gorge Batteries"
-		"Hai Corundum Regenerator"
-		"Hai Diamond Regenerator" 2
-		"Hai Williwaw Cooling" 6
-		`"Benga" Atomic Steering`
-		`"Bufaer" Atomic Steering`
-		`"Bondir" Atomic Thruster`
-		Hyperdrive
 
 ship "Solifuge" "Solifuge (Jump)"
 	outfits
@@ -520,6 +482,44 @@ ship "Solifuge" "Solifuge (Jump, Tracker)"
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Jump Drive"
+
+ship "Solifuge" "Solifuge (Pulse)"
+	outfits
+		"Ion Cannon" 2
+		"Pulse Cannon" 3
+		"Pulse Turret" 5
+		"Bullfrog Anti-Missile" 2
+		"Boulder Reactor" 2
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 8
+		`"Benga" Atomic Steering`
+		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		"Hyperdrive"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+
+ship "Solifuge" "Solifuge (Tracker)"
+	outfits
+		"Hai Tracker Pod" 5
+		"Hai Tracker" 280
+		"Pulse Turret" 4
+		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile" 2
+		"Boulder Reactor" 2
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator" 2
+		"Hai Williwaw Cooling" 6
+		`"Benga" Atomic Steering`
+		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		"Hyperdrive"
 
 
 
@@ -622,20 +622,6 @@ ship "Water Bug"
 	"final explode" "final explosion medium"
 	description "The design of the Water Bug is almost as old as the Aphid, but until recently it never saw much use. A spike in aggression from the Unfettered Hai has lead the tougher and more well-defended Water Bug to see an increase in popularity over its little brother, the Aphid. The Water Bug is now the most widely used Hai freighter, comprising the bulk of all Hai merchant fleets."
 
-ship "Water Bug" "Water Bug (Pulse)"
-	outfits
-		"Hai Tracker Pod" 2
-		"Hai Tracker" 112
-		"Pulse Turret" 3
-		"Geode Reactor"
-		"Hai Gorge Batteries"
-		"Hai Chasm Batteries"
-		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling"
-		`"Benga" Atomic Thruster`
-		`"Benga" Atomic Steering`
-		"Hyperdrive"
-
 ship "Water Bug" "Water Bug (Jump)"
 	outfits
 		"Hai Tracker Pod" 2
@@ -651,3 +637,17 @@ ship "Water Bug" "Water Bug (Jump)"
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Jump Drive"
+
+ship "Water Bug" "Water Bug (Pulse)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Pulse Turret" 3
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Chasm Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
