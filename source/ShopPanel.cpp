@@ -537,8 +537,10 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			FailBuy();
 		else
 		{
+			withoutBuying = (key == 'i');
 			Buy();
 			player.UpdateCargoCapacities();
+			withoutBuying = false;
 		}
 	}
 	else if(key == 's' || toCargo)

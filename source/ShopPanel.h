@@ -115,6 +115,8 @@ protected:
 	std::set<Ship *> playerShips;
 	const Ship *selectedShip = nullptr;
 	const Outfit *selectedOutfit = nullptr;
+	// If the outfit should come only from cargo, this flag is set.
+	bool withoutBuying = false;
 	
 	double mainScroll = 0.;
 	double sideScroll = 0.;
