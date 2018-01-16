@@ -122,7 +122,7 @@ FreeTypeGlyphs::FreeTypeGlyphs()
 	: vao(0), vbo(0), scaleI(0), centerI(0), sizeI(0), colorI(0),
 	  baseline(0.), space(0.),
 	  underscoreIndex(0), library(nullptr), face(nullptr),
-	  screenWidth(0), screenHeight(0), timestamp(time(nullptr))
+	  screenWidth(0), screenHeight(0)
 {
 }
 
@@ -130,6 +130,11 @@ FreeTypeGlyphs::FreeTypeGlyphs()
 
 FreeTypeGlyphs::~FreeTypeGlyphs()
 {
+	for(auto &it : cache)
+		if(it.second.texture)
+			glDeleteTextures(1, &it.second.texture);
+	cache.clear();
+	
 	if(face)
 		FT_Done_Face(face);
 	
@@ -238,14 +243,14 @@ void FreeTypeGlyphs::Draw(const string &str, double x, double y, const Color &co
 	
 	y += baseline;
 	RenderedText &text = Render(str, x, y, Font::ShowUnderlines());
-	if(!text.sprite)
+	if(!text.texture)
 		return;
 	
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
 	
 	// Update the texture.
-	glBindTexture(GL_TEXTURE_2D_ARRAY, text.sprite->Texture());
+	glBindTexture(GL_TEXTURE_2D, text.texture);
 	
 	// Update the scale, only if the screen size has changed.
 	if(Screen::Width() != screenWidth || Screen::Height() != screenHeight)
@@ -257,32 +262,20 @@ void FreeTypeGlyphs::Draw(const string &str, double x, double y, const Color &co
 	}
 	
 	// Update the center.
-	Point center = Point(floor(x), floor(y)) + text.offset;
+	Point center = Point(floor(x), floor(y)) + text.center;
 	glUniform2f(centerI, center.X(), center.Y());
 	
 	// Update the size.
-	glUniform2f(sizeI, text.sprite->Width(), text.sprite->Height());
+	glUniform2f(sizeI, text.width, text.height);
 	
 	// Update the color.
 	glUniform4fv(colorI, 1, color.Get());
 	
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	
-	glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
+	glBindTexture(GL_TEXTURE_2D, 0);
 	glBindVertexArray(0);
 	glUseProgram(0);
-	
-	// Once per minute erase from the cache text that has been unused for 10 minutes.
-	time_t now = time(nullptr);
-	if(difftime(now, timestamp) >= 60.)
-	{
-		for(auto it = cache.begin(); it != cache.end(); )
-			if(difftime(now, it->second.timestamp) >= 600.)
-				it = cache.erase(it);
-			else
-				++it;
-		timestamp = now;
-	}
 }
 
 
@@ -425,7 +418,7 @@ FreeTypeGlyphs::RenderedText &FreeTypeGlyphs::Render(const string &str, double x
 	if(showUnderlines && str.find('_') == string::npos)
 		showUnderlines = false;
 	
-	time_t timestamp = time(nullptr);
+	chrono::steady_clock::time_point timestamp = chrono::steady_clock::now();
 	FT_Vector origin = { To26Dot6(x - floor(x)), To26Dot6(ceil(y) - y) };
 	
 	// Return if already cached.
@@ -563,13 +556,43 @@ FreeTypeGlyphs::RenderedText &FreeTypeGlyphs::Render(const string &str, double x
 		FT_Done_Glyph(get<1>(underline));
 	underlines.clear();
 	
+	// Try to reuse an old texture.
+	GLuint texture = 0;
+	for(auto it = cache.begin(); !texture && it != cache.end(); ++it)
+		if(chrono::duration_cast<chrono::minutes>(timestamp - it->second.timestamp).count() >= 1)
+		{
+			texture = it->second.texture;
+			it = cache.erase(it);
+		}
+	
 	// Record rendered text.
 	RenderedText &text = cache[key];
-	text.sprite = make_shared<Sprite>(str);
-	text.offset.X() = .5 * buffer.image.Width() + bounds.xMin;
-	text.offset.Y() = .5 * buffer.image.Height() - bounds.yMax;
+	text.texture = texture;
+	text.width = buffer.image.Width();
+	text.height = buffer.image.Height();
+	text.center.X() = .5 * buffer.image.Width() + bounds.xMin;
+	text.center.Y() = .5 * buffer.image.Height() - bounds.yMax;
 	text.timestamp = timestamp;
-	text.sprite->AddFrames(buffer.image, false);
+	
+	// Upload the image as a texture.
+	if(!text.texture)
+		glGenTextures(1, &text.texture);
+	glBindTexture(GL_TEXTURE_2D, text.texture);
+	
+	// Use linear interpolation and no wrapping.
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	
+	// Upload the image data.
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, // target, mipmap level, internal format,
+		buffer.image.Width(), buffer.image.Height(), 0, // width, height, border,
+		GL_BGRA, GL_UNSIGNED_BYTE, buffer.image.Pixels()); // input format, data type, data.
+	
+	// Unbind the texture.
+	glBindTexture(GL_TEXTURE_2D, 0);
+	
 	return text;
 }
 
@@ -597,8 +620,8 @@ void FreeTypeGlyphs::SetUpShader()
 		"}\n";
 	
 	static const char *fragmentCode =
-		// Parameter: Texture array with the text in frame 0.
-		"uniform sampler2DArray tex;\n"
+		// Parameter: Texture with the text.
+		"uniform sampler2D tex;\n"
 		// Parameter: Color to apply to the text.
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
 		
@@ -609,7 +632,7 @@ void FreeTypeGlyphs::SetUpShader()
 		"out vec4 finalColor;\n"
 		
 		"void main() {\n"
-		"  finalColor = color * texture(tex, vec3(texCoord, 0));\n"
+		"  finalColor = color * texture(tex, texCoord);\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);

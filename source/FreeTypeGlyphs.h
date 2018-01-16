@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <freetype2/ft2build.h>
 #include FT_FREETYPE_H
 
+#include <chrono>
 #include <map>
 #include <memory>
 #include <string>
@@ -66,14 +67,14 @@ private:
 	
 	// Text rendered as a sprite.
 	struct RenderedText {
-		// Sprite with the rendered text.
-		// Frame 0 is normal text.
-		// Frame 1 is underlined text.
-		std::shared_ptr<Sprite> sprite;
+		// Texture with rendered text.
+		GLuint texture;
+		int width;
+		int height;
 		// Offset from the floored origin to the center of the sprite.
-		Point offset;
+		Point center;
 		// Last access time.
-		time_t timestamp;
+		std::chrono::steady_clock::time_point timestamp;
 	};
 	
 	
@@ -111,8 +112,6 @@ private:
 	
 	// Cache of rendered text.
 	mutable std::map<CacheKey,RenderedText> cache;
-	// Time stamp for removing entries from the cache.
-	mutable time_t timestamp;
 };
 
 
