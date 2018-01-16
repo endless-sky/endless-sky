@@ -130,7 +130,7 @@ int Font::Width(const string &str) const
 		return 0;
 	
 	string buf = ReplaceCharacters(str);
-	return source->Width(buf);
+	return ceil(source->Width(buf));
 }
 
 
@@ -230,7 +230,7 @@ int Font::Height() const
 	if(!source)
 		return 0;
 	
-	return source->LineHeight();
+	return ceil(source->LineHeight());
 }
 
 
@@ -240,7 +240,7 @@ int Font::Space() const
 	if(!source)
 		return 0;
 	
-	return round(source->Space());
+	return ceil(source->Space());
 }
 
 

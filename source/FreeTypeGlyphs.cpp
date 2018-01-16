@@ -218,13 +218,13 @@ bool FreeTypeGlyphs::Load(const string &path, int size)
 	// Get the glyph index of an underscore for underlines.
 	underscoreIndex = FT_Get_Char_Index(face, '_');
 	
-	// Get the advance of a space, rounded to the next pixel.
+	// Get the advance of a space.
 	space = 0.;
 	error = FT_Load_Char(face, ' ', FT_LOAD_NO_HINTING | FT_LOAD_NO_AUTOHINT | FT_LOAD_NO_BITMAP);
 	if(error != FT_Err_Ok)
 		LogError("FT_Load_Char(' ')", error);
 	else
-		space = ceil(From16Dot16(face->glyph->linearHoriAdvance));
+		space = From16Dot16(face->glyph->linearHoriAdvance);
 	
 	return true;
 }
