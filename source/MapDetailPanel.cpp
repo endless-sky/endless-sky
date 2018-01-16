@@ -442,7 +442,7 @@ void MapDetailPanel::DrawInfo()
 				// The same "planet" may appear multiple times in one system,
 				// providing multiple landing and departure points (e.g. ringworlds).
 				const Planet *planet = object.GetPlanet();
-				if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
+				if(planet->IsWormhole() || shown.count(planet))
 					continue;
 				shown.insert(planet);
 				
@@ -480,9 +480,10 @@ void MapDetailPanel::DrawInfo()
 						10., 10., 0., medium);
 				
 				bool hasVisited = player.HasVisited(planet);
-				font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)",
+				bool isAccessible = planet->IsAccessible(player.Flagship());
+				font.Draw(!isAccessible ? "(Inaccessible)" : hasVisited ? "(has been visited)" : "(not yet visited)",
 					uiPoint + Point(-70., 28.),
-					dim);
+					isAccessible ? dim : medium);
 				if(commodity == SHOW_VISITED)
 					PointerShader::Draw(uiPoint + Point(-70., 35.), Point(1., 0.),
 						10., 10., 0., medium);
