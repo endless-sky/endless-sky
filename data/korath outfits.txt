@@ -95,10 +95,10 @@ outfit "Fuel Station (Large)"
 	category "Systems"
 	cost 690000
 	thumbnail "outfit/unknown"
-	"mass" 32
-	"outfit space" -32
+	"mass" 30
+	"outfit space" -30
 	"fuel capacity" 400
-	"ramscoop" 2
+	"ramscoop" 1
 	description "Because of their habit of raiding systems near and far, Korath ships need a considerable amount of hyperspace fuel for their jump drives. The Fuel Station is a bulky fuel storage that has both a large capacity and a ramscoop to harvest additional fuel."
 
 outfit "Fuel Station (Small)"
@@ -108,7 +108,7 @@ outfit "Fuel Station (Small)"
 	"mass" 9
 	"outfit space" -9
 	"fuel capacity" 100
-	"ramscoop" .5
+	"ramscoop" .25
 	description "This is the smaller version of the bulky fuel station used in World-Ships."
 
 outfit "Systems Core (Small)"
