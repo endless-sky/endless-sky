@@ -255,7 +255,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 				selectedPlanet = it.first;
 			}
 		}
-		if(selectedPlanet && player.Flagship())
+		if(selectedPlanet && player.Flagship() && selectedPlanet->IsAccessible(player.Flagship()))
 			player.SetTravelDestination(selectedPlanet);
 		
 		return true;
