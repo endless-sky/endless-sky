@@ -409,16 +409,30 @@ const Planet *Mission::Destination() const
 
 
 
-set<const System *> Mission::Waypoints() const
+const set<const System *> &Mission::Waypoints() const
 {
 	return waypoints;
 }
 
 
 
-set<const Planet *> Mission::Stopovers() const
+const set<const System *> &Mission::VisitedWaypoints() const
+{
+	return visitedWaypoints;
+}
+
+
+
+const set<const Planet *> &Mission::Stopovers() const
 {
 	return stopovers;
+}
+
+
+
+const set<const Planet *> &Mission::VisitedStopovers() const
+{
+	return visitedStopovers;
 }
 
 
