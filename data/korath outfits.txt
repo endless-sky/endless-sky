@@ -98,7 +98,7 @@ outfit "Fuel Collector"
 	"mass" 20
 	"outfit space" -20
 	"fuel capacity" 200
-	"ramscoop" 0.5
+	"ramscoop" 1
 	description "Because of their habit of raiding systems near and far, Korath ships need a considerable amount of hyperspace fuel for their jump drives. The Fuel Collector is a bulky system that has both a ramscoop to harvest additional fuel and a large capacity to store it."
 
 outfit "Systems Core (Small)"
