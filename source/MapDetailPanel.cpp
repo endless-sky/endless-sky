@@ -630,7 +630,7 @@ void MapDetailPanel::DrawOrbits()
 			continue;
 		
 		Point pos = orbitCenter + object.Position() * scale;
-		if(object.GetPlanet() && object.GetPlanet()->IsAccessible(player.Flagship()))
+		if(object.GetPlanet() && (object.GetPlanet()->IsAccessible(player.Flagship()) || player.HasVisited(object.GetPlanet())))
 			planets[object.GetPlanet()] = pos;
 		
 		const float *rgb = Radar::GetColor(object.RadarType(player.Flagship())).Get();
