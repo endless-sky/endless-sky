@@ -71,7 +71,7 @@ private:
 	void SetText(const char *it, size_t length);
 	void Wrap();
 	void AdjustLine(unsigned &lineBegin, int &lineWidth, bool isEnd);
-	int Space(char c) const;
+	int Space(char32_t c) const;
 	
 	
 private:

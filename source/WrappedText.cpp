@@ -219,15 +219,16 @@ void WrappedText::Wrap()
 	// would require a different format for the buffer, though, because it means
 	// inserting '\0' characters even where there is no whitespace.
 	
-	for(string::iterator it = text.begin(); it != text.end(); ++it)
+	for(size_t pos = 0; pos < text.length(); )
 	{
-		char c = *it;
+		char32_t c = Font::DecodeCodePoint(text, pos);
+		size_t next = Font::NextCodePoint(text, pos);
 		
 		// Whenever we encounter whitespace, the current word needs wrapping.
 		if(c <= ' ' && hasWord)
 		{
 			// Break the string at this point, and measure the word's width.
-			*it = '\0';
+			text[pos] = '\0';
 			int width = font->Width(text.c_str() + word.index);
 			if(word.x + width > wrapWidth)
 			{
@@ -263,8 +264,9 @@ void WrappedText::Wrap()
 		else if(!hasWord)
 		{
 			hasWord = true;
-			word.index = it - text.begin();
+			word.index = pos;
 		}
+		pos = next;
 	}
 	// Handle the final word.
 	if(hasWord)
@@ -317,7 +319,7 @@ void WrappedText::AdjustLine(unsigned &lineBegin, int &lineWidth, bool isEnd)
 
 
 
-int WrappedText::Space(char c) const
+int WrappedText::Space(char32_t c) const
 {
 	return (c == ' ') ? space : (c == '\t') ? tabWidth : 0;
 }
