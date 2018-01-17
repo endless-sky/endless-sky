@@ -310,51 +310,63 @@ outfit "Pug Biodefenses"
 	"capture defense" 250
 	"unplunderable" 1
 	description "This defense system is designed to release a suite of toxins that are lethal to human beings (and probably to some other species, as well) but which have no effect at all on the Pug."
+	
 
-
-ship "Pug Zibruka"
-	sprite "ship/pug zibruka"
+ship "Pug Arfecta"
+	sprite "ship/pug arfecta"
 	attributes
-		category "Light Warship"
-		"cost" 1900000
-		"shields" 4000
-		"hull" 1000
-		"required crew" 4
-		"bunks" 6
-		"mass" 240
-		"drag" 3.1
+		category "Medium Warship"
+		"cost" 90000000
+		"shields" 98000
+		"hull" 80000
+		"required crew" 36
+		"bunks" 46
+		"mass" 670
+		"drag" 7.5
 		"heat dissipation" .8
-		"fuel capacity" 600
-		"cargo space" 20
-		"outfit space" 180
-		"weapon capacity" 68
-		"engine capacity" 76
-		"energy generation" 10
-		"shield generation" 6
-		"shield energy" 6
-		"heat generation" 20
-		"energy capacity" 1000
+		"fuel capacity" 1200
+		"cargo space" 64
+		"outfit space" 640
+		"weapon capacity" 390
+		"engine capacity" 220
+		"energy generation" 200
+		"shield generation" 32
+		"shield energy" 32
+		"hull repair rate" 5
+		"hull energy" 5
+		"heat generation" 10
+		"energy capacity" 10000
+		"cloaking fuel" -.2
 		weapon
-			"blast radius" 100
-			"shield damage" 400
-			"hull damage" 200
-			"hit force" 600
+			"blast radius" 320
+			"shield damage" 9000
+			"hull damage" 4500
+			"hit force" 7000
 	outfits
-		"Pug Zapper" 2
-		"Pug Biodefenses" 4
+		"Tier 3 Anti-Missile" 2
+		"Pug Gridfire Turret" 3
+		
+		"Cloaking Device"
+		"Pug Biodefenses" 12
+		
+		"Pug Lohmar Thruster"
+		"Pug Lohmar Steering"
+		"Pug Lohmar Steering"
 		"Jump Drive"
-		"Pug Akfar Thruster"
-		"Pug Akfar Steering"
-	engine -7 35
-	engine 7 35
-	gun -15 -42 "Pug Zapper"
-	gun 15 -42 "Pug Zapper"
-	explode "tiny explosion" 10
-	explode "small explosion" 15
-	explode "medium explosion" 20
+	
+	engine -15 164
+	engine 15 164
+	turret -50 -29 "Tier 3 Anti-Missile"
+	turret 50 -29 "Tier 3 Anti-Missile"
+	turret 0 40 "Pug Gridfire Turret"
+	turret -73 84 "Pug Gridfire Turret"
+	turret 73 84 "Pug Gridfire Turret"
+	explode "tiny explosion" 100
+	explode "small explosion" 60
+	explode "medium explosion" 30
 	explode "large explosion" 10
-	"final explode" "final explosion small"
-	description "The Zibruka is the smallest Pug ship that you know of."
+	"final explode" "final explosion large"
+	description `This is a Pug "tier 3" warship, intended for use in combat against either a species on par with the Quarg, or a lesser species that has decided to be particularly meddlesome.`
 
 ship "Pug Enfolta"
 	sprite "ship/pug enfolta"
@@ -456,61 +468,49 @@ ship "Pug Maboro"
 	"final explode" "final explosion large"
 	description "This is the largest Pug warship."
 
-ship "Pug Arfecta"
-	sprite "ship/pug arfecta"
+ship "Pug Zibruka"
+	sprite "ship/pug zibruka"
 	attributes
-		category "Medium Warship"
-		"cost" 90000000
-		"shields" 98000
-		"hull" 80000
-		"required crew" 36
-		"bunks" 46
-		"mass" 670
-		"drag" 7.5
+		category "Light Warship"
+		"cost" 1900000
+		"shields" 4000
+		"hull" 1000
+		"required crew" 4
+		"bunks" 6
+		"mass" 240
+		"drag" 3.1
 		"heat dissipation" .8
-		"fuel capacity" 1200
-		"cargo space" 64
-		"outfit space" 640
-		"weapon capacity" 390
-		"engine capacity" 220
-		"energy generation" 200
-		"shield generation" 32
-		"shield energy" 32
-		"hull repair rate" 5
-		"hull energy" 5
-		"heat generation" 10
-		"energy capacity" 10000
-		"cloaking fuel" -.2
+		"fuel capacity" 600
+		"cargo space" 20
+		"outfit space" 180
+		"weapon capacity" 68
+		"engine capacity" 76
+		"energy generation" 10
+		"shield generation" 6
+		"shield energy" 6
+		"heat generation" 20
+		"energy capacity" 1000
 		weapon
-			"blast radius" 320
-			"shield damage" 9000
-			"hull damage" 4500
-			"hit force" 7000
+			"blast radius" 100
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 600
 	outfits
-		"Tier 3 Anti-Missile" 2
-		"Pug Gridfire Turret" 3
-		
-		"Cloaking Device"
-		"Pug Biodefenses" 12
-		
-		"Pug Lohmar Thruster"
-		"Pug Lohmar Steering"
-		"Pug Lohmar Steering"
+		"Pug Zapper" 2
+		"Pug Biodefenses" 4
 		"Jump Drive"
-	
-	engine -15 164
-	engine 15 164
-	turret -50 -29 "Tier 3 Anti-Missile"
-	turret 50 -29 "Tier 3 Anti-Missile"
-	turret 0 40 "Pug Gridfire Turret"
-	turret -73 84 "Pug Gridfire Turret"
-	turret 73 84 "Pug Gridfire Turret"
-	explode "tiny explosion" 100
-	explode "small explosion" 60
-	explode "medium explosion" 30
+		"Pug Akfar Thruster"
+		"Pug Akfar Steering"
+	engine -7 35
+	engine 7 35
+	gun -15 -42 "Pug Zapper"
+	gun 15 -42 "Pug Zapper"
+	explode "tiny explosion" 10
+	explode "small explosion" 15
+	explode "medium explosion" 20
 	explode "large explosion" 10
-	"final explode" "final explosion large"
-	description `This is a Pug "tier 3" warship, intended for use in combat against either a species on par with the Quarg, or a lesser species that has decided to be particularly meddlesome.`
+	"final explode" "final explosion small"
+	description "The Zibruka is the smallest Pug ship that you know of."
 
 
 
