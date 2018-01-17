@@ -242,7 +242,7 @@ outfit "Emergency Ramscoop"
 	thumbnail "outfit/emergency ramscoop"
 	"mass" 4
 	"outfit space" -4
-	"ramscoop" 0.5
+	"ramscoop" 0.8
 	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. This ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
 
 
