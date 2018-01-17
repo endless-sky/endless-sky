@@ -150,7 +150,7 @@ outfit "Command Center"
 
 outfit "Fuel Processor"
 	category "Systems"
-	cost 500000
+	cost 400000
 	thumbnail "outfit/unknown"
 	"mass" 14
 	"outfit space" -14
