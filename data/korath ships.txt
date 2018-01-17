@@ -75,7 +75,7 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
-		"Ramscoop"
+		"Korath Fuel Processor"
 		"Korath Repeater Rifle" 196
 		
 		"Thruster (Planetary Class)"
@@ -216,7 +216,7 @@ ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
-		"Ramscoop"
+		"Korath Fuel Processor"
 		"Korath Repeater Rifle" 150
 		
 		"Thruster (Planetary Class)"
@@ -242,7 +242,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
-		"Ramscoop"
+		"Korath Fuel Processor"
 		"Korath Repeater Rifle" 150
 		
 		"Thruster (Planetary Class)"
@@ -268,7 +268,7 @@ ship "Korath World-Ship" "Korath World-Ship C (Jump)"
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
-		"Ramscoop"
+		"Korath Fuel Processor"
 		"Korath Repeater Rifle" 150
 		
 		"Thruster (Planetary Class)"
