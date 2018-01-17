@@ -67,9 +67,9 @@ public:
 	// For tracking a combination of outfits in a ship: add the given number of
 	// instances of the given outfit to this outfit.
 	void Add(const Outfit &other, int count = 1);
-	// Modify this outfit's attributes.
-	void Add(const char *attribute, double value = 1.);
-	void Reset(const char *attribute, double value = 0.);
+	// Modify this outfit's attributes. Note that this cannot be used to change
+	// special attributes, like cost and mass.
+	void Set(const char *attribute, double value);
 	
 	// Get this outfit's engine flare sprites, if any.
 	const std::vector<std::pair<Body, int>> &FlareSprites() const;
