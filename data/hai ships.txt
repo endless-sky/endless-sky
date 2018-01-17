@@ -122,6 +122,7 @@ ship "Centipede" "Centipede (Pulse)"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 5
 		"Quantum Keystone"
+		"Pulse Rifle" 24
 		`"Biroo" Atomic Thruster`
 		`"Basrem" Atomic Steering`
 		`"Biroo" Atomic Steering`
@@ -229,6 +230,7 @@ ship "Geocoris" "Geocoris (Tracker)"
 		"Hai Williwaw Cooling" 7
 		"Tracker Storage Pod" 3
 		"Quantum Keystone"
+		"Pulse Rifle" 14
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		Hyperdrive
@@ -286,6 +288,7 @@ ship "Grasshopper" "Grasshopper (Tracker)"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling" 2
 		"Quantum Keystone"
+		"Pulse Rifle"
 		`"Basrem" Atomic Thruster`
 		`"Basrem" Atomic Steering`
 		Hyperdrive
