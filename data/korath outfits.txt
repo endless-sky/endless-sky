@@ -150,13 +150,13 @@ outfit "Command Center"
 
 outfit "Korath Fuel Processor"
 	category "Systems"
-	cost 240000
+	cost 400000
 	thumbnail "outfit/unknown"
-	"mass" 18
-	"outfit space" -18
+	"mass" 14
+	"outfit space" -14
 	"fuel capacity" 200
 	"ramscoop" 2
-	description "The Korath perfected the art of being self-sufficient. This is a miniaturized Korath fuel refinery for use in capital ships, complete with a small ramscoop and a large storage tank."
+	description "Since the dawn of spaceflight the Korath have probably spent more time on military campaigns than at home, so they needed their fleets to have an ample range. This is a miniaturized Korath fuel refinery for use in expeditionary capital ships, complete with a small ramscoop and a large storage tank."
 
 outfit "Reasoning Node"
 	category "Systems"
