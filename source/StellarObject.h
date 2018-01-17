@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define STELLAR_OBJECT_H_
 
 #include "Body.h"
+#include "PlayerInfo.h"
 #include "Point.h"
 
 class Color;
@@ -55,7 +56,7 @@ public:
 	const std::string &LandingMessage() const;
 	
 	// Get the radar color to be used for displaying this object.
-	int RadarType(const Ship *ship) const;
+	int RadarType(const PlayerInfo &player) const;
 	// Check if this is a star.
 	bool IsStar() const;
 	// Check if this is a station.

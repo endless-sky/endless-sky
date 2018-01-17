@@ -635,7 +635,7 @@ void MapDetailPanel::DrawOrbits()
 		if(object.GetPlanet() && (object.GetPlanet()->IsAccessible(player.Flagship()) || player.HasVisited(object.GetPlanet())))
 			planets[object.GetPlanet()] = pos;
 		
-		const float *rgb = Radar::GetColor(object.RadarType(player.Flagship())).Get();
+		const float *rgb = Radar::GetColor(object.RadarType(player)).Get();
 		// Darken and saturate the color, and make it opaque.
 		Color color(max(0., rgb[0] * 1.2 - .2), max(0., rgb[1] * 1.2 - .2), max(0., rgb[2] * 1.2 - .2), 1.);
 		RingShader::Draw(pos, object.Radius() * scale + 1., 0., color);

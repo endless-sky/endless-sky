@@ -185,7 +185,7 @@ Engine::Engine(PlayerInfo &player)
 			draw[calcTickTock].Add(object);
 			
 			double r = max(2., object.Radius() * .03 + .5);
-			radar[calcTickTock].Add(object.RadarType(flagship), object.Position(), r, r - 1.);
+			radar[calcTickTock].Add(object.RadarType(player), object.Position(), r, r - 1.);
 		}
 	
 	// Add all neighboring systems to the radar.
@@ -1413,7 +1413,7 @@ void Engine::FillCollisionSets()
 
 
 
-// At random intervals, crete new fleets in neighboring systems or coming from
+// At random intervals, create new fleets in neighboring systems or coming from
 // planets in the current one.
 void Engine::SpawnFleets()
 {
@@ -1838,7 +1838,7 @@ void Engine::FillRadar()
 		if(object.HasSprite())
 		{
 			double r = max(2., object.Radius() * .03 + .5);
-			radar[calcTickTock].Add(object.RadarType(flagship), object.Position(), r, r - 1.);
+			radar[calcTickTock].Add(object.RadarType(player), object.Position(), r, r - 1.);
 		}
 	
 	// Add pointers for neighboring systems.

@@ -89,13 +89,13 @@ const string &StellarObject::LandingMessage() const
 
 
 // Get the color to be used for displaying this object.
-int StellarObject::RadarType(const Ship *ship) const
+int StellarObject::RadarType(const PlayerInfo &player) const
 {
 	if(IsStar())
 		return Radar::SPECIAL;
-	else if(!planet)
+	else if(!planet || !(planet->IsAccessible(player.Flagship()) || player.HasVisited(planet)))
 		return Radar::INACTIVE;
-	else if(!planet->IsAccessible(ship))
+	else if(!planet->IsAccessible(player.Flagship()))
 		return Radar::INACCESSIBLE;
 	else if(planet->IsWormhole())
 		return Radar::ANOMALOUS;
