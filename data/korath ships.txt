@@ -25,7 +25,7 @@ ship "Korath Raider"
 		"outfit space" 741
 		"weapon capacity" 284
 		"engine capacity" 159
-		"ramscoop" .5
+		"ramscoop" 1
 		weapon
 			"blast radius" 250
 			"shield damage" 3600
@@ -147,7 +147,7 @@ ship "Korath World-Ship"
 		"outfit space" 828
 		"weapon capacity" 314
 		"engine capacity" 165
-		"ramscoop" .5
+		"ramscoop" 1
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
