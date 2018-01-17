@@ -657,6 +657,9 @@ void MapPanel::DrawTravelPlan()
 // Communicate the location of non-destroyed, player-owned ships.
 void MapPanel::DrawEscorts()
 {
+	if(!Preferences::Has("Show escort systems on map"))
+		return;
+	
 	// Fill in the center of any (non-flagship) escort system.
 	const Color &presence = *GameData::Colors().Get("map link");
 	double zoom = Zoom();
