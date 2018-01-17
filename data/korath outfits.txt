@@ -148,7 +148,6 @@ outfit "Command Center"
 	"automaton" -1
 	description "In response to occasional raids by the robotic war machines left behind after their recent conflict, the Kor Efret have developed this minimal, spartan command center that can be installed in a captured robotic ship to allow a pilot to override the AI and interface with the ship's controls. The command center only provides a single bunk for the captain, so more may be necessary if the ship has turrets or other systems that require crew."
 
-
 outfit "Korath Fuel Processor"
 	category "Systems"
 	cost 240000
@@ -158,7 +157,6 @@ outfit "Korath Fuel Processor"
 	"fuel capacity" 200
 	"ramscoop" 2
 	description "The Korath perfected the art of being self-sufficient. This is a miniaturized Korath fuel refinery for use in capital ships, complete with a small ramscoop and a large storage tank."
-
 
 outfit "Reasoning Node"
 	category "Systems"
