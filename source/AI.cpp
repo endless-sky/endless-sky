@@ -394,8 +394,11 @@ void AI::Step(const PlayerInfo &player)
 					Deploy(*it, !(it->IsYours() && fightersRetreat));
 				}
 				// Avoid jettisoning cargo as soon as this ship is repaired.
-				double &threshold = appeasmentThreshold[it.get()];
-				threshold = max((1. - health) + .1, threshold);
+				if(personality.IsAppeasing())
+				{
+					double &threshold = appeasmentThreshold[it.get()];
+					threshold = max((1. - health) + .1, threshold);
+				}
 				continue;
 			}
 		}
@@ -452,13 +455,13 @@ void AI::Step(const PlayerInfo &player)
 					// "Appeasing" ships will dump some fraction of their cargo.
 					int toDump = 11 + (1. - health) * .5 * it->Cargo().Size();
 					for(const auto &commodity : it->Cargo().Commodities())
-					{
-						it->Jettison(commodity.first, min(commodity.second, toDump));
-						toDump -= commodity.second;
-						if(toDump <= 0)
-							break;
-					}
-					Messages::Add(it->GetGovernment()->GetName() + " ship \"" + it->Name()
+						if(commodity.second && toDump > 0)
+						{
+							int dumped = min(commodity.second, toDump);
+							it->Jettison(commodity.first, dumped);
+							toDump -= dumped;
+						}
+					Messages::Add(gov->GetName() + " " + it->Noun() + " \"" + it->Name()
 						+ "\": Please, just take my cargo and leave me alone.");
 					threshold = (1. - health) + .1;
 				}
@@ -2721,18 +2724,21 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		set<const Planet *> destinations;
 		Date deadline;
 		const Planet *bestDestination = nullptr;
-		int count = 0;
+		size_t missions = 0;
 		for(const Mission &mission : player.Missions())
 		{
 			// Don't include invisible missions in the check.
 			if(!mission.IsVisible())
 				continue;
 			
-			if(mission.Destination() && mission.Destination()->IsInSystem(system)
+			// If the accessible destination of a mission is in this system, and you've been
+			// to all waypoints and stopovers (i.e. could complete it), consider landing on it.
+			if(mission.Stopovers().empty() && mission.Waypoints().empty()
+					&& mission.Destination()->IsInSystem(system)
 					&& mission.Destination()->IsAccessible(&ship))
 			{
 				destinations.insert(mission.Destination());
-				++count;
+				++missions;
 				// If this mission has a deadline, check if it is the soonest
 				// deadline. If so, this should be your ship's destination.
 				if(!deadline || (mission.Deadline() && mission.Deadline() < deadline))
@@ -2746,7 +2752,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 				if(planet->IsInSystem(system) && planet->IsAccessible(&ship))
 				{
 					destinations.insert(planet);
-					++count;
+					++missions;
 					if(!bestDestination)
 						bestDestination = planet;
 				}
@@ -2756,9 +2762,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		if(!destinations.empty())
 		{
 			string message = "Note: you have ";
-			message += (count == 1 ? "a mission that requires" : "missions that require");
+			message += (missions == 1 ? "a mission that requires" : "missions that require");
 			message += " landing on ";
-			count = destinations.size();
+			size_t count = destinations.size();
 			bool oxfordComma = (count > 2);
 			for(const Planet *planet : destinations)
 			{

@@ -311,8 +311,6 @@ void Ship::FinishLoading(bool isNewInstance)
 			customSwizzle = base->CustomSwizzle();
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
-		if(baseAttributes.Mass() == 0.)
-			baseAttributes.Reset("mass", base->baseAttributes.Mass());
 		if(bays.empty() && !base->bays.empty())
 			bays = base->bays;
 		if(enginePoints.empty())
@@ -378,21 +376,6 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament = merged;
 		}
 	}
-	// Check that the ship's chassis has a mass.
-	// And if not, use the chassis mass of the ship's model.
-	if(baseAttributes.Mass() == 0.)
-	{
-		if(GameData::Ships().Has(modelName))
-		{
-			const Ship *model = GameData::Ships().Get(modelName);
-			baseAttributes.Reset("mass", model->BaseAttributes().Mass());
-		}
-
-		cerr << modelName;
-		if(!name.empty())
-			cerr << " \"" << name << "\"";
-		cerr << ": ship's chassis has no mass" << (baseAttributes.Mass() ? "; using model's chassis mass." : ".") << endl;
-	}
 	// Check that all the "equipped" weapons actually match what your ship
 	// has, and that they are truly weapons. Remove any excess weapons and
 	// warn if any non-weapon outfits are "installed" in a hardpoint.
@@ -426,10 +409,10 @@ void Ship::FinishLoading(bool isNewInstance)
 	// Mark any drone that has no "automaton" value as an automaton, to
 	// grandfather in the drones from before that attribute existed.
 	if(baseAttributes.Category() == "Drone" && !baseAttributes.Get("automaton"))
-		baseAttributes.Add("automaton", 1.);
+		baseAttributes.Set("automaton", 1.);
 	
-	baseAttributes.Reset("gun ports", armament.GunCount());
-	baseAttributes.Reset("turret mounts", armament.TurretCount());
+	baseAttributes.Set("gun ports", armament.GunCount());
+	baseAttributes.Set("turret mounts", armament.TurretCount());
 	
 	if(addAttributes)
 	{
@@ -2554,6 +2537,7 @@ void Ship::UnloadBays()
 	for(Bay &bay : bays)
 		if(bay.ship)
 		{
+			carriedMass -= bay.ship->Mass();
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetPlanet(landingPlanet);
 			bay.ship.reset();
