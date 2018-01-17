@@ -96,7 +96,7 @@ public:
 		// Return the string length when there are no more code points.
 		virtual size_t FindUnsupported(const std::string &str, size_t pos = 0) const = 0;
 		
-		// Set up the shader that will draw the text.
+		// Set up the shader that will draw the text. Called after the window is set up.
 		virtual void SetUpShader() = 0;
 	};
 	

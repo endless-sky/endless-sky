@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define ATLAS_GLYPHS_H_
 
 #include "Font.h"
+#include "ImageBuffer.h"
 #include "Shader.h"
 
 #include "gl_header.h"
@@ -21,7 +22,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 class Color;
-class ImageBuffer;
 
 
 
@@ -44,8 +44,8 @@ public:
 	
 private:
 	static int Glyph(char32_t c);
-	void LoadTexture(ImageBuffer &image);
-	void CalculateAdvances(ImageBuffer &image);
+	void LoadTexture();
+	void CalculateAdvances();
 	
 	
 private:
@@ -69,6 +69,7 @@ private:
 	float glyphH;
 	static const int GLYPHS = 98;
 	int advance[GLYPHS * GLYPHS];
+	ImageBuffer image;
 };
 
 

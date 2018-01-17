@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "Font.h"
-#include "ImageBuffer.h"
 #include "Point.h"
 #include "Screen.h"
 
@@ -80,13 +79,12 @@ AtlasGlyphs::AtlasGlyphs()
 
 bool AtlasGlyphs::Load(const string &imagePath)
 {
-	// Load the texture.
-	ImageBuffer image;
+	// Load the image.
+	image.Clear();
 	if(!image.Read(imagePath))
 		return false;
 	
-	LoadTexture(image);
-	CalculateAdvances(image);
+	CalculateAdvances();
 	glyphW = .5f * image.Width() / GLYPHS;
 	glyphH = .5f * image.Height();
 	return true;
@@ -254,7 +252,7 @@ int AtlasGlyphs::Glyph(char32_t c)
 
 
 
-void AtlasGlyphs::LoadTexture(ImageBuffer &image)
+void AtlasGlyphs::LoadTexture()
 {
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
@@ -270,7 +268,7 @@ void AtlasGlyphs::LoadTexture(ImageBuffer &image)
 
 
 
-void AtlasGlyphs::CalculateAdvances(ImageBuffer &image)
+void AtlasGlyphs::CalculateAdvances()
 {
 	// Get the format and size of the surface.
 	int width = image.Width() / GLYPHS;
@@ -334,6 +332,8 @@ void AtlasGlyphs::CalculateAdvances(ImageBuffer &image)
 
 void AtlasGlyphs::SetUpShader()
 {
+	LoadTexture();
+	image.Clear();
 	
 	shader = Shader(vertexCode, fragmentCode);
 	glUseProgram(shader.Object());
