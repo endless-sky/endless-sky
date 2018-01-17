@@ -18,6 +18,12 @@ mission "Intro [0]"
 	destination "New Greenland"
 	
 	on offer
+		log "Finally scraped together enough money for a down payment on a starship. The interest on the mortgage is exorbitant."
+		log "Factions" "Republic" `Hundreds of years ago, the independent territories in different parts of human space agreed to join together into a single democratic government, with Earth as its capital. The rise of the Republic ushered in a long period of peace and prosperity in human history.`
+			`Representation in the Republic Parliament is based on population. That means that some individual "Paradise Worlds" have more representatives than entire regions of space like the Dirt Belt that are more sparsely settled.`
+		log "Factions" "Syndicate" `The Syndicate is a megacorporation, the largest employer in human space. People who cannot find steady work elsewhere flock to the Syndicate factory worlds, where they are almost guaranteed to find a job. Although the Syndicate is technically part of the Republic, Syndicate worlds are governed directly by the corporation.`
+			`The Syndicate is a central part of the Republic's economy, but they are also well known for selling shoddy products and for doing damage to the environment on the worlds they control. Their treatment of workers is questionable, and their opposition to organized labor is legendary. Some Syndicate factory towns have even been accused of human rights abuses.`
+		log "Factions" "Pirates" `In poorer and more remote star systems, where the Navy seldom patrols, pirate attacks on merchant ships are frequent. Pirates are also known to attack large, unguarded convoys of freighters even in more populated areas. Most pirate fleets come from lawless worlds on the outskirts of human space.`
 		conversation
 			`With some trepidation, you give the shipyard owner your money and take your new ship for a test drive, piloting it out of the shipyard and onto a spare landing pad by the spaceport. Then you get out and look the ship over a bit more closely. You are busy polishing out a few rust spots with a piece of steel wool when an old man in grease-stained coveralls walks up.`
 			`	"Nothing quite like buying your very first starship," he says.`
@@ -59,6 +65,9 @@ mission "Intro [0]"
 			`	As you're helping him wheel his luggage aboard and showing him his bunk, he says, "Before we take off, you might head on over to the trading center and stock up on medical goods; we can sell those for a good profit on <planet>. Or take a look at the outfitter if you like, but they don't sell much here compared to on the big manufacturing worlds."`
 				accept
 	
+	on accept
+		log "Getting some basic instructions on making a living as a merchant from an old captain named James."
+	
 	on complete
 		payment 10000
 		conversation
@@ -67,7 +76,7 @@ mission "Intro [0]"
 			`	"Yeah, and then spent half an hour in orbit cleaning my cabin while hoping the passengers wouldn't come out of their bunk room and see the mess. Not my proudest moment. Anyway, here's your pay." He hands you <payment>.`
 			`	Then he adds, "If you're okay with giving me a lift for a while longer, sell off any of that cargo you bought and then meet me in the spaceport. I'll see if I can rustle up any interesting work for you to do."`
 			``
-			`	(Click the "Space Port" button to continue this mission.)`
+			`	(Click the "Spaceport" button to continue this mission.)`
 
 
 
@@ -104,7 +113,7 @@ mission "Intro [1 Transport]"
 			`	You say goodbye to them and wish them well, and as agreed they pay you <payment>. You are already well on your way towards paying down your mortgage!`
 			`	As James leaves the ship, he says, "Again, if you're okay with continuing to give me a ride, just meet me in the spaceport."`
 			``
-			`	(As before, click the "Space Port" button to continue this mission.)`
+			`	(As before, click the "Spaceport" button to continue this mission.)`
 
 
 
@@ -163,6 +172,7 @@ mission "Intro [3 Transport]"
 	
 	on complete
 		payment 30000
+		log "Dropped James off on Hestia after running a few missions with him. Met a few spoiled tourists and got to visit Earth along the way."
 		conversation "end of intro missions"
 
 
@@ -210,7 +220,7 @@ mission "Intro [1 Freighter]"
 			label port
 			`	He picks up his suitcase. "If you want to run another mission with me, look for me in the spaceport. I'll see if I can find you something with a bit higher profit margin this time."`
 			``
-			`	(As before, click the "Space Port" button to continue this mission.)`
+			`	(As before, click the "Spaceport" button to continue this mission.)`
 
 
 
@@ -291,6 +301,7 @@ mission "Intro [3 Freighter]"
 	
 	on complete
 		payment 30000
+		log "Dropped James off on Hestia after running a few missions with him. Ship still smells like fish."
 		conversation "end of intro missions"
 
 
@@ -335,7 +346,7 @@ mission "Intro [1 Interceptor]"
 			`The captain of the Horn of Plenty hands you <payment> and thanks you for your escort services. From the expression on his face, you'd guess that he's feeling lucky to still be alive after entrusting the safety of his fleet to a rookie pilot like yourself.`
 			`	After he is gone, James turns to you and says, "Not too bad for your first escort mission. If you've still got a hankering for some dangerous missions, come and find me in the spaceport before you leave." He picks up his suitcase and heads outside.`
 			``
-			`	(As before, click the "Space Port" button to continue this mission. The next mission will involve carrying cargo, so it will only show up if you have all 15 tons of space free.)`
+			`	(As before, click the "Spaceport" button to continue this mission. The next mission will involve carrying cargo, so it will only show up if you have all 15 tons of space free.)`
 
 
 
@@ -416,6 +427,7 @@ mission "Intro [3 Interceptor]"
 	
 	on complete
 		payment 30000
+		log "Dropped James off on Hestia after running a few missions with him. Escort duty is a risky business."
 		conversation "end of intro missions"
 
 

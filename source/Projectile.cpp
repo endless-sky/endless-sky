@@ -14,12 +14,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Effect.h"
 #include "Mask.h"
-#include "Outfit.h"
+#include "Weapon.h"
 #include "pi.h"
 #include "Random.h"
 #include "Ship.h"
 #include "Sprite.h"
+#include "Visual.h"
 
+#include <algorithm>
 #include <cmath>
 
 using namespace std;
@@ -35,7 +37,7 @@ namespace {
 
 
 
-Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Outfit *weapon)
+Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
 	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
 {
@@ -61,7 +63,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Ou
 
 
 
-Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
+Projectile::Projectile(const Projectile &parent, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), parent.position + parent.velocity, parent.velocity, parent.angle),
 	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
 {
@@ -90,7 +92,7 @@ Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
 
 
 // Ship explosion.
-Projectile::Projectile(Point position, const Outfit *weapon)
+Projectile::Projectile(Point position, const Weapon *weapon)
 	: weapon(weapon)
 {
 	this->position = position;
@@ -99,28 +101,28 @@ Projectile::Projectile(Point position, const Outfit *weapon)
 
 
 // This returns false if it is time to delete this projectile.
-bool Projectile::Move(list<Effect> &effects)
+void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 {
 	if(--lifetime <= 0)
 	{
 		if(lifetime > -100)
 		{
+			// This projectile died a "natural" death. Create any death effects
+			// and submunitions.
 			for(const auto &it : weapon->DieEffects())
 				for(int i = 0; i < it.second; ++i)
-				{
-					effects.push_back(*it.first);
-					effects.back().Place(position, velocity, angle);
-				}
+					visuals.emplace_back(*it.first, position, velocity, angle);
+			
+			for(const auto &it : weapon->Submunitions())
+				for(int i = 0; i < it.second; ++i)
+					projectiles.emplace_back(*this, it.first);
 		}
-		
-		return false;
+		MarkForRemoval();
+		return;
 	}
 	for(const auto &it : weapon->LiveEffects())
 		if(!Random::Int(it.second))
-		{
-			effects.push_back(*it.first);
-			effects.back().Place(position, velocity, angle);
-		}
+			visuals.emplace_back(*it.first, position, velocity, angle);
 	
 	// If the target has left the system, stop following it. Also stop if the
 	// target has been captured by a different government.
@@ -143,22 +145,38 @@ bool Projectile::Move(list<Effect> &effects)
 		CheckLock(*target);
 	if(target && homing && hasLock)
 	{
-		Point d = position - target->Position();
+		// Vector d is the direction we want to turn towards.
+		Point d = target->Position() - position;
+		Point unit = d.Unit();
 		double drag = weapon->Drag();
 		double trueVelocity = drag ? accel / drag : velocity.Length();
 		double stepsToReach = d.Length() / trueVelocity;
-		bool isFacingAway = d.Dot(angle.Unit()) > 0.;
+		bool isFacingAway = d.Dot(angle.Unit()) < 0.;
 		
 		// At the highest homing level, compensate for target motion.
 		if(homing >= 4)
 		{
-			// Adjust the target's position based on where it will be when we
-			// reach it (assuming we're pointed right towards it).
-			d -= stepsToReach * target->Velocity();
-			stepsToReach = d.Length() / trueVelocity;
+			if(unit.Dot(target->Velocity()) < 0.)
+			{
+				// If the target is moving toward this projectile, the intercept
+				// course is where the target and the projectile have the same
+				// velocity normal to the distance between them.
+				Point normal(unit.Y(), -unit.X());
+				double vN = normal.Dot(target->Velocity());
+				double vT = sqrt(max(0., trueVelocity * trueVelocity - vN * vN));
+				d = vT * unit + vN * normal;
+			}
+			else
+			{
+				// Adjust the target's position based on where it will be when we
+				// reach it (assuming we're pointed right towards it).
+				d += stepsToReach * target->Velocity();
+				stepsToReach = d.Length() / trueVelocity;
+			}
+			unit = d.Unit();
 		}
 		
-		double cross = d.Unit().Cross(angle.Unit());
+		double cross = angle.Unit().Cross(unit);
 		
 		// The very dumbest of homing missiles lose their target if pointed
 		// away from it.
@@ -192,47 +210,39 @@ bool Projectile::Move(list<Effect> &effects)
 	
 	if(accel)
 	{
-		velocity += accel * angle.Unit();
 		velocity *= 1. - weapon->Drag();
+		velocity += accel * angle.Unit();
 	}
 	
 	position += velocity;
 	
+	// If this projectile is now within its "split range," it should split into
+	// sub-munitions next turn.
 	if(target && (position - target->Position()).Length() < weapon->SplitRange() && !Random::Int(10))
 		lifetime = 0;
-	
-	return true;
-}
-
-
-
-// This is called when a projectile "dies," either of natural causes or
-// because it hit its target.
-void Projectile::MakeSubmunitions(list<Projectile> &projectiles) const
-{
-	// Only make submunitions if you did *not* hit a target.
-	if(lifetime <= -100)
-		return;
-	
-	for(const auto &it : weapon->Submunitions())
-		for(int i = 0; i < it.second; ++i)
-			projectiles.emplace_back(*this, it.first);
 }
 
 
 
 // This projectile hit something. Create the explosion, if any. This also
 // marks the projectile as needing deletion.
-void Projectile::Explode(list<Effect> &effects, double intersection, Point hitVelocity)
+void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hitVelocity)
 {
+	clip = intersection;
 	for(const auto &it : weapon->HitEffects())
 		for(int i = 0; i < it.second; ++i)
 		{
-			effects.push_back(*it.first);
-			effects.back().Place(
-				position + velocity * intersection, velocity, angle, hitVelocity);
+			visuals.emplace_back(*it.first, position + velocity * intersection, velocity, angle, hitVelocity);
 		}
 	lifetime = -100;
+}
+
+
+
+// Get the amount of clipping that should be applied when drawing this projectile.
+double Projectile::Clip() const
+{
+	return clip;
 }
 
 
@@ -255,7 +265,7 @@ int Projectile::MissileStrength() const
 
 
 // Get information on the weapon that fired this projectile.
-const Outfit &Projectile::GetWeapon() const
+const Weapon &Projectile::GetWeapon() const
 {
 	return *weapon;
 }
@@ -266,6 +276,13 @@ const Outfit &Projectile::GetWeapon() const
 const Ship *Projectile::Target() const
 {
 	return cachedTarget;
+}
+
+
+
+shared_ptr<Ship> Projectile::TargetPtr() const
+{
+	return targetShip.lock();
 }
 
 

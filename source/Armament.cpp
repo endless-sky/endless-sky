@@ -12,8 +12,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Armament.h"
 
+#include "Command.h"
 #include "Ship.h"
 
+#include <algorithm>
 #include <cmath>
 #include <limits>
 
@@ -46,7 +48,8 @@ void Armament::Add(const Outfit *outfit, int count)
 	if(!count || !outfit || !outfit->IsWeapon())
 		return;
 	
-	int total = 0;
+	int existing = 0;
+	int added = 0;
 	bool isTurret = outfit->Get("turret mounts");
 	
 	// To start out with, check how many instances of this weapon are already
@@ -65,7 +68,7 @@ void Armament::Add(const Outfit *outfit, int count)
 				++count;
 			}
 			else
-				++total;
+				++existing;
 		}
 		else if(!hardpoint.GetOutfit() && hardpoint.IsTurret() == isTurret)
 		{
@@ -76,15 +79,20 @@ void Armament::Add(const Outfit *outfit, int count)
 			{
 				hardpoint.Install(outfit);
 				--count;
-				++total;
+				++added;
 			}
 		}
 	}
 	
+	// If a stream counter already exists for this outfit (because we did not
+	// just add the first one or remove the last one), do nothing.
+	if(existing)
+		return;
+	
 	// If this weapon is streamed, create a stream counter. If it is not
 	// streamed, or if the last of this weapon has been uninstalled, erase the
 	// stream counter (if there is one).
-	if(total && outfit->IsStreamed())
+	if(added && outfit->IsStreamed())
 		streamReload[outfit] = 0;
 	else
 		streamReload.erase(outfit);
@@ -96,15 +104,26 @@ void Armament::Add(const Outfit *outfit, int count)
 // set up properly (even the ones that were pre-assigned to a hardpoint).
 void Armament::FinishLoading()
 {
+	for(Hardpoint &hardpoint : hardpoints)
+		if(hardpoint.GetOutfit())
+			hardpoint.Install(hardpoint.GetOutfit());
+	
+	ReloadAll();
+}
+
+
+
+// Reload all weapons (because a day passed in-game).
+void Armament::ReloadAll()
+{
 	streamReload.clear();
 	for(Hardpoint &hardpoint : hardpoints)
 		if(hardpoint.GetOutfit())
 		{
-			const Outfit *outfit = hardpoint.GetOutfit();
+			hardpoint.Reload();
 			
-			// Make sure the firing angle is set properly.
-			hardpoint.Install(outfit);
 			// If this weapon is streamed, create a stream counter.
+			const Outfit *outfit = hardpoint.GetOutfit();
 			if(outfit->IsStreamed())
 				streamReload[outfit] = 0;
 		}
@@ -159,9 +178,18 @@ int Armament::TurretCount() const
 
 
 
+// Adjust the aim of the turrets.
+void Armament::Aim(const Command &command)
+{
+	for(unsigned i = 0; i < hardpoints.size(); ++i)
+		hardpoints[i].Aim(command.Aim(i));
+}
+
+
+
 // Fire the given weapon, if it is ready. If it did not fire because it is
 // not ready, return false.
-void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, list<Effect> &effects)
+void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals)
 {
 	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
 		return;
@@ -177,17 +205,17 @@ void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, list<E
 			it->second += it->first->Reload() * hardpoints[index].BurstRemaining();
 		}
 	}
-	hardpoints[index].Fire(ship, projectiles, effects);
+	hardpoints[index].Fire(ship, projectiles, visuals);
 }
 
 
 
-bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projectile, list<Effect> &effects)
+bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projectile, vector<Visual> &visuals)
 {
 	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
 		return false;
 	
-	return hardpoints[index].FireAntiMissile(ship, projectile, effects);
+	return hardpoints[index].FireAntiMissile(ship, projectile, visuals);
 }
 
 
@@ -205,42 +233,4 @@ void Armament::Step(const Ship &ship)
 		// Always reload to the quickest firing interval.
 		it.second = max(it.second, 1 - count);
 	}
-}
-
-
-
-// Get the amount of time it would take the given weapon to reach the given
-// target, assuming it can be fired in any direction (i.e. turreted). For
-// non-turreted weapons this can be used to calculate the ideal direction to
-// point the ship in.
-double Armament::RendezvousTime(const Point &p, const Point &v, double vp)
-{
-	// How many steps will it take this projectile
-	// to intersect the target?
-	// (p.x + v.x*t)^2 + (p.y + v.y*t)^2 = vp^2*t^2
-	// p.x^2 + 2*p.x*v.x*t + v.x^2*t^2
-	//    + p.y^2 + 2*p.y*v.y*t + v.y^2t^2
-	//    - vp^2*t^2 = 0
-	// (v.x^2 + v.y^2 - vp^2) * t^2
-	//    + (2 * (p.x * v.x + p.y * v.y)) * t
-	//    + (p.x^2 + p.y^2) = 0
-	double a = v.Dot(v) - vp * vp;
-	double b = 2. * p.Dot(v);
-	double c = p.Dot(p);
-	double discriminant = b * b - 4 * a * c;
-	if(discriminant < 0.)
-		return numeric_limits<double>::quiet_NaN();
-
-	discriminant = sqrt(discriminant);
-
-	// The solutions are b +- discriminant.
-	// But it's not a solution if it's negative.
-	double r1 = (-b + discriminant) / (2. * a);
-	double r2 = (-b - discriminant) / (2. * a);
-	if(r1 >= 0. && r2 >= 0.)
-		return min(r1, r2);
-	else if(r1 >= 0. || r2 >= 0.)
-		return max(r1, r2);
-
-	return numeric_limits<double>::quiet_NaN();
 }

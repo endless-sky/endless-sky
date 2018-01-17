@@ -17,13 +17,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Body.h"
 #include "Point.h"
 
-#include <list>
 #include <memory>
+#include <vector>
 
 class Effect;
 class Government;
-class Outfit;
+class Weapon;
 class Ship;
+class Visual;
 
 
 
@@ -35,10 +36,10 @@ class Ship;
 // projectiles that may look different or travel in a new direction.
 class Projectile : public Body {
 public:
-	Projectile(const Ship &parent, Point position, Angle angle, const Outfit *weapon);
-	Projectile(const Projectile &parent, const Outfit *weapon);
+	Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon);
+	Projectile(const Projectile &parent, const Weapon *weapon);
 	// Ship explosion.
-	Projectile(Point position, const Outfit *weapon);
+	Projectile(Point position, const Weapon *weapon);
 	
 	/* Functions provided by the Body base class:
 	Frame GetFrame(int step = -1) const;
@@ -49,14 +50,13 @@ public:
 	const Government *GetGovernment() const;
 	*/
 	
-	// This returns false if it is time to delete this projectile.
-	bool Move(std::list<Effect> &effects);
-	// This is called when a projectile "dies," either of natural causes or
-	// because it hit its target.
-	void MakeSubmunitions(std::list<Projectile> &projectiles) const;
+	// Move the projectile. It may create effects or submunitions.
+	void Move(std::vector<Visual> &visuals, std::vector<Projectile> &projectiles);
 	// This projectile hit something. Create the explosion, if any. This also
 	// marks the projectile as needing deletion.
-	void Explode(std::list<Effect> &effects, double intersection, Point hitVelocity = Point());
+	void Explode(std::vector<Visual> &visuals, double intersection, Point hitVelocity = Point());
+	// Get the amount of clipping that should be applied when drawing this projectile.
+	double Clip() const;
 	// This projectile was killed, e.g. by an anti-missile system.
 	void Kill();
 	
@@ -64,11 +64,14 @@ public:
 	// chance an anti-missile shot has of destroying it).
 	int MissileStrength() const;
 	// Get information on the weapon that fired this projectile.
-	const Outfit &GetWeapon() const;
+	const Weapon &GetWeapon() const;
 	
 	// Find out which ship this projectile is targeting. Note: this pointer is
 	// not guaranteed to be dereferenceable, so only use it for comparing.
 	const Ship *Target() const;
+	// This function is much more costly, so use it only if you need to get a
+	// non-const shared pointer to the target.
+	std::shared_ptr<Ship> TargetPtr() const;
 	
 	
 private:
@@ -76,12 +79,13 @@ private:
 	
 	
 private:
-	const Outfit *weapon = nullptr;
+	const Weapon *weapon = nullptr;
 	
-	std::weak_ptr<const Ship> targetShip;
+	std::weak_ptr<Ship> targetShip;
 	const Ship *cachedTarget = nullptr;
 	const Government *targetGovernment = nullptr;
 	
+	double clip = 1.;
 	int lifetime = 0;
 	bool hasLock = true;
 };

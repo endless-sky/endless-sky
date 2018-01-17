@@ -13,7 +13,7 @@ fleet "Small Hai"
 	names "hai"
 	cargo 3
 	personality
-		disables
+		disables opportunistic
 	variant 3
 		"Water Bug"
 		"Lightning Bug (Pulse)" 2
@@ -55,7 +55,7 @@ fleet "Large Hai"
 	names "hai"
 	cargo 3
 	personality
-		disables
+		disables opportunistic
 	variant 2
 		"Shield Beetle"
 		"Lightning Bug (Pulse)" 2
@@ -170,6 +170,7 @@ fleet "Unfettered Raid"
 	government "Hai (Unfettered)"
 	names "hai"
 	personality
+		disables
 		plunders
 	variant
 		"Shield Beetle (Jump)" 3
@@ -206,10 +207,14 @@ outfitter "Hai Basics"
 	"Hai Fissure Batteries"
 	"Supercapacitor"
 	"Cargo Expansion"
+	"Small Bunk Room"
+	"Fuel Pod"
 	"Hai Corundum Regenerator"
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
 	"Local Map"
+	"Quantum Keystone"
+	"Pulse Rifle"
 
 outfitter "Hai Intermediate"
 	"Pulse Cannon"
@@ -227,8 +232,11 @@ outfitter "Hai Intermediate"
 	"Hai Fissure Batteries"
 	"Hai Gorge Batteries"
 	"Supercapacitor"
-	"Mass Expansion"
+	"Outfits Expansion"
 	"Cargo Expansion"
+	"Small Bunk Room"
+	"Bunk Room"
+	"Fuel Pod"
 	"Hai Corundum Regenerator"
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
@@ -237,6 +245,8 @@ outfitter "Hai Intermediate"
 	`"Biroo" Atomic Thruster`
 	`"Biroo" Atomic Steering`
 	"Local Map"
+	"Quantum Keystone"
+	"Pulse Rifle"
 
 outfitter "Hai Advanced"
 	"Pulse Cannon"
@@ -258,8 +268,11 @@ outfitter "Hai Advanced"
 	"Hai Ravine Batteries"
 	"Hai Valley Batteries"
 	"Supercapacitor"
-	"Mass Expansion"
+	"Outfits Expansion"
 	"Cargo Expansion"
+	"Small Bunk Room"
+	"Bunk Room"
+	"Fuel Pod"
 	"Hai Corundum Regenerator"
 	"Hai Diamond Regenerator"
 	`"Basrem" Atomic Thruster`
@@ -273,6 +286,8 @@ outfitter "Hai Advanced"
 	`"Bufaer" Atomic Thruster`
 	`"Bufaer" Atomic Steering`
 	"Local Map"
+	"Quantum Keystone"
+	"Pulse Rifle"
 
 phrase "hai"
 	word

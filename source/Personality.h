@@ -16,8 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "Point.h"
 
-#include <string>
-
 class DataNode;
 class DataWriter;
 
@@ -34,39 +32,53 @@ public:
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
 	
+	// Who a ship decides to attack:
 	bool IsPacifist() const;
 	bool IsForbearing() const;
 	bool IsTimid() const;
+	bool IsHeroic() const;
+	bool IsNemesis() const;
+	
+	// How they fight:
+	bool IsFrugal() const;
 	bool Disables() const;
 	bool Plunders() const;
-	bool IsHeroic() const;
+	bool IsVindictive() const;
+	bool IsUnconstrained() const;
+	bool IsCoward() const;
+	bool IsAppeasing() const;
+	bool IsOpportunistic() const;
+	
+	// Mission NPC states:
 	bool IsStaying() const;
 	bool IsEntering() const;
-	bool IsNemesis() const;
-	bool IsSurveillance() const;
-	bool IsUninterested() const;
 	bool IsWaiting() const;
-	bool IsDerelict() const;
 	bool IsFleeing() const;
-	bool IsEscort() const;
-	bool IsFrugal() const;
-	bool IsCoward() const;
-	bool IsVindictive() const;
-	bool IsSwarming() const;
-	bool IsUnconstrained() const;
+	bool IsDerelict() const;
+	bool IsUninterested() const;
+	
+	// Non-combat goals:
+	bool IsSurveillance() const;
 	bool IsMining() const;
 	bool Harvests() const;
-	bool IsAppeasing() const;
+	bool IsSwarming() const;
+	
+	// Special flags:
+	bool IsEscort() const;
+	bool IsTarget() const;
+	bool IsMarked() const;
 	bool IsMute() const;
 	
+	// Current inaccuracy in this ship's targeting:
 	const Point &Confusion() const;
 	void UpdateConfusion(bool isFiring);
 	
+	// Personality to use for ships defending a planet from domination:
 	static Personality Defender();
 	
 	
 private:
-	void Parse(const std::string &token);
+	void Parse(const DataNode &node, int index, bool remove);
 	
 	
 private:

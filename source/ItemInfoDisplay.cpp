@@ -25,7 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const int HOVER_TIME = 60;
+	const int HOVER_TIME = 60;
 }
 
 
@@ -102,8 +102,8 @@ void ItemInfoDisplay::DrawTooltips() const
 	if(topLeft.Y() + boxSize.Y() > Screen::Bottom())
 		topLeft.Y() -= boxSize.Y();
 	
-	FillShader::Fill(topLeft + .5 * boxSize, boxSize, Color(.2, 1.));
-	hoverText.Draw(topLeft + Point(10., 10.), Color(.5, 0.));
+	FillShader::Fill(topLeft + .5 * boxSize, boxSize, *GameData::Colors().Get("tooltip background"));
+	hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
 }
 
 
@@ -124,9 +124,35 @@ void ItemInfoDisplay::ClearHover()
 
 
 
-void ItemInfoDisplay::UpdateDescription(const string &text)
+void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string> &licenses, bool isShip)
 {
-	description.Wrap(text);
+	if(licenses.empty())
+		description.Wrap(text);
+	else
+	{
+		static const string NOUN[2] = {"outfit", "ship"};
+		string fullText = text + "\tTo purchase this " + NOUN[isShip] + " you must have ";
+		for(unsigned i = 0; i < licenses.size(); ++i)
+		{
+			bool isVoweled = false;
+			for(const char &c : "aeiou")
+				if(*licenses[i].begin() == c || *licenses[i].begin() == toupper(c))
+					isVoweled = true;
+			if(i)
+			{
+				if(licenses.size() > 2)
+					fullText += ", ";
+				else
+					fullText += " ";
+			}
+			if(i && i == licenses.size() - 1)
+				fullText += "and ";
+			fullText += (isVoweled ? "an " : "a ") + licenses[i] + " License";
+
+		}
+		fullText += ".\n";
+		description.Wrap(fullText);
+	}
 	
 	// Pad by 10 pixels on the top and bottom.
 	descriptionHeight = description.Height() + 20;
@@ -140,8 +166,8 @@ Point ItemInfoDisplay::Draw(Point point, const vector<string> &labels, const vec
 	point.Y() += 10.;
 	
 	// Get standard colors to draw with.
-	Color labelColor = *GameData::Colors().Get("medium");
-	Color valueColor = *GameData::Colors().Get("bright");
+	const Color &labelColor = *GameData::Colors().Get("medium");
+	const Color &valueColor = *GameData::Colors().Get("bright");
 	
 	Table table;
 	// Use 10-pixel margins on both sides.

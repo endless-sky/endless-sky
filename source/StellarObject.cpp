@@ -14,8 +14,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "GameData.h"
+#include "Government.h"
 #include "Planet.h"
 #include "Politics.h"
+#include "Radar.h"
 
 #include <algorithm>
 
@@ -76,41 +78,33 @@ const string &StellarObject::Name() const
 // explaining why (e.g. too hot, too cold, etc.).
 const string &StellarObject::LandingMessage() const
 {
-	static const string EMPTY;
-	if(planet)
-		return EMPTY;
-	
 	// Check if there's a custom message for this sprite type.
 	if(GameData::HasLandingMessage(GetSprite()))
 		return GameData::LandingMessage(GetSprite());
 	
+	static const string EMPTY;
 	return (message ? *message : EMPTY);
 }
 
 
 
 // Get the color to be used for displaying this object.
-const Color &StellarObject::TargetColor() const
+int StellarObject::RadarType(const Ship *ship) const
 {
-	static const Color planetColor[6] = {
-		Color(1., 1., 1., 1.),
-		Color(.3, .3, .3, 1.),
-		Color(0., .8, 1., 1.),
-		Color(.8, .4, .2, 1.),
-		Color(.8, .3, 1., 1.),
-		Color(0., .8, 0., 1.)
-	};
-	int index = !IsStar() + (GetPlanet() != nullptr);
-	if(GetPlanet())
-	{
-		if(!GetPlanet()->CanLand())
-			index = 3;
-		if(GetPlanet()->IsWormhole())
-			index = 4;
-		if(GameData::GetPolitics().HasDominated(GetPlanet()))
-			index = 5;
-	}
-	return planetColor[index];
+	if(IsStar())
+		return Radar::SPECIAL;
+	else if(!planet || !planet->IsAccessible(ship))
+		return Radar::INACTIVE;
+	else if(planet->IsWormhole())
+		return Radar::ANOMALOUS;
+	else if(GameData::GetPolitics().HasDominated(planet))
+		return Radar::PLAYER;
+	else if(planet->CanLand())
+		return Radar::FRIENDLY;
+	else if(!planet->GetGovernment()->IsEnemy())
+		return Radar::UNFRIENDLY;
+	
+	return Radar::HOSTILE;
 }
 
 

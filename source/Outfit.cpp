@@ -23,7 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const double EPS = 0.0000000001;
+	const double EPS = 0.0000000001;
 }
 
 const vector<string> Outfit::CATEGORIES = {
@@ -78,11 +78,22 @@ void Outfit::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "cost" && child.Size() >= 2)
 			cost = child.Value(1);
+		else if(child.Token(0) == "mass" && child.Size() >= 2)
+			mass = child.Value(1);
+		else if(child.Token(0) == "licenses")
+		{
+			for(const DataNode &grand : child)
+				licenses.push_back(grand.Token(0));
+		}
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	// Legacy support for turrets that don't specify a turn rate:
+	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
+		SetTurretTurn(4.);
 }
 
 
@@ -115,6 +126,14 @@ const string &Outfit::Description() const
 
 
 
+// Get the licenses needed to purchase this outfit.
+const vector<string> &Outfit::Licenses() const
+{
+	return licenses;
+}
+
+
+
 // Get the image to display in the outfitter when buying this item.
 const Sprite *Outfit::Thumbnail() const
 {
@@ -123,15 +142,21 @@ const Sprite *Outfit::Thumbnail() const
 
 
 
-double Outfit::Get(const string &attribute) const
+double Outfit::Get(const char *attribute) const
 {
-	auto it = attributes.find(attribute);
-	return (it == attributes.end()) ? 0. : it->second;
+	return attributes.Get(attribute);
 }
 
 
 
-const map<string, double> &Outfit::Attributes() const
+double Outfit::Get(const string &attribute) const
+{
+	return Get(attribute.c_str());
+}
+
+
+
+const Dictionary &Outfit::Attributes() const
 {
 	return attributes;
 }
@@ -161,6 +186,7 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 void Outfit::Add(const Outfit &other, int count)
 {
 	cost += other.cost * count;
+	mass += other.mass * count;
 	for(const auto &at : other.attributes)
 	{
 		attributes[at.first] += at.second * count;
@@ -189,17 +215,7 @@ void Outfit::Add(const Outfit &other, int count)
 
 
 // Modify this outfit's attributes.
-void Outfit::Add(const string &attribute, double value)
-{
-	attributes[attribute] += value;
-	if(fabs(attributes[attribute]) < EPS)
-		attributes[attribute] = 0.;
-}
-
-
-
-// Modify this outfit's attributes.
-void Outfit::Reset(const string &attribute, double value)
+void Outfit::Set(const char *attribute, double value)
 {
 	attributes[attribute] = value;
 }

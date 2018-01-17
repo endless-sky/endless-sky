@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "Preferences.h"
 #include "Table.h"
 #include "UI.h"
 
@@ -30,20 +29,20 @@ using namespace std;
 
 namespace {
 	// Dimensions of the table.
-	static const int MIN_X = -310;
-	static const int MAX_X = 190;
+	const int MIN_X = -310;
+	const int MAX_X = 190;
 	
 	// Column headings.
-	static const string HEADING[6] = {"Type", "Principal", "Interest", "Term", "Payment", ""};
+	const string HEADING[6] = {"Type", "Principal", "Interest", "Term", "Payment", ""};
 	// X coordinates of the columns of the table.
-	static const int COLUMN[5] = {-290, -180, -100, -30, 20};
-	static const int EXTRA_X = 100;
+	const int COLUMN[5] = {-290, -180, -100, -30, 20};
+	const int EXTRA_X = 100;
 	
 	// Position of the first line of the table.
-	static const int FIRST_Y = 78;
+	const int FIRST_Y = 78;
 	
 	// Maximum number of rows of mortages, etc. to draw.
-	static const int MAX_ROWS = 8;
+	const int MAX_ROWS = 8;
 }
 
 
@@ -62,12 +61,7 @@ BankPanel::BankPanel(PlayerInfo &player)
 // This is called each frame when the bank is active.
 void BankPanel::Step()
 {
-	// If the user has not yet been shown the help message, display it.
-	if(!Preferences::Has("help: bank"))
-	{
-		Preferences::Set("help: bank");
-		GetUI()->Push(new Dialog(GameData::HelpMessage("bank")));
-	}
+	DoHelp("bank");
 }
 
 
@@ -85,9 +79,9 @@ void BankPanel::Draw()
 	table.DrawAt(Point(0., FIRST_Y));
 	
 	// Use stock colors from the game data.
-	Color back = *GameData::Colors().Get("faint");
-	Color unselected = *GameData::Colors().Get("medium");
-	Color selected = *GameData::Colors().Get("bright");
+	const Color &back = *GameData::Colors().Get("faint");
+	const Color &unselected = *GameData::Colors().Get("medium");
+	const Color &selected = *GameData::Colors().Get("bright");
 	
 	// Draw the heading of the table.
 	table.DrawUnderline(unselected);
@@ -178,8 +172,15 @@ void BankPanel::Draw()
 		totalPayment += salaries;
 		
 		table.Draw("Crew Salaries");
-		// For crew salaries, only the "payment" field needs to be shown.
-		table.Advance(3);
+		// Check whether the player owes back salaries.
+		if(player.Accounts().SalariesOwed())
+		{
+			table.Draw(Format::Number(player.Accounts().SalariesOwed()));
+			table.Draw("(overdue)");
+			table.Advance(1);
+		}
+		else
+			table.Advance(3);
 		table.Draw(salaries);
 		table.Advance();
 	}
@@ -260,6 +261,7 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			else
 				++i;
 		}
+		player.Accounts().PaySalaries(player.Accounts().SalariesOwed());
 		qualify = player.Accounts().Prequalify();
 	}
 	else

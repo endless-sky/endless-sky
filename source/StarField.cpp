@@ -29,16 +29,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const int TILE_SIZE = 256;
+	const int TILE_SIZE = 256;
 	// The star field tiles in 4000 pixel increments. Have the tiling of the haze
 	// field be as different from that as possible. (Note: this may need adjusting
 	// in the future if monitors larger than this width ever become commonplace.)
-	static const double HAZE_WRAP = 6627.;
+	const double HAZE_WRAP = 6627.;
 	// Don't let two haze patches be closer to each other than this distance. This
 	// avoids having very bright haze where several patches overlap.
-	static const double HAZE_DISTANCE = 1200.;
+	const double HAZE_DISTANCE = 1200.;
 	// This is how many haze fields should be drawn.
-	static const size_t HAZE_COUNT = 16;
+	const size_t HAZE_COUNT = 16;
 }
 
 
@@ -96,7 +96,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	Point unit = length ? vel.Unit() : Point(1., 0.);
 	// Don't zoom the stars at the same rate as the field; otherwise, at the
 	// farthest out zoom they are too small to draw well.
-	unit /= sqrt(zoom);
+	unit /= pow(zoom, .75);
 	
 	float baseZoom = static_cast<float>(2. * zoom);
 	GLfloat scale[2] = {baseZoom / Screen::Width(), -baseZoom / Screen::Height()};
@@ -107,7 +107,8 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 		static_cast<float>(unit.X()), static_cast<float>(unit.Y())};
 	glUniformMatrix2fv(rotateI, 1, false, rotate);
 	
-	glUniform1f(lengthI, length);
+	glUniform1f(elongationI, length * zoom);
+	glUniform1f(brightnessI, min(1., pow(zoom, .5)));
 	
 	// Stars this far beyond the border may still overlap the screen.
 	double borderX = fabs(vel.X()) + 1.;
@@ -179,6 +180,7 @@ void StarField::SetUpGraphics()
 		"uniform vec2 translate;\n"
 		"uniform vec2 scale;\n"
 		"uniform float elongation;\n"
+		"uniform float brightness;\n"
 		
 		"in vec2 offset;\n"
 		"in float size;\n"
@@ -187,7 +189,7 @@ void StarField::SetUpGraphics()
 		"out vec2 coord;\n"
 		
 		"void main() {\n"
-		"  fragmentAlpha = (4. / (4. + elongation)) * size * .2 + .05;\n"
+		"  fragmentAlpha = brightness * (4. / (4. + elongation)) * size * .2 + .05;\n"
 		"  coord = vec2(sin(corner), cos(corner));\n"
 		"  vec2 elongated = vec2(coord.x * size, coord.y * (size + elongation));\n"
 		"  gl_Position = vec4((rotate * elongated + translate + offset) * scale, 0, 1);\n"
@@ -219,8 +221,9 @@ void StarField::SetUpGraphics()
 	
 	scaleI = shader.Uniform("scale");
 	rotateI = shader.Uniform("rotate");
-	lengthI = shader.Uniform("elongation");
+	elongationI = shader.Uniform("elongation");
 	translateI = shader.Uniform("translate");
+	brightnessI = shader.Uniform("brightness");
 }
 
 

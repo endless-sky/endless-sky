@@ -157,7 +157,7 @@ bool ShipyardPanel::CanBuy() const
 	int64_t cost = player.StockDepreciation().Value(*selectedShip, day);
 	
 	// Check that the player has any necessary licenses.
-	int64_t licenseCost = LicenseCost();
+	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
 		return false;
 	cost += licenseCost;
@@ -169,7 +169,7 @@ bool ShipyardPanel::CanBuy() const
 
 void ShipyardPanel::Buy()
 {
-	int64_t licenseCost = LicenseCost();
+	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
 		return;
 	
@@ -200,7 +200,7 @@ void ShipyardPanel::FailBuy() const
 	int64_t cost = player.StockDepreciation().Value(*selectedShip, day);
 	
 	// Check that the player has any necessary licenses.
-	int64_t licenseCost = LicenseCost();
+	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
 	{
 		GetUI()->Push(new Dialog("Buying this ship requires a special license. "
@@ -228,20 +228,22 @@ void ShipyardPanel::FailBuy() const
 
 
 
-bool ShipyardPanel::CanSell() const
+bool ShipyardPanel::CanSell(bool toCargo) const
 {
 	return playerShip;
 }
 
 
 
-void ShipyardPanel::Sell()
+void ShipyardPanel::Sell(bool toCargo)
 {
 	static const int MAX_LIST = 20;
+	static const int MAX_NAME_WIDTH = 250 - 30;
 	
 	int count = playerShips.size();
 	int initialCount = count;
 	string message = "Sell ";
+	const Font &font = FontSet::Get(14);
 	if(count == 1)
 		message += playerShip->Name();
 	else if(count <= MAX_LIST)
@@ -255,7 +257,7 @@ void ShipyardPanel::Sell()
 		else
 		{
 			while(count-- > 1)
-				message += ",\n" + (*it++)->Name();
+				message += ",\n" + font.TruncateMiddle((*it++)->Name(), MAX_NAME_WIDTH);
 			message += ",\nand ";
 		}
 		message += (*it)->Name();
@@ -263,8 +265,9 @@ void ShipyardPanel::Sell()
 	else
 	{
 		auto it = playerShips.begin();
-		for(int i = 0; i < MAX_LIST - 1; ++i)
-			message += (*it++)->Name() + ",\n";
+		message += (*it++)->Name() + ",\n";
+		for(int i = 1; i < MAX_LIST - 1; ++i)
+			message += font.TruncateMiddle((*it++)->Name(), MAX_NAME_WIDTH) + ",\n";
 		
 		message += "and " + Format::Number(count - (MAX_LIST - 1)) + " other ships";
 	}
@@ -281,14 +284,6 @@ void ShipyardPanel::Sell()
 
 
 
-bool ShipyardPanel::FlightCheck()
-{
-	// The shipyard does not perform any flight checks.
-	return true;
-}
-
-
-
 bool ShipyardPanel::CanSellMultiple() const
 {
 	return false;
@@ -298,11 +293,11 @@ bool ShipyardPanel::CanSellMultiple() const
 
 void ShipyardPanel::BuyShip(const string &name)
 {
-	int64_t licenseCost = LicenseCost();
+	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
-		for(const string &licenseName : selectedShip->Licenses())
+		for(const string &licenseName : selectedShip->Attributes().Licenses())
 			if(player.GetCondition("license: " + licenseName) <= 0)
 				player.Conditions()["license: " + licenseName] = true;
 	}
@@ -333,7 +328,7 @@ void ShipyardPanel::SellShip()
 		player.SellShip(ship);
 	playerShips.clear();
 	playerShip = nullptr;
-	for(shared_ptr<Ship> ship : player.Ships())
+	for(const shared_ptr<Ship> &ship : player.Ships())
 		if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
 		{
 			playerShip = ship.get();
@@ -342,20 +337,4 @@ void ShipyardPanel::SellShip()
 	if(playerShip)
 		playerShips.insert(playerShip);
 	player.UpdateCargoCapacities();
-}
-
-
-
-int64_t ShipyardPanel::LicenseCost() const
-{
-	int64_t cost = 0;
-	for(const string &name : selectedShip->Licenses())
-		if(player.GetCondition("license: " + name) <= 0)
-		{
-			const Outfit *outfit = GameData::Outfits().Get(name + " License");
-			if(!outfit->Cost())
-				return -1;
-			cost += outfit->Cost();
-		}
-	return cost;
 }

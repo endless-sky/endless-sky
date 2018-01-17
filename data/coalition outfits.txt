@@ -10,6 +10,8 @@
 
 outfit "Small Collector Module"
 	category "Power"
+	licenses
+		Coalition
 	cost 60000
 	thumbnail "outfit/small collector module"
 	"mass" 8
@@ -20,6 +22,8 @@ outfit "Small Collector Module"
 
 outfit "Large Collector Module"
 	category "Power"
+	licenses
+		Coalition
 	cost 300000
 	thumbnail "outfit/large collector module"
 	"mass" 28
@@ -30,6 +34,8 @@ outfit "Large Collector Module"
 
 outfit "Small Reactor Module"
 	category "Power"
+	licenses
+		Heliarch
 	cost 5497000
 	thumbnail "outfit/small reactor module"
 	"mass" 42
@@ -40,6 +46,8 @@ outfit "Small Reactor Module"
 
 outfit "Large Reactor Module"
 	category "Power"
+	licenses
+		Heliarch
 	cost 17754000
 	thumbnail "outfit/large reactor module"
 	"mass" 98
@@ -50,6 +58,8 @@ outfit "Large Reactor Module"
 
 outfit "Small Battery Module"
 	category "Power"
+	licenses
+		Coalition
 	cost 44000
 	thumbnail "outfit/small battery module"
 	"mass" 4
@@ -59,16 +69,20 @@ outfit "Small Battery Module"
 
 outfit "Large Battery Module"
 	category "Power"
+	licenses
+		Coalition
 	cost 340000
 	thumbnail "outfit/large battery module"
 	"mass" 18
 	"outfit space" -18
 	"energy capacity" 4500
-	description "This battery pack stores enough power to allow a Heliarch ship to continue maneuvering even when its solar panels are only producing a fraction of their peak output."
+	description "This battery pack stores enough power to allow a Coalition ship to continue maneuvering even when its solar panels are only producing a fraction of their peak output."
 
 
 outfit "Small Shield Module"
 	category "Systems"
+	licenses
+		Coalition
 	cost 84000
 	thumbnail "outfit/small shield module"
 	"mass" 11
@@ -80,6 +94,8 @@ outfit "Small Shield Module"
 
 outfit "Large Shield Module"
 	category "Systems"
+	licenses
+		Coalition
 	cost 553000
 	thumbnail "outfit/large shield module"
 	"mass" 39
@@ -91,6 +107,8 @@ outfit "Large Shield Module"
 
 outfit "Small Repair Module"
 	category "Systems"
+	licenses
+		Coalition
 	cost 64000
 	thumbnail "outfit/small repair module"
 	"mass" 6
@@ -102,6 +120,8 @@ outfit "Small Repair Module"
 
 outfit "Large Repair Module"
 	category "Systems"
+	licenses
+		Coalition
 	cost 553000
 	thumbnail "outfit/large repair module"
 	"mass" 21
@@ -113,6 +133,8 @@ outfit "Large Repair Module"
 
 outfit "Cooling Module"
 	category "Systems"
+	licenses
+		Coalition
 	cost 160000
 	thumbnail "outfit/cooling module"
 	"mass" 5
@@ -124,6 +146,8 @@ outfit "Cooling Module"
 
 outfit "Small Thrust Module"
 	category "Engines"
+	licenses
+		Coalition
 	"cost" 66000
 	thumbnail "outfit/small thrust module"
 	"mass" 9
@@ -132,13 +156,15 @@ outfit "Small Thrust Module"
 	"thrust" 6.6
 	"thrusting energy" 0.46
 	"thrusting heat" 3.5
-	"flare sprite" "effect/coalition small flare"
+	"flare sprite" "effect/coalition flare/small"
 		"frame rate" 4.8
 	"flare sound" "atomic tiny"
 	description "This tiny thruster produces a considerable amount of thrust... but also a considerable amount of heat."
 
 outfit "Large Thrust Module"
 	category "Engines"
+	licenses
+		Coalition
 	"cost" 292000
 	thumbnail "outfit/large thrust module"
 	"mass" 32
@@ -147,13 +173,15 @@ outfit "Large Thrust Module"
 	"thrust" 26.2
 	"thrusting energy" 1.7
 	"thrusting heat" 12.5
-	"flare sprite" "effect/coalition large flare"
+	"flare sprite" "effect/coalition flare/large"
 		"frame rate" 3.5
 	"flare sound" "atomic small"
 	description "Coalition engineers prefer to focus on perfecting a few versatile designs rather than producing a wide range of them. This thruster is quite efficient, but large ships will need several of them stacked together to produce sufficient thrust."
 
 outfit "Small Steering Module"
 	category "Engines"
+	licenses
+		Coalition
 	"cost" 60000
 	thumbnail "outfit/small steering module"
 	"mass" 7
@@ -166,6 +194,8 @@ outfit "Small Steering Module"
 
 outfit "Large Steering Module"
 	category "Engines"
+	licenses
+		Coalition
 	"cost" 269000
 	thumbnail "outfit/large steering module"
 	"mass" 25
@@ -175,3 +205,8 @@ outfit "Large Steering Module"
 	"turning energy" 1.0
 	"turning heat" 8.2
 	description "By focusing on small, modular engines rather than the massive capital ship drives that most other species develop, the Coalition loses some of the potential efficiency for very large ships, but gains a considerable amount of flexibility."
+
+outfit "Coalition License"
+	category "Special"
+	thumbnail "outfit/coalition license"
+	description "Completed a lot of Coalition jobs and received permission to purchase civilian technology and ships."

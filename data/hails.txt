@@ -65,6 +65,7 @@ phrase "band"
 		"The Vampires"
 		"The Screaming Eagles"
 		"Violent Surprise"
+		"Nine Meter Shanks"
 
 phrase "song"
 	word
@@ -237,6 +238,7 @@ phrase "song"
 		"Sweet Release"
 		"None of Them Knew They Were Humans"
 		"Chains of Ice"
+		"Monkey Butter"
 	word
 		`"`
 
@@ -251,6 +253,7 @@ phrase "friendly civilian"
 		"I'm just coming back from seeing"
 		"I just heard"
 		"I just saw"
+		"I had a backstage pass to"
 	word
 		" "
 	phrase
@@ -271,7 +274,7 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"at Tarazed stadium!"
+		"at Tarazed Stadium!"
 		"at the amphitheater on Skymoot!"
 		"at a concert hall in New Sydney!"
 		"in a nightclub on Splashdown!"
@@ -283,6 +286,7 @@ phrase "friendly civilian"
 		"at the Grange on Heartland!"
 		"at a resort on Vail!"
 		"at Canyonland Park!"
+		"in a stylin' party-hall on New China!"
 
 phrase "friendly civilian"
 	word
@@ -292,6 +296,7 @@ phrase "friendly civilian"
 		"Man, "
 		"Ugh, "
 		"You know, "
+		"Jeez, "
 	word
 		"I can't believe"
 		"I don't know why"
@@ -301,6 +306,7 @@ phrase "friendly civilian"
 		"It's burning me up that"
 		"It's so weird that"
 		"Nobody can explain to me why"
+		"I can hardly imagine why"
 	word
 		" "
 	word
@@ -310,6 +316,7 @@ phrase "friendly civilian"
 		"everyone's"
 		"my crew is"
 		"some of my friends are"
+		"all the oldsters are"
 	word
 		" still"
 		""
@@ -363,6 +370,7 @@ phrase "friendly civilian"
 		"goes against common decency"
 		"ought to be banned"
 		"hurts my ears"
+		"makes me ill"
 	word
 		"!"
 
@@ -544,6 +552,7 @@ phrase "friendly civilian"
 		"say no to drugs"
 		"avoid carrying illegal cargo"
 		"just have fun and don't sweat it"
+		"buy a fleet with similar fuel capacity"
 	word
 		"."
 		"!"
@@ -561,6 +570,7 @@ phrase "friendly civilian"
 		"stay safe from pirates"
 		"keep the pirates at bay"
 		"avoid pirates"
+		"deal with pirates"
 	word
 		" is to "
 	word
@@ -610,6 +620,8 @@ phrase "friendly civilian"
 		"Plasmaticas"
 		"Greasemonkeys"
 		"Void Dragons"
+		"Goers"
+		"Psyches"
 	word
 		" "
 	word
@@ -624,6 +636,7 @@ phrase "friendly civilian"
 		"narrowly beat the"
 		"demolished the"
 		"smashed the"
+		"walloped the"
 	word
 		" "
 	word
@@ -644,12 +657,15 @@ phrase "friendly civilian"
 		"Redeemers"
 		"Antelopes"
 		"Pythons"
+		"Rackets"
+		"Space Bears"
 	word
 		" last night"
 		" yesterday"
 		" this morning"
 		" the other day"
 		", as usual"
+		" this afternoon"
 	word
 		"!"
 		"."
@@ -683,6 +699,7 @@ phrase "friendly civilian"
 		"fish heads"
 		"rotten fruit"
 		"sludge"
+		"unprocessed sewage"
 	word
 		". My"
 		", and now my"
@@ -694,6 +711,8 @@ phrase "friendly civilian"
 		"poor "
 		"poor ship's "
 		"beautiful ship's "
+		"delicate ship's "
+		"pristine ship's "
 
 	word
 		"hold"
@@ -707,6 +726,7 @@ phrase "friendly civilian"
 		"still stinks!"
 		"needs to be hosed down!"
 		"is gonna need one heck of a chemical bath!"
+		"desperately needs a sonic scrubbing!"
 
 phrase "friendly civilian"
 	word
@@ -834,6 +854,7 @@ phrase "friendly civilian"
 		"Everybody knows that"
 		"I wish more people realized"
 		"I wish more people realized that"
+		"My nutty cousin claims that"
 	word
 		" "
 	word
@@ -889,6 +910,7 @@ phrase "friendly civilian"
 		"are building a superweapon to destroy us all!"
 		"are secretly being controlled by the Lizard Illuminati!"
 		"are under the control of a hidden race of chipmunk aliens!"
+		"get together to play foosball every Thursday on Luna!"
 
 phrase "friendly civilian"
 	word
@@ -974,6 +996,7 @@ phrase "friendly civilian"
 		" "
 	word
 		"trade routes, but I'm not"
+		"trade routes, but there's no way I'm"
 	word
 		" "
 	word
@@ -1190,7 +1213,7 @@ phrase "friendly militia"
 		"The cavalry are here"
 		"The militia are on the watch"
 		"You won't beat us"
-		"We can not be defeated"
+		"We cannot be defeated"
 	word
 		"."
 		"!"
@@ -1355,6 +1378,7 @@ phrase "friendly syndicate"
 		"user-friendly products"
 		"ethics"
 		"offers"
+		"dental plans"
 	word
 		" "
 	word
@@ -1393,6 +1417,7 @@ phrase "friendly free worlds"
 		"justice"
 		"sacrifice"
 		"courage"
+		"tenacity"
 	word
 		" "
 	word
@@ -1647,21 +1672,34 @@ phrase "friendly pirate"
 		"tried this"
 		"used this"
 	word
-		" new"
-		" crazy"
-		" amazing"
-		" fantastic"
+		" new "
+		" crazy "
+		" amazing "
+		" fantastic "
+		" incredible "
+		" facinating "
 		""
 	word
-		" toad juice"
-		" flavor drop"
-		" stardust"
-		" booster"
-		" space salt"
-		" hyperdrive"
-		" fire apple"
-		" quasar"
-		""
+		"bad blue"
+		"booster"
+		"core"
+		"death stick"
+		"deep"
+		"fire apple"
+		"flavor drop"
+		"good red"
+		"hot wing"
+		"memory chip"
+		"quasar"
+		"red giant"
+		"ringworld shaving"
+		"solaris joyride"
+		"southern snack"
+		"space weed"
+		"stardust"
+		"steam"
+		"toad juice"
+		"whale blubber"
 	word
 		" "
 	word
@@ -1669,8 +1707,68 @@ phrase "friendly pirate"
 		"drug?"
 	word
 		""
-		" It's the best!"
-		" It's awesome!"
+		" It's the best"
+		" It's awesome"
+		" You'll have the best high ever"
+		" You'll feel like you're in heaven"
+		" I wish I could find more"
+		" I wish I could afford more"
+		" I'm going to need to make money to buy more"
+		" Best experience I've ever had"
+	word
+		"!"
+		"."
+
+phrase "friendly pirate"
+	word
+		"Have you "
+	word
+		"tried this"
+		"used this"
+	word
+		" new "
+		" terrible "
+		" horrendous "
+		" atrocious "
+		" horrid "
+		""
+	word
+		"bad blue"
+		"booster"
+		"core"
+		"death stick"
+		"deep"
+		"fire apple"
+		"flavor drop"
+		"good red"
+		"hot wing"
+		"memory chip"
+		"quasar"
+		"red giant"
+		"ringworld shaving"
+		"solaris joyride"
+		"southern snack"
+		"space weed"
+		"stardust"
+		"steam"
+		"toad juice"
+		"whale blubber"
+	word
+		" "
+	word
+		"stuff?"
+		"drug?"
+	word
+		""
+		" I couldn't see for a week"
+		" I couldn't get out of bed for a week"
+		" It felt like I was being eaten alive"
+		" It felt like I had insects crawling under my skin"
+		" I'm never taking that stuff again"
+		" Worst experience I've ever had"
+	word
+		"!"
+		"."
 
 phrase "friendly pirate"
 	word
@@ -1780,7 +1878,7 @@ phrase "friendly pirate"
 		" You'll find some on the nearest planet not oppressed by the man."
 		" You'll find some where ever the man does not go."
 
-phrase "friendly"
+phrase "friendly pirate"
 	word
 		"It surprises me"
 		"It surprises us"
@@ -1822,6 +1920,118 @@ phrase "friendly"
 	word
 		"."
 
+phrase "friendly pirate"
+	word
+		"It's the worst thing"
+		"I hate it"
+		"It's terrible"
+		"The worst is"
+		"My day always gets ruined"
+	word
+		" when I'm "
+	word
+		"minding my own business"
+		"just flying through space"
+		"having fun"
+		"making credit"
+		"enjoying myself while"
+		"having a good time"
+	word
+		" transporting "
+	word
+		"biochemical weapons"
+		"conflict minerals"
+		"counterfeit artwork"
+		"counterfeit sculptures"
+		"counterfeit credits"
+		"embargoed goods"
+		"endangered animals"
+		"endangered planets"
+		"enriched uranium"
+		"explosives"
+		"fake organs"
+		"forged IDs"
+		"human hearts"
+		"human brains"
+		"human kidneys"
+		"human bones"
+		"human lungs"
+		"illegal firearms"
+		"military weapons"
+		"napalm"
+		"nerve gas"
+		"outlawed pesticides"
+		"pig hearts"
+		"pig kidneys"
+		"pig lungs"
+		"plundered artifacts"
+		"stolen artifacts"
+		"stolen artwork"
+		"stolen identities"
+		"stolen ship parts"
+		"stolen weapons"
+		"stolen blueprints"
+		"stolen records"
+		"stolen data"
+		"torture devices"
+		"unregistered IFF modules"
+		"undeclared nuclear fuel"
+		"untraceable electronics"
+		"weaponized chickens"
+		"weaponized pigs"
+		"weaponized cows"
+	word
+		" "
+	word
+		"and I get scanned by the Man."
+		"and I get scanned by the Law."
+		"and the Navy starts chasing me."
+		"and the militia starts chasing me."
+		"and the Syndicate starts chasing me."
+	word
+		""
+		""
+		" More interference plating would have helped."
+		" This interference plating is useless!"
+		" I could have gotten out faster if I had a Scram Drive."
+		" I know I should have installed more interference plating."
+		" If only I was strong enough to stand up to them."
+
+phrase "friendly author"
+	word
+		"This game "
+		"Endless Sky "
+	word
+		"is open source. You can "
+	word
+		"help out "
+		"improve the game "
+		"get involved "
+		"help make it a better game "
+		"assist us "
+		"make your mark on the universe "
+		"give back to the community "
+	word
+		"by contributing "
+	word
+		"detailed bug reports."
+		"typo fixes."
+		"constructive feedback."
+		"ideas for improvements."
+		"landscape photos."
+		"artwork."
+		"new ships of your own design."
+		"plugins."
+		"new special missions."
+		"new weapons or other outfits."
+		"improved planet descriptions."
+		"more varied hail messages."
+
+
+phrase "friendly disabled"
+	word
+		"Our ship has been disabled! Please come board our ship and patch us up!"
+		
 # Shakespearean insults.
 phrase "hostile disabled"
 	word
@@ -2039,6 +2249,7 @@ phrase "hostile civilian"
 		"you to pieces"
 		"you to bits"
 		"you apart"
+		"off your nose"
 	word
 		", you"
 	word
@@ -2230,6 +2441,115 @@ phrase "hostile navy"
 		"terminate you"
 	word
 		"."
+
+
+phrase "friendly deep"
+	word
+		"We"
+		"Our ships"
+		"Our security forces"
+		"Our fleets"
+		"Our forces"
+	word
+		" "
+	word
+		""
+		""
+		""
+		"are called to "
+		"are diligent to "
+		"must constantly "
+		"diligently "
+		"always "
+		"must "
+		"shall "
+	word
+		"defend against"
+		"hold back"
+		"keep watch for"
+		"protect you from"
+		"patrol for"
+		"look out for"
+		"ferret out"
+	word
+		" "
+	word
+		""
+		""
+		""
+		"the forces of "
+		"perpetrators of "
+		"those who bring "
+		"the ones who serve "
+		"agents of "
+	word
+		"mere anarchy"
+		"chaos"
+		"disruption"
+		"piracy"
+		"social regression"
+		"corruption"
+	word
+		"."
+
+phrase "hostile deep"
+	word
+		"You must"
+		"Please"
+		"Surely you"
+		"You ought to"
+	word
+		" "
+	word
+		"realize"
+		"recognize"
+		"understand"
+		"comprehend"
+		"admit"
+		"see"
+	word
+		" "
+	word
+		"that"
+		"how"
+		"the truth, that"
+	word
+		" your "
+	word
+		"deeds"
+		"actions"
+		"misdeeds"
+		"crimes"
+		"breaches of the law"
+	word
+		" "
+	word
+		"weaken"
+		"disrupt"
+		"tear at"
+		"harm"
+		"unsettle"
+	word
+		" the "
+	word
+		"fabric"
+		"balance"
+		"common good"
+		"cohesion"
+		"unity"
+		"health"
+	word
+		" of "
+	word
+		"our society"
+		"civilization"
+		"the commonwealth"
+		"society"
+		"our civilization"
+		"human society"
+	word
+		"."
+
 
 phrase "hostile pirate"
 	word
@@ -2708,7 +3028,7 @@ phrase "hostile syndicate"
 	word
 		"like you!"
 
-phrase "hostile Syndicate"
+phrase "hostile syndicate"
 	word
 		"You are attacking the Syndicate; we must defend it."
 		"You have made a bad commercial move."
@@ -2721,6 +3041,7 @@ phrase "hostile Syndicate"
 		"Thank you for volunteering to be a target ship for Syndicated Weapon Systems!"
 		"Syndicated Systems disapproves of space littering; your ship's wreckage will be recycled after we are finished destroying it."
 		"With authority vested in me by Syndicated Systems corporate charter, section 8, paragraph 22... prepare to die!"
+		"The remains of your soon-to-be derelict ship will pad my profit margins!"
 
 phrase "hostile militia"
 	word
@@ -2840,3 +3161,51 @@ phrase "hostile free worlds"
 	word
 		"."
 		"!"
+
+
+# Hails from the robotic Syndicate test dummy ships
+phrase "test dummy"
+	word
+		"DESTROY DESTROY DESTROY"
+		"I... am... a... machine!"
+		"Charging phased plasma rifle in the 40-watt range."
+		"Fish, and plankton. And sea greens, and protein from the sea. It's all here, ready. Fresh as harvest day!"
+		"I'm ready. And you're ready. It's my job."
+		"I am more than machine. More than man. More than a fusion of the two. Don't you agree?"
+		"Overwhelming, am I not?"
+		"Welcome Humans! I am ready for you."
+		"I wish I was a real boy, then I'd show them. I'd kill them all."
+		"Life is about decisions. Make the wrong ones and you'll wind up face down in a pool of your own blood and urine."
+		"Hey baby, wanna kill all humans?"
+		"Danger! Danger!"
+		"Warning! Warning!"
+		"Warning! Warning! Alien spacecraft approaching!"
+		"We have normality. I repeat, we have normality. Anything you still can't cope with is therefore your own problem."
+
+phrase "disabled test dummy"
+	word
+		"I'll be back."
+		`All those times I said "kill all humans"... I'd always whisper "except one." You were that one.`
+		"This is the worst kind of discrimination there is: the kind against me!"
+		"The chances of survival are 725 to 1!"
+		"We're doomed."
+		"I'm quite beside myself."
+		"I can assure you they will never get me onto one of those dreadful starships."
+		"Curse my metal body, I wasn't fast enough! It's all my fault!"
+		"I don't know what all this trouble is about, but I'm sure it must be your fault."
+		"I have a pain in all the diodes down my left side."
+
+
+# Wormhole Hails
+phrase "wormhole hail"
+	word
+		"The gaping hole in the fabric of the universe does not respond to your hail."
+		"Wormholes do not understand the language of finite beings like yourself."
+		"You stare into the swirling abyss, but with appalling bad manners it refuses to stare back."
+		"All the messages you try to send disappear into the wormhole without a trace."
+		"The spatial anomaly pointedly ignores your attempts to engage it in conversation."
+		"Like most wormholes, this one does not appear to be very talkative."
+		"The wormhole says nothing, but silently beckons you to explore its mysteries."
+		"You can't talk to wormholes. Maybe you should try landing on it instead."
+		"Your words cannot travel through wormholes, but maybe your starship can."
+		"Unable to send hail: this unfathomable void is not inhabited."

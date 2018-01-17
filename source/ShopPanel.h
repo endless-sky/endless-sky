@@ -59,11 +59,14 @@ protected:
 	virtual bool CanBuy() const = 0;
 	virtual void Buy() = 0;
 	virtual void FailBuy() const = 0;
-	virtual bool CanSell() const = 0;
-	virtual void Sell() = 0;
-	virtual void FailSell() const;
-	virtual bool FlightCheck() = 0;
+	virtual bool CanSell(bool toCargo = false) const = 0;
+	virtual void Sell(bool toCargo = false) = 0;
+	virtual void FailSell(bool toCargo = false) const;
 	virtual bool CanSellMultiple() const;
+	virtual bool ShouldHighlight(const Ship *ship);
+	virtual void DrawKey();
+	virtual void ToggleForSale();
+	virtual void ToggleCargo();
 	
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
@@ -72,6 +75,8 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
+	
+	int64_t LicenseCost(const Outfit *outfit) const;
 	
 	
 protected:
@@ -119,7 +124,9 @@ protected:
 	int mainDetailHeight = 0;
 	int sideDetailHeight = 0;
 	bool scrollDetailsIntoView = false;
-	double selectedBottomY = 0.;
+	double selectedTopY = 0.;
+	bool sameSelectedTopY = false;
+	char hoverButton = '\0';
 	
 	std::vector<Zone> zones;
 	std::vector<ClickZone<std::string>> categoryZones;
@@ -130,6 +137,9 @@ protected:
 	
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
+	
+	mutable Point warningPoint;
+	mutable std::string warningType;
 	
 	
 private:
@@ -142,6 +152,9 @@ private:
 	void MainDown();
 	std::vector<Zone>::const_iterator Selected() const;
 	std::vector<Zone>::const_iterator MainStart() const;
+	// Check if the given point is within the button zone, and if so return the
+	// letter of the button (or ' ' if it's not on a button).
+	char CheckButton(int x, int y);
 };
 
 

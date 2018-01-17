@@ -31,10 +31,10 @@ using namespace std;
 
 
 
-Fleet::Fleet()
+// Construct and Load() at the same time.
+Fleet::Fleet(const DataNode &node)
 {
-	government = GameData::Governments().Get("Merchant");
-	names = GameData::Phrases().Get("civilian");
+	Load(node);
 }
 
 
@@ -50,25 +50,39 @@ void Fleet::Load(const DataNode &node)
 	
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "government" && child.Size() >= 2)
+		// The "add" and "remove" keywords should never be alone on a line, and
+		// are only valid with "variant" or "personality" definitions.
+		bool add = (child.Token(0) == "add");
+		bool remove = (child.Token(0) == "remove");
+		bool hasValue = (child.Size() >= 2);
+		if((add || remove) && (!hasValue || (child.Token(1) != "variant" && child.Token(1) != "personality")))
+		{	
+			child.PrintTrace("Skipping invalid \"" + child.Token(0) + "\" tag:");
+			continue;
+		}
+		
+		// If this line is an add or remove, the key is the token at index 1.
+		const string &key = child.Token(add || remove);
+		
+		if(key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
-		else if(child.Token(0) == "names" && child.Size() >= 2)
+		else if(key == "names" && hasValue)
 			names = GameData::Phrases().Get(child.Token(1));
-		else if(child.Token(0) == "fighters" && child.Size() >= 2)
+		else if(key == "fighters" && hasValue)
 			fighterNames = GameData::Phrases().Get(child.Token(1));
-		else if(child.Token(0) == "cargo" && child.Size() >= 2)
+		else if(key == "cargo" && hasValue)
 			cargo = static_cast<int>(child.Value(1));
-		else if(child.Token(0) == "commodities" && child.Size() >= 2)
+		else if(key == "commodities" && hasValue)
 		{
 			commodities.clear();
 			for(int i = 1; i < child.Size(); ++i)
 				commodities.push_back(child.Token(i));
 		}
-		else if(child.Token(0) == "personality")
+		else if(key == "personality")
 			personality.Load(child);
-		else if(child.Token(0) == "variant")
+		else if(key == "variant" && !remove)
 		{
-			if(resetVariants)
+			if(resetVariants && !add)
 			{
 				resetVariants = false;
 				variants.clear();
@@ -76,6 +90,25 @@ void Fleet::Load(const DataNode &node)
 			}
 			variants.emplace_back(child);
 			total += variants.back().weight;
+		}
+		else if(key == "variant")
+		{
+			// If given a full ship definition of one of this fleet's variant members, remove the variant.
+			bool didRemove = false;
+			for(auto it = variants.begin(); it != variants.end(); ++it)
+			{
+				Variant toRemove = Variant(child);
+				if(toRemove.ships.size() == it->ships.size() &&
+					is_permutation(it->ships.begin(), it->ships.end(), toRemove.ships.begin()))
+				{
+					total -= it->weight;
+					variants.erase(it);
+					didRemove = true;
+					break;
+				}
+			}
+			if(!didRemove)
+				child.PrintTrace("Did not find matching variant for specified operation:");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -94,58 +127,13 @@ const Government *Fleet::GetGovernment() const
 
 void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
 {
-	if(!total || !government || variants.empty())
+	if(!total || variants.empty())
 		return;
 	
 	// Pick a fleet variant to instantiate.
 	const Variant &variant = ChooseVariant();
 	if(variant.ships.empty())
 		return;
-	
-	// Where this fleet can come from depends on whether it is friendly to any
-	// planets in this system and whether it has jump drives.
-	vector<const System *> linkVector;
-	// Find out what the "best" jump method the fleet has is. Assume that if the
-	// others don't have that jump method, they are being carried as fighters.
-	// That is, content creators should avoid creating fleets with a mix of jump
-	// drives and hyperdrives.
-	int jumpType = 0;
-	for(const Ship *ship : variant.ships)
-		jumpType = max(jumpType,
-			 ship->Attributes().Get("jump drive") ? 200 :
-			 ship->Attributes().Get("hyperdrive") ? 100 : 0);
-	if(jumpType)
-	{
-		// Don't try to make a fleet "enter" from another system if none of the
-		// ships have jump drives.
-		bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
-		for(const System *neighbor : (jumpType == 200 ? system.Neighbors() : system.Links()))
-		{
-			// If this ship is not "welcome" in the current system, prefer to have
-			// it enter from a system that is friendly to it. (This is for realism,
-			// so attack fleets don't come from what ought to be a safe direction.)
-			if(isWelcomeHere || neighbor->GetGovernment()->IsEnemy(government))
-				linkVector.push_back(neighbor);
-			else
-				linkVector.insert(linkVector.end(), 4, neighbor);
-		}
-	}
-	
-	// Find all the inhabited planets this fleet could take off from.
-	vector<const Planet *> planetVector;
-	if(!personality.IsSurveillance())
-		for(const StellarObject &object : system.Objects())
-			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
-					&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
-				planetVector.push_back(object.GetPlanet());
-	
-	// If there is nowhere for this fleet to come from, don't create it.
-	size_t options = linkVector.size() + planetVector.size();
-	if(!options)
-		return;
-	
-	// Choose a random planet or star system to come from.
-	size_t choice = Random::Int(options);
 	
 	// Figure out what system the ship is starting in, where it is going, and
 	// what position it should start from in the system.
@@ -154,12 +142,80 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	Point position;
 	double radius = 0.;
 	
-	// If a planet is chosen, also pick a system to travel to after taking off.
-	if(choice >= linkVector.size())
+	// Only pick a random entry point for this ship if a source planet was not specified.
+	if(!planet)
 	{
-		planet = planetVector[choice - linkVector.size()];
-		if(!linkVector.empty())
-			target = linkVector[Random::Int(linkVector.size())];
+		// Where this fleet can come from depends on whether it is friendly to any
+		// planets in this system and whether it has jump drives.
+		vector<const System *> linkVector;
+		// Find out what the "best" jump method the fleet has is. Assume that if the
+		// others don't have that jump method, they are being carried as fighters.
+		// That is, content creators should avoid creating fleets with a mix of jump
+		// drives and hyperdrives.
+		bool hasJump = false;
+		bool hasHyper = false;
+		for(const Ship *ship : variant.ships)
+		{
+			if(ship->Attributes().Get("jump drive"))
+				hasJump = true;
+			if(ship->Attributes().Get("hyperdrive"))
+				hasHyper = true;
+		}
+		// Don't try to make a fleet "enter" from another system if none of the
+		// ships have jump drives.
+		if(hasJump || hasHyper)
+		{
+			bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
+			for(const System *neighbor : (hasJump ? system.Neighbors() : system.Links()))
+			{
+				// If this ship is not "welcome" in the current system, prefer to have
+				// it enter from a system that is friendly to it. (This is for realism,
+				// so attack fleets don't come from what ought to be a safe direction.)
+				if(isWelcomeHere || neighbor->GetGovernment()->IsEnemy(government))
+					linkVector.push_back(neighbor);
+				else
+					linkVector.insert(linkVector.end(), 8, neighbor);
+			}
+		}
+	
+		// Find all the inhabited planets this fleet could take off from.
+		vector<const Planet *> planetVector;
+		if(!personality.IsSurveillance())
+			for(const StellarObject &object : system.Objects())
+				if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
+						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
+					planetVector.push_back(object.GetPlanet());
+	
+		// If there is nowhere for this fleet to come from, don't create it.
+		size_t options = linkVector.size() + planetVector.size();
+		if(!options)
+		{
+			// Prefer to launch from inhabited planets, but launch from
+			// uninhabited ones if there is no other option.
+			for(const StellarObject &object : system.Objects())
+				if(object.GetPlanet() && !object.GetPlanet()->GetGovernment()->IsEnemy(government))
+					planetVector.push_back(object.GetPlanet());
+			options = planetVector.size();
+			if(!options)
+				return;
+		}
+		
+		// Choose a random planet or star system to come from.
+		size_t choice = Random::Int(options);
+	
+		// If a planet is chosen, also pick a system to travel to after taking off.
+		if(choice >= linkVector.size())
+		{
+			planet = planetVector[choice - linkVector.size()];
+			if(!linkVector.empty())
+				target = linkVector[Random::Int(linkVector.size())];
+		}
+		else
+		{
+			// We are entering this system via hyperspace, not taking off from a planet.
+			radius = 1000.;
+			source = linkVector[choice];
+		}
 	}
 	
 	// Find the stellar object for the given planet, and place the ships there.
@@ -172,12 +228,6 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 				radius = object.Radius();
 				break;
 			}
-	}
-	else if(choice < linkVector.size())
-	{
-		// We are entering this system via hyperspace, not taking off from a planet.
-		radius = 1000.;
-		source = linkVector[choice];
 	}
 	
 	// Place all the ships in the chosen fleet variant.
@@ -220,7 +270,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 // Place a fleet in the given system, already "in action."
 void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried) const
 {
-	if(!total || !government || variants.empty())
+	if(!total || variants.empty())
 		return;
 	
 	// Pick a fleet variant to instantiate.
@@ -260,21 +310,32 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 
 
 // Do the randomization to make a ship enter or be in the given system.
-void Fleet::Enter(const System &system, Ship &ship)
+const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
 {
-	if(!system.Links().size())
+	if(system.Links().empty() || (source && !system.Links().count(source)))
 	{
 		Place(system, ship);
-		return;
+		return &system;
 	}
 	
-	const System *source = system.Links()[Random::Int(system.Links().size())];
+	// Choose which system this ship is coming from.
+	if(!source)
+	{
+		int choice = Random::Int(system.Links().size());
+		set<const System *>::const_iterator it = system.Links().begin();
+		while(choice--)
+			++it;
+		source = *it;
+	}
+	
 	Angle angle = Angle::Random();
 	Point pos = angle.Unit() * Random::Real() * 1000.;
 	
 	ship.Place(pos, angle.Unit(), angle);
 	ship.SetSystem(source);
 	ship.SetTargetSystem(&system);
+	
+	return source;
 }
 
 
@@ -310,13 +371,17 @@ int64_t Fleet::Strength() const
 
 Fleet::Variant::Variant(const DataNode &node)
 {
-	weight = (node.Size() < 2) ? 1 : static_cast<int>(node.Value(1));
+	weight = 1;
+	if(node.Token(0) == "variant" && node.Size() >= 2)
+		weight = node.Value(1);
+	else if(node.Token(0) == "add" && node.Size() >= 3)
+		weight = node.Value(2);
 	
 	for(const DataNode &child : node)
 	{
 		int n = 1;
-		if(child.Size() > 1 && child.Value(1) >= 1.)
-			n = static_cast<int>(child.Value(1));
+		if(child.Size() >= 2 && child.Value(1) >= 1.)
+			n = child.Value(1);
 		ships.insert(ships.end(), n, GameData::Ships().Get(child.Token(0)));
 	}
 }
@@ -363,7 +428,9 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 		shared_ptr<Ship> ship(new Ship(*model));
 		
 		bool isFighter = ship->CanBeCarried();
-		ship->SetName(((isFighter && fighterNames) ? fighterNames : names)->Get());
+		const Phrase *phrase = ((isFighter && fighterNames) ? fighterNames : names);
+		if(phrase)
+			ship->SetName(phrase->Get());
 		ship->SetGovernment(government);
 		ship->SetPersonality(personality);
 		
@@ -397,7 +464,7 @@ void Fleet::SetCargo(Ship *ship) const
 			break;
 		
 		int index = Random::Int(GameData::Commodities().size());
-		if(commodities.size())
+		if(!commodities.empty())
 		{
 			// If a list of possible commodities was given, pick one of them at
 			// random and then double-check that it's a valid commodity name.

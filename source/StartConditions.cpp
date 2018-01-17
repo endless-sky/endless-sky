@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "GameData.h"
 #include "Planet.h"
+#include "Ship.h"
 #include "System.h"
 
 using namespace std;
@@ -33,9 +34,20 @@ void StartConditions::Load(const DataNode &node)
 			planet = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
+		else if(child.Token(0) == "ship" && child.Size() >= 2)
+			ships.emplace_back(child);
 		else
 			conditions.Add(child);
 	}
+}
+
+
+
+// Finish loading the ship definitions.
+void StartConditions::FinishLoading()
+{
+	for(Ship &ship : ships)
+		ship.FinishLoading(true);
 }
 
 
@@ -71,4 +83,11 @@ const Account &StartConditions::GetAccounts() const
 const ConditionSet &StartConditions::GetConditions() const
 {
 	return conditions;
+}
+
+
+
+const list<Ship> &StartConditions::Ships() const
+{
+	return ships;
 }

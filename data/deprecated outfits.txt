@@ -105,6 +105,20 @@ outfit "Korath Jak'parat Steering"
 	"turning heat" 7.9
 	description "This engine is used in the Korath capital ships."
 
+
+# Deprecated in favor of the Outfits Expansion, which has a cooling penalty that
+# stacks up and limits how many you can install.
+outfit "Mass Expansion"
+	category "Systems"
+	cost 50000
+	thumbnail "outfit/blue screwdriver"
+	"mass" 5
+	"outfit space" 15
+	"cargo space" -20
+	unplunderable 1
+	description "A mass expansion allows you to sacrifice some cargo space in order to make room for more outfits, in situations where you need just a bit more space to install a particular system. It does not increase your weapon or engine space unfortunately."
+
+# Deprecated to give it a less generic name.
 outfit "Reverse Thruster"
 	category "Engines"
 	"cost" 140000
@@ -116,6 +130,7 @@ outfit "Reverse Thruster"
 	"reverse thrusting energy" 1.8
 	"reverse thrusting heat" 3.5
 
+# Deprecated because it unbalances the capture dynamics, among other things.
 outfit "NDR-114 Android"
 	category "Systems"
 	cost 80000
@@ -124,7 +139,7 @@ outfit "NDR-114 Android"
 	unplunderable 1
 	description "For the price of more than two year's salary, you can replace one of your crew members with a robotic counterpart. Androids possess sufficient intelligence to perform most work, but each ship still needs a human captain. And, due to long-standing convention, robots are not allowed to take part in hand to hand combat."
 
-#deprecated for 0.9.2 due to long outfit name
+# Deprecated for 0.9.2 due to long outfit names.
 outfit "Bullfrog Anti-Missile Turret"
 	category "Turrets"
 	cost 55000

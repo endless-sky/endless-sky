@@ -226,7 +226,7 @@ ship "Bactrian"
 	explode "large explosion" 45
 	explode "huge explosion" 30
 	"final explode" "final explosion large"
-	description "The Lionheart Bactrian is the last of the great city-ships, a design hearkening back to the early days of space colonization when a long-distance vessel needed to be a self-contained world, able to survive at times for weeks without encountering an inhabited planet. It is not only a freighter, but a carrier, and a capable warship either at short range or at a distance. Naturally, this versatility also makes it extremely expensive, and the Bactrian is not normally for sale to ordinary citizens who have not been vetted by the local government of the Deep."
+	description "The Lionheart Bactrian is the last of the great city-ships, a design hearkening back to the early days of space colonization when a long-distance vessel needed to be a self-contained world, able to survive for weeks at a time without encountering an inhabited planet. It is not only a freighter, but a carrier, and a capable warship either at short range or at a distance. Naturally, this versatility also makes it extremely expensive, and the Bactrian is not normally for sale to ordinary citizens who have not been vetted by the local government of the Deep."
 
 
 
@@ -266,7 +266,7 @@ ship "Barb"
 	turret 8 6 "Blaster Turret"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
-	description `Though the Syndicate doesn't build Fighter carriers, it is testing the waters with the Barb, a cheap and flexible carrier-launched craft featuring newly-developed miniaturized ion engines. The design philosophy of the Barb seems to have been "uglier than the Protector," and as you look at the cockpit nestled between the massive gun port and turret mount, you wonder where the power systems are supposed to go. Though an awkward-looking ship, it seems flexible enough to become a dangerous addition to any fleet with carriers.`
+	description `Though the Syndicate doesn't build fighter carriers, it is testing the waters with the Barb, a cheap and flexible carrier-launched craft featuring newly-developed miniaturized ion engines. The design philosophy of the Barb seems to have been "uglier than the Protector," and as you look at the cockpit nestled between the massive gun port and turret mount, you wonder where the power systems are supposed to go. Though an awkward-looking ship, it seems flexible enough to become a dangerous addition to any fleet with carriers.`
 
 
 
@@ -315,8 +315,8 @@ ship "Bastion"
 		"cost" 3560000
 		"shields" 6700
 		"hull" 4200
-		"required crew" 32
-		"bunks" 47
+		"required crew" 17
+		"bunks" 40
 		"mass" 580
 		"drag" 10.3
 		"heat dissipation" .5
@@ -646,11 +646,11 @@ ship "Bulk Freighter"
 
 ship "Carrier"
 	sprite "ship/carrier"
-	licenses
-		Navy
-		Carrier
 	attributes
 		category "Heavy Warship"
+		licenses
+			Navy
+			Carrier
 		"cost" 15200000
 		"shields" 21400
 		"hull" 8300
@@ -832,10 +832,10 @@ ship "Clipper"
 
 ship "Combat Drone"
 	sprite "ship/combat drone"
-	licenses
-		Navy
 	attributes
 		category "Drone"
+		licenses
+			Navy
 		"cost" 83000
 		"hull" 700
 		"mass" 20
@@ -921,11 +921,11 @@ ship "Corvette"
 
 ship "Cruiser"
 	sprite "ship/cruiser"
-	licenses
-		Navy
-		Cruiser
 	attributes
 		category "Heavy Warship"
+		licenses
+			Navy
+			Cruiser
 		"cost" 11200000
 		"shields" 19600
 		"hull" 6400
@@ -1329,10 +1329,10 @@ ship "Freighter"
 
 ship "Frigate"
 	sprite "ship/frigate"
-	licenses
-		Navy
 	attributes
 		category "Medium Warship"
+		licenses
+			Navy
 		"cost" 5200000
 		"shields" 8000
 		"hull" 2500
@@ -1431,10 +1431,10 @@ ship "Fury"
 
 ship "Gunboat"
 	sprite "ship/gunboat"
-	licenses
-		Navy
 	attributes
 		category "Light Warship"
+		licenses
+			Navy
 		"cost" 3200000
 		"shields" 5800
 		"hull" 1400
@@ -2239,10 +2239,10 @@ ship "Quicksilver"
 
 ship "Rainmaker"
 	sprite "ship/rainmaker"
-	licenses
-		Navy
 	attributes
 		category "Light Warship"
+		licenses
+			Navy
 		"cost" 1580000
 		"shields" 3500
 		"hull" 1200
@@ -2459,7 +2459,7 @@ ship "Shuttle"
 		"bunks" 6
 		"mass" 70
 		"drag" 1.7
-		"heat dissipation" .7
+		"heat dissipation" .8
 		"fuel capacity" 400
 		"cargo space" 20
 		"outfit space" 120
@@ -2491,10 +2491,10 @@ ship "Shuttle"
 
 ship "Skein"
 	sprite "ship/skein"
-	licenses
-		"Militia Carrier"
 	attributes
 		category "Medium Warship"
+		licenses
+			"Militia Carrier"
 		"cost" 3500000
 		"shields" 3300
 		"hull" 6700
@@ -2602,7 +2602,7 @@ ship "Splinter"
 		"cost" 3100000
 		"shields" 5200
 		"hull" 1700
-		"required crew" 12
+		"required crew" 7
 		"bunks" 21
 		"mass" 250
 		"drag" 4.0
@@ -2658,7 +2658,7 @@ ship "Star Barge"
 		"bunks" 3
 		"mass" 70
 		"drag" 2.4
-		"heat dissipation" .7
+		"heat dissipation" .8
 		"fuel capacity" 300
 		"cargo space" 50
 		"outfit space" 130
@@ -2742,10 +2742,10 @@ ship "Star Queen"
 
 ship "Surveillance Drone"
 	sprite "ship/surveillance drone"
-	licenses
-		Navy
 	attributes
 		category "Drone"
+		licenses
+			Navy
 		"cost" 50000
 		"hull" 300
 		"mass" 15
@@ -2818,7 +2818,7 @@ ship "Vanguard"
 	gun 21 -45 "Proton Gun"
 	gun -31 -45 "Proton Gun"
 	gun 31 -45 "Proton Gun"
-	turret 0 40 "Anti-Missile Turret"
+	turret 0 42 "Anti-Missile Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24

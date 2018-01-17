@@ -74,12 +74,12 @@ string Format::Number(double value)
 	if(left > 3)
 		delimiterIndex = left - 3;
 	
-	while(rounded | right)
+	while(rounded || right)
 	{
 		int digit = rounded % 10;
-		if(nonzero | digit)
+		if(nonzero || digit)
 		{
-			result += digit + '0';
+			result += static_cast<char>(digit + '0');
 			nonzero = true;
 		}
 		rounded /= 10;
@@ -109,6 +109,24 @@ string Format::Number(double value)
 	// Reverse the string.
 	reverse(result.begin(), result.end());
 	
+	return result;
+}
+
+
+
+// Format the given value as a number with exactly the given number of
+// decimal places (even if they are all 0).
+string Format::Decimal(double value, int places)
+{
+	double integer;
+	double fraction = fabs(modf(value, &integer));
+	
+	string result = to_string(static_cast<int>(integer)) + ".";
+	while(places--)
+	{
+		fraction = modf(fraction * 10., &integer);
+		result += ('0' + static_cast<int>(integer));
+	}
 	return result;
 }
 
@@ -231,5 +249,25 @@ string Format::LowerCase(const string &str)
 	string result = str;
 	for(char &c : result)
 		c = tolower(c);
+	return result;
+}
+
+
+
+// Split a single string into substrings with the given separator.
+vector<string> Format::Split(const string &str, const string &separator)
+{
+	vector<string> result;
+	size_t begin = 0;
+	while(true)
+	{
+		size_t pos = str.find(separator, begin);
+		if(pos == string::npos)
+			pos = str.length();
+		result.emplace_back(str, begin, pos - begin);
+		begin = pos + separator.size();
+		if(begin >= str.length())
+			break;
+	}
 	return result;
 }

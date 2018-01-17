@@ -21,9 +21,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
+#include "Random.h"
 #include "Ship.h"
 #include "UI.h"
 
+#include <cstdlib>
 #include <vector>
 
 using namespace std;
@@ -64,7 +66,7 @@ namespace {
 			player.Cargo().Remove(outfit, moved);
 			didCargo = true;
 		}
-		while(flagship && count)
+		while(count)
 		{
 			int moved = (count > 0) ? 1 : -1;
 			if(flagship->Attributes().CanAdd(*outfit, moved))
@@ -84,7 +86,7 @@ namespace {
 			player.Cargo().Add(outfit, count);
 			player.Cargo().SetSize(size);
 			didCargo = true;
-			if(count > 0 && ui)
+			if(ui)
 			{
 				string special = "The " + nameWas;
 				special += " put in your cargo hold because there is not enough space to install ";
@@ -105,6 +107,14 @@ namespace {
 
 
 
+// Construct and Load() at the same time.
+MissionAction::MissionAction(const DataNode &node, const string &missionName)
+{
+	Load(node, missionName);
+}
+
+
+
 void MissionAction::Load(const DataNode &node, const string &missionName)
 {
 	if(node.Size() >= 2)
@@ -114,34 +124,43 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 	
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "dialog")
+		const string &key = child.Token(0);
+		bool hasValue = (child.Size() >= 2);
+		
+		if(key == "log" || key == "dialog")
 		{
-			for(int i = 1; i < child.Size(); ++i)
+			bool isSpecial = (key == "log" && child.Size() >= 3);
+			string &text = (key == "dialog" ? dialogText :
+				isSpecial ? specialLogText[child.Token(1)][child.Token(2)] : logText);
+			for(int i = isSpecial ? 3 : 1; i < child.Size(); ++i)
 			{
-				if(!dialogText.empty())
-					dialogText += "\n\t";
-				dialogText += child.Token(i);
+				if(!text.empty())
+					text += "\n\t";
+				text += child.Token(i);
 			}
 			for(const DataNode &grand : child)
 				for(int i = 0; i < grand.Size(); ++i)
 				{
-					if(!dialogText.empty())
-						dialogText += "\n\t";
-					dialogText += grand.Token(i);
+					if(!text.empty())
+						text += "\n\t";
+					text += grand.Token(i);
 				}
 		}
-		else if(child.Token(0) == "conversation" && child.HasChildren())
+		else if(key == "conversation" && child.HasChildren())
 			conversation.Load(child);
-		else if(child.Token(0) == "conversation" && child.Size() > 1)
+		else if(key == "conversation" && hasValue)
 			stockConversation = GameData::Conversations().Get(child.Token(1));
-		else if(child.Token(0) == "outfit" && child.Size() >= 2)
+		else if(key == "outfit" && hasValue)
 		{
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
 			gifts[GameData::Outfits().Get(child.Token(1))] = count;
 		}
-		else if(child.Token(0) == "require" && child.Size() >= 2)
-			gifts[GameData::Outfits().Get(child.Token(1))] = 0;
-		else if(child.Token(0) == "payment")
+		else if(key == "require" && hasValue)
+		{
+			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
+			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
+		}
+		else if(key == "payment")
 		{
 			if(child.Size() == 1)
 				paymentMultiplier += 150;
@@ -150,13 +169,28 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			if(child.Size() >= 3)
 				paymentMultiplier += child.Value(2);
 		}
-		else if(child.Token(0) == "event" && child.Size() >= 2)
+		else if(key == "event" && hasValue)
 		{
-			int days = (child.Size() >= 3 ? child.Value(2) : 0);
-			events[child.Token(1)] = days;
+			int minDays = (child.Size() >= 3 ? child.Value(2) : 0);
+			int maxDays = (child.Size() >= 4 ? child.Value(3) : minDays);
+			if(maxDays < minDays)
+				swap(minDays, maxDays);
+			events[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
 		}
-		else if(child.Token(0) == "fail")
-			fail.insert(child.Size() >= 2 ? child.Token(1) : missionName);
+		else if(key == "fail")
+		{
+			string toFail = child.Size() >= 2 ? child.Token(1) : missionName;
+			fail.insert(toFail);
+			// Create a GameData reference to this mission name.
+			GameData::Missions().Get(toFail);
+		}
+		else if(key == "system")
+		{
+			if(system.empty() && child.HasChildren())
+				systemFilter.Load(child);
+			else
+				child.PrintTrace("Unsupported use of \"system\" LocationFilter:");
+		}
 		else
 			conditions.Add(child);
 	}
@@ -174,23 +208,43 @@ void MissionAction::Save(DataWriter &out) const
 		out.Write("on", trigger, system);
 	out.BeginChild();
 	{
+		if(!systemFilter.IsEmpty())
+		{
+			out.Write("system");
+			// LocationFilter indentation is handled by its Save method.
+			systemFilter.Save(out);
+		}
+		if(!logText.empty())
+		{
+			out.Write("log");
+			out.BeginChild();
+			{
+				// Break the text up into paragraphs.
+				for(const string &line : Format::Split(logText, "\n\t"))
+					out.Write(line);
+			}
+			out.EndChild();
+		}
+		for(const auto &it : specialLogText)
+			for(const auto &eit : it.second)
+			{
+				out.Write("log", it.first, eit.first);
+				out.BeginChild();
+				{
+					// Break the text up into paragraphs.
+					for(const string &line : Format::Split(eit.second, "\n\t"))
+						out.Write(line);
+				}
+				out.EndChild();
+			}
 		if(!dialogText.empty())
 		{
 			out.Write("dialog");
 			out.BeginChild();
 			{
 				// Break the text up into paragraphs.
-				size_t begin = 0;
-				while(true)
-				{
-					size_t pos = dialogText.find("\n\t", begin);
-					if(pos == string::npos)
-						pos = dialogText.length();
-					out.Write(dialogText.substr(begin, pos - begin));
-					if(pos == dialogText.length())
-						break;
-					begin = pos + 2;
-				}
+				for(const string &line : Format::Split(dialogText, "\n\t"))
+					out.Write(line);
 			}
 			out.EndChild();
 		}
@@ -199,10 +253,17 @@ void MissionAction::Save(DataWriter &out) const
 		
 		for(const auto &it : gifts)
 			out.Write("outfit", it.first->Name(), it.second);
+		for(const auto &it : requiredOutfits)
+			out.Write("require", it.first->Name(), it.second);
 		if(payment)
 			out.Write("payment", payment);
 		for(const auto &it : events)
-			out.Write("event", it.first, it.second);
+		{
+			if(it.second.first == it.second.second)
+				out.Write("event", it.first->Name(), it.second.first);
+			else
+				out.Write("event", it.first->Name(), it.second.first, it.second.second);
+		}
 		for(const auto &name : fail)
 			out.Write("fail", name);
 		
@@ -234,17 +295,45 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 			continue;
 		
 		// The outfit can be taken from the player's cargo or from the flagship.
+		// If the player is landed, all available cargo is transferred from the
+		// player's ships to the player. If checking mission completion status
+		// in-flight, cargo is present in the player's ships.
+		int available = player.Cargo().Get(it.first);
+		if(!player.GetPlanet())
+			for(const auto &ship : player.Ships())
+				if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
+					available += ship->Cargo().Get(it.first);
+		if(flagship)
+			available += flagship->OutfitCount(it.first);
+		
+		// If the gift "count" is 0, that means to check that the player has at
+		// least one of these items. This is for backward compatibility before
+		// requiredOutfits was introduced.
+		if(available < -it.second + !it.second)
+			return false;
+	}
+	
+	for(const auto &it : requiredOutfits)
+	{
+		// The required outfit can be in the player's cargo or from the flagship.
 		int available = player.Cargo().Get(it.first);
 		for(const auto &ship : player.Ships())
 			available += ship->Cargo().Get(it.first);
 		if(flagship)
 			available += flagship->OutfitCount(it.first);
 		
-		// If the gift "count" is 0, that means to check that the player has at
-		// least one of these items.
-		if(available < -it.second + !it.second)
+		if(available < it.second)
+			return false;
+		
+		// If the required count is 0, the player must not have any of the outfit.
+		if(it.second == 0 && available > 0)
 			return false;
 	}
+	
+	// An `on enter` MissionAction may have defined a LocationFilter that
+	// specifies the systems in which it can occur.
+	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player.GetSystem()))
+		return false;
 	return true;
 }
 
@@ -258,6 +347,10 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 		ConversationPanel *panel = new ConversationPanel(player, conversation, destination);
 		if(isOffer)
 			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
+		// Use a basic callback to handle forced departure outside of `on offer`
+		// conversations.
+		else
+			panel->SetCallback(&player, &PlayerInfo::BasicCallback);
 		ui->Push(panel);
 	}
 	else if(!dialogText.empty() && ui)
@@ -277,6 +370,12 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);
 	
+	if(!logText.empty())
+		player.AddLogEntry(logText);
+	for(const auto &it : specialLogText)
+		for(const auto &eit : it.second)
+			player.AddSpecialLog(it.first, eit.first, eit.second);
+	
 	// If multiple outfits are being transferred, first remove them before
 	// adding any new ones.
 	for(const auto &it : gifts)
@@ -290,7 +389,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 		player.Accounts().AddCredits(payment);
 	
 	for(const auto &it : events)
-		player.AddEvent(*GameData::Events().Get(it.first), player.GetDate() + it.second);
+		player.AddEvent(*it.first, player.GetDate() + it.second.first);
 	
 	if(!fail.empty())
 	{
@@ -310,20 +409,35 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 
 
 
-MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, int payload) const
+MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin, int jumps, int payload) const
 {
 	MissionAction result;
 	result.trigger = trigger;
 	result.system = system;
+	// Convert any "distance" specifiers into "near <system>" specifiers.
+	result.systemFilter = systemFilter.SetOrigin(origin);
 	
-	result.events = events;
+	for(const auto &it : events)
+	{
+		// Allow randomization of event times. The second value in the pair is
+		// always greater than or equal to the first, so Random::Int() will
+		// never be called with a value less than 1.
+		int day = it.second.first + Random::Int(it.second.second - it.second.first + 1);
+		result.events[it.first] = make_pair(day, day);
+	}
 	result.gifts = gifts;
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
-	// Fill in the payment amount if this is the "complete" action (which comes
-	// before all the others in the list).
-	if(trigger == "complete" || result.payment)
-		subs["<payment>"] = Format::Number(result.payment)
+	// Fill in the payment amount if this is the "complete" action.
+	string previousPayment = subs["<payment>"];
+	if(result.payment)
+		subs["<payment>"] = Format::Number(abs(result.payment))
 			+ (result.payment == 1 ? " credit" : " credits");
+	
+	if(!logText.empty())
+		result.logText = Format::Replace(logText, subs);
+	for(const auto &it : specialLogText)
+		for(const auto &eit : it.second)
+			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
 	
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(dialogText, subs);
@@ -336,6 +450,11 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, i
 	result.fail = fail;
 	
 	result.conditions = conditions;
+	
+	// Restore the "<payment>" value from the "on complete" condition, for use
+	// in other parts of this mission.
+	if(result.payment && trigger != "complete")
+		subs["<payment>"] = previousPayment;
 	
 	return result;
 }

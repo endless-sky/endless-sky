@@ -46,6 +46,10 @@ void DataFile::Load(const string &path)
 		data.push_back('\n');
 	
 	Load(&*data.begin(), &*data.end());
+	
+	// Note what file this node is in, so it will show up in error traces.
+	root.tokens.push_back("file");
+	root.tokens.push_back(path);
 }
 
 

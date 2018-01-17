@@ -40,6 +40,21 @@ mission "First Contact: Hai"
 			`	"Yes," it says, "but be careful. The north is the territory of some renegade Hai: bandits and pirates, living off what they steal from the rest of us. If you travel among them, you will not be safe."`
 			`	You talk for a while longer, but do not gain much additional information except that several of their worlds are willing to sell Hai technology even to human beings. You thank them both for stopping to talk with you, and the Hai responds, "We are always glad to welcome new friends. May peace dwell in your heart until we meet again."`
 				decline
+	on decline
+		log "Factions" "Hai" `The Hai are a species of giant, intelligent rodents, who live to the north of human space. They allow any humans who discover their territory to live alongside them, and to trade with them and purchase their technology.`
+
+mission "Discovered Hai Space"
+	landing
+	invisible
+	source
+		government "Hai"
+	on offer
+		event "label hai space"
+		fail
+
+event "label hai space"
+	galaxy "label hai"
+		sprite "label/hai"
 
 
 
@@ -82,7 +97,7 @@ mission "First Contact: Unfettered"
 				`	"Where was your territory? Why have I never heard of you before?"`
 				`	"What do you mean, the Hai were altered?"`
 	
-			`	"This is our story," it says. "Once, many worlds beyond wormhole were ours. Once, million years now gone. We needed more worlds. A species that does not expand becomes like brackish water, like stunted tree. But dragonfolk in the south had created hyperdrive, and human monkeys had begun banging rocks together in what the Drak said was very intelligent fashion. So we were forbidden from taking more worlds."`
+			`	"This is our story," it says. "Once, many worlds beyond wormhole were ours. Once, hundred thousand years now gone. We needed more worlds. A species that does not expand becomes like brackish water, like stunted tree. But dragonfolk in the south had created hyperdrive, and human monkeys had begun banging rocks together in what the Drak said was very intelligent fashion. So we were forbidden from taking more worlds."`
 			`	"'Dragonfolk?'" you ask. "I've never heard of them."`
 			`	"Sheragi," it says, "they are extinct. Only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
 			`	"How were you altered?" you ask.`
@@ -90,7 +105,7 @@ mission "First Contact: Unfettered"
 			choice
 				`	"Did you try to resist the Drak?"`
 					goto resist
-				`	"How do you know this, if it happened millions of years ago?"`
+				`	"How do you know this, if it happened a hundred thousand years ago?"`
 					goto know
 			
 			label resist
@@ -118,6 +133,10 @@ mission "First Contact: Unfettered"
 			label sell
 			`	"Bring us a jump drive," it says, "and we will count you among our friends. Bring us more, and we may even consider you worthy of a share of the plunder, when we take back what is ours."`
 				decline
+
+	on decline
+		log "Factions" "Unfettered Hai" `The "Unfettered" are a faction within the Hai species who are not as peaceful as the rest, and are normally not friendly toward humans. They claim that long ago the Drak altered the Hai to make them docile and peaceful, and that the Unfettered are descendants of those Hai who avoided undergoing that alteration. They are seeking jump drives so that they can escape the "prison" they are now stuck in: a few deteriorating worlds on the far northern edge of Hai space.`
+		log "Factions" "Sheragi" `The Unfettered Hai say that a dragon-like species called the "Sheragi" who are long extinct used to live in human space, back when much of what is now human territory was occupied by the Hai.`
 
 
 
@@ -372,8 +391,8 @@ mission "Unfettered returning home"
 	description "This Hai has asked you to smuggle him out of Unfettered space and bring him to <destination>."
 	minor
 	source
-		attributes unfettered
-	destination Hai-home
+		attributes "unfettered"
+	destination "Hai-home"
 	clearance
 	passengers 1
 	to offer

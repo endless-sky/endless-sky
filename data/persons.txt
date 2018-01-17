@@ -50,24 +50,24 @@ person "Michael Zahniser"
 		
 		engine -14 177
 		engine 14 177
-		gun -31 66 "Ion Cannon"
-		gun 31 66 "Ion Cannon"
-		gun -53 61 "Ion Cannon"
-		gun 53 61 "Ion Cannon"
 		gun -75 57 "Ion Cannon"
 		gun 75 57 "Ion Cannon"
-		gun -31 66 "Ion Cannon"
-		gun 31 66 "Ion Cannon"
-		gun -53 61 "Ion Cannon"
-		gun 53 61 "Ion Cannon"
 		gun -75 57 "Ion Cannon"
 		gun 75 57 "Ion Cannon"
+		gun -53 61 "Ion Cannon"
+		gun 53 61 "Ion Cannon"
+		gun -53 61 "Ion Cannon"
+		gun 53 61 "Ion Cannon"
+		gun -31 66 "Ion Cannon"
+		gun 31 66 "Ion Cannon"
+		gun -31 66 "Ion Cannon"
+		gun 31 66 "Ion Cannon"
 		turret -7 -4 "Electron Turret"
 		turret 7 -4 "Electron Turret"
-		turret -23 14 "Electron Turret"
-		turret 23 14 "Electron Turret"
 		turret -7 -4 "Heavy Anti-Missile Turret"
 		turret 7 -4 "Heavy Anti-Missile Turret"
+		turret -23 14 "Electron Turret"
+		turret 23 14 "Electron Turret"
 		turret -23 14 "Heavy Anti-Missile Turret"
 		turret 23 14 "Heavy Anti-Missile Turret"
 		explode "small explosion" 50
@@ -83,40 +83,14 @@ person "Cap'n Pester"
 	personality
 		surveillance
 	phrase
-		word
-			"This game "
-			"Endless Sky "
-		word
-			"is open source. You can "
-		word
-			"help out "
-			"improve the game "
-			"get involved "
-			"help make it a better game "
-			"assist us "
-			"make your mark on the universe "
-			"give back to the community "
-		word
-			"by contributing "
-		word
-			"bug reports."
-			"typo fixes."
-			"constructive feedback."
-			"ideas for improvements."
-			"landscape photos."
-			"artwork."
-			"new ships of your own design."
-			"plugins."
-			"new special missions."
-			"new weapons or other outfits."
-			"improved planet descriptions."
-			"more varied hail messages."
+		phrase
+			"friendly author"
 	ship "Quarg Wardragon" "Quarg Wardragon"
 		"never disabled"
 		outfits
 			"Quarg Skylance" 2
 			"Quarg Anti-Missile" 2
-		
+			
 			"Antimatter Core"
 			"Nanotech Battery"
 			"Quantum Shield Generator"
@@ -124,7 +98,7 @@ person "Cap'n Pester"
 			"Cargo Scanner"
 			"Outfit Scanner"
 			"Wanderer Ramscoop"
-		
+			
 			"Medium Graviton Thruster"
 			"Medium Graviton Steering"
 			"Scram Drive"
@@ -137,34 +111,8 @@ person "Marauding Max K"
 	personality
 		surveillance
 	phrase
-		word
-			"This game "
-			"Endless Sky "
-		word
-			"is open source. You can "
-		word
-			"help out "
-			"improve the game "
-			"get involved "
-			"help make it a better game "
-			"assist us "
-			"make your mark on the universe "
-			"give back to the community "
-		word
-			"by contributing "
-		word
-			"bug reports."
-			"typo fixes."
-			"constructive feedback."
-			"ideas for improvements."
-			"landscape photos."
-			"artwork."
-			"new ships of your own design."
-			"plugins."
-			"new special missions."
-			"new weapons or other outfits."
-			"improved planet descriptions."
-			"more varied hail messages."
+		phrase
+			"friendly author"
 	phrase
 		word
 			"Have you "
@@ -194,7 +142,7 @@ person "Marauding Max K"
 			"lately?"
 			"recently?"
 			"in the past couple of days?"
-# Not sure about implying there is a shop that people can have this done to their ships, but it's fun banter...(there is no shop)
+	# Not sure about implying there is a shop that people can have this done to their ships, but it's fun banter...(there is no shop).
 	phrase
 		word
 			"If you can find me or my crew within the community, we'll help you turning that "
@@ -222,6 +170,9 @@ person "Captain Nate"
 	personality
 		vindictive heroic
 	phrase
+		phrase
+			"friendly author"
+	phrase
 		word
 			"Who is your daddy and what does he DO?"
 			"I'm detective John Kimball!"
@@ -237,7 +188,7 @@ person "Captain Nate"
 			"It's not a tumor!"
 			"There IS no bathroom!!!"
 			"You're a freakin' choirboy compared to me, a choirboy!!!!"
-
+	
 	phrase
 		word
 			"Do you have a problem?"
@@ -259,7 +210,7 @@ person "Captain Nate"
 			"Ram them!"
 			"Ram them again!"
 			"Accelerate to Waaagh velocity!"
-
+	
 	phrase
 		word
 			"When you need to make your point, stick to Pointedstick Communications Inc.!"
@@ -269,7 +220,7 @@ person "Captain Nate"
 			"Did you know that you can hail a ship over and over again and you'll get a different reply each time?"
 			"Don't you have a cargo of antique grandfather clocks or something to deliver somewhere?"
 			"Need as well as greed have followed us to the stars, and the rewards of wealth still await those wise enough to recognize this deep thrumming of our common pulse."
-
+	
 	ship Vanguard "Pointedstick"
 		sprite "ship/pointedstick_vanguard"
 		"never disabled"
@@ -298,18 +249,18 @@ person "Captain Nate"
 			"Heavy Rocket Launcher" 4
 			"Heavy Rocket" 400
 			"Anti-Missile Turret"
-
+			
 			"Armageddon Core" 2
 			"KP-6 Photovoltaic Array" 4
 			"LP072a Battery Pack"
 			"D67-TM Shield Generator" 2
 			"Liquid Helium Cooler" 2
-
+			
 			"A860 Atomic Thruster"
 			"A865 Atomic Steering"
 			"Ionic Afterburner"
 			"Hyperdrive"
-
+		
 		engine 0 130
 		engine -31 128 .7
 		engine 31 128 .7
@@ -334,3 +285,256 @@ person "Captain Nate"
 		explode "medium explosion" 24
 		explode "large explosion" 8
 		"final explode" "final explosion large"
+
+
+
+person "Tranquility"
+	government "Merchant"
+	personality
+		timid
+	phrase
+		word
+			"They tell ya never to hit a man with a closed fist, but it is on occasion hilarious."
+			"The human body can be drained of blood in 8.6 seconds given adequate vacuuming systems."
+			"I remember too much, and... some of it's made up, and... some of it can't be quantified, and... there's secrets."
+			"I reattached a girl's leg. Her whole leg. She named her hamster after me."
+			"No power in the 'verse can stop me."
+			"Hey, I've been in a firefight before! Well, I was in a fire. Actually, I was fired from a fry-cook opportunity."
+			"I can kill you with my brain."
+			"My food is problematic."
+			"Any well-bred petty crook knows that the small, concealable weapons go to the far left of the place setting."
+			"You can't take the sky from me."
+			"They don't like it when you shoot at 'em. I worked that out myself."
+			"Woo! This kind of flying really wakes up a guy!"
+			"I am a leaf on the wind. Watch how I soar."
+			"If you can't do somethin' smart... do somethin' right."
+			"Did something just fly off my gorram ship?"
+			"We are just too pretty for God to let us die."
+			"If I ever kill you, you'll be awake, you'll be facing me, and you'll be armed."
+			"We're all doomed! Who's flying this thing!? Oh right, that would be me."
+			"I swear by my pretty floral bonnet, I will end you."
+			"Just once I'd like things to go according to the gorram plan."
+			"I'm a dangerous-minded man on a ship loaded with hurt."
+	ship "Lampyrid-Class Transport" "Tranquility"
+
+ship "Lampyrid-Class Transport"
+	sprite "ship/lampyrid"
+	attributes
+		category "Heavy Freighter"
+		cost 2760000
+		"shields" 5400
+		"hull" 4400
+		"required crew" 5
+		"bunks" 14
+		"mass" 240
+		"drag" 8.5
+		"heat dissipation" .7
+		"fuel capacity" 700
+		"cargo space" 160
+		"outfit space" 260
+		"engine capacity" 105
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"S3 Thermionic"
+		"LP036a Battery Pack"
+		"D67-TM Shield Generator"
+		"Large Radar Jammer"
+		"Ramscoop"
+	
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+	engine -64 28 0.7
+	engine 0 80 1.8
+	engine 0 100 1.2
+	engine 64 28 0.7
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 30
+	explode "large explosion" 15
+	"final explode" "final explosion medium" 1
+
+
+
+person "Power of the People"
+	government "Author"
+	frequency 200
+	personality
+		mining harvests opportunistic frugal unconstrained
+	phrase
+		phrase
+			"friendly author"
+	phrase
+		word
+			"Does it sound like I'm ordering a pizza?"
+			"I've made a lot of special modifications myself."
+			"I take orders from just one person: me."
+			"You've never heard of the Modified Osprey?"
+			"You know, sometimes I amaze even myself."
+			"I expect the best and I give the best. Here's the beer. Here's the entertainment. Now have fun. That's an order!"
+			"Bugs? Why did it have to be bugs?"
+			"Great, kid. Don't get cocky."
+			"I'm just a fly in the ointment. A monkey in the wrench."
+			"I didn't come here to play Pumbaa on the radio."
+			"I signed on to kill toasters, not take naps!"
+			"Sorry to interrupt just as it was getting interesting, but I'm afraid I've got to blow some bad guys into small pieces."
+			"If you think the other guy might have a blaster hidden under the table... bring two blasters."
+			"I'm a team player. As long as the rest of the team stays behind me."
+	phrase
+		word
+			"Take it from me: "
+			"A word of caution: "
+			"A piece of advice: "
+			""
+			""
+		word
+			"If you think the other guy might have a blaster hidden under the table... bring two blasters."
+			"I'm a team player. As long as the rest of the team stays behind me."
+			"We had a slight weapons malfunction, but everything's perfectly alright now."
+			"Hokey religions and ancient weapons are no match for a good blaster at your side."
+			"Keep your distance. But don't look like you're trying to keep your distance."
+			"Only the enemy will tell you where you are weak."
+			"Shoot a nuke down a bug hole, you got a lot of dead bugs."
+			"Your enemy cannot push a button... if you disable his hand."
+			"This isn't a combat probe."
+			"Never tell me the odds."
+			"I dare you."
+			"Be sure to test your commits."
+			"Commit early, and commit often."
+			"Make a new branch if you're changing things."
+			"The wiki is full of useful information."
+			"Be sure the beer is really free."
+			"Location, location, location."
+	phrase
+		word
+			"When asked a tough question"
+			"Before a big battle"
+			"When the Navy scans your ship"
+			"When docking your ship"
+			"If caught"
+			"When caught"
+		word
+			" "
+		word
+			"I like to say"
+			"don't quip"
+			"don't shout"
+			"be sure to say"
+			"people like to hear"
+			"people like to say"
+			"your best bet is to say"
+			"tell the authorities"
+			"tell your partner"
+		word
+			", "
+		word
+			`"I was out of bullets."`
+			`"There's safety in sandwiches."`
+			`"Welcome to the party, pal!"`
+			`"Punch it!"`
+			`"Here's where the fun begins!"`
+			`"I'm just a guy with a starship for hire."`
+			`"I'm going to grow a beard, just in case."`
+			`"Want a breath mint?"`
+			`"Sorry about the mess."`
+			`"I happen to like to shoot first."`
+			`"Laugh it up, fuzzball."`
+			`"This isn't a combat probe."`
+			`"Negative. I am a meat popsicle."`
+			`"How 'bout a bumper sandwich, Boogerlips?"`
+			`"I recommend the lobster."`
+	ship "Modified Osprey" "Power of the People"
+
+ship "Modified Osprey"
+	sprite "ship/mosprey"
+	"never disabled"
+	swizzle 3
+	attributes
+		category "Heavy Warship"
+		"cost" 44000000
+		"shields" 41000
+		"shield generation" 10
+		"hull" 27500
+		"hull repair rate" 10
+		"required crew" 189
+		"bunks" 240
+		"mass" 220
+		"drag" 15.1
+		"heat dissipation" .6
+		"fuel capacity" 625
+		"cargo space" 80
+		"outfit space" 2167
+		"weapon capacity" 850
+		"engine capacity" 499
+		"afterburner fuel" -.678
+		"afterburner heat" -30
+		"ramscoop" 6
+		weapon
+			"blast radius" 750
+			"shield damage" 7000
+			"hull damage" 3500
+			"heat damage" 24000
+			"ion damage" 24000
+			"disruption damage" 1200
+			"hit force" 30000
+	outfits
+		"Nuclear Missile"
+		"Korath Slicer" 4
+		"Korath Detainer" 4
+		"Finisher Pod" 2
+		"Finisher Torpedo" 200
+		"Korath Disruptor" 2
+		"Heliarch Repulsor" 2
+		"Point Defense Turret" 3
+		
+		"Blue Sun Reactor" 3
+		"Red Sun Reactor"
+		"Dark Storm Shielding" 3
+		"Large Repair Module" 4
+		"Large Heat Shunt" 2
+		"Asteroid Scanner"
+		"Large Radar Jammer"
+		"Tactical Scanner"
+		"Wanderer Ramscoop"
+		
+		"Afterburner"
+		`"Bufaer" Atomic Thruster`
+		"Ionic Afterburner" 5
+		"Type 4 Radiant Thruster"
+		"Type 4 Radiant Steering" 4
+		"Hyperdrive"
+		"Jump Drive"
+		
+	engine -46 67
+	engine 46 67
+	engine -17 105.5 .0
+	engine 17 105.5 .0
+	gun 0 -108 "Nuclear Missile"
+	gun -9 -99 "Korath Slicer"
+	gun 9 -99 "Korath Slicer"
+	gun -9 -99 "Korath Slicer"
+	gun 9 -99 "Korath Slicer"
+	gun -21 -61 "Korath Detainer"
+	gun 21 -61 "Korath Detainer"
+	gun -26.5 -53 "Korath Detainer"
+	gun 26.5 -53 "Korath Detainer"
+	gun -60 17 "Finisher Pod"
+	gun 60 17 "Finisher Pod"
+	turret 0 -91 "Point Defense Turret"
+	turret -19.5 -16 "Korath Disruptor"
+	turret 19.5 -16 "Korath Disruptor"
+	turret -60 17 "Heliarch Repulsor"
+	turret 60 17 "Heliarch Repulsor"
+	turret 0 29 "Point Defense Turret"
+	turret 0 89.5 "Point Defense Turret"
+	
+	explode "medium explosion" 24
+	explode "large explosion" 16
+	explode "small explosion" 40
+	explode "tiny explosion" 28
+	"final explode" "final explosion large" 1

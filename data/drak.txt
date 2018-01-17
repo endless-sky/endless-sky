@@ -111,6 +111,7 @@ outfit "Drak Antimatter Cannon"
 	"outfit space" -96
 	"weapon capacity" -96
 	"gun ports" -1
+	"inscrutable" 1
 	weapon
 		"inaccuracy" 0
 		"velocity" 20
@@ -118,6 +119,7 @@ outfit "Drak Antimatter Cannon"
 		"submunition" "Drak Antimatter Fragment" 3
 		"hit effect" "antimatter dust" 10
 		"hit effect" "nuke explosion"
+		"safe"
 		"reload" 187
 		"firing energy" 5610
 		"firing heat" 1870
@@ -134,6 +136,7 @@ outfit "Drak Antimatter Fragment"
 		"live effect" "antimatter dust" 249
 		"hit effect" "antimatter dust" 10
 		"hit effect" "nuke explosion"
+		"safe"
 		"inaccuracy" 1
 		"lifetime" 499
 		"hit force" 1000
@@ -161,7 +164,8 @@ effect "antimatter dust"
 	"random spin" 50
 
 
-ship Archon
+ship "Archon"
+	noun "entity"
 	sprite ship/archon
 		"frame rate" 0.87
 	"never disabled"
@@ -218,3 +222,16 @@ ship Archon
 	turret 55 16 "Drak Distancer"
 	explode "nuke explosion" 3
 	"final explode" "final explosion large"
+
+ship "Archon" "Archon (Cloaked)"
+	"never disabled"
+	add attributes
+		"cloak" .04
+	turret "Drak Anti-Missile Field"
+	turret "Drak Anti-Missile Field"
+	turret "Drak Draining Field"
+	turret "Drak Turret"
+	turret "Drak Turret"
+	turret "Drak Turret"
+	turret "Drak Distancer"
+	turret "Drak Distancer"

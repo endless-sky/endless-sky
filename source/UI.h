@@ -51,9 +51,10 @@ public:
 	// a panel to Pop() itself.
 	void Pop(const Panel *panel);
 	
-	// Check whether the given panel is on top, i.e. is the active one.
+	// Check whether the given panel is on top, i.e. is the active one, out of
+	// all panels that are already drawn on this step.
 	bool IsTop(const Panel *panel) const;
-	// Get the top panel.
+	// Get the top panel, out of all possible panels, including ones not yet drawn.
 	std::shared_ptr<Panel> Top() const;
 	
 	// Delete all the panels and clear the "done" flag.

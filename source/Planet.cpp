@@ -27,8 +27,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const string &WORMHOLE = "wormhole";
-	static const string &PLANET = "planet";
+	const string WORMHOLE = "wormhole";
+	const string PLANET = "planet";
 }
 
 
@@ -41,81 +41,127 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 	name = node.Token(1);
 	
 	// If this planet has been loaded before, these sets of items should be
-	// reset if they are also defined here, instead of appending to them:
-	bool resetAttributes = !attributes.empty();
-	bool resetDescription = !description.empty();
-	bool resetSpaceport = !spaceport.empty();
+	// reset instead of appending to them:
+	set<string> shouldOverwrite = {"attributes", "description", "spaceport"};
 	
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "landscape" && child.Size() >= 2)
-			landscape = SpriteSet::Get(child.Token(1));
-		else if(child.Token(0) == "music" && child.Size() >= 2)
-			music = child.Token(1);
-		else if(child.Token(0) == "attributes")
+		// Check for the "add" or "remove" keyword.
+		bool add = (child.Token(0) == "add");
+		bool remove = (child.Token(0) == "remove");
+		if((add || remove) && child.Size() < 2)
 		{
-			if(resetAttributes)
-			{
-				resetAttributes = false;
+			child.PrintTrace("Skipping " + child.Token(0) + " with no key given:");
+			continue;
+		}
+		
+		// Get the key and value (if any).
+		const string &key = child.Token((add || remove) ? 1 : 0);
+		int valueIndex = (add || remove) ? 2 : 1;
+		bool hasValue = (child.Size() > valueIndex);
+		const string &value = child.Token(hasValue ? valueIndex : 0);
+		
+		// Check for conditions that require clearing this key's current value.
+		// "remove <key>" means to clear the key's previous contents.
+		// "remove <key> <value>" means to remove just that value from the key.
+		bool removeAll = (remove && !hasValue);
+		// "<key> clear" is the deprecated way of writing "remove <key>."
+		removeAll |= (!add && !remove && hasValue && value == "clear");
+		// If this is the first entry for the given key, and we are not in "add"
+		// or "remove" mode, its previous value should be cleared.
+		bool overwriteAll = (!add && !remove && !removeAll && shouldOverwrite.count(key));
+		// Clear the data of the given type.
+		if(removeAll || overwriteAll)
+		{
+			// Clear the data of the given type.
+			if(key == "music")
+				music.clear();
+			else if(key == "attributes")
 				attributes.clear();
-			}
-			for(int i = 1; i < child.Size(); ++i)
-				attributes.insert(child.Token(i));
-		}
-		else if(child.Token(0) == "description" && child.Size() >= 2)
-		{
-			if(resetDescription)
-			{
-				resetDescription = false;
+			else if(key == "description")
 				description.clear();
-			}
-			if(!description.empty() && !child.Token(1).empty() && child.Token(1)[0] > ' ')
-				description += '\t';
-			description += child.Token(1);
-			description += '\n';
-		}
-		else if(child.Token(0) == "spaceport" && child.Size() >= 2)
-		{
-			if(child.Token(1) == "clear")
+			else if(key == "spaceport")
 				spaceport.clear();
-			else
-			{
-				if(resetSpaceport)
-				{
-					resetSpaceport = false;
-					spaceport.clear();
-				}
-				if(!spaceport.empty() && !child.Token(1).empty() && child.Token(1)[0] > ' ')
-					spaceport += '\t';
-				spaceport += child.Token(1);
-				spaceport += '\n';
-			}
-		}
-		else if(child.Token(0) == "shipyard" && child.Size() >= 2)
-		{
-			if(child.Token(1) == "clear")
+			else if(key == "shipyard")
 				shipSales.clear();
-			else
-				shipSales.push_back(ships.Get(child.Token(1)));
-		}
-		else if(child.Token(0) == "outfitter" && child.Size() >= 2)
-		{
-			if(child.Token(1) == "clear")
+			else if(key == "outfitter")
 				outfitSales.clear();
+			else if(key == "government")
+				government = nullptr;
+			else if(key == "required reputation")
+				requiredReputation = 0.;
+			else if(key == "bribe")
+				bribe = 0.;
+			else if(key == "security")
+				security = 0.;
+			else if(key == "tribute")
+				tribute = 0;
+			
+			// If not in "overwrite" mode, move on to the next node.
+			if(overwriteAll)
+				shouldOverwrite.erase(key);
 			else
-				outfitSales.push_back(outfits.Get(child.Token(1)));
+				continue;
 		}
-		else if(child.Token(0) == "government" && child.Size() >= 2)
-			government = GameData::Governments().Get(child.Token(1));
-		else if(child.Token(0) == "required reputation" && child.Size() >= 2)
-			requiredReputation = child.Value(1);
-		else if(child.Token(0) == "bribe" && child.Size() >= 2)
-			bribe = child.Value(1);
-		else if(child.Token(0) == "security" && child.Size() >= 2)
-			security = child.Value(1);
-		else if(child.Token(0) == "tribute" && child.Size() >= 2)
+		
+		// Handle the attributes which can be "removed."
+		if(!hasValue)
 		{
-			tribute = child.Value(1);
+			child.PrintTrace("Expected key to have a value:");
+			continue;
+		}
+		else if(key == "attributes")
+		{
+			if(remove)
+				for(int i = valueIndex; i < child.Size(); ++i)
+					attributes.erase(child.Token(i));
+			else
+				for(int i = valueIndex; i < child.Size(); ++i)
+					attributes.insert(child.Token(i));
+		}
+		else if(key == "shipyard")
+		{
+			if(remove)
+				shipSales.erase(ships.Get(value));
+			else
+				shipSales.insert(ships.Get(value));
+		}
+		else if(key == "outfitter")
+		{
+			if(remove)
+				outfitSales.erase(outfits.Get(value));
+			else
+				outfitSales.insert(outfits.Get(value));
+		}
+		// Handle the attributes which cannot be "removed."
+		else if(remove)
+		{
+			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
+			continue;
+		}
+		else if(key == "landscape")
+			landscape = SpriteSet::Get(value);
+		else if(key == "music")
+			music = value;
+		else if(key == "description" || key == "spaceport")
+		{
+			string &text = (key == "description") ? description : spaceport;
+			if(!text.empty() && !value.empty() && value[0] > ' ')
+				text += '\t';
+			text += value;
+			text += '\n';
+		}
+		else if(key == "government")
+			government = GameData::Governments().Get(value);
+		else if(key == "required reputation")
+			requiredReputation = child.Value(valueIndex);
+		else if(key == "bribe")
+			bribe = child.Value(valueIndex);
+		else if(key == "security")
+			security = child.Value(valueIndex);
+		else if(key == "tribute")
+		{
+			tribute = child.Value(valueIndex);
 			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "threshold" && grand.Size() >= 2)
@@ -131,6 +177,16 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+	
+	static const vector<string> AUTO_ATTRIBUTES = {"spaceport", "shipyard", "outfitter"};
+	bool autoValues[3] = {!spaceport.empty(), !shipSales.empty(), !outfitSales.empty()};
+	for(unsigned i = 0; i < AUTO_ATTRIBUTES.size(); ++i)
+	{
+		if(autoValues[i])
+			attributes.insert(AUTO_ATTRIBUTES[i]);
+		else
+			attributes.erase(AUTO_ATTRIBUTES[i]);
 	}
 }
 
@@ -271,7 +327,7 @@ const Sale<Outfit> &Planet::Outfitter() const
 // Get this planet's government. Most planets follow the government of the system they are in.
 const Government *Planet::GetGovernment() const
 {
-	return government ? government : GetSystem()->GetGovernment();
+	return government ? government : systems.empty() ? nullptr : GetSystem()->GetGovernment();
 }
 
 
@@ -369,11 +425,49 @@ const System *Planet::WormholeDestination(const System *from) const
 
 
 
+const vector<const System *> &Planet::WormholeSystems() const
+{
+	return systems;
+}
+
+
+
+// Check if the given ship has all the attributes necessary to allow it to
+// land on this planet.
+bool Planet::IsAccessible(const Ship *ship) const
+{
+	// Check whether any of this planet's attributes are in the form of the
+	// string "requires: <attribute>"; if so the ship must have that attribute.
+	static const string PREFIX = "requires: ";
+	static const string PREFIX_END = "requires:!";
+	auto it = attributes.lower_bound(PREFIX);
+	auto end = attributes.lower_bound(PREFIX_END);
+	if(it == end)
+		return true;
+	if(!ship)
+		return false;
+	
+	for( ; it != end; ++it)
+		if(!ship->Attributes().Get(it->substr(PREFIX.length())))
+			return false;
+	
+	return true;
+}
+
+
+
 // Below are convenience functions which access the game state in Politics,
 // but do so with a less convoluted syntax:
+bool Planet::HasFuelFor(const Ship &ship) const
+{
+	return !IsWormhole() && HasSpaceport() && CanLand(ship);
+}
+
+
+
 bool Planet::CanLand(const Ship &ship) const
 {
-	return GameData::GetPolitics().CanLand(ship, this);
+	return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this);
 }
 
 
@@ -413,7 +507,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	{
 		isDefending = true;
 		GameData::GetPolitics().Offend(defenseFleet->GetGovernment(), ShipEvent::PROVOKE);
-		GameData::GetPolitics().Offend(GetGovernment(), ShipEvent::PROVOKE);
+		GameData::GetPolitics().Offend(GetGovernment(), ShipEvent::ATROCITY);
 		return "Our defense fleet will make short work of you.";
 	}
 	

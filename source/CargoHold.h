@@ -55,7 +55,7 @@ public:
 	
 	// Set the number of free bunks for passengers.
 	void SetBunks(int count);
-	int Bunks() const;
+	int BunksFree() const;
 	int Passengers() const;
 	
 	// Normal cargo:
@@ -76,13 +76,13 @@ public:
 	// For all the transfer functions, the "other" can be null if you simply want
 	// the commodity to "disappear" or, if the "amount" is negative, to have an
 	// unlimited supply. The return value is the actual number transferred.
-	int Transfer(const std::string &commodity, int amount, CargoHold *to = nullptr);
-	int Transfer(const Outfit *outfit, int amount, CargoHold *to = nullptr);
-	int Transfer(const Mission *mission, int amount, CargoHold *to = nullptr);
-	int TransferPassengers(const Mission *mission, int amount, CargoHold *to = nullptr);
+	int Transfer(const std::string &commodity, int amount, CargoHold &to);
+	int Transfer(const Outfit *outfit, int amount, CargoHold &to);
+	int Transfer(const Mission *mission, int amount, CargoHold &to);
+	int TransferPassengers(const Mission *mission, int amount, CargoHold &to);
 	// Transfer as much as the given cargo hold has capacity for. The priority is
 	// first mission cargo, then spare outfits, then ordinary commodities.
-	void TransferAll(CargoHold *to);
+	void TransferAll(CargoHold &to, bool transferPassengers = true);
 	
 	// These functions do the same thing as Transfer() with no destination
 	// specified, but they have clearer names to make the code more readable.

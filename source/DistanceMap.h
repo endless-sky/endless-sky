@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 #include <queue>
+#include <set>
 #include <utility>
 
 class Ship;
@@ -30,9 +31,8 @@ class PlayerInfo;
 // be used to calculate the shortest route between two systems.
 class DistanceMap {
 public:
-	// Find paths to the given system. If the given maximum count is above zero,
-	// it is a limit on how many systems should be returned. If it is below zero
-	// it specifies the maximum distance away that paths should be found.
+	// Find paths to the given system. The optional arguments put a limit on how
+	// many systems will be returned and how far away they are allowed to be.
 	explicit DistanceMap(const System *center, int maxCount = -1, int maxDistance = -1);
 	// If a player is given, the map will only use hyperspace paths known to the
 	// player; that is, one end of the path has been visited. Also, if the
@@ -45,19 +45,35 @@ public:
 	
 	// Find out if the given system is reachable.
 	bool HasRoute(const System *system) const;
-	// Find out how many jumps away the given system is.
-	int Distance(const System *system) const;
-	// Find out how much the jump from the given system will cost: 1 means it is
-	// a normal hyperjump, 2 means it is a jump drive jump, and 0 means it is a
-	// wormhole. If there is no path from the given system, or if the given
-	// system is the center of the search, this returns -1.
-	int Cost(const System *system) const;
-	// If I am in the given system, going to the player's system, what system
-	// should I jump to next?
+	// Find out how many days away the given system is.
+	int Days(const System *system) const;
+	// Starting in the given system, what is the next system along the route?
 	const System *Route(const System *system) const;
 	
-	// Access the distance map directly.
-	const std::map<const System *, int> Distances() const;
+	// Get a set containing all the systems.
+	std::set<const System *> Systems() const;
+	
+	// How much fuel is needed to travel between two systems.
+	int RequiredFuel(const System *system1, const System *system2) const;
+	
+	
+private:
+	// For each system, track how much fuel it will take to get there, how many
+	// days, how much danger you will pass through, and where you will go next.
+	class Edge {
+	public:
+		Edge(const System *system = nullptr);
+		
+		// Sorting operator to prioritize the "best" edges. The priority queue
+		// returns the "largest" item, so this should return true if this item
+		// is lower priority than the given item.
+		bool operator<(const Edge &other) const;
+		
+		const System *next = nullptr;
+		int fuel = 0;
+		int days = 0;
+		double danger = 0.;
+	};
 	
 	
 private:
@@ -66,27 +82,30 @@ private:
 	// source system or the maximum count is reached.
 	void Init(const System *center, const Ship *ship = nullptr);
 	// Add the given links to the map. Return false if an end condition is hit.
-	bool Propagate(const System *system, bool useJump, int steps, double danger);
+	bool Propagate(Edge edge, bool useJump);
 	// Check if we already have a better path to the given system.
-	bool HasBetter(const System *to, int steps);
+	bool HasBetter(const System *to, const Edge &edge);
 	// Add the given path to the record.
-	void Add(const System *from, const System *to, int steps, double danger);
-	// Check whether the given link is mappable. If no player was given in the
+	void Add(const System *to, Edge edge);
+	// Check whether the given link is travelable. If no player was given in the
 	// constructor then this is always true; otherwise, the player must know
 	// that the given link exists.
 	bool CheckLink(const System *from, const System *to, bool useJump) const;
 	
 	
 private:
-	std::map<const System *, int> distance;
-	std::map<const System *, const System *> route;
+	std::map<const System *, Edge> route;
 	
 	// Variables only used during construction:
-	std::priority_queue<std::tuple<int, double, const System *>> edge;
+	std::priority_queue<Edge> edges;
 	const PlayerInfo *player = nullptr;
 	const System *source = nullptr;
 	int maxCount = -1;
 	int maxDistance = -1;
+	// How much fuel is used for travel. If either value is zero, it means that
+	// the ship does not have that type of drive.
+	int hyperspaceFuel = 100;
+	int jumpFuel = 0;
 	bool useWormholes = true;
 };
 

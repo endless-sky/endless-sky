@@ -10,6 +10,8 @@
 
 outfit "Bombardment Cannon"
 	category "Guns"
+	licenses
+		Heliarch
 	cost 437000
 	thumbnail "outfit/bombardment cannon"
 	"mass" 12
@@ -35,6 +37,8 @@ outfit "Bombardment Cannon"
 
 outfit "Bombardment Turret"
 	category "Turrets"
+	licenses
+		Heliarch
 	cost 1845000
 	thumbnail "outfit/bombardment turret"
 	"mass" 43
@@ -46,9 +50,12 @@ outfit "Bombardment Turret"
 		sprite "projectile/bombardment"
 			"frame rate" 3.2
 			"no repeat"
+		"hardpoint sprite" "hardpoint/bombardment turret"
+		"hardpoint offset" 10.
 		sound "bombardment"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 4
+		"turret turn" 2.8
 		"velocity" 6
 		"random velocity" 1
 		"lifetime" 150
@@ -72,6 +79,8 @@ effect "bombardment impact"
 
 outfit "Finisher Pod"
 	category "Secondary Weapons"
+	licenses
+		Heliarch
 	cost 1370000
 	thumbnail "outfit/finisher pod"
 	"mass" 16
@@ -123,7 +132,7 @@ outfit "Active Finisher"
 		"missile strength" 50
 		"shield damage" 1500
 		"hull damage" 1900
-		"hit force" 240
+		"hit force" 1500
 
 outfit "Finisher Torpedo"
 	plural "Finisher Torpedoes"
@@ -174,6 +183,8 @@ effect "finisher fragment"
 
 outfit "Heliarch Attractor"
 	category "Turrets"
+	licenses
+		Heliarch
 	cost 2187000
 	thumbnail "outfit/heliarch attractor"
 	"mass" 49
@@ -185,9 +196,12 @@ outfit "Heliarch Attractor"
 		sprite "projectile/attractor"
 			"frame rate" 5.2
 			"random start frame"
+		"hardpoint sprite" "hardpoint/heliarch attractor"
+		"hardpoint offset" 9.
 		sound "heliarch attractor"
 		"hit effect" "attractor impact"
 		"inaccuracy" 2
+		"turret turn" 4.1
 		"velocity" 640
 		"lifetime" 1
 		"reload" 1
@@ -212,6 +226,8 @@ effect "attractor impact"
 
 outfit "Heliarch Repulsor"
 	category "Turrets"
+	licenses
+		Heliarch
 	cost 2549000
 	thumbnail "outfit/heliarch repulsor"
 	"mass" 56
@@ -223,9 +239,12 @@ outfit "Heliarch Repulsor"
 		sprite "projectile/repulsor"
 			"frame rate" 3.2
 			"random start frame"
+		"hardpoint sprite" "hardpoint/heliarch repulsor"
+		"hardpoint offset" 9.
 		sound "heliarch repulsor"
 		"hit effect" "repulsor impact"
 		"inaccuracy" 3
+		"turret turn" 3.4
 		"velocity" 560
 		"lifetime" 1
 		"reload" 1
@@ -251,6 +270,8 @@ effect "repulsor impact"
 
 outfit "Ion Rain Gun"
 	category "Guns"
+	licenses
+		Heliarch
 	cost 798000
 	thumbnail "outfit/ion rain gun"
 	"mass" 17

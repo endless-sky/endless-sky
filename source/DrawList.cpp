@@ -113,14 +113,12 @@ bool DrawList::AddSwizzled(const Body &body, int swizzle)
 // Draw all the items in this list.
 void DrawList::Draw() const
 {
-	bool showBlur = Preferences::Has("Render motion blur");
 	SpriteShader::Bind();
-
-	for(const Item &item : items)
-		SpriteShader::Add(
-			item.tex0, item.tex1, item.position, item.transform,
-			item.Swizzle(), item.Clip(), item.Fade(), showBlur ? item.blur : nullptr);
-
+	
+	bool withBlur = Preferences::Has("Render motion blur");
+	for(const SpriteShader::Item &item : items)
+		SpriteShader::Add(item, withBlur);
+	
 	SpriteShader::Unbind();
 }
 
@@ -151,12 +149,11 @@ bool DrawList::Cull(const Body &body, const Point &position, const Point &blur) 
 
 void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, double clip, int swizzle)
 {
-	Item item;
+	SpriteShader::Item item;
 	
-	Body::Frame frame = body.GetFrame(step, isHighDPI);
-	item.tex0 = frame.first;
-	item.tex1 = frame.second;
-	item.flags = swizzle | (static_cast<uint32_t>(frame.fade * 256.f) << 8);
+	item.texture = body.GetSprite()->Texture(isHighDPI);
+	item.frame = body.GetFrame(step);
+	item.frameCount = body.GetSprite()->Frames();
 	
 	// Get unit vectors in the direction of the object's width and height.
 	double width = body.Width();
@@ -188,40 +185,9 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, doubl
 	blur *= zoom;
 	item.blur[0] = unit.Cross(blur) / (width * 4.);
 	item.blur[1] = -unit.Dot(blur) / (height * 4.);
-
-	if(cloak > 0.f)
-		item.Cloak(cloak);
+	
+	item.alpha = 1. - cloak;
+	item.swizzle = swizzle;
 	
 	items.push_back(item);
-}
-
-
-		
-// Get the color swizzle.
-uint32_t DrawList::Item::Swizzle() const
-{
-	return (flags & 7);
-}
-
-
-		
-float DrawList::Item::Clip() const
-{
-	return clip;
-}
-
-
-
-float DrawList::Item::Fade() const
-{
-	return (flags >> 8) / 256.f;
-}
-
-
-
-void DrawList::Item::Cloak(double cloak)
-{
-	tex1 = SpriteSet::Get("ship/cloaked")->Texture();
-	flags &= 0xFF;
-	flags |= static_cast<uint32_t>(cloak * 256.f) << 8;
 }
