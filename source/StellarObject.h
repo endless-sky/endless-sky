@@ -14,11 +14,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define STELLAR_OBJECT_H_
 
 #include "Body.h"
-#include "PlayerInfo.h"
 #include "Point.h"
 
 class Color;
 class Planet;
+class PlayerInfo;
 class Ship;
 
 

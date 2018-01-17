@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Politics.h"
 #include "Radar.h"
 
