@@ -33,6 +33,7 @@ public:
 	static const int SPECIAL;
 	static const int ANOMALOUS;
 	static const int BLINK;
+	static const int INACCESSIBLE;
 	
 public:
 	void Clear();

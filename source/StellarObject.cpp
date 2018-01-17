@@ -93,8 +93,10 @@ int StellarObject::RadarType(const Ship *ship) const
 {
 	if(IsStar())
 		return Radar::SPECIAL;
-	else if(!planet || !planet->IsAccessible(ship))
+	else if(!planet)
 		return Radar::INACTIVE;
+	else if(!planet->IsAccessible(ship))
+		return Radar::INACCESSIBLE;
 	else if(planet->IsWormhole())
 		return Radar::ANOMALOUS;
 	else if(GameData::GetPolitics().HasDominated(planet))
