@@ -488,7 +488,7 @@ ship "Marauder Fury"
 		"Small Biochemical Cell"
 		"Hai Williwaw Cooling"
 		"Hai Corundum Regenerator"
-		"Intrusion Countermeasures" 3
+		"Laser Rifle" 3
 		
 		`"Biroo" Atomic Thruster`
 		"A255 Atomic Steering"
