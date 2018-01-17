@@ -49,6 +49,26 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	// Log how many player ships are in a given system, regardless if they are parked or carried.
+	void TallyEscorts(const vector<shared_ptr<Ship>> &escorts, map<const System *, int> &locations)
+	{
+		locations.clear();
+		for(const auto &ship : escorts)
+		{
+			if(ship->IsDestroyed())
+				continue;
+			if(ship->GetSystem())
+				++locations[ship->GetSystem()];
+			else if(ship->CanBeCarried() && ship->GetParent() && ship->GetParent()->GetSystem())
+				++locations[ship->GetParent()->GetSystem()];
+		}
+	}
+	
+	const Color black(0., 1.);
+	const Color red(1., 0., 0., 1.);
+}
+
 const double MapPanel::OUTER = 6.;
 const double MapPanel::INNER = 3.5;
 const double MapPanel::LINK_WIDTH = 1.2;
@@ -69,6 +89,9 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	// Recalculate the fog each time the map is opened, just in case the player
 	// bought a map since the last time they viewed the map.
 	FogShader::Redraw();
+	// Recalculate escort positions every time the map is opened, as they may
+	// be changing systems even if the player does not.
+	TallyEscorts(player.Ships(), escortSystems);
 	
 	if(selectedSystem)
 		center = Point(0., 0.) - selectedSystem->Position();
@@ -97,6 +120,7 @@ void MapPanel::Draw()
 	++step;
 	DrawWormholes();
 	DrawTravelPlan();
+	DrawEscorts();
 	DrawLinks();
 	DrawSystems();
 	DrawNames();
@@ -107,8 +131,6 @@ void MapPanel::Draw()
 		static const string UNAVAILABLE = "You have no available route to this system.";
 		static const string UNKNOWN = "You have not yet mapped a route to this system.";
 		const Font &font = FontSet::Get(18);
-		Color black(0., 1.);
-		Color red(1., 0., 0., 1.);
 		
 		const string &message = player.HasVisited(selectedSystem) ? UNAVAILABLE : UNKNOWN;
 		Point point(-font.Width(message) / 2, Screen::Top() + 40);
@@ -632,6 +654,23 @@ void MapPanel::DrawTravelPlan()
 
 
 
+// Communicate the location of non-destroyed, player-owned ships.
+void MapPanel::DrawEscorts()
+{
+	// Fill in the center of any (non-flagship) escort system.
+	const Color &presence = *GameData::Colors().Get("map link");
+	double zoom = Zoom();
+	for(const pair<const System *, int> &squad : escortSystems)
+	{
+		if(squad.first == playerSystem)
+			continue;
+		Point pos = zoom * (squad.first->Position() + center);
+		RingShader::Draw(pos, INNER - 1., 0., presence);
+	}
+}
+
+
+
 void MapPanel::DrawWormholes()
 {
 	// Keep track of what arrows and links need to be drawn.
@@ -734,6 +773,7 @@ void MapPanel::DrawSystems()
 	
 	// Draw the circles for the systems, colored based on the selected criterion,
 	// which may be government, services, or commodity prices.
+	double zoom = Zoom();
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
@@ -744,7 +784,7 @@ void MapPanel::DrawSystems()
 		if(!player.HasSeen(&system) && &system != specialSystem)
 			continue;
 		
-		Point pos = Zoom() * (system.Position() + center);
+		Point pos = zoom * (system.Position() + center);
 		
 		Color color = UninhabitedColor();
 		if(!player.HasVisited(&system))
@@ -879,7 +919,6 @@ void MapPanel::DrawMissions()
 {
 	// Draw a pointer for each active or available mission.
 	map<const System *, Angle> angle;
-	static const Color black(0., 1.);
 	
 	const Set<Color> &colors = GameData::Colors();
 	const Color &availableColor = *colors.Get("available job");
@@ -935,8 +974,6 @@ void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &colo
 
 void MapPanel::DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack, bool bigger)
 {
-	static const Color black(0., 1.);
-	
 	angle += Angle(30.);
 	if(drawBack)
 		PointerShader::Draw(position, angle.Unit(), 14. + bigger, 19. + 2 * bigger, -4., black);
