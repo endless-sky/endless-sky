@@ -663,7 +663,8 @@ void MapPanel::UpdateCache()
 		Color color = UninhabitedColor();
 		if(!player.HasVisited(&system))
 			color = UnexploredColor();
-		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL)
+		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL
+				|| commodity == SHOW_DANGER)
 		{
 			if(commodity >= SHOW_SPECIAL)
 			{
@@ -715,6 +716,25 @@ void MapPanel::UpdateCache()
 			{
 				const Government *gov = system.GetGovernment();
 				color = GovernmentColor(gov);
+			}
+			else if(commodity == SHOW_DANGER)
+			{
+				// A system's danger level is set by a combination of the normal hostile fleet
+				// presence, and the presence of a "raid fleet" attracted by unprotected cargo.
+				double danger = system.Danger();
+				const Government *gov = system.GetGovernment();
+				if(gov->RaidFleet())
+				{
+					// Convert the raid fleet strength into a "danger" level. Up to 10
+					// may be spawned. The "pirate raid" strength is ~7.6m credits.
+					pair<double, double> factors = player.RaidFleetFactors();
+					double attraction = max(0., min(1., .005 * (factors.first - factors.second - 2.)));
+					if(attraction > 0.)
+						danger += (gov->RaidFleet()->Strength() / 2000) * (1. - pow(1. - attraction, 10.));
+				}
+				// The highest base "Danger" level is ~700k, while the minimum is 0.
+				// Map these towards the expected [-1, 1] value range.
+				color = MapColor(log10(1. + danger) / 2 - 1.75);
 			}
 			else
 			{
