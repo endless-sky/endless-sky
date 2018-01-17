@@ -256,8 +256,7 @@ void GameData::CheckReferences()
 
 void GameData::LoadShaders()
 {
-	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
-	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
+	FontSet::SetUpShaders();
 	
 	// Load the key settings.
 	Command::LoadSettings(Files::Resources() + "keys.txt");
@@ -885,6 +884,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			events.Get(node.Token(1))->Load(node);
 		else if(key == "fleet" && node.Size() >= 2)
 			fleets.Get(node.Token(1))->Load(node);
+		else if(key == "font")
+			FontSet::Load(node);
 		else if(key == "galaxy" && node.Size() >= 2)
 			galaxies.Get(node.Token(1))->Load(node);
 		else if(key == "government" && node.Size() >= 2)

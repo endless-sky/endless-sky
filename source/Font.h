@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 class Color;
+class DataNode;
 class Point;
 
 
@@ -27,7 +28,9 @@ class Font {
 public:
 	Font();
 	
-	bool Load(const std::string &path, int size);
+	bool Load(const DataNode &node);
+	
+	void SetUpShader();
 	
 	void Draw(const std::string &str, const Point &point, const Color &color) const;
 	void DrawAliased(const std::string &str, double x, double y, const Color &color) const;
@@ -40,6 +43,8 @@ public:
 	int Height() const;
 	
 	int Space() const;
+	
+	int Size() const;
 	
 	static void ShowUnderlines(bool show);
 	static bool ShowUnderlines();
@@ -103,6 +108,7 @@ public:
 	
 private:
 	std::shared_ptr<IGlyphs> source;
+	int size;
 };
 
 

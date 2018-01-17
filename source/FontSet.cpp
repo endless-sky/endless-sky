@@ -24,10 +24,19 @@ namespace {
 
 
 
-void FontSet::Add(const string &path, int size)
+void FontSet::Load(const DataNode &node)
 {
-	if(!fonts.count(size))
-		fonts[size].Load(path, size);
+	Font font;
+	if(font.Load(node))
+		fonts[font.Size()] = font;
+}
+
+
+
+void FontSet::SetUpShaders()
+{
+	for(auto &it : fonts)
+		it.second.SetUpShader();
 }
 
 

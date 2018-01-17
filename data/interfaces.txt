@@ -99,6 +99,16 @@ color "map unused wormhole" .165, .066, .3, .333
 
 
 
+font
+	size 14
+	atlas "images/font/ubuntu14r.png"
+
+font
+	size 18
+	atlas "images/font/ubuntu18r.png"
+
+
+
 interface "menu background"
 	sprite "_menu/g0"
 		center 0 -280

@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <string>
 
+class DataNode;
 class Font;
 
 
@@ -23,7 +24,8 @@ class Font;
 // based on a glyph image; right now only point sizes 14 and 18 exist.
 class FontSet {
 public:
-	static void Add(const std::string &path, int size);
+	static void Load(const DataNode &node);
+	static void SetUpShaders();
 	static const Font &Get(int size);
 };
 

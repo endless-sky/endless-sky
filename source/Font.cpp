@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 
 #include "AtlasGlyphs.h"
+#include "DataNode.h"
+#include "GameData.h"
 #include "Files.h"
 #include "FreeTypeGlyphs.h"
 #include "Point.h"
@@ -72,36 +74,112 @@ Font::Font()
 
 
 
-bool Font::Load(const string &path, int size)
+bool Font::Load(const DataNode &node)
 {
 	// Ignore if already loaded.
 	if(source)
 		return false;
 	
-	string extension = Files::Extension(path);
-	bool isPNG = (extension.compare(".png") == 0 || extension.compare(".PNG") == 0);
-	bool isJPG = (extension.compare(".jpg") == 0 || extension.compare(".JPG") == 0);
-	if(isPNG || isJPG)
+	if(node.Size() < 1 || node.Token(0) != "font")
 	{
-		auto glyphs = make_shared<AtlasGlyphs>();
-		if(glyphs->Load(path))
+		node.PrintTrace("was expecting font");
+		return false;
+	}
+	
+	// Get size.
+	int count = 0;
+	size = 0;
+	for(const DataNode &child : node)
+	{
+		string key = (child.Size() >= 0 ? child.Token(0) : "");
+		if(key != "size")
+			continue;
+		
+		if(++count > 1)
 		{
-			glyphs->SetUpShader();
-			source = glyphs;
-			return true;
+			node.PrintTrace("too many sizes");
+			return false;
+		}
+		size = round(child.Value(1));
+		if(size <= 0)
+		{
+			child.PrintTrace("invalid font.size");
+			return false;
 		}
 	}
-	else
+	if(count == 0)
 	{
-		auto glyphs = make_shared<FreeTypeGlyphs>();
-		if(glyphs->Load(path, size))
+		node.PrintTrace("missing size");
+		return false;
+	}
+	
+	// Get glyph source.
+	count = 0;
+	for(const DataNode &child : node)
+	{
+		if(child.Size() <= 0 || (child.Token(0) != "atlas" && child.Token(0) != "freetype"))
+			continue;
+		string key = child.Token(0);
+		
+		if(++count > 1)
 		{
-			glyphs->SetUpShader();
-			source = glyphs;
-			return true;
+			child.PrintTrace("too many glyph sources");
+			return false;
+		}
+		if(child.Size() <= 1 || child.Token(1).empty())
+		{
+			child.PrintTrace("missing path");
+			return false;
+		}
+		
+		vector<string> paths;
+		paths.emplace_back(child.Token(1));
+		paths.emplace_back(Files::Resources() + child.Token(1));
+		for(const string &source : GameData::Sources())
+			paths.emplace_back(source + child.Token(1));
+		while(!paths.empty() && !Files::Exists(paths.back()))
+			paths.pop_back();
+		if(paths.empty())
+		{
+			child.PrintTrace("path not found");
+			return false;
+		}
+		
+		source.reset();
+		if(key == "atlas")
+		{
+			auto glyphs = make_shared<AtlasGlyphs>();
+			if(glyphs->Load(paths.back()))
+				source = glyphs;
+		}
+		else if(key == "freetype")
+		{
+			auto glyphs = make_shared<FreeTypeGlyphs>();
+			if(glyphs->Load(paths.back(), size))
+				source = glyphs;
+		}
+		if(!source)
+		{
+			child.PrintTrace("load failed");
+			return false;
 		}
 	}
-	return false;
+	if(count == 0)
+	{
+		node.PrintTrace("missing glyph source (atlas or freetype)");
+		return false;
+	}
+	
+	// Ignore other children.
+	return true;
+}
+
+
+
+void Font::SetUpShader()
+{
+	if(source)
+		source->SetUpShader();
 }
 
 
@@ -241,6 +319,16 @@ int Font::Space() const
 		return 0;
 	
 	return ceil(source->Space());
+}
+
+
+
+int Font::Size() const
+{
+	if(!source)
+		return 0;
+	
+	return size;
 }
 
 
