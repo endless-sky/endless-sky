@@ -139,14 +139,14 @@ outfit "Systems Core (Large)"
 
 
 outfit "Fuel Processor"
-        category "Systems"
-        cost 400000
-        thumbnail "outfit/unknown"
-        "mass" 14
-        "outfit space" -14
-        "fuel capacity" 200
-        "ramscoop" 2
-        description "Since the dawn of spaceflight the Korath have probably spent more time on military campaigns than at home, so they needed their fleets to have an ample range. This is a miniaturized Korath fuel refinery for use in expeditionary capital ships, complete with a small ramscoop and a large storage tank."
+	category "Systems"
+	cost 400000
+	thumbnail "outfit/unknown"
+	"mass" 14
+	"outfit space" -14
+	"fuel capacity" 200
+	"ramscoop" 2
+	description "The fuel processor was developed during the latter half of the Korath Civil War, when Korath factions attempted to provide for their war effort by raiding the Hai for supplies. Their ships would often end up stranded after they had run out of fuel and were unable to escape from the Hai military fleets, prompting the creation of this hybrid fuel pod and ramscoop device. These outfits are now the main source of fuel for the remaining Korath in the galaxy."
 
 
 outfit "Command Center"
