@@ -480,7 +480,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	
 	// Figure out if this ship can be carried.
 	const string &category = attributes.Category();
-	isCarried = (category == "Fighter" || category == "Drone");
+	canBeCarried = (category == "Fighter" || category == "Drone");
 	
 	// Ships read from a save file may have non-default shields or hull.
 	// Perform a full IsDisabled calculation.
@@ -2479,7 +2479,7 @@ int Ship::BaysFree(bool isFighter) const
 // not reserved for one of its existing escorts.
 bool Ship::CanCarry(const Ship &ship) const
 {
-	if(!ship.isCarried)
+	if(!ship.canBeCarried)
 		return false;
 	// This carried ship is either a fighter or a drone.
 	bool isFighter = (ship.attributes.Category() == "Fighter");
@@ -2501,14 +2501,14 @@ bool Ship::CanCarry(const Ship &ship) const
 
 bool Ship::CanBeCarried() const
 {
-	return isCarried;
+	return canBeCarried;
 }
 
 
 
 bool Ship::Carry(const shared_ptr<Ship> &ship)
 {
-	if(!ship || !ship->isCarried)
+	if(!ship || !ship->canBeCarried)
 		return false;
 	
 	// This carried ship is either a fighter or a drone.
