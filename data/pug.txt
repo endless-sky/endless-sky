@@ -463,8 +463,8 @@ ship "Pug Arfecta"
 		"cost" 90000000
 		"shields" 98000
 		"hull" 80000
-		"required crew" 36
-		"bunks" 46
+		"required crew" 81
+		"bunks" 108
 		"mass" 670
 		"drag" 7.5
 		"heat dissipation" .8
@@ -491,11 +491,10 @@ ship "Pug Arfecta"
 		"Pug Gridfire Turret" 3
 		
 		"Cloaking Device"
-		"Pug Biodefenses" 12
+		"Pug Biodefenses" 42
 		
 		"Pug Lohmar Thruster"
-		"Pug Lohmar Steering"
-		"Pug Lohmar Steering"
+		"Pug Lohmar Steering" 2
 		"Jump Drive"
 	
 	engine -15 164
