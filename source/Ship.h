@@ -396,6 +396,7 @@ private:
 	std::string description;
 	// Characteristics of this particular ship:
 	std::string name;
+	bool isCarried = false;
 	
 	int forget = 0;
 	bool isInSystem = true;
