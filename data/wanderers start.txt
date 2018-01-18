@@ -2435,7 +2435,7 @@ mission "Wanderers Ap'arak 3: Pug"
 	to offer
 		has "Wanderers Ap'arak 2: done"
 	npc kill
-		personality staying uninterested
+		personality staying unconstrained uninterested
 		government "Pug"
 		ship "Pug Arfecta" "Hork Ekekek Ptui"
 		ship "Pug Arfecta" "Graak Sput Kchoo"

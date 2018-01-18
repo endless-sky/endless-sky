@@ -187,6 +187,7 @@ outfit "Pug Gridfire Turret"
 		"turret turn" 20
 		"firing energy" 800
 		"firing heat" 400
+		"firing force" 150
 		"shield damage" 600
 		"hull damage" 600
 		"blast radius" 40
@@ -481,6 +482,9 @@ ship "Pug Arfecta"
 		"heat generation" 10
 		"energy capacity" 10000
 		"cloaking fuel" -.2
+		"reverse thrust" 66
+		"reverse thrusting energy" 4.9
+		"reverse thrusting heat" 6.9
 		weapon
 			"blast radius" 320
 			"shield damage" 9000
@@ -722,6 +726,6 @@ mission "Pug Angry at Being Farmed"
 		"reputation: Pug" < -100
 	npc kill
 		government Pug
-		personality nemesis heroic staying
+		personality nemesis unconstrained staying
 		system "Pug Iyik"
 		ship "Pug Arfecta" "Ayee Eee Eek"
