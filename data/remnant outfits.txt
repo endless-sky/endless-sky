@@ -24,7 +24,7 @@ outfit "Inhibitor Cannon"
 		sprite "projectile/inhibitor"
 			"frame rate" 10
 			"no repeat"
-		sound "particle"
+		sound "inhibitor"
 		"hit effect" "inhibitor impact" 3
 		"inaccuracy" .5
 		"velocity" 36
