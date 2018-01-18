@@ -146,7 +146,7 @@ outfit "Fuel Processor"
 	"outfit space" -14
 	"fuel capacity" 200
 	"ramscoop" 2
-	description "The fuel processor was developed during the latter half of the Korath Civil War, when Korath factions attempted to provide for their war effort by raiding the Hai for supplies. Their ships would often end up stranded after they had run out of fuel and were unable to escape from the Hai military fleets, prompting the creation of this hybrid fuel pod and ramscoop device. These outfits are now the main source of fuel for the remaining Korath in the galaxy."
+	description "The fuel processor was developed during the latter half of the Korath Civil War, when Korath factions attempted to provide for their war effort by raiding the Hai for supplies. Their ships would often end up stranded after they had run out of fuel and were unable to escape from the Hai military fleets, prompting the creation of this hybrid fuel storage and ramscoop device. These outfits are now the main source of fuel for the remaining Korath in the galaxy."
 
 
 outfit "Command Center"
