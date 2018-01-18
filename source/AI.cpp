@@ -811,7 +811,8 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 {
 	// Fighters, drones, and disabled / absent ships can't offer assistance.
-	if(helper.CanBeCarried() || helper.GetSystem() != ship.GetSystem() || helper.Cloaking() == 1.
+	if(helper.CanBeCarried() || helper.GetSystem() != ship.GetSystem()
+			|| (helper.Cloaking() == 1. && helper.GetGovernment() != ship.GetGovernment())
 			|| helper.IsDisabled() || helper.IsOverheated() || helper.IsHyperspacing())
 		return false;
 	
@@ -2162,14 +2163,15 @@ void AI::DoCloak(Ship &ship, Command &command)
 		// If this ship has started cloaking, it must get at least 40% repaired
 		// or 40% farther away before it begins decloaking again.
 		double hysteresis = ship.Commands().Has(Command::CLOAK) ? 1.4 : 1.;
-		bool cloakIsFree = !ship.Attributes().Get("cloaking fuel");
+		// If cloaking costs nothing, and no one has asked you for help, cloak at will.
+		bool cloakFreely = !ship.Attributes().Get("cloaking fuel") && !ship.GetShipToAssist();
+		// If this ship is injured / repairing, it should cloak while under threat.
 		if(ship.Hull() + .5 * ship.Shields() < hysteresis
-				&& (cloakIsFree || nearestEnemy < 2000. * hysteresis))
+				&& (cloakFreely || nearestEnemy < 2000. * hysteresis))
 			command |= Command::CLOAK;
 		
-		// Also cloak if there are no enemies nearby and cloaking does
-		// not cost you fuel.
-		if(nearestEnemy == MAX_RANGE && cloakIsFree && !ship.GetTargetShip())
+		// Choose to cloak if there are no enemies nearby and cloaking is sensible.
+		if(nearestEnemy == MAX_RANGE && cloakFreely && !ship.GetTargetShip())
 			command |= Command::CLOAK;
 	}
 }
