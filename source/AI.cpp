@@ -984,8 +984,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			for(const auto &it : ships)
 				if(it->GetSystem() == system && it->GetGovernment() != gov && it->IsTargetable())
 				{
-					if((!cargoScan || Has(ship, it, ShipEvent::SCAN_CARGO))
-							&& (!outfitScan || Has(ship, it, ShipEvent::SCAN_OUTFITS)))
+					if((!cargoScan || Has(gov, it, ShipEvent::SCAN_CARGO))
+							&& (!outfitScan || Has(gov, it, ShipEvent::SCAN_OUTFITS)))
 						continue;
 					
 					double range = it->Position().Distance(ship.Position());
