@@ -191,6 +191,7 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 	if(sources.empty() || str.empty())
 		return;
 	
+	y += sources[0]->Baseline();
 	string buf = ReplaceCharacters(str);
 	if(sources.size() == 1 || sources[0]->FindUnsupported(buf) == buf.length())
 		sources[0]->Draw(buf, x, y, color);

@@ -71,7 +71,7 @@ namespace {
 
 AtlasGlyphs::AtlasGlyphs()
 	: texture(0), vao(0), vbo(0), colorI(0), scaleI(0), glyphI(0), aspectI(0),
-	  positionI(0), height(0), space(0), screenWidth(0), screenHeight(0)
+	  positionI(0), height(0), space(0), baseline(0), screenWidth(0), screenHeight(0)
 {
 }
 
@@ -111,7 +111,7 @@ void AtlasGlyphs::Draw(const string &str, double x, double y, const Color &color
 	
 	GLfloat textPos[2] = {
 		static_cast<float>(x - 1.),
-		static_cast<float>(y)};
+		static_cast<float>(y - baseline)};
 	int previous = 0;
 	bool underlineChar = false;
 	const int underscoreGlyph = Glyph('_');
@@ -203,6 +203,13 @@ double AtlasGlyphs::Space() const
 
 
 
+double AtlasGlyphs::Baseline() const
+{
+	return baseline;
+}
+
+
+
 size_t AtlasGlyphs::FindUnsupported(const string &str, size_t pos) const
 {
 	if(Font::CodePointStart(str, pos) != pos)
@@ -286,7 +293,7 @@ void AtlasGlyphs::CalculateAdvances()
 		{
 			int maxD = 0;
 			int glyphWidth = 0;
-			uint32_t *begin = reinterpret_cast<uint32_t *>(image.Pixels());
+			uint32_t *begin = image.Pixels();
 			for(int y = 0; y < height; ++y)
 			{
 				// Find the last non-empty pixel in the previous glyph.
@@ -321,6 +328,21 @@ void AtlasGlyphs::CalculateAdvances()
 			// underscore and for glyph combinations like AV.
 			advance[previous * GLYPHS + next] = max(maxD, glyphWidth - 4) / 2;
 		}
+	
+	// Get the baseline.
+	baseline = 0;
+	int start = Glyph('x');
+	int end = start + width;
+	for(int row = 0; row < image.Height(); ++row)
+	{
+		uint32_t *pixel = image.Begin(row);
+		for(int i = start; i < end; ++i)
+			if(pixel[i] >= half)
+			{
+				baseline = row / 2;
+				break;
+			}
+	}
 	
 	// Set the space size based on the character width.
 	width /= 2;

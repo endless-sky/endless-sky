@@ -207,18 +207,8 @@ bool FreeTypeGlyphs::Load(const string &path, int size)
 		return false;
 	}
 	
-	// Center the letter 'x' vertically in the line, rounded to the nearest pixel.
-	baseline = .5 * From26Dot6(face->size->metrics.height);
-	error = FT_Load_Char(face, 'x', FT_LOAD_NO_HINTING | FT_LOAD_NO_AUTOHINT | FT_LOAD_NO_BITMAP);
-	if(error != FT_Err_Ok)
-		LogError("FT_Load_Char('x')", error);
-	else
-	{
-		FT_BBox bounds;
-		FT_Outline_Get_CBox(&face->glyph->outline, &bounds);
-		baseline += .5 * From26Dot6(bounds.yMax - bounds.yMin);
-	}
-	baseline = round(baseline);
+	// Get the baseline, rounded to the next pixel.
+	baseline = ceil(From26Dot6(face->size->metrics.ascender) + .5 * From26Dot6(face->size->metrics.descender));
 	
 	// Get the glyph index of an underscore for underlines.
 	underscoreIndex = FT_Get_Char_Index(face, '_');
@@ -241,7 +231,6 @@ void FreeTypeGlyphs::Draw(const string &str, double x, double y, const Color &co
 	if(!face)
 		return;
 	
-	y += baseline;
 	RenderedText &text = Render(str, x, y, Font::ShowUnderlines());
 	if(!text.texture)
 		return;
@@ -305,6 +294,13 @@ double FreeTypeGlyphs::LineHeight() const
 double FreeTypeGlyphs::Space() const
 {
 	return space;
+}
+
+
+
+double FreeTypeGlyphs::Baseline() const
+{
+	return baseline;
 }
 
 

@@ -99,6 +99,9 @@ public:
 		// Get the width of a space.
 		virtual double Space() const = 0;
 		
+		// Get the distance from the top of the line to the text baseline.
+		virtual double Baseline() const = 0;
+		
 		// Get the index of the first unsupported code point starting at pos.
 		// Return the string length when there are no more code points.
 		virtual size_t FindUnsupported(const std::string &str, size_t pos = 0) const = 0;

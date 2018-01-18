@@ -47,6 +47,7 @@ public:
 	virtual double Width(const std::string &str) const override;
 	virtual double LineHeight() const override;
 	virtual double Space() const override;
+	virtual double Baseline() const override;
 	virtual size_t FindUnsupported(const std::string &str, size_t pos = 0) const override;
 	virtual void SetUpShader() override;
 	
