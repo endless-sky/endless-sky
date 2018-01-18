@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <memory>
 #include <string>
+#include <utility>
+#include <vector>
 
 class Color;
 class DataNode;
@@ -107,7 +109,12 @@ public:
 	
 	
 private:
-	std::shared_ptr<IGlyphs> source;
+	// Prepare a string for processing by multiple sources, producing source-end pairs.
+	std::vector<std::pair<size_t,size_t>> Prepare(const std::string &str) const;
+	
+	
+private:
+	std::vector<std::shared_ptr<IGlyphs> > sources;
 	int size;
 };
 

@@ -69,6 +69,7 @@ namespace {
 
 
 Font::Font()
+	: size(0)
 {
 }
 
@@ -77,7 +78,7 @@ Font::Font()
 bool Font::Load(const DataNode &node)
 {
 	// Ignore if already loaded.
-	if(source)
+	if(!sources.empty())
 		return false;
 	
 	if(node.Size() < 1 || node.Token(0) != "font")
@@ -87,7 +88,6 @@ bool Font::Load(const DataNode &node)
 	}
 	
 	// Get size.
-	int count = 0;
 	size = 0;
 	for(const DataNode &child : node)
 	{
@@ -95,7 +95,7 @@ bool Font::Load(const DataNode &node)
 		if(key != "size")
 			continue;
 		
-		if(++count > 1)
+		if(size > 0)
 		{
 			node.PrintTrace("too many sizes");
 			return false;
@@ -107,25 +107,20 @@ bool Font::Load(const DataNode &node)
 			return false;
 		}
 	}
-	if(count == 0)
+	if(size <= 0)
 	{
 		node.PrintTrace("missing size");
 		return false;
 	}
 	
 	// Get glyph source.
-	count = 0;
+	sources.clear();
 	for(const DataNode &child : node)
 	{
 		if(child.Size() <= 0 || (child.Token(0) != "atlas" && child.Token(0) != "freetype"))
 			continue;
 		string key = child.Token(0);
 		
-		if(++count > 1)
-		{
-			child.PrintTrace("too many glyph sources");
-			return false;
-		}
 		if(child.Size() <= 1 || child.Token(1).empty())
 		{
 			child.PrintTrace("missing path");
@@ -145,28 +140,28 @@ bool Font::Load(const DataNode &node)
 			return false;
 		}
 		
-		source.reset();
+		size_t count = sources.size();
 		if(key == "atlas")
 		{
 			auto glyphs = make_shared<AtlasGlyphs>();
 			if(glyphs->Load(paths.back()))
-				source = glyphs;
+				sources.emplace_back(glyphs);
 		}
 		else if(key == "freetype")
 		{
 			auto glyphs = make_shared<FreeTypeGlyphs>();
 			if(glyphs->Load(paths.back(), size))
-				source = glyphs;
+				sources.emplace_back(glyphs);
 		}
-		if(!source)
+		if(count == sources.size())
 		{
 			child.PrintTrace("load failed");
 			return false;
 		}
 	}
-	if(count == 0)
+	if(sources.size() == 0)
 	{
-		node.PrintTrace("missing glyph source (atlas or freetype)");
+		node.PrintTrace("missing glyph sources (atlas or freetype)");
 		return false;
 	}
 	
@@ -178,7 +173,7 @@ bool Font::Load(const DataNode &node)
 
 void Font::SetUpShader()
 {
-	if(source)
+	for(auto &source : sources)
 		source->SetUpShader();
 }
 
@@ -193,22 +188,49 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 
 void Font::DrawAliased(const string &str, double x, double y, const Color &color) const
 {
-	if(!source || str.empty())
+	if(sources.empty() || str.empty())
 		return;
 	
 	string buf = ReplaceCharacters(str);
-	source->Draw(buf, x, y, color);
+	if(sources.size() == 1 || sources[0]->FindUnsupported(buf) == buf.length())
+		sources[0]->Draw(buf, x, y, color);
+	else
+	{
+		size_t pos = 0;
+		vector<pair<size_t,size_t>> sections = Prepare(buf);
+		for(const auto &section : sections)
+		{
+			string tmp(buf, pos, section.second - pos);
+			sources[section.first]->Draw(tmp, x, y, color);
+			x += sources[section.first]->Width(tmp);
+			pos = section.second;
+		}
+	}
 }
 
 
 
 int Font::Width(const string &str) const
 {
-	if(!source)
+	if(sources.empty())
 		return 0;
 	
 	string buf = ReplaceCharacters(str);
-	return ceil(source->Width(buf));
+	if(sources.size() == 1 || sources[0]->FindUnsupported(buf) == buf.length())
+		return ceil(sources[0]->Width(buf));
+	else
+	{
+		double width = 0.;
+		size_t pos = 0;
+		vector<pair<size_t,size_t>> sections = Prepare(buf);
+		for(const auto &section : sections)
+		{
+			string tmp(buf, pos, section.second - pos);
+			width += sources[section.first]->Width(tmp);
+			pos = section.second;
+		}
+		return ceil(width);
+	}
 }
 
 
@@ -305,29 +327,26 @@ string Font::TruncateMiddle(const string &str, int width, bool ellipsis) const
 
 int Font::Height() const
 {
-	if(!source)
+	if(sources.empty())
 		return 0;
 	
-	return ceil(source->LineHeight());
+	return ceil(sources[0]->LineHeight());
 }
 
 
 
 int Font::Space() const
 {
-	if(!source)
+	if(sources.empty())
 		return 0;
 	
-	return ceil(source->Space());
+	return ceil(sources[0]->Space());
 }
 
 
 
 int Font::Size() const
 {
-	if(!source)
-		return 0;
-	
 	return size;
 }
 
@@ -464,6 +483,49 @@ char32_t Font::DecodeCodePoint(const string &str, size_t pos)
 	for(int i = 1; i < bytes; ++i)
 		c = (c << 6) + (str[pos + i] & 0x3f);
 	return c;
+}
+
+
+
+// Prepare a string for processing by multiple sources, producing source-end pairs.
+vector<pair<size_t,size_t>> Font::Prepare(const std::string &str) const
+{
+	// XXX This is an experimental attempt at using different glyph sources to get full unicode coverage:
+	//  - assumes code points supported by multiple sources are treated the same way
+	//  - prefers the first source that supports [start,end[
+	//  - uses source 0 for unsupported data
+	vector<pair<size_t,size_t>> sections;
+	for(size_t start = 0; start < str.length(); )
+	{
+		bool isUnsupported = true;
+		
+		// Supported data.
+		for(size_t i = 0; i < sources.size(); ++i)
+		{
+			size_t end = sources[i]->FindUnsupported(str, start);
+			if(end == start)
+				continue;
+			if(sections.size() > 0 && sections.back().first == i)
+				sections.back().second = end;
+			else
+				sections.emplace_back(i, end);
+			isUnsupported = false;
+			start = end;
+			break;
+		}
+		
+		// Unsupported data.
+		if(isUnsupported)
+		{
+			size_t end = NextCodePoint(str, start);
+			if(sections.size() > 0 && sections.back().first == 0)
+				sections.back().second = end;
+			else
+				sections.emplace_back(0, end);
+			start = end;
+		}
+	}
+	return sections;
 }
 
 
