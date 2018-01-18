@@ -27,11 +27,11 @@ class Body;
 class Flotsam;
 class Government;
 class Minable;
+class PlayerInfo;
 class Ship;
 class ShipEvent;
 class StellarObject;
 class System;
-class PlayerInfo;
 
 
 
@@ -80,6 +80,7 @@ private:
 	static void Refuel(Ship &ship, Command &command);
 	static bool CanRefuel(const Ship &ship, const StellarObject *target);
 	
+	// Methods of moving from the current position to a desired position / orientation.
 	static double TurnBackward(const Ship &ship);
 	static double TurnToward(const Ship &ship, const Point &vector);
 	static bool MoveToPlanet(Ship &ship, Command &command);
@@ -92,16 +93,20 @@ private:
 	static void Attack(Ship &ship, Command &command, const Ship &target);
 	static void MoveToAttack(Ship &ship, Command &command, const Body &target);
 	static void PickUp(Ship &ship, Command &command, const Body &target);
+	// Special decisions a ship might make.
 	static bool ShouldUseAfterburner(Ship &ship);
-	void DoSurveillance(Ship &ship, Command &command) const;
+	// Special personality behaviors.
+	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
+	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command);
 	void DoCloak(Ship &ship, Command &command);
+	// Prevent ships from stacking on each other when many are moving in sync.
 	void DoScatter(Ship &ship, Command &command);
 	
 	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
 	// Get a vector giving the direction this ship should aim in in order to do
-	// maximum damaged to a target at the given position with its non-turret,
+	// maximum damage to a target at the given position with its non-turret,
 	// non-homing weapons. If the ship has no non-homing weapons, this just
 	// returns the direction to the target.
 	static Point TargetAim(const Ship &ship);
@@ -126,6 +131,9 @@ private:
 	bool Has(const Government *government, const std::weak_ptr<const Ship> &other, int type) const;
 	// True if the ship has performed the indicated event against any member of the government.
 	bool Has(const Ship &ship, const Government *government, int type) const;
+	
+	// Functions to classify ships based on government and system.
+	void UpdateStrengths(std::map<const Government *, int64_t> &strength, const System *playerSystem);
 	
 	
 private:

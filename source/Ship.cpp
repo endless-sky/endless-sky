@@ -311,8 +311,6 @@ void Ship::FinishLoading(bool isNewInstance)
 			customSwizzle = base->CustomSwizzle();
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
-		if(baseAttributes.Mass() == 0.)
-			baseAttributes.Reset("mass", base->baseAttributes.Mass());
 		if(bays.empty() && !base->bays.empty())
 			bays = base->bays;
 		if(enginePoints.empty())
@@ -378,21 +376,6 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament = merged;
 		}
 	}
-	// Check that the ship's chassis has a mass.
-	// And if not, use the chassis mass of the ship's model.
-	if(baseAttributes.Mass() == 0.)
-	{
-		if(GameData::Ships().Has(modelName))
-		{
-			const Ship *model = GameData::Ships().Get(modelName);
-			baseAttributes.Reset("mass", model->BaseAttributes().Mass());
-		}
-
-		cerr << modelName;
-		if(!name.empty())
-			cerr << " \"" << name << "\"";
-		cerr << ": ship's chassis has no mass" << (baseAttributes.Mass() ? "; using model's chassis mass." : ".") << endl;
-	}
 	// Check that all the "equipped" weapons actually match what your ship
 	// has, and that they are truly weapons. Remove any excess weapons and
 	// warn if any non-weapon outfits are "installed" in a hardpoint.
@@ -426,10 +409,10 @@ void Ship::FinishLoading(bool isNewInstance)
 	// Mark any drone that has no "automaton" value as an automaton, to
 	// grandfather in the drones from before that attribute existed.
 	if(baseAttributes.Category() == "Drone" && !baseAttributes.Get("automaton"))
-		baseAttributes.Add("automaton", 1.);
+		baseAttributes.Set("automaton", 1.);
 	
-	baseAttributes.Reset("gun ports", armament.GunCount());
-	baseAttributes.Reset("turret mounts", armament.TurretCount());
+	baseAttributes.Set("gun ports", armament.GunCount());
+	baseAttributes.Set("turret mounts", armament.TurretCount());
 	
 	if(addAttributes)
 	{
@@ -494,6 +477,10 @@ void Ship::FinishLoading(bool isNewInstance)
 	// crew, fuel, etc. are all refilled.
 	if(isNewInstance)
 		Recharge(true);
+	
+	// Figure out if this ship can be carried.
+	const string &category = attributes.Category();
+	canBeCarried = (category == "Fighter" || category == "Drone");
 	
 	// Ships read from a save file may have non-default shields or hull.
 	// Perform a full IsDisabled calculation.
@@ -2492,9 +2479,10 @@ int Ship::BaysFree(bool isFighter) const
 // not reserved for one of its existing escorts.
 bool Ship::CanCarry(const Ship &ship) const
 {
-	bool isFighter = (ship.attributes.Category() == "Fighter");
-	if(!isFighter && ship.attributes.Category() != "Drone")
+	if(!ship.canBeCarried)
 		return false;
+	// This carried ship is either a fighter or a drone.
+	bool isFighter = (ship.attributes.Category() == "Fighter");
 	
 	int free = BaysFree(isFighter);
 	if(!free)
@@ -2513,21 +2501,18 @@ bool Ship::CanCarry(const Ship &ship) const
 
 bool Ship::CanBeCarried() const
 {
-	const string &category = attributes.Category();
-	return (category == "Fighter" || category == "Drone");
+	return canBeCarried;
 }
 
 
 
 bool Ship::Carry(const shared_ptr<Ship> &ship)
 {
-	if(!ship)
+	if(!ship || !ship->canBeCarried)
 		return false;
 	
+	// This carried ship is either a fighter or a drone.
 	bool isFighter = ship->attributes.Category() == "Fighter";
-	bool isDrone = ship->attributes.Category() == "Drone";
-	if(!(isFighter || isDrone))
-		return false;
 	
 	for(Bay &bay : bays)
 		if((bay.isFighter == isFighter) && !bay.ship)
@@ -2554,6 +2539,7 @@ void Ship::UnloadBays()
 	for(Bay &bay : bays)
 		if(bay.ship)
 		{
+			carriedMass -= bay.ship->Mass();
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetPlanet(landingPlanet);
 			bay.ship.reset();

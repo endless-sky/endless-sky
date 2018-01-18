@@ -33,7 +33,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "WrappedText.h"
 
 #include "gl_header.h"
-
 #include <SDL2/SDL.h>
 
 using namespace std;

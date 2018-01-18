@@ -223,7 +223,7 @@ outfit "X5200 Ion Steering"
 	"turn" 2174
 	"turning energy" 3.5
 	"turning heat" 7.3
-	description "The X5200 is a steering system so powerful that only a handful of ships use it. It is standard equipment for Republic cruisers and carriers, ships so large that they are practically a self-contained city."
+	description "The X5200 is a steering system so large and powerful that only a handful of ships can install it. This means that this steering system is rarely sold due to its limited market."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
 
