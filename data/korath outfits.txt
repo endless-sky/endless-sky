@@ -141,7 +141,7 @@ outfit "Systems Core (Large)"
 outfit "Fuel Processor"
 	category "Systems"
 	cost 400000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/korath fuel processor"
 	"mass" 14
 	"outfit space" -14
 	"fuel capacity" 200
