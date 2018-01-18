@@ -51,7 +51,7 @@ using namespace std;
 
 namespace {
 	// Log how many player ships are in a given system, regardless if they are parked or carried.
-	void TallyEscorts(const vector<shared_ptr<Ship>> &escorts, map<const System *, int> &locations)
+	void TallyEscorts(const vector<shared_ptr<Ship>> &escorts, map<const System *, bool> &locations)
 	{
 		locations.clear();
 		for(const auto &ship : escorts)
@@ -59,9 +59,10 @@ namespace {
 			if(ship->IsDestroyed())
 				continue;
 			if(ship->GetSystem())
-				++locations[ship->GetSystem()];
+				locations[ship->GetSystem()] |= !ship->IsParked();
+			// If this ship has no system but has a parent, it is carried (and thus not parked).
 			else if(ship->CanBeCarried() && ship->GetParent() && ship->GetParent()->GetSystem())
-				++locations[ship->GetParent()->GetSystem()];
+				locations[ship->GetParent()->GetSystem()] = true;
 		}
 	}
 	
@@ -660,16 +661,17 @@ void MapPanel::DrawEscorts()
 	if(!Preferences::Has("Show escort systems on map"))
 		return;
 	
-	// Fill in the center of any (non-flagship) escort system.
-	const Color &presence = *GameData::Colors().Get("map link");
+	// Fill in the center of any system containing the player's ships, if the
+	// player knows about that system (since escorts may use unknown routes).
+	const Color &unparked = *GameData::Colors().Get("map link");
+	const Color &parkedOnly = *GameData::Colors().Get("dim");
 	double zoom = Zoom();
-	for(const pair<const System *, int> &squad : escortSystems)
-	{
-		if(squad.first == playerSystem)
-			continue;
-		Point pos = zoom * (squad.first->Position() + center);
-		RingShader::Draw(pos, INNER - 1., 0., presence);
-	}
+	for(const pair<const System *, bool> &squad : escortSystems)
+		if(player.HasSeen(squad.first) || squad.first == specialSystem)
+		{
+			Point pos = zoom * (squad.first->Position() + center);
+			RingShader::Draw(pos, INNER - 1., 0., squad.second ? unparked : parkedOnly);
+		}
 }
 
 

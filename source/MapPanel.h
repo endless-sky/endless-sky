@@ -110,7 +110,7 @@ protected:
 	// for use in determining which governments are in the legend.
 	std::map<const Government *, double> closeGovernments;
 	// Systems in which your escorts are located.
-	std::map<const System *, int> escortSystems;
+	std::map<const System *, bool> escortSystems;
 	
 	
 private:
