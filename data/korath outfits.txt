@@ -137,6 +137,18 @@ outfit "Systems Core (Large)"
 	"energy capacity" 5200
 	description `This massive bank of computers, shield generators, and repair stations holds everything needed to keep the very largest of Korath ships in working condition.`
 
+
+outfit "Fuel Processor"
+        category "Systems"
+        cost 400000
+        thumbnail "outfit/unknown"
+        "mass" 14
+        "outfit space" -14
+        "fuel capacity" 200
+        "ramscoop" 2
+        description "Since the dawn of spaceflight the Korath have probably spent more time on military campaigns than at home, so they needed their fleets to have an ample range. This is a miniaturized Korath fuel refinery for use in expeditionary capital ships, complete with a small ramscoop and a large storage tank."
+
+
 outfit "Command Center"
 	category "Systems"
 	cost 437000
@@ -147,16 +159,6 @@ outfit "Command Center"
 	"required crew" 1
 	"automaton" -1
 	description "In response to occasional raids by the robotic war machines left behind after their recent conflict, the Kor Efret have developed this minimal, spartan command center that can be installed in a captured robotic ship to allow a pilot to override the AI and interface with the ship's controls. The command center only provides a single bunk for the captain, so more may be necessary if the ship has turrets or other systems that require crew."
-
-outfit "Fuel Processor"
-	category "Systems"
-	cost 400000
-	thumbnail "outfit/unknown"
-	"mass" 14
-	"outfit space" -14
-	"fuel capacity" 200
-	"ramscoop" 2
-	description "Since the dawn of spaceflight the Korath have probably spent more time on military campaigns than at home, so they needed their fleets to have an ample range. This is a miniaturized Korath fuel refinery for use in expeditionary capital ships, complete with a small ramscoop and a large storage tank."
 
 outfit "Reasoning Node"
 	category "Systems"
