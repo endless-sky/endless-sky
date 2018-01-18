@@ -314,11 +314,30 @@ size_t FreeTypeGlyphs::FindUnsupported(const string &str, size_t pos) const
 	if(!face)
 		return 0;
 	
-	vector<GlyphData> arr = Translate(str);
-	for(GlyphData &data : arr)
-		if(!data.index)
-			return data.start;
-	
+	const bool hasVariantSelectors = FT_Face_GetVariantSelectors(face);
+	for(pos = Font::CodePointStart(str, pos); pos < str.length(); pos = Font::NextCodePoint(str, pos))
+	{
+		char32_t c = Font::DecodeCodePoint(str, pos);
+		
+		// Check the variant.
+		if(hasVariantSelectors)
+		{
+			size_t next = Font::NextCodePoint(str, pos);
+			if(next < str.length())
+			{
+				char32_t nextC = Font::DecodeCodePoint(str, next);
+				if(FT_Face_GetCharVariantIndex(face, c, nextC))
+				{
+					pos = next;
+					continue;
+				}
+			}
+		}
+		
+		// Check the glyph.
+		if(!FT_Get_Char_Index(face, c))
+			return pos;
+	}
 	return str.length();
 }
 
