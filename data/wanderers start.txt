@@ -2330,6 +2330,9 @@ event "battle for ap'arak"
 		fleet "Wanderer Flycatchers" 400
 
 event "battle for ap'arak ends"
+	government "Wanderer"
+		"attitude toward"
+			"Pug" .05
 	system "Ap'arak"
 		add fleet "Wanderer Freight" 2000
 		add fleet "Wanderer Drones" 4000
@@ -2439,6 +2442,8 @@ mission "Wanderers Ap'arak 3: Pug"
 		government "Pug"
 		ship "Pug Arfecta" "Hork Ekekek Ptui"
 		ship "Pug Arfecta" "Graak Sput Kchoo"
+	on complete
+		"reputation: Wanderer" <?= -1
 
 mission "Wanderers Ap'arak 3"
 	landing
