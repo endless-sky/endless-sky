@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FogShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Format.h"
 #include "Galaxy.h"
 #include "GameData.h"
 #include "Government.h"
@@ -54,7 +55,7 @@ using namespace std;
 
 namespace {
 	// Log how many player ships are in a given system, regardless if they are parked or carried.
-	void TallyEscorts(const vector<shared_ptr<Ship>> &escorts, map<const System *, bool> &locations)
+	void TallyEscorts(const vector<shared_ptr<Ship>> &escorts, map<const System *, pair<int, int>> &locations)
 	{
 		locations.clear();
 		for(const auto &ship : escorts)
@@ -62,10 +63,15 @@ namespace {
 			if(ship->IsDestroyed())
 				continue;
 			if(ship->GetSystem())
-				locations[ship->GetSystem()] |= !ship->IsParked();
+			{
+				if(!ship->IsParked())
+					++locations[ship->GetSystem()].first;
+				else
+					++locations[ship->GetSystem()].second;
+			}
 			// If this ship has no system but has a parent, it is carried (and thus not parked).
 			else if(ship->CanBeCarried() && ship->GetParent() && ship->GetParent()->GetSystem())
-				locations[ship->GetParent()->GetSystem()] = true;
+				++locations[ship->GetParent()->GetSystem()].first;
 		}
 	}
 	
@@ -867,11 +873,11 @@ void MapPanel::DrawEscorts()
 	const Color &unparked = *GameData::Colors().Get("map link");
 	const Color &parkedOnly = *GameData::Colors().Get("dim");
 	double zoom = Zoom();
-	for(const pair<const System *, bool> &squad : escortSystems)
+	for(const auto &squad : escortSystems)
 		if(player.HasSeen(squad.first) || squad.first == specialSystem)
 		{
 			Point pos = zoom * (squad.first->Position() + center);
-			RingShader::Draw(pos, INNER - 1., 0., squad.second ? unparked : parkedOnly);
+			RingShader::Draw(pos, INNER - 1., 0., squad.second.first ? unparked : parkedOnly);
 		}
 }
 
@@ -1059,7 +1065,7 @@ void MapPanel::DrawMissions()
 
 void MapPanel::DrawTooltips()
 {
-	if(!hasHover || hoverCount < HOVER_TIME)
+	if(!hasHover || hoverCount < HOVER_TIME || !Preferences::Has("Show escort systems on map"))
 		return;
 	
 	// Create the tooltip text.
@@ -1068,9 +1074,23 @@ void MapPanel::DrawTooltips()
 		const auto &squad = escortSystems.find(hoverSystem);
 		if(squad != escortSystems.end())
 		{
-			tooltip = "You have ";;
-			tooltip +=((*squad).second ? "unparked" : "parked");
-			tooltip += " escorts here.";
+			pair<int, int> t = (*squad).second;
+			t.first -= (hoverSystem == playerSystem);
+			if(t.first && t.second)
+			{
+				// Both active and parked escorts.
+				tooltip = Format::Number(t.first) + " active " + (t.first == 1 ? "escort" : "escorts");
+				tooltip += "\n" + Format::Number(t.second) + " parked " + (t.second == 1 ? "escort" : "escorts");
+			}
+			else if(t.first)
+				// Only active escorts.
+				tooltip = Format::Number(t.first) + (t.first == 1 ? " escort" : " escorts");
+			else if(t.second)
+				// Only parked escorts.
+				tooltip = Format::Number(t.second) + " parked " + (t.second == 1 ? "escort" : "escorts");
+			else
+				// Only the flagship is present.
+				tooltip = "(You are here.)";
 		}
 		// Wrap the tooltip.
 		if(!tooltip.empty())
@@ -1081,10 +1101,15 @@ void MapPanel::DrawTooltips()
 		// Add 10px margin to all sides of the text.
 		Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
 		size += Point(20., 20.);
+		Point topLeft = (hoverSystem->Position() + center) * Zoom();
+		// Do not overflow the screen dimensions.
+		if(topLeft.X() + size.X() > Screen::Right())
+			topLeft.X() -= size.X();
+		if(topLeft.Y() + size.Y() > Screen::Bottom())
+			topLeft.Y() -= size.Y();
 		// Draw the background fill and the tooltip text.
-		Point drawPos = (hoverSystem->Position() + center) * Zoom();
-		FillShader::Fill(drawPos + .5 * size, size, *GameData::Colors().Get("tooltip background"));
-		hoverText.Draw(drawPos + Point(10., 10.), *GameData::Colors().Get("medium"));
+		FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
+		hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
 	}
 }
 
