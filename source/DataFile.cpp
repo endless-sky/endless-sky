@@ -105,7 +105,7 @@ void DataFile::Load(const char *it, const char *end)
 	{
 		// Find the first non-white character in this line.
 		int white = 0;
-		for( ; *it <= ' ' && *it != '\n'; ++it)
+		for( ; *it <= ' ' && *it >= 0 && *it != '\n'; ++it)
 			++white;
 		
 		// If the line is a comment, skip to the end of the line.
@@ -166,7 +166,7 @@ void DataFile::Load(const char *it, const char *end)
 				// If we've not yet reached the end of the line of text, search
 				// forward for the next non-whitespace character.
 				it += isQuoted;
-				while(*it != '\n' && *it <= ' ' && *it != '#')
+				while(*it != '\n' && *it <= ' ' && *it >= 0 && *it != '#')
 					++it;
 				
 				// If a comment is encountered outside of a token, skip the rest
