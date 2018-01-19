@@ -81,9 +81,9 @@ bool Font::Load(const DataNode &node)
 	if(!sources.empty())
 		return false;
 	
-	if(node.Size() < 1 || node.Token(0) != "font")
+	if(node.Token(0) != "font")
 	{
-		node.PrintTrace("was expecting font");
+		node.PrintTrace("Not a font node:");
 		return false;
 	}
 	
@@ -91,25 +91,24 @@ bool Font::Load(const DataNode &node)
 	size = 0;
 	for(const DataNode &child : node)
 	{
-		string key = (child.Size() >= 0 ? child.Token(0) : "");
-		if(key != "size")
+		if(child.Token(0) != "size")
 			continue;
 		
-		if(size > 0)
+		if(size)
 		{
-			node.PrintTrace("too many sizes");
+			child.PrintTrace("Too many font sizes:");
 			return false;
 		}
 		size = round(child.Value(1));
 		if(size <= 0)
 		{
-			child.PrintTrace("invalid font.size");
+			child.PrintTrace("Invalid font size:");
 			return false;
 		}
 	}
-	if(size <= 0)
+	if(!size)
 	{
-		node.PrintTrace("missing size");
+		node.PrintTrace("Must have one font size:");
 		return false;
 	}
 	
@@ -117,13 +116,13 @@ bool Font::Load(const DataNode &node)
 	sources.clear();
 	for(const DataNode &child : node)
 	{
-		if(child.Size() <= 0 || (child.Token(0) != "atlas" && child.Token(0) != "freetype"))
-			continue;
 		string key = child.Token(0);
+		if(key != "atlas" && key != "freetype")
+			continue;
 		
 		if(child.Size() <= 1 || child.Token(1).empty())
 		{
-			child.PrintTrace("missing path");
+			child.PrintTrace("Path is missing:");
 			return false;
 		}
 		
@@ -136,7 +135,7 @@ bool Font::Load(const DataNode &node)
 			paths.pop_back();
 		if(paths.empty())
 		{
-			child.PrintTrace("path not found");
+			child.PrintTrace("Path not found:");
 			return false;
 		}
 		
@@ -155,13 +154,13 @@ bool Font::Load(const DataNode &node)
 		}
 		if(count == sources.size())
 		{
-			child.PrintTrace("load failed");
+			child.PrintTrace("Load failed:");
 			return false;
 		}
 	}
 	if(sources.empty())
 	{
-		node.PrintTrace("missing glyph sources (atlas or freetype)");
+		node.PrintTrace("Must have at least one glyph source (atlas or freetype):");
 		return false;
 	}
 	
