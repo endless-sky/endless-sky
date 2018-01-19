@@ -1865,6 +1865,18 @@ bool AI::ShouldUseAfterburner(Ship &ship)
 
 
 
+bool AI::ShouldActFrugally(const Ship &ship) const
+{
+	auto ait = allyStrength.find(ship.GetGovernment());
+	auto eit = enemyStrength.find(ship.GetGovernment());
+	if((ait != allyStrength.end() && eit != enemyStrength.end() && ait->second < eit->second)
+		|| (ship.Hull() + ship.Shields() <= 1.5))
+		return false;
+	return true;
+}
+
+
+
 // Find a target ship to flock around at high speed.
 void AI::DoSwarming(Ship &ship, Command &command, shared_ptr<Ship> &target)
 {
@@ -2205,17 +2217,6 @@ void AI::DoScatter(Ship &ship, Command &command)
 		command.SetTurn(offset.Cross(ship.Facing().Unit()) > 0. ? 1. : -1.);
 		return;
 	}
-}
-
-
-bool AI::ShouldActFrugally(const Ship &ship) const
-{
-	auto ait = allyStrength.find(ship.GetGovernment());
-	auto eit = enemyStrength.find(ship.GetGovernment());
-	if((ait != allyStrength.end() && eit != enemyStrength.end() && ait->second < eit->second)
-		|| (ship.Hull() + ship.Shields() <= 1.5))
-		return false;
-	return true;
 }
 
 
