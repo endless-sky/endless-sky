@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
+#include "WrappedText.h"
 
 #include <map>
 #include <string>
@@ -65,6 +66,7 @@ protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
 	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 	
@@ -119,6 +121,13 @@ protected:
 	// Cache the map layout, so it doesn't have to be re-calculated every frame.
 	// The cache must be updated when the coloring mode changes.
 	void UpdateCache();
+	
+	// For tooltips:
+	int hoverCount = 0;
+	bool hasHover = false;
+	const System *hoverSystem = nullptr;
+	std::string tooltip;
+	WrappedText hoverText;
 	
 	
 private:

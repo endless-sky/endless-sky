@@ -70,6 +70,11 @@ namespace {
 	
 	const Color black(0., 1.);
 	const Color red(1., 0., 0., 1.);
+	
+	// Hovering an escort pip this many frames activates the tooltip.
+	// TODO: use a system that doesn't require actively hovering i.e. moving the mouse,
+	// but can support passive hovering (and thus HOVER_TIME = 60 instead of 5).
+	const int HOVER_TIME = 5;
 }
 
 const double MapPanel::OUTER = 6.;
@@ -333,6 +338,40 @@ bool MapPanel::Click(int x, int y, int clicks)
 			break;
 		}
 	
+	return true;
+}
+
+
+
+bool MapPanel::Hover(int x, int y)
+{
+	Point pos = Point(x, y) / Zoom() - center;
+	// Hovering very near the system ring will increment a counter for its tooltip.
+	double maxDistance = 2 * OUTER / Zoom();
+	if(hasHover && hoverSystem && pos.Distance(hoverSystem->Position()) < maxDistance)
+		++hoverCount;
+	else
+	{
+		// Mouse is now hovering somewhere else, or is too far from the previous point.
+		hasHover = false;
+		hoverSystem = nullptr;
+		// Check if the new position supports a tooltip.
+		for(const auto &squad : escortSystems)
+		{
+			const System *system = squad.first;
+			if(pos.Distance(system->Position()) < maxDistance
+					&& (player.HasSeen(system) || system == specialSystem))
+			{
+				hasHover = true;
+				hoverSystem = system;
+				break;
+			}
+		}
+		// TODO: Perhaps decrement hoverCount when it is off-target, so that the next
+		// hoverpoint can more quickly be analyzed.
+		hoverCount = hasHover;
+		tooltip.clear();
+	}
 	return true;
 }
 
