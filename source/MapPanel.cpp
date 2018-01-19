@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "Dialog.h"
+#include "FillShader.h"
 #include "FogShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -101,6 +102,11 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	// be changing systems even if the player does not.
 	TallyEscorts(player.Ships(), escortSystems);
 	
+	// Initialize a centered tooltip.
+	hoverText.SetFont(FontSet::Get(14));
+	hoverText.SetWrapWidth(150);
+	hoverText.SetAlignment(WrappedText::CENTER);
+	
 	if(selectedSystem)
 		CenterOnSystem(selectedSystem);
 }
@@ -133,6 +139,7 @@ void MapPanel::Draw()
 	DrawSystems();
 	DrawNames();
 	DrawMissions();
+	DrawTooltips();
 	
 	if(!distance.HasRoute(selectedSystem))
 	{
@@ -615,7 +622,7 @@ void MapPanel::CenterOnSystem(const System *system)
 }
 
 
-	
+
 // Cache the map layout, so it doesn't have to be re-calculated every frame.
 // The node cache must be updated when the coloring mode changes.
 void MapPanel::UpdateCache()
@@ -1045,6 +1052,39 @@ void MapPanel::DrawMissions()
 		Point pos = Zoom() * (specialSystem->Position() + center);
 		PointerShader::Draw(pos, a.Unit(), 20., 27., -4., black);
 		PointerShader::Draw(pos, a.Unit(), 11.5, 21.5, -6., specialColor);
+	}
+}
+
+
+
+void MapPanel::DrawTooltips()
+{
+	if(!hasHover || hoverCount < HOVER_TIME)
+		return;
+	
+	// Create the tooltip text.
+	if(tooltip.empty())
+	{
+		const auto &squad = escortSystems.find(hoverSystem);
+		if(squad != escortSystems.end())
+		{
+			tooltip = "You have ";;
+			tooltip +=((*squad).second ? "unparked" : "parked");
+			tooltip += " escorts here.";
+		}
+		// Wrap the tooltip.
+		if(!tooltip.empty())
+			hoverText.Wrap(tooltip);
+	}
+	if(!tooltip.empty())
+	{
+		// Add 10px margin to all sides of the text.
+		Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
+		size += Point(20., 20.);
+		// Draw the background fill and the tooltip text.
+		Point drawPos = (hoverSystem->Position() + center) * Zoom();
+		FillShader::Fill(drawPos + .5 * size, size, *GameData::Colors().Get("tooltip background"));
+		hoverText.Draw(drawPos + Point(10., 10.), *GameData::Colors().Get("medium"));
 	}
 }
 
