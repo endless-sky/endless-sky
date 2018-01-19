@@ -97,21 +97,29 @@ protected:
 	
 	const System *playerSystem;
 	const System *selectedSystem;
-	const System *specialSystem;
 	const Planet *selectedPlanet = nullptr;
+	// A system associated with a dialog or conversation.
+	const System *specialSystem;
 	
 	Point center;
 	int commodity;
 	int step = 0;
 	std::string buttonCondition;
 	
+	// Distance from the screen center to the nearest owned system,
+	// for use in determining which governments are in the legend.
 	std::map<const Government *, double> closeGovernments;
+	// Systems in which your escorts are located.
+	std::map<const System *, bool> escortSystems;
 	
 	
 private:
 	void DrawTravelPlan();
+	// Indicate which other systems have player escorts.
+	void DrawEscorts();
 	void DrawWormholes();
 	void DrawLinks();
+	// Draw systems in accordance to the set commodity color scheme.
 	void DrawSystems();
 	void DrawNames();
 	void DrawMissions();

@@ -441,11 +441,12 @@ void PreferencesPanel::DrawSettings()
 		"\n",
 		"Other",
 		"Clickable radar display",
+		"Hide unexplored map regions",
 		REACTIVATE_HELP,
 		"Rehire extra crew when lost",
 		SCROLL_SPEED,
-		"Warning siren",
-		"Hide unexplored map regions"
+		"Show escort systems on map",
+		"Warning siren"
 	};
 	bool isCategory = true;
 	for(const string &setting : SETTINGS)
