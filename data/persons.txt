@@ -449,6 +449,7 @@ person "Power of the People"
 			`"How 'bout a bumper sandwich, Boogerlips?"`
 			`"I recommend the lobster."`
 	ship "Modified Osprey" "Power of the People"
+		"never disabled"
 
 ship "Modified Osprey"
 	sprite "ship/mosprey"
