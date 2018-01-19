@@ -39,6 +39,10 @@ class UI;
 // staying in the system they started in, or attacking only the player's ships.
 class NPC {
 public:
+	NPC() = default;
+	// Construct and Load() at the same time.
+	NPC(const DataNode &node);
+	
 	void Load(const DataNode &node);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so fleets will be replaced by individual ships already.

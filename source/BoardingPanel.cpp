@@ -636,5 +636,5 @@ void BoardingPanel::Plunder::UpdateStrings()
 // Commodities come in units of one ton.
 double BoardingPanel::Plunder::UnitMass() const
 {
-	return outfit ? outfit->Get("mass") : 1.;
+	return outfit ? outfit->Mass() : 1.;
 }

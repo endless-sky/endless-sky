@@ -357,7 +357,7 @@ phrase "friendly wanderer"
 		"a welcome "
 		"an honored "
 	word
-		"[visitor, traveller] "
+		"[visitor, traveler] "
 		"guest "
 	word
 		"to "

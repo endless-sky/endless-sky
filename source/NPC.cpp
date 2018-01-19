@@ -33,6 +33,14 @@ using namespace std;
 
 
 
+// Construct and Load() at the same time.
+NPC::NPC(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 void NPC::Load(const DataNode &node)
 {
 	// Any tokens after the "npc" tag list the things that must happen for this
@@ -114,8 +122,7 @@ void NPC::Load(const DataNode &node)
 			{
 				// Loading an NPC from a save file, or an entire ship specification.
 				// The latter may result in references to non-instantiated outfits.
-				ships.push_back(make_shared<Ship>());
-				ships.back()->Load(child);
+				ships.emplace_back(make_shared<Ship>(child));
 				for(const DataNode &grand : child)
 					if(grand.Token(0) == "actions" && grand.Size() >= 2)
 						actions[ships.back().get()] = grand.Value(1);
@@ -140,8 +147,7 @@ void NPC::Load(const DataNode &node)
 		{
 			if(child.HasChildren())
 			{
-				fleets.push_back(Fleet());
-				fleets.back().Load(child);
+				fleets.emplace_back(child);
 				if(child.Size() >= 2)
 				{
 					// Copy the custom fleet in lieu of reparsing the same DataNode.
@@ -397,20 +403,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	// Pick the system for this NPC to start out in.
 	result.system = system;
 	if(!result.system && !location.IsEmpty())
-	{
-		// Find a destination that satisfies the filter.
-		vector<const System *> options;
-		for(const auto &it : GameData::Systems())
-		{
-			// Skip entries with incomplete data.
-			if(it.second.Name().empty())
-				continue;
-			if(location.Matches(&it.second, origin))
-				options.push_back(&it.second);
-		}
-		if(!options.empty())
-			result.system = options[Random::Int(options.size())];
-	}
+		result.system = location.PickSystem(origin);
 	if(!result.system)
 		result.system = (isAtDestination && destination) ? destination : origin;
 	

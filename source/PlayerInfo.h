@@ -163,6 +163,8 @@ public:
 	void HandleBlockedMissions(Mission::Location location, UI *ui);
 	// Callback for accepting or declining whatever mission has been offered.
 	void MissionCallback(int response);
+	// Basic callback for handling forced departure from a planet.
+	void BasicCallback(int response);
 	// Complete or fail a mission.
 	void RemoveMission(Mission::Trigger trigger, const Mission &mission, UI *ui);
 	// Mark a mission as failed, but do not remove it from the mission list yet.
@@ -174,8 +176,8 @@ public:
 	int GetCondition(const std::string &name) const;
 	std::map<std::string, int> &Conditions();
 	const std::map<std::string, int> &Conditions() const;
-	// Set and check the reputation conditions, which missions can use to modify
-	// the player's reputation.
+	// Set and check the reputation conditions, which missions and events
+	// can use to modify the player's reputation with other governments.
 	void SetReputationConditions();
 	void CheckReputationConditions();
 	
@@ -184,6 +186,7 @@ public:
 	bool HasVisited(const System *system) const;
 	bool HasVisited(const Planet *planet) const;
 	bool KnowsName(const System *system) const;
+	// Marking a system as visited also "sees" its neighbors.
 	void Visit(const System *system);
 	void Visit(const Planet *planet);
 	// Mark a system and its planets as unvisited, even if visited previously.

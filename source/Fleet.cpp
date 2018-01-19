@@ -31,6 +31,14 @@ using namespace std;
 
 
 
+// Construct and Load() at the same time.
+Fleet::Fleet(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 void Fleet::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)

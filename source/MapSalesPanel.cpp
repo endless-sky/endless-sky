@@ -43,8 +43,6 @@ const double MapSalesPanel::ICON_HEIGHT = 90.;
 const double MapSalesPanel::PAD = 8.;
 const int MapSalesPanel::WIDTH = 270;
 
-using namespace std;
-
 
 
 MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)

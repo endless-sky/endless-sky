@@ -200,30 +200,20 @@ void PlayerInfo::Load(const string &path)
 		// Records of things you have done or are doing, or have happened to you:
 		else if(child.Token(0) == "mission")
 		{
-			missions.push_back(Mission());
-			missions.back().Load(child);
+			missions.emplace_back(child);
 			cargo.AddMissionCargo(&missions.back());
 		}
 		else if(child.Token(0) == "available job")
-		{
-			availableJobs.push_back(Mission());
-			availableJobs.back().Load(child);
-		}
+			availableJobs.emplace_back(child);
 		else if(child.Token(0) == "available mission")
-		{
-			availableMissions.push_back(Mission());
-			availableMissions.back().Load(child);
-		}
+			availableMissions.emplace_back(child);
 		else if(child.Token(0) == "conditions")
 		{
 			for(const DataNode &grand : child)
 				conditions[grand.Token(0)] = (grand.Size() >= 2) ? grand.Value(1) : 1;
 		}
 		else if(child.Token(0) == "event")
-		{
-			gameEvents.push_back(GameEvent());
-			gameEvents.back().Load(child);
-		}
+			gameEvents.emplace_back(child);
 		else if(child.Token(0) == "changes")
 		{
 			for(const DataNode &grand : child)
@@ -1471,7 +1461,8 @@ void PlayerInfo::MissionCallback(int response)
 	
 	Mission &mission = missionList.front();
 	
-	shouldLaunch |= Conversation::RequiresLaunch(response);
+	// If landed, this conversation may require the player to immediately depart.
+	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
@@ -1503,6 +1494,16 @@ void PlayerInfo::MissionCallback(int response)
 	}
 	else if(response == Conversation::DIE)
 		Die(true);
+}
+
+
+
+// Basic callback, allowing conversations to force the player to depart from a
+// planet without requiring a mission to offer.
+void PlayerInfo::BasicCallback(int response)
+{
+	// If landed, this conversation may require the player to immediately depart.
+	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
 }
 
 
@@ -1590,8 +1591,8 @@ const map<string, int> &PlayerInfo::Conditions() const
 
 
 
-// Set and check the reputation conditions, which missions can use to modify
-// the player's reputation.
+// Set and check the reputation conditions, which missions and events can use to
+// modify the player's reputation with other governments.
 void PlayerInfo::SetReputationConditions()
 {
 	for(const auto &it : GameData::Governments())
@@ -2177,6 +2178,7 @@ void PlayerInfo::UpdateAutoConditions()
 	conditions["unpaid fines"] = min(limit, accounts.TotalDebt("Fine"));
 	conditions["unpaid salaries"] = min(limit, accounts.SalariesOwed());
 	conditions["credit score"] = accounts.CreditScore();
+	// Serialize the current reputation with other governments.
 	SetReputationConditions();
 	// Clear any existing ships: conditions. (Note: '!' = ' ' + 1.)
 	auto first = conditions.lower_bound("ships: ");

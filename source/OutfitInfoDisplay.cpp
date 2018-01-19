@@ -143,24 +143,40 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementsHeight += 20;
 	}
 	
+	if(outfit.Mass())
+	{
+		requirementLabels.emplace_back("mass:");
+		requirementValues.emplace_back(Format::Number(outfit.Mass()));
+		requirementsHeight += 20;
+	}
+	
+	bool hasContent = true;
 	static const vector<string> NAMES = {
+		"", "",
 		"outfit space needed:", "outfit space",
 		"weapon capacity needed:", "weapon capacity",
 		"engine capacity needed:", "engine capacity",
+		"", "",
 		"gun ports needed:", "gun ports",
 		"turret mounts needed:", "turret mounts"
 	};
 	for(unsigned i = 0; i + 1 < NAMES.size(); i += 2)
-		if(outfit.Get(NAMES[i + 1]))
+	{
+		if(NAMES[i].empty() && hasContent)
 		{
 			requirementLabels.emplace_back();
 			requirementValues.emplace_back();
 			requirementsHeight += 10;
-		
+			hasContent = false;
+		}
+		else if(outfit.Get(NAMES[i + 1]))
+		{
 			requirementLabels.push_back(NAMES[i]);
 			requirementValues.push_back(Format::Number(-outfit.Get(NAMES[i + 1])));
 			requirementsHeight += 20;
+			hasContent = true;
 		}
+	}
 }
 
 
@@ -171,6 +187,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeValues.clear();
 	attributesHeight = 20;
 	
+	bool hasNormalAttributes = false;
 	for(const pair<const char *, double> &it : outfit.Attributes())
 	{
 		static const set<string> SKIP = {
@@ -195,15 +212,19 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributeValues.emplace_back(Format::Number(it.second * scale));
 			attributesHeight += 20;
 		}
+		hasNormalAttributes = true;
 	}
 	
 	if(!outfit.IsWeapon())
 		return;
 	
-	// Pad the table.
-	attributeLabels.emplace_back();
-	attributeValues.emplace_back();
-	attributesHeight += 10;
+	// Insert padding if any normal attributes were listed above.
+	if(hasNormalAttributes)
+	{
+		attributeLabels.emplace_back();
+		attributeValues.emplace_back();
+		attributesHeight += 10;
+	}
 	
 	if(outfit.Ammo())
 	{

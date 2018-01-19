@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Planet.h"
+#include "Random.h"
 #include "Ship.h"
 #include "System.h"
 
@@ -67,27 +68,53 @@ namespace {
 		int d = distance.Days(system);
 		return (d > maximum) ? -1 : d;
 	}
+	
+	// Check that at least one neighbor of the hub system matches, for each of the neighbor filters.
+	// False if at least one filter fails to match, true if all filters find at least one match.
+	bool MatchesNeighborFilters(const list<LocationFilter> &neighborFilters, const System *hub, const System *origin)
+	{
+		for(const LocationFilter &filter : neighborFilters)
+		{
+			bool hasMatch = false;
+			for(const System *neighbor : hub->Links())
+				if(filter.Matches(neighbor, origin))
+				{
+					hasMatch = true;
+					break;
+				}
+			if(!hasMatch)
+				return false;
+		}
+		return true;
+	}
 }
 
 
 
-// There is no need to save a location filter, because any mission that is
-// in the saved game will already have "applied" the filter to choose a
-// particular planet or system.
+// Construct and Load() at the same time.
+LocationFilter::LocationFilter(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 void LocationFilter::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "not")
+		// Handle filters that must not match, or must apply to a
+		// neighboring system. If the token is alone on a line, it
+		// introduces many lines of this type of filter. Otherwise, this
+		// child is a normal LocationFilter line.
+		if(child.Token(0) == "not" || child.Token(0) == "neighbor")
 		{
-			// If this line starts with "not", it is a filter or set of filters
-			// that must not match. If the "not" is alone on a line, it is
-			// introducing a set of multiple lines of filters.
-			notFilters.emplace_back();
+			list<LocationFilter> &filters = ((child.Token(0) == "not") ? notFilters : neighborFilters);
+			filters.emplace_back();
 			if(child.Size() == 1)
-				notFilters.back().Load(child);
+				filters.back().Load(child);
 			else
-				notFilters.back().LoadChild(child);
+				filters.back().LoadChild(child);
 		}
 		else
 			LoadChild(child);
@@ -103,6 +130,11 @@ void LocationFilter::Save(DataWriter &out) const
 		for(const LocationFilter &filter : notFilters)
 		{
 			out.Write("not");
+			filter.Save(out);
+		}
+		for(const LocationFilter &filter : neighborFilters)
+		{
+			out.Write("neighbor");
 			filter.Save(out);
 		}
 		if(!planets.empty())
@@ -157,7 +189,7 @@ void LocationFilter::Save(DataWriter &out) const
 bool LocationFilter::IsEmpty() const
 {
 	return planets.empty() && attributes.empty() && systems.empty() && governments.empty()
-		&& !center && originMaxDistance < 0 && notFilters.empty();
+		&& !center && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty();
 }
 
 
@@ -165,11 +197,10 @@ bool LocationFilter::IsEmpty() const
 // If the player is in the given system, does this filter match?
 bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 {
-	for(const LocationFilter &filter : notFilters)
-		if(filter.Matches(planet, origin))
-			return false;
+	if(!planet || !planet->GetSystem())
+		return false;
 	
-	if(!planet)
+	if(!governments.empty() && !governments.count(planet->GetGovernment()))
 		return false;
 	
 	if(!planets.empty() && !planets.count(planet))
@@ -177,8 +208,10 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 	for(const set<string> &attr : attributes)
 		if(!SetsIntersect(attr, planet->Attributes()))
 			return false;
-	if(!governments.empty() && !governments.count(planet->GetGovernment()))
-		return false;
+	
+	for(const LocationFilter &filter : notFilters)
+		if(filter.Matches(planet, origin))
+			return false;
 	
 	return Matches(planet->GetSystem(), origin, true);
 }
@@ -194,23 +227,92 @@ bool LocationFilter::Matches(const System *system, const System *origin) const
 
 bool LocationFilter::Matches(const Ship &ship) const
 {
-	for(const LocationFilter &filter : notFilters)
-		if(filter.Matches(ship))
-			return false;
-	
-	if(!systems.empty() && !systems.count(ship.GetSystem()))
+	const System *origin = ship.GetSystem();
+	if(!systems.empty() && !systems.count(origin))
 		return false;
 	if(!governments.empty() && !governments.count(ship.GetGovernment()))
 		return false;
 	
-	if(center)
-	{
-		// Distance() will return -1 if the system was not within the given max
-		// distance, so this checks for that as well as for the minimum:
-		if(Distance(center, ship.GetSystem(), centerMaxDistance) < centerMinDistance)
+	for(const LocationFilter &filter : notFilters)
+		if(filter.Matches(ship))
 			return false;
-	}
+	
+	if(!MatchesNeighborFilters(neighborFilters, origin, origin))
+		return false;
+	
+	// Check if this ship's current system meets a "near <system>" criterion.
+	// (Ships only offer missions, so no "distance" criteria need to be checked.)
+	if(center && Distance(center, origin, centerMaxDistance) < centerMinDistance)
+		return false;
+	
 	return true;
+}
+
+
+
+// Convert a "distance" filter into a "near" filter.
+LocationFilter LocationFilter::SetOrigin(const System *origin) const
+{
+	// If there is no distance filter, then no conversion is needed.
+	if(IsEmpty() || originMaxDistance < 0)
+		return *this;
+	
+	// If the system is invalid, or a "near <system>" filter already
+	// exists, do not convert "distance" to "near".
+	if(!origin || center)
+		return *this;
+	
+	// Copy all parts of this instantiated filter into the result.
+	LocationFilter result = *this;
+	// Perform the conversion.
+	result.center = origin;
+	result.centerMinDistance = originMinDistance;
+	result.centerMaxDistance = originMaxDistance;
+	// Revert "distance" parameters to their default.
+	result.originMinDistance = 0;
+	result.originMaxDistance = -1;
+	
+	return result;
+}
+
+
+
+// Pick a random system that matches this filter, based on the given origin.
+const System *LocationFilter::PickSystem(const System *origin) const
+{
+	// Find a planet that satisfies the filter.
+	vector<const System *> options;
+	for(const auto &it : GameData::Systems())
+	{
+		// Skip entries with incomplete data.
+		if(it.second.Name().empty())
+			continue;
+		if(Matches(&it.second, origin))
+			options.push_back(&it.second);
+	}
+	return options.empty() ? nullptr : options[Random::Int(options.size())];
+}
+
+
+
+// Pick a random planet that matches this filter, based on the given origin.
+const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance) const
+{
+	// Find a planet that satisfies the filter.
+	vector<const Planet *> options;
+	for(const auto &it : GameData::Planets())
+	{
+		const Planet &planet = it.second;
+		// Skip entries with incomplete data.
+		if(planet.Name().empty() || !planet.GetSystem())
+			continue;
+		// Skip planets that do not offer jobs or missions.
+		if(planet.IsWormhole() || !planet.HasSpaceport() || (!hasClearance && !planet.CanLand()))
+			continue;
+		if(Matches(&planet, origin))
+			options.push_back(&planet);
+	}
+	return options.empty() ? nullptr : options[Random::Int(options.size())];
 }
 
 
@@ -218,11 +320,14 @@ bool LocationFilter::Matches(const Ship &ship) const
 // Load one particular line of conditions.
 void LocationFilter::LoadChild(const DataNode &child)
 {
-	bool isNot = (child.Token(0) == "not");
-	const string &key = child.Token(isNot);
-	if(key == "planet")
+	bool isNot = (child.Token(0) == "not" || child.Token(0) == "neighbor");
+	int valueIndex = 1 + isNot;
+	const string &key = child.Token(valueIndex - 1);
+	if(key == "not" || key == "neighbor")
+		child.PrintTrace("Skipping unsupported use of 'not' and 'neighbor'. These keywords must be nested if used together.");
+	else if(key == "planet")
 	{
-		for(int i = 1 + isNot; i < child.Size(); ++i)
+		for(int i = valueIndex; i < child.Size(); ++i)
 			planets.insert(GameData::Planets().Get(child.Token(i)));
 		for(const DataNode &grand : child)
 			for(int i = 0; i < grand.Size(); ++i)
@@ -230,7 +335,7 @@ void LocationFilter::LoadChild(const DataNode &child)
 	}
 	else if(key == "system")
 	{
-		for(int i = 1 + isNot; i < child.Size(); ++i)
+		for(int i = valueIndex; i < child.Size(); ++i)
 			systems.insert(GameData::Systems().Get(child.Token(i)));
 		for(const DataNode &grand : child)
 			for(int i = 0; i < grand.Size(); ++i)
@@ -238,7 +343,7 @@ void LocationFilter::LoadChild(const DataNode &child)
 	}
 	else if(key == "government")
 	{
-		for(int i = 1 + isNot; i < child.Size(); ++i)
+		for(int i = valueIndex; i < child.Size(); ++i)
 			governments.insert(GameData::Governments().Get(child.Token(i)));
 		for(const DataNode &grand : child)
 			for(int i = 0; i < grand.Size(); ++i)
@@ -247,7 +352,7 @@ void LocationFilter::LoadChild(const DataNode &child)
 	else if(key == "attributes")
 	{
 		attributes.push_back(set<string>());
-		for(int i = 1 + isNot; i < child.Size(); ++i)
+		for(int i = valueIndex; i < child.Size(); ++i)
 			attributes.back().insert(child.Token(i));
 		for(const DataNode &grand : child)
 			for(int i = 0; i < grand.Size(); ++i)
@@ -256,25 +361,25 @@ void LocationFilter::LoadChild(const DataNode &child)
 		if(attributes.back().empty())
 			attributes.pop_back();
 	}
-	else if(key == "near" && child.Size() >= 2 + isNot)
+	else if(key == "near" && child.Size() >= 1 + valueIndex)
 	{
-		center = GameData::Systems().Get(child.Token(1 + isNot));
-		if(child.Size() == 3 + isNot)
-			centerMaxDistance = child.Value(2 + isNot);
-		else if(child.Size() == 4 + isNot)
+		center = GameData::Systems().Get(child.Token(valueIndex));
+		if(child.Size() == 2 + valueIndex)
+			centerMaxDistance = child.Value(1 + valueIndex);
+		else if(child.Size() == 3 + valueIndex)
 		{
-			centerMinDistance = child.Value(2 + isNot);
-			centerMaxDistance = child.Value(3 + isNot);
+			centerMinDistance = child.Value(1 + valueIndex);
+			centerMaxDistance = child.Value(2 + valueIndex);
 		}
 	}
-	else if(key == "distance" && child.Size() >= 2 + isNot)
+	else if(key == "distance" && child.Size() >= 1 + valueIndex)
 	{
-		if(child.Size() == 2 + isNot)
-			originMaxDistance = child.Value(1 + isNot);
-		else if(child.Size() == 3 + isNot)
+		if(child.Size() == 1 + valueIndex)
+			originMaxDistance = child.Value(valueIndex);
+		else if(child.Size() == 2 + valueIndex)
 		{
-			originMinDistance = child.Value(1 + isNot);
-			originMaxDistance = child.Value(2 + isNot);
+			originMinDistance = child.Value(valueIndex);
+			originMaxDistance = child.Value(1 + valueIndex);
 		}
 	}
 	else
@@ -285,36 +390,49 @@ void LocationFilter::LoadChild(const DataNode &child)
 
 bool LocationFilter::Matches(const System *system, const System *origin, bool didPlanet) const
 {
-	// Don't check these filters again if they were already checked as a part of
-	// checking if a planet matches.
-	if(!didPlanet)
-		for(const LocationFilter &filter : notFilters)
-			if(filter.Matches(system, origin))
-				return false;
-	
 	if(!system)
 		return false;
 	if(!systems.empty() && !systems.count(system))
 		return false;
-	if(!didPlanet && !governments.empty() && !governments.count(system->GetGovernment()))
+	
+	// Don't check these filters again if they were already checked as a part of
+	// checking if a planet matches.
+	if(!didPlanet)
+	{
+		if(!governments.empty() && !governments.count(system->GetGovernment()))
+			return false;
+		
+		// This filter is being applied to a system, not a planet.
+		// Check whether the system, or any planet within it, has one of the
+		// required attributes from each set.
+		if(!attributes.empty())
+		{
+			for(const set<string> &attr : attributes)
+			{
+				bool matches = SetsIntersect(attr, system->Attributes());
+				for(const StellarObject &object : system->Objects())
+					if(object.GetPlanet())
+						matches |= SetsIntersect(attr, object.GetPlanet()->Attributes());
+				
+				if(!matches)
+					return false;
+			}
+		}
+		
+		for(const LocationFilter &filter : notFilters)
+			if(filter.Matches(system, origin))
+				return false;
+	}
+	
+	if(!MatchesNeighborFilters(neighborFilters, system, origin))
 		return false;
 	
-	if(center)
-	{
-		// Distance() will return -1 if the system was not within the given max
-		// distance, so this checks for that as well as for the minimum:
-		if(Distance(center, system, centerMaxDistance) < centerMinDistance)
-			return false;
-	}
-	if(origin && originMaxDistance >= 0)
-	{
-		// Distance() will return -1 if the system was not within the given max
-		// distance, so this checks for that as well as for the minimum:
-		if(Distance(origin, system, originMaxDistance) < originMinDistance)
-			return false;
-	}
+	// Check this system's distance from the desired reference system.
+	if(center && Distance(center, system, centerMaxDistance) < centerMinDistance)
+		return false;
+	if(origin && originMaxDistance >= 0
+			&& Distance(origin, system, originMaxDistance) < originMinDistance)
+		return false;
 	
-	// Special case: if this filter specifies planets or attributes, but was
-	// only called on a system, it never matches.
-	return didPlanet || (attributes.empty() && planets.empty());
+	return true;
 }

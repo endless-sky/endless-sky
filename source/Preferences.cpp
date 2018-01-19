@@ -46,7 +46,9 @@ void Preferences::Load()
 	settings["Render motion blur"] = true;
 	settings["Escorts use ammo frugally"] = true;
 	settings["Escorts expend ammo"] = true;
+	settings["Damaged fighters retreat"] = true;
 	settings["Warning siren"] = true;
+	settings["Show escort systems on map"] = true;
 	settings["Show mini-map"] = true;
 	settings["Show planet labels"] = true;
 	settings["Show hyperspace flash"] = true;

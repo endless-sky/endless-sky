@@ -97,6 +97,11 @@ Copyright: Nate Graham <pointedstick@zoho.com>
 License: CC-BY-SA-4.0
 
 Files:
+ images/land/sky2.jpg
+Copyright: Emily Mell <hasmidas@gmail.com>
+License: public domain
+
+Files:
  images/icon/gat*
 Copyright: Jonathan Steck
 License: CC-BY-SA-4.0
@@ -260,10 +265,18 @@ Files: images/outfit/tactical?scanner*
 Copyright: Zachary Siple
 License: CC-BY-SA-4.0
 
-Files: images/outfit/korath?rifle*
-Copyright: Evan Fluharty (Evanfluharty@gmai.com)
+Files:
+ images/outfit/korath?rifle*
+ images/outfit/hai?rifle*
+Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (from under the same license).
+
+Files: images/portrait/*
+Copyright: Various
+License: public-domain
+ Taken from unsplash.com, a collection of photographs that have been donated and
+ placed in the public domain.
 
 Files:
  images/land/badlands0*
@@ -399,9 +412,10 @@ Copyright: Copyright Mike Koenig
 License: CC-BY-SA-3.0
 Comment: Taken from http://soundbible.com/1151-Grenade.html
 
-Files: images/ship/vanguard*
-Copyright: Copyright Nate Graham <pointedstick@zoho.com>
+Files: images/ship/mosprey*
+Copyright: tehhowch (https://github.com/tehhowch)
 License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

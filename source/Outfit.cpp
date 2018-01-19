@@ -78,6 +78,8 @@ void Outfit::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "cost" && child.Size() >= 2)
 			cost = child.Value(1);
+		else if(child.Token(0) == "mass" && child.Size() >= 2)
+			mass = child.Value(1);
 		else if(child.Token(0) == "licenses")
 		{
 			for(const DataNode &grand : child)
@@ -184,6 +186,7 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 void Outfit::Add(const Outfit &other, int count)
 {
 	cost += other.cost * count;
+	mass += other.mass * count;
 	for(const auto &at : other.attributes)
 	{
 		attributes[at.first] += at.second * count;
@@ -212,17 +215,7 @@ void Outfit::Add(const Outfit &other, int count)
 
 
 // Modify this outfit's attributes.
-void Outfit::Add(const char *attribute, double value)
-{
-	attributes[attribute] += value;
-	if(fabs(attributes[attribute]) < EPS)
-		attributes[attribute] = 0.;
-}
-
-
-
-// Modify this outfit's attributes.
-void Outfit::Reset(const char *attribute, double value)
+void Outfit::Set(const char *attribute, double value)
 {
 	attributes[attribute] = value;
 }

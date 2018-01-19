@@ -503,7 +503,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	const string &deterrenceRating = GameData::Rating("armament deterrence", deterrenceLevel);
 	if(!attractionRating.empty() && !deterrenceRating.empty())
 	{
-		double attraction = max(0., .005 * (factors.first - factors.second - 2.));
+		double attraction = max(0., min(1., .005 * (factors.first - factors.second - 2.)));
 		double prob = 1. - pow(1. - attraction, 10.);
 		
 		table.DrawGap(10);

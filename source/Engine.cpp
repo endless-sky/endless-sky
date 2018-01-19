@@ -660,7 +660,8 @@ void Engine::Step(bool isActive)
 			}
 			// Actual tactical information requires a scrutable
 			// target that is within the tactical scanner range.
-			if(targetRange <= tacticalRange && !target->Attributes().Get("inscrutable"))
+			if((targetRange <= tacticalRange && !target->Attributes().Get("inscrutable"))
+					|| (tacticalRange && target->IsYours()))
 			{
 				info.SetCondition("tactical display");
 				info.SetString("target crew", to_string(target->Crew()));
