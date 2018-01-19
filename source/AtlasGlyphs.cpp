@@ -242,17 +242,17 @@ size_t AtlasGlyphs::FindUnsupported(const string &str, size_t pos) const
 int AtlasGlyphs::Glyph(char32_t c)
 {
 	// ASCII
-	if(c >= 32 && c < 32 + GLYPHS - 3 && c != '\'' && c != '"')
-		return c - 32;
+	if(c >= ' ' && c < ' ' + GLYPHS - 3 && c != '\'' && c != '"')
+		return c - ' ';
 	// Curly quotes
 	if(c == Font::LEFT_SINGLE_QUOTATION_MARK)
 		return 96;
 	if(c == Font::RIGHT_SINGLE_QUOTATION_MARK)
-		return '\'' - 32;
+		return '\'' - ' ';
 	if(c == Font::LEFT_DOUBLE_QUOTATION_MARK)
 		return 97;
 	if(c == Font::RIGHT_DOUBLE_QUOTATION_MARK)
-		return '"' - 32;
+		return '"' - ' ';
 	// Vertical rectangle
 	return 95;
 }
@@ -377,7 +377,7 @@ void AtlasGlyphs::SetUpShader()
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	
-	// connect the xy to the "vert" attribute of the vertex shader
+	// Connect the xy to the "vert" attribute of the vertex shader.
 	glEnableVertexAttribArray(shader.Attrib("vert"));
 	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), nullptr);
 	

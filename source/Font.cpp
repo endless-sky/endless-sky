@@ -159,13 +159,13 @@ bool Font::Load(const DataNode &node)
 			return false;
 		}
 	}
-	if(sources.size() == 0)
+	if(sources.empty())
 	{
 		node.PrintTrace("missing glyph sources (atlas or freetype)");
 		return false;
 	}
 	
-	// Ignore other children.
+	// Unsupported children are ignored instead of producing an error.
 	return true;
 }
 
@@ -506,7 +506,7 @@ vector<pair<size_t,size_t>> Font::Prepare(const std::string &str) const
 			size_t end = sources[i]->FindUnsupported(str, start);
 			if(end == start)
 				continue;
-			if(sections.size() > 0 && sections.back().first == i)
+			if(!sections.empty() && sections.back().first == i)
 				sections.back().second = end;
 			else
 				sections.emplace_back(i, end);
@@ -519,7 +519,7 @@ vector<pair<size_t,size_t>> Font::Prepare(const std::string &str) const
 		if(isUnsupported)
 		{
 			size_t end = NextCodePoint(str, start);
-			if(sections.size() > 0 && sections.back().first == 0)
+			if(!sections.empty() && sections.back().first == 0)
 				sections.back().second = end;
 			else
 				sections.emplace_back(0, end);
