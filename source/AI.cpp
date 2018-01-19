@@ -402,8 +402,12 @@ void AI::Step(const PlayerInfo &player)
 				command |= Command::CLOAK;
 		}
 		// Cloak if the AI considers it appropriate.
-		else
-			DoCloak(*it, command);
+		else if(DoCloak(*it, command))
+		{
+			// The ship chose to retreat from its target, e.g. to repair.
+			it->SetCommands(command);
+			continue;
+		}
 		
 		shared_ptr<Ship> parent = it->GetParent();
 		if(parent && parent->IsDestroyed())
@@ -2138,42 +2142,73 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 
 
 
-void AI::DoCloak(Ship &ship, Command &command)
+// Check if this ship should cloak. Returns true if this ship decided to run away while cloaking.
+bool AI::DoCloak(Ship &ship, Command &command)
 {
 	if(ship.Attributes().Get("cloak"))
 	{
 		// Never cloak if it will cause you to be stranded.
-		if(ship.Attributes().Get("cloaking fuel") && !ship.Attributes().Get("ramscoop"))
+		const Outfit &attributes = ship.Attributes();
+		if(attributes.Get("cloaking fuel") && !attributes.Get("ramscoop"))
 		{
-			double fuel = ship.Fuel() * ship.Attributes().Get("fuel capacity");
-			fuel -= ship.Attributes().Get("cloaking fuel");
+			double fuel = ship.Fuel() * attributes.Get("fuel capacity");
+			int steps = ceil((1. - ship.Cloaking()) / attributes.Get("cloak"));
+			// Only cloak if you will be able to fully cloak and also maintain it
+			// for as long as it will take you to reach full cloak.
+			fuel -= attributes.Get("cloaking fuel") * (1 + 2 * steps);
 			if(fuel < ship.JumpFuel())
-				return;
+				return false;
 		}
 		// Otherwise, always cloak if you are in imminent danger.
 		static const double MAX_RANGE = 10000.;
-		double nearestEnemy = MAX_RANGE;
+		double range = MAX_RANGE;
+		shared_ptr<const Ship> nearestEnemy;
 		for(const auto &other : ships)
 			if(other->GetSystem() == ship.GetSystem() && other->IsTargetable()
 					&& other->GetGovernment()->IsEnemy(ship.GetGovernment())
 					&& !other->IsDisabled())
-				nearestEnemy = min(nearestEnemy,
-					ship.Position().Distance(other->Position()));
+			{
+				double distance = ship.Position().Distance(other->Position());
+				if(distance < range)
+				{
+					range = distance;
+					nearestEnemy = other;
+				}
+			}
 		
 		// If this ship has started cloaking, it must get at least 40% repaired
 		// or 40% farther away before it begins decloaking again.
-		double hysteresis = ship.Commands().Has(Command::CLOAK) ? 1.4 : 1.;
+		double hysteresis = ship.Commands().Has(Command::CLOAK) ? .4 : 0.;
 		// If cloaking costs nothing, and no one has asked you for help, cloak at will.
-		bool cloakFreely = !ship.Attributes().Get("cloaking fuel") && !ship.GetShipToAssist();
+		bool cloakFreely = !attributes.Get("cloaking fuel") && !ship.GetShipToAssist();
 		// If this ship is injured / repairing, it should cloak while under threat.
-		if(ship.Hull() + .5 * ship.Shields() < hysteresis
-				&& (cloakFreely || nearestEnemy < 2000. * hysteresis))
+		bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
+				&& (attributes.Get("shield generation") || attributes.Get("hull repair rate"));
+		if(cloakToRepair && (cloakFreely || range < 2000. * (1. + hysteresis)))
+		{
 			command |= Command::CLOAK;
-		
+			// Move away from the nearest enemy.
+			if(nearestEnemy)
+			{
+				Point safety;
+				// TODO: This could use an "Avoid" method, to account for other in-system hazards.
+				// Simple approximation: move equally away from both the system center and the
+				// nearest enemy, until the constrainment boundary is reached.
+				if(ship.GetPersonality().IsUnconstrained() || !fenceCount.count(&ship))
+					safety = 2 * ship.Position().Unit() - nearestEnemy->Position().Unit();
+				else
+					safety = -ship.Position().Unit();
+				
+				safety *= ship.MaxVelocity();
+				MoveTo(ship, command, ship.Position() + safety, safety, 1., .8);
+				return true;
+			}
+		}
 		// Choose to cloak if there are no enemies nearby and cloaking is sensible.
-		if(nearestEnemy == MAX_RANGE && cloakFreely && !ship.GetTargetShip())
+		if(range == MAX_RANGE && cloakFreely && !ship.GetTargetShip())
 			command |= Command::CLOAK;
 	}
+	return false;
 }
 
 
