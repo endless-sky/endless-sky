@@ -125,7 +125,6 @@ protected:
 	
 	// For tooltips:
 	int hoverCount = 0;
-	bool hasHover = false;
 	const System *hoverSystem = nullptr;
 	std::string tooltip;
 	WrappedText hoverText;

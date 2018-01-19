@@ -54,7 +54,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	// Log how many player ships are in a given system, regardless if they are parked or carried.
+	// Log how many player ships are in a given system, tracking if they are parked or in-flight.
 	void TallyEscorts(const vector<shared_ptr<Ship>> &escorts, map<const System *, pair<int, int>> &locations)
 	{
 		locations.clear();
@@ -78,10 +78,8 @@ namespace {
 	const Color black(0., 1.);
 	const Color red(1., 0., 0., 1.);
 	
-	// Hovering an escort pip this many frames activates the tooltip.
-	// TODO: use a system that doesn't require actively hovering i.e. moving the mouse,
-	// but can support passive hovering (and thus HOVER_TIME = 60 instead of 5).
-	const int HOVER_TIME = 5;
+	// Hovering an escort pip for this many frames activates the tooltip.
+	const int HOVER_TIME = 60;
 }
 
 const double MapPanel::OUTER = 6.;
@@ -104,9 +102,12 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	// Recalculate the fog each time the map is opened, just in case the player
 	// bought a map since the last time they viewed the map.
 	FogShader::Redraw();
+	
 	// Recalculate escort positions every time the map is opened, as they may
 	// be changing systems even if the player does not.
-	TallyEscorts(player.Ships(), escortSystems);
+	// The player cannot toggle any preferences without closing the map panel.
+	if(Preferences::Has("Show escort systems on map"))
+		TallyEscorts(player.Ships(), escortSystems);
 	
 	// Initialize a centered tooltip.
 	hoverText.SetFont(FontSet::Get(14));
@@ -137,7 +138,11 @@ void MapPanel::Draw()
 	RingShader::Draw(Zoom() * (selectedSystem ? selectedSystem->Position() + center : center),
 		11., 9., brightColor);
 	
+	// Advance a "blink" timer.
 	++step;
+	// Update the tooltip timer [0-60].
+	hoverCount += hoverSystem ? (hoverCount < HOVER_TIME) : (hoverCount ? -1 : 0);
+	
 	DrawWormholes();
 	DrawTravelPlan();
 	DrawEscorts();
@@ -356,34 +361,38 @@ bool MapPanel::Click(int x, int y, int clicks)
 
 
 
+// If the mouse has moved near a known system that contains escorts, track the dwell time.
 bool MapPanel::Hover(int x, int y)
 {
+	if(escortSystems.empty())
+		return true;
+	
+	// Map from screen coordinates into game coordinates.
 	Point pos = Point(x, y) / Zoom() - center;
-	// Hovering very near the system ring will increment a counter for its tooltip.
 	double maxDistance = 2 * OUTER / Zoom();
-	if(hasHover && hoverSystem && pos.Distance(hoverSystem->Position()) < maxDistance)
-		++hoverCount;
-	else
+	
+	// Were we already hovering near an escort's system?
+	if(hoverSystem)
 	{
-		// Mouse is now hovering somewhere else, or is too far from the previous point.
-		hasHover = false;
+		// Is the new mouse position still near it?
+		if(pos.Distance(hoverSystem->Position()) <= maxDistance)
+			return true;
+		
 		hoverSystem = nullptr;
-		// Check if the new position supports a tooltip.
-		for(const auto &squad : escortSystems)
-		{
-			const System *system = squad.first;
-			if(pos.Distance(system->Position()) < maxDistance
-					&& (player.HasSeen(system) || system == specialSystem))
-			{
-				hasHover = true;
-				hoverSystem = system;
-				break;
-			}
-		}
-		// TODO: Perhaps decrement hoverCount when it is off-target, so that the next
-		// hoverpoint can more quickly be analyzed.
-		hoverCount = hasHover;
 		tooltip.clear();
+	}
+	
+	// Check if the new position supports a tooltip.
+	for(const auto &squad : escortSystems)
+	{
+		const System *system = squad.first;
+		if(pos.Distance(system->Position()) < maxDistance
+				&& (player.HasSeen(system) || system == specialSystem))
+		{
+			// Start tracking this system.
+			hoverSystem = system;
+			break;
+		}
 	}
 	return true;
 }
@@ -865,19 +874,19 @@ void MapPanel::DrawTravelPlan()
 // Communicate the location of non-destroyed, player-owned ships.
 void MapPanel::DrawEscorts()
 {
-	if(!Preferences::Has("Show escort systems on map"))
+	if(escortSystems.empty())
 		return;
 	
 	// Fill in the center of any system containing the player's ships, if the
 	// player knows about that system (since escorts may use unknown routes).
-	const Color &unparked = *GameData::Colors().Get("map link");
-	const Color &parkedOnly = *GameData::Colors().Get("dim");
+	const Color &active = *GameData::Colors().Get("map link");
+	const Color &parked = *GameData::Colors().Get("dim");
 	double zoom = Zoom();
 	for(const auto &squad : escortSystems)
 		if(player.HasSeen(squad.first) || squad.first == specialSystem)
 		{
 			Point pos = zoom * (squad.first->Position() + center);
-			RingShader::Draw(pos, INNER - 1., 0., squad.second.first ? unparked : parkedOnly);
+			RingShader::Draw(pos, INNER - 1., 0., squad.second.first ? active : parked);
 		}
 }
 
@@ -1065,36 +1074,31 @@ void MapPanel::DrawMissions()
 
 void MapPanel::DrawTooltips()
 {
-	if(!hasHover || hoverCount < HOVER_TIME || !Preferences::Has("Show escort systems on map"))
+	if(!hoverSystem || hoverCount < HOVER_TIME)
 		return;
 	
 	// Create the tooltip text.
 	if(tooltip.empty())
 	{
-		const auto &squad = escortSystems.find(hoverSystem);
-		if(squad != escortSystems.end())
+		pair<int, int> t = escortSystems.at(hoverSystem);
+		t.first -= (hoverSystem == playerSystem);
+		if(t.first && t.second)
 		{
-			pair<int, int> t = (*squad).second;
-			t.first -= (hoverSystem == playerSystem);
-			if(t.first && t.second)
-			{
-				// Both active and parked escorts.
-				tooltip = Format::Number(t.first) + " active " + (t.first == 1 ? "escort" : "escorts");
-				tooltip += "\n" + Format::Number(t.second) + " parked " + (t.second == 1 ? "escort" : "escorts");
-			}
-			else if(t.first)
-				// Only active escorts.
-				tooltip = Format::Number(t.first) + (t.first == 1 ? " escort" : " escorts");
-			else if(t.second)
-				// Only parked escorts.
-				tooltip = Format::Number(t.second) + " parked " + (t.second == 1 ? "escort" : "escorts");
-			else
-				// Only the flagship is present.
-				tooltip = "(You are here.)";
+			// Both active and parked escorts.
+			tooltip = Format::Number(t.first) + " active " + (t.first == 1 ? "escort" : "escorts");
+			tooltip += "\n" + Format::Number(t.second) + " parked " + (t.second == 1 ? "escort" : "escorts");
 		}
-		// Wrap the tooltip.
-		if(!tooltip.empty())
-			hoverText.Wrap(tooltip);
+		else if(t.first)
+			// Only active escorts.
+			tooltip = Format::Number(t.first) + (t.first == 1 ? " escort" : " escorts");
+		else if(t.second)
+			// Only parked escorts.
+			tooltip = Format::Number(t.second) + " parked " + (t.second == 1 ? "escort" : "escorts");
+		else
+			// Only the flagship is present.
+			tooltip = "(You are here.)";
+		
+		hoverText.Wrap(tooltip);
 	}
 	if(!tooltip.empty())
 	{
