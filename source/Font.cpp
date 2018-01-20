@@ -116,7 +116,7 @@ bool Font::Load(const DataNode &node)
 	sources.clear();
 	for(const DataNode &child : node)
 	{
-		string key = child.Token(0);
+		const string &key = child.Token(0);
 		if(key != "atlas" && key != "freetype")
 			continue;
 		
