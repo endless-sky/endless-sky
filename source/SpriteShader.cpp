@@ -36,35 +36,35 @@ namespace {
 	GLuint vbo;
 
 	const vector<vector<GLint>> SWIZZLE = {
-		{GL_RED, GL_GREEN, GL_BLUE, GL_ALPHA}, // red + yellow markings (republic)
-		{GL_RED, GL_BLUE, GL_GREEN, GL_ALPHA}, // red + magenta markings
-		{GL_GREEN, GL_RED, GL_BLUE, GL_ALPHA}, // green + yellow (freeholders)
-		{GL_BLUE, GL_RED, GL_GREEN, GL_ALPHA}, // green + cyan
-		{GL_GREEN, GL_BLUE, GL_RED, GL_ALPHA}, // blue + magenta (syndicate)
-		{GL_BLUE, GL_GREEN, GL_RED, GL_ALPHA}, // blue + cyan (merchant)
-		{GL_GREEN, GL_BLUE, GL_BLUE, GL_ALPHA}, // red and black (pirate)
-		{GL_BLUE, GL_ZERO, GL_ZERO, GL_ALPHA},  // red only (cloaked)
-		{GL_ZERO, GL_ZERO, GL_ZERO, GL_ALPHA},  // black only (outline)
-		{GL_RED, GL_RED, GL_GREEN, GL_ALPHA},			// 9 faded yellow
-		{GL_RED, GL_RED, GL_BLUE, GL_ALPHA},			// 10 yellow
-		{GL_RED, GL_GREEN, GL_RED, GL_ALPHA},			// 11 faded magenta
+		{GL_RED, GL_GREEN, GL_BLUE, GL_ALPHA},		 // red + yellow markings (republic)
+		{GL_RED, GL_BLUE, GL_GREEN, GL_ALPHA},		 // red + magenta markings
+		{GL_GREEN, GL_RED, GL_BLUE, GL_ALPHA},		 // green + yellow (freeholders)
+		{GL_BLUE, GL_RED, GL_GREEN, GL_ALPHA},		 // green + cyan
+		{GL_GREEN, GL_BLUE, GL_RED, GL_ALPHA},		 // blue + magenta (syndicate)
+		{GL_BLUE, GL_GREEN, GL_RED, GL_ALPHA},		 // blue + cyan (merchant)
+		{GL_GREEN, GL_BLUE, GL_BLUE, GL_ALPHA},		 // red and black (pirate)
+		{GL_BLUE, GL_ZERO, GL_ZERO, GL_ALPHA}, 		 // red only (cloaked)
+		{GL_ZERO, GL_ZERO, GL_ZERO, GL_ALPHA}, 		 // black only (outline)
+		{GL_RED, GL_RED, GL_GREEN, GL_ALPHA},		// 9 faded yellow
+		{GL_RED, GL_RED, GL_BLUE, GL_ALPHA},		// 10 yellow
+		{GL_RED, GL_GREEN, GL_RED, GL_ALPHA},		// 11 faded magenta
 		{GL_RED, GL_GREEN, GL_GREEN, GL_ALPHA},		// 12 faded red
-		{GL_RED, GL_BLUE, GL_RED, GL_ALPHA},			// 13 magenta
-		{GL_RED, GL_BLUE, GL_BLUE, GL_ALPHA},			// 14 red
-		{GL_GREEN, GL_RED, GL_RED, GL_ALPHA},			// 15 faded cyan
+		{GL_RED, GL_BLUE, GL_RED, GL_ALPHA},		// 13 magenta
+		{GL_RED, GL_BLUE, GL_BLUE, GL_ALPHA},		// 14 red
+		{GL_GREEN, GL_RED, GL_RED, GL_ALPHA},		// 15 faded cyan
 		{GL_GREEN, GL_RED, GL_GREEN, GL_ALPHA},		// 16 faded green
 		{GL_GREEN, GL_GREEN, GL_RED, GL_ALPHA},		// 17 faded blue
-		{GL_GREEN, GL_GREEN, GL_GREEN, GL_ALPHA}, // 18 silver / monochrome
+		{GL_GREEN, GL_GREEN, GL_GREEN, GL_ALPHA},	 // 18 silver / monochrome
 		{GL_GREEN, GL_GREEN, GL_BLUE, GL_ALPHA},	// 19 ochre
 		{GL_GREEN, GL_BLUE, GL_GREEN, GL_ALPHA},	// 20 purple
-		{GL_BLUE, GL_RED, GL_RED, GL_ALPHA},			// 21 cyan
-		{GL_BLUE, GL_RED, GL_BLUE, GL_ALPHA},			// 22 green
+		{GL_BLUE, GL_RED, GL_RED, GL_ALPHA},		// 21 cyan
+		{GL_BLUE, GL_RED, GL_BLUE, GL_ALPHA},		// 22 green
 		{GL_BLUE, GL_GREEN, GL_GREEN, GL_ALPHA},	// 23 dark blue
 		{GL_BLUE, GL_GREEN, GL_BLUE, GL_ALPHA},		// 24 dark green
-		{GL_BLUE, GL_BLUE, GL_RED, GL_ALPHA},			// 25 deep blue
+		{GL_BLUE, GL_BLUE, GL_RED, GL_ALPHA},		// 25 deep blue
 		{GL_BLUE, GL_BLUE, GL_GREEN, GL_ALPHA},		// 26 navy blue
 		{GL_BLUE, GL_BLUE, GL_BLUE, GL_ALPHA},		// 27 black
-		{GL_RED, GL_RED, GL_ALPHA, GL_ALPHA},			// 28 blue (overlay)
+		{GL_RED, GL_RED, GL_ALPHA, GL_ALPHA},		// 28 blue (overlay)
 		{GL_ALPHA, GL_RED, GL_ALPHA, GL_ALPHA},		// 29 magenta (overlay)
 		{GL_ALPHA, GL_ALPHA, GL_ALPHA, GL_ALPHA},	// 30 white only (outline)
 		{GL_BLUE, GL_BLUE, GL_ALPHA, GL_ALPHA}		// 31 navy blue (overlay)
