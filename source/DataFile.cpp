@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 
 #include "Files.h"
+#include "Font.h"
 
 using namespace std;
 
@@ -45,7 +46,7 @@ void DataFile::Load(const string &path)
 	if(data.empty() || data.back() != '\n')
 		data.push_back('\n');
 	
-	Load(&*data.begin(), &*data.end());
+	LoadData(data);
 	
 	// Note what file this node is in, so it will show up in error traces.
 	root.tokens.push_back("file");
@@ -57,7 +58,7 @@ void DataFile::Load(const string &path)
 // Constructor, taking an istream. This can be cin or a file.
 void DataFile::Load(istream &in)
 {
-	vector<char> data;
+	string data;
 	
 	static const size_t BLOCK = 4096;
 	while(in)
@@ -68,10 +69,10 @@ void DataFile::Load(istream &in)
 		data.resize(currentSize + in.gcount());
 	}
 	// As a sentinel, make sure the file always ends in a newline.
-	if(data.back() != '\n')
+	if(data.empty() || data.back() != '\n')
 		data.push_back('\n');
 	
-	Load(&*data.begin(), &*data.end());
+	LoadData(data);
 }
 
 
@@ -93,7 +94,7 @@ list<DataNode>::const_iterator DataFile::end() const
 
 
 // Parse the given text.
-void DataFile::Load(const char *it, const char *end)
+void DataFile::LoadData(const string &data)
 {
 	// Keep track of the current stack of indentation levels and the most recent
 	// node at each level - that is, the node that will be the "parent" of any
@@ -101,21 +102,31 @@ void DataFile::Load(const char *it, const char *end)
 	vector<DataNode *> stack(1, &root);
 	vector<int> whiteStack(1, -1);
 	
-	for( ; it != end; ++it)
+	size_t end = data.length();
+	for(size_t pos = 0; pos < end; pos = Font::NextCodePoint(data, pos))
 	{
+		char32_t c = Font::DecodeCodePoint(data, pos);
+		
 		// Find the first non-white character in this line.
 		int white = 0;
-		for( ; *it <= ' ' && *it >= 0 && *it != '\n'; ++it)
+		while(c <= ' ' && c != '\n')
+		{
 			++white;
+			pos = Font::NextCodePoint(data, pos);
+			c = Font::DecodeCodePoint(data, pos);
+		}
 		
 		// If the line is a comment, skip to the end of the line.
-		if(*it == '#')
+		if(c == '#')
 		{
-			while(*it != '\n')
-				++it;
+			while(c != '\n')
+			{
+				pos = Font::NextCodePoint(data, pos);
+				c = Font::DecodeCodePoint(data, pos);
+			}
 		}
 		// Skip empty lines (including comment lines).
-		if(*it == '\n')
+		if(c == '\n')
 			continue;
 		
 		// Determine where in the node tree we are inserting this node, based on
@@ -136,45 +147,62 @@ void DataFile::Load(const char *it, const char *end)
 		whiteStack.push_back(white);
 		
 		// Tokenize the line. Skip comments and empty lines.
-		while(*it != '\n')
+		while(c != '\n')
 		{
 			// Check if this token begins with a quotation mark. If so, it will
 			// include everything up to the next instance of that mark.
-			char endQuote = *it;
+			char32_t endQuote = c;
 			bool isQuoted = (endQuote == '"' || endQuote == '`');
-			it += isQuoted;
+			if(isQuoted)
+			{
+				pos = Font::NextCodePoint(data, pos);
+				c = Font::DecodeCodePoint(data, pos);
+			}
 			
-			const char *start = it;
+			size_t start = pos;
 			
 			// Find the end of this token.
-			while(*it != '\n' && (isQuoted ? (*it != endQuote) : (*it > ' ')))
-				++it;
+			while(c != '\n' && (isQuoted ? (c != endQuote) : (c > ' ')))
+			{
+				pos = Font::NextCodePoint(data, pos);
+				c = Font::DecodeCodePoint(data, pos);
+			}
 			
 			// It ought to be legal to construct a string from an empty iterator
 			// range, but it appears that some libraries do not handle that case
 			// correctly. So:
-			if(start == it)
+			if(start == pos)
 				node.tokens.emplace_back();
 			else
-				node.tokens.emplace_back(start, it);
+				node.tokens.emplace_back(data, start, pos - start);
 			// This is not a fatal error, but it may indicate a format mistake:
-			if(isQuoted && *it == '\n')
+			if(isQuoted && c == '\n')
 				node.PrintTrace("Closing quotation mark is missing:");
 			
-			if(*it != '\n')
+			if(c != '\n')
 			{
 				// If we've not yet reached the end of the line of text, search
 				// forward for the next non-whitespace character.
-				it += isQuoted;
-				while(*it != '\n' && *it <= ' ' && *it >= 0 && *it != '#')
-					++it;
+				if(isQuoted)
+				{
+					pos = Font::NextCodePoint(data, pos);
+					c = Font::DecodeCodePoint(data, pos);
+				}
+				while(c != '\n' && c <= ' ' && c != '#')
+				{
+					pos = Font::NextCodePoint(data, pos);
+					c = Font::DecodeCodePoint(data, pos);
+				}
 				
 				// If a comment is encountered outside of a token, skip the rest
 				// of this line of the file.
-				if(*it == '#')
+				if(c == '#')
 				{
-					while(*it != '\n')
-						++it;
+					while(c != '\n')
+					{
+						pos = Font::NextCodePoint(data, pos);
+						c = Font::DecodeCodePoint(data, pos);
+					}
 				}
 			}
 		}
