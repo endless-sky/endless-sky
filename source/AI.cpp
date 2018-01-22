@@ -2159,6 +2159,17 @@ bool AI::DoCloak(Ship &ship, Command &command)
 			if(fuel < ship.JumpFuel())
 				return false;
 		}
+		
+		// If your parent has chosen to cloak, cloak and rendezvous with them.
+		const shared_ptr<const Ship> &parent = ship.GetParent();
+		if(parent && parent->Commands().Has(Command::CLOAK) && parent->GetSystem() == ship.GetSystem()
+				&& !parent->GetGovernment()->IsEnemy(ship.GetGovernment()))
+		{
+			command |= Command::CLOAK;
+			KeepStation(ship, command, *parent);
+			return true;
+		}
+		
 		// Otherwise, always cloak if you are in imminent danger.
 		static const double MAX_RANGE = 10000.;
 		double range = MAX_RANGE;
