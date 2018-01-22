@@ -1767,14 +1767,13 @@ event "pug invasion 4"
 
 
 event "fw syndicate welcoming"
-	"reputation: Syndicate" = 1
-	government Syndicate
+	government "Syndicate"
 		"attitude toward"
 			"Free Worlds" 0
-			Republic 0
+			"Republic" 0
 			"Navy (Oathkeeper)" 0
 		bribe .08
-	system Algenib
+	system "Algenib"
 		government "Syndicate (Extremist)"
 		fleet "Small Core Pirates" 1500
 		fleet "Large Core Pirates" 2000
