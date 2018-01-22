@@ -2108,6 +2108,10 @@ mission "Wanderers: Sestor: Bomb Zenith 1"
 			label end
 			`	Alarm sirens begin to sound. "Don't wait here to defend us," says Danforth. "Go straight to <planet> and deploy the device. It may be the only way you can save us."`
 				launch
+	on enter
+		dialog
+			`Danforth wasn't joking when he said that the device may be our only chance. There are almost a dozen Sestor capital ships in the system, and countless smaller craft tearing the Navy to shreds.`
+			`Even the Quarg warships are having trouble with an opposing fleet this size. Perhaps a more powerful fleet could defeat the automata, but it would be a difficult battle.`
 	on complete
 		fail "Wanderers: Sestor: Farpoint Attack 2"
 	to fail
