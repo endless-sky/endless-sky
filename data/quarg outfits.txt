@@ -66,13 +66,15 @@ effect "skylance impact"
 outfit "Quarg Anti-Missile"
 	category "Turrets"
 	cost 6000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/quarg anti missile"
 	"mass" 40
 	"outfit space" -40
 	"weapon capacity" -40
 	"turret mounts" -1
 	weapon
 		"hit effect" "quarg anti-missile"
+		"hardpoint sprite" "hardpoint/quarg anti missile"
+		"hardpoint offset" 5.5
 		"anti-missile" 25
 		"velocity" 500
 		"lifetime" 1
