@@ -179,7 +179,7 @@ void BoardingPanel::Draw()
 			Round(defenseOdds.DefenderPower(crew)));
 	}
 	int vCrew = victim ? victim->Crew() : 0;
-	if(victim && (victim->IsCapturable() || victim->GetGovernment()->IsPlayer()))
+	if(victim && (victim->IsCapturable() || victim->IsYours()))
 	{
 		info.SetString("enemy crew", to_string(vCrew));
 		info.SetString("enemy attack",
@@ -187,7 +187,7 @@ void BoardingPanel::Draw()
 		info.SetString("enemy defense",
 			Round(attackOdds.DefenderPower(vCrew)));
 	}
-	if(victim && victim->IsCapturable() && !victim->GetGovernment()->IsPlayer())
+	if(victim && victim->IsCapturable() && !victim->IsYours())
 	{
 		// If you haven't initiated capture yet, show the self destruct odds in
 		// the attack odds. It's illogical for you to have access to that info,
@@ -465,9 +465,9 @@ bool BoardingPanel::CanExit() const
 bool BoardingPanel::CanTake() const
 {
 	// If you ship or the other ship has been captured:
-	if(!you->GetGovernment()->IsPlayer())
+	if(!you->IsYours())
 		return false;
-	if(victim->GetGovernment()->IsPlayer())
+	if(victim->IsYours())
 		return false;
 	if(isCapturing || playerDied)
 		return false;
@@ -487,9 +487,9 @@ bool BoardingPanel::CanCapture() const
 		return false;
 	
 	// If your ship or the other ship has been captured:
-	if(!you->GetGovernment()->IsPlayer())
+	if(!you->IsYours())
 		return false;
-	if(victim->GetGovernment()->IsPlayer())
+	if(victim->IsYours())
 		return false;
 	if(!victim->IsCapturable())
 		return false;

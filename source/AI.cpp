@@ -761,8 +761,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			
 			// If any enemies of this ship are in its system, it cannot call for help.
 			const System *system = ship.GetSystem();
-			const Government *otherGov = helper->GetGovernment();
-			if(otherGov->IsEnemy(gov) && flagship && system == flagship->GetSystem())
+			if(helper->GetGovernment()->IsEnemy(gov) && flagship && system == flagship->GetSystem())
 			{
 				hasEnemy |= (system == helper->GetSystem() && !helper->IsDisabled());
 				if(hasEnemy)
@@ -777,10 +776,10 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			if(helper->GetTargetAsteroid() || helper->GetTargetFlotsam())
 				continue;
 			// Your escorts only help other escorts, and your flagship never helps.
-			if((otherGov->IsPlayer() && !gov->IsPlayer()) || helper.get() == flagship)
+			if((helper->IsYours() && !ship.IsYours()) || helper.get() == flagship)
 				continue;
 			// Your escorts should not help each other if already under orders.
-			if(otherGov->IsPlayer() && gov->IsPlayer() && orders.count(helper.get()))
+			if(helper->IsYours() && ship.IsYours() && orders.count(helper.get()))
 				continue;
 			
 			// Check if this ship is physically able to help.
@@ -816,8 +815,8 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 		return false;
 	
 	// An enemy cannot provide assistance, and only ships of the same government will repair disabled ships.
-	const Government *helperGov = helper.GetGovernment();
-	if(helperGov->IsEnemy(ship.GetGovernment()) || (ship.IsDisabled() && helperGov != ship.GetGovernment()))
+	if(helper.GetGovernment()->IsEnemy(ship.GetGovernment())
+			|| (ship.IsDisabled() && helper.GetGovernment() != ship.GetGovernment()))
 		return false;
 	
 	// If the helper has insufficient fuel, it cannot help this ship unless this ship is also disabled.
@@ -911,7 +910,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			// ships to target, it will only consider the player's owned fleet,
 			// or NPCs allied with the player.
 			const bool isPotentialNemesis = person.IsNemesis()
-					&& (it->GetGovernment()->IsPlayer() || it->GetPersonality().IsEscort());
+					&& (it->IsYours() || it->GetPersonality().IsEscort());
 			if(hasNemesis && !isPotentialNemesis)
 				continue;
 			if(!isYours && it->GetPersonality().IsMarked())
@@ -1133,7 +1132,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		else
 		{
 			CircleAround(ship, command, *target);
-			if(!ship.GetGovernment()->IsPlayer())
+			if(!ship.IsYours())
 				command |= Command::SCAN;
 		}
 		return;
@@ -2809,7 +2808,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 				// if the player is repeatedly targeting nearest to, say, target
 				// a bunch of fighters, they won't start firing on friendly
 				// ships as soon as the last one is gone.
-				if((!state && !shift) || other->GetGovernment()->IsPlayer())
+				if((!state && !shift) || other->IsYours())
 					continue;
 				
 				state += state * !other->IsDisabled();
@@ -2845,7 +2844,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		bool selectNext = !target || !target->IsTargetable();
 		for(const shared_ptr<Ship> &other : ships)
 		{
-			bool isPlayer = other->GetGovernment()->IsPlayer() || other->GetPersonality().IsEscort();
+			bool isPlayer = other->IsYours() || other->GetPersonality().IsEscort();
 			if(other == target)
 				selectNext = true;
 			else if(other.get() != &ship && selectNext && other->IsTargetable() && isPlayer == shift)
