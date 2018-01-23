@@ -927,7 +927,8 @@ mission "FW Northern 3B"
 				accept
 	
 	npc accompany save
-		personality timid
+		government "Free Worlds"
+		personality timid escort
 		ship Dreadnought "F.S. Bartlett"
 		ship Dreadnought "F.S. Magnolia"
 	
@@ -1478,8 +1479,8 @@ mission "FW Bloodsea 1.2A"
 	landing
 	name "Capture Bloodsea"
 	description "Take a Free Worlds fleet to invade the <system> system and eliminate any pirate resistance, then land on <planet>."
-	source Dancer
-	destination Bloodsea
+	source "Dancer"
+	destination "Bloodsea"
 	clearance
 	to offer
 		has "FW Bloodsea 1.2: done"
@@ -1498,7 +1499,8 @@ mission "FW Bloodsea 1.2A"
 				accept
 	
 	npc
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		ship "Dreadnought" "F.S. Bombastic"
 		ship "Falcon (Plasma)" "F.S. Equalizer"
 		ship "Falcon (Plasma)" "F.S. Enforcer"
@@ -2069,7 +2071,8 @@ mission "FW Liberate Delta Sagittarii"
 		event "fwc southern liberation"
 	
 	npc
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		fleet
 			names "free worlds capital"
 			variant
