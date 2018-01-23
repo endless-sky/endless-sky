@@ -12,7 +12,7 @@ outfit "Nanotech Battery"
 	plural "Nanotech Batteries"
 	category "Power"
 	cost 3000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/quarg battery"
 	"mass" 50
 	"outfit space" -50
 	"energy capacity" 30000
@@ -124,7 +124,7 @@ outfit "Medium Graviton Steering"
 outfit "Quantum Shield Generator"
 	category "Systems"
 	cost 30000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/quarg shield generator"
 	"mass" 120
 	"outfit space" -120
 	"shield generation" 10
