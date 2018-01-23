@@ -2067,8 +2067,9 @@ double Ship::TransferFuel(double amount, Ship *to)
 
 void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 {
-	// Repair up to the point where it is just barely not disabled.
+	// Repair up to the point where this ship is just barely not disabled.
 	hull = max(hull, MinimumHull());
+	isDisabled = false;
 	
 	// Set the new government.
 	government = capturer->GetGovernment();
@@ -2085,18 +2086,22 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 		AddCrew(transfer);
 	}
 	
+	commands.Clear();
 	// Set the capturer as this ship's parent.
 	SetParent(capturer);
+	// Clear this ship's previous targets.
 	SetTargetShip(shared_ptr<Ship>());
 	SetTargetStellar(nullptr);
 	SetTargetSystem(nullptr);
 	shipToAssist.reset();
-	commands.Clear();
-	isDisabled = false;
+	targetAsteroid.reset();
+	targetFlotsam.reset();
 	hyperspaceSystem = nullptr;
 	landingPlanet = nullptr;
 	
+	// This ship behaves like its new parent does.
 	isSpecial = capturer->isSpecial;
+	isYours = capturer->isYours;
 	personality = capturer->personality;
 	
 	// Fighters should flee a disabled ship, but if the player manages to capture
@@ -2111,6 +2116,8 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 		if(escort)
 			escort->parent.reset();
 	}
+	// This ship should not care about its now-unallied escorts.
+	escorts.clear();
 }
 
 
