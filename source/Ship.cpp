@@ -809,6 +809,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	ionization = 0.;
 	disruption = 0.;
 	slowness = 0.;
+	cloakDisruption = 0.;
 	isInvisible = !HasSprite();
 	jettisoned.clear();
 	hyperspaceCount = 0;
@@ -985,6 +986,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		CreateSparks(visuals, "disruption spark", disruption * .1);
 	if(slowness)
 		CreateSparks(visuals, "slowing spark", slowness * .1);
+	if(cloakDisruption)
+		CreateSparks(visuals, "cloak disruption spark", cloakDisruption * .1);
 	// Jettisoned cargo effects (only for ships in the current system).
 	if(!jettisoned.empty() && !forget)
 	{

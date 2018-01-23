@@ -43,6 +43,16 @@ effect "slowing spark"
 	"random spin" 30
 	"random velocity" .1
 
+# TODO: Use a unique effect and sprite
+effect "cloak disruption spark"
+	sprite "effect/missile death"
+		"rewind"
+		"random start frame"
+		"frame rate" 19
+	"lifetime" 10
+	"random angle" 360
+	"random spin" 30
+
 
 effect "flame"
 	sprite "effect/flame"
