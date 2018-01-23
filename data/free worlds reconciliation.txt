@@ -601,6 +601,7 @@ mission "FW Embassy 1C"
 				accept
 	
 	npc accompany save
+		government "Free Worlds"
 		personality escort heroic
 		ship "Dreadnought" "F.S. Gibraltar"
 	
@@ -1528,6 +1529,7 @@ mission "FW Pug 3B"
 				accept
 	
 	npc accompany save
+		government "Free Worlds"
 		personality escort disables
 		ship "Dreadnought" "F.S. Independence"
 		ship "Dreadnought" "F.S. Freedom"
@@ -1570,6 +1572,7 @@ mission "FW Pug 3C"
 				accept
 	
 	npc accompany save
+		government "Free Worlds"
 		personality escort
 		ship "Dreadnought" "F.S. Independence"
 		ship "Dreadnought" "F.S. Freedom"
@@ -1597,6 +1600,7 @@ mission "FW Pug 4: Escorts"
 		has "FW Pug 6: done"
 	
 	npc kill
+		government "Free Worlds"
 		personality escort heroic disables
 		ship "Dreadnought (Jump)" "F.S. Independence"
 		ship "Dreadnought (Jump)" "F.S. Freedom"

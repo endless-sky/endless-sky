@@ -927,7 +927,8 @@ mission "FW Northern 3B"
 				accept
 	
 	npc accompany save
-		personality timid
+		government "Free Worlds"
+		personality timid escort
 		ship Dreadnought "F.S. Bartlett"
 		ship Dreadnought "F.S. Magnolia"
 	
@@ -1498,7 +1499,8 @@ mission "FW Bloodsea 1.2A"
 				accept
 	
 	npc
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		ship "Dreadnought" "F.S. Bombastic"
 		ship "Falcon (Plasma)" "F.S. Equalizer"
 		ship "Falcon (Plasma)" "F.S. Enforcer"
@@ -1947,7 +1949,8 @@ mission "FW Defend New Tibet"
 				"Manta (Mark II)" 3
 				"Quicksilver (Mark II)" 5
 	npc
-		personality heroic disables
+		government "Free Worlds"
+		personality heroic escort disables
 		ship "Dreadnought" "F.S. Holly"
 		ship "Falcon (Plasma)" "F.S. Nebula"
 		ship "Skein" "F.S. Larkspur"
@@ -2069,7 +2072,8 @@ mission "FW Liberate Delta Sagittarii"
 		event "fwc southern liberation"
 	
 	npc
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		fleet
 			names "free worlds capital"
 			variant
