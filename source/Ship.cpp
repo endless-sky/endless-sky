@@ -2523,8 +2523,6 @@ double Ship::MaxReverseVelocity() const
 // what sort of weapon the projectile it.
 int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 {
-	int type = 0;
-	
 	double damageScaling = 1.;
 	const Weapon &weapon = projectile.GetWeapon();
 	if(isBlast && weapon.IsDamageScaled())
@@ -2550,6 +2548,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	double ionDamage = weapon.IonDamage() * damageScaling;
 	double disruptionDamage = weapon.DisruptionDamage() * damageScaling;
 	double slowingDamage = weapon.SlowingDamage() * damageScaling;
+	double cloakDisruptionDamage = weapon.CloakDisruptionDamage() * damageScaling;
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
@@ -2571,6 +2570,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	ionization += ionDamage * leakage;
 	disruption += disruptionDamage * leakage;
 	slowness += slowingDamage * leakage;
+	cloakDisruption += cloakDisruptionDamage * leakage;
 	
 	if(hitForce)
 	{
@@ -2583,6 +2583,9 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	// Recalculate the disabled ship check.
 	isDisabled = true;
 	isDisabled = IsDisabled();
+	
+	// Report what happened to this ship from this projectile.
+	int type = 0;
 	if(!wasDisabled && isDisabled)
 		type |= ShipEvent::DISABLE;
 	if(!wasDestroyed && IsDestroyed())

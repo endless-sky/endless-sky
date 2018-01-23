@@ -154,6 +154,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[DISRUPTION_DAMAGE] = value;
 			else if(key == "slowing damage")
 				damage[SLOWING_DAMAGE] = value;
+			else if(key == "cloak disruption")
+				damage[ANTICLOAK_DAMAGE] = value;
 			else if(key == "hit force")
 				damage[HIT_FORCE] = value;
 			else if(key == "piercing")
