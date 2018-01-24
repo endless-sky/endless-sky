@@ -1834,6 +1834,15 @@ void Engine::FillRadar()
 				system->Position() - playerSystem->Position());
 	}
 	
+	// Add viewport brackets.
+	if(!Preferences::Has("Disable viewport on radar"))
+	{
+		radar[calcTickTock].AddViewportBoundary(Radar::INACTIVE, Screen::TopLeft() / zoom);
+		radar[calcTickTock].AddViewportBoundary(Radar::INACTIVE, Screen::TopRight() / zoom);
+		radar[calcTickTock].AddViewportBoundary(Radar::INACTIVE, Screen::BottomLeft() / zoom);
+		radar[calcTickTock].AddViewportBoundary(Radar::INACTIVE, Screen::BottomRight() / zoom);
+	}
+	
 	// Add ships. Also check if hostile ships have newly appeared.
 	bool hasHostiles = false;
 	for(shared_ptr<Ship> &ship : ships)

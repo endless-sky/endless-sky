@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Radar.h"
 
 #include "GameData.h"
+#include "LineShader.h"
 #include "PointerShader.h"
 #include "RingShader.h"
 
@@ -33,6 +34,7 @@ void Radar::Clear()
 {
 	objects.clear();
 	pointers.clear();
+	lines.clear();
 }
 
 
@@ -61,9 +63,50 @@ void Radar::AddPointer(int type, const Point &position)
 
 
 
+// Create a "corner" from a vertical and horizontal leg.
+void Radar::AddViewportBoundary(int type, const Point &vertex)
+{
+	Point angle = vertex.Unit() * 300;
+	
+	Point start(vertex.X() - angle.Dot(Point(1., 0.)), vertex.Y());
+	Point end(vertex.X(), vertex.Y() - angle.Dot(Point(0., 1.)));
+	
+	// Add the horizontal leg, pointing from start to vertex.
+	lines.emplace_back(GetColor(type), start, vertex - start);
+	// Add the vertical leg, pointing from end to vertex.
+	lines.emplace_back(GetColor(type), end, vertex - end);
+}
+
+
+
 // Draw the radar display at the given coordinates.
 void Radar::Draw(const Point &center, double scale, double radius, double pointerRadius) const
 {
+	// Draw any desired line vectors.
+	for(const Line &line : lines)
+	{
+		Point start = line.base * scale;
+		Point v = line.vector * scale;
+		
+		// At least one endpoint must be within the radar display.
+		double startExcess = start.Length() - radius;
+		double endExcess = (start + v).Length() - radius;
+		if(startExcess > 0 && endExcess > 0)
+			continue;
+		else if(startExcess > 0)
+		{
+			// Move "start" along "v" until it is within the radius.
+			start += startExcess * v.Unit();
+			// Shorten "v" to keep the desired length.
+			v -= startExcess * v.Unit();
+		}
+		else if(endExcess > 0)
+			v -= endExcess * v.Unit();
+		
+		LineShader::Draw(start + center, start + v + center, 1., line.color);
+	}
+	
+	// Draw StellarObjects and ships.
 	RingShader::Bind();
 	for(const Object &object : objects)
 	{
@@ -77,6 +120,7 @@ void Radar::Draw(const Point &center, double scale, double radius, double pointe
 	}
 	RingShader::Unbind();
 	
+	// Draw neighboring system indicators.
 	PointerShader::Bind();
 	for(const Pointer &pointer : pointers)
 		PointerShader::Add(center, pointer.unit, 10., 10., pointerRadius, pointer.color);
@@ -115,5 +159,13 @@ Radar::Object::Object(const Color &color, const Point &pos, double out, double i
 
 Radar::Pointer::Pointer(const Color &color, const Point &unit)
 	: color(color), unit(unit)
+{
+}
+
+
+
+// Create a line starting from "base" with length and angle described by "vector."
+Radar::Line::Line(const Color &color, const Point &base, const Point &vector)
+	: color(color), base(base), vector(vector)
 {
 }
