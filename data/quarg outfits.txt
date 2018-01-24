@@ -20,12 +20,13 @@ outfit "Nanotech Battery"
 outfit "Antimatter Core"
 	category "Power"
 	cost 100000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/quarg power"
 	"mass" 80
 	"outfit space" -80
 	"energy generation" 80
 	"heat generation" 20
-
+	"unplunderable" 1
+	
 
 outfit "Quarg Skylance"
 	category "Turrets"
