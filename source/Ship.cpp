@@ -520,6 +520,11 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(isNewInstance)
 		Recharge(true);
 	
+	// Add a default "launch effect" to any internal bays if this ship is crewed (i.e. pressurized).
+	for(Bay &bay : bays)
+		if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
+			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
+	
 	// Figure out if this ship can be carried.
 	const string &category = attributes.Category();
 	canBeCarried = (category == "Fighter" || category == "Drone");

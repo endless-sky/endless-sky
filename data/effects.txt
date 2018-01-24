@@ -143,6 +143,19 @@ effect "final explosion large"
 	sound "final explosion large"
 
 
+
+effect "basic launch"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+
+
+
 effect "smoke"
 	sprite "effect/smoke"
 		"no repeat"
