@@ -2034,8 +2034,8 @@ mission "Wanderers: Sestor: Quarg Help 2"
 	on offer
 		conversation
 			`As you are coming in for a landing, you contact the Quarg and discover that Elias Hanover is indeed still living here. He meets you the moment you dock with the station, and you describe the situation. "This must be retaliation," he says. "They want to wipe Danforth and the Oathkeepers off the map to get revenge for him driving them out of their base on Avalon."`
-			`	He leaves to try to find help, and returns about fifteen minutes later. "I've got four Quarg ships who volunteered to help," he says. "That may not seem like a lot, but their ships pack quite a punch. I also have some relief supplies to help those who have been injured. Good luck, captain."`
-			`	You thank him for his assistance and the aid, and hurry to fire up your ship and return to human space. Hopefully Danforth's base has not already been overrun in your absence.`
+			`	He leaves to try to find help, and returns about fifteen minutes later. "I've got four Quarg ships who volunteered to help," he says. "That may not seem like a lot, but their ships pack quite a punch. And, they've offered some medical supplies as well, which they'll load onto your ship. Good luck, captain."`
+			`	You thank him for his assistance, and hurry to fire up your ship and return to human space. Hopefully Danforth's base has not already been overrun in your absence.`
 				accept
 	on accept
 		log "Recruited some Quarg warships to help defend human space from the Kor Sestor drones, which are now presumably under Alpha control."
@@ -2110,7 +2110,7 @@ mission "Wanderers: Sestor: Bomb Zenith 1"
 				launch
 	on enter
 		dialog
-			`Danforth wasn't joking when he said that the device may be our only chance. There are almost a dozen Sestor capital ships in the system, and countless smaller craft tearing the Navy to shreds.`
+			`Danforth wasn't joking when he said that the device may be your only chance. There are almost a dozen Sestor capital ships in the system, and countless smaller craft tearing the Navy to shreds.`
 			`Even the Quarg warships are having trouble with an opposing fleet this size. Perhaps a more powerful fleet could defeat the automata, but it would be a difficult battle.`
 	on complete
 		fail "Wanderers: Sestor: Farpoint Attack 2"
