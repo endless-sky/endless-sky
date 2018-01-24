@@ -324,10 +324,11 @@ void Engine::Place()
 		bool isHere = (ship->GetSystem() == player.GetSystem());
 		if(isHere)
 			pos = planetPos;
-		// Check whether this ship should take off with you.
-		if(isHere && !ship->IsDisabled()
-				&& (player.GetPlanet()->CanLand(*ship) || ship->IsYours())
-				&& !(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting()))
+		// Check whether this ship should take off with you. "Launching" ships can always take
+		// off, otherwise they must be able to land and also not be flagged to stay in space.
+		if(isHere && !ship->IsDisabled() && (ship->GetPersonality().IsLaunching()
+				|| ((player.GetPlanet()->CanLand(*ship) || ship->IsYours())
+				&& !(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting()))))
 		{
 			if(player.GetPlanet())
 				ship->SetPlanet(player.GetPlanet());

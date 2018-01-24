@@ -48,6 +48,7 @@ namespace {
 	const int OPPORTUNISTIC = (1 << 24);
 	const int TARGET = (1 << 25);
 	const int MARKED = (1 << 26);
+	const int LAUNCHING = (1 << 27);
 	
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -76,7 +77,8 @@ namespace {
 		{"mute", MUTE},
 		{"opportunistic", OPPORTUNISTIC},
 		{"target", TARGET},
-		{"marked", MARKED}
+		{"marked", MARKED},
+		{"launching", LAUNCHING}
 	};
 	
 	const double DEFAULT_CONFUSION = 10.;
@@ -245,6 +247,13 @@ bool Personality::IsEntering() const
 bool Personality::IsWaiting() const
 {
 	return flags & WAITING;
+}
+
+
+
+bool Personality::IsLaunching() const
+{
+	return flags & LAUNCHING;
 }
 
 
