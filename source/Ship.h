@@ -31,6 +31,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class DataWriter;
+class Effect;
 class Flotsam;
 class Government;
 class Minable;
@@ -58,7 +59,7 @@ public:
 	public:
 		Bay(double x, double y, bool isFighter) : point(x * .5, y * .5), isFighter(isFighter) {}
 		// Copying a bay does not copy the ship inside it.
-		Bay(const Bay &b) : point(b.point), isFighter(b.isFighter), side(b.side), facing(b.facing) {}
+		Bay(const Bay &b) : point(b.point), isFighter(b.isFighter), side(b.side), facing(b.facing), launchEffects(b.launchEffects) {}
 		
 		Point point;
 		std::shared_ptr<Ship> ship;
@@ -74,6 +75,9 @@ public:
 		static const uint8_t LEFT = 1;
 		static const uint8_t RIGHT = 2;
 		static const uint8_t BACK = 3;
+		
+		// The launch effect(s) to be simultaneously played when the bay's ship launches.
+		std::vector<const Effect *> launchEffects;
 	};
 	
 	class EnginePoint : public Point {
@@ -168,7 +172,7 @@ public:
 	// Generate energy, heat, etc. (This is called by Move().)
 	void DoGeneration();
 	// Launch any ships that are ready to launch.
-	void Launch(std::list<std::shared_ptr<Ship>> &ships);
+	void Launch(std::list<std::shared_ptr<Ship>> &ships, std::vector<Visual> &visuals);
 	// Check if this ship is boarding another ship. If it is, it either plunders
 	// it or, if this is a player ship, returns the ship it is plundering so a
 	// plunder dialog can be displayed.
