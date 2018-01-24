@@ -101,7 +101,7 @@ outfit "Intrusion Countermeasures"
 outfit "Medium Graviton Thruster"
 	category "Engines"
 	"cost" 20000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/medium quarg thruster"
 	"mass" 70
 	"outfit space" -70
 	"engine capacity" -70
@@ -113,7 +113,7 @@ outfit "Medium Graviton Thruster"
 outfit "Medium Graviton Steering"
 	category "Engines"
 	"cost" 16000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/medium quarg steering"
 	"mass" 50
 	"outfit space" -50
 	"engine capacity" -50
