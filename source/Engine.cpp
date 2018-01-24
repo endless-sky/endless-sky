@@ -294,6 +294,8 @@ void Engine::Place()
 					ship->SetParent(npcFlagship);
 				else if(!ship->GetPersonality().IsUninterested())
 					ship->SetParent(flagship);
+				else
+					ship->SetParent(nullptr);
 			}
 		}
 	
