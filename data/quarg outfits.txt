@@ -31,7 +31,7 @@ outfit "Antimatter Core"
 outfit "Quarg Skylance"
 	category "Turrets"
 	cost 18000000
-	thumbnail "outfit/skylance"
+	thumbnail "outfit/quarg skylance"
 	"mass" 60
 	"outfit space" -60
 	"weapon capacity" -60
@@ -40,7 +40,7 @@ outfit "Quarg Skylance"
 	weapon
 		sprite "projectile/skylance"
 			"frame rate" 1
-		"hardpoint sprite" "hardpoint/skylance"
+		"hardpoint sprite" "hardpoint/quarg skylance"
 		"hardpoint offset" 9.3
 		sound "skylance"
 		"hit effect" "skylance impact"
@@ -102,7 +102,7 @@ outfit "Intrusion Countermeasures"
 outfit "Medium Graviton Thruster"
 	category "Engines"
 	"cost" 20000000
-	thumbnail "outfit/medium quarg thrusters"
+	thumbnail "outfit/medium quarg thruster"
 	"mass" 70
 	"outfit space" -70
 	"engine capacity" -70
