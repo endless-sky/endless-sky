@@ -268,6 +268,8 @@ License: CC-BY-SA-4.0
 Files:
  images/outfit/korath?rifle*
  images/outfit/hai?rifle*
+ images/outfit/quarg*
+ images/hardpoint/quarg*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (from under the same license).
@@ -278,7 +280,9 @@ License: public-domain
  Taken from unsplash.com, a collection of photographs that have been donated and
  placed in the public domain.
  
- Files: images/outfit/skylance*
+ Files:
+ images/outfit/skylance*
+ images/hardpoint/skylance*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived and completed from works by Maximilian Korber(Wrzlprnft), Fernando S. Sáez(Azure Nyoki), and originally drawn up by Tommy Thach(Bladewood)(all from under the same license)
