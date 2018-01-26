@@ -1867,8 +1867,12 @@ bool AI::ShouldUseAfterburner(Ship &ship)
 
 bool AI::ShouldActFrugally(const Ship &ship) const
 {
-	if(AllyStrength(ship.GetGovernment() < EnemyStrength(ship.GetGovernment())) || (ship.Hull() + ship.Shields() <= 1.5))
+	if(AllyStrength(ship.GetGovernment()) < EnemyStrength(ship.GetGovernment()))
 		return false;
+	
+	if(ship.Hull() + ship.Shields() <= 1.5)
+		return false;
+	
 	return true;
 }
 
