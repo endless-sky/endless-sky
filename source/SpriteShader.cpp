@@ -64,10 +64,6 @@ namespace {
 		{GL_BLUE, GL_BLUE, GL_RED, GL_ALPHA},		// 25 deep blue
 		{GL_BLUE, GL_BLUE, GL_GREEN, GL_ALPHA},		// 26 navy blue
 		{GL_BLUE, GL_BLUE, GL_BLUE, GL_ALPHA},		// 27 black
-		{GL_RED, GL_RED, GL_ALPHA, GL_ALPHA},		// 28 blue (overlay)
-		{GL_ALPHA, GL_RED, GL_ALPHA, GL_ALPHA},		// 29 magenta (overlay)
-		{GL_ALPHA, GL_ALPHA, GL_ALPHA, GL_ALPHA},	// 30 white only (outline)
-		{GL_BLUE, GL_BLUE, GL_ALPHA, GL_ALPHA}		// 31 navy blue (overlay)
 	};
 }
 
