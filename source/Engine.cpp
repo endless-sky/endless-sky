@@ -1643,15 +1643,14 @@ void Engine::DoCollisions(Projectile &projectile)
 		// For weapons with a trigger radius, check if any detectable object will set it off.
 		double triggerRadius = projectile.GetWeapon().TriggerRadius();
 		if(triggerRadius)
-		{
 			for(const Body *body : shipCollisions.Circle(projectile.Position(), triggerRadius))
-				if(body == projectile.Target() || gov->IsEnemy(body->GetGovernment())
+				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
 						&& reinterpret_cast<const Ship *>(body)->Cloaking() < 1.))
 				{
 					closestHit = 0.;
 					break;
 				}
-		}
+		
 		// If nothing triggered the projectile, check for collisions with ships.
 		if(closestHit > 0.)
 		{
@@ -1732,13 +1731,12 @@ void Engine::DoCollisions(Projectile &projectile)
 // Check if any ship collected the given flotsam.
 void Engine::DoCollection(Flotsam &flotsam)
 {
-	// Check if any ship can pick up this flotsam.
+	// Check if any ship can pick up this flotsam. Cloaked ships cannot act.
 	Ship *collector = nullptr;
 	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5.))
 	{
 		Ship *ship = reinterpret_cast<Ship *>(body);
-		if(!ship->CannotAct() && ship != flotsam.Source() && ship->Cargo().Free() >= flotsam.UnitSize()
-				&& ship->Cloaking() < 1.)
+		if(!ship->CannotAct() && ship != flotsam.Source() && ship->Cargo().Free() >= flotsam.UnitSize())
 		{
 			collector = ship;
 			break;
