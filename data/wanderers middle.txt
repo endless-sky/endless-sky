@@ -24,7 +24,7 @@ mission "Wanderers: Surveying 1"
 	to offer
 		has "event: wanderers: spera anatrusk colony"
 	cargo "scientific equipment" 7
-	blocked "The Wanderers have another mission for you, but you will need some cargo space available for scientific equipment."
+	blocked "The Wanderers have another mission for you, but you will need <capacity> for their scientific equipment."
 	on offer
 		log `The "Eye" wormhole has opened in Wanderer space, but the territory on the other side of the wormhole is Korath space, ravaged by their civil war and still infested with autonomous war machines. Nonetheless, the Wanderers are excited to once again begin their work of healing and repairing damaged worlds.`
 		log "People" "Sobari Tele'ek" `Tele'ek became part of the expeditionary force that was formed to explore the territory beyond the Eye once it opened.`
@@ -77,7 +77,7 @@ mission "Wanderers: Surveying 2"
 	to offer
 		has "Wanderers: Surveying 1: done"
 	cargo "scientific equipment" 7
-	blocked "The Wanderers have another mission for you, but you will need some cargo space available for scientific equipment."
+	blocked "The Wanderers have another mission for you, but you will need <capacity> for their scientific equipment."
 	on offer
 		log "People" "Tema'a Iriket" `Iriket is a Wanderer specializing in terraforming, who has been selected to survey the worlds beyond the Eye and to make plans for how each one can be made to flourish once more. She is far more interested in the terraforming work than in dealing with the threat of the Korath war machines.`
 		conversation
@@ -574,7 +574,7 @@ mission "Wanderers: Mereti Observation"
 	to offer
 		has "Wanderers: Pug Assistance 2: done"
 	cargo "communications recorder" 2
-	blocked "You will need 2 tons of cargo space free to take on the next mission for the Wanderers."
+	blocked "You will need <capacity> free to take on the next mission for the Wanderers."
 	waypoint "Mesuket"
 	on offer
 		conversation
@@ -835,7 +835,7 @@ mission "Wanderers: Kor Mereti Hacking"
 	to offer
 		has "Wanderers: Kor Efret 5: done"
 	cargo "corrupted node" 2
-	blocked "You will need 2 tons of cargo space to take on the next Wanderer mission."
+	blocked "You will need <capacity> to take on the next Wanderer mission."
 	on offer
 		conversation
 			`You expect the Wanderers to be discouraged by the news that the Korath think the Mereti gestalt consciousness is too robust to be hacked into or compromised. But when you arrive, the communications scientists are excited about a breakthrough: they have managed to develop a program that makes the one sample Reasoning Node you fetched for them follow orders that they give it. They ask you to bring the device to one of the Kor Mereti systems and test it out on the drones there.`
@@ -910,7 +910,7 @@ mission "Wanderers: Mind 2"
 		has "Wanderers: Mind 1: done"
 	cargo "artificial mind" 2
 	passengers 1
-	blocked "To take this mission, you will need a bunk and two tons of cargo space free."
+	blocked "To take this mission, you will need <capacity> free."
 	on offer
 		log "The Wanderers have a new plan: to try to either subvert or possibly even befriend the Kor Mereti network by connecting it to a powerful Wanderer artificial intelligence."
 		log "People" "Meto Pa'aret" `Pa'aret runs a Wanderer artificial intelligence laboratory. He is in charge of the effort to establish a connection between the Wanderers and the Kor Mereti collective by introducing a Wanderer "artificial Mind" into the collective.`
@@ -995,7 +995,7 @@ mission "Wanderers: Mind 5"
 		has "Wanderers: Mind 4: done"
 	cargo "artificial mind" 2
 	passengers 4
-	blocked "To take this mission, you will need four bunks and two tons of cargo space free."
+	blocked "To take this mission, you will need <capacity> free."
 	on offer
 		log "The Wanderers want to install one of their artificial Minds on a space station controlled by the Kor Mereti. Their theory is that if the Mind is physically located within a Kor Mereti station, the drones will be much more likely to accept it as part of their own network instead of reacting to it as an outside intruder."
 		conversation
@@ -1489,7 +1489,7 @@ mission "Wanderers: Sestor Scanning"
 	source "Desi Seledrak"
 	to offer
 		has "Wanderers: Tour 7: done"
-	blocked "You will need three tons of cargo space to take on the next mission."
+	blocked "You will need <capacity> to take on the next mission."
 	cargo "scanning equipment" 3
 	clearance
 	infiltrating
@@ -1788,7 +1788,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 	landing
 	invisible
 	source
-		government Republic "Free Worlds" Syndicate Neutral
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "north"
 	to offer
 		has "Wanderers: Sestor Search: active"
@@ -2027,14 +2027,18 @@ mission "Wanderers: Sestor: Quarg Help 2"
 	description "Return to <planet> with this small fleet of Quarg ships."
 	source "Alta Hai"
 	destination "Farpoint"
+	cargo "medical supplies" 2
+	blocked "You will need <capacity> to carry supplies back to Farpoint."
 	to offer
 		has "Wanderers: Sestor: Quarg Help 1: done"
 	on offer
 		conversation
 			`As you are coming in for a landing, you contact the Quarg and discover that Elias Hanover is indeed still living here. He meets you the moment you dock with the station, and you describe the situation. "This must be retaliation," he says. "They want to wipe Danforth and the Oathkeepers off the map to get revenge for him driving them out of their base on Avalon."`
-			`	He leaves to try to find help, and returns about fifteen minutes later. "I've got four Quarg ships who volunteered to help," he says. "That may not seem like a lot, but their ships pack quite a punch. Good luck, captain."`
+			`	He leaves to try to find help, and returns about fifteen minutes later. "I've got four Quarg ships who volunteered to help," he says. "That may not seem like a lot, but their ships pack quite a punch. And, they've offered some medical supplies as well, which they'll load onto your ship. Good luck, captain."`
 			`	You thank him for his assistance, and hurry to fire up your ship and return to human space. Hopefully Danforth's base has not already been overrun in your absence.`
 				accept
+	on accept
+		log "Recruited some Quarg warships to help defend human space from the Kor Sestor drones, which are now presumably under Alpha control."
 	npc accompany save
 		government "Quarg"
 		personality heroic waiting escort
@@ -2058,7 +2062,7 @@ mission "Wanderers: Sestor: Alnilam Fleet 2"
 		has "Wanderers: Sestor: Quarg Help 2: done"
 	npc kill
 		government "Kor Sestor"
-		system Alnilam
+		system "Alnilam"
 		personality heroic staying target
 		fleet
 			names "kor sestor"
@@ -2083,11 +2087,10 @@ mission "Wanderers: Sestor: Bomb Zenith 1"
 	to offer
 		has "Wanderers: Sestor: Quarg Help 2: done"
 	cargo "unknown device" 2
-	blocked "You will need two tons of cargo space to take on the next mission for Danforth."
 	on offer
-		log "Recruited some Quarg warships to help defend human space from the Kor Sestor drones, which are now presumably under Alpha control. Danforth believes that he has located the Alpha base from which the drones are being controlled; if the base is destroyed the drones ought to become aimless and be easily defeated."
+		log "Danforth believes that he has located the Alpha base from which the drones are being controlled; if the base is destroyed the drones ought to become aimless and be easily defeated."
 		conversation
-			`Danforth is still alive, and still holding out against the Alpha-controlled drones. He tells you, "The Alpha base we've been watching on <planet> is buried deep underground. I'm hoping that the Alphas either don't know we're aware of their base's location, or have chosen to remain there anyway because it is so well defended. If the drones are being controlled from there, taking out the base might deactivate the drones."`
+			`Danforth is still alive, and still holding out against the Alpha-controlled drones. After directing several recruits to unload the medical supplies, he tells you, "The Alpha base we've been watching on <planet> is buried deep underground. I'm hoping that the Alphas either don't know we're aware of their base's location, or have chosen to remain there anyway because it is so well defended. If the drones are being controlled from there, taking out the base might deactivate the drones."`
 			choice
 				`	"Do you think your troops could capture the base?"`
 				`	"Do you have a plan for destroying the Alphas?"`
@@ -2105,6 +2108,10 @@ mission "Wanderers: Sestor: Bomb Zenith 1"
 			label end
 			`	Alarm sirens begin to sound. "Don't wait here to defend us," says Danforth. "Go straight to <planet> and deploy the device. It may be the only way you can save us."`
 				launch
+	on enter
+		dialog
+			`Danforth wasn't joking when he said that the device may be your only chance. There are almost a dozen Sestor capital ships in the system, and countless smaller craft tearing the Navy to shreds.`
+			`Even the Quarg warships are having trouble with an opposing fleet this size. Perhaps a more powerful fleet could defeat the automata, but it would be a difficult battle.`
 	on complete
 		fail "Wanderers: Sestor: Farpoint Attack 2"
 	to fail
@@ -2447,12 +2454,12 @@ event "bombed zenith"
 	government "Kor Sestor"
 		"attitude toward"
 			"Pirate" -.01
-	planet Zenith
+	planet "Zenith"
 		description `Zenith is a cold and unpleasant world, where the fog seldom lifts and the sun is rarely seen, where much of the lowlands are flooded each day by the tide, and storms are unpredictable and fierce. It has, however, one major advantage as a place to settle: it is far enough away that the Republic makes no attempt to control it.`
 		description `	The settlements here were never more than tenuous villages operating on the brink of starvation as they sought to make a living in this icy wilderness. Now, many of them have collapsed due to massive earthquakes that came after the Oathkeepers had the planet bombed to destroy an Alpha base.`
 		bribe .04
 		"required reputation" 0
-	system Alnilam
+	system "Alnilam"
 		object
 			sprite star/f5
 			period 10
@@ -2472,7 +2479,7 @@ event "bombed zenith"
 				sprite planet/luna
 				distance 305
 				period 17.2841
-		object Zenith
+		object "Zenith"
 			sprite "planet/zenith hot"
 			distance 1776.59
 			period 723.284
@@ -2502,7 +2509,7 @@ event "bombed zenith"
 				period 61.2801
 
 event "zenith cooling"
-	system Alnilam
+	system "Alnilam"
 		object
 			sprite star/f5
 			period 10
@@ -2522,7 +2529,7 @@ event "zenith cooling"
 				sprite planet/luna
 				distance 305
 				period 17.2841
-		object Zenith
+		object "Zenith"
 			sprite "planet/zenith cold"
 			distance 1776.59
 			period 723.284
