@@ -125,7 +125,8 @@ namespace {
 	
 	const double MAX_DISTANCE_FROM_CENTER = 10000.;
 	// Constants for the invisible fence timer.
-	const int FENCE_DECAY = 4;
+	
+ FENCE_DECAY = 4;
 	const int FENCE_MAX = 600;
 	// The health remaining before becoming disabled, at which fighters and
 	// other ships consider retreating from battle.
@@ -725,7 +726,7 @@ void AI::Step(const PlayerInfo &player)
 
 
 // Get the in-system strength of each government's allies and enemies.
-int64_t AI::AllyStrength(const Government *government)
+int64_t AI::AllyStrength(const Government *government) const
 {
 	auto it = allyStrength.find(government);
 	return (it == allyStrength.end() ? 0 : it->second);
@@ -733,7 +734,7 @@ int64_t AI::AllyStrength(const Government *government)
 
 
 
-int64_t AI::EnemyStrength(const Government *government)
+int64_t AI::EnemyStrength(const Government *government) const
 {
 	auto it = enemyStrength.find(government);
 	return (it == enemyStrength.end() ? 0 : it->second);
