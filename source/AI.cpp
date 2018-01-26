@@ -125,8 +125,7 @@ namespace {
 	
 	const double MAX_DISTANCE_FROM_CENTER = 10000.;
 	// Constants for the invisible fence timer.
-	
- FENCE_DECAY = 4;
+	const int FENCE_DECAY = 4;
 	const int FENCE_MAX = 600;
 	// The health remaining before becoming disabled, at which fighters and
 	// other ships consider retreating from battle.
