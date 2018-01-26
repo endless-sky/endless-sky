@@ -194,9 +194,9 @@ fleet "Korath Raid"
 	government "Korath"
 	names "korath"
 	fighters "korath"
-	cargo 3
+	cargo 1
 	personality
-		disables plunders opportunistic
+		disables plunders opportunistic harvests
 	variant
 		"Korath Raider"
 		"Korath Chaser" 2
