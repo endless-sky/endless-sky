@@ -154,7 +154,7 @@ namespace {
 
 Engine::Engine(PlayerInfo &player)
 	: player(player), ai(ships, asteroids.Minables(), flotsam),
-	shipCollisions(256, 32), cloakedCollisions(256, 32)
+	shipCollisions(256, 32)
 {
 	zoom = Preferences::ViewZoom();
 	
@@ -1397,20 +1397,12 @@ void Engine::FillCollisionSets()
 {
 	// Populate the collision detection set.
 	shipCollisions.Clear(step);
-	cloakedCollisions.Clear(step);
 	for(const shared_ptr<Ship> &it : ships)
 		if(it->GetSystem() == player.GetSystem() && it->Zoom() == 1.)
-		{
-			// If this ship is able to collide with projectiles, add it to the
-			// collision detection set.
-			if(it->Cloaking() < 1.)
-				shipCollisions.Add(*it);
-			else
-				cloakedCollisions.Add(*it);
-		}
+			shipCollisions.Add(*it);
+	
 	// Get the ship collision set ready to query.
 	shipCollisions.Finish();
-	cloakedCollisions.Finish();
 }
 
 
@@ -1635,8 +1627,7 @@ void Engine::DoCollisions(Projectile &projectile)
 	{
 		// "Phasing" projectiles that have a target will never hit any other ship.
 		shared_ptr<Ship> target = projectile.TargetPtr();
-		if(target && target->GetSystem() == player.GetSystem()
-				&& target->Zoom() == 1. && target->Cloaking() < 1.)
+		if(target)
 		{
 			Point offset = projectile.Position() - target->Position();
 			double range = target->GetMask(step).Collide(offset, projectile.Velocity(), target->Facing());
@@ -1649,13 +1640,13 @@ void Engine::DoCollisions(Projectile &projectile)
 	}
 	else
 	{
-		// If this weapon has a trigger radius, check if anything is within that
-		// radius of it.
+		// For weapons with a trigger radius, check if any detectable object will set it off.
 		double triggerRadius = projectile.GetWeapon().TriggerRadius();
 		if(triggerRadius)
 		{
 			for(const Body *body : shipCollisions.Circle(projectile.Position(), triggerRadius))
-				if(body == projectile.Target() || gov->IsEnemy(body->GetGovernment()))
+				if(body == projectile.Target() || gov->IsEnemy(body->GetGovernment())
+						&& reinterpret_cast<const Ship *>(body)->Cloaking() < 1.))
 				{
 					closestHit = 0.;
 					break;
@@ -1711,17 +1702,6 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
-			// Cloaked ships can be hit be a blast, too.
-			for(Body *body : cloakedCollisions.Circle(hitPos, blastRadius))
-			{
-				Ship *ship = reinterpret_cast<Ship *>(body);
-				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
-					continue;
-				
-				int eventType = ship->TakeDamage(projectile, ship != hit.get());
-				if(eventType)
-					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
-			}
 		}
 		else if(hit)
 		{
@@ -1757,7 +1737,8 @@ void Engine::DoCollection(Flotsam &flotsam)
 	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5.))
 	{
 		Ship *ship = reinterpret_cast<Ship *>(body);
-		if(!ship->CannotAct() && ship != flotsam.Source() && ship->Cargo().Free() >= flotsam.UnitSize())
+		if(!ship->CannotAct() && ship != flotsam.Source() && ship->Cargo().Free() >= flotsam.UnitSize()
+				&& ship->Cloaking() < 1.)
 		{
 			collector = ship;
 			break;
