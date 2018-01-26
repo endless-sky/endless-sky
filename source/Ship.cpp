@@ -1175,7 +1175,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
 		pilotError = 30;
-		if(parent.lock() || !government->IsPlayer())
+		if(parent.lock() || !isYours)
 			Messages::Add(name + " is moving erratically because there are not enough crew to pilot it.");
 		else
 			Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it.");
@@ -1336,7 +1336,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					// Allow the player to get all the way to the end of the
 					// boarding sequence (including locking on to the ship) but
 					// not to actually board, if they are cloaked.
-					if(government->IsPlayer())
+					if(isYours)
 						Messages::Add("You cannot board a ship while cloaked.");
 				}
 				else
@@ -1683,29 +1683,28 @@ int Ship::Scan()
 	}
 	
 	// Play the scanning sound if the actor or the target is the player's ship.
-	if(government->IsPlayer() || (target->GetGovernment()->IsPlayer() && activeScanning))
+	if(isYours || (target->isYours && activeScanning))
 		Audio::Play(Audio::Get("scan"), Position());
 	
-	if(startedScanning && government->IsPlayer())
+	if(startedScanning && isYours)
 	{
 		if(!target->Name().empty())
 			Messages::Add("Attempting to scan the " + target->Noun() + " \"" + target->Name() + "\".", false);
 		else
 			Messages::Add("Attempting to scan the selected " + target->Noun() + ".", false);
 	}
-	else if(startedScanning && target->GetGovernment()->IsPlayer())
+	else if(startedScanning && target->isYours)
 		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
 			+ Name() + "\" is attempting to scan you.", false);
 	
-	if(target->GetGovernment()->IsPlayer() && !government->IsPlayer() && (result & ShipEvent::SCAN_CARGO))
+	if(target->isYours && !isYours)
 	{
-		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-			+ Name() + "\" completed its scan of your cargo.");
-	}
-	if(target->GetGovernment()->IsPlayer() && !government->IsPlayer() && (result & ShipEvent::SCAN_OUTFITS))
-	{
-		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-			+ Name() + "\" completed its scan of your outfits.");
+		if(result & ShipEvent::SCAN_CARGO)
+			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
+					+ Name() + "\" completed its scan of your cargo.");
+		if(result & ShipEvent::SCAN_OUTFITS)
+			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
+					+ Name() + "\" completed its scan of your outfits.");
 	}
 	
 	return result;
@@ -2068,8 +2067,9 @@ double Ship::TransferFuel(double amount, Ship *to)
 
 void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 {
-	// Repair up to the point where it is just barely not disabled.
+	// Repair up to the point where this ship is just barely not disabled.
 	hull = max(hull, MinimumHull());
+	isDisabled = false;
 	
 	// Set the new government.
 	government = capturer->GetGovernment();
@@ -2086,18 +2086,22 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 		AddCrew(transfer);
 	}
 	
+	commands.Clear();
 	// Set the capturer as this ship's parent.
 	SetParent(capturer);
+	// Clear this ship's previous targets.
 	SetTargetShip(shared_ptr<Ship>());
 	SetTargetStellar(nullptr);
 	SetTargetSystem(nullptr);
 	shipToAssist.reset();
-	commands.Clear();
-	isDisabled = false;
+	targetAsteroid.reset();
+	targetFlotsam.reset();
 	hyperspaceSystem = nullptr;
 	landingPlanet = nullptr;
 	
+	// This ship behaves like its new parent does.
 	isSpecial = capturer->isSpecial;
+	isYours = capturer->isYours;
 	personality = capturer->personality;
 	
 	// Fighters should flee a disabled ship, but if the player manages to capture
@@ -2112,6 +2116,8 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 		if(escort)
 			escort->parent.reset();
 	}
+	// This ship should not care about its now-unallied escorts.
+	escorts.clear();
 }
 
 

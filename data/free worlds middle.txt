@@ -1949,7 +1949,8 @@ mission "FW Defend New Tibet"
 				"Manta (Mark II)" 3
 				"Quicksilver (Mark II)" 5
 	npc
-		personality heroic disables
+		government "Free Worlds"
+		personality heroic escort disables
 		ship "Dreadnought" "F.S. Holly"
 		ship "Falcon (Plasma)" "F.S. Nebula"
 		ship "Skein" "F.S. Larkspur"
