@@ -899,6 +899,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	const System *system = ship.GetSystem();
 	bool isDisabled = false;
 	bool hasNemesis = false;
+	bool canPlunder = person.Plunders() && ship.Cargo().Free();
 	// Figure out how strong this ship is.
 	int64_t maxStrength = 0;
 	auto strengthIt = shipStrength.find(&ship);
@@ -944,20 +945,19 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 					continue;
 			}
 			
-			// If your personality it to disable ships rather than destroy them,
-			// never target disabled ships.
-			if(it->IsDisabled() && !person.Plunders()
-					&& (person.Disables() || (!person.IsNemesis() && it != oldTarget)))
+			// If your personality is to disable ships rather than destroy them,
+			// never target disabled ships unless you plunder them too.
+			if((person.Disables() || (!person.IsNemesis() && it != oldTarget))
+					&& it->IsDisabled() && !canPlunder)
 				continue;
 			
-			if(!person.Plunders())
+			// Ships that don't (or can't) plunder strongly prefer active targets.
+			if(!canPlunder)
 				range += 5000. * it->IsDisabled();
+			// While those that do, do so only if no "live" enemies are nearby.
 			else
-			{
-				bool hasBoarded = Has(ship, it, ShipEvent::BOARD) || !ship.Cargo().Free();
-				// Don't plunder unless there are no "live" enemies nearby.
-				range += 2000. * (2 * it->IsDisabled() - !hasBoarded);
-			}
+				range += 2000. * (2 * it->IsDisabled() - !Has(ship, it, ShipEvent::BOARD));
+			
 			// Prefer to go after armed targets, especially if you're not a pirate.
 			range += 1000. * (!IsArmed(*it) * (1 + !person.Plunders()));
 			// Targets which have plundered this ship's faction earn extra scorn.
