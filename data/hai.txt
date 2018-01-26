@@ -107,7 +107,7 @@ fleet "Large Hai"
 fleet "Small Unfettered"
 	government "Hai (Unfettered)"
 	names "hai"
-	cargo 3
+	cargo 1
 	personality
 		disables
 		plunders
@@ -123,7 +123,7 @@ fleet "Small Unfettered"
 fleet "Large Unfettered"
 	government "Hai (Unfettered)"
 	names "hai"
-	cargo 3
+	cargo 1
 	personality
 		disables
 		plunders
@@ -169,6 +169,7 @@ fleet "Large Unfettered"
 fleet "Unfettered Raid"
 	government "Hai (Unfettered)"
 	names "hai"
+	cargo 1
 	personality
 		disables
 		plunders
