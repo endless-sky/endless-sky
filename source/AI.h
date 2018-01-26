@@ -63,8 +63,8 @@ template <class Type>
 	void Step(const PlayerInfo &player);
 	
 	// Get the in-system strength of each government's allies and enemies.
-	int64_t AllyStrength(const Government *government);
-	int64_t EnemyStrength(const Government *government);
+	int64_t AllyStrength(const Government *government) const;
+	int64_t EnemyStrength(const Government *government) const;
 	
 	
 private:
