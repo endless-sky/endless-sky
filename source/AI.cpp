@@ -1749,7 +1749,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target) const
 		shortestRange = 0.;
 	
 	// Deploy any fighters you are carrying.
-	if(!ship.IsYours() && ship.HasBays() && !(ship.GetPersonality().IsConserving() && ShouldActFrugally(ship)))
+	if(!ship.IsYours() && ship.HasBays() && !(ship.GetPersonality().IsPrudent() && ShouldActFrugally(ship)))
 	{
 		command |= Command::DEPLOY;
 		Deploy(ship, false);

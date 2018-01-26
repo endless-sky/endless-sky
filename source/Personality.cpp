@@ -48,7 +48,7 @@ namespace {
 	const int OPPORTUNISTIC = (1 << 24);
 	const int TARGET = (1 << 25);
 	const int MARKED = (1 << 26);
-	const int CONSERVING = (1 << 27);
+	const int PRUDENT = (1 << 27);
 	
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -78,7 +78,7 @@ namespace {
 		{"opportunistic", OPPORTUNISTIC},
 		{"target", TARGET},
 		{"marked", MARKED},
-		{"conserving", CONSERVING}
+		{"prudent", PRUDENT}
 	};
 	
 	const double DEFAULT_CONFUSION = 10.;
@@ -328,9 +328,9 @@ bool Personality::IsMute() const
 
 
 
-bool Personality::IsConserving() const
+bool Personality::IsPrudent() const
 {
-	return flags & CONSERVING;
+	return flags & PRUDENT;
 }
 
 
