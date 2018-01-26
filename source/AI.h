@@ -90,12 +90,12 @@ private:
 	static void CircleAround(Ship &ship, Command &command, const Ship &target);
 	static void Swarm(Ship &ship, Command &command, const Ship &target);
 	static void KeepStation(Ship &ship, Command &command, const Ship &target);
-	const void Attack(Ship &ship, Command &command, const Ship &target) const;
 	static void MoveToAttack(Ship &ship, Command &command, const Body &target);
 	static void PickUp(Ship &ship, Command &command, const Body &target);
 	// Special decisions a ship might make.
 	static bool ShouldUseAfterburner(Ship &ship);
 	// Special personality behaviors.
+	void Attack(Ship &ship, Command &command, const Ship &target) const;
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
 	void DoMining(Ship &ship, Command &command);
