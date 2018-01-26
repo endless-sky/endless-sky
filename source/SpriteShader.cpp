@@ -158,7 +158,7 @@ void SpriteShader::Init()
 	
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-
+	
 	GLfloat vertexData[] = {
 		-.5f, -.5f,
 		-.5f,  .5f,
