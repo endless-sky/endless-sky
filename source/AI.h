@@ -95,6 +95,7 @@ private:
 	static void PickUp(Ship &ship, Command &command, const Body &target);
 	// Special decisions a ship might make.
 	static bool ShouldUseAfterburner(Ship &ship);
+	bool ShouldActFrugally(const Ship &ship) const;
 	// Special personality behaviors.
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
@@ -103,7 +104,6 @@ private:
 	void DoCloak(Ship &ship, Command &command);
 	// Prevent ships from stacking on each other when many are moving in sync.
 	void DoScatter(Ship &ship, Command &command);
-	bool ShouldActFrugally(const Ship &ship) const;
 	
 	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
 	// Get a vector giving the direction this ship should aim in in order to do
