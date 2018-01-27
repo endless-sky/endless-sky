@@ -319,8 +319,7 @@ ship "Kar Ik Vot 349"
 		"Triple Plasma Core"
 		"Plasma Core"
 		"Systems Core (Large)"
-		"Large Heat Shunt" 4
-		"Small Heat Shunt" 2
+		"Large Heat Shunt" 5
 		"Control Transceiver"
 		
 		"Thruster (Planetary Class)"
@@ -1150,7 +1149,7 @@ ship "Model 256"
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
-		"Large Heat Shunt"
+		"Large Heat Shunt" 2
 		"Reasoning Node" 3
 		
 		"Thruster (Planetary Class)"
@@ -1208,7 +1207,7 @@ ship "Model 512"
 		"Triple Plasma Core"
 		"Plasma Core"
 		"Systems Core (Large)"
-		"Large Heat Shunt"
+		"Large Heat Shunt" 2
 		"Small Heat Shunt" 2
 		"Reasoning Node" 3
 		
