@@ -450,7 +450,10 @@ void MapDetailPanel::DrawInfo()
 				SpriteShader::Draw(planetSprite, uiPoint);
 				planetY[planet] = uiPoint.Y() - 60;
 			
-				font.Draw(object.Name(),
+				string name = object.Name();
+				if(planet->GetGovernment() != selectedSystem->GetGovernment())
+					name += " (" + planet->GetGovernment()->GetName() + ")";
+				font.Draw(name,
 					uiPoint + Point(-70., -52.),
 					planet == selectedPlanet ? medium : dim);
 				
