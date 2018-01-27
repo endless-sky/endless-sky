@@ -369,25 +369,15 @@ void System::Link(System *other)
 
 void System::Unlink(System *other)
 {
-	auto it = find(links.begin(), links.end(), other);
-	if(it != links.end())
-		links.erase(it);
-	
-	it = find(other->links.begin(), other->links.end(), this);
-	if(it != other->links.end())
-		other->links.erase(it);
+	links.erase(other);
+	other->links.erase(this);
 	
 	// If the only reason these systems are neighbors is because of a hyperspace
 	// link, they are no longer neighbors.
 	if(position.Distance(other->position) > NEIGHBOR_DISTANCE)
 	{
-		it = find(neighbors.begin(), neighbors.end(), other);
-		if(it != neighbors.end())
-			neighbors.erase(it);
-		
-		it = find(other->neighbors.begin(), other->neighbors.end(), this);
-		if(it != other->neighbors.end())
-			other->neighbors.erase(it);
+		neighbors.erase(other);
+		other->neighbors.erase(this);
 	}
 }
 

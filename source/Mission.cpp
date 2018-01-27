@@ -815,11 +815,9 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	{
 		const System *system = event.Actor()->GetSystem();
 		// If this was a waypoint, clear it.
-		if(waypoints.count(system))
-		{
-			waypoints.erase(system);
+		if(waypoints.erase(system))
 			visitedWaypoints.insert(system);
-		}
+		
 		// Perform an "on enter" action for this system, if possible.
 		Enter(system, player, ui);
 	}
@@ -865,11 +863,8 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 		result.waypoints.insert(system);
 	}
 	// If one of the waypoints is the current system, it is already visited.
-	if(result.waypoints.count(source))
-	{
-		result.waypoints.erase(source);
+	if(result.waypoints.erase(source));
 		result.visitedWaypoints.insert(source);
-	}
 	
 	// Copy the stopover planet list, and populate the list based on the filters
 	// that were given.
