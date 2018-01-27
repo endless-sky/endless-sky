@@ -74,8 +74,7 @@ string Format::Number(double value)
 	if(left > 3)
 		delimiterIndex = left - 3;
 	
-	do
-	{
+	do {
 		int digit = rounded % 10;
 		if(nonzero || digit)
 		{
@@ -104,8 +103,7 @@ string Format::Number(double value)
 			if(left == delimiterIndex && rounded)
 				result += ',';
 		}
-	}
-	while(rounded || right);
+	} while(rounded || right);
 	
 	// Add the negative sign if needed.
 	if(isNegative)
