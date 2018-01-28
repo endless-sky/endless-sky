@@ -1070,13 +1070,17 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Calculate whether the end of a jump is within the border of the system.
 			// If so, the jump is pulled back to be outside the border.
 			double pi = 3.14159;
-			double relativeX = position.X() * cos(0.5*pi*angle.Unit().X()) + position.Y() * sin(0.5*pi*angle.Unit().Y());
-			double relativeY = position.X() * sin(0.5*pi*angle.Unit().X()) + position.Y() * cos(0.5*pi*angle.Unit().Y());
+			//The following relative positions represent the position of the system centre in the local space of the ship.
+			double relativeX = -position.X() * cos(0.5*pi*angle.Unit().X()) -position.Y() * sin(0.5*pi*angle.Unit().Y());
+			double relativeY = -position.X() * sin(0.5*pi*angle.Unit().X()) -position.Y() * cos(0.5*pi*angle.Unit().Y());
 
-			if(position.Length() < borderRadius || (abs(relativeX) < borderRadius && relativeY > 0))
+			if(abs(relativeX) < borderRadius)
             {
-                double distanceToRetract = cos(asin(relativeX/borderRadius));
-                position -= angle.Unit()*distanceToRetract;
+                if(relativeY < cos(asin(relativeX/borderRadius)))
+               {
+                    double distanceToRetract = relativeY+borderRadius*cos(asin(relativeX/borderRadius));
+                    position -= angle.Unit()*distanceToRetract;
+               }
             }
 
 			// Make sure your velocity is in exactly the direction you are
