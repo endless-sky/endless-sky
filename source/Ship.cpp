@@ -1054,7 +1054,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			{
 			    Point offset = Angle::Random().Unit() * 300. * (Random::Real() + 1.);
 				position = target + offset;
-				if(position.Length() > borderRadius);
+				if(position.Length() > borderRadius)
                 {
                     position = target.Unit()*borderRadius+offset;
                 }
