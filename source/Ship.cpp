@@ -1073,7 +1073,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			double relativeX = position.X() * cos(0.5*pi*angle.Unit().X()) + position.Y() * sin(0.5*pi*angle.Unit().Y());
 			double relativeY = position.X() * sin(0.5*pi*angle.Unit().X()) + position.Y() * cos(0.5*pi*angle.Unit().Y());
 
-			if(relativeX > borderRadius && relativeY > 0) {
+			if(position.Length() < borderRadius || (abs(relativeX) < borderRadius && relativeY > 0))
+            {
                 double distanceToRetract = cos(asin(relativeX/borderRadius));
                 position -= angle.Unit()*distanceToRetract;
             }
