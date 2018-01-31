@@ -2184,6 +2184,8 @@ event "fwc capture cebalrai"
 		government "Free Worlds"
 	system "Eber"
 		government "Free Worlds"
+	system "Hintar"
+		government "Free Worlds"
 
 
 
