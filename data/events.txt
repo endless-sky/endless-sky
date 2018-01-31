@@ -920,9 +920,15 @@ event "oathkeepers founded"
 event "Tarazed neutrality"
 	system "Tarazed"
 		government "Neutral"
+	system "Umbral"
+		government "Neutral"
 	system "Dabih"
 		government "Neutral"
+	system "Lurata"
+		government "Neutral"
 	system "Albireo"
+		government "Neutral"
+	system "Sadr"
 		government "Neutral"
 	system "Girtab"
 		government "Neutral"
@@ -1214,6 +1220,8 @@ event "fw southern expansion"
 		fleet "Large Southern Merchants" 4000
 		fleet "Small Republic" 400
 		fleet "Large Republic" 500
+	system "Eltanin"
+		government "Free Worlds"
 	planet "New Iceland"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
 		description `	In the wake of their defeat in the south, the Navy has begun to set up a massive new base here on New Iceland, in order to allow them to continue to have a strong presence in this sector.`
@@ -1420,6 +1428,12 @@ event "fw expanded and cut"
 		government "Free Worlds"
 	system "Kaus Australis"
 		government "Free Worlds"
+	system "Orvala"
+		government "Free Worlds"
+	system "Naper"
+		government "Free Worlds"
+	system "Tais"
+		government "Free Worlds"
 	system "Delta Sagittarii"
 		government "Republic"
 		fleet "Small Southern Merchants" 2000
@@ -1453,6 +1467,8 @@ event "fw expanded and cut"
 		fleet "Small Republic" 800
 		fleet "Large Republic" 1000
 		fleet "Large Free Worlds" 3000
+	system "Eltanin"
+		government "Republic"
 
 
 
@@ -2103,6 +2119,8 @@ event "fwc southern liberation"
 		fleet "Small Southern Pirates" 2000
 		fleet "Large Southern Pirates" 5000
 		fleet "Navy Surveillance" 4000
+	system "Eltanin"
+		government "Free Worlds"
 
 
 
@@ -2118,6 +2136,7 @@ event "fwc attack kaus borealis"
 
 event "fwc capture kaus borealis"
 	system "Alpha Arae"
+		government "Free Worlds"
 		fleet "Small Southern Merchants" 5000
 		fleet "Large Southern Merchants" 6000
 		fleet "Small Free Worlds" 1000
@@ -2129,6 +2148,10 @@ event "fwc capture kaus borealis"
 		fleet "Small Free Worlds" 400
 		fleet "Large Free Worlds" 400
 		fleet "Large Republic" 2000
+	system "Alnasl"
+		government "Free Worlds"
+	system "Eber"
+		government "Free Worlds"
 	planet "New Iceland"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
 
@@ -2155,6 +2178,12 @@ event "fwc capture cebalrai"
 		fleet "Large Southern Merchants" 4000
 		fleet "Small Free Worlds" 600
 		fleet "Large Free Worlds" 700
+	system "Alnasl"
+		government "Free Worlds"
+	system "Alpha Arae"
+		government "Free Worlds"
+	system "Eber"
+		government "Free Worlds"
 
 
 
