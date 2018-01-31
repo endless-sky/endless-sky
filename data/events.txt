@@ -1956,7 +1956,7 @@ event "pug territory liberated"
 	system Caph
 		government Syndicate
 	system Deneb
-		government Uninhabited
+		government None
 		fleet "Small Core Merchants" 400
 		fleet "Large Core Merchants" 600
 		fleet "Small Northern Merchants" 1000
@@ -2523,7 +2523,7 @@ event "fwc pug defeated"
 	system Alderamin
 		government Syndicate
 	system Deneb
-		government Uninhabited
+		government None
 		fleet "Small Core Merchants" 400
 		fleet "Large Core Merchants" 600
 		fleet "Small Northern Merchants" 1000
