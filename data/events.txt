@@ -1184,6 +1184,7 @@ event "fw southern expansion"
 		fleet "Large Southern Pirates" 7000
 		fleet "Navy Surveillance" 2000
 	system Girtab
+		government "Free Worlds"
 		fleet "Small Southern Merchants" 900
 		fleet "Large Southern Merchants" 2000
 		fleet "Small Free Worlds" 1000
@@ -1420,6 +1421,12 @@ event "fw expanded and cut"
 		government "Free Worlds"
 	system "Kaus Australis"
 		government "Free Worlds"
+	system "Tarazed"
+		government "Free Worlds"
+	system "Dabih"
+		government "Free Worlds"
+	system "Albireo"
+		government "Free Worlds"
 	system "Delta Sagittarii"
 		government "Republic"
 		fleet "Small Southern Merchants" 2000
@@ -1482,6 +1489,8 @@ event "fw armistice"
 	government "Free Worlds"
 		"attitude toward"
 			Republic 0
+	system "Graffias"
+		government "Republic"
 	planet Martini
 		"required reputation" 80
 	planet Thrall
@@ -1556,7 +1565,7 @@ event "navy out of rastaban"
 		fleet "Large Southern Pirates" 7000
 		fleet "Navy Surveillance" 2000
 	system Girtab
-		government "Neutral"
+		government "Free Worlds"
 		fleet "Small Southern Merchants" 900
 		fleet "Large Southern Merchants" 2000
 		fleet "Small Free Worlds" 1000
@@ -2088,7 +2097,7 @@ event "fwc southern liberation"
 		fleet "Large Southern Pirates" 7000
 		fleet "Large Republic" 3000
 	system Girtab
-		government "Neutral"
+		government "Free Worlds"
 		fleet "Small Southern Merchants" 900
 		fleet "Large Southern Merchants" 2000
 		fleet "Small Free Worlds" 1000
