@@ -13,9 +13,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef OUTFIT_H_
 #define OUTFIT_H_
 
+#include "Weapon.h"
+
 #include "Body.h"
 #include "Dictionary.h"
-#include "Weapon.h"
 
 #include <map>
 #include <string>

@@ -22,7 +22,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <list>
 
 class PlayerInfo;
-class ShipEvent;
 
 
 

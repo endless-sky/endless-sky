@@ -17,9 +17,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "AsteroidField.h"
 #include "BatchDrawList.h"
 #include "CollisionSet.h"
+#include "Command.h"
 #include "DrawList.h"
 #include "EscortDisplay.h"
-#include "Flotsam.h"
 #include "Information.h"
 #include "PlanetLabel.h"
 #include "Point.h"
@@ -35,11 +35,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <memory>
 #include <thread>
+#include <utility>
 #include <vector>
 
+class Flotsam;
 class Government;
 class Outfit;
 class PlayerInfo;
+class Sprite;
 
 
 

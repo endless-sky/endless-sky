@@ -12,7 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "OutfitInfoDisplay.h"
 
-#include "Color.h"
 #include "Depreciation.h"
 #include "Format.h"
 #include "Outfit.h"

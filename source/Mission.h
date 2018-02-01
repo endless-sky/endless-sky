@@ -21,8 +21,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <list>
 #include <map>
-#include <string>
 #include <set>
+#include <string>
 
 class DataNode;
 class DataWriter;

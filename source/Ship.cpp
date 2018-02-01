@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
+#include "Flotsam.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Mask.h"
