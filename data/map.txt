@@ -25152,6 +25152,9 @@ planet Harmony
 	spaceport `The spaceport is on the outskirts of one of the larger cities, with a few medium-sized skyscrapers and many tall smokestacks for factories and oil refineries. The starship hangars here are shaped like oversized barns, and close to the hangars, grain is stored in silos. The spaceport police are on horseback.`
 	spaceport `	Inside the building at the center of the port is a large cafeteria, with food of the simple "meat and potatoes" variety. You notice a few children and teenagers in rough, homemade clothing staring out the windows at the ships taking off and landing.`
 	security 0
+	tribute 400
+		threshold 2500
+		fleet "Small Militia" 30
 
 planet Haven
 	attributes pirate mining "north pirate"
@@ -25984,6 +25987,9 @@ planet "New Tibet"
 	description `	In the lowlands, large farms support sprawling cities full of factories, a striking contrast to the simplicity and isolation of the mountain villages.`
 	spaceport `The spaceport is in a hilly region, just outside of the largest city, with a view of a valley full of farms that stretch for tens of kilometers, all the way down to the ocean. The port is much less modern than the city nearby; it was built by the early settlers and has not been significantly updated since then, because the focus has been on improving life for the locals, not for their occasional visitors.`
 	security 0.1
+	tribute 600
+		threshold 3000
+		fleet "Large Militia" 10
 
 planet "New Wales"
 	attributes "dirt belt" mining
