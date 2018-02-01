@@ -164,7 +164,7 @@ namespace {
 	
 	
 	// Distance from a point to a line, squared.
-	double Distance(Point p, Point a, Point b)
+	double DistanceSquared(Point p, Point a, Point b)
 	{
 		// Convert to a coordinate system where a is the origin.
 		p -= a;
@@ -194,7 +194,7 @@ namespace {
 			if(i == last)
 				break;
 			
-			double d = Distance(p[i], p[first], p[last]);
+			double d = DistanceSquared(p[i], p[first], p[last]);
 			// Enforce symmetry by using y position as a tiebreaker rather than
 			// just the order in the list.
 			if(d > dmax || (d == dmax && p[i].Y() > p[imax].Y()))
@@ -205,7 +205,8 @@ namespace {
 		}
 		
 		// If the most divergent point is close enough to the outline, stop.
-		if(dmax < 1.)
+		double lengthSquared = max(1., (p[last] - p[first]).LengthSquared());
+		if(dmax * lengthSquared < 100.)
 			return;
 		
 		// Recursively simplify the lines to both sides of that point.
