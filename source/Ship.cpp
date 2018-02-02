@@ -1317,7 +1317,6 @@ void Ship::IterateHyperspace(vector<Visual> &visuals)
 					break;
 				}
 		}
-
 	}
 
 	// Repeated segment
