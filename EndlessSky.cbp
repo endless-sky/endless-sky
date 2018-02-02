@@ -43,39 +43,38 @@
 				<Linker>
 					<Add option="-Wl,--subsystem,windows" />
 					<Add option="-lwinmm" />
-					<Add library="C:\Program Files (x86)\mingw-w64\i686-5.2.0-posix-dwarf-rt_v4-rev0\mingw32\i686-w64-mingw32\lib\libmingw32.a" />
-					<Add library="C:\dev32\lib\libsdl2main.a" />
-					<Add library="C:\dev32\lib\libsdl2.dll.a" />
-					<Add library="C:\dev32\lib\libpng.dll.a" />
-					<Add library="C:\dev32\lib\libturbojpeg.dll.a" />
-					<Add library="C:\dev32\lib\libjpeg.dll.a" />
-					<Add library="C:\dev32\lib\libmad.dll.a" />
-					<Add library="C:\dev32\lib\libopenal32.dll.a" />
-					<Add library="C:\dev32\lib\libglew32.dll.a" />
-					<Add library="C:\Program Files (x86)\mingw-w64\i686-5.2.0-posix-dwarf-rt_v4-rev0\mingw32\i686-w64-mingw32\lib\libopengl32.a" />
+					<Add library="C:/Program Files (x86)/mingw-w64/i686-5.2.0-posix-dwarf-rt_v4-rev0/mingw32/i686-w64-mingw32/lib/libmingw32.a" />
+					<Add library="C:/dev32/lib/libsdl2main.a" />
+					<Add library="C:/dev32/lib/libsdl2.dll.a" />
+					<Add library="C:/dev32/lib/libpng.dll.a" />
+					<Add library="C:/dev32/lib/libturbojpeg.dll.a" />
+					<Add library="C:/dev32/lib/libjpeg.dll.a" />
+					<Add library="C:/dev32/lib/libmad.dll.a" />
+					<Add library="C:/dev32/lib/libopenal32.dll.a" />
+					<Add library="C:/dev32/lib/libglew32.dll.a" />
+					<Add library="C:/Program Files (x86)/mingw-w64/i686-5.2.0-posix-dwarf-rt_v4-rev0/mingw32/i686-w64-mingw32/lib/libopengl32.a" />
 					<Add directory="C:/dev32/lib" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-std=c++11" />
 			<Add option="-Wall" />
-			<Add directory="C:/dev64/include" />
+			<Add option="-std=c++11" />
+			<Add directory="dev64/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,--subsystem,windows" />
 			<Add option="-lwinmm" />
-			<Add library="C:\Program Files\mingw64\x86_64-w64-mingw32\lib\libmingw32.a" />
-			<Add library="C:\dev64\lib\libsdl2main.a" />
-			<Add library="C:\dev64\lib\libsdl2.dll.a" />
-			<Add library="C:\dev64\lib\libpng.dll.a" />
-			<Add library="C:\dev64\lib\libturbojpeg.dll.a" />
-			<Add library="C:\dev64\lib\libjpeg.dll.a" />
-			<Add library="C:\dev64\lib\libmad.dll.a" />
-			<Add library="C:\dev64\lib\libopenal32.dll.a" />
-			<Add library="C:\dev64\lib\libglew32.dll.a" />
-			<Add library="C:\Program Files\mingw64\x86_64-w64-mingw32\lib\libopengl32.a" />
-			<Add directory="C:/dev64/lib" />
+			<Add library="C:/Program Files/mingw-w64/x86_64-7.2.0-posix-seh-rt_v5-rev1/mingw64/x86_64-w64-mingw32/lib/libmingw32.a" />
+			<Add library="dev64/lib/libsdl2main.a" />
+			<Add library="dev64/lib/libsdl2.dll.a" />
+			<Add library="dev64/lib/libpng.dll.a" />
+			<Add library="dev64/lib/libjpeg.dll.a" />
+			<Add library="dev64/lib/libmad.dll.a" />
+			<Add library="dev64/lib/libopenal32.dll.a" />
+			<Add library="dev64/lib/libglew32.dll.a" />
+			<Add library="C:/Program Files/mingw-w64/x86_64-7.2.0-posix-seh-rt_v5-rev1/mingw64/x86_64-w64-mingw32/lib/libopengl32.a" />
+			<Add directory="C:/Program Files/mingw-w64/x86_64-7.2.0-posix-seh-rt_v5-rev1/mingw64/x86_64-w64-mingw32/lib" />
 		</Linker>
 		<Unit filename="source/AI.cpp" />
 		<Unit filename="source/AI.h" />
@@ -222,10 +221,10 @@
 		<Unit filename="source/Mortgage.h" />
 		<Unit filename="source/Music.cpp" />
 		<Unit filename="source/Music.h" />
-		<Unit filename="source/News.cpp" />
-		<Unit filename="source/News.h" />
 		<Unit filename="source/NPC.cpp" />
 		<Unit filename="source/NPC.h" />
+		<Unit filename="source/News.cpp" />
+		<Unit filename="source/News.h" />
 		<Unit filename="source/Outfit.cpp" />
 		<Unit filename="source/Outfit.h" />
 		<Unit filename="source/OutfitInfoDisplay.cpp" />
