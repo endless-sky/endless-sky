@@ -272,6 +272,9 @@ government "Pirate"
 	"hostile hail" "hostile pirate"
 	raid "pirate raid"
 
+government "None"
+	color .6 .6 .6
+
 government "Pug"
 	swizzle 0
 	color .99 .89 .70
