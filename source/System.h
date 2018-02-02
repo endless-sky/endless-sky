@@ -183,7 +183,7 @@ private:
 	std::vector<FleetProbability> fleets;
 	double habitable = 1000.;
 	double asteroidBelt = 1500.;
-	double border = 2000.;
+	double border = 1000.;
 	double solarPower = 0.;
 	double solarWind = 0.;
 
