@@ -863,7 +863,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 		result.waypoints.insert(system);
 	}
 	// If one of the waypoints is the current system, it is already visited.
-	if(result.waypoints.erase(source));
+	if(result.waypoints.erase(source))
 		result.visitedWaypoints.insert(source);
 	
 	// Copy the stopover planet list, and populate the list based on the filters
