@@ -342,7 +342,7 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 void Fleet::Place(const System &system, Ship &ship)
 {
 	// Move out a random distance from that object, facing toward it or away.
-	Point pos = ChooseCenter(system) + Angle::Random().Unit() * Random::Real() * 400.;
+	Point pos = ChooseCenter(system) + Angle::Random().Unit() * Random::Real() * system.Border();
 	
 	double velocity = Random::Real() * ship.MaxVelocity();
 	

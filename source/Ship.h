@@ -376,6 +376,8 @@ private:
 	void CreateExplosion(std::vector<Visual> &visuals, bool spread = false);
 	// Place a "spark" effect, like ionization or disruption.
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
+	// Performs one step of the hyperspace animation. (This is called by Move().)
+	void IterateHyperspace(std::vector<Visual> &visuals);
 	
 	
 private:
@@ -469,11 +471,15 @@ private:
 	// hyperspacing, and exploding. Each one must track some special counters:
 	const Planet *landingPlanet = nullptr;
 	
-	int hyperspaceCount = 0;
-	const System *hyperspaceSystem = nullptr;
-	bool isUsingJumpDrive = false;
+	int hyperSteps;
+    double hyperAcceleration;
+    double fleetRadius;
 	double hyperspaceFuelCost = 0.;
-	Point hyperspaceOffset;
+	bool isUsingJumpDrive = false;
+	const System *hyperspaceSystem = nullptr;
+    Point hyperTarget;
+	int hyperCount = 0;
+	Point hyperOffset;
 	
 	std::map<const Effect *, int> explosionEffects;
 	unsigned explosionRate = 0;

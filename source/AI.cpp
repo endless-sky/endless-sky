@@ -322,11 +322,16 @@ void AI::Step(const PlayerInfo &player)
 			++it;
 	}
 	for(const auto &it : ships)
-		if(it->Position().Length() >= MAX_DISTANCE_FROM_CENTER)
+    {
+	    double border = 0;
+	    if(it->GetSystem())
+            border = it->GetSystem()->Border();
+		if(it->Position().Length() >= MAX_DISTANCE_FROM_CENTER+border)
 		{
 			int &value = fenceCount[&*it];
 			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
 		}
+    }
 	
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
@@ -1097,7 +1102,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	if(target && !ship.IsYours() && !ship.GetPersonality().IsUnconstrained())
 	{
 		Point extrapolated = target->Position() + 120. * (target->Velocity() - ship.Velocity());
-		if(extrapolated.Length() >= MAX_DISTANCE_FROM_CENTER)
+		if(extrapolated.Length() >= MAX_DISTANCE_FROM_CENTER+ship.GetSystem()->Border())
 		{
 			MoveTo(ship, command, Point(), Point(), 40., .8);
 			if(ship.Velocity().Dot(ship.Position()) > 0.)

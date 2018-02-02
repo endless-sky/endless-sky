@@ -721,7 +721,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	slowness = 0.;
 	isInvisible = !HasSprite();
 	jettisoned.clear();
-	hyperspaceCount = 0;
+	hyperCount = 0;
 	forget = 1;
 	targetShip.reset();
 	shipToAssist.reset();
@@ -982,114 +982,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(Random::Int(1024) < explosionRate)
 			CreateExplosion(visuals);
 	}
-	else if(hyperspaceSystem || hyperspaceCount)
+	else if(hyperspaceSystem || hyperCount)
 	{
-		// Don't apply external acceleration while jumping.
-		acceleration = Point();
-		
-		// Enter hyperspace.
-		int direction = hyperspaceSystem ? 1 : -1;
-		hyperspaceCount += direction;
-		static const int HYPER_C = 100;
-		static const double HYPER_A = 2.;
-		static const double HYPER_D = 1000.;
-		if(hyperspaceSystem)
-			fuel -= hyperspaceFuelCost / HYPER_C;
-		
-		// Create the particle effects for the jump drive. This may create 100
-		// or more particles per ship per turn at the peak of the jump.
-		if(isUsingJumpDrive && !forget)
-			CreateSparks(visuals, "jump drive", hyperspaceCount * Width() * Height() * .000006);
-		
-		if(hyperspaceCount == HYPER_C)
-		{
-			currentSystem = hyperspaceSystem;
-			hyperspaceSystem = nullptr;
-			targetSystem = nullptr;
-			// Check if the target planet is in the destination system or not.
-			const Planet *planet = (targetPlanet ? targetPlanet->GetPlanet() : nullptr);
-			if(!planet || planet->IsWormhole() || !planet->IsInSystem(currentSystem))
-				targetPlanet = nullptr;
-			// Check if your parent has a target planet in this system.
-			shared_ptr<Ship> parent = GetParent();
-			if(!targetPlanet && parent && parent->targetPlanet)
-			{
-				planet = parent->targetPlanet->GetPlanet();
-				if(planet && !planet->IsWormhole() && planet->IsInSystem(currentSystem))
-					targetPlanet = parent->targetPlanet;
-			}
-			direction = -1;
-			
-			// If you have a target planet in the destination system, exit
-			// hyperpace aimed at it. Otherwise, target the first planet that
-			// has a spaceport.
-			Point target;
-			if(targetPlanet)
-				target = targetPlanet->Position();
-			else
-			{
-				for(const StellarObject &object : currentSystem->Objects())
-					if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
-					{
-						target = object.Position();
-						break;
-					}
-			}
-			
-			if(isUsingJumpDrive)
-			{
-				position = target + Angle::Random().Unit() * 300. * (Random::Real() + 1.);
-				return;
-			}
-			
-			// Have all ships exit hyperspace at the same distance so that
-			// your escorts always stay with you.
-			double distance = (HYPER_C * HYPER_C) * .5 * HYPER_A + HYPER_D;
-			position = (target - distance * angle.Unit());
-			position += hyperspaceOffset;
-			// Make sure your velocity is in exactly the direction you are
-			// traveling in, so that when you decelerate there will not be a
-			// sudden shift in direction at the end.
-			velocity = velocity.Length() * angle.Unit();
-		}
-		if(!isUsingJumpDrive)
-		{
-			velocity += (HYPER_A * direction) * angle.Unit();
-			if(!hyperspaceSystem)
-			{
-				// Exit hyperspace far enough from the planet to be able to land.
-				// This does not take drag into account, so it is always an over-
-				// estimate of how long it will take to stop.
-				// We start decelerating after rotating about 150 degrees (that
-				// is, about acos(.8) from the proper angle). So:
-				// Stopping distance = .5*a*(v/a)^2 + (150/turn)*v.
-				// Exit distance = HYPER_D + .25 * v^2 = stopping distance.
-				double exitV = max(HYPER_A, MaxVelocity());
-				double a = (.5 / Acceleration() - .25);
-				double b = 150. / TurnRate();
-				double discriminant = b * b - 4. * a * -HYPER_D;
-				if(discriminant > 0.)
-				{
-					double altV = (-b + sqrt(discriminant)) / (2. * a);
-					if(altV > 0. && altV < exitV)
-						exitV = altV;
-				}
-				if(velocity.Length() <= exitV)
-				{
-					velocity = angle.Unit() * exitV;
-					hyperspaceCount = 0;
-				}
-			}
-		}
+		IterateHyperspace(visuals);
 		position += velocity;
-		if(GetParent() && GetParent()->currentSystem == currentSystem)
-		{
-			hyperspaceOffset = position - GetParent()->position;
-			double length = hyperspaceOffset.Length();
-			if(length > 1000.)
-				hyperspaceOffset *= 1000. / length;
-		}
-		
 		return;
 	}
 	else if(landingPlanet || zoom < 1.)
@@ -1368,6 +1264,152 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 
 
+// Performs one step of the hyperspace animation. (This is called by Move().)
+void Ship::IterateHyperspace(vector<Visual> &visuals)
+{
+	// Don't apply external acceleration while jumping.
+	acceleration = Point();
+	
+	// Initial segment
+	if (hyperCount == 0 && hyperspaceSystem)
+	{
+		hyperSteps = 100;
+		hyperAcceleration = 2.;
+		fleetRadius = 1000.;
+		
+		hyperTarget = Point();
+		
+		// Check if the target planet is in the destination system or not.
+		const Planet *planet = (targetPlanet ? targetPlanet->GetPlanet() : nullptr);
+		if(!planet || planet->IsWormhole() || !planet->IsInSystem(hyperspaceSystem))
+			targetPlanet = nullptr;
+		// Check if your parent has a target planet in the destination system.
+		shared_ptr<Ship> parent = GetParent();
+		if(!targetPlanet && parent && parent->targetPlanet)
+		{
+			planet = parent->targetPlanet->GetPlanet();
+			if(planet && !planet->IsWormhole() && planet->IsInSystem(hyperspaceSystem))
+				targetPlanet = parent->targetPlanet;
+		}
+		
+		// If you have a target planet in the destination system, exit
+		// hyperpace aimed at it. Otherwise, target the first planet that
+		// has a spaceport.
+		if(targetPlanet)
+			hyperTarget = targetPlanet->Position();
+		else
+		{
+			for(const StellarObject &object : hyperspaceSystem->Objects())
+				if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+				{
+					hyperTarget = object.Position();
+					break;
+				}
+		}
+	}
+	
+	// Repeated segment
+	int hyperspaceRate = hyperspaceSystem ? 1 : -1; // Postive values move towards transition, negative values move away
+	hyperCount += hyperspaceRate;
+	
+	if(hyperspaceSystem)
+		fuel -= hyperspaceFuelCost / hyperSteps;
+	
+	if(GetParent() && GetParent()->currentSystem == currentSystem)
+	{
+		hyperOffset = position+velocity - GetParent()->position; // Allows formation to be held through hyperspace
+		double length = hyperOffset.Length();
+		if(length > fleetRadius) // Condense fleet around leader
+		{
+			Point offsetFromDesired = hyperOffset-hyperOffset*(fleetRadius/length);
+			position -= offsetFromDesired*((0.05+0.05*hyperCount)/hyperSteps); // This calculation is arbitrary, and chosen to look good in-game
+		}
+	}
+	
+	//Hyper Drive Repeat
+	if(!isUsingJumpDrive)
+	{
+		if (hyperCount <= hyperSteps){ // If false, the ship is a cruising stage of hyperspace travel
+			velocity += (hyperAcceleration * hyperspaceRate) * angle.Unit();
+		}
+
+		if(velocity.Length() <= MaxVelocity() && !hyperspaceSystem)
+		{
+			double stoppingDistance = .5 * velocity.LengthSquared() / Acceleration(); //Distance ship travels while decelerating
+			double turnDistance = velocity.Length() * 150. / TurnRate(); //Distance ship travels before it can start decelerating
+			if (stoppingDistance+turnDistance <= (hyperTarget-position).Length())
+				hyperCount = 0;
+		}
+	}
+	
+	//Jump Drive Repeat
+	else
+	{
+		// Create the particle effects for the jump drive. This may create 100
+		// or more particles per ship per turn at the peak of the jump.
+		if(!forget)
+			CreateSparks(visuals, "jump drive", hyperCount * Width() * Height() * .000006);
+	}
+	
+	// Transition Segment
+	if(hyperCount >= hyperSteps && hyperspaceRate > 0)
+	{
+		Point hyperspaceDirection = (hyperspaceSystem->Position() - currentSystem->Position()).Unit(); // Used by Jump Drive
+		
+		currentSystem = hyperspaceSystem;
+		hyperspaceSystem = nullptr;
+		targetSystem = nullptr;
+		
+		// Make sure your velocity is in exactly the direction you are
+		// traveling in, so that when you decelerate there will not be a
+		// sudden shift in direction at the end.
+		velocity = velocity.Length() * angle.Unit();
+		
+		double borderRadius = currentSystem->Border();
+		
+		// Hyper Drive Transition
+		if(!isUsingJumpDrive)
+		{
+			Angle inverseAngle = Angle(-angle.Degrees());
+			Point targetRotated = inverseAngle.Rotate(hyperTarget); // Rotated so that positions relative to the star are from the ship's perspective. -x is left, +x is right, -y is ahead, +y is before
+			
+			double hyperStopDistance = (hyperSteps * hyperSteps) * .5 * hyperAcceleration;
+			double cruiseDistance = max(0.0, borderRadius-targetRotated.Y()+fleetRadius); // The furthest a ship could possibly have to be set back by to decelerate before the border
+			
+			position = (hyperTarget - (hyperStopDistance+cruiseDistance) * angle.Unit());
+			position += hyperOffset;
+			
+			Point offsetTargetRotated = inverseAngle.Rotate(hyperTarget+hyperOffset); // Like targetRotated, but taking into account the offset of the target.
+			if(abs(offsetTargetRotated.X()) < borderRadius)
+			{
+				cruiseDistance -= max(0.0, borderRadius*cos(asin(offsetTargetRotated.X()/borderRadius))-offsetTargetRotated.Y()); // How far into the border the ship has to go to reach its target
+			}
+			
+			double cruiseSpeed = hyperSteps*hyperAcceleration;
+			hyperCount += cruiseDistance/cruiseSpeed; // While hyperCount is more than 0, there is no acceleration.
+		}
+		
+		// Jump Drive Transition
+		else
+		{
+			Point jumpTarget;
+			if(hyperTarget.X() != 0 || hyperTarget.Y() != 0)
+				jumpTarget = hyperTarget;
+			else
+				jumpTarget = -hyperspaceDirection;
+			position = hyperTarget + hyperOffset;
+			if(position.Length() < borderRadius)
+			{
+				position = ((jumpTarget).Unit()*borderRadius)+hyperOffset;
+				if(position.Length() < borderRadius)
+					position = position.Unit()*borderRadius;
+			}
+		}
+	}
+}
+
+
+
 // Generate energy, heat, etc. (This is called by Move().)
 void Ship::DoGeneration()
 {
@@ -1532,7 +1574,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 {
 	// Allow fighters to launch from a disabled ship, but not from a ship that
 	// is landing, jumping, or cloaked.
-	if(!IsDestroyed() && (!commands.Has(Command::DEPLOY) || zoom != 1. || hyperspaceCount || cloak))
+	if(!IsDestroyed() && (!commands.Has(Command::DEPLOY) || zoom != 1. || hyperCount || cloak))
 		return;
 	
 	for(Bay &bay : bays)
@@ -1811,7 +1853,7 @@ bool Ship::IsCapturable() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1. && !explosionRate && !forget && !isInvisible && cloak < 1. && hull >= 0. && hyperspaceCount < 70);
+	return (zoom == 1. && !explosionRate && !forget && !isInvisible && cloak < 1. && hull >= 0. && hyperCount < 70);
 }
 
 
@@ -1868,7 +1910,7 @@ bool Ship::CanLand() const
 
 bool Ship::CannotAct() const
 {
-	return (zoom != 1. || isDisabled || hyperspaceCount || pilotError || cloak);
+	return (zoom != 1. || isDisabled || hyperCount || pilotError || cloak);
 }
 
 
@@ -1889,7 +1931,7 @@ bool Ship::IsEnteringHyperspace() const
 
 bool Ship::IsHyperspacing() const
 {
-	return hyperspaceCount != 0;
+	return hyperCount != 0;
 }
 
 
@@ -1897,7 +1939,7 @@ bool Ship::IsHyperspacing() const
 // Check if this ship is hyperspacing, specifically via a jump drive.
 bool Ship::IsUsingJumpDrive() const
 {
-	return (hyperspaceSystem || hyperspaceCount) && isUsingJumpDrive;
+	return (hyperspaceSystem || hyperCount) && isUsingJumpDrive;
 }
 
 
@@ -1907,7 +1949,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 {
 	// Ships can't jump while waiting for someone else, carried, or if already jumping.
 	if(IsDisabled() || (!waitingIsReady && commands.Has(Command::WAIT))
-			|| hyperspaceCount || !targetSystem || !currentSystem)
+			|| hyperCount || !targetSystem || !currentSystem)
 		return false;
 	
 	// Check if the target system is valid and there is enough fuel to jump.
