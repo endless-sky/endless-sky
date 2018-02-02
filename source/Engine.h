@@ -21,14 +21,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
-#include "PlanetLabel.h"
 #include "Point.h"
-#include "Projectile.h"
 #include "Radar.h"
 #include "Rectangle.h"
-#include "Ship.h"
-#include "ShipEvent.h"
-#include "Visual.h"
 
 #include <condition_variable>
 #include <list>
@@ -41,8 +36,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Flotsam;
 class Government;
 class Outfit;
+class PlanetLabel;
 class PlayerInfo;
+class Projectile;
+class Ship;
+class ShipEvent;
 class Sprite;
+class Visual;
 
 
 

@@ -32,6 +32,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Preferences.h"
 #include "Random.h"
 #include "Screen.h"
+#include "Ship.h"
+#include "ShipEvent.h"
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"

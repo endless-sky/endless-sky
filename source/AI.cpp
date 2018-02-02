@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "StellarObject.h"
 #include "System.h"
 #include "Weapon.h"
 

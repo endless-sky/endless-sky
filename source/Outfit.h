@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Weapon.h"
 
-#include "Body.h"
 #include "Dictionary.h"
 
 #include <map>
@@ -23,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <utility>
 #include <vector>
 
+class Body;
 class DataNode;
 class Effect;
 class Sound;

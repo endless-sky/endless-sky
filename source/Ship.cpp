@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Projectile.h"
 #include "Random.h"
 #include "ShipEvent.h"
+#include "StellarObject.h"
 #include "System.h"
 #include "Visual.h"
 
