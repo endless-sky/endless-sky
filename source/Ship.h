@@ -472,12 +472,12 @@ private:
 	const Planet *landingPlanet = nullptr;
 	
 	int hyperSteps;
-    double hyperAcceleration;
-    double fleetRadius;
+	double hyperAcceleration;
+	double fleetRadius;
 	double hyperspaceFuelCost = 0.;
 	bool isUsingJumpDrive = false;
 	const System *hyperspaceSystem = nullptr;
-    Point hyperTarget;
+	Point hyperTarget;
 	int hyperCount = 0;
 	Point hyperOffset;
 	

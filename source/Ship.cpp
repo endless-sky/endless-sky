@@ -1271,7 +1271,7 @@ void Ship::IterateHyperspace(vector<Visual> &visuals)
 	acceleration = Point();
 	
 	// Initial segment
-	if (hyperCount == 0 && hyperspaceSystem)
+	if(hyperCount == 0 && hyperspaceSystem)
 	{
 		hyperSteps = 100;
 		hyperAcceleration = 2.;
@@ -1315,21 +1315,22 @@ void Ship::IterateHyperspace(vector<Visual> &visuals)
 	if(hyperspaceSystem)
 		fuel -= hyperspaceFuelCost / hyperSteps;
 	
-	if(GetParent() && GetParent()->currentSystem == currentSystem)
+	if(GetParent() && GetParent()->currentSystem == currentSystem && hyperspaceSystem)
 	{
 		hyperOffset = position+velocity - GetParent()->position; // Allows formation to be held through hyperspace
 		double length = hyperOffset.Length();
 		if(length > fleetRadius) // Condense fleet around leader
 		{
-			Point offsetFromDesired = hyperOffset-hyperOffset*(fleetRadius/length);
-			position -= offsetFromDesired*((0.05+0.05*hyperCount)/hyperSteps); // This calculation is arbitrary, and chosen to look good in-game
+			Point offsetFromDesired = hyperOffset-hyperOffset * (fleetRadius/length);
+			hyperOffset = hyperOffset * (fleetRadius/length);
+			position -= offsetFromDesired.Unit()*5 + offsetFromDesired * 0.1*((double)hyperCount / hyperSteps); // This calculation is arbitrary, and chosen to look good in-game
 		}
 	}
 	
 	//Hyper Drive Repeat
 	if(!isUsingJumpDrive)
 	{
-		if (hyperCount <= hyperSteps){ // If false, the ship is a cruising stage of hyperspace travel
+		if(hyperCount <= hyperSteps){ // If false, the ship is a cruising stage of hyperspace travel
 			velocity += (hyperAcceleration * hyperspaceRate) * angle.Unit();
 		}
 
