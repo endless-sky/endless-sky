@@ -2437,7 +2437,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 			// Loop through each ship this hardpoint could shoot at. Find the
 			// one that is the "best" in terms of how many frames it will take
 			// to aim at it and for a projectile to hit it.
-			double bestScore = 1000.;
+			double bestScore = numeric_limits<double>::infinity();
 			double bestAngle = 0.;
 			for(const Body *target : enemies)
 			{
