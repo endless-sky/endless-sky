@@ -1623,7 +1623,7 @@ void AI::Swarm(Ship &ship, Command &command, const Ship &target)
 	Point direction = target.Position() - ship.Position();
 	double maxSpeed = ship.MaxVelocity();
 	double rendezvousTime = RendezvousTime(direction, target.Velocity(), maxSpeed);
-	if(rendezvousTime != rendezvousTime || rendezvousTime > 600.)
+	if(isnan(rendezvousTime) || rendezvousTime > 600.)
 		rendezvousTime = 600.;
 	direction += rendezvousTime * target.Velocity();
 	MoveTo(ship, command, target.Position() + direction, .5 * maxSpeed * direction.Unit(), 50., 2.);
@@ -1660,7 +1660,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	
 	// Time it will take (roughly) to move to the target ship:
 	double positionTime = RendezvousTime(positionDelta, target.Velocity(), maxV);
-	if(positionTime != positionTime || positionTime > MAX_TIME)
+	if(isnan(positionTime) || positionTime > MAX_TIME)
 		positionTime = MAX_TIME;
 	Point rendezvous = positionDelta + target.Velocity() * positionTime;
 	double positionAngle = Angle(rendezvous).Degrees();
@@ -1822,7 +1822,7 @@ void AI::PickUp(Ship &ship, Command &command, const Body &target)
 	
 	// Estimate where the target will be by the time we reach it.
 	double time = RendezvousTime(p, v, vMax);
-	if(std::isnan(time))
+	if(isnan(time))
 		time = p.Length() / vMax;
 	double degreesToTurn = TO_DEG * acos(min(1., max(-1., p.Unit().Dot(ship.Facing().Unit()))));
 	time += degreesToTurn / ship.TurnRate();
@@ -2112,7 +2112,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command)
 			Point v = it->Velocity() - ship.Velocity();
 			double vMax = ship.MaxVelocity();
 			double time = RendezvousTime(p, v, vMax);
-			if(std::isnan(time))
+			if(isnan(time))
 				continue;
 			
 			double degreesToTurn = TO_DEG * acos(min(1., max(-1., p.Unit().Dot(ship.Facing().Unit()))));
@@ -2330,7 +2330,7 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 		Point p = target.Position() - start + ship.GetPersonality().Confusion();
 		Point v = target.Velocity() - ship.Velocity();
 		double steps = RendezvousTime(p, v, weapon->Velocity() + .5 * weapon->RandomVelocity());
-		if(!(steps == steps))
+		if(isnan(steps))
 			continue;
 		
 		steps = min(steps, weapon->TotalLifetime());
@@ -2451,9 +2451,13 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 				// forward one time step.
 				p += v;
 				
-				// Find out how long it would take for this projectile to reach
-				// the target.
+				// Find out how long it would take for this projectile to reach the target.
 				double rendezvousTime = RendezvousTime(p, v, vp);
+				// If there is no intersection (i.e. the turret is not facing the target),
+				// consider this target "out-of-range" but still targetable.
+				if(isnan(rendezvousTime))
+					rendezvousTime = max(p.Length() / (vp ? vp : 1.), 2 * weapon->TotalLifetime());
+				
 				// Determine where the target will be at that point.
 				p += v * rendezvousTime;
 				
@@ -2626,7 +2630,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 			
 			// Calculate how long it will take the projectile to reach its target.
 			double steps = RendezvousTime(p, v, vp);
-			if(steps == steps && steps <= lifetime)
+			if(!isnan(steps) && steps <= lifetime)
 			{
 				command.SetFire(index);
 				continue;
