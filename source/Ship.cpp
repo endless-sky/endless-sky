@@ -662,6 +662,8 @@ string Ship::FlightCheck() const
 	double thrustEnergy = attributes.Get("thrusting energy");
 	double turn = attributes.Get("turn");
 	double turnEnergy = attributes.Get("turning energy");
+	double hyperDrive = attributes.Get("hyperdrive");
+	double jumpDrive = attributes.Get("jump drive");
 	
 	// Error conditions:
 	if(IdleHeat() >= MaximumHeat())
@@ -686,6 +688,8 @@ string Ship::FlightCheck() const
 		return "limited turn?";
 	if(energy - .8 * solar < .2 * (turnEnergy + thrustEnergy))
 		return "solar power?";
+	if(!hyperDrive && !jumpDrive && !canBeCarried)
+		return "no hyperdrive?";
 	
 	return "";
 }
