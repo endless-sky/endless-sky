@@ -187,7 +187,6 @@ private:
 	int grudgeTime = 0;
 	
 	CollisionSet shipCollisions;
-	CollisionSet cloakedCollisions;
 	
 	int alarmTime = 0;
 	double flash = 0.;

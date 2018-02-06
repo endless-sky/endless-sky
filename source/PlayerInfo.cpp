@@ -950,7 +950,7 @@ void PlayerInfo::Land(UI *ui)
 	vector<shared_ptr<Ship>>::iterator it = ships.begin();
 	while(it != ships.end())
 	{
-		if(!*it || (*it)->IsDestroyed() || !(*it)->GetGovernment()->IsPlayer())
+		if((*it)->IsDestroyed() || !(*it)->IsYours())
 		{
 			// If any of your ships are destroyed, your cargo "cost basis" should
 			// be adjusted based on what you lost.
