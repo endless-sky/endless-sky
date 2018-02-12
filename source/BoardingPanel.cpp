@@ -105,6 +105,8 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	if(!victim->IsCapturable())
 		messages.emplace_back("This is not a ship that you can capture.");
 	
+	enemyActualCrew = victim->Crew();
+	
 	// Sort the plunder by price per ton.
 	sort(plunder.begin(), plunder.end());
 }
@@ -383,7 +385,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			else if(!victim->Crew())
 			{
 				messages.push_back("You have succeeded in capturing this ship.");
-				victim->GetGovernment()->Offend(ShipEvent::CAPTURE, victim->RequiredCrew());
+				victim->GetGovernment()->Offend(ShipEvent::CAPTURE, enemyActualCrew);
 				victim->WasCaptured(you);
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
 					you->TransferFuel(victim->JumpFuelMissing(), &*victim);
