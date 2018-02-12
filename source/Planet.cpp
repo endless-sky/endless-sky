@@ -445,16 +445,14 @@ bool Planet::IsAccessible(const Ship *ship) const
 	if(!ship)
 		return false;
 	if(it != end)
-	{
 		for( ; it != end; ++it)
 			if(!ship->Attributes().Get(it->substr(PREFIX.length())))
 				return false;
-	}
 	
 	// Check whether any of this planet's attributes are in the form of the
-	// string "excludes: <attribute>"; if so the ship must not have that attribute.
-	PREFIX = "excludes: ";
-	PREFIX_END = "excludes:!";
+	// string "prohibits: <attribute>"; if so the ship must not have that attribute.
+	PREFIX = "prohibits: ";
+	PREFIX_END = "prohibits:!";
 	it = attributes.lower_bound(PREFIX);
 	end = attributes.lower_bound(PREFIX_END);
 	if(it != end)
