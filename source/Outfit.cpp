@@ -31,6 +31,10 @@ namespace {
 	inline void PreciseAddMul(double &value, double mul, int count)
 	{
 		value = trunc(trunc(value * INV_EPS) + trunc(trunc(mul * INV_EPS) * count)) * EPS;
+		// Remove sign from negative zero.
+		// EPS does not have precision errors so a simple comparison is enough.
+		if(value == -0.)
+			value = 0.;
 	}
 }
 
