@@ -24,6 +24,14 @@ using namespace std;
 
 namespace {
 	const double EPS = 0.0000000001;
+	const double INV_EPS = 1. / EPS;
+	
+	
+	// Minimize precision errors of "value += mul * count".
+	inline void PreciseAddMul(double &value, double mul, int count)
+	{
+		value = trunc(trunc(value * INV_EPS) + trunc(trunc(mul * INV_EPS) * count)) * EPS;
+	}
 }
 
 const vector<string> Outfit::CATEGORIES = {
@@ -186,13 +194,9 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 void Outfit::Add(const Outfit &other, int count)
 {
 	cost += other.cost * count;
-	mass += other.mass * count;
+	PreciseAddMul(mass, other.mass, count);
 	for(const auto &at : other.attributes)
-	{
-		attributes[at.first] += at.second * count;
-		if(fabs(attributes[at.first]) < EPS)
-			attributes[at.first] = 0.;
-	}
+		PreciseAddMul(attributes[at.first], at.second, count);
 	
 	for(const auto &it : other.flareSprites)
 	{
