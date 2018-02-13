@@ -26,6 +26,8 @@ ship "Quarg Skylark"
 		"outfit space" 600
 		"weapon capacity" 200
 		"engine capacity" 120
+		"hull repair rate" 5
+		"hull energy" 5
 		weapon
 			"blast radius" 250
 			"shield damage" 1000
@@ -73,6 +75,8 @@ ship "Quarg Wardragon"
 		"outfit space" 600
 		"weapon capacity" 200
 		"engine capacity" 120
+		"hull repair rate" 5
+		"hull energy" 5
 		weapon
 			"blast radius" 250
 			"shield damage" 1000
