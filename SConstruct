@@ -1,7 +1,26 @@
 import os
+import subprocess
 
 # Load environment variables, including some that should be renamed.
 env = Environment(ENV = os.environ)
+
+msys = (env['PLATFORM'] == 'msys')
+if msys:
+	# Expecting mingw-w64 set up through MSYSTEM.
+	env = Environment(ENV = os.environ, tools=['mingw'])
+	msystemPrefix  = os.environ['MSYSTEM_PREFIX']
+	print "msys: MSYSTEM=%s" % os.environ['MSYSTEM']
+	print "msys: MSYSTEM_PREFIX=%s" % msystemPrefix
+	if not os.path.exists(msystemPrefix + '/bin/' + env['CXX']):
+		print "msys: warning: %s not found in %s/bin" % (env['CXX'], msystemPrefix)
+		print " Convert the shell to use mingw-w64 by executing:"
+		print '  export MSYSTEM=<MINGW32|MINGW64> ; source /etc/profile'
+	else:
+		try:
+			assert subprocess.check_output(["which", env['CXX']]).index(msystemPrefix) == 0
+		except:
+			print "msys: warning: not using the %s in %s" % (env['CXX'], msystemPrefix)
+
 if 'CXXFLAGS' in os.environ:
 	env.Append(CCFLAGS = os.environ['CXXFLAGS'])
 if 'LDFLAGS' in os.environ:
@@ -32,29 +51,60 @@ if env["mode"] == "profile":
 # Required build flags. If you want to use SSE optimization, you can turn on
 # -msse3 or (if just building for your own computer) -march=native.
 env.Append(CCFLAGS = flags)
-env.Append(LIBS = [
-	"SDL2",
-	"png",
-	"jpeg",
-	"GL",
-	"GLEW",
-	"openal",
-	"pthread"
-]);
-# libmad is not in the Steam runtime, so link it statically:
-if 'SCHROOT_CHROOT_NAME' in os.environ and 'steamrt_scout_i386' in os.environ['SCHROOT_CHROOT_NAME']:
-	env.Append(LIBS = File("/usr/lib/i386-linux-gnu/libmad.a"))
-elif 'SCHROOT_CHROOT_NAME' in os.environ and 'steamrt_scout_amd64' in os.environ['SCHROOT_CHROOT_NAME']:
-	env.Append(LIBS = File("/usr/lib/x86_64-linux-gnu/libmad.a"))
+if msys:
+	env.Append(LIBS = [
+		"winmm", # for timeBeginPeriod
+		"mingw32",
+		"SDL2main",
+		"SDL2.dll",
+		"opengl32.dll",
+		"glew32.dll",
+		"png.dll",
+		"jpeg.dll",
+		"mad.dll",
+		"openal.dll"
+	])
+	env.Append(LINKFLAGS = ["-Wl,--subsystem,windows"])
+	env.Append(RCFLAGS = ['-DWINDRES'])
 else:
-	env.Append(LIBS = "mad")
+	env.Append(LIBS = [
+		"SDL2",
+		"png",
+		"jpeg",
+		"GL",
+		"GLEW",
+		"openal",
+		"pthread"
+	])
+	# libmad is not in the Steam runtime, so link it statically:
+	if 'SCHROOT_CHROOT_NAME' in os.environ and 'steamrt_scout_i386' in os.environ['SCHROOT_CHROOT_NAME']:
+		env.Append(LIBS = File("/usr/lib/i386-linux-gnu/libmad.a"))
+	elif 'SCHROOT_CHROOT_NAME' in os.environ and 'steamrt_scout_amd64' in os.environ['SCHROOT_CHROOT_NAME']:
+		env.Append(LIBS = File("/usr/lib/x86_64-linux-gnu/libmad.a"))
+	else:
+		env.Append(LIBS = "mad")
 
 
 buildDirectory = env["BUILDDIR"] + "/" + env["mode"]
 VariantDir(buildDirectory, "source", duplicate = 0)
 
-sky = env.Program("endless-sky", Glob(buildDirectory + "/*.cpp"))
-
+if msys:
+	res = env.RES(buildDirectory + "/WinApp.rc")
+	sky = env.Program("endless-sky", Glob(buildDirectory + "/*.cpp") + res)
+	# Copy dlls from $MSYSTEM_PREFIX/bin.
+	env['BUILDERS']['Dlls'] = Builder(action = "objdump -p $SOURCE | grep 'DLL Name: ' | gawk '{ sub(/.*DLL Name: /, \"\", $0); print}' > $TARGET")
+	dlls = env.Dlls(buildDirectory + "/dlls.txt", sky)
+	def copy_dlls(target, source, env):
+		with open(str(target[0]), "r") as f:
+			for dll in f.read().splitlines():
+				src = msystemPrefix + '/bin/' + dll
+				if os.path.exists(src):
+					env.Execute(Copy(dll, src))
+	AddPostAction(dlls, Action(copy_dlls, "msys: Copying dlls ..."))
+	# Delete dlls on clean.
+	Clean(dlls, env.Glob("*.dll"))
+else:
+	sky = env.Program("endless-sky", Glob(buildDirectory + "/*.cpp"))
 
 # Install the binary:
 env.Install("$DESTDIR$PREFIX/games", sky)

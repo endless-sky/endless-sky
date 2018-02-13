@@ -59,6 +59,7 @@ Conversation LoadConversation();
 
 
 
+extern "C"
 int main(int argc, char *argv[])
 {
 	Conversation conversation;
