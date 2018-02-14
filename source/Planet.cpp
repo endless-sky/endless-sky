@@ -448,7 +448,7 @@ bool Planet::IsAccessible(const Ship *ship) const
 		auto end = attributes.lower_bound(PREFIX_END[i]);
 		for( ; it != end; ++it)
 		{
-			double val  = ship->Attributes().Get(it->substr(PREFIX[i].length()));
+			double val = ship->Attributes().Get(it->substr(PREFIX[i].length()));
 			if((!i && !val) || (i && val))
 				return false;
 		}
