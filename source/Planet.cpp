@@ -446,7 +446,7 @@ bool Planet::IsAccessible(const Ship *ship) const
 		auto end = attributes.lower_bound(PREFIX_END[i]);
 		 // If the attribute is required yet not present, or prohibited yet present, landing is not allowed.
 		for( ; it != end; ++it)
-			if(!i != !ship->Attributes().Get(it->substr(PREFIX[i].length())))
+			if(!i == !ship->Attributes().Get(it->substr(PREFIX[i].length())))
 				return false;
 	}
 	
