@@ -436,6 +436,7 @@ const vector<const System *> &Planet::WormholeSystems() const
 // land on this planet.
 bool Planet::IsAccessible(const Ship *ship) const
 {
+	// If the attribute is required yet not present, or prohibited yet present, landing is not allowed.
 	static const string PREFIX[2] = {"requires: ", "prohibits: "};
 	static const string PREFIX_END[2] = {"requires:!", "prohibits:!"};
 	if(!ship)
@@ -444,12 +445,10 @@ bool Planet::IsAccessible(const Ship *ship) const
 	{
 		auto it = attributes.lower_bound(PREFIX[i]);
 		auto end = attributes.lower_bound(PREFIX_END[i]);
-		 // If the attribute is required yet not present, or prohibited yet present, landing is not allowed.
 		for( ; it != end; ++it)
 			if(!i == !ship->Attributes().Get(it->substr(PREFIX[i].length())))
 				return false;
 	}
-	
 	
 	return true;
 }
