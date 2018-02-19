@@ -76,7 +76,7 @@ mission "First Contact: Kuwaru Efreti"
 	on offer
 		conversation
 			`In your past experience, you've never seen the Quarg move with anything approaching haste or excitement, but when you land on this station a group of them run up to you, moving faster than you thought they were able to. For a minute or two they just gawk at you and talk amongst themselves in their own language; you think you recognize the word "Humani," and perhaps, "Eartha."`
-			`	Finally a Quarg appears who speaks your language, or at least is willing to try. It says, "Welcome, astonishing sojourner. Whither came you, and wherefore visit you us here in the unquiet graveyard of the Korathi?"`
+			`	Finally a Quarg appears who speaks your language, or at least is willing to try. It says, "Welcome, astonishing sojourner. Whither came ye, and wherefore visit ye us here in the unquiet graveyard of the Korathi?"`
 			choice
 				`	"I'm just here to explore. Can you tell me more about the Korath?"`
 				`	"I came here to learn what happened to the Korath."`
@@ -85,31 +85,31 @@ mission "First Contact: Kuwaru Efreti"
 				`	"What crimes did they commit?"`
 					goto crimes
 				`	"What do you mean, 'thinking war machines'?"`
-			`	"Robotic starships, and autonomous factories to create them. Though now directed by no living being they yet reproduce and wage senseless war against each other. Ware their ships if you wander north and east of here. They wield diverse weapons and strange, and we can bring you no succor within the bourne of their space."`
+			`	"Robotic starships, and autonomous factories to create them. Though now directed by no living being reproduce yet and wage senseless war against each other they. Ware their ships should ye wander north and east of here. Wield they diverse weapons and strange, and bring you can we no succor within the bourne of their space."`
 			choice
 				`	"You mentioned 'crimes.' What crimes did they commit?"`
-			`	"Of that we will not speak, lest we awaken in you the desire to follow in their footsteps. But you may observe the wreckage of their abominations and take warning."`
+			`	"Of that we shall not speak, lest awaken in you we the desire to in their footsteps follow. But observe may ye the wreckage of their abominations and take warning."`
 				goto korath
 			
 			label crimes
-			`	"Of that we will not speak, lest we awaken in you the desire to follow in their footsteps. But you may observe the wreckage of their abominations and take warning."`
+			`	"Of that we shall not speak, lest awaken in you we the desire to in their footsteps follow. But observe may ye the wreckage of their abominations and take warning."`
 			choice
 				`	"You mentioned 'thinking war machines.' What are those?"`
-			`	"Robotic starships, and autonomous factories to create them. Though now directed by no living being they yet reproduce and wage senseless war against each other. Ware their ships if you wander north and east of here. They wield diverse weapons and strange, and we can bring you no succor within the bourne of their space."`
+			`	"Robotic starships, and autonomous factories to create them. Though now directed by no living being reproduce yet and wage against each other senseless war they. Ware their ships should ye wander north and east of here. Wield they diverse weapons and strange, and bring you can we no succor within the bourne of their space."`
 			
 			label korath
 			`	You are interrupted as one of the Korath who inhabit this ringworld walks by, and the Quarg says, "Friend Korath, meet the human."`
 			`	"<first> <last>," you say, holding out a hand automatically. The Korath does not shake your hand, but instead greets you by holding up both hands, palms toward you. It says something in its own language, then hurries away.`
-			`	The Quarg says to you, "One faction among the Korath desired peace. Korath Efreti, they name themselves, which means Korath Friends. They are under our protection and intend you no harm. But, they have not your language; here humans are rare. Have you another question?"`
+			`	The Quarg says to you, "Desired peace one faction among the Korathi. Korath Efreti, name they themselves, which meaneth 'Korath Friends.' Under our protection are and intend no harm you they. But, have not they your language; here humans are rare. Another question have ye?"`
 			choice
 				`	"Will the friendly Korath let me purchase their technology?"`
 				`	"Why don't you destroy the robots, if they're such a threat?"`
 					goto destroy
 				`	"No, but I'm glad to meet you."`
 					decline
-			`	"Visit their worlds," says the Quarg. "Though they learn not your words, you are clever and may speak as one without words does, by pointing at things." You thank it for its time, and the crowd of Quarg that has been gawking at you slowly disperses.`
+			`	"Visit their worlds," says the Quarg. "Though learn not they your words, clever are ye and may speak as doth one without words, by pointing at things." You thank it for its time, and the crowd of Quarg that has been gawking at you slowly disperses.`
 				decline
 			
 			label destroy
-			`	It clicks its teeth together, which might be the Quarg equivalent of laughter. "It was hoped that one faction of robots would destroy the other, and leave less work for us to do, but they are sadly too evenly matched. We instead merely restrain them from expanding, as one isolates a fire one cannot extinguish and waits for it to burn out." You thank it for its time, and the crowd of Quarg that has been gawking at you slowly disperses.`
+			`	It clicks its teeth together, which might be the Quarg equivalent of laughter. "Hoped was it that one faction of robots would destroy the other, and leave for us less work to do, but sadly too evenly matched are they. Instead restrain merely we them from expanding, as one isolateth a fire one cannot extinguish and for it to burn out waiteth." You thank it for its time, and the crowd of Quarg that has been gawking at you slowly disperses.`
 				decline
