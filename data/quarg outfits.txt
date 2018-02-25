@@ -41,7 +41,7 @@ outfit "Quarg Skylance"
 		sprite "projectile/skylance"
 			"frame rate" 1
 		"hardpoint sprite" "hardpoint/quarg skylance"
-		"hardpoint offset" 9.3
+		"hardpoint offset" 10
 		sound "skylance"
 		"hit effect" "skylance impact"
 		"inaccuracy" .4
@@ -75,7 +75,7 @@ outfit "Quarg Anti-Missile"
 	weapon
 		"hit effect" "quarg anti-missile"
 		"hardpoint sprite" "hardpoint/quarg anti missile"
-		"hardpoint offset" 5.5
+		"hardpoint offset" 4
 		"anti-missile" 25
 		"velocity" 500
 		"lifetime" 1
