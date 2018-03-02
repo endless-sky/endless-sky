@@ -148,6 +148,7 @@ government "Korath"
 	
 	"attitude toward"
 		"Kor Sestor" -.01
+		"Bounty Hunter" -.01
 	
 	"player reputation" -10
 
