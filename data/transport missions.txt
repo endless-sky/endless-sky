@@ -198,6 +198,7 @@ mission "Smuggler's Den, Part 2"
 				accept
 	on complete
 		event "smuggler's den: payment" 365
+		log `Helped two teens named Joe and Maria and their daughter Jesse to escape their pirate captain. Dropped them off on Millrace where they'll start a new life.`
 		conversation
 			`You help Joe and Maria, and their daughter Jesse, to carry their few belongings down to the immigration desk, where a clerk lists the job openings available and asks them each to fill out a skill survey. Maria says, "Captain <last>, I don't know how to thank you, but I promise you that once we've got steady jobs, we'll save up and pay you our fare for transporting us here."`
 			`	You wish them the best of luck, and return to your ship.`
@@ -237,6 +238,9 @@ mission "Smuggler's Den: Follow Up"
 					decline
 			`	You contact Joe and Maria and they say they would definitely enjoy seeing you. On your way to the workers' barracks where they live, you stop by a small store and buy some chocolate, plus bread and fresh fruit and some canned goods you think they would be able to use. They thank you for coming and welcome you into their home. Jesse is continuing to grow up, and they have another baby too, now. Joe says the work in the factories is exhausting, and the hours are long, but they never need to worry about where their next meal will come from, or what they'll be required to do to earn it. You leave feeling very glad that you have been able to make such a difference in someone's life.`
 				decline
+				
+	on decline
+		log `Visited Joe and Maria on Millrace. Life is tough, but they are doing far better now than they were on a pirate ship. Jesse has grown and the couple already has another baby to look after.`
 
 
 
@@ -548,6 +552,7 @@ mission "Deep Archaeology 3"
 	
 	on complete
 		payment 200000
+		log `Agreed to take a piece of wood from a church on Midgard for an archaeologist. Carbon dating suggests that the church was built many centuries before the discovery of the hyperdrive.`
 		conversation
 			`You return to the lab where you dropped off the anonymous archaeologist. Soon after you arrive, he appears and eagerly collects the two samples, giving you a payment of <payment> for your troubles. "But please," he says, "stick around long enough to learn the results." He hands the two envelopes to a lab technologist, and says, "Here you go, John, Take a look and let us know what you find."`
 			`	After the lab tech leaves, he explains, "You see, the ratio of Carbon 12 to Carbon 14 varies from world to world, so accurate dating can only be done if you have a control sample to compare against. Only a handful of archaeological studies have been done in the Deep, and those were sloppy - they used the standard tables of Earth's carbon ratios instead of determining the local concentrations."`
@@ -627,6 +632,7 @@ mission "Deep Archaeology 5"
 	
 	on complete
 		payment 300000
+		log `Returned to Midgard with Albert Foster, the archaeologist, to map the area around the church. The instruments discovered what looked like an artificial singularity. Got chased away by Deep ships before being able to look closer.`
 		conversation
 			`You breathe a sigh of relief as you land safely in the spaceport on <planet>. "Okay, what was that all about?" you ask.`
 			`	"I honestly don't know," says Albert. "I can tell you what I suspect, though. The history books don't actually say when the Deep was first settled. The first documented expedition to the Deep was in the 24th century, and they found several human colonies already established in the region, claiming to date back to the very dawn of space flight. But I think the first settlers were brought there long before that. Brought there on alien ships."`
@@ -682,6 +688,7 @@ mission "There Might Be Riots 1"
 	on complete
 		payment
 		payment 100000
+		log `Dropped the famous band "There Might Be Riots" off on Wayfarer. They drew quite the crowd, and paid very well.`
 		conversation
 			`You drop off the band "There Might Be Riots" on <destination>. Along the way, you got to hear some of their music, which is mostly characterized by frenzied instrumentals, a very energetic brass section, and bizarre lyrics. One day while you were in transit, they nearly drove you insane by playing their catchy but nonsensical song "Henhouse In Your Soul" for four hours straight, but other than that they have been good passengers, and their stage manager gives you an incredibly generous payment of <payment>.`
 			`	"We've already got a gig lined up for tonight," says Ulrich. "Want to come? We'll give you free tickets." Given how well they just paid you, it might be worth going just to build a relationship with the band, even if not for the music itself.`
@@ -889,6 +896,7 @@ mission "There Might Be Riots part 3B"
 	
 	on complete
 		payment 500000
+		log `Brought "There Might Be Riots" to the Hai world of Allhome after escaping a swarm of combat drones that disrupted their performance on Pilot. Ulrich spoke of a cloudy star in the Rim where he heard a voice in his head after parking his ship.`
 		conversation
 			`You drop off There Might Be Riots on Allhome. Ulrich is looking around the spaceport in wide-eyed excitement. "This is it, guys!" he says. "We're back in the land of the peaceful squirrels. Captain <last>, I don't know how to thank you, but here's a start." He hands you <payment>.`
 			`	As the rest of the band begins unloading their things, Ulrich adds speaking more quietly, "And, in good minstrel fashion I will pay you not just with money, but with a story.`
@@ -953,6 +961,7 @@ mission "Sad Archie"
 			`	Then you wake up and find yourself back in your ship, in the Ildaria system. Weird.`
 	
 	on complete
+		log `Experienced a strange vision while drifting in the Ildaria system that looked like the fall of a civilization of dragon-people. The terrain on the planet of Zug looks strikingly similar to this vision.`
 		conversation
 			`On a whim, as you're landing on Zug you pull up a geological map of the planet and find that the geography you dreamt of while drifting in the Ildaria system was surprisingly close to the real thing. There's even a massive basalt outcropping right where you saw a lava flow burying a city. There's no way your ship's sensors can tell what's underneath it, though.`
 
@@ -999,6 +1008,7 @@ mission "Rim Archaeology 1"
 				accept
 	
 	on complete
+		log `Found the archaeologist Albert Foster and told him about the vision of the dragon-people on Zug. Foster suggested that the vision was the result of an Archon. He discovered a buried city under the lava flows on Zug; perhaps the vision was a real view of the past.`
 		conversation
 			`You land your ship on the lava flow, and Albert Foster fires up his surveying equipment. "This will show me a density profile of different layers of rock beneath us," he says. As he gradually dials the instrument down to deeper and deeper layers, a few irregular white spots appear on the screen.`
 			choice
@@ -1204,6 +1214,7 @@ mission "Rim Archaeology 5A"
 	on complete
 		payment 400000
 		event "rim archaeology results" 97
+		log `With the help of a Quarg ship, fought off a group of antique theives looking to rob the archaeological site that Albert Foster dug up. Foster will need some time to study what he has found and release the results of his findings.`
 		conversation
 			`A plume of smoke is rising from the dig site. Fearing the worst, you land and find out that a missile fired by one of the pirates destroyed one of the huts where the workers were living, but fortunately no one was inside it at the time. Foster is shaken but still committed to finishing the work. "It will be months before we've excavated enough to be able to publish any findings," he says, "but Yarthis has told me that the Quarg will be stationing a Wardragon here for the remainder of the project, to prevent any further foul play." Foster gives you one last payment: four hundred thousand credits for your help driving off the pirates. "And I'll be sure to give you credit for your help when the news goes public," he says.`
 
@@ -1407,6 +1418,9 @@ mission "Hallucination"
 		ship "Hallucination" "Peace"
 		ship "Hallucination" "Happy"
 		ship "Hallucination" "Shiny"
+		
+	on complete
+		log `Agreed to transport illegal drugs. Tried some of them while refueling and instantly regretted it. The sky truly is endless.`
 
 
 
@@ -1707,6 +1721,7 @@ mission "Terraforming 2"
 		has "Terraforming 1: done"
 	
 	on offer
+		log `Brought Eric and Alaric to Glory, two managers of a mining corporation on Rand hoping to terraform the planet. Terraforming Rand would be immensely expensive, but a girl named Amy has a theory that may make the process cheap.`
 		conversation
 			`You drop off the two managers from Rand, whose names are Eric and Alaric, at the Academy. While you wait for their meeting to end, you look around the lobby. The students have apparently just had some sort of science symposium, and poster boards are on display all along the walls. One of them catches your eye: the title is "Affordable Terraforming through Equilibrium Mapping."`
 			`	The basic concept of the poster seems to be that instead of altering the climate of a planet through brute force, it ought to instead be feasible to use a properly timed nudge in the right direction to cause the climate to shift toward a new equilibrium point that supports greater biological complexity. This student seems to think that planets naturally "want" to grow more complex and support more life, but that they sometimes get "stuck" in less optimum states.`
@@ -1795,6 +1810,7 @@ mission "Terraforming 3"
 	
 	on complete
 		payment 20000
+		log `Agreed with Amy's idea to steer an asteroid into Rand's polar ice cap in order to change the planet's climate. Hopefully this ends well.`
 		dialog
 			`When you land, the sky already seems noticeably darker than before. Eric runs up to your ship. "You did it!" he says, excited. "A perfect hit. Now we just have to wait and see what the results are. Meet us in the spaceport bar again in a few hours, and Amy will have her initial measurements ready." He hands you a credit chip for <payment>.`
 
@@ -1857,6 +1873,7 @@ mission "Terraforming 5"
 	
 	on complete
 		payment 60000
+		log `Amy's theory to terraform Rand seems to have worked. Percipitation around the planet has greatly increased with the introduction of new water into the water cycle.`
 		conversation
 			`When you get back to <planet>, Amy has you fly in a random path a few kilometers above the surface while she periodically dumps loads of seeds and plant material out the airlock. In the process, you fly through several rainstorms. This world's climate has indeed been altered. But you can't help wonder how a few tons of seed spread out over the entire surface of a planet is really going to help anything.`
 			`	Then you meet up with Eric and Alaric. Eric is elated. "We just got a massive rainstorm here!" he says. "We haven't had that much precipitation in a decade!"`
@@ -1934,6 +1951,7 @@ mission "Terminus exploration"
 		fleet "Small Southern Pirates" 2
 	on complete
 		payment 90000
+		log `Recovered data from a derelict science drone for a team of scientists, who were studying a strange red anomaly in the Terminus system. They suggest that it may be a partially collapsed wormhole.`
 		conversation
 			`The scientist is overjoyed that you were able to retrieve the data from the drone. Almost in tears, he says, "We were worried that all our planning and fundraising had been for nothing. These measurements will help us to understand that spatial anomaly far better than we do right now." He hands you a credit chip worth <payment>.`
 			choice
