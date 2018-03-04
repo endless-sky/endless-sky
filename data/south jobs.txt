@@ -10,7 +10,7 @@
 
 mission "Pirate Occupation [0]"
 	name `Pirates occupying <system>`
-	job
+	minor
 	repeat
 	description `A small band of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
 	to offer
@@ -19,13 +19,31 @@ mission "Pirate Occupation [0]"
 	source
 		attributes "south" "rim"
 	destination
-		distance 2 10
+		distance 2 3
 		attributes "south"
+	npc
+		government "Militia"
+		personality heroic
+		fleet "Small Militia"
+	npc
+		government "Militia"
+		personality heroic staying
+		system destination
+		fleet "Small Militia"
 	npc evade
 		government "Pirate"
 		personality heroic staying target harvests plunders
 		system destination
 		fleet "Small Southern Pirates" 3
+	on offer
+		conversation
+			`Suddenly you hear raised voices and shouting outside as pilots run for their ships: "<destination> is under attack by a small pirate fleet! They are requesting help from any combat-worthy ship in the region to join in the defenses!" The authorities of <planet> will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
+			choice
+				"	(Stay here until the fight is over.)"
+					decline
+				"	(Join the defense fleet.)"
+			"A few militia pilots have gathered to help repel the pirate attack. You join them, and take off together..."
+				launch
 	on complete
 		payment 100000
 		dialog `The government of <planet> thanks you for defeating the pirates and pays you <payment>.`
@@ -33,7 +51,7 @@ mission "Pirate Occupation [0]"
 
 mission "Pirate Occupation [1]"
 	name `Pirates occupying <system>`
-	job
+	minor
 	repeat
 	description `A gang of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
 	to offer
@@ -42,14 +60,32 @@ mission "Pirate Occupation [1]"
 	source
 		attributes "south" "rim"
 	destination
-		distance 2 10
+		distance 2 3
 		attributes "south"
+	npc
+		government "Militia"
+		personality heroic
+		fleet "Small Militia" 2
+	npc
+		government "Militia"
+		personality heroic staying
+		system destination
+		fleet "Small Militia"
 	npc evade
 		government "Pirate"
 		personality heroic staying target harvests plunders
 		system destination
 		fleet "Small Southern Pirates" 2
 		fleet "Large Southern Pirates"
+	on offer
+		conversation
+			`Suddenly you hear raised voices and shouting outside as pilots run for their ships: "<destination> is under attack by pirates! They are requesting help from any combat-worthy ship in the region to join in the defenses!" The authorities of <planet> will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
+			choice
+				"	(Stay here until the fight is over.)"
+					decline
+				"	(Join the defense fleet.)"
+			"A few militia pilots have gathered to help repel the pirate attack. You join them, and take off together..."
+				launch
 	on complete
 		payment 150000
 		dialog `The government of <planet> thanks you for defeating the pirates and pays you <payment>.`
@@ -57,7 +93,7 @@ mission "Pirate Occupation [1]"
 
 mission "Pirate Occupation [2]"
 	name `Pirates occupying <system>`
-	job
+	minor
 	repeat
 	description `A large gang of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
 	to offer
@@ -66,13 +102,32 @@ mission "Pirate Occupation [2]"
 	source
 		attributes "south" "rim"
 	destination
-		distance 2 10
+		distance 2 3
 		attributes "south"
+	npc
+		government "Militia"
+		personality heroic
+		fleet "Large Militia"
+		fleet "Small Militia"
+	npc
+		government "Militia"
+		personality heroic staying
+		system destination
+		fleet "Small Militia"
 	npc evade
 		government "Pirate"
 		personality heroic staying target harvests plunders
 		system destination
 		fleet "Large Southern Pirates" 3
+	on offer
+		conversation
+			`Suddenly you hear raised voices and shouting outside as pilots run for their ships: "<destination> is under attack by a large pirate fleet! They are requesting help from any combat-worthy ship in the region to join in the defenses!" The authorities of <planet> will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
+			choice
+				"	(Stay here until the fight is over.)"
+					decline
+				"	(Join the defense fleet.)"
+			"A few militia pilots have gathered to help repel the pirate attack. You join them, and take off together..."
+				launch
 	on complete
 		payment 200000
 		dialog `The government of <planet> thanks you for defeating the pirates and pays you <payment>.`
