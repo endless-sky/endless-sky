@@ -38,14 +38,14 @@ mission "To Remembrance Day celebration [0]"
 	to offer
 		or
 			and
-				random < 40
+				random < 20
 				month == 12
 				day >= 21
 			and
-				random < 60
+				random < 30
 				month == 1
 			and
-				random < 20
+				random < 10
 				month == 2
 				day < 19
 	to fail
@@ -92,6 +92,37 @@ mission "To Remembrance Day celebration [1]"
 		payment 1000 180
 		dialog `Spaceport workers already festively dressed for Remembrance Day remove the cargo of <commodity> from your ship and hand you your payment of <payment>.`
 
+mission "To Remembrance Day celebration [2]"
+	name `Remembrance Day celebration`
+	job
+	repeat
+	description `Deliver <cargo> to <destination> by <date> in preparation for the Remembrance Day celebration on February 19th. Payment is <payment>.`
+	cargo random 5 2 .1
+	to offer
+		or
+			and
+				random < 40
+				month == 12
+				day >= 21
+			and
+				random < 60
+				month == 1
+			and
+				random < 20
+				month == 2
+				day < 19
+	to fail
+		month == 2
+		day == 19
+	source
+		attributes "dirt belt"
+	destination
+		distance 3 15
+		attributes "dirt belt"
+	on complete
+		payment 1000 180
+		dialog `Spaceport workers already festively dressed for Remembrance Day remove the cargo of <commodity> from your ship and hand you your payment of <payment>.`
+
 
 mission "From Remembrance Day celebration [0]"
 	name `Return from Remembrance Day`
@@ -102,14 +133,14 @@ mission "From Remembrance Day celebration [0]"
 	to offer
 		or
 			and
-				random < 50
+				random < 25
 				month == 2
 				day > 19
 			and
-				random < 30
+				random < 15
 				month == 3
 			and
-				random < 20
+				random < 10
 				month == 4
 				day < 20
 	source
@@ -132,14 +163,14 @@ mission "From Remembrance Day celebration [1]"
 	to offer
 		or
 			and
-				random < 40
+				random < 20
 				month == 2
 				day > 19
 			and
-				random < 20
+				random < 10
 				month == 3
 			and
-				random < 10
+				random < 5
 				month == 4
 				day < 20
 	source
