@@ -50,12 +50,12 @@ mission "FW Diplomacy 1B"
 	
 	on offer
 		conversation
-			`You meet up with Alondo, who insists on not telling you anything until you are safely back aboard your own ship. Once you have brought him to his room, he says, "Here's the deal. The Senate has been secretly reaching out to other worlds, and three of them have decided to join us: New Portland, Dancer, and New India."`
+			`You meet up with Alondo, who insists on not telling you anything until you are safely back aboard your own ship. Once you have brought him to his room, he says, "Here's the deal. The Senate has been secretly reaching out to other worlds, and three of them have decided to join us: Harmony, New Portland, Dancer, and New India."`
 			choice
 				`	"That's great news!"`
 				`	"Why haven't I heard of this yet?"`
 					goto heard
-			`	"Indeed it is," says Alondo. "Any worlds joining us would be reason to celebrate, but these three are particularly important because they are on the trade route to Tarazed. If we control those systems, our supply convoys will be much safer."`
+			`	"Indeed it is," says Alondo. "Any worlds joining us would be reason to celebrate, but these four are particularly important because they are on the trade route to Tarazed. If we control those systems, our supply convoys will be much safer."`
 			`	"Why isn't this public knowledge yet?" you ask.`
 			label heard
 			`	"Well," says Alondo, "apparently the Senate was not being as secretive as they thought. Somehow word leaked out to the Republic that those worlds were defecting, and a massive Navy fleet moved to occupy those systems. Which means we're on the brink of another bloody battle."`
@@ -102,7 +102,7 @@ mission "FW Diplomacy 1C"
 	on offer
 		log "Stopped on Earth with Alondo to talk to Parliament and try to head off another bloody battle. But, they were not willing to negotiate."
 		conversation
-			`You drop off Alondo and wish him luck. Hours pass, and you begin to worry that he has been taken prisoner or killed. But finally he returns, looking very discouraged. "It makes no sense," he says. "The tax revenue they get from those three worlds doesn't come close to covering the cost of defending them. They should be glad to let them go."`
+			`You drop off Alondo and wish him luck. Hours pass, and you begin to worry that he has been taken prisoner or killed. But finally he returns, looking very discouraged. "It makes no sense," he says. "The tax revenue they get from those four worlds doesn't come close to covering the cost of defending them. They should be glad to let them go."`
 			choice
 				`	"So, Parliament won't give up those worlds without a fight?"`
 					goto fight
@@ -449,7 +449,7 @@ mission "FW Southern Battle 3"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		log "The Navy has been driven out of the Rastaban system. That will allow the people on Dancer, New Portland, and New India to join the Free Worlds."
+		log "The Navy has been driven out of the Rastaban system. That will allow the people on Harmony, Dancer, New Portland, and New India to join the Free Worlds."
 		conversation
 			`As soon as you land on <origin>, you contact Freya and let her know that the system is yours. "That's great news," she says. "Now we need to make sure they've pulled back from the neighboring systems, too. Take a few ships and sweep through Delta Sagittarii and Albaldah and make sure they're clear. Leave the rest of the fleet on Dancer to handle the prisoners and repairs."`
 			choice
@@ -1717,7 +1717,7 @@ mission "FW Rand 1"
 		log "Another two planets, Rand and Oblivion, have expressed an interest in joining the Free Worlds. They are rather far from the rest of Free Worlds territory, however, so JJ is worried that it would create an indefensible tactical position."
 		event "battle for zeta aquilae"
 		conversation
-			`When you land on Dancer, Freya has just received some exciting news. "It turns out taking out Bartlett had some unexpected side effects," she says. "Bartlett has been dogging the systems on the northwestern fringe of the Dirt Belt for years, and had a lot of enemies. The governments of Rand and Oblivion are so grateful to you for eliminating him that they've reached out to us to begin the process of joining the Free Worlds! And several other worlds in that region are interested now, too."`
+			`When you land on Dancer, Freya has just received some exciting news. "It turns out taking out Bartlett had some unexpected side effects," she says. "Bartlett has been dogging the systems on the northwestern fringe of the Dirt Belt for years, and had a lot of enemies. The governments of Rand and Oblivion are so grateful to you for eliminating him that they've reached out to us to begin the process of joining the Free Worlds! And several other worlds in that region are interested now, too, including Tarazed."`
 			`	JJ frowns. "That's really awful timing," he says, "and would put us in a really bad tactical position - spread out, and with the Navy right in the middle."`
 			choice
 				`	"Are you saying we shouldn't let them join, even though they want to?"`
