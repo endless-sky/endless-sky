@@ -1008,7 +1008,7 @@ mission "Rim Archaeology 1"
 				accept
 	
 	on complete
-		log `Found the archaeologist Albert Foster and told him about the vision of the dragon-people on Zug. Foster suggested that the vision was the result of an Archon. He discovered a buried city under the lava flows on Zug; perhaps the vision was a real view of the past.`
+		log `Found the archaeologist Albert Foster and told him about the vision of the dragon-people on Zug. Foster suggested that the vision was the doing of an Archon. He discovered a buried city under the lava flows on Zug; perhaps the vision was a real view of the past.`
 		conversation
 			`You land your ship on the lava flow, and Albert Foster fires up his surveying equipment. "This will show me a density profile of different layers of rock beneath us," he says. As he gradually dials the instrument down to deeper and deeper layers, a few irregular white spots appear on the screen.`
 			choice
@@ -1214,7 +1214,7 @@ mission "Rim Archaeology 5A"
 	on complete
 		payment 400000
 		event "rim archaeology results" 97
-		log `With the help of a Quarg ship, fought off a group of antique theives looking to rob the archaeological site that Albert Foster dug up. Foster will need some time to study what he has found and release the results of his findings.`
+		log `With the help of a Quarg ship, fought off a group of antique thieves looking to rob the archaeological site that Albert Foster dug up. Foster will need some time to study what he has found and release the results of his findings.`
 		conversation
 			`A plume of smoke is rising from the dig site. Fearing the worst, you land and find out that a missile fired by one of the pirates destroyed one of the huts where the workers were living, but fortunately no one was inside it at the time. Foster is shaken but still committed to finishing the work. "It will be months before we've excavated enough to be able to publish any findings," he says, "but Yarthis has told me that the Quarg will be stationing a Wardragon here for the remainder of the project, to prevent any further foul play." Foster gives you one last payment: four hundred thousand credits for your help driving off the pirates. "And I'll be sure to give you credit for your help when the news goes public," he says.`
 
@@ -1873,7 +1873,7 @@ mission "Terraforming 5"
 	
 	on complete
 		payment 60000
-		log `Amy's theory to terraform Rand seems to have worked. Percipitation around the planet has greatly increased with the introduction of new water into the water cycle.`
+		log `Amy's theory to terraform Rand seems to have worked. Precipitation around the planet has greatly increased with the introduction of new water into the water cycle.`
 		conversation
 			`When you get back to <planet>, Amy has you fly in a random path a few kilometers above the surface while she periodically dumps loads of seeds and plant material out the airlock. In the process, you fly through several rainstorms. This world's climate has indeed been altered. But you can't help wonder how a few tons of seed spread out over the entire surface of a planet is really going to help anything.`
 			`	Then you meet up with Eric and Alaric. Eric is elated. "We just got a massive rainstorm here!" he says. "We haven't had that much precipitation in a decade!"`
