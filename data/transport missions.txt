@@ -1670,8 +1670,8 @@ mission "Terraforming 1"
 	name "Terraforming Rand"
 	description "Bring a delegation from Rand to the Academy of Planetary Sciences on Glory."
 	minor
-	source Rand
-	destination Glory
+	source "Rand"
+	destination "Glory"
 	passengers 2
 	
 	to offer
@@ -1700,8 +1700,8 @@ mission "Terraforming 2"
 	landing
 	name "Terraforming Rand"
 	description "Return to Rand with a student who thinks she can terraform the planet cheaply."
-	source Glory
-	destination Rand
+	source "Glory"
+	destination "Rand"
 	passengers 3
 	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
@@ -1730,7 +1730,7 @@ mission "Terraforming 2"
 
 
 
-ship Asteroid
+ship "Asteroid"
 	sprite "asteroid/medium rock/spin"
 		"frame rate" 10
 	attributes
@@ -1760,7 +1760,7 @@ mission "Terraforming 3"
 	description "Plant a thruster on an asteroid to guide it into a collision with the northern pole of Rand."
 	blocked "You'll need more cargo space in order to take the next mission from Eric and Alaric. Return here when you have <capacity>."
 	cargo "thruster equipment" 10
-	source Rand
+	source "Rand"
 	to offer
 		has "Terraforming 2: done"
 	
@@ -1793,9 +1793,9 @@ mission "Terraforming 3"
 				accept
 	
 	npc assist
-		government Uninhabited
+		government "Uninhabited"
 		personality derelict fleeing uninterested waiting pacifist mute
-		ship Asteroid "Target Asteroid"
+		ship "Asteroid" "Target Asteroid"
 	
 	on complete
 		payment 20000
@@ -1807,7 +1807,7 @@ mission "Terraforming 3"
 mission "Terraforming 4"
 	name "Terraforming Rand"
 	description "Collect some hardy plants that can grow in a low-light environment from <destination>."
-	source Rand
+	source "Rand"
 	destination "New Portland"
 	to offer
 		has "Terraforming 3: done"
@@ -1833,7 +1833,7 @@ mission "Terraforming 5"
 	name "Terraforming Rand"
 	description "Bring some hardy plants that can grow in a low-light environment back to <destination>."
 	source "New Portland"
-	destination Rand
+	destination "Rand"
 	to offer
 		has "Terraforming 4: done"
 	passengers 1
@@ -1873,7 +1873,7 @@ mission "Terraforming 5"
 
 
 event "terraforming Rand"
-	planet Rand
+	planet "Rand"
 		add description `	Recent terraforming experiments have caused an increase in precipitation. Flash floods have scoured the landscape in some areas, but sandstorms are also less frequent, and the locals say the heat is a bit less oppressive than it used to be.`
 
 event "terraforming timer"
@@ -1918,6 +1918,7 @@ mission "Terraforming 6"
 		"reputation: Republic" <?= -10
 		dialog `You receive a message from the Republic itself. "Captain <last>. You have not arrived on Earth for your trial on the 'unlawful use of an asteroid' in the time provided to you and therefore are now a criminal of the Republic."`
 	on complete
+		log `Had to travel to Earth to answer for crashing an asteroid into Rand. Luckily, thanks to Alaric and Eric's lawyer, the case was dropped.`
 		conversation
 			`You are quickly escorted from the crowded <planet> spaceport to a court building in a wealthy district of the city and asked multiple questions pertaining to the events on Rand. "Why did you purposefully do crash an asteroid into a planet? What did you expect to happen? Do you know how many people could have died?" You answer to the best of your ability, and after roughly an hour of questioning you are transferred to a different room where you find Eric, Alaric, and Amy.`
 			choice
@@ -1966,6 +1967,7 @@ mission "Terraforming 7"
 	on complete
 		payment 50000
 		event "terraforming research" 120 180
+		log `Amy has been noticed by the Deep's Department of Terraforming Research. She will be spending time researching her terraforming theories in the hopes that there are more worlds that can be helped.`
 		dialog `The whole journey to <planet>, Amy and Nolan discussed the multiple planets within the Dirt Belt that would be perfect candidates for terraforming. "Nolan and I will spend the next few months here researching my theories on terraforming," Amy says as she steps off of your ship. "I'll make sure to contact you once we're ready to try terraforming another planet." She hands you <payment>, then follows Nolan out of the spaceport.`
 
 
@@ -2021,6 +2023,7 @@ mission "Terraforming 10"
 		has "Terraforming 9: done"
 	
 	on offer
+		log `Began the process of trying to terraform Tundra with new research from Amy and Nolan. Nolan has suggested that another asteroid be used, but the representative for the Republic overseeing the project is displeased with this approach.`
 		conversation
 			`Amy, Nolan, and the other two scientists tell you the known history of Tundra's climate. Millions of years ago, an asteroid impact or large volcanic eruption altered the planet's atmosphere. Now, the planet no longer retains enough heat from its host star in order to stay warm.`
 			`	"Tundra's snow covered surface only exacerbates the problem, reflecting most of the star's light back into space," Nolan explains. "This means that we need to both alter the atmosphere in order for it retain more heat and alter the surface in order for it to reflect less heat."
@@ -2103,11 +2106,12 @@ mission "Terraforming 12"
 		payment 200000
 		event "terraforming timer 2" 730 912
 		event "terraforming Tundra"
+		log `Fought off a fleet of bounty hunters preventing the terraforming of Tundra, then maneuvered an asteroid into Tundra to trigger the eruption of a supervolcano. Tundra's global temperatures will initially drop, but the increased volume of greenhouse gases in the atmosphere will eventually improve Tundra's climate.`
 		conversation
 			`A plume of debris has formed in a mushroom cloud shape above where the asteroid hit. The scientists are viewing their instruments in anticipation for what happens next.`
 			`	Almost an hour after the impact, the ground begins to shake slightly, even though the volcano is located hundreds of kilometers away. "This might be it!" Nolan exclaims as he closely watches a seismometer receiving readings from near the impact site. Suddenly the seismometer spikes, and another plume, much larger than the asteroid impact, rises from the impact site. Half an hour later, the low sound of the massive eruption can be heard in the spaceport, triggering another burst of cheers from the scientists. "It actually worked!" one of them yells out.`
-			`	You fly the scientists over top of the volcano, allowing them to take readings of the air and surface. "Atmospheric carbon dioxide levels are at 4000 parts per million. Methane levels at 20 parts per million. The increased ash in the atmosphere will cause an initial drop in temperature, but as the gases disperse across the planet they should substantially increase the atmosphere's greenhouse gas levels, warming the entire planet."`
-			`	The heat has also formed a huge circle of melted snow around the volcano, revealing the green color of trees and the dull grays and browns of rock.`
+			`	You fly the scientists over top of the volcano, allowing them to take readings of the air and surface. "Carbon dioxide and methane levels are off the charts!" Amy exclaims. "The increased ash in the atmosphere will cause an initial drop in temperature, but as the gases disperse across the planet they should substantially increase the atmosphere's greenhouse gas levels, warming the entire planet."`
+			`	The heat has formed a huge circle of melted snow around the volcano, revealing the green color of trees and the dull grays and browns of rock. Closer to the center of the eruption you spot dozens of lava flows emanating from the center of the impact crater.`
 			choice
 				`	"What do we do now?"`
 					goto what
