@@ -2075,6 +2075,7 @@ mission "Southern Blockade"
 	on complete
 		payment
 		payment 5000
+		log `Installed spaceport defense turrets on three frontier worlds. The Free Worlds hopes that this will reduce the piracy in the region.`
 		dialog `The Free Worlds captain thanks you for helping to fortify the frontier worlds, and pays you <payment>.`
 
 
@@ -2193,5 +2194,6 @@ mission "Pirate Blockade"
 	on complete
 		payment
 		payment 1000
+		log `Helped members of a group fighting to end slavery on pirate worlds. Safely rescued 19 slaves from Buccaneer Bay and left them with a man who said that they will be brought somewhere safer, but the woman of the group seems to have not made it out.`
 		dialog `Just as was promised, a man approaches you in the spaceport and tells you that he is part of the same group as the woman. Interestingly, the man has a similar scar as the woman on his left cheek. "I'll make sure these people find a safe home somewhere far away from here," he says to you. After greeting each of your former passengers, he thanks you and pays you <payment>.`
 		dialog `	You and the man, who does not give his name to you in order to "keep us both safe," wait for the woman to arrive in her own ship. Hours pass, but there is no sign of her. The man tries to contact her, but he is unable to reach her. "You can leave now," the man says to you. "I don't think she'll be coming."`
