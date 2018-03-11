@@ -363,7 +363,7 @@ mission "Deep: Mystery Cubes 0"
 	on complete
 		event "deep: warlord detected" 20 30
 		payment 500000
-		log `Placed multiple mysterious cubes on planets in the Dirt Belt for the Deep. Deep Security is using these cubes to somehow help in their hunt for a pirate warlord named Beelzebub.`
+		log `Placed multiple mysterious cubes on planets in the Dirt Belt for the Deep. Deep Security is using these cubes to somehow help in their hunt for a pirate warlord named "Beelzebub."`
 		conversation
 			`You find Lieutenant Paris waiting for you in the spaceport. You hand him the bag of remaining cubes, and he hands you <payment> for helping.`
 			choice
@@ -636,7 +636,7 @@ mission "Deep: Mystery Cubes 4"
 	on complete
 		event "assisted the deep" 3 7
 		payment 1000000
-		log `Helped to destroy the last of the Navy Cruisers stolen by Beelzebub, but Beelzebub has escaped. The Navy is still looking for Beelzebub, but is no longer asking for help from merchants.`
+		log `Helped to destroy the last of the Navy Cruisers stolen by Beelzebub, but Beelzebub has escaped. The Navy is still searching, but is no longer asking for help from merchants.`
 		conversation
 			`As you come in for a landing, you can see that a number of buildings have taken fire from the pirate fleet above. White tents have been set up to tend to the wounded and multiple ships are being repaired. You are directed to an unscathed building in which a number of Navy officers, the admiral you met on Luna, Lieutenant Paris, and your fellow merchant captains have convened. After you enter the room and get settled down, the admiral begins to speak.`
 			`	"Here's the sitrep. Beelzebub's ship was spotted entering the system, followed by the rest of the pirate fleet. His ship seemed to disappear in the confusion, so we have no idea where he went. Either Beelzebub is currently hiding on the anarchist worlds or made a dash for the Core, in which case the chase goes on."`
@@ -1085,7 +1085,7 @@ mission "Deep: Project Hawking"
 	
 	on complete
 		payment 1500000
-		log `Helped gather materials for "Project Hawking," an energy and weapons researcb project being conducted by scientists of the Deep. A pirate Quicksilver attacked the building where the supplies were being placed and crash landed into the ground, somehow triggering an earthquake.`
+		log `Helped gather materials for "Project Hawking," an energy and weapons research project being conducted by scientists of the Deep. A pirate Quicksilver attacked the building where the supplies were being placed and crashlanded into the ground, triggering an earthquake.`
 		conversation
 			`"Don't go to the spaceport," Garrison says. "We'll be dropping the supplies off elsewhere. He directs you toward the mountains."`
 			branch know
@@ -1964,7 +1964,7 @@ mission "Deep: Scientist Rescue 1"
 	
 	on offer
 		payment 250000
-		log `Located the Deep Star Queen that was kidnapped by pirates while transporting scientists to Gorvi. Deep Security has finished gathering their rescue fleet and will soon be making the trip to rescue the scientists.`
+		log `Located the Deep Star Queen that was kidnapped by pirates while en route to Gorvi. Deep Security has finished gathering their rescue fleet and will soon be making the trip to rescue the scientists.`
 		conversation
 			`You return to Valhalla and find Lieutenant Paris with a large group of men and women in Deep Security uniforms. As you approach them, the Lieutenant stops speaking to the group after noticing you. "Captain <last>! Have you located the Star Queen?"`
 			choice
@@ -2225,7 +2225,7 @@ mission "Deep: Scientist Rescue 3A"
 	
 	on offer
 		payment 2000000
-		log `Escorted the rescued Star Queen back to the Deep and most of the crew has survived. The pirates still have a Bactrian, which the Deep tries to keep out of pirate hands.`
+		log `Escorted the rescued Star Queen back to the Deep and most of the crew has survived. The pirates still have a Bactrian, and the Deep wants it destroyed.`
 		conversation
 			`As you land near the Star Queen, you can see its passengers being escorted off. Maria and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
 			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another <payment> when you walk up to him. "Thanks for all the help, Captain <last>. We couldn't have done it without you."`
@@ -2255,7 +2255,7 @@ mission "Deep: Scientist Rescue 3A"
 	on complete
 		set "license: City-Ship"
 		event "battle in arneb end"
-		log `Destroyed the pirate Bactrian that was attempting to prevent the rescue of the Star Queen abd was given a license by Paris to purchase the Bactrian.`
+		log `Destroyed the pirate Bactrian that was attempting to prevent the rescue of the Star Queen and was given a license by Paris to purchase the Bactrian.`
 		conversation
 			`When you return to Valhalla, the Star Queen is no longer on the landing pad and the spaceport seems to be running normally. Shortly after landing, you find Lieutenant Paris at the same restaurant in which he first found you. Before saying a word to you, he hands you a license.`
 			`	"Thank you. I've said it before, but there's really no way I can thank you enough."`
