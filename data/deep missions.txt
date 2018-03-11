@@ -333,8 +333,6 @@ mission "Deep: Mystery Cubes 0"
 					accept
 				`	"What do these cubes do?"`
 			
-			apply
-				set "deep: interested in cubes"
 			`	"I don't believe that I am authorized to tell you that. Just know that they will help us catch Beelzebub."`
 			choice
 				`	"Understood. I'll place the cubes for you."`
@@ -365,27 +363,14 @@ mission "Deep: Mystery Cubes 0"
 	on complete
 		event "deep: warlord detected" 20 30
 		payment 500000
+		log `Placed multiple mysterious cubes on planets in the Dirt Belt for the Deep. Deep Security is using these cubes to somehow help in their hunt for a pirate warlord named Beelzebub.`
 		conversation
 			`You find Lieutenant Paris waiting for you in the spaceport. You hand him the bag of remaining cubes, and he hands you <payment> for helping.`
-			
-			branch interested
-				has "deep: interested in cubes"
-			
 			choice
 				`	"Is there anything else that you need me to do?"`
 					goto next
-				`	"What is it that those cubes are for?"`
-					goto cubes
+				`	"Are you able to tell me what the cubes are for?"`
 			
-			label interested
-			choice
-				`	"Is there anything else that you need me to do?"`
-					goto next
-				`	"Are you able to tell me what the cubes are for now?"`
-			
-			label cubes
-			apply
-				set "deep: interested in cubes"
 			`	Paris takes a moment to pause before responding. "They're sensor devices. They are used to track the movement of pirate fleets, but they are almost useless alone; dozens could be needed in a single system to track entire fleets. The ones that I gave you were fine-tuned though, designed to only detect the ship that we know that Beelzebub is using. That is all that I am allowed to tell you, at least for the time being."`
 			
 			choice
@@ -425,6 +410,7 @@ mission "Deep: Mystery Cubes 2"
 		has "Deep: Mystery Cubes 1: done"
 	
 	on offer
+		log `Traveled to a restricted Navy base on the Moon. Beelzebub has been causing trouble for both Deep Security and the Navy, so Navy has begun recruiting merchants to help in the search for the warlord.`
 		conversation
 			`A pair of men in Navy uniforms escort you to a restricted area of the Moon facility. One of them uses a keycard to open an elevator and ushers you in. The elevator opens up many floors below the spaceport, to an area of the facility that looks far newer than that on the surface.`
 			`	You are kept in what looks like a waiting room along with five others. After a bit of talking, you find out that these are the other merchant captains who helped place the cubes across different regions of the galaxy.`
@@ -650,6 +636,7 @@ mission "Deep: Mystery Cubes 4"
 	on complete
 		event "assisted the deep" 3 7
 		payment 1000000
+		log `Helped to destroy the last of the Navy Cruisers stolen by Beelzebub, but Beelzebub has escaped. The Navy is still looking for Beelzebub, but is no longer asking for help from merchants.`
 		conversation
 			`As you come in for a landing, you can see that a number of buildings have taken fire from the pirate fleet above. White tents have been set up to tend to the wounded and multiple ships are being repaired. You are directed to an unscathed building in which a number of Navy officers, the admiral you met on Luna, Lieutenant Paris, and your fellow merchant captains have convened. After you enter the room and get settled down, the admiral begins to speak.`
 			`	"Here's the sitrep. Beelzebub's ship was spotted entering the system, followed by the rest of the pirate fleet. His ship seemed to disappear in the confusion, so we have no idea where he went. Either Beelzebub is currently hiding on the anarchist worlds or made a dash for the Core, in which case the chase goes on."`
@@ -773,6 +760,7 @@ mission "Deep: TMBR 1"
 	
 	on complete
 		payment 250000
+		log `Brought "There Might Be Riots" back to human space from their vacation in Hai space to play a concert for a team of scientists in the Deep.`
 		conversation
 			`Almost as soon as "There Might Be Riots" steps off your ship, a crowd gathers. When it is clear that the band is not simply disembarking, but preparing to perform, the uproar makes you glad that you had not given any advance notification to the locals. As the band gets ready, you contact the spaceport authorities and have them notify Garrison and the other scientists that you have returned. The authorities don't seem too enthused about hosting a concert with no advance warning, but they agree to send your message.`
 			`	The crowd gets larger and larger over time, and judging by the increased number of ships landing, word has quickly spread that "There Might Be Riots" is back.`
@@ -791,6 +779,7 @@ mission "Deep: Interrogation"
 		has "Deep Archaeology 5: done"
 	
 	on offer
+		log `Was interrogated by the Deep for helping Albert Foster. The Deep now knows that Albert Foster thinks that there is an artificial singularity on Midgard.`
 		conversation
 			`When you land on <origin> and open your ship's main hatch, you find yourself face-to-face with two Deep Security officers, neither of whom appear armed. "Hello, Captain <last>. We're going to need to ask you some questions. If you would please step off of your ship and follow us, that would be much appreciated."`
 			choice
@@ -1096,6 +1085,7 @@ mission "Deep: Project Hawking"
 	
 	on complete
 		payment 1500000
+		log `Helped gather materials for "Project Hawking," an energy and weapons researcb project being conducted by scientists of the Deep. A pirate Quicksilver attacked the building where the supplies were being placed and crash landed into the ground, somehow triggering an earthquake.`
 		conversation
 			`"Don't go to the spaceport," Garrison says. "We'll be dropping the supplies off elsewhere. He directs you toward the mountains."`
 			branch know
@@ -1138,7 +1128,7 @@ mission "Deep: Project Hawking"
 			`	No one is able to hear you over the low rumble of the shaking ground and the rustling of the forest around the complex. The building, already scarred and torn open by weapons fire, crumbles under the new stresses leaving only a pile of rubble. A minute after the tremor began, the vibrations stop, leaving the air silent; not even the rustle of the leaves or the tweet of a bird can be heard.`
 			`	Everyone is clearly startled by the experience as they slowly raise themselves from the ground. You spot Garrison helping up Pierre and Hannah. Lieutenant Paris and Laura are in a tight embrace, but quickly release each other when they notice you looking.`
 			`	A few Deep Security ships begin to land, dropping off medics and cleanup crews to take care of the destroyed building. One of the ships flies in the direction of the fire. Paris says to you "Captain, I think you should leave. Deep Security will handle the situation here."`
-			`	You say goodbye to the scientists, who thank you for helping them, even if the cargo was destroyed. You board your ship and fly toward the spaceport. Upon landing, you find that <payment> have been transfered to your account from Deep Security.`
+			`	You say goodbye to the scientists, who thank you for helping them, even if much of the cargo was destroyed. You board your ship and fly toward the spaceport. Upon landing, you find that <payment> have been transfered to your account from Deep Security.`
 
 
 
@@ -1359,6 +1349,7 @@ mission "Deep: Remnant 0"
 		outfit "Quantum Keystone" -10
 		event "deep: keystone research" 31 62
 		payment 60000
+		log `Ran into the scientists who are investigating the anomaly in Terminus. Gave them ten Quantum Keystones from Hai space to examine.`
 		conversation
 			branch TMBR
 				has "Deep: TMBR 0: offered"
@@ -1476,6 +1467,7 @@ mission "Deep: Remnant 2A"
 	
 	on complete
 		event "deep: scan log research" 15 32
+		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
 		dialog
 			`The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
 
@@ -1516,6 +1508,7 @@ mission "Deep: Remnant 1B"
 	
 	on complete
 		event "deep: scan log research" 15 32
+		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
 		dialog
 			`The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
 
@@ -1571,6 +1564,7 @@ mission "Deep: Remnant 1C"
 	
 	on complete
 		event "deep: scan log research" 15 32
+		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
 		dialog
 			`The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
 
@@ -1742,11 +1736,12 @@ mission "Deep: Remnant Surveillance"
 	
 	on offer
 		payment 235500
+		log `Delivered various pieces of Remnant technology to the Deep to be examined. Ivan's project has drawn the attention of the Deep, and the Inhibitor Cannon was taken away by Deep Security before it could be researched.`
 		conversation
 			`Instead of sending the Inhibitor Cannon to Ivan's lab, the unloading crew transfers it to a waiting Deep Security ship, which immediately departs when its cargo bay doors close. Unlike the previous crews that met you upon landing, they are all in military garb. When you meet Ivan at his lab, he explains that the Deep was especially interested in the Remnant technology after reading his previous reports, and that his team would need to study it in a "more secure location."`
 			branch friendly
 				"reputation: Remnant" >= 1
-			`	Ivan hands you <payment>. "Thank you for all the help, Captain <last>. You've done a lot for humanity in these past few weeks. It may take us months to fully understand the technology you have brought us, but rest assured that that once we do understand it, the galaxy will be a better place. I'll see you later, Captain. Stay safe."`
+			`	Ivan hands you <payment>. "Thank you for all the help, Captain <last>. You've done a lot for humanity in these past few weeks. It may take us years to fully understand the technology you have brought us, but rest assured that that once we do understand it, the galaxy will be a better place. I'll see you later, Captain. Stay safe."`
 				decline
 				
 			label friendly
@@ -1768,6 +1763,7 @@ mission "Deep: Remnant Surveillance"
 	on complete
 		payment 500000
 		set "Deep: Remnant Research: done"
+		log `Secretly placed sensor cubes near the spaceport of each Remnant planet. Ivan hopes to use the data gathered from these cubes to learn more about Remnant ships.`
 		dialog 
 			`When you return to <planet>, you are unable to find Ivan. Instead, Maria waves you down and hands you a credits chip worth <payment>.`
 			`"Ivan told me to give this to you, Captain. Thanks again for helping us out so much. We couldn't have done it without you."`
@@ -1968,6 +1964,7 @@ mission "Deep: Scientist Rescue 1"
 	
 	on offer
 		payment 250000
+		log `Located the Deep Star Queen that was kidnapped by pirates while transporting scientists to Gorvi. Deep Security has finished gathering their rescue fleet and will soon be making the trip to rescue the scientists.`
 		conversation
 			`You return to Valhalla and find Lieutenant Paris with a large group of men and women in Deep Security uniforms. As you approach them, the Lieutenant stops speaking to the group after noticing you. "Captain <last>! Have you located the Star Queen?"`
 			choice
@@ -2228,6 +2225,7 @@ mission "Deep: Scientist Rescue 3A"
 	
 	on offer
 		payment 2000000
+		log `Escorted the rescued Star Queen back to the Deep and most of the crew has survived. The pirates still have a Bactrian, which the Deep tries to keep out of pirate hands.`
 		conversation
 			`As you land near the Star Queen, you can see its passengers being escorted off. Maria and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
 			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another <payment> when you walk up to him. "Thanks for all the help, Captain <last>. We couldn't have done it without you."`
@@ -2257,6 +2255,7 @@ mission "Deep: Scientist Rescue 3A"
 	on complete
 		set "license: City-Ship"
 		event "battle in arneb end"
+		log `Destroyed the pirate Bactrian that was attempting to prevent the rescue of the Star Queen abd was given a license by Paris to purchase the Bactrian.`
 		conversation
 			`When you return to Valhalla, the Star Queen is no longer on the landing pad and the spaceport seems to be running normally. Shortly after landing, you find Lieutenant Paris at the same restaurant in which he first found you. Before saying a word to you, he hands you a license.`
 			`	"Thank you. I've said it before, but there's really no way I can thank you enough."`
@@ -2281,6 +2280,7 @@ mission "Deep: Scientist Rescue 3B"
 		set "license: City-Ship"
 		event "battle in arneb end"
 		payment 2000000
+		log `Escorted the rescued Star Queen back to the Deep and most of the crew has survived. Destroyed the pirate Bactrian that was attempting to prevent the rescue of the Star Queen and was given a license by Paris to purchase the Bactrian.`
 		conversation
 			`As you land near the Star Queen, you can see its passengers being escorted off. Maria and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
 			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another <payment> when you walk up to him. "Thanks for all the help, Captain <last>. We couldn't have done it without you."`
