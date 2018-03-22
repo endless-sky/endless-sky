@@ -223,7 +223,7 @@ outfit "Quantum Shield Generator"
 	"active cooling" 25.25
 	"cooling energy" 5.05
 
-outfit "Periheral Repair Hub"
+outfit "Peripheral Repair Hub"
 	category "Systems"
 	cost 2735000
 	thumbnail "outfit/quarg peripheral repair unit"
@@ -260,7 +260,7 @@ outfit "Small Graviton Thruster"
 	"reverse thrust" 19.15
 	"reverse thrusting energy" 3.2
 	"reverse thrusting heat" 2.125
-	"flare sprite" "effect/medium graviton flare"
+	"flare sprite" "effect/graviton flare/small"
 
 outfit "Medium Graviton Thruster"
 	category "Engines"
@@ -275,7 +275,7 @@ outfit "Medium Graviton Thruster"
 	"reverse thrust" 30.7
 	"reverse thrusting energy" 4.85
 	"reverse thrusting heat" 15.35
-	"flare sprite" "effect/medium graviton flare"
+	"flare sprite" "effect/graviton flare/medium"
 
 outfit "Large Graviton Thruster"
 	category "Engines"
@@ -290,7 +290,7 @@ outfit "Large Graviton Thruster"
 	"reverse thrust" 47.65
 	"reverse thrusting energy" 7.15
 	"reverse thrusting heat" 4.775
-	"flare sprite" "effect/medium graviton flare"
+	"flare sprite" "effect/graviton flare/large"
 
 outfit "Small Graviton Steering"
 	category "Engines"
