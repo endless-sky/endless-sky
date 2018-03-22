@@ -54,7 +54,6 @@ ship "Quarg Skylark"
 	explode "large explosion" 40
 	explode "huge explosion" 20
 	"final explode" "final explosion medium"
-	description "The Skylark is used by the Quarg as a freighter and warship."
 
 ship "Quarg Oriole"
 	sprite "ship/quarg oriole"

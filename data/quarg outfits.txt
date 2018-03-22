@@ -29,7 +29,7 @@ outfit "Antimatter Core"
 	"heat generation" 115.1
 	"active cooling" 34.25
 	"cooling energy" 6.85
-	"unplunderable"
+	"unplunderable" 1
 
 outfit "Singularity Core"
 	category "Power"
@@ -41,7 +41,7 @@ outfit "Singularity Core"
 	"heat generation" 72.8
 	"active cooling" 19.75
 	"cooling energy" 3.95
-	"unplunderable"
+	"unplunderable" 1
 
 outfit "Tachyon Core"
 	category "Power"
@@ -53,7 +53,7 @@ outfit "Tachyon Core"
 	"heat generation" 36.5
 	"active cooling" 9.25
 	"cooling energy" 1.85
-	"unplunderable"
+	"unplunderable" 1
 
 
 
