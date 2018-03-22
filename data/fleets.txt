@@ -2102,6 +2102,14 @@ fleet "Bounty Hunters"
 		"Splinter"
 		"Fury (Missile)"
 
+fleet "Quarg Scout"
+	government "Quarg"
+	names "quarg"
+	personality
+		forbearing opportunistic
+	variant
+		"Quarg Oriole"
+
 fleet "Quarg"
 	government "Quarg"
 	names "quarg"
@@ -2112,6 +2120,8 @@ fleet "Quarg"
 		"Quarg Skylark"
 	variant
 		"Quarg Wardragon"
+	variant
+		"Quarg Oriole"
 
 fleet "Large Quarg"
 	government "Quarg"

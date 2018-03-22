@@ -284,7 +284,7 @@ government "Pug"
 	"hostile hail" "hostile pug"
 
 government "Quarg"
-	swizzle 0
+	swizzle 3
 	color .88 .77 0
 	
 	"player reputation" 1

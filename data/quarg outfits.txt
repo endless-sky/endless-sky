@@ -12,44 +12,143 @@ outfit "Nanotech Battery"
 	plural "Nanotech Batteries"
 	category "Power"
 	cost 3000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/quarg nanotech battery"
 	"mass" 50
 	"outfit space" -50
 	"energy capacity" 30000
+	"active cooling" 12.5
+	"cooling energy" 2.5
 
 outfit "Antimatter Core"
 	category "Power"
-	cost 100000000
-	thumbnail "outfit/unknown"
-	"mass" 80
-	"outfit space" -80
-	"energy generation" 80
-	"heat generation" 20
+	cost 109600000
+	thumbnail "outfit/quarg antimatter core"
+	"mass" 137
+	"outfit space" -137
+	"energy generation" 95.9
+	"heat generation" 115.1
+	"active cooling" 34.25
+	"cooling energy" 6.85
+	"unplunderable"
+
+outfit "Singularity Core"
+	category "Power"
+	cost 51350000
+	thumbnail "outfit/quarg singularity core"
+	"mass" 79
+	"outfit space" -79
+	"energy generation" 52
+	"heat generation" 72.8
+	"active cooling" 19.75
+	"cooling energy" 3.95
+	"unplunderable"
+
+outfit "Tachyon Core"
+	category "Power"
+	cost 18500000
+	thumbnail "outfit/quarg tachyon core"
+	"mass" 37
+	"outfit space" -37
+	"energy generation" 22.8
+	"heat generation" 36.5
+	"active cooling" 9.25
+	"cooling energy" 1.85
+	"unplunderable"
+
+
+
+outfit "Intrusion Countermeasures"
+	plural "Intrusion Countermeasures"
+	category "Hand to Hand"
+	thumbnail "outfit/quarg countermeasures"
+	"capture defense" 120
+	"unplunderable" 1
+	description "Quarg ships are outfitted with special systems for repelling boarders. Because no one wants to be caught by the Quarg with stolen technology, these systems are pretty much worthless on the open market."
+
 
 
 outfit "Quarg Skylance"
 	category "Turrets"
 	cost 18000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/quarg skylance"
 	"mass" 60
 	"outfit space" -60
 	"weapon capacity" -60
 	"turret mounts" -1
 	"required crew" 1
+	"active cooling" 15
+	"cooling energy" 3
 	weapon
 		sprite "projectile/skylance"
 			"frame rate" 1
+		"hardpoint sprite" "hardpoint/quarg skylance"
+		"hardpoint offset" 10
 		sound "skylance"
 		"hit effect" "skylance impact"
 		"inaccuracy" .4
 		"velocity" 500
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 30
-		"firing heat" 10
-		"shield damage" 50
-		"hull damage" 40
+		"firing energy" 15
+		"firing heat" 5
+		"shield damage" 25
+		"hull damage" 20
 		"ion damage" .1
+
+outfit "Quarg Skydagger"
+	category "Turrets"
+	cost 6000000
+	thumbnail "outfit/quarg skydagger"
+	"mass" 23
+	"outfit space" -23
+	"weapon capacity" -23
+	"turret mounts" -1
+	"required crew" 1
+	"active cooling" 5.75
+	"cooling energy" 1.15
+	weapon
+		sprite "projectile/skydagger"
+			"frame rate" 1
+		"hardpoint sprite" "hardpoint/quarg skydagger"
+		"hardpoint offset" 7
+		sound "skylance"
+		"hit effect" "skylance impact"
+		"inaccuracy" .4
+		"velocity" 430
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 4.6
+		"firing heat" 1.5
+		"shield damage" 7.7
+		"hull damage" 6.1
+		"ion damage" .03
+
+outfit "Quarg Ranseur"
+	category "Guns"
+	cost 8150000
+	thumbnail "outfit/quarg ranseur"
+	"mass" 31
+	"outfit space" -31
+	"weapon capacity" -31
+	"gun ports" -1
+	"active cooling" 7.55
+	"cooling energy" 1.55
+	weapon
+		sprite "projectile/ranseur"
+			"frame rate" 1
+		sound "skylance"
+		"hit effect" "skylance impact"
+		"inaccuracy" .1
+		"velocity" 800
+		"lifetime" 1
+		"reload" 24
+		"burst count" 10
+		"burst reload" 1
+		"firing energy" 285
+		"firing heat" 95
+		"shield damage" 475
+		"hull damage" 380
+		"piercing" .1
 
 effect "skylance impact"
 	sprite "effect/skylance impact"
@@ -60,18 +159,23 @@ effect "skylance impact"
 	"velocity scale" 0.
 
 
+
 outfit "Quarg Anti-Missile"
 	category "Turrets"
 	cost 6000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/quarg anti missile"
 	"mass" 40
 	"outfit space" -40
 	"weapon capacity" -40
 	"turret mounts" -1
+	"active cooling" 10
+	"cooling energy" 2
 	weapon
 		"hit effect" "quarg anti-missile"
-		"anti-missile" 25
-		"velocity" 500
+		"hardpoint sprite" "hardpoint/quarg anti missile"
+		"hardpoint offset" 4
+		"anti-missile" 30
+		"velocity" 750
 		"lifetime" 1
 		"reload" 10
 		"firing energy" 50
@@ -85,42 +189,138 @@ effect "quarg anti-missile"
 	"velocity scale" 1
 
 
-outfit "Intrusion Countermeasures"
-	plural "Intrusion Countermeasures"
-	category "Hand to Hand"
-	thumbnail "outfit/unknown"
-	"capture defense" 60
-	"unplunderable" 1
-	description "Quarg ships are outfitted with special systems for repelling boarders. Because no one wants to be caught by the Quarg with stolen technology, these systems are pretty much worthless on the open market."
 
-outfit "Medium Graviton Thruster"
-	category "Engines"
-	"cost" 20000000
-	thumbnail "outfit/unknown"
-	"mass" 70
-	"outfit space" -70
-	"engine capacity" -70
-	"thrust" 80
-	"thrusting energy" 20
-	"thrusting heat" 10
-	"flare sprite" "effect/medium graviton flare"
+outfit "Fluxion Shield Generator"
+	category "Systems"
+	cost 5000000
+	thumbnail "outfit/quarg fluxion shield generator"
+	"mass" 53
+	"outfit space" -53
+	"shield generation" 4.6
+	"shield energy" 4.6
+	"active cooling" 13.25
+	"cooling energy" 2.65
 
-outfit "Medium Graviton Steering"
-	category "Engines"
-	"cost" 16000000
-	thumbnail "outfit/unknown"
-	"mass" 50
-	"outfit space" -50
-	"engine capacity" -50
-	"turn" 1600
-	"turning energy" 10
-	"turning heat" 5
+outfit "Infimum Shield Generator"
+	category "Systems"
+	cost 7368000
+	thumbnail "outfit/quarg infimum shield generator"
+	"mass" 71
+	"outfit space" -71
+	"shield generation" 8.1
+	"shield energy" 8.1
+	"active cooling" 17.75
+	"cooling energy" 3.55
 
 outfit "Quantum Shield Generator"
 	category "Systems"
-	cost 30000000
-	thumbnail "outfit/unknown"
-	"mass" 120
-	"outfit space" -120
-	"shield generation" 10
-	"shield energy" 10
+	cost 11530000
+	thumbnail "outfit/quarg quantum shield generator"
+	"mass" 101
+	"outfit space" -101
+	"shield generation" 14.4
+	"shield energy" 14.4
+	"active cooling" 25.25
+	"cooling energy" 5.05
+
+outfit "Periheral Repair Hub"
+	category "Systems"
+	cost 2735000
+	thumbnail "outfit/quarg peripheral repair unit"
+	"mass" 29
+	"outfit space" -29
+	"hull repair rate" 1.47
+	"hull energy" 1.47
+	"active cooling" 7.25
+	"cooling energy" 1.45
+
+outfit "Central Repair Hub"
+	category "Systems"
+	cost 6120000
+	thumbnail "outfit/quarg central repair unit"
+	"mass" 59
+	"outfit space" -59
+	"hull repair rate" 3.94
+	"hull energy" 3.94
+	"active cooling" 14.75
+	"cooling energy" 2.95
+
+
+
+outfit "Small Graviton Thruster"
+	category "Engines"
+	"cost" 858000
+	thumbnail "outfit/small quarg thruster"
+	"mass" 47
+	"outfit space" -47
+	"engine capacity" -47
+	"thrust" 38.3
+	"thrusting energy" 6.4
+	"thrusting heat" 4.25
+	"reverse thrust" 19.15
+	"reverse thrusting energy" 3.2
+	"reverse thrusting heat" 2.125
+	"flare sprite" "effect/medium graviton flare"
+
+outfit "Medium Graviton Thruster"
+	category "Engines"
+	"cost" 1650000
+	thumbnail "outfit/medium quarg thruster"
+	"mass" 67
+	"outfit space" -67
+	"engine capacity" -67
+	"thrust" 61.4
+	"thrusting energy" 9.7
+	"thrusting heat" 6.45
+	"reverse thrust" 30.7
+	"reverse thrusting energy" 4.85
+	"reverse thrusting heat" 15.35
+	"flare sprite" "effect/medium graviton flare"
+
+outfit "Large Graviton Thruster"
+	category "Engines"
+	"cost" 3014000
+	thumbnail "outfit/large quarg thruster"
+	"mass" 97
+	"outfit space" -97
+	"engine capacity" -97
+	"thrust" 95.3
+	"thrusting energy" 14.3
+	"thrusting heat" 9.55
+	"reverse thrust" 47.65
+	"reverse thrusting energy" 7.15
+	"reverse thrusting heat" 4.775
+	"flare sprite" "effect/medium graviton flare"
+
+outfit "Small Graviton Steering"
+	category "Engines"
+	"cost" 715000
+	thumbnail "outfit/small quarg steering"
+	"mass" 35
+	"outfit space" -35
+	"engine capacity" -35
+	"turn" 1021
+	"turning energy" 3.2
+	"turning heat" 2.15
+
+outfit "Medium Graviton Steering"
+	category "Engines"
+	"cost" 1375000
+	thumbnail "outfit/medium quarg steering"
+	"mass" 50
+	"outfit space" -50
+	"engine capacity" -50
+	"turn" 1637
+	"turning energy" 4.9
+	"turning heat" 3.25
+
+outfit "Large Graviton Steering"
+	category "Engines"
+	"cost" 2512000
+	thumbnail "outfit/large quarg steering"
+	"mass" 73
+	"outfit space" -73
+	"engine capacity" -73
+	"turn" 2541
+	"turning energy" 7.1
+	"turning heat" 4.75

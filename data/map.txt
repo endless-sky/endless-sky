@@ -6422,6 +6422,7 @@ system Chikatip
 	trade Medical 606
 	trade Metal 283
 	trade Plastic 278
+	fleet "Quarg Scout" 2000
 	fleet "Large Quarg" 2000
 	object
 		sprite star/k5
@@ -6592,6 +6593,7 @@ system Chornifath
 	trade Medical 508
 	trade Metal 468
 	trade Plastic 373
+	fleet "Quarg Scout" 1000
 	fleet "Large Quarg" 1000
 	object
 		sprite star/k0
@@ -7732,6 +7734,7 @@ system Dokdobaru
 	trade Metal 473
 	trade Plastic 317
 	fleet Quarg 600
+	fleet "Quarg Scout" 800
 	fleet "Large Quarg" 800
 	fleet "Kor Efret Home" 1500
 	object
@@ -9428,6 +9431,7 @@ system Farbutero
 	trade Medical 549
 	trade Metal 450
 	trade Plastic 403
+	fleet "Quarg Scout" 2000
 	fleet "Large Quarg" 2000
 	fleet "Small Kor Mereti" 9400
 	fleet "Large Kor Mereti" 5000
@@ -9751,6 +9755,7 @@ system Feroteri
 	trade Medical 492
 	trade Metal 406
 	trade Plastic 451
+	fleet "Quarg Scout" 3000
 	fleet "Large Quarg" 3000
 	fleet "Small Kor Mereti" 12000
 	fleet "Large Kor Mereti" 6400
@@ -10070,6 +10075,7 @@ system Fornarep
 	trade Medical 694
 	trade Metal 438
 	trade Plastic 375
+	fleet "Quarg Scout" 2000
 	fleet "Large Quarg" 2000
 	fleet "Small Kor Mereti" 9000
 	fleet "Large Kor Mereti" 5800
@@ -10189,6 +10195,7 @@ system Furmeliki
 	trade Medical 536
 	trade Metal 346
 	trade Plastic 313
+	fleet "Quarg Scout" 1000
 	fleet "Large Quarg" 1000
 	object
 		sprite star/k0
@@ -11310,6 +11317,7 @@ system Hesselpost
 	trade Medical 484
 	trade Metal 536
 	trade Plastic 281
+	fleet "Quarg Scout" 1000
 	fleet "Large Quarg" 1000
 	object
 		sprite star/k0
@@ -12503,6 +12511,7 @@ system Kaliptari
 	trade Medical 675
 	trade Metal 334
 	trade Plastic 398
+	fleet "Quarg Scout" 3000
 	fleet "Large Quarg" 3000
 	fleet "Small Kor Mereti" 10000
 	fleet "Large Kor Mereti" 4800
@@ -12639,6 +12648,7 @@ system Kashikt
 	trade Metal 443
 	trade Plastic 292
 	fleet Quarg 1000
+	fleet "Quarg Scout" 2000
 	fleet "Large Quarg" 2000
 	fleet "Kor Efret Home" 1000
 	object
@@ -13687,6 +13697,7 @@ system Korsmanath
 	trade Medical 479
 	trade Metal 427
 	trade Plastic 440
+	fleet "Quarg Scout" 3000
 	fleet "Large Quarg" 3000
 	fleet "Small Kor Mereti" 8000
 	object
@@ -14891,6 +14902,7 @@ system Meftarkata
 	trade Medical 599
 	trade Metal 484
 	trade Plastic 334
+	fleet "Quarg Scout" 1000
 	fleet "Large Quarg" 1000
 	object
 		sprite star/f5
@@ -19185,6 +19197,7 @@ system Sabriset
 	trade Medical 621
 	trade Metal 275
 	trade Plastic 441
+	fleet "Quarg Scout" 4000
 	fleet "Large Quarg" 4000
 	object
 		sprite star/g0
@@ -19925,6 +19938,7 @@ system Seketra
 	trade Medical 635
 	trade Metal 327
 	trade Plastic 286
+	fleet "Quarg Scout" 3000
 	fleet "Large Quarg" 3000
 	object
 		sprite star/k5
@@ -20043,6 +20057,7 @@ system Sepriaptu
 	trade Medical 604
 	trade Metal 320
 	trade Plastic 449
+	fleet "Quarg Scout" 4000
 	fleet "Large Quarg" 4000
 	object
 		sprite star/f5
@@ -20088,6 +20103,7 @@ system Sevrelect
 	trade Metal 446
 	trade Plastic 288
 	fleet Quarg 1000
+	fleet "Quarg Scout" 3000
 	fleet "Large Quarg" 3000
 	fleet "Kor Efret Home" 1000
 	object
@@ -20706,6 +20722,7 @@ system Skeruto
 	trade Medical 621
 	trade Metal 393
 	trade Plastic 333
+	fleet "Quarg Scout" 2000
 	fleet "Large Quarg" 2000
 	object
 		sprite star/m0
@@ -21169,6 +21186,7 @@ system Solifar
 	trade Medical 678
 	trade Metal 285
 	trade Plastic 442
+	fleet "Quarg Scout" 4000
 	fleet "Large Quarg" 4000
 	object
 		sprite star/m0
@@ -21661,6 +21679,7 @@ system Sumprast
 	trade Metal 483
 	trade Plastic 323
 	fleet Quarg 1000
+	fleet "Quarg Scout" 2500
 	fleet "Large Quarg" 2500
 	fleet "Kor Efret Home" 1000
 	object
