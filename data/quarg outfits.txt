@@ -274,7 +274,7 @@ outfit "Medium Graviton Thruster"
 	"thrusting heat" 6.45
 	"reverse thrust" 30.7
 	"reverse thrusting energy" 4.85
-	"reverse thrusting heat" 15.35
+	"reverse thrusting heat" 3.225
 	"flare sprite" "effect/graviton flare/medium"
 
 outfit "Large Graviton Thruster"
