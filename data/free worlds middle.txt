@@ -50,7 +50,7 @@ mission "FW Diplomacy 1B"
 	
 	on offer
 		conversation
-			`You meet up with Alondo, who insists on not telling you anything until you are safely back aboard your own ship. Once you have brought him to his room, he says, "Here's the deal. The Senate has been secretly reaching out to other worlds, and three of them have decided to join us: Harmony, New Portland, Dancer, and New India."`
+			`You meet up with Alondo, who insists on not telling you anything until you are safely back aboard your own ship. Once you have brought him to his room, he says, "Here's the deal. The Senate has been secretly reaching out to other worlds, and four of them have decided to join us: Harmony, New Portland, Dancer, and New India."`
 			choice
 				`	"That's great news!"`
 				`	"Why haven't I heard of this yet?"`
