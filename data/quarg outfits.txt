@@ -86,7 +86,7 @@ outfit "Quarg Skylance"
 		sound "skylance"
 		"hit effect" "skylance impact"
 		"inaccuracy" .4
-		"turret turn" 4
+		"turret turn" 2.1
 		"velocity" 500
 		"lifetime" 1
 		"reload" 1
@@ -115,7 +115,7 @@ outfit "Quarg Skydagger"
 		sound "skylance"
 		"hit effect" "skylance impact"
 		"inaccuracy" .6
-		"turret turn" 2.9
+		"turret turn" 3.1
 		"velocity" 430
 		"lifetime" 1
 		"reload" 1
