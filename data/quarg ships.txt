@@ -136,8 +136,8 @@ ship "Quarg Wardragon"
 		"Jump Drive"
 	engine -13 79
 	engine 13 79
-	turret -31.5 -19 "Quarg Skydagger"
-	turret 31.5 -19 "Quarg Skydagger"
+	turret -31.5 -19 "Quarg Skylance"
+	turret 31.5 -19 "Quarg Skylance"
 	turret -39 56.5 "Quarg Anti-Missile"
 	turret 39 56.5 "Quarg Anti-Missile"
 	explode "tiny explosion" 12
