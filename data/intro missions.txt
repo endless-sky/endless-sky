@@ -467,7 +467,6 @@ mission "Intro: Follow Up - Hai Before Main Plot"
 			has "Intro [3 Freighter]: done"
 			has "Intro [3 Transport]: done"
 			has "Intro [3 Interceptor]: done"
-		not chosen sides
 		has "First Contact: Hai: offered"
 	to fail
 		has "chosen sides"	
