@@ -479,7 +479,7 @@ mission "Intro: Follow Up - Hai Before Main Plot"
 					defer
 			`	When you contact James to tell him that you are on visiting <origin>, he is happy to come out to the starport and meet you. The two of you talk a bit about the business of running ships and before long the conversation comes around to the Hai. James is not completely surprised as your story confirms rumors that he has already heard.`
 			choice
-				`	"Why don't you come with me and see them for yourself?  There are a lot of retired spacers on <planet>."`
+				`	"Why don't you come with me and see them for yourself? There are a lot of retired spacers on <planet>."`
 				`	"It has been good catching up with you, James."`
 					goto end
 			`	James agrees. When you ask if he needs to collect any of his belongings before the trip he declines, but buys a simple traveling hygiene kit from one of the spaceport shops.`
@@ -577,7 +577,7 @@ mission "Intro: Follow Up - Hai After Main Plot"
 			`	When you contact James to tell him that you are on visiting <origin>, he is happy to come out to the starport and meet you. The two of you talk a bit about what you have been up to since the war and, before long, the conversation comes around to the Hai. James is not completely surprised as your story confirms rumors that he has already heard.`
 			label ride
 			choice
-				`	"Why don't you come with me and see them for yourself?  There are a lot of retired spacers on <planet>."`
+				`	"Why don't you come with me and see them for yourself? There are a lot of retired spacers on <planet>."`
 				`	"It has been good catching up with you, James."`
 					goto end
 			`	James agrees. When you ask if he needs to collect any of his belongings before the trip he declines, but buys a simple traveling hygiene kit from one of the spaceport shops.`
