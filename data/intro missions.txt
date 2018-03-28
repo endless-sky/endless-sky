@@ -457,7 +457,6 @@ conversation "end of intro missions"
 mission "Intro: Follow Up - Hai Before Main Plot"
 	name "Bring James to <planet>"
 	description "Take James to <destination> to meet the Hai."
-	blocked `You consider paying a visit to James to tell him about the Hai, but decide to wait until you have a free seat available on your ship. Just in case.`
 	passengers 1
 	landing
 	source "Hestia"
@@ -548,7 +547,6 @@ mission "Intro: Follow Up - After Main Plot"
 mission "Intro: Follow Up - Hai After Main Plot"
 	name "Bring James to <planet>"
 	description "Take James to <destination> to meet the Hai."
-	blocked `You consider paying a visit to James to tell him about the Hai, but decide to wait until you have a free seat available on your ship. Just in case.`
 	passengers 1
 	landing
 	source "Hestia"
