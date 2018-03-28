@@ -561,7 +561,7 @@ mission "Intro: Follow Up - Hai After Main Plot"
 		has "main plot completed"
 		has "First Contact: Hai: offered"
 	to fail
-		has "Intro: Follow Up - Hai Before Main Plot"
+		has "Intro: Follow Up - Hai Before Main Plot: offered"
 	on offer
 		conversation
 			`It has been a while since you last saw James.  Do you want to check in and see how he is doing?`
