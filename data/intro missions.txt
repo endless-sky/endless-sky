@@ -457,7 +457,7 @@ conversation "end of intro missions"
 mission "Intro: Follow Up - Hai Before Main Plot"
 	name "Bring James to <planet>"
 	description "Take James to <destination> to meet the Hai."
-	blocked `You consider paying a visit to James to tell him about the Hai, but decide to wait until you have a free seat available on your ship.  Just in case.`
+	blocked `You consider paying a visit to James to tell him about the Hai, but decide to wait until you have a free seat available on your ship. Just in case.`
 	passengers 1
 	landing
 	source "Hestia"
@@ -472,17 +472,17 @@ mission "Intro: Follow Up - Hai Before Main Plot"
 		has "chosen sides"	
 	on offer
 		conversation
-			`As you're coming in for a landing, you remember that James left you an open invitation to look him up.  Do you want to check in and see how he is doing?`
+			`As you're coming in for a landing, you remember that James left you an open invitation to look him up. Do you want to check in and see how he is doing?`
 			choice
 				`	(Yes.)`
 				`	(Not right now.)`
 					defer
-			`	When you contact James to tell him that you are on visiting <origin>, he is happy to come out to the starport and meet you.  The two of you talk a bit about the business of running ships and before long the conversation comes around to the Hai.  James is not completely surprised as your story confirms rumors that he has already heard.`
+			`	When you contact James to tell him that you are on visiting <origin>, he is happy to come out to the starport and meet you. The two of you talk a bit about the business of running ships and before long the conversation comes around to the Hai. James is not completely surprised as your story confirms rumors that he has already heard.`
 			choice
 				`	"Why don't you come with me and see them for yourself?  There are a lot of retired spacers on <planet>."`
 				`	"It has been good catching up with you, James."`
 					goto end
-			`	James agrees.  When you ask if he needs to collect any of his belongings before the trip he declines, but buys a simple traveling hygiene kit from one of the spaceport shops.`
+			`	James agrees. When you ask if he needs to collect any of his belongings before the trip he declines, but buys a simple traveling hygiene kit from one of the spaceport shops.`
 				accept
 			label end
 			`	You finish your conversation and go on your way`
@@ -491,8 +491,8 @@ mission "Intro: Follow Up - Hai Before Main Plot"
 		log `Paid a visit to James on <origin> and told him about the Hai.`
 	on complete
 		conversation
-			`James is impressed by the friendly aliens and humans living side by side on <planet>.  While you are introducing him to one of the Hai, an old spacer recognizes James and offers to make further introductions around the community on <planet>.  You make your goodbyes once again, and prepare to continue on your way.`
-		log `Paid a visit to James on <origin> to tell him about the Hai.  Brought him to <planet> afterwards.`
+			`James is impressed by the friendly aliens and humans living side by side on <planet>. While you are introducing him to one of the Hai, an old spacer recognizes James and offers to make further introductions around the community on <planet>. You make your goodbyes once again, and prepare to continue on your way.`
+		log `Paid a visit to James on <origin> to tell him about the Hai. Brought him to <planet> afterwards.`
 
 
 
@@ -507,12 +507,12 @@ mission "Intro: Follow Up - After Main Plot at Allhome"
 		has "Intro: Follow Up - Hai After Main Plot"
 	on offer
 		conversation
-			`It has been some time since you brought James to <origin>.  Do you want to check in and see how he is doing?`
+			`It has been some time since you brought James to <origin>. Do you want to check in and see how he is doing?`
 			choice
 				`	(Yes.)`
 				`	(Not right now.)`
 					defer
-			`	You meet up with James at the spaceport, where he is sharing a drink with some other merchant captains.  The group disperses to let the two of you catch up on old times, so you fill James in on some of the details of the recent war and the role you ended up playing in it.  You talk a bit about the Pug and what you might do next, now that the war is behind you.  Soon it is time for you to go and the two of you part ways again.`
+			`	You meet up with James at the spaceport, where he is sharing a drink with some other merchant captains. The group disperses to let the two of you catch up on old times, so you fill James in on some of the details of the recent war and the role you ended up playing in it. You talk a bit about the Pug and what you might do next, now that the war is behind you. Soon it is time for you to go and the two of you part ways again.`
 				complete
 	on complete
 		log `Met with James on <origin>, and filled him in on recent events with the war and the Pug.`
@@ -533,12 +533,12 @@ mission "Intro: Follow Up - After Main Plot"
 		has "First Contact: Hai: offered"
 	on offer
 		conversation
-			`As you're coming in for a landing, you remember that James left you an open invitation to look him up.  Do you want to check in and see how he is doing?`
+			`As you're coming in for a landing, you remember that James left you an open invitation to look him up. Do you want to check in and see how he is doing?`
 			choice
 				`	(Yes.)`
 				`	(Not right now.)`
 					defer
-			`	James is happy to come out to the spaceport and meet with you.  You spend some time talking about recent events, and fill him in on some of the details of the recent war and the role you ended up playing in it.  You talk a bit about the Pug and what you might do next, now that the war is behind you.`
+			`	James is happy to come out to the spaceport and meet with you. You spend some time talking about recent events, and fill him in on some of the details of the recent war and the role you ended up playing in it. You talk a bit about the Pug and what you might do next, now that the war is behind you.`
 				complete
 		on complete
 		log `Met with James on <origin>, and filled him in on recent events with the war and the Pug.`
@@ -548,7 +548,7 @@ mission "Intro: Follow Up - After Main Plot"
 mission "Intro: Follow Up - Hai After Main Plot"
 	name "Bring James to <planet>"
 	description "Take James to <destination> to meet the Hai."
-	blocked `You consider paying a visit to James to tell him about the Hai, but decide to wait until you have a free seat available on your ship.  Just in case.`
+	blocked `You consider paying a visit to James to tell him about the Hai, but decide to wait until you have a free seat available on your ship. Just in case.`
 	passengers 1
 	landing
 	source "Hestia"
@@ -564,23 +564,23 @@ mission "Intro: Follow Up - Hai After Main Plot"
 		has "Intro: Follow Up - Hai Before Main Plot: offered"
 	on offer
 		conversation
-			`It has been a while since you last saw James.  Do you want to check in and see how he is doing?`
+			`It has been a while since you last saw James. Do you want to check in and see how he is doing?`
 			choice
 				`	(Yes.)`
 				`	(Not right now.)`
 					defer
 			branch revisit
 				has "Intro: Follow Up - After Main Plot: done"
-			`	James is happy to come out to the spaceport and meet with you.  You spend some time talking about recent events, and fill him in on some of the details of the recent war and the role you ended up playing in it.  You talk a bit about the Pug and, after a time, the conversation comes around to the Hai.  James is not completely surprised as your story confirms rumors that he has already heard.`
+			`	James is happy to come out to the spaceport and meet with you. You spend some time talking about recent events, and fill him in on some of the details of the recent war and the role you ended up playing in it. You talk a bit about the Pug and, after a time, the conversation comes around to the Hai. James is not completely surprised as your story confirms rumors that he has already heard.`
 				goto ride
 			label revisit
-			`	When you contact James to tell him that you are on visiting <origin>, he is happy to come out to the starport and meet you.  The two of you talk a bit about what you have been up to since the war and, before long, the conversation comes around to the Hai.  James is not completely surprised as your story confirms rumors that he has already heard.`
+			`	When you contact James to tell him that you are on visiting <origin>, he is happy to come out to the starport and meet you. The two of you talk a bit about what you have been up to since the war and, before long, the conversation comes around to the Hai. James is not completely surprised as your story confirms rumors that he has already heard.`
 			label ride
 			choice
 				`	"Why don't you come with me and see them for yourself?  There are a lot of retired spacers on <planet>."`
 				`	"It has been good catching up with you, James."`
 					goto end
-			`	James agrees.  When you ask if he needs to collect any of his belongings before the trip he declines, but buys a simple traveling hygiene kit from one of the spaceport shops.`
+			`	James agrees. When you ask if he needs to collect any of his belongings before the trip he declines, but buys a simple traveling hygiene kit from one of the spaceport shops.`
 				accept
 			label end
 			`	You finish your conversation and go on your way`
@@ -589,5 +589,5 @@ mission "Intro: Follow Up - Hai After Main Plot"
 		log `Paid a visit to James on <origin> to catch him up on recent events and to tell him about the Hai.`
 	on complete
 		conversation
-			`James is impressed by the friendly aliens and humans living side by side on <planet>.  While you are introducing him to one of the Hai, an old spacer recognizes James and offers to make further introductions around the community on <planet>.  You make your goodbyes once again, and prepare to continue on your way.`
-		log `Paid a visit to James on <origin> to catch him up on recent events and to tell him about the Hai.  Afterwards, I dropped him off on <planet>.`
+			`James is impressed by the friendly aliens and humans living side by side on <planet>. While you are introducing him to one of the Hai, an old spacer recognizes James and offers to make further introductions around the community on <planet>. You make your goodbyes once again, and prepare to continue on your way.`
+		log `Paid a visit to James on <origin> to catch him up on recent events and to tell him about the Hai. Afterwards, I dropped him off on <planet>.`
