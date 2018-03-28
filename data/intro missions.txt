@@ -503,7 +503,7 @@ mission "Intro: Follow Up - After Main Plot at Allhome"
 		has "Intro: Follow Up - Hai Before Main Plot: done"
 		has "main plot completed"
 	to fail
-		has "Intro: Follow Up - Hai After Main Plot"
+		has "Intro: Follow Up - Hai After Main Plot: offered"
 	on offer
 		conversation
 			`It has been some time since you brought James to <origin>. Do you want to check in and see how he is doing?`
@@ -512,8 +512,8 @@ mission "Intro: Follow Up - After Main Plot at Allhome"
 				`	(Not right now.)`
 					defer
 			`	You meet up with James at the spaceport, where he is sharing a drink with some other merchant captains. The group disperses to let the two of you catch up on old times, so you fill James in on some of the details of the recent war and the role you ended up playing in it. You talk a bit about the Pug and what you might do next, now that the war is behind you. Soon it is time for you to go and the two of you part ways again.`
-				complete
-	on complete
+				decline
+	on decline
 		log `Met with James on <origin>, and filled him in on recent events with the war and the Pug.`
 
 
@@ -528,8 +528,7 @@ mission "Intro: Follow Up - After Main Plot"
 			has "Intro [3 Transport]: done"
 			has "Intro [3 Interceptor]: done"
 		has "main plot completed"
-	to fail
-		has "First Contact: Hai: offered"
+		not "First Contact: Hai: offered"
 	on offer
 		conversation
 			`As you're coming in for a landing, you remember that James left you an open invitation to look him up. Do you want to check in and see how he is doing?`
@@ -538,8 +537,8 @@ mission "Intro: Follow Up - After Main Plot"
 				`	(Not right now.)`
 					defer
 			`	James is happy to come out to the spaceport and meet with you. You spend some time talking about recent events, and fill him in on some of the details of the recent war and the role you ended up playing in it. You talk a bit about the Pug and what you might do next, now that the war is behind you.`
-				complete
-		on complete
+				decline
+	on decline
 		log `Met with James on <origin>, and filled him in on recent events with the war and the Pug.`
 
 
@@ -586,6 +585,6 @@ mission "Intro: Follow Up - Hai After Main Plot"
 	on decline
 		log `Paid a visit to James on <origin> to catch him up on recent events and to tell him about the Hai.`
 	on complete
+		log `Paid a visit to James on <origin> to catch him up on recent events and to tell him about the Hai. Afterwards, I dropped him off on <planet>.`
 		conversation
 			`James is impressed by the friendly aliens and humans living side by side on <planet>. While you are introducing him to one of the Hai, an old spacer recognizes James and offers to make further introductions around the community on <planet>. You make your goodbyes once again, and prepare to continue on your way.`
-		log `Paid a visit to James on <origin> to catch him up on recent events and to tell him about the Hai. Afterwards, I dropped him off on <planet>.`
