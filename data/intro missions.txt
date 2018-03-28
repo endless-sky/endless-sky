@@ -467,8 +467,7 @@ mission "Intro: Follow Up - Hai Before Main Plot"
 			has "Intro [3 Transport]: done"
 			has "Intro [3 Interceptor]: done"
 		has "First Contact: Hai: offered"
-	to fail
-		has "chosen sides"	
+		not "chosen sides"
 	on offer
 		conversation
 			`As you're coming in for a landing, you remember that James left you an open invitation to look him up. Do you want to check in and see how he is doing?`
