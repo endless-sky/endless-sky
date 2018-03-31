@@ -488,14 +488,13 @@ mission "Intro: Follow Up - Hai Before Main Plot"
 	on decline
 		log `Paid a visit to James on <origin> and told him about the Hai.`
 	on complete
+		log `Paid a visit to James on <origin> to tell him about the Hai. Brought him to <planet> afterwards.`
 		conversation
 			`James is impressed by the friendly aliens and humans living side by side on <planet>. While you are introducing him to one of the Hai, an old spacer recognizes James and offers to make further introductions around the community on <planet>. You make your goodbyes once again, and prepare to continue on your way.`
-		log `Paid a visit to James on <origin> to tell him about the Hai. Brought him to <planet> afterwards.`
 
 
 
 mission "Intro: Follow Up - After Main Plot at Allhome"
-	invisible
 	landing
 	source "Allhome"
 	to offer
@@ -518,7 +517,6 @@ mission "Intro: Follow Up - After Main Plot at Allhome"
 
 
 mission "Intro: Follow Up - After Main Plot"
-	invisible
 	landing
 	source "Hestia"
 	to offer
