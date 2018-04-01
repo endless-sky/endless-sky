@@ -13,9 +13,9 @@ PROG_DEBUG = $(PROG)-debug
 PROG_PROF = $(PROG)-profile
 DIR_SRC = source
 DIR_BUILD = build
-DIR_RELEASE = $(addsuffix release,$(DIR_BUILD)/)
-DIR_DEBUG = $(addsuffix debug,$(DIR_BUILD)/)
-DIR_PROF = $(addsuffix profile,$(DIR_BUILD)/)
+DIR_RELEASE = $(DIR_BUILD)/release
+DIR_DEBUG = $(DIR_BUILD)/debug
+DIR_PROF = $(DIR_BUILD)/profile
 
 SRCS = $(wildcard $(DIR_SRC)/*.cpp)
 OBJS = $(patsubst $(DIR_SRC)/%.cpp,$(DIR_RELEASE)/%.o,$(SRCS))
