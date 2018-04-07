@@ -1,10 +1,10 @@
-######Building Endless Sky
+###### Building Endless Sky
 _NOTE: If you have strayed here by accident and are inexperienced with building
 software and the command line, it may be a better idea to grab the program from
 your package manager, the releases section in GitHub, or Steam, rather than
 fruitlessly wasting your time_
 
-###Linux
+### Linux
 You must install both headers and runtimes of the following libraries:
 - sdl2
 - libpng
@@ -36,7 +36,7 @@ dependencies using the following command, requiring root privileges:
 
     # apt install build-essential lib{sdl2,png12,jpeg62-turbo,glew,openal,mad0}-dev
 
-###Mac OS X
+### Mac OS X
 You must install [Homebrew](https://brew.sh), then you must install the
 following packages using `brew install`:
 
@@ -82,5 +82,5 @@ After sufficient cursing at Apple, you may proceed to build and run:
     $ make
     $ ./endless-sky
 
-###Windows
+### Windows
 TODO
