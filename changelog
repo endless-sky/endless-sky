@@ -1,3 +1,198 @@
+Version 0.9.9:
+  * Big changes:
+    * All ship sprites have been re-rendered with a less "flat" and more dramatic illumination angle.
+    * Ships can now be hit by projectiles while cloaked (but still can't be targeted).
+    * The turn rates of most turrets have been reduced, so small fast ships can dodge around them.
+    * Graphics and physics calculations have been optimized significantly.
+    * Added a "news" system in the Spaceport, as an experiment to make it feel more "inhabited."
+    * Added an "asteroid scanner," allowing you to target asteroids and letting turrets track them.
+    * Ramscoop and solar power effectiveness now varies depending on the stars in each system.
+  * Bug fixes:
+    * Crashes and other serious bugs:
+      * Fixed a crash when reordering escorts in the player info panel on Mac OS X.
+      * Fixed a bug that caused ships with nuclear missiles to launch them all at the same time.
+    * Ship behavior:
+      * Fixed escorts doing nothing if near death. (@flaviojs)
+      * Reverse thrust now works properly while turning. (@Hacklin)
+      * Fixed a situation where carrier escorts in other systems wouldn't pick up their fighters. (@tehhowch)
+      * Ships will now request help if enemies are present as long as all enemies are disabled. (@tehhowch)
+      * Avoiding a situation where ships can exit hyperspace with negative velocity. (@tehhowch)
+      * Fixed autofire shooting at cloaked targets. (@tehhowch)
+      * Pirates will no longer plunder passengers.
+      * Fixed special "persons" spawning in systems with no links for them to leave through.
+      * Out-of-system ships no longer bother trying not to overlap each other. (@tehhowch)
+      * Fixed a situation where you couldn't cancel escort orders. (@flaviojs)
+    * User interface:
+      * Fixed "ton" vs. "tons" when harvesting materials with a unit size other than 1 ton. (@Rakete1111)
+      * Fixed "invisible" ships (disabled escorts) getting selected in the shop panel. (@tehhowch)
+      * Avoiding a bug if the "recent" saved game cannot be found. (@comnom)
+      * Missions no longer show up as "can be done" if the cargo is elsewhere. (@Hadron1776)
+      * The hail panel now properly reflects if a ship is already coming to assist you. (@flaviojs)
+      * Drag actions are now canceled if interrupted by a pop-up dialog. (@tehhowch)
+    * Other:
+      * Fixed the FW "electron turret" mission not offering on landing. (@tehhowch)
+      * Fixed the last fraction of a crate of commodities not getting jettisoned. (@flaviojs)
+      * Made it impossible to switch landing targets while landing. (@Hadron1776)
+      * Fixed the outfitter scroll changing when you select different ships. (@flaviojs)
+      * Fixed location filters matching planets that have not yet been placed in a system.
+      * Fixed a bug when a weapon hardpoint specified an outfit that wasn't loaded yet.
+      * Fixed the "Syndicate Capture" escorts not assisting you in the battles.
+      * Fixed a situation where a ship could have zero passengers tied to a mission. (@tehhowch)
+      * Cargo from boarding missions now goes into the flagship's cargo hold.
+    * Minor issues:
+      * Typo fixes. (@abenkovskii, @Alkallid, @Amazinite, @Bladewood, @Fzzr, @Janaszar, @Jugosloven1612, @MessyMix, @seanfahey, @solardawning, @themightygrunt, @Turtleroku, @UnciaPrima, @warp-core, @whismerhill)
+      * Fixed missions that give "gifts" not being colored as ready to be completed. (@tehhowch)
+      * Fixed ship placement when traveling through a wormhole that moves a lot in one day. (@tehhowch)
+      * Added a warning for ships with more than 32 hardpoints. (@EndrosG)
+      * Fixed a blank pilot being created if you quit while in the intro conversation.
+  * Game content:
+    * New content:
+      * Added a bunch of new ship names. (@Pointedstick)
+      * Added some new special "person" ships.
+      * Updated some landscape images.
+      * Added new station landscape images. (@sivael)
+      * Added a "Deep Security" government that's distinct from the Republic Navy (and has its own hails).
+      * Outfit image for the Tactical Scanner. (@Kyres-Omega)
+      * Added new ships and weapons for a new Wanderer faction.
+      * New sounds for blasters. (@Pointedstick)
+      * New Wanderer hails. (@ph2000bis)
+      * New Korath and Hai hand-to-hand weapons. (@Brick63)
+      * Added dragons in the distance in the landscape image for Skymoot. (@DrBlight)
+      * Added a sound for the Inhibitor Cannon. (@solardawning)
+    * Balancing:
+      * Balance and price adjustments on some of the Remnant outfits.
+      * The Surveillance Pod now has tactical scanning capabilities.
+      * Reduced the crew requirements for the Bastion and Splinter. (@Pointedstick)
+      * Buffed the Proton Gun to balance it better versus the other big guns. (@Amazinite)
+      * Added a Proton Turret. (@Pointedstick)
+      * Blasters now have a longer range and speed.
+      * Improved the heat dissipation of the Shuttle and Star Barge, to make dodging missiles easier.
+      * Torpedoes are now less effective at tracking small targets.
+      * Quarg ships now have "hull repair." (@tehhowch)
+    * Missions:
+      * Added a combat rating check to the "Hunted by the State" pirate missions. (@jjhankins)
+      * Your behavior toward other factions no longer influences the Pug's attitude toward you.
+      * The Republic now becomes hostile as soon as you join the Free Worlds. (@mootootwo)
+      * Unfettered aid jobs can no longer have destinations on occupied Wanderer worlds. (@Amazinite)
+      * Added hails and other improvements for the Syndicate target practice missions. (@Pointedstick)
+      * Blocked some mission "messages" from showing up outside of human space. (@tehhowch)
+      * Added rare defense missions in the Core against Korath raiders. (@czartrak)
+      * Fixed "fw syndicate welcoming" happening too late for players with jump drives. (@tehhowch)
+      * Added log entries for some of the side missions. (@Amazinite)
+    * Other:
+      * Fixed the plural versions of some ship types.
+      * Expanded the descriptions for the Hai ships. (@Amazinite)
+      * The HUD is now defined in a single "hud" interface, for easy overloading by modders.
+      * Modified the Meteor description to explain how infrared tracking works. (@Pointedstick)
+      * Added more fancy passenger ships in the Paradise systems. (@Pointedstick)
+      * The cloaking device is now unplunderable. (@Bladewood)
+  * Game mechanics:
+    * Ship AI:
+      * AI ships no longer keep trying to plunder if their cargo is full. (@tehhowch)
+      * Escorts with no fuel in uninhabited systems now move to the system center to refuel. (@tehhowch)
+      * Adjusted the logic for when AI ships use their afterburners. (@tehhowch)
+      * Improved the AI for mining ships, including fighters and drones. (@tehhowch)
+      * Improved how escorts decide when to refuel when following their parent ship. (@flaviojs)
+      * Mission NPC fleets now travel together instead of individually following the player. (@tehhowch)
+      * The "follow" order now has a ship keep station rather than swarming around its target. (@tehhowch)
+      * Ships told to hold position now return to that spot if knocked away. (@tehhowch)
+      * The missile boat AI can now use reverse thrusters if it's useful to do so. (@tehhowch)
+      * "Mining" mission NPCs now never stop mining even if the timer runs out. (@tehhowch)
+      * Ships are now smarter about firing projectiles with a blast and trigger radius. (@tehhowch)
+      * Carried ships now forget their target system and ship when boarding the carrier. (@tehhowch)
+      * Fighters now retreat to their mothership when in need of repairs.
+      * Made improvements to the cloaking AI. (@tehhowch)
+    * Physics and game engine:
+      * Boarding is now suspended if the target to be boarded is knocked away. (@flaviojs)
+      * A ship can now apply a fraction of its full thrust if that's all it has power for.
+      * Tweaked hit force and firing force so its effect is less dependent on ship mass.
+      * Weapon blast strength now depends on the distance from the blast. (@tehhowch)
+      * Fighters can now run their own generators while being carried.
+    * Ship and outfit attributes:
+      * Cloaking can now generate heat ("cloaking heat") as well as draining energy and fuel. (@Hadron1776)
+      * Added "tactical scanners" that show more info about the selected target ship.
+      * Added "fuel damage" that reduces (or increases) the target ship's fuel.
+    * New automatic condition variables:
+      * Added a "credits" auto-condition so missions can check the player's bank balance. (@Elyssaen)
+      * Added auto-conditions "cargo attractiveness", "armament deterrence", and "pirate attraction".
+      * Auto-conditions "unpaid mortgages", "unpaid fines", "unpaid salaries", and "credit score". (@tehhowch)
+    * Mission and event functionality:
+      * Game events can now mark a planet or system as visited. (@tehhowch)
+      * Made it possible for the start conditions to give the player starting ships.
+      * Added support for system attributes, which work the same as planet attributes.
+      * New auto-generated planet attributes "spaceport", "shipyard", and "outfitter".
+      * NPC specs can now specify how many copies to make of a single fleet. (@tehhowch)
+      * The NPC "accompany" goal now always implies "save" as well. (@tehhowch)
+      * Events can now "add" or "remove" specific personalities from a fleet.
+      * Mission's Do() will no longer modify condition variables if the action cannot be done.
+      * Location filters can now use "not" to specify things the location must not match.
+      * Added a text substitution for "<waypoints>" in missions. (@tehhowch)
+      * Conversation "apply" nodes can now modify your reputations. (@tehhowch)
+      * The "require" mission tag can now specify how many of an outfit to require. (@Elyssaen)
+      * Location filters can now specify what attributes neighboring systems have. (@tehhowch)
+      * Any mission conversation can now trigger a "launch." (@tehhowch)
+      * "On enter" actions can now specify which system via a filter. (@tehhowch)
+    * Other:
+      * In an interface spec, different elements can now be anchored to different screen corners.
+      * In the HUD interface spec, the location of the ammo, escorts, and messages is now customizable.
+      * Special "persons" can now include fleets with multiple ships.
+      * Added support for loading grayscale PNGs. (@dplepage)
+      * Each government can now specify a baseline attack and defense multiplier for crew. (@Hadron1776)
+      * Made it possible for ship variants to add attributes without redefining all of them. (@tehhowch)
+      * Wormhole links are now only drawn in the map is the "description" is not empty.
+      * An asteroid scanner lets you remember the minable types in a system even without harvesting them.
+  * User interface:
+    * Player and fleet info:
+      * Made it possible to reorder selected ships in the fleet info with Ctrl+Shift+Arrow.
+      * The ship cargo list now shows count and total mass for outfits in cargo.
+      * The player info now indicates how attractive your fleet is to pirate raids, and why. (@tehhowch)
+    * Shops:
+      * Added a shortcut key (U) in the outfitter to uninstall an outfit without selling. (@tehhowch)
+      * The outfitter now shows all the licenses that you possess. (@flaviojs)
+      * All licenses now have an outfit image.
+      * In the shops, hovering over "buy" or "sell" now highlights which ships it applies to.
+      * "Flight checks" now show up as warning icons rather than blocking you from leaving the outfitter.
+      * Added a flight check for ships with no hyperdrive. (@jostephd)
+    * Maps:
+      * Ships with no hyperdrive can now plan wormhole-only travel paths. (@tehhowch)
+      * The "compare" boxes in the shipyard and outfitter maps are now side by side.
+      * Rearranged the map detail panel so that even small screens have space to list three ports.
+      * Made space for longer planet and system names in the "orbits" map UI.
+      * Clicking a system in the missions map now cycles through waypoints there, too. (@flaviojs)
+      * In the map, a dot inside a system indicates presence of player escorts. (@tehhowch)
+    * Heads-up display:
+      * A mission failure message is now shown if mission cargo is plundered. (@tehhowch)
+      * The minimap now shows up as soon as you begin preparing to jump. (@flaviojs)
+      * The landing target HUD now says whether you're able to land or not. (@flaviojs)
+      * Colored "faction markers" are now displayed in the targeting HUD next to the government name.
+      * Ship target "outlines" now show some of the ship's interior, not just the silhouette.
+      * Improved how the outline shader looks when operating on an animated texture.
+      * Messages in the HUD now wrap rather than overflowing. (@tehhowch)
+    * Other:
+      * The UI zoom level can now be adjusted in smaller increments. (@tehhowch)
+      * The "<payment>" substitution is now formatted as a positive number even for fines. (@tehhowch)
+      * Added a preference to rehire extra crew (beyond the minimum) if lost. (@tehhowch, @flaviojs)
+      * Scrolling past the end of a logbook page now wraps around to the top. (@tehhowch)
+      * Escape or Ctrl-W now closes dialogs. (@tehhowch)
+      * Tweaked the star field rendering to reduce "sparkle" when zoomed all the way out.
+      * Added new color settings to the interface file. (@tehhowch)
+      * Added help messages for new players who fly far out from the system center without jumping.
+      * Reduced the volume scale to better match other games.
+      * When formatting numbers, always put a digit to the left of the separator. (@Hacklin)
+  * Under the hood:
+    * Lots of data file cleanup and simplification of redundant items. (@tehhowch)
+    * Data file fixes. (@Amazinite, @jafdy, @luiges90, @Nescio0, @Rob59er, @toilethinges, @warp-core)
+    * Minor code issues. (@abenkovskii, @AMDmi3, @AskePit, @gunqqer, @Hacklin, @Isaacssv552, @tehhowch)
+    * Improved some of the trace messages shown for invalid data. (@tehhowch)
+    * Fixes to the AppStream data file for some Linux distributions. (@Pointedstick)
+    * Made reputation adjustments use <?= where appropriate. (@mootootwo)
+    * Various code cleanup changes.
+    * Made it possible to specify a non-standard BUILDDIR in the scons script.
+    * Split up Engine's massive CalculateStep() function to make it easier to read and understand.
+    * Sprites are now drawn via OpenGL texture arrays rather than separate textures for each frame.
+    * Sped up the image-loading code by loading all frames of a sprite in one texture.
+    * Updated the Mac OS build instructions and XCode settings to use Homebrew.
+
 Version 0.9.8:
   * Bug fixes:
     * Typo fixes. (@Amazinite, @Bladewood, @Hadron1776, @MessyMix, @tehhowch)
