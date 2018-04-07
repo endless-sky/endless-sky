@@ -224,6 +224,7 @@ mission "Smuggler's Den: Payment"
 
 
 mission "Smuggler's Den: Follow Up"
+	invisible
 	landing
 	source Millrace
 	to offer
@@ -237,10 +238,11 @@ mission "Smuggler's Den: Follow Up"
 				`	(No.)`
 					decline
 			`	You contact Joe and Maria and they say they would definitely enjoy seeing you. On your way to the workers' barracks where they live, you stop by a small store and buy some chocolate, plus bread and fresh fruit and some canned goods you think they would be able to use. They thank you for coming and welcome you into their home. Jesse is continuing to grow up, and they have another baby too, now. Joe says the work in the factories is exhausting, and the hours are long, but they never need to worry about where their next meal will come from, or what they'll be required to do to earn it. You leave feeling very glad that you have been able to make such a difference in someone's life.`
-				decline
+				accept
 				
-	on decline
+	on accept
 		log `Visited Joe and Maria on Millrace. Life is tough, but they are doing far better now than they were on a pirate ship. Jesse has grown and the couple already has another baby to look after.`
+		fail
 
 
 
