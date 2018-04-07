@@ -48,6 +48,7 @@ to the output of homebrew after you install any of those packages in order for
 proceed.
 
 Example output:
+
     This formula is keg-only, which means it was not symlinked into /usr/local,
     because macOS provides OpenAL.framework.
 
