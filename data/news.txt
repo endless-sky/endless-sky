@@ -32,6 +32,7 @@ news "human merchant anywhere"
 		portrait/human76
 		portrait/human79
 		portrait/human98
+		portrait/human112
 	message
 		word
 			"Can you believe how little they pay for used ships and outfits these days? It's just a scandal!"
@@ -67,6 +68,9 @@ news "human merchant in human space"
 		portrait/human76
 		portrait/human79
 		portrait/human98
+		portrait/human108
+		portrait/human112
+		portrait/human125
 	message
 		word
 			"Pirate attacks keep getting more and more frequent, even in star systems that used to be perfectly safe. Why isn't the Navy doing something about it?"
@@ -108,6 +112,9 @@ news "human merchant in Hai space"
 		portrait/human76
 		portrait/human79
 		portrait/human98
+		portrait/human108
+		portrait/human112
+		portrait/human125
 	message
 		word
 			"Can you believe these Hai? They're light-years ahead of us, right under our noses."
@@ -139,6 +146,12 @@ news "human farming"
 		portrait/human52
 		portrait/human53
 		portrait/human78
+		portrait/human113
+		portrait/human116
+		portrait/human119
+		portrait/human120
+		portrait/human121
+		portrait/human126
 	message
 		word
 			"My neighbor is using some sort of newfangled pesticides. The wind carried their residue onto my fields and destroyed half my crops."
@@ -175,6 +188,9 @@ news "human textiles"
 		portrait/human55
 		portrait/human66
 		portrait/human69
+		portrait/human114
+		portrait/human123
+		portrait/human128
 	message
 		word
 			"Two days ago I ran over my finger with an industrial sewing machine. Put a hole straight through my thumb. But at least they paid my medical bill and gave me a week of sick leave."
@@ -205,6 +221,10 @@ news "human mining"
 		portrait/human70
 		portrait/human77
 		portrait/human82
+		portrait/human102
+		portrait/human104
+		portrait/human115
+		portrait/human117
 	message
 		word
 			"Mining's the best opportunity on this whole planet, but I worry about my health. I've started to cough up blood when I get sick. It's a good thing the company pays for our medical bills."
@@ -228,6 +248,7 @@ news "human factory"
 		portrait/human92
 		portrait/human94
 		portrait/human97
+		portrait/human111
 	message
 		word
 			"Everybody I know wound up working in the plant, so I guess I was gonna go, too. It was inevitable or something, right?"
@@ -272,6 +293,7 @@ news "company psychologist"
 		portrait/human28
 		portrait/human47
 		portrait/human93
+		portrait/human103
 	message
 		word
 			"Studies have shown that ultimate fulfillment in life comes from doing valuable work. My calling is to help all our workers achieve that sort of self-actualization by being as productive as possible."
@@ -315,6 +337,7 @@ news "unemployed youth"
 		portrait/human34
 		portrait/human39
 		portrait/human98
+		portrait/human109
 	message
 		word
 			"I may be living on the street, but at least I haven't let myself get trapped in debt slavery like the workers on Syndicate worlds."
@@ -457,6 +480,7 @@ news "human resources worker"
 		portrait/human11
 		portrait/human33
 		portrait/human72
+		portrait/human125
 	message
 		word
 			"We always put our employees first. But sometimes they do things that are bad for their careers. Like, accusing a high-ranking manager of harassment."
@@ -557,6 +581,7 @@ news "epidemiologist"
 		portrait/human10
 		portrait/human37
 		portrait/human79
+		portrait/human110
 	message
 		word
 			"People always worry about extra-terrestrial viruses and bacteria, but the deadliest diseases are very often caused by microbes we brought with us to the stars from good old Mother Earth."
@@ -577,6 +602,7 @@ news "economist"
 		portrait/human49
 		portrait/human83
 		portrait/human91
+		portrait/human129
 	message
 		word
 			"We're actually required by local law to predict that the economy will continue to do well, because the government thinks that any dire predictions will be a self-fulfilling prophecy."
@@ -681,6 +707,7 @@ news "actor"
 		portrait/human06
 		portrait/human51
 		portrait/human84
+		portrait/human105
 	message
 		word
 			"We're doing a production of the Scottish Play where the three witches are made up to look like Quarg. I know it sounds weird, but it works in our context."
@@ -765,6 +792,7 @@ news "insurance agent"
 		portrait/human49
 		portrait/human78
 		portrait/human97
+		portrait/human127
 	message
 		word
 			"No, we don't sell insurance policies on private starships in this day and age. We also don't insure buildings in flood plains and houses inhabited by convicted serial arsonists."
@@ -936,6 +964,7 @@ news "human student"
 		portrait/human90
 		portrait/human93
 		portrait/human96
+		portrait/human107
 	message
 		word
 			"I'm going to be a teacher some day!"
@@ -964,6 +993,8 @@ news "human religious"
 		portrait/human45
 		portrait/human57
 		portrait/human61
+		portrait/human124
+		portrait/human126
 	message
 		word
 			"May God be with you!"
@@ -996,6 +1027,7 @@ news "human tourism"
 		portrait/human84
 		portrait/human86
 		portrait/human95
+		portrait/human122
 	message
 		word
 			"This place is so romantic. I wish I could stay forever."
@@ -1041,6 +1073,9 @@ news "human republic soldier"
 		portrait/human80
 		portrait/human81
 		portrait/human85
+		portrait/human100
+		portrait/human101
+		portrait/human118
 	message
 		word
 			"I bet you think that starship of yours is hot stuff, huh? Try tooling around in a cruiser with Atomic Engines sometime. You can run circles around interceptors."
