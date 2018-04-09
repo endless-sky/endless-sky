@@ -21,7 +21,7 @@ galaxy "label deep"
 	sprite label/deep
 
 galaxy "label dirt belt"
-	pos -490 310
+	pos -481 290
 	sprite "label/dirt belt"
 
 galaxy "label earth"
@@ -54,7 +54,7 @@ galaxy "label korath"
 	pos 138 -306
 
 galaxy "label saryds"
-	pos -1078 686
+	pos -1037 651
 
 galaxy "label kimek"
 	pos -1294 276
