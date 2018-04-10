@@ -28,7 +28,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteShader.h"
 #include "UI.h"
 
+#include <climits>
 #include <cmath>
+#include <exception>
 #include <functional>
 
 using namespace std;
@@ -292,7 +294,27 @@ void Dialog::DoCallback() const
 	}
 	
 	if(intFun)
-		intFun(input.empty() ? 0 : stoi(input));
+	{
+		if (input.empty())
+		{
+			intFun(0);
+			return;
+		}
+		
+		int conv;
+		try {
+			conv = std::stoi(input);
+		}
+		catch (std::out_of_range& oor)
+		{
+			conv = INT_MAX;
+		}
+		catch (...)
+		{
+			conv = 0;
+		}
+		intFun(conv);
+	}
 	
 	if(stringFun)
 		stringFun(input);
