@@ -13184,7 +13184,7 @@ system Kochab
 		period 2660.37
 
 system "Kor Ak'Mari"
-	pos 43 22
+	pos 43 42
 	government Korath
 	habitable 625
 	belt 1606
@@ -19392,6 +19392,17 @@ system Sadr
 		sprite planet/miranda
 		distance 2553.34
 		period 830.739
+
+system "Sagittarius A*"
+	pos 112 22
+	government Uninhabited
+	habitable 10000
+	object
+		sprite "star/black-hole-core"
+		period 1
+	object
+		sprite "star/black-hole"
+		period 1
 
 system Saiph
 	pos -375 -390
