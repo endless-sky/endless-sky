@@ -2607,6 +2607,7 @@ mission "FW Assasination [1]"
 		payment 350000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		reputation: "Free Worlds" -= 20
+		reputation: "Pirate: += 20
 		
 mission "FW Assasination [2]"
 	name "Assassinate a political target"
@@ -2640,6 +2641,7 @@ mission "FW Assasination [2]"
 		payment 500000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		reputation: "Free Worlds" -= 30
+		reputation: "Pirate: += 20
 		
 mission "FW Assasination [3]"
 	name "Assassinate a military target"
@@ -2668,6 +2670,7 @@ mission "FW Assasination [3]"
 		payment 600000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		reputation: "Free Worlds" -= 50
+		reputation: "Pirate: += 20
 		
 mission "FW Assasination [4]"
 	name "Assassinate a military target"
@@ -2704,6 +2707,7 @@ mission "FW Assasination [4]"
 		payment 800000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		reputation: "Free Worlds" -= 70
+		reputation: "Pirate: += 20
 
 mission "Syndicate Assasination [1]"
 	name "Assassinate a political target"
@@ -2730,6 +2734,7 @@ mission "Syndicate Assasination [1]"
 		payment 350000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		reputation: "Syndicate" -= 20
+		reputation: "Pirate: += 20
 		
 mission "Syndicate Assasination [2]"
 	name "Assassinate a political target"
@@ -2763,6 +2768,7 @@ mission "Syndicate Assasination [2]"
 		payment 500000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		reputation "Syndicate" -= 30
+		reputation: "Pirate: += 20
 		
 mission "Syndicate Assasination [3]"
 	name "Assassinate a military target"
@@ -2793,6 +2799,7 @@ mission "Syndicate Assasination [3]"
 		payment 600000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		reputation: "Syndicate" -= 50
+		reputation: "Pirate: += 20
 		
 mission "Syndicate Assasination [4]"
 	name "Assassinate a military target"
@@ -2829,6 +2836,7 @@ mission "Syndicate Assasination [4]"
 		payment 800000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		reputation: "Syndicate" -= 70
+		reputation: "Pirate: += 20
 		
 mission "Republic Assassination [1]"
 	name "Assassinate a political target"
@@ -2855,6 +2863,7 @@ mission "Republic Assassination [1]"
 		payment 350000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		reputation: "Republic" -= 20
+		reputation: "Pirate: += 20
 		
 mission "Republic Assassination [2]"
 	name "Assassinate a political target"
@@ -2887,6 +2896,7 @@ mission "Republic Assassination [2]"
 		payment 500000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		reputation: "Republic" -= 30
+		reputation: "Pirate: += 20
 		
 mission "Republic Assasination [3]"
 	name "Assassinate a military target"
@@ -2917,6 +2927,7 @@ mission "Republic Assasination [3]"
 		payment 600000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		reputation: "Republic" -= 50
+		reputation: "Pirate: += 20
 		
 mission "Republic Assassination [4]"
 	name "Assassinate a military target"
@@ -2949,6 +2960,7 @@ mission "Republic Assassination [4]"
 		payment 800000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		reputation: "Republic" -= 70
+		reputation: "Pirate: += 20
 
 
 
