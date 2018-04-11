@@ -2529,7 +2529,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		currentTarget.reset();
 	
 	// Only fire on disabled targets if you don't want to plunder them.
-	bool spareDisabled = (person.Disables() || (person.Plunders() && ship.Cargo().Free()));
+	bool spareDisabled = (person.Disables() || (person.Plunders() && ship.Cargo().Free()) || ship.IsYours());
 	
 	// Don't use weapons with firing force if you are preparing to jump.
 	bool isWaitingToJump = ship.Commands().Has(Command::JUMP | Command::WAIT);
