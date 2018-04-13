@@ -2584,13 +2584,13 @@ mission "Cargo Theft (South)"
 		
 mission "FW Assasination [1]"
 	name "Assassinate a political target"
-	description "A key polititican is out on a pleasure flight in their ship, the <npc>. Find and destroy them. Be advised, they have some escorts."	
+	description "A key politician is out on a pleasure flight in their ship, the <npc>. Find and destroy them. Be advised, they may have some escorts."
 	repeat
 	job
 	to offer
 		"combat rating" > 200
 		random < 25
-		"reputation: Pirate" = -100
+		"reputation: Pirate" >= -100
 	source
 		government "Pirate"
 		attributes "south pirate"
@@ -2610,17 +2610,17 @@ mission "FW Assasination [1]"
 		payment 350000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		"reputation: Free Worlds" -= 10
-		"reputation: Pirate: += 3
+		"reputation: Pirate" += 3
 		
 mission "FW Assasination [2]"
 	name "Assassinate a political target"
-	description "A key political target is gathering an escort of personal ships nearby. Destroy them and whatever fleet ships they've gathered."
+	description "A key political target is gathering an escort fleet nearby. Destroy them and whatever fleet ships they've gathered."
 	repeat
 	job
 	to offer
 		"combat rating" > 400
 		random < 20
-		"reputation: Pirate" = -50
+		"reputation: Pirate" >= -50
 	source
 		government "Pirate"
 		attributes "south pirate"
@@ -2634,7 +2634,7 @@ mission "FW Assasination [2]"
 			variant
 				"Star Queen"
 				"Osprey"
-				"Argosy"2				
+				"Argosy" 2				
 				"Fury" 3
 			variant
 				"Star Queen"
@@ -2646,7 +2646,7 @@ mission "FW Assasination [2]"
 		payment 500000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		"reputation: Free Worlds" -= 15
-		"reputation: Pirate: += 5
+		"reputation: Pirate" += 5
 		
 mission "FW Assasination [3]"
 	name "Assassinate a military target"
@@ -2656,9 +2656,9 @@ mission "FW Assasination [3]"
 	to offer
 		"combat rating" > 500
 		random < 15
-		"reputation: Pirate" = 50
+		"reputation: Pirate" >= 50
 	source
-		government Pirate
+		government "Pirate"
 		attributes "south pirate"
 	npc kill
 		government "Free Worlds"
@@ -2680,7 +2680,7 @@ mission "FW Assasination [3]"
 		payment 600000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		"reputation: Free Worlds" -= 20
-		"reputation: Pirate: += 7
+		"reputation: Pirate"	 += 7
 		
 mission "FW Assasination [4]"
 	name "Assassinate a military target"
@@ -2690,7 +2690,7 @@ mission "FW Assasination [4]"
 	to offer
 		"combat rating" > 800
 		random < 10
-		"reputation: Pirate" = 100
+		"reputation: Pirate" >= 100
 	source
 		government "Pirate"
 		attributes "south pirate"
@@ -2718,16 +2718,17 @@ mission "FW Assasination [4]"
 		payment 800000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		"reputation: Free Worlds" -= 25
-		"reputation: Pirate: += 10
+		"reputation: Pirate" += 10
 
 mission "Syndicate Assasination [1]"
 	name "Assassinate a political target"
-	description "A key polititican is out on a pleasure flight in their ship, the <npc>. Find and destroy them. Be advised, they have some escorts."
+	description "A key politician is out on a pleasure flight in their ship, the <npc>. Find and destroy them. Be advised, they may have some escorts."
 	repeat
 	job
 	to offer
 		"combat rating" > 200
 		random < 25
+		"reputation: Pirate" >= -100
 	source
 		government "Pirate"
 		attributes "core pirate"
@@ -2747,16 +2748,17 @@ mission "Syndicate Assasination [1]"
 		payment 350000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		"reputation: Syndicate" -= 10
-		"reputation: Pirate: += 3
+		"reputation: Pirate" += 3
 		
 mission "Syndicate Assasination [2]"
 	name "Assassinate a political target"
-	description "A key political target is gathering an escort of personal ships nearby. Destroy them and whatever fleet they've gathered."
+	description "A key political target is gathering an escort fleet nearby. Destroy them and whatever fleet they've gathered."
 	repeat
 	job
 	to offer
 		"combat rating" > 400
 		random < 20
+		"reputation: Pirate" >=-50
 	source
 		government "Pirate"
 		attributes "core pirate"
@@ -2781,7 +2783,7 @@ mission "Syndicate Assasination [2]"
 		payment 500000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		"reputation: Syndicate" -= 15
-		"reputation: Pirate: += 5
+		"reputation: Pirate" += 5
 		
 mission "Syndicate Assasination [3]"
 	name "Assassinate a military target"
@@ -2791,6 +2793,7 @@ mission "Syndicate Assasination [3]"
 	to offer
 		"combat rating" > 500
 		random < 15
+		"reputation: Pirate" >=50
 	source
 		government "Pirate"
 		attributes "core pirate"
@@ -2815,7 +2818,7 @@ mission "Syndicate Assasination [3]"
 		payment 600000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		"reputation: Syndicate" -= 20
-		"reputation: Pirate: += 7
+		"reputation: Pirate" += 7
 		
 mission "Syndicate Assasination [4]"
 	name "Assassinate a military target"
@@ -2825,6 +2828,7 @@ mission "Syndicate Assasination [4]"
 	to offer
 		"combat rating" > 800
 		random < 10
+		"reputatiion: Pirate" >= 100
 	source
 		government "Pirate"
 		attributes "core pirate"
@@ -2852,16 +2856,17 @@ mission "Syndicate Assasination [4]"
 		payment 800000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		"reputation: Syndicate" -= 25
-		"reputation: Pirate: += 10
+		"reputation: Pirate" += 10
 		
 mission "Republic Assassination [1]"
 	name "Assassinate a political target"
-	description "A key polititican is out on a pleasure flight in their ship, the <npc>. Find and destroy them. Be advised, they have some escorts."
+	description "A key polititican is out on a pleasure flight in their ship, the <npc>. Find and destroy them. Be advised, they may have some escorts."
 	repeat
 	job
 	to offer
 		"combat rating" > 200
 		random < 25
+		"reputation: Pirate" >= -100
 	source
 		government "Pirate"
 		attributes "north pirate"
@@ -2880,16 +2885,17 @@ mission "Republic Assassination [1]"
 		payment 350000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		"reputation: Republic" -= 10
-		"reputation: Pirate: += 3
+		"reputation: Pirate" += 3
 		
 mission "Republic Assassination [2]"
 	name "Assassinate a political target"
-	description "A key political target is gathering an escort of personal ships nearby. Destroy them and whatever fleet they've gathered."
+	description "A key political target is gathering an escort fleet nearby. Destroy them and whatever fleet they've gathered."
 	repeat
 	job
 	to offer
 		"combat rating" > 400
 		random < 20
+		"reputation: Pirate" >= -50
 	source
 		government "Pirate"
 		attributes "north pirate"
@@ -2924,6 +2930,7 @@ mission "Republic Assasination [3]"
 	to offer
 		"combat rating" > 600
 		random < 15
+		"reputation: Pirate" >= 50
 	source
 		government "Pirate"
 		attributes "north pirate"
@@ -2949,7 +2956,7 @@ mission "Republic Assasination [3]"
 		payment 600000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		"reputation: Republic" -= 20
-		"reputation: Pirate: += 7
+		"reputation: Pirate" += 7
 		
 mission "Republic Assassination [4]"
 	name "Assassinate a military target"
@@ -2959,6 +2966,7 @@ mission "Republic Assassination [4]"
 	to offer
 		"combat rating" > 800
 		random < 10
+		"reputation: Pirate" >= 100
 	source
 		government "Pirate"
 		attributes "north pirate"
@@ -2982,7 +2990,7 @@ mission "Republic Assassination [4]"
 		payment 800000
 		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
 		"reputation: Republic" -= 25
-		"reputation: Pirate: += 10
+		"reputation: Pirate" += 10
 
 
 
