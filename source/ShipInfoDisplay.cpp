@@ -293,33 +293,33 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	double sumHeat = idleHeat + movingHeat + firingHeat + (shieldHeat + hullHeat);
 	
 	tableLabels.push_back("idle:");
-	energyTable.push_back(Format::Number(60. * idleEnergy));
-	heatTable.push_back(Format::Number(60. * idleHeat));
+	energyTable.push_back(Format::Decimal(60. * idleEnergy, 0));
+	heatTable.push_back(Format::Decimal(60. * idleHeat, 0));
 	attributesHeight += 20;
 	tableLabels.push_back("moving:");
-	energyTable.push_back(Format::Number(-60. * movingEnergy));
-	heatTable.push_back(Format::Number(60. * movingHeat));
+	energyTable.push_back(Format::Decimal(-60. * movingEnergy, 0));
+	heatTable.push_back(Format::Decimal(60. * movingHeat,0 ));
 	attributesHeight += 20;
 	tableLabels.push_back("firing:");
-	energyTable.push_back(Format::Number(-60. * firingEnergy));
-	heatTable.push_back(Format::Number(60. * firingHeat));
+	energyTable.push_back(Format::Decimal(-60. * firingEnergy, 0));
+	heatTable.push_back(Format::Decimal(60. * firingHeat, 0));
 	attributesHeight += 20;
 	tableLabels.push_back((shieldEnergy && hullEnergy) ? "shields / hull:" :
 		hullEnergy ? "repairing hull:" : "charging shields:");
-	energyTable.push_back(Format::Number(-60. * (shieldEnergy + hullEnergy)));
-	heatTable.push_back(Format::Number(60. * (shieldHeat + hullHeat)));
+	energyTable.push_back(Format::Decimal(-60. * (shieldEnergy + hullEnergy), 0));
+	heatTable.push_back(Format::Decimal(60. * (shieldHeat + hullHeat), 0));
 	attributesHeight += 20;
 	tableLabels.push_back("sum:");
-	energyTable.push_back(Format::Number(60. * sumEnergy));
-	heatTable.push_back(Format::Number(60. * sumHeat));
+	energyTable.push_back(Format::Decimal(60. * sumEnergy, 0));
+	heatTable.push_back(Format::Decimal(60. * sumHeat, 0));
 	attributesHeight += 20;
 	tableLabels.push_back("capacity:");
-	energyTable.push_back(Format::Number(attributes.Get("energy capacity")));
-	heatTable.push_back(Format::Number(max(emptyMass * 100 - ship.IdleHeat(), 0.)));
+	energyTable.push_back(Format::Decimal(attributes.Get("energy capacity"), 0));
+	heatTable.push_back(Format::Decimal(max(emptyMass * 100 - ship.IdleHeat(), 0.), 0));
 	attributesHeight += 20;
 	tableLabels.push_back("buffer time:");
-	energyTable.push_back((sumEnergy < 0) ? Format::Number((int)(attributes.Get("energy capacity") / (-60 * sumEnergy))) : "-");
-	heatTable.push_back((sumHeat > 0) ? Format::Number((int)((max(emptyMass * 100 - ship.IdleHeat(), 0.)) / (60 * sumHeat))) : "-");
+	energyTable.push_back((sumEnergy < 0) ? Format::Decimal(attributes.Get("energy capacity") / (-60 * sumEnergy), 0) : "-");
+	heatTable.push_back((sumHeat > 0) ? Format::Decimal(max(emptyMass * 100 - ship.IdleHeat(), 0.) / (60 * sumHeat), 0) : "-");
 	// Pad by 10 pixels on the top and bottom.
 	attributesHeight += 30;
 }
