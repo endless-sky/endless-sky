@@ -223,13 +223,13 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		player.SetMapColoring(max(0, player.MapColoring() - 1));
 	else if(key == SDLK_DOWN)
 		player.SetMapColoring(max(0, min(COMMODITY_COUNT - 1, player.MapColoring() + 1)));
-	else if(key == '=' || key == SDLK_RETURN || key == SDLK_SPACE)
+	else if(key == '=' || key == SDLK_LEFT || key == SDLK_SPACE)
 		Buy(1);
-	else if(key == '-' || key == SDLK_BACKSPACE || key == SDLK_DELETE)
+	else if(key == '-' || key == SDLK_RIGHT || key == SDLK_DELETE)
 		Buy(-1);
-	else if(key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
+	else if(key == 'B' || key == SDLK_RETURN)
 		Buy(1000000000);
-	else if(key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
+	else if(key == 'S' || key == SDLK_BACKSPACE)
 	{
 		for(const auto &it : GameData::Commodities())
 		{

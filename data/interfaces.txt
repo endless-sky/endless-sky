@@ -934,7 +934,7 @@ interface "info panel"
 	active if "can park"
 	sprite "ui/dialog cancel"
 		center -55 305
-	button P "Park"
+	button p "_Park"
 		center -55 305
 		dimensions 70 30
 	active
@@ -942,7 +942,7 @@ interface "info panel"
 	visible if "show unpark"
 	sprite "ui/dialog cancel"
 		center -55 305
-	button P "Unpark"
+	button p "Un_park"
 		center -55 305
 		dimensions 70 30
 	
@@ -965,13 +965,13 @@ interface "info panel"
 	visible if "show park all"
 	sprite "ui/wide button"
 		center 145 305
-	button A "Park All"
+	button a "Park _All"
 		center 145 305
 		dimensions 90 30
 	visible if "show unpark all"
 	sprite "ui/wide button"
 		center 145 305
-	button A "Unpark All"
+	button a "Unpark _All"
 		center 145 305
 		dimensions 90 30
 

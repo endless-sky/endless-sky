@@ -136,7 +136,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Pop(this);
 		GetUI()->Push(new PlayerInfoPanel(player));
 	}
-	else if(key == 'R')
+	else if(key == 'r')
 		GetUI()->Push(new Dialog(this, &ShipInfoPanel::Rename, "Change this ship's name?"));
 	else if(canEdit && key == 'P')
 	{
