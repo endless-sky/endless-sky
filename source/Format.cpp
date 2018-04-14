@@ -124,7 +124,10 @@ string Format::Decimal(double value, int places)
 	double integer;
 	double fraction = fabs(modf(value, &integer));
 	
-	string result = to_string(static_cast<int>(integer)) + ".";
+	string result = to_string(static_cast<int>(integer));
+	if(places)
+		result += ".";
+	
 	while(places--)
 	{
 		fraction = modf(fraction * 10., &integer);
