@@ -293,8 +293,14 @@ tip "repairing hull:"
 tip "charging shields:"
 	`Energy consumed and heat generated when this ship is recharging its shields. This is in addition to the "idle" amount.`
 
-tip "max:"
-	`Energy storage capacity and maximum safe level for heat generation. Energy capacity allows a ship to temporarily draw more energy than it produces. The heat maximum is the highest your heat generation can be without eventually causing your ship to overheat.`
+tip "sum:"
+	`Energy and heat balance with all the ships systems running. With a negative energy balance having some energy storage capacity is advised. A positive heat balance can eventually cause the ship to overheat.`
+
+tip "capacity:"
+	`Energy and heat storage capacity. Energy capacity allows a ship to temporarily draw more energy than it produces. The heat capacity is the heat a ship can build up before overheating.`
+
+tip "buffer time:"
+	`Time until the energy storage is depleted or the ship overheats when all systems are running.`
 
 
 
