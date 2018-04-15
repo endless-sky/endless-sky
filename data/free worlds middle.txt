@@ -1596,7 +1596,7 @@ mission "FW Albatross 1"
 			`	"Yes," she says. "Yes, it does. Now, let's go meet up with JJ."`
 				accept
 			label metoo
-			`	Freya raises an eyebrow. "I hadn't heard. Let's hope nobody on Albatross had heard either."`
+			`	Freya raises an eyebrow. "I hadn't heard. Try not to say that so loudly when you're on Albatross."`
 				accept
 
 
