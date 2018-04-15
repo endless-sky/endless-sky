@@ -2584,13 +2584,14 @@ mission "Cargo Theft (South)"
 		
 mission "FW Assasination [1]"
 	name "Assassinate a political target"
-	description "A key politician is out on a pleasure flight in their ship, the <npc>. Find and destroy them. Be advised, they may have some escorts."
+	description "A key Free Worlds politician who has called for the abolishment of the Greenrock slave markets was spotted on a pleasure flight in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
 	to offer
 		"combat rating" > 200
 		random < 25
-		"reputation: Pirate" >= -100
+		"reputation: Pirate" > -100
+		has "event: war begins"
 	source
 		government "Pirate"
 		attributes "south pirate"
@@ -2603,24 +2604,30 @@ mission "FW Assasination [1]"
 			names civilian
 			variant
 				"Flivver"
-				"Osprey"
+				"Osprey" 2
+			variant
+				"Osrpey"
+				"Bastion"
+			variant
+				"Falcon"
 				"Fury" 2
 		dialog "The target has been destroyed. Return to <destination> for your payment."
 	on complete
 		payment 350000
-		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
+		dialog "A band of slave traders thank you for eliminating the politician and pay you <payment>."
 		"reputation: Free Worlds" -= 10
 		"reputation: Pirate" += 3
 		
 mission "FW Assasination [2]"
 	name "Assassinate a political target"
-	description "A key political target is gathering an escort fleet nearby. Destroy them and whatever fleet ships they've gathered."
+	description "A key Free Worlds politician who has spoken out against a powerful pirate warlord was spotted on a pleasure flight in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they are heavily defended."
 	repeat
 	job
 	to offer
 		"combat rating" > 400
 		random < 20
-		"reputation: Pirate" >= -50
+		"reputation: Pirate" > -50
+		has "event: war begins"
 	source
 		government "Pirate"
 		attributes "south pirate"
@@ -2634,63 +2641,28 @@ mission "FW Assasination [2]"
 			variant
 				"Star Queen"
 				"Osprey"
-				"Argosy" 2				
-				"Fury" 3
+				"Argosy" 2
 			variant
 				"Star Queen"
-				"Osprey" 2
-				"Hawk" 3
-				"Fury" 2
-		dialog "The targets have been destroyed. Return to <destination> for payment."
+				"Falcon"
+				"Argosy"
+		dialog "The target has been destroyed. Return to <destination> for your payment."
 	on complete
-		payment 500000
-		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
+		payment 600000
+		dialog "The pirate warlord thanks you for eliminating the politician that threated them and pays you <payment>."
 		"reputation: Free Worlds" -= 15
 		"reputation: Pirate" += 5
 		
 mission "FW Assasination [3]"
 	name "Assassinate a military target"
-	description "An important military captain is patrolling the nearby systems. Find the patrol, and destroy it."
+	description "A Free Worlds militia commander who has lead a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Find and destroy them in order to send a message to the Free Worlds. Payment is <payment>."
 	repeat
 	job
 	to offer
 		"combat rating" > 500
 		random < 15
-		"reputation: Pirate" >= 50
-	source
-		government "Pirate"
-		attributes "south pirate"
-	npc kill
-		government "Free Worlds"
-		personality entering uninterested target
-		system
-			distance 2 4
-		fleet
-			names "free worlds small"
-			variant
-				"Osprey"
-				"Fury" 2
-				"Hawk"
-			variant
-				"Argosy (Laser)"
-				"Hawk" 2
-				"Fury" 2
-		dialog "The target has been destroyed. Return to <destination> for your payment."
-	on complete
-		payment 600000
-		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
-		"reputation: Free Worlds" -= 20
-		"reputation: Pirate"	 += 7
-		
-mission "FW Assasination [4]"
-	name "Assassinate a military target"
-	description "An important military commander is gathering an invasion fleet nearby. Destroy them and their fleet."
-	repeat
-	job
-	to offer
-		"combat rating" > 800
-		random < 10
-		"reputation: Pirate" >= 100
+		"reputation: Pirate" > 50
+		has "event: war begins"
 	source
 		government "Pirate"
 		attributes "south pirate"
@@ -2702,33 +2674,65 @@ mission "FW Assasination [4]"
 		fleet
 			names "free worlds small"
 			variant
-				"Hawk" 2
-				"Hawk (Rocket)"
-				"Osprey"
-				"Fury (Laser)" 2
-				"Fury"
 				"Bastion"
-			variant
-				"Bastion"
-				"Hawk (Rocket)" 2
 				"Osprey" 2
-				"Fury" 3
+				"Fury" 2
+			variant
+				"Argosy (Laser)"
+				"Argosy" 2
+				"Hawk" 2
+				"Fury" 2
+		dialog "The target has been destroyed. Return to <destination> for your payment."
+	on complete
+		payment 750000
+		dialog "A gang of pirates on <planet> thank you for taking out the Free Worlds commander and pay you <payment>."
+		"reputation: Free Worlds" -= 20
+		"reputation: Pirate" += 7
+		
+mission "FW Assasination [4]"
+	name "Assassinate a military target"
+	description "Rumor has it that the Free Worlds are planning a raid on regional pirate gangs in order to reduce piracy. An important militia commander said to be leading this raid has been spotted in a nearby system with a large fleet. Find and destroy them in order to send a message to the Free Worlds. Payment is <payment>."
+	repeat
+	job
+	to offer
+		"combat rating" > 800
+		random < 10
+		"reputation: Pirate" > 100
+		has "event: war begins"
+	source
+		government "Pirate"
+		attributes "south pirate"
+	npc kill
+		government "Free Worlds"
+		personality staying target
+		system
+			distance 2 4
+		fleet
+			names "free worlds small"
+			variant
+				"Falcon" 2
+				"Bastion" 2
+				"Osprey" 2
+			variant
+				"Falcon"
+				"Bastion" 2
+				"Argosy" 4
 		dialog "The target fleet has been destroyed. Return to <destination> for your payment."
 	on complete
-		payment 800000
-		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
+		payment 1000000
+		dialog "You are greeted by applause from many pirates when you land and a powerful pirate warlord pays you <payment>."
 		"reputation: Free Worlds" -= 25
 		"reputation: Pirate" += 10
 
 mission "Syndicate Assasination [1]"
 	name "Assassinate a political target"
-	description "A key politician is out on a pleasure flight in their ship, the <npc>. Find and destroy them. Be advised, they may have some escorts."
+	description "A key Syndicate politician who has insulted a regional warlord was spotted on a pleasure flight in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Syndicate. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
 	to offer
 		"combat rating" > 200
 		random < 25
-		"reputation: Pirate" >= -100
+		"reputation: Pirate" > -100
 	source
 		government "Pirate"
 		attributes "core pirate"
@@ -2740,25 +2744,26 @@ mission "Syndicate Assasination [1]"
 		fleet
 			names civilian
 			variant
-				"Flivver"
 				"Quicksilver"
 				"Wasp" 2
+			variant
+				"Star Queen"
 		dialog "The target has been destroyed. Return to <destination> for your payment."
 	on complete
 		payment 350000
-		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
+		dialog "The pirate warlord thanks you for eliminating the politician that insulted them and pays you <payment>."
 		"reputation: Syndicate" -= 10
 		"reputation: Pirate" += 3
 		
 mission "Syndicate Assasination [2]"
 	name "Assassinate a political target"
-	description "A key political target is gathering an escort fleet nearby. Destroy them and whatever fleet they've gathered."
+	description "A key Syndicate politician who plans to make it more difficult for pirate gangs to trade with the Syndicate was spotted on a pleasure flight in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Syndicate. Payment is <payment>. Be advised that they are heavily defended."
 	repeat
 	job
 	to offer
 		"combat rating" > 400
 		random < 20
-		"reputation: Pirate" >=-50
+		"reputation: Pirate" > -50
 	source
 		government "Pirate"
 		attributes "core pirate"
@@ -2771,64 +2776,26 @@ mission "Syndicate Assasination [2]"
 			names civilian
 			variant
 				"Star Queen"
-				"Hawk" 2
-				"Quicksilver"
+				"Quicksilver" 2
  			variant
 				"Star Queen"
-				"Manta"
-				"Hawk" 3
-				"Quicksilver"
+				"Manta" 2
 		dialog "The targets have been destroyed. Return to <destination> for payment."
 	on complete
-		payment 500000
-		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
+		payment 600000
+		dialog "A band of pirates thank you for eliminating the politician and pay you <payment>."
 		"reputation: Syndicate" -= 15
 		"reputation: Pirate" += 5
 		
 mission "Syndicate Assasination [3]"
 	name "Assassinate a military target"
-	description "An important military captain is patrolling the nearby systems. Find the patrol, and destroy it."
+	description "A Syndicated Security commander who has lead a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Find and destroy them in order to send a message to the Syndicate. Payment is <payment>."
 	repeat
 	job
 	to offer
 		"combat rating" > 500
 		random < 15
-		"reputation: Pirate" >=50
-	source
-		government "Pirate"
-		attributes "core pirate"
-	npc kill
-		government "Syndicate"
-		personality entering uninterested target
-		system
-			distance 2 4
-		fleet
-			names "syndicate small"
-			variant
-				"Quicksilver"
-				"Wasp" 3
-			variant
-				"Manta"
-				"Quicksilver" 2
-			variant
-				"Splinter"
-				"Quicksilver" 2
-		dialog "The target has been destroyed. Return to <destination> for your payment."
-	on complete
-		payment 600000
-		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
-		"reputation: Syndicate" -= 20
-		"reputation: Pirate" += 7
-		
-mission "Syndicate Assasination [4]"
-	name "Assassinate a military target"
-	description "An important military commander is gathering an invasion fleet nearby. Destroy them and their fleet."
-	repeat
-	job
-	to offer
-		"combat rating" > 800
-		random < 10
-		"reputatiion: Pirate" >= 100
+		"reputation: Pirate" > 50
 	source
 		government "Pirate"
 		attributes "core pirate"
@@ -2840,33 +2807,65 @@ mission "Syndicate Assasination [4]"
 		fleet
 			names "syndicate small"
 			variant
-				"Wasp" 2
-				"Wasp (Proton)"
+				"Splinter"
+				"Quicksilver" 3
+			variant
+				"Vanguard"
+				"Manta" 2
+			variant
+				"Vanguard"
+				"Protector"
+		dialog "The target has been destroyed. Return to <destination> for your payment."
+	on complete
+		payment 750000
+		dialog "A gang of pirates on <planet> thank you for taking out the Syndicated Security commander and pay you <payment>."
+		"reputation: Syndicate" -= 20
+		"reputation: Pirate" += 7
+		
+mission "Syndicate Assasination [4]"
+	name "Assassinate a military target"
+	description "Rumor has it that the Syndicate is planning a raid on regional pirate gangs in order to reduce piracy. An important security commander said to be leading this raid has been spotted in a nearby system with a large fleet. Find and destroy them in order to send a message to the Syndicate. Payment is <payment>."
+	repeat
+	job
+	to offer
+		"combat rating" > 800
+		random < 10
+		"reputatiion: Pirate" > 100
+	source
+		government "Pirate"
+		attributes "core pirate"
+	npc kill
+		government "Syndicate"
+		personality staying target
+		system
+			distance 2 4
+		fleet
+			names "syndicate small"
+			variant
+				"Vanguard"
+				"Splinter" 3
 				"Manta"
 				"Quicksilver" 2
-				"Fury"
-				"Vanguard"
+				"Protector"
 			variant
-				"Splinter"
-				"Quicksilver" 2
-				"Quicksilver (Proton)"
-				"Wasp" 5
+				"Vanguard" 3
+				"Splinter" 2
 		dialog "The target and their fleet has been destroyed. Return to <destination> for your payment."
 	on complete
-		payment 800000
-		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
+		payment 1000000
+		dialog "You are greeted by applause from many pirates when you land and a powerful pirate warlord pays you <payment>."
 		"reputation: Syndicate" -= 25
 		"reputation: Pirate" += 10
 		
 mission "Republic Assassination [1]"
 	name "Assassinate a political target"
-	description "A key polititican is out on a pleasure flight in their ship, the <npc>. Find and destroy them. Be advised, they may have some escorts."
+	description "A key Republic politician who has called for a more aggressive crackdown on piracy was spotted on a pleasure flight in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Republic. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
 	to offer
 		"combat rating" > 200
 		random < 25
-		"reputation: Pirate" >= -100
+		"reputation: Pirate" > -100
 	source
 		government "Pirate"
 		attributes "north pirate"
@@ -2879,23 +2878,23 @@ mission "Republic Assassination [1]"
 			names civilian
 			variant
 				"Flivver"
-				"Headhunter" 3
+				"Headhunter" 2
 		dialog "The target has been destroyed. Return to <destination> for you payment."
 	on complete
 		payment 350000
-		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
+		dialog "A pirate warlord thanks you for eliminating the politician that called for an aggressive crackdown on piracy and pays you <payment>."
 		"reputation: Republic" -= 10
 		"reputation: Pirate" += 3
 		
 mission "Republic Assassination [2]"
 	name "Assassinate a political target"
-	description "A key political target is gathering an escort fleet nearby. Destroy them and whatever fleet they've gathered."
+	description "A key Republic politician who has proposed legislation that would make it harder for drug runners to deal in the Paradise Worlds was spotted on a pleasure flight in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Republic. Payment is <payment>. Be advised that they are heavily defended."
 	repeat
 	job
 	to offer
 		"combat rating" > 400
 		random < 20
-		"reputation: Pirate" >= -50
+		"reputation: Pirate" > -50
 	source
 		government "Pirate"
 		attributes "north pirate"
@@ -2909,64 +2908,27 @@ mission "Republic Assassination [2]"
 			variant
 				"Star Queen"
 				"Headhunter" 2
-				"FIrebird"
-				"Berserker" 2
+				"FIrebird" 2
 			variant
 				"Star Queen"
-				"Berserker" 3
-				"Firebird" 2
+				"Gunboat" 2
+				"Frigate"
 		dialog "The targets have been destroyed. Return to <destination> for payment."
 	on complete
-		payment 500000
-		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
+		payment 600000
+		dialog "A band of drug traders thank you for eliminating the politician and pay you <payment>."
 		"reputation: Republic" -= 15
-		"reputation: Pirate: += 5
+		"reputation: Pirate" += 5
 		
 mission "Republic Assasination [3]"
 	name "Assassinate a military target"
-	description "An important military captain is patrolling the nearby systems. Find the patrol, and destroy it."
+	description "A Republic Navy commander who has lead a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Find and destroy them in order to send a message to the Republic. Payment is <payment>."
 	repeat
 	job
 	to offer
 		"combat rating" > 600
 		random < 15
-		"reputation: Pirate" >= 50
-	source
-		government "Pirate"
-		attributes "north pirate"
-	npc kill
-		government "Republic"
-		personality entering uninterested target
-		system
-			distance 3 4
-		fleet
-			names "republic small"
-			variant
-				"Rainmaker"
-				"Gunboat" 2
-			variant
-				"Gunboat"
-				"Rainmaker" 2
-			variant
-				"Frigate"
-				"Gunboat" 2
-				"Rainmaker"
-		dialog "The target has been destroyed. Return to <destination> for your payment."
-	on complete
-		payment 600000
-		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
-		"reputation: Republic" -= 20
-		"reputation: Pirate" += 7
-		
-mission "Republic Assassination [4]"
-	name "Assassinate a military target"
-	description "An important military commander is gathering an invasion fleet nearby. Destroy them and their fleet."
-	repeat
-	job
-	to offer
-		"combat rating" > 800
-		random < 10
-		"reputation: Pirate" >= 100
+		"reputation: Pirate" > 50
 	source
 		government "Pirate"
 		attributes "north pirate"
@@ -2978,17 +2940,56 @@ mission "Republic Assassination [4]"
 		fleet
 			names "republic small"
 			variant
-				"Gunboat" 2
-				"Rainmaker" 3
-				"Frigate" 2
+				"Rainmaker" 2
+				"Gunboat" 3
 			variant
+				"Frigate"
+				"Gunboat" 2
+				"Rainmaker"
+		dialog "The target has been destroyed. Return to <destination> for your payment."
+	on complete
+		payment 750000
+		dialog "A gang of pirates on <planet> thank you for taking out the Navy commander and pay you <payment>."
+		"reputation: Republic" -= 20
+		"reputation: Pirate" += 7
+		
+mission "Republic Assassination [4]"
+	name "Assassinate a military target"
+	description "Rumor has it that the Republic is planning a raid on regional pirate gangs in order to reduce piracy. An important Navy commander said to be leading this raid has been spotted in a nearby system with a large fleet. Find and destroy them in order to send a message to the Republic. Payment is <payment>."
+	repeat
+	job
+	to offer
+		"combat rating" > 800
+		random < 10
+		"reputation: Pirate" > 100
+	source
+		government "Pirate"
+		attributes "north pirate"
+	npc kill
+		government "Republic"
+		personality staying target
+		system
+			distance 3 4
+		fleet
+			names "republic small"
+			variant
+				"Carrier" 2
+				"Lance" 8
+				"Combat Drone" 12
+				"Frigate" 3
+			variant
+				"Carrier"
+				"Lance" 4
+				"Combat Drone" 6
+				"Cruiser" 2
+				"Combat Drone" 8
 				"Frigate" 2
-				"Gunboat" 4
-				"Rainmaker" 3
+				"Rainmaker" 2
+				"Gunboat" 2
 		dialog "The target and their fleet has been destroyed. Return to <destination> for your payment."
 	on complete
-		payment 800000
-		dialog "You land at <planet> and the local bounty office transfers the payment of <payment>."
+		payment 1000000
+		dialog "You are greeted by applause from many pirates when you land and a powerful pirate warlord pays you <payment>."
 		"reputation: Republic" -= 25
 		"reputation: Pirate" += 10
 
