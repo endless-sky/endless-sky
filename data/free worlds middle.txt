@@ -1589,11 +1589,15 @@ mission "FW Albatross 1"
 			choice
 				`	"Okay, I feel silly for even asking. Let's go meet up with JJ!"`
 					accept
+				`	"So am I."`
+					goto metoo
 				`	"Ah. That certainly explains a lot."`
 				`	"It seems crazy that anyone would be bothered by that in this day and age."`
 			`	"Yes," she says. "Yes, it does. Now, let's go meet up with JJ."`
 				accept
-
+			label metoo
+			`	Freya raises an eyebrow. "I hadn't heard. Let's hope nobody on Albatross had heard either."`
+				accept
 
 
 mission "FW Albatross 2"
