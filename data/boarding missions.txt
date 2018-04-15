@@ -43,7 +43,7 @@ mission "Navy emergency"
 	repeat
 	deadline
 	passengers 1 3
-	description "Deliver <fare> to <destination> by <date>: the military hospital is waiting for you."
+	description "Deliver <fare> to <destination> by <date>; the military hospital is waiting for you."
 	to offer
 		"reputation: Navy (Oathkeeper)" > 100
 		"passenger space" > <bunks>
@@ -55,7 +55,7 @@ mission "Navy emergency"
 		planet Farpoint
 	on offer
 		conversation
-			`When you repear the <origin>, the captain thanks you but add: "We had injuries during the battle. Could you bring them to Farpoint hospital in emergency? It would only be <bunks> <passengers>."`
+			`When you repair the <origin>, the captain thanks you, but adds, "We had injuries during the battle. Could you bring the injured to the military hospital on Farpoint? It would only be <bunks> <passengers>."`
 			choice
 				`"Sure, I'll do it."`
 					accept
@@ -64,4 +64,4 @@ mission "Navy emergency"
 	on complete
 		"reputation: Navy (Oathkeeper)" += 2
 		payment 32000 100
-		dialog "The Navy's nurses take care of the wounded and transport them from the spaceport to the military hospital. An officier thanks you with a payment of <payment>."
+		dialog "The Navy's nurses take care of the wounded and transport them from the spaceport to the military hospital. An officer thanks you with a payment of <payment>."
