@@ -46,16 +46,14 @@ mission "Navy emergency"
 	description "Deliver <fare> to <destination> by <date>; the military hospital is waiting for you."
 	to offer
 		"reputation: Navy (Oathkeeper)" > 100
-		"passenger space" > <bunks>
 		random < 15
 	source
 		government "Navy (Oathkeeper)"
 		system "Arneb" "Hatysa" "Alnilam" "Unagi" "Almaaz" "Mintaka" "Gorvi" "Tortor" "Fah Root" "Rigel" "Hassaleh" "Danoa" "Rajak" "Sumar" "Ultima Thule" "Cardax" "Volax" "Moktar"
-	destination
-		planet Farpoint
+	destination "Farpoint"
 	on offer
 		conversation
-			`When you repair the <origin>, the captain thanks you, but adds, "We had injuries during the battle. Could you bring the injured to the military hospital on Farpoint? It would only be <bunks> <passengers>."`
+			`When you repair the <origin>, the captain thanks you, but adds, "We had injuries during the battle. Could you bring the injured to the military hospital on <destination>? It would only be <bunks> <passengers>."`
 			choice
 				`"Sure, I'll do it."`
 					accept
