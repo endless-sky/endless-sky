@@ -2606,7 +2606,7 @@ mission "FW Assasination [1]"
 				"Flivver"
 				"Osprey" 2
 			variant
-				"Osrpey"
+				"Osprey"
 				"Bastion"
 			variant
 				"Falcon"
