@@ -510,7 +510,7 @@ void MapPanel::Find(const string &name)
 			{
 				bestIndex = index;
 				selectedSystem = &it.second;
-				center = Zoom() * (Point() - selectedSystem->Position());
+				center = -selectedSystem->Position();
 				if(!index)
 				{
 					selectedPlanet = nullptr;
@@ -526,7 +526,7 @@ void MapPanel::Find(const string &name)
 			{
 				bestIndex = index;
 				selectedSystem = it.second.GetSystem();
-				center = Zoom() * (Point() - selectedSystem->Position());
+				center = -selectedSystem->Position();
 				if(!index)
 				{
 					selectedPlanet = &it.second;
