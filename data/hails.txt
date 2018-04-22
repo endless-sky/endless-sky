@@ -3153,7 +3153,7 @@ phrase "hostile militia"
 		"Solace"
 		"Twinstar"
 		"Sundrinker"
-		"Trinken"
+		"Trinket"
 		"Dancer"
 	word
 		" is rather empty"
