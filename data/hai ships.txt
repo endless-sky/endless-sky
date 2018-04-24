@@ -269,10 +269,9 @@ ship "Grasshopper"
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		Hyperdrive
-	engine -19 33
-	engine 19 33
-	gun -11 -35 "Pulse Cannon"
-	gun 11 -35 "Pulse Cannon"
+	engine 0 36
+	gun -6 -34 "Pulse Cannon"
+	gun 6 -34 "Pulse Cannon"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 5
