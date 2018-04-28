@@ -799,7 +799,7 @@ bool ShopPanel::Release(int x, int y)
 bool ShopPanel::Scroll(double dx, double dy)
 {
 	scrollDetailsIntoView = false;
-	return DoScroll(dy * 2.5 * Preferences::ScrollSpeed());
+	return DoScroll(dy * 2.5 * preferences.scrollSpeed);
 }
 
 

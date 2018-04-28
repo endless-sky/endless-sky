@@ -1009,7 +1009,7 @@ void PlayerInfo::Land(UI *ui)
 	
 	// Hire extra crew back if any were lost in-flight (i.e. boarding) or
 	// some bunks were freed up upon landing (i.e. completed missions).
-	if(Preferences::Has("Rehire extra crew when lost") && hasSpaceport && flagship)
+	if(preferences.rehireExtraCrewWhenLost && hasSpaceport && flagship)
 	{
 		int added = desiredCrew - flagship->Crew();
 		if(added > 0)

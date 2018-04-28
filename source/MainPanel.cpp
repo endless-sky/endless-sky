@@ -156,7 +156,7 @@ void MainPanel::Draw()
 			isDragging = false;
 	}
 	
-	if(Preferences::Has("Show CPU / GPU load"))
+	if(preferences.showCpuGpuLoad)
 	{
 		string loadString = to_string(lround(load * 100.)) + "% GPU";
 		const Color &color = *GameData::Colors().Get("medium");
@@ -196,13 +196,13 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		show = command;
 	else if(command.Has(Command::AMMO))
 	{
-		Preferences::ToggleAmmoUsage();
-		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + ".");
+		preferences.ToggleAmmoUsage();
+		Messages::Add("Your escorts will now expend ammo: " + preferences.AmmoUsage() + ".");
 	}
 	else if(key == '-' && !command)
-		Preferences::ZoomViewOut();
+		preferences.ZoomViewOut();
 	else if(key == '=' && !command)
-		Preferences::ZoomViewIn();
+		preferences.ZoomViewIn();
 	else if(key >= '0' && key <= '9' && !command)
 		engine.SelectGroup(key - '0', mod & KMOD_SHIFT, mod & (KMOD_CTRL | KMOD_GUI));
 	else
@@ -274,9 +274,9 @@ bool MainPanel::Release(int x, int y)
 bool MainPanel::Scroll(double dx, double dy)
 {
 	if(dy < 0)
-		Preferences::ZoomViewOut();
+		preferences.ZoomViewOut();
 	else if(dy > 0)
-		Preferences::ZoomViewIn();
+		preferences.ZoomViewIn();
 	else
 		return false;
 	

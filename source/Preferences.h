@@ -13,33 +13,69 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef PREFERENCES_H_
 #define PREFERENCES_H_
 
-#include <string>
+#include "Help.h"
 
+#include <string>
 
 
 class Preferences {
 public:
-	static void Load();
-	static void Save();
-	
-	static bool Has(const std::string &name);
-	static void Set(const std::string &name, bool on = true);
-	
+	void Load();
+	void Save();
+
+	bool& Get(std::string);
+
 	// Toogle the ammo usage preferences, cycling between "never," "frugally,"
 	// and "always."
-	static void ToggleAmmoUsage();
-	static std::string AmmoUsage();
-	
-	// Scroll speed preference.
-	static int ScrollSpeed();
-	static void SetScrollSpeed(int speed);
+	void ToggleAmmoUsage();
+	std::string AmmoUsage();
 	
 	// View zoom.
-	static double ViewZoom();
-	static bool ZoomViewIn();
-	static bool ZoomViewOut();
+	double ViewZoom();
+	bool ZoomViewIn();
+	bool ZoomViewOut();
+
+	// Preference values
+
+	// Display
+	int zoomIndex;
+	bool showStatusOverlays;
+	bool highlightPlayersFlagship;
+	bool rotateFlagshipInHud;
+	bool showPlanetLabels;
+	bool showMinimap;
+	bool fullscreen; // Implicit
+	bool maximized; // Implicit
+
+	// AI
+	bool automaticAiming;
+	bool automaticFiring;
+	bool escortsExpendAmmo;
+	bool frugalEscorts;
+	bool turretsFocusFire;
+	bool damagedFightersRetreat; // Hidden
+
+	// Performance
+	bool showCpuGpuLoad;
+	bool renderMotionBlur;
+	bool reduceLargeGraphics;
+	bool drawBackgroundHaze;
+	bool showHyperspaceFlash;
+
+	// Other
+	bool clickableRadarDisplay;
+	bool hideUnexploredMapRegions;
+	bool seenHelp[Help::MAX];
+	bool rehireExtraCrewWhenLost;
+	int scrollSpeed;
+	bool showEscortSystemsOnMap;
+	bool warningSiren;
+
+private:
+	bool* Find(std::string);
 };
 
 
+extern Preferences preferences;
 
 #endif

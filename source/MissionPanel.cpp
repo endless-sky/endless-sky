@@ -424,7 +424,7 @@ bool MissionPanel::Hover(int x, int y)
 bool MissionPanel::Scroll(double dx, double dy)
 {
 	if(dragSide)
-		return Drag(0., dy * Preferences::ScrollSpeed());
+		return Drag(0., dy * preferences.scrollSpeed);
 	
 	return MapPanel::Scroll(dx, dy);
 }

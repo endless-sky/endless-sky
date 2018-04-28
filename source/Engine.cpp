@@ -156,7 +156,7 @@ Engine::Engine(PlayerInfo &player)
 	: player(player), ai(ships, asteroids.Minables(), flotsam),
 	shipCollisions(256, 32)
 {
-	zoom = Preferences::ViewZoom();
+	zoom = preferences.ViewZoom();
 	
 	// Start the thread for doing calculations.
 	calcThread = thread(&Engine::ThreadEntryPoint, this);
@@ -404,7 +404,7 @@ void Engine::Step(bool isActive)
 	// Smoothly zoom in and out.
 	if(isActive)
 	{
-		double zoomTarget = Preferences::ViewZoom();
+		double zoomTarget = preferences.ViewZoom();
 		if(zoom < zoomTarget)
 			zoom = min(zoomTarget, zoom * 1.03);
 		else if(zoom > zoomTarget)
@@ -412,7 +412,7 @@ void Engine::Step(bool isActive)
 	}
 		
 	// Draw a highlight to distinguish the flagship from other ships.
-	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
+	if(flagship && !flagship->IsDestroyed() && preferences.highlightPlayersFlagship)
 	{
 		highlightSprite = flagship->GetSprite();
 		highlightUnit = flagship->Unit() * zoom;
@@ -492,7 +492,7 @@ void Engine::Step(bool isActive)
 	
 	// Create the status overlays.
 	statuses.clear();
-	if(isActive && Preferences::Has("Show status overlays"))
+	if(isActive && preferences.showStatusOverlays)
 		for(const auto &it : ships)
 		{
 			if(!it->GetGovernment() || it->GetSystem() != currentSystem || it->Cloaking() == 1.)
@@ -512,7 +512,7 @@ void Engine::Step(bool isActive)
 	
 	// Create the planet labels.
 	labels.clear();
-	if(currentSystem && Preferences::Has("Show planet labels"))
+	if(currentSystem && preferences.showPlanetLabels)
 	{
 		for(const StellarObject &object : currentSystem->Objects())
 		{
@@ -533,7 +533,7 @@ void Engine::Step(bool isActive)
 	if(flagship && flagship->Hull())
 	{
 		Point shipFacingUnit(0., -1.);
-		if(Preferences::Has("Rotate flagship in HUD"))
+		if(preferences.rotateFlagshipInHud)
 			shipFacingUnit = flagship->Facing().Unit();
 		
 		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step));
@@ -884,7 +884,7 @@ void Engine::Draw() const
 		for(int i = 0; i < 2; ++i)
 			SpriteShader::Draw(mark[i], center + Point(dx[i], 0.), 1., targetSwizzle);
 	}
-	if(jumpCount && Preferences::Has("Show mini-map"))
+	if(jumpCount && preferences.showMinimap)
 		MapPanel::DrawMiniMap(player, .5 * min(1., jumpCount / 30.), jumpInProgress, step);
 	
 	// Draw ammo status.
@@ -932,7 +932,7 @@ void Engine::Draw() const
 	// filling the entire backlog of sprites before landing on a planet.
 	GameData::Progress();
 	
-	if(Preferences::Has("Show CPU / GPU load"))
+	if(preferences.showCpuGpuLoad)
 	{
 		string loadString = to_string(lround(load * 100.)) + "% CPU";
 		Color color = *colors.Get("medium");
@@ -955,7 +955,7 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 	const Interface *interface = GameData::Interfaces().Get("hud");
 	Point radarCenter = interface->GetPoint("radar");
 	double radarRadius = interface->GetValue("radar radius");
-	if(Preferences::Has("Clickable radar display") && (from - radarCenter).Length() <= radarRadius)
+	if(preferences.clickableRadarDisplay && (from - radarCenter).Length() <= radarRadius)
 		isRadarClick = true;
 	else
 		isRadarClick = false;
@@ -981,7 +981,7 @@ void Engine::RClick(const Point &point)
 	const Interface *interface = GameData::Interfaces().Get("hud");
 	Point radarCenter = interface->GetPoint("radar");
 	double radarRadius = interface->GetValue("radar radius");
-	if(Preferences::Has("Clickable radar display") && (point - radarCenter).Length() <= radarRadius)
+	if(preferences.clickableRadarDisplay && (point - radarCenter).Length() <= radarRadius)
 		clickPoint = (point - radarCenter) / RADAR_SCALE;
 	else
 		clickPoint = point / zoom;
@@ -1184,7 +1184,7 @@ void Engine::CalculateStep()
 						it.GetPlanet()->WormholeDestination(playerSystem) == flagship->GetSystem())
 					player.Visit(it.GetPlanet());
 		
-		doFlash = Preferences::Has("Show hyperspace flash");
+		doFlash = preferences.showHyperspaceFlash;
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(playerSystem);
 		EnterSystem();
@@ -1861,7 +1861,7 @@ void Engine::FillRadar()
 		--alarmTime;
 	else if(hasHostiles && !hadHostiles)
 	{
-		if(Preferences::Has("Warning siren"))
+		if(preferences.warningSiren)
 			Audio::Play(Audio::Get("alarm"));
 		alarmTime = 180;
 		hadHostiles = true;

@@ -447,7 +447,7 @@ bool BoardingPanel::Drag(double dx, double dy)
 // The scroll wheel can be used to scroll the plunder list.
 bool BoardingPanel::Scroll(double dx, double dy)
 {
-	return Drag(0., dy * Preferences::ScrollSpeed());
+	return Drag(0., dy * preferences.scrollSpeed);
 }
 
 

@@ -103,12 +103,12 @@ int main(int argc, char *argv[])
 		if(SDL_GetCurrentDisplayMode(0, &mode))
 			return DoError("Unable to query monitor resolution!");
 		
-		Preferences::Load();
+		preferences.Load();
 		Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI;
-		bool isFullscreen = Preferences::Has("fullscreen");
+		bool isFullscreen = preferences.fullscreen;
 		if(isFullscreen)
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
-		else if(Preferences::Has("maximized"))
+		else if(preferences.maximized)
 			flags |= SDL_WINDOW_MAXIMIZED;
 		
 		// Make the window just slightly smaller than the monitor resolution.
@@ -348,13 +348,12 @@ int main(int argc, char *argv[])
 			player.Save();
 		
 		// Remember the window state.
-		bool isMaximized = (SDL_GetWindowFlags(window) & SDL_WINDOW_MAXIMIZED);
-		Preferences::Set("maximized", isMaximized);		
-		Preferences::Set("fullscreen", isFullscreen);
+		preferences.maximized = (SDL_GetWindowFlags(window) & SDL_WINDOW_MAXIMIZED);
+		preferences.fullscreen = isFullscreen;
 		// The Preferences class reads the screen dimensions, so update them to
 		// match the actual window size.
 		Screen::SetRaw(windowWidth, windowHeight);
-		Preferences::Save();
+		preferences.Save();
 		
 		Cleanup(window, context);
 	}

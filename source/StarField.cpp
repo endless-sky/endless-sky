@@ -142,7 +142,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	glUseProgram(0);
 	
 	// Draw the background haze unless it is disabled in the preferences.
-	if(!Preferences::Has("Draw background haze"))
+	if(!preferences.drawBackgroundHaze)
 		return;
 	
 	DrawList drawList;

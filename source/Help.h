@@ -54,6 +54,10 @@ private:
 	// Get the topic label for data and save files.
 	static const char* TopicName(Topic);
 
+	// Get the topic from its label.
+	static Topic FindTopic(std::string);
+
+	friend class Preferences;
 };
 
 

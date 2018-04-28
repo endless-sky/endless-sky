@@ -452,7 +452,7 @@ bool PlayerInfoPanel::Release(int x, int y)
 
 bool PlayerInfoPanel::Scroll(double dx, double dy)
 {
-	return Scroll(dy * -.1 * Preferences::ScrollSpeed());
+	return Scroll(dy * -.1 * preferences.scrollSpeed);
 }
 
 
