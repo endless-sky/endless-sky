@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "Shader.h"
 
@@ -101,28 +102,44 @@ void LineShader::Draw(const Point &from, const Point &to, float width, const Col
 {
 	if(!shader.Object())
 		throw runtime_error("LineShader: Draw() called before Init().");
-	
-	glUseProgram(shader.Object());
-	glBindVertexArray(vao);
-	
-	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
-	glUniform2fv(scaleI, 1, scale);
-	
-	GLfloat start[2] = {static_cast<float>(from.X()), static_cast<float>(from.Y())};
-	glUniform2fv(startI, 1, start);
-	
-	Point v = to - from;
-	Point u = v.Unit() * width;
-	GLfloat length[2] = {static_cast<float>(v.X()), static_cast<float>(v.Y())};
-	glUniform2fv(lengthI, 1, length);
-	
-	GLfloat w[2] = {static_cast<float>(u.Y()), static_cast<float>(-u.X())};
-	glUniform2fv(widthI, 1, w);
-	
-	glUniform4fv(colorI, 1, color.Get());
-	
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-	
-	glBindVertexArray(0);
-	glUseProgram(0);
+
+	if (Preferences::Has("Use shaders"))
+	{
+		glUseProgram(shader.Object());
+		glBindVertexArray(vao);
+		
+		GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
+		glUniform2fv(scaleI, 1, scale);
+		
+		GLfloat start[2] = {static_cast<float>(from.X()), static_cast<float>(from.Y())};
+		glUniform2fv(startI, 1, start);
+		
+		Point v = to - from;
+		Point u = v.Unit() * width;
+		GLfloat length[2] = {static_cast<float>(v.X()), static_cast<float>(v.Y())};
+		glUniform2fv(lengthI, 1, length);
+		
+		GLfloat w[2] = {static_cast<float>(u.Y()), static_cast<float>(-u.X())};
+		glUniform2fv(widthI, 1, w);
+		
+		glUniform4fv(colorI, 1, color.Get());
+		
+		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+		
+		glBindVertexArray(0);
+		glUseProgram(0);
+	}
+	else
+	{
+		glLineWidth(width + 0.5f);
+		glColor4fv(color.Get());
+		glBegin(GL_LINES);
+		
+		GLfloat start[2] = {static_cast<float>(from.X() / Screen::Right()), static_cast<float>(from.Y() / Screen::Top())};
+		glVertex2fv(start);
+		
+		GLfloat end[2] = {static_cast<float>(to.X() / Screen::Right()), static_cast<float>(to.Y() / Screen::Top())};
+		glVertex2fv(end);
+		glEnd();
+	}
 }
