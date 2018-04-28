@@ -93,7 +93,7 @@ MapDetailPanel::MapDetailPanel(const MapPanel &panel)
 void MapDetailPanel::Step()
 {
 	if(!player.GetPlanet())
-		DoHelp("map");
+		DoHelp(Help::MAP);
 }
 
 

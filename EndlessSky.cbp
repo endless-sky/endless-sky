@@ -172,6 +172,8 @@
 		<Unit filename="source/HailPanel.h" />
 		<Unit filename="source/Hardpoint.cpp" />
 		<Unit filename="source/Hardpoint.h" />
+		<Unit filename="source/Help.cpp" />
+		<Unit filename="source/Help.h" />
 		<Unit filename="source/HiringPanel.cpp" />
 		<Unit filename="source/HiringPanel.h" />
 		<Unit filename="source/ImageBuffer.cpp" />

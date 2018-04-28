@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef PANEL_H_
 #define PANEL_H_
 
+#include "Help.h"
 #include "Rectangle.h"
 
 #include <functional>
@@ -93,7 +94,7 @@ protected:
 	static int Modifier();
 	// Display the given help message if it has not yet been shown. Return true
 	// if the message was displayed.
-	bool DoHelp(const std::string &name) const;
+	bool DoHelp(Help::Topic topic) const;
 	
 	
 private:

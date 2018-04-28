@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dialog.h"
 #include "FillShader.h"
 #include "GameData.h"
+#include "Help.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "UI.h"
@@ -239,19 +240,16 @@ int Panel::Modifier()
 
 // Display the given help message if it has not yet been shown. Return true
 // if the message was displayed.
-bool Panel::DoHelp(const string &name) const
+bool Panel::DoHelp(Help::Topic topic) const
 {
-	string preference = "help: " + name;
-	if(Preferences::Has(preference))
+	if(!Help::ShouldShow(topic))
 		return false;
-	
-	const string &message = GameData::HelpMessage(name);
+
+	const string &message = Help::HelpMessage(topic);
 	if(message.empty())
 		return false;
-	
-	Preferences::Set(preference);
+
 	ui->Push(new Dialog(message));
-	
 	return true;
 }
 

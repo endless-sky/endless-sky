@@ -73,7 +73,7 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 void OutfitterPanel::Step()
 {
 	CheckRefill();
-	DoHelp("outfitter");
+	DoHelp(Help::OUTFITTER);
 	ShopPanel::Step();
 }
 

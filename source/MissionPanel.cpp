@@ -139,7 +139,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 
 void MissionPanel::Step()
 {
-	DoHelp("jobs");
+	DoHelp(Help::JOBS);
 }
 
 

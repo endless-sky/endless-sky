@@ -12,6 +12,7 @@
 		5155CD731DBB9FF900EF090B /* Depreciation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5155CD711DBB9FF900EF090B /* Depreciation.cpp */; };
 		6245F8251D301C7400A7A094 /* Body.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8231D301C7400A7A094 /* Body.cpp */; };
 		6245F8281D301C9000A7A094 /* Hardpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8261D301C9000A7A094 /* Hardpoint.cpp */; };
+		6245F8281D301CA000A7A094 /* Help.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8261D301CA000A7A094 /* Help.cpp */; };
 		628BDAEF1CC5DC950062BCD2 /* PlanetLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */; };
 		62A405BA1D47DA4D0054F6A0 /* FogShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62A405B81D47DA4D0054F6A0 /* FogShader.cpp */; };
 		62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62C311181CE172D000409D91 /* Flotsam.cpp */; };
@@ -176,6 +177,8 @@
 		6245F8241D301C7400A7A094 /* Body.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Body.h; path = source/Body.h; sourceTree = "<group>"; };
 		6245F8261D301C9000A7A094 /* Hardpoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hardpoint.cpp; path = source/Hardpoint.cpp; sourceTree = "<group>"; };
 		6245F8271D301C9000A7A094 /* Hardpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hardpoint.h; path = source/Hardpoint.h; sourceTree = "<group>"; };
+		6245F8261D301CA000A7A094 /* Help.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Help.cpp; path = source/Help.cpp; sourceTree = "<group>"; };
+		6245F8271D301CA000A7A094 /* Help.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Help.h; path = source/Help.h; sourceTree = "<group>"; };
 		628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlanetLabel.cpp; path = source/PlanetLabel.cpp; sourceTree = "<group>"; };
 		628BDAEE1CC5DC950062BCD2 /* PlanetLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlanetLabel.h; path = source/PlanetLabel.h; sourceTree = "<group>"; };
 		62A405B81D47DA4D0054F6A0 /* FogShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FogShader.cpp; path = source/FogShader.cpp; sourceTree = "<group>"; };
@@ -561,6 +564,8 @@
 				A968631E1AE6FD0B004FE1FE /* HailPanel.h */,
 				6245F8261D301C9000A7A094 /* Hardpoint.cpp */,
 				6245F8271D301C9000A7A094 /* Hardpoint.h */,
+				6245F8261D301CA000A7A094 /* Help.cpp */,
+				6245F8271D301CA000A7A094 /* Help.h */,
 				A968631F1AE6FD0B004FE1FE /* HiringPanel.cpp */,
 				A96863201AE6FD0B004FE1FE /* HiringPanel.h */,
 				A96863211AE6FD0B004FE1FE /* ImageBuffer.cpp */,
@@ -927,6 +932,7 @@
 				A96863E21AE6FD0E004FE1FE /* Phrase.cpp in Sources */,
 				628BDAEF1CC5DC950062BCD2 /* PlanetLabel.cpp in Sources */,
 				6245F8281D301C9000A7A094 /* Hardpoint.cpp in Sources */,
+				6245F8281D301CA000A7A094 /* Help.cpp in Sources */,
 				A96863C01AE6FD0E004FE1FE /* FontSet.cpp in Sources */,
 				A96863D61AE6FD0E004FE1FE /* Messages.cpp in Sources */,
 				A97C24ED1B17BE3C007DDFA1 /* MapShipyardPanel.cpp in Sources */,

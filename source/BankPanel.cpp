@@ -61,7 +61,7 @@ BankPanel::BankPanel(PlayerInfo &player)
 // This is called each frame when the bank is active.
 void BankPanel::Step()
 {
-	DoHelp("bank");
+	DoHelp(Help::BANK);
 }
 
 
