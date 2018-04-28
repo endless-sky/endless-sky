@@ -1997,37 +1997,6 @@ phrase "friendly pirate"
 		" I know I should have installed more interference plating."
 		" If only I was strong enough to stand up to them."
 
-phrase "friendly author"
-	word
-		"This game "
-		"Endless Sky "
-	word
-		"is open source. You can "
-	word
-		"help out "
-		"improve the game "
-		"get involved "
-		"help make it a better game "
-		"assist us "
-		"make your mark on the universe "
-		"give back to the community "
-	word
-		"by contributing "
-	word
-		"detailed bug reports."
-		"typo fixes."
-		"constructive feedback."
-		"ideas for improvements."
-		"landscape photos."
-		"artwork."
-		"new ships of your own design."
-		"plugins."
-		"new special missions."
-		"new weapons or other outfits."
-		"improved planet descriptions."
-		"more varied hail messages."
-
-
 phrase "friendly disabled"
 	word
 		"Our ship has been disabled! "
@@ -2039,26 +2008,29 @@ phrase "friendly disabled"
 	word
 		"Please come board our ship and patch us up!"
 		"We would appreciate any help getting us running again!"
-		"We can't fix this our own!"
+		"We can't fix this on our own!"
 		"Could you come over and help us please?"
 		"Requesting emergency repairs!"
 		
 phrase "friendly disabled"
 	word
-		"Hey, "
-		"Uh... "
+		"Hey! "
+		""
 		""
 		"You're a friendly, right? "
 		"You answered! "
 		"Good to see a friendly face! "
+		""
+		"Hey, pleaase! "
+		""
+		""
 	word
 		"Our ship is disabled, "
 		"We're kinda stuck here, "
-		""
-		""
-		"Bit of a bind here, "
+		"We're in a bit of a bind here, "
 		"We're stuck drifting around in this deathtrap, "
 		"Not to be a bother, but "
+		"Could you come over, and "
 	word
 		"could you lend a hand"
 		"can you get us back on our feet"
@@ -2069,15 +2041,36 @@ phrase "friendly disabled"
 	word
 		"?"
 		" please?"
-		"? I don't wanna get standed here!"
+		"? I don't wanna get stranded here!"
 		" pretty please?"
 		" so we can get out of here?"
+		" as soon as possible?"
+		"?"
+		"?"
 phrase "friendly disabled"
 	word
-		""
-		""
-		""
-		"Those "
+		"Hey, "
+		"Uh... "
+		"So... "
+		"In a bit of a situation... "
+		"Um, "
+	word
+		"could you lend a hand"
+		"can you get us back on our feet"
+		"would you help us"
+		"any chance you could get us up and running again"
+		"could you render assistance"
+		"can we get a little help here"
+	word
+		"?"
+		" please?"
+		"? I don't wanna get stranded here!"
+		" pretty please?"
+		" so we can get out of here?"
+		" as soon as possible?"
+		"?"
+		"?"
+phrase "friendly disabled"
 	word
 		"Artless"
 		"Bawdy"
@@ -2129,6 +2122,22 @@ phrase "friendly disabled"
 		"Wayward"
 		"Weedy"
 		"Yeasty"
+		"Some"
+		"Some"
+		"Some"
+		"Some"
+		"Some"
+		"Some"
+		"Some"
+		"Some"
+		"Those"
+		"Those"
+		"Those"
+		"Those"
+		"Those"
+		"Those"
+		"Those"
+		"Those"
 	word
 		" "
 	word
@@ -2182,6 +2191,7 @@ phrase "friendly disabled"
 		"toad-spotted"
 		"unchin-snouted"
 		"weather-bitten"
+	
 	word
 		" "
 	word
@@ -2250,12 +2260,14 @@ phrase "friendly disabled"
 		"Could you lend a hand?"
 		"We can't seem to repair it ourselves, could you help?"
 		"We need help getting our ship running again!"
-		"Can you help us fix us please?"
+		"Can you help us fix it please?"
 		"Please help us!"
 		"I don't think we can hold out!"
 		"Please come and help!"
 		"Any chance you can get us out of a bind?"
 		"Any chance you could bail us out?"
+
+
 		
 # Shakespearean insults.
 phrase "hostile disabled"
@@ -2666,115 +2678,6 @@ phrase "hostile navy"
 		"terminate you"
 	word
 		"."
-
-
-phrase "friendly deep"
-	word
-		"We"
-		"Our ships"
-		"Our security forces"
-		"Our fleets"
-		"Our forces"
-	word
-		" "
-	word
-		""
-		""
-		""
-		"are called to "
-		"are diligent to "
-		"must constantly "
-		"diligently "
-		"always "
-		"must "
-		"shall "
-	word
-		"defend against"
-		"hold back"
-		"keep watch for"
-		"protect you from"
-		"patrol for"
-		"look out for"
-		"ferret out"
-	word
-		" "
-	word
-		""
-		""
-		""
-		"the forces of "
-		"perpetrators of "
-		"those who bring "
-		"the ones who serve "
-		"agents of "
-	word
-		"mere anarchy"
-		"chaos"
-		"disruption"
-		"piracy"
-		"social regression"
-		"corruption"
-	word
-		"."
-
-phrase "hostile deep"
-	word
-		"You must"
-		"Please"
-		"Surely you"
-		"You ought to"
-	word
-		" "
-	word
-		"realize"
-		"recognize"
-		"understand"
-		"comprehend"
-		"admit"
-		"see"
-	word
-		" "
-	word
-		"that"
-		"how"
-		"the truth, that"
-	word
-		" your "
-	word
-		"deeds"
-		"actions"
-		"misdeeds"
-		"crimes"
-		"breaches of the law"
-	word
-		" "
-	word
-		"weaken"
-		"disrupt"
-		"tear at"
-		"harm"
-		"unsettle"
-	word
-		" the "
-	word
-		"fabric"
-		"balance"
-		"common good"
-		"cohesion"
-		"unity"
-		"health"
-	word
-		" of "
-	word
-		"our society"
-		"civilization"
-		"the commonwealth"
-		"society"
-		"our civilization"
-		"human society"
-	word
-		"."
-
 
 phrase "hostile pirate"
 	word
@@ -3253,7 +3156,7 @@ phrase "hostile syndicate"
 	word
 		"like you!"
 
-phrase "hostile syndicate"
+phrase "hostile Syndicate"
 	word
 		"You are attacking the Syndicate; we must defend it."
 		"You have made a bad commercial move."
@@ -3386,40 +3289,6 @@ phrase "hostile free worlds"
 	word
 		"."
 		"!"
-
-
-# Hails from the robotic Syndicate test dummy ships
-phrase "test dummy"
-	word
-		"DESTROY DESTROY DESTROY"
-		"I... am... a... machine!"
-		"Charging phased plasma rifle in the 40-watt range."
-		"Fish, and plankton. And sea greens, and protein from the sea. It's all here, ready. Fresh as harvest day!"
-		"I'm ready. And you're ready. It's my job."
-		"I am more than machine. More than man. More than a fusion of the two. Don't you agree?"
-		"Overwhelming, am I not?"
-		"Welcome Humans! I am ready for you."
-		"I wish I was a real boy, then I'd show them. I'd kill them all."
-		"Life is about decisions. Make the wrong ones and you'll wind up face down in a pool of your own blood and urine."
-		"Hey baby, wanna kill all humans?"
-		"Danger! Danger!"
-		"Warning! Warning!"
-		"Warning! Warning! Alien spacecraft approaching!"
-		"We have normality. I repeat, we have normality. Anything you still can't cope with is therefore your own problem."
-
-phrase "disabled test dummy"
-	word
-		"I'll be back."
-		`All those times I said "kill all humans"... I'd always whisper "except one." You were that one.`
-		"This is the worst kind of discrimination there is: the kind against me!"
-		"The chances of survival are 725 to 1!"
-		"We're doomed."
-		"I'm quite beside myself."
-		"I can assure you they will never get me onto one of those dreadful starships."
-		"Curse my metal body, I wasn't fast enough! It's all my fault!"
-		"I don't know what all this trouble is about, but I'm sure it must be your fault."
-		"I have a pain in all the diodes down my left side."
-
 
 # Wormhole Hails
 phrase "wormhole hail"
