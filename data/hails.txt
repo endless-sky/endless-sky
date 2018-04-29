@@ -2085,6 +2085,7 @@ phrase "friendly disabled"
 		"?"
 		"?"
 		"?"
+
 phrase "friendly disabled"
 	word
 		"Hey,"
@@ -2111,6 +2112,7 @@ phrase "friendly disabled"
 		"?"
 		"?"
 		"?"
+
 phrase "friendly disabled"
 	word
 		"Artless"
