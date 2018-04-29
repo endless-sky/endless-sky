@@ -31,20 +31,29 @@ $(shell mkdir -p $(DIR_RELEASE) $(DIR_DEBUG) $(DIR_PROF))
 $(DIR_RELEASE)/%.o: $(DIR_SRC)/%.cpp
 	$(CXX) $(OPTLEVEL) $(CXXFLAGS) -o $@ -c -MMD $<
 
-release: $(OBJS)
-	$(CXX) $(OPTLEVEL) $(CXXFLAGS) -o $(PROG) $^ $(LDFLAGS)
+$(DIR_RELEASE)/$(PROG): $(OBJS)
+	$(CXX) $(OPTLEVEL) $(CXXFLAGS) -o $(DIR_RELEASE)/$(PROG) $^ $(LDFLAGS)
+
+release: $(DIR_RELEASE)/$(PROG)
+	cp $(DIR_RELEASE)/$(PROG) .
 
 $(DIR_DEBUG)/%.o: $(DIR_SRC)/%.cpp
 	$(CXX) $(CXXFLAGS) -g -o $@ -c -MMD $<
 
-debug: $(OBJS_DEBUG)
-	$(CXX) $(CXXFLAGS) -g -o $(PROG_DEBUG) $^ $(LDFLAGS)
+$(DIR_DEBUG)/$(PROG_DEBUG): $(OBJS_DEBUG)
+	$(CXX) $(CXXFLAGS) -g -o $(DIR_DEBUG)/$(PROG_DEBUG) $^ $(LDFLAGS)
+
+debug: $(DIR_DEBUG)/$(PROG_DEBUG)
+	cp $(DIR_DEBUG)/$(PROG_DEBUG) .
 
 $(DIR_PROF)/%.o: $(DIR_SRC)/%.cpp
 	$(CXX) $(CXXFLAGS) -pg -o $@ -c -MMD $<
 
-profile: $(OBJS_PROF)
-	$(CXX) $(CXXFLAGS) -pg -o $(PROG_PROF) $^ $(LDFLAGS)
+$(DIR_PROF)/$(PROG_PROF): $(OBJS_PROF)
+	$(CXX) $(CXXFLAGS) -pg -o $(DIR_PROF)/$(PROG_PROF) $^ $(LDFLAGS)
+
+profile: $(DIR_PROF)/$(PROG_PROF)
+	cp $(DIR_PROF)/$(PROG_PROF) .
 
 .DEFAULT: all
 all: release
