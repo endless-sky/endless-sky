@@ -19,26 +19,29 @@ DIR_PROF = $(DIR_BUILD)/profile
 
 SRCS = $(wildcard $(DIR_SRC)/*.cpp)
 OBJS = $(patsubst $(DIR_SRC)/%.cpp,$(DIR_RELEASE)/%.o,$(SRCS))
+DEPS = $(patsubst $(DIR_SRC)/%.cpp,$(DIR_RELEASE)/%.d,$(SRCS))
 OBJS_DEBUG = $(patsubst $(DIR_SRC)/%.cpp,$(DIR_DEBUG)/%.o,$(SRCS))
+DEPS_DEBUG = $(patsubst $(DIR_SRC)/%.cpp,$(DIR_DEBUG)/%.d,$(SRCS))
 OBJS_PROF = $(patsubst $(DIR_SRC)/%.cpp,$(DIR_PROF)/%.o,$(SRCS))
+DEPS_PROF = $(patsubst $(DIR_SRC)/%.cpp,$(DIR_PROF)/%.d,$(SRCS))
 
 $(info mkdir -p $(DIR_RELEASE) $(DIR_DEBUG) $(DIR_PROF))
 $(shell mkdir -p $(DIR_RELEASE) $(DIR_DEBUG) $(DIR_PROF))
 
 $(DIR_RELEASE)/%.o: $(DIR_SRC)/%.cpp
-	$(CXX) $(OPTLEVEL) $(CXXFLAGS) -o $@ -c $<
+	$(CXX) $(OPTLEVEL) $(CXXFLAGS) -o $@ -c -MMD $<
 
 release: $(OBJS)
 	$(CXX) $(OPTLEVEL) $(CXXFLAGS) -o $(PROG) $^ $(LDFLAGS)
 
 $(DIR_DEBUG)/%.o: $(DIR_SRC)/%.cpp
-	$(CXX) $(CXXFLAGS) -g -o $@ -c $<
+	$(CXX) $(CXXFLAGS) -g -o $@ -c -MMD $<
 
 debug: $(OBJS_DEBUG)
 	$(CXX) $(CXXFLAGS) -g -o $(PROG_DEBUG) $^ $(LDFLAGS)
 
 $(DIR_PROF)/%.o: $(DIR_SRC)/%.cpp
-	$(CXX) $(CXXFLAGS) -pg -o $@ -c $<
+	$(CXX) $(CXXFLAGS) -pg -o $@ -c -MMD $<
 
 profile: $(OBJS_PROF)
 	$(CXX) $(CXXFLAGS) -pg -o $(PROG_PROF) $^ $(LDFLAGS)
@@ -72,3 +75,6 @@ clean:
 	$(RM) $(PROG) $(PROG_DEBUG) $(PROG_PROF)
 	$(RM) -r $(DIR_RELEASE) $(DIR_DEBUG) $(DIR_PROF)
 
+-include $(DEPS)
+-include $(DEPS_DEBUG)
+-include $(DEPS_PROF)
