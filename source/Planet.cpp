@@ -188,6 +188,8 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 		else
 			attributes.erase(AUTO_ATTRIBUTES[i]);
 	}
+
+	inhabited = (HasSpaceport() || requiredReputation || defenseFleet) && !attributes.count("uninhabited");
 }
 
 
@@ -279,7 +281,7 @@ const string &Planet::SpaceportDescription() const
 // have the "uninhabited" attribute).
 bool Planet::IsInhabited() const
 {
-	return (HasSpaceport() || requiredReputation || defenseFleet) && !attributes.count("uninhabited");
+	return inhabited;
 }
 
 
