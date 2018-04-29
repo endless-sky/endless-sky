@@ -439,7 +439,7 @@ mission "Unfettered returning home"
 
 
 mission "Returning Home"
-	description "Bring Elliot home to his family on <destination>."
+	description "Bring Elliot home to his family on <destination>, who he hasn't seen in almost six years."
 	minor
 	source
 		government "Hai"
@@ -459,7 +459,7 @@ mission "Returning Home"
 			
 			`	"Outside of Hai space. Your ship looks newer than most of the ships that humans fly around here."`
 			choice
-				`Oh, yes. I do come from outside.`
+				`	"Oh, yes. I do come from outside."`
 			
 			label outsider
 			`	"Good. My name is Elliot." You introduce yourself to Elliot and shake hands.`
@@ -470,7 +470,7 @@ mission "Returning Home"
 			`	"When the cargo hold doors finally opened, I ran out as fast as I could, only to run back in at the sight of a group of Hai. I had no idea where I was at the time, but I've been living here ever since. That was when I was sixteen, nearly six years ago now."`
 			`	Elliot looks down at the ground again and wipes a tear from the corner of his eye.`
 			choice
-				`	"Alright, I'll take you to <planet>"`
+				`	"Alright, I'll take you to <planet>."`
 					goto accept
 				`	"And you finally want to go back home?"`
 				`	"Sorry, but I'm not able to take you that far."`
@@ -493,7 +493,7 @@ mission "Returning Home"
 	on complete
 		payment 45000
 		conversation
-			`Elliot thanks your for bringing him to <planet> and hands you <payment>. He flags down a taxi just outside the spaceport, but before getting in to the taxi he turns back to you.`
+			`Elliot thanks your for bringing him to <planet> and hands you <payment>. He flags down a taxi just outside the spaceport, but before entering the taxi he turns back to you.`
 			`	"Do you want to come with me? I'd love for you to meet my family. They'll want to meet you when I tell them how I got back."`
 			choice
 				`	"Sorry, I have other places to be. Good luck."`
@@ -506,13 +506,13 @@ mission "Returning Home"
 			
 			label sure
 			`	The view for nearly the entire three hour drive is of hills and farmland with the occasional building or wild animal. Elliot shakes as the taxi approaches the house from the driveway. "I'm wondering if they still even live here," he says nervously.`
-			`	No one comes out of the house when the taxi stops. You walk up to the front door with Elliot and a middle aged woman answers the door with a ug of coffee and a bewildered look on her face.`
+			`	No one comes out of the house when the taxi stops. You walk up to the front door with Elliot and a middle aged woman answers the door with a mug of coffee and a bewildered look on her face.`
 			`	"Can I help you?" the woman asks.`
 			`	Eliiot looks over at you with a big smile on his face. "Yes you can, mom," he says to her. The woman's face lights up with joy and she begins jumping up and down, spilling coffee from her mug.`
 			`	"Oh Elliot, I can't believe it!" Elliot's mom puts down her mug and leaps out the door to hug him. "Jackson! Sarah! Abby! Sean! Victor! Elliot is here!" Elliot's entire family comes out from the house and greets him, asking dozens of questions about where and how he's been and why he left.`
 			`	Elliot introduces you to his family, who thank you for bringing Elliot home. Victor, who was only seven years old when Elliot left and is now twelve, asks you question after question about being a pilot, sometimes asking new questions before you can even answer the old one.`
 			`	"Are you going back to the spaceport, <first>?" the taxi driver yells from the driveway. "I need to get back to the city as soon as I can."
-			`	You say goodbye to Elliot and to his family. "Thanks again, <first>," Elliot says to you. "I'll always owe you."`
+			`	You say goodbye to Elliot and to his family. "Thanks again, <first>," Elliot says. "I'll always owe you."`
 
 
 
@@ -532,7 +532,7 @@ event "hai in cargo"
 
 mission "Unwanted Cargo"
 	landing
-	description "Bring the Hai child who hid in your cargo hold back to <destination>."
+	description "Bring a Hai child who hid in your cargo hold back to <destination>."
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination "Allhome"
@@ -547,7 +547,7 @@ mission "Unwanted Cargo"
 				
 			`	You hear a voice come from the crate, but it is not a language you understand. The voice continues to speak, and you recognize it as the Hai language.`
 			choice
-				`	(Open the crate)`
+				`	(Open the crate.)`
 			`	You open the crate and are met eye to eye with a Hai child. You aren't sure how old it is, but it looks to be about the height of a one year old human child. It tries to communicate with you, but begins to cry when it sees the confused look on your face.`
 			choice
 				`	"Don't cry, little guy."`
@@ -558,7 +558,7 @@ mission "Unwanted Cargo"
 				goto end
 			
 			label cry
-			`	The child begins to cry even louder as you try to calm it down. After waiting for a few minutes, the child finally calms down, eventually going to sleep in the crate.`
+			`	The child begins to cry even louder than before. After waiting for a few minutes, the child finally calms down, eventually going to sleep in the crate.`
 				goto end
 			
 			label translator
@@ -581,8 +581,74 @@ mission "Unwanted Cargo"
 
 
 
+mission "Expanding Business [1]"
+	name "An Interesting Proposition"
+	description "Travel with businessman David Turner to <destination> "
+	minor
+	source "Greenwater"
+	destination "Allhome"
+	to offer
+		has "main plot completed"
+	on offer
+		conversation
+			`Walking through the <origin> spaceport, you notice that almost half of the people you see are humans, unlike other Hai worlds where the Hai outnumber humans by a sizable degree. A human dressed in a business suit shouts your name from across the street and approaches you.`
+			`	"Captain <last>, one of the many heros of humanity! I noticed you right away when I laid my eyes upon you. I'd like to personally thank you for what you've done."`
+			choice
+				`	"Glad to get some recognition for all the hard work I've done."`
+					goto boast
+				`	"Don't mention it. I just did what I could to help."`
+					goto downplay
+				`	"Can I help you, sir?"`
+			
+			`	"I'm the one who should be using formal titles to address you, so please, Captain, don't call me sir. The name's David Joseph Turner, venture capitalist, entrepreneur, and famous Paradise Worlds businessman." Turner grabs a business card from the pocket and hands it to you. The card contains his contact information, an address on Martini, and makes sure to boast in golden letters his net worth of more than three billion credits.`
+				goto proposition
+			
+			label boast
+			`	"A personality as big as yourself should be receiving praise and recognition wherever you go! People must really have no respect these days. The name's David Joseph Turner, venture capitalist, entrepreneur, and famous Paradise Worlds businessman." Turner grabs a business card from the pocket and hands it to you. The card contains his contact information, an address on Martini, and makes sure to boast in golden letters his net worth of more than three billion credits.`
+				goto proposition
+			
+			label downplay
+			`	"No need to downplay yourself, Captain! You've done God's work in saving humanity from that alien scourge. The name's David Joseph Turner, venture capitalist, entrepreneur, and famous Paradise Worlds businessman." Turner grabs a business card from the pocket and hands it to you. The card contains his contact information, an address on Martini, and makes sure to boast in golden letters his net worth of more than three billion credits.`
+			
+			label proposition
+			`	"You may not have heard of me, but I've sure as hell heard of you, and I'd like to make a proposition to you." Turner turns around and waves his arm across the crowd of people in the spaceport. "You see all the humans here? About one out of every four of these people only arrived here after war broke out through the wormhole. Captains who knew of the Hai came flocking here in droves after the Navy entered Kornephoros, hoping to avoid any troubles that the war would bring. Some captains returned after the war end, but most stayed, and I see a massive market opportunity in that."`
+			choice
+				`	"What kind of market opportunity?"`
+					goto opportunity
+				`	"Sorry, but I don't have the time to talk about this."`
+				
+			`	You try to walk away, but Turner stops you by grabbing your arm and continues to talk.`
+			
+			label opportunity
+			`	"Allow me to explain. The journey to the Hai can be a dangerous one, and you know that. I heard many stories during the war of merchants trying to reach the Hai, but thanks to the Navy being distracted, those merchants fell victim to pirates patrolling the systems of the Far North. Now that many merchants are here, they're trapped. They expended most of if not all of their ammunition trying to get here, and now they have none to defend them on their way back. Human ammunition has become a scarce commodity among human captains in this region of space, leaving open a market that's just waiting to be cornered.`
+			`	"I'd like you, Captain <last>, bero of humanity, to help me set up an outfitter here on <origin>, an outfitter that would supply these desperate merchants with relief by supplying them with the ammunition they need, along with outfits they might want to buy for their old ships. WIth a name like yours backing up this business, the profits are sure to be phenominal, profits that you would be sharing in by being a founding member of this outfitter."`
+			choice
+				`	"This sounds like a good idea to me. What do you need me to do?"`
+					goto interested
+				`	"Sorry, but I'm not interested in your proposition."`
+			
+			`	"Nonsense, Captain! All you'd need to do is help escort a few freighters from <planet> to Follower and back to here, and for so simple a job you could be receiving enough money to not work another day in your life, or perhaps even support a massive fleet."`
+			choice
+				`	"Again, I'm not interested. Goodbye."`
+				`	"Alright, you have me interested"`
+					goto interested
+			
+			`	"Well, I tried, Captain. I'll just have to travel back to the Paradise Worlds and make my money in other areas of business, then." Turner hands you another business card and winks. "Goodbye, <last>. You should know where to find me if you need me."`
+				decline
+			
+			label interested
+			`	"Excellent, Captain! I'll be making myself comfy on my own ship. A convoy of freighters is waiting for us on <destination>. From there, we're off to Follower to pick up supplies."`
+				accept
+				
+	npc save
+		personality escort
+		government "Republic"
+		ship "Star Queen (Hai)" "Rex Auri"
+
+
+
 mission "Hiding in Plain Sight"
-	description "Arthur and his Hai friend, Kiru, to <destination> for a gaming convention."
+	description "Bring Arthur and his Hai friend, Kiru, to <destination> for a gaming convention."
 	minor
 	source
 		government "Hai"
@@ -592,7 +658,7 @@ mission "Hiding in Plain Sight"
 		random < 30
 	on offer
 		conversation
-			`While eating in a spaceport cafeteria that serves both Hai and human cuisine, you are approached by a teenaged human and Hai. "Hello. Do you know how to get to <destination>?" the Hai asks you.`
+			`While eating in a spaceport cafeteria that serves both Hai and human cuisine, you are approached by a teenage human and Hai. "Hello. Do you know how to get to <destination>?" the Hai asks.`
 			choice
 				`	"I do. Why do you want to go there?"`
 				`	"I don't. You'll have to ask someone else."`
@@ -602,7 +668,7 @@ mission "Hiding in Plain Sight"
 			choice
 				`	"Alright, I can take you there."`
 					accept
-				`	"Sorry, you'll have to find someone else to bring you,"`
+				`	"Sorry, you'll have to find someone else to bring you."`
 					decline
 					
 	on complete
@@ -621,7 +687,7 @@ mission "Hai Honeymoon"
 		random < 60
 	on offer
 		conversation
-			`You hop around the spaceport of <origin>, trying to get adjusted to the low gravity of this moon, when you are approached by a toweringly tall human woman and an equally tall Hai male who are clearly adjusted to <origin>'s gravity.`
+			`You hop around the spaceport of <origin>, trying to adjusted to the low gravity of this moon, when you are approached by a toweringly tall human woman and an equally tall Hai male who are clearly having no trouble with <origin>'s gravity.`
 			`	"You look like you need help there, Captain," the woman says with a chuckle.`
 			choice
 				`	"Don't worry. I almost have the hang of it."`
@@ -644,7 +710,7 @@ mission "Hai Honeymoon"
 			`	"What, you've never seen an interspecies couple before?" Touhar asks with a hint of sarcasm in his voice.`
 			
 			label next
-			`	"We got married last week, and we were hoping to travel to <destination> for our honeymoon. I know it's risky to bring Touhar into human space, but Featherweight is a sparcely inhabited world, and I have a friend who owns a house in the mountains far from anyone who could see Touhar."`
+			`	"We got married last week, and we were hoping to travel to <destination> for our honeymoon. I know it's risky to bring Touhar into human space, but <planet> is a sparsely inhabited world, and I have a friend who owns a house in the mountains far from anyone who could see Touhar."`
 			`	"Said friend will be able to arrange for our return to <origin> as well," Touhar adds. "Will you take us?"`
 			choice
 				`	"Sure."`
@@ -654,5 +720,5 @@ mission "Hai Honeymoon"
 					
 	on complete
 		payment 100000
-		dialog `Instead of landing in the spaceport where they can be seen, you drop Anaya and Touhar off as close as you can to Anaya's friend's house where they will be staying. The house is a few kilometers away, but they assure you that they can make it on their own. They pay you <payment> and thank you for bringing them this far.`
+		dialog `Instead of landing in the spaceport where they can be seen, you drop Anaya and Touhar off as close as you can to where they will be staying. The house is a few kilometers away, but they assure you that they can make it on their own. They pay you <payment> and thank you for bringing them this far.`
 
