@@ -444,10 +444,6 @@ void AdjustViewport(SDL_Window *window)
 	drawWidth = (drawWidth * roundWidth) / width;
 	drawHeight = (drawHeight * roundHeight) / height;
 	glViewport(0, 0, drawWidth, drawHeight);
-	
-	// Make sure the zoom factor is not set too high for the full UI to fit.
-	if(Screen::Height() < 700)
-		Screen::SetZoom(100);
 }
 
 

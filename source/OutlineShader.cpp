@@ -180,7 +180,7 @@ void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &si
 	
 	glUniform4fv(colorI, 1, color.Get());
 	
-	glBindTexture(GL_TEXTURE_2D_ARRAY, sprite->Texture(unit.Length() * Screen::Zoom() > 50.));
+	glBindTexture(GL_TEXTURE_2D_ARRAY, sprite->Texture(unit.Length() * Screen::EffectiveZoom() > 50.));
 	
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	

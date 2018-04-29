@@ -23,8 +23,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Screen {
 public:
 	static void SetRaw(int width, int height);
-	
-	static int Zoom();
+
+	// Zoom level as specified by the user.
+	static int UserZoom();
+	// Effective zoom level, as restricted by the current resolution / window size.
+	static int EffectiveZoom();
 	static void SetZoom(int percent);
 	
 	// Specify that this is a high-DPI window.
