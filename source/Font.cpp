@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "ImageBuffer.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Screen.h"
 
 #include <algorithm>
@@ -73,7 +74,7 @@ namespace {
 
 Font::Font()
 	: texture(0), vao(0), vbo(0), colorI(0), scaleI(0), glyphI(0), aspectI(0),
-	  positionI(0), height(0), space(0), screenWidth(0), screenHeight(0)
+	  positionI(0), width(0), height(0), space(0), screenWidth(0), screenHeight(0)
 {
 }
 
@@ -110,71 +111,144 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 
 void Font::DrawAliased(const string &str, double x, double y, const Color &color) const
 {
-	glUseProgram(shader.Object());
-	glBindTexture(GL_TEXTURE_2D, texture);
-	glBindVertexArray(vao);
-	
-	glUniform4fv(colorI, 1, color.Get());
-	
-	// Update the scale, only if the screen size has changed.
-	if(Screen::Width() != screenWidth || Screen::Height() != screenHeight)
-	{
-		screenWidth = Screen::Width();
-		screenHeight = Screen::Height();
-		GLfloat scale[2] = {2.f / screenWidth, -2.f / screenHeight};
-		glUniform2fv(scaleI, 1, scale);
-	}
-	
-	GLfloat textPos[2] = {
-		static_cast<float>(x - 1.),
-		static_cast<float>(y)};
-	int previous = 0;
-	bool isAfterSpace = true;
-	bool underlineChar = false;
 	const int underscoreGlyph = max(0, min(GLYPHS - 1, '_' - 32));
-	
-	for(char c : str)
+
+	if (Preferences::Has("Use shaders"))
 	{
-		if(c == '_')
+		glUseProgram(shader.Object());
+		glBindTexture(GL_TEXTURE_2D, texture);
+		glBindVertexArray(vao);
+
+		glUniform4fv(colorI, 1, color.Get());
+
+		// Update the scale, only if the screen size has changed.
+		if(Screen::Width() != screenWidth || Screen::Height() != screenHeight)
 		{
-			underlineChar = showUnderlines;
-			continue;
+			screenWidth = Screen::Width();
+			screenHeight = Screen::Height();
+			GLfloat scale[2] = {2.f / screenWidth, -2.f / screenHeight};
+			glUniform2fv(scaleI, 1, scale);
 		}
-		
-		int glyph = Glyph(c, isAfterSpace);
-		if(c != '"' && c != '\'')
-			isAfterSpace = !glyph;
-		if(!glyph)
+
+		GLfloat textPos[2] = {
+			static_cast<float>(x - 1.),
+			static_cast<float>(y)};
+		int previous = 0;
+		bool isAfterSpace = true;
+		bool underlineChar = false;
+
+		for(char c : str)
 		{
-			textPos[0] += space;
-			continue;
-		}
-		
-		glUniform1i(glyphI, glyph);
-		glUniform1f(aspectI, 1.f);
-		
-		textPos[0] += advance[previous * GLYPHS + glyph] + KERN;
-		glUniform2fv(positionI, 1, textPos);
-		
-		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-		
-		if(underlineChar)
-		{
-			glUniform1i(glyphI, underscoreGlyph);
-			glUniform1f(aspectI, static_cast<float>(advance[glyph * GLYPHS] + KERN)
-				/ (advance[underscoreGlyph * GLYPHS] + KERN));
-			
+			if(c == '_')
+			{
+				underlineChar = showUnderlines;
+				continue;
+			}
+
+			int glyph = Glyph(c, isAfterSpace);
+			if(c != '"' && c != '\'')
+				isAfterSpace = !glyph;
+			if(!glyph)
+			{
+				textPos[0] += space;
+				continue;
+			}
+
+			glUniform1i(glyphI, glyph);
+			glUniform1f(aspectI, 1.f);
+
+			textPos[0] += advance[previous * GLYPHS + glyph] + KERN;
 			glUniform2fv(positionI, 1, textPos);
-			
+
 			glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-			underlineChar = false;
+
+			if(underlineChar)
+			{
+				glUniform1i(glyphI, underscoreGlyph);
+				glUniform1f(aspectI, static_cast<float>(advance[glyph * GLYPHS] + KERN)
+					/ (advance[underscoreGlyph * GLYPHS] + KERN));
+
+				glUniform2fv(positionI, 1, textPos);
+
+				glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+				underlineChar = false;
+			}
+
+			previous = glyph;
 		}
-		
-		previous = glyph;
+
+		glBindVertexArray(0);
+		glUseProgram(0);
 	}
-	
-	glBindVertexArray(0);
-	glUseProgram(0);
+	else
+	{
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		//glEnable(GL_BLEND);
+		glBlendFunc(GL_ONE, GL_ONE);
+		glColor3fv(color.Get());
+
+		glBegin(GL_QUADS);
+
+		int previous = 0;
+		bool isAfterSpace = true;
+		bool underlineChar = false;
+		static const float glyphWidth = 1.f / GLYPHS;
+		x--;
+
+		for(char c : str)
+		{
+			if(c == '_')
+			{
+				underlineChar = showUnderlines;
+				continue;
+			}
+
+			int glyph = Glyph(c, isAfterSpace);
+			if(c != '"' && c != '\'')
+				isAfterSpace = !glyph;
+			if(!glyph)
+			{
+				x += space;
+				continue;
+			}
+
+			x += advance[previous * GLYPHS + glyph] + KERN;
+
+			float tx0 = glyphWidth * glyph;
+			float tx1 = tx0 + glyphWidth;
+
+			float sx0 = (x         ) / Screen::Right();
+			float sy0 = (y         ) / Screen::Top()  ;
+			float sx1 = (x + width ) / Screen::Right();
+			float sy1 = (y + height) / Screen::Top()  ;
+
+			glTexCoord2f(tx0,   0); glVertex2f(sx0, sy0);
+			glTexCoord2f(tx1,   0); glVertex2f(sx1, sy0);
+			glTexCoord2f(tx1,   1); glVertex2f(sx1, sy1);
+			glTexCoord2f(tx0,   1); glVertex2f(sx0, sy1);
+			
+			if(underlineChar)
+			{
+				tx0 = glyphWidth * underscoreGlyph;
+				tx1 = tx0 + glyphWidth;
+				
+				glTexCoord2f(tx0,   0); glVertex2f(sx0, sy0);
+				glTexCoord2f(tx1,   0); glVertex2f(sx1, sy0);
+				glTexCoord2f(tx1,   1); glVertex2f(sx1, sy1);
+				glTexCoord2f(tx0,   1); glVertex2f(sx0, sy1);
+
+				underlineChar = false;
+			}
+
+			previous = glyph;
+		}
+
+		glEnd();
+
+		glBindTexture(GL_TEXTURE_2D, 0);
+		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+	}
 }
 
 
@@ -376,7 +450,7 @@ void Font::LoadTexture(ImageBuffer &image)
 void Font::CalculateAdvances(ImageBuffer &image)
 {
 	// Get the format and size of the surface.
-	int width = image.Width() / GLYPHS;
+	width = image.Width() / GLYPHS;
 	height = image.Height();
 	unsigned mask = 0xFF000000;
 	unsigned half = 0xC0000000;
