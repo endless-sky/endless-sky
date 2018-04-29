@@ -883,7 +883,7 @@ interface "info panel"
 		from 250 -290 to 500 280
 	
 	visible if "ship tab"
-	button R
+	button r
 		center -375 -270
 		dimensions 250 30
 	sprite "ui/ship tab"
