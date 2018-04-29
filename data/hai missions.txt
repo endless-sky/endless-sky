@@ -435,3 +435,224 @@ mission "Unfettered returning home"
 		dialog
 			`You need not have worried about the reception the Unfettered youth would receive here on Hai-home. Scarcely minutes after you hesitantly contact the Hai government, a happy crowd has gathered around your ship. When he steps out of the hatchway, he looks stunned at being welcomed so warmly. One of the Hai governors thanks you for transporting him, and pays you <payment>.`
 		"reputation: Hai" += 10
+
+
+
+mission "Returning Home"
+	description "Bring Elliot home to his family on <destination>."
+	minor
+	source
+		government "Hai"
+	destination
+		attributes "dirt belt"
+		attributes "farming"
+	passengers 1
+	to offer
+		random < 40
+	on offer
+		conversation
+			`You are stopped by a human in the <origin> marketplace. He takes off his hat and asks, "You're from the outside, aren't you?"`
+			choice
+				`	"Yes, I am."`
+					goto outsider
+				`	"What do you mean 'the outside?'"`
+			
+			`	"Outside of Hai space. Your ship looks newer than most of the ships that humans fly around here."`
+			choice
+				`Oh, yes. I do come from outside.`
+			
+			label outsider
+			`	"Good. My name is Elliot." You introduce yourself to Elliot and shake hands.`
+			`	"Can you take me to <destination>?" Elliot asks.`
+			`	"That's all the way in the Dirt Belt," you say. "Why do you want to go that far?"`
+			`	Elliot looks down at the ground for a second and takes a deep breath while gripping his hat in his hands. "You see, I haven't lived here all my life. I was born on <planet> to a poor farming family. Most of my days were spent working on the farm, which I hated with a passion. One day I just got fed up with things and I ran away.`
+			`	"I ran away from home to the spaceport city and snuck my way into the cargo hold of a freighter. The captain didn't open the cargo hold for three weeks while I stayed in it. Lucky for me the freighter was transporting food, so I had plenty to eat.`
+			`	"When the cargo hold doors finally opened, I ran out as fast as I could, only to run back in at the sight of a group of Hai. I had no idea where I was at the time, but I've been living here ever since. That was when I was sixteen, nearly six years ago now."`
+			`	Elliot looks down at the ground again and wipes a tear from the corner of his eye.`
+			choice
+				`	"Alright, I'll take you to <planet>"`
+					goto accept
+				`	"And you finally want to go back home?"`
+				`	"Sorry, but I'm not able to take you that far."`
+					goto decline
+			
+			`	"Yes. I've thought a lot about it lately. I want to see my family again."`
+			choice
+				`	"Alright, I'll take you to <planet>"`
+					goto accept
+				`	"Sorry, but I'm not able to take you that far."`
+			
+			label decline
+			`	"I understand," Elliot says. "I'll just try and find someone else to help me. Goodbye, <first>."`
+				decline
+			
+			label accept
+			`	You lead Elliot to your ship and show him to a bunk room. After leaving Elliot there, you wonder if his family is still even on <planet> anymore.`
+				accept
+			
+	on complete
+		payment 45000
+		conversation
+			`Elliot thanks your for bringing him to <planet> and hands you <payment>. He flags down a taxi just outside the spaceport, but before getting in to the taxi he turns back to you.`
+			`	"Do you want to come with me? I'd love for you to meet my family. They'll want to meet you when I tell them how I got back."`
+			choice
+				`	"Sorry, I have other places to be. Good luck."`
+				`	"Sure. I've come with you this far."`
+					goto sure
+			
+			`	"I understand. Thanks again, <first>. I'll always owe you."`
+			`	Elliot gets into the taxi, which drives off toward the seemingly endless farmlands outside of the spaceport city.`
+				decline
+			
+			label sure
+			`	The view for nearly the entire three hour drive is of hills and farmland with the occasional building or wild animal. Elliot shakes as the taxi approaches the house from the driveway. "I'm wondering if they still even live here," he says nervously.`
+			`	No one comes out of the house when the taxi stops. You walk up to the front door with Elliot and a middle aged woman answers the door with a ug of coffee and a bewildered look on her face.`
+			`	"Can I help you?" the woman asks.`
+			`	Eliiot looks over at you with a big smile on his face. "Yes you can, mom," he says to her. The woman's face lights up with joy and she begins jumping up and down, spilling coffee from her mug.`
+			`	"Oh Elliot, I can't believe it!" Elliot's mom puts down her mug and leaps out the door to hug him. "Jackson! Sarah! Abby! Sean! Victor! Elliot is here!" Elliot's entire family comes out from the house and greets him, asking dozens of questions about where and how he's been and why he left.`
+			`	Elliot introduces you to his family, who thank you for bringing Elliot home. Victor, who was only seven years old when Elliot left and is now twelve, asks you question after question about being a pilot, sometimes asking new questions before you can even answer the old one.`
+			`	"Are you going back to the spaceport, <first>?" the taxi driver yells from the driveway. "I need to get back to the city as soon as I can."
+			`	You say goodbye to Elliot and to his family. "Thanks again, <first>," Elliot says to you. "I'll always owe you."`
+
+
+
+mission "Unwanted Cargo Trigger"
+	invisible
+	landing
+	source
+		government "Hai"
+	to offer
+		random < 10
+		"cargo space" > 0
+	on offer
+		event "hai in cargo" 14
+		fail
+
+event "hai in cargo"
+
+mission "Unwanted Cargo"
+	landing
+	description "Bring the Hai child who hid in your cargo hold back to <destination>."
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination "Allhome"
+	to offer
+		has "event: hai in cargo"
+	on offer
+		conversation
+			`The check cargo light for your ship begins blinking when you land, meaning that a cargo crate may have come loose in flight. You shut off the ship's engines and walk to the cargo hold.`
+			`	You check every cargo crate in the hold, but can't find anything wrong. Right as you decide to leave, one of the smaller crates begins rocking back and forth.`
+			branch translator
+				has "Human Cultural Archives: done"
+				
+			`	You hear a voice come from the crate, but it is not a language you understand. The voice continues to speak, and you recognize it as the Hai language.`
+			choice
+				`	(Open the crate)`
+			`	You open the crate and are met eye to eye with a Hai child. You aren't sure how old it is, but it looks to be about the height of a one year old human child. It tries to communicate with you, but begins to cry when it sees the confused look on your face.`
+			choice
+				`	"Don't cry, little guy."`
+					goto cry
+				`	(Pick up the Hai.)`
+				
+			`	The child waves its hands around when you try to pick it up, making it impossible to grab on to. After waiting for a few minutes, the child finally calms down, eventually going to sleep in the crate.`
+				goto end
+			
+			label cry
+			`	The child begins to cry even louder as you try to calm it down. After waiting for a few minutes, the child finally calms down, eventually going to sleep in the crate.`
+				goto end
+			
+			label translator
+			`	You hear a voice come from the crate, and surprisingly your Hai translator begins speaking. "Let me out! I want to go home!"`
+			choice
+				`	(Open the crate)`
+			`	You open the crate and are met eye to eye with a Hai child. You aren't sure how old it is, but it looks to be about the height of a one year old human child. "I want my mommy!" it says as its eyes begin to tear up.`
+			choice
+				`	"Where's your mommy?"`
+				`	"Don't cry, little guy."`
+			`	The child looks surprised when your translation device speaks to it in Hai. "Take me home!" it yells back at you. You attempt to find out where the child's home is, but it continues to cry for its mother without giving any important information.`
+			
+			label end
+			`	This child must have somehow gotten into your cargo hold while you were in Hai space. Leaving a Hai child on a human world would be an extremely bad idea. Perhaps someone on <destination> will be able to bring the child back to its family.`
+				accept
+			
+	on complete
+		payment 50000
+		dialog `You contact the spaceport authorities of <planet> and ask them if they are looking for a lost Hai child. It turns out that the family was so worried that they put up a <payment> reward for finding their son. A Hai spaceport worker takes the child from your ship and thanks you for finding him for the family.`
+
+
+
+mission "Hiding in Plain Sight"
+	description "Arthur and his Hai friend, Kiru, to <destination> for a gaming convention."
+	minor
+	source
+		government "Hai"
+	destination "Vinci"
+	passengers 2
+	to offer
+		random < 30
+	on offer
+		conversation
+			`While eating in a spaceport cafeteria that serves both Hai and human cuisine, you are approached by a teenaged human and Hai. "Hello. Do you know how to get to <destination>?" the Hai asks you.`
+			choice
+				`	"I do. Why do you want to go there?"`
+				`	"I don't. You'll have to ask someone else."`
+					decline
+			`	The human responds, "There's a massive convention on <planet> for a game called 'Boundless Frontiers.' The convention has a huge cosplaying scene, and I think Kiru would fit right in."`
+			`	"Arthur and I have <payment> to give you if you bring us to the <planet>," Kiru says. "We can find our own way back to the Hai space, as well."`
+			choice
+				`	"Alright, I can take you there."`
+					accept
+				`	"Sorry, you'll have to find someone else to bring you,"`
+					decline
+					
+	on complete
+		payment 75000
+		dialog `Arthur and Kiru pay you <payment> before running off to the convention center. As they run away, you notice that Kiru is drawing a number of eyes from the crowd, but no one seems to suspect that he is an actual alien.`
+
+
+
+mission "Hai Honeymoon"
+	description "Bring Anaya and Touhar to <destination> for their honeymoon."
+	minor
+	source "Skyfarm"
+	destination "Featherweight"
+	passengers 2
+	to offer
+		random < 60
+	on offer
+		conversation
+			`You hop around the spaceport of <origin>, trying to get adjusted to the low gravity of this moon, when you are approached by a toweringly tall human woman and an equally tall Hai male who are clearly adjusted to <origin>'s gravity.`
+			`	"You look like you need help there, Captain," the woman says with a chuckle.`
+			choice
+				`	"Don't worry. I almost have the hang of it."`
+				`	"Maybe a little bit."`
+			`	"It's always fun watching captains when they step off the comfort of their ship," the Hai says.`
+			`	"At least he's trying, Touhar," the woman says.`
+			choice
+				`	"Can I help you two with something?"`
+				`	"Is there something I can help you with, or are you just going to watch me?"`
+			`	"Actually, there is something," the woman says. "My name is Anaya, and this is my husband, Touhar. And you are?"`
+			choice
+				`	"My name is <first> <last>."`
+				`	"Wait, your husband?"`
+					goto husband
+			
+			`	"Very nice to meet you, Captain <last>," Touhar says to you.`
+				goto next
+			
+			label husband
+			`	"What, you've never seen an interspecies couple before?" Touhar asks with a hint of sarcasm in his voice.`
+			
+			label next
+			`	"We got married last week, and we were hoping to travel to <destination> for our honeymoon. I know it's risky to bring Touhar into human space, but Featherweight is a sparcely inhabited world, and I have a friend who owns a house in the mountains far from anyone who could see Touhar."`
+			`	"Said friend will be able to arrange for our return to <origin> as well," Touhar adds. "Will you take us?"`
+			choice
+				`	"Sure."`
+					accept
+				`	"Sorry, I can't travel that far from here."`
+					decline
+					
+	on complete
+		payment 100000
+		dialog `Instead of landing in the spaceport where they can be seen, you drop Anaya and Touhar off as close as you can to Anaya's friend's house where they will be staying. The house is a few kilometers away, but they assure you that they can make it on their own. They pay you <payment> and thank you for bringing them this far.`
+
