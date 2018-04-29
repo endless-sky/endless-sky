@@ -116,6 +116,11 @@ void MainPanel::Step()
 				GetUI()->Push(new Dialog(GameData::HelpMessage(message)));
 			}
 		}
+		if(shared_ptr<Ship> target = flagship->GetTargetShip())
+		{
+			if(flagship->GetTargetShip()->IsDisabled() && !target->GetGovernment()->IsEnemy())
+				DoHelp("friendly disabled");
+		}
 	}
 	
 	engine.Step(isActive);
