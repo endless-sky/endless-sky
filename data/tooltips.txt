@@ -299,9 +299,6 @@ tip "sum:"
 tip "capacity:"
 	`Energy and heat storage capacity. Energy capacity allows a ship to temporarily draw more energy than it produces. The heat capacity is the heat a ship can build up before overheating.`
 
-tip "buffer time:"
-	`Time until the energy storage is depleted or the ship overheats when all systems are running.`
-
 
 
 # Outfit categories:

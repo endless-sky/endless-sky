@@ -316,10 +316,6 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	tableLabels.push_back("capacity:");
 	energyTable.push_back(Format::Decimal(attributes.Get("energy capacity"), 0));
 	heatTable.push_back(Format::Decimal(max(emptyMass * 100. - ship.IdleHeat(), 0.), 0));
-	attributesHeight += 20;
-	tableLabels.push_back("buffer time:");
-	energyTable.push_back((sumEnergy < 0) ? Format::Decimal(attributes.Get("energy capacity") / (-60. * sumEnergy), 0) : "-");
-	heatTable.push_back((sumHeat > 0) ? Format::Decimal(max(emptyMass * 100. - ship.IdleHeat(), 0.) / (60. * sumHeat), 0) : "-");
 	// Pad by 10 pixels on the top and bottom.
 	attributesHeight += 30;
 }
