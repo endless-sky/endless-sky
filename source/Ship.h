@@ -36,6 +36,7 @@ class Government;
 class Minable;
 class Phrase;
 class Planet;
+class PlayerInfo;
 class Projectile;
 class StellarObject;
 class System;
@@ -152,7 +153,7 @@ public:
 	// Get a random hail message, or set the object used to generate them. If no
 	// object is given the government's default will be used.
 	void SetHail(const Phrase &phrase);
-	std::string GetHail() const;
+	std::string GetHail(const PlayerInfo &player) const;
 	
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
