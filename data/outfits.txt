@@ -396,15 +396,3 @@ outfit "Militia Carrier License"
 	category "Special"
 	thumbnail "outfit/militia license"
 	description "Officially joined the Free Worlds. Received permission to purchase their Militia-only carriers."
-
-outfit "Hot Shower"
-	plural "Hot Showers"
-	category "Systems"
-	cost 8000
-	thumbnail "outfit/hot shower"
-	"mass" 8
-	"outfit space" -8
-	"heat generation" .7
-	description "Not all upgrades to your ship have to be purely functional. The addition of a shower utilizing actual hot water may not kill your enemies, provide power to your engines, or shield you from a missile barrage, but it makes life aboard a ship a lot more comfortable. Captains who spend most of their time in space and not planetside will definately appreciate this addition to their vessel.
-
-    The morale benefits of having one installed are more than enough to convince those with the money to spend on a little luxury to get one installed in their ship. Plus, they are particularly attractive to rich passengers willing to pay top dollar for a comfortable ship to seek passage on."
