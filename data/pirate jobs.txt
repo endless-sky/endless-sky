@@ -2584,8 +2584,8 @@ mission "Cargo Theft (South)"
 		
 mission "FW Assasination [1]"
 	name "Assassinate a political target"
-  description "A key Free Worlds politician who is worrying local slave traders was spotted on a pleasure flight in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they may have escorts."
-  repeat
+	description "A key Free Worlds politician who is worrying local slave traders was spotted on a pleasure flight in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they may have escorts."
+  	repeat
 	job
 	to offer
 		"combat rating" > 200
@@ -2621,7 +2621,7 @@ mission "FW Assasination [1]"
 mission "FW Assasination [2]"
 	name "Assassinate a political target"
 	description "A key Free Worlds politician who has angered a powerful pirate warlord was spotted on a pleasure flight in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they are heavily defended."
-  repeat
+	repeat
 	job
 	to offer
 		"combat rating" > 400
@@ -2758,7 +2758,7 @@ mission "Syndicate Assasination [1]"
 mission "Syndicate Assasination [2]"
 	name "Assassinate a political target"
 	description "A key Syndicate politician who has plans that worry many local pirate gangs was spotted on a pleasure flight in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Syndicate. Payment is <payment>. Be advised that they are heavily defended."
-  repeat
+	repeat
 	job
 	to offer
 		"combat rating" > 400
@@ -2861,8 +2861,8 @@ mission "Syndicate Assasination [4]"
 		
 mission "Republic Assassination [1]"
 	name "Assassinate a political target"
-  description "A key Republic politician who is worrying local pirate gangs was spotted on a pleasure flight in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Republic. Payment is <payment>. Be advised that they may have escorts."
-  repeat
+	description "A key Republic politician who is worrying local pirate gangs was spotted on a pleasure flight in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Republic. Payment is <payment>. Be advised that they may have escorts."
+  	repeat
 	job
 	to offer
 		"combat rating" > 200
