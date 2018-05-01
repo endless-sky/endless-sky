@@ -2584,7 +2584,7 @@ mission "Cargo Theft (South)"
 		
 mission "FW Assasination [1]"
 	name "Assassinate a political target"
-	description "A key Free Worlds politician who has called for the abolishment of the Greenrock slave markets was spotted on a pleasure flight in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they may have escorts."
+	description "A key Free Worlds politician was spotted passing through a nearby system in their ship, the <npc>. Find and destroy them in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
 	to offer
@@ -2620,7 +2620,7 @@ mission "FW Assasination [1]"
 		
 mission "FW Assasination [2]"
 	name "Assassinate a political target"
-	description "A key Free Worlds politician who has spoken out against a powerful pirate warlord was spotted on a pleasure flight in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they are heavily defended."
+	description "A key Free Worlds politician was spotted passing through a nearby system in their ship, the <npc>. Find and destroy them in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they are heavily defended."
 	repeat
 	job
 	to offer
@@ -2726,7 +2726,7 @@ mission "FW Assasination [4]"
 
 mission "Syndicate Assasination [1]"
 	name "Assassinate a political target"
-	description "A key Syndicate politician who has insulted a regional warlord was spotted on a pleasure flight in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Syndicate. Payment is <payment>. Be advised that they may have escorts."
+	description "A key Syndicate politicianwas spotted passing through a nearby system in their ship, the <npc>. Find and destroy them in order to send a message to the Syndicate. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
 	to offer
@@ -2751,13 +2751,13 @@ mission "Syndicate Assasination [1]"
 		dialog "The target has been destroyed. Return to <destination> for your payment."
 	on complete
 		payment 350000
-		dialog "The pirate warlord thanks you for eliminating the politician that insulted them and pays you <payment>."
+		dialog "A pirate warlord thanks you for eliminating the politician	 and pays you <payment>."
 		"reputation: Syndicate" -= 10
 		"reputation: Pirate" += 3
 		
 mission "Syndicate Assasination [2]"
 	name "Assassinate a political target"
-	description "A key Syndicate politician who plans to make it more difficult for pirate gangs to trade with the Syndicate was spotted on a pleasure flight in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Syndicate. Payment is <payment>. Be advised that they are heavily defended."
+	description "A key Syndicate politician was spotted passing through a nearby system in their ship, the <npc>. Find and destroy them in order to send a message to the Syndicate. Payment is <payment>. Be advised that they are heavily defended."
 	repeat
 	job
 	to offer
@@ -2859,7 +2859,7 @@ mission "Syndicate Assasination [4]"
 		
 mission "Republic Assassination [1]"
 	name "Assassinate a political target"
-	description "A key Republic politician who has called for a more aggressive crackdown on piracy was spotted on a pleasure flight in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Republic. Payment is <payment>. Be advised that they may have escorts."
+	description "A key Republic politician was spotted passing through a nearby system in their ship, the <npc>. Find and destroy them in order to send a message to the Republic. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
 	to offer
@@ -2882,13 +2882,13 @@ mission "Republic Assassination [1]"
 		dialog "The target has been destroyed. Return to <destination> for you payment."
 	on complete
 		payment 350000
-		dialog "A pirate warlord thanks you for eliminating the politician that called for an aggressive crackdown on piracy and pays you <payment>."
+		dialog "A pirate warlord thanks you for eliminating the politician  pays you <payment>."
 		"reputation: Republic" -= 10
 		"reputation: Pirate" += 3
 		
 mission "Republic Assassination [2]"
 	name "Assassinate a political target"
-	description "A key Republic politician who has proposed legislation that would make it harder for drug runners to deal in the Paradise Worlds was spotted on a pleasure flight in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Republic. Payment is <payment>. Be advised that they are heavily defended."
+	description "A key Republic politician was spotted passing through a nearby system in their ship, the <npc>	. Find and destroy them in order to send a message to the Republic. Payment is <payment>. Be advised that they are heavily defended."
 	repeat
 	job
 	to offer
