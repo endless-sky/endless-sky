@@ -166,7 +166,6 @@ mission "Remnant: Stranded Korath"
 		fleet "Korath Raid"
 		dialog "All Korath in this system have been eliminated."
 	on complete
-		event "overload cannon available" 30
 		payment 3000000
 		conversation
 			`The woman you met earlier greets you as you land, with her usual calm voice`
