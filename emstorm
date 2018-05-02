@@ -1,0 +1,184 @@
+# Ships
+
+ship "Electromagnetic Storm"
+	attributes
+		"hull" 100
+		"automaton" 1
+		"mass" 10
+		"drag" 1
+		"heat dissipation" .9
+		"outfit space" 1
+		"weapon capacity" 1
+		"energy generation" .7
+		"energy capacity" 100
+		"turn" 40
+		"turning energy" .2
+		"thrust" 10
+		"thrusting energy" .3
+	outfits
+		"Storm"
+		
+	engine -17 35
+	engine 17 35
+	turret 0 0 "Storm"
+	
+# Outfits
+
+outfit "Storm"
+	category "Turrets"
+	cost 0
+	thumbnail "outfit/unknown"
+	"mass" 1
+	"outfit space" -1
+	"weapon capacity" -1
+	"turret mounts" -1
+	weapon
+		"inaccuracy" 0
+		"turret turn" 10
+		"velocity" 200
+		"lifetime" 30
+		"reload" 1
+		"firing energy" 0
+		"firing heat" 0
+		"shield damage" 1
+		"hull damage" 0.1
+		"ion damage" 0.1
+		
+# Fleet
+fleet "Electromagnetic(weak)"
+	government "Korath Nanobots"
+	personality
+		heroic
+		vindictive
+	variant
+		"EMStorm" 8
+		
+fleet "Electromagnetic(moderate)"
+	government "Korath Nanobots"
+	personality
+		heroic
+		vindictive
+	variant
+		"EMStorm" 15
+		
+fleet "Electromagnetic(strong)"
+	government "Korath Nanobots"
+	personality
+		heroic
+		vindictive
+	variant
+		"EMStorm" 22
+		
+# Mission
+mission "Remnant: Stranded Korath"
+	landing
+	source
+		government "Remnant"
+	name "Korath ships stranded in Remnant Territory"
+	description "There are Korath fleets located in the Caeculus, Stercutus and Segesta systems. Find and eliminate them, then return to <planet> for payment."
+	to offer
+		has "event: remnant: void sprite research"
+		has "Remnant: Key Stones: done"
+		has "Remnant: Defense 3: done"
+		has "Remnant: Bounty: done" >= 3
+	waypoint Caeculus
+	waypoint Stercutus
+	waypoint Segesta
+	on offer
+		conversation
+			`As you land, you are greeted by a man and a woman, both dressed in quite a striking manner, perhaps as a sign of distinction. They collectively begin to chant in an almost gleeful tone`
+			`"We are aware of your contributions to our society, and we have a task to ask of you"`
+			``
+			`You note that they are all fixated on you more than you might expect.`
+			choice
+				`	"How can I help?"`
+				`	"Sorry, I don't have the time to help."`
+					decline
+			`The man begins to chant`
+			`"We have numerous reports from our explorers that there are Korath stranded in the Stercutus system and it's neighbours."`
+			`The woman then calmly joins in, seemingly in a rehearsed manner`
+			`"We believe the Korath have been stranded by the powerful electromagnetic storms that can occur in the Waste."`
+			`The man ceases chanting, however, the woman continues`
+			`"We want you to locate and eliminate the Korath fleets, though we warn you to be careful in dealing with the electromagnetic storms."`
+			choice
+				`	"How dangerous are these storms?"
+				`	"I can do that."`
+					accept
+				`	"Sorry, but I can't help with that right now."`
+					decline
+			`The man begins to chant once more`
+			`"The storms can weaken your shields, as well as inhibit energy generation. Though these storms seem to strike at varying intensity, and larger fleets seem to evenly absorb the shock of these storms, dulling the effects of a storm."`
+			choice
+				`	"I can handle that."`
+					accept
+				`	"Sorry, but that sounds too dangerous."`
+					decline
+	npc evade
+		personality
+			heroic
+			vindictive
+		government "Korath Nanobots"
+		system Caeculus
+		fleet "EMStorm"
+	npc evade
+		personality
+			heroic
+			vindictive
+		government "Korath Nanobots"
+		system Stercutus
+		fleet "EMStorm"
+		fleet "EMStorm"
+	npc evade
+		personality
+			heroic
+			vindictive
+		government "Korath Nanobots"
+		system Segesta
+		fleet "EMStorm"
+		fleet "EMStorm"
+		fleet "EMStorm"
+
+	npc kill
+		personality
+			heroic
+			nemesis
+			staying
+		government Korath
+		system Caeculus
+		fleet "Korath Raid"
+		dialog "All of the Korath here have been destroyed."
+	npc kill	
+		personality
+			heroic
+			nemesis
+			staying
+		government Korath
+		system Segesta
+		fleet "Korath Raid"
+		dialog "The last of the Korath here have been destroyed."
+	npc kill	
+		personality
+			heroic
+			nemesis
+			staying
+		government Korath
+		system Stercutus
+		fleet "Korath Raid"
+		dialog "All Korath in this system have been eliminated."
+	on complete
+		event "overload cannon available" 30
+		payment 3000000
+		conversation
+			`The woman you met earlier greets you as you land, with her usual calm voice`
+			`"Thank you for your assistance, it does not go without reward."`
+			`She then proceeds to pay you 3000000.`
+			choice
+				`	"Can you tell me more about these storms?"`
+				`	(Leave)`
+					decline
+
+			`"The Ember Waste, unlike most regions of space, has an unusually dense concentration of charged particles. Normally, a ship can deal with charged particles without an issue.",`
+			`she pauses briefly,`
+			`"However, the concentration of these particles can become exceptionally high, and this will interfere with any ships shield matrix and energy generation, in severe cases, the hull can be damaged."`
+			`She farewells you, and then leaves.`
+				decline
