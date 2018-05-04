@@ -1316,8 +1316,8 @@ ship "Freighter"
 	engine -9 97
 	engine 9 97
 	turret 0 -52 "Blaster Turret"
-	turret 0 65 "Blaster Turret"
 	turret 0 6 "Heavy Anti-Missile Turret"
+	turret 0 65 "Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 30
 	explode "medium explosion" 20

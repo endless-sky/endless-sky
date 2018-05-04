@@ -821,8 +821,8 @@ ship "Freighter" "Freighter (Fancy)"
 		"X3200 Ion Steering"
 		"Scram Drive"
 	turret "Laser Turret"
-	turret "Laser Turret"
 	turret "Heavy Anti-Missile Turret"
+	turret "Laser Turret"
 
 
 ship "Freighter" "Freighter (Hai)"
@@ -839,8 +839,8 @@ ship "Freighter" "Freighter (Hai)"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 	turret "Pulse Turret"
-	turret "Laser Turret"
 	turret "Bullfrog Anti-Missile"
+	turret "Laser Turret"
 
 
 ship "Freighter" "Freighter (Proton)"
@@ -855,6 +855,9 @@ ship "Freighter" "Freighter (Proton)"
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
 		"Scram Drive"
+	turret "Proton Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret
 
 
 ship "Freighter" "Freighter (Secret Cargo)"
@@ -868,6 +871,9 @@ ship "Freighter" "Freighter (Secret Cargo)"
 		"X2200 Ion Steering"
 		"Scram Drive"
 		"Secret Cargo"
+	turret "Blaster Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret "Blaster Turret"
 
 
 
