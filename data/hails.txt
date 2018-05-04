@@ -2131,9 +2131,6 @@ phrase "friendly disabled"
 		""
 	word
 		" "
-	
-	word
-		" "
 	word
 		"bastards"
 		"snakes"
