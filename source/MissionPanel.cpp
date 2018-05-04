@@ -99,7 +99,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 
 	// Center the system slightly above the center of the screen because the
 	// lower panel is taking up more space than the upper one.
-	center = Point(0., -80.) - selectedSystem->Position();
+	CenterOnSystem(selectedSystem);
 }
 
 
@@ -266,7 +266,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(acceptedIt != accepted.end())
 		selectedSystem = acceptedIt->Destination()->GetSystem();
 	if(selectedSystem)
-		center = Point(0., -80.) - selectedSystem->Position();
+		CenterOnSystem(selectedSystem);
 	
 	return true;
 }
@@ -291,7 +291,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			acceptedIt = accepted.end();
 			dragSide = -1;
 			selectedSystem = availableIt->Destination()->GetSystem();
-			center = Point(0., -80.) - selectedSystem->Position();
+			CenterOnSystem(selectedSystem);
 			return true;
 		}
 	}
@@ -309,7 +309,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			availableIt = available.end();
 			dragSide = 1;
 			selectedSystem = acceptedIt->Destination()->GetSystem();
-			center = Point(0., -80.) - selectedSystem->Position();
+			CenterOnSystem(selectedSystem);
 			return true;
 		}
 	}

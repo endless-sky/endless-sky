@@ -111,6 +111,9 @@ protected:
 	std::map<const Government *, double> closeGovernments;
 	// Systems in which your escorts are located.
 	std::map<const System *, bool> escortSystems;
+	// Center the view on the given system (may actually be slightly offset
+	// to account for panels on the screen).
+	void CenterOnSystem(const System *system);
 	
 	
 private:

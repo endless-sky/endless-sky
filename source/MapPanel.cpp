@@ -97,7 +97,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	TallyEscorts(player.Ships(), escortSystems);
 	
 	if(selectedSystem)
-		center = Point(0., 0.) - selectedSystem->Position();
+		CenterOnSystem(selectedSystem);
 }
 
 
@@ -510,7 +510,7 @@ void MapPanel::Find(const string &name)
 			{
 				bestIndex = index;
 				selectedSystem = &it.second;
-				center = Zoom() * (Point() - selectedSystem->Position());
+				CenterOnSystem(selectedSystem);
 				if(!index)
 				{
 					selectedPlanet = nullptr;
@@ -526,7 +526,7 @@ void MapPanel::Find(const string &name)
 			{
 				bestIndex = index;
 				selectedSystem = it.second.GetSystem();
-				center = Zoom() * (Point() - selectedSystem->Position());
+				CenterOnSystem(selectedSystem);
 				if(!index)
 				{
 					selectedPlanet = &it.second;
@@ -566,6 +566,13 @@ int MapPanel::Search(const string &str, const string &sub)
 	auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
 		[](char a, char b) { return toupper(a) == toupper(b); });
 	return (it == str.end() ? -1 : it - str.begin());
+}
+
+
+
+void MapPanel::CenterOnSystem(const System *system)
+{
+	center = Point(0., -80.) / Zoom() - system->Position();
 }
 
 
