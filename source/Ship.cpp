@@ -848,8 +848,8 @@ string Ship::GetHail(const PlayerInfo &player) const
 	subs["<date>"] = player.GetDate().ToString();
 	subs["<day>"] = player.GetDate().LongString();
 	
-	string hail_str = hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
-	return Format::Replace(hail_str, subs);
+	string hailStr = hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
+	return Format::Replace(hailStr, subs);
 }
 
 
