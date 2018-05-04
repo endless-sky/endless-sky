@@ -2127,7 +2127,7 @@ phrase "friendly disabled"
 		"sleazy"
 		"scummy"
 	word
-		"
+		" "
 	
 	word
 		" "
