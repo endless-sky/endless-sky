@@ -748,33 +748,16 @@ void MapPanel::DrawWormholes()
 
 void MapPanel::DrawLinks()
 {
-	// Draw the links between the systems.
-	const Color &closeColor = *GameData::Colors().Get("map link");
-	const Color &farColor = closeColor.Transparent(.5);
-	for(const auto &it : GameData::Systems())
+	double zoom = Zoom();
+	for(const Link &link : links)
 	{
-		const System *system = &it.second;
-		if(!player.HasSeen(system))
-			continue;
+		Point from = zoom * (link.start + center);
+		Point to = zoom * (link.end + center);
+		Point unit = (from - to).Unit() * LINK_OFFSET;
+		from -= unit;
+		to += unit;
 		
-		for(const System *link : system->Links())
-			if(link < system || !player.HasSeen(link))
-			{
-				// Only draw links between two systems if one of the two is
-				// visited. Also, avoid drawing twice by only drawing in the
-				// direction of increasing pointer values.
-				if(!player.HasVisited(system) && !player.HasVisited(link))
-					continue;
-				
-				Point from = Zoom() * (system->Position() + center);
-				Point to = Zoom() * (link->Position() + center);
-				Point unit = (from - to).Unit() * LINK_OFFSET;
-				from -= unit;
-				to += unit;
-				
-				bool isClose = (system == playerSystem || link == playerSystem);
-				LineShader::Draw(from, to, LINK_WIDTH, isClose ? closeColor : farColor);
-			}
+		LineShader::Draw(from, to, LINK_WIDTH, link.color);
 	}
 }
 
@@ -782,124 +765,34 @@ void MapPanel::DrawLinks()
 
 void MapPanel::DrawSystems()
 {
+	if(commodity != cachedCommodity)
+		UpdateCache();
+	
+	// If coloring by government, we need to keep track of which ones are the
+	// closest to the center of the window because those will be the ones that
+	// are shown in the map key.
 	if(commodity == SHOW_GOVERNMENT)
 		closeGovernments.clear();
 	
-	// Draw the circles for the systems, colored based on the selected criterion,
-	// which may be government, services, or commodity prices.
+	// Draw the circles for the systems.
 	double zoom = Zoom();
-	for(const auto &it : GameData::Systems())
+	for(const Node &node : nodes)
 	{
-		const System &system = it.second;
-		// Referring to a non-existent system in a mission can create a spurious
-		// system record. Ignore those.
-		if(system.Name().empty())
-			continue;
-		if(!player.HasSeen(&system) && &system != specialSystem)
-			continue;
+		Point pos = zoom * (node.position + center);
+		RingShader::Draw(pos, OUTER, INNER, node.color);
 		
-		Point pos = zoom * (system.Position() + center);
-		
-		Color color = UninhabitedColor();
-		if(!player.HasVisited(&system))
-			color = UnexploredColor();
-		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL)
+		if(commodity == SHOW_GOVERNMENT)
 		{
-			if(commodity >= SHOW_SPECIAL)
-			{
-				double value = 0.;
-				if(commodity >= 0)
-				{
-					const Trade::Commodity &com = GameData::Commodities()[commodity];
-					double price = system.Trade(com.name);
-					if(!price)
-						value = numeric_limits<double>::quiet_NaN();
-					else
-						value = (2. * (price - com.low)) / (com.high - com.low) - 1.;
-				}
-				else if(commodity == SHOW_SHIPYARD)
-				{
-					double size = 0;
-					for(const StellarObject &object : system.Objects())
-						if(object.GetPlanet())
-							size += object.GetPlanet()->Shipyard().size();
-					value = size ? min(10., size) / 10. : -1.;
-				}
-				else if(commodity == SHOW_OUTFITTER)
-				{
-					double size = 0;
-					for(const StellarObject &object : system.Objects())
-						if(object.GetPlanet())
-							size += object.GetPlanet()->Outfitter().size();
-					value = size ? min(60., size) / 60. : -1.;
-				}
-				else if(commodity == SHOW_VISITED)
-				{
-					bool all = true;
-					bool some = false;
-					for(const StellarObject &object : system.Objects())
-						if(object.GetPlanet() && !object.GetPlanet()->IsWormhole())
-						{
-							bool visited = player.HasVisited(object.GetPlanet());
-							all &= visited;
-							some |= visited;
-						}
-					value = -1 + some + all;
-				}
-				else
-					value = SystemValue(&system);
-				
-				color = MapColor(value);
-			}
-			else if(commodity == SHOW_GOVERNMENT)
-			{
-				const Government *gov = system.GetGovernment();
-				color = GovernmentColor(gov);
-				
-				// For every government that is draw, keep track of how close it
-				// is to the center of the view. The four closest governments
-				// will be displayed in the key.
-				double distance = pos.Length();
-				auto it = closeGovernments.find(gov);
-				if(it == closeGovernments.end())
-					closeGovernments[gov] = distance;
-				else
-					it->second = min(it->second, distance);
-			}
+			// For every government that is drawn, keep track of how close it
+			// is to the center of the view. The four closest governments
+			// will be displayed in the key.
+			double distance = pos.Length();
+			auto it = closeGovernments.find(node.government);
+			if(it == closeGovernments.end())
+				closeGovernments[node.government] = distance;
 			else
-			{
-				double reputation = system.GetGovernment()->Reputation();
-				
-				// A system should show up as dominated if it contains at least
-				// one inhabited planet and all inhabited planets have been
-				// dominated. It should show up as restricted if you cannot land
-				// on any of the planets that have spaceports.
-				bool hasDominated = true;
-				bool isInhabited = false;
-				bool canLand = false;
-				bool hasSpaceport = false;
-				for(const StellarObject &object : system.Objects())
-					if(object.GetPlanet())
-					{
-						const Planet *planet = object.GetPlanet();
-						hasSpaceport |= !planet->IsWormhole() && planet->HasSpaceport();
-						if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()))
-							continue;
-						canLand |= planet->CanLand() && planet->HasSpaceport();
-						isInhabited |= planet->IsInhabited();
-						hasDominated &= (!planet->IsInhabited()
-							|| GameData::GetPolitics().HasDominated(planet));
-					}
-				hasDominated &= (isInhabited && canLand);
-				// Some systems may count as "inhabited" but not contain any
-				// planets with spaceports. Color those as if they're
-				// uninhabited to make it clear that no fuel is available there.
-				if(hasSpaceport || hasDominated)
-					color = ReputationColor(reputation, canLand, hasDominated);
-			}
+				it->second = min(it->second, distance);
 		}
-		
-		RingShader::Draw(pos, OUTER, INNER, color);
 	}
 }
 
@@ -908,23 +801,16 @@ void MapPanel::DrawSystems()
 void MapPanel::DrawNames()
 {
 	// Don't draw if too small.
-	if(Zoom() <= 0.5)
+	double zoom = Zoom();
+	if(zoom <= 0.5)
 		return;
 	
 	// Draw names for all systems you have visited.
-	const Font &font = FontSet::Get((Zoom() > 2.0) ? 18 : 14);
-	const Color &closeColor = *GameData::Colors().Get("map name");
-	const Color &farColor = closeColor.Transparent(.5);
-	Point offset((Zoom() > 2.0) ? 8. : 6., -.5 * font.Height());
-	for(const auto &it : GameData::Systems())
-	{
-		const System &system = it.second;
-		if(!player.KnowsName(&system) || system.Name().empty())
-			continue;
-		
-		font.Draw(system.Name(), Zoom() * (system.Position() + center) + offset,
-			(&system == playerSystem) ? closeColor : farColor);
-	}
+	bool useBigFont = (zoom > 2.);
+	const Font &font = FontSet::Get(useBigFont ? 18 : 14);
+	Point offset(useBigFont ? 8. : 6., -.5 * font.Height());
+	for(const Node &node : nodes)
+		font.Draw(node.name, zoom * (node.position + center) + offset, node.nameColor);
 }
 
 
@@ -992,4 +878,150 @@ void MapPanel::DrawPointer(Point position, Angle &angle, const Color &color, boo
 	if(drawBack)
 		PointerShader::Draw(position, angle.Unit(), 14. + bigger, 19. + 2 * bigger, -4., black);
 	PointerShader::Draw(position, angle.Unit(), 8. + bigger, 15. + 2 * bigger, -6., color);
+}
+
+
+	
+// Cache the map layout, so it doesn't have to be re-calculated every frame.
+// The node cache must be updated when the coloring mode changes.
+void MapPanel::UpdateCache()
+{
+	// Remember which commodity the cached systems are colored by.
+	cachedCommodity = commodity;
+	nodes.clear();
+	
+	// Draw the circles for the systems, colored based on the selected criterion,
+	// which may be government, services, or commodity prices.
+	const Color &closeNameColor = *GameData::Colors().Get("map name");
+	const Color &farNameColor = closeNameColor.Transparent(.5);
+	for(const auto &it : GameData::Systems())
+	{
+		const System &system = it.second;
+		// Referring to a non-existent system in a mission can create a spurious
+		// system record. Ignore those.
+		if(system.Name().empty())
+			continue;
+		if(!player.HasSeen(&system) && &system != specialSystem)
+			continue;
+		
+		Color color = UninhabitedColor();
+		if(!player.HasVisited(&system))
+			color = UnexploredColor();
+		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL)
+		{
+			if(commodity >= SHOW_SPECIAL)
+			{
+				double value = 0.;
+				if(commodity >= 0)
+				{
+					const Trade::Commodity &com = GameData::Commodities()[commodity];
+					double price = system.Trade(com.name);
+					if(!price)
+						value = numeric_limits<double>::quiet_NaN();
+					else
+						value = (2. * (price - com.low)) / (com.high - com.low) - 1.;
+				}
+				else if(commodity == SHOW_SHIPYARD)
+				{
+					double size = 0;
+					for(const StellarObject &object : system.Objects())
+						if(object.GetPlanet())
+							size += object.GetPlanet()->Shipyard().size();
+					value = size ? min(10., size) / 10. : -1.;
+				}
+				else if(commodity == SHOW_OUTFITTER)
+				{
+					double size = 0;
+					for(const StellarObject &object : system.Objects())
+						if(object.GetPlanet())
+							size += object.GetPlanet()->Outfitter().size();
+					value = size ? min(60., size) / 60. : -1.;
+				}
+				else if(commodity == SHOW_VISITED)
+				{
+					bool all = true;
+					bool some = false;
+					for(const StellarObject &object : system.Objects())
+						if(object.GetPlanet() && !object.GetPlanet()->IsWormhole())
+						{
+							bool visited = player.HasVisited(object.GetPlanet());
+							all &= visited;
+							some |= visited;
+						}
+					value = -1 + some + all;
+				}
+				else
+					value = SystemValue(&system);
+				
+				color = MapColor(value);
+			}
+			else if(commodity == SHOW_GOVERNMENT)
+			{
+				const Government *gov = system.GetGovernment();
+				color = GovernmentColor(gov);
+			}
+			else
+			{
+				double reputation = system.GetGovernment()->Reputation();
+				
+				// A system should show up as dominated if it contains at least
+				// one inhabited planet and all inhabited planets have been
+				// dominated. It should show up as restricted if you cannot land
+				// on any of the planets that have spaceports.
+				bool hasDominated = true;
+				bool isInhabited = false;
+				bool canLand = false;
+				bool hasSpaceport = false;
+				for(const StellarObject &object : system.Objects())
+					if(object.GetPlanet())
+					{
+						const Planet *planet = object.GetPlanet();
+						hasSpaceport |= !planet->IsWormhole() && planet->HasSpaceport();
+						if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()))
+							continue;
+						canLand |= planet->CanLand() && planet->HasSpaceport();
+						isInhabited |= planet->IsInhabited();
+						hasDominated &= (!planet->IsInhabited()
+							|| GameData::GetPolitics().HasDominated(planet));
+					}
+				hasDominated &= (isInhabited && canLand);
+				// Some systems may count as "inhabited" but not contain any
+				// planets with spaceports. Color those as if they're
+				// uninhabited to make it clear that no fuel is available there.
+				if(hasSpaceport || hasDominated)
+					color = ReputationColor(reputation, canLand, hasDominated);
+			}
+		}
+		
+		nodes.emplace_back(system.Position(), color,
+			player.KnowsName(&system) ? system.Name() : "",
+			(&system == playerSystem) ? closeNameColor : farNameColor,
+			system.GetGovernment());
+	}
+	
+	// Now, update the cache of the links.
+	links.clear();
+	
+	// The link color depends on whether it's connected to the current system or not.
+	const Color &closeColor = *GameData::Colors().Get("map link");
+	const Color &farColor = closeColor.Transparent(.5);
+	for(const auto &it : GameData::Systems())
+	{
+		const System *system = &it.second;
+		if(!player.HasSeen(system))
+			continue;
+		
+		for(const System *link : system->Links())
+			if(link < system || !player.HasSeen(link))
+			{
+				// Only draw links between two systems if one of the two is
+				// visited. Also, avoid drawing twice by only drawing in the
+				// direction of increasing pointer values.
+				if(!player.HasVisited(system) && !player.HasVisited(link))
+					continue;
+				
+				bool isClose = (system == playerSystem || link == playerSystem);
+				links.emplace_back(system->Position(), link->Position(), isClose ? closeColor : farColor);
+			}
+	}
 }
