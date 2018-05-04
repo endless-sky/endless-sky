@@ -40,12 +40,14 @@ ship "Starling"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Inhibitor Cannon" 3
+		"Inhibitor Cannon" 2
+		"Thrasher Cannon"
 		"Point Defense Turret"
 		
 		"Epoch Cell"
 		"Crystal Capacitor"
 		"Emergency Ramscoop" 2
+		"Thermoelectric Cooler" 4
 		"Quantum Key Stone"
 		
 		"Forge-Class Thruster"
@@ -56,7 +58,7 @@ ship "Starling"
 	engine -16 82 0.7
 	engine 16 82 0.7
 	engine 0 90 1
-	gun 0 -99 "Inhibitor Cannon"
+	gun 0 -99 "Thrasher Cannon"
 	gun -12 -72 "Inhibitor Cannon"
 	gun 12 -72 "Inhibitor Cannon"
 	gun -18 -49
@@ -167,17 +169,19 @@ ship "Albatross"
 			"hull damage" 1800
 			"hit force" 5400
 	outfits
-		"Inhibitor Cannon" 6
+		"Inhibitor Cannon" 4
 		"Thrasher Turret" 2
 		"Point Defense Turret"
 		
 		"Aeon Cell"
 		"Epoch Cell"
-		"Crystal Capacitor"
-		"Thermoelectric Cooler" 2
+		"Crystal Capacitor" 2
+		"Emergency Ramscoop"
+		"Thermoelectric Cooler" 10
 		"Quantum Key Stone"
 		
-		"Smelter-Class Thruster"
+		"Forge-Class Thruster"
+		"Crucible-Class Thruster"
 		"Smelter-Class Steering"
 		"Hyperdrive"
 	
@@ -189,8 +193,8 @@ ship "Albatross"
 	gun 9 -177 "Inhibitor Cannon"
 	gun -14 -162 "Inhibitor Cannon"
 	gun 14 -162 "Inhibitor Cannon"
-	gun -18 -144 "Inhibitor Cannon"
-	gun 18 -144 "Inhibitor Cannon"
+	gun -18 -144
+	gun 18 -144
 	turret -23 -34 "Thrasher Turret"
 	turret 23 -34 "Thrasher Turret"
 	turret -74 62
