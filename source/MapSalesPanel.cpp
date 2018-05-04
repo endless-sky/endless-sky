@@ -181,7 +181,7 @@ bool MapSalesPanel::Drag(double dx, double dy)
 bool MapSalesPanel::Scroll(double dx, double dy)
 {
 	if(isDragging)
-		scroll = min(0., max(-maxScroll, scroll + dy * 2.5 * Preferences::ScrollSpeed()));
+		scroll = min(0., max(-maxScroll, scroll + dy * 2.5 * preferences.scrollSpeed));
 	else
 		return MapPanel::Scroll(dx, dy);
 	

@@ -108,7 +108,7 @@ void PlayerInfoPanel::Step()
 	// If the player has acquired a second ship for the first time, explain to
 	// them how to reorder the ships in their fleet.
 	if(player.Ships().size() > 1)
-		DoHelp("multiple ships");
+		DoHelp(Help::MULTIPLE_SHIPS);
 }
 
 
@@ -452,7 +452,7 @@ bool PlayerInfoPanel::Release(int x, int y)
 
 bool PlayerInfoPanel::Scroll(double dx, double dy)
 {
-	return Scroll(dy * -.1 * Preferences::ScrollSpeed());
+	return Scroll(dy * -.1 * preferences.scrollSpeed);
 }
 
 

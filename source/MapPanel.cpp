@@ -109,7 +109,7 @@ void MapPanel::Draw()
 	for(const auto &it : GameData::Galaxies())
 		SpriteShader::Draw(it.second.GetSprite(), Zoom() * (center + it.second.Position()), Zoom());
 	
-	if(Preferences::Has("Hide unexplored map regions"))
+	if(preferences.hideUnexploredMapRegions)
 		FogShader::Draw(center, Zoom(), player);
 	
 	// Draw the "visible range" circle around your current location.
@@ -667,7 +667,7 @@ void MapPanel::DrawTravelPlan()
 // Communicate the location of non-destroyed, player-owned ships.
 void MapPanel::DrawEscorts()
 {
-	if(!Preferences::Has("Show escort systems on map"))
+	if(!preferences.showEscortSystemsOnMap)
 		return;
 	
 	// Fill in the center of any system containing the player's ships, if the

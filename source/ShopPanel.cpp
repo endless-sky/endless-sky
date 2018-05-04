@@ -64,7 +64,7 @@ void ShopPanel::Step()
 	// If the player has acquired a second ship for the first time, explain to
 	// them how to reorder the ships in their fleet.
 	if(player.Ships().size() > 1)
-		DoHelp("multiple ships");
+		DoHelp(Help::MULTIPLE_SHIPS);
 	// Perform autoscroll to bring item details into view.
 	if(scrollDetailsIntoView && mainDetailHeight > 0)
 	{
@@ -799,7 +799,7 @@ bool ShopPanel::Release(int x, int y)
 bool ShopPanel::Scroll(double dx, double dy)
 {
 	scrollDetailsIntoView = false;
-	return DoScroll(dy * 2.5 * Preferences::ScrollSpeed());
+	return DoScroll(dy * 2.5 * preferences.scrollSpeed);
 }
 
 

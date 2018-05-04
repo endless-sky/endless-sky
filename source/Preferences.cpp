@@ -25,37 +25,68 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	map<string, bool> settings;
-	int scrollSpeed = 60;
-	
-	// Strings for ammo expenditure:
-	const string EXPEND_AMMO = "Escorts expend ammo";
-	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
-	
 	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
-	int zoomIndex = 4;
+
+	static map<string, bool*> settings =
+	{
+		// Display
+		{ "Show status overlays", &preferences.showStatusOverlays },
+		{ "Highlight player's flagship", &preferences.highlightPlayersFlagship },
+		{ "Rotate flagship in HUD", &preferences.rotateFlagshipInHud },
+		{ "Show planet labels", &preferences.showPlanetLabels },
+		{ "Show mini-map", &preferences.showMinimap },
+		{ "fullscreen", &preferences.fullscreen }, // Implicit
+		{ "maximized", &preferences.maximized }, // Implicit
+
+		// AI
+		{ "Automatic aiming", &preferences.automaticAiming },
+		{ "Automatic firing", &preferences.automaticFiring },
+		{ "Escorts expend ammo", &preferences.escortsExpendAmmo },
+		{ "Escorts use ammo frugally", &preferences.frugalEscorts},
+		{ "Turrets focus fire", &preferences.turretsFocusFire },
+		{ "Damaged fighters retreat", &preferences.damagedFightersRetreat }, // Hidden
+
+		// Performance
+		{ "Show CPU / GPU load", &preferences.showCpuGpuLoad },
+		{ "Render motion blur", &preferences.renderMotionBlur },
+		{ "Reduce large graphics", &preferences.reduceLargeGraphics },
+		{ "Draw background haze", &preferences.drawBackgroundHaze },
+		{ "Show hyperspace flash", &preferences.showHyperspaceFlash },
+
+		// Other
+		{ "Clickable radar display", &preferences.clickableRadarDisplay },
+		{ "Hide unexplored map regions", &preferences.hideUnexploredMapRegions },
+		{ "Rehire extra crew when lost", &preferences.rehireExtraCrewWhenLost },
+		{ "Show escort systems on map", &preferences.showEscortSystemsOnMap },
+		{ "Warning siren", &preferences.warningSiren },
+	};
 }
 
 
+Preferences preferences;
 
 void Preferences::Load()
 {
+	*this = {}; // Clear
+
 	// These settings should be on by default. There is no need to specify
 	// values for settings that are off by default.
-	settings["Automatic aiming"] = true;
-	settings["Render motion blur"] = true;
-	settings["Escorts use ammo frugally"] = true;
-	settings["Escorts expend ammo"] = true;
-	settings["Damaged fighters retreat"] = true;
-	settings["Warning siren"] = true;
-	settings["Show escort systems on map"] = true;
-	settings["Show mini-map"] = true;
-	settings["Show planet labels"] = true;
-	settings["Show hyperspace flash"] = true;
-	settings["Draw background haze"] = true;
-	settings["Hide unexplored map regions"] = true;
-	settings["Turrets focus fire"] = true;
-	
+	zoomIndex = 4;
+	automaticAiming = true;
+	renderMotionBlur = true;
+	frugalEscorts = true;
+	escortsExpendAmmo = true;
+	damagedFightersRetreat = true;
+	warningSiren = true;
+	showEscortSystemsOnMap = true;
+	showMinimap = true;
+	showPlanetLabels = true;
+	showHyperspaceFlash = true;
+	drawBackgroundHaze = true;
+	hideUnexploredMapRegions = true;
+	turretsFocusFire = true;
+	scrollSpeed = 60;
+
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)
 	{
@@ -70,7 +101,11 @@ void Preferences::Load()
 		else if(node.Token(0) == "view zoom")
 			zoomIndex = node.Value(1);
 		else
-			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
+		{
+			bool *pValue = Find(node.Token(0));
+			if(pValue)
+				*pValue = (node.Size() == 1 || node.Value(1));
+		}
 	}
 }
 
@@ -87,54 +122,58 @@ void Preferences::Save()
 	out.Write("view zoom", zoomIndex);
 	
 	for(const auto &it : settings)
-		out.Write(it.first, it.second);
+		out.Write(it.first, *it.second);
+
+	for(int t=0; t<Help::MAX; t++)
+	{
+		string name = string("help: ") + Help::TopicName((Help::Topic)t);
+		out.Write(name, Get(name));
+	}
 }
 
 
 
-bool Preferences::Has(const string &name)
+bool* Preferences::Find(string name)
 {
+	if(name.find("help: ") == 0)
+	{
+		Help::Topic topic = Help::FindTopic(name.substr(6));
+		if(topic < 0)
+			return nullptr;
+		return &seenHelp[topic];
+	}
+
 	auto it = settings.find(name);
-	return (it != settings.end() && it->second);
+	if(it == settings.end())
+		return nullptr;
+	return it->second;
 }
 
 
 
-void Preferences::Set(const string &name, bool on)
+bool& Preferences::Get(string name)
 {
-	settings[name] = on;
+	bool *pValue = Find(name);
+	if(!pValue)
+		throw runtime_error("Unknown preference: " + name);
+	return *pValue;
 }
 
 
 
 void Preferences::ToggleAmmoUsage()
 {
-	bool expend = Has(EXPEND_AMMO);
-	bool frugal = Has(FRUGAL_ESCORTS);
-	Preferences::Set(EXPEND_AMMO, !(expend && !frugal));
-	Preferences::Set(FRUGAL_ESCORTS, !expend);
+	bool expend = escortsExpendAmmo;
+	bool frugal = frugalEscorts;
+	escortsExpendAmmo = !(expend && !frugal);
+	frugalEscorts = !expend;
 }
 
 
 
 string Preferences::AmmoUsage()
 {
-	return Has(EXPEND_AMMO) ? Has(FRUGAL_ESCORTS) ? "frugally" : "always" : "never";
-}
-
-
-
-// Scroll speed preference.
-int Preferences::ScrollSpeed()
-{
-	return scrollSpeed;
-}
-
-
-
-void Preferences::SetScrollSpeed(int speed)
-{
-	scrollSpeed = speed;
+	return escortsExpendAmmo ? frugalEscorts ? "frugally" : "always" : "never";
 }
 
 

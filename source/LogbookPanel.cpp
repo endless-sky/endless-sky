@@ -250,7 +250,7 @@ bool LogbookPanel::Drag(double dx, double dy)
 
 bool LogbookPanel::Scroll(double dx, double dy)
 {
-	return Drag(0., dy * Preferences::ScrollSpeed());
+	return Drag(0., dy * preferences.scrollSpeed);
 }
 
 

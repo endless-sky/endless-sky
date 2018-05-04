@@ -160,32 +160,31 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
 				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
-			if(zone.Value() == VIEW_ZOOM_FACTOR)
+			else if(zone.Value() == VIEW_ZOOM_FACTOR)
 			{
 				// Increase the zoom factor unless it is at the maximum. In that
 				// case, cycle around to the lowest zoom factor.
-				if(!Preferences::ZoomViewIn())
-					while(Preferences::ZoomViewOut()) {}
+				if(!preferences.ZoomViewIn())
+					while(preferences.ZoomViewOut()) {}
 			}
-			if(zone.Value() == EXPEND_AMMO)
-				Preferences::ToggleAmmoUsage();
+			else if(zone.Value() == EXPEND_AMMO)
+				preferences.ToggleAmmoUsage();
 			else if(zone.Value() == TURRET_TRACKING)
-				Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
+				preferences.turretsFocusFire = !preferences.turretsFocusFire;
 			else if(zone.Value() == REACTIVATE_HELP)
 			{
 				for(const auto &it : GameData::HelpTemplates())
-					Preferences::Set("help: " + it.first, false);
+					preferences.Get("help: " + it.first) = false;
 			}
 			else if(zone.Value() == SCROLL_SPEED)
 			{
 				// Toogle between three different speeds.
-				int speed = Preferences::ScrollSpeed() + 20;
-				if(speed > 60)
-					speed = 20;
-				Preferences::SetScrollSpeed(speed);
+				preferences.scrollSpeed += 20;
+				if(preferences.scrollSpeed > 60)
+					preferences.scrollSpeed = 20;
 			}
 			else
-				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
+				preferences.Get(zone.Value()) = !preferences.Get(zone.Value());
 			break;
 		}
 	
@@ -252,18 +251,16 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 	else if(hoverPreference == VIEW_ZOOM_FACTOR)
 	{
 		if(dy < 0.)
-			Preferences::ZoomViewOut();
+			preferences.ZoomViewOut();
 		else
-			Preferences::ZoomViewIn();
+			preferences.ZoomViewIn();
 	}
 	else if(hoverPreference == SCROLL_SPEED)
 	{
-		int speed = Preferences::ScrollSpeed();
 		if(dy < 0.)
-			speed = max(20, speed - 20);
+			preferences.scrollSpeed = max(20, preferences.scrollSpeed - 20);
 		else
-			speed = min(60, speed + 20);
-		Preferences::SetScrollSpeed(speed);
+			preferences.scrollSpeed = min(60, preferences.scrollSpeed + 20);
 	}
 	return true;
 }
@@ -475,7 +472,7 @@ void PreferencesPanel::DrawSettings()
 		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
 		
 		// Get the "on / off" text for this setting.
-		bool isOn = Preferences::Has(setting);
+		bool isOn = false;
 		string text;
 		if(setting == ZOOM_FACTOR)
 		{
@@ -485,14 +482,17 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == VIEW_ZOOM_FACTOR)
 		{
 			isOn = true;
-			text = to_string(static_cast<int>(100. * Preferences::ViewZoom()));
+			text = to_string(static_cast<int>(100. * preferences.ViewZoom()));
 		}
 		else if(setting == EXPEND_AMMO)
-			text = Preferences::AmmoUsage();
+		{
+			isOn = preferences.escortsExpendAmmo;
+			text = preferences.AmmoUsage();
+		}
 		else if(setting == TURRET_TRACKING)
 		{
 			isOn = true;
-			text = Preferences::Has(FOCUS_PREFERENCE) ? "focused" : "opportunistic";
+			text = preferences.turretsFocusFire ? "focused" : "opportunistic";
 		}
 		else if(setting == REACTIVATE_HELP)
 		{
@@ -513,7 +513,7 @@ void PreferencesPanel::DrawSettings()
 				if(!special)
 				{
 					++total;
-					shown += Preferences::Has("help: " + it.first);
+					shown += preferences.Get("help: " + it.first);
 				}
 			}
 			
@@ -528,10 +528,13 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == SCROLL_SPEED)
 		{
 			isOn = true;
-			text = to_string(Preferences::ScrollSpeed());
+			text = to_string(preferences.scrollSpeed);
 		}
 		else
+		{
+			isOn = preferences.Get(setting);
 			text = isOn ? "on" : "off";
+		}
 		
 		if(setting == hoverPreference)
 			table.DrawHighlight(back);

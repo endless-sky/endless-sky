@@ -34,7 +34,7 @@ HiringPanel::HiringPanel(PlayerInfo &player)
 
 void HiringPanel::Step()
 {
-	DoHelp("hiring");
+	DoHelp(Help::HIRING);
 }
 
 

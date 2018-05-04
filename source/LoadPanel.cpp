@@ -359,7 +359,7 @@ bool LoadPanel::Drag(double dx, double dy)
 
 bool LoadPanel::Scroll(double dx, double dy)
 {
-	return Drag(0., dy * Preferences::ScrollSpeed());
+	return Drag(0., dy * preferences.scrollSpeed);
 }
 
 

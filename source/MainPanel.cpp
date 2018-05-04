@@ -94,14 +94,14 @@ void MainPanel::Step()
 	{
 		// Check if any help messages should be shown.
 		if(isActive && flagship->IsTargetable())
-			isActive = !DoHelp("navigation");
+			isActive = !DoHelp(Help::NAVIGATION);
 		if(isActive && flagship->IsDestroyed())
-			isActive = !DoHelp("dead");
+			isActive = !DoHelp(Help::DEAD);
 		if(isActive && flagship->IsDisabled())
-			isActive = !DoHelp("disabled");
+			isActive = !DoHelp(Help::DISABLED);
 		bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
 		if(isActive && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
-			isActive = !DoHelp("stranded");
+			isActive = !DoHelp(Help::STRANDED);
 		if(isActive && flagship->Position().Length() > 10000. && player.GetDate() <= GameData::Start().GetDate() + 4 
 			&& !flagship->IsHyperspacing())
 		{
@@ -109,11 +109,10 @@ void MainPanel::Step()
 			int count = 1 + lostness / 3600;
 			if(count > lostCount && count <= 7)
 			{
-				string message = "lost 1";
-				message.back() += lostCount;
+				Help::Topic topic = (Help::Topic)((int)Help::LOST_1 + lostCount);
 				++lostCount;
 				
-				GetUI()->Push(new Dialog(GameData::HelpMessage(message)));
+				GetUI()->Push(new Dialog(Help::HelpMessage(topic)));
 			}
 		}
 	}
@@ -157,7 +156,7 @@ void MainPanel::Draw()
 			isDragging = false;
 	}
 	
-	if(Preferences::Has("Show CPU / GPU load"))
+	if(preferences.showCpuGpuLoad)
 	{
 		string loadString = to_string(lround(load * 100.)) + "% GPU";
 		const Color &color = *GameData::Colors().Get("medium");
@@ -197,13 +196,13 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		show = command;
 	else if(command.Has(Command::AMMO))
 	{
-		Preferences::ToggleAmmoUsage();
-		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + ".");
+		preferences.ToggleAmmoUsage();
+		Messages::Add("Your escorts will now expend ammo: " + preferences.AmmoUsage() + ".");
 	}
 	else if(key == '-' && !command)
-		Preferences::ZoomViewOut();
+		preferences.ZoomViewOut();
 	else if(key == '=' && !command)
-		Preferences::ZoomViewIn();
+		preferences.ZoomViewIn();
 	else if(key >= '0' && key <= '9' && !command)
 		engine.SelectGroup(key - '0', mod & KMOD_SHIFT, mod & (KMOD_CTRL | KMOD_GUI));
 	else
@@ -275,9 +274,9 @@ bool MainPanel::Release(int x, int y)
 bool MainPanel::Scroll(double dx, double dy)
 {
 	if(dy < 0)
-		Preferences::ZoomViewOut();
+		preferences.ZoomViewOut();
 	else if(dy > 0)
-		Preferences::ZoomViewIn();
+		preferences.ZoomViewIn();
 	else
 		return false;
 	

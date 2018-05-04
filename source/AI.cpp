@@ -170,8 +170,8 @@ void AI::IssueMoveTarget(const PlayerInfo &player, const Point &target, const Sy
 void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 {
 	shift = (SDL_GetModState() & KMOD_SHIFT);
-	escortsUseAmmo = Preferences::Has("Escorts expend ammo");
-	escortsAreFrugal = Preferences::Has("Escorts use ammo frugally");
+	escortsUseAmmo = preferences.escortsExpendAmmo;
+	escortsAreFrugal = preferences.frugalEscorts;
 	
 	Command oldHeld = keyHeld;
 	keyHeld.ReadKeyboard();
@@ -333,8 +333,8 @@ void AI::Step(const PlayerInfo &player)
 	int targetTurn = 0;
 	int minerCount = 0;
 	const int maxMinerCount = minables.empty() ? 0 : 9;
-	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
-	bool fightersRetreat = Preferences::Has("Damaged fighters retreat");
+	bool opportunisticEscorts = !preferences.turretsFocusFire;
+	bool fightersRetreat = preferences.damagedFightersRetreat;
 	for(const auto &it : ships)
 	{
 		// Skip any carried fighters or drones that are somehow in the list.
@@ -3097,8 +3097,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		command |= Command::SCAN;
 	
 	const shared_ptr<const Ship> target = ship.GetTargetShip();
-	AimTurrets(ship, command, !Preferences::Has("Turrets focus fire"));
-	if(Preferences::Has("Automatic firing") && !ship.IsBoarding()
+	AimTurrets(ship, command, !preferences.turretsFocusFire);
+	if(preferences.automaticFiring && !ship.IsBoarding()
 			&& !(keyStuck | keyHeld).Has(Command::LAND | Command::JUMP | Command::BOARD)
 			&& (!target || target->GetGovernment()->IsEnemy()))
 		AutoFire(ship, command, false);
@@ -3143,8 +3143,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			keyStuck = keyHeld;
 	}
 	bool shouldAutoAim = false;
-	if(Preferences::Has("Automatic aiming") && !command.Turn() && !ship.IsBoarding()
-			&& (Preferences::Has("Automatic firing") || keyHeld.Has(Command::PRIMARY))
+	if(preferences.automaticAiming && !command.Turn() && !ship.IsBoarding()
+			&& (preferences.automaticFiring || keyHeld.Has(Command::PRIMARY))
 			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable())
 				|| ship.GetTargetAsteroid())
 			&& !keyStuck.Has(Command::LAND | Command::JUMP | Command::BOARD))
@@ -3238,7 +3238,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	if(ship.HasBays() && isLaunching)
 	{
 		command |= Command::DEPLOY;
-		Deploy(ship, !Preferences::Has("Damaged fighters retreat"));
+		Deploy(ship, !preferences.damagedFightersRetreat);
 	}
 	if(isCloaking)
 		command |= Command::CLOAK;

@@ -85,7 +85,7 @@ TradingPanel::~TradingPanel()
 	
 void TradingPanel::Step()
 {
-	DoHelp("trading");
+	DoHelp(Help::TRADING);
 }
 
 
