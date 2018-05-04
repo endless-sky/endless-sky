@@ -16,12 +16,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
+#include "Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Mask.h"
 #include "Messages.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Projectile.h"
 #include "Random.h"
 #include "ShipEvent.h"
@@ -832,9 +834,22 @@ void Ship::SetHail(const Phrase &phrase)
 
 
 
-string Ship::GetHail() const
+string Ship::GetHail(const PlayerInfo &player) const
 {
-	return hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
+	map<string, string> subs;
+	
+	subs["<first>"] = player.FirstName();
+	subs["<last>"] = player.LastName();
+	if(player.Flagship())
+		subs["<ship>"] = player.Flagship()->Name();
+	
+	subs["<npc>"] = Name();
+	subs["<system>"] = player.GetSystem()->Name();
+	subs["<date>"] = player.GetDate().ToString();
+	subs["<day>"] = player.GetDate().LongString();
+	
+	string hailStr = hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
+	return Format::Replace(hailStr, subs);
 }
 
 
