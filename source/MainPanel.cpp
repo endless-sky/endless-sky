@@ -102,8 +102,11 @@ void MainPanel::Step()
 		bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
 		if(isActive && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
 			isActive = !DoHelp("stranded");
-		if(isActive && flagship->Position().Length() > 10000. && player.GetDate() <= GameData::Start().GetDate() + 4 
-			&& !flagship->IsHyperspacing())
+		shared_ptr<Ship> target = flagship->GetTargetShip();
+		if(isActive && target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
+			isActive = !DoHelp("friendly disabled");
+		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
+				&& player.GetDate() <= GameData::Start().GetDate() + 4)
 		{
 			++lostness;
 			int count = 1 + lostness / 3600;
@@ -115,11 +118,6 @@ void MainPanel::Step()
 				
 				GetUI()->Push(new Dialog(GameData::HelpMessage(message)));
 			}
-		}
-		if(shared_ptr<Ship> target = flagship->GetTargetShip())
-		{
-			if(flagship->GetTargetShip()->IsDisabled() && !target->GetGovernment()->IsEnemy())
-				DoHelp("friendly disabled");
 		}
 	}
 	
