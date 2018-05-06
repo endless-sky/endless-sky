@@ -97,6 +97,7 @@ void MapShipyardPanel::Select(int index)
 		selected = list[index];
 		selectedInfo.Update(*selected, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 	}
+	UpdateCache();
 }
 
 
