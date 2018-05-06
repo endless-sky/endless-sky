@@ -439,7 +439,7 @@ mission "Unfettered returning home"
 
 
 mission "Returning Home"
-	description "Bring Elliot home to his family on <destination>, who he hasn't seen in almost six years."
+	description "Bring Elliot home to his family on <destination>. Elliot ran away from his family as a teenager and hasn't seen them in almost six years."
 	minor
 	source
 		government "Hai"
@@ -564,7 +564,7 @@ mission "Unwanted Cargo"
 			label translator
 			`	You hear a voice come from the crate, and surprisingly your Hai translator begins speaking. "Let me out! I want to go home!"`
 			choice
-				`	(Open the crate)`
+				`	(Open the crate.)`
 			`	You open the crate and are met eye to eye with a Hai child. You aren't sure how old it is, but it looks to be about the height of a one year old human child. "I want my mommy!" it says as its eyes begin to tear up.`
 			choice
 				`	"Where's your mommy?"`
@@ -583,7 +583,7 @@ mission "Unwanted Cargo"
 
 mission "Expanding Business [1]"
 	name "An Interesting Proposition"
-	description "Travel with businessman David Turner to <destination> "
+	description "Travel with businessman David Turner to <destination> where a convoy of freighters are awaiting escort."
 	minor
 	source "Greenwater"
 	destination "Allhome"
@@ -621,7 +621,7 @@ mission "Expanding Business [1]"
 			
 			label opportunity
 			`	"Allow me to explain. The journey to the Hai can be a dangerous one, and you know that. I heard many stories during the war of merchants trying to reach the Hai, but thanks to the Navy being distracted, those merchants fell victim to pirates patrolling the systems of the Far North. Now that many merchants are here, they're trapped. They expended most of if not all of their ammunition trying to get here, and now they have none to defend them on their way back. Human ammunition has become a scarce commodity among human captains in this region of space, leaving open a market that's just waiting to be cornered.`
-			`	"I'd like you, Captain <last>, bero of humanity, to help me set up an outfitter here on <origin>, an outfitter that would supply these desperate merchants with relief by supplying them with the ammunition they need, along with outfits they might want to buy for their old ships. WIth a name like yours backing up this business, the profits are sure to be phenominal, profits that you would be sharing in by being a founding member of this outfitter."`
+			`	"I'd like you, Captain <last>, hero of humanity, to help me set up an outfitter here on <origin>, an outfitter that would supply these desperate merchants with relief by supplying them with the ammunition they need, along with outfits they might want to buy for their old ships. I've already received approval from the Hai government for the construction of an outfitter, and with a name like yours backing up this business, the profits are sure to be phenomenal, profits that you would be sharing in by being a founding member of this outfitter."`
 			choice
 				`	"This sounds like a good idea to me. What do you need me to do?"`
 					goto interested
@@ -630,10 +630,10 @@ mission "Expanding Business [1]"
 			`	"Nonsense, Captain! All you'd need to do is help escort a few freighters from <planet> to Follower and back to here, and for so simple a job you could be receiving enough money to not work another day in your life, or perhaps even support a massive fleet."`
 			choice
 				`	"Again, I'm not interested. Goodbye."`
-				`	"Alright, you have me interested"`
+				`	"Alright, you have me interested."`
 					goto interested
 			
-			`	"Well, I tried, Captain. I'll just have to travel back to the Paradise Worlds and make my money in other areas of business, then." Turner hands you another business card and winks. "Goodbye, <last>. You should know where to find me if you need me."`
+			`	"Well, I tried, Captain," Turner says with a smirk. "I'll just have to travel back to the Paradise Worlds and make my money in other areas of business, then." He hands you another business card and winks. "Goodbye, Captain <last>. You should know where to find me if you need me."`
 				decline
 			
 			label interested
@@ -642,8 +642,286 @@ mission "Expanding Business [1]"
 				
 	npc save
 		personality escort
-		government "Republic"
-		ship "Star Queen (Hai)" "Rex Auri"
+		government "Merchant"
+		ship "Star Queen (Hai)" "Chryso Vasilia"
+	
+	on complete
+		dialog `The freighters are ready to launch by the time you get to <planet>. "Now we just need to escort these freighter to Follower in the Alphard system and back in one piece," Turner exclaims, hopping back on to his Star Queen.`
+
+mission "Expanding Business [2]"
+	landing
+	name "An Interesting Proposition"
+	description "Escort the freighters to <destination> where they will be picking up supplies for the Greenwater outfitter."
+	destination "Follower"
+	to offer
+		has "Expanding Business [1]: done"
+	
+	npc save
+		personality escort
+		government "Merchant"
+		ship "Star Queen (Hai)" "Chryso Vasilia"
+	npc save
+		personality escort
+		government "Merchant"
+		fleet
+			names "civilian"
+			variant
+				"Bulk Freighter (Hai)" 3
+	
+	npc
+		personality staying
+		government "Pirate"
+		system "Ultima Thule"
+		fleet "Small Northern Pirate"
+	npc
+		personality staying
+		government "Pirate"
+		system "Rajak"
+		fleet "Large Northern Pirate"
+	npc
+		personality staying
+		government "Pirate"
+		system destination
+		fleet "Large Northern Pirate"
+
+mission "Expanding Business [3]"
+	landing
+	name "An Interesting Proposition"
+	description "Escort Turner's ship to <destination> so that he can speak with an old friend."
+	destination "Rust"
+	to offer
+		has "Expanding Business [2]: done"
+	on offer
+		conversation
+			`Turner jumps off of his Star Queen before the boarding ramp fully reaches the ground, clearly eager to get moving with this project.`
+			`	Turner swears under his breath when he walks up to you. "Low life pirates giving us trouble on the way here. That's the kind of trouble I'm talking about that an outfitter in Hai space would help with. There's no telling what would have happened had my Bulk Freighters not had their missiles. Or if you were not there to protect them, of course."`
+			`	Turner has a talk with the spaceport authorities, and within a short amount of time the necessary cargo is loaded on to the freighters. When the freighters are fully loaded, they take off without even giving you time to get to your ship.`
+			`	"They can get back to Greenwater on their own," Turner says from behind you as you watch the freighters fly off. "I told them to leave as soon as they could. As for you and me, I need escort to <destination>. I received a message from an old friend there who would like to have a chat with me ASAP."`
+				accept
+				
+	npc save
+		personality escort
+		government "Merchant"
+		ship "Star Queen (Hai)" "Chryso Vasilia"
+
+mission "Expanding Business [4]"
+	landing
+	name "An Interesting Proposition"
+	description "Escort Turner back to <destination> to oversee the construction of the outfitter."
+	destination "Greenwater"
+	to offer
+		has "Expanding Business [3]: done"
+	on offer
+		conversation
+			`Turner lands his ship outside of the Kraz Cybernetics building. "Wait here while I have a talk with my friend, Edward. This should only take a few minutes."`
+			`	A few hours later, Turner returns carrying a black suitcase. "Sorry, that took longer than I expected. Now, let's get back to <destination>."`
+				accept
+			
+	on complete
+		event "outfitter on greenwater" 95
+		conversation
+			`By the time you finally reach <planet>, construction on the outfitter is already underway. The construction workers have laid the foundation of the outfitter close to the spaceport, taking up a good portion of a park.`
+			`	"I had to pay a pretty penny to get the outfitter this close to the spaceport," Turner says to you, "but it'll all be worth it in the end."`
+			`	"The outfitter should be done in three months or so. You'll know it's done once you find an extra five thousand credits in your pocket every day." Turner pats you on the back. "Have fun until then, Captain <last>. Keep yourself busy saving the galaxy."`
+
+event "outfitter on greenwater"
+	planet "Greenwater"
+		outfitter "Basic Outfits"
+		outfitter "Ammo North"
+		outfitter "Ammo South"
+
+mission "Expanding Business: outfitter complete"
+	landing
+	invisible
+	to offer
+		has "event: outfitter on greenwater"
+	on offer
+		"salary: Turner Incorporated" = 5000
+		event "request for a shipyard" 270
+		fail
+
+event "request for a shipyard"
+
+mission "Expanding Business [5]"
+	landing
+	name "A New Proposition"
+	description "Meet with David Turner on <destination> to talk about a new proposition."
+	source
+		government "Hai"
+	destination "Greenwater"
+	to offer
+		has "event: request for a shipyard"
+	on offer
+		dialog `You receive a message from David Turner when you land. "Hello, Captain. I hope you've been enjoying your share in the outfitter. I have a new proposition for you, as I've bought out the rest of the park around the outfitter. Meet me on <destination> if you'd like to hear about it."`
+
+mission "Expanding Business [6]"
+	landing
+	name "A New Proposition"
+	description "Escort the freighters to <destination> in order to pick up the supplies for the shipyard."
+	destination "Sunracer"
+	to offer
+		has "Expanding Business [5]: done"
+	on offer
+		conversation
+			`Turner meets you in a high-end human-owned restaurant in the richer part of the city, very much reminiscent of something you would find on a Paradise Planet.`
+			`	"It's been quite some time since we last spoke, Captain <last>. Over a year now. Have you been enjoying the extra cash in your pocket every day, Captain <last>?"`
+			choice
+				`	"Yes. It's been a huge help paying crew salaries."`
+					goto salaries
+				`	"Five thousand credits each day isn't much for me."`
+			
+			`	"I suppose just under two million credits every year wouldn't be much to a hero such as yourself. Spaceships are expensive, after all. How does five million credits every year sound to you?"`
+				goto choice
+			
+			label salaries
+			`	"I'm glad to hear that, Captain <last>. I spent my early years as a captain myself, and I didn't much enjoy having to worry about crew salaries every day. Perhaps nearly tripling that amount will help even more."`
+			
+			label choice
+			choice
+				`	"Am I getting a raise?"`
+				`	"Is this part of your new proposition?"`
+					goto proposition
+			
+			`	"You could call it that," Turner says after sipping from his glass of wine.`
+			
+			label proposition
+			`	"Building a outfitter selling human goods here on <origin> has had to be the best idea I've ever had, Captain <last>, but recently I thought of an even better idea. You see, most of the humans you see flying around in Hai space are flying decades old ships. Hai ships are prohibitively expensive for humans. The Aphid is nearly three million credits! This means that demand for ships is extremely high among humans, Captain <last>. Do you see where I'm going with this?"`
+			choice
+				`	"You need me to help you escort freighters again?"`
+				`	"Do you want to build a shipyard selling human ships?"`
+			
+			`	"Yes, Captain. Right now, the only realistic way that a human born here can get a ship is if they know a captain willing to retire. Even then, prices for a human ship can be more than twice what they are across the wormhole. It's preposterous, Captain <last>!`
+			`	"I've already made arrangements with the local Hai government. The rest of the park next to the outfitter is now my property, and I intend to use it to build the shipyard. I've also contacted Megaparsec and bought a license to build their ships and some of the outfits they sell on <planet>. My freighters are at the ready in the spaceport right now. All I need you to do is escort them to <destination> and back, and in six to seven month's time when the shipyard is done, you'll reap the rewards. What do you say, Captain <last>? Do you want to be a hero to millions once again?"`
+			choice
+				`	"Sure, this sounds like a great idea."`
+					goto accept
+				`	"I'm not interested in working with you anymore, Turner."`
+			
+			`	Turner smirks at your response. "Understood, Captain <last>. I'll just save myself five thousand credits a day from now on. I'll be seeing myself out now."`
+				decline
+			
+			label accept
+			`	"Excellent decision, Captain <last>. I'll meet you outside to send the ships off."`
+				accept
+			
+	on decline
+		clear "salary: Turner Incorporated"
+	
+	npc save
+		personality escort
+		government "Merchant"
+		ship "Star Queen (Hai)" "Chryso Vasilia"
+	npc save
+		personality escort
+		government "Merchant"
+		fleet
+			names "civilian"
+			variant
+				"Bulk Freighter (Hai)" 3
+	
+	npc
+		personality staying
+		government "Pirate"
+		system "Ultima Thule"
+		fleet "Small Northern Pirate"
+	npc
+		personality staying
+		government "Pirate"
+		system "Rajak"
+		fleet "Large Northern Pirate"
+	npc
+		personality staying
+		government "Pirate"
+		system destination
+		fleet "Large Northern Pirate"
+		
+	on complete
+		dialog `The Bulk Freighters are loaded with supplies without any problem. When one of the spaceport workers asks Turner where the supplies are going, he replies, "These are just to expand a business venture of mine on, uh, Glory."`
+
+mission "Expanding Business [7]"
+	landing
+	name "A New Proposition"
+	description "Escort the freighters back to <destination> to begin construction on the shipyard."
+	destination "Greenwater"
+	to offer
+		has "Expanding Business [6]: done"
+	
+	npc
+		personality staying
+		government "Pirate"
+		system "Cardax"
+		fleet "Small Northern Pirate"
+	npc
+		personality staying
+		government "Pirate"
+		system "Rajak"
+		fleet "Large Northern Pirate"
+		
+	on complete
+		event "shipyard on greenwater" 180
+		conversation
+			`	Construction on the shipyard begins almost immediately after the supplies are unloaded from the freighters, starting with the demolition of the rest of the park. A downtrodden looking crowd gathers to watch the demolition, but Turner ensures to you that there are plenty of other parks in the city for them to go to.`
+			`	"Something big is going to come of this, Captain <last>," Turner says. "Just know that you were all part of it. You'll know the shipyard is done when you find an extra nine thousand credits in your pocket each day. Goodbye until then, Captain <last>."`
+
+event "shipyard on greenwater"
+	planet "Greenwater"
+		shipyard "Basic Ships"
+		shipyard "Syndicate Basics"
+		shipyard "Megaparsec Basics"
+		shipyard "Megaparsec Advanced"
+		outfitter "Common Outfits"
+		outfitter "Syndicate Advanced"
+		outfitter "Lovelace Basics"
+	fleet "Small Human Merchants (Hai)"
+		add variant 20
+			"Sparrow"
+		add variant 20
+			"Star Barge"
+		add variant 20
+			"Shuttle"
+		add variant 5
+			"Freighter"
+			"Wasp" 2
+		add variant 10
+			"Freighter"
+			"Shuttle" 2
+			"Quicksilver"
+		add variant 15
+			"Bounder"
+			"Wasp" 2
+		add variant 5
+			"Manta"
+		add variant 5
+			"Freighter" 2
+			"Manta"
+	fleet "Large Human Merchants (Hai)"
+		add variant 6
+			"Freighter (Proton)" 2
+			"Quicksilver" 2
+		add variant 6
+			"Freighter" 4
+			"Quicksilver" 2
+			"Splinter" 1
+		add variant 3
+			"Freighter" 4
+			"Quicksilver" 2
+			"Splinter (Laser)" 1
+		add variant 3
+			"Freighter" 4
+			"Quicksilver" 2
+			"Splinter (Proton)" 1
+
+mission "Expanding Business: shipyard complete"
+	landing
+	invisible
+	to offer
+		has "event: shipyard on greenwater"
+	on offer
+		"salary: Turner Incorporated" = 14000
+		fail
+
+
+
 
 
 
