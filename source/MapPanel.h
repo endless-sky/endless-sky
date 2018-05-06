@@ -116,6 +116,10 @@ protected:
 	// to account for panels on the screen).
 	void CenterOnSystem(const System *system);
 	
+	// Cache the map layout, so it doesn't have to be re-calculated every frame.
+	// The cache must be updated when the coloring mode changes.
+	void UpdateCache();
+	
 	
 private:
 	void DrawTravelPlan();
@@ -129,10 +133,6 @@ private:
 	void DrawMissions();
 	void DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger = false);
 	static void DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack = true, bool bigger = false);
-	
-	// Cache the map layout, so it doesn't have to be re-calculated every frame.
-	// The cache must be updated when the coloring mode changes.
-	void UpdateCache();
 	
 	
 private:
