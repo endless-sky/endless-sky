@@ -1383,6 +1383,7 @@ mission "Deep: Remnant: Keystone Research"
 
 
 
+# Branch A occurs if the player has yet to discover the Remnant
 mission "Deep: Remnant 1A"
 	landing
 	name `Exploring the Unknown`
@@ -1395,17 +1396,8 @@ mission "Deep: Remnant 1A"
 		not "First Contact: Remnant: offered"
 	
 	on offer
-		conversation
-			`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. When you arrive you hardly have time to greet Ivan, Maria, and the others before Ivan begins discussing what they have learned from the Quantum Keystones.`
-			`	"We've analyzed the Keystones, and surprisingly they do allow entry into the wormhole in Terminus. It would appear that the stones stabilize the wormhole as the ship passes through it, or maybe it is stabilizing the ship in some way and not the wormhole. We'll need much more time to fully understand the true mechanism that is at play here. Whatever the case is, one stone is required for each ship to pass through the wormhole.`
-			`	"We sent a single drone through the wormhole to test that it was passable, and programmed it to return immediately in case the region beyond is hostile or dangerous. Would you be willing to explore the region for us? You may want to install a ramscoop, as we are unsure if there will be anywhere for your ship to refuel."`
-			choice
-				`	"I'm always willing to go on an adventure."`
-				`	"This sounds too risky. You're going to need to find someone else to go exploring."`
-					decline
-			
-			`	"Splendid! We will give you a single Quantum Keystone in order to travel through the wormhole. Return here once you have finished exploring."`
-				accept
+		conversation "remnant"
+	
 	on accept
 		outfit "Quantum Keystone" 1
 	on enter "Arculus"
@@ -1433,26 +1425,7 @@ mission "Deep: Remnant 2A"
 		has "Deep: Remnant 1A: done"
 	
 	on offer
-		conversation
-			`When you return, Ivan and the rest of the scientists wait eagerly for you to explain what you discovered.`
-			`	You begin by recounting your experience with the strange space-dwelling creatures you found in the Nenia system. Ivan's eyes go wide when you mention the ease with which they fed on asteroids, and how they seemed to effortlessly escape from the gravity of local gas giants.`
-			
-			branch friendly
-				has "event: ember waste label"
-			`	You then tell them about the strange-looking humans who communicate in song and sign language that attacked you after you wouldn't submit to a blood test.`
-				goto next
-				
-			label friendly
-			`	You then tell them about the Remnant, a group of friendly humans who fled human space during the Alpha Wars and have advanced independently of humanity for centuries, and how they call the region of space the "Ember Waste."`
-			
-			label next
-			`	The group of scientists looks captivated the entire time, almost like kindergarten children listening to a fairy tale. When you finish talking, they immediately chatter among themselves, seeming to be most interested in the human beings which inhabit the region. They seem to agree that they need to learn more about these humans, and more specifically about the technology which they have developed.`
-			`	They eventually come to the conclusion that you should return to this region of space and scan the ships of these humans so that they can learn more about them.`
-			choice
-				`	"Okay, I'm willing to do it."`
-					accept
-				`	"This seems too risky for me. You'll need to find someone else."`
-					decline
+		conversation "remnant"
 	
 	npc "scan outfits"
 		government "Remnant"
@@ -1473,6 +1446,7 @@ mission "Deep: Remnant 2A"
 
 
 
+# Branch B occurs if the player discovered the Remnant before "Deep: Remnant: Keystone Research"
 mission "Deep: Remnant 1B"
 	landing
 	name `Analyze Remnant Ships`
@@ -1484,16 +1458,7 @@ mission "Deep: Remnant 1B"
 		has "deep: knew of stones before scientists"
 	
 	on offer
-		conversation
-			`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. When you arrive you hardly have time to greet Ivan, Maria, and the others before Ivan begins discussing what they have learned from the Quantum Keystones.`
-			`	"As you mentioned before, a single Keystone is sufficient to enter the wormhole. We've determined that there is a stabilization effect, either on the ship or the wormhole, that allows matter to cross the threshold. However, we'll need much more time to fully understand the true mechanism." Ivan asks, "Last time, you mentioned that there were humans living in this space, the... the 'Remainder?'"`
-			`	"Remnant."`
-			`	"Right, that was it. Well, we've decided that we need to know more about their ships and technology - perhaps they have some alternative method of interacting with these unstable wormholes that can accelerate our understanding. Would you kindly bring us some outfit scanning logs from their ships?"`
-			choice
-				`	"Sure, I'm willing to do it."`
-					accept
-				`	"Sorry, you'll need to find someone else."`
-					decline
+		conversation "remnant"
 	
 	npc "scan outfits"
 		government "Remnant"
@@ -1514,6 +1479,7 @@ mission "Deep: Remnant 1B"
 
 
 
+# Branch C occurs if the player discovered the Remnant after "Deep: Remnant: Keystone Research"
 mission "Deep: Remnant 1C"
 	landing
 	name `Analyze Remnant Ships`
@@ -1526,30 +1492,7 @@ mission "Deep: Remnant 1C"
 		has "First Contact: Remnant: offered"
 	
 	on offer
-		conversation
-			`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. When you arrive you hardly have time to greet Ivan, Maria, and the others before Ivan begins discussing what they have learned from the Quantum Keystones.`
-			`	"We've analyzed the Keystones, and surprisingly they do allow entry into the wormhole in Terminus. It would appear that the stones stabilize the wormhole as the ship passes through it, or maybe it is stabilizing the ship in some way and not the wormhole. We'll need much more time to fully understand the true mechanism that is at play here. Whatever the case is, one stone is required for each ship to pass through the wormhole.`
-			`	"We sent a single drone through the wormhole to test that it was passable, and programmed it to return immediately in case the region beyond is hostile or dangerous. Would you be willing to explore the region for us? You may want to install a ramscoop, as we are unsure if there will be anywhere for your ship to refuel."`
-			choice
-				`	"I already explored the region beyond the wormhole while you were researching."`
-				`	"Sorry, I don't want to work for you anymore."`
-					decline
-			branch friendly
-				has "event: ember waste label"
-			`	The scientists look very surprised, and ask that you tell them what you found. You recall your encounter with strange-looking humans who communicate in song and sign language and attacked you after you wouldn't submit to a blood test.`
-				goto next
-				
-			label friendly
-			`	The scientists look very surprised, and ask that you tell them what you found. You recall your encounter with the Remnant, a group of friendly humans who fled human space during the Alpha Wars and have advanced independently of humanity for centuries, and how they call the region of space the "Ember Waste."`
-			
-			label next
-			`	The group of scientists looks captivated the entire time, almost like kindergarten children listening to a fairy tale. When you finish talking, they immediately chatter among themselves, seeming to be most interested in the human beings which inhabit the region. They seem to agree that they need to learn more about these humans, and more specifically about the technology which they have developed.`
-			`	They eventually come to the conclusion that you should return to this region of space and scan the ships of these humans so that they can learn more about them.`
-			choice
-				`	"Okay, I'm willing to do it."`
-					accept
-				`	"This seems too risky for me. You'll need to find someone else."`
-					decline
+		conversation "remnant"
 	
 	npc "scan outfits"
 		government "Remnant"
@@ -1567,6 +1510,88 @@ mission "Deep: Remnant 1C"
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
 		dialog
 			`The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
+
+
+
+conversation "remnant"
+	``
+	branch 2A ABC
+		has "Deep: Remnant 2A: active"
+	
+	label 2A # Only appears in Remnant 2A
+	`When you return, Ivan and the rest of the scientists wait eagerly for you to explain what you discovered.`
+	`	You begin by recounting your experience with the strange space-dwelling creatures you found in the Nenia system. Ivan's eyes go wide when you mention the ease with which they fed on asteroids, and how they seemed to effortlessly escape from the gravity of local gas giants.`
+		goto AC2
+	
+	label ABC # Appears at the beginning of Remnant 1A, 1B, and 1C
+	`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. When you arrive you hardly have time to greet Ivan, Maria, and the others before Ivan begins discussing what they have learned from the Quantum Keystones.`
+	branch B1 AC1
+		has "Deep: Remnant 1B: active"
+	
+	label B1 # The end of 1B 
+	`	"As you mentioned before, a single Keystone is sufficient to enter the wormhole. We've determined that there is a stabilization effect, either on the ship or the wormhole, that allows matter to cross the threshold. However, we'll need much more time to fully understand the true mechanism." Ivan asks, "Last time, you mentioned that there were humans living in this space, the... the 'Remainder?'"`
+	`	"Remnant."`
+	`	"Right, that was it. Well, we've decided that we need to know more about their ships and technology - perhaps they have some alternative method of interacting with these unstable wormholes that can accelerate our understanding. Would you kindly bring us some outfit scanning logs from their ships?"`
+	choice
+		`	"Sure, I'm willing to do it."`
+			accept
+		`	"Sorry, you'll need to find someone else."`
+			decline
+	
+	label AC1 # The middle section of 1A and 1C
+	`	"We've analyzed the Keystones, and surprisingly they do allow entry into the wormhole in Terminus. It would appear that the stones stabilize the wormhole as the ship passes through it, or maybe it is stabilizing the ship in some way and not the wormhole. We'll need much more time to fully understand the true mechanism that is at play here. Whatever the case is, one stone is required for each ship to pass through the wormhole.`
+	`	"We sent a single drone through the wormhole to test that it was passable, and programmed it to return immediately in case the region beyond is hostile or dangerous. Would you be willing to explore the region for us? You may want to install a ramscoop, as we are unsure if there will be anywhere for your ship to refuel."`
+	branch 1A 1C1
+		has "Deep: Remnant 1A: active"
+	
+	label 1A # The end of 1A
+	choice
+		`	"I'm always willing to go on an adventure."`
+		`	"This sounds too risky. You're going to need to find someone else to go exploring."`
+			decline
+			
+	`	"Splendid! We will give you a single Quantum Keystone in order to travel through the wormhole. Return here once you have finished exploring."`
+		accept
+	
+	label 1C1 # The choice of 1C
+	choice
+		`	"I already explored the region beyond the wormhole while you were researching."`
+			goto AC2
+		`	"Sorry, I don't want to work for you anymore."`
+			decline
+	
+	label AC2 # The end of 2A and 1C
+	branch 2A 1C2
+		has "Deep: Remnant 2A: active"
+	
+	label 2A
+	branch friendly1
+		has "event: ember waste label"
+	`	You then tell them about the strange-looking humans who communicate in song and sign language that attacked you after you wouldn't submit to a blood test.`
+		goto AC3
+				
+	label friendly1
+	`	You then tell them about the Remnant, a group of friendly humans who fled human space during the Alpha Wars and have advanced independently of humanity for centuries, and how they call the region of space the "Ember Waste."`
+		goto AC3
+	
+	label 1C2
+	branch friendly2
+		has "event: ember waste label"
+	`	The scientists look very surprised, and ask that you tell them what you found. You recall your encounter with strange-looking humans who communicate in song and sign language and attacked you after you wouldn't submit to a blood test.`
+		goto AC3
+				
+	label friendly2
+	`	The scientists look very surprised, and ask that you tell them what you found. You recall your encounter with the Remnant, a group of friendly humans who fled human space during the Alpha Wars and have advanced independently of humanity for centuries, and how they call the region of space the "Ember Waste."`
+		goto AC3
+	
+	label AC3
+	`	The group of scientists looks captivated the entire time, almost like kindergarten children listening to a fairy tale. When you finish talking, they immediately chatter among themselves, seeming to be most interested in the human beings which inhabit the region. They seem to agree that they need to learn more about these humans, and more specifically about the technology which they have developed.`
+	`	They eventually come to the conclusion that you should return to this region of space and scan the ships of these humans so that they can learn more about them.`
+	choice
+		`	"Okay, I'm willing to do it."`
+			accept
+		`	"This seems too risky for me. You'll need to find someone else."`
+			decline
 
 
 
