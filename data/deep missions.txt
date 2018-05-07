@@ -1397,7 +1397,6 @@ mission "Deep: Remnant 1A"
 	
 	on offer
 		conversation "remnant"
-	
 	on accept
 		outfit "Quantum Keystone" 1
 	on enter "Arculus"
@@ -1490,6 +1489,7 @@ mission "Deep: Remnant 1C"
 		has "Deep: Remnant: Keystone Research: done"
 		not "deep: knew of stones before scientists"
 		has "First Contact: Remnant: offered"
+		not "Deep: Remnant 1A: offered"
 	
 	on offer
 		conversation "remnant"
@@ -1514,19 +1514,14 @@ mission "Deep: Remnant 1C"
 
 
 conversation "remnant"
-	``
-	branch 2A ABC
-		has "Deep: Remnant 2A: active"
-	
-	label 2A # Only appears in Remnant 2A
-	`When you return, Ivan and the rest of the scientists wait eagerly for you to explain what you discovered.`
-	`	You begin by recounting your experience with the strange space-dwelling creatures you found in the Nenia system. Ivan's eyes go wide when you mention the ease with which they fed on asteroids, and how they seemed to effortlessly escape from the gravity of local gas giants.`
-		goto AC2
+	branch 2A1 ABC # Are we in mission 2A or any other mission?
+		has "Deep: Remnant 1A: done"
 	
 	label ABC # Appears at the beginning of Remnant 1A, 1B, and 1C
 	`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. When you arrive you hardly have time to greet Ivan, Maria, and the others before Ivan begins discussing what they have learned from the Quantum Keystones.`
-	branch B1 AC1
-		has "Deep: Remnant 1B: active"
+	branch B1 AC1 # Are we in mission 1B or 1A/1C?
+		has "Deep: Remnant: Keystone Research: done"
+		has "deep: knew of stones before scientists"
 	
 	label B1 # The end of 1B 
 	`	"As you mentioned before, a single Keystone is sufficient to enter the wormhole. We've determined that there is a stabilization effect, either on the ship or the wormhole, that allows matter to cross the threshold. However, we'll need much more time to fully understand the true mechanism." Ivan asks, "Last time, you mentioned that there were humans living in this space, the... the 'Remainder?'"`
@@ -1541,8 +1536,10 @@ conversation "remnant"
 	label AC1 # The middle section of 1A and 1C
 	`	"We've analyzed the Keystones, and surprisingly they do allow entry into the wormhole in Terminus. It would appear that the stones stabilize the wormhole as the ship passes through it, or maybe it is stabilizing the ship in some way and not the wormhole. We'll need much more time to fully understand the true mechanism that is at play here. Whatever the case is, one stone is required for each ship to pass through the wormhole.`
 	`	"We sent a single drone through the wormhole to test that it was passable, and programmed it to return immediately in case the region beyond is hostile or dangerous. Would you be willing to explore the region for us? You may want to install a ramscoop, as we are unsure if there will be anywhere for your ship to refuel."`
-	branch 1A 1C1
-		has "Deep: Remnant 1A: active"
+	branch 1A 1C1 # Are we in mission 1A or 1C?
+		has "Deep: Remnant: Keystone Research: done"
+		not "deep: knew of stones before scientists"
+		not "First Contact: Remnant: offered"
 	
 	label 1A # The end of 1A
 	choice
@@ -1560,11 +1557,16 @@ conversation "remnant"
 		`	"Sorry, I don't want to work for you anymore."`
 			decline
 	
-	label AC2 # The end of 2A and 1C
-	branch 2A 1C2
-		has "Deep: Remnant 2A: active"
+	label 2A1 # Only appears in Remnant 2A
+	`When you return, Ivan and the rest of the scientists wait eagerly for you to explain what you discovered.`
+	`	You begin by recounting your experience with the strange space-dwelling creatures you found in the Nenia system. Ivan's eyes go wide when you mention the ease with which they fed on asteroids, and how they seemed to effortlessly escape from the gravity of local gas giants.`
+		goto AC2
 	
-	label 2A
+	label AC2 # The end of 2A and 1C
+	branch 2A2 1C2 # Are we in mission 2A or 1C?
+		has "Deep: Remnant 1A: done"
+	
+	label 2A2
 	branch friendly1
 		has "event: ember waste label"
 	`	You then tell them about the strange-looking humans who communicate in song and sign language that attacked you after you wouldn't submit to a blood test.`
