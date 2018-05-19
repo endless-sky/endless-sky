@@ -1218,7 +1218,7 @@ phrase "friendly militia"
 		"."
 		"!"
 
-phrase "friendly milita"
+phrase "friendly militia"
 	word
 		"We are the militia, "
 	word
