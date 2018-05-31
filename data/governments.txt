@@ -304,6 +304,7 @@ government "Remnant"
 	"player reputation" 1
 	"attitude toward"
 		"Korath" -.01
+	"hostile hail" "uncontacted remnant hostile hail"
 
 government "Republic"
 	swizzle 0
