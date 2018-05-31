@@ -123,8 +123,6 @@ government "Independent"
 	color .78 .36 .36
 	
 	"player reputation" 10
-	"attitude toward"
-		"Pirate" -.3
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly civilian"
