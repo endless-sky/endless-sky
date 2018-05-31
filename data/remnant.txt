@@ -218,11 +218,13 @@ phrase "angered remnant hail"
 		"Please "
 		"You must "
 	word
-		"surrender "
-		"desist "
-		"desist and surrender "
-		"surrender yourself "
-		"desist and surrender yourself "
+		"surrender"
+		"desist"
+		"desist and surrender"
+		"surrender yourself"
+		"desist and surrender yourself"
+	word
+		", "
 	word
 		"alien"
 		"unknown individual"
