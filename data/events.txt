@@ -791,9 +791,9 @@ event "start of hostilities"
 	government "Republic"
 		"attitude toward"
 			"Free Worlds" -.2
-			"Korath" -.1
-			"Merchant" .1
-			"Pirate" -.1
+			"Korath" -.01
+			"Merchant" .01
+			"Pirate" -.01
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" -.2
