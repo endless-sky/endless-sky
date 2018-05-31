@@ -86,7 +86,6 @@ government "Hai"
 	
 	"player reputation" 0
 	"attitude toward"
-		"Hai (Unfettered)" -.5
 		"Merchant" .01
 	"bribe" .02
 	"fine" 0
