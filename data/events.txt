@@ -791,10 +791,13 @@ event "start of hostilities"
 	government "Republic"
 		"attitude toward"
 			"Free Worlds" -.2
+			"Korath" -.1
+			"Merchant" .1
+			"Pirate" -.1
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" -.2
-	"reputation: Republic" <?= -100000
+	"reputation: Republic" <?= -10
 
 
 
@@ -1072,7 +1075,7 @@ event "fw safe passage starts"
 
 
 event "fw safe passage ends"
-	"reputation: Republic" <?= -101000
+	"reputation: Republic" <?= -1000
 
 
 
@@ -1479,6 +1482,9 @@ event "fw armistice"
 	government Republic
 		"attitude toward"
 			"Free Worlds" 0
+			"Korath" -.3
+			"Merchant" .25
+			"Pirate" -.3
 	government "Free Worlds"
 		"attitude toward"
 			Republic 0
@@ -2389,6 +2395,9 @@ event "fwc peace with the navy"
 	government "Republic"
 		"attitude toward"
 			"Free Worlds" 0
+			"Korath" -.3
+			"Merchant" .25
+			"Pirate" -.3
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" 0
