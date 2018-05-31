@@ -250,3 +250,33 @@ phrase "contacted remnant hostile hail"
 	word
 		"destroyed."
 		"killed."
+
+phrase "contacted remnant hostile disabled hail"
+	word
+		"Human, if you "
+	word
+		"are not like the Alphas"
+		"have mercy"
+		"still have mercy"
+		"still have a good heart"
+	word
+		", "
+	word
+		"please "
+	word
+		"leave me alone"
+		"don't kill me"
+		"don't board me"
+	word
+		"."
+		
+phrase "contacted remnant hostile disabled hail"
+	word
+		"Please have mercy to me, "
+	word
+		"human"
+		"brother"
+	word
+		"."
+		"!"
+	
