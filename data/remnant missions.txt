@@ -55,10 +55,15 @@ mission "First Contact: Remnant"
 				decline
 	on accept
 		"reputation: Remnant" <?= -10
+		government "Remnant"
+			"hostile hail" "angered remnant hostile hail"
 		log "Discovered a strange, isolated human community in an otherwise uninhabited region of space south of the Core. Angered them by refusing to submit to some sort of blood test."
 		log "Factions" "Remnant" `The Remnant are a group of unusual-looking humans that live in a secluded section of the galaxy. It is unclear how long they have lived apart from the rest of humanity, but they have been free of human influences for long enough that their culture is wildly different from any found in human record. Their buildings seem to be alien in origin, and they communicate amongst each other primarily with sign language. When they do use their voices they sing or chant, rather than speak.`
 	
 	on decline
+		government "Remnant"
+			"hostile hail" "contacted remnant hostile hail"
+			"hostile disabled hail" "contacted remnant hostile disabled hail"
 		event "ember waste label"
 		log "Discovered a strange, isolated human community in an otherwise uninhabited region of space south of the Core. They call themselves the Remnant."
 		log "Factions" "Remnant" `Half a millennium ago, during the Alpha Wars, a group of humans fleeing the conflict and looking for a safer place to live discovered a wormhole into a region of space known as the Ember Waste. They built settlements there, and chose to call themselves the Remnant. Although they no longer fear the Alphas as much as they once did, they still have not rejoined human society.`
