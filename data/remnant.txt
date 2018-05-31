@@ -168,3 +168,85 @@ outfitter "Remnant"
 	"Fuel Pod"
 	"Cargo Scanner"
 	"Outfit Scanner"
+
+
+# Hails:
+phrase "uncontacted remnant hostile hail"
+	word
+		"Your"
+	word
+		" ship"
+		" technology"
+		" weapons"
+		" cargo"
+	word
+		" will"
+	word
+		" be of great help to us."
+		" help us plunder more raiders like you."
+	word
+		" Surrender,"
+		" Desist,"
+		" Stop your hostilities against us,"
+	word
+		" before your ship become space debris."
+		" before we kill you."
+		" before you see your possession is no more."
+
+phrase "uncontacted remnant hostile hail"
+	word
+		"Raiders "
+		"Pirates "
+		"Plunderers "
+		"Stealers "
+	word
+		"like you "
+	word
+		"will be "
+		"are "
+	word
+		"killed"
+		"terminated"
+		"plundered as well"
+	word
+		". "
+	word
+		"You have no chance against us, so leave us alone."
+
+phrase "angered remnant hail"
+	word
+		"Please "
+		"You must "
+	word
+		"surrender "
+		"desist "
+		"desist and surrender "
+		"surrender yourself "
+		"desist and surrender yourself "
+	word
+		"alien"
+		"unknown individual"
+	word
+		". "
+	word
+		"Please do not "
+		"Do not "
+	word
+		"be afraid."
+
+phrase "contacted remnant hostile hail"
+	word
+		"You human are just like the "
+	word
+		"Alphas"
+		"other pirates"
+		"alien raiders"
+		"other raiders"
+		"other plunderers"
+	word
+		". "
+	word
+		"You must be "
+	word
+		"destroyed."
+		"killed."
