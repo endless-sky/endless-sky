@@ -791,7 +791,6 @@ event "start of hostilities"
 	government "Republic"
 		"attitude toward"
 			"Free Worlds" -.2
-			"Korath" -.01
 			"Merchant" .01
 			"Pirate" -.01
 	government "Free Worlds"
@@ -1482,7 +1481,6 @@ event "fw armistice"
 	government Republic
 		"attitude toward"
 			"Free Worlds" 0
-			"Korath" -.3
 			"Merchant" .25
 			"Pirate" -.3
 	government "Free Worlds"
@@ -2395,7 +2393,6 @@ event "fwc peace with the navy"
 	government "Republic"
 		"attitude toward"
 			"Free Worlds" 0
-			"Korath" -.3
 			"Merchant" .25
 			"Pirate" -.3
 	government "Free Worlds"
