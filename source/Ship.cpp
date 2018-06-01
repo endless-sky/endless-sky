@@ -27,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Projectile.h"
 #include "Random.h"
 #include "ShipEvent.h"
+#include "SpriteSet.h"
 #include "System.h"
 #include "Visual.h"
 
@@ -133,6 +134,8 @@ void Ship::Load(const DataNode &node)
 		}
 		if(key == "sprite")
 			LoadSprite(child);
+		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
+			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "name" && child.Size() >= 2)
 			name = child.Token(1);
 		else if(key == "plural" && child.Size() >= 2)
@@ -294,13 +297,18 @@ void Ship::FinishLoading(bool isNewInstance)
 {
 	// All copies of this ship should save pointers to the "explosion" weapon
 	// definition stored safely in the ship model, which will not be destroyed
-	// until GameData is when the program quits.
+	// until GameData is when the program quits. Also copy other attributes of
+	// the base model if no overrides were given.
 	if(GameData::Ships().Has(modelName))
 	{
 		const Ship *model = GameData::Ships().Get(modelName);
 		explosionWeapon = &model->BaseAttributes();
-		pluralModelName = model->pluralModelName;
-		noun = model->noun;
+		if(pluralModelName.empty())
+			pluralModelName = model->pluralModelName;
+		if(noun.empty())
+			noun = model->noun;
+		if(!thumbnail)
+			thumbnail = model->thumbnail;
 	}
 	
 	// If this ship has a base class, copy any attributes not defined here.
@@ -630,6 +638,14 @@ const string &Ship::Noun() const
 const string &Ship::Description() const
 {
 	return description;
+}
+
+
+
+// Get the shipyard thumbnail for this ship.
+const Sprite *Ship::Thumbnail() const
+{
+	return thumbnail;
 }
 
 
