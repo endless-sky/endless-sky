@@ -312,7 +312,6 @@ government "Republic"
 	"player reputation" 2
 	"attitude toward"
 		"Alpha" -.3
-		"Korath" -.3
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
