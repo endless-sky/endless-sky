@@ -397,7 +397,7 @@ phrase "contacted remnant hostile disabled hail"
 	word
 		" "
 	word
-		"have mercy to me"
+		"have mercy on me"
 		"don't kill me"
 		"think of the consequences"
 	word
