@@ -185,6 +185,8 @@ phrase "uncontacted remnant hostile hail"
 		"will"
 		"might"
 	word
+		" "
+	word
 		"be of great help to us"
 		"help us plunder more raiders like you"
 		"let us live for a very long time"
@@ -269,8 +271,10 @@ phrase "angered remnant hail"
 	word
 		". "
 	word
-		"Please do not "
-		"Do not "
+		"Please do not"
+		"Do not"
+	word
+		" "
 	word
 		"be afraid"
 	word
