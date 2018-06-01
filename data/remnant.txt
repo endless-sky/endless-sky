@@ -173,32 +173,47 @@ outfitter "Remnant"
 # Hails:
 phrase "uncontacted remnant hostile hail"
 	word
-		"Your"
+		"Your "
 	word
-		" ship"
-		" technology"
-		" weapons"
-		" cargo"
+		"ship"
+		"technology"
+		"weapons"
+		"cargo"
 	word
-		" will"
+		" "
 	word
-		" be of great help to us."
-		" help us plunder more raiders like you."
+		"will"
+		"might"
 	word
-		" Surrender,"
-		" Desist,"
-		" Stop your hostilities against us,"
+		"be of great help to us"
+		"help us plunder more raiders like you"
+		"let us live for a very long time"
+		"be helpful for our future generations"
+		"make us more independent from unreliable human technology"
 	word
-		" before your ship become space debris."
-		" before we kill you."
-		" before you see your possession is no more."
+		". "
+	word
+		"Surrender"
+		"Desist"
+		"Stop"
+	word
+		", "
+	word
+		"before your ship becomes space debris"
+		"before we kill you"
+		"before you see your possession is no more"
+		"before your thing is no longer yours"
+	word
+		"."
 
 phrase "uncontacted remnant hostile hail"
 	word
-		"Raiders "
-		"Pirates "
-		"Plunderers "
-		"Stealers "
+		"Raiders"
+		"Pirates"
+		"Plunderers"
+		"Stealers"
+	word
+		" "
 	word
 		"like you "
 	word
@@ -211,12 +226,33 @@ phrase "uncontacted remnant hostile hail"
 	word
 		". "
 	word
-		"You have no chance against us, so leave us alone."
+		"You "
+	word
+		"have no chance"
+		"have little chance"
+	word
+		"against us"
+		"on our worlds"
+		"on our planets"
+		"on Ember Waste"
+		"on this region of the galaxy"
+	word
+		", so "
+	word
+		"be gone"
+		"leave us alone"
+		"leave this region"
+		"don't dare to attack us"
+	word
+		"."
+		"!"
 
 phrase "angered remnant hail"
 	word
-		"Please "
-		"You must "
+		"Please"
+		"You must"
+	word
+		" "
 	word
 		"surrender"
 		"desist"
@@ -234,11 +270,60 @@ phrase "angered remnant hail"
 		"Please do not "
 		"Do not "
 	word
-		"be afraid."
+		"be afraid"
+	word
+		" "
+	word
+		"of us"
+		"of the Remnant"	
+
+phrase "angered remnant hostile hail"
+	word
+		"We"
+		"The Remnant"
+		"Our ship"
+	word
+		"will"
+		"is going to"
+	word
+		" "
+	word
+		"stop"
+		"cease"
+	word
+		" "
+	word
+		"following"
+		"intercepting"
+		"attacking"
+	word
+		" "
+	word
+		"you"
+		"your ship"
+	word
+		"if you will"
+	word
+		"land and take the test"
+		"surrender"
+		"stop escaping from us"
+		"cease escaping from us"
+	word
+		"."
 
 phrase "contacted remnant hostile hail"
 	word
-		"You human are just like the "
+		"You "
+	word
+		"human"
+		"pure one"
+		"unaltered"
+	word
+		"are just like"
+		"have similarities with"
+		"are the same as"
+	word
+		" the "
 	word
 		"Alphas"
 		"other pirates"
@@ -248,14 +333,25 @@ phrase "contacted remnant hostile hail"
 	word
 		". "
 	word
-		"You must be "
+		"You"
 	word
-		"destroyed."
-		"killed."
+		" "
+	word
+		"should be"
+		"must be"
+	word
+		"destroyed"
+		"killed"
+		"out of our space"
+		"gone"
 
 phrase "contacted remnant hostile disabled hail"
 	word
-		"Human, if you "
+		"Human,"
+		"Brother,"
+		"Pure one,"
+	word
+		"if you "
 	word
 		"are not like the Alphas"
 		"have mercy"
@@ -274,11 +370,17 @@ phrase "contacted remnant hostile disabled hail"
 		
 phrase "contacted remnant hostile disabled hail"
 	word
-		"Please have mercy to me, "
+		"Please"
+	word
+		" "
+	word
+		"have mercy to me,"
+	word
+		" "
 	word
 		"human"
 		"brother"
+		"pure one"
 	word
 		"."
 		"!"
-	
