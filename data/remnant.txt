@@ -231,6 +231,8 @@ phrase "uncontacted remnant hostile hail"
 		"have no chance"
 		"have little chance"
 	word
+		" "
+	word
 		"against us"
 		"on our worlds"
 		"on our planets"
@@ -275,13 +277,17 @@ phrase "angered remnant hail"
 		" "
 	word
 		"of us"
-		"of the Remnant"	
+		"of the Remnant"
+	word
+		"."
 
 phrase "angered remnant hostile hail"
 	word
 		"We"
 		"The Remnant"
 		"Our ship"
+	word
+		" "
 	word
 		"will"
 		"is going to"
@@ -302,7 +308,12 @@ phrase "angered remnant hostile hail"
 		"you"
 		"your ship"
 	word
+		" "
+	word
 		"if you will"
+		"if you just"
+	word
+		" "
 	word
 		"land and take the test"
 		"surrender"
@@ -318,6 +329,8 @@ phrase "contacted remnant hostile hail"
 		"human"
 		"pure one"
 		"unaltered"
+	word
+		" "
 	word
 		"are just like"
 		"have similarities with"
@@ -340,15 +353,19 @@ phrase "contacted remnant hostile hail"
 		"should be"
 		"must be"
 	word
+		" "
+	word
 		"destroyed"
 		"killed"
 		"out of our space"
 		"gone"
+	word
+		"."
+		"!"
 
 phrase "contacted remnant hostile disabled hail"
 	word
 		"Human"
-		"Brother"
 		"Pure one"
 	word
 		", "
@@ -376,12 +393,13 @@ phrase "contacted remnant hostile disabled hail"
 	word
 		" "
 	word
-		"have mercy to me,"
+		"have mercy to me"
+		"don't kill me"
+		"think of the consequences"
 	word
-		" "
+		", "
 	word
 		"human"
-		"brother"
 		"pure one"
 	word
 		"."
