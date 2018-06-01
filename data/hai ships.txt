@@ -10,6 +10,7 @@
 
 ship "Aphid"
 	sprite "ship/hai aphid"
+	thumbnail "thumbnail/hai aphid"
 	attributes
 		category "Light Freighter"
 		"cost" 570000
@@ -64,6 +65,7 @@ ship "Aphid" "Aphid (Anti-Missile)"
 
 ship "Flea"
 	sprite "ship/hai flea"
+	thumbnail "thumbnail/hai flea"
 	attributes
 		category "Drone"
 		"cost" 122400
@@ -97,6 +99,7 @@ ship "Flea"
 
 ship "Lightning Bug"
 	sprite "ship/hai lightning bug"
+	thumbnail "thumbnail/hai lightning bug"
 	attributes
 		category "Light Warship"
 		"cost" 3200000
@@ -157,6 +160,7 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 
 ship "Pond Strider"
 	sprite "ship/hai pond strider"
+	thumbnail "thumbnail/hai pond strider"
 	attributes
 		category "Medium Warship"
 		"cost" 5250000
@@ -220,6 +224,7 @@ ship "Pond Strider"
 
 ship "Shield Beetle"
 	sprite "ship/hai shield beetle"
+	thumbnail "thumbnail/hai shield beetle"
 	attributes
 		category "Heavy Warship"
 		"cost" 17900000
@@ -367,6 +372,7 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 
 ship "Solifuge"
 	sprite "ship/hai solifuge"
+	thumbnail "thumbnail/hai solifuge"
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -536,6 +542,7 @@ ship "Solifuge" "Solifuge (Jump, Tracker)"
 
 ship "Violin Spider"
 	sprite "ship/hai violin spider"
+	thumbnail "thumbnail/hai violin spider"
 	attributes
 		category "Fighter"
 		"cost" 139000
@@ -587,6 +594,7 @@ ship "Violin Spider" "Violin Spider (Pulse)"
 
 ship "Water Bug"
 	sprite "ship/hai water bug"
+	thumbnail "thumbnail/hai water bug"
 	attributes
 		category "Heavy Freighter"
 		"cost" 6500000
