@@ -123,6 +123,8 @@ public:
 	const std::string &Noun() const;
 	// Get this ship's description.
 	const std::string &Description() const;
+	// Get the shipyard thumbnail for this ship.
+	const Sprite *Thumbnail() const;
 	// Get this ship's cost.
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
@@ -395,6 +397,7 @@ private:
 	std::string pluralModelName;
 	std::string noun;
 	std::string description;
+	const Sprite *thumbnail = nullptr;
 	// Characteristics of this particular ship:
 	std::string name;
 	bool canBeCarried = false;
