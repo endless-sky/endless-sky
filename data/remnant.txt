@@ -347,9 +347,11 @@ phrase "contacted remnant hostile hail"
 
 phrase "contacted remnant hostile disabled hail"
 	word
-		"Human,"
-		"Brother,"
-		"Pure one,"
+		"Human"
+		"Brother"
+		"Pure one"
+	word
+		", "
 	word
 		"if you "
 	word
