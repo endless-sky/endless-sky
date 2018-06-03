@@ -1,5 +1,4 @@
 # Ships
-
 ship "Electromagnetic Storm"
 	attributes
 		"hull" 100
@@ -16,14 +15,12 @@ ship "Electromagnetic Storm"
 		"thrust" 10
 		"thrusting energy" .3
 	outfits
-		"Storm"
-		
+		"Storm"	
 	engine -17 35
 	engine 17 35
 	turret 0 0 "Storm"
 	
 # Outfits
-
 outfit "Storm"
 	category "Turrets"
 	cost 0
@@ -45,21 +42,21 @@ outfit "Storm"
 		"ion damage" 0.1
 		
 # Fleet
-fleet "Electromagnetic(weak)"
+fleet "Electromagnetic (Weak)"
 	government "Korath Nanobots"
 	personality
 		heroic
 		vindictive
 	variant
-		"EMStorm" 8
+		"Electromagnetic Storm" 8
 		
-fleet "Electromagnetic(moderate)"
+fleet "Electromagnetic (Moderate)"
 	government "Korath Nanobots"
 	personality
 		heroic
 		vindictive
 	variant
-		"EMStorm" 15
+		"Electromagnetic Storm" 15
 		
 fleet "Electromagnetic(strong)"
 	government "Korath Nanobots"
@@ -67,7 +64,7 @@ fleet "Electromagnetic(strong)"
 		heroic
 		vindictive
 	variant
-		"EMStorm" 22
+		"Electromagnetic Storm" 22
 		
 # Mission
 mission "Remnant: Stranded Korath"
@@ -114,53 +111,34 @@ mission "Remnant: Stranded Korath"
 				`	"Sorry, but that sounds too dangerous."`
 					decline
 	npc evade
-		personality
-			heroic
-			vindictive
+		personality heroic vindictive
 		government "Korath Nanobots"
 		system Caeculus
-		fleet "EMStorm"
+		fleet "Electromagnetic (Weak)"
 	npc evade
-		personality
-			heroic
-			vindictive
+		personality heroic vindictive
 		government "Korath Nanobots"
 		system Stercutus
-		fleet "EMStorm"
-		fleet "EMStorm"
+		fleet "Electromagnetic (Moderate)"
 	npc evade
-		personality
-			heroic
-			vindictive
+		personality heroic vindictive
 		government "Korath Nanobots"
 		system Segesta
-		fleet "EMStorm"
-		fleet "EMStorm"
-		fleet "EMStorm"
-
+		fleet "Electromagnetic (Strong)"
 	npc kill
-		personality
-			heroic
-			nemesis
-			staying
+		personality heroic nemesis staying
 		government Korath
 		system Caeculus
 		fleet "Korath Raid"
 		dialog "All of the Korath here have been destroyed."
 	npc kill	
-		personality
-			heroic
-			nemesis
-			staying
+		personality heroic nemesis staying
 		government Korath
 		system Segesta
 		fleet "Korath Raid"
 		dialog "The last of the Korath here have been destroyed."
 	npc kill	
-		personality
-			heroic
-			nemesis
-			staying
+		personality heroic nemesis staying
 		government Korath
 		system Stercutus
 		fleet "Korath Raid"
