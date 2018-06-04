@@ -58,7 +58,7 @@ fleet "Electromagnetic (Moderate)"
 	variant
 		"Electromagnetic Storm" 15
 		
-fleet "Electromagnetic(strong)"
+fleet "Electromagnetic (Strong)"
 	government "Korath Nanobots"
 	personality
 		heroic
