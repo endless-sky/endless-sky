@@ -1105,7 +1105,7 @@ mission "Rim Archaeology 3B"
 				accept
 	
 	npc evade
-		government Independent
+		government " Independent "
 		personality waiting
 		ship "Marauder Falcon (Engines)" "Oxyrhynchus"
 	
@@ -1116,7 +1116,8 @@ mission "Rim Archaeology 3B"
 	on complete
 		payment 300000
 
-
+government " Independent "
+	"player reputation" 0
 
 mission "Rim Archaeology 4A"
 	landing
