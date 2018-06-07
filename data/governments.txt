@@ -151,6 +151,20 @@ government "Korath"
 	
 	"player reputation" -10
 
+government "Korath (Berserk)"
+	swizzle 0
+	color .8 .5 .1
+	language "Korath"
+	
+	"attitude toward"
+		"Kor Sestor" -1
+		"Korath" 1
+		"Remnant" -1
+		"Merchant" -1
+		"Neutral" -1
+	
+	"player reputation" -1000	
+	
 government "Korath Nanobots"
 	"player reputation" -1000
 

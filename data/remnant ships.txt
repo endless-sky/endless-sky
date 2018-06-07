@@ -10,7 +10,6 @@
 
 ship "Starling"
 	sprite "ship/starling"
-	thumbnail "thumbnail/starling"
 	attributes
 		category "Light Warship"
 		licenses
@@ -24,6 +23,7 @@ ship "Starling"
 		"drag" 3.8
 		"heat dissipation" 0.7
 		"fuel capacity" 900
+		"ramscoop" 1
 		"cargo space" 36
 		"outfit space" 312
 		"weapon capacity" 83
@@ -48,6 +48,7 @@ ship "Starling"
 		"Crystal Capacitor"
 		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
+		"Tuning Rifle" 6
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -78,6 +79,7 @@ ship "Starling" "Starling (Heavy)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
+		"Tuning Rifle" 10
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -91,6 +93,7 @@ ship "Starling" "Starling (Sniper)"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
+		"Tuning Rifle" 9
 		
 		"Forge-Class Thruster"
 		"Smelter-Class Steering"
@@ -105,6 +108,7 @@ ship "Starling" "Starling (Hunter)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
+		"Tuning Rifle" 11
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -125,6 +129,7 @@ ship "Starling" "Starling (Thrasher)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
+		"Tuning Rifle" 8
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -141,7 +146,6 @@ ship "Starling" "Starling (Thrasher)"
 ship "Albatross"
 	plural "Albatrosses"
 	sprite "ship/albatross"
-	thumbnail "thumbnail/albatross"
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -156,6 +160,7 @@ ship "Albatross"
 		"drag" 8.6
 		"heat dissipation" 0.6
 		"fuel capacity" 600
+		"ramscoop" 3
 		"engine capacity" 142
 		"outfit space" 658
 		"weapon capacity" 236
@@ -178,6 +183,7 @@ ship "Albatross"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
+		"Tuning Rifle" 45
 		
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
@@ -203,7 +209,7 @@ ship "Albatross"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
-	description "Once they left human space, it became apparent to the Remnant that they would need to build their own shipyards in order to defend themselves if they were discovered by the Alphas or any other unfriendly faction. Using new composite materials that they discovered, they built ships very different from anything seen in human space."
+	description "Once they left human space, it became apparent to the Remnant that they would need to build their own shipyards in order to defend themselves if they were discovered by the Alphas or any other unfriendly faction. Using new composite materials that they discovered, they built two ships based on the relics they found: One to explore, and one to defend. The Albatross lacks the range or speed of the Starling, but makes up for it with durability."
 
 ship "Albatross" "Albatross (Sniper)"
 	outfits
@@ -215,6 +221,7 @@ ship "Albatross" "Albatross (Sniper)"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
+		"Tuning Rifle" 57
 		
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
@@ -239,6 +246,7 @@ ship "Albatross" "Albatross (Turret)"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler"
 		"Outfits Expansion" 2
+		"Tuning Rifle" 49
 		
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
@@ -262,6 +270,7 @@ ship "Albatross" "Albatross (Heavy)"
 		"Crystal Capacitor" 2
 		"Thermoelectric Cooler" 2
 		"Outfits Expansion" 4
+		"Tuning Rifle" 65
 		
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
@@ -287,20 +296,21 @@ ship "Albatross" "Albatross (Heavy)"
 ship "Gascraft"
 	plural "Gascraft"
 	sprite "ship/gascraft"
-	thumbnail "thumbnail/gascraft"
 	attributes
 		category Transport
 		cost 530000
 		"shields" 800
 		"hull" 1500
 		"required crew" 1
-		"bunks" 1
-		"mass" 80
+		"bunks" 2
+		"mass" 78
 		"drag" 1.7
 		"heat dissipation" 0.9
 		"fuel capacity" 700
-		"cargo space" 8
-		"outfit space" 90
+		"energy capacity" 150
+		"ramscoop" 0.5
+		"cargo space" 9
+		"outfit space" 88
 		"engine capacity" 34
 		"shield generation" 0.6
 		"shield energy" 0.4
@@ -309,9 +319,10 @@ ship "Gascraft"
 		"gaslining" 1
 	outfits
 		"Millennium Cell"
-		"Supercapacitor"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
+		"Scanner Software"
+		"Tuning Rifle" 1
 		
 		"Crucible-Class Thruster"
 		"Crucible-Class Steering"
@@ -321,3 +332,67 @@ ship "Gascraft"
 	explode "tiny explosion" 8
 	explode "small explosion" 7
 	description "Centuries ago, the Remnant built these ships in order to explore the upper atmosphere of nearby gas giants. The Archons took issue with the Remnant's research methods, and the studies were unable to be completed. The remaining gascraft have been gathering dust in storage for centuries while the Remnant waits to see if the anger of the Archons will subside."
+
+
+ship "Pelican"
+	sprite "ship/pelican"
+	attributes
+		category "Heavy Freighter"
+		licenses
+			Remnant
+		cost 34600000
+		"shields" 25000
+		"hull" 11000
+		"required crew" 14
+		"bunks" 46
+		"cargo space" 547
+		"mass" 720
+		"drag" 7.0
+		"heat dissipation" 0.7
+		"fuel capacity" 600
+		"ramscoop" 3
+		"engine capacity" 217
+		"outfit space" 620
+		"weapon capacity" 157
+		"shield generation" 4.2
+		"shield energy" 2.4
+		"hull repair rate" 0.9
+		"hull energy" 0.5
+		weapon
+			"blast radius" 360
+			"shield damage" 3600
+			"hull damage" 1800
+			"hit force" 5400
+	outfits
+		"Inhibitor Cannon" 2
+		"Thrasher Turret"
+		"Point Defense Turret" 2
+
+		"Aeon Cell"
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor" 2
+		"Thermoelectric Cooler" 9
+		"Emergency Ramscoop"
+		"Quantum Key Stone"
+		"Tuning Rifle" 14
+
+		"Forge-Class Thruster"
+		"Smelter-Class Steering"
+		Hyperdrive
+
+	engine 22 92 0.7
+	engine -22 92 0.7
+	engine 0 114 1.1
+	gun 8 -135 "Inhibitor Cannon"
+	gun -8 -135 "Inhibitor Cannon"
+	turret 0 -67 "Thrasher Turret"
+	turret 56 35 "Point Defense Turret"
+	turret -56 35 "Point Defense Turret"
+	explode "small explosion" 30
+	explode "medium explosion" 60
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large" 1
+	description "The Pelican is closely based on the original semi-organic ships the Remnant found in the Ember Wastes. While they are technically not alive, their internal mechanisms and method of construction bear such a close resemblance to living organisms that they are often considered as such. These ships serve as the backbone of Remnant salvage efforts, as well as their resource distribution network."
+

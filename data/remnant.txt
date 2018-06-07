@@ -34,6 +34,9 @@ fleet "Small Remnant"
 		"Albatross (Turret)"
 	variant 1
 		"Albatross (Heavy)"
+	variant 20
+		"Pelican"
+
 
 fleet "Large Remnant"
 	government "Remnant"
@@ -65,6 +68,15 @@ fleet "Large Remnant"
 	variant 2
 		"Albatross (Heavy)"
 		"Albatross (Turret)"
+	variant 10
+		"Pelican" 3
+		"Albatross" 1
+	variant 10
+		"Pelican" 2
+		"Starling" 3
+	variant 10
+		"Pelican" 1
+		"Starling" 2
 
 
 
@@ -88,6 +100,16 @@ phrase "remnant"
 		"Green"
 		"New"
 		"Far"
+		"Ancient"
+		"Serene"
+		"Eternal"
+		"Gray"
+		"Starlit"
+		"Moonlit"
+		"Infinite"
+		"Steadfast"
+		"White"
+		"Black"
 	word
 		" "
 	word
@@ -110,6 +132,18 @@ phrase "remnant"
 		"Anchor"
 		"Beam"
 		"Forest"
+		"Mountain"
+		"Glen"
+		"Stronghold"
+		"Dream"
+		"Wind"
+		"Storm"
+		"Holdfast"
+		"Sea"
+		"Tower"
+		"Redoubt"
+		"Pillar"
+		"Matrix"
 	word
 		" "
 	word
@@ -131,12 +165,18 @@ phrase "remnant"
 		"Lost"
 		"Changed"
 		"Alive"
+		"Restored"
+		"Preserved"
+		"Renewed"
+		"Reborn"
+		"Ascending"
+		"Soaring"
+		"Enduring"
 
 
 
 shipyard "Remnant"
 	"Starling"
-	"Albatross"
 
 shipyard "Remnant Gascraft"
 	"Gascraft"
@@ -168,3 +208,5 @@ outfitter "Remnant"
 	"Fuel Pod"
 	"Cargo Scanner"
 	"Outfit Scanner"
+	"Scanner Software"
+	"Tuning Rifle"
