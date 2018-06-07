@@ -243,7 +243,7 @@ outfit "Emergency Ramscoop"
 	"mass" 4
 	"outfit space" -4
 	"ramscoop" 0.5
-	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. This ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
+	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills' which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
 
 
 outfit "Quantum Key Stone"
@@ -257,7 +257,25 @@ outfit "Quantum Key Stone"
 	"quantum keystone" 1
 	description "This precious artifact attunes a ship's quantum oscillations in a way that allows it to travel through certain otherwise impassible wormholes in the Ember Waste. The stones are rare and valuable, because they can only be mined from one location in the Waste."
 
+# Scanner:
 
+outfit "Scanner Software"
+	category "Systems"
+	licenses
+		Remnant
+	cost 100000
+	thumbnail "outfit/scanner software"
+	"mass" 0
+	"outfit space" 0
+	"cargo scan power" 8
+	"cargo scan speed" 1
+	"outfit scan power" 8
+	"outfit scan speed" 1
+	"asteroid scan power" 8
+	"tactical scan power" 10
+	"heat generation" 1
+	"energy generation" -1
+	description "The remnant are too few in number to support extensive ground-breaking research in all areas of technology, so they prefer to focus their efforts on a few areas of importance. To make up the deficiency in other areas, the Remnant rely on salvaging and reverse engineering technology from those around them. This software is a key part of this effort, as it allows any ship the capacity to do detailed close-range scans to determine what they want to target. Its range is much shorter than that of dedicated scanning equipment, but it means every Remnant ship can be on the lookout for new technology."
 
 # Engines:
 
@@ -354,6 +372,19 @@ outfit "Smelter-Class Steering"
 	"turning energy" 5.21
 	"turning heat" 6.2
 	description "It's unclear whether the Remnant's powerful engine systems are purely their own invention, or whether they are partly inspired by alien technology."
+
+#Hand to Hand weapons:
+
+outfit "Tuning Rifle"
+	category "Hand to Hand"
+	licenses
+		Remnant
+	cost 65000
+	thumbnail "outfit/remnant rifle"
+	"capture attack" 1.2
+	"capture defense" 1.8
+	"unplunderable" 1
+	description "The Tuning Rifle uses sound waves to destabilize the weaker internal tissue of many races and liquefies them."
 
 outfit "Remnant License"
 	category "Special"
