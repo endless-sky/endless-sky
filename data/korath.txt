@@ -202,69 +202,69 @@ fleet "Korath Raid"
 		"Korath Chaser" 2
 
 fleet "Korath Home"
-    government "Korath"
-    names "korath"
-    fighters "korath"
-    cargo 3
-    personality
-        timid opportunistic
-    variant 12
-        "Korath World-Ship"
-    variant 12
-        "Korath World-Ship B"
-    variant 12
-        "Korath World-Ship C"
-    variant 4
-        "Korath World-Ship"
-        "Korath Hunter" 4
-    variant 4
-        "Korath World-Ship B"
-        "Korath Hunter" 4
-    variant 4
-        "Korath World-Ship C"
-        "Korath Hunter" 4        
-    variant 2
-        "Korath World-Ship"
-        "Korath Hunter" 6
-    variant 2
-        "Korath World-Ship B"
-        "Korath Hunter" 6
-    variant 2
-        "Korath World-Ship C"
-        "Korath Hunter" 6     
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 3
+	personality
+		timid opportunistic
+	variant 12
+		"Korath World-Ship"
+	variant 12
+		"Korath World-Ship B"
+	variant 12
+		"Korath World-Ship C"
+	variant 4
+		"Korath World-Ship"
+		"Korath Hunter" 4
+	variant 4
+		"Korath World-Ship B"
+		"Korath Hunter" 4
+	variant 4
+		"Korath World-Ship C"
+		"Korath Hunter" 4		
+	variant 2
+		"Korath World-Ship"
+		"Korath Hunter" 6
+	variant 2
+		"Korath World-Ship B"
+		"Korath Hunter" 6
+	variant 2
+		"Korath World-Ship C"
+		"Korath Hunter" 6	 
 
 
 fleet "Korath Ember Wastes"
-    government "Korath"
-    names "korath"
-    fighters "korath"
-    cargo 1
-    personality
-        disables plunders opportunistic harvests
-    variant
-        "Korath Hunter" 4    
-    variant
-        "Korath Hunter" 6    
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests
+	variant
+		"Korath Hunter" 4	
+	variant
+		"Korath Hunter" 6	
 
 
 fleet "Korath Raid Remnant"
-    government "Korath"
-    names "korath"
-    fighters "korath"
-    cargo 1
-    personality
-        disables plunders opportunistic harvests
-    variant 4
-        "Korath Raider"
-        "Korath Chaser" 2
-        "Korath Hunter" 3
-    variant 3
-        "Korath Raider"
-        "Korath Chaser" 2
-    variant 3
-        "Korath Hunter" 6        
-    variant 2
-        "Korath Hunter" 10		
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests
+	variant 4
+		"Korath Raider"
+		"Korath Chaser" 2
+		"Korath Hunter" 3
+	variant 3
+		"Korath Raider"
+		"Korath Chaser" 2
+	variant 3
+		"Korath Hunter" 6		
+	variant 2
+		"Korath Hunter" 10		
 
 		
 fleet "Kor Efret Home"
