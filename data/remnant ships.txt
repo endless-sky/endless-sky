@@ -10,9 +10,9 @@
 
 ship "Starling"
 	sprite "ship/starling"
+	thumbnail "thumbnail/starling"
 	attributes
 		category "Light Warship"
-		thumbnail "thumbnail/starling"
 		licenses
 			Remnant
 		cost 8800000
