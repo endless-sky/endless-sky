@@ -373,18 +373,7 @@ outfit "Smelter-Class Steering"
 	"turning heat" 6.2
 	description "It's unclear whether the Remnant's powerful engine systems are purely their own invention, or whether they are partly inspired by alien technology."
 
-#Hand to Hand weapons:
 
-outfit "Tuning Rifle"
-	category "Hand to Hand"
-	licenses
-		Remnant
-	cost 65000
-	thumbnail "outfit/remnant rifle"
-	"capture attack" 1.2
-	"capture defense" 1.8
-	"unplunderable" 1
-	description "The Tuning Rifle uses sound waves to destabilize the weaker internal tissue of many races and liquefies them."
 
 outfit "Remnant License"
 	category "Special"
