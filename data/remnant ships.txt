@@ -12,6 +12,7 @@ ship "Starling"
 	sprite "ship/starling"
 	attributes
 		category "Light Warship"
+		thumbnail "thumbnail/starling"
 		licenses
 			Remnant
 		cost 8800000
@@ -146,6 +147,7 @@ ship "Starling" "Starling (Thrasher)"
 ship "Albatross"
 	plural "Albatrosses"
 	sprite "ship/albatross"
+	thumbnail "thumbnail/albatross"
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -296,6 +298,7 @@ ship "Albatross" "Albatross (Heavy)"
 ship "Gascraft"
 	plural "Gascraft"
 	sprite "ship/gascraft"
+	thumbnail "thumbnail/gascraft"
 	attributes
 		category Transport
 		cost 530000

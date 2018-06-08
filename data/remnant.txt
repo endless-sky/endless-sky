@@ -209,4 +209,5 @@ outfitter "Remnant"
 	"Cargo Scanner"
 	"Outfit Scanner"
 	"Scanner Software"
-	"Tuning Rifle"
+#	"Tuning Rifle"
+
