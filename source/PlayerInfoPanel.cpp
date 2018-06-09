@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "PlayerInfoPanel.h"
 
+#include "Command.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
@@ -31,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <utility>
 
 using namespace std;
 
@@ -51,7 +53,7 @@ namespace {
 			if(it->first.compare(0, prefix.length(), prefix))
 				break;
 			if(it->second > 0)
-				match.push_back(pair<int, string>(it->second, it->first.substr(prefix.length()) + suffix));
+				match.emplace_back(it->second, it->first.substr(prefix.length()) + suffix);
 		}
 		return match;
 	}
@@ -74,11 +76,10 @@ namespace {
 			}
 		}
 		
-		Color dim = *GameData::Colors().Get("medium");
-		Color bright = *GameData::Colors().Get("bright");
+		const Color &dim = *GameData::Colors().Get("medium");
 		table.DrawGap(10);
 		table.DrawUnderline(dim);
-		table.Draw(title, bright);
+		table.Draw(title, *GameData::Colors().Get("bright"));
 		table.Advance();
 		table.DrawGap(5);
 		

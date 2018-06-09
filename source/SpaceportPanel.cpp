@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "FontSet.h"
 #include "GameData.h"
-#include "Information.h"
 #include "Interface.h"
 #include "News.h"
 #include "Planet.h"

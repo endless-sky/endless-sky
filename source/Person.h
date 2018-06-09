@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class Government;
 class Ship;
+class System;
 
 
 

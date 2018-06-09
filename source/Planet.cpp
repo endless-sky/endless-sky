@@ -24,6 +24,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "System.h"
 
+#include <algorithm>
+
 using namespace std;
 
 namespace {

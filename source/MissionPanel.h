@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Color;
 class Mission;
+class PlayerInfo;
 
 
 

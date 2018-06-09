@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dialog.h"
 #include "Format.h"
 #include "GameData.h"
+#include "GameEvent.h"
 #include "Messages.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
