@@ -73,6 +73,26 @@ outfit "Triple Plasma Core"
 
 
 
+outfit "Fuel Station (Small)"
+	category "Systems"
+	cost 170000
+	thumbnail "outfit/unknown"
+	"mass" 9
+	"outfit space" -9
+	"fuel capacity" 100
+	"ramscoop" .5
+	description "This is the smaller version of the bulky fuel station used in World-Ships."
+
+outfit "Fuel Station (Large)"
+	category "Systems"
+	cost 690000
+	thumbnail "outfit/unknown"
+	"mass" 30
+	"outfit space" -30
+	"fuel capacity" 400
+	"ramscoop" 2
+	description "Because of their habit of raiding systems near and far, Korath ships need a considerable amount of hyperspace fuel for their jump drives. The Fuel Station is a bulky fuel storage that has both a large capacity and a ramscoop to harvest additional fuel."
+
 outfit "Small Heat Shunt"
 	category "Systems"
 	cost 180000
@@ -90,7 +110,6 @@ outfit "Large Heat Shunt"
 	"outfit space" -24
 	"cooling" 54
 	description "Without these powerful cooling systems, most Korath warships would overheat within seconds as soon as they began to fire their weapons."
-
 
 outfit "Systems Core (Small)"
 	plural "Systems Cores (Small)"
