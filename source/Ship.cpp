@@ -17,15 +17,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Effect.h"
 #include "Flotsam.h"
+#include "Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Mask.h"
 #include "Messages.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Projectile.h"
 #include "Random.h"
 #include "ShipEvent.h"
+#include "SpriteSet.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Visual.h"
@@ -133,6 +136,8 @@ void Ship::Load(const DataNode &node)
 		}
 		if(key == "sprite")
 			LoadSprite(child);
+		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
+			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "name" && child.Size() >= 2)
 			name = child.Token(1);
 		else if(key == "plural" && child.Size() >= 2)
@@ -294,13 +299,18 @@ void Ship::FinishLoading(bool isNewInstance)
 {
 	// All copies of this ship should save pointers to the "explosion" weapon
 	// definition stored safely in the ship model, which will not be destroyed
-	// until GameData is when the program quits.
+	// until GameData is when the program quits. Also copy other attributes of
+	// the base model if no overrides were given.
 	if(GameData::Ships().Has(modelName))
 	{
 		const Ship *model = GameData::Ships().Get(modelName);
 		explosionWeapon = &model->BaseAttributes();
-		pluralModelName = model->pluralModelName;
-		noun = model->noun;
+		if(pluralModelName.empty())
+			pluralModelName = model->pluralModelName;
+		if(noun.empty())
+			noun = model->noun;
+		if(!thumbnail)
+			thumbnail = model->thumbnail;
 	}
 	
 	// If this ship has a base class, copy any attributes not defined here.
@@ -634,6 +644,14 @@ const string &Ship::Description() const
 
 
 
+// Get the shipyard thumbnail for this ship.
+const Sprite *Ship::Thumbnail() const
+{
+	return thumbnail;
+}
+
+
+
 // Get this ship's cost.
 int64_t Ship::Cost() const
 {
@@ -664,6 +682,8 @@ string Ship::FlightCheck() const
 	double thrustEnergy = attributes.Get("thrusting energy");
 	double turn = attributes.Get("turn");
 	double turnEnergy = attributes.Get("turning energy");
+	double hyperDrive = attributes.Get("hyperdrive");
+	double jumpDrive = attributes.Get("jump drive");
 	
 	// Error conditions:
 	if(IdleHeat() >= MaximumHeat())
@@ -688,6 +708,8 @@ string Ship::FlightCheck() const
 		return "limited turn?";
 	if(energy - .8 * solar < .2 * (turnEnergy + thrustEnergy))
 		return "solar power?";
+	if(!hyperDrive && !jumpDrive && !canBeCarried)
+		return "no hyperdrive?";
 	
 	return "";
 }
@@ -830,9 +852,22 @@ void Ship::SetHail(const Phrase &phrase)
 
 
 
-string Ship::GetHail() const
+string Ship::GetHail(const PlayerInfo &player) const
 {
-	return hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
+	map<string, string> subs;
+	
+	subs["<first>"] = player.FirstName();
+	subs["<last>"] = player.LastName();
+	if(player.Flagship())
+		subs["<ship>"] = player.Flagship()->Name();
+	
+	subs["<npc>"] = Name();
+	subs["<system>"] = player.GetSystem()->Name();
+	subs["<date>"] = player.GetDate().ToString();
+	subs["<day>"] = player.GetDate().LongString();
+	
+	string hailStr = hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
+	return Format::Replace(hailStr, subs);
 }
 
 

@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 #include <string>
+#include <vector>
 
 class Angle;
 class Government;
@@ -111,6 +112,13 @@ protected:
 	std::map<const Government *, double> closeGovernments;
 	// Systems in which your escorts are located.
 	std::map<const System *, bool> escortSystems;
+	// Center the view on the given system (may actually be slightly offset
+	// to account for panels on the screen).
+	void CenterOnSystem(const System *system);
+	
+	// Cache the map layout, so it doesn't have to be re-calculated every frame.
+	// The cache must be updated when the coloring mode changes.
+	void UpdateCache();
 	
 	
 private:
@@ -125,6 +133,35 @@ private:
 	void DrawMissions();
 	void DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger = false);
 	static void DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack = true, bool bigger = false);
+	
+	
+private:
+	// This is the coloring mode currently used in the cache.
+	int cachedCommodity = -10;
+	
+	class Node {
+	public:
+		Node(const Point &position, const Color &color, const std::string &name, const Color &nameColor, const Government *government)
+			: position(position), color(color), name(name), nameColor(nameColor), government(government) {}
+		
+		Point position;
+		Color color;
+		std::string name;
+		Color nameColor;
+		const Government *government;
+	};
+	std::vector<Node> nodes;
+	
+	class Link {
+	public:
+		Link(const Point &start, const Point &end, const Color &color)
+			: start(start), end(end), color(color) {}
+		
+		Point start;
+		Point end;
+		Color color;
+	};
+	std::vector<Link> links;
 };
 
 

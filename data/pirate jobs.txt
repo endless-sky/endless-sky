@@ -1378,10 +1378,9 @@ mission "Slave Transport [0]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
-	cargo "slave food" 1
-		illegal -1
+	illegal -1
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
@@ -1399,10 +1398,9 @@ mission "Slave Transport [1]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
-	cargo "slave food" 1
-		illegal -1
+	illegal -1
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
@@ -1420,10 +1418,9 @@ mission "Slave Transport [2]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
-	cargo "slave food" 1
-		illegal -1
+	illegal -1
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
@@ -1443,10 +1440,9 @@ mission "Bulk Slave Transport [0]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
-	cargo "slave food" 1
-		illegal -1
+	illegal -1
 	to offer
 		random < 15
 		"reputation: Pirate" > 0
@@ -1464,10 +1460,9 @@ mission "Bulk Slave Transport [1]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves and <cargo> to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
-	cargo "slave food" 1
-		illegal -1
+	illegal -1
 	to offer
 		random < 15
 		"reputation: Pirate" > 0

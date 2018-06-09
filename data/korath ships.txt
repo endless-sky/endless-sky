@@ -10,6 +10,7 @@
 
 ship "Korath Raider"
 	sprite "ship/raider"
+	thumbnail "thumbnail/raider"
 	attributes
 		category "Heavy Warship"
 		"cost" 16570000
@@ -93,6 +94,7 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 
 ship "Korath Chaser"
 	sprite "ship/chaser"
+	thumbnail "thumbnail/chaser"
 	attributes
 		category "Fighter"
 		"cost" 671000
@@ -131,6 +133,7 @@ ship "Korath Chaser"
 
 ship "Korath World-Ship"
 	sprite "ship/world-ship a"
+	thumbnail "thumbnail/world-ship"
 	attributes
 		category "Heavy Freighter"
 		cost 27690000
@@ -288,6 +291,7 @@ ship "Korath World-Ship" "Korath World-Ship C (Jump)"
 
 ship "Kar Ik Vot 349"
 	sprite "ship/kar ik vot 349"
+	thumbnail "thumbnail/kar ik vot 349"
 	attributes
 		category "Heavy Warship"
 		"cost" 41280000
@@ -442,6 +446,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
 
 ship "Tek Far 71 - Lek"
 	sprite "ship/tek far 71 lek"
+	thumbnail "thumbnail/tek far 71 lek"
 	attributes
 		category "Medium Warship"
 		"cost" 22870000
@@ -534,6 +539,7 @@ ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
 
 ship "Tek Far 78 - Osk"
 	sprite "ship/tek far 78 osk"
+	thumbnail "thumbnail/tek far 78 osk"
 	attributes
 		category "Medium Warship"
 		"cost" 25630000
@@ -625,6 +631,7 @@ ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
 
 ship "Tek Far 109"
 	sprite "ship/tek far 109"
+	thumbnail "thumbnail/tek far 109"
 	attributes
 		category "Medium Warship"
 		"cost" 18290000
@@ -695,6 +702,7 @@ ship "Tek Far 109"
 
 ship "Met Par Tek 53"
 	sprite "ship/met par tek 53"
+	thumbnail "thumbnail/met par tek 53"
 	attributes
 		category "Light Warship"
 		"cost" 14480000
@@ -783,6 +791,7 @@ ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
 
 ship "Far Lek 14"
 	sprite "ship/far lek 14"
+	thumbnail "thumbnail/far lek 14"
 	attributes
 		category "Drone"
 		"cost" 573000
@@ -822,6 +831,7 @@ ship "Far Lek 14"
 
 ship "Far Osk 27"
 	sprite "ship/far osk 27"
+	thumbnail "thumbnail/far osk 27"
 	attributes
 		category "Fighter"
 		"cost" 761000
@@ -861,6 +871,7 @@ ship "Far Osk 27"
 
 ship "Model 8"
 	sprite "ship/model 8"
+	thumbnail "thumbnail/model 8"
 	attributes
 		category "Interceptor"
 		"cost" 3725000
@@ -906,6 +917,7 @@ ship "Model 8"
 
 ship "Model 16"
 	sprite "ship/model 16"
+	thumbnail "thumbnail/model 16"
 	attributes
 		category "Light Warship"
 		"cost" 8449000
@@ -958,6 +970,7 @@ ship "Model 16"
 
 ship "Model 32"
 	sprite "ship/model 32"
+	thumbnail "thumbnail/model 32"
 	attributes
 		category "Light Warship"
 		"cost" 12765000
@@ -1011,6 +1024,7 @@ ship "Model 32"
 
 ship "Model 64"
 	sprite "ship/model 64"
+	thumbnail "thumbnail/model 64"
 	attributes
 		category "Medium Warship"
 		"cost" 19552000
@@ -1065,6 +1079,7 @@ ship "Model 64"
 
 ship "Model 128"
 	sprite "ship/model 128"
+	thumbnail "thumbnail/model 128"
 	attributes
 		category "Medium Warship"
 		"cost" 24073000
@@ -1121,6 +1136,7 @@ ship "Model 128"
 
 ship "Model 256"
 	sprite "ship/model 256"
+	thumbnail "thumbnail/model 256"
 	attributes
 		category "Heavy Warship"
 		"cost" 34920000
@@ -1178,6 +1194,7 @@ ship "Model 256"
 
 ship "Model 512"
 	sprite "ship/model 512"
+	thumbnail "thumbnail/model 512"
 	attributes
 		category "Heavy Warship"
 		"cost" 40375000
