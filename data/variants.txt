@@ -55,7 +55,7 @@ ship "Argosy" "Argosy (Missile)"
 ship "Argosy" "Argosy (Proton)"
 	outfits
 		"Proton Gun" 2
-		"Proton Turret" 2
+		"Proton Turret"
 		"NT-200 Nucleovoltaic"
 		"Supercapacitor"
 		"D67-TM Shield Generator"

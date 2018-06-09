@@ -469,7 +469,7 @@ ship "Modified Osprey"
 		"heat dissipation" .6
 		"fuel capacity" 625
 		"cargo space" 80
-		"outfit space" 2167
+		"outfit space" 2172
 		"weapon capacity" 850
 		"engine capacity" 499
 		"afterburner fuel" -.678
