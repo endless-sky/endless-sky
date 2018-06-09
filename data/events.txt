@@ -791,6 +791,8 @@ event "start of hostilities"
 	government "Republic"
 		"attitude toward"
 			"Free Worlds" -.2
+			"Merchant" .01
+			"Pirate" -.01
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" -.2
@@ -1479,6 +1481,8 @@ event "fw armistice"
 	government Republic
 		"attitude toward"
 			"Free Worlds" 0
+			"Merchant" .25
+			"Pirate" -.3
 	government "Free Worlds"
 		"attitude toward"
 			Republic 0
@@ -2389,6 +2393,8 @@ event "fwc peace with the navy"
 	government "Republic"
 		"attitude toward"
 			"Free Worlds" 0
+			"Merchant" .25
+			"Pirate" -.3
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" 0
