@@ -19,7 +19,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
-#include "Flotsam.h"
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
@@ -32,10 +31,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class DataWriter;
+class Flotsam;
 class Government;
 class Minable;
 class Phrase;
 class Planet;
+class PlayerInfo;
 class Projectile;
 class StellarObject;
 class System;
@@ -122,6 +123,8 @@ public:
 	const std::string &Noun() const;
 	// Get this ship's description.
 	const std::string &Description() const;
+	// Get the shipyard thumbnail for this ship.
+	const Sprite *Thumbnail() const;
 	// Get this ship's cost.
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
@@ -152,7 +155,7 @@ public:
 	// Get a random hail message, or set the object used to generate them. If no
 	// object is given the government's default will be used.
 	void SetHail(const Phrase &phrase);
-	std::string GetHail() const;
+	std::string GetHail(const PlayerInfo &player) const;
 	
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
@@ -394,6 +397,7 @@ private:
 	std::string pluralModelName;
 	std::string noun;
 	std::string description;
+	const Sprite *thumbnail = nullptr;
 	// Characteristics of this particular ship:
 	std::string name;
 	bool canBeCarried = false;

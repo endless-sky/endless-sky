@@ -26,8 +26,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
-#include "System.h"
 #include "UI.h"
+
+class System;
 
 using namespace std;
 

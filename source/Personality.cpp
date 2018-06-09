@@ -49,6 +49,7 @@ namespace {
 	const int TARGET = (1 << 25);
 	const int MARKED = (1 << 26);
 	const int PRUDENT = (1 << 27);
+	const int LAUNCHING = (1 << 28);
 	
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -78,6 +79,7 @@ namespace {
 		{"opportunistic", OPPORTUNISTIC},
 		{"target", TARGET},
 		{"marked", MARKED},
+		{"launching", LAUNCHING},
 		{"prudent", PRUDENT}
 	};
 	
@@ -247,6 +249,13 @@ bool Personality::IsEntering() const
 bool Personality::IsWaiting() const
 {
 	return flags & WAITING;
+}
+
+
+
+bool Personality::IsLaunching() const
+{
+	return flags & LAUNCHING;
 }
 
 

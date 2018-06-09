@@ -27,6 +27,7 @@ class DataNode;
 class DataWriter;
 class Government;
 class PlayerInfo;
+class Ship;
 class ShipEvent;
 class System;
 class UI;

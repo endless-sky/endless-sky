@@ -21,8 +21,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <list>
 #include <map>
-#include <string>
 #include <set>
+#include <string>
 
 class DataNode;
 class DataWriter;
@@ -71,8 +71,10 @@ public:
 	
 	// Information about what you are doing.
 	const Planet *Destination() const;
-	std::set<const System *> Waypoints() const;
-	std::set<const Planet *> Stopovers() const;
+	const std::set<const System *> &Waypoints() const;
+	const std::set<const System *> &VisitedWaypoints() const;
+	const std::set<const Planet *> &Stopovers() const;
+	const std::set<const Planet *> &VisitedStopovers() const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
 	int IllegalCargoFine() const;

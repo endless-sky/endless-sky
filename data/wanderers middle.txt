@@ -410,28 +410,28 @@ mission "Wanderers: Quarg Assistance 2"
 		log "The Quarg (or possibly, a faction within the Quarg, or even just a group of Quarg acting on their own) have agreed to send three of their warships to help defend the Wanderer settlement in Korath space. (Or maybe they are sending the ships because they view the Wanderers as invaders and want to keep an eye on them. It is not easy to determine their true intentions.)"
 		log "Factions" "Wanderers" `According to the Quarg, the Wanderers are not native to this galaxy, but were brought here from somewhere else (presumably by the Pug).`
 		conversation
-			`The Quarg do not generally share any information on how their leadership hierarchy works, if such a hierarchy even exists, so your best bet to find help for the Wanderers is just to ask around until you find the right person. You flag down the first Quarg who passes you in the hallway. "How can I help you, human?" it asks.`
+			`The Quarg do not generally share any information on how their leadership hierarchy works, if such a hierarchy even exists, so your best bet to find help for the Wanderers is just to ask around until you find the right person. You flag down the first Quarg who passes you in the hallway. "So," it says, "us the Quarg the human sojourner has come to visit. Of assistance how may I be?"`
 			`	"Well," you say, "I'm here on behalf of a species that has recently settled on one of the abandoned Korath worlds. I'm hoping you can help protect them."`
-			`	It says, "Yes, we are aware that you are a friend of the Wanderers, who are friends of the insufferable Pug. But why should we assist them?"`
+			`	It says, "Yes, aware are we that befriended have you the eternally drifting Wanderers, who are friends of the insufferable Pug. But wherefore aid them should we?"`
 			choice
 				`	"The Wanderers know how to repair planetary ecosystems. They could make the Korath worlds livable again."`
 				`	"The Wanderers may be able to help you deal with the hostile automata."`
 					goto automata
 
-			`	"Are they also able to make the Korath worthy of inhabiting those worlds again? Are they able to make the Korath wise enough to not ruin their homes once more? Or do the abilities of these extragalactic interlopers not extend so far?"`
+			`	"Are they able also to make the Korathi worthy to inhabit those worlds again? Are they able to make wise enough the Korathi to not ruin their homes once more? Or do the abilities of these extragalactic interlopers not extend so far?"`
 				goto next
 
 			label automata
-			`	"Are their ships more powerful than ours?" asks the Quarg. "Do they have greater wisdom than we do? Or are they more numerous than we? For we are trillions. What could these extragalactic interlopers do, that we have not already attempted?"`
+			`	"Are their vessels and arms mightier than ours?" asks the Quarg. "Have they a wisdom vaster than our own? Or are they more numerous than we? For we are trillions. What could these extragalactic interlopers achieve, that long before your emergence attempted have we not?"`
 
 			label next
-			`	When you don't respond, the Quarg continues, "These Wanderers are not indigenous to our galaxy, and thus we have no obligation to prevent their extinction. The Korath are our charge and our responsibility. So tell me, why it is a good thing for the Korath that these aliens are invading their territory."`
+			`	When you don't respond, the Quarg continues, "These Wanderers are not indigenous to our galaxy, and thus have not we an obligation to avert their extinction. The Korathi are our charge and our responsibility. So implore I you to tell me, why a good thing for the Korathi it is that their shattered territory these aliens invade."`
 			choice
 				`	"The Wanderers could help the Korath by teaching them to take care of their worlds better."`
 				`	"The Wanderers don't want to stay here forever; they will move on once the worlds are repaired."`
 
-			`	The Quarg blinks slowly, with its strange eyelids moving from side to side rather than top to bottom. Then it says, "We will give you three warships to travel with you back to the settlement of these friends of the loathsome Pug. They will help keep the drones at bay. And they will keep watch on the Wanderers, and judge if they are as benevolent as you say."`
-			`	It is extremely strange that the first random Quarg you accosted in the hallway happened to be one with the authority to launch a fleet of warships, but it would be impolite to question such a generous offer. You thank the Quarg and return to your ship. Hopefully the Wanderers will be glad for the protection and will not object to having a Quarg fleet overhead scrutinizing their actions.`
+			`	The Quarg blinks slowly, with its strange eyelids moving from side to side rather than top to bottom. Then it says, "Grant you shall we three warships to with you travel back to the settlement of these friends of the loathsome Pug. They will help to keep the death-bringing robots at bay. And oversee will they the Wanderers, and judge if as benevolent as you say are they."`
+			`	It is extremely strange that the first random Quarg you accosted in the hallway happened to be one with the authority to launch a fleet of warships, but it would be impolite to question such a generous, if extremely verbose offer. You thank the Quarg and return to your ship. Hopefully the Wanderers will be glad for the protection and will not object to having a Quarg fleet overhead scrutinizing their actions.`
 				accept
 	npc accompany save
 		government "Quarg"
