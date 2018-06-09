@@ -231,12 +231,14 @@ int main(int argc, char *argv[])
 		bool isPaused = false;
 		// If fast forwarding, keep track of whether the current frame should be drawn.
 		int skipFrame = 0;
+		// Limit how quickly fullscreen mode can be toggled.
+		int toggleTimeout = 0;
 		while(!menuPanels.IsDone())
 		{
+			if(toggleTimeout)
+				--toggleTimeout;
 			// Handle any events that occurred in this frame.
 			SDL_Event event;
-			// Don't toggle fullscreen twice in a single frame.
-			bool hasToggledFullscreen = false;
 			while(SDL_PollEvent(&event))
 			{
 				UI &activeUI = (menuPanels.IsEmpty() ? gamePanels : menuPanels);
@@ -270,14 +272,14 @@ int main(int argc, char *argv[])
 					if(!isFullscreen)
 						SDL_GetWindowSize(window, &windowWidth, &windowHeight);
 				}
-				else if(event.type == SDL_KEYDOWN && !hasToggledFullscreen
+				else if(event.type == SDL_KEYDOWN && !toggleTimeout
 						&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
 						|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
 				{
 					// Toggle full-screen mode. This will generate a window size
 					// change event, so no need to adjust the viewport here.
 					isFullscreen = !isFullscreen;
-					hasToggledFullscreen = true;
+					toggleTimeout = 30;
 					if(!isFullscreen)
 					{
 						SDL_SetWindowFullscreen(window, 0);
