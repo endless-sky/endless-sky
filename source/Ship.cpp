@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
+#include "Flotsam.h"
 #include "Format.h"
 #include "GameData.h"
 #include "Government.h"
@@ -28,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "ShipEvent.h"
 #include "SpriteSet.h"
+#include "StellarObject.h"
 #include "System.h"
 #include "Visual.h"
 

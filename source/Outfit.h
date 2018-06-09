@@ -13,15 +13,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef OUTFIT_H_
 #define OUTFIT_H_
 
-#include "Body.h"
-#include "Dictionary.h"
 #include "Weapon.h"
+
+#include "Dictionary.h"
 
 #include <map>
 #include <string>
 #include <utility>
 #include <vector>
 
+class Body;
 class DataNode;
 class Effect;
 class Sound;

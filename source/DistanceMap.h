@@ -18,9 +18,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <set>
 #include <utility>
 
+class PlayerInfo;
 class Ship;
 class System;
-class PlayerInfo;
 
 
 

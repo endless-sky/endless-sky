@@ -14,11 +14,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define LOGBOOK_PANEL_H_
 
 #include "Panel.h"
-#include "PlayerInfo.h"
+
+#include "Date.h"
 
 #include <map>
 #include <string>
 #include <vector>
+
+class PlayerInfo;
 
 
 

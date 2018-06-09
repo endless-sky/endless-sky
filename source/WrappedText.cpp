@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "WrappedText.h"
 
 #include "Font.h"
-#include "Point.h"
 
 #include <cstring>
 
