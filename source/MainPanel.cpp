@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MainPanel.h"
 
 #include "BoardingPanel.h"
-#include "Command.h"
 #include "Dialog.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -33,6 +32,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Preferences.h"
 #include "Random.h"
 #include "Screen.h"
+#include "Ship.h"
+#include "ShipEvent.h"
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -102,8 +103,11 @@ void MainPanel::Step()
 		bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
 		if(isActive && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
 			isActive = !DoHelp("stranded");
-		if(isActive && flagship->Position().Length() > 10000. && player.GetDate() <= GameData::Start().GetDate() + 4 
-			&& !flagship->IsHyperspacing())
+		shared_ptr<Ship> target = flagship->GetTargetShip();
+		if(isActive && target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
+			isActive = !DoHelp("friendly disabled");
+		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
+				&& player.GetDate() <= GameData::Start().GetDate() + 4)
 		{
 			++lostness;
 			int count = 1 + lostness / 3600;

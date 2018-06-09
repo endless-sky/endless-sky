@@ -25,10 +25,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class Outfit;
 class Planet;
 class PlayerInfo;
 class Ship;
-class Outfit;
 
 
 

@@ -15,11 +15,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Account.h"
 #include "CargoHold.h"
+#include "DataNode.h"
 #include "Date.h"
 #include "Depreciation.h"
 #include "GameEvent.h"
 #include "Mission.h"
-#include "Planet.h"
 
 #include <list>
 #include <map>
@@ -29,7 +29,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <utility>
 #include <vector>
 
-class DataNode;
 class Government;
 class Outfit;
 class Planet;

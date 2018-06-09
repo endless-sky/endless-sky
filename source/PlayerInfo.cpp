@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
-#include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
 #include "Files.h"

@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dialog.h"
 #include "FillShader.h"
 #include "GameData.h"
+#include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "UI.h"
