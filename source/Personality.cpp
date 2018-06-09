@@ -48,8 +48,8 @@ namespace {
 	const int OPPORTUNISTIC = (1 << 24);
 	const int TARGET = (1 << 25);
 	const int MARKED = (1 << 26);
-	const int PRUDENT = (1 << 27);
-	const int LAUNCHING = (1 << 28);
+	const int LAUNCHING = (1 << 27);
+	const int PRUDENT = (1 << 28);
 	
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
