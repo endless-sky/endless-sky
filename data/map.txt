@@ -13,57 +13,57 @@ galaxy "Milky Way"
 	sprite ui/galaxy
 
 galaxy "label core"
-	pos -136 130
+	pos -146 152
 	sprite label/core
 
 galaxy "label deep"
-	pos -658 -300
+	pos -653 -255
 	sprite label/deep
 
 galaxy "label dirt belt"
-	pos -515 260
+	pos -481 290
 	sprite "label/dirt belt"
 
 galaxy "label earth"
-	pos -420 94
+	pos -419 94
 	sprite label/earth
 
 galaxy "label north"
-	pos -324 -332
+	pos -308 -312
 	sprite label/north
 
 galaxy "label paradise"
-	pos -345 -136
+	pos -330 -113
 	sprite label/paradise
 
 galaxy "label rim"
-	pos -778 265
+	pos -780 272
 	sprite label/rim
 
 galaxy "label south"
-	pos -566 501
+	pos -638 507
 	sprite label/south
 
 galaxy "label wanderers"
-	pos -145 -753
+	pos -174 -755
 
 galaxy "label hai"
-	pos -74 -497
+	pos -65 -482
 
 galaxy "label korath"
-	pos 165 -347
+	pos 138 -306
 
 galaxy "label saryds"
-	pos -1080 678
+	pos -1037 651
 
 galaxy "label kimek"
-	pos -1250 215
+	pos -1294 276
 
 galaxy "label arachi"
-	pos -750 615
+	pos -744 645
 
 galaxy "label waste"
-	pos 80 315
+	pos 127 328
 
 system "1 Axis"
 	pos -1274.63 267.214
@@ -13184,7 +13184,7 @@ system Kochab
 		period 2660.37
 
 system "Kor Ak'Mari"
-	pos 43 42
+	pos 43 22
 	government Korath
 	habitable 625
 	belt 1606
@@ -19392,17 +19392,6 @@ system Sadr
 		sprite planet/miranda
 		distance 2553.34
 		period 830.739
-
-system "Sagittarius A*"
-	pos 112 22
-	government Uninhabited
-	habitable 10000
-	object
-		sprite "star/black-hole-core"
-		period 1
-	object
-		sprite "star/black-hole"
-		period 1
 
 system Saiph
 	pos -375 -390
@@ -27307,4 +27296,3 @@ planet Zug
 	tribute 1200
 		threshold 3000
 		fleet "Large Militia" 18
-
