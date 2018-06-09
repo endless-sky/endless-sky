@@ -274,14 +274,25 @@ int main(int argc, char *argv[])
 				{
 					// Toggle full-screen mode. This will generate a window size
 					// change event, so no need to adjust the viewport here.
-					isFullscreen = !isFullscreen;
-					if(!isFullscreen)
+					static time_t lastChanged = 0;
+					const time_t now = time(NULL);
+					if(now == lastChanged)
 					{
+						// Ignore extraneous SDL_KEYDOWN events when switching to fullscreen:
+						// https://bugzilla.libsdl.org/show_bug.cgi?id=3287
+					}
+					else if(isFullscreen)
+					{
+						isFullscreen = false;
 						SDL_SetWindowFullscreen(window, 0);
 						SDL_SetWindowSize(window, windowWidth, windowHeight);
 					}
 					else
+					{
+						isFullscreen = true;
 						SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+					}
+					lastChanged = now;
 				}
 				else if(activeUI.Handle(event))
 				{
