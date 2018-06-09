@@ -235,6 +235,8 @@ int main(int argc, char *argv[])
 		{
 			// Handle any events that occurred in this frame.
 			SDL_Event event;
+			// Don't toggle fullscreen twice in a single frame.
+			bool hasToggledFullscreen = false;
 			while(SDL_PollEvent(&event))
 			{
 				UI &activeUI = (menuPanels.IsEmpty() ? gamePanels : menuPanels);
@@ -268,13 +270,14 @@ int main(int argc, char *argv[])
 					if(!isFullscreen)
 						SDL_GetWindowSize(window, &windowWidth, &windowHeight);
 				}
-				else if(event.type == SDL_KEYDOWN
+				else if(event.type == SDL_KEYDOWN && !hasToggledFullscreen
 						&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
 						|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
 				{
 					// Toggle full-screen mode. This will generate a window size
 					// change event, so no need to adjust the viewport here.
 					isFullscreen = !isFullscreen;
+					hasToggledFullscreen = true;
 					if(!isFullscreen)
 					{
 						SDL_SetWindowFullscreen(window, 0);
