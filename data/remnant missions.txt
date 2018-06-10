@@ -221,7 +221,7 @@ mission "Remnant: Defense 2"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Hunter" 3
+				"Korath Chaser" 5
 		dialog "You have destroyed the Korath ships that were left over from the raid on <planet>. You can now return there to collect your payment."
 	on complete
 		payment 250000
@@ -247,7 +247,7 @@ mission "Remnant: Hunter Bounty"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Hunter" 3
+				"Korath Chaser" 6
 		dialog "You have destroyed the Korath ships. You can now return to <planet> to collect your payment."
 	on complete
 		payment 150000
@@ -294,7 +294,7 @@ mission "Remnant: Defense 3"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Hunter" 5
+				"Korath Chaser" 10
 		dialog "Now that you are alone, you are able to deploy the Remnant surveillance satellite unobserved. Time to report back to <planet>."
 	on complete
 		event "remnant: surveillance end"
@@ -818,7 +818,7 @@ mission "Remnant: Learning Sign 1"
 					goto AskSign
 				`	(Think about asking later.)`
 					defer
-				`	(Ignore it.)
+				`	(Ignore it.)`
 					decline
 			label AskSign
 			`	Looking around the spaceport, you eventually find someone at what looks remarkably like an information desk. You approach and...`

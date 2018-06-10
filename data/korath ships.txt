@@ -130,52 +130,7 @@ ship "Korath Chaser"
 	description "The Korath Chaser is a fighter carried by most of their capital ships."
 
 
-ship "Korath Hunter"
-	sprite "ship/hunter"
-	attributes
-		category "Interceptor"
-		"cost" 1143000
-		"shields" 3200
-		"hull" 1300
-		"required crew" 2
-		"bunks" 3
-		"mass" 90
-		"drag" 2.3
-		"heat dissipation" .9
-		"cargo space" 26
-		"outfit space" 218
-		"weapon capacity" 47
-		"engine capacity" 45
-		"fuel capacity" 600
-		"ramscoop" 1
-		weapon
-			"blast radius" 60
-			"shield damage" 900
-			"hull damage" 400
-			"hit force" 1000
-	outfits
-		"Korath Fire-Lance" 2
 
-		"Generator (Furnace Class)"
-		"Generator (Candle Class)"
-		"Systems Core (Small)"
-		"Small Heat Shunt" 2
-		"Korath Repeater Rifle" 2
-
-		"Thruster (Comet Class)"
-		"Steering (Comet Class)"
-		"Hyperdrive"
-
-	engine 0 46
-	engine 10 50 0.5
-	engine -10 50 0.5
-	gun 5 -38 "Korath Fire-Lance"
-	gun -4 -38 "Korath Fire-Lance"
-	explode "tiny explosion" 20
-	description "These Korath heavy interceptors are seen as far as the Ember Wastes, which they reach by strapping themselves to the hull of larger ships. Groups of young Korath brave the Wastes to test their mettle: those that return are sure to become Raider captains."
-
-
-	
 ship "Korath World-Ship"
 	sprite "ship/world-ship a"
 	thumbnail "thumbnail/world-ship"
