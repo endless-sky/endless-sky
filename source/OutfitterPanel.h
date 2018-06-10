@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sale.h"
 
 #include <map>
+#include <set>
 #include <string>
 #include <vector>
 

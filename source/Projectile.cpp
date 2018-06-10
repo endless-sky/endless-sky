@@ -13,13 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Projectile.h"
 
 #include "Effect.h"
-#include "Mask.h"
-#include "Weapon.h"
 #include "pi.h"
 #include "Random.h"
 #include "Ship.h"
-#include "Sprite.h"
 #include "Visual.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <cmath>

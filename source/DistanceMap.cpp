@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
+#include "StellarObject.h"
 #include "System.h"
 
 using namespace std;

@@ -142,6 +142,7 @@ private:
 	double requiredReputation = 0.;
 	double bribe = 0.01;
 	double security = .25;
+	bool inhabited;
 	
 	int tribute = 0;
 	const Fleet *defenseFleet = nullptr;

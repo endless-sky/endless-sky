@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 #include "Effect.h"
 #include "FillShader.h"
+#include "Fleet.h"
+#include "Flotsam.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
@@ -25,22 +27,30 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapPanel.h"
 #include "Mask.h"
 #include "Messages.h"
+#include "Minable.h"
+#include "NPC.h"
 #include "OutlineShader.h"
 #include "Person.h"
 #include "Planet.h"
+#include "PlanetLabel.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
 #include "PointerShader.h"
 #include "Preferences.h"
+#include "Projectile.h"
 #include "Random.h"
 #include "RingShader.h"
 #include "Screen.h"
+#include "Ship.h"
+#include "ShipEvent.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
 #include "StartConditions.h"
+#include "StellarObject.h"
 #include "System.h"
+#include "Visual.h"
 #include "WrappedText.h"
 
 #include <algorithm>
@@ -324,10 +334,11 @@ void Engine::Place()
 		bool isHere = (ship->GetSystem() == player.GetSystem());
 		if(isHere)
 			pos = planetPos;
-		// Check whether this ship should take off with you.
-		if(isHere && !ship->IsDisabled()
-				&& (player.GetPlanet()->CanLand(*ship) || ship->IsYours())
-				&& !(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting()))
+		// Check whether this ship should take off with you. "Launching" ships can always take
+		// off, otherwise they must be able to land and also not be flagged to stay in space.
+		if(isHere && !ship->IsDisabled() && (ship->GetPersonality().IsLaunching()
+				|| ((player.GetPlanet()->CanLand(*ship) || ship->IsYours())
+				&& !(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting()))))
 		{
 			if(player.GetPlanet())
 				ship->SetPlanet(player.GetPlanet());

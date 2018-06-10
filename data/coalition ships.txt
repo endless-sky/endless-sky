@@ -10,6 +10,7 @@
 
 ship "Arach Courier"
 	sprite "ship/arach courier"
+	thumbnail "thumbnail/arach courier"
 	attributes
 		category "Light Freighter"
 		licenses
@@ -54,6 +55,7 @@ ship "Arach Courier"
 
 ship "Arach Freighter"
 	sprite "ship/arach freighter"
+	thumbnail "thumbnail/arach freighter"
 	attributes
 		category "Light Freighter"
 		licenses
@@ -103,6 +105,7 @@ ship "Arach Freighter"
 
 ship "Arach Hulk"
 	sprite "ship/arach hulk"
+	thumbnail "thumbnail/arach hulk"
 	attributes
 		category "Heavy Freighter"
 		licenses
@@ -156,6 +159,7 @@ ship "Arach Hulk"
 
 ship "Arach Spindle"
 	sprite "ship/arach spindle"
+	thumbnail "thumbnail/arach spindle"
 	attributes
 		category "Heavy Freighter"
 		licenses
@@ -207,6 +211,7 @@ ship "Arach Spindle"
 
 ship "Arach Transport"
 	sprite "ship/arach transport"
+	thumbnail "thumbnail/arach transport"
 	attributes
 		category "Light Freighter"
 		licenses
@@ -256,6 +261,7 @@ ship "Arach Transport"
 
 ship "Heliarch Interdictor"
 	sprite "ship/heliarch interdictor"
+	thumbnail "thumbnail/heliarch interdictor"
 	attributes
 		category "Medium Warship"
 		licenses
@@ -331,6 +337,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 
 ship "Heliarch Neutralizer"
 	sprite "ship/heliarch neutralizer"
+	thumbnail "thumbnail/heliarch neutralizer"
 	attributes
 		category "Light Warship"
 		licenses
@@ -438,6 +445,7 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 
 ship "Heliarch Punisher"
 	sprite "ship/heliarch punisher"
+	thumbnail "thumbnail/heliarch punisher"
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -575,6 +583,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
 
 ship "Kimek Briar"
 	sprite "ship/kimek briar"
+	thumbnail "thumbnail/kimek briar"
 	attributes
 		category "Transport"
 		licenses
@@ -620,6 +629,7 @@ ship "Kimek Briar"
 
 ship "Kimek Spire"
 	sprite "ship/kimek spire"
+	thumbnail "thumbnail/kimek spire"
 	attributes
 		category "Transport"
 		licenses
@@ -673,6 +683,7 @@ ship "Kimek Spire"
 
 ship "Kimek Thistle"
 	sprite "ship/kimek thistle"
+	thumbnail "thumbnail/kimek thistle"
 	attributes
 		category "Transport"
 		licenses
@@ -721,6 +732,7 @@ ship "Kimek Thistle"
 
 ship "Kimek Thorn"
 	sprite "ship/kimek thorn"
+	thumbnail "thumbnail/kimek thorn"
 	attributes
 		category "Transport"
 		licenses
@@ -765,6 +777,7 @@ ship "Kimek Thorn"
 
 ship "Saryd Runabout"
 	sprite "ship/saryd runabout"
+	thumbnail "thumbnail/saryd runabout"
 	attributes
 		category "Light Freighter"
 		licenses
@@ -807,6 +820,7 @@ ship "Saryd Runabout"
 
 ship "Saryd Sojourner"
 	sprite "ship/saryd sojourner"
+	thumbnail "thumbnail/saryd sojourner"
 	attributes
 		category "Heavy Freighter"
 		licenses
@@ -861,6 +875,7 @@ ship "Saryd Sojourner"
 
 ship "Saryd Traveler"
 	sprite "ship/saryd traveler"
+	thumbnail "thumbnail/saryd traveler"
 	attributes
 		category "Heavy Freighter"
 		licenses
@@ -913,6 +928,7 @@ ship "Saryd Traveler"
 
 ship "Saryd Visitor"
 	sprite "ship/saryd visitor"
+	thumbnail "thumbnail/saryd visitor"
 	attributes
 		category "Light Freighter"
 		licenses
