@@ -24,7 +24,7 @@ outfit "Inhibitor Cannon"
 		sprite "projectile/inhibitor"
 			"frame rate" 10
 			"no repeat"
-		sound "particle"
+		sound "inhibitor"
 		"hit effect" "inhibitor impact" 3
 		"inaccuracy" .5
 		"velocity" 36
@@ -357,5 +357,5 @@ outfit "Smelter-Class Steering"
 
 outfit "Remnant License"
 	category "Special"
-	thumbnail "outfit/license"
+	thumbnail "outfit/remnant license"
 	description "The prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."

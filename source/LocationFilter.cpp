@@ -18,7 +18,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Planet.h"
+#include "Random.h"
 #include "Ship.h"
+#include "StellarObject.h"
 #include "System.h"
 
 #include <mutex>
@@ -86,6 +88,14 @@ namespace {
 		}
 		return true;
 	}
+}
+
+
+
+// Construct and Load() at the same time.
+LocationFilter::LocationFilter(const DataNode &node)
+{
+	Load(node);
 }
 
 
@@ -266,6 +276,45 @@ LocationFilter LocationFilter::SetOrigin(const System *origin) const
 	return result;
 }
 
+
+
+// Pick a random system that matches this filter, based on the given origin.
+const System *LocationFilter::PickSystem(const System *origin) const
+{
+	// Find a planet that satisfies the filter.
+	vector<const System *> options;
+	for(const auto &it : GameData::Systems())
+	{
+		// Skip entries with incomplete data.
+		if(it.second.Name().empty())
+			continue;
+		if(Matches(&it.second, origin))
+			options.push_back(&it.second);
+	}
+	return options.empty() ? nullptr : options[Random::Int(options.size())];
+}
+
+
+
+// Pick a random planet that matches this filter, based on the given origin.
+const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance) const
+{
+	// Find a planet that satisfies the filter.
+	vector<const Planet *> options;
+	for(const auto &it : GameData::Planets())
+	{
+		const Planet &planet = it.second;
+		// Skip entries with incomplete data.
+		if(planet.Name().empty() || !planet.GetSystem())
+			continue;
+		// Skip planets that do not offer jobs or missions.
+		if(planet.IsWormhole() || !planet.HasSpaceport() || (!hasClearance && !planet.CanLand()))
+			continue;
+		if(Matches(&planet, origin))
+			options.push_back(&planet);
+	}
+	return options.empty() ? nullptr : options[Random::Int(options.size())];
+}
 
 
 

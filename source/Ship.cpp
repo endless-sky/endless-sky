@@ -16,15 +16,20 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
+#include "Flotsam.h"
+#include "Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Mask.h"
 #include "Messages.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Projectile.h"
 #include "Random.h"
 #include "ShipEvent.h"
+#include "SpriteSet.h"
+#include "StellarObject.h"
 #include "System.h"
 #include "Visual.h"
 
@@ -89,6 +94,14 @@ const vector<string> Ship::CATEGORIES = {
 
 
 
+// Construct and Load() at the same time.
+Ship::Ship(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 void Ship::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
@@ -123,6 +136,8 @@ void Ship::Load(const DataNode &node)
 		}
 		if(key == "sprite")
 			LoadSprite(child);
+		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
+			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "name" && child.Size() >= 2)
 			name = child.Token(1);
 		else if(key == "plural" && child.Size() >= 2)
@@ -284,13 +299,18 @@ void Ship::FinishLoading(bool isNewInstance)
 {
 	// All copies of this ship should save pointers to the "explosion" weapon
 	// definition stored safely in the ship model, which will not be destroyed
-	// until GameData is when the program quits.
+	// until GameData is when the program quits. Also copy other attributes of
+	// the base model if no overrides were given.
 	if(GameData::Ships().Has(modelName))
 	{
 		const Ship *model = GameData::Ships().Get(modelName);
 		explosionWeapon = &model->BaseAttributes();
-		pluralModelName = model->pluralModelName;
-		noun = model->noun;
+		if(pluralModelName.empty())
+			pluralModelName = model->pluralModelName;
+		if(noun.empty())
+			noun = model->noun;
+		if(!thumbnail)
+			thumbnail = model->thumbnail;
 	}
 	
 	// If this ship has a base class, copy any attributes not defined here.
@@ -303,8 +323,6 @@ void Ship::FinishLoading(bool isNewInstance)
 			customSwizzle = base->CustomSwizzle();
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
-		if(baseAttributes.Mass() == 0.)
-			baseAttributes.Reset("mass", base->baseAttributes.Mass());
 		if(bays.empty() && !base->bays.empty())
 			bays = base->bays;
 		if(enginePoints.empty())
@@ -370,21 +388,6 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament = merged;
 		}
 	}
-	// Check that the ship's chassis has a mass.
-	// And if not, use the chassis mass of the ship's model.
-	if(baseAttributes.Mass() == 0.)
-	{
-		if(GameData::Ships().Has(modelName))
-		{
-			const Ship *model = GameData::Ships().Get(modelName);
-			baseAttributes.Reset("mass", model->BaseAttributes().Mass());
-		}
-
-		cerr << modelName;
-		if(!name.empty())
-			cerr << " \"" << name << "\"";
-		cerr << ": ship's chassis has no mass" << (baseAttributes.Mass() ? "; using model's chassis mass." : ".") << endl;
-	}
 	// Check that all the "equipped" weapons actually match what your ship
 	// has, and that they are truly weapons. Remove any excess weapons and
 	// warn if any non-weapon outfits are "installed" in a hardpoint.
@@ -418,10 +421,10 @@ void Ship::FinishLoading(bool isNewInstance)
 	// Mark any drone that has no "automaton" value as an automaton, to
 	// grandfather in the drones from before that attribute existed.
 	if(baseAttributes.Category() == "Drone" && !baseAttributes.Get("automaton"))
-		baseAttributes.Add("automaton", 1.);
+		baseAttributes.Set("automaton", 1.);
 	
-	baseAttributes.Reset("gun ports", armament.GunCount());
-	baseAttributes.Reset("turret mounts", armament.TurretCount());
+	baseAttributes.Set("gun ports", armament.GunCount());
+	baseAttributes.Set("turret mounts", armament.TurretCount());
 	
 	if(addAttributes)
 	{
@@ -486,6 +489,10 @@ void Ship::FinishLoading(bool isNewInstance)
 	// crew, fuel, etc. are all refilled.
 	if(isNewInstance)
 		Recharge(true);
+	
+	// Figure out if this ship can be carried.
+	const string &category = attributes.Category();
+	canBeCarried = (category == "Fighter" || category == "Drone");
 	
 	// Ships read from a save file may have non-default shields or hull.
 	// Perform a full IsDisabled calculation.
@@ -637,6 +644,14 @@ const string &Ship::Description() const
 
 
 
+// Get the shipyard thumbnail for this ship.
+const Sprite *Ship::Thumbnail() const
+{
+	return thumbnail;
+}
+
+
+
 // Get this ship's cost.
 int64_t Ship::Cost() const
 {
@@ -667,6 +682,8 @@ string Ship::FlightCheck() const
 	double thrustEnergy = attributes.Get("thrusting energy");
 	double turn = attributes.Get("turn");
 	double turnEnergy = attributes.Get("turning energy");
+	double hyperDrive = attributes.Get("hyperdrive");
+	double jumpDrive = attributes.Get("jump drive");
 	
 	// Error conditions:
 	if(IdleHeat() >= MaximumHeat())
@@ -691,6 +708,8 @@ string Ship::FlightCheck() const
 		return "limited turn?";
 	if(energy - .8 * solar < .2 * (turnEnergy + thrustEnergy))
 		return "solar power?";
+	if(!hyperDrive && !jumpDrive && !canBeCarried)
+		return "no hyperdrive?";
 	
 	return "";
 }
@@ -833,9 +852,22 @@ void Ship::SetHail(const Phrase &phrase)
 
 
 
-string Ship::GetHail() const
+string Ship::GetHail(const PlayerInfo &player) const
 {
-	return hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
+	map<string, string> subs;
+	
+	subs["<first>"] = player.FirstName();
+	subs["<last>"] = player.LastName();
+	if(player.Flagship())
+		subs["<ship>"] = player.Flagship()->Name();
+	
+	subs["<npc>"] = Name();
+	subs["<system>"] = player.GetSystem()->Name();
+	subs["<date>"] = player.GetDate().ToString();
+	subs["<day>"] = player.GetDate().LongString();
+	
+	string hailStr = hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
+	return Format::Replace(hailStr, subs);
 }
 
 
@@ -1180,7 +1212,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
 		pilotError = 30;
-		if(parent.lock() || !government->IsPlayer())
+		if(parent.lock() || !isYours)
 			Messages::Add(name + " is moving erratically because there are not enough crew to pilot it.");
 		else
 			Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it.");
@@ -1341,7 +1373,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					// Allow the player to get all the way to the end of the
 					// boarding sequence (including locking on to the ship) but
 					// not to actually board, if they are cloaked.
-					if(government->IsPlayer())
+					if(isYours)
 						Messages::Add("You cannot board a ship while cloaked.");
 				}
 				else
@@ -1394,15 +1426,15 @@ void Ship::DoGeneration()
 		// 4. Shields of carried fighters
 		// 5. Transfer of excess energy and fuel to carried fighters.
 		
-		double hullAvailable = attributes.Get("hull repair rate");
-		double hullEnergy = attributes.Get("hull energy") / hullAvailable;
-		double hullHeat = attributes.Get("hull heat") / hullAvailable;
+		const double hullAvailable = attributes.Get("hull repair rate");
+		const double hullEnergy = attributes.Get("hull energy") / hullAvailable;
+		const double hullHeat = attributes.Get("hull heat") / hullAvailable;
 		double hullRemaining = hullAvailable;
 		DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy);
 		
-		double shieldsAvailable = attributes.Get("shield generation");
-		double shieldsEnergy = attributes.Get("shield energy") / shieldsAvailable;
-		double shieldsHeat = attributes.Get("shield heat") / shieldsAvailable;
+		const double shieldsAvailable = attributes.Get("shield generation");
+		const double shieldsEnergy = attributes.Get("shield energy") / shieldsAvailable;
+		const double shieldsHeat = attributes.Get("shield heat") / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
 		DoRepair(shields, shieldsRemaining, attributes.Get("shields"), energy, shieldsEnergy);
 		
@@ -1442,9 +1474,9 @@ void Ship::DoGeneration()
 		// This can be done at the end of everything else because unlike energy,
 		// heat does not limit how much repair can actually be done.
 		if(hullAvailable)
-			heat += (hullAvailable - hullRemaining) * hullHeat / hullAvailable;
+			heat += (hullAvailable - hullRemaining) * hullHeat;
 		if(shieldsAvailable)
-			heat += (shieldsAvailable - shieldsRemaining) * shieldsHeat / shieldsAvailable;
+			heat += (shieldsAvailable - shieldsRemaining) * shieldsHeat;
 	}
 	// Handle ionization effects, etc.
 	if(ionization)
@@ -1688,29 +1720,28 @@ int Ship::Scan()
 	}
 	
 	// Play the scanning sound if the actor or the target is the player's ship.
-	if(government->IsPlayer() || (target->GetGovernment()->IsPlayer() && activeScanning))
+	if(isYours || (target->isYours && activeScanning))
 		Audio::Play(Audio::Get("scan"), Position());
 	
-	if(startedScanning && government->IsPlayer())
+	if(startedScanning && isYours)
 	{
 		if(!target->Name().empty())
 			Messages::Add("Attempting to scan the " + target->Noun() + " \"" + target->Name() + "\".", false);
 		else
 			Messages::Add("Attempting to scan the selected " + target->Noun() + ".", false);
 	}
-	else if(startedScanning && target->GetGovernment()->IsPlayer())
+	else if(startedScanning && target->isYours)
 		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
 			+ Name() + "\" is attempting to scan you.", false);
 	
-	if(target->GetGovernment()->IsPlayer() && !government->IsPlayer() && (result & ShipEvent::SCAN_CARGO))
+	if(target->isYours && !isYours)
 	{
-		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-			+ Name() + "\" completed its scan of your cargo.");
-	}
-	if(target->GetGovernment()->IsPlayer() && !government->IsPlayer() && (result & ShipEvent::SCAN_OUTFITS))
-	{
-		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-			+ Name() + "\" completed its scan of your outfits.");
+		if(result & ShipEvent::SCAN_CARGO)
+			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
+					+ Name() + "\" completed its scan of your cargo.");
+		if(result & ShipEvent::SCAN_OUTFITS)
+			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
+					+ Name() + "\" completed its scan of your outfits.");
 	}
 	
 	return result;
@@ -2073,8 +2104,9 @@ double Ship::TransferFuel(double amount, Ship *to)
 
 void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 {
-	// Repair up to the point where it is just barely not disabled.
+	// Repair up to the point where this ship is just barely not disabled.
 	hull = max(hull, MinimumHull());
+	isDisabled = false;
 	
 	// Set the new government.
 	government = capturer->GetGovernment();
@@ -2091,18 +2123,22 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 		AddCrew(transfer);
 	}
 	
+	commands.Clear();
 	// Set the capturer as this ship's parent.
 	SetParent(capturer);
+	// Clear this ship's previous targets.
 	SetTargetShip(shared_ptr<Ship>());
 	SetTargetStellar(nullptr);
 	SetTargetSystem(nullptr);
 	shipToAssist.reset();
-	commands.Clear();
-	isDisabled = false;
+	targetAsteroid.reset();
+	targetFlotsam.reset();
 	hyperspaceSystem = nullptr;
 	landingPlanet = nullptr;
 	
+	// This ship behaves like its new parent does.
 	isSpecial = capturer->isSpecial;
+	isYours = capturer->isYours;
 	personality = capturer->personality;
 	
 	// Fighters should flee a disabled ship, but if the player manages to capture
@@ -2117,6 +2153,8 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 		if(escort)
 			escort->parent.reset();
 	}
+	// This ship should not care about its now-unallied escorts.
+	escorts.clear();
 }
 
 
@@ -2484,9 +2522,10 @@ int Ship::BaysFree(bool isFighter) const
 // not reserved for one of its existing escorts.
 bool Ship::CanCarry(const Ship &ship) const
 {
-	bool isFighter = (ship.attributes.Category() == "Fighter");
-	if(!isFighter && ship.attributes.Category() != "Drone")
+	if(!ship.canBeCarried)
 		return false;
+	// This carried ship is either a fighter or a drone.
+	bool isFighter = (ship.attributes.Category() == "Fighter");
 	
 	int free = BaysFree(isFighter);
 	if(!free)
@@ -2505,21 +2544,18 @@ bool Ship::CanCarry(const Ship &ship) const
 
 bool Ship::CanBeCarried() const
 {
-	const string &category = attributes.Category();
-	return (category == "Fighter" || category == "Drone");
+	return canBeCarried;
 }
 
 
 
 bool Ship::Carry(const shared_ptr<Ship> &ship)
 {
-	if(!ship)
+	if(!ship || !ship->canBeCarried)
 		return false;
 	
+	// This carried ship is either a fighter or a drone.
 	bool isFighter = ship->attributes.Category() == "Fighter";
-	bool isDrone = ship->attributes.Category() == "Drone";
-	if(!(isFighter || isDrone))
-		return false;
 	
 	for(Bay &bay : bays)
 		if((bay.isFighter == isFighter) && !bay.ship)
@@ -2546,6 +2582,7 @@ void Ship::UnloadBays()
 	for(Bay &bay : bays)
 		if(bay.ship)
 		{
+			carriedMass -= bay.ship->Mass();
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetPlanet(landingPlanet);
 			bay.ship.reset();

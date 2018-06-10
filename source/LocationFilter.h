@@ -32,6 +32,10 @@ class System;
 // distance away from the current system.
 class LocationFilter {
 public:
+	LocationFilter() = default;
+	// Construct and Load() at the same time.
+	LocationFilter(const DataNode &node);
+	
 	// Examine all the children of the given node and load any that are filters.
 	void Load(const DataNode &node);
 	// This only saves the children. Save the root node separately. It does
@@ -49,6 +53,10 @@ public:
 	// Return a new LocationFilter with any "distance" conditions converted
 	// into "near" references, relative to the given system.
 	LocationFilter SetOrigin(const System *origin) const;
+	// Generic find system / find planet methods, based on the given origin
+	// system (e.g. the player's current system) and ability to land.
+	const System *PickSystem(const System *origin) const;
+	const Planet *PickPlanet(const System *origin, bool hasClearance = false) const;
 	
 	
 private:

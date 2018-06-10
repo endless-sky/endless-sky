@@ -11,6 +11,7 @@
 fleet "Small Remnant"
 	government "Remnant"
 	names "remnant"
+	cargo 2
 	personality
 		heroic disables plunders appeasing
 	variant 8
@@ -37,6 +38,7 @@ fleet "Small Remnant"
 fleet "Large Remnant"
 	government "Remnant"
 	names "remnant"
+	cargo 2
 	personality
 		heroic disables plunders appeasing
 	variant 6

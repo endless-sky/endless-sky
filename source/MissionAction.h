@@ -38,6 +38,10 @@ class UI;
 // special item, modifying condition flags, or queueing an event to occur.
 class MissionAction {
 public:
+	MissionAction() = default;
+	// Construct and Load() at the same time.
+	MissionAction(const DataNode &node, const std::string &missionName);
+	
 	void Load(const DataNode &node, const std::string &missionName);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so it only has to save a subset of the data.

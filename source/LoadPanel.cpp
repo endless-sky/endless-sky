@@ -34,6 +34,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 #include "UI.h"
 
+#include "gl_header.h"
+
 #include <algorithm>
 
 using namespace std;

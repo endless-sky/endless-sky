@@ -13,12 +13,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 
 #include "Audio.h"
+#include "Body.h"
 #include "DataNode.h"
 #include "Effect.h"
 #include "GameData.h"
 #include "SpriteSet.h"
 
-#include <cstring>
 #include <cmath>
 
 using namespace std;
@@ -216,24 +216,9 @@ void Outfit::Add(const Outfit &other, int count)
 
 
 // Modify this outfit's attributes.
-void Outfit::Add(const char *attribute, double value)
+void Outfit::Set(const char *attribute, double value)
 {
-	auto &attr = (strcmp(attribute, "mass") == 0) ? mass : attributes[attribute];
-	value += attr;
-	if(fabs(value) < EPS)
-		value = 0.;
-	attr = value;
-}
-
-
-
-// Modify this outfit's attributes.
-void Outfit::Reset(const char *attribute, double value)
-{
-	if(strcmp(attribute, "mass") == 0)
-		mass = value;
-	else
-		attributes[attribute] = value;
+	attributes[attribute] = value;
 }
 
 

@@ -31,6 +31,14 @@ using namespace std;
 
 
 
+// Construct and Load() at the same time.
+Fleet::Fleet(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 void Fleet::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
@@ -87,9 +95,8 @@ void Fleet::Load(const DataNode &node)
 		{
 			// If given a full ship definition of one of this fleet's variant members, remove the variant.
 			bool didRemove = false;
+			Variant toRemove(child);
 			for(auto it = variants.begin(); it != variants.end(); ++it)
-			{
-				Variant toRemove = Variant(child);
 				if(toRemove.ships.size() == it->ships.size() &&
 					is_permutation(it->ships.begin(), it->ships.end(), toRemove.ships.begin()))
 				{
@@ -98,7 +105,7 @@ void Fleet::Load(const DataNode &node)
 					didRemove = true;
 					break;
 				}
-			}
+			
 			if(!didRemove)
 				child.PrintTrace("Did not find matching variant for specified operation:");
 		}

@@ -37,6 +37,10 @@ class System;
 // names are chosen based on a given random "phrase" generator.
 class Fleet {
 public:
+	Fleet() = default;
+	// Construct and Load() at the same time.
+	Fleet(const DataNode &node);
+	
 	void Load(const DataNode &node);
 	
 	// Get the government of this fleet.

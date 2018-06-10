@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MainPanel.h"
 
 #include "BoardingPanel.h"
-#include "Command.h"
 #include "Dialog.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -33,9 +32,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Preferences.h"
 #include "Random.h"
 #include "Screen.h"
+#include "Ship.h"
+#include "ShipEvent.h"
+#include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
+
+#include "gl_header.h"
 
 #include <cmath>
 #include <sstream>
@@ -46,7 +50,7 @@ using namespace std;
 
 
 MainPanel::MainPanel(PlayerInfo &player)
-	: player(player), engine(player), load(0.), loadSum(0.), loadCount(0)
+	: player(player), engine(player)
 {
 	SetIsFullScreen(true);
 }
@@ -99,6 +103,23 @@ void MainPanel::Step()
 		bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
 		if(isActive && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
 			isActive = !DoHelp("stranded");
+		shared_ptr<Ship> target = flagship->GetTargetShip();
+		if(isActive && target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
+			isActive = !DoHelp("friendly disabled");
+		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
+				&& player.GetDate() <= GameData::Start().GetDate() + 4)
+		{
+			++lostness;
+			int count = 1 + lostness / 3600;
+			if(count > lostCount && count <= 7)
+			{
+				string message = "lost 1";
+				message.back() += lostCount;
+				++lostCount;
+				
+				GetUI()->Push(new Dialog(GameData::HelpMessage(message)));
+			}
+		}
 	}
 	
 	engine.Step(isActive);

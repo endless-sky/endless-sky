@@ -162,6 +162,60 @@ person "Marauding Max K"
 			"into a REAL marauding warship!"
 	ship "Marauder Fury" "Mad Quest"
 
+ship "Marauder Fury"
+	plural "Marauder Furies"
+	sprite "ship/mfury"
+	attributes
+		category "Interceptor"
+		"cost" 750000
+		"shields" 3000
+		"hull" 600
+		"required crew" 1
+		"bunks" 3
+		"mass" 100
+		"drag" 1.9
+		"heat dissipation" .85
+		"fuel capacity" 500
+		"cargo space" 15
+		"outfit space" 240
+		"weapon capacity" 80
+		"engine capacity" 100
+		"ramscoop" 2
+		weapon
+			"blast radius" 36
+			"shield damage" 360
+			"hull damage" 180
+			"hit force" 520
+	outfits
+		"Hai Tracker Pod" 2
+		"Meteor Missile Launcher" 4
+		"Hai Tracker" 112
+		"Meteor Missile" 140
+		
+		"Pebble Core"
+		"Small Biochemical Cell"
+		"Hai Williwaw Cooling"
+		"Hai Corundum Regenerator"
+		"Intrusion Countermeasures" 3
+		
+		`"Biroo" Atomic Thruster`
+		"A255 Atomic Steering"
+		"Hyperdrive"
+		
+	engine -21 42
+	engine 0 48
+	engine 21 42
+	gun -12 -33 "Meteor Missile Launcher"
+	gun 12 -33 "Meteor Missile Launcher"
+	gun -20 -25 "Meteor Missile Launcher"
+	gun 20 -25 "Meteor Missile Launcher"
+	gun -43.5 2 "Hai Tracker Pod"
+	gun 43.5 2 "Hai Tracker Pod"
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	"final explode" "final explosion small"
+	description "You're sure there's a Southbound Fury under all the extra modifications. This ship appears to be one man's insane quest to make the most powerful single pilot warship ever. Upon closer inspection, you're inclined to believe he may have succeeded."
+
 
 
 person "Captain Nate"
@@ -449,6 +503,7 @@ person "Power of the People"
 			`"How 'bout a bumper sandwich, Boogerlips?"`
 			`"I recommend the lobster."`
 	ship "Modified Osprey" "Power of the People"
+		"never disabled"
 
 ship "Modified Osprey"
 	sprite "ship/mosprey"
@@ -468,7 +523,7 @@ ship "Modified Osprey"
 		"heat dissipation" .6
 		"fuel capacity" 625
 		"cargo space" 80
-		"outfit space" 2167
+		"outfit space" 2172
 		"weapon capacity" 850
 		"engine capacity" 499
 		"afterburner fuel" -.678

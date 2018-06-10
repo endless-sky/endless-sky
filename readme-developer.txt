@@ -10,8 +10,8 @@ DEB-based distros:
    g++ \
    scons \
    libsdl2-dev \
-   libpng12-dev \
-   libjpeg-turbo8-dev \
+   libpng-dev \
+   libjpeg-dev \
    libgl1-mesa-dev \
    libglew-dev \
    libopenal-dev \
@@ -67,36 +67,25 @@ You will also need libmingw32.a and libopengl32.a. Those should be included in t
 
 Mac OS X:
 
-To build Endless Sky you probably want the latest XCode version (I used 5.1.1). You also need to install four libraries:
+To build Endless Sky, you will first need to download Xcode from the App Store.
 
-libpng
+Next, install Homebrew (from http://brew.sh).
 
-http://sourceforge.net/projects/libpng/files/libpng14/
+Once Homebrew is installed, use it to install the libraries you will need:
+$ brew install libpng
+$ brew install libjpeg-turbo
+$ brew install libmad
+$ brew install sdl2
 
-Get version 1.4.13. (The version number doesn't seem to match -- XCode links to libpng14.14.dylib -- but the file name will be right).
+If the versions of those libraries are different from the ones that the Xcode project is set up for, you will need to modify the file paths in the “Frameworks” section in Xcode.
 
-On my system, it was installed with the name libpng14.14..dylib (extra ".") and I had to rename it and fix the symlinks.
-
-libturbojpeg
-
-http://www.libjpeg-turbo.org/Documentation/OfficialBinaries
-
-libmad
-
-https://sourceforge.net/projects/mad/files/libmad/0.15.1b/
-
-To get it to build on Mac OS X, you may have to edit the configure script to not default to "i486" for x86 architectures. On my version of OS X gcc is also just an alias for clang, so I also had to edit the Makefile and strip out some optimization flags that the configure script filled in that only work for gcc.
-
-SDL2
-
-Just downloading the SDL binary won't work, because XCode 5 checks that the framework is signed, and it isn't. Instead, build it from source:
-
-hg clone https://hg.libsdl.org/SDL; open SDL/Xcode/SDL/SDL.xcodeproj
-
-Build the framework, then copy it into /Library/Frameworks. When I did this, for some reason it built to some obscure directory that I had to look up in the logs.
-
-Hopefully these will all install to the locations referenced in the project file; if not you can correct the paths.
+It is possible that you will also need to modify the “Header Search Paths” and “Library Search Paths” in “Build Settings” to point to wherever Homebrew installed those libraries.
 
 Library paths
 
 To create a Mac OS X binary that will work on systems other than your own, you may also need to use install_name_tool to modify the libraries so that their location is relative to the @rpath.
+
+$ sudo install_name_tool -id "@rpath/libpng16.16.dylib" /usr/local/lib/libpng16.16.dylib
+$ sudo install_name_tool -id "@rpath/libmad.0.2.1.dylib" /usr/local/lib/libmad.0.2.1.dylib
+$ sudo install_name_tool -id "@rpath/libturbojpeg.0.dylib" /usr/local/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib
+$ sudo install_name_tool -id "@rpath/libSDL2-2.0.0.dylib" /usr/local/lib/libSDL2-2.0.0.dylib

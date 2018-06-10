@@ -13,18 +13,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef PROJECTILE_H_
 #define PROJECTILE_H_
 
-#include "Angle.h"
 #include "Body.h"
+
+#include "Angle.h"
 #include "Point.h"
 
 #include <memory>
 #include <vector>
 
-class Effect;
 class Government;
-class Weapon;
 class Ship;
 class Visual;
+class Weapon;
 
 
 

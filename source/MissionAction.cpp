@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dialog.h"
 #include "Format.h"
 #include "GameData.h"
+#include "GameEvent.h"
 #include "Messages.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
@@ -103,6 +104,14 @@ namespace {
 			message += "flagship.";
 		Messages::Add(message);
 	}
+}
+
+
+
+// Construct and Load() at the same time.
+MissionAction::MissionAction(const DataNode &node, const string &missionName)
+{
+	Load(node, missionName);
 }
 
 

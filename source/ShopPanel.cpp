@@ -20,10 +20,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "OutlineShader.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
-#include "Point.h"
 #include "PointerShader.h"
 #include "Preferences.h"
+#include "Sale.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -32,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 #include "WrappedText.h"
 
+#include "gl_header.h"
 #include <SDL2/SDL.h>
 
 using namespace std;
@@ -74,7 +76,7 @@ void ShopPanel::Step()
 		if(selectedBottomY > mainBottomY)
 			DoScroll(max(-30., mainBottomY - selectedBottomY));
 		// Scroll down until the bottoms or the tops match.
-		else if(selectedBottomY < mainBottomY && selectedTopY < mainTopY)
+		else if(selectedBottomY < mainBottomY && (mainBottomY - mainTopY < selectedBottomY - selectedTopY && selectedTopY < mainTopY))
 			DoScroll(min(30., min(mainTopY - selectedTopY, mainBottomY - selectedBottomY)));
 		// Details are in view.
 		else
@@ -459,8 +461,6 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	const Sprite *back = SpriteSet::Get(
 		isSelected ? "ui/shipyard selected" : "ui/shipyard unselected");
 	SpriteShader::Draw(back, center);
-	// Make sure the ship sprite leaves 10 pixels padding all around.
-	float zoomSize = SHIP_SIZE - 60.f;
 	
 	// Draw the ship name.
 	const Font &font = FontSet::Get(14);
@@ -468,12 +468,16 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	Point offset(-.5f * font.Width(name), -.5f * SHIP_SIZE + 10.f);
 	font.Draw(name, center + offset, *GameData::Colors().Get("bright"));
 	
+	const Sprite *thumbnail = ship.Thumbnail();
 	const Sprite *sprite = ship.GetSprite();
-	if(sprite)
+	int swizzle = ship.CustomSwizzle() >= 0 ? ship.CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+	if(thumbnail)
+		SpriteShader::Draw(thumbnail, center + Point(0., 10.), 1., swizzle);
+	else if(sprite)
 	{
+		// Make sure the ship sprite leaves 10 pixels padding all around.
+		const float zoomSize = SHIP_SIZE - 60.f;
 		float zoom = min(1.f, zoomSize / max(sprite->Width(), sprite->Height()));
-		int swizzle = ship.CustomSwizzle() >= 0 ? ship.CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-		
 		SpriteShader::Draw(sprite, center, zoom, swizzle);
 	}
 }

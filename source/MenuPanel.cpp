@@ -28,12 +28,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "PointerShader.h"
 #include "PreferencesPanel.h"
+#include "Ship.h"
 #include "ShipyardPanel.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
 #include "StarField.h"
 #include "System.h"
 #include "UI.h"
+
+#include "gl_header.h"
 
 using namespace std;
 

@@ -65,6 +65,14 @@ namespace {
 
 
 
+// Construct and Load() at the same time.
+Mission::Mission(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 // Load a mission, either from the game data or from a saved game.
 void Mission::Load(const DataNode &node)
 {
@@ -183,10 +191,7 @@ void Mission::Load(const DataNode &node)
 			set.insert(GameData::Systems().Get(child.Token(1)));
 		}
 		else if(child.Token(0) == "waypoint" && child.HasChildren())
-		{
-			waypointFilters.emplace_back();
-			waypointFilters.back().Load(child);
-		}
+			waypointFilters.emplace_back(child);
 		else if(child.Token(0) == "stopover" && child.Size() >= 2)
 		{
 			set<const Planet *> &set = (child.Size() >= 3 && child.Token(2) == "visited")
@@ -194,15 +199,9 @@ void Mission::Load(const DataNode &node)
 			set.insert(GameData::Planets().Get(child.Token(1)));
 		}
 		else if(child.Token(0) == "stopover" && child.HasChildren())
-		{
-			stopoverFilters.emplace_back();
-			stopoverFilters.back().Load(child);
-		}
+			stopoverFilters.emplace_back(child);
 		else if(child.Token(0) == "npc")
-		{
-			npcs.push_back(NPC());
-			npcs.back().Load(child);
-		}
+			npcs.emplace_back(child);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter
@@ -213,10 +212,7 @@ void Mission::Load(const DataNode &node)
 				action.Load(child, name);
 			}
 			else
-			{
-				genericOnEnter.emplace_back();
-				genericOnEnter.back().Load(child, name);
-			}
+				genericOnEnter.emplace_back(child, name);
 		}
 		else if(child.Token(0) == "on" && child.Size() >= 2)
 		{
@@ -413,16 +409,30 @@ const Planet *Mission::Destination() const
 
 
 
-set<const System *> Mission::Waypoints() const
+const set<const System *> &Mission::Waypoints() const
 {
 	return waypoints;
 }
 
 
 
-set<const Planet *> Mission::Stopovers() const
+const set<const System *> &Mission::VisitedWaypoints() const
+{
+	return visitedWaypoints;
+}
+
+
+
+const set<const Planet *> &Mission::Stopovers() const
 {
 	return stopovers;
+}
+
+
+
+const set<const Planet *> &Mission::VisitedStopovers() const
+{
+	return visitedStopovers;
 }
 
 
@@ -819,11 +829,9 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	{
 		const System *system = event.Actor()->GetSystem();
 		// If this was a waypoint, clear it.
-		if(waypoints.count(system))
-		{
-			waypoints.erase(system);
+		if(waypoints.erase(system))
 			visitedWaypoints.insert(system);
-		}
+		
 		// Perform an "on enter" action for this system, if possible.
 		Enter(system, player, ui);
 	}
@@ -860,19 +868,17 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	result.name = name;
 	result.waypoints = waypoints;
 	// Handle waypoint systems that are chosen randomly.
+	const System * const source = player.GetSystem();
 	for(const LocationFilter &filter : waypointFilters)
 	{
-		const System *system = PickSystem(filter, player);
+		const System *system = filter.PickSystem(source);
 		if(!system)
 			return result;
 		result.waypoints.insert(system);
 	}
 	// If one of the waypoints is the current system, it is already visited.
-	if(result.waypoints.count(player.GetSystem()))
-	{
-		result.waypoints.erase(player.GetSystem());
-		result.visitedWaypoints.insert(player.GetSystem());
-	}
+	if(result.waypoints.erase(source))
+		result.visitedWaypoints.insert(source);
 	
 	// Copy the stopover planet list, and populate the list based on the filters
 	// that were given.
@@ -887,7 +893,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	}
 	for(const LocationFilter &filter : stopoverFilters)
 	{
-		const Planet *planet = PickPlanet(filter, player);
+		const Planet *planet = filter.PickPlanet(source, !clearance.empty());
 		if(!planet)
 			return result;
 		result.stopovers.insert(planet);
@@ -900,7 +906,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	result.destination = destination;
 	if(!result.destination && !destinationFilter.IsEmpty())
 	{
-		result.destination = PickPlanet(destinationFilter, player);
+		result.destination = destinationFilter.PickPlanet(source, !clearance.empty());
 		if(!result.destination)
 			return result;
 	}
@@ -920,7 +926,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	{
 		const Trade::Commodity *commodity = nullptr;
 		if(cargo == "random")
-			commodity = PickCommodity(*player.GetSystem(), *result.destination->GetSystem());
+			commodity = PickCommodity(*source, *result.destination->GetSystem());
 		else
 		{
 			for(const Trade::Commodity &option : GameData::Commodities())
@@ -968,7 +974,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	// Estimate how far the player will have to travel to visit all the waypoints
 	// and stopovers and then to land on the destination planet. Rather than a
 	// full traveling salesman path, just calculate a greedy approximation.
-	const System *source = player.GetSystem();
+	const System *path = source;
 	list<const System *> destinations;
 	for(const System *system : result.waypoints)
 		destinations.push_back(system);
@@ -979,18 +985,18 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	while(!destinations.empty())
 	{
 		// Find the closest destination to this location.
-		DistanceMap distance(source);
+		DistanceMap distance(path);
 		auto it = destinations.begin();
 		auto bestIt = it;
 		for(++it; it != destinations.end(); ++it)
 			if(distance.Days(*it) < distance.Days(*bestIt))
 				bestIt = it;
 		
-		source = *bestIt;
+		path = *bestIt;
 		jumps += distance.Days(*bestIt);
 		destinations.erase(bestIt);
 	}
-	DistanceMap distance(source);
+	DistanceMap distance(path);
 	jumps += distance.Days(result.destination->GetSystem());
 	int payload = result.cargoSize + 10 * result.passengers;
 	
@@ -1054,16 +1060,16 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(subs, player.GetSystem(), result.destination->GetSystem()));
+		result.npcs.push_back(npc.Instantiate(subs, source, result.destination->GetSystem()));
 	
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
 	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(subs, player.GetSystem(), jumps, payload);
+		result.actions[it.first] = it.second.Instantiate(subs, source, jumps, payload);
 	for(const auto &it : onEnter)
-		result.onEnter[it.first] = it.second.Instantiate(subs, player.GetSystem(), jumps, payload);
+		result.onEnter[it.first] = it.second.Instantiate(subs, source, jumps, payload);
 	for(const MissionAction &action : genericOnEnter)
-		result.genericOnEnter.emplace_back(action.Instantiate(subs, player.GetSystem(), jumps, payload));
+		result.genericOnEnter.emplace_back(action.Instantiate(subs, source, jumps, payload));
 	
 	// Perform substitution in the name and description.
 	result.displayName = Format::Replace(displayName, subs);
@@ -1098,42 +1104,6 @@ void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 				didEnter.insert(&action);
 				break;
 			}
-}
-
-
-
-const System *Mission::PickSystem(const LocationFilter &filter, const PlayerInfo &player) const
-{
-	// Find a planet that satisfies the filter.
-	vector<const System *> options;
-	for(const auto &it : GameData::Systems())
-	{
-		// Skip entries with incomplete data.
-		if(it.second.Name().empty())
-			continue;
-		if(filter.Matches(&it.second, player.GetSystem()))
-			options.push_back(&it.second);
-	}
-	return options.empty() ? nullptr : options[Random::Int(options.size())];
-}
-
-
-
-const Planet *Mission::PickPlanet(const LocationFilter &filter, const PlayerInfo &player) const
-{
-	// Find a planet that satisfies the filter.
-	vector<const Planet *> options;
-	for(const auto &it : GameData::Planets())
-	{
-		// Skip entries with incomplete data.
-		if(it.second.Name().empty() || (clearance.empty() && !it.second.CanLand()))
-			continue;
-		if(it.second.IsWormhole() || !it.second.HasSpaceport() || !it.second.GetSystem())
-			continue;
-		if(filter.Matches(&it.second, player.GetSystem()))
-			options.push_back(&it.second);
-	}
-	return options.empty() ? nullptr : options[Random::Int(options.size())];
 }
 
 
