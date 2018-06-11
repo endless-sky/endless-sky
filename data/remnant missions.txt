@@ -88,6 +88,7 @@ mission "Remnant: Second Contact"
 	waypoint Segesta
 	to offer
 		not "Remnant Blood Test Pure"
+		not "Remnant Second Chance Refused"
 	to fail
 		or
 			has "Remnant Second Chance Refused"
