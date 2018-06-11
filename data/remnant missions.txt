@@ -82,14 +82,12 @@ mission "Remnant: Second Contact"
 	invisible
 	source
 		government "Remnant"
-	description "An A Remnant provides you with the opportunity to take a second run at first contact."
+	description "A Remnant provides you with the opportunity to take a second run at first contact."
 	clearance "You can't understand the video feed of gestures, but your ship's computer receives a landing grid solution via antique protocols."
 	destination Viminal
 	waypoint Segesta
 	to offer
-		or
-			not "Remnant Blood Test Pure"
-			not "Remnant Second Chance Refused"
+		not "Remnant Blood Test Pure"
 	to fail
 		or
 			has "Remnant Second Chance Refused"
@@ -144,6 +142,7 @@ mission "Remnant: Second Contact"
 			`	Eventually they invite you to a dinner. Their food has strange and complex flavors, not all of them pleasant, but you do your best to be polite and pretend to enjoy it all. After the meal, they entertain you by singing songs, some of which you recognize as classical Earth music. It appears that people in this culture use sign language for day to day communication, and use their voices only for making music.`
 			`	When you return to your ship, you do a search on videos of historical dialects of human sign language. None of them bear even a passing resemblance to the language of these people who call themselves the Remnant.`
 
+			
 mission "Remnant: Defense 1"
 	source "Caelian"
 	name "Defend <planet>"

@@ -243,7 +243,7 @@ outfit "Emergency Ramscoop"
 	"mass" 4
 	"outfit space" -4
 	"ramscoop" 0.5
-	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills' which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
+	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills' which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
 
 
 outfit "Quantum Key Stone"
@@ -275,7 +275,7 @@ outfit "Scanner Software"
 	"tactical scan power" 10
 	"heat generation" 1
 	"energy generation" -1
-	description "The remnant are too few in number to support extensive ground-breaking research in all areas of technology, so they prefer to focus their efforts on a few areas of importance. To make up the deficiency in other areas, the Remnant rely on salvaging and reverse engineering technology from those around them. This software is a key part of this effort, as it allows any ship the capacity to do detailed close-range scans to determine what they want to target. Its range is much shorter than that of dedicated scanning equipment, but it means every Remnant ship can be on the lookout for new technology."
+	description "The Remnant are too few in number to support extensive ground-breaking research in all areas of technology, so they prefer to focus their efforts on a few areas of importance. To make up the deficiency in other areas, the Remnant rely on salvaging and reverse engineering technology from those around them. This software is a key part of this effort, as it allows any ship the capacity to do detailed close-range scans to determine what they want to target. Its range is much shorter than that of dedicated scanning equipment, but it means every Remnant ship can be on the lookout for new technology."
 
 # Engines:
 

@@ -157,10 +157,9 @@ government "Korath (Berserk)"
 	language "Korath"
 	
 	"attitude toward"
-		"Kor Sestor" -1
 		"Korath" 1
 		"Remnant" -1
-		"Merchant" -1
+		"Merchant" -.01
 		"Neutral" -1
 	
 	"player reputation" -1000	
