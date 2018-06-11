@@ -110,6 +110,8 @@ public:
 	double HabitableZone() const;
 	// Get the radius of the asteroid belt.
 	double AsteroidBelt() const;
+    // Get the radius of the system border.
+    double Border() const;
 	// Get the rate of solar collection and ramscoop refueling.
 	double SolarPower() const;
 	double SolarWind() const;
@@ -181,6 +183,7 @@ private:
 	std::vector<FleetProbability> fleets;
 	double habitable = 1000.;
 	double asteroidBelt = 1500.;
+	double border = 1000.;
 	double solarPower = 0.;
 	double solarWind = 0.;
 	

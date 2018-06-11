@@ -323,11 +323,16 @@ void AI::Step(const PlayerInfo &player)
 			++it;
 	}
 	for(const auto &it : ships)
-		if(it->Position().Length() >= MAX_DISTANCE_FROM_CENTER)
+	{
+		double border = 0;
+		if(it->GetSystem())
+			border = it->GetSystem()->Border();
+		if(it->Position().Length() >= MAX_DISTANCE_FROM_CENTER+border)
 		{
 			int &value = fenceCount[&*it];
 			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
 		}
+	}
 	
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
@@ -1098,7 +1103,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	if(target && !ship.IsYours() && !ship.GetPersonality().IsUnconstrained())
 	{
 		Point extrapolated = target->Position() + 120. * (target->Velocity() - ship.Velocity());
-		if(extrapolated.Length() >= MAX_DISTANCE_FROM_CENTER)
+		if(extrapolated.Length() >= MAX_DISTANCE_FROM_CENTER+ship.GetSystem()->Border())
 		{
 			MoveTo(ship, command, Point(), Point(), 40., .8);
 			if(ship.Velocity().Dot(ship.Position()) > 0.)
@@ -2730,11 +2735,11 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 	// to intersect the target?
 	// (p.x + v.x*t)^2 + (p.y + v.y*t)^2 = vp^2*t^2
 	// p.x^2 + 2*p.x*v.x*t + v.x^2*t^2
-	//    + p.y^2 + 2*p.y*v.y*t + v.y^2t^2
-	//    - vp^2*t^2 = 0
+	//	+ p.y^2 + 2*p.y*v.y*t + v.y^2t^2
+	//	- vp^2*t^2 = 0
 	// (v.x^2 + v.y^2 - vp^2) * t^2
-	//    + (2 * (p.x * v.x + p.y * v.y)) * t
-	//    + (p.x^2 + p.y^2) = 0
+	//	+ (2 * (p.x * v.x + p.y * v.y)) * t
+	//	+ (p.x^2 + p.y^2) = 0
 	double a = v.Dot(v) - vp * vp;
 	double b = 2. * p.Dot(v);
 	double c = p.Dot(p);

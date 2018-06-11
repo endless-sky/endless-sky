@@ -262,6 +262,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			habitable = child.Value(valueIndex);
 		else if(key == "belt")
 			asteroidBelt = child.Value(valueIndex);
+		else if(key == "border")
+			border = child.Value(valueIndex);
 		else if(key == "haze")
 			haze = SpriteSet::Get(value);
 		else if(key == "trade" && child.Size() >= 3)
@@ -503,6 +505,14 @@ double System::HabitableZone() const
 double System::AsteroidBelt() const
 {
 	return asteroidBelt;
+}
+
+
+
+// Get the radius of the system border.
+double System::Border() const
+{
+	return border;
 }
 
 
