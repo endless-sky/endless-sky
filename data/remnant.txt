@@ -238,8 +238,8 @@ phrase "uncontacted remnant hostile hail"
 		"against us"
 		"on our worlds"
 		"on our planets"
-		"on Ember Waste"
-		"on this region of the galaxy"
+		"in the Ember Waste"
+		"in this region of the galaxy"
 	word
 		", so "
 	word
@@ -288,13 +288,13 @@ phrase "angered remnant hail"
 phrase "angered remnant hostile hail"
 	word
 		"We"
-		"The Remnant"
-		"Our ship"
+		"The Remnants"
+		"Our ships"
 	word
 		" "
 	word
 		"will"
-		"is going to"
+		"are going to"
 	word
 		" "
 	word
