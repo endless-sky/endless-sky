@@ -306,6 +306,7 @@ ship "Gascraft"
 		"shield energy" 0.4
 		"hull repair rate" 1.2
 		"hull energy" 0.9
+		"atmosphere scan" 200
 		"gaslining" 1
 	outfits
 		"Millennium Cell"
