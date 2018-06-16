@@ -548,7 +548,7 @@ mission "Unwanted Cargo"
 			`	You hear a voice come from the crate, but it is not a language you understand. The voice continues to speak, and you recognize it as the Hai language.`
 			choice
 				`	(Open the crate.)`
-			`	You open the crate and are met eye to eye with a Hai child. You aren't sure how old it is, but it looks to be about the height of a one year old human child. It tries to communicate with you, but begins to cry when it sees the confused look on your face.`
+			`	You open the crate and are met face to face with a Hai child. You aren't sure how old it is, but it looks to be about the height of a one year old human child. It tries to communicate with you, but begins to cry when it sees the confused look on your face.`
 			choice
 				`	"Don't cry, little guy."`
 					goto cry
@@ -588,11 +588,12 @@ mission "Expanding Business [1]"
 	source "Greenwater"
 	destination "Allhome"
 	to offer
+		has "First Contact: Hai: offered"
 		has "main plot completed"
 	on offer
 		conversation
 			`Walking through the <origin> spaceport, you notice that almost half of the people you see are humans, unlike other Hai worlds where the Hai outnumber humans by a sizable degree. A human dressed in a business suit shouts your name from across the street and approaches you.`
-			`	"Captain <last>, one of the many heros of humanity! I noticed you right away when I laid my eyes upon you. I'd like to personally thank you for what you've done."`
+			`	"Captain <last>, one of the many heroes of humanity! I noticed you right away when I laid my eyes upon you. I'd like to personally thank you for what you've done."`
 			choice
 				`	"Glad to get some recognition for all the hard work I've done."`
 					goto boast
@@ -630,7 +631,7 @@ mission "Expanding Business [1]"
 			`	"Nonsense, Captain! All you'd need to do is help escort a few freighters from <planet> to Follower and back to here, and for so simple a job you could be receiving enough money to not work another day in your life, or perhaps even support a massive fleet."`
 			choice
 				`	"Again, I'm not interested. Goodbye."`
-				`	"Alright, you have me interested."`
+				`	"Alright, you have my attention."`
 					goto interested
 			
 			`	"Well, I tried, Captain," Turner says with a smirk. "I'll just have to travel back to the Paradise Worlds and make my money in other areas of business, then." He hands you another business card and winks. "Goodbye, Captain <last>. You should know where to find me if you need me."`
@@ -646,12 +647,12 @@ mission "Expanding Business [1]"
 		ship "Star Queen (Hai)" "Chryso Vasilia"
 	
 	on complete
-		dialog `The freighters are ready to launch by the time you get to <planet>. "Now we just need to escort these freighter to Follower in the Alphard system and back in one piece," Turner exclaims, hopping back on to his Star Queen.`
+		dialog `The freighters are ready to launch by the time you get to <planet>. "Now we just need to escort these freighters to Follower in the Alphard system and back in one piece," Turner exclaims, hopping back on to his Star Queen.`
 
 mission "Expanding Business [2]"
 	landing
 	name "An Interesting Proposition"
-	description "Escort the freighters to <destination> where they will be picking up supplies for the Greenwater outfitter."
+	description "Escort the freighters to <destination> where they will pick up supplies for the Greenwater outfitter."
 	destination "Follower"
 	to offer
 		has "Expanding Business [1]: done"
@@ -763,8 +764,7 @@ mission "Expanding Business [6]"
 		has "Expanding Business [5]: done"
 	on offer
 		conversation
-			`Turner meets you in a high-end human-owned restaurant in the richer part of the city, very much reminiscent of something you would find on a Paradise Planet.`
-			`	"It's been quite some time since we last spoke, Captain <last>. Over a year now. Have you been enjoying the extra cash in your pocket every day, Captain <last>?"`
+			`Turner meets you in a high-end human-owned restaurant in the richer part of the city, very much reminiscent of something you would find on a Paradise Planet. "It's been quite some time since we last spoke, Captain <last>. Over a year now," he says. "Have you been enjoying the extra cash in your pocket every day, Captain <last>?"`
 			choice
 				`	"Yes. It's been a huge help paying crew salaries."`
 					goto salaries
@@ -785,13 +785,13 @@ mission "Expanding Business [6]"
 			`	"You could call it that," Turner says after sipping from his glass of wine.`
 			
 			label proposition
-			`	"Building a outfitter selling human goods here on <origin> has had to be the best idea I've ever had, Captain <last>, but recently I thought of an even better idea. You see, most of the humans you see flying around in Hai space are flying decades old ships. Hai ships are prohibitively expensive for humans. The Aphid is nearly three million credits! This means that demand for ships is extremely high among humans, Captain <last>. Do you see where I'm going with this?"`
+			`	"Building a outfitter selling human goods here on <origin> has had to be the best idea I've ever had, Captain <last>, but recently I thought of an even better idea. You see, most of the humans you see flying around in Hai space are flying decades-old ships. Hai ships are prohibitively expensive for humans. The Aphid is nearly three million credits! This means that demand for ships is extremely high among humans, Captain <last>. Do you see where I'm going with this?"`
 			choice
 				`	"You need me to help you escort freighters again?"`
 				`	"Do you want to build a shipyard selling human ships?"`
 			
 			`	"Yes, Captain. Right now, the only realistic way that a human born here can get a ship is if they know a captain willing to retire. Even then, prices for a human ship can be more than twice what they are across the wormhole. It's preposterous, Captain <last>!`
-			`	"I've already made arrangements with the local Hai government. The rest of the park next to the outfitter is now my property, and I intend to use it to build the shipyard. I've also contacted Megaparsec and bought a license to build their ships and some of the outfits they sell on <planet>. My freighters are at the ready in the spaceport right now. All I need you to do is escort them to <destination> and back, and in six to seven month's time when the shipyard is done, you'll reap the rewards. What do you say, Captain <last>? Do you want to be a hero to millions once again?"`
+			`	"I've already made arrangements with the local Hai government. The rest of the park next to the outfitter is now my property, and I intend to use it to build the shipyard. I've also contacted Megaparsec and bought a license to build their ships and some of the outfits they sell on <planet>. My freighters are at the ready in the spaceport right now. All I need you to do is escort them to <destination> and back, and in six to seven months' time when the shipyard is done, you'll reap the rewards. What do you say, Captain <last>? Do you want to be a hero to millions once again?"`
 			choice
 				`	"Sure, this sounds like a great idea."`
 					goto accept
@@ -934,6 +934,7 @@ mission "Hiding in Plain Sight"
 	passengers 2
 	to offer
 		random < 30
+		has "First Contact: Hai: offered"
 	on offer
 		conversation
 			`While eating in a spaceport cafeteria that serves both Hai and human cuisine, you are approached by a teenage human and Hai. "Hello. Do you know how to get to <destination>?" the Hai asks.`
@@ -963,6 +964,7 @@ mission "Hai Honeymoon"
 	passengers 2
 	to offer
 		random < 60
+		has "First Contact: Hai: offered"
 	on offer
 		conversation
 			`You hop around the spaceport of <origin>, trying to adjusted to the low gravity of this moon, when you are approached by a toweringly tall human woman and an equally tall Hai male who are clearly having no trouble with <origin>'s gravity.`
@@ -999,4 +1001,3 @@ mission "Hai Honeymoon"
 	on complete
 		payment 100000
 		dialog `Instead of landing in the spaceport where they can be seen, you drop Anaya and Touhar off as close as you can to where they will be staying. The house is a few kilometers away, but they assure you that they can make it on their own. They pay you <payment> and thank you for bringing them this far.`
-
