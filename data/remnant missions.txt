@@ -1159,7 +1159,7 @@ event "Remnant Salvage Available"
 		"Steering (Asteroid Class)"
 		"Steering (Planetary Class)"
 		"Thruster (Comet Class)"
-        "Steering (Comet Class)"
+		"Steering (Comet Class)"
 		"Korath Fire-Lance"
 	
 
