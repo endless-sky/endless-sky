@@ -65,6 +65,7 @@ ship "Aphid" "Aphid (Anti-Missile)"
 
 ship "Centipede"
 	sprite "ship/hai centipede"
+	thumbnail "thumbnail/hai centipede"
 	attributes
 		category "Transport"
 		"cost" 6300000
@@ -166,6 +167,7 @@ ship "Flea"
 
 ship "Geocoris"
 	sprite "ship/hai geocoris"
+	thumbnail "thumbnail/hai geocoris"
 	attributes
 		category "Heavy Freighter"
 		"cost" 12540000
@@ -239,6 +241,7 @@ ship "Geocoris" "Geocoris (Tracker)"
 
 ship "Grasshopper"
 	sprite "ship/hai grasshopper"
+	thumbnail "thumbnail/hai grasshopper"
 	attributes
 		category "Interceptor"
 		"cost" 684000
