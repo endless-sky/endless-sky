@@ -922,9 +922,6 @@ mission "Expanding Business: shipyard complete"
 
 
 
-
-
-
 mission "Hiding in Plain Sight"
 	description "Bring Arthur and his Hai friend, Kiru, to <destination> for a gaming convention."
 	minor
