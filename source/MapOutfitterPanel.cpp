@@ -102,6 +102,7 @@ void MapOutfitterPanel::Select(int index)
 		selected = list[index];
 		selectedInfo.Update(*selected, player);
 	}
+	UpdateCache();
 }
 
 

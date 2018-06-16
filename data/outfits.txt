@@ -174,7 +174,7 @@ outfit "Hyperdrive"
 outfit "Scram Drive"
 	category "Systems"
 	cost 90000
-	thumbnail "outfit/hyperdrive"
+	thumbnail "outfit/scram drive"
 	"mass" 30
 	"outfit space" -30
 	"scram drive" .2
@@ -255,6 +255,7 @@ outfit "Cloaking Device"
 	"cloak" .01
 	"cloaking energy" 1
 	"cloaking fuel" .2
+	unplunderable 1
 	description "You're sure the cloaking device is here somewhere, but you can't see it."
 
 

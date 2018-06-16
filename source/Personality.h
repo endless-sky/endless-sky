@@ -53,6 +53,7 @@ public:
 	bool IsStaying() const;
 	bool IsEntering() const;
 	bool IsWaiting() const;
+	bool IsLaunching() const;
 	bool IsFleeing() const;
 	bool IsDerelict() const;
 	bool IsUninterested() const;

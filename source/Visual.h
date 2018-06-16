@@ -16,9 +16,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Body.h"
 
 #include "Angle.h"
+#include "Point.h"
 
 class Effect;
-class Point;
 
 
 

@@ -13,8 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef TRADE_H_
 #define TRADE_H_
 
-#include <vector>
 #include <string>
+#include <vector>
 
 class DataNode;
 
