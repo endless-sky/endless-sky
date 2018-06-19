@@ -1705,30 +1705,30 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 	for(Bay &bay : bays)
 		if(bay.ship && bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * bay.isFighter))
 		{
-			// Re-arm fighters as they launch.
+			// Determine which of the fighter's weapons we can restock.
 			set<const Outfit *> toRefill;
 			for(const auto &hit : bay.ship->Weapons())
-				if(hit.GetOutfit() && hit.GetOutfit()->Ammo())
+				if(hit.GetOutfit() && hit.GetOutfit()->Ammo() && OutfitCount(hit.GetOutfit()->Ammo()))
 					toRefill.insert(hit.GetOutfit()->Ammo());
-			
-			// Transfer as much of the parent's ammo as you are able to use.
+			// Transfer as much ammo as the fighter needs.
 			for(const Outfit *outfit : toRefill)
 			{
-				int neededAmmo = bay.ship->attributes.CanAdd(*outfit, cargo.Get(outfit));
+				int neededAmmo = bay.ship->attributes.CanAdd(*outfit, OutfitCount(outfit));
 				if(neededAmmo)
 				{
-					cargo.Remove(outfit, neededAmmo);
+					AddOutfit(outfit, -neededAmmo);
 					bay.ship->AddOutfit(outfit, neededAmmo);
 				}
 			}
 			
-			// Refuel before launching, if the fighter uses fuel.
+			// This ship will refuel naturally based on the carrier's fuel
+			// collection, but the carrier may have some reserves to spare.
 			double maxFuel = bay.ship->attributes.Get("fuel capacity");
 			if(maxFuel)
 			{
-				double toTransfer = min(maxFuel - bay.ship->fuel, fuel);
-				fuel -= toTransfer;
-				bay.ship->fuel += toTransfer;
+				double spareFuel = fuel - JumpFuel();
+				if(spareFuel > 0)
+					TransferFuel(min(maxFuel - bay.ship->fuel, spareFuel), bay.ship.get());
 				// If still low or out-of-fuel, don't launch.
 				if(bay.ship->fuel < .25 * maxFuel)
 					continue;
@@ -2742,6 +2742,8 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			// is a player-owned ship).
 			if(!isYours && cargo.Free() && !ship->Cargo().IsEmpty())
 				ship->Cargo().TransferAll(cargo);
+			// Return unused fuel to the carrier, for any launching fighter that needs it.
+			ship->TransferFuel(ship->fuel, this);
 			
 			// Update the cached mass of the mothership.
 			carriedMass += ship->Mass();
