@@ -793,11 +793,11 @@ mission "Remnant: Return the Samples 2"
 			`As you approach Slylandro you watch the Archon like a hawk, but this time it doesn't attempt to drive you off with tridents of white energy. Cautiously you make your way to Slylandro and begin your descent.`
 			`	As <ship> sinks through the cloud layers, you notice the void sprites seem to be tailing you. A few drop past you with startling speed, only to reappear from below as you approach the designated altitude. At the last minute you remember Plume's request to record them, and hit the switch to activate the recorder for the exterior cameras.`
 			`	Setting the ship on auto-pilot, you head back and suit-up in the bulky pressure suit once again. Readying the eggs in the cargo hold, you equalize pressure and open the cargo bay doors. As before, the eggs are already floating as you open the cocoons and gently carry them to the door.`	
-			`	Almost as soon as you release the first egg, a void sprite is there, brushing against the ship to scoop the egg away into the swirling mists. By the time you return with the next one, another sprite is already waiting at the door, undulating in the eerie light. By the time the last egg is released you can see dozens of the strange creatures swarming around the collection of eggs. It occurs to you that you very few humans have ever seen anything like this.`
-			`	After a moment of enjoying the view, you shut the door as gently as you can, purge the ship with fresh air, and begin the journey back to Aventine.`
+			`	Almost as soon as you release the first egg, a void sprite is there, brushing against the ship to scoop the egg away into the swirling mists. By the time you return with the next one, another sprite is already waiting at the door, undulating in the eerie light. By the time the last egg is released you can see dozens of the strange creatures swarming around the collection of eggs. It occurs to you that very few humans would the chance to see anything like this...`
+			`	After taking a moment to enjoy the view, you shut the door as gently as you can, purge the ship with fresh air, and begin the journey back to Aventine.`
 	on complete
 		conversation
-			`Back on Aventine, you share the recording of the void sprite's behavior with Plume. "These Sprites demonstrate considerably more communication than we originally thought. And obviously they must have communicated what you did on Nasqueron. Interesting...." Plume's excited staccato exclamations trail off as he begins to make notes on a datapad he pulls out. You let him go off on his rambling ideas, shaking your head in amusement.`
+			`Back on Aventine, you share the recording of the void sprite's behavior with Plume. "These Sprites demonstrate considerably more communication than we originally thought. And obviously they must have communicated what you did on Nasqueron. Interesting..." Plume's excited staccato exclamations trail off as he begins to make notes on a datapad he has on hand. You let him go off on his rambling ideas, shaking your head in amusement.`
 		"reputation:  Drak " += 1
 
 		
@@ -812,7 +812,7 @@ mission "Remnant: Learning Sign 1"
 		random < 75
 	on offer
 		conversation
-			`As you make your way through the spaceport, you become increasingly aware of how quiet it is. Looking around, you note that it doesn't seem any less busy than usual, just that fewer people are paying any attention to you. As a result, they have reverted to their normal gestures instead of singing. It feels oddly isolating to realize that there are hundreds of conversations going on around you, and you can't understand a word of it.`
+			`As you make your way through the spaceport, you become increasingly aware of how quiet it is. Looking around, you note that it doesn't seem any less busy than usual, just that only a handful of people are paying attention to you. As a result, they have reverted to their normal gestures instead of singing. It feels oddly isolating, and eerie, to realize that there are hundreds of conversations going on around you, yet you can't understand a single word of it.`
 			choice
 				`	(Ask someone to teach you.)`
 					goto AskSign
@@ -837,20 +837,20 @@ mission "Remnant: Learning Sign 1"
 			`	As you place your hand on the scanner you feel a quick tingle as it scans your hand, then a pinprick as it extracts a drop of blood. The lady behind the desk looks at her screen. She nods, taps on the screen a few times, then retrieves a datapad from beneath the desk.`
 			`	She hands the pad to you, and sings a brief verse about perseverance and hope.`
 			`	...`
-			`	Back on your ship you fip the pad on. The Datapad appears to be loaded with a number of historic musicals and operas where the meaning of the lyrics has been replicated with gestures as sub-titles. It is interspersed with what appear to be kindergarten level videos slowly explaining gestures and pausing to give you the opportunity to practice.`
-			`	After a few hours a note pops up on the screen, telling you that additional lessons are available from the director's desk on Aventine.`
+			`	Back on your ship you flip the pad on. The Datapad appears to be loaded with a number of historic musicals and operas where the meaning of the lyrics has been replicated with gestures as sub-titles. It is interspersed with what appear to be kindergarten level videos slowly explaining gestures and pausing to give you the opportunity to practice.`
+			`	After a few hours a note pops up on the screen, informing you that additional lessons are available from the director's desk on Aventine.`
 				accept
 
 	on stopover [Aventine]
 		conversation
 			`The trip over is noisy - filled with antique singing and modern language teaching videos. Wandering around the spaceport looking for the director's desk, you are very conscious of all the conversations going on around you. You even catch a word here and there, but not much. Eventually you manage to ask for directions using what you have learned, and you arrive at a similar desk in a busy plaza.`
-			`	It looks like the person behind the desk has been expecting you. They gesture very slowly, asking how your lessons are going using very basic signs and songs. After a few minutes of basic conversation, they ask you for the hand-scan and then give you a datachip with more lessons.`
+			`	It looks like the person behind the desk has been expecting you. They gesture very slowly, asking how your lessons are going using very basic signs and songs. After a few minutes of basic conversation, they ask you for your hand for the hand-scan and then gives you a data chip with more lessons.`
 			`	There is also a note saying that there will be a final package of lessons waiting for you on Viminal.`
 
 	on complete
 		conversation
 			`The trip to Viminal is quiet - Almost no talking or singing of any kind, almost entirely reliant on interposing signs and pantomiming actions. Slowly you start picking up some of the easier nouns and verbs.`
-			`	As you descend through the atmosphere, you do some quick hand stretches to work the stiffness out of your fingers and rehearse some of the more common phrases. As soon as <ship> is parked you exit and look around and approach a dock hand who doesn't appear to be too busy and carefully sign "Can you direct me to the port director?" He looks at you curiously for a moment and replies with exaggerated slowness. You thank him and head towards the spaceport following his directions.`
+			`	As you descend through the atmosphere, you do some quick hand stretches to work the stiffness out of your fingers and rehearse some of the more common phrases. As soon as <ship> is parked you exit and look around before approaching a dock hand who doesn't appear to be too busy and carefully sign "Can you direct me to the port director?" He looks at you curiously for a moment and replies with exaggerated slowness. You thank him and head towards the spaceport following his directions.`
 
 			
 mission "Remnant: Learning Sign 2"
@@ -901,7 +901,7 @@ mission "Remnant: Salvage 1"
 				has "Remnant: Heavy Laser: done"
 	on offer
 		conversation
-			`As you step out into the icy chill of Viminal you get a comlink message from Tali asking if you could meet her in the cafeteria. Replying in the affirmative, you make your way through the crowds and find an empty table. Moments later Tali appears, grabs two trays from the dispenser, and settles down with an air of exhaustion on the chair opposite you.`
+			`As you step out into the icy chill of Viminal you get a comlink message from Tali asking if you could meet her in the cafeteria. Replying that you can, you make your way through the crowds and find an empty table. Moments later Tali appears, she grabs two trays from the dispenser, and settles down in the opposite chair with a look of exhaustion.`
 			`	"It is good to see you again, <first>." she sings softly. When you sign a reply she sits up and smiles. "My, you are a quick learner." she signs "Great, this is much faster." `
 			`	"I haven't fully reverse engineered the ramscoops you retrieved for us, but we should be ready to produce them soon. In the meantime, though, they are showing us that humanity has made significant progress since we departed. Could you help us catch up with what has happened out there?" `
 			choice
