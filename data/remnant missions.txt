@@ -108,7 +108,7 @@ mission "Remnant: Second Contact"
 			label ReturnConsent		
 			apply
 				"reputation: Remnant" = 1
-			`	"We will let them know to expect you, but be on your best behavior, as there will be no third chances." The captain pauses for a moment, then continues, "And the blood test is mandatory for you and your crew. We will not tolerate anyone of Alpha heritage on our worlds."`
+			`	"We will let them know to expect you, but be on your best behavior, as there will be no third chances." The captain pauses for a moment, then continues, "Moreover, the blood test is mandatory for you and your crew. We will not tolerate anyone with Alpha heritage on our worlds."`
 				goto SCEnd
 			label LeaveForever
 			apply
