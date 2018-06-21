@@ -843,7 +843,7 @@ mission "Remnant: Learning Sign 1"
 
 	on stopover [Aventine]
 		conversation
-			`The trip over is noisy - filled with antique singing and modern language teaching videos. It takes a while to start picking out specific words, but you have plenty of time on the flight to Aventine. Wandering around the spaceport looking for the director's desk, you are very conscious of all the conversations going on around you. You even catch a word here and there, but not much. Eventually you manage to ask for directions using what you have learned, and you arrive at a similar desk in a busy plaza.`
+			`The trip over is noisy - filled with antique singing and modern language teaching videos. It takes a while to start picking out specific phrases, but you have plenty of time to repeat the lessons on the flight to Aventine. When you are searching for the director's desk at the spaceport, you are very conscious of all the conversations going on around you. You even catch a word here and there, but not much. Eventually you manage to ask for directions using what you have learned, and you arrive at a similar desk in a busy plaza.`
 			`	It looks like the person behind the desk has been expecting you. They gesture very slowly, asking how your lessons are going using very basic signs and songs. After a few minutes of basic conversation, they ask you for your hand for the hand-scan and then gives you a data chip with more lessons.`
 			`	There is also a note saying that there will be a final package of lessons waiting for you on Viminal.`
 
