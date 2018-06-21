@@ -854,7 +854,9 @@ phrase "hostile heliarch"
 	word
 		" "
 	word
-		"Heliarch "
+		"Heliarch"
+	word
+		" "
 	word
 		"military"
 		"law-enforcers"
