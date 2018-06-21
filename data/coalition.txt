@@ -686,7 +686,7 @@ phrase "friendly heliarch"
 		"should seek."
 		"should choose."
 		"can learn."
-		"the capacity have."
+		"capacity have."
 		"to be able ought to be."
 		"should try."
 		"can labor."
@@ -736,35 +736,59 @@ phrase "friendly heliarch"
 		"we do serve."
 		"we do vow."
 
+phrase "hostile heliarch phrase 1 (the+our)"
+	word
+		"the"
+		"our"
+	word
+		" "
+	word
+		"Coalition"
+		"alliance"
+		"union"
+		"friendship of sentient species"
+		"citizens of the Coalition"
+		"citizens"
+		"Coalition"
+		"alliance"
+		"union"
+
+phrase "hostile heliarch phrase 1 (our only)"
+	word
+		"our"
+	word
+		" "
+	word
+		"friendship"
+		"just government"
+		"just meritocracy"
+		"just government of merit"
+		"society"
+
 phrase "hostile heliarch"
 	word
-		"Destroying "
-		"Betraying "
-		"Dishonoring "
-		"Ruining "
-		"Invading "
-		"Attacking "
-		"Conquering "
-		"Oppressing "
-		"Backstabbing "
+		"Destroying"
+		"Betraying"
+		"Dishonoring"
+		"Ruining"
+		"Invading"
+		"Attacking"
+		"Conquering"
+		"Oppressing"
+		"Backstabbing"
 	word
-		"the Coalition "
-		"the alliance "
-		"the union "
-		"the friendship of sentient species "
-		"the citizens of the Coalition "
-		"our citizens "
-		"our Coalition "
-		"our alliance "
-		"our union "
-		"our friendship "
-		"our just government "
-		"our just meritocracy "
-		"our just government of merit "
+		" "
+	phrase
+		"hostile heliarch phrase 1 (the+our)"
+		"hostile heliarch phrase 1 (our only)"
 	word
-		"you will not "
-		"you will never "
-		"you shall not "
+		" "
+	word
+		"you will "
+		"you shall "
+	word
+		"not "
+		"never "
 	word
 		"succeed"
 	word
@@ -786,47 +810,76 @@ phrase "hostile heliarch"
 		"to destroy "
 		"to demoralize "
 		"to outpower "
+		"to be stronger than "
+		"to be greater than "
 	word
 		"our "
 	word
-		"indestructible "
-		"committed "
-		"advanced "
-		"disciplined "
-		"oathkeeping "
-		"peacekeeping "
-		"powerful "
-		"everlasting "
+		"indestructible"
+		"committed"
+		"advanced"
+		"disciplined"
+		"oathkeeping"
+		"peacekeeping"
+		"powerful"
+		"everlasting"
+		"legendary"
+	word
+		" "
 	word
 		"military."
 		"law-enforcers."
 		"navy."
+
+phrase "hostile heliarch phrase 2 (the+our)"
+	word
+		"the"
+		"our"
+	word
+		" "
+	word
+		"Coalition"
+		"friendship"
+		"friendship of sentient species"
+		"union"
+		"alliance"
+
+phrase "hostile heliarch phrase 2 (the only)"
+	word
+		"the"
+	word
+		" "
+	word
+		"anti-oppressors"
+
+phrase "hostile heliarch phrase 2 (our only)"
+	word
+		"our"
+	word
+		" "
+	word
+		"society"
+		"ideals"
 
 phrase "hostile heliarch"
 	word
 		"Forever "
 		"Until the end of time "
 		"Until the end of life "
+	phrase
+		"hostile heliarch phrase 2 (the+our)"
+		"hostile heliarch phrase 2 (the only)"
+		"hostile heliarch phrase 2 (our only)"
 	word
-		"our Coalition "
-		"the Coalition "
-		"the friendship of sentient species "
-		"our friendship "
-		"the union "
-		"our union "
-		"the alliance "
-		"our alliance "
-		"the anti-oppressors "
-		"our society "
-		"our ideals "
+		" "
 	word
-		"will live on!"
-		"shall live on!"
-		"will not be destroyed!"
-		"shall not be destroyed!"
-		"will not be history!"
-		"shall not be history!"
-		"will not die!"
-		"shall not die!"
-		"will not be extinct!"
-		"shall not be extinct!"
+		"will"
+		"shall"
+	word
+		" "
+	word
+		"live on!"
+		"not be destroyed!"
+		"not be history!"
+		"not die!"
+		"not be extinct!"
