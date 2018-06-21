@@ -1718,6 +1718,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 				{
 					AddOutfit(outfit, -neededAmmo);
 					bay.ship->AddOutfit(outfit, neededAmmo);
+					carriedMass += outfit->Mass() * neededAmmo;
 				}
 			}
 			
