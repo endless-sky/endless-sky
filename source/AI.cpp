@@ -1753,7 +1753,8 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target) const
 	if(isArmed && !hasAmmo)
 		shortestRange = 0.;
 	
-	// Deploy any fighters you are carrying.
+	// Deploy any fighters you are carrying. Ships with the prudent personality will
+	// only deploy fighters if they lost 50% of shields or hull, or if they are outgunned.
 	if(!ship.IsYours() && ship.HasBays() && !(ship.GetPersonality().IsPrudent() && ShouldActFrugally(ship)))
 	{
 		command |= Command::DEPLOY;
@@ -1872,6 +1873,7 @@ bool AI::ShouldUseAfterburner(Ship &ship)
 
 bool AI::ShouldActFrugally(const Ship &ship) const
 {
+	// Check if a ship is outgunned or lost 50% of its shields or hull.
 	if(AllyStrength(ship.GetGovernment()) < EnemyStrength(ship.GetGovernment()))
 		return false;
 	
@@ -2509,7 +2511,11 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 	
 	bool beFrugal = (ship.IsYours() && !escortsUseAmmo);
 	if(person.IsFrugal() || (ship.IsYours() && escortsAreFrugal && escortsUseAmmo))
+	{
+		// Frugal ships only expend ammunition if they have lost 50% of shields
+		// or hull, or if they are outgunned.
 		beFrugal = ShouldActFrugally(ship);
+	}
 	
 	// Special case: your target is not your enemy. Do not fire, because you do
 	// not want to risk damaging that target. The only time a ship other than
