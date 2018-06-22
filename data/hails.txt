@@ -910,7 +910,7 @@ phrase "friendly civilian"
 		"are building a superweapon to destroy us all!"
 		"are secretly being controlled by the Lizard Illuminati!"
 		"are under the control of a hidden race of chipmunk aliens!"
-		"get together to play foosball every Thursday on Luna!"
+		"get together to play football every Thursday on Luna!"
 
 phrase "friendly civilian"
 	word
