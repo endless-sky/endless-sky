@@ -2456,13 +2456,11 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
                 double rendezvousTime = 0.;
                 if(weapon->Acceleration())
                 {
-                    //Uses iterative approxamation to find out how long it would take for the projectile
-                    //to reach the target, accounting for the 'offset' caused by 'ship.Velocity()'.
+                    //Uses iterative approxamation for projectiles with drag.
                     Point offset = Point(0.,0.);
                     short int iterations = 3;
                     while (iterations > 0)
                     {
-                        // Find out how long it would take for this projectile to reach the target.
                         rendezvousTime = RendezvousTime(p - offset, v, vp);
                         
                         if(std::isnan(rendezvousTime))
@@ -2475,7 +2473,6 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
                     }
                 }
                 else
-                    // Find out how long it would take for this projectile to reach the target.
                     rendezvousTime = RendezvousTime(p, v, vp);
                 
                 // If there is no intersection (i.e. the turret is not facing the target),
