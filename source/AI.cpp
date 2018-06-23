@@ -2453,10 +2453,10 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
                 p += v;
                 
                 // Find out how long it would take for this projectile to reach the target.
-                double rendezvousTime = 0;
+                double rendezvousTime = 0.;
                 if(weapon->Acceleration())
                 {
-                    Point offset = Point(0,0); //the effect of ship.Velocity() on final position of projectile
+                    Point offset = Point(0.,0.); //the effect of ship.Velocity() on final position of projectile
                     int iterations = 3;
                     while (iterations > 0)
                     {
@@ -2466,16 +2466,18 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
                         // If there is no intersection (i.e. the turret is not facing the target),
                         // consider this target "out-of-range" but still targetable.
                         if(std::isnan(rendezvousTime))
+                        {
                             rendezvousTime = max(p.Length() / (vp ? vp : 1.), 2 * weapon->TotalLifetime());
-                        
-                        //Calculate how much drift turret velocity will in that time.
-                        offset = ship.Velocity() * -2.0 * M_PI * expm1(-rendezvousTime * M_1_PI * 0.5);
+                            iterations = 0;
+                        }
+                        else
+                        {
+                            //Calculate how much drift turret velocity will in that time.
+                            offset = ship.Velocity() * -2. * M_PI * expm1(-rendezvousTime * M_1_PI * 0.5);
+                        }
                         
                         iterations --;
                     }
-                    
-                    // Determine where the target will be at that point.
-                    p += v * rendezvousTime - offset;
                 }
                 else
                 {
@@ -2486,14 +2488,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
                     // consider this target "out-of-range" but still targetable.
                     if(std::isnan(rendezvousTime))
                         rendezvousTime = max(p.Length() / (vp ? vp : 1.), 2 * weapon->TotalLifetime());
-                    
-                    // Determine where the target will be at that point.
-                    p += v * rendezvousTime;
                 }
-                // If there is no intersection (i.e. the turret is not facing the target),
-                // consider this target "out-of-range" but still targetable.
-                if(std::isnan(rendezvousTime))
-                    rendezvousTime = max(p.Length() / (vp ? vp : 1.), 2 * weapon->TotalLifetime());
                 
                 // Determine where the target will be at that point.
                 p += v * rendezvousTime;
