@@ -2472,8 +2472,8 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
                         }
                         else
                         {
-                            //Calculate how much drift turret velocity will in that time.
-                            offset = ship.Velocity() * -2. * M_PI * expm1(-rendezvousTime * M_1_PI * 0.5);
+                            //Calculate how much drift turret velocity will cause in that time.
+                            offset = ship.Velocity() * -expm1(-rendezvousTime * weapon->Drag()) / weapon->Drag();
                         }
                         
                         iterations --;
