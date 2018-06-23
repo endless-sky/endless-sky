@@ -2456,12 +2456,13 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
                 double rendezvousTime = 0.;
                 if(weapon->Acceleration())
                 {
-                    Point offset = Point(0.,0.); //the effect of ship.Velocity() on final position of projectile
+                    //Uses iterative approxamation to find out how long it would take for the projectile
+                    //to reach the target, accounting for the 'offset' caused by 'ship.Velocity()'.
+                    Point offset = Point(0.,0.);
                     short int iterations = 3;
                     while (iterations > 0)
                     {
-                        // Find out how long it would take for this projectile to reach the target
-                        //compensating for any calculated offset.
+                        // Find out how long it would take for this projectile to reach the target.
                         rendezvousTime = RendezvousTime(p - offset, v, vp);
                         
                         if(std::isnan(rendezvousTime))
