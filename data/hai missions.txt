@@ -540,7 +540,7 @@ mission "Unwanted Cargo"
 		has "event: hai in cargo"
 	on offer
 		conversation
-			`The check cargo light for your ship begins blinking when you land, meaning that a cargo crate may have come loose in flight. You shut off the ship's engines and walk to the cargo hold.`
+			`The "Check Cargo" light for your ship begins blinking when you land, meaning that a cargo crate may have come loose in flight. You shut off the ship's engines and walk to the cargo hold.`
 			`	You check every cargo crate in the hold, but can't find anything wrong. Right as you decide to leave, one of the smaller crates begins rocking back and forth.`
 			branch translator
 				has "Human Cultural Archives: done"
@@ -613,11 +613,27 @@ mission "Expanding Business [1]"
 			
 			label proposition
 			`	"You may not have heard of me, but I've sure as hell heard of you, and I'd like to make a proposition to you." Turner turns around and waves his arm across the crowd of people in the spaceport. "You see all the humans here? About one out of every four of these people only arrived here after war broke out through the wormhole. Captains who knew of the Hai came flocking here in droves after the Navy entered Kornephoros, hoping to avoid any troubles that the war would bring. Some captains returned after the war end, but most stayed, and I see a massive market opportunity in that."`
+			branch rich
+				"net worth" >= 4000000000
+			
 			choice
 				`	"What kind of market opportunity?"`
 					goto opportunity
 				`	"Sorry, but I don't have the time to talk about this."`
-				
+					goto walk
+			
+			label rich
+			choice
+				`	"What kind of market opportunity?"`
+					goto opportunity
+				`	"You're only three billion credits? Why shouldn't I pursue your opportunity on my own?"`
+				`	"Sorry, but I don't have the time to talk about this."`
+					goto walk
+			
+			`	"Of course you're worth more than me, Captain <last>, but you are no business owner. I have the connections and skills, but a name like yours will always help.`
+				goto opportunity
+			
+			label walk
 			`	You try to walk away, but Turner stops you by grabbing your arm and continues to talk.`
 			
 			label opportunity
@@ -797,8 +813,11 @@ mission "Expanding Business [6]"
 					goto accept
 				`	"I'm not interested in working with you anymore, Turner."`
 			
-			`	Turner smirks at your response. "Understood, Captain <last>. I'll just save myself five thousand credits a day from now on. I'll be seeing myself out now."`
-				decline
+			`	Turner smirks at your response. "Understood, Captain <last>. I'll just save myself five thousand credits a day from now on by rescinding your salary. I'll be seeing myself out now."`
+			choice
+				`	"Goodbye."`
+					decline
+				`	"Wait! I changed my mind. I'll help you."`
 			
 			label accept
 			`	"Excellent decision, Captain <last>. I'll meet you outside to send the ships off."`
