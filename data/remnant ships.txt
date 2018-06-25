@@ -211,7 +211,7 @@ ship "Albatross"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
-	description "Once they left human space, it became apparent to the Remnant that they would need to build their own shipyards in order to defend themselves if they were discovered by the Alphas or any other unfriendly faction. Using new composite materials that they discovered, they built two ships based on the relics they found: One to explore, and one to defend. The Albatross lacks the range or speed of the Starling, but makes up for it with durability."
+	description "Once they left human space, it became apparent to the Remnant that they would need to build their own shipyards in order to defend themselves if they were discovered by the Alphas or any other unfriendly faction. Using new composite materials that they discovered, they built two new types of ships based on the relics they found: One to explore, and one to defend. The Albatross lacks the range or speed of the Starling, but makes up for it with durability."
 
 ship "Albatross" "Albatross (Sniper)"
 	outfits

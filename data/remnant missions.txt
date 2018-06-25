@@ -75,7 +75,7 @@ mission "First Contact: Remnant"
 event "ember waste label"
 	galaxy "label waste"
 		sprite label/waste
-		
+
 mission "Remnant: Second Contact"
 	name "Second chance at First Contact with the Remnant"
 	landing
@@ -120,14 +120,14 @@ mission "Remnant: Second Contact"
 	on complete
 		fail "First Contact: Remnant"
 		conversation
-			`For a second time you descend through the atmosphere of Viminal. Unlike the first time, your flight computer keeps blaring warnings that the ships escorting you are weapons-hot and locked on, As soon as you land your ship is surrounded by soldiers with a variety of weapons, and the same man appears in the midst of them. As before, he pricks his finger, presses it to a spot on the device, then offers a still-sealed lancet to you. "The first may be a misunderstanding, but now you know our law. Will you submit to a blood test, or be declared guilty once and for all?" he chants in a severe tone.`
+			`For a second time you descend through the atmosphere of Viminal. Unlike the first time, your flight computer keeps blaring warnings that the ships escorting you are weapons-hot and locked on. As soon as you land your ship is surrounded by soldiers with a variety of weapons, and the same man appears in the midst of them. As before, he pricks his finger, presses it to a spot on the device, then offers a still-sealed lancet to you. "The first may be a misunderstanding, but now you know our law. Will you submit to a blood test, or be declared guilty once and for all?" he chants in a severe tone.`
 			choice
 				`(Provide the blood sample.)`
 					goto SecondChanceComply
 				`(Refuse and run for your ship.)`
 					goto SecondChanceRefuse
 			label SecondChanceRefuse
-			`	As you turn to start running back to your ship you notice a quick hand sign from the prefect and the soldiers nearby begin raising their weapons and firing at you. As you feel your body begin to liquidize under the assault of the strange energy weapons, the last thing you see is the look of pity, resignation, and confusion on the face of the Prefect. Probably wondering why you would decide to return if you were just going to run again. You suppose they'll never know...`
+			`	As you turn to start running back to your ship you notice a quick hand sign from the prefect and the soldiers nearby begin raising their weapons and firing at you. As you feel your body begin to liquidize under the assault of the strange energy bolts, the last thing you see is the look of pity, resignation, and confusion on the face of the Prefect. Probably wondering why you would decide to return if you were just going to run again. You suppose they'll never know...`
 			die
 			label SecondChanceComply
 			apply
@@ -143,7 +143,7 @@ mission "Remnant: Second Contact"
 			`	Eventually they invite you to a dinner. Their food has strange and complex flavors, not all of them pleasant, but you do your best to be polite and pretend to enjoy it all. After the meal, they entertain you by singing songs, some of which you recognize as classical Earth music. It appears that people in this culture use sign language for day to day communication, and use their voices only for making music.`
 			`	When you return to your ship, you do a search on videos of historical dialects of human sign language. None of them bear even a passing resemblance to the language of these people who call themselves the Remnant.`
 
-			
+
 mission "Remnant: Defense 1"
 	source "Caelian"
 	name "Defend <planet>"
@@ -184,7 +184,7 @@ mission "Remnant: Defense 2"
 	landing
 	source "Caelian"
 	name "Remnant bounty"
-	description "A pack of Korath ships is flying around Remnant territory. Hunt it down and destroy it, then return to <planet> for payment."
+	description "A pack of Korath ships is flying around Remnant territory. Hunt them down and destroy them, then return to <planet> for payment."
 	to offer
 		has "Remnant: Defense 1: done"
 	on offer
@@ -649,7 +649,7 @@ mission "Remnant: Catalytic Ramscoop"
 	on offer
 		require "Catalytic Ramscoop"
 		conversation
-			`As you are walking through the spaceport, a woman comes up to you and introduces herself as an engineer at one of their development labs. She pauses awkwardly before beginning to chant: "As your ship is the only one we have seen in generations that has outfits from human space, we are intrigued by it. Could we take a closer look?"`
+			`As you are walking through the spaceport, a woman comes up to you and introduces herself as an engineer at one of the Remnant development labs. She pauses awkwardly before beginning to chant: "As your ship is the only one we have seen in generations that has outfits from human space, we are intrigued by it. Could we take a closer look?"`
 			choice
 				`	"Yes, you are welcome to examine it."`
 					goto deep
@@ -677,8 +677,8 @@ mission "Remnant: Catalytic Ramscoop"
 		outfit "Catalytic Ramscoop" -2
 		payment 1500000
 		conversation
-			`You visit the local shipyard and eventually find the engineer busily repairing a damaged Starling. You inform her that you have brought a pair of "Catalytic Ramscoops" for her to study. She quickly tightens a couple more connectors and jumps down from her perch, waving at an assistant to transfer you the credits you were promised. "Thank you! Our maps of human space are old, and if they are still accurate, you traveled a very long way to bring these to us." Her chanting voice echoes off the starling above you with an interesting resonance. `
-			`	"Thank you for your help," she says. "If we can unlock the secrets of these scoops, it may will give our ships greater range as they search for a safer refuge." As she picks up the remote control for the small loading truck with the two ramscoops she trills at you over her shoulder. "Oh, my name is Tali. I'll let you know what I find."`
+			`You visit the local shipyard and eventually find the engineer busily repairing a damaged Starling. You inform her that you have brought a pair of "Catalytic Ramscoops" for her to study. She quickly tightens a couple more connectors and jumps down from her perch, gesturing at an assistant to transfer you the credits you were promised. "Thank you! Our maps of human space are old, and if they are still accurate, you traveled a very long way to bring these to us." Her chanting voice echoes off the starling above you with an interesting resonance. `
+			`	"Thank you for your help," she says. "If we can unlock the secrets of these scoops, it will give our ships greater range as they search for a safer refuge." As she picks up the remote control for the small loading truck with the two ramscoops she trills at you over her shoulder. "Oh, my name is Tali. I'll let you know what I find."`
 
 mission "Remnant: Plasma Cannons"
 	name "Retrieve Plasma Cannons for the Remnant"
@@ -690,7 +690,7 @@ mission "Remnant: Plasma Cannons"
 	on offer
 		require "Plasma Cannon"
 		conversation
-			`As you are browsing the spacesport shops, a man approaches you and introduces himself as a weapons specialist at one of their research facilities. He pauses hesitantly before beginning to chant: "As your ship is the only one we have seen in generations that has weapons from human space, we are intrigued by it. Could we take a closer look?"`
+			`As you are browsing the spacesport shops, a man approaches you and introduces himself as a weapons specialist at one of the Remnant research facilities. He pauses hesitantly before beginning to chant: "As your ship is the only one we have seen in generations that has weapons from human space, we are intrigued by it. Could we take a closer look?"`
 			choice
 				`	"Yes, you are welcome to examine it."`
 					goto deep
@@ -752,7 +752,7 @@ mission "Remnant: Return the Samples"
 		ship "Archon (Cloaked)" "Lifted Lorax"
 	on stopover
 		conversation
-			`Once again you have successfully dodged the Archon to land on Nasqueron. Someone, knowing it was going to be there was both worse and better than the surprise of the first time.`
+			`Once again you have successfully dodged the Archon to land on Nasqueron. Somehow, knowing it was going to be there was both better and worse than the surprise of the first time.`
 			`	As <ship> sinks through the cloud layers, you gently activate the repulsors to slow your descent to avoid startling the Void Sprites. After what seems like an eternity, you notice a few nearby sprites descending as well, and you match speeds with them, slowing as you reach the altitude listed in the log. `
 			`	Setting the ship on auto-pilot, you head back and suit-up in something that looks more reminiscent of the old deep-sea diving suits than anything carried on a modern ship. Readying the eggs in the cargo hold, you equalize pressure in the main cargo hold to the swirling clouds outside, and open the cargo bay doors. As predicted, at this pressure level, the eggs are almost weightless, and are fairly easy to carry to the door of the ship and release.`	
 			`	By the time you finish releasing the eggs back into the clouds, several Void Sprites have converged on your ship and appear to be herding the eggs away from you with gentle buffets of their wings. You take a moment to appreciate the alien beauty of these creatures before closing the hatch and purging the ship with fresh air.`
@@ -773,7 +773,7 @@ mission "Remnant: Return the Samples 2"
 	on offer
 		conversation
 			`Following Plume's directions, you find a lab tucked behind the main area of the spaceport, where a short walkway leads into an underground structure. Stepping inside the door you note a rack of camouflage netting positioned easily at hand. Given what you have learned of their history, it is probably a last ditch preparation in case they needed to hide the entrance from a raid.`
-			`	The lab itself is a microcosm of Remnant development: The structure appears to be some strange semi-organic material, and you can see an eclectic mix of familiar and unfamiliar shapes cluttering the tables. If you had to guess, you would think that this lab was the result of several different families of technology, only one of which is human.`
+			`	The lab itself is a microcosm of Remnant development: The structure appears to be some strange semi-organic material, and you can see an eclectic mix of familiar and unfamiliar shapes cluttering the tables. If you had to guess, you would think that this lab was the result of several different families of technology, only one of which was human.`
 			`	Plume and several other Remnant are at the back of the room inspecting a bunch of cocoon-like containers, similar to the ones that carried the last batch of eggs back to Nasqueron. After checking a screen he looks up and seems momentarily startled to see you.`
 			`	"Ah, <first>! You are just in time." Plume chants quickly, his hands unconsciously dancing in a quick series of gestures. "These cocoons are ready to be delivered, this time to Slylandro. Could you drop them off like you did before?"`
 			choice
@@ -793,7 +793,7 @@ mission "Remnant: Return the Samples 2"
 			`As you approach Slylandro you watch the Archon like a hawk, but this time it doesn't attempt to drive you off with tridents of white energy. Cautiously you make your way to Slylandro and begin your descent.`
 			`	As <ship> sinks through the cloud layers, you notice the void sprites seem to be tailing you. A few drop past you with startling speed, only to reappear from below as you approach the designated altitude. At the last minute you remember Plume's request to record them, and hit the switch to activate the recorder for the exterior cameras.`
 			`	Setting the ship on auto-pilot, you head back and suit-up in the bulky pressure suit once again. Readying the eggs in the cargo hold, you equalize pressure and open the cargo bay doors. As before, the eggs are already floating as you open the cocoons and gently carry them to the door.`	
-			`	Almost as soon as you release the first egg, a void sprite is there, brushing against the ship to scoop the egg away into the swirling mists. By the time you return with the next one, another sprite is already waiting at the door, undulating in the eerie light. By the time the last egg is released you can see dozens of the strange creatures swarming around the collection of eggs. It occurs to you that very few humans would the chance to see anything like this...`
+			`	Almost as soon as you release the first egg, a void sprite is there, brushing against the ship to scoop the egg away into the swirling mists. By the time you return with the next one, another sprite is already waiting at the door, undulating in the eerie light. By the time the last egg is released you can see dozens of the strange creatures swarming around the collection of eggs. It occurs to you that very few humans would ever have the chance to see anything like this...`
 			`	After taking a moment to enjoy the view, you shut the door as gently as you can, purge the ship with fresh air, and begin the journey back to Aventine.`
 	on complete
 		conversation
@@ -837,14 +837,14 @@ mission "Remnant: Learning Sign 1"
 			`	As you place your hand on the scanner you feel a quick tingle as it scans your hand, then a pinprick as it extracts a drop of blood. The lady behind the desk looks at her screen. She nods, taps on the screen a few times, then retrieves a datapad from beneath the desk.`
 			`	She hands the pad to you, and sings a brief verse about perseverance and hope.`
 			`	...`
-			`	Back on your ship you flip the pad on. The Datapad appears to be loaded with a number of historic musicals and operas where the meaning of the lyrics has been replicated with gestures as sub-titles. It is interspersed with what appear to be kindergarten level videos slowly explaining gestures and pausing to give you the opportunity to practice.`
+			`	Back on your ship you flip the pad on. The Datapad appears to be loaded with a number of historic musicals and operas where the meaning of the lyrics has been replicated with gestures as subtitles. It is interspersed with what appear to be kindergarten level videos slowly explaining gestures and pausing to give you the opportunity to practice.`
 			`	After a few hours a note pops up on the screen, informing you that additional lessons are available from the director's desk on Aventine.`
 				accept
 
 	on stopover [Aventine]
 		conversation
 			`The trip over is noisy - filled with antique singing and modern language teaching videos. It takes a while to start picking out specific phrases, but you have plenty of time to repeat the lessons on the flight to Aventine. When you are searching for the director's desk at the spaceport, you are very conscious of all the conversations going on around you. You even catch a word here and there, but not much. Eventually you manage to ask for directions using what you have learned, and you arrive at a similar desk in a busy plaza.`
-			`	It looks like the person behind the desk has been expecting you. They gesture very slowly, asking how your lessons are going using very basic signs and songs. After a few minutes of basic conversation, they ask you for your hand for the hand-scan and then gives you a data chip with more lessons.`
+			`	It looks like the person behind the desk has been expecting you. They gesture very slowly, asking how your lessons are going using very basic signs and songs. After a few minutes of conversation, they ask you for your hand for the hand-scan and then gives you a data chip with more lessons.`
 			`	There is also a note saying that there will be a final package of lessons waiting for you on Viminal.`
 
 	on complete
@@ -879,7 +879,7 @@ mission "Remnant: Learning Sign 2"
 	on complete
 		log "Have learned the basics of the Remnant sign language, and been formally granted access to their worlds after having been genetically tested on each of them."
 		conversation
-			`The last leg of the journey was spent watching some ancient show about a merchant captain making his way through the galaxy with an unlikely crew, re-enacted by a cast of Remnant who sing and sign their way through the dialogs. It seems really familiar, but you can't quite place it. You note that it seems to have a lot of subtext about the dangers of manipulation and government secrecy, especially surrounding genetics.`
+			`The last leg of the journey was spent watching some ancient show about a merchant captain making his way through the galaxy with an unlikely crew, re-enacted by a cast of Remnant who sing and sign their way through the dialogs. It seems really familiar, but you can't quite place it. You notice that it seems to have a lot of subtext about the dangers of manipulation and government secrecy, especially surrounding genetics.`
 			`	You arrive at the Director's desk and offer to return the datapad to the Director, signing your thanks. She seems pleased at how much you have learned, and replies that you are welcome to keep it for as long as you need it.`
 			`	She pauses for a moment, then signs "You are probably wondering about all the blood tests. Long ago it was decided that being infiltrated by Alpha agents was a big risk, and we couldn't depend on our interstellar network to remain secure. So we implemented a policy where the first time a Remnant is granted formal access to a new planet their purity and identity is verified. Thus even if someone hacked our networks to give themselves a clean identity, they would still be caught when they started working on a new planet. We also don't broadcast that requirement on our networks, simply enforce it locally. It isn't foolproof, but it adds an additional layer of safety."`
 			`	After you finish your conversation with her, you stroll off to look around the spaceport, enjoying the fact that you can now understand a bit of the conversations going on around you. It still takes quite a bit of effort, but it is a good start.`
@@ -901,9 +901,9 @@ mission "Remnant: Salvage 1"
 				has "Remnant: Heavy Laser: done"
 	on offer
 		conversation
-			`As you step out into the icy chill of Viminal you get a comlink message from Tali asking if you could meet her in the cafeteria. Replying that you can, you make your way through the crowds and find an empty table. Moments later Tali appears, she grabs two trays from the dispenser, and settles down in the opposite chair with a look of exhaustion.`
+			`As you step out into the icy chill of Viminal you get a comlink message from Tali asking if you could meet her in the cafeteria. Replying that you can, you make your way through the crowds and find an empty table. Moments later Tali appears and grabs two trays from the dispenser before heading towards you. She settles down in the opposite chair with a look of exhaustion.`
 			`	"It is good to see you again, <first>." she sings softly. When you sign a reply she sits up and smiles. "My, you are a quick learner." she signs "Great, this is much faster." `
-			`	"I haven't fully reverse engineered the ramscoops you retrieved for us, but we should be ready to produce them soon. In the meantime, though, they are showing us that humanity has made significant progress since we departed. Could you help us catch up with what has happened out there?" `
+			`	"I haven't fully..." (she makes a sign that you don't understand, but seems similar to the signs for 'breaking' and 'understanding') "...the technology you retrieved for us, but we should be ready to produce them soon. In the meantime, though, they are showing us that humanity has made significant progress since we departed. Could you help us catch up with what has happened out there?" `
 			choice
 				`	"Yes."`
 					goto ContinueSalv
@@ -953,9 +953,9 @@ mission "Remnant: Salvage 2"
 	on complete
 		payment 1500000
 		conversation
-			`As some ships maintain orbital sentry positions, most ships return to their berths. Mechanics are soon swarming over the ships, and what you suspect are ambulances are waiting at the ramps to collect the injured. Farther back, flat  bed tractor units wait to pick up any salvage that had been collected.`
+			`As some ships maintain orbital sentry positions, most ships return to their berths. Mechanics are soon swarming over the ships, and what you suspect are ambulances are waiting at the ramps to collect the injured. Farther back, flat  bed tractor units wait to pick up any salvage that has been collected.`
 			`	Eventually a tired but pleased looking prefect stops by your ship. He starts with "Do you understand our language, or do I need to sing?" He looks relieved when you reply that you can understand most of what is said so long as he speaks slowly. "Thank you for your assistance during the raid. The sensors you placed on Parca picked up the fleet coming in and gave us sufficient warning to get everyone ready."`
-			`	He is silent for a moment, with the air of someone who is enjoying not having to run for the first time in a while. "Oh, Tali said that you might have some historical records for us?" you hand over the copy of the archive in response, telling him that is probably the best available. He thanks you and hands over a creditstick with 1.5M credits on it. After a little more conversation he hauls himself to his feet "I'll make sure this gets where it needs to go. Thank you!"`
+			`	He is silent for a moment, with the air of someone who is enjoying not having to run for the first time in a while. "Oh, Tali said that you might have some historical records for us?" You hand over the copy of the archive in response, telling him that is probably the best available. He thanks you and hands over a creditstick with 1.5M credits on it. After a little more conversation he hauls himself to his feet "I'll make sure this gets where it needs to go. Thank you!"`
 
 mission "Remnant: Salvage 3"
 	source "Viminal"
@@ -990,7 +990,7 @@ mission "Remnant: Salvage 3"
 			`The return trip to Viminal is much more interesting. The crew spend more time wandering your ship than they do in their bunks. Some spend most of their time down in engineering, others hang out around the main guns or the cockpit. Only their remarkable aptitude at figuring out where to be in order to not interfere with your crew keeps them from being a hindrance. As you open the hatch they disperse across the tarmac to the ships they have been assigned to, each one of them signing their thanks as they leave.`
 			`	A few minutes after they leave your comlink beeps, notifying you that a message from the prefect has arrived:`
 			`	"Captain <last>! Thank you for your help in defending Viminal and transporting those wounded. I have transferred a small token of our appreciation to you. That being said, perhaps you would appreciate this a bit more: The other prefects and I have agreed to grant you access to a wider range of ships: our Albatross class warships, and Pelican class freighters. I think you would term the former 'heavy warships,' and the latter 'heavy freighters.' At the rate these raids are going, it is in everyone's best interests that you have access to a better warship."`
-			`	With a tone of sense of finality the Prefect makes a gesture that you've come to recognize as "respectful end of conversation."`
+			`	With a sense of finality the Prefect makes a gesture that you've come to recognize as "respectful end of conversation."`
 
 event "Remnant Albatross"	
 	shipyard "Remnant"
@@ -1006,7 +1006,7 @@ mission "Remnant: Salvage 4"
 		has "Remnant: Salvage 3: done"
 	on offer
 		conversation
-			`Walking into the cafeteria you immediately sense the buoyant mood. According to a report on the vidscreen very few Remnant ships were actually lost, and of those the escape pods worked perfectly, ensuring none of the crew were lost. Groups of crew are grouped around tables intermingled with the ground teams that keep their ships operational, and based on the snippets you can catch, they seem to be trading stories of crack shots and clever improvisations.`
+			`Walking into the cafeteria you immediately sense the buoyant mood. According to a report on the vidscreen very few Remnant ships were actually lost, and of those the escape pods worked perfectly, ensuring none of the crew were killed. Groups of crew are grouped around tables intermingled with the ground teams that keep their ships operational, and based on the snippets you can catch, they seem to be trading stories of crack shots and clever improvisations.`
 			`	Tali sits over at a corner booth with the prefect who met you at the dock and a couple other mechanics, and she waves you over. "Captain <last>! So, how do you like fighting with our fleet?" asks one of the mechanics.`
 			choice
 				`	"It seems odd to have a planetary defence fleet plundering."`
@@ -1130,7 +1130,7 @@ mission "Remnant: Salvage 6"
 		conversation 
 			`Tali meets you at the dock with a flatbed ready to offload the shipment. As you run through your shutdown routine you hit the switch for the cargo bay doors, and by the time you have gone down to the cargo hold, Tali has half the shipment already unloaded. `
 			`	Her signs flick at you with a gentleness that you are slowly deciding equates to a cheerful tone. "Thank you for all the help you've provided in recovering this salvage. I have discussed it with the other engineers, and we have decided to give you access to our salvage."`
-			`	She leads you over to the warehouse, scans her ID then yours on the entrance console, and then pulls you to a door on the far side of the outfitting shop. Beyond the door is a room filled with outfits and weapons that clearly don't fit the same style as the other Remnant technology you have seen. Most of the things here you have seen on scans and when salvaging equipment from other ships, but never up close."`
+			`	She leads you over to the warehouse, scans her ID on the console, and taps a few commands. Then she scans your ID card. "There you go, I have updated your access codes" she signs cheerfully. She hands you your ID and pulls you to a door on the far side of the outfitting shop. Beyond the door is a room filled with outfits and weapons that clearly don't fit the same style as the other Remnant technology you have seen. Most of the things here you have seen on scans and when salvaging equipment from other ships, but never up close."`
 			`	"Everything in here we have either learned how to duplicate in its current form, or have salvaged in sufficient quantities that we might as well be manufacturing it."`
 			`	She nods at the rack of Korath Heat Shunts while she explains, then turns back to you.`
 			`	"Of course the really advanced and rare stuff is still going to the labs first, and won't be available until we have learned all we can from it." She looks around proudly. "We don't have the industrial capacity or the numbers of researchers to keep up with the Alphas, the Korath, or whoever else might be out there. But we are very good at figuring out what others have built and learning from it."`
@@ -1187,14 +1187,15 @@ mission "Remnant: Expanded Horizons Quarg 1"
 				`"I'm not interested."`
 					decline
 			label "AnswerQuestions"
-			`	She quickly slides into the chair opposite and pulls out a datapad. "Firstly, our histories mention how humanity met a race called the 'Quarg' and had some ongoing dialogs with them, but not much beyond that. Now here in this history that you brought us, it says that humanity has started exchanging technology with them! Is this true?" She looks at you intently. You sign affirmatively, and she excitedly continues. "Could you tell me about them? An alien race that actually exchanges tech peacefully with humanity is exciting!"`
-			`	After several hours of telling her about meeting the Quarg and visiting their world it finally dawns on you that it would be easy enough to take her to visit the Tarazed. You offer to take her and a couple of her colleagues. She eagerly accepts, although expresses a preference for landing on the human world so they can observe the Quarg ships from a distance. They would rather not draw any attention to themselves. She runs out of the cafeteria after telling you they will meet you at your ship in half an hour.`
+			`	She quickly slides into the chair opposite and pulls out a datapad. "Firstly, our histories mention how humanity met a race called the 'Quarg' and had some ongoing dialogs with them, but not much beyond that. Now here in this history that you brought us, it says that humanity has started exchanging technology with them! Is this true?" She looks at you intently. You sign negatively, and she dejectedly continues. "Could you tell explain about them, then?" You reply that the Quarg have allowed humanity to live near them, and that the Quarg are usually willing to answer questions, including scientific ones. You continue, elaborating that while the Quarg don't seem to mind having an innovative shipyard studying them as best it can, they don't actually share their technology with anyone."`
+			`	After several hours of telling her about meeting the Quarg and visiting their world it finally dawns on you that it would be easy enough to take her to visit the Tarazed system. You offer to take her and a couple of her colleagues. She eagerly accepts, although expresses a preference for landing on the human world so they can observe the Quarg ships from a distance. They would rather not draw any attention to themselves. She runs out of the cafeteria after telling you they will meet you at your ship in half an hour.`
 				accept
 	on complete
 		payment 50000
 		conversation
 			`Dawn and her colleagues are thrilled with the trip. While they had each served on Remnant ships exploring the Ember wastes or patrolling their territory, none had ever been more than a handful of jumps away from their own space. Their ships were always cautious to stay far away from human space to avoid leading anyone back.`
-			`	Upon arriving at Wayfarer they spend considerable amount of time watching the few Quarg in evidence, however it is easy to see that the real draw of their attention is the ships. You wave your ID across the scanner for the shipyard and take them inside to browse.`
+			`	It occurs to you that Dawn and her colleagues seem much less reserved than most Remnant. You aren't sure if it is because they are younger, less secretive, or if the Remnant have been concealing it from you. It is also possible that you just have better opportunities to figure it  out now that you can understand their signs.
+			`	Upon arriving at Wayfarer they spend considerable amount of time watching the few Quarg in evidence, however it is easy to see that the real draw of their attention is the ships. You wave your ID across the scanner for the shipyard and take them inside to see what Tarazed shipyards has on display.`
 			branch Rich
 				"net worth" >= 20000000
 			`	After a few minutes a sales agent meanders over to ask if there's anything he can do to help. You ask a few questions about the different ships for Dawn's benefit, listen to the sales agent repeat a few lines from the display, then politely tell him you'll just browse on your own.`
@@ -1251,7 +1252,7 @@ mission "Remnant: Expanded Horizons Quarg 3"
 		has "Remnant: Expanded Horizons Quarg 2: done"
 	on offer
 		conversation
-			`Back in the spaceport bar you wait around for a couple hours. Just when you were about to go find them, the trio walk in looking cheerful.`
+			`Back in the spaceport bar you wait around for a couple hours. Just when you were about to go find them, the trio walk in looking a tad tired but otherwise unreadable.`
 			`	"OK, I think we are ready to go. Can you take us to <planet>?"`
 			choice
 				`Yes`
@@ -1264,7 +1265,7 @@ mission "Remnant: Expanded Horizons Quarg 3"
 	on complete
 		payment 50000
 		conversation
-			`Once back in the privacy of <ship>, the trio are a blur of motion as they chatter back and forth with their signs. Apparently this will be one of the biggest boosts to their research since the first time they salvaged the gear off a Korath raider.`
+			`Once back in the privacy of <ship>, the stony reserve fades to cheerfulness as trio are a blur of motion as they chatter back and forth with their signs. Apparently this will be one of the biggest boosts to their research since the first time they salvaged the gear off a Korath raider.`
 			`	They eventually slow down their signs a bit and explain that up until the time the Remnant left human space, the Quarg had been reluctant to let anyone conduct detailed scans of their ships, let alone the close contact the engineers on Tarazed seem to enjoy. One of her fellow researchers picks up the story:`
 			`	"Our historical records just have a few pictures and videos of Quarg ships, along with a basic scan that doesn't provide more than the general outline of the ship. These scans," he taps the databanks "actually picked up detailed structural layouts and even identified a number of key components. It isn't nearly enough information to be able to duplicate them, but it is enough that we can start trying to figure out how they work.`
 			`	Upon arriving at <planet> they quickly thank you, and literally run back to their offices to finish prepping their material to publish and distribute.`
@@ -1281,7 +1282,7 @@ mission "Remnant: Follow-up on Terminus Researchers"
 		random < 50
 	on offer
 		conversation
-			`Looking around at the Remnant spaceport, it suddenly strikes you how amazing this is. You never would have imagined that you would end up here back when you earned your pilot's license. It seems so long ago that your biggest concern was deciding whether to pay off your loan by ferrying cargo, doing courier jobs, or escorting merchants. (and on your darker days - dreaming of becoming a pirate).`
+			`Looking around at the Remnant spaceport, it suddenly strikes you how amazing this is. You never would have imagined that you would end up here back when you earned your pilot's license. It seems so long ago that your biggest concern was deciding whether to pay off your loan by ferrying cargo, doing courier jobs, or escorting merchants. (and on your darker days - by being a pirate).`
 			`	Thinking back, it suddenly occurs to you that you helped retrieve a science drone for some researchers on Bounty - researchers who were studying the wormhole in Terminus. Research like that might be of interest to the Remnant, seeing as it could open the door to research vessels venturing into the Ember Wastes. It would only be a matter of time until someone figures out how to use the key stones - either by luck or by research, and then the Remnant's secrecy would vanish.`
 			choice
 				"It isn't that important."
@@ -1340,7 +1341,7 @@ mission "Remnant: Follow-up on Terminus Researchers 3"
 	on complete
 		payment 2000000
 		conversation
-			`The trip back to the Ember Wastes is long, and gives you plenty of opportunity to think about what this research could lead to. You also wonder what the Remnant will do, as it seems obvious that their current isolation is about to fail.`
+			`The trip back to the Ember Wastes is long, and it gave you plenty of opportunities to think about what this research could lead to. You also wondered about what the Remnant will do, as it seems obvious that their current isolation is about to fail.`
 			`	Reegar seems grimly optimistic on receiving your report "If this had happened without us being aware, it could have gone badly. Fortunately for us, you were in the right place at the right time, and have proven yourself loyal to us. So we are now forewarned and can use this time to plan and prepare for it. Perhaps re-establishing contact with the rest of humanity could even be to our benefit, but that will be for the council to decide."`
 			`	"Thank you, Captain. If you ever come across any other interesting information like this, don't hesitate to bring it to me."`
 
@@ -1358,7 +1359,7 @@ mission "Remnant: Busy Stranger"
 		log "The prefects have suggested that all the jobs currently available are done, but they are working on more."
 		conversation
 			`An elderly man approaches your ship and you recognize him as the prefect who gave you your license to purchase Remnant technology.`
-			`	"It seems that you have been very helpful to the Remnant, Captain <last> of <ship>. While we do not have any more jobs for you right now, hopefully we will soon. In the meantime, we have granted you access to several of our newer ships."`
+			`	"It seems that you have been very helpful to the Remnant, Captain <last> of <ship>. While we do not have any more jobs for you right now, hopefully we will soon."`
 			choice
 				`	"I'm honored. Thank you."`
 					decline
