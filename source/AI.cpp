@@ -2456,7 +2456,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
                 double rendezvousTime = 0.;
                 if(weapon->Acceleration())
                 {
-                    //Uses iterative approxamation for projectiles with drag.
+                    // For projectiles with drag, use iterative approxamation.
                     Point offset = Point(0.,0.);
                     short int iterations = 3;
                     while (iterations > 0)
@@ -2466,7 +2466,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
                         if(std::isnan(rendezvousTime))
                             iterations = 0;
                         else
-                            //Calculate how much drift turret velocity will cause in that time.
+                            // Calculate how much drift turret velocity will cause in that time.
                             offset = ship.Velocity() * -expm1(-rendezvousTime * weapon->Drag()) / weapon->Drag();
                         
                         iterations --;
