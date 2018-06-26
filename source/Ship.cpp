@@ -2830,6 +2830,8 @@ bool Ship::CanFire(const Weapon *weapon) const
 	
 	if(energy < weapon->FiringEnergy())
 		return false;
+	if(heat < -(weapon->FiringHeat()))
+		return false;
 	if(fuel < weapon->FiringFuel())
 		return false;
 	
