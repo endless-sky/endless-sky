@@ -892,10 +892,11 @@ outfit "Heat Bomb Launcher"
 		"firing heat" -1000
 		"acceleration" 1
 		"drag" .1
-		"trigger radius" 30
+		"trigger radius" 20
 		"blast radius" 50
 		"shield damage" 900
 		"hull damage" 900
+		"heat damage" 500
 		"hit force" 800
 		"missile strength" 35
 	description "Heat Bombs are made with a special material that absorbs heat phenomenally well. Unfortunately, for those interested in designing dedicated cooling systems, it also becomes severely unstable when superheated. Faced with this challenge, one clever engineer decided it would be best to simply eject the material from the ship. In the direction of an enemy."
