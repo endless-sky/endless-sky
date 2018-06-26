@@ -2046,7 +2046,7 @@ phrase "friendly disabled"
 		
 phrase "friendly disabled"
 	word
-		"Hey!"
+		"Hey! "
 		"You're a friendly, correct? "
 		"You answered! "
 		"Good to see a friendly face! "
