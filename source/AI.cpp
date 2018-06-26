@@ -2442,60 +2442,60 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 			double bestAngle = 0.;
 			for(const Body *target : enemies)
 			{
-                Point p = target->Position() - start;
-                Point v = target->Velocity();
-                // Only take the ship's velocity into account if this weapon
-                // does not have its own acceleration.
-                if(!weapon->Acceleration())
-                    v -= ship.Velocity();
-                // By the time this action is performed, the ships will have moved
-                // forward one time step.
-                p += v;
-                
-                // Find out how long it would take for this projectile to reach the target.
-                double rendezvousTime = 0.;
-                if(weapon->Acceleration())
-                {
-                    // For projectiles with drag, use iterative approximation.
-                    Point offset = Point(0.,0.);
-                    short int iterations = 3;
-                    while (iterations > 0)
-                    {
-                        rendezvousTime = RendezvousTime(p - offset, v, vp);
-                        
-                        if(std::isnan(rendezvousTime))
-                            iterations = 0;
-                        else
-                            // Calculate how much drift turret velocity will cause in that time.
-                            offset = ship.Velocity() * -expm1(-rendezvousTime * weapon->Drag()) / weapon->Drag();
-                        
-                        iterations --;
-                    }
-                }
-                else
-                    rendezvousTime = RendezvousTime(p, v, vp);
-                
-                // If there is no intersection (i.e. the turret is not facing the target),
-                // consider this target "out-of-range" but still targetable.
-                if(std::isnan(rendezvousTime))
-                    rendezvousTime = max(p.Length() / (vp ? vp : 1.), 2 * weapon->TotalLifetime());
-                
-                // Determine where the target will be at that point.
-                p += v * rendezvousTime;
-                
-                // Determine how much the turret must turn to face that vector.
-                double degrees = (Angle(p) - aim).Degrees();
-                double turnTime = fabs(degrees) / weapon->TurretTurn();
-                // All ships that are within weapons range have the same basic
-                // weight. Outside that range, give them lower priority.
-                rendezvousTime = max(0., rendezvousTime - weapon->TotalLifetime());
-                // Always prefer ships that you are able to hit.
-                double score = turnTime + (180. / weapon->TurretTurn()) * rendezvousTime;
-                if(score < bestScore)
-                {
-                    bestScore = score;
-                    bestAngle = degrees;
-                }
+				Point p = target->Position() - start;
+				Point v = target->Velocity();
+				// Only take the ship's velocity into account if this weapon
+				// does not have its own acceleration.
+				if(!weapon->Acceleration())
+					v -= ship.Velocity();
+				// By the time this action is performed, the ships will have moved
+				// forward one time step.
+				p += v;
+				
+				// Find out how long it would take for this projectile to reach the target.
+				double rendezvousTime = 0.;
+				if(weapon->Acceleration())
+				{
+					// For projectiles with drag, use iterative approximation.
+					Point offset = Point(0.,0.);
+					short int iterations = 3;
+					while (iterations > 0)
+					{
+						rendezvousTime = RendezvousTime(p - offset, v, vp);
+						
+						if(std::isnan(rendezvousTime))
+							iterations = 0;
+						else
+							// Calculate how much drift turret velocity will cause in that time.
+							offset = ship.Velocity() * -expm1(-rendezvousTime * weapon->Drag()) / weapon->Drag();
+						
+						iterations --;
+					}
+				}
+				else
+					rendezvousTime = RendezvousTime(p, v, vp);
+				
+				// If there is no intersection (i.e. the turret is not facing the target),
+				// consider this target "out-of-range" but still targetable.
+				if(std::isnan(rendezvousTime))
+					rendezvousTime = max(p.Length() / (vp ? vp : 1.), 2 * weapon->TotalLifetime());
+				
+				// Determine where the target will be at that point.
+				p += v * rendezvousTime;
+				
+				// Determine how much the turret must turn to face that vector.
+				double degrees = (Angle(p) - aim).Degrees();
+				double turnTime = fabs(degrees) / weapon->TurretTurn();
+				// All ships that are within weapons range have the same basic
+				// weight. Outside that range, give them lower priority.
+				rendezvousTime = max(0., rendezvousTime - weapon->TotalLifetime());
+				// Always prefer ships that you are able to hit.
+				double score = turnTime + (180. / weapon->TurretTurn()) * rendezvousTime;
+				if(score < bestScore)
+				{
+					bestScore = score;
+					bestAngle = degrees;
+				}
 			}
 			if(bestAngle)
 			{
