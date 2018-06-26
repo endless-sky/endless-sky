@@ -846,6 +846,62 @@ effect "torpedo fire"
 	"lifetime" 15
 
 
+outfit "Heat Bomb"
+	plural "Heat Bombs"
+	category "Ammunition"
+	cost 4000
+	thumbnail "outfit/torpedo"
+	"mass" .6
+	"heat bomb capacity" -1
+	description "Heat Bombs are ammunition for the Heat Bomb Launcher. Each Heat Bomb Launcher can hold 20 of them. You cannot install Heat Bombs unless you have also installed a launcher to fire them from."
+
+outfit "Heat Bomb Storage Rack"
+	category "Ammunition"
+	cost 60000
+	thumbnail "outfit/torpedo storage"
+	"mass" 3
+	"outfit space" -9
+	"torpedo capacity" 10
+	ammo "Torpedo"
+	description "The Heat Bomb Storage Rack is used to store extra ammunition for Heat Bomb Launchers."
+
+outfit "Heat Bomb Launcher"
+	category "Secondary Weapons"
+	cost 200000
+	thumbnail "outfit/torpedo launcher"
+	"mass" 18
+	"outfit space" -35
+	"weapon capacity" -35
+	"gun ports" -1
+	"heat bomb capacity" 20
+	weapon
+		sprite "projectile/torpedo"
+			"frame rate" 2
+			"random start frame"
+		sound "torpedo"
+		ammo "Heat Bomb"
+		icon "icon/torpedo"
+		"fire effect" "torpedo fire"
+		"hit effect" "large explosion"
+		"die effect" "large explosion"
+		"inaccuracy" 1
+		"velocity" 10
+		"lifetime" 50
+		"reload" 120
+		"firing energy" 1
+		"firing heat" -1000
+		"acceleration" 1
+		"drag" .1
+		"trigger radius" 20
+		"blast radius" 50
+		"shield damage" 900
+		"hull damage" 900
+		"heat damage" 500
+		"hit force" 800
+		"missile strength" 35
+	description "Heat Bombs are made with a special material that absorbs heat phenomenally well. Unfortunately, for those interested in designing dedicated cooling systems, it also becomes severely unstable when superheated. Faced with this challenge, one clever engineer decided it would be best to simply eject the material from the ship. In the direction of an enemy."
+
+
 outfit "Typhoon Torpedo"
 	plural "Typhoon Torpedoes"
 	category "Ammunition"

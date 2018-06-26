@@ -28,7 +28,7 @@ RPM-based distros:
    openal-soft-devel \
    libmad-devel
 
-You can then just navigate to the source code folder in a terminal and type:
+You can then just navigate to the root directory of the repo in a terminal and type:
 
   $ scons
   $ ./endless-sky
