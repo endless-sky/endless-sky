@@ -12,12 +12,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "HiringPanel.h"
 
+#include "Color.h"
 #include "FillShader.h"
+#include "Font.h"
+#include "FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
+#include "Sprite.h"
+#include "SpriteSet.h"
+#include "SpriteShader.h"
 #include "UI.h"
 
 using namespace std;
@@ -48,6 +54,20 @@ void HiringPanel::Draw()
 	// Draw a line in the same place as the trading and bank panels.
 	FillShader::Fill(Point(-60., 95.), Point(480., 1.), *GameData::Colors().Get("medium"));
 	
+	// Add a check box for auto-hiring
+	bool autoHire = player.IsAutoHire();
+
+	Font font = FontSet::Get(14);
+	Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
+	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
+
+	Point pos = Point(-292., 355.);
+	Point off = Point(10., -.5 * font.Height());
+	SpriteShader::Draw(box[autoHire], pos);
+	font.Draw("Auto-hire to max", pos + off, color[autoHire]);
+	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleAutoHire(); });
+
+	// Create the rest of the panel via game data
 	const Interface *interface = GameData::Interfaces().Get("hiring");
 	Information info;
 	
@@ -113,7 +133,25 @@ bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	{
 		player.Flagship()->AddCrew(-min(maxFire, Modifier()));
 		player.UpdateCargoCapacities();
+		if(player.IsAutoHire())
+		{
+			player.ToggleAutoHire();
+		}
 	}
+	else if(key == 'a')
+		ToggleAutoHire();
 	
 	return false;
+}
+
+
+
+void HiringPanel::ToggleAutoHire()
+{
+	const Ship &flagship = *player.Flagship();
+	int maxToHire = flagship.Attributes().Get("bunks") - flagship.Crew();
+
+	player.ToggleAutoHire();
+	if(player.IsAutoHire())
+		player.Flagship()->AddCrew(maxToHire);
 }

@@ -36,6 +36,9 @@ protected:
 	
 	
 private:
+	void ToggleAutoHire();
+
+private:
 	PlayerInfo &player;
 	
 	int maxHire;

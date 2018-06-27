@@ -136,6 +136,8 @@ void PlayerInfo::Load(const string &path)
 			planet = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "clearance")
 			hasFullClearance = true;
+		else if(child.Token(0) == "autohire")
+			autoHire = true;
 		else if(child.Token(0) == "launching")
 			shouldLaunch = true;
 		else if(child.Token(0) == "travel" && child.Size() >= 2)
@@ -1008,9 +1010,11 @@ void PlayerInfo::Land(UI *ui)
 	
 	// Hire extra crew back if any were lost in-flight (i.e. boarding) or
 	// some bunks were freed up upon landing (i.e. completed missions).
-	if(Preferences::Has("Rehire extra crew when lost") && hasSpaceport && flagship)
+	if(autoHire || (Preferences::Has("Rehire extra crew when lost") && hasSpaceport && flagship))
 	{
-		int added = desiredCrew - flagship->Crew();
+		int bunks = flagship->Attributes().Get("bunks");
+		int target = autoHire ? bunks : desiredCrew;
+		int added = target - flagship->Crew();
 		if(added > 0)
 		{
 			flagship->AddCrew(added);
@@ -2089,6 +2093,22 @@ set<string> &PlayerInfo::Collapsed(const string &name)
 
 
 
+// Set to automatically hire to max crew amount upon landing
+void PlayerInfo::ToggleAutoHire()
+{
+	autoHire = !autoHire;
+}
+
+
+
+// Set to automatically hire to max crew amount upon landing
+bool PlayerInfo::IsAutoHire() const
+{
+	return autoHire;
+}
+
+
+
 // Apply any "changes" saved in this player info to the global game state.
 void PlayerInfo::ApplyChanges()
 {
@@ -2357,6 +2377,8 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("planet", planet->Name());
 	if(planet && planet->CanUseServices())
 		out.Write("clearance");
+	if(autoHire)
+		out.Write("autohire");
 	// This flag is set if the player must leave the planet immediately upon
 	// loading the game (i.e. because a mission forced them to take off).
 	if(shouldLaunch)
