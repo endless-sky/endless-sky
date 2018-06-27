@@ -237,7 +237,9 @@ public:
 	void SetMapZoom(int level);
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
-	
+	// Set to automatically hire to max crew amount upon landing.
+	void ToggleAutoHire();
+	bool IsAutoHire() const;
 	
 private:
 	// Don't anyone else to copy this class, because pointers won't get
@@ -330,6 +332,7 @@ private:
 	
 	bool freshlyLoaded = true;
 	int desiredCrew = 0;
+	bool autoHire = false;
 };
 
 
