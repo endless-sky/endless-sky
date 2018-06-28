@@ -170,8 +170,6 @@ effect "point defense die"
 outfit "EMP Torpedo"
 	plural "EMP Torpedoes"
 	category "Ammunition"
-	licenses
-		Remnant
 	cost 4400
 	thumbnail "outfit/emp torpedo"
 	"mass" 1
