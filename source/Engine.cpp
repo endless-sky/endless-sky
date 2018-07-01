@@ -229,17 +229,12 @@ void Engine::Place()
 	ships.clear();
 	
 	EnterSystem();
-	auto it = ships.end();
 	
 	// Add the player's flagship and escorts to the list of ships. The TakeOff()
 	// code already took care of loading up fighters and assigning parents.
 	for(const shared_ptr<Ship> &ship : player.Ships())
 		if(!ship->IsParked() && ship->GetSystem())
-		{
 			ships.push_back(ship);
-			if(it == ships.end())
-				--it;
-		}
 	
 	// Add NPCs to the list of ships. Fighters have to be assigned to carriers,
 	// and all but "uninterested" ships should follow the player.
@@ -319,13 +314,9 @@ void Engine::Place()
 		planetRadius = object->Radius();
 	}
 	
-	// Give each ship a random heading and position. The iterator points to the
-	// first ship that was an escort or NPC (i.e. the first ship after any
-	// fleets that were placed starting out in this system).
-	while(it != ships.end())
+	// Give each special ship we just added a random heading and position.
+	for (const shared_ptr<Ship> &ship : ships)
 	{
-		const shared_ptr<Ship> &ship = *it++;
-		
 		Point pos;
 		Angle angle = Angle::Random(360.);
 		Point velocity = angle.Unit();
@@ -353,6 +344,9 @@ void Engine::Place()
 		
 		ship->Place(pos, ship->IsDisabled() ? Point() : velocity, angle);
 	}
+	// Move any ships that were randomly spawned into the main list, now
+	// that all special ships have been repositioned.
+	ships.splice(ships.end(), newShips);
 	
 	player.SetPlanet(nullptr);
 }
@@ -1085,7 +1079,7 @@ void Engine::EnterSystem()
 	for(int i = 0; i < 5; ++i)
 		for(const System::FleetProbability &fleet : system->Fleets())
 			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
-				fleet.Get()->Place(*system, ships);
+				fleet.Get()->Place(*system, newShips);
 	
 	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
 	const Government *raidGovernment = raidFleet ? raidFleet->GetGovernment() : nullptr;
@@ -1097,7 +1091,7 @@ void Engine::EnterSystem()
 			for(int i = 0; i < 10; ++i)
 				if(Random::Real() < attraction)
 				{
-					raidFleet->Place(*system, ships);
+					raidFleet->Place(*system, newShips);
 					Messages::Add("Your fleet has attracted the interest of a "
 							+ raidGovernment->GetName() + " raiding party.");
 				}

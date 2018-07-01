@@ -88,7 +88,9 @@ ship "Starling" "Starling (Heavy)"
 
 ship "Starling" "Starling (Sniper)"
 	outfits
-		"Inhibitor Cannon" 5
+		"EMP Torpedo Bay"
+		"Inhibitor Cannon" 4
+		"EMP Torpedo" 9
 		
 		"Epoch Cell"
 		"Crystal Capacitor"
@@ -99,6 +101,12 @@ ship "Starling" "Starling (Sniper)"
 		"Forge-Class Thruster"
 		"Smelter-Class Steering"
 		"Hyperdrive"
+	
+	gun "EMP Torpedo Bay"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
 
 ship "Starling" "Starling (Hunter)"
 	outfits
@@ -215,8 +223,10 @@ ship "Albatross"
 
 ship "Albatross" "Albatross (Sniper)"
 	outfits
-		"Inhibitor Cannon" 7
+		"Inhibitor Cannon" 5
+		"EMP Torpedo Bay" 2
 		"Point Defense Turret" 3
+		"EMP Torpedo" 18
 		
 		"Aeon Cell"
 		"Epoch Cell"
@@ -230,6 +240,14 @@ ship "Albatross" "Albatross (Sniper)"
 		"Smelter-Class Steering"
 		"Forge-Class Steering"
 		"Hyperdrive"
+	
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "EMP Torpedo Bay"
+	gun "EMP Torpedo Bay"
 	
 	turret "Point Defense Turret"
 	turret "Point Defense Turret"

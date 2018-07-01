@@ -167,6 +167,91 @@ effect "point defense die"
 	"velocity scale" .2
 
 
+outfit "EMP Torpedo"
+	plural "EMP Torpedoes"
+	category "Ammunition"
+	cost 4400
+	thumbnail "outfit/emp torpedo"
+	"mass" 1
+	"emp torpedo capacity" -1
+	description "This is ammunition for the EMP Torpedo Bay, a weapon that is manufactured by the Remnant."
+
+outfit "EMP Torpedo Bay"
+	category "Secondary Weapons"
+	licenses
+		Remnant
+	cost 80000
+	thumbnail "outfit/emp torpedo bay"
+	"mass" 9
+	"outfit space" -18
+	"weapon capacity" -18
+	"gun ports" -1
+	"emp torpedo capacity" 9
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 2
+			"no repeat"
+		sound "torpedo"
+		ammo "EMP Torpedo"
+		icon "icon/emp"
+		"fire effect" "emp torpedo fire" 5
+		"hit effect" "nuke explosion"
+		"hit effect" "emp ring" 30
+		"hit effect" "emp spark" 20
+		"die effect" "tiny explosion"
+		stream
+		"reload" 330
+		"firing energy" 400
+		"firing heat" 18
+		"inaccuracy" 5
+		"lifetime" 300
+		"velocity" 7
+		"acceleration" .7
+		"drag" .1
+		"turn" 2
+		"homing" 3
+		"infrared tracking" .7
+		"radar tracking" .8
+		"trigger radius" 50
+		"blast radius" 200
+		"shield damage" 700
+		"hull damage" 100
+		"ion damage" 48
+		"hit force" 90
+		"missile strength" 80
+	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
+
+effect "emp torpedo fire"
+	sprite "effect/emp torpedo fire"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 31
+	"random frame rate" 10
+	"random velocity" 7
+	"random angle" 10
+	"random spin" 2
+
+effect "emp ring"
+	sprite "effect/emp ring"
+		"no repeat"
+		"frame rate" 12
+	"lifetime" 60
+	"random frame rate" 6
+	"velocity scale" 0.1
+	"random angle" 360
+	"random velocity" 4
+
+effect "emp spark"
+	sprite "effect/emp spark"
+		"no repeat"
+		"frame rate" 8
+	"lifetime" 45
+	"random frame rate" 6
+	"velocity scale" 0.1
+	"random angle" 360
+	"random velocity" 7
+
+
 
 # Systems:
 
