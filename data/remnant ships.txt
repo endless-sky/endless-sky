@@ -357,6 +357,7 @@ ship "Gascraft"
 
 ship "Pelican"
 	sprite "ship/pelican"
+	thumbnail "thumbnail/pelican"
 	attributes
 		category "Heavy Freighter"
 		licenses
