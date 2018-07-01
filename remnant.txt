@@ -142,8 +142,6 @@ shipyard "Remnant Gascraft"
 	"Gascraft"
 
 outfitter "Remnant"
-	"EMP Torpedo Bay"
-	"EMP Torpedo"
 	"Inhibitor Cannon"
 	"Thrasher Cannon"
 	"Thrasher Turret"
