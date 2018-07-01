@@ -25812,6 +25812,7 @@ planet Nasqueron
 	attributes "requires: gaslining"
 	landscape land/nasa8
 	description `Beneath Nasqueron's cloudy surface is a complex and thriving ecosystem of gas-dwelling organisms, from the massive void sprites all the way down to bacteria that inhabit tiny water droplets suspended in the air. Although the void sprites mostly feed on these organisms, it appears that in order to grow into their adult form or to give birth to young, they also need rare minerals that they can only find by feeding on asteroids, far beyond the planet's atmosphere.`
+	security 0
 
 planet "Nearby Jade"
 	attributes kimek farming urban
@@ -26652,6 +26653,7 @@ planet Slylandro
 	attributes "requires: gaslining"
 	landscape land/nasa9
 	description `Far beneath the swirling blue surface of Slylandro's atmosphere, void sprites and other strange creatures float about. As improbable as it may seem, the void sprites must have somehow evolved the capability to manipulate gravity fields, because every once in a while one of them will rise up from the surface powered by an antigravity field similar to the landing repulsors used by human ships. When they do so, the decrease in atmospheric pressure causes them to nearly double in size.`
+	security 0
 
 planet "Smuggler's Den"
 	attributes pirate station "south pirate"
