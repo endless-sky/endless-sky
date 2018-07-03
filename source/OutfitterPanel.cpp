@@ -157,7 +157,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 			string label = "installed: " + to_string(minCount);
 			if(maxCount > minCount)
 				label += " - " + to_string(maxCount);
-		
+			
 			Point labelPos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 38);
 			font.Draw(label, labelPos, bright);
 		}
@@ -321,13 +321,15 @@ void OutfitterPanel::Buy()
 		{
 			if(!CanBuy())
 				return;
-		
+			
+			// First, remove this outfit from cargo and add it to the selected ships.
 			if(player.Cargo().Get(selectedOutfit))
 				player.Cargo().Remove(selectedOutfit);
-			else if(!(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
+			else if(withoutBuying || !(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
 				break;
 			else
 			{
+				// Buy the outfit from the outfitter (possibly at reduced price).
 				int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
 				player.Accounts().AddCredits(-price);
 				player.AddStock(selectedOutfit, -1);
