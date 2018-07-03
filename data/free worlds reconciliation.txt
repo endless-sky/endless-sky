@@ -982,6 +982,7 @@ mission "FW Pug 2"
 	autosave
 	source "New Tibet"
 	destination "Earth"
+	clearance
 	to offer
 		has "FW Pug 1: done"
 	passengers 1
@@ -1345,6 +1346,7 @@ mission "FW Pug 3"
 	landing
 	source Pugglemug
 	destination Earth
+	clearance
 	to offer
 		has "fw given jump drive"
 	passengers 1
@@ -1936,6 +1938,7 @@ mission "FW Pug 5A"
 	description `Bring this "graviton reflector" to <planet> and set it up there, in order to restore the hyperspace link between the Sol and Altair systems.`
 	source Shiver
 	destination Earth
+	clearance
 	to offer
 		has "FW Pug 5: done"
 	cargo "graviton reflector" 10
@@ -2357,6 +2360,7 @@ mission "FW Syndicate Extremists 1C"
 	autosave
 	source "Buccaneer Bay"
 	destination Earth
+	clearance
 	to offer
 		has "FW Syndicate Extremists 1B: done"
 	passengers 1
