@@ -403,6 +403,7 @@ bool MissionPanel::Drag(double dx, double dy)
 
 
 
+// Check to see if the mouse is over either of the mission lists.
 bool MissionPanel::Hover(int x, int y)
 {
 	dragSide = 0;
@@ -417,7 +418,7 @@ bool MissionPanel::Hover(int x, int y)
 		if(static_cast<int>(index) < AcceptedVisible())
 			dragSide = 1;
 	}
-	return true;
+	return dragSide ? true : MapPanel::Hover(x, y);
 }
 
 
