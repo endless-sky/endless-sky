@@ -112,7 +112,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	// Initialize a centered tooltip.
 	hoverText.SetFont(FontSet::Get(14));
 	hoverText.SetWrapWidth(150);
-	hoverText.SetAlignment(WrappedText::CENTER);
+	hoverText.SetAlignment(WrappedText::LEFT);
 	
 	if(selectedSystem)
 		CenterOnSystem(selectedSystem);
@@ -1081,22 +1081,22 @@ void MapPanel::DrawTooltips()
 	if(tooltip.empty())
 	{
 		pair<int, int> t = escortSystems.at(hoverSystem);
-		t.first -= (hoverSystem == playerSystem);
-		if(t.first && t.second)
+		if(hoverSystem == playerSystem)
 		{
-			// Both active and parked escorts.
-			tooltip = Format::Number(t.first) + " active " + (t.first == 1 ? "escort" : "escorts");
-			tooltip += "\n" + Format::Number(t.second) + " parked " + (t.second == 1 ? "escort" : "escorts");
+			--t.first;
+			if(t.first || t.second)
+				tooltip = "You are here, with:\n";
+			else
+				tooltip = "You are here.";
 		}
+		// If you have both active and parked escorts, call the active ones
+		// "active escorts." Otherwise, just call them "escorts."
+		if(t.first && t.second)
+			tooltip += Format::Number(t.first) + (t.first == 1 ? " active escort\n" : " active escorts\n");
 		else if(t.first)
-			// Only active escorts.
-			tooltip = Format::Number(t.first) + (t.first == 1 ? " escort" : " escorts");
-		else if(t.second)
-			// Only parked escorts.
-			tooltip = Format::Number(t.second) + " parked " + (t.second == 1 ? "escort" : "escorts");
-		else
-			// Only the flagship is present.
-			tooltip = "(You are here.)";
+			tooltip += Format::Number(t.first) + (t.first == 1 ? " escort" : " escorts");
+		if(t.second)
+			tooltip += Format::Number(t.second) + (t.second == 1 ? " parked escort" : " parked escorts");
 		
 		hoverText.Wrap(tooltip);
 	}
