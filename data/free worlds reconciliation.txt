@@ -586,6 +586,7 @@ mission "FW Embassy 1C"
 	autosave
 	source Bourne
 	destination Earth
+	clearance
 	passengers 2
 	blocked "You do not have bunks available for Ijs and Katya. Return here when you do."
 	to offer
