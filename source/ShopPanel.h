@@ -57,7 +57,7 @@ protected:
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) = 0;
 	virtual bool CanBuy() const = 0;
-	virtual void Buy() = 0;
+	virtual void Buy(bool fromCargo = false) = 0;
 	virtual void FailBuy() const = 0;
 	virtual bool CanSell(bool toCargo = false) const = 0;
 	virtual void Sell(bool toCargo = false) = 0;
