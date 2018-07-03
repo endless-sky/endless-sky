@@ -265,6 +265,7 @@ government "Pirate"
 		"Hai" -.01
 		"Korath" -.01
 		"Merchant" -.1
+		"Pug" -.01
 		"Syndicate" -.01
 	"bribe" .05
 	"fine" 0
