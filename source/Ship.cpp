@@ -121,6 +121,7 @@ void Ship::Load(const DataNode &node)
 	bool hasArmament = false;
 	bool hasBays = false;
 	bool hasExplode = false;
+	bool hasLeak = false;
 	bool hasFinalExplode = false;
 	bool hasOutfits = false;
 	bool hasDescription = false;
@@ -217,6 +218,20 @@ void Ship::Load(const DataNode &node)
 					if(child.Token(i) == BAY_FACING[j])
 						bays.back().facing = j;
 			}
+		}
+		else if(key == "leak" && child.Size() >= 2)
+		{
+			if(!hasLeak)
+			{
+				leaks.clear();
+				hasLeak = true;
+			}
+			Leak leak(GameData::Effects().Get(child.Token(1)));
+			if(child.Size() >= 3)
+				leak.openPeriod = child.Value(2);
+			if(child.Size() >= 4)
+				leak.closePeriod = child.Value(3);
+			leaks.push_back(leak);
 		}
 		else if(key == "explode" && child.Size() >= 2)
 		{
@@ -579,6 +594,8 @@ void Ship::Save(DataWriter &out) const
 			else
 				out.Write(BAY_TYPE[bay.isFighter], x, y);
 		}
+		for(const Leak &leak : leaks)
+			out.Write("leak", leak.effect->Name(), leak.openPeriod, leak.closePeriod);
 		for(const auto &it : explosionEffects)
 			if(it.first && it.second)
 				out.Write("explode", it.first->Name(), it.second);
@@ -1018,6 +1035,34 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		++explosionRate;
 		if(Random::Int(1024) < explosionRate)
 			CreateExplosion(visuals);
+		
+		// Handle hull "leaks."
+		for(const Leak &leak : leaks)
+			if(leak.openPeriod > 0 && !Random::Int(leak.openPeriod))
+			{
+				activeLeaks.push_back(leak);
+				const vector<Point> &outline = GetMask().Points();
+				if(outline.size() < 2)
+					break;
+				int i = Random::Int(outline.size() - 1);
+				
+				// Position the leak along the outline of the ship, facing outward.
+				activeLeaks.back().location = (outline[i] + outline[i + 1]) * .5;
+				activeLeaks.back().angle = Angle(outline[i] - outline[i + 1]) + Angle(90.);
+			}
+		for(Leak &leak : activeLeaks)
+			if(leak.effect)
+			{
+				// Leaks always "flicker" every other frame.
+				if(Random::Int(2))
+					visuals.emplace_back(*leak.effect,
+						angle.Rotate(leak.location) + position,
+						velocity,
+						leak.angle + angle);
+				
+				if(leak.closePeriod > 0 && !Random::Int(leak.closePeriod))
+					leak.effect = nullptr;
+			}
 	}
 	else if(hyperspaceSystem || hyperspaceCount)
 	{
