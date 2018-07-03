@@ -460,6 +460,7 @@ mission "FW Embassy 1"
 	landing
 	source Farpoint
 	destination Earth
+	clearance
 	passengers 2
 	to offer
 		has "FW Defend Farpoint: done"
