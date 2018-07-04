@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Projectile.h"
 #include "Random.h"
 #include "ShipEvent.h"
+#include "Sound.h"
 #include "SpriteSet.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -543,6 +544,15 @@ void Ship::Save(DataWriter &out) const
 			out.Write("category", baseAttributes.Category());
 			out.Write("cost", baseAttributes.Cost());
 			out.Write("mass", baseAttributes.Mass());
+			for(const pair<Body, int> &it : baseAttributes.FlareSprites())
+				for(int i = 0; i < it.second; ++i)
+					it.first.SaveSprite(out, "flare sprite");
+			for(const pair<const Sound *, int> &it : baseAttributes.FlareSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("flare sound", it.first->Name());
+			for(const pair<const Effect *, int> &it : baseAttributes.AfterburnerEffects())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("afterburner effect", it.first->Name());
 			for(const pair<const char *, double> &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
