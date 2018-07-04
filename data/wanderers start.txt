@@ -2443,6 +2443,7 @@ mission "Wanderers Ap'arak 3: Pug"
 		ship "Pug Arfecta" "Hork Ekekek Ptui"
 		ship "Pug Arfecta" "Graak Sput Kchoo"
 	on complete
+		dialog `Shortly after destroying the Pug ships, you received a message from Sobari Tele'ek: "We have received [news, reports] that you are destroying the ships of our Keepers in the Ap'arak system. This is unacceptable. From now on, you are no longer welcome in our [territory, space]."`
 		"reputation: Wanderer" <?= -1
 
 mission "Wanderers Ap'arak 3"
