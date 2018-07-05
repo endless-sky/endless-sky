@@ -711,6 +711,8 @@ string Ship::FlightCheck() const
 	double turnEnergy = attributes.Get("turning energy");
 	double hyperDrive = attributes.Get("hyperdrive");
 	double jumpDrive = attributes.Get("jump drive");
+	double repair = attributes.Get("hull repair rate");
+	double shield = attributes.Get("shield generation");
 	
 	// Error conditions:
 	if(IdleHeat() >= MaximumHeat())
@@ -737,6 +739,8 @@ string Ship::FlightCheck() const
 		return "solar power?";
 	if(!hyperDrive && !jumpDrive && !canBeCarried)
 		return "no hyperdrive?";
+	if(!repair && !shield)
+		return "no repair?";
 	
 	return "";
 }
