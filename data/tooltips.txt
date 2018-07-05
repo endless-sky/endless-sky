@@ -466,3 +466,6 @@ tip "solar power?"
 
 tip "no hyperdrive?"
 	`This ship has no hyperdrive. If it took off, it would be unable to leave this star system.`
+
+tip "no repair?"
+	`This ship has no means of regenerating its shields. If damaged in combat, it would be unable to darn itself until landing.`
