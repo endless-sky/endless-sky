@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
+#include "Preferences.h"
 #include "Projectile.h"
 #include "Random.h"
 #include "ShipEvent.h"
@@ -674,7 +675,7 @@ const string &Ship::Description() const
 // Get the shipyard thumbnail for this ship.
 const Sprite *Ship::Thumbnail() const
 {
-	return thumbnail;
+	return Preferences::Has("Disable ship thumbnails") ? nullptr : thumbnail;
 }
 
 
