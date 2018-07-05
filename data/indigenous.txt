@@ -34,8 +34,28 @@ ship "Void Sprite"
 		Mouthparts? 2
 	gun -4 -111
 	gun 6 -111
-	explode "tracker cloud" 40
-	explode "smoke" 40
+	leak "blood" 40 40
+	explode "blood" 40
+	"final explode" "void sprite adult death"
+
+effect "blood"
+	sprite "effect/blood"
+		"no repeat"
+		"frame rate" 10
+		"random start frame"
+	"lifetime" 61
+	"random angle" 20
+	"random velocity" 1
+	"random spin" 5
+
+effect "void sprite adult death"
+	sprite "effect/void sprite adult death"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 16
+	"velocity scale" .01
+
+
 
 ship "Void Sprite" "Void Sprite (Infant)"
 	sprite "ship/void sprite infant"
@@ -61,8 +81,18 @@ ship "Void Sprite" "Void Sprite (Infant)"
 	outfits
 		Mouthparts?
 	gun 4 -41
-	explode "tracker cloud" 20
-	explode "smoke" 20
+	leak "blood" 60 50
+	explode "blood" 25
+	"final explode" "void sprite infant death"
+
+effect "void sprite infant death"
+	sprite "effect/void sprite infant death"
+		"no repeat"
+		"frame rate" 15
+	"lifetime" 21
+	"velocity scale" .01
+
+
 
 outfit Mouthparts?
 	category "Guns"
@@ -90,6 +120,8 @@ effect "void sprite chewing"
 	"random spin" 2
 	"random frame rate" 5
 	"velocity scale" .0001
+
+
 
 fleet "Void Sprites"
 	government "Indigenous Lifeform"
