@@ -1990,7 +1990,7 @@ mission "Wanderers Defend Sich'ka'ara"
 	on offer
 		event "battle for sich'ka'ara begins"
 		conversation
-			`Soon after the transports land, an alarm begins to sound and you see many Wanderers, the warriors in particular, rushing to board their ships. Sobari Tele'ek swoops down and lands next to your ship, and explains quickly, "We have detected a large Unfettered fleet [incoming, approaching]. Will you join in the defenses?"`
+			`Soon after the transports land, an alarm begins to sound and you see many Wanderers, the warriors in particular, rushing to board their ships. Sobari Tele'ek swoops down and lands next to your ship, and explains quickly, "We have detected a large Unfettered fleet [incoming, approaching]. Will you join in the defense?"`
 			`	You agree to help them, and begin preparing your ship for takeoff...`
 				launch
 	on visit
@@ -2317,7 +2317,7 @@ mission "Wanderers Ap'arak 1"
 			`	Three Wanderer nurses come and wheel Rek's bed out the door and into an elevator. At Rek's request, you join them. The elevator opens up to a wide and vaulted hallway lined on either side by Wanderers dressed in black, come to pay their last respects to Rek. It is like something out of a dream: the subterranean passage dense with the stately forms of Wanderer officials, the black-cloaked wings and shadows contrasting with the bright linen of the hospital bed and the white plumage of Rek's mother as she follows the cart to the threshold of the isolation chamber.`
 			`	The door of the chamber snaps shut with a pneumatic hiss, and you make your way back up to the spaceport with the other visitors. One of the visitors is Emeka'a Isai, the former governor of Varu Mer'ek. She pulls you aside and says, "You should not [remain, dawdle] here, human. They will have need of you at the [front, battle line]. And the sight of you may be unwelcome to some of the [mourners? associates?] of Rek who are here."`
 			choice
-				`	"Okay, I'll go to <planet> and aid in the defenses."`
+				`	"Okay, I'll go to <planet> and aid in the defense."`
 					accept
 				`	"Wait, why would people be angry at me after all I've done to help?"`
 			`	"Not angry at you," she says, "but some say the Molt is [triggered, provoked] by exposure to [alien, foreign] things: that your coming is what made Rek's body begin its [change, metamorphosis] too soon." She is silent for a moment, then says, "Please, do not be [concerned, grieved]. Rek may yet live, and rise to great renown as the first of a new [generation, race]. In any event, that is the past. Go, now, and help us to [secure, obtain] a future."`

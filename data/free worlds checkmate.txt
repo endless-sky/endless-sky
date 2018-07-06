@@ -601,7 +601,7 @@ mission "FWC Checkmate 1"
 			`	"I see," she says. "Did you have a plan for what comes next, or are we just winging it now?"`
 			`	Alondo says, "Unfortunately, we do have a plan. Our very last contingency plan. We call it the 'checkmate' option. Our fleet will push north--"`
 			`	He is interrupted by one of Tomek's men running into the room. "Sir, we have a major Navy fleet incoming. We need all ships in the air immediately to repulse them. Reinforcements are on their way, but they may not get here for a while."`
-			`	Tomek says, "So, it begins. Captain <last>, get back to your ship and aid in the defenses."`
+			`	Tomek says, "So, it begins. Captain <last>, get back to your ship and aid in the defense."`
 				launch
 	
 	npc
