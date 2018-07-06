@@ -552,7 +552,16 @@ void Engine::Step(bool isActive)
 		info.SetBar("fuel", flagship->Fuel(),
 			flagship->Attributes().Get("fuel capacity") * .01);
 		info.SetBar("energy", flagship->Energy());
-		info.SetBar("heat", flagship->Heat());
+		double heat = flagship->Heat();
+		info.SetBar("heat", min(1., heat));
+		// Use a segmented "overheat" bar to indicate any excess heat
+		// that must be shed before the ship is no longer overheated.
+		if(flagship->IsOverheated())
+		{
+			double excess = heat - .9;
+			double segments = ceil(excess);
+			info.SetBar("overheat", excess / segments, segments);
+		}
 		info.SetBar("shields", flagship->Shields());
 		info.SetBar("hull", flagship->Hull(), 20.);
 	}

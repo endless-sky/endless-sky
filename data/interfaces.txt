@@ -343,6 +343,11 @@ interface "hud"
 		dimensions 0 -192
 		color "heat"
 		size 2
+	bar "overheat"
+		from -13.5 403
+		dimensions 0 -192
+		color "medium"
+		size 2
 
 	# Targets.
 	anchor top left
