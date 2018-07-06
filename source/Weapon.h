@@ -184,9 +184,8 @@ private:
 	double splitRange = 0.;
 	double triggerRadius = 0.;
 	double blastRadius = 0.;
-	double hitForce = 0.;
 	
-	static const int DAMAGE_TYPES = 7;
+	static const int DAMAGE_TYPES = 8;
 	static const int SHIELD_DAMAGE = 0;
 	static const int HULL_DAMAGE = 1;
 	static const int FUEL_DAMAGE = 2;
@@ -194,7 +193,8 @@ private:
 	static const int ION_DAMAGE = 4;
 	static const int DISRUPTION_DAMAGE = 5;
 	static const int SLOWING_DAMAGE = 6;
-	mutable double damage[DAMAGE_TYPES] = {0., 0., 0., 0., 0., 0., 0.};
+	static const int HIT_FORCE = 7;
+	mutable double damage[DAMAGE_TYPES] = {0., 0., 0., 0., 0., 0., 0., 0.};
 	
 	double piercing = 0.;
 	
@@ -243,7 +243,7 @@ inline double Weapon::Piercing() const { return piercing; }
 inline double Weapon::SplitRange() const { return splitRange; }
 inline double Weapon::TriggerRadius() const { return triggerRadius; }
 inline double Weapon::BlastRadius() const { return blastRadius; }
-inline double Weapon::HitForce() const { return hitForce; }
+inline double Weapon::HitForce() const { return TotalDamage(HIT_FORCE); }
 
 inline bool Weapon::IsSafe() const { return isSafe; }
 inline bool Weapon::IsPhasing() const { return isPhasing; }
