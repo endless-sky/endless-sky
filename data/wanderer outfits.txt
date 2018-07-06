@@ -278,7 +278,7 @@ outfit "Thunderhead"
 		"radar tracking" .6
 		"shield damage" 110
 		"hull damage" 80
-		"hit force" 300
+		"hit force" 150
 		"missile strength" 3
 
 outfit "Thunderhead Storage Array"
