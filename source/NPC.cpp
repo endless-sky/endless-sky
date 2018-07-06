@@ -296,8 +296,10 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 		Messages::Add("Mission failed.");
 	else if(ui && HasSucceeded(player.GetSystem()) && !hasSucceeded)
 	{
+		// If "completing" this NPC displays a conversation, reference
+		// it, to allow the completing event's target to be destroyed.
 		if(!conversation.IsEmpty())
-			ui->Push(new ConversationPanel(player, conversation));
+			ui->Push(new ConversationPanel(player, conversation, nullptr, ship));
 		else if(!dialogText.empty())
 			ui->Push(new Dialog(dialogText));
 	}

@@ -48,8 +48,8 @@ namespace {
 
 
 // Constructor.
-ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system, const Ship *ship)
-	: player(player), conversation(conversation), scroll(0.), system(system)
+ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system, const shared_ptr<Ship> &ship)
+	: player(player), conversation(conversation), scroll(0.), system(system), ship(ship)
 {
 	// These substitutions need to be applied on the fly as each paragraph of
 	// text is prepared for display.
@@ -346,21 +346,26 @@ void ConversationPanel::Goto(int index, int choice)
 void ConversationPanel::Exit()
 {
 	GetUI()->Pop(this);
-	// If this is a conversation offered from boarding or assisting an NPC,
-	// being forced to leave via LAUNCH, FLEE, or DEPART destroys it. If it
-	// is a hostile NPC and not destroyed, and its mission (e.g. "leave me
-	// alone, here's X as payment") was not accepted, open a BoardingPanel
-	// to allow plundering it - unless you're dead.
-	if(node != Conversation::DIE && player.BoardingShip())
+	// Some conversations may be offered from an NPC, e.g. an assisting or
+	// boarding mission's `on offer`, or from completing a mission's NPC
+	// block (e.g. scanning or boarding or killing all required targets).
+	if(node == Conversation::DIE || node == Conversation::EXPLODE)
+		player.Die(node, ship);
+	else if(ship)
 	{
+		// A forced-launch ending (LAUNCH, FLEE, or DEPART) destroys any NPC.
 		if(Conversation::RequiresLaunch(node))
-			player.BoardingShip()->Destroy();
-		else if(player.BoardingShip()->GetGovernment()->IsEnemy()
-				&& node != Conversation::ACCEPT)
-			GetUI()->Push(new BoardingPanel(player, player.BoardingShip()));
+			ship->Destroy();
+		// Only show the BoardingPanel for a hostile NPC that is being boarded.
+		// (NPC completion conversations can result from non-boarding events.)
+		// TODO: Is there a better / more robust boarding check than relative position?
+		else if(node != Conversation::ACCEPT && ship->GetGovernment()->IsEnemy()
+				&& !ship->IsDestroyed() && ship->IsDisabled()
+				&& ship->Position().Distance(player.Flagship()->Position()) <= 1.)
+			GetUI()->Push(new BoardingPanel(player, ship));
 	}
-	// Call the exit response (e.g. ACCEPT, DIE) handler, which is usually
-	// PlayerInfo::MissionCallback.
+	// Call the exit response handler to manage the conversation's effect
+	// on the player's missions, or force takeoff from a planet.
 	if(callback)
 		callback(node);
 }
