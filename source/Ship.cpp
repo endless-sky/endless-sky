@@ -2233,6 +2233,14 @@ double Ship::Hull() const
 
 
 
+double Ship::Fuel() const
+{
+	double maximum = attributes.Get("fuel capacity");
+	return maximum ? min(1., fuel / maximum) : 0.;
+}
+
+
+
 double Ship::Energy() const
 {
 	double maximum = attributes.Get("energy capacity");
@@ -2241,18 +2249,12 @@ double Ship::Energy() const
 
 
 
+// Allow returning a heat value greater than 1 (i.e. conveying how overheated
+// this ship has become).
 double Ship::Heat() const
 {
 	double maximum = MaximumHeat();
-	return maximum ? min(1., heat / maximum) : 1.;
-}
-
-
-
-double Ship::Fuel() const
-{
-	double maximum = attributes.Get("fuel capacity");
-	return maximum ? min(1., fuel / maximum) : 0.;
+	return maximum ? heat / maximum : 1.;
 }
 
 
