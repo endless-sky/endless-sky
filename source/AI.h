@@ -59,6 +59,9 @@ template <class Type>
 	void UpdateEvents(const std::list<ShipEvent> &events);
 	// Reset the AI's memory of events.
 	void Clean();
+	// Clear ship orders. This should be done when the player lands on a planet,
+	// but not when they jump from one system to another.
+	void ClearOrders();
 	// Issue AI commands to all ships for one game step.
 	void Step(const PlayerInfo &player);
 	
