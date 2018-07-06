@@ -53,7 +53,7 @@ effect "flame"
 	"random velocity" 4
 	"random spin" 10
 
-effect "big leak"
+effect "leak"
 	sprite "effect/leak"
 		"no repeat"
 		"frame rate" 30
@@ -62,7 +62,7 @@ effect "big leak"
 	"random velocity" 7
 	"random spin" 2
 
-effect "leak"
+effect "big leak"
 	sprite "effect/leak big"
 		"no repeat"
 		"frame rate" 30
