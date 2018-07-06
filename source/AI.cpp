@@ -2287,9 +2287,9 @@ void AI::DoScatter(Ship &ship, Command &command)
 // Instead of coming to a full stop, adjust to a target velocity vector
 Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse)
 {
-	const Point &position = ship.Position();
+	Point position = ship.Position();
 	Point velocity = ship.Velocity() - targetVelocity;
-	const Angle &angle = ship.Facing();
+	Angle angle = ship.Facing();
 	double acceleration = ship.Acceleration();
 	double turnRate = ship.TurnRate();
 	shouldReverse = false;
@@ -2298,6 +2298,17 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 	double v = velocity.Length();
 	if(!v)
 		return position;
+	// It makes no sense to calculate a stopping point for a ship entering hyperspace.
+	if(ship.IsHyperspacing())
+	{
+		if(ship.IsUsingJumpDrive() || ship.IsEnteringHyperspace())
+			return position;
+		
+		double maxVelocity = ship.MaxVelocity();
+		double jumpTime = (v - maxVelocity) / 2.;
+		position += velocity.Unit() * (jumpTime * (v + maxVelocity) * .5);
+		v = maxVelocity;
+	}
 	
 	// This assumes you're facing exactly the wrong way.
 	double degreesToTurn = TO_DEG * acos(min(1., max(-1., -velocity.Unit().Dot(angle.Unit()))));
@@ -3464,7 +3475,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 		else if(existing.type == Orders::HOLD_POSITION)
 		{
 			bool shouldReverse = false;
-			// Set the point this ship will "guard.", so it can return
+			// Set the point this ship will "guard," so it can return
 			// to it if knocked away by projectiles / explosions.
 			existing.point = StoppingPoint(*ship, Point(), shouldReverse);
 		}
