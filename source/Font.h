@@ -71,6 +71,7 @@ private:
 	GLint aspectI;
 	GLint positionI;
 	
+	int width;
 	int height;
 	int space;
 	mutable int screenWidth;
