@@ -66,6 +66,8 @@ phrase "band"
 		"The Screaming Eagles"
 		"Violent Surprise"
 		"Nine Meter Shanks"
+		"Heckled Keks"
+		"Bin Weevils"
 
 phrase "song"
 	word
@@ -239,6 +241,9 @@ phrase "song"
 		"None of Them Knew They Were Humans"
 		"Chains of Ice"
 		"Monkey Butter"
+		"Blinded by the Conch"
+		"Jolly Jelly Bean by the JJBs"
+		"Shadilay"
 	word
 		`"`
 
@@ -307,6 +312,7 @@ phrase "friendly civilian"
 		"It's so weird that"
 		"Nobody can explain to me why"
 		"I can hardly imagine why"
+		"I can't see why"
 	word
 		" "
 	word
@@ -317,8 +323,11 @@ phrase "friendly civilian"
 		"my crew is"
 		"some of my friends are"
 		"all the oldsters are"
+		"all the youngsters are"
+		"they said they're"
 	word
 		" still"
+		" actually"
 		""
 	word
 		" "
@@ -329,6 +338,9 @@ phrase "friendly civilian"
 		"giving their money to"
 		"paying to listen to"
 		"so in love with"
+		"streaming"
+		"going on about"
+		"obsessed with"
 	word
 		""
 		" that group"
@@ -336,6 +348,8 @@ phrase "friendly civilian"
 		" that band"
 		" that new band"
 		" those hacks"
+		" those weirdos"
+		
 	word
 		" "
 	phrase
@@ -344,6 +358,7 @@ phrase "friendly civilian"
 		". "
 	word
 		"Their music"
+		"Their style"
 	word
 		" "
 	word
@@ -371,6 +386,11 @@ phrase "friendly civilian"
 		"ought to be banned"
 		"hurts my ears"
 		"makes me ill"
+		"hurts everyone's ears"
+		"makes everyone ill"
+		"will surely bring about the end of the galaxy"
+		"gives me a heart attack"
+		"makes me actually cry"
 	word
 		"!"
 
@@ -408,6 +428,7 @@ phrase "friendly civilian"
 		"is the hit of the year"
 		"is the best thing going"
 		"is the best thing playing right now"
+		"is just so darn catchy"
 	word
 		"!"
 	word
@@ -436,6 +457,8 @@ phrase "friendly civilian"
 		"See you later"
 		"See you round the 'verse"
 		"Stay safe"
+		"Safe travels"
+		"Watch out for those pirates"
 	word
 		", "
 	word
@@ -465,10 +488,12 @@ phrase "friendly civilian"
 		"the best of luck"
 		"fair winds and bright skies"
 		"Allah"
+		"Huitzilopochtli"
 		"the power of Heaven"
 		"Heaven's blessings"
 		"the Way and the Light"
 		"the immortal Tao"
+		"the superior, Kek"
 	word
 		" "
 	word
@@ -486,12 +511,16 @@ phrase "friendly civilian"
 		"Becoming"
 		"Life as"
 		"The life of"
+		"Living as"
+		"Trying to be"
+		"My experience as"
 	word
 		" "
 	word
 		"a"
 		"an independent"
 		"a free"
+		"a freelance"
 	word
 		" "
 	word
@@ -517,6 +546,11 @@ phrase "friendly civilian"
 		"tops everything"
 		"is a challenge, but ultimately rewarding"
 		"gives you the opportunity to see the whole galaxy"
+		"has been bringing in the money quite well"
+		"makes me really miss home"
+		"has its ups and downs"
+		"has made me really wonder if this is the life for me"
+		"runs in my family"
 	word
 		"."
 		"!"
@@ -532,6 +566,8 @@ phrase "friendly civilian"
 		"Want my opinion? You should"
 		"Be like the best ship captains and"
 		"Don't forget to"
+		"Take an old captain's advice:"
+		"No matter what, do not forget to"
 	word
 		" "
 	word
@@ -563,8 +599,11 @@ phrase "friendly civilian"
 		"The preferred"
 		"A good"
 		"A sensible"
+		"The only"
+
 	word
 		" way to "
+		" method to"
 	word
 		"be safe from pirates"
 		"stay safe from pirates"
@@ -587,6 +626,7 @@ phrase "friendly civilian"
 		"fly a multipurpose ship that has room for cargo, shields, and heavy weapons"
 		"equip anti-missile turrets so they can't get you with missiles, and then you can run away"
 		"have a fleet with interceptors to tie them up while the cargo ships can warp to safety"
+		"get some protection! Consider bringing on some hired guns"
 	word
 		"."
 		"!"
@@ -622,6 +662,8 @@ phrase "friendly civilian"
 		"Void Dragons"
 		"Goers"
 		"Psyches"
+		"Helix"
+		"Crew"
 	word
 		" "
 	word
@@ -637,6 +679,10 @@ phrase "friendly civilian"
 		"demolished the"
 		"smashed the"
 		"walloped the"
+		"lose to the"
+		"got obliterated by the"
+		"lost pathetically to the"
+		"had no chance against the"
 	word
 		" "
 	word
@@ -671,6 +717,7 @@ phrase "friendly civilian"
 		"."
 		". You shoulda seen it!"
 		". I wish my feed was clearer."
+		". I ended up watching it twice."
 
 phrase "friendly civilian"
 	word
@@ -700,9 +747,11 @@ phrase "friendly civilian"
 		"rotten fruit"
 		"sludge"
 		"unprocessed sewage"
+
 	word
 		". My"
 		", and now my"
+		", and since then my"
 	word
 		" "
 	word
@@ -713,10 +762,13 @@ phrase "friendly civilian"
 		"beautiful ship's "
 		"delicate ship's "
 		"pristine ship's "
+		"old ship's "
 
 	word
 		"hold"
 		"cargo hold"
+		"storage"
+		"storage hold"
 	word
 		" "
 	word
@@ -727,6 +779,7 @@ phrase "friendly civilian"
 		"needs to be hosed down!"
 		"is gonna need one heck of a chemical bath!"
 		"desperately needs a sonic scrubbing!"
+		"is ruined! I knew I should've listened to my Magic Conch."
 
 phrase "friendly civilian"
 	word
@@ -755,6 +808,7 @@ phrase "friendly civilian"
 		"scam artists"
 		"raiders"
 		"marauders"
+		"rogue pilots"
 	word
 		" "
 	word
@@ -855,6 +909,8 @@ phrase "friendly civilian"
 		"I wish more people realized"
 		"I wish more people realized that"
 		"My nutty cousin claims that"
+		"Surely"
+		"I don't doubt"
 	word
 		" "
 	word
@@ -911,6 +967,7 @@ phrase "friendly civilian"
 		"are secretly being controlled by the Lizard Illuminati!"
 		"are under the control of a hidden race of chipmunk aliens!"
 		"get together to play foosball every Thursday on Luna!"
+		"only do what the Magic Conch tells them to do."
 
 phrase "friendly civilian"
 	word
@@ -954,6 +1011,7 @@ phrase "friendly civilian"
 		"stay in business as an independent merchant"
 		"live an independent merchant's life"
 		"save any money"
+		"stay out of trouble"
 	word
 		"."
 		"!"
@@ -969,6 +1027,7 @@ phrase "friendly civilian"
 		"been using"
 		"been plying"
 		"stumbled upon"
+		"come across"
 	word
 		" "
 	word
@@ -997,6 +1056,7 @@ phrase "friendly civilian"
 	word
 		"trade routes, but I'm not"
 		"trade routes, but there's no way I'm"
+		"trade routes, but I won't be"
 	word
 		" "
 	word
@@ -1004,6 +1064,7 @@ phrase "friendly civilian"
 		"revealing"
 		"telling"
 		"disclosing"
+		"sharing"
 	word
 		" "
 	word
@@ -1044,6 +1105,8 @@ phrase "friendly navy"
 		" "
 	word
 		"and"
+		"as well as"
+		"but also to"
 	word
 		" "
 	word
@@ -1056,10 +1119,13 @@ phrase "friendly navy"
 		" "
 	word
 		"you."
+		"the people."
 
 phrase "friendly navy"
 	word
 		"Join the Navy."
+		"Enlist in the Navy."
+		"Sign up for the Navy."
 	word
 		" "
 	word
@@ -1081,6 +1147,8 @@ phrase "friendly navy"
 		"the South"
 		"the Dirt Belt"
 		"the Deep"
+		"the border worlds"
+		"the front lines"
 	word
 		"!"
 
@@ -1098,6 +1166,9 @@ phrase "friendly navy"
 		"the biggest"
 		"the largest"
 		"the greatest"
+		"the strongest"
+		"the grandest"
+		"the best"
 	word
 		" "
 	word
@@ -1111,11 +1182,13 @@ phrase "friendly navy"
 	word
 		"organization"
 		"force"
+		"taskforce"
 	word
 		" "
 	word
 		"in the galaxy"
 		"in the Republic"
+		"in the universe"
 	word
 		"!"
 
@@ -1127,6 +1200,11 @@ phrase "friendly navy"
 		"Answer the call of duty! Join the Navy!"
 		"If you have courage, if you have honor, join the Navy!"
 		"We want YOU for the Navy!"
+		"Defend the galaxy. Join the Navy!"
+		"All citizens are subject to random cargo scans. Do not impede our right to search."
+		"Cargo scans will be conducted at random intervals by all Navy vessels. Do not resist the help of our officer."
+		"You are subject to cargo scans. We ask that you do not resist the officer assisting you."
+		"Submit for a cargo scan, and you can be on your way."
 
 phrase "friendly militia"
 	word
@@ -1138,6 +1216,7 @@ phrase "friendly militia"
 		"searching for"
 	word
 		" any "
+		" all "
 		" "
 	word
 		"suspicious"
@@ -1149,6 +1228,7 @@ phrase "friendly militia"
 		"unlawful"
 		"abnormal"
 		"irregular"
+		"abnormal"
 	word
 		" "
 	word
@@ -1172,6 +1252,9 @@ phrase "friendly militia"
 		"innocent life"
 		"innocent ship"
 		"inhabitant of this system"
+		"civilian life"
+		"innocent citizen"
+		"innocent person"
 	word
 		" "
 	word
@@ -1187,6 +1270,8 @@ phrase "friendly militia"
 		"while we are still flying"
 		"while we are still breathing"
 		"while we are here"
+		"as long as we are alive"
+		"without going through us first"
 	word
 		"."
 		"!"
@@ -1535,6 +1620,7 @@ phrase "friendly pirate"
 		"scariest"
 		"nastiest"
 		"most dangerous"
+		"meanest"
 	word
 		" "
 	word
@@ -1573,6 +1659,8 @@ phrase "friendly pirate"
 		"Ravaging"
 		"Stealing from"
 		"Waylaying"
+		"Rockin'"
+		"Shooting down"
 	word
 		" "
 	word
@@ -1586,6 +1674,8 @@ phrase "friendly pirate"
 		"weak ships"
 		"wimpy ships"
 		"merchant ships"
+		"punks"
+		"little twerps"
 	word
 		" "
 	word
@@ -1598,6 +1688,8 @@ phrase "friendly pirate"
 		"piling up"
 		"hoarding"
 		"squandering"
+		"rolling in"
+		"wallowing in"
 	word
 		" "
 	word
@@ -1607,15 +1699,22 @@ phrase "friendly pirate"
 		"wealth"
 		"plunder"
 		"the booty"
+		"the money"
+		"the cash"
+		"the bounty"
 	word
 		": I love the pirate's life!"
 		": that's the way to live!"
+		": that's how I choose to live my life!"
 		" is the best way to live!"
 		" is how real anarchists live!"
 
 phrase "friendly pirate"
 	word
 		"We just "
+		"We've just "
+		"Our friends just "
+		"Someone just "
 	word
 		"plundered"
 		"blasted"
@@ -1625,6 +1724,7 @@ phrase "friendly pirate"
 		"crushed"
 		"robbed"
 		"ravaged"
+		"spaced"
 	word
 		" a "
 		" a whole "
@@ -1635,16 +1735,24 @@ phrase "friendly pirate"
 	word
 		"merchant"
 		"law enforcement"
+		"civilian trader"
+		"freelancer"
+		"bounty"
 	word
 		" "
 	word
 		"ship!"
 		"fleet!"
 		"convoy!"
+		"armada!"
 
 phrase "friendly pirate"
 	word
-		"You better watch "
+		"You'd better watch"
+		"You best watch"
+		"You'd watch"
+	word
+		" "
 	word
 		"who you talk to"
 		"who you look at"
@@ -1654,6 +1762,10 @@ phrase "friendly pirate"
 		"your cargo"
 		"your ship"
 		"your fleet"
+		"your ass"
+		"yourself"
+		"your attitude"
+		"your wallet"
 	word
 		" "
 	word
@@ -1664,6 +1776,13 @@ phrase "friendly pirate"
 		"around me"
 	word
 		"."
+		"."
+		"."
+		"!"
+		", if you don't want any trouble."
+		", if you were smart."
+		", or else!"
+		", if you know what's good for you!"
 
 phrase "friendly pirate"
 	word
@@ -1672,12 +1791,14 @@ phrase "friendly pirate"
 		"tried this"
 		"used this"
 	word
-		" new "
-		" crazy "
-		" amazing "
-		" fantastic "
-		" incredible "
-		" facinating "
+		" "
+	word
+		"new "
+		"crazy "
+		"amazing "
+		"fantastic "
+		"incredible "
+		"facinating "
 		""
 	word
 		"bad blue"
@@ -1700,11 +1821,16 @@ phrase "friendly pirate"
 		"steam"
 		"toad juice"
 		"whale blubber"
+		"conch"
 	word
 		" "
 	word
 		"stuff?"
 		"drug?"
+		"injection?"
+		"shot?"
+		"smoke?"
+		"substance?"
 	word
 		""
 		" It's the best"
@@ -1715,6 +1841,9 @@ phrase "friendly pirate"
 		" I wish I could afford more"
 		" I'm going to need to make money to buy more"
 		" Best experience I've ever had"
+		" It's unreal"
+		" It'll make you forget you're alive"
+		" It'll make you soar"
 	word
 		"!"
 		"."
@@ -1769,6 +1898,7 @@ phrase "friendly pirate"
 	word
 		"!"
 		"."
+
 
 phrase "friendly pirate"
 	word
@@ -2174,10 +2304,22 @@ phrase "hostile disabled"
 		"Don't you dare board me, you"
 		"You'd better hope we never meet again, you"
 		"You are a"
+		"You're a"
 		"I can't believe I'm at the mercy of such a"
 		"You'd better not cross me, you"
 		"My friends will avenge me, you"
 		"Stay away from me, you"
+		"You're such a"
+		"You're just a"
+		"You can't kill me, you"
+		"This isn't the end of me, you"
+		"Don't come over here, you"
+		"I'll kick your frickin' bottom if you come over here, you"
+		"How dare you speak to me, you"
+		"You think I'd speak to a"
+		"Your father is a"
+		"Your mother is a"
+		"Your favorite aunt"
 	word
 		" "
 	word
@@ -2204,6 +2346,7 @@ phrase "hostile disabled"
 		"impertinent"
 		"infectious"
 		"jarring"
+		"jagged"
 		"loggerheaded"
 		"lumpish"
 		"mammering"
@@ -2219,10 +2362,13 @@ phrase "hostile disabled"
 		"roguish"
 		"ruttish"
 		"saucy"
+		"smelly"
 		"spleeny"
 		"spongy"
+		"stupid"
 		"surly"
 		"tottering"
+		"ugly"
 		"unmuzzled"
 		"vain"
 		"venomed"
@@ -2230,6 +2376,7 @@ phrase "hostile disabled"
 		"warped"
 		"wayward"
 		"weedy"
+		"weird"
 		"yeasty"
 	word
 		" "
@@ -2265,6 +2412,7 @@ phrase "hostile disabled"
 		"ill-breeding"
 		"ill-nurtured"
 		"knotty-pated"
+		"long-haired"
 		"milk-livered"
 		"motley-minded"
 		"onion-eyed"
@@ -2277,7 +2425,9 @@ phrase "hostile disabled"
 		"rump-fed"
 		"shard-borne"
 		"sheep-biting"
+		"short-haired"
 		"spur-galled"
+		"stupid-fricking"
 		"swag-bellied"
 		"tardy-gaited"
 		"tickle-brained"
@@ -2297,6 +2447,7 @@ phrase "hostile disabled"
 		"canker-blossom"
 		"clack-dish"
 		"clotpole"
+		"coward"
 		"coxcomb"
 		"codpiece"
 		"death-token"
@@ -2333,6 +2484,7 @@ phrase "hostile disabled"
 		"scut"
 		"skainsmate"
 		"strumpet"
+		"stink-face"
 		"varlot"
 		"vassal"
 		"whey-face"
@@ -2575,7 +2727,6 @@ phrase "hostile navy"
 	word
 		"."
 
-
 phrase "friendly deep"
 	word
 		"We"
@@ -2683,7 +2834,6 @@ phrase "hostile deep"
 	word
 		"."
 
-
 phrase "hostile pirate"
 	word
 		"Prepare to fight"
@@ -2708,6 +2858,10 @@ phrase "hostile pirate"
 		"scariest"
 		"nastiest"
 		"most dangerous"
+		"meanest"
+		"most brutal"
+		"wealthiest"
+		"most experienced"
 	word
 		" "
 	word
@@ -2791,16 +2945,19 @@ phrase "hostile pirate"
 
 phrase "hostile pirate"
 	word
-		"You're about to "
-		"Get ready to "
-		"I'm going to make you "
-		"I hope you're ready to "
-		"Unless you pay me a hefty bribe, you're going to "
-		"I'm here to make you "
-		"I'm here to see to it that you "
-		"Pay up or "
-		"Hand over your credits or get ready to "
-		"Gimmie yer money or "
+		"You're about to"
+		"Get ready to"
+		"I'm going to make you"
+		"I hope you're ready to"
+		"Unless you pay me a hefty bribe, you're going to"
+		"I'm here to make you"
+		"I'm here to see to it that you"
+		"Pay up or"
+		"Hand over your credits or get ready to"
+		"Gimmie yer money or"
+		"Drop your cargo or"
+	word
+		" "
 	word
 		"die!"
 		"eat vacuum!"
@@ -2876,6 +3033,10 @@ phrase "hostile bounty"
 		"put me in a grave"
 	word
 		". Ha!"
+		". Let's see you try."
+		". I won't make this easy for you."
+		". You don't stand a chance."
+		". This isn't going to end well for you."
 		
 phrase "hostile bounty"
 	word
@@ -2966,6 +3127,9 @@ phrase "hostile bounty hunter"
 		"They ponied up"
 		"I was promised"
 		"I was given"
+		"A little bird gave me"
+		"My boss has paid me"
+		"My contractor paid me"
 	word
 		" "
 	word
@@ -2979,6 +3143,7 @@ phrase "hostile bounty hunter"
 		"a fat purse"
 		"a lifetime of riches"
 		"ten times a king's ransom"
+		"more than you can imagine"
 	word
 		" "
 	word
@@ -3004,6 +3169,12 @@ phrase "hostile bounty hunter"
 		"put an end to your crimes"
 		"give you an early retirement"
 		"put you in a grave"
+		"space you"
+		"take you down"
+		"make you regret causing problems"
+		"pay for what you've done"
+		"make you wish you were never born"
+		"remove you from the playing field"
 	word
 		"."
 		"!"
@@ -3025,6 +3196,7 @@ phrase "hostile bounty hunter"
 		"! Say your prayers,"
 		"! Flee if you can,"
 		"! Face me if you dare,"
+		". You will not leave this system,"
 	word
 		" "
 	word
@@ -3038,6 +3210,7 @@ phrase "hostile bounty hunter"
 		"unlucky sap"
 		"weakling"
 		"worthless wretch"
+		"criminal scum"
 	word
 		"!"
 
@@ -3048,6 +3221,7 @@ phrase "hostile bounty hunter"
 		"Target"
 		"Target ship"
 		"Bounty"
+		"Mark"
 	word
 		" "
 	word
@@ -3074,6 +3248,8 @@ phrase "hostile bounty hunter"
 		"Acquiring target lock"
 		"Accelerating to full speed"
 		"Preparing to open fire"
+		"Mark is within range, preparing to fire"
+		"Engaging"
 	word
 		"."
 		"!"
@@ -3294,7 +3470,6 @@ phrase "hostile free worlds"
 	word
 		"."
 		"!"
-
 
 # Hails from the robotic Syndicate test dummy ships
 phrase "test dummy"
