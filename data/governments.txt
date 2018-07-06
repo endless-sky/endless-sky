@@ -114,6 +114,7 @@ government "Heliarch"
 	color 1 .8 .5
 	"player reputation" 1
 	"friendly hail" "friendly heliarch"
+	"hostile hail" "hostile heliarch"
 	"attitude toward"
 		"Quarg" -.01
 		"Coalition" 1
