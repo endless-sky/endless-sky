@@ -554,14 +554,12 @@ void Engine::Step(bool isActive)
 		info.SetBar("energy", flagship->Energy());
 		double heat = flagship->Heat();
 		info.SetBar("heat", min(1., heat));
-		// Use a segmented "overheat" bar to indicate any excess heat
-		// that must be shed before the ship is no longer overheated.
-		if(flagship->IsOverheated())
-		{
-			double excess = heat - .9;
-			double segments = ceil(excess);
-			info.SetBar("overheat", excess / segments, segments);
-		}
+		// If heat is above 100%, draw a second overlaid bar to indicate the
+		// total heat level.
+		if(heat > 1.)
+			info.SetBar("overheat", min(1., heat - 1.));
+		if(flagship->IsOverheated() && (step / 20) % 2)
+			info.SetBar("overheat blink", min(1., heat));
 		info.SetBar("shields", flagship->Shields());
 		info.SetBar("hull", flagship->Hull(), 20.);
 	}
