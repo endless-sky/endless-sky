@@ -295,11 +295,24 @@ void AI::Clean()
 	notoriety.clear();
 	governmentActions.clear();
 	playerActions.clear();
-	shipStrength.clear();
+	helperList.clear();
 	swarmCount.clear();
+	fenceCount.clear();
 	miningAngle.clear();
 	miningTime.clear();
 	appeasmentThreshold.clear();
+	shipStrength.clear();
+	enemyStrength.clear();
+	allyStrength.clear();
+}
+
+
+
+// Clear ship orders. This should be done when the player lands on a planet,
+// but not when they jump from one system to another.
+void AI::ClearOrders()
+{
+	orders.clear();
 }
 
 
