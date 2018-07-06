@@ -1548,6 +1548,275 @@ mission "Raider Attack 2"
 		payment 750000
 		dialog `The government of <planet> pays you <payment> for helping to drive off the raiders.`
 
+mission "Renegade Drones 1 Intro"
+	name "Neutralize broken Drone"
+	description "Destroy or disable the malfunctioning Navy drone."
+	deadline 1
+	minor
+	to offer
+		random < 20
+		"combat rating" > 200
+	source "Pilot"
+	on offer
+		conversation
+			`Walking past a group of new Navy recruits, you hear one say, "One more of our drones seems to have malfunctioned in orbit, attacking any ship on its scanners. We need to take care of it before our commanding officers find out about this. Whose turn is it this time?"`
+			choice
+				`	(Raise your hand and offer to shoot it down.)`
+					goto yes
+				`	(Ignore them and walk on.)`
+					defer
+			label yes
+			`You raise your hand and one of the soldiers notices you.`
+			`	"You? Why not. Try not to hurt yourself."`
+			`	You got the job.`
+				launch
+	npc evade
+		government "Bounty"
+		personality waiting heroic target vindictive marked
+			confusion 30
+		fleet
+			names "republic fighter"
+			variant
+				"Combat Drone" 1
+	on complete
+		payment 5000
+		dialog `One of the Navy recruits approaches you. She says, "Well done!" and with a firm handshake she gives you <payment>.`
+
+mission "Renegade Drones 1"
+	name "Defeat a renegade drone"
+	description "Another of the Navy recruits' practice drones has gone haywire. Defeat it and return to <destination>."
+	job
+	repeat
+	to offer
+		random < 20
+		has "Renegade Drones 1 Intro: done"
+	source
+		near "Elnath" 2
+	destination "Pilot"
+	npc evade
+		government "Bounty"
+		personality waiting heroic target vindictive marked
+			confusion 30
+		system "Elnath"
+		fleet
+			names "republic fighter"
+			variant
+				"Combat Drone" 1
+	on complete
+		payment 5000
+		dialog `After you land, a Navy recruit hands you <payment>.`
+
+mission "Renegade Drones 2 Intro"
+	name "Neutralize broken drones"
+	description "Destroy or disable the malfunctioning Navy drones."
+	minor
+	to offer
+		random < 10
+		"Renegade Drones 1: done" > 3
+		"combat rating" > 600
+	source "Pilot"
+	on offer
+		conversation
+			`Walking through the space port, you are approached by a Navy officer. "Captain <last>?" she asks. You nod. "I've heard you're quite good at shooting things from the sky. A group of drones we've tested experienced a malfunction. Now they rampage through the system attacking everything getting in their way. Unfortunately, we lack personnel at the moment. Would you be willing to help us out and shoot down the malfunctioning drones?"`
+			choice
+				`	"Sure, I always welcome targeting practice."`
+					accept
+				`	"No, sorry, I'm busy right now."`
+					defer
+	npc evade
+		government "Bounty"
+		personality heroic target vindictive nemesis
+			confusion 30
+		fleet
+			names "republic fighter"
+			variant
+				"Combat Drone" 10
+	npc evade
+		government "Bounty"
+		personality waiting heroic target vindicitive
+			confusion 30
+		fleet
+			names "republic fighter"
+			variant
+				"Combat Drone" 30
+	npc
+		personality heroic staying uninterested
+		government "Support"
+		fleet
+			names "republic fighter"
+			variant
+				"Combat Drone" 20
+	on complete
+		payment 200000
+		dialog "You got the drones under control and collect your payment of <payment>."
+
+mission "Renegade Drones 2"
+	name "Defeat renegade drones"
+	description "Because of a system malfunction, a swarm of drones now rampages through <destination>. Neutralize the danger."
+	repeat
+	job
+	on offer
+		random < 10
+		has "Renegade Drones 2 Intro"
+	source
+		near "Elnath" 3
+	destination "Pilot"
+	npc evade
+		government "Bounty"
+		personality heroic target vindictive nemesis
+			confusion 30
+		system "Elnath"
+		fleet
+			names "republic fighter"
+			variant
+				"Combat Drone" 10
+	npc evade
+		government "Bounty"
+		personality waiting heroic target vindicitive
+			confusion 30
+		system "Elnath"
+		fleet
+			names "republic fighter"
+			variant
+				"Combat Drone" 30
+	npc
+		personality heroic staying uninterested
+		government "Support"
+		system "Elnath"
+		fleet
+			names "republic fighter"
+			variant
+				"Combat Drone" 20
+	on complete
+		payment 200000
+		dialog "You got the drones under control and collect your payment of <payment>."
+		
+mission "Renegade Drones 3 Intro"
+	name "Neutralize AI drones"
+	description "Destroy or disable the malfunctioning Navy drones."
+	minor
+	to offer
+		random < 5
+		"Renegade Drones 2: done" > 3
+		"combat rating" > 1200
+	source "Pilot"
+	on offer
+		conversation
+			`You abruptly turn around when a rough but very distinct voice calls your name: "Captain <last>! Been looking for you." You stand in front of a senior Navy captain. "One says, you have quite some experience with drones going berserk. Apparently, those guys from the lab meant it a little bit too well with the artificial intelligence in our newest drone model. It seems it started wondering, why it should work for us. Would you be willing to, let's say, correct their mistake?"`
+			choice
+				`	"Preventing the rise of the machines? Would be hard to say no."`
+					goto yes
+				`	"I'm sorry, I try not to kill sentient beings."`
+					defer
+			label yes
+			`"Great! A group of Combat Drones will support you."`
+				accept
+	npc evade
+		government "Bounty"
+		personality heroic target nemesis
+			confusion 0
+		fleet
+			names "female names"
+			variant
+				"Combat Drone (Heavy)" 10
+	npc evade
+		government "Bounty"
+		personality waiting heroic target vindictive
+			confusion 0
+		fleet
+			names "male names"
+			variant
+				"Combat Drone (Heavy)" 50
+	npc
+		government "Support"
+		personality waiting heroic uninterested
+		fleet
+			names "republic fighter"
+			variant
+				"Combat Drone" 70
+	on complete
+		payment 400000
+		dialog "Collecting your payment of <payment>, you still wonder if it was the right choice to destroy an emerging intelligence."
+
+mission "Renegade Drones 3"
+	name "Defeat AI drones"
+	description "A lab assistant loaded the wrong backup to a group of drones, now they are sentient and must be stopped."
+	repeat
+	job
+	to offer
+		random < 5
+		has "Renegade Drones 3 Intro: done"
+	source
+		near "Elnath" 2
+	destination "Pilot"
+	npc evade
+		government "Bounty"
+		personality heroic target nemesis
+			confusion 0
+		system "Elnath"
+		fleet
+			names "female names"
+			variant
+				"Combat Drone (Heavy)" 10
+	npc evade
+		government "Bounty"
+		personality waiting heroic target vindictive
+			confusion 0
+		system "Elnath"
+		fleet
+			names "male names"
+			variant
+				"Combat Drone (Heavy)" 50
+	npc
+		government "Support"
+		personality waiting heroic uninterested
+		system "Elnath"
+		fleet
+			names "republic fighter"
+			variant
+				"Combat Drone" 70
+	on complete
+		payment 400000
+		dialog "You land and collect your payment of <payment>."
+
+ship "Combat Drone" "Combat Drone (Heavy)"
+        attributes
+                category "Drone"
+                licenses
+                        Navy
+                "cost" 160000
+                "shields" 200
+                "hull" 600
+                "mass" 25
+                "drag" .65
+                "heat dissipation" .85
+                "outfit space" 72
+                "weapon capacity" 15
+                "engine capacity" 30
+                "automaton" 1
+                weapon
+                        "blast radius" 5
+                        "shield damage" 50
+                        "hull damage" 25
+                        "hit force" 75
+        outfits
+                "Heavy Laser"
+
+                "D14-RN Shield Generator"
+
+                "Supercapacitor"
+                "nGVF-AA Fuel Cell"
+
+                "X1050 Ion Engines"
+
+        gun 0 -29 "Heavy Laser"
+
+government "Support"
+	swizzle 0
+	"player reputation" 1
+	"attitude toward"
+		"Bounty" -.01
+
 mission "Cargo [0]"
 	name "Delivery to <planet>"
 	job
