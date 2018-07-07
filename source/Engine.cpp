@@ -411,12 +411,20 @@ void Engine::Step(bool isActive)
 	if(isActive)
 	{
 		double zoomTarget = Preferences::ViewZoom();
-		if(zoom < zoomTarget)
-			zoom = min(zoomTarget, zoom * 1.03);
-		else if(zoom > zoomTarget)
-			zoom = max(zoomTarget, zoom * .97);
-	}
 		
+		const double ZOOM_SPEED = .05;
+		
+		// prevent asymptotic zoom
+		const double MAX_ZOOM_SPEED = .05;
+		const double MIN_ZOOM_SPEED = .002;
+
+		double zoomRatio = max(MIN_ZOOM_SPEED, min(MAX_ZOOM_SPEED, abs(log2(zoom) - log2(zoomTarget)) * ZOOM_SPEED));
+		if(zoom < zoomTarget)
+			zoom = min(zoomTarget, zoom * (1.0 + zoomRatio));
+		else if(zoom > zoomTarget)
+			zoom = max(zoomTarget, zoom * (1.0 / (1.0 + zoomRatio)));
+	}
+	
 	// Draw a highlight to distinguish the flagship from other ships.
 	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
 	{
