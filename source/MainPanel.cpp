@@ -98,7 +98,7 @@ void MainPanel::Step()
 			isActive = !DoHelp("navigation");
 		if(isActive && flagship->IsDestroyed())
 			isActive = !DoHelp("dead");
-		if(isActive && flagship->IsDisabled())
+		if(isActive && flagship->IsDisabled() && !flagship->IsDestroyed())
 			isActive = !DoHelp("disabled");
 		bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
 		if(isActive && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
