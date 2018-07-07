@@ -797,13 +797,12 @@ void AI::Step(const PlayerInfo &player)
 		// escort behavior when in a different system from you. Otherwise,
 		// the behavior depends on what the parent is doing, whether there
 		// are hostile targets nearby, and whether the escort has any
-		// immediate needs (like refueling).
-		else if(!parent)
+		// immediate needs (like refueling or performing a survey).
+		else if(!parent || it->IsSurveying())
 			MoveIndependent(*it, command);
 		else if(parent->GetSystem() != it->GetSystem())
 		{
-			// NPCs needing to perform StellarObject flybys (surveying) need to use MoveIndependent.
-			if(it->IsSurveying() || personality.IsStaying() || !it->Attributes().Get("fuel capacity"))
+			if(personality.IsStaying() || !it->Attributes().Get("fuel capacity"))
 				MoveIndependent(*it, command);
 			else
 				MoveEscort(*it, command);
@@ -812,8 +811,8 @@ void AI::Step(const PlayerInfo &player)
 		// which is in the same system as them.
 		else if(parent->GetGovernment()->IsEnemy(gov))
 		{
-			// Fight your target, if you have one, or continue your survey.
-			if(target || it->IsSurveying())
+			// Fight your target, if you have one.
+			if(target)
 				MoveIndependent(*it, command);
 			// Otherwise try to find and fight your parent. If your parent
 			// can't be both targeted and pursued, then don't follow them.
@@ -833,7 +832,7 @@ void AI::Step(const PlayerInfo &player)
 			else
 				CircleAround(*it, command, *parent);
 		}
-		else if(personality.IsStaying() || it->IsSurveying())
+		else if(personality.IsStaying())
 			MoveIndependent(*it, command);
 		// This is a friendly escort. If the parent is getting ready to
 		// jump, always follow.
