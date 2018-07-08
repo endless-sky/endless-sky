@@ -488,7 +488,7 @@ Color MapPanel::GovernmentColor(const Government *government)
 
 Color MapPanel::UninhabitedColor()
 {
-	return Color(.2, 0.);
+	return GovernmentColor(GameData::Governments().Get("Uninhabited"));
 }
 
 
@@ -752,7 +752,7 @@ void MapPanel::UpdateCache()
 		nodes.emplace_back(system.Position(), color,
 			player.KnowsName(&system) ? system.Name() : "",
 			(&system == playerSystem) ? closeNameColor : farNameColor,
-			system.GetGovernment());
+			player.HasVisited(&system) ? system.GetGovernment() : nullptr);
 	}
 	
 	// Now, update the cache of the links.
@@ -988,7 +988,7 @@ void MapPanel::DrawSystems()
 		Point pos = zoom * (node.position + center);
 		RingShader::Draw(pos, OUTER, INNER, node.color);
 		
-		if(commodity == SHOW_GOVERNMENT)
+		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited")
 		{
 			// For every government that is drawn, keep track of how close it
 			// is to the center of the view. The four closest governments
