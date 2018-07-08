@@ -356,7 +356,7 @@ government "Test Dummy"
 	"hostile disabled hail" "disabled test dummy"
 
 government "Uninhabited"
-	color .3 .3 .3
+	color .4 .4 .4
 
 government "Wanderer"
 	swizzle 2
