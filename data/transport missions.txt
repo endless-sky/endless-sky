@@ -1504,7 +1504,7 @@ mission "Shady passenger transport 3"
 		attributes "near earth" "core" "urban"
 		distance 5 10
 	passengers 4 13
-	illegal 400000 `It's rather difficult to feign ignorance of your passengers' background during your questioning. You wind up having to pay a small fortune in bribes to keep yourself from being charged as an accomplice very serious-sounding crimes.`
+	illegal 400000 `It's difficult to feign ignorance of your passengers' background during your questioning. You wind up having to pay a small fortune in bribes to keep yourself from being charged as an accomplice to some very serious-sounding crimes.`
 		stealth
 
 	to offer
@@ -1525,7 +1525,7 @@ mission "Shady passenger transport 3"
 
 	on complete
 		payment 350000
-		dialog `During the voyage, you've come to understand that your passengers are mercenaries whose latest exploits put them on the wrong side of the law. They pay you the agreed-upon sum of <payment> and disappear into a crowd, no doubt off to cause chaos and mayhem for some unsuspecting victim. Oh well, not your problem...`
+		dialog `During the voyage, you've come to understand that your passengers are mercenaries whose latest exploits put them on the wrong side of the law. They pay you the agreed-upon sum of <payment> and disappear into a crowd, no doubt off to cause chaos and mayhem for some unsuspecting victims. Oh well, not your problem...`
 		"getaway driver" ++
 	npc
 		government "Bounty Hunter"
