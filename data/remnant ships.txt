@@ -313,13 +313,14 @@ ship "Gascraft"
 		"hull" 1500
 		"required crew" 1
 		"bunks" 1
-		"mass" 80
+		"mass" 82
 		"drag" 1.7
 		"heat dissipation" 0.9
 		"fuel capacity" 700
 		"cargo space" 8
-		"outfit space" 90
+		"outfit space" 88
 		"engine capacity" 34
+		"energy capacity" 150
 		"shield generation" 0.6
 		"shield energy" 0.4
 		"hull repair rate" 1.2
@@ -327,7 +328,6 @@ ship "Gascraft"
 		"gaslining" 1
 	outfits
 		"Millennium Cell"
-		"Supercapacitor"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
 		
