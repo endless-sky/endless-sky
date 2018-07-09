@@ -301,6 +301,12 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	double hullHeat = attributes.Get("hull heat");
 	heatTable.push_back(Format::Number(60. * (shieldHeat + hullHeat)));
 	attributesHeight += 20;
+	tableLabels.push_back("cloaking:");
+	double cloakingEnergy = attributes.Get("cloaking energy");
+	energyTable.push_back(Format::Number(-60. * cloakingEnergy));
+	double cloakingHeat = attributes.Get("cloaking heat");
+	heatTable.push_back(Format::Number(60. * cloakingHeat));
+	attributesHeight += 20;
 	tableLabels.push_back("max:");
 	energyTable.push_back(Format::Number(attributes.Get("energy capacity")));
 	heatTable.push_back(Format::Number(60. * ship.HeatDissipation() * ship.MaximumHeat()));
