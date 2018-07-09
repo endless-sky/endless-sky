@@ -232,8 +232,9 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributesHeight += 20;
 	}
 	
-	attributeLabels.emplace_back("range:");
-	attributeValues.emplace_back(Format::Number(outfit.Range()));
+	attributeLabels.emplace_back("velocity / range:");
+	attributeValues.emplace_back(Format::Number(outfit.Velocity())
+			+ " / " + Format::Number(outfit.Range()));
 	attributesHeight += 20;
 	
 	static const vector<string> VALUE_NAMES = {
