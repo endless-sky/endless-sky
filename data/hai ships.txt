@@ -199,17 +199,18 @@ ship "Geocoris"
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		Hyperdrive
-	engine -88 35
-	engine 88 35
-	gun 22 -104 "Pulse Cannon"
-	gun -22 -104 "Pulse Cannon"
-	turret 16 -19 "Pulse Turret"
-	turret -16 -19 "Pulse Turret"
-	turret 101 -19 "Bullfrog Anti-Missile"
-	turret -101 -19 "Bullfrog Anti-Missile"
-	turret 31 82 "Bullfrog Anti-Missile"
-	turret -31 82 "Bullfrog Anti-Missile"
-	turret 0 -79 "Bullfrog Anti-Missile"
+
+	engine 100 39
+	engine -100 39
+	gun 24 -118 "Pulse Cannon"
+	gun -24 -118 "Pulse Cannon"
+	turret 110 -23 "Pulse Turret"
+	turret -110 -23 "Pulse Turret"
+	turret 35 94 "Bullfrog Anti-Missile"
+	turret -35 94 "Bullfrog Anti-Missile"
+	turret 17 -2 "Bullfrog Anti-Missile"
+	turret -17 -2 "Bullfrog Anti-Missile"
+	turret 0 -89 "Bullfrog Anti-Missile"
 	explode "tiny explosion" 50
 	explode "small explosion" 50
 	explode "medium explosion" 50
@@ -272,6 +273,7 @@ ship "Grasshopper"
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		Hyperdrive
+
 	engine 0 36
 	gun -6 -34 "Pulse Cannon"
 	gun 6 -34 "Pulse Cannon"
