@@ -233,7 +233,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	}
 	
 	attributeLabels.emplace_back("velocity / range:");
-	attributeValues.emplace_back(Format::Number(outfit.Velocity())
+	attributeValues.emplace_back(Format::Number(60. * outfit.Velocity())
 			+ " / " + Format::Number(outfit.Range()));
 	attributesHeight += 20;
 	
