@@ -143,6 +143,45 @@ outfit "Cooling Module"
 	"cooling energy" 1.4
 	description "This cooling module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is very close to overheating."
 
+outfit "Saryd Outfits Expansion"
+	category "Systems"
+	licenses
+		Coalition
+	cost 100000
+	thumbnail "outfit/saryd outfits expansion"
+	"mass" 6
+	"outfit space" 20
+	"cargo space" -20
+	"cooling inefficiency" 1
+	"heat dissipation" -.01
+	unplunderable 1
+	description "This Saryd expansion allows you to sacrifice a bit less cargo space, compared to the human one, in order to make room for more outfits, in situations where you need just a bit more space to install a particular system."
+	description "	Unfortunately, rearranging the interior of your ship in such a fundamental way tends to interfere with its cooling systems."
+
+outfit "Arach Cargo Expansion"
+	category "Systems"
+	licenses
+		Coalition
+	cost 60000
+	thumbnail "outfit/arach cargo expansion"
+	"mass" 6
+	"cargo space" 20
+	"outfit space" -20
+	unplunderable 1
+	description "Arachi technology is specialized in efficient storage of cargo and utilizes every last corner of your ship."
+
+outfit "Kimek Bunk Room"
+	category "Systems"
+	licenses
+		Coalition
+	cost 60000
+	thumbnail "outfit/kimek bunk room"
+	"mass" 6
+	"bunks" 3
+	"outfit space" -10
+	unplunderable 1
+	description "Unconfortable, but way more space efficient than any Human bunk room, this Kimek bunk room resembles more a pod rather than a bed"
+
 
 outfit "Small Thrust Module"
 	category "Engines"
