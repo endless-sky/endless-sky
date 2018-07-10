@@ -272,6 +272,12 @@ Files:
  images/outfit/hai?rifle*
  images/outfit/scram?drive*
  images/outfit/korath?fuel?processor*
+ images/ship/hai?centipede*
+ images/ship/hai?geocoris*
+ images/ship/hai?grasshopper*
+ images/thumbnail/hai?centipede*
+ images/thumbnail/hai?geocoris*
+ images/thumbnail/hai?grasshopper*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (from under the same license).
