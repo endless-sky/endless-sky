@@ -1850,10 +1850,10 @@ void Engine::FillRadar()
 	// Add viewport brackets.
 	if(!Preferences::Has("Disable viewport on radar"))
 	{
-		radar[calcTickTock].AddViewportBoundary(Radar::INACTIVE, Screen::TopLeft() / zoom);
-		radar[calcTickTock].AddViewportBoundary(Radar::INACTIVE, Screen::TopRight() / zoom);
-		radar[calcTickTock].AddViewportBoundary(Radar::INACTIVE, Screen::BottomLeft() / zoom);
-		radar[calcTickTock].AddViewportBoundary(Radar::INACTIVE, Screen::BottomRight() / zoom);
+		radar[calcTickTock].AddViewportBoundary(Screen::TopLeft() / zoom);
+		radar[calcTickTock].AddViewportBoundary(Screen::TopRight() / zoom);
+		radar[calcTickTock].AddViewportBoundary(Screen::BottomLeft() / zoom);
+		radar[calcTickTock].AddViewportBoundary(Screen::BottomRight() / zoom);
 	}
 	
 	// Add ships. Also check if hostile ships have newly appeared.
