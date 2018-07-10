@@ -17,6 +17,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PointerShader.h"
 #include "RingShader.h"
 
+#include <cmath>
+
 using namespace std;
 
 const int Radar::PLAYER = 0;
@@ -27,6 +29,7 @@ const int Radar::INACTIVE = 4;
 const int Radar::SPECIAL = 5;
 const int Radar::ANOMALOUS = 6;
 const int Radar::BLINK = 7;
+const int Radar::VIEWPORT = 8;
 
 
 
@@ -64,17 +67,15 @@ void Radar::AddPointer(int type, const Point &position)
 
 
 // Create a "corner" from a vertical and horizontal leg.
-void Radar::AddViewportBoundary(int type, const Point &vertex)
+void Radar::AddViewportBoundary(const Point &vertex)
 {
-	Point angle = vertex.Unit() * 300;
-	
-	Point start(vertex.X() - angle.Dot(Point(1., 0.)), vertex.Y());
-	Point end(vertex.X(), vertex.Y() - angle.Dot(Point(0., 1.)));
+	Point start(vertex.X() - copysign(200., vertex.X()), vertex.Y());
+	Point end(vertex.X(), vertex.Y() - copysign(200., vertex.Y()));
 	
 	// Add the horizontal leg, pointing from start to vertex.
-	lines.emplace_back(GetColor(type), start, vertex - start);
+	lines.emplace_back(GetColor(VIEWPORT), start, vertex - start);
 	// Add the vertical leg, pointing from end to vertex.
-	lines.emplace_back(GetColor(type), end, vertex - end);
+	lines.emplace_back(GetColor(VIEWPORT), end, vertex - end);
 }
 
 
@@ -139,7 +140,8 @@ const Color &Radar::GetColor(int type)
 		*GameData::Colors().Get("radar inactive"),
 		*GameData::Colors().Get("radar special"),
 		*GameData::Colors().Get("radar anomalous"),
-		*GameData::Colors().Get("radar blink")
+		*GameData::Colors().Get("radar blink"),
+		*GameData::Colors().Get("radar viewport")
 	};
 	
 	if(static_cast<size_t>(type) >= color.size())

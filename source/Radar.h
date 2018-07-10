@@ -33,6 +33,8 @@ public:
 	static const int SPECIAL;
 	static const int ANOMALOUS;
 	static const int BLINK;
+	static const int VIEWPORT;
+	
 	
 public:
 	void Clear();
@@ -44,7 +46,7 @@ public:
 	// Add a pointer, pointing in the direction of the given vector.
 	void AddPointer(int type, const Point &position);
 	// Add a viewport vertex indicating the extent of what can be seen on screen.
-	void AddViewportBoundary(int type, const Point &vertex);
+	void AddViewportBoundary(const Point &vertex);
 	
 	// Draw the radar display at the given coordinates.
 	void Draw(const Point &center, double scale, double radius, double pointerRadius) const;
