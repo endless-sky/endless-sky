@@ -149,9 +149,9 @@ outfit "Saryd Outfits Expansion"
 		Coalition
 	cost 100000
 	thumbnail "outfit/saryd outfits expansion"
-	"mass" 6
-	"outfit space" 20
-	"cargo space" -20
+	"mass" 15
+	"outfit space" 50
+	"cargo space" -60
 	"cooling inefficiency" 1
 	"heat dissipation" -.01
 	unplunderable 1
@@ -164,9 +164,9 @@ outfit "Arach Cargo Expansion"
 		Coalition
 	cost 60000
 	thumbnail "outfit/arach cargo expansion"
-	"mass" 6
-	"cargo space" 20
-	"outfit space" -20
+	"mass" 15
+	"cargo space" 50
+	"outfit space" -60
 	unplunderable 1
 	description "Arachi technology is specialized in efficient storage of cargo and utilizes every last corner of your ship."
 
@@ -176,9 +176,9 @@ outfit "Kimek Bunk Room"
 		Coalition
 	cost 60000
 	thumbnail "outfit/kimek bunk room"
-	"mass" 6
-	"bunks" 3
-	"outfit space" -10
+	"mass" 15
+	"bunks" 10
+	"outfit space" -45
 	unplunderable 1
 	description "Unconfortable, but way more space efficient than any Human bunk room, this Kimek bunk room resembles more a pod rather than a bed"
 
