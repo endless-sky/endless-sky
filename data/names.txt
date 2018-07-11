@@ -387,6 +387,8 @@ phrase "singular nouns"
 		"Day"
 		"Maid"
 		"Mare"
+		"Citadel"
+		"Dart"
 
 phrase "plural nouns"
 	word
@@ -639,6 +641,7 @@ phrase "gender-neutral titles"
 		"Champion"
 		"Admiral"
 		"Sovereign"
+		"Commodore"
 
 phrase "all titles"
 	phrase
@@ -1243,6 +1246,11 @@ phrase "standalone civilian ship names"
 		"Tochinoshin"
 		"Frida Kahlo"
 		"Garcia Marquez"
+		"Carrack"
+		"Lizard"
+		"Jack Tar"
+		"Landsman"
+		"Marlinspike"
 
 
 # Final phrases that make ship names
@@ -2581,6 +2589,7 @@ phrase "pirate nouns"
 		"Wench"
 		"Tide"
 		"Vandal"
+		"Grog"
 
 phrase "bad outcomes"
 	word
@@ -2792,6 +2801,11 @@ phrase "pirate"
 		"Cement Shoes"
 		"Chained to an Oar"
 		"Bloody Mary"
+		"Cat o' Nine Tails"
+		"Man o' War"
+		"Death Roll"
+		"Dreadnought"
+		"Blighter"
 
 phrase "pirate"
 	phrase
@@ -2973,6 +2987,7 @@ phrase "pirate"
 		"stench"
 		"gard"
 		"hand"
+		"shot"
 
 phrase "pirate"
 	word
