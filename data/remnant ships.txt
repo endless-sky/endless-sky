@@ -192,8 +192,8 @@ ship "Albatross"
 		"Hyperdrive"
 	
 	engine -28 155 .8
-	engine 28 155 .9
-	engine 0 184 .8
+	engine 28 155 .8
+	engine 0 184 .9
 	gun 0 -190
 	gun -9 -177 "Inhibitor Cannon"
 	gun 9 -177 "Inhibitor Cannon"
