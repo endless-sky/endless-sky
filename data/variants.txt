@@ -577,7 +577,6 @@ ship "Cruiser" "Cruiser (Heavy)"
 		"Quad Blaster Turret"
 		"Laser Rifle" 20
 		"Fragmentation Grenades" 20
-		"Brig"
 		"Armageddon Core"
 		"Dwarf Core"
 		"Supercapacitor"
