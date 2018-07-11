@@ -954,15 +954,6 @@ phrase "sometimes a successor"
 		" II"
 		" III"
 
-phrase "poetic female name constructions"
-	phrase
-		"female names"
-	word
-		" "
-	phrase
-		"singular nouns"
-		"nouns of indeterminate quantity"
-
 phrase "standalone civilian ship names"
 	word
 		"Horizon"
@@ -1448,7 +1439,6 @@ phrase "civilian"
 	word
 		" "
 	phrase
-		"poetic female name constructions"
 		"plural nouns"
 
 phrase "civilian"
@@ -1457,7 +1447,6 @@ phrase "civilian"
 		"singular nouns"
 		"all titles"
 		"female names"
-		"poetic female name constructions"
 	phrase
 		"sometimes a successor"
 
