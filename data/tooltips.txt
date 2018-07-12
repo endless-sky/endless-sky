@@ -468,4 +468,4 @@ tip "no hyperdrive?"
 	`This ship has no hyperdrive. If it took off, it would be unable to leave this star system.`
 
 tip "no fuel?"
-	`This ship has not enough fuel capacity to make a hyperspace jump. If it took off, it would be unable to leave this star system.`
+	`This ship has insufficient fuel capacity to make a hyperspace jump. If it took off, it would be unable to leave this star system.`
