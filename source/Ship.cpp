@@ -740,7 +740,7 @@ string Ship::FlightCheck() const
 	{
 		if(!hyperDrive && !jumpDrive)
 			return "no hyperdrive?";
-		if(fuel < JumpFuel(hyperspaceSystem))
+		if(fuel < JumpFuel())
 			return "no fuel?";
 	}
 	
