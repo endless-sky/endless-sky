@@ -736,9 +736,9 @@ string Ship::FlightCheck() const
 		return "limited turn?";
 	if(energy - .8 * solar < .2 * (turnEnergy + thrustEnergy))
 		return "solar power?";
-	if(!hyperDrive && !jumpDrive && !canBeCarried)
+	if(!canBeCarried && !hyperDrive && !jumpDrive)
 		return "no hyperdrive?";
-	if(fuel < JumpFuel(hyperspaceSystem) && !canBeCarried)
+	if(!canBeCarried && fuel < JumpFuel(hyperspaceSystem))
 		return "no fuel?";
 	
 	return "";
