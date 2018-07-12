@@ -2458,7 +2458,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 				{
 					// For projectiles with drag, use iterative approximation.
 					Point offset = Point(0.,0.);
-					short int iterations = 3;
+					short int iterations = 1;
 					while (iterations > 0)
 					{
 						rendezvousTime = RendezvousTime(p - offset, v, vp);
