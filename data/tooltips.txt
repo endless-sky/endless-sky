@@ -464,8 +464,8 @@ tip "limited turn?"
 tip "solar power?"
 	`This ship is powered entirely by solar energy. If you fly too far from the center of a star system, maneuvering may become difficult because your engines will only have a fraction of the power they require.`
 
-tip "no fuel?"
-	`This ship has no fuel. If it took off, it would be unable to leave this star system.`
-
 tip "no hyperdrive?"
 	`This ship has no hyperdrive. If it took off, it would be unable to leave this star system.`
+
+tip "no fuel?"
+	`This ship has not enough fuel. If it took off, it would be unable to leave this star system.`
