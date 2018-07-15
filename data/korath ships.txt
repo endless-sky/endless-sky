@@ -827,7 +827,6 @@ ship "Far Lek 14"
 	description "At the peak of their recent civil war, the Kor Sestor faction developed these automated attack drones, easy to manufacture and encased in an ultra-dense hull that can absorb a significant amount of damage."
 
 
-
 ship "Far Osk 27"
 	sprite "ship/far osk 27"
 	thumbnail "thumbnail/far osk 27"
@@ -865,6 +864,7 @@ ship "Far Osk 27"
 	explode "tiny explosion" 25
 	explode "small explosion" 15
 	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS27 fighter is able to carry far more weaponry than any comparable human ship."
+
 
 
 ship "Model 8"
