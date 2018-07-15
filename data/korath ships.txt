@@ -805,7 +805,6 @@ ship "Far Lek 14"
 		"weapon capacity" 11
 		"engine capacity" 24
 		"self destruct" .6
-		"ramscoop" 3
 		weapon
 			"blast radius" 5
 			"shield damage" 50
@@ -845,7 +844,6 @@ ship "Far Osk 27"
 		"weapon capacity" 22
 		"engine capacity" 24
 		"self destruct" .6
-		"ramscoop" 3
 		weapon
 			"blast radius" 12
 			"shield damage" 120
