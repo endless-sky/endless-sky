@@ -195,6 +195,7 @@ phrase "adjectives"
 		"Borneo"
 		"Unknown"
 		"Saucy"
+		"Seawise"
 
 phrase "cardinal directions"
 	word
@@ -389,6 +390,7 @@ phrase "singular nouns"
 		"Mare"
 		"Citadel"
 		"Dart"
+		"Giant"
 
 phrase "plural nouns"
 	word
@@ -478,6 +480,7 @@ phrase "plural nouns"
 		"Voices"
 		"Sparks"
 		"Shores"
+		"Tides"
 		# Need to duplicate these because not all the words in the 'female titles' phrase could be pluralized by simply adding 's' to the end
 		"Ladies"
 		"Princesses"
@@ -886,6 +889,7 @@ phrase "female names"
 		"Belinda"
 		"Antigone"
 		"Bernice"
+		"Ishtar"
 
 phrase "one to twelve"
 	word
@@ -1436,18 +1440,6 @@ phrase "civilian"
 	phrase
 		"sometimes a successor"
 
-# e.g.:
-# Two Katerina Snow
-# Five Tongues
-# Four Devi Ash
-phrase "civilian"
-	phrase
-		"one to twelve"
-	word
-		" "
-	phrase
-		"plural nouns"
-
 phrase "civilian"
 	phrase
 		"nouns of indeterminate quantity"
@@ -1654,6 +1646,9 @@ phrase "civilian"
 		"lady"
 		"wise"
 		"joy"
+		"talker"
+		"walker"
+		"step"
 	phrase
 		"sometimes a successor"
 
@@ -2379,6 +2374,8 @@ phrase "sinister names"
 		"Grendel"
 		"Narkan"
 		"Vulkan"
+		"Chaxo"
+		"Garzad"
 
 phrase "pirate adjectives"
 	word
@@ -2589,6 +2586,12 @@ phrase "pirate nouns"
 		"Tide"
 		"Vandal"
 		"Grog"
+		"Shanker"
+		"Stabber"
+		"Maniac"
+		"Lunatic"
+		"Eye"
+		"Grave"
 
 phrase "bad outcomes"
 	word
@@ -2806,6 +2809,7 @@ phrase "pirate"
 		"Dreadnought"
 		"Blighter"
 		"Polyphemus"
+		"Needleroozer"
 
 phrase "pirate"
 	phrase
@@ -2910,6 +2914,7 @@ phrase "pirate"
 		"Woe"
 		"Storm"
 		"Hard"
+		"Hell"
 	word
 		"oath"
 		"fire"
@@ -2988,6 +2993,9 @@ phrase "pirate"
 		"gard"
 		"hand"
 		"shot"
+		"-eye"
+		"dog"
+		"cat"
 
 phrase "pirate"
 	word
