@@ -21,8 +21,8 @@ outfit "Energy Blaster"
 		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
-		"velocity" 8.5
-		"lifetime" 60
+		"velocity" 17
+		"lifetime" 30
 		"reload" 12
 		"firing energy" 9.6
 		"firing heat" 30
@@ -47,8 +47,8 @@ outfit "Blaster Turret"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
 		"turret turn" 3.7
-		"velocity" 8.5
-		"lifetime" 60
+		"velocity" 17
+		"lifetime" 30
 		"reload" 6
 		"firing energy" 9.6
 		"firing heat" 30
@@ -73,8 +73,8 @@ outfit "Quad Blaster Turret"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
 		"turret turn" 3.2
-		"velocity" 8.5
-		"lifetime" 60
+		"velocity" 17
+		"lifetime" 30
 		"reload" 3
 		"firing energy" 9.6
 		"firing heat" 30
@@ -104,8 +104,8 @@ outfit "Modified Blaster"
 		sound "mod blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 4
-		"velocity" 8
-		"lifetime" 60
+		"velocity" 16
+		"lifetime" 30
 		"reload" 12
 		"firing energy" 10.8
 		"firing heat" 42
@@ -130,8 +130,8 @@ outfit "Modified Blaster Turret"
 		"hit effect" "blaster impact"
 		"inaccuracy" 4
 		"turret turn" 3.5
-		"velocity" 8
-		"lifetime" 60
+		"velocity" 16
+		"lifetime" 30
 		"reload" 6
 		"firing energy" 10.8
 		"firing heat" 42
