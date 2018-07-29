@@ -927,7 +927,8 @@ mission "FW Northern 3B"
 				accept
 	
 	npc accompany save
-		personality timid
+		government "Free Worlds"
+		personality timid escort
 		ship Dreadnought "F.S. Bartlett"
 		ship Dreadnought "F.S. Magnolia"
 	
@@ -967,6 +968,7 @@ mission "FW Northern 4.1A"
 		has "FW Northern 4: done"
 		not "FW Northern 4.2A: offered"
 		karma >= 2
+		"reputation: Navy (Oathkeeper)" >= 0
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
@@ -1005,7 +1007,9 @@ mission "FW Northern 4.2A"
 	to offer
 		has "FW Northern 4: done"
 		not "FW Northern 4.1A: offered"
-		karma < 2
+		or
+			karma < 2
+			"reputation: Navy (Oathkeeper)" < 0
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
@@ -1478,8 +1482,8 @@ mission "FW Bloodsea 1.2A"
 	landing
 	name "Capture Bloodsea"
 	description "Take a Free Worlds fleet to invade the <system> system and eliminate any pirate resistance, then land on <planet>."
-	source Dancer
-	destination Bloodsea
+	source "Dancer"
+	destination "Bloodsea"
 	clearance
 	to offer
 		has "FW Bloodsea 1.2: done"
@@ -1498,7 +1502,8 @@ mission "FW Bloodsea 1.2A"
 				accept
 	
 	npc
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		ship "Dreadnought" "F.S. Bombastic"
 		ship "Falcon (Plasma)" "F.S. Equalizer"
 		ship "Falcon (Plasma)" "F.S. Enforcer"
@@ -1715,7 +1720,7 @@ mission "FW Rand 1"
 		log "Another two planets, Rand and Oblivion, have expressed an interest in joining the Free Worlds. They are rather far from the rest of Free Worlds territory, however, so JJ is worried that it would create an indefensible tactical position."
 		event "battle for zeta aquilae"
 		conversation
-			`When you land on Dancer, Freya has just received some exciting news. "It turns out taking out Bartlett had some unexpected side effects," she says. "Bartlett has been dogging the systems on the northwestern fringe of the Dirt Belt for years, and had a lot of enemies. The governments of Rand and Oblivion are so grateful to you for eliminating him that they've reached out to us to begin the process of joining the Free Worlds! And several other worlds in that region are interested now, too."`
+			`When you land on Dancer, Freya has just received some exciting news. "It turns out taking out Bartlett had some unexpected side effects," she says. "Bartlett has been hounding the systems on the northwestern fringe of the Dirt Belt for years, and had a lot of enemies. The governments of Rand and Oblivion are so grateful to you for eliminating him that they've reached out to us to begin the process of joining the Free Worlds! And several other worlds in that region are interested now, too."`
 			`	JJ frowns. "That's really awful timing," he says, "and would put us in a really bad tactical position - spread out, and with the Navy right in the middle."`
 			choice
 				`	"Are you saying we shouldn't let them join, even though they want to?"`
@@ -1947,7 +1952,8 @@ mission "FW Defend New Tibet"
 				"Manta (Mark II)" 3
 				"Quicksilver (Mark II)" 5
 	npc
-		personality heroic disables
+		government "Free Worlds"
+		personality heroic escort disables
 		ship "Dreadnought" "F.S. Holly"
 		ship "Falcon (Plasma)" "F.S. Nebula"
 		ship "Skein" "F.S. Larkspur"
@@ -2069,7 +2075,8 @@ mission "FW Liberate Delta Sagittarii"
 		event "fwc southern liberation"
 	
 	npc
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		fleet
 			names "free worlds capital"
 			variant

@@ -46,7 +46,7 @@ outfit "Pulse Turret"
 		sound "pulse"
 		"hit effect" "pulse impact"
 		"inaccuracy" 1
-		"turret turn" 4
+		"turret turn" 2.3
 		"velocity" 15
 		"lifetime" 30
 		"reload" 10
@@ -231,7 +231,7 @@ outfit "Hai Tracker Pod"
 		"infrared tracking" .4
 		"shield damage" 200
 		"hull damage" 160
-		"hit force" 50
+		"hit force" 350
 		"missile strength" 16
 	description "Trackers are fast, powerful, and accurate homing weapons. Their only weakness is their large turning radius: if a Tracker misses its target, it takes a long time to turn around."
 
@@ -600,3 +600,12 @@ outfit `"Bufaer" Atomic Steering`
 	"turning energy" 5.2
 	"turning heat" 13.8
 	description "Nine out of ten human captains interviewed in Hai space say that they would choose Hai atomic engines over those of Deep Sky any day... that is, if they could afford such expensive engines."
+
+outfit "Pulse Rifle"
+	category "Hand to Hand"
+	cost 11000
+	thumbnail "outfit/hai rifle"
+	"capture attack" .7
+	"capture defense" 1.0
+	"unplunderable" 1
+	description "The Pulse Rifle was first developed by the Hai to help protect their ships from boarders during the Korath raids. While it has since been adapted to more effectively incapacitate its target, if several bolts land in quick succession, the accumulated charge has a lethal effect on most species' nervous systems."

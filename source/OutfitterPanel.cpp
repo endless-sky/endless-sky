@@ -36,8 +36,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <limits>
 #include <memory>
 
-class Sprite;
-
 using namespace std;
 
 namespace {
@@ -54,6 +52,17 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 {
 	for(const pair<const string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].insert(it.first);
+	
+	// Add owned licenses
+	const string PREFIX = "license: ";
+	for(auto &it : player.Conditions())
+		if(it.first.compare(0, PREFIX.length(), PREFIX) == 0 && it.second > 0)
+		{
+			const string name = it.first.substr(PREFIX.length()) + " License";
+			const Outfit *outfit = GameData::Outfits().Get(name);
+			if(outfit)
+				catalog[outfit->Category()].insert(name);
+		}
 	
 	if(player.GetPlanet())
 		outfitter = player.GetPlanet()->Outfitter();
@@ -100,6 +109,9 @@ bool OutfitterPanel::HasItem(const string &name) const
 		if(ship->OutfitCount(outfit))
 			return true;
 	
+	if(showForSale && HasLicense(name))
+		return true;
+	
 	return false;
 }
 
@@ -145,7 +157,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 			string label = "installed: " + to_string(minCount);
 			if(maxCount > minCount)
 				label += " - " + to_string(maxCount);
-		
+			
 			Point labelPos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 38);
 			font.Draw(label, labelPos, bright);
 		}
@@ -237,7 +249,7 @@ bool OutfitterPanel::CanBuy() const
 	
 	if(!playerShip)
 	{
-		double mass = selectedOutfit->Get("mass");
+		double mass = selectedOutfit->Mass();
 		return (!mass || player.Cargo().Free() >= mass);
 	}
 	
@@ -250,7 +262,7 @@ bool OutfitterPanel::CanBuy() const
 
 
 
-void OutfitterPanel::Buy()
+void OutfitterPanel::Buy(bool fromCargo)
 {
 	int64_t licenseCost = LicenseCost(selectedOutfit);
 	if(licenseCost)
@@ -312,7 +324,7 @@ void OutfitterPanel::Buy()
 		
 			if(player.Cargo().Get(selectedOutfit))
 				player.Cargo().Remove(selectedOutfit);
-			else if(!(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
+			else if(fromCargo || !(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
 				break;
 			else
 			{
@@ -550,7 +562,7 @@ void OutfitterPanel::FailSell(bool toCargo) const
 	else if(selectedOutfit->Get("map"))
 		GetUI()->Push(new Dialog("You cannot " + verb + " maps. Once you buy one, it is yours permanently."));
 	else if(HasLicense(selectedOutfit->Name()))
-		GetUI()->Push(new Dialog("You cannot " + verb + " licenses. Once you buy one, it is yours permanently."));
+		GetUI()->Push(new Dialog("You cannot " + verb + " licenses. Once you obtain one, it is yours permanently."));
 	else
 	{
 		bool hasOutfit = !toCargo && player.Cargo().Get(selectedOutfit);
@@ -587,6 +599,21 @@ void OutfitterPanel::FailSell(bool toCargo) const
 				"because something else in your ship depends on it."));
 		}
 	}
+}
+
+
+
+bool OutfitterPanel::ShouldHighlight(const Ship *ship)
+{
+	if(!selectedOutfit)
+		return false;
+	
+	if(hoverButton == 'b')
+		return CanBuy() && ShipCanBuy(ship, selectedOutfit);
+	else if(hoverButton == 's')
+		return CanSell() && ShipCanSell(ship, selectedOutfit);
+	
+	return false;
 }
 
 

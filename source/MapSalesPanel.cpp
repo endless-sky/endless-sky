@@ -43,8 +43,6 @@ const double MapSalesPanel::ICON_HEIGHT = 90.;
 const double MapSalesPanel::PAD = 8.;
 const int MapSalesPanel::WIDTH = 270;
 
-using namespace std;
-
 
 
 MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
@@ -159,11 +157,12 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 
 
 
+// Check to see if the mouse is over the scrolling pane.
 bool MapSalesPanel::Hover(int x, int y)
 {
 	isDragging = (x < Screen::Left() + WIDTH);
 	
-	return true;
+	return isDragging ? true : MapPanel::Hover(x, y);
 }
 
 

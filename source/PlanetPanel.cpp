@@ -155,6 +155,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(key == 'p' && flagship && planet.HasSpaceport() && hasAccess)
 	{
 		selectedPanel = spaceport.get();
+		spaceport->UpdateNews();
 		GetUI()->Push(spaceport);
 	}
 	else if(key == 's' && planet.HasShipyard() && hasAccess)
@@ -245,7 +246,7 @@ void PlanetPanel::TakeOffIfReady()
 		if(!check.empty() && check.back() == '!')
 		{
 			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: " + check), nullptr, ship.get()));
+				*GameData::Conversations().Get("flight check: " + check), nullptr, ship));
 			return;
 		}
 	}

@@ -10,6 +10,7 @@
 
 ship "Aerie"
 	sprite "ship/aerie"
+	thumbnail "thumbnail/aerie"
 	attributes
 		category "Medium Warship"
 		"cost" 3500000
@@ -53,6 +54,9 @@ ship "Aerie"
 	turret 17 14 "Heavy Laser Turret"
 	fighter -42 -2
 	fighter 42 2
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -65,6 +69,7 @@ ship "Aerie"
 ship "Argosy"
 	plural "Argosies"
 	sprite "ship/argosy"
+	thumbnail "thumbnail/argosy"
 	attributes
 		category "Light Freighter"
 		"cost" 1960000
@@ -107,6 +112,8 @@ ship "Argosy"
 	gun 23 -37 "Meteor Missile Launcher"
 	turret 0 -12 "Blaster Turret"
 	turret 0 8 "Blaster Turret"
+	leak "leak" 60 50
+	leak "flame" 60 80
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -119,6 +126,7 @@ ship "Argosy"
 
 ship "Arrow"
 	sprite "ship/arrow"
+	thumbnail "thumbnail/arrow"
 	attributes
 		category "Transport"
 		"cost" 1200000
@@ -158,6 +166,7 @@ ship "Arrow"
 	gun -8 -34 "Sidewinder Missile Launcher"
 	gun 8 -34 "Sidewinder Missile Launcher"
 	turret 0 16 "Anti-Missile Turret"
+	leak "leak" 80 50
 	explode "tiny explosion" 12
 	explode "small explosion" 18
 	explode "medium explosion" 6
@@ -168,6 +177,7 @@ ship "Arrow"
 
 ship "Bactrian"
 	sprite "ship/bactrian"
+	thumbnail "thumbnail/bactrian"
 	attributes
 		category "Heavy Warship"
 		"cost" 17600000
@@ -221,6 +231,9 @@ ship "Bactrian"
 	fighter -38 -26
 	fighter 35 36
 	fighter -47 97
+	leak "leak" 30 50
+	leak "flame" 30 80
+	leak "big leak" 50 30
 	explode "small explosion" 25
 	explode "medium explosion" 35
 	explode "large explosion" 45
@@ -232,6 +245,7 @@ ship "Bactrian"
 
 ship "Barb"
 	sprite "ship/barb"
+	thumbnail "thumbnail/barb"
 	attributes
 		category "Fighter"
 		"cost" 50000
@@ -264,6 +278,7 @@ ship "Barb"
 	engine 9 28
 	gun -9 -29 "Energy Blaster"
 	turret 8 6 "Blaster Turret"
+	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description `Though the Syndicate doesn't build fighter carriers, it is testing the waters with the Barb, a cheap and flexible carrier-launched craft featuring newly-developed miniaturized ion engines. The design philosophy of the Barb seems to have been "uglier than the Protector," and as you look at the cockpit nestled between the massive gun port and turret mount, you wonder where the power systems are supposed to go. Though an awkward-looking ship, it seems flexible enough to become a dangerous addition to any fleet with carriers.`
@@ -272,6 +287,7 @@ ship "Barb"
 
 ship "Barb" "Barb (Proton)"
 	sprite "ship/barbp"
+	thumbnail "thumbnail/barbp"
 	attributes
 		category "Fighter"
 		"cost" 50000
@@ -302,6 +318,7 @@ ship "Barb" "Barb (Proton)"
 	engine -10 28
 	engine 9 28
 	gun -9 -29 "Proton Gun"
+	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description `The Barb's commercial success spurred demand for a variant equipped with a Proton Gun. Syndicated Systems had to remove the turret mounting hardware to fit the powerful cannon, but the result is a level of short-range firepower that is unheard-of for a craft its size.`
@@ -310,6 +327,7 @@ ship "Barb" "Barb (Proton)"
 
 ship "Bastion"
 	sprite "ship/bastion"
+	thumbnail "thumbnail/bastion"
 	attributes
 		category "Medium Warship"
 		"cost" 3560000
@@ -355,6 +373,9 @@ ship "Bastion"
 	turret 0 0 "Blaster Turret"
 	turret -30 14 "Blaster Turret"
 	turret 30 14 "Blaster Turret"
+	leak "leak" 40 50
+	leak "flame" 40 80
+	leak "big leak" 70 30
 	explode "tiny explosion" 5
 	explode "small explosion" 15
 	explode "medium explosion" 30
@@ -366,6 +387,7 @@ ship "Bastion"
 
 ship "Behemoth"
 	sprite "ship/behemoth"
+	thumbnail "thumbnail/behemoth"
 	attributes
 		category "Heavy Freighter"
 		"cost" 10800000
@@ -409,6 +431,9 @@ ship "Behemoth"
 	turret 58 11 "Heavy Laser Turret"
 	turret -24 78 "Heavy Anti-Missile Turret"
 	turret 24 78 "Heavy Laser Turret"
+	leak "leak" 30 50
+	leak "flame" 30 80
+	leak "big leak" 50 30
 	explode "small explosion" 15
 	explode "medium explosion" 25
 	explode "large explosion" 35
@@ -420,6 +445,7 @@ ship "Behemoth"
 
 ship "Berserker"
 	sprite "ship/berserker"
+	thumbnail "thumbnail/berserker"
 	attributes
 		category "Interceptor"
 		"cost" 520000
@@ -457,6 +483,8 @@ ship "Berserker"
 	gun 20 12
 	gun -44 10
 	gun 44 10
+	leak "leak" 60 50
+	leak "flame" 80 80
 	explode "tiny explosion" 10
 	explode "small explosion" 15
 	"final explode" "final explosion small"
@@ -466,6 +494,7 @@ ship "Berserker"
 
 ship "Blackbird"
 	sprite "ship/blackbird"
+	thumbnail "thumbnail/blackbird"
 	attributes
 		category "Transport"
 		"cost" 2230000
@@ -502,6 +531,8 @@ ship "Blackbird"
 	engine 40 55
 	turret -18 0 "Heavy Laser Turret"
 	turret 18 0 "Heavy Laser Turret"
+	leak "leak" 50 50
+	leak "flame" 70 80
 	explode "tiny explosion" 15
 	explode "small explosion" 34
 	explode "medium explosion" 18
@@ -513,6 +544,7 @@ ship "Blackbird"
 
 ship "Bounder"
 	sprite "ship/bounder"
+	thumbnail "thumbnail/bounder"
 	attributes
 		category "Transport"
 		"cost" 1140000
@@ -548,6 +580,7 @@ ship "Bounder"
 	engine 12 44
 	turret -37 4 "Blaster Turret"
 	turret 37 4 "Blaster Turret"
+	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -558,6 +591,7 @@ ship "Bounder"
 
 ship "Boxwing"
 	sprite "ship/boxwing"
+	thumbnail "thumbnail/boxwing"
 	attributes
 		category "Fighter"
 		cost 369000
@@ -585,6 +619,8 @@ ship "Boxwing"
 	engine -23 -1
 	engine 19 29
 	engine -19 29
+	leak "leak" 70 50
+	leak "flame" 50 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description `After introducing the "Type F" cargo pod for the Hauler, it became apparent to merchant captains that the new carriers could offer more flexibility within their fleet, if there were a cargo box they could attach to the fighter arms. Enter the "F6-C: Boxwing", the Fighter that doesn't fight, but carries cargo instead. Cargo preservation equipment gives the Boxwing much more mass and very poor heat dissipation characteristics compared to other fighters. That it cannot carry any weapons is only part of the reason jocks call it "Flying Coffin" amongst themselves; besides the ship resembling one and being very sluggish, the pilot "seat" doubles as a bunk, and is cramped beyond the comfort level of most. The interactive panoramic window H.U.D. is the only thing that keeps claustrophobic episodes from becoming a major problem.`
@@ -592,6 +628,7 @@ ship "Boxwing"
 
 ship "Bulk Freighter"
 	sprite "ship/bulk freighter"
+	thumbnail "thumbnail/bulk freighter"
 	attributes
 		category "Heavy Freighter"
 		"cost" 9400000
@@ -635,6 +672,9 @@ ship "Bulk Freighter"
 	turret 0 5 "Laser Turret"
 	turret -30 175 "Heavy Anti-Missile Turret"
 	turret 30 175 "Laser Turret"
+	leak "leak" 40 50
+	leak "flame" 30 80
+	leak "big leak" 50 30
 	explode "small explosion" 15
 	explode "medium explosion" 25
 	explode "large explosion" 35
@@ -646,6 +686,7 @@ ship "Bulk Freighter"
 
 ship "Carrier"
 	sprite "ship/carrier"
+	thumbnail "thumbnail/carrier"
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -710,6 +751,9 @@ ship "Carrier"
 	drone 101 57
 	drone -74 57
 	drone 74 57
+	leak "leak" 30 50
+	leak "flame" 30 80
+	leak "big leak" 30 30
 	explode "tiny explosion" 20
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -722,6 +766,7 @@ ship "Carrier"
 
 ship "Class C Freighter"
 	sprite "ship/bulk freighter"
+	thumbnail "thumbnail/bulk freighter"
 	attributes
 		category "Heavy Warship"
 		"cost" 11400000
@@ -772,6 +817,9 @@ ship "Class C Freighter"
 	drone 66 35 right
 	drone 66 85 right
 	drone 66 135 right
+	leak "leak" 30 50
+	leak "flame" 50 80
+	leak "big leak" 40 30
 	explode "small explosion" 15
 	explode "medium explosion" 25
 	explode "large explosion" 35
@@ -783,6 +831,7 @@ ship "Class C Freighter"
 
 ship "Clipper"
 	sprite "ship/clipper"
+	thumbnail "thumbnail/clipper"
 	attributes
 		category "Light Freighter"
 		"cost" 900000
@@ -822,6 +871,8 @@ ship "Clipper"
 	gun 23 -19 "Javelin Pod"
 	gun -12 -7 "Beam Laser"
 	gun 12 -7 "Beam Laser"
+	leak "leak" 60 50
+	leak "flame" 50 80
 	explode "tiny explosion" 15
 	explode "small explosion" 20
 	explode "medium explosion" 10
@@ -832,6 +883,7 @@ ship "Clipper"
 
 ship "Combat Drone"
 	sprite "ship/combat drone"
+	thumbnail "thumbnail/combat drone"
 	attributes
 		category "Drone"
 		licenses
@@ -869,6 +921,7 @@ ship "Combat Drone"
 
 ship "Corvette"
 	sprite "ship/corvette"
+	thumbnail "thumbnail/corvette"
 	attributes
 		category "Medium Warship"
 		"cost" 4400000
@@ -910,6 +963,9 @@ ship "Corvette"
 	gun 14 -60 "Heavy Laser"
 	turret 0 -11 "Heavy Laser Turret"
 	turret 0 74 "Heavy Laser Turret"
+	leak "leak" 40 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -921,6 +977,7 @@ ship "Corvette"
 
 ship "Cruiser"
 	sprite "ship/cruiser"
+	thumbnail "thumbnail/cruiser"
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -977,6 +1034,9 @@ ship "Cruiser"
 	drone 25 18
 	drone -25 49
 	drone 25 49
+	leak "leak" 30 50
+	leak "flame" 50 80
+	leak "big leak" 40 30
 	explode "tiny explosion" 20
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -989,6 +1049,7 @@ ship "Cruiser"
 
 ship "Dagger"
 	sprite "ship/dagger"
+	thumbnail "thumbnail/dagger"
 	attributes
 		category "Fighter"
 		"cost" 129000
@@ -1020,6 +1081,7 @@ ship "Dagger"
 	engine 15 30
 	gun -14 -10 "Beam Laser"
 	gun 14 -10 "Beam Laser"
+	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Dagger is a fighter designed by Lionheart Industries, intended to be carried by their Aerie warship, although other ships have been known to carry them, as well. As with many Lionheart ships, its chassis is largely composed of lightweight composite materials, making it considerably faster than other fighters."
@@ -1028,6 +1090,7 @@ ship "Dagger"
 
 ship "Dreadnought"
 	sprite "ship/dreadnought"
+	thumbnail "thumbnail/dreadnought"
 	attributes
 		category "Heavy Warship"
 		"cost" 11900000
@@ -1075,6 +1138,9 @@ ship "Dreadnought"
 	turret 38 -56 "Plasma Turret"
 	turret -44 118 "Plasma Turret"
 	turret 44 118 "Plasma Turret"
+	leak "leak" 40 50
+	leak "flame" 20 80
+	leak "big leak" 80 30
 	explode "tiny explosion" 50
 	explode "small explosion" 50
 	explode "medium explosion" 50
@@ -1087,6 +1153,7 @@ ship "Dreadnought"
 
 ship "Falcon"
 	sprite "ship/falcon"
+	thumbnail "thumbnail/falcon"
 	attributes
 		category "Heavy Warship"
 		"cost" 10900000
@@ -1133,6 +1200,9 @@ ship "Falcon"
 	turret 16 -24 "Quad Blaster Turret"
 	turret -57 40 "Quad Blaster Turret"
 	turret 57 40 "Quad Blaster Turret"
+	leak "leak" 30 50
+	leak "flame" 50 80
+	leak "big leak" 60 30
 	explode "tiny explosion" 40
 	explode "small explosion" 55
 	explode "medium explosion" 60
@@ -1145,6 +1215,7 @@ ship "Falcon"
 ship "Finch"
 	plural "Finches"
 	sprite "ship/finch"
+	thumbnail "thumbnail/finch"
 	attributes
 		category "Fighter"
 		"cost" 126000
@@ -1177,6 +1248,7 @@ ship "Finch"
 	engine 5 32
 	gun -7 -14 "Beam Laser"
 	gun 7 -14 "Beam Laser"
+	leak "flame" 60 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "When the Free Worlds started requesting a Carrier solution from its local shipyards, Tarazed Shipyards quickly saw that a few modifications could make their entry level interceptor into a top tier fighter. Over 85% of the parts that make up the Finch are shared with the Sparrow assembly line, so it's no surprise that even trimmed down to (barely) fit into a fighter bay, the Finch bears strong resemblance to its hyperspace-faring cousin."
@@ -1185,6 +1257,7 @@ ship "Finch"
 
 ship "Firebird"
 	sprite "ship/firebird"
+	thumbnail "thumbnail/firebird"
 	attributes
 		category "Medium Warship"
 		"cost" 3700000
@@ -1226,6 +1299,8 @@ ship "Firebird"
 	gun 39 -13 "Heavy Laser"
 	turret -5 3 "Heavy Laser Turret"
 	turret 5 3 "Heavy Laser Turret"
+	leak "leak" 50 50
+	leak "flame" 30 80
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -1237,6 +1312,7 @@ ship "Firebird"
 
 ship "Flivver"
 	sprite "ship/flivver"
+	thumbnail "thumbnail/flivver"
 	attributes
 		category "Transport"
 		"cost" 180000
@@ -1273,6 +1349,7 @@ ship "Flivver"
 	engine 16 27
 	gun -6 -31
 	gun 6 -31
+	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 10
 	description "With space for neither cargo nor passengers nor heavy weaponry, the Flivver's only selling point is speed. Flivvers are sold mostly to wealthy individuals who want to be able to travel the stars without needing to share a bunk room on a merchant transport with common people."
@@ -1281,6 +1358,7 @@ ship "Flivver"
 
 ship "Freighter"
 	sprite "ship/freighter"
+	thumbnail "thumbnail/freighter"
 	attributes
 		category "Light Freighter"
 		"cost" 730000
@@ -1316,8 +1394,10 @@ ship "Freighter"
 	engine -9 97
 	engine 9 97
 	turret 0 -52 "Blaster Turret"
-	turret 0 65 "Blaster Turret"
 	turret 0 6 "Heavy Anti-Missile Turret"
+	turret 0 65 "Blaster Turret"
+	leak "leak" 60 50
+	leak "flame" 50 80
 	explode "tiny explosion" 10
 	explode "small explosion" 30
 	explode "medium explosion" 20
@@ -1329,6 +1409,7 @@ ship "Freighter"
 
 ship "Frigate"
 	sprite "ship/frigate"
+	thumbnail "thumbnail/frigate"
 	attributes
 		category "Medium Warship"
 		licenses
@@ -1374,6 +1455,9 @@ ship "Frigate"
 	turret 0 -37 "Blaster Turret"
 	turret -12 -12 "Blaster Turret"
 	turret 12 -12 "Blaster Turret"
+	leak "leak" 40 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -1386,6 +1470,7 @@ ship "Frigate"
 ship "Fury"
 	plural "Furies"
 	sprite "ship/fury"
+	thumbnail "thumbnail/fury"
 	attributes
 		category "Interceptor"
 		"cost" 490000
@@ -1425,6 +1510,7 @@ ship "Fury"
 	gun 16 -20
 	gun -36 7
 	gun 36 7
+	leak "flame" 50 80
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	description "The Fury is Southbound Shipyard's most popular design of escort ship. They have greater firepower than any other interceptor-class vessel, meaning that any pirate flying solo will think twice before attacking a convoy that is accompanied by a Fury. However, Furies are also much less maneuverable than other small ships."
@@ -1433,6 +1519,7 @@ ship "Fury"
 
 ship "Gunboat"
 	sprite "ship/gunboat"
+	thumbnail "thumbnail/gunboat"
 	attributes
 		category "Light Warship"
 		licenses
@@ -1474,6 +1561,8 @@ ship "Gunboat"
 	gun -28 -28 "Heavy Laser"
 	gun 28 -28 "Heavy Laser"
 	turret 0 -8 "Heavy Laser Turret"
+	leak "leak" 50 50
+	leak "flame" 80 80
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -1484,6 +1573,7 @@ ship "Gunboat"
 
 ship "Hauler"
 	sprite "ship/hauler i"
+	thumbnail "thumbnail/hauler i"
 	attributes
 		category "Light Freighter"
 		"cost" 1430000
@@ -1527,6 +1617,9 @@ ship "Hauler"
 	turret 26 -49 "Heavy Anti-Missile Turret"
 	turret -19 77 "Heavy Anti-Missile Turret"
 	turret 19 77 "Quad Blaster Turret"
+	leak "leak" 60 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
 	explode "tiny explosion" 20
 	explode "small explosion" 35
 	explode "medium explosion" 20
@@ -1538,6 +1631,7 @@ ship "Hauler"
 
 ship "Hauler II"
 	sprite "ship/hauler ii"
+	thumbnail "thumbnail/hauler ii"
 	attributes
 		category "Heavy Freighter"
 		"cost" 2340000
@@ -1581,6 +1675,9 @@ ship "Hauler II"
 	turret 26 -85 "Heavy Anti-Missile Turret"
 	turret -19 115 "Heavy Anti-Missile Turret"
 	turret 19 115 "Quad Blaster Turret"
+	leak "leak" 60 50
+	leak "flame" 40 80
+	leak "big leak" 80 30
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 30
@@ -1592,6 +1689,7 @@ ship "Hauler II"
 
 ship "Hauler III"
 	sprite "ship/hauler iii"
+	thumbnail "thumbnail/hauler iii"
 	attributes
 		category "Heavy Freighter"
 		"cost" 3260000
@@ -1635,6 +1733,9 @@ ship "Hauler III"
 	turret 26 -122 "Heavy Anti-Missile Turret"
 	turret -19 151 "Heavy Anti-Missile Turret"
 	turret 19 151 "Quad Blaster Turret"
+	leak "leak" 50 50
+	leak "flame" 40 80
+	leak "big leak" 80 30
 	explode "small explosion" 15
 	explode "medium explosion" 30
 	explode "large explosion" 20
@@ -1646,6 +1747,7 @@ ship "Hauler III"
 
 ship "Hawk"
 	sprite "ship/hawk"
+	thumbnail "thumbnail/hawk"
 	attributes
 		category "Interceptor"
 		"cost" 670000
@@ -1681,6 +1783,7 @@ ship "Hawk"
 	engine 24 41
 	gun -9 -17
 	gun 9 -17
+	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	"final explode" "final explosion small"
@@ -1690,6 +1793,7 @@ ship "Hawk"
 
 ship "Headhunter"
 	sprite "ship/headhunter"
+	thumbnail "thumbnail/headhunter"
 	attributes
 		category "Light Warship"
 		"cost" 1850000
@@ -1727,6 +1831,8 @@ ship "Headhunter"
 	gun -13 -27 "Heavy Laser"
 	gun 13 -27 "Heavy Laser"
 	turret 0 9 "Heavy Anti-Missile Turret"
+	leak "leak" 60 50
+	leak "flame" 80 80
 	explode "tiny explosion" 20
 	explode "small explosion" 25
 	explode "medium explosion" 15
@@ -1737,6 +1843,7 @@ ship "Headhunter"
 
 ship "Heavy Shuttle"
 	sprite "ship/heavy shuttle"
+	thumbnail "thumbnail/heavy shuttle"
 	attributes
 		category "Transport"
 		"cost" 320000
@@ -1770,6 +1877,7 @@ ship "Heavy Shuttle"
 	engine -6 30
 	gun -7 -37
 	gun 7 -37
+	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 5
 	description "The Heavy Shuttle is an updated shuttle model from Betelgeuse Shipyards, attempting to improve on their perennial classic by offering slightly better cargo and passenger capacity, at the expense of some speed and maneuverability."
@@ -1778,6 +1886,7 @@ ship "Heavy Shuttle"
 
 ship "Lance"
 	sprite "ship/lance"
+	thumbnail "thumbnail/lance"
 	attributes
 		category "Fighter"
 		"cost" 93000
@@ -1818,6 +1927,7 @@ ship "Lance"
 
 ship "Leviathan"
 	sprite "ship/leviathan"
+	thumbnail "thumbnail/leviathan"
 	attributes
 		category "Heavy Warship"
 		"cost" 9800000
@@ -1861,6 +1971,9 @@ ship "Leviathan"
 	turret 15 -50 "Quad Blaster Turret"
 	turret -25 10 "Quad Blaster Turret"
 	turret 25 10 "Quad Blaster Turret"
+	leak "leak" 50 50
+	leak "flame" 30 80
+	leak "big leak" 60 30
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -1872,6 +1985,7 @@ ship "Leviathan"
 
 ship "Manta"
 	sprite "ship/manta"
+	thumbnail "thumbnail/manta"
 	attributes
 		category "Medium Warship"
 		"cost" 3400000
@@ -1913,6 +2027,8 @@ ship "Manta"
 	gun 27 -35 "Particle Cannon"
 	gun -66 -32 "Meteor Missile Launcher"
 	gun 66 -32 "Meteor Missile Launcher"
+	leak "leak" 60 50
+	leak "flame" 40 80
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -1924,6 +2040,7 @@ ship "Manta"
 ship "Modified Argosy"
 	plural "Modified Argosies"
 	sprite "ship/modified argosy"
+	thumbnail "thumbnail/modified argosy"
 	attributes
 		category "Light Warship"
 		"cost" 1960000
@@ -1965,6 +2082,8 @@ ship "Modified Argosy"
 	gun 23 -37 "Heavy Laser"
 	turret 0 -12 "Heavy Laser Turret"
 	turret 0 8 "Heavy Laser Turret"
+	leak "leak" 70 50
+	leak "flame" 30 80
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 30
@@ -1976,6 +2095,7 @@ ship "Modified Argosy"
 
 ship "Mule"
 	sprite "ship/mule"
+	thumbnail "thumbnail/mule"
 	attributes
 		category "Medium Warship"
 		"cost" 4580000
@@ -2021,6 +2141,9 @@ ship "Mule"
 	turret 39 35 "Heavy Laser Turret"
 	turret -9 59 "Heavy Anti-Missile Turret"
 	fighter -16 -9
+	leak "leak" 50 50
+	leak "flame" 80 80
+	leak "big leak" 80 30
 	explode "tiny explosion" 10
 	explode "small explosion" 30
 	explode "medium explosion" 20
@@ -2031,6 +2154,7 @@ ship "Mule"
 
 ship "Nest"
 	sprite "ship/nest"
+	thumbnail "thumbnail/nest"
 	attributes
 		category "Medium Warship"
 		"cost" 2500000
@@ -2076,6 +2200,9 @@ ship "Nest"
 	turret 18 75 "Quad Blaster Turret"
 	fighter -47 12 under
 	fighter 47 12 under
+	leak "leak" 60 50
+	leak "flame" 40 80
+	leak "big leak" 80 30
 	explode "tiny explosion" 20
 	explode "small explosion" 35
 	explode "medium explosion" 20
@@ -2087,6 +2214,7 @@ ship "Nest"
 
 ship "Osprey"
 	sprite "ship/osprey"
+	thumbnail "thumbnail/osprey"
 	attributes
 		category "Medium Warship"
 		"cost" 4400000
@@ -2129,6 +2257,9 @@ ship "Osprey"
 	gun 26 -53 "Plasma Cannon"
 	turret -16 -16 "Quad Blaster Turret"
 	turret 16 -16 "Quad Blaster Turret"
+	leak "leak" 40 50
+	leak "flame" 80 80
+	leak "big leak" 80 30
 	explode "medium explosion" 24
 	explode "large explosion" 16
 	explode "small explosion" 40
@@ -2140,6 +2271,7 @@ ship "Osprey"
 
 ship "Protector"
 	sprite "ship/protector"
+	thumbnail "thumbnail/protector"
 	attributes
 		category "Heavy Warship"
 		"cost" 5500000
@@ -2185,6 +2317,8 @@ ship "Protector"
 	turret 73 0 "Quad Blaster Turret"
 	turret -54 54 "Quad Blaster Turret"
 	turret 54 54 "Quad Blaster Turret"
+	leak "leak" 60 50
+	leak "flame" 20 80
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -2196,6 +2330,7 @@ ship "Protector"
 
 ship "Quicksilver"
 	sprite "ship/quicksilver"
+	thumbnail "thumbnail/quicksilver"
 	attributes
 		category "Light Warship"
 		"cost" 1090000
@@ -2232,6 +2367,7 @@ ship "Quicksilver"
 	engine 17 54
 	gun -6 -38 "Particle Cannon"
 	gun 6 -38 "Particle Cannon"
+	leak "leak" 50 50
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	"final explode" "final explosion small"
@@ -2241,6 +2377,7 @@ ship "Quicksilver"
 
 ship "Rainmaker"
 	sprite "ship/rainmaker"
+	thumbnail "thumbnail/rainmaker"
 	attributes
 		category "Light Warship"
 		licenses
@@ -2284,6 +2421,7 @@ ship "Rainmaker"
 	gun 27 -5 "Meteor Missile Launcher"
 	gun -17 -5 "Meteor Missile Launcher"
 	gun 17 -5 "Meteor Missile Launcher"
+	leak "leak" 50 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -2294,6 +2432,7 @@ ship "Rainmaker"
 
 ship "Raven"
 	sprite "ship/raven"
+	thumbnail "thumbnail/raven"
 	attributes
 		category "Light Warship"
 		"cost" 1800000
@@ -2331,6 +2470,8 @@ ship "Raven"
 	gun 10 -33 "Heavy Laser"
 	gun -16 -28 "Heavy Laser"
 	gun 16 -28 "Heavy Laser"
+	leak "leak" 60 50
+	leak "flame" 50 80
 	explode "medium explosion" 24
 	explode "large explosion" 16
 	explode "tiny explosion" 28
@@ -2342,6 +2483,7 @@ ship "Raven"
 
 ship "Roost"
 	sprite "ship/roost"
+	thumbnail "thumbnail/roost"
 	attributes
 		category "Medium Warship"
 		"cost" 3000000
@@ -2389,6 +2531,9 @@ ship "Roost"
 	fighter 47 -24 under
 	fighter -47 50 under
 	fighter 47 50 under
+	leak "leak" 50 50
+	leak "flame" 40 80
+	leak "big leak" 80 30
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 30
@@ -2400,6 +2545,7 @@ ship "Roost"
 
 ship "Scout"
 	sprite "ship/scout"
+	thumbnail "thumbnail/scout"
 	attributes
 		category "Transport"
 		"cost" 850000
@@ -2442,6 +2588,8 @@ ship "Scout"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
+	leak "leak" 50 50
+	leak "flame" 60 80
 	"final explode" "final explosion small"
 	description "The Lionheart Scoutship was designed back in the days when the galaxy was more sparsely populated, and ships prospecting for habitable worlds or worlds rich in resources would often travel far away from any habitable ports where they would be able to refuel. Although the galaxy has now been much more thoroughly explored, the Scout remains a popular ship for long-distance travel."
 
@@ -2452,6 +2600,7 @@ ship "Shuttle"
 		"frame time" 4
 		"delay" 14
 		"random start frame"
+	thumbnail "thumbnail/shuttle"
 	attributes
 		category "Transport"
 		"cost" 180000
@@ -2461,7 +2610,7 @@ ship "Shuttle"
 		"bunks" 6
 		"mass" 70
 		"drag" 1.7
-		"heat dissipation" .7
+		"heat dissipation" .8
 		"fuel capacity" 400
 		"cargo space" 20
 		"outfit space" 120
@@ -2484,6 +2633,7 @@ ship "Shuttle"
 	engine 6 30
 	engine -6 30
 	gun 0 -30
+	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 5
 	description "Although Betelgeuse Shipyards produces other ship models as well, the majority of their profits come from sales of the Shuttle. This versatile ship serves equally well as a passenger transport or a cargo courier. It also happens to be the cheapest ship you can buy which is capable of hyperspace travel."
@@ -2493,6 +2643,7 @@ ship "Shuttle"
 
 ship "Skein"
 	sprite "ship/skein"
+	thumbnail "thumbnail/skein"
 	attributes
 		category "Medium Warship"
 		licenses
@@ -2544,6 +2695,9 @@ ship "Skein"
 	fighter 47 14 under
 	fighter -47 88 under
 	fighter 47 88 under
+	leak "leak" 50 50
+	leak "flame" 40 80
+	leak "big leak" 70 30
 	explode "small explosion" 15
 	explode "medium explosion" 30
 	explode "large explosion" 20
@@ -2555,6 +2709,7 @@ ship "Skein"
 
 ship "Sparrow"
 	sprite "ship/sparrow"
+	thumbnail "thumbnail/sparrow"
 	attributes
 		category "Interceptor"
 		"cost" 225000
@@ -2592,6 +2747,7 @@ ship "Sparrow"
 	gun 7 -10
 	gun -13 -10
 	gun 13 -10
+	leak "flame" 60 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "Classified as an interceptor rather than a fighter because it has its own hyperdrive instead of needing to be carried inside a larger ship, the Tarazed Sparrow is the smallest and cheapest combat ship available. Because of its limited cargo and passenger space, the primary way for a Sparrow pilot to pay the bills is by hunting pirates... or by becoming one. In either case, it is a perilous way to earn a living."
@@ -2601,6 +2757,7 @@ ship "Sparrow"
 
 ship "Splinter"
 	sprite "ship/splinter"
+	thumbnail "thumbnail/splinter"
 	attributes
 		category "Medium Warship"
 		"cost" 3100000
@@ -2642,6 +2799,9 @@ ship "Splinter"
 	turret -17 -28 "Blaster Turret"
 	turret 0 -28 "Blaster Turret"
 	turret 17 -28 "Blaster Turret"
+	leak "leak" 60 50
+	leak "flame" 40 80
+	leak "big leak" 90 30
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -2653,6 +2813,7 @@ ship "Splinter"
 
 ship "Star Barge"
 	sprite "ship/star barge"
+	thumbnail "thumbnail/star barge"
 	attributes
 		category "Light Freighter"
 		"cost" 210000
@@ -2662,7 +2823,7 @@ ship "Star Barge"
 		"bunks" 3
 		"mass" 70
 		"drag" 2.4
-		"heat dissipation" .7
+		"heat dissipation" .8
 		"fuel capacity" 300
 		"cargo space" 50
 		"outfit space" 130
@@ -2685,6 +2846,7 @@ ship "Star Barge"
 	engine -9 38
 	engine 9 38
 	turret 0 -8
+	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 10
 	description "The Syndicate CT-50 Star Barge is little more than a cluster of cargo containers with an engine at one end and a cockpit on the other. It is a slow and ugly ship, but it can carry enough cargo to earn its captain a steady income even in parts of the galaxy where it is hard to find passengers to carry or courier missions."
@@ -2694,6 +2856,7 @@ ship "Star Barge"
 
 ship "Star Queen"
 	sprite "ship/star queen"
+	thumbnail "thumbnail/star queen"
 	attributes
 		category "Transport"
 		"cost" 5500000
@@ -2735,6 +2898,8 @@ ship "Star Queen"
 	gun 22 -80 "Sidewinder Missile Launcher"
 	turret -28 -9 "Heavy Anti-Missile Turret"
 	turret 28 -9 "Heavy Anti-Missile Turret"
+	leak "leak" 50 50
+	leak "big leak" 80 30
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -2746,6 +2911,7 @@ ship "Star Queen"
 
 ship "Surveillance Drone"
 	sprite "ship/surveillance drone"
+	thumbnail "thumbnail/surveillance drone"
 	attributes
 		category "Drone"
 		licenses
@@ -2780,6 +2946,7 @@ ship "Surveillance Drone"
 
 ship "Vanguard"
 	sprite "ship/vanguard"
+	thumbnail "thumbnail/vanguard"
 	attributes
 		category "Heavy Warship"
 		"cost" 7200000
@@ -2823,6 +2990,8 @@ ship "Vanguard"
 	gun -31 -45 "Proton Gun"
 	gun 31 -45 "Proton Gun"
 	turret 0 42 "Anti-Missile Turret"
+	leak "leak" 60 50
+	leak "flame" 30 80
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -2834,6 +3003,7 @@ ship "Vanguard"
 
 ship "Wasp"
 	sprite "ship/wasp"
+	thumbnail "thumbnail/wasp"
 	attributes
 		category "Interceptor"
 		"cost" 400000
@@ -2874,6 +3044,7 @@ ship "Wasp"
 	gun 13 -31 "Energy Blaster"
 	gun -20 -26
 	gun 20 -26
+	leak "leak" 60 50
 	explode "tiny explosion" 20
 	explode "small explosion" 10
 	description "The wasp is a medium-strength interceptor, designed by Syndicated Shipyards to serve as an escort for cargo vessels. Like most Syndicate ships, it is not particularly pretty, but it at least serves the purpose it was made for."

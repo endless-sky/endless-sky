@@ -22,8 +22,6 @@ using namespace std;
 
 void Phrase::Load(const DataNode &node)
 {
-	if(node.Token(0) != "phrase")
-		return;
 	// Set the name of this phrase, so we know it has been loaded.
 	name = node.Size() >= 2 ? node.Token(1) : "Unnamed Phrase";
 	

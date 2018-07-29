@@ -12,8 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShipInfoPanel.h"
 
+#include "Command.h"
 #include "Dialog.h"
-#include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
@@ -556,7 +556,7 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 				name += " (" + to_string(it.second) + "x)";
 			table.Draw(name, dim);
 			
-			double mass = it.first->Get("mass") * it.second;
+			double mass = it.first->Mass() * it.second;
 			table.Draw(Format::Number(mass), bright);
 			
 			// Truncate the list if there is not enough space.

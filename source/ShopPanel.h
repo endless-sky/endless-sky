@@ -25,10 +25,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class Outfit;
 class Planet;
 class PlayerInfo;
 class Ship;
-class Outfit;
 
 
 
@@ -57,12 +57,13 @@ protected:
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) = 0;
 	virtual bool CanBuy() const = 0;
-	virtual void Buy() = 0;
+	virtual void Buy(bool fromCargo = false) = 0;
 	virtual void FailBuy() const = 0;
 	virtual bool CanSell(bool toCargo = false) const = 0;
 	virtual void Sell(bool toCargo = false) = 0;
 	virtual void FailSell(bool toCargo = false) const;
 	virtual bool CanSellMultiple() const;
+	virtual bool ShouldHighlight(const Ship *ship);
 	virtual void DrawKey();
 	virtual void ToggleForSale();
 	virtual void ToggleCargo();
@@ -125,6 +126,7 @@ protected:
 	bool scrollDetailsIntoView = false;
 	double selectedTopY = 0.;
 	bool sameSelectedTopY = false;
+	char hoverButton = '\0';
 	
 	std::vector<Zone> zones;
 	std::vector<ClickZone<std::string>> categoryZones;
@@ -150,6 +152,9 @@ private:
 	void MainDown();
 	std::vector<Zone>::const_iterator Selected() const;
 	std::vector<Zone>::const_iterator MainStart() const;
+	// Check if the given point is within the button zone, and if so return the
+	// letter of the button (or ' ' if it's not on a button).
+	char CheckButton(int x, int y);
 };
 
 

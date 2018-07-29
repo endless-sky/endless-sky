@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 #include "Effect.h"
 #include "FillShader.h"
+#include "Fleet.h"
+#include "Flotsam.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
@@ -25,22 +27,30 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapPanel.h"
 #include "Mask.h"
 #include "Messages.h"
+#include "Minable.h"
+#include "NPC.h"
 #include "OutlineShader.h"
 #include "Person.h"
 #include "Planet.h"
+#include "PlanetLabel.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
 #include "PointerShader.h"
 #include "Preferences.h"
+#include "Projectile.h"
 #include "Random.h"
 #include "RingShader.h"
 #include "Screen.h"
+#include "Ship.h"
+#include "ShipEvent.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
 #include "StartConditions.h"
+#include "StellarObject.h"
 #include "System.h"
+#include "Visual.h"
 #include "WrappedText.h"
 
 #include <algorithm>
@@ -61,12 +71,12 @@ namespace {
 		}
 		if(ship.IsDisabled() || (ship.IsOverheated() && ((step / 20) % 2)))
 			return Radar::INACTIVE;
-		if(ship.GetGovernment()->IsPlayer() || (ship.GetPersonality().IsEscort() && !ship.GetGovernment()->IsEnemy()))
+		if(ship.IsYours() || (ship.GetPersonality().IsEscort() && !ship.GetGovernment()->IsEnemy()))
 			return Radar::PLAYER;
 		if(!ship.GetGovernment()->IsEnemy())
 			return Radar::FRIENDLY;
-		auto target = ship.GetTargetShip();
-		if(target && target->GetGovernment()->IsPlayer())
+		const auto &target = ship.GetTargetShip();
+		if(target && target->IsYours())
 			return Radar::HOSTILE;
 		return Radar::UNFRIENDLY;
 	}
@@ -119,7 +129,7 @@ namespace {
 			return false;
 		
 		// Player ships shouldn't send hails.
-		if(!ship->GetGovernment() || ship->GetGovernment()->IsPlayer())
+		if(!ship->GetGovernment() || ship->IsYours())
 			return false;
 		
 		// Make sure this ship is able to send a hail.
@@ -154,7 +164,7 @@ namespace {
 
 Engine::Engine(PlayerInfo &player)
 	: player(player), ai(ships, asteroids.Minables(), flotsam),
-	shipCollisions(256, 32), cloakedCollisions(256, 32)
+	shipCollisions(256, 32)
 {
 	zoom = Preferences::ViewZoom();
 	
@@ -217,19 +227,15 @@ Engine::~Engine()
 void Engine::Place()
 {
 	ships.clear();
+	ai.ClearOrders();
 	
 	EnterSystem();
-	auto it = ships.end();
 	
 	// Add the player's flagship and escorts to the list of ships. The TakeOff()
 	// code already took care of loading up fighters and assigning parents.
 	for(const shared_ptr<Ship> &ship : player.Ships())
 		if(!ship->IsParked() && ship->GetSystem())
-		{
 			ships.push_back(ship);
-			if(it == ships.end())
-				--it;
-		}
 	
 	// Add NPCs to the list of ships. Fighters have to be assigned to carriers,
 	// and all but "uninterested" ships should follow the player.
@@ -294,6 +300,8 @@ void Engine::Place()
 					ship->SetParent(npcFlagship);
 				else if(!ship->GetPersonality().IsUninterested())
 					ship->SetParent(flagship);
+				else
+					ship->SetParent(nullptr);
 			}
 		}
 	
@@ -307,13 +315,9 @@ void Engine::Place()
 		planetRadius = object->Radius();
 	}
 	
-	// Give each ship a random heading and position. The iterator points to the
-	// first ship that was an escort or NPC (i.e. the first ship after any
-	// fleets that were placed starting out in this system).
-	while(it != ships.end())
+	// Give each special ship we just added a random heading and position.
+	for (const shared_ptr<Ship> &ship : ships)
 	{
-		const shared_ptr<Ship> &ship = *it++;
-		
 		Point pos;
 		Angle angle = Angle::Random(360.);
 		Point velocity = angle.Unit();
@@ -322,10 +326,11 @@ void Engine::Place()
 		bool isHere = (ship->GetSystem() == player.GetSystem());
 		if(isHere)
 			pos = planetPos;
-		// Check whether this ship should take off with you.
-		if(isHere && !ship->IsDisabled()
-				&& (player.GetPlanet()->CanLand(*ship) || ship->GetGovernment()->IsPlayer())
-				&& !(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting()))
+		// Check whether this ship should take off with you. "Launching" ships can always take
+		// off, otherwise they must be able to land and also not be flagged to stay in space.
+		if(isHere && !ship->IsDisabled() && (ship->GetPersonality().IsLaunching()
+				|| ((player.GetPlanet()->CanLand(*ship) || ship->IsYours())
+				&& !(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting()))))
 		{
 			if(player.GetPlanet())
 				ship->SetPlanet(player.GetPlanet());
@@ -340,6 +345,9 @@ void Engine::Place()
 		
 		ship->Place(pos, ship->IsDisabled() ? Point() : velocity, angle);
 	}
+	// Move any ships that were randomly spawned into the main list, now
+	// that all special ships have been repositioned.
+	ships.splice(ships.end(), newShips);
 	
 	player.SetPlanet(nullptr);
 }
@@ -500,7 +508,7 @@ void Engine::Step(bool isActive)
 				continue;
 			
 			bool isEnemy = it->GetGovernment()->IsEnemy();
-			if(isEnemy || it->GetGovernment()->IsPlayer() || it->GetPersonality().IsEscort())
+			if(isEnemy || it->IsYours() || it->GetPersonality().IsEscort())
 			{
 				double width = min(it->Width(), it->Height());
 				statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
@@ -544,7 +552,14 @@ void Engine::Step(bool isActive)
 		info.SetBar("fuel", flagship->Fuel(),
 			flagship->Attributes().Get("fuel capacity") * .01);
 		info.SetBar("energy", flagship->Energy());
-		info.SetBar("heat", flagship->Heat());
+		double heat = flagship->Heat();
+		info.SetBar("heat", min(1., heat));
+		// If heat is above 100%, draw a second overlaid bar to indicate the
+		// total heat level.
+		if(heat > 1.)
+			info.SetBar("overheat", min(1., heat - 1.));
+		if(flagship->IsOverheated() && (step / 20) % 2)
+			info.SetBar("overheat blink", min(1., heat));
 		info.SetBar("shields", flagship->Shields());
 		info.SetBar("hull", flagship->Hull(), 20.);
 	}
@@ -660,7 +675,8 @@ void Engine::Step(bool isActive)
 			}
 			// Actual tactical information requires a scrutable
 			// target that is within the tactical scanner range.
-			if(targetRange <= tacticalRange && !target->Attributes().Get("inscrutable"))
+			if((targetRange <= tacticalRange && !target->Attributes().Get("inscrutable"))
+					|| (tacticalRange && target->IsYours()))
 			{
 				info.SetCondition("tactical display");
 				info.SetString("target crew", to_string(target->Crew()));
@@ -1071,7 +1087,7 @@ void Engine::EnterSystem()
 	for(int i = 0; i < 5; ++i)
 		for(const System::FleetProbability &fleet : system->Fleets())
 			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
-				fleet.Get()->Place(*system, ships);
+				fleet.Get()->Place(*system, newShips);
 	
 	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
 	const Government *raidGovernment = raidFleet ? raidFleet->GetGovernment() : nullptr;
@@ -1083,7 +1099,7 @@ void Engine::EnterSystem()
 			for(int i = 0; i < 10; ++i)
 				if(Random::Real() < attraction)
 				{
-					raidFleet->Place(*system, ships);
+					raidFleet->Place(*system, newShips);
 					Messages::Add("Your fleet has attracted the interest of a "
 							+ raidGovernment->GetName() + " raiding party.");
 				}
@@ -1364,7 +1380,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	}
 	
 	// Boarding:
-	bool autoPlunder = !ship->GetGovernment()->IsPlayer();
+	bool autoPlunder = !ship->IsYours();
 	shared_ptr<Ship> victim = ship->Board(autoPlunder);
 	if(victim)
 		eventQueue.emplace_back(ship, victim,
@@ -1394,20 +1410,12 @@ void Engine::FillCollisionSets()
 {
 	// Populate the collision detection set.
 	shipCollisions.Clear(step);
-	cloakedCollisions.Clear(step);
 	for(const shared_ptr<Ship> &it : ships)
 		if(it->GetSystem() == player.GetSystem() && it->Zoom() == 1.)
-		{
-			// If this ship is able to collide with projectiles, add it to the
-			// collision detection set.
-			if(it->Cloaking() < 1.)
-				shipCollisions.Add(*it);
-			else
-				cloakedCollisions.Add(*it);
-		}
+			shipCollisions.Add(*it);
+	
 	// Get the ship collision set ready to query.
 	shipCollisions.Finish();
-	cloakedCollisions.Finish();
 }
 
 
@@ -1508,7 +1516,7 @@ void Engine::SendHails()
 		return;
 	
 	// Generate a random hail message.
-	SendMessage(source, source->GetHail());
+	SendMessage(source, source->GetHail(player));
 }
 
 
@@ -1583,7 +1591,7 @@ void Engine::HandleMouseClicks()
 			else
 			{
 				flagship->SetTargetShip(clickTarget);
-				if(clickTarget->GetGovernment()->IsPlayer())
+				if(clickTarget->IsYours())
 					player.SelectShip(clickTarget.get(), hasShift);
 			}
 		}
@@ -1632,8 +1640,7 @@ void Engine::DoCollisions(Projectile &projectile)
 	{
 		// "Phasing" projectiles that have a target will never hit any other ship.
 		shared_ptr<Ship> target = projectile.TargetPtr();
-		if(target && target->GetSystem() == player.GetSystem()
-				&& target->Zoom() == 1. && target->Cloaking() < 1.)
+		if(target)
 		{
 			Point offset = projectile.Position() - target->Position();
 			double range = target->GetMask(step).Collide(offset, projectile.Velocity(), target->Facing());
@@ -1646,18 +1653,17 @@ void Engine::DoCollisions(Projectile &projectile)
 	}
 	else
 	{
-		// If this weapon has a trigger radius, check if anything is within that
-		// radius of it.
+		// For weapons with a trigger radius, check if any detectable object will set it off.
 		double triggerRadius = projectile.GetWeapon().TriggerRadius();
 		if(triggerRadius)
-		{
 			for(const Body *body : shipCollisions.Circle(projectile.Position(), triggerRadius))
-				if(body == projectile.Target() || gov->IsEnemy(body->GetGovernment()))
+				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
+						&& reinterpret_cast<const Ship *>(body)->Cloaking() < 1.))
 				{
 					closestHit = 0.;
 					break;
 				}
-		}
+		
 		// If nothing triggered the projectile, check for collisions with ships.
 		if(closestHit > 0.)
 		{
@@ -1708,17 +1714,6 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
-			// Cloaked ships can be hit be a blast, too.
-			for(Body *body : cloakedCollisions.Circle(hitPos, blastRadius))
-			{
-				Ship *ship = reinterpret_cast<Ship *>(body);
-				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
-					continue;
-				
-				int eventType = ship->TakeDamage(projectile, ship != hit.get());
-				if(eventType)
-					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
-			}
 		}
 		else if(hit)
 		{
@@ -1749,7 +1744,7 @@ void Engine::DoCollisions(Projectile &projectile)
 // Check if any ship collected the given flotsam.
 void Engine::DoCollection(Flotsam &flotsam)
 {
-	// Check if any ship can pick up this flotsam.
+	// Check if any ship can pick up this flotsam. Cloaked ships cannot act.
 	Ship *collector = nullptr;
 	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5.))
 	{
@@ -1852,14 +1847,23 @@ void Engine::FillRadar()
 				system->Position() - playerSystem->Position());
 	}
 	
+	// Add viewport brackets.
+	if(!Preferences::Has("Disable viewport on radar"))
+	{
+		radar[calcTickTock].AddViewportBoundary(Screen::TopLeft() / zoom);
+		radar[calcTickTock].AddViewportBoundary(Screen::TopRight() / zoom);
+		radar[calcTickTock].AddViewportBoundary(Screen::BottomLeft() / zoom);
+		radar[calcTickTock].AddViewportBoundary(Screen::BottomRight() / zoom);
+	}
+	
 	// Add ships. Also check if hostile ships have newly appeared.
 	bool hasHostiles = false;
 	for(shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == playerSystem)
 		{
 			// Do not show cloaked ships on the radar, except the player's ships.
-			bool isPlayer = ship->GetGovernment()->IsPlayer();
-			if(ship->Cloaking() >= 1. && !isPlayer)
+			bool isYours = ship->IsYours();
+			if(ship->Cloaking() >= 1. && !isYours)
 				continue;
 			
 			// Figure out what radar color should be used for this ship.
@@ -1872,7 +1876,7 @@ void Engine::FillRadar()
 			
 			// Check if this is a hostile ship.
 			hasHostiles |= (!ship->IsDisabled() && ship->GetGovernment()->IsEnemy()
-				&& ship->GetTargetShip() && ship->GetTargetShip()->GetGovernment()->IsPlayer());
+				&& ship->GetTargetShip() && ship->GetTargetShip()->IsYours());
 		}
 	// If hostile ships have appeared, play the siren.
 	if(alarmTime)
@@ -1909,7 +1913,7 @@ void Engine::AddSprites(const Ship &ship)
 {
 	bool hasFighters = ship.PositionFighters();
 	double cloak = ship.Cloaking();
-	bool drawCloaked = (cloak && ship.GetGovernment()->IsPlayer());
+	bool drawCloaked = (cloak && ship.IsYours());
 	
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())

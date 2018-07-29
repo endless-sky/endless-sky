@@ -36,6 +36,7 @@ color "logbook line" .2 .2 .2 1.
 color "shields" .43 .55 .70 .75
 color "hull" .70 .62 .43 .75
 color "heat" .70 .43 .43 .75
+color "overheat" .70 .61 .43 .75
 color "energy" .6 .6 .6 .75
 color "fuel" .70 .62 .43 .75
 
@@ -82,6 +83,7 @@ color "radar inactive" .4 .4 .4 0.
 color "radar special" 1. 1. 1. 0.
 color "radar anomalous" .7 0. 1. 0.
 color "radar blink" 1. 1. 1. 0.
+color "radar viewport" 0. .3 0. 0.
 
 # Colors used for warning and error tooltip backdrops.
 color "error back" .25 .1 .1 1.
@@ -89,14 +91,13 @@ color "warning back" .21 .18 .08 1.
 
 # Colors used when drawing the map (system names, links, and the player's desired route).
 # (The color of the ring that represents a given system is context-sensitive.)
-color "map link" .6, .6, .6, .6
-color "map name" .6, .6, .6, .6
-color "map travel ok fleet" .2, .5, 0., 0.
-color "map travel ok flagship" .5, .4, 0., 0.
-color "map travel ok none" .55, .1, 0., 0.
-color "map used wormhole" .5, .2, .9, 1.
-color "map unused wormhole" .165, .066, .3, .333
-
+color "map link" .6 .6 .6 .6
+color "map name" .6 .6 .6 .6
+color "map travel ok fleet" .2 .5 0. 0.
+color "map travel ok flagship" .5 .4 0. 0.
+color "map travel ok none" .55 .1 0. 0.
+color "map used wormhole" .5 .2 .9 1.
+color "map unused wormhole" .165 .066 .3 .333
 
 
 
@@ -344,6 +345,16 @@ interface "hud"
 		dimensions 0 -192
 		color "heat"
 		size 2
+	bar "overheat"
+		from -13.5 403
+		dimensions 0 -192
+		color "overheat"
+		size 2
+	bar "overheat blink"
+		from -13.5 403
+		dimensions 0 -192
+		color "dim"
+		size 2
 
 	# Targets.
 	anchor top left
@@ -445,7 +456,6 @@ interface "hud"
 
 
 
-
 interface "planet"
 	image "land"
 		center -60 -140
@@ -532,6 +542,21 @@ interface "planet"
 		size 18
 		align right
 		pad 10 0
+
+
+
+interface "news"
+	sprite "ui/news"
+		center -160 -45
+	image "portrait"
+		center -340 -40
+	string "name"
+		from -270 -100
+		align center left
+		color "bright"
+	box "message"
+		from -270 -80
+		to 80 10
 
 
 
@@ -758,6 +783,7 @@ interface "trade"
 	button S "Sell Outfits"
 		center 130 355
 		dimensions 90 30
+
 
 
 interface "bank"

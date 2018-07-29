@@ -248,10 +248,6 @@ event "initial deployment 1"
 	planet "New Austria"
 		description `New Austria is a rugged mountain world, full of snow-capped peaks and valleys so deep and so steep that they rarely see sunlight. The few settlements that have been built here were developed for mining sapphires and rubies; the sapphires found in New Austria range from blue to yellow to black to clear in color, and are used both for industrial abrasives and for jewelry.`
 		description `The Navy has recently requisitioned one of the abandoned mining towns and begun refurbishing it for a secure military base, with the mining tunnels used as deep underground bunkers.`
-	shipyard "Syndicate Basics"
-		"Barb"
-	outfitter "Syndicate Basics"
-		"X1050 Ion Engines"
 
 event "initial deployment 2"
 	date 14 8 3014
@@ -795,6 +791,8 @@ event "start of hostilities"
 	government "Republic"
 		"attitude toward"
 			"Free Worlds" -.2
+			"Merchant" .01
+			"Pirate" -.01
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" -.2
@@ -1076,7 +1074,7 @@ event "fw safe passage starts"
 
 
 event "fw safe passage ends"
-	"reputation: Republic" = -1000
+	"reputation: Republic" <?= -1000
 
 
 
@@ -1483,6 +1481,8 @@ event "fw armistice"
 	government Republic
 		"attitude toward"
 			"Free Worlds" 0
+			"Merchant" .25
+			"Pirate" -.3
 	government "Free Worlds"
 		"attitude toward"
 			Republic 0
@@ -1771,14 +1771,13 @@ event "pug invasion 4"
 
 
 event "fw syndicate welcoming"
-	"reputation: Syndicate" = 1
-	government Syndicate
+	government "Syndicate"
 		"attitude toward"
 			"Free Worlds" 0
-			Republic 0
+			"Republic" 0
 			"Navy (Oathkeeper)" 0
 		bribe .08
-	system Algenib
+	system "Algenib"
 		government "Syndicate (Extremist)"
 		fleet "Small Core Pirates" 1500
 		fleet "Large Core Pirates" 2000
@@ -1787,7 +1786,7 @@ event "fw syndicate welcoming"
 
 
 event "at war with the pug"
-	"reputation: Pug" = -1000
+	"reputation: Pug" <?= -1000
 	government Pug
 		"attitude toward"
 			"Free Worlds" -.01
@@ -2394,6 +2393,8 @@ event "fwc peace with the navy"
 	government "Republic"
 		"attitude toward"
 			"Free Worlds" 0
+			"Merchant" .25
+			"Pirate" -.3
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" 0

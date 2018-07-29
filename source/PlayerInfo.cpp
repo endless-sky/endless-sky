@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
-#include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
 #include "Files.h"
@@ -200,30 +199,20 @@ void PlayerInfo::Load(const string &path)
 		// Records of things you have done or are doing, or have happened to you:
 		else if(child.Token(0) == "mission")
 		{
-			missions.push_back(Mission());
-			missions.back().Load(child);
+			missions.emplace_back(child);
 			cargo.AddMissionCargo(&missions.back());
 		}
 		else if(child.Token(0) == "available job")
-		{
-			availableJobs.push_back(Mission());
-			availableJobs.back().Load(child);
-		}
+			availableJobs.emplace_back(child);
 		else if(child.Token(0) == "available mission")
-		{
-			availableMissions.push_back(Mission());
-			availableMissions.back().Load(child);
-		}
+			availableMissions.emplace_back(child);
 		else if(child.Token(0) == "conditions")
 		{
 			for(const DataNode &grand : child)
 				conditions[grand.Token(0)] = (grand.Size() >= 2) ? grand.Value(1) : 1;
 		}
 		else if(child.Token(0) == "event")
-		{
-			gameEvents.push_back(GameEvent());
-			gameEvents.back().Load(child);
-		}
+			gameEvents.emplace_back(child);
 		else if(child.Token(0) == "changes")
 		{
 			for(const DataNode &grand : child)
@@ -416,12 +405,49 @@ void PlayerInfo::AddEvent(const GameEvent &event, const Date &date)
 
 
 
-// Mark this player as dead.
-void PlayerInfo::Die(bool allShipsDie)
+// Mark this player as dead, and handle the changes to the player's fleet.
+void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 {
 	isDead = true;
-	if(allShipsDie)
+	// The player loses access to all their ships if they die on a planet.
+	if(GetPlanet() || !flagship)
 		ships.clear();
+	// If the flagship should explode due to choices made in a mission's
+	// conversation, it should still appear in the player's ship list (but
+	// will be red, because it is dead). The player's escorts will scatter
+	// automatically, as they have a now-dead parent.
+	else if(response == Conversation::EXPLODE)
+		flagship->Destroy();
+	// If it died in open combat, it is already marked destroyed.
+	else if(!flagship->IsDestroyed())
+	{
+		// The player died due to the failed capture of an NPC or a
+		// "mutiny". The flagship is either captured or changes government.
+		if(!flagship->IsYours())
+		{
+			// The flagship was already captured, via BoardingPanel,
+			// and its parent-escort relationships were updated in
+			// Ship::WasCaptured().
+		}
+		// The referenced ship may not be boarded by the player, so before
+		// letting it capture the flagship it must be near the flagship.
+		else if(capturer && capturer->Position().Distance(flagship->Position()) <= 1.)
+			flagship->WasCaptured(capturer);
+		else
+		{
+			// A "mutiny" occurred.
+			flagship->SetIsYours(false);
+			// TODO: perhaps allow missions to set the new government.
+			flagship->SetGovernment(GameData::Governments().Get("Independent"));
+			// Your escorts do not follow it, nor does it wait for them.
+			for(const shared_ptr<Ship> &ship : ships)
+				ship->SetParent(nullptr);
+		}
+		// Remove the flagship from the player's ship list.
+		auto it = find(ships.begin(), ships.end(), flagship);
+		if(it != ships.end())
+			ships.erase(it);
+	}
 }
 
 
@@ -960,7 +986,7 @@ void PlayerInfo::Land(UI *ui)
 	vector<shared_ptr<Ship>>::iterator it = ships.begin();
 	while(it != ships.end())
 	{
-		if(!*it || (*it)->IsDestroyed() || !(*it)->GetGovernment()->IsPlayer())
+		if((*it)->IsDestroyed() || !(*it)->IsYours())
 		{
 			// If any of your ships are destroyed, your cargo "cost basis" should
 			// be adjusted based on what you lost.
@@ -1397,42 +1423,30 @@ Mission *PlayerInfo::MissionToOffer(Mission::Location location)
 
 Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 {
-	// Do not create missions from NPC's or the player's ships.
+	// Do not create missions from existing mission NPC's, or the player's ships.
 	if(ship->IsSpecial())
 		return nullptr;
+	// Ensure that boarding this NPC again does not create a mission.
 	ship->SetIsSpecial();
 	
-	UpdateAutoConditions();
+	UpdateAutoConditions(true);
 	boardingMissions.clear();
-	boardingShip = ship;
 	
 	bool isEnemy = ship->GetGovernment()->IsEnemy();
 	Mission::Location location = (isEnemy ? Mission::BOARDING : Mission::ASSISTING);
 	
-	// Check for available missions.
-	for(const auto &it : GameData::Missions())
-	{
-		if(!it.second.IsAtLocation(location))
-			continue;
-		
-		if(it.second.CanOffer(*this))
+	// Check for available boarding or assisting missions.
+	for(const pair<const string, const Mission> &it : GameData::Missions())
+		if(it.second.IsAtLocation(location) && it.second.CanOffer(*this, ship))
 		{
-			boardingMissions.push_back(it.second.Instantiate(*this));
+			boardingMissions.push_back(it.second.Instantiate(*this, ship));
 			if(boardingMissions.back().HasFailed(*this))
 				boardingMissions.pop_back();
 			else
 				return &boardingMissions.back();
 		}
-	}
-	boardingShip.reset();
+	
 	return nullptr;
-}
-
-
-
-const shared_ptr<Ship> &PlayerInfo::BoardingShip() const
-{
-	return boardingShip;
 }
 
 
@@ -1462,16 +1476,18 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 
 
 // Callback for accepting or declining whatever mission has been offered.
+// Responses which would kill the player are handled before the on offer
+// conversation ended.
 void PlayerInfo::MissionCallback(int response)
 {
-	boardingShip.reset();
 	list<Mission> &missionList = availableMissions.empty() ? boardingMissions : availableMissions;
 	if(missionList.empty())
 		return;
 	
 	Mission &mission = missionList.front();
 	
-	shouldLaunch |= Conversation::RequiresLaunch(response);
+	// If landed, this conversation may require the player to immediately depart.
+	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
@@ -1501,8 +1517,16 @@ void PlayerInfo::MissionCallback(int response)
 		mission.Do(Mission::DEFER, *this);
 		missionList.pop_front();
 	}
-	else if(response == Conversation::DIE)
-		Die(true);
+}
+
+
+
+// Basic callback, allowing conversations to force the player to depart from a
+// planet without requiring a mission to offer.
+void PlayerInfo::BasicCallback(int response)
+{
+	// If landed, this conversation may require the player to immediately depart.
+	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
 }
 
 
@@ -1590,8 +1614,8 @@ const map<string, int> &PlayerInfo::Conditions() const
 
 
 
-// Set and check the reputation conditions, which missions can use to modify
-// the player's reputation.
+// Set and check the reputation conditions, which missions and events can use to
+// modify the player's reputation with other governments.
 void PlayerInfo::SetReputationConditions()
 {
 	for(const auto &it : GameData::Governments())
@@ -2167,7 +2191,7 @@ void PlayerInfo::ApplyChanges()
 
 
 // Update the conditions that reflect the current status of the player.
-void PlayerInfo::UpdateAutoConditions()
+void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 {
 	// Set a condition for the player's net worth. Limit it to the range of a 32-bit int.
 	static const int64_t limit = 2000000000;
@@ -2177,6 +2201,7 @@ void PlayerInfo::UpdateAutoConditions()
 	conditions["unpaid fines"] = min(limit, accounts.TotalDebt("Fine"));
 	conditions["unpaid salaries"] = min(limit, accounts.SalariesOwed());
 	conditions["credit score"] = accounts.CreditScore();
+	// Serialize the current reputation with other governments.
 	SetReputationConditions();
 	// Clear any existing ships: conditions. (Note: '!' = ' ' + 1.)
 	auto first = conditions.lower_bound("ships: ");
@@ -2193,6 +2218,14 @@ void PlayerInfo::UpdateAutoConditions()
 			conditions["passenger space"] += ship->Attributes().Get("bunks") - ship->RequiredCrew();
 			++conditions["ships: " + ship->Attributes().Category()];
 		}
+	// If boarding a ship, missions should not consider the space available
+	// in the player's entire fleet. The only fleet parameter offered to a
+	// boarding mission is the fleet composition (e.g. 4 Heavy Warships).
+	if(isBoarding && flagship)
+	{
+		conditions["cargo space"] = flagship->Cargo().Free();
+		conditions["passenger space"] = flagship->Cargo().BunksFree();
+	}
 	
 	// Conditions for your fleet's attractiveness to pirates:
 	pair<double, double> factors = RaidFleetFactors();
@@ -2207,7 +2240,6 @@ void PlayerInfo::UpdateAutoConditions()
 void PlayerInfo::CreateMissions()
 {
 	boardingMissions.clear();
-	boardingShip.reset();
 	
 	// Check for available missions.
 	bool skipJobs = planet && !planet->HasSpaceport();
@@ -2580,7 +2612,7 @@ void PlayerInfo::Fine(UI *ui)
 				ui->Push(new Dialog(message));
 			}
 			// All ships belonging to the player should be removed.
-			Die(true);
+			Die();
 		}
 		else
 			ui->Push(new Dialog(message));

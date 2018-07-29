@@ -460,6 +460,7 @@ mission "FW Embassy 1"
 	landing
 	source Farpoint
 	destination Earth
+	clearance
 	passengers 2
 	to offer
 		has "FW Defend Farpoint: done"
@@ -585,6 +586,7 @@ mission "FW Embassy 1C"
 	autosave
 	source Bourne
 	destination Earth
+	clearance
 	passengers 2
 	blocked "You do not have bunks available for Ijs and Katya. Return here when you do."
 	to offer
@@ -601,6 +603,7 @@ mission "FW Embassy 1C"
 				accept
 	
 	npc accompany save
+		government "Free Worlds"
 		personality escort heroic
 		ship "Dreadnought" "F.S. Gibraltar"
 	
@@ -979,6 +982,7 @@ mission "FW Pug 2"
 	autosave
 	source "New Tibet"
 	destination "Earth"
+	clearance
 	to offer
 		has "FW Pug 1: done"
 	passengers 1
@@ -997,7 +1001,7 @@ mission "FW Pug 2"
 					goto republic
 			
 			label go
-			`	"Freya says, "Somehow, they managed to annex several of our systems in the process of walling themselves off - our two best suppliers of heavy metals. That suggests that any of our systems on the border with the Syndicate may be taken over, and made completely inaccessible to us, at any time. That's not a risk we can take."`
+			`	Freya says, "Somehow, they managed to annex several of our systems in the process of walling themselves off - our two best suppliers of heavy metals. That suggests that any of our systems on the border with the Syndicate may be taken over, and made completely inaccessible to us, at any time. That's not a risk we can take."`
 			`	"And it's not just that," says Katya. "Think of how many workers are on Syndicate worlds right now, having left their families on a different planet in order to go earn money in a Syndicate factory for a few years. Imagine a future where those families are forever divided."`
 				goto communications
 			
@@ -1030,8 +1034,8 @@ mission "FW Pug 2A"
 	name "Reason with the Syndicate"
 	description "Travel with Alondo to meet with the Syndicate leaders on Foundry, determine their intentions, and convince them not to completely seal themselves off from human space. Hurry, before they cut the last link."
 	autosave
-	source Earth
-	destination Foundry
+	source "Earth"
+	destination "Foundry"
 	clearance
 	passengers 1
 	to offer
@@ -1041,7 +1045,6 @@ mission "FW Pug 2A"
 	
 	on offer
 		log "Agreed to travel to Syndicate space through the one remaining hyperspace path that is still open, through the uninhabited star systems to the north."
-		event "fw syndicate welcoming" 11
 		conversation
 			`A palpable sense of fear and near-panic hangs over the spaceport on Earth. At any minute, this system that serves as the very hub of human government could disappear into the same unknown abyss that has swallowed up its neighbors.`
 			`	Parliament is eager now to meet with you and to receive whatever assistance you may be able to offer. As Alondo stands in front of the chamber asking the members of Parliament for more information, they answer him with respect and deference, far different from how you have been treated here in the past. You learn that although one link remains open to Syndicate space, no one has dared to travel through it. Given the pace at which the other links were cut, they fear that the one remaining link will disappear any day now.`
@@ -1068,8 +1071,11 @@ mission "FW Pug 2A"
 			label yes
 			`	Parliament thanks you for your willingness to serve, and you and Alondo hurry back to your ship. "There's no telling how long the link will remain open," he says. "So, we must hurry to the Syndicate headquarters on <planet> immediately."`
 				accept
-	on complete
-		"reputation: Syndicate" >?= 1
+	on enter
+		system
+			government "Syndicate"
+		"reputation: Syndicate" = 1
+		event "fw syndicate welcoming"
 	
 	npc
 		system "Sol"
@@ -1083,13 +1089,12 @@ mission "FW Pug 2A"
 mission "FW Pug 2A Visit"
 	landing
 	source
-		near Achernar 1 100
-		government Syndicate
+		near "Achernar" 1 100
+		government "Syndicate"
 	to offer
 		has "FW Pug 2A: active"
 	
 	on offer
-		"reputation: Syndicate" >?= 1
 		conversation
 			`Oddly, when you land on <origin> you find that the people here are in as much of a state of confusion and fear as back on Earth. Either no one knows what is going on and why they have been nearly cut off from the rest of human space, or every single person you talk to is united in a conspiracy to feign ignorance. They urge you to continue your journey to meet with the Syndicate executives on Foundry. "Maybe you can talk some sense into them," says one merchant captain. "First the nukes, and now this. The extremist faction within the Syndicate is getting out of hand."`
 				decline
@@ -1101,8 +1106,8 @@ mission "FW Pug 2B"
 	name "Install a Jump Drive"
 	description "Travel to the Syndicate world of Hephaestus, where the Syndicate Systems personnel have been instructed to install a jump drive on your ship, so that you can investigate the systems that the Pug has cut off."
 	autosave
-	source Foundry
-	destination Hephaestus
+	source "Foundry"
+	destination "Hephaestus"
 	to offer
 		has "FW Pug 2A: done"
 	passengers 1
@@ -1341,6 +1346,7 @@ mission "FW Pug 3"
 	landing
 	source Pugglemug
 	destination Earth
+	clearance
 	to offer
 		has "fw given jump drive"
 	passengers 1
@@ -1528,6 +1534,7 @@ mission "FW Pug 3B"
 				accept
 	
 	npc accompany save
+		government "Free Worlds"
 		personality escort disables
 		ship "Dreadnought" "F.S. Independence"
 		ship "Dreadnought" "F.S. Freedom"
@@ -1570,6 +1577,7 @@ mission "FW Pug 3C"
 				accept
 	
 	npc accompany save
+		government "Free Worlds"
 		personality escort
 		ship "Dreadnought" "F.S. Independence"
 		ship "Dreadnought" "F.S. Freedom"
@@ -1597,6 +1605,7 @@ mission "FW Pug 4: Escorts"
 		has "FW Pug 6: done"
 	
 	npc kill
+		government "Free Worlds"
 		personality escort heroic disables
 		ship "Dreadnought (Jump)" "F.S. Independence"
 		ship "Dreadnought (Jump)" "F.S. Freedom"
@@ -1929,6 +1938,7 @@ mission "FW Pug 5A"
 	description `Bring this "graviton reflector" to <planet> and set it up there, in order to restore the hyperspace link between the Sol and Altair systems.`
 	source Shiver
 	destination Earth
+	clearance
 	to offer
 		has "FW Pug 5: done"
 	cargo "graviton reflector" 10
@@ -2237,7 +2247,7 @@ mission "FW Syndicate Extremists 1A"
 			
 			`	"We gave the Alphas most of the alien technology we recovered," he says, "but one device, we managed to keep secret from them. We found it in a Korath cargo hold, and it took us a long time to even figure out how to activate it. But when we did, we discovered that it's a cloaking device. It obscures a ship not just from the visible spectrum, but from radar as well, and every other sensor we've tested except for gravitational ones. I'm certain it would hide you from the tracking systems on the nukes."`
 			`	Freya says, "But it would only hide one ship. That doesn't sound like it would do much good."`
-			`	Alastair says, "They have a limited number of nukes. Our plan was to send a ship in cloaked, have it uncloak long enough to draw their fire, and then cloak to avoid the missiles. Basically, see how many of missiles we can get them to spend before the main attack fleet arrives."`
+			`	Alastair says, "They have a limited number of nukes. Our plan was to send a ship in cloaked, have it uncloak long enough to draw their fire, and then cloak to avoid the missiles. Basically, see how many missiles we can get them to spend before the main attack fleet arrives."`
 			`	Danforth says, "That's not a bad idea. Captain <last>, would you be willing to serve as the decoy?"`
 			choice
 				`	"It sounds risky, but I'll do it."`
@@ -2350,6 +2360,7 @@ mission "FW Syndicate Extremists 1C"
 	autosave
 	source "Buccaneer Bay"
 	destination Earth
+	clearance
 	to offer
 		has "FW Syndicate Extremists 1B: done"
 	passengers 1

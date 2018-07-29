@@ -174,7 +174,7 @@ outfit "Hyperdrive"
 outfit "Scram Drive"
 	category "Systems"
 	cost 90000
-	thumbnail "outfit/hyperdrive"
+	thumbnail "outfit/scram drive"
 	"mass" 30
 	"outfit space" -30
 	"scram drive" .2
@@ -255,6 +255,7 @@ outfit "Cloaking Device"
 	"cloak" .01
 	"cloaking energy" 1
 	"cloaking fuel" .2
+	unplunderable 1
 	description "You're sure the cloaking device is here somewhere, but you can't see it."
 
 
@@ -375,3 +376,23 @@ outfit "Pilot's License"
 	cost 50000
 	thumbnail "outfit/license"
 	description "Without a pilot's license, you cannot purchase a ship on a Republic planet. And if you buy an unlicensed ship on another planet and then bring it into Republic space, you can be fined until you cough up the money for a license. Needless to say, this policy is not terribly popular with freelance merchant captains."
+
+outfit "Navy License"
+	category "Special"
+	thumbnail "outfit/navy license"
+	description "It is unusual, but not unheard of, for private citizens to be given the right to purchase Navy ships for their own private use. Recently, certain rich worlds have also begun petitioning Parliament for special permission to purchase Navy warships for their private security forces."
+
+outfit "Cruiser License"
+	category "Special"
+	thumbnail "outfit/cruiser license"
+	description "It is a very rare privilege to be permitted to purchase a Navy capital ship for private use - not just because of a Cruiser's firepower, but because it is a potent symbol of the Republic's strength."
+
+outfit "Carrier License"
+	category "Special"
+	thumbnail "outfit/carrier license"
+	description "Only a handful of people in the past century have been given permission to purchase a Navy Carrier, even a decommissioned one, for private use."
+
+outfit "Militia Carrier License"
+	category "Special"
+	thumbnail "outfit/militia license"
+	description "Officially joined the Free Worlds. Received permission to purchase their Militia-only carriers."

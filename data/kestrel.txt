@@ -211,7 +211,7 @@ event "kestrel available: more shields"
 		"Kestrel (More Shields)"
 
 ship "Unknown Ship Type"
-	sprite ship/kestrel
+	sprite "ship/kestrel"
 	attributes
 		category "Heavy Warship"
 		"cost" 10300000
@@ -263,7 +263,8 @@ ship "Unknown Ship Type"
 	"final explode" "final explosion large"
 
 ship "Kestrel"
-	sprite ship/kestrel
+	sprite "ship/kestrel"
+	thumbnail "thumbnail/kestrel"
 	attributes
 		category "Heavy Warship"
 		"cost" 10300000
@@ -318,56 +319,14 @@ ship "Kestrel"
 
 
 ship "Kestrel" "Kestrel (More Weapons)"
-	attributes
-		category "Heavy Warship"
-		"cost" 10300000
-		"shields" 17400
-		"hull" 6200
-		"required crew" 72
-		"bunks" 128
-		"mass" 740
-		"drag" 12.5
-		"heat dissipation" .45
-		"fuel capacity" 500
-		"cargo space" 120
-		"outfit space" 810
-		"weapon capacity" 400
-		"engine capacity" 210
-
-
+	add attributes
+		"weapon capacity" 20
 
 ship "Kestrel" "Kestrel (More Engines)"
-	attributes
-		category "Heavy Warship"
-		"cost" 10300000
-		"shields" 17400
-		"hull" 6200
-		"required crew" 72
-		"bunks" 128
-		"mass" 740
-		"drag" 12.5
-		"heat dissipation" .45
-		"fuel capacity" 500
-		"cargo space" 120
-		"outfit space" 810
-		"weapon capacity" 380
-		"engine capacity" 230
-
-
+	add attributes
+		"engine capacity" 20
 
 ship "Kestrel" "Kestrel (More Shields)"
-	attributes
-		category "Heavy Warship"
-		"cost" 10300000
-		"shields" 20100
-		"hull" 7500
-		"required crew" 72
-		"bunks" 128
-		"mass" 760
-		"drag" 12.5
-		"heat dissipation" .45
-		"fuel capacity" 500
-		"cargo space" 120
-		"outfit space" 810
-		"weapon capacity" 380
-		"engine capacity" 210
+	add attributes
+		"shields" 2700
+		"hull" 1300
