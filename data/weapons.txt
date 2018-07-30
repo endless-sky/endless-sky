@@ -650,7 +650,7 @@ outfit "Meteor Missile Launcher"
 		"fire effect" "meteor fire"
 		"die effect" "missile death"
 		"hit effect" "missile hit"
-		"inaccuracy" 10
+		"inaccuracy" 5
 		"velocity" 13
 		"lifetime" 415
 		"reload" 75
@@ -658,7 +658,7 @@ outfit "Meteor Missile Launcher"
 		"firing heat" 20
 		"acceleration" 1
 		"drag" .1
-		"turn" 1.25
+		"turn" 1.3
 		"homing" 3
 		"infrared tracking" .8
 		"shield damage" 220
@@ -823,14 +823,14 @@ outfit "Torpedo Launcher"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 5
+		"velocity" 5.5
 		"lifetime" 720
 		"reload" 150
 		"firing energy" 2
 		"firing heat" 45
 		"acceleration" .15
 		"drag" .025
-		"turn" 1.3
+		"turn" 1.5
 		"homing" 3
 		"optical tracking" .8
 		"shield damage" 650
@@ -885,14 +885,14 @@ outfit "Typhoon Launcher"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 4
-		"lifetime" 750
+		"velocity" 4.5
+		"lifetime" 900
 		"reload" 140
 		"firing energy" 4
 		"firing heat" 50
 		"acceleration" .1
 		"drag" .02
-		"turn" 1.5
+		"turn" 1.8
 		"homing" 4
 		"optical tracking" .9
 		"shield damage" 900
