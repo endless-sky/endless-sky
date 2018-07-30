@@ -161,7 +161,7 @@ outfit "Beam Laser"
 		"firing heat" 1.2
 		"shield damage" 1
 		"hull damage" 1.3
-	description "In the early part of the space era, the settlements in the region of space known as the Deep developed in relative isolation from the rest of human space. One result of that isolation is that their weapons technology mostly uses beam weapons, instead of the energy projectile weapons that are more common elsewhere. A Beam Laser has a slightly shorter range than an Energy Blaster, but is also much more energy-efficient and does a comparable amount of damage."
+	description "In the early part of the space era, the settlements in the region of space known as the Deep developed in relative isolation from the rest of human space. One result of that isolation is that their weapons technology mostly uses beam weapons, instead of the energy projectile weapons that are more common elsewhere. A Beam Laser has a shorter range than an Energy Blaster, but is also much more energy-efficient and inflicts significantly more hull damage."
 
 outfit "Laser Turret"
 	category "Turrets"
