@@ -824,7 +824,7 @@ outfit "Torpedo Launcher"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
 		"velocity" 5.5
-		"lifetime" 720
+		"lifetime" 920
 		"reload" 150
 		"firing energy" 2
 		"firing heat" 45
@@ -886,7 +886,7 @@ outfit "Typhoon Launcher"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
 		"velocity" 4.5
-		"lifetime" 900
+		"lifetime" 1200
 		"reload" 140
 		"firing energy" 4
 		"firing heat" 50
