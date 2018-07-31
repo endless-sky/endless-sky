@@ -1314,7 +1314,7 @@ ship "Flivver"
 	sprite "ship/flivver"
 	thumbnail "thumbnail/flivver"
 	attributes
-		category "Transport"
+		category "Interceptor"
 		"cost" 180000
 		"shields" 1400
 		"hull" 200
@@ -1759,7 +1759,7 @@ ship "Hawk"
 		"fuel capacity" 300
 		"cargo space" 30
 		"outfit space" 200
-		"weapon capacity" 40
+		"weapon capacity" 45
 		"engine capacity" 70
 		weapon
 			"blast radius" 30
@@ -3013,7 +3013,7 @@ ship "Wasp"
 		"fuel capacity" 400
 		"cargo space" 10
 		"outfit space" 150
-		"weapon capacity" 28
+		"weapon capacity" 30
 		"engine capacity" 60
 		weapon
 			"blast radius" 20
