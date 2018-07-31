@@ -1314,7 +1314,7 @@ ship "Flivver"
 	sprite "ship/flivver"
 	thumbnail "thumbnail/flivver"
 	attributes
-		category "Interceptor"
+		category "Transport"
 		"cost" 180000
 		"shields" 1400
 		"hull" 200
