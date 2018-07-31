@@ -26,8 +26,8 @@ ship "Starling"
 		"fuel capacity" 900
 		"cargo space" 36
 		"outfit space" 312
-		"engine capacity" 94
 		"weapon capacity" 83
+		"engine capacity" 94
 		"hull repair rate" 0.8
 		"hull energy" 0.6
 		"shield generation" 1.8
@@ -164,8 +164,8 @@ ship "Albatross"
 		"heat dissipation" 0.6
 		"fuel capacity" 600
 		"outfit space" 658
-		"engine capacity" 142
 		"weapon capacity" 236
+		"engine capacity" 142
 		"hull repair rate" 1.5
 		"hull energy" 1.2
 		"shield generation" 5.2
