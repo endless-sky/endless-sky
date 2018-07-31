@@ -1757,7 +1757,7 @@ ship "Hawk"
 		"drag" 2.1
 		"heat dissipation" .8
 		"fuel capacity" 300
-		"cargo space" 30
+		"cargo space" 20
 		"outfit space" 200
 		"weapon capacity" 50
 		"engine capacity" 70
