@@ -1975,3 +1975,40 @@ ship "Science Drone"
 		"heat dissipation" 1
 	explode "tiny explosion" 5
 	explode "small explosion" 2
+
+
+
+mission "Loan Broker Reunion"
+	name "The Broker"
+	description "Transport the broker's enforcers to <destination> by <day>."
+	blocked "You'll need more room to house the hired thugs. Return when you have <capacity>."
+	deadline
+	cargo "Living necessities" 5
+	passengers 15
+	minor
+	to offer
+		not "year" == 3013
+	source "New Boston"
+	destination
+		government "Syndicate"
+	on offer
+		conversation
+			'As you're walking through the spaceport searching for a bar or pub, someone catches your eye. A nearly bald, middle-aged man wanders through the crowd in an expensively tailored suit, searching the faces that pass by him. You stop for a moment and look closer; he seems familiar in some way. Eventually, his gaze settles on you, making eye contact. He blinks a few times in surprise, then begins moving through the crowd towards you.'
+			choice
+				'	(Turn the other way and lose the man in the crowd.)'
+					decline
+				'	(Wait for him to reach you.)'
+				'	(Walk forwards to meet him.)'
+			'	When you and the man come face to face, he studies you for a moment. You realize who he is when he begins speaking in a smooth, mechanical voice: "Yes, I thought it was you. It's Captain <last>, correct? I remember you being quite excited to purchase your first ship, even with the somewhat outageous interest rate I gave you." It's the loan broker. The broker who gave you the money to purchase your first ship, and the one who so eagerly snatched up every payment you had given to him. "No matter," he continues. "It seems you've become quite successful."'
+			'	Seeing your unimpressed - and somewhat uninterested - look, he decides to get to the point. "I've found myself in a surprising predicament, and I would pay well to be rid of it. You see, one of my... "clients" hasn't been very proactive in paying their dues on time. This wouldn't be a problem for any normal client, but this man happens to be in charge of a small street gang on <destination>. Of course, there's a simple fix: send a group of paid enforcers to convince the client to be more... accountable, let's say."'
+				'	"And what does this have to do with me?"'
+			'	"Don't fret, I'm getting there. Usually I have a list of contacts that would be more than willing to assist in transportation - for an adequate fee, obviously - but all of them seem to be unavailable at the moment. Thus, I am in need of transportation for my men and their equipment to <destination>. You seem to be able to provide it. What do you say?"'
+				'	"Sorry, but I don't stoop low enough to carry thugs for a loan shark."'
+					decline
+				'	"Alright, I'll do it."'
+			'	The man grins. "Wonderful. Move with haste, Captain <last>, and it will be rewarded. One of my men on <destination> will see you're well compensated."
+				accept
+	on complete
+		payment
+		payment 400000
+		dialog "As soon as the ship touches the bare metal of the spaceport, the men begin to unload the cargo themselves, simplifying things. There's a lanky man in a suit, watching them. He notices you and walks over. "Your assistance is much appreciated, Captain <last>. Here's your payment," he says, then hands you a credit chip worth <payment>. "Good day." He nods cutrly, then turns away, following the hired thugs who have already unloaded their equipment and are leaving the dock where you've landed.'
