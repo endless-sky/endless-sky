@@ -296,7 +296,7 @@ effect "piercer impact"
 	sprite "effect/piercer impact"
 		"no repeat"
 		"frame rate" 8
-	sound "explosion tiny"
+	sound "missile hit"
 	"lifetime" 31
 	"random angle" 360
 	"random velocity" .1

@@ -248,7 +248,7 @@ effect "tracker impact"
 	sprite "effect/tracker impact"
 		"no repeat"
 		"frame rate" 20
-	sound "explosion medium"
+	sound "missile hit"
 	"lifetime" 16
 	"random angle" 360
 	"random velocity" .2
