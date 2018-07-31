@@ -24,8 +24,8 @@ ship "Quarg Skylark"
 		"ramscoop" 10
 		"cargo space" 200
 		"outfit space" 600
-		"engine capacity" 120
 		"weapon capacity" 200
+		"engine capacity" 120
 		"energy generation" 85
 		"hull repair rate" 5
 		"hull energy" 5
@@ -77,8 +77,8 @@ ship "Quarg Wardragon"
 		"ramscoop" 10
 		"cargo space" 50
 		"outfit space" 600
-		"engine capacity" 120
 		"weapon capacity" 200
+		"engine capacity" 120
 		"energy generation" 85
 		"hull repair rate" 5
 		"hull energy" 5
