@@ -21,7 +21,6 @@ ship "Quarg Skylark"
 		"drag" 12.3
 		"heat dissipation" .7
 		"fuel capacity" 1000
-		"ramscoop" 10
 		"cargo space" 200
 		"outfit space" 600
 		"weapon capacity" 200
@@ -29,6 +28,7 @@ ship "Quarg Skylark"
 		"energy generation" 85
 		"hull repair rate" 5
 		"hull energy" 5
+		"ramscoop" 10
 		weapon
 			"blast radius" 250
 			"shield damage" 1000
@@ -74,7 +74,6 @@ ship "Quarg Wardragon"
 		"drag" 9.3
 		"heat dissipation" .5
 		"fuel capacity" 800
-		"ramscoop" 10
 		"cargo space" 50
 		"outfit space" 600
 		"weapon capacity" 200
@@ -82,6 +81,7 @@ ship "Quarg Wardragon"
 		"energy generation" 85
 		"hull repair rate" 5
 		"hull energy" 5
+		"ramscoop" 10
 		weapon
 			"blast radius" 250
 			"shield damage" 1000
