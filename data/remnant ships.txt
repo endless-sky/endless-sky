@@ -26,12 +26,12 @@ ship "Starling"
 		"fuel capacity" 900
 		"cargo space" 36
 		"outfit space" 312
-		"weapon capacity" 83
 		"engine capacity" 94
-		"shield generation" 1.8
-		"shield energy" 1.2
+		"weapon capacity" 83
 		"hull repair rate" 0.8
 		"hull energy" 0.6
+		"shield generation" 1.8
+		"shield energy" 1.2
 		"cloak" .02
 		"cloaking energy" 5
 		"cloaking fuel" .1
@@ -145,7 +145,6 @@ ship "Starling" "Starling (Thrasher)"
 	gun
 
 
-
 ship "Albatross"
 	plural "Albatrosses"
 	sprite "ship/albatross"
@@ -164,13 +163,13 @@ ship "Albatross"
 		"drag" 8.6
 		"heat dissipation" 0.6
 		"fuel capacity" 600
-		"engine capacity" 142
 		"outfit space" 658
+		"engine capacity" 142
 		"weapon capacity" 236
-		"shield generation" 5.2
-		"shield energy" 4.6
 		"hull repair rate" 1.5
 		"hull energy" 1.2
+		"shield generation" 5.2
+		"shield energy" 4.6
 		weapon
 			"blast radius" 360
 			"shield damage" 3600
@@ -301,7 +300,6 @@ ship "Albatross" "Albatross (Heavy)"
 	turret "Thrasher Turret"
 
 
-
 ship "Gascraft"
 	plural "Gascraft"
 	sprite "ship/gascraft"
@@ -320,10 +318,10 @@ ship "Gascraft"
 		"cargo space" 8
 		"outfit space" 90
 		"engine capacity" 34
-		"shield generation" 0.6
-		"shield energy" 0.4
 		"hull repair rate" 1.2
 		"hull energy" 0.9
+		"shield generation" 0.6
+		"shield energy" 0.4
 		"gaslining" 1
 	outfits
 		"Millennium Cell"
