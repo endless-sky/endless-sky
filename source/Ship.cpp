@@ -59,17 +59,19 @@ namespace {
 		available -= transfer;
 	}
 	
-	// Helper function to repair a given stat up to its maximum, limited by how
-	// much repair is available and how much energy is available. Updates the
-	// stat, the available amount, and the energy amount.
-	void DoRepair(double &stat, double &available, double maximum, double &energy, double energyCost)
+	// Helper function to repair a given stat up to its maximum, limited by
+	// how much repair is available and how much energy and fuel are available.
+	// Updates the stat, the available amount, and the energy and fuel amounts.
+	void DoRepair(double &stat, double &available, double maximum, double &energy, double energyCost, double &fuel, double fuelCost)
 	{
 		if(available <= 0. || stat >= maximum)
 			return;
 		
-		// Energy cost is energy required per unit repaired.
+		// Energy and fuel costs are the energy or fuel required per unit repaired.
 		if(energyCost)
 			available = min(available, energy / energyCost);
+		if(fuelCost)
+			available = min(available, fuel / fuelCost);
 		
 		double transfer = min(available, maximum - stat);
 		if(transfer > 0.)
@@ -77,6 +79,7 @@ namespace {
 			stat += transfer;
 			available -= transfer;
 			energy -= transfer * energyCost;
+			fuel -= transfer * fuelCost;
 		}
 	}
 }
@@ -1330,12 +1333,12 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(applyAfterburner)
 		{
 			thrust = attributes.Get("afterburner thrust");
-			double cost = attributes.Get("afterburner fuel");
+			double fuelCost = attributes.Get("afterburner fuel");
 			double energyCost = attributes.Get("afterburner energy");
-			if(thrust && fuel >= cost && energy >= energyCost)
+			if(thrust && fuel >= fuelCost && energy >= energyCost)
 			{
 				heat += attributes.Get("afterburner heat");
-				fuel -= cost;
+				fuel -= fuelCost;
 				energy -= energyCost;
 				acceleration += angle.Unit() * thrust / mass;
 				
@@ -1483,15 +1486,17 @@ void Ship::DoGeneration()
 		
 		const double hullAvailable = attributes.Get("hull repair rate");
 		const double hullEnergy = attributes.Get("hull energy") / hullAvailable;
+		const double hullFuel = attributes.Get("hull fuel") / hullAvailable;
 		const double hullHeat = attributes.Get("hull heat") / hullAvailable;
 		double hullRemaining = hullAvailable;
-		DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy);
+		DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel);
 		
 		const double shieldsAvailable = attributes.Get("shield generation");
 		const double shieldsEnergy = attributes.Get("shield energy") / shieldsAvailable;
+		const double shieldsFuel = attributes.Get("shield fuel") / shieldsAvailable;
 		const double shieldsHeat = attributes.Get("shield heat") / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
-		DoRepair(shields, shieldsRemaining, attributes.Get("shields"), energy, shieldsEnergy);
+		DoRepair(shields, shieldsRemaining, attributes.Get("shields"), energy, shieldsEnergy, fuel, shieldsFuel);
 		
 		if(!bays.empty())
 		{
@@ -1509,8 +1514,8 @@ void Ship::DoGeneration()
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
-				DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"), energy, hullEnergy);
-				DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"), energy, shieldsEnergy);
+				DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel);
+				DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"), energy, shieldsEnergy, fuel, shieldsFuel);
 			}
 			
 			// Now that there is no more need to use energy for hull and shield
@@ -1589,6 +1594,7 @@ void Ship::DoGeneration()
 		double coolingEfficiency = CoolingEfficiency();
 		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
 		energy -= ionization;
+		fuel += attributes.Get("fuel generation") - attributes.Get("fuel consumption");
 		heat += attributes.Get("heat generation");
 		heat -= coolingEfficiency * attributes.Get("cooling");
 		
@@ -1611,7 +1617,7 @@ void Ship::DoGeneration()
 		}
 	}
 	
-	// Don't allow any levels to drop velow zero.
+	// Don't allow any levels to drop below zero.
 	fuel = max(0., fuel);
 	energy = max(0., energy);
 	heat = max(0., heat);
