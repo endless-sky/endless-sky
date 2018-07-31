@@ -649,7 +649,7 @@ outfit "Meteor Missile Launcher"
 		icon "icon/meteor"
 		"fire effect" "meteor fire"
 		"die effect" "missile death"
-		"hit effect" "medium explosion"
+		"hit effect" "missile hit"
 		"inaccuracy" 10
 		"velocity" 9
 		"lifetime" 600
@@ -711,7 +711,7 @@ outfit "Sidewinder Missile Launcher"
 		icon "icon/sidewinder"
 		"fire effect" "sidewinder fire"
 		"die effect" "missile death"
-		"hit effect" "medium explosion"
+		"hit effect" "missile hit"
 		"inaccuracy" 4
 		"velocity" 11
 		"lifetime" 600
@@ -820,7 +820,7 @@ outfit "Torpedo Launcher"
 		ammo "Torpedo"
 		icon "icon/torpedo"
 		"fire effect" "torpedo fire"
-		"hit effect" "large explosion"
+		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
 		"velocity" 6
@@ -882,7 +882,7 @@ outfit "Typhoon Launcher"
 		ammo "Typhoon Torpedo"
 		icon "icon/typhoon"
 		"fire effect" "typhoon fire"
-		"hit effect" "large explosion"
+		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
 		"velocity" 5
