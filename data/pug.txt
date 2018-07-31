@@ -329,8 +329,8 @@ ship "Pug Zibruka"
 		"fuel capacity" 600
 		"cargo space" 20
 		"outfit space" 180
-		"engine capacity" 76
 		"weapon capacity" 68
+		"engine capacity" 76
 		"energy capacity" 1000
 		"energy generation" 10
 		"heat generation" 20
@@ -377,8 +377,8 @@ ship "Pug Enfolta"
 		"fuel capacity" 600
 		"cargo space" 40
 		"outfit space" 360
-		"engine capacity" 106
 		"weapon capacity" 184
+		"engine capacity" 106
 		"energy capacity" 2000
 		"energy generation" 22
 		"heat generation" 32
@@ -430,8 +430,8 @@ ship "Pug Maboro"
 		"fuel capacity" 600
 		"cargo space" 70
 		"outfit space" 560
-		"engine capacity" 148
 		"weapon capacity" 309
+		"engine capacity" 148
 		"energy capacity" 4000
 		"energy generation" 32
 		"heat generation" 48
@@ -485,8 +485,8 @@ ship "Pug Arfecta"
 		"fuel capacity" 1200
 		"cargo space" 64
 		"outfit space" 640
-		"engine capacity" 220
 		"weapon capacity" 390
+		"engine capacity" 220
 		"energy capacity" 10000
 		"energy generation" 200
 		"heat generation" 10
