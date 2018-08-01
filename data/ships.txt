@@ -258,7 +258,7 @@ ship "Barb"
 		"heat dissipation" .78
 		"outfit space" 85
 		"weapon capacity" 24
-		"engine capacity" 22
+		"engine capacity" 20
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -300,7 +300,7 @@ ship "Barb" "Barb (Proton)"
 		"heat dissipation" .78
 		"outfit space" 85
 		"weapon capacity" 28
-		"engine capacity" 22
+		"engine capacity" 20
 		weapon
 			"blast radius" 12
 			"shield damage" 120
