@@ -1986,7 +1986,7 @@ mission "Loan Broker Reunion"
 	minor
 	to offer
 		random < 25
-		unpaid mortages = 0
+		"unpaid mortages" == 0
 	source "New Boston"
 	destination
 		government "Syndicate"
