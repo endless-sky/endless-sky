@@ -1987,6 +1987,8 @@ mission "Loan Broker Reunion"
 	to offer
 		random < 25
 		"unpaid mortgages" == 0
+		"combat rating" > 7
+		"net worth" > 5000000
 	source "New Boston"
 	destination
 		government "Syndicate"
