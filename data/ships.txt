@@ -559,7 +559,7 @@ ship "Bounder"
 		"cargo space" 40
 		"outfit space" 220
 		"weapon capacity" 45
-		"engine capacity" 90
+		"engine capacity" 110
 		weapon
 			"blast radius" 30
 			"shield damage" 300
