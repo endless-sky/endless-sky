@@ -2936,7 +2936,7 @@ ship "Surveillance Drone"
 	engine -5 29
 	engine 5 29
 	explode "tiny explosion" 15
-	description "Surveillance drones are unarmed drones used by the Republic navy to scan ships and planets in a star system."
+	description "Surveillance Drones are unarmed drones used by the Republic navy to scan ships and planets in a star system."
 
 
 
