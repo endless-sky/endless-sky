@@ -14,13 +14,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define GAME_EVENT_H_
 
 #include "ConditionSet.h"
+#include "DataNode.h"
 #include "Date.h"
 
 #include <list>
 #include <string>
 #include <vector>
 
-class DataNode;
 class DataWriter;
 class Planet;
 class PlayerInfo;

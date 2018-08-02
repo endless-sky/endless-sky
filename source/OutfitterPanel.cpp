@@ -157,7 +157,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 			string label = "installed: " + to_string(minCount);
 			if(maxCount > minCount)
 				label += " - " + to_string(maxCount);
-		
+			
 			Point labelPos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 38);
 			font.Draw(label, labelPos, bright);
 		}
@@ -262,7 +262,7 @@ bool OutfitterPanel::CanBuy() const
 
 
 
-void OutfitterPanel::Buy()
+void OutfitterPanel::Buy(bool fromCargo)
 {
 	int64_t licenseCost = LicenseCost(selectedOutfit);
 	if(licenseCost)
@@ -324,7 +324,7 @@ void OutfitterPanel::Buy()
 		
 			if(player.Cargo().Get(selectedOutfit))
 				player.Cargo().Remove(selectedOutfit);
-			else if(!(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
+			else if(fromCargo || !(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
 				break;
 			else
 			{
@@ -562,7 +562,7 @@ void OutfitterPanel::FailSell(bool toCargo) const
 	else if(selectedOutfit->Get("map"))
 		GetUI()->Push(new Dialog("You cannot " + verb + " maps. Once you buy one, it is yours permanently."));
 	else if(HasLicense(selectedOutfit->Name()))
-		GetUI()->Push(new Dialog("You cannot " + verb + " licenses. Once you buy one, it is yours permanently."));
+		GetUI()->Push(new Dialog("You cannot " + verb + " licenses. Once you obtain one, it is yours permanently."));
 	else
 	{
 		bool hasOutfit = !toCargo && player.Cargo().Get(selectedOutfit);

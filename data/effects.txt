@@ -44,6 +44,34 @@ effect "slowing spark"
 	"random velocity" .1
 
 
+effect "flame"
+	sprite "effect/flame"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 11
+	"random angle" 10
+	"random velocity" 4
+	"random spin" 10
+
+effect "leak"
+	sprite "effect/leak"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 7
+	"random angle" 30
+	"random velocity" 7
+	"random spin" 2
+
+effect "big leak"
+	sprite "effect/leak big"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 7
+	"random angle" 20
+	"random velocity" 12
+	"random spin" 2
+
+
 effect "tiny explosion"
 	sprite "effect/explosion/tiny"
 		"no repeat"

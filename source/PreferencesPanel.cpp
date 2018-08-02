@@ -499,12 +499,26 @@ void PreferencesPanel::DrawSettings()
 			// Check how many help messages have been displayed.
 			const map<string, string> &help = GameData::HelpTemplates();
 			int shown = 0;
+			int total = 0;
 			for(const auto &it : help)
-				shown += Preferences::Has("help: " + it.first);
+			{
+				// Don't count certain special help messages that are always
+				// active for new players.
+				bool special = false;
+				const string SPECIAL_HELP[] = {"basics", "lost"};
+				for(const string &str : SPECIAL_HELP)
+					if(it.first.find(str) == 0)
+						special = true;
+				
+				if(!special)
+				{
+					++total;
+					shown += Preferences::Has("help: " + it.first);
+				}
+			}
 			
-			// Don't count the "basic help" messages in the total.
 			if(shown)
-				text = to_string(shown) + " / " + to_string(help.size() - 2);
+				text = to_string(shown) + " / " + to_string(total);
 			else
 			{
 				isOn = true;

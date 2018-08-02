@@ -27,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Politics.h"
 #include "Ship.h"
 #include "Sprite.h"
+#include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
 #include "WrappedText.h"
@@ -113,7 +114,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	}
 	
 	if(message.empty())
-		message = ship->GetHail();
+		message = ship->GetHail(player);
 }
 
 

@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 #include "Effect.h"
 #include "FillShader.h"
+#include "Fleet.h"
+#include "Flotsam.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
@@ -25,22 +27,30 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapPanel.h"
 #include "Mask.h"
 #include "Messages.h"
+#include "Minable.h"
+#include "NPC.h"
 #include "OutlineShader.h"
 #include "Person.h"
 #include "Planet.h"
+#include "PlanetLabel.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
 #include "PointerShader.h"
 #include "Preferences.h"
+#include "Projectile.h"
 #include "Random.h"
 #include "RingShader.h"
 #include "Screen.h"
+#include "Ship.h"
+#include "ShipEvent.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
 #include "StartConditions.h"
+#include "StellarObject.h"
 #include "System.h"
+#include "Visual.h"
 #include "WrappedText.h"
 
 #include <algorithm>
@@ -217,19 +227,15 @@ Engine::~Engine()
 void Engine::Place()
 {
 	ships.clear();
+	ai.ClearOrders();
 	
 	EnterSystem();
-	auto it = ships.end();
 	
 	// Add the player's flagship and escorts to the list of ships. The TakeOff()
 	// code already took care of loading up fighters and assigning parents.
 	for(const shared_ptr<Ship> &ship : player.Ships())
 		if(!ship->IsParked() && ship->GetSystem())
-		{
 			ships.push_back(ship);
-			if(it == ships.end())
-				--it;
-		}
 	
 	// Add NPCs to the list of ships. Fighters have to be assigned to carriers,
 	// and all but "uninterested" ships should follow the player.
@@ -309,13 +315,9 @@ void Engine::Place()
 		planetRadius = object->Radius();
 	}
 	
-	// Give each ship a random heading and position. The iterator points to the
-	// first ship that was an escort or NPC (i.e. the first ship after any
-	// fleets that were placed starting out in this system).
-	while(it != ships.end())
+	// Give each special ship we just added a random heading and position.
+	for (const shared_ptr<Ship> &ship : ships)
 	{
-		const shared_ptr<Ship> &ship = *it++;
-		
 		Point pos;
 		Angle angle = Angle::Random(360.);
 		Point velocity = angle.Unit();
@@ -324,10 +326,11 @@ void Engine::Place()
 		bool isHere = (ship->GetSystem() == player.GetSystem());
 		if(isHere)
 			pos = planetPos;
-		// Check whether this ship should take off with you.
-		if(isHere && !ship->IsDisabled()
-				&& (player.GetPlanet()->CanLand(*ship) || ship->IsYours())
-				&& !(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting()))
+		// Check whether this ship should take off with you. "Launching" ships can always take
+		// off, otherwise they must be able to land and also not be flagged to stay in space.
+		if(isHere && !ship->IsDisabled() && (ship->GetPersonality().IsLaunching()
+				|| ((player.GetPlanet()->CanLand(*ship) || ship->IsYours())
+				&& !(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting()))))
 		{
 			if(player.GetPlanet())
 				ship->SetPlanet(player.GetPlanet());
@@ -342,6 +345,9 @@ void Engine::Place()
 		
 		ship->Place(pos, ship->IsDisabled() ? Point() : velocity, angle);
 	}
+	// Move any ships that were randomly spawned into the main list, now
+	// that all special ships have been repositioned.
+	ships.splice(ships.end(), newShips);
 	
 	player.SetPlanet(nullptr);
 }
@@ -546,7 +552,14 @@ void Engine::Step(bool isActive)
 		info.SetBar("fuel", flagship->Fuel(),
 			flagship->Attributes().Get("fuel capacity") * .01);
 		info.SetBar("energy", flagship->Energy());
-		info.SetBar("heat", flagship->Heat());
+		double heat = flagship->Heat();
+		info.SetBar("heat", min(1., heat));
+		// If heat is above 100%, draw a second overlaid bar to indicate the
+		// total heat level.
+		if(heat > 1.)
+			info.SetBar("overheat", min(1., heat - 1.));
+		if(flagship->IsOverheated() && (step / 20) % 2)
+			info.SetBar("overheat blink", min(1., heat));
 		info.SetBar("shields", flagship->Shields());
 		info.SetBar("hull", flagship->Hull(), 20.);
 	}
@@ -1074,7 +1087,7 @@ void Engine::EnterSystem()
 	for(int i = 0; i < 5; ++i)
 		for(const System::FleetProbability &fleet : system->Fleets())
 			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
-				fleet.Get()->Place(*system, ships);
+				fleet.Get()->Place(*system, newShips);
 	
 	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
 	const Government *raidGovernment = raidFleet ? raidFleet->GetGovernment() : nullptr;
@@ -1086,7 +1099,7 @@ void Engine::EnterSystem()
 			for(int i = 0; i < 10; ++i)
 				if(Random::Real() < attraction)
 				{
-					raidFleet->Place(*system, ships);
+					raidFleet->Place(*system, newShips);
 					Messages::Add("Your fleet has attracted the interest of a "
 							+ raidGovernment->GetName() + " raiding party.");
 				}
@@ -1503,7 +1516,7 @@ void Engine::SendHails()
 		return;
 	
 	// Generate a random hail message.
-	SendMessage(source, source->GetHail());
+	SendMessage(source, source->GetHail(player));
 }
 
 
@@ -1832,6 +1845,15 @@ void Engine::FillRadar()
 			radar[calcTickTock].AddPointer(
 				(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
 				system->Position() - playerSystem->Position());
+	}
+	
+	// Add viewport brackets.
+	if(!Preferences::Has("Disable viewport on radar"))
+	{
+		radar[calcTickTock].AddViewportBoundary(Screen::TopLeft() / zoom);
+		radar[calcTickTock].AddViewportBoundary(Screen::TopRight() / zoom);
+		radar[calcTickTock].AddViewportBoundary(Screen::BottomLeft() / zoom);
+		radar[calcTickTock].AddViewportBoundary(Screen::BottomRight() / zoom);
 	}
 	
 	// Add ships. Also check if hostile ships have newly appeared.

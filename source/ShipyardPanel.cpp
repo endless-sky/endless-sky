@@ -26,8 +26,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
-#include "System.h"
 #include "UI.h"
+
+class System;
 
 using namespace std;
 
@@ -167,7 +168,7 @@ bool ShipyardPanel::CanBuy() const
 
 
 
-void ShipyardPanel::Buy()
+void ShipyardPanel::Buy(bool fromCargo)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
