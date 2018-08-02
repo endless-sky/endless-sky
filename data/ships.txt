@@ -915,7 +915,7 @@ ship "Combat Drone"
 	engine 9 29
 	gun 0 -29 "Beam Laser"
 	explode "tiny explosion" 15
-	description "Combat Drones are pilotless attack ships used primarily by the Republic Navy. Although very weak and easy to destroy, they can be very effective in large numbers. Because drones do not need a cockpit, they can be filled entirely with equipment and solid metal, which makes their hulls stronger than other small ships."
+	description "Combat drones are pilotless attack ships used primarily by the Republic Navy. Although very weak and easy to destroy, they can be very effective in large numbers. Because drones do not need a cockpit, they can be filled entirely with equipment and solid metal, which makes their hulls stronger than other small ships."
 
 
 
@@ -1565,7 +1565,7 @@ ship "Gunboat"
 	explode "small explosion" 20
 	explode "medium explosion" 15
 	"final explode" "final explosion small"
-	description "The Navy Gunboat is designed for engaging targets at short range, and also serves as the Navy's mobile sensor platform, scanning ships for illegal equipment or cargo."
+	description "The Navy gunboat is designed for engaging targets at short range, and also serves as the Navy's mobile sensor platform, scanning ships for illegal equipment or cargo."
 
 
 
@@ -2936,7 +2936,7 @@ ship "Surveillance Drone"
 	engine -5 29
 	engine 5 29
 	explode "tiny explosion" 15
-	description "Surveillance Drones are unarmed drones used by the Republic navy to scan ships and planets in a star system."
+	description "Surveillance drones are unarmed drones used by the Republic navy to scan ships and planets in a star system."
 
 
 
@@ -3041,4 +3041,4 @@ ship "Wasp"
 	leak "leak" 60 50
 	explode "tiny explosion" 20
 	explode "small explosion" 10
-	description "The Wasp is a medium-strength interceptor, designed by Syndicated Shipyards to serve as an escort for cargo vessels. Like most Syndicate ships, it is not particularly pretty, but it at least serves the purpose it was made for."
+	description "The wasp is a medium-strength interceptor, designed by Syndicated Shipyards to serve as an escort for cargo vessels. Like most Syndicate ships, it is not particularly pretty, but it at least serves the purpose it was made for."
