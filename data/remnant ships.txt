@@ -28,10 +28,10 @@ ship "Starling"
 		"outfit space" 312
 		"weapon capacity" 83
 		"engine capacity" 94
-		"hull repair rate" 0.8
-		"hull energy" 0.6
 		"shield generation" 1.8
 		"shield energy" 1.2
+		"hull repair rate" 0.8
+		"hull energy" 0.6
 		"cloak" .02
 		"cloaking energy" 5
 		"cloaking fuel" .1
@@ -166,10 +166,10 @@ ship "Albatross"
 		"outfit space" 658
 		"weapon capacity" 236
 		"engine capacity" 142
-		"hull repair rate" 1.5
-		"hull energy" 1.2
 		"shield generation" 5.2
 		"shield energy" 4.6
+		"hull repair rate" 1.5
+		"hull energy" 1.2
 		weapon
 			"blast radius" 360
 			"shield damage" 3600
@@ -318,10 +318,10 @@ ship "Gascraft"
 		"cargo space" 8
 		"outfit space" 90
 		"engine capacity" 34
-		"hull repair rate" 1.2
-		"hull energy" 0.9
 		"shield generation" 0.6
 		"shield energy" 0.4
+		"hull repair rate" 1.2
+		"hull energy" 0.9
 		"gaslining" 1
 	outfits
 		"Millennium Cell"
