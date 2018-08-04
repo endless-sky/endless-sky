@@ -35,6 +35,7 @@ color "logbook line" .2 .2 .2 1.
 # Colors used to draw certain HUD elements in-flight.
 color "shields" .43 .55 .70 .75
 color "hull" .70 .62 .43 .75
+color "disabled hull" .3 0 0 .3
 color "heat" .70 .43 .43 .75
 color "overheat" .70 .61 .43 .75
 color "energy" .6 .6 .6 .75
@@ -330,6 +331,11 @@ interface "hud"
 		dimensions 110 110
 		color "hull"
 		size 1.5
+	ring "disabled hull"
+		center -75 155
+		dimensions 110 110
+		color "disabled hull"
+		size 1.5
 	bar "fuel"
 		from -53.5 425
 		dimensions 0 -192
@@ -398,6 +404,11 @@ interface "hud"
 		center 75 315
 		dimensions 110 110
 		color "hull"
+		size 1.5
+	ring "target disabled hull"
+		center 75 315
+		dimensions 110 110
+		color "disabled hull"
 		size 1.5
 	
 	visible if "range display"

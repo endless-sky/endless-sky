@@ -2276,6 +2276,17 @@ double Ship::Health() const
 
 
 
+// Get the hull fraction at which this ship is disabled.
+double Ship::DisabledHull() const
+{
+	double hull = attributes.Get("hull");
+	double minimumHull = MinimumHull();
+	
+	return (hull > 0. ? minimumHull / hull : 0.);
+}
+
+
+
 int Ship::JumpsRemaining() const
 {
 	// Make sure this ship has some sort of hyperdrive, and if so return how
