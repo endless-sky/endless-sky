@@ -188,10 +188,10 @@ ship "Archon"
 		"energy capacity" 10000
 		"energy generation" 500
 		"heat generation" 17
-		"hull repair rate" 100
-		"hull energy" 100
 		"shield generation" 100
 		"shield energy" 100
+		"hull repair rate" 100
+		"hull energy" 100
 		"ramscoop" 100
 		weapon
 			"blast radius" 200
