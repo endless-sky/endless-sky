@@ -490,10 +490,10 @@ ship "Pug Arfecta"
 		"energy capacity" 10000
 		"energy generation" 200
 		"heat generation" 10
-		"hull repair rate" 5
-		"hull energy" 5
 		"shield generation" 32
 		"shield energy" 32
+		"hull repair rate" 5
+		"hull energy" 5
 		"cloaking fuel" -.2
 		weapon
 			"blast radius" 320
