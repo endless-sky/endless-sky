@@ -1986,7 +1986,7 @@ mission "Loan Broker Reunion"
 	minor
 	to offer
 		random < 25
-		"credit score" > 800
+		"credit score" > 750
 		"net worth" > 5000000
 	source "New Boston"
 	destination
