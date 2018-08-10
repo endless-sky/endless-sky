@@ -1273,7 +1273,8 @@ mission "Drug Running 1"
 		attributes "paradise"
 		distance 1 100
 	cargo "illegal drugs" 5 2 .1
-		illegal 40000
+		illegal 40000 `In addition to the fine, the illegal drugs are confiscated from your cargo hold.`
+		stealth
 	to offer
 		random < 10
 		"said no to drugs" < 4
@@ -1304,7 +1305,8 @@ mission "Drug Running 2"
 		attributes "rich"
 		distance 1 100
 	cargo "illegal drugs" 5 2 .1
-		illegal 50000
+		illegal 50000 `In addition to the fine, the illegal drugs are confiscated from your cargo hold.`
+		stealth
 	to offer
 		random < 10
 		has "Drug Running 1: done"
@@ -1330,7 +1332,8 @@ mission "Drug Running 3"
 		attributes "urban"
 		distance 1 100
 	cargo "illegal drugs" 5 2 .1
-		illegal 70000
+		illegal 70000 `In addition to the fine, the illegal drugs are confiscated from your cargo hold.`
+		stealth
 	to offer
 		random < 10
 		has "Drug Running 2: done"
