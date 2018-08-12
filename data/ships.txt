@@ -992,7 +992,7 @@ ship "Cruiser"
 		"drag" 10.1
 		"heat dissipation" .45
 		"fuel capacity" 600
-		"cargo space" 60
+		"cargo space" 80
 		"outfit space" 760
 		"weapon capacity" 320
 		"engine capacity" 170
@@ -1423,7 +1423,7 @@ ship "Frigate"
 		"drag" 5.2
 		"heat dissipation" .7
 		"fuel capacity" 500
-		"cargo space" 35
+		"cargo space" 60
 		"outfit space" 410
 		"weapon capacity" 170
 		"engine capacity" 100
@@ -1531,7 +1531,7 @@ ship "Gunboat"
 		"drag" 3.1
 		"heat dissipation" .8
 		"fuel capacity" 600
-		"cargo space" 50
+		"cargo space" 40
 		"outfit space" 270
 		"weapon capacity" 100
 		"engine capacity" 90
@@ -2389,7 +2389,7 @@ ship "Rainmaker"
 		"drag" 3.8
 		"heat dissipation" .6
 		"fuel capacity" 500
-		"cargo space" 25
+		"cargo space" 20
 		"outfit space" 230
 		"weapon capacity" 60
 		"engine capacity" 50
