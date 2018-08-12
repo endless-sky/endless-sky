@@ -561,7 +561,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 		
 		"Large Thrust Module" 4
 		"Large Steering Module" 2
-		"Small Steering Module" 2
+		"Small Steering Module"
 		"Hyperdrive"
 	
 	turret
