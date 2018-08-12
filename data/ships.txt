@@ -1845,7 +1845,7 @@ ship "Heavy Shuttle"
 	attributes
 		category "Transport"
 		"cost" 320000
-		"shields" 700
+		"shields" 800
 		"hull" 700
 		"required crew" 1
 		"bunks" 8
