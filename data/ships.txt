@@ -2602,8 +2602,8 @@ ship "Shuttle"
 	attributes
 		category "Transport"
 		"cost" 180000
-		"shields" 500
-		"hull" 600
+		"shields" 600
+		"hull" 500
 		"required crew" 1
 		"bunks" 6
 		"mass" 70
