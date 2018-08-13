@@ -3004,7 +3004,7 @@ double Ship::MinimumHull() const
 		return 0.;
 	
 	double maximumHull = attributes.Get("hull");
-	return max(.20 * maximumHull, min(.50 * maximumHull, 400.));
+	return maximumHull * max(.15, min(.45, 10. / sqrt(maximumHull)));
 }
 
 
