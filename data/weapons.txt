@@ -652,7 +652,7 @@ outfit "Meteor Missile Launcher"
 		"hit effect" "missile hit"
 		"inaccuracy" 5
 		"velocity" 11
-		"lifetime" 490
+		"lifetime" 480
 		"reload" 80
 		"firing energy" 1
 		"firing heat" 20
@@ -714,7 +714,7 @@ outfit "Sidewinder Missile Launcher"
 		"hit effect" "missile hit"
 		"inaccuracy" 4
 		"velocity" 14
-		"lifetime" 470
+		"lifetime" 480
 		"reload" 60
 		"firing energy" 1
 		"firing heat" 15
@@ -945,7 +945,7 @@ outfit "Heavy Rocket Launcher"
 		"die effect" "small explosion"
 		"inaccuracy" 1
 		"velocity" 9
-		"lifetime" 100
+		"lifetime" 90
 		"reload" 240
 		"firing energy" 1
 		"firing heat" 250
