@@ -295,7 +295,7 @@ ship "Heliarch Interdictor"
 		"Large Shield Module" 2
 		"Large Repair Module"
 		"Cooling Module"
-		"Scanning Module"
+		"Scanning Module" 2
 		
 		"Large Thrust Module" 2
 		"Large Steering Module" 2
@@ -327,7 +327,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 		"Large Shield Module" 2
 		"Large Repair Module"
 		"Cooling Module"
-		"Scanning Module"
+		"Scanning Module" 2
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module"
@@ -369,7 +369,7 @@ ship "Heliarch Neutralizer"
 		"Large Shield Module"
 		"Large Repair Module"
 		"Cooling Module"
-		"Scanning Module"
+		"Scanning Module" 3
 		
 		"Large Thrust Module"
 		"Small Thrust Module" 2
@@ -422,7 +422,7 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Nimble)"
 		"Large Shield Module"
 		"Large Repair Module"
 		"Cooling Module"
-		"Scanning Module"
+		"Scanning Module" 3
 		
 		"Large Thrust Module"
 		"Small Thrust Module"
@@ -439,7 +439,8 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 		"Large Shield Module" 2
 		"Large Repair Module"
 		"Cooling Module" 2
-		"Scanning Module"
+		"Scanning Module" 3
+		"Outfits Expansion"
 		
 		"Large Thrust Module"
 		"Small Thrust Module"
