@@ -559,7 +559,6 @@ ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 		"Large Repair Module" 2
 		"Cooling Module" 2
 		"Scanning Module"
-		"Outfits Expansion"
 		
 		"Large Thrust Module" 4
 		"Large Steering Module" 2
