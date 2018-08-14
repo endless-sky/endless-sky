@@ -293,6 +293,9 @@ tip "repairing hull:"
 tip "charging shields:"
 	`Energy consumed and heat generated when this ship is recharging its shields. This is in addition to the "idle" amount.`
 
+tip "cloaking:"
+	`Energy consumed and heat generated when this ship is cloaked. This is in addition to the "idle" amount.`
+
 tip "max:"
 	`Energy storage capacity and maximum safe level for heat generation. Energy capacity allows a ship to temporarily draw more energy than it produces. The heat maximum is the highest your heat generation can be without eventually causing your ship to overheat.`
 
