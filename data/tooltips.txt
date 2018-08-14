@@ -101,6 +101,12 @@ tip "fuel:"
 tip "fuel capacity:"
 	`An ordinary hyperdrive jump consumes 100 fuel. Fuel is replenished for free when you land on an inhabited planet.`
 
+tip "fuel consumption:"
+	`Fuel consumed per second while in flight.`
+	
+tip "fuel generation:"
+	`Fuel generated per second.`
+
 tip "gun ports needed:"
 	`This weapon uses up a gun port. Guns always fire straight forward; turrets fire in the direction of your currently selected target.`
 
@@ -121,6 +127,9 @@ tip "hull:"
 
 tip "hull energy:"
 	`Energy per second consumed when repairing the hull.`
+
+tip "hull fuel:"
+	`Fuel per second consumed when repairing the hull.`
 
 tip "hull heat:"
 	`Heat per second generated when repairing the hull.`
@@ -199,6 +208,9 @@ tip "sells for:"
 
 tip "shield energy:"
 	`Energy consumed per second when recharging shields.`
+
+tip "shield fuel:"
+	`Fuel consumed per second when recharging shields.`
 
 tip "shield heat:"
 	`Heat produced per second when recharging shields.`
