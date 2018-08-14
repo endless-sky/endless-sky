@@ -437,6 +437,7 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 		"Small Reactor Module" 2
 		"Small Battery Module"
 		"Large Shield Module" 2
+		"Small Shield Module"
 		"Large Repair Module"
 		"Cooling Module" 2
 		"Scanning Module" 3
