@@ -400,7 +400,7 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Missile)"
 		"Large Shield Module"
 		"Large Repair Module"
 		"Cooling Module"
-		"Scanning Module"
+		"Scanning Module" 3
 		
 		"Large Thrust Module"
 		"Small Thrust Module" 2
