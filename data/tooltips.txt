@@ -335,6 +335,9 @@ tip "ammo:"
 tip "range:"
 	`Total range of this weapon.`
 
+tip "velocity / range:"
+	`The distance the projectile can travel per second and in total (range is velocity times lifetime).`
+
 tip "shield damage / second:"
 	`Shield damage, converted to damage per second to allow easy comparisons between different weapons.`
 
