@@ -127,7 +127,7 @@ ship "Korath Chaser"
 	engine 7 23
 	gun 0 -28 "Korath Fire-Lance"
 	explode "tiny explosion" 20
-	description "The Korath Chaser is a fighter carried by most of their capital ships."
+	description "The Korath Chaser is a fighter carried by their raiding ships."
 
 
 
