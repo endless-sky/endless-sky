@@ -44,7 +44,7 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="0.9.8" date="2017-08-14">
+    <release version="0.9.8" date="2017-08-15">
       <description>
         <p>Bug fixes:</p>
         <ul>
@@ -117,4 +117,5 @@
       </description>
     </release>
   </releases>
+  <content_rating type="oars-1.1" />
 </component>
