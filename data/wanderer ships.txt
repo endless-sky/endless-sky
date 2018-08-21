@@ -776,6 +776,7 @@ ship "Deep River" "Deep River (Jump, Unarmed)"
 		"White Sun Reactor"
 		"Dark Storm Shielding" 3
 		"Fuel Pod"
+		
 		"Type 2 Radiant Thruster"
 		"Type 4 Radiant Steering"
 		"Jump Drive"
