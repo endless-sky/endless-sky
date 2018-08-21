@@ -771,6 +771,15 @@ ship "Deep River"
 	"final explode" "final explosion large"
 	description "The Deep River is a bulk freighter, designed to carry cargo in detachable pods."
 
+ship "Deep River" "Deep River (Jump, Unarmed)"
+	outfits
+		"White Sun Reactor"
+		"Dark Storm Shielding" 3
+		"Fuel Pod"
+		"Type 2 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Jump Drive"
+
 ship "Deep River" "Deep River 0"
 	sprite "ship/deep river 0"
 	add attributes
