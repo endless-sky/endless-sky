@@ -411,6 +411,39 @@ ship "Bulk Freighter" "Bulk Freighter (Proton)"
 
 
 
+ship "Carrier" "Carrier (Alpha)"
+	outfits
+		"Ion Cannon" 2
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 224
+		"Korath Disruptor" 2
+		"Korath Slicer Turret" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 3
+		"Small Heat Shunt"
+		"Wanderer Ramscoop"
+		"Outfits Expansion" 4
+		"Laser Rifle" 120
+		
+		`"Bondir" Atomic Thruster`
+		"Steering (Stellar Class)"
+		"Jump Drive"
+	
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun
+	gun
+	turret "Korath Disruptor"
+	turret "Korath Slicer Turret"
+	turret "Korath Disruptor"
+	turret "Korath Slicer Turret"
+	
 ship "Carrier" "Carrier (Jump)"
 	outfits
 		"Particle Cannon" 4
