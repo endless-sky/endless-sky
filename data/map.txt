@@ -27082,7 +27082,7 @@ planet "Vara Kehi'ki"
 
 planet "Vara Pug"
 	attributes pug
-	landscape land/beach4
+	landscape land/bwerner5
 	description `Vara Pug is an ocean world, wild and almost unsettled, except for a single Pug city on the coast of one of the major continents. The animals and plants on the land are relatively uninteresting, but the oceans are home to an enormous variety of creatures, including whales the size of a bulk freighter, a highly intelligent species of jellyfish, and other, far stranger creatures that rarely venture up from the sunless ocean depths.`
 	description `	To avoid contact with these marine creatures, when the Pug travel to other parts of the planet they use massive solar-powered airships rather than boats.`
 	spaceport `The Pug here all seem to be busy with various tasks, none of which make any sense to you: rushing from building to building on their long, spindly legs; playing a game involving colored stones on a hexagonal table; constructing what appears to be collaborative holographic artwork.`
