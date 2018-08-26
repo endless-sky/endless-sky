@@ -1559,7 +1559,7 @@ void Ship::DoGeneration()
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
 	
-	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
+	isDisabled = isOverheated || (abs(hull - MinimumHull()) >= 1 && hull < MinimumHull()) || (!crew && RequiredCrew());
 	
 	// Whenever not actively scanning, the amount of scan information the ship
 	// has "decays" over time. For a scanner with a speed of 1, one second of
@@ -1922,7 +1922,7 @@ bool Ship::IsDisabled() const
 	
 	double minimumHull = MinimumHull();
 	bool needsCrew = RequiredCrew() != 0;
-	return (hull < minimumHull || (!crew && needsCrew));
+	return ((abs(hull - minimumHull) >= 1 && hull < minimumHull) || (!crew && needsCrew));
 }
 
 
