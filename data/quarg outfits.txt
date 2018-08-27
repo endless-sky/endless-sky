@@ -30,7 +30,7 @@ outfit "Antimatter Core"
 outfit "Quarg Skylance"
 	category "Turrets"
 	cost 18000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/quarg skylance"
 	"mass" 60
 	"outfit space" -60
 	"weapon capacity" -60
