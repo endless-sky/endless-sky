@@ -38,6 +38,8 @@ outfit "Quarg Skylance"
 	"required crew" 1
 	weapon
 		sprite "projectile/skylance"
+		"hardpoint sprite" "hardpoint/quarg skylance"
+		"hardpoint offset" 9.
 			"frame rate" 1
 		sound "skylance"
 		"hit effect" "skylance impact"
