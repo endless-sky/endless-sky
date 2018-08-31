@@ -1092,11 +1092,11 @@ void MapPanel::DrawTooltips()
 		// If you have both active and parked escorts, call the active ones
 		// "active escorts." Otherwise, just call them "escorts."
 		if(t.first && t.second)
-			tooltip += Format::Number(t.first) + (t.first == 1 ? " active escort\n" : " active escorts\n");
+			tooltip += to_string(t.first) + (t.first == 1 ? " active escort\n" : " active escorts\n");
 		else if(t.first)
-			tooltip += Format::Number(t.first) + (t.first == 1 ? " escort" : " escorts");
+			tooltip += to_string(t.first) + (t.first == 1 ? " escort" : " escorts");
 		if(t.second)
-			tooltip += Format::Number(t.second) + (t.second == 1 ? " parked escort" : " parked escorts");
+			tooltip += to_string(t.second) + (t.second == 1 ? " parked escort" : " parked escorts");
 		
 		hoverText.Wrap(tooltip);
 	}
