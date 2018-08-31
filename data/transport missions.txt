@@ -920,8 +920,8 @@ mission "There Might Be Riots part 3B"
 
 ship "Timer Ship"
 	attributes
-		"hull" 1
-		"hull repair rate" .0003
+		"hull" 3
+		"hull repair rate" .001
 		"mass" 100
 		"drag" 5
 		"automaton" 1
@@ -941,7 +941,7 @@ outfit "Timer Weapon"
 		"reload" 100
 		"trigger radius" 200
 		"blast radius" 20
-		"hull damage" .04
+		"hull damage" .1
 
 mission "Sad Archie"
 	landing
