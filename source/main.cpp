@@ -84,10 +84,12 @@ int main(int argc, char *argv[])
 	PlayerInfo player;
 	
 	try {
+		// Begin loading the game data.
+		if(!GameData::BeginLoad(argv))
+			return 0;
+
 		SDL_Init(SDL_INIT_VIDEO);
 		
-		// Begin loading the game data.
-		GameData::BeginLoad(argv);
 		Audio::Init(GameData::Sources());
 		
 		// On Windows, make sure that the sleep timer has at least 1 ms resolution
