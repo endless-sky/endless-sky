@@ -24,7 +24,7 @@ mission "Transport executive to <planet>"
 		government Republic "Free Worlds" Syndicate Neutral Quarg
 		attributes paradise rich core "near earth"
 	on complete
-		payment 1000 170
+		payment 5000 170
 		dialog "The executive rushes off your ship without even a goodbye, fancy briefcase in hand. You collect your payment of <payment>."
 
 
