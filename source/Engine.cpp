@@ -565,7 +565,7 @@ void Engine::Step(bool isActive)
 		info.SetBar("disabled hull", min(flagship->Hull(), flagship->DisabledHull()), 20.);
 	}
 	info.SetString("credits",
-		Format::Number(player.Accounts().Credits()) + " credits");
+		Format::Credits(player.Accounts().Credits()) + " credits");
 	bool isJumping = flagship && (flagship->Commands().Has(Command::JUMP) || flagship->IsEnteringHyperspace());
 	if(flagship && flagship->GetTargetStellar() && !isJumping)
 	{
@@ -1781,7 +1781,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 			player.Harvest(outfit);
 		}
 		else
-			message = name + Format::Number(amount) + " "
+			message = name + to_string(amount) + " "
 				+ (amount == 1 ? outfit->Name() : outfit->PluralName()) + ".";
 	}
 	else
@@ -1800,7 +1800,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	if(!message.empty())
 	{
 		int free = collector->Cargo().Free();
-		message += " (" + Format::Number(free) + (free == 1 ? " ton" : " tons");
+		message += " (" + to_string(free) + (free == 1 ? " ton" : " tons");
 		message += " of free space remaining.)";
 		Messages::Add(message);
 	}

@@ -80,6 +80,8 @@ namespace {
 	
 	// Hovering an escort pip for this many frames activates the tooltip.
 	const int HOVER_TIME = 60;
+	// Length in frames of the recentering animation.
+	const int RECENTER_TIME = 20;
 }
 
 const double MapPanel::OUTER = 6.;
@@ -115,7 +117,21 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	hoverText.SetAlignment(WrappedText::LEFT);
 	
 	if(selectedSystem)
-		CenterOnSystem(selectedSystem);
+		CenterOnSystem(selectedSystem, true);
+}
+
+
+
+void MapPanel::Step()
+{
+	if(recentering > 0)
+	{
+		double step = (recentering - .5) / RECENTER_TIME;
+		// Interpolate with the smoothstep function, 3x^2 - 2x^3. Its derivative
+		// gives the fraction of the distance to move at each time step:
+		center += recenterVector * (step * (1. - step) * (6. / RECENTER_TIME));
+		--recentering;
+	}
 }
 
 
@@ -402,6 +418,8 @@ bool MapPanel::Hover(int x, int y)
 bool MapPanel::Drag(double dx, double dy)
 {
 	center += Point(dx, dy) / Zoom();
+	recentering = 0;
+	
 	return true;
 }
 
@@ -631,9 +649,15 @@ int MapPanel::Search(const string &str, const string &sub)
 
 
 
-void MapPanel::CenterOnSystem(const System *system)
+void MapPanel::CenterOnSystem(const System *system, bool immediate)
 {
-	center = Point(0., -80.) / Zoom() - system->Position();
+	if(immediate)
+		center = -system->Position();
+	else
+	{
+		recenterVector = -system->Position() - center;
+		recentering = RECENTER_TIME;
+	}
 }
 
 
@@ -1092,11 +1116,11 @@ void MapPanel::DrawTooltips()
 		// If you have both active and parked escorts, call the active ones
 		// "active escorts." Otherwise, just call them "escorts."
 		if(t.first && t.second)
-			tooltip += Format::Number(t.first) + (t.first == 1 ? " active escort\n" : " active escorts\n");
+			tooltip += to_string(t.first) + (t.first == 1 ? " active escort\n" : " active escorts\n");
 		else if(t.first)
-			tooltip += Format::Number(t.first) + (t.first == 1 ? " escort" : " escorts");
+			tooltip += to_string(t.first) + (t.first == 1 ? " escort" : " escorts");
 		if(t.second)
-			tooltip += Format::Number(t.second) + (t.second == 1 ? " parked escort" : " parked escorts");
+			tooltip += to_string(t.second) + (t.second == 1 ? " parked escort" : " parked escorts");
 		
 		hoverText.Wrap(tooltip);
 	}
