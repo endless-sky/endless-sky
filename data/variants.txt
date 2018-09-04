@@ -329,7 +329,7 @@ ship "Berserker" "Berserker (Afterburner)"
 
 
 
-ship "Berserker" "Berserker (Strike Fighter)"
+ship "Berserker" "Berserker (Strike)"
 	outfits
 		"Heavy Rocket Launcher"
 		"Heavy Rocket" 20
@@ -1158,9 +1158,8 @@ ship "Headhunter" "Headhunter (Particle)"
 		"Hyperdrive"
 
 
-ship "Headhunter" "Headhunter (Heavy Strike Fighter)"
+ship "Headhunter" "Headhunter (Strike)"
 	outfits
-		"Heavy Laser" 2
 		"Torpedo Launcher"
 		"Torpedo" 30
 		"Sidewinder Missile Launcher"

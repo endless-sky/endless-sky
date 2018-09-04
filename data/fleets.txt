@@ -423,7 +423,7 @@ fleet "Small Northern Merchants"
 		"Berserker (Afterburner)"
 	variant 3
 		"Freighter"
-		"Berserker (Strike Fighter)"
+		"Berserker (Strike)"
 	variant 5
 		"Freighter (Fancy)"
 		"Shuttle" 4
@@ -471,7 +471,7 @@ fleet "Large Northern Merchants"
 		"Berserker (Afterburner)" 2
 	variant 3
 		"Freighter" 2
-		"Berserker (Strike Fighter)" 2
+		"Berserker (Strike)" 2
 	variant 10
 		"Freighter" 2
 		"Firebird (Plasma)"
@@ -528,7 +528,7 @@ fleet "Large Northern Merchants"
 		"Behemoth (Proton)"
 	variant 10
 		"Behemoth"
-		"Berserker (Strike Fighter)" 3
+		"Berserker (Strike)" 3
 	variant 10
 		"Behemoth" 2
 	variant 1
@@ -595,7 +595,7 @@ fleet "Large Northern Merchants"
 		"Headhunter (Particle)" 3
 	variant 1
 		"Star Queen"
-		"Berserker (Strike Fighter)" 2
+		"Berserker (Strike)" 2
 	variant 1
 		"Star Queen"
 		"Leviathan (Heavy)"
@@ -1252,7 +1252,7 @@ fleet "Small Deep Merchants"
 	variant 3
 		"Headhunter"
 	variant 1
-		"Headhunter (Heavy Strike Fighter)"
+		"Headhunter (Strike)"
 	variant 3
 		"Flivver"
 	variant 2
@@ -1315,7 +1315,7 @@ fleet "Large Deep Merchants"
 	variant 1
 		"Star Queen"
 		"Headhunter (Particle)"
-		"Headhunter (Heavy Strike Fighter)"
+		"Headhunter (Strike)"
 	variant 1
 		"Star Queen"
 		"Raven (Afterburner)" 2
@@ -1341,7 +1341,7 @@ fleet "Small Deep Security"
 	variant 2
 		"Headhunter (Particle)"
 	variant 2
-		"Headhunter (Heavy Strike Fighter)"
+		"Headhunter (Strike)"
 	variant 4
 		"Corvette"
 	variant 2
@@ -1390,7 +1390,7 @@ fleet "Large Deep Security"
 		"Headhunter (Particle)" 2
 	variant 2
 		"Headhunter (Particle)"
-		"Headhunter (Heavy Strike Fighter)"
+		"Headhunter (Strike)"
 	variant 3
 		"Aerie" 2
 		"Dagger" 4
@@ -1927,7 +1927,7 @@ fleet "Large Core Pirates"
 		"Fury (Bomber)"
 		"Quicksilver (Proton)" 2
 	variant 2
-		"Headhunter (Heavy Strike Fighter)"
+		"Headhunter (Strike)"
 		"Quicksilver" 2
 	variant 3
 		"Splinter (Proton)"
@@ -1979,7 +1979,7 @@ fleet "Small Northern Pirates"
 	variant 2
 		"Berserker (Afterburner)"
 	variant 2
-		"Berserker (Strike Fighter)"
+		"Berserker (Strike)"
 	variant 2
 		"Hawk"
 	variant 1
@@ -1994,7 +1994,7 @@ fleet "Small Northern Pirates"
 	variant 2
 		"Headhunter (Particle)"
 	variant 2
-		"Headhunter (Heavy Strike Fighter)"
+		"Headhunter (Strike)"
 	variant 2
 		"Raven (Afterburner)"
 	variant 1
@@ -2051,10 +2051,10 @@ fleet "Large Northern Pirates"
 		"Raven (Heavy)" 2
 	variant 2
 		"Headhunter (Particle)" 1
-		"Headhunter (Heavy Strike Fighter)"
+		"Headhunter (Strike)"
 	variant 1
 		"Headhunter (Particle)" 2
-		"Headhunter (Heavy Strike Fighter)"
+		"Headhunter (Strike)"
 	variant 2
 		"Leviathan"
 		"Firebird"
@@ -2084,13 +2084,13 @@ fleet "Large Northern Pirates"
 	variant 1
 		"Berserker (Afterburner)" 3
 	variant 1
-		"Berserker (Strike Fighter)" 3
+		"Berserker (Strike)" 3
 	variant 2
 		"Berserker" 2
 	variant 2
 		"Berserker (Afterburner)" 2
 	variant 2
-		"Berserker (Strike Fighter)" 2
+		"Berserker (Strike)" 2
 	variant 1
 		"Bactrian"
 		"Dagger" 3
@@ -2275,14 +2275,14 @@ fleet "Bounty Hunters"
 		"Fury (Bomber)"
 		"Sparrow" 2
 	variant 5
-		"Berserker (Strike Fighter)"
+		"Berserker (Strike)"
 		"Quicksilver"
 	variant 5
 		"Quicksilver" 2
 		"Headhunter (Particle)"
 	variant 3
 		"Sparrow" 2
-		"Headhunter (Heavy Strike Fighter)"
+		"Headhunter (Strike)"
 	variant 3
 		"Raven"
 		"Fury (Missile)" 2
@@ -2841,7 +2841,7 @@ fleet "Hired Guns"
 		"Modified Argosy" 2
     variant 1
 		"Vanguard (Missile)"
-		"Headhunter (Heavy Strike Fighter)" 2
+		"Headhunter (Strike)" 2
 	variant 1
 		"Vanguard (Particle)"
 		"Mule (Heavy)"
