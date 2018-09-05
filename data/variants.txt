@@ -459,7 +459,7 @@ ship "Carrier" "Carrier (Mark II)"
 		"A860 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
-		"Electron Rifle" 123
+		"Electron Rifle" 120
 	gun "Particle Cannon"
 	gun "Particle Cannon"
 	gun "Sidewinder Missile Launcher"
@@ -646,7 +646,7 @@ ship "Cruiser" "Cruiser (Mark II)"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
-		"Electron Rifle" 97
+		"Electron Rifle" 100
 	gun "Sidewinder Missile Launcher"
 	gun "Sidewinder Missile Launcher"
 	gun "Sidewinder Missile Launcher"
@@ -893,7 +893,7 @@ ship "Frigate" "Frigate (Mark II)"
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-		"Electron Rifle" 35
+		"Electron Rifle" 40
 	turret "Anti-Missile Turret"
 	turret "Blaster Turret"
 	turret "Blaster Turret"
@@ -961,7 +961,7 @@ ship "Gunboat" "Gunboat (Mark II)"
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
-		"Electron Rifle" 9
+		"Electron Rifle" 10
 
 
 
