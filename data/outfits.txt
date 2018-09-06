@@ -338,7 +338,7 @@ outfit "Electron Rifle"
 	"capture attack" .7
 	"capture defense" 1.1
 	"unplunderable" 1
-	description "The electron rifle was developed by the Deep for the Navy to use in quelling the Free Worlds. While stronger than the laser rifle, it fires slower and more costly to produce."
+	description "The electron rifle was developed by the Deep for the Navy to use in quelling the Free Worlds. While stronger than the laser rifle, it fires slower and is more costly to produce."
 
 outfit "Fragmentation Grenades"
 	plural "Fragmentation Grenades"
