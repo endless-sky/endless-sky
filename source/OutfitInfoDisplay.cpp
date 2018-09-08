@@ -232,10 +232,19 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributesHeight += 20;
 	}
 	
-	attributeLabels.emplace_back("velocity / range:");
-	attributeValues.emplace_back(Format::Number(60. * outfit.Velocity())
+	if (outfit.Lifetime() > 1)
+	{
+		attributeLabels.emplace_back("velocity / range:");
+		attributeValues.emplace_back(Format::Number(60. * outfit.Velocity())
 			+ " / " + Format::Number(outfit.Range()));
-	attributesHeight += 20;
+		attributesHeight += 20;
+	}
+	else
+	{
+		attributeLabels.emplace_back("range:");
+		attributeValues.emplace_back(Format::Number(outfit.Range()));
+		attributesHeight += 20;
+	}
 	
 	static const vector<string> VALUE_NAMES = {
 		"shield damage",
