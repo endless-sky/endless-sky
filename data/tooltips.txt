@@ -132,13 +132,13 @@ tip "hull:"
 	`Total hull strength. Small ships are disabled when their hull strength drops below 50%; larger ships are disabled at 20%.`
 
 tip "hull energy:"
-	`Energy per second consumed when repairing the hull.`
+	`Energy consumed per second when repairing the hull.`
 
 tip "hull fuel:"
-	`Fuel per second consumed when repairing the hull.`
+	`Fuel consumed per second when repairing the hull.`
 
 tip "hull heat:"
-	`Heat per second generated when repairing the hull.`
+	`Heat produced per second when repairing the hull.`
 
 tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
