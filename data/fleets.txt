@@ -1382,9 +1382,31 @@ fleet "Small Syndicate"
 	cargo 2
 	personality
 		heroic
-	variant 3
+	variant 1
+		"Wasp" 5
+	variant 1
+		"Wasp" 4
+		"Wasp (Proton)"
+	variant 1
+		"Wasp" 3
+		"Wasp (Proton)" 2
+	variant 1
+		"Wasp" 2
+		"Wasp (Proton)" 3
+	variant 1
+		"Wasp"
+		"Wasp (Proton)" 4
+	variant 1
+		"Wasp (Proton)" 5
+	variant 2
 		"Quicksilver" 3
-	variant 3
+	variant 2
+		"Quicksilver" 2
+		"Quicksilver (Proton)"
+	variant 2
+		"Quicksilver"
+		"Quicksilver (Proton)" 2
+	variant 2
 		"Quicksilver (Proton)" 3
 	variant 1
 		"Splinter"
@@ -1394,9 +1416,9 @@ fleet "Small Syndicate"
 	variant 1
 		"Splinter (Proton)"
 		"Quicksilver (Proton)" 2
-	variant 1
+	variant 2
 		"Manta"
-	variant 1
+	variant 2
 		"Manta (Proton)"
 
 fleet "Large Syndicate"
