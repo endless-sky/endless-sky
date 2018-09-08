@@ -32,7 +32,7 @@ namespace {
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	
-	const vector<double> ZOOMS = {.06, .09, .13, .18, .25, .35, .50, .70, 1.00, 1.40, 2.00};
+	const vector<double> ZOOMS = {.06, .09, .13, .18, .25, .35, .50, .71, 1.00, 1.41, 2.00};
 	int zoomIndex = 4;
 	const double VOLUME_SCALE = .25;
 }
