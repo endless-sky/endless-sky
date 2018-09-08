@@ -703,9 +703,13 @@ int64_t Ship::ChassisCost() const
 string Ship::FlightCheck() const
 {
 	double generation = attributes.Get("energy generation") - attributes.Get("energy consumption");
+	double burning = attributes.Get("fuel energy");
 	double solar = attributes.Get("solar collection");
 	double battery = attributes.Get("energy capacity");
-	double energy = generation + solar + battery;
+	double energy = generation + burning + solar + battery;
+	double fuelChange = attributes.Get("fuel generation") - attributes.Get("fuel consumption");
+	double fuelCapacity = attributes.Get("fuel capacity");
+	double fuel = fuelCapacity + fuelChange;
 	double thrust = attributes.Get("thrust");
 	double reverseThrust = attributes.Get("reverse thrust");
 	double afterburner = attributes.Get("afterburner thrust");
@@ -720,6 +724,8 @@ string Ship::FlightCheck() const
 		return "overheating!";
 	if(energy <= 0.)
 		return "no energy!";
+	if((energy - burning <= 0.) && (fuel <= 0.))
+		return "no fuel!";
 	if(!thrust && !reverseThrust && !afterburner)
 		return "no thruster!";
 	if(!turn)
@@ -738,6 +744,8 @@ string Ship::FlightCheck() const
 		return "limited turn?";
 	if(energy - .8 * solar < .2 * (turnEnergy + thrustEnergy))
 		return "solar power?";
+	if(fuel <= 0.)
+		return "fuel?";
 	if(!hyperDrive && !jumpDrive && !canBeCarried)
 		return "no hyperdrive?";
 	
