@@ -40,6 +40,7 @@ namespace {
 		{"energy consumption", 60.},
 		{"energy generation", 60.},
 		{"heat generation", 60.},
+		{"heat dissipation", 60.},
 		{"hull repair rate", 60.},
 		{"hull energy", 60.},
 		{"hull heat", 60.},
