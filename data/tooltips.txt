@@ -456,7 +456,7 @@ tip "overheating!"
 	`This ship's outfits are producing so much heat that it will overheat the moment it takes off. You must either add more cooling or remove some of the outfits that are producing heat.`
 
 tip "no energy!"
-	`This ship does not have any source of energy to power its systems. its systems. You should install some sort of generator.`
+	`This ship does not have any source of energy to power its systems. You should install some sort of generator.`
 
 tip "no fuel!"
 	`This ship does not have enough fuel to provide energy to power its systems. You should increase the fuel capacity.`
