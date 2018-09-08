@@ -44,6 +44,7 @@ namespace {
 		{"hull repair rate", 60.},
 		{"hull energy", 60.},
 		{"hull heat", 60.},
+		{"jump speed", 60.},
 		{"reverse thrusting energy", 60.},
 		{"reverse thrusting heat", 60.},
 		{"shield generation", 60.},
