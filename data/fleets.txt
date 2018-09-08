@@ -1398,15 +1398,15 @@ fleet "Small Syndicate"
 		"Wasp (Proton)" 4
 	variant 1
 		"Wasp (Proton)" 5
-	variant 2
+	variant 3
 		"Quicksilver" 3
-	variant 2
+	variant 3
 		"Quicksilver" 2
 		"Quicksilver (Proton)"
-	variant 2
+	variant 3
 		"Quicksilver"
 		"Quicksilver (Proton)" 2
-	variant 2
+	variant 3
 		"Quicksilver (Proton)" 3
 	variant 1
 		"Splinter"
@@ -1416,10 +1416,16 @@ fleet "Small Syndicate"
 	variant 1
 		"Splinter (Proton)"
 		"Quicksilver (Proton)" 2
-	variant 2
+	variant 1
 		"Manta"
-	variant 2
+	variant 1
 		"Manta (Proton)"
+	variant 1
+		"Manta"
+		"Wasp" 2
+	variant 1
+		"Manta (Proton)"
+		"Wasp (Proton)" 2
 
 fleet "Large Syndicate"
 	government "Syndicate"
