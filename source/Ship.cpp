@@ -703,7 +703,7 @@ string Ship::FlightCheck() const
 	double solar = attributes.Get("solar collection");
 	double battery = attributes.Get("energy capacity");
 	double energy = generation + solar + battery;
-	double fuel = attributes.Get("fuel capacity");
+	double fuelCapacity = attributes.Get("fuel capacity");
 	double thrust = attributes.Get("thrust");
 	double reverseThrust = attributes.Get("reverse thrust");
 	double afterburner = attributes.Get("afterburner thrust");
@@ -740,7 +740,7 @@ string Ship::FlightCheck() const
 	{
 		if(!hyperDrive && !jumpDrive)
 			return "no hyperdrive?";
-		if(fuel < JumpFuel())
+		if(fuelCapacity < JumpFuel())
 			return "no fuel?";
 	}
 	
