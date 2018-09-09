@@ -185,9 +185,9 @@ effect "repeater impact"
 	sprite "effect/repeater impact"
 		"no repeat"
 		"frame rate" 12
+	"random velocity" .6
 	"lifetime" 21
 	"random angle" 360
-	"random velocity" .6
 	"random spin" 100
 	"velocity scale" -.1
 
@@ -286,10 +286,10 @@ effect "piercer fire"
 	sprite "effect/piercer fire"
 		"no repeat"
 		"frame rate" 8
+	"random velocity" .5
 	"lifetime" 30
 	"random angle" 5
 	"random spin" 10
-	"random velocity" .5
 	"velocity scale" 1.2
 
 effect "piercer impact"
@@ -297,9 +297,9 @@ effect "piercer impact"
 		"no repeat"
 		"frame rate" 8
 	sound "explosion tiny"
+	"random velocity" .1
 	"lifetime" 31
 	"random angle" 360
-	"random velocity" .1
 	"random spin" 60
 	"velocity scale" .001
 
@@ -307,9 +307,9 @@ effect "piercer explosion"
 	sprite "effect/piercer explosion"
 		"no repeat"
 		"frame rate" 20
+	"random velocity" .1
 	"lifetime" 28
 	"random angle" 360
-	"random velocity" .1
 	"random spin" 60
 	"velocity scale" .08
 
@@ -350,8 +350,8 @@ effect "detainer sparks"
 	sprite "effect/detainer sparks"
 		"no repeat"
 		"frame rate" 10
-	"lifetime" 37
 	"random velocity" .1
+	"lifetime" 37
 	"random spin" 2
 	"velocity scale" .5
 
@@ -359,8 +359,8 @@ effect "detainer impact"
 	sprite "effect/detainer impact"
 		"no repeat"
 		"frame rate" 40
-	"lifetime" 13
 	"random velocity" .5
+	"lifetime" 13
 	"random spin" 10
 	"velocity scale" -.01
 
@@ -369,10 +369,10 @@ effect "detainer smoke"
 		"no repeat"
 		"random start frame"
 		"frame rate" 8
+	"random velocity" 1
 	"lifetime" 60
 	"random angle" 360
 	"random spin" 5
-	"random velocity" 1
 	"velocity scale" -.01
 
 
@@ -441,11 +441,11 @@ outfit "Korath Mine Submunition"
 		"hit effect" "large explosion"
 		"die effect" "tiny explosion"
 		"inaccuracy" 360
+		"velocity" 2
+		"random velocity" 5
 		"lifetime" 1000
 		"random lifetime" 60
 		"acceleration" .00001
-		"velocity" 2
-		"random velocity" 5
 		"drag" .05
 		"shield damage" 350
 		"hull damage" 280
@@ -456,10 +456,10 @@ effect "minelayer fire"
 	sprite "effect/minelayer split"
 		"no repeat"
 		"frame rate" 3
+	"random velocity" .5
 	"lifetime" 61
 	"random angle" 5
 	"random spin" 10
-	"random velocity" .5
 	"velocity scale" 1.2
 
 effect "minelayer split"
@@ -467,10 +467,10 @@ effect "minelayer split"
 		"no repeat"
 		"frame rate" 6
 	sound "mine deploy"
+	"random velocity" 2.5
 	"lifetime" 31
 	"random angle" 360
 	"random spin" 5
-	"random velocity" 2.5
 	"velocity scale" .8
 
 
@@ -506,10 +506,10 @@ effect "disruptor impact"
 	sprite "effect/static"
 		"no repeat"
 		"frame rate" 30
+	"random velocity" 5
 	"lifetime" 13
 	"random angle" 360
 	"random spin" 10
-	"random velocity" 5
 	"velocity scale" -.004
 
 
@@ -571,8 +571,8 @@ effect "slicer impact"
 	sprite "effect/slicer impact"
 		"no repeat"
 		"frame rate" 10
+	"random velocity" .1
 	"lifetime" 19
 	"random angle" 360
 	"random spin" 2
-	"random velocity" .1
 	"velocity scale" -.002
