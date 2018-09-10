@@ -1382,22 +1382,6 @@ fleet "Small Syndicate"
 	cargo 2
 	personality
 		heroic
-	variant 1
-		"Wasp" 5
-	variant 1
-		"Wasp" 4
-		"Wasp (Proton)"
-	variant 1
-		"Wasp" 3
-		"Wasp (Proton)" 2
-	variant 1
-		"Wasp" 2
-		"Wasp (Proton)" 3
-	variant 1
-		"Wasp"
-		"Wasp (Proton)" 4
-	variant 1
-		"Wasp (Proton)" 5
 	variant 3
 		"Quicksilver" 3
 	variant 3
@@ -1424,6 +1408,22 @@ fleet "Small Syndicate"
 	variant 1
 		"Manta (Proton)"
 		"Wasp (Proton)" 2
+	variant 1
+		"Wasp" 5
+	variant 1
+		"Wasp" 4
+		"Wasp (Proton)"
+	variant 1
+		"Wasp" 3
+		"Wasp (Proton)" 2
+	variant 1
+		"Wasp" 2
+		"Wasp (Proton)" 3
+	variant 1
+		"Wasp"
+		"Wasp (Proton)" 4
+	variant 1
+		"Wasp (Proton)" 5
 
 fleet "Large Syndicate"
 	government "Syndicate"
@@ -1784,6 +1784,12 @@ fleet "Small Core Pirates"
 		"Headhunter (Particle)"
 	variant 2
 		"Quicksilver" 2
+	variant 3
+		"Wasp"
+	variant 2
+		"Wasp (Gatling)"
+	variant 1
+		"Wasp (Proton)"
 
 fleet "Large Core Pirates"
 	government "Pirate"
