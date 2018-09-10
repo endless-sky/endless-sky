@@ -1688,6 +1688,17 @@ ship "Vanguard" "Vanguard (Particle)"
 
 
 
+ship "Wasp" "Wasp (Gatling)"
+	outfits
+		"Gatling Gun" 3
+		"Gatling Gun Ammo" 9000
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+		
 ship "Wasp" "Wasp (Proton)"
 	outfits
 		"Proton Gun"
