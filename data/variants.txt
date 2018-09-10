@@ -1699,6 +1699,16 @@ ship "Wasp" "Wasp (Gatling)"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
+ship "Wasp" "Wasp (Laser)"
+	outfits
+		"Beam Laser" 3
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+		
 ship "Wasp" "Wasp (Proton)"
 	outfits
 		"Proton Gun"
