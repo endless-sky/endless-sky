@@ -827,6 +827,8 @@ fleet "Human Miners"
 		"Headhunter"
 	variant 1
 		"Headhunter (Particle)"
+	variant 3
+		"Wasp (Laser)"
 
 fleet "Small Free Worlds"
 	government "Free Worlds"
