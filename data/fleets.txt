@@ -828,6 +828,8 @@ fleet "Human Miners"
 	variant 1
 		"Headhunter (Particle)"
 	variant 3
+		"Berserker"
+	variant 3
 		"Wasp (Laser)"
 
 fleet "Small Free Worlds"
