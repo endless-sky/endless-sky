@@ -152,7 +152,7 @@ mission "Liberate Kornephoros"
 			`	At that, a hush falls over the crowd. "The Council has decided," he continues, "that any of you who gives us your parole, swearing to take no further part in fighting the Free Worlds, will be returned to Republic space. You will give us your word of honor that you will either seek reassignment in another part of the galaxy, or resign your commission."`
 			`	A few of the Free Worlds guards shout, "What?" But only a surprising few. The rest are nodding, seemingly pleased with the Council's choice. Tomek climbs down from the hull and approaches the prisoners, and you notice Alondo and Freya have joined him.`
 			`	One of the Navy officers stands up. "I'll take that oath," he says, "if you'll honor your part of it."`
-			`	Tomek takes the man's hands, looks him in the eyes, and asks, "Do you swear before God and these witnesses to take no further part in military actions against the Free Worlds?"`
+			`	Tomek takes the man's hands, looks him in the eyes, and asks, "Do you swear on your honor before these witnesses to take no further part in military actions against the Free Worlds?"`
 			`	"I do," says the officer. Several of the other prisoners stand up, and before long all but a handful have sworn the oath.`
 			`	After they finish, Tomek turns to you and a few other captains. "Emily, Marco, <first>, Sarah, please meet me in the spaceport cafe when you are ready." He walks off.`
 		event "recapture of Kornephoros"
