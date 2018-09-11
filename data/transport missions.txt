@@ -405,7 +405,7 @@ mission "Transport Workers C"
 				`	(Yes.)`
 				`	(No, I'm not interested in carrying livestock in my shiny new space ship.)`
 					defer
-			`	The farmers introduce themselves as Cory and Annette Patterson; their kids are Erin, Kyle, and Sarah. "Any chance you've got space for some livestock?" asks Jim. "The droughts the last few years have been fierce, and we're hoping to start a new homestead on <planet>."`
+			`	The farmers introduce themselves as Jim and Annette Patterson; their kids are Erin, Kyle, and Sarah. "Any chance you've got space for some livestock?" asks Jim. "The droughts the last few years have been fierce, and we're hoping to start a new homestead on <planet>."`
 			choice
 				`	"Sure, I'd be glad to take you there."`
 					accept
