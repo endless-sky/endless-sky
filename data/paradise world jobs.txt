@@ -365,3 +365,23 @@ mission "Pleasure cruise security"
 		dialog "You bid goodbye to the captain of the <npc> and accept your payment of <payment>."
 		payment
 		payment 50000
+
+
+mission "Premium materials to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver premium materials for new high end condo complex on <destination> by <date>. Payment is <payment>."
+	cargo "Luxury Goods" 25 50
+	to offer
+		random < 10
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes rich
+	destination
+		distance 2 5
+		attributes paradise
+	on complete
+		payment
+		payment 25000
+		dialog "Your ship is directed to the rear loading dock of a palatial complex where your cargo of premium building materials is unloaded and maticulously inspected. You collect your payment of <payment>."
