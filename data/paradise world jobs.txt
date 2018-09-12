@@ -371,7 +371,7 @@ mission "Premium materials to <planet>"
 	job
 	repeat
 	deadline
-	description "Deliver premium materials for new high-end condo complex on <destination> by <date>. Payment is <payment>."
+	description "Deliver premium materials for new high-end condominium on <destination> by <date>. Payment is <payment>."
 	cargo "Luxury Goods" 25 50
 	to offer
 		random < 10
