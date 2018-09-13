@@ -517,7 +517,7 @@ mission "Deep Archaeology 3"
 	on offer
 		conversation
 			`Following the map that the archaeologist gave you, you make your way to a small village in the mountains on <origin>, with two envelopes in your pocket for samples. As you approach the church, you break a dead twig off one of the trees along the path, put it into the first envelope, and pocket it. One sample collected, one more to go.`
-			`	The church itself is unlike any building you have seen before, clearly very ancient, build of roughly hewn wood, old and weathered. Surprisingly, the front doors are open, and you hear music coming from inside.`
+			`	The church itself is unlike any building you have seen before, clearly very ancient, built of roughly hewn wood, old and weathered. Surprisingly, the front doors are open, and you hear music coming from inside.`
 			choice
 				`	(Walk into the church.)`
 					goto inside
