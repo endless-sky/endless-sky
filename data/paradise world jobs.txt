@@ -384,4 +384,4 @@ mission "Premium materials to <planet>"
 	on complete
 		payment
 		payment 25000
-		dialog "Your ship is directed to the rear loading dock of a palatial complex where your cargo of premium building materials is unloaded and maticulously inspected. You collect your payment of <payment>."
+		dialog "Your ship is directed to the rear loading dock of a palatial complex where your cargo of premium building materials is unloaded and meticulously inspected. You collect your payment of <payment>."
