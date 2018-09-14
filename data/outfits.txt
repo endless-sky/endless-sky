@@ -396,3 +396,15 @@ outfit "Militia Carrier License"
 	category "Special"
 	thumbnail "outfit/militia license"
 	description "Officially joined the Free Worlds. Received permission to purchase their Militia-only carriers."
+
+outfit "Tear Gas"
+	plural "Tear Gas"
+	category "Hand to Hand"
+	licenses
+		"Navy Outfits"
+	cost 35000
+	thumbnail "outfit/tear gas"
+	"capture attack" 2
+	"capture defense" .3
+	"unplunderable" 1
+	description "Tear gas is a non-lethal weapon for hand-to-hand combat when boarding a ship, useful for flushing out defenders who are hunkered down in defensible choke points inside their own ship. It is much less useful as a defensive weapon, but still better than nothing."
