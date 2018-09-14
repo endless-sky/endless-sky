@@ -60,7 +60,7 @@ mission "Assisting Militia"
 	to offer
 		random < 27
 	source
-		government Escort
+		government "Free Worlds"
 		has "event joined the free worlds"
 	on offer
 		payment 10000
