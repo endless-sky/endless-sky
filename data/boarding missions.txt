@@ -37,3 +37,18 @@ mission "Assisting Hai"
 			`Knowing you risked your life to save the <origin>, the captain gives you <payment>.`
 				decline
 	destination Hai-home
+
+
+mission "Assisting Navy"
+	assisting
+	repeat
+	to offer
+		random < 27
+	source
+		government Republic
+	on offer
+		payment 25000
+		conversation
+			`The captain of the <origin> is greatful for your service to The Navy and gives you <payment>.`
+				decline
+	destination Farpoint
