@@ -372,7 +372,27 @@ mission "Premium materials to <planet>"
 	repeat
 	deadline
 	description "Deliver <cargo> for a new luxury condominium on <destination> by <date>. Payment is <payment>."
-	cargo "Premium materials" 25 50
+	cargo "premium materials" 25 50
+	to offer
+		random < 10
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes rich
+	destination
+		distance 2 5
+		attributes paradise
+	on complete
+		payment
+		payment 25000
+		dialog "Your ship is directed to the rear loading dock of a palatial complex where your cargo of premium building materials is unloaded and meticulously inspected. The material inspectors provide your payment of <payment>."
+
+
+mission "Mansion materials to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> for a new a mansion on <destination> by <date>. Payment is <payment>."
+	cargo "premium materials" 25 50
 	to offer
 		random < 10
 	source
