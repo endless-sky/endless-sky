@@ -54,7 +54,7 @@ mission "Assisting Navy"
 	destination Farpoint
 
 
-mission "Assisting Malitia"
+mission "Assisting Militia"
 	assisting
 	repeat
 	to offer
@@ -67,4 +67,4 @@ mission "Assisting Malitia"
 		conversation
 			`The captain of the <origin> is greatful for your service to The Free Worlds and gives you <payment>.`
 				decline
-	destination Earth
+	destination Longjump
