@@ -363,6 +363,19 @@ outfit "Nerve Gas"
 	description "This is a highly illegal weapon for hand to hand combat when boarding an enemy ship. Because chemical weapons are banned by interstellar law, you can be severely fined for getting caught in possession of nerve gas canisters. But, they do clear out an enemy ship quicker than just about anything else..."
 
 
+outfit "Tear Gas"
+	plural "Tear Gas"
+	category "Hand to Hand"
+	licenses
+		"Navy Outfits"
+	cost 35000
+	thumbnail "outfit/tear gas"
+	"capture attack" 2
+	"capture defense" .3
+	"unplunderable" 1
+	description "Tear gas is a non-lethal weapon for hand-to-hand combat when boarding a ship, useful for flushing out defenders who are hunkered down in defensible choke points inside their own ship. It is much less useful as a defensive weapon, but still better than nothing."
+
+
 outfit "Local Map"
 	category "Special"
 	cost 1000

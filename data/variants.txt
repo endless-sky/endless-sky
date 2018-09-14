@@ -459,6 +459,7 @@ ship "Carrier" "Carrier (Mark II)"
 		"A860 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
+		"Tear Gas" 120
 	gun "Particle Cannon"
 	gun "Particle Cannon"
 	gun "Sidewinder Missile Launcher"
@@ -645,6 +646,7 @@ ship "Cruiser" "Cruiser (Mark II)"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
+		"Tear Gas" 100
 	gun "Sidewinder Missile Launcher"
 	gun "Sidewinder Missile Launcher"
 	gun "Sidewinder Missile Launcher"
@@ -891,6 +893,7 @@ ship "Frigate" "Frigate (Mark II)"
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Tear Gas" 40
 	turret "Anti-Missile Turret"
 	turret "Blaster Turret"
 	turret "Blaster Turret"
@@ -958,6 +961,7 @@ ship "Gunboat" "Gunboat (Mark II)"
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
+		"Tear Gas" 10
 
 
 
@@ -1474,6 +1478,7 @@ ship "Rainmaker" "Rainmaker (Mark II)"
 		"A120 Atomic Thruster"
 		"A125 Atomic Steering"
 		"Scram Drive"
+		"Tear Gas" 10
 	gun
 	gun
 	gun "Sidewinder Missile Launcher"
