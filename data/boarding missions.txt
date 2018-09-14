@@ -54,13 +54,29 @@ mission "Assisting Navy"
 	destination Farpoint
 
 
+mission "Assisting Free Worlds"
+	assisting
+	repeat
+	to offer
+		random < 15
+	source
+		government "Free Worlds"
+		has "event joined the free worlds"
+	on offer
+		payment 10000
+		conversation
+			`The captain of the <origin> is greatful for your service to The Free Worlds and gives you <payment>.`
+				decline
+	destination Longjump
+	
+
 mission "Assisting Militia"
 	assisting
 	repeat
 	to offer
-		random < 27
+		random < 15
 	source
-		government "Free Worlds"
+		government "Militia"
 		has "event joined the free worlds"
 	on offer
 		payment 10000
