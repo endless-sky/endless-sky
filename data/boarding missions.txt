@@ -61,7 +61,6 @@ mission "Assisting Free Worlds"
 		random < 15
 	source
 		government "Free Worlds"
-		has "event joined the free worlds"
 	on offer
 		payment 10000
 		conversation
@@ -77,7 +76,6 @@ mission "Assisting Militia"
 		random < 15
 	source
 		government "Militia"
-		has "event joined the free worlds"
 	on offer
 		payment 10000
 		conversation
