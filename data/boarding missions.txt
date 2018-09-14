@@ -52,3 +52,19 @@ mission "Assisting Navy"
 			`The captain of the <origin> is greatful for your service to The Navy and gives you <payment>.`
 				decline
 	destination Farpoint
+
+
+mission "Assisting Malitia"
+	assisting
+	repeat
+	to offer
+		random < 27
+	source
+		government Escort
+		has "event joined the free worlds"
+	on offer
+		payment 10000
+		conversation
+			`The captain of the <origin> is greatful for your service to The Free Worlds and gives you <payment>.`
+				decline
+	destination Earth
