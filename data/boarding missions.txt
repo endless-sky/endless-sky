@@ -49,7 +49,7 @@ mission "Assisting Navy"
 	on offer
 		payment 25000
 		conversation
-			`The captain of the <origin> is greatful for your service to The Navy and gives you <payment>.`
+			`The captain of the <origin> is grateful for your service to The Navy and gives you <payment>.`
 				decline
 	destination Farpoint
 
@@ -64,7 +64,7 @@ mission "Assisting Free Worlds"
 	on offer
 		payment 10000
 		conversation
-			`The captain of the <origin> is greatful for your service to The Free Worlds and gives you <payment>.`
+			`The captain of the <origin> is grateful for your service to The Free Worlds and gives you <payment>.`
 				decline
 	destination Longjump
 	
@@ -79,6 +79,6 @@ mission "Assisting Militia"
 	on offer
 		payment 10000
 		conversation
-			`The captain of the <origin> is greatful for your service to The Free Worlds and gives you <payment>.`
+			`The captain of the <origin> is grateful for your service to The Free Worlds and gives you <payment>.`
 				decline
 	destination Longjump
