@@ -335,10 +335,10 @@ outfit "Electron Rifle"
 	category "Hand to Hand"
 	cost 14000
 	thumbnail "outfit/electron rifle"
-	"capture attack" .7
+	"capture attack" .6
 	"capture defense" 1.1
 	"unplunderable" 1
-	description "The electron rifle was developed by the Deep for the Navy to use in quelling the Free Worlds. While stronger than the laser rifle, it fires slower and is more costly to produce."
+	description "The electron rifle was developed by the Deep for the Navy to use in quelling the Free Worlds. Due its larger size and slower rate of fire, the rifle serves much better as a defensive tool than an offensive one."
 
 outfit "Fragmentation Grenades"
 	plural "Fragmentation Grenades"
