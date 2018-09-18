@@ -100,13 +100,13 @@ ship "Centipede"
 		`"Basrem" Atomic Steering`
 		Hyperdrive
 		
-	engine -15 103.5
-	engine 15 103.5
-	gun -11 -116.5 "Hai Tracker Pod"
-	gun 11 -116.5 "Hai Tracker Pod"
-	turret 0 -21 "Bullfrog Anti-Missile"
-	turret -39 60 "Bullfrog Anti-Missile"
-	turret 39 60 "Bullfrog Anti-Missile"
+	engine -15 113
+	engine 15 113
+	gun -11 -113 "Hai Tracker Pod"
+	gun 11 -113 "Hai Tracker Pod"
+	turret 0 -19 "Bullfrog Anti-Missile"
+	turret -41 67 "Bullfrog Anti-Missile"
+	turret 41 67 "Bullfrog Anti-Missile"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -183,7 +183,7 @@ ship "Geocoris"
 		"outfit space" 582
 		"weapon capacity" 172
 		"engine capacity" 94
-		Weapon:
+		weapon:
 			"blast radius" 300
 			"shield damage" 3000
 			"hull damage" 1500
@@ -191,7 +191,7 @@ ship "Geocoris"
 	outfits
 		"Pulse Cannon" 2
 		"Pulse Turret" 2
-		"Bullfrog Anti-Missile" 5
+		"Bullfrog Anti-Missile" 3
 		"Geode Reactor" 2
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
@@ -208,8 +208,6 @@ ship "Geocoris"
 	turret -110 -23 "Pulse Turret"
 	turret 35 94 "Bullfrog Anti-Missile"
 	turret -35 94 "Bullfrog Anti-Missile"
-	turret 17 -2 "Bullfrog Anti-Missile"
-	turret -17 -2 "Bullfrog Anti-Missile"
 	turret 0 -89 "Bullfrog Anti-Missile"
 	explode "tiny explosion" 50
 	explode "small explosion" 50
@@ -224,7 +222,7 @@ ship "Geocoris" "Geocoris (Tracker)"
 		"Hai Tracker Pod" 2
 		"Hai Tracker" 196
 		"Pulse Turret" 2
-		"Bullfrog Anti-Missile" 4
+		"Bullfrog Anti-Missile" 2
 		"Chameleon Anti-Missile"
 		"Boulder Reactor"
 		"Pebble Core"
