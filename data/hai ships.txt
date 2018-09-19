@@ -183,7 +183,7 @@ ship "Geocoris"
 		"outfit space" 582
 		"weapon capacity" 172
 		"engine capacity" 94
-		weapon:
+		weapon
 			"blast radius" 300
 			"shield damage" 3000
 			"hull damage" 1500
