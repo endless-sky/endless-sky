@@ -440,11 +440,11 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
- images/effect/explosion/pug huge
- images/effect/explosion/pug large
- images/effect/explosion/pug medium
- images/effect/explosion/pug small
- images/effect/explosion/pug tiny
+ images/effect/explosion/pug huge.png
+ images/effect/explosion/pug large.png
+ images/effect/explosion/pug medium.png
+ images/effect/explosion/pug small.png
+ images/effect/explosion/pug tiny.png
 Copyright Vilhelm (https://github.com/Vilhelm16)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) 
