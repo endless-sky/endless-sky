@@ -265,7 +265,7 @@ effect "pug large explosion"
 	"random frame rate" 5
 	"velocity scale" .4
 
-effect "huge explosion"
+effect "pug huge explosion"
 	sprite "effect/explosion/pug huge"
 		"no repeat"
 		"frame rate" 15
