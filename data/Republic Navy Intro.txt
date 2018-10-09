@@ -1,0 +1,265 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+#
+# Writing Credit to: Vincent "Kiko" Rohlf, Tessa "Moonbeam" Lorentzen, Disiuze, Kryes Omega
+
+mission "Republic Bounty 1"
+	name "Republic Bounty Hunting"
+	description `Hunt down the Black Fang, a pirate ship that's been assaulting miners in the Boral system.`
+	minor
+	source
+		government "Republic"
+		attributes "dirt belt"
+	to offer
+		has "event: war begins"
+		"combat rating" > 150
+		not "chosen sides"
+		random < 65
+	
+	on offer
+		conversation
+			`You barely have time to find your bearings in this spaceport when you're approached by a man in a crisp, black Republic uniform.`
+			`	"You look like you're looking for work." He says, in a surprisingly cheerful tone. "We're in need of someone to deal some pirates that have been causing trouble near Boral. Not normally something we'd contract out, but luckily for you we're a little short on free ships right now.`
+			choice
+				`	"Sure."`
+				`	"Sorry, I'm not really into bounty hunting."`
+					decline
+			`	"Much obliged," he says. "It's a ship called the <npc>. Its a small little devil but don't let it take you off guard."`
+				accept
+	on accept
+		log "Hunting a pirate ship called the <npc>, which has been plundering ships near Boral."
+	
+	npc kill
+		personality heroic staying nemesis target
+		government Bounty
+		system
+			near Boral 1 2
+		ship "Clipper (Heavy)" "Black Fang"
+		dialog `The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
+	
+	on complete
+		payment 175000
+		dialog `Upon landing, the commander greets you in a way that almost seems surprised to see you've succeeded. "The Republic needs more captains like you. Hopefully this payment of <payment> will be enough to convince you to help us out the next time." You nod. "Captain <last>, correct?" He says, and barely gives you enough time to agree before he continues speaking. "Right. I'm Commander Kent, in case I didn't introduce myself. I'll be keeping an eye out for you in case we ever need more assistance." `
+
+
+
+mission "Republic Bounty 2"
+	name "Republic Bounty Hunting"
+	description `Kill a known criminal aboard the the <npc>. It was last spotted in the Alnasl system.`
+	source
+		government "Republic"
+		attributes "dirt belt"
+	to offer
+		has "Republic Bounty 1: done"
+		not "chosen sides"
+		random < 70
+	
+	on offer
+		conversation
+			`Before you can decide where you want to go in the spaceport, you are flagged down by a Republic officer. This time, a dour woman with black hair in a tight bun. "Captain <last>?" She asks. You nod. "I'm Captain Shah. Commander Kent has you listed as a privateer." She says in a quick, clipped tone. "We've been made aware that a criminal has been spotted near Alnasl. He is wanted dead." `
+			choice
+				`	"Dead. Got it."`
+				` 	"You have an interesting way of asking."`
+					goto asking
+				`	"I'm a merchant, not a hitman."`
+					goto killer
+			`	Captain Shah grins. "He's aboard a ship named the <npc>. I expect to see you back soon."`
+			accept
+			label killer
+			`	"Your file lead me to believe otherwise," says Shah, "No matter then, we will be sure to update our record and will be working with other contractors in the future."`
+			decline
+			label asking
+			`	"Her face darkens. "I won't try to convince you if you're not interested."`
+			choice
+				`	"Ok, I'll do it."`
+					accept
+				`	"Thank you, but I'm not interested in this kind of work."`
+					decline
+	npc kill
+		personality heroic staying nemesis target
+		government Bounty
+		system
+			near "Alnasl" 1 2
+		ship "Bastion (Heavy)" "Amphithere"
+		dialog `The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
+	on accept
+		log "Hunting a pirate ship called the Amphithere, who is wanted by the Republic. It was last spotted in the Alnasl system."
+		
+	on complete
+		payment 200000
+		dialog `Captain Shah contacts you after you've landed. "The Republic thanks you for your assistance. <payment> have been credited to your account. I'll be in touch should I have need of you again."`
+		log "People" "Kent and Shah" "Two Republic officials assigned to keep an eye on the systems bordering the Free Worlds. Their uniforms do not appear to be Navy."
+
+
+mission "Republic Bounty 3"
+	name "Republic Bounty Hunting"
+	description `Disable the <npc> which seems to be holding merchants ransom. Do not destroy or attempt to capture the ship. It was last spotted in the Tais system`
+	source
+		government "Republic"
+		attributes "dirt belt"
+	to offer
+		has "Republic Bounty 2: done"
+		not "chosen sides"
+		random < 75
+	
+	on offer
+		conversation
+			`As you wander the spaceport, a hand grips your shoulder. You turn to find the surprising strength belongs to Captain Shah. "Captain <last>, the Republic has another job for you. It's different than the last one but I'm sure you'll be interested."`
+			choice
+				`	"Sure, what do I have to do?"`
+				`	"Sorry, I'm a bit busy right now."`
+					defer
+			`	"A ship named the <npc> has captured a number of wealthy merchants and is holding them at ransom. While this should not be a job for an ordinary contractor, there are concerns that they might kill the hostages if approached by a ship flying Republic colors. You will disable the ship and return to me immediately."`
+			choice
+				`	"Consider it done."`
+				`	"I'm sorry, but I can't deal with problems like that."`
+					decline
+			`	Captain Shah gives a small, relieved nod. "The ship was last spotted in Tias. We believe it is still there."`
+				accept
+	npc disable
+		personality heroic staying nemesis target
+		government Bounty
+		system "Tais"
+		ship "Falcon (Heavy)" "Gediminas"
+		dialog `The <npc> has been disabled. You can claim the bounty payment by returning to <destination>.`
+	on accept
+		log "Hunting a pirate ship called the <npc>, who has captured multiple merchant captains. The ship was last sighted in the Tais system."
+		
+	on complete
+		"assisted Republic" ++
+		payment 250000
+		dialog `Captain Shah contacts you soon after you land. "The hostages were recovered safely." she says, with a smile. "The Republic owes you a debt of gratitude. If you are interested in more tangible benefits, <payment> have been transferred to your account, and I have informed my superiors that you can be counted on."`
+		log "Captain Shah says she has put a good word in for me with her superiors."
+
+		
+mission "Navy Scouting 1"
+	name "Hyperspace Relay Testing"
+	description "Fly through the <waypoints> systems, then report to <destination> so the Navy can analyze your logs network connectivity."
+	waypoint "Hassaleh"
+	waypoint "Sumar"
+	waypoint "Cardax"
+	waypoint "Volax"
+	source
+		government "Republic" 
+		attributes "paradise"
+	destination "Glaze"
+	to offer
+		Has "event: war begins"
+		not "chosen sides"
+		random < 60
+
+	on offer
+		conversation
+			`As you wander the spaceport you overhear a woman in a Navy uniform telling a bored looking merchant about satellight dishes in the empty systems to the north. `
+			`	"That sounds interesting." The merchant tells her, "But I've got a cargo bay full of medical supplies headed the other direction." "Also an important mission." She replies. "I wish you safe travels."`
+			choice
+				`	(Ask her what's going on)`
+				`	(Walk away)`
+					decline
+			`	"Are you needing someone to go retrieve a satellight?" You ask her, interested, as the other merchant captain walks away. "Not quite." She replies brightly. "We've been experiencing some lag between Farpoint and Maelstrom. I'd need you to fly through, then let me look at your logs so I can figure out what the trouble is."`
+			choice
+				`	"Sounds simple enough."`
+				`	"Sorry, I won't be able to help you either."`
+					decline
+			`	"Excellent." She smiles. "I'm Captain Jane Mulgrew, by the way. Thank you for your help."`
+				accept
+
+	on accept
+		log "Volunteered to help track down the cause of some lag for the Republic."
+	
+	on complete
+		payment 30000
+		dialog
+			`As you land on <destination> the woman approaches you again. "Thank you on behalf of not only the Republic, but everyone who uses my network. You have earned your payment of <payment>"`
+
+mission "Navy Scouting 2"
+	landing
+	name "Dead End System Scouting"
+	description "Fly through the <waypoints> systems, then report to <destination> so the Navy can analyze your logs of pirate activity (if any)."
+	waypoint "Regulus"
+	waypoint "Fingol"
+	waypoint "Nocte"
+	waypoint "Ipsing"
+	source
+		government "Republic"
+	destination "Follower"
+	to offer
+		has "Navy Scouting 1: done"
+		not "chosen sides"	
+		random < 40
+
+		on offer
+		dialog
+			`You receive a message from Jane, the navy captain who asked you to fly through some uninhabited systems to the north. "I need some data from a few dead end systems," she says. "There might be some pirate fleets in the area but I just need logs again. Interested?"`
+	
+	on complete
+		payment 40000
+		dialog
+			`You transfer your sensor logs to Captian Mulgrew. She thanks you for your work, and pays you <payment>. She says, "I'll let you know when we have more work."`
+		log "People" "Captain Jane Melgrew" "A Navy captain charged with all manner of odd jobs, from diagnosing hyperspace network problems, to scouting uninhabited systems."
+
+mission "Navy Scouting 3"
+	name "Free Worlds Reconnaissance"
+	description "Perform an outfit scan on the falcon <npc> in Yed Prior, then report to Captain Melgrew on <destination>."
+	source
+		government "Republic"
+	destination "Follower"
+	to offer
+		has "Navy Scouting 2: done"
+		not "chosen sides"	
+		random < 40
+	
+	on offer
+		conversation
+			`As you step off your ship, you are greeted by an out of breath Jane Mulgrew. "Captain <last>!" she shouts, "Glad I caught you. I have another job, and this one I couldn't just send you a message for.`
+			choice
+				`	"What is going on?"`
+				`	"Sorry, I'm really busy."`
+					decline
+			`	"We have reason to believe there is a ship loaded with alien tech somewhere in the south," she says. "As I'm sure you've heard, the worlds in this area have been organizing a rebellion. So far they've been peaceful, but if they are arming themselves with alien technology, that could be a major problem for us. Would you be able to track down the ship and scan it?"`
+			choice
+				`	"Sure, that sounds simple enough."`
+				`	"Sorry, that sounds way too dangerous."`
+					decline
+			`	"Fantastic. It's a Falcon named the <npc>, last seen near Yed Prior. If it is alien technology, we'll be the first in the Republic to see it, how exciting.`
+			accept
+	
+	on accept
+		log "Volunteered to scan a ship in Free Worlds space that might be armed with Alien technology."
+	
+	npc "scan outfits"
+		government "Free Worlds"
+		personality staying uninterested
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon (Heavy)"
+		conversation
+			`As soon as you scan the <npc> its captain hails you. "Excuse me, captain," he says, "mind telling me why you felt the need to probe my ship?"`
+			choice
+				`	"Your ship looked so powerful, I just had to know what kind of gear you had. Some of it looked almost alien."`
+					goto alien
+				`	"I hope to have a ship like that someday, and I just wanted a shopping list of what I would need."`
+					goto equipment
+			label alien
+			`	"Alien, well maybe to someone flying a tub like yours," he says, chuckling. "No, I promise you this is all standard human fare."`
+				goto close
+			label equipment
+			`	He looks awfully pleased with himself. "Yes, she is quite the beauty. I would have never been able to afford anything like this without the Defense Pact's scouting program," he says. "She makes keeping pirates out of our territory as easy as a dream. If you're interested in trading that tub you've got in for something like this, the program should be hiring again soon."`
+				goto close
+			label close
+			`	You cut the comlink and breathe a sigh of relief that the conversation is over.`
+	
+	on complete
+		"assisted Republic" ++
+		dialog `Soon after you land, Jane comes to your ship and pays you <payment> in exchange for your sensor logs regarding <npc>. "No alien tech, I see." She says, sounding dissapointed. "While that would have been a great find, I will admit I'm happy I don't have to figure out how to defend against it. I've let my supervisors know how helpful you've been, hopefully we can work together again soon." `
+		payment 50000
+		log "Captain Melgrew says she has put a good word in for me with her superiors."
+		
