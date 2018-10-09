@@ -8,11 +8,11 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #
-# Writing Credit to: Vincent "Kiko" Rohlf, Tessa "Moonbeam" Lorentzen, Disiuze, Kryes Omega
+# Writing Credit to: Vincent "Kiko" Rohlf, Tessa "Moonbeam" Lorentzen, Disiuze, Zachary Siple
 
 mission "Republic Bounty 1"
 	name "Republic Bounty Hunting"
-	description `Hunt down the Black Fang, a pirate ship that's been assaulting miners in the Boral system.`
+	description `Hunt down the <npc>, a pirate ship that's been assaulting miners in the Boral system.`
 	minor
 	source
 		government "Republic"
@@ -71,10 +71,10 @@ mission "Republic Bounty 2"
 				`	"I'm a merchant, not a hitman."`
 					goto killer
 			`	Captain Shah grins. "He's aboard a ship named the <npc>. I expect to see you back soon."`
-			accept
+				accept
 			label killer
 			`	"Your file lead me to believe otherwise," says Shah, "No matter then, we will be sure to update our record and will be working with other contractors in the future."`
-			decline
+				decline
 			label asking
 			`	"Her face darkens. "I won't try to convince you if you're not interested."`
 			choice
@@ -90,7 +90,7 @@ mission "Republic Bounty 2"
 		ship "Bastion (Heavy)" "Amphithere"
 		dialog `The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
 	on accept
-		log "Hunting a pirate ship called the Amphithere, who is wanted by the Republic. It was last spotted in the Alnasl system."
+		log "Hunting a pirate ship called the "Amphithere", who is wanted by the Republic. It was last spotted in the Alnasl system."
 		
 	on complete
 		payment 200000
@@ -130,7 +130,7 @@ mission "Republic Bounty 3"
 		ship "Falcon (Heavy)" "Gediminas"
 		dialog `The <npc> has been disabled. You can claim the bounty payment by returning to <destination>.`
 	on accept
-		log "Hunting a pirate ship called the <npc>, who has captured multiple merchant captains. The ship was last sighted in the Tais system."
+		log "Hunting a pirate ship called the "Gediminas", who has captured multiple merchant captains. The ship was last sighted in the Tais system."
 		
 	on complete
 		"assisted Republic" ++
@@ -195,7 +195,7 @@ mission "Navy Scouting 2"
 		not "chosen sides"	
 		random < 40
 
-		on offer
+	on offer
 		dialog
 			`You receive a message from Jane, the navy captain who asked you to fly through some uninhabited systems to the north. "I need some data from a few dead end systems," she says. "There might be some pirate fleets in the area but I just need logs again. Interested?"`
 	
@@ -229,7 +229,7 @@ mission "Navy Scouting 3"
 				`	"Sorry, that sounds way too dangerous."`
 					decline
 			`	"Fantastic. It's a Falcon named the <npc>, last seen near Yed Prior. If it is alien technology, we'll be the first in the Republic to see it, how exciting.`
-			accept
+				accept
 	
 	on accept
 		log "Volunteered to scan a ship in Free Worlds space that might be armed with Alien technology."
