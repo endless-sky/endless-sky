@@ -1,4 +1,4 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+﻿Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: endless-sky
 Upstream-Contact: Michael Zahniser <mzahniser@gmail.com>
 Source: https://github.com/endless-sky/endless-sky
@@ -273,6 +273,7 @@ Files:
  images/outfit/hai?rifle*
  images/outfit/scram?drive*
  images/outfit/korath?fuel?processor*
+ images/outfit/remnant?rifle*
  images/ship/hai?centipede*
  images/ship/hai?geocoris*
  images/ship/hai?grasshopper*
