@@ -405,7 +405,7 @@ mission "Transport Workers C"
 				`	(Yes.)`
 				`	(No, I'm not interested in carrying livestock in my shiny new space ship.)`
 					defer
-			`	The farmers introduce themselves as Cory and Annette Patterson; their kids are Erin, Kyle, and Sarah. "Any chance you've got space for some livestock?" asks Jim. "The droughts the last few years have been fierce, and we're hoping to start a new homestead on <planet>."`
+			`	The farmers introduce themselves as Jim and Annette Patterson; their kids are Erin, Kyle, and Sarah. "Any chance you've got space for some livestock?" asks Jim. "The droughts the last few years have been fierce, and we're hoping to start a new homestead on <planet>."`
 			choice
 				`	"Sure, I'd be glad to take you there."`
 					accept
@@ -517,7 +517,7 @@ mission "Deep Archaeology 3"
 	on offer
 		conversation
 			`Following the map that the archaeologist gave you, you make your way to a small village in the mountains on <origin>, with two envelopes in your pocket for samples. As you approach the church, you break a dead twig off one of the trees along the path, put it into the first envelope, and pocket it. One sample collected, one more to go.`
-			`	The church itself is unlike any building you have seen before, clearly very ancient, build of roughly hewn wood, old and weathered. Surprisingly, the front doors are open, and you hear music coming from inside.`
+			`	The church itself is unlike any building you have seen before, clearly very ancient, built of roughly hewn wood, old and weathered. Surprisingly, the front doors are open, and you hear music coming from inside.`
 			choice
 				`	(Walk into the church.)`
 					goto inside
