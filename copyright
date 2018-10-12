@@ -98,6 +98,7 @@ License: CC-BY-SA-4.0
 
 Files:
  images/land/sky2.jpg
+ images/land/sea3.jpg
 Copyright: Emily Mell <hasmidas@gmail.com>
 License: public domain
 
@@ -273,6 +274,12 @@ Files:
  images/outfit/scram?drive*
  images/outfit/korath?fuel?processor*
  images/outfit/remnant?rifle*
+ images/ship/hai?centipede*
+ images/ship/hai?geocoris*
+ images/ship/hai?grasshopper*
+ images/thumbnail/hai?centipede*
+ images/thumbnail/hai?geocoris*
+ images/thumbnail/hai?grasshopper*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (from under the same license).
@@ -407,12 +414,29 @@ Copyright: Various
 License: public-domain
  Based on public domain sounds taken from freesound.org.
 
-Files: sounds/heavy rocket hit.wav
+Files: sounds/heavy?rocket?hit.wav
 Copyright: Copyright Mike Koenig
 License: CC-BY-SA-3.0
 Comment: Taken from http://soundbible.com/1467-Grenade-Explosion.html
 
-Files: sounds/explosion huge.wav
+Files: sounds/missile?hit.wav
+Copyright: Copyright "Nbs Dark"
+License: public-domain
+Comment: Taken from https://freesound.org/people/Nbs%20Dark/sounds/94185/
+
+Files: sounds/torpedo?hit.wav
+License: public-domain
+
+Files: sounds/meteor.wav
+Copyright: Copyright "18hiltc"
+License: CC-BY-SA-3.0
+Comment: Taken from https://freesound.org/people/18hiltc/sounds/202725/
+
+Files: sounds/sidewinder.wav
+License: public-domain
+Comment: Taken from https://freesound.org/people/NHMWretched/sounds/151858/
+
+Files: sounds/explosion?huge.wav
 Copyright: Copyright Mike Koenig
 License: CC-BY-SA-3.0
 Comment: Taken from http://soundbible.com/1151-Grenade.html

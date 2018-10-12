@@ -81,7 +81,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	wrap.SetWrapWidth(380);
 	wrap.SetFont(FontSet::Get(14));
 	wrap.SetAlignment(WrappedText::JUSTIFIED);
-
+	
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
 	if(!FindMissionForSystem(selectedSystem) && player.HasTravelPlan())
@@ -91,16 +91,15 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 			if(FindMissionForSystem(*it))
 				break;
 	}
-
+	
 	// Auto select the destination system for the current mission.
 	if(availableIt != available.end())
 		selectedSystem = availableIt->Destination()->GetSystem();
 	else if(acceptedIt != accepted.end())
 		selectedSystem = acceptedIt->Destination()->GetSystem();
-
-	// Center the system slightly above the center of the screen because the
-	// lower panel is taking up more space than the upper one.
-	CenterOnSystem(selectedSystem);
+	
+	// Center on the selected system.
+	CenterOnSystem(selectedSystem, true);
 }
 
 
@@ -140,6 +139,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 
 void MissionPanel::Step()
 {
+	MapPanel::Step();
 	DoHelp("jobs");
 }
 
@@ -403,6 +403,7 @@ bool MissionPanel::Drag(double dx, double dy)
 
 
 
+// Check to see if the mouse is over either of the mission lists.
 bool MissionPanel::Hover(int x, int y)
 {
 	dragSide = 0;
@@ -417,7 +418,7 @@ bool MissionPanel::Hover(int x, int y)
 		if(static_cast<int>(index) < AcceptedVisible())
 			dragSide = 1;
 	}
-	return true;
+	return dragSide ? true : MapPanel::Hover(x, y);
 }
 
 
