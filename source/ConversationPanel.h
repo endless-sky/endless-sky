@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <functional>
 #include <list>
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -38,7 +39,7 @@ class System;
 // the panel closes, to report the outcome of the conversation.
 class ConversationPanel : public Panel {
 public:
-	ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system = nullptr, const Ship *ship = nullptr);
+	ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system = nullptr, const std::shared_ptr<Ship> &ship = nullptr);
 	
 template <class T>
 	void SetCallback(T *t, void (T::*fun)(int));
@@ -58,7 +59,9 @@ private:
 	// Go to the given conversation node. If a choice index is given, include
 	// the text of that choice in the conversation history.
 	void Goto(int index, int choice = -1);
-	// Exit this panel and do whatever needs to happen next.
+	// Exit this panel and do whatever needs to happen next, which includes
+	// possibly activating a callback function and, if docked with an NPC,
+	// destroying it or showing the BoardingPanel (if it is hostile).
 	void Exit();
 	// Handle  mouse click on the "ok," "done," or a conversation choice.
 	void ClickName(int side);
@@ -122,6 +125,10 @@ private:
 	// If specified, this is a star system to display with a special big pointer
 	// when the player brings up the map. (Typically a mission destination.)
 	const System *system;
+	// If specified, this is a pointer to the ship that this conversation
+	// acts upon (e.g. the ship failing a "flight check", or the NPC you
+	// have boarded).
+	std::shared_ptr<Ship> ship;
 };
 
 

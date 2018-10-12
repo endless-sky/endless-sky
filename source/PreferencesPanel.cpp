@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Dialog.h"
 #include "Files.h"
+#include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
 #include "Information.h"
@@ -221,6 +222,7 @@ bool PreferencesPanel::Hover(int x, int y)
 
 
 
+// Change the value being hovered over in the direction of the scroll.
 bool PreferencesPanel::Scroll(double dx, double dy)
 {
 	if(!dy || hoverPreference.empty())
@@ -277,10 +279,10 @@ void PreferencesPanel::EndEditing()
 
 void PreferencesPanel::DrawControls()
 {
-	Color back = *GameData::Colors().Get("faint");
-	Color dim = *GameData::Colors().Get("dim");
-	Color medium = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
+	const Color &back = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("dim");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
 	
 	// Check for conflicts.
 	Color red(.3, 0., 0., .3);
@@ -401,10 +403,10 @@ void PreferencesPanel::DrawControls()
 
 void PreferencesPanel::DrawSettings()
 {
-	Color back = *GameData::Colors().Get("faint");
-	Color dim = *GameData::Colors().Get("dim");
-	Color medium = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
+	const Color &back = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("dim");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
 	
 	Table table;
 	table.AddColumn(-115, Table::LEFT);
@@ -439,11 +441,12 @@ void PreferencesPanel::DrawSettings()
 		"\n",
 		"Other",
 		"Clickable radar display",
+		"Hide unexplored map regions",
 		REACTIVATE_HELP,
 		"Rehire extra crew when lost",
 		SCROLL_SPEED,
-		"Warning siren",
-		"Hide unexplored map regions"
+		"Show escort systems on map",
+		"Warning siren"
 	};
 	bool isCategory = true;
 	for(const string &setting : SETTINGS)
@@ -496,12 +499,26 @@ void PreferencesPanel::DrawSettings()
 			// Check how many help messages have been displayed.
 			const map<string, string> &help = GameData::HelpTemplates();
 			int shown = 0;
+			int total = 0;
 			for(const auto &it : help)
-				shown += Preferences::Has("help: " + it.first);
+			{
+				// Don't count certain special help messages that are always
+				// active for new players.
+				bool special = false;
+				const string SPECIAL_HELP[] = {"basics", "lost"};
+				for(const string &str : SPECIAL_HELP)
+					if(it.first.find(str) == 0)
+						special = true;
+				
+				if(!special)
+				{
+					++total;
+					shown += Preferences::Has("help: " + it.first);
+				}
+			}
 			
-			// Don't count the "basic help" messages in the total.
 			if(shown)
-				text = to_string(shown) + " / " + to_string(help.size() - 2);
+				text = to_string(shown) + " / " + to_string(total);
 			else
 			{
 				isOn = true;
@@ -527,9 +544,9 @@ void PreferencesPanel::DrawSettings()
 
 void PreferencesPanel::DrawPlugins()
 {
-	Color back = *GameData::Colors().Get("faint");
-	Color medium = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
+	const Color &back = *GameData::Colors().Get("faint");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
 	
 	Table table;
 	table.AddColumn(-115, Table::LEFT);
@@ -541,18 +558,20 @@ void PreferencesPanel::DrawPlugins()
 	table.Draw("Installed plugins:", bright);
 	table.DrawGap(5);
 	
-	for(const auto &it : GameData::PluginAboutText())
+	const int MAX_TEXT_WIDTH = 230;
+	const Font &font = FontSet::Get(14);
+	for(const pair<string, string> &plugin : GameData::PluginAboutText())
 	{
-		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), it.first);
+		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin.first);
 		
-		bool isSelected = (it.first == selectedPlugin);
-		if(isSelected || it.first == hoverPlugin)
+		bool isSelected = (plugin.first == selectedPlugin);
+		if(isSelected || plugin.first == hoverPlugin)
 			table.DrawHighlight(back);
-		table.Draw(it.first, isSelected ? bright : medium);
+		table.Draw(font.TruncateMiddle(plugin.first, MAX_TEXT_WIDTH), isSelected ? bright : medium);
 		
 		if(isSelected)
 		{
-			const Sprite *sprite = SpriteSet::Get(it.first);
+			const Sprite *sprite = SpriteSet::Get(plugin.first);
 			Point top(15., firstY);
 			if(sprite)
 			{
@@ -561,10 +580,10 @@ void PreferencesPanel::DrawPlugins()
 				top.Y() += sprite->Height() + 10.;
 			}
 			
-			WrappedText wrap(FontSet::Get(14));
-			wrap.SetWrapWidth(230);
-			static const string empty = "(No description given.)";
-			wrap.Wrap(it.second.empty() ? empty : it.second);
+			WrappedText wrap(font);
+			wrap.SetWrapWidth(MAX_TEXT_WIDTH);
+			static const string EMPTY = "(No description given.)";
+			wrap.Wrap(plugin.second.empty() ? EMPTY : plugin.second);
 			wrap.Draw(top, medium);
 		}
 	}

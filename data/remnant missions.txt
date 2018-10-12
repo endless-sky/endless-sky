@@ -192,13 +192,13 @@ mission "Remnant: Bounty"
 mission "Remnant: Defense 3"
 	landing
 	name "Remnant surveillance"
-	description "Travel to the Parca system, destroy any Korath ships you find there, then deploy a Remnant surveillance satellite to give them advance warning of Korath raids in the future. Return to <planet> when you are done."
+	description "Travel to the <waypoints> system, destroy any Korath ships you find there, then deploy a Remnant surveillance satellite to give them advance warning of Korath raids in the future. Return to <planet> when you are done."
 	source
 		government "Remnant"
 	to offer
 		"Remnant: Bounty: done" >= 3
 	cargo "surveillance equipment" 13
-	waypoint Parca
+	waypoint "Parca"
 	on offer
 		conversation
 			`A man approaches your ship soon after you collect your latest bounty, and sings, "You have been most helpful in fighting the Korath. Would you be willing to assist us in another way?"`
@@ -213,9 +213,9 @@ mission "Remnant: Defense 3"
 	on accept
 		event "remnant: surveillance begin"
 	npc kill
-		government Korath
+		government "Korath"
 		personality heroic nemesis staying
-		system Parca
+		system "Parca"
 		fleet "Korath Raid" 2
 		dialog "Now that you are alone, you are able to deploy the Remnant surveillance satellite unobserved. Time to report back to <planet>."
 	on complete
@@ -231,11 +231,11 @@ mission "Remnant: Defense 3"
 			`	He grins, very slightly. "That is not my decision alone to make," he says, "but I will put in a word for you and see what I can do."`
 
 event "remnant: surveillance begin"
-	system Parca
+	system "Parca"
 		remove fleet "Korath Raid"
 
 event "remnant: surveillance end"
-	system Parca
+	system "Parca"
 		add fleet "Korath Raid" 10000
 
 
@@ -243,7 +243,7 @@ event "remnant: surveillance end"
 mission "Remnant: Key Stones"
 	name "Keystones"
 	description "The manager of the outfitter on <planet>, a Remnant world, has offered to pay you six million credits in exchange for a shipment of fifty Quantum Keystones (which you will have to purchase from the Hai)."
-	source Viminal
+	source "Viminal"
 	to offer
 		has "First Contact: Remnant: offered"
 	on offer
@@ -283,9 +283,9 @@ mission "Remnant: Key Stones"
 
 mission "Remnant: Void Sprites 1"
 	name "Space creatures"
-	description "A man on the Remnant homeworld of <planet> asked you to collect data on some strange space creatures in the Nenia system, in another part of the Ember Waste."
-	source Aventine
-	waypoint Nenia
+	description "A man on the Remnant homeworld of <planet> asked you to collect data on some strange space creatures in the <waypoints> system, in another part of the Ember Waste."
+	source "Aventine"
+	waypoint "Nenia"
 	cargo "scanning equipment" 8
 	to offer
 		has "First Contact: Remnant: offered"
@@ -331,13 +331,13 @@ mission "Remnant: Void Sprites 1"
 	npc
 		government "Indigenous Lifeform"
 		personality timid mining harvests staying mute
-		system Nenia
+		system "Nenia"
 		fleet
 			cargo 0
 			variant
 				"Void Sprite"
 				"Void Sprite (Infant)" 3
-	on enter Nenia
+	on enter "Nenia"
 		dialog `There are indeed some strange space-faring life forms in this system. You collect measurements with the special sensors, and then prepare to return to <planet>.`
 
 
@@ -345,9 +345,9 @@ mission "Remnant: Void Sprites 1"
 mission "Remnant: Void Sprites 2"
 	landing
 	name "Scan the void sprites"
-	description "Return to the Nenia system, and use an outfit scanner on one of each of the types of void sprites to see if you can tell how their propulsion works."
-	source Aventine
-	waypoint Nenia
+	description "Return to the <waypoints> system, and use an outfit scanner on one of each of the types of void sprites to see if you can tell how their propulsion works."
+	source "Aventine"
+	waypoint "Nenia"
 	to offer
 		has "Remnant: Void Sprites 1: done"
 	on offer
@@ -373,7 +373,7 @@ mission "Remnant: Void Sprites 2"
 	npc "scan outfits"
 		government "Indigenous Lifeform"
 		personality timid mining harvests staying mute
-		system Nenia
+		system "Nenia"
 		fleet
 			cargo 0
 			variant
@@ -385,11 +385,11 @@ mission "Remnant: Void Sprites 2"
 		event "remnant: nenia restored"
 
 event "remnant: nenia empty"
-	system Nenia
+	system "Nenia"
 		remove fleet "Void Sprites"
 
 event "remnant: nenia restored"
-	system Nenia
+	system "Nenia"
 		add fleet "Void Sprites" 500
 
 
@@ -398,10 +398,10 @@ mission "Remnant: Void Sprites 3"
 	landing
 	name "Visit void sprite planets"
 	description `Purchase a "gascraft" ship from the Remnant world of Viminal, and use it to explore the two gas giants where the void sprites live. Then, return to <planet>.`
-	source Aventine
-	stopover Viminal
-	stopover Nasqueron
-	stopover Slylandro
+	source "Aventine"
+	stopover "Viminal"
+	stopover "Nasqueron"
+	stopover "Slylandro"
 	cargo "scanning equipment" 8
 	blocked "The Remnant researcher has another job for you, but you're going to have to free up some cargo space in order to take it on."
 	to offer
@@ -434,7 +434,7 @@ mission "Remnant: Void Sprites 3"
 		event "remnant: gascraft"
 	npc
 		government " Drak "
-		system Nenia
+		system "Nenia"
 		personality staying heroic nemesis uninterested
 		ship "Archon (Cloaked)" "Lifted Lorax"
 	on stopover
@@ -463,7 +463,7 @@ mission "Remnant: Void Sprites 3"
 			`	You thank him for the information and tell him that you will look forward to reading the results of his study (and, getting paid for your help) once it is complete.`
 
 event "remnant: gascraft"
-	planet Viminal
+	planet "Viminal"
 		add shipyard "Remnant Gascraft"
 
 government " Drak "
@@ -485,6 +485,7 @@ mission "Remnant: Technology Available"
 	on offer
 		payment 2000000
 		set "license: Remnant"
+		log "The prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."
 		conversation
 			`An elderly man approaches your ship and introduces himself as a local "prefect," presumably some sort of government position. In a song so elaborate that he must have composed and practiced it ahead of time, he informs you that a scientific study on the void sprites has just been published, and as the co-author you are entitled to a payment of two million credits, which he presents to you.`
 			`	"When your name came up in the study," he says, "I asked around and discovered that you have helped us in other ways as well. The other prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall henceforth be given permission to purchase our ships and technology."`

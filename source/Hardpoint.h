@@ -13,12 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef HARDPOINT_H_
 #define HARDPOINT_H_
 
-#include "Point.h"
 #include "Angle.h"
+#include "Point.h"
 
 #include <vector>
 
-class Effect;
 class Outfit;
 class Projectile;
 class Ship;
@@ -76,9 +75,11 @@ public:
 	// Uninstall the outfit from this port (if it has one).
 	void Uninstall();
 	
+	
 private:
 	// Reset the reload counters and expend ammunition, if any.
 	void Fire(Ship &ship, const Point &start, const Angle &aim);
+	
 	
 private:
 	// The weapon installed in this hardpoint.

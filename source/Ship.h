@@ -19,7 +19,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
-#include "Flotsam.h"
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
@@ -32,10 +31,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class DataWriter;
+class Flotsam;
 class Government;
 class Minable;
 class Phrase;
 class Planet;
+class PlayerInfo;
 class Projectile;
 class StellarObject;
 class System;
@@ -74,6 +75,7 @@ public:
 		static const uint8_t RIGHT = 2;
 		static const uint8_t BACK = 3;
 	};
+	
 	class EnginePoint : public Point {
 	public:
 		EnginePoint(double x, double y, double zoom) : Point(x, y), zoom(zoom) {}
@@ -82,6 +84,7 @@ public:
 	private:
 		double zoom;
 	};
+	
 	
 public:
 	/* Functions provided by the Body base class:
@@ -100,6 +103,10 @@ public:
 	const Government *GetGovernment() const;
 	*/
 
+	Ship() = default;
+	// Construct and Load() at the same time.
+	Ship(const DataNode &node);
+	
 	// Load data for a type of ship:
 	void Load(const DataNode &node);
 	// When loading a ship, some of the outfits it lists may not have been
@@ -118,6 +125,8 @@ public:
 	const std::string &Noun() const;
 	// Get this ship's description.
 	const std::string &Description() const;
+	// Get the shipyard thumbnail for this ship.
+	const Sprite *Thumbnail() const;
 	// Get this ship's cost.
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
@@ -148,7 +157,7 @@ public:
 	// Get a random hail message, or set the object used to generate them. If no
 	// object is given the government's default will be used.
 	void SetHail(const Phrase &phrase);
-	std::string GetHail() const;
+	std::string GetHail(const PlayerInfo &player) const;
 	
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
@@ -156,6 +165,8 @@ public:
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.
 	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	// Generate energy, heat, etc. (This is called by Move().)
+	void DoGeneration();
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships);
 	// Check if this ship is boarding another ship. If it is, it either plunders
@@ -203,7 +214,7 @@ public:
 	// Check if this ship is hyperspacing, specifically via a jump drive.
 	bool IsUsingJumpDrive() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
-	bool IsReadyToJump() const;
+	bool IsReadyToJump(bool waitingIsReady = false) const;
 	// Get this ship's custom swizzle.
 	int CustomSwizzle() const;
 	
@@ -212,7 +223,8 @@ public:
 	// Get the points from which engine flares should be drawn.
 	const std::vector<EnginePoint> &EnginePoints() const;
 	
-	// Mark a ship as destroyed, or bring back a destroyed ship.
+	// Make a ship disabled or destroyed, or bring back a destroyed ship.
+	void Disable();
 	void Destroy();
 	void SelfDestruct();
 	void Restore();
@@ -230,9 +242,15 @@ public:
 	// Get characteristics of this ship, as a fraction between 0 and 1.
 	double Shields() const;
 	double Hull() const;
-	double Energy() const;
-	double Heat() const;
 	double Fuel() const;
+	double Energy() const;
+	// A ship's heat is generally between 0 and 1, but if it receives
+	// heat damage the value can increase above 1.
+	double Heat() const;
+	// Get the ship's "health," where <=0 is disabled and 1 means full health.
+	double Health() const;
+	// Get the hull fraction at which this ship is disabled.
+	double DisabledHull() const;
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
 	int JumpsRemaining() const;
@@ -245,6 +263,10 @@ public:
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
+	// Get the heat dissipation, in heat units per heat unit per frame.
+	double HeatDissipation() const;
+	// Get the maximum heat level, in heat units (not temperature).
+	double MaximumHeat() const;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
 	
@@ -267,6 +289,7 @@ public:
 	// type, which may be a combination of PROVOKED, DISABLED, and DESTROYED.
 	// If isBlast, this ship was caught in the blast radius of a weapon but was
 	// not necessarily its primary target.
+	// Blast damage is dependent on the distance to the damage source.
 	int TakeDamage(const Projectile &projectile, bool isBlast = false);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
@@ -317,10 +340,10 @@ public:
 	const std::vector<Hardpoint> &Weapons() const;
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
-	bool CanFire(const Outfit *outfit) const;
+	bool CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
 	// and add whatever heat it generates. Assume that CanFire() is true.
-	void ExpendAmmo(const Outfit *outfit);
+	void ExpendAmmo(const Weapon *weapon);
 	
 	// Each ship can have a target system (to travel to), a target planet (to
 	// land on) and a target ship (to move to, and attack if hostile).
@@ -355,10 +378,6 @@ private:
 	void RemoveEscort(const Ship &ship);
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
-	// Add to this ship's hull or shields, and return the amount added. If the
-	// ship is carrying fighters, add to them as well.
-	double AddHull(double rate);
-	double AddShields(double rate);
 	// Find out how much fuel is consumed by the hyperdrive of the given type.
 	double BestFuel(const std::string &type, const std::string &subtype, double defaultFuel) const;
 	// Create one of this ship's explosions, within its mask. The explosions can
@@ -384,8 +403,10 @@ private:
 	std::string pluralModelName;
 	std::string noun;
 	std::string description;
+	const Sprite *thumbnail = nullptr;
 	// Characteristics of this particular ship:
 	std::string name;
+	bool canBeCarried = false;
 	
 	int forget = 0;
 	bool isInSystem = true;
@@ -427,6 +448,8 @@ private:
 	std::list<std::shared_ptr<Flotsam>> jettisoned;
 	
 	std::vector<Bay> bays;
+	// Cache the mass of carried ships to avoid repeatedly recomputing it.
+	double carriedMass = 0.;
 	
 	std::vector<EnginePoint> enginePoints;
 	Armament armament;
@@ -462,6 +485,22 @@ private:
 	double hyperspaceFuelCost = 0.;
 	Point hyperspaceOffset;
 	
+	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
+	// when the ship is dying.
+	class Leak {
+	public:
+		Leak(const Effect *effect = nullptr) : effect(effect) {}
+		
+		const Effect *effect = nullptr;
+		Point location;
+		Angle angle;
+		int openPeriod = 60;
+		int closePeriod = 60;
+	};
+	std::vector<Leak> leaks;
+	std::vector<Leak> activeLeaks;
+	
+	// Explosions that happen when the ship is dying:
 	std::map<const Effect *, int> explosionEffects;
 	unsigned explosionRate = 0;
 	unsigned explosionCount = 0;

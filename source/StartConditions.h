@@ -17,8 +17,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ConditionSet.h"
 #include "Date.h"
 
+#include <list>
+
 class DataNode;
 class Planet;
+class Ship;
 class System;
 
 
@@ -26,12 +29,15 @@ class System;
 class StartConditions {
 public:
 	void Load(const DataNode &node);
+	// Finish loading the ship definitions.
+	void FinishLoading();
 	
 	Date GetDate() const;
 	const Planet *GetPlanet() const;
 	const System *GetSystem() const;
 	const Account &GetAccounts() const;
 	const ConditionSet &GetConditions() const;
+	const std::list<Ship> &Ships() const;
 	
 	
 private:
@@ -40,6 +46,7 @@ private:
 	const System *system = nullptr;
 	Account accounts;
 	ConditionSet conditions;
+	std::list<Ship> ships;
 };
 
 
