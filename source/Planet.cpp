@@ -24,8 +24,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "System.h"
 
-#include <algorithm>
-
 using namespace std;
 
 namespace {
@@ -164,31 +162,17 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 		else if(key == "tribute")
 		{
 			tribute = child.Value(valueIndex);
-			bool resetFleets = !defenseFleets.empty();
 			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "threshold" && grand.Size() >= 2)
 					defenseThreshold = grand.Value(1);
-				else if(grand.Token(0) == "fleet")
+				else if(grand.Token(0) == "fleet" && grand.Size() >= 3)
 				{
-					if(grand.Size() >= 2 && !grand.HasChildren())
-					{
-						// Allow only one "tribute" node to define the tribute fleets.
-						if(resetFleets)
-						{
-							defenseFleets.clear();
-							resetFleets = false;
-						}
-						defenseFleets.insert(defenseFleets.end(),
-								grand.Size() >= 3 ? grand.Value(2) : 1,
-								GameData::Fleets().Get(grand.Token(1))
-						);
-					}
-					else
-						grand.PrintTrace("Skipping unsupported tribute fleet definition:");
+					defenseCount = (grand.Size() >= 3 ? grand.Value(2) : 1);
+					defenseFleet = GameData::Fleets().Get(grand.Token(1));
 				}
 				else
-					grand.PrintTrace("Skipping unrecognized tribute attribute:");
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else
@@ -204,8 +188,6 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 		else
 			attributes.erase(AUTO_ATTRIBUTES[i]);
 	}
-
-	inhabited = (HasSpaceport() || requiredReputation || !defenseFleets.empty()) && !attributes.count("uninhabited");
 }
 
 
@@ -297,7 +279,7 @@ const string &Planet::SpaceportDescription() const
 // have the "uninhabited" attribute).
 bool Planet::IsInhabited() const
 {
-	return inhabited;
+	return (HasSpaceport() || requiredReputation || defenseFleet) && !attributes.count("uninhabited");
 }
 
 
@@ -443,13 +425,6 @@ const System *Planet::WormholeDestination(const System *from) const
 
 
 
-const vector<const System *> &Planet::WormholeSystems() const
-{
-	return systems;
-}
-
-
-
 // Check if the given ship has all the attributes necessary to allow it to
 // land on this planet.
 bool Planet::IsAccessible(const Ship *ship) const
@@ -516,28 +491,22 @@ string Planet::DemandTribute(PlayerInfo &player) const
 {
 	if(player.GetCondition("tribute: " + name))
 		return "We are already paying you as much as we can afford.";
-	if(!tribute || defenseFleets.empty())
+	if(!tribute || !defenseFleet || !defenseCount || player.GetCondition("combat rating") < defenseThreshold)
 		return "Please don't joke about that sort of thing.";
-	if(player.GetCondition("combat rating") < defenseThreshold)
-		return "You're not worthy of our time.";
 	
 	// The player is scary enough for this planet to take notice. Check whether
 	// this is the first demand for tribute, or not.
 	if(!isDefending)
 	{
 		isDefending = true;
-		set<const Government *> toProvoke;
-		for(const auto &fleet : defenseFleets)
-			toProvoke.insert(fleet->GetGovernment());
-		for(const auto &gov : toProvoke)
-			gov->Offend(ShipEvent::PROVOKE);
-		// Terrorizing a planet is not taken lightly by it or its allies.
-		GetGovernment()->Offend(ShipEvent::ATROCITY);
+		GameData::GetPolitics().Offend(defenseFleet->GetGovernment(), ShipEvent::PROVOKE);
+		GameData::GetPolitics().Offend(GetGovernment(), ShipEvent::ATROCITY);
 		return "Our defense fleet will make short work of you.";
 	}
 	
-	// The player has already demanded tribute. Have they defeated the entire defense fleet?
-	bool isDefeated = (defenseDeployed == defenseFleets.size());
+	// The player has already demanded tribute. Have they killed off the entire
+	// defense fleet?
+	bool isDefeated = (defenseDeployed == defenseCount);
 	for(const shared_ptr<Ship> &ship : defenders)
 		if(!ship->IsDisabled() && !ship->IsYours())
 		{
@@ -550,22 +519,22 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	
 	player.Conditions()["tribute: " + name] = tribute;
 	GameData::GetPolitics().DominatePlanet(this);
-	return "We surrender. We will pay you " + Format::Credits(tribute) + " credits per day to leave us alone.";
+	return "We surrender. We will pay you " + Format::Number(tribute) + " credits per day to leave us alone.";
 }
 
 
 
-// While being tributed, attempt to spawn the next specified defense fleet.
 void Planet::DeployDefense(list<shared_ptr<Ship>> &ships) const
 {
-	if(!isDefending || Random::Int(60) || defenseDeployed == defenseFleets.size())
+	if(!isDefending || Random::Int(60) || defenseDeployed == defenseCount)
 		return;
 	
+	// Have another defense fleet take off from the planet.
 	auto end = defenders.begin();
-	defenseFleets[defenseDeployed]->Enter(*GetSystem(), defenders, this);
+	defenseFleet->Enter(*GetSystem(), defenders, this);
 	ships.insert(ships.begin(), defenders.begin(), end);
 	
-	// All defenders use a special personality.
+	// All defenders get a special personality.
 	Personality defenderPersonality = Personality::Defender();
 	for(auto it = defenders.begin(); it != end; ++it)
 		(**it).SetPersonality(defenderPersonality);

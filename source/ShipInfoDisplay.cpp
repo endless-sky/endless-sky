@@ -68,8 +68,8 @@ void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 	Point point = Draw(topLeft, attributeLabels, attributeValues);
 	
 	// Get standard colors to draw with.
-	const Color &labelColor = *GameData::Colors().Get("medium");
-	const Color &valueColor = *GameData::Colors().Get("bright");
+	Color labelColor = *GameData::Colors().Get("medium");
+	Color valueColor = *GameData::Colors().Get("bright");
 	
 	Table table;
 	table.AddColumn(10, Table::LEFT);
@@ -105,7 +105,7 @@ void ShipInfoDisplay::DrawSale(const Point &topLeft) const
 {
 	Draw(topLeft, saleLabels, saleValues);
 	
-	const Color &color = *GameData::Colors().Get("medium");
+	Color color = *GameData::Colors().Get("medium");
 	FillShader::Fill(topLeft + Point(.5 * WIDTH, saleHeight + 8.), Point(WIDTH - 20., 1.), color);
 }
 
@@ -131,7 +131,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		out << "cost (" << (100 * depreciated) / fullCost << "%):";
 		attributeLabels.push_back(out.str());
 	}
-	attributeValues.push_back(Format::Credits(depreciated));
+	attributeValues.push_back(Format::Number(depreciated));
 	attributesHeight += 20;
 	
 	attributeLabels.push_back(string());
@@ -303,7 +303,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributesHeight += 20;
 	tableLabels.push_back("max:");
 	energyTable.push_back(Format::Number(attributes.Get("energy capacity")));
-	heatTable.push_back(Format::Number(60. * ship.HeatDissipation() * ship.MaximumHeat()));
+	heatTable.push_back(Format::Number(60. * emptyMass * .1 * attributes.Get("heat dissipation")));
 	// Pad by 10 pixels on the top and bottom.
 	attributesHeight += 30;
 }
@@ -353,9 +353,9 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const Depreciation &deprec
 	saleValues.push_back(string());
 	saleHeight += 20;
 	saleLabels.push_back("empty hull:");
-	saleValues.push_back(Format::Credits(chassisCost));
+	saleValues.push_back(Format::Number(chassisCost));
 	saleHeight += 20;
 	saleLabels.push_back("  + outfits:");
-	saleValues.push_back(Format::Credits(totalCost - chassisCost));
+	saleValues.push_back(Format::Number(totalCost - chassisCost));
 	saleHeight += 5;
 }

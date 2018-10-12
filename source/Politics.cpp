@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "System.h"
 
 #include <algorithm>
 #include <cmath>
@@ -277,7 +278,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		// Scale the fine based on how lenient this government is.
 		maxFine = lround(maxFine * gov->GetFineFraction());
 		reason = "The " + gov->GetName() + " authorities fine you "
-			+ Format::Credits(maxFine) + " credits" + reason;
+			+ Format::Number(maxFine) + " credits" + reason;
 		player.Accounts().AddFine(maxFine);
 		fined.insert(gov);
 	}

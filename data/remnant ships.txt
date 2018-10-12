@@ -10,7 +10,6 @@
 
 ship "Starling"
 	sprite "ship/starling"
-	thumbnail "thumbnail/starling"
 	attributes
 		category "Light Warship"
 		licenses
@@ -78,7 +77,6 @@ ship "Starling" "Starling (Heavy)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
-		"Tuning Rifle" 10
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -86,25 +84,16 @@ ship "Starling" "Starling (Heavy)"
 
 ship "Starling" "Starling (Sniper)"
 	outfits
-		"EMP Torpedo Bay"
-		"Inhibitor Cannon" 4
-		"EMP Torpedo" 9
+		"Inhibitor Cannon" 5
 		
 		"Epoch Cell"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
-		"Tuning Rifle" 9
 		
 		"Forge-Class Thruster"
 		"Smelter-Class Steering"
 		"Hyperdrive"
-	
-	gun "EMP Torpedo Bay"
-	gun "Inhibitor Cannon"
-	gun "Inhibitor Cannon"
-	gun "Inhibitor Cannon"
-	gun "Inhibitor Cannon"
 
 ship "Starling" "Starling (Hunter)"
 	outfits
@@ -115,7 +104,6 @@ ship "Starling" "Starling (Hunter)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
-		"Tuning Rifle" 11
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -136,7 +124,6 @@ ship "Starling" "Starling (Thrasher)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
-		"Tuning Rifle" 8
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -153,7 +140,6 @@ ship "Starling" "Starling (Thrasher)"
 ship "Albatross"
 	plural "Albatrosses"
 	sprite "ship/albatross"
-	thumbnail "thumbnail/albatross"
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -196,8 +182,8 @@ ship "Albatross"
 		"Hyperdrive"
 	
 	engine -28 155 .8
-	engine 28 155 .8
-	engine 0 184 .9
+	engine 28 155 .9
+	engine 0 184 .8
 	gun 0 -190
 	gun -9 -177 "Inhibitor Cannon"
 	gun 9 -177 "Inhibitor Cannon"
@@ -219,31 +205,20 @@ ship "Albatross"
 
 ship "Albatross" "Albatross (Sniper)"
 	outfits
-		"Inhibitor Cannon" 5
-		"EMP Torpedo Bay" 2
+		"Inhibitor Cannon" 7
 		"Point Defense Turret" 3
-		"EMP Torpedo" 18
 		
 		"Aeon Cell"
 		"Epoch Cell"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
-		"Tuning Rifle" 57
 		
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
 		"Smelter-Class Steering"
 		"Forge-Class Steering"
 		"Hyperdrive"
-	
-	gun "Inhibitor Cannon"
-	gun "Inhibitor Cannon"
-	gun "Inhibitor Cannon"
-	gun "Inhibitor Cannon"
-	gun "Inhibitor Cannon"
-	gun "EMP Torpedo Bay"
-	gun "EMP Torpedo Bay"
 	
 	turret "Point Defense Turret"
 	turret "Point Defense Turret"
@@ -262,7 +237,6 @@ ship "Albatross" "Albatross (Turret)"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler"
 		"Outfits Expansion" 2
-		"Tuning Rifle" 49
 		
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
@@ -286,7 +260,6 @@ ship "Albatross" "Albatross (Heavy)"
 		"Crystal Capacitor" 2
 		"Thermoelectric Cooler" 2
 		"Outfits Expansion" 4
-		"Tuning Rifle" 65
 		
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
@@ -309,10 +282,9 @@ ship "Albatross" "Albatross (Heavy)"
 
 
 
-ship "Gascraft"
-	plural "Gascraft"
-	sprite "ship/gascraft"
-	thumbnail "thumbnail/gascraft"
+ship Gascraft
+	plural Gascraft
+	sprite ship/gascraft
 	attributes
 		category Transport
 		cost 530000

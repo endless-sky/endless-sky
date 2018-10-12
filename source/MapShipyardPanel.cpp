@@ -50,14 +50,14 @@ MapShipyardPanel::MapShipyardPanel(const MapPanel &panel, bool onlyHere)
 
 const Sprite *MapShipyardPanel::SelectedSprite() const
 {
-	return selected ? selected->Thumbnail() ? selected->Thumbnail() : selected->GetSprite() : nullptr;
+	return selected ? selected->GetSprite() : nullptr;
 }
 
 
 
 const Sprite *MapShipyardPanel::CompareSprite() const
 {
-	return compare ? compare->Thumbnail() ? compare->Thumbnail() : compare->GetSprite() : nullptr;
+	return compare ? compare->GetSprite() : nullptr;
 }
 
 
@@ -97,7 +97,6 @@ void MapShipyardPanel::Select(int index)
 		selected = list[index];
 		selectedInfo.Update(*selected, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 	}
-	UpdateCache();
 }
 
 
@@ -171,7 +170,7 @@ void MapShipyardPanel::DrawItems()
 		
 		for(const Ship *ship : it->second)
 		{
-			string price = Format::Credits(ship->Cost()) + " credits";
+			string price = Format::Number(ship->Cost()) + " credits";
 			
 			string info = Format::Number(ship->Attributes().Get("shields")) + " shields / ";
 			info += Format::Number(ship->Attributes().Get("hull")) + " hull";
@@ -190,10 +189,7 @@ void MapShipyardPanel::DrawItems()
 			if(!isForSale && onlyShowSoldHere)
 				continue;
 			
-			const Sprite *sprite = ship->Thumbnail();
-			if(!sprite)
-				sprite = ship->GetSprite();
-			Draw(corner, sprite, isForSale, ship == selected, ship->ModelName(), price, info);
+			Draw(corner, ship->GetSprite(), isForSale, ship == selected, ship->ModelName(), price, info);
 			list.push_back(ship);
 		}
 	}

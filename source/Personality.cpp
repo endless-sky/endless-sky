@@ -48,7 +48,6 @@ namespace {
 	const int OPPORTUNISTIC = (1 << 24);
 	const int TARGET = (1 << 25);
 	const int MARKED = (1 << 26);
-	const int LAUNCHING = (1 << 27);
 	
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -77,8 +76,7 @@ namespace {
 		{"mute", MUTE},
 		{"opportunistic", OPPORTUNISTIC},
 		{"target", TARGET},
-		{"marked", MARKED},
-		{"launching", LAUNCHING}
+		{"marked", MARKED}
 	};
 	
 	const double DEFAULT_CONFUSION = 10.;
@@ -251,13 +249,6 @@ bool Personality::IsWaiting() const
 
 
 
-bool Personality::IsLaunching() const
-{
-	return flags & LAUNCHING;
-}
-
-
-
 bool Personality::IsFleeing() const
 {
 	return flags & FLEEING;
@@ -364,7 +355,7 @@ void Personality::UpdateConfusion(bool isFiring)
 Personality Personality::Defender()
 {
 	Personality defender;
-	defender.flags = STAYING | MARKED | HEROIC | UNCONSTRAINED | TARGET;
+	defender.flags = STAYING | NEMESIS | HEROIC;
 	return defender;
 }
 

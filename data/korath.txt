@@ -194,9 +194,9 @@ fleet "Korath Raid"
 	government "Korath"
 	names "korath"
 	fighters "korath"
-	cargo 1
+	cargo 3
 	personality
-		disables plunders opportunistic harvests
+		disables plunders opportunistic
 	variant
 		"Korath Raider"
 		"Korath Chaser" 2
@@ -576,7 +576,8 @@ outfitter "Korath Basics"
 	"Command Center"
 	"Small Bunk Room"
 	"Bunk Room"
-	"Fuel Processor"
+	"Fuel Pod"
+	"Ramscoop"
 	"Outfits Expansion"
 	"Cargo Expansion"
 	"Local Map"

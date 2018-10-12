@@ -43,6 +43,8 @@ const double MapSalesPanel::ICON_HEIGHT = 90.;
 const double MapSalesPanel::PAD = 8.;
 const int MapSalesPanel::WIDTH = 270;
 
+using namespace std;
+
 
 
 MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
@@ -157,12 +159,11 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 
 
 
-// Check to see if the mouse is over the scrolling pane.
 bool MapSalesPanel::Hover(int x, int y)
 {
 	isDragging = (x < Screen::Left() + WIDTH);
 	
-	return isDragging ? true : MapPanel::Hover(x, y);
+	return true;
 }
 
 
@@ -228,7 +229,7 @@ void MapSalesPanel::DrawKey() const
 
 void MapSalesPanel::DrawPanel() const
 {
-	const Color &back = *GameData::Colors().Get("map side panel background");
+	Color back(0.125, 1.);
 	FillShader::Fill(
 		Point(Screen::Width() * -.5 + WIDTH * .5, 0.),
 		Point(WIDTH, Screen::Height()), 
@@ -254,25 +255,19 @@ void MapSalesPanel::DrawInfo() const
 {
 	if(selected >= 0)
 	{
-		const Sprite *left = SpriteSet::Get("ui/left edge");
-		const Sprite *bottom = SpriteSet::Get(compare >= 0 ? "ui/bottom edges" : "ui/bottom edge");
-		const Sprite *box = SpriteSet::Get(compare >= 0 ? "ui/thumb boxes" : "ui/thumb box");
-		
 		const ItemInfoDisplay &selectedInfo = SelectedInfo();
 		const ItemInfoDisplay &compareInfo = CompareInfo();
-		int height = max<int>(selectedInfo.AttributesHeight(), box->Height());
-		int width = selectedInfo.PanelWidth();
-		if(compare >= 0)
-		{
-			height = max(height, compareInfo.AttributesHeight());
-			width += box->Width() + compareInfo.PanelWidth();
-		}
+		int selectedHeight = max(selectedInfo.AttributesHeight(), 120);
+		int compareHeight = (compare >= 0) ? max(compareInfo.AttributesHeight(), 120) : 0;
 		
-		const Color &back = *GameData::Colors().Get("map side panel background");
-		Point size(width, height);
+		Color back(.125, 1.);
+		Point size(selectedInfo.PanelWidth(), selectedHeight + compareHeight);
 		Point topLeft(Screen::Right() - size.X(), Screen::Top());
 		FillShader::Fill(topLeft + .5 * size, size, back);
 		
+		const Sprite *left = SpriteSet::Get("ui/left edge");
+		const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
+		const Sprite *box = SpriteSet::Get("ui/thumb box");
 		Point leftPos = topLeft + Point(
 			-.5 * left->Width(),
 			size.Y() - .5 * left->Height());
@@ -284,21 +279,25 @@ void MapSalesPanel::DrawInfo() const
 			.5 * (left->Height() + bottom->Height()));
 		SpriteShader::Draw(bottom, bottomPos);
 		
+		Point iconOffset(-.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
+		
+		SpriteShader::Draw(box, topLeft + iconOffset + Point(-15., 5.));
+		DrawSprite(topLeft + Point(-ICON_HEIGHT, 5.), SelectedSprite());
+		
+		selectedInfo.DrawAttributes(topLeft);
+		
 		if(compare >= 0)
 		{
-			compareInfo.DrawAttributes(topLeft);
-			topLeft.X() += compareInfo.PanelWidth() + box->Width();
+			topLeft.Y() += selectedHeight;
 			
-			SpriteShader::Draw(box, topLeft + Point(-50., 100.));
-			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite());
-			DrawSprite(topLeft + Point(-95., 105.), CompareSprite());
+			SpriteShader::Draw(box, topLeft + iconOffset + Point(-15., 5.));
+			DrawSprite(topLeft + Point(-ICON_HEIGHT, 5.), CompareSprite());
+			
+			Color line(.5);
+			size.Y() = 1.;
+			FillShader::Fill(topLeft + .5 * size - Point(0., 1.), size, line);
+			compareInfo.DrawAttributes(topLeft);
 		}
-		else
-		{
-			SpriteShader::Draw(box, topLeft + Point(-60., 50.));
-			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite());
-		}
-		selectedInfo.DrawAttributes(topLeft);
 	}
 }
 
@@ -314,7 +313,7 @@ bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 	const Sprite *arrow = SpriteSet::Get(hide ? "ui/collapsed" : "ui/expanded");
 	SpriteShader::Draw(arrow, corner + Point(15., 25.));
 	
-	const Color &textColor = *GameData::Colors().Get(hide ? "medium" : "bright");
+	Color textColor = *GameData::Colors().Get(hide ? "medium" : "bright");
 	const Font &bigFont = FontSet::Get(18);
 	bigFont.Draw(category, corner + Point(30., 15.), textColor);
 	AddZone(Rectangle::FromCorner(corner, Point(WIDTH, 40.)), [this, category](){ ClickCategory(category); });
@@ -355,7 +354,7 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, bool isForSale, bo
 		
 		DrawSprite(corner, sprite);
 		
-		const Color &textColor = *GameData::Colors().Get(isForSale ? "medium" : "dim");
+		Color textColor = *GameData::Colors().Get(isForSale ? "medium" : "dim");
 		font.Draw(name, corner + nameOffset, textColor);
 		font.Draw(price, corner + priceOffset, textColor);
 		font.Draw(info, corner + infoOffset, textColor);

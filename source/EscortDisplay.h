@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
-class Rectangle;
 class Ship;
 class Sprite;
 
@@ -33,8 +32,9 @@ public:
 	void Clear();
 	void Add(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected);
 	
-	// Draw as many escort icons as will fit in the given bounding box.
-	void Draw(const Rectangle &bounds) const;
+	// The display starts in the lower left corner of the screen and takes up
+	// all but the top 450 pixels of the screen.
+	void Draw() const;
 	
 	// Check if the given point is a click on an escort icon. If so, return the
 	// stack of ships represented by the icon. Otherwise, return an empty stack.
@@ -67,7 +67,7 @@ private:
 	
 	
 private:
-	void MergeStacks(int maxHeight) const;
+	void MergeStacks() const;
 	
 	
 private:

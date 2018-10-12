@@ -73,9 +73,9 @@ TradingPanel::~TradingPanel()
 			+ (tonsSold == 1 ? " ton" : " tons") + " of cargo ";
 		
 		if(profit < 0)
-			message += "at a loss of " + Format::Credits(-profit) + " credits.";
+			message += "at a loss of " + Format::Number(-profit) + " credits.";
 		else
-			message += "for a total profit of " + Format::Credits(profit) + " credits.";
+			message += "for a total profit of " + Format::Number(profit) + " credits.";
 		
 		Messages::Add(message);
 	}
@@ -92,14 +92,14 @@ void TradingPanel::Step()
 
 void TradingPanel::Draw()
 {
-	const Color &back = *GameData::Colors().Get("faint");
+	Color back = *GameData::Colors().Get("faint");
 	int selectedRow = player.MapColoring();
 	if(selectedRow >= 0 && selectedRow < COMMODITY_COUNT)
 		FillShader::Fill(Point(-60., FIRST_Y + 20 * selectedRow + 33), Point(480., 20.), back);
 	
 	const Font &font = FontSet::Get(14);
-	const Color &unselected = *GameData::Colors().Get("medium");
-	const Color &selected = *GameData::Colors().Get("bright");
+	Color unselected = *GameData::Colors().Get("medium");
+	Color selected = *GameData::Colors().Get("bright");
 	
 	int y = FIRST_Y;
 	FillShader::Fill(Point(-60., y + 15.), Point(480., 1.), unselected);
@@ -157,7 +157,6 @@ void TradingPanel::Draw()
 	{
 		y += 20;
 		int price = system.Trade(commodity.name);
-		int hold = player.Cargo().Get(commodity.name);
 		
 		bool isSelected = (i++ == selectedRow);
 		const Color &color = (isSelected ? selected : unselected);
@@ -169,7 +168,7 @@ void TradingPanel::Draw()
 			font.Draw(to_string(price), Point(PRICE_X, y), color);
 		
 			int basis = player.GetBasis(commodity.name);
-			if(basis && basis != price && hold)
+			if(basis && basis != price)
 			{
 				string profit = "(profit: " + to_string(price - basis) + ")";
 				font.Draw(profit, Point(LEVEL_X, y), color);
@@ -195,6 +194,7 @@ void TradingPanel::Draw()
 			font.Draw("(not for sale)", Point(LEVEL_X, y), color);
 		}
 		
+		int hold = player.Cargo().Get(commodity.name);
 		if(hold)
 		{
 			sellOutfits = false;
@@ -255,7 +255,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			
 			int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
 			profit += value;
-			tonsSold += static_cast<int>(it.second * it.first->Mass());
+			tonsSold += static_cast<int>(it.second * it.first->Get("mass"));
 			
 			player.AddStock(it.first, it.second);
 			player.Accounts().AddCredits(value);
@@ -318,7 +318,7 @@ void TradingPanel::Buy(int64_t amount)
 		profit += -amount * price + basis;
 		tonsSold += -amount;
 	}
-	amount = player.Cargo().Add(type, amount);
-	player.Accounts().AddCredits(-amount * price);
-	GameData::AddPurchase(system, type, amount);
+	amount = player.Cargo().Transfer(type, -amount);
+	player.Accounts().AddCredits(amount * price);
+	GameData::AddPurchase(system, type, -amount);
 }

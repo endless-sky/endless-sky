@@ -78,7 +78,7 @@ namespace {
 	ALCdevice *device = nullptr;
 	ALCcontext *context = nullptr;
 	bool isInitialized = false;
-	double volume = .125;
+	double volume = .5;
 	
 	// This queue keeps track of sounds that have been requested to play. Each
 	// added sound is "deferred" until the next audio position update to make
@@ -579,7 +579,7 @@ namespace {
 			}
 			
 			// Unlock the mutex for the time-intensive part of the loop.
-			if(!sounds[name].Load(path, name))
+			if(!sounds[name].Load(path))
 				Files::LogError("Unable to load sound \"" + name + "\" from path: " + path);
 		}
 	}

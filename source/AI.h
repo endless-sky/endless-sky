@@ -27,11 +27,11 @@ class Body;
 class Flotsam;
 class Government;
 class Minable;
-class PlayerInfo;
 class Ship;
 class ShipEvent;
 class StellarObject;
 class System;
+class PlayerInfo;
 
 
 
@@ -59,9 +59,6 @@ template <class Type>
 	void UpdateEvents(const std::list<ShipEvent> &events);
 	// Reset the AI's memory of events.
 	void Clean();
-	// Clear ship orders. This should be done when the player lands on a planet,
-	// but not when they jump from one system to another.
-	void ClearOrders();
 	// Issue AI commands to all ships for one game step.
 	void Step(const PlayerInfo &player);
 	
@@ -71,9 +68,6 @@ template <class Type>
 	
 	
 private:
-	// Check if a ship can pursue its target (i.e. beyond the "fence").
-	bool CanPursue(const Ship &ship, const Ship &target) const;
-	// Disabled or stranded ships coordinate with other ships to get assistance.
 	void AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship);
 	static bool CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel);
 	bool HasHelper(const Ship &ship, const bool needsFuel);
@@ -86,7 +80,6 @@ private:
 	static void Refuel(Ship &ship, Command &command);
 	static bool CanRefuel(const Ship &ship, const StellarObject *target);
 	
-	// Methods of moving from the current position to a desired position / orientation.
 	static double TurnBackward(const Ship &ship);
 	static double TurnToward(const Ship &ship, const Point &vector);
 	static bool MoveToPlanet(Ship &ship, Command &command);
@@ -99,20 +92,16 @@ private:
 	static void Attack(Ship &ship, Command &command, const Ship &target);
 	static void MoveToAttack(Ship &ship, Command &command, const Body &target);
 	static void PickUp(Ship &ship, Command &command, const Body &target);
-	// Special decisions a ship might make.
 	static bool ShouldUseAfterburner(Ship &ship);
-	// Special personality behaviors.
-	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
-	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
+	void DoSurveillance(Ship &ship, Command &command) const;
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command);
-	bool DoCloak(Ship &ship, Command &command);
-	// Prevent ships from stacking on each other when many are moving in sync.
+	void DoCloak(Ship &ship, Command &command);
 	void DoScatter(Ship &ship, Command &command);
 	
 	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
 	// Get a vector giving the direction this ship should aim in in order to do
-	// maximum damage to a target at the given position with its non-turret,
+	// maximum damaged to a target at the given position with its non-turret,
 	// non-homing weapons. If the ship has no non-homing weapons, this just
 	// returns the direction to the target.
 	static Point TargetAim(const Ship &ship);
@@ -131,15 +120,8 @@ private:
 	
 	void MovePlayer(Ship &ship, const PlayerInfo &player);
 	
-	// True if the ship performed the indicated event to the other ship.
 	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;
-	// True if the government performed the indicated event to the other ship.
 	bool Has(const Government *government, const std::weak_ptr<const Ship> &other, int type) const;
-	// True if the ship has performed the indicated event against any member of the government.
-	bool Has(const Ship &ship, const Government *government, int type) const;
-	
-	// Functions to classify ships based on government and system.
-	void UpdateStrengths(std::map<const Government *, int64_t> &strength, const System *playerSystem);
 	
 	
 private:
@@ -158,7 +140,7 @@ private:
 		int type = 0;
 		std::weak_ptr<Ship> target;
 		Point point;
-		const System *targetSystem = nullptr;
+		const System *targetSystem;
 	};
 
 
@@ -197,7 +179,6 @@ private:
 	// Records of what various AI ships and factions have done.
 	typedef std::owner_less<std::weak_ptr<const Ship>> Comp;
 	std::map<std::weak_ptr<const Ship>, std::map<std::weak_ptr<const Ship>, int, Comp>, Comp> actions;
-	std::map<std::weak_ptr<const Ship>, std::map<const Government *, int>, Comp> notoriety;
 	std::map<const Government *, std::map<std::weak_ptr<const Ship>, int, Comp>> governmentActions;
 	std::map<std::weak_ptr<const Ship>, int, Comp> playerActions;
 	std::map<const Ship *, std::weak_ptr<Ship>> helperList;

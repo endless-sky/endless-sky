@@ -12,7 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "PlayerInfoPanel.h"
 
-#include "Command.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
@@ -32,7 +31,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
-#include <utility>
 
 using namespace std;
 
@@ -53,7 +51,7 @@ namespace {
 			if(it->first.compare(0, prefix.length(), prefix))
 				break;
 			if(it->second > 0)
-				match.emplace_back(it->second, it->first.substr(prefix.length()) + suffix);
+				match.push_back(pair<int, string>(it->second, it->first.substr(prefix.length()) + suffix));
 		}
 		return match;
 	}
@@ -76,10 +74,11 @@ namespace {
 			}
 		}
 		
-		const Color &dim = *GameData::Colors().Get("medium");
+		Color dim = *GameData::Colors().Get("medium");
+		Color bright = *GameData::Colors().Get("bright");
 		table.DrawGap(10);
 		table.DrawUnderline(dim);
-		table.Draw(title, *GameData::Colors().Get("bright"));
+		table.Draw(title, bright);
 		table.Advance();
 		table.DrawGap(5);
 		
@@ -208,52 +207,6 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 				selectedIndex = 0;
 				Scroll(-player.Ships().size());
 			}
-		}
-		// Holding both Ctrl & Shift keys and using the arrows moves the
-		// selected ship group up or down one row.
-		else if(!allSelected.empty() && (mod & KMOD_CTRL) && (mod & KMOD_SHIFT))
-		{
-			// Move based on the position of the first selected ship. An upward
-			// movement is a shift of one, while a downward move shifts 1 and
-			// then 1 for each ship in the contiguous selection.
-			size_t toIndex = *allSelected.begin();
-			if(key == SDLK_UP && toIndex > 0)
-				--toIndex;
-			else if(key == SDLK_DOWN)
-			{
-				int next = ++toIndex;
-				for(set<int>::const_iterator sel = allSelected.begin(); ++sel != allSelected.end(); )
-				{
-					if(*sel != next)
-						break;
-					
-					++toIndex;
-					++next;
-				}
-			}
-			
-			// Clamp the destination index to the end of the ships list.
-			size_t moved = allSelected.size();
-			toIndex = min(player.Ships().size() - moved, static_cast<size_t>(toIndex));
-			selectedIndex = player.ReorderShips(allSelected, toIndex);
-			// If the move accessed invalid indices, no moves are done
-			// but the selectedIndex is set to -1.
-			if(selectedIndex < 0)
-				selectedIndex = *allSelected.begin();
-			else
-			{
-				// Update the selected indices so they still refer
-				// to the block of ships that just got moved.
-				int lastIndex = selectedIndex + moved;
-				allSelected.clear();
-				for(int i = selectedIndex; i < lastIndex; ++i)
-					allSelected.insert(i);
-			}
-			// Update the scroll if necessary to keep the selected ship on screen.
-			int scrollDirection = ((selectedIndex >= scroll + LINES_PER_PAGE) - (selectedIndex < scroll));
-			if(selectedIndex >= 0 && Scroll((LINES_PER_PAGE - 2) * scrollDirection))
-				hoverIndex = -1;
-			return true;
 		}
 		else
 		{
@@ -479,7 +432,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	table.Draw("player:", dim);
 	table.Draw(player.FirstName() + " " + player.LastName(), bright);
 	table.Draw("net worth:", dim);
-	table.Draw(Format::Credits(player.Accounts().NetWorth()) + " credits", bright);
+	table.Draw(Format::Number(player.Accounts().NetWorth()) + " credits", bright);
 	
 	// Determine the player's combat rating.
 	int combatLevel = log(max(1, player.GetCondition("combat rating")));
@@ -504,13 +457,13 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	const string &deterrenceRating = GameData::Rating("armament deterrence", deterrenceLevel);
 	if(!attractionRating.empty() && !deterrenceRating.empty())
 	{
-		double attraction = max(0., min(1., .005 * (factors.first - factors.second - 2.)));
+		double attraction = max(0., .005 * (factors.first - factors.second - 2.));
 		double prob = 1. - pow(1. - attraction, 10.);
 		
 		table.DrawGap(10);
 		table.DrawUnderline(dim);
 		table.Draw("piracy threat:", bright);
-		table.Draw(to_string(lround(100 * prob)) + "%", dim);
+		table.Draw(Format::Number(lround(100 * prob)) + "%", dim);
 		table.DrawGap(5);
 		
 		// Format the attraction and deterrence levels with tens places, so it

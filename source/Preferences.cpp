@@ -34,7 +34,6 @@ namespace {
 	
 	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
 	int zoomIndex = 4;
-	const double VOLUME_SCALE = .25;
 }
 
 
@@ -47,9 +46,7 @@ void Preferences::Load()
 	settings["Render motion blur"] = true;
 	settings["Escorts use ammo frugally"] = true;
 	settings["Escorts expend ammo"] = true;
-	settings["Damaged fighters retreat"] = true;
 	settings["Warning siren"] = true;
-	settings["Show escort systems on map"] = true;
 	settings["Show mini-map"] = true;
 	settings["Show planet labels"] = true;
 	settings["Show hyperspace flash"] = true;
@@ -65,7 +62,7 @@ void Preferences::Load()
 		else if(node.Token(0) == "zoom" && node.Size() >= 2)
 			Screen::SetZoom(node.Value(1));
 		else if(node.Token(0) == "volume" && node.Size() >= 2)
-			Audio::SetVolume(node.Value(1) * VOLUME_SCALE);
+			Audio::SetVolume(node.Value(1));
 		else if(node.Token(0) == "scroll speed" && node.Size() >= 2)
 			scrollSpeed = node.Value(1);
 		else if(node.Token(0) == "view zoom")
@@ -81,7 +78,7 @@ void Preferences::Save()
 {
 	DataWriter out(Files::Config() + "preferences.txt");
 	
-	out.Write("volume", Audio::Volume() / VOLUME_SCALE);
+	out.Write("volume", Audio::Volume());
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
 	out.Write("zoom", Screen::Zoom());
 	out.Write("scroll speed", scrollSpeed);

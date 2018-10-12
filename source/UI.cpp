@@ -157,9 +157,7 @@ void UI::Pop(const Panel *panel)
 
 
 
-// Check whether the given panel is on top of the existing panels, i.e. is the
-// active one, on this Step. Any panels that have been pushed this Step are not
-// considered.
+// Check whether the given panel is on top, i.e. is the active one.
 bool UI::IsTop(const Panel *panel) const
 {
 	return (!stack.empty() && stack.back().get() == panel);
@@ -167,8 +165,7 @@ bool UI::IsTop(const Panel *panel) const
 
 
 
-// Get the absolute top panel, even if it is not yet drawn (i.e. was pushed on
-// this Step).
+// Get the top panel.
 shared_ptr<Panel> UI::Top() const
 {
 	if(!toPush.empty())

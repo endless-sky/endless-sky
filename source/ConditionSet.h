@@ -28,10 +28,6 @@ class DataWriter;
 // values.
 class ConditionSet {
 public:
-	ConditionSet() = default;
-	// Construct and Load() at the same time.
-	ConditionSet(const DataNode &node);
-	
 	// Load a set of conditions from the children of this node.
 	void Load(const DataNode &node);
 	// Save a set of conditions.

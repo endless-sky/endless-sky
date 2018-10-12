@@ -15,8 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ItemInfoDisplay.h"
 
-#include <string>
 #include <vector>
+#include <string>
 
 class Depreciation;
 class Point;

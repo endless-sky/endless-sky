@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Armament.h"
 
 #include "Command.h"
-#include "Outfit.h"
 #include "Ship.h"
 
 #include <algorithm>
@@ -49,8 +48,7 @@ void Armament::Add(const Outfit *outfit, int count)
 	if(!count || !outfit || !outfit->IsWeapon())
 		return;
 	
-	int existing = 0;
-	int added = 0;
+	int total = 0;
 	bool isTurret = outfit->Get("turret mounts");
 	
 	// To start out with, check how many instances of this weapon are already
@@ -69,7 +67,7 @@ void Armament::Add(const Outfit *outfit, int count)
 				++count;
 			}
 			else
-				++existing;
+				++total;
 		}
 		else if(!hardpoint.GetOutfit() && hardpoint.IsTurret() == isTurret)
 		{
@@ -80,20 +78,15 @@ void Armament::Add(const Outfit *outfit, int count)
 			{
 				hardpoint.Install(outfit);
 				--count;
-				++added;
+				++total;
 			}
 		}
 	}
 	
-	// If a stream counter already exists for this outfit (because we did not
-	// just add the first one or remove the last one), do nothing.
-	if(existing)
-		return;
-	
 	// If this weapon is streamed, create a stream counter. If it is not
 	// streamed, or if the last of this weapon has been uninstalled, erase the
 	// stream counter (if there is one).
-	if(added && outfit->IsStreamed())
+	if(total && outfit->IsStreamed())
 		streamReload[outfit] = 0;
 	else
 		streamReload.erase(outfit);

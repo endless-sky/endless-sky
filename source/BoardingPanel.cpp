@@ -69,7 +69,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	
 	// You cannot plunder hand to hand weapons, because they are kept in the
 	// crew's quarters, not mounted on the exterior of the ship. Certain other
-	// outfits are also unplunderable, like outfits expansions.
+	// outfits are also unplunderable, like mass expansions.
 	auto sit = victim->Outfits().begin();
 	auto cit = victim->Cargo().Outfits().begin();
 	while(sit != victim->Outfits().end() || cit != victim->Cargo().Outfits().end())
@@ -118,11 +118,11 @@ void BoardingPanel::Draw()
 	DrawBackdrop();
 	
 	// Draw the list of plunder.
-	const Color &opaque = *GameData::Colors().Get("panel background");
-	const Color &back = *GameData::Colors().Get("faint");
-	const Color &dim = *GameData::Colors().Get("dim");
-	const Color &medium = *GameData::Colors().Get("medium");
-	const Color &bright = *GameData::Colors().Get("bright");
+	Color opaque(.1, 1.);
+	Color back = *GameData::Colors().Get("faint");
+	Color dim = *GameData::Colors().Get("dim");
+	Color medium = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
 	FillShader::Fill(Point(-155., -60.), Point(360., 250.), opaque);
 	
 	int index = (scroll - 10) / 20;
@@ -179,7 +179,7 @@ void BoardingPanel::Draw()
 			Round(defenseOdds.DefenderPower(crew)));
 	}
 	int vCrew = victim ? victim->Crew() : 0;
-	if(victim && (victim->IsCapturable() || victim->IsYours()))
+	if(victim && (victim->IsCapturable() || victim->GetGovernment()->IsPlayer()))
 	{
 		info.SetString("enemy crew", to_string(vCrew));
 		info.SetString("enemy attack",
@@ -187,7 +187,7 @@ void BoardingPanel::Draw()
 		info.SetString("enemy defense",
 			Round(attackOdds.DefenderPower(vCrew)));
 	}
-	if(victim && victim->IsCapturable() && !victim->IsYours())
+	if(victim && victim->IsCapturable() && !victim->GetGovernment()->IsPlayer())
 	{
 		// If you haven't initiated capture yet, show the self destruct odds in
 		// the attack odds. It's illogical for you to have access to that info,
@@ -226,7 +226,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	{
 		// When closing the panel, mark the player dead if their ship was captured.
 		if(playerDied)
-			player.Die();
+			player.Die(true);
 		GetUI()->Pop(this);
 	}
 	else if(playerDied)
@@ -260,7 +260,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			victim->AddOutfit(outfit, -remaining);
 		}
 		else
-			count = victim->Cargo().Transfer(plunder[selected].Name(), count, cargo);
+			count = victim->Cargo().Transfer(plunder[selected].Name(), count, &cargo);
 		
 		// If all of the plunder of this type was taken, remove it from the list.
 		// Otherwise, just update the count in the list item.
@@ -377,6 +377,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			{
 				messages.push_back("You have been killed. Your ship is lost.");
 				you->WasCaptured(victim);
+				you->SetIsYours(false);
 				playerDied = true;
 				isCapturing = false;
 			}
@@ -464,9 +465,9 @@ bool BoardingPanel::CanExit() const
 bool BoardingPanel::CanTake() const
 {
 	// If you ship or the other ship has been captured:
-	if(!you->IsYours())
+	if(!you->GetGovernment()->IsPlayer())
 		return false;
-	if(victim->IsYours())
+	if(victim->GetGovernment()->IsPlayer())
 		return false;
 	if(isCapturing || playerDied)
 		return false;
@@ -486,9 +487,9 @@ bool BoardingPanel::CanCapture() const
 		return false;
 	
 	// If your ship or the other ship has been captured:
-	if(!you->IsYours())
+	if(!you->GetGovernment()->IsPlayer())
 		return false;
-	if(victim->IsYours())
+	if(victim->GetGovernment()->IsPlayer())
 		return false;
 	if(!victim->IsCapturable())
 		return false;
@@ -627,7 +628,7 @@ void BoardingPanel::Plunder::UpdateStrings()
 	else
 		size = to_string(count) + " x " + Format::Number(mass);
 	
-	value = Format::Credits(unitValue * count);
+	value = Format::Number(unitValue * count);
 }
 
 
@@ -635,5 +636,5 @@ void BoardingPanel::Plunder::UpdateStrings()
 // Commodities come in units of one ton.
 double BoardingPanel::Plunder::UnitMass() const
 {
-	return outfit ? outfit->Mass() : 1.;
+	return outfit ? outfit->Get("mass") : 1.;
 }

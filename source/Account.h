@@ -57,8 +57,6 @@ public:
 	
 	// Find out the player's credit rating.
 	int CreditScore() const;
-	// Get the total amount owed for "Mortgage", "Fine", or both.
-	int64_t TotalDebt(const std::string &type = "") const;
 	
 	
 private:

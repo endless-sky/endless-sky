@@ -35,23 +35,21 @@ using namespace std;
 
 namespace {
 	// Parse a set of tokens that specify horizontal and vertical alignment.
-	Point ParseAlignment(const DataNode &node, int i = 1)
+	void ParseAlignment(const DataNode &node, Point *alignment, int i = 1)
 	{
-		Point alignment;
 		for( ; i < node.Size(); ++i)
 		{
 			if(node.Token(i) == "left")
-				alignment.X() = -1.;
+				alignment->X() = -1.;
 			else if(node.Token(i) == "top")
-				alignment.Y() = -1.;
+				alignment->Y() = -1.;
 			else if(node.Token(i) == "right")
-				alignment.X() = 1.;
+				alignment->X() = 1.;
 			else if(node.Token(i) == "bottom")
-				alignment.Y() = 1.;
-			else if(node.Token(i) != "center")
+				alignment->Y() = 1.;
+			else
 				node.PrintTrace("Unrecognized interface element alignment:");
 		}
-		return alignment;
 	}
 }
 
@@ -72,28 +70,19 @@ void Interface::Load(const DataNode &node)
 	// Skip unnamed interfaces.
 	if(node.Size() < 2)
 		return;
-	// Re-loading an interface always clears the previous interface, rather than
-	// appending new elements to the end of it.
-	elements.clear();
-	points.clear();
-	values.clear();
 	
-	// First, figure out the anchor point of this interface.
-	Point anchor = ParseAlignment(node, 2);
+	// First, figure out the alignment of this interface.
+	ParseAlignment(node, &alignment, 2);
 	
 	// Now, parse the elements in it.
 	string visibleIf;
 	string activeIf;
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "anchor")
-			anchor = ParseAlignment(child);
-		else if(child.Token(0) == "value" && child.Size() >= 3)
-			values[child.Token(1)] = child.Value(2);
-		else if((child.Token(0) == "point" || child.Token(0) == "box") && child.Size() >= 2)
+		if((child.Token(0) == "point" || child.Token(0) == "box") && child.Size() >= 2)
 		{
 			// This node specifies a named point where custom drawing is done.
-			points[child.Token(1)].Load(child, anchor);
+			points[child.Token(1)].Load(child, alignment);
 		}
 		else if(child.Token(0) == "visible" || child.Token(0) == "active")
 		{
@@ -108,11 +97,11 @@ void Interface::Load(const DataNode &node)
 		{
 			// Check if this node specifies a known element type.
 			if(child.Token(0) == "sprite" || child.Token(0) == "image" || child.Token(0) == "outline")
-				elements.push_back(new ImageElement(child, anchor));
+				elements.push_back(new ImageElement(child, alignment));
 			else if(child.Token(0) == "label" || child.Token(0) == "string" || child.Token(0) == "button")
-				elements.push_back(new TextElement(child, anchor));
+				elements.push_back(new TextElement(child, alignment));
 			else if(child.Token(0) == "bar" || child.Token(0) == "ring")
-				elements.push_back(new BarElement(child, anchor));
+				elements.push_back(new BarElement(child, alignment));
 			else
 			{
 				child.PrintTrace("Unrecognized interface element:");
@@ -130,8 +119,12 @@ void Interface::Load(const DataNode &node)
 // Draw this interface.
 void Interface::Draw(const Information &info, Panel *panel) const
 {
+	// Figure out the anchor point, which may be a corner, the center of an edge
+	// of the screen, or the center of the screen.
+	Point anchor = .5 * Screen::Dimensions() * alignment;
+	
 	for(const Element *element : elements)
-		element->Draw(info, panel);
+		element->DrawAt(anchor, info, panel);
 }
 
 
@@ -151,7 +144,19 @@ Point Interface::GetPoint(const string &name) const
 	if(it == points.end())
 		return Point();
 	
-	return it->second.Bounds().Center();
+	return it->second.Bounds().Center() + .5 * Screen::Dimensions() * alignment;
+}
+
+
+
+// Get the dimensions of the named point.
+Point Interface::GetSize(const string &name) const
+{
+	auto it = points.find(name);
+	if(it == points.end())
+		return Point();
+	
+	return it->second.Bounds().Dimensions();
 }
 
 
@@ -162,34 +167,7 @@ Rectangle Interface::GetBox(const string &name) const
 	if(it == points.end())
 		return Rectangle();
 	
-	return it->second.Bounds();
-}
-
-
-
-// Get a named value.
-double Interface::GetValue(const string &name) const
-{
-	auto it = values.find(name);
-	return (it == values.end() ? 0. : it->second);
-}
-
-
-
-// Members of the AnchoredPoint class:
-
-// Get the point's location, given the current screen dimensions.
-Point Interface::AnchoredPoint::Get() const
-{
-	return position + .5 * Screen::Dimensions() * anchor;
-}
-
-
-
-void Interface::AnchoredPoint::Set(const Point &position, const Point &anchor)
-{
-	this->position = position;
-	this->anchor = anchor;
+	return it->second.Bounds() + .5 * Screen::Dimensions() * alignment;
 }
 
 
@@ -198,72 +176,75 @@ void Interface::AnchoredPoint::Set(const Point &position, const Point &anchor)
 
 // Create a new element. The alignment of the interface that contains
 // this element is used to calculate the element's position.
-void Interface::Element::Load(const DataNode &node, const Point &globalAnchor)
+void Interface::Element::Load(const DataNode &node, const Point &globalAlignment)
 {
-	// A location can be specified as:
-	// center (+ dimensions):
-	bool hasCenter = false;
-	Point dimensions;
-	
-	// from (+ dimensions):
-	Point fromPoint;
-	Point fromAnchor = globalAnchor;
-	
-	// from + to:
-	bool hasTo = false;
-	Point toPoint;
-	Point toAnchor = globalAnchor;
+	// Even if the global alignment is not centered, we switch to treating it as
+	// if it is centered if the object's position is specified as a "center."
+	bool isCentered = !globalAlignment;
 	
 	// Assume that the subclass constructor already parsed this line of data.
 	for(const DataNode &child : node)
 	{
-		const string &key = child.Token(0);
-		if(key == "align" && child.Size() > 1)
-			alignment = ParseAlignment(child);
-		else if(key == "dimensions" && child.Size() >= 3)
-			dimensions = Point(child.Value(1), child.Value(2));
-		else if(key == "width" && child.Size() >= 2)
-			dimensions.X() = child.Value(1);
-		else if(key == "height" && child.Size() >= 2)
-			dimensions.Y() = child.Value(1);
-		else if(key == "center" && child.Size() >= 3)
+		// Check if this token will change the width or height.
+		bool hasDimensions = (child.Token(0) == "dimensions" && child.Size() >= 3);
+		bool hasWidth = hasDimensions | (child.Token(0) == "width" && child.Size() >= 2);
+		bool hasHeight = hasDimensions | (child.Token(0) == "height" && child.Size() >= 2);
+		
+		if(child.Token(0) == "align" && child.Size() > 1)
 		{
-			if(child.Size() > 3)
-				fromAnchor = toAnchor = ParseAlignment(child, 3);
-			
-			// The "center" key implies "align center."
-			alignment = Point();
-			fromPoint = toPoint = Point(child.Value(1), child.Value(2));
-			hasCenter = true;
+			ParseAlignment(child, &alignment);
 		}
-		else if(key == "from" && child.Size() >= 6 && child.Token(3) == "to")
+		else if(hasWidth || hasHeight)
 		{
-			// Anything after the coordinates is an anchor point override.
-			if(child.Size() > 6)
-				fromAnchor = toAnchor = ParseAlignment(child, 6);
-			
-			fromPoint = Point(child.Value(1), child.Value(2));
-			toPoint = Point(child.Value(4), child.Value(5));
-			hasTo = true;
+			// If this line modifies the width or height, the center of the
+			// element may need to be shifted depending on the global alignment
+			// and the previous value of its width or height.
+			if(hasWidth)
+			{
+				double newWidth = child.Value(1);
+				Point center = bounds.Center();
+				Point dimensions = bounds.Dimensions();
+				// If this object has a "center", ignore global alignment.
+				if(!isCentered)
+					center.X() += .5 * globalAlignment.X() * (dimensions.X() - newWidth);
+				dimensions.X() = newWidth;
+				bounds = Rectangle(center, dimensions);
+			}
+			if(hasHeight)
+			{
+				double newHeight = child.Value(1 + hasDimensions);
+				Point center = bounds.Center();
+				Point dimensions = bounds.Dimensions();
+				// If this object has a "center", ignore global alignment.
+				if(!isCentered)
+					center.Y() += .5 * globalAlignment.Y() * (dimensions.Y() - newHeight);
+				dimensions.Y() = newHeight;
+				bounds = Rectangle(center, dimensions);
+			}
 		}
-		else if(key == "from" && child.Size() >= 3)
+		else if(child.Token(0) == "center" && child.Size() >= 3)
 		{
-			// Anything after the coordinates is an anchor point override.
-			if(child.Size() > 3)
-				fromAnchor = ParseAlignment(child, 3);
-			
-			fromPoint = Point(child.Value(1), child.Value(2));
+			// This object should ignore the global alignment.
+			isCentered = true;
+			// Center the bounding box on the given point.
+			bounds = Rectangle(Point(child.Value(1), child.Value(2)), bounds.Dimensions());
 		}
-		else if(key == "to" && child.Size() >= 3)
+		else if(child.Token(0) == "from" && child.Size() >= 6 && child.Token(3) == "to")
 		{
-			// Anything after the coordinates is an anchor point override.
-			if(child.Size() > 3)
-				toAnchor = ParseAlignment(child, 3);
-			
-			toPoint = Point(child.Value(1), child.Value(2));
-			hasTo = true;
+			// Create a bounding box stretching between the two given points.
+			bounds = Rectangle::WithCorners(
+				Point(child.Value(1), child.Value(2)),
+				Point(child.Value(4), child.Value(5)));
 		}
-		else if(key == "pad" && child.Size() >= 3)
+		else if(child.Token(0) == "from" && child.Size() >= 3)
+		{
+			// The bounding box extends outwards from the given point in a
+			// direction determined by the global aligment.
+			bounds = Rectangle(
+				Point(child.Value(1), child.Value(2)) - .5 * alignment * bounds.Dimensions(),
+				bounds.Dimensions());
+		}
+		else if(child.Token(0) == "pad" && child.Size() >= 3)
 		{
 			// Add this much padding when aligning the object within its bounding box.
 			padding = Point(child.Value(1), child.Value(2));
@@ -271,36 +252,19 @@ void Interface::Element::Load(const DataNode &node, const Point &globalAnchor)
 		else if(!ParseLine(child))
 			child.PrintTrace("Unrecognized interface element attribute:");
 	}
-	
-	// The "standard" way to specify a region is from + to. If it was specified
-	// in a different way, convert it to that format:
-	if(hasCenter)
-	{
-		// Center alone or center + dimensions.
-		fromPoint -= .5 * dimensions;
-		toPoint += .5 * dimensions;
-	}
-	else if(!hasTo)
-	{
-		// From alone or from + dimensions.
-		toPoint = fromPoint + dimensions;
-		toAnchor = fromAnchor;
-	}
-	from.Set(fromPoint, fromAnchor);
-	to.Set(toPoint, toAnchor);
 }
 
 
 
 // Draw this element, relative to the given anchor point. If this is a
 // button, it will add a clickable zone to the given panel.
-void Interface::Element::Draw(const Information &info, Panel *panel) const
+void Interface::Element::DrawAt(const Point &anchor, const Information &info, Panel *panel) const
 {
 	if(!info.HasCondition(visibleIf))
 		return;
 	
 	// Get the bounding box of this element, relative to the anchor point.
-	Rectangle box = Bounds();
+	Rectangle box = bounds + anchor;
 	// Check if this element is active.
 	int state = info.HasCondition(activeIf);
 	// Check if the mouse is hovering over this element.
@@ -312,8 +276,8 @@ void Interface::Element::Draw(const Information &info, Panel *panel) const
 	
 	// Figure out how the element should be aligned within its bounding box.
 	Point nativeDimensions = NativeDimensions(info, state);
-	Point slack = .5 * (box.Dimensions() - nativeDimensions) - padding;
-	Rectangle rect(box.Center() + alignment * slack, nativeDimensions);
+	Point slack = .5 * (bounds.Dimensions() - nativeDimensions) - padding;
+	Rectangle rect(bounds.Center() + anchor + alignment * slack, nativeDimensions);
 	
 	Draw(rect, info, state);
 }
@@ -331,9 +295,9 @@ void Interface::Element::SetConditions(const string &visible, const string &acti
 
 
 // Get the bounding rectangle, relative to the anchor point.
-Rectangle Interface::Element::Bounds() const
+const Rectangle &Interface::Element::Bounds() const
 {
-	return Rectangle::WithCorners(from.Get(), to.Get());
+	return bounds;
 }
 
 
@@ -350,7 +314,7 @@ bool Interface::Element::ParseLine(const DataNode &node)
 // Report the actual dimensions of the object that will be drawn.
 Point Interface::Element::NativeDimensions(const Information &info, int state) const
 {
-	return Bounds().Dimensions();
+	return bounds.Dimensions();
 }
 
 
@@ -373,7 +337,7 @@ void Interface::Element::Place(const Rectangle &bounds, Panel *panel) const
 // Members of the ImageElement class:
 
 // Constructor.
-Interface::ImageElement::ImageElement(const DataNode &node, const Point &globalAnchor)
+Interface::ImageElement::ImageElement(const DataNode &node, const Point &globalAlignment)
 {
 	if(node.Size() < 2)
 		return;
@@ -388,7 +352,7 @@ Interface::ImageElement::ImageElement(const DataNode &node, const Point &globalA
 		name = node.Token(1);
 	
 	// This function will call ParseLine() for any line it does not recognize.
-	Load(node, globalAnchor);
+	Load(node, globalAlignment);
 	
 	// Fill in any undefined state sprites.
 	if(sprite[Element::ACTIVE])
@@ -430,7 +394,6 @@ Point Interface::ImageElement::NativeDimensions(const Information &info, int sta
 		return Point();
 	
 	Point size(sprite->Width(), sprite->Height());
-	Rectangle bounds = Bounds();
 	if(!bounds.Dimensions())
 		return size;
 	
@@ -450,15 +413,15 @@ void Interface::ImageElement::Draw(const Rectangle &rect, const Information &inf
 	if(!sprite || !sprite->Width() || !sprite->Height())
 		return;
 	
-	float frame = info.GetSpriteFrame(name);
 	if(isOutline)
 	{
 		Color color = (isColored ? info.GetOutlineColor() : Color(1., 1.));
 		Point unit = info.GetSpriteUnit(name);
+		int frame = info.GetSpriteFrame(name);
 		OutlineShader::Draw(sprite, rect.Center(), rect.Dimensions(), color, unit, frame);
 	}
 	else
-		SpriteShader::Draw(sprite, rect.Center(), rect.Width() / sprite->Width(), 0, frame);
+		SpriteShader::Draw(sprite, rect.Center(), rect.Width() / sprite->Width());
 }
 
 
@@ -473,7 +436,7 @@ const Sprite *Interface::ImageElement::GetSprite(const Information &info, int st
 // Members of the TextElement class:
 
 // Constructor.
-Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnchor)
+Interface::TextElement::TextElement(const DataNode &node, const Point &globalAlignment)
 {
 	if(node.Size() < 2)
 		return;
@@ -489,7 +452,7 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 		str = node.Token(1);
 	
 	// This function will call ParseLine() for any line it does not recognize.
-	Load(node, globalAnchor);
+	Load(node, globalAlignment);
 	
 	// Fill in any undefined state colors. By default labels are "medium", strings
 	// are "bright", and button brightness depends on its activation state.
@@ -579,7 +542,7 @@ string Interface::TextElement::GetString(const Information &info) const
 // Members of the BarElement class:
 
 // Constructor.
-Interface::BarElement::BarElement(const DataNode &node, const Point &globalAnchor)
+Interface::BarElement::BarElement(const DataNode &node, const Point &globalAlignment)
 {
 	if(node.Size() < 2)
 		return;
@@ -589,7 +552,7 @@ Interface::BarElement::BarElement(const DataNode &node, const Point &globalAncho
 	isRing = (node.Token(0) == "ring");
 	
 	// This function will call ParseLine() for any line it does not recognize.
-	Load(node, globalAnchor);
+	Load(node, globalAlignment);
 	
 	// Fill in a default color if none is specified.
 	if(!color)

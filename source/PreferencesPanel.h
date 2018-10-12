@@ -17,7 +17,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ClickZone.h"
 #include "Command.h"
-#include "Point.h"
 
 #include <string>
 #include <vector>

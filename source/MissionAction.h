@@ -15,10 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "Conversation.h"
-#include "LocationFilter.h"
 
 #include <map>
-#include <memory>
 #include <set>
 #include <string>
 #include <utility>
@@ -28,7 +26,6 @@ class DataWriter;
 class GameEvent;
 class Outfit;
 class PlayerInfo;
-class Ship;
 class System;
 class UI;
 
@@ -40,10 +37,6 @@ class UI;
 // special item, modifying condition flags, or queueing an event to occur.
 class MissionAction {
 public:
-	MissionAction() = default;
-	// Construct and Load() at the same time.
-	MissionAction(const DataNode &node, const std::string &missionName);
-	
 	void Load(const DataNode &node, const std::string &missionName);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so it only has to save a subset of the data.
@@ -52,22 +45,20 @@ public:
 	int Payment() const;
 	
 	// Check if this action can be completed right now. It cannot be completed
-	// if it takes away money or outfits that the player does not have, or should
-	// take place in a system that does not match the specified LocationFilter.
+	// if it takes away money or outfits that the player does not have.
 	bool CanBeDone(const PlayerInfo &player) const;
 	// Perform this action. If a conversation is shown, the given destination
 	// will be highlighted in the map if you bring it up.
-	void Do(PlayerInfo &player, UI *ui = nullptr, const System *destination = nullptr, const std::shared_ptr<Ship> &ship = nullptr) const;
+	void Do(PlayerInfo &player, UI *ui = nullptr, const System *destination = nullptr) const;
 	
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.
-	MissionAction Instantiate(std::map<std::string, std::string> &subs, const System *origin, int jumps, int payload) const;
+	MissionAction Instantiate(std::map<std::string, std::string> &subs, int jumps, int payload) const;
 	
 	
 private:
 	std::string trigger;
 	std::string system;
-	LocationFilter systemFilter;
 	
 	std::string logText;
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
@@ -79,7 +70,6 @@ private:
 	
 	std::map<const GameEvent *, std::pair<int, int>> events;
 	std::map<const Outfit *, int> gifts;
-	std::map<const Outfit *, int> requiredOutfits;
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	

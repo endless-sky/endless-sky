@@ -11,7 +11,6 @@
 fleet "Small Remnant"
 	government "Remnant"
 	names "remnant"
-	cargo 2
 	personality
 		heroic disables plunders appeasing
 	variant 8
@@ -38,7 +37,6 @@ fleet "Small Remnant"
 fleet "Large Remnant"
 	government "Remnant"
 	names "remnant"
-	cargo 2
 	personality
 		heroic disables plunders appeasing
 	variant 6
@@ -151,8 +149,6 @@ outfitter "Remnant"
 	"Epoch Cell"
 	"Aeon Cell"
 	"Thermoelectric Cooler"
-	"EMP Torpedo"
-	"EMP Torpedo Bay"
 	"Emergency Ramscoop"
 	"Quantum Key Stone"
 	"Crucible-Class Thruster"
@@ -170,4 +166,3 @@ outfitter "Remnant"
 	"Fuel Pod"
 	"Cargo Scanner"
 	"Outfit Scanner"
-	"Tuning Rifle"

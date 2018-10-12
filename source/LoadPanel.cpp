@@ -34,8 +34,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 #include "UI.h"
 
-#include "gl_header.h"
-
 #include <algorithm>
 
 using namespace std;
@@ -55,10 +53,6 @@ namespace {
 #endif
 		return string(buf, strftime(buf, BUF_SIZE, FORMAT, date));
 	}
-	
-	// Only show tooltips if the mouse has hovered in one place for this amount
-	// of time.
-	const int HOVER_TIME = 60;
 }
 
 
@@ -81,16 +75,15 @@ void LoadPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
-	const Font &font = FontSet::Get(14);
 	
 	Information info;
 	if(loadedInfo.IsLoaded())
 	{
-		info.SetString("pilot", font.TruncateMiddle(loadedInfo.Name(), 165));
+		info.SetString("pilot", loadedInfo.Name());
 		if(loadedInfo.ShipSprite())
 		{
 			info.SetSprite("ship sprite", loadedInfo.ShipSprite());
-			info.SetString("ship", font.TruncateMiddle(loadedInfo.ShipName(), 165));
+			info.SetString("ship", loadedInfo.ShipName());
 		}
 		if(!loadedInfo.GetSystem().empty())
 			info.SetString("system", loadedInfo.GetSystem());
@@ -114,6 +107,8 @@ void LoadPanel::Draw()
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	GameData::Interfaces().Get("load menu")->Draw(info, this);
 	GameData::Interfaces().Get("menu player info")->Draw(info, this);
+	
+	const Font &font = FontSet::Get(14);
 	
 	// The list has space for 14 entries. Alpha should be 100% for Y = -157 to
 	// 103, and fade to 0 at 10 pixels beyond that.
@@ -148,6 +143,7 @@ void LoadPanel::Draw()
 			bool isHighlighted = (file == selectedFile || isHovering);
 			if(isHovering)
 			{
+				static const int HOVER_TIME = 60;
 				hoverCount = min(HOVER_TIME, hoverCount + 2);
 				if(hoverCount == HOVER_TIME)
 					hoverText = TimestampString(it.second);
@@ -165,8 +161,8 @@ void LoadPanel::Draw()
 	{
 		Point boxSize(font.Width(hoverText) + 20., 30.);
 		
-		FillShader::Fill(hoverPoint + .5 * boxSize, boxSize, *GameData::Colors().Get("tooltip background"));
-		font.Draw(hoverText, hoverPoint + Point(10., 10.), *GameData::Colors().Get("medium"));
+		FillShader::Fill(hoverPoint + .5 * boxSize, boxSize, Color(.3, 1.));
+		font.Draw(hoverText, hoverPoint + Point(10., 10.), Color(.5, 0.));
 	}
 }
 
@@ -334,11 +330,6 @@ bool LoadPanel::Hover(int x, int y)
 	
 	hasHover = true;
 	hoverPoint = Point(x, y);
-	// Tooltips should not pop up unless the mouse stays in one place for the
-	// full hover time. Otherwise, every time the user scrubs the mouse over the
-	// list, tooltips will appear after one second.
-	if(hoverCount < HOVER_TIME)
-		hoverCount = 0;
 	
 	return true;
 }
@@ -416,12 +407,8 @@ void LoadPanel::OnCallback(int)
 	gamePanels.Push(new MainPanel(player));
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
 	gamePanels.StepAll();
-	// If the starting conditions don't specify any ships, let the player buy one.
-	if(player.Ships().empty())
-	{
-		gamePanels.Push(new ShipyardPanel(player));
-		gamePanels.StepAll();
-	}
+	gamePanels.Push(new ShipyardPanel(player));
+	gamePanels.StepAll();
 }
 
 

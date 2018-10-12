@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "StellarObject.h"
 
+#include "Color.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Planet.h"

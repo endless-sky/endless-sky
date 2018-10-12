@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "OutfitInfoDisplay.h"
 
+#include "Color.h"
 #include "Depreciation.h"
 #include "Format.h"
 #include "Outfit.h"
@@ -31,7 +32,6 @@ namespace {
 		{"afterburner energy", 60.},
 		{"afterburner fuel", 60.},
 		{"afterburner heat", 60.},
-		{"cloak", 60.},
 		{"cloaking energy", 60.},
 		{"cloaking fuel", 60.},
 		{"cloaking heat", 60.},
@@ -40,11 +40,9 @@ namespace {
 		{"energy consumption", 60.},
 		{"energy generation", 60.},
 		{"heat generation", 60.},
-		{"heat dissipation", 60.},
 		{"hull repair rate", 60.},
 		{"hull energy", 60.},
 		{"hull heat", 60.},
-		{"jump speed", 60.},
 		{"reverse thrusting energy", 60.},
 		{"reverse thrusting heat", 60.},
 		{"shield generation", 60.},
@@ -128,7 +126,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		out << "cost (" << (100 * buyValue) / cost << "%):";
 		requirementLabels.push_back(out.str());
 	}
-	requirementValues.push_back(Format::Credits(buyValue));
+	requirementValues.push_back(Format::Number(buyValue));
 	requirementsHeight += 20;
 	
 	if(canSell && sellValue != buyValue)
@@ -141,44 +139,28 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 			out << "sells for (" << (100 * sellValue) / cost << "%):";
 			requirementLabels.push_back(out.str());
 		}
-		requirementValues.push_back(Format::Credits(sellValue));
+		requirementValues.push_back(Format::Number(sellValue));
 		requirementsHeight += 20;
 	}
 	
-	if(outfit.Mass())
-	{
-		requirementLabels.emplace_back("mass:");
-		requirementValues.emplace_back(Format::Number(outfit.Mass()));
-		requirementsHeight += 20;
-	}
-	
-	bool hasContent = true;
 	static const vector<string> NAMES = {
-		"", "",
 		"outfit space needed:", "outfit space",
 		"weapon capacity needed:", "weapon capacity",
 		"engine capacity needed:", "engine capacity",
-		"", "",
 		"gun ports needed:", "gun ports",
 		"turret mounts needed:", "turret mounts"
 	};
 	for(unsigned i = 0; i + 1 < NAMES.size(); i += 2)
-	{
-		if(NAMES[i].empty() && hasContent)
+		if(outfit.Get(NAMES[i + 1]))
 		{
 			requirementLabels.emplace_back();
 			requirementValues.emplace_back();
 			requirementsHeight += 10;
-			hasContent = false;
-		}
-		else if(outfit.Get(NAMES[i + 1]))
-		{
+		
 			requirementLabels.push_back(NAMES[i]);
 			requirementValues.push_back(Format::Number(-outfit.Get(NAMES[i + 1])));
 			requirementsHeight += 20;
-			hasContent = true;
 		}
-	}
 }
 
 
@@ -189,7 +171,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeValues.clear();
 	attributesHeight = 20;
 	
-	bool hasNormalAttributes = false;
 	for(const pair<const char *, double> &it : outfit.Attributes())
 	{
 		static const set<string> SKIP = {
@@ -214,19 +195,15 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributeValues.emplace_back(Format::Number(it.second * scale));
 			attributesHeight += 20;
 		}
-		hasNormalAttributes = true;
 	}
 	
 	if(!outfit.IsWeapon())
 		return;
 	
-	// Insert padding if any normal attributes were listed above.
-	if(hasNormalAttributes)
-	{
-		attributeLabels.emplace_back();
-		attributeValues.emplace_back();
-		attributesHeight += 10;
-	}
+	// Pad the table.
+	attributeLabels.emplace_back();
+	attributeValues.emplace_back();
+	attributesHeight += 10;
 	
 	if(outfit.Ammo())
 	{

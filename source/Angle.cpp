@@ -62,14 +62,10 @@ Angle::Angle()
 
 
 
-// Construct an Angle from the given angle in degrees.
+// Convert an angle in degrees into an Angle object.
 Angle::Angle(double degrees)
-	: angle(llround(degrees * DEG_TO_STEP) & MASK)
+	: angle(lround(degrees * DEG_TO_STEP) & MASK)
 {
-	// Make sure llround does not overflow with the values of System::SetDate.
-	// "now" has 32 bit integer precision. "speed" and "offset" have floating
-	// point precision and should be in the range from -360 to 360.
-	static_assert(sizeof(long long) >= 8, "llround can overflow");
 }
 
 

@@ -61,9 +61,8 @@ private:
 	
 	GLuint scaleI;
 	GLuint rotateI;
-	GLuint elongationI;
+	GLuint lengthI;
 	GLuint translateI;
-	GLuint brightnessI;
 };
 
 

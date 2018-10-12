@@ -28,15 +28,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "PointerShader.h"
 #include "PreferencesPanel.h"
-#include "Ship.h"
 #include "ShipyardPanel.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
 #include "StarField.h"
 #include "System.h"
 #include "UI.h"
-
-#include "gl_header.h"
 
 using namespace std;
 
@@ -87,30 +84,29 @@ void MenuPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
-	const Font &font = FontSet::Get(14);
 	
 	Information info;
 	if(player.IsLoaded() && !player.IsDead())
 	{
 		info.SetCondition("pilot loaded");
-		info.SetString("pilot", font.TruncateMiddle(player.FirstName() + " " + player.LastName(), 165));
+		info.SetString("pilot", player.FirstName() + " " + player.LastName());
 		if(player.Flagship())
 		{
 			const Ship &flagship = *player.Flagship();
 			info.SetSprite("ship sprite", flagship.GetSprite());
-			info.SetString("ship", font.TruncateMiddle(flagship.Name(), 165));
+			info.SetString("ship", flagship.Name());
 		}
 		if(player.GetSystem())
 			info.SetString("system", player.GetSystem()->Name());
 		if(player.GetPlanet())
 			info.SetString("planet", player.GetPlanet()->Name());
-		info.SetString("credits", Format::Credits(player.Accounts().Credits()));
+		info.SetString("credits", Format::Number(player.Accounts().Credits()));
 		info.SetString("date", player.GetDate().ToString());
 	}
 	else if(player.IsLoaded())
 	{
 		info.SetCondition("no pilot loaded");
-		info.SetString("pilot", font.TruncateMiddle(player.FirstName() + " " + player.LastName(), 165));
+		info.SetString("pilot", player.FirstName() + " " + player.LastName());
 		info.SetString("ship", "You have died.");
 	}
 	else
@@ -137,6 +133,7 @@ void MenuPanel::Draw()
 		}
 	}
 	
+	const Font &font = FontSet::Get(14);
 	int y = 120 - scroll / scrollSpeed;
 	for(const string &line : credits)
 	{
@@ -164,12 +161,8 @@ void MenuPanel::OnCallback(int)
 	gamePanels.Push(new MainPanel(player));
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
 	gamePanels.StepAll();
-	// If the starting conditions don't specify any ships, let the player buy one.
-	if(player.Ships().empty())
-	{
-		gamePanels.Push(new ShipyardPanel(player));
-		gamePanels.StepAll();
-	}
+	gamePanels.Push(new ShipyardPanel(player));
+	gamePanels.StepAll();
 }
 
 

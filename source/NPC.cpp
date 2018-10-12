@@ -33,14 +33,6 @@ using namespace std;
 
 
 
-// Construct and Load() at the same time.
-NPC::NPC(const DataNode &node)
-{
-	Load(node);
-}
-
-
-
 void NPC::Load(const DataNode &node)
 {
 	// Any tokens after the "npc" tag list the things that must happen for this
@@ -122,7 +114,8 @@ void NPC::Load(const DataNode &node)
 			{
 				// Loading an NPC from a save file, or an entire ship specification.
 				// The latter may result in references to non-instantiated outfits.
-				ships.emplace_back(make_shared<Ship>(child));
+				ships.push_back(make_shared<Ship>());
+				ships.back()->Load(child);
 				for(const DataNode &grand : child)
 					if(grand.Token(0) == "actions" && grand.Size() >= 2)
 						actions[ships.back().get()] = grand.Value(1);
@@ -147,7 +140,8 @@ void NPC::Load(const DataNode &node)
 		{
 			if(child.HasChildren())
 			{
-				fleets.emplace_back(child);
+				fleets.push_back(Fleet());
+				fleets.back().Load(child);
 				if(child.Size() >= 2)
 				{
 					// Copy the custom fleet in lieu of reparsing the same DataNode.
@@ -275,15 +269,9 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 	bool hasSucceeded = HasSucceeded(player.GetSystem());
 	bool hasFailed = HasFailed();
 	
-	// If this event was "ASSIST", the ship is now known as not disabled.
-	if(type == ShipEvent::ASSIST)
-		actions[ship.get()] &= ~(ShipEvent::DISABLE);
-	
-	// Certain events only count towards the NPC's status if originated by
-	// the player: scanning, boarding, or assisting.
+	// Scan events only count if originated by the player.
 	if(!event.ActorGovernment()->IsPlayer())
-		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS
-				| ShipEvent::ASSIST | ShipEvent::BOARD);
+		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS);
 	
 	// Apply this event to the ship and any ships it is carrying.
 	actions[ship.get()] |= type;
@@ -291,15 +279,17 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 		if(bay.ship)
 			actions[bay.ship.get()] |= type;
 	
+	// If this event was "ASSIST", the ship is now known as not disabled.
+	if(type == ShipEvent::ASSIST)
+		actions[ship.get()] &= ~(ShipEvent::DISABLE);
+	
 	// Check if the success status has changed. If so, display a message.
 	if(HasFailed() && !hasFailed && isVisible)
 		Messages::Add("Mission failed.");
 	else if(ui && HasSucceeded(player.GetSystem()) && !hasSucceeded)
 	{
-		// If "completing" this NPC displays a conversation, reference
-		// it, to allow the completing event's target to be destroyed.
 		if(!conversation.IsEmpty())
-			ui->Push(new ConversationPanel(player, conversation, nullptr, ship));
+			ui->Push(new ConversationPanel(player, conversation));
 		else if(!dialogText.empty())
 			ui->Push(new Dialog(dialogText));
 	}
@@ -405,17 +395,26 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	// Pick the system for this NPC to start out in.
 	result.system = system;
 	if(!result.system && !location.IsEmpty())
-		result.system = location.PickSystem(origin);
+	{
+		// Find a destination that satisfies the filter.
+		vector<const System *> options;
+		for(const auto &it : GameData::Systems())
+		{
+			// Skip entries with incomplete data.
+			if(it.second.Name().empty())
+				continue;
+			if(location.Matches(&it.second, origin))
+				options.push_back(&it.second);
+		}
+		if(!options.empty())
+			result.system = options[Random::Int(options.size())];
+	}
 	if(!result.system)
 		result.system = (isAtDestination && destination) ? destination : origin;
 	
 	// Convert fleets into instances of ships.
 	for(const shared_ptr<Ship> &ship : ships)
-	{
-		// This ship is being defined from scratch.
 		result.ships.push_back(make_shared<Ship>(*ship));
-		result.ships.back()->FinishLoading(true);
-	}
 	auto shipIt = stockShips.begin();
 	auto nameIt = shipNames.begin();
 	for( ; shipIt != stockShips.end() && nameIt != shipNames.end(); ++shipIt, ++nameIt)
@@ -433,8 +432,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		ship->SetGovernment(result.government);
 		ship->SetIsSpecial();
 		ship->SetPersonality(result.personality);
-		if(result.personality.IsDerelict())
-			ship->Disable();
+		ship->FinishLoading(true);
 		
 		if(personality.IsEntering())
 			Fleet::Enter(*result.system, *ship);

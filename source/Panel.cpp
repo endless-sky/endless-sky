@@ -17,7 +17,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dialog.h"
 #include "FillShader.h"
 #include "GameData.h"
-#include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "UI.h"
@@ -195,7 +194,7 @@ void Panel::DrawBackdrop() const
 		return;
 	
 	// Darken everything but the dialog.
-	const Color &back = *GameData::Colors().Get("dialog backdrop");
+	Color back(0., .7);
 	FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), back);
 }
 

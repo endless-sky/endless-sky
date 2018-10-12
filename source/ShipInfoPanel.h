@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "ClickZone.h"
-#include "Point.h"
 #include "ShipInfoDisplay.h"
 
 #include <map>
@@ -25,7 +24,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
-class Color;
 class Outfit;
 class PlayerInfo;
 class Rectangle;

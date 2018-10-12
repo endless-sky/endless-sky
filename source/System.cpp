@@ -23,7 +23,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "SpriteSet.h"
 
-#include <algorithm>
 #include <cmath>
 
 using namespace std;
@@ -115,7 +114,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
-	set<string> shouldOverwrite = {"asteroids", "attributes", "fleet", "link", "object"};
+	set<string> shouldOverwrite = {"link", "asteroids", "fleet", "object"};
 	
 	for(const DataNode &child : node)
 	{
@@ -150,8 +149,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				government = nullptr;
 			else if(key == "music")
 				music.clear();
-			else if(key == "attributes")
-				attributes.clear();
 			else if(key == "link")
 				links.clear();
 			else if(key == "asteroids" || key == "minables")
@@ -186,16 +183,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			child.PrintTrace("Expected key to have a value:");
 			continue;
 		}
-		else if(key == "attributes")
-		{
-			if(remove)
-				for(int i = valueIndex; i < child.Size(); ++i)
-					attributes.erase(child.Token(i));
-			else
-				for(int i = valueIndex; i < child.Size(); ++i)
-					attributes.insert(child.Token(i));
-		}
- 		else if(key == "link")
+		else if(key == "link")
 		{
 			if(remove)
 				links.erase(GameData::Systems().Get(value));
@@ -336,22 +324,6 @@ void System::UpdateNeighbors(const Set<System> &systems)
 	for(const auto &it : systems)
 		if(&it.second != this && it.second.Position().Distance(position) <= NEIGHBOR_DISTANCE)
 			neighbors.insert(&it.second);
-	
-	// Calculate the solar power and solar wind.
-	solarPower = 0.;
-	solarWind = 0.;
-	for(const StellarObject &object : objects)
-	{
-		solarPower += GameData::SolarPower(object.GetSprite());
-		solarWind += GameData::SolarWind(object.GetSprite());
-	}
-	
-	// Systems only have a single auto-attribute, "uninhabited." It is set if
-	// the system has no inhabited planets that are accessible to all ships.
-	if(IsInhabited(nullptr))
-		attributes.erase("uninhabited");
-	else
-		attributes.insert("uninhabited");
 }
 
 
@@ -370,15 +342,25 @@ void System::Link(System *other)
 
 void System::Unlink(System *other)
 {
-	links.erase(other);
-	other->links.erase(this);
+	auto it = find(links.begin(), links.end(), other);
+	if(it != links.end())
+		links.erase(it);
+	
+	it = find(other->links.begin(), other->links.end(), this);
+	if(it != other->links.end())
+		other->links.erase(it);
 	
 	// If the only reason these systems are neighbors is because of a hyperspace
 	// link, they are no longer neighbors.
 	if(position.Distance(other->position) > NEIGHBOR_DISTANCE)
 	{
-		neighbors.erase(other);
-		other->neighbors.erase(this);
+		it = find(neighbors.begin(), neighbors.end(), other);
+		if(it != neighbors.end())
+			neighbors.erase(it);
+		
+		it = find(other->neighbors.begin(), other->neighbors.end(), this);
+		if(it != other->neighbors.end())
+			other->neighbors.erase(it);
 	}
 }
 
@@ -413,14 +395,6 @@ const Government *System::GetGovernment() const
 const string &System::MusicName() const
 {
 	return music;
-}
-
-
-
-// Get the list of "attributes" of the planet.
-const set<string> &System::Attributes() const
-{
-	return attributes;
 }
 
 
@@ -503,21 +477,6 @@ double System::HabitableZone() const
 double System::AsteroidBelt() const
 {
 	return asteroidBelt;
-}
-
-
-
-// Get the rate of solar collection and ramscoop refueling.
-double System::SolarPower() const
-{
-	return solarPower;
-}
-
-
-
-double System::SolarWind() const
-{
-	return solarWind;
 }
 
 

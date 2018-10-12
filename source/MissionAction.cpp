@@ -18,7 +18,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dialog.h"
 #include "Format.h"
 #include "GameData.h"
-#include "GameEvent.h"
 #include "Messages.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
@@ -67,7 +66,7 @@ namespace {
 			player.Cargo().Remove(outfit, moved);
 			didCargo = true;
 		}
-		while(count)
+		while(flagship && count)
 		{
 			int moved = (count > 0) ? 1 : -1;
 			if(flagship->Attributes().CanAdd(*outfit, moved))
@@ -87,7 +86,7 @@ namespace {
 			player.Cargo().Add(outfit, count);
 			player.Cargo().SetSize(size);
 			didCargo = true;
-			if(ui)
+			if(count > 0 && ui)
 			{
 				string special = "The " + nameWas;
 				special += " put in your cargo hold because there is not enough space to install ";
@@ -104,14 +103,6 @@ namespace {
 			message += "flagship.";
 		Messages::Add(message);
 	}
-}
-
-
-
-// Construct and Load() at the same time.
-MissionAction::MissionAction(const DataNode &node, const string &missionName)
-{
-	Load(node, missionName);
 }
 
 
@@ -157,10 +148,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			gifts[GameData::Outfits().Get(child.Token(1))] = count;
 		}
 		else if(key == "require" && hasValue)
-		{
-			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
-			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
-		}
+			gifts[GameData::Outfits().Get(child.Token(1))] = 0;
 		else if(key == "payment")
 		{
 			if(child.Size() == 1)
@@ -185,13 +173,6 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			// Create a GameData reference to this mission name.
 			GameData::Missions().Get(toFail);
 		}
-		else if(key == "system")
-		{
-			if(system.empty() && child.HasChildren())
-				systemFilter.Load(child);
-			else
-				child.PrintTrace("Unsupported use of \"system\" LocationFilter:");
-		}
 		else
 			conditions.Add(child);
 	}
@@ -209,12 +190,6 @@ void MissionAction::Save(DataWriter &out) const
 		out.Write("on", trigger, system);
 	out.BeginChild();
 	{
-		if(!systemFilter.IsEmpty())
-		{
-			out.Write("system");
-			// LocationFilter indentation is handled by its Save method.
-			systemFilter.Save(out);
-		}
 		if(!logText.empty())
 		{
 			out.Write("log");
@@ -254,8 +229,6 @@ void MissionAction::Save(DataWriter &out) const
 		
 		for(const auto &it : gifts)
 			out.Write("outfit", it.first->Name(), it.second);
-		for(const auto &it : requiredOutfits)
-			out.Write("require", it.first->Name(), it.second);
 		if(payment)
 			out.Write("payment", payment);
 		for(const auto &it : events)
@@ -308,52 +281,23 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 			available += flagship->OutfitCount(it.first);
 		
 		// If the gift "count" is 0, that means to check that the player has at
-		// least one of these items. This is for backward compatibility before
-		// requiredOutfits was introduced.
+		// least one of these items.
 		if(available < -it.second + !it.second)
 			return false;
 	}
-	
-	for(const auto &it : requiredOutfits)
-	{
-		// The required outfit can be in the player's cargo or from the flagship.
-		int available = player.Cargo().Get(it.first);
-		for(const auto &ship : player.Ships())
-			available += ship->Cargo().Get(it.first);
-		if(flagship)
-			available += flagship->OutfitCount(it.first);
-		
-		if(available < it.second)
-			return false;
-		
-		// If the required count is 0, the player must not have any of the outfit.
-		if(it.second == 0 && available > 0)
-			return false;
-	}
-	
-	// An `on enter` MissionAction may have defined a LocationFilter that
-	// specifies the systems in which it can occur.
-	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player.GetSystem()))
-		return false;
 	return true;
 }
 
 
 
-void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, const shared_ptr<Ship> &ship) const
+void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) const
 {
 	bool isOffer = (trigger == "offer");
 	if(!conversation.IsEmpty() && ui)
 	{
-		// Conversations offered while boarding or assisting reference a ship,
-		// which may be destroyed depending on the player's choices.
-		ConversationPanel *panel = new ConversationPanel(player, conversation, destination, ship);
+		ConversationPanel *panel = new ConversationPanel(player, conversation, destination);
 		if(isOffer)
 			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
-		// Use a basic callback to handle forced departure outside of `on offer`
-		// conversations.
-		else
-			panel->SetCallback(&player, &PlayerInfo::BasicCallback);
 		ui->Push(panel);
 	}
 	else if(!dialogText.empty() && ui)
@@ -412,13 +356,11 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 
 
 
-MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin, int jumps, int payload) const
+MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, int payload) const
 {
 	MissionAction result;
 	result.trigger = trigger;
 	result.system = system;
-	// Convert any "distance" specifiers into "near <system>" specifiers.
-	result.systemFilter = systemFilter.SetOrigin(origin);
 	
 	for(const auto &it : events)
 	{
@@ -433,7 +375,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	// Fill in the payment amount if this is the "complete" action.
 	string previousPayment = subs["<payment>"];
 	if(result.payment)
-		subs["<payment>"] = Format::Credits(abs(result.payment))
+		subs["<payment>"] = Format::Number(abs(result.payment))
 			+ (result.payment == 1 ? " credit" : " credits");
 	
 	if(!logText.empty())
