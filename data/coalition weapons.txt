@@ -55,7 +55,7 @@ outfit "Bombardment Turret"
 		sound "bombardment"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 4
-		"turret turn" 6
+		"turret turn" 2.8
 		"velocity" 6
 		"random velocity" 1
 		"lifetime" 150
@@ -132,7 +132,7 @@ outfit "Active Finisher"
 		"missile strength" 50
 		"shield damage" 1500
 		"hull damage" 1900
-		"hit force" 240
+		"hit force" 750
 
 outfit "Finisher Torpedo"
 	plural "Finisher Torpedoes"
@@ -201,7 +201,7 @@ outfit "Heliarch Attractor"
 		sound "heliarch attractor"
 		"hit effect" "attractor impact"
 		"inaccuracy" 2
-		"turret turn" 3.5
+		"turret turn" 4.1
 		"velocity" 640
 		"lifetime" 1
 		"reload" 1
@@ -244,7 +244,7 @@ outfit "Heliarch Repulsor"
 		sound "heliarch repulsor"
 		"hit effect" "repulsor impact"
 		"inaccuracy" 3
-		"turret turn" 2.5
+		"turret turn" 3.4
 		"velocity" 560
 		"lifetime" 1
 		"reload" 1

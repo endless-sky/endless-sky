@@ -155,6 +155,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(key == 'p' && flagship && planet.HasSpaceport() && hasAccess)
 	{
 		selectedPanel = spaceport.get();
+		spaceport->UpdateNews();
 		GetUI()->Push(spaceport);
 	}
 	else if(key == 's' && planet.HasShipyard() && hasAccess)
@@ -245,7 +246,7 @@ void PlanetPanel::TakeOffIfReady()
 		if(!check.empty() && check.back() == '!')
 		{
 			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: " + check), nullptr, ship.get()));
+				*GameData::Conversations().Get("flight check: " + check), nullptr, ship));
 			return;
 		}
 	}
@@ -258,7 +259,7 @@ void PlanetPanel::TakeOffIfReady()
 	// ship can't hold the required crew, count it as having no fireable
 	// crew rather than a negative number.
 	const CargoHold &cargo = player.Cargo();
-	int overbooked = -cargo.Bunks() - max(0, flagship->Crew() - flagship->RequiredCrew());
+	int overbooked = -cargo.BunksFree() - max(0, flagship->Crew() - flagship->RequiredCrew());
 	int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
 	// Will you have to sell something other than regular cargo?
 	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());

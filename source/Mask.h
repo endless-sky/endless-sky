@@ -33,7 +33,7 @@ public:
 	Mask();
 	
 	// Construct a mask from the alpha channel of an image.
-	void Create(ImageBuffer *image);
+	void Create(const ImageBuffer &image, int frame = 0);
 	
 	// Check whether a mask was successfully loaded.
 	bool IsLoaded() const;
@@ -54,6 +54,11 @@ public:
 	
 	// Find out how close the given point is to the mask.
 	double Range(Point point, Angle facing) const;
+	// Get the maximum distance from the center of this mask.
+	double Radius() const;
+	
+	// Get the list of points in the outline.
+	const std::vector<Point> &Points() const;
 	
 	
 private:

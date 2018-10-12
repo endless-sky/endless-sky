@@ -419,7 +419,7 @@ bool Files::Exists(const string &filePath)
 
 
 
-time_t Files::Timestamp(const std::string &filePath)
+time_t Files::Timestamp(const string &filePath)
 {
 #if defined _WIN32
 	struct _stat buf;

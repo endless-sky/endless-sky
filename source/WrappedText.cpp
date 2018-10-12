@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "WrappedText.h"
 
 #include "Font.h"
-#include "Point.h"
 
 #include <cstring>
 
@@ -231,12 +230,12 @@ void WrappedText::Wrap()
 			int width = font->Width(text.c_str() + word.index);
 			if(word.x + width > wrapWidth)
 			{
-				// If we just overflowed the length of the line, this word will
-				// be the first on the next line, and the current line needs to
-				// be adjusted for alignment.
+				// If adding this word would overflow the length of the line, this
+				// word will be the first on the next line.
 				word.y += lineHeight;
 				word.x = 0;
 				
+				// Adjust the spacing of words in the now-complete line.
 				AdjustLine(lineBegin, lineWidth, false);
 			}
 			// Store this word, then advance the x position to the end of it.
@@ -251,9 +250,11 @@ void WrappedText::Wrap()
 		// If that whitespace was a newline, we must handle that, too.
 		if(c == '\n')
 		{
+			// The next word will begin on a new line.
 			word.y += lineHeight + paragraphBreak;
 			word.x = 0;
 			
+			// Adjust the word spacings on the now-completed line.
 			AdjustLine(lineBegin, lineWidth, true);
 		}
 		// Otherwise, whitespace just adds to the x position.
@@ -272,17 +273,22 @@ void WrappedText::Wrap()
 		int width = font->Width(text.c_str() + word.index);
 		if(word.x + width > wrapWidth)
 		{
-			// If we just overflowed the length of the line, this word will
-			// be the first on the next line, and the current line needs to
-			// be adjusted for alignment.
+			// If adding this word would overflow the length of the line, this
+			// final word will be the first (and only) on the next line.
 			word.y += lineHeight;
 			word.x = 0;
 			
+			// Adjust the spacing of words in the now-complete line.
 			AdjustLine(lineBegin, lineWidth, false);
 		}
+		// Add this final word to the existing words.
 		words.push_back(word);
 		word.y += lineHeight + paragraphBreak;
+		// Keep track of how wide this line is now that this word is added.
+		word.x += width;
+		lineWidth = word.x;
 	}
+	// Adjust the spacing of words in the final line of text.
 	AdjustLine(lineBegin, lineWidth, true);
 	
 	height = word.y;

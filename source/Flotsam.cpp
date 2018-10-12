@@ -148,7 +148,7 @@ int Flotsam::Count() const
 // less than this amount of space, it can't pick up anything here.
 double Flotsam::UnitSize() const
 {
-	return outfit ? outfit->Get("mass") : 1;
+	return outfit ? outfit->Mass() : 1.;
 }
 
 

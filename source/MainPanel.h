@@ -18,6 +18,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "Engine.h"
 
+#include <list>
+
 class PlayerInfo;
 class ShipEvent;
 
@@ -51,6 +53,7 @@ protected:
 private:
 	void ShowScanDialog(const ShipEvent &event);
 	bool ShowHailPanel();
+	void StepEvents(bool &isActive);
 	
 	
 private:
@@ -58,11 +61,20 @@ private:
 	
 	Engine engine;
 	
+	// These are the pending ShipEvents that have yet to be processed.
+	std::list<ShipEvent> eventQueue;
+	bool handledFront = false;
+	
 	Command show;
 	
-	double load;
-	double loadSum;
-	int loadCount;
+	// For displaying the GPU load.
+	double load = 0.;
+	double loadSum = 0.;
+	int loadCount = 0;
+	
+	// Keep track of how long a starting player has spent drifting in deep space.
+	int lostness = 0;
+	int lostCount = 0;
 	
 	Point dragSource;
 	Point dragPoint;
