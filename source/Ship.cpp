@@ -28,7 +28,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Projectile.h"
 #include "Random.h"
 #include "ShipEvent.h"
-#include "Sound.h"
 #include "SpriteSet.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -122,7 +121,6 @@ void Ship::Load(const DataNode &node)
 	bool hasArmament = false;
 	bool hasBays = false;
 	bool hasExplode = false;
-	bool hasLeak = false;
 	bool hasFinalExplode = false;
 	bool hasOutfits = false;
 	bool hasDescription = false;
@@ -219,20 +217,6 @@ void Ship::Load(const DataNode &node)
 					if(child.Token(i) == BAY_FACING[j])
 						bays.back().facing = j;
 			}
-		}
-		else if(key == "leak" && child.Size() >= 2)
-		{
-			if(!hasLeak)
-			{
-				leaks.clear();
-				hasLeak = true;
-			}
-			Leak leak(GameData::Effects().Get(child.Token(1)));
-			if(child.Size() >= 3)
-				leak.openPeriod = child.Value(2);
-			if(child.Size() >= 4)
-				leak.closePeriod = child.Value(3);
-			leaks.push_back(leak);
 		}
 		else if(key == "explode" && child.Size() >= 2)
 		{
@@ -544,15 +528,6 @@ void Ship::Save(DataWriter &out) const
 			out.Write("category", baseAttributes.Category());
 			out.Write("cost", baseAttributes.Cost());
 			out.Write("mass", baseAttributes.Mass());
-			for(const pair<Body, int> &it : baseAttributes.FlareSprites())
-				for(int i = 0; i < it.second; ++i)
-					it.first.SaveSprite(out, "flare sprite");
-			for(const pair<const Sound *, int> &it : baseAttributes.FlareSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("flare sound", it.first->Name());
-			for(const pair<const Effect *, int> &it : baseAttributes.AfterburnerEffects())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("afterburner effect", it.first->Name());
 			for(const pair<const char *, double> &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
@@ -604,8 +579,6 @@ void Ship::Save(DataWriter &out) const
 			else
 				out.Write(BAY_TYPE[bay.isFighter], x, y);
 		}
-		for(const Leak &leak : leaks)
-			out.Write("leak", leak.effect->Name(), leak.openPeriod, leak.closePeriod);
 		for(const auto &it : explosionEffects)
 			if(it.first && it.second)
 				out.Write("explode", it.first->Name(), it.second);
@@ -1045,34 +1018,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		++explosionRate;
 		if(Random::Int(1024) < explosionRate)
 			CreateExplosion(visuals);
-		
-		// Handle hull "leaks."
-		for(const Leak &leak : leaks)
-			if(leak.openPeriod > 0 && !Random::Int(leak.openPeriod))
-			{
-				activeLeaks.push_back(leak);
-				const vector<Point> &outline = GetMask().Points();
-				if(outline.size() < 2)
-					break;
-				int i = Random::Int(outline.size() - 1);
-				
-				// Position the leak along the outline of the ship, facing outward.
-				activeLeaks.back().location = (outline[i] + outline[i + 1]) * .5;
-				activeLeaks.back().angle = Angle(outline[i] - outline[i + 1]) + Angle(90.);
-			}
-		for(Leak &leak : activeLeaks)
-			if(leak.effect)
-			{
-				// Leaks always "flicker" every other frame.
-				if(Random::Int(2))
-					visuals.emplace_back(*leak.effect,
-						angle.Rotate(leak.location) + position,
-						velocity,
-						leak.angle + angle);
-				
-				if(leak.closePeriod > 0 && !Random::Int(leak.closePeriod))
-					leak.effect = nullptr;
-			}
 	}
 	else if(hyperspaceSystem || hyperspaceCount)
 	{
@@ -2157,8 +2102,6 @@ double Ship::TransferFuel(double amount, Ship *to)
 
 
 
-// Convert this ship from one government to another, as a result of boarding
-// actions (if the player is capturing) or player death (poor decision-making).
 void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 {
 	// Repair up to the point where this ship is just barely not disabled.
@@ -2171,11 +2114,11 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	// Transfer some crew over. Only transfer the bare minimum unless even that
 	// is not possible, in which case, share evenly.
 	int totalRequired = capturer->RequiredCrew() + RequiredCrew();
-	int transfer = RequiredCrew() - crew;
-	if(transfer > 0)
+	int transfer = RequiredCrew();
+	if(transfer)
 	{
-		if(totalRequired > capturer->Crew() + crew)
-			transfer = max(crew ? 0 : 1, (capturer->Crew() * transfer) / totalRequired);
+		if(totalRequired > capturer->Crew())
+			transfer = max(1, (capturer->Crew() * RequiredCrew()) / totalRequired);
 		capturer->AddCrew(-transfer);
 		AddCrew(transfer);
 	}
@@ -2233,14 +2176,6 @@ double Ship::Hull() const
 
 
 
-double Ship::Fuel() const
-{
-	double maximum = attributes.Get("fuel capacity");
-	return maximum ? min(1., fuel / maximum) : 0.;
-}
-
-
-
 double Ship::Energy() const
 {
 	double maximum = attributes.Get("energy capacity");
@@ -2249,40 +2184,31 @@ double Ship::Energy() const
 
 
 
-// Allow returning a heat value greater than 1 (i.e. conveying how overheated
-// this ship has become).
 double Ship::Heat() const
 {
 	double maximum = MaximumHeat();
-	return maximum ? heat / maximum : 1.;
+	return maximum ? min(1., heat / maximum) : 1.;
 }
 
 
 
-// Get the ship's "health," where <=0 is disabled and 1 means full health.
+double Ship::Fuel() const
+{
+	double maximum = attributes.Get("fuel capacity");
+	return maximum ? min(1., fuel / maximum) : 0.;
+}
+
+
+
+// Get the ship's "health," where 0 is disabled and 1 means full health.
 double Ship::Health() const
 {
 	double minimumHull = MinimumHull();
-	double hullDivisor = attributes.Get("hull") - minimumHull;
-	double divisor = attributes.Get("shields") + hullDivisor;
-	// This should not happen, but just in case.
-	if(divisor <= 0. || hullDivisor <= 0.)
+	double divisor = attributes.Get("shields") + attributes.Get("hull") - minimumHull;
+	if(divisor <= 0)
 		return 0.;
 	
-	double spareHull = hull - minimumHull;
-	// Consider hull-only and pooled health, compensating for any reductions by disruption damage.
-	return min(spareHull / hullDivisor, (spareHull + shields / (1. + disruption * .01)) / divisor);
-}
-
-
-
-// Get the hull fraction at which this ship is disabled.
-double Ship::DisabledHull() const
-{
-	double hull = attributes.Get("hull");
-	double minimumHull = MinimumHull();
-	
-	return (hull > 0. ? minimumHull / hull : 0.);
+	return (shields + hull - minimumHull) / divisor;
 }
 
 
@@ -2568,9 +2494,9 @@ void Ship::ApplyForce(const Point &force)
 		return;
 	
 	// Reduce acceleration of small ships and increase acceleration of large
-	// ones by having 30% of the force be based on a fixed mass of 400, i.e. the
+	// ones by having half the force be based on a fixed mass of 400, i.e. the
 	// mass of a typical light warship:
-	acceleration += force * (.3 / 400. + .7 / currentMass);
+	acceleration += force * (.5 / 400. + .5 / currentMass);
 }
 
 
@@ -3004,7 +2930,7 @@ double Ship::MinimumHull() const
 		return 0.;
 	
 	double maximumHull = attributes.Get("hull");
-	return floor(maximumHull * max(.15, min(.45, 10. / sqrt(maximumHull))));
+	return max(.20 * maximumHull, min(.50 * maximumHull, 400.));
 }
 
 

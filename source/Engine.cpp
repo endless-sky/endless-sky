@@ -227,15 +227,19 @@ Engine::~Engine()
 void Engine::Place()
 {
 	ships.clear();
-	ai.ClearOrders();
 	
 	EnterSystem();
+	auto it = ships.end();
 	
 	// Add the player's flagship and escorts to the list of ships. The TakeOff()
 	// code already took care of loading up fighters and assigning parents.
 	for(const shared_ptr<Ship> &ship : player.Ships())
 		if(!ship->IsParked() && ship->GetSystem())
+		{
 			ships.push_back(ship);
+			if(it == ships.end())
+				--it;
+		}
 	
 	// Add NPCs to the list of ships. Fighters have to be assigned to carriers,
 	// and all but "uninterested" ships should follow the player.
@@ -315,9 +319,13 @@ void Engine::Place()
 		planetRadius = object->Radius();
 	}
 	
-	// Give each special ship we just added a random heading and position.
-	for (const shared_ptr<Ship> &ship : ships)
+	// Give each ship a random heading and position. The iterator points to the
+	// first ship that was an escort or NPC (i.e. the first ship after any
+	// fleets that were placed starting out in this system).
+	while(it != ships.end())
 	{
+		const shared_ptr<Ship> &ship = *it++;
+		
 		Point pos;
 		Angle angle = Angle::Random(360.);
 		Point velocity = angle.Unit();
@@ -345,9 +353,6 @@ void Engine::Place()
 		
 		ship->Place(pos, ship->IsDisabled() ? Point() : velocity, angle);
 	}
-	// Move any ships that were randomly spawned into the main list, now
-	// that all special ships have been repositioned.
-	ships.splice(ships.end(), newShips);
 	
 	player.SetPlanet(nullptr);
 }
@@ -552,20 +557,12 @@ void Engine::Step(bool isActive)
 		info.SetBar("fuel", flagship->Fuel(),
 			flagship->Attributes().Get("fuel capacity") * .01);
 		info.SetBar("energy", flagship->Energy());
-		double heat = flagship->Heat();
-		info.SetBar("heat", min(1., heat));
-		// If heat is above 100%, draw a second overlaid bar to indicate the
-		// total heat level.
-		if(heat > 1.)
-			info.SetBar("overheat", min(1., heat - 1.));
-		if(flagship->IsOverheated() && (step / 20) % 2)
-			info.SetBar("overheat blink", min(1., heat));
+		info.SetBar("heat", flagship->Heat());
 		info.SetBar("shields", flagship->Shields());
 		info.SetBar("hull", flagship->Hull(), 20.);
-		info.SetBar("disabled hull", min(flagship->Hull(), flagship->DisabledHull()), 20.);
 	}
 	info.SetString("credits",
-		Format::Credits(player.Accounts().Credits()) + " credits");
+		Format::Number(player.Accounts().Credits()) + " credits");
 	bool isJumping = flagship && (flagship->Commands().Has(Command::JUMP) || flagship->IsEnteringHyperspace());
 	if(flagship && flagship->GetTargetStellar() && !isJumping)
 	{
@@ -653,7 +650,6 @@ void Engine::Step(bool isActive)
 		{
 			info.SetBar("target shields", target->Shields());
 			info.SetBar("target hull", target->Hull(), 20.);
-			info.SetBar("target disabled hull", min(target->Hull(), target->DisabledHull()), 20.);
 		
 			// The target area will be a square, with sides proportional to the average
 			// of the width and the height of the sprite.
@@ -1089,7 +1085,7 @@ void Engine::EnterSystem()
 	for(int i = 0; i < 5; ++i)
 		for(const System::FleetProbability &fleet : system->Fleets())
 			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
-				fleet.Get()->Place(*system, newShips);
+				fleet.Get()->Place(*system, ships);
 	
 	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
 	const Government *raidGovernment = raidFleet ? raidFleet->GetGovernment() : nullptr;
@@ -1101,7 +1097,7 @@ void Engine::EnterSystem()
 			for(int i = 0; i < 10; ++i)
 				if(Random::Real() < attraction)
 				{
-					raidFleet->Place(*system, newShips);
+					raidFleet->Place(*system, ships);
 					Messages::Add("Your fleet has attracted the interest of a "
 							+ raidGovernment->GetName() + " raiding party.");
 				}
@@ -1781,7 +1777,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 			player.Harvest(outfit);
 		}
 		else
-			message = name + to_string(amount) + " "
+			message = name + Format::Number(amount) + " "
 				+ (amount == 1 ? outfit->Name() : outfit->PluralName()) + ".";
 	}
 	else
@@ -1800,7 +1796,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	if(!message.empty())
 	{
 		int free = collector->Cargo().Free();
-		message += " (" + to_string(free) + (free == 1 ? " ton" : " tons");
+		message += " (" + Format::Number(free) + (free == 1 ? " ton" : " tons");
 		message += " of free space remaining.)";
 		Messages::Add(message);
 	}
@@ -1847,15 +1843,6 @@ void Engine::FillRadar()
 			radar[calcTickTock].AddPointer(
 				(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
 				system->Position() - playerSystem->Position());
-	}
-	
-	// Add viewport brackets.
-	if(!Preferences::Has("Disable viewport on radar"))
-	{
-		radar[calcTickTock].AddViewportBoundary(Screen::TopLeft() / zoom);
-		radar[calcTickTock].AddViewportBoundary(Screen::TopRight() / zoom);
-		radar[calcTickTock].AddViewportBoundary(Screen::BottomLeft() / zoom);
-		radar[calcTickTock].AddViewportBoundary(Screen::BottomRight() / zoom);
 	}
 	
 	// Add ships. Also check if hostile ships have newly appeared.

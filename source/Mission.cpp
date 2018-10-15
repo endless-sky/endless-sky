@@ -532,14 +532,14 @@ bool Mission::HasFullClearance() const
 
 
 // Check if it's possible to offer or complete this mission right now.
-bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
+bool Mission::CanOffer(const PlayerInfo &player) const
 {
 	if(location == BOARDING || location == ASSISTING)
 	{
-		if(!boardingShip)
+		if(!player.BoardingShip())
 			return false;
 		
-		if(!sourceFilter.Matches(*boardingShip))
+		if(!sourceFilter.Matches(*player.BoardingShip()))
 			return false;
 	}
 	else
@@ -718,7 +718,7 @@ bool Mission::IsUnique() const
 // When the state of this mission changes, it may make changes to the player
 // information or show new UI panels. PlayerInfo::MissionCallback() will be
 // used as the callback for any UI panel that returns a value.
-bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<Ship> &boardingShip)
+bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 {
 	if(trigger == STOPOVER)
 	{
@@ -769,7 +769,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// if this is a non-job mission that just got offered and if so,
 	// automatically accept it.
 	if(it != actions.end())
-		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr, boardingShip);
+		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr);
 	else if(trigger == OFFER && location != JOB)
 		player.MissionCallback(Conversation::ACCEPT);
 	
@@ -854,7 +854,7 @@ const string &Mission::Identifier() const
 
 // "Instantiate" a mission by replacing randomly selected values and places
 // with a single choice, and then replacing any wildcard text as well.
-Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
+Mission Mission::Instantiate(const PlayerInfo &player) const
 {
 	Mission result;
 	// If anything goes wrong below, this mission should not be offered.
@@ -1020,8 +1020,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	subs["<fare>"] = (result.passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
 	if(player.GetPlanet())
 		subs["<origin>"] = player.GetPlanet()->Name();
-	else if(boardingShip)
-		subs["<origin>"] = boardingShip->Name();
+	else if(player.BoardingShip())
+		subs["<origin>"] = player.BoardingShip()->Name();
 	subs["<planet>"] = result.destination ? result.destination->Name() : "";
 	subs["<system>"] = result.destination ? result.destination->GetSystem()->Name() : "";
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";

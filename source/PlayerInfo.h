@@ -75,7 +75,7 @@ public:
 	void AddEvent(const GameEvent &event, const Date &date);
 	
 	// Mark the player as dead, or check if they have died.
-	void Die(int response = 0, const std::shared_ptr<Ship> &capturer = nullptr);
+	void Die(bool allShipsDie = false);
 	bool IsDead() const;
 	
 	// Get or set the player's name.
@@ -155,6 +155,7 @@ public:
 	// Check to see if there is any mission to offer in the spaceport right now.
 	Mission *MissionToOffer(Mission::Location location);
 	Mission *BoardingMission(const std::shared_ptr<Ship> &ship);
+	const std::shared_ptr<Ship> &BoardingShip() const;
 	// If one of your missions cannot be offered because you do not have enough
 	// space for it, and it specifies a message to be shown in that situation,
 	// show that message.
@@ -248,7 +249,7 @@ private:
 	void ApplyChanges();
 	
 	// New missions are generated each time you land on a planet.
-	void UpdateAutoConditions(bool isBoarding = false);
+	void UpdateAutoConditions();
 	void CreateMissions();
 	void StepMissions(UI *ui);
 	void Autosave() const;
@@ -294,6 +295,7 @@ private:
 	std::list<Mission> availableJobs;
 	std::list<Mission> availableMissions;
 	std::list<Mission> boardingMissions;
+	std::shared_ptr<Ship> boardingShip;
 	std::list<Mission> doneMissions;
 	
 	std::map<std::string, int> conditions;

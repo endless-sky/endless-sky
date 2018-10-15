@@ -37,11 +37,10 @@ namespace {
 
 
 
-bool Sound::Load(const string &path, const string &name)
+bool Sound::Load(const string &path)
 {
 	if(path.length() < 5 || path.compare(path.length() - 4, 4, ".wav"))
 		return false;
-	this->name = name;
 	
 	isLooped = path[path.length() - 5] == '~';
 	
@@ -62,13 +61,6 @@ bool Sound::Load(const string &path, const string &name)
 	alBufferData(buffer, AL_FORMAT_MONO16, &data.front(), bytes, frequency);
 	
 	return true;
-}
-
-
-
-const string &Sound::Name() const
-{
-	return name;
 }
 
 

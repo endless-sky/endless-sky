@@ -93,7 +93,6 @@ MapDetailPanel::MapDetailPanel(const MapPanel &panel)
 
 void MapDetailPanel::Step()
 {
-	MapPanel::Step();
 	if(!player.GetPlanet())
 		DoHelp("map");
 }
@@ -319,7 +318,7 @@ void MapDetailPanel::DrawKey()
 		{
 			RingShader::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
 			int price = range.low + ((range.high - range.low) * i) / 3;
-			font.Draw(to_string(price), pos + textOff, dim);
+			font.Draw(Format::Number(price), pos + textOff, dim);
 			pos.Y() += 20.;
 		}
 	}

@@ -246,7 +246,7 @@ void PlanetPanel::TakeOffIfReady()
 		if(!check.empty() && check.back() == '!')
 		{
 			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: " + check), nullptr, ship));
+				*GameData::Conversations().Get("flight check: " + check), nullptr, ship.get()));
 			return;
 		}
 	}

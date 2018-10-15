@@ -18,11 +18,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
-#include "WrappedText.h"
 
 #include <map>
 #include <string>
-#include <utility>
 #include <vector>
 
 class Angle;
@@ -57,7 +55,6 @@ public:
 public:
 	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
 	
-	virtual void Step() override;
 	virtual void Draw() override;
 	
 	void DrawButtons(const std::string &condition);
@@ -68,7 +65,6 @@ protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
 	virtual bool Click(int x, int y, int clicks) override;
-	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 	
@@ -107,8 +103,6 @@ protected:
 	const System *specialSystem;
 	
 	Point center;
-	Point recenterVector;
-	int recentering = 0;
 	int commodity;
 	int step = 0;
 	std::string buttonCondition;
@@ -117,20 +111,14 @@ protected:
 	// for use in determining which governments are in the legend.
 	std::map<const Government *, double> closeGovernments;
 	// Systems in which your escorts are located.
-	std::map<const System *, std::pair<int, int>> escortSystems;
+	std::map<const System *, bool> escortSystems;
 	// Center the view on the given system (may actually be slightly offset
 	// to account for panels on the screen).
-	void CenterOnSystem(const System *system, bool immediate = false);
+	void CenterOnSystem(const System *system);
 	
 	// Cache the map layout, so it doesn't have to be re-calculated every frame.
 	// The cache must be updated when the coloring mode changes.
 	void UpdateCache();
-	
-	// For tooltips:
-	int hoverCount = 0;
-	const System *hoverSystem = nullptr;
-	std::string tooltip;
-	WrappedText hoverText;
 	
 	
 private:
@@ -143,7 +131,6 @@ private:
 	void DrawSystems();
 	void DrawNames();
 	void DrawMissions();
-	void DrawTooltips();
 	void DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger = false);
 	static void DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack = true, bool bigger = false);
 	

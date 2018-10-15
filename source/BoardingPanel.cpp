@@ -69,7 +69,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	
 	// You cannot plunder hand to hand weapons, because they are kept in the
 	// crew's quarters, not mounted on the exterior of the ship. Certain other
-	// outfits are also unplunderable, like outfits expansions.
+	// outfits are also unplunderable, like mass expansions.
 	auto sit = victim->Outfits().begin();
 	auto cit = victim->Cargo().Outfits().begin();
 	while(sit != victim->Outfits().end() || cit != victim->Cargo().Outfits().end())
@@ -226,7 +226,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	{
 		// When closing the panel, mark the player dead if their ship was captured.
 		if(playerDied)
-			player.Die();
+			player.Die(true);
 		GetUI()->Pop(this);
 	}
 	else if(playerDied)
@@ -627,7 +627,7 @@ void BoardingPanel::Plunder::UpdateStrings()
 	else
 		size = to_string(count) + " x " + Format::Number(mass);
 	
-	value = Format::Credits(unitValue * count);
+	value = Format::Number(unitValue * count);
 }
 
 
