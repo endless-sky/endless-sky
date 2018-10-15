@@ -157,12 +157,11 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 
 
 
-// Check to see if the mouse is over the scrolling pane.
 bool MapSalesPanel::Hover(int x, int y)
 {
 	isDragging = (x < Screen::Left() + WIDTH);
 	
-	return isDragging ? true : MapPanel::Hover(x, y);
+	return true;
 }
 
 

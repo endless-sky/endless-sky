@@ -26,9 +26,9 @@ using namespace std;
 // it is a limit on how many systems should be returned. If it is below zero
 // it specifies the maximum distance away that paths should be found.
 DistanceMap::DistanceMap(const System *center, int maxCount, int maxDistance)
-	: center(center), maxCount(maxCount), maxDistance(maxDistance), useWormholes(false)
+	: maxCount(maxCount), maxDistance(maxDistance), useWormholes(false)
 {
-	Init();
+	Init(center);
 }
 
 
@@ -51,10 +51,8 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 	}
 	if(!center)
 		return;
-	else
-		this->center = center;
 	
-	Init(player.Flagship());
+	Init(center, player.Flagship());
 }
 
 
@@ -63,12 +61,12 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 // ship will use a jump drive or hyperdrive depending on what it has. The
 // pathfinding will stop once a path to the destination is found.
 DistanceMap::DistanceMap(const Ship &ship, const System *destination)
-	: source(ship.GetSystem()), center(destination)
+	: source(ship.GetSystem())
 {
 	if(!source || !destination)
 		return;
 	
-	Init(&ship);
+	Init(destination, &ship);
 }
 
 
@@ -110,14 +108,6 @@ set<const System *> DistanceMap::Systems() const
 
 
 
-// Return the destination system - the 'center' system.
-const System *DistanceMap::End() const
-{
-	return center;
-}
-
-
-
 int DistanceMap::RequiredFuel(const System *system1, const System *system2) const
 {
 	auto it1 = route.find(system1);
@@ -155,7 +145,7 @@ bool DistanceMap::Edge::operator<(const Edge &other) const
 // Depending on the capabilities of the given ship, use hyperspace paths,
 // jump drive paths, or both to find the shortest route. Bail out if the
 // source system or the maximum count is reached.
-void DistanceMap::Init(const Ship *ship)
+void DistanceMap::Init(const System *center, const Ship *ship)
 {
 	if(!center)
 		return;
@@ -202,8 +192,6 @@ void DistanceMap::Init(const Ship *ship)
 		Edge top = edges.top();
 		edges.pop();
 		
-		// Source is only defined when given a ship and a destination system.
-		// Once we have a route between them, stop searching for more routes.
 		if(top.next == source)
 			break;
 		// Increment the danger and the travel time to include this system. The
@@ -213,7 +201,7 @@ void DistanceMap::Init(const Ship *ship)
 		++top.days;
 		
 		// Check for wormholes (which cost zero fuel). Wormhole travel should
-		// not be included in Local Maps or mission itineraries.
+		// not be included in maps or mission itineraries.
 		if(useWormholes)
 			for(const StellarObject &object : top.next->Objects())
 				if(object.GetPlanet() && object.GetPlanet()->IsWormhole())
@@ -254,6 +242,7 @@ void DistanceMap::Init(const Ship *ship)
 // Add the given links to the map. Return false if an end condition is hit.
 bool DistanceMap::Propagate(Edge edge, bool useJump)
 {
+	// The "length" of this link is 2 if using a jump drive.
 	edge.fuel += (useJump ? jumpFuel : hyperspaceFuel);
 	for(const System *link : (useJump ? edge.next->Neighbors() : edge.next->Links()))
 	{

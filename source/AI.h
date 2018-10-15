@@ -59,9 +59,6 @@ template <class Type>
 	void UpdateEvents(const std::list<ShipEvent> &events);
 	// Reset the AI's memory of events.
 	void Clean();
-	// Clear ship orders. This should be done when the player lands on a planet,
-	// but not when they jump from one system to another.
-	void ClearOrders();
 	// Issue AI commands to all ships for one game step.
 	void Step(const PlayerInfo &player);
 	
@@ -71,9 +68,6 @@ template <class Type>
 	
 	
 private:
-	// Check if a ship can pursue its target (i.e. beyond the "fence").
-	bool CanPursue(const Ship &ship, const Ship &target) const;
-	// Disabled or stranded ships coordinate with other ships to get assistance.
 	void AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship);
 	static bool CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel);
 	bool HasHelper(const Ship &ship, const bool needsFuel);

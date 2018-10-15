@@ -29,8 +29,7 @@ namespace {
 		{"launch", Conversation::LAUNCH},
 		{"flee", Conversation::FLEE},
 		{"depart", Conversation::DEPART},
-		{"die", Conversation::DIE},
-		{"explode", Conversation::EXPLODE}
+		{"die", Conversation::DIE}
 	};
 	
 	// Get the index of the given special string. 0 means it is "goto", a number
@@ -73,7 +72,6 @@ const int Conversation::LAUNCH;
 const int Conversation::FLEE;
 const int Conversation::DEPART;
 const int Conversation::DIE;
-const int Conversation::EXPLODE;
 
 
 

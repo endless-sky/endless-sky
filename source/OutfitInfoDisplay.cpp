@@ -31,7 +31,6 @@ namespace {
 		{"afterburner energy", 60.},
 		{"afterburner fuel", 60.},
 		{"afterburner heat", 60.},
-		{"cloak", 60.},
 		{"cloaking energy", 60.},
 		{"cloaking fuel", 60.},
 		{"cloaking heat", 60.},
@@ -40,11 +39,9 @@ namespace {
 		{"energy consumption", 60.},
 		{"energy generation", 60.},
 		{"heat generation", 60.},
-		{"heat dissipation", 60.},
 		{"hull repair rate", 60.},
 		{"hull energy", 60.},
 		{"hull heat", 60.},
-		{"jump speed", 60.},
 		{"reverse thrusting energy", 60.},
 		{"reverse thrusting heat", 60.},
 		{"shield generation", 60.},
@@ -128,7 +125,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		out << "cost (" << (100 * buyValue) / cost << "%):";
 		requirementLabels.push_back(out.str());
 	}
-	requirementValues.push_back(Format::Credits(buyValue));
+	requirementValues.push_back(Format::Number(buyValue));
 	requirementsHeight += 20;
 	
 	if(canSell && sellValue != buyValue)
@@ -141,7 +138,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 			out << "sells for (" << (100 * sellValue) / cost << "%):";
 			requirementLabels.push_back(out.str());
 		}
-		requirementValues.push_back(Format::Credits(sellValue));
+		requirementValues.push_back(Format::Number(sellValue));
 		requirementsHeight += 20;
 	}
 	
