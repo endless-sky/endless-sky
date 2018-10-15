@@ -426,6 +426,7 @@ ship "Carrier" "Carrier (Jump)"
 		"Water Coolant System"
 		"Fuel Pod"
 		"Outfits Expansion" 4
+		"Electron Rifle" 120
 		"A860 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Jump Drive"
@@ -456,6 +457,7 @@ ship "Carrier" "Carrier (Mark II)"
 		"D94-YV Shield Generator"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 3
+		"Electron Rifle" 120
 		"A860 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
@@ -614,6 +616,7 @@ ship "Cruiser" "Cruiser (Jump)"
 		"Fuel Pod" 2
 		"Ramscoop"
 		"Outfits Expansion" 2
+		"Electron Rifle" 100
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Jump Drive"
@@ -642,6 +645,7 @@ ship "Cruiser" "Cruiser (Mark II)"
 		"D94-YV Shield Generator"
 		"Liquid Helium Cooler"
 		"Fuel Pod"
+		"Electron Rifle" 100
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
@@ -888,6 +892,7 @@ ship "Frigate" "Frigate (Mark II)"
 		"D41-HY Shield Generator"
 		"Water Coolant System"
 		"Outfits Expansion"
+		"Electron Rifle" 40
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
@@ -955,6 +960,7 @@ ship "Gunboat" "Gunboat (Mark II)"
 		"D41-HY Shield Generator"
 		"Water Coolant System"
 		"Outfits Expansion" 2
+		"Electron Rifle" 10
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
@@ -1471,6 +1477,7 @@ ship "Rainmaker" "Rainmaker (Mark II)"
 		"LP036a Battery Pack"
 		"D67-TM Shield Generator"
 		"Fuel Pod"
+		"Electron Rifle" 10
 		"A120 Atomic Thruster"
 		"A125 Atomic Steering"
 		"Scram Drive"
