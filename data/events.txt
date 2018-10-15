@@ -1539,6 +1539,7 @@ event "deep sky tech available"
 		"Catalytic Ramscoop"
 		"Typhoon Torpedo"
 		"Electron Beam"
+		"Electron Rifle"
 	outfitter "Deep Sky Advanced"
 		"Catalytic Ramscoop"
 		"Typhoon Torpedo"
@@ -1546,6 +1547,7 @@ event "deep sky tech available"
 		"Typhoon Launcher"
 		"Typhoon Storage Tube"
 		"Electron Turret"
+		"Electron Rifle"
 
 
 

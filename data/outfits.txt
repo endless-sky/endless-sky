@@ -331,6 +331,15 @@ outfit "Laser Rifle"
 	"unplunderable" 1
 	description "A laser rifle is a step up from the sidearms that crew members typically carry for defense against pirates: more powerful, and more accurate as well. For each of these rifles that one of your crew is wielding, your odds of capturing another ship or defending your own ship from boarders are increased substantially."
 
+outfit "Electron Rifle"
+	category "Hand to Hand"
+	cost 14000
+	thumbnail "outfit/electron rifle"
+	"capture attack" .6
+	"capture defense" 1.1
+	"unplunderable" 1
+	description "The electron rifle was developed by the Deep for the Navy to use in quelling the Free Worlds. Due its larger size and slower rate of fire, the rifle serves much better as a defensive tool than an offensive one."
+
 outfit "Fragmentation Grenades"
 	plural "Fragmentation Grenades"
 	category "Hand to Hand"
