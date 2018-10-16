@@ -153,6 +153,13 @@ void TradingPanel::Draw()
 	int i = 0;
 	bool canSell = false;
 	bool canBuy = false;
+	const Color TRADE_LEVEL_COLORS[5] = {
+		*GameData::Colors().Get("trade level very low"),
+		*GameData::Colors().Get("trade level low"),
+		*GameData::Colors().Get("trade level medium"),
+		*GameData::Colors().Get("trade level high"),
+		*GameData::Colors().Get("trade level very high")
+	};
 	for(const Trade::Commodity &commodity : GameData::Commodities())
 	{
 		y += 20;
@@ -172,7 +179,10 @@ void TradingPanel::Draw()
 			if(basis && basis != price && hold)
 			{
 				string profit = "(profit: " + to_string(price - basis) + ")";
-				font.Draw(profit, Point(LEVEL_X, y), color);
+				// show (profit XXX) in green (> 0) or orange (< 0)
+				int profitColorIndex = (price - basis) < 0 ? 3 : 1;
+				Color profitColor = TRADE_LEVEL_COLORS[profitColorIndex];
+				font.Draw(profit, Point(LEVEL_X, y), profitColor);
 			}
 			else
 			{
@@ -183,7 +193,8 @@ void TradingPanel::Draw()
 					level = 4;
 				else
 					level = (5 * level) / (commodity.high - commodity.low);
-				font.Draw(TRADE_LEVEL[level], Point(LEVEL_X, y), color);
+				Color tradeLevelColor = TRADE_LEVEL_COLORS[level];
+				font.Draw(TRADE_LEVEL[level], Point(LEVEL_X, y), tradeLevelColor);
 			}
 		
 			font.Draw("[buy]", Point(BUY_X, y), color);
