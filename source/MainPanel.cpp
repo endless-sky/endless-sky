@@ -98,7 +98,7 @@ void MainPanel::Step()
 			isActive = !DoHelp("navigation");
 		if(isActive && flagship->IsDestroyed())
 			isActive = !DoHelp("dead");
-		if(isActive && flagship->IsDisabled())
+		if(isActive && flagship->IsDisabled() && !flagship->IsDestroyed())
 			isActive = !DoHelp("disabled");
 		bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
 		if(isActive && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
@@ -478,7 +478,16 @@ void MainPanel::StepEvents(bool &isActive)
 			// Determine if a Dialog or ConversationPanel is being drawn next frame.
 			isActive = (GetUI()->Top().get() == this);
 			
-			if(isActive && (event.Type() == ShipEvent::BOARD) && !event.Target()->IsDestroyed())
+			// Confirm that this event's target is not destroyed and still an
+			// enemy before showing the BoardingPanel (as a mission NPC's
+			// completion conversation may have allowed it to be destroyed or
+			// captured).
+			// TODO: This BoardingPanel should not be displayed if a mission NPC
+			// completion conversation creates a BoardingPanel for it, or if the
+			// NPC completion conversation ends via `accept,` even if the ship is
+			// still hostile.
+			if(isActive && (event.Type() == ShipEvent::BOARD) && !event.Target()->IsDestroyed()
+					&& event.Target()->GetGovernment()->IsEnemy())
 			{
 				// Either no mission activated, or the one that did was "silent."
 				GetUI()->Push(new BoardingPanel(player, event.Target()));

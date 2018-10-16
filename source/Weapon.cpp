@@ -155,7 +155,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 			else if(key == "slowing damage")
 				damage[SLOWING_DAMAGE] = value;
 			else if(key == "hit force")
-				hitForce = value;
+				damage[HIT_FORCE] = value;
 			else if(key == "piercing")
 				piercing = max(0., min(1., value));
 			else

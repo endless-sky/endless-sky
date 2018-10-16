@@ -513,7 +513,7 @@ mission "FW Katya 1"
 				`	"Okay, tell me more."`
 					goto `more`
 	
-			`	"Look kid," she says, "when I ask you to pick sides, when I offer you a mission that's gonna burn some bridges for you, I won't be sneaky about it. I'll tell you exactly what you're signing up for. What I'm offering you now is just a chance to get to know us, and let us get to know you, with no expectations. Heck, you can even run missions for the Reps at the same time."`
+			`	"Look, kid," she says, "when I ask you to pick sides, when I offer you a mission that's gonna burn some bridges for you, I won't be sneaky about it. I'll tell you exactly what you're signing up for. What I'm offering you now is just a chance to get to know us, and let us get to know you, with no expectations. Heck, you can even run missions for the Reps at the same time."`
 			choice
 				`	"That sounds fair. I'll hear you out."`
 				`	"Fair enough, but I don't like working with people who start conversations by pointing guns at my head. Even unloaded guns."`

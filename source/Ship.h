@@ -75,6 +75,7 @@ public:
 		static const uint8_t RIGHT = 2;
 		static const uint8_t BACK = 3;
 	};
+	
 	class EnginePoint : public Point {
 	public:
 		EnginePoint(double x, double y, double zoom) : Point(x, y), zoom(zoom) {}
@@ -83,6 +84,7 @@ public:
 	private:
 		double zoom;
 	};
+	
 	
 public:
 	/* Functions provided by the Body base class:
@@ -240,11 +242,15 @@ public:
 	// Get characteristics of this ship, as a fraction between 0 and 1.
 	double Shields() const;
 	double Hull() const;
-	double Energy() const;
-	double Heat() const;
 	double Fuel() const;
-	// Get the ship's "health," where 0 is disabled and 1 means full health.
+	double Energy() const;
+	// A ship's heat is generally between 0 and 1, but if it receives
+	// heat damage the value can increase above 1.
+	double Heat() const;
+	// Get the ship's "health," where <=0 is disabled and 1 means full health.
 	double Health() const;
+	// Get the hull fraction at which this ship is disabled.
+	double DisabledHull() const;
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
 	int JumpsRemaining() const;
@@ -479,6 +485,22 @@ private:
 	double hyperspaceFuelCost = 0.;
 	Point hyperspaceOffset;
 	
+	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
+	// when the ship is dying.
+	class Leak {
+	public:
+		Leak(const Effect *effect = nullptr) : effect(effect) {}
+		
+		const Effect *effect = nullptr;
+		Point location;
+		Angle angle;
+		int openPeriod = 60;
+		int closePeriod = 60;
+	};
+	std::vector<Leak> leaks;
+	std::vector<Leak> activeLeaks;
+	
+	// Explosions that happen when the ship is dying:
 	std::map<const Effect *, int> explosionEffects;
 	unsigned explosionRate = 0;
 	unsigned explosionCount = 0;
