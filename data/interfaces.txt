@@ -100,6 +100,12 @@ color "map travel ok none" .55 .1 0. 0.
 color "map used wormhole" .5 .2 .9 1.
 color "map unused wormhole" .165 .066 .3 .333
 
+# Colors used for drawing the trade good prices (green - yellow - red)
+color "trade level very low" 0.01 0.8 0.02 0.
+color "trade level low" 0.4 0.8 0.03 0.
+color "trade level medium" 0.8 0.75 0.01 0.
+color "trade level high" 0.8 0.4 0.02 0.
+color "trade level very high" 0.8 0.02 0.01 0.
 
 
 interface "menu background"
