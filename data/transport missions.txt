@@ -1988,7 +1988,7 @@ mission "Terraforming 7"
 		payment 50000
 		event "terraforming research" 120 180
 		log `Amy has been noticed by the Deep's Department of Terraforming Research. She will be spending time researching her terraforming theories in the hopes that there are more worlds that can be helped.`
-		dialog `The whole journey to <planet>, Amy and Nolan discussed the multiple planets within the Dirt Belt that would be perfect candidates for terraforming. "Nolan and I will spend the next few months here researching my theories on terraforming," Amy says as she steps off of your ship. "I'll make sure to contact you once we're ready to try terraforming another planet." She hands you <payment>, then follows Nolan out of the spaceport.`
+		dialog `The whole journey to <planet>, Amy and Nolan discussed the multiple planets within the Dirt Belt that would be perfect candidates for terraforming. "Nolan and I will spend the next few months here researching my theories," Amy says as she steps off of your ship. "I'll make sure to contact you once we're ready to try terraforming another planet." She hands you <payment>, then follows Nolan out of the spaceport.`
 
 
 
@@ -2003,7 +2003,7 @@ mission "Terraforming 8"
 		has "event: terraforming research"
 	
 	on offer
-		dialog `You receive a message from Amy: "Hello, Captain. I just wanted to tell you that Nolan and I have recently published our work on 'Reduce Terraforming Expenses Through Equilibrium Mapping,' and we've received a grant from the Deep for it! We're going to begin experiment with terraforming on a different world. Don't worry, the Republic has approved our experiment this time, so we won't get dragged off for any more cases of an 'unlawful use of an asteroid.' If you're interested in helping, pick us up on <destination>."`
+		dialog `You receive a message from Amy: "Hello, Captain <last>. I just wanted to tell you that Nolan and I have recently published our work on 'Reducing Terraforming Expenses Through Equilibrium Mapping,' and we've received a grant from the Deep for it! We're going to begin experiments with terraforming on a different world. Don't worry, the Republic has approved our experiment this time, so we won't get dragged off for any more cases of an 'unlawful use of an asteroid.' If you're interested in helping, pick us up on <destination>."`
 
 
 
@@ -2130,7 +2130,7 @@ mission "Terraforming 12"
 		conversation
 			`A plume of debris has formed in a mushroom cloud shape above where the asteroid hit. The scientists are viewing their instruments in anticipation for what happens next.`
 			`	Almost an hour after the impact, the ground begins to shake slightly, even though the volcano is located hundreds of kilometers away. "This might be it!" Nolan exclaims as he closely watches a seismometer receiving readings from near the impact site. Suddenly the seismometer spikes, and another plume, much larger than the asteroid impact, rises from the impact site. Half an hour later, the low sound of the massive eruption can be heard in the spaceport, triggering another burst of cheers from the scientists. "It actually worked!" one of them yells out.`
-			`	You fly the scientists over top of the volcano, allowing them to take readings of the air and surface. "Greenhouse gas levels are off the charts!" Amy exclaims. "The increased ash in the atmosphere will cause an initial drop in temperature, but as the gases disperse across the planet they should substantially increase the atmosphere's greenhouse gas levels, warming the entire planet."`
+			`	You fly the scientists over top of the volcano, allowing them to take readings of the air and surface. "Greenhouse gas levels are off the charts!" Amy exclaims. "Once these gases disperse across the planet's atmosphere, they should begin warming the entire planet."
 			`	The heat has formed a huge circle of melted snow around the volcano, revealing the green color of trees and the dull grays and browns of rock. Closer to the center of the eruption you spot dozens of lava flows emanating from the center of the impact crater.`
 			choice
 				`	"What do we do now?"`
@@ -2141,7 +2141,7 @@ mission "Terraforming 12"
 				goto end
 			
 			label what
-			`	"First we need to clear all this volcanic ash out of the atmosphere, then we wait," Amy says to you. "We should be able to tell how this will affect Tundra's climate in a year or two."
+			`	"First we need to clear all this volcanic ash out of the atmosphere, as otherwise the planet's temperature will drop, then we wait," Amy says to you. "We should be able to tell how this will affect Tundra's climate in a year or two."
 			
 			label end
 			`	You steer your ship back to the spaceport. Amy pays you <payment> after you land. "Thanks for your help, Captain. We're going to stay here and monitor Tundra's climate as it shifts, so there's nothing more that we need you for."`
@@ -2170,7 +2170,7 @@ mission "Terraforming Follow-up"
 		conversation
 			`When you land, you receive a message from Amy, the girl you helped to terraform Rand and Tundra.`
 			`	"I hope everything is going well, Captain. I just wanted to give you an update on what has occurred in the past year.`
-			`	"Tundra's climate has drastically improved over the past year. Areas around the equator are starting to become completely snow free, and I was amazed when I was able to walk outside without a heavy coat on. The Republic has placed a halt on any more experiments, as they wish to see how the situations on Tundra and Rand turn out.`
+			`	"Tundra's climate has drastically improved. Areas around the equator are starting to become completely snow free, and I was amazed when I was able to walk outside without a heavy coat on. The Republic has placed a halt on any more experiments, as they wish to see how the situations on Tundra and Rand turn out.`
 			`	"Speaking of Rand, last month I got to catch up with Eric and Alaric when I visited the planet. They've told me that Rand is becoming a far better place to live on now. It's even becoming a popular tourist destination. They wanted me to relay their gratitude to you for making their dream come true.`
 			`	"That's all I have to say. Thanks again for all the help. I don't know where I would be without it."`
 				decline
