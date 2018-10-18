@@ -264,7 +264,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		60. * (attributes.Get("energy generation")
 			+ attributes.Get("solar collection")
 			- attributes.Get("energy consumption")
-			+ attributes.Get("fuel energy"))));
+			+ attributes.Get("fuel energy")
 			- attributes.Get("cooling energy"))));
 	double efficiency = ship.CoolingEfficiency();
 	heatTable.push_back(Format::Number(
