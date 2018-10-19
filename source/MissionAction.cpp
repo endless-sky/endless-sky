@@ -340,12 +340,14 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 
 
 
-void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) const
+void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, const shared_ptr<Ship> &ship) const
 {
 	bool isOffer = (trigger == "offer");
 	if(!conversation.IsEmpty() && ui)
 	{
-		ConversationPanel *panel = new ConversationPanel(player, conversation, destination);
+		// Conversations offered while boarding or assisting reference a ship,
+		// which may be destroyed depending on the player's choices.
+		ConversationPanel *panel = new ConversationPanel(player, conversation, destination, ship);
 		if(isOffer)
 			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
 		// Use a basic callback to handle forced departure outside of `on offer`
@@ -431,7 +433,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	// Fill in the payment amount if this is the "complete" action.
 	string previousPayment = subs["<payment>"];
 	if(result.payment)
-		subs["<payment>"] = Format::Number(abs(result.payment))
+		subs["<payment>"] = Format::Credits(abs(result.payment))
 			+ (result.payment == 1 ? " credit" : " credits");
 	
 	if(!logText.empty())

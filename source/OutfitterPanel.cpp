@@ -157,7 +157,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 			string label = "installed: " + to_string(minCount);
 			if(maxCount > minCount)
 				label += " - " + to_string(maxCount);
-		
+			
 			Point labelPos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 38);
 			font.Draw(label, labelPos, bright);
 		}
@@ -262,7 +262,7 @@ bool OutfitterPanel::CanBuy() const
 
 
 
-void OutfitterPanel::Buy()
+void OutfitterPanel::Buy(bool fromCargo)
 {
 	int64_t licenseCost = LicenseCost(selectedOutfit);
 	if(licenseCost)
@@ -324,7 +324,7 @@ void OutfitterPanel::Buy()
 		
 			if(player.Cargo().Get(selectedOutfit))
 				player.Cargo().Remove(selectedOutfit);
-			else if(!(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
+			else if(fromCargo || !(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
 				break;
 			else
 			{
@@ -354,8 +354,8 @@ void OutfitterPanel::FailBuy() const
 	if(!isInCargo && cost > credits)
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit, because it costs "
-			+ Format::Number(cost) + " credits, and you only have "
-			+ Format::Number(credits) + "."));
+			+ Format::Credits(cost) + " credits, and you only have "
+			+ Format::Credits(credits) + "."));
 		return;
 	}
 	// Check that the player has any necessary licenses.
@@ -370,7 +370,7 @@ void OutfitterPanel::FailBuy() const
 	{
 		GetUI()->Push(new Dialog(
 			"You don't have enough money to buy this outfit, because it will cost you an extra "
-			+ Format::Number(licenseCost) + " credits to buy the necessary licenses."));
+			+ Format::Credits(licenseCost) + " credits to buy the necessary licenses."));
 		return;
 	}
 	
@@ -562,7 +562,7 @@ void OutfitterPanel::FailSell(bool toCargo) const
 	else if(selectedOutfit->Get("map"))
 		GetUI()->Push(new Dialog("You cannot " + verb + " maps. Once you buy one, it is yours permanently."));
 	else if(HasLicense(selectedOutfit->Name()))
-		GetUI()->Push(new Dialog("You cannot " + verb + " licenses. Once you buy one, it is yours permanently."));
+		GetUI()->Push(new Dialog("You cannot " + verb + " licenses. Once you obtain one, it is yours permanently."));
 	else
 	{
 		bool hasOutfit = !toCargo && player.Cargo().Get(selectedOutfit);
@@ -803,7 +803,7 @@ void OutfitterPanel::CheckRefill()
 		string message = "Do you want to reload all the ammunition for your ship";
 		message += (count == 1) ? "?" : "s?";
 		if(cost)
-			message += " It will cost " + Format::Number(cost) + " credits.";
+			message += " It will cost " + Format::Credits(cost) + " credits.";
 		GetUI()->Push(new Dialog(this, &OutfitterPanel::Refill, message));
 	}
 }

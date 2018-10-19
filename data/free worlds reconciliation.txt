@@ -460,6 +460,7 @@ mission "FW Embassy 1"
 	landing
 	source Farpoint
 	destination Earth
+	clearance
 	passengers 2
 	to offer
 		has "FW Defend Farpoint: done"
@@ -585,6 +586,7 @@ mission "FW Embassy 1C"
 	autosave
 	source Bourne
 	destination Earth
+	clearance
 	passengers 2
 	blocked "You do not have bunks available for Ijs and Katya. Return here when you do."
 	to offer
@@ -926,7 +928,7 @@ mission "FW Pug 1"
 			`Based on your previous maps of this sector, there should be a hyperspace link from here to the Rasalhague system. But your sensors show nothing. Something has severed the link.`
 	on enter "Ascella"
 		dialog
-			`The Ascella system used to be linked to Rasalhague and Delta Capricorni, but no longer. Either the Syndicate has discovered the ability to alter hyperspace links, and is using it to block the Free Worlds from interfering with them, or you have a much stranger problem on your hands...`
+			`The Ascella system used to be linked to Rasalhague and Zeta Aquilae, but no longer. Either the Syndicate has discovered the ability to alter hyperspace links, and is using it to block the Free Worlds from interfering with them, or you have a much stranger problem on your hands...`
 
 
 
@@ -980,6 +982,7 @@ mission "FW Pug 2"
 	autosave
 	source "New Tibet"
 	destination "Earth"
+	clearance
 	to offer
 		has "FW Pug 1: done"
 	passengers 1
@@ -998,7 +1001,7 @@ mission "FW Pug 2"
 					goto republic
 			
 			label go
-			`	"Freya says, "Somehow, they managed to annex several of our systems in the process of walling themselves off - our two best suppliers of heavy metals. That suggests that any of our systems on the border with the Syndicate may be taken over, and made completely inaccessible to us, at any time. That's not a risk we can take."`
+			`	Freya says, "Somehow, they managed to annex several of our systems in the process of walling themselves off - our two best suppliers of heavy metals. That suggests that any of our systems on the border with the Syndicate may be taken over, and made completely inaccessible to us, at any time. That's not a risk we can take."`
 			`	"And it's not just that," says Katya. "Think of how many workers are on Syndicate worlds right now, having left their families on a different planet in order to go earn money in a Syndicate factory for a few years. Imagine a future where those families are forever divided."`
 				goto communications
 			
@@ -1343,6 +1346,7 @@ mission "FW Pug 3"
 	landing
 	source Pugglemug
 	destination Earth
+	clearance
 	to offer
 		has "fw given jump drive"
 	passengers 1
@@ -1934,6 +1938,7 @@ mission "FW Pug 5A"
 	description `Bring this "graviton reflector" to <planet> and set it up there, in order to restore the hyperspace link between the Sol and Altair systems.`
 	source Shiver
 	destination Earth
+	clearance
 	to offer
 		has "FW Pug 5: done"
 	cargo "graviton reflector" 10
@@ -2355,6 +2360,7 @@ mission "FW Syndicate Extremists 1C"
 	autosave
 	source "Buccaneer Bay"
 	destination Earth
+	clearance
 	to offer
 		has "FW Syndicate Extremists 1B: done"
 	passengers 1

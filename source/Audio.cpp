@@ -579,7 +579,7 @@ namespace {
 			}
 			
 			// Unlock the mutex for the time-intensive part of the loop.
-			if(!sounds[name].Load(path))
+			if(!sounds[name].Load(path, name))
 				Files::LogError("Unable to load sound \"" + name + "\" from path: " + path);
 		}
 	}

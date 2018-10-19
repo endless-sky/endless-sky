@@ -49,7 +49,6 @@ ship "Starling"
 		"Crystal Capacitor"
 		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
-#		"Tuning Rifle" 7
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -80,7 +79,6 @@ ship "Starling" "Starling (Heavy)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
-#		"Tuning Rifle" 10
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -88,21 +86,18 @@ ship "Starling" "Starling (Heavy)"
 
 ship "Starling" "Starling (Sniper)"
 	outfits
-		"EMP Torpedo Bay"
 		"Inhibitor Cannon" 4
-		"EMP Torpedo" 9
 		
 		"Epoch Cell"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
-#		"Tuning Rifle" 9
 		
 		"Forge-Class Thruster"
 		"Smelter-Class Steering"
 		"Hyperdrive"
 	
-	gun "EMP Torpedo Bay"
+	gun 
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
@@ -117,7 +112,6 @@ ship "Starling" "Starling (Hunter)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
-#		"Tuning Rifle" 11
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -138,7 +132,6 @@ ship "Starling" "Starling (Thrasher)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
-#		"Tuning Rifle" 8
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -193,15 +186,14 @@ ship "Albatross"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
-#		"Tuning Rifle" 46
 		
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
 		"Hyperdrive"
 	
 	engine -28 155 .8
-	engine 28 155 .9
-	engine 0 184 .8
+	engine 28 155 .8
+	engine 0 184 .9
 	gun 0 -190
 	gun -9 -177 "Inhibitor Cannon"
 	gun 9 -177 "Inhibitor Cannon"
@@ -224,16 +216,13 @@ ship "Albatross"
 ship "Albatross" "Albatross (Sniper)"
 	outfits
 		"Inhibitor Cannon" 5
-		"EMP Torpedo Bay" 2
 		"Point Defense Turret" 3
-		"EMP Torpedo" 18
 		
 		"Aeon Cell"
 		"Epoch Cell"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
-#		"Tuning Rifle" 57
 		
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
@@ -246,8 +235,8 @@ ship "Albatross" "Albatross (Sniper)"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
-	gun "EMP Torpedo Bay"
-	gun "EMP Torpedo Bay"
+	gun 
+	gun 
 	
 	turret "Point Defense Turret"
 	turret "Point Defense Turret"
@@ -266,7 +255,6 @@ ship "Albatross" "Albatross (Turret)"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler"
 		"Outfits Expansion" 2
-#		"Tuning Rifle" 49
 		
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
@@ -290,7 +278,6 @@ ship "Albatross" "Albatross (Heavy)"
 		"Crystal Capacitor" 2
 		"Thermoelectric Cooler" 2
 		"Outfits Expansion" 4
-#		"Tuning Rifle" 65
 		
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
@@ -343,7 +330,6 @@ ship "Gascraft"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
 		"Scanner Software"
-#		"Tuning Rifle" 1
 		
 		"Crucible-Class Thruster"
 		"Crucible-Class Steering"
@@ -397,7 +383,7 @@ ship "Pelican"
 		"Thermoelectric Cooler" 9
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
-#		"Tuning Rifle" 16
+		"Tuning Rifle" 16
 
 		"Forge-Class Thruster"
 		"Smelter-Class Steering"

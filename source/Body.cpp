@@ -218,12 +218,12 @@ void Body::LoadSprite(const DataNode &node)
 
 
 // Save the sprite specification, including all animation attributes.
-void Body::SaveSprite(DataWriter &out) const
+void Body::SaveSprite(DataWriter &out, const string &tag) const
 {
 	if(!sprite)
 		return;
 	
-	out.Write("sprite", sprite->Name());
+	out.Write(tag, sprite->Name());
 	out.BeginChild();
 	{
 		if(frameRate != static_cast<float>(2. / 60.))
