@@ -34,7 +34,7 @@ fleet "Small Remnant"
 		"Albatross (Turret)"
 	variant 1
 		"Albatross (Heavy)"
-	variant 20
+	variant 9
 		"Pelican"
 
 
@@ -68,13 +68,13 @@ fleet "Large Remnant"
 	variant 2
 		"Albatross (Heavy)"
 		"Albatross (Turret)"
-	variant 10
+	variant 2
 		"Pelican" 3
 		"Albatross" 1
-	variant 10
+	variant 2
 		"Pelican" 2
 		"Starling" 3
-	variant 10
+	variant 2
 		"Pelican" 1
 		"Starling" 2
 

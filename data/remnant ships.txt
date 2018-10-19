@@ -398,7 +398,6 @@ ship "Pelican"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
 		"Scanner software"
-		"Tuning Rifle" 16
 
 		"Forge-Class Thruster"
 		"Smelter-Class Steering"
