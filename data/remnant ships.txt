@@ -26,7 +26,7 @@ ship "Starling"
 		"fuel capacity" 900
 		"ramscoop" 1
 		"cargo space" 36
-		"outfit space" 312
+		"outfit space" 315
 		"weapon capacity" 83
 		"engine capacity" 94
 		"shield generation" 1.8
@@ -49,6 +49,7 @@ ship "Starling"
 		"Crystal Capacitor"
 		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
+		"Scanner software"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -79,6 +80,7 @@ ship "Starling" "Starling (Heavy)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
+		"Scanner software"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -92,6 +94,7 @@ ship "Starling" "Starling (Sniper)"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
+		"Scanner software"
 		
 		"Forge-Class Thruster"
 		"Smelter-Class Steering"
@@ -112,6 +115,7 @@ ship "Starling" "Starling (Hunter)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
+		"Scanner software"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -132,6 +136,7 @@ ship "Starling" "Starling (Thrasher)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
+		"Scanner software"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -165,7 +170,7 @@ ship "Albatross"
 		"fuel capacity" 600
 		"ramscoop" 3
 		"engine capacity" 142
-		"outfit space" 658
+		"outfit space" 661
 		"weapon capacity" 236
 		"shield generation" 5.2
 		"shield energy" 4.6
@@ -186,6 +191,7 @@ ship "Albatross"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
+		"Scanner software"
 		
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
@@ -223,6 +229,7 @@ ship "Albatross" "Albatross (Sniper)"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
+		"Scanner software"
 		
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
@@ -255,6 +262,7 @@ ship "Albatross" "Albatross (Turret)"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler"
 		"Outfits Expansion" 2
+		"Scanner software"
 		
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
@@ -278,6 +286,7 @@ ship "Albatross" "Albatross (Heavy)"
 		"Crystal Capacitor" 2
 		"Thermoelectric Cooler" 2
 		"Outfits Expansion" 4
+		"Scanner software"
 		
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
@@ -325,11 +334,16 @@ ship "Gascraft"
 		"hull repair rate" 1.2
 		"hull energy" 0.9
 		"gaslining" 1
+		"outfit scan power" 25
+		"outfit scan speed" 1
+		"asteroid scan power" 42
+		"tactical scan power" 32
+		"atmosphere scan" 100
+		
 	outfits
 		"Millennium Cell"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
-		"Scanner Software"
 		
 		"Crucible-Class Thruster"
 		"Crucible-Class Steering"
@@ -360,7 +374,7 @@ ship "Pelican"
 		"fuel capacity" 600
 		"ramscoop" 3
 		"engine capacity" 217
-		"outfit space" 620
+		"outfit space" 623
 		"weapon capacity" 157
 		"shield generation" 4.2
 		"shield energy" 2.4
@@ -383,6 +397,7 @@ ship "Pelican"
 		"Thermoelectric Cooler" 9
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
+		"Scanner software"
 		"Tuning Rifle" 16
 
 		"Forge-Class Thruster"
@@ -402,5 +417,5 @@ ship "Pelican"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
-	description "The Pelican is closely based on the original semi-organic ships the Remnant found in the Ember Wastes. While they are technically not alive, their internal mechanisms and method of construction bear such a close resemblance to living organisms that they are often considered as such. These ships serve as the backbone of Remnant salvage efforts, as well as their resource distribution network."
+	description "The Pelican is closely based on the original semi-organic ships the Remnant found in the Ember Wastes. While they are not technically alive, their internal mechanisms and method of construction bear such a close resemblance to living organisms that they are often considered as such. These ships serve as the backbone of Remnant salvage efforts, as well as their resource distribution network."
 
