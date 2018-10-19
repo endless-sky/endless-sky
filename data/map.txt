@@ -4379,7 +4379,7 @@ system Arculus
 	trade Plastic 498
 	fleet "Large Remnant" 1500
 	fleet "Small Remnant" 1000
-	fleet "Korath Raid" 30000
+	fleet "Korath Raid" 40000
 	object
 		sprite star/g5-old
 		period 10
@@ -5854,7 +5854,7 @@ system Caeculus
 	trade Medical 508
 	trade Metal 272
 	trade Plastic 289
-	fleet "Korath Raid" 10000
+	fleet "Korath Raid" 20000
 	object
 		sprite star/wr
 		period 10
@@ -8213,7 +8213,7 @@ system Edusa
 	trade Plastic 475
 	fleet "Large Remnant" 3000
 	fleet "Small Remnant" 2000
-	fleet "Korath Raid" 30000
+	fleet "Korath Raid" 40000
 	object
 		sprite star/giant
 		period 10
@@ -9499,7 +9499,7 @@ system Farinus
 	trade Plastic 354
 	fleet "Large Remnant" 9000
 	fleet "Small Remnant" 7000
-	fleet "Korath Raid" 30000
+	fleet "Korath Raid" 40000
 	object
 		sprite star/k5-old
 		distance 36.894
@@ -14065,7 +14065,7 @@ system Levana
 	trade Medical 736
 	trade Metal 407
 	trade Plastic 222
-	fleet "Korath Raid" 8000
+	fleet "Korath Raid" 10000
 	object
 		sprite star/giant
 		distance 17.197
@@ -14374,7 +14374,7 @@ system Lucina
 	trade Medical 863
 	trade Metal 524
 	trade Plastic 410
-	fleet "Korath Raid" 15000
+	fleet "Korath Raid" 20000
 	object
 		sprite star/m0
 		period 10
@@ -16995,7 +16995,7 @@ system Pantica
 	trade Plastic 469
 	fleet "Large Remnant" 1000
 	fleet "Small Remnant" 700
-	fleet "Korath Raid" 30000
+	fleet "Korath Raid" 40000
 	object
 		sprite star/k0-old
 		period 10
@@ -17045,7 +17045,7 @@ system Parca
 	trade Medical 872
 	trade Metal 531
 	trade Plastic 445
-	fleet "Korath Raid" 8000
+	fleet "Korath Raid" 10000
 	object
 		sprite star/g5-old
 		distance 18.2961
@@ -17259,7 +17259,7 @@ system Peragenor
 	trade Medical 512
 	trade Metal 271
 	trade Plastic 373
-	fleet "Korath Raid" 8000
+	fleet "Korath Raid" 40000
 	object
 		sprite star/g0-old
 		period 10
@@ -17361,7 +17361,7 @@ system Perfica
 	trade Plastic 368
 	fleet "Large Remnant" 8000
 	fleet "Small Remnant" 5000
-	fleet "Korath Raid" 20000
+	fleet "Korath Raid" 30000
 	object
 		sprite star/g0-old
 		period 10
@@ -19826,8 +19826,8 @@ system Segesta
 	trade Medical 664
 	trade Metal 406
 	trade Plastic 295
-	fleet "Small Remnant" 10000
-	fleet "Korath Raid" 7000
+	fleet "Small Remnant" 40000
+	fleet "Korath Raid" 40000
 	object
 		sprite star/k5-old
 		period 10
@@ -21496,8 +21496,8 @@ system Stercutus
 	trade Medical 536
 	trade Metal 299
 	trade Plastic 294
-	fleet "Korath Raid" 5000
-	fleet "Small Remnant" 10000
+	fleet "Korath Raid" 20000
+	fleet "Small Remnant" 40000
 	object
 		sprite star/g5-old
 		distance 31.1534
