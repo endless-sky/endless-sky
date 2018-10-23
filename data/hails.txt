@@ -3216,7 +3216,7 @@ phrase "hostile militia"
 
 phrase "hostile militia"
 	word
-		"The militia"
+		"The militia "
 		"We "
 	word
 		"live"
