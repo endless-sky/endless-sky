@@ -49,7 +49,7 @@ ship "Starling"
 		"Crystal Capacitor"
 		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
-		"Scanner software"
+		"Scanner Software"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -80,7 +80,7 @@ ship "Starling" "Starling (Heavy)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
-		"Scanner software"
+		"Scanner Software"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -88,19 +88,21 @@ ship "Starling" "Starling (Heavy)"
 
 ship "Starling" "Starling (Sniper)"
 	outfits
+		"EMP Torpedo Bay"
 		"Inhibitor Cannon" 4
+		"EMP Torpedo" 9
 		
 		"Epoch Cell"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
-		"Scanner software"
+		"Scanner Software"
 		
 		"Forge-Class Thruster"
 		"Smelter-Class Steering"
 		"Hyperdrive"
 	
-	gun 
+	gun "EMP Torpedo Bay"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
@@ -115,7 +117,7 @@ ship "Starling" "Starling (Hunter)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
-		"Scanner software"
+		"Scanner Software"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -136,7 +138,7 @@ ship "Starling" "Starling (Thrasher)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
-		"Scanner software"
+		"Scanner Software"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -191,7 +193,7 @@ ship "Albatross"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
-		"Scanner software"
+		"Scanner Software"
 		
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
@@ -217,19 +219,21 @@ ship "Albatross"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
-	description "Once they left human space, it became apparent to the Remnant that they would need to build their own shipyards in order to defend themselves if they were discovered by the Alphas or any other unfriendly faction. Using new composite materials that they discovered, they built two new types of ships based on the relics they found: One to explore, and one to defend. The Albatross lacks the range or speed of the Starling, but makes up for it with durability."
+	description "Once they left human space, it became apparent to the Remnant that they would need to build their own shipyards in order to defend themselves if they were discovered by the Alphas or any other unfriendly faction. Using new composite materials that they discovered, they built ships very different from anything seen in human space."
 
 ship "Albatross" "Albatross (Sniper)"
 	outfits
 		"Inhibitor Cannon" 5
+		"EMP Torpedo Bay" 2
 		"Point Defense Turret" 3
+		"EMP Torpedo" 18
 		
 		"Aeon Cell"
 		"Epoch Cell"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
-		"Scanner software"
+		"Scanner Software"
 		
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
@@ -242,8 +246,8 @@ ship "Albatross" "Albatross (Sniper)"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
-	gun 
-	gun 
+	gun "EMP Torpedo Bay"
+	gun "EMP Torpedo Bay"
 	
 	turret "Point Defense Turret"
 	turret "Point Defense Turret"
@@ -262,7 +266,7 @@ ship "Albatross" "Albatross (Turret)"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler"
 		"Outfits Expansion" 2
-		"Scanner software"
+		"Scanner Software"
 		
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
@@ -286,7 +290,7 @@ ship "Albatross" "Albatross (Heavy)"
 		"Crystal Capacitor" 2
 		"Thermoelectric Cooler" 2
 		"Outfits Expansion" 4
-		"Scanner software"
+		"Scanner Software"
 		
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
@@ -334,10 +338,9 @@ ship "Gascraft"
 		"hull repair rate" 1.2
 		"hull energy" 0.9
 		"gaslining" 1
-		"outfit scan power" 25
+		"outfit scan power" 50
 		"outfit scan speed" 1
-		"asteroid scan power" 42
-		"tactical scan power" 32
+		"tactical scan power" 50
 		"atmosphere scan" 100
 		
 	outfits
@@ -362,59 +365,57 @@ ship "Pelican"
 		category "Heavy Freighter"
 		licenses
 			Remnant
-		cost 34600000
-		"shields" 25000
-		"hull" 11000
+		cost 9770000
+		"shields" 11300
+		"hull" 5700
 		"required crew" 14
-		"bunks" 46
-		"cargo space" 547
-		"mass" 720
-		"drag" 7.0
+		"bunks" 35
+		"cargo space" 302
+		"mass" 320
+		"drag" 7.2
 		"heat dissipation" 0.7
 		"fuel capacity" 600
 		"ramscoop" 3
-		"engine capacity" 217
-		"outfit space" 623
+		"outfit space" 438
 		"weapon capacity" 157
-		"shield generation" 4.2
-		"shield energy" 2.4
-		"hull repair rate" 0.9
-		"hull energy" 0.5
+		"engine capacity" 129
+		"shield generation" 2.7
+		"shield energy" 1.8
+		"hull repair rate" 1
+		"hull energy" 0.75
 		weapon
-			"blast radius" 360
-			"shield damage" 3600
-			"hull damage" 1800
-			"hit force" 5400
+			"blast radius" 160
+			"shield damage" 1600
+			"hull damage" 800
+			"hit force" 2400
 	outfits
-		"Inhibitor Cannon" 2
+		"Thrasher Cannon" 2
 		"Thrasher Turret"
 		"Point Defense Turret" 2
 
 		"Aeon Cell"
-		"Epoch Cell"
-		"Millennium Cell"
-		"Crystal Capacitor" 2
-		"Thermoelectric Cooler" 9
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 2
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
-		"Scanner software"
+		"Scanner Software"
 
 		"Forge-Class Thruster"
 		"Smelter-Class Steering"
-		Hyperdrive
+		"Hyperdrive"
 
 	engine 22 92 0.7
 	engine -22 92 0.7
 	engine 0 114 1.1
-	gun 8 -135 "Inhibitor Cannon"
-	gun -8 -135 "Inhibitor Cannon"
+	gun 8 -135
+	gun -8 -135
 	turret 0 -67 "Thrasher Turret"
 	turret 56 35 "Point Defense Turret"
 	turret -56 35 "Point Defense Turret"
-	explode "small explosion" 30
-	explode "medium explosion" 60
-	explode "large explosion" 40
-	explode "huge explosion" 10
+	explode "small explosion" 15
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	explode "huge explosion" 5
 	"final explode" "final explosion large" 1
 	description "The Pelican is closely based on the original semi-organic ships the Remnant found in the Ember Wastes. While they are not technically alive, their internal mechanisms and method of construction bear such a close resemblance to living organisms that they are often considered as such. These ships serve as the backbone of Remnant salvage efforts, as well as their resource distribution network."
 

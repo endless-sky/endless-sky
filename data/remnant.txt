@@ -70,13 +70,14 @@ fleet "Large Remnant"
 		"Albatross (Turret)"
 	variant 2
 		"Pelican" 3
-		"Albatross" 1
+		"Albatross (Heavy)"
 	variant 2
 		"Pelican" 2
-		"Starling" 3
+		"Starling (Thrasher)" 2
+		"Starling (Sniper)"
 	variant 2
-		"Pelican" 1
-		"Starling" 2
+		"Pelican"
+		"Starling (Hunter)" 2
 
 
 
