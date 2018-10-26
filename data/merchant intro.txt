@@ -1,0 +1,95 @@
+event "Merchant Start"
+	date 25 11 3013
+
+mission "Merchant Start 1"
+	name "Shipment to <destination>"
+	description "Take <cargo> to <destination>"
+	to offer
+		"assisted free worlds" < 3
+		has "event: Merchant Start"
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+	cargo "Medieval Weaponry" 10
+	destination
+		distance 5 8
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	to fail
+		has "chosen sides"
+	on offer
+		conversation
+			`As you enter the bustling spaceport, a man wearing a dark blue suit walks up to you "Excuse me, would you mind ferrying these <cargo> to <destination>? Our original contact bailed out on us after they were attacked days ago while ferrying the cargo."`
+			choice
+				`	"Of course"`
+					accept
+				`	"No thanks"`
+					decline
+	on complete
+		payment 30000
+		conversation
+			`Men quickly unload the cargo from your hold. A woman in a dark blue suit, which is almost the same suit as the man you met for this job, thanks you. "We have another mission that requires a Captain to transport it. If you would like to take that offer, meet me in the spaceport after this."`
+
+mission "Merchant Start 2"
+	name "Passenger transport"
+	deadline 7
+	description "Help out the merchants by bringing a family to <destination> by <date>"
+	passengers 3
+	to offer
+		has "Merchant Start 1: done"
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+	destination
+		distance 5 5
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on offer
+		conversation
+			`You walk into the spaceport, looking for the lady. You quickly find her striking dark blue suit in the crowd, clearly standing out from everyone's frivolous apparel as you walk over to her. "What's the job you're offering me?" She smiles, "Well, this family desperately needs transport to <destination> by <date>," she says, pointing out a group of people at a corner of the spaceport, "they're in a bit of troublesome economic problem at the moment"`
+			choice
+				`	"I'll do it"`
+					accept
+				`	"I don't have the time"`
+					decline
+	on complete
+		payment 40000
+		conversation
+			`The family thanks you profusely, grateful for meeting such a generous captain. You watch the family walk off and exchange greetings with another man in a blue suit, the man walks up to you and say, "Meet me in the spaceport, don't dally."`
+
+mission "Merchant Start 3"
+	name "Special transport"
+	description "Get <bunks> travelers with <cargo> to <destination>"
+	passengers 2
+	to offer
+		has "Merchant Start 2: done"
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+	cargo "Traveling goods" 10
+	destination
+		distance 7 9
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	npc
+		government "Pirate"
+		personality entering plunders
+		fleet "Bounty Hunters"
+	on offer
+		conversation
+			`"Captain" salutes the man, "This job involves <bunks> travelers trying to get to <destination> with <cargo> now, I have no idea why they need so much of it, but, get it over there alright?"`
+			choice	
+				`	"Yes, sir"`
+					accept
+				`	"Sorry, but I can't"`
+					decline
+	on complete
+		payment 50000
+		conversation
+			`You help the travelers lug his cargo away, still wondering why so many of it is needed. You see the first man walking up to you. "Well, captain, May I ask you for your name?"`
+			choice
+				`	"It's <first> <last>"`
+					goto name
+				`	"I would rather not say"`
+					goto anonymous
+			label name
+			`	"Thank you, <first>"
+				goto next
+			label anonymous
+			`	The man smiles slightly. "That's perfectly fine, Captain <last>," he says, surprising you, "just do a better job of covering your pilot's license next time."`
+			label next
+			`	"Anyways, if you're still interested, meet me in the bar afterwards so we can converse further."`
