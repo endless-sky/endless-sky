@@ -91,5 +91,3 @@ mission "Merchant Start 3"
 				goto next
 			label anonymous
 			`	The man smiles slightly. "That's perfectly fine, Captain <last>," he says, surprising you, "just do a better job of covering your pilot's license next time."`
-			label next
-			`	"Anyways, if you're still interested, meet me in the bar afterwards so we can converse further."`
