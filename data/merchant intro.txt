@@ -19,9 +19,9 @@ mission "Merchant Start 1"
 		conversation
 			`As you enter the bustling spaceport, a man wearing a dark blue suit walks up to you "Excuse me, would you mind ferrying these <cargo> to <destination>? Our original contact bailed out on us after they were attacked days ago while ferrying the cargo."`
 			choice
-				`	"Of course"`
+				`	"Of course."`
 					accept
-				`	"No thanks"`
+				`	"No thanks."`
 					decline
 	on complete
 		payment 30000
@@ -73,18 +73,18 @@ mission "Merchant Start 3"
 		conversation
 			`"Captain," salutes the man, "This job involves <bunks> travelers trying to get to <destination> with <cargo> now, I have no idea why they need so much of it, but, get it over there alright?"`
 			choice	
-				`	"Yes, sir"`
+				`	"Yes, sir."`
 					accept
-				`	"Sorry, but I can't"`
+				`	"Sorry, but I can't."`
 					decline
 	on complete
 		payment 50000
 		conversation
 			`You help the travelers lug his cargo away, still wondering why so much of it is needed. You see the first man walking up to you. "Well, captain, may I ask you for your name?"`
 			choice
-				`	"It's <first> <last>"`
+				`	"It's <first> <last>."`
 					goto name
-				`	"I would rather not say"`
+				`	"I would rather not say."`
 					goto anonymous
 			label name
 			`	"Thank you, <first>"
