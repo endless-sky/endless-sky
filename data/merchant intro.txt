@@ -1,15 +1,15 @@
 event "Merchant Start"
-	date 25 11 3013
+	date 4 1 3016
 
 mission "Merchant Start 1"
 	name "Shipment to <destination>"
 	description "Take <cargo> to <destination>"
+	cargo "Medieval Weaponry" 10
 	to offer
 		"assisted free worlds" < 3
 		has "event: Merchant Start"
 	source
 		government "Republic" "Syndicate" "Free Worlds" "Neutral"
-	cargo "Medieval Weaponry" 10
 	destination
 		distance 5 8
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
@@ -17,7 +17,7 @@ mission "Merchant Start 1"
 		has "chosen sides"
 	on offer
 		conversation
-			`As you enter the bustling spaceport, a man wearing a dark blue suit walks up to you "Excuse me, would you mind ferrying these <cargo> to <destination>? Our original contact bailed out on us after they were attacked days ago while ferrying the cargo."`
+			`As you enter the bustling spaceport, a man wearing a dark blue suit walks up to you "Excuse me, would you mind ferrying these <cargo> to <destination>? Our original contact bailed out on us after they were attacked days ago while transporting the cargo."`
 			choice
 				`	"Of course."`
 					accept
@@ -30,9 +30,9 @@ mission "Merchant Start 1"
 
 mission "Merchant Start 2"
 	name "Passenger transport"
-	deadline 7
 	description "Help out the merchants by bringing a family to <destination> by <date>"
 	passengers 3
+	deadline 7
 	to offer
 		has "Merchant Start 1: done"
 	source
@@ -42,7 +42,7 @@ mission "Merchant Start 2"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on offer
 		conversation
-			`You walk into the spaceport, looking for the lady. You quickly find her striking dark blue suit in the crowd, clearly standing out from everyone's frivolous apparel as you walk over to her. "What's the job you're offering me?" She smiles, "Well, this family desperately needs transport to <destination> by <date>," she says, pointing out a group of people at a corner of the spaceport, "they're in a bit of troublesome economic problem at the moment."`
+			`You walk into the spaceport, looking for the lady. You quickly find her striking dark blue suit in the crowd, clearly standing out from everyone's frivolous apparel as you walk over to her. "What's the job you're offering me?" She smiles, "Well, this family desperately needs transport to <destination> by <date>," she says, pointing out a group of people at a corner of the spaceport, "they're in a bit of troublesome economic problem at the moment"`
 			choice
 				`	"I'll do it."`
 					accept
@@ -57,14 +57,12 @@ mission "Merchant Start 3"
 	name "Special transport"
 	description "Get <bunks> travelers with <cargo> to <destination>"
 	passengers 2
+	cargo "traveling goods" 10
 	to offer
 		has "Merchant Start 2: done"
 	source
 		government "Republic" "Syndicate" "Free Worlds" "Neutral"
-	cargo "Traveling goods" 10
-	destination
-		distance 7 9
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination "New Switzerland"
 	npc
 		government "Pirate"
 		personality entering plunders
@@ -80,7 +78,7 @@ mission "Merchant Start 3"
 	on complete
 		payment 50000
 		conversation
-			`You help the travelers lug his cargo away, still wondering why so much of it is needed. You see the first man walking up to you. "Well, captain, may I ask you for your name?"`
+			`You help the travelers lug his cargo away, still wondering why so much of it is needed. You see the first man walking up to you. "Well, Captain, May I ask you for your name?"`
 			choice
 				`	"It's <first> <last>."`
 					goto name
@@ -91,3 +89,50 @@ mission "Merchant Start 3"
 				goto next
 			label anonymous
 			`	The man smiles slightly. "That's perfectly fine, Captain <last>," he says, surprising you, "just do a better job of covering your pilot's license next time."`
+			label next
+			`	"Anyways, if you're still interested, meet me in the spaceport afterwards so we can converse further."`
+
+mission "Merchant Start 4"
+	name "Fast delivery"
+	description "Get <bunks> doctors to with <cargo> to <destination>
+	passengers 5
+	cargo "medical supplies" 15
+	deadline 13
+	to offer
+		has "Merchant Start 3: done"
+	source "New Switzerland"
+	destination "Moonshake"
+	npc
+		government "Pirate"
+		personality entering plunders
+		fleet "Bounty Hunters"
+		fleet "pirate raid"
+	on offer
+		conversation
+			`You find the man quietly sitting at a table drinking a cup of coffee.  He waves you over and signals to the barman to bring another drink. "Thank you for joining me, Captain <last>."
+			choice
+				`	"It's my pleasure."`
+					goto pleasantries
+				`	What's the mission?"
+					goto point
+			label pleasantries
+			`	He smiles, "Politeness can bring you places. There aren't many of your type in this galaxy."`
+				goto mission
+			label point
+			`	"He smiles, Straight to the point are we?"
+			label mission
+			`	"Well, anyways, <destination> is in desperate need of <cargo> and doctors. You see, they are facing an epidemic there which started a week ago. Willing captains have been asked  to there as fast as you can or at the very least, before <date>." He winces, "The death toll is currently at 50,000 and rising. So I ask you, accept this job and get the supplies there as soon as possible."
+			choice
+				`	"I'll do it."`
+					goto thanks
+				`	"Sorry I can't"`
+			`	"I might be wrong about you," he says, disappointment on his face as he leaves`
+				decline
+			label thanks
+			`	"Thank you, I had a hunch you are the person I'm looking for!" He says before adding, "I almost forgot, because of the escalation in tensions between the Free Worlds and the Republic, the navy has pooled their resources to the southern planets, so expect to see an increase in pirates activity."`
+				accept
+	on complete
+		log "Helped a merchant group send aid to a planet facing an epidemic."
+		payment 75000
+		conversation
+			`	Doctors put on safety masks as you're making your landing, rushing out of the airlock once you've reached the ground. You open the cargo hold and switch to your external cameras, where you see thousands of people waiting in line as doctors distribute the  medications to them. Just as the doctors take out the last batch of the cargo out of your hold, you notice a message pop up on your interfaces, "Meet me on Earth, <last>. It's urgent."
