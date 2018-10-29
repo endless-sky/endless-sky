@@ -109,7 +109,7 @@ mission "From Earth Day celebration [0]"
 			and
 				random < 30
 				month == 6
-				day =< 22
+				day <= 22
 	source "Earth"
 	destination
 		distance 1 15
@@ -137,7 +137,7 @@ mission "From Earth Day celebration [1]"
 			and
 				random < 10
 				month == 6
-				day =< 22
+				day <= 22
 	source "Earth"
 	destination
 		distance 1 15
