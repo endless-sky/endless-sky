@@ -511,7 +511,7 @@ mission "Returning Home"
 			`	Eliiot looks over at you with a big smile on his face. "Yes you can, mom," he says to her. The woman's face lights up with joy and she begins jumping up and down, spilling coffee from her mug.`
 			`	"Oh Elliot, I can't believe it!" Elliot's mom puts down her mug and leaps out the door to hug him. "Jackson! Sarah! Abby! Sean! Victor! Elliot is here!" Elliot's entire family comes out from the house and greets him, asking dozens of questions about where and how he's been and why he left.`
 			`	Elliot introduces you to his family, who thank you for bringing Elliot home. Victor, who was only seven years old when Elliot left and is now twelve, asks you question after question about being a pilot, sometimes asking new questions before you can even answer the old one.`
-			`	"Are you going back to the spaceport, <first>?" the taxi driver yells from the driveway. "I need to get back to the city as soon as I can."
+			`	"Are you going back to the spaceport, <first>?" the taxi driver yells from the driveway. "I need to get back to the city as soon as I can."`
 			`	You say goodbye to Elliot and to his family. "Thanks again, <first>," Elliot says. "I'll always owe you."`
 
 
