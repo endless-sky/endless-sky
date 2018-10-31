@@ -178,6 +178,7 @@ phrase "remnant"
 
 shipyard "Remnant"
 	"Starling"
+	"Gull"
 
 shipyard "Remnant Gascraft"
 	"Gascraft"

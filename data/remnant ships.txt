@@ -150,8 +150,137 @@ ship "Starling" "Starling (Thrasher)"
 	gun
 	gun
 
+	
+ship "Gull"
+	sprite "ship/gull"
+	thumbnail "thumbnail/gull"
+	attributes
+		category "Light Freighter"
+		licenses
+			Remnant
+		cost 9500000
+		"shields" 6500
+		"hull" 2500
+		"required crew" 3
+		"bunks" 20
+		"mass" 270
+		"drag" 6
+		"heat dissipation" 0.7
+		"fuel capacity" 600
+		"ramscoop" 2
+		"cargo space" 175
+		"outfit space" 280
+		"weapon capacity" 81
+		"engine capacity" 91
+		"shield generation" 2.7
+		"shield energy" 1.8
+		"hull repair rate" 1
+		"hull energy" 0.75
+		"cloak" .02
+		"cloaking energy" 5
+		"cloaking fuel" .2
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Inhibitor Cannon" 1
+		"Point Defense Turret"
+		
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Emergency Ramscoop" 2
+		"Quantum Key Stone"
+		"Scanner software"
+		
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+	
+	engine -12 70 0.7
+	engine 12 70 0.7
+	engine 0 78 1
+	gun 0 -96 "Inhibitor Cannon"
+	gun -7 -94
+	gun 7 -94
+	turret 0 26 "Point Defense Turret"
+	explode "tiny explosion" 40
+	explode "small explosion" 20
+	explode "medium explosion" 10
+	"final explode" "final explosion small" 1
+	description "From their first flight of their plan to evade and outlast the Alphas, the Remnant knew that secrecy was essential. While their scout ships were the first to benefit, in the present day they have come to realize that being able to stealthily recover material from systems under occupied by hostile entities was equally valuable. It has proven equally adept at stealthy salvage operations."
+	description "	The cloaking technology is built into the Gull's hull; it cannot be removed or transferred to another ship."
 
+ship "Gull" "Gull (Heavy)"
+	outfits
+		"Thrasher Cannon" 3
+		"Thrasher Turret"
+		
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor"
+		"Scanner Software"
+		
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
 
+ship "Gull" "Gull (Sniper)"
+	outfits
+		"Inhibitor Cannon" 3
+		"Thrasher Turret"
+		
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor"
+		"Scanner Software"
+		
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
+ship "Gull" "Gull (Support)"
+	outfits
+		"EMP Torpedo Bay"
+		"Inhibitor Cannon" 2
+		"Point Defense Turret"
+		"EMP Torpedo" 5
+		
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor"
+		"Scanner Software"
+		
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
+ship "Gull" "Gull (Cargo)"
+	outfits
+		"Cargo Expansion" 4
+		
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Scanner Software"
+		
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
+ship "Gull" "Gull (Bunks)"
+	outfits
+		"Bunk Room" 4
+		
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Scanner Software"
+		
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
+		
 ship "Albatross"
 	plural "Albatrosses"
 	sprite "ship/albatross"
