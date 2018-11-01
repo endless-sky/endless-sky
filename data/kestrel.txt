@@ -210,6 +210,7 @@ event "kestrel available: more shields"
 	shipyard "Tarazed Advanced"
 		"Kestrel (More Shields)"
 
+
 ship "Unknown Ship Type"
 	sprite "ship/kestrel"
 	attributes
@@ -217,15 +218,15 @@ ship "Unknown Ship Type"
 		"cost" 10300000
 		"shields" 17400
 		"hull" 6200
-		"required crew" 72
+		"required crew" 64
 		"bunks" 128
 		"mass" 740
-		"drag" 12.5
-		"heat dissipation" .45
+		"drag" 9.8
+		"heat dissipation" .6
 		"fuel capacity" 500
 		"cargo space" 120
 		"outfit space" 810
-		"weapon capacity" 380
+		"weapon capacity" 390
 		"engine capacity" 210
 		weapon
 			"blast radius" 260
@@ -233,16 +234,16 @@ ship "Unknown Ship Type"
 			"hull damage" 1300
 			"hit force" 3900
 	outfits
-		"Particle Cannon" 4
-		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Particle Cannon" 6
 		"Heavy Laser Turret" 4
+		
 		"Fusion Reactor"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
 		"Liquid Nitrogen Cooler"
+		
 		"Orca Plasma Thruster"
-		"X5200 Ion Steering"
+		"Orca Plasma Steering"
 		"Hyperdrive"
 	engine -14 177
 	engine 14 177
@@ -250,8 +251,8 @@ ship "Unknown Ship Type"
 	gun 31 66 "Particle Cannon"
 	gun -53 61 "Particle Cannon"
 	gun 53 61 "Particle Cannon"
-	gun -75 57 "Torpedo Launcher"
-	gun 75 57 "Torpedo Launcher"
+	gun -75 57 "Particle Cannon"
+	gun 75 57 "Particle Cannon"
 	turret -7 -4 "Heavy Laser Turret"
 	turret 7 -4 "Heavy Laser Turret"
 	turret -23 14 "Heavy Laser Turret"
@@ -262,6 +263,7 @@ ship "Unknown Ship Type"
 	explode "huge explosion" 30
 	"final explode" "final explosion large"
 
+
 ship "Kestrel"
 	sprite "ship/kestrel"
 	thumbnail "thumbnail/kestrel"
@@ -270,15 +272,15 @@ ship "Kestrel"
 		"cost" 10300000
 		"shields" 17400
 		"hull" 6200
-		"required crew" 72
+		"required crew" 64
 		"bunks" 128
 		"mass" 740
-		"drag" 12.5
-		"heat dissipation" .45
+		"drag" 9.8
+		"heat dissipation" .6
 		"fuel capacity" 500
 		"cargo space" 120
 		"outfit space" 810
-		"weapon capacity" 380
+		"weapon capacity" 390
 		"engine capacity" 210
 		weapon
 			"blast radius" 260
@@ -286,16 +288,16 @@ ship "Kestrel"
 			"hull damage" 1300
 			"hit force" 3900
 	outfits
-		"Particle Cannon" 4
-		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Particle Cannon" 6
 		"Heavy Laser Turret" 4
+		
 		"Fusion Reactor"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
 		"Liquid Nitrogen Cooler"
+		
 		"Orca Plasma Thruster"
-		"X5200 Ion Steering"
+		"Orca Plasma Steering"
 		"Hyperdrive"
 	engine -14 177
 	engine 14 177
@@ -303,8 +305,8 @@ ship "Kestrel"
 	gun 31 66 "Particle Cannon"
 	gun -53 61 "Particle Cannon"
 	gun 53 61 "Particle Cannon"
-	gun -75 57 "Torpedo Launcher"
-	gun 75 57 "Torpedo Launcher"
+	gun -75 57 "Particle Cannon"
+	gun 75 57 "Particle Cannon"
 	turret -7 -4 "Heavy Laser Turret"
 	turret 7 -4 "Heavy Laser Turret"
 	turret -23 14 "Heavy Laser Turret"
@@ -317,16 +319,15 @@ ship "Kestrel"
 	description "Several years ago, while visiting a sweat lodge in search of spiritual renewal, Tarazed's chief ship designer fell into a trance and journeyed to a reality separate from our own. There he saw visions of a strange and elegant starship. Returning to his work with renewed purpose, he spent the next seven years making the Kestrel a reality."
 
 
-
-ship "Kestrel" "Kestrel (More Weapons)"
-	add attributes
-		"weapon capacity" 20
-
 ship "Kestrel" "Kestrel (More Engines)"
 	add attributes
-		"engine capacity" 20
+		"engine capacity" 30
 
 ship "Kestrel" "Kestrel (More Shields)"
 	add attributes
-		"shields" 2700
-		"hull" 1300
+		"shields" 3000
+		"hull" 1500
+
+ship "Kestrel" "Kestrel (More Weapons)"
+	add attributes
+		"weapon capacity" 40
