@@ -2399,9 +2399,8 @@ ship "Rainmaker"
 			"hull damage" 200
 			"hit force" 600
 	outfits
-		"Energy Blaster" 2
-		"Meteor Missile Launcher" 4
-		"Meteor Missile" 140
+		"Javelin Pod" 4
+		"Javelin" 800
 		
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
@@ -2413,12 +2412,12 @@ ship "Rainmaker"
 		
 	engine -8 46
 	engine 8 46
-	gun -10 -30 "Energy Blaster"
-	gun 10 -30 "Energy Blaster"
-	gun -27 -5 "Meteor Missile Launcher"
-	gun 27 -5 "Meteor Missile Launcher"
-	gun -17 -5 "Meteor Missile Launcher"
-	gun 17 -5 "Meteor Missile Launcher"
+	gun -10 -30
+	gun 10 -30
+	gun -27 -5 "Javelin Pod"
+	gun 27 -5 "Javelin Pod"
+	gun -17 -5 "Javelin Pod"
+	gun 17 -5 "Javelin Pod"
 	leak "leak" 50 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20
