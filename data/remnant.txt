@@ -66,16 +66,6 @@ fleet "Large Remnant"
 	variant 2
 		"Albatross (Heavy)"
 		"Albatross (Turret)"
-	variant 2
-		"Pelican" 3
-		"Albatross (Heavy)"
-	variant 2
-		"Pelican" 2
-		"Starling (Thrasher)" 2
-		"Starling (Sniper)"
-	variant 2
-		"Pelican"
-		"Starling (Hunter)" 2
 
 fleet "Remnant Transport"
 	government "Remnant"
@@ -107,6 +97,16 @@ fleet "Remnant Transport"
 		"Pelican"
 		"Gull" 2
 		"Starling" 2
+	variant 2
+		"Pelican" 3
+		"Albatross (Heavy)"
+	variant 2
+		"Pelican" 2
+		"Starling (Thrasher)" 2
+		"Starling (Sniper)"
+	variant 2
+		"Pelican"
+		"Starling (Hunter)" 2
 
 phrase "remnant"
 	word
