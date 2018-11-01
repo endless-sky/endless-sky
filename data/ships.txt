@@ -1803,9 +1803,9 @@ ship "Headhunter"
 		"drag" 2.6
 		"heat dissipation" .8
 		"fuel capacity" 400
-		"cargo space" 50
+		"cargo space" 40
 		"outfit space" 250
-		"weapon capacity" 60
+		"weapon capacity" 70
 		"engine capacity" 80
 		weapon
 			"blast radius" 44
