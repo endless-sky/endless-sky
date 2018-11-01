@@ -34,8 +34,6 @@ fleet "Small Remnant"
 		"Albatross (Turret)"
 	variant 1
 		"Albatross (Heavy)"
-	variant 9
-		"Pelican"
 
 
 fleet "Large Remnant"
@@ -79,7 +77,36 @@ fleet "Large Remnant"
 		"Pelican"
 		"Starling (Hunter)" 2
 
-
+fleet "Remnant Transport"
+	government "Remnant"
+	names "remnant"
+	cargo 2
+	personality
+		disables plunders coward appeasing mining harvests
+	variant 10
+		"Gull"
+	variant 6
+		"Gull (Heavy)"
+	variant 5
+		"Gull (Sniper)"
+	variant 4
+		"Gull (Support)"
+	variant 5
+		"Gull (Cargo)"
+	variant 5
+		"Gull (Bunks)"
+	variant 10
+		"Pelican"
+	variant 10
+		"Pelican"
+		"Gull" 2
+	variant 8
+		"Pelican"
+		"Starling" 2
+	variant 6
+		"Pelican"
+		"Gull" 2
+		"Starling" 2
 
 phrase "remnant"
 	word
