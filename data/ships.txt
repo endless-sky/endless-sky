@@ -3013,7 +3013,7 @@ ship "Wasp"
 		"fuel capacity" 400
 		"cargo space" 10
 		"outfit space" 150
-		"weapon capacity" 28
+		"weapon capacity" 30
 		"engine capacity" 60
 		weapon
 			"blast radius" 20
