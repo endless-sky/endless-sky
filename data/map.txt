@@ -4379,6 +4379,7 @@ system Arculus
 	trade Plastic 498
 	fleet "Large Remnant" 1500
 	fleet "Small Remnant" 1000
+	fleet "Remnant Transport" 800
 	fleet "Korath Raid" 40000
 	object
 		sprite star/g5-old
@@ -6715,6 +6716,7 @@ system Cinxia
 	trade Plastic 417
 	fleet "Large Remnant" 1200
 	fleet "Small Remnant" 900
+	fleet "Remnant Transport" 800
 	fleet "Korath Raid" 30000
 	object
 		sprite star/k5-old
@@ -8213,6 +8215,7 @@ system Edusa
 	trade Plastic 475
 	fleet "Large Remnant" 3000
 	fleet "Small Remnant" 2000
+	fleet "Remnant Transport" 1000
 	fleet "Korath Raid" 40000
 	object
 		sprite star/giant
@@ -9499,6 +9502,7 @@ system Farinus
 	trade Plastic 354
 	fleet "Large Remnant" 9000
 	fleet "Small Remnant" 7000
+	fleet "Remnant Transport" 10000
 	fleet "Korath Raid" 40000
 	object
 		sprite star/k5-old
@@ -16995,6 +16999,7 @@ system Pantica
 	trade Plastic 469
 	fleet "Large Remnant" 1000
 	fleet "Small Remnant" 700
+	fleet "Remnant Transport" 800
 	fleet "Korath Raid" 40000
 	object
 		sprite star/k0-old
@@ -17361,6 +17366,7 @@ system Perfica
 	trade Plastic 368
 	fleet "Large Remnant" 8000
 	fleet "Small Remnant" 5000
+	fleet "Remnant Transport" 9000
 	fleet "Korath Raid" 30000
 	object
 		sprite star/g0-old
