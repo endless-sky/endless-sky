@@ -3129,7 +3129,7 @@ phrase "hostile militia"
 		"criminals like you "
 		
 	word
-		"like"
+		"like "
 		"enjoy "
 		"appreciate "
 	word
