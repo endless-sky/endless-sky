@@ -3119,19 +3119,29 @@ phrase "hostile militia"
 		"You there! "
 		"Hey, you! "
 	word
-		"The"
-		"That"
-		"Our"
-		"The local"
+		"I "
+		"We "
 	word
-		" prison"
-		" jail"
-		" penitentiary"
-		" correctional facility"
-		" reformatory"
+		"hope "
+		"wonder if "
+	word
+		"you "
+		"criminals like you "
+		
+	word
+		"like"
+		"enjoy "
+		"appreciate "
+	word
+		"the prison food"
+		"the jail cells"
+		"the manual labor"
+		"the prison life"
+		"the jail life"
 	word
 		" on "
 		" at "
+		" of "
 		" over on "
 		" over at "
 		" out on "
@@ -3156,17 +3166,9 @@ phrase "hostile militia"
 		"Trinket"
 		"Dancer"
 	word
-		" is rather empty"
-		" is looking rather empty"
-		" is pretty empty"
-	word
 		"."
 		"..."
 		"!"
-		" nowadays..."
-		" today!"
-		" today."
-		" nowadays!"
 
 phrase "hostile free worlds"
 	word
