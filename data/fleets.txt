@@ -446,6 +446,9 @@ fleet "Large Northern Merchants"
 		"Berserker (Afterburner)" 2
 	variant 10
 		"Freighter" 2
+		"Firebird (Laser)"
+	variant 10
+		"Freighter" 2
 		"Firebird (Plasma)"
 	variant 10
 		"Freighter" 2
@@ -453,6 +456,9 @@ fleet "Large Northern Merchants"
 	variant 10
 		"Freighter" 3
 		"Firebird"
+	variant 2
+		"Freighter" 3
+		"Firebird (Laser)"
 	variant 2
 		"Freighter" 3
 		"Firebird (Plasma)"
@@ -574,6 +580,9 @@ fleet "Large Northern Merchants"
 	variant 1
 		"Star Queen"
 		"Firebird" 2
+	variant 1
+		"Star Queen"
+		"Firebird (Laser)" 2
 	variant 1
 		"Star Queen"
 		"Firebird (Plasma)" 2
@@ -1797,6 +1806,8 @@ fleet "Large Core Pirates"
 	variant 2
 		"Firebird"
 	variant 1
+		"Firebird (Laser)"
+	variant 1
 		"Firebird (Plasma)"
 	variant 1
 		"Firebird (Missile)"
@@ -1850,11 +1861,16 @@ fleet "Large Northern Pirates"
 	variant 4
 		"Firebird"
 	variant 2
+		"Firebird (Laser)"
+	variant 2
 		"Firebird (Missile)"
 	variant 2
 		"Firebird (Plasma)"
 	variant 3
 		"Firebird"
+		"Corvette"
+	variant 1
+		"Firebird (Laser)"
 		"Corvette"
 	variant 1
 		"Firebird (Plasma)"
@@ -1890,7 +1906,7 @@ fleet "Large Northern Pirates"
 		"Firebird"
 	variant 2
 		"Leviathan (Laser)"
-		"Firebird"
+		"Firebird (Laser)"
 	variant 2
 		"Leviathan (Heavy)"
 		"Firebird (Plasma)"
@@ -1994,12 +2010,12 @@ fleet "pirate raid"
 		"Splinter (Laser)" 2
 	variant 1
 		"Splinter (Proton)" 2
-	variant 2
-		"Firebird"
-	variant 1
-		"Firebird (Plasma)"
 	variant 4
 		"Firebird"
+	variant 2
+		"Firebird (Laser)"
+	variant 2
+		"Firebird (Missile)"
 	variant 2
 		"Firebird (Plasma)"
 	variant 3
