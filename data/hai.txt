@@ -147,7 +147,7 @@ fleet "Large Hai"
 		"Shield Beetle (Tracker)"
 		"Lightning Bug" 2
 	variant
-		"Shield Beetle (Tracker)
+		"Shield Beetle (Tracker)"
 		"Centipede" 3
 	variant 2
 		"Water Bug" 3
