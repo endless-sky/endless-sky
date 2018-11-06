@@ -970,7 +970,7 @@ mission "FW Pug 1 Return"
 	
 	on offer
 		conversation
-			`You receive an urgent message from JJ: "Captain <last>, return to New Tibet at once! We've received word that the Syndicate is somehow severing their hyperspace connections to the rest of human space. We're calling an emergency council meeting, to convene as soon as you arrive here."`
+			`You receive an urgent message from JJ: "Captain <last>, return to New Tibet at once! We've received word that the Syndicate is somehow severing their hyperspace connections to the rest of human space. We're calling an emergency Council meeting, to convene as soon as you arrive here."`
 				decline
 
 
