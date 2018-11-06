@@ -2139,7 +2139,7 @@ mission "Prisoners [4]"
 		payment 25000 175
 		dialog "Your shackled passengers offer bitter curses as burly and well-armed guards practically beat them out of your ship, driving them in the direction of a penal colony on this remote world. You collect your payment of <payment>."
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis waiting plunders
 		system
 			distance 3 4
