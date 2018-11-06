@@ -854,7 +854,7 @@ mission "FW Katya 3"
 			`	Eyes glances at her, sees her expression, and says, "No, Councilor, don't even think of it. That's a horrible idea."`
 			`	"No," she says, "it's brilliant. Captain <last>, are you familiar with the Dereliction and Salvage Act of 2976?"`
 			choice
-				`	"Of course. I read Parliamentary proceedings every night when I'm trying to fall asleep."`
+				`	"Of course. I read parliamentary proceedings every night when I'm trying to fall asleep."`
 					goto yes
 				`	"No, I've never heard of it."`
 					goto no
