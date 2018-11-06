@@ -1229,7 +1229,7 @@ mission "FW Katya 7C"
 				`	(Check what my computer says.)`
 			
 			`	You check your computer. "One job opening, for a janitor in the mess hall."`
-			`	She grimaces. "Okay, it's better than nothing. I'll take the job to go undercover and see what I can find out. You take Eyes to <planet>, where he can get in touch with the Free Worlds council. I'll find a way to send you a message once I've found the perpetrators."`
+			`	She grimaces. "Okay, it's better than nothing. I'll take the job to go undercover and see what I can find out. You take Eyes to <planet>, where he can get in touch with the Free Worlds Council. I'll find a way to send you a message once I've found the perpetrators."`
 			`	"Katerina," says Eyes, "this is way too dangerous."`
 			`	"There's no other way," she says. "We have no time to lose. I'm willing to risk it."`
 			`	With deep reservations, you drop her off at the outpost, where she is quickly offered the job. "Not many folks care to work up here," says the foreman, "so your help would be much appreciated." You and Eyes return to your ship and get ready to travel to <planet> with the evidence.`
@@ -1388,7 +1388,7 @@ mission "FW Escort 1B"
 	on complete
 		payment 400000
 		conversation
-			`You are met at the spaceport by Tomek Voigt, one of the members of the Free Worlds council. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "so meet me in the spaceport if you are willing to volunteer for escort duty again."`
+			`You are met at the spaceport by Tomek Voigt, one of the members of the Free Worlds Council. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "so meet me in the spaceport if you are willing to volunteer for escort duty again."`
 	
 	on fail
 		set "fw intro escort failed"
@@ -1586,7 +1586,7 @@ mission "FW Escort Second Chance"
 	
 	on offer
 		conversation
-			`Soon after you exit your ship a man approaches you. "Captain <last>?" he asks. You nod. "My name is Alondo," he says. "I'm a member of the Free Worlds council. Katya speaks so highly of you that I would like to see you join us, even though you messed up that escort mission."`
+			`Soon after you exit your ship a man approaches you. "Captain <last>?" he asks. You nod. "My name is Alondo," he says. "I'm a member of the Free Worlds Council. Katya speaks so highly of you that I would like to see you join us, even though you messed up that escort mission."`
 			choice
 				`	"Yes, I'm very sorry about that."`
 				`	"Sorry, but I decided I don't want to assist the Free Worlds anyway."`
@@ -1789,7 +1789,7 @@ mission "FW Commitment"
 			`Soon after you land, a courier arrives at your ship and hands you a formal looking letter. It reads:`
 			``
 			`Dear Captain <last>,`
-			`	The Free Worlds council would like to thank you for the invaluable assistance you have rendered to us recently. We are prepared to offer you a position as an officer in our militia, remaining in command of your own ship. Your starting salary will be 300 credits per diem. If you want to join us, please report to our headquarters on Bourne at your earliest convenience.`
+			`	The Free Worlds Council would like to thank you for the invaluable assistance you have rendered to us recently. We are prepared to offer you a position as an officer in our militia, remaining in command of your own ship. Your starting salary will be 300 credits per diem. If you want to join us, please report to our headquarters on Bourne at your earliest convenience.`
 			`	Sincerely,`
 			`				Tomek Voigt`
 			`				Jean-Jacques Soleau`
@@ -1858,7 +1858,7 @@ mission "Rescue Katya 1"
 mission "Rescue Katya 2"
 	landing
 	name "Rescue Katya"
-	description "Return to <planet> and report to the Free Worlds council that you were unable to locate Katya."
+	description "Return to <planet> and report to the Free Worlds Council that you were unable to locate Katya."
 	source Clink
 	destination Longjump
 	to offer
