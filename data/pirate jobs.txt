@@ -2492,7 +2492,7 @@ mission "Capture Smuggler"
 		"reputation: Pirate" <?= -10
 	on offer
 		conversation
-			`As you step into a dive bar for a quick drink, the largest man you've ever seen stands up and blocks your path. "<first> <last>," he says in a thick accent. "My employer hears you do certain jobs, take money, do not ask questions. He hears you are reliable. A man, a smuggler, he steals cargo from my employer. My employer very much wants cargo returned, and this man as well."`
+			`As you step into a dive bar for a quick drink, the largest man you've ever seen stands up and blocks your path. He's well over two meters tall, and his muscles seem to ripple with barely restrained violence when he moves. "<first> <last>," he says in a thick accent. "My employer hears you do certain jobs, take money, do not ask questions. He hears you are reliable. A man, a smuggler, he steals cargo from my employer. My employer very much wants cargo returned, and this man as well."`
 			choice
 				`	"I'm sorry, sir, but I'm not taking new jobs today. Please give your employer my most gracious thanks for this kind offer."`
 				`	"Of course. I won't say a word."`
