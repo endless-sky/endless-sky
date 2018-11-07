@@ -2059,7 +2059,7 @@ mission "Lost Boy 3"
 		conversation
 			`Tod's mother almost tears up at the sight of him as you approach. "Oh, my baby boy is alive!" she exclaims, running up and hugging Tod as his face reddens with embarrassment. "Are you hurt? Are you okay? Do you think you'll be fine?" Tod's mother asks, kissing his cheeks between each question.`
 			`	"I'm fine, Mom," Tod says in an annoyed tone of voice. Some things never change.`
-			`	The mother gives you a handful of credit chips. Upon counting them, you find that they are only worth a total of <payment>. "I know it isn't much for the work you've done, Captain, but it's all I have to give you in return."`
+			`	The mother gives you a handful of credit chips. At a glance, you guess that they couldn't be worth more than 1,000 credits. "I know it isn't much for the work you've done, Captain, but it's all I have to give you in return."`
 			choice
 				`	"Don't worry. "`
 				`	"You're lucky I agreed to help you in the first place."`
@@ -2099,6 +2099,7 @@ mission "Paradise Fortune 1"
 	source
 		planet "Follower" "Mainsail"
 	destination
+		attributes spaceport
 		distance 1 1
 	passengers 1
 	to offer
