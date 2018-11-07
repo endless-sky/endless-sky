@@ -108,7 +108,7 @@ mission "Remnant: Second Contact"
 			label ReturnConsent		
 			apply
 				"reputation: Remnant" = 1
-			`	"We will let them know to expect you, but be on your best behavior, as there will not be a third chance." The captain pauses for a moment, then continues, "Moreover, the blood test is mandatory for you and your crew. We do not tolerate Alpha heritage on our worlds."`
+			`	"We will let them know to expect you, but be on your best behavior, as there will be no third chance." The captain pauses for a moment, then continues "Moreover, the blood test is mandatory for you and your crew. We will not tolerate anyone of any Alpha heritage on our worlds."`
 				goto SCEnd
 			label LeaveForever
 			apply
@@ -127,7 +127,7 @@ mission "Remnant: Second Contact"
 				`(Refuse and run for your ship.)`
 					goto SecondChanceRefuse
 			label SecondChanceRefuse
-			`	As you turn to start running back to your ship you notice a quick hand sign from the prefect and the soldiers nearby begin raising their weapons and firing at you. As you feel your body begin to liquidize under the assault of the strange energy bolts, the last thing you see is the look of pity, resignation, and confusion on the face of the Prefect. Probably wondering why you would decide to return if you were just going to run again. You suppose they'll never know...`
+			`	As you turn to start running back to your ship you notice a quick hand sign from the prefect and the soldiers nearby begin raising their weapons and firing at you. As you feel your body begin to liquify under the assault of the strange energy bolts, the last thing you see is the look of pity, resignation, and confusion on the face of the Prefect. Probably wondering why you would decide to return if you were just going to run again. You suppose they'll never know...`
 			die
 			label SecondChanceComply
 			apply
