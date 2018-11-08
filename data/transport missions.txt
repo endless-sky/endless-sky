@@ -1474,7 +1474,6 @@ mission "Shady passenger transport 2"
 		"rejected illegal jobs" --
 		"getaway driver" ++
 		dialog `You quickly bundle the men onto your ship before anyone sees them. As you're helping unpack their luggage, one of them casually mentions that they may have attracted the attention of some bounty hunters, and would prefer not to be captured. You should probably avoid being scanned, too."`
-		"rejected illegal jobs" --
 
 	on decline
 		"rejected illegal jobs" ++
