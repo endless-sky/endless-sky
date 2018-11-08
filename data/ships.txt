@@ -1299,7 +1299,7 @@ ship "Firebird"
 		"Particle Cannon" 2
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 70
-		"Heavy Laser Turret"
+		"Quad Blaster Turret"
 		"Anti-Missile Turret"
 		
 		"RT-I Radiothermal"
@@ -1318,7 +1318,7 @@ ship "Firebird"
 	gun -39 -13 "Meteor Missile Launcher"
 	gun 39 -13 "Meteor Missile Launcher"
 	turret -5 3 "Anti-Missile Turret"
-	turret 5 3 "Heavy Laser Turret"
+	turret 5 3 "Quad Blaster Turret"
 	leak "leak" 50 50
 	leak "flame" 30 80
 	explode "tiny explosion" 18
@@ -2251,7 +2251,7 @@ ship "Osprey"
 	thumbnail "thumbnail/osprey"
 	attributes
 		category "Medium Warship"
-		"cost" 3400000
+		"cost" 4400000
 		"shields" 7200
 		"hull" 1600
 		"required crew" 9

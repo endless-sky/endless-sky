@@ -477,6 +477,9 @@ fleet "Large Northern Merchants"
 		"Firebird (Plasma)"
 	variant 10
 		"Freighter" 2
+		"Firebird (Laser)"
+	variant 10
+		"Freighter" 2
 		"Firebird (Missile)"
 	variant 10
 		"Freighter" 3
@@ -484,6 +487,9 @@ fleet "Large Northern Merchants"
 	variant 2
 		"Freighter" 3
 		"Firebird (Plasma)"
+	variant 2
+		"Freighter" 3
+		"Firebird (Laser)"
 	variant 2
 		"Freighter" 3
 		"Firebird (Missile)"
@@ -605,6 +611,9 @@ fleet "Large Northern Merchants"
 	variant 1
 		"Star Queen"
 		"Firebird" 2
+	variant 2
+		"Star Queen"
+		"Firebird (Laser)" 2
 	variant 1
 		"Star Queen"
 		"Firebird (Plasma)" 2
@@ -1950,6 +1959,8 @@ fleet "Large Core Pirates"
 		"Falcon (Laser)"
 	variant 2
 		"Firebird"
+	variant 2
+		"Firebird (Laser)"
 	variant 1
 		"Firebird (Plasma)"
 	variant 1
@@ -2014,6 +2025,8 @@ fleet "Large Northern Pirates"
 		plunders harvests
 	variant 4
 		"Firebird"
+	variant 3
+		"Firebird (Laser)"
 	variant 2
 		"Firebird (Missile)"
 	variant 2
@@ -2029,6 +2042,9 @@ fleet "Large Northern Pirates"
 		"Corvette (Missile)"
 	variant 1
 		"Firebird (Plasma)"
+		"Corvette (Missile)"
+	variant 1
+		"Firebird (Laser)"
 		"Corvette (Missile)"
 	variant 1
 		"Firebird (Missile)"
@@ -2061,6 +2077,9 @@ fleet "Large Northern Pirates"
 	variant 2
 		"Leviathan (Laser)"
 		"Firebird"
+	variant 2
+		"Leviathan (Laser)"
+		"Firebird (Laser)"
 	variant 2
 		"Leviathan (Heavy)"
 		"Firebird (Plasma)"
@@ -2178,9 +2197,13 @@ fleet "pirate raid"
 	variant 2
 		"Firebird"
 	variant 1
+		"Firebird (Laser)"
+	variant 1
 		"Firebird (Plasma)"
 	variant 4
 		"Firebird"
+	variant 2
+		"Firebird (Laser)"
 	variant 2
 		"Firebird (Plasma)"
 	variant 3
@@ -2667,6 +2690,9 @@ fleet "Marauder fleet VII"
 		"Firebird"
 		"Firebird (Plasma)"
 		"Firebird (Missile)"
+	variant 1
+		"Marauder Leviathan (Weapons)"
+		"Firebird (Laser)" 3
 
 fleet "Marauder fleet VIII"
 	government "Pirate"
@@ -2740,6 +2766,10 @@ fleet "Marauder fleet IX"
 		"Marauder Leviathan (Weapons)"
 		"Firebird"
 		"Firebird (Plasma)"
+		"Firebird (Missile)"
+	variant 1
+		"Marauder Leviathan (Weapons)"
+		"Firebird (Laser)" 3
 		"Firebird (Missile)"
 
 fleet "Marauder fleet X"

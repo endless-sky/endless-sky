@@ -820,6 +820,18 @@ ship "Firebird" "Firebird (Plasma)"
 		"Hyperdrive"
 
 
+ship "Firebird" "Firebird (Laser)"
+	outfits
+		"Heavy Laser" 4
+		"Heavy Laser Turret" 2
+		"RT-I Radiothermal"
+		"nGVF-AA Fuel Cell"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
 
 ship "Flivver" "Flivver (Hai)"
 	outfits
