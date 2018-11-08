@@ -299,7 +299,7 @@ fleet "Large Core Merchants"
 	variant 10
 		"Bulk Freighter" 2
 		"Protector" 1
-    variant 10
+	variant 10
 		"Bulk Freighter" 2
 		"Wasp" 3
 		"Wasp (Bomber)" 2
