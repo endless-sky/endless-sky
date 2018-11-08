@@ -218,7 +218,7 @@ effect "bolide"
 	"random frame rate" 6
 	
 effect "pug tiny explosion"
-	sprite "effect/explosion/pug tiny"
+	sprite "effect/explosion/pug/pug tiny"
 		"no repeat"
 		"frame rate" 15
 	sound "explosion tiny"
@@ -230,7 +230,7 @@ effect "pug tiny explosion"
 	"velocity scale" .4
 
 effect "pug small explosion"
-	sprite "effect/explosion/pug small"
+	sprite "effect/explosion/pug/pug small"
 		"no repeat"
 		"frame rate" 15
 	sound "explosion small"
@@ -242,7 +242,7 @@ effect "pug small explosion"
 	"velocity scale" .4
 
 effect "pug medium explosion"
-	sprite "effect/explosion/pug medium"
+	sprite "effect/explosion/pug/pug medium"
 		"no repeat"
 		"frame rate" 15
 	sound "explosion medium"
@@ -254,7 +254,7 @@ effect "pug medium explosion"
 	"velocity scale" .4
 
 effect "pug large explosion"
-	sprite "effect/explosion/pug large"
+	sprite "effect/explosion/pug/pug large"
 		"no repeat"
 		"frame rate" 15
 	sound "explosion large"
@@ -266,7 +266,7 @@ effect "pug large explosion"
 	"velocity scale" .4
 
 effect "pug huge explosion"
-	sprite "effect/explosion/pug huge"
+	sprite "effect/explosion/pug/pug huge"
 		"no repeat"
 		"frame rate" 15
 	sound "explosion huge"
