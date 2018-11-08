@@ -147,7 +147,7 @@ outfit "Scanning Module"
 	category "Systems"
 	licenses
 		Heliarch
-	cost 215000
+	cost 453600
 	thumbnail "outfit/unknown"
 	"mass" 3
 	"outfit space" -3
