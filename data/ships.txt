@@ -1206,7 +1206,7 @@ ship "Firebird"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Particle Cannon" 2
+		"Heavy Laser" 4
 		"Heavy Laser Turret" 2
 		
 		"RT-I Radiothermal"
@@ -1220,10 +1220,10 @@ ship "Firebird"
 		
 	engine -33 65
 	engine 33 65
-	gun -28 -27 "Particle Cannon"
-	gun 28 -27 "Particle Cannon"
-	gun -39 -13
-	gun 39 -13
+	gun -28 -27 "Heavy Laser"
+	gun 28 -27 "Heavy Laser"
+	gun -39 -13 "Heavy Laser"
+	gun 39 -13 "Heavy Laser"
 	turret -5 3 "Heavy Laser Turret"
 	turret 5 3 "Heavy Laser Turret"
 	explode "tiny explosion" 18
