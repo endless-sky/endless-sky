@@ -1,16 +1,32 @@
 language: cpp
-dist: trusty
 sudo: required
+
+# TODO: dist: osx
+matrix:
+    include:
+      - dist: trusty
+      - dist: xenial
+        env: DIST_DEPS=scons
+
+git:
+    quiet: true
+    depth: 5
+
+branches:
+    except:
+        - gh-pages
 
 before_install:
     - sudo apt-get -qq update
-    - sudo apt-get install -y libsdl2-dev libpng12-dev libjpeg-turbo8-dev libglew-dev libopenal-dev libgl1-mesa-dev libmad0-dev libegl1-mesa-dev libgles2-mesa-dev
+    - sudo apt-get install -y $DEP_ARGS $DIST_DEPS
 
 env:
-    - es_run_mode=
-    - es_run_mode=mode=debug
+    global:
+        - DEP_ARGS="libsdl2-dev libpng12-dev libjpeg-turbo8-dev libglew-dev libopenal-dev libgl1-mesa-dev libmad0-dev libegl1-mesa-dev libgles2-mesa-dev"
 
-script: "scons -j2 $es_run_mode"
+script:
+    - scons -j2
+    - ./test_parse.sh ./endless-sky
 
 notifications:
     email:
