@@ -612,7 +612,7 @@ mission "Expanding Business [1]"
 			`	"No need to downplay yourself, Captain! You've done God's work in saving humanity from that alien scourge. The name's David Joseph Turner, venture capitalist, entrepreneur, and famous Paradise Worlds businessman." Turner grabs a business card from the pocket and hands it to you. The card contains his contact information, an address on Martini, and makes sure to boast in golden letters his net worth of more than three billion credits.`
 			
 			label proposition
-			`	"You may not have heard of me, but I've sure as hell heard of you, and I'd like to make a proposition to you." Turner turns around and waves his arm across the crowd of people in the spaceport. "You see all the humans here? About one out of every four of these people only arrived here after war broke out through the wormhole. Captains who knew of the Hai came flocking here in droves after the Navy entered Kornephoros, hoping to avoid any troubles that the war would bring. Some captains returned after the war end, but most stayed, and I see a massive market opportunity in that."`
+			`	"You may not have heard of me, but I've sure as hell heard of you, and I'd like to make a proposition to you." Turner turns around and waves his arm across the crowd of people in the spaceport. "You see all the humans here? About one out of every four of these people only arrived here after war broke out through the wormhole. Captains who knew of the Hai came flocking here in droves after the Navy entered Kornephoros, hoping to avoid any troubles that the war would bring. Some captains returned after the war ended, but most stayed, and I see a massive market opportunity in that."`
 			branch rich
 				"net worth" >= 4000000000
 			
@@ -626,7 +626,7 @@ mission "Expanding Business [1]"
 			choice
 				`	"What kind of market opportunity?"`
 					goto opportunity
-				`	"You're only three billion credits? Why shouldn't I pursue your opportunity on my own?"`
+				`	"You're only worth three billion credits? Why shouldn't I pursue your opportunity on my own?"`
 				`	"Sorry, but I don't have the time to talk about this."`
 					goto walk
 			
@@ -650,7 +650,7 @@ mission "Expanding Business [1]"
 				`	"Alright, you have my attention."`
 					goto interested
 			
-			`	"Well, I tried, Captain," Turner says with a smirk. "I'll just have to travel back to the Paradise Worlds and make my money in other areas of business, then." He hands you another business card and winks. "Goodbye, Captain <last>. You should know where to find me if you need me."`
+			`	"Well, I tried, Captain," Turner says with a smirk. "I'll just have to travel back to the Paradise Worlds and make my money in other areas of business, then." He hands you another business card and winks. "Goodbye, Captain <last>. You should know where to find me if you need me. Perhaps we can pursue this venture together in the future."`
 				decline
 			
 			label interested
