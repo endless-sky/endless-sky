@@ -2723,7 +2723,7 @@ mission "FW Assassination [4]"
 		"reputation: Free Worlds" -= 25
 		"reputation: Pirate" += 10
 		
- mission "Syndicate Assassination [1]"
+mission "Syndicate Assassination [1]"
 	name "Assassinate a political target"
 	description "A key Syndicate politician was spotted passing through a nearby system in their ship, the <npc>. Find and destroy them in order to send a message to the Syndicate. Payment is <payment>. Be advised that they may have escorts."
 	repeat
