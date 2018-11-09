@@ -2586,7 +2586,7 @@ mission "FW Assassination [1]"
 	job
 	to offer
 		"combat rating" > 200
-		random < 10
+		random < 5
 		"reputation: Pirate" > -100
 		has "event: war begins"
 	source
@@ -2622,7 +2622,7 @@ mission "FW Assassination [2]"
 	job
 	to offer
 		"combat rating" > 400
-		random < 10
+		random < 5
 		"reputation: Pirate" > -50
 		has "event: war begins"
 	source
@@ -2730,7 +2730,7 @@ mission "FW Assassination [4]"
 	job
 	to offer
 		"combat rating" > 200
-		random < 10
+		random < 5
 		"reputation: Pirate" > -100
 	source
 		government "Pirate"
@@ -2759,7 +2759,7 @@ mission "Syndicate Assassination [2]"
 	job
 	to offer
 		"combat rating" > 400
-		random < 10
+		random < 5
 		"reputation: Pirate" > -50
 	source
 		government "Pirate"
@@ -2863,7 +2863,7 @@ mission "Republic Assassination [1]"
 	job
 	to offer
 		"combat rating" > 200
-		random < 10
+		random < 5
 		"reputation: Pirate" > -100
 	source
 		government "Pirate"
@@ -2893,7 +2893,7 @@ mission "Republic Assassination [2]"
 	job
 	to offer
 		"combat rating" > 400
-		random < 10
+		random < 5
 		"reputation: Pirate" > -50
 	source
 		government "Pirate"
