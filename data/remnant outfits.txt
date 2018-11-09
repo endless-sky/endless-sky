@@ -350,7 +350,7 @@ outfit "Scanner Software"
 	cost 230000
 	thumbnail "outfit/scanner software"
 	"mass" 3
-	"outfit space" 3
+	"outfit space" -3
 	"cargo scan power" 12
 	"cargo scan speed" 1
 	"outfit scan power" 12

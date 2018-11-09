@@ -1194,7 +1194,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 		payment 50000
 		conversation
 			`Dawn and her colleagues are thrilled with the trip. While they had each served on Remnant ships exploring the Ember wastes or patrolling their territory, none had ever been more than a handful of jumps away from their own space. Their ships were always cautious to stay far away from human space to avoid leading anyone back.`
-			`	It occurs to you that Dawn and her colleagues seem much less reserved than most Remnant. You aren't sure if it is because they are younger, less secretive, or if the Remnant have been concealing it from you. It is also possible that you just have better opportunities to figure it  out now that you can understand their signs.
+			`	It occurs to you that Dawn and her colleagues seem much less reserved than most Remnant. You aren't sure if it is because they are younger, less secretive, or if the Remnant have been concealing it from you. It is also possible that you just have better opportunities to figure it  out now that you can understand their signs.`
 			`	Upon arriving at Wayfarer they spend considerable amount of time watching the few Quarg in evidence, however it is easy to see that the real draw of their attention is the ships. You wave your ID across the scanner for the shipyard and take them inside to see what Tarazed shipyards has on display.`
 			branch Rich
 				"net worth" >= 20000000
