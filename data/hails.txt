@@ -3245,6 +3245,64 @@ phrase "hostile militia"
 		"."
 		"!"
 
+phrase "hostile militia"
+	word
+		""
+		"You! "
+		"You there! "
+		"Hey, you! "
+	word
+		"I "
+		"We "
+	word
+		"hope "
+		"wonder if "
+	word
+		"you "
+		"criminals like you "
+		
+	word
+		"like "
+		"enjoy "
+		"appreciate "
+	word
+		"the prison food"
+		"the jail cells"
+		"the manual labor"
+		"the prison life"
+		"the jail life"
+	word
+		" on "
+		" at "
+		" of "
+		" over on "
+		" over at "
+		" out on "
+		" out at "
+	word
+		"Bourne"
+		"Spica"
+		"Rust"
+		"Starcross"
+		"Skymoot"
+		"Thunder"
+		"Zug"
+		"Flood"
+		"Longjump"
+		"Glaze"
+		"Deep"
+		"Clink"
+		"Winter"
+		"Solace"
+		"Twinstar"
+		"Sundrinker"
+		"Trinket"
+		"Dancer"
+	word
+		"."
+		"..."
+		"!"
+
 phrase "hostile free worlds"
 	word
 		"Safety"
