@@ -38,7 +38,7 @@ outfit "Quantum Shield Generator"
 outfit "Quantum Hull Repair"
 	category "Systems"
 	cost 20000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/quarg hull repair"
 	"mass" 60
 	"outfit space" -60
 	"hull repair rate" 5
