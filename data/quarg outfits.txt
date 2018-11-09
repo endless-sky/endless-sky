@@ -41,8 +41,8 @@ outfit "Quantum Hull Repair"
 	thumbnail "outfit/unknown"
 	"mass" 60
 	"outfit space" -60
-	"shield generation" 5
-	"shield energy" 5
+	"hull repair rate" 5
+	"hull energy" 5
 
 
 outfit "Quarg Skylance"
