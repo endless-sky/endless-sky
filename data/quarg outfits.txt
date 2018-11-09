@@ -26,6 +26,24 @@ outfit "Antimatter Core"
 	"energy generation" 80
 	"heat generation" 20
 
+outfit "Quantum Shield Generator"
+	category "Systems"
+	cost 30000000
+	thumbnail "outfit/unknown"
+	"mass" 120
+	"outfit space" -120
+	"shield generation" 10
+	"shield energy" 10
+
+outfit "Quantum Hull Repair"
+	category "Systems"
+	cost 20000000
+	thumbnail "outfit/unknown"
+	"mass" 60
+	"outfit space" -60
+	"shield generation" 5
+	"shield energy" 5
+
 
 outfit "Quarg Skylance"
 	category "Turrets"
@@ -93,6 +111,7 @@ outfit "Intrusion Countermeasures"
 	"unplunderable" 1
 	description "Quarg ships are outfitted with special systems for repelling boarders. Because no one wants to be caught by the Quarg with stolen technology, these systems are pretty much worthless on the open market."
 
+
 outfit "Medium Graviton Thruster"
 	category "Engines"
 	"cost" 20000000
@@ -115,12 +134,3 @@ outfit "Medium Graviton Steering"
 	"turn" 1600
 	"turning energy" 10
 	"turning heat" 5
-
-outfit "Quantum Shield Generator"
-	category "Systems"
-	cost 30000000
-	thumbnail "outfit/unknown"
-	"mass" 120
-	"outfit space" -120
-	"shield generation" 10
-	"shield energy" 10
