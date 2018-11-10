@@ -2477,7 +2477,7 @@ mission "Capture Smuggler"
 		government "Pirate"
 	npc board
 		conversation
-			`After neutralizing the crew and capturing the captain, you sweep the ship. Ultimately you find the stolen cargo in the captain's cabin, hidden behind a false panel. The cargo is a nondescript storage container, but upon closer inspection you see that it's code-locked and covered with interference plating.`
+			`The smuggler and his crew are ready and waiting when you board. You pull out the "gift" and press the button, then quickly toss it down the hallway. For a moment, you meet the smuggler's eyes. They widen with terror when he sees the "gift". You duck back into cover. A moment later, you hear a strangly muted detonation, followed by silence. After a minute, you hazard another peek out of cover. The captain and all his men are unconscious on the ground. One crewman has blood dripping from his nose and ears. You tie them all up and stow the smuggler in a locked cabin. Once they're secured, you sweep the ship. Ultimately you find the stolen cargo in the captain's cabin, hidden behind a false panel. The cargo is a nondescript storage container, but upon closer inspection you see that it's code-locked and covered with interference plating.`
 				launch
 		government "Merchant"
 		personality staying uninterested timid target marked
@@ -2504,7 +2504,7 @@ mission "Capture Smuggler"
 				decline
 
 			label accept
-			`	The man looks down at you with no change in expression. "This is good. To be reliable, it is a great thing on <origin>." As the man speaks, you notice that his teeth are filed to vicious points. He hands you a datachip containing details of the job. As the man leaves, you see every patron in the bar staring warily at his back.`
+			`	The man looks down at you with no change in expression. "This is good. To be reliable, it is a great thing on <origin>." As the man speaks, you notice that his teeth are filed to vicious points. He holds out a round, flat object about the side of your palm. It has a recessed button in the center of one side. "This is gift for this smuggler. Press button, it becomes surprise. Make sure surprise is not on you." He hands you the object and a datachip containing details of the job. As the man leaves, you see every patron in the bar staring warily at his back.`
 				accept
 
 			label mistake
