@@ -1943,7 +1943,7 @@ mission "Terraforming 6"
 	on complete
 		log `Had to travel to Earth to answer for crashing an asteroid into Rand. Luckily, thanks to Alaric and Eric's lawyer, the case was dropped.`
 		conversation
-			`You are quickly escorted from the crowded <planet> spaceport to a court building in a wealthy district of the city and asked multiple questions pertaining to the events on Rand. "Why did you purposefully do crash an asteroid into a planet? What did you expect to happen? Do you know how many people could have died?" You answer to the best of your ability, and after roughly an hour of questioning you are transferred to a different room where you find Eric, Alaric, and Amy.`
+			`You are quickly escorted from the crowded <planet> spaceport to a court building in a wealthy district of the city and asked multiple questions pertaining to the events on Rand. "Why did you purposefully crash an asteroid into a planet? What did you expect to happen? Do you know how many people could have died?" You answer to the best of your ability, and after roughly an hour of questioning you are transferred to a different room where you find Eric, Alaric, and Amy.`
 			choice
 				`	"What are we going to do?"`
 					goto lawyer
