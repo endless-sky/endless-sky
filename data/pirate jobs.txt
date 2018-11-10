@@ -2473,6 +2473,7 @@ mission "Capture Smuggler"
 		random < 15
 		"combat rating" > 2000
 		"reputation: Pirate" > 10
+	passengers 1
 	source
 		government "Pirate"
 	npc board
