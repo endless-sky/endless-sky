@@ -460,8 +460,8 @@ ship "Carrier" "Carrier (Jump)"
 	gun "Sidewinder Missile Launcher"
 	turret "Electron Turret"
 	turret "Heavy Anti-Missile Turret"
-	turret "Heavy Anti-Missile Turret"
 	turret "Electron Turret"
+	turret "Heavy Anti-Missile Turret"
 
 
 ship "Carrier" "Carrier (Mark II)"
@@ -491,8 +491,8 @@ ship "Carrier" "Carrier (Mark II)"
 	gun "Sidewinder Missile Launcher"
 	turret "Electron Turret"
 	turret "Heavy Anti-Missile Turret"
-	turret "Heavy Anti-Missile Turret"
 	turret "Electron Turret"
+	turret "Heavy Anti-Missile Turret"
 
 
 
