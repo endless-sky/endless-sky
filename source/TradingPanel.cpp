@@ -73,9 +73,9 @@ TradingPanel::~TradingPanel()
 			+ (tonsSold == 1 ? " ton" : " tons") + " of cargo ";
 		
 		if(profit < 0)
-			message += "at a loss of " + Format::Number(-profit) + " credits.";
+			message += "at a loss of " + Format::Credits(-profit) + " credits.";
 		else
-			message += "for a total profit of " + Format::Number(profit) + " credits.";
+			message += "for a total profit of " + Format::Credits(profit) + " credits.";
 		
 		Messages::Add(message);
 	}

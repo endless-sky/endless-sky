@@ -562,9 +562,10 @@ void Engine::Step(bool isActive)
 			info.SetBar("overheat blink", min(1., heat));
 		info.SetBar("shields", flagship->Shields());
 		info.SetBar("hull", flagship->Hull(), 20.);
+		info.SetBar("disabled hull", min(flagship->Hull(), flagship->DisabledHull()), 20.);
 	}
 	info.SetString("credits",
-		Format::Number(player.Accounts().Credits()) + " credits");
+		Format::Credits(player.Accounts().Credits()) + " credits");
 	bool isJumping = flagship && (flagship->Commands().Has(Command::JUMP) || flagship->IsEnteringHyperspace());
 	if(flagship && flagship->GetTargetStellar() && !isJumping)
 	{
@@ -652,6 +653,7 @@ void Engine::Step(bool isActive)
 		{
 			info.SetBar("target shields", target->Shields());
 			info.SetBar("target hull", target->Hull(), 20.);
+			info.SetBar("target disabled hull", min(target->Hull(), target->DisabledHull()), 20.);
 		
 			// The target area will be a square, with sides proportional to the average
 			// of the width and the height of the sprite.
@@ -1779,7 +1781,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 			player.Harvest(outfit);
 		}
 		else
-			message = name + Format::Number(amount) + " "
+			message = name + to_string(amount) + " "
 				+ (amount == 1 ? outfit->Name() : outfit->PluralName()) + ".";
 	}
 	else
@@ -1798,7 +1800,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	if(!message.empty())
 	{
 		int free = collector->Cargo().Free();
-		message += " (" + Format::Number(free) + (free == 1 ? " ton" : " tons");
+		message += " (" + to_string(free) + (free == 1 ? " ton" : " tons");
 		message += " of free space remaining.)";
 		Messages::Add(message);
 	}
@@ -1845,6 +1847,15 @@ void Engine::FillRadar()
 			radar[calcTickTock].AddPointer(
 				(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
 				system->Position() - playerSystem->Position());
+	}
+	
+	// Add viewport brackets.
+	if(!Preferences::Has("Disable viewport on radar"))
+	{
+		radar[calcTickTock].AddViewportBoundary(Screen::TopLeft() / zoom);
+		radar[calcTickTock].AddViewportBoundary(Screen::TopRight() / zoom);
+		radar[calcTickTock].AddViewportBoundary(Screen::BottomLeft() / zoom);
+		radar[calcTickTock].AddViewportBoundary(Screen::BottomRight() / zoom);
 	}
 	
 	// Add ships. Also check if hostile ships have newly appeared.

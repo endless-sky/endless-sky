@@ -2276,6 +2276,17 @@ double Ship::Health() const
 
 
 
+// Get the hull fraction at which this ship is disabled.
+double Ship::DisabledHull() const
+{
+	double hull = attributes.Get("hull");
+	double minimumHull = MinimumHull();
+	
+	return (hull > 0. ? minimumHull / hull : 0.);
+}
+
+
+
 int Ship::JumpsRemaining() const
 {
 	// Make sure this ship has some sort of hyperdrive, and if so return how
@@ -2557,9 +2568,9 @@ void Ship::ApplyForce(const Point &force)
 		return;
 	
 	// Reduce acceleration of small ships and increase acceleration of large
-	// ones by having half the force be based on a fixed mass of 400, i.e. the
+	// ones by having 30% of the force be based on a fixed mass of 400, i.e. the
 	// mass of a typical light warship:
-	acceleration += force * (.5 / 400. + .5 / currentMass);
+	acceleration += force * (.3 / 400. + .7 / currentMass);
 }
 
 
@@ -2993,7 +3004,7 @@ double Ship::MinimumHull() const
 		return 0.;
 	
 	double maximumHull = attributes.Get("hull");
-	return max(.20 * maximumHull, min(.50 * maximumHull, 400.));
+	return floor(maximumHull * max(.15, min(.45, 10. / sqrt(maximumHull))));
 }
 
 
