@@ -78,6 +78,7 @@ ship "Starling" "Starling (Heavy)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
+		"Tuning Rifle" 10
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -93,6 +94,7 @@ ship "Starling" "Starling (Sniper)"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
+		"Tuning Rifle" 9
 		
 		"Forge-Class Thruster"
 		"Smelter-Class Steering"
@@ -113,6 +115,7 @@ ship "Starling" "Starling (Hunter)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
+		"Tuning Rifle" 11
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -133,6 +136,7 @@ ship "Starling" "Starling (Thrasher)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
+		"Tuning Rifle" 8
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -225,6 +229,7 @@ ship "Albatross" "Albatross (Sniper)"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
+		"Tuning Rifle" 57
 		
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
@@ -257,6 +262,7 @@ ship "Albatross" "Albatross (Turret)"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler"
 		"Outfits Expansion" 2
+		"Tuning Rifle" 49
 		
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
@@ -280,6 +286,7 @@ ship "Albatross" "Albatross (Heavy)"
 		"Crystal Capacitor" 2
 		"Thermoelectric Cooler" 2
 		"Outfits Expansion" 4
+		"Tuning Rifle" 65
 		
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
