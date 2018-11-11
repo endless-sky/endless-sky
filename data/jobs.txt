@@ -1071,7 +1071,7 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 			variant
 				"Fury"
 			variant
-				"hawk"
+				"Hawk"
 	npc
 		government Pirate
 		personality nemesis staying harvests plunders
