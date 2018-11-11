@@ -221,7 +221,7 @@ ship "Unknown Ship Type"
 		"required crew" 64
 		"bunks" 128
 		"mass" 740
-		"drag" 9.8
+		"drag" 10.8
 		"heat dissipation" .6
 		"fuel capacity" 500
 		"cargo space" 120
@@ -275,7 +275,7 @@ ship "Kestrel"
 		"required crew" 64
 		"bunks" 128
 		"mass" 740
-		"drag" 9.8
+		"drag" 10.8
 		"heat dissipation" .6
 		"fuel capacity" 500
 		"cargo space" 120
