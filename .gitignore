@@ -38,3 +38,6 @@ ipch/
 *.vcxproj*
 *.userosscache
 *.sln.docstates
+*.depend
+*.dll
+*.layout
