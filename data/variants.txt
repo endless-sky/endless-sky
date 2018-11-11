@@ -1262,6 +1262,7 @@ ship "Modified Argosy" "Modified Argosy (Missile)"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 
+
 ship "Modified Argosy" "Modified Argosy (Smuggler)"
 	outfits
 		"Beam Laser" 4
@@ -1275,6 +1276,7 @@ ship "Modified Argosy" "Modified Argosy (Smuggler)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Scram Drive"
+
 
 
 ship "Mule" "Mule (Hai Engines)"
