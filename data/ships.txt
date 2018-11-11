@@ -32,7 +32,8 @@ ship "Aerie"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Heavy Laser" 2
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret"
 		
@@ -47,8 +48,8 @@ ship "Aerie"
 		
 	engine -10 91
 	engine 10 91
-	gun -13 -79 "Heavy Laser"
-	gun 13 -79 "Heavy Laser"
+	gun -13 -79 "Sidewinder Missile Launcher"
+	gun 13 -79 "Sidewinder Missile Launcher"
 	turret 0 0 "Heavy Anti-Missile Turret"
 	turret -17 14 "Heavy Laser Turret"
 	turret 17 14 "Heavy Laser Turret"
@@ -94,7 +95,8 @@ ship "Argosy"
 		"Energy Blaster" 2
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 70
-		"Blaster Turret" 2
+		"Blaster Turret"
+		"Anti-Missile Turret"
 		
 		"RT-I Radiothermal"
 		"LP072a Battery Pack"
@@ -111,7 +113,7 @@ ship "Argosy"
 	gun -23 -37 "Meteor Missile Launcher"
 	gun 23 -37 "Meteor Missile Launcher"
 	turret 0 -12 "Blaster Turret"
-	turret 0 8 "Blaster Turret"
+	turret 0 8 "Anti-Missile Turret"
 	leak "leak" 60 50
 	leak "flame" 60 80
 	explode "tiny explosion" 10
@@ -352,7 +354,8 @@ ship "Bastion"
 		"Plasma Cannon" 2
 		"Heavy Rocket Launcher" 2
 		"Heavy Rocket" 40
-		"Blaster Turret" 3
+		"Blaster Turret" 2
+		"Anti-Missile Turret"
 		
 		"S3 Thermionic"
 		"LP144a Battery Pack"
@@ -370,7 +373,7 @@ ship "Bastion"
 	gun 54 -14 "Plasma Cannon"
 	gun -54 -14 "Heavy Rocket Launcher"
 	gun 54 -14 "Heavy Rocket Launcher"
-	turret 0 0 "Blaster Turret"
+	turret 0 0 "Anti-Missile Turret"
 	turret -30 14 "Blaster Turret"
 	turret 30 14 "Blaster Turret"
 	leak "leak" 40 50
@@ -467,7 +470,9 @@ ship "Berserker"
 			"hull damage" 150
 			"hit force" 450
 	outfits
-		"Beam Laser" 4
+		"Energy Blaster" 2
+		"Javelin Pod" 2
+		"Javelin" 400
 		
 		"nGVF-CC Fuel Cell"
 		"LP072a Battery Pack"
@@ -479,10 +484,10 @@ ship "Berserker"
 		
 	engine -10 45
 	engine 10 45
-	gun -20 12
-	gun 20 12
-	gun -44 10
-	gun 44 10
+	gun -20 12 "Energy Blaster"
+	gun 20 12 "Energy Blaster"
+	gun -44 10 "Javelin Pod"
+	gun 44 10 "Javelin Pod"
 	leak "leak" 60 50
 	leak "flame" 80 80
 	explode "tiny explosion" 10
@@ -516,7 +521,8 @@ ship "Blackbird"
 			"hull damage" 300
 			"hit force" 900
 	outfits
-		"Heavy Laser Turret" 2
+		"Heavy Laser Turret"
+		"Heavy Anti-Missile Turret"
 		
 		"S3 Thermionic"
 		"LP072a Battery Pack"
@@ -530,7 +536,7 @@ ship "Blackbird"
 	engine -40 55
 	engine 40 55
 	turret -18 0 "Heavy Laser Turret"
-	turret 18 0 "Heavy Laser Turret"
+	turret 18 0 "Heavy Anti-Missile Turret"
 	leak "leak" 50 50
 	leak "flame" 70 80
 	explode "tiny explosion" 15
@@ -538,7 +544,7 @@ ship "Blackbird"
 	explode "medium explosion" 18
 	explode "large explosion" 2
 	"final explode" "final explosion small"
-	description "The Tarazed Blackbird is a high-class passenger transport, designed to move large numbers of people across the galaxy with speed and safety. Although not equipped with much weaponry, a Blackbird is well shielded and fast enough to evade pirate attacks, and its cargo capacity is high enough to allow the captain to take courier missions on the side."
+	description "The Tarazed Blackbird is a high-class passenger transport, designed to move large numbers of people across the galaxy with speed and safety. Although not equipped with much weaponry, a Blackbird is well protected and fast enough to evade pirate attacks, and its cargo capacity is high enough to allow the captain to take courier missions on the side."
 
 
 
@@ -566,7 +572,7 @@ ship "Bounder"
 			"hull damage" 150
 			"hit force" 450
 	outfits
-		"Blaster Turret" 2
+		"Anti-Missile Turret" 2
 		
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
@@ -578,8 +584,8 @@ ship "Bounder"
 		
 	engine -12 44
 	engine 12 44
-	turret -37 4 "Blaster Turret"
-	turret 37 4 "Blaster Turret"
+	turret -37 4 "Anti-Missile Turret"
+	turret 37 4 "Anti-Missile Turret"
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -714,13 +720,13 @@ ship "Carrier"
 		"Particle Cannon" 4
 		"Meteor Missile Launcher" 4
 		"Meteor Missile" 140
-		"Heavy Laser Turret" 3
-		"Heavy Anti-Missile Turret"
+		"Heavy Laser Turret" 2
+		"Heavy Anti-Missile Turret" 2
 		
 		"Fusion Reactor"
 		"LP288a Battery Pack"
 		"D94-YV Shield Generator"
-		"Large Radar Jammer"
+		"Large Radar Jammer" 2
 		"Water Coolant System"
 		
 		"X5700 Ion Thruster"
@@ -738,7 +744,7 @@ ship "Carrier"
 	gun -25 -166 "Meteor Missile Launcher"
 	gun 25 -166 "Meteor Missile Launcher"
 	turret 0 -114 "Heavy Laser Turret"
-	turret 0 15 "Heavy Laser Turret"
+	turret 0 15 "Heavy Anti-Missile Turret"
 	turret 0 103 "Heavy Anti-Missile Turret"
 	turret 0 157 "Heavy Laser Turret"
 	fighter -37 -65
@@ -943,8 +949,11 @@ ship "Corvette"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Heavy Laser" 4
-		"Heavy Laser Turret" 2
+		"Heavy Laser" 2
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Heavy Laser Turret"
+		"Anti-Missile Turret"
 		
 		"NT-200 Nucleovoltaic"
 		"LP072a Battery Pack"
@@ -959,10 +968,10 @@ ship "Corvette"
 	engine 11 118
 	gun -12 -68 "Heavy Laser"
 	gun 12 -68 "Heavy Laser"
-	gun -14 -60 "Heavy Laser"
-	gun 14 -60 "Heavy Laser"
+	gun -14 -60 "Sidewinder Missile Launcher"
+	gun 14 -60 "Sidewinder Missile Launcher"
 	turret 0 -11 "Heavy Laser Turret"
-	turret 0 74 "Heavy Laser Turret"
+	turret 0 74 "Anti-Missile Turret"
 	leak "leak" 40 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -1005,13 +1014,13 @@ ship "Cruiser"
 		"Particle Cannon" 4
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 100
-		"Heavy Laser Turret" 3
-		"Heavy Anti-Missile Turret"
+		"Heavy Laser Turret" 2
+		"Heavy Anti-Missile Turret" 2
 		
 		"Fusion Reactor"
 		"LP288a Battery Pack"
 		"D67-TM Shield Generator"
-		"Large Radar Jammer"
+		"Large Radar Jammer" 2
 		"Liquid Nitrogen Cooler"
 		
 		"X4700 Ion Thruster"
@@ -1026,7 +1035,7 @@ ship "Cruiser"
 	gun 41 -52 "Particle Cannon"
 	gun -20 -44 "Sidewinder Missile Launcher"
 	gun 20 -44 "Sidewinder Missile Launcher"
-	turret 0 -40 "Heavy Laser Turret"
+	turret 0 -40 "Heavy Anti-Missile Turret"
 	turret -33 -19 "Heavy Laser Turret"
 	turret 33 -19 "Heavy Laser Turret"
 	turret 0 0 "Heavy Anti-Missile Turret"
@@ -1069,10 +1078,14 @@ ship "Dagger"
 			"hull damage" 60
 			"hit force" 180
 	outfits
-		"Beam Laser" 2
+		"Beam Laser"
+		"Javelin Pod"
+		"Javelin" 200
 		
-		"nGVF-BB Fuel Cell"
+		"nGVF-AA Fuel Cell"
+		"Supercapacitor"
 		"D14-RN Shield Generator"
+		"Small Radar Jammer"
 		
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
@@ -1080,7 +1093,7 @@ ship "Dagger"
 	engine -15 30
 	engine 15 30
 	gun -14 -10 "Beam Laser"
-	gun 14 -10 "Beam Laser"
+	gun 14 -10 "Javelin Pod"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1112,9 +1125,10 @@ ship "Dreadnought"
 			"hull damage" 1300
 			"hit force" 3900
 	outfits
-		"Meteor Missile Launcher" 4
-		"Meteor Missile" 140
-		"Plasma Turret" 5
+		"Torpedo Launcher" 4
+		"Torpedo" 120
+		"Plasma Turret" 3
+		"Heavy Anti-Missile Turret" 2
 		
 		"Breeder Reactor"
 		"S3 Thermionic"
@@ -1129,13 +1143,13 @@ ship "Dreadnought"
 		
 	engine -25 172
 	engine 25 172
-	gun -10 -167 "Meteor Missile Launcher"
-	gun 10 -167 "Meteor Missile Launcher"
-	gun -20 -151 "Meteor Missile Launcher"
-	gun 20 -151 "Meteor Missile Launcher"
+	gun -10 -167 "Torpedo Launcher"
+	gun 10 -167 "Torpedo Launcher"
+	gun -20 -151 "Torpedo Launcher"
+	gun 20 -151 "Torpedo Launcher"
 	turret 0 -94 "Plasma Turret"
-	turret -38 -56 "Plasma Turret"
-	turret 38 -56 "Plasma Turret"
+	turret -38 -56 "Heavy Anti-Missile Turret"
+	turret 38 -56 "Heavy Anti-Missile Turret"
 	turret -44 118 "Plasma Turret"
 	turret 44 118 "Plasma Turret"
 	leak "leak" 40 50
@@ -1178,7 +1192,8 @@ ship "Falcon"
 		"Plasma Cannon" 2
 		"Torpedo Launcher" 2
 		"Torpedo" 60
-		"Quad Blaster Turret" 4
+		"Quad Blaster Turret" 3
+		"Heavy Anti-Missile Turret"
 		
 		"Breeder Reactor"
 		"LP144a Battery Pack"
@@ -1196,7 +1211,7 @@ ship "Falcon"
 	gun 17 -88 "Plasma Cannon"
 	gun -17 -88 "Torpedo Launcher"
 	gun 17 -88 "Torpedo Launcher"
-	turret -16 -24 "Quad Blaster Turret"
+	turret -16 -24 "Heavy Anti-Missile Turret"
 	turret 16 -24 "Quad Blaster Turret"
 	turret -57 40 "Quad Blaster Turret"
 	turret 57 40 "Quad Blaster Turret"
@@ -1235,7 +1250,9 @@ ship "Finch"
 			"hull damage" 60
 			"hit force" 180
 	outfits
-		"Beam Laser" 2
+		"Beam Laser"
+		"Javelin Pod"
+		"Javelin" 200
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -1247,7 +1264,7 @@ ship "Finch"
 	engine -5 32
 	engine 5 32
 	gun -7 -14 "Beam Laser"
-	gun 7 -14 "Beam Laser"
+	gun 7 -14 "Javelin Pod"
 	leak "flame" 60 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1279,8 +1296,11 @@ ship "Firebird"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Heavy Laser" 4
-		"Heavy Laser Turret" 2
+		"Particle Cannon" 2
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Quad Blaster Turret"
+		"Anti-Missile Turret"
 		
 		"RT-I Radiothermal"
 		"nGVF-AA Fuel Cell"
@@ -1293,12 +1313,12 @@ ship "Firebird"
 		
 	engine -33 65
 	engine 33 65
-	gun -28 -27 "Heavy Laser"
-	gun 28 -27 "Heavy Laser"
-	gun -39 -13 "Heavy Laser"
-	gun 39 -13 "Heavy Laser"
-	turret -5 3 "Heavy Laser Turret"
-	turret 5 3 "Heavy Laser Turret"
+	gun -28 -27 "Particle Cannon"
+	gun 28 -27 "Particle Cannon"
+	gun -39 -13 "Meteor Missile Launcher"
+	gun 39 -13 "Meteor Missile Launcher"
+	turret -5 3 "Anti-Missile Turret"
+	turret 5 3 "Quad Blaster Turret"
 	leak "leak" 50 50
 	leak "flame" 30 80
 	explode "tiny explosion" 18
@@ -1436,11 +1456,13 @@ ship "Frigate"
 		"Particle Cannon" 2
 		"Torpedo Launcher" 2
 		"Torpedo" 60
-		"Blaster Turret" 3
+		"Blaster Turret" 2
+		"Anti-Missile Turret"
 		
 		"NT-200 Nucleovoltaic"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
+		"Large Radar Jammer"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -1452,7 +1474,7 @@ ship "Frigate"
 	gun 10 -83 "Particle Cannon"
 	gun -10 -83 "Torpedo Launcher"
 	gun 10 -83 "Torpedo Launcher"
-	turret 0 -37 "Blaster Turret"
+	turret 0 -37 "Anti-Missile Turret"
 	turret -12 -12 "Blaster Turret"
 	turret 12 -12 "Blaster Turret"
 	leak "leak" 40 50
@@ -1492,11 +1514,14 @@ ship "Fury"
 			"hull damage" 120
 			"hit force" 360
 	outfits
-		"Energy Blaster" 4
+		"Energy Blaster" 2
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
 		
-		"nGVF-CC Fuel Cell"
+		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Small Radar Jammer" 2
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -1504,10 +1529,10 @@ ship "Fury"
 		
 	engine -17 35
 	engine 17 35
-	gun -10 -26
-	gun 10 -26
-	gun -16 -20
-	gun 16 -20
+	gun -10 -26 "Energy Blaster"
+	gun 10 -26 "Energy Blaster"
+	gun -16 -20 "Meteor Missile Launcher"
+	gun 16 -20 "Meteor Missile Launcher"
 	leak "flame" 50 80
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -1547,6 +1572,7 @@ ship "Gunboat"
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
 		"D14-RN Shield Generator"
+		"Small Radar Jammer"
 		"Cargo Scanner"
 		"Outfit Scanner"
 		
@@ -1757,9 +1783,9 @@ ship "Hawk"
 		"drag" 2.1
 		"heat dissipation" .8
 		"fuel capacity" 300
-		"cargo space" 30
+		"cargo space" 20
 		"outfit space" 200
-		"weapon capacity" 40
+		"weapon capacity" 50
 		"engine capacity" 70
 		weapon
 			"blast radius" 30
@@ -1767,11 +1793,14 @@ ship "Hawk"
 			"hull damage" 150
 			"hit force" 450
 	outfits
-		"Heavy Laser" 2
+		"Heavy Laser"
+		"Heavy Rocket Launcher"
+		"Heavy Rocket" 20
 		
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D23-QP Shield Generator"
+		"Small Radar Jammer"
 		
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
@@ -1779,13 +1808,13 @@ ship "Hawk"
 		
 	engine -24 41
 	engine 24 41
-	gun -9 -17
-	gun 9 -17
+	gun -9 -17 "Heavy Laser"
+	gun 9 -17 "Heavy Rocket Launcher"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	"final explode" "final explosion small"
-	description "The Tarazed Hawk is an interceptor-class warship often used as an escort for freighters or in a planetary militia's patrol squadron. Hawks are fast enough to chase down most smaller ships, while also being much more heavily armed and armored. They are also, of course, a favorite ship of pirate captains who have earned enough money to afford one."
+	description "The Tarazed Hawk is an interceptor-class warship often used as an escort for freighters or in a planetary militia's patrol squadron. Hawks are fast enough to chase down most smaller ships, but are capable of mounting much more powerful weapons. They are also, of course, a favorite ship of pirate captains who have earned enough money to afford one."
 
 
 
@@ -1904,19 +1933,22 @@ ship "Lance"
 			"hull damage" 60
 			"hit force" 180
 	outfits
-		"Beam Laser" 2
+		"Energy Blaster"
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 50
 		
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Small Radar Jammer" 2
 		
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		
 	engine -15 30
 	engine 15 30
-	gun -14 -10 "Beam Laser"
-	gun 14 -10 "Beam Laser"
+	gun -14 -10 "Energy Blaster"
+	gun 14 -10 "Sidewinder Missile Launcher"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Lance is the primary fighter used by the Republic Navy. As with all fighters, it is weak by itself but very effective as part of a larger squadron."
@@ -1948,7 +1980,8 @@ ship "Leviathan"
 			"hit force" 1200
 	outfits
 		"Particle Cannon" 4
-		"Quad Blaster Turret" 4
+		"Quad Blaster Turret" 3
+		"Anti-Missile Turret"
 		
 		"Fusion Reactor"
 		"LP144a Battery Pack"
@@ -1967,7 +2000,7 @@ ship "Leviathan"
 	gun 51 -21 "Particle Cannon"
 	turret -15 -50 "Quad Blaster Turret"
 	turret 15 -50 "Quad Blaster Turret"
-	turret -25 10 "Quad Blaster Turret"
+	turret -25 10 "Anti-Missile Turret"
 	turret 25 10 "Quad Blaster Turret"
 	leak "leak" 50 50
 	leak "flame" 30 80
@@ -2060,8 +2093,11 @@ ship "Modified Argosy"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Heavy Laser" 4
-		"Heavy Laser Turret" 2
+		"Heavy Laser" 2
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Heavy Laser Turret"
+		"Heavy Anti-Missile Turret"
 		
 		"NT-200 Nucleovoltaic"
 		"LP072a Battery Pack"
@@ -2076,10 +2112,10 @@ ship "Modified Argosy"
 	engine 20 91
 	gun -22 -37 "Heavy Laser"
 	gun 22 -37 "Heavy Laser"
-	gun -23 -37 "Heavy Laser"
-	gun 23 -37 "Heavy Laser"
+	gun -23 -37 "Meteor Missile Launcher"
+	gun 23 -37 "Meteor Missile Launcher"
 	turret 0 -12 "Heavy Laser Turret"
-	turret 0 8 "Heavy Laser Turret"
+	turret 0 8 "Heavy Anti-Missile Turret"
 	leak "leak" 70 50
 	leak "flame" 30 80
 	explode "tiny explosion" 10
@@ -2235,12 +2271,13 @@ ship "Osprey"
 			"hit force" 1200
 	outfits
 		"Plasma Cannon" 4
-		"Quad Blaster Turret" 2
+		"Quad Blaster Turret"
+		"Heavy Anti-Missile Turret"
 		
 		"Breeder Reactor"
-		"LP072a Battery Pack"
+		"LP036a Battery Pack"
 		"D41-HY Shield Generator"
-		"Small Radar Jammer" 2
+		"Large Radar Jammer"
 		"Liquid Helium Cooler"
 		
 		"Impala Plasma Thruster"
@@ -2254,7 +2291,7 @@ ship "Osprey"
 	gun -26 -53 "Plasma Cannon"
 	gun 26 -53 "Plasma Cannon"
 	turret -16 -16 "Quad Blaster Turret"
-	turret 16 -16 "Quad Blaster Turret"
+	turret 16 -16 "Heavy Anti-Missile Turret"
 	leak "leak" 40 50
 	leak "flame" 80 80
 	leak "big leak" 80 30
@@ -2291,9 +2328,10 @@ ship "Protector"
 			"hull damage" 800
 			"hit force" 2400
 	outfits
-		"Torpedo Launcher" 2
-		"Torpedo" 60
-		"Quad Blaster Turret" 6
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Quad Blaster Turret" 4
+		"Heavy Anti-Missile Turret" 2
 		
 		"Fusion Reactor"
 		"LP288a Battery Pack"
@@ -2307,12 +2345,12 @@ ship "Protector"
 		
 	engine -11 125
 	engine 11 125
-	gun -15 -100 "Torpedo Launcher"
-	gun 15 -100 "Torpedo Launcher"
+	gun -15 -100 "Sidewinder Missile Launcher"
+	gun 15 -100 "Sidewinder Missile Launcher"
 	turret -54 -54 "Quad Blaster Turret"
 	turret 54 -54 "Quad Blaster Turret"
-	turret -73 0 "Quad Blaster Turret"
-	turret 73 0 "Quad Blaster Turret"
+	turret -73 0 "Heavy Anti-Missile Turret"
+	turret 73 0 "Heavy Anti-Missile Turret"
 	turret -54 54 "Quad Blaster Turret"
 	turret 54 54 "Quad Blaster Turret"
 	leak "leak" 60 50
@@ -2406,6 +2444,7 @@ ship "Rainmaker"
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Large Radar Jammer"
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -2452,7 +2491,9 @@ ship "Raven"
 			"hull damage" 300
 			"hit force" 900
 	outfits
-		"Heavy Laser" 4
+		"Heavy Laser" 2
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
 		
 		"RT-I Radiothermal"
 		"LP072a Battery Pack"
@@ -2466,8 +2507,8 @@ ship "Raven"
 	engine 12 43
 	gun -10 -33 "Heavy Laser"
 	gun 10 -33 "Heavy Laser"
-	gun -16 -28 "Heavy Laser"
-	gun 16 -28 "Heavy Laser"
+	gun -16 -28 "Sidewinder Missile Launcher"
+	gun 16 -28 "Sidewinder Missile Launcher"
 	leak "leak" 60 50
 	leak "flame" 50 80
 	explode "medium explosion" 24
@@ -2729,7 +2770,9 @@ ship "Sparrow"
 			"hull damage" 80
 			"hit force" 240
 	outfits
-		"Beam Laser" 2
+		"Beam Laser"
+		"Meteor Missile Launcher"
+		"Meteor Missile" 35
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -2741,8 +2784,8 @@ ship "Sparrow"
 		
 	engine -5 35
 	engine 5 35
-	gun -7 -10
-	gun 7 -10
+	gun -7 -10 "Beam Laser"
+	gun 7 -10 "Meteor Missile Launcher"
 	leak "flame" 60 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -2776,7 +2819,8 @@ ship "Splinter"
 			"hit force" 900
 	outfits
 		"Proton Gun" 2
-		"Blaster Turret" 3
+		"Blaster Turret" 2
+		"Anti-Missile Turret"
 		
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
@@ -2793,7 +2837,7 @@ ship "Splinter"
 	gun -15 -80 "Proton Gun"
 	gun 15 -80 "Proton Gun"
 	turret -17 -28 "Blaster Turret"
-	turret 0 -28 "Blaster Turret"
+	turret 0 -28 "Anti-Missile Turret"
 	turret 17 -28 "Blaster Turret"
 	leak "leak" 60 50
 	leak "flame" 40 80
@@ -3022,12 +3066,13 @@ ship "Wasp"
 			"hit force" 300
 	outfits
 		"Energy Blaster" 2
-		"Javelin Pod"
-		"Javelin" 200
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 50
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Small Radar Jammer"
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -3035,7 +3080,7 @@ ship "Wasp"
 		
 	engine -6 33
 	engine 6 33
-	gun 0 -38 "Javelin Pod"
+	gun 0 -38 "Sidewinder Missile Launcher"
 	gun -13 -31 "Energy Blaster"
 	gun 13 -31 "Energy Blaster"
 	leak "leak" 60 50
