@@ -516,6 +516,8 @@ mission "FW Stack Core 1B"
 				accept
 	
 	npc accompany save
+		government "Free Worlds"
+		personality escort disables
 		fleet
 			names "civilian"
 			cargo 3

@@ -1401,12 +1401,12 @@ mission "Southern Pirate Attack"
 		fleet "Small Militia" 2
 	on offer
 		conversation
-			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by pirates! We need every combat-worthy ship to join in the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
+			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by pirates! We need every combat-worthy ship to join the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
 			choice
-				"	(Stay here until the fight is over.)"
+				`	(Stay here until the fight is over.)`
 					decline
-				"	(Join the defense fleet.)"
-			"A few militia pilots have gathered to help repel the pirate attack. You join them, and take off together..."
+				`	(Join the defense fleet.)`
+			`A few militia pilots have gathered to help repel the pirate attack. You join them, and take off together...`
 				launch
 	on complete
 		payment 150000
@@ -1434,12 +1434,12 @@ mission "Northern Pirate Attack"
 		fleet "Small Republic" 2
 	on offer
 		conversation
-			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by pirates! We need every combat-worthy ship to join in the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
+			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by pirates! We need every combat-worthy ship to join the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
 			choice
-				"	(Stay here until the fight is over.)"
+				`	(Stay here until the fight is over.)`
 					decline
-				"	(Join the defense fleet.)"
-			"The local Navy garrison is preparing to repel the pirate attack. You join them, and take off together..."
+				`	(Join the defense fleet.)`
+			`The local Navy garrison is preparing to repel the pirate attack. You join them, and take off together...`
 				launch
 	on complete
 		payment 250000
@@ -1467,16 +1467,86 @@ mission "Core Pirate Attack"
 		fleet "Small Syndicate" 2
 	on offer
 		conversation
-			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by pirates! We need every combat-worthy ship to join in the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
+			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by pirates! We need every combat-worthy ship to join the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
 			choice
-				"	(Stay here until the fight is over.)"
+				`	(Stay here until the fight is over.)`
 					decline
-				"	(Join the defense fleet.)"
-			"The local Syndicate defense forces are preparing to repel the pirate attack. You join them, and take off together..."
+				`	(Join the defense fleet.)`
+			`The local Syndicate defense forces are preparing to repel the pirate attack. You join them, and take off together...`
 				launch
 	on complete
 		payment 200000
 		dialog "The government of <planet> pays you <payment> for helping to drive off the pirates."
+		
+mission "Raider Attack 1"
+	name "Defend <planet>"
+	description "Defeat an alien raid on <destination>."
+	minor
+	repeat
+	to offer
+		"combat rating" > 550
+		random < 7
+		has "main plot completed"
+	source
+		planet "Sundive"
+		planet "Shangri-La"
+		planet "Nimbus"
+	npc evade
+		government "Korath"
+		personality target timid unconstrained uninterested harvests plunders
+		fleet "Korath Raid" 2
+	npc
+		government "Syndicate"
+		personality heroic staying vindictive
+		fleet "Large Syndicate"
+		fleet "Small Syndicate"
+	on offer
+		conversation
+			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by alien raiders! We need every combat-worthy ship to join the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
+			choice
+				`	(Stay here until the fight is over.)`
+					decline
+				`	(Join the defense fleet.)`
+			`The local Syndicate defense forces are preparing to repel the alien attack. You join them, and take off together...`
+				launch
+	on complete
+		payment 550000
+		dialog `The government of <planet> pays you <payment> for helping to drive off the raiders.`
+		
+mission "Raider Attack 2"
+	name "Defend <planet>"
+	description "Defeat an alien raid on <destination>."
+	minor
+	repeat
+	to offer
+		"combat rating" > 750
+		random < 5
+		has "main plot completed"
+	source
+		planet "Sundive"
+		planet "Shangri-La"
+		planet "Nimbus"
+	npc evade
+		government "Korath"
+		personality target timid unconstrained uninterested harvests plunders
+		fleet "Korath Raid" 3
+		
+	npc
+		government "Syndicate"
+		personality heroic staying vindictive
+		fleet "Large Syndicate" 2
+	on offer
+		conversation
+			`Suddenly you hear raised voices and shouting outside: "We are under attack! <planet> is under attack by alien raiders! We need every combat-worthy ship to join the defenses!" The authorities will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
+			choice
+				`	(Stay here until the fight is over.)`
+					decline
+				`	(Join the defense fleet.)`
+			`The local Syndicate defense forces are preparing to repel the alien attack. You join them, and take off together...`
+				launch
+	on complete
+		payment 750000
+		dialog `The government of <planet> pays you <payment> for helping to drive off the raiders.`
 
 mission "Cargo [0]"
 	name "Delivery to <planet>"
@@ -2552,3 +2622,4 @@ mission "Marauder Hunted"
 		system
 			distance 5 5
 		fleet "Marauder fleet X"
+	

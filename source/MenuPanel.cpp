@@ -28,12 +28,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "PointerShader.h"
 #include "PreferencesPanel.h"
+#include "Ship.h"
 #include "ShipyardPanel.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
 #include "StarField.h"
 #include "System.h"
 #include "UI.h"
+
+#include "gl_header.h"
 
 using namespace std;
 
@@ -101,7 +104,7 @@ void MenuPanel::Draw()
 			info.SetString("system", player.GetSystem()->Name());
 		if(player.GetPlanet())
 			info.SetString("planet", player.GetPlanet()->Name());
-		info.SetString("credits", Format::Number(player.Accounts().Credits()));
+		info.SetString("credits", Format::Credits(player.Accounts().Credits()));
 		info.SetString("date", player.GetDate().ToString());
 	}
 	else if(player.IsLoaded())

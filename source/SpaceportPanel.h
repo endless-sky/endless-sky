@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "Information.h"
 #include "WrappedText.h"
 
 class PlayerInfo;
@@ -28,6 +29,8 @@ class SpaceportPanel : public Panel {
 public:
 	explicit SpaceportPanel(PlayerInfo &player);
 	
+	void UpdateNews();
+	
 	virtual void Step() override;
 	virtual void Draw() override;
 	
@@ -35,6 +38,11 @@ public:
 private:
 	PlayerInfo &player;
 	WrappedText text;
+	
+	// Current news item (if any):
+	bool hasNews = false;
+	Information newsInfo;
+	WrappedText newsMessage;
 };
 
 

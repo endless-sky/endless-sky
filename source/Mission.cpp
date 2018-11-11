@@ -65,6 +65,14 @@ namespace {
 
 
 
+// Construct and Load() at the same time.
+Mission::Mission(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 // Load a mission, either from the game data or from a saved game.
 void Mission::Load(const DataNode &node)
 {
@@ -183,10 +191,7 @@ void Mission::Load(const DataNode &node)
 			set.insert(GameData::Systems().Get(child.Token(1)));
 		}
 		else if(child.Token(0) == "waypoint" && child.HasChildren())
-		{
-			waypointFilters.emplace_back();
-			waypointFilters.back().Load(child);
-		}
+			waypointFilters.emplace_back(child);
 		else if(child.Token(0) == "stopover" && child.Size() >= 2)
 		{
 			set<const Planet *> &set = (child.Size() >= 3 && child.Token(2) == "visited")
@@ -194,22 +199,20 @@ void Mission::Load(const DataNode &node)
 			set.insert(GameData::Planets().Get(child.Token(1)));
 		}
 		else if(child.Token(0) == "stopover" && child.HasChildren())
-		{
-			stopoverFilters.emplace_back();
-			stopoverFilters.back().Load(child);
-		}
+			stopoverFilters.emplace_back(child);
 		else if(child.Token(0) == "npc")
-		{
-			npcs.push_back(NPC());
-			npcs.back().Load(child);
-		}
+			npcs.emplace_back(child);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{
-			const System *system = nullptr;
+			// "on enter" nodes may either name a specific system or use a LocationFilter
+			// to control the triggering system.
 			if(child.Size() >= 3)
-				system = GameData::Systems().Get(child.Token(2));
-			MissionAction &action = onEnter[system];
-			action.Load(child, name);
+			{
+				MissionAction &action = onEnter[GameData::Systems().Get(child.Token(2))];
+				action.Load(child, name);
+			}
+			else
+				genericOnEnter.emplace_back(child, name);
 		}
 		else if(child.Token(0) == "on" && child.Size() >= 2)
 		{
@@ -335,9 +338,13 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		// has not been received yet but must still be included in the saved game.
 		for(const auto &it : actions)
 			it.second.Save(out);
+		// Save any "on enter" actions that have not been performed.
 		for(const auto &it : onEnter)
-			if(!didEnter.count(it.first))
+			if(!didEnter.count(&it.second))
 				it.second.Save(out);
+		for(const MissionAction &action : genericOnEnter)
+			if(!didEnter.count(&action))
+				action.Save(out);
 	}
 	out.EndChild();
 }
@@ -402,16 +409,30 @@ const Planet *Mission::Destination() const
 
 
 
-set<const System *> Mission::Waypoints() const
+const set<const System *> &Mission::Waypoints() const
 {
 	return waypoints;
 }
 
 
 
-set<const Planet *> Mission::Stopovers() const
+const set<const System *> &Mission::VisitedWaypoints() const
+{
+	return visitedWaypoints;
+}
+
+
+
+const set<const Planet *> &Mission::Stopovers() const
 {
 	return stopovers;
+}
+
+
+
+const set<const Planet *> &Mission::VisitedStopovers() const
+{
+	return visitedStopovers;
 }
 
 
@@ -511,14 +532,14 @@ bool Mission::HasFullClearance() const
 
 
 // Check if it's possible to offer or complete this mission right now.
-bool Mission::CanOffer(const PlayerInfo &player) const
+bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
 {
 	if(location == BOARDING || location == ASSISTING)
 	{
-		if(!player.BoardingShip())
+		if(!boardingShip)
 			return false;
 		
-		if(!sourceFilter.Matches(*player.BoardingShip()))
+		if(!sourceFilter.Matches(*boardingShip))
 			return false;
 	}
 	else
@@ -697,7 +718,7 @@ bool Mission::IsUnique() const
 // When the state of this mission changes, it may make changes to the player
 // information or show new UI panels. PlayerInfo::MissionCallback() will be
 // used as the callback for any UI panel that returns a value.
-bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
+bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<Ship> &boardingShip)
 {
 	if(trigger == STOPOVER)
 	{
@@ -748,7 +769,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 	// if this is a non-job mission that just got offered and if so,
 	// automatically accept it.
 	if(it != actions.end())
-		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr);
+		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr, boardingShip);
 	else if(trigger == OFFER && location != JOB)
 		player.MissionCallback(Conversation::ACCEPT);
 	
@@ -808,15 +829,11 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	{
 		const System *system = event.Actor()->GetSystem();
 		// If this was a waypoint, clear it.
-		if(waypoints.count(system))
-		{
-			waypoints.erase(system);
+		if(waypoints.erase(system))
 			visitedWaypoints.insert(system);
-		}
 		
+		// Perform an "on enter" action for this system, if possible.
 		Enter(system, player, ui);
-		// Allow special "on enter" conditions that match any system.
-		Enter(nullptr, player, ui);
 	}
 	
 	for(NPC &npc : npcs)
@@ -837,7 +854,7 @@ const string &Mission::Identifier() const
 
 // "Instantiate" a mission by replacing randomly selected values and places
 // with a single choice, and then replacing any wildcard text as well.
-Mission Mission::Instantiate(const PlayerInfo &player) const
+Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
 {
 	Mission result;
 	// If anything goes wrong below, this mission should not be offered.
@@ -851,19 +868,17 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	result.name = name;
 	result.waypoints = waypoints;
 	// Handle waypoint systems that are chosen randomly.
+	const System * const source = player.GetSystem();
 	for(const LocationFilter &filter : waypointFilters)
 	{
-		const System *system = PickSystem(filter, player);
+		const System *system = filter.PickSystem(source);
 		if(!system)
 			return result;
 		result.waypoints.insert(system);
 	}
 	// If one of the waypoints is the current system, it is already visited.
-	if(result.waypoints.count(player.GetSystem()))
-	{
-		result.waypoints.erase(player.GetSystem());
-		result.visitedWaypoints.insert(player.GetSystem());
-	}
+	if(result.waypoints.erase(source))
+		result.visitedWaypoints.insert(source);
 	
 	// Copy the stopover planet list, and populate the list based on the filters
 	// that were given.
@@ -878,7 +893,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	}
 	for(const LocationFilter &filter : stopoverFilters)
 	{
-		const Planet *planet = PickPlanet(filter, player);
+		const Planet *planet = filter.PickPlanet(source, !clearance.empty());
 		if(!planet)
 			return result;
 		result.stopovers.insert(planet);
@@ -891,7 +906,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	result.destination = destination;
 	if(!result.destination && !destinationFilter.IsEmpty())
 	{
-		result.destination = PickPlanet(destinationFilter, player);
+		result.destination = destinationFilter.PickPlanet(source, !clearance.empty());
 		if(!result.destination)
 			return result;
 	}
@@ -911,7 +926,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	{
 		const Trade::Commodity *commodity = nullptr;
 		if(cargo == "random")
-			commodity = PickCommodity(*player.GetSystem(), *result.destination->GetSystem());
+			commodity = PickCommodity(*source, *result.destination->GetSystem());
 		else
 		{
 			for(const Trade::Commodity &option : GameData::Commodities())
@@ -959,7 +974,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	// Estimate how far the player will have to travel to visit all the waypoints
 	// and stopovers and then to land on the destination planet. Rather than a
 	// full traveling salesman path, just calculate a greedy approximation.
-	const System *source = player.GetSystem();
+	const System *path = source;
 	list<const System *> destinations;
 	for(const System *system : result.waypoints)
 		destinations.push_back(system);
@@ -970,18 +985,18 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	while(!destinations.empty())
 	{
 		// Find the closest destination to this location.
-		DistanceMap distance(source);
+		DistanceMap distance(path);
 		auto it = destinations.begin();
 		auto bestIt = it;
 		for(++it; it != destinations.end(); ++it)
 			if(distance.Days(*it) < distance.Days(*bestIt))
 				bestIt = it;
 		
-		source = *bestIt;
+		path = *bestIt;
 		jumps += distance.Days(*bestIt);
 		destinations.erase(bestIt);
 	}
-	DistanceMap distance(source);
+	DistanceMap distance(path);
 	jumps += distance.Days(result.destination->GetSystem());
 	int payload = result.cargoSize + 10 * result.passengers;
 	
@@ -1005,8 +1020,8 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	subs["<fare>"] = (result.passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
 	if(player.GetPlanet())
 		subs["<origin>"] = player.GetPlanet()->Name();
-	else if(player.BoardingShip())
-		subs["<origin>"] = player.BoardingShip()->Name();
+	else if(boardingShip)
+		subs["<origin>"] = boardingShip->Name();
 	subs["<planet>"] = result.destination ? result.destination->Name() : "";
 	subs["<system>"] = result.destination ? result.destination->GetSystem()->Name() : "";
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
@@ -1045,14 +1060,16 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(subs, player.GetSystem(), result.destination->GetSystem()));
+		result.npcs.push_back(npc.Instantiate(subs, source, result.destination->GetSystem()));
 	
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
 	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(subs, jumps, payload);
+		result.actions[it.first] = it.second.Instantiate(subs, source, jumps, payload);
 	for(const auto &it : onEnter)
-		result.onEnter[it.first] = it.second.Instantiate(subs, jumps, payload);
+		result.onEnter[it.first] = it.second.Instantiate(subs, source, jumps, payload);
+	for(const MissionAction &action : genericOnEnter)
+		result.genericOnEnter.emplace_back(action.Instantiate(subs, source, jumps, payload));
 	
 	// Perform substitution in the name and description.
 	result.displayName = Format::Replace(displayName, subs);
@@ -1068,50 +1085,25 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 
 
 
+// Perform an "on enter" MissionAction associated with the current system.
 void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 {
-	auto eit = onEnter.find(system);
-	if(eit != onEnter.end() && !didEnter.count(eit->first))
+	const auto &eit = onEnter.find(system);
+	if(eit != onEnter.end() && !didEnter.count(&eit->second) && eit->second.CanBeDone(player))
 	{
 		eit->second.Do(player, ui);
-		didEnter.insert(eit->first);
+		didEnter.insert(&eit->second);
 	}
-}
-
-
-
-const System *Mission::PickSystem(const LocationFilter &filter, const PlayerInfo &player) const
-{
-	// Find a planet that satisfies the filter.
-	vector<const System *> options;
-	for(const auto &it : GameData::Systems())
-	{
-		// Skip entries with incomplete data.
-		if(it.second.Name().empty())
-			continue;
-		if(filter.Matches(&it.second, player.GetSystem()))
-			options.push_back(&it.second);
-	}
-	return options.empty() ? nullptr : options[Random::Int(options.size())];
-}
-
-
-
-const Planet *Mission::PickPlanet(const LocationFilter &filter, const PlayerInfo &player) const
-{
-	// Find a planet that satisfies the filter.
-	vector<const Planet *> options;
-	for(const auto &it : GameData::Planets())
-	{
-		// Skip entries with incomplete data.
-		if(it.second.Name().empty() || (clearance.empty() && !it.second.CanLand()))
-			continue;
-		if(it.second.IsWormhole() || !it.second.HasSpaceport() || !it.second.GetSystem())
-			continue;
-		if(filter.Matches(&it.second, player.GetSystem()))
-			options.push_back(&it.second);
-	}
-	return options.empty() ? nullptr : options[Random::Int(options.size())];
+	// If no specific `on enter` was performed, try matching to a generic "on enter,"
+	// which may use a LocationFilter to govern which systems it can be performed in.
+	else
+		for(MissionAction &action : genericOnEnter)
+			if(!didEnter.count(&action) && action.CanBeDone(player))
+			{
+				action.Do(player, ui);
+				didEnter.insert(&action);
+				break;
+			}
 }
 
 
