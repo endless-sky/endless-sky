@@ -234,7 +234,7 @@ ship "Unknown Ship Type"
 			"hull damage" 1300
 			"hit force" 3900
 	outfits
-		"Particle Cannon" 6
+		"Heavy Laser" 12
 		"Heavy Laser Turret" 4
 		
 		"Fusion Reactor"
@@ -247,12 +247,18 @@ ship "Unknown Ship Type"
 		"Hyperdrive"
 	engine -14 177
 	engine 14 177
-	gun -31 66 "Particle Cannon"
-	gun 31 66 "Particle Cannon"
-	gun -53 61 "Particle Cannon"
-	gun 53 61 "Particle Cannon"
-	gun -75 57 "Particle Cannon"
-	gun 75 57 "Particle Cannon"
+	gun -31 66 "Heavy Laser"
+	gun 31 66 "Heavy Laser"
+	gun -42 63 "Heavy Laser"
+	gun 42 63 "Heavy Laser"
+	gun -53 61 "Heavy Laser"
+	gun 53 61 "Heavy Laser"
+	gun -64 59 "Heavy Laser"
+	gun 64 59 "Heavy Laser"
+	gun -75 57 "Heavy Laser"
+	gun 75 57 "Heavy Laser"
+	gun -86 55 "Heavy Laser"
+	gun 86 55 "Heavy Laser"
 	turret -7 -4 "Heavy Laser Turret"
 	turret 7 -4 "Heavy Laser Turret"
 	turret -23 14 "Heavy Laser Turret"
@@ -288,7 +294,7 @@ ship "Kestrel"
 			"hull damage" 1300
 			"hit force" 3900
 	outfits
-		"Particle Cannon" 6
+		"Heavy Laser" 12
 		"Heavy Laser Turret" 4
 		
 		"Fusion Reactor"
@@ -301,12 +307,18 @@ ship "Kestrel"
 		"Hyperdrive"
 	engine -14 177
 	engine 14 177
-	gun -31 66 "Particle Cannon"
-	gun 31 66 "Particle Cannon"
-	gun -53 61 "Particle Cannon"
-	gun 53 61 "Particle Cannon"
-	gun -75 57 "Particle Cannon"
-	gun 75 57 "Particle Cannon"
+	gun -31 66 "Heavy Laser"
+	gun 31 66 "Heavy Laser"
+	gun -42 63 "Heavy Laser"
+	gun 42 63 "Heavy Laser"
+	gun -53 61 "Heavy Laser"
+	gun 53 61 "Heavy Laser"
+	gun -64 59 "Heavy Laser"
+	gun 64 59 "Heavy Laser"
+	gun -75 57 "Heavy Laser"
+	gun 75 57 "Heavy Laser"
+	gun -86 55 "Heavy Laser"
+	gun 86 55 "Heavy Laser"
 	turret -7 -4 "Heavy Laser Turret"
 	turret 7 -4 "Heavy Laser Turret"
 	turret -23 14 "Heavy Laser Turret"
