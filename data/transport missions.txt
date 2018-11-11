@@ -2893,3 +2893,59 @@ mission "Pirate Blockade"
 		conversation
 			`Just as was promised, a man approaches you in the spaceport and tells you that he is part of the same group as the woman. Interestingly, the man has a similar scar as the woman on his left cheek. "I'll make sure these people find a safe home somewhere far away from here," he says to you. After greeting each of your former passengers, he thanks you and pays you <payment>.`
 			`	You and the man, who does not give his name to you in order to "keep us both safe," wait for the woman to arrive in her own ship. Hours pass, but there is no sign of her. The man tries to contact her, but he is unable to reach her. "You can leave now," the man says to you. "I don't think she'll be coming."`
+
+
+
+mission "Capture Smuggler"
+	name "Capture rogue smuggler"
+	minor
+	description `A smuggler absconded with his illegal cargo near <system>. The unknown person he stole it from wants it back. Recover the cargo from the <npc> and return both it and the smuggler to <origin> for <payment>.`
+	to offer
+		random < 15
+		"combat rating" > 2000
+		"reputation: Pirate" > 10
+	passengers 1
+	source
+		government "Pirate"
+	on offer
+		conversation
+			`As you step into a dive bar for a quick drink, the largest man you've ever seen stands up and blocks your path. He's well over two meters tall, and his muscles seem to ripple with barely restrained violence when he moves. "<first> <last>," he says in a thick accent. "My employer hears you do certain jobs, take money, do not ask questions. He hears you are reliable. A man, a smuggler, he steals cargo from my employer. My employer very much wants cargo returned, and this man as well."`
+			choice
+				`	"I'm sorry, sir, but I'm not taking new jobs today. Please give your employer my most gracious thanks for this kind offer."`
+				`	"Of course. I won't say a word."`
+					goto accept
+				`	"Get out of my way. I don't take jobs from any schlub who bothers me when I need a drink."`
+					goto mistake
+
+			`	The man looks down at you with no change in expression. "My employer, he will not be happy. I will tell him, '<first> <last> is not so reliable.' I hope next time, you are reliable." As the man speaks, you notice that his teeth are filed to vicious points. Every patron in the bar stares at you in shock as you sit down for a badly-needed drink.`
+				decline
+
+			label accept
+			`	The man looks down at you with no change in expression. "This is good. To be reliable, it is a great thing on <origin>." As the man speaks, you notice that his teeth are filed to vicious points. He holds out a round, flat object about the size of your palm. It has a recessed button in the center of one side. "This is gift for this smuggler. Press button, it becomes surprise. Make sure surprise is not on you." He hands you the object and a datachip containing details of the job. As the man leaves, you see every patron in the bar staring warily at his back.`
+				accept
+
+			label mistake
+			`	The man looks down at you with no change in expression. "This is great shame. I will tell my employer, '<first> <last> was not so reliable. I had to make example.'" The man grabs your neck with one monstrous hand. The last thing you see as your vision fades to black is a mouth full of pointed teeth.`
+				die
+	npc board
+		conversation
+			`The smuggler and his crew are ready and waiting when you board. You pull out the "gift" and press the button, then quickly toss it down the hallway. For a moment, you meet the smuggler's eyes. They widen with terror when he sees the "gift." You duck back into cover. A few seconds later, you hear a strangly muted detonation, followed by silence. After a minute, you hazard another peek out of cover. The smuggler and all his men are unconscious on the ground. One crewman has blood dripping from his nose and ears. You tie them all up and stow the smuggler in a locked cabin on your ship.`
+			`	Once they're secured, you sweep the ship. Ultimately you find the stolen cargo in the captain's cabin, hidden behind a false panel. The cargo is a nondescript storage container, but upon closer inspection you see that it's code-locked and covered with interference plating.`
+				launch
+		government "Merchant"
+		personality staying uninterested timid target marked
+		system
+			distance 2 3
+		fleet
+			names "civilian"
+			variant
+				"Modified Argosy (Smuggler)"
+	on fail
+		dialog `You have failed to capture the smuggler and recover the stolen cargo. This will probably not be good for your reputation.`
+		"reputation: Pirate" <?= -10
+	on visit
+		dialog `You land on <origin>, but you don't have the smuggler and the cargo he stole. You should probably be careful not to run into your contact until you do.`
+	on complete
+		payment 150000
+		conversation
+			`The huge man drags the unconscious smuggler out of the cargo container with one hand and carries the cargo box with the other. He stops in front of you. "<first> <last>," he says. "My employer, he will be very happy. Your payment, you will receive soon. Is it not good, to be reliable?" The man leaves your ship, letting the smuggler's legs scrape along the ground as he walks. A moment later, you receive <payment> from an anonymous account.`
