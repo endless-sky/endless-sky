@@ -12,15 +12,34 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "StellarObject.h"
 
+#include "Audio.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Planet.h"
 #include "Politics.h"
 #include "Radar.h"
+#include "Random.h"
+#include "Ship.h"
+#include "System.h"
+#include "Visual.h"
+#include "Weapon.h"
 
 #include <algorithm>
 
 using namespace std;
+
+
+namespace {
+
+
+	// Create all the effects in the given list, at the given location, velocity, and angle.
+	void CreateEffects(const map<const Effect *, int> &m, Point pos, Point vel, Angle angle, vector<Visual> &visuals)
+	{
+		for(const auto &it : m)
+			for(int i = 0; i < it.second; ++i)
+				visuals.emplace_back(*it.first, pos, vel, angle);
+	}
+}
 
 
 
@@ -144,4 +163,56 @@ int StellarObject::Parent() const
 double StellarObject::Distance() const
 {
 	return distance;
+}
+
+
+
+// Selects the nearest potential target and fires projectiles.
+void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *system, vector<Visual> &visuals, const list<std::shared_ptr<Ship>> &ships) const
+{
+	if(!launcher)
+		return;
+	if(!system->GetGovernment())
+		return;
+	if(Random::Real() > reload)
+		return;
+	
+
+	double maxRange = launcher->Range()*1.5;
+	shared_ptr<Ship> enemy = nullptr;
+	for(auto &target : ships) {
+		if(target->IsTargetable() && system->GetGovernment()->IsEnemy(target->GetGovernment())
+				&& !(target->IsHyperspacing() && target->Velocity().Length() > 10.)
+				&& target->Position().Distance(position) < maxRange
+				&& target->GetSystem() == system)
+		{
+			if(!enemy)
+				enemy = target;
+			else if(target->Position().Distance(position) < enemy->Position().Distance(position))
+				enemy = target;
+		}
+	}
+	if(!enemy)
+		return;
+
+	const Angle aim(enemy->Position()-position);
+	
+	//Each launch comes from a random point inside r/2 from the middle of the object.
+	//Assumes the biggest circle in the middle of the sprite is the planet/station.
+	Point randomPosition(position);
+	//Lasers and beams fire always from the middle of the station.
+	if(launcher->Reload() > 1)
+	{
+		double r = Random::Real()/4;
+		const Sprite *sprite = GetSprite();
+		r *= sprite->Width() > sprite->Height() ? sprite->Height() : sprite->Width();
+		randomPosition += Angle::Random().Unit()*r;
+	}
+
+
+	projectiles.emplace_back(system->GetGovernment(), enemy, randomPosition, aim, launcher);
+	CreateEffects(launcher->FireEffects(), randomPosition, Point(), aim, visuals);
+
+	if(launcher->WeaponSound())
+		Audio::Play(launcher->WeaponSound(), randomPosition);
 }

@@ -40,6 +40,8 @@ public:
 	Projectile(const Projectile &parent, const Weapon *weapon);
 	// Ship explosion.
 	Projectile(Point position, const Weapon *weapon);
+	//Projectiles launched from planets.
+	Projectile(const Government *gov, std::shared_ptr<Ship> &target, const Point &position, const Angle &angle, const Weapon *weapon);
 	
 	/* Functions provided by the Body base class:
 	Frame GetFrame(int step = -1) const;

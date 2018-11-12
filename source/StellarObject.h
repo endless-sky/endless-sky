@@ -15,8 +15,17 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Body.h"
 
+#include <memory>
+#include <list>
+#include <vector>
+
+class Government;
 class Planet;
+class Projectile;
 class Ship;
+class System;
+class Visual;
+class Weapon;
 
 
 
@@ -64,10 +73,16 @@ public:
 	int Parent() const;
 	// Find out how far this object is from its parent.
 	double Distance() const;
+	// Defends the system using its defense weapons.
+	void TryToFire(std::vector<Projectile> &projectiles, const System *system, std::vector<Visual> &visuals, const std::list<std::shared_ptr<Ship>> &ships) const;
 	
 	
 private:
 	const Planet *planet;
+	
+	const Weapon *launcher = nullptr;
+	
+	double reload = 1;
 	
 	double distance;
 	double speed;

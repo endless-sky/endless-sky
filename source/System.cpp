@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Minable.h"
+#include "Outfit.h"
 #include "Planet.h"
 #include "Random.h"
 #include "SpriteSet.h"
@@ -704,6 +705,16 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 			object.offset = child.Value(1);
 		else if(child.Token(0) == "object")
 			LoadObject(child, planets, index);
+		else if(child.Token(0) == "defense" && child.Size() >= 2)
+		{
+			//Stations don't need anti missile because they can't be attacked.
+			if(!GameData::Outfits().Get(child.Token(1))->AntiMissile())
+			{
+				object.launcher = GameData::Outfits().Get(child.Token(1));
+				if(child.Size() > 2)
+					object.reload = 1.0/atof(child.Token(2).c_str());
+			}
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}

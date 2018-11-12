@@ -98,6 +98,29 @@ Projectile::Projectile(Point position, const Weapon *weapon)
 
 
 
+//Projectiles launched from planets
+Projectile::Projectile(const Government *gov, shared_ptr<Ship> &target, const Point &position, const Angle &angle, const Weapon *weapon)
+	: Body(weapon->WeaponSprite(), position, Point(), angle),
+	weapon(weapon), targetShip(target), lifetime(weapon->Lifetime())
+{
+	government = gov;
+	
+	cachedTarget = targetShip.lock().get();
+	if(cachedTarget)
+		targetGovernment = cachedTarget->GetGovernment();
+	double inaccuracy = weapon->Inaccuracy();
+	if(inaccuracy)
+		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
+	
+	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+	
+	// If a random lifetime is specified, add a random amount up to that amount.
+	if(weapon->RandomLifetime())
+		lifetime += Random::Int(weapon->RandomLifetime() + 1);
+}
+
+
+
 // This returns false if it is time to delete this projectile.
 void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 {
