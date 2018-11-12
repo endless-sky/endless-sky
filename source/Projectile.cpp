@@ -34,29 +34,35 @@ namespace {
 }
 
 
-
-Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
-	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
-	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
+//contains statement needed in multiple constructors.
+void Projectile::Init(const Government *gov, const Weapon *weapon)
 {
-	government = parent.GetGovernment();
-	
-	// If you are boarding your target, do not fire on it.
-	if(parent.IsBoarding() || parent.Commands().Has(Command::BOARD))
-		targetShip.reset();
-	
+	government = gov;
 	cachedTarget = targetShip.lock().get();
 	if(cachedTarget)
 		targetGovernment = cachedTarget->GetGovernment();
-	double inaccuracy = weapon->Inaccuracy();
+		
+	const double inaccuracy = weapon->Inaccuracy();
 	if(inaccuracy)
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
-	
 	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
 	
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())
 		lifetime += Random::Int(weapon->RandomLifetime() + 1);
+}
+
+
+
+Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
+	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
+	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
+{
+	// If you are boarding your target, do not fire on it.
+	if(parent.IsBoarding() || parent.Commands().Has(Command::BOARD))
+		targetShip.reset();
+	
+	Init(parent.GetGovernment(), weapon);
 }
 
 
@@ -68,23 +74,14 @@ Projectile::Projectile(const Projectile &parent, const Weapon *weapon)
 	government = parent.government;
 	targetGovernment = parent.targetGovernment;
 	
-	cachedTarget = targetShip.lock().get();
-	double inaccuracy = weapon->Inaccuracy();
-	if(inaccuracy)
-	{
-		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
-		if(!parent.weapon->Acceleration())
-		{
-			// Move in this new direction at the same velocity.
-			double parentVelocity = parent.weapon->Velocity();
-			velocity += (this->angle.Unit() - parent.angle.Unit()) * parentVelocity;
-		}
-	}
-	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+	Init(parent.government, weapon);
 	
-	// If a random lifetime is specified, add a random amount up to that amount.
-	if(weapon->RandomLifetime())
-		lifetime += Random::Int(weapon->RandomLifetime() + 1);
+	if(weapon->Inaccuracy() && !parent.weapon->Acceleration())
+	{
+		// Move in this new direction at the same velocity.
+		double parentVelocity = parent.weapon->Velocity();
+		velocity += (this->angle.Unit() - parent.angle.Unit()) * parentVelocity;
+	}
 }
 
 
@@ -103,20 +100,7 @@ Projectile::Projectile(const Government *gov, shared_ptr<Ship> &target, const Po
 	: Body(weapon->WeaponSprite(), position, Point(), angle),
 	weapon(weapon), targetShip(target), lifetime(weapon->Lifetime())
 {
-	government = gov;
-	
-	cachedTarget = targetShip.lock().get();
-	if(cachedTarget)
-		targetGovernment = cachedTarget->GetGovernment();
-	double inaccuracy = weapon->Inaccuracy();
-	if(inaccuracy)
-		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
-	
-	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
-	
-	// If a random lifetime is specified, add a random amount up to that amount.
-	if(weapon->RandomLifetime())
-		lifetime += Random::Int(weapon->RandomLifetime() + 1);
+	Init(gov, weapon);
 }
 
 

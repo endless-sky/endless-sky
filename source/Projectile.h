@@ -77,6 +77,7 @@ public:
 	
 	
 private:
+	void Init(const Government *gov, const Weapon *weapon);
 	void CheckLock(const Ship &target);
 	
 	
