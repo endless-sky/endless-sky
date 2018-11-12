@@ -707,13 +707,11 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 			LoadObject(child, planets, index);
 		else if(child.Token(0) == "defense" && child.Size() >= 2)
 		{
-			//Stations don't need anti missile because they can't be attacked.
-			if(!GameData::Outfits().Get(child.Token(1))->AntiMissile())
-			{
-				object.launcher = GameData::Outfits().Get(child.Token(1));
-				if(child.Size() > 2)
-					object.reload = 1.0/atof(child.Token(2).c_str());
-			}
+			object.launcher = GameData::Outfits().Get(child.Token(1));
+			if(child.Size() > 2)
+				object.reload = atof(child.Token(2).c_str());
+			if(object.reload > 0)
+				object.reload = 1.0/object.reload;
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
