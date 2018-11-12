@@ -216,7 +216,7 @@ mission "Food Convoy [0]"
 		system destination
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 			confusion 20
 		system destination
