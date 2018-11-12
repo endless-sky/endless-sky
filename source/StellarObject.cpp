@@ -172,7 +172,8 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 {
 	if(!launcher)
 		return;
-	if(!system->GetGovernment())
+	const Government *gov = planet ? planet->GetGovernment() : system->GetGovernment();
+	if(!gov)
 		return;
 	if(Random::Real() > reload)
 		return;
@@ -181,7 +182,7 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 	double maxRange = launcher->Range()*1.5;
 	shared_ptr<Ship> enemy = nullptr;
 	for(auto &target : ships) {
-		if(target->IsTargetable() && system->GetGovernment()->IsEnemy(target->GetGovernment())
+		if(target->IsTargetable() && gov->IsEnemy(target->GetGovernment())
 				&& !(target->GetGovernment()->IsPlayer() && GameData::GetPolitics().CanLand(planet))
 				&& !(target->IsHyperspacing() && target->Velocity().Length() > 10.)
 				&& target->Position().Distance(position) < maxRange
@@ -211,7 +212,7 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 	}
 
 
-	projectiles.emplace_back(system->GetGovernment(), enemy, randomPosition, aim, launcher);
+	projectiles.emplace_back(gov, enemy, randomPosition, aim, launcher);
 	CreateEffects(launcher->FireEffects(), randomPosition, Point(), aim, visuals);
 
 	if(launcher->WeaponSound())
