@@ -17,7 +17,7 @@ mission "Merchant Start 1"
 		has "chosen sides"
 	on offer
 		conversation
-			`As you enter the bustling spaceport, a man wearing a dark blue suit walks up to you "Excuse me, would you mind ferrying these <cargo> to <destination>? Our original contact bailed out on us after they were attacked days ago while transporting the cargo."`
+			`As you enter the bustling spaceport, a man wearing a dark blue suit walks up to you. "Excuse me, would you mind ferrying these <cargo> to <destination>? Our original contact bailed out on us after they were attacked days ago while transporting the cargo."`
 			choice
 				`	"Of course."`
 					accept
@@ -51,7 +51,7 @@ mission "Merchant Start 2"
 	on complete
 		payment 40000
 		conversation
-			`The family thanks you profusely, grateful for meeting such a generous captain. You watch the family walk off and exchange greetings with another man in a blue suit, the man walks up to you and say, "Meet me in the spaceport, don't dally."`
+			`The family thanks you profusely, grateful for meeting such a generous captain. You watch the family walk off and exchange greetings with another man in a blue suit, the man walks up to you and says, "Meet me in the spaceport, don't dally."`
 
 mission "Merchant Start 3"
 	name "Special transport"
@@ -119,17 +119,17 @@ mission "Merchant Start 4"
 			`	He smiles, "Politeness can bring you places. There aren't many of your type in this galaxy."`
 				goto mission
 			label point
-			`	"He smiles, Straight to the point are we?"
+			`	He smiles, "Straight to the point are we?"
 			label mission
-			`	"Well, anyways, <destination> is in desperate need of <cargo> and doctors. You see, they are facing an epidemic there which started a week ago. Willing captains have been asked  to there as fast as you can or at the very least, before <date>." He winces, "The death toll is currently at 50,000 and rising. So I ask you, accept this job and get the supplies there as soon as possible."
+			`	"Well, anyways, <destination> is in desperate need of <cargo> and doctors. You see, they are facing an epidemic there which started a week ago. Willing captains have been asked go to there as fast as you can or at the very least, before <date>." He winces, "The death toll is currently at 50,000 and rising. So I ask you, accept this job and get the supplies there as soon as possible."
 			choice
 				`	"I'll do it."`
 					goto thanks
-				`	"Sorry I can't"`
-			`	"I might be wrong about you," he says, disappointment on his face as he leaves`
+				`	"Sorry, I can't."`
+			`	"I might be wrong about you," he says, disappointment on his face as he leaves.`
 				decline
 			label thanks
-			`	"Thank you, I had a hunch you are the person I'm looking for!" He says before adding, "I almost forgot, because of the escalation in tensions between the Free Worlds and the Republic, the navy has pooled their resources to the southern planets, so expect to see an increase in pirates activity."`
+			`	"Thank you, I had a hunch you are the person I'm looking for!" He says before adding, "I almost forgot, because of the escalation in tensions between the Free Worlds and the Republic, the navy has pooled their resources to the southern planets, so expect to see an increase in pirate activity."`
 				accept
 	on complete
 		log "Helped a merchant group send aid to a planet facing an epidemic."
