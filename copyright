@@ -273,10 +273,25 @@ Files:
  images/outfit/hai?rifle*
  images/outfit/scram?drive*
  images/outfit/korath?fuel?processor*
+ images/outfit/remnant?rifle*
+ images/ship/hai?centipede*
+ images/ship/hai?geocoris*
+ images/ship/hai?grasshopper*
+ images/ship/gull*
  images/ship/pelican*
+ images/thumbnail/hai?centipede*
+ images/thumbnail/hai?geocoris*
+ images/thumbnail/hai?grasshopper*
+ images/thumbnail/gull*
+ images/thumbnail/pelican*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (from under the same license).
+
+Files:
+ images/outfit/scanner?software*
+Copyright: Zitchas (zitchas.jma@gmail.com)
+License: CC-BY-SA-4.0
 
 Files: images/portrait/*
 Copyright: Various
