@@ -34,25 +34,6 @@ namespace {
 }
 
 
-//contains statement needed in multiple constructors.
-void Projectile::Init(const Government *gov, const Weapon *weapon)
-{
-	government = gov;
-	cachedTarget = targetShip.lock().get();
-	if(cachedTarget)
-		targetGovernment = cachedTarget->GetGovernment();
-		
-	const double inaccuracy = weapon->Inaccuracy();
-	if(inaccuracy)
-		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
-	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
-	
-	// If a random lifetime is specified, add a random amount up to that amount.
-	if(weapon->RandomLifetime())
-		lifetime += Random::Int(weapon->RandomLifetime() + 1);
-}
-
-
 
 Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
@@ -288,6 +269,25 @@ const Ship *Projectile::Target() const
 shared_ptr<Ship> Projectile::TargetPtr() const
 {
 	return targetShip.lock();
+}
+
+
+//contains statement needed in multiple constructors.
+void Projectile::Init(const Government *gov, const Weapon *weapon)
+{
+	government = gov;
+	cachedTarget = targetShip.lock().get();
+	if(cachedTarget)
+		targetGovernment = cachedTarget->GetGovernment();
+		
+	const double inaccuracy = weapon->Inaccuracy();
+	if(inaccuracy)
+		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
+	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+	
+	// If a random lifetime is specified, add a random amount up to that amount.
+	if(weapon->RandomLifetime())
+		lifetime += Random::Int(weapon->RandomLifetime() + 1);
 }
 
 
