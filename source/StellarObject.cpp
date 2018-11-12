@@ -182,6 +182,7 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 	shared_ptr<Ship> enemy = nullptr;
 	for(auto &target : ships) {
 		if(target->IsTargetable() && system->GetGovernment()->IsEnemy(target->GetGovernment())
+				&& !(target->GetGovernment()->IsPlayer() && GameData::GetPolitics().CanLand(planet))
 				&& !(target->IsHyperspacing() && target->Velocity().Length() > 10.)
 				&& target->Position().Distance(position) < maxRange
 				&& target->GetSystem() == system)
