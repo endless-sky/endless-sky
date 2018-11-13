@@ -34,7 +34,7 @@ class System;
 // specify a date on which they occur will happen in response to missions. An
 // event always sets the "event: <name>" condition when it occurs, which allows
 // you to use the mission framework to specify a message that can be shown to
-// the player the next time they land  on a planet after that event happens.
+// the player the next time they land on a planet after that event happens.
 class GameEvent {
 public:
 	GameEvent() = default;
@@ -43,6 +43,9 @@ public:
 	
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
+	// If disabled, an event will not Apply() or Save().
+	void Disable();
+	
 	const std::string &Name() const;
 	
 	const Date &GetDate() const;
@@ -54,6 +57,8 @@ public:
 private:
 	Date date;
 	std::string name;
+	bool isDisabled = false;
+	
 	ConditionSet conditionsToApply;
 	std::list<DataNode> changes;
 	std::vector<const System *> systemsToVisit;
