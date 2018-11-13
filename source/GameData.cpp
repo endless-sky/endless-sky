@@ -58,7 +58,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <iostream>
-#include <map>
+#include <set>
 #include <utility>
 #include <vector>
 
@@ -83,6 +83,8 @@ namespace {
 	Set<Planet> planets;
 	Set<Ship> ships;
 	Set<System> systems;
+	
+	map<string, set<string>> disabled;
 	
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
@@ -190,6 +192,22 @@ bool GameData::BeginLoad(const char * const *argv)
 	for(auto &it : persons)
 		it.second.FinishLoading();
 	startConditions.FinishLoading();
+	
+	// Process any disabled game objects.
+	for(const pair<string, set<string>> &category : disabled)
+	{
+		if(category.first == "mission")
+			for(const string &name : category.second)
+				missions.Get(name)->NeverOffer();
+		else if(category.first == "event")
+			for(const string &name : category.second)
+				events.Get(name)->Disable();
+		else if(category.first == "person")
+			for(const string &name : category.second)
+				persons.Get(name)->NeverSpawn();
+		else
+			Files::LogError("Unhandled \"disable\" keyword of type \"" + category.first + "\"");
+	}
 	
 	// Store the current state, to revert back to later.
 	defaultFleets = fleets;
@@ -961,6 +979,22 @@ void GameData::LoadFile(const string &path, bool debugMode)
 				}
 				text += child.Token(0);
 			}
+		}
+		else if(key == "disable" && node.Size() >= 2)
+		{
+			static const set<string> canDisable = {"mission", "event", "person"};
+			const string &category = node.Token(1);
+			if(canDisable.count(category))
+			{
+				if(node.HasChildren())
+					for(const DataNode &child : node)
+						disabled[category].emplace(child.Token(0));
+				if(node.Size() >= 3)
+					for(int index = 2; index < node.Size(); ++index)
+						disabled[category].emplace(node.Token(index));
+			}
+			else
+				node.PrintTrace("Invalid use of keyword \"disable\" for class \"" + category + "\"");
 		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
