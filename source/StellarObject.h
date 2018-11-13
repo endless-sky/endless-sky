@@ -44,10 +44,11 @@ public:
 	int Height() const;
 	Frame GetFrame(int step = -1) const;
 	const Point &Position() const;
-	const Point &Velocity() const;
-	const Angle &Facing() const;
-	Point Unit() const;
-	*/
+	const Point &Velocity() const;*/
+	//needed to create a local mutable angle.
+	const virtual Angle &Facing() const;
+	virtual Point Unit() const;
+	
 	
 	// Get the radius of this planet, i.e. how close you must be to land.
 	double Radius() const;
@@ -76,13 +77,18 @@ public:
 	// Defends the system using its defense weapons.
 	void TryToFire(std::vector<Projectile> &projectiles, const System *system, std::vector<Visual> &visuals, const std::list<std::shared_ptr<Ship>> &ships) const;
 	
+private:
+	
 	
 private:
 	const Planet *planet;
 	
 	const Weapon *launcher = nullptr;
+	//"overrides" Body.angle
+	mutable Angle angle;
 	
 	double reload = 1;
+	double rotation = 0;
 	
 	double distance;
 	double speed;
