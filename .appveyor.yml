@@ -1,0 +1,52 @@
+version: '{branch}.{build}'
+
+branches:
+    except:
+       - gh-pages
+clone_depth: 25
+max_jobs: 4
+environment:
+    PATH: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64\bin\;$(PATH)
+    DIR_MINGW64: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64\x86_64-w64-mingw32
+    matrix:
+        - es_run_mode: 'release'
+
+install:
+    - ps: |
+        if(!(Test-Path C:\dev64))
+        {
+            new-item C:\dev64 -itemtype directory
+        }
+        if(!(Test-Path C:\dev64\bin))
+        {
+            Start-FileDownload 'http://endless-sky.github.io/win64-dev.zip' 'C:\dev64.zip'
+            $zipArgs = 'x C:\dev64.zip -oC:\'
+            Start-Process '7z.exe' -argumentlist $zipArgs -wait
+        }
+    - ps: |
+        if(!(Test-Path .winmake))
+        {
+            if(!(Test-Path C:\cbp2make))
+            {
+                new-item C:\cbp2make -itemtype directory
+            }
+            if(!(Test-Path C:\cbp2make\cbp2make-stl-rev147-all\bin))
+            {
+                Start-FileDownload 'https://downloads.sourceforge.net/project/cbp2make/cbp2make-stl-rev147-all.tar.7z?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fcbp2make%2Ffiles%2F%3Fsource%3Dnavbar&ts=1500511318&use_mirror=managedway' 'C:\cbp2make.tar.gz'
+                $zipArgs = 'x C:\cbp2make.tar.gz -oC:\cbp2make'
+                Start-Process '7z.exe' -argumentlist $zipArgs -wait
+            }
+            (Get-Content EndlessSky.cbp) -replace 'C:\\Program Files\\mingw64\\x86_64-w64-mingw32', $Env:DIR_MINGW64 | Set-Content EndlessSky.cbp
+            $makeExe = 'C:\cbp2make\cbp2make-stl-rev147-all\bin\Release\cbp2make.exe'
+            $makeArg = '--local -in EndlessSky.cbp -out .winmake'
+            Start-Process $makeExe -argumentlist $makeArg -wait
+        }
+
+cache:
+    - C:\dev64
+
+
+build_script:
+    - ps: |
+        $makeArgs = "-k -e -f .winmake $Env:es_run_mode"
+        mingw32-make.exe -k -e -f .winmake $Env:es_run_mode

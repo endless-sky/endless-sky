@@ -137,6 +137,18 @@ outfit "Systems Core (Large)"
 	"energy capacity" 5200
 	description `This massive bank of computers, shield generators, and repair stations holds everything needed to keep the very largest of Korath ships in working condition.`
 
+
+outfit "Fuel Processor"
+	category "Systems"
+	cost 400000
+	thumbnail "outfit/korath fuel processor"
+	"mass" 14
+	"outfit space" -14
+	"fuel capacity" 200
+	"ramscoop" 2
+	description "The fuel processor was developed during the latter half of the Korath Civil War, when Korath factions attempted to provide for their war effort by raiding the Hai for supplies. Their ships would often end up stranded after they had run out of fuel and were unable to escape from the Hai military fleets, prompting the creation of this hybrid fuel storage and ramscoop device. These outfits are now the main source of fuel for the remaining Korath in the galaxy."
+
+
 outfit "Command Center"
 	category "Systems"
 	cost 437000

@@ -10,8 +10,8 @@ DEB-based distros:
    g++ \
    scons \
    libsdl2-dev \
-   libpng12-dev \
-   libjpeg-turbo8-dev \
+   libpng-dev \
+   libjpeg-dev \
    libgl1-mesa-dev \
    libglew-dev \
    libopenal-dev \

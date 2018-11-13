@@ -292,7 +292,16 @@ void Dialog::DoCallback() const
 	}
 	
 	if(intFun)
-		intFun(input.empty() ? 0 : stoi(input));
+	{
+		// Only call the callback if the input can be converted to an int.
+		// Otherwise treat this as if the player clicked "cancel."
+		try {
+			intFun(stoi(input));
+		}
+		catch(...)
+		{
+		}
+	}
 	
 	if(stringFun)
 		stringFun(input);

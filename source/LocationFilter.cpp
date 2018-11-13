@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "Random.h"
 #include "Ship.h"
+#include "StellarObject.h"
 #include "System.h"
 
 #include <mutex>

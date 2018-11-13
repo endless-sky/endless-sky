@@ -33,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
 #include "UI.h"
@@ -92,6 +93,7 @@ MapDetailPanel::MapDetailPanel(const MapPanel &panel)
 
 void MapDetailPanel::Step()
 {
+	MapPanel::Step();
 	if(!player.GetPlanet())
 		DoHelp("map");
 }
@@ -317,7 +319,7 @@ void MapDetailPanel::DrawKey()
 		{
 			RingShader::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
 			int price = range.low + ((range.high - range.low) * i) / 3;
-			font.Draw(Format::Number(price), pos + textOff, dim);
+			font.Draw(to_string(price), pos + textOff, dim);
 			pos.Y() += 20.;
 		}
 	}

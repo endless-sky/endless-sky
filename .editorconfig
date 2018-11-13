@@ -1,0 +1,19 @@
+# https://editorconfig.org/
+root = true
+
+[*]
+insert_final_newline = true
+
+# Data files
+[data/*.txt]
+trim_trailing_whitespace = false
+indent_style = tab
+
+# Code files
+[*.{cpp,h,rc,hpp}]
+trim_trailing_whitespace = false
+indent_style = tab
+
+# Markdown
+[*.md]
+trim_trailing_whitespace = false

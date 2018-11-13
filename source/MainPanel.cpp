@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MainPanel.h"
 
 #include "BoardingPanel.h"
-#include "Command.h"
 #include "Dialog.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -33,6 +32,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Preferences.h"
 #include "Random.h"
 #include "Screen.h"
+#include "Ship.h"
+#include "ShipEvent.h"
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -97,13 +98,16 @@ void MainPanel::Step()
 			isActive = !DoHelp("navigation");
 		if(isActive && flagship->IsDestroyed())
 			isActive = !DoHelp("dead");
-		if(isActive && flagship->IsDisabled())
+		if(isActive && flagship->IsDisabled() && !flagship->IsDestroyed())
 			isActive = !DoHelp("disabled");
 		bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
 		if(isActive && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
 			isActive = !DoHelp("stranded");
-		if(isActive && flagship->Position().Length() > 10000. && player.GetDate() <= GameData::Start().GetDate() + 4 
-			&& !flagship->IsHyperspacing())
+		shared_ptr<Ship> target = flagship->GetTargetShip();
+		if(isActive && target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
+			isActive = !DoHelp("friendly disabled");
+		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
+				&& player.GetDate() <= GameData::Start().GetDate() + 4)
 		{
 			++lostness;
 			int count = 1 + lostness / 3600;
@@ -474,7 +478,16 @@ void MainPanel::StepEvents(bool &isActive)
 			// Determine if a Dialog or ConversationPanel is being drawn next frame.
 			isActive = (GetUI()->Top().get() == this);
 			
-			if(isActive && (event.Type() == ShipEvent::BOARD) && !event.Target()->IsDestroyed())
+			// Confirm that this event's target is not destroyed and still an
+			// enemy before showing the BoardingPanel (as a mission NPC's
+			// completion conversation may have allowed it to be destroyed or
+			// captured).
+			// TODO: This BoardingPanel should not be displayed if a mission NPC
+			// completion conversation creates a BoardingPanel for it, or if the
+			// NPC completion conversation ends via `accept,` even if the ship is
+			// still hostile.
+			if(isActive && (event.Type() == ShipEvent::BOARD) && !event.Target()->IsDestroyed()
+					&& event.Target()->GetGovernment()->IsEnemy())
 			{
 				// Either no mission activated, or the one that did was "silent."
 				GetUI()->Push(new BoardingPanel(player, event.Target()));

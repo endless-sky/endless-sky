@@ -791,6 +791,8 @@ event "start of hostilities"
 	government "Republic"
 		"attitude toward"
 			"Free Worlds" -.2
+			"Merchant" .01
+			"Pirate" -.01
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" -.2
@@ -1056,13 +1058,6 @@ event "catalytic ramscoop available"
 event "fw gets catalytic ramscoop"
 	outfitter "Delta V Advanced"
 		"Catalytic Ramscoop"
-
-
-
-event "terraforming Rand"
-	planet Rand
-		description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
-		description `	Recent terraforming experiments have caused an increase in precipitation. Flash floods have scoured the landscape in some areas, but sandstorms are also less frequent, and the locals say the heat is a bit less oppressive than it used to be.`
 
 
 
@@ -1479,6 +1474,8 @@ event "fw armistice"
 	government Republic
 		"attitude toward"
 			"Free Worlds" 0
+			"Merchant" .25
+			"Pirate" -.3
 	government "Free Worlds"
 		"attitude toward"
 			Republic 0
@@ -2389,6 +2386,8 @@ event "fwc peace with the navy"
 	government "Republic"
 		"attitude toward"
 			"Free Worlds" 0
+			"Merchant" .25
+			"Pirate" -.3
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" 0

@@ -211,7 +211,7 @@ event "kestrel available: more shields"
 		"Kestrel (More Shields)"
 
 ship "Unknown Ship Type"
-	sprite ship/kestrel
+	sprite "ship/kestrel"
 	attributes
 		category "Heavy Warship"
 		"cost" 10300000
@@ -263,7 +263,8 @@ ship "Unknown Ship Type"
 	"final explode" "final explosion large"
 
 ship "Kestrel"
-	sprite ship/kestrel
+	sprite "ship/kestrel"
+	thumbnail "thumbnail/kestrel"
 	attributes
 		category "Heavy Warship"
 		"cost" 10300000
