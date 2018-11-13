@@ -210,7 +210,7 @@ outfit "Armageddon Core"
 	thumbnail "outfit/core"
 	"mass" 130
 	"outfit space" -130
-	"energy generation" 25
+	"energy generation" 24.2
 	"heat generation" 67.5
 	description "The Armageddon Core was designed to meet the extreme power needs of the largest warships of the Republic Navy. One of these generators costs more than an entire fleet of smaller ships."
 
