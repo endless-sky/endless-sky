@@ -1026,6 +1026,8 @@ void Engine::EnterSystem()
 	const Date &today = player.GetDate();
 	
 	const System *system = flagship->GetSystem();
+	for(const StellarObject &object : system->Objects())
+		object.ResetAmmo();
 	Audio::PlayMusic(system->MusicName());
 	GameData::SetHaze(system->Haze());	
 	
