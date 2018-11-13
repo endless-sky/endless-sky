@@ -188,7 +188,8 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 {
 	if(!launcher)
 		return;
-	const Government *gov = planet ? planet->GetGovernment() : system->GetGovernment();
+	// Sets the government based on priority(this gov > planet gov > system gov).
+	const Government *gov = government ? government : planet ? planet->GetGovernment() : system->GetGovernment();
 	if(!gov)
 		return;
 	if(!ammo)

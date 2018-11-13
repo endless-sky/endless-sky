@@ -723,6 +723,8 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 					object.maxAmmo = (int)subChild.Value(1);
 				else if(subChild.Token(0) == "turn" && subChild.Size() >= 2)
 					object.turn = subChild.Value(1);
+				else if(subChild.Token(0) == "government" && subChild.Size() >= 2)
+					object.government = GameData::Governments().Get(subChild.Token(1));
 				else
 					child.PrintTrace("Skipping unrecognized attribute:");
 			}

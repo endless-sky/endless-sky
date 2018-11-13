@@ -84,7 +84,9 @@ private:
 private:
 	const Planet *planet;
 	
-	const Weapon *launcher = nullptr;
+	const Government *government;
+	
+	const Weapon *launcher;
 	//"overrides" Body.angle
 	mutable Angle angle;
 	
