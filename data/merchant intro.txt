@@ -135,4 +135,4 @@ mission "Merchant Start 4"
 		log "Helped a merchant group send aid to a planet facing an epidemic."
 		payment 75000
 		conversation
-			`	Doctors put on safety masks as you're making your landing, rushing out of the airlock once you've reached the ground. You open the cargo hold and switch to your external cameras, where you see thousands of people waiting in line as doctors distribute the  medications to them. Just as the doctors take out the last batch of the cargo out of your hold, you notice a message pop up on your interfaces, "Meet me on Earth, <last>. It's urgent."
+			`	Doctors put on safety masks as you're making your landing, rushing out of the airlock once you've reached the ground. You open the cargo hold and switch to your external cameras, where you see thousands of people waiting in line as doctors distribute the  medications to them. Just as the doctors take out the last batch of the cargo out of your hold, you notice a message pop up on your interface, "Meet me on Earth, <last>. It's urgent."
