@@ -54,8 +54,9 @@ public:
 	// Positional attributes.
 	const Point &Position() const;
 	const Point &Velocity() const;
-	const Angle &Facing() const;
-	Point Unit() const;
+	// They are virtual so that StellarObject can have a mutable Angle.
+	const virtual Angle &Facing() const;
+	virtual Point Unit() const;
 	double Zoom() const;
 	
 	// Check if this object is marked for removal from the game.
