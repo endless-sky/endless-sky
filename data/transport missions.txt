@@ -1644,7 +1644,7 @@ mission "Humanitarian 1"
 		payment
 		payment 50000
 		dialog
-			 `After several shady characters have offered to buy the vaccines off you, or threatened to rob you, "Raven Hunter" finally shows up and collects them. He thanks you, and pays you <payment>.`
+			`After several shady characters have offered to buy the vaccines off you, or threatened to rob you, "Raven Hunter" finally shows up and collects them. He thanks you, and pays you <payment>.`
 
 
 
@@ -1682,7 +1682,7 @@ mission "Humanitarian 2"
 		payment
 		payment 50000
 		dialog
-			 `It takes a while to figure out who exactly is in charge here. You sell off parts of your shipment of food to a few different local leaders, receiving <payment> in exchange.`
+			`It takes a while to figure out who exactly is in charge here. You sell off parts of your shipment of food to a few different local leaders, receiving <payment> in exchange.`
 
 
 
