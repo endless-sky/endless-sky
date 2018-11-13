@@ -709,10 +709,14 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 		{
 			object.launcher = GameData::Outfits().Get(child.Token(1));
 			if(child.Size() > 2)
-				object.reload = atof(child.Token(2).c_str());
-			if(object.reload > 0)
-				object.reload = 1.0/object.reload;
+				object.reload = child.Value(2);
+			if(!object.reload)
+				child.PrintTrace("Reloadtime out of expected range:");
+			else
+				object.reload = 1. / object.reload;
 		}
+		else if(child.Token(0) == "rotate" && child.Size() >= 1)
+			object.rotation = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
