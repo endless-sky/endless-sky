@@ -193,6 +193,7 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 		return;
 	if(!ammo)
 		return;
+	// If the station doesn't turn towards the ship the rest of the function isn't needed when the station doesn't fire.
 	if(!turn && Random::Real() > reload)
 		return;
 	
@@ -213,6 +214,8 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 				enemy = target;
 				aim = a;
 			}
+			// If the defense instantly turns toward the ship, enemies should be selected by distance, but
+			// if the defense needs to turn around it's more efficient to target an enemy that can be reached faster. 
 			else if((target->Position().Distance(position) < enemy->Position().Distance(position)
 				&& !turn) || (turn && abs((aim-angle).Degrees()) > abs((a-angle).Degrees())))
 			{
@@ -224,6 +227,7 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 	if(!enemy)
 		return;
 
+	// Turns around the station if needed.
 	if(turn) {
 		aim -= angle;
 		const double effectiveAim = aim.Degrees();
@@ -242,6 +246,7 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 		}
 		aim = angle;
 	}
+	// Here is checked if the turning defense is firing. Other defenses have been tested above.
 	if(turn && Random::Real() > reload)
 		return;
 	ammo--;

@@ -76,7 +76,7 @@ Projectile::Projectile(Point position, const Weapon *weapon)
 
 
 
-//Projectiles launched from planets
+// Projectiles launched from planets.
 Projectile::Projectile(const Government *gov, shared_ptr<Ship> &target, const Point &position, const Angle &angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), position, Point(), angle),
 	weapon(weapon), targetShip(target), lifetime(weapon->Lifetime())
@@ -272,7 +272,7 @@ shared_ptr<Ship> Projectile::TargetPtr() const
 }
 
 
-//contains statement needed in multiple constructors.
+// This function contains statement needed in multiple constructors.
 void Projectile::Init(const Government *gov, const Weapon *weapon)
 {
 	government = gov;
