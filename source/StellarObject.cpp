@@ -191,6 +191,8 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 	const Government *gov = planet ? planet->GetGovernment() : system->GetGovernment();
 	if(!gov)
 		return;
+	if(!ammo)
+		return;
 	if(!rotation && Random::Real() > reload)
 		return;
 	
@@ -242,7 +244,7 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 	}
 	if(rotation && Random::Real() > reload)
 		return;
-	
+	ammo--;
 	//Each launch comes from a random point inside r/2 from the middle of the object.
 	//Assumes the biggest circle in the middle of the sprite is the planet/station.
 	Point randomPosition(position);
@@ -261,4 +263,11 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 
 	if(launcher->WeaponSound())
 		Audio::Play(launcher->WeaponSound(), randomPosition);
+}
+
+
+
+void StellarObject::ResetAmmo() const
+{
+	ammo = maxAmmo;
 }

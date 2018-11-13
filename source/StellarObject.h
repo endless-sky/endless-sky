@@ -76,6 +76,7 @@ public:
 	double Distance() const;
 	// Defends the system using its defense weapons.
 	void TryToFire(std::vector<Projectile> &projectiles, const System *system, std::vector<Visual> &visuals, const std::list<std::shared_ptr<Ship>> &ships) const;
+	void ResetAmmo() const;
 	
 private:
 	
@@ -87,6 +88,8 @@ private:
 	//"overrides" Body.angle
 	mutable Angle angle;
 	
+	mutable int ammo = -1;
+	int maxAmmo = -1;
 	double reload = 1;
 	double rotation = 0;
 	
