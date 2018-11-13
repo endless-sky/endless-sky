@@ -42,7 +42,7 @@ mission "Merchant Start 2"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on offer
 		conversation
-			`You walk into the spaceport, looking for the lady. You quickly find her striking dark blue suit in the crowd, clearly standing out from everyone's frivolous apparel as you walk over to her. "What's the job you're offering me?" She smiles, "Well, this family desperately needs transport to <destination> by <date>," she says, pointing out a group of people at a corner of the spaceport, "they're in a bit of troublesome economic problem at the moment"`
+			`You walk into the spaceport, looking for the lady. You quickly find her striking dark blue suit in the crowd, clearly standing out from everyone's frivolous apparel as you walk over to her. "What's the job you're offering me?" She smiles, "Well, this family desperately needs transport to <destination> by <date>," she says, pointing out a group of people at a corner of the spaceport, "they're in a bit of troublesome economic crisis at the moment"`
 			choice
 				`	"I'll do it."`
 					accept
@@ -51,7 +51,7 @@ mission "Merchant Start 2"
 	on complete
 		payment 40000
 		conversation
-			`The family thanks you profusely, grateful for meeting such a generous captain. You watch the family walk off and exchange greetings with another man in a blue suit, the man walks up to you and says, "Meet me in the spaceport, don't dally."`
+			`The family thanks you profusely, grateful for meeting such a generous captain. You watch the family walk off and exchange greetings with another man in a blue suit, the blue-suited man walks up to you and says, "Meet me in the spaceport, don't dally."`
 
 mission "Merchant Start 3"
 	name "Special transport"
@@ -78,7 +78,7 @@ mission "Merchant Start 3"
 	on complete
 		payment 50000
 		conversation
-			`You help the travelers lug his cargo away, still wondering why so much of it is needed. You see the first man walking up to you. "Well, Captain, May I ask you for your name?"`
+			`You help the travelers lug his cargo away, still wondering why so much of it is needed. You see the first man walking up to you. "Well, Captain, may I ask you for your name?"`
 			choice
 				`	"It's <first> <last>."`
 					goto name
