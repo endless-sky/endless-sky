@@ -20895,27 +20895,34 @@ system Sol
 		sprite star/g0
 		period 25.38
 	object
-		defense "Sidewinder Missile Launcher" 160
+		defense "Sidewinder Missile Launcher"
+			reload 160
+			ammo 500
 		sprite planet/mercury
 		distance 289.647
 		period 60
 	object
-		defense "Sidewinder Missile Launcher" 100
+		defense "Sidewinder Missile Launcher"
+			reload 100
+			ammo 500
 		sprite planet/venus
 		distance 533.534
 		period 150
 	object Earth
-		defense "Meteor Missile Launcher" 30
+		defense "Meteor Missile Launcher"
+			reload 20
 		sprite planet/earth
 		distance 965.669
 		period 365.25
 		object Luna
-			defense "Meteor Missile Launcher" 35
+			defense "Meteor Missile Launcher"
+				reload 35
 			sprite planet/luna
 			distance 201.24
 			period 27.3
 	object Mars
-		defense "Meteor Missile Launcher" 45
+		defense "Meteor Missile Launcher"
+			reload 45
 		sprite planet/mars
 		distance 1471.43
 		period 687
@@ -20924,22 +20931,30 @@ system Sol
 		distance 3000
 		period 2000
 		object
-			defense "Meteor Missile Launcher" 70
+			defense "Meteor Missile Launcher"
+				reload 70
+				ammo 1000
 			sprite planet/io
 			distance 238.221
 			period 10.614
 		object
-			defense "Meteor Missile Launcher" 70
+			defense "Meteor Missile Launcher"
+				reload 70
+				ammo 1000
 			sprite planet/europa
 			distance 379.078
 			period 21.306
 		object
-			defense "Meteor Missile Launcher" 70
+			defense "Meteor Missile Launcher"
+				reload 70
+				ammo 1000
 			sprite planet/ganymede
 			distance 604.739
 			period 42.93
 		object
-			defense "Meteor Missile Launcher" 70
+			defense "Meteor Missile Launcher"
+				reload 70
+				ammo 1000
 			sprite planet/callisto
 			distance 811.717
 			period 66.76
