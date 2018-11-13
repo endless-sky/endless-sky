@@ -193,7 +193,7 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 		return;
 	if(!ammo)
 		return;
-	if(!rotation && Random::Real() > reload)
+	if(!turn && Random::Real() > reload)
 		return;
 	
 
@@ -214,7 +214,7 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 				aim = a;
 			}
 			else if((target->Position().Distance(position) < enemy->Position().Distance(position)
-				&& !rotation) || (rotation && abs((aim-angle).Degrees()) > abs((a-angle).Degrees())))
+				&& !turn) || (turn && abs((aim-angle).Degrees()) > abs((a-angle).Degrees())))
 			{
 				enemy = target;
 				aim = a;
@@ -224,25 +224,25 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 	if(!enemy)
 		return;
 
-	if(rotation) {
+	if(turn) {
 		aim -= angle;
 		const double effectiveAim = aim.Degrees();
 		if(effectiveAim >= 0)
 		{
-			if(effectiveAim < rotation)
+			if(effectiveAim < turn)
 				angle += Angle(effectiveAim);
 			else
-				angle += Angle(rotation);
+				angle += Angle(turn);
 		}
 		else {
-			if(effectiveAim > -rotation)
+			if(effectiveAim > -turn)
 				angle += Angle(effectiveAim);
 			else
-				angle += Angle(-rotation);
+				angle += Angle(-turn);
 		}
 		aim = angle;
 	}
-	if(rotation && Random::Real() > reload)
+	if(turn && Random::Real() > reload)
 		return;
 	ammo--;
 	//Each launch comes from a random point inside r/2 from the middle of the object.

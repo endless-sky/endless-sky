@@ -91,7 +91,7 @@ private:
 	mutable int ammo = -1;
 	int maxAmmo = -1;
 	double reload = 1;
-	double rotation = 0;
+	double turn = 0;
 	
 	double distance;
 	double speed;
