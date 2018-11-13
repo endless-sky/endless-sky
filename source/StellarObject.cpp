@@ -25,13 +25,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Weapon.h"
 
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 
 
 namespace {
-
-
 	// Create all the effects in the given list, at the given location, velocity, and angle.
 	void CreateEffects(const map<const Effect *, int> &m, Point pos, Point vel, Angle angle, vector<Visual> &visuals)
 	{
@@ -52,6 +51,23 @@ StellarObject::StellarObject()
 	// Unlike ships and projectiles, stellar objects are not drawn shrunk to half size,
 	// because they do not need to be so sharp.
 	zoom = 2.;
+}
+
+
+// needed to return the mutable Angle.
+// Direction this Body is facing in.
+const Angle &StellarObject::Facing() const
+{
+	return angle;
+}
+
+
+// needed to return the mutable Angle unit vector.
+// Unit vector in the direction this body is facing. This represents the scale
+// and transform that should be applied to the sprite before drawing it.
+Point StellarObject::Unit() const
+{
+	return angle.Unit() * (.5 * Zoom());
 }
 
 
@@ -175,12 +191,13 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 	const Government *gov = planet ? planet->GetGovernment() : system->GetGovernment();
 	if(!gov)
 		return;
-	if(Random::Real() > reload)
+	if(!rotation && Random::Real() > reload)
 		return;
 	
 
 	double maxRange = launcher->Range()*1.5;
 	shared_ptr<Ship> enemy = nullptr;
+	Angle aim;
 	for(auto &target : ships) {
 		if(target->IsTargetable() && gov->IsEnemy(target->GetGovernment())
 				&& !(target->GetGovernment()->IsPlayer() && GameData::GetPolitics().CanLand(planet))
@@ -188,16 +205,43 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 				&& target->Position().Distance(position) < maxRange
 				&& target->GetSystem() == system)
 		{
+			Angle a(target->Position() - position);
 			if(!enemy)
+			{
 				enemy = target;
-			else if(target->Position().Distance(position) < enemy->Position().Distance(position))
+				aim = a;
+			}
+			else if((target->Position().Distance(position) < enemy->Position().Distance(position)
+				&& !rotation) || (rotation && abs((aim-angle).Degrees()) > abs((a-angle).Degrees())))
+			{
 				enemy = target;
+				aim = a;
+			}
 		}
 	}
 	if(!enemy)
 		return;
 
-	const Angle aim(enemy->Position()-position);
+	if(rotation) {
+		aim -= angle;
+		const double effectiveAim = aim.Degrees();
+		if(effectiveAim >= 0)
+		{
+			if(effectiveAim < rotation)
+				angle += Angle(effectiveAim);
+			else
+				angle += Angle(rotation);
+		}
+		else {
+			if(effectiveAim > -rotation)
+				angle += Angle(effectiveAim);
+			else
+				angle += Angle(-rotation);
+		}
+		aim = angle;
+	}
+	if(rotation && Random::Real() > reload)
+		return;
 	
 	//Each launch comes from a random point inside r/2 from the middle of the object.
 	//Assumes the biggest circle in the middle of the sprite is the planet/station.
