@@ -708,17 +708,25 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 		else if(child.Token(0) == "defense" && child.Size() >= 2)
 		{
 			object.launcher = GameData::Outfits().Get(child.Token(1));
-			if(child.Size() > 2)
-				object.reload = child.Value(2);
-			if(!object.reload)
-				child.PrintTrace("Reloadtime out of expected range:");
-			else
-				object.reload = 1. / object.reload;
-			if(child.Size() > 3)
-				object.maxAmmo = (int)child.Value(3);
+			// The optional attributes of the defense systems are in the child-node of child
+			for(const DataNode &subChild : child)
+			{
+				if(subChild.Token(0) == "reload" && subChild.Size() >= 2)
+				{
+					object.reload = subChild.Value(1);
+					if(!object.reload)
+						child.PrintTrace("Reloadtime out of expected range:");
+					else
+						object.reload = 1. / object.reload;
+				}
+				else if(subChild.Token(0) == "ammo" && subChild.Size() >= 2)
+					object.maxAmmo = (int)subChild.Value(1);
+				else if(subChild.Token(0) == "turn" && subChild.Size() >= 2)
+					object.turn = subChild.Value(1);
+				else
+					child.PrintTrace("Skipping unrecognized attribute:");
+			}
 		}
-		else if(child.Token(0) == "rotate" && child.Size() >= 1)
-			object.rotation = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
