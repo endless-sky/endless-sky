@@ -714,6 +714,8 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 				child.PrintTrace("Reloadtime out of expected range:");
 			else
 				object.reload = 1. / object.reload;
+			if(child.Size() > 3)
+				object.maxAmmo = (int)child.Value(3);
 		}
 		else if(child.Token(0) == "rotate" && child.Size() >= 1)
 			object.rotation = child.Value(1);
