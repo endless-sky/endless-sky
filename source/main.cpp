@@ -359,8 +359,8 @@ int main(int argc, char *argv[])
 			timer.Wait();
 		}
 		
-		// If you quit while landed on a planet, save the game.
-		if(player.GetPlanet())
+		// If you quit while landed on a planet, save the game - if you did anything.
+		if(player.GetPlanet() && gamePanels.CanSave())
 			player.Save();
 		
 		// Remember the window state.
