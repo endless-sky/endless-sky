@@ -1289,9 +1289,9 @@ ship "Dropship"
 		"drag" .92
 		"heat dissipation" .8
 		"cargo space" 10
-		"outfit space" 90
+		"outfit space" 100
 		"weapon capacity" 16
-		"engine capacity" 30
+		"engine capacity" 40
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1307,10 +1307,11 @@ ship "Dropship"
 		
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
-	engine
-	engine
-	gun
-	gun
+	
+	engine 13 26
+	engine -13 26
+	gun 2 -27 "Beam Laser"
+	gun -2 -27 "Beam Laser"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
