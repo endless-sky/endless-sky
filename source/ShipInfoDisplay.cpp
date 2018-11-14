@@ -257,32 +257,31 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	if(attributes.Get("scan interference"))
 	{
 		attributeLabels.push_back("chance to block scan:");
-		attributeValues.push_back(Format::Number(100.	
-			- 100. / (1. + attributes.Get("scan interference"))) + "%");
+		attributeValues.push_back(Format::Number(100. - 100. / (1. + attributes.Get("scan interference"))) + "%");
 		attributesHeight += 20;
 	}
 	if(attributes.Get("asteroid scan power"))
 	{
 		attributeLabels.push_back("asteroid scan range:");
-		attributeValues.push_back(Format::Round(100. * sqrt(attributes.Get("asteroid scan power"))));
+		attributeValues.push_back(Format::Number(100. * sqrt(attributes.Get("asteroid scan power"))));
 		attributesHeight += 20;
 	}
 	if(attributes.Get("cargo scan power"))
 	{
 		attributeLabels.push_back("cargo scan range:");
-		attributeValues.push_back(Format::Round(100. * sqrt(attributes.Get("cargo scan power"))));
+		attributeValues.push_back(Format::Number(100. * sqrt(attributes.Get("cargo scan power"))));
 		attributesHeight += 20;
 	}
 	if(attributes.Get("outfit scan power"))
 	{
 		attributeLabels.push_back("outfit scan range:");
-		attributeValues.push_back(Format::Round(100. * sqrt(attributes.Get("outfit scan power"))));
+		attributeValues.push_back(Format::Number(100. * sqrt(attributes.Get("outfit scan power"))));
 		attributesHeight += 20;
 	}
 	if(attributes.Get("tactical scan power"))
 	{
 		attributeLabels.push_back("tactical scan range:");
-		attributeValues.push_back(Format::Round(100. * sqrt(attributes.Get("tactical scan power"))));
+		attributeValues.push_back(Format::Number(100. * sqrt(attributes.Get("tactical scan power"))));
 		attributesHeight += 20;
 	}
 	
