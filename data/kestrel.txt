@@ -249,16 +249,10 @@ ship "Unknown Ship Type"
 		"Hyperdrive"
 	engine -14 177
 	engine 14 177
-	gun -86 55
-	gun 86 55
 	gun -75 57 "Torpedo Launcher"
 	gun 75 57 "Torpedo Launcher"
-	gun -64 59
-	gun 64 59
 	gun -53 61 "Particle Cannon"
 	gun 53 61 "Particle Cannon"
-	gun -42 63
-	gun 42 63
 	gun -31 65 "Particle Cannon"
 	gun 31 65 "Particle Cannon"
 	turret -7 -4 "Heavy Laser Turret"
@@ -311,16 +305,10 @@ ship "Kestrel"
 		"Hyperdrive"
 	engine -14 177
 	engine 14 177
-	gun -86 55
-	gun 86 55
 	gun -75 57 "Torpedo Launcher"
 	gun 75 57 "Torpedo Launcher"
-	gun -64 59
-	gun 64 59
 	gun -53 61 "Particle Cannon"
 	gun 53 61 "Particle Cannon"
-	gun -42 63
-	gun 42 63
 	gun -31 65 "Particle Cannon"
 	gun 31 65 "Particle Cannon"
 	turret -7 -4 "Heavy Laser Turret"
@@ -337,6 +325,7 @@ ship "Kestrel"
 
 ship "Kestrel" "Kestrel (More Engines)"
 	add attributes
+		"fuel capacity" 100
 		"engine capacity" 30
 
 ship "Kestrel" "Kestrel (More Shields)"
@@ -347,3 +336,21 @@ ship "Kestrel" "Kestrel (More Shields)"
 ship "Kestrel" "Kestrel (More Weapons)"
 	add attributes
 		"weapon capacity" 40
+	gun -75 57 "Torpedo Launcher"
+	gun 75 57 "Torpedo Launcher"
+	gun -75 57
+	gun 75 57
+	gun -75 57
+	gun 75 57
+	gun -53 61 "Particle Cannon"
+	gun 53 61 "Particle Cannon"
+	gun -53 61
+	gun 53 61
+	gun -53 61
+	gun 53 61
+	gun -31 65 "Particle Cannon"
+	gun 31 65 "Particle Cannon"
+	gun -31 65
+	gun 31 65
+	gun -31 65
+	gun 31 65
