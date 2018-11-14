@@ -253,8 +253,8 @@ ship "Unknown Ship Type"
 	gun 75 57 "Torpedo Launcher"
 	gun -53 61 "Particle Cannon"
 	gun 53 61 "Particle Cannon"
-	gun -31 65 "Particle Cannon"
-	gun 31 65 "Particle Cannon"
+	gun -31 66 "Particle Cannon"
+	gun 31 66 "Particle Cannon"
 	turret -7 -4 "Heavy Laser Turret"
 	turret 7 -4 "Heavy Laser Turret"
 	turret -23 14 "Heavy Laser Turret"
@@ -309,8 +309,8 @@ ship "Kestrel"
 	gun 75 57 "Torpedo Launcher"
 	gun -53 61 "Particle Cannon"
 	gun 53 61 "Particle Cannon"
-	gun -31 65 "Particle Cannon"
-	gun 31 65 "Particle Cannon"
+	gun -31 66 "Particle Cannon"
+	gun 31 66 "Particle Cannon"
 	turret -7 -4 "Heavy Laser Turret"
 	turret 7 -4 "Heavy Laser Turret"
 	turret -23 14 "Heavy Laser Turret"
@@ -348,9 +348,9 @@ ship "Kestrel" "Kestrel (More Weapons)"
 	gun 53 61
 	gun -53 61
 	gun 53 61
-	gun -31 65 "Particle Cannon"
-	gun 31 65 "Particle Cannon"
-	gun -31 65
-	gun 31 65
-	gun -31 65
-	gun 31 65
+	gun -31 66 "Particle Cannon"
+	gun 31 66 "Particle Cannon"
+	gun -31 66
+	gun 31 66
+	gun -31 66
+	gun 31 66
