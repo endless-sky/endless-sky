@@ -269,7 +269,10 @@ void Ship::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
-				outfits[GameData::Outfits().Get(grand.Token(0))] += count;
+				if(count > 0)
+					outfits[GameData::Outfits().Get(grand.Token(0))] += count;
+				else
+					grand.PrintTrace("Skipping invalid outfit count of " + count);
 			}
 		}
 		else if(key == "cargo")
@@ -547,16 +550,16 @@ void Ship::Save(DataWriter &out) const
 			out.Write("category", baseAttributes.Category());
 			out.Write("cost", baseAttributes.Cost());
 			out.Write("mass", baseAttributes.Mass());
-			for(const pair<Body, int> &it : baseAttributes.FlareSprites())
+			for(const auto &it : baseAttributes.FlareSprites())
 				for(int i = 0; i < it.second; ++i)
 					it.first.SaveSprite(out, "flare sprite");
-			for(const pair<const Sound *, int> &it : baseAttributes.FlareSounds())
+			for(const auto &it : baseAttributes.FlareSounds())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("flare sound", it.first->Name());
-			for(const pair<const Effect *, int> &it : baseAttributes.AfterburnerEffects())
+			for(const auto &it : baseAttributes.AfterburnerEffects())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("afterburner effect", it.first->Name());
-			for(const pair<const char *, double> &it : baseAttributes.Attributes())
+			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
 		}
@@ -706,7 +709,7 @@ string Ship::FlightCheck() const
 	double burning = attributes.Get("fuel energy");
 	double solar = attributes.Get("solar collection");
 	double battery = attributes.Get("energy capacity");
-	double energy = generation + burning + solar + battery;
+  double energy = generation + burning + solar + battery;
 	double fuelChange = attributes.Get("fuel generation") - attributes.Get("fuel consumption");
 	double fuelCapacity = attributes.Get("fuel capacity");
 	double fuel = fuelCapacity + fuelChange;
@@ -744,10 +747,17 @@ string Ship::FlightCheck() const
 		return "limited turn?";
 	if(energy - .8 * solar < .2 * (turnEnergy + thrustEnergy))
 		return "solar power?";
-	if(fuel <= 0.)
+	if(fuel < 0.)
 		return "fuel?";
 	if(!hyperDrive && !jumpDrive && !canBeCarried)
 		return "no hyperdrive?";
+	if(!canBeCarried)
+	{
+		if(!hyperDrive && !jumpDrive)
+			return "no hyperdrive?";
+		if(fuelCapacity < JumpFuel())
+			return "no fuel?";
+	}
 	
 	return "";
 }
@@ -2298,6 +2308,17 @@ double Ship::Health() const
 
 
 
+// Get the hull fraction at which this ship is disabled.
+double Ship::DisabledHull() const
+{
+	double hull = attributes.Get("hull");
+	double minimumHull = MinimumHull();
+	
+	return (hull > 0. ? minimumHull / hull : 0.);
+}
+
+
+
 int Ship::JumpsRemaining() const
 {
 	// Make sure this ship has some sort of hyperdrive, and if so return how
@@ -2843,6 +2864,10 @@ bool Ship::CanFire(const Weapon *weapon) const
 		return false;
 	if(fuel < weapon->FiringFuel())
 		return false;
+	// If a weapon requires heat to fire, (rather than generating heat), we must
+	// have enough heat to spare.
+	if(heat < -(weapon->FiringHeat()))
+		return false;
 	
 	return true;
 }
@@ -3015,7 +3040,7 @@ double Ship::MinimumHull() const
 		return 0.;
 	
 	double maximumHull = attributes.Get("hull");
-	return max(.20 * maximumHull, min(.50 * maximumHull, 400.));
+	return floor(maximumHull * max(.15, min(.45, 10. / sqrt(maximumHull))));
 }
 
 

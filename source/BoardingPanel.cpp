@@ -627,7 +627,7 @@ void BoardingPanel::Plunder::UpdateStrings()
 	else
 		size = to_string(count) + " x " + Format::Number(mass);
 	
-	value = Format::Number(unitValue * count);
+	value = Format::Credits(unitValue * count);
 }
 
 

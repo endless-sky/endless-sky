@@ -479,7 +479,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	table.Draw("player:", dim);
 	table.Draw(player.FirstName() + " " + player.LastName(), bright);
 	table.Draw("net worth:", dim);
-	table.Draw(Format::Number(player.Accounts().NetWorth()) + " credits", bright);
+	table.Draw(Format::Credits(player.Accounts().NetWorth()) + " credits", bright);
 	
 	// Determine the player's combat rating.
 	int combatLevel = log(max(1, player.GetCondition("combat rating")));
@@ -510,7 +510,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		table.DrawGap(10);
 		table.DrawUnderline(dim);
 		table.Draw("piracy threat:", bright);
-		table.Draw(Format::Number(lround(100 * prob)) + "%", dim);
+		table.Draw(to_string(lround(100 * prob)) + "%", dim);
 		table.DrawGap(5);
 		
 		// Format the attraction and deterrence levels with tens places, so it

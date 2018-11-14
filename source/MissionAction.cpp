@@ -433,7 +433,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	// Fill in the payment amount if this is the "complete" action.
 	string previousPayment = subs["<payment>"];
 	if(result.payment)
-		subs["<payment>"] = Format::Number(abs(result.payment))
+		subs["<payment>"] = Format::Credits(abs(result.payment))
 			+ (result.payment == 1 ? " credit" : " credits");
 	
 	if(!logText.empty())

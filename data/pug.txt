@@ -349,10 +349,10 @@ ship "Pug Zibruka"
 	engine 7 35
 	gun -15 -42 "Pug Zapper"
 	gun 15 -42 "Pug Zapper"
-	explode "tiny explosion" 10
-	explode "small explosion" 15
-	explode "medium explosion" 20
-	explode "large explosion" 10
+	explode "pug tiny explosion" 10
+	explode "pug small explosion" 15
+	explode "pug medium explosion" 20
+	explode "pug large explosion" 10
 	"final explode" "final explosion small"
 	description "The Zibruka is the smallest Pug ship that you know of."
 
@@ -398,10 +398,10 @@ ship "Pug Enfolta"
 	gun -11 -85 "Pug Seeker"
 	gun 11 -85 "Pug Seeker"
 	turret 0 7 "Pug Zapper Turret"
-	explode "tiny explosion" 5
-	explode "small explosion" 20
-	explode "medium explosion" 25
-	explode "large explosion" 15
+	explode "pug tiny explosion" 5
+	explode "pug small explosion" 20
+	explode "pug medium explosion" 25
+	explode "pug large explosion" 15
 	"final explode" "final explosion medium"
 	description "This is a medium-sized Pug warship."
 
@@ -449,10 +449,10 @@ ship "Pug Maboro"
 	turret 0 -50 "Pug Anti-Missile"
 	turret -15 -35 "Pug Zapper Turret"
 	turret 15 -35 "Pug Zapper Turret"
-	explode "small explosion" 25
-	explode "medium explosion" 30
-	explode "large explosion" 20
-	explode "huge explosion" 5
+	explode "pug small explosion" 25
+	explode "pug medium explosion" 30
+	explode "pug large explosion" 20
+	explode "pug huge explosion" 5
 	"final explode" "final explosion large"
 	description "This is the largest Pug warship."
 
@@ -505,10 +505,10 @@ ship "Pug Arfecta"
 	turret 0 40 "Pug Gridfire Turret"
 	turret -73 84 "Pug Gridfire Turret"
 	turret 73 84 "Pug Gridfire Turret"
-	explode "tiny explosion" 100
-	explode "small explosion" 60
-	explode "medium explosion" 30
-	explode "large explosion" 10
+	explode "pug tiny explosion" 100
+	explode "pug small explosion" 60
+	explode "pug medium explosion" 30
+	explode "pug large explosion" 10
 	"final explode" "final explosion large"
 	description `This is a Pug "tier 3" warship, intended for use in combat against either a species on par with the Quarg, or a lesser species that has decided to be particularly meddlesome.`
 

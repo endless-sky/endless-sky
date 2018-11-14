@@ -552,11 +552,11 @@ void PlayerInfo::IncrementDate()
 	{
 		string message = "You receive ";
 		if(total[0])
-			message += Format::Number(total[0]) + " credits salary";
+			message += Format::Credits(total[0]) + " credits salary";
 		if(total[0] && total[1])
 			message += " and ";
 		if(total[1])
-			message += Format::Number(total[1]) + " credits in tribute";
+			message += Format::Credits(total[1]) + " credits in tribute";
 		message += ".";
 		Messages::Add(message);
 		accounts.AddCredits(total[0] + total[1]);
@@ -1221,7 +1221,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 			out << shipsSold[0]
 				<< (shipsSold[0] == 1 ? " drone" : " drones");
 		
-		out << ", earning " << Format::Number(income) << " credits.";
+		out << ", earning " << Format::Credits(income) << " credits.";
 		accounts.AddCredits(income);
 		Messages::Add(out.str());
 	}
@@ -1295,7 +1295,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	{
 		// Report how much excess cargo was sold, and what profit you earned.
 		ostringstream out;
-		out << "You sold " << sold << " tons of excess cargo for " << Format::Number(income) << " credits";
+		out << "You sold " << sold << " tons of excess cargo for " << Format::Credits(income) << " credits";
 		if(totalBasis && totalBasis != income)
 			out << " (for a profit of " << (income - totalBasis) << " credits).";
 		else
