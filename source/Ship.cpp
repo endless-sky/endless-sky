@@ -709,7 +709,7 @@ string Ship::FlightCheck() const
 	double burning = attributes.Get("fuel energy");
 	double solar = attributes.Get("solar collection");
 	double battery = attributes.Get("energy capacity");
-  double energy = generation + burning + solar + battery;
+	double energy = generation + burning + solar + battery;
 	double fuelChange = attributes.Get("fuel generation") - attributes.Get("fuel consumption");
 	double fuelCapacity = attributes.Get("fuel capacity");
 	double fuel = fuelCapacity + fuelChange;
