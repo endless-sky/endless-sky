@@ -266,7 +266,10 @@ void Ship::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
-				outfits[GameData::Outfits().Get(grand.Token(0))] += count;
+				if(count > 0)
+					outfits[GameData::Outfits().Get(grand.Token(0))] += count;
+				else
+					grand.PrintTrace("Skipping invalid outfit count of " + count);
 			}
 		}
 		else if(key == "cargo")
@@ -2830,9 +2833,11 @@ bool Ship::CanFire(const Weapon *weapon) const
 	
 	if(energy < weapon->FiringEnergy())
 		return false;
-	if(heat < -(weapon->FiringHeat()))
-		return false;
 	if(fuel < weapon->FiringFuel())
+		return false;
+	// If a weapon requires heat to fire, (rather than generating heat), we must
+	// have enough heat to spare.
+	if(heat < -(weapon->FiringHeat()))
 		return false;
 	
 	return true;
