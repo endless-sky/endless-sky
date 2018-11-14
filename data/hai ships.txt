@@ -63,6 +63,74 @@ ship "Aphid" "Aphid (Anti-Missile)"
 
 
 
+ship "Centipede"
+	sprite "ship/hai centipede"
+	thumbnail "thumbnail/hai centipede"
+	attributes
+		category "Transport"
+		"cost" 6300000
+		"shields" 6600
+		"hull" 2400
+		"required crew" 35
+		"bunks" 131
+		"mass" 128
+		"drag" 3
+		"heat dissipation" .75
+		"fuel capacity" 600
+		"cargo space" 38
+		"outfit space" 375
+		"weapon capacity" 78
+		"engine capacity" 88
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Bullfrog Anti-Missile" 3
+		"Geode Reactor"
+		"Hai Corundum Regenerator"
+		"Hai Ravine Batteries"
+		"Hai Williwaw Cooling" 3
+		"Quantum Keystone"
+		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		`"Basrem" Atomic Steering`
+		Hyperdrive
+		
+	engine -15 113
+	engine 15 113
+	gun -11 -113 "Hai Tracker Pod"
+	gun 11 -113 "Hai Tracker Pod"
+	turret 0 -19 "Bullfrog Anti-Missile"
+	turret -41 67 "Bullfrog Anti-Missile"
+	turret 41 67 "Bullfrog Anti-Missile"
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description `The introduction of humans to the Hai civilization has led to a substantial amount of cultural exchange. While some may argue that pickled acorns have been the greatest product of this relationship, many more will point to this luxury transport ship. The product of human-Hai cooperation from the project's inception, the Centipede was released around the turn of the 31st century, but has already become quite popular among Hai fleets.`
+
+ship "Centipede" "Centipede (Pulse)"
+	outfits
+		"Pulse Cannon" 2
+		"Bullfrog Anti-Missile" 3
+		"Boulder Reactor"
+		"Hai Gorge Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 5
+		"Quantum Keystone"
+		"Pulse Rifle" 24
+		`"Biroo" Atomic Thruster`
+		`"Basrem" Atomic Steering`
+		`"Biroo" Atomic Steering`
+		Hyperdrive
+
+
+
 ship "Flea"
 	sprite "ship/hai flea"
 	thumbnail "thumbnail/hai flea"
@@ -94,6 +162,138 @@ ship "Flea"
 	gun 0 -27 "Railgun"
 	explode "tiny explosion" 15
 	description `This is a combat drone designed to help contain Unfettered aggression with a minimum risk to Hai life.`
+
+
+
+ship "Geocoris"
+	sprite "ship/hai geocoris"
+	thumbnail "thumbnail/hai geocoris"
+	attributes
+		category "Heavy Freighter"
+		"cost" 12540000
+		"shields" 13300
+		"hull" 6200
+		"required crew" 15
+		"bunks" 56
+		"mass" 810
+		"drag" 17.1
+		"heat dissipation" 0.45
+		"fuel capacity" 800
+		"cargo space" 761
+		"outfit space" 582
+		"weapon capacity" 172
+		"engine capacity" 94
+		weapon
+			"blast radius" 300
+			"shield damage" 3000
+			"hull damage" 1500
+			"hit force" 4500
+	outfits
+		"Pulse Cannon" 2
+		"Pulse Turret" 2
+		"Bullfrog Anti-Missile" 3
+		"Geode Reactor" 2
+		"Hai Valley Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 5
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		Hyperdrive
+
+	engine 100 39
+	engine -100 39
+	gun 24 -118 "Pulse Cannon"
+	gun -24 -118 "Pulse Cannon"
+	turret 110 -23 "Pulse Turret"
+	turret -110 -23 "Pulse Turret"
+	turret 35 94 "Bullfrog Anti-Missile"
+	turret -35 94 "Bullfrog Anti-Missile"
+	turret 0 -89 "Bullfrog Anti-Missile"
+	explode "tiny explosion" 50
+	explode "small explosion" 50
+	explode "medium explosion" 50
+	explode "large explosion" 50
+	explode "huge explosion" 20
+	"final explode" "final explosion large"
+	description "After large human freighters began to out-compete traditionally smaller Hai ships, the Hai responded by developing the Geocoris: a heavy freighter that surpassed anything humanity had to offer at the time."
+
+ship "Geocoris" "Geocoris (Tracker)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 196
+		"Pulse Turret" 2
+		"Bullfrog Anti-Missile" 2
+		"Chameleon Anti-Missile"
+		"Boulder Reactor"
+		"Pebble Core"
+		"Hai Ravine Batteries"
+		"Hai Corundum Regenerator" 2
+		"Hai Williwaw Cooling" 7
+		"Tracker Storage Pod" 3
+		"Quantum Keystone"
+		"Pulse Rifle" 14
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		Hyperdrive
+
+
+
+ship "Grasshopper"
+	sprite "ship/hai grasshopper"
+	thumbnail "thumbnail/hai grasshopper"
+	attributes
+		category "Interceptor"
+		"cost" 684000
+		"shields" 3300
+		"hull" 600
+		"required crew" 1
+		"bunks" 5
+		"mass" 95
+		"drag" 1.5
+		"heat dissipation" .85
+		"fuel capacity" 300
+		"cargo space"  29
+		"outfit space" 169
+		"weapon capacity" 38
+		"engine capacity" 61
+		weapon
+			"blast radius" 36
+			"shield damage" 180
+			"hull damage" 360
+			"hit force" 540
+	outfits
+		"Pulse Cannon" 2
+		"Pebble Core"
+		"Hai Chasm Batteries" 2
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Quantum Keystone"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		Hyperdrive
+
+	engine 0 36
+	gun -6 -34 "Pulse Cannon"
+	gun 6 -34 "Pulse Cannon"
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 5
+	"final explode" "final explosion small"
+	description "Designed by the Hai to serve as a fast reconnaissance craft, the Grasshopper has been adopted by thrill-seekers and miners alike. At the same time, it is often used by Hai captains who are looking for effective protection at a low cost."
+
+ship "Grasshopper" "Grasshopper (Tracker)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Pebble Core"
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Quantum Keystone"
+		"Pulse Rifle"
+		`"Basrem" Atomic Thruster`
+		`"Basrem" Atomic Steering`
+		Hyperdrive
 
 
 

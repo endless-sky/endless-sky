@@ -266,7 +266,10 @@ void Ship::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
-				outfits[GameData::Outfits().Get(grand.Token(0))] += count;
+				if(count > 0)
+					outfits[GameData::Outfits().Get(grand.Token(0))] += count;
+				else
+					grand.PrintTrace("Skipping invalid outfit count of " + count);
 			}
 		}
 		else if(key == "cargo")
@@ -544,16 +547,16 @@ void Ship::Save(DataWriter &out) const
 			out.Write("category", baseAttributes.Category());
 			out.Write("cost", baseAttributes.Cost());
 			out.Write("mass", baseAttributes.Mass());
-			for(const pair<Body, int> &it : baseAttributes.FlareSprites())
+			for(const auto &it : baseAttributes.FlareSprites())
 				for(int i = 0; i < it.second; ++i)
 					it.first.SaveSprite(out, "flare sprite");
-			for(const pair<const Sound *, int> &it : baseAttributes.FlareSounds())
+			for(const auto &it : baseAttributes.FlareSounds())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("flare sound", it.first->Name());
-			for(const pair<const Effect *, int> &it : baseAttributes.AfterburnerEffects())
+			for(const auto &it : baseAttributes.AfterburnerEffects())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("afterburner effect", it.first->Name());
-			for(const pair<const char *, double> &it : baseAttributes.Attributes())
+			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
 		}
@@ -703,6 +706,7 @@ string Ship::FlightCheck() const
 	double solar = attributes.Get("solar collection");
 	double battery = attributes.Get("energy capacity");
 	double energy = generation + solar + battery;
+	double fuelCapacity = attributes.Get("fuel capacity");
 	double thrust = attributes.Get("thrust");
 	double reverseThrust = attributes.Get("reverse thrust");
 	double afterburner = attributes.Get("afterburner thrust");
@@ -735,8 +739,13 @@ string Ship::FlightCheck() const
 		return "limited turn?";
 	if(energy - .8 * solar < .2 * (turnEnergy + thrustEnergy))
 		return "solar power?";
-	if(!hyperDrive && !jumpDrive && !canBeCarried)
-		return "no hyperdrive?";
+	if(!canBeCarried)
+	{
+		if(!hyperDrive && !jumpDrive)
+			return "no hyperdrive?";
+		if(fuelCapacity < JumpFuel())
+			return "no fuel?";
+	}
 	
 	return "";
 }
@@ -2831,6 +2840,10 @@ bool Ship::CanFire(const Weapon *weapon) const
 	if(energy < weapon->FiringEnergy())
 		return false;
 	if(fuel < weapon->FiringFuel())
+		return false;
+	// If a weapon requires heat to fire, (rather than generating heat), we must
+	// have enough heat to spare.
+	if(heat < -(weapon->FiringHeat()))
 		return false;
 	
 	return true;

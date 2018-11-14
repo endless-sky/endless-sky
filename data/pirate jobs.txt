@@ -2774,7 +2774,7 @@ mission "Syndicate Assassination [2]"
 			variant
 				"Star Queen"
 				"Splinter" 2
- 			variant
+			variant
 				"Star Queen"
 				"Manta" 2
 		dialog "The targets have been destroyed. Return to <destination> for payment."
@@ -2908,7 +2908,7 @@ mission "Republic Assassination [2]"
 			variant
 				"Star Queen"
 				"Headhunter" 3
-				"FIrebird" 2
+				"Firebird" 2
 			variant
 				"Star Queen"
 				"Gunboat" 2

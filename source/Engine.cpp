@@ -608,7 +608,7 @@ void Engine::Step(bool isActive)
 		targetAsteroid = flagship->GetTargetAsteroid();
 		// Record that the player knows this type of asteroid is available here.
 		if(targetAsteroid)
-			for(const pair<const Outfit *, int> &it : targetAsteroid->Payload())
+			for(const auto &it : targetAsteroid->Payload())
 				player.Harvest(it.first);
 	}
 	if(!target)
