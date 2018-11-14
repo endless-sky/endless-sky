@@ -129,7 +129,7 @@ mission "Merchant Start 4"
 			`	"I guess I might be wrong about you," he says, disappointment on his face as he leaves.`
 				decline
 			label thanks
-			`	"Thank you. I had a hunch you are the person I'm looking for!" He says before adding, "I almost forgot, because of the escalation in tensions between the Free Worlds and the Republic, the navy has pooled their resources to the southern planets, so expect to see an increase in pirate activity."`
+			`	"Thank you. I had a hunch you're the person I'm looking for!" He says before adding, "I almost forgot, because of the escalation in tensions between the Free Worlds and the Republic, the navy has pooled their resources to the southern planets, so expect to see an increase in pirate activity."`
 				accept
 	on complete
 		log "Helped a merchant group send aid to a planet facing an epidemic."
