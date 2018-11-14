@@ -69,7 +69,7 @@ mission "Merchant Start 3"
 		fleet "Bounty Hunters"
 	on offer
 		conversation
-			`"Captain," salutes the man, "This job involves <bunks> travelers trying to get to <destination> with <cargo> now, I have no idea why they need so much of it, but, get it over there alright?"`
+			`"Captain," salutes the man, "This job involves <bunks> travelers trying to get to <destination> with <cargo>. Now, I have no idea why they need so much of it, but, get it over there alright?"`
 			choice	
 				`	"Yes, sir."`
 					accept
@@ -78,17 +78,17 @@ mission "Merchant Start 3"
 	on complete
 		payment 50000
 		conversation
-			`You help the travelers lug his cargo away, still wondering why so much of it is needed. You see the first man walking up to you. "Well, Captain, may I ask you for your name?"`
+			`You help the travelers lug their cargo away, still wondering why so much of it is needed. You see the first merchant you met walking up to you. "Well, Captain, may I ask you for your name?"`
 			choice
 				`	"It's <first> <last>."`
 					goto name
 				`	"I would rather not say."`
 					goto anonymous
 			label name
-			`	"Thank you, <first>"
+			`	"Thank you, <first>."
 				goto next
 			label anonymous
-			`	The man smiles slightly. "That's perfectly fine, Captain <last>," he says, surprising you, "just do a better job of covering your pilot's license next time."`
+			`	The man smiles slightly. "That's perfectly fine, Captain <last>," he says, surprising you. "Just do a better job of covering your pilot's license next time."`
 			label next
 			`	"Anyways, if you're still interested, meet me in the spaceport afterwards so we can converse further."`
 
@@ -116,23 +116,23 @@ mission "Merchant Start 4"
 				`	What's the mission?"
 					goto point
 			label pleasantries
-			`	He smiles, "Politeness can bring you places. There aren't many of your type in this galaxy."`
+			`	He smiles. "Politeness can bring you places. There aren't many of your type in this galaxy."`
 				goto mission
 			label point
-			`	He smiles, "Straight to the point are we?"
+			`	He smiles, "Straight to the point, are we?"
 			label mission
 			`	"Well, anyways, <destination> is in desperate need of <cargo> and doctors. You see, they are facing an epidemic there which started a week ago. Willing captains have been asked to go there as fast as you can or at the very least, before <date>." He winces, "The death toll is currently at 50,000 and rising. So I ask you, accept this job and get the supplies there as soon as possible."
 			choice
 				`	"I'll do it."`
 					goto thanks
 				`	"Sorry, I can't."`
-			`	"I might be wrong about you," he says, disappointment on his face as he leaves.`
+			`	"I guess I might be wrong about you," he says, disappointment on his face as he leaves.`
 				decline
 			label thanks
-			`	"Thank you, I had a hunch you are the person I'm looking for!" He says before adding, "I almost forgot, because of the escalation in tensions between the Free Worlds and the Republic, the navy has pooled their resources to the southern planets, so expect to see an increase in pirate activity."`
+			`	"Thank you. I had a hunch you are the person I'm looking for!" He says before adding, "I almost forgot, because of the escalation in tensions between the Free Worlds and the Republic, the navy has pooled their resources to the southern planets, so expect to see an increase in pirate activity."`
 				accept
 	on complete
 		log "Helped a merchant group send aid to a planet facing an epidemic."
 		payment 75000
 		conversation
-			`	Doctors put on safety masks as you're making your landing, rushing out of the airlock once you've reached the ground. You open the cargo hold and switch to your external cameras, where you see thousands of people waiting in line as doctors distribute the  medications to them. Just as the doctors take out the last batch of the cargo out of your hold, you notice a message pop up on your interface, "Meet me on Earth, <last>. It's urgent."
+			`	Doctors put on safety masks as you make your landing, rushing out of the airlock once you've reached the ground. You open the cargo hold and switch to your external cameras, where you see thousands of people waiting in line as doctors distribute the medications to them. Just as the doctors take out the last batch of the cargo out of your hold, you notice a message pop up on your interface, "Meet me on Earth, <last>. It's urgent."
