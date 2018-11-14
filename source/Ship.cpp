@@ -706,6 +706,7 @@ string Ship::FlightCheck() const
 	double solar = attributes.Get("solar collection");
 	double battery = attributes.Get("energy capacity");
 	double energy = generation + solar + battery;
+	double fuelCapacity = attributes.Get("fuel capacity");
 	double thrust = attributes.Get("thrust");
 	double reverseThrust = attributes.Get("reverse thrust");
 	double afterburner = attributes.Get("afterburner thrust");
@@ -738,8 +739,13 @@ string Ship::FlightCheck() const
 		return "limited turn?";
 	if(energy - .8 * solar < .2 * (turnEnergy + thrustEnergy))
 		return "solar power?";
-	if(!hyperDrive && !jumpDrive && !canBeCarried)
-		return "no hyperdrive?";
+	if(!canBeCarried)
+	{
+		if(!hyperDrive && !jumpDrive)
+			return "no hyperdrive?";
+		if(fuelCapacity < JumpFuel())
+			return "no fuel?";
+	}
 	
 	return "";
 }
