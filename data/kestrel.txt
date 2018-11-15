@@ -243,6 +243,7 @@ ship "Unknown Ship Type"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
 		"Liquid Nitrogen Cooler"
+		"Tactical Scanner" 2
 		
 		"Orca Plasma Thruster"
 		"Orca Plasma Steering"
@@ -299,6 +300,7 @@ ship "Kestrel"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
 		"Liquid Nitrogen Cooler"
+		"Tactical Scanner" 2
 		
 		"Orca Plasma Thruster"
 		"Orca Plasma Steering"
