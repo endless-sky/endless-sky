@@ -1191,6 +1191,19 @@ fleet "Large Republic"
 		"Frigate" 2
 		"Rainmaker"
 		"Gunboat"
+	variant 4
+		"Auxiliary (Cargo)"
+		"Combat Drone" 4
+		"Frigate"
+		"Rainmaker"
+		"Gunboat"
+	variant 4
+		"Auxiliary"
+		"Combat Drone" 2
+		"Dropship" 2
+		"Frigate"
+		"Rainmaker"
+		"Gunboat"
 	variant 3
 		"Cruiser"
 		"Combat Drone" 4
@@ -1199,10 +1212,29 @@ fleet "Large Republic"
 		"Combat Drone" 4
 		"Frigate"
 		"Rainmaker"
+	variant 3
+		"Auxiliary (Transport)"
+		"Dropship" 4
+		"Frigate"
+		"Rainmaker" 2
+		"Gunboat"2
 	variant 2
 		"Carrier"
 		"Lance" 4
 		"Combat Drone" 6
+	variant 2
+		"Auxiliary"
+		"Combat Drone" 2
+		"Lance" 2
+		"Frigate" 2
+		"Rainmaker"
+		"Gunboat"
+	variant 2
+		"Auxiliary"
+		"Combat Drone" 2
+		"Dropship" 2
+		"Cruiser"
+		"Combat Drone" 4
 	variant 1
 		"Carrier"
 		"Lance" 4
@@ -1220,6 +1252,82 @@ fleet "Large Republic"
 		"Frigate"
 		"Rainmaker" 2
 		"Gunboat"
+	variant 1
+		"Auxiliary (Cargo)" 2
+		"Combat Drone" 8
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate" 2
+		"Rainmaker"
+		"Gunboat"
+	variant 1
+		"Auxiliary (Transport)" 2
+		"Dropship" 8
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate" 2
+		"Rainmaker"
+		"Gunboat"2
+	variant 1
+		"Auxiliary (Transport)"
+		"Dropship" 4
+		"Auxiliary (Cargo)"
+		"Combat Drone" 4
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate" 2
+		"Rainmaker"
+		"Gunboat"2
+	variant 1
+		"Auxiliary"
+		"Dropship" 2
+		"Combat Drone" 2
+		"Auxiliary (Cargo)"
+		"Combat Drone" 4
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate" 2
+		"Rainmaker"
+		"Gunboat"
+	variant 1
+		"Auxiliary"
+		"Dropship" 2
+		"Combat Drone" 2
+		"Auxiliary (Transport)"
+		"Dropship" 4
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate" 2
+		"Rainmaker"
+		"Gunboat"2
+	variant 1
+		"Auxiliary (Cargo)" 2
+		"Combat Drone" 8
+		"Cruiser" 2
+		"Combat Drone" 8
+	variant 1
+		"Auxiliary" 2
+		"Dropship" 4
+		"Combat Drone" 4
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate" 2
+		"Rainmaker"
+		"Gunboat"2
+	variant 1
+		"Auxiliary (Transport)"
+		"Dropship" 4
+		"Auxiliary"
+		"Dropship" 2
+		"Combat Drone" 2
+		"Auxiliary (Cargo)"
+		"Combat Drone" 4
+		"Carrier"
+		"Lance" 4
+		"Combat Drone" 6
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate"
 
 fleet "Navy Surveillance"
 	government "Republic"
