@@ -1,4 +1,4 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+﻿Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: endless-sky
 Upstream-Contact: Michael Zahniser <mzahniser@gmail.com>
 Source: https://github.com/endless-sky/endless-sky
@@ -273,6 +273,13 @@ Files:
  images/outfit/hai?rifle*
  images/outfit/scram?drive*
  images/outfit/korath?fuel?processor*
+ images/outfit/remnant?rifle*
+ images/ship/hai?centipede*
+ images/ship/hai?geocoris*
+ images/ship/hai?grasshopper*
+ images/thumbnail/hai?centipede*
+ images/thumbnail/hai?geocoris*
+ images/thumbnail/hai?grasshopper*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (from under the same license).
@@ -398,6 +405,12 @@ License: public-domain
  government employees while doing work for the government.
 
 Files:
+ images/land/station5.jpg
+Copyright: Damien Jemison
+License: CC-BY-SA-3.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Preamplifier_at_the_National_Ignition_Facility.jpg
+
+Files:
  images/land/lava5*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
@@ -438,6 +451,11 @@ Files: images/ship/mosprey*
 Copyright: tehhowch (https://github.com/tehhowch)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files: images/effect/explosion/pug/* 
+Copyright: Vilhelm (https://github.com/Vilhelm16)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) 
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
