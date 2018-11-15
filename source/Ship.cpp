@@ -1733,10 +1733,8 @@ int Ship::Scan()
 		return 0;
 	
 	// The range of a scanner is proportional to the square root of its power.
-	double cargoPower = attributes.Get("cargo scan power");
-	double cargoDistance = cargoPower ? 100. * sqrt(cargoPower) : attributes.Get("cargo scan");
-	double outfitPower = attributes.Get("outfit scan power");
-	double outfitDistance = outfitPower ? 100. * sqrt(outfitPower) : attributes.Get("outfit scan");
+	double cargoDistance = 100. * sqrt(attributes.Get("cargo scan power"));
+	double outfitDistance = 100. * sqrt(attributes.Get("outfit scan power"));
 	
 	// Bail out if this ship has no scanners.
 	if(!cargoDistance && !outfitDistance)
