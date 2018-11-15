@@ -676,6 +676,7 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 	objects.push_back(StellarObject());
 	StellarObject &object = objects.back();
 	object.parent = parent;
+	object.system = this;
 	
 	bool isAdded = (node.Token(0) == "add");
 	if(node.Size() >= 2 + isAdded)
@@ -708,6 +709,7 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 		else if(child.Token(0) == "defense" && child.Size() >= 2)
 		{
 			object.launcher = GameData::Outfits().Get(child.Token(1));
+			
 			// The optional attributes of the defense systems are in the child-node of child
 			for(const DataNode &subChild : child)
 			{
