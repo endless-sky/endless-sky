@@ -36,14 +36,7 @@ mission "Pirate Occupation [0]"
 		system destination
 		fleet "Small Southern Pirates" 3
 	on offer
-		conversation
-			`Suddenly you hear raised voices and shouting outside as pilots run for their ships: "<destination> is under attack by a small pirate fleet! They are requesting help from any combat-worthy ship in the region to join in the defenses!" The authorities of <planet> will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
-			choice
-				"	(Stay here until the fight is over.)"
-					decline
-				"	(Join the defense fleet.)"
-			"A few militia pilots have gathered to help repel the pirate attack. You join them, and take off together..."
-				launch
+		conversation "pirate occupation"
 	on complete
 		payment 100000
 		dialog `The government of <planet> thanks you for defeating the pirates and pays you <payment>.`
@@ -78,14 +71,7 @@ mission "Pirate Occupation [1]"
 		fleet "Small Southern Pirates" 2
 		fleet "Large Southern Pirates"
 	on offer
-		conversation
-			`Suddenly you hear raised voices and shouting outside as pilots run for their ships: "<destination> is under attack by pirates! They are requesting help from any combat-worthy ship in the region to join in the defenses!" The authorities of <planet> will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
-			choice
-				"	(Stay here until the fight is over.)"
-					decline
-				"	(Join the defense fleet.)"
-			"A few militia pilots have gathered to help repel the pirate attack. You join them, and take off together..."
-				launch
+		conversation "pirate occupation"
 	on complete
 		payment 150000
 		dialog `The government of <planet> thanks you for defeating the pirates and pays you <payment>.`
@@ -120,17 +106,19 @@ mission "Pirate Occupation [2]"
 		system destination
 		fleet "Large Southern Pirates" 3
 	on offer
-		conversation
-			`Suddenly you hear raised voices and shouting outside as pilots run for their ships: "<destination> is under attack by a large pirate fleet! They are requesting help from any combat-worthy ship in the region to join in the defenses!" The authorities of <planet> will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
-			choice
-				"	(Stay here until the fight is over.)"
-					decline
-				"	(Join the defense fleet.)"
-			"A few militia pilots have gathered to help repel the pirate attack. You join them, and take off together..."
-				launch
+		conversation "pirate occupation"
 	on complete
 		payment 200000
 		dialog `The government of <planet> thanks you for defeating the pirates and pays you <payment>.`
+
+conversation "pirate occupation"
+	`Suddenly you hear raised voices and shouting outside as pilots run for their ships: "<destination> is being occupied by a pirate fleet! They are requesting help from any combat-worthy ship in the region to join the defenses!" The authorities of <planet> will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
+		choice
+		`	(Stay here until the fight is over.)`
+			decline
+		`	(Join the defense fleet.)`
+	`A few militia pilots have gathered to help repel the pirate attack. You join them, and take off together...`
+				launch
 
 
 mission "Sketchy Cargo [0]"
