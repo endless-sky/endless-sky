@@ -1756,30 +1756,20 @@ int Ship::Scan()
 	bool startedScanning = false;
 	bool activeScanning = false;
 	int result = 0;
-	if(cargoScan < SCAN_TIME)
+	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, const int event) -> void
 	{
-		if(distance < cargoDistance)
+		if(elapsed < SCAN_TIME && distance < scannerRange)
 		{
-			startedScanning |= !cargoScan;
+			startedScanning |= !elapsed;
 			activeScanning = true;
 			// To make up for the scan decay above:
-			cargoScan += cargoSpeed + 1.;
-			if(cargoScan >= SCAN_TIME)
-				result |= ShipEvent::SCAN_CARGO;
+			elapsed += speed + 1.;
+			if(elapsed >= SCAN_TIME)
+				result |= event;
 		}
-	}
-	if(outfitScan < SCAN_TIME)
-	{
-		if(distance < outfitDistance)
-		{
-			startedScanning |= !outfitScan;
-			activeScanning = true;
-			// To make up for the scan decay above:
-			outfitScan += outfitSpeed + 1.;
-			if(outfitScan >= SCAN_TIME)
-				result |= ShipEvent::SCAN_OUTFITS;
-		}
-	}
+	};
+	doScan(cargoScan, cargoSpeed, cargoDistance, ShipEvent::SCAN_CARGO);
+	doScan(outfitScan, outfitSpeed, outfitDistance, ShipEvent::SCAN_OUTFITS);
 	
 	// Play the scanning sound if the actor or the target is the player's ship.
 	if(isYours || (target->isYours && activeScanning))
