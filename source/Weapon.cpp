@@ -135,11 +135,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 			else if(key == "firing heat")
 				firingHeat = value;
 			else if(key == "split range")
-				splitRange = value;
+				splitRange = max(0., value);
 			else if(key == "trigger radius")
-				triggerRadius = value;
+				triggerRadius = max(0., value);
 			else if(key == "blast radius")
-				blastRadius = value;
+				blastRadius = max(0., value);
 			else if(key == "shield damage")
 				damage[SHIELD_DAMAGE] = value;
 			else if(key == "hull damage")
