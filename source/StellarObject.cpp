@@ -44,7 +44,7 @@ namespace {
 
 // Object default constructor.
 StellarObject::StellarObject()
-	: planet(nullptr),
+	: planet(nullptr), government(nullptr), launcher(nullptr),
 	distance(0.), speed(0.), offset(0.), parent(-1),
 	message(nullptr), isStar(false), isStation(false), isMoon(false)
 {
@@ -183,23 +183,35 @@ double StellarObject::Distance() const
 
 
 
+// Returns the government based on priority(this gov > planet gov > system gov).
+const Government *StellarObject::GetGovernment() const
+{
+	return government ? government : planet ? planet->GetGovernment() : system ? system->GetGovernment() : nullptr;
+}
+
+
+
 // Selects the nearest potential target and fires projectiles.
-void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *system, vector<Visual> &visuals, const list<std::shared_ptr<Ship>> &ships) const
+void StellarObject::TryToFire(vector<Projectile> &projectiles, vector<Visual> &visuals, const list<std::shared_ptr<Ship>> &ships) const
 {
 	if(!launcher)
 		return;
-	// Sets the government based on priority(this gov > planet gov > system gov).
-	const Government *gov = government ? government : planet ? planet->GetGovernment() : system->GetGovernment();
+	const Government *gov = GetGovernment();
 	if(!gov)
+		return;
+	
+	// Antimissiles are handled in FireAntiMisslie().
+	if(AntiMissile())
 		return;
 	if(!ammo)
 		return;
+		
 	// If the station doesn't turn towards the ship the rest of the function isn't needed when the station doesn't fire.
 	if(!turn && Random::Real() > reload)
 		return;
-	
 
-	double maxRange = launcher->Range()*1.5;
+	// Select a target to shoot at or turn towards
+	const double maxRange = launcher->Range()*1.5;
 	shared_ptr<Ship> enemy = nullptr;
 	Angle aim;
 	for(auto &target : ships) {
@@ -215,8 +227,9 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 				enemy = target;
 				aim = a;
 			}
-			// If the defense instantly turns toward the ship, enemies should be selected by distance, but
-			// if the defense needs to turn around it's more efficient to target an enemy that can be reached faster. 
+			
+			// If the defense instantly turns toward the ship, enemies should be selected by distance, but if the
+			// defense needs to turn around it's more efficient to target an enemy that can be reached faster by rotation. 
 			else if((target->Position().Distance(position) < enemy->Position().Distance(position)
 				&& !turn) || (turn && abs((aim-angle).Degrees()) > abs((a-angle).Degrees())))
 			{
@@ -247,14 +260,17 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 		}
 		aim = angle;
 	}
+	
 	// Here is checked if the turning defense is firing. Other defenses have been tested above.
 	if(turn && Random::Real() > reload)
 		return;
 	ammo--;
-	//Each launch comes from a random point inside r/2 from the middle of the object.
-	//Assumes the biggest circle in the middle of the sprite is the planet/station.
+	
+	// Each launch comes from a random point inside r/2 from the middle of the object.
+	// Assumes the biggest circle in the middle of the sprite is the planet/station.
 	Point randomPosition(position);
-	//Lasers and beams fire always from the middle of the station.
+	
+	// Lasers and beams fire always from the middle of the station.
 	if(launcher->Reload() > 1)
 	{
 		double r = Random::Real()/4;
@@ -273,7 +289,54 @@ void StellarObject::TryToFire(vector<Projectile> &projectiles, const System *sys
 
 
 
+// Resets ammo after every day.
 void StellarObject::ResetAmmo() const
 {
 	ammo = maxAmmo;
+}
+
+
+
+// Checks if there is a Antimissilelauncher and returns its range.
+int StellarObject::AntiMissile() const
+{
+	if(!launcher)
+		return 0;
+	return launcher->AntiMissile();
+}
+
+
+
+// Tries to fire Antimissilesystem on the projectile.
+bool StellarObject::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals) const
+{
+	// There is no need to check launcher or AntiMissile(), because they were already checked
+	// by Engine when calling AntiMissile().
+	const Government *gov = GetGovernment();
+	if(!gov)
+		return false;
+	if(projectile.Position().Distance(position) > launcher->Range())
+		return false;
+	if(!ammo)
+		return false;
+		
+	// Checks if antimissile is fired.
+	if(Random::Real() > reload)
+		return false;
+		
+	// Create effects of the Antimissile and the projectile.
+	Angle aim(projectile.Position() - position);
+	CreateEffects(launcher->FireEffects(), position, Point(), aim, visuals);
+	
+	// Figure out where the effect should be placed. Anti-missiles do not create
+	// projectiles; they just create a blast animation.
+	CreateEffects(launcher->HitEffects(), position + (.5 * launcher->Range()) * aim.Unit(), Point(), aim, visuals);
+	
+	// Die effects are displayed at the projectile, whether or not it actually "dies."
+	CreateEffects(launcher->DieEffects(), projectile.Position(), projectile.Velocity(), aim, visuals);
+
+	ammo--;
+	
+	// Check whether the missile was destroyed.
+	return (Random::Int(AntiMissile()) > Random::Int(projectile.MissileStrength()));
 }
