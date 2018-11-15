@@ -51,7 +51,7 @@ mission "Merchant Start 2"
 	on complete
 		payment 40000
 		conversation
-			`The family thanks you profusely, grateful for meeting such a generous captain. You watch the family walk off and exchange greetings with another man in a blue suit, the blue-suited man walks up to you and says, "Meet me in the spaceport, don't dally."`
+			`The family thanks you profusely, grateful for meeting such a generous captain. You watch the family walk off and exchange greetings with another man in a blue suit, the blue-suited man walks up to you and says, "Meet me in the spaceport," he instructs. "Don't dally."`
 
 mission "Merchant Start 3"
 	name "Special transport"
@@ -78,7 +78,7 @@ mission "Merchant Start 3"
 	on complete
 		payment 50000
 		conversation
-			`You help the travelers lug their cargo away, still wondering why so much of it is needed. You see the first merchant you met walking up to you. "Well, Captain, may I ask you for your name?"`
+			`You help the travelers lug their cargo away, still wondering why so much of it is needed. The first merchant you met walking up to you. "Well, Captain, may I ask you for your name?"`
 			choice
 				`	"It's <first> <last>."`
 					goto name
@@ -126,7 +126,7 @@ mission "Merchant Start 4"
 				`	"I'll do it."`
 					goto thanks
 				`	"Sorry, I can't."`
-			`	"I guess I might be wrong about you," he says, disappointment on his face as he leaves.`
+			`	"I guess I was wrong about you," he says, disappointment on his face as he leaves.`
 				decline
 			label thanks
 			`	"Thank you. I had a hunch you're the person I'm looking for!" He says before adding, "I almost forgot, because of the escalation in tensions between the Free Worlds and the Republic, the navy has pooled their resources to the southern planets, so expect to see an increase in pirate activity."`
