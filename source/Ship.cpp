@@ -269,7 +269,7 @@ void Ship::Load(const DataNode &node)
 				if(count > 0)
 					outfits[GameData::Outfits().Get(grand.Token(0))] += count;
 				else
-					grand.PrintTrace("Skipping invalid outfit count of " + count);
+					grand.PrintTrace("Skipping invalid outfit count:");
 			}
 		}
 		else if(key == "cargo")
