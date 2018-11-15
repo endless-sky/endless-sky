@@ -191,7 +191,10 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		else if(key == "require" && hasValue)
 		{
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
-			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
+			if(count >= 0)
+				requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
+			else
+				child.PrintTrace("Skipping invalid \"require\" amount:");
 		}
 		else if(key == "payment")
 		{
@@ -324,6 +327,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 	const Ship *flagship = player.Flagship();
 	for(const auto &it : gifts)
 	{
+		// If this outfit is being given, the player doesn't need to have it.
 		if(it.second > 0)
 			continue;
 		
@@ -335,9 +339,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		available += boardingShip ? flagship->Cargo().Get(it.first)
 				: CountInCargo(it.first, player);
 		
-		// If the "count" is 0, that means to check that the player has at least one of these
-		// items. This is for backward compatibility before requiredOutfits was introduced.
-		if(available < -it.second + !it.second)
+		if(available < -it.second)
 			return false;
 	}
 	
