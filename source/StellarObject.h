@@ -45,7 +45,7 @@ public:
 	Frame GetFrame(int step = -1) const;
 	const Point &Position() const;
 	const Point &Velocity() const;*/
-	//needed to create a local mutable angle.
+	// Needed to create a local mutable angle.
 	const virtual Angle &Facing() const;
 	virtual Point Unit() const;
 	
@@ -74,20 +74,28 @@ public:
 	int Parent() const;
 	// Find out how far this object is from its parent.
 	double Distance() const;
+	// Returns the government of the defense system..
+	const Government *GetGovernment() const;
 	// Defends the system using its defense weapons.
-	void TryToFire(std::vector<Projectile> &projectiles, const System *system, std::vector<Visual> &visuals, const std::list<std::shared_ptr<Ship>> &ships) const;
+	void TryToFire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals, const std::list<std::shared_ptr<Ship>> &ships) const;
 	void ResetAmmo() const;
+	// Methods needed for StellarObjects with antimissile defense system
+	int AntiMissile() const;
+	// Fires the antimissile system
+	bool FireAntiMissile(const Projectile &projectile, std::vector<Visual> &visuals) const;
 	
 private:
 	
 	
 private:
 	const Planet *planet;
+	// System will always get initialized in System.cpp.
+	const System *system;
 	
 	const Government *government;
 	
 	const Weapon *launcher;
-	//"overrides" Body.angle
+	// "Overrides" Body.angle
 	mutable Angle angle;
 	
 	mutable int ammo = -1;
