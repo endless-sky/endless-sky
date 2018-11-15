@@ -1182,7 +1182,9 @@ void Engine::CalculateStep()
 	{
 		if(object.GetPlanet())
 			object.GetPlanet()->DeployDefense(newShips);
-		object.TryToFire(newProjectiles, playerSystem, newVisuals, ships);
+		object.TryToFire(newProjectiles, newVisuals, ships);
+		if(object.AntiMissile())
+			stellarAntiMissile.push_back(&object);
 	}
 
 	// Keep track of the flagship to see if it jumps or enters a wormhole this turn.
@@ -1257,9 +1259,10 @@ void Engine::CalculateStep()
 	// Perform collision detection.
 	for(Projectile &projectile : projectiles)
 		DoCollisions(projectile);
-	// Now that collision detection is done, clear the cache of ships with anti-
-	// missile systems ready to fire.
+	// Now that collision detection is done, clear the cache of ships and
+	// stellar objects with anti-missile systems ready to fire.
 	hasAntiMissile.clear();
+	stellarAntiMissile.clear();
 	
 	// Check for flotsam collection (collisions with ships).
 	for(const shared_ptr<Flotsam> &it : flotsam)
@@ -1739,6 +1742,13 @@ void Engine::DoCollisions(Projectile &projectile)
 		for(Ship *ship : hasAntiMissile)
 			if(ship == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))
 				if(ship->FireAntiMissile(projectile, visuals))
+				{
+					projectile.Kill();
+					break;
+				}
+		for(const StellarObject *object : stellarAntiMissile)
+			if(gov->IsEnemy(object->GetGovernment()))
+				if(object->FireAntiMissile(projectile, visuals))
 				{
 					projectile.Kill();
 					break;
