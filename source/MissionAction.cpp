@@ -179,7 +179,14 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		else if(key == "outfit" && hasValue)
 		{
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
-			gifts[GameData::Outfits().Get(child.Token(1))] = count;
+			if(count)
+				gifts[GameData::Outfits().Get(child.Token(1))] = count;
+			else
+			{
+				// outfit <outfit> 0 means the player must have this outfit.
+				child.PrintTrace("Warning: deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
+				requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
+			}
 		}
 		else if(key == "require" && hasValue)
 		{
