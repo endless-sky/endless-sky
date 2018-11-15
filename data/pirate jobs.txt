@@ -14,7 +14,7 @@ mission "Cargo Smuggling [0]"
 	repeat
 	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 20,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
-		illegal 20000
+	illegal 20000
 	to offer
 		or
 			"reputation: Pirate" > -100
@@ -34,7 +34,7 @@ mission "Cargo Smuggling [1]"
 	repeat
 	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 25,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
-		illegal 25000
+	illegal 25000
 	to offer
 		random < 90
 		or
@@ -55,7 +55,7 @@ mission "Cargo Smuggling [2]"
 	repeat
 	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 32,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
-		illegal 32000
+	illegal 32000
 	to offer
 		random < 70
 		or
@@ -76,7 +76,7 @@ mission "Cargo Smuggling [3]"
 	repeat
 	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 40,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
-		illegal 40000
+	illegal 40000
 	to offer
 		random < 60
 		or
@@ -99,7 +99,7 @@ mission "Drug Running [0]"
 	repeat
 	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 37,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
-		illegal 37000
+	illegal 37000
 	to offer
 		random < 80
 		or
@@ -120,7 +120,7 @@ mission "Drug Running [1]"
 	repeat
 	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 46,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
-		illegal 46000
+	illegal 46000
 	to offer
 		random < 70
 		or
@@ -141,7 +141,7 @@ mission "Drug Running [2]"
 	repeat
 	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 55,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
-		illegal 55000
+	illegal 55000
 	to offer
 		random < 60
 		or
@@ -162,7 +162,7 @@ mission "Drug Running [3]"
 	repeat
 	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 65,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
-		illegal 65000
+	illegal 65000
 	to offer
 		random < 50
 		or
@@ -185,7 +185,7 @@ mission "Bulk Cargo Smuggling [0]"
 	repeat
 	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 47,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Cargo" 25 2 .1
-		illegal 47000
+	illegal 47000
 	to offer
 		random < 70
 		or
@@ -206,7 +206,7 @@ mission "Bulk Cargo Smuggling [1]"
 	repeat
 	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 65,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Cargo" 25 2 .1
-		illegal 65000
+	illegal 65000
 	to offer
 		random < 60
 		or
@@ -227,7 +227,7 @@ mission "Bulk Cargo Smuggling [2]"
 	repeat
 	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 86,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Cargo" 25 2 .1
-		illegal 86000
+	illegal 86000
 	to offer
 		random < 40
 		or
@@ -250,7 +250,7 @@ mission "Bulk Drug Running [0]"
 	repeat
 	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 86,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Substances" 25 2 .1
-		illegal 86000
+	illegal 86000
 	to offer
 		random < 50
 		or
@@ -271,7 +271,7 @@ mission "Bulk Drug Running [1]"
 	repeat
 	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 100,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Substances" 25 2 .1
-		illegal 100000
+	illegal 100000
 	to offer
 		random < 40
 		or
@@ -292,7 +292,7 @@ mission "Bulk Drug Running [2]"
 	repeat
 	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 120,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
 	cargo "Illegal Substances" 25 2 .1
-		illegal 120000
+	illegal 120000
 	to offer
 		random < 30
 		or
@@ -316,8 +316,8 @@ mission "Stealth Cargo Smuggling (North) [0]"
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 130,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Highly Illegal Cargo" 5 2 .1
-		illegal 130000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
-		stealth
+	illegal 130000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 40
 		"reputation: Pirate" > -10
@@ -364,8 +364,8 @@ mission "Stealth Cargo Smuggling (North) [1]"
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 175,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Highly Illegal Cargo" 5 2 .1
-		illegal 175000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
-		stealth
+	illegal 175000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 20
 		"reputation: Pirate" > -10
@@ -435,8 +435,8 @@ mission "Stealth Cargo Smuggling (Core) [0]"
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 130,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Highly Illegal Cargo" 5 2 .1
-		illegal 130000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
-		stealth
+	illegal 130000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 40
 		"reputation: Pirate" > -10
@@ -483,8 +483,8 @@ mission "Stealth Cargo Smuggling (Core) [1]"
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 175,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Highly Illegal Cargo" 5 2 .1
-		illegal 175000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
-		stealth
+	illegal 175000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 20
 		"reputation: Pirate" > -10
@@ -557,8 +557,8 @@ mission "Stealth Cargo Smuggling (South) [0]"
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 130,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Highly Illegal Cargo" 5 2 .1
-		illegal 130000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
-		stealth
+	illegal 130000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 40
 		"reputation: Pirate" > -10
@@ -605,8 +605,8 @@ mission "Stealth Cargo Smuggling (South) [1]"
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 175,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Highly Illegal Cargo" 5 2 .1
-		illegal 175000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
-		stealth
+	illegal 175000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 20
 		"reputation: Pirate" > -10
@@ -681,8 +681,8 @@ mission "Stealth Drug Running (North) [0]"
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 175,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Highly Illegal Substances" 5 2 .1
-		illegal 175000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
-		stealth
+	illegal 175000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 30
 		"reputation: Pirate" > 0
@@ -729,8 +729,8 @@ mission "Stealth Drug Running (North) [1]"
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 250,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Highly Illegal Substances" 5 2 .1
-		illegal 250000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
-		stealth
+	illegal 250000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 15
 		"reputation: Pirate" > 0
@@ -800,8 +800,8 @@ mission "Stealth Drug Running (Core) [0]"
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 175,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Highly Illegal Substances" 5 2 .1
-		illegal 175000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
-		stealth
+	illegal 175000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 30
 		"reputation: Pirate" > 0
@@ -848,8 +848,8 @@ mission "Stealth Drug Running (Core) [1]"
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 250,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Highly Illegal Substances" 5 2 .1
-		illegal 250000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
-		stealth
+	illegal 250000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 15
 		"reputation: Pirate" > 0
@@ -922,8 +922,8 @@ mission "Stealth Drug Running (South) [0]"
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 175,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Highly Illegal Substances" 5 2 .1
-		illegal 175000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
-		stealth
+	illegal 175000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 30
 		"reputation: Pirate" > 0
@@ -970,8 +970,8 @@ mission "Stealth Drug Running (South) [1]"
 	infiltrating
 	description "Run <cargo> to <destination>. Being scanned will result in a 250,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Highly Illegal Substances" 5 2 .1
-		illegal 250000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
-		stealth
+	illegal 250000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 15
 		"reputation: Pirate" > 0
@@ -1046,8 +1046,8 @@ mission "Wanted Passenger [0]"
 	description "This wanted individual wishes to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 1
 	cargo "battle trophies" 1
-		illegal 50000 `Upon scanning your vessel, law enforcement notice the criminal that you have on board. Entering your ship to detain them, they find the criminal in the corner of one of the rooms of your ship, clutching their battle trohpies and screaming "you'll never take them from me!" After a short confrontation, they carry the criminal out and leave you with a small fine.`
-		stealth
+	illegal 50000 `Upon scanning your vessel, law enforcement notice the criminal that you have on board. Entering your ship to detain them, they find the criminal in the corner of one of the rooms of your ship, clutching their battle trohpies and screaming "you'll never take them from me!" After a short confrontation, they carry the criminal out and leave you with a small fine.`
+	stealth
 	to offer
 		or
 			"reputation: Pirate" > -100
@@ -1068,8 +1068,8 @@ mission "Wanted Passengers [1]"
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "credit chips" 1
-		illegal 75000 `Upon scanning your vessel, law enforcement notice the criminals that you have on board. Entering your ship to detain them, they find the criminals busy scooping their credits into the airlock, hoping that no one can have them. The law enforcement quickly detain the criminals and carry them off along with the rest of the credits, leaving you with a moderately sized fine.`
-		stealth
+	illegal 75000 `Upon scanning your vessel, law enforcement notice the criminals that you have on board. Entering your ship to detain them, they find the criminals busy scooping their credits into the airlock, hoping that no one can have them. The law enforcement quickly detain the criminals and carry them off along with the rest of the credits, leaving you with a moderately sized fine.`
+	stealth
 	to offer
 		random < 75
 		"reputation: Pirate" > -50
@@ -1090,8 +1090,8 @@ mission "Wanted Passengers [2]"
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "customized weapons" 1
-		illegal 75000 `Upon scanning your vessel, law enforcement notice the criminals that you have on board. Entering your ship to detain them, the criminals begin firing down the hallways with their customized weapons. Immediately met with tear gas, the criminals did not put up too much of a fight. The law enforcement carry the criminals out and leave you with a moderate fine and a few laser marks in the halls of your ship.`
-		stealth
+	illegal 75000 `Upon scanning your vessel, law enforcement notice the criminals that you have on board. Entering your ship to detain them, the criminals begin firing down the hallways with their customized weapons. Immediately met with tear gas, the criminals did not put up too much of a fight. The law enforcement carry the criminals out and leave you with a moderate fine and a few laser marks in the halls of your ship.`
+	stealth
 	to offer
 		random < 50
 		"reputation: Pirate" > -50
@@ -1112,8 +1112,8 @@ mission "Wanted Passengers [3]"
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "aged wine" 1
-		illegal 75000 `Upon scanning your vessel, law enforcement notice the criminals that you have on board. Entering your ship to detain them, they find them all passed out in their bunks rooms, having drank too much of the wine that they had brought with them. After carrying the criminals out, they give you a moderate fine and leave.`
-		stealth
+	illegal 75000 `Upon scanning your vessel, law enforcement notice the criminals that you have on board. Entering your ship to detain them, they find them all passed out in their bunks rooms, having drank too much of the wine that they had brought with them. After carrying the criminals out, they give you a moderate fine and leave.`
+	stealth
 	to offer
 		random < 25
 		"reputation: Pirate" > -50
@@ -1137,8 +1137,8 @@ mission "Highly Wanted Passenger (North)"
 	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination> with their <cargo>. The payment is high at an amazing <payment>, but transporting such a person could lead to trouble."
 	passengers 1
 	cargo "stolen navy secrets" 1
-		illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to only fine you to reduce the trouble they have to go through.`
-		stealth
+	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to only fine you to reduce the trouble they have to go through.`
+	stealth
 	to offer
 		random < 15
 		"reputation: Pirate" > 10
@@ -1216,8 +1216,8 @@ mission "Highly Wanted Passenger (Core)"
 	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination> with their <cargo>. The payment is high at an amazing <payment>, but transporting such a person could lead to trouble."
 	passengers 1
 	cargo "stolen banking records" 1
-		illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to only fine you to reduce the trouble they have to go through.`
-		stealth
+	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to only fine you to reduce the trouble they have to go through.`
+	stealth
 	to offer
 		random < 15
 		"reputation: Pirate" > 10
@@ -1298,8 +1298,8 @@ mission "Highly Wanted Passenger (South)"
 	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination> with their <cargo>. The payment is high at an amazing <payment>, but transporting such a person could lead to trouble."
 	passengers 1
 	cargo "prototype technology" 1
-		illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to only fine you to reduce the trouble they have to go through.`
-		stealth
+	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to only fine you to reduce the trouble they have to go through.`
+	stealth
 	to offer
 		random < 15
 		"reputation: Pirate" > 10
