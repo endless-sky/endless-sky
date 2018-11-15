@@ -69,7 +69,7 @@ mission "Merchant Start 3"
 		fleet "Bounty Hunters"
 	on offer
 		conversation
-			`"Captain," salutes the man, "This job involves <bunks> travelers trying to get to <destination> with <cargo>. Now, I have no idea why they need so much of it, but, get it over there alright?"`
+			`"Captain," salutes the man. "This job involves <bunks> travelers trying to get to <destination> with <cargo>. Now, I have no idea why they need so much of it, but get it over there alright?"`
 			choice	
 				`	"Yes, sir."`
 					accept
