@@ -61,6 +61,16 @@ namespace {
 		// Control will never reach here, but to satisfy the compiler:
 		return nullptr;
 	}
+	
+	// If a source, destination, waypoint, or stopover supplies more than one explicit choice
+	// or a mixture of explicit choice and location filter, print a warning.
+	void ParseMixedSpecificity(const DataNode &node, string &&kind, int expected)
+	{
+		if(node.Size() >= expected + 1)
+			node.PrintTrace("Warning: use a location filter to choose from multiple " + kind + "s:");
+		if(node.HasChildren())
+			node.PrintTrace("Warning: location filter ignored due to use of explicit " + kind + ":");
+	}
 }
 
 
@@ -122,8 +132,12 @@ void Mission::Load(const DataNode &node)
 				cargoProb = child.Value(4);
 			
 			for(const DataNode &grand : child)
+			{
 				if(!ParseContraband(grand))
 					grand.PrintTrace("Skipping unrecognized attribute:");
+				else
+					grand.PrintTrace("Warning: \"stealth\" and \"illegal\" are now mission-level properties:");
+			}
 		}
 		else if(child.Token(0) == "passengers" && child.Size() >= 2)
 		{
@@ -177,26 +191,34 @@ void Mission::Load(const DataNode &node)
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else if(child.Token(0) == "source" && child.Size() >= 2)
+		{
 			source = GameData::Planets().Get(child.Token(1));
+			ParseMixedSpecificity(child, "planet", 2);
+		}
 		else if(child.Token(0) == "source")
 			sourceFilter.Load(child);
 		else if(child.Token(0) == "destination" && child.Size() == 2)
+		{
 			destination = GameData::Planets().Get(child.Token(1));
+			ParseMixedSpecificity(child, "planet", 2);
+		}
 		else if(child.Token(0) == "destination")
 			destinationFilter.Load(child);
 		else if(child.Token(0) == "waypoint" && child.Size() >= 2)
 		{
-			set<const System *> &set = (child.Size() >= 3 && child.Token(2) == "visited")
-					? visitedWaypoints : waypoints;
+			bool visited = child.Size() >= 3 && child.Token(2) == "visited";
+			set<const System *> &set = visited ? visitedWaypoints : waypoints;
 			set.insert(GameData::Systems().Get(child.Token(1)));
+			ParseMixedSpecificity(child, "system", 2 + visited);
 		}
 		else if(child.Token(0) == "waypoint" && child.HasChildren())
 			waypointFilters.emplace_back(child);
 		else if(child.Token(0) == "stopover" && child.Size() >= 2)
 		{
-			set<const Planet *> &set = (child.Size() >= 3 && child.Token(2) == "visited")
-					? visitedStopovers : stopovers;
+			bool visited = child.Size() >= 3 && child.Token(2) == "visited";
+			set<const Planet *> &set = visited ? visitedStopovers : stopovers;
 			set.insert(GameData::Planets().Get(child.Token(1)));
+			ParseMixedSpecificity(child, "planet", 2 + visited);
 		}
 		else if(child.Token(0) == "stopover" && child.HasChildren())
 			stopoverFilters.emplace_back(child);
