@@ -1377,6 +1377,7 @@ outfit "Imaginary Weapon"
 		"drag" .1
 		"turn" 3
 		"homing" 4
+		"tracking" 1.
 
 ship "Hallucination"
 	sprite "ship/hallucination"
