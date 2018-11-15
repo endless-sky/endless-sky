@@ -270,7 +270,6 @@ ship "Auxiliary" "Auxiliary (Transport)"
 	sprite "ship/auxiliaryt"
 	thumbnail "thumbnail/auxiliaryt"
 	add attributes
-		category "Transport"
 		"bunks" 112
 		"cargo space" -200
 	gun -12 -180
