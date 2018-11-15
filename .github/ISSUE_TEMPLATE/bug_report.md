@@ -21,12 +21,12 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **System (please complete the following information):**
- - OS: [e.g. Windows]
- - Game Source: [e.g. Steam beta]
- - Version: [e.g. 0.9.8 or commit hash cab74fd3]
+ - OS: [e.g. Windows 10 Pro, version 1803 build 17134.407]
+ - Game Source: [e.g. Steam, Steam beta, self-compiled, nightly]
+ - Version: [e.g. "0.9.8" or "commit hash cab74fd3"] (If playing a "nightly", the commit hash is the name of the build: `http://mcofficer.me:8080/job/endless-sky-win64/<build number>/`)
 
 **Link to save file**
-[e.g. pastebin .com]
+[e.g. hastebin.com, direct upload, GitHub Gist]
 
 **Additional context**
 Add any other context about the problem here.
