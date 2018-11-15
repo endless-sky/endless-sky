@@ -214,7 +214,7 @@ ship "Geocoris"
 	turret 35 94 "Bullfrog Anti-Missile"
 	turret -35 94 "Bullfrog Anti-Missile"
 	turret 0 -89 "Bullfrog Anti-Missile"
-	lleak "leak" 40 50
+	leak "leak" 40 50
 	leak "flame" 40 80
 	leak "big leak" 70 30
 	explode "tiny explosion" 50
