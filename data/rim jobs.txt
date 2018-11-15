@@ -17,7 +17,7 @@ mission "Southbound Shipment [0]"
 	to offer
 		random < 10
 	source
-		near "Zug" 2 10
+		near "Zubeneschamali" 2 10
 		attributes "rim" "south"
 	destination "Zug"
 	npc
@@ -37,7 +37,7 @@ mission "Southbound Shipment [1]"
 	to offer
 		random < 10
 	source
-		near "Zug" 2 10
+		near "Zubeneschamali" 2 10
 		attributes "rim" "south"
 	destination "Zug"
 	npc
@@ -58,7 +58,7 @@ mission "Kraz Shipment"
 	to offer
 		random < 10
 	source
-		near "Rust" 2 10
+		near "Kraz" 2 10
 		attributes "rim" "south"
 	destination "Rust"
 	npc
