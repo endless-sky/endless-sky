@@ -94,7 +94,10 @@ void Outfit::Load(const DataNode &node)
 	
 	// Legacy support for turrets that don't specify a turn rate:
 	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
+	{
 		SetTurretTurn(4.);
+		node.PrintTrace("Warning: Deprecated use of a turret without specified \"turret turn\":");
+	}
 }
 
 

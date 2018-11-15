@@ -174,7 +174,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 	
 	// Support legacy missiles with no tracking type defined:
 	if(homing && !tracking && !opticalTracking && !infraredTracking && !radarTracking)
+	{
 		tracking = 1.;
+		node.PrintTrace("Warning: Deprecated use of \"homing\" without use of \"[optical|infrared|radar] tracking.\"");
+	}
 	
 	// Convert the "live effect" counts from occurrences per projectile lifetime
 	// into chance of occurring per frame.
