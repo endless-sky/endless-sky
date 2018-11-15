@@ -1394,7 +1394,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		return;
 	
 	// Launch fighters.
-	ship->Launch(newShips);
+	ship->Launch(newShips, newVisuals);
 	
 	// Fire weapons. If this returns true the ship has at least one anti-missile
 	// system ready to fire.
