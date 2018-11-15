@@ -396,3 +396,8 @@ outfit "Militia Carrier License"
 	category "Special"
 	thumbnail "outfit/militia license"
 	description "Officially joined the Free Worlds. Received permission to purchase their Militia-only carriers."
+
+outfit "Auxiliary License"
+	category "Special"
+	thumbnail "outfit/auxiliary license"
+	description "It is a particularly rare occurence for a Navy Auxiliary, of any kind, to be owned for private use."

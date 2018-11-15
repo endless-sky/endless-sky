@@ -1315,7 +1315,7 @@ ship "Dropship"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
-	description
+	description "Introduced to deal with the problem of getting soldiers deployed fast without having to move the entire transport, the Dropship is small, fast, and cramped."
 
 
 
