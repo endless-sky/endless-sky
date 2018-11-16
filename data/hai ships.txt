@@ -43,6 +43,7 @@ ship "Aphid"
 	engine -8 40
 	engine 8 40
 	turret 0 24 "Pulse Turret"
+	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -107,6 +108,9 @@ ship "Centipede"
 	turret 0 -19 "Bullfrog Anti-Missile"
 	turret -41 67 "Bullfrog Anti-Missile"
 	turret 41 67 "Bullfrog Anti-Missile"
+	leak "leak" 60 50
+	leak "flame" 40 40
+	leak "big leak" 10 10
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -160,6 +164,7 @@ ship "Flea"
 
 	engine 0 27
 	gun 0 -27 "Railgun"
+	leak "leak" 60 50
 	explode "tiny explosion" 15
 	description `This is a combat drone designed to help contain Unfettered aggression with a minimum risk to Hai life.`
 
@@ -209,6 +214,9 @@ ship "Geocoris"
 	turret 35 94 "Bullfrog Anti-Missile"
 	turret -35 94 "Bullfrog Anti-Missile"
 	turret 0 -89 "Bullfrog Anti-Missile"
+	leak "leak" 40 50
+	leak "flame" 40 80
+	leak "big leak" 70 30
 	explode "tiny explosion" 50
 	explode "small explosion" 50
 	explode "medium explosion" 50
@@ -275,6 +283,7 @@ ship "Grasshopper"
 	engine 0 36
 	gun -6 -34 "Pulse Cannon"
 	gun 6 -34 "Pulse Cannon"
+	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 5
@@ -336,6 +345,8 @@ ship "Lightning Bug"
 	gun 0 -40 "Ion Cannon"
 	turret -47 18 "Bullfrog Anti-Missile"
 	turret 47 18 "Bullfrog Anti-Missile"
+	leak "leak" 40 50
+	leak "flame" 40 30
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -412,6 +423,9 @@ ship "Pond Strider"
 	drone 70 -45 over
 	drone -70 28 over
 	drone 70 28 over
+	leak "leak" 40 50
+	leak "flame" 40 70
+	leak "big leak" 70 30
 	explode "tiny explosion" 20
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -474,6 +488,9 @@ ship "Shield Beetle"
 	turret 39 48
 	turret -57 75 "Chameleon Anti-Missile"
 	turret 57 75 "Chameleon Anti-Missile"
+	leak "leak" 40 50
+	leak "flame" 50 80
+	leak "big leak" 60 50
 	explode "tiny explosion" 50
 	explode "small explosion" 50
 	explode "medium explosion" 50
@@ -632,6 +649,9 @@ ship "Solifuge"
 	fighter 58.5 2 under
 	fighter -51.5 76 under
 	fighter 51.5 76 under
+	leak "leak" 40 50
+	leak "flame" 60 70
+	leak "big leak" 70 50
 	explode "tiny explosion" 50
 	explode "small explosion" 50
 	explode "medium explosion" 50
@@ -775,6 +795,7 @@ ship "Violin Spider"
 	engine 15 30
 	gun 0 -31 "Hai Tracker Pod"
 	turret 0 5
+	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description `The Hai fighter is equipped with what most humans would consider the greatest technology available, but all of that high tech comes at a cost.`
@@ -836,6 +857,9 @@ ship "Water Bug"
 	turret 0 -10 "Pulse Turret"
 	turret -17 17 "Chameleon Anti-Missile"
 	turret 17 17 "Chameleon Anti-Missile"
+	leak "leak" 60 50
+	leak "flame" 40 50
+	leak "big leak" 40 30
 	explode "small explosion" 15
 	explode "medium explosion" 30
 	explode "large explosion" 20
