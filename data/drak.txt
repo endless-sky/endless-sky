@@ -100,8 +100,8 @@ effect "drak bolt impact"
 	sound "explosion small"
 	"lifetime" 20
 	"random angle" 20
-	"velocity scale" -.05
 	"random spin" 10
+	"velocity scale" -.05
 
 outfit "Drak Antimatter Cannon"
 	category "Guns"
@@ -149,9 +149,9 @@ effect "antimatter spark"
 		"frame rate" 3
 	"lifetime" 40
 	"random angle" 1
-	"velocity scale" .6
-	"random velocity" 8
 	"random spin" .1
+	"random velocity" 8
+	"velocity scale" .6
 
 effect "antimatter dust"
 	sprite "effect/smoke"
@@ -159,9 +159,9 @@ effect "antimatter dust"
 		"frame rate" 30
 	"lifetime" 13
 	"random angle" 30
-	"velocity scale" .1
-	"random velocity" 12
 	"random spin" 50
+	"random velocity" 12
+	"velocity scale" .1
 
 
 
