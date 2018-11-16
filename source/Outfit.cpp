@@ -86,6 +86,31 @@ void Outfit::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				licenses.push_back(grand.Token(0));
 		}
+		else if(child.Token(0) == "salvage")
+		{
+			if(child.Size() >= 2)
+			{
+				// Specification is for either a name or a name and a count
+				int count = child.Size() >= 3 ? static_cast<int>(child.Value(2)) : 1;
+				if(count > 0)
+					salvage[GameData::Outfits().Get(child.Token(1))] = count;
+				else
+					child.PrintTrace("Salvage quantity must be positive:");
+			}
+			else if(child.HasChildren())
+			{
+				for(const DataNode &grand : child)
+				{
+					int count = grand.Size() >= 2 ? static_cast<int>(grand.Value(1)) : 1;
+					if(count > 0)
+						salvage[GameData::Outfits().Get(grand.Token(0))] = count;
+					else
+						grand.PrintTrace("Salvage quantity must be positive:");
+				}
+			}
+			else
+				child.PrintTrace("Skipping invalid \"salvage\" specification:");
+		}
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
@@ -164,6 +189,21 @@ const vector<string> &Outfit::Licenses() const
 const Sprite *Outfit::Thumbnail() const
 {
 	return thumbnail;
+}
+
+
+
+// Determine if this outfit can be decomposed into parts.
+bool Outfit::IsSalvageable() const
+{
+	return !salvage.empty();
+}
+
+
+
+map<const Outfit *, int> Outfit::Salvage() const
+{
+	return salvage;
 }
 
 
