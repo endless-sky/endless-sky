@@ -1106,13 +1106,13 @@ ship "Dreadnought"
 	thumbnail "thumbnail/dreadnought"
 	attributes
 		category "Heavy Warship"
-		"cost" 13500000
+		"cost" 11900000
 		"shields" 18100
 		"hull" 7300
 		"required crew" 84
 		"bunks" 147
 		"mass" 630
-		"drag" 11.1
+		"drag" 10.1
 		"heat dissipation" .65
 		"fuel capacity" 600
 		"cargo space" 100
