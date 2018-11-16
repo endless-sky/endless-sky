@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
+#include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"

@@ -175,7 +175,7 @@ void BankPanel::Draw()
 		// Check whether the player owes back salaries.
 		if(player.Accounts().SalariesOwed())
 		{
-			table.Draw(Format::Number(player.Accounts().SalariesOwed()));
+			table.Draw(Format::Credits(player.Accounts().SalariesOwed()));
 			table.Draw("(overdue)");
 			table.Advance(1);
 		}
@@ -214,7 +214,7 @@ void BankPanel::Draw()
 	if(!qualify)
 		amount = "You do not qualify for further loans at this time.";
 	else
-		amount = "You qualify for a new loan of up to " + Format::Number(qualify) + " credits.";
+		amount = "You qualify for a new loan of up to " + Format::Credits(qualify) + " credits.";
 	if(qualify && selectedRow >= mortgageRows)
 		table.DrawHighlight(back);
 	table.Draw(amount, unselected);
