@@ -68,8 +68,8 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
- images/projectile/bullet*
  images/outfit/bullet?impact*
+ images/projectile/bullet*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
 Comment: Derived from works by Jonathan Steck derived from works by Michael Zahniser (under the same license).
@@ -90,15 +90,15 @@ Copyright: Matthew Smestad
 License: CC-BY-SA-4.0
 
 Files:
- images/ship/vanguard*
- images/outfit/proton?turret*
  images/hardpoint/proton?turret*
+ images/outfit/proton?turret*
+ images/ship/vanguard*
 Copyright: Nate Graham <pointedstick@zoho.com>
 License: CC-BY-SA-4.0
 
 Files:
- images/land/sky2.jpg
  images/land/sea3.jpg
+ images/land/sky2.jpg
 Copyright: Emily Mell <hasmidas@gmail.com>
 License: public domain
 
