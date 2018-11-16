@@ -328,7 +328,6 @@ ship "Berserker" "Berserker (Afterburner)"
 		"Hyperdrive"
 
 
-
 ship "Berserker" "Berserker (Strike)"
 	outfits
 		"Heavy Rocket Launcher"
@@ -785,6 +784,19 @@ ship "Firebird" "Firebird (Hai Weapons)"
 		"Hyperdrive"
 
 
+ship "Firebird" "Firebird (Laser)"
+	outfits
+		"Heavy Laser" 4
+		"Heavy Laser Turret" 2
+		"RT-I Radiothermal"
+		"nGVF-AA Fuel Cell"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
 ship "Firebird" "Firebird (Missile)"
 	outfits
 		"Meteor Missile Launcher" 2
@@ -818,19 +830,7 @@ ship "Firebird" "Firebird (Plasma)"
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-
-
-ship "Firebird" "Firebird (Laser)"
-	outfits
-		"Heavy Laser" 4
-		"Heavy Laser Turret" 2
-		"RT-I Radiothermal"
-		"nGVF-AA Fuel Cell"
-		"LP144a Battery Pack"
-		"D41-HY Shield Generator"
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
+		
 
 
 ship "Flivver" "Flivver (Hai)"
@@ -944,6 +944,21 @@ ship "Frigate" "Frigate (Mark II)"
 
 
 
+ship "Fury" "Fury (Bomber)"
+	outfits
+		"Heavy Rocket Launcher"
+		"Heavy Rocket" 20
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"nGVF-BB Fuel Cell"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer" 2
+		"X2700 Ion Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+		
+
 ship "Fury" "Fury (Flamethrower)"
 	outfits
 		"Flamethrower" 4
@@ -965,6 +980,19 @@ ship "Fury" "Fury (Gatling)"
 		"D23-QP Shield Generator"
 		"X2700 Ion Thruster"
 		"A125 Atomic Steering"
+		"Hyperdrive"
+		
+		
+ship "Fury" "Fury (Heavy)"
+	outfits
+		"Proton Gun"
+		"Javelin Pod"
+		"Javelin" 200
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"X2700 Ion Thruster"
+		"Chipmunk Plasma Steering"
 		"Hyperdrive"
 
 
@@ -990,32 +1018,6 @@ ship "Fury" "Fury (Missile)"
 		"Supercapacitor" 3
 		"D14-RN Shield Generator"
 		"Greyhound Plasma Thruster"
-		"Chipmunk Plasma Steering"
-		"Hyperdrive"
-
-ship "Fury" "Fury (Bomber)"
-	outfits
-		"Heavy Rocket Launcher"
-		"Heavy Rocket" 20
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"nGVF-BB Fuel Cell"
-		"Supercapacitor"
-		"D14-RN Shield Generator"
-		"Small Radar Jammer" 2
-		"X2700 Ion Thruster"
-		"Chipmunk Plasma Steering"
-		"Hyperdrive"
-
-ship "Fury" "Fury (Heavy)"
-	outfits
-		"Proton Gun"
-		"Javelin Pod"
-		"Javelin" 200
-		"nGVF-BB Fuel Cell"
-		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		"X2700 Ion Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
 
@@ -1099,28 +1101,6 @@ ship "Hauler III" "Hauler III (Hai)"
 
 
 
-ship "Hawk" "Hawk (Rocket)"
-	outfits
-		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 40
-		"RT-I Radiothermal"
-		"Supercapacitor" 2
-		"D41-HY Shield Generator"
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
-		"Hyperdrive"
-
-
-ship "Hawk" "Hawk (Speedy)"
-	outfits
-		"Heavy Laser" 2
-		"S3 Thermionic"
-		"Supercapacitor" 3
-		"D41-HY Shield Generator"
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Hyperdrive"
-
 ship "Hawk" "Hawk (Bomber)"
 	outfits
 		"Heavy Rocket Launcher"
@@ -1145,6 +1125,30 @@ ship "Hawk" "Hawk (Plasma)"
 		"X2700 Ion Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
+
+
+ship "Hawk" "Hawk (Rocket)"
+	outfits
+		"Heavy Rocket Launcher" 2
+		"Heavy Rocket" 40
+		"RT-I Radiothermal"
+		"Supercapacitor" 2
+		"D41-HY Shield Generator"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Hawk" "Hawk (Speedy)"
+	outfits
+		"Heavy Laser" 2
+		"S3 Thermionic"
+		"Supercapacitor" 3
+		"D41-HY Shield Generator"
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+
 
 
 ship "Headhunter" "Headhunter (Hai)"
@@ -1822,26 +1826,6 @@ ship "Star Queen" "Star Queen (Hai)"
 
 
 
-ship "Vanguard" "Vanguard (Particle)"
-	outfits
-		"Particle Cannon" 7
-		"Fusion Reactor"
-		"LP072a Battery Pack"
-		"D67-TM Shield Generator"
-		"Liquid Nitrogen Cooler"
-		"X3700 Ion Thruster"
-		"X4200 Ion Steering"
-		"Hyperdrive"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-
-
-
 ship "Vanguard" "Vanguard (Missile)"
 	outfits
 		"Sidewinder Missile Launcher" 4
@@ -1864,22 +1848,25 @@ ship "Vanguard" "Vanguard (Missile)"
 	gun "Sidewinder Missile Launcher"
 	gun "Sidewinder Missile Launcher"
 	gun "Sidewinder Missile Launcher"
-	turret "Heavy Anti-Missile Turret"
 
 
-
-ship "Wasp" "Wasp (Proton)"
+ship "Vanguard" "Vanguard (Particle)"
 	outfits
-		"Proton Gun"
-		"nGVF-BB Fuel Cell"
-		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
+		"Particle Cannon" 7
+		"Fusion Reactor"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"X3700 Ion Thruster"
+		"X4200 Ion Steering"
 		"Hyperdrive"
-	gun "Proton Gun"
-	gun
-	gun
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
 
 
 
@@ -1894,6 +1881,20 @@ ship "Wasp" "Wasp (Bomber)"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Hyperdrive"
-	gun "Meteor Missile Launcher"
 	gun "Beam Laser"
 	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+
+
+ship "Wasp" "Wasp (Proton)"
+	outfits
+		"Proton Gun"
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+	gun "Proton Gun"
+	gun
+	gun
