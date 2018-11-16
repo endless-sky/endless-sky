@@ -565,15 +565,15 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 	}
 	
 	auto it = actions.find(OFFER);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
 	it = actions.find(ACCEPT);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
 	it = actions.find(DECLINE);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
 	return true;
@@ -588,6 +588,14 @@ bool Mission::HasSpace(const PlayerInfo &player) const
 		extraCrew = player.Flagship()->Crew() - player.Flagship()->RequiredCrew();
 	return (cargoSize <= player.Cargo().Free() + player.Cargo().CommoditiesSize()
 		&& passengers <= player.Cargo().BunksFree() + extraCrew);
+}
+
+
+
+// Check if this mission's cargo can fit entirely on the referenced ship.
+bool Mission::HasSpace(const Ship &ship) const
+{
+	return (cargoSize <= ship.Cargo().Free() && passengers <= ship.Cargo().BunksFree());
 }
 
 
@@ -666,19 +674,32 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		return "";
 	
 	int extraCrew = 0;
-	if(player.Flagship())
-		extraCrew = player.Flagship()->Crew() - player.Flagship()->RequiredCrew();
+	const Ship *flagship = player.Flagship();
+	// You cannot fire crew in space.
+	if(flagship && player.GetPlanet())
+		extraCrew = flagship->Crew() - flagship->RequiredCrew();
 	
-	int cargoNeeded = cargoSize - (player.Cargo().Free() + player.Cargo().CommoditiesSize());
-	int bunksNeeded = passengers - (player.Cargo().BunksFree() + extraCrew);
+	int cargoNeeded = cargoSize;
+	int bunksNeeded = passengers;
+	if(player.GetPlanet())
+	{
+		cargoNeeded -= (player.Cargo().Free() + player.Cargo().CommoditiesSize());
+		bunksNeeded -= (player.Cargo().BunksFree() + extraCrew);
+	}
+	else
+	{
+		// Boarding a ship, so only use the flagship's space.
+		cargoNeeded -= flagship->Cargo().Free();
+		bunksNeeded -= flagship->Cargo().BunksFree();
+	}
 	if(cargoNeeded < 0 && bunksNeeded < 0)
 		return "";
 	
 	map<string, string> subs;
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
-	if(player.Flagship())
-		subs["<ship>"] = player.Flagship()->Name();
+	if(flagship)
+		subs["<ship>"] = flagship->Name();
 	
 	ostringstream out;
 	if(bunksNeeded > 0)
@@ -742,7 +763,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	}
 	// Don't update any conditions if this action exists and can't be completed.
 	auto it = actions.find(trigger);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
 	if(trigger == ACCEPT)

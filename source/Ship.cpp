@@ -210,15 +210,29 @@ void Ship::Load(const DataNode &node)
 				hasBays = true;
 			}
 			bays.emplace_back(child.Value(1), child.Value(2), key == "fighter");
+			Bay &bay = bays.back();
 			for(int i = 3; i < child.Size(); ++i)
 			{
 				for(unsigned j = 1; j < BAY_SIDE.size(); ++j)
 					if(child.Token(i) == BAY_SIDE[j])
-						bays.back().side = j;
+						bay.side = j;
 				for(unsigned j = 1; j < BAY_FACING.size(); ++j)
 					if(child.Token(i) == BAY_FACING[j])
-						bays.back().facing = j;
+						bay.facing = j;
 			}
+			if(child.HasChildren())
+				for(const DataNode &grand : child)
+				{
+					// Load in the effect(s) to be displayed when the ship launches.
+					if(grand.Token(0) == "launch effect" && grand.Size() >= 2)
+					{
+						int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
+						const Effect *e = GameData::Effects().Get(grand.Token(1));
+						bay.launchEffects.insert(bay.launchEffects.end(), count, e);
+					}
+					else
+						grand.PrintTrace("Child nodes of \"bay\" tokens can only be \"launch effect\":");
+				}
 		}
 		else if(key == "leak" && child.Size() >= 2)
 		{
@@ -269,7 +283,7 @@ void Ship::Load(const DataNode &node)
 				if(count > 0)
 					outfits[GameData::Outfits().Get(grand.Token(0))] += count;
 				else
-					grand.PrintTrace("Skipping invalid outfit count of " + count);
+					grand.PrintTrace("Skipping invalid outfit count:");
 			}
 		}
 		else if(key == "cargo")
@@ -509,6 +523,11 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(isNewInstance)
 		Recharge(true);
 	
+	// Add a default "launch effect" to any internal bays if this ship is crewed (i.e. pressurized).
+	for(Bay &bay : bays)
+		if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
+			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
+	
 	// Figure out if this ship can be carried.
 	const string &category = attributes.Category();
 	canBeCarried = (category == "Fighter" || category == "Drone");
@@ -606,6 +625,15 @@ void Ship::Save(DataWriter &out) const
 				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_FACING[bay.facing]);
 			else
 				out.Write(BAY_TYPE[bay.isFighter], x, y);
+			if(!bay.launchEffects.empty())
+			{
+				out.BeginChild();
+				{
+					for(const Effect *effect : bay.launchEffects)
+						out.Write("launch effect", effect->Name());
+				}
+				out.EndChild();
+			}
 		}
 		for(const Leak &leak : leaks)
 			out.Write("leak", leak.effect->Name(), leak.openPeriod, leak.closePeriod);
@@ -1629,7 +1657,7 @@ void Ship::DoGeneration()
 
 
 // Launch any ships that are ready to launch.
-void Ship::Launch(list<shared_ptr<Ship>> &ships)
+void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 {
 	// Allow fighters to launch from a disabled ship, but not from a ship that
 	// is landing, jumping, or cloaked.
@@ -1643,12 +1671,16 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 			double maxV = bay.ship->MaxVelocity();
 			Angle launchAngle = angle + BAY_ANGLE[bay.facing];
 			Point v = velocity + (.3 * maxV) * launchAngle.Unit() + (.2 * maxV) * Angle::Random().Unit();
-			bay.ship->Place(position + angle.Rotate(bay.point), v, launchAngle);
+			Point exitPoint = position + angle.Rotate(bay.point);
+			bay.ship->Place(exitPoint, v, launchAngle);
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
 			bay.ship->UnmarkForRemoval();
 			// Update the cached sum of carried ship masses.
 			carriedMass -= bay.ship->Mass();
+			// Create the desired launch effects.
+			for(const Effect *effect : bay.launchEffects)
+				visuals.emplace_back(*effect, exitPoint, velocity, launchAngle);
 			
 			bay.ship.reset();
 		}
@@ -1733,10 +1765,8 @@ int Ship::Scan()
 		return 0;
 	
 	// The range of a scanner is proportional to the square root of its power.
-	double cargoPower = attributes.Get("cargo scan power");
-	double cargoDistance = cargoPower ? 100. * sqrt(cargoPower) : attributes.Get("cargo scan");
-	double outfitPower = attributes.Get("outfit scan power");
-	double outfitDistance = outfitPower ? 100. * sqrt(outfitPower) : attributes.Get("outfit scan");
+	double cargoDistance = 100. * sqrt(attributes.Get("cargo scan power"));
+	double outfitDistance = 100. * sqrt(attributes.Get("outfit scan power"));
 	
 	// Bail out if this ship has no scanners.
 	if(!cargoDistance && !outfitDistance)
@@ -1758,30 +1788,20 @@ int Ship::Scan()
 	bool startedScanning = false;
 	bool activeScanning = false;
 	int result = 0;
-	if(cargoScan < SCAN_TIME)
+	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, const int event) -> void
 	{
-		if(distance < cargoDistance)
+		if(elapsed < SCAN_TIME && distance < scannerRange)
 		{
-			startedScanning |= !cargoScan;
+			startedScanning |= !elapsed;
 			activeScanning = true;
 			// To make up for the scan decay above:
-			cargoScan += cargoSpeed + 1.;
-			if(cargoScan >= SCAN_TIME)
-				result |= ShipEvent::SCAN_CARGO;
+			elapsed += speed + 1.;
+			if(elapsed >= SCAN_TIME)
+				result |= event;
 		}
-	}
-	if(outfitScan < SCAN_TIME)
-	{
-		if(distance < outfitDistance)
-		{
-			startedScanning |= !outfitScan;
-			activeScanning = true;
-			// To make up for the scan decay above:
-			outfitScan += outfitSpeed + 1.;
-			if(outfitScan >= SCAN_TIME)
-				result |= ShipEvent::SCAN_OUTFITS;
-		}
-	}
+	};
+	doScan(cargoScan, cargoSpeed, cargoDistance, ShipEvent::SCAN_CARGO);
+	doScan(outfitScan, outfitSpeed, outfitDistance, ShipEvent::SCAN_OUTFITS);
 	
 	// Play the scanning sound if the actor or the target is the player's ship.
 	if(isYours || (target->isYours && activeScanning))

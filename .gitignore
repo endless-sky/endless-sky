@@ -11,6 +11,11 @@
 /bin/
 x64/
 Debug/
+*.exe
+*.dll
+*.layout
+*.depend
+/plugins/
 
 # CI configs (allow local edits)
 .winmake

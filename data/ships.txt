@@ -896,13 +896,13 @@ ship "Combat Drone"
 			Navy
 		"cost" 83000
 		"hull" 700
+		"automaton" 1
 		"mass" 20
 		"drag" .59
 		"heat dissipation" .9
 		"outfit space" 58
 		"weapon capacity" 8
 		"engine capacity" 28
-		"automaton" 1
 		weapon
 			"blast radius" 5
 			"shield damage" 50
@@ -2958,13 +2958,13 @@ ship "Surveillance Drone"
 			Navy
 		"cost" 50000
 		"hull" 300
+		"automaton" 1
 		"mass" 15
 		"drag" .53
 		"heat dissipation" .9
 		"outfit space" 53
 		"weapon capacity" 0
 		"engine capacity" 28
-		"automaton" 1
 		weapon
 			"blast radius" 3
 			"shield damage" 30
