@@ -36,7 +36,7 @@ ship "Quarg Skylark"
 	outfits
 		"Quarg Skylance" 2
 		"Quarg Anti-Missile" 2
-    
+		
 		"Antimatter Core"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
@@ -89,7 +89,7 @@ ship "Quarg Wardragon"
 	outfits
 		"Quarg Skylance" 2
 		"Quarg Anti-Missile" 2
-    
+		
 		"Antimatter Core"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
