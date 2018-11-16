@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "Interface.h"
 #include "Messages.h"
+#include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Random.h"
@@ -34,6 +35,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <algorithm>
+#include <map>
+#include <set>
 
 using namespace std;
 
@@ -47,6 +50,16 @@ namespace {
 		result.back() += integer % 10;
 		
 		return result;
+	}
+	
+	// Determine the ammo used by the boarding ship.
+	const set<const Outfit *> GetUsedAmmo(const map<const Outfit *, int> &shipOutfits)
+	{
+		auto ammo = set<const Outfit *>();
+		for(const auto &it : shipOutfits)
+			if(it.first->Ammo())
+				ammo.insert(it.first->Ammo());
+		return ammo;
 	}
 }
 
@@ -142,7 +155,7 @@ void BoardingPanel::Draw()
 			FillShader::Fill(Point(-155., y + 10.), Point(360., 20.), back);
 		
 		// Color the item based on whether you have space for it.
-		const Color &color = item.CanTake(*you) ? isSelected ? bright : medium : dim;
+		const Color &color = (item.CanTake(*you) || item.CanSalvage()) ? (isSelected ? bright : medium) : dim;
 		Point pos(-320., y + fontOff);
 		font.Draw(item.Name(), pos, color);
 		
@@ -159,6 +172,8 @@ void BoardingPanel::Draw()
 		info.SetCondition("can exit");
 	if(CanTake())
 		info.SetCondition("can take");
+	if(CanSalvage())
+		info.SetCondition("can salvage");
 	if(CanCapture())
 		info.SetCondition("can capture");
 	if(CanAttack() && (you->Crew() > 1 || !victim->RequiredCrew()))
@@ -237,6 +252,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		int count = plunder[selected].Count();
 		
 		const Outfit *outfit = plunder[selected].GetOutfit();
+		const set<const Outfit *> usedAmmo = GetUsedAmmo(you->Outfits());
 		if(outfit)
 		{
 			// Check if this outfit is ammo for one of your weapons. If so, use
@@ -244,15 +260,11 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			int available = count;
 			// Keep track of how many you actually took.
 			count = 0;
-			for(const auto &it : you->Outfits())
-				if(it.first != outfit && it.first->Ammo() == outfit)
-				{
-					// Figure out how many of these outfits you can install.
-					count = you->Attributes().CanAdd(*outfit, available);
-					you->AddOutfit(outfit, count);
-					// You have now installed as many of these items as possible.
-					break;
-				}
+			if(usedAmmo.count(outfit))
+			{
+				count = you->Attributes().CanAdd(*outfit, available);
+				you->AddOutfit(outfit, count);
+			}
 			// Transfer as many as possible of these outfits to your cargo hold.
 			count += cargo.Add(outfit, available - count);
 			// Take outfits from cargo first, then from the ship itself.
@@ -478,6 +490,23 @@ bool BoardingPanel::CanTake() const
 
 
 
+bool BoardingPanel::CanSalvage() const
+{
+	// If you ship or the other ship has been captured:
+	if(!you->IsYours())
+		return false;
+	if(victim->IsYours())
+		return false;
+	if(isCapturing || playerDied)
+		return false;
+	if(static_cast<unsigned>(selected) >= plunder.size())
+		return false;
+	
+	return plunder[selected].CanSalvage();
+}
+
+
+
 // Check if it's possible to initiate hand to hand combat.
 bool BoardingPanel::CanCapture() const
 {
@@ -586,23 +615,31 @@ const Outfit *BoardingPanel::Plunder::GetOutfit() const
 
 
 
-// Find out how many of these I can take if I have this amount of cargo
-// space free.
+// Determine if this piece of plunder can be taken by the given ship as-is.
 bool BoardingPanel::Plunder::CanTake(const Ship &ship) const
 {
 	// If there's cargo space for this outfit, you can take it.
-	double mass = UnitMass();
-	if(ship.Cargo().Free() >= mass)
+	if(UnitMass() <= ship.Cargo().Free())
 		return true;
 	
-	// Otherwise, check if it is ammo for any of your weapons. If so, check if
-	// you can install it as an outfit.
-	if(outfit)
-		for(const auto &it : ship.Outfits())
-			if(it.first != outfit && it.first->Ammo() == outfit && ship.Attributes().CanAdd(*outfit))
-				return true;
+	// Otherwise, check if it is ammo for any of the ship's weapons. If so,
+	// check if you can install it as an outfit.
+	if(outfit && GetUsedAmmo(ship.Outfits()).count(outfit)
+			&& ship.Attributes().CanAdd(*outfit))
+		return true;
 	
 	return false;
+}
+
+
+// Determine if this plunder can be decomposed into other plunder.
+bool BoardingPanel::Plunder::CanSalvage() const
+{
+	// Commodities cannot be salvaged.
+	if(!outfit)
+		return false;
+	
+	return outfit->IsSalvageable();
 }
 
 

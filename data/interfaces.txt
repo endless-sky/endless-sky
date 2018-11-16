@@ -653,6 +653,15 @@ interface "boarding"
 		from 330 28
 		align right
 	
+	visible if "can salvage"
+	sprite "ui/dialog cancel"
+		center -315 115
+	active if "can salvage"
+	button s "_Salvage"
+		center -315 115
+		dimensions 70 30
+	visible
+	
 	active if "can take"
 	button t "_Take"
 		center -235 115

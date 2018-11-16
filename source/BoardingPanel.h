@@ -51,6 +51,8 @@ private:
 	bool CanExit() const;
 	// Check if you can take the outfit at the given position in the list.
 	bool CanTake() const;
+	// Check if you can salvage the outfit at the given position in the list.
+	bool CanSalvage() const;
 	// Check if you can initiate hand to hand combat.
 	bool CanCapture() const;
 	// Check if you are in the midst of hand to hand combat.
@@ -85,9 +87,10 @@ private:
 		
 		// If this is an outfit, get the outfit. Otherwise, this returns null.
 		const Outfit *GetOutfit() const;
-		// Find out how many of these I can take if I have this amount of cargo
-		// space free.
+		// Determine if the ship can take this plunder as-is.
 		bool CanTake(const Ship &ship) const;
+		// Determine if this plunder can be decomposed into other plunder.
+		bool CanSalvage() const;
 		// Take some or all of this plunder item.
 		void Take(int count);
 		
