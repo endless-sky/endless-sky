@@ -316,6 +316,24 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				results.emplace_back(sit.first, count);
 		}
 		
+		// Notify the player of the salvage results.
+		string message = "You salvaged 1 " + outfit->Name() + " into";
+		if(results.empty())
+			message += " nothing of value.";
+		else
+		{
+			message += ":\n";
+			if(results.size() >= 1)
+				sort(results.begin(), results.end(), [](const Plunder &a, const Plunder &b){ return a.Name() < b.Name(); });
+			for(const auto &r : results)
+			{
+				int quantity = r.Count();
+				message += "\t" + Format::Number(quantity) + " " + (quantity > 1 ?
+						r.GetOutfit()->PluralName() : r.Name()) + "\n";
+			}
+		}
+		GetUI()->Push(new Dialog(message));
+		
 		// Add the salvaged plunder to the victim's cargo, to preserve it if
 		// the aggressor departs and reboards. Disable transfer limits in case
 		// a plugin defines a salvage operation that results in a larger volume.
