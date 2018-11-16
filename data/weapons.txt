@@ -410,8 +410,8 @@ effect "particle impact"
 	sound "explosion small"
 	"lifetime" 20
 	"random angle" 2
-	"velocity scale" -.05
 	"random spin" 10
+	"velocity scale" -.05
 
 
 outfit "Proton Gun"
@@ -545,8 +545,8 @@ effect "plasma explosion"
 	sound "explosion tiny"
 	"lifetime" 21
 	"random angle" 360
-	"random velocity" .1
 	"random spin" 4
+	"random velocity" .1
 	"velocity scale" -.05
 
 
@@ -594,9 +594,9 @@ effect "flamethrower die"
 		"random start frame"
 	"lifetime" 24
 	"random angle" 360
-	"random velocity" .4
-	"random spin" 2
 	"random frame rate" 5
+	"random spin" 2
+	"random velocity" .4
 	"velocity scale" .4
 
 effect "flamethrower hit"
@@ -606,9 +606,9 @@ effect "flamethrower hit"
 		"random start frame"
 	"lifetime" 28
 	"random angle" 360
-	"random velocity" .6
-	"random spin" 3
 	"random frame rate" 5
+	"random spin" 3
+	"random velocity" .6
 	"velocity scale" .4
 
 
@@ -967,9 +967,9 @@ effect "heavy rocket hit"
 	sound "heavy rocket hit"
 	"lifetime" 36
 	"random angle" 360
-	"random velocity" 1
-	"random spin" 5
 	"random frame rate" 5
+	"random spin" 5
+	"random velocity" 1
 	"velocity scale" .4
 
 
@@ -1021,8 +1021,8 @@ effect "nuke explosion"
 	sound "explosion nuke"
 	"lifetime" 15
 	"random angle" 360
-	"random velocity" 1
 	"random spin" 5
+	"random velocity" 1
 	"velocity scale" .4
 
 effect "nuke residue fast"
@@ -1031,8 +1031,8 @@ effect "nuke residue fast"
 		"frame rate" 15
 	"lifetime" 36
 	"random angle" 360
-	"random velocity" 8
 	"random spin" 5
+	"random velocity" 8
 	"velocity scale" 0.1
 
 effect "nuke residue slow"
@@ -1041,8 +1041,8 @@ effect "nuke residue slow"
 		"frame rate" 10
 	"lifetime" 60
 	"random angle" 360
-	"random velocity" 5
 	"random spin" 5
+	"random velocity" 5
 	"velocity scale" 0.1
 
 

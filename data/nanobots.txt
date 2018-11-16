@@ -56,8 +56,8 @@ effect "nano spark"
 	"lifetime" 30
 	"random angle" 360
 	"random spin" 30
-	"velocity scale" -.005
 	"random velocity" 2
+	"velocity scale" -.005
 
 fleet "Nanobots"
 	government "Korath Nanobots"

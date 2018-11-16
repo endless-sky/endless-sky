@@ -147,8 +147,8 @@ effect "moonbeam impact"
 	sprite "effect/moonbeam impact"
 		"frame rate" 30
 	"lifetime" 7
-	"random velocity" 2
 	"random angle" 360
+	"random velocity" 2
 	"velocity scale" -.002
 
 outfit "Moonbeam Turret"

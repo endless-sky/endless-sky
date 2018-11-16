@@ -149,7 +149,6 @@ ship "Starling" "Starling (Thrasher)"
 	gun
 
 
-
 ship "Albatross"
 	plural "Albatrosses"
 	sprite "ship/albatross"
@@ -168,9 +167,9 @@ ship "Albatross"
 		"drag" 8.6
 		"heat dissipation" 0.6
 		"fuel capacity" 600
-		"engine capacity" 142
 		"outfit space" 658
 		"weapon capacity" 236
+		"engine capacity" 142
 		"shield generation" 5.2
 		"shield energy" 4.6
 		"hull repair rate" 1.5
@@ -306,7 +305,6 @@ ship "Albatross" "Albatross (Heavy)"
 	turret
 	turret
 	turret "Thrasher Turret"
-
 
 
 ship "Gascraft"
