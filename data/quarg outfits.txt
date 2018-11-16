@@ -30,7 +30,7 @@ outfit "Antimatter Core"
 outfit "Quantum Shield Generator"
 	category "Systems"
 	cost 30000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/quarg quantum shield generator"
 	"mass" 120
 	"outfit space" -120
 	"shield generation" 10
