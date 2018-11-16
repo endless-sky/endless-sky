@@ -112,6 +112,7 @@ government "Hai (Unfettered)"
 government "Heliarch"
 	swizzle 0
 	color 1 .8 .5
+	language "Coalition"
 	"player reputation" 1
 	"friendly hail" "friendly heliarch"
 	"hostile hail" "hostile heliarch"
