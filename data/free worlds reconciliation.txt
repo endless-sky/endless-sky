@@ -233,6 +233,7 @@ mission "FW Reconciliation 2"
 		"reputation: Deep Security" >?= 1
 		log "Parliament still refuses to believe that the Syndicate could have been behind the attacks; the Syndicate has far too much power and influence in the government of the Republic. But, the people of the Deep might be more open to the defector's story."
 		event "deep sky tech available"
+		event "fw tarazed joins"
 		conversation
 			`As you came fleeing out of Syndicate space with their ships in hot pursuit, you couldn't help noticing that no Republic ships moved to help you or attack your pursuers. Apparently, they are not ready to strike the Syndicate until Parliament has made a decision. As you are waiting for Parliament to hear your evidence, Katya asks you quietly, "So, how are you feeling about our chances here?"`
 			choice
