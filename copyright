@@ -14,7 +14,7 @@ License: CC-BY-SA-4.0
 Files:
  images/outfit/*battery?hai*
  images/outfit/anti-missile?hai*
- images/outfit/cooling ducts?hai*
+ images/outfit/cooling?ducts?hai*
  images/outfit/dwarf?core?hai*
  images/outfit/fission?hai*
  images/outfit/fusion?hai*
@@ -91,8 +91,8 @@ License: CC-BY-SA-4.0
 
 Files:
  images/ship/vanguard*
- images/outfit/proton turret*
- images/hardpoint/proton turret*
+ images/outfit/proton?turret*
+ images/hardpoint/proton?turret*
 Copyright: Nate Graham <pointedstick@zoho.com>
 License: CC-BY-SA-4.0
 
@@ -269,11 +269,31 @@ Copyright: Zachary Siple
 License: CC-BY-SA-4.0
 
 Files:
- images/outfit/korath?rifle*
+ images/hardpoint/quarg?anti?missile*
+ images/outfit/quarg?antimatter?core*
+ images/outfit/quarg?anti?missile*
+ images/outfit/quarg?countermeasures*
+ images/outfit/quarg?nanotech?battery*
+ images/outfit/quarg?quantum?shield?generator*
+ images/outfit/small?quarg*
+ images/outfit/medium?quarg*
+ images/outfit/large?quarg*
+Copyright: Evan Fluharty (Evanfluharty@gmail.com)
+License: CC-BY-SA-4.0
+
+Files:
+ images/hardpoint/quarg?skylance*
+ images/outfit/quarg?skylance*
+Copyright: Evan Fluharty (Evanfluharty@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), Fernando S. Sáez (Azure Nyoki), and originally drawn up by Tommy Thach (Bladewood) (all from under the same license)
+
+Files:
  images/outfit/hai?rifle*
- images/outfit/scram?drive*
  images/outfit/korath?fuel?processor*
+ images/outfit/korath?rifle*
  images/outfit/remnant?rifle*
+ images/outfit/scram?drive*
  images/ship/hai?centipede*
  images/ship/hai?geocoris*
  images/ship/hai?grasshopper*
@@ -289,22 +309,6 @@ Copyright: Various
 License: public-domain
  Taken from unsplash.com, a collection of photographs that have been donated and
  placed in the public domain.
- 
- Files:
- images/outfit/quarg?skylance*
- images/hardpoint/quarg?skylance*
-Copyright: Evan Fluharty (Evanfluharty@gmail.com)
-License: CC-BY-SA-4.0
-Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), Fernando S. Sáez (Azure Nyoki), and originally drawn up by Tommy Thach (Bladewood) (all from under the same license)
-
- Files:
- images/outfit/quarg*
- images/hardpoint/quarg*
- images/outfit/small?quarg*
- images/outfit/medium?quarg*
- images/outfit/large?quarg*
-Copyright: Evan Fluharty (Evanfluharty@gmail.com)
-License: CC-BY-SA-4.0
 
 Files:
  images/land/badlands0*
