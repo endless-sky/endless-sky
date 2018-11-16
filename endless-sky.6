@@ -4,7 +4,7 @@
 endless\-sky \- a space exploration and combat game.
 
 .SH SYNOPSIS
-\fBendless\-sky\fR [\-h] [\-\-help] [\-v] [\-\-version] [\-s] [\-\-ships] [\-r] [\-w] [\-\-weapons] [\-t] [\-\-talk] [\-r] [\-\-resources] [\-c] [\-\-config]
+\fBendless\-sky\fR [\-h] [\-\-help] [\-v] [\-\-version] [\-s] [\-\-ships] [\-w] [\-\-weapons] [\-t] [\-\-talk] [\-r] [\-\-resources] [\-c] [\-\-config] [\-p] [\-\-parse\-save]
 
 .SH DESCRIPTION
 \fBEndless Sky\fR is a space exploration and combat game combining action and role playing elements.
@@ -40,6 +40,9 @@ sets the directory from which game resources (images, etc.) will be loaded.
 
 .IP \fB\-c,\ \-\-config\ <directory>
 sets the directory where preferences and saved games will be stored.
+
+.IP \fB\-p,\ \-\-parse\-save
+prints any content or whitespace\-formatting errors found while loading data files and the most recent saved game. This option prevents the game from launching.
 
 .SH AUTHOR
 Michael Zahniser (mzahniser@gmail.com)

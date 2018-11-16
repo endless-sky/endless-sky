@@ -21,13 +21,13 @@ ship "Quarg Skylark"
 		"drag" 12.3
 		"heat dissipation" .7
 		"fuel capacity" 1000
-		"ramscoop" 10
 		"cargo space" 200
 		"outfit space" 600
 		"weapon capacity" 200
 		"engine capacity" 120
 		"hull repair rate" 5
 		"hull energy" 5
+		"ramscoop" 10
 		weapon
 			"blast radius" 250
 			"shield damage" 1000
@@ -36,13 +36,16 @@ ship "Quarg Skylark"
 	outfits
 		"Quarg Skylance" 2
 		"Quarg Anti-Missile" 2
+    
 		"Antimatter Core"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
 		"Intrusion Countermeasures" 120
+		
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Jump Drive"
+		
 	engine -15 117
 	engine 15 117
 	turret -12 -80 "Quarg Skylance"
@@ -57,6 +60,7 @@ ship "Quarg Skylark"
 	"final explode" "final explosion medium"
 	description "The Skylark is used by the Quarg as a freighter and warship."
 
+
 ship "Quarg Wardragon"
 	sprite "ship/wardragon"
 	attributes
@@ -70,13 +74,13 @@ ship "Quarg Wardragon"
 		"drag" 9.3
 		"heat dissipation" .5
 		"fuel capacity" 800
-		"ramscoop" 10
 		"cargo space" 50
 		"outfit space" 600
 		"weapon capacity" 200
 		"engine capacity" 120
 		"hull repair rate" 5
 		"hull energy" 5
+		"ramscoop" 10
 		weapon
 			"blast radius" 250
 			"shield damage" 1000
@@ -85,13 +89,16 @@ ship "Quarg Wardragon"
 	outfits
 		"Quarg Skylance" 2
 		"Quarg Anti-Missile" 2
+    
 		"Antimatter Core"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
 		"Intrusion Countermeasures" 160
+		
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Jump Drive"
+		
 	engine -14 47
 	engine 14 47
 	turret -28 7 "Quarg Skylance"
