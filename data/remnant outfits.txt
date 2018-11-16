@@ -46,10 +46,10 @@ effect "inhibitor impact"
 		"frame rate" 30
 		"no repeat"
 	"lifetime" 11
-	"velocity scale" -.05
 	"random angle" 360
-	"random velocity" 6
 	"random frame rate" 15
+	"random velocity" 6
+	"velocity scale" -.05
 
 
 outfit "Thrasher Cannon"
@@ -84,10 +84,10 @@ effect "thrasher impact"
 		"frame rate" 30
 		"no repeat"
 	"lifetime" 11
-	"velocity scale" -.1
 	"random angle" 360
 	"random spin" 30
 	"random velocity" 3
+	"velocity scale" -.1
 
 
 outfit "Thrasher Turret"
@@ -149,8 +149,8 @@ effect "point defense fire"
 	sprite "effect/point defense fire"
 		"frame rate" 17
 		"no repeat"
-	"velocity scale" .5
 	lifetime 10
+	"velocity scale" .5
 
 effect "point defense hit"
 	sprite "effect/point defense hit"
@@ -226,30 +226,30 @@ effect "emp torpedo fire"
 		"no repeat"
 		"frame rate" 10
 	"lifetime" 31
-	"random frame rate" 10
-	"random velocity" 7
 	"random angle" 10
+	"random frame rate" 10
 	"random spin" 2
+	"random velocity" 7
 
 effect "emp ring"
 	sprite "effect/emp ring"
 		"no repeat"
 		"frame rate" 12
 	"lifetime" 60
-	"random frame rate" 6
-	"velocity scale" 0.1
 	"random angle" 360
+	"random frame rate" 6
 	"random velocity" 4
+	"velocity scale" 0.1
 
 effect "emp spark"
 	sprite "effect/emp spark"
 		"no repeat"
 		"frame rate" 8
 	"lifetime" 45
-	"random frame rate" 6
-	"velocity scale" 0.1
 	"random angle" 360
+	"random frame rate" 6
 	"random velocity" 7
+	"velocity scale" 0.1
 
 
 
