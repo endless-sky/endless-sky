@@ -354,8 +354,8 @@ void OutfitterPanel::FailBuy() const
 	if(!isInCargo && cost > credits)
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit, because it costs "
-			+ Format::Number(cost) + " credits, and you only have "
-			+ Format::Number(credits) + "."));
+			+ Format::Credits(cost) + " credits, and you only have "
+			+ Format::Credits(credits) + "."));
 		return;
 	}
 	// Check that the player has any necessary licenses.
@@ -370,7 +370,7 @@ void OutfitterPanel::FailBuy() const
 	{
 		GetUI()->Push(new Dialog(
 			"You don't have enough money to buy this outfit, because it will cost you an extra "
-			+ Format::Number(licenseCost) + " credits to buy the necessary licenses."));
+			+ Format::Credits(licenseCost) + " credits to buy the necessary licenses."));
 		return;
 	}
 	
@@ -803,7 +803,7 @@ void OutfitterPanel::CheckRefill()
 		string message = "Do you want to reload all the ammunition for your ship";
 		message += (count == 1) ? "?" : "s?";
 		if(cost)
-			message += " It will cost " + Format::Number(cost) + " credits.";
+			message += " It will cost " + Format::Credits(cost) + " credits.";
 		GetUI()->Push(new Dialog(this, &OutfitterPanel::Refill, message));
 	}
 }

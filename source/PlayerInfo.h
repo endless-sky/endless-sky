@@ -151,10 +151,12 @@ public:
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
+	const Mission *ActiveBoardingMission() const;
 	void AcceptJob(const Mission &mission, UI *ui);
-	// Check to see if there is any mission to offer in the spaceport right now.
+	// Check to see if there is any mission to offer right now.
 	Mission *MissionToOffer(Mission::Location location);
 	Mission *BoardingMission(const std::shared_ptr<Ship> &ship);
+	void ClearActiveBoardingMission();
 	// If one of your missions cannot be offered because you do not have enough
 	// space for it, and it specifies a message to be shown in that situation,
 	// show that message.
@@ -288,13 +290,19 @@ private:
 	std::multimap<Date, std::string> logbook;
 	std::map<std::string, std::map<std::string, std::string>> specialLogs;
 	
+	// A list of the player's active, accepted missions.
 	std::list<Mission> missions;
 	// These lists are populated when you land on a planet, and saved so that
 	// they will not change if you reload the game.
 	std::list<Mission> availableJobs;
 	std::list<Mission> availableMissions;
-	std::list<Mission> boardingMissions;
+	// Missions that are failed or aborted, but not yet deleted, and any
+	// missions offered while in-flight are not saved.
 	std::list<Mission> doneMissions;
+	std::list<Mission> boardingMissions;
+	// This pointer to the most recently accepted boarding mission enables
+	// its NPCs to be placed before the player lands, and is then cleared.
+	Mission *activeBoardingMission = nullptr;
 	
 	std::map<std::string, int> conditions;
 	

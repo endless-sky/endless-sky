@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LineShader.h"
 #include "MapDetailPanel.h"
 #include "Messages.h"
+#include "Mission.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlanetPanel.h"
@@ -469,8 +470,7 @@ void MainPanel::StepEvents(bool &isActive)
 				&& !event.Target()->IsDestroyed() && flagship && event.Actor().get() == flagship)
 		{
 			Mission *mission = player.BoardingMission(event.Target());
-			const CargoHold &cargo = flagship->Cargo();
-			if(mission && mission->CargoSize() <= cargo.Free() && mission->Passengers() <= cargo.BunksFree())
+			if(mission && mission->HasSpace(*flagship))
 				mission->Do(Mission::OFFER, player, GetUI());
 			else if(mission)
 				player.HandleBlockedMissions((event.Type() & ShipEvent::BOARD)

@@ -928,7 +928,7 @@ mission "FW Pug 1"
 			`Based on your previous maps of this sector, there should be a hyperspace link from here to the Rasalhague system. But your sensors show nothing. Something has severed the link.`
 	on enter "Ascella"
 		dialog
-			`The Ascella system used to be linked to Rasalhague and Delta Capricorni, but no longer. Either the Syndicate has discovered the ability to alter hyperspace links, and is using it to block the Free Worlds from interfering with them, or you have a much stranger problem on your hands...`
+			`The Ascella system used to be linked to Rasalhague and Zeta Aquilae, but no longer. Either the Syndicate has discovered the ability to alter hyperspace links, and is using it to block the Free Worlds from interfering with them, or you have a much stranger problem on your hands...`
 
 
 

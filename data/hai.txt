@@ -49,6 +49,49 @@ fleet "Small Hai"
 	variant
 		"Lightning Bug"
 		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Centipede"
+	variant 3
+		"Aphid" 3
+		"Centipede"
+	variant
+		"Centipede" 2
+		"Centipede (Pulse)" 3
+	variant
+		"Centipede" 2
+		"Lightning Bug" 2
+	variant 2
+		"Centipede" 2
+		"Water Bug"
+	variant
+		"Centipede"
+		"Lightning Bug" 2
+	variant
+		"Centipede"
+		"Aphid" 5
+	variant
+		"Centipede" 2
+		"Lightning Bug" 2
+	variant
+		"Centipede" 2
+		"Lightning Bug" 
+	variant
+		"Grasshopper" 3
+	variant
+		"Grasshopper"
+		"Centipede" 2
+	variant
+		"Grasshopper"
+		"Grasshopper (Tracker)"
+		"Centipede" 
+	variant
+		"Lightning Bug" 2
+		"Grasshopper"
+		"Grasshopper (Tracker)"
+	variant 1
+		"Lightning Bug"
+		"Centipede (Pulse)" 
+		"Grasshopper" 2
 
 fleet "Large Hai"
 	government "Hai"
@@ -103,6 +146,56 @@ fleet "Large Hai"
 		"Shield Beetle (Pulse)"
 		"Shield Beetle (Tracker)"
 		"Lightning Bug" 2
+	variant
+		"Shield Beetle (Tracker)"
+		"Centipede" 3
+	variant 2
+		"Water Bug" 3
+		"Centipede" 2
+	variant
+		"Centipede" 3
+		"Centipede (Pulse)" 2
+	variant 3
+		"Centipede" 2
+		"Lightning Bug" 3
+		"Water Bug"
+	variant 2
+		"Aphid" 2
+		"Lightning Bug"
+		"Centipede"
+	variant 2
+		"Centipede"
+		"Shield Beetle (Pulse)" 2
+		"Shield Beetle (Tracker)"
+	variant
+		"Centipede" 2
+		"Lightning Bug" 2
+		"Aphid" 3
+	variant 1
+		"Geocoris"
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+	variant 1
+		"Geocoris"
+		"Shield Beetle (Pulse)"
+		"Grasshopper"
+		"Grasshopper (Tracker)"
+	variant 1
+		"Geocoris"
+		"Shield Beetle (Pulse)" 
+		"Grasshopper"
+		"Grasshopper (Tracker)"
+	variant 1
+		"Geocoris (Tracker)"
+		"Shield Beetle"
+		"Aphid (Anti-Missile)" 2
+		"Aphid" 
+	variant
+		"Centipede"
+		"Geocoris (Tracker)"
+		"Lightning Bug"
+		"Water Bug"
+		"Grasshopper (Tracker)"
 
 fleet "Small Unfettered"
 	government "Hai (Unfettered)"
@@ -185,17 +278,24 @@ fleet "Unfettered Raid"
 shipyard "Hai Basics"
 	"Aphid"
 	"Lightning Bug"
+	"Centipede"
+	"Grasshopper"
 
 shipyard "Hai Intermediate"
 	"Aphid"
 	"Lightning Bug"
 	"Water Bug"
+	"Centipede"
+	"Grasshopper"
 
 shipyard "Hai Advanced"
 	"Aphid"
 	"Lightning Bug"
 	"Water Bug"
 	"Shield Beetle"
+	"Centipede"
+	"Geocoris"
+	"Grasshopper"
 
 outfitter "Hai Basics"
 	"Pulse Cannon"

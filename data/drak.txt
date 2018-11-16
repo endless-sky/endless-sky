@@ -18,6 +18,7 @@ outfit "Drak Distancer"
 	"turret mounts" -1
 	weapon
 		"fire effect" "distancer flare"
+		"turret turn" 4.
 		"velocity" 2000
 		"lifetime" 1
 		"reload" 1
@@ -41,6 +42,7 @@ outfit "Drak Draining Field"
 	"weapon capacity" -84
 	"turret mounts" -1
 	weapon
+		"turret turn" 4.
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
@@ -83,6 +85,7 @@ outfit "Drak Turret"
 			"random start frame"
 		"hit effect" "drak bolt impact"
 		"inaccuracy" 1
+		"turret turn" 4.
 		"velocity" 36
 		"lifetime" 30
 		"reload" 16

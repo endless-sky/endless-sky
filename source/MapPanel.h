@@ -57,6 +57,7 @@ public:
 public:
 	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
 	
+	virtual void Step() override;
 	virtual void Draw() override;
 	
 	void DrawButtons(const std::string &condition);
@@ -106,6 +107,8 @@ protected:
 	const System *specialSystem;
 	
 	Point center;
+	Point recenterVector;
+	int recentering = 0;
 	int commodity;
 	int step = 0;
 	std::string buttonCondition;
@@ -117,7 +120,7 @@ protected:
 	std::map<const System *, std::pair<int, int>> escortSystems;
 	// Center the view on the given system (may actually be slightly offset
 	// to account for panels on the screen).
-	void CenterOnSystem(const System *system);
+	void CenterOnSystem(const System *system, bool immediate = false);
 	
 	// Cache the map layout, so it doesn't have to be re-calculated every frame.
 	// The cache must be updated when the coloring mode changes.

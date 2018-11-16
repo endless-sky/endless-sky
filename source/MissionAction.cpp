@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MissionAction.h"
 
+#include "CargoHold.h"
 #include "ConversationPanel.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -59,12 +60,14 @@ namespace {
 		
 		bool didCargo = false;
 		bool didShip = false;
-		int cargoCount = player.Cargo().Get(outfit);
+		// If not landed, transfers must be done into the flagship's CargoHold.
+		CargoHold &cargo = (player.GetPlanet() ? player.Cargo() : flagship->Cargo());
+		int cargoCount = cargo.Get(outfit);
 		if(count < 0 && cargoCount)
 		{
 			int moved = min(cargoCount, -count);
 			count += moved;
-			player.Cargo().Remove(outfit, moved);
+			cargo.Remove(outfit, moved);
 			didCargo = true;
 		}
 		while(count)
@@ -82,10 +85,10 @@ namespace {
 		if(count > 0)
 		{
 			// Ignore cargo size limits.
-			int size = player.Cargo().Size();
-			player.Cargo().SetSize(-1);
-			player.Cargo().Add(outfit, count);
-			player.Cargo().SetSize(size);
+			int size = cargo.Size();
+			cargo.SetSize(-1);
+			cargo.Add(outfit, count);
+			cargo.SetSize(size);
 			didCargo = true;
 			if(ui)
 			{
@@ -103,6 +106,28 @@ namespace {
 		else
 			message += "flagship.";
 		Messages::Add(message);
+	}
+	
+	int CountInCargo(const Outfit *outfit, const PlayerInfo &player)
+	{
+		int available = 0;
+		// If landed, all cargo from available ships is pooled together.
+		if(player.GetPlanet())
+			available += player.Cargo().Get(outfit);
+		// Otherwise only count outfits in the cargo holds of in-system ships.
+		else
+		{
+			const System *here = player.GetSystem();
+			for(const auto &ship : player.Ships())
+			{
+				if(ship->IsDisabled() || ship->IsParked())
+					continue;
+				if(ship->GetSystem() == here || (ship->CanBeCarried()
+						&& !ship->GetSystem() && ship->GetParent()->GetSystem() == here))
+					available += ship->Cargo().Get(outfit);
+			}
+		}
+		return available;
 	}
 }
 
@@ -284,7 +309,7 @@ int MissionAction::Payment() const
 
 // Check if this action can be completed right now. It cannot be completed
 // if it takes away money or outfits that the player does not have.
-bool MissionAction::CanBeDone(const PlayerInfo &player) const
+bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
 {
 	if(player.Accounts().Credits() < -payment)
 		return false;
@@ -295,39 +320,49 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 		if(it.second > 0)
 			continue;
 		
-		// The outfit can be taken from the player's cargo or from the flagship.
-		// If the player is landed, all available cargo is transferred from the
-		// player's ships to the player. If checking mission completion status
-		// in-flight, cargo is present in the player's ships.
-		int available = player.Cargo().Get(it.first);
-		if(!player.GetPlanet())
-			for(const auto &ship : player.Ships())
-				if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
-					available += ship->Cargo().Get(it.first);
-		if(flagship)
-			available += flagship->OutfitCount(it.first);
+		// Outfits may always be taken from the flagship. If landed, they may also be taken from
+		// the collective cargohold of any in-system, non-disabled escorts (player.Cargo()). If
+		// boarding, consider only the flagship's cargo hold. If in-flight, show mission status
+		// by checking the cargo holds of ships that would contribute to player.Cargo if landed.
+		int available = flagship ? flagship->OutfitCount(it.first) : 0;
+		available += boardingShip ? flagship->Cargo().Get(it.first)
+				: CountInCargo(it.first, player);
 		
-		// If the gift "count" is 0, that means to check that the player has at
-		// least one of these items. This is for backward compatibility before
-		// requiredOutfits was introduced.
+		// If the "count" is 0, that means to check that the player has at least one of these
+		// items. This is for backward compatibility before requiredOutfits was introduced.
 		if(available < -it.second + !it.second)
 			return false;
 	}
 	
 	for(const auto &it : requiredOutfits)
 	{
-		// The required outfit can be in the player's cargo or from the flagship.
-		int available = player.Cargo().Get(it.first);
-		for(const auto &ship : player.Ships())
-			available += ship->Cargo().Get(it.first);
-		if(flagship)
-			available += flagship->OutfitCount(it.first);
+		int available = 0;
+		// Requiring the player to have 0 of this outfit means all ships and all cargo holds
+		// must be checked, even if the ship is disabled, parked, or out-of-system.
+		bool checkAll = !it.second;
+		if(checkAll)
+		{
+			for(const auto &ship : player.Ships())
+				if(!ship->IsDestroyed())
+				{
+					available += ship->Cargo().Get(it.first);
+					available += ship->OutfitCount(it.first);
+				}
+		}
+		else
+		{
+			// Required outfits must be present on able ships in the
+			// player's location (or the respective cargo hold).
+			available += flagship ? flagship->OutfitCount(it.first) : 0;
+			available += boardingShip ? flagship->Cargo().Get(it.first)
+					: CountInCargo(it.first, player);
+		}
 		
 		if(available < it.second)
 			return false;
 		
 		// If the required count is 0, the player must not have any of the outfit.
-		if(it.second == 0 && available > 0)
+		if(checkAll && available)
 			return false;
 	}
 	
@@ -433,7 +468,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	// Fill in the payment amount if this is the "complete" action.
 	string previousPayment = subs["<payment>"];
 	if(result.payment)
-		subs["<payment>"] = Format::Number(abs(result.payment))
+		subs["<payment>"] = Format::Credits(abs(result.payment))
 			+ (result.payment == 1 ? " credit" : " credits");
 	
 	if(!logText.empty())

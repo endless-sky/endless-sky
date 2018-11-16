@@ -1359,7 +1359,7 @@ mission "FW Bloodsea 1.1"
 				goto attack
 			label attack
 			`	"So, we attack them?" you ask.`
-			`	"You're on council now," he says. "I'll leave it up to you. Option one is, we bring them the supplies and workers, in merchant ships, but use very heavily armed merchant ships in case they double cross us. Option two is, we go to Dancer and see if JJ can lend us an invasion fleet."`
+			`	"You're on the council now," he says. "I'll leave it up to you. Option one is, we bring them the supplies and workers, in merchant ships, but use very heavily armed merchant ships in case they double cross us. Option two is, we go to Dancer and see if JJ can lend us an invasion fleet."`
 				accept
 
 
@@ -1589,11 +1589,15 @@ mission "FW Albatross 1"
 			choice
 				`	"Okay, I feel silly for even asking. Let's go meet up with JJ!"`
 					accept
+				`	"Actually, I'm gay too."`
+					goto metoo
 				`	"Ah. That certainly explains a lot."`
 				`	"It seems crazy that anyone would be bothered by that in this day and age."`
 			`	"Yes," she says. "Yes, it does. Now, let's go meet up with JJ."`
 				accept
-
+			label metoo
+			`	Freya raises an eyebrow. "I hadn't heard. We don't have time to find someone else for this mission, so try not to say that so loudly when you're on Albatross."`
+				accept
 
 
 mission "FW Albatross 2"

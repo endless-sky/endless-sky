@@ -37,7 +37,7 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 			variant
 				"Sparrow"
 			variant
-				"Wasp"
+				"Fury"
 			variant
 				"Berserker"
 	npc
@@ -50,7 +50,7 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 			variant
 				"Sparrow"
 			variant
-				"Wasp"
+				"Fury"
 			variant
 				"Berserker"
 	
@@ -97,7 +97,7 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 			variant
 				"Sparrow"
 			variant
-				"Wasp"
+				"Fury"
 			variant
 				"Berserker"
 	npc
@@ -111,7 +111,7 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 			variant
 				"Sparrow"
 			variant
-				"Wasp"
+				"Fury"
 			variant
 				"Berserker"
 	
@@ -555,7 +555,7 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 			variant
 				"Sparrow"
 			variant
-				"Wasp"
+				"Fury"
 			variant
 				"Berserker"
 	npc
@@ -568,7 +568,7 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 			variant
 				"Sparrow"
 			variant
-				"Wasp"
+				"Fury"
 			variant
 				"Berserker"
 	
@@ -617,7 +617,7 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 			variant
 				"Sparrow"
 			variant
-				"Wasp"
+				"Fury"
 			variant
 				"Berserker"
 	npc
@@ -629,7 +629,7 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 			variant
 				"Sparrow"
 			variant
-				"Wasp"
+				"Fury"
 			variant
 				"Berserker"
 	
@@ -1069,9 +1069,9 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 			variant
 				"Sparrow"
 			variant
-				"Wasp"
+				"Fury"
 			variant
-				"Berserker"
+				"Hawk"
 	npc
 		government Pirate
 		personality nemesis staying harvests plunders
@@ -1082,9 +1082,9 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 			variant
 				"Sparrow"
 			variant
-				"Wasp"
+				"Fury"
 			variant
-				"Berserker"
+				"Hawk"
 	
 	npc accompany save
 		government Merchant
