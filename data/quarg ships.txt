@@ -25,7 +25,6 @@ ship "Quarg Skylark"
 		"outfit space" 600
 		"weapon capacity" 200
 		"engine capacity" 120
-		"energy generation" 85
 		"hull repair rate" 5
 		"hull energy" 5
 		"ramscoop" 10
@@ -38,6 +37,7 @@ ship "Quarg Skylark"
 		"Quarg Skylance" 2
 		"Quarg Anti-Missile" 2
 		
+		"Antimatter Core"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
 		"Intrusion Countermeasures" 120
@@ -50,8 +50,8 @@ ship "Quarg Skylark"
 	engine 15 117
 	turret -12 -80 "Quarg Skylance"
 	turret 12 -80 "Quarg Skylance"
-	turret -12 -80 "Quarg Anti-Missile"
-	turret 12 -80 "Quarg Anti-Missile"
+	turret -34 24 "Quarg Anti-Missile"
+	turret 34 24 "Quarg Anti-Missile"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	explode "medium explosion" 30
@@ -78,7 +78,6 @@ ship "Quarg Wardragon"
 		"outfit space" 600
 		"weapon capacity" 200
 		"engine capacity" 120
-		"energy generation" 85
 		"hull repair rate" 5
 		"hull energy" 5
 		"ramscoop" 10
@@ -91,7 +90,8 @@ ship "Quarg Wardragon"
 		"Quarg Skylance" 2
 		"Quarg Anti-Missile" 2
 		
-		"Nanotech Battery"		
+		"Antimatter Core"
+		"Nanotech Battery"
 		"Quantum Shield Generator"
 		"Intrusion Countermeasures" 160
 		
@@ -101,10 +101,10 @@ ship "Quarg Wardragon"
 		
 	engine -14 47
 	engine 14 47
-	turret -29 6 "Quarg Skylance"
-	turret 29 6 "Quarg Skylance"
-	turret -29 6 "Quarg Anti-Missile"
-	turret 29 6 "Quarg Anti-Missile"
+	turret -28 7 "Quarg Skylance"
+	turret 28 7 "Quarg Skylance"
+	turret -9 -14 "Quarg Anti-Missile"
+	turret 9 -14 "Quarg Anti-Missile"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	explode "medium explosion" 30
