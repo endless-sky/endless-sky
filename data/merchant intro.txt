@@ -78,7 +78,7 @@ mission "Merchant Start 3"
 	on complete
 		payment 50000
 		conversation
-			`You help the travelers lug their cargo away, still wondering why so much of it is needed. The first merchant you met walking up to you. "Well, Captain, may I ask you for your name?"`
+			`You help the travelers lug their cargo away, still wondering why so much of it is needed. The first merchant you met walks up to you. "Well, Captain, may I ask you for your name?"`
 			choice
 				`	"It's <first> <last>."`
 					goto name
