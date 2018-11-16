@@ -284,6 +284,71 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		else
 			plunder[selected].Take(count);
 	}
+	else if(key == 's' && CanSalvage())
+	{
+		// Salvage the given outfit, by extracting some amount of its component
+		// parts. These parts are then added to the plunder list (and victim cargo).
+		const Outfit *outfit = plunder[selected].GetOutfit();
+		
+		// Remove the salvaged plunder from the list.
+		if(plunder[selected].Count() == 1)
+		{
+			plunder.erase(plunder.begin() + selected);
+			selected = min<int>(selected, plunder.size());
+		}
+		else
+			plunder[selected].Take(1);
+		// Remove the source outfit from the boarded ship.
+		int removed = victim->Cargo().Remove(outfit);
+		if(!removed)
+			victim->AddOutfit(outfit, -1);
+		
+		// TODO: implement a better "salvage skill curve" than just +1.
+		const int salvageSkill = player.Conditions()["mechanic"];
+		auto results = vector<Plunder>();
+		const map<const Outfit *, int> salvage = outfit->Salvage();
+		for(const auto &sit : salvage)
+		{
+			int count = Random::Int(sit.second + 1);
+			if(salvageSkill && count < sit.second)
+				++count;
+			if(count)
+				results.emplace_back(sit.first, count);
+		}
+		
+		// Add the salvaged plunder to the victim's cargo, to preserve it if
+		// the aggressor departs and reboards. Disable transfer limits in case
+		// a plugin defines a salvage operation that results in a larger volume.
+		victim->Cargo().SetSize(-1);
+		for(const Plunder &p : results)
+			victim->Cargo().Add(p.GetOutfit(), p.Count());
+		victim->Cargo().SetSize(victim->Attributes().Get("cargo space"));
+		
+		// If a salvaged outfit already exists in the ship's available plunder,
+		// add the new count to it.
+		for(Plunder &p : plunder)
+		{
+			if(p.GetOutfit())
+				for(auto sit = results.begin(); sit != results.end();)
+				{
+					if((*sit).GetOutfit() == p.GetOutfit())
+					{
+						p.Take(-(*sit).Count());
+						results.erase(sit);
+						// There can be only one of a given outfit in the results list.
+						break;
+					}
+					else
+						++sit;
+				}
+			if(results.empty())
+				break;
+		}
+		
+		// Combine the plunder lists and sort descending.
+		plunder.insert(plunder.end(), results.begin(), results.end());
+		sort(plunder.begin(), plunder.end());
+	}
 	else if((key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN) && !isCapturing)
 	{
 		// Scrolling the list of plunder.
