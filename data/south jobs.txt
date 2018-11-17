@@ -113,12 +113,12 @@ mission "Pirate Occupation [2]"
 
 conversation "pirate occupation"
 	`Suddenly you hear raised voices and shouting outside as pilots run for their ships: "<destination> is being occupied by a pirate fleet! They are requesting help from any combat-worthy ship in the region to join the defenses!" The authorities of <planet> will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
-		choice
+	choice
 		`	(Stay here until the fight is over.)`
 			decline
 		`	(Join the defense fleet.)`
 	`A few militia pilots have gathered to help repel the pirate attack. You join them, and take off together...`
-				launch
+		launch
 
 
 mission "Sketchy Cargo [0]"
