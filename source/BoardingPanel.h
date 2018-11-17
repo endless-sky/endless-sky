@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "CaptureOdds.h"
 
 #include <memory>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -90,7 +91,7 @@ private:
 		// If this is an outfit, get the outfit. Otherwise, this returns null.
 		const Outfit *GetOutfit() const;
 		// Determine if the ship can take this plunder as-is.
-		bool CanTake(const Ship &ship) const;
+		bool CanTake(const Ship &ship, const std::set<const Outfit *> &usedAmmo) const;
 		// Determine if this plunder can be decomposed into other plunder by this ship.
 		bool CanSalvage(const Ship &ship) const;
 		// Take some or all of this plunder item.

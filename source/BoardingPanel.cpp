@@ -36,7 +36,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <map>
-#include <set>
 
 using namespace std;
 
@@ -52,15 +51,8 @@ namespace {
 		return result;
 	}
 	
-	// Determine the ammo used by the boarding ship.
-	const set<const Outfit *> GetUsedAmmo(const map<const Outfit *, int> &shipOutfits)
-	{
-		auto ammo = set<const Outfit *>();
-		for(const auto &it : shipOutfits)
-			if(it.first->Ammo())
-				ammo.insert(it.first->Ammo());
-		return ammo;
-	}
+	// Ammo used by the boarding ship.
+	auto usedAmmo = set<const Outfit *>();
 }
 
 
@@ -118,6 +110,11 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	if(!victim->IsCapturable())
 		messages.emplace_back("This is not a ship that you can capture.");
 	
+	// Precompute the ammo that the boarding ship can use.
+	for(const auto &oit : you->Outfits())
+		if(oit.first->Ammo())
+			usedAmmo.insert(oit.first->Ammo());
+	
 	// Sort the plunder by price per ton.
 	sort(plunder.begin(), plunder.end());
 }
@@ -155,7 +152,7 @@ void BoardingPanel::Draw()
 			FillShader::Fill(Point(-155., y + 10.), Point(360., 20.), back);
 		
 		// Color the item based on whether you have space for it.
-		const Color &color = (item.CanTake(*you) || item.CanSalvage(*you)) ? (isSelected ? bright : medium) : dim;
+		const Color &color = (item.CanTake(*you, usedAmmo) || item.CanSalvage(*you)) ? (isSelected ? bright : medium) : dim;
 		Point pos(-320., y + fontOff);
 		font.Draw(item.Name(), pos, color);
 		
@@ -252,7 +249,6 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		int count = plunder[selected].Count();
 		
 		const Outfit *outfit = plunder[selected].GetOutfit();
-		const set<const Outfit *> usedAmmo = GetUsedAmmo(you->Outfits());
 		if(outfit)
 		{
 			// Check if this outfit is ammo for one of your weapons. If so, use
@@ -582,7 +578,7 @@ bool BoardingPanel::CanTake() const
 	if(static_cast<unsigned>(selected) >= plunder.size())
 		return false;
 	
-	return plunder[selected].CanTake(*you);
+	return plunder[selected].CanTake(*you, usedAmmo);
 }
 
 
@@ -722,7 +718,7 @@ const Outfit *BoardingPanel::Plunder::GetOutfit() const
 
 
 // Determine if this piece of plunder can be taken by the given ship as-is.
-bool BoardingPanel::Plunder::CanTake(const Ship &ship) const
+bool BoardingPanel::Plunder::CanTake(const Ship &ship, const set<const Outfit *> &usedAmmo) const
 {
 	// If there's cargo space for this outfit, you can take it.
 	if(UnitMass() <= ship.Cargo().Free())
@@ -730,7 +726,7 @@ bool BoardingPanel::Plunder::CanTake(const Ship &ship) const
 	
 	// Otherwise, check if it is ammo for any of the ship's weapons. If so,
 	// check if you can install it as an outfit.
-	if(outfit && GetUsedAmmo(ship.Outfits()).count(outfit)
+	if(outfit && usedAmmo.count(outfit)
 			&& ship.Attributes().CanAdd(*outfit))
 		return true;
 	
