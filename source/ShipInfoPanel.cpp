@@ -131,7 +131,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			shipIt = player.Ships().begin();
 		UpdateInfo();
 	}
-	else if(key == 'i')
+	else if(key == 'i' || command.Has(Command::INFO))
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new PlayerInfoPanel(player));
@@ -192,7 +192,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			}
 		}
 	}
-	else if(command.Has(Command::INFO | Command::MAP) || key == 'm')
+	else if(command.Has(Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
 	else if(key == 'l' && player.HasLogs())
 		GetUI()->Push(new LogbookPanel(player));

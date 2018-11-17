@@ -176,7 +176,8 @@ void PlayerInfoPanel::Draw()
 
 bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))
+			|| key == 'i' || command.Has(Command::INFO))
 		GetUI()->Pop(this);
 	else if(key == 's' || key == SDLK_RETURN || key == SDLK_KP_ENTER)
 	{
@@ -307,7 +308,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			if(!it->IsDisabled() && (allParked || it.get() != flagship))
 				player.ParkShip(it.get(), !allParked);
 	}
-	else if(command.Has(Command::INFO | Command::MAP) || key == 'm')
+	else if(command.Has(Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
 	else if(key == 'l' && player.HasLogs())
 		GetUI()->Push(new LogbookPanel(player));
