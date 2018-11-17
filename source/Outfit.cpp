@@ -124,8 +124,7 @@ void Outfit::Load(const DataNode &node)
 						const string &kind = grand.Token(0);
 						if(kind == "outfit" || kind == "commodity")
 						{
-							// TODO: The commodity list may not yet be loaded, so any
-							// named commodities may not be valid.
+							// If an invalid commodity name is given, it will not be offered to the player.
 							const string &name = grand.Token(1);
 							auto key = make_pair(name, (kind == "outfit" ? GameData::Outfits().Get(name) : nullptr));
 							parts[key] += count;

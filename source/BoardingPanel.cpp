@@ -315,7 +315,16 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 					if(count && part.second)
 						salvaged.emplace_back(part.second, count);
 					else if(count)
-						salvaged.emplace_back(part.first, count, system.Trade(part.first));
+					{
+						// A commodity name was given. However, it may not be a name
+						// known in this game state. If it is, then use it.
+						for(const auto &it : GameData::Commodities())
+							if(it.name == part.first)
+							{
+								salvaged.emplace_back(part.first, count, system.Trade(part.first));
+								break;
+							}
+					}
 				}
 		}
 		
