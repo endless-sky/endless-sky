@@ -304,18 +304,22 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			victim->AddOutfit(outfit, -1);
 		
 		auto salvaged = vector<Plunder>();
+		const System &system = *you->GetSystem();
 		// This outfit may have several options depending on the attributes
 		// of the boarding ship. At least one is valid (else we could not salvage).
 		// The resultant salvaged components includes all applicable attributes.
-		for(const pair<string, map<const Outfit *, int>> &salvageGroup : outfit->Salvage())
+		for(const auto &salvageGroup : outfit->Salvage())
 		{
 			const string &attr = salvageGroup.first;
 			if(attr.empty() || you->Attributes().Get(attr))
-				for(const pair<const Outfit *, int> &outfitCount : salvageGroup.second)
+				for(const auto &partCount : salvageGroup.second)
 				{
-					int count = Random::Int(outfitCount.second + 1);
-					if(count)
-						salvaged.emplace_back(outfitCount.first, count);
+					int count = Random::Int(partCount.second + 1);
+					const pair<string, const Outfit *> &part = partCount.first;
+					if(count && part.second)
+						salvaged.emplace_back(part.second, count);
+					else if(count)
+						salvaged.emplace_back(part.first, count, system.Trade(part.first));
 				}
 		}
 		
@@ -332,7 +336,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			for(const Plunder &p : salvaged)
 			{
 				int quantity = p.Count();
-				message += "\t" + Format::Number(quantity) + " " + (quantity > 1 ?
+				message += "\t" + Format::Number(quantity) + " " + (quantity > 1 && p.GetOutfit() ?
 						p.GetOutfit()->PluralName() : p.Name()) + "\n";
 			}
 		}
@@ -347,7 +351,12 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		int size = victim->Cargo().Size();
 		victim->Cargo().SetSize(-1);
 		for(const Plunder &p : salvaged)
-			victim->Cargo().Add(p.GetOutfit(), p.Count());
+		{
+			if(p.GetOutfit())
+				victim->Cargo().Add(p.GetOutfit(), p.Count());
+			else
+				victim->Cargo().Add(p.Name(), p.Count());
+		}
 		victim->Cargo().SetSize(size);
 		
 		// If a salvaged outfit already exists in the ship's available plunder,
@@ -739,7 +748,7 @@ bool BoardingPanel::Plunder::CanSalvage(const Ship &ship) const
 	// If the associated attribute is empty (unspecified), no special
 	// attributes are required to salvage this outfit. Otherwise, the
 	// boarding ship must have at least one of the specified attributes.
-	for(const pair<string, map<const Outfit *, int>> &groups : outfit->Salvage())
+	for(const auto &groups : outfit->Salvage())
 		if(groups.first.empty() || ship.Attributes().Get(groups.first))
 			return true;
 	

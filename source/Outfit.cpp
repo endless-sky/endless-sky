@@ -89,11 +89,12 @@ void Outfit::Load(const DataNode &node)
 		else if(child.Token(0) == "salvage")
 		{
 			// The associated salvage from this outfit is identified by a number
-			// of `salvage` nodes, each of which is associated with various outfits.
+			// of `salvage` nodes, each of which is associated with various outfits
+			// and commodities.
 			if(child.HasChildren())
 			{
 				string requiredAttribute = child.Size() >= 2 ? child.Token(1) : "";
-				auto parts = map<const Outfit *, int>();
+				auto parts = map<Part, int>();
 				for(const DataNode &grand : child)
 				{
 					int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
@@ -102,10 +103,13 @@ void Outfit::Load(const DataNode &node)
 					else
 					{
 						const string &kind = grand.Token(0);
-						if(kind == "outfit")
+						if(kind == "outfit" || kind == "commodity")
 						{
+							// TODO: The commodity list may not yet be loaded, so any
+							// named commodities may not be valid.
 							const string &name = grand.Token(1);
-							parts[GameData::Outfits().Get(name)] += count;
+							auto key = make_pair(name, (kind == "outfit" ? GameData::Outfits().Get(name) : nullptr));
+							parts[key] += count;
 						}
 						else
 							grand.PrintTrace("Skipping invalid \"salvage\" kind:");
@@ -119,7 +123,7 @@ void Outfit::Load(const DataNode &node)
 					{
 						// The required attribute already existed. Merge the new salvage
 						// list with the existing one.
-						map<const Outfit *, int> &existing = (*it.first).second;
+						auto &existing = (*it.first).second;
 						for(auto &part : parts)
 							existing[part.first] += part.second;
 					}
@@ -217,7 +221,7 @@ bool Outfit::IsSalvageable() const
 }
 
 
-const map<string, map<const Outfit *, int>> &Outfit::Salvage() const
+const map<string, map<Part, int>> &Outfit::Salvage() const
 {
 	return salvage;
 }
