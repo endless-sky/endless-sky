@@ -90,10 +90,29 @@ void Outfit::Load(const DataNode &node)
 		{
 			// The associated salvage from this outfit is identified by a number
 			// of `salvage` nodes, each of which is associated with various outfits
-			// and commodities.
-			if(child.HasChildren())
+			// and/or commodities. An existing, attribute-specific salvage definition
+			// may be removed with the "remove" keyword: `salvage [[remove] <attribute>]`
+			// All existing salvage definitions may be erased with the "clear all"
+			// syntax: `salvage clear all`
+			bool clearAll = false;
+			bool removeAttr = false;
+			string requiredAttribute;
+			if(child.Size() >= 2)
 			{
-				string requiredAttribute = child.Size() >= 2 ? child.Token(1) : "";
+				clearAll = child.Size() >= 3 && child.Token(1) == "clear" && child.Token(2) == "all";
+				if(!clearAll) {
+					removeAttr = child.Token(1) == "remove" || child.Token(1) == "clear";
+					if(child.Size() >= 2 + removeAttr)
+						requiredAttribute = child.Token(1 + removeAttr);
+				}
+			}
+			if(clearAll)
+				salvage.clear();
+			else if(removeAttr)
+				salvage.erase(requiredAttribute);
+			else if(child.HasChildren())
+			{
+				// Process outfit & commodity definitions for this specific attribute
 				auto parts = map<Part, int>();
 				for(const DataNode &grand : child)
 				{
@@ -131,6 +150,10 @@ void Outfit::Load(const DataNode &node)
 			}
 			else
 				child.PrintTrace("Skipping invalid \"salvage\" specification:");
+			// If an attribute removal was done, warn if definitions were provided. It's possible the
+			// intent was to remove those specific definitions, which is not supported.
+			if((clearAll || removeAttr) && child.HasChildren())
+				child.PrintTrace("Skipping ambiguous combination of \"remove\" with salvage definitions. \nAdd salvage definitions in a new \"salvage\" node");
 		}
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
