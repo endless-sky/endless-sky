@@ -382,9 +382,16 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				return true;
 		}
 		
-		// Combine the plunder lists and sort descending.
+		// Combine the salvaged plunder into the displayed list, and sort descending.
+		string choice;
+		if(selected < static_cast<int>(plunder.size()))
+			choice = plunder[selected].Name();
 		plunder.insert(plunder.end(), salvaged.begin(), salvaged.end());
 		sort(plunder.begin(), plunder.end());
+		// If an outfit was selected, re-select it. (It may have shifted down.)
+		if(!choice.empty())
+			while(plunder[selected].Name() != choice && selected < static_cast<int>(plunder.size()))
+				++selected;
 	}
 	else if((key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN) && !isCapturing)
 	{
