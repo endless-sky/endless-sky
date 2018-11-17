@@ -276,7 +276,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		if(selectedIndex >= 0)
 			allSelected.insert(selectedIndex);
 	}
-	else if(canEdit && key == 'P' && !allSelected.empty())
+	else if(canEdit && !allSelected.empty() && (key == 'P' || (key == 'p' && (mod & KMOD_SHIFT))))
 	{
 		// Toggle the parked status for all selected ships.
 		bool allParked = true;
@@ -295,7 +295,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 				player.ParkShip(&ship, !allParked);
 		}
 	}
-	else if(canEdit && key == 'A' && player.Ships().size() > 1)
+	else if(canEdit && player.Ships().size() > 1 && (key == 'A' || (key == 'a' && (mod & KMOD_SHIFT))))
 	{
 		// Toggle the parked status for all ships except the flagship.
 		bool allParked = true;
