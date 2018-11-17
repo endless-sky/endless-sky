@@ -69,6 +69,8 @@ private:
 		
 		// Sort by value per ton of mass.
 		bool operator<(const Plunder &other) const;
+		// Plunder is equal if it refers to the same outfit or the same commodity, regardless of count.
+		bool operator==(const Plunder &other) const;
 		
 		// Check how many of this item are left un-plundered. Once this is zero,
 		// the item can be removed from the list.
@@ -89,8 +91,8 @@ private:
 		const Outfit *GetOutfit() const;
 		// Determine if the ship can take this plunder as-is.
 		bool CanTake(const Ship &ship) const;
-		// Determine if this plunder can be decomposed into other plunder.
-		bool CanSalvage() const;
+		// Determine if this plunder can be decomposed into other plunder by this ship.
+		bool CanSalvage(const Ship &ship) const;
 		// Take some or all of this plunder item.
 		void Take(int count);
 		

@@ -88,24 +88,41 @@ void Outfit::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "salvage")
 		{
-			if(child.Size() >= 2)
+			// The associated salvage from this outfit is identified by a number
+			// of `salvage` nodes, each of which is associated with various outfits.
+			if(child.HasChildren())
 			{
-				// Specification is for either a name or a name and a count
-				int count = child.Size() >= 3 ? static_cast<int>(child.Value(2)) : 1;
-				if(count > 0)
-					salvage[GameData::Outfits().Get(child.Token(1))] = count;
-				else
-					child.PrintTrace("Salvage quantity must be positive:");
-			}
-			else if(child.HasChildren())
-			{
+				string requiredAttribute = child.Size() >= 2 ? child.Token(1) : "";
+				auto parts = map<const Outfit *, int>();
 				for(const DataNode &grand : child)
 				{
-					int count = grand.Size() >= 2 ? static_cast<int>(grand.Value(1)) : 1;
-					if(count > 0)
-						salvage[GameData::Outfits().Get(grand.Token(0))] = count;
+					int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
+					if(count <= 0 || grand.Size() == 1)
+						grand.PrintTrace("Skipping invalid \"salvage\" specification:");
 					else
-						grand.PrintTrace("Salvage quantity must be positive:");
+					{
+						const string &kind = grand.Token(0);
+						if(kind == "outfit")
+						{
+							const string &name = grand.Token(1);
+							parts[GameData::Outfits().Get(name)] += count;
+						}
+						else
+							grand.PrintTrace("Skipping invalid \"salvage\" kind:");
+					}
+				}
+				if(!parts.empty())
+				{
+					// Try to add to the map directly first.
+					auto it = salvage.emplace(requiredAttribute, parts);
+					if(!it.second)
+					{
+						// The required attribute already existed. Merge the new salvage
+						// list with the existing one.
+						map<const Outfit *, int> &existing = (*it.first).second;
+						for(auto &part : parts)
+							existing[part.first] += part.second;
+					}
 				}
 			}
 			else
@@ -200,8 +217,7 @@ bool Outfit::IsSalvageable() const
 }
 
 
-
-map<const Outfit *, int> Outfit::Salvage() const
+const map<string, map<const Outfit *, int>> &Outfit::Salvage() const
 {
 	return salvage;
 }
