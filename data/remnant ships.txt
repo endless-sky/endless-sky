@@ -81,6 +81,7 @@ ship "Starling" "Starling (Heavy)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Scanner Software"
+		"Tuning Rifle" 10
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -97,6 +98,7 @@ ship "Starling" "Starling (Sniper)"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
 		"Scanner Software"
+		"Tuning Rifle" 9
 		
 		"Forge-Class Thruster"
 		"Smelter-Class Steering"
@@ -118,6 +120,7 @@ ship "Starling" "Starling (Hunter)"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
 		"Scanner Software"
+		"Tuning Rifle" 11
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -139,6 +142,7 @@ ship "Starling" "Starling (Thrasher)"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
 		"Scanner Software"
+		"Tuning Rifle" 8
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -287,7 +291,7 @@ ship "Gull" "Gull (Bunks)"
 		"Forge-Class Steering"
 		"Hyperdrive"
 
-		
+
 ship "Albatross"
 	plural "Albatrosses"
 	sprite "ship/albatross"
@@ -310,6 +314,7 @@ ship "Albatross"
 		"engine capacity" 142
 		"outfit space" 661
 		"weapon capacity" 236
+		"engine capacity" 142
 		"shield generation" 5.2
 		"shield energy" 4.6
 		"hull repair rate" 1.5
@@ -370,6 +375,7 @@ ship "Albatross" "Albatross (Sniper)"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
 		"Scanner Software"
+		"Tuning Rifle" 57
 		
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
@@ -403,6 +409,7 @@ ship "Albatross" "Albatross (Turret)"
 		"Thermoelectric Cooler"
 		"Outfits Expansion" 2
 		"Scanner Software"
+		"Tuning Rifle" 49
 		
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
@@ -427,6 +434,7 @@ ship "Albatross" "Albatross (Heavy)"
 		"Thermoelectric Cooler" 2
 		"Outfits Expansion" 4
 		"Scanner Software"
+		"Tuning Rifle" 65
 		
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
@@ -446,7 +454,6 @@ ship "Albatross" "Albatross (Heavy)"
 	turret
 	turret
 	turret "Thrasher Turret"
-
 
 
 ship "Gascraft"

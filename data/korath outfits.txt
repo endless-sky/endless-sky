@@ -99,12 +99,12 @@ outfit "Systems Core (Small)"
 	thumbnail "outfit/small systems core"
 	"mass" 31
 	"outfit space" -31
+	"energy capacity" 1300
 	"shield generation" 1.6
 	"shield energy" 2.4
 	"hull repair rate" 0.2
 	"hull energy" 0.2
 	"hull heat" 0.3
-	"energy capacity" 1300
 	description `The heart of any Korath ship is the Systems Core, which houses the ship's central computer, shield generators, and a small number of "hull-walking" welding robots that can make minor repairs to the ship's outer armor while in flight.`
 
 outfit "Systems Core (Medium)"
@@ -114,12 +114,12 @@ outfit "Systems Core (Medium)"
 	thumbnail "outfit/medium systems core"
 	"mass" 53
 	"outfit space" -53
+	"energy capacity" 2600
 	"shield generation" 3.1
 	"shield energy" 4.6
 	"hull repair rate" 0.4
 	"hull energy" 0.4
 	"hull heat" 0.6
-	"energy capacity" 2600
 	description `This "systems core" houses a powerful computer, shield generators, and a control center for small repair robots that can walk across a ship's exterior on magnetic feet and slowly repair damage to the hull.`
 
 outfit "Systems Core (Large)"
@@ -129,12 +129,12 @@ outfit "Systems Core (Large)"
 	thumbnail "outfit/large systems core"
 	"mass" 91
 	"outfit space" -91
+	"energy capacity" 5200
 	"shield generation" 6.0
 	"shield energy" 8.8
 	"hull repair rate" 0.8
 	"hull energy" 0.8
 	"hull heat" 1.2
-	"energy capacity" 5200
 	description `This massive bank of computers, shield generators, and repair stations holds everything needed to keep the very largest of Korath ships in working condition.`
 
 
