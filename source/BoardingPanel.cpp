@@ -388,10 +388,16 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			choice = plunder[selected].Name();
 		plunder.insert(plunder.end(), salvaged.begin(), salvaged.end());
 		sort(plunder.begin(), plunder.end());
-		// If an outfit was selected, re-select it. (It may have shifted down.)
-		if(!choice.empty())
+		// Scroll the view and selection appropriately (a selected item may have moved down).
+		if(choice.empty())
+			selected = plunder.size() - 1;
+		else
 			while(plunder[selected].Name() != choice && selected < static_cast<int>(plunder.size()))
 				++selected;
+		// Scroll down at least far enough to view the current item.
+		double minimumScroll = max(0., 20. * selected - 200.);
+		double maximumScroll = 20. * selected;
+		scroll = max(minimumScroll, min(maximumScroll, scroll));
 	}
 	else if((key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN) && !isCapturing)
 	{
