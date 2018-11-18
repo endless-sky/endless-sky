@@ -72,8 +72,8 @@ effect "bombardment impact"
 		"frame rate" 40
 	"lifetime" 7
 	"random angle" 40
-	"random velocity" 2
 	"random spin" 20
+	"random velocity" 2
 	"velocity scale" -.2
 
 
@@ -148,8 +148,8 @@ effect "finisher sparks"
 		"no repeat"
 		"frame rate" 10
 	"lifetime" 19
-	"random spin" 100
 	"random angle" 30
+	"random spin" 100
 	"random velocity" 4
 
 effect "finisher trail"
@@ -220,8 +220,8 @@ effect "attractor impact"
 	"lifetime" 13
 	"random angle" 20
 	"random spin" 20
-	"velocity scale" -.01
 	"random velocity" -10
+	"velocity scale" -.01
 
 
 outfit "Heliarch Repulsor"

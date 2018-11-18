@@ -137,8 +137,8 @@ mission "Transport partiers [1]"
 	description "This group of <bunks> university students is willing to pay <payment> to have a huge party on <destination>, along with <tons> of their completely legal pharmaceuticals."
 	passengers 7 12
 	cargo "pharmaceuticals" 2 4
-		illegal 1000 `It turns out that the "completely legal pharmaceuticals" in your hold are not so completely legal after all. The officers who confiscate the goods spend a long time talking with one of the students, whom you suspect to be politically connected. You're not surprised by the small size of the fine you receive as well as the fact that nobody was arrested.`
-		stealth
+	illegal 1000 `It turns out that the "completely legal pharmaceuticals" in your hold are not so completely legal after all. The officers who confiscate the goods spend a long time talking with one of the students, whom you suspect to be politically connected. You're not surprised by the small size of the fine you receive as well as the fact that nobody was arrested.`
+	stealth
 	to offer
 		random < 10
 	source
