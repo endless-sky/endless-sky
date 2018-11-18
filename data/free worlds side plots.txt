@@ -453,7 +453,8 @@ mission "FW Wolf Pack 4"
 			cargo 0
 			variant
 				"Auxiliary (Cargo)"
-				"Combat Drone" 4
+				"Combat Drone" 2
+				"Lance" 2
 		dialog "You have eliminated the Auxiliary that was carrying food to the Republic. Time to report back to the Wolf Pack and receive your reward."
 	
 	npc

@@ -1191,12 +1191,64 @@ fleet "Large Republic"
 		"Frigate" 2
 		"Rainmaker"
 		"Gunboat"
-	variant 4
-		"Auxiliary (Cargo)"
+	variant 3
+		"Cruiser"
+		"Combat Drone" 4
+	variant 3
+		"Cruiser"
 		"Combat Drone" 4
 		"Frigate"
 		"Rainmaker"
+	variant 2
+		"Carrier"
+		"Lance" 4
+		"Combat Drone" 6
+	variant 1
+		"Carrier"
+		"Lance" 4
+		"Combat Drone" 6
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate" 2
+		"Rainmaker" 2
+		"Gunboat" 2
+	variant 1
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate" 2
+	variant 1
+		"Frigate"
+		"Rainmaker" 2
 		"Gunboat"
+
+fleet "Navy Surveillance"
+	government "Republic"
+	names "republic capital"
+	fighters "republic fighter"
+	cargo 0
+	personality
+		surveillance opportunistic
+	variant 10
+		"Cruiser"
+		"Surveillance Drone" 4
+	variant 10
+		"Gunboat" 2
+	
+fleet "Navy Logistics"
+	government "Republic"
+	names "republic capital"
+	fighters "republic fighter"
+	cargo 0
+	personality
+		heroic opportunistic
+	variant 5
+		"Auxiliary (Cargo)"
+		"Combat Drone" 2
+		"Lance" 
+		"Dropship" 
+		"Frigate"
+		"Rainmaker"
+		"Gunboat" 2
 	variant 4
 		"Auxiliary"
 		"Combat Drone" 2
@@ -1205,23 +1257,13 @@ fleet "Large Republic"
 		"Rainmaker"
 		"Gunboat"
 	variant 3
-		"Cruiser"
-		"Combat Drone" 4
-	variant 3
-		"Cruiser"
-		"Combat Drone" 4
-		"Frigate"
-		"Rainmaker"
-	variant 3
 		"Auxiliary (Transport)"
-		"Dropship" 4
+		"Dropship" 2
+		"Surveillance Drone"
+		"Combat Drone"
 		"Frigate"
 		"Rainmaker" 2
 		"Gunboat"2
-	variant 2
-		"Carrier"
-		"Lance" 4
-		"Combat Drone" 6
 	variant 2
 		"Auxiliary"
 		"Combat Drone" 2
@@ -1236,25 +1278,10 @@ fleet "Large Republic"
 		"Cruiser"
 		"Combat Drone" 4
 	variant 1
-		"Carrier"
-		"Lance" 4
-		"Combat Drone" 6
-		"Cruiser"
-		"Combat Drone" 4
-		"Frigate" 2
-		"Rainmaker" 2
-		"Gunboat" 2
-	variant 1
-		"Cruiser"
-		"Combat Drone" 4
-		"Frigate" 2
-	variant 1
-		"Frigate"
-		"Rainmaker" 2
-		"Gunboat"
-	variant 1
 		"Auxiliary (Cargo)" 2
-		"Combat Drone" 8
+		"Combat Drone" 4
+		"Dropship" 2
+		"Lance" 2
 		"Cruiser"
 		"Combat Drone" 4
 		"Frigate" 2
@@ -1262,7 +1289,8 @@ fleet "Large Republic"
 		"Gunboat"
 	variant 1
 		"Auxiliary (Transport)" 2
-		"Dropship" 8
+		"Dropship" 4
+		"Combat Drone" 4
 		"Cruiser"
 		"Combat Drone" 4
 		"Frigate" 2
@@ -1270,9 +1298,12 @@ fleet "Large Republic"
 		"Gunboat"2
 	variant 1
 		"Auxiliary (Transport)"
-		"Dropship" 4
+		"Dropship" 2
+		"Combat Drone" 2
 		"Auxiliary (Cargo)"
-		"Combat Drone" 4
+		"Combat Drone" 2
+		"Dropship" 
+		"Lance" 
 		"Cruiser"
 		"Combat Drone" 4
 		"Frigate" 2
@@ -1283,7 +1314,9 @@ fleet "Large Republic"
 		"Dropship" 2
 		"Combat Drone" 2
 		"Auxiliary (Cargo)"
-		"Combat Drone" 4
+		"Combat Drone" 2
+		"Dropship" 
+		"Lance" 
 		"Cruiser"
 		"Combat Drone" 4
 		"Frigate" 2
@@ -1294,7 +1327,8 @@ fleet "Large Republic"
 		"Dropship" 2
 		"Combat Drone" 2
 		"Auxiliary (Transport)"
-		"Dropship" 4
+		"Dropship" 2
+		"Combat Drone" 2
 		"Cruiser"
 		"Combat Drone" 4
 		"Frigate" 2
@@ -1302,12 +1336,15 @@ fleet "Large Republic"
 		"Gunboat"2
 	variant 1
 		"Auxiliary (Cargo)" 2
-		"Combat Drone" 8
+		"Combat Drone" 4
+		"Dropship" 2
+		"Lance" 2
 		"Cruiser" 2
 		"Combat Drone" 8
 	variant 1
 		"Auxiliary" 2
-		"Dropship" 4
+		"Dropship" 2
+		"Lance" 2
 		"Combat Drone" 4
 		"Cruiser"
 		"Combat Drone" 4
@@ -1316,31 +1353,22 @@ fleet "Large Republic"
 		"Gunboat"2
 	variant 1
 		"Auxiliary (Transport)"
-		"Dropship" 4
+		"Dropship" 2
+		"Combat Drone"
+		"Surveillance Drone"
 		"Auxiliary"
 		"Dropship" 2
 		"Combat Drone" 2
 		"Auxiliary (Cargo)"
-		"Combat Drone" 4
+		"Combat Drone" 2
+		"Dropship" 
+		"Lance" 
 		"Carrier"
 		"Lance" 4
 		"Combat Drone" 6
 		"Cruiser"
 		"Combat Drone" 4
 		"Frigate"
-
-fleet "Navy Surveillance"
-	government "Republic"
-	names "republic capital"
-	fighters "republic fighter"
-	cargo 0
-	personality
-		surveillance opportunistic
-	variant 10
-		"Cruiser"
-		"Surveillance Drone" 4
-	variant 10
-		"Gunboat" 2
 
 fleet "Small Deep Merchants"
 	government "Merchant"
