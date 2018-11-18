@@ -12,7 +12,7 @@
 mission "Instruct Novice Pilot"
 	job
 	repeat
-	description "A novice pilot seeks instruction from an experienced spacer, and requests an escort to <stopovers>. After that, return to <origin> and you will receive payment of <payment>."
+	description "A novice pilot seeks instruction from an experienced captain, and requests an escort to <stopovers>. After that, return to <origin> and you will receive payment of <payment>."
 	to offer
 		random < 5
 		"combat rating" > 100
@@ -28,7 +28,7 @@ mission "Instruct Novice Pilot"
 		dialog "You've returned to <planet>, but forgot to escort the <npc> to <stopovers> first! Better head there first."
 	on complete
 		payment 75000
-		dialog "Your student thanks you for the able tutelage and for providing a guided view of some of the galaxy's rougher areas. You receive your payment of <payment>."
+		dialog "Your student thanks you for the instruction and for providing a guided view of some of the galaxy's rougher areas. You receive your payment of <payment>."
 	npc
 		government "Pirate"
 		personality nemesis waiting
@@ -64,7 +64,7 @@ mission "Small Pirate gambling"
 		attributes "dirt belt" "south" "rim" "pirate"
 	on offer
 		conversation
-			`	You're having a drink in a dimly lit spaceport bar when you notice a couple of young men in crimson leather outfits gambling in a particularly dark corner. The barman eyes them warily, and you suspect they may be pirates. One of them raises his drink and waves you over, beckoning to join their game.`
+			`	You're having a drink in a dimly lit spaceport bar when you notice a group of young men in crimson leather outfits gambling in a dark corner. The barman eyes them warily. One of them raises his drink and waves you over, beckoning to join their game.`
 			choice
 				`(Join their game.)`
 					goto gamble
@@ -72,12 +72,12 @@ mission "Small Pirate gambling"
 					defer
 
 			label gamble
-			`	You saunter confidently over to the table. A closer examination all but confirms your suspicion that they're pirates. Not one of them looks older than 19, and they all sport fearsome tattoos and dangerous-looking sidearms. You put on a brave face and they deal you into their card game. After a few rounds it becomes abundantly obvious that they're cheating, and making little effort to hide this from you.`
+			`	You walk over to the table. A closer examination indicates a strong liklihood that they are pirates; not one of them looks older than 19, and they all sport fearsome tattoos and dangerous-looking sidearms. After a few rounds of cards it becomes abundantly obvious that they're cheating, and making little effort to hide this from you.`
 			branch "good luck" "bad luck"
 				random < 30
 
 			label "good luck"
-			`	Fortunately, you're able to outsmart them anyway and win the game, winding up with a sizable pile of credit chips. They glower but do not molest you as you quickly seek the safety of a public place. You thank your lucky stars: you're nearly 25,000 credits richer and still in one piece after a face-to-face encounter with pirates.`
+			`	Fortunately, you're able to outsmart them anyway and win the game, winding up with a sizable pile of credit chips. They don't look too happy about it, but do not bother you as you quickly leave. You thank your lucky stars: you're nearly 25,000 credits richer and still in one piece after a face-to-face encounter with pirates.`
 				accept
 
 			label "bad luck"
@@ -89,13 +89,12 @@ mission "Small Pirate gambling"
 					goto lose
 
 			label lose
-			`	You grit your teeth and lose hand after hand before the game finally, mercifully ends. Discretion may be the better part of valor, but it's lost you almost 15,000 credits. The pirates laugh at you and gloat over their "winnings" as you slink away, your pride stung.`
+			`	You grit your teeth and lose hand after hand before the game finally ends. The pirates gloat over their "winnings" of almost 15,000 credits as you leave.`
 				decline
 
 			label call
-			`	This is intolerable. You start to raise a stink about their blatant cheating.`
-			`	"We're just playin' a game here, see? You'd better shut your big mouth if you know what's good for you," the meanest-looking one growls at you. "We can make this ugly real fast."`
-			`	The four thugs stare at you menacingly and start to reach for their guns.`
+			`	"You confront them on their blatant cheating when one of them yells out, We're just playin' a game here, see? You'd better shut your big mouth if you know what's good for you," the meanest-looking one growls at you. "We can make this ugly real fast."`
+			`	The thugs stare at you menacingly and start to reach for their guns.`
 			choice
 				`(Shoot first!)`
 					goto shoot
@@ -113,8 +112,8 @@ mission "Small Pirate gambling"
 				die
 
 			label "shoot and run"
-			`	Grateful that you never leave your ship unarmed, your hand flies toward the pistol at your thigh. In one smooth motion you draw the weapon and fire at the pirate who just threatened you. The bolt punches a fist-sized hole in the center of his chest, and he collapses like a sack of potatoes. His shocked comrades fumble in horror for their weapons but you've taken them by surprise and quickly gun down another before deciding it's time to escape. You grab some of the chits in the pile of credits on the way out!`
-			`	Dashing madly towards the hangar bay, you radio the <ship> to start its pre-flight checks remotely. The boarding ramp screeches open and you race inside, blasting off in a hurry. Halfway out of the atmosphere, the comm crackles to life as the remaining two pirates hurl obscenities at you. A proximity alert flashes: looks like they made it to their ships and decided to follow you...`
+			`	Grateful that you never leave your ship unarmed, your hand flies toward the pistol at your thigh. You draw the weapon and fire at the pirate who just threatened you. The slug punches a hole in the center of his chest, and he collapses to the ground. His shocked comrades fumble in horror for their weapons, but you've taken them by surprise and quickly gun down another before deciding it's time to escape. You grab some of the credits on the table on the way out!`
+			`	You dash toward the hangar bay and blast of in a hurry. You quickly count your spoils and see that you're nearly 25,000 credits richer! Halfway out of the atmosphere, the remaining two pirates hurl obscenities over the comms from their own ships, which are in hot pursuit.`
 				launch
 
 			label run
@@ -122,12 +121,12 @@ mission "Small Pirate gambling"
 				random < 30
 
 			label "grab and die"
-			`	You grab the pot and make a break for it! The ruffians howl and draw their guns. Dodging gunfire, you run towards the door and get halfway there before one of the slugs finds its mark. You fall to the floor in searing pain, watching a pool of your own blood expand around you. You try to struggle to your feet, but the toughest-looking pirate kicks you to the ground with a hobnailed boot. Time slows down as the weapon's muzzle inches ever closer to pointing right at your face. Your vision blurs and the last thing you see is a blinding white flash.`
+			`	You grab the pot and make a break for it! The ruffians howl and draw their guns. Dodging gunfire, you run towards the door and get halfway there before one of the slugs finds its mark. You fall to the floor in pain, watching a pool of your own blood expand around you. You try to struggle to your feet, but the toughest-looking pirate kicks you to the ground and finishes you off with another shot.`
 				die
 
 			label "grab and run"
-			`	You grab the pot and make a break for it! The ruffians howl and draw their guns. You run towards the door in a zigzag motion as high-caliber slugs saw through the air and punch thumb-sized holes in the walls, but miraculously none hit their mark. You glance backwards just in time to see the barkeep reduce one of the ruffians to hamburger meat with an enormous shotgun. The remaining three chase after you.`
-			`	Dashing madly towards the hangar bay, you radio the <ship> to start its pre-flight checks remotely. The boarding ramp screeches open and you race inside, blasting off in a hurry. You quickly count your spoils and see that you're nearly 25,000 credits richer! Halfway out of the atmosphere, you receive a message from the port authorities warning you that while they apprehended one of the pirates, the remaining two made it to their ships and are waiting for you in orbit...`
+			`	You grab the pot and make a break for it! The ruffians howl and draw their guns. You run towards the door in a zigzag motion as bullets fly past you and tear chips out of the walls. You glance backwards just in time to see the barkeep reduce one of the ruffians to hamburger meat with an enormous shotgun. The remaining three chase after you.`
+			`	You dash toward the hangar bay and blast of in a hurry. You quickly count your spoils and see that you're nearly 25,000 credits richer! Halfway out of the atmosphere, you receive a message from the port authorities warning you that while they apprehended two of the pirates, the remaining two made it to their ships and are in hot pursuit.`
 				launch
 
 	on decline
@@ -140,6 +139,7 @@ mission "Small Pirate gambling"
 
 	npc
 		personality
+			launching
 			heroic
 			plunders
 			vindictive
