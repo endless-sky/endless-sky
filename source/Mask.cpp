@@ -22,13 +22,13 @@ using namespace std;
 
 namespace {
 	// Trace out a pixmap.
-	void Trace(ImageBuffer *image, vector<Point> *raw)
+	void Trace(const ImageBuffer &image, int frame, vector<Point> *raw)
 	{
 		uint32_t on = 0xFF000000;
-		const uint32_t *begin = image->Pixels();
+		const uint32_t *begin = image.Pixels() + frame * image.Width() * image.Height();
 		
 		// Convert the pitch to uint32_ts instead of bytes.
-		int pitch = image->Width();
+		int pitch = image.Width();
 		
 		// First, find a non-empty pixel.
 		// This points to the current pixel.
@@ -36,15 +36,15 @@ namespace {
 		// This is where we will store the point:
 		Point point;
 		
-		for(int y = 0; y < image->Height(); ++y)
-			for(int x = 0; x < image->Width(); ++x)
+		for(int y = 0; y < image.Height(); ++y)
+			for(int x = 0; x < image.Width(); ++x)
 			{
 				// If this pixel is occupied, bail out of both loops.
 				if(*it & on)
 				{
 					point.Set(x, y);
 					// Break out of both loops.
-					y = image->Height();
+					y = image.Height();
 					break;
 				}
 				++it;
@@ -60,8 +60,8 @@ namespace {
 			pitch, pitch - 1, -1, -pitch - 1};
 		int d = 0;
 		// All points must be less than this,
-		const double maxX = image->Width() - .5;
-		const double maxY = image->Height() - .5;
+		const double maxX = image.Width() - .5;
+		const double maxY = image.Height() - .5;
 		
 		// Loop until we come back here.
 		begin = it;
@@ -199,7 +199,7 @@ namespace {
 	
 	
 	// Find the radius of the object.
-	double Radius(const vector<Point> &outline)
+	double ComputeRadius(const vector<Point> &outline)
 	{
 		double radius = 0.;
 		for(const Point &p : outline)
@@ -220,16 +220,16 @@ Mask::Mask()
 
 // Construct a mask from the alpha channel of an SDL surface. (The surface
 // must therefore be a 4-byte RGBA format.)
-void Mask::Create(ImageBuffer *image)
+void Mask::Create(const ImageBuffer &image, int frame)
 {
 	vector<Point> raw;
-	Trace(image, &raw);
+	Trace(image, frame, &raw);
 	
-	SmoothAndCenter(&raw, Point(image->Width(), image->Height()));
+	SmoothAndCenter(&raw, Point(image.Width(), image.Height()));
 	
 	Simplify(raw, &outline);
 	
-	radius = Radius(outline);
+	radius = ComputeRadius(outline);
 }
 
 
@@ -323,6 +323,21 @@ double Mask::Range(Point point, Angle facing) const
 		range = min(range, p.Distance(point));
 	
 	return range;
+}
+
+
+
+double Mask::Radius() const
+{
+	return radius;
+}
+
+
+
+// Get the list of points in the outline.
+const vector<Point> &Mask::Points() const
+{
+	return outline;
 }
 
 

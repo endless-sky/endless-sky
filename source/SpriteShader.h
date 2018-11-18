@@ -27,14 +27,29 @@ class Point;
 // parameters based on an object's rotation, animation frame, etc.
 class SpriteShader {
 public:
+	class Item {
+	public:
+		uint32_t texture = 0;
+		uint32_t swizzle = 0;
+		float frame = 0.f;
+		float frameCount = 1.f;
+		float position[2] = {0.f, 0.f};
+		float transform[4] = {0.f, 0.f, 0.f, 0.f};
+		float blur[2] = {0.f, 0.f};
+		float clip = 1.f;
+		float alpha = 1.f;
+	};
+	
+	
+public:
 	// Initialize the shaders.
 	static void Init();
 	
 	// Draw a sprite.
-	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1., int swizzle = 0);
+	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0, float frame = 0.f);
 	
 	static void Bind();
-	static void Add(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle = 0, float clip = 1., float fade = 0., const float blur[2] = nullptr);
+	static void Add(const Item &item, bool withBlur = false);
 	static void Unbind();
 };
 

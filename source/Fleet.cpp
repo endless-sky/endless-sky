@@ -31,6 +31,14 @@ using namespace std;
 
 
 
+// Construct and Load() at the same time.
+Fleet::Fleet(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 void Fleet::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
@@ -87,9 +95,8 @@ void Fleet::Load(const DataNode &node)
 		{
 			// If given a full ship definition of one of this fleet's variant members, remove the variant.
 			bool didRemove = false;
+			Variant toRemove(child);
 			for(auto it = variants.begin(); it != variants.end(); ++it)
-			{
-				Variant toRemove = Variant(child);
 				if(toRemove.ships.size() == it->ships.size() &&
 					is_permutation(it->ships.begin(), it->ships.end(), toRemove.ships.begin()))
 				{
@@ -98,7 +105,7 @@ void Fleet::Load(const DataNode &node)
 					didRemove = true;
 					break;
 				}
-			}
+			
 			if(!didRemove)
 				child.PrintTrace("Did not find matching variant for specified operation:");
 		}
@@ -302,26 +309,32 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 
 
 // Do the randomization to make a ship enter or be in the given system.
-void Fleet::Enter(const System &system, Ship &ship)
+const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
 {
-	if(system.Links().empty())
+	if(system.Links().empty() || (source && !system.Links().count(source)))
 	{
 		Place(system, ship);
-		return;
+		return &system;
 	}
 	
 	// Choose which system this ship is coming from.
-	int choice = Random::Int(system.Links().size());
-	set<const System *>::const_iterator it = system.Links().begin();
-	while(choice--)
-		++it;
+	if(!source)
+	{
+		int choice = Random::Int(system.Links().size());
+		set<const System *>::const_iterator it = system.Links().begin();
+		while(choice--)
+			++it;
+		source = *it;
+	}
 	
 	Angle angle = Angle::Random();
 	Point pos = angle.Unit() * Random::Real() * 1000.;
 	
 	ship.Place(pos, angle.Unit(), angle);
-	ship.SetSystem(*it);
+	ship.SetSystem(source);
 	ship.SetTargetSystem(&system);
+	
+	return source;
 }
 
 

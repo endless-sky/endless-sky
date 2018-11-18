@@ -11,7 +11,7 @@
 mission "FWC Scouting 1"
 	landing
 	name "Scout Kaus Borealis"
-	description "Travel through the Kaus Borealis system to determine how strong the Navy presence is there, while JJ works to gather a fleet to attack it."
+	description "Travel through the <waypoints> system to determine how strong the Navy presence is there, while JJ works to gather a fleet to attack it."
 	autosave
 	source "New Portland"
 	waypoint "Kaus Borealis"
@@ -58,7 +58,7 @@ mission "FWC Attack Kaus Borealis"
 	on offer
 		event "fwc attack kaus borealis"
 		conversation
-			`When you return to New Portland, a sizeable Free Worlds fleet is already parked on the landing pads surrounding the spaceport. JJ explains to you, "When the Navy struck and cut out territory in half, a lot of these ships were cut off from their chain of command and just went and sheltered wherever they could. So it took a bit of doing to gather them all together. And now what we need is another stirring victory, or they'll begin to scatter again."`
+			`When you return to New Portland, a sizeable Free Worlds fleet is already parked on the landing pads surrounding the spaceport. JJ explains to you, "When the Navy struck and cut our territory in half, a lot of these ships were cut off from their chain of command and just went and sheltered wherever they could. So it took a bit of doing to gather them all together. And now what we need is another stirring victory, or they'll begin to scatter again."`
 			choice
 				`	"Are you saying we risk having members of our militia desert?"`
 					goto desert
@@ -91,7 +91,8 @@ mission "FWC Attack Kaus Borealis"
 		event "fwc capture kaus borealis"
 	
 	npc
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		fleet
 			names "free worlds capital"
 			fighters "free worlds fighters"
@@ -155,7 +156,7 @@ mission "FWC Attack Kaus Borealis"
 mission "FWC Cebalrai 1"
 	landing
 	name "Scout out Cebalrai"
-	description "Scout out the Navy presence in the Cebalrai system, then report back to Tomek on <planet>."
+	description "Scout out the Navy presence in the <waypoints> system, then report back to Tomek on <planet>."
 	autosave
 	source "New Iceland"
 	waypoint "Cebalrai"
@@ -196,7 +197,7 @@ mission "FWC Cebalrai 1"
 			`	"Well," he says, "if we can take Cebalrai, our entire territory will be behind just two choke points, which will allow us to defend ourselves against the Navy without spreading the fleet too thin. So next, I'd like you to go scout out the Cebalrai system and report on the Navy's position there."`
 				accept
 	
-	on enter Cebalrai
+	on enter "Cebalrai"
 		dialog
 			`There are a few Navy ships here, but nowhere near as many as were in the Kaus Borealis system before your last attack. Perhaps the Navy has decided to pull back their forces.`
 	
@@ -240,7 +241,8 @@ mission "FWC Cebalrai 1B"
 		event "fwc capture cebalrai"
 	
 	npc
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		fleet
 			names "free worlds capital"
 			variant
@@ -491,7 +493,8 @@ mission "FWC Diplomacy 1B"
 				accept
 	
 	npc accompany save
-		personality timid
+		government "Escort"
+		personality timid escort
 		ship "Argosy" "F.S. Big Brother"
 
 	on visit
@@ -535,7 +538,8 @@ mission "FWC Diplomacy 1C"
 				launch
 	
 	npc
-		personality timid
+		government "Escort"
+		personality timid escort
 		ship "Argosy" "F.S. Big Brother"
 
 	npc
@@ -597,11 +601,12 @@ mission "FWC Checkmate 1"
 			`	"I see," she says. "Did you have a plan for what comes next, or are we just winging it now?"`
 			`	Alondo says, "Unfortunately, we do have a plan. Our very last contingency plan. We call it the 'checkmate' option. Our fleet will push north--"`
 			`	He is interrupted by one of Tomek's men running into the room. "Sir, we have a major Navy fleet incoming. We need all ships in the air immediately to repulse them. Reinforcements are on their way, but they may not get here for a while."`
-			`	Tomek says, "So, it begins. Captain <last>, get back to your ship and aid in the defenses."`
+			`	Tomek says, "So, it begins. Captain <last>, get back to your ship and aid in the defense."`
 				launch
 	
 	npc
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		fleet
 			names "free worlds capital"
 			fighters "free worlds fighters"
@@ -819,7 +824,8 @@ mission "FWC Checkmate 1B"
 		event "fwc capture menkent"
 
 	npc
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		fleet
 			names "free worlds capital"
 			fighters "free worlds fighters"
@@ -930,7 +936,8 @@ mission "FWC Checkmate Escorts"
 		has "FWC Pug 4: done"
 	
 	npc kill
-		personality heroic disables
+		government "Free Worlds"
+		personality heroic escort disables
 		fleet
 			names "free worlds capital"
 			variant
@@ -1488,7 +1495,8 @@ mission "FWC Pug 3B"
 				launch
 	
 	npc
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		fleet
 			names "free worlds capital"
 			fighters "free worlds fighters"
@@ -1636,7 +1644,8 @@ mission "FWC Pug 3D: Reinforcements"
 				"Combat Drone" 6
 				"Gunboat" 2
 	npc kill
-		personality heroic waiting
+		government "Free Worlds"
+		personality heroic escort waiting
 		fleet
 			names "free worlds capital"
 			variant
@@ -2261,7 +2270,7 @@ mission "FWC Pug 6"
 				goto house
 			
 			label house
-			`	You continue to explore for a while. Aside from the illusions, the city seems to be deserted. "Let's check inside one of the houses," Freya says at last. You climb up the steps to what looks like an apartment building and find that all the doors are unlocked. Inside one of the living spaces, you explore the different rooms and find that the water fixtures and electricity are working, but a thick layer of dust covers everything. Freya, meanwhile, is staring at one of the electrical outlets. "<first>, she says, "do you see anything odd about this?"`
+			`	You continue to explore for a while. Aside from the illusions, the city seems to be deserted. "Let's check inside one of the houses," Freya says at last. You climb up the steps to what looks like an apartment building and find that all the doors are unlocked. Inside one of the living spaces, you explore the different rooms and find that the water fixtures and electricity are working, but a thick layer of dust covers everything. Freya, meanwhile, is staring at one of the electrical outlets. "<first>," she says, "do you see anything odd about this?"`
 			choice
 				`	"No, it's just an ordinary electric outlet."`
 				`	"Everything here is odd. The city, the holograms, all of it."`

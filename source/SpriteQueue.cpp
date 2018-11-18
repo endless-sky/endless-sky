@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteQueue.h"
 
 #include "ImageBuffer.h"
+#include "ImageSet.h"
 #include "Mask.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -22,19 +23,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-namespace {
-	// Check if the given image is an @2x image.
-	bool Is2x(const string &path)
-	{
-		size_t len = path.length();
-		return (len > 7 && path[len - 7] == '@' && path[len - 6] == '2' && path[len - 5] == 'x');
-	}
-}
 
 
-
+// Constructor, which allocates worker threads.
 SpriteQueue::SpriteQueue()
-	: added(0), completed(0)
 {
 	threads.resize(max(4u, thread::hardware_concurrency()));
 	for(thread &t : threads)
@@ -43,6 +35,7 @@ SpriteQueue::SpriteQueue()
 
 
 
+// Destructor, which waits for all worker threads to wrap up.
 SpriteQueue::~SpriteQueue()
 {
 	{
@@ -57,18 +50,15 @@ SpriteQueue::~SpriteQueue()
 
 
 // Add a sprite to load.
-void SpriteQueue::Add(const string &name, const string &path)
+void SpriteQueue::Add(const shared_ptr<ImageSet> &images)
 {
-	Sprite *sprite = SpriteSet::Modify(name);
 	{
 		lock_guard<mutex> lock(readMutex);
 		// Do nothing if we are destroying the queue already.
 		if(added < 0)
 			return;
 		
-		bool is2x = Is2x(path);
-		int &frame = (is2x ? count2x[name] : count[name]);
-		toRead.emplace(sprite, name, path, frame++, is2x);
+		toRead.push(images);
 		++added;
 	}
 	readCondition.notify_one();
@@ -79,12 +69,6 @@ void SpriteQueue::Add(const string &name, const string &path)
 // Unload the texture for the given sprite (to free up memory).
 void SpriteQueue::Unload(const string &name)
 {
-	{
-		lock_guard<mutex> lock(readMutex);
-		count2x[name] = 0;
-		count[name] = 0;
-	}
-	
 	unique_lock<mutex> lock(loadMutex);
 	toUnload.push(name);
 }
@@ -92,7 +76,7 @@ void SpriteQueue::Unload(const string &name)
 
 
 // Find out our percent completion.
-double SpriteQueue::Progress() const
+double SpriteQueue::Progress()
 {
 	unique_lock<mutex> lock(loadMutex);
 	return DoLoad(lock);
@@ -101,7 +85,7 @@ double SpriteQueue::Progress() const
 
 
 // Finish loading.
-void SpriteQueue::Finish() const
+void SpriteQueue::Finish()
 {
 	// Loop until done loading.
 	while(true)
@@ -135,34 +119,20 @@ void SpriteQueue::operator()()
 			if(toRead.empty())
 				break;
 			
-			Item item = toRead.front();
+			// Extract the one item we should work on reading right now.
+			shared_ptr<ImageSet> imageSet = toRead.front();
 			toRead.pop();
 			
+			// It's now safe to add to the lists.
 			lock.unlock();
 			
 			// Load the sprite.
-			item.image = ImageBuffer::Read(item.path);
-			// If sprite loading fails, just skip this sprite.
-			if(!item.image)
-			{
-				lock.lock();
-				continue;
-			}
-			// Don't ever create masks for @2x sprites; just use the ordinary
-			// sprite masks instead.
-			if(!item.is2x && (!item.name.compare(0, 5, "ship/") || !item.name.compare(0, 9, "asteroid/")))
-			{
-				item.mask = new Mask;
-				item.mask->Create(item.image);
-			}
+			imageSet->Load();
 			
-			// Don't bother to copy the path, now that we've loaded the file.
-			item.name.clear();
-			item.path.clear();
 			{
 				// The texture must be uploaded to OpenGL in the main thread.
 				unique_lock<mutex> lock(loadMutex);
-				toLoad.push(item);
+				toLoad.push(imageSet);
 			}
 			loadCondition.notify_one();
 			
@@ -174,7 +144,8 @@ void SpriteQueue::operator()()
 }
 
 
-double SpriteQueue::DoLoad(unique_lock<mutex> &lock) const
+
+double SpriteQueue::DoLoad(unique_lock<mutex> &lock)
 {
 	while(!toUnload.empty())
 	{
@@ -188,12 +159,14 @@ double SpriteQueue::DoLoad(unique_lock<mutex> &lock) const
 	
 	for(int i = 0; !toLoad.empty() && i < 100; ++i)
 	{
-		Item item = toLoad.front();
+		// Extract the one item we should work on uploading right now.
+		shared_ptr<ImageSet> imageSet = toLoad.front();
 		toLoad.pop();
 		
+		// It's now safe to modify the lists.
 		lock.unlock();
 		
-		item.sprite->AddFrame(item.frame, item.image, item.mask, item.is2x);
+		imageSet->Upload(SpriteSet::Modify(imageSet->Name()));
 		
 		lock.lock();
 		++completed;
@@ -206,11 +179,4 @@ double SpriteQueue::DoLoad(unique_lock<mutex> &lock) const
 	if(added <= 0 || added == completed)
 		return 1.;
 	return static_cast<double>(completed) / static_cast<double>(added);
-}
-
-
-
-SpriteQueue::Item::Item(Sprite *sprite, const string &name, const string &path, int frame, bool is2x)
-	: sprite(sprite), name(name), path(path), image(nullptr), mask(nullptr), frame(frame), is2x(is2x)
-{
 }

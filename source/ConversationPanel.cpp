@@ -48,8 +48,8 @@ namespace {
 
 
 // Constructor.
-ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system, const Ship *ship)
-	: player(player), conversation(conversation), scroll(0.), system(system)
+ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system, const shared_ptr<Ship> &ship)
+	: player(player), conversation(conversation), scroll(0.), system(system), ship(ship)
 {
 	// These substitutions need to be applied on the fly as each paragraph of
 	// text is prepared for display.
@@ -75,7 +75,7 @@ void ConversationPanel::Draw()
 	// Draw the panel itself, stretching from top to bottom of the screen on
 	// the left side. The edge sprite contains 10 pixels of the margin; the rest
 	// of the margin is included in the filled rectangle drawn here:
-	Color back(0.125, 1.);
+	const Color &back = *GameData::Colors().Get("conversation background");
 	double boxWidth = WIDTH + 2. * MARGIN - 10.;
 	FillShader::Fill(
 		Point(Screen::Left() + .5 * boxWidth, 0.),
@@ -96,10 +96,10 @@ void ConversationPanel::Draw()
 	
 	// Get the font and colors we'll need for drawing everything.
 	const Font &font = FontSet::Get(14);
-	Color selectionColor = *GameData::Colors().Get("faint");
-	Color dim = *GameData::Colors().Get("dim");
-	Color grey = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
+	const Color &selectionColor = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("dim");
+	const Color &grey = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
 	
 	// Figure out where we should start drawing.
 	Point point(
@@ -317,7 +317,10 @@ void ConversationPanel::Goto(int index, int choice)
 		{
 			// Apply nodes alter the player's condition variables but do not
 			// display any conversation text of their own.
+			player.SetReputationConditions();
 			conversation.Conditions(node).Apply(player.Conditions());
+			// Update any altered government reputations.
+			player.CheckReputationConditions();
 		}
 		else
 		{
@@ -343,18 +346,26 @@ void ConversationPanel::Goto(int index, int choice)
 void ConversationPanel::Exit()
 {
 	GetUI()->Pop(this);
-	if(player.BoardingShip())
+	// Some conversations may be offered from an NPC, e.g. an assisting or
+	// boarding mission's `on offer`, or from completing a mission's NPC
+	// block (e.g. scanning or boarding or killing all required targets).
+	if(node == Conversation::DIE || node == Conversation::EXPLODE)
+		player.Die(node, ship);
+	else if(ship)
 	{
-		// If boarding a ship, you may plunder or destroy it depending on the
-		// outcome of the conversation.
+		// A forced-launch ending (LAUNCH, FLEE, or DEPART) destroys any NPC.
 		if(Conversation::RequiresLaunch(node))
-			player.BoardingShip()->Destroy();
-		else if(player.BoardingShip()->GetGovernment()->IsEnemy())
-		{
-			if(node != Conversation::ACCEPT)
-				GetUI()->Push(new BoardingPanel(player, player.BoardingShip()));
-		}
+			ship->Destroy();
+		// Only show the BoardingPanel for a hostile NPC that is being boarded.
+		// (NPC completion conversations can result from non-boarding events.)
+		// TODO: Is there a better / more robust boarding check than relative position?
+		else if(node != Conversation::ACCEPT && ship->GetGovernment()->IsEnemy()
+				&& !ship->IsDestroyed() && ship->IsDisabled()
+				&& ship->Position().Distance(player.Flagship()->Position()) <= 1.)
+			GetUI()->Push(new BoardingPanel(player, ship));
 	}
+	// Call the exit response handler to manage the conversation's effect
+	// on the player's missions, or force takeoff from a planet.
 	if(callback)
 		callback(node);
 }
