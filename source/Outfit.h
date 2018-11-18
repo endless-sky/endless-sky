@@ -30,8 +30,6 @@ class Sprite;
 
 
 
-using Part = std::pair<std::string, const Outfit *>;
-
 // Class representing an outfit that can be installed in a ship. A ship's
 // "attributes" are simply stored as a series of key-value pairs, and an outfit
 // can add to or subtract from any of those values. Weapons also have another
@@ -62,7 +60,7 @@ public:
 	bool IsSalvageable() const;
 	// Get the component parts this outfit decomposes into. Specific ship
 	// attributes may be needed to access certain kinds of parts.
-	const std::map<std::string, std::map<Part, int>> &Salvage() const;
+	const std::map<std::string, std::map<std::pair<std::string, const Outfit *>, int>> &Salvage() const;
 	
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
@@ -106,7 +104,7 @@ private:
 	std::map<const Effect *, int> afterburnerEffects;
 	const Sprite *flotsamSprite = nullptr;
 	// The outfit "parts" that compose this outfit.
-	std::map<std::string, std::map<Part, int>> salvage;
+	std::map<std::string, std::map<std::pair<std::string, const Outfit *>, int>> salvage;
 };
 
 

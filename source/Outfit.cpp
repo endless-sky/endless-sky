@@ -113,7 +113,7 @@ void Outfit::Load(const DataNode &node)
 			else if(child.HasChildren())
 			{
 				// Process outfit & commodity definitions for this specific attribute
-				auto parts = map<Part, int>();
+				auto parts = map<pair<string, const Outfit *>, int>();
 				for(const DataNode &grand : child)
 				{
 					int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
@@ -243,7 +243,7 @@ bool Outfit::IsSalvageable() const
 }
 
 
-const map<string, map<Part, int>> &Outfit::Salvage() const
+const map<string, map<pair<string, const Outfit *>, int>> &Outfit::Salvage() const
 {
 	return salvage;
 }
