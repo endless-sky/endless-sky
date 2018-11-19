@@ -93,6 +93,21 @@ ship "Arrow" "Arrow (Hai)"
 		"Hyperdrive"
 
 
+ship "Arrow (Luxury)"
+	outfits
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 100
+		"Anti-Missile Turret"
+		"Dwarf Core"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer"
+		"Luxury Accommodations"
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+
+
 
 ship "Bactrian" "Bactrian (Hai Engines)"
 	outfits
@@ -352,6 +367,18 @@ ship "Bounder" "Bounder (Hai)"
 		"Hai Fissure Batteries"
 		"D14-RN Shield Generator"
 		"Hai Williwaw Cooling"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Bounder (Luxury)"
+	outfits
+		"Anti-Missile Turret" 2
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Luxury Accommodations"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
@@ -840,6 +867,19 @@ ship "Flivver" "Flivver (Hai)"
 		"Hai Williwaw Cooling"
 		`"Basrem" Atomic Thruster`
 		`"Benga" Atomic Steering`
+		"Hyperdrive"
+
+
+ship "Flivver (Luxury)"
+	outfits
+		"Meteor Missile Launcher"
+		"Meteor Missile" 35
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Luxury Accommodations"
+		"A120 Atomic Thruster"
+		"X1200 Ion Steering"
 		"Hyperdrive"
 
 
@@ -1817,11 +1857,12 @@ ship "Star Queen" "Star Queen (Hai)"
 		"Hai Tracker" 168
 		"Chameleon Anti-Missile" 2
 		"NT-200 Nucleovoltaic"
-		"Hai Fissure Batteries"
+		"Hai Chasm Batteries"
 		"D94-YV Shield Generator"
 		"Small Radar Jammer"
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
+		"Luxury Accommodations"
 		"Hyperdrive"
 
 

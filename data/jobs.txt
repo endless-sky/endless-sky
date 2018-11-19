@@ -1966,14 +1966,16 @@ mission "Tourists out [1]"
 		payment 4000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Tourists out [2]"
-	name "Bring tourists to <planet>"
+mission "Wealthy tourists out"
+	name "Bring wealthy tourists to <planet>"
 	job
 	repeat
-	description "These <bunks> tourists want to see <destination>. They are willing to pay you <payment>."
+	description "These <bunks> wealthy tourists want to see <destination>. They are willing to pay you <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 75
+	on offer
+		require "Luxury Accommodations"
 	source
 		attributes "rich" "urban"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
@@ -1982,8 +1984,7 @@ mission "Tourists out [2]"
 		distance 4 30
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
-		payment
-		payment 8000
+		payment 10000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [0]"
@@ -2024,14 +2025,16 @@ mission "Tourists back [1]"
 		payment 4000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Tourists back [2]"
-	name "Bring tourists home to <planet>"
+mission "Wealthy tourists back"
+	name "Bring wealthy tourists home to <planet>"
 	job
 	repeat
-	description "These <bunks> tourists are headed home to <destination>. They are willing to pay you <payment>."
+	description "These <bunks> wealthy tourists are headed home to <destination>. They are willing to pay you <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 75
+	on offer
+		require "Luxury Accommodations"
 	source
 		attributes "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
@@ -2040,8 +2043,7 @@ mission "Tourists back [2]"
 		distance 4 30
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
-		payment
-		payment 8000
+		payment 10000 200
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Family [0]"

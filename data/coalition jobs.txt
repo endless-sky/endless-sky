@@ -550,6 +550,8 @@ mission "Coalition: Tourists Out 1"
 	to offer
 		has "known to the heliarchs"
 		random < 40
+	on offer
+		require "Luxury Accommodations"
 	source
 		government "Coalition"
 	destination
@@ -558,8 +560,7 @@ mission "Coalition: Tourists Out 1"
 		distance 5 20
 	on complete
 		"coalition jobs" ++
-		payment
-		payment 20000
+		payment 22000 200
 		dialog `The tourists thank you for bringing them to <planet> and pay you <payment>.`
 
 mission "Coalition: Tourists Out 2"
@@ -572,6 +573,8 @@ mission "Coalition: Tourists Out 2"
 	to offer
 		has "known to the heliarchs"
 		random < 30
+	on offer
+		require "Luxury Accommodations"
 	source
 		government "Coalition"
 	destination
@@ -580,8 +583,7 @@ mission "Coalition: Tourists Out 2"
 		distance 5 20
 	on complete
 		"coalition jobs" ++
-		payment
-		payment 30000
+		payment 32000 200
 		dialog `The tourists thank you for bringing them to <planet> and pay you <payment>.`
 
 mission "Coalition: Tourists Out 3"
@@ -594,6 +596,8 @@ mission "Coalition: Tourists Out 3"
 	to offer
 		has "known to the heliarchs"
 		random < 20
+	on offer
+		require "Luxury Accommodations"
 	source
 		government "Coalition"
 	destination
@@ -602,8 +606,7 @@ mission "Coalition: Tourists Out 3"
 		distance 5 20
 	on complete
 		"coalition jobs" ++
-		payment
-		payment 40000
+		payment 42000 200
 		dialog `The tourists thank you for bringing them to <planet> and pay you <payment>.`
 
 
@@ -617,6 +620,8 @@ mission "Coalition: Tourists Home 1"
 	to offer
 		has "known to the heliarchs"
 		random < 40
+	on offer
+		require "Luxury Accommodations"
 	source
 		government "Coalition"
 		attributes "tourism"
@@ -625,8 +630,7 @@ mission "Coalition: Tourists Home 1"
 		distance 5 20
 	on complete
 		"coalition jobs" ++
-		payment
-		payment 20000
+		payment 22000 200
 		dialog `The tourists thank you for bringing them home and pay you <payment>.`
 
 mission "Coalition: Tourists Home 2"
@@ -639,6 +643,8 @@ mission "Coalition: Tourists Home 2"
 	to offer
 		has "known to the heliarchs"
 		random < 30
+	on offer
+		require "Luxury Accommodations"
 	source
 		government "Coalition"
 		attributes "tourism"
@@ -647,8 +653,7 @@ mission "Coalition: Tourists Home 2"
 		distance 5 20
 	on complete
 		"coalition jobs" ++
-		payment
-		payment 30000
+		payment 32000 200
 		dialog `The tourists thank you for bringing them home and pay you <payment>.`
 
 mission "Coalition: Tourists Home 3"
@@ -661,6 +666,8 @@ mission "Coalition: Tourists Home 3"
 	to offer
 		has "known to the heliarchs"
 		random < 20
+	on offer
+		require "Luxury Accommodations"
 	source
 		government "Coalition"
 		attributes "tourism"
@@ -669,8 +676,7 @@ mission "Coalition: Tourists Home 3"
 		distance 5 20
 	on complete
 		"coalition jobs" ++
-		payment
-		payment 40000
+		payment 42000 200
 		dialog `The tourists thank you for bringing them home and pay you <payment>.`
 
 
