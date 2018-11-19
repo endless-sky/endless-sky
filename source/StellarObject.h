@@ -14,24 +14,29 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define STELLAR_OBJECT_H_
 
 #include "Body.h"
+#include "Personality.h"
+#include "Ship.h"
+
+#include <list>
+#include <memory>
 
 class Planet;
-class Ship;
+class System;
 
 
 
-// Class representing a planet, star, moon, or other large object in space. This
-// does not store the details of what is on that object, if anything; that is
-// handled by the Planet class. Each object's position depends on what it is
-// orbiting around and how far away it is from that object. Each day, all the
-// objects in each system move slightly in their orbits.
+// Class representing a planet, star, moon, defense platfomr, or other large object
+// in space. This does not store the details of what is on that object, if anything;
+// that is handled by the Planet or Ship class. Each object's position depends on
+// what it is orbiting around and how far away it is from that object. Each day,
+// all the objects in each system move slightly in their orbits.
 class StellarObject : public Body {
 public:
 	StellarObject();
 	
-	/* Functions provided by the Body base class:
+	// Functions provided by the Body base class:
 	bool HasSprite() const;
-	int Width() const;
+	/*int Width() const;
 	int Height() const;
 	Frame GetFrame(int step = -1) const;
 	const Point &Position() const;
@@ -64,10 +69,16 @@ public:
 	int Parent() const;
 	// Find out how far this object is from its parent.
 	double Distance() const;
-	
-	
+	// Returns ship and changes isDead.
+	void AddShip(std::list<std::shared_ptr<Ship>> ships, const System *system) const;
+	void Die() const;
 private:
 	const Planet *planet;
+	// This ship is a defense station that can only turn.
+	const Ship *ship;
+	
+	const Government *government;
+	Personality personality;
 	
 	double distance;
 	double speed;
@@ -78,6 +89,8 @@ private:
 	bool isStar;
 	bool isStation;
 	bool isMoon;
+	// A StellarObject is dead if it has no defense or the defense platform died or the player is outside the system.
+	mutable bool isDead;
 	
 	// Let System handle setting all the values of an Object.
 	friend class System;
