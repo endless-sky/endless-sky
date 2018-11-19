@@ -1402,7 +1402,6 @@ ship "Modified Argosy" "Modified Argosy (Blaster)"
 		"Fission Reactor"
 		"LP144a Battery Pack"
 		"D67-TM Shield Generator"
-		"Small Radar Jammer"
 		"Liquid Nitrogen Cooler"
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
@@ -1586,9 +1585,9 @@ ship "Protector" "Protector (Laser)"
 		"Heavy Laser Turret" 4
 		"Fusion Reactor"
 		"LP036a Battery Pack"
-		"Supercapacitor" 3
+		"Supercapacitor" 2
 		"D94-YV Shield Generator" 2
-		"Water Coolant System"
+		"Cooling Ducts"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
@@ -1608,7 +1607,7 @@ ship "Protector" "Protector (Proton)"
 		"Heavy Anti-Missile Turret" 2
 		"Fusion Reactor"
 		"LP036a Battery Pack"
-		"Supercapacitor" 3
+		"Supercapacitor" 1
 		"D94-YV Shield Generator" 2
 		"Water Coolant System"
 		"A370 Atomic Thruster"
