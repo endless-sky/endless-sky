@@ -17,8 +17,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "Politics.h"
 #include "Radar.h"
+#include "System.h"
 
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -26,13 +28,26 @@ using namespace std;
 
 // Object default constructor.
 StellarObject::StellarObject()
-	: planet(nullptr),
+	: planet(nullptr), ship(nullptr), government(nullptr),
 	distance(0.), speed(0.), offset(0.), parent(-1),
-	message(nullptr), isStar(false), isStation(false), isMoon(false)
+	message(nullptr), isStar(false), isStation(false), isMoon(false),
+	isDead(true)
 {
 	// Unlike ships and projectiles, stellar objects are not drawn shrunk to half size,
 	// because they do not need to be so sharp.
 	zoom = 2.;
+}
+
+
+
+// This is only relevant for StellarObjects which show orbital defense stations.
+// If the station explodes the Sprite of the StellarObject is shown to provide
+// a dead station the player can't interact with.
+bool StellarObject::HasSprite() const
+{
+	if(isDead)
+		return Body::HasSprite();
+	return false;
 }
 
 
@@ -144,4 +159,36 @@ int StellarObject::Parent() const
 double StellarObject::Distance() const
 {
 	return distance;
+}
+
+
+
+void StellarObject::AddShip(list<shared_ptr<Ship>> ships, const System *system) const
+{
+	if(!ship)
+		return;
+	isDead = false;
+	shared_ptr<Ship> local(new Ship(*ship));
+
+	// Sets the ships government to the StellarObject's goverment if specified or the system's government.
+	local->SetGovernment(government ? government : system->GetGovernment());
+
+	local->SetName("Orbital Defense Platform");
+	local->SetPersonality(personality);
+	local->SetSystem(system);
+	local->SetPlanet(planet);
+	local->SetIsSpecial();
+	local->Place(Position(), Velocity(), Facing());
+	local->Restore();
+	cout << "Added " << local->ModelName() << " of " << local->GetGovernment()->GetName() << " to " << local->GetSystem()->Name() << "\n";
+	cout << ships.size() << " ";
+	ships.push_front(local);
+	cout << ships.size() << "\n";
+}
+
+
+
+void StellarObject::Die() const
+{
+	isDead = true;
 }
