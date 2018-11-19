@@ -1045,8 +1045,10 @@ void Engine::EnterSystem()
 			"." : ". No inhabited planets detected."));
 	
 	// Preload landscapes and determine if the player used a wormhole.
+	// Also adds defense platforms for the given system.
 	const StellarObject *usedWormhole = nullptr;
 	for(const StellarObject &object : system->Objects())
+	{
 		if(object.GetPlanet())
 		{
 			GameData::Preload(object.GetPlanet()->Landscape());
@@ -1054,6 +1056,7 @@ void Engine::EnterSystem()
 					&& flagship->Position().Distance(object.Position()) < 1.)
 				usedWormhole = &object;
 		}
+	}
 	
 	// Advance the positions of every StellarObject and update politics.
 	// Remove expired bribes, clearance, and grace periods from past fines.
@@ -1117,6 +1120,8 @@ void Engine::EnterSystem()
 							+ raidGovernment->GetName() + " raiding party.");
 				}
 	}
+	for(const StellarObject &object : system->Objects())
+		object.AddShip(newships, system);
 	
 	grudge.clear();
 	
