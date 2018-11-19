@@ -1872,7 +1872,7 @@ ship "Vanguard" "Vanguard (Particle)"
 
 ship "Wasp" "Wasp (Bomber)"
 	outfits
-		"Beam Laser"
+		"Energy Blaster"
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 70
 		"nGVF-BB Fuel Cell"
