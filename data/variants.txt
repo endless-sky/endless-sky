@@ -96,7 +96,7 @@ ship "Arrow" "Arrow (Hai)"
 ship "Arrow (Luxury)"
 	outfits
 		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 50
+		"Sidewinder Missile" 100
 		"Anti-Missile Turret"
 		"Dwarf Core"
 		"Supercapacitor"
@@ -374,8 +374,7 @@ ship "Bounder" "Bounder (Hai)"
 
 ship "Bounder (Luxury)"
 	outfits
-		"Anti-Missile Turret"
-		"Blaster Turret"
+		"Anti-Missile Turret" 2
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
