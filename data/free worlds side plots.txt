@@ -436,7 +436,7 @@ mission "FW Wolf Pack 4"
 	
 	on offer
 		dialog
-			`You receive another message from the Wolf Pack: "Hello Captain. If nothing else, we've certainly succeeded in getting some of the Navy's ships diverted from the front, to serve as escorts! Your next target, if you're willing to help us again, will be a bit tougher: an Auxiliary, probably with Navy escorts. The ship is passing through the <waypoints> system. Interested?`
+			`You receive another message from the Wolf Pack: "Hello Captain. If nothing else, we've certainly succeeded in getting some of the Navy's ships diverted from the front, to serve as escorts! Your next target, if you're willing to help us again, will be a bit tougher: a Bactrian freighter, probably with Navy escorts. The freighter is passing through the <waypoints> system. Interested?`
 	
 	on accept
 		event "wolf pack mizar start"
@@ -447,15 +447,8 @@ mission "FW Wolf Pack 4"
 		government "Republic"
 		system "Mizar"
 		personality timid staying target
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			cargo 0
-			variant
-				"Auxiliary (Cargo)"
-				"Combat Drone" 2
-				"Lance" 2
-		dialog "You have eliminated the Auxiliary that was carrying food to the Republic. Time to report back to the Wolf Pack and receive your reward."
+		ship "Bactrian" "Golden Fleece"
+		dialog "You have eliminated the Bactrian that was carrying food to the Republic. Time to report back to the Wolf Pack and receive your reward."
 	
 	npc
 		government "Republic"
