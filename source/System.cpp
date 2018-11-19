@@ -704,6 +704,19 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 			object.offset = child.Value(1);
 		else if(child.Token(0) == "object")
 			LoadObject(child, planets, index);
+		else if(child.Token(0) == "defense" && child.Size() >= 2)
+		{
+			object.ship = GameData::Ships().Get(child.Token(1));
+			for(const DataNode &subChild : child)
+			{
+				if(subChild.Token(0) == "government" && subChild.Size() >= 2)
+					object.government = GameData::Governments().Get(subChild.Token(1));
+				else if(subChild.Token(0) == "personality" && subChild.Size() >= 2)
+					object.personality.Load(subChild);
+				else
+					child.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
