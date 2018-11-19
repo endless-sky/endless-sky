@@ -1929,11 +1929,15 @@ fleet "Small Core Pirates"
 		"Sparrow"
 	variant 1
 		"Fury (Heavy)"
-	variant 3
-		"Wasp"
+	variant 2
+		"Wasp (Bomber)"
 	variant 2
 		"Wasp (Gatling)"
-	variant 1
+	variant 2
+		"Wasp (Javelin)"
+	variant 2
+		"Wasp (Plasma)"
+	variant 2
 		"Wasp (Proton)"
 
 fleet "Large Core Pirates"
