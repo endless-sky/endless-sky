@@ -1469,9 +1469,10 @@ ship "Rainmaker" "Rainmaker (Javelin)"
 		"Javelin" 800
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		"A120 Atomic Thruster"
-		"A255 Atomic Steering"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
 		"Hyperdrive"
 	gun
 	gun
