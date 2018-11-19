@@ -67,7 +67,7 @@ public:
 	
 	// Sprite serialization.
 	void LoadSprite(const DataNode &node);
-	void SaveSprite(DataWriter &out) const;
+	void SaveSprite(DataWriter &out, const std::string &tag = "sprite") const;
 	// Set the sprite.
 	void SetSprite(const Sprite *sprite);
 	// Set the color swizzle.

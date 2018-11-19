@@ -12,13 +12,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Hardpoint.h"
 
-#include "Armament.h"
 #include "Audio.h"
 #include "Effect.h"
 #include "Outfit.h"
 #include "pi.h"
 #include "Projectile.h"
-#include "Personality.h"
 #include "Random.h"
 #include "Ship.h"
 #include "Visual.h"

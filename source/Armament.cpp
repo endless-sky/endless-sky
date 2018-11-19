@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Armament.h"
 
 #include "Command.h"
+#include "Outfit.h"
 #include "Ship.h"
 
 #include <algorithm>

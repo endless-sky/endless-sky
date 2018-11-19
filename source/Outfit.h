@@ -13,15 +13,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef OUTFIT_H_
 #define OUTFIT_H_
 
-#include "Body.h"
-#include "Dictionary.h"
 #include "Weapon.h"
+
+#include "Dictionary.h"
 
 #include <map>
 #include <string>
 #include <utility>
 #include <vector>
 
+class Body;
 class DataNode;
 class Effect;
 class Sound;
@@ -50,6 +51,7 @@ public:
 	const std::string &Category() const;
 	const std::string &Description() const;
 	int64_t Cost() const;
+	double Mass() const;
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
 	// Get the image to display in the outfitter when buying this item.
@@ -66,9 +68,9 @@ public:
 	// For tracking a combination of outfits in a ship: add the given number of
 	// instances of the given outfit to this outfit.
 	void Add(const Outfit &other, int count = 1);
-	// Modify this outfit's attributes.
-	void Add(const char *attribute, double value = 1.);
-	void Reset(const char *attribute, double value = 0.);
+	// Modify this outfit's attributes. Note that this cannot be used to change
+	// special attributes, like cost and mass.
+	void Set(const char *attribute, double value);
 	
 	// Get this outfit's engine flare sprites, if any.
 	const std::vector<std::pair<Body, int>> &FlareSprites() const;
@@ -86,6 +88,7 @@ private:
 	std::string description;
 	const Sprite *thumbnail = nullptr;
 	int64_t cost = 0;
+	double mass = 0.;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
 	
@@ -99,8 +102,9 @@ private:
 
 
 
-// This gets called a lot, so inline it for speed.
+// These get called a lot, so inline them for speed.
 inline int64_t Outfit::Cost() const { return cost; }
+inline double Outfit::Mass() const { return mass; }
 
 
 
