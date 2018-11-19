@@ -2406,7 +2406,6 @@ ship "Rainmaker"
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
-		"Large Radar Jammer"
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
