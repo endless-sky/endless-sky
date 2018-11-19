@@ -237,7 +237,7 @@ fleet "Large Core Merchants"
 	variant 50
 		"Bulk Freighter"
 		"Wasp"
-		"Wasp (Bomber)"
+		"Wasp (Meteor)"
 	variant 20
 		"Bulk Freighter (Blaster)"
 		"Wasp" 2
@@ -250,7 +250,7 @@ fleet "Large Core Merchants"
 	variant 10
 		"Bulk Freighter (Proton)"
 		"Wasp"
-		"Wasp (Bomber)"
+		"Wasp (Meteor)"
 	variant 20
 		"Bulk Freighter"
 	variant 10
@@ -302,7 +302,7 @@ fleet "Large Core Merchants"
 	variant 10
 		"Bulk Freighter" 2
 		"Wasp" 3
-		"Wasp (Bomber)" 2
+		"Wasp (Meteor)" 2
 	variant 10
 		"Bulk Freighter" 2
 		"Vanguard" 1
@@ -359,7 +359,7 @@ fleet "Paradise Merchants"
 	variant 2
 		"Star Queen"
 		"Wasp" 2
-		"Wasp (Bomber)"
+		"Wasp (Meteor)"
 	variant 2
 		"Star Queen"
 		"Berserker" 3
@@ -1930,11 +1930,11 @@ fleet "Small Core Pirates"
 	variant 1
 		"Fury (Heavy)"
 	variant 2
-		"Wasp (Bomber)"
-	variant 2
 		"Wasp (Gatling)"
 	variant 2
 		"Wasp (Javelin)"
+	variant 2
+		"Wasp (Meteor)"
 	variant 2
 		"Wasp (Plasma)"
 	variant 2
