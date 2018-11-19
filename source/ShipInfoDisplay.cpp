@@ -131,7 +131,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		out << "cost (" << (100 * depreciated) / fullCost << "%):";
 		attributeLabels.push_back(out.str());
 	}
-	attributeValues.push_back(Format::Number(depreciated));
+	attributeValues.push_back(Format::Credits(depreciated));
 	attributesHeight += 20;
 	
 	attributeLabels.push_back(string());
@@ -303,7 +303,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributesHeight += 20;
 	tableLabels.push_back("max:");
 	energyTable.push_back(Format::Number(attributes.Get("energy capacity")));
-	heatTable.push_back(Format::Number(60. * emptyMass * .1 * attributes.Get("heat dissipation")));
+	heatTable.push_back(Format::Number(60. * ship.HeatDissipation() * ship.MaximumHeat()));
 	// Pad by 10 pixels on the top and bottom.
 	attributesHeight += 30;
 }
@@ -353,9 +353,9 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const Depreciation &deprec
 	saleValues.push_back(string());
 	saleHeight += 20;
 	saleLabels.push_back("empty hull:");
-	saleValues.push_back(Format::Number(chassisCost));
+	saleValues.push_back(Format::Credits(chassisCost));
 	saleHeight += 20;
 	saleLabels.push_back("  + outfits:");
-	saleValues.push_back(Format::Number(totalCost - chassisCost));
+	saleValues.push_back(Format::Credits(totalCost - chassisCost));
 	saleHeight += 5;
 }

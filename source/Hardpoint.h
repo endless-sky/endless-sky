@@ -13,12 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef HARDPOINT_H_
 #define HARDPOINT_H_
 
-#include "Point.h"
 #include "Angle.h"
+#include "Point.h"
 
 #include <vector>
 
-class Effect;
 class Outfit;
 class Projectile;
 class Ship;

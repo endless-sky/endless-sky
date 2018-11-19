@@ -15,11 +15,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Account.h"
 #include "CargoHold.h"
+#include "DataNode.h"
 #include "Date.h"
 #include "Depreciation.h"
 #include "GameEvent.h"
 #include "Mission.h"
-#include "Planet.h"
 
 #include <list>
 #include <map>
@@ -29,7 +29,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <utility>
 #include <vector>
 
-class DataNode;
 class Government;
 class Outfit;
 class Planet;
@@ -76,7 +75,7 @@ public:
 	void AddEvent(const GameEvent &event, const Date &date);
 	
 	// Mark the player as dead, or check if they have died.
-	void Die(bool allShipsDie = false);
+	void Die(int response = 0, const std::shared_ptr<Ship> &capturer = nullptr);
 	bool IsDead() const;
 	
 	// Get or set the player's name.
@@ -152,17 +151,20 @@ public:
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
+	const Mission *ActiveBoardingMission() const;
 	void AcceptJob(const Mission &mission, UI *ui);
-	// Check to see if there is any mission to offer in the spaceport right now.
+	// Check to see if there is any mission to offer right now.
 	Mission *MissionToOffer(Mission::Location location);
 	Mission *BoardingMission(const std::shared_ptr<Ship> &ship);
-	const std::shared_ptr<Ship> &BoardingShip() const;
+	void ClearActiveBoardingMission();
 	// If one of your missions cannot be offered because you do not have enough
 	// space for it, and it specifies a message to be shown in that situation,
 	// show that message.
 	void HandleBlockedMissions(Mission::Location location, UI *ui);
 	// Callback for accepting or declining whatever mission has been offered.
 	void MissionCallback(int response);
+	// Basic callback for handling forced departure from a planet.
+	void BasicCallback(int response);
 	// Complete or fail a mission.
 	void RemoveMission(Mission::Trigger trigger, const Mission &mission, UI *ui);
 	// Mark a mission as failed, but do not remove it from the mission list yet.
@@ -174,8 +176,8 @@ public:
 	int GetCondition(const std::string &name) const;
 	std::map<std::string, int> &Conditions();
 	const std::map<std::string, int> &Conditions() const;
-	// Set and check the reputation conditions, which missions can use to modify
-	// the player's reputation.
+	// Set and check the reputation conditions, which missions and events
+	// can use to modify the player's reputation with other governments.
 	void SetReputationConditions();
 	void CheckReputationConditions();
 	
@@ -184,6 +186,7 @@ public:
 	bool HasVisited(const System *system) const;
 	bool HasVisited(const Planet *planet) const;
 	bool KnowsName(const System *system) const;
+	// Marking a system as visited also "sees" its neighbors.
 	void Visit(const System *system);
 	void Visit(const Planet *planet);
 	// Mark a system and its planets as unvisited, even if visited previously.
@@ -247,7 +250,7 @@ private:
 	void ApplyChanges();
 	
 	// New missions are generated each time you land on a planet.
-	void UpdateAutoConditions();
+	void UpdateAutoConditions(bool isBoarding = false);
 	void CreateMissions();
 	void StepMissions(UI *ui);
 	void Autosave() const;
@@ -287,14 +290,19 @@ private:
 	std::multimap<Date, std::string> logbook;
 	std::map<std::string, std::map<std::string, std::string>> specialLogs;
 	
+	// A list of the player's active, accepted missions.
 	std::list<Mission> missions;
 	// These lists are populated when you land on a planet, and saved so that
 	// they will not change if you reload the game.
 	std::list<Mission> availableJobs;
 	std::list<Mission> availableMissions;
-	std::list<Mission> boardingMissions;
-	std::shared_ptr<Ship> boardingShip;
+	// Missions that are failed or aborted, but not yet deleted, and any
+	// missions offered while in-flight are not saved.
 	std::list<Mission> doneMissions;
+	std::list<Mission> boardingMissions;
+	// This pointer to the most recently accepted boarding mission enables
+	// its NPCs to be placed before the player lands, and is then cleared.
+	Mission *activeBoardingMission = nullptr;
 	
 	std::map<std::string, int> conditions;
 	

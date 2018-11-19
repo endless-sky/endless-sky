@@ -78,15 +78,16 @@ mission "Newlyweds to <planet>"
 	cargo "wedding gifts" 2 4
 	to offer
 		random < 10
+	on offer
+		require "Luxury Accommodations"
 	source
-		attributes paradise
+		attributes "paradise"
 	destination
 		distance 2 15
-		government Republic "Free Worlds" Syndicate Neutral Quarg
-		attributes paradise rich core "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Quarg"
+		attributes "paradise" "rich" "core" "near earth"
 	on complete
-		payment
-		payment 8000
+		payment 10000 250
 		dialog "You bid the two lovebirds goodbye on <planet> and collect your payment of <payment>."
 
 
@@ -137,17 +138,19 @@ mission "Transport partiers [1]"
 	description "This group of <bunks> university students is willing to pay <payment> to have a huge party on <destination>, along with <tons> of their completely legal pharmaceuticals."
 	passengers 7 12
 	cargo "pharmaceuticals" 2 4
-		illegal 1000 `It turns out that the "completely legal pharmaceuticals" in your hold are not so completely legal after all. The officers who confiscate the goods spend a long time talking with one of the students, whom you suspect to be politically connected. You're not surprised by the small size of the fine you receive as well as the fact that nobody was arrested.`
-		stealth
+	illegal 1000 `It turns out that the "completely legal pharmaceuticals" in your hold are not so completely legal after all. The officers who confiscate the goods spend a long time talking with one of the students, whom you suspect to be politically connected. You're not surprised by the small size of the fine you receive as well as the fact that nobody was arrested.`
+	stealth
 	to offer
 		random < 10
+	on offer
+		require "Luxury Accommodations"
 	source
-		attributes paradise
+		attributes "paradise"
 	destination
 		distance 4 12
-		attributes tourism
+		attributes "tourism"
 	on complete
-		payment 8000 150
+		payment 10000 200
 		dialog "You're not sorry to say goodbye to the rowdy and uncouth troublemakers you've been transporting. Their parents send you your payment of <payment> with not a word of acknowledgement."
 
 
@@ -160,13 +163,15 @@ mission "Transport partiers [2]"
 	cargo "snacks and school supplies" 2 4
 	to offer
 		random < 10
+	on offer
+		require "Luxury Accommodations"
 	source
-		attributes paradise
+		attributes "paradise"
 	destination
 		distance 4 12
-		attributes tourism
+		attributes "tourism"
 	on complete
-		payment 3000 140
+		payment 5000 190
 		dialog "You bid goodbye to the students, who behaved surprisingly well during the journey - yielding many fascinating conversations on subjects as diverse as philosophy, microfluidics, and intergalactic economics. Their proud parents send you your payment of <payment>."
 
 mission "Food donations to <planet>"
@@ -316,22 +321,23 @@ mission "Waste disposal on <planet>"
 		dialog "You drop off the exceptionally foul shipment of <commodity> on <planet>, already looking forward to the chemical bath your cargo hold is going to receive. You collect your payment of <payment> and hope that somebody around here knows what to do with the unpleasant mess you dropped off."
 
 
-mission "Transport rich tourists"
-	description "Bring <bunks> wealthy tourists on a fabulous journey to the wild and exotic world of <destination>. Payment is <payment>."
+mission "Transport high-class tourists"
+	description "Bring <bunks> outrageously wealthy tourists on a fabulous journey to the wild and exotic world of <destination>. Payment is <payment>."
 	job
 	repeat
 	passengers 8 22
 	to offer
 		random < 10
+	on offer
+		require "Luxury Accommodations"
 	source
-		attributes paradise
+		attributes "paradise"
 	destination
-		attributes religious quarg pirate volcanic frontier
+		attributes "religious" "quarg" "pirate" "volcanic" "frontier"
 		distance 8 20
 	on complete
 		dialog "Your passengers begin to wander off, some of them sporting puzzled looks as the memories of glossy photos in the brochures give way to reality. You collect your payment of <payment>."
-		payment
-		payment 20000
+		payment 25000 250
 
 
 mission "Pleasure cruise security"

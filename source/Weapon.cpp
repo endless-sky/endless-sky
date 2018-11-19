@@ -44,6 +44,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			isSafe = true;
 		else if(key == "phasing")
 			isPhasing = true;
+		else if(key == "no damage scaling")
+			isDamageScaled = false;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
@@ -133,11 +135,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 			else if(key == "firing heat")
 				firingHeat = value;
 			else if(key == "split range")
-				splitRange = value;
+				splitRange = max(0., value);
 			else if(key == "trigger radius")
-				triggerRadius = value;
+				triggerRadius = max(0., value);
 			else if(key == "blast radius")
-				blastRadius = value;
+				blastRadius = max(0., value);
 			else if(key == "shield damage")
 				damage[SHIELD_DAMAGE] = value;
 			else if(key == "hull damage")
@@ -153,7 +155,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 			else if(key == "slowing damage")
 				damage[SLOWING_DAMAGE] = value;
 			else if(key == "hit force")
-				hitForce = value;
+				damage[HIT_FORCE] = value;
 			else if(key == "piercing")
 				piercing = max(0., min(1., value));
 			else
@@ -172,7 +174,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 	
 	// Support legacy missiles with no tracking type defined:
 	if(homing && !tracking && !opticalTracking && !infraredTracking && !radarTracking)
+	{
 		tracking = 1.;
+		node.PrintTrace("Warning: Deprecated use of \"homing\" without use of \"[optical|infrared|radar] tracking.\"");
+	}
 	
 	// Convert the "live effect" counts from occurrences per projectile lifetime
 	// into chance of occurring per frame.

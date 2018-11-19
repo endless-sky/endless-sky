@@ -35,10 +35,7 @@ void StartConditions::Load(const DataNode &node)
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
 		else if(child.Token(0) == "ship" && child.Size() >= 2)
-		{
-			ships.emplace_back();
-			ships.back().Load(child);
-		}
+			ships.emplace_back(child);
 		else
 			conditions.Add(child);
 	}

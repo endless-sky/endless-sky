@@ -1,0 +1,181 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Frontier delivery [0]"
+	name "Frontier delivery to <planet>"
+	job
+	repeat
+	description `Deliver <cargo> to the frontier world of <destination>. Frontier systems have a high rate of piracy, so pepare to defend yourself. Payment is <payment>.`
+	cargo random 5 2 .1
+	to offer
+		random < 30
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		not attributes "frontier"
+	destination
+		distance 2 10
+		attributes "frontier"
+	npc
+		government "Pirate"
+		personality nemesis harvests plunders
+			confusion 30
+		system destination
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying harvests plunders
+			confusion 30
+		system destination
+		fleet "Small Northern Pirates" 2
+	on complete
+		payment 4000 180
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+
+mission "Frontier delivery [1]"
+	name "Frontier delivery to <planet>"
+	job
+	repeat
+	description `Deliver <cargo> to the frontier world of <destination>. Frontier systems have a high rate of piracy, so pepare to defend yourself. Payment is <payment>.`
+	cargo random 25 2 .05
+	to offer
+		random < 25
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		not attributes "frontier"
+	destination
+		distance 2 10
+		attributes "frontier"
+	npc
+		government "Pirate"
+		personality nemesis harvests plunders
+			confusion 20
+		system destination
+		fleet "Small Northern Pirates" 2
+	npc
+		government "Pirate"
+		personality nemesis staying harvests plunders
+			confusion 20
+		system destination
+		fleet "Small Northern Pirates" 3
+	on complete
+		payment 4000 180
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+
+mission "Frontier delivery [2]"
+	name "Frontier delivery to <planet>"
+	job
+	repeat
+	description `Deliver <cargo> to the frontier world of <destination>. Frontier systems have a high rate of piracy, so pepare to defend yourself. Payment is <payment>.`
+	cargo random 40 2 .02
+	to offer
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		not attributes "frontier"
+	destination
+		distance 2 10
+		attributes "frontier"
+	npc
+		government "Pirate"
+		personality nemesis harvests plunders
+		system destination
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying harvests plunders
+		system destination
+		fleet "Small Northern Pirates"
+		fleet "Large Northern Pirates"
+	on complete
+		payment 4000 180
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+
+mission "Frontier Emigration [0]"
+	name "Emigration to <planet>"
+	job
+	repeat
+	description "These <bunks> passengers have finally saved up enough money to start a new life on <destination>, and are willing to pay you <payment> to transport them."
+	passengers 2 10 .9
+	to offer
+		random < 30
+	source
+		attributes "frontier"
+		not planet "Shangri-La"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		not attributes "frontier"
+	on complete
+		payment 3000 140
+		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
+
+
+mission "Frontier Emigration [1]"
+	name "Emigration to <planet>"
+	job
+	repeat
+	description "These <bunks> passengers have finally saved up enough money to start a new life on <destination>, and are willing to pay you <payment> to transport them."
+	passengers 4 10 .8
+	to offer
+		random < 25
+	source
+		attributes "frontier"
+		not planet "Shangri-La"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		not attributes "frontier"
+	on complete
+		payment 3000 140
+		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
+
+
+mission "Frontier Emigration [2]"
+	name "Emigration to <planet>"
+	job
+	repeat
+	description "These <bunks> passengers have finally saved up enough money to start a new life on <destination>, and are willing to pay you <payment> to transport them."
+	passengers 6 10 .7
+	to offer
+		random < 20
+	source
+		attributes "frontier"
+		not planet "Shangri-La"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		not attributes "frontier"
+	on complete
+		payment 3000 140
+		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
+
+
+mission "Disaster Relief"
+	name "Disaster relief to <planet>"
+	job
+	repeat
+	description "A disaster has occured in a colony on the frontier world of <destination>. Deliver <cargo> to the planet by <date> for <payment>."
+	cargo "disaster relief supplies" 25 2 .05
+	deadline
+	to offer
+		random < 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		not attributes "frontier"
+	destination
+		distance 2 10
+		attributes "frontier"
+		not planet "Shangri-La"
+	on complete
+		payment 10000 160
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>. A group of <planet> citizens thank you and bid you farewell."
