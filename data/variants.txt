@@ -1897,9 +1897,25 @@ ship "Wasp" "Wasp (Gatling)"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-ship "Wasp" "Wasp (Laser)"
+		
+ship "Wasp" "Wasp (Javelin)"
 	outfits
-		"Beam Laser" 3
+		"Javelin Pod" 2
+		"Javelin" 400
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+	gun
+	gun "Javelin Pod"
+	gun "Javelin Pod"
+		
+
+ship "Wasp" "Wasp (Plasma)"
+	outfits
+		"Plasma Cannon"
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
@@ -1917,6 +1933,3 @@ ship "Wasp" "Wasp (Proton)"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Hyperdrive"
-	gun "Proton Gun"
-	gun
-	gun
