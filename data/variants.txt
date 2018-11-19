@@ -1463,10 +1463,28 @@ ship "Quicksilver" "Quicksilver (Scanner)"
 
 
 
-ship "Rainmaker" "Rainmaker (Mark II)"
+ship "Rainmaker" "Rainmaker (Javelin)"
 	outfits
 		"Javelin Pod" 4
 		"Javelin" 800
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"A120 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+	gun
+	gun
+	gun "Javelin Pod"
+	gun "Javelin Pod"
+	gun "Javelin Pod"
+	gun "Javelin Pod"
+
+
+ship "Rainmaker" "Rainmaker (Mark II)"
+	outfits
+		"Sidewinder Missile Launcher" 4
+		"Sidewinder Missile" 200
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D67-TM Shield Generator"
@@ -1476,10 +1494,10 @@ ship "Rainmaker" "Rainmaker (Mark II)"
 		"Scram Drive"
 	gun
 	gun
-	gun "Javelin Pod"
-	gun "Javelin Pod"
-	gun "Javelin Pod"
-	gun "Javelin Pod"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
 
 
 
