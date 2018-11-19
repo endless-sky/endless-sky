@@ -1870,22 +1870,6 @@ ship "Vanguard" "Vanguard (Particle)"
 
 
 
-ship "Wasp" "Wasp (Bomber)"
-	outfits
-		"Energy Blaster"
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"nGVF-BB Fuel Cell"
-		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
-		"Hyperdrive"
-	gun "Beam Laser"
-	gun "Meteor Missile Launcher"
-	gun "Meteor Missile Launcher"
-
-
 ship "Wasp" "Wasp (Gatling)"
 	outfits
 		"Gatling Gun" 3
@@ -1912,6 +1896,22 @@ ship "Wasp" "Wasp (Javelin)"
 	gun "Javelin Pod"
 	gun "Javelin Pod"
 		
+
+ship "Wasp" "Wasp (Meteor)"
+	outfits
+		"Energy Blaster"
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+	gun "Energy Blaster"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+
 
 ship "Wasp" "Wasp (Plasma)"
 	outfits
