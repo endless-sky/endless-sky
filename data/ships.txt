@@ -1856,8 +1856,10 @@ ship "Headhunter"
 	
 	engine -16 47
 	engine 16 47
-	gun -13 -27 "Heavy Laser"
-	gun 13 -27 "Heavy Laser"
+	gun -17.5 -17
+	gun 17.5 -17
+	gun -12 -25.5 "Heavy Laser"
+	gun 12 -25.5 "Heavy Laser"
 	turret 0 9 "Heavy Anti-Missile Turret"
 	leak "leak" 60 50
 	leak "flame" 80 80
