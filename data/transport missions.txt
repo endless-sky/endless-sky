@@ -1547,19 +1547,19 @@ mission "Shady passenger transport 3"
 		"getaway driver" ++
 	npc
 		government "Bounty Hunter"
-		personality nemesis plunders waiting
+		personality nemesis plunders
 		system
 			distance 2 3
 		fleet "Bounty Hunters"
 	npc
 		government "Bounty Hunter"
-		personality nemesis plunders waiting
+		personality nemesis plunders
 		system
 			distance 2 3
 		fleet "Bounty Hunters"
 	npc
 		government "Bounty Hunter"
-		personality nemesis plunders waiting
+		personality nemesis plunders
 		system
 			distance 6 9
 		fleet "Bounty Hunters"
@@ -1579,6 +1579,7 @@ mission "Shady passenger transport 3 - double cross"
 
 	to offer
 		random < 5
+		credits >= 8000000
 
 	on offer
 		require "Brig"
@@ -1612,11 +1613,6 @@ mission "Shady passenger transport 3 - double cross"
 			`That turns out to be a really bad decision. It's also your last. A truly excessive barrage of projectiles ends your life.`
 				die
 
-			label "shoot and live"
-			`Somehow, miraculously, you manage to reach your gun before she fires. Perhaps it's the sheer brazenness of it--no one would expect someone staring down the barrels of half a dozen guns to actually draw against them. Nevertheless, you do, and it works.`
-			`	Your first shot finds its mark, and the gang leader crumples to the floor. The other thugs shriek in alarm and begin to spray gunfire in all directions, but it's ineffective panic fire. Taking cover behind the armored captain's chair, you dispatch two more with well-aimed shots.`
-			`	The remaining three goons attempt to flee, but your fingers find the button controlling the bridge door and it slams down before they can escape. They throw down their weapons and surrender. You toss them into the brig and decide that it might be a hoot to take them to their original destination as prisoners instead of passengers, and see if you can get a bounty for bringing them in.`
-
 			label negotiate
 			`"You don't want my ship, you want my money," you stammer, stalling for time while you try to think of a way out of this situation. "This ship is registered to me; nobody would believe that you came across it honestly. You want a fresh start in an anonymous ship. I'll give you 4 million credits, and you can buy a Modified Argosy or some other vessel better suited to your line of work."`
 			` The gang leader snorts derisively. "Why don't we just kill you and hotwire this ship? That sounds more fun."`
@@ -1631,7 +1627,7 @@ mission "Shady passenger transport 3 - double cross"
 			label "more money"
 			`You continue: "You'll have a heck of a time taking over the ship without casualties. My bank account can't be accessed without my permission, and you know it. Use violence and you'll still be poor - and some of you might be dead. I'll give you 8 million, and that's my final offer."`
 			`	8 million credits is a lot of money. Thankfully, it's enough. A sigh of relief escapes your lips as everyone lowers their weapons.`
-			`	You arrange for a merchant captain to transport the renegades down to the surface, along with a password-protected credit chit. Once the airlock closer, you give the password. A lump appears in your throat as your communicator buzzes, alerting you to an unusually large transaction. At least you have escaped with your life and your ship. You are now free to continue your career--poorer, but hopefully wiser.`
+			`	You arrange for a merchant captain to transport the renegades down to the surface, along with a password-protected credit chit. Once the airlock closes, you give the password. A lump appears in your throat as your communicator buzzes, alerting you to an unusually large transaction. At least you have escaped with your life and your ship. You are now free to continue your career--poorer, but hopefully wiser.`
 				defer
 
 			label betrayed
@@ -1639,6 +1635,11 @@ mission "Shady passenger transport 3 - double cross"
 			`	"Smart move," the leader says. "Or was it? Now we don't need you alive for anything, do we?"`
 			`	She fires her shotgun into you from behind, and for a brief moment, you are treated to the sight of your internal organs splattered all over the console. It's the last thing you ever see.`
 				die
+
+			label "shoot and live"
+			`Somehow, miraculously, you manage to reach your gun before she fires. Perhaps it's the sheer brazenness of it--no one would expect someone staring down the barrels of half a dozen guns to actually draw against them. Nevertheless, you do, and it works.`
+			`	Your first shot finds its mark, and the gang leader crumples to the floor. The other thugs shriek in alarm and begin to spray gunfire in all directions, but it's ineffective panic fire. Taking cover behind the armored captain's chair, you dispatch two more with well-aimed shots.`
+			`	The remaining three goons attempt to flee, but your fingers find the button controlling the bridge door and it slams down before they can escape. They throw down their weapons and surrender. You toss them into the brig and decide that it might be a hoot to take them to their original destination as prisoners instead of passengers, and see if you can get a bounty for bringing them in.`
 
 	on complete
 		dialog `You hand off your prisoners to the planetary authorities who gratefully take them into custody. It turns out that they were wanted, and there's a substantial bounty. You find yourself richer to the tune of <payment>.`
@@ -1649,19 +1650,19 @@ mission "Shady passenger transport 3 - double cross"
 
 	npc
 		government "Bounty Hunter"
-		personality nemesis plunders waiting
+		personality nemesis plunders
 		system
 			distance 2 3
 		fleet "Bounty Hunters"
 	npc
 		government "Bounty Hunter"
-		personality nemesis plunders waiting
+		personality nemesis plunders
 		system
 			distance 2 3
 		fleet "Bounty Hunters"
 	npc
 		government "Bounty Hunter"
-		personality nemesis plunders waiting
+		personality nemesis plunders
 		system
 			distance 6 9
 		fleet "Bounty Hunters"
