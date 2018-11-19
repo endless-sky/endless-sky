@@ -93,7 +93,7 @@ ship "Arrow" "Arrow (Hai)"
 		"Hyperdrive"
 
 
-ship "Arrow (Luxury)"
+ship "Arrow" "Arrow (Luxury)"
 	outfits
 		"Sidewinder Missile Launcher"
 		"Sidewinder Missile" 100
@@ -372,7 +372,7 @@ ship "Bounder" "Bounder (Hai)"
 		"Hyperdrive"
 
 
-ship "Bounder (Luxury)"
+ship "Bounder" "Bounder (Luxury)"
 	outfits
 		"Anti-Missile Turret" 2
 		"nGVF-CC Fuel Cell"
@@ -870,7 +870,7 @@ ship "Flivver" "Flivver (Hai)"
 		"Hyperdrive"
 
 
-ship "Flivver (Luxury)"
+ship "Flivver" "Flivver (Luxury)"
 	outfits
 		"Meteor Missile Launcher"
 		"Meteor Missile" 35
