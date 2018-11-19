@@ -12,7 +12,7 @@ mission "Frontier delivery [0]"
 	name "Frontier delivery to <planet>"
 	job
 	repeat
-	description `Deliver <cargo> to the frontier world of <destination>. Frontier worlds have a high rate of piracy, so a pirate presence is expected. Payment is <payment>.`
+	description `Deliver <cargo> to the frontier world of <destination>. Frontier systems have a high rate of piracy, so pepare to defend yourself. Payment is <payment>.`
 	cargo random 5 2 .1
 	to offer
 		random < 30
@@ -43,7 +43,7 @@ mission "Frontier delivery [1]"
 	name "Frontier delivery to <planet>"
 	job
 	repeat
-	description `Deliver <cargo> to the frontier world of <destination>. Frontier worlds have a high rate of piracy, so a pirate presence is expected. Payment is <payment>.`
+	description `Deliver <cargo> to the frontier world of <destination>. Frontier systems have a high rate of piracy, so pepare to defend yourself. Payment is <payment>.`
 	cargo random 25 2 .05
 	to offer
 		random < 25
@@ -74,7 +74,7 @@ mission "Frontier delivery [2]"
 	name "Frontier delivery to <planet>"
 	job
 	repeat
-	description `Deliver <cargo> to the frontier world of <destination>. Frontier worlds have a high rate of piracy, so a pirate presence is expected. Payment is <payment>.`
+	description `Deliver <cargo> to the frontier world of <destination>. Frontier systems have a high rate of piracy, so pepare to defend yourself. Payment is <payment>.`
 	cargo random 40 2 .02
 	to offer
 		random < 20
