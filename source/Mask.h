@@ -54,6 +54,11 @@ public:
 	
 	// Find out how close the given point is to the mask.
 	double Range(Point point, Angle facing) const;
+	// Get the maximum distance from the center of this mask.
+	double Radius() const;
+	
+	// Get the list of points in the outline.
+	const std::vector<Point> &Points() const;
 	
 	
 private:

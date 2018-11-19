@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "Body.h"
 #include "CollisionSet.h"
-#include "Minable.h"
 #include "Point.h"
 
 #include <list>
@@ -25,6 +24,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class DrawList;
+class Flotsam;
+class Minable;
 class Projectile;
 class Sprite;
 class Visual;
