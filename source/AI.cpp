@@ -1143,10 +1143,11 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	
 	// Run away if your hostile target is not disabled and you are badly damaged.
 	// Player ships never stop targeting hostiles, while hostile mission NPCs will
-	// do so only if they are allowed to leave.
+	// do so only if they are allowed to leave. Defense stations cannot leave, so
+	// they will continue firing.
 	if(!isYours && target && target->GetGovernment()->IsEnemy(gov) && !isDisabled
 			&& (person.IsFleeing() || (ship.Health() < RETREAT_HEALTH && !person.IsHeroic()
-				&& !person.IsStaying() && !parentIsEnemy)))
+				&& !person.IsStaying() && !parentIsEnemy)) && ship.MaxVelocity() > 0.)
 	{
 		// Make sure the ship has somewhere to flee to.
 		if(ship.JumpsRemaining() && (!system->Links().empty() || ship.Attributes().Get("jump drive")))
@@ -1878,9 +1879,10 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	
 	// If this ship has only long-range weapons, or some weapons have a
 	// blast radius, it should keep some distance instead of closing in.
+	// If this ship is stationary, then these actions would be stupid.
 	Point d = (target.Position() + target.Velocity()) - (ship.Position() + ship.Velocity());
 	if((minSafeDistance > 0. || shortestRange > 1000.)
-			&& d.Length() < max(1.25 * minSafeDistance, .5 * shortestRange))
+			&& d.Length() < max(1.25 * minSafeDistance, .5 * shortestRange) && ship.MaxVelocity() > 0)
 	{
 		// If this ship can use reverse thrusters, consider doing so.
 		double reverseSpeed = ship.MaxReverseVelocity();
