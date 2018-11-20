@@ -149,6 +149,7 @@ effect "point defense fire"
 	sprite "effect/point defense fire"
 		"frame rate" 17
 		"no repeat"
+	sound "remnant point defense"
 	"velocity scale" .5
 	lifetime 10
 
