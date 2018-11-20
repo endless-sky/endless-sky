@@ -17,10 +17,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "Politics.h"
 #include "Radar.h"
+#include "Ship.h"
 #include "System.h"
 
 #include <algorithm>
-#include <iostream>
 
 using namespace std;
 
@@ -28,7 +28,7 @@ using namespace std;
 
 // Object default constructor.
 StellarObject::StellarObject()
-	: planet(nullptr), ship(nullptr), government(nullptr),
+	: planet(nullptr),
 	distance(0.), speed(0.), offset(0.), parent(-1),
 	message(nullptr), isStar(false), isStation(false), isMoon(false),
 	isDead(true)
@@ -163,10 +163,17 @@ double StellarObject::Distance() const
 
 
 
-void StellarObject::AddShip(list<shared_ptr<Ship>> ships, const System *system) const
+bool StellarObject::HasShip() const
+{
+	return ship != nullptr;
+}
+
+
+
+shared_ptr<Ship> StellarObject::GetShip(const System *system) const
 {
 	if(!ship)
-		return;
+		return nullptr;
 	isDead = false;
 	shared_ptr<Ship> local(new Ship(*ship));
 
@@ -176,14 +183,10 @@ void StellarObject::AddShip(list<shared_ptr<Ship>> ships, const System *system) 
 	local->SetName("Orbital Defense Platform");
 	local->SetPersonality(personality);
 	local->SetSystem(system);
-	local->SetPlanet(planet);
-	local->SetIsSpecial();
-	local->Place(Position(), Velocity(), Facing());
+	local->SetStellar(this);
+	local->Place(Position(), Point(), Facing());
 	local->Restore();
-	cout << "Added " << local->ModelName() << " of " << local->GetGovernment()->GetName() << " to " << local->GetSystem()->Name() << "\n";
-	cout << ships.size() << " ";
-	ships.push_front(local);
-	cout << ships.size() << "\n";
+	return local;
 }
 
 
