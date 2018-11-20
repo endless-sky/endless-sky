@@ -27,10 +27,10 @@ effect "afterburner"
 		"frame rate" 30
 	sound "afterburner"
 	"lifetime" 10
-	"velocity scale" 1.
-	"random velocity" 1.
 	"random angle" 30
 	"random spin" 10
+	"random velocity" 1.
+	"velocity scale" 1.
 
 
 outfit "Ionic Afterburner"
@@ -53,10 +53,10 @@ effect "ionic afterburner"
 		"frame rate" 30
 	sound "ionic afterburner"
 	"lifetime" 12
-	"velocity scale" 1.
-	"random velocity" 1.
 	"random angle" 360
 	"random spin" 30
+	"random velocity" 1.
+	"velocity scale" 1.
 
 
 

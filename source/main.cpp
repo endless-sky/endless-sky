@@ -63,6 +63,7 @@ int main(int argc, char *argv[])
 {
 	Conversation conversation;
 	bool debugMode = false;
+	bool loadOnly = false;
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
@@ -80,14 +81,24 @@ int main(int argc, char *argv[])
 			conversation = LoadConversation();
 		else if(arg == "-d" || arg == "--debug")
 			debugMode = true;
+		else if(arg == "-p" || arg == "--parse-save")
+			loadOnly = true;
 	}
 	PlayerInfo player;
 	
 	try {
-		// Begin loading the game data.
+		// Begin loading the game data. Exit early if we are not using the UI.
 		if(!GameData::BeginLoad(argv))
 			return 0;
-
+		
+		// Load player data, including reference-checking.
+		player.LoadRecent();
+		if(loadOnly)
+		{
+			cout << "Parse completed." << endl;
+			return 0;
+		}
+		
 		SDL_Init(SDL_INIT_VIDEO);
 		
 		Audio::Init(GameData::Sources());
@@ -97,8 +108,6 @@ int main(int argc, char *argv[])
 #ifdef _WIN32
 		timeBeginPeriod(1);
 #endif
-		
-		player.LoadRecent();
 		
 		// Check how big the window can be.
 		SDL_DisplayMode mode;
@@ -350,8 +359,8 @@ int main(int argc, char *argv[])
 			timer.Wait();
 		}
 		
-		// If you quit while landed on a planet, save the game.
-		if(player.GetPlanet())
+		// If you quit while landed on a planet, save the game - if you did anything.
+		if(player.GetPlanet() && gamePanels.CanSave())
 			player.Save();
 		
 		// Remember the window state.
@@ -381,14 +390,15 @@ void PrintHelp()
 	cerr << "Command line options:" << endl;
 	cerr << "    -h, --help: print this help message." << endl;
 	cerr << "    -v, --version: print version information." << endl;
-	cerr << "    -s, --ships: print table of ship statistics." << endl;
-	cerr << "    -w, --weapons: print table of weapon statistics." << endl;
+	cerr << "    -s, --ships: print table of ship statistics, then exit." << endl;
+	cerr << "    -w, --weapons: print table of weapon statistics, then exit." << endl;
 	cerr << "    -t, --talk: read and display a conversation from STDIN." << endl;
 	cerr << "    -r, --resources <path>: load resources from given directory." << endl;
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
-	cerr << "    -d, --debug: turn on debugging features (e.g. caps lock slow motion)." << endl;
+	cerr << "    -d, --debug: turn on debugging features (e.g. Caps Lock slows down instead of speeds up)." << endl;
+	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors" << endl;
 	cerr << endl;
-	cerr << "Report bugs to: mzahniser@gmail.com" << endl;
+	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;
 	cerr << "Home page: <https://endless-sky.github.io>" << endl;
 	cerr << endl;
 }
@@ -547,4 +557,3 @@ Conversation LoadConversation()
 	};
 	return conversation.Substitute(subs);
 }
-

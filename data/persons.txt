@@ -87,6 +87,8 @@ person "Cap'n Pester"
 			"friendly author"
 	ship "Quarg Wardragon" "Quarg Wardragon"
 		"never disabled"
+		add attributes
+			"outfit space" 10
 		outfits
 			"Quarg Skylance" 2
 			"Quarg Anti-Missile" 2
@@ -290,7 +292,7 @@ person "Captain Nate"
 			"heat dissipation" .6
 			"fuel capacity" 400
 			"cargo space" 50
-			"outfit space" 1000
+			"outfit space" 1215
 			"weapon capacity" 450
 			"engine capacity" 330
 			weapon
@@ -524,7 +526,7 @@ ship "Modified Osprey"
 		"fuel capacity" 625
 		"cargo space" 80
 		"outfit space" 2172
-		"weapon capacity" 850
+		"weapon capacity" 851
 		"engine capacity" 499
 		"afterburner fuel" -.678
 		"afterburner heat" -30

@@ -689,17 +689,17 @@ mission "Expanding Business [2]"
 		personality staying
 		government "Pirate"
 		system "Ultima Thule"
-		fleet "Small Northern Pirate"
+		fleet "Small Northern Pirates"
 	npc
 		personality staying
 		government "Pirate"
 		system "Rajak"
-		fleet "Large Northern Pirate"
+		fleet "Large Northern Pirates"
 	npc
 		personality staying
 		government "Pirate"
 		system destination
-		fleet "Large Northern Pirate"
+		fleet "Large Northern Pirates"
 
 mission "Expanding Business [3]"
 	landing
@@ -842,17 +842,17 @@ mission "Expanding Business [6]"
 		personality staying
 		government "Pirate"
 		system "Ultima Thule"
-		fleet "Small Northern Pirate"
+		fleet "Small Northern Pirates"
 	npc
 		personality staying
 		government "Pirate"
 		system "Rajak"
-		fleet "Large Northern Pirate"
+		fleet "Large Northern Pirates"
 	npc
 		personality staying
 		government "Pirate"
 		system destination
-		fleet "Large Northern Pirate"
+		fleet "Large Northern Pirates"
 		
 	on complete
 		dialog `The Bulk Freighters are loaded with supplies without any problem. When one of the spaceport workers asks Turner where the supplies are going, he replies, "These are just to expand a business venture of mine on, uh, Glory."`
@@ -869,12 +869,12 @@ mission "Expanding Business [7]"
 		personality staying
 		government "Pirate"
 		system "Cardax"
-		fleet "Small Northern Pirate"
+		fleet "Small Northern Pirates"
 	npc
 		personality staying
 		government "Pirate"
 		system "Rajak"
-		fleet "Large Northern Pirate"
+		fleet "Large Northern Pirates"
 		
 	on complete
 		event "shipyard on greenwater" 180
