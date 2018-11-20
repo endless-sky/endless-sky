@@ -1532,7 +1532,7 @@ mission "Shady passenger transport 3"
 		has "Shady passenger transport 2: done"
 
 	on offer
-		dialog `A group of <bunks> fearsome-looking young men and women brazenly walk up to you in broad daylight, explaining that they're in some legal trouble and need to get to <destination> as quickly as possible, and offering <payment> to secure discreet passage. You must be getting quite a reputation in certain circles. Transporting them might be very dangerous. On the other hand, they're offering a small fortune...`
+		dialog `A group of <bunks> fearsome-looking young men and women brazenly walk up to you in broad daylight, explaining that they're in some legal trouble and need to get to <destination> as quickly as possible. They offer <payment> to secure discreet passage. You must be getting quite a reputation in certain circles. Transporting them might be very dangerous. On the other hand, they're offering a small fortune...`
 
 	on accept
 		dialog `The mercenaries (or gang members, or fleeing bank robbers, or who knows what else) make themselves at home on your ship, and begin drinking and arguing. You wonder what you've gotten yourself into...`
@@ -1579,11 +1579,13 @@ mission "Shady passenger transport 3 - double cross"
 
 	to offer
 		random < 5
+		"rejected illegal jobs" < 3
+		"getaway driver" > 5
+		has "Shady passenger transport 2: done"
 		credits >= 8000000
 
 	on offer
-		require "Brig"
-		dialog `A group of <bunks> fearsome-looking young men and women brazenly walk up to you in broad daylight, explaining that they're in some legal trouble and need to get to <destination> as quickly as possible, and offering <payment> to secure discreet passage. You must be getting quite a reputation in certain circles. Transporting them might be very dangerous. On the other hand, they're offering a small fortune...`
+		dialog `A group of <bunks> fearsome-looking young men and women brazenly walk up to you in broad daylight, explaining that they're in some legal trouble and need to get to <destination> as quickly as possible. They offer <payment> to secure discreet passage. You must be getting quite a reputation in certain circles. Transporting them might be very dangerous. On the other hand, they're offering a small fortune...`
 
 	on accept
 		dialog `The mercenaries (or gang members, or fleeing bank robbers, or who knows what else) make themselves at home on your ship, and begin drinking and arguing. You wonder what you've gotten yourself into...`
