@@ -2486,7 +2486,7 @@ ship "Raven"
 		"fuel capacity" 500
 		"cargo space" 30
 		"outfit space" 280
-		"weapon capacity" 90
+		"weapon capacity" 100
 		"engine capacity" 100
 		weapon
 			"blast radius" 60
