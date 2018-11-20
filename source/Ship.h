@@ -145,6 +145,7 @@ public:
 	void SetSystem(const System *system);
 	void SetPlanet(const Planet *planet);
 	void SetGovernment(const Government *government);
+	void SetStellar(const StellarObject * stellar);
 	void SetIsSpecial(bool special = true);
 	bool IsSpecial() const;
 	
@@ -488,6 +489,10 @@ private:
 	bool isUsingJumpDrive = false;
 	double hyperspaceFuelCost = 0.;
 	Point hyperspaceOffset;
+	
+	// If the ship is a defense platform it needs to know the StellarObject
+	// that this ship represents.
+	const StellarObject *defending;
 	
 	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
 	// when the ship is dying.
