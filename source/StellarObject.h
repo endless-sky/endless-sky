@@ -14,13 +14,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define STELLAR_OBJECT_H_
 
 #include "Body.h"
+
 #include "Personality.h"
-#include "Ship.h"
 
 #include <list>
 #include <memory>
 
 class Planet;
+class Ship;
 class System;
 
 
@@ -34,9 +35,8 @@ class StellarObject : public Body {
 public:
 	StellarObject();
 	
-	// Functions provided by the Body base class:
-	bool HasSprite() const;
-	/*int Width() const;
+	/* Functions provided by the Body base class:
+	int Width() const;
 	int Height() const;
 	Frame GetFrame(int step = -1) const;
 	const Point &Position() const;
@@ -44,6 +44,7 @@ public:
 	const Angle &Facing() const;
 	Point Unit() const;
 	*/
+	bool HasSprite() const;
 	
 	// Get the radius of this planet, i.e. how close you must be to land.
 	double Radius() const;
@@ -70,14 +71,16 @@ public:
 	// Find out how far this object is from its parent.
 	double Distance() const;
 	// Returns ship and changes isDead.
-	void AddShip(std::list<std::shared_ptr<Ship>> ships, const System *system) const;
+	bool HasShip() const;
+	std::shared_ptr<Ship> GetShip(const System *system) const;
 	void Die() const;
+
+
 private:
 	const Planet *planet;
 	// This ship is a defense station that can only turn.
-	const Ship *ship;
+	const Ship *ship = nullptr;
 	
-	const Government *government;
 	Personality personality;
 	
 	double distance;
