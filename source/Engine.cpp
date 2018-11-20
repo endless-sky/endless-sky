@@ -1056,6 +1056,8 @@ void Engine::EnterSystem()
 					&& flagship->Position().Distance(object.Position()) < 1.)
 				usedWormhole = &object;
 		}
+		if(object.HasShip())
+			newShips.push_front(object.GetShip(system));
 	}
 	
 	// Advance the positions of every StellarObject and update politics.
@@ -1120,8 +1122,6 @@ void Engine::EnterSystem()
 							+ raidGovernment->GetName() + " raiding party.");
 				}
 	}
-	for(const StellarObject &object : system->Objects())
-		object.AddShip(newships, system);
 	
 	grudge.clear();
 	
