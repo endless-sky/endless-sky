@@ -882,6 +882,13 @@ void Ship::SetGovernment(const Government *government)
 
 
 
+void Ship::SetStellar(const StellarObject *object)
+{
+	defending = object;
+}
+
+
+
 void Ship::SetIsSpecial(bool special)
 {
 	isSpecial = special;
@@ -1097,6 +1104,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				for(shared_ptr<Flotsam> &it : jettisoned)
 					it->Place(*this);
 				flotsam.splice(flotsam.end(), jettisoned);
+				if(defending)
+					defending->Die();
 			}
 			energy = 0.;
 			heat = 0.;
@@ -1417,7 +1426,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			}
 		}
 	}
-	if(acceleration)
+	if(acceleration && !defending)
 	{
 		acceleration *= slowMultiplier;
 		Point dragAcceleration = acceleration - velocity * (attributes.Get("drag") / mass);
@@ -2011,7 +2020,7 @@ bool Ship::IsLanding() const
 // Check if this ship is currently able to begin landing on its target.
 bool Ship::CanLand() const
 {
-	if(!GetTargetStellar() || !GetTargetStellar()->GetPlanet() || isDisabled || IsDestroyed())
+	if(!GetTargetStellar() || !GetTargetStellar()->GetPlanet() || isDisabled || IsDestroyed() || defending)
 		return false;
 	
 	if(!GetTargetStellar()->GetPlanet()->CanLand(*this))
@@ -2066,7 +2075,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 {
 	// Ships can't jump while waiting for someone else, carried, or if already jumping.
 	if(IsDisabled() || (!waitingIsReady && commands.Has(Command::WAIT))
-			|| hyperspaceCount || !targetSystem || !currentSystem)
+			|| hyperspaceCount || !targetSystem || !currentSystem || defending)
 		return false;
 	
 	// Check if the target system is valid and there is enough fuel to jump.
@@ -2522,6 +2531,8 @@ double Ship::TurnRate() const
 
 double Ship::Acceleration() const
 {
+	if(defending)
+		return 0.;
 	double thrust = attributes.Get("thrust");
 	return (thrust ? thrust : attributes.Get("afterburner thrust")) / Mass();
 }
@@ -2530,6 +2541,8 @@ double Ship::Acceleration() const
 
 double Ship::MaxVelocity() const
 {
+	if(defending)
+		return 0.;
 	// v * drag / mass == thrust / mass
 	// v * drag == thrust
 	// v = thrust / drag
@@ -2541,6 +2554,8 @@ double Ship::MaxVelocity() const
 
 double Ship::MaxReverseVelocity() const
 {
+	if(defending)
+		return 0.;
 	return attributes.Get("reverse thrust") / attributes.Get("drag");
 }
 
@@ -2630,6 +2645,9 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 // impact, or from firing a weapon, for example.
 void Ship::ApplyForce(const Point &force)
 {
+	if(defending)
+		return;
+	
 	double currentMass = Mass();
 	if(!currentMass)
 		return;
