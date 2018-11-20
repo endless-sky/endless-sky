@@ -20910,6 +20910,13 @@ system Sol
 			sprite planet/luna
 			distance 201.24
 			period 27.3
+		object
+			sprite planet/io
+			distance 201.24
+			period 27.3
+			offset 180
+			defense "Archonstation"
+				government "Kor Mereti"
 	object Mars
 		sprite planet/mars
 		distance 1471.43
@@ -20934,6 +20941,50 @@ system Sol
 			sprite planet/callisto
 			distance 811.717
 			period 66.76
+
+ship "Archonstation"
+	noun "entity"
+	sprite ship/archon
+		"frame rate" 0.87
+	"never disabled"
+	attributes
+		category "Heavy Warship"
+		"cost" 1000000000
+		"shields" 4000000
+		"hull" 1000000
+		"required crew" 1
+		"bunks" 1
+		"mass" 10000
+		"drag" 27
+		"heat dissipation" 40
+		"fuel capacity" 800
+		"cargo space" 0
+		"outfit space" 800
+		"weapon capacity" 600
+		"engine capacity" 200
+		"energy capacity" 10000
+		"energy generation" 500
+		"heat generation" 17
+		"shield generation" 100
+		"shield energy" 100
+		"hull repair rate" 100
+		"hull energy" 100
+		"ramscoop" 100
+		weapon
+			"blast radius" 200
+			"shield damage" 20000
+			"hull damage" 10000
+			"hit force" 30000
+	outfits
+		"Drak Antimatter Cannon"
+		
+		"Medium Graviton Steering"
+	
+	engine -17 92
+	engine 17 92
+	gun 0 -74 "Drak Antimatter Cannon"
+	explode "nuke explosion" 3
+	"final explode" "final explosion large"
 
 system "Sol Arach"
 	pos -711.587 649.051
