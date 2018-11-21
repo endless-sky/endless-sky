@@ -2495,8 +2495,8 @@ ship "Raven"
 			"hit force" 900
 	outfits
 		"Heavy Laser" 2
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Torpedo Launcher" 2
+		"Torpedo" 60
 		
 		"RT-I Radiothermal"
 		"LP072a Battery Pack"
