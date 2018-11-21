@@ -50,3 +50,4 @@ ipch/
 *.vcxproj*
 *.userosscache
 *.sln.docstates
+*.xcodeproj/**
