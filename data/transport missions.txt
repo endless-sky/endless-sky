@@ -1452,7 +1452,7 @@ mission "Shady passenger transport 1"
 		"rejected illegal jobs" < 3
 
 	on offer
-		dialog `While having a drink at one of one of the spaceport's bars, a somewhat scruffy-looking man in a dark cloak pulls you aside and offers <payment> for discreet, no-questions-asked passage to <destination>, which is quite close by. This could be a quick and lucrative job. (It also sounds illegal, so you'll need to avoid getting scanned or landing on planets with high security.)`
+		dialog `While having a drink at one of the spaceport's bars, a somewhat scruffy-looking man in a dark cloak pulls you aside and offers <payment> for discreet, no-questions-asked passage to <destination>, which is quite close by. This could be a quick and lucrative job. (It also sounds illegal, so you'll need to avoid getting scanned or landing on planets with high security.)`
 
 	on accept
 		"rejected illegal jobs" --
