@@ -30,7 +30,7 @@ outfit "Large Collector Module"
 	"outfit space" -28
 	"solar collection" 3.3
 	"heat generation" 1.5
-	description "One of these solar panels is enough to meet the energy needs of a medium-sized Coalition civilian ship, especially given the energy efficiency of their engines and the fact that under their laws only Heliarch ships are allowed to have weapons."
+	description "One of these solar panels is enough to meet the energy needs of a medium-sized Coalition civilian ship, especially given the energy efficiency of their engines and the fact that under their laws only Heliarch ships can have weapons. It is well known that the Heliarch have reactors. Most weapons can’t run on solar alone, making it difficult to obtain, install, and use a weapon in a Coalition ship."
 
 outfit "Small Reactor Module"
 	category "Power"
@@ -76,7 +76,7 @@ outfit "Large Battery Module"
 	"mass" 18
 	"outfit space" -18
 	"energy capacity" 4500
-	description "This battery pack stores enough power to allow a Coalition ship to continue maneuvering even when its solar panels are only producing a fraction of their peak output."
+	description "This battery pack stores enough power to allow a Coalition ship to continue manoeuvring even when its solar panels are only producing a fraction of their peak output. It is rumoured that an electric hyperdrive is being made by Heliarch engineers. A smaller and better battery is also rumoured to be used to power this new hyperdrive prototype."
 
 
 outfit "Small Shield Module"
@@ -90,7 +90,7 @@ outfit "Small Shield Module"
 	"shield generation" .28
 	"shield energy" .28
 	"shield heat" .1
-	description "Although combat is almost unheard of in Coalition space, almost all of their ships are able to recharge their shields when necessary."
+	description "Although combat is almost unheard of in Coalition space, almost all their ships can recharge their shields when necessary. This all sounds like a money-making scheme to you, and it seems to work as every single ship have at least one installed."
 
 outfit "Large Shield Module"
 	category "Systems"
@@ -103,7 +103,7 @@ outfit "Large Shield Module"
 	"shield generation" 1.3
 	"shield energy" 1.3
 	"shield heat" .5
-	description "The Coalition manufactures heavy shield generators for their ships in case they ever face aggression from the Quarg or another species."
+	description "The Coalition manufactures heavy shield generators for their ships in case they ever face aggression from the Quarg or another species. The Kimek up north buy tons of this shield generator every year. They have Quarg action plans posted to every corner of their ships."
 
 outfit "Small Repair Module"
 	category "Systems"
@@ -116,7 +116,7 @@ outfit "Small Repair Module"
 	"hull repair rate" .12
 	"hull energy" .12
 	"hull heat" .1
-	description "Arachi ships, which rely more on strong hull than on energy shields, often carry one of these repair modules to allow damaged hull plating to be patched back together on the fly."
+	description "Arachi ships, which rely more on strong hull than on energy shields, often carry one of these repair modules to allow damaged hull plating to be patched back together on the fly. You wander if all these outfits will protect the coalition from a fleet of Quarg ships."
 
 outfit "Large Repair Module"
 	category "Systems"
@@ -129,7 +129,7 @@ outfit "Large Repair Module"
 	"hull repair rate" .57
 	"hull energy" .57
 	"hull heat" .5
-	description "This hub houses a small fleet of repair robots that can climb around on a ship's hull and repair damage to it, even in the middle of combat."
+	description "This hub houses a small fleet of repair robots that can climb around on a ship's hull and repair damage to it, even in the middle of combat…if there is any combat."
 
 outfit "Cooling Module"
 	category "Systems"
@@ -204,9 +204,9 @@ outfit "Large Steering Module"
 	"turn" 711.9
 	"turning energy" 1.0
 	"turning heat" 8.2
-	description "By focusing on small, modular engines rather than the massive capital ship drives that most other species develop, the Coalition loses some of the potential efficiency for very large ships, but gains a considerable amount of flexibility."
+	description "By focusing on small, modular engines rather than the massive capital ship drives that most other species develop, the Coalition loses some of the potential efficiency for very large ships but gains a considerable amount of flexibility. Some captains are fine with installing multiple, but some want a new model to be released."
 
 outfit "Coalition License"
 	category "Special"
 	thumbnail "outfit/coalition license"
-	description "Completed a lot of Coalition jobs and received permission to purchase civilian technology and ships."
+	description "Completed a lot of Coalition jobs and received permission to purchase civilian technology and ships except for their weapons, reactor, and warships."
