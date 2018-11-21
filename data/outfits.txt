@@ -132,7 +132,7 @@ outfit "Small Radar Jammer"
 
 outfit "Large Radar Jammer"
 	category "Systems"
-	cost 270000
+	cost 250000
 	thumbnail "outfit/large radar jammer"
 	"mass" 7
 	"outfit space" -7
