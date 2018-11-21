@@ -1522,7 +1522,7 @@ ship "Fury"
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
-		"Large Radar Jammer"
+		"Small Radar Jammer" 2
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
