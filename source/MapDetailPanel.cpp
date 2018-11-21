@@ -452,7 +452,7 @@ void MapDetailPanel::DrawInfo()
 			
 				string name = object.Name();
 				if(planet->GetGovernment() != selectedSystem->GetGovernment())
-					name += " (" + planet->GetGovernment()->GetName() + ")";
+					name += " (" + planet->GetGovernment()->GetName() + " outpost)";
 				font.Draw(name,
 					uiPoint + Point(-70., -52.),
 					planet == selectedPlanet ? medium : dim);
