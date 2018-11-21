@@ -107,7 +107,8 @@ mission "Hai Vacation [4]"
 		distance 2 7
 		attributes "hai tourism"
 	on complete
-		payment 4000 150
+		payment
+		payment 6000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 
@@ -121,6 +122,7 @@ mission "Wealthy Hai [1]"
 	to offer
 		random < 70
 	on offer
+		require "Luxury Accommodations"
 		require "Quantum Keystone"
 	source
 		government "Hai"
@@ -128,7 +130,7 @@ mission "Wealthy Hai [1]"
 		government "Hai"
 		distance 4 8
 	on complete
-		payment 10000 250
+		payment 15000 300
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Wealthy Hai [2]"
@@ -141,6 +143,7 @@ mission "Wealthy Hai [2]"
 	to offer
 		random < 30
 	on offer
+		require "Luxury Accommodations"
 		require "Quantum Keystone"
 	source
 		government "Hai"
@@ -148,7 +151,7 @@ mission "Wealthy Hai [2]"
 		government "Hai"
 		distance 4 8
 	on complete
-		payment 10000 250
+		payment 15000 300
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 

@@ -241,6 +241,7 @@ outfitter "Coalition Advanced"
 	"Large Steering Module"
 	"Cargo Expansion"
 	"Outfits Expansion"
+	"Luxury Accommodations"
 	"Hyperdrive"
 	"Local Map"
 

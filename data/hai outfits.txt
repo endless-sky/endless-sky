@@ -62,8 +62,8 @@ effect "pulse impact"
 		"frame rate" 10
 	"lifetime" 20
 	"random angle" 360
-	"random velocity" .6
 	"random spin" 4
+	"random velocity" .6
 	"velocity scale" -.1
 
 
@@ -100,9 +100,9 @@ effect "ion impact"
 	sound "ion impact"
 	"lifetime" 9
 	"random angle" 360
-	"velocity scale" -.05
 	"random spin" 30
 	"random velocity" 2
+	"velocity scale" -.05
 
 
 outfit "Railgun Slug"
@@ -174,9 +174,9 @@ effect "rail sparks"
 		"frame rate" 30
 		"rewind"
 	"lifetime" 6
-	"velocity scale" 1.2
 	"random angle" 360
 	"random spin" 30
+	"velocity scale" 1.2
 
 
 outfit "Hai Tracker"
@@ -251,8 +251,8 @@ effect "tracker impact"
 	sound "explosion medium"
 	"lifetime" 16
 	"random angle" 360
-	"random velocity" .2
 	"random spin" 10
+	"random velocity" .2
 	"velocity scale" -.05
 
 effect "tracker cloud"
@@ -261,8 +261,8 @@ effect "tracker cloud"
 		"frame rate" 4
 	"lifetime" 60
 	"random angle" 360
-	"random velocity" 1
 	"random spin" 4
+	"random velocity" 1
 	"velocity scale" -.1
 
 
@@ -352,7 +352,7 @@ outfit "Quantum Keystone"
 	"mass" 1
 	"outfit space" -1
 	"quantum keystone" 1
-	description "This chunk of rock from the mountains on the Hai homeworld is apparently nothing more than a good luck charm, but the Hai have decorated their ships with them since the height of their empire. More superstitious Hai claim that the stones somehow reduce the nausea induced by hyperspace jumps by making travel between star systems easier."
+	description "This chunk of rock from the mountains on the Hai homeworld is apparently nothing more than a good luck charm, but the Hai have decorated their ships with them since the height of their empire. More superstitious Hai claim that the stones somehow reduce the nausea induced by hyperspace jumps by making travel between star systems easier, and many wealthy Hai refuse to book passage on a ship without one."
 
 
 outfit "Hai Chasm Batteries"

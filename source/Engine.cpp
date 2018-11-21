@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Mask.h"
 #include "Messages.h"
 #include "Minable.h"
+#include "Mission.h"
 #include "NPC.h"
 #include "OutlineShader.h"
 #include "Person.h"
@@ -241,69 +242,7 @@ void Engine::Place()
 	// and all but "uninterested" ships should follow the player.
 	shared_ptr<Ship> flagship = player.FlagshipPtr();
 	for(const Mission &mission : player.Missions())
-		for(const NPC &npc : mission.NPCs())
-		{
-			map<Ship *, int> droneCarriers;
-			map<Ship *, int> fighterCarriers;
-			for(const shared_ptr<Ship> &ship : npc.Ships())
-			{
-				// Skip ships that have been destroyed.
-				if(ship->IsDestroyed() || ship->IsDisabled())
-					continue;
-				
-				if(ship->BaysFree(false))
-					droneCarriers[&*ship] = ship->BaysFree(false);
-				if(ship->BaysFree(true))
-					fighterCarriers[&*ship] = ship->BaysFree(true);
-				// Redo the loading up of fighters.
-				ship->UnloadBays();
-			}
-			
-			shared_ptr<Ship> npcFlagship;
-			for(const shared_ptr<Ship> &ship : npc.Ships())
-			{
-				// Skip ships that have been destroyed.
-				if(ship->IsDestroyed())
-					continue;
-				
-				// Avoid the exploit where the player can wear down an NPC's
-				// crew by attrition over the course of many days.
-				ship->AddCrew(max(0, ship->RequiredCrew() - ship->Crew()));
-				if(!ship->IsDisabled())
-					ship->Recharge();
-				
-				if(ship->CanBeCarried())
-				{
-					bool docked = false;
-					map<Ship *, int> &carriers = (ship->Attributes().Category() == "Drone") ?
-						droneCarriers : fighterCarriers;
-					for(auto &it : carriers)
-						if(it.second && it.first->Carry(ship))
-						{
-							--it.second;
-							docked = true;
-							break;
-						}
-					if(docked)
-						continue;
-				}
-				
-				ships.push_back(ship);
-				// The first (alive) ship in an NPC block
-				// serves as the flagship of the group.
-				if(!npcFlagship)
-					npcFlagship = ship;
-				
-				// Only the flagship of an NPC considers the
-				// player: the rest of the NPC track it.
-				if(npcFlagship && ship != npcFlagship)
-					ship->SetParent(npcFlagship);
-				else if(!ship->GetPersonality().IsUninterested())
-					ship->SetParent(flagship);
-				else
-					ship->SetParent(nullptr);
-			}
-		}
+		Place(mission.NPCs(), flagship);
 	
 	// Get the coordinates of the planet the player is leaving.
 	Point planetPos;
@@ -350,6 +289,78 @@ void Engine::Place()
 	ships.splice(ships.end(), newShips);
 	
 	player.SetPlanet(nullptr);
+}
+
+
+
+// Add NPC ships to the known ships. These may have been freshly instantiated
+// from an accepted assisting/boarding mission, or from existing missions when
+// the player departs a planet.
+void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
+{
+	for(const NPC &npc : npcs)
+	{
+		map<Ship *, int> droneCarriers;
+		map<Ship *, int> fighterCarriers;
+		for(const shared_ptr<Ship> &ship : npc.Ships())
+		{
+			// Skip ships that have been destroyed.
+			if(ship->IsDestroyed() || ship->IsDisabled())
+				continue;
+			
+			if(ship->BaysFree(false))
+				droneCarriers[&*ship] = ship->BaysFree(false);
+			if(ship->BaysFree(true))
+				fighterCarriers[&*ship] = ship->BaysFree(true);
+			// Redo the loading up of fighters.
+			ship->UnloadBays();
+		}
+		
+		shared_ptr<Ship> npcFlagship;
+		for(const shared_ptr<Ship> &ship : npc.Ships())
+		{
+			// Skip ships that have been destroyed.
+			if(ship->IsDestroyed())
+				continue;
+			
+			// Avoid the exploit where the player can wear down an NPC's
+			// crew by attrition over the course of many days.
+			ship->AddCrew(max(0, ship->RequiredCrew() - ship->Crew()));
+			if(!ship->IsDisabled())
+				ship->Recharge();
+			
+			if(ship->CanBeCarried())
+			{
+				bool docked = false;
+				map<Ship *, int> &carriers = (ship->Attributes().Category() == "Drone") ?
+					droneCarriers : fighterCarriers;
+				for(auto &it : carriers)
+					if(it.second && it.first->Carry(ship))
+					{
+						--it.second;
+						docked = true;
+						break;
+					}
+				if(docked)
+					continue;
+			}
+			
+			ships.push_back(ship);
+			// The first (alive) ship in an NPC block
+			// serves as the flagship of the group.
+			if(!npcFlagship)
+				npcFlagship = ship;
+			
+			// Only the flagship of an NPC considers the
+			// player: the rest of the NPC track it.
+			if(npcFlagship && ship != npcFlagship)
+				ship->SetParent(npcFlagship);
+			else if(!ship->GetPersonality().IsUninterested())
+				ship->SetParent(flagship);
+			else
+				ship->SetParent(nullptr);
+		}
+	}
 }
 
 
@@ -608,7 +619,7 @@ void Engine::Step(bool isActive)
 		targetAsteroid = flagship->GetTargetAsteroid();
 		// Record that the player knows this type of asteroid is available here.
 		if(targetAsteroid)
-			for(const pair<const Outfit *, int> &it : targetAsteroid->Payload())
+			for(const auto &it : targetAsteroid->Payload())
 				player.Harvest(it.first);
 	}
 	if(!target)
@@ -1394,7 +1405,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		return;
 	
 	// Launch fighters.
-	ship->Launch(newShips);
+	ship->Launch(newShips, newVisuals);
 	
 	// Fire weapons. If this returns true the ship has at least one anti-missile
 	// system ready to fire.
@@ -1422,10 +1433,19 @@ void Engine::FillCollisionSets()
 
 
 
-// At random intervals, crete new fleets in neighboring systems or coming from
-// planets in the current one.
+// Spawn NPC (both mission and "regular") ships into the player's universe. Non-
+// mission NPCs are only spawned in or adjacent to the player's system.
 void Engine::SpawnFleets()
 {
+	// If the player has a pending boarding mission, spawn its NPCs.
+	if(player.ActiveBoardingMission())
+	{
+		Place(player.ActiveBoardingMission()->NPCs(), player.FlagshipPtr());
+		player.ClearActiveBoardingMission();
+	}
+	
+	// Non-mission NPCs spawn at random intervals in neighboring systems,
+	// or coming from planets in the current one.
 	for(const System::FleetProbability &fleet : player.GetSystem()->Fleets())
 		if(!Random::Int(fleet.Period()))
 		{
