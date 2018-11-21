@@ -1856,8 +1856,10 @@ ship "Headhunter"
 	
 	engine -16 47
 	engine 16 47
-	gun -13 -27 "Heavy Laser"
-	gun 13 -27 "Heavy Laser"
+	gun -17.5 -17
+	gun 17.5 -17
+	gun -12 -25.5 "Heavy Laser"
+	gun 12 -25.5 "Heavy Laser"
 	turret 0 9 "Heavy Anti-Missile Turret"
 	leak "leak" 60 50
 	leak "flame" 80 80
@@ -2484,7 +2486,7 @@ ship "Raven"
 		"fuel capacity" 500
 		"cargo space" 30
 		"outfit space" 280
-		"weapon capacity" 90
+		"weapon capacity" 100
 		"engine capacity" 100
 		weapon
 			"blast radius" 60
@@ -2493,8 +2495,8 @@ ship "Raven"
 			"hit force" 900
 	outfits
 		"Heavy Laser" 2
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Torpedo Launcher" 2
+		"Torpedo" 60
 		
 		"RT-I Radiothermal"
 		"LP072a Battery Pack"

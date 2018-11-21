@@ -1216,10 +1216,10 @@ ship "Headhunter" "Headhunter (Particle)"
 
 ship "Headhunter" "Headhunter (Strike)"
 	outfits
-		"Torpedo Launcher"
-		"Torpedo" 30
-		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 50
+		"Javelin Pod" 2
+		"Javelin" 400
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
 		"Anti-Missile Turret"
 		"RT-I Radiothermal"
 		"LP072a Battery Pack"
