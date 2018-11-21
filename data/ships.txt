@@ -40,7 +40,7 @@ ship "Aerie"
 		"NT-200 Nucleovoltaic"
 		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
-		"Large Radar Jammer"
+		"Large Radar Jammer" 2
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -211,7 +211,7 @@ ship "Bactrian"
 		"Fusion Reactor"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
-		"Large Radar Jammer"
+		"Large Radar Jammer" 2
 		"Ramscoop"
 		
 		"X4700 Ion Thruster"
@@ -1199,7 +1199,7 @@ ship "Falcon"
 		"Breeder Reactor"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
-		"Large Radar Jammer"
+		"Large Radar Jammer" 2
 		"Liquid Nitrogen Cooler"
 		
 		"Impala Plasma Thruster"
@@ -1522,7 +1522,7 @@ ship "Fury"
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
-		"Small Radar Jammer" 2
+		"Large Radar Jammer"
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -1573,7 +1573,7 @@ ship "Gunboat"
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
 		"D14-RN Shield Generator"
-		"Small Radar Jammer"
+		"Small Radar Jammer" 2
 		"Cargo Scanner"
 		"Outfit Scanner"
 		
@@ -1801,7 +1801,7 @@ ship "Hawk"
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D23-QP Shield Generator"
-		"Small Radar Jammer"
+		"Small Radar Jammer" 2
 		
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
@@ -2160,7 +2160,7 @@ ship "Mule"
 		"NT-200 Nucleovoltaic"
 		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
-		"Small Radar Jammer" 2
+		"Large Radar Jammer"
 		"Ramscoop"
 		
 		"X3700 Ion Thruster"
@@ -2337,7 +2337,7 @@ ship "Protector"
 		"Fusion Reactor"
 		"LP288a Battery Pack"
 		"D67-TM Shield Generator"
-		"Small Radar Jammer" 3
+		"Large Radar Jammer"
 		"Liquid Nitrogen Cooler"
 		
 		"X3700 Ion Thruster"
@@ -2826,7 +2826,7 @@ ship "Splinter"
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
 		"D67-TM Shield Generator"
-		"Small Radar Jammer" 2
+		"Large Radar Jammer"
 		"Water Coolant System"
 		
 		"X3700 Ion Thruster"
@@ -2926,7 +2926,7 @@ ship "Star Queen"
 		"NT-200 Nucleovoltaic"
 		"LP036a Battery Pack"
 		"D94-YV Shield Generator"
-		"Small Radar Jammer" 3
+		"Large Radar Jammer"
 		"Luxury Accommodations"
 		
 		"X3700 Ion Thruster"
