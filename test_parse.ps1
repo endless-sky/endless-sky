@@ -40,6 +40,7 @@ if (Test-Path -Path "$ERR_FILE")
   }
 
   Write-Error -Message $err_msg -Category ParserError;
+  $host.SetShouldExit(1);
 }
 elseif ($av)
 {

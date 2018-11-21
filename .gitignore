@@ -1,21 +1,28 @@
+# Compiled Binaries and shortcuts
 /endless-sky
+EndlessSky.exe
+*.lnk
+
+# dlls needed to run the binary
+*.dll
+
+# Build Directories and toolchain-generated files
 /build/
-/.sconsign.dblite
-.DS_Store
-*.db
-/EndlessSky.xcodeproj/project.xcworkspace/
-/EndlessSky.xcodeproj/xcuserdata/
-/obj/Debug/
-/obj/Release/
-/obj/Win32/
+/obj
 /bin/
 x64/
 Debug/
-*.exe
-*.dll
+Release/
 *.layout
 *.depend
-/plugins/
+.sconsign.dblite
+
+# User-installed plugins
+plugins/
+
+# OS-specific generated files
+.DS_Store
+*.db
 
 # CI configs (allow local edits)
 .winmake

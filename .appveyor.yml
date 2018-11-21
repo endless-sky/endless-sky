@@ -8,13 +8,15 @@ clone_depth: 5
 
 environment:
     # Building with MinGW-w64 version 6.3.0. These env settings are used by the makefile.
-    PATH: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64\bin\;$(PATH)
-    DIR_MINGW64: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64\x86_64-w64-mingw32
+    MINGW_ROOT: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64
     matrix:
-        - es_run_mode: 'release'
+        - es_run_mode: 'dist'
 
 install:
     - ps: |
+        # Update env variables to use the desired MinGW version
+        Set-AppveyorBuildVariable -Name PATH -Value "$Env:MINGW_ROOT\bin\;$Env:PATH";
+        Set-AppveyorBuildVariable -Name DIR_MINGW64 -Value "$Env:MINGW_ROOT\x86_64-w64-mingw32";
         # Ensure we have the precompiled libraries to link with (SDL, etc.).
         if (!(Test-Path 'C:\dev64')) { New-Item 'C:\dev64' -ItemType Directory; }
         if (!(Test-Path 'C:\dev64\bin'))
@@ -44,8 +46,7 @@ cache:
     - C:\dev64
 
 build_script:
-    - ps: |
-        mingw32-make.exe -k -e -f .winmake $Env:es_run_mode;
+    - ps: mingw32-make.exe -k -e -f .winmake $Env:es_run_mode;
 
 before_test:
     - ps: |
@@ -56,5 +57,14 @@ before_test:
 test_script:
     - ps: .\test_parse.ps1 'EndlessSky.exe';
 
-artifacts:
-    - path: 'bin\*\*.exe'
+after_test:
+    - ps: |
+        $here = (Get-Location).Path;
+        Copy-Item -Path "$Env:DIR_MINGW64\lib\libstdc++-6.dll" -Destination $here;
+        Copy-Item -Path "$Env:DIR_MINGW64\lib\libgcc_s_seh-1.dll" -Destination $here;
+        Copy-Item -Path "$Env:DIR_MINGW64\lib\libwinpthread-1.dll" -Destination $here;
+        # Zip the directory for release
+        $ARCHIVE_NAME = "$Env:APPVEYOR_REPO_NAME-$Env:APPVEYOR_REPO_BRANCH-$Env:APPVEYOR_REPO_COMMIT-win64.7z";
+        $ZIP_ARGS = "a $ARCHIVE_NAME .\*.exe -i!.\*.dll -i!.\data\ -i!.\icons\ -i!.\images\ -i!.\sounds\ -i!.\source\ -i!license.txt -i!copyright -i!README.md -i!changelog -i!credits.txt -i!keys.txt";
+        Start-Process '7z.exe' -ArgumentList $ZIP_ARGS -Wait;
+        Push-AppveyorArtifact $ARCHIVE_NAME;
