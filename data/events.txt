@@ -1179,6 +1179,7 @@ event "fw southern expansion"
 		fleet "Large Southern Pirates" 7000
 		fleet "Navy Surveillance" 2000
 	system Girtab
+		government "Free Worlds"
 		fleet "Small Southern Merchants" 900
 		fleet "Large Southern Merchants" 2000
 		fleet "Small Free Worlds" 1000
@@ -1479,6 +1480,8 @@ event "fw armistice"
 	government "Free Worlds"
 		"attitude toward"
 			Republic 0
+	system "Graffias"
+		government "Republic"
 	planet Martini
 		"required reputation" 80
 	planet Thrall
@@ -1527,6 +1530,16 @@ event "fw armistice"
 
 
 
+event "fw tarazed joins"
+	system "Tarazed"
+		government "Free Worlds"
+	system "Dabih"
+		government "Free Worlds"
+	system "Albireo"
+		government "Free Worlds"
+
+
+
 event "deep sky tech available"
 	outfitter "Deep Sky Basics"
 		"Catalytic Ramscoop"
@@ -1553,7 +1566,7 @@ event "navy out of rastaban"
 		fleet "Large Southern Pirates" 7000
 		fleet "Navy Surveillance" 2000
 	system Girtab
-		government "Neutral"
+		government "Free Worlds"
 		fleet "Small Southern Merchants" 900
 		fleet "Large Southern Merchants" 2000
 		fleet "Small Free Worlds" 1000
@@ -2085,7 +2098,7 @@ event "fwc southern liberation"
 		fleet "Large Southern Pirates" 7000
 		fleet "Large Republic" 3000
 	system Girtab
-		government "Neutral"
+		government "Free Worlds"
 		fleet "Small Southern Merchants" 900
 		fleet "Large Southern Merchants" 2000
 		fleet "Small Free Worlds" 1000
@@ -2126,6 +2139,12 @@ event "fwc capture kaus borealis"
 		fleet "Small Free Worlds" 400
 		fleet "Large Free Worlds" 400
 		fleet "Large Republic" 2000
+	system "Tarazed"
+		government "Republic"
+	system "Dabih"
+		government "Republic"
+	system "Albireo"
+		government "Republic"
 	planet "New Iceland"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
 
