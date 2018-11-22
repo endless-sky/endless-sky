@@ -674,7 +674,7 @@ mission "Deep: TMBR 0"
 	
 	on offer
 		conversation
-			`When you enter the <planet> spaceport, you hear what is undoubtedly a "There Might Be Riots" song, playing loudly enough for everyone in the spaceport to hear. A quick glance around reveals the source of the noise to be the external speakers of a nearby Bounder and several people dancing.`
+			`When you enter the <planet> spaceport, you hear what is undoubtedly a "There Might Be Riots" song playing loudly enough for everyone in the spaceport to hear. A quick glance around reveals the source of the noise to be the external speakers of a nearby Bounder and several people dancing.`
 			choice
 				`	(Dance with them.)`
 				`	(Ignore them.)`
@@ -692,8 +692,8 @@ mission "Deep: TMBR 0"
 			
 			label met
 			`	"You know 'There Might Be Riots?' You are so lucky!" says Maria.`
-			`	"I couldn't even see them during the 'Trouble on the Tarmac' tour, but you've met them? That's insane!" shrieks Laura. "That album had some of my favorite songs."`
-			`	Hannah chimes in, "I've been wondering: Do you know where the band is? They've been quiet for a while now, ever since that broadcast. I heard rumors that the Republic detained them for trespassing, but since you're here..."`
+			`	"I couldn't even see them during the 'Trouble on the Tarmac' tour, but you've met them? That's insane!" shrieks Laura.`
+			`	Hannah chimes in, "Do you know where the band is? They've been quiet for a while now, ever since that broadcast. I heard rumors that the Republic detained them for trespassing, but since you're here..."`
 			choice
 				`	"I know where they are and rest assured, they're safe."`
 				`	"Sorry, I don't know where they are."`
@@ -753,7 +753,7 @@ mission "Deep: TMBR 1"
 			`	While the band intermixes crowd favorites and some new songs clearly inspired by their time in Hai space, you make your way to the side of the makeshift stage. Once the concert ends, Ulrich notices you and approaches.`
 			`	"Captain <last>, it's been a while! We've been having a great time with the peaceful squirrels ever since you dropped us off. It's the craziest experience we've ever had." He regales you with a number of adventures the band has been on since they came to Hai space, and how they were all surprised that even in such an idyllic place war was still a reality. "Say, what brings you here?"`
 			`	He listens intently to your story of the scientists on <planet>, but his brow furrows when you mention the rumor of imprisonment by the Republic.`
-			`	"Perhaps we've been away long enough. I'd have thought there would be some rumors or recordings that made it back to the Republic from here, but this place is a fairly well-kept secret so perhaps not. Maybe it's time to go back to the land of the humans."`
+			`	"Maybe we've been away long enough. I thought there would be some rumors or recordings that made it back to the Republic from here, but this place is a pretty well-kept secret, so perhaps not. Maybe it's time to go back to the land of the humans."`
 			`	Ulrich gathers up the rest of the band and they pack up their supplies. You chart a course for <destination> as the band load their musical equipment on your ship and get ready for the long ride back to human space.`
 				accept
 	
@@ -1631,7 +1631,7 @@ mission "Deep: Remnant: Engines"
 	
 	on offer
 		conversation
-			`Thanks to the new funding grants from the Deep, the team has moved their research lab into a more advanced facility, closer to the spaceport. "This new location will make transferring cargo from your ship to the lab much easier, something we expect to do a lot of in the next few months," Ivan explains. "A careful study of the outfit scans you collected has indicated that the Remnant technology uses unprecedented advancements and improvements that haven't been seen in any human technology before.`
+			`Thanks to the new funding grants from the Deep, the team has moved their research lab into a more advanced facility closer to the spaceport. "This new location will make transferring cargo from your ship to the lab much easier, something we expect to do a lot of in the next few months," Ivan explains. "A careful study of the outfit scans you collected has indicated that the Remnant technology uses unprecedented advancements and improvements that haven't been seen in any human technology before.`
 			
 			branch friendly
 				has "event: ember waste label"
@@ -1698,7 +1698,7 @@ mission "Deep: Remnant: Generators"
 	on offer
 		payment 417000
 		conversation
-			`An unloading crew is able to quickly remove the engines from your ship and transport them to Ivan's research lab, thanks to the close proximity to the spaceport. You are escorted into a lobby where one of the administrative staff pays you <payment> in exchange for the engines. He asks you to wait, indicating that Ivan or one of the other scientists should be out to meet you shortly. After about three hours of waiting, Ivan enters the room.`
+			`An unloading crew quickly removes the engines from your ship and transports them to Ivan's research lab. You are escorted into a lobby where one of the administrative staff pays you <payment> in exchange for the engines. He asks you to wait, indicating that Ivan or one of the other scientists should be out to meet you shortly. After about three hours of waiting, Ivan enters the room.`
 			`	"These engines, they are fantastic! The scans made them seem similar to human ion engines, but surprisingly they can outperform even atomic engines! The thrust-to-mass ratio is great, and they have somehow avoided the immense heat generation that our engines emit. They do have some downsides, but it's still amazing that such an isolated group of humans could make technological leaps beyond even what the Deep has accomplished.`
 			`	"We've decided that the next Remnant technology we'd like to examine is their power generation. Could you bring us one of their Millennium Cells?"`
 			choice
@@ -1729,7 +1729,7 @@ mission "Deep: Remnant: Inhibitor Cannon"
 	on offer
 		payment 276500
 		conversation
-			`Again, the Remnant technology is removed from your ship and transported to the research lab. You wander into the waiting area, and are paid <payment>. After several hours, the scientists come to you with their initial findings.`
+			`Again, the Remnant technology is removed from your ship and transported to the research lab. You wander into the waiting area and are paid <payment>. After several hours, the scientists come to you with their initial findings.`
 			`	"This Millennium Cell is little more than a radiothermal generator. Not exactly the best kind of generator if you're looking for lots of power - our fusion reactors are far better at that - but for a radiothermal generator, it produces remarkably little heat. We'll have to take it apart to find out how they are manipulating the decay heat so effectively, but preparing for that will take some time.`
 			`	"I suppose by now you've seen the Remnant ships in combat more than a few times. The outfit scans showed one of their primary weapons is a modified particle cannon, but we'd need to see the actual weapon in order to understand how the modification works. Would you retrieve an Inhibitor Cannon for us?"`
 			choice
@@ -1767,7 +1767,7 @@ mission "Deep: Remnant Surveillance"
 			`Instead of sending the Inhibitor Cannon to Ivan's lab, the unloading crew transfers it to a waiting Deep Security ship, which immediately departs when its cargo bay doors close. Unlike the previous crews that met you upon landing, they are all in military garb. When you meet Ivan at his lab, he explains that the Deep was especially interested in the Remnant technology after reading his previous reports, and that his team would need to study it in a "more secure location."`
 			branch friendly
 				"reputation: Remnant" >= 1
-			`	Ivan hands you <payment>. "Thank you for all the help, Captain <last>. You've done a lot for humanity in these past few weeks. It may take us years to fully understand the technology you have brought us, but rest assured that that once we do understand it, the galaxy will be a better place. I'll see you later, Captain. Stay safe."`
+			`	Ivan hands you <payment>. "Thank you for all the help, Captain <last>. You've done a lot for humanity in these past few months. It may take us years to fully understand the technology you have brought us, but rest assured that that once we do understand it, the galaxy will be a better place. I'll see you later, Captain. Stay safe."`
 				decline
 				
 			label friendly
@@ -1815,7 +1815,7 @@ mission "Deep: Remnant Surveillance - Caelian"
 		has "Deep: Remnant Surveillance: active"
 	on offer
 		conversation
-			`You place the first of the cubes at the entrance of a now-abandoned underground settlement, in a dark area where it will not be seen. Unable to find a good spot for the second, you decide to leave it in a ditch and cover it in sand. Although you are unable to see anyone, you feel that you are being watched. As the only human visitor you are not exactly inconspicuous, but no one approaches you as you return to your ship.`
+			`You place the first of the cubes at the entrance of a now-abandoned underground settlement, in a dark area where it will not be seen. Unable to find a good spot for the second, you decide to leave it in a ditch and cover it in sand. Although you are unable to see anyone, you feel that you are being watched. As the only non-Remnant you are not exactly inconspicuous, but no one approaches you as you return to your ship.`
 				decline
 
 mission "Deep: Remnant Surveillance - Aventine"
