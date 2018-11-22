@@ -665,9 +665,6 @@ mission "Deep: TMBR 0"
 	deadline 120
 	to offer
 		random < 60
-		"Transport scientists: done" >= 2
-		"Escort science vessel: done" >= 2
-		"Record academic conference: done" >= 2
 		has "There Might Be Riots part 3B: done"
 		not "Deep: Remnant 0: offered"
 		not "Deep: Project Hawking: offered"
