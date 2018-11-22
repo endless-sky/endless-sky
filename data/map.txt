@@ -24719,6 +24719,7 @@ planet "Ember Threshold"
 	description ""
 
 planet "Ember Wormhole"
+	attributes "requires: quantum keystone"
 	description ""
 
 planet "Esayaku Fen"
