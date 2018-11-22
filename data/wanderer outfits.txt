@@ -555,7 +555,7 @@ outfit "Type 4 Radiant Steering"
 outfit "Wanderer Outfits License"
 	category "Special"
 	thumbnail "outfit/wanderer outfits license"
-	description "After speaking to a Wanderer ambassador named Iktat Rek using a translation device obtained from the Hai, you received permission to purchase the Wanderer's outfits, but not their ships."
+	description "After speaking to a Wanderer ambassador named Iktat Rek using a translation device obtained from the Hai, you received permission to purchase the Wanderers' outfits, but not their ships."
 
 outfit "Wanderer License"
 	category "Special"
