@@ -91,7 +91,8 @@ mission "FWC Attack Kaus Borealis"
 		event "fwc capture kaus borealis"
 	
 	npc
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		fleet
 			names "free worlds capital"
 			fighters "free worlds fighters"
@@ -234,13 +235,16 @@ mission "FWC Cebalrai 1B"
 		conversation
 			`You meet up with Tomek and Alondo and tell them that the defenses in the Cebalrai system did not seem particularly strong. "They must've seen the writing on the wall and pulled back the rest of their fleet," says Alondo.`
 			`	"Either that," says Tomek, "or they're wary of engaging us again now that they know we're willing to use nukes. Which I'm still not happy about, by the way. It's only a matter of time until they respond in kind. But in any case, our next move is clear: bring a fleet to Cebalrai and capture the system. <first>, you'll be in charge of that fleet. Alondo can travel with you to handle the diplomatic aftermath."`
+			`	"Before we go on," Alondo says, "you two should know that I just received word that Tarazed has decided to officially sever ties with us."`
+			`	Tomek looks rather somber before saying, "Bold move for a system we have completely surrounded. They're none of our concern right now. Let's make our way to Cebalrai."`
 				accept
 	
 	on complete
 		event "fwc capture cebalrai"
 	
 	npc
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		fleet
 			names "free worlds capital"
 			variant
@@ -491,7 +495,8 @@ mission "FWC Diplomacy 1B"
 				accept
 	
 	npc accompany save
-		personality timid
+		government "Escort"
+		personality timid escort
 		ship "Argosy" "F.S. Big Brother"
 
 	on visit
@@ -535,7 +540,8 @@ mission "FWC Diplomacy 1C"
 				launch
 	
 	npc
-		personality timid
+		government "Escort"
+		personality timid escort
 		ship "Argosy" "F.S. Big Brother"
 
 	npc
@@ -597,11 +603,12 @@ mission "FWC Checkmate 1"
 			`	"I see," she says. "Did you have a plan for what comes next, or are we just winging it now?"`
 			`	Alondo says, "Unfortunately, we do have a plan. Our very last contingency plan. We call it the 'checkmate' option. Our fleet will push north--"`
 			`	He is interrupted by one of Tomek's men running into the room. "Sir, we have a major Navy fleet incoming. We need all ships in the air immediately to repulse them. Reinforcements are on their way, but they may not get here for a while."`
-			`	Tomek says, "So, it begins. Captain <last>, get back to your ship and aid in the defenses."`
+			`	Tomek says, "So, it begins. Captain <last>, get back to your ship and aid in the defense."`
 				launch
 	
 	npc
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		fleet
 			names "free worlds capital"
 			fighters "free worlds fighters"
@@ -819,7 +826,8 @@ mission "FWC Checkmate 1B"
 		event "fwc capture menkent"
 
 	npc
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		fleet
 			names "free worlds capital"
 			fighters "free worlds fighters"
@@ -930,7 +938,8 @@ mission "FWC Checkmate Escorts"
 		has "FWC Pug 4: done"
 	
 	npc kill
-		personality heroic disables
+		government "Free Worlds"
+		personality heroic escort disables
 		fleet
 			names "free worlds capital"
 			variant
@@ -1488,7 +1497,8 @@ mission "FWC Pug 3B"
 				launch
 	
 	npc
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		fleet
 			names "free worlds capital"
 			fighters "free worlds fighters"
@@ -1636,7 +1646,8 @@ mission "FWC Pug 3D: Reinforcements"
 				"Combat Drone" 6
 				"Gunboat" 2
 	npc kill
-		personality heroic waiting
+		government "Free Worlds"
+		personality heroic escort waiting
 		fleet
 			names "free worlds capital"
 			variant

@@ -52,6 +52,14 @@ namespace {
 
 
 
+// Construct and Load() at the same time.
+ConditionSet::ConditionSet(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 // Load a set of conditions from the children of this node.
 void ConditionSet::Load(const DataNode &node)
 {
@@ -121,8 +129,7 @@ void ConditionSet::Add(const DataNode &node)
 	else if(node.Size() == 1 && (node.Token(0) == "and" || node.Token(0) == "or"))
 	{
 		// The "and" and "or" keywords introduce a nested condition set.
-		children.emplace_back();
-		children.back().Load(node);
+		children.emplace_back(node);
 	}
 	else
 		node.PrintTrace("Unrecognized condition expression:");

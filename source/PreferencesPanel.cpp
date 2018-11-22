@@ -51,6 +51,7 @@ namespace {
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
+	const string FIGHTER_REPAIR = "Repair fighters in";
 }
 
 
@@ -430,22 +431,24 @@ void PreferencesPanel::DrawSettings()
 		"Automatic aiming",
 		"Automatic firing",
 		EXPEND_AMMO,
+		FIGHTER_REPAIR,
 		TURRET_TRACKING,
-		"",
+		"\n",
 		"Performance",
 		"Show CPU / GPU load",
 		"Render motion blur",
 		"Reduce large graphics",
 		"Draw background haze",
 		"Show hyperspace flash",
-		"\n",
+		"",
 		"Other",
 		"Clickable radar display",
+		"Hide unexplored map regions",
 		REACTIVATE_HELP,
 		"Rehire extra crew when lost",
 		SCROLL_SPEED,
-		"Warning siren",
-		"Hide unexplored map regions"
+		"Show escort systems on map",
+		"Warning siren"
 	};
 	bool isCategory = true;
 	for(const string &setting : SETTINGS)
@@ -473,7 +476,8 @@ void PreferencesPanel::DrawSettings()
 		// Record where this setting is displayed, so the user can click on it.
 		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
 		
-		// Get the "on / off" text for this setting.
+		// Get the "on / off" text for this setting. Setting "isOn"
+		// draws the setting "bright" (i.e. the setting is active).
 		bool isOn = Preferences::Has(setting);
 		string text;
 		if(setting == ZOOM_FACTOR)
@@ -493,17 +497,36 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = Preferences::Has(FOCUS_PREFERENCE) ? "focused" : "opportunistic";
 		}
+		else if(setting == FIGHTER_REPAIR)
+		{
+			isOn = true;
+			text = Preferences::Has(FIGHTER_REPAIR) ? "parallel" : "series";
+		}
 		else if(setting == REACTIVATE_HELP)
 		{
 			// Check how many help messages have been displayed.
 			const map<string, string> &help = GameData::HelpTemplates();
 			int shown = 0;
+			int total = 0;
 			for(const auto &it : help)
-				shown += Preferences::Has("help: " + it.first);
+			{
+				// Don't count certain special help messages that are always
+				// active for new players.
+				bool special = false;
+				const string SPECIAL_HELP[] = {"basics", "lost"};
+				for(const string &str : SPECIAL_HELP)
+					if(it.first.find(str) == 0)
+						special = true;
+				
+				if(!special)
+				{
+					++total;
+					shown += Preferences::Has("help: " + it.first);
+				}
+			}
 			
-			// Don't count the "basic help" messages in the total.
 			if(shown)
-				text = to_string(shown) + " / " + to_string(help.size() - 2);
+				text = to_string(shown) + " / " + to_string(total);
 			else
 			{
 				isOn = true;

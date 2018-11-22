@@ -12,10 +12,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "GameEvent.h"
 
-#include "DataNode.h"
 #include "DataWriter.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "System.h"
 
@@ -23,6 +23,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 using namespace std;
+
+
+
+// Construct and Load() at the same time.
+GameEvent::GameEvent(const DataNode &node)
+{
+	Load(node);
+}
 
 
 

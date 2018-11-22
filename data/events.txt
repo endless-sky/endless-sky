@@ -248,10 +248,6 @@ event "initial deployment 1"
 	planet "New Austria"
 		description `New Austria is a rugged mountain world, full of snow-capped peaks and valleys so deep and so steep that they rarely see sunlight. The few settlements that have been built here were developed for mining sapphires and rubies; the sapphires found in New Austria range from blue to yellow to black to clear in color, and are used both for industrial abrasives and for jewelry.`
 		description `The Navy has recently requisitioned one of the abandoned mining towns and begun refurbishing it for a secure military base, with the mining tunnels used as deep underground bunkers.`
-	shipyard "Syndicate Basics"
-		"Barb"
-	outfitter "Syndicate Basics"
-		"X1050 Ion Engines"
 
 event "initial deployment 2"
 	date 14 8 3014
@@ -795,6 +791,8 @@ event "start of hostilities"
 	government "Republic"
 		"attitude toward"
 			"Free Worlds" -.2
+			"Merchant" .01
+			"Pirate" -.01
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" -.2
@@ -1063,13 +1061,6 @@ event "fw gets catalytic ramscoop"
 
 
 
-event "terraforming Rand"
-	planet Rand
-		description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
-		description `	Recent terraforming experiments have caused an increase in precipitation. Flash floods have scoured the landscape in some areas, but sandstorms are also less frequent, and the locals say the heat is a bit less oppressive than it used to be.`
-
-
-
 event "fw safe passage starts"
 	"reputation: Republic" = 5
 
@@ -1188,6 +1179,7 @@ event "fw southern expansion"
 		fleet "Large Southern Pirates" 7000
 		fleet "Navy Surveillance" 2000
 	system Girtab
+		government "Free Worlds"
 		fleet "Small Southern Merchants" 900
 		fleet "Large Southern Merchants" 2000
 		fleet "Small Free Worlds" 1000
@@ -1483,9 +1475,13 @@ event "fw armistice"
 	government Republic
 		"attitude toward"
 			"Free Worlds" 0
+			"Merchant" .25
+			"Pirate" -.3
 	government "Free Worlds"
 		"attitude toward"
 			Republic 0
+	system "Graffias"
+		government "Republic"
 	planet Martini
 		"required reputation" 80
 	planet Thrall
@@ -1534,6 +1530,16 @@ event "fw armistice"
 
 
 
+event "fw tarazed joins"
+	system "Tarazed"
+		government "Free Worlds"
+	system "Dabih"
+		government "Free Worlds"
+	system "Albireo"
+		government "Free Worlds"
+
+
+
 event "deep sky tech available"
 	outfitter "Deep Sky Basics"
 		"Catalytic Ramscoop"
@@ -1560,7 +1566,7 @@ event "navy out of rastaban"
 		fleet "Large Southern Pirates" 7000
 		fleet "Navy Surveillance" 2000
 	system Girtab
-		government "Neutral"
+		government "Free Worlds"
 		fleet "Small Southern Merchants" 900
 		fleet "Large Southern Merchants" 2000
 		fleet "Small Free Worlds" 1000
@@ -1771,14 +1777,13 @@ event "pug invasion 4"
 
 
 event "fw syndicate welcoming"
-	"reputation: Syndicate" = 1
-	government Syndicate
+	government "Syndicate"
 		"attitude toward"
 			"Free Worlds" 0
-			Republic 0
+			"Republic" 0
 			"Navy (Oathkeeper)" 0
 		bribe .08
-	system Algenib
+	system "Algenib"
 		government "Syndicate (Extremist)"
 		fleet "Small Core Pirates" 1500
 		fleet "Large Core Pirates" 2000
@@ -2093,7 +2098,7 @@ event "fwc southern liberation"
 		fleet "Large Southern Pirates" 7000
 		fleet "Large Republic" 3000
 	system Girtab
-		government "Neutral"
+		government "Free Worlds"
 		fleet "Small Southern Merchants" 900
 		fleet "Large Southern Merchants" 2000
 		fleet "Small Free Worlds" 1000
@@ -2134,6 +2139,12 @@ event "fwc capture kaus borealis"
 		fleet "Small Free Worlds" 400
 		fleet "Large Free Worlds" 400
 		fleet "Large Republic" 2000
+	system "Tarazed"
+		government "Republic"
+	system "Dabih"
+		government "Republic"
+	system "Albireo"
+		government "Republic"
 	planet "New Iceland"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
 
@@ -2394,6 +2405,8 @@ event "fwc peace with the navy"
 	government "Republic"
 		"attitude toward"
 			"Free Worlds" 0
+			"Merchant" .25
+			"Pirate" -.3
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" 0

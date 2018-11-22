@@ -563,7 +563,7 @@ trade
 		"thermoset polymer waste"
 		"trash"
 		"used syringes"
-		"volatile gasses"
+		"volatile gases"
 	commodity "Construction"
 		"box girders"
 		"carbon steel"
