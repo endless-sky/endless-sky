@@ -1,6 +1,6 @@
 # Compiled Binaries and shortcuts
 /endless-sky
-EndlessSky.exe
+*.exe
 *.lnk
 
 # dlls needed to run the binary
