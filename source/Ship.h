@@ -492,7 +492,7 @@ private:
 	
 	// If the ship is a defense platform it needs to know the StellarObject
 	// that this ship represents.
-	const StellarObject *defending;
+	const StellarObject *defending = nullptr;
 	
 	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
 	// when the ship is dying.
