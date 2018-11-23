@@ -185,7 +185,7 @@ ship "Auxiliary"
 		licenses
 			Navy
 			Auxiliary
-		"cost" 16720000
+		"cost" 13720000
 		"shields" 17100
 		"hull" 5900
 		"required crew" 87
@@ -231,8 +231,8 @@ ship "Auxiliary"
 	turret 0 73.5 "Heavy Anti-Missile Turret"
 	fighter 0 -75
 	fighter 0 -18
-	drone 0 22.5
-	drone 0 73.5
+	fighter 0 22.5
+	fighter 0 73.5
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 30 30
@@ -258,8 +258,8 @@ ship "Auxiliary" "Auxiliary (Cargo)"
 	turret 0 83 "Heavy Anti-Missile Turret"
 	fighter 0 -72
 	fighter 0 -21
-	drone 0 31
-	drone 0 83
+	fighter 0 31
+	fighter 0 83
 
 ship "Auxiliary" "Auxiliary (Transport)"
 	sprite "ship/auxiliaryt"
@@ -275,8 +275,8 @@ ship "Auxiliary" "Auxiliary (Transport)"
 	turret 0 79 "Heavy Anti-Missile Turret"
 	fighter 0 -73.5
 	fighter 0 -17
-	drone 0 20
-	drone 0 79
+	fighter 0 20
+	fighter 0 79
 
 
 
@@ -1272,15 +1272,15 @@ ship "Dropship"
 	thumbnail "thumbnail/dropship"
 	attributes
 		category "Fighter"
-		"cost" 129000
+		"cost" 91000
 		"shields" 600
 		"hull" 200
 		"required crew" 1
 		"bunks" 9
 		"mass" 30
-		"drag" .92
-		"heat dissipation" .8
-		"cargo space" 10
+		"drag" 1
+		"heat dissipation" .9
+		"cargo space" 5
 		"outfit space" 100
 		"weapon capacity" 16
 		"engine capacity" 40
@@ -1292,7 +1292,7 @@ ship "Dropship"
 	outfits
 		"Beam Laser" 2
 		
-		"nGVF-AA Fuel Cell"
+		"nGVF-BB Fuel Cell"
 		"Supercapacitor"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer"
