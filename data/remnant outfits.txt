@@ -51,6 +51,7 @@ effect "inhibitor impact"
 	"random velocity" 6
 	"velocity scale" -.05
 
+	
 outfit "Thrasher Cannon"
 	category "Guns"
 	licenses
@@ -172,7 +173,7 @@ outfit "EMP Torpedo"
 	"mass" 1
 	"emp torpedo capacity" -1
 	description "This is ammunition for the EMP Torpedo Bay, a weapon that is manufactured by the Remnant."
-	
+
 outfit "EMP Torpedo Bay"
 	category "Secondary Weapons"
 	licenses
