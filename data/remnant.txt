@@ -35,7 +35,6 @@ fleet "Small Remnant"
 	variant 1
 		"Albatross (Heavy)"
 
-
 fleet "Large Remnant"
 	government "Remnant"
 	names "remnant"
@@ -200,7 +199,6 @@ phrase "remnant"
 		"Ascending"
 		"Soaring"
 		"Enduring"
-
 
 
 shipyard "Remnant"
