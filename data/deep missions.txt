@@ -1392,7 +1392,7 @@ mission "Deep: Remnant 1A"
 		not "First Contact: Remnant: offered"
 	
 	on offer
-		conversation "remnant"
+		conversation "deep: remnant"
 	on accept
 		outfit "Quantum Keystone" 1
 	on enter "Arculus"
@@ -1420,7 +1420,7 @@ mission "Deep: Remnant 2A"
 		has "Deep: Remnant 1A: done"
 	
 	on offer
-		conversation "remnant"
+		conversation "deep: remnant"
 	
 	npc "scan outfits"
 		government "Remnant"
@@ -1453,7 +1453,7 @@ mission "Deep: Remnant 1B"
 		has "deep: knew of stones before scientists"
 	
 	on offer
-		conversation "remnant"
+		conversation "deep: remnant"
 	
 	npc "scan outfits"
 		government "Remnant"
@@ -1488,7 +1488,7 @@ mission "Deep: Remnant 1C"
 		not "Deep: Remnant 1A: offered"
 	
 	on offer
-		conversation "remnant"
+		conversation "deep: remnant"
 	
 	npc "scan outfits"
 		government "Remnant"
@@ -1509,7 +1509,7 @@ mission "Deep: Remnant 1C"
 
 
 
-conversation "remnant"
+conversation "deep: remnant"
 	branch 2A1 ABC # Are we in mission 2A or any other mission?
 		has "Deep: Remnant 1A: done"
 	
