@@ -682,7 +682,7 @@ mission "Remnant: Catalytic Ramscoop"
 
 mission "Remnant: Plasma Cannons"
 	name "Retrieve Plasma Cannons for the Remnant"
-	description "An engineer on <planet>, a Remnant world, has offered to pay you one million credits in exchange for obtaining two Plasma Canons."
+	description "An engineer on <planet>, a Remnant world, has offered to pay you one million credits in exchange for obtaining two Plasma Cannons."
 	source Viminal
 	to offer
 		has "license: Remnant"
@@ -967,7 +967,7 @@ mission "Remnant: Salvage 3"
 		has "Remnant: Salvage 2: done"
 	on offer
 		conversation
-			`After watching the mechanics start repairs on the <ship>, you make the short trek to the spaceport common area. People are still rushing around as ships continue to land. No wrecks as of yet, but judging by the scrolling arrivals displays there are still quite a few ships that haven't landed yet. Looking around for someone to talk to, you spot the prefect who had just visited your ship. He notices you and comes over. "No ships lost yet," he signs harshly, "but there is a few ships that haven't checked in yet."`
+			`After watching the mechanics start repairs on the <ship>, you make the short trek to the spaceport common area. People are still rushing around as ships continue to land. No wrecks as of yet, but judging by the scrolling arrivals displays there are still quite a few ships that haven't landed yet. Looking around for someone to talk to, you spot the prefect who had just visited your ship. He notices you and comes over. "No ships lost yet," he signs harshly, "but there are a few ships that haven't checked in yet."`
 			`	He shakes his head and continues, "We need to keep our medical facilities as free as possible. Could you take some of our injured to Aventine? They are stable and healthy enough for an unattended transport, and it would free up medics and space here."`
 			choice
 				`	"Of course."`
@@ -1125,21 +1125,21 @@ mission "Remnant: Salvage 6"
 		conversation 
 			`Tali meets you at the dock with a flatbed ready to offload the shipment. As you run through your shutdown routine you hit the switch for the cargo bay doors, and by the time you have gone down to the cargo hold, Tali has half the shipment already unloaded.`
 			`	Her signs flick at you with a gentleness that you are slowly deciding equates to a cheerful tone. "Thank you for all the help you've provided in recovering this salvage. I have discussed it with the other engineers, and we have decided to give you access to our salvage."`
-			`	She leads you over to the warehouse, scans her ID on the console, and taps a few commands. Then she scans your ID card. "There you go, I have updated your access codes" she signs cheerfully. She hands you your ID and pulls you to a door on the far side of the outfitting shop. Beyond the door is a room filled with outfits and weapons that clearly don't fit the same style as the other Remnant technology you have seen. Most of the things here you have seen on scans and when salvaging equipment from other ships, but never up close."`
+			`	She leads you over to the warehouse, scans her ID on the console, and taps a few commands. Then she scans your ID card. "There you go, I have updated your access codes," she signs cheerfully. She hands you your ID and pulls you to a door on the far side of the outfitting shop. Beyond the door is a room filled with outfits and weapons that clearly don't fit the same style as the other Remnant technology. You have seen most of the things here on scans and when salvaging equipment from other ships, but never up close.`
 			`	"Everything in here we have either learned how to duplicate in its current form, or have salvaged in sufficient quantities that we might as well be manufacturing it."`
-			`	She nods at the rack of Korath Heat Shunts while she explains, then turns back to you.`
-			`	"Of course the really advanced and rare stuff is still going to the labs first, and won't be available until we have learned all we can from it." She looks around proudly. "We don't have the industrial capacity or the numbers of researchers to keep up with the Alphas, the Korath, or whoever else might be out there. But we are very good at figuring out what others have built and learning from it."`
-			`	"Any salvage or unrecognized technology gets scanned in our quarantine area for threats, then looked over to figure out if there is anything new in it. If there is something new, it is shipped to a lab for our researchers to dissect. Anything we have already figured out ends up in here, where Remnant captains are welcome to use it as they see fit."`
+			`	She nods at a rack of Korath Heat Shunts while she explains, then turns back to you.`
+			`	"Of course the really advanced and rare stuff is still going to the labs first, and won't be available until we have learned all we can from it." She looks around proudly. "We don't have the industrial capacity or the numbers of researchers to keep up with the Alphas, the Korath, or whoever else might be out there. But we are very good at figuring out what others have built and learning from it.`
+			`	Any salvage or unrecognized technology gets scanned in our quarantine area for threats, then looked over to figure out if there is anything new in it. If there is something new, it is shipped to a lab for our researchers to dissect. Anything we have already figured out ends up in here, where Remnant captains are welcome to use it as they see fit."`
 			choice
 				`	"Threats?"`
 					goto SalvThreats
 				`	"Interesting."`
-			`	"Yes, it is, isn't it? So many new things out there to discover and learn about."`
+			`	"Yes, it is, isn't it? So many new things out there to discover and learn about.`
 				goto SalvEnd
 			label SalvThreats
-			`	"Yes, sometimes salvage that is brought in is dangerous. System Cores come with fleets of micro-bots, for instance. If they aren't de-activated properly, they keep trying to rebuild their surroundings in the form of the last ship they were configured to serve. And while it hasn't happened yet, we are worried that someday we might run into someone who builds traps into their equipment, or uses nanobots that could run amok. We haven't seen any of that yet, but our science-fiction stories are filled with tales of nanotech apocalypses and things like that."`
+			`	"Yes, sometimes salvage that is brought in is dangerous. System Cores come with fleets of micro-bots, for instance. If they aren't de-activated properly, they keep trying to rebuild their surroundings in the form of the last ship they were configured to serve. And while it hasn't happened yet, we are worried that someday we might run into someone who builds traps into their equipment, or uses nanobots that could run amok. We haven't seen any of that yet, but our science-fiction stories are filled with tales of nanotech apocalypses and things like that.`
 			label SalvEnd
-			`	"Well, I need to get back to work. That last battle put us behind schedule on our repairs. Have a good day!" With a final flourish that you think is the equivalent of an exclamation mark, Tali strides out of the outfitters, heading towards another landing bay.`
+			`	Well, I need to get back to work. That last battle put us behind schedule on our repairs. Have a good day!" With a final flourish that you think is the equivalent of an exclamation mark, Tali strides out of the outfitters, heading towards another landing bay.`
 
 event "Remnant Salvage Available"
 	outfitter "remnant"
@@ -1159,7 +1159,7 @@ event "Remnant Salvage Available"
 	
 
 mission "Remnant: Expanded Horizons Quarg 1"
-	name "Expanded Horizons visiting the Quarg"
+	name "Visiting the Quarg"
 	description "Take Remnant researchers to see some Quarg."
 	passengers 3
 	blocked "This mission requires bunks for three passengers."
@@ -1169,40 +1169,38 @@ mission "Remnant: Expanded Horizons Quarg 1"
 	to offer
 		has "Remnant: Learning Sign 2: done"
 		has "First Contact: Quarg: offered"
-		random < 75
+		random < 40
 	on offer
 		conversation
-			`As you relax in the cafeteria on <planet> you are approached by young Remnant. Judging by the hand-held sensors and tools hanging off her belt, you suspect she is a researcher or an engineer.`
-			`	"Hello Captain <last>, My name is Dawn, and I have been spending the past few days skimming the archive you retrieved. I wanted to ask you a few questions. May I?"`
+			`As you relax in the cafeteria on <planet> you are approached by a young Remnant. Judging by the hand-held sensors and tools hanging off her belt, you suppose she is a researcher or an engineer.`
+			`	"Hello Captain <last>. My name is Dawn, and I have been spending the past few days skimming the archive you retrieved. I wanted to ask you a few questions. May I?"`
 			choice
 				`"Sure, pull up a chair."`
 					goto AnswerQuestions
-				`"Not right now."`
-					defer
 				`"I'm not interested."`
 					decline
 			label "AnswerQuestions"
-			`	She quickly slides into the chair opposite and pulls out a datapad. "Firstly, our histories mention how humanity met a race called the 'Quarg' and had some ongoing dialogs with them, but not much beyond that. Now here in this history that you brought us, it says that humanity has started exchanging technology with them! Is this true?" She looks at you intently. You sign negatively, and she dejectedly continues. "Could you tell explain about them, then?" You reply that the Quarg have allowed humanity to live near them, and that the Quarg are usually willing to answer questions, including scientific ones. You continue, elaborating that while the Quarg don't seem to mind having an innovative shipyard studying them as best it can, they don't actually share their technology with anyone."`
-			`	After several hours of telling her about meeting the Quarg and visiting their world it finally dawns on you that it would be easy enough to take her to visit the Tarazed system. You offer to take her and a couple of her colleagues. She eagerly accepts, although expresses a preference for landing on the human world so they can observe the Quarg ships from a distance. They would rather not draw any attention to themselves. She runs out of the cafeteria after telling you they will meet you at your ship in half an hour.`
+			`	She quickly slides into the chair opposite you and pulls out a datapad. "Firstly, our histories mention how humanity met a race called the 'Quarg' and had some ongoing dialogs with them, but not much beyond that. Now here in this history that you brought us, it says that humanity has started exchanging technology with them! Is this true?" She looks at you intently. You sign negatively, and she dejectedly continues. "Could you explain about them, then?" You reply that the Quarg have allowed humanity to live near them, and that the Quarg are usually willing to answer questions, including scientific ones. You continue, elaborating that while the Quarg don't seem to mind having an innovative shipyard studying them as best it can, they don't actually share their technology with anyone.`
+			`	After several hours of telling her about meeting the Quarg and visiting their world it finally dawns on you that it would be easy enough to take her to visit the Tarazed system. You offer to take her and a couple of her colleagues. She eagerly accepts, although she expresses a preference for landing on the human world, so they can observe the Quarg ships from a distance, as they would rather not draw any attention to themselves. She runs out of the cafeteria after telling you they will meet you at your ship in half an hour.`
 				accept
 	on complete
 		payment 50000
 		conversation
-			`Dawn and her colleagues are thrilled with the trip. While they had each served on Remnant ships exploring the Ember wastes or patrolling their territory, none had ever been more than a handful of jumps away from their own space. Their ships were always cautious to stay far away from human space to avoid leading anyone back.`
-			`	It occurs to you that Dawn and her colleagues seem much less reserved than most Remnant. You aren't sure if it is because they are younger, less secretive, or if the Remnant have been concealing it from you. It is also possible that you just have better opportunities to figure it  out now that you can understand their signs.`
-			`	Upon arriving at Wayfarer they spend considerable amount of time watching the few Quarg in evidence, however it is easy to see that the real draw of their attention is the ships. You wave your ID across the scanner for the shipyard and take them inside to see what Tarazed shipyards has on display.`
+			`Dawn and her colleagues are thrilled with the trip. While they had each served on Remnant ships exploring the Ember Waste or patrolling their territory, none had ever been more than a handful of jumps away from their own space. They explain that their ships were always cautious to stay far away from human space to avoid leading anyone back.`
+			`	It occurs to you that Dawn and her colleagues seem much less reserved than most Remnant. You aren't sure if it is because they are younger, less secretive, or if the Remnant have been concealing it from you. It is also possible that you just have better opportunities to figure it out now that you can understand their signs.`
+			`	Upon arriving at Wayfarer they spend considerable amount of time watching the few Quarg in evidence, however it is easy to see that the real draw of their attention is the ships. You wave your ID across the scanner for the shipyard and take them inside to see what Tarazed Shipyards has on display.`
 			branch Rich
 				"net worth" >= 20000000
 			`	After a few minutes a sales agent meanders over to ask if there's anything he can do to help. You ask a few questions about the different ships for Dawn's benefit, listen to the sales agent repeat a few lines from the display, then politely tell him you'll just browse on your own.`
 				goto SkipRich
 			label Rich
 			`	Almost before you are in the main hall a sales manager is at your side, inquiring as to how he can help. You can almost see the credit signs in his eyes and you suspect that scanning your license may have done a quick check of your net worth too.`
-			`	You ask a few leading questions about new designs and play the part of a captain with more money than brains, and the manager eagerly directs you to the big hangars near the end that house their biggest and fanciest ships. After it becomes clear that he doesn't have any experience flying them you politely disentangle yourselves from him to look at the ships in peace.`
+			`	You ask a few leading questions about new designs and play the part of a captain with more money than brains, and the manager eagerly directs you to the large hangars near the end that house their largest and fanciest ships. After it becomes clear that he doesn't have any experience flying them you politely disentangle yourselves from him to look at the ships in peace.`
 			label SkipRich
-			`	After an hour of browsing they take off to browse the outfitters and agree to meet you back at the spaceport in an hour.`
+			`	After an hour of browsing, the young remnant take off to browse the outfitters and agree to meet you back at the spaceport in an hour.`
 
 mission "Remnant: Expanded Horizons Quarg 2"
-	name "Expanded Horizons Quarg Scanning"
+	name "Quarg Scanning"
 	description "Perform an outfit scan on the Quarg ship <npc>, then land again on <destination>."
 	source
 		planet Wayfarer
@@ -1230,7 +1228,7 @@ mission "Remnant: Expanded Horizons Quarg 2"
 
 	on complete
 		conversation
-			`You breath a sigh of relief once you are back on the ground without a reaction from the Quarg. You were a touch worried they might take exception to being scanned, but it appears to consider it par for the course for this system filled with human engineers.`
+			`You breath a sigh of relief once you are back on the ground without a reaction from the Quarg. You were a touch worried they might take exception to being scanned, but they seem to consider it par for the course for this system filled with human engineers.`
 			`	Dawn does some follow-up scans of idle Quarg ships, and they take some time to make sure all their pictures are well focused and accurate. They let you know that they will meet you back in the spaceport bar.`
 		payment 50000
 
@@ -1259,14 +1257,14 @@ mission "Remnant: Expanded Horizons Quarg 3"
 	on complete
 		payment 50000
 		conversation
-			`Once back in the privacy of <ship>, the stony reserve fades to cheerfulness as trio are a blur of motion as they chatter back and forth with their signs. Apparently this will be one of the biggest boosts to their research since the first time they salvaged the gear off a Korath raider.`
-			`	They eventually slow down their signs a bit and explain that up until the time the Remnant left human space, the Quarg had been reluctant to let anyone conduct detailed scans of their ships, let alone the close contact the engineers on Tarazed seem to enjoy. One of her fellow researchers picks up the story:`
-			`	"Our historical records just have a few pictures and videos of Quarg ships, along with a basic scan that doesn't provide more than the general outline of the ship. These scans," he taps the databanks "actually picked up detailed structural layouts and even identified a number of key components. It isn't nearly enough information to be able to duplicate them, but it is enough that we can start trying to figure out how they work.`
-			`	Upon arriving at <planet> they quickly thank you, and literally run back to their offices to finish prepping their material to publish and distribute.`
+			`Once you are back in the privacy of <ship>, the stony reserve fades to cheerfulness as the trio are a blur of motion as they chatter back and forth with their signs. Apparently this will be one of the biggest boosts to their research since the first time they salvaged the gear off a Korath raider.`
+			`	They eventually slow down their signs a bit and explain that up until the time the Remnant left human space, the Quarg had been reluctant to let anyone conduct detailed scans of their ships, let alone the close contact the engineers on Tarazed seem to enjoy. One of Dawn's fellow researchers continues with the explanation.`
+			`	"Our historical records just have a few pictures and videos of Quarg ships, along with a basic scan that doesn't provide more than the general outline of the ship. These scans," he says while tapping the databanks, "actually picked up detailed structural layouts and even identified a number of key components. It isn't nearly enough information to be able to duplicate them, but it is enough that we can start trying to figure out how they work.`
+			`	Upon arriving at <planet> they quickly thank you, and run back to their offices to finish prepping their material to publish and distribute.`
 
 mission "Remnant: Follow-up on Terminus Researchers"
-	name "Check up on Terminus Researchers"
-	description "You offered to checkup on the wormhole researchers."
+	name "Check up on Wormhole Researchers"
+	description "Return to Bounty to check up on a group of wormhole researchers you met some time ago."
 	source
 		government Remnant
 	destination Bounty
@@ -1279,13 +1277,13 @@ mission "Remnant: Follow-up on Terminus Researchers"
 			`Looking around at the Remnant spaceport, it suddenly strikes you how amazing this is. You never would have imagined that you would end up here back when you earned your pilot's license. It seems so long ago that your biggest concern was deciding whether to pay off your loan by ferrying cargo, doing courier jobs, or escorting merchants. (and on your darker days - by being a pirate).`
 			`	Thinking back, it suddenly occurs to you that you helped retrieve a science drone for some researchers on Bounty - researchers who were studying the wormhole in Terminus. Research like that might be of interest to the Remnant, seeing as it could open the door to research vessels venturing into the Ember Wastes. It would only be a matter of time until someone figures out how to use the key stones - either by luck or by research, and then the Remnant's secrecy would vanish.`
 			choice
-				`	"It isn't that important."`
+				`	(Forget about it.)`
 					decline
-				`	"I should find a prefect."`
+				`	(Find a prefect.)`
 			`	For lack of a better place to go, you stop by the information desk where you picked up the sign language course. You tell the attendant that you have something potentially important - but non-urgent - to discuss in regards to Remnant security. They tap a few buttons, then give you directions down a hallway. You quickly find yourself in an armory where several remnant guards are in the process of cleaning their weapons. One stands up and comes over to you.`
-			`	"Greetings Captain, I am prefect Reegar. I was told you had some information that could be important?"`
-			`	He takes a seat on a bench a little ways away from the other Remnant, and gestures for you to take a seat with him.`
-			`	You give him some background about the current state of Human and Hai understanding about the wormholes - or rather the lack thereof, then explain how you met a team of researchers who were using drones to study the wormhole exit in the Terminus system. He quickly picks up on the potential threat if someone figures out the key to using them, especially since you have demonstrated that it only takes one curious human to figure it out.`
+			`	"Greetings Captain, I am Prefect Reegar. I was told you had some information that could be important?"`
+			`	He takes a seat on a bench on the far side of the room from the other Remnant, and gestures for you to take a seat with him.`
+			`	You give him some background about the current state of Human and Hai understanding about the wormholes - or the lack thereof - then explain how you met a team of researchers who were using drones to study the wormhole exit in the Terminus system. He quickly picks up on the potential threat if someone figures out the key to using them, especially since you have demonstrated that it only takes one curious human to figure it out.`
 			`	Thinking carefully, he asks, "It is clear that we need to keep an eye on this situation. You know more about the rest of the galaxy than we do, so could you find them and see how much progress they have made?"`
 			choice
 				`	"I'd prefer not to."`
