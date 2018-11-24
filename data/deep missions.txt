@@ -776,156 +776,7 @@ mission "Deep: Interrogation"
 	
 	on offer
 		log `Was interrogated by the Deep for helping Albert Foster. The Deep now knows that Albert Foster thinks that there is an artificial singularity on Midgard.`
-		conversation
-			`When you land on <origin> and open your ship's main hatch, you find yourself face-to-face with two Deep Security officers, neither of whom appear armed. "Hello, Captain <last>. We're going to need to ask you some questions. If you would please step off of your ship and follow us, that would be much appreciated."`
-			choice
-				`	(Follow their orders.)`
-					goto orders
-				`	"Why do you need to question me?"`
-				`	(Close the hatch and flee)`
-					goto flee
-			
-			`	"Because we wish to question you on the nature of your work for Albert Foster. Now please, step off your ship and come with us."`
-			choice
-				`	(Follow their orders.)`
-				`	(Close the hatch and flee.)`
-					goto flee
-			
-			label orders
-			`	You follow the officers to a building located on the eastern edge of the spaceport. You are led to a small, dimly lit room on the second floor that contains nothing but two chairs and a table. You are told to sit in one of the chairs and wait.`
-				goto questioning
-			
-			label flee
-			`	You attempt to close the hatch, but a strong tingling sensation radiates from your abdomen. As you drop to the floor convulsing, you hold your eyes open long enough to glimpse a stun gun in one officer's hand.`
-			``
-			`	You wake up, slumped in a chair, in a dimly lit room. Across the table is another chair, empty. As you twist about, examining the rest of the room, the lingering soreness in your abdomen reminds you that even though you are alone for the moment, attempting to leave is likely unwise.`
-			
-			label questioning
-			choice
-				`	(Wait.)`
-			
-			`	Ten minutes pass in silence until a figure enters the room. In the dim light, you discern a tall, dark woman wearing what looks like a Deep Security uniform. Some of its badges, pins, and striping are unfamiliar to you.`
-			`	"I hope my men didn't have to struggle too much to get you here."`
-			choice
-				`	"Don't worry, it was just fine."`
-				`	"It wasn't the warmest welcome I've ever received."`
-			
-			`	The woman chuckles slightly. "No need to be sarcastic with me. Now, you know why you're here."`
-			choice
-				`	"I do?"`
-					goto clueless
-				`	"I didn't commit any crimes, so you have no right to detain me."`
-			
-			`	"Indeed, no crimes were committed during your work for Albert Foster, but we still have the right to detain you to keep the Deep safe. Cause us no trouble during this little meeting, answer my questions, and you will be on your way in a few minutes' time.`
-				goto foster
-			
-			label clueless
-			`	"Well if you don't then let me jog your memory: You took a small chip of wood from a historical church on Midgard - nothing criminal, mind you - and returned it to Vinci, where I assume you handed it over to the 'archaeologist' Albert Foster." The tone of her voice as she says "archaeologist," clearly conveys her disdain for his title. "Later you returned to Midgard with Albert Foster in tow, prompting us to run you out of the Deep.`
-			
-			label foster
-			`	"My first question to you: what exactly were you doing with Albert Foster?"`
-			choice
-				`	"We were scanning Midgard with gravitational field mapping equipment and spotted an artificial singularity before we fled."`
-					goto singularity
-				`	"He told me he was researching the Deep and he needed help conducting his research."`
-			
-			`	"And why do you think he needed someone else to do the work for him?"`
-			choice
-				`	"Because he wanted something illegal done."`
-				`	"Because he isn't allowed in the Deep."`
-					goto allowed
-			
-			`	"I already told you that you didn't commit a crime. The reason is that Foster has caused the Deep plenty of trouble in the past, so we don't particularly enjoy his presence. Now, did Albert make any discoveries due to your assistance?"`
-				goto choice
-			
-			label allowed
-			`	"Precisely. Now, did Albert make any discoveries due to your assistance?"`
-			
-			label choice
-			choice
-				`	"He discovered that the church on Midgard is far older than should be possible, dating back to at least the early 1700s."`
-				`	"We spotted something on Midgard that he called an 'artificial singularity.'"`
-					goto singularity
-				
-			`	"Interesting finding, Captain. Is there anything else that he discovered?"`
-			choice
-				`	"No."`
-				`	"Yes. We used gravitational mapping equipment on Midgard and we found what looked like an artificial singularity."`
-					goto singularity
-				
-			apply
-				set "playing coy"
-			`	The woman does not respond for a few seconds. When she does begin speaking, you have to lean in to hear her. "Don't lie to me. I can make this experience very uncomfortable for you."`
-			choice
-				`	"Alright. We discovered an artificial singularity on Midgard."`
-			
-			label singularity
-			branch honest
-				not "playing coy"
-
-			apply
-				clear "playing coy"
-			`	"See? That wasn't so hard to admit, now was it?"`
-			
-			label honest
-			branch helped
-				has "Deep: Mystery Cubes 4: done"
-			
-			`	The woman's mouth turns into a sly smile as she leans back in her chair. "Thank you for the information. That is all we needed you for. You will be escorted back outside momentarily. Enjoy the rest of your day, <first> <last>."`
-				goto next
-			
-			label helped
-			apply
-				set "deep: helped before archaeology"
-			`	The woman's mouth turns into a sly smile as she leans back in her chair. "Thank you for the information, Captain. Before I let you go, I'd like to thank you for the work you've done for the Deep. I was interested to hear that the same Captain who helped us pursue Beelzebub also helped Albert Foster. Don't worry, we all make stupid mistakes. We'll scratch this one off your record.`
-			`	"You clearly mean no harm to the Deep, so I'll give you the privilege of asking me any questions you might have after this encounter."`
-			choice
-				`	"When was the Deep really settled?"`
-				`	"Is there really an artificial singularity on Midgard?"`
-					goto singularity?
-				`	"I don't have any questions."`
-					goto none
-				
-			`	"The exact date has been lost to time, but folklore states that the first humans arrived here in the mid-1300s, before the time of the 'Black Death' plague on ancient Earth. It's not wise to believe in wonder tales, though."`
-			choice
-				`	"Were the original humans of the Deep really brought here by aliens?"`
-				`	"I don't have any more questions."`
-					goto none
-				
-			`	"That's a question for the people who were originally brought here." The woman flashes another sly smile.`
-			choice
-				`	"Is there really an artificial singularity on Midgard?"`
-				`	"I don't have any more questions."`
-					goto none
-				
-			`	"Those gravitational mapping devices can be so finicky sometimes. I'm sure it was nothing."`
-				goto done
-			
-			label singularity?
-			`	"Those gravitational mapping devices can be so finicky sometimes. I'm sure it was nothing."`
-			choice
-				`	"When was the Deep really settled?"`
-				`	"I don't have any questions."`
-					goto none
-				
-			`	"The exact date has been lost to time, but folklore states that the first humans arrived here in the mid-1300s, before the time of the 'Black Death' plague on ancient Earth. It's not wise to believe in wonder tales, though."`
-			choice
-				`	"Were the original humans of the Deep really brought here by aliens?"`
-				`	"I don't have any more questions."`
-					goto none
-				
-			`	"That's a question for the people who were originally brought here." The woman flashes another sly smile.`
-			
-			label done
-			`	"That will be enough questions for now. You will be escorted back outside momentarily. Enjoy the rest of your day, Captain."`
-				goto next
-				
-			label none
-			`	"If that is all, then this meeting is over. You will be escorted back outside momentarily. Enjoy the rest of your day, Captain."`
-			
-			label next
-			`	The woman gets up from her chair and stops in the doorway. She turns her head slightly and says in a low voice, "I'll be watching," then leaves. Moments later, the same two men that brought you here step into the room and ask you to follow them. They lead you to an entryway and lock the door as you step out into the spaceport.`
-				decline
+		conversation "deep: questioning"
 
 
 
@@ -947,70 +798,199 @@ mission "Deep: Questions"
 	on offer
 		dialog `Upon landing, you receive an encrypted message from an unknown sender. "Hello, Captain <last>. Your recent assistance of the Deep is much appreciated. I'd like to speak with you on <destination> if you are interested." The message is not signed.`
 	on complete
-		conversation
-			`You are escorted by two <planet> security guards to a Corvette occupying a landing pad close to the spaceport's Deep Security complex. Standing below the Corvette is the tall, dark-skinned woman who questioned you on your work for Albert Foster.`
-			`	"Good evening, Captain," she looks up to the overcast sky for a moment, "or whatever time of day it might be right now. I've been informed that you proved yourself a great asset to the Navy and Deep Security in tracking down and... almost trapping Beelzebub. Please, come inside my ship for a moment."`
-			choice
-				`	(Follow her.)`
-					goto questions
-				`	"Why?"`
-			
-			`	"You can leave if you wish to, but I'd only be keeping you for a moment."`
-			choice
-				`	(Enter her ship.)`
-				`	(Leave.)`
-					decline
-			
-			label questions
-			`	The woman closes the Corvette's hatch, leaving you in the light of dim fluorescent bulbs. This must be quite an old ship to still be using fluorescent bulbs instead of the LED lights that most modern ships use for their interiors.`
-			`	"I've asked you onto my ship so that we may have some privacy. You clearly mean no harm to the Deep. For starters, I'm sure you'll be happy to hear that we've scratched your incident with Albert Foster from your record. Additionally, I'm extending you the privilege of asking me any questions you might have relating to our last encounter."`
-			choice
-				`	"When was the Deep really settled?"`
-				`	"Is there really an artificial singularity on Midgard?"`
-					goto singularity?
-				`	"I don't have any questions."`
-					goto none
-				
-			`	"The exact date has been lost to time, but folklore states that the first humans arrived here in the mid-1300s, before the time of the 'Black Death' plague on ancient Earth. It's not wise to believe in wonder tales, though."`
-			choice
-				`	"Were the original humans of the Deep really brought here by aliens?"`
-				`	"I don't have any more questions."`
-					goto none
-				
-			`	"That's a question for the people who were originally brought here." The woman flashes a sly smile.`
-			choice
-				`	"Is there really an artificial singularity on Midgard?"`
-				`	"I don't have any more questions."`
-					goto none
-				
-			`	"Those gravitational mapping devices can be so finicky sometimes. I'm sure it was nothing."`
-				goto done
-			
-			label singularity?
-			`	"Those gravitational mapping devices can be so finicky sometimes. I'm sure it was nothing."`
-			choice
-				`	"When was the Deep really settled?"`
-				`	"I don't have any more questions."`
-					goto none
-				
-			`	"The exact date has been lost to time, but folklore states that the first humans arrived here in the mid-1300s, before the time of the 'Black Death' plague on ancient Earth. It's not wise to believe in wonder tales, though."`
-			choice
-				`	"Were the original humans of the Deep really brought here by aliens?"`
-				`	"I don't have any more questions."`
-					goto none
-				
-			`	"That's a question for the people who were originally brought here." The woman flashes a sly smile.`
-			
-			label done
-			`	"That will be enough questions for now."`
-				goto next
-				
-			label none
-			`	"Very well."`
-			
-			label next
-			`	The woman opens the hatch to the ship. "We might meet again in the future. Stay on your best behavior and our next meeting will surely be on good terms. Goodbye, Captain."`
+		conversation "deep: questioning"
 
+
+
+conversation "deep: questioning"
+	branch question1
+		has "Deep: Interrogation: offered"
+	
+	`When you land on <origin> and open your ship's main hatch, you find yourself face-to-face with two Deep Security officers, neither of whom appear armed. "Hello, Captain <last>. We're going to need to ask you some questions. If you would please step off of your ship and follow us, that would be much appreciated."`
+	choice
+		`	(Follow their orders.)`
+			goto orders
+		`	"Why do you need to question me?"`
+		`	(Close the hatch and flee)`
+			goto flee
+	
+	`	"Because we wish to question you on the nature of your work for Albert Foster. Now please, step off your ship and come with us."`
+	choice
+		`	(Follow their orders.)`
+		`	(Close the hatch and flee.)`
+			goto flee
+	
+	label orders
+	`	You follow the officers to a building located on the eastern edge of the spaceport. You are led to a small, dimly lit room on the second floor that contains nothing but two chairs and a table. You are told to sit in one of the chairs and wait.`
+		goto questioning
+	
+	label flee
+	`	You attempt to close the hatch, but a strong tingling sensation radiates from your abdomen. As you drop to the floor convulsing, you hold your eyes open long enough to glimpse a stun gun in one officer's hand.`
+	``
+	`	You wake up, slumped in a chair, in a dimly lit room. Across the table is another chair, empty. As you twist about, examining the rest of the room, the lingering soreness in your abdomen reminds you that even though you are alone for the moment, attempting to leave is likely unwise.`
+	
+	label questioning
+	choice
+		`	(Wait.)`
+	
+	`	Ten minutes pass in silence until a figure enters the room. In the dim light, you discern a tall, dark woman wearing what looks like a Deep Security uniform. Some of its badges, pins, and striping are unfamiliar to you.`
+	`	"I hope my men didn't have to struggle too much to get you here."`
+	choice
+		`	"Don't worry, it was just fine."`
+		`	"It wasn't the warmest welcome I've ever received."`
+	
+	`	The woman chuckles slightly. "No need to be sarcastic with me. Now, you know why you're here."`
+	choice
+		`	"I do?"`
+			goto clueless
+		`	"I didn't commit any crimes, so you have no right to detain me."`
+	
+	`	"Indeed, no crimes were committed during your work for Albert Foster, but we still have the right to detain you to keep the Deep safe. Cause us no trouble during this little meeting, answer my questions, and you will be on your way in a few minutes' time.`
+		goto foster
+	
+	label clueless
+	`	"Well if you don't then let me jog your memory: You took a small chip of wood from a historical church on Midgard - nothing criminal, mind you - and returned it to Vinci, where I assume you handed it over to the 'archaeologist' Albert Foster." The tone of her voice as she says "archaeologist," clearly conveys her disdain for his title. "Later you returned to Midgard with Albert Foster in tow, prompting us to run you out of the Deep.`
+	
+	label foster
+	`	"My first question to you: what exactly were you doing with Albert Foster?"`
+	choice
+		`	"We were scanning Midgard with gravitational field mapping equipment and spotted an artificial singularity before we fled."`
+			goto honest
+		`	"He told me he was researching the Deep and he needed help conducting his research."`
+	
+	`	"And why do you think he needed someone else to do the work for him?"`
+	choice
+		`	"Because he wanted something illegal done."`
+		`	"Because he isn't allowed in the Deep."`
+			goto allowed
+	
+	`	"I already told you that you didn't commit a crime. The reason is that Foster has caused the Deep plenty of trouble in the past, so we don't particularly enjoy his presence. Now, did Albert make any discoveries due to your assistance?"`
+		goto choice
+	
+	label allowed
+	`	"Precisely. Now, did Albert make any discoveries due to your assistance?"`
+	
+	label choice
+	choice
+		`	"He discovered that the church on Midgard is far older than should be possible, dating back to at least the early 1700s."`
+		`	"We spotted something on Midgard that he called an 'artificial singularity.'"`
+			goto honest
+		
+	`	"Interesting finding, Captain. Is there anything else that he discovered?"`
+	choice
+		`	"No."`
+		`	"Yes. We used gravitational mapping equipment on Midgard and we found what looked like an artificial singularity."`
+			goto honest
+	
+	`	The woman does not respond for a few seconds. When she does begin speaking, you have to lean in to hear her. "Don't lie to me. I can make this experience very uncomfortable for you."`
+	choice
+		`	"Alright. We discovered an artificial singularity on Midgard."`
+	
+	`	"See? That wasn't so hard to admit, now was it?"`
+	
+	label honest
+	branch helped
+		has "Deep: Mystery Cubes 4: done"
+	
+	`	The woman's mouth turns into a sly smile as she leans back in her chair. "Thank you for the information. That is all we needed you for. You will be escorted back outside momentarily. Enjoy the rest of your day, <first> <last>."`
+		goto next
+	
+	label helped
+	apply
+		set "deep: helped before archaeology"
+	`	The woman's mouth turns into a sly smile as she leans back in her chair. "Thank you for the information, Captain. Before I let you go, I'd like to thank you for the work you've done for the Deep. I was interested to hear that the same Captain who helped us pursue Beelzebub also helped Albert Foster. Don't worry, we all make stupid mistakes. We'll scratch this one off your record.`
+	`	"You clearly mean no harm to the Deep, so I'll give you the privilege of asking me any questions you might have after this encounter."`
+		goto questions
+	
+	label question1
+	`You are escorted by two <planet> security guards to a Corvette occupying a landing pad close to the spaceport's Deep Security complex. Standing below the Corvette is the tall, dark-skinned woman who questioned you on your work for Albert Foster.`
+	`	"Good evening, Captain," she looks up to the overcast sky for a moment, "or whatever time of day it might be right now. I've been informed that you proved yourself a great asset to the Navy and Deep Security in tracking down and... almost trapping Beelzebub. Please, come inside my ship for a moment."`
+	choice
+		`	(Follow her.)`
+			goto ask
+		`	"Why?"`
+	
+	`	"You can leave if you wish to, but I'd only be keeping you for a moment."`
+	choice
+		`	(Enter her ship.)`
+		`	(Leave.)`
+			decline
+	
+	label ask
+	`	The woman closes the Corvette's hatch, leaving you in the light of dim fluorescent bulbs. This must be quite an old ship to still be using fluorescent bulbs instead of the LED lights that most modern ships use for their interiors.`
+	`	"I've asked you onto my ship so that we may have some privacy. You clearly mean no harm to the Deep. For starters, I'm sure you'll be happy to hear that we've scratched your incident with Albert Foster from your record. Additionally, I'm extending you the privilege of asking me any questions you might have relating to our last encounter."`
+		goto questions
+	
+	label questions
+	choice
+		`	"When was the Deep really settled?"`
+		`	"Is there really an artificial singularity on Midgard?"`
+			goto singularity?
+		`	"I don't have any questions."`
+			goto none
+		
+	`	"The exact date has been lost to time, but folklore states that the first humans arrived here in the mid-1300s, before the time of the 'Black Death' plague on ancient Earth. It's not wise to believe in wonder tales, though."`
+	choice
+		`	"Were the original humans of the Deep really brought here by aliens?"`
+		`	"I don't have any more questions."`
+			goto none
+		
+	`	"That's a question for the people who were originally brought here." The woman flashes another sly smile.`
+	choice
+		`	"Is there really an artificial singularity on Midgard?"`
+		`	"I don't have any more questions."`
+			goto none
+		
+	`	"Those gravitational mapping devices can be so finicky sometimes. I'm sure it was nothing."`
+		goto done
+	
+	label singularity?
+	`	"Those gravitational mapping devices can be so finicky sometimes. I'm sure it was nothing."`
+	choice
+		`	"When was the Deep really settled?"`
+		`	"I don't have any questions."`
+			goto none
+		
+	`	"The exact date has been lost to time, but folklore states that the first humans arrived here in the mid-1300s, before the time of the 'Black Death' plague on ancient Earth. It's not wise to believe in wonder tales, though."`
+	choice
+		`	"Were the original humans of the Deep really brought here by aliens?"`
+		`	"I don't have any more questions."`
+			goto none
+		
+	`	"That's a question for the people who were originally brought here." The woman flashes another sly smile.`
+	
+	label done
+	branch question2
+		has "Deep: Interrogation: offered"
+	
+	`	"That will be enough questions for now. You will be escorted back outside momentarily. Enjoy the rest of your day, Captain."`
+		goto next
+	
+	label question2
+	`	"That will be enough questions for now."`
+		goto next
+	
+	label none
+	branch question3
+		has "Deep: Interrogation: offered"
+	
+	`	"If that is all, then this meeting is over. You will be escorted back outside momentarily. Enjoy the rest of your day, Captain."`
+		goto next
+		
+	label question3
+	`	"Very well."`
+		goto next
+	
+	label next
+	branch question4
+		has "Deep: Interrogation: offered"
+	
+	`	The woman gets up from her chair and stops in the doorway. She turns her head slightly and says in a low voice, "I'll be watching," then leaves. Moments later, the same two men that brought you here step into the room and ask you to follow them. They lead you to an entryway and lock the door as you step out into the spaceport.`
+		decline
+
+	label question4
+	`	The woman opens the hatch to the ship. "We might meet again in the future. Stay on your best behavior and our next meeting will surely be on good terms. Goodbye, Captain."`
+	
 
 
 mission "Deep: Project Hawking"
