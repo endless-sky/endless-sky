@@ -2280,7 +2280,7 @@ mission "Terraforming 9"
 	
 	on complete
 		dialog 
-			`The journey to Tundra was spent by your passengers discussing the possible methods to terraform the planet. The Republic representative was none too pleased when Nolan, perhaps jokingly, suggested that we crash an asteroid into the planet.` 
+			`The journey to Tundra was spent by your passengers discussing the possible methods of terraforming the planet. The Republic representative was none too pleased when Nolan, perhaps jokingly, suggested crashing an asteroid into it.`
 			`	Everyone except for the Tundra native begins to shiver after stepping out of your ship onto the planet, even while inside a protective dome. "Meet us in the spaceport bar in a few hours. We need to finalize our plans of how we're going to execute this experiment."`
 
 
@@ -2299,7 +2299,7 @@ mission "Terraforming 10"
 			`Amy, Nolan, and the other two scientists tell you the known history of Tundra's climate. Millions of years ago, an asteroid impact or large volcanic eruption altered the planet's atmosphere. Now, the planet no longer retains enough heat from its host star in order to stay warm.`
 			`	"Tundra's snow covered surface only exacerbates the problem, reflecting most of the star's light back into space," Nolan explains. "This means that we need to both alter the atmosphere in order for it to retain more heat and alter the surface in order for it to reflect less heat."`
 			`	Amy rolls out a map of the entire planet onto the table. Different regions of the surface are color coded, and a large red spot in the planet's southern hemisphere sticks out to you.`
-			`	"Tundra has very low volcanic activity, but seismic mapping has lead us to this area." Amy circles the red spot with her finger. "Magma from the planet's mantle is building up under this area of the crust, which lucky for us is considerably thin. Still, it could be another ten thousand years before the magma builds up enough pressure under the surface to cause a supereruption, melting the snow around it and releasing greenhouse gases into the atmosphere that over time will raise the global temperatures."`
+			`	"Tundra has very low volcanic activity, but seismic mapping has lead us to this area." Amy circles the red spot with her finger. "Magma from the planet's mantle is building up under this area of the crust, which lucky for us is unusually thin. Still, it could be another ten thousand years before the magma builds up enough pressure under the surface to cause a supereruption, melting the snow around it and releasing greenhouse gases into the atmosphere that over time will raise the global temperatures."`
 			choice
 				`	"So are we going to wait ten thousand years for it to erupt?"`
 				`	"How does this help our situation?"`
