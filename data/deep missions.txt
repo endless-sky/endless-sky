@@ -2009,7 +2009,7 @@ mission "Deep: Scientist Rescue 1"
 event "battle in arneb"
 	system "Arneb"
 		remove fleet "Large Northern Pirates"
-		remove fleet "Small northern Pirates"
+		remove fleet "Small Northern Pirates"
 		remove fleet "Large Republic"
 		add fleet "Large Republic" 10000
 
