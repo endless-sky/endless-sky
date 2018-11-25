@@ -76,7 +76,7 @@ mission "First Contact: Kuwaru Efreti"
 	on offer
 		conversation
 			`In your past experience, you've never seen the Quarg move with anything approaching haste or excitement, but when you land on this station a group of them run up to you, moving faster than you thought they were able to. For a minute or two they just gawk at you and talk amongst themselves in their own language; you think you recognize the word "Humani," and perhaps, "Eartha."`
-			`	Finally a Quarg appears who speaks your language, or at least is willing to try. It says, "Salutations, astonishing sojourner. Whither came you, and wherefore visit you us here in the unquiet graveyard of the Korathi?"`
+			`	Finally a Quarg appears who speaks your language, or at least is willing to try. It says, "Salutations, astonishing sojourner. Whither came you, and wherefore visit you us here in the unquiet graveyard of the Korath?"`
 			choice
 				`	"I'm just here to explore. Can you tell me more about the Korath?"`
 				`	"I came here to learn what happened to the Korath."`
@@ -100,7 +100,7 @@ mission "First Contact: Kuwaru Efreti"
 			label korath
 			`	You are interrupted as one of the Korath who inhabit this ringworld walks by, and the Quarg says, "Friend Korath, meet the human."`
 			`	"<first> <last>," you say, holding out a hand automatically. The Korath does not shake your hand, but instead greets you by holding up both hands, palms toward you. It says something in its own language, then hurries away.`
-			`	The Quarg says to you, "One faction among the Korathi sought peace. 'Korath Efreti,' they name themselves, which means 'Korath Friends.' They are under our protection and intend you no harm. But, they have not your language; here humans are rare. Another question have you?"`
+			`	The Quarg says to you, "One faction among the Korath sought peace. 'Korath Efreti,' they name themselves, which means 'Korath Friends.' They are under our protection and intend you no harm. But, they have not your language; here humans are rare. Another question have you?"`
 			choice
 				`	"Will the friendly Korath let me purchase their technology?"`
 				`	"Why don't you destroy the robots, if they're such a threat?"`
