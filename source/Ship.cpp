@@ -534,6 +534,33 @@ void Ship::FinishLoading(bool isNewInstance)
 	const string &category = attributes.Category();
 	canBeCarried = (category == "Fighter" || category == "Drone");
 	
+	// Issue warnings if this ship has negative outfit, cargo, weapon, or engine capacity.
+	string warning;
+	for(const string &attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity"})
+	{
+		double val = attributes.Get(attr);
+		if(val < 0)
+			warning += attr + ": " + Format::Number(val) + "\n";
+	}
+	if(!warning.empty())
+	{
+		// This check is mostly useful for variants and stock ships, which have
+		// no names. Instead, print the outfits and attributes to facilitate identification.
+		cerr << (!name.empty() ? "Ship \"" + name + "\" " : "") << "(" + modelName + "):\n"
+				<< warning << "outfits:" << endl;
+		for(const auto &it : outfits)
+			cerr << '\t' << it.second << " " + it.first->Name() << endl;
+		cerr << "attributes:" << endl;
+		size_t maxAttr = 0;
+		for(const auto &it : attributes.Attributes())
+			maxAttr = max<size_t>(maxAttr, string(it.first).size());
+		for(const auto &it : attributes.Attributes())
+		{
+			auto attr = string(it.first);
+			cerr << '\t' << attr.append(maxAttr - attr.size(), ' ')  << ": " << it.second << endl;
+		}
+	}
+	
 	// Ships read from a save file may have non-default shields or hull.
 	// Perform a full IsDisabled calculation.
 	isDisabled = true;

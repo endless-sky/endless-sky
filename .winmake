@@ -8,6 +8,7 @@
 # 'debug'   - a 64-bit version of Endless Sky with debugging symbols (-g)
 # 'all'     - compiles both targets
 # 'clean'   - removes all compiled object files and .exe files
+# 'dist'    - makes a general-release version of Endless Sky (non-specific architecture)
 
 
 # Obtain the 'dev64' zip archive from the Endless Sky wiki:
@@ -43,13 +44,14 @@ SOURCE_DIR = source
 # General-purpose compiler flags (applied to all builds)
 # 	Remove '-march=native' if building for general release.
 #	'-march=native' should add in SSE support if available.
-CFLAGS = -std=c++11 -Wall -march=native
+CFLAGS = -std=c++11 -Wall
 
 
 #######
 # You should not need to modify the lines below.
-
-WORKDIR = %cd%
+ifeq "$@" "release"
+CFLAGS += -march=native
+endif
 OBJDIR = obj
 
 CC = gcc.exe
@@ -108,7 +110,7 @@ OBJ_DEBUG ::= $(patsubst %, $(OBJDIR_DEBUG)\\%, $(notdir $(SRCS:.cpp=.o)))
 OBJ_RELEASE ::= $(patsubst %, $(OBJDIR_RELEASE)\\%, $(notdir $(SRCS:.cpp=.o)))
 # These objects do not come from .cpp files
 OBJ_DEBUG += $(OBJDIR_DEBUG)\WinApp.o
-OBJ_RELEASE += $(OBJDIR_RELEASE)\WinApp.o 
+OBJ_RELEASE += $(OBJDIR_RELEASE)\WinApp.o
 
 
 # Build Target instructions
@@ -118,11 +120,11 @@ debug: before_debug out_debug after_debug
 
 release: before_release out_release after_release
 
-win64: before_release out_release after_release
+win64: release
+
+dist: release
 
 clean: clean_debug clean_release
-
-clean_win64: clean_release
 
 
 # Directory preparation
