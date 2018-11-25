@@ -1307,9 +1307,9 @@ mission "Remnant: Follow-up on Terminus Researchers 2"
 		conversation
 			`A few hours of searching later, you find a lead: It seems that launching probes into the Terminus system isn't exactly a common activity, so their permits stand out from the rest. A helpful clerk in the spaceport office pulled up their application and found that they are listed as part of a university in the Deep, although it doesn't mention which planet their specific campus is on. A quick check of the directory lists a number of planets where they could be found.`
 			choice
-				"I'd rather not."`
+				`	(Stop investigating.)`
 					decline
-				"Go tour the Deep."`
+				`	(Continue the investigation)`
 				accept
 	on complete
 		conversation
