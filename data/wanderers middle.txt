@@ -418,14 +418,14 @@ mission "Wanderers: Quarg Assistance 2"
 				`	"The Wanderers may be able to help you deal with the hostile automata."`
 					goto automata
 
-			`	"Are they able also to make the Korathi worthy to inhabit those worlds again? Are they able to make wise enough the Korathi to not ruin their homes once more? Or do the abilities of these extragalactic interlopers not extend so far?"`
+			`	"Are they able also to make the Korath worthy to inhabit those worlds again? Are they able to make wise enough the Korath to not ruin their homes once more? Or do the abilities of these extragalactic interlopers not extend so far?"`
 				goto next
 
 			label automata
 			`	"Are their vessels and arms mightier than ours?" asks the Quarg. "Have they a wisdom vaster than our own? Or are they more numerous than we? For we are trillions. What could these extragalactic interlopers achieve, that long before your emergence attempted have we not?"`
 
 			label next
-			`	When you don't respond, the Quarg continues, "These Wanderers are not indigenous to our galaxy, and thus have not we an obligation to avert their extinction. The Korathi are our charge and our responsibility. So implore I you to tell me, why a good thing for the Korathi it is that their shattered territory these aliens invade."`
+			`	When you don't respond, the Quarg continues, "These Wanderers are not indigenous to our galaxy, and thus have not we an obligation to avert their extinction. The Korath are our charge and our responsibility. So implore I you to tell me, why a good thing for the Korath it is that their shattered territory these aliens invade."`
 			choice
 				`	"The Wanderers could help the Korath by teaching them to take care of their worlds better."`
 				`	"The Wanderers don't want to stay here forever; they will move on once the worlds are repaired."`
