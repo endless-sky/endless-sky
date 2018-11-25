@@ -709,7 +709,7 @@ mission "Unfettered: Jump Drive Source"
 				`	"If I want to find more jump drives to give you, where should I look?"`
 				`	"You said that 'other humans' have been selling you jump drives as well?"`
 					goto others
-			`	He says, "The unfettered humans will not tell us their source, but we suspect they steal from our old foe, the Korathi invaders. The unfettered human leader told a story I did not understand, that Prometheus was punished for stealing from the gods, but no one is punished for stealing from Prometheus. Was Prometheus a human hero?"`
+			`	He says, "The unfettered humans will not tell us their source, but we suspect they steal from our old foe, the Korath invaders. The unfettered human leader told a story I did not understand, that Prometheus was punished for stealing from the gods, but no one is punished for stealing from Prometheus. Was Prometheus a human hero?"`
 				goto prometheus
 			label others
 			`	"Yes," he says, "the unfettered humans. They sell us many jump drives. They say it is their calling to help us. The unfettered human leader told a story I did not understand, that Prometheus was punished for stealing from the gods, but no one is punished for stealing from Prometheus. Was Prometheus a human hero?"`
