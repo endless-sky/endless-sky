@@ -2604,10 +2604,8 @@ system Algieba
 	trade Plastic 476
 	fleet "Small Republic" 1400
 	fleet "Large Republic" 5000
-	fleet "Small Southern Merchants" 400
-	fleet "Small Northern Merchants" 800
-	fleet "Large Southern Merchants" 600
-	fleet "Large Northern Merchants" 1000
+	fleet "Small Northern Merchants" 400
+	fleet "Large Northern Merchants" 600
 	object
 		sprite star/f0
 		distance 5.86085
