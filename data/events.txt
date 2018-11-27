@@ -190,8 +190,8 @@ event "initial deployment 1"
 		fleet "Large Northern Merchants" 3500
 		fleet "Small Republic" 600
 		fleet "Large Republic" 400
-		fleet "Small Northern Pirates" 4000
-		fleet "Large Northern Pirates" 8000
+		fleet "Small Southern Pirates" 4000
+		fleet "Large Southern Pirates" 8000
 		fleet "Navy Surveillance" 2000
 	system "Phecda"
 		fleet "Small Northern Merchants" 900
