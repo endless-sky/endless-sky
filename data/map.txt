@@ -13814,8 +13814,6 @@ system Kugel
 	fleet "Small Core Merchants" 4000
 	fleet "Small Republic" 6000
 	fleet "Small Syndicate" 8000
-	fleet "Large Core Pirates" 4000
-	fleet "Small Core Pirates" 4000
 	object
 		sprite star/g5
 		period 10
