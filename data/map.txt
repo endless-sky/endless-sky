@@ -17954,6 +17954,8 @@ system Porrima
 	trade Medical 510
 	trade Metal 490
 	trade Plastic 381
+	fleet "Small Northern Merchants" 2000
+	fleet "Large Northern Merchants" 6000
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Republic" 8000
