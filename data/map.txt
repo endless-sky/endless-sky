@@ -9885,7 +9885,6 @@ system Fingol
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 3000
-	fleet "Small Northern Pirates" 2000
 	fleet "Human Miners" 3000
 	object
 		sprite star/m4
