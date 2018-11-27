@@ -16599,7 +16599,6 @@ system Nocte
 	fleet "Large Northern Merchants" 5000
 	fleet "Small Republic" 3000
 	fleet "Large Republic" 7000
-	fleet "Small Northern Pirates" 2500
 	fleet "Human Miners" 1600
 	object
 		sprite star/m4
