@@ -2538,7 +2538,6 @@ system Algenib
 	fleet "Small Core Pirates" 300
 	fleet "Large Core Pirates" 500
 	fleet "Large Syndicate" 800
-	fleet "Small Core Merchants" 600
 	object
 		sprite star/k0-old
 		period 10
@@ -2914,7 +2913,7 @@ system Alioth
 	trade Metal 537
 	trade Plastic 458
 	fleet "Small Southern Merchants" 400
-	fleet "Large Northern Merchants" 600
+	fleet "Large Southern Merchants" 600
 	fleet "Small Militia" 900
 	fleet "Small Southern Pirates" 1200
 	fleet "Large Southern Pirates" 2400
@@ -3712,7 +3711,7 @@ system Alphecca
 	trade Metal 543
 	trade Plastic 498
 	fleet "Small Southern Merchants" 2000
-	fleet "Large Northern Merchants" 3500
+	fleet "Large Southern Merchants" 3500
 	fleet "Small Southern Pirates" 3000
 	fleet "Small Militia" 5000
 	object
@@ -5503,7 +5502,7 @@ system Boral
 	trade Metal 511
 	trade Plastic 535
 	fleet "Small Southern Merchants" 3000
-	fleet "Large Northern Merchants" 8000
+	fleet "Large Southern Merchants" 8000
 	fleet "Small Southern Pirates" 1500
 	fleet "Small Militia" 10000
 	fleet "Human Miners" 2000
