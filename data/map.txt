@@ -9075,7 +9075,6 @@ system Eteron
 	fleet "Large Northern Merchants" 1500
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 4000
-	fleet "Small Northern Pirates" 1000
 	fleet "Human Miners" 2000
 	object
 		sprite star/m4
