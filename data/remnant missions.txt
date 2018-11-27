@@ -70,22 +70,19 @@ mission "First Contact: Remnant"
 	npc kill
 		government "Remnant"
 		personality heroic coward disables plunders
-		fleet "Large Remnant"
+		fleet "Large Remnant" 2
 
 event "ember waste label"
 	galaxy "label waste"
 		sprite label/waste
 
 mission "Remnant: Second Contact"
-	name "Second chance at First Contact with the Remnant"
 	landing
 	invisible
 	source
 		government "Remnant"
-	description "A Remnant provides you with the opportunity to take a second run at first contact."
-	clearance "You can't understand the video feed of gestures, but your ship's computer receives a landing grid solution via antique protocols."
 	destination Viminal
-	waypoint Segesta
+	waypoint Stercutus
 	to offer
 		not "remnant blood test pure"
 		not "Remnant Second Chance Refused"
@@ -93,34 +90,34 @@ mission "Remnant: Second Contact"
 		or
 			has "Remnant Second Chance Refused"
 			has "remnant blood test pure"
-	on enter Segesta
+			has "event: ember waste label"
+	on enter Stercutus
 		conversation
-			`After your escape from Remnant space, you are uneasy at how quickly you lost your pursuers. The eerie red light of the Ember Wastes sets an ominous background for the sensation that you are being watched. Time and time again you check the long range scanners, but there is absolutely nothing out there.`
-			`	Just as you were starting to relax, your comms ding with an incoming ship-to-ship transmission. When you hit the "accept" key a melodic song bursts forth from your speakers.`
+			`After your escape from Remnant space, you are uneasy at how quickly you lost your pursuers. The eerie red light of the Ember Wastes sets an ominous background for the sensation that you are being watched. Time and time again you check the scanners, but there is absolutely nothing out there.`
+			`	Just as you were starting to relax, your comms ding with an incoming ship-to-ship transmission. Startled, you check the scanners again, which continue to show nothing. Hesitantly, you hit the "accept" key and a melodic song bursts forth from your speakers.`
 			`	"My compatriots seem to have gotten off on the wrong foot. I am Prefect Chilia of the Remnant. We established ourselves here as a bastion of humanity to survive when when the rest of human space was under threat by the Alphas."`
-			`	"While fixing small genetic problems for the sake of general health is, of course, good and proper, the wholesale modification resulting in an entirely new strain of humans who are driven to conquer is an abomination. We insist that everyone who visits, works, or lives among us subject themselves to an in-person genetic test to verify that they are neither Alphas nor Alpha creations.`
-			`	Unfortunately you have discovered our location, and we depend greatly on secrecy to maintain our existence. We are willing to let you work and live among us if you and your crew will submit to a genetic test, or you can leave if you commit to never sharing what you have learned with the rest of the galaxy. The choice is yours."`
+			`	"While fixing small genetic problems for the sake of general health is, of course, good and proper, the wholesale modification resulting in an entirely new strain of humans who are driven to conquer is an abomination. We insist that everyone who visits, works, or lives among us subject themselves to an in-person genetic test to verify that they are neither Alphas nor Alpha creations." The song pauses for a moment, then continues:`
+			`	"Unfortunately you have discovered our location, and we depend greatly on secrecy to maintain our existence. We are willing to let you work and live among us if you will submit to a genetic test, or you can leave if you commit to never sharing what you have learned with the rest of the galaxy. The choice is yours."`
 			choice
 				`"I accept your offer."`
-					goto ReturnConsent
+					goto return
 				`"I'm going to forget you exist."`
-					goto LeaveForever
-			label ReturnConsent		
+					goto leave
+			label return		
 			apply
 				"reputation: Remnant" = 1
-			`	"We will let them know to expect you, but be on your best behavior, as there will be no third chance." The captain pauses for a moment, then continues, "Moreover, the blood test is mandatory for you and your crew. We will not tolerate anyone of any Alpha heritage on our worlds."`
-				goto SCEnd
-			label LeaveForever
+			`	"We will let them know to expect you, but be on your best behavior, as there will be no third chance." The captain pauses for a moment, then continues, "Moreover, the blood test is mandatory for all who come to our worlds. We will not tolerate anyone of any Alpha heritage on our worlds."`
+				accept
+			label leave
 			apply
 				set "Remnant Second Chance Refused"
 			`	"Please do. You won't be welcome if you return."`
 				flee
-			label SCEnd
 			
 	on complete
 		fail "First Contact: Remnant"
 		conversation
-			`For a second time you descend through the atmosphere of Viminal. Unlike the first time, your flight computer keeps blaring warnings that the ships escorting you are weapons-hot and locked on. As soon as you land, your ship is surrounded by soldiers with a variety of weapons, and the same man appears in the midst of them. As before, he pricks his finger, presses it to a spot on the device, then offers a still-sealed lancet to you. He begins chanting in a severe tone "The first may be a misunderstanding, but now you know our law. Will you submit to a blood test, or be declared guilty once and for all?"`
+			`Your return trip to Viminal is a bit more nerve-wracking: Unlike the previous time, your flight computer keeps blaring warnings that the ships escorting you are weapons-hot and locked on. As soon as you land, your ship is surrounded by soldiers with a variety of weapons, and the same man appears in the midst of them. As before, he pricks his finger, presses it to a spot on the device, then offers a still-sealed lancet to you. He begins chanting in a severe tone "The first may be a misunderstanding, but now you know our law. Will you submit to a blood test, or be declared guilty once and for all?"`
 			choice
 				`(Provide the blood sample.)`
 					goto SecondChanceComply
@@ -184,7 +181,7 @@ mission "Remnant: Defense 2"
 	landing
 	source "Caelian"
 	name "Remnant bounty"
-	description "A pack of Korath ships is flying around Remnant territory. Hunt them down and destroy them, then return to <planet> for payment."
+	description "A Korath ship is flying around Remnant territory. Hunt it down and destroy it, then return to <planet> for payment."
 	to offer
 		has "Remnant: Defense 1: done"
 	on offer
@@ -204,13 +201,13 @@ mission "Remnant: Defense 2"
 			`	A third person explains, "We do that intentionally, to keep luring them back. The technology we gain when we manage to plunder one of their ships more than outweighs the cargo we lose."`
 	
 			label next
-			`	While you're conversing with the group, a uniformed woman walks up and tells them something in sign language. They sign back and point to you. She says to you, "Thank you for your help. Several Korath ships that came with the raiders and fled the battle are still lurking around our territory. Would you be willing to hunt them down?"`
+			`	While you're conversing with the group, a uniformed woman walks up and tells them something in sign language. They sign back and point to you. She says to you, "Thank you for your help. A Korath ship that came with the raiders and fled the battle is still lurking around our territory. Would you be willing to hunt it down?"`
 			choice
 				`	"Sure."`
 				`	"Sorry, I don't have time to help you out."`
 					decline
 
-			`	"Thank you," she sings. "They wandering around aimlessly. Maybe their jump drives were damaged or something, and the pack can't escape. I'll spread news that you've taken on the bounty for hunting it, so others won't risk their lives fighting them."`
+			`	"Thank you," she sings. "They wandering around aimlessly. Maybe their jump drive was damaged or something, and it can't escape. I'll spread news that you've taken on the bounty for hunting it, so others won't risk their lives fighting it."`
 				accept
 	npc kill
 		government Korath
@@ -221,14 +218,14 @@ mission "Remnant: Defense 2"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Chaser" 5
-		dialog "You have destroyed the Korath ships that were left over from the raid on <planet>. You can now return there to collect your payment."
+				"Korath Raider (Damaged)"
+		dialog "You have destroyed the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
 	on complete
 		payment 250000
 		dialog `The same woman meets you when you land on <planet>. "Again, thank you," she says. "I will suggest to others that they might offer you similar bounty hunting jobs in the future." She pays you <payment>.`
 		log "Factions" "Remnant" `Recently, Korath ships have begun raiding Remnant worlds. The Remnant have decided not to try to discourage these raids, because they are a perfect opportunity to steal jump drives and other valuable alien technology from the Korath.`
 
-mission "Remnant: Hunter Bounty"
+mission "Remnant: Raider Bounty"
 	job
 	repeat
 	name "Remnant bounty"
@@ -247,13 +244,11 @@ mission "Remnant: Hunter Bounty"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Chaser" 6
+				"Korath Raider (Damaged)"
 		dialog "You have destroyed the Korath ships. You can now return to <planet> to collect your payment."
 	on complete
 		payment 150000
-		dialog "A Remnant military leader thanks you for hunting down the Korath ships led by the <npc>, and gives you the agreed-upon payment of <payment>."
-
-
+		dialog "A Remnant military leader thanks you for hunting down the <npc>, and gives you the agreed-upon payment of <payment>."
 
 mission "Remnant: Defense 3"
 	landing
@@ -263,13 +258,13 @@ mission "Remnant: Defense 3"
 		government "Remnant"
 	to offer
 		or
-			"Remnant: Hunter Bounty: done" >= 3
+			"Remnant: Bounty: done" >= 3
 			"Remnant: Clean-up Bounty: done" >= 3
 			and
-				"Remnant: Hunter Bounty: done" >= 2
+				"Remnant: Bounty: done" >= 2
 				"Remnant: Clean-up Bounty: done" >= 1
 			and
-				"Remnant: Hunter Bounty: done" >= 1
+				"Remnant: Bounty: done" >= 1
 				"Remnant: Clean-up Bounty: done" >= 2				
 	cargo "surveillance equipment" 13
 	waypoint "Parca"
@@ -328,7 +323,7 @@ mission "Remnant: Clean-up Bounty"
 		has "Remnant: Defense 2: done"
 		random < 30
 	npc kill
-		government "Korath (Berserk)"
+		government Korath
 		personality coward target uninterested marked staying
 		system
 			distance 1 2
@@ -604,11 +599,12 @@ mission "Remnant: Technology Available"
 mission "Remnant: Heavy Laser"
 	name "Retrieve Heavy Lasers for the Remnant"
 	description "An engineer on <planet>, a Remnant world, has offered to pay you one million credits in exchange for obtaining two Heavy Lasers."
+	minor
 	source
 		government Remnant
 	to offer
 		has "license: Remnant"
-		random < 75
+		random < 50
 	on offer
 		require "Heavy Laser"
 		conversation
@@ -642,14 +638,15 @@ mission "Remnant: Heavy Laser"
 mission "Remnant: Catalytic Ramscoop"
 	name "Retrieve Ramscoops for the Remnant"
 	description "An engineer on <planet>, a Remnant world, has offered to pay you one million credits in exchange for obtaining two Catalytic Ramscoops."
+	minor
 	source Viminal
 	to offer
 		has "license: Remnant"
-		random < 75
+		random < 50
 	on offer
 		require "Catalytic Ramscoop"
 		conversation
-			`As you are walking through the spaceport, a woman comes up to you and introduces herself as an engineer at one of the Remnant development labs. She pauses awkwardly before beginning to chant "As your ship is the only one we have seen in generations that has outfits from human space, we are intrigued by it. Could we take a closer look?"`
+			`As you are walking through the spaceport, a woman comes up to you and introduces herself as an engineer at one of the Remnant development labs. She pauses awkwardly before beginning to chant "As your ship is the only one we have seen in generations that has outfits from ancestral space, we are intrigued by it. Could we take a closer look?"`
 			choice
 				`	"Yes, you are welcome to examine it."`
 					goto deep
@@ -683,10 +680,11 @@ mission "Remnant: Catalytic Ramscoop"
 mission "Remnant: Plasma Cannons"
 	name "Retrieve Plasma Cannons for the Remnant"
 	description "An engineer on <planet>, a Remnant world, has offered to pay you one million credits in exchange for obtaining two Plasma Cannons."
+	minor
 	source Viminal
 	to offer
 		has "license: Remnant"
-		random < 75
+		random < 50
 	on offer
 		require "Plasma Cannon"
 		conversation
@@ -731,7 +729,7 @@ mission "Remnant: Return the Samples"
 	to offer
 		has "license: Remnant"
 		has "event: remnant: void sprite research"
-		random < 75
+		random < 50
 	on offer
 		conversation
 			`As you are walking through the spaceport, the researcher you previously assisted with the studies on the Void Sprites approaches you in a hustle. "We have made some new discoveries!" he exclaims in a trill. "Some of the samples that we took all those years ago are actually eggs of some kind. So the Archon must view our previous research as being disruptive to the Void Sprites' lifecycles."`
@@ -803,12 +801,13 @@ mission "Remnant: Return the Samples 2"
 mission "Remnant: Learning Sign 1"
 	name "Learning Remnant Sign"
 	description `Visit each of the Remnant worlds to find ways to learn their sign language.`
+	minor
 	source "Caelian"
 	stopover "Aventine"
 	destination "Viminal"
 	to offer
 		has "license: Remnant"
-		random < 75
+		random < 50
 	on offer
 		conversation
 			`As you make your way through the spaceport, you become increasingly aware of how quiet it is. Looking around, you note that it doesn't seem any less busy than usual, just that only a handful of people are paying attention to you. As a result, they have reverted to their normal gestures instead of singing. It feels oddly isolating, and eerie, to realize that there are hundreds of conversations going on around you, yet you can't understand a single word of it.`
@@ -886,13 +885,14 @@ mission "Remnant: Learning Sign 2"
 mission "Remnant: Salvage 1"
 	name "Remnant History Updates"
 	description `Find a copy of human history for the Remnant.`
+	minor
 	source "Viminal"
 	stopover "Alexandria"
 	to offer
 		and
 			has "license: Remnant"
 			has "Remnant: Learning Sign 2: done"
-			random < 75
+			random < 50
 			or
 				has "Remnant: Catalytic Ramscoop: done"
 				has "Remnant: Plasma Cannons: done"
@@ -1161,6 +1161,7 @@ event "Remnant Salvage Available"
 mission "Remnant: Expanded Horizons Quarg 1"
 	name "Visiting the Quarg"
 	description "Take Remnant researchers to see some Quarg."
+	minor
 	passengers 3
 	blocked "This mission requires bunks for three passengers."
 	source
@@ -1265,6 +1266,7 @@ mission "Remnant: Expanded Horizons Quarg 3"
 mission "Remnant: Follow-up on Terminus Researchers"
 	name "Check up on Wormhole Researchers"
 	description "Return to Bounty to check up on a group of wormhole researchers you met some time ago."
+	minor
 	source
 		government Remnant
 	destination Bounty
