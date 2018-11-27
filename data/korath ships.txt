@@ -90,7 +90,59 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 	turret "Korath Banisher"
 	turret "Korath Warder"
 
-
+ship "Korath Raider (Damaged)"
+	sprite "ship/raider"
+	thumbnail "thumbnail/raider"
+	attributes
+		category "Heavy Warship"
+		"cost" 16570000
+		"shields" 13500
+		"hull" 4500
+		"required crew" 100
+		"bunks" 150
+		"mass" 720
+		"drag" 14
+		"heat dissipation" .4
+		"fuel capacity" 400
+		"cargo space" 105
+		"outfit space" 570
+		"weapon capacity" 184
+		"engine capacity" 159
+		weapon
+			"blast radius" 250
+			"shield damage" 3600
+			"hull damage" 1800
+			"hit force" 5400
+	outfits
+		"Korath Grab-Strike" 2
+		"Korath Banisher"
+		"Korath Warder"
+		
+		"Triple Plasma Core"
+		"Large Heat Shunt"
+		"Small Heat Shunt"
+		"Fuel Processor"
+		"Korath Repeater Rifle" 100
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Hyperdrive"
+	
+	engine -20 130
+	engine 20 130
+	turret -8 -145 
+	turret 8 -145 
+	turret -34 -143 "Korath Grab-Strike"
+	turret 34 -143 "Korath Grab-Strike"
+	turret 0 35 "Korath Banisher"
+	turret 0 90 "Korath Warder"
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "The Korath Raider is their warship of choice for plundering neighboring species. This particular Raider has suffered sufficient such severe damage that it will never again fly or fight as well as it once did."
 
 ship "Korath Chaser"
 	sprite "ship/chaser"
