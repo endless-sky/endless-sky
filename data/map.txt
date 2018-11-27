@@ -9262,8 +9262,8 @@ system Fala
 	fleet "Small Northern Merchants" 1600
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Republic" 4000
-	fleet "Small Northern Pirates" 2000
-	fleet "Large Northern Pirates" 4000
+	fleet "Small Southern Pirates" 2000
+	fleet "Large Southern Pirates" 4000
 	fleet "Human Miners" 2000
 	object
 		sprite star/g5-old
@@ -14178,8 +14178,8 @@ system Lolami
 	fleet "Small Northern Merchants" 2000
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Republic" 5000
-	fleet "Small Northern Pirates" 2000
-	fleet "Large Northern Pirates" 4000
+	fleet "Small Southern Pirates" 2000
+	fleet "Large Southern Pirates" 4000
 	fleet "Human Miners" 3000
 	object
 		sprite star/g0
@@ -21855,8 +21855,8 @@ system "Tania Australis"
 	fleet "Small Northern Merchants" 1000
 	fleet "Large Northern Merchants" 2000
 	fleet "Small Republic" 3000
-	fleet "Small Northern Pirates" 4000
-	fleet "Large Northern Pirates" 9000
+	fleet "Small Southern Pirates" 4000
+	fleet "Large Southern Pirates" 9000
 	object
 		sprite star/g0-old
 		period 10
