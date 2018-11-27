@@ -17845,7 +17845,6 @@ system Polaris
 	fleet "Large Core Merchants" 700
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 2000
-	fleet "Small Core Pirates" 1500
 	fleet "Korath Raid" 50000
 	object
 		sprite star/k5
