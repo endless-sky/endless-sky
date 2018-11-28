@@ -1872,6 +1872,8 @@ fleet "Small Core Pirates"
 		plunders harvests
 		confusion 20
 	variant 4
+		"Quicksilver"
+	variant 4
 		"Quicksilver (Proton)"
 	variant 2
 		"Sparrow"
@@ -1895,6 +1897,8 @@ fleet "Small Core Pirates"
 		"Headhunter (Particle)"
 	variant 2
 		"Quicksilver" 2
+	variant 2
+		"Quicksilver (Proton)" 2
 	variant 1
 		"Hawk (Bomber)"
 		"Sparrow"
