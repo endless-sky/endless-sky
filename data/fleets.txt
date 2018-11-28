@@ -1886,8 +1886,6 @@ fleet "Small Core Pirates"
 	variant 4
 		"Fury"
 	variant 2
-		"Fury (Bomber)"
-	variant 2
 		"Fury (Laser)"
 	variant 1
 		"Fury (Missile)"
@@ -1899,14 +1897,6 @@ fleet "Small Core Pirates"
 		"Quicksilver" 2
 	variant 2
 		"Quicksilver (Proton)" 2
-	variant 1
-		"Hawk (Bomber)"
-		"Sparrow"
-	variant 1
-		"Fury (Bomber)"
-		"Sparrow"
-	variant 1
-		"Fury (Heavy)"
 	variant 2
 		"Wasp (Gatling)"
 	variant 2
