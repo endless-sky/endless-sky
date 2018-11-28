@@ -1488,45 +1488,19 @@ fleet "Small Syndicate"
 	variant 3
 		"Quicksilver" 3
 	variant 3
-		"Quicksilver" 2
-		"Quicksilver (Proton)"
-	variant 3
-		"Quicksilver"
-		"Quicksilver (Proton)" 2
-	variant 3
 		"Quicksilver (Proton)" 3
 	variant 1
+		"Splinter"
+		"Quicksilver" 2
+	variant 1
+		"Splinter (Laser)"
+	variant 1
+		"Splinter (Proton)"
+		"Quicksilver (Proton)" 2
+	variant 1
 		"Manta"
 	variant 1
 		"Manta (Proton)"
-	variant 1
-		"Manta"
-		"Quicksilver"
-	variant 1
-		"Manta (Proton)"
-		"Quicksilver (Proton)"
-	variant 1
-		"Manta"
-		"Wasp" 2
-	variant 1
-		"Manta (Proton)"
-		"Wasp (Proton)" 2
-	variant 1
-		"Wasp" 5
-	variant 1
-		"Wasp" 4
-		"Wasp (Proton)"
-	variant 1
-		"Wasp" 3
-		"Wasp (Proton)" 2
-	variant 1
-		"Wasp" 2
-		"Wasp (Proton)" 3
-	variant 1
-		"Wasp"
-		"Wasp (Proton)" 4
-	variant 1
-		"Wasp (Proton)" 5
 
 fleet "Large Syndicate"
 	government "Syndicate"
