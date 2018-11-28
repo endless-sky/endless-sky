@@ -18790,8 +18790,6 @@ system Regulus
 	trade Plastic 318
 	fleet "Small Southern Merchants" 6000
 	fleet "Small Northern Merchants" 6000
-	fleet "Small Southern Pirates" 2000
-	fleet "Large Southern Pirates" 8000
 	fleet "Small Republic" 10000
 	fleet "Human Miners" 3000
 	object
