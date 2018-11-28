@@ -14170,8 +14170,6 @@ system Lolami
 	trade Plastic 316
 	fleet "Small Northern Merchants" 2000
 	fleet "Small Republic" 5000
-	fleet "Small Southern Pirates" 2000
-	fleet "Large Southern Pirates" 4000
 	fleet "Human Miners" 3000
 	object
 		sprite star/g0
