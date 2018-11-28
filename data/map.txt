@@ -5502,7 +5502,6 @@ system Boral
 	trade Metal 511
 	trade Plastic 535
 	fleet "Small Southern Merchants" 3000
-	fleet "Large Southern Merchants" 8000
 	fleet "Small Southern Pirates" 1500
 	fleet "Small Militia" 10000
 	fleet "Human Miners" 2000
@@ -9882,7 +9881,6 @@ system Fingol
 	trade Metal 416
 	trade Plastic 321
 	fleet "Small Northern Merchants" 1200
-	fleet "Large Northern Merchants" 3000
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 3000
 	fleet "Small Northern Pirates" 2000
@@ -11547,7 +11545,6 @@ system Hintar
 	trade Metal 575
 	trade Plastic 421
 	fleet "Small Southern Merchants" 1000
-	fleet "Large Southern Merchants" 3000
 	fleet "Small Militia" 5000
 	fleet "Small Southern Pirates" 2000
 	object
@@ -12185,7 +12182,6 @@ system Ipsing
 	trade Metal 388
 	trade Plastic 416
 	fleet "Small Southern Merchants" 2000
-	fleet "Large Southern Merchants" 5000
 	fleet "Small Southern Pirates" 3000
 	object
 		sprite star/g0-old
@@ -13810,7 +13806,6 @@ system Kugel
 	trade Medical 512
 	trade Metal 335
 	trade Plastic 421
-	fleet "Large Core Merchants" 4000
 	fleet "Small Core Merchants" 4000
 	fleet "Small Republic" 6000
 	fleet "Small Syndicate" 8000
@@ -14122,7 +14117,6 @@ system Limen
 	trade Metal 497
 	trade Plastic 378
 	fleet "Small Southern Merchants" 4000
-	fleet "Large Southern Merchants" 8000
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
 	fleet "Human Miners" 1000
@@ -14179,7 +14173,6 @@ system Lolami
 	trade Metal 439
 	trade Plastic 316
 	fleet "Small Northern Merchants" 2000
-	fleet "Large Northern Merchants" 3000
 	fleet "Small Republic" 5000
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 4000
@@ -16389,7 +16382,6 @@ system Naper
 	trade Metal 414
 	trade Plastic 326
 	fleet "Small Southern Merchants" 1500
-	fleet "Large Southern Merchants" 3000
 	fleet "Small Militia" 5000
 	fleet "Small Southern Pirates" 1000
 	fleet "Human Miners" 3000
@@ -16599,7 +16591,6 @@ system Nocte
 	trade Metal 285
 	trade Plastic 363
 	fleet "Small Northern Merchants" 1500
-	fleet "Large Northern Merchants" 5000
 	fleet "Small Republic" 3000
 	fleet "Large Republic" 7000
 	fleet "Small Northern Pirates" 2500
@@ -16860,7 +16851,6 @@ system Orvala
 	trade Metal 475
 	trade Plastic 327
 	fleet "Small Southern Merchants" 3000
-	fleet "Large Southern Merchants" 6000
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 3000
 	object
@@ -18794,7 +18784,6 @@ system Regulus
 	trade Metal 406
 	trade Plastic 318
 	fleet "Small Southern Merchants" 6000
-	fleet "Small Northern Merchants" 6000
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 8000
 	fleet "Small Republic" 10000
@@ -22499,7 +22488,6 @@ system Umbral
 	trade Metal 334
 	trade Plastic 366
 	fleet "Small Southern Merchants" 4000
-	fleet "Large Southern Merchants" 5000
 	fleet Quarg 15000
 	fleet "Large Southern Pirates" 6000
 	object
