@@ -188,6 +188,7 @@ mission "Food Convoy [0]"
 	name `Food convoy to <planet>`
 	job
 	repeat
+	deadline
 	description `The captain of the <npc>, leading a small convoy of ships carrying food, will pay you <payment> to escort them to <destination> by <date>.`
 	to offer
 		random < 30
@@ -240,6 +241,7 @@ mission "Food Convoy [1]"
 	name `Food convoy to <planet>`
 	job
 	repeat
+	deadline
 	description `The captain of the <npc>, leading a convoy of ships carrying food, will pay you <payment> to escort them to <destination> by <date>.`
 	to offer
 		random < 25
@@ -284,6 +286,7 @@ mission "Food Convoy [2]"
 	name `Food convoy to <planet>`
 	job
 	repeat
+	deadline
 	description `The captain of the <npc>, leading a large convoy of ships carrying food, will pay you <payment> to escort them to <destination> by <date>.`
 	to offer
 		random < 15
