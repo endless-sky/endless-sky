@@ -150,14 +150,15 @@ ship "Arrow"
 			"hull damage" 120
 			"hit force" 360
 	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 50
 		"Anti-Missile Turret"
 		
 		"Dwarf Core"
 		"Supercapacitor"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer"
+		"Luxury Accommodations"
 		
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"

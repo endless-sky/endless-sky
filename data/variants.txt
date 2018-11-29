@@ -87,24 +87,9 @@ ship "Arrow" "Arrow (Hai)"
 		"Pebble Core"
 		"Supercapacitor" 2
 		"D14-RN Shield Generator"
-		"Small Radar Jammer"
+		"Luxury Accommodations"
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
-		"Hyperdrive"
-
-
-ship "Arrow" "Arrow (Luxury)"
-	outfits
-		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 100
-		"Anti-Missile Turret"
-		"Dwarf Core"
-		"Supercapacitor"
-		"D14-RN Shield Generator"
-		"Small Radar Jammer"
-		"Luxury Accommodations"
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
 		"Hyperdrive"
 
 

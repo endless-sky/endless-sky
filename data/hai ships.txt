@@ -95,6 +95,7 @@ ship "Centipede"
 		"Hai Corundum Regenerator"
 		"Hai Ravine Batteries"
 		"Hai Williwaw Cooling" 3
+		"Luxury Accommodations"
 		"Quantum Keystone"
 		`"Biroo" Atomic Thruster`
 		`"Biroo" Atomic Steering`
@@ -123,9 +124,11 @@ ship "Centipede" "Centipede (Pulse)"
 		"Pulse Cannon" 2
 		"Bullfrog Anti-Missile" 3
 		"Boulder Reactor"
-		"Hai Gorge Batteries"
+		"Hai Fissure Batteries"
+		"Hai Chasm Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 5
+		"Luxury Accommodations"
 		"Quantum Keystone"
 		"Pulse Rifle" 24
 		`"Biroo" Atomic Thruster`

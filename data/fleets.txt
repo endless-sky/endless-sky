@@ -181,8 +181,6 @@ fleet "Small Core Merchants"
 		"Freighter"
 		"Shuttle" 2
 		"Quicksilver"
-	variant 20
-		"Arrow (Luxury)"
 	variant 50
 		"Bounder"
 	variant 30
@@ -435,8 +433,6 @@ fleet "Small Northern Merchants"
 	variant 10
 		"Freighter" 3
 		"Sparrow" 1
-	variant 10
-		"Arrow (Luxury)"
 	variant 10
 		"Blackbird"
 	variant 3
