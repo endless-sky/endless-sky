@@ -167,7 +167,7 @@ ship "Arrow"
 	engine -10 60
 	engine 10 60
 	gun -8 -34 "Sidewinder Missile Launcher"
-	gun 8 -34 "Sidewinder Missile Launcher"
+	gun 8 -34
 	turret 0 16 "Anti-Missile Turret"
 	leak "leak" 80 50
 	explode "tiny explosion" 12
