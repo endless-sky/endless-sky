@@ -151,7 +151,7 @@ government "Korath"
 		"Kor Sestor" -.01
 	
 	"player reputation" -10
-	
+
 government "Korath Nanobots"
 	"player reputation" -1000
 

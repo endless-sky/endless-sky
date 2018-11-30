@@ -112,7 +112,6 @@ mission "Remnant: Second Contact"
 			apply
 				set "Remnant Second Chance Refused"
 			`	"Please do. You won't be welcome if you return."`
-				flee
 			
 	on complete
 		fail "First Contact: Remnant"
@@ -207,7 +206,7 @@ mission "Remnant: Defense 2"
 				`	"Sorry, I don't have time to help you out."`
 					decline
 
-			`	"Thank you," she sings. "They wandering around aimlessly. Maybe their jump drive was damaged or something, and it can't escape. I'll spread news that you've taken on the bounty for hunting it, so others won't risk their lives fighting it."`
+			`	"Thank you," she sings. "It keeps jumping between systems in our territory. Maybe its jump drive was damaged or something, and it can't escape. I'll spread news that you've taken on the bounty for hunting it, so others won't risk their lives fighting it."`
 				accept
 	npc kill
 		government Korath
@@ -218,14 +217,14 @@ mission "Remnant: Defense 2"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Raider (Damaged)"
+				"Korath World-Ship B (Crippled)"
 		dialog "You have destroyed the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
 	on complete
 		payment 250000
 		dialog `The same woman meets you when you land on <planet>. "Again, thank you," she says. "I will suggest to others that they might offer you similar bounty hunting jobs in the future." She pays you <payment>.`
 		log "Factions" "Remnant" `Recently, Korath ships have begun raiding Remnant worlds. The Remnant have decided not to try to discourage these raids, because they are a perfect opportunity to steal jump drives and other valuable alien technology from the Korath.`
 
-mission "Remnant: Raider Bounty"
+mission "Remnant: Bounty"
 	job
 	repeat
 	name "Remnant bounty"
@@ -244,10 +243,10 @@ mission "Remnant: Raider Bounty"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Raider (Damaged)"
-		dialog "You have destroyed the Korath ships. You can now return to <planet> to collect your payment."
+				"Korath Raider (Crippled)"
+		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on complete
-		payment 150000
+		payment 200000
 		dialog "A Remnant military leader thanks you for hunting down the <npc>, and gives you the agreed-upon payment of <payment>."
 
 mission "Remnant: Defense 3"
@@ -257,15 +256,7 @@ mission "Remnant: Defense 3"
 	source
 		government "Remnant"
 	to offer
-		or
-			"Remnant: Bounty: done" >= 3
-			"Remnant: Clean-up Bounty: done" >= 3
-			and
-				"Remnant: Bounty: done" >= 2
-				"Remnant: Clean-up Bounty: done" >= 1
-			and
-				"Remnant: Bounty: done" >= 1
-				"Remnant: Clean-up Bounty: done" >= 2				
+		"Remnant: Bounty: done" >= 3			
 	cargo "surveillance equipment" 13
 	waypoint "Parca"
 	on offer
@@ -289,7 +280,8 @@ mission "Remnant: Defense 3"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Chaser" 10
+				"Korath Raider (Crippled)"
+				"Korath Chaser" 2
 		dialog "Now that you are alone, you are able to deploy the Remnant surveillance satellite unobserved. Time to report back to <planet>."
 	on complete
 		event "remnant: surveillance end"
@@ -310,32 +302,6 @@ event "remnant: surveillance begin"
 event "remnant: surveillance end"
 	system "Parca"
 		add fleet "Korath Raid" 10000
-
-		
-mission "Remnant: Clean-up Bounty"
-	job
-	repeat
-	name "Remnant clean-up bounty"
-	description "Clean up a fleet of Korath chasers harassing ships in Remnant territory, then return to <planet>. Remember to salvage whatever you can."
-	source
-		government "Remnant"
-	to offer
-		has "Remnant: Defense 2: done"
-		random < 30
-	npc kill
-		government Korath
-		personality coward target uninterested marked staying
-		system
-			distance 1 2
-		fleet 4
-			names "korath"
-			cargo 3
-			variant
-				"Korath Chaser"
-		dialog "You have destroyed the Korath ships. You can now return to <planet>."
-	on complete
-		payment 100000
-		dialog "A Remnant military leader thanks you for hunting down the Korath ships, and gives you the agreed-upon payment of <payment>."
 
 mission "Remnant: Key Stones"
 	name "Keystones"
