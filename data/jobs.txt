@@ -2212,7 +2212,7 @@ mission "Prisoners [4]"
 		dialog "Your shackled passengers offer bitter curses as burly and well-armed guards practically beat them out of your ship, driving them in the direction of a penal colony on this remote world. You collect your payment of <payment>."
 	npc
 		government "Pirate"
-		personality nemesis waiting plunders
+		personality nemesis plunders
 		system
 			distance 3 4
 		fleet "pirate raid"
@@ -2492,8 +2492,9 @@ mission "Bounty Hunting (Big)"
 
 mission "Bounty Hunting (Small, Boarding, Entering)"
 	name "Board <npc>"
-	description "A wanted criminal is fleeing in a stolen hot rod ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminal to <destination>. Reward for capture: <payment>."
+	description "A wanted criminal is fleeing in a stolen hot rod ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminal to <destination> to stand trial on <date>. Reward for capture: <payment>."
 	passengers 1
+	deadline 14
 	repeat
 	job
 	to offer
@@ -2521,15 +2522,16 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 				"Scout (Speedy)"
 			variant
 				"Clipper (Speedy)"
-		dialog "You blast your way onto the ship and confine the fleeing criminal to your ship's brig, then prepare for the trip to <planet>."
+		dialog "You blast your way onto the ship and confine the fleeing criminal to your ship's brig. Time to deliver them to <planet>."
 	on complete
 		payment 175000
 		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal."
 
 mission "Bounty Hunting (Medium, Boarding, Entering)"
 	name "Board <npc>"
-	description "A wanted criminal and several accomplices are fleeing in a stolen hot rod ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminals to <destination>. Reward for capture: <payment>."
+	description "A wanted criminal and several accomplices are fleeing in a stolen hot rod ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminals to <destination> to stand trial on <date>. Reward for capture: <payment>."
 	passengers 4
+	deadline 14
 	repeat
 	job
 	to offer
@@ -2559,7 +2561,7 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 				"Modified Argosy (Heavy)"
 			variant
 				"Raven (Heavy)"
-		dialog "You blast your way onto the ship, subdue the the fleeing criminals, confine them to your ship's brig, then prepare for the trip to <planet>."
+		dialog "You blast your way onto the ship, subdue the the fleeing criminals, and confine them to your ship's brig. Time to deliver them to <planet>."
 	on complete
 		payment 350000
 		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal gang."
