@@ -42,6 +42,8 @@ ship "Arach Courier"
 		"Small Steering Module" 2
 		"Hyperdrive"
 		
+		"Small Ramscoop Module"
+		
 	engine -27 58 .6
 	engine -15 58 .8
 	engine 15 58 .8
@@ -83,6 +85,7 @@ ship "Arach Freighter"
 		"Small Battery Module" 2
 		"Small Shield Module"
 		"Small Repair Module" 2
+		"Small Ramscoop Module"
 		
 		"Large Thrust Module"
 		"Small Thrust Module" 2
@@ -90,6 +93,7 @@ ship "Arach Freighter"
 		"Small Steering Module" 2
 		"Hyperdrive"
 		
+
 	engine -18 141 .7
 	engine 0 143 1
 	engine 18 141 .7
@@ -134,6 +138,7 @@ ship "Arach Hulk"
 		"Small Battery Module"
 		"Small Shield Module" 2
 		"Large Repair Module"
+		"Small Ramscoop Module"
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module" 2
@@ -189,6 +194,7 @@ ship "Arach Spindle"
 		"Small Shield Module" 2
 		"Small Repair Module" 3
 		"Cooling Module"
+		"Small Ramscoop Module"
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module" 3
@@ -239,6 +245,7 @@ ship "Arach Transport"
 		"Small Battery Module"
 		"Small Shield Module"
 		"Small Repair Module"
+		"Small Ramscoop Module"
 		
 		"Large Thrust Module"
 		"Large Steering Module"
