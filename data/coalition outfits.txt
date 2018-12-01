@@ -42,6 +42,19 @@ outfit "Small Ramscoop Module"
 	"ramscoop" 1.5
 	"energy consumption" 6
 	description "This ramscoop is extremely compact and is used to function as a back up in case a Coalition ship gets stranded in an empty system. However, it draws a small amount of energy."
+	
+outfit "Small Ramscoop Module"
+	category "Systems"
+	licenses
+		"Coalition"
+	cost 120000
+	thumbnail "outfit/small ramscoop"
+	"mass" 2
+	"outfit space" -2
+	"ramscoop" 1.5
+	"energy consumption" 6
+	description "This ramscoop is extremely compact and is used to function as a back up in case a Coalition ship gets stranded in an empty system. However, it draws a small amount of energy."
+	
 outfit "Small Reactor Module"
 	category "Power"
 	licenses
