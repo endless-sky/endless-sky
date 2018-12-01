@@ -41,7 +41,7 @@ outfit "Small Ramscoop Module"
 	"mass" 2
 	"outfit space" -2
 	"ramscoop" 1.5
-	"energy consumption" 6
+	"energy consumption" 0.6
 	description "This ramscoop is extremely compact and is used to function as a back up in case a Coalition ship gets stranded in an empty system. However, it draws a small amount of energy."
 	
 outfit "Small Reactor Module"
