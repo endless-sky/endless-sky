@@ -615,6 +615,8 @@ ship "Kimek Briar"
 		"Large Steering Module"
 		"Hyperdrive"
 		
+		"Small Ramscoop Module"
+		
 	engine -12 85 .5
 	engine 0 89 1.2
 	engine 12 85 .5
@@ -764,6 +766,8 @@ ship "Kimek Thorn"
 		"Small Steering Module" 2
 		"Hyperdrive"
 		
+		"Small Ramscoop Module"
+		
 	engine -8 41 .7
 	engine 0 43 1
 	engine 8 41 .7
@@ -808,6 +812,8 @@ ship "Saryd Runabout"
 		"Small Thrust Module" 2
 		"Small Steering Module" 3
 		"Hyperdrive"
+		
+		"Small Ramscoop Module"
 		
 	engine -14 52 1
 	engine 14 52 1
