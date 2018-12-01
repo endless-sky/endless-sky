@@ -628,8 +628,9 @@ ship "Cruiser" "Cruiser (Heavy)"
 		"Fragmentation Grenades" 20
 		"Armageddon Core"
 		"Dwarf Core"
+		"Supercapacitor"
 		"D94-YV Shield Generator"
-		"Small Radar Jammer" 2
+		"Small Radar Jammer"
 		"Liquid Helium Cooler"
 		"Ramscoop"
 		"Outfits Expansion"
