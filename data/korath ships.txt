@@ -92,8 +92,6 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 
 ship "Korath Raider" "Korath Raider (Crippled)"
 	sprite "ship/raider"
-	attributes add
-		"drag" 3
 	outfits
 		"Korath Grab-Strike" 2
 		"Korath Banisher"
