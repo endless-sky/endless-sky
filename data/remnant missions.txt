@@ -569,7 +569,7 @@ mission "Remnant: Heavy Laser"
 	source
 		government Remnant
 	to offer
-		"Remnant: Technology Available: offered"
+		has "Remnant: Technology Available: offered"
 		random < 50
 	on offer
 		require "Heavy Laser"
@@ -606,7 +606,7 @@ mission "Remnant: Catalytic Ramscoop"
 	minor
 	source Viminal
 	to offer
-		"Remnant: Technology Available: offered"
+		has "Remnant: Technology Available: offered"
 		random < 50
 	on offer
 		require "Catalytic Ramscoop"
@@ -648,7 +648,7 @@ mission "Remnant: Plasma Cannons"
 	minor
 	source Viminal
 	to offer
-		"Remnant: Technology Available: offered"
+		has "Remnant: Technology Available: offered"
 		random < 50
 	on offer
 		require "Plasma Cannon"
@@ -692,7 +692,7 @@ mission "Remnant: Return the Samples"
 	source Aventine
 	stopover Nasqueron
 	to offer
-		"Remnant: Technology Available: offered"
+		has "Remnant: Technology Available: offered"
 		random < 50
 	on offer
 		conversation
@@ -769,7 +769,7 @@ mission "Remnant: Learning Sign 1"
 	stopover "Aventine"
 	destination "Viminal"
 	to offer
-		"Remnant: Technology Available: offered"
+		has "Remnant: Technology Available: offered"
 		random < 50
 	on offer
 		conversation
