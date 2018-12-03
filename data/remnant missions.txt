@@ -558,25 +558,30 @@ mission "Remnant: Technology Available"
 				`	"I'm honored. Thank you."`
 					decline
 				`	"Is there anything else I can do to assist your people?"`
-			`	"There might be," he says. "Check the spaceports. If anyone has a job to be done, they will approach you. And there are almost always a few Korath ships that seem bent on destruction instead of loot, and those need to be dealt with."`
+			`	"Not that I am aware of right now," he says, "but we will call on you if a need ever arises."`
 				decline
 
 
 mission "Remnant: Heavy Laser"
 	name "Retrieve Heavy Lasers for the Remnant"
-	description "An engineer on <planet>, a Remnant world, has offered to pay you one million credits in exchange for obtaining two Heavy Lasers."
+	description "A Remnant engineer on <planet> has offered to pay you one and a half million credits in exchange for obtaining two Heavy Lasers."
 	minor
 	source
 		government Remnant
 	to offer
 		has "Remnant: Technology Available: offered"
 		random < 50
+		not "Remnant: Catalytic Ramscoop: done"
+		not "Remnant: Plasma Cannons: done"
+		not "Remnant: Catalytic Ramscoop: active"
+		not "Remnant: Plasma Cannons: active"
+		
 	on offer
 		require "Heavy Laser"
 		conversation
-			`As you are browsing the spacesport shops, a woman approaches you and introduces herself as a researcher at one of their weapons facilities. She pauses before beginning to recite a quick tune: "We can see that your ship has weapons that match human techniques, but are unlike anything we have record of. What kind of weapons are they?"`
+			`As you are browsing the spacesport shops, a woman approaches you and introduces herself as a researcher at one of their weapons facilities. She awkwardly pauses before beginning to recite a quick tune: "We can see that your ship has beam weapons that match human techniques, but are unlike anything we have record of. What kind of weapons are they?"`
 			choice
-				`	"Heavy Lasers"`
+				`	"They're Heavy Lasers."`
 				`	"I'd rather not share that."`
 					decline
 			
@@ -595,19 +600,23 @@ mission "Remnant: Heavy Laser"
 		conversation
 			`As <ship> descends towards its assigned landing pad, you notice the weapons researcher mounting some kind of weapon on a platform aimed down a firing range. Jumping down from the stand, she pushes a button and a flash of light erupts from the muzzle, and the target downrange is cut in half. She flips a leaver and raises the barrel, and people rush out onto the range with tools and devices to examine the destruction.`
 			`	A freight platform is already waiting at the platform when you land, and about the time you get the cargo loaded the researcher shows up. She's dusty and looks a bit tired, but appears pleased with the results of her experiments. "Captain <first>, I see you have the lasers as we agreed." You aren't sure if Remnant rub their hands in eagerness, but she looks ready to do so.`
-			`	She taps her commlink, and moments later another Remnant appears from the scaffolding around a nearby Starling. The researcher straightens up and switchs to a more stately melody. "Captain <last>, this is Prefect Tali. She is our most experienced engineer for dealing with alien tech."`
+			`	She taps her comm-link, and moments later another Remnant appears from the scaffolding around a nearby Starling. The researcher straightens up and switches to a more stately melody. "Captain <last>, this is Prefect Tali. She is our most experienced engineer for dealing with alien tech."`
 			`	"Greetings Captain. We appreciate your help in acquiring these samples. It looks like we are far behind the rest of humanity in some respects. We have a lot of work to do if we are to catch up with them."`
 
 
 
 mission "Remnant: Catalytic Ramscoop"
 	name "Retrieve Ramscoops for the Remnant"
-	description "An engineer on <planet>, a Remnant world, has offered to pay you one million credits in exchange for obtaining two Catalytic Ramscoops."
+	description "An engineer on <planet> has offered to pay you one and a half million credits in exchange for obtaining two Catalytic Ramscoops."
 	minor
 	source Viminal
 	to offer
 		has "Remnant: Technology Available: offered"
 		random < 50
+		not "Remnant: Heavy Laser: done"
+		not "Remnant: Plasma Cannons: done"
+		not "Remnant: Plasma Cannons: active"
+		not "Remnant: Heavy Laser: active"
 	on offer
 		require "Catalytic Ramscoop"
 		conversation
@@ -632,12 +641,12 @@ mission "Remnant: Catalytic Ramscoop"
 				`	"Sorry, I'm really not interested in helping Remnant research."`
 					decline
 
-			`	After a bit of haggling, she agrees to pay you one million credits in exchange for a cargo of two Deep "Catalytic Ramscoops." Given how cheap they are to purchase in Deep space, you will be earning a very tidy profit on the deal.`
+			`	After a bit of haggling, she agrees to pay you one and a half million credits in exchange for a cargo of two Deep "Catalytic Ramscoops." Given how cheap they are to purchase in Deep space, you will be earning a very tidy profit on the deal.`
 				accept
 	
 	on complete
 		outfit "Catalytic Ramscoop" -2
-		payment 1000000
+		payment 1500000
 		conversation
 			`You visit the local shipyard and eventually find the engineer busily repairing a damaged Starling. You inform her that you have brought a pair of "Catalytic Ramscoops" for her to study. She quickly tightens a couple more connectors and jumps down from her perch, gesturing at an assistant to transfer you the credits you were promised. "Thank you! Our maps of human space are old, and if they are still accurate, you traveled a very long way to bring these to us." Her chanting voice echoes off the starling above you with an interesting resonance.`
 			`	"Thank you for your help," she says. "If we can unlock the secrets of these scoops, it will give our ships greater range as they search for a safer refuge." As she picks up the remote control for the small loading truck with the two ramscoops she trills at you over her shoulder. "Oh, my name is Tali. I'll let you know what I find."`
@@ -650,6 +659,10 @@ mission "Remnant: Plasma Cannons"
 	to offer
 		has "Remnant: Technology Available: offered"
 		random < 50
+		not "Remnant: Catalytic Ramscoop: done"
+		not "Remnant: Heavy Laser: done"
+		not "Remnant: Catalytic Ramscoop: active"
+		not "Remnant: Plasma Cannons: active"
 	on offer
 		require "Plasma Cannon"
 		conversation
