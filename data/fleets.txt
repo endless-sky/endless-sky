@@ -237,7 +237,7 @@ fleet "Large Core Merchants"
 	variant 50
 		"Bulk Freighter"
 		"Wasp"
-		"Wasp (Bomber)"
+		"Wasp (Meteor)"
 	variant 20
 		"Bulk Freighter (Blaster)"
 		"Wasp" 2
@@ -250,7 +250,7 @@ fleet "Large Core Merchants"
 	variant 10
 		"Bulk Freighter (Proton)"
 		"Wasp"
-		"Wasp (Bomber)"
+		"Wasp (Meteor)"
 	variant 20
 		"Bulk Freighter"
 	variant 10
@@ -302,7 +302,7 @@ fleet "Large Core Merchants"
 	variant 10
 		"Bulk Freighter" 2
 		"Wasp" 3
-		"Wasp (Bomber)" 2
+		"Wasp (Meteor)" 2
 	variant 10
 		"Bulk Freighter" 2
 		"Vanguard" 1
@@ -359,7 +359,7 @@ fleet "Paradise Merchants"
 	variant 2
 		"Star Queen"
 		"Wasp" 2
-		"Wasp (Bomber)"
+		"Wasp (Meteor)"
 	variant 2
 		"Star Queen"
 		"Berserker" 3
@@ -1880,7 +1880,9 @@ fleet "Small Core Pirates"
 	personality
 		plunders harvests
 		confusion 20
-	variant 4
+	variant 3
+		"Quicksilver"
+	variant 3
 		"Quicksilver (Proton)"
 	variant 2
 		"Sparrow"
@@ -1893,8 +1895,6 @@ fleet "Small Core Pirates"
 	variant 4
 		"Fury"
 	variant 2
-		"Fury (Bomber)"
-	variant 2
 		"Fury (Laser)"
 	variant 1
 		"Fury (Missile)"
@@ -1902,16 +1902,23 @@ fleet "Small Core Pirates"
 		"Headhunter"
 	variant 1
 		"Headhunter (Particle)"
-	variant 2
+	variant 1
 		"Quicksilver" 2
 	variant 1
-		"Hawk (Bomber)"
-		"Sparrow"
+		"Quicksilver"
+		"Quicksilver (Proton)"
 	variant 1
-		"Fury (Bomber)"
-		"Sparrow"
-	variant 1
-		"Fury (Heavy)"
+		"Quicksilver (Proton)" 2
+	variant 2
+		"Wasp (Gatling)"
+	variant 2
+		"Wasp (Javelin)"
+	variant 2
+		"Wasp (Meteor)"
+	variant 2
+		"Wasp (Plasma)"
+	variant 2
+		"Wasp (Proton)"
 
 fleet "Large Core Pirates"
 	government "Pirate"
