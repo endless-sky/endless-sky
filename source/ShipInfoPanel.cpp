@@ -325,7 +325,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	table.DrawAt(start);
 	
 	// Draw the outfits in the same order used in the outfitter.
-	for(const string &category : Outfit::CATEGORIES)
+	for(const string &category : GameData::Categories("outfit"))
 	{
 		auto it = outfits.find(category);
 		if(it == outfits.end())

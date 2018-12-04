@@ -107,6 +107,8 @@ namespace {
 	Set<News> news;
 	map<string, vector<string>> ratings;
 	
+	map<string, vector<string>> categories;
+	
 	StarField background;
 	
 	map<string, string> tooltips;
@@ -215,6 +217,15 @@ bool GameData::BeginLoad(const char * const *argv)
 // Check for objects that are referred to but never defined.
 void GameData::CheckReferences()
 {
+	
+	set<string> knownOutfitCategories(categories["outfit"].begin(), categories["outfit"].end());
+	set<string> knownShipCategories(categories["ship"].begin(), categories["ship"].end());
+	for(const string &carried : {"Fighter", "Drone"})
+		if(!knownShipCategories.count(carried))
+		{
+			categories["ship"].push_back(carried);
+			knownShipCategories.emplace(carried);
+		}
 	for(const auto &it : conversations)
 		if(it.second.IsEmpty())
 			Files::LogError("Warning: conversation \"" + it.first + "\" is referred to, but never defined.");
@@ -237,8 +248,12 @@ void GameData::CheckReferences()
 		if(it.second.Name().empty())
 			Files::LogError("Warning: mission \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : outfits)
+	{
 		if(it.second.Name().empty())
 			Files::LogError("Warning: outfit \"" + it.first + "\" is referred to, but never defined.");
+		if(!it.second.Category().empty() && !knownOutfitCategories.count(it.second.Category()))
+			Files::LogError("Warning: outfit \"" + it.first + "\" has category \"" + it.second.Category() + "\", which is not among known outfit categories.");
+	}
 	for(const auto &it : phrases)
 		if(it.second.Name().empty())
 			Files::LogError("Warning: phrase \"" + it.first + "\" is referred to, but never defined.");
@@ -246,8 +261,12 @@ void GameData::CheckReferences()
 		if(it.second.Name().empty())
 			Files::LogError("Warning: planet \"" + it.first + "\" is referred to, but never defined.");
 	for(const auto &it : ships)
+	{
 		if(it.second.ModelName().empty())
 			Files::LogError("Warning: ship \"" + it.first + "\" is referred to, but never defined.");
+		if(!it.second.Attributes().Category().empty() && !knownShipCategories.count(it.second.Attributes().Category()))
+			Files::LogError("Warning: ship \"" + it.first + "\" has category \"" + it.second.Attributes().Category() + "\", which is not among known ship categories.");
+	}
 	for(const auto &it : systems)
 		if(it.second.Name().empty())
 			Files::LogError("Warning: system \"" + it.first + "\" is referred to, but never defined.");
@@ -761,6 +780,14 @@ const string &GameData::Rating(const string &type, int level)
 
 
 
+// Get player-defined categories for outfits and ships.
+const vector<string> &GameData::Categories(const string &type)
+{
+	return categories[type];
+}
+
+
+
 const StarField &GameData::Background()
 {
 	return background;
@@ -946,6 +973,24 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			list.clear();
 			for(const DataNode &child : node)
 				list.push_back(child.Token(0));
+		}
+		else if(key == "categories" && node.Size() >= 2)
+		{
+			if(node.Token(1) == "outfit" || node.Token(1) == "ship")
+			{
+				vector<string> &categoryList = categories[node.Token(1)];
+				// Get the list of outfit and ship categories from data files.
+				// If a category already exists, it will be moved to the back of the list.
+				for(const DataNode &child : node)
+				{
+					const auto &it = find(categoryList.begin(), categoryList.end(), child.Token(0));
+					if(it != categoryList.end())
+						categoryList.erase(it);
+					categoryList.push_back(child.Token(0));
+				}
+			}
+			else
+				node.PrintTrace("Skipping unsupported use of \"categories\" object:");
 		}
 		else if((key == "tip" || key == "help") && node.Size() >= 2)
 		{

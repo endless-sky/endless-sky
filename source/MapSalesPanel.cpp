@@ -47,7 +47,7 @@ const int MapSalesPanel::WIDTH = 270;
 
 MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 	: MapPanel(player, SHOW_SPECIAL),
-	categories(isOutfitters ? Outfit::CATEGORIES : Ship::CATEGORIES),
+	categories(GameData::Categories(isOutfitters ? "outfit" : "ship")),
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
@@ -59,7 +59,7 @@ MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 
 MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	: MapPanel(panel),
-	categories(isOutfitters ? Outfit::CATEGORIES : Ship::CATEGORIES),
+	categories(GameData::Categories(isOutfitters ? "outfit" : "ship")),
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {

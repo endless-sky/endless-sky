@@ -470,7 +470,7 @@ void LocationFilter::LoadChild(const DataNode &child)
 	else if(key == "category" && child.Size() >= 2 + isNot)
 	{
 		// Ship categories cannot be combined in an "and" condition.
-		static const set<string> allowed(Ship::CATEGORIES.begin(), Ship::CATEGORIES.end());
+		static const set<string> allowed(GameData::Categories("ship").begin(), GameData::Categories("ship").end());
 		for(int i = 1 + isNot; i < child.Size(); ++i)
 		{
 			const string &value = child.Token(i);

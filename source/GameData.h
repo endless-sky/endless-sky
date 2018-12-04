@@ -127,6 +127,7 @@ public:
 	
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
+	static const std::vector<std::string> &Categories(const std::string &type);
 	
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite);
