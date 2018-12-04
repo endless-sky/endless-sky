@@ -1825,7 +1825,7 @@ ship "Headhunter"
 	thumbnail "thumbnail/headhunter"
 	attributes
 		category "Light Warship"
-		"cost" 1800000
+		"cost" 1850000
 		"shields" 3800
 		"hull" 700
 		"required crew" 2
