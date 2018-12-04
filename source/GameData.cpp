@@ -217,7 +217,6 @@ bool GameData::BeginLoad(const char * const *argv)
 // Check for objects that are referred to but never defined.
 void GameData::CheckReferences()
 {
-	
 	set<string> knownOutfitCategories(categories["outfit"].begin(), categories["outfit"].end());
 	set<string> knownShipCategories(categories["ship"].begin(), categories["ship"].end());
 	for(const string &carried : {"Fighter", "Drone"})
