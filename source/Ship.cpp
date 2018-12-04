@@ -83,20 +83,6 @@ namespace {
 	}
 }
 
-const vector<string> Ship::CATEGORIES = {
-	"Transport",
-	"Light Freighter",
-	"Heavy Freighter",
-	"Interceptor",
-	"Light Warship",
-	"Medium Warship",
-	"Heavy Warship",
-	"Fighter",
-	"Drone"
-};
-
-
-
 // Construct and Load() at the same time.
 Ship::Ship(const DataNode &node)
 {
