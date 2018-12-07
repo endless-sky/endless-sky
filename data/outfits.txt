@@ -334,12 +334,13 @@ outfit "Interference Plating"
 
 outfit "Laser Rifle"
 	category "Hand to Hand"
-	cost 8000
+	cost 800
 	thumbnail "outfit/laser rifle"
 	"capture attack" .6
 	"capture defense" .8
+	"energy consumption" .01
 	"unplunderable" 1
-	description "A laser rifle is a step up from the sidearms that crew members typically carry for defense against pirates: more powerful, and more accurate as well. For each of these rifles that one of your crew is wielding, your odds of capturing another ship or defending your own ship from boarders are increased substantially."
+	description "A laser rifle is a step up from the sidearms that crew members typically carry for defense against pirates: more powerful, and more accurate as well. For each of these rifles that one of your crew is wielding, your odds of capturing another ship or defending your own ship from boarders are increased substantially. However, each rifle requires a small amount of energy to keep its batteries charged."
 
 outfit "Fragmentation Grenades"
 	plural "Fragmentation Grenades"
@@ -347,7 +348,7 @@ outfit "Fragmentation Grenades"
 	cost 17000
 	thumbnail "outfit/fragmentation grenades"
 	"capture attack" 1.3
-	"capture defense" .3
+	"capture defense" .2
 	"unplunderable" 1
 	description "Fragmentation grenades are an only marginally legal weapon for hand-to-hand combat when boarding a ship, useful for flushing out defenders who are hunkered down in defensible choke points inside their own ship. They are much less useful as a defensive weapon, but still better than nothing."
 
