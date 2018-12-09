@@ -386,7 +386,7 @@ mission "Remnant: Void Sprites 1"
 				`	"What is your name?"`
 					goto name
 
-			`	"Don't worry," he says, "I will find you. You are our only visitor from the outside in many decades; when you land here, it quickly becomes known."`
+			`	"Don't worry," he says, "I will find you. You are our only visitor from the outside generations; when you land here, it quickly becomes known."`
 				accept
 	
 			label name
@@ -585,29 +585,29 @@ mission "Remnant: Heavy Laser"
 				`	"I'd rather not share that."`
 					decline
 			
-			`	"Really? Our records indicate that humanity had basic laser weapons when we left, but nothing that would be considered useful modern weapons." She pauses to look down at her scanner. "And yet our scans indicate that they are capable of significant power output."`
+			`	"Really? Our records indicate that humanity had primitive laser weapons at the time of the Exodus, but nothing that would be considered useful as weapons." She pauses to look down at her scanner. "And yet our scans indicate that they are capable of significant power output.`
 			`	Based on these scans, we may well be able to learn quite a bit from these weapons. Would you be able to acquire a pair of them for us? We could offer you very good compensation for doing so."`
 			choice
 				`	"Sure, I would be glad to accept that deal."`
 				`	"Sorry, I'm really not interested in helping Remnant research."`
 					decline
 
-			`	After a bit of haggling, she agrees to pay you one and a half million credits in exchange for a cargo of two "Heavy Lasers."`
+			`	After a bit of haggling, she agrees to pay you one and a half million credits in exchange for a cargo of two Heavy Lasers.`
 				accept
 	on complete
 		outfit "Heavy Laser" -2
 		payment 1500000
 		conversation
-			`As <ship> descends towards its assigned landing pad, you notice the weapons researcher mounting some kind of weapon on a platform aimed down a firing range. Jumping down from the stand, she pushes a button and a flash of light erupts from the muzzle, and the target downrange is cut in half. She flips a leaver and raises the barrel, and people rush out onto the range with tools and devices to examine the destruction.`
-			`	A freight platform is already waiting at the platform when you land, and about the time you get the cargo loaded the researcher shows up. She's dusty and looks a bit tired, but appears pleased with the results of her experiments. "Captain <first>, I see you have the lasers as we agreed." You aren't sure if Remnant rub their hands in eagerness, but she looks ready to do so.`
+			`As you land, a group of researchers mount some kind of weapon on a platform aimed down a firing range. The researcher that asked you for the Heavy Lasers presses a button from behind a thick barrier to activate the weapon. A flash of light erupts from the muzzle as the target downrange is cut in half. The barrel of the weapon raises into the air and the researchers rush out onto the range with tools and devices to examine the destruction.`
+			`	The researcher approaches you while the Heavy Lasers are being unloaded from your ship. She's dusty and looks a bit tired, but appears pleased with the results of her experiments. "Captain <first>, I see you have the lasers as we agreed." You aren't sure if Remnant rub their hands in eagerness, but she looks ready to do so.`
 			`	She taps her comm-link, and moments later another Remnant appears from the scaffolding around a nearby Starling. The researcher straightens up and switches to a more stately melody. "Captain <last>, this is Prefect Tali. She is our most experienced engineer for dealing with alien tech."`
-			`	"Greetings Captain. We appreciate your help in acquiring these samples. It looks like we are far behind the rest of humanity in some respects. We have a lot of work to do if we are to catch up with them."`
+			`	Tali steps forward and makes gesture that seems to be a kind of welcoming gesture. "Greetings Captain. We appreciate your help in acquiring these samples. It looks like we are far behind the rest of humanity in some respects. We have a lot of work to do if we are to catch up with them."`
 
 
 
 mission "Remnant: Catalytic Ramscoop"
 	name "Retrieve Ramscoops for the Remnant"
-	description "An engineer on <planet> has offered to pay you one and a half million credits in exchange for obtaining two Catalytic Ramscoops."
+	description "An engineer on <planet> has offered to pay you <payment> credits in exchange for obtaining two Catalytic Ramscoops."
 	minor
 	source Viminal
 	to offer
@@ -620,7 +620,7 @@ mission "Remnant: Catalytic Ramscoop"
 	on offer
 		require "Catalytic Ramscoop"
 		conversation
-			`As you are walking through the spaceport, a woman comes up to you and introduces herself as an engineer at one of the Remnant development labs. She pauses awkwardly before beginning to chant "As your ship is the only one we have seen in generations that has outfits from ancestral space, we are intrigued by it. Could we take a closer look?"`
+			`As you are walking through the spaceport, a woman comes up to you and introduces herself as an engineer at one of the Remnant development labs. She pauses awkwardly before beginning to chant. "As your ship is the only one we have seen in generations that has outfits from ancestral space, we are intrigued by it. Could we take a closer look?"`
 			choice
 				`	"Yes, you are welcome to examine it."`
 					goto deep
