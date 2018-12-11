@@ -40,18 +40,6 @@ StellarObject::StellarObject()
 
 
 
-// This is only relevant for StellarObjects which show orbital defense stations.
-// If the station explodes the Sprite of the StellarObject is shown to provide
-// a dead station the player can't interact with.
-bool StellarObject::HasSprite() const
-{
-	if(isDead)
-		return Body::HasSprite();
-	return false;
-}
-
-
-
 // Get the radius of this planet, i.e. how close you must be to land.
 double StellarObject::Radius() const
 {
@@ -159,6 +147,14 @@ int StellarObject::Parent() const
 double StellarObject::Distance() const
 {
 	return distance;
+}
+
+
+
+
+bool StellarObject::IsVisible() const
+{
+	return (!ship || isDead) && HasSprite();
 }
 
 

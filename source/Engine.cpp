@@ -1297,7 +1297,7 @@ void Engine::CalculateStep()
 	
 	// Draw the planets.
 	for(const StellarObject &object : playerSystem->Objects())
-		if(object.HasSprite())
+		if(object.IsVisible())
 		{
 			// Don't apply motion blur to very large planets and stars.
 			if(object.Width() >= 280.)

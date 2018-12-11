@@ -36,6 +36,7 @@ public:
 	StellarObject();
 	
 	/* Functions provided by the Body base class:
+	bool HasSprite() const;
 	int Width() const;
 	int Height() const;
 	Frame GetFrame(int step = -1) const;
@@ -44,7 +45,6 @@ public:
 	const Angle &Facing() const;
 	Point Unit() const;
 	*/
-	bool HasSprite() const;
 	
 	// Get the radius of this planet, i.e. how close you must be to land.
 	double Radius() const;
@@ -70,6 +70,8 @@ public:
 	int Parent() const;
 	// Find out how far this object is from its parent.
 	double Distance() const;
+	// Checks if the object is visible on the screen.
+	bool IsVisible() const;
 	// Returns ship and changes isDead.
 	bool HasShip() const;
 	std::shared_ptr<Ship> GetShip(const System *system) const;
