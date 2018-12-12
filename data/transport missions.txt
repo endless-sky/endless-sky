@@ -1637,7 +1637,7 @@ mission "Shady passenger transport 3 - double cross"
 			apply
 				set "bribed mercenaries"
 			`	You up your bribe to 8 million credits. It's enough. A sigh of relief escapes your lips as everyone lowers their weapons.`
-			`	You arrange for a merchant captain to transport the renegades down to the surface, along with a password-protected credit chit. Once the airlock closes, you give the password. A lump appears in your throat as your communicator buzzes, alerting you to an unusually large transaction. At least you have escaped with your life and your ship. You are now free to continue your career - poorer, but hopefully wiser.`
+			`	You arrange for a merchant captain to transport the renegades down to the surface, along with a password-protected credit chit. Once the airlock closes, you send them the password. At least you have escaped with your life and your ship.`
 				defer
 
 			label betrayed
@@ -1654,9 +1654,6 @@ mission "Shady passenger transport 3 - double cross"
 	on complete
 		dialog `You hand off your prisoners to the planetary authorities who gratefully take them into custody. It turns out that they were wanted, and there's a substantial bounty. You find yourself richer to the tune of <payment>.`
 		payment 250000
-
-	on fail
-		payment -8000000
 
 	npc
 		government "Bounty Hunter"
@@ -1677,6 +1674,23 @@ mission "Shady passenger transport 3 - double cross"
 			distance 6 9
 		fleet "Bounty Hunters"
 
+
+
+mission "Shady passenger transport 3 - double cross big payment"
+	name "Shady passenger transport big payment"
+	landing
+	invisible
+
+	to offer
+		has "bribed mercenaries"
+
+	on offer
+		fail
+
+	on fail
+		dialog `You receive a message informing you of an unusually large transaction: 8 million credits. The gang of cutthroats must have withdrawn the money you bought them off with. You are now free to continue your career - poorer, but hopefully wiser.`
+		payment -8000000
+		fail
 
 
 mission "Rescue Miners 1"
