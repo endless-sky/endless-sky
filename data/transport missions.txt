@@ -1583,7 +1583,7 @@ mission "Shady passenger transport 3 - double cross"
 		"rejected illegal jobs" < 3
 		"getaway driver" > 5
 		has "Shady passenger transport 2: done"
-		credits >= 8000000
+		credits >= 10000000
 
 	on offer
 		dialog `A group of <bunks> fearsome-looking young men and women brazenly walk up to you in broad daylight, explaining that they're in some legal trouble and need to get to <destination> as quickly as possible. They offer <payment> to secure discreet passage. You must be getting quite a reputation in certain circles. Transporting them might be very dangerous. On the other hand, they're offering a small fortune...`
@@ -1685,12 +1685,11 @@ mission "Shady passenger transport 3 - double cross big payment"
 		has "bribed mercenaries"
 
 	on offer
-		fail
-
-	on fail
-		dialog `You receive a message informing you of an unusually large transaction: 8 million credits. The gang of cutthroats must have withdrawn the money you bought them off with. You are now free to continue your career - poorer, but hopefully wiser.`
 		payment -8000000
-		fail
+		conversation
+			`You receive a message informing you of an unusually large transaction: 8 million credits. The gang of cutthroats must have withdrawn the money you bought them off with. You are now free to continue your career - poorer, but hopefully wiser.`
+				decline
+
 
 
 mission "Rescue Miners 1"
