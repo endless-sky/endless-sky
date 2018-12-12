@@ -95,7 +95,7 @@ mission "Deep: Syndicate Convoy"
 		"deep convoy" ++
 		payment 500000
 		conversation
-			`A Deep Security office greets you when you return to <planet> with the freighters. The officer hands you <payment> and thanks you for accepting the job on such short notice. "We'll make sure to contact you in the future should we need your help. If you want to help us further at the moment, I suggest you check the job boards in the Deep for mystery delivery and retrieval jobs."`
+			`A Deep Security officer greets you when you return to <planet> with the freighters. The officer hands you <payment> and thanks you for accepting the job on such short notice. "We'll make sure to contact you in the future should we need your help. If you want to help us further at the moment, I suggest you check the job boards in the Deep for mystery delivery and retrieval jobs."`
 
 
 
@@ -189,7 +189,7 @@ mission "Deep: Tarazed Convoy"
 		"deep convoy" ++
 		payment 650000
 		conversation
-			`A Deep Security office greets you when you return to <planet> with the freighters. The officer hands you <payment> and thanks you for accepting the job on such short notice. "We'll make sure to contact you in the future should we need your help. If you want to help us further at the moment, I suggest you check the job boards in the Deep for mystery delivery and retrieval jobs."`
+			`A Deep Security officer greets you when you return to <planet> with the freighters. The officer hands you <payment> and thanks you for accepting the job on such short notice. "We'll make sure to contact you in the future should we need your help. If you want to help us further at the moment, I suggest you check the job boards in the Deep for mystery delivery and retrieval jobs."`
 
 
 
@@ -222,7 +222,7 @@ mission "Deep: Kraz Convoy"
 				`	"Sorry, but I won't be traveling in that direction any time soon."`
 					decline
 			
-			`	"Much appreciated, Captain. And for your well being as well as that of the cargo, you must know that there may be pirates waiting in Algieba, Cor Caroli, and Wei. Behemoths are tough ships, so you should be able to travel through those systems and not slow yourself down by taking alternative routes."`
+			`	"Much appreciated, Captain. And for your well-being as well as that of the cargo, you must know that there may be pirates waiting in Algieba, Cor Caroli, and Wei. Behemoths are tough ships, so you should be able to travel through those systems and not slow yourself down by taking alternative routes."`
 			`	The Deep Security officer wishes you good luck and walks off, leaving you to wonder how she knows where pirate fleets might be waiting for you.`
 				accept
 	
@@ -274,7 +274,7 @@ mission "Deep: Kraz Convoy"
 		"deep convoy" ++
 		payment 800000
 		conversation
-			`A Deep Security office greets you when you return to <planet> with the freighters. The officer hands you <payment> and thanks you for accepting the job on such short notice. "We'll make sure to contact you in the future should we need your help. If you want to help us further at the moment, I suggest you check the job boards in the Deep for mystery delivery and retrieval jobs."`
+			`A Deep Security officer greets you when you return to <planet> with the freighters. The officer hands you <payment> and thanks you for accepting the job on such short notice. "We'll make sure to contact you in the future should we need your help. If you want to help us further at the moment, I suggest you check the job boards in the Deep for mystery delivery and retrieval jobs."`
 
 
 
@@ -326,7 +326,7 @@ mission "Deep: Mystery Cubes 0"
 			
 			label situation
 			`	"Excellent. I'm sure that you are aware that much of Deep Security is currently preoccupied, hence why we have been recruiting merchants to escort many of the Deep's convoys. The reason this is the case is that we have been attempting to detain a particularly meddlesome pirate warlord who goes by the name of 'Beelzebub'. From what we can ascertain, Beelzebub has extensive knowledge on the inner workings of Deep Security, which is making tracking him down rather difficult, as he seems to know our every move. That is where you and a few other merchants come in."`
-			`	Paris reaches into his pocket and pulls out a bag. Inside of the bag are at least two dozen of the mysterious cubes that you have transported in the past, only with one distinct difference: a thick red streak running down the middle of the cube.`
+			`	Paris reaches into his pocket and pulls out a bag. Inside of the bag are at least two dozen of the mysterious cubes that you have transported in the past, only with one distinct difference: a thick red streak running down the middle of each cube.`
 			`	"The Deep requires that you place these on a number of worlds in the Dirt Belt which I will mark on your map for you. Place at least four of these devices around the spaceport of each marked planet, then come to <destination> where I will collect any remaining cubes that you may have. If a Deep Security ship did this then it would likely catch the attention of any pirates in the system and that information would make its way to Beelzebub, but random merchants should be inconspicuous enough to throw Beelzebub off our trail. Is that clear?"`
 			choice
 				`	"Crystal clear, Lieutenant. I will prepare to leave shortly."`
@@ -430,7 +430,7 @@ mission "Deep: Mystery Cubes 2"
 				`	"Why are you involving us in this?"`
 				`	"Are we part of a plan to take Beelzebub down?"`
 			
-			`	"Beelzebub is perhaps the most wanted warlord since the 28th century. With both Navy and Deep technology now in the hands of this criminal, every available ship will be required to take him down. Given this, we are now hoping that you would be willing to assist us in trapping Beelzebub. The six of your fleets combined would certainly make up for anything that the Navy has lost in the attack."`
+			`	"Beelzebub is perhaps the most wanted pirate warlord since the 28th century. With both Navy and Deep technology now in the hands of this criminal, every available ship will be required to take him down. Given this, we are now hoping that you would be willing to assist us in trapping Beelzebub. The six of your fleets combined would certainly make up for anything that the Navy has lost in the attack."`
 			`	"How much will we be paid?" one of the other merchant captains asks. "At minimum, one million credits," the admiral replies. The captain who asked instantly agrees to help, as do two others.`
 			choice
 				`	"I'll help as well."`
@@ -522,10 +522,10 @@ mission "Deep: Mystery Cubes 3"
 				goto mirfak
 				
 			label ship
-			`	One of the Navy crew produces a ball from their cabin, and a small game of football starts inside of an open landing pad. Others try to pass the time by reading or writing. Everyone comes to a standstill though once the ground begins to rumble; an earthquake. A Navy member calls out to everyone. "Don't worry, this is a small one. We get earthquakes like this a lot on Gemstone." The shaking eventually subsides, and you decide to go into your ship to rest.`
+			`	One of the Navy crewmen produces a football from their cabin, and a small game begins inside of an open landing pad. Others try to pass the time by reading or writing. Everyone comes to a standstill though once the ground begins to rumble; an earthquake. A Navy member calls out to everyone. "Don't worry, this is a small one. We get earthquakes like this a lot on Gemstone." The shaking eventually subsides, and you decide to go into your ship to rest.`
 			
 			label mirfak
-			`	Suddenly, your communication device beeps and you hear Lieutenant Paris' voice, "The blockade in Mirfak has just been attacked, I repeat the blockade in Mirfak has just been attacked. Reports are that the blockade has sustained heavy losses as a single Cruiser was among the fleet of pirates."`
+			`	Suddenly, your communication device beeps and you hear Lieutenant Paris' voice, "The blockade in Mirfak has just been attacked. I repeat, the blockade in Mirfak has just been attacked. Reports are that the blockade has sustained heavy losses as the pirate fleet included one of the stolen Cruisers."`
 			`	A rather young recruit asks, "Should we go help them?" to which a senior officer responds, "We were given orders and we're going to follow them unless told otherwise." The comms fall silent, and the waiting resumes.`
 			``
 			`	A few anxious hours pass with no new information. Suddenly, without warning, one of the Ravens takes off and your communications device begins blaring. "A pirate fleet just jumped into the system, alongside two Navy Cruisers painted in pirate colors!" All the captains and their crew scatter for their ships, ready to fight.`
@@ -627,7 +627,7 @@ mission "Deep: Mystery Cubes 4"
 				"Marauder Firebird (Weapons)" 2
 	
 	on enter "Alnitak"
-		dialog `Alnitak is in chaos when you enter the system. An outnumbered defense fleet is fighting a group of pirate ships, and among the pirates you spot the three stolen Cruisers.`
+		dialog `Alnitak is in chaos when you enter the system. An outnumbered defense fleet is fighting a group of pirate ships, and among the pirates your sensors identify the three stolen Cruisers.`
 	on visit
 		dialog `You have landed on <planet>, but there are still pirates attacking the system. Defeat all of the pirates in order to complete this mission.`
 	on enter "Hassaleh"
@@ -1040,13 +1040,13 @@ mission "Deep: Project Hawking"
 			label know
 			`	You recognize them as Garrison, Hannah, Pierre, and Laura, the scientists who asked you to find There Might Be Riots. "<first> <last>, is that you? What a great time to run in to you!" Garrison exclaims. "We're looking for a captain who can give us a ride to a few planets in the Paradise sector while we pick up supplies for our research. We'd normally use an official transport from the Deep, but they're having some trouble sparing one at the moment. Instead, we received permission to hire a trustworthy merchant captain to act as our transport. Would you be able to help?"`
 			choice
-				`	"Anything to help people I know. Where do you need to go?"`
+				`	"I'd be glad to help. Where do you need to go?"`
 				`	"Sorry, I'm too busy at the moment. You'll need to find a different captain."`
 					decline
 			
 			label accept
 			`	"Thank you, Captain. The planets that we need to go to are..." Garrison turns to the other three scientists. "<stopovers>," Hannah says.`
-			`	"...Thank you. After we have gathered all the supplies we need, we'll need dropped off on <destination>."`
+			`	"... Thanks. After we have gathered all the supplies we need, we'll need dropped off on <destination>."`
 			`	You bring the scientists to your ship where they quickly make themselves comfy in the bunk rooms. As you walk to the bridge, you overhear Pierre quietly communicating with what you assume to be the spaceport authorities, "...<last> agreed. I expect 'Project Hawking' to proceed on schedule. We will arrive before <day>." As you prepare for launch, you wonder what you've just signed up for.`
 				launch
 	
@@ -1083,17 +1083,17 @@ mission "Deep: Project Hawking"
 				`	"Do you fear that we're in danger?"`
 			`	"I have no idea." Paris looks over to the crew that are unloading the cargo. "Hurry up, men!" One of them shouts back, "Only a few more crates left, Sir."`
 			`	Paris turns to you and says "I suggest you leave immediately," and then turns to the scientists, "and you four should come with me while we figure out what is happening here. Here may not be safe for you."`
-			`	In space, the noise from high-powered atomic engines can only be heard as a dull rumbling, and even then, only aboard the ship they propel. In atmosphere, however, they are deafening. The loud thunderclap of a high-speed atmospheric re-entry, paired with this unmistakable roar, forces everyone to look up. A Quicksilver, battle-scarred and adorned in pirate colors, is racing toward the building. The workers scramble for cover, abandoning their machinery and the cargo.`
+			`	In space, the noise from high-powered atomic engines can only be heard as a dull rumbling, and even then, only aboard the ship they propel. In atmosphere, however, they are deafening. The thunderclap of a high-speed atmospheric re-entry forces everyone to look up. A battle-scarred Quicksilver in pirate colors is racing toward the building. The workers scramble for cover, abandoning their machinery and the cargo.`
 			choice
 				`	(Run for my ship.)`
 				`	(Run for the nearest cover.)`
 					goto cover
 			
-			`	You sprint toward your ship as fast as you can, but before you can reach it you hear the Quicksilver engage its twin cannons. The projectiles stream right overhead, exploding into the side of the building, sending rubble everywhere and knocking you off your feet.`
+			`	You sprint toward your ship as fast as you can, but before you can reach it you hear the Quicksilver's cannons roar to life. The projectiles stream right overhead, exploding into the side of the building, sending rubble everywhere and knocking you off your feet.`
 				goto crash
 			
 			label cover
-			`	You duck for cover behind a concrete barrier that divides two landing pads when you hear the Quicksilver engage its twin cannons. The projectiles stream right overhead, exploding into the side of the building, sending rubble everywhere.`
+			`	You duck for cover behind a concrete barrier that divides two landing pads when you hear the Quicksilver's cannons roar to life. The projectiles stream right overhead, exploding into the side of the building, sending rubble everywhere.`
 			
 			label crash
 			`	As quickly as it appeared, the Quicksilver disappears, shrouded from view by the trees. Even though its engine noise has abated, Paris has to shout for his orders to be heard above the commotion. As you rise to your feet you feel the earth heave, and a few moments later the muffled thud of an explosion drowns out Paris's voice. A dark cloud of smoke is rising up from a half kilometer away, in the direction the Quicksilver flew. Even in daylight you can see light from the fires below, reflected ominously by the airborne soot. A second tremor, somehow larger than the first, catches everyone off guard, knocking you back to the ground.`
@@ -1103,7 +1103,7 @@ mission "Deep: Project Hawking"
 			
 			`	No one is able to hear you over the low rumble of the shaking ground and the rustling of the forest around the complex. The building, already scarred and torn open by weapons fire, crumbles under the new stresses leaving only a pile of rubble. A minute after the tremor began, the vibrations stop, leaving the air silent; not even the rustle of the leaves or the tweet of a bird can be heard.`
 			`	Everyone is clearly startled by the experience as they slowly raise themselves from the ground. You spot Garrison helping up Pierre and Hannah. Lieutenant Paris and Laura are in a tight embrace, but quickly release each other when they notice you looking.`
-			`	A few Deep Security ships begin to land, dropping off medics and cleanup crews to take care of the destroyed building. One of the ships flies in the direction of the fire. Paris says to you "Captain, I think you should leave. Deep Security will handle the situation here."`
+			`	A few Deep Security ships begin to land, dropping off medics and cleanup crews to take care of the destroyed building. One of the ships flies in the direction of the fire. Paris says to you, "Captain, I think you should leave. Deep Security will handle the situation here."`
 			`	You say goodbye to the scientists, who thank you for helping them, even if much of the cargo was destroyed. You board your ship and fly toward the spaceport. Upon landing, you find that <payment> have been transfered to your account from Deep Security.`
 
 
@@ -1197,17 +1197,17 @@ mission "Deep: Project Hawking: Prime"
 		ship "Marauder Raven (Engines)" "Krampus"
 	on offer
 		conversation
-			`As you approach the massive <planet> spaceport building, Pierre directs you to park on a landing pad on the third story close to the warehouse section. "We're picking up various alloys used in the creation of ships that we need samples of for testing," Pierre explains.`
+			`As you approach the massive <planet> spaceport building, Pierre directs you to park on a landing pad on the third story close to the warehouse section. "We're picking up various materials used in the creation of ships that we need samples of for testing," Pierre explains.`
 			`	The scientists speak with the spaceport authorities, who begin loading several tons of alloys into your cargo from an overhead platform. You sit with Pierre as you wait for them to finish.`
 			choice
 				`	"That's a lot of different alloys. What are they going to be used for?"`
-				`	"Why did we need to come all the way to Prime to get these alloys?"`
+				`	"Why did we need to come all the way to Prime to get these materials?"`
 					goto alloys
 			
 			`	Pierre cocks his head to the side as he looks at you. "We're going to destroy them. Short and simple. We need to see how different ship alloys hold up to the technology we're working on.`
 			
 			label alloys
-			`	"We could have gotten alloys from a shipyard local to the Deep, but Betelgeuse Shipyards gets regular shipments of alloys more commonly used by shipbuilders in the Dirt Belt, so it's really the closest place to get everything we need."`
+			`	"We could have gotten materials from a shipyard local to the Deep, but Betelgeuse Shipyards gets regular shipments of metals more commonly used by shipyards in the Dirt Belt, so it's really the closest place to get everything we need."`
 			choice
 				`	"Do you enjoy the work you do for the Deep?"`
 				`	"How long have you been working for the Deep?"`
@@ -1283,7 +1283,7 @@ mission "Deep: Remnant 0"
 	
 	on offer
 		conversation
-			`While wandering through the spaceport, you are approached by a man you instantly recognize as the scientist whose drone you recovered data from in Terminus, thanks to his comically thick glasses. He introduces himself as Ivan and mentions he heard how helpful you have been to others within the Deep.`
+			`While wandering through the spaceport, you are approached by a man you instantly recognize as the scientist whose drone you recovered data from in Terminus, thanks to his comically thick glasses. He introduces himself as Ivan and mentions that he heard how helpful you have been to others within the Deep.`
 			`	"I was hoping you would continue assisting us in our research on the spatial anomaly in Terminus. Thanks to the data you retrieved, we have deduced that the anomaly is in fact some sort of wormhole, but it is far too unstable to support sending anything through it.`
 			`	"I must ask you, do you know of the Hai?" You nod. "Splendid! Then you will be able to help. One of the scientists on my team grew up in their territory, and suggested that the so called 'Quantum Keystones' which they sell might have something to do with the wormhole. He recalls hearing some Hai folktales of these stones making travel between the stars easier, and since the Hai once lived close to where the wormhole is, there may be a relation. Given that it would be immensely difficult to stabilize the wormhole with our current knowledge, it may be that these stones will make access into the wormhole easier. Would you kindly retrieve ten of them for us, so that we may be able to discover if these legends are true?"`
 			branch remnant
@@ -1837,7 +1837,7 @@ mission "Deep: Scientist Rescue 0"
 	
 	on offer
 		conversation
-			`While watching a local sports game on the telescreen of a spaceport restaurant called "The <origin> Sif," your named is called from the entrance. You turn your head and spot Lieutenant Paris waving at you to come outside. You pay for your meal and walk outside.`
+			`While watching a local sports game on the telescreen of a spaceport restaurant called "The <origin> Sif," your name is called from the entrance. You turn your head and spot Lieutenant Paris waving at you to come outside. You pay for your meal and walk outside.`
 			`	"Hello Captain. Do you have a moment to talk?"`
 			choice
 				`	"I do. What do you need?"`
@@ -1851,14 +1851,14 @@ mission "Deep: Scientist Rescue 0"
 					decline
 			
 			label situation
-			`	"A number of scientists have been kidnapped during a venture to the Far North. Their intent was to research the Wolf-Rayet star in the Gorvi system. Due to this system's proximity to the anarchist worlds, very little research has been conducted on it. Pierre, Hannah, and... and Laura were all aboard the Star Queen which contained the scientists. Since you know them I only thought it fair that you would be informed on the situation.`
+			`	"A number of scientists have been kidnapped during a venture to the Far North. Their intent was to research the Wolf-Rayet star in the Gorvi system. Due to this system's proximity to the anarchist worlds, very little research has been conducted on it. Pierre, Hannah, and... and Laura were all aboard the Star Queen which contained the scientists. Since you know them I only thought it fair that you should know about the situation.`
 			`	"It was yesterday that we were informed of the kidnapping. The Star Queen and its escorts were preparing to refuel on Prime in the Betelgeuse system when a large pirate fleet entered the system. The Star Queen's escorts were swiftly destroyed, and she was captured. We lost all communications with the vessel after that. Would you be willing to help us locate the Star Queen while we prepare a rescue force?"`
 			choice
 				`	"I would be glad to help. I'll prepare my ship immediately."`
 					accept
 				`	"Why can't you locate it yourself?"`
 			
-			`	"Given the importance of the scientists aboard the Star Queen, we took great care in providing it with some of the strongest warships we had. The loss of these ships and their crew is a major blow to Deep Security's combat capabilities. We are recoiling from the impact of this loss while we assemble a proper rescue fleet and are unable to send a proper scout fleet at this moment.`
+			`	"Given the importance of the scientists aboard the Star Queen, we took great care in providing them with some of the strongest warships we had. The loss of these ships and their crew is a major blow to Deep Security's combat capabilities. We are recoiling from the impact of this loss while we assemble a proper rescue fleet and are unable to spare any ships for a scout fleet at this moment.`
 			`	"In a situation like this, every minute matters, and if someone like you can find the Star Queen quickly then that means that there is a higher chance everyone can come out of this alive."`
 			choice
 				`	"Okay, I'm willing to help."`
@@ -1990,7 +1990,7 @@ mission "Deep: Scientist Rescue 1"
 				`	"I would rather let the professionals handle things. Good luck."`
 					decline
 			
-			`	"Thank you so much. The plan is to rendezvous with a number of warships on Memory and then head to Alnitak. My superiors received word from the admiral on Farpoint that there are a number of Navy ships at the ready to avenge the ships they lost, so I expect we'll pick up some help there when we refuel. After the fleet is mustered, we go to Arneb." He smiles tensely, adding, "Just make sure that the <npc> makes it onto the planet. She'll be carrying the landing crew, along with myself."`
+			`	"Thank you so much. The plan is to rendezvous with a number of warships on Memory and then head to Alnitak. My superiors received word from the admiral on Farpoint that there are a number of Navy ships at the ready to avenge their fallen comrades, so I expect we'll pick up some help there when we refuel. After the fleet is mustered, we go to Arneb." He smiles tensely, adding, "Just make sure that the <npc> makes it onto the planet. She'll be carrying the landing crew, along with myself."`
 			`	The communications device on his belt rings, and he quickly responds, giving orders to the fleet that will be joining you on the mission. Before you can return to your ship, he says, "Good luck, Captain, and may we all make it out of this alive. We'll meet you in orbit."`
 				accept
 	
@@ -2145,7 +2145,7 @@ mission "Deep: Scientist Rescue 2"
 				launch
 	
 	on enter
-		dialog "As your repulsor engines roar, you notice a large pirate ship looming over the planet. Even from the underside, it is undeniably a Bactrian, but how a pirate could ever attain one is a mystery."
+		dialog "As your engines roar, you notice a large pirate ship looming over the planet. Even from the underside, it is undeniably a Bactrian, but how a pirate could ever attain one is a mystery."
 		dialog `	You receive a transmission from Lieutenant Paris. "I have a sneaking suspicion that Beelzebub may be behind this. I suggest we jump out of here immediately and make it back to the Deep alive before taking on that Bactrian."`
 	
 	npc save accompany
@@ -2233,7 +2233,7 @@ mission "Deep: Scientist Rescue 3A"
 			`As you land near the Star Queen, you can see its passengers being escorted off. Maria and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
 			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another <payment> when you walk up to him. "Thanks for all the help, Captain <last>. We couldn't have done it without you."`
 			`	Paris looks back to the Star Queen, and you can overhear one of the Deep Security officers listing off names. "Sarah Reevs, Nicole Faye, Pierre Joules, Laura Paris..." the list goes on for slightly over a dozen total names. "The surviving crew tells us that only a few were killed initially, either during boarding or by being thrown out the airlock on the way to Haven. Most of the others were either killed or dragged off after they had reached their destination at a facility of some sort, its purpose unidentifiable to the crew."`
-			`	When you look back to Lieutenant Paris, you notice that he is holding back tears. Laura Paris was one of the scientists who died. You are unsure of the relationship the two had, but they were clearly close.`
+			`	When you look back to Lieutenant Paris, you notice that he is holding back tears. Laura Paris was one of the scientists who died.`
 			`	He talks to you in a rather strained voice. "I want you to return to Arneb and take out every single one of those pirates that are left. Especially the Bactrian. We try to keep Bactrians out of unworthy hands, so whenever a pirate gets one we make sure we destroy it immediately. Seeing as how we're going to be busy here for a while, you need to be the one who destroys it."`
 			choice
 				`	"I'll make sure it gets done, Lieutenant."`
@@ -2288,7 +2288,7 @@ mission "Deep: Scientist Rescue 3B"
 			`As you land near the Star Queen, you can see its passengers being escorted off. Maria and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
 			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another <payment> when you walk up to him. "Thanks for all the help, Captain <last>. We couldn't have done it without you."`
 			`	Paris looks back to the Star Queen, and you can overhear one of the Deep Security officers listing off names. "Sarah Reevs, Nicole Faye, Pierre Joules, Laura Paris..." the list goes on for slightly over a dozen total names. "The surviving crew tells us that only a few were killed initially, either during boarding or by being thrown out the airlock on the way to Haven. Most of the others were either killed or dragged off after they had reached their destination at a facility of some sort, its purpose unidentifiable to the crew."`
-			`	When you look back to Lieutenant Paris, you notice that he is holding back tears. Laura Paris was one of the scientists who died. You are unsure of the relationship the two had, but they were clearly close.`
+			`	When you look back to Lieutenant Paris, you notice that he is holding back tears. Laura Paris was one of the scientists who died.`
 			`	He turns to you and hands you a license, then says in a rather strained voice. "Thank you. I've said it before, but there's really no way I can thank you enough.`
 			`	You look down at the license that Paris just handed you and notice that it's a city-ship license, one that will allow you to purchase the Bactrian. "I think it's only fair that you be able to purchase one after having to fight one to the death, and the government of the Deep agrees. It's really the least I... we could do for you."`
 			choice
