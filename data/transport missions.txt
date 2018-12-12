@@ -1683,6 +1683,7 @@ mission "Shady passenger transport 3 - double cross big payment"
 
 	to offer
 		has "bribed mercenaries"
+		credits >= 8000000
 
 	on offer
 		payment -8000000
