@@ -501,6 +501,9 @@ ship "Deep River" "Deep River (Jump, Unarmed)"
 		"Type 4 Radiant Steering"
 		"Jump Drive"
 
+phrase "deep river"
+	"Ayi'i Ki'ak'var"
+
 
 
 mission "Wanderers: Unfettered Diplomacy 1A"
@@ -525,7 +528,12 @@ mission "Wanderers: Unfettered Diplomacy 1A"
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
-		ship "Deep River (Jump, Unarmed)" "Ayi'i Ki'ak'var"
+		fleet
+			names "deep river"
+			commodities "Food"
+			cargo 5
+			variant
+				"Deep River (Jump, Unarmed)"
 
 
 
@@ -557,7 +565,10 @@ mission "Wanderers: Unfettered Diplomacy 1B"
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
-		ship "Deep River (Jump, Unarmed)" "Ayi'i Ki'ak'var"
+		fleet
+			names "deep river"
+			variant
+				"Deep River (Jump, Unarmed)"
 
 fleet "Unfettered Tribute"
 	government "Hai (Unfettered)"
