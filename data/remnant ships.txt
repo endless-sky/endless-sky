@@ -55,7 +55,7 @@ ship "Starling"
 		"Forge-Class Steering"
 		"Crucible-Class Steering"
 		"Hyperdrive"
-	
+
 	engine -16 82 0.7
 	engine 16 82 0.7
 	engine 0 90 1
@@ -76,13 +76,13 @@ ship "Starling" "Starling (Heavy)"
 	outfits
 		"Thrasher Cannon" 5
 		"Point Defense Turret"
-		
+
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Scanner Software"
 		"Tuning Rifle" 10
-		
+
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
 		"Hyperdrive"
@@ -92,18 +92,18 @@ ship "Starling" "Starling (Sniper)"
 		"EMP Torpedo Bay"
 		"Inhibitor Cannon" 4
 		"EMP Torpedo" 9
-		
+
 		"Epoch Cell"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
 		"Scanner Software"
 		"Tuning Rifle" 9
-		
+
 		"Forge-Class Thruster"
 		"Smelter-Class Steering"
 		"Hyperdrive"
-	
+
 	gun "EMP Torpedo Bay"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
@@ -114,18 +114,18 @@ ship "Starling" "Starling (Hunter)"
 	outfits
 		"Inhibitor Cannon" 2
 		"Thrasher Turret"
-		
+
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
 		"Scanner Software"
 		"Tuning Rifle" 11
-		
+
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
 		"Hyperdrive"
-	
+
 	gun
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
@@ -136,25 +136,26 @@ ship "Starling" "Starling (Thrasher)"
 	outfits
 		"Thrasher Cannon" 3
 		"Thrasher Turret"
-		
+
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
 		"Scanner Software"
 		"Tuning Rifle" 8
-		
+
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
 		"Hyperdrive"
-	
+
 	gun "Thrasher Cannon"
 	gun "Thrasher Cannon"
 	gun "Thrasher Cannon"
 	gun
 	gun
 
-	
+
+
 ship "Gull"
 	sprite "ship/gull"
 	thumbnail "thumbnail/gull"
@@ -191,18 +192,18 @@ ship "Gull"
 	outfits
 		"Inhibitor Cannon" 1
 		"Point Defense Turret"
-		
+
 		"Epoch Cell"
 		"Crystal Capacitor"
 		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
 		"Scanner Software"
 		"Tuning Rifle" 3
-		
+
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
 		"Hyperdrive"
-	
+
 	engine -12 70 0.7
 	engine 12 70 0.7
 	engine 0 78 1
@@ -222,13 +223,13 @@ ship "Gull" "Gull (Heavy)"
 	outfits
 		"Thrasher Cannon" 3
 		"Thrasher Turret"
-		
+
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Scanner Software"
 		"Tuning Rifle" 4
-		
+
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
 		"Hyperdrive"
@@ -237,13 +238,13 @@ ship "Gull" "Gull (Sniper)"
 	outfits
 		"Inhibitor Cannon" 3
 		"Thrasher Turret"
-		
+
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Scanner Software"
 		"Tuning Rifle" 4
-		
+
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
 		"Hyperdrive"
@@ -254,13 +255,13 @@ ship "Gull" "Gull (Support)"
 		"Inhibitor Cannon" 2
 		"Point Defense Turret"
 		"EMP Torpedo" 5
-		
+
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Scanner Software"
 		"Tuning Rifle" 3
-		
+
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
 		"Hyperdrive"
@@ -268,12 +269,12 @@ ship "Gull" "Gull (Support)"
 ship "Gull" "Gull (Cargo)"
 	outfits
 		"Cargo Expansion" 4
-		
+
 		"Epoch Cell"
 		"Crystal Capacitor"
 		"Scanner Software"
 		"Tuning Rifle" 3
-		
+
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
 		"Hyperdrive"
@@ -281,15 +282,16 @@ ship "Gull" "Gull (Cargo)"
 ship "Gull" "Gull (Bunks)"
 	outfits
 		"Bunk Room" 4
-		
+
 		"Epoch Cell"
 		"Crystal Capacitor"
 		"Scanner Software"
 		"Tuning Rifle" 3
-		
+
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
 		"Hyperdrive"
+
 
 
 ship "Albatross"
@@ -328,18 +330,18 @@ ship "Albatross"
 		"Inhibitor Cannon" 6
 		"Thrasher Turret" 2
 		"Point Defense Turret"
-		
+
 		"Aeon Cell"
 		"Epoch Cell"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
 		"Scanner Software"
-		
+
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
 		"Hyperdrive"
-	
+
 	engine -28 155 .8
 	engine 28 155 .8
 	engine 0 184 .9
@@ -368,7 +370,7 @@ ship "Albatross" "Albatross (Sniper)"
 		"EMP Torpedo Bay" 2
 		"Point Defense Turret" 3
 		"EMP Torpedo" 18
-		
+
 		"Aeon Cell"
 		"Epoch Cell"
 		"Crystal Capacitor"
@@ -376,13 +378,13 @@ ship "Albatross" "Albatross (Sniper)"
 		"Quantum Key Stone"
 		"Scanner Software"
 		"Tuning Rifle" 57
-		
+
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
 		"Smelter-Class Steering"
 		"Forge-Class Steering"
 		"Hyperdrive"
-	
+
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
@@ -390,7 +392,7 @@ ship "Albatross" "Albatross (Sniper)"
 	gun "Inhibitor Cannon"
 	gun "EMP Torpedo Bay"
 	gun "EMP Torpedo Bay"
-	
+
 	turret "Point Defense Turret"
 	turret "Point Defense Turret"
 	turret
@@ -401,7 +403,7 @@ ship "Albatross" "Albatross (Turret)"
 	outfits
 		"Thrasher Turret" 4
 		"Point Defense Turret"
-		
+
 		"Aeon Cell"
 		"Epoch Cell"
 		"Millennium Cell"
@@ -410,11 +412,11 @@ ship "Albatross" "Albatross (Turret)"
 		"Outfits Expansion" 2
 		"Scanner Software"
 		"Tuning Rifle" 49
-		
+
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
 		"Hyperdrive"
-	
+
 	turret "Thrasher Turret"
 	turret "Thrasher Turret"
 	turret "Thrasher Turret"
@@ -426,7 +428,7 @@ ship "Albatross" "Albatross (Heavy)"
 		"Inhibitor Cannon" 3
 		"Thrasher Cannon" 4
 		"Thrasher Turret" 3
-		
+
 		"Aeon Cell"
 		"Epoch Cell"
 		"Millennium Cell"
@@ -435,13 +437,13 @@ ship "Albatross" "Albatross (Heavy)"
 		"Outfits Expansion" 4
 		"Scanner Software"
 		"Tuning Rifle" 65
-		
+
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
 		"Smelter-Class Steering"
 		"Forge-Class Steering"
 		"Hyperdrive"
-	
+
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
@@ -454,6 +456,7 @@ ship "Albatross" "Albatross (Heavy)"
 	turret
 	turret
 	turret "Thrasher Turret"
+
 
 
 ship "Gascraft"
@@ -485,20 +488,21 @@ ship "Gascraft"
 		"outfit scan speed" 1
 		"tactical scan power" 50
 		"atmosphere scan" 100
-		
+
 	outfits
 		"Millennium Cell"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
-		
+
 		"Crucible-Class Thruster"
 		"Crucible-Class Steering"
 		"Hyperdrive"
-	
+
 	engine 0 30
 	explode "tiny explosion" 8
 	explode "small explosion" 7
 	description "Centuries ago, the Remnant built these ships in order to explore the upper atmosphere of nearby gas giants. The Archons took issue with the Remnant's research methods, and the studies were unable to be completed. The remaining gascraft have been gathering dust in storage for centuries while the Remnant waits to see if the anger of the Archons will subside."
+
 
 
 ship "Pelican"
