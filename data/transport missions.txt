@@ -1446,6 +1446,7 @@ mission "Shady passenger transport 1"
 		distance 2 3
 	passengers 1
 	illegal 75000 `Your passenger turns out to be a small-time wanted criminal. As he is hauled off in chains, you vehemently protest that you knew nothing of his shady history. You wind up quite a bit poorer through a combination of fines and bribes (the breakdown remains somewhat unclear).`
+	stealth
 
 	to offer
 		random < 10
@@ -1479,7 +1480,7 @@ mission "Shady passenger transport 2"
 		distance 3 7
 	passengers 2
 	illegal 150000 `Your passengers turn out to be wanted criminals. As they are hauled off in chains, you vehemently protest that you knew nothing of their shady histories. You wind up quite a bit poorer through a combination of fines and bribes (the breakdown remains somewhat unclear).`
-		stealth
+	stealth
 
 	to offer
 		random < 8
@@ -1523,7 +1524,7 @@ mission "Shady passenger transport 3"
 		distance 5 10
 	passengers 4 8
 	illegal 400000 `It's difficult to feign ignorance of your passengers' background during your questioning. You wind up having to pay a small fortune in fines and bribes to keep yourself from being charged as an accomplice to some very serious-sounding crimes.`
-		stealth
+	stealth
 
 	to offer
 		random < 5
@@ -1582,7 +1583,7 @@ mission "Shady passenger transport 3 - double cross"
 		"rejected illegal jobs" < 3
 		"getaway driver" > 5
 		has "Shady passenger transport 2: done"
-		credits >= 8000000
+		credits >= 10000000
 
 	on offer
 		dialog `A group of <bunks> fearsome-looking young men and women brazenly walk up to you in broad daylight, explaining that they're in some legal trouble and need to get to <destination> as quickly as possible. They offer <payment> to secure discreet passage. You must be getting quite a reputation in certain circles. Transporting them might be very dangerous. On the other hand, they're offering a small fortune...`
@@ -1636,7 +1637,7 @@ mission "Shady passenger transport 3 - double cross"
 			apply
 				set "bribed mercenaries"
 			`	You up your bribe to 8 million credits. It's enough. A sigh of relief escapes your lips as everyone lowers their weapons.`
-			`	You arrange for a merchant captain to transport the renegades down to the surface, along with a password-protected credit chit. Once the airlock closes, you give the password. A lump appears in your throat as your communicator buzzes, alerting you to an unusually large transaction. At least you have escaped with your life and your ship. You are now free to continue your career - poorer, but hopefully wiser.`
+			`	You arrange for a merchant captain to transport the renegades down to the surface, along with a password-protected credit chit. Once the airlock closes, you send them the password. At least you have escaped with your life and your ship.`
 				defer
 
 			label betrayed
@@ -1653,9 +1654,6 @@ mission "Shady passenger transport 3 - double cross"
 	on complete
 		dialog `You hand off your prisoners to the planetary authorities who gratefully take them into custody. It turns out that they were wanted, and there's a substantial bounty. You find yourself richer to the tune of <payment>.`
 		payment 250000
-
-	on defer
-		payment -8000000
 
 	npc
 		government "Bounty Hunter"
@@ -1675,6 +1673,23 @@ mission "Shady passenger transport 3 - double cross"
 		system
 			distance 6 9
 		fleet "Bounty Hunters"
+
+
+
+mission "Shady passenger transport 3 - double cross big payment"
+	name "Shady passenger transport big payment"
+	landing
+	invisible
+
+	to offer
+		has "bribed mercenaries"
+		credits >= 8000000
+
+	on offer
+		payment -8000000
+		conversation
+			`You receive a message informing you of an unusually large transaction: 8 million credits. The gang of cutthroats must have withdrawn the money you bought them off with. You are now free to continue your career - poorer, but hopefully wiser.`
+				decline
 
 
 
