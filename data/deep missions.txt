@@ -1132,7 +1132,7 @@ mission "Deep: Project Hawking: Carbuncle"
 	on offer
 		conversation
 			`The majority of Carbuncle Station is restricted to normal visitors. The workers here will not even refuel your ship upon request. It's clear that Lovelace Labs, the owners of this station, have secrets stored within the walls of this station.`
-			`	You open your docking doors, only to find the bulkhead doors to the rest of the station blocked by three well-armed security officers. You follow the scientists lead, and approach the guards. They spend several minutes conversing, but eventually a guard  activates a toggle on his communicator. A video screen next to the bulkhead blinks on, revealing a woman in a uniform distinctly more embellished than those of the guards before you.`
+			`	You open your docking doors, only to find the bulkhead doors to the rest of the station blocked by three well-armed security officers. You follow the scientists lead, and approach the guards. They spend several minutes conversing, but eventually a guard activates a toggle on his communicator. A video screen next to the bulkhead blinks on, revealing a woman in a uniform distinctly more embellished than those of the guards before you.`
 			`	"What brings you here to Carbuncle Station?"`
 			`	Pierre responds with only two words, "Project Hawking," and the screen momentarily goes blank. When it flickers on again, she is equally succinct and says only, "Admit three."`
 			`	After a short discussion, Garrison agrees to stay behind with you. Pierre, Hannah, and Laura are lead through an awkwardly small opening in the bulkhead door, into the restricted area. Rather than wait in front of the guards, you return to the comfort of your ship with Garrison.`
