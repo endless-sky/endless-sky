@@ -674,11 +674,20 @@ mission "Deep: TMBR 0"
 			`When you enter the <planet> spaceport, you hear what is undoubtedly a "There Might Be Riots" song playing loudly enough for everyone in the spaceport to hear. A quick glance around reveals the source of the noise to be the external speakers of a nearby Bounder and several people dancing.`
 			choice
 				`	(Dance with them.)`
+					goto dance
+				`	(See what's going on.)`
 				`	(Ignore them.)`
 					defer
-					
+			
+			`	You approach the Bounder and count five people dancing in total: three women and two men. One of the women dancing notices you walking over and exclaims, "Looks like someone else is about to join the party!" Her shout is met by a raucous cheer from the rest of the dancers, but you refuse to dance when they try to pull you into the fray.`
+			`	After the music begins to subside, one of the dancers introduces himself to you as Garrison. Garrison then lists off the names of his fellow dancers: Pierre, Maria, Hannah, and Laura. As you make your introductions, you learn that everyone here is part of the same research team, working for one of the Deep's many science bureaus, and they are currently wrapping up a short vacation by listening to their favorite band before they travel to Midgard on assignment.`
+				goto choice
+			
+			label dance
 			`	You approach the Bounder and count five people dancing in total: three women and two men. One of the women dancing notices you walking over and exclaims, "Looks like someone else is about to join the party!" Her shout is met by a raucous cheer from the rest of the dancers, and they pull you into the fray.`
 			`	After a few minutes of dancing, the music begins to subside. One of the dancers introduces himself to you as Garrison, and lists off the names of his fellow dancers: Pierre, Maria, Hannah, and Laura. As you make your introductions, you learn that everyone here is part of the same research team, working for one of the Deep's many science bureaus, and they are currently wrapping up a short vacation by listening to their favorite band before they travel to Midgard on assignment.`
+			
+			label choice
 			`	"How do you know about 'There Might Be Riots?'" Hannah asks you.`
 			choice
 				`	"I've met them."`
@@ -1046,7 +1055,7 @@ mission "Deep: Project Hawking"
 			
 			label accept
 			`	"Thank you, Captain. The planets that we need to go to are..." Garrison turns to the other three scientists. "<stopovers>," Hannah says.`
-			`	"... Thanks. After we have gathered all the supplies we need, we'll need dropped off on <destination>."`
+			`	"... Thanks. After we've gathered all the supplies, we'll need to be dropped off on <destination>."`
 			`	You bring the scientists to your ship where they quickly make themselves comfy in the bunk rooms. As you walk to the bridge, you overhear Pierre quietly communicating with what you assume to be the spaceport authorities, "...<last> agreed. I expect 'Project Hawking' to proceed on schedule. We will arrive before <day>." As you prepare for launch, you wonder what you've just signed up for.`
 				launch
 	
