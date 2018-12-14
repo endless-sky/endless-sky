@@ -1132,7 +1132,7 @@ mission "Deep: Project Hawking: Carbuncle"
 	on offer
 		conversation
 			`The majority of Carbuncle Station is restricted to normal visitors. The workers here will not even refuel your ship upon request. It's clear that Lovelace Labs, the owners of this station, have secrets stored within the walls of this station.`
-			`	You open your docking doors, only to find the bulkhead doors to the rest of the station blocked by three well-armed security officers. You follow the scientists lead, and approach the guards. They spend several minutes conversing, but eventually a guard activates a toggle on his communicator. A video screen next to the bulkhead blinks on, revealing a woman in a uniform distinctly more embellished than those of the guards before you.`
+			`	You open your docking doors, only to find the bulkhead doors to the rest of the station blocked by three well-armed security officers. You follow the scientists' lead and approach the guards. They spend several minutes conversing, but eventually a guard activates a toggle on his communicator. A video screen next to the bulkhead blinks on, revealing a woman in a uniform distinctly more embellished than those of the guards before you.`
 			`	"What brings you here to Carbuncle Station?"`
 			`	Pierre responds with only two words, "Project Hawking," and the screen momentarily goes blank. When it flickers on again, she is equally succinct and says only, "Admit three."`
 			`	After a short discussion, Garrison agrees to stay behind with you. Pierre, Hannah, and Laura are lead through an awkwardly small opening in the bulkhead door, into the restricted area. Rather than wait in front of the guards, you return to the comfort of your ship with Garrison.`
@@ -1263,7 +1263,7 @@ mission "Deep: Project Hawking: Vinci"
 					goto history
 			
 			`	"That's what everyone else told me, too. It was fun though, and a lot of what I learned in ancient history was just as interesting as what I learned in quantum mechanics."`
-			`	"What did you learn in ancient history?"`
+			`	"What did you learn in ancient history?" you ask.`
 			
 			label history
 			`	"I could spend weeks on end talking about what I learned in those classes. The most interesting thing I learned has to be my ancestry. Most of my ancestors came from a place on Earth called Scandinavia, and my last name means 'garden' in an ancient language.`
@@ -1977,6 +1977,7 @@ mission "Deep: Scientist Rescue 1"
 	on offer
 		payment 250000
 		log `Located the Deep Star Queen that was kidnapped by pirates while en route to Gorvi. Deep Security has finished gathering their rescue fleet and will soon be making the trip to rescue the scientists.`
+		log "People" "Tom Paris" `Paris is a high ranking guard in Deep Security, equivalent to an admiral in the Republic Navy. While most of Deep Security is designed to keep the Deep safe internally and repel any pirates that might try to make their way into the region, Paris is in charge of Deep Security's external affairs, defending the Deep's interests outside its own borders.`
 		conversation
 			`You return to Valhalla and find Lieutenant Paris with a large group of men and women in Deep Security uniforms. As you approach them, the Lieutenant stops speaking to the group after noticing you. "Captain <last>! Have you located the Star Queen?"`
 			choice
