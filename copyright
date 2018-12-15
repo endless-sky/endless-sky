@@ -98,10 +98,13 @@ Copyright: Nate Graham <pointedstick@zoho.com>
 License: CC-BY-SA-4.0
 
 Files:
- images/land/sky2.jpg
- images/land/sea3.jpg
+ images/land/sky2*
+ images/land/sea3*
+ images/land/beach4*
+ images/land/canyon9*
 Copyright: Emily Mell <hasmidas@gmail.com>
 License: public domain
+Based on public domain images taken from unsplash.com
 
 Files:
  images/icon/gat*
@@ -318,7 +321,6 @@ Files:
  images/land/beach0*
  images/land/beach2*
  images/land/beach3*
- images/land/beach4*
  images/land/beach5*
  images/land/beach6*
  images/land/canyon0*
@@ -369,12 +371,10 @@ Files:
  images/land/mountain8*
  images/land/mountain9*
  images/land/sea1*
- images/land/sea3*
  images/land/sea5*
  images/land/sea7*
  images/land/sea8*
  images/land/sky0*
- images/land/sky2*
  images/land/sky3*
  images/land/sky4*
  images/land/sky5*
