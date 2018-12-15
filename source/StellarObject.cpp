@@ -180,7 +180,7 @@ shared_ptr<Ship> StellarObject::GetShip(const System *system) const
 	local->SetPersonality(personality);
 	local->SetSystem(system);
 	local->SetStellar(this);
-	local->Place(Position(), Point(), Facing());
+	local->Place(Position(), Point(), Angle::Random());
 	local->Restore();
 	return local;
 }
