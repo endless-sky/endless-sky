@@ -2346,8 +2346,13 @@ mission "Terraforming 11"
 		government "Pirate"
 		personality nemesis staying target
 		system "Cebalrai"
-		fleet "Marauder fleet I"
-		fleet "Large Southern Pirates"
+		fleet
+			names "pirate"
+			variant
+				"Marauder Quicksilver"
+				"Marauder Arrow (Weapons)"
+				"Marauder Bounder (Engines)"
+				"Bastion"
 
 
 
