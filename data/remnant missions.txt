@@ -1135,7 +1135,7 @@ mission "Remnant: Salvage 6"
 			`	"Well, I need to get back to work. That last battle put us behind schedule on our repairs. Have a good day!" With a final flourish that you think is the equivalent of an exclamation mark, Tali strides out of the outfitters, heading towards another landing bay.`
 
 event "Remnant Salvage Available"
-	outfitter "remnant"
+	outfitter "Remnant"
 		"Generator (Furnace Class)"
 		"Generator (Candle Class)"
 		"Triple Plasma Core"
