@@ -742,7 +742,7 @@ mission "Remnant: Return the Samples"
 		conversation
 			`Once again you have successfully dodged the Archon to land on Nasqueron. Somehow, knowing it was going to be there was both better and worse than the surprise of the first time.`
 			`	As <ship> sinks through the cloud layers, you gently activate the repulsors to slow your descent to avoid startling the void sprites. After what seems like an eternity, you notice a few nearby sprites descending as well, and you match velocity with them, slowing as you reach the altitude listed in the log.`
-			`	Setting the ship on auto-pilot, you head back and suit-up in something that looks more reminiscent of the old deep-sea diving suits than anything carried on a modern ship. Readying the eggs in the cargo hold, you equalize pressure in the main cargo hold to the swirling clouds outside, and open the cargo bay doors. As predicted, at this pressure level, the eggs are almost weightless, and are fairly easy to carry to the door of the ship and release.`	
+			`	Setting the ship on auto-pilot, you head back and suit-up in something that looks more reminiscent of the old deep-sea diving suits than anything carried on a modern ship. Readying the eggs in the cargo hold, you equalize pressure in the main cargo hold to the swirling clouds outside, and open the bay doors. As predicted, at this pressure level, the eggs are almost weightless, and are fairly easy to carry to the door of the ship and release.`	
 			`	By the time you finish releasing the eggs back into the clouds, several void sprites have converged on your ship and appear to be herding the eggs away from you with gentle buffets of their wings. You take a moment to appreciate the alien beauty of these creatures before closing the hatch and purging the ship with fresh air.`
 	on complete
 		"reputation:  Drak " = 1
@@ -781,7 +781,7 @@ mission "Remnant: Return the Samples 2"
 		conversation
 			`As you approach Slylandro you watch the Archon like a hawk, but this time it doesn't attempt to drive you off with tridents of white energy. Cautiously you make your way to Slylandro and begin your descent.`
 			`	As <ship> sinks through the cloud layers, you notice the void sprites seem to be tailing you. A few drop past you with startling speed, only to reappear from below as you approach the designated altitude. At the last minute you remember Plume's request to record them, and hit the switch to activate the recorder for the exterior cameras.`
-			`	Setting the ship on auto-pilot, you head back and suit-up in the bulky pressure suit once again. Readying the eggs in the cargo hold, you equalize pressure and open the cargo bay doors. As before, the eggs are already floating as you open the cocoons and gently carry them to the door.`	
+			`	Setting the ship on auto-pilot, you head back and suit-up in the bulky pressure suit once again. Readying the eggs in the cargo hold, you equalize pressure and open the bay doors. As before, the eggs are already floating as you open the cocoons and gently carry them to the door.`	
 			`	Almost as soon as you release the first egg, a void sprite is there, brushing against the ship to scoop the egg away into the swirling mists. By the time you return with the next one, another sprite is already waiting at the door, undulating in the eerie light. By the time the last egg is released you can see dozens of the strange creatures swarming around the collection of eggs. It occurs to you that very few humans would ever have the chance to see anything like this...`
 			`	After taking a moment to enjoy the view, you shut the door as gently as you can, purge the ship with fresh air, and begin the journey back to Aventine.`
 	on complete
@@ -832,7 +832,7 @@ mission "Remnant: Learning Sign 1"
 	on stopover
 		conversation
 			`The trip over is noisy - filled with antique singing and modern language teaching videos. It takes a while to start picking out specific phrases, but you have plenty of time to repeat the lessons on the flight to Aventine. When you are searching for the director's desk at the spaceport, you are very conscious of all the conversations going on around you. You even catch a word here and there, but not much. Eventually you manage to ask for directions using what you have learned, and you arrive at a similar desk in a busy plaza.`
-			`	It looks like the person behind the desk has been expecting you. They gesture very slowly, asking how your lessons are going using very basic signs and songs. After a few minutes of conversation, they ask you for your hand for the hand-scan and then give you a data chip with more lessons.`
+			`	It looks like the person behind the desk has been expecting you. They gesture very slowly, asking how your lessons are going using very basic signs and songs. After a few minutes of conversation, they ask you to place your hand on the scanner, and then give you a data chip with more lessons.`
 			`	There is also a note saying that there will be a final package of lessons waiting for you on Viminal.`
 
 	on complete
@@ -979,7 +979,7 @@ mission "Remnant: Salvage 3"
 	on complete
 		payment 100000
 		conversation
-			`The return trip to Viminal is much more interesting. The crew spend more time wandering your ship than they do in their bunks. Some spend most of their time down in engineering, while others hang out around the main guns or the cockpit. Only their remarkable aptitude at figuring out where to be in order to not interfere with your crew keeps them from being a hindrance. As you open the hatch they disperse across the tarmac to the ships they have been assigned to, each one of them signing their thanks as they leave.`
+			`The return trip to Viminal is much more interesting. The crew spend more time wandering your ship than they do in their bunks. Some spend most of their time down in engineering, while others hang out around the main guns or the cockpit. Only their remarkable aptitude at figuring out where to be in order to not interfere with normal operations keeps them from being a hindrance. As you open the hatch they disperse across the tarmac to the ships they have been assigned to, each one of them signing their thanks as they leave.`
 			`	A few minutes after they leave your comlink beeps, notifying you that a message from the prefect has arrived:`
 			`	"Captain <last>! Thank you for your help in defending Viminal and transporting those wounded. I have transferred a small token of our appreciation to you. That being said, perhaps you would appreciate this a bit more: The other prefects and I have agreed to grant you access to a wider range of ships: our Albatross class warships, and Pelican class freighters. I think you would term the former 'heavy warships,' and the latter 'heavy freighters.' At the rate these raids are going, it is in everyone's best interests that you have access to a better warship."`
 			`	With a sense of finality the Prefect makes a gesture that you've come to recognize as "respectful end of conversation."`
@@ -1116,7 +1116,7 @@ mission "Remnant: Salvage 6"
 	on complete
 		payment 50000
 		conversation 
-			`Tali meets you at the dock with a flatbed ready to offload the shipment. As you run through your shutdown routine you hit the switch for the cargo bay doors, and by the time you have gone down to the cargo hold, Tali has half the shipment already unloaded.`
+			`Tali meets you at the dock with a flatbed ready to offload the shipment. As you run through your shutdown routine you hit the switch for the cargo bay doors, and by the time you have gone down to the hold, Tali has half the shipment already unloaded.`
 			`	Her signs flick at you with a gentleness that you are slowly deciding equates to a cheerful tone. "Thank you for all the help you've provided in recovering this salvage. I have discussed it with the other engineers, and we have decided to give you access to our salvage."`
 			`	She leads you over to the warehouse, scans her ID on the console, and taps a few commands. Then she scans your ID card. "There you go, I have updated your access codes," she signs cheerfully. She hands you your ID and pulls you to a door on the far side of the outfitting shop. Beyond the door is a room filled with outfits and weapons that clearly don't fit the same style as the other Remnant technology. You have seen most of the things here on scans and when salvaging equipment from other ships, but never up close.`
 			`	"Everything in here we have either learned how to duplicate in its current form, or have salvaged in sufficient quantities that we might as well be manufacturing it."`
@@ -1226,7 +1226,7 @@ mission "Remnant: Expanded Horizons Quarg 2"
 		payment 50000
 		conversation
 			`Despite your reassurances that the Quarg don't mind being scanned, you breath a sigh of relief once you are back on the ground without a reaction from them. Perhaps it was an unreasonable worry, but with a trio of secretive Remnant onboard, you can't help but feel a bit nervous about potentially exposing them to the Quarg.`
-			`	Dawn does some follow-up scans of idle Quarg ships, and they take some time to make sure all their pictures are well focused and accurate. They let you know that they will meet you back in the spaceport bar.`
+			`	Dawn does some follow-up scans of idle Quarg ships, and her fellow researchers take some time to make sure all their pictures are crisp and detailed. They let you know that they will meet you back in the spaceport bar once they are done.`
 
 
 
@@ -1249,7 +1249,7 @@ mission "Remnant: Expanded Horizons Quarg 3"
 		payment 50000
 		conversation
 			`Once you are back in the privacy of <ship>, the stony reserve fades to cheerfulness as the trio are a blur of motion as they chatter back and forth with their signs. Apparently this will be one of the biggest boosts to their research since the first time they salvaged the gear off a Korath raider.`
-			`	They eventually slow down their signs a bit and explain that up until the time the Remnant left human space, human scanners had been unable to penetrate the outer layers of Quarg ships. One of Dawn's fellow researchers continues with the explanation.`
+			`	They eventually slow down their signs a bit and explain that up until the time the Remnant departed from ancestral space, human scanners had been unable to penetrate the outer layers of Quarg ships. One of Dawn's fellow researchers continues with the explanation.`
 			`	"Our historical records just have a few pictures and videos of Quarg ships, along with a basic scan that doesn't provide more than the general outline of the ship. These scans," he says while tapping the databanks, "actually picked up detailed structural layouts and even identified a number of key components. It isn't nearly enough information to be able to duplicate them, but it is enough that we can start trying to figure out how they work.`
 			`	Upon arriving at <planet> they quickly thank you, and run back to their offices to finish prepping their material to publish and distribute.`
 
