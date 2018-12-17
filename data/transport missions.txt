@@ -2445,7 +2445,7 @@ mission "Terraforming Follow-up"
 
 event "terraforming follow-up"
 	planet "Rand"
-		add attribute "tourism"
+		add attributes "tourism"
 		description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
 		description `	Due to the results of recent terraforming experiments, Rand has become a moderately more habitable place. Fascination with this change in climate has lead to Rand becoming a semi-popular tourist destination of the Dirt Belt.`
 	planet "Tundra"
