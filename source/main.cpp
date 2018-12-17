@@ -309,9 +309,9 @@ int main(int argc, char *argv[])
 			
 			// In fullscreen mode, hide the cursor if inactive for ten seconds,
 			// but only if the player is flying around in the main view.
+			bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
 			++cursorTime;
-			bool shouldShowCursor = (!isFullscreen || cursorTime < 600 
-				|| !menuPanels.IsEmpty() || gamePanels.Root() != gamePanels.Top());
+			bool shouldShowCursor = (!isFullscreen || cursorTime < 600 || !inFlight);
 			if(shouldShowCursor != showCursor)
 			{
 				showCursor = shouldShowCursor;
@@ -324,7 +324,7 @@ int main(int argc, char *argv[])
 			// Caps lock slows the frame rate in debug mode, but raises it in
 			// normal mode. Slowing eases in and out over a couple of frames.
 			bool fastForward = false;
-			if(mod & KMOD_CAPS)
+			if((mod & KMOD_CAPS) && inFlight)
 			{
 				if(debugMode)
 				{
