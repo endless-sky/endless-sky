@@ -3171,6 +3171,7 @@ mission "Capture Smuggler"
 	source
 		government "Pirate"
 	on offer
+		require "Brig"
 		conversation
 			`As you step into a dive bar for a quick drink, the largest man you've ever seen stands up and blocks your path. He's well over two meters tall, and his muscles seem to ripple with barely restrained violence when he moves. "<first> <last>," he says in a thick accent. "My employer hears you do certain jobs, take money, do not ask questions. He hears you are reliable. A man, a smuggler, he steals cargo from my employer. My employer very much wants cargo returned, and this man as well."`
 			choice
