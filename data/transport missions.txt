@@ -2176,7 +2176,7 @@ mission "Terraforming 6"
 				`	(Run away.)`
 					flee
 			
-			`	"The unlawful use of an asteroid, Captain. I'm not entirely sure what that means, but I've been told to send you to <planet>. Your compliance would be much appreciated."`
+			`	"The unlawful use of an asteroid, Captain. I'm not entirely sure what that means, but I've been told to send you to <planet> by <day>. Your compliance would be much appreciated."`
 			choice
 				`	"Alright. Hopefully I can get an answer as to what this is about."`
 					accept
