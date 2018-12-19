@@ -2439,7 +2439,8 @@ mission "Wanderers Ap'arak 3: Pug"
 		government "Pug"
 		ship "Pug Arfecta" "Hork Ekekek Ptui"
 		ship "Pug Arfecta" "Graak Sput Kchoo"
-
+	on complete
+		"reputation: Wanderer" <?= -1
 mission "Wanderers Ap'arak 3"
 	landing
 	name "Report to <planet>"
