@@ -2217,6 +2217,61 @@ mission "Prisoners [4]"
 			distance 3 4
 		fleet "pirate raid"
 
+mission "Released Prisoners [0]"
+	name "Released prisoner transport to <planet>"
+	job
+	repeat
+	description "Transport <bunks> prisoners home after completing their sentences of hard labor. Payment is <payment>."
+		passengers 2 10 .9
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "mining" "factory"
+		attributes "north" "south" "rim" "frontier" "core"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	to offer
+		random < 35
+	on complete
+		payment 3000 150
+		dialog "The released prisoners walk out into the spaceport with nothing but their meager belongings and discharge paperwork. You collect your payment of <payment>."
+
+mission "Released Prisoners [1]"
+	name "Released prisoner transport to <planet>"
+	job
+	repeat
+	description "Transport <bunks> prisoners home after completing their sentences as domestic servants. Payment is <payment>."
+		passengers 2 10 .9
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "paradise"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	to offer
+		random < 35
+	on complete
+		payment 3000 150
+		dialog "The released prisoners walk out into the spaceport with nothing but their meager belongings and discharge paperwork. You collect your payment of <payment>."
+
+mission "Released Prisoners [2]"
+	name "Released prisoner transport to <planet>"
+	job
+	repeat
+	description "Transport <bunks> prisoners home after completing their sentences in a penal colony. Payment is <payment>."
+		passengers 2 10 .9
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "moon" "military"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	to offer
+		random < 35
+	on complete
+		payment 3000 150
+		dialog "The released prisoners have the pale skin of people who spent years without exposure to sunlight. They gather their meager belongings and discharge paperwork and walk into the spaceport. You collect your payment of <payment>."
+
 mission "Large Bulk Delivery [0]"
 	name "Large bulk delivery to <planet>"
 	job
@@ -2808,4 +2863,3 @@ mission "Marauder Hunted"
 		system
 			distance 5 5
 		fleet "Marauder fleet X"
-	
