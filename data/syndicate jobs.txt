@@ -485,4 +485,4 @@ mission "Return Syndicate Prisoners [2]"
 		random < 10
 	on complete
 		payment 5000 100
-		dialog "The labor organizers are almost skeletally thin from their imprisonment. One of them raises his face to the sky as though bathing in sunlight. They eventually make their way into the spaceport. You receive your payment of <payment>."
+		dialog "The labor organizers are almost skeletally thin from their imprisonment. One of them raises his face to the sky as though showering in sunlight. They eventually make their way into the spaceport. You receive your payment of <payment>."
