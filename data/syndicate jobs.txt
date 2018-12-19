@@ -312,7 +312,7 @@ mission "Syndicate Prisoner Transport [0]"
 	name "Transport indicted executive to house arrest"
 	job
 	repeat
-	description `Transport an indicted white collar criminal with his assistants, lawyers, and collection of <cargo> to <planet> to await trial under "house arrest". Payment is <payment>.`
+	description `Transport an indicted white-collar criminal with his assistants, lawyers, and collection of <cargo> to <planet>, where he will await trial under "house arrest". Payment is <payment>.`
 	cargo "Luxury Goods" 1 10
 	passengers 5 12
 	source
@@ -373,7 +373,7 @@ mission "Syndicate Prisoner Transport [2]"
 		require "Brig"
 	on complete
 		payment 15000 175
-		dialog "A group of guards lead the prisoners off your ship chained together at the ankles. You receive your payment of <payment>."
+		dialog "A group of guards lead the prisoners off your ship, chained together at the ankles. You receive your payment of <payment>."
 
 
 mission "Syndicate Prisoner Transport [3]"
@@ -426,7 +426,7 @@ mission "Return Syndicate Prisoners [0]"
 	name "Return acquitted executive home from house arrest"
 	job
 	repeat
-	description `Transport an acquitted white collar criminal with his assistants, lawyers, and collection of <cargo> home to <planet>. Payment is <payment>.`
+	description `Transport an acquitted white-collar criminal with his assistants, lawyers, and collection of <cargo> home to <planet>. Payment is <payment>.`
 	cargo "Luxury Goods" 1 10
 	passengers 5 12
 	source
@@ -458,7 +458,7 @@ mission "Return Syndicate Prisoners [1]"
 	destination
 		distance 2 10
 		government "Syndicate"
-		attributes "urban
+		attributes "urban"
 		not attributes "military"
 	to offer
 		random < 15
