@@ -419,7 +419,7 @@ mission "Syndicate Prisoner Transport [4]"
 		require "Brig"
 	on complete
 		payment 15000 200
-		dialog "The union organizers are defiant as the guards drag them inside, and one of the organizers yells about "class traitors". The guards look grim and avoid eye contact. You receive your payment of <payment>."
+		dialog `The union organizers are defiant as the guards drag them inside, and one of the organizers yells about "class traitors". The guards look grim and avoid eye contact. You receive your payment of <payment>.`
 
 
 mission "Return Syndicate Prisoners [0]"
