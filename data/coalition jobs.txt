@@ -1160,7 +1160,7 @@ mission "Coalition: Transport Prisoners 1"
 	job
 	repeat
 	name "Transport Kimek prisoners to <planet>"
-	description "Transport <bunks> Kimek prisoners from <source> for reeducation on <planet>."
+	description "Transport <bunks> Kimek prisoners from <source> for reeducation on <planet>. Payment is <payment>."
 	passengers 20 200 .1
 	to offer
 		has "known to the heliarchs"
@@ -1181,7 +1181,7 @@ mission "Coalition: Transport Prisoners 2"
 	job
 	repeat
 	name "Transport Saryd prisoners to <planet>"
-	description "Transport <bunks> Saryd prisoners from <source> for reeducation on <planet>."
+	description "Transport <bunks> Saryd prisoners from <source> for reeducation on <planet>. Payment is <payment>."
 	passengers 20 200 .1
 	to offer
 		has "known to the heliarchs"
@@ -1202,7 +1202,7 @@ mission "Coalition: Transport Prisoners 3"
 	job
 	repeat
 	name "Transport Arachi prisoners to <planet>"
-	description "Transport <bunks> Arachi prisoners from <source> for reeducation on <planet>."
+	description "Transport <bunks> Arachi prisoners from <source> for reeducation on <planet>. Payment is <payment>."
 	passengers 20 200 .1
 	to offer
 		has "known to the heliarchs"
@@ -1224,7 +1224,7 @@ mission "Coalition: Return Prisoners 1"
 	job
 	repeat
 	name "Transport released Kimek prisoners home to <planet>"
-	description "Transport <bunks> Kimek to <planet> from their reeducation on <source>."
+	description "Transport <bunks> Kimek to <planet> from their reeducation on <source>. Payment is <payment>."
 	passengers 20 200 .1
 	to offer
 		has "known to the heliarchs"
@@ -1243,7 +1243,7 @@ mission "Coalition: Return Prisoners 2"
 	job
 	repeat
 	name "Transport released Saryd prisoners home to <planet>"
-	description "Transport <bunks> Saryds to <planet> from their reeducation on <source>."
+	description "Transport <bunks> Saryds to <planet> from their reeducation on <source>. Payment is <payment>."
 	passengers 20 200 .1
 	to offer
 		has "known to the heliarchs"
@@ -1262,7 +1262,7 @@ mission "Coalition: Return Prisoners 3"
 	job
 	repeat
 	name "Transport released Arachi prisoners home to <planet>"
-	description "Transport <bunks> Arachi to <planet> from their reeducation on <source>."
+	description "Transport <bunks> Arachi to <planet> from their reeducation on <source>. Payment is <payment>."
 	passengers 20 200 .1
 	to offer
 		has "known to the heliarchs"
