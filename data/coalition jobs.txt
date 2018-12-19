@@ -1154,3 +1154,125 @@ mission "Coalition: From Games 3"
 		payment
 		payment 25000
 		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>.`
+
+
+mission "Coalition: Transport Prisoners 1"
+	job
+	repeat
+	name "Transport Kimek prisoners to <planet>"
+	description "Transport <bunks> Kimek prisoners from <source> for reeducation on <planet>."
+	passengers 20 200 .1
+	to offer
+		has "known to the heliarchs"
+		random < 10
+		"passenger space" > 20
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Ring of Power"
+	on offer
+		has "Brig"
+	on complete
+		"coalition jobs" ++
+		payment 15000 150
+		dialog `The prisoners are led off of your ship by a single Kimek ensign. Curiously, none of them make any attempt to resist or escape. A Heliarch officer gives you your payment of <payment>.`
+
+mission "Coalition: Transport Prisoners 2"
+	job
+	repeat
+	name "Transport Saryd prisoners to <planet>"
+	description "Transport <bunks> Saryd prisoners from <source> for reeducation on <planet>."
+	passengers 20 200 .1
+	to offer
+		has "known to the heliarchs"
+		random < 10
+		"passenger space" > 20
+	source
+		government "Coalition"
+		attributes "saryd"
+	destination "Ring of Power"
+	on offer
+		has "Brig"
+	on complete
+		"coalition jobs" ++
+		payment 15000 150
+		dialog `The prisoners are led off of your ship by a single Saryd ensign. Most of them are looking at the floor, but a few look you in the eye as they pass. A Heliarch officer gives you your payment of <payment>.`
+
+mission "Coalition: Transport Prisoners 3"
+	job
+	repeat
+	name "Transport Arachi prisoners to <planet>"
+	description "Transport <bunks> Arachi prisoners from <source> for reeducation on <planet>."
+	passengers 20 200 .1
+	to offer
+		has "known to the heliarchs"
+		random < 10
+		"passenger space" > 20
+	source
+		government "Coalition"
+		attributes "arach"
+	destination "Ring of Power"
+	on offer
+		has "Brig"
+	on complete
+		"coalition jobs" ++
+		payment 15000 150
+		dialog `The prisoners are led off of your ship by a single Arachi ensign. It's impossible to tell how they feel, but none of them step out of line or make any trouble. A Heliarch officer gives you your payment of <payment>.`
+
+
+mission "Coalition: Return Prisoners 1"
+	job
+	repeat
+	name "Transport released Kimek prisoners home to <planet>"
+	description "Transport <bunks> Kimek to <planet> from their reeducation on <source>."
+	passengers 20 200 .1
+	to offer
+		has "known to the heliarchs"
+		random < 10
+		"passenger space" > 20
+	source "Ring of Power"
+	destination
+		government "Coalition"
+		attributes "kimek"
+	on complete
+		"coalition jobs" ++
+		payment 12000 150
+		dialog `The former prisoners leave your ship a bit faster than walking pace for them. You receive your payment of <payment>.`
+
+mission "Coalition: Return Prisoners 2"
+	job
+	repeat
+	name "Transport released Saryd prisoners home to <planet>"
+	description "Transport <bunks> Saryds to <planet> from their reeducation on <source>."
+	passengers 20 200 .1
+	to offer
+		has "known to the heliarchs"
+		random < 10
+		"passenger space" > 20
+	source "Ring of Power"
+	destination
+		government "Coalition"
+		attributes "saryd"
+	on complete
+		"coalition jobs" ++
+		payment 12000 150
+		dialog `The former prisoners disembark lazily, as though they were returning from vacation rather than from internment. You receive your payment of <payment>.`
+
+mission "Coalition: Return Prisoners 3"
+	job
+	repeat
+	name "Transport released Arachi prisoners home to <planet>"
+	description "Transport <bunks> Arachi to <planet> from their reeducation on <source>."
+	passengers 20 200 .1
+	to offer
+		has "known to the heliarchs"
+		random < 10
+		"passenger space" > 20
+	source "Ring of Power"
+	destination
+		government "Coalition"
+		attributes "arach"
+	on complete
+		"coalition jobs" ++
+		payment 12000 150
+		dialog `The former prisoners are ready to leave your ship when you touch down, and rush out the moment the port is open. Some of them look like they're proceeding straight to job sites at the spaceport without even returning home first. You receive your payment of <payment>.`
