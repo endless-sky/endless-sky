@@ -464,7 +464,7 @@ mission "Return Syndicate Prisoners [1]"
 		random < 15
 	on complete
 		payment 5000 100
-		dialog "The protestors look around the spaceport nervously before disembarking. One of them flinches when a guard glaces their way. You receive your payment of <payment>."
+		dialog "The protestors look around the spaceport nervously before disembarking. One of them flinches when a guard glances their way. You receive your payment of <payment>."
 
 
 mission "Return Syndicate Prisoners [2]"
