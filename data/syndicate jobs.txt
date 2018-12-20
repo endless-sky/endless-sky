@@ -312,7 +312,7 @@ mission "Syndicate Prisoner Transport [0]"
 	name "Transport indicted executive to house arrest"
 	job
 	repeat
-	description `Transport an indicted white-collar criminal with his assistants, lawyers, and collection of <cargo> to <planet>, where he will await trial under "house arrest". Payment is <payment>.`
+	description `Transport an indicted white-collar criminal with his assistants, lawyers, and collection of <cargo> to <planet>, where he will await trial under "house arrest." Payment is <payment>.`
 	cargo "Luxury Goods" 1 10
 	passengers 5 12
 	source
@@ -419,7 +419,7 @@ mission "Syndicate Prisoner Transport [4]"
 		require "Brig"
 	on complete
 		payment 15000 200
-		dialog `The union organizers are defiant as the guards drag them inside, and one of the organizers yells about "class traitors". The guards look grim and avoid eye contact. You receive your payment of <payment>.`
+		dialog `The union organizers are defiant as the guards drag them inside, and one of the organizers yells about "class traitors." The guards look grim and avoid eye contact. You receive your payment of <payment>.`
 
 
 mission "Return Syndicate Prisoners [0]"
