@@ -377,10 +377,10 @@ mission "Syndicate Prisoner Transport [2]"
 
 
 mission "Syndicate Prisoner Transport [3]"
-	name "Transport detained protestors"
+	name "Transport detained protesters"
 	job
 	repeat
-	description `Transport a group of detained protestors to <planet> where they will await trial for inciting a riot. Payment is <payment>.`
+	description `Transport a group of detained protesters to <planet> where they will await trial for inciting a riot. Payment is <payment>.`
 	passengers 10 40 .9
 	source
 		government "Syndicate"
@@ -447,10 +447,10 @@ mission "Return Syndicate Prisoners [0]"
 
 
 mission "Return Syndicate Prisoners [1]"
-	name "Return detained protestors home"
+	name "Return detained protesters home"
 	job
 	repeat
-	description `Transport a group of protestors home to <planet> from their detention on <source>. Payment is <payment>.`
+	description `Transport a group of protesters home to <planet> from their detention on <source>. Payment is <payment>.`
 	passengers 10 40 .9
 	source
 		government "Syndicate"
@@ -464,7 +464,7 @@ mission "Return Syndicate Prisoners [1]"
 		random < 15
 	on complete
 		payment 5000 100
-		dialog "The protestors look around the spaceport nervously before disembarking. One of them flinches when a guard glances their way. You receive your payment of <payment>."
+		dialog "The protesters look around the spaceport nervously before disembarking. One of them flinches when a guard glances their way. You receive your payment of <payment>."
 
 
 mission "Return Syndicate Prisoners [2]"
