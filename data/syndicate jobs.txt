@@ -423,7 +423,7 @@ mission "Syndicate Prisoner Transport [4]"
 
 
 mission "Return Syndicate Prisoners [0]"
-	name "Return acquitted executive home from house arrest"
+	name "Return executive back from house arrest"
 	job
 	repeat
 	description `Transport an acquitted white-collar criminal with his assistants, lawyers, and collection of <cargo> home to <planet>. Payment is <payment>.`
