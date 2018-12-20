@@ -2270,7 +2270,7 @@ mission "Released Prisoners [2]"
 		random < 15
 	on complete
 		payment 3000 150
-		dialog "The released prisoners have the pale skin of people who spent years without exposure to sunlight. They gather their meager belongings and discharge paperwork and walk into the spaceport. You collect your payment of <payment>."
+		dialog "The released prisoners walk into the spaceport with nothing but discharge paperwork and the clothes on their backs. You collect your payment of <payment>."
 
 mission "Large Bulk Delivery [0]"
 	name "Large bulk delivery to <planet>"
