@@ -2439,8 +2439,13 @@ mission "Wanderers Ap'arak 3: Pug"
 		government "Pug"
 		ship "Pug Arfecta" "Hork Ekekek Ptui"
 		ship "Pug Arfecta" "Graak Sput Kchoo"
+		
 	on complete
 		"reputation: Wanderer" <?= -1
+		dialog
+			`After destroying the Pug ships, a Wanderer ship hails you. " We have warned you against [attacking, angering] the Pug. This behavior is [unacceptable, untolerable]."`
+
+		
 mission "Wanderers Ap'arak 3"
 	landing
 	name "Report to <planet>"
