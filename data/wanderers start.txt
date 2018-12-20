@@ -2443,7 +2443,7 @@ mission "Wanderers Ap'arak 3: Pug"
 	on complete
 		"reputation: Wanderer" <?= -1
 		dialog
-			`After destroying the Pug ships, a Wanderer ship hails you. " We have warned you against [attacking, angering] the Pug. This behavior is [unacceptable, untolerable]."`
+			`After destroying the Pug ships, a Wanderer ship hails you. " We have warned you against [attacking, angering] the Pug. This behavior is [unacceptable, intolerable]."`
 
 		
 mission "Wanderers Ap'arak 3"
