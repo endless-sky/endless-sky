@@ -309,7 +309,7 @@ ship "Vanguard" "Vanguard Test Dummy"
 
 
 mission "Syndicate Prisoner Transport [0]"
-	name "Transport indicted executive to house arrest"
+	name "Transport executive to house arrest"
 	job
 	repeat
 	description `Transport an indicted white-collar criminal with his assistants, lawyers, and collection of <cargo> to <planet>, where he will await trial under "house arrest." Payment is <payment>.`
@@ -329,7 +329,7 @@ mission "Syndicate Prisoner Transport [0]"
 		require "Luxury Accommodations"
 	on complete
 		payment 10000 200
-		dialog "The executive strolls off your ship with a sunny smile on his face. His assistants arrange to have his <cargo> removed from your ship. One of the lawyers hands you your payment of <payment> with muttered threats about libel lawsuits if you say anything about what you may or may not have overheard on your ship."
+		dialog "The executive strolls off your ship with a sunny smile on his face. One of the lawyers hands you your payment of <payment> with muttered threats about libel lawsuits if you say anything about what you may or may not have overheard on your ship."
 
 
 mission "Syndicate Prisoner Transport [1]"
@@ -396,7 +396,7 @@ mission "Syndicate Prisoner Transport [3]"
 		require "Brig"
 	on complete
 		payment 10000 150
-		dialog "The prisoners are still wearing their civilian clothes, and you can see bruises from when they were arrested. The guards look almost apologetic as they herd the prisoners inside. You receive your payment of <payment>."
+		dialog "The prisoners are still wearing their civilian clothes, and you can see bruises from when they were arrested as the guards lead them inside. You receive your payment of <payment>."
 
 
 mission "Syndicate Prisoner Transport [4]"
@@ -419,7 +419,7 @@ mission "Syndicate Prisoner Transport [4]"
 		require "Brig"
 	on complete
 		payment 15000 200
-		dialog `The union organizers are defiant as the guards drag them inside, and one of the organizers yells about "class traitors." The guards look grim and avoid eye contact. You receive your payment of <payment>.`
+		dialog `The union organizers are defiant as the guards drag them inside, and one of the organizers yells about "class traitors." You receive your payment of <payment>.`
 
 
 mission "Return Syndicate Prisoners [0]"
@@ -443,7 +443,7 @@ mission "Return Syndicate Prisoners [0]"
 		require "Luxury Accommodations"
 	on complete
 		payment 20000 200
-		dialog "The executive strides toward the express customs entrance with a smug grin. His harried assistants arrange to have his <cargo> removed from your ship. A paperwork-laden lawyer gives you your payment of <payment>."
+		dialog "The executive strides toward the express customs entrance with a smug grin. A paperwork-laden lawyer gives you your payment of <payment>."
 
 
 mission "Return Syndicate Prisoners [1]"
@@ -464,7 +464,7 @@ mission "Return Syndicate Prisoners [1]"
 		random < 15
 	on complete
 		payment 5000 100
-		dialog "The protesters look around the spaceport nervously before disembarking. One of them flinches when a guard glances their way. You receive your payment of <payment>."
+		dialog "The protesters look around the spaceport nervously before disembarking. You receive your payment of <payment>."
 
 
 mission "Return Syndicate Prisoners [2]"
@@ -485,4 +485,4 @@ mission "Return Syndicate Prisoners [2]"
 		random < 10
 	on complete
 		payment 5000 100
-		dialog "The labor organizers are almost skeletally thin from their imprisonment. One of them raises his face to the sky as though showering in sunlight. They eventually make their way into the spaceport. You receive your payment of <payment>."
+		dialog "The labor organizers are almost skeletally thin from their imprisonment. One of them raises his face to the sky as though showering in sunlight. You receive your payment of <payment>."
