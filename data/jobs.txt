@@ -2122,7 +2122,7 @@ mission "Prisoners [0]"
 		attributes "mining"
 		attributes "north" "south" "rim" "frontier" "core"
 	to offer
-		random < 35
+		random < 15
 	on offer
 		require "Brig"
 	on complete
@@ -2136,7 +2136,7 @@ mission "Prisoners [1]"
 	description "Transport <bunks> petty criminals to <destination>, where they will serve their sentences as factory laborers. Payment is <payment>."
 	passengers 2 10 .9
 	to offer
-		random < 35
+		random < 15
 	on offer
 		require "Brig"
 	source
@@ -2157,7 +2157,7 @@ mission "Prisoners [2]"
 	description "Transport <bunks> petty petty criminals to <destination>, where they will serve their sentences as domestic servants. Payment is <payment>."
 	passengers 2 10 .9
 	to offer
-		random < 35
+		random < 15
 	on offer
 		require "Brig"
 	source
@@ -2177,7 +2177,7 @@ mission "Prisoners [3]"
 	description "Transport <bunks> petty criminals to a penal colony on <destination>. Payment is <payment>."
 	passengers 2 15 .9
 	to offer
-		random < 35
+		random < 15
 	on offer
 		require "Brig"
 	source
@@ -2197,7 +2197,7 @@ mission "Prisoners [4]"
 	description "Transport <bunks> violent felons to a penal colony on <destination>. Payment is <payment>."
 	passengers 2 10 .9
 	to offer
-		random < 20
+		random < 10
 		"combat rating" > 50
 	on offer
 		require "Brig"
@@ -2216,6 +2216,61 @@ mission "Prisoners [4]"
 		system
 			distance 3 4
 		fleet "pirate raid"
+
+mission "Released Prisoners [0]"
+	name "Parolee transport to <planet>"
+	job
+	repeat
+	description "Transport <bunks> prisoners home after completing their sentences of hard labor. Payment is <payment>."
+		passengers 2 10 .9
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "mining" "factory"
+		attributes "north" "south" "rim" "frontier" "core"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	to offer
+		random < 15
+	on complete
+		payment 3000 150
+		dialog "The released prisoners walk out into the spaceport with nothing but their meager belongings and discharge paperwork. You collect your payment of <payment>."
+
+mission "Released Prisoners [1]"
+	name "Parolee transport to <planet>"
+	job
+	repeat
+	description "Transport <bunks> prisoners home after completing their sentences as domestic servants. Payment is <payment>."
+		passengers 2 10 .9
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "paradise"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	to offer
+		random < 15
+	on complete
+		payment 3000 150
+		dialog "The released prisoners walk out into the spaceport with nothing but their meager belongings and discharge paperwork. You collect your payment of <payment>."
+
+mission "Released Prisoners [2]"
+	name "Parolee transport to <planet>"
+	job
+	repeat
+	description "Transport <bunks> prisoners home after completing their sentences in a penal colony. Payment is <payment>."
+		passengers 2 10 .9
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "moon" "military"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	to offer
+		random < 15
+	on complete
+		payment 3000 150
+		dialog "The released prisoners walk into the spaceport with nothing but discharge paperwork and the clothes on their backs. You collect your payment of <payment>."
 
 mission "Large Bulk Delivery [0]"
 	name "Large bulk delivery to <planet>"
@@ -2808,4 +2863,4 @@ mission "Marauder Hunted"
 		system
 			distance 5 5
 		fleet "Marauder fleet X"
-	
+
