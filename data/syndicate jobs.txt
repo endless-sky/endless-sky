@@ -358,7 +358,7 @@ mission "Syndicate Prisoner Transport [2]"
 	name "Transport convicted corporate spies"
 	job
 	repeat
-	description `Transport a group of corporate spies to <planet> for their sentences. Payment is <payment>.`
+	description `Transport a group of convicted corporate spies to <planet> for their sentences. Payment is <payment>.`
 	passengers 3 5
 	source
 		government "Syndicate"
