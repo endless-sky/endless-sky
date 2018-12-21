@@ -1111,7 +1111,7 @@ mission "Hai Large Rush Delivery [3]"
 
 
 mission "Hai Prisoner Roleplay"
-	name `Transport Hai "prisoners" to <planet>`
+	name `Hai "prison" cruise to <planet>`
 	job
 	repeat
 	description "A group of Hai want to experience what it's like to be human criminals. Transport them to <planet> in your brig. Payment is <payment>."
