@@ -2218,7 +2218,7 @@ mission "Prisoners [4]"
 		fleet "pirate raid"
 
 mission "Released Prisoners [0]"
-	name "Released prisoner transport to <planet>"
+	name "Parolee transport to <planet>"
 	job
 	repeat
 	description "Transport <bunks> prisoners home after completing their sentences of hard labor. Payment is <payment>."
@@ -2237,7 +2237,7 @@ mission "Released Prisoners [0]"
 		dialog "The released prisoners walk out into the spaceport with nothing but their meager belongings and discharge paperwork. You collect your payment of <payment>."
 
 mission "Released Prisoners [1]"
-	name "Released prisoner transport to <planet>"
+	name "Parolee transport to <planet>"
 	job
 	repeat
 	description "Transport <bunks> prisoners home after completing their sentences as domestic servants. Payment is <payment>."
@@ -2255,7 +2255,7 @@ mission "Released Prisoners [1]"
 		dialog "The released prisoners walk out into the spaceport with nothing but their meager belongings and discharge paperwork. You collect your payment of <payment>."
 
 mission "Released Prisoners [2]"
-	name "Released prisoner transport to <planet>"
+	name "Parolee transport to <planet>"
 	job
 	repeat
 	description "Transport <bunks> prisoners home after completing their sentences in a penal colony. Payment is <payment>."
