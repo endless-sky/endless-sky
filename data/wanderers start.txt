@@ -360,6 +360,8 @@ mission "Tell Wanderers about the Pug"
 			choice
 				`	"Of course, but doesn't it bother you that they are controlling your species?"`
 				`	"They are manipulating your whole species, using you as a planetary cleanup crew. Don't you want to be free from their control?"`
+				`	"I will try not to anger them."`
+					decline
 			`	His feathers ruffle up a bit in response to your comment, but all he says is, "It is a great [gift, blessing] to our species that the Eye leads us to new lands and new challenges whenever we become [complacent, bored]. If another species gains some [advantage, benefit] from our work as well, should that not make us more [glad, eager] to do that work, rather than less?"`
 			choice
 				`	"But wouldn't you rather be free from their control, free to remain on these worlds you have worked so hard to restore?"`
@@ -2455,10 +2457,13 @@ mission "Wanderers Ap'arak 3"
 			`The Wanderers here seem incredulous that they managed to drive off such a powerful Unfettered attack force. As you walk through the spaceport, many of them stop to thank you for your assistance in defending their home.`
 			`	Just as you reach the pavilion where the military leaders are gathering, a shadow falls over you, and you look up to see two ships approaching with the unmistakable horned silhouettes of Pug warships. Throughout the spaceport you hear Wanderer voices raised in excitement, and hundreds of them leap into the air to accompany the Pug ships to the landing pad. Sobari Tele'ek says to you, "It is a [visitation, appearance] of the Keepers! In our hour of [need, desperation] they make themselves known at last." A small delegation of Pug disembarks from the ships and approaches the pavilion on foot.`
 			choice
+				`	(Let them speak)`
+					goto pug
 				`	"Let's hope that they offer you more help than they did last time I talked with them."`
 				`	"The Pug are dangerous and unpredictable. You should not trust them."`
 				`	"If they really cared about you, they would have intervened before so many of you died fighting the Unfettered."`
 			`	"The Keepers are [subtle, mysterious]," says Tele'ek, "but always their [intervention, action] has been for our [benefit, good]. Now be silent, and allow them to speak."`
+			label pug
 			`	The Pug delegation reaches the pavilion, and one of them begins speaking in the Wanderer language. You have no idea what they are saying, and they all seem to be ignoring your presence. A few of the Wanderer leaders respond. There's an awful lot of fanning of wings, flipping of tails, and preening of feathers going on. That might be the Wanderer way of trying to make a good impression, or else they're just feeling pleased with themselves. Or maybe they're nervous; it's hard to tell.`
 			`	The Pug finish their conversation with the Wanderers and return to their ships, and only then does Sobari Tele'ek turn to you and say, "Great news! They say that their two ships will [patrol, remain in] this system and [hold off, hold at bay] the Hai fleets. Also," he adds, preening himself, "they are very pleased with us for [growing, becoming] so strong. And, they say we need not [fight? worry about?] the Hai anymore."`
 			choice
