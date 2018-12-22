@@ -154,7 +154,7 @@ double StellarObject::Distance() const
 
 bool StellarObject::IsVisible() const
 {
-	return (!ship || isDead) && HasSprite();
+	return isDead && HasSprite();
 }
 
 
