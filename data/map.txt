@@ -2550,6 +2550,12 @@ system Algenib
 			sprite planet/dust7-b
 			distance 147
 			period 13.5253
+		object
+			sprite "planet/defense asteroid"
+			distance 147
+			period 13.5253
+			offset 165
+			defense "Defense Asteroid"
 	object
 		sprite planet/ice7
 		distance 579.92
@@ -3054,6 +3060,11 @@ system Almaaz
 		sprite planet/cloud2
 		distance 930.93
 		period 345.719
+		object
+			sprite "planet/defense asteroid"
+			distance 210
+			period 24
+			defense "Defense Asteroid"
 
 system Almach
 	pos -7 232
@@ -3299,6 +3310,12 @@ system Alnilam
 			sprite planet/ice8
 			distance 136
 			period 16.5247
+		object
+			sprite "planet/defense asteroid"
+			distance 136
+			period 16.5247
+			offset 63
+			defense "Defense Asteroid"
 	object
 		sprite planet/gas2
 		distance 2758.68
@@ -4461,6 +4478,12 @@ system Arneb
 		sprite planet/forest6
 		distance 1264.82
 		period 434.481
+		object
+			sprite "planet/defense asteroid"
+			distance 200
+			period 23.5
+			defense "Defense Asteroid"
+			
 	object
 		sprite planet/io
 		distance 4062.31
@@ -10464,6 +10487,12 @@ system Gienah
 			sprite planet/rock0
 			distance 147
 			period 15.7161
+		object
+			sprite "planet/defense asteroid"
+			distance 147
+			period 15.7161
+			offset 200
+			defense "Defense Asteroid"
 	object Mutiny
 		sprite planet/ice4
 		distance 814.357
@@ -20910,13 +20939,6 @@ system Sol
 			sprite planet/luna
 			distance 201.24
 			period 27.3
-		object
-			sprite planet/io
-			distance 201.24
-			period 27.3
-			offset 180
-			defense "Archonstation"
-				government "Kor Mereti"
 	object Mars
 		sprite planet/mars
 		distance 1471.43
@@ -20941,50 +20963,6 @@ system Sol
 			sprite planet/callisto
 			distance 811.717
 			period 66.76
-
-ship "Archonstation"
-	noun "entity"
-	sprite ship/archon
-		"frame rate" 0.87
-	"never disabled"
-	attributes
-		category "Heavy Warship"
-		"cost" 1000000000
-		"shields" 4000000
-		"hull" 1000000
-		"required crew" 1
-		"bunks" 1
-		"mass" 10000
-		"drag" 27
-		"heat dissipation" 40
-		"fuel capacity" 800
-		"cargo space" 0
-		"outfit space" 800
-		"weapon capacity" 600
-		"engine capacity" 200
-		"energy capacity" 10000
-		"energy generation" 500
-		"heat generation" 17
-		"shield generation" 100
-		"shield energy" 100
-		"hull repair rate" 100
-		"hull energy" 100
-		"ramscoop" 100
-		weapon
-			"blast radius" 200
-			"shield damage" 20000
-			"hull damage" 10000
-			"hit force" 30000
-	outfits
-		"Drak Antimatter Cannon"
-		
-		"Medium Graviton Steering"
-	
-	engine -17 92
-	engine 17 92
-	gun 0 -74 "Drak Antimatter Cannon"
-	explode "nuke explosion" 3
-	"final explode" "final explosion large"
 
 system "Sol Arach"
 	pos -711.587 649.051

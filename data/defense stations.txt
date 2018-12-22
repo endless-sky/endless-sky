@@ -1,0 +1,36 @@
+ship "Defense Asteroid"
+	sprite "ship/defense asteroid"
+	thumbnail "asteroid/large rock/defense asteroid/spin-54"
+	"never disabled"
+	swizzle 0
+	attributes
+		category "Small Warship"
+		"cost" 1000000000
+		"shields" 2000
+		"hull" 1000
+		"required crew" 1
+		"bunks" 2
+		"mass" 130
+		"drag" 4.1
+		"heat dissipation" .8
+		"fuel capacity" 0
+		"cargo space" 0
+		"outfit space" 106
+		"weapon capacity" 22
+		"engine capacity" 0
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Laser Turret"
+		
+		"nGVF-AA Fuel Cell"
+		"Supercapacitor"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"
+		
+	turret 0 0 "Laser Turret"
+	"final explode" "final explosion tiny"
+	description "The pirates mounted a Laser Turret on an asteroid."
