@@ -1044,6 +1044,19 @@ void Engine::EnterSystem()
 		+ today.ToString() + (system->IsInhabited(flagship) ?
 			"." : ". No inhabited planets detected."));
 	
+	// Advance the positions of every StellarObject and update politics.
+	// Remove expired bribes, clearance, and grace periods from past fines.
+	GameData::SetDate(today);
+	GameData::StepEconomy();
+	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
+	for(const Mission &mission : player.Missions())
+		if(mission.ClearanceMessage() == "auto")
+		{
+			mission.Destination()->Bribe(mission.HasFullClearance());
+			for(const Planet *planet : mission.Stopovers())
+				planet->Bribe(mission.HasFullClearance());
+		}
+	
 	// Preload landscapes and determine if the player used a wormhole.
 	// Also adds defense platforms for the given system.
 	const StellarObject *usedWormhole = nullptr;
@@ -1059,19 +1072,6 @@ void Engine::EnterSystem()
 		if(object.HasShip())
 			newShips.push_front(object.GetShip(system));
 	}
-	
-	// Advance the positions of every StellarObject and update politics.
-	// Remove expired bribes, clearance, and grace periods from past fines.
-	GameData::SetDate(today);
-	GameData::StepEconomy();
-	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
-	for(const Mission &mission : player.Missions())
-		if(mission.ClearanceMessage() == "auto")
-		{
-			mission.Destination()->Bribe(mission.HasFullClearance());
-			for(const Planet *planet : mission.Stopovers())
-				planet->Bribe(mission.HasFullClearance());
-		}
 	
 	if(usedWormhole)
 	{
