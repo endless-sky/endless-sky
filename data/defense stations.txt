@@ -1,6 +1,6 @@
 ship "Defense Asteroid"
-	sprite "asteroid/large rock/spin-54"
-	thumbnail "asteroid/large rock/spin-54"
+	sprite "ship/defense asteroid"
+	thumbnail "ship/defense asteroid"
 	"never disabled"
 	swizzle 0
 	attributes
