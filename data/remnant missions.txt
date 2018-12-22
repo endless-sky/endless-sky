@@ -794,8 +794,8 @@ mission "Remnant: Return the Samples 2"
 
 
 
-mission "Remnant: Learning Sign 1"
-	name "Learning Remnant Sign"
+mission "Remnant: Learn Sign 1"
+	name "Learn Remnant Sign"
 	description `Visit each of the Remnant worlds to find ways to learn their sign language.`
 	minor
 	source "Caelian"
@@ -845,13 +845,13 @@ mission "Remnant: Learning Sign 1"
 
 
 
-mission "Remnant: Learning Sign 2"
-	name "Learning Remnant Sign"
+mission "Remnant: Learn Sign 2"
+	name "Learn Remnant Sign"
 	description `Return to Caelian to finish your first class of sign language.`
 	source "Viminal"
 	destination "Caelian"
 	to offer
-		has "Remnant: Learning Sign 1: done"
+		has "Remnant: Learn Sign 1: done"
 	on offer
 		conversation
 			`Once again the director seems to be expecting you, and has a simple conversation with you about how the flight was and how your lessons are progressing. You struggle to string the sentences together, but you successfully manage to hold your own for several minutes before he directs you to place your hand on the scanner. After checking the readout he hands you another datachip as well as a stack of holographic print-outs.`
@@ -883,7 +883,7 @@ mission "Remnant: Salvage 1"
 	source "Viminal"
 	stopover "Alexandria"
 	to offer
-		has "Remnant: Learning Sign 2: done"
+		has "Remnant: Learn Sign 2: done"
 		random < 50
 		or
 			has "Remnant: Catalytic Ramscoop: done"
@@ -1159,7 +1159,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 		government "Remnant"
 	destination "Wayfarer"
 	to offer
-		has "Remnant: Learning Sign 2: done"
+		has "Remnant: Learn Sign 2: done"
 		has "Remnant: Salvage 1: done"
 		has "First Contact: Quarg: offered"
 		random < 40
