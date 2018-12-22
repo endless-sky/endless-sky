@@ -360,12 +360,12 @@ mission "Tell Wanderers about the Pug"
 			choice
 				`	"Of course, but doesn't it bother you that they are controlling your species?"`
 				`	"They are manipulating your whole species, using you as a planetary cleanup crew. Don't you want to be free from their control?"`
-				`	"I will try not to anger them."`
-					decline
 			`	His feathers ruffle up a bit in response to your comment, but all he says is, "It is a great [gift, blessing] to our species that the Eye leads us to new lands and new challenges whenever we become [complacent, bored]. If another species gains some [advantage, benefit] from our work as well, should that not make us more [glad, eager] to do that work, rather than less?"`
 			choice
 				`	"But wouldn't you rather be free from their control, free to remain on these worlds you have worked so hard to restore?"`
 				`	"If your species is being secretly controlled by another, doesn't that bother you?"`
+				`	"I will try not to anger them."`
+					decline
 			`	"Are we being controlled," he says, "or is it a partnership? We have gifts for making [ruined, corrupted] worlds bloom with new life. They give us worlds where our gifts can be [put to use, valuable]. We need new challenges to drive our species to greater [transformation, perfection]. They open new galaxies to us."`
 			`	He pauses, and then says, "Of course we know that how the Eye works is too [convenient, tailor-made] to be a random phenomenon. But it is a [gift, blessing] to us, and you must do nothing to drive them away, or we will be [trapped, stranded] on these few worlds and will stagnate and decline."`
 				decline
