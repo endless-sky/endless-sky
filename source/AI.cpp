@@ -1147,7 +1147,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	// they will continue firing.
 	if(!isYours && target && target->GetGovernment()->IsEnemy(gov) && !isDisabled
 			&& (person.IsFleeing() || (ship.Health() < RETREAT_HEALTH && !person.IsHeroic()
-				&& !person.IsStaying() && !parentIsEnemy)) && ship.MaxVelocity() > 0.)
+				&& !person.IsStaying() && !parentIsEnemy)) && ship.MaxVelocity())
 	{
 		// Make sure the ship has somewhere to flee to.
 		if(ship.JumpsRemaining() && (!system->Links().empty() || ship.Attributes().Get("jump drive")))
@@ -1882,7 +1882,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	// If this ship is stationary, then these actions would be stupid.
 	Point d = (target.Position() + target.Velocity()) - (ship.Position() + ship.Velocity());
 	if((minSafeDistance > 0. || shortestRange > 1000.)
-			&& d.Length() < max(1.25 * minSafeDistance, .5 * shortestRange) && ship.MaxVelocity() > 0)
+			&& d.Length() < max(1.25 * minSafeDistance, .5 * shortestRange) && ship.MaxVelocity())
 	{
 		// If this ship can use reverse thrusters, consider doing so.
 		double reverseSpeed = ship.MaxReverseVelocity();
