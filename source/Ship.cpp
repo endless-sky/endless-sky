@@ -1616,7 +1616,7 @@ void Ship::DoGeneration()
 		heat += attributes.Get("heat generation");
 		heat -= coolingEfficiency * attributes.Get("cooling");
 		
-		// Apply fuel to energy and heat conversion
+		// Convert fuel into energy and heat only when the required amount of fuel is available.
 		if(attributes.Get("fuel consumption") <= fuel)
 		{	
 			fuel -= attributes.Get("fuel consumption");
