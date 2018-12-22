@@ -1418,6 +1418,7 @@ mission "FW Pug 3: Deep"
 			choice
 				`	"They seem intent on taking over all of human space and forcing us to submit to their authority. So we must fight them."`
 				`	"It's possible that they think they are helping us right now, by interrupting our civil war, but all the same we must fight back."`
+				`	"I don't want to fight them, but I will if I have to."`
 			`	Edrick looks disappointed at that. "I understand. I believe that they honestly think they are doing what is best for us, but clearly we cannot tolerate this invasion. Good luck, Captain." He dismisses you.`
 
 
