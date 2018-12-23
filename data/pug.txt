@@ -171,7 +171,7 @@ effect "tier 3 anti-missile die"
 outfit "Pug Gridfire Turret"
 	category "Turrets"
 	cost 24000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/gridfire"
 	"mass" 83
 	"outfit space" -83
 	"weapon capacity" -83
