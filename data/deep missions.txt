@@ -680,12 +680,12 @@ mission "Deep: TMBR 0"
 					defer
 			
 			`	You approach the Bounder and count five people dancing in total: three women and two men. One of the women dancing notices you walking over and exclaims, "Looks like someone else is about to join the party!" Her shout is met by a raucous cheer from the rest of the dancers, but you refuse to dance when they try to pull you into the fray.`
-			`	After the music begins to subside, one of the dancers introduces himself to you as Garrison. Garrison then lists off the names of his fellow dancers: Pierre, Mary, Hannah, and Laura. As you make your introductions, you learn that everyone here is part of the same research team, working for one of the Deep's many science bureaus, and they are currently wrapping up a short vacation by listening to their favorite band before they travel to Midgard on assignment.`
+			`	After the music begins to subside, one of the dancers introduces himself to you as Garrison. Garrison then lists off the names of his fellow dancers: Pierre, Rayna, Hannah, and Laura. As you make your introductions, you learn that everyone here is part of the same research team, working for one of the Deep's many science bureaus, and they are currently wrapping up a short vacation by listening to their favorite band before they travel to Midgard on assignment.`
 				goto choice
 			
 			label dance
 			`	You approach the Bounder and count five people dancing in total: three women and two men. One of the women dancing notices you walking over and exclaims, "Looks like someone else is about to join the party!" Her shout is met by a raucous cheer from the rest of the dancers, and they pull you into the fray.`
-			`	After a few minutes of dancing, the music begins to subside. One of the dancers introduces himself to you as Garrison, and lists off the names of his fellow dancers: Pierre, Mary, Hannah, and Laura. As you make your introductions, you learn that everyone here is part of the same research team, working for one of the Deep's many science bureaus, and they are currently wrapping up a short vacation by listening to their favorite band before they travel to Midgard on assignment.`
+			`	After a few minutes of dancing, the music begins to subside. One of the dancers introduces himself to you as Garrison, and lists off the names of his fellow dancers: Pierre, Rayna, Hannah, and Laura. As you make your introductions, you learn that everyone here is part of the same research team, working for one of the Deep's many science bureaus, and they are currently wrapping up a short vacation by listening to their favorite band before they travel to Midgard on assignment.`
 			
 			label choice
 			`	"How do you know about 'There Might Be Riots?'" Hannah asks you.`
@@ -697,7 +697,7 @@ mission "Deep: TMBR 0"
 			`	One of the other scientists, an older looking man named Pierre, looks right at you and stares. After a few moments he says, "I know you! You were in the 'Songs for the End of Civilization' broadcast from Pilot!" The rest of the scientists start agreeing with him as they look at you closer.`
 			
 			label met
-			`	"You know 'There Might Be Riots?' You are so lucky!" says Mary.`
+			`	"You know 'There Might Be Riots?' You are so lucky!" says Rayna.`
 			`	"I couldn't even see them during the 'Trouble on the Tarmac' tour, but you've met them? That's insane!" shrieks Laura.`
 			`	Hannah chimes in, "Do you know where the band is? They've been quiet for a while now, ever since that broadcast. I heard rumors that the Republic detained them for trespassing, but since you're here..."`
 			choice
@@ -705,7 +705,7 @@ mission "Deep: TMBR 0"
 				`	"Sorry, I don't know where they are."`
 					goto decline
 			
-			`	The group falls silent until Mary asks "Do you think you could bring them to us for a live concert?"`
+			`	The group falls silent until Rayna asks "Do you think you could bring them to us for a live concert?"`
 			choice
 				`	"I'd love to."`
 				`	"No thanks. I have better things to do."`
@@ -1338,11 +1338,11 @@ mission "Deep: Remnant 0"
 		conversation
 			branch TMBR
 				has "Deep: TMBR 0: offered"
-			`Upon returning to <planet>, you learn that Ivan has left for his research lab on Valhalla, but his research assistant, Mary, is waiting to retrieve the keystones. She hands you <payment>, enough to pay for half of the cost of the stones.`
+			`Upon returning to <planet>, you learn that Ivan has left for his research lab on Valhalla, but his research assistant, Rayna, is waiting to retrieve the keystones. She hands you <payment>, enough to pay for half of the cost of the stones.`
 				goto end
 			
 			label TMBR
-			`Upon returning to <planet>, you learn that Ivan has left for his research lab on Valhalla, but instead you find that Mary is waiting to retrieve the keystones. She hands you <payment>, enough to pay for half of the cost of the stones.`
+			`Upon returning to <planet>, you learn that Ivan has left for his research lab on Valhalla, but instead you find that Rayna is waiting to retrieve the keystones. She hands you <payment>, enough to pay for half of the cost of the stones.`
 			
 			label end
 			`	"Thank you for buying these keystones for us. It may take us a month or two to fully study them. We'll contact you when we're in need of your assistance again."`
@@ -1503,7 +1503,7 @@ conversation "deep: remnant"
 		has "Deep: Remnant 1A: done"
 	
 	label ABC # Appears at the beginning of Remnant 1A, 1B, and 1C
-	`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. When you arrive you hardly have time to greet Ivan, Mary, and the others before Ivan begins discussing what they have learned from the Quantum Keystones.`
+	`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. When you arrive you hardly have time to greet Ivan, Rayna, and the others before Ivan begins discussing what they have learned from the Quantum Keystones.`
 	branch B1 AC1 # Are we in mission 1B or 1A/1C?
 		has "Deep: Remnant: Keystone Research: done"
 		has "deep: knew of stones before scientists"
@@ -1641,7 +1641,7 @@ mission "Deep: Remnant: Engines"
 			branch license
 				has "license: Remnant"
 			`	"No," you respond. "They have not given me a license to buy any of their outfits or ships."`
-			`	The scientists ponder this for a moment. Eventually, Mary speaks up. "Maybe if you assist them in some way they may welcome you into their society. I can imagine that they are a little wary after all those years on their own. Try doing jobs for them or see if anyone in their spaceports needs something from you."`
+			`	The scientists ponder this for a moment. Eventually, Rayna speaks up. "Maybe if you assist them in some way they may welcome you into their society. I can imagine that they are a little wary after all those years on their own. Try doing jobs for them or see if anyone in their spaceports needs something from you."`
 			`	"You could also plunder their technology if they won't sell it to you," Ivan chimes in.`
 			choice
 				`	"I'll see if I can try to get my hands on what you need."`
@@ -1777,7 +1777,7 @@ mission "Deep: Remnant Surveillance"
 		set "Deep: Remnant Research: done"
 		log `Secretly placed sensor cubes near the spaceport of each Remnant planet. Ivan hopes to use the data gathered from these cubes to learn more about Remnant ships.`
 		dialog 
-			`When you return to <planet>, you are unable to find Ivan. Instead, Mary waves you down and hands you a credits chip worth <payment>.`
+			`When you return to <planet>, you are unable to find Ivan. Instead, Rayna waves you down and hands you a credits chip worth <payment>.`
 			`"Ivan told me to give this to you, Captain. Thanks again for helping us out so much. We couldn't have done it without you."`
 
 
@@ -2240,7 +2240,7 @@ mission "Deep: Scientist Rescue 3A"
 		payment 2000000
 		log `Escorted the rescued Star Queen back to the Deep. Some of the crew didn't make it. The pirates still have a Bactrian, and the Deep wants it destroyed.`
 		conversation
-			`As you land near the Star Queen, you can see its passengers being escorted off. Mary and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
+			`As you land near the Star Queen, you can see its passengers being escorted off. Rayna and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
 			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another <payment> when you walk up to him. "Thanks for all the help, Captain <last>. We couldn't have done it without you."`
 			`	Paris looks back to the Star Queen, and you can overhear one of the Deep Security officers listing off names. "Sarah Reevs, Nicole Faye, Pierre Joules, Laura Paris..." the list goes on for slightly over a dozen total names. "The surviving crew tells us that only a few were killed initially, either during boarding or by being thrown out the airlock on the way to Haven. Most of the others were either killed or dragged off after they had reached their destination at a facility of some sort, its purpose unidentifiable to the crew."`
 			`	When you look back to Lieutenant Paris, you notice that he is holding back tears. Laura Paris was one of the scientists who died.`
@@ -2295,7 +2295,7 @@ mission "Deep: Scientist Rescue 3B"
 		payment 2000000
 		log `Escorted the rescued Star Queen back to the Deep. Some of the crew didn't make it. Destroyed the pirate Bactrian that was attempting to prevent the rescue of the Star Queen and was given a city-ship license by Paris.`
 		conversation
-			`As you land near the Star Queen, you can see its passengers being escorted off. Mary and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
+			`As you land near the Star Queen, you can see its passengers being escorted off. Rayna and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
 			`	Lieutenant Paris is waiting for you outside of your ship, and hands you another <payment> when you walk up to him. "Thanks for all the help, Captain <last>. We couldn't have done it without you."`
 			`	Paris looks back to the Star Queen, and you can overhear one of the Deep Security officers listing off names. "Sarah Reevs, Nicole Faye, Pierre Joules, Laura Paris..." the list goes on for slightly over a dozen total names. "The surviving crew tells us that only a few were killed initially, either during boarding or by being thrown out the airlock on the way to Haven. Most of the others were either killed or dragged off after they had reached their destination at a facility of some sort, its purpose unidentifiable to the crew."`
 			`	When you look back to Lieutenant Paris, you notice that he is holding back tears. Laura Paris was one of the scientists who died.`
