@@ -132,8 +132,12 @@ mission "Remnant: Defense 1"
 	name "Defend <planet>"
 	description "Assist in defending <planet> from a Korath raid, then return to the planet."
 	to offer
-		has "First Contact: Remnant: offered"
-		not "remnant: declined second chance"
+		or
+			has "First Contact: Remnant: done"
+			and
+				has "First Contact: Remnant: offered"
+				not "First Contact: Remnant: active"
+				not "remnant: declined second chance"
 		not "Remnant defense delay"
 	on offer
 		conversation
@@ -303,8 +307,12 @@ mission "Remnant: Key Stones"
 	description "The manager of the outfitter on <planet>, a Remnant world, has offered to pay you six million credits in exchange for a shipment of fifty Quantum Keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
 	to offer
-		has "First Contact: Remnant: offered"
-		not "remnant: declined second chance"
+		or
+			has "First Contact: Remnant: done"
+			and
+				has "First Contact: Remnant: offered"
+				not "First Contact: Remnant: active"
+				not "remnant: declined second chance"
 	on offer
 		require "Quantum Keystone"
 		conversation
@@ -347,8 +355,12 @@ mission "Remnant: Void Sprites 1"
 	waypoint "Nenia"
 	cargo "scanning equipment" 8
 	to offer
-		has "First Contact: Remnant: offered"
-		not "remnant: declined second chance"
+		or
+			has "First Contact: Remnant: done"
+			and
+				has "First Contact: Remnant: offered"
+				not "First Contact: Remnant: active"
+				not "remnant: declined second chance"
 	on offer
 		conversation
 			`As you explore the spaceport, you meet a Remnant man wearing some sort of optical prosthesis over his eyes, a visor with several tiny cameras mounted on it. "Ah," he sings, "the outsider. Human yet not of our culture, distinct from our mindset. That is useful. Would you be willing to invest in a research project?"`
