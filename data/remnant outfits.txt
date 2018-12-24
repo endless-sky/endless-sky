@@ -51,7 +51,8 @@ effect "inhibitor impact"
 	"random velocity" 6
 	"velocity scale" -.05
 
-	
+
+
 outfit "Thrasher Cannon"
 	category "Guns"
 	licenses
@@ -89,6 +90,8 @@ effect "thrasher impact"
 	"random velocity" 3
 	"velocity scale" -.1
 
+
+
 outfit "Thrasher Turret"
 	category "Turrets"
 	licenses
@@ -119,6 +122,8 @@ outfit "Thrasher Turret"
 		"shield damage" 38
 		"hull damage" 46
 	description "This turret mounts four Thrasher Cannons on a single rotating base. The resulting weapon deals a very satisfying amount of damage when fired from close range, especially against a slow-moving target."
+
+
 
 outfit "Point Defense Turret"
 	category "Turrets"
@@ -163,6 +168,7 @@ effect "point defense die"
 		"no repeat"
 	lifetime 15
 	"velocity scale" .2
+
 
 
 outfit "EMP Torpedo"
@@ -248,6 +254,7 @@ effect "emp spark"
 	"random frame rate" 6
 	"random velocity" 7
 	"velocity scale" 0.1
+
 
 
 # Systems:
@@ -340,16 +347,15 @@ outfit "Scanner Software"
 	category "Systems"
 	licenses
 		Remnant
-	cost 230000
+	cost 240000
 	thumbnail "outfit/scanner software"
-	"mass" 3
-	"outfit space" -3
-	"cargo scan power" 12
-	"cargo scan speed" 1
+	"mass" 2
+	"outfit space" -2
 	"outfit scan power" 12
 	"outfit scan speed" 1
-	"tactical scan power" 24
+	"tactical scan power" 26
 	description "The Remnant are too few in number to support extensive ground-breaking research in all areas of technology, so they prefer to focus their efforts on a few areas of importance. To make up the deficiency in other areas, the Remnant rely on salvaging and reverse engineering technology from those around them. This software module is a key part of this effort, as it allows any ship the capacity to do detailed scans to determine what they want to target. Its range is shorter than that of dedicated scanning equipment, but it means every Remnant ship can be on the lookout for new technology."
+
 
 
 # Engines:

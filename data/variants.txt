@@ -87,24 +87,9 @@ ship "Arrow" "Arrow (Hai)"
 		"Pebble Core"
 		"Supercapacitor" 2
 		"D14-RN Shield Generator"
-		"Small Radar Jammer"
+		"Luxury Accommodations"
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
-		"Hyperdrive"
-
-
-ship "Arrow" "Arrow (Luxury)"
-	outfits
-		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 100
-		"Anti-Missile Turret"
-		"Dwarf Core"
-		"Supercapacitor"
-		"D14-RN Shield Generator"
-		"Small Radar Jammer"
-		"Luxury Accommodations"
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
 		"Hyperdrive"
 
 
@@ -1910,9 +1895,36 @@ ship "Vanguard" "Vanguard (Particle)"
 
 
 
-ship "Wasp" "Wasp (Bomber)"
+ship "Wasp" "Wasp (Gatling)"
 	outfits
-		"Beam Laser"
+		"Gatling Gun" 3
+		"Gatling Gun Ammo" 9000
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+		
+		
+ship "Wasp" "Wasp (Javelin)"
+	outfits
+		"Javelin Pod" 2
+		"Javelin" 400
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+	gun
+	gun "Javelin Pod"
+	gun "Javelin Pod"
+		
+
+ship "Wasp" "Wasp (Meteor)"
+	outfits
+		"Energy Blaster"
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 70
 		"nGVF-BB Fuel Cell"
@@ -1921,10 +1933,21 @@ ship "Wasp" "Wasp (Bomber)"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Hyperdrive"
-	gun "Beam Laser"
+	gun "Energy Blaster"
 	gun "Meteor Missile Launcher"
 	gun "Meteor Missile Launcher"
 
+
+ship "Wasp" "Wasp (Plasma)"
+	outfits
+		"Plasma Cannon"
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+		
 
 ship "Wasp" "Wasp (Proton)"
 	outfits
@@ -1935,6 +1958,3 @@ ship "Wasp" "Wasp (Proton)"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Hyperdrive"
-	gun "Proton Gun"
-	gun
-	gun

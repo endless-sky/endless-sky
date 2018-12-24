@@ -600,6 +600,7 @@ mission "FW Katya 1C"
 	landing
 	source
 		government Republic
+		attributes spaceport
 	to offer
 		has "FW Katya 1B: active"
 	to fail
