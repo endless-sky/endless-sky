@@ -54,8 +54,29 @@ mission "First Contact: Remnant"
 			`	Eventually they invite you to a dinner. Their food has strange and complex flavors, not all of them pleasant, but you do your best to be polite and pretend to enjoy it all. After the meal, they entertain you by singing songs, some of which you recognize as classical Earth music. It appears that people in this culture use sign language for day to day communication, and use their voices only for making music.`
 			`	When you return to your ship, you do a search on videos of historical dialects of human sign language. None of them bear even a passing resemblance to the language of these people who call themselves the Remnant.`
 				decline
-	on accept
-		"reputation: Remnant" <?= -10
+			
+	on enter
+		conversation
+			`As you break orbit and get ready to escape, you receive a message from <planet>. A chant comes from your speakers.`
+			`	"My compatriots seem to have gotten off on the wrong foot. I am Prefect Chilia of the Remnant. We established ourselves here as a bastion of humanity to survive when when the rest of human space was under threat by the Alphas.`
+			`	"The blood test we requested is mandatory for all who come to our worlds. We will not tolerate the presence of anyone of Alpha heritage. Should you agree to the blood test and pass, we will allow you to visit our worlds in peace."`
+			choice
+				`	"Okay, I'll take the blood test."`
+					goto accept
+				`	"I'm not taking any blood test."`
+			apply
+				set "remnant: declined second chance"
+				"reputation: Remnant" <?= -10
+			`	"Then leave immediately or be eliminated. You will not be welcomed here again."`
+				decline
+			
+			label accept
+			`	"Please return to <planet>. Be on your best behavior, as there will be no third chance."`
+	
+	to fail
+		has "remnant: declined second chance"
+	
+	on fail
 		log "Discovered a strange, isolated human community in an otherwise uninhabited region of space south of the Core. Angered them by refusing to submit to some sort of blood test."
 		log "Factions" "Remnant" `The Remnant are a group of unusual-looking humans that live in a secluded section of the galaxy. It is unclear how long they have lived apart from the rest of humanity, but they have been free of human influences for long enough that their culture is wildly different from any found in human record. Their buildings seem to be alien in origin, and they communicate amongst each other primarily with sign language. When they do use their voices they sing or chant, rather than speak.`
 	
@@ -66,69 +87,28 @@ mission "First Contact: Remnant"
 		log "Factions" "Remnant" `Half a millennium ago, during the Alpha Wars, a group of humans fleeing the conflict and looking for a safer place to live discovered a wormhole into a region of space known as the Ember Waste. They built settlements there, and chose to call themselves the Remnant. Although they no longer fear the Alphas as much as they once did, they still have not rejoined human society.`
 			`Since their colonies were first formed, the Remnant's culture has changed drastically. They communicate in sign language, using their voices only for singing. Their food and architecture and much of their technology is strange, and much of it has been borrowed or stolen from nearby alien species.`
 	
-	npc kill
+	npc
 		government "Remnant"
 		personality heroic coward disables plunders
 		fleet "Large Remnant" 2
-
-event "ember waste label"
-	galaxy "label waste"
-		sprite label/waste
-
-
-
-mission "Remnant: Second Contact"
-	landing
-	invisible
-	source
-		government "Remnant"
-	destination Viminal
-	waypoint Stercutus
-	to offer
-		not "remnant blood test pure"
-		not "Remnant Second Chance Refused"
-	to fail
-		or
-			has "Remnant Second Chance Refused"
-			has "remnant blood test pure"
-			has "event: ember waste label"
-	on enter Stercutus
-		conversation
-			`After your escape from Remnant space, you are uneasy at how quickly you lost your pursuers. The eerie red light of the Ember Wastes sets an ominous background for the sensation that you are being watched. Time and time again you check the scanners, but there is absolutely nothing out there.`
-			`	Just as you were starting to relax, your comms ding with an incoming ship-to-ship transmission. Startled, you check the scanners again, which continue to show nothing. Hesitantly, you hit the "accept" key and a melodic song bursts forth from your speakers.`
-			`	"My compatriots seem to have gotten off on the wrong foot. I am Prefect Chilia of the Remnant. We established ourselves here as a bastion of humanity to survive when when the rest of human space was under threat by the Alphas."`
-			`	"While fixing small genetic problems for the sake of general health is, of course, good and proper, the wholesale modification resulting in an entirely new strain of humans who are driven to conquer is an abomination. We insist that everyone who visits, works, or lives among us subject themselves to an in-person genetic test to verify that they are neither Alphas nor Alpha creations." The song pauses for a moment, then continues:`
-			`	"Unfortunately you have discovered our location, and we depend greatly on secrecy to maintain our existence. We are willing to let you work and live among us if you will submit to a genetic test, or you can leave if you commit to never sharing what you have learned with the rest of the galaxy. The choice is yours."`
-			choice
-				`"I accept your offer."`
-					goto return
-				`"I'm going to forget you exist."`
-					goto leave
-			label return		
-			apply
-				"reputation: Remnant" = 1
-			`	"We will let them know to expect you, but be on your best behavior, as there will be no third chance." The captain pauses for a moment, then continues, "Moreover, the blood test is mandatory for all who come to our worlds. We will not tolerate anyone of any Alpha heritage on our worlds."`
-				accept
-			label leave
-			apply
-				set "Remnant Second Chance Refused"
-			`	"Please do. You won't be welcome if you return."`
-			
+	
 	on complete
-		fail "First Contact: Remnant"
+		event "ember waste label"
+		set "remnant blood test pure"
+		log "Discovered a strange, isolated human community in an otherwise uninhabited region of space south of the Core. They call themselves the Remnant."
+		log "Factions" "Remnant" `Half a millennium ago, during the Alpha Wars, a group of humans fleeing the conflict and looking for a safer place to live discovered a wormhole into a region of space known as the Ember Waste. They built settlements there, and chose to call themselves the Remnant. Although they no longer fear the Alphas as much as they once did, they still have not rejoined human society.`
+			`Since their colonies were first formed, the Remnant's culture has changed drastically. They communicate in sign language, using their voices only for singing. Their food and architecture and much of their technology is strange, and much of it has been borrowed or stolen from nearby alien species.`
 		conversation
-			`Your return trip to Viminal is a bit more nerve-wracking: Unlike the previous time, your flight computer keeps blaring warnings that the ships escorting you are weapons-hot and locked on. As soon as you land, your ship is surrounded by soldiers with a variety of weapons, and the same man appears in the midst of them. As before, he pricks his finger, presses it to a spot on the device, then offers a still-sealed lancet to you. He begins chanting in a severe tone "The first may be a misunderstanding, but now you know our law. Will you submit to a blood test, or be declared guilty once and for all?"`
+			`Your return trip is a bit more nerve-wracking. Unlike the previous time, your flight computer keeps blaring warnings that the ships escorting you are weapons-hot and locked on. As soon as you land, your ship is surrounded by soldiers with a variety of weapons, and the same man appears in the midst of them. As before, he pricks his finger, presses it to a spot on the device, then offers a still-sealed lancet to you. He begins chanting in a severe tone "The first may be a misunderstanding, but now you know our law. Will you submit to a blood test, or be declared guilty once and for all?"`
 			choice
 				`(Provide the blood sample.)`
-					goto SecondChanceComply
+					goto comply
 				`(Refuse and run for your ship.)`
-					goto SecondChanceRefuse
-			label SecondChanceRefuse
+				
 			`	As you turn to start running back to your ship you notice a quick hand sign from the prefect and the soldiers nearby begin raising their weapons and firing at you. As you feel your body begin to liquify under the assault of the strange energy bolts, the last thing you see is the look of pity, resignation, and confusion on the face of the man with the scanner. Probably wondering why you would decide to return if you were just going to run again. You suppose they'll never know...`
-			die
-			label SecondChanceComply
-			apply
-				set "remnant blood test pure"
+				die
+			
+			label comply
 			`	Several of them gather around the one with the scanner as if waiting to see what the results will be. As you watch them you notice that all of them, even the women, have their hair cropped short. Also, their clothing looks like nothing that has ever been in fashion at any point in human history that you know of.`
 			`	Finally the scanner beeps, and a yellow light flashes. You can almost feel the tension leaving the air as the crowd relaxes. "So you are pure. You are human," chants one of the women. "You are one of us."`
 			choice
@@ -140,6 +120,11 @@ mission "Remnant: Second Contact"
 			`	Eventually they invite you to a dinner. Their food has strange and complex flavors, not all of them pleasant, but you do your best to be polite and pretend to enjoy it all. After the meal, they entertain you by singing songs, some of which you recognize as classical Earth music. It appears that people in this culture use sign language for day to day communication, and use their voices only for making music.`
 			`	When you return to your ship, you do a search on videos of historical dialects of human sign language. None of them bear even a passing resemblance to the language of these people who call themselves the Remnant.`
 
+event "ember waste label"
+	galaxy "label waste"
+		sprite label/waste
+
+
 
 
 mission "Remnant: Defense 1"
@@ -147,7 +132,12 @@ mission "Remnant: Defense 1"
 	name "Defend <planet>"
 	description "Assist in defending <planet> from a Korath raid, then return to the planet."
 	to offer
-		has "remnant blood test pure"
+		or
+			has "First Contact: Remnant: done"
+			and
+				has "First Contact: Remnant: offered"
+				not "First Contact: Remnant: active"
+				not "remnant: declined second chance"
 		not "Remnant defense delay"
 	on offer
 		conversation
@@ -233,7 +223,7 @@ mission "Remnant: Bounty"
 	job
 	repeat
 	name "Remnant bounty"
-	description "Hunt down Korath ships that are lurking in Remnant territory, then return to <planet> to receive your payment of <payment>."
+	description "Hunt down a crippled Korath ship that is lurking in Remnant territory, then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
 	to offer
@@ -275,7 +265,7 @@ mission "Remnant: Defense 3"
 					decline
 
 			`	He explains that they hope to gain advance notice of future raids by setting up remote surveillance equipment in the system in the Ember Waste that is closest to Korath space. The equipment will communicate with the Remnant via something called an "entangled particle pair" that does not require a hyperspace relay network. Ironically, this is technology that the Remnant acquired by raiding the Korath decades ago.`
-			`	"I will mark the target system on your map," he says, "and give you the equipment necessary to deploy the surveillance satellite. Please do not deploy it while any Korath ships are watching."`
+			`	"I will mark the target system on your map," he says, "and give you the equipment necessary to deploy the surveillance satellite. Please do not deploy it while any Korath ships are watching. Our scouts encountered Korath Raiders, but they have crippled them enough to where they should not be a problem."`
 				accept
 	on accept
 		event "remnant: surveillance begin"
@@ -317,8 +307,12 @@ mission "Remnant: Key Stones"
 	description "The manager of the outfitter on <planet>, a Remnant world, has offered to pay you six million credits in exchange for a shipment of fifty Quantum Keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
 	to offer
-		has "First Contact: Remnant: offered"
-		has "remnant blood test pure"
+		or
+			has "First Contact: Remnant: done"
+			and
+				has "First Contact: Remnant: offered"
+				not "First Contact: Remnant: active"
+				not "remnant: declined second chance"
 	on offer
 		require "Quantum Keystone"
 		conversation
@@ -361,8 +355,12 @@ mission "Remnant: Void Sprites 1"
 	waypoint "Nenia"
 	cargo "scanning equipment" 8
 	to offer
-		has "First Contact: Remnant: offered"
-		has "remnant blood test pure"
+		or
+			has "First Contact: Remnant: done"
+			and
+				has "First Contact: Remnant: offered"
+				not "First Contact: Remnant: active"
+				not "remnant: declined second chance"
 	on offer
 		conversation
 			`As you explore the spaceport, you meet a Remnant man wearing some sort of optical prosthesis over his eyes, a visor with several tiny cameras mounted on it. "Ah," he sings, "the outsider. Human yet not of our culture, distinct from our mindset. That is useful. Would you be willing to invest in a research project?"`
