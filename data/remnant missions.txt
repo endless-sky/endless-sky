@@ -857,7 +857,7 @@ mission "Remnant: Learn Sign 2"
 		has "Remnant: Learn Sign 1: done"
 	on offer
 		conversation
-			`Once again the director seems to be expecting you, and has a simple conversation with you about how the flight was and how your lessons are progressing. You manage to convey that you have learned a bit, and he gives you a few tips on your rehersed phrases before directing you to place your hand on the scanner. After checking the readout he hands you another datachip as well as a stack of holographic print-outs.`
+			`Once again the director seems to be expecting you, and has a simple conversation with you about how the flight was and how your lessons are progressing. You manage to convey that you have learned a bit, and he gives you a few tips on your rehearsed phrases before directing you to place your hand on the scanner. After checking the readout he hands you another datachip as well as a stack of holographic print-outs.`
 			`	Flipping through the stack of print-outs, you note that each one of them has a small label in the corner for random pieces of furniture and ship equipment, and when you view the hologram while moving from side to side the figure inside makes a sign that you assume to be what the label indicates.`
 			choice
 				`	(Accept them.)`
@@ -870,7 +870,7 @@ mission "Remnant: Learn Sign 2"
 		log "Have been introduced to the basics of the Remnant sign language, and formally granted access to their worlds after having been genetically tested on each of them."
 		conversation
 			`The last leg of the journey was spent watching some ancient show about a merchant captain making his way through the galaxy with an unlikely crew, re-enacted by a cast of Remnant who sing and sign their way through the dialogs with exagerated simplicity. It is oddly familiar, but you can't quite place it. You notice that it seems to have a lot of subtext about the dangers of manipulation and government secrecy, especially surrounding genetics.`
-			`	You arrive at the Director's desk and offer to return the datapad to the Director, carefully signing your thanks. She seems pleased at your promissing start, and encourages you to continue practicing.`
+			`	You arrive at the Director's desk and offer to return the datapad to the Director, carefully signing your thanks. She seems pleased at your promising start, and encourages you to continue practicing.`
 			`	She pauses for a moment, then switches to singing. "You are probably wondering about all the blood tests. Long ago it was decided that being infiltrated by Alpha agents was a big risk, and we couldn't depend on our interstellar network to remain secure. So we implemented a policy where the first time a Remnant is granted formal access to a new planet their purity and identity is verified. Thus even if someone hacked our networks to give themselves a clean identity, they would still be caught when they started working on a new planet. We also don't broadcast that requirement on our networks, simply enforce it locally. It isn't foolproof, but it adds an additional layer of safety."`
 			`	After you finish your conversation with her, you stroll off to look around the spaceport, enjoying the fact that you can now understand a bit of the conversations going on around you. It is only the most basic elements, but it is a good start. You realize, however, that you have a lot of practice to do before you become fluent.`
 
@@ -892,7 +892,7 @@ mission "Remnant: Learn Sign 3"
 		log "Have achieved a degree of fluency in the Remnant sign language sufficient for general conversation."
 		dialog
 			`As you make your way into the Caelian spaceport, it occurs to you that the information director who gave you the first instructional videos might appreciate how much you have learned over the past few weeks of practice. You stretch your fingers and stop by the desk, where you are able to have a simple conversation with the information director.`
-			`	"Congratulations, Captain <last>!" she signs, "Your fluency is good enough that even those unwilling to sing with a stranger should be comfortable working with you. At this rate you will be one of us in more ways that just by blood. I look forward to seeing what results from your work with us." She is interrupted by the arrival of other Remnant asking her something, and she bids you farewell with an apologetic gesture.`
+			`	"Congratulations, Captain <last>!" she signs. "Your fluency is good enough that even those unwilling to sing with a stranger should be comfortable working with you. At this rate you will be one of us in more ways that just by blood. I look forward to seeing what results from your work with us." She is interrupted by the arrival of other Remnant asking her something, and she bids you farewell with an apologetic gesture.`
 
 
 
@@ -1198,7 +1198,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 				accept
 	on complete
 		payment 50000
-		log "People" "Dawn" `A young Remnant researcher who has yet to pick a specialty but appears to be quite interested in alien engineering.`
+		log "People" "Dawn" `Dawn is a young Remnant researcher with a strong interest in engineering. She has yet to pick a specialty, but appears to have a talent for exo-engineering.`
 		conversation
 			`Dawn and her colleagues are thrilled with the trip. While they had each served on Remnant ships exploring the Ember Waste or patrolling their territory, none had ever been more than a handful of jumps away from their own space. They explain that their ships were always cautious to stay far away from human space to avoid leading anyone back.`
 			`	It occurs to you that Dawn and her colleagues seem much less reserved than most Remnant. You aren't sure if it is because they are younger, less secretive, or if the Remnant have been concealing it from you. It is also possible that you just have better opportunities to figure it out now that you can understand their signs.`
