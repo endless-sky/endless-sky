@@ -605,6 +605,7 @@ mission "Remnant: Heavy Laser"
 	on complete
 		outfit "Heavy Laser" -2
 		payment 1000000
+		log "People" "Tali" `As an engineering prefect, Tali is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
 		conversation
 			`As you land, a group of researchers mount some kind of weapon on a platform aimed down a firing range. The researcher that asked you for the Heavy Lasers presses a button from behind a thick barrier to activate the weapon. A flash of light erupts from the muzzle as the target downrange is cut in half. The barrel of the weapon raises into the air and the researchers rush out onto the range with tools and devices to examine the destruction.`
 			`	The researcher approaches you while the heavy lasers are being unloaded from your ship. She's dusty, but appears pleased with the results of her experiments. "Captain <first>, I see you have the lasers as we agreed." You aren't sure if Remnant rub their hands in eagerness, but she looks ready to do so.`
@@ -656,6 +657,7 @@ mission "Remnant: Catalytic Ramscoop"
 	on complete
 		outfit "Catalytic Ramscoop" -2
 		payment 1500000
+		log "People" "Tali" `As an engineering prefect, Tali is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
 		conversation
 			`You visit the local shipyard and eventually find the engineer busily repairing a damaged Starling. You inform her that you have brought a pair of Catalytic Ramscoops for her to study. She quickly tightens a couple more connectors and jumps down from her perch, gesturing at an assistant to transfer you the credits you were promised. "Thank you! Our maps of human space are old, and if they are still accurate, you traveled a very long way to bring these to us." Her chanting voice echoes off the Starling above you with an interesting resonance.`
 			`	"If we can unlock the secrets of these ramscoops, it will give our ships greater range as they search for a safer refuge." As she picks up the remote control for the small loading truck with the two ramscoops she trills at you over her shoulder. "Oh, my name is Tali. I'll let you know what I find."`
@@ -706,6 +708,7 @@ mission "Remnant: Plasma Cannons"
 	on complete
 		outfit "Plasma Cannon" -2
 		payment 800000
+		log "People" "Tali" `As an engineering prefect, Tali is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
 		conversation
 			`As <ship> settles onto the pad closest to the research facility, you can see the weapons specialist checking over a large cannon on a platform beneath a nearby Albatross. When he sees you starting to unload the two plasma cannons, he snaps the casing closed and gestures to someone out of sight. Within moments both him and an empty flatbed are there to pick up the weapons.`
 			`	"Thank you for your help," he says. "Our Inhibitors provide us with something of a mobility advantage against the Korath, but they aren't particularly effective at disabling them. These Plasma Cannons will open new avenues of research for us." He pauses, then continues. "I also included a bonus for you. It is a 'finder's fee,' as we always appreciate new tech."`
@@ -739,6 +742,8 @@ mission "Remnant: Return the Samples"
 		system Nenia
 		personality staying heroic nemesis uninterested
 		ship "Archon (Cloaked)" "Lifted Lorax"
+	on accept
+		log "People" "Plume" `A Remnant researcher specializing in xenobiology, Plume is at the forefront of recent efforts to restart research on the Void Sprites and a leading expert in non-carbon based lifeforms.`
 	on stopover
 		conversation
 			`Once again you have successfully dodged the Archon to land on Nasqueron. Somehow, knowing it was going to be there was both better and worse than the surprise of the first time.`
@@ -839,7 +844,7 @@ mission "Remnant: Learn Sign 1"
 	on complete
 		conversation
 			`The trip to Viminal is quiet - almost no talking or singing of any kind as it is just about entirely reliant on interposing signs and pantomiming actions. Slowly you start picking up some of the easier nouns and verbs.`
-			`	As you descend through the atmosphere, you do some quick hand stretches to work the stiffness out of your fingers and rehearse some of the more common phrases. As soon as <ship> is parked, you exit and look around. Approaching a dockhand who doesn't appear to be busy, you carefully sign, "Can you direct me to the port director?" He looks at you curiously for a moment and replies with exaggerated slowness. You thank him and head towards the spaceport following his directions.`
+			`	As you descend through the atmosphere, you do some quick hand stretches to work the stiffness out of your fingers and rehearse a few of the phrases you have memorized. As soon as <ship> is parked, you exit and look around. Approaching a dockhand who doesn't appear to be busy, you carefully sign, "Can you direct me to the port director?" He looks at you curiously for a moment and replies with exaggerated slowness. You thank him and head towards the spaceport following his directions.`
 
 
 
@@ -852,25 +857,42 @@ mission "Remnant: Learn Sign 2"
 		has "Remnant: Learn Sign 1: done"
 	on offer
 		conversation
-			`Once again the director seems to be expecting you, and has a simple conversation with you about how the flight was and how your lessons are progressing. You struggle to string the sentences together, but you successfully manage to hold your own for several minutes before he directs you to place your hand on the scanner. After checking the readout he hands you another datachip as well as a stack of holographic print-outs.`
+			`Once again the director seems to be expecting you, and has a simple conversation with you about how the flight was and how your lessons are progressing. You manage to convey that you have learned a bit, and he gives you a few tips on your rehersed phrases before directing you to place your hand on the scanner. After checking the readout he hands you another datachip as well as a stack of holographic print-outs.`
 			`	Flipping through the stack of print-outs, you note that each one of them has a small label in the corner for random pieces of furniture and ship equipment, and when you view the hologram while moving from side to side the figure inside makes a sign that you assume to be what the label indicates.`
 			choice
 				`	(Accept them.)`
-				`	(Continue your lessons some other time.)`
-					defer
-				`	(Not interested in continuing your studies)`
-					decline
 			
 			`	Back on your ship, you find a roll of tape and stick up all the labels to the appropriate things around your ship. Now every time you look around your ship, you see figures demonstrating how to sign things. It kind of reminds you of being back in preschool. It does seem to be working, though.`
 				accept
 	
 	on complete
-		log "Have learned the basics of the Remnant sign language, and been formally granted access to their worlds after having been genetically tested on each of them."
+		event "Remnant: Sign Studies Complete" 20 40
+		log "Have been introduced to the basics of the Remnant sign language, and formally granted access to their worlds after having been genetically tested on each of them."
 		conversation
-			`The last leg of the journey was spent watching some ancient show about a merchant captain making his way through the galaxy with an unlikely crew, re-enacted by a cast of Remnant who sing and sign their way through the dialogs. It is oddly familiar, but you can't quite place it. You notice that it seems to have a lot of subtext about the dangers of manipulation and government secrecy, especially surrounding genetics.`
-			`	You arrive at the Director's desk and offer to return the datapad to the Director, signing your thanks. She seems pleased at how much you have learned, and replies that you are welcome to keep it for as long as you need it.`
-			`	She pauses for a moment, then signs, "You are probably wondering about all the blood tests. Long ago it was decided that being infiltrated by Alpha agents was a big risk, and we couldn't depend on our interstellar network to remain secure. So we implemented a policy where the first time a Remnant is granted formal access to a new planet their purity and identity is verified. Thus even if someone hacked our networks to give themselves a clean identity, they would still be caught when they started working on a new planet. We also don't broadcast that requirement on our networks, simply enforce it locally. It isn't foolproof, but it adds an additional layer of safety."`
-			`	After you finish your conversation with her, you stroll off to look around the spaceport, enjoying the fact that you can now understand a bit of the conversations going on around you. It still takes quite a bit of effort, but it is a good start.`
+			`The last leg of the journey was spent watching some ancient show about a merchant captain making his way through the galaxy with an unlikely crew, re-enacted by a cast of Remnant who sing and sign their way through the dialogs with exagerated simplicity. It is oddly familiar, but you can't quite place it. You notice that it seems to have a lot of subtext about the dangers of manipulation and government secrecy, especially surrounding genetics.`
+			`	You arrive at the Director's desk and offer to return the datapad to the Director, carefully signing your thanks. She seems pleased at your promissing start, and encourages you to continue practicing.`
+			`	She pauses for a moment, then switches to singing. "You are probably wondering about all the blood tests. Long ago it was decided that being infiltrated by Alpha agents was a big risk, and we couldn't depend on our interstellar network to remain secure. So we implemented a policy where the first time a Remnant is granted formal access to a new planet their purity and identity is verified. Thus even if someone hacked our networks to give themselves a clean identity, they would still be caught when they started working on a new planet. We also don't broadcast that requirement on our networks, simply enforce it locally. It isn't foolproof, but it adds an additional layer of safety."`
+			`	After you finish your conversation with her, you stroll off to look around the spaceport, enjoying the fact that you can now understand a bit of the conversations going on around you. It is only the most basic elements, but it is a good start. You realize, however, that you have a lot of practice to do before you become fluent.`
+
+
+
+event "Remnant: Sign Studies Complete"
+	set "Remnant: Sign Conversational"
+
+
+
+mission "Remnant: Learn Sign 3"
+	name "Conversational in Remnant Sign"
+	description `Return to <destination> to see how well you can sign.`
+	destination "Caelian"
+	invisible
+	to offer
+		has "Remnant: Sign Conversational"
+	on complete
+		log "Have achieved a degree of fluency in the Remnant sign language sufficient for general conversation."
+		dialog
+			`As you make your way into the Caelian spaceport, it occurs to you that the information director who gave you the first instructional videos might appreciate how much you have learned over the past few weeks of practice. You stretch your fingers and stop by the desk, where you are able to have a simple conversation with the information director.`
+			`	"Congratulations, Captain <last>!" she signs, "Your fluency is good enough that even those unwilling to sing with a stranger should be comfortable working with you. At this rate you will be one of us in more ways that just by blood. I look forward to seeing what results from your work with us." She is interrupted by the arrival of other Remnant asking her something, and she bids you farewell with an apologetic gesture.`
 
 
 
@@ -1078,6 +1100,7 @@ mission "Remnant: Salvage 5"
 	destination "Caelian"
 	to offer
 		has "Remnant: Salvage 4: done"
+		has "Remnant: Learn Sign 3: done"
 	on offer
 		conversation
 			`As you stroll across the tarmac under the great dome you spot Tali heading your way with a flatbed tractor filled with components in tow.`
@@ -1157,7 +1180,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 		government "Remnant"
 	destination "Wayfarer"
 	to offer
-		has "Remnant: Learn Sign 2: done"
+		has "Remnant: Learn Sign 3: done"
 		has "Remnant: Salvage 1: done"
 		has "First Contact: Quarg: offered"
 		random < 40
@@ -1175,6 +1198,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 				accept
 	on complete
 		payment 50000
+		log "People" "Dawn" `A young Remnant researcher who has yet to pick a specialty but appears to be quite interested in alien engineering.`
 		conversation
 			`Dawn and her colleagues are thrilled with the trip. While they had each served on Remnant ships exploring the Ember Waste or patrolling their territory, none had ever been more than a handful of jumps away from their own space. They explain that their ships were always cautious to stay far away from human space to avoid leading anyone back.`
 			`	It occurs to you that Dawn and her colleagues seem much less reserved than most Remnant. You aren't sure if it is because they are younger, less secretive, or if the Remnant have been concealing it from you. It is also possible that you just have better opportunities to figure it out now that you can understand their signs.`
