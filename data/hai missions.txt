@@ -989,7 +989,7 @@ mission "Hai Honeymoon"
 				`	"Don't worry. I almost have the hang of it."`
 				`	"Maybe a little bit."`
 			`	"It's always fun watching captains when they step off the comfort of their ship," the Hai says.`
-			`	"At least he's trying, Touhar," the woman says.`
+			`	"At least they're trying, Touhar," the woman says.`
 			choice
 				`	"Can I help you two with something?"`
 				`	"Is there something I can help you with, or are you just going to watch me?"`
