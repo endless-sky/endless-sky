@@ -605,6 +605,7 @@ mission "Remnant: Heavy Laser"
 	on complete
 		outfit "Heavy Laser" -2
 		payment 1000000
+		log "People" "Tali" `As an engineering prefect, Tali is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
 		conversation
 			`As you land, a group of researchers mount some kind of weapon on a platform aimed down a firing range. The researcher that asked you for the Heavy Lasers presses a button from behind a thick barrier to activate the weapon. A flash of light erupts from the muzzle as the target downrange is cut in half. The barrel of the weapon raises into the air and the researchers rush out onto the range with tools and devices to examine the destruction.`
 			`	The researcher approaches you while the heavy lasers are being unloaded from your ship. She's dusty, but appears pleased with the results of her experiments. "Captain <first>, I see you have the lasers as we agreed." You aren't sure if Remnant rub their hands in eagerness, but she looks ready to do so.`
@@ -656,6 +657,7 @@ mission "Remnant: Catalytic Ramscoop"
 	on complete
 		outfit "Catalytic Ramscoop" -2
 		payment 1500000
+		log "People" "Tali" `As an engineering prefect, Tali is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
 		conversation
 			`You visit the local shipyard and eventually find the engineer busily repairing a damaged Starling. You inform her that you have brought a pair of Catalytic Ramscoops for her to study. She quickly tightens a couple more connectors and jumps down from her perch, gesturing at an assistant to transfer you the credits you were promised. "Thank you! Our maps of human space are old, and if they are still accurate, you traveled a very long way to bring these to us." Her chanting voice echoes off the Starling above you with an interesting resonance.`
 			`	"If we can unlock the secrets of these ramscoops, it will give our ships greater range as they search for a safer refuge." As she picks up the remote control for the small loading truck with the two ramscoops she trills at you over her shoulder. "Oh, my name is Tali. I'll let you know what I find."`
@@ -706,6 +708,7 @@ mission "Remnant: Plasma Cannons"
 	on complete
 		outfit "Plasma Cannon" -2
 		payment 800000
+		log "People" "Tali" `As an engineering prefect, Tali is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
 		conversation
 			`As <ship> settles onto the pad closest to the research facility, you can see the weapons specialist checking over a large cannon on a platform beneath a nearby Albatross. When he sees you starting to unload the two plasma cannons, he snaps the casing closed and gestures to someone out of sight. Within moments both him and an empty flatbed are there to pick up the weapons.`
 			`	"Thank you for your help," he says. "Our Inhibitors provide us with something of a mobility advantage against the Korath, but they aren't particularly effective at disabling them. These Plasma Cannons will open new avenues of research for us." He pauses, then continues. "I also included a bonus for you. It is a 'finder's fee,' as we always appreciate new tech."`
@@ -739,6 +742,8 @@ mission "Remnant: Return the Samples"
 		system Nenia
 		personality staying heroic nemesis uninterested
 		ship "Archon (Cloaked)" "Lifted Lorax"
+	on accept
+		log "People" "Plume" `A Remnant researcher specializing in xenobiology, Plume is at the forefront of recent efforts to restart research on the Void Sprites and a leading expert in non-carbon based lifeforms.`
 	on stopover
 		conversation
 			`Once again you have successfully dodged the Archon to land on Nasqueron. Somehow, knowing it was going to be there was both better and worse than the surprise of the first time.`
@@ -887,7 +892,7 @@ mission "Remnant: Learn Sign 3"
 		log "Have achieved a degree of fluency in the Remnant sign language sufficient for general conversation."
 		dialog
 			`As you make your way into the Caelian spaceport, it occurs to you that the information director who gave you the first instructional videos might appreciate how much you have learned over the past few weeks of practice. You stretch your fingers and stop by the desk, where you are able to have a simple conversation with the information director.`
-			`	"Congratulations, Captain <last>!" she signs, "Your fluency is good enough that even those unwilling to sing with a stranger should be comfortable working with you. At this rate you will be one of us in more ways that just by blood. I look forward to seeing what results from your work with us."`
+			`	"Congratulations, Captain <last>!" she signs, "Your fluency is good enough that even those unwilling to sing with a stranger should be comfortable working with you. At this rate you will be one of us in more ways that just by blood. I look forward to seeing what results from your work with us." She is interrupted by the arrival of other Remnant asking her something, and she bids you farewell with an apologetic gesture.`
 
 
 
@@ -1193,6 +1198,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 				accept
 	on complete
 		payment 50000
+		log "People" "Dawn" `A young Remnant researcher who has yet to pick a specialty but appears to be quite interested in alien engineering.`
 		conversation
 			`Dawn and her colleagues are thrilled with the trip. While they had each served on Remnant ships exploring the Ember Waste or patrolling their territory, none had ever been more than a handful of jumps away from their own space. They explain that their ships were always cautious to stay far away from human space to avoid leading anyone back.`
 			`	It occurs to you that Dawn and her colleagues seem much less reserved than most Remnant. You aren't sure if it is because they are younger, less secretive, or if the Remnant have been concealing it from you. It is also possible that you just have better opportunities to figure it out now that you can understand their signs.`
