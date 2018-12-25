@@ -884,10 +884,10 @@ mission "Remnant: Learn Sign 3"
 	to offer
 		has "Remnant: Sign Conversational"
 	on complete
-		dialogue
-			`As you make your way into the Caelian spaceport, it occurs to you that the information director who gave you the first instructional videos might appreciate how much you have learned. You stretch your fingers and stop by the desk, where you are able to walk up and have a reasonable conversation and thanking her for the instructional tablet.`
-			`	"Congratulations, Captain <last>!" she signs, your fluency is good enough that most people should be 
-	
+		log "Have achieved a degree of fluency in the Remnant sign language sufficient for general conversation."
+		dialog
+			`As you make your way into the Caelian spaceport, it occurs to you that the information director who gave you the first instructional videos might appreciate how much you have learned over the past few weeks of practice. You stretch your fingers and stop by the desk, where you are able to have a simple conversation with the information director.`
+			`	"Congratulations, Captain <last>!" she signs, "Your fluency is good enough that even those unwilling to sing with a stranger should be comfortable working with you. At this rate you will be one of us in more ways that just by blood. I look forward to seeing what results from your work with us."`
 
 
 
@@ -1095,6 +1095,7 @@ mission "Remnant: Salvage 5"
 	destination "Caelian"
 	to offer
 		has "Remnant: Salvage 4: done"
+		has "Remnant: Learn Sign 3: done"
 	on offer
 		conversation
 			`As you stroll across the tarmac under the great dome you spot Tali heading your way with a flatbed tractor filled with components in tow.`
@@ -1174,7 +1175,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 		government "Remnant"
 	destination "Wayfarer"
 	to offer
-		has "Remnant: Learn Sign 2: done"
+		has "Remnant: Learn Sign 3: done"
 		has "Remnant: Salvage 1: done"
 		has "First Contact: Quarg: offered"
 		random < 40
