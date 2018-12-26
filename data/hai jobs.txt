@@ -1107,3 +1107,24 @@ mission "Hai Large Rush Delivery [3]"
 		payment
 		payment 42000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+
+
+mission "Hai Prisoner Roleplay"
+	name `Hai "prison" cruise to <planet>`
+	job
+	repeat
+	description "A group of Hai want to experience what it's like to be human criminals. Transport them to <planet> in your brig. Payment is <payment>."
+	passengers 3 20
+	to offer
+		random < 5
+	source
+		government "Hai"
+	destination
+		distance 3 7
+		government "Hai"
+	on offer
+		require "Brig"
+	on complete
+		payment 15000 150
+		dialog "The Hai depart your ship chittering in excitement. One of them hands you your payment of <payment> before running to catch up with their friends."
