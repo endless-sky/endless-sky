@@ -82,7 +82,6 @@ mission "First Contact: Remnant"
 	
 	on decline
 		event "ember waste label"
-		set "remnant blood test pure"
 		log "Discovered a strange, isolated human community in an otherwise uninhabited region of space south of the Core. They call themselves the Remnant."
 		log "Factions" "Remnant" `Half a millennium ago, during the Alpha Wars, a group of humans fleeing the conflict and looking for a safer place to live discovered a wormhole into a region of space known as the Ember Waste. They built settlements there, and chose to call themselves the Remnant. Although they no longer fear the Alphas as much as they once did, they still have not rejoined human society.`
 			`Since their colonies were first formed, the Remnant's culture has changed drastically. They communicate in sign language, using their voices only for singing. Their food and architecture and much of their technology is strange, and much of it has been borrowed or stolen from nearby alien species.`
@@ -94,7 +93,6 @@ mission "First Contact: Remnant"
 	
 	on complete
 		event "ember waste label"
-		set "remnant blood test pure"
 		log "Discovered a strange, isolated human community in an otherwise uninhabited region of space south of the Core. They call themselves the Remnant."
 		log "Factions" "Remnant" `Half a millennium ago, during the Alpha Wars, a group of humans fleeing the conflict and looking for a safer place to live discovered a wormhole into a region of space known as the Ember Waste. They built settlements there, and chose to call themselves the Remnant. Although they no longer fear the Alphas as much as they once did, they still have not rejoined human society.`
 			`Since their colonies were first formed, the Remnant's culture has changed drastically. They communicate in sign language, using their voices only for singing. Their food and architecture and much of their technology is strange, and much of it has been borrowed or stolen from nearby alien species.`
@@ -124,6 +122,16 @@ event "ember waste label"
 	galaxy "label waste"
 		sprite label/waste
 
+# Compatibility patch for those who made contact with the Remnant prior to v0.9.9
+mission "Remnant Blood Test Patch"
+	landing
+	invisible
+	to offer
+		has "event: ember waste label"
+	on offer
+		set "remnant blood test pure"
+		fail
+
 
 
 
@@ -132,12 +140,7 @@ mission "Remnant: Defense 1"
 	name "Defend <planet>"
 	description "Assist in defending <planet> from a Korath raid, then return to the planet."
 	to offer
-		or
-			has "First Contact: Remnant: done"
-			and
-				has "First Contact: Remnant: offered"
-				not "First Contact: Remnant: active"
-				not "remnant: declined second chance"
+		has "remnant blood test pure"
 		not "Remnant defense delay"
 	on offer
 		conversation
@@ -307,12 +310,7 @@ mission "Remnant: Key Stones"
 	description "The manager of the outfitter on <planet>, a Remnant world, has offered to pay you six million credits in exchange for a shipment of fifty Quantum Keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
 	to offer
-		or
-			has "First Contact: Remnant: done"
-			and
-				has "First Contact: Remnant: offered"
-				not "First Contact: Remnant: active"
-				not "remnant: declined second chance"
+		has "remnant blood test pure"
 	on offer
 		require "Quantum Keystone"
 		conversation
@@ -355,12 +353,7 @@ mission "Remnant: Void Sprites 1"
 	waypoint "Nenia"
 	cargo "scanning equipment" 8
 	to offer
-		or
-			has "First Contact: Remnant: done"
-			and
-				has "First Contact: Remnant: offered"
-				not "First Contact: Remnant: active"
-				not "remnant: declined second chance"
+		has "remnant blood test pure"
 	on offer
 		conversation
 			`As you explore the spaceport, you meet a Remnant man wearing some sort of optical prosthesis over his eyes, a visor with several tiny cameras mounted on it. "Ah," he sings, "the outsider. Human yet not of our culture, distinct from our mindset. That is useful. Would you be willing to invest in a research project?"`
