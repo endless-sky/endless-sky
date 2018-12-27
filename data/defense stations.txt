@@ -10,7 +10,7 @@ ship "Defense Asteroid"
 		"hull" 1000
 		"required crew" 1
 		"bunks" 2
-		"mass" 130
+		"mass" 10000
 		"drag" 4.1
 		"heat dissipation" .8
 		"fuel capacity" 0
