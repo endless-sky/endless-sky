@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 
@@ -161,7 +162,7 @@ bool StellarObject::IsVisible() const
 
 bool StellarObject::HasShip() const
 {
-	return ship != nullptr;
+	return ship;
 }
 
 
@@ -172,6 +173,7 @@ shared_ptr<Ship> StellarObject::GetShip(const System *system) const
 		return nullptr;
 	isDead = false;
 	shared_ptr<Ship> local(new Ship(*ship));
+	
 
 	// Sets the ships government to the StellarObject's goverment if specified or the system's government.
 	local->SetGovernment(government ? government : system->GetGovernment());
@@ -179,8 +181,27 @@ shared_ptr<Ship> StellarObject::GetShip(const System *system) const
 	local->SetName("Orbital Defense Platform");
 	local->SetPersonality(personality);
 	local->SetSystem(system);
-	local->SetStellar(this);
-	local->Place(Position(), Point(), Angle::Random());
+	
+	// Gets the orbited object and uses it as center of mass and a basis for the specific
+	// gravitational constant. Also calculates the starting movement of the station.
+	const StellarObject central = system->Objects()[parent];
+	// Assumes the mass to be proportional to width*height.
+	double constant = central.Width()*central.Height()*0.001;
+	// Stars have a higher density than other StellarObjects.
+	if(central.IsStar())
+		constant *= 1000;
+	// Non-defensive stations are normally lighter because most of their inside volume
+	// consists of air while they don't fill the hole space of the sprite like a sphere does.
+	if(central.IsStation())
+		constant *= 0.02;
+	local->SetStellar(this, constant, central.Position());
+	// Assuming the station starts moving in perfect circle where a = v^2/r.
+	Point r = central.Position()-position;
+	Point velocity = r*(constant/(r.LengthSquared()));
+	velocity /= sqrt(velocity.Length());
+	local->Place(Position(), Point(velocity.Y(), -velocity.X()), Angle::Random());
+	
+	
 	local->Restore();
 	return local;
 }

@@ -94,7 +94,7 @@ private:
 	bool isStar;
 	bool isStation;
 	bool isMoon;
-	// A StellarObject is dead if it has no defense or the defense platform died or the player is outside the system.
+	// A StellarObject is dead if it has no defense or the defense platform died.
 	mutable bool isDead;
 	
 	// Let System handle setting all the values of an Object.

@@ -145,7 +145,7 @@ public:
 	void SetSystem(const System *system);
 	void SetPlanet(const Planet *planet);
 	void SetGovernment(const Government *government);
-	void SetStellar(const StellarObject * stellar);
+	void SetStellar(const StellarObject * stellar, double gravitationConstant, Point centerOfMass);
 	void SetIsSpecial(bool special = true);
 	bool IsSpecial() const;
 	
@@ -491,8 +491,11 @@ private:
 	Point hyperspaceOffset;
 	
 	// If the ship is a defense platform it needs to know the StellarObject
-	// that this ship represents.
+	// that this ship represents. It also needs to have basic information about
+	// the StellarObject it is orbiting around.
 	const StellarObject *defending = nullptr;
+	double gravitationConstant = 0.;
+	Point centerOfMass;
 	
 	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
 	// when the ship is dying.

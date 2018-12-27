@@ -881,10 +881,12 @@ void Ship::SetGovernment(const Government *government)
 }
 
 
-
-void Ship::SetStellar(const StellarObject *object)
+// Initializes all relevant informations for the ship to behave like a defense station.
+void Ship::SetStellar(const StellarObject *object, double gravitationConstant, Point centerOfMass)
 {
 	defending = object;
+	this->centerOfMass = centerOfMass;
+	this->gravitationConstant = gravitationConstant;
 }
 
 
@@ -1426,34 +1428,53 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			}
 		}
 	}
-	if(acceleration && !defending)
+	
+	
+	// Defense Stations orbit around the same planet as the cooresponding StellarObject does.
+	if(defending)
 	{
-		acceleration *= slowMultiplier;
-		Point dragAcceleration = acceleration - velocity * (attributes.Get("drag") / mass);
-		// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
-		if(dragAcceleration)
-		{
-			// What direction will the net acceleration be if this drag is applied?
-			// If the net acceleration will be opposite the thrust, do not apply drag.
-			dragAcceleration *= .5 * (acceleration.Unit().Dot(dragAcceleration.Unit()) + 1.);
-			
-			// A ship can only "cheat" to stop if it is moving slow enough that
-			// it could stop completely this frame. This is to avoid overshooting
-			// when trying to stop and ending up headed in the other direction.
-			if(commands.Has(Command::STOP))
+		Point r = centerOfMass-position;
+		double lengthSquared = r.LengthSquared();
+		// Uses the law f gravitation to calculate the acceleration.
+		// If the ship is to near to the object the acceleration is not updated.
+		// Otherwise it might get accelerated to fast and would shoot out of the system.
+		if(lengthSquared >= 1000)
+			acceleration += r*(gravitationConstant/(r.Length()*lengthSquared));		
+	}
+	if(acceleration)
+	{
+		// The acceleration of a defense station is not effected by things like drag or slowing.
+		// Otherwise the well-balanced ratio between acceleration and velocity breaks down.
+		if(defending)
+			velocity += acceleration;
+		else {
+			acceleration *= slowMultiplier;
+			Point dragAcceleration = acceleration - velocity * (attributes.Get("drag") / mass);
+			// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
+			if(dragAcceleration)
 			{
-				// How much acceleration would it take to come to a stop in the
-				// direction normal to the ship's current facing? This is only
-				// possible if the acceleration plus drag vector is in the
-				// opposite direction from the velocity vector when both are
-				// projected onto the current facing vector, and the acceleration
-				// vector is the larger of the two.
-				double vNormal = velocity.Dot(angle.Unit());
-				double aNormal = dragAcceleration.Dot(angle.Unit());
-				if((aNormal > 0.) != (vNormal > 0.) && fabs(aNormal) > fabs(vNormal))
-					dragAcceleration = -vNormal * angle.Unit();
+				// What direction will the net acceleration be if this drag is applied?
+				// If the net acceleration will be opposite the thrust, do not apply drag.
+				dragAcceleration *= .5 * (acceleration.Unit().Dot(dragAcceleration.Unit()) + 1.);
+				
+				// A ship can only "cheat" to stop if it is moving slow enough that
+				// it could stop completely this frame. This is to avoid overshooting
+				// when trying to stop and ending up headed in the other direction.
+				if(commands.Has(Command::STOP))
+				{
+					// How much acceleration would it take to come to a stop in the
+					// direction normal to the ship's current facing? This is only
+					// possible if the acceleration plus drag vector is in the
+					// opposite direction from the velocity vector when both are
+					// projected onto the current facing vector, and the acceleration
+					// vector is the larger of the two.
+					double vNormal = velocity.Dot(angle.Unit());
+					double aNormal = dragAcceleration.Dot(angle.Unit());
+					if((aNormal > 0.) != (vNormal > 0.) && fabs(aNormal) > fabs(vNormal))
+						dragAcceleration = -vNormal * angle.Unit();
+				}
+				velocity += dragAcceleration;
 			}
-			velocity += dragAcceleration;
 		}
 		acceleration = Point();
 	}
@@ -2645,17 +2666,19 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 // impact, or from firing a weapon, for example.
 void Ship::ApplyForce(const Point &force)
 {
-	if(defending)
-		return;
-	
 	double currentMass = Mass();
 	if(!currentMass)
 		return;
-	
-	// Reduce acceleration of small ships and increase acceleration of large
-	// ones by having 30% of the force be based on a fixed mass of 400, i.e. the
-	// mass of a typical light warship:
-	acceleration += force * (.3 / 400. + .7 / currentMass);
+	// Defense station are a lot heavier than other objects. It would be unreasonable
+	// to apply 30% of the force based on a relativly tiny mass.
+	if(defending)
+		acceleration += force/currentMass;
+	else {
+		// Reduce acceleration of small ships and increase acceleration of large
+		// ones by having 30% of the force be based on a fixed mass of 400, i.e. the
+		// mass of a typical light warship:
+		acceleration += force * (.3 / 400. + .7 / currentMass);
+	}
 }
 
 
