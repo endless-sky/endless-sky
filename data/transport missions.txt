@@ -3185,7 +3185,7 @@ mission "Capture Smuggler"
 				decline
 
 			label accept
-			`	The man looks down at you with no change in expression. "This is good. To be reliable, it is a great thing on <origin>." As the man speaks, you notice that his teeth are filed to vicious points. He holds out a round, flat object about the size of your palm. It has a recessed button in the center of one side. "This is gift for this smuggler. Press button, it becomes surprise. Make sure surprise is not on you." He hands you the object and a datachip containing details of the job. As the man leaves, you see every patron in the bar staring warily at his back.`
+			`	The man looks down at you with no change in expression. "This is good. To be reliable, it is a great thing on <origin>." As the man speaks, you notice that his teeth are filed to vicious points. He holds out a round, flat object about the size of your palm. It has a recessed button in the center of one side. "This is gift for this smuggler. Press button, it becomes surprise. Make sure surprise is not on you." He hands you the object and a data chip containing details of the job. As the man leaves, you see every patron in the bar staring warily at his back.`
 				accept
 
 			label mistake
