@@ -103,7 +103,7 @@ mission "First Contact: Remnant"
 					goto comply
 				`(Refuse and run for your ship.)`
 				
-			`	As you turn to start running back to your ship you notice a quick hand sign from the prefect and the soldiers nearby begin raising their weapons and firing at you. As you feel your body begin to liquify under the assault of the strange energy bolts, the last thing you see is the look of pity, resignation, and confusion on the face of the man with the scanner. Probably wondering why you would decide to return if you were just going to run again. You suppose they'll never know...`
+			`	As you turn to start running back to your ship, the soldiers nearby begin raising their weapons and firing at you. As you feel your body begin to liquify under the assault of the strange energy bolts, the last thing you see is the look of pity, resignation, and confusion on the face of the man with the scanner. Probably wondering why you would decide to return if you were just going to run again. You suppose they'll never know...`
 				die
 			
 			label comply
@@ -849,7 +849,7 @@ mission "Remnant: Learn Sign 2"
 		has "Remnant: Learn Sign 1: done"
 	on offer
 		conversation
-			`Once again the director seems to be expecting you, and has a simple conversation with you about how the flight was and how your lessons are progressing. You manage to convey that you have learned a bit, and he gives you a few tips on your rehearsed phrases before directing you to place your hand on the scanner. After checking the readout he hands you another datachip as well as a stack of holographic print-outs.`
+			`Once again the director seems to be expecting you, and has a simple conversation with you about how the flight was and how your lessons are progressing. You manage to convey that you have learned a bit, and he gives you a few tips on your rehearsed phrases before directing you to place your hand on the scanner. After checking the readout he hands you another data chip as well as a stack of holographic print-outs.`
 			`	Flipping through the stack of print-outs, you note that each one of them has a small label in the corner for random pieces of furniture and ship equipment, and when you view the hologram while moving from side to side the figure inside makes a sign that you assume to be what the label indicates.`
 			choice
 				`	(Accept them.)`
@@ -968,7 +968,7 @@ mission "Remnant: Salvage 2"
 		conversation
 			`As some ships maintain orbital sentry positions, most ships return to their berths. Mechanics are soon swarming over the ships, and what you suppose are ambulances are waiting at the ramps to collect the injured. Farther back, flatbed tractor units wait to pick up any salvage that has been collected.`
 			`	Eventually a tired but pleased-looking prefect stops by your ship. He starts chanting, "Do you understand our language, or do I need to sing?" He looks relieved when you reply that you can understand most of what is said so long as he signs slowly. "Thank you for your assistance during the raid. The sensors you placed on Parca picked up the fleet coming in and gave us sufficient warning to get everyone ready."`
-			`	He is silent for a moment, with the air of someone who is enjoying not having to run for the first time in a while. "Oh, Tali said that you might have some historical records for us?" You hand over the copy of the archive in response, telling him that is probably the best available. He hands you a creditstick with <payment> credits on it. "Thank you, I'll make sure this gets where it needs to go. In the meantime, we could use your help in the starport."`
+			`	He is silent for a moment, with the air of someone who is enjoying not having to run for the first time in a while. "Oh, Tali said that you might have some historical records for us?" You hand over the copy of the archive in response, telling him that is probably the best available. He hands you a credit chip with <payment> on it. "Thank you, I'll make sure this gets where it needs to go. In the meantime, we could use your help in the starport."`
 
 
 
@@ -1052,7 +1052,7 @@ mission "Remnant: Salvage 4"
 		dialog "You have disabled the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
 	on complete
 		payment 500000
-		dialog `Back in the spaceport, you are met by the prefect who thanks you for disabling it and hands you a credstick for <payment>. "I think Tali might have some more work for you, but in the meantime, don't forget to drop it off any salvaged outfits in the outfitters so the researchers can look at it."`
+		dialog `You are met by the prefect who thanks you for disabling it and hands you a credit chip for <payment>. "I think Tali might have some more work for you in the spaceport, but in the meantime, don't forget to drop off any salvaged outfits in the outfitters so the researchers can look at them."`
 
 
 
@@ -1183,10 +1183,10 @@ mission "Remnant: Expanded Horizons Quarg 1"
 			`	She slides into the chair opposite you without waiting for your reply, and pulls out a datapad. "Firstly, our histories mention how humanity met a race called the 'Quarg' and had some ongoing dialogs with them, but not much beyond that. Now here in this history that you brought us, it says that humanity has started exchanging technology with them! Is this true?" She looks at you intently. You sign negatively, and she dejectedly continues. "Could you explain about them, then?" You reply that the Quarg have allowed humanity to live near them, and that the Quarg are usually willing to answer questions, including scientific ones. You continue, elaborating that while the Quarg don't seem to mind having an innovative shipyard studying them as best it can, they don't actually share their technology with anyone.`
 			`	After several hours of telling her about meeting the Quarg and visiting their world it finally occurs to you that it would be easy enough to take her to visit the Tarazed system.`
 			choice
-				`	(Don't offer)`
+				`	(Offer to take her there.)`
+				`	(Don't offer.)`
 					decline
-				`	(Offer to take her there)`
-			`	 You offer to take her and a couple of her colleagues. She eagerly accepts, although she expresses a preference for landing on the human world, so they can observe the Quarg ships from a distance, as they would rather not draw any attention to themselves. She runs out of the cafeteria after telling you they will meet you at your ship in half an hour.`
+			`	 You offer to take her and a couple of her colleagues to <destination>. She eagerly accepts, although she expresses a preference for landing on the human world, so they can observe the Quarg ships from a distance, as they would rather not draw any attention to themselves. She runs out of the cafeteria after telling you they will meet you at your ship in half an hour.`
 				accept
 	on complete
 		payment 50000
