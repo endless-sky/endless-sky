@@ -97,7 +97,7 @@ mission "First Contact: Remnant"
 		log "Factions" "Remnant" `Half a millennium ago, during the Alpha Wars, a group of humans fleeing the conflict and looking for a safer place to live discovered a wormhole into a region of space known as the Ember Waste. They built settlements there, and chose to call themselves the Remnant. Although they no longer fear the Alphas as much as they once did, they still have not rejoined human society.`
 			`Since their colonies were first formed, the Remnant's culture has changed drastically. They communicate in sign language, using their voices only for singing. Their food and architecture and much of their technology is strange, and much of it has been borrowed or stolen from nearby alien species.`
 		conversation
-			`Your return trip is a bit more nerve-wracking. Unlike the previous time, your flight computer keeps blaring warnings that the ships escorting you are weapons-hot and locked on. As soon as you land, your ship is surrounded by soldiers with a variety of weapons, and the same man appears in the midst of them. As before, he pricks his finger, presses it to a spot on the device, then offers a still-sealed lancet to you. He begins chanting in a severe tone "The first may be a misunderstanding, but now you know our law. Will you submit to a blood test, or be declared guilty once and for all?"`
+			`Your return trip is a bit more nerve-wracking. Unlike the previous time, your flight computer keeps blaring warnings that the ships escorting you are weapons-hot and locked on. As soon as you land, your ship is surrounded by soldiers with a variety of weapons, and the same man appears in the midst of them. As before, he pricks his finger, presses it to a spot on the device, then offers a still-sealed lancet to you. He begins chanting in a severe tone, "The first may be a misunderstanding, but now you know our law. Will you submit to a blood test, or be declared guilty once and for all?"`
 			choice
 				`(Provide the blood sample.)`
 					goto comply
@@ -599,9 +599,9 @@ mission "Remnant: Heavy Laser"
 		payment 1000000
 		log "People" "Tali" `As an engineering prefect, Tali is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
 		conversation
-			`As you land, a group of researchers mount some kind of weapon on a platform aimed down a firing range. The researcher that asked you for the heavy lasers presses a button from behind a thick barrier to activate the weapon. A flash of light erupts from the muzzle as the target downrange is cut in half. The barrel of the weapon raises into the air and the researchers rush out onto the range with tools and devices to examine the destruction.`
+			`As you land, a group of researchers mount some kind of weapon on a platform aimed down a firing range. The researcher that asked you for the heavy lasers presses a button from behind a thick barrier to activate the weapon. A flash of light erupts from the muzzle as the target downrange is cut in half. The barrel of the weapon raises into the air and the researchers rush out onto the range with tools and devices to inspect the damage.`
 			`	The researcher approaches you while the heavy lasers are being unloaded from your ship. She's dusty, but appears pleased with the results of her experiments. "Captain <first>, I see you have the lasers as we agreed." You aren't sure if Remnant rub their hands in eagerness, but she looks ready to do so.`
-			`	She taps her comm-link, and moments later another Remnant appears from the scaffolding around a nearby Starling. The researcher straightens up and switches to a more stately melody. "Captain <last>, this is Prefect Tali. She is our most experienced engineer for dealing with alien tech."`
+			`	She taps her comlink, and moments later another Remnant appears from the scaffolding around a nearby Starling. The researcher straightens up and switches to a more stately melody. "Captain <last>, this is Prefect Tali. She is our most experienced engineer for dealing with alien tech."`
 			`	Tali steps forward and makes what seems to be a kind of welcoming gesture. "Greetings Captain. We appreciate your help in acquiring these samples. It looks like we are far behind the rest of humanity in some respects. We have a lot of work to do if we are to catch up with them."`
 
 
@@ -1011,7 +1011,7 @@ mission "Remnant: Salvage 3"
 		conversation
 			`The return trip to Viminal is much more interesting. The crew spend more time wandering your ship than they do in their bunks. Some spend most of their time down in engineering, while others hang out around the main guns or the cockpit. Only their remarkable aptitude at figuring out where to be in order to not interfere with normal operations keeps them from being a hindrance. As you open the hatch they disperse across the tarmac to the ships they have been assigned to, each one of them signing their thanks as they leave.`
 			`	A few minutes after they leave your comlink beeps, notifying you that a message from the prefect has arrived:`
-			`	"Captain <last>! Thank you for your help in defending Viminal and transporting those wounded. I have transferred a small token of our appreciation to you. That being said, perhaps you would appreciate this a bit more: the other prefects and I have agreed to grant you access to a wider range of ships. Our Albatross class warships, and Pelican class freighters will now be available to you. At the rate these raids are going, it is in everyone's best interests that you have access to a better warship."`
+			`	"Captain <last>! Thank you for your help in defending Viminal and transporting those wounded. I have transferred a small token of our appreciation to you. That being said, perhaps you would appreciate this a bit more: the other prefects and I have agreed to grant you access to a wider range of ships. Our capital class ships will now be available to you, including the Albatross and the Pelican. At the rate these raids are going, it is in everyone's best interests that you have access to a better warship."`
 			`	With a sense of finality the prefect makes a gesture that you've come to recognize as "respectful end of conversation."`
 
 event "Remnant Albatross"	
@@ -1040,7 +1040,7 @@ mission "Remnant: Salvage 4"
 				goto next
 	
 			label next
-			`	While you're conversing with the group, the prefect suddenly glances down at his comlink, reads a message, then looks up at you. "It appears that a Korath ship survived the raid and has destroyed a few ships without taking cargo. Could you deal with it?`
+			`	While you're conversing with the group, the prefect suddenly glances down at his comlink, reads a message, then looks up at you. "It appears that a Korath ship survived the raid and has destroyed a few ships without taking cargo. Could you deal with it?"`
 			choice
 				`	"Sure."`
 				`	"Sorry, I don't have time to help you out."`
