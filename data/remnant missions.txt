@@ -730,7 +730,7 @@ mission "Remnant: Plasma Weapons"
 	on complete
 		outfit "Plasma Cannon" -2
 		payment 800000
-		log "People" "Tali" `As an engineering prefect, Tali is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
+		
 		conversation
 			`As <ship> settles onto the pad closest to the research facility, you can see the weapons specialist checking over a large cannon on a platform beneath a nearby Albatross. When he sees you starting to unload the two plasma cannons, he snaps the casing closed and gestures to someone out of sight. Within moments both him and an empty flatbed are there to pick up the weapons.`
 			`	"Thank you for your help," he says. "Our Inhibitors provide us with something of a mobility advantage against the Korath, but they aren't particularly effective at disabling them. These plasma cannons will open new avenues of research for us." He pauses, then continues. "I also included a bonus for you. It is a 'finder's fee,' as we always appreciate new tech."`
@@ -743,6 +743,22 @@ mission "Remnant: Plasma Weapons"
 			`	Tali steps forward to face you. "Well met once again, <first>," she trills. "Your fresh actions set songs in motion that have long been in caesura. I have a few things to finish up right now, but I hope to work with you soon." She gives you a polite nod and heads back the way she came.`
 			
 			`	Tali steps forward to face you. "Well met, newcomer among the Remnant," she trills. "Fresh blood amongst us sets songs in motion that have long been in caesura. I have a few things to finish up right now, but I hope to work with you soon." She gives you a polite nod and heads back the way she came.`
+
+
+
+mission "Remnant: Tali Log Entry"
+	name "Tali Log Entry"
+	source
+		"Remnant"
+	invisible
+	to offer
+		or
+			has "Remnant: Plasma Weapons: done"
+			has "Remnant: Catalytic Ramscoop: done"
+			has "Remnant: Heavy Laser: done"
+	on offer
+		log "People" "Tali" `As an engineering prefect, Tali is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
+
 
 
 mission "Remnant: Return the Samples"
