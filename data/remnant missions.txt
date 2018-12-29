@@ -858,7 +858,7 @@ mission "Remnant: Learn Sign 2"
 				accept
 	
 	on complete
-		event "Remnant: Sign Studies Complete" 20 40
+		event "remnant: sign studies complete" 20 40
 		log "Have been introduced to the basics of the Remnant sign language, and formally granted access to their worlds after having been genetically tested on each of them."
 		conversation
 			`The last leg of the journey was spent watching some ancient show about a merchant captain making his way through the galaxy with an unlikely crew, re-enacted by a cast of Remnant who sing and sign their way through the dialogs with exagerated simplicity. It is oddly familiar, but you can't quite place it. You notice that it seems to have a lot of subtext about the dangers of manipulation and government secrecy, especially surrounding genetics.`
@@ -866,10 +866,7 @@ mission "Remnant: Learn Sign 2"
 			`	She pauses for a moment, then switches to singing. "You are probably wondering about all the blood tests. Long ago it was decided that being infiltrated by Alpha agents was a big risk, and we couldn't depend on our interstellar network to remain secure. So we implemented a policy where the first time a Remnant is granted formal access to a new planet their purity and identity is verified. Thus even if someone hacked our networks to give themselves a clean identity, they would still be caught when they started working on a new planet. We also don't broadcast that requirement on our networks, simply enforce it locally. It isn't foolproof, but it adds an additional layer of safety."`
 			`	After you finish your conversation with her, you stroll off to look around the spaceport, enjoying the fact that you can now understand a bit of the conversations going on around you. It is only the most basic elements, but it is a good start. You realize, however, that you have a lot of practice to do before you become fluent.`
 
-
-
-event "Remnant: Sign Studies Complete"
-	set "Remnant: Sign Conversational"
+event "remnant: sign studies complete"
 
 
 
@@ -879,7 +876,7 @@ mission "Remnant: Learn Sign 3"
 	destination "Caelian"
 	invisible
 	to offer
-		has "Remnant: Sign Conversational"
+		has "event: remnant: sign studies complete"
 	on complete
 		log "Have achieved a degree of fluency in the Remnant sign language sufficient for general conversation."
 		dialog
@@ -890,10 +887,10 @@ mission "Remnant: Learn Sign 3"
 
 mission "Remnant: Salvage 1"
 	name "Remnant History Updates"
-	description `Find a copy of human history for the Remnant.`
+	description `Find a copy of human history on <destination> for the Remnant.`
 	minor
 	source "Viminal"
-	stopover "Alexandria"
+	destination "Alexandria"
 	to offer
 		has "Remnant: Learn Sign 2: done"
 		random < 50
@@ -922,16 +919,27 @@ mission "Remnant: Salvage 1"
 			label library
 			`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists..." she stops when she notices you nodding with a knowing expression. "You have already been there? Well, you certainly get around, captain <last>. I suppose that makes things rather straight forward."`
 				accept
-	on stopover
+	on visit
+		dialog
+			`The station has a small museum gift shop that sells a copy of the entire archive on a data card. It only costs 40 credits, but because you have done a horrible job at managing your finances you do not have even that much cash on hand right now.`
+			`	Go earn some money, then return here.`
+	on complete
 		payment -40
+
+
+
+mission "Remnant: Salvage 1B"
+	name "Remnant History Updates"
+	description `Return the copy of human history to <destination>.`
+	landing
+	source "Alexandria"
+	destination "Viminal"
+	to offer
+		has "Remnant: Salvage 1: done"
+	on offer
 		conversation
 			`After having traveled clear across the galaxy, you finally have arrived at the archives of human history. On the direction of the librarians you locate the gift shop and buy a "souvenir copy" of the archive. You idly wonder if you should buy a couple spare copies just in case, but decide against it.`
-	
-	on complete
-		conversation
-			`Having acquired a copy of the archive, you gently set <ship> down on Viminal hoping that this information is helpful. The port seems unusually busy, but the comm channels are quiet beyond the bare minimum to keep traffic organized.`
-			`	Before you have even taken the time to shutdown the engines Tali is halfway up the side of your ship securing a refueling hose and charging cable. As you reach for the comlink she scrambles up to the bridge windows and quickly rattles off a series of signs at you. All you can make out is "Keep it hot, incoming!" Before you can frame a reply she has raced across your wing and leapt to the Albatross parked next to you.`
-			`	Looking around more carefully, you note that every ship in the port is idling with fuel lines still connected. If this were some Republic port the safety inspectors would be having a nightmare. One Starling is getting holes in its wings patched even as the crew appear to be running prep-for-flight checklists. It also looks like every ship has a guard. Something tells you that right now would be a bad time to take a walk around town.`
+				accept
 
 
 
@@ -941,12 +949,13 @@ mission "Remnant: Salvage 2"
 	name "Defend <planet>"
 	description "Assist in defending <planet> from a Korath raid, then return to the planet."
 	to offer
-		has "Remnant: Salvage 1: done"
+		has "Remnant: Salvage 1B: done"
 	on offer
 		conversation
-			`In the flurry of activity and tense waiting for something, it is almost a relief when the planetary defense sirens start. As you watch, the method to their chaos is suddenly evident. Each guard or port hand who had been standing around reaches up and pulls the quick release cable attached to the fuel hose, then race to get themselves and the hoses back out of the way. Mechanics operating overhead slap the buttons on their harnesses to be whisked up to the ceiling of the dome at breakneck speeds. Within seconds the first ships are out of the dome and the rest follow closely behind.`
-			`	As you run up your engines, you can't help but marvel at how precise the Remnant are, and how well they pull off such a fast launch.`
-			`	Despite not having been told anything, you quickly figure out where you are in the launch sequence and follow the stream of craft heading for orbit.`
+			`Having acquired a copy of the archive, you gently set your ship down on Viminal hoping that this information is helpful. The port seems unusually busy, but the comm channels are quiet beyond the bare minimum to keep traffic organized.`
+			`	Before you have even taken the time to shutdown the engines Tali is halfway up the side of your ship securing a refueling hose and charging cable. As you reach for the comlink she scrambles up to the bridge windows and quickly rattles off a series of signs at you. All you can make out is "Keep it hot, incoming!" Before you can frame a reply she has raced across your wing and leapt to the Albatross parked next to you.`
+			`	Looking around more carefully, you note that every ship in the port is idling with fuel lines still connected. If this were some Republic port the safety inspectors would be having a nightmare. One Starling is getting holes in its wings patched even as the crew appear to be running prep-for-flight checklists. It also looks like every ship has a guard. Something tells you that right now would be a bad time to take a walk around town.`
+			`	The planetary defense sirens start and the idling ships begin to ascend one by one. You quickly figure out where you are in the launch sequence and follow the stream of craft heading for orbit.`
 				launch
 	npc
 		government "Remnant"
@@ -1020,7 +1029,7 @@ mission "Remnant: Salvage 4"
 		has "Remnant: Salvage 3: done"
 	on offer
 		conversation
-			`Walking into the cafeteria you immediately sense the buoyant mood. According to a report on the video screen very few Remnant ships were actually lost. Furthermore, of the ships that were lost, the escape pods worked perfectly, ensuring none of the crew were killed. Groups of crew are gathered around tables intermingled with the ground teams that keep their ships operational, and based on the snippets you can catch, they seem to be trading stories of crack shots and clever improvisations.`
+			`Walking into the cafeteria you immediately sense the buoyant mood. According to a report on the video screen, very few Remnant ships were actually lost. Furthermore, of the ships that were lost, the escape pods worked perfectly, ensuring none of the crew were killed. Groups of crew are gathered around tables intermingled with the ground teams that keep their ships operational, and based on the snippets you can catch, they seem to be trading stories of crack shots and clever improvisations.`
 			`	Tali sits over at a corner booth with the prefect who met you at the dock and a couple other mechanics, and she waves you over. "Captain <last>! So, how do you like fighting with our fleet?" asks one of the mechanics.`
 			choice
 				`	"It seems odd to have a planetary defense fleet plundering."`
