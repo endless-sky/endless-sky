@@ -907,7 +907,7 @@ mission "Remnant: Salvage 1"
 				`	(Accept her invitation.)`
 			`	Replying that you can, you make your way through the crowds and find an empty table. Moments later Tali appears and grabs two trays from the dispenser before heading towards you. She settles down in the opposite chair with a look of exhaustion.`
 			`	"It is good to see you again, <first>," she sings softly. When you sign a reply she sits up and smiles. "My, you are a quick learner," she signs. "Great, this is much faster."`
-			`	"I haven't fully..." (She makes a sign that you don't understand, but seems similar to the signs for "break" and "understand".) "...the technology you retrieved for us, but we should be ready to produce them soon. In the meantime, though, they are showing us that humanity has made significant progress since we departed. Could you help us catch up with what has happened out there?"`
+			`	"I haven't fully..." (She makes a sign that you don't understand, but seems similar to the signs for "break" and "understand".) "...the technology you retrieved for us, but we are learning much from what we have already found. Could you help us catch up with what has happened in ancestral space since our Exodus?"`
 			choice
 				`	"Yes. What can I do to help?"`
 				`	"Sorry, not interested."`
@@ -1002,17 +1002,15 @@ mission "Remnant: Salvage 3"
 			`	He looks relieved. "Thanks. I was going to have to divert one of our sentries to take them." He pauses and consults his comlink. "The medical team will have the injured settled onboard shortly, along with everything they need to ensure they arrive safely. They will probably have some fresh crew to send back with you."`
 				accept
 	on stopover
-		event "Remnant Albatross"
 		dialog
 			`The injured crew make for an eerily quiet jaunt from Viminal to Aventine. They don't sing, and rarely sign. Some spend the trip mellowed out on powerful painkillers, while the few that leave their rooms seem to be mostly intent on doing prescribed stretches and movements to help damaged muscles heal. A couple are interested in visiting with someone from outside the Ember Waste, but they lack the energy to do so for long.`
 			`	On Aventine there are ambulances and medical staff waiting to transport them to longer-term medical facilities. As they depart, a fresh crew arrives to take their places.`
 	on complete
 		payment 100000
+		event "Remnant Albatross"
 		conversation
-			`The return trip to Viminal is much more interesting. The crew spend more time wandering your ship than they do in their bunks. Some spend most of their time down in engineering, while others hang out around the main guns or the cockpit. Only their remarkable aptitude at figuring out where to be in order to not interfere with normal operations keeps them from being a hindrance. As you open the hatch they disperse across the tarmac to the ships they have been assigned to, each one of them signing their thanks as they leave.`
-			`	A few minutes after they leave your comlink beeps, notifying you that a message from the prefect has arrived:`
-			`	"Captain <last>! Thank you for your help in defending Viminal and transporting those wounded. I have transferred a small token of our appreciation to you. That being said, perhaps you would appreciate this a bit more: the other prefects and I have agreed to grant you access to a wider range of ships. Our capital class ships will now be available to you, including the Albatross and the Pelican. At the rate these raids are going, it is in everyone's best interests that you have access to a better warship."`
-			`	With a sense of finality the prefect makes a gesture that you've come to recognize as "respectful end of conversation."`
+			`When you return to Viminal, the Remnant crew members leave your ship and disperse across the tarmac to the ships they have been assigned to, each one of them signing their thanks as they leave. A few minutes after they leave your comlink beeps, notifying you that a message from the prefect has arrived:`
+			`	"Captain <last>! Thank you for your help in defending Viminal and transporting those wounded. I have transferred a small token of our appreciation to you. That being said, perhaps you would appreciate this a bit more: the other prefects and I have agreed to grant you access to a wider range of ships. Our capital class ships will now be available to you, including the Albatross and the Pelican. At the rate these raids are going, it is in everyone's best interests that you have access to a better warship. Please, meet us in the spaceport to further discuss the situation."`
 
 event "Remnant Albatross"	
 	shipyard "Remnant"
@@ -1129,15 +1127,15 @@ mission "Remnant: Salvage 6"
 	to offer
 		has "Remnant: Salvage 5: done"
 	on offer
-		event "Remnant Salvage Available"
 		conversation
-			`You spend the next few hours idly wandering around the spaceport, checking in to the cafeteria now and then waiting for the technician to show up. Virtually all the exposed structures around the spaceport look alien to you, composed of strange arcs and curves made of a dark iridescent substance you can't identify. Older areas are entirely subterranean, and usually still have blast doors and racks of camouflage netting prepped and ready to use. Finally you spot the laboratory technician entering the cafeteria, and she approaches you.`
-			`	"Thank you for waiting. I have a shipment of parts ready for Tali, and with the recent increase in attacks she needs them sooner rather than later. Could you take them to her?"`
-			`	Outside you find a camel pulling a different wagon filled with ship parts to be loaded on board <ship>.`
+			`You spot the laboratory technician entering the cafeteria, and she approaches you.`
+			`	"Thank you for waiting. I have a shipment of parts ready for Tali, and with the recent increase in attacks she needs them sooner rather than later. Please take them to her."`
+			`	Outside you find a camel pulling a wagon filled with ship parts to be loaded on board <ship>.`
 				accept
 		
 	on complete
 		payment 150000
+		event "Remnant Salvage Available"
 		conversation 
 			`Tali meets you at the dock with a flatbed ready to offload the shipment. As you run through your shutdown routine you hit the switch for the cargo bay doors, and by the time you have gone down to the hold, Tali has half the shipment already unloaded.`
 			`	Her signs flick at you with a gentleness that you are slowly deciding equates to a cheerful tone. "Thank you for all the help you've provided in recovering this salvage. I have discussed it with the other engineers, and we have decided to give you access to our salvage."`
