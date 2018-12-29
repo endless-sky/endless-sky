@@ -1246,8 +1246,8 @@ mission "Remnant: Expanded Horizons Quarg 2"
 	on complete
 		payment 50000
 		conversation
-			`Despite your reassurances that the Quarg don't mind being scanned, you breath a sigh of relief once you are back on the ground without a reaction from them. Perhaps it was an unreasonable worry, but with a trio of secretive Remnant onboard, you can't help but feel a bit nervous about potentially exposing them to the Quarg.`
-			`	Dawn does some follow-up scans of idle Quarg ships, and her fellow researchers take some time to make sure all their pictures are crisp and detailed. They let you know that they will meet you back in the spaceport bar once they are done.`
+			`The Remnant researcher's attention to detail is impressive. They carefully quantify every detail of the scans, including notes about the ship's behaviors. By the time you are on the ground again, they have amassed quite a collection of data crystals filled with analysis. You note that they are careful to ensure everything they collect is backed up in multiple places, including what appears to be a small lead lined box.`
+			`	back on the ground, Dawn does some follow-up scans of idle Quarg ships, and her fellow researchers take some time to make sure all their pictures are crisp and detailed. They let you know that they will meet you back in the spaceport bar once they are done.`
 
 
 
