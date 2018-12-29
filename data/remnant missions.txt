@@ -573,8 +573,6 @@ mission "Remnant: Heavy Laser"
 		has "Remnant: Technology Available: offered"
 		not "Remnant: Catalytic Ramscoop: active"
 		not "Remnant: Catalytic Ramscoop: done"
-		not "Remnant: Plasma Cannons: active"
-		not "Remnant: Plasma Cannons: done"
 		random < 50
 	on offer
 		require "Heavy Laser"
@@ -614,8 +612,6 @@ mission "Remnant: Catalytic Ramscoop"
 		government "Remnant"
 	to offer
 		has "Remnant: Technology Available: offered"
-		not "Remnant: Plasma Cannons: active"
-		not "Remnant: Plasma Cannons: done"
 		not "Remnant: Heavy Laser: active"
 		not "Remnant: Heavy Laser: done"
 		random < 50
@@ -699,7 +695,7 @@ mission "Remnant: Plasma Weapons"
 	on offer
 		require "Plasma Cannon"
 		conversation
-			`As you are browsing the spaceport shops, a man approaches you and introduces himself as a weapons specialist at one of the Remnant research facilities. He pauses hesitantly before beginning to chant: "When I watched your ship soar in, I noticed a weapon design that seemed familiar from our history. Would you permit me to examine it?"`
+			`As you are browsing the spaceport shops, a man approaches you and introduces himself as a weapons specialist at one of the Remnant research facilities. He pauses hesitantly before beginning to chant: "I was watching when your ship soared in to land, and I noticed a weapon design that seemed familiar from our history. Would you permit me to examine it?"`
 			choice
 				`	"Sure, you may examine it."`
 					goto examine
@@ -741,8 +737,11 @@ mission "Remnant: Plasma Weapons"
 			`	The weapon technician finishes strapping down the plasma cannons and looks up to see another Remnant approaching. He gives the new Remnant a respectful dip of his head that almost seems like a bow before turning to you and chanting, "Ah, Captain <last>, have you met Tali? She is the engineering prefect here on Viminal. She asked me to let her know when or if you managed to procure the new tech for me."`
 			branch
 				has "Remnant: Catalytic Ramscoop: done"
-			`	Tali steps forward to face you. "Well met once again, <first>," she trills. "Your fresh actions sets songs in motion that have long been in caesura. I have a few things to finish up right now, but I hope to work with you soon." She gives you a polite nod and heads back the way she came.`
-				
+			`	Tali steps forward to face you. "Well met once again, <first>," she trills. "Your fresh actions set songs in motion that have long been in caesura. I have a few things to finish up right now, but I hope to work with you soon." She gives you a polite nod and heads back the way she came.`
+			branch
+				has "Remnant: Heavy Laser: done"
+			`	Tali steps forward to face you. "Well met once again, <first>," she trills. "Your fresh actions set songs in motion that have long been in caesura. I have a few things to finish up right now, but I hope to work with you soon." She gives you a polite nod and heads back the way she came.`
+			
 			`	Tali steps forward to face you. "Well met, newcomer among the Remnant," she trills. "Fresh blood amongst us sets songs in motion that have long been in caesura. I have a few things to finish up right now, but I hope to work with you soon." She gives you a polite nod and heads back the way she came.`
 
 
