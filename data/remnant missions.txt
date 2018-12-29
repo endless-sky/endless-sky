@@ -681,6 +681,7 @@ mission "Remnant: Plasma Turret Check"
 		has "Remnant: Plasma Weapons: offered"
 
 
+
 mission "Remnant: Plasma Weapons"
 	name "Retrieve Plasma Cannons for the Remnant"
 	description "An engineer on <planet> has offered to pay you <payment> in exchange for obtaining two plasma cannons."
@@ -726,11 +727,11 @@ mission "Remnant: Plasma Weapons"
 
 			`	After a bit of negotiation, he agrees to pay you <payment> in exchange for a cargo of two plasma cannons.`
 				accept
-	
+
 	on complete
 		outfit "Plasma Cannon" -2
 		payment 800000
-		
+		event "Remnant: Plasma Cannon Available" 80 160
 		conversation
 			`As <ship> settles onto the pad closest to the research facility, you can see the weapons specialist checking over a large cannon on a platform beneath a nearby Albatross. When he sees you starting to unload the two plasma cannons, he snaps the casing closed and gestures to someone out of sight. Within moments both him and an empty flatbed are there to pick up the weapons.`
 			`	"Thank you for your help," he says. "Our Inhibitors provide us with something of a mobility advantage against the Korath, but they aren't particularly effective at disabling them. These plasma cannons will open new avenues of research for us." He pauses, then continues. "I also included a bonus for you. It is a 'finder's fee,' as we always appreciate new tech."`
@@ -749,7 +750,7 @@ mission "Remnant: Plasma Weapons"
 mission "Remnant: Tali Log Entry"
 	name "Tali Log Entry"
 	source
-		"Remnant"
+		government "Remnant"
 	invisible
 	to offer
 		or
@@ -758,6 +759,19 @@ mission "Remnant: Tali Log Entry"
 			has "Remnant: Heavy Laser: done"
 	on offer
 		log "People" "Tali" `As an engineering prefect, Tali is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
+		conversation
+			`A message pops up on your communicator from Tali. The message reads:`
+			`	We are always on the lookout for new technology, no matter the source. If you find any, just get in touch with me.`
+			`				Onwards,`
+			`						Prefect Tali`
+				decline
+
+
+
+event "Remnant: Plasma Cannon Available"
+	outfitter "Remnant"
+		"Plasma Cannon"
+		"Plasma Turret"
 
 
 
