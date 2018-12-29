@@ -136,9 +136,9 @@ mission "Remnant Blood Test Patch"
 
 
 mission "Remnant: Defense 1"
-	source "Caelian"
 	name "Defend <planet>"
 	description "Assist in defending <planet> from a Korath raid, then return to the planet."
+	source "Caelian"
 	to offer
 		has "remnant blood test pure"
 		not "Remnant defense delay"
@@ -174,9 +174,9 @@ event "remnant defense timer"
 
 mission "Remnant: Defense 2"
 	landing
-	source "Caelian"
 	name "Remnant bounty"
 	description "A Korath ship is flying around Remnant territory. Hunt it down and destroy it, then return to <planet> for payment."
+	source "Caelian"
 	to offer
 		has "Remnant: Defense 1: done"
 	on offer
@@ -541,12 +541,12 @@ event "remnant: void sprite research"
 mission "Remnant: Technology Available"
 	landing
 	invisible
+	source
+		government "Remnant"
 	to offer
 		has "event: remnant: void sprite research"
 		has "Remnant: Key Stones: done"
 		has "Remnant: Defense 3: done"
-	source
-		government "Remnant"
 	on offer
 		payment 2000000
 		set "license: Remnant"
@@ -945,9 +945,9 @@ mission "Remnant: Salvage 1B"
 
 mission "Remnant: Salvage 2"
 	landing
-	source "Viminal"
 	name "Defend <planet>"
 	description "Assist in defending <planet> from a Korath raid, then return to the planet."
+	source "Viminal"
 	to offer
 		has "Remnant: Salvage 1B: done"
 	on offer
@@ -982,9 +982,9 @@ mission "Remnant: Salvage 2"
 
 
 mission "Remnant: Salvage 3"
-	source "Viminal"
 	name "Transport injured Remnant"
 	description "Some injured Remnant need to be transported away from the front lines to Aventine."
+	source "Viminal"
 	passengers 8
 	cargo "Medical gear" 5
 	blocked "A prefect informs you that they need to evacuate some injured to a hospital on Aventine, but you will need 8 free bunks and 5 tons of cargo space in order to handle the injured."
@@ -1022,9 +1022,9 @@ event "Remnant Albatross"
 
 
 mission "Remnant: Salvage 4"
-	source "Viminal"
 	name "Track down the <npc>"
 	description "Track down and disable a Korath ship that escaped the raid on Viminal."
+	source "Viminal"
 	to offer
 		has "Remnant: Salvage 3: done"
 	on offer
@@ -1095,9 +1095,9 @@ mission "Remnant: Bounty 2"
 mission "Remnant: Salvage 5"
 	name "Salvage Delivery"
 	description `Deliver some high value salvage to Caelian.`
+	source "Viminal"
 	cargo "Korath Salvage" 20
 	blocked `Tali would like you to deliver some valuable Korath equipment to Caelian, but you will need 20 tons of space to carry it.`
-	source "Viminal"
 	destination "Caelian"
 	to offer
 		has "Remnant: Salvage 4: done"
@@ -1122,9 +1122,9 @@ mission "Remnant: Salvage 5"
 mission "Remnant: Salvage 6"
 	name "Transport outfits to Tali"
 	description `Deliver some parts to Viminal.`
+	source "Caelian"
 	cargo "Ship parts" 20
 	blocked `The technician you delivered Tali's salvaged parts to would like you to take some finished parts back to Tali, but you will need 20 tons of space to do so.`
-	source "Caelian"
 	destination "Viminal"
 	to offer
 		has "Remnant: Salvage 5: done"
@@ -1176,9 +1176,9 @@ mission "Remnant: Expanded Horizons Quarg 1"
 	name "Visiting the Quarg"
 	description "Take Remnant researchers to <destination> to see some Quarg."
 	minor
+		government "Remnant"
 	passengers 3
 	source
-		government "Remnant"
 	destination "Wayfarer"
 	to offer
 		has "Remnant: Learn Sign 3: done"
@@ -1254,9 +1254,9 @@ mission "Remnant: Expanded Horizons Quarg 2"
 mission "Remnant: Expanded Horizons Quarg 3"
 	name "Expanded Horizons Return"
 	description "Take the Remnant researchers to <planet>"
+	source "Wayfarer"
 	passengers 3
 	blocked `This mission requires bunks for three passengers.`
-	source "Wayfarer"
 	destination
 		government "Remnant"
 	to offer
