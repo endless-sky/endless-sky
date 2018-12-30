@@ -1172,9 +1172,9 @@ mission "Remnant: Expanded Horizons Quarg 1"
 	name "Visiting the Quarg"
 	description "Take Remnant researchers to <destination> to see some Quarg."
 	minor
+	source
 		government "Remnant"
 	passengers 3
-	source
 	destination "Wayfarer"
 	to offer
 		has "Remnant: Learn Sign 3: done"
