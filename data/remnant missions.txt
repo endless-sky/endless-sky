@@ -579,7 +579,7 @@ mission "Remnant: Heavy Laser"
 	on offer
 		require "Heavy Laser"
 		conversation
-			`As you are browsing the spacesport shops, a woman approaches you and introduces herself as a researcher at one of the Remnant weapons facilities. She awkwardly pauses before beginning to recite a quick tune: "We can see that your ship has beam weapons that match human techniques, but are unlike anything we have record of. What kind of weapons are they?"`
+			`As you are browsing the spaceport shops, a woman approaches you and introduces herself as a researcher at one of the Remnant weapons facilities. She awkwardly pauses before beginning to recite a quick tune: "We can see that your ship has beam weapons that match human techniques, but are unlike anything we have record of. What kind of weapons are they?"`
 			choice
 				`	"They're heavy lasers."`
 				`	"I'd rather not share that."`
@@ -634,7 +634,7 @@ mission "Remnant: Catalytic Ramscoop"
 				goto more
 
 			label deep
-			`	"Fascinating," she sings as she clambers over <ship> with the grace of someone who obviously knows her ships. "Above all else, I am an engineer of movement," she chants. "We have done well to hide as deep in the Ember as we have, but our ships' limited range struggle to take us farther. Examining systems from elsewhere may inspire new developments."`
+			`	"Fascinating," she sings as she clambers over <ship> with the grace of someone who obviously knows her ships. "Above all else, I am an engineer of movement," she chants. "We have done well to hide as deep in the Ember Waste as we have, but our ships' limited ranges struggle to take us farther. Examining systems from elsewhere may inspire new developments."`
 
 			label more
 			`	After examining <ship> for quite some time, she stops beneath it and looks up. "Is this a new form of ramscoop?" she asks as she gestures at your ship's ramscoop. As you nod in the affirmative, she continues. "Fuel has always been a great limiter of our exploration. If you could get a couple extra that we could dismantle, this could be very useful to us."`
@@ -719,7 +719,7 @@ mission "Remnant: Return the Samples"
 		random < 50
 	on offer
 		conversation
-			`As you are walking through the spaceport, the researcher you previously assisted with the studies on the void sprites approaches you in a hustle. "We have made some new discoveries!" he exclaims in a trill. "Some of the samples that we took all those years ago are actually eggs of some kind. So the Archon must view our previous research as being disruptive to the void sprites' lifecycles."`
+			`As you are walking through the spaceport, the researcher you previously assisted with the studies on the void sprites approaches you in a hustle. "We have made some new discoveries!" he exclaims in a trill. "Some of the samples that we took all those years ago are actually eggs of some kind. So the Archon must view our previous research as being disruptive to the void sprites' lifecycles.`
 			`	"We have been storing these eggs in a cryogenic stasis tank, so they should still be viable and intact. Well, most of them, anyway." His notes trail off on a mournful tone.`
 			`	"Could you return some of them to Nasqueron? According to our logs, they were found floating in the lower levels of the atmosphere, where their natural buoyancy should keep them afloat."`
 			choice
@@ -751,7 +751,7 @@ mission "Remnant: Return the Samples"
 
 
 mission "Remnant: Return the Samples 2"
-	name "Return the Samples 2"
+	name "Return the Samples"
 	description "A researcher on <planet> has asked you to return some more samples to Slylandro."
 	source Aventine
 	stopover Slylandro
@@ -836,7 +836,8 @@ mission "Remnant: Learn Sign 1"
 	on complete
 		conversation
 			`The trip to Viminal is quiet - almost no talking or singing of any kind as it is just about entirely reliant on interposing signs and pantomiming actions. Slowly you start picking up some of the easier nouns and verbs.`
-			`	As you descend through the atmosphere, you do some quick hand stretches to work the stiffness out of your fingers and rehearse a few of the phrases you have memorized. As soon as <ship> is parked, you exit and look around. Approaching a dockhand who doesn't appear to be busy, you carefully sign, "Can you direct me to the port director?" He looks at you curiously for a moment and replies with exaggerated slowness. You thank him and head towards the spaceport following his directions.`
+			`	As you descend through the atmosphere, you do some quick hand stretches to work the stiffness out of your fingers and rehearse a few of the phrases you have memorized.`
+			`	As soon as <ship> is parked, you exit and look around. Approaching a dockhand who doesn't appear to be busy, you carefully sign, "Can you direct me to the port director?" He looks at you curiously for a moment and replies with exaggerated slowness. You thank him and head towards the spaceport following his directions.`
 
 
 
@@ -917,7 +918,7 @@ mission "Remnant: Salvage 1"
 			`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists, that would likely be where to go."`
 				accept
 			label library
-			`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists..." she stops when she notices you nodding with a knowing expression. "You have already been there? Well, you certainly get around, captain <last>. I suppose that makes things rather straight forward."`
+			`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists..." She stops when she notices you nodding with a knowing expression. "You have already been there? Well, you certainly get around, captain <last>. I suppose that makes things rather straight forward."`
 				accept
 	on visit
 		dialog
@@ -953,7 +954,7 @@ mission "Remnant: Salvage 2"
 	on offer
 		conversation
 			`Having acquired a copy of the archive, you gently set your ship down on Viminal hoping that this information is helpful. The port seems unusually busy, but the comm channels are quiet beyond the bare minimum to keep traffic organized.`
-			`	Before you have even taken the time to shutdown the engines Tali is halfway up the side of your ship securing a refueling hose and charging cable. As you reach for the comlink she scrambles up to the bridge windows and quickly rattles off a series of signs at you. All you can make out is "Keep it hot, incoming!" Before you can frame a reply she has raced across your wing and leapt to the Albatross parked next to you.`
+			`	Before you have even taken the time to shut down the engines Tali is halfway up the side of your ship securing a refueling hose and charging cable. As you reach for the comlink she scrambles up to the bridge windows and quickly rattles off a series of signs at you. All you can make out is "Keep it hot, incoming!" Before you can frame a reply she has raced across your wing and leapt to the Albatross parked next to you.`
 			`	Looking around more carefully, you note that every ship in the port is idling with fuel lines still connected. If this were some Republic port the safety inspectors would be having a nightmare. One Starling is getting holes in its wings patched even as the crew appear to be running prep-for-flight checklists. It also looks like every ship has a guard. Something tells you that right now would be a bad time to take a walk around town.`
 			`	The planetary defense sirens start and the idling ships begin to ascend one by one. You quickly figure out where you are in the launch sequence and follow the stream of craft heading for orbit.`
 				launch
@@ -1003,8 +1004,8 @@ mission "Remnant: Salvage 3"
 				accept
 	on stopover
 		dialog
-			`The injured crew make for an eerily quiet jaunt from Viminal to Aventine. They don't sing, and rarely sign. Some spend the trip mellowed out on powerful painkillers, while the few that leave their rooms seem to be mostly intent on doing prescribed stretches and movements to help damaged muscles heal. A couple are interested in visiting with someone from outside the Ember Waste, but they lack the energy to do so for long.`
-			`	On Aventine there are ambulances and medical staff waiting to transport them to longer-term medical facilities. As they depart, a fresh crew arrives to take their places.`
+			`The injured crew make for an eerily quiet jaunt from Viminal to Aventine. They don't sing, and rarely sign. Some spend the trip mellowed out on powerful painkillers, while the few that leave their rooms seem to be mostly intent on doing prescribed stretches and movements to help damaged muscles heal. A few are interested in visiting with someone from outside the Ember Waste, but they lack the energy to do so for long.`
+			`	On Aventine there are ambulances and medical staff waiting to transport the injured to longer-term medical facilities. As they depart, a fresh crew arrives to take their places.`
 	on complete
 		payment 100000
 		event "Remnant Albatross"
@@ -1221,8 +1222,7 @@ mission "Remnant: Expanded Horizons Quarg 2"
 		has "Remnant: Expanded Horizons Quarg 1: done"	
 	on offer
 		conversation
-			`Dawn and her fellow researchers show up a few minutes after you do, excitedly talking about the various things they have seen.`
-			`	"<first>, there is a pair of Quarg ships taking off shortly, and we were hoping you might be able to get scans of them while they are in flight. It would be really helpful for our understanding of how they work."`
+			`Dawn and her fellow researchers show up a few minutes after you do, excitedly talking about the various things they have seen. "<first>, there is a pair of Quarg ships taking off shortly, and we were hoping you might be able to get scans of them while they are in flight. It would be really helpful for our understanding of how they work."`
 			choice
 				`	"Sure, that sounds simple enough."`
 					accept
