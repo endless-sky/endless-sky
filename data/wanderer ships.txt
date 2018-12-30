@@ -871,7 +871,7 @@ ship "Riptide"
 		"required crew" 47
 		"bunks" 233
 		"mass" 500
-		"drag" 6.7
+		"drag" 7.3
 		"heat dissipation" .7
 		"fuel capacity" 800
 		"cargo space" 164
@@ -893,7 +893,8 @@ ship "Riptide"
         
 		"Type 4 Radiant Thruster"
 		"Type 2 Radiant Thruster"
-		"Type 4 Radiant Steering" 2
+		"Type 4 Radiant Steering"
+		"Type 3 Radiant Steering"
 		"Hyperdrive"
 	engine 26 166
 	engine -26 166
