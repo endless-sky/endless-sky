@@ -907,7 +907,7 @@ mission "Remnant: Salvage 1"
 					defer
 				`	(Accept her invitation.)`
 			`	Replying that you can, you make your way through the crowds and find an empty table. Moments later Tali appears and grabs two trays from the dispenser before heading towards you. She settles down in the opposite chair with a look of exhaustion.`
-			`	"It is good to see you again, <first>," she sings softly. When you sign a reply she sits up and smiles. "My, you are a quick learner," she signs. "Great, this is much faster."`
+			`	"It is good to see you again, <first>," she sings softly. When you sign a reply she sits up, smiles, and switches to sign. "My, you are a quick learner. This is much faster." Her quick gestures are hard to follow, but the language videos seem to have focused on a practical vocabulary that has most of the words she uses.`
 			`	"I haven't fully..." (She makes a sign that you don't understand, but seems similar to the signs for "break" and "understand".) "...the technology you retrieved for us, but we are learning much from what we have already found. Could you help us catch up with what has happened in ancestral space since our Exodus?"`
 			choice
 				`	"Yes. What can I do to help?"`
