@@ -724,10 +724,11 @@ mission "Remnant: Return the Samples"
 			`	"Could you return some of them to Nasqueron? According to our logs, they were found floating in the lower levels of the atmosphere, where their natural buoyancy should keep them afloat."`
 			choice
 				`	"Sure, I would be glad to return them."`
-				`	"Sorry, I'm really not interested in braving the Archon again."`
+				`	"Sorry, I'm really not interested in dodging the Archon again."`
 					decline
 
-			`	"Thank you. Since we are continuing to work together, I'll try again." He takes a breath, concentrates, and speaks a short verse about plumage with a complex chord that sounds at once grandiose and self-deprecating. The best you can make out is "Plume." "We can't pay you for this, but if it does appease the Archon we will be able to resume our studies, and who knows where that could lead?"`
+			`	"Thank you. Since we are continuing to work together, I would like to introduce myself again." He takes a breath, thinks for a second, and speaks a short verse about plumage with a complex chord that sounds at once grandiose and self-deprecating. The best you can make out is "Plume."
+			`	"Just remember: You will need to use a gascraft to make this delivery. If you don't still have one, there are a few in storage in Viminal." he continues with an apologetic tone "We can't pay you for this, but if it does appease the Archon we will be able to resume our studies, and who knows where that could lead?"`
 				accept
 	npc
 		government " Drak "
@@ -753,8 +754,8 @@ mission "Remnant: Return the Samples"
 mission "Remnant: Return the Samples 2"
 	name "Return the Samples"
 	description "A researcher on <planet> has asked you to return some more samples to Slylandro."
-	source Aventine
-	stopover Slylandro
+	source "Aventine"
+	stopover "Slylandro"
 	to offer
 		has "Remnant: Return the Samples: done"
 	on offer
@@ -762,13 +763,13 @@ mission "Remnant: Return the Samples 2"
 			`Following Plume's directions, you find a lab tucked behind the main area of the spaceport, where a short walkway leads into an underground structure. Stepping inside the door you note a rack of camouflage netting positioned easily at hand. Given what you have learned of their history, it is probably a last ditch preparation in case they need to hide the entrance from a raid.`
 			`	The lab itself is a microcosm of Remnant development, the structure appears to be some strange semi-organic material, and you can see an eclectic mix of familiar and unfamiliar shapes cluttering the tables. If you had to guess, you would think that this lab was the result of several different families of technology, only one of which was human.`
 			`	Plume and several other Remnant are at the back of the room inspecting a bunch of cocoon-like containers, similar to the ones that carried the last batch of eggs back to Nasqueron. After checking a screen he looks up and seems momentarily startled to see you.`
-			`	"Ah, <first>! You are just in time," Plume chants quickly, his hands unconsciously dancing in a quick series of gestures. "These cocoons are ready to be delivered, this time to Slylandro. Could you drop them off like you did before?"`
+			`	"Ah, <first>! You are just in time," Plume chants quickly, his hands unconsciously dancing in a quick series of gestures. "These eggs are ready to be delivered, this time to Slylandro. Could you drop them off like you did before?"`
 			choice
 				`	"Yes, I would be happy to bring them home."`
-				`	"Sorry, I'm really not interested in braving the Archon a third time."`
+				`	"Sorry, I'm really not interested in risking the Archon a third time."`
 					decline
 
-			`	"Thank you. Like last time, we can't pay you for this. But we are still hopeful that the Archon might let us resume our studies." He follows you out to <ship> and helps you load the cocoons. Just before parting ways he asks, "Oh, could you record the void sprites this time? We would like to see the behaviors you mentioned last time."`
+			`	"Thank you. Like last time, we can't pay you for this. But we are still hopeful that the Archon might let us resume our studies." He follows you out to <ship> and helps you load the cocoons holding the eggs. Just before parting ways he asks, "Oh, could you record the void sprites this time? We would like to see the behaviors you mentioned last time."`
 				accept
 	npc
 		government " Drak "
@@ -785,7 +786,7 @@ mission "Remnant: Return the Samples 2"
 	on complete
 		"reputation:  Drak " += 1
 		conversation
-			`Back on Aventine, you share the recording of the void sprite's behavior with Plume. "These Sprites demonstrate considerably more communication than we originally thought. And obviously they must have communicated what you did on Nasqueron. Interesting..." Plume's excited staccato exclamations trail off as he begins to make notes on a datapad he has on hand.`
+			`Back on Aventine, you share the recording of the void sprite's behavior with Plume. "These Sprites demonstrate considerably more communication than we originally thought. And obviously they must have communicated what you did on Nasqueron. Interesting..." Plume's excited staccato exclamations trail off as he begins to make notes on a datapad he has on hand. "Thank you for your help, we will let you know what we find out.`
 
 
 
@@ -796,16 +797,16 @@ mission "Remnant: Learn Sign 1"
 	source "Caelian"
 	stopover "Aventine"
 	destination "Viminal"
+	repeat 3
 	to offer
-		has "Remnant: Technology Available: offered"
-		random < 50
+		has "remnant blood test pure"
+		not "Remnant: Learn Sign 1: done"
+		random < 30
 	on offer
 		conversation
 			`As you make your way through the spaceport, you become increasingly aware of how quiet it is. Looking around, you note that it doesn't seem any less busy than usual, just that only a handful of people are paying attention to you. As a result, they have reverted to their normal gestures instead of singing. It feels oddly isolating, and eerie, to realize that there are hundreds of conversations going on around you, yet you can't understand a single word of it.`
 			choice
 				`	(Ask someone to teach you.)`
-				`	(Think about asking later.)`
-					defer
 				`	(Ignore it.)`
 					decline
 					
