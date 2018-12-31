@@ -712,8 +712,8 @@ mission "Remnant: Plasma Cannons"
 mission "Remnant: Return the Samples"
 	name "Return the Samples"
 	description "A researcher on <planet>, has asked you to return some samples to Nasqueron."
-	source Aventine
-	stopover Nasqueron
+	source "Aventine"
+	stopover "Nasqueron"
 	to offer
 		has "Remnant: Technology Available: offered"
 		random < 50
@@ -740,14 +740,13 @@ mission "Remnant: Return the Samples"
 	on stopover
 		conversation
 			`Once again you have successfully dodged the Archon to land on Nasqueron. Somehow, knowing it was going to be there was both better and worse than the surprise of the first time.`
-			`	As <ship> sinks through the cloud layers, you gently activate the repulsors to slow your descent to avoid startling the void sprites. After what seems like an eternity, you notice a few nearby sprites descending as well, and you match velocity with them, slowing as you reach the altitude listed in the log.`
+			`	As <ship> sinks through the cloud layers, you gently activate the repulsors to slow your descent to avoid startling the void sprites. A few nearby sprites descend with you, seeming to match your velocity. You slow down as you reach the altitude listed in the log of where the eggs are to be released.`
 			`	Setting the ship on auto-pilot, you head back and suit-up in something that looks more reminiscent of the old deep-sea diving suits than anything carried on a modern ship. Readying the eggs in the cargo hold, you equalize pressure in the main cargo hold to the swirling clouds outside, and open the bay doors. As predicted, at this pressure level, the eggs are almost weightless, and are fairly easy to carry to the door of the ship and release.`	
 			`	By the time you finish releasing the eggs back into the clouds, several void sprites have converged on your ship and appear to be herding the eggs away from you with gentle buffets of their wings. You take a moment to appreciate the alien beauty of these creatures before closing the hatch and purging the ship with fresh air.`
 	on complete
 		"reputation:  Drak " = 1
 		conversation
-			`Your return trip to Aventine is just as exciting, dodging the Archon on the way out of the system.`
-			`	Back on the ground, you report on how the release went. The researcher is pleased to hear that the void sprites responded to their presence. "We will give them a few weeks, then try sending another ship to monitor them. Hopefully the Archon will be pacified by this. Meet me in the alien environments lab just off the spaceport if you are interested in pursuing this."`
+			`Back on the ground, you report on how the release went. The researcher is pleased to hear that the void sprites responded to their presence. "We will give them a few weeks, then try sending another ship to monitor them. Hopefully the Archon will be pacified by this. Meet me in the alien environments lab just off the spaceport if you are interested in pursuing this."`
 
 
 
@@ -780,8 +779,8 @@ mission "Remnant: Return the Samples 2"
 		conversation
 			`As you approach Slylandro you watch the Archon like a hawk, but this time it doesn't attempt to drive you off with tridents of white energy. Cautiously you make your way to Slylandro and begin your descent.`
 			`	As <ship> sinks through the cloud layers, you notice the void sprites seem to be tailing you. A few drop past you with startling speed, only to reappear from below as you approach the designated altitude. At the last minute you remember Plume's request to record them, and hit the switch to activate the recorder for the exterior cameras.`
-			`	Setting the ship on auto-pilot, you head back and suit-up in the bulky pressure suit once again. Readying the eggs in the cargo hold, you equalize pressure and open the bay doors. As before, the eggs are already floating as you open the cocoons and gently carry them to the door.`	
-			`	Almost as soon as you release the first egg, a void sprite is there, brushing against the ship to scoop the egg away into the swirling mists. By the time you return with the next one, another sprite is already waiting at the door, undulating in the eerie light. By the time the last egg is released you can see dozens of the strange creatures swarming around the collection of eggs. It occurs to you that very few humans would ever have the chance to see anything like this...`
+			`	Setting the ship on auto-pilot, you head back and suit-up in the bulky pressure suit once again. Readying the eggs in the cargo hold, you equalize pressure and open the bay doors. As before, the eggs are already floating as you open the cocoons and gently carry them to the door.`
+			`	Almost as soon as you release the first egg, a void sprite is there, brushing against the ship to scoop the egg away into the swirling mists. By the time you return with the next one, another sprite is already waiting at the door, undulating in the eerie light. By the time the last egg is released you can see dozens of the strange creatures swarming around the collection of eggs. It occurs to you that very few humans would ever have the chance to see anything like this.`
 			`	After taking a moment to enjoy the view, you shut the door as gently as you can, purge the ship with fresh air, and begin the journey back to Aventine.`
 	on complete
 		"reputation:  Drak " += 1
