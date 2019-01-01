@@ -17,6 +17,7 @@ mission "remembrance day"
 	landing
 	source
 		government "Republic"
+		not attributes uninhabited
 	to offer
 		has "event: remembrance day"
 	on offer
