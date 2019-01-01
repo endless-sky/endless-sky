@@ -729,6 +729,7 @@ mission "Remnant: Return the Samples"
 
 			`	"Thank you. Since we are continuing to work together, I would like to introduce myself again." He takes a breath, thinks for a second, and speaks a short verse about plumage with a complex chord that sounds at once grandiose and self-deprecating. The best you can make out is "Plume."
 			`	"Just remember: You will need to use a gascraft to make this delivery. If you don't still have one, there are a few in storage in Viminal." he continues with an apologetic tone "We can't pay you for this, but if it does appease the Archon we will be able to resume our studies, and who knows where that could lead?"`
+			`	"Just remember: You will need to use a gascraft to make this delivery. If you don't still have one, there are a few in storage in Viminal." He taps on his comlink, and an assistant emerges from a nearby building with a flatbed truck. Onboard is a large collection of cocoon-like pods cradling large eggs, as well as a big spacesuit that looks more reminiscent of the old deep-sea diving suits than anything carried on a modern ship. "Now, remember, you need to remove the eggs from the cocoons and release them gently. Please make sure they don't hit anything on the way out."`
 				accept
 	npc
 		government " Drak "
@@ -741,7 +742,7 @@ mission "Remnant: Return the Samples"
 		conversation
 			`Once again you have successfully dodged the Archon to land on Nasqueron. Somehow, knowing it was going to be there was both better and worse than the surprise of the first time.`
 			`	As <ship> sinks through the cloud layers, you gently activate the repulsors to slow your descent to avoid startling the void sprites. A few nearby sprites descend with you, seeming to match your velocity. You slow down as you reach the altitude listed in the log of where the eggs are to be released.`
-			`	Setting the ship on auto-pilot, you head back and suit-up in something that looks more reminiscent of the old deep-sea diving suits than anything carried on a modern ship. Readying the eggs in the cargo hold, you equalize pressure in the main cargo hold to the swirling clouds outside, and open the bay doors. As predicted, at this pressure level, the eggs are almost weightless, and are fairly easy to carry to the door of the ship and release.`	
+			`	Setting the ship on auto-pilot, you head back and struggle into the pressure suit. Readying the eggs in the cargo hold, you equalize pressure in the main cargo hold to the swirling clouds outside, and open the bay doors. As predicted, at this pressure level, the eggs are almost weightless, and are fairly easy to carry to the door of the ship and release.`	
 			`	By the time you finish releasing the eggs back into the clouds, several void sprites have converged on your ship and appear to be herding the eggs away from you with gentle buffets of their wings. You take a moment to appreciate the alien beauty of these creatures before closing the hatch and purging the ship with fresh air.`
 	on complete
 		"reputation:  Drak " = 1
