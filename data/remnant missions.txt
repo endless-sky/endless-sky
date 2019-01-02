@@ -672,7 +672,7 @@ mission "Remnant: Plasma Cannons"
 	on offer
 		require "Plasma Cannon"
 		conversation
-			`As you are browsing the spaceport shops, a man approaches you and introduces himself as a weapons specialist at one of the Remnant research facilities. He pauses hesitantly before beginning to chant: "As your ship is the only one we have seen in generations that has weapons from human space, we are intrigued by it. Could we take a closer look?"`
+			`As you are browsing the spaceport shops, a man approaches you and introduces himself as a weapons specialist at one of the Remnant research facilities. He pauses hesitantly before beginning to chant: "Because your ship is the only one we have seen in generations that has weapons from human space, we are curious about it. Could we take a closer look?"`
 			choice
 				`	"Yes, you are welcome to examine it."`
 					goto deep
@@ -728,7 +728,7 @@ mission "Remnant: Return the Samples"
 					decline
 
 			`	"Thank you. Since we are continuing to work together, I would like to introduce myself again." He takes a breath, thinks for a second, and speaks a short verse about plumage with a complex chord that sounds at once grandiose and self-deprecating. The best you can make out is "Plume."
-			`	"Just remember: You will need to use a gascraft to make this delivery. If you don't still have one, there are a few in storage in Viminal." He taps on his comlink, and an assistant emerges from a nearby building with a flatbed truck. Onboard is a large collection of cocoon-like pods cradling large eggs, as well as a big spacesuit that looks more reminiscent of the old deep-sea diving suits than anything carried on a modern ship. "Now, remember, you need to remove the eggs from the cocoons and release them gently. Please make sure they don't hit anything on the way out."`
+			`	"Just remember: you will need to use a gascraft to make this delivery. If you don't still have one, there are a few in storage in Viminal." He taps on his comlink, and an assistant emerges from a nearby building with a flatbed truck. Onboard is a large collection of cocoon-like pods cradling large eggs, as well as a big spacesuit that looks more reminiscent of the old deep-sea diving suits than anything carried on a modern ship. "Now, remember, you need to remove the eggs from the cocoons and release them gently. Please make sure they don't hit anything on the way out."`
 				accept
 	npc
 		government " Drak "
