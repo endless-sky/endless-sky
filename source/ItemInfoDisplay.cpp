@@ -207,7 +207,12 @@ void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
 		if(hoverCount >= HOVER_TIME)
 		{
 			hoverCount = HOVER_TIME;
-			hoverText.Wrap(GameData::Tooltip(label));
+			hoverText.Wrap(getTooltipText(label));
 		}
 	}
+}
+
+const std::string& ItemInfoDisplay::getTooltipText(const std::string &label) const
+{
+	return GameData::Tooltip(label);
 }

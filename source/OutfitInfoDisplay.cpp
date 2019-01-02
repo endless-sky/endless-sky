@@ -185,6 +185,8 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 
 void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 {
+	tooltipStats.clear();
+	
 	attributeLabels.clear();
 	attributeValues.clear();
 	attributesHeight = 20;
@@ -213,6 +215,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributeLabels.emplace_back(static_cast<string>(it.first) + ":");
 			attributeValues.emplace_back(Format::Number(it.second * scale));
 			attributesHeight += 20;
+			
+			tooltipStats += static_cast<string>(it.first) + ": " + Format::Number((it.second * scale) / outfit.Mass()) + "\n";
 		}
 		hasNormalAttributes = true;
 	}
@@ -276,6 +280,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 				attributeLabels.emplace_back(VALUE_NAMES[i] + PER_SECOND);
 				attributeValues.emplace_back(Format::Number(60. * values[i] / reload));
 				attributesHeight += 20;
+				
+				tooltipStats += VALUE_NAMES[i] + ": " + (Format::Number((60. * values[i] / reload) / outfit.Mass())) + "\n";
 			}
 	}
 	
@@ -370,4 +376,19 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributeValues.emplace_back(Format::Number(otherValues[i]));
 			attributesHeight += 20;
 		}
+}
+
+const std::string& OutfitInfoDisplay::getTooltipText(const std::string &label) const
+{
+	tooltipText.clear();
+	if (label == "mass:") {
+		tooltipText.append(ItemInfoDisplay::getTooltipText(label));
+		tooltipText.append("\n- Stats per ton -\n");
+		tooltipText.append(tooltipStats);
+		
+		return tooltipText;
+	}
+	else {
+		return ItemInfoDisplay::getTooltipText(label);
+	}
 }

@@ -47,6 +47,8 @@ public:
 	// void DrawAttributes(const Point &topLeft) const;
 	void DrawRequirements(const Point &topLeft) const;
 	
+protected:
+	virtual const std::string& getTooltipText(const std::string &label) const;
 	
 private:
 	void UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell);
@@ -56,6 +58,8 @@ private:
 private:
 	std::vector<std::string> requirementLabels;
 	std::vector<std::string> requirementValues;
+	mutable std::string tooltipText;
+	std::string tooltipStats;
 	int requirementsHeight = 0;
 };
 
