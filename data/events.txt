@@ -137,6 +137,7 @@ mission "event: war begins"
 	landing
 	source
 		government "Republic" "Syndicate" "Free Worlds"
+		not attributes "uninhabited"
 	to offer
 		has "event: war begins"
 	on offer
