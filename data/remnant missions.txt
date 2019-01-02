@@ -565,7 +565,7 @@ mission "Remnant: Technology Available"
 
 mission "Remnant: Heavy Laser"
 	name "Retrieve Heavy Lasers for the Remnant"
-	description "A Remnant engineer on <planet> has offered to pay you <payment> credits in exchange for obtaining two heavy lasers."
+	description "A Remnant engineer on <planet> has offered to pay you <payment> in exchange for obtaining two heavy lasers."
 	minor
 	source
 		government "Remnant"
@@ -592,7 +592,7 @@ mission "Remnant: Heavy Laser"
 				`	"Sorry, I'm really not interested in helping Remnant research."`
 					decline
 
-			`	After a bit of haggling, she agrees to pay you <payment> credits in exchange for a cargo of two heavy lasers.`
+			`	After a bit of haggling, she agrees to pay you <payment> in exchange for a cargo of two heavy lasers.`
 				accept
 	on complete
 		outfit "Heavy Laser" -2
@@ -608,7 +608,7 @@ mission "Remnant: Heavy Laser"
 
 mission "Remnant: Catalytic Ramscoop"
 	name "Retrieve Ramscoops for the Remnant"
-	description "An engineer on <planet> has offered to pay you <payment> credits in exchange for obtaining two catalytic ramscoops."
+	description "An engineer on <planet> has offered to pay you <payment> in exchange for obtaining two catalytic ramscoops."
 	minor
 	source
 		government "Remnant"
@@ -643,7 +643,7 @@ mission "Remnant: Catalytic Ramscoop"
 				`	"Sorry, I'm really not interested in helping Remnant research."`
 					decline
 
-			`	After a short discussion, she agrees to pay you <payment> credits in exchange for a cargo of two catalytic ramscoops.`
+			`	After a short discussion, she agrees to pay you <payment> in exchange for a cargo of two catalytic ramscoops.`
 				accept
 	
 	on complete
@@ -658,7 +658,7 @@ mission "Remnant: Catalytic Ramscoop"
 
 mission "Remnant: Plasma Cannons"
 	name "Retrieve Plasma Cannons for the Remnant"
-	description "An engineer on <planet> has offered to pay you <payment> credits in exchange for obtaining two plasma cannons."
+	description "An engineer on <planet> has offered to pay you <payment> in exchange for obtaining two plasma cannons."
 	minor
 	source
 		government "Remnant"
@@ -694,7 +694,7 @@ mission "Remnant: Plasma Cannons"
 				`	"Sorry, I'm really not interested in helping Remnant research."`
 					decline
 
-			`	After a bit of negotiation, he agrees to pay you <payment> credits in exchange for a cargo of two plasma cannons.`
+			`	After a bit of negotiation, he agrees to pay you <payment> in exchange for a cargo of two plasma cannons.`
 				accept
 	
 	on complete
