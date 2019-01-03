@@ -400,7 +400,7 @@ mission "Hai Retrieve Human Luxury Goods"
 	name "Special order to <planet>"
 	job
 	repeat
-	description "A Hai socialite on <destination> wants to show off their knowledge of human culture to their peers. They will pay <payment> for <cargo> from <stopovers>."
+	description "A Hai socialite on <planet> wants to show off their knowledge of human culture to their peers. They will pay <payment> for <cargo> from <stopovers>."
 	cargo "Luxury Goods" 1 5
 	to offer
 		random < 15
@@ -419,7 +419,7 @@ mission "Hai Retrieve Human Food"
 	name "Special order to <planet>"
 	job
 	repeat
-	description "A Hai gourmet on <destination> is bored with local fare and wants to try food they heard about from human tourists. They will pay <payment> for <cargo> from <stopovers>."
+	description "A Hai gourmet on <planet> is bored with local fare and wants to try food they heard about from human tourists. They will pay <payment> for <cargo> from <stopovers>."
 	cargo "Food" 1 5
 	to offer
 		random < 15
@@ -438,7 +438,7 @@ mission "Hai Retrieve Human Electronics"
 	name "Special order to <planet>"
 	job
 	repeat
-	description "A Hai tinkerer on <destination> wants to experiment with human technology. They will pay <payment> for <cargo> from <stopovers>."
+	description "A Hai tinkerer on <planet> wants to experiment with human technology. They will pay <payment> for <cargo> from <stopovers>."
 	cargo "Electronics" 1 5
 	to offer
 		random < 15
