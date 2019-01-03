@@ -854,8 +854,8 @@ mission "Remnant: Learn Sign 2"
 				`	(Sing a verse about your confusion of the hand scanners.)`
 			`	The man begins to sign, but then realizes that you don't understand much of what he is signing, so he switches to singing. "Long ago it was decided that being infiltrated by Alpha agents was a big risk, and we couldn't depend on our interstellar network to remain secure. So we implemented a policy where the first time a Remnant is granted formal access to a new planet their purity and identity is verified. Thus even if someone hacked our networks to give themselves a clean identity, they would still be caught when they started working on a new planet. We also don't broadcast that requirement on our networks, simply enforce it locally. It isn't foolproof, but it adds an additional layer of safety."`
 			`	You thank the man for explaining the scanners to you and accept the next set of lessons.`
-			`	You spend a few hours viewing some of the lessons. One of the lessons involved watching an ancient show about a merchant captain making his way through the galaxy with an unlikely crew, re-enacted by a cast of Remnant who sing and sign their way through the dialogs with exagerated simplicity. It is oddly familiar, but you can't quite place it. You notice that it seems to have a lot of subtext about the dangers of manipulation and government secrecy, especially surrounding genetics.`
-			`	Skimming through the rest of the lessons, you notice that there is a lot more here than the last two. It may take some months to get through it all, but you should be fairly fluent if you practice over a couple of months.`
+			`	You spend a few hours viewing some of the lessons, one of which involves watching an ancient show about a merchant captain making his way through the galaxy with an unlikely crew, re-enacted by a cast of Remnant who sing and sign their way through the dialogs with exagerated simplicity. It is oddly familiar, but you can't quite place it. You notice that it seems to have a lot of subtext about the dangers of manipulation and government secrecy, especially surrounding genetics.`
+			`	Skimming through the rest of the lessons, you notice that there is a lot more here than form the last two times. It may take some time to get through it all, but you should be fairly fluent if you practice over a couple of months.`
 
 event "remnant: sign studies complete"
 
@@ -870,7 +870,7 @@ mission "Remnant: Learn Sign Follow Up"
 	on offer
 		log "Have achieved a degree of fluency in the Remnant sign language sufficient for general conversation."
 		conversation
-			`As you make your way into the spaceport, it occurs to you that one of the information director who gave you the instructional videos might appreciate how much you have learned over the past couple months of practice. You stretch your fingers and stop by the desk where you are able to have a simple conversation with the information director.`
+			`As you make your way into the spaceport, it occurs to you that one of the information director who gave you the instructional videos might appreciate how much you have learned over the past months of practice. You stretch your fingers and stop by the desk where you are able to have a simple conversation with the information director.`
 			`	"Congratulations, Captain <last>!" the director signs. "Your fluency is good enough that even those unwilling to sing with a stranger should be comfortable working with you. At this rate you will be one of us in more ways that just by blood. I look forward to seeing what results from your work with us." The director is interrupted by the arrival of other Remnant asking for something and bids you farewell with an apologetic gesture.`
 				decline
 
