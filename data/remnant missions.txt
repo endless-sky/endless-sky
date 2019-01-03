@@ -791,98 +791,88 @@ mission "Remnant: Return the Samples 2"
 
 mission "Remnant: Learn Sign 1"
 	name "Learn Remnant Sign"
-	description `Visit each of the Remnant worlds to find ways to learn their sign language.`
+	description `Travel to <destination> for more lessons on how to speak using Remnant sign language.`
 	minor
 	source "Caelian"
-	stopover "Aventine"
-	destination "Viminal"
+	destination "Aventine"
 	repeat 3
 	to offer
 		has "remnant blood test pure"
 		not "Remnant: Learn Sign 1: done"
+		not "Remnant: Learn Sign 1: active"
 		random < 30
 	on offer
 		conversation
-			`As you make your way through the spaceport, you become increasingly aware of how quiet it is. Looking around, you note that it doesn't seem any less busy than usual, just that only a handful of people are paying attention to you. As a result, they have reverted to their normal gestures instead of singing. It feels oddly isolating, and eerie, to realize that there are hundreds of conversations going on around you, yet you can't understand a single word of it.`
+			`As you make your way through the spaceport, you become increasingly aware of how quiet it is. Looking around, you note that it doesn't seem any less busy than usual, just that only a handful of people are paying attention to you. As a result, they have reverted to their normal gestures instead of singing. It feels oddly isolating, and eerie, to realize that there are hundreds of conversations going on around you, yet you can't understand a single one.`
 			choice
 				`	(Ask someone to teach you.)`
 				`	(Ignore it.)`
 					decline
 					
-			`	Looking around the spaceport, you eventually find someone at what looks remarkably like an information desk.`
+			`	Looking around the spaceport, you eventually find someone at what looks like an information desk.`
 			choice
-				`	"I would like to learn how to talk using signs."`
+				`	"I would like to learn your sign language."`
 					goto words
 				`	(Sing a short verse about not understanding people because your hands are still.)`
 					goto song
 			label words
-			`	She looks at you with a confused expression, her hands making a few quick gestures. After a minute she points at the hand scanner embedded in the desk.`
+			`	She looks at you with a confused expression, her hands making a few quick gestures. After a moment she points at the hand scanner embedded in the desk.`
 				goto scan
 			label song
-			`	She looks surprised, but then recovers and sings a verse about how hands can learn but must be cautious, and gestures at the hand scanner embedded in the desk.`
+			`	She looks surprised, but then recovers and sings a verse about how hands can learn, but must be cautious, and gestures at the hand scanner embedded in the desk.`
 			label scan
 			`	As you place your hand on the scanner you feel a quick tingle as it scans your hand, then a pinprick as it extracts a drop of blood. The lady behind the desk looks at her screen. She nods, taps on the screen a few times, then retrieves a datapad from beneath the desk.`
 			`	She hands the pad to you, and sings a brief verse about perseverance and hope.`
 			`	Back on your ship you flip the pad on. The datapad appears to be loaded with a number of historic musicals and operas where the meaning of the lyrics has been replicated with gestures as subtitles. It is interspersed with what appear to be Remnant children's videos slowly explaining gestures and pausing to give you the opportunity to practice.`
-			`	After a few hours a note pops up on the screen, informing you that additional lessons are available from the director's desk on Aventine.`
+			`	You spend a few hours going through the lessons. It takes a while to start vaguely understanding the signs, but you eventually learn how to sign a number of basic phrases. Suddenly, the pad goes black and a note pops up on the screen informing you that additional lessons are available from the director's desk on Aventine.`
 				accept
 
-	on stopover
-		conversation
-			`The trip over is noisy - filled with antique singing and modern language teaching videos. It takes a while to start picking out specific phrases, but you have plenty of time to repeat the lessons on the flight to Aventine. When you are searching for the director's desk at the spaceport, you are very conscious of all the conversations going on around you. You even catch a word here and there, but not much. Eventually you manage to ask for directions using what you have learned, and you arrive at a similar desk in a busy plaza.`
-			`	It looks like the person behind the desk has been expecting you. They gesture very slowly, asking how your lessons are going using very basic signs and songs. After a few minutes of conversation, they ask you to place your hand on the scanner, and then give you a data chip with more lessons.`
-			`	There is also a note saying that there will be a final package of lessons waiting for you on Viminal.`
-
-	on complete
-		conversation
-			`The trip to Viminal is quiet - almost no talking or singing of any kind as it is just about entirely reliant on interposing signs and pantomiming actions. Slowly you start picking up some of the easier nouns and verbs.`
-			`	As you descend through the atmosphere, you do some quick hand stretches to work the stiffness out of your fingers and rehearse a few of the phrases you have memorized.`
-			`	As soon as <ship> is parked, you exit and look around. Approaching a dockhand who doesn't appear to be busy, you carefully sign, "Can you direct me to the port director?" He looks at you curiously for a moment and replies with exaggerated slowness. You thank him and head towards the spaceport following his directions.`
-
-
-
 mission "Remnant: Learn Sign 2"
+	landing
 	name "Learn Remnant Sign"
-	description `Return to Caelian to finish your first class of sign language.`
-	source "Viminal"
-	destination "Caelian"
+	description `Travel to <destination> for more lessons on how to speak using Remnant sign language.`
+	source "Aventine"
+	destination "Viminal"
 	to offer
 		has "Remnant: Learn Sign 1: done"
 	on offer
 		conversation
-			`Once again the director seems to be expecting you, and has a simple conversation with you about how the flight was and how your lessons are progressing. You manage to convey that you have learned a bit, and he gives you a few tips on your rehearsed phrases before directing you to place your hand on the scanner. After checking the readout he hands you another data chip as well as a stack of holographic print-outs.`
-			`	Flipping through the stack of print-outs, you note that each one of them has a small label in the corner for random pieces of furniture and ship equipment, and when you view the hologram while moving from side to side the figure inside makes a sign that you assume to be what the label indicates.`
-			choice
-				`	(Accept them.)`
-			
-			`	Back on your ship, you find a roll of tape and stick up all the labels to the appropriate things around your ship. Now every time you look around your ship, you see figures demonstrating how to sign things. It kind of reminds you of being back in preschool. It does seem to be working, though.`
+			`While searching for the director's desk in the Aventine spaceport, you are very conscious of all the conversations going on around you. You manage to catch a word here and there, but not enough to understand the conversations. You ask for directions using what you have learned, and you arrive at a similar desk in a busy plaza.`
+			`	It looks like the person behind the desk has been expecting you. They gesture very slowly, asking how your lessons are going using very basic signs and songs. After a few minutes of conversation, they ask you to place your hand on the scanner, which takes a sample of your blood, and then give you a data chip with more lessons.`
+			`	You return to your ship and begin going through the lessons. These lessons focus more on purely conversing through sign with almost no singing.`
+			`	Just as last time, the screen goes black and reveals a note saying that there will be a final package of lessons waiting for you on Viminal.`
 				accept
-	
+
 	on complete
-		event "remnant: sign studies complete" 20 40
-		log "Have been introduced to the basics of the Remnant sign language, and formally granted access to their worlds after having been genetically tested on each of them."
+		event "remnant: sign studies complete" 60
+		log "Have been introduced to the basics of the Remnant sign language. Will need to practice using the video lessons for some time in order to fully understand Remnant sign language."
 		conversation
-			`The last leg of the journey was spent watching some ancient show about a merchant captain making his way through the galaxy with an unlikely crew, re-enacted by a cast of Remnant who sing and sign their way through the dialogs with exagerated simplicity. It is oddly familiar, but you can't quite place it. You notice that it seems to have a lot of subtext about the dangers of manipulation and government secrecy, especially surrounding genetics.`
-			`	You arrive at the Director's desk and offer to return the datapad to the Director, carefully signing your thanks. She seems pleased at your promising start, and encourages you to continue practicing.`
-			`	She pauses for a moment, then switches to singing. "You are probably wondering about all the blood tests. Long ago it was decided that being infiltrated by Alpha agents was a big risk, and we couldn't depend on our interstellar network to remain secure. So we implemented a policy where the first time a Remnant is granted formal access to a new planet their purity and identity is verified. Thus even if someone hacked our networks to give themselves a clean identity, they would still be caught when they started working on a new planet. We also don't broadcast that requirement on our networks, simply enforce it locally. It isn't foolproof, but it adds an additional layer of safety."`
-			`	After you finish your conversation with her, you stroll off to look around the spaceport, enjoying the fact that you can now understand a bit of the conversations going on around you. It is only the most basic elements, but it is a good start. You realize, however, that you have a lot of practice to do before you become fluent.`
+			`As soon as you land, you look around for someone to ask directions from. Approaching a dockhand who doesn't appear to be busy, you carefully sign, "Can you direct me to the port director?" He looks at you curiously for a moment and replies with exaggerated slowness. You thank him and head towards the spaceport following his directions.`
+			`	Once again the director seems to be expecting you, and has a simple conversation with you about how the flight was and how your lessons are progressing. You manage to convey that you have learned a bit, and he gives you a few tips on your rehearsed phrases before directing you to place your hand on the scanner. Once again, the scanner takes a sample of your blood.`
+			choice
+				`	(Sign asking what the scanners are for.)`
+				`	(Sing a verse about your confusion of the hand scanners.)`
+			`	The man begins to sign, but then realizes that you don't understand much of what he is signing, so he switches to singing. "Long ago it was decided that being infiltrated by Alpha agents was a big risk, and we couldn't depend on our interstellar network to remain secure. So we implemented a policy where the first time a Remnant is granted formal access to a new planet their purity and identity is verified. Thus even if someone hacked our networks to give themselves a clean identity, they would still be caught when they started working on a new planet. We also don't broadcast that requirement on our networks, simply enforce it locally. It isn't foolproof, but it adds an additional layer of safety."`
+			`	You thank the man for explaining the scanners to you and accept the next set of lessons.`
+			`	You spend a few hours viewing some of the lessons. One of the lessons involved watching an ancient show about a merchant captain making his way through the galaxy with an unlikely crew, re-enacted by a cast of Remnant who sing and sign their way through the dialogs with exagerated simplicity. It is oddly familiar, but you can't quite place it. You notice that it seems to have a lot of subtext about the dangers of manipulation and government secrecy, especially surrounding genetics.`
+			`	Skimming through the rest of the lessons, you notice that there is a lot more here than the last two. It may take some months to get through it all, but you should be fairly fluent if you practice over a couple of months.`
 
 event "remnant: sign studies complete"
 
 
 
-mission "Remnant: Learn Sign 3"
+mission "Remnant: Learn Sign Follow Up"
+	invisible
 	source 
 		government "Remnant"
-	invisible
 	to offer
 		has "event: remnant: sign studies complete"
 	on offer
 		log "Have achieved a degree of fluency in the Remnant sign language sufficient for general conversation."
-		dialog
-			`As you make your way into the Caelian spaceport, it occurs to you that one of the information director who gave you the instructional videos might appreciate how much you have learned over the past few weeks of practice. You stretch your fingers and stop by the desk, where you are able to have a simple conversation with the information director.`
-			`	"Congratulations, Captain <last>!" she signs. "Your fluency is good enough that even those unwilling to sing with a stranger should be comfortable working with you. At this rate you will be one of us in more ways that just by blood. I look forward to seeing what results from your work with us." She is interrupted by the arrival of other Remnant asking her something, and she bids you farewell with an apologetic gesture.`
-			decline
+		conversation
+			`As you make your way into the spaceport, it occurs to you that one of the information director who gave you the instructional videos might appreciate how much you have learned over the past couple months of practice. You stretch your fingers and stop by the desk where you are able to have a simple conversation with the information director.`
+			`	"Congratulations, Captain <last>!" the director signs. "Your fluency is good enough that even those unwilling to sing with a stranger should be comfortable working with you. At this rate you will be one of us in more ways that just by blood. I look forward to seeing what results from your work with us." The director is interrupted by the arrival of other Remnant asking for something and bids you farewell with an apologetic gesture.`
+				decline
 
 
 
