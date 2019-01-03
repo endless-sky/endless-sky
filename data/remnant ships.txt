@@ -313,7 +313,6 @@ ship "Albatross"
 		"heat dissipation" 0.6
 		"fuel capacity" 600
 		"ramscoop" 3
-		"engine capacity" 142
 		"outfit space" 661
 		"weapon capacity" 236
 		"engine capacity" 142
