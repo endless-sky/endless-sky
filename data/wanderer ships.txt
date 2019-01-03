@@ -896,8 +896,8 @@ ship "Riptide"
 		"Type 4 Radiant Steering"
 		"Type 3 Radiant Steering"
 		"Hyperdrive"
-	engine 26 166
-	engine -26 166
+	engine 30 165
+	engine -30 165
 	turret 0 -28 "Sunbeam Turret"
 	turret 40 110 "Wanderer Anti-Missile"
 	turret -40 110 "Wanderer Anti-Missile"
