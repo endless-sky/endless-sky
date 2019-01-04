@@ -998,15 +998,10 @@ mission "Remnant: Salvage 3"
 			`	On Aventine there are ambulances and medical staff waiting to transport the injured to longer-term medical facilities. As they depart, a fresh crew arrives to take their places.`
 	on complete
 		payment 100000
-		event "Remnant Albatross"
+		set "license: Remnant Capital"
 		conversation
 			`When you return to Viminal, the Remnant crew members leave your ship and disperse across the tarmac to the ships they have been assigned to, each one of them signing their thanks as they leave. A few minutes after they leave your comlink beeps, notifying you that a message from the prefect has arrived:`
 			`	"Captain <last>! Thank you for your help in defending Viminal and transporting those wounded. I have transferred a small token of our appreciation to you. That being said, perhaps you would appreciate this a bit more: the other prefects and I have agreed to grant you access to a wider range of ships. Our capital class ships will now be available to you, including the Albatross and the Pelican. At the rate these raids are going, it is in everyone's best interests that you have access to a better warship. Please, meet us in the spaceport to further discuss the situation."`
-
-event "Remnant Albatross"	
-	shipyard "Remnant"
-		"Albatross"
-		"Pelican"
 
 
 
