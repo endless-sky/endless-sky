@@ -296,7 +296,7 @@ ship "Albatross"
 	attributes
 		category "Heavy Warship"
 		licenses
-			Remnant
+			"Remnant Capital License"
 		cost 20000000
 		"shields" 34200
 		"hull" 12600
@@ -504,7 +504,7 @@ ship "Pelican"
 	attributes
 		category "Heavy Freighter"
 		licenses
-			Remnant
+			"Remnant Capital License"
 		cost 9770000
 		"shields" 11300
 		"hull" 5700
