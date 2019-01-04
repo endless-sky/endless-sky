@@ -2094,13 +2094,14 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		const System *system = ship.GetSystem();
 		const Government *gov = ship.GetGovernment();
 		
-		// Consider scanning any ship in this system that you haven't yet personally scanned.
+		// Consider scanning any non-hostile ship in this system that you haven't yet personally scanned.
 		vector<shared_ptr<Ship>> targetShips;
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
 		bool outfitScan = ship.Attributes().Get("outfit scan power");
 		if(cargoScan || outfitScan)
 			for(const auto &it : ships)
-				if(it->GetGovernment() != gov && it->GetSystem() == system && it->IsTargetable())
+				if(it->GetGovernment() != gov && !it->GetGovernment()->IsEnemy(gov)
+						&& it->GetSystem() == system && it->IsTargetable())
 				{
 					if((!cargoScan || Has(ship, it, ShipEvent::SCAN_CARGO))
 							&& (!outfitScan || Has(ship, it, ShipEvent::SCAN_OUTFITS)))
