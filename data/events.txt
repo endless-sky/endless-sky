@@ -17,6 +17,7 @@ mission "remembrance day"
 	landing
 	source
 		government "Republic"
+		attributes "spaceport"
 	to offer
 		has "event: remembrance day"
 	on offer
@@ -136,6 +137,7 @@ mission "event: war begins"
 	landing
 	source
 		government "Republic" "Syndicate" "Free Worlds"
+		attributes "spaceport"
 	to offer
 		has "event: war begins"
 	on offer
