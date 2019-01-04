@@ -565,7 +565,7 @@ mission "Remnant: Technology Available"
 
 mission "Remnant: Heavy Laser"
 	name "Retrieve Heavy Lasers for the Remnant"
-	description "A Remnant engineer on <planet> has offered to pay you <payment> in exchange for obtaining two heavy lasers."
+	description "A Remnant engineer on <planet> has offered to pay you <payment> in exchange for obtaining two heavy lasers for them to study."
 	minor
 	source
 		government "Remnant"
@@ -608,7 +608,7 @@ mission "Remnant: Heavy Laser"
 
 mission "Remnant: Catalytic Ramscoop"
 	name "Retrieve Ramscoops for the Remnant"
-	description "An engineer on <planet> has offered to pay you <payment> in exchange for obtaining two catalytic ramscoops."
+	description "A Remnant engineer on <planet> has offered to pay you <payment> in exchange for obtaining two catalytic ramscoops for them to study."
 	minor
 	source
 		government "Remnant"
@@ -658,7 +658,7 @@ mission "Remnant: Catalytic Ramscoop"
 
 mission "Remnant: Plasma Cannons"
 	name "Retrieve Plasma Cannons for the Remnant"
-	description "An engineer on <planet> has offered to pay you <payment> in exchange for obtaining two plasma cannons."
+	description "A Remnant engineer on <planet> has offered to pay you <payment> in exchange for obtaining two plasma cannons for them to study."
 	minor
 	source
 		government "Remnant"
@@ -711,7 +711,7 @@ mission "Remnant: Plasma Cannons"
 
 mission "Remnant: Return the Samples"
 	name "Return the Samples"
-	description "A researcher on <planet>, has asked you to return some samples to Nasqueron."
+	description "A researcher on <planet> has asked you to return void sprite eggs to Nasqueron that the Remnant stole many years ago."
 	source "Aventine"
 	stopover "Nasqueron"
 	to offer
@@ -752,7 +752,7 @@ mission "Remnant: Return the Samples"
 
 mission "Remnant: Return the Samples 2"
 	name "Return the Samples"
-	description "A researcher on <planet> has asked you to return some more samples to Slylandro."
+	description "A researcher on <planet> has asked you to return more stolen eggs, this time to Slylandro."
 	source "Aventine"
 	stopover "Slylandro"
 	to offer
@@ -878,7 +878,7 @@ mission "Remnant: Learn Sign Follow Up"
 
 mission "Remnant: Salvage 1"
 	name "Remnant History Updates"
-	description `Find a copy of human history on <destination> for the Remnant.`
+	description `The Remnant are interested in learning about what has happened in human space since they left. Find a copy of human history on <destination>.`
 	minor
 	source "Viminal"
 	destination "Alexandria"
@@ -967,17 +967,17 @@ mission "Remnant: Salvage 2"
 		payment 1500000
 		conversation
 			`As some ships maintain orbital sentry positions, most ships return to their berths. Mechanics are soon swarming over the ships, and what you suppose are ambulances are waiting at the ramps to collect the injured. Farther back, flatbed tractor units wait to pick up any salvage that has been collected.`
-			`	Eventually a tired but pleased-looking prefect stops by your ship. He starts chanting, "Do you understand our language, or do I need to sing?" He looks relieved when you reply that you can understand most of what is said so long as he signs slowly. "Thank you for your assistance during the raid. The sensors you placed on Parca picked up the fleet coming in and gave us sufficient warning to get everyone ready."`
-			`	He is silent for a moment, with the air of someone who is enjoying not having to run for the first time in a while. "Oh, Tali said that you might have some historical records for us?" You hand over the copy of the archive in response, telling him that is probably the best available. He hands you a credit chip with <payment> on it. "Thank you, I'll make sure this gets where it needs to go. In the meantime, we could use your help in the starport."`
+			`	Eventually a tired but pleased-looking prefect stops by your ship. He starts chanting, "Do you understand our language, or do I need to sing?" He looks relieved when you reply that you can understand most of what is said so long as he signs slowly. "Thank you for your assistance during the raid. The sensors you placed in Parca picked up the fleet coming in and gave us sufficient warning to get everyone ready."`
+			`	He is silent for a moment, with the air of someone who is enjoying not having to run for the first time in a while. "Oh, Tali said that you might have some historical records for us?" You hand over the copy of the archive in response, telling him that is probably the best available. He hands you a credit chip with <payment> on it. "Thank you, I'll make sure this gets where it needs to go. In the meantime, we could use your help in the spaceport."`
 
 
 
 mission "Remnant: Salvage 3"
 	name "Transport injured Remnant"
-	description "Some injured Remnant need to be transported away from the front lines to Aventine."
+	description `Some injured Remnant need to be transported away from the front lines to Aventine.`
 	source "Viminal"
 	passengers 8
-	cargo "Medical gear" 5
+	cargo "medical gear" 5
 	blocked "A prefect informs you that they need to evacuate some injured to a hospital on Aventine, but you will need 8 free bunks and 5 tons of cargo space in order to handle the injured."
 	stopover Aventine
 	to offer
@@ -1007,7 +1007,7 @@ mission "Remnant: Salvage 3"
 
 mission "Remnant: Salvage 4"
 	name "Track down the <npc>"
-	description "Track down and disable a Korath ship that escaped the raid on Viminal."
+	description "Track down and disable a Korath ship that escaped the raid on Viminal so that the Remnant may salvage it for technology."
 	source "Viminal"
 	to offer
 		has "Remnant: Salvage 3: done"
@@ -1081,7 +1081,7 @@ mission "Remnant: Bounty 2"
 
 mission "Remnant: Salvage 5"
 	name "Salvage Delivery"
-	description `Deliver some high value salvage to Caelian.`
+	description `Deliver <cargo> to Caelian.`
 	source "Viminal"
 	cargo "Korath Salvage" 20
 	blocked `Tali would like you to deliver some valuable Korath equipment to Caelian, but you will need 20 tons of space to carry it.`
@@ -1110,9 +1110,9 @@ mission "Remnant: Salvage 5"
 
 mission "Remnant: Salvage 6"
 	name "Transport outfits to Tali"
-	description `Deliver some parts to Viminal.`
+	description `Deliver <cargo> to Viminal.`
 	source "Caelian"
-	cargo "Ship parts" 20
+	cargo "ship parts" 20
 	blocked `The technician you delivered Tali's salvaged parts to would like you to take some finished parts back to Tali, but you will need 20 tons of space to do so.`
 	destination "Viminal"
 	to offer
@@ -1161,7 +1161,7 @@ event "Remnant Salvage Available"
 
 mission "Remnant: Expanded Horizons Quarg 1"
 	name "Visiting the Quarg"
-	description "Take Remnant researchers to <destination> to see some Quarg."
+	description "Take Remnant researchers to <destination> to see the Quarg."
 	minor
 	source
 		government "Remnant"
@@ -1239,7 +1239,7 @@ mission "Remnant: Expanded Horizons Quarg 2"
 
 mission "Remnant: Expanded Horizons Quarg 3"
 	name "Expanded Horizons Return"
-	description "Take the Remnant researchers to <planet>"
+	description "Return the Remnant researchers to <planet>."
 	source "Wayfarer"
 	passengers 3
 	blocked `This mission requires bunks for three passengers.`
