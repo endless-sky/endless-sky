@@ -1125,7 +1125,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		{
 			closest = numeric_limits<double>::infinity();
 			for(const auto &it : ships)
-				if(it->GetSystem() == system && it->GetGovernment() != gov && it->IsTargetable())
+				if(it->GetSystem() == system && it->GetGovernment() != gov
+						&& !gov->IsEnemy(it->GetGovernment()) && it->IsTargetable())
 				{
 					if((!cargoScan || Has(gov, it, ShipEvent::SCAN_CARGO))
 							&& (!outfitScan || Has(gov, it, ShipEvent::SCAN_OUTFITS)))
