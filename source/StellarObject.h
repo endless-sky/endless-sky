@@ -75,7 +75,7 @@ public:
 	// Returns ship and changes isDead.
 	bool HasShip() const;
 	std::shared_ptr<Ship> GetShip(const System *system) const;
-	void Die() const;
+	void Die(Point position) const;
 
 
 private:

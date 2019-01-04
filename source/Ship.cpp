@@ -1107,7 +1107,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					it->Place(*this);
 				flotsam.splice(flotsam.end(), jettisoned);
 				if(defending)
-					defending->Die();
+					defending->Die(position);
 			}
 			energy = 0.;
 			heat = 0.;

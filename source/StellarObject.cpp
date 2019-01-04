@@ -207,8 +207,9 @@ shared_ptr<Ship> StellarObject::GetShip(const System *system) const
 }
 
 
-
-void StellarObject::Die() const
+// Makes the StellarObject visible again after the station died.
+void StellarObject::Die(Point position) const
 {
 	isDead = true;
+	const_cast<Point &>(this->position) = position;
 }
