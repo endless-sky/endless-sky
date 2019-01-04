@@ -36,6 +36,9 @@ ship "Starling"
 		"cloak" .02
 		"cloaking energy" 5
 		"cloaking fuel" .1
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 26
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -49,7 +52,6 @@ ship "Starling"
 		"Crystal Capacitor"
 		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
-		"Salvage Scanner"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -80,7 +82,6 @@ ship "Starling" "Starling (Heavy)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
-		"Salvage Scanner"
 		"Tuning Rifle" 10
 
 		"Forge-Class Thruster"
@@ -97,7 +98,6 @@ ship "Starling" "Starling (Sniper)"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
-		"Salvage Scanner"
 		"Tuning Rifle" 9
 
 		"Forge-Class Thruster"
@@ -119,7 +119,6 @@ ship "Starling" "Starling (Hunter)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
-		"Salvage Scanner"
 		"Tuning Rifle" 11
 
 		"Forge-Class Thruster"
@@ -141,7 +140,6 @@ ship "Starling" "Starling (Thrasher)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
-		"Salvage Scanner"
 		"Tuning Rifle" 8
 
 		"Forge-Class Thruster"
@@ -184,6 +182,9 @@ ship "Gull"
 		"cloak" .02
 		"cloaking energy" 5
 		"cloaking fuel" .2
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 26
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -197,7 +198,6 @@ ship "Gull"
 		"Crystal Capacitor"
 		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
-		"Salvage Scanner"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -227,7 +227,6 @@ ship "Gull" "Gull (Heavy)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
-		"Salvage Scanner"
 		"Tuning Rifle" 4
 
 		"Forge-Class Thruster"
@@ -242,7 +241,6 @@ ship "Gull" "Gull (Sniper)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
-		"Salvage Scanner"
 		"Tuning Rifle" 4
 
 		"Forge-Class Thruster"
@@ -259,7 +257,6 @@ ship "Gull" "Gull (Support)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
-		"Salvage Scanner"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -272,7 +269,6 @@ ship "Gull" "Gull (Cargo)"
 
 		"Epoch Cell"
 		"Crystal Capacitor"
-		"Salvage Scanner"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -285,7 +281,6 @@ ship "Gull" "Gull (Bunks)"
 
 		"Epoch Cell"
 		"Crystal Capacitor"
-		"Salvage Scanner"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -320,6 +315,9 @@ ship "Albatross"
 		"shield energy" 4.6
 		"hull repair rate" 1.5
 		"hull energy" 1.2
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 26
 		weapon
 			"blast radius" 360
 			"shield damage" 3600
@@ -335,7 +333,6 @@ ship "Albatross"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
-		"Salvage Scanner"
 
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
@@ -375,7 +372,6 @@ ship "Albatross" "Albatross (Sniper)"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
-		"Salvage Scanner"
 		"Tuning Rifle" 57
 
 		"Forge-Class Thruster"
@@ -409,7 +405,6 @@ ship "Albatross" "Albatross (Turret)"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler"
 		"Outfits Expansion" 2
-		"Salvage Scanner"
 		"Tuning Rifle" 49
 
 		"Smelter-Class Thruster"
@@ -434,7 +429,6 @@ ship "Albatross" "Albatross (Heavy)"
 		"Crystal Capacitor" 2
 		"Thermoelectric Cooler" 2
 		"Outfits Expansion" 4
-		"Salvage Scanner"
 		"Tuning Rifle" 65
 
 		"Forge-Class Thruster"
@@ -529,6 +523,9 @@ ship "Pelican"
 		"shield energy" 1.8
 		"hull repair rate" 1
 		"hull energy" 0.75
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 26
 		weapon
 			"blast radius" 160
 			"shield damage" 1600
@@ -544,7 +541,6 @@ ship "Pelican"
 		"Thermoelectric Cooler" 2
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
-		"Salvage Scanner"
 		"Tuning Rifle" 15
 
 		"Forge-Class Thruster"
