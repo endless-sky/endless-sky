@@ -170,7 +170,7 @@ ship "Gull"
 		"drag" 6
 		"heat dissipation" 0.7
 		"fuel capacity" 600
-		"ramscoop" 2
+		"ramscoop" 1
 		"cargo space" 175
 		"outfit space" 280
 		"weapon capacity" 81
@@ -307,7 +307,7 @@ ship "Albatross"
 		"drag" 8.6
 		"heat dissipation" 0.6
 		"fuel capacity" 600
-		"ramscoop" 3
+		"ramscoop" 2
 		"outfit space" 658
 		"weapon capacity" 236
 		"engine capacity" 142
@@ -516,7 +516,7 @@ ship "Pelican"
 		"drag" 7.2
 		"heat dissipation" 0.7
 		"fuel capacity" 600
-		"ramscoop" 3
+		"ramscoop" 2
 		"outfit space" 438
 		"weapon capacity" 157
 		"engine capacity" 129
