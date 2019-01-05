@@ -24122,6 +24122,7 @@ planet Aventine
 	bribe 0
 	shipyard Remnant
 	outfitter Remnant
+	outfitter "Remnant Salvage"
 
 planet "Bank of Blugtad"
 	attributes arach wealthy urban
@@ -24298,6 +24299,7 @@ planet Caelian
 	bribe 0
 	shipyard Remnant
 	outfitter Remnant
+	outfitter "Remnant Salvage"
 
 planet Calda
 	attributes paradise tourism rich
@@ -27178,6 +27180,7 @@ planet Viminal
 	bribe 0
 	shipyard Remnant
 	outfitter Remnant
+	outfitter "Remnant Salvage"
 
 planet Vinci
 	attributes paradise factory

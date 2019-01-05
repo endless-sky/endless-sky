@@ -881,7 +881,7 @@ mission "Remnant: Salvage 1"
 	source "Viminal"
 	destination "Alexandria"
 	to offer
-		has "Remnant: Learn Sign 2: done"
+		has "Remnant: Learn Sign Follow Up: offered"
 		random < 50
 		or
 			has "Remnant: Catalytic Ramscoop: done"
@@ -1043,6 +1043,8 @@ mission "Remnant: Salvage 4"
 		dialog "You have disabled the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
 	on fail
 		payment 250000
+		set "Remnant: failed salvage 4"
+		set "Remnant: Salvage 4: done"
 		dialog `You are met by the prefect who thanks who looks upset. "The ship was supposed to be disabled so its contents could be salvaged!" he signs angrily. Nonetheless, he shoves a credit chip worth <payment> into your hand. "That's half what you would have earned if the ship had been disabled." He pauses and shakes his head. "I think Tali might have some more work for you in the spaceport, but in the meantime, why don't you go find some Korath to practice disabling? It is a valuable skill among the Remnant."`
 	on complete
 		payment 500000
@@ -1060,7 +1062,7 @@ mission "Remnant: Salvage 5"
 	to offer
 		or
 			has "Remnant: Salvage 4: done"
-			has "Remnant: Salvage 4: failed"
+			has "Remnant: failed salvage 4"
 		has "Remnant: Learn Sign 3: done"
 	on offer
 		conversation
@@ -1100,7 +1102,7 @@ mission "Remnant: Salvage 6"
 		payment 150000
 		conversation 
 			`Tali meets you at the dock with a flatbed ready to offload the shipment. As you run through your shutdown routine you hit the switch for the cargo bay doors, and by the time you have gone down to the hold, Tali has half the shipment already unloaded.`
-			`	Her signs flick at you with a gentleness that you are slowly deciding equates to a cheerful tone. "Thank you for all the help you've provided in recovering this salvage. I have discussed it with the other engineers, and we have decided to give you access to our salvage."`
+			`	Her signs flick at you with a gentleness that you are slowly deciding equates to a cheerful tone. "Thank you for all the help you've provided in recovering this salvage" she says as she hands you <payment>. "I have discussed it with the other engineers, and we have decided to give you access to our salvage."`
 			`	She leads you over to the warehouse, scans her ID on the console, and taps a few commands. Then she scans your ID card. "There you go, I have updated your access codes," she signs cheerfully. She hands you your ID and pulls you to a door on the far side of the outfitting shop. Beyond the door is a room filled with outfits and weapons that clearly don't fit the same style as the other Remnant technology. You have seen most of the things here on scans and when salvaging equipment from other ships, but never up close.`
 			`	"This section of our warehouse is the salvage area. Everything in here we have we collected in sufficient quantities that it is available for general use."`
 			`	She nods at a rack of Korath Heat Shunts while she explains, then turns back to you.`
@@ -1118,7 +1120,7 @@ mission "Remnant: Salvage 6"
 			`	"Well, I need to get back to work. That last battle put us behind schedule on our repairs. Have a good day!" With a final flourish that you think is the equivalent of an exclamation mark, Tali strides out of the outfitters, heading towards another landing bay.`
 
 event "Remnant Salvage Available"
-	outfitter "Remnant"
+	outfitter "Remnant Salvage"
 		"Generator (Furnace Class)"
 		"Small Heat Shunt"
 		"Systems Core (Small)"
@@ -1166,7 +1168,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 	passengers 3
 	destination "Wayfarer"
 	to offer
-		has "Remnant: Learn Sign 3: done"
+		has "Remnant: Learn Sign Follow Up: offered"
 		has "Remnant: Salvage 1: done"
 		has "First Contact: Quarg: offered"
 		random < 40
@@ -1254,5 +1256,5 @@ mission "Remnant: Expanded Horizons Quarg 3"
 			`Once you are back in the privacy of <ship>, the stony reserve fades to cheerfulness as the trio are a blur of motion as they chatter back and forth with their signs. Apparently this will be one of the biggest boosts to their research since the first time they salvaged the gear off a Korath raider.`
 			`	They eventually slow down their signs a bit and explain that up until the time the Remnant departed from ancestral space, human scanners had been unable to penetrate the outer layers of Quarg ships. One of Dawn's fellow researchers continues with the explanation.`
 			`	"Our historical records just have a few pictures and videos of Quarg ships, along with a basic scan that doesn't provide more than the general outline of the ship. These scans," he says while tapping the databanks, "actually picked up detailed structural layouts and even identified a number of key components. It isn't nearly enough information to be able to duplicate them, but it is enough that we can start trying to figure out how they work.`
-			`	Upon arriving at <planet> they quickly thank you, hand you the payment, and run back to their offices to finish prepping their material to publish and distribute.`
+			`	Upon arriving at <planet> they quickly thank you, hand you <payment>, and run back to their offices to finish prepping their material to publish and distribute.`
 

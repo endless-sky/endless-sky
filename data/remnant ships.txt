@@ -176,9 +176,9 @@ ship "Gull"
 		"weapon capacity" 81
 		"engine capacity" 91
 		"shield generation" 1.6
-		"shield energy" 1.8
+		"shield energy" 1.1
 		"hull repair rate" 0.7
-		"hull energy" 0.75
+		"hull energy" 0.5
 		"cloak" .02
 		"cloaking energy" 5
 		"cloaking fuel" .1
