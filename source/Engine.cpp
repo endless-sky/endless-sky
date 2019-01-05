@@ -267,25 +267,18 @@ void Engine::Place()
 			const Personality &person = ship->GetPersonality();
 			bool launchesWithPlayer = (ship->IsYours() || player.GetPlanet()->CanLand(*ship))
 					&& !(person.IsStaying() || person.IsWaiting() || ship->GetPlanet());
-			if(person.IsLaunching() || launchesWithPlayer)
+			bool hasOwnPlanet = ship->GetPlanet();
+			const StellarObject *object = hasOwnPlanet ?
+					ship->GetSystem()->FindStellar(ship->GetPlanet()) : nullptr;
+			// Default to the player's planet in the case of data definition errors.
+			if(person.IsLaunching() || launchesWithPlayer || (hasOwnPlanet && !object))
 			{
 				if(player.GetPlanet())
 					ship->SetPlanet(player.GetPlanet());
 				pos = planetPos + angle.Unit() * Random::Real() * planetRadius;
 			}
-			else if(ship->GetPlanet())
-			{
-				// Default to the player's planet in the case of data definition errors.
-				const StellarObject *object = ship->GetSystem()->FindStellar(ship->GetPlanet());
-				if(object)
-					pos = object->Position() + angle.Unit() * Random::Real() * object->Radius();
-				else
-				{
-					if(player.GetPlanet())
-						ship->SetPlanet(player.GetPlanet());
-					pos = planetPos + angle.Unit() * Random::Real() * planetRadius;
-				}
-			}
+			else if(hasOwnPlanet)
+				pos = object->Position() + angle.Unit() * Random::Real() * object->Radius();
 		}
 		if(!pos)
 		{
