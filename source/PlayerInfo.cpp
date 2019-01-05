@@ -1014,7 +1014,7 @@ void PlayerInfo::Land(UI *ui)
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
 	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsDisabled())
+		if(!ship->IsParked() && !ship->IsDisabled())
 		{
 			if(ship->GetSystem() == system)
 			{
@@ -2169,7 +2169,7 @@ void PlayerInfo::ApplyChanges()
 	{
 		if(!ship->GetSystem() || ship->GetSystem()->Name().empty())
 			ship->SetSystem(system);
-		if(ship->GetSystem() == system)
+		if(ship->GetSystem() == system && (!ship->GetPlanet() || ship->GetPlanet()->Name().empty()))
 			ship->SetPlanet(planet);
 	}
 	
