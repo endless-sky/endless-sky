@@ -17,6 +17,7 @@ ship "Earth Shaper"
 			Wanderer
 		"cost" 500000
 		"hull" 3300
+		"automaton" 1
 		"mass" 30
 		"drag" .9
 		"heat dissipation" .9
@@ -25,7 +26,6 @@ ship "Earth Shaper"
 		"outfit space" 59
 		"engine capacity" 26
 		"atmosphere scan" 100
-		"automaton" 1
 		weapon
 			"blast radius" 10
 			"shield damage" 100
@@ -55,13 +55,13 @@ ship "Flycatcher"
 			Wanderer
 		"cost" 830000
 		"hull" 4700
+		"automaton" 1
 		"mass" 40
 		"drag" .6
 		"heat dissipation" .9
 		"outfit space" 86
 		"weapon capacity" 28
 		"engine capacity" 26
-		"automaton" 1
 		weapon
 			"blast radius" 10
 			"shield damage" 100

@@ -283,7 +283,7 @@ void ShopPanel::DrawButtons()
 		Screen::Bottom() - 65);
 	font.Draw("You have:", point, dim);
 	
-	string credits = Format::Number(player.Accounts().Credits()) + " credits";
+	string credits = Format::Credits(player.Accounts().Credits()) + " credits";
 	point.X() += (SIDE_WIDTH - 20) - font.Width(credits);
 	font.Draw(credits, point, bright);
 	

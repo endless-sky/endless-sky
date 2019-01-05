@@ -124,7 +124,7 @@ namespace {
 
 
 
-void GameData::BeginLoad(const char * const *argv)
+bool GameData::BeginLoad(const char * const *argv)
 {
 	bool printShips = false;
 	bool printWeapons = false;
@@ -207,6 +207,7 @@ void GameData::BeginLoad(const char * const *argv)
 		PrintShipTable();
 	if(printWeapons)
 		PrintWeaponTable();
+	return !(printShips || printWeapons);
 }
 
 

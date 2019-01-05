@@ -209,6 +209,21 @@ shared_ptr<Panel> UI::Root() const
 
 
 
+// If the player enters the game, enable saving the loaded file.
+void UI::CanSave(bool canSave)
+{
+	this->canSave = canSave;
+}
+
+
+
+bool UI::CanSave() const
+{
+	return canSave;
+}
+
+
+
 // Tell the UI to quit.
 void UI::Quit()
 {

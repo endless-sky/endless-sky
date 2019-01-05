@@ -1113,8 +1113,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	// AI ships without an in-range hostile target consider scanning other ships.
 	if(!isYours && !target)
 	{
-		bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
-		bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
+		bool cargoScan = ship.Attributes().Get("cargo scan power");
+		bool outfitScan = ship.Attributes().Get("outfit scan power");
 		if(cargoScan || outfitScan)
 		{
 			closest = numeric_limits<double>::infinity();
@@ -1306,8 +1306,8 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 	else if(target)
 	{
-		bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
-		bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
+		bool cargoScan = ship.Attributes().Get("cargo scan power");
+		bool outfitScan = ship.Attributes().Get("outfit scan power");
 		if((!cargoScan || Has(gov, target, ShipEvent::SCAN_CARGO))
 				&& (!outfitScan || Has(gov, target, ShipEvent::SCAN_OUTFITS)))
 			target.reset();
@@ -2102,8 +2102,8 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 	else if(target)
 	{
 		// Approach and scan the targeted, friendly ship's cargo or outfits.
-		bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
-		bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
+		bool cargoScan = ship.Attributes().Get("cargo scan power");
+		bool outfitScan = ship.Attributes().Get("outfit scan power");
 		// If the pointer to the target ship exists, it is targetable and in-system.
 		bool mustScanCargo = cargoScan && !Has(ship, target, ShipEvent::SCAN_CARGO);
 		bool mustScanOutfits = outfitScan && !Has(ship, target, ShipEvent::SCAN_OUTFITS);
@@ -2120,16 +2120,16 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		const System *system = ship.GetSystem();
 		const Government *gov = ship.GetGovernment();
 		
-		// Consider scanning any ship in this system that you haven't yet personally scanned.
+		// Consider scanning any non-hostile ship in this system that you haven't yet personally scanned.
 		vector<shared_ptr<Ship>> targetShips;
-		bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
-		bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
+		bool cargoScan = ship.Attributes().Get("cargo scan power");
+		bool outfitScan = ship.Attributes().Get("outfit scan power");
 		if(cargoScan || outfitScan)
-			for(const pair<const Government *, vector<shared_ptr<Ship>>> &git : governmentRosters)
+			for(const auto &grit : governmentRosters)
 			{
-				if(gov == git.first)
+				if(gov == grit.first || gov->IsEnemy(grit.first))
 					continue;
-				for(const shared_ptr<Ship> &it : git.second)
+				for(const shared_ptr<Ship> &it : grit.second)
 				{
 					if((!cargoScan || Has(ship, it, ShipEvent::SCAN_CARGO))
 							&& (!outfitScan || Has(ship, it, ShipEvent::SCAN_OUTFITS)))
