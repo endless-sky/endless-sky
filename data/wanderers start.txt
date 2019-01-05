@@ -2332,7 +2332,7 @@ event "battle for ap'arak"
 event "battle for ap'arak ends"
 	government "Wanderer"
 		"attitude toward"
-			"Pug" .05
+			"Pug" .01
 	system "Ap'arak"
 		add fleet "Wanderer Freight" 2000
 		add fleet "Wanderer Drones" 4000
