@@ -260,22 +260,9 @@ void Engine::Place()
 		Point pos;
 		Angle angle = Angle::Random(360.);
 		Point velocity = angle.Unit();
-		/* Placement map & priority
-		1. In other system: in space, random
-		1. Disabled: in space, random
-		3. Launching: departing player planet
-		4. Staying / Waiting: in space, random
-		4. Has own planet: departing own planet
-		4. Can land on player planet / player ship: departing player planet
-		7. Other: in space, random (e.g. hostiles)
-		*/
 		// Any ships in the same system as the player should be either
 		// taking off from a specific planet or nearby.
-		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
-		{
-			// random reference position & velocity
-		}
-		else
+		if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
 		{
 			const Personality &person = ship->GetPersonality();
 			bool launchesWithPlayer = (ship->IsYours() || player.GetPlanet()->CanLand(*ship))
@@ -298,10 +285,6 @@ void Engine::Place()
 						ship->SetPlanet(player.GetPlanet());
 					pos = planetPos + angle.Unit() * Random::Real() * planetRadius;
 				}
-			}
-			else
-			{
-				// random reference position & velocity
 			}
 		}
 		if(!pos)
