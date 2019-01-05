@@ -17,6 +17,7 @@ mission "remembrance day"
 	landing
 	source
 		government "Republic"
+		attributes "spaceport"
 	to offer
 		has "event: remembrance day"
 	on offer
@@ -136,6 +137,7 @@ mission "event: war begins"
 	landing
 	source
 		government "Republic" "Syndicate" "Free Worlds"
+		attributes "spaceport"
 	to offer
 		has "event: war begins"
 	on offer
@@ -1061,13 +1063,6 @@ event "fw gets catalytic ramscoop"
 
 
 
-event "terraforming Rand"
-	planet Rand
-		description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
-		description `	Recent terraforming experiments have caused an increase in precipitation. Flash floods have scoured the landscape in some areas, but sandstorms are also less frequent, and the locals say the heat is a bit less oppressive than it used to be.`
-
-
-
 event "fw safe passage starts"
 	"reputation: Republic" = 5
 
@@ -1186,6 +1181,7 @@ event "fw southern expansion"
 		fleet "Large Southern Pirates" 7000
 		fleet "Navy Surveillance" 2000
 	system Girtab
+		government "Free Worlds"
 		fleet "Small Southern Merchants" 900
 		fleet "Large Southern Merchants" 2000
 		fleet "Small Free Worlds" 1000
@@ -1486,6 +1482,8 @@ event "fw armistice"
 	government "Free Worlds"
 		"attitude toward"
 			Republic 0
+	system "Graffias"
+		government "Republic"
 	planet Martini
 		"required reputation" 80
 	planet Thrall
@@ -1534,6 +1532,16 @@ event "fw armistice"
 
 
 
+event "fw tarazed joins"
+	system "Tarazed"
+		government "Free Worlds"
+	system "Dabih"
+		government "Free Worlds"
+	system "Albireo"
+		government "Free Worlds"
+
+
+
 event "deep sky tech available"
 	outfitter "Deep Sky Basics"
 		"Catalytic Ramscoop"
@@ -1560,7 +1568,7 @@ event "navy out of rastaban"
 		fleet "Large Southern Pirates" 7000
 		fleet "Navy Surveillance" 2000
 	system Girtab
-		government "Neutral"
+		government "Free Worlds"
 		fleet "Small Southern Merchants" 900
 		fleet "Large Southern Merchants" 2000
 		fleet "Small Free Worlds" 1000
@@ -2092,7 +2100,7 @@ event "fwc southern liberation"
 		fleet "Large Southern Pirates" 7000
 		fleet "Large Republic" 3000
 	system Girtab
-		government "Neutral"
+		government "Free Worlds"
 		fleet "Small Southern Merchants" 900
 		fleet "Large Southern Merchants" 2000
 		fleet "Small Free Worlds" 1000
@@ -2133,6 +2141,12 @@ event "fwc capture kaus borealis"
 		fleet "Small Free Worlds" 400
 		fleet "Large Free Worlds" 400
 		fleet "Large Republic" 2000
+	system "Tarazed"
+		government "Republic"
+	system "Dabih"
+		government "Republic"
+	system "Albireo"
+		government "Republic"
 	planet "New Iceland"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
 

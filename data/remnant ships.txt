@@ -78,6 +78,7 @@ ship "Starling" "Starling (Heavy)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
+		"Tuning Rifle" 10
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -93,6 +94,7 @@ ship "Starling" "Starling (Sniper)"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
+		"Tuning Rifle" 9
 		
 		"Forge-Class Thruster"
 		"Smelter-Class Steering"
@@ -113,6 +115,7 @@ ship "Starling" "Starling (Hunter)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
+		"Tuning Rifle" 11
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -133,6 +136,7 @@ ship "Starling" "Starling (Thrasher)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
+		"Tuning Rifle" 8
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -143,7 +147,6 @@ ship "Starling" "Starling (Thrasher)"
 	gun "Thrasher Cannon"
 	gun
 	gun
-
 
 
 ship "Albatross"
@@ -164,9 +167,9 @@ ship "Albatross"
 		"drag" 8.6
 		"heat dissipation" 0.6
 		"fuel capacity" 600
-		"engine capacity" 142
 		"outfit space" 658
 		"weapon capacity" 236
+		"engine capacity" 142
 		"shield generation" 5.2
 		"shield energy" 4.6
 		"hull repair rate" 1.5
@@ -192,8 +195,8 @@ ship "Albatross"
 		"Hyperdrive"
 	
 	engine -28 155 .8
-	engine 28 155 .9
-	engine 0 184 .8
+	engine 28 155 .8
+	engine 0 184 .9
 	gun 0 -190
 	gun -9 -177 "Inhibitor Cannon"
 	gun 9 -177 "Inhibitor Cannon"
@@ -225,6 +228,7 @@ ship "Albatross" "Albatross (Sniper)"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
+		"Tuning Rifle" 57
 		
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
@@ -257,6 +261,7 @@ ship "Albatross" "Albatross (Turret)"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler"
 		"Outfits Expansion" 2
+		"Tuning Rifle" 49
 		
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
@@ -280,6 +285,7 @@ ship "Albatross" "Albatross (Heavy)"
 		"Crystal Capacitor" 2
 		"Thermoelectric Cooler" 2
 		"Outfits Expansion" 4
+		"Tuning Rifle" 65
 		
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
@@ -299,7 +305,6 @@ ship "Albatross" "Albatross (Heavy)"
 	turret
 	turret
 	turret "Thrasher Turret"
-
 
 
 ship "Gascraft"

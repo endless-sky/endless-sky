@@ -210,18 +210,18 @@ string Account::Step(int64_t assets, int64_t salaries)
 	// If you made payments of all three types, the punctuation needs to
 	// include commas, so just handle that separately here.
 	if(salariesPaid && mortgagesPaid && finesPaid)
-		out << Format::Number(salariesPaid) << " credits in crew salaries, " << Format::Number(mortgagesPaid)
-			<< " in mortgages, and " << Format::Number(finesPaid) << " in fines.";
+		out << Format::Credits(salariesPaid) << " credits in crew salaries, " << Format::Credits(mortgagesPaid)
+			<< " in mortgages, and " << Format::Credits(finesPaid) << " in fines.";
 	else
 	{
 		if(salariesPaid)
-			out << Format::Number(salariesPaid) << ((mortgagesPaid || finesPaid) ?
+			out << Format::Credits(salariesPaid) << ((mortgagesPaid || finesPaid) ?
 				" credits in crew salaries and " : " credits in crew salaries.");
 		if(mortgagesPaid)
-			out << Format::Number(mortgagesPaid) << (salariesPaid ? " " : " credits ")
+			out << Format::Credits(mortgagesPaid) << (salariesPaid ? " " : " credits ")
 				<< (finesPaid ? "in mortgage payments and " : "in mortgage payments.");
 		if(finesPaid)
-			out << Format::Number(finesPaid) << ((salariesPaid || mortgagesPaid) ?
+			out << Format::Credits(finesPaid) << ((salariesPaid || mortgagesPaid) ?
 				" in fines." : " credits in fines.");
 	}
 	return out.str();

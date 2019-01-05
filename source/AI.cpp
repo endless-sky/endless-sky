@@ -124,6 +124,113 @@ namespace {
 				bay.ship->SetCommands(Command::DEPLOY);
 	}
 	
+	// Determine if the ship with the given travel plan should refuel in
+	// its current system, or if it should keep traveling.
+	bool ShouldRefuel(const Ship &ship, const DistanceMap &route, double fuelCapacity = 0.)
+	{
+		if(!fuelCapacity)
+			fuelCapacity = ship.Attributes().Get("fuel capacity");
+		
+		const System *from = ship.GetSystem();
+		const bool systemHasFuel = from->HasFuelFor(ship) && fuelCapacity;
+		// If there is no fuel capacity in this ship, no fuel in this
+		// system, if it is fully fueled, or its drive doesn't require
+		// fuel, then it should not refuel before traveling.
+		if(!systemHasFuel || ship.Fuel() == 1. || !ship.JumpFuel())
+			return false;
+		
+		// Calculate the fuel needed to reach the next system with fuel.
+		double fuel = fuelCapacity * ship.Fuel();
+		const System *to = route.Route(from);
+		while(to && !to->HasFuelFor(ship))
+			to = route.Route(to);
+		
+		// The returned system from Route is nullptr when the route is
+		// "complete." If 'to' is nullptr here, then there are no fuel
+		// stops between the current system (which has fuel) and the
+		// desired endpoint system - refuel only if needed.
+		return fuel < route.RequiredFuel(from, (to ? to : route.End()));
+	}
+	
+	// Wrapper for ship - target system uses.
+	bool ShouldRefuel(const Ship &ship, const System *to)
+	{
+		if(!to || ship.Fuel() == 1. || !ship.GetSystem()->HasFuelFor(ship))
+			return false;
+		double fuelCapacity = ship.Attributes().Get("fuel capacity");
+		if(!fuelCapacity)
+			return false;
+		double needed = ship.JumpFuel(to);
+		if(needed && to->HasFuelFor(ship))
+			return ship.Fuel() * fuelCapacity < needed;
+		else
+		{
+			// If no direct jump route, or the target system has no
+			// fuel, perform a more elaborate refueling check.
+			return ShouldRefuel(ship, DistanceMap(ship, to), fuelCapacity);
+		}
+	}
+	
+	const StellarObject *GetRefuelLocation(const Ship &ship)
+	{
+		const StellarObject *target = nullptr;
+		const System *system = ship.GetSystem();
+		if(system)
+		{
+			// Determine which, if any, planet with fuel is closest.
+			double closest = numeric_limits<double>::infinity();
+			const Point &p = ship.Position();
+			for(const StellarObject &object : system->Objects())
+				if(object.GetPlanet() && object.GetPlanet()->HasFuelFor(ship))
+				{
+					double distance = p.Distance(object.Position());
+					if(distance < closest)
+					{
+						target = &object;
+						closest = distance;
+					}
+				}
+		}
+		return target;
+	}
+	
+	// Set the ship's TargetStellar or TargetSystem in order to reach the
+	// next desired system. Will target a landable planet to refuel.
+	void SelectRoute(Ship &ship, const System *targetSystem)
+	{
+		const System *from = ship.GetSystem();
+		if(from == targetSystem || !targetSystem)
+			return;
+		const DistanceMap route(ship, targetSystem);
+		const bool needsRefuel = ShouldRefuel(ship, route);
+		const System *to = route.Route(from);
+		// The destination may be accessible by both jump and wormhole.
+		// Prefer wormhole travel in these cases, to conserve fuel. Must
+		// check accessibility as DistanceMap may only see the jump path.
+		if(to && !needsRefuel)
+			for(const StellarObject &object : from->Objects())
+			{
+				const Planet *planet = object.GetPlanet();
+				if(planet && planet->IsWormhole() && planet->IsAccessible(&ship)
+						&& planet->WormholeDestination(from) == to)
+				{
+					ship.SetTargetStellar(&object);
+					ship.SetTargetSystem(nullptr);
+					return;
+				}
+			}
+		else if(needsRefuel)
+		{
+			// There is at least one planet that can refuel the ship.
+			ship.SetTargetStellar(GetRefuelLocation(ship));
+			return;
+		}
+		// Either there is no viable wormhole route to this system, or
+		// the target system cannot be reached.
+		ship.SetTargetSystem(to);
+		ship.SetTargetStellar(nullptr);
+	}
+	
 	const double MAX_DISTANCE_FROM_CENTER = 10000.;
 	// Constants for the invisible fence timer.
 	const int FENCE_DECAY = 4;
@@ -295,11 +402,24 @@ void AI::Clean()
 	notoriety.clear();
 	governmentActions.clear();
 	playerActions.clear();
-	shipStrength.clear();
+	helperList.clear();
 	swarmCount.clear();
+	fenceCount.clear();
 	miningAngle.clear();
 	miningTime.clear();
 	appeasmentThreshold.clear();
+	shipStrength.clear();
+	enemyStrength.clear();
+	allyStrength.clear();
+}
+
+
+
+// Clear ship orders. This should be done when the player lands on a planet,
+// but not when they jump from one system to another.
+void AI::ClearOrders()
+{
+	orders.clear();
 }
 
 
@@ -984,6 +1104,9 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			range -= 1000 * Has(*it, gov, ShipEvent::BOARD);
 			// Focus on nearly dead ships.
 			range += 500. * (it->Shields() + it->Hull());
+			// If a target is extremely overheated, focus on ships that can attack back.
+			if(it->IsOverheated())
+				range += 3000. * (it->Heat() - .9);
 			if((isPotentialNemesis && !hasNemesis) || range < closest)
 			{
 				closest = range;
@@ -996,13 +1119,14 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	// AI ships without an in-range hostile target consider scanning other ships.
 	if(!isYours && !target)
 	{
-		bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
-		bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
+		bool cargoScan = ship.Attributes().Get("cargo scan power");
+		bool outfitScan = ship.Attributes().Get("outfit scan power");
 		if(cargoScan || outfitScan)
 		{
 			closest = numeric_limits<double>::infinity();
 			for(const auto &it : ships)
-				if(it->GetSystem() == system && it->GetGovernment() != gov && it->IsTargetable())
+				if(it->GetSystem() == system && it->GetGovernment() != gov
+						&& !gov->IsEnemy(it->GetGovernment()) && it->IsTargetable())
 				{
 					if((!cargoScan || Has(gov, it, ShipEvent::SCAN_CARGO))
 							&& (!outfitScan || Has(gov, it, ShipEvent::SCAN_OUTFITS)))
@@ -1074,10 +1198,10 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	shared_ptr<Ship> target = it->second.target.lock();
 	if(type == Orders::MOVE_TO && it->second.targetSystem && ship.GetSystem() != it->second.targetSystem)
 	{
-		// The desired position is in a different system.
-		DistanceMap distance(ship, it->second.targetSystem);
-		const System *to = distance.Route(ship.GetSystem());
-		ship.SetTargetSystem(to);
+		// The desired position is in a different system. Find the best
+		// way to reach that system (via wormhole or jumping). This may
+		// result in the ship landing to refuel.
+		SelectRoute(ship, it->second.targetSystem);
 		return false;
 	}
 	else if(type == Orders::MOVE_TO && ship.Position().Distance(it->second.point) > 20.)
@@ -1140,7 +1264,8 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		if(it != orders.end() && it->second.target.lock() == target)
 			friendlyOverride = (it->second.type == Orders::ATTACK || it->second.type == Orders::FINISH_OFF);
 	}
-	if(target && (ship.GetGovernment()->IsEnemy(target->GetGovernment()) || friendlyOverride))
+	const Government *gov = ship.GetGovernment();
+	if(target && (gov->IsEnemy(target->GetGovernment()) || friendlyOverride))
 	{
 		bool shouldBoard = ship.Cargo().Free() && ship.GetPersonality().Plunders();
 		bool hasBoarded = Has(ship, target, ShipEvent::BOARD);
@@ -1157,10 +1282,10 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 	else if(target)
 	{
-		bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
-		bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
-		if((!cargoScan || Has(ship.GetGovernment(), target, ShipEvent::SCAN_CARGO))
-				&& (!outfitScan || Has(ship.GetGovernment(), target, ShipEvent::SCAN_OUTFITS)))
+		bool cargoScan = ship.Attributes().Get("cargo scan power");
+		bool outfitScan = ship.Attributes().Get("outfit scan power");
+		if((!cargoScan || Has(gov, target, ShipEvent::SCAN_CARGO))
+				&& (!outfitScan || Has(gov, target, ShipEvent::SCAN_OUTFITS)))
 			target.reset();
 		else
 		{
@@ -1171,8 +1296,12 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		return;
 	}
 	
+	// A ship has restricted movement options if it is 'staying' or is hostile to its parent.
 	const bool shouldStay = ship.GetPersonality().IsStaying()
-			|| (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(ship.GetGovernment()));
+			|| (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov));
+	// Ships should choose a random system/planet for travel if they do not
+	// already have a system/planet in mind, and are free to move about.
+	const System *origin = ship.GetSystem();
 	if(!ship.GetTargetSystem() && !ship.GetTargetStellar() && !shouldStay)
 	{
 		int jumps = ship.JumpsRemaining();
@@ -1183,13 +1312,13 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		vector<int> systemWeights;
 		int totalWeight = 0;
 		const set<const System *> &links = ship.Attributes().Get("jump drive")
-			? ship.GetSystem()->Neighbors() : ship.GetSystem()->Links();
+			? origin->Neighbors() : origin->Links();
 		if(jumps)
 		{
 			for(const System *link : links)
 			{
 				// Prefer systems in the direction we're facing.
-				Point direction = link->Position() - ship.GetSystem()->Position();
+				Point direction = link->Position() - origin->Position();
 				int weight = static_cast<int>(
 					11. + 10. * ship.Facing().Unit().Dot(direction.Unit()));
 				
@@ -1202,7 +1331,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		// Anywhere you can land that has a port has the same weight. Ships will
 		// not land anywhere without a port.
 		vector<const StellarObject *> planets;
-		for(const StellarObject &object : ship.GetSystem()->Objects())
+		for(const StellarObject &object : origin->Objects())
 			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
 					&& object.GetPlanet()->CanLand(ship))
 			{
@@ -1212,7 +1341,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		// If there are no ports to land on and this ship cannot jump, consider
 		// landing on uninhabited planets.
 		if(!totalWeight)
-			for(const StellarObject &object : ship.GetSystem()->Objects())
+			for(const StellarObject &object : origin->Objects())
 				if(object.GetPlanet() && object.GetPlanet()->CanLand(ship))
 				{
 					planets.push_back(&object);
@@ -1222,10 +1351,10 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		{
 			// If there is nothing this ship can land on, have it just go to the
 			// star and hover over it rather than drifting far away.
-			if(ship.GetSystem()->Objects().empty())
+			if(origin->Objects().empty())
 				return;
 			totalWeight = 1;
-			planets.push_back(&ship.GetSystem()->Objects().front());
+			planets.push_back(&origin->Objects().front());
 		}
 		
 		set<const System *>::const_iterator it = links.begin();
@@ -1248,6 +1377,10 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			ship.SetTargetStellar(planets[choice]);
 		}
 	}
+	// Choose the best method of reaching the target system, which may mean
+	// using a local wormhole rather than jumping. If this ship has chosen
+	// to land, this decision will not be altered.
+	SelectRoute(ship, ship.GetTargetSystem());
 	
 	if(ship.GetTargetSystem())
 	{
@@ -1271,8 +1404,8 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 	else if(shouldStay && !ship.GetSystem()->Objects().empty())
 	{
-		unsigned i = Random::Int(ship.GetSystem()->Objects().size());
-		ship.SetTargetStellar(&ship.GetSystem()->Objects()[i]);
+		unsigned i = Random::Int(origin->Objects().size());
+		ship.SetTargetStellar(&origin->Objects()[i]);
 	}
 }
 
@@ -1296,53 +1429,19 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	{
 		if(ship.GetTargetStellar())
 		{
+			// An escort with an out-of-system parent only lands to
+			// refuel or use a wormhole to route toward the parent.
 			const Planet *targetPlanet = ship.GetTargetStellar()->GetPlanet();
-			if(!targetPlanet || !targetPlanet->CanLand(ship))
-				ship.SetTargetStellar(nullptr);
-			// If this ship has already refuelled, and its parent has left the
-			// system, no need to land on a planet again.
-			else if(!targetPlanet->IsWormhole() && ship.Fuel() == 1.)
+			if(!targetPlanet || !targetPlanet->CanLand(ship)
+					|| (!targetPlanet->IsWormhole() && ship.Fuel() == 1.))
 				ship.SetTargetStellar(nullptr);
 		}
 		
 		if(!ship.GetTargetStellar() && !ship.GetTargetSystem())
 		{
-			// Figure out a path to the parent ship's system and check whether the
-			// ship should refuel, land on a wormhole or jump to the next system.
-			DistanceMap distance(ship, parent.GetSystem());
-			const System *from = ship.GetSystem();
-			
-			// Check how much fuel is required to reach the next refuel system.
-			if(systemHasFuel && ship.Fuel() < 1.)
-			{
-				const System *to = distance.Route(from);
-				while(to && !to->HasFuelFor(ship))
-					to = distance.Route(to);
-				
-				// Refuel.
-				if(!to || ship.Fuel() < distance.RequiredFuel(from, to) / ship.Attributes().Get("fuel capacity"))
-					Refuel(ship, command);
-			}
-			
-			if(!ship.GetTargetStellar())
-			{
-				const System *to = distance.Route(from);
-				
-				// Land on wormhole.
-				for(const StellarObject &object : from->Objects())
-				{
-					const Planet *planet = object.GetPlanet();
-					if(planet && planet->IsWormhole() && planet->CanLand(ship) && planet->WormholeDestination(from) == to)
-					{
-						ship.SetTargetStellar(&object);
-						break;
-					}
-				}
-				
-				// Jump to the next system.
-				if(!ship.GetTargetStellar())
-					ship.SetTargetSystem(to);
-			}
+			// Route to the parent ship's system and check whether
+			// the ship should land (refuel or wormhole) or jump.
+			SelectRoute(ship, parent.GetSystem());
 		}
 		
 		// Perform the action that this ship previously decided on.
@@ -1385,7 +1484,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		if(!dest)
 			// This ship has no route to the parent's destination system, so protect it until it jumps away.
 			KeepStation(ship, command, parent);
-		else if(systemHasFuel && !dest->HasFuelFor(ship) && ship.JumpsRemaining() == 1)
+		else if(ShouldRefuel(ship, dest))
 			Refuel(ship, command);
 		else if(!ship.JumpsRemaining())
 			MoveTo(ship, command, Point(), Point(), 40., 0.1);
@@ -1403,25 +1502,16 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 
 
 
+// Prefer your parent's target planet for refueling, but if it and your current
+// target planet can't fuel you, try to find one that can.
 void AI::Refuel(Ship &ship, Command &command)
 {
 	const StellarObject *parentTarget = (ship.GetParent() ? ship.GetParent()->GetTargetStellar() : nullptr);
 	if(CanRefuel(ship, parentTarget))
 		ship.SetTargetStellar(parentTarget);
 	else if(!CanRefuel(ship, ship.GetTargetStellar()))
-	{
-		double closest = numeric_limits<double>::infinity();
-		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(CanRefuel(ship, &object))
-			{
-				double distance = ship.Position().Distance(object.Position());
-				if(distance < closest)
-				{
-					ship.SetTargetStellar(&object);
-					closest = distance;
-				}
-			}
-	}
+		ship.SetTargetStellar(GetRefuelLocation(ship));
+
 	if(ship.GetTargetStellar())
 	{
 		MoveToPlanet(ship, command);
@@ -1986,8 +2076,8 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 	else if(target)
 	{
 		// Approach and scan the targeted, friendly ship's cargo or outfits.
-		bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
-		bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
+		bool cargoScan = ship.Attributes().Get("cargo scan power");
+		bool outfitScan = ship.Attributes().Get("outfit scan power");
 		// If the pointer to the target ship exists, it is targetable and in-system.
 		bool mustScanCargo = cargoScan && !Has(ship, target, ShipEvent::SCAN_CARGO);
 		bool mustScanOutfits = outfitScan && !Has(ship, target, ShipEvent::SCAN_OUTFITS);
@@ -2004,13 +2094,14 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		const System *system = ship.GetSystem();
 		const Government *gov = ship.GetGovernment();
 		
-		// Consider scanning any ship in this system that you haven't yet personally scanned.
+		// Consider scanning any non-hostile ship in this system that you haven't yet personally scanned.
 		vector<shared_ptr<Ship>> targetShips;
-		bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
-		bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
+		bool cargoScan = ship.Attributes().Get("cargo scan power");
+		bool outfitScan = ship.Attributes().Get("outfit scan power");
 		if(cargoScan || outfitScan)
 			for(const auto &it : ships)
-				if(it->GetGovernment() != gov && it->GetSystem() == system && it->IsTargetable())
+				if(it->GetGovernment() != gov && !it->GetGovernment()->IsEnemy(gov)
+						&& it->GetSystem() == system && it->IsTargetable())
 				{
 					if((!cargoScan || Has(ship, it, ShipEvent::SCAN_CARGO))
 							&& (!outfitScan || Has(ship, it, ShipEvent::SCAN_OUTFITS)))
@@ -2287,9 +2378,9 @@ void AI::DoScatter(Ship &ship, Command &command)
 // Instead of coming to a full stop, adjust to a target velocity vector
 Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse)
 {
-	const Point &position = ship.Position();
+	Point position = ship.Position();
 	Point velocity = ship.Velocity() - targetVelocity;
-	const Angle &angle = ship.Facing();
+	Angle angle = ship.Facing();
 	double acceleration = ship.Acceleration();
 	double turnRate = ship.TurnRate();
 	shouldReverse = false;
@@ -2298,6 +2389,17 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 	double v = velocity.Length();
 	if(!v)
 		return position;
+	// It makes no sense to calculate a stopping point for a ship entering hyperspace.
+	if(ship.IsHyperspacing())
+	{
+		if(ship.IsUsingJumpDrive() || ship.IsEnteringHyperspace())
+			return position;
+		
+		double maxVelocity = ship.MaxVelocity();
+		double jumpTime = (v - maxVelocity) / 2.;
+		position += velocity.Unit() * (jumpTime * (v + maxVelocity) * .5);
+		v = maxVelocity;
+	}
 	
 	// This assumes you're facing exactly the wrong way.
 	double degreesToTurn = TO_DEG * acos(min(1., max(-1., -velocity.Unit().Dot(angle.Unit()))));
@@ -3464,7 +3566,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 		else if(existing.type == Orders::HOLD_POSITION)
 		{
 			bool shouldReverse = false;
-			// Set the point this ship will "guard.", so it can return
+			// Set the point this ship will "guard," so it can return
 			// to it if knocked away by projectiles / explosions.
 			existing.point = StoppingPoint(*ship, Point(), shouldReverse);
 		}

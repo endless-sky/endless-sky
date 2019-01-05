@@ -61,6 +61,16 @@ namespace {
 		// Control will never reach here, but to satisfy the compiler:
 		return nullptr;
 	}
+	
+	// If a source, destination, waypoint, or stopover supplies more than one explicit choice
+	// or a mixture of explicit choice and location filter, print a warning.
+	void ParseMixedSpecificity(const DataNode &node, string &&kind, int expected)
+	{
+		if(node.Size() >= expected + 1)
+			node.PrintTrace("Warning: use a location filter to choose from multiple " + kind + "s:");
+		if(node.HasChildren())
+			node.PrintTrace("Warning: location filter ignored due to use of explicit " + kind + ":");
+	}
 }
 
 
@@ -122,8 +132,12 @@ void Mission::Load(const DataNode &node)
 				cargoProb = child.Value(4);
 			
 			for(const DataNode &grand : child)
+			{
 				if(!ParseContraband(grand))
 					grand.PrintTrace("Skipping unrecognized attribute:");
+				else
+					grand.PrintTrace("Warning: \"stealth\" and \"illegal\" are now mission-level properties:");
+			}
 		}
 		else if(child.Token(0) == "passengers" && child.Size() >= 2)
 		{
@@ -177,26 +191,34 @@ void Mission::Load(const DataNode &node)
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else if(child.Token(0) == "source" && child.Size() >= 2)
+		{
 			source = GameData::Planets().Get(child.Token(1));
+			ParseMixedSpecificity(child, "planet", 2);
+		}
 		else if(child.Token(0) == "source")
 			sourceFilter.Load(child);
 		else if(child.Token(0) == "destination" && child.Size() == 2)
+		{
 			destination = GameData::Planets().Get(child.Token(1));
+			ParseMixedSpecificity(child, "planet", 2);
+		}
 		else if(child.Token(0) == "destination")
 			destinationFilter.Load(child);
 		else if(child.Token(0) == "waypoint" && child.Size() >= 2)
 		{
-			set<const System *> &set = (child.Size() >= 3 && child.Token(2) == "visited")
-					? visitedWaypoints : waypoints;
+			bool visited = child.Size() >= 3 && child.Token(2) == "visited";
+			set<const System *> &set = visited ? visitedWaypoints : waypoints;
 			set.insert(GameData::Systems().Get(child.Token(1)));
+			ParseMixedSpecificity(child, "system", 2 + visited);
 		}
 		else if(child.Token(0) == "waypoint" && child.HasChildren())
 			waypointFilters.emplace_back(child);
 		else if(child.Token(0) == "stopover" && child.Size() >= 2)
 		{
-			set<const Planet *> &set = (child.Size() >= 3 && child.Token(2) == "visited")
-					? visitedStopovers : stopovers;
+			bool visited = child.Size() >= 3 && child.Token(2) == "visited";
+			set<const Planet *> &set = visited ? visitedStopovers : stopovers;
 			set.insert(GameData::Planets().Get(child.Token(1)));
+			ParseMixedSpecificity(child, "planet", 2 + visited);
 		}
 		else if(child.Token(0) == "stopover" && child.HasChildren())
 			stopoverFilters.emplace_back(child);
@@ -532,14 +554,14 @@ bool Mission::HasFullClearance() const
 
 
 // Check if it's possible to offer or complete this mission right now.
-bool Mission::CanOffer(const PlayerInfo &player) const
+bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
 {
 	if(location == BOARDING || location == ASSISTING)
 	{
-		if(!player.BoardingShip())
+		if(!boardingShip)
 			return false;
 		
-		if(!sourceFilter.Matches(*player.BoardingShip()))
+		if(!sourceFilter.Matches(*boardingShip))
 			return false;
 	}
 	else
@@ -565,15 +587,15 @@ bool Mission::CanOffer(const PlayerInfo &player) const
 	}
 	
 	auto it = actions.find(OFFER);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
 	it = actions.find(ACCEPT);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
 	it = actions.find(DECLINE);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
 	return true;
@@ -588,6 +610,14 @@ bool Mission::HasSpace(const PlayerInfo &player) const
 		extraCrew = player.Flagship()->Crew() - player.Flagship()->RequiredCrew();
 	return (cargoSize <= player.Cargo().Free() + player.Cargo().CommoditiesSize()
 		&& passengers <= player.Cargo().BunksFree() + extraCrew);
+}
+
+
+
+// Check if this mission's cargo can fit entirely on the referenced ship.
+bool Mission::HasSpace(const Ship &ship) const
+{
+	return (cargoSize <= ship.Cargo().Free() && passengers <= ship.Cargo().BunksFree());
 }
 
 
@@ -666,19 +696,32 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		return "";
 	
 	int extraCrew = 0;
-	if(player.Flagship())
-		extraCrew = player.Flagship()->Crew() - player.Flagship()->RequiredCrew();
+	const Ship *flagship = player.Flagship();
+	// You cannot fire crew in space.
+	if(flagship && player.GetPlanet())
+		extraCrew = flagship->Crew() - flagship->RequiredCrew();
 	
-	int cargoNeeded = cargoSize - (player.Cargo().Free() + player.Cargo().CommoditiesSize());
-	int bunksNeeded = passengers - (player.Cargo().BunksFree() + extraCrew);
+	int cargoNeeded = cargoSize;
+	int bunksNeeded = passengers;
+	if(player.GetPlanet())
+	{
+		cargoNeeded -= (player.Cargo().Free() + player.Cargo().CommoditiesSize());
+		bunksNeeded -= (player.Cargo().BunksFree() + extraCrew);
+	}
+	else
+	{
+		// Boarding a ship, so only use the flagship's space.
+		cargoNeeded -= flagship->Cargo().Free();
+		bunksNeeded -= flagship->Cargo().BunksFree();
+	}
 	if(cargoNeeded < 0 && bunksNeeded < 0)
 		return "";
 	
 	map<string, string> subs;
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
-	if(player.Flagship())
-		subs["<ship>"] = player.Flagship()->Name();
+	if(flagship)
+		subs["<ship>"] = flagship->Name();
 	
 	ostringstream out;
 	if(bunksNeeded > 0)
@@ -718,7 +761,7 @@ bool Mission::IsUnique() const
 // When the state of this mission changes, it may make changes to the player
 // information or show new UI panels. PlayerInfo::MissionCallback() will be
 // used as the callback for any UI panel that returns a value.
-bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
+bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<Ship> &boardingShip)
 {
 	if(trigger == STOPOVER)
 	{
@@ -742,7 +785,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 	}
 	// Don't update any conditions if this action exists and can't be completed.
 	auto it = actions.find(trigger);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
 	if(trigger == ACCEPT)
@@ -769,7 +812,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 	// if this is a non-job mission that just got offered and if so,
 	// automatically accept it.
 	if(it != actions.end())
-		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr);
+		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr, boardingShip);
 	else if(trigger == OFFER && location != JOB)
 		player.MissionCallback(Conversation::ACCEPT);
 	
@@ -854,7 +897,7 @@ const string &Mission::Identifier() const
 
 // "Instantiate" a mission by replacing randomly selected values and places
 // with a single choice, and then replacing any wildcard text as well.
-Mission Mission::Instantiate(const PlayerInfo &player) const
+Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
 {
 	Mission result;
 	// If anything goes wrong below, this mission should not be offered.
@@ -1020,8 +1063,8 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	subs["<fare>"] = (result.passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
 	if(player.GetPlanet())
 		subs["<origin>"] = player.GetPlanet()->Name();
-	else if(player.BoardingShip())
-		subs["<origin>"] = player.BoardingShip()->Name();
+	else if(boardingShip)
+		subs["<origin>"] = boardingShip->Name();
 	subs["<planet>"] = result.destination ? result.destination->Name() : "";
 	subs["<system>"] = result.destination ? result.destination->GetSystem()->Name() : "";
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
