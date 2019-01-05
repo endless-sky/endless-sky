@@ -260,25 +260,62 @@ void Engine::Place()
 		Point pos;
 		Angle angle = Angle::Random(360.);
 		Point velocity = angle.Unit();
+		/* Placement map & priority
+		1. In other system: in space, random
+		1. Disabled: in space, random
+		3. Launching: departing player planet
+		4. Staying / Waiting: in space, random
+		4. Has own planet: departing own planet
+		4. Can land on player planet / player ship: departing player planet
+		7. Other: in space, random (e.g. hostiles)
+		*/
 		// Any ships in the same system as the player should be either
-		// taking off from the player's planet or nearby.
-		bool isHere = (ship->GetSystem() == player.GetSystem());
-		if(isHere)
-			pos = planetPos;
-		// Check whether this ship should take off with you. "Launching" ships can always take
-		// off, otherwise they must be able to land and also not be flagged to stay in space.
-		if(isHere && !ship->IsDisabled() && (ship->GetPersonality().IsLaunching()
-				|| ((player.GetPlanet()->CanLand(*ship) || ship->IsYours())
-				&& !(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting()))))
+		// taking off from a specific planet or nearby.
+		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
 		{
-			if(player.GetPlanet())
-				ship->SetPlanet(player.GetPlanet());
-			pos += angle.Unit() * Random::Real() * planetRadius;
+			// random reference position & velocity
 		}
 		else
 		{
+			const Personality &person = ship->GetPersonality();
+			bool launchesWithPlayer = (ship->IsYours() || player.GetPlanet()->CanLand(*ship))
+					&& !(person.IsStaying() || person.IsWaiting() || ship->GetPlanet());
+			if(person.IsLaunching() || launchesWithPlayer)
+			{
+				if(player.GetPlanet())
+					ship->SetPlanet(player.GetPlanet());
+				pos = planetPos + angle.Unit() * Random::Real() * planetRadius;
+			}
+			else if(ship->GetPlanet())
+			{
+				// Default to the player's planet in the case of data definition errors.
+				const StellarObject *object = ship->GetSystem()->FindStellar(ship->GetPlanet());
+				if(object)
+					pos = object->Position() + angle.Unit() * Random::Real() * object->Radius();
+				else
+				{
+					if(player.GetPlanet())
+						ship->SetPlanet(player.GetPlanet());
+					pos = planetPos + angle.Unit() * Random::Real() * planetRadius;
+				}
+			}
+			else
+			{
+				// random reference position & velocity
+			}
+		}
+		if(!pos)
+		{
+			// This special ship is in a different system, disabled, or otherwise
+			// unable to land on viable planets in the system. It should be given
+			// a random reference position & velocity within a reasonable area.
 			ship->SetPlanet(nullptr);
-			pos = planetPos + Angle::Random().Unit() * ((Random::Real() + 1.) * 400. + 2. * planetRadius);
+			// The habitable zone of some systems is very small.
+			double scale = max(500., ship->GetSystem()->HabitableZone());
+			pos = Angle::Random().Unit() * ((sqrt(Random::Real()) + .5) * scale);
+			// Ensure that the random position is not within 400 px of the player's planet.
+			if(pos.Distance(planetPos) < 400. + 2. * planetRadius)
+				pos += (pos - planetPos) * 2. * planetRadius;
 			velocity *= Random::Real() * ship->MaxVelocity();
 		}
 		

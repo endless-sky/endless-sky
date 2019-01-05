@@ -614,7 +614,8 @@ const Planet *PlayerInfo::GetPlanet() const
 
 
 
-// If the player is landed, return the stellar object they are on.
+// If the player is landed, return the stellar object they are on. Some planets
+// (e.g. ringworlds) may include multiple stellar objects in the same system.
 const StellarObject *PlayerInfo::GetStellarObject() const
 {
 	if(!system || !planet)
