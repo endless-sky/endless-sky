@@ -464,8 +464,8 @@ ship "Pug Arfecta"
 		"cost" 90000000
 		"shields" 98000
 		"hull" 80000
-		"required crew" 81
-		"bunks" 108
+		"required crew" 36
+		"bunks" 46
 		"mass" 670
 		"drag" 7.5
 		"heat dissipation" .8
@@ -495,7 +495,7 @@ ship "Pug Arfecta"
 		"Pug Gridfire Turret" 3
 		
 		"Cloaking Device"
-		"Pug Biodefenses" 42
+		"Pug Biodefenses" 12
 		
 		"Pug Lohmar Thruster"
 		"Pug Lohmar Steering" 2
@@ -725,7 +725,7 @@ mission "Pug Angry at Being Farmed"
 			not "chosen sides"
 		"reputation: Pug" < -100
 	npc kill
-		government Pug
+		government "Pug"
 		personality nemesis unconstrained staying
 		system "Pug Iyik"
 		ship "Pug Arfecta" "Ayee Eee Eek"
