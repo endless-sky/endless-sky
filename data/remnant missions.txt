@@ -1135,7 +1135,7 @@ event "Remnant Salvage Available"
 mission "Remnant: Bounty 2"
 	job
 	repeat
-	name "Hunt down the <npc>"
+	name "Remnant bounty"
 	description "Hunt down a Korath ship that is lurking in Remnant territory, then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -1205,18 +1205,13 @@ mission "Remnant: Expanded Horizons Quarg 1"
 mission "Remnant: Expanded Horizons Quarg 2"
 	name "Quarg Scanning"
 	description "Perform an outfit scan on the Quarg ship <npc>, then land again on <destination>."
-	source
-		planet Wayfarer
+	source "Wayfarer"
 	to offer
 		has "Remnant: Expanded Horizons Quarg 1: done"	
 	on offer
 		conversation
 			`Dawn and her fellow researchers show up a few minutes after you do, excitedly talking about the various things they have seen. "<first>, there is a Quarg ship taking off shortly, and we were hoping you might be able to get scans of it while it is in flight. It would be really helpful for our understanding of how they work."`
-			choice
-				`	"Sure, that sounds simple enough."`
-					accept
-				`	"Sorry, that sounds risky."`
-					defer
+				accept
 
 	on accept
 		log "Volunteered to show Dawn and some of her fellow researchers the world where humans and Quarg co-exist."
