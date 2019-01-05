@@ -4374,9 +4374,9 @@ system Arculus
 	trade Medical 510
 	trade Metal 417
 	trade Plastic 498
-	fleet "Large Remnant" 1500
-	fleet "Small Remnant" 1000
-	fleet "Remnant Transport" 800
+	fleet "Large Remnant" 2100
+	fleet "Small Remnant" 1600
+	fleet "Remnant Transport" 1600
 	fleet "Korath Raid" 40000
 	object
 		sprite star/g5-old
@@ -5852,6 +5852,8 @@ system Caeculus
 	trade Metal 272
 	trade Plastic 289
 	fleet "Korath Raid" 20000
+	fleet "Small Remnant" 30000
+	fleet "Large Remnant" 30000
 	object
 		sprite star/wr
 		period 10
@@ -6710,9 +6712,9 @@ system Cinxia
 	trade Medical 516
 	trade Metal 354
 	trade Plastic 417
-	fleet "Large Remnant" 1200
-	fleet "Small Remnant" 900
-	fleet "Remnant Transport" 800
+	fleet "Large Remnant" 1750
+	fleet "Small Remnant" 1300
+	fleet "Remnant Transport" 1300
 	fleet "Korath Raid" 30000
 	object
 		sprite star/k5-old
@@ -8209,9 +8211,9 @@ system Edusa
 	trade Medical 521
 	trade Metal 336
 	trade Plastic 475
-	fleet "Large Remnant" 3000
-	fleet "Small Remnant" 2000
-	fleet "Remnant Transport" 1000
+	fleet "Large Remnant" 3200
+	fleet "Small Remnant" 2400
+	fleet "Remnant Transport" 2400
 	fleet "Korath Raid" 40000
 	object
 		sprite star/giant
@@ -9496,8 +9498,8 @@ system Farinus
 	trade Medical 558
 	trade Metal 342
 	trade Plastic 354
-	fleet "Large Remnant" 9000
-	fleet "Small Remnant" 7000
+	fleet "Large Remnant" 14000
+	fleet "Small Remnant" 10000
 	fleet "Remnant Transport" 10000
 	fleet "Korath Raid" 40000
 	object
@@ -16984,9 +16986,9 @@ system Pantica
 	trade Medical 545
 	trade Metal 454
 	trade Plastic 469
-	fleet "Large Remnant" 1000
-	fleet "Small Remnant" 700
-	fleet "Remnant Transport" 800
+	fleet "Large Remnant" 1400
+	fleet "Small Remnant" 1000
+	fleet "Remnant Transport" 1000
 	fleet "Korath Raid" 40000
 	object
 		sprite star/k0-old
@@ -17251,6 +17253,9 @@ system Peragenor
 	trade Medical 512
 	trade Metal 271
 	trade Plastic 373
+	fleet "Large Remnant" 10000
+	fleet "Small Remnant" 7000
+	fleet "Remnant Transport" 7000
 	fleet "Korath Raid" 40000
 	object
 		sprite star/g0-old
@@ -17351,9 +17356,9 @@ system Perfica
 	trade Medical 546
 	trade Metal 338
 	trade Plastic 368
-	fleet "Large Remnant" 8000
-	fleet "Small Remnant" 5000
-	fleet "Remnant Transport" 9000
+	fleet "Large Remnant" 10000
+	fleet "Small Remnant" 7500
+	fleet "Remnant Transport" 7500
 	fleet "Korath Raid" 30000
 	object
 		sprite star/g0-old
@@ -19821,6 +19826,7 @@ system Segesta
 	trade Metal 406
 	trade Plastic 295
 	fleet "Small Remnant" 40000
+	fleet "Large Remnant" 40000
 	fleet "Korath Raid" 40000
 	object
 		sprite star/k5-old
@@ -21491,7 +21497,9 @@ system Stercutus
 	trade Metal 299
 	trade Plastic 294
 	fleet "Korath Raid" 20000
-	fleet "Small Remnant" 40000
+	fleet "Small Remnant" 20000
+	fleet "Large Remnant" 20000
+	fleet "Remnant Transport" 40000
 	object
 		sprite star/g5-old
 		distance 31.1534
