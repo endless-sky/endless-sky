@@ -14,8 +14,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Depreciation.h"
 #include "Format.h"
+#include "GameData.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
+#include "Tooltip.h"
 
 #include <algorithm>
 #include <cmath>
@@ -26,46 +28,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	const map<string, double> SCALE = {
-		{"active cooling", 60.},
-		{"afterburner energy", 60.},
-		{"afterburner fuel", 60.},
-		{"afterburner heat", 60.},
-		{"cloak", 60.},
-		{"cloaking energy", 60.},
-		{"cloaking fuel", 60.},
-		{"cloaking heat", 60.},
-		{"cooling", 60.},
-		{"cooling energy", 60.},
-		{"energy consumption", 60.},
-		{"energy generation", 60.},
-		{"heat generation", 60.},
-		{"heat dissipation", 60.},
-		{"hull repair rate", 60.},
-		{"hull energy", 60.},
-		{"hull heat", 60.},
-		{"jump speed", 60.},
-		{"reverse thrusting energy", 60.},
-		{"reverse thrusting heat", 60.},
-		{"shield generation", 60.},
-		{"shield energy", 60.},
-		{"shield heat", 60.},
-		{"solar collection", 60.},
-		{"thrusting energy", 60.},
-		{"thrusting heat", 60.},
-		{"turn", 60.},
-		{"turning energy", 60.},
-		{"turning heat", 60.},
-		
-		{"thrust", 60. * 60.},
-		{"reverse thrust", 60. * 60.},
-		{"afterburner thrust", 60. * 60.},
-		
-		{"ion resistance", 60. * 100.},
-		{"disruption resistance", 60. * 100.},
-		{"slowing resistance", 60. * 100.}
-	};
-	
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
 		{"unplunderable", "This outfit cannot be plundered."},
 		{"installable", "This is not an installable item."},
@@ -86,6 +48,8 @@ OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &pla
 // Call this every time the ship changes.
 void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell)
 {
+	currentOutfit = &outfit;
+	
 	UpdateDescription(outfit.Description(), outfit.Licenses(), false);
 	UpdateRequirements(outfit, player, canSell);
 	UpdateAttributes(outfit);
@@ -114,12 +78,12 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	requirementLabels.clear();
 	requirementValues.clear();
 	requirementsHeight = 20;
-	
+
 	int day = player.GetDate().DaysSinceEpoch();
 	int64_t cost = outfit.Cost();
 	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
 	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
-	
+
 	if(buyValue == cost)
 		requirementLabels.push_back("cost:");
 	else
@@ -130,7 +94,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	}
 	requirementValues.push_back(Format::Credits(buyValue));
 	requirementsHeight += 20;
-	
+
 	if(canSell && sellValue != buyValue)
 	{
 		if(sellValue == cost)
@@ -144,14 +108,14 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementValues.push_back(Format::Credits(sellValue));
 		requirementsHeight += 20;
 	}
-	
+
 	if(outfit.Mass())
 	{
 		requirementLabels.emplace_back("mass:");
 		requirementValues.emplace_back(Format::Number(outfit.Mass()));
 		requirementsHeight += 20;
 	}
-	
+
 	bool hasContent = true;
 	static const vector<string> NAMES = {
 		"", "",
@@ -185,12 +149,10 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 
 void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 {
-	tooltipStats.clear();
-	
 	attributeLabels.clear();
 	attributeValues.clear();
 	attributesHeight = 20;
-	
+
 	bool hasNormalAttributes = false;
 	for(const pair<const char *, double> &it : outfit.Attributes())
 	{
@@ -199,12 +161,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		};
 		if(SKIP.count(it.first))
 			continue;
-		
-		auto sit = SCALE.find(it.first);
-		double scale = (sit == SCALE.end() ? 1. : sit->second);
-		
+
+		auto sit = Outfit::SCALE.find(it.first);
+		double scale = (sit == Outfit::SCALE.end() ? 1. : sit->second);
+
 		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
-		if(bit != BOOLEAN_ATTRIBUTES.end()) 
+		if(bit != BOOLEAN_ATTRIBUTES.end())
 		{
 			attributeLabels.emplace_back(bit->second);
 			attributeValues.emplace_back(" ");
@@ -215,15 +177,13 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributeLabels.emplace_back(static_cast<string>(it.first) + ":");
 			attributeValues.emplace_back(Format::Number(it.second * scale));
 			attributesHeight += 20;
-			
-			tooltipStats += static_cast<string>(it.first) + ": " + Format::Number((it.second * scale) / outfit.Mass()) + "\n";
 		}
 		hasNormalAttributes = true;
 	}
-	
+
 	if(!outfit.IsWeapon())
 		return;
-	
+
 	// Insert padding if any normal attributes were listed above.
 	if(hasNormalAttributes)
 	{
@@ -231,18 +191,18 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeValues.emplace_back();
 		attributesHeight += 10;
 	}
-	
+
 	if(outfit.Ammo())
 	{
 		attributeLabels.emplace_back("ammo:");
 		attributeValues.emplace_back(outfit.Ammo()->Name());
 		attributesHeight += 20;
 	}
-	
+
 	attributeLabels.emplace_back("range:");
 	attributeValues.emplace_back(Format::Number(outfit.Range()));
 	attributesHeight += 20;
-	
+
 	static const vector<string> VALUE_NAMES = {
 		"shield damage",
 		"hull damage",
@@ -255,7 +215,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"firing heat",
 		"firing fuel"
 	};
-	
+
 	vector<double> values = {
 		outfit.ShieldDamage(),
 		outfit.HullDamage(),
@@ -268,7 +228,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.FiringHeat(),
 		outfit.FiringFuel()
 	};
-	
+
 	// Add any per-second values to the table.
 	double reload = outfit.Reload();
 	if(reload)
@@ -280,11 +240,9 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 				attributeLabels.emplace_back(VALUE_NAMES[i] + PER_SECOND);
 				attributeValues.emplace_back(Format::Number(60. * values[i] / reload));
 				attributesHeight += 20;
-				
-				tooltipStats += VALUE_NAMES[i] + ": " + (Format::Number((60. * values[i] / reload) / outfit.Mass())) + "\n";
 			}
 	}
-	
+
 	bool isContinuous = (reload <= 1);
 	attributeLabels.emplace_back("shots / second:");
 	if(isContinuous)
@@ -292,7 +250,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	else
 		attributeValues.emplace_back(Format::Number(60. / reload));
 	attributesHeight += 20;
-	
+
 	double turretTurn = outfit.TurretTurn() * 60.;
 	if(turretTurn)
 	{
@@ -336,12 +294,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributeValues.push_back(Format::Number(percent) + "%");
 			attributesHeight += 20;
 		}
-	
+
 	// Pad the table.
 	attributeLabels.emplace_back();
 	attributeValues.emplace_back();
 	attributesHeight += 10;
-	
+
 	// Add per-shot values to the table. If the weapon fires continuously,
 	// the values have already been added.
 	if(!isContinuous)
@@ -355,7 +313,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 				attributesHeight += 20;
 			}
 	}
-	
+
 	static const vector<string> OTHER_NAMES = {
 		"inaccuracy:",
 		"blast radius:",
@@ -368,7 +326,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		static_cast<double>(outfit.MissileStrength()),
 		static_cast<double>(outfit.AntiMissile())
 	};
-	
+
 	for(unsigned i = 0; i < OTHER_NAMES.size(); ++i)
 		if(otherValues[i])
 		{
@@ -380,15 +338,16 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 
 const std::string& OutfitInfoDisplay::getTooltipText(const std::string &label) const
 {
-	tooltipText.clear();
-	if (label == "mass:") {
-		tooltipText.append(ItemInfoDisplay::getTooltipText(label));
-		tooltipText.append("\n- Stats per ton -\n");
-		tooltipText.append(tooltipStats);
+	const Tooltip tip = GameData::Tooltip(label);
+	if (tip.HasExtras() && currentOutfit) {
+		tooltipText.clear();
+		
+		tooltipText.append(tip.Text());
+		tooltipText.append(tip.ExtrasForOutfit(*currentOutfit));
 		
 		return tooltipText;
 	}
 	else {
-		return ItemInfoDisplay::getTooltipText(label);
+		return tip.Text();
 	}
 }

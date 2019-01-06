@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <string>
 #include <vector>
+#include <map>
 
 class PlayerInfo;
 class Point;
@@ -47,6 +48,7 @@ public:
 	// void DrawAttributes(const Point &topLeft) const;
 	void DrawRequirements(const Point &topLeft) const;
 	
+	
 protected:
 	virtual const std::string& getTooltipText(const std::string &label) const;
 	
@@ -58,9 +60,10 @@ private:
 private:
 	std::vector<std::string> requirementLabels;
 	std::vector<std::string> requirementValues;
-	mutable std::string tooltipText;
-	std::string tooltipStats;
 	int requirementsHeight = 0;
+	
+	const Outfit * currentOutfit;
+	mutable std::string tooltipText;
 };
 
 

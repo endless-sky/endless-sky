@@ -46,6 +46,7 @@ class Sprite;
 class StarField;
 class StartConditions;
 class System;
+class Tooltip;
 
 
 
@@ -131,7 +132,7 @@ public:
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite);
 	
-	static const std::string &Tooltip(const std::string &label);
+	static const Tooltip &Tooltip(const std::string &label);
 	static std::string HelpMessage(const std::string &name);
 	static const std::map<std::string, std::string> &HelpTemplates();
 	

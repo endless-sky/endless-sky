@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteShader.h"
 #include "UI.h"
 #include "WrappedText.h"
+#include "Tooltip.h"
 
 #include "gl_header.h"
 #include <SDL2/SDL.h>
@@ -108,7 +109,7 @@ void ShopPanel::Draw()
 	{
 		static const int WIDTH = 250;
 		static const int PAD = 10;
-		const string &text = GameData::Tooltip(warningType);
+		const string &text = GameData::Tooltip(warningType).Text();
 		WrappedText wrap(FontSet::Get(14));
 		wrap.SetWrapWidth(WIDTH - 2 * PAD);
 		wrap.Wrap(text);

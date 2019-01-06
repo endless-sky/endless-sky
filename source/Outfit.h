@@ -40,6 +40,8 @@ class Outfit : public Weapon {
 public:
 	// These are all the possible category strings for outfits.
 	static const std::vector<std::string> CATEGORIES;
+	// Scale values for outfit attributes
+	static const std::map<std::string, double> SCALE;	
 	
 public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's

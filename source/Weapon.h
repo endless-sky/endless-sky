@@ -116,14 +116,15 @@ public:
 	double TotalLifetime() const;
 	double Range() const;
 	
+	const double WeaponValue(const std::string &valueName) const;
+
 	
 protected:
 	// Legacy support: allow turret outfits with no turn rate to specify a
 	// default turnrate.
 	void SetTurretTurn(double rate);
 	
-	const Outfit *ammo = nullptr;
-	
+	const Outfit *ammo = nullptr;	
 	
 private:
 	double TotalDamage(int index) const;

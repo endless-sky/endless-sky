@@ -55,6 +55,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 #include "StartConditions.h"
 #include "System.h"
+#include "Tooltip.h"
 
 #include <algorithm>
 #include <iostream>
@@ -109,7 +110,7 @@ namespace {
 	
 	StarField background;
 	
-	map<string, string> tooltips;
+	map<string, Tooltip> tooltips;
 	map<string, string> helpMessages;
 	map<string, string> plugins;
 	
@@ -775,9 +776,10 @@ void GameData::SetHaze(const Sprite *sprite)
 
 
 
-const string &GameData::Tooltip(const string &label)
+const Tooltip &GameData::Tooltip(const string &label)
 {
-	static const string EMPTY;
+	static const ::Tooltip EMPTY;
+	
 	auto it = tooltips.find(label);
 	// Special case: the "cost" and "sells for" labels include the percentage of
 	// the full price, so they will not match exactly.
@@ -947,19 +949,43 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			for(const DataNode &child : node)
 				list.push_back(child.Token(0));
 		}
-		else if((key == "tip" || key == "help") && node.Size() >= 2)
+		else if (key == "help" && node.Size() >= 2)
 		{
-			string &text = (key == "tip" ? tooltips : helpMessages)[node.Token(1)];
+			string &text = helpMessages[node.Token(1)];
 			text.clear();
-			for(const DataNode &child : node)
+			for (const DataNode &child : node)
 			{
-				if(!text.empty())
+				if (!text.empty())
 				{
 					text += '\n';
-					if(child.Token(0)[0] != '\t')
+					if (child.Token(0)[0] != '\t')
 						text += '\t';
 				}
 				text += child.Token(0);
+			}
+		}
+		else if (key == "tip" && node.Size() >= 2)
+		{
+			::Tooltip &tip = (tooltips.emplace(node.Token(1), ::Tooltip(node.Token(1)))).first->second;
+
+			for (const DataNode &child : node)
+			{
+				if (child.Token(0) == "tipExtra")
+				{
+					string extraType = child.Token(1);
+					if (extraType == "efficiency" && !child.Token(2).empty())
+					{
+						tip.AddComparison(child.Token(2));
+					}
+					else if (extraType == "efficiencyTotal")
+					{
+						tip.SetSummary(true);
+					}
+				}
+				else 
+				{
+					tip.AddText(child.Token(0));
+				}
 			}
 		}
 		else

@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Screen.h"
 #include "Table.h"
+#include "Tooltip.h"
 
 #include <algorithm>
 #include <cmath>
@@ -214,5 +215,5 @@ void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
 
 const std::string& ItemInfoDisplay::getTooltipText(const std::string &label) const
 {
-	return GameData::Tooltip(label);
+	return GameData::Tooltip(label).Text();
 }

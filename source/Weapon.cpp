@@ -304,7 +304,22 @@ void Weapon::SetTurretTurn(double rate)
 	turretTurn = rate;
 }
 
-
+const double Weapon::WeaponValue(const std::string &valueName) const
+{
+	if (valueName.find("shield damage") != std::string::npos) return ShieldDamage();
+	if (valueName.find("hull damage") != std::string::npos) return HullDamage();
+	if (valueName.find("fuel damage") != std::string::npos) return FuelDamage();
+	if (valueName.find("heat damage") != std::string::npos) return HeatDamage();
+	if (valueName.find("ion damage") != std::string::npos) return IonDamage() * 100.;
+	if (valueName.find("slowing damage") != std::string::npos) return SlowingDamage() * 100.;
+	if (valueName.find("disruption damage") != std::string::npos) return DisruptionDamage() * 100.;
+	if (valueName.find("firing energy") != std::string::npos) return FiringEnergy();
+	if (valueName.find("firing heat") != std::string::npos) return FiringHeat();
+	if (valueName.find("firing fuel") != std::string::npos) return FiringFuel();
+	if (valueName.find("anti-missile") != std::string::npos) return AntiMissile();
+	
+	return 0.0;
+}
 
 double Weapon::TotalDamage(int index) const
 {
