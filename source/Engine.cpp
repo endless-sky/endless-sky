@@ -255,9 +255,6 @@ void Engine::Place()
 		planetRadius = object->Radius();
 	}
 	
-	// For ships that spawn in flight, compute the possible spawn centers only once.
-	auto centers = map<const System*, vector<pair<Point, double>>>();
-	
 	// Give each special ship we just added a random heading and position.
 	for (const shared_ptr<Ship> &ship : ships)
 	{
@@ -288,24 +285,11 @@ void Engine::Place()
 		// disabled, or otherwise unable to land on viable planets in the player's system.
 		if(!pos)
 		{
-			// Obtain the center position around which this ship should be placed.
-			auto &systemCenters = centers[ship->GetSystem()];
-			if(systemCenters.empty())
-			{
-				for(const StellarObject &object : ship->GetSystem()->Objects())
-					if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
-						systemCenters.emplace_back(object.Position(), object.Radius());
-				if(systemCenters.empty())
-					systemCenters.emplace_back(Point(), 0.);
-			}
-			const auto &center = systemCenters[Random::Int(systemCenters.size())];
-			
 			ship->SetPlanet(nullptr);
-			pos = center.first + Angle::Random().Unit() * ((Random::Real() + 1.) * 400. + 2. * center.second);
-			velocity *= Random::Real() * ship->MaxVelocity();
+			Fleet::Place(*ship->GetSystem(), *ship);
 		}
-		
-		ship->Place(pos, ship->IsDisabled() ? Point() : velocity, angle);
+		else
+			ship->Place(pos, ship->IsDisabled() ? Point() : velocity, angle);
 	}
 	// Move any ships that were randomly spawned into the main list, now
 	// that all special ships have been repositioned.
