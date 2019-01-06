@@ -245,6 +245,7 @@ void Engine::Place()
 		Place(mission.NPCs(), flagship);
 	
 	// Get the coordinates of the planet the player is leaving.
+	const Planet *planet = player.GetPlanet();
 	Point planetPos;
 	double planetRadius = 0.;
 	const StellarObject *object = player.GetStellarObject();
@@ -253,6 +254,9 @@ void Engine::Place()
 		planetPos = object->Position();
 		planetRadius = object->Radius();
 	}
+	
+	// For ships that spawn in flight, compute the possible spawn centers only once.
+	auto centers = map<const System*, vector<pair<Point, double>>>();
 	
 	// Give each special ship we just added a random heading and position.
 	for (const shared_ptr<Ship> &ship : ships)
@@ -265,33 +269,39 @@ void Engine::Place()
 		if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
 		{
 			const Personality &person = ship->GetPersonality();
-			bool launchesWithPlayer = (ship->IsYours() || player.GetPlanet()->CanLand(*ship))
-					&& !(person.IsStaying() || person.IsWaiting() || ship->GetPlanet());
 			bool hasOwnPlanet = ship->GetPlanet();
+			bool launchesWithPlayer = (ship->IsYours() || planet->CanLand(*ship))
+					&& !(person.IsStaying() || person.IsWaiting() || hasOwnPlanet);
 			const StellarObject *object = hasOwnPlanet ?
 					ship->GetSystem()->FindStellar(ship->GetPlanet()) : nullptr;
 			// Default to the player's planet in the case of data definition errors.
 			if(person.IsLaunching() || launchesWithPlayer || (hasOwnPlanet && !object))
 			{
-				if(player.GetPlanet())
-					ship->SetPlanet(player.GetPlanet());
+				if(planet)
+					ship->SetPlanet(planet);
 				pos = planetPos + angle.Unit() * Random::Real() * planetRadius;
 			}
 			else if(hasOwnPlanet)
 				pos = object->Position() + angle.Unit() * Random::Real() * object->Radius();
 		}
+		// Any special ship with the default (0, 0) position is in a different system,
+		// disabled, or otherwise unable to land on viable planets in the player's system.
 		if(!pos)
 		{
-			// This special ship is in a different system, disabled, or otherwise
-			// unable to land on viable planets in the system. It should be given
-			// a random reference position & velocity within a reasonable area.
+			// Obtain the center position around which this ship should be placed.
+			auto &systemCenters = centers[ship->GetSystem()];
+			if(systemCenters.empty())
+			{
+				for(const StellarObject &object : ship->GetSystem()->Objects())
+					if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+						systemCenters.emplace_back(object.Position(), object.Radius());
+				if(systemCenters.empty())
+					systemCenters.emplace_back(Point(), 0.);
+			}
+			const auto &center = systemCenters[Random::Int(systemCenters.size())];
+			
 			ship->SetPlanet(nullptr);
-			// The habitable zone of some systems is very small.
-			double scale = max(500., ship->GetSystem()->HabitableZone());
-			pos = Angle::Random().Unit() * ((sqrt(Random::Real()) + .5) * scale);
-			// Ensure that the random position is not within 400 px of the player's planet.
-			if(pos.Distance(planetPos) < 400. + 2. * planetRadius)
-				pos += (pos - planetPos) * 2. * planetRadius;
+			pos = center.first + Angle::Random().Unit() * ((Random::Real() + 1.) * 400. + 2. * center.second);
 			velocity *= Random::Real() * ship->MaxVelocity();
 		}
 		
