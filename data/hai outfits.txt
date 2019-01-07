@@ -413,7 +413,7 @@ outfit "Boulder Reactor"
 	"mass" 90
 	"outfit space" -90
 	"energy generation" 17.3
-	"heat generation" 38
+	"heat generation" 34
 	description "The Hai designed these miniaturized fusion generators back when their territory was being raided by the Korath. In these relatively peaceful times, they have seen no need to update the design."
 
 outfit "Geode Reactor"
