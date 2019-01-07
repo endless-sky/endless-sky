@@ -1705,22 +1705,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 	for(Bay &bay : bays)
 		if(bay.ship && bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * bay.isFighter))
 		{
-			// Determine which of the fighter's weapons we can restock.
-			set<const Outfit *> toRefill;
-			for(const auto &hit : bay.ship->Weapons())
-				if(hit.GetOutfit() && hit.GetOutfit()->Ammo() && OutfitCount(hit.GetOutfit()->Ammo()))
-					toRefill.insert(hit.GetOutfit()->Ammo());
-			// Transfer as much ammo as the fighter needs.
-			for(const Outfit *outfit : toRefill)
-			{
-				int neededAmmo = bay.ship->attributes.CanAdd(*outfit, OutfitCount(outfit));
-				if(neededAmmo)
-				{
-					AddOutfit(outfit, -neededAmmo);
-					bay.ship->AddOutfit(outfit, neededAmmo);
-					carriedMass += outfit->Mass() * neededAmmo;
-				}
-			}
+			// TODO: Restock fighter weaponry that needs ammo.
 			
 			// This ship will refuel naturally based on the carrier's fuel
 			// collection, but the carrier may have some reserves to spare.
@@ -1728,11 +1713,14 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			if(maxFuel)
 			{
 				double spareFuel = fuel - JumpFuel();
-				if(spareFuel > 0)
+				if(spareFuel > 0.)
 					TransferFuel(min(maxFuel - bay.ship->fuel, spareFuel), bay.ship.get());
-				// If still low or out-of-fuel, don't launch.
+				// If still low or out-of-fuel, re-stock the carrier and don't launch.
 				if(bay.ship->fuel < .25 * maxFuel)
+				{
+					TransferFuel(bay.ship->fuel, this);
 					continue;
+				}
 			}
 			
 			ships.push_back(bay.ship);
@@ -2739,8 +2727,8 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->SetParent(shared_from_this());
 			ship->isThrusting = false;
 			ship->commands.Clear();
-			// If this fighter collected anything in space, try to store it (unless this
-			// is a player-owned ship).
+			// If this fighter collected anything in space, try to store it
+			// (unless this is a player-owned ship).
 			if(!isYours && cargo.Free() && !ship->Cargo().IsEmpty())
 				ship->Cargo().TransferAll(cargo);
 			// Return unused fuel to the carrier, for any launching fighter that needs it.
