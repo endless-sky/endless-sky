@@ -1537,36 +1537,13 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, bool playerShipsLaunch
 	if(!parent.Commands().Has(Command::DEPLOY) || (ship.IsYours() && !playerShipsLaunch))
 		return true;
 	
-	// If a fighter has repair abilities, avoid having it get stuck
-	// oscillating between retreating and attacking when at exactly
-	// 25% health by adding hysteresis to the check.
+	// If a fighter has repair abilities, avoid having it get stuck oscillating between
+	// retreating and attacking when at exactly 25% health by adding hysteresis to the check.
 	double minHealth = RETREAT_HEALTH + .1 * !ship.Commands().Has(Command::DEPLOY);
 	if(ship.Health() < minHealth && (!ship.IsYours() || Preferences::Has("Damaged fighters retreat")))
 		return true;
 	
-	// If a fighter is armed with only ammo-using weapons, but no longer
-	// has the ammunition needed to use them, it should dock if the parent
-	// can supply that ammo.
-	set<const Outfit *> requiredAmmo;
-	for(const Hardpoint &hardpoint : ship.Weapons())
-	{
-		const Weapon *weapon = hardpoint.GetOutfit();
-		if(weapon && !hardpoint.IsAntiMissile())
-		{
-			const Outfit *ammo = weapon->Ammo();
-			if(!ammo || ship.OutfitCount(ammo))
-			{
-				// This fighter has at least one usable weapon, and
-				// thus does not need to dock to continue fighting.
-				requiredAmmo.clear();
-				break;
-			}
-			else if (parent.OutfitCount(ammo))
-				requiredAmmo.insert(ammo);
-		}
-	}
-	if(!requiredAmmo.empty())
-		return true;
+	// TODO: Reboard if in need of ammo.
 	
 	// If a fighter has fuel capacity but is very low, it should return if
 	// the parent can refuel it.
@@ -1583,9 +1560,8 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, bool playerShipsLaunch
 		if(!hasEnemy)
 		{
 			const CargoHold &cargo = ship.Cargo();
-			// Mining ships only mine while they have 5 or more free space.
-			// While mining fighters do not consider docking unless their
-			// parent is far from a targetable asteroid.
+			// Mining ships only mine while they have 5 or more free space. While mining, fighters
+			// do not consider docking unless their parent is far from a targetable asteroid.
 			if(parent.Cargo().Free() && !cargo.IsEmpty() && cargo.Size() && cargo.Free() < 5)
 				return true;
 		}
