@@ -115,10 +115,10 @@ void ShipInfoPanel::Draw()
 
 bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	bool hasShift = mod & KMOD_SHIFT;
+	bool shift = (mod & KMOD_SHIFT);
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
-	else if(!player.Ships().empty() && ((key == 'p' && !hasShift) || key == SDLK_LEFT || key == SDLK_UP))
+	else if(!player.Ships().empty() && ((key == 'p' && !shift) || key == SDLK_LEFT || key == SDLK_UP))
 	{
 		if(shipIt == player.Ships().begin())
 			shipIt = player.Ships().end();
@@ -137,9 +137,9 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Pop(this);
 		GetUI()->Push(new PlayerInfoPanel(player));
 	}
-	else if(key == 'R' || (key == 'r' && hasShift))
+	else if(key == 'R' || (key == 'r' && shift))
 		GetUI()->Push(new Dialog(this, &ShipInfoPanel::Rename, "Change this ship's name?"));
-	else if(canEdit && (key == 'P' || (key == 'p' && hasShift)))
+	else if(canEdit && (key == 'P' || (key == 'p' && shift)))
 	{
 		if(shipIt->get() != player.Flagship() || (*shipIt)->IsParked())
 			player.ParkShip(shipIt->get(), !(*shipIt)->IsParked());
