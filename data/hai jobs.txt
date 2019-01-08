@@ -350,7 +350,7 @@ mission "Delivery to Human Space [0]"
 	job
 	repeat
 	description "This human wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
-	cargo random 2 10
+	cargo random 5 10
 	to offer
 		random < 30
 	source
@@ -359,7 +359,7 @@ mission "Delivery to Human Space [0]"
 	destination
 		attributes "north"
 	on complete
-		payment 80000
+		payment 60000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Delivery to Human Space [1]"
@@ -367,7 +367,7 @@ mission "Delivery to Human Space [1]"
 	job
 	repeat
 	description "This Hai wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
-	cargo random 2 10
+	cargo random 5 10
 	to offer
 		random < 25
 	source
@@ -376,7 +376,7 @@ mission "Delivery to Human Space [1]"
 	destination
 		attributes "north"
 	on complete
-		payment 80000
+		payment 60000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Delivery to Human Space [2]"
@@ -384,7 +384,7 @@ mission "Delivery to Human Space [2]"
 	job
 	repeat
 	description "This human wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
-	cargo random 2 10
+	cargo random 5 10
 	to offer
 		random < 20
 	source
@@ -393,7 +393,7 @@ mission "Delivery to Human Space [2]"
 	destination
 		attributes "north"
 	on complete
-		payment 80000
+		payment 60000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Hai Retrieve Human Luxury Goods"
