@@ -174,7 +174,8 @@ mission "Syndicate target practice [0]"
 		"destroyed Syndicate target ship" < 3
 	npc save disable "scan cargo"
 		government "Test Dummy"
-		personality staying heroic target
+		personality disables staying heroic target
+			confusion 120
 		system destination
 		ship "Berserker Test Dummy" "Syndicate Test Vessel"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
@@ -207,7 +208,8 @@ mission "Syndicate target practice [1]"
 		"destroyed Syndicate target ship" < 3
 	npc save disable "scan cargo"
 		government "Test Dummy"
-		personality staying heroic target
+		personality disables staying heroic target
+			confusion 120
 		system destination
 		ship "Quicksilver Test Dummy" "Syndicate Test Vessel"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
@@ -240,7 +242,8 @@ mission "Syndicate target practice [2]"
 		"destroyed Syndicate target ship" < 3
 	npc save disable "scan cargo"
 		government "Test Dummy"
-		personality staying heroic target
+		personality disables staying heroic target
+			confusion 120
 		system destination
 		ship "Splinter Test Dummy" "Syndicate Test Vessel"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
@@ -272,7 +275,8 @@ mission "Syndicate target practice [3]"
 		"destroyed Syndicate target ship" < 3
 	npc save disable "scan cargo"
 		government "Test Dummy"
-		personality staying heroic target
+		personality disables staying heroic target
+			confusion 120
 		system destination
 		ship "Vanguard Test Dummy" "Syndicate Test Vessel"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
