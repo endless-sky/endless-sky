@@ -2358,11 +2358,16 @@ mission "Terraforming 11"
 			`Your ship is targeted by pirate fleets when you enter the system. Before you engage, you receive a message from Amy.`
 			`"Captain, these pirate ships have been occupying the system for days. You must take them out if we are to safely crash an asteroid into Tundra."`
 	npc evade
-		government "Bounty Hunter"
+		government "Pirate"
 		personality nemesis staying target
 		system "Cebalrai"
-		fleet "Marauder fleet I"
-		fleet "Large Southern Pirates"
+		fleet
+			names "pirate"
+			variant
+				"Marauder Quicksilver"
+				"Marauder Arrow (Weapons)"
+				"Marauder Bounder (Engines)"
+				"Bastion"
 
 
 
@@ -2392,7 +2397,7 @@ mission "Terraforming 12"
 		payment 200000
 		event "terraforming timer 2" 730 912
 		event "terraforming Tundra"
-		log `Fought off a fleet of bounty hunters preventing the terraforming of Tundra, then maneuvered an asteroid into Tundra to trigger the eruption of a supervolcano. Tundra's global temperatures will initially drop, but the increased volume of greenhouse gases in the atmosphere will eventually improve Tundra's climate.`
+		log `Fought off a fleet of pirates preventing the terraforming of Tundra, then maneuvered an asteroid into Tundra to trigger the eruption of a supervolcano. Tundra's global temperatures will initially drop, but the increased volume of greenhouse gases in the atmosphere will eventually improve Tundra's climate.`
 		conversation
 			`A plume of debris has formed in a mushroom cloud shape above where the asteroid hit. The scientists are viewing their instruments in anticipation for what happens next.`
 			`	Almost an hour after the impact, the ground begins to shake slightly, even though the volcano is located hundreds of kilometers away. "This might be it!" Nolan exclaims as he closely watches a seismometer receiving readings from near the impact site. Suddenly the seismometer spikes, and another plume, much larger than the asteroid impact, rises from the impact site. Half an hour later, the low sound of the massive eruption can be heard in the spaceport, triggering another burst of cheers from the scientists. "It actually worked!" one of them yells out.`
