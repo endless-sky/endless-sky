@@ -727,30 +727,13 @@ void AI::Step(const PlayerInfo &player)
 				}
 			}
 			// Otherwise, check if this ship wants to return to its parent (e.g. to repair).
-			else if(hasSpace)
+			else if(hasSpace && ShouldDock(*it, *parent, thisIsLaunching))
 			{
-				// A fighter should retreat if its parent is calling it back, or
-				// it is a player's ship and is not in the current system, or if
-				// its health is low and it is not a player ship that is
-				// instructed to never retreat.
-				bool shouldRetreat = !parent->Commands().Has(Command::DEPLOY);
-				if(it->IsYours() && !thisIsLaunching)
-					shouldRetreat = true;
-				// If a fighter has repair abilities, avoid having it get stuck
-				// oscillating between retreating and attacking when at exactly
-				// 25% health by adding hysteresis to the check.
-				double minHealth = RETREAT_HEALTH + .1 * !it->Commands().Has(Command::DEPLOY);
-				if(it->Health() < minHealth && (!it->IsYours() || fightersRetreat))
-					shouldRetreat = true;
-				
-				if(shouldRetreat)
-				{
-					it->SetTargetShip(parent);
-					MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
-					command |= Command::BOARD;
-					it->SetCommands(command);
-					continue;
-				}
+				it->SetTargetShip(parent);
+				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
+				command |= Command::BOARD;
+				it->SetCommands(command);
+				continue;
 			}
 			// If we get here, it means that the ship has not decided to return
 			// to its mothership. So, it should continue to be deployed.
@@ -1537,6 +1520,54 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 		return false;
 	
 	return true;
+}
+
+
+
+// Determine if a fighter meets any of the criteria for returning to its parent.
+bool AI::ShouldDock(const Ship &ship, const Ship &parent, bool playerShipsLaunch) const
+{
+	// If your parent is disabled, you should not attempt to board it.
+	// (Doing so during combat will likely lead to its destruction.)
+	if(parent.IsDisabled())
+		return false;
+	
+	// A fighter should retreat if its parent is calling it back, or it is
+	// a player's ship and is not in the current system.
+	if(!parent.Commands().Has(Command::DEPLOY) || (ship.IsYours() && !playerShipsLaunch))
+		return true;
+	
+	// If a fighter has repair abilities, avoid having it get stuck oscillating between
+	// retreating and attacking when at exactly 25% health by adding hysteresis to the check.
+	double minHealth = RETREAT_HEALTH + .1 * !ship.Commands().Has(Command::DEPLOY);
+	if(ship.Health() < minHealth && (!ship.IsYours() || Preferences::Has("Damaged fighters retreat")))
+		return true;
+	
+	// TODO: Reboard if in need of ammo.
+	
+	// If a fighter has fuel capacity but is very low, it should return if
+	// the parent can refuel it.
+	double maxFuel = ship.Attributes().Get("fuel capacity");
+	if(maxFuel && ship.Fuel() < .005 && parent.JumpFuel() < parent.Fuel() *
+			parent.Attributes().Get("fuel capacity") - maxFuel)
+		return true;
+	
+	// If an out-of-combat NPC fighter is carrying a significant cargo
+	// load and can transfer some of it to the parent, it should do so.
+	if(!ship.IsYours())
+	{
+		bool hasEnemy = ship.GetTargetShip() && ship.GetTargetShip()->GetGovernment()->IsEnemy(ship.GetGovernment());
+		if(!hasEnemy)
+		{
+			const CargoHold &cargo = ship.Cargo();
+			// Mining ships only mine while they have 5 or more free space. While mining, fighters
+			// do not consider docking unless their parent is far from a targetable asteroid.
+			if(parent.Cargo().Free() && !cargo.IsEmpty() && cargo.Size() && cargo.Free() < 5)
+				return true;
+		}
+	}
+	
+	return false;
 }
 
 

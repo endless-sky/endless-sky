@@ -1705,6 +1705,24 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 	for(Bay &bay : bays)
 		if(bay.ship && bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * bay.isFighter))
 		{
+			// TODO: Restock fighter weaponry that needs ammo.
+			
+			// This ship will refuel naturally based on the carrier's fuel
+			// collection, but the carrier may have some reserves to spare.
+			double maxFuel = bay.ship->attributes.Get("fuel capacity");
+			if(maxFuel)
+			{
+				double spareFuel = fuel - JumpFuel();
+				if(spareFuel > 0.)
+					TransferFuel(min(maxFuel - bay.ship->fuel, spareFuel), bay.ship.get());
+				// If still low or out-of-fuel, re-stock the carrier and don't launch.
+				if(bay.ship->fuel < .25 * maxFuel)
+				{
+					TransferFuel(bay.ship->fuel, this);
+					continue;
+				}
+			}
+			
 			ships.push_back(bay.ship);
 			double maxV = bay.ship->MaxVelocity();
 			Angle launchAngle = angle + BAY_ANGLE[bay.facing];
@@ -2709,6 +2727,13 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->SetParent(shared_from_this());
 			ship->isThrusting = false;
 			ship->commands.Clear();
+			// If this fighter collected anything in space, try to store it
+			// (unless this is a player-owned ship).
+			if(!isYours && cargo.Free() && !ship->Cargo().IsEmpty())
+				ship->Cargo().TransferAll(cargo);
+			// Return unused fuel to the carrier, for any launching fighter that needs it.
+			ship->TransferFuel(ship->fuel, this);
+			
 			// Update the cached mass of the mothership.
 			carriedMass += ship->Mass();
 			return true;

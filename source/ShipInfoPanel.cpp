@@ -115,9 +115,10 @@ void ShipInfoPanel::Draw()
 
 bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
+	bool shift = (mod & KMOD_SHIFT);
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
-	else if(!player.Ships().empty() && (key == 'p' || key == SDLK_LEFT || key == SDLK_UP))
+	else if(!player.Ships().empty() && ((key == 'p' && !shift) || key == SDLK_LEFT || key == SDLK_UP))
 	{
 		if(shipIt == player.Ships().begin())
 			shipIt = player.Ships().end();
@@ -131,14 +132,14 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			shipIt = player.Ships().begin();
 		UpdateInfo();
 	}
-	else if(key == 'i')
+	else if(key == 'i' || command.Has(Command::INFO))
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new PlayerInfoPanel(player));
 	}
-	else if(key == 'R')
+	else if(key == 'R' || (key == 'r' && shift))
 		GetUI()->Push(new Dialog(this, &ShipInfoPanel::Rename, "Change this ship's name?"));
-	else if(canEdit && key == 'P')
+	else if(canEdit && (key == 'P' || (key == 'p' && shift)))
 	{
 		if(shipIt->get() != player.Flagship() || (*shipIt)->IsParked())
 			player.ParkShip(shipIt->get(), !(*shipIt)->IsParked());
@@ -150,49 +151,46 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				+ shipIt->get()->Name()
 				+ "\"? Disowning a ship rather than selling it means you will not get any money for it."));
 	}
-	else if((key == 'P' || key == 'c') && !canEdit)
+	else if(key == 'c' && CanDump())
 	{
-		if(CanDump())
+		int commodities = (*shipIt)->Cargo().CommoditiesSize();
+		int amount = (*shipIt)->Cargo().Get(selectedCommodity);
+		int plunderAmount = (*shipIt)->Cargo().Get(selectedPlunder);
+		if(amount)
 		{
-			int commodities = (*shipIt)->Cargo().CommoditiesSize();
-			int amount = (*shipIt)->Cargo().Get(selectedCommodity);
-			int plunderAmount = (*shipIt)->Cargo().Get(selectedPlunder);
-			if(amount)
-			{
-				GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpCommodities,
-					"How many tons of " + Format::LowerCase(selectedCommodity)
-						+ " do you want to jettison?", amount));
-			}
-			else if(plunderAmount > 0 && selectedPlunder->Get("installable") < 0.)
-			{
-				GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpPlunder,
-					"How many tons of " + Format::LowerCase(selectedPlunder->Name())
-						+ " do you want to jettison?", plunderAmount));
-			}
-			else if(plunderAmount == 1)
-			{
-				GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
-					"Are you sure you want to jettison a " + selectedPlunder->Name() + "?"));
-			}
-			else if(plunderAmount > 1)
-			{
-				GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpPlunder,
-					"How many " + selectedPlunder->PluralName() + " do you want to jettison?",
-					plunderAmount));
-			}
-			else if(commodities)
-			{
-				GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
-					"Are you sure you want to jettison all of this ship's regular cargo?"));
-			}
-			else
-			{
-				GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
-					"Are you sure you want to jettison all of this ship's cargo?"));
-			}
+			GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpCommodities,
+				"How many tons of " + Format::LowerCase(selectedCommodity)
+					+ " do you want to jettison?", amount));
+		}
+		else if(plunderAmount > 0 && selectedPlunder->Get("installable") < 0.)
+		{
+			GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpPlunder,
+				"How many tons of " + Format::LowerCase(selectedPlunder->Name())
+					+ " do you want to jettison?", plunderAmount));
+		}
+		else if(plunderAmount == 1)
+		{
+			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
+				"Are you sure you want to jettison a " + selectedPlunder->Name() + "?"));
+		}
+		else if(plunderAmount > 1)
+		{
+			GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpPlunder,
+				"How many " + selectedPlunder->PluralName() + " do you want to jettison?",
+				plunderAmount));
+		}
+		else if(commodities)
+		{
+			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
+				"Are you sure you want to jettison all of this ship's regular cargo?"));
+		}
+		else
+		{
+			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
+				"Are you sure you want to jettison all of this ship's cargo?"));
 		}
 	}
-	else if(command.Has(Command::INFO | Command::MAP) || key == 'm')
+	else if(command.Has(Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
 	else if(key == 'l' && player.HasLogs())
 		GetUI()->Push(new LogbookPanel(player));

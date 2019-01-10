@@ -176,7 +176,10 @@ void PlayerInfoPanel::Draw()
 
 bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	bool control = (mod & (KMOD_CTRL | KMOD_GUI));
+	bool shift = (mod & KMOD_SHIFT);
+	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control)
+			|| key == 'i' || command.Has(Command::INFO))
 		GetUI()->Pop(this);
 	else if(key == 's' || key == SDLK_RETURN || key == SDLK_KP_ENTER)
 	{
@@ -211,7 +214,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		}
 		// Holding both Ctrl & Shift keys and using the arrows moves the
 		// selected ship group up or down one row.
-		else if(!allSelected.empty() && (mod & KMOD_CTRL) && (mod & KMOD_SHIFT))
+		else if(!allSelected.empty() && control && shift)
 		{
 			// Move based on the position of the first selected ship. An upward
 			// movement is a shift of one, while a downward move shifts 1 and
@@ -275,7 +278,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		if(selectedIndex >= 0)
 			allSelected.insert(selectedIndex);
 	}
-	else if(canEdit && key == 'P' && !allSelected.empty())
+	else if(canEdit && (key == 'P' || (key == 'p' && shift)) && !allSelected.empty())
 	{
 		// Toggle the parked status for all selected ships.
 		bool allParked = true;
@@ -294,7 +297,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 				player.ParkShip(&ship, !allParked);
 		}
 	}
-	else if(canEdit && key == 'A' && player.Ships().size() > 1)
+	else if(canEdit && (key == 'A' || (key == 'a' && shift)) && player.Ships().size() > 1)
 	{
 		// Toggle the parked status for all ships except the flagship.
 		bool allParked = true;
@@ -307,14 +310,14 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			if(!it->IsDisabled() && (allParked || it.get() != flagship))
 				player.ParkShip(it.get(), !allParked);
 	}
-	else if(command.Has(Command::INFO | Command::MAP) || key == 'm')
+	else if(command.Has(Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
 	else if(key == 'l' && player.HasLogs())
 		GetUI()->Push(new LogbookPanel(player));
 	else if(key >= '0' && key <= '9')
 	{
 		int group = key - '0';
-		if(mod & (KMOD_CTRL | KMOD_GUI))
+		if(control)
 		{
 			// Convert from indices into ship pointers.
 			set<Ship *> selected;
@@ -333,7 +336,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			
 			// If the shift key is not down, replace the current set of selected
 			// ships with the group with the given index.
-			if(!(mod & KMOD_SHIFT))
+			if(!shift)
 				allSelected = added;
 			else
 			{
