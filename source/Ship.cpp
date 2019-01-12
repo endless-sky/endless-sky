@@ -749,8 +749,6 @@ string Ship::FlightCheck() const
 		return "solar power?";
 	if(fuel < 0.)
 		return "fuel?";
-	if(!hyperDrive && !jumpDrive && !canBeCarried)
-		return "no hyperdrive?";
 	if(!canBeCarried)
 	{
 		if(!hyperDrive && !jumpDrive)
