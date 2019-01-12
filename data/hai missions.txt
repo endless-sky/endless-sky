@@ -548,7 +548,7 @@ mission "Unwanted Cargo"
 			`	You hear a voice come from the crate, but it is not a language you understand. The voice continues to speak, and you recognize it as the Hai language.`
 			choice
 				`	(Open the crate.)`
-			`	You open the crate and are met face to face with a Hai child. You aren't sure how old it is, but it looks to be about the size of a one year old human child. It tries to communicate with you, but begins to cry when it sees the confused look on your face.`
+			`	You open the crate and are met face to face with a Hai child. You aren't sure how old it is, but it looks to be about the size of a one-year-old human child. It tries to communicate with you, but begins to cry when it sees the confused look on your face.`
 			choice
 				`	"Don't cry, little guy."`
 					goto cry
@@ -565,7 +565,7 @@ mission "Unwanted Cargo"
 			`	You hear a voice come from the crate, and surprisingly your Hai translator begins speaking. "Let me out! I want to go home!"`
 			choice
 				`	(Open the crate.)`
-			`	You open the crate and are met eye to eye with a Hai child. You aren't sure how old it is, but it looks to be about the size of a one year old human child. "I want my mommy!" it says as its eyes begin to tear up.`
+			`	You open the crate and are met eye to eye with a Hai child. You aren't sure how old it is, but it looks to be about the size of a one-year-old human child. "I want my mommy!" it says as its eyes begin to tear up.`
 			choice
 				`	"Where's your mommy?"`
 				`	"Don't cry, little guy."`
