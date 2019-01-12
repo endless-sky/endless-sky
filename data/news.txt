@@ -222,7 +222,6 @@ news "human mining"
 		portrait/human77
 		portrait/human82
 		portrait/human102
-		portrait/human104
 		portrait/human115
 		portrait/human117
 	message
@@ -602,7 +601,7 @@ news "economist"
 		portrait/human49
 		portrait/human83
 		portrait/human91
-		portrait/human129
+		portrait/human104
 	message
 		word
 			"We're actually required by local law to predict that the economy will continue to do well, because the government thinks that any dire predictions will be a self-fulfilling prophecy."
