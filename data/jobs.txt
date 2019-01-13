@@ -1262,6 +1262,302 @@ mission "Escort (Extra Large, Southern, Dangerous Origin or Destination)"
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		
+mission "Rescue (Interceptor, Northern)"
+	name "Rescue Merchant Interceptor"
+	description "The captain of the <npc> bit off more than they could chew. Repair them and escort them safely back to <destination>."
+	repeat
+	job
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier north
+	to offer
+		random < 40
+		"combat rating" >= 20
+	
+	npc accompany save
+		system
+			distance 1 3
+		personality waiting derelict timid
+		government "Merchant"
+		fleet
+			names "civilian"
+			variant
+				Fury
+			variant
+				"Fury (Laser)"
+			variant
+				"Fury (Gatling)"
+			variant
+				Hawk
+			variant
+				"Hawk (Rocket)"
+			variant
+				"Hawk (Speedy)"
+			variant
+				Berserker
+			variant
+				"Berserker (Afterburner)"
+			variant
+				Sparrow
+			variant
+				"Sparrow (Gatling)"
+	on complete
+		payment 80000
+		dialog `The captain of <npc> shakes your hand before transferring payment. "Thanks for helping me out. That was almost really bad for me..."`
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+				
+mission "Rescue (Transport, Northern)"
+	name "Rescue Merchant Transport"
+	description "The captain of the <npc> was disabled by pirates while ferrying passengers through dangerous space. Repair them and escort them safely back to <destination>."
+	repeat
+	job
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier north
+	to offer
+		random < 40
+		"combat rating" >= 50
+	
+	npc accompany save
+		system
+			distance 1 3
+		personality waiting derelict timid
+		government "Merchant"
+		fleet
+			names "civilian"
+			variant
+				Blackbird
+			variant
+				"Star Queen"
+			variant	
+				"Scout"
+			variant
+				"Bounder"
+			variant
+				"Shuttle"
+			variant
+				"Heavy Shuttle"
+	on complete
+		payment 90000
+		dialog `The captain of <npc> meets you to pay you personally. "Thanks for the assist there. I'm glad no one was hurt, and that I didn't lose any of my fare..."`
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		
+mission "Rescue (Freighter, Northern)"
+	name "Rescue Merchant Freighter"
+	description "The captain of the <npc> was disabled by pirates while carrying cargo through dangerous space. Repair them and escort them safely back to <destination>."
+	repeat
+	job
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier north
+	to offer
+		random < 40
+		"combat rating" >= 70
+	
+	npc accompany save
+		system
+			distance 1 3
+		personality waiting derelict timid
+		government "Merchant"
+		fleet
+			names "civilian"
+			cargo 3
+			variant
+				Freighter
+			variant
+				"Star Barge"
+			variant	
+				"Hauler I"
+			variant
+				"Argosy"
+	on complete
+		payment 90000
+		dialog `The captain of <npc> meets you to pay you personally. "Thanks for the rescue! Those pirates would have made off with my cargo, and my life!"`
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		
+mission "Rescue (Republic, Northern)"
+	name "Rescue Republic Ship"
+	description "The Navy ship <npc> was ambushed while on patrol, and is disabled. The fleets in this sector are spread thin, and they can't spare any for a rescue. Find the ship, repair it, and bring it home."
+	repeat
+	job
+	source
+		government Republic
+		attributes frontier north
+	to offer
+		random < 40
+		"combat rating" >= 140
+	
+	npc accompany save
+		system
+			distance 1 3
+		personality waiting derelict timid
+		government "Republic"
+		fleet
+			names "republic small"
+			variant
+				Gunboat
+			variant
+				Rainmaker
+	on complete
+		payment 200000
+		dialog `The fleet commander happens to be heading to his ship, and he makes a detour to thank you. "Thanks for rescuing my men. We wouldn't have been able to send out a rescue team for at least another week." He then hurries off to his ship.`
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		
+mission "Rescue (Interceptor, Southern)"
+	name "Rescue Merchant Interceptor"
+	description "The captain of the <npc> bit off more than they could chew. Repair them and escort them safely back to <destination>."
+	repeat
+	job
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier south
+	to offer
+		random < 40
+		"combat rating" >= 20
+	
+	npc accompany save
+		system
+			distance 1 3
+		personality waiting derelict timid
+		government "Merchant"
+		fleet
+			names "civilian"
+			variant
+				Fury
+			variant
+				"Fury (Laser)"
+			variant
+				"Fury (Gatling)"
+			variant
+				Hawk
+			variant
+				"Hawk (Rocket)"
+			variant
+				"Hawk (Speedy)"
+			variant
+				Berserker
+			variant
+				"Berserker (Afterburner)"
+			variant
+				Sparrow
+			variant
+				"Sparrow (Gatling)"
+	on complete
+		payment 80000
+		dialog `The captain of <npc> shakes your hand before transferring payment. "Thanks for helping me out. That was almost really bad for me..."`
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+				
+mission "Rescue (Transport, Southern)"
+	name "Rescue Merchant Transport"
+	description "The captain of the <npc> was disabled by pirates while ferrying passengers through dangerous space. Repair them and escort them safely back to <destination>."
+	repeat
+	job
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier south
+	to offer
+		random < 40
+		"combat rating" >= 50
+	
+	npc accompany save
+		system
+			distance 1 3
+		personality waiting derelict timid
+		government "Merchant"
+		fleet
+			names "civilian"
+			variant
+				Blackbird
+			variant
+				"Star Queen"
+			variant	
+				"Scout"
+			variant
+				"Bounder"
+			variant
+				"Shuttle"
+			variant
+				"Heavy Shuttle"
+	on complete
+		payment 90000
+		dialog `The captain of <npc> meets you to pay you personally. "Thanks for the assist there. I'm glad no one was hurt, and that I didn't lose any of my fare..."`
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		
+mission "Rescue (Freighter, Southern)"
+	name "Rescue Merchant Freighter"
+	description "The captain of the <npc> was disabled by pirates while carrying cargo through dangerous space. Repair them and escort them safely back to <destination>."
+	repeat
+	job
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes frontier south
+	to offer
+		random < 40
+		"combat rating" >= 70
+	
+	npc accompany save
+		system
+			distance 1 3
+		personality waiting derelict timid
+		government "Merchant"
+		fleet
+			names "civilian"
+			cargo 3
+			variant
+				Freighter
+			variant
+				"Star Barge"
+			variant	
+				"Hauler I"
+			variant
+				"Argosy"
+	on complete
+		payment 90000
+		dialog `The captain of <npc> meets you to pay you personally. "Thanks for the rescue! Those pirates would have made off with my cargo, and my life!"`
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		
+mission "Rescue (Militia, Southern)"
+	name "Rescue Militia Ship"
+	description "The Militia ship <npc> was ambushed while on patrol, and is disabled. The fleets in this sector are currently tied up defending against pirates, and can't mount a rescue. Repair the ship and escort it home."
+	repeat
+	job
+	source
+		government "Free Worlds" Neutral
+		attributes frontier north
+	to offer
+		random < 40
+		"combat rating" >= 140
+	
+	npc accompany save
+		system
+			distance 1 3
+		personality waiting derelict timid
+		government "Militia"
+		fleet
+			names "militia"
+			variant
+				Clipper
+			variant
+				Sparrow
+			variant
+				"Fury (Laser)"
+			variant
+				"Argosy"
+			variant
+				"Osprey"
+	on complete
+		payment 200000
+		dialog `The commander of the local fleet comes personally to give his thanks. "Thank you for rescuing my men. The pirates have been getting more feisty lately."`
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Southern Pirate Attack"
 	name "Defend <planet>"
