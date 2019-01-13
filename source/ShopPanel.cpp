@@ -464,9 +464,10 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	
 	// Draw the ship name.
 	const Font &font = FontSet::Get(14);
-	const string &name = ship.Name().empty() ? ship.ModelName() : font.TruncateMiddle(ship.Name(), SIDE_WIDTH - 61);
-	Point offset(-.5f * font.Width(name), -.5f * SHIP_SIZE + 10.f);
-	font.Draw(name, center + offset, *GameData::Colors().Get("bright"));
+	const Font::Layout layout(Font::TRUNC_MIDDLE, SIDE_WIDTH - 61);
+	const string &name = ship.Name().empty() ? ship.ModelName() : ship.Name();
+	Point offset(-.5f * font.Width(name, &layout), -.5f * SHIP_SIZE + 10.f);
+	font.Draw(name, center + offset, *GameData::Colors().Get("bright"), &layout);
 	
 	const Sprite *thumbnail = ship.Thumbnail();
 	const Sprite *sprite = ship.GetSprite();

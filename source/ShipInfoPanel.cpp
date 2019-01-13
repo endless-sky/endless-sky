@@ -282,7 +282,6 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	const Ship &ship = **shipIt;
-	const Font &font = FontSet::Get(14);
 	
 	// Table attributes.
 	Table table;
@@ -293,7 +292,8 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 	
 	// Draw the ship information.
 	table.Draw("ship:", dim);
-	table.Draw(font.TruncateMiddle(ship.Name(), WIDTH - 50), bright);
+	const Font::Layout layout(Font::TRUNC_MIDDLE, WIDTH - 50);
+	table.Draw(ship.Name(), bright, &layout);
 	
 	table.Draw("model:", dim);
 	table.Draw(ship.ModelName(), bright);
@@ -436,19 +436,20 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	Point topTo;
 	Color topColor;
 	bool hasTop = false;
+	const Font::Layout layout(Font::TRUNC_BACK, 150);
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		string name = "[empty]";
 		if(hardpoint.GetOutfit())
-			name = font.Truncate(hardpoint.GetOutfit()->Name(), 150);
+			name = hardpoint.GetOutfit()->Name();
 		
 		bool isRight = (hardpoint.GetPoint().X() >= 0.);
 		bool isTurret = hardpoint.IsTurret();
 		
 		double &y = nextY[isRight][isTurret];
-		double x = centerX + (isRight ? LABEL_DX : (-LABEL_DX - font.Width(name)));
+		double x = centerX + (isRight ? LABEL_DX : (-LABEL_DX - font.Width(name, &layout)));
 		bool isHover = (index == hoverIndex);
-		font.Draw(name, Point(x, y + TEXT_OFF), isHover ? bright : dim);
+		font.Draw(name, Point(x, y + TEXT_OFF), isHover ? bright : dim, &layout);
 		Point zoneCenter(labelCenter[isRight], y + .5 * LINE_HEIGHT);
 		zones.emplace_back(zoneCenter, LINE_SIZE, index);
 		

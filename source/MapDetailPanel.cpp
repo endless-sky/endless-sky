@@ -558,7 +558,7 @@ void MapDetailPanel::DrawInfo()
 		SpriteShader::Draw(panelSprite, pos);
 		
 		WrappedText text(font);
-		text.SetAlignment(WrappedText::JUSTIFIED);
+		text.SetAlignment(Font::JUSTIFIED);
 		text.SetWrapWidth(WIDTH - 20);
 		text.Wrap(selectedPlanet->Description());
 		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);

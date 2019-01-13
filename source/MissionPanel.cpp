@@ -80,7 +80,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	
 	wrap.SetWrapWidth(380);
 	wrap.SetFont(FontSet::Get(14));
-	wrap.SetAlignment(WrappedText::JUSTIFIED);
+	wrap.SetAlignment(Font::JUSTIFIED);
 	
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
@@ -120,7 +120,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	
 	wrap.SetWrapWidth(380);
 	wrap.SetFont(FontSet::Get(14));
-	wrap.SetAlignment(WrappedText::JUSTIFIED);
+	wrap.SetAlignment(Font::JUSTIFIED);
 
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.

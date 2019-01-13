@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
 #include "Audio.h"
+#include "Cache.h"
 #include "Command.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
@@ -356,6 +357,7 @@ int main(int argc, char *argv[])
 				SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 			
 			SDL_GL_SwapWindow(window);
+			CacheBase::Step();
 			timer.Wait();
 		}
 		

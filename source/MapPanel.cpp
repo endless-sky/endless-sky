@@ -114,7 +114,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	// Initialize a centered tooltip.
 	hoverText.SetFont(FontSet::Get(14));
 	hoverText.SetWrapWidth(150);
-	hoverText.SetAlignment(WrappedText::LEFT);
+	hoverText.SetAlignment(Font::LEFT);
 	
 	if(selectedSystem)
 		CenterOnSystem(selectedSystem, true);

@@ -392,7 +392,7 @@ void PreferencesPanel::DrawControls()
 	shiftTable.DrawAt(Point(-400, 52));
 	
 	shiftTable.DrawUnderline(medium);
-	shiftTable.Draw("With <shift> key", bright);
+	shiftTable.Draw("With &lt;shift&gt; key", bright);
 	shiftTable.DrawGap(5);
 	shiftTable.Draw("Select nearest ship", medium);
 	shiftTable.Draw("Select next escort", medium);
@@ -575,7 +575,8 @@ void PreferencesPanel::DrawPlugins()
 		bool isSelected = (plugin.first == selectedPlugin);
 		if(isSelected || plugin.first == hoverPlugin)
 			table.DrawHighlight(back);
-		table.Draw(font.TruncateMiddle(plugin.first, MAX_TEXT_WIDTH), isSelected ? bright : medium);
+		const Font::Layout layout(Font::TRUNC_MIDDLE, MAX_TEXT_WIDTH);
+		table.Draw(plugin.first, isSelected ? bright : medium, &layout);
 		
 		if(isSelected)
 		{

@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define TABLE_H_
 
 #include "Color.h"
+#include "Font.h"
 #include "Point.h"
 
 #include <string>
@@ -63,10 +64,10 @@ public:
 	void Advance(int fields = 1) const;
 	
 	// Draw a single text field, and move on to the next one.
-	void Draw(const std::string &text) const;
+	void Draw(const std::string &text, const Font::Layout *layout = nullptr) const;
 	// If a color is given, this field is drawn using that color, but the
 	// previously set color will be used for future fields.
-	void Draw(const std::string &text, const Color &color) const;
+	void Draw(const std::string &text, const Color &color, const Font::Layout *layout = nullptr) const;
 	void Draw(double value) const;
 	void Draw(double value, const Color &color) const;
 	

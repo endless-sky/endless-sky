@@ -52,7 +52,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	hiring.reset(new HiringPanel(player));
 	
 	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(WrappedText::JUSTIFIED);
+	text.SetAlignment(Font::JUSTIFIED);
 	text.SetWrapWidth(480);
 	text.Wrap(planet.Description());
 	

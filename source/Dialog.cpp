@@ -84,9 +84,9 @@ namespace {
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.
-Dialog::Dialog(const string &text)
+Dialog::Dialog(const string &text, Font::Truncate trunc)
 {
-	Init(text, false);
+	Init(text, false, false, trunc);
 }
 
 
@@ -167,10 +167,10 @@ void Dialog::Draw()
 		Point stringPos(
 			inputPos.X() - (WIDTH - 20) * .5 + 5.,
 			inputPos.Y() - .5 * font.Height());
-		string truncated = font.TruncateFront(input, WIDTH - 30);
-		font.Draw(truncated, stringPos, bright);
+		const Font::Layout layout(Font::TRUNC_FRONT, WIDTH - 30);
+		font.Draw(input, stringPos, bright, &layout);
 		
-		Point barPos(stringPos.X() + font.Width(truncated) + 2., inputPos.Y());
+		Point barPos(stringPos.X() + font.Width(input, &layout) + 2., inputPos.Y());
 		FillShader::Fill(barPos, Point(1., 16.), dim);
 	}
 }
@@ -255,14 +255,15 @@ bool Dialog::Click(int x, int y, int clicks)
 
 
 // Common code from all three constructors:
-void Dialog::Init(const string &message, bool canCancel, bool isMission)
+void Dialog::Init(const string &message, bool canCancel, bool isMission, Font::Truncate trunc)
 {
 	this->isMission = isMission;
 	this->canCancel = canCancel;
 	okIsActive = true;
 	
-	text.SetAlignment(WrappedText::JUSTIFIED);
+	text.SetAlignment(Font::JUSTIFIED);
 	text.SetWrapWidth(WIDTH - 20);
+	text.SetTruncate(trunc);
 	text.SetFont(FontSet::Get(14));
 	
 	text.Wrap(message);

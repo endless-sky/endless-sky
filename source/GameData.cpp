@@ -172,6 +172,10 @@ bool GameData::BeginLoad(const char * const *argv)
 	// Generate a catalog of music files.
 	Music::Init(sources);
 	
+	// Add font and config files.
+	for(const string &source : sources)
+		FontSet::Add(source + "fonts/");
+	
 	for(const string &source : sources)
 	{
 		// Iterate through the paths starting with the last directory given. That
@@ -257,9 +261,6 @@ void GameData::CheckReferences()
 
 void GameData::LoadShaders()
 {
-	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
-	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
-	
 	// Load the key settings.
 	Command::LoadSettings(Files::Resources() + "keys.txt");
 	Command::LoadSettings(Files::Config() + "keys.txt");

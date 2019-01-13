@@ -13,27 +13,28 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef WRAPPED_TEXT_H_
 #define WRAPPED_TEXT_H_
 
+#include "Font.h"
 #include "Point.h"
 
 #include <string>
-#include <vector>
 
 class Color;
-class Font;
 
 
 
-// Class for calculating word positions in wrapped text. You can specify various
-// parameters of the formatting, including text alignment.
+// Class for holding wrapped parameters.
 class WrappedText {
 public:
 	WrappedText();
 	explicit WrappedText(const Font &font);
 	
 	// Set the alignment mode.
-	enum Align {LEFT, CENTER, RIGHT, JUSTIFIED};
-	Align Alignment() const;
-	void SetAlignment(Align align);
+	Font::Align Alignment() const;
+	void SetAlignment(Font::Align align);
+	
+	// Set the truncate mode.
+	Font::Truncate Truncate() const;
+	void SetTruncate(Font::Truncate trunc);
 	
 	// Set the wrap width. This does not include any margins.
 	int WrapWidth() const;
@@ -43,10 +44,6 @@ public:
 	// width, line height, and paragraph break. You must specify the wrap width
 	// and the alignment separately.
 	void SetFont(const Font &font);
-	
-	// Set the width in pixels of a single '\t' character.
-	int TabWidth() const;
-	void SetTabWidth(int width);
 	
 	// Set the height in pixels of one line of text within a paragraph.
 	int LineHeight() const;
@@ -68,43 +65,9 @@ public:
 	
 	
 private:
-	void SetText(const char *it, size_t length);
-	void Wrap();
-	void AdjustLine(unsigned &lineBegin, int &lineWidth, bool isEnd);
-	int Space(char c) const;
-	
-	
-private:
-	// The returned text is a series of words and (x, y) positions:
-	class Word {
-	public:
-		Word();
-		
-		size_t Index() const;
-		Point Pos() const;
-		
-	private:
-		size_t index;
-		int x;
-		int y;
-		
-		friend class WrappedText;
-	};
-	
-	
-private:
 	const Font *font;
-	
-	int space;
-	int wrapWidth;
-	int tabWidth;
-	int lineHeight;
-	int paragraphBreak;
-	Align alignment;
-	
 	std::string text;
-	std::vector<Word> words;
-	int height;
+	Font::Layout layout;
 };
 
 

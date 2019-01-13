@@ -19,12 +19,18 @@ class Font;
 
 
 
-// Class for getting the Font object for a given point size. Each font must be
-// based on a glyph image; right now only point sizes 14 and 18 exist.
+// Class for getting the Font object for a given point size.
 class FontSet {
 public:
-	static void Add(const std::string &path, int size);
+	static void Add(const std::string &fontsDir);
 	static const Font &Get(int size);
+	
+	// Set the font description. "desc" is a comma separated family name list.
+	static void SetFontDescription(const std::string &desc);
+	// Set the reference for layouting a text.
+	static void SetReferenceForLayout(const std::string &desc);
+	// Set the language for layouting.
+	static void SetLanguage(const std::string &lang);
 };
 
 

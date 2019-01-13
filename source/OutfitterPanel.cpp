@@ -623,7 +623,7 @@ void OutfitterPanel::DrawKey()
 	const Sprite *back = SpriteSet::Get("ui/outfitter key");
 	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
 	
-	Font font = FontSet::Get(14);
+	const Font &font = FontSet::Get(14);
 	Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
 	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
 	

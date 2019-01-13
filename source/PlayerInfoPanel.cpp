@@ -580,7 +580,6 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	// Loop through all the player's ships.
 	int index = scroll;
 	auto sit = player.Ships().begin() + scroll;
-	const Font &font = FontSet::Get(14);
 	for( ; sit < player.Ships().end(); ++sit)
 	{
 		// Bail out if we've used out the whole drawing area.
@@ -602,7 +601,8 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), index);
 		
 		// Indent the ship name if it is a fighter or drone.
-		table.Draw(font.TruncateMiddle(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name(), 217));
+		const Font::Layout layout(Font::TRUNC_MIDDLE, 217);
+		table.Draw(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name(), &layout);
 		table.Draw(ship.ModelName());
 		
 		const System *system = ship.GetSystem();

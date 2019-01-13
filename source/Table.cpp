@@ -143,23 +143,23 @@ void Table::Advance(int fields) const
 
 
 // Draw a single text field, and move on to the next one.
-void Table::Draw(const string &text) const
+void Table::Draw(const string &text, const Font::Layout *layout) const
 {
-	Draw(text, color);
+	Draw(text, color, layout);
 }
 
 
 
 // If a color is given, this field is drawn using that color, but the
 // previously set color will be used for future fields.
-void Table::Draw(const string &text, const Color &color) const
+void Table::Draw(const string &text, const Color &color, const Font::Layout *layout) const
 {
 	if(font)
 	{
 		Point pos = point;
 		if(it != columns.end())
-			pos += Point(it->offset + it->align * font->Width(text), 0.);
-		font->Draw(text, pos, color);
+			pos += Point(it->offset + it->align * font->Width(text, layout), 0.);
+		font->Draw(text, pos, color, layout);
 	}
 	
 	Advance();

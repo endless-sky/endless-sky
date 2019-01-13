@@ -392,7 +392,7 @@ void ConversationPanel::ClickChoice(int index)
 ConversationPanel::Paragraph::Paragraph(const string &text, const Sprite *scene, bool isFirst)
 	: scene(scene), isFirst(isFirst)
 {
-	wrap.SetAlignment(WrappedText::JUSTIFIED);
+	wrap.SetAlignment(Font::JUSTIFIED);
 	wrap.SetWrapWidth(WIDTH);
 	wrap.SetFont(FontSet::Get(14));
 	

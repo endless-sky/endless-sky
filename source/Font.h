@@ -13,73 +13,207 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef FONT_H_
 #define FONT_H_
 
+#include "Cache.h"
+#include "Point.h"
 #include "Shader.h"
 
 #include "gl_header.h"
 
+#include <cstddef>
+#include <cstdint>
+#include <limits>
 #include <string>
+#include <pango/pangocairo.h>
 
 class Color;
 class ImageBuffer;
-class Point;
 
 
 
-// Class for drawing text in OpenGL. Each font is based on a single image with
-// glyphs for each character in ASCII order (not counting control characters).
-// The kerning between characters is automatically adjusted to look good. At the
-// moment only plain ASCII characters are supported, not Unicode.
+// Class for drawing text in OpenGL.
+// The encoding of the text is utf8.
 class Font {
 public:
 	Font();
-	explicit Font(const std::string &imagePath);
+	~Font();
+	Font(const Font &a) = delete;
+	Font &operator=(const Font &a) = delete;
 	
-	void Load(const std::string &imagePath);
+	// Font settings.
+	void SetFontDescription(const std::string &desc);
+	void SetLayoutReference(const std::string &desc);
+	void SetPixelSize(int size);
+	void SetLanguage(const std::string &langCode);
 	
-	void Draw(const std::string &str, const Point &point, const Color &color) const;
-	void DrawAliased(const std::string &str, double x, double y, const Color &color) const;
+	// Layout parameters.
+	enum Align {LEFT, CENTER, RIGHT, JUSTIFIED};
+	enum Truncate {TRUNC_NONE, TRUNC_FRONT, TRUNC_MIDDLE, TRUNC_BACK};
+	static const uint_fast8_t DEFAULT_LINE_HEIGHT = 255;
+	struct Layout {
+		// Set the alignment mode.
+		Align align = LEFT;
+		// Set the truncate mode.
+		Truncate truncate = TRUNC_NONE;
+		// Wrap and trancate width.
+		unsigned int width = std::numeric_limits<unsigned int>::max();
+		// Line height in pixels.
+		uint_fast8_t lineHeight = DEFAULT_LINE_HEIGHT;
+		// Extra spacing in pixel between paragraphs.
+		uint_fast8_t paragraphBreak = 0;
+		
+		Layout() noexcept = default;
+		Layout(Truncate t, int w) noexcept;
+		Layout(const Layout& a) noexcept = default;
+		Layout &operator=(const Layout& a) noexcept = default;
+		bool operator==(const Layout &a) const;
+	};
 	
-	int Width(const std::string &str, char after = ' ') const;
-	int Width(const char *str, char after = ' ') const;
-	std::string Truncate(const std::string &str, int width) const;
-	std::string TruncateFront(const std::string &str, int width) const;
-	std::string TruncateMiddle(const std::string &str, int width) const;
+	void Draw(const std::string &str, const Point &point, const Color &color,
+		const Layout *params = nullptr) const;
+	void DrawAliased(const std::string &str, double x, double y, const Color &color,
+		const Layout *params = nullptr) const;
 	
+	// Get the height and width of the rendered text.
+	int Width(const std::string &str, const Layout *params = nullptr) const;
+	int Height(const std::string &str, const Layout *params = nullptr) const;
+	
+	// Get the height of the fonts.
 	int Height() const;
 	
 	int Space() const;
 	
 	static void ShowUnderlines(bool show);
 	
+private:
+	// Text rendered as a sprite.
+	struct RenderedText {
+		// Texture with rendered text.
+		GLuint texture;
+		int width;
+		int height;
+		// Offset from the floored origin to the center of the sprite.
+		Point center;
+	};
+	
+	// A key mapping the text and layout parameters, underline status to RenderedText.
+	struct CacheKey {
+		std::string text;
+		Layout params;
+		bool showUnderline;
+		
+		CacheKey(const std::string &s, const Layout &p, bool underline) noexcept;
+		bool operator==(const CacheKey &a) const;
+	};
+	
+	// Hash function of CacheKey.
+	struct CacheKeyHash {
+		typedef CacheKey argument_type;
+		typedef std::size_t result_type;
+		result_type operator() (argument_type const &s) const noexcept;
+	};
+	
+	// Function to recycle it for RenderedText.
+	class AtRecycleForRenderedText {
+	public:
+		void operator()(RenderedText &v) const;
+	};
+	
 	
 private:
-	static int Glyph(char c, bool isAfterSpace);
-	void LoadTexture(ImageBuffer &image);
-	void CalculateAdvances(ImageBuffer &image);
-	void SetUpShader(float glyphW, float glyphH);
+	void UpdateSurfaceSize() const;
+	void UpdateFontDesc() const;
+	
+	static std::string ReplaceCharacters(const std::string &str);
+	static std::string RemoveAccelerator(const std::string &str);
+		
+	const RenderedText &Render(const std::string &str, const Layout *params) const;
+	void SetUpShader();
 	
 	
 private:
+	
 	Shader shader;
-	GLuint texture;
 	GLuint vao;
 	GLuint vbo;
 	
-	GLint colorI;
+	// Shader parameters.
 	GLint scaleI;
-	GLint glyphI;
-	GLint aspectI;
-	GLint positionI;
+	GLint centerI;
+	GLint sizeI;
+	GLint colorI;
 	
-	int height;
-	int space;
 	mutable int screenWidth;
 	mutable int screenHeight;
 	
-	static const int GLYPHS = 98;
-	int advance[GLYPHS * GLYPHS];
+	mutable cairo_t *cr;
+	std::string fontDescName;
+	std::string refDescName;
+	mutable PangoContext *context;
+	mutable PangoLayout *layout;
+	PangoLanguage *lang;
+	int pixelSize;
+	mutable int fontHeight;
+	mutable int space;
+	mutable int surfaceWidth;
+	mutable int surfaceHeight;
+	
+	// Cache of rendered text.
+	mutable Cache<CacheKey, RenderedText, true, CacheKeyHash, AtRecycleForRenderedText> cache;
 };
 
 
+
+inline
+Font::Layout::Layout(Truncate t, int w) noexcept
+	: truncate(t), width(w)
+{
+}
+
+
+
+inline
+bool Font::Layout::operator==(const Layout &a) const
+{
+	return align == a.align && truncate == a.truncate && width == a.width
+		&& lineHeight == a.lineHeight && paragraphBreak == a.paragraphBreak;
+}
+
+
+
+inline
+Font::CacheKey::CacheKey(const std::string &s, const Layout &p, bool underline) noexcept
+	: text(s), params(p), showUnderline(underline)
+{
+}
+
+
+
+inline
+bool Font::CacheKey::operator==(const CacheKey &a) const
+{
+	return text == a.text && params == a.params && showUnderline == a.showUnderline;
+}
+
+
+
+inline
+Font::CacheKeyHash::result_type Font::CacheKeyHash::operator() (argument_type const &s) const noexcept
+{
+	const result_type h1 = std::hash<std::string>()(s.text);
+	const result_type h2 = std::hash<unsigned int>()(s.params.width);
+	const std::uint_fast32_t pack = s.showUnderline | (s.params.align << 1) | (s.params.truncate << 3)
+		| (s.params.lineHeight << 5) | (s.params.paragraphBreak << 13);
+	const result_type h3 = std::hash<uint_fast32_t>()(pack);
+	return h1 ^ (h2 << 1) ^ (h3 << 2);
+}
+
+
+
+inline
+void Font::AtRecycleForRenderedText::operator()(RenderedText &v) const
+{
+	if(v.texture)
+		glDeleteTextures(1, &v.texture);
+}
 
 #endif

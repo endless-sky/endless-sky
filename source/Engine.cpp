@@ -645,11 +645,11 @@ void Engine::Step(bool isActive)
 	}
 	else
 	{
-		const Font &font = FontSet::Get(14);
 		if(target->GetSystem() == player.GetSystem() && target->Cloaking() < 1.)
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
-		info.SetString("target name", font.TruncateMiddle(target->Name(), 150));
+		const Font::Layout layout(Font::TRUNC_MIDDLE, 150);
+		info.SetString("target name", target->Name(), layout);
 		info.SetString("target type", target->ModelName());
 		if(!target->GetGovernment())
 			info.SetString("target government", "No Government");
@@ -901,7 +901,7 @@ void Engine::Draw() const
 	// Draw the faction markers.
 	if(targetSwizzle >= 0 && interface->HasPoint("faction markers"))
 	{
-		int width = font.Width(info.GetString("target government"));
+		int width = font.Width(info.GetString("target government").first);
 		Point center = interface->GetPoint("faction markers");
 		
 		const Sprite *mark[2] = {SpriteSet::Get("ui/faction left"), SpriteSet::Get("ui/faction right")};
