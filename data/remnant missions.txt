@@ -1034,7 +1034,7 @@ mission "Remnant: Salvage 4"
 				`	"Sorry, I don't have time to help you out."`
 					decline
 
-			`	"Thank you," he signs. "It is acting oddly, jumping around destroying ships instead of looting and running. If it simply looted and left we would be pleased, but now it is learning about us instead, so it has reached the end of its usefulness. Please disable it so that our technicians can get on board." He pauses, then continues, "I doubt we'll be able to salvage the ship itself - they pack those things with soldiers - but we should be able to strip everything else of use off it."`
+			`	"Thank you," he signs. "It is acting oddly, jumping around destroying ships instead of looting and running. If it simply looted and left we would be pleased, but now it is learning about us instead, so it has reached the end of its usefulness. Please disable it so that we can salvage parts from its exterior." He pauses, then continues, "I doubt we'll be able to salvage the ship itself - they pack those things with soldiers - but we should be able to strip everything else of use off it."`
 				accept
 	npc save disable
 		government "Korath"
