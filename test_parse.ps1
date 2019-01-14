@@ -23,9 +23,9 @@ $dur = New-TimeSpan -Start $start -End $(Get-Date);
 # Assert there is no content in the "errors.txt" file.
 if ((Test-Path -Path "$ERR_FILE") -and ((Get-Content -Path "$ERR_FILE" -Raw).Length -gt 0))
 {
-  $err_msg = "Assertion failed: content written to file $FILEDIR/errors.txt";
+  $err_msg = "Assertion failed: content written to file $ERR_FILE";
   $content = Get-Content -Path "$ERR_FILE" -Raw;
-  Write-Host $content
+  Write-Host $content;
   if ($av)
   {
     $messages = @();
