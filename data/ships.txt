@@ -725,7 +725,6 @@ ship "Carrier"
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret" 2
 
-		
 		"Fusion Reactor"
 		"LP288a Battery Pack"
 		"D94-YV Shield Generator"
