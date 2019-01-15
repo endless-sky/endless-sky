@@ -724,6 +724,9 @@ ship "Carrier"
 		"Meteor Missile" 140
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret" 2
+
+		"Laser Rifle" 40
+		"Fragmentation Grenades" 40
 		
 		"Fusion Reactor"
 		"LP288a Battery Pack"
@@ -1020,6 +1023,9 @@ ship "Cruiser"
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
+		"Laser Rifle" 20
+		"Fragmentation Grenades" 20
+
 		"Fusion Reactor"
 		"LP288a Battery Pack"
 		"D67-TM Shield Generator"
@@ -1461,7 +1467,10 @@ ship "Frigate"
 		"Torpedo" 60
 		"Blaster Turret" 2
 		"Anti-Missile Turret"
-		
+
+		"Laser Rifle" 5
+		"Fragmentation Grenades" 5
+
 		"NT-200 Nucleovoltaic"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
