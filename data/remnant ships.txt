@@ -172,8 +172,8 @@ ship "Gull"
 		"fuel capacity" 600
 		"ramscoop" 1
 		"cargo space" 175
-		"outfit space" 280
-		"weapon capacity" 81
+		"outfit space" 310
+		"weapon capacity" 83
 		"engine capacity" 91
 		"shield generation" 1.6
 		"shield energy" 1.1
@@ -236,7 +236,7 @@ ship "Gull" "Gull (Heavy)"
 ship "Gull" "Gull (Sniper)"
 	outfits
 		"Inhibitor Cannon" 3
-		"Thrasher Turret"
+		"Point Defense Turret"
 
 		"Epoch Cell"
 		"Millennium Cell"
