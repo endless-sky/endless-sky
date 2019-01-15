@@ -725,8 +725,6 @@ ship "Carrier"
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret" 2
 
-		"Laser Rifle" 40
-		"Fragmentation Grenades" 40
 		
 		"Fusion Reactor"
 		"LP288a Battery Pack"
@@ -734,6 +732,8 @@ ship "Carrier"
 		"Large Radar Jammer" 2
 		"Water Coolant System"
 		"Brig"
+		"Laser Rifle" 40
+		"Fragmentation Grenades" 40
 		
 		"X5700 Ion Thruster"
 		"X4200 Ion Steering"
@@ -1022,15 +1022,14 @@ ship "Cruiser"
 		"Sidewinder Missile" 100
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret" 2
-		
-		"Laser Rifle" 20
-		"Fragmentation Grenades" 20
 
 		"Fusion Reactor"
 		"LP288a Battery Pack"
 		"D67-TM Shield Generator"
 		"Large Radar Jammer" 2
 		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 20
+		"Fragmentation Grenades" 20
 		
 		"X4700 Ion Thruster"
 		"X4200 Ion Steering"
@@ -1468,13 +1467,12 @@ ship "Frigate"
 		"Blaster Turret" 2
 		"Anti-Missile Turret"
 
-		"Laser Rifle" 5
-		"Fragmentation Grenades" 5
-
 		"NT-200 Nucleovoltaic"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
+		"Laser Rifle" 5
+		"Fragmentation Grenades" 5
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
