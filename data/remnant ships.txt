@@ -174,7 +174,7 @@ ship "Gull"
 		"cargo space" 175
 		"outfit space" 310
 		"weapon capacity" 83
-		"engine capacity" 91
+		"engine capacity" 101
 		"shield generation" 1.6
 		"shield energy" 1.1
 		"hull repair rate" 0.7
