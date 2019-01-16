@@ -21,7 +21,7 @@ if (Test-Path -Path $ERR_FILE) { Remove-Item -Path $ERR_FILE; }
 
 # Parse the game data files
 $start = $(Get-Date);
-$p = Start-Process -FilePath "$EndlessSky" -ArgumentList '-p' -Wait -PassThru -RedirectStandardError "$ERR_FILE";
+$p = Start-Process -FilePath "$EndlessSky" -ArgumentList '-p' -Wait -PassThru;
 $dur = New-TimeSpan -Start $start -End $(Get-Date);
 
 # Assert there is no content in the "errors.txt" file.

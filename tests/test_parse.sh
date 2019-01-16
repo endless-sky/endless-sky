@@ -12,7 +12,6 @@ elif [[ $OSTYPE == 'msys' ]] || [[ $OS == 'Windows_NT' ]] || [[ ! -z ${APPDATA:-
 else
   FILEDIR="$HOME/.local/share/endless-sky"
 fi
-mkdir -p "$FILEDIR"
 ERR_FILE="$FILEDIR/errors.txt"
 
 # Remove any existing error files first.
@@ -20,8 +19,8 @@ if [ -f "$ERR_FILE" ]; then
   rm "$ERR_FILE"
 fi
 
-# Parse the game data files, redirecting all stderr.
-"$1" -p 2>"$ERR_FILE"
+# Parse the game data files.
+"$1" -p
 EXIT_CODE=$?
 
 # If the game executed, then assert there is no 'errors.txt' file,
