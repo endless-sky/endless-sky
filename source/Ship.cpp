@@ -1696,7 +1696,28 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 	for(Bay &bay : bays)
 		if(bay.ship && bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * bay.isFighter))
 		{
-			// TODO: Restock fighter weaponry that needs ammo.
+			// Determine which of the fighter's weapons we can restock.
+			auto toRefill = set<const Outfit *>();
+			for(const auto &hardpoint : bay.ship->Weapons())
+			{
+				const Weapon *weapon = hardpoint.GetOutfit();
+				const Outfit *ammo = weapon ? weapon->Ammo() : nullptr;
+				if(ammo && OutfitCount(ammo))
+					toRefill.insert(ammo);
+			}
+			// Transfer as much ammo as the fighter needs.
+			bool tookAmmo = false;
+			for(const Outfit *ammo : toRefill)
+			{
+				int canTake = bay.ship->attributes.CanAdd(*ammo, OutfitCount(ammo));
+				if(canTake > 0)
+				{
+					AddOutfit(ammo, -canTake);
+					bay.ship->AddOutfit(ammo, canTake);
+					tookAmmo = true;
+					carriedMass += ammo->Mass() * canTake;
+				}
+			}
 			
 			// This ship will refuel naturally based on the carrier's fuel
 			// collection, but the carrier may have some reserves to spare.
@@ -1705,9 +1726,10 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			{
 				double spareFuel = fuel - JumpFuel();
 				if(spareFuel > 0.)
-					TransferFuel(min(maxFuel - bay.ship->fuel, spareFuel), bay.ship.get());
-				// If still low or out-of-fuel, re-stock the carrier and don't launch.
-				if(bay.ship->fuel < .25 * maxFuel)
+					TransferFuel(spareFuel, bay.ship.get());
+				// If still low or out-of-fuel, re-stock the carrier and don't
+				// launch, except if some ammo was taken (since we can fight).
+				if(!tookAmmo && bay.ship->fuel < .25 * maxFuel)
 				{
 					TransferFuel(bay.ship->fuel, this);
 					continue;
@@ -2718,12 +2740,37 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->SetParent(shared_from_this());
 			ship->isThrusting = false;
 			ship->commands.Clear();
+			
 			// If this fighter collected anything in space, try to store it
 			// (unless this is a player-owned ship).
 			if(!isYours && cargo.Free() && !ship->Cargo().IsEmpty())
 				ship->Cargo().TransferAll(cargo);
-			// Return unused fuel to the carrier, for any launching fighter that needs it.
+			
+			// Return unused fuel and ammunition to the carrier, so they may
+			// be used by the carrier or other fighters.
 			ship->TransferFuel(ship->fuel, this);
+			
+			auto toRestock = map<const Outfit *, int>();
+			for(const auto &hardpoint : ship->Weapons())
+			{
+				const Weapon *weapon = hardpoint.GetOutfit();
+				if(weapon)
+				{
+					const Outfit *ammo = weapon->Ammo();
+					int count = ammo ? ship->OutfitCount(ammo) : 0;
+					if(count > 0)
+						toRestock.emplace(ammo, count);
+				}
+			}
+			for(const auto &stockpile : toRestock)
+			{
+				int unloadable = attributes.CanAdd(*stockpile.first, stockpile.second);
+				if(unloadable > 0)
+				{
+					ship->AddOutfit(stockpile.first, -unloadable);
+					AddOutfit(stockpile.first, unloadable);
+				}
+			}
 			
 			// Update the cached mass of the mothership.
 			carriedMass += ship->Mass();
