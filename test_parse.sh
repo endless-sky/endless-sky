@@ -6,26 +6,27 @@ fi
 if [[ $(uname) == 'Darwin' ]]; then
   FILEDIR="$HOME/Library/Application Support/endless-sky"
 else
-  FILEDIR="$HOME/.local/share/endless-sky/"
+  FILEDIR="$HOME/.local/share/endless-sky"
 fi
+mkdir -p "$FILEDIR"
 ERR_FILE="$FILEDIR/errors.txt"
 
 # Remove any existing error files first.
 if [ -f "$ERR_FILE" ]; then
-  echo "Removing existing error file"
   rm "$ERR_FILE"
 fi
 
-# Parse the game data files (and print to the screen the results).
-"$1" -p
+# Parse the game data files.
+"$1" -p 2>"$ERR_FILE"
 EXIT_CODE=$?
 
 # If the game executed, then assert there is no 'errors.txt' file.
 if [ $EXIT_CODE -ne 0 ]; then
   echo "Error executing file/command '$1'"
   exit $EXIT_CODE
-elif [ -f "$ERR_FILE" ]; then
-  echo "Assertion failed: parsing files created file 'errors.txt' in $FILEDIR"
+elif [ -f "$ERR_FILE" ] && [ -s "$ERR_FILE" ]; then
+  echo "Assertion failed: content written to $ERR_FILE"
+  cat "$ERR_FILE"
   exit 1
 else
   echo "Parse test completed successfully."

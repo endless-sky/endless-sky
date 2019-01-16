@@ -17,17 +17,19 @@ if (Test-Path -Path $ERR_FILE) { Remove-Item -Path $ERR_FILE; }
 
 # Parse the game data files
 $start = $(Get-Date);
-$p = Start-Process -FilePath $EndlessSky -ArgumentList '-p' -Wait -PassThru;
+$p = Start-Process -FilePath "$EndlessSky" -ArgumentList '-p' -Wait -PassThru -RedirectStandardError "$ERR_FILE";
 $dur = New-TimeSpan -Start $start -End $(Get-Date);
 
-# Assert there is no "errors.txt" file
-if (Test-Path -Path "$ERR_FILE")
+# Assert there is no content in the "errors.txt" file.
+if ((Test-Path -Path "$ERR_FILE") -and ((Get-Content -Path "$ERR_FILE" -Raw).Length -gt 0))
 {
-  $err_msg = "Assertion failed: parsing files created file 'errors.txt' in $FILEDIR";
+  $err_msg = "Assertion failed: content written to file $ERR_FILE";
+  $content = Get-Content -Path "$ERR_FILE" -Raw;
+  Write-Host $content;
   if ($av)
   {
     $messages = @();
-    $(Get-Content -Path $ERR_FILE -Raw).Split("`n") | ForEach-Object `
+    $content.Split("`n") | ForEach-Object `
     {
       if ($_.StartsWith(' ') -or $_.StartsWith('file'))
         { $messages[-1] += "`n$_"; }
