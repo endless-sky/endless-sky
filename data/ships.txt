@@ -733,6 +733,7 @@ ship "Carrier"
 		"Brig"
 		"Laser Rifle" 40
 		"Fragmentation Grenades" 40
+		"Security Station"
 		
 		"X5700 Ion Thruster"
 		"X4200 Ion Steering"
@@ -1029,6 +1030,7 @@ ship "Cruiser"
 		"Liquid Nitrogen Cooler"
 		"Laser Rifle" 20
 		"Fragmentation Grenades" 20
+		"Security Station"
 		
 		"X4700 Ion Thruster"
 		"X4200 Ion Steering"
@@ -1472,6 +1474,7 @@ ship "Frigate"
 		"Large Radar Jammer"
 		"Laser Rifle" 5
 		"Fragmentation Grenades" 5
+		"Security Station"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
