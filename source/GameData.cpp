@@ -45,8 +45,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Politics.h"
 #include "Random.h"
 #include "RingShader.h"
-#include "Sale.h"
-#include "Set.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "SpriteQueue.h"
@@ -624,6 +622,13 @@ const Set<Mission> &GameData::Missions()
 const Set<Outfit> &GameData::Outfits()
 {
 	return outfits;
+}
+
+
+
+const Set<Sale<Outfit>> &GameData::Outfitters()
+{
+	return outfitSales;
 }
 
 

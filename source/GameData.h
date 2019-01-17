@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef GAME_DATA_H_
 #define GAME_DATA_H_
 
+#include "Sale.h"
 #include "Set.h"
 #include "Trade.h"
 
@@ -101,6 +102,7 @@ public:
 	static const Set<Minable> &Minables();
 	static const Set<Mission> &Missions();
 	static const Set<Outfit> &Outfits();
+	static const Set<Sale<Outfit>> &Outfitters();
 	static const Set<Person> &Persons();
 	static const Set<Phrase> &Phrases();
 	static const Set<Planet> &Planets();

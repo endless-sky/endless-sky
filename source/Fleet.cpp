@@ -78,6 +78,12 @@ void Fleet::Load(const DataNode &node)
 			for(int i = 1; i < child.Size(); ++i)
 				commodities.push_back(child.Token(i));
 		}
+		else if(key == "outfitters" && hasValue)
+		{
+			outfitters.clear();
+			for(int i = 1; i < child.Size(); ++i)
+				outfitters.insert(GameData::Outfitters().Get(child.Token(i)));
+		}
 		else if(key == "personality")
 			personality.Load(child);
 		else if(key == "variant" && !remove)
