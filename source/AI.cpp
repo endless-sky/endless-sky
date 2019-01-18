@@ -396,13 +396,14 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 
 
 
+// Remove records of what happened in the previous system, now that
+// the player has entered a new one.
 void AI::Clean()
 {
 	actions.clear();
 	notoriety.clear();
 	governmentActions.clear();
 	playerActions.clear();
-	helperList.clear();
 	swarmCount.clear();
 	fenceCount.clear();
 	miningAngle.clear();
@@ -415,10 +416,11 @@ void AI::Clean()
 
 
 
-// Clear ship orders. This should be done when the player lands on a planet,
-// but not when they jump from one system to another.
+// Clear ship orders and assistance requests. These should be done
+// when the player lands, but not when they change systems.
 void AI::ClearOrders()
 {
+	helperList.clear();
 	orders.clear();
 }
 
