@@ -107,6 +107,7 @@ public:
 	static const Set<Phrase> &Phrases();
 	static const Set<Planet> &Planets();
 	static const Set<Ship> &Ships();
+	static const Set<Sale<Ship>> &Shipyards();
 	static const Set<System> &Systems();
 	
 	static const Government *PlayerGovernment();
