@@ -1091,6 +1091,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				for(shared_ptr<Flotsam> &it : jettisoned)
 					it->Place(*this);
 				flotsam.splice(flotsam.end(), jettisoned);
+				
+				// Any ships that failed to launch from this ship are destroyed.
+				for(Bay &bay : bays)
+					if(bay.ship)
+						bay.ship->Destroy();
 			}
 			energy = 0.;
 			heat = 0.;
@@ -1499,7 +1504,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					{
 						Messages::Add("The " + target->ModelName() + " \"" + target->Name()
 							+ "\" has activated its self-destruct mechanism.");
-						targetShip.lock()->SelfDestruct();
+						GetTargetShip()->SelfDestruct();
 					}
 					else
 						hasBoarded = true;
@@ -1510,7 +1515,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	
 	// Clear your target if it is destroyed. This is only important for NPCs,
 	// because ordinary ships cease to exist once they are destroyed.
-	target = targetShip.lock();
+	target = GetTargetShip();
 	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
 		targetShip.reset();
 	
@@ -1692,36 +1697,47 @@ void Ship::DoGeneration()
 void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 {
 	// Allow fighters to launch from a disabled ship, but not from a ship that
-	// is landing, jumping, or cloaked.
-	if(!IsDestroyed() && (!commands.Has(Command::DEPLOY) || zoom != 1. || hyperspaceCount || cloak))
+	// is landing, jumping, or cloaked. If already destroyed (e.g. self-destructing),
+	// eject any ships still docked, possibly destroying them in the process.
+	bool ejecting = IsDestroyed();
+	if(!ejecting && (!commands.Has(Command::DEPLOY) || zoom != 1. || hyperspaceCount || cloak))
 		return;
 	
 	for(Bay &bay : bays)
-		if(bay.ship && bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * bay.isFighter))
+		if(bay.ship && ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * bay.isFighter))
+				|| (ejecting && !Random::Int(6))))
 		{
-			// TODO: Restock fighter weaponry that needs ammo.
-			
-			// This ship will refuel naturally based on the carrier's fuel
-			// collection, but the carrier may have some reserves to spare.
-			double maxFuel = bay.ship->attributes.Get("fuel capacity");
-			if(maxFuel)
+			// Resupply any ships launching of their own accord.
+			if(!ejecting)
 			{
-				double spareFuel = fuel - JumpFuel();
-				if(spareFuel > 0.)
-					TransferFuel(min(maxFuel - bay.ship->fuel, spareFuel), bay.ship.get());
-				// If still low or out-of-fuel, re-stock the carrier and don't launch.
-				if(bay.ship->fuel < .25 * maxFuel)
+				// TODO: Restock fighter weaponry that needs ammo.
+				
+				// This ship will refuel naturally based on the carrier's fuel
+				// collection, but the carrier may have some reserves to spare.
+				double maxFuel = bay.ship->attributes.Get("fuel capacity");
+				if(maxFuel)
 				{
-					TransferFuel(bay.ship->fuel, this);
-					continue;
+					double spareFuel = fuel - JumpFuel();
+					if(spareFuel > 0.)
+						TransferFuel(min(maxFuel - bay.ship->fuel, spareFuel), bay.ship.get());
+					// If still low or out-of-fuel, re-stock the carrier and don't launch.
+					if(bay.ship->fuel < .25 * maxFuel)
+					{
+						TransferFuel(bay.ship->fuel, this);
+						continue;
+					}
 				}
 			}
+			// Those being ejected may be destroyed if they are already injured.
+			else if(bay.ship->Health() < Random::Real())
+				bay.ship->SelfDestruct();
 			
 			ships.push_back(bay.ship);
-			double maxV = bay.ship->MaxVelocity();
-			Angle launchAngle = angle + BAY_ANGLE[bay.facing];
-			Point v = velocity + (.3 * maxV) * launchAngle.Unit() + (.2 * maxV) * Angle::Random().Unit();
+			double maxV = bay.ship->MaxVelocity() * (1 + bay.ship->IsDestroyed());
 			Point exitPoint = position + angle.Rotate(bay.point);
+			// When ejected, ships depart haphazardly.
+			Angle launchAngle = ejecting ? Angle(exitPoint - position) : angle + BAY_ANGLE[bay.facing];
+			Point v = velocity + (.3 * maxV) * launchAngle.Unit() + (.2 * maxV) * Angle::Random().Unit();
 			bay.ship->Place(exitPoint, v, launchAngle);
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
@@ -2159,6 +2175,7 @@ void Ship::Destroy()
 
 
 
+// Trigger the death of this ship.
 void Ship::SelfDestruct()
 {
 	Destroy();
@@ -2992,7 +3009,7 @@ shared_ptr<Flotsam> Ship::GetTargetFlotsam() const
 // Set this ship's targets.
 void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {
-	if(ship != targetShip.lock())
+	if(ship != GetTargetShip())
 	{
 		targetShip = ship;
 		// When you change targets, clear your scanning records.
