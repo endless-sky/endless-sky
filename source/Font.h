@@ -55,7 +55,7 @@ public:
 		// Set the truncate mode.
 		Truncate truncate = TRUNC_NONE;
 		// Wrap and trancate width.
-		unsigned int width = std::numeric_limits<unsigned int>::max();
+		int width = std::numeric_limits<int>::max();
 		// Line height in pixels.
 		uint_fast8_t lineHeight = DEFAULT_LINE_HEIGHT;
 		// Extra spacing in pixel between paragraphs.
@@ -129,6 +129,18 @@ private:
 	const RenderedText &Render(const std::string &str, const Layout *params) const;
 	void SetUpShader();
 	
+	int RawWidth(const std::string &str, const Layout *params = nullptr) const;
+	
+	// Convert Raw to/from View location.
+	double RawFromView(double xy) const;
+	int RawFromView(int xy) const;
+	int RawFromViewCeil(int xy) const;
+	int RawFromViewFloor(int xy) const;
+	double ViewFromRaw(double xy) const;
+	int ViewFromRaw(int xy) const;
+	int ViewFromRawCeil(int xy) const;
+	int ViewFromRawFloor(int xy) const;
+	
 	
 private:
 	
@@ -142,8 +154,9 @@ private:
 	GLint sizeI;
 	GLint colorI;
 	
-	mutable int screenWidth;
-	mutable int screenHeight;
+	mutable int screenRawWidth;
+	mutable int screenRawHeight;
+	mutable int screenZoom;
 	
 	mutable cairo_t *cr;
 	std::string fontDescName;
@@ -152,10 +165,11 @@ private:
 	mutable PangoLayout *layout;
 	PangoLanguage *lang;
 	int pixelSize;
-	mutable int fontHeight;
+	mutable int fontRawHeight;
 	mutable int space;
 	mutable int surfaceWidth;
 	mutable int surfaceHeight;
+	mutable int underlineThickness;
 	
 	// Cache of rendered text.
 	mutable Cache<CacheKey, RenderedText, true, CacheKeyHash, AtRecycleForRenderedText> cache;
