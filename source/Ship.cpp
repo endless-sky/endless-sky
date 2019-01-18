@@ -1091,6 +1091,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				for(shared_ptr<Flotsam> &it : jettisoned)
 					it->Place(*this);
 				flotsam.splice(flotsam.end(), jettisoned);
+				
+				// Any ships that failed to launch from this ship are destroyed.
+				for(Bay &bay : bays)
+					if(bay.ship)
+						bay.ship->Destroy();
 			}
 			energy = 0.;
 			heat = 0.;
