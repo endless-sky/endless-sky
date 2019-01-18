@@ -887,11 +887,13 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			if(helper.get() == &ship)
 				continue;
 			
-			// If any enemies of this ship are in its system, it cannot call for help.
+			// If any able enemies of this ship are in its system, it cannot call for help.
 			const System *system = ship.GetSystem();
 			if(helper->GetGovernment()->IsEnemy(gov) && flagship && system == flagship->GetSystem())
 			{
-				hasEnemy |= (system == helper->GetSystem() && !helper->IsDisabled());
+				// Disabled, overheated, or otherwise untargetable ships pose no threat.
+				bool harmless = helper->IsDisabled() || (helper->IsOverheated() && helper->Heat() >= 1.1) || !helper->IsTargetable();
+				hasEnemy |= (system == helper->GetSystem() && !harmless);
 				if(hasEnemy)
 					break;
 			}
