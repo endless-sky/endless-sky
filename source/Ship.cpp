@@ -1499,7 +1499,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					{
 						Messages::Add("The " + target->ModelName() + " \"" + target->Name()
 							+ "\" has activated its self-destruct mechanism.");
-						targetShip.lock()->SelfDestruct();
+						GetTargetShip()->SelfDestruct();
 					}
 					else
 						hasBoarded = true;
@@ -1510,7 +1510,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	
 	// Clear your target if it is destroyed. This is only important for NPCs,
 	// because ordinary ships cease to exist once they are destroyed.
-	target = targetShip.lock();
+	target = GetTargetShip();
 	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
 		targetShip.reset();
 	
@@ -2992,7 +2992,7 @@ shared_ptr<Flotsam> Ship::GetTargetFlotsam() const
 // Set this ship's targets.
 void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {
-	if(ship != targetShip.lock())
+	if(ship != GetTargetShip())
 	{
 		targetShip = ship;
 		// When you change targets, clear your scanning records.
