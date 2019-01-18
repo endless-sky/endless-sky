@@ -1842,10 +1842,20 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	double targetAngle = Angle(facingGoal).Degrees() - currentAngle;
 	if(abs(targetAngle) > 180.)
 		targetAngle += (targetAngle < 0. ? 360. : -360.);
-	if(abs(targetAngle) < turn)
+	// To avoid turn jitter when position & velocity are well-matched, ramp the
+	// turn command from 0 to 1 over several frames.
+	double lastTurn = ship.Commands().Turn();
+	bool changedDirection = (signbit(lastTurn) != signbit(targetAngle));
+	if(lastTurn && (abs(lastTurn) < 1. || changedDirection))
+	{
+		// Keep the desired turn direction, but limit the per-frame turn rate increase.
+		double newTurnCommand = copysign((changedDirection ? 0. : abs(lastTurn)) + .01, targetAngle);
+		command.SetTurn(newTurnCommand);
+	}
+	else if(abs(targetAngle) < turn)
 		command.SetTurn(targetAngle / turn);
 	else
-		command.SetTurn(targetAngle < 0. ? -1. : 1.);
+		command.SetTurn(targetAngle);
 	
 	// Determine whether to apply thrust.
 	Point drag = ship.Velocity() * (ship.Attributes().Get("drag") / mass);
