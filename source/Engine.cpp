@@ -1371,7 +1371,13 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		// Make sure this ship's destruction was recorded, even if it died from
 		// self-destruct.
 		if(ship->IsDestroyed())
+		{
 			eventQueue.emplace_back(nullptr, ship, ShipEvent::DESTROY);
+			// Any still-docked ships' destruction must be recorded as well.
+			for(const auto &bay : ship->Bays())
+				if(bay.ship)
+					eventQueue.emplace_back(nullptr, bay.ship, ShipEvent::DESTROY);
+		}
 		return;
 	}
 	
