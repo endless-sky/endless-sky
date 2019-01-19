@@ -2330,6 +2330,9 @@ event "battle for ap'arak"
 		fleet "Wanderer Flycatchers" 400
 
 event "battle for ap'arak ends"
+	government "Wanderer"
+		"attitude toward"
+			"Pug" .01
 	system "Ap'arak"
 		add fleet "Wanderer Freight" 2000
 		add fleet "Wanderer Drones" 4000
@@ -2435,10 +2438,13 @@ mission "Wanderers Ap'arak 3: Pug"
 	to offer
 		has "Wanderers Ap'arak 2: done"
 	npc kill
-		personality staying uninterested
+		personality staying unconstrained uninterested
 		government "Pug"
 		ship "Pug Arfecta" "Hork Ekekek Ptui"
 		ship "Pug Arfecta" "Graak Sput Kchoo"
+	on complete
+		dialog `Shortly after defeating the Pug ships, you receive a message from Sobari Tele'ek: "We are [aware? incredulous?] of reports that you have [exterminated, eradicated] our Keepers in the Ap'arak system. This is unacceptable! From now on, you are no longer welcome in our [territory, space]."`
+		"reputation: Wanderer" <?= -1
 
 mission "Wanderers Ap'arak 3"
 	landing

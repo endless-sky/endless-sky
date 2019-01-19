@@ -449,6 +449,8 @@ ship "Carrier" "Carrier (Jump)"
 		"Sidewinder Missile" 200
 		"Electron Turret" 2
 		"Heavy Anti-Missile Turret" 2
+		"Laser Rifle" 40
+		"Fragmentation Grenades" 40
 		"Armageddon Core"
 		"Dwarf Core"
 		"LP072a Battery Pack"
@@ -483,6 +485,8 @@ ship "Carrier" "Carrier (Mark II)"
 		"Sidewinder Missile" 200
 		"Electron Turret" 2
 		"Heavy Anti-Missile Turret" 2
+		"Laser Rifle" 40
+		"Fragmentation Grenades" 40
 		"Armageddon Core"
 		"Dwarf Core"
 		"LP036a Battery Pack"
@@ -644,6 +648,8 @@ ship "Cruiser" "Cruiser (Jump)"
 		"Sidewinder Missile" 200
 		"Electron Turret" 3
 		"Heavy Anti-Missile Turret"
+		"Laser Rifle" 20
+		"Fragmentation Grenades" 20
 		"Armageddon Core"
 		"LP144a Battery Pack"
 		"LP036a Battery Pack"
@@ -676,6 +682,8 @@ ship "Cruiser" "Cruiser (Mark II)"
 		"Sidewinder Missile" 200
 		"Electron Turret" 2
 		"Heavy Anti-Missile Turret" 2
+		"Laser Rifle" 20
+		"Fragmentation Grenades" 20
 		"Armageddon Core"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
@@ -957,6 +965,8 @@ ship "Frigate" "Frigate (Mark II)"
 		"Particle Cannon" 4
 		"Anti-Missile Turret"
 		"Blaster Turret" 2
+		"Laser Rifle" 5
+		"Fragmentation Grenades" 5
 		"NT-200 Nucleovoltaic"
 		"Dwarf Core"
 		"LP036a Battery Pack"

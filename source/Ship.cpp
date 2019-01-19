@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
+#include "Files.h"
 #include "Flotsam.h"
 #include "Format.h"
 #include "GameData.h"
@@ -37,7 +38,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
-#include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -436,20 +437,22 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament.Add(it.first, -excess);
 			it.second -= excess;
 			
-			cerr << modelName;
+			string warning = modelName;
 			if(!name.empty())
-				cerr << " \"" << name << "\"";
-			cerr << ": outfit \"" << it.first->Name() << "\" equipped but not included in outfit list." << endl;
+				warning += " \"" + name + "\"";
+			warning += ": outfit \"" + it.first->Name() + "\" equipped but not included in outfit list.";
+			Files::LogError(warning);
 		}
 		else if(!it.first->IsWeapon())
 		{
 			// This ship was specified with a non-weapon outfit in a
 			// hardpoint. Hardpoint::Install removes it, but issue a
 			// warning so the definition can be fixed.
-			cerr << modelName;
+			string warning = modelName;
 			if(!name.empty())
-				cerr << " \"" << name << "\"";
-			cerr << ": outfit \"" << it.first->Name() << "\" is not a weapon, but is installed as one." << endl;
+				warning += " \"" + name + "\"";
+			warning += ": outfit \"" + it.first->Name() + "\" is not a weapon, but is installed as one.";
+			Files::LogError(warning);
 		}
 	}
 	
@@ -474,7 +477,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		if(it.first->Name().empty())
 		{
-			cerr << "Unrecognized outfit in " << modelName << " \"" << name << "\"" << endl;
+			Files::LogError("Unrecognized outfit in " + modelName + " \"" + name + "\"");
 			continue;
 		}
 		attributes.Add(*it.first, it.second);
@@ -500,15 +503,14 @@ void Ship::FinishLoading(bool isNewInstance)
 		const Outfit *outfit = hardpoint.GetOutfit();
 		if(outfit && (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
 		{
-			bool isTurret = hardpoint.IsTurret();
-			cerr << modelName;
+			string warning = modelName;
 			if(!name.empty())
-				cerr << " \"" << name << "\"";
-			cerr << ": outfit \"" << outfit->Name() << "\" installed as a ";
-			cerr << (isTurret ? "turret but is a gun." : "gun but is a turret.");
-			cerr << "\n\t" << (isTurret ? "turret " : "gun ");
-			cerr << 2. * hardpoint.GetPoint().X() << " " << 2. * hardpoint.GetPoint().Y();
-			cerr << " \"" << outfit->Name() << "\"" << endl;
+				warning += " \"" + name + "\"";
+			warning += ": outfit \"" + outfit->Name() + "\" installed as a ";
+			warning += (hardpoint.IsTurret() ? "turret but is a gun.\n\tturret" : "gun but is a turret.\n\tgun");
+			warning += to_string(2. * hardpoint.GetPoint().X()) + " " + to_string(2. * hardpoint.GetPoint().Y());
+			warning += " \"" + outfit->Name() + "\"";
+			Files::LogError(warning);
 		}
 	}
 	cargo.SetSize(attributes.Get("cargo space"));
@@ -545,20 +547,12 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(!warning.empty())
 	{
 		// This check is mostly useful for variants and stock ships, which have
-		// no names. Instead, print the outfits and attributes to facilitate identification.
-		cerr << (!name.empty() ? "Ship \"" + name + "\" " : "") << "(" + modelName + "):\n"
-				<< warning << "outfits:" << endl;
+		// no names. Print the outfits to facilitate identifying this ship definition.
+		string message = (!name.empty() ? "Ship \"" + name + "\" " : "") + "(" + modelName + "):\n";
+		ostringstream outfitNames("outfits:\n");
 		for(const auto &it : outfits)
-			cerr << '\t' << it.second << " " + it.first->Name() << endl;
-		cerr << "attributes:" << endl;
-		size_t maxAttr = 0;
-		for(const auto &it : attributes.Attributes())
-			maxAttr = max<size_t>(maxAttr, string(it.first).size());
-		for(const auto &it : attributes.Attributes())
-		{
-			auto attr = string(it.first);
-			cerr << '\t' << attr.append(maxAttr - attr.size(), ' ')  << ": " << it.second << endl;
-		}
+			outfitNames << '\t' << it.second << " " + it.first->Name() << endl;
+		Files::LogError(message + warning + outfitNames.str());
 	}
 	
 	// Ships read from a save file may have non-default shields or hull.
@@ -1097,6 +1091,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				for(shared_ptr<Flotsam> &it : jettisoned)
 					it->Place(*this);
 				flotsam.splice(flotsam.end(), jettisoned);
+				
+				// Any ships that failed to launch from this ship are destroyed.
+				for(Bay &bay : bays)
+					if(bay.ship)
+						bay.ship->Destroy();
 			}
 			energy = 0.;
 			heat = 0.;
@@ -1505,7 +1504,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					{
 						Messages::Add("The " + target->ModelName() + " \"" + target->Name()
 							+ "\" has activated its self-destruct mechanism.");
-						targetShip.lock()->SelfDestruct();
+						GetTargetShip()->SelfDestruct();
 					}
 					else
 						hasBoarded = true;
@@ -1516,7 +1515,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	
 	// Clear your target if it is destroyed. This is only important for NPCs,
 	// because ordinary ships cease to exist once they are destroyed.
-	target = targetShip.lock();
+	target = GetTargetShip();
 	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
 		targetShip.reset();
 	
@@ -1698,18 +1697,47 @@ void Ship::DoGeneration()
 void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 {
 	// Allow fighters to launch from a disabled ship, but not from a ship that
-	// is landing, jumping, or cloaked.
-	if(!IsDestroyed() && (!commands.Has(Command::DEPLOY) || zoom != 1. || hyperspaceCount || cloak))
+	// is landing, jumping, or cloaked. If already destroyed (e.g. self-destructing),
+	// eject any ships still docked, possibly destroying them in the process.
+	bool ejecting = IsDestroyed();
+	if(!ejecting && (!commands.Has(Command::DEPLOY) || zoom != 1. || hyperspaceCount || cloak))
 		return;
 	
 	for(Bay &bay : bays)
-		if(bay.ship && bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * bay.isFighter))
+		if(bay.ship && ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * bay.isFighter))
+				|| (ejecting && !Random::Int(6))))
 		{
+			// Resupply any ships launching of their own accord.
+			if(!ejecting)
+			{
+				// TODO: Restock fighter weaponry that needs ammo.
+				
+				// This ship will refuel naturally based on the carrier's fuel
+				// collection, but the carrier may have some reserves to spare.
+				double maxFuel = bay.ship->attributes.Get("fuel capacity");
+				if(maxFuel)
+				{
+					double spareFuel = fuel - JumpFuel();
+					if(spareFuel > 0.)
+						TransferFuel(min(maxFuel - bay.ship->fuel, spareFuel), bay.ship.get());
+					// If still low or out-of-fuel, re-stock the carrier and don't launch.
+					if(bay.ship->fuel < .25 * maxFuel)
+					{
+						TransferFuel(bay.ship->fuel, this);
+						continue;
+					}
+				}
+			}
+			// Those being ejected may be destroyed if they are already injured.
+			else if(bay.ship->Health() < Random::Real())
+				bay.ship->SelfDestruct();
+			
 			ships.push_back(bay.ship);
-			double maxV = bay.ship->MaxVelocity();
-			Angle launchAngle = angle + BAY_ANGLE[bay.facing];
-			Point v = velocity + (.3 * maxV) * launchAngle.Unit() + (.2 * maxV) * Angle::Random().Unit();
+			double maxV = bay.ship->MaxVelocity() * (1 + bay.ship->IsDestroyed());
 			Point exitPoint = position + angle.Rotate(bay.point);
+			// When ejected, ships depart haphazardly.
+			Angle launchAngle = ejecting ? Angle(exitPoint - position) : angle + BAY_ANGLE[bay.facing];
+			Point v = velocity + (.3 * maxV) * launchAngle.Unit() + (.2 * maxV) * Angle::Random().Unit();
 			bay.ship->Place(exitPoint, v, launchAngle);
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
@@ -2147,6 +2175,7 @@ void Ship::Destroy()
 
 
 
+// Trigger the death of this ship.
 void Ship::SelfDestruct()
 {
 	Destroy();
@@ -2709,6 +2738,13 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->SetParent(shared_from_this());
 			ship->isThrusting = false;
 			ship->commands.Clear();
+			// If this fighter collected anything in space, try to store it
+			// (unless this is a player-owned ship).
+			if(!isYours && cargo.Free() && !ship->Cargo().IsEmpty())
+				ship->Cargo().TransferAll(cargo);
+			// Return unused fuel to the carrier, for any launching fighter that needs it.
+			ship->TransferFuel(ship->fuel, this);
+			
 			// Update the cached mass of the mothership.
 			carriedMass += ship->Mass();
 			return true;
@@ -2973,7 +3009,7 @@ shared_ptr<Flotsam> Ship::GetTargetFlotsam() const
 // Set this ship's targets.
 void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {
-	if(ship != targetShip.lock())
+	if(ship != GetTargetShip())
 	{
 		targetShip = ship;
 		// When you change targets, clear your scanning records.

@@ -46,7 +46,7 @@ cache:
     - C:\dev64
 
 build_script:
-    - ps: mingw32-make.exe -k -e -f .winmake $Env:es_run_mode;
+    - ps: mingw32-make.exe -k -j2 -e -f .winmake $Env:es_run_mode;
 
 before_test:
     - ps: |
@@ -55,7 +55,7 @@ before_test:
         Copy-Item -Path "C:\dev64\bin\*.dll" -Exclude "libstdc*" -Destination $here;
 
 test_script:
-    - ps: .\test_parse.ps1 'EndlessSky.exe';
+    - ps: .\tests\test_parse.ps1 'EndlessSky.exe';
 
 after_test:
     - ps: |
