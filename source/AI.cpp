@@ -1843,19 +1843,17 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	if(abs(targetAngle) > 180.)
 		targetAngle += (targetAngle < 0. ? 360. : -360.);
 	// Avoid "turn jitter" when position & velocity are well-matched.
-	double lastTurn = ship.Commands().Turn();
-	double targetTurn = targetAngle / turn;
-	bool changedDirection = (signbit(lastTurn) != signbit(targetAngle));
-	if(lastTurn && (changedDirection ||
-			(abs(lastTurn) < 1. && abs(targetTurn / lastTurn) > 1.)))
+	bool changedDirection = (signbit(ship.Commands().Turn()) != signbit(targetAngle));
+	double targetTurn = abs(targetAngle / turn);
+	double lastTurn = abs(ship.Commands().Turn());
+	if(lastTurn && (changedDirection || (lastTurn < 1. && targetTurn > lastTurn)))
 	{
 		// Keep the desired turn direction, but damp the per-frame turn rate increase.
-		double increment = min(.025, abs(targetTurn));
-		double newTurnCommand = copysign((changedDirection ? 0. : abs(lastTurn)) + increment, targetAngle);
-		command.SetTurn(newTurnCommand);
+		double dampedTurn = (changedDirection ? 0. : lastTurn) + min(.025, targetTurn);
+		command.SetTurn(copysign(dampedTurn, targetAngle));
 	}
-	else if(abs(targetAngle) < turn)
-		command.SetTurn(targetAngle / turn);
+	else if(targetTurn < 1.)
+		command.SetTurn(copysign(targetTurn, targetAngle));
 	else
 		command.SetTurn(targetAngle);
 	
