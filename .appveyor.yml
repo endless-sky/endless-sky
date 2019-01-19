@@ -55,7 +55,7 @@ before_test:
         Copy-Item -Path "C:\dev64\bin\*.dll" -Exclude "libstdc*" -Destination $here;
 
 test_script:
-    - ps: .\test_parse.ps1 'EndlessSky.exe';
+    - ps: .\tests\test_parse.ps1 'EndlessSky.exe';
 
 after_test:
     - ps: |
