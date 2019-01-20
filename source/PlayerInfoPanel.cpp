@@ -237,7 +237,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			
 			// Clamp the destination index to the end of the ships list.
 			size_t moved = allSelected.size();
-			toIndex = min(player.Ships().size() - moved, static_cast<size_t>(toIndex));
+			toIndex = min(player.Ships().size() - moved, toIndex);
 			selectedIndex = player.ReorderShips(allSelected, toIndex);
 			// If the move accessed invalid indices, no moves are done
 			// but the selectedIndex is set to -1.
@@ -551,7 +551,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	Color elsewhere = *GameData::Colors().Get("dim");
-	Color dead(.4, 0., 0., 0.);
+	Color dead(.4f, 0.f, 0.f, 0.f);
 	
 	// Table attributes.
 	Table table;

@@ -112,7 +112,7 @@ void Dialog::Draw()
 	const Sprite *cancel = SpriteSet::Get("ui/dialog cancel");
 	
 	// Get the position of the top of this dialog, and of the text and input.
-	Point pos(0., (top->Height() + height * middle->Height() + bottom->Height()) * -.5);
+	Point pos(0., (top->Height() + height * middle->Height() + bottom->Height()) * -.5f);
 	Point textPos(WIDTH * -.5 + 10., pos.Y() + 20.);
 	Point inputPos = Point(0., -70.) - pos;
 	
