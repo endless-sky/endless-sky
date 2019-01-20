@@ -551,7 +551,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	Color elsewhere = *GameData::Colors().Get("dim");
-	Color dead(.4, 0., 0., 0.);
+	Color dead(.4f, 0.f, 0.f, 0.f);
 	
 	// Table attributes.
 	Table table;
