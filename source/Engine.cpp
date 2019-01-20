@@ -1707,7 +1707,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		// ship that they have hit.
 		if(!projectile.GetWeapon().IsPhasing())
 		{
-			Body *asteroid = asteroids.Collide(projectile, step, &closestHit);
+			Body *asteroid = asteroids.Collide(projectile, &closestHit);
 			if(asteroid)
 			{
 				hitVelocity = asteroid->Velocity();
