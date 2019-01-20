@@ -21,7 +21,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <cstddef>
 #include <cstdint>
-#include <limits>
 #include <string>
 #include <pango/pangocairo.h>
 
@@ -54,8 +53,8 @@ public:
 		Align align = LEFT;
 		// Set the truncate mode.
 		Truncate truncate = TRUNC_NONE;
-		// Wrap and trancate width.
-		int width = std::numeric_limits<int>::max();
+		// Wrap and trancate width. No wrap or trancate if width is negative.
+		int width = -1;
 		// Line height in pixels.
 		uint_fast8_t lineHeight = DEFAULT_LINE_HEIGHT;
 		// Extra spacing in pixel between paragraphs.

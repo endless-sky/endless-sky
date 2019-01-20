@@ -27,6 +27,12 @@ namespace {
 	const int TOTAL_TAB_STOPS = 8;
 	
 	const Font::Layout defaultParams;
+	
+	// Convert from PANGO to pixel scale.
+	int PixelFromPangoCeil(int pangoScale)
+	{
+		return (pangoScale + PANGO_SCALE - 1) / PANGO_SCALE;
+	}
 }
 
 
@@ -227,8 +233,8 @@ void Font::UpdateFontDesc() const
 	PangoFontMetrics *metrics = pango_context_get_metrics(context, refDesc, lang);
 	const int ascent = pango_font_metrics_get_ascent(metrics);
 	const int descent = pango_font_metrics_get_descent(metrics);
-	underlineThickness = pango_font_metrics_get_underline_thickness(metrics) / PANGO_SCALE;
-	fontRawHeight = (ascent + descent + PANGO_SCALE - 1) / PANGO_SCALE;
+	underlineThickness = PixelFromPangoCeil(pango_font_metrics_get_underline_thickness(metrics));
+	fontRawHeight = PixelFromPangoCeil(ascent + descent);
 	
 	// Clean up.
 	pango_font_metrics_unref(metrics);
@@ -315,7 +321,7 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 	
 	// Convert to raw coodinates.
 	Layout rawParams(*params);
-	if(params->width != numeric_limits<int>::max())
+	if(params->width > 0)
 		rawParams.width = RawFromView(params->width);
 	if(params->lineHeight != DEFAULT_LINE_HEIGHT)
 		rawParams.lineHeight = RawFromViewFloor(params->lineHeight);
@@ -329,7 +335,8 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 		return *cached.first;
 	
 	// Truncate
-	pango_layout_set_width(layout, rawParams.width * PANGO_SCALE);
+	const int layoutWidth = rawParams.width < 0 ? -1 : rawParams.width * PANGO_SCALE;
+	pango_layout_set_width(layout, layoutWidth);
 	PangoEllipsizeMode ellipsize;
 	switch(rawParams.truncate)
 	{
@@ -449,9 +456,11 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 		const char *layoutText = pango_layout_get_text(layout);
 		PangoLayoutIter *it = pango_layout_get_iter(layout);
 		int y0 = pango_layout_iter_get_baseline(it);
-		int baselineY = y0 / PANGO_SCALE;
+		int baselineY = PixelFromPangoCeil(y0);
 		int sumExtraY = 0;
-		cairo_move_to(cr, 0, baselineY);
+		PangoRectangle logical_rect;
+		pango_layout_iter_get_line_extents(it, nullptr, &logical_rect);
+		cairo_move_to(cr, PixelFromPangoCeil(logical_rect.x), baselineY);
 		pango_cairo_update_layout(cr, layout);
 		PangoLayoutLine *line = pango_layout_iter_get_line_readonly(it);
 		pango_cairo_show_layout_line(cr, line);
@@ -459,7 +468,7 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 		{
 			const int y1 = pango_layout_iter_get_baseline(it);
 			const int index = pango_layout_iter_get_index(it);
-			const int diffY = (y1 - y0) / PANGO_SCALE;
+			const int diffY = PixelFromPangoCeil(y1 - y0);
 			if(layoutText[index] == '\0')
 			{
 				sumExtraY -= diffY;
@@ -470,7 +479,8 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 				add += rawParams.paragraphBreak;
 			baselineY += add;
 			sumExtraY += add - diffY;
-			cairo_move_to(cr, 0, baselineY);
+			pango_layout_iter_get_line_extents(it, nullptr, &logical_rect);
+			cairo_move_to(cr, PixelFromPangoCeil(logical_rect.x), baselineY);
 			pango_cairo_update_layout(cr, layout);
 			line = pango_layout_iter_get_line_readonly(it);
 			pango_cairo_show_layout_line(cr, line);
