@@ -237,7 +237,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			
 			// Clamp the destination index to the end of the ships list.
 			size_t moved = allSelected.size();
-			toIndex = min(player.Ships().size() - moved, static_cast<size_t>(toIndex));
+			toIndex = min(player.Ships().size() - moved, toIndex);
 			selectedIndex = player.ReorderShips(allSelected, toIndex);
 			// If the move accessed invalid indices, no moves are done
 			// but the selectedIndex is set to -1.
