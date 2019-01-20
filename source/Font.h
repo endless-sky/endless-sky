@@ -125,20 +125,30 @@ private:
 	static std::string ReplaceCharacters(const std::string &str);
 	static std::string RemoveAccelerator(const std::string &str);
 		
+	void DrawCommon(const std::string &str, double x, double y, const Color &color,
+		const Layout *params, bool alignToDot) const;
 	const RenderedText &Render(const std::string &str, const Layout *params) const;
 	void SetUpShader();
 	
-	int RawWidth(const std::string &str, const Layout *params = nullptr) const;
+	int ViewWidth(const std::string &str, const Layout *params = nullptr) const;
 	
-	// Convert Raw to/from View location.
-	double RawFromView(double xy) const;
-	int RawFromView(int xy) const;
-	int RawFromViewCeil(int xy) const;
-	int RawFromViewFloor(int xy) const;
-	double ViewFromRaw(double xy) const;
-	int ViewFromRaw(int xy) const;
-	int ViewFromRawCeil(int xy) const;
-	int ViewFromRawFloor(int xy) const;
+	// Convert Viewport to/from Text coordinates.
+	double ViewFromTextX(double x) const;
+	double ViewFromTextY(double y) const;
+	int ViewFromTextX(int x) const;
+	int ViewFromTextY(int y) const;
+	int ViewFromTextCeilX(int x) const;
+	int ViewFromTextCeilY(int y) const;
+	int ViewFromTextFloorX(int x) const;
+	int ViewFromTextFloorY(int y) const;
+	double TextFromViewX(double x) const;
+	double TextFromViewY(double y) const;
+	int TextFromViewX(int x) const;
+	int TextFromViewY(int y) const;
+	int TextFromViewCeilX(int x) const;
+	int TextFromViewCeilY(int y) const;
+	int TextFromViewFloorX(int x) const;
+	int TextFromViewFloorY(int y) const;
 	
 	
 private:
@@ -153,9 +163,10 @@ private:
 	GLint sizeI;
 	GLint colorI;
 	
-	mutable int screenRawWidth;
-	mutable int screenRawHeight;
-	mutable int screenZoom;
+	mutable int screenWidth;
+	mutable int screenHeight;
+	mutable int viewWidth;
+	mutable int viewHeight;
 	
 	mutable cairo_t *cr;
 	std::string fontDescName;
@@ -164,7 +175,7 @@ private:
 	mutable PangoLayout *layout;
 	PangoLanguage *lang;
 	int pixelSize;
-	mutable int fontRawHeight;
+	mutable int fontViewHeight;
 	mutable int space;
 	mutable int surfaceWidth;
 	mutable int surfaceHeight;

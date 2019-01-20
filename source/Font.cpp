@@ -17,6 +17,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ImageBuffer.h"
 #include "Screen.h"
 
+#include "gl_header.h"
+
 #include <algorithm>
 #include <cmath>
 
@@ -39,9 +41,9 @@ namespace {
 
 Font::Font()
 	: shader(), vao(0), vbo(0), scaleI(0), centerI(0), sizeI(0), colorI(0),
-	screenRawWidth(0), screenRawHeight(0), screenZoom(100), cr(nullptr),
+	screenWidth(1), screenHeight(1), viewWidth(1), viewHeight(1), cr(nullptr),
 	fontDescName(), refDescName(), context(nullptr), layout(nullptr), lang(nullptr),
-	pixelSize(0), fontRawHeight(0), surfaceWidth(256), surfaceHeight(64), underlineThickness(1),
+	pixelSize(0), fontViewHeight(0), surfaceWidth(256), surfaceHeight(64), underlineThickness(1),
 	cache()
 {
 	lang = pango_language_from_string("en");
@@ -99,8 +101,7 @@ void Font::SetLanguage(const std::string &langCode)
 void Font::Draw(const std::string &str, const Point &point, const Color &color,
 	const Layout *params) const
 {
-	DrawAliased(str, ViewFromRaw(round(RawFromView(point.X()))),
-		ViewFromRaw(round(RawFromView(point.Y()))), color, params);
+	DrawCommon(str, point.X(), point.Y(), color, params, true);
 }
 
 
@@ -108,49 +109,7 @@ void Font::Draw(const std::string &str, const Point &point, const Color &color,
 void Font::DrawAliased(const std::string &str, double x, double y, const Color &color,
 	const Layout *params) const
 {
-	if(str.empty())
-		return;
-	
-	if(Screen::Zoom() != screenZoom)
-	{
-		screenZoom = Screen::Zoom();
-		UpdateFontDesc();
-	}
-	
-	const RenderedText &text = Render(str, params);
-	if(!text.texture)
-		return;
-	
-	glUseProgram(shader.Object());
-	glBindVertexArray(vao);
-	
-	// Update the texture.
-	glBindTexture(GL_TEXTURE_2D, text.texture);
-	
-	// Update the scale, only if the screen size has changed.
-	if(Screen::RawWidth() != screenRawWidth || Screen::RawHeight() != screenRawHeight)
-	{
-		screenRawWidth = Screen::RawWidth();
-		screenRawHeight = Screen::RawHeight();
-		GLfloat scale[2] = {2.f / screenRawWidth, -2.f / screenRawHeight};
-		glUniform2fv(scaleI, 1, scale);
-	}
-	
-	// Update the center.
-	Point center = Point(RawFromView(x), RawFromView(y)) + text.center;
-	glUniform2f(centerI, center.X(), center.Y());
-	
-	// Update the size.
-	glUniform2f(sizeI, text.width, text.height);
-	
-	// Update the color.
-	glUniform4fv(colorI, 1, color.Get());
-	
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-	
-	glBindTexture(GL_TEXTURE_2D, 0);
-	glBindVertexArray(0);
-	glUseProgram(0);
+	DrawCommon(str, x, y, color, params, false);
 }
 
 
@@ -163,21 +122,21 @@ int Font::Height(const std::string &str, const Layout *params) const
 	const RenderedText &text = Render(str, params);
 	if(!text.texture)
 		return 0;
-	return ViewFromRawCeil(text.height);
+	return TextFromViewCeilY(text.height);
 }
 
 
 
 int Font::Width(const std::string &str, const Layout *params) const
 {
-	return ViewFromRawCeil(RawWidth(str, params));
+	return TextFromViewCeilX(ViewWidth(str, params));
 }
 
 
 
 int Font::Height() const
 {
-	return ViewFromRawCeil(fontRawHeight);
+	return TextFromViewCeilY(fontViewHeight);
 }
 
 
@@ -219,7 +178,7 @@ void Font::UpdateFontDesc() const
 	PangoFontDescription *refDesc = pango_font_description_from_string(refDescName.c_str());
 	
 	// Set the pixel size.
-	const int fontSize = RawFromViewFloor(pixelSize) * PANGO_SCALE;
+	const int fontSize = ViewFromTextFloorY(pixelSize) * PANGO_SCALE;
 	pango_font_description_set_absolute_size(fontDesc, fontSize);
 	pango_font_description_set_absolute_size(refDesc, fontSize);
 	
@@ -234,7 +193,7 @@ void Font::UpdateFontDesc() const
 	const int ascent = pango_font_metrics_get_ascent(metrics);
 	const int descent = pango_font_metrics_get_descent(metrics);
 	underlineThickness = PixelFromPangoCeil(pango_font_metrics_get_underline_thickness(metrics));
-	fontRawHeight = PixelFromPangoCeil(ascent + descent);
+	fontViewHeight = PixelFromPangoCeil(ascent + descent);
 	
 	// Clean up.
 	pango_font_metrics_unref(metrics);
@@ -243,7 +202,7 @@ void Font::UpdateFontDesc() const
 	cache.Clear();
 	
 	// Tab Stop
-	space = RawWidth(" ");
+	space = ViewWidth(" ");
 	const int tabSize = 4 * space * PANGO_SCALE;
 	PangoTabArray *tb = pango_tab_array_new(TOTAL_TAB_STOPS, FALSE);
 	for(int i = 0; i < TOTAL_TAB_STOPS; ++i)
@@ -313,32 +272,91 @@ string Font::RemoveAccelerator(const string &str)
 
 
 
+void Font::DrawCommon(const std::string &str, double x, double y, const Color &color,
+	const Layout *params, bool alignToDot) const
+{
+	if(str.empty())
+		return;
+	
+	const bool screenChanged = Screen::Width() != screenWidth || Screen::Height() != screenHeight;
+	if(screenChanged)
+	{
+		screenWidth = Screen::Width();
+		screenHeight = Screen::Height();
+		GLint xyhw[4];
+		glGetIntegerv(GL_VIEWPORT, xyhw);
+		viewWidth = xyhw[2];
+		viewHeight = xyhw[3];
+		
+		UpdateFontDesc();
+	}
+	
+	const RenderedText &text = Render(str, params);
+	if(!text.texture)
+		return;
+	
+	glUseProgram(shader.Object());
+	glBindVertexArray(vao);
+	
+	// Update the texture.
+	glBindTexture(GL_TEXTURE_2D, text.texture);
+	
+	// Update the scale, only if the screen size has changed.
+	if(screenChanged)
+	{
+		GLfloat scale[2] = {2.f / viewWidth, -2.f / viewHeight};
+		glUniform2fv(scaleI, 1, scale);
+		
+	}
+	
+	// Update the center.
+	Point center = Point(ViewFromTextX(x), ViewFromTextY(y));
+	if(alignToDot)
+		center = Point(round(center.X()), round(center.Y()));
+	center += text.center;
+	glUniform2f(centerI, center.X(), center.Y());
+	
+	// Update the size.
+	glUniform2f(sizeI, text.width, text.height);
+	
+	// Update the color.
+	glUniform4fv(colorI, 1, color.Get());
+	
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+	
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glBindVertexArray(0);
+	glUseProgram(0);
+}
+
+
+
 // Render the text.
 const Font::RenderedText &Font::Render(const string &str, const Layout *params) const
 {
 	if(!params)
 		params = &defaultParams;
 	
-	// Convert to raw coodinates.
-	Layout rawParams(*params);
+	// Convert to viewport coodinates.
+	Layout viewParams(*params);
 	if(params->width > 0)
-		rawParams.width = RawFromView(params->width);
+		viewParams.width = ViewFromTextX(params->width);
 	if(params->lineHeight != DEFAULT_LINE_HEIGHT)
-		rawParams.lineHeight = RawFromViewFloor(params->lineHeight);
+		viewParams.lineHeight = ViewFromTextFloorY(params->lineHeight);
 	if(params->paragraphBreak != 0)
-		rawParams.paragraphBreak = RawFromViewFloor(params->paragraphBreak);
+		viewParams.paragraphBreak = ViewFromTextFloorY(params->paragraphBreak);
 	
 	// Return if already cached.
-	const CacheKey key(str, rawParams, showUnderlines);
+	const CacheKey key(str, viewParams, showUnderlines);
 	auto cached = cache.Use(key);
 	if(cached.second)
 		return *cached.first;
 	
 	// Truncate
-	const int layoutWidth = rawParams.width < 0 ? -1 : rawParams.width * PANGO_SCALE;
+	const int layoutWidth = viewParams.width < 0 ? -1 : viewParams.width * PANGO_SCALE;
 	pango_layout_set_width(layout, layoutWidth);
 	PangoEllipsizeMode ellipsize;
-	switch(rawParams.truncate)
+	switch(viewParams.truncate)
 	{
 	case TRUNC_NONE:
 		ellipsize = PANGO_ELLIPSIZE_NONE;
@@ -360,7 +378,7 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 	// Align and justification
 	PangoAlignment align;
 	gboolean justify;
-	switch(rawParams.align)
+	switch(viewParams.align)
 	{
 	case LEFT:
 		align = PANGO_ALIGN_LEFT;
@@ -425,12 +443,12 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 	}
 	// Height needs some margins.
 	int heightMargin128 = 128;
-	const bool isDefaultLineHeight = rawParams.lineHeight == DEFAULT_LINE_HEIGHT;
-	const bool isDefaultSkip = isDefaultLineHeight && rawParams.paragraphBreak == 0;
+	const bool isDefaultLineHeight = viewParams.lineHeight == DEFAULT_LINE_HEIGHT;
+	const bool isDefaultSkip = isDefaultLineHeight && viewParams.paragraphBreak == 0;
 	if(!isDefaultSkip)
 	{
-		const int l = isDefaultLineHeight ? fontRawHeight : rawParams.lineHeight;
-		heightMargin128 = (l + rawParams.paragraphBreak) * 128 / fontRawHeight;
+		const int l = isDefaultLineHeight ? fontViewHeight : viewParams.lineHeight;
+		heightMargin128 = (l + viewParams.paragraphBreak) * 128 / fontViewHeight;
 	}
 	if(surfaceHeight < textHeight * heightMargin128 / 128)
 	{
@@ -474,9 +492,9 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 				sumExtraY -= diffY;
 				break;
 			}
-			int add = isDefaultLineHeight ? diffY : rawParams.lineHeight;
+			int add = isDefaultLineHeight ? diffY : viewParams.lineHeight;
 			if(layoutText[index-1] == '\n')
-				add += rawParams.paragraphBreak;
+				add += viewParams.paragraphBreak;
 			baselineY += add;
 			sumExtraY += add - diffY;
 			pango_layout_iter_get_line_extents(it, nullptr, &logical_rect);
@@ -486,7 +504,7 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 			pango_cairo_show_layout_line(cr, line);
 			y0 = y1;
 		}
-		textHeight += sumExtraY + rawParams.paragraphBreak;
+		textHeight += sumExtraY + viewParams.paragraphBreak;
 		pango_layout_iter_free(it);
 	}
 	
@@ -623,14 +641,15 @@ void Font::SetUpShader()
 	glBindVertexArray(0);
 	
 	// We must update the screen size next time we draw.
-	screenRawWidth = 0;
-	screenRawHeight = 0;
-	screenZoom = 100;
+	screenWidth = 1;
+	screenHeight = 1;
+	viewWidth = 1;
+	viewHeight = 1;
 }
 
 
 
-int Font::RawWidth(const std::string &str, const Layout *params) const
+int Font::ViewWidth(const std::string &str, const Layout *params) const
 {
 	if(str.empty())
 		return 0;
@@ -643,56 +662,112 @@ int Font::RawWidth(const std::string &str, const Layout *params) const
 
 
 
-double Font::RawFromView(double xy) const
+double Font::ViewFromTextX(double x) const
 {
-	return xy * screenZoom / 100.0;
+	return x * viewWidth / screenWidth;
 }
 
 
 
-int Font::RawFromView(int xy) const
+double Font::ViewFromTextY(double y) const
 {
-	return (xy * screenZoom + 50) / 100;
+	return y * viewHeight / screenHeight;
 }
 
 
 
-int Font::RawFromViewCeil(int xy) const
+int Font::ViewFromTextX(int x) const
 {
-	return (xy * screenZoom + 99) / 100;
+	return (x * viewWidth + screenWidth/2) / screenWidth;
 }
 
 
 
-int Font::RawFromViewFloor(int xy) const
+int Font::ViewFromTextY(int y) const
 {
-	return xy * screenZoom / 100;
+	return (y * viewHeight + screenHeight/2) / screenHeight;
 }
 
 
 
-double Font::ViewFromRaw(double xy) const
+int Font::ViewFromTextCeilX(int x) const
 {
-	return xy * 100.0 / screenZoom;
+	return (x * viewWidth + screenWidth - 1) / screenWidth;
 }
 
 
 
-int Font::ViewFromRaw(int xy) const
+int Font::ViewFromTextCeilY(int y) const
 {
-	return (xy * 100 + screenZoom / 2)/ screenZoom;
+	return (y * viewHeight + screenHeight - 1) / screenHeight;
 }
 
 
 
-int Font::ViewFromRawCeil(int xy) const
+int Font::ViewFromTextFloorX(int x) const
 {
-	return (xy * 100 + screenZoom - 1) / screenZoom;
+	return (x * viewWidth) / screenWidth;
 }
 
 
 
-int Font::ViewFromRawFloor(int xy) const
+int Font::ViewFromTextFloorY(int y) const
 {
-	return (xy * 100 + screenZoom - 1) / screenZoom;
+	return (y * viewHeight) / screenHeight;
+}
+
+
+
+double Font::TextFromViewX(double x) const
+{
+	return x * screenWidth / viewWidth;
+}
+
+
+
+double Font::TextFromViewY(double y) const
+{
+	return y * screenHeight / viewHeight;
+}
+
+
+
+int Font::TextFromViewX(int x) const
+{
+	return (x * screenWidth + viewWidth/2) / viewWidth;
+}
+
+
+
+int Font::TextFromViewY(int y) const
+{
+	return (y * screenHeight + viewHeight/2) / viewHeight;
+}
+
+
+
+int Font::TextFromViewCeilX(int x) const
+{
+	return (x * screenWidth + viewWidth - 1) / viewWidth;
+}
+
+
+
+int Font::TextFromViewCeilY(int y) const
+{
+	return (y * screenHeight + viewHeight - 1) / viewHeight;
+}
+
+
+
+int Font::TextFromViewFloorX(int x) const
+{
+	return (x * screenWidth) / viewWidth;
+}
+
+
+
+int Font::TextFromViewFloorY(int y) const
+{
+	return (y * screenHeight) / viewHeight;
 }
