@@ -43,8 +43,7 @@ Font::Font()
 	: shader(), vao(0), vbo(0), scaleI(0), centerI(0), sizeI(0), colorI(0),
 	screenWidth(1), screenHeight(1), viewWidth(1), viewHeight(1), cr(nullptr),
 	fontDescName(), refDescName(), context(nullptr), layout(nullptr), lang(nullptr),
-	pixelSize(0), fontViewHeight(0), surfaceWidth(256), surfaceHeight(64), underlineThickness(1),
-	cache()
+	pixelSize(0), fontViewHeight(0), surfaceWidth(256), surfaceHeight(64), cache()
 {
 	lang = pango_language_from_string("en");
 	SetUpShader();
@@ -192,7 +191,6 @@ void Font::UpdateFontDesc() const
 	PangoFontMetrics *metrics = pango_context_get_metrics(context, refDesc, lang);
 	const int ascent = pango_font_metrics_get_ascent(metrics);
 	const int descent = pango_font_metrics_get_descent(metrics);
-	underlineThickness = PixelFromPangoCeil(pango_font_metrics_get_underline_thickness(metrics));
 	fontViewHeight = PixelFromPangoCeil(ascent + descent);
 	
 	// Clean up.
@@ -433,8 +431,10 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 	int textWidth;
 	int textHeight;
 	pango_layout_get_pixel_size(layout, &textWidth, &textHeight);
-	// Pango draws a PANGO_UNDERLINE_LOW at bottom + underlineThickness.
-	textHeight += 2 * underlineThickness;
+	// Pango draws a PANGO_UNDERLINE_LOW under the logical rectangle.
+	PangoRectangle ink_rect;
+	pango_layout_get_pixel_extents(layout, &ink_rect, nullptr);
+	textHeight = max(textHeight, ink_rect.y + ink_rect.height);
 	bool changeRequest = false;
 	if(surfaceWidth < textWidth)
 	{

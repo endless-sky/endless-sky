@@ -179,7 +179,6 @@ private:
 	mutable int space;
 	mutable int surfaceWidth;
 	mutable int surfaceHeight;
-	mutable int underlineThickness;
 	
 	// Cache of rendered text.
 	mutable Cache<CacheKey, RenderedText, true, CacheKeyHash, AtRecycleForRenderedText> cache;
