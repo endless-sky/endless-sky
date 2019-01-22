@@ -1801,7 +1801,7 @@ bool PlayerInfo::HasTravelPlan() const
 // flagship was changed and/or any needed outfits were removed.
 bool PlayerInfo::HasInvalidTravelPlan() const
 {
-	return InvalidTravelPlanIndex() > -1;
+	return HasTravelPlan() && InvalidTravelPlanIndex() > -1;
 }
 
 
@@ -1810,50 +1810,44 @@ bool PlayerInfo::HasInvalidTravelPlan() const
 // result from changes to the flagship's attributes, outfits, or game events.
 int PlayerInfo::InvalidTravelPlanIndex() const
 {
-	if(!travelPlan.empty() && system)
+	if(!travelPlan.empty() && system && flagship)
 	{
-		int invalidIndex = 0;
 		bool canJump = flagship->Attributes().Get("jump drive");
-		vector<const System *> waypoints = travelPlan;
+		auto waypoints = travelPlan;
 		waypoints.emplace_back(system);
 		
-		// The player may have explicitly defined a multi-stop route,
-		// so each waypoint must be reachable from the previous.
-		for(auto it = waypoints.rbegin(); it != waypoints.rend();)
+		// The player may have explicitly defined a multi-stop route:
+		// each waypoint must be reachable from the previous.
+		int index = 0;
+		for(auto it = waypoints.rbegin(); it != waypoints.rend(); )
 		{
 			const System *from = *it;
 			if(++it != waypoints.rend())
 			{
 				const System *to = *it;
-				bool isWormhole = false;
-				for(const StellarObject &object : from->Objects())
+				// If the waypoints are not directly linked, and the flagship is either
+				// not jump-capable or the waypoints are not neighbors, then the waypoints
+				// must be connected via a wormhole.
+				if(!from->Links().count(to) && !(canJump && from->Neighbors().count(to)))
 				{
-					const Planet *planet = object.GetPlanet();
-					if(planet && planet->IsWormhole() && HasVisited(planet)
-							&& HasVisited(from) && HasVisited(to)
-							&& planet->WormholeDestination(from) == to)
+					bool hasWormhole = false;
+					for(const StellarObject &object : from->Objects())
 					{
-						// Assess any travel through restricted wormholes.
-						if(!planet->IsAccessible(flagship.get()))
-							return invalidIndex;
-						else
+						const Planet *planet = object.GetPlanet();
+						if(planet && planet->IsWormhole() && HasVisited(planet)
+								&& HasVisited(from) && HasVisited(to)
+								&& planet->WormholeDestination(from) == to
+								&& planet->IsAccessible(flagship.get()))
 						{
-							isWormhole = true;
+							hasWormhole = true;
 							break;
 						}
 					}
+					if(!hasWormhole)
+						return index;
 				}
-				
-				// Waypoints linked via wormhole or hyperspace are valid.
-				if(!isWormhole && !from->Links().count(to))
-				{
-					// If this ship has no jump drive, or these waypoints
-					// are not neighbors, this index is invalid
-					if(!canJump || !from->Neighbors().count(to))
-						return invalidIndex;
-				}
-				++invalidIndex;
 			}
+			++index;
 		}
 	}
 	
