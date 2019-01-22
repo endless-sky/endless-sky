@@ -915,7 +915,7 @@ mission "Expanding Business [7]"
 	on complete
 		event "shipyard on greenwater" 180
 		conversation
-			`	Construction on the shipyard begins almost immediately after the supplies are unloaded from the freighters, starting with the demolition of the rest of the park. A downtrodden looking crowd gathers to watch the demolition, but Turner ensures to you that there are plenty of other parks in the city for them to go to.`
+			`	Construction on the shipyard begins almost immediately after the supplies are unloaded from the freighters, starting with the demolition of the rest of the park. A downtrodden-looking crowd gathers to watch the demolition, but Turner assures you that there are plenty of other parks in the city for them to go to.`
 			`	"Something big is going to come of this, Captain <last>," Turner says. "Just know that you were all part of it. You'll know the shipyard is done when you find an extra four thousand credits in your pocket each day. Goodbye until then, Captain <last>."`
 
 event "shipyard on greenwater"
