@@ -94,32 +94,37 @@ void PlanetPanel::Draw()
 	if(player.IsDead())
 		return;
 	
-	const Ship *flagship = player.Flagship();
-	
 	Information info;
 	info.SetSprite("land", planet.Landscape());
-	bool hasAccess = planet.CanUseServices();
-	bool hasShip = false;
-	for(const auto &it : player.Ships())
-		if(it->GetSystem() == player.GetSystem() && !it->IsDisabled())
-		{
-			hasShip = true;
-			break;
-		}
+	
+	const Ship *flagship = player.Flagship();
 	if(flagship && flagship->CanBeFlagship())
 		info.SetCondition("has ship");
-	if(flagship && planet.IsInhabited() && planet.GetSystem()->HasTrade() && hasAccess)
-		info.SetCondition("has trade");
-	if(planet.IsInhabited() && hasAccess)
-		info.SetCondition("has bank");
-	if(flagship && planet.IsInhabited() && hasAccess)
-		info.SetCondition("is inhabited");
-	if(flagship && planet.HasSpaceport() && hasAccess)
-		info.SetCondition("has spaceport");
-	if(planet.HasShipyard() && hasAccess)
-		info.SetCondition("has shipyard");
-	if(hasShip && planet.HasOutfitter() && hasAccess)
-		info.SetCondition("has outfitter");
+	
+	if(planet.CanUseServices())
+	{
+		if(flagship && planet.IsInhabited())
+		{
+			info.SetCondition("is inhabited");
+			info.SetCondition("has bank");
+			if(system.HasTrade())
+				info.SetCondition("has trade");
+		}
+		
+		if(flagship && planet.HasSpaceport())
+			info.SetCondition("has spaceport");
+		
+		if(planet.HasShipyard())
+			info.SetCondition("has shipyard");
+		
+		if(planet.HasOutfitter())
+			for(const auto &it : player.Ships())
+				if(it->GetSystem() == &system && !it->IsDisabled())
+				{
+					info.SetCondition("has outfitter");
+					break;
+				}
+	}
 	
 	ui.Draw(info, this);
 	
