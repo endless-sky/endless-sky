@@ -2544,6 +2544,7 @@ ship "Science Drone"
 		mass 30
 		drag 2
 		"heat dissipation" 1
+		"self destruct" 1
 	explode "tiny explosion" 5
 	explode "small explosion" 2
 
