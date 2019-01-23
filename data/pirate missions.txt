@@ -124,11 +124,11 @@ mission "Smuggler 1"
 					goto acquaintance
 				
 			label assistance
-			`	The man chuckles softly. "A person of business, I see. Very well, to business." Matthias stares intently at the screen. He no longer gives off us usual air of menace.`
+			`	The man chuckles softly. "A person of business, I see. Very well, to business." Matthias stares intently at the screen. He no longer gives off his usual air of menace.`
 				goto offer
 
 			label acquaintance
-			`	The man chuckles softly. "A person of civility, I see. You are most gracious. Now, to business." Matthias stares intently at the screen. He no longer gives off us usual air of menace.`
+			`	The man chuckles softly. "A person of civility, I see. You are most gracious. Now, to business." Matthias stares intently at the screen. He no longer gives off his usual air of menace.`
 				goto offer
 
 			label offer
