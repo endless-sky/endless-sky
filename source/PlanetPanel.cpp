@@ -252,12 +252,26 @@ void PlanetPanel::TakeOffIfReady()
 		}
 	}
 	
-	// The checks that follow are typically caused by parking or selling
-	// ships or changing outfits.
-	const Ship *flagship = player.Flagship();
+	// Outfit changes or flagship reassignment may void a travel plan. Notify the player of this change.
+	if(player.HasInvalidTravelPlan())
+	{
+		string message = "If you take off now, your current travel plan will be cleared as parts of it are now inaccessible.\nThis may be due to changing your flagship or its installed outfits, or some unknown galactic event.";
+		GetUI()->Push(new Dialog(this, &PlanetPanel::PreflightChecks, message));
+		return;
+	}
 	
-	// Outfit changes or flagship reassignment may void a travel plan.
-	const bool invalidTravel = player.HasInvalidTravelPlan();
+	PreflightChecks();
+}
+
+
+
+// Check if changes to the player's fleet have resulted in the need to sell
+// anything off (like excess commodity cargo or drones).
+void PlanetPanel::PreflightChecks()
+{
+	// Check for items that must be sold if the player were to take off. These are
+	// typically caused by parking or selling ships, or changing outfits.
+	const Ship *flagship = player.Flagship();
 	
 	// Are you overbooked? Don't count fireable flagship crew. If your
 	// ship can't hold the required crew, count it as having no fireable
@@ -277,13 +291,14 @@ void PlanetPanel::TakeOffIfReady()
 			fighterCount += (category == "Fighter") - it->BaysFree(true);
 		}
 	
-	if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0 || overbooked > 0 || invalidTravel)
+	if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0 || overbooked > 0)
 	{
 		ostringstream out;
+		// Warn about missions that will fail on takeoff.
 		if(missionCargoToSell > 0 || overbooked > 0)
 		{
 			bool both = ((cargoToSell > 0 && cargo.MissionCargoSize()) && overbooked > 0);
-			out << "If you take off now you will fail a mission due to not having enough ";
+			out << "If you take off now, you will fail a mission due to not having enough ";
 
 			if(overbooked > 0)
 			{
@@ -299,14 +314,14 @@ void PlanetPanel::TakeOffIfReady()
 				out << " of your mission cargo.";
 			}
 		}
-		else if(invalidTravel)
+		
+		// Warn about fighters, drones, or non-commodity cargo you would sell on takeoff.
+		if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0)
 		{
-			out << "If you take off now, your current travel plan will be cleared as parts of it are now inaccessible.\n";
-			out << "This may be due to changing your flagship or its installed outfits, or some unknown galactic event.";
-		}
-		else
-		{
-			out << "If you take off now you will have to sell ";
+			if(missionCargoToSell > 0 || overbooked > 0)
+				out << "\nYou will also have to sell ";
+			else
+				out << "If you take off now, you will have to sell ";
 			bool triple = (fighterCount > 0 && droneCount > 0 && cargoToSell > 0);
 
 			if(fighterCount == 1)
@@ -329,7 +344,8 @@ void PlanetPanel::TakeOffIfReady()
 				out << cargoToSell << " tons of cargo";
 			out << " that you do not have space for.";
 		}
-		out << " Are you sure you want to continue?";
+		
+		out << "\nAre you sure you want to continue?";
 		GetUI()->Push(new Dialog(this, &PlanetPanel::TakeOff, out.str()));
 		return;
 	}
