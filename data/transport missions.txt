@@ -3310,6 +3310,7 @@ mission "Smuggler 1"
 				accept
 
 	on fail
+		set "smuggler: failed string"
 		"reputation: Pirate" <?= -10
 		dialog `You have failed to deliver the package for Matthias's employer by <date>. This will not be good for your reputation.`
 	
@@ -3319,3 +3320,25 @@ mission "Smuggler 1"
 			`A few minutes after you land on <planet>, you receive a message asking to come aboard and pick up some cargo. This must be the person expecting the sealed container. You let him aboard.`
 			`	You bring the storage container to the ramp and let the man in. He's dressed in a poorly-fitting spaceport employee uniform with no name tag. He grimly accepts the data chip you offer him and looks closely at the container. You're not sure what he's looking for, but he nods in satisfaction. He quickly taps at his wristcom and you receive a transfer of <payment> labeled "Customs fee overcharge refund." He then strides out carrying the container.`
 			`	After he leaves, you realize neither of you spoke a word during the whole exchange.`
+
+
+
+
+mission "Smuggler: hunted for failure"
+	invisible
+	landing
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral" "Pirate"
+	to offer
+		has "smuggler: failed string"
+	on offer
+		conversation
+			`The moment you touch down, you see an urgent video message alert. You answer and are greeted by a familiar mouth full of pointed teeth.`
+			`	"<first> <last>," says the accented voice. "You were not so reliable. My employer, he told me to make example."`
+			`	Around you, a group of suspiciuosly well-armed ships are warming up their engines. It looks like you're in for a fight.`
+				launch
+	npc kill
+		government "Bounty Hunter"
+		personality launching heroic unconstrained nemesis vindictive
+		fleet "Marauder fleet VI"
+		dialog `After the last bounty hunter ship explodes, you recieve a text-only message. It reads, "Captain, you have cost me my finest man and my reputation for destroying those who cross me. I will pursue you no further. May we never cross paths again, for my sake and yours."`
