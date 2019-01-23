@@ -1249,7 +1249,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		
 		return;
 	}
-	else if(landingPlanet || zoom < 1.)
+	else if(landingPlanet || zoom < 1.f)
 	{
 		// Don't apply external acceleration while landing.
 		acceleration = Point();
@@ -1266,8 +1266,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Move the ship toward the center of the planet while landing.
 			if(GetTargetStellar())
 				position = .97 * position + .03 * GetTargetStellar()->Position();
-			zoom -= .02;
-			if(zoom < 0.)
+			zoom -= .02f;
+			if(zoom < 0.f)
 			{
 				// If this is not a special ship, it ceases to exist when it
 				// lands on a true planet. If this is a wormhole, the ship is
@@ -1287,14 +1287,14 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					return;
 				}
 				
-				zoom = 0.;
+				zoom = 0.f;
 			}
 		}
 		// Only refuel if this planet has a spaceport.
 		else if(fuel >= attributes.Get("fuel capacity")
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
-			zoom = min(1., zoom + .02);
+			zoom = min(1.f, zoom + .02f);
 			SetTargetStellar(nullptr);
 			landingPlanet = nullptr;
 		}
@@ -1303,7 +1303,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		
 		// Move the ship at the velocity it had when it began landing, but
 		// scaled based on how small it is now.
-		if(zoom > 0.)
+		if(zoom > 0.f)
 			position += velocity * zoom;
 		
 		return;
@@ -1700,7 +1700,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 	// is landing, jumping, or cloaked. If already destroyed (e.g. self-destructing),
 	// eject any ships still docked, possibly destroying them in the process.
 	bool ejecting = IsDestroyed();
-	if(!ejecting && (!commands.Has(Command::DEPLOY) || zoom != 1. || hyperspaceCount || cloak))
+	if(!ejecting && (!commands.Has(Command::DEPLOY) || zoom != 1.f || hyperspaceCount || cloak))
 		return;
 	
 	for(Bay &bay : bays)
@@ -1998,7 +1998,7 @@ bool Ship::IsCapturable() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1. && !explosionRate && !forget && !isInvisible && cloak < 1. && hull >= 0. && hyperspaceCount < 70);
+	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && cloak < 1. && hull >= 0. && hyperspaceCount < 70);
 }
 
 
@@ -2055,7 +2055,7 @@ bool Ship::CanLand() const
 
 bool Ship::CannotAct() const
 {
-	return (zoom != 1. || isDisabled || hyperspaceCount || pilotError || cloak);
+	return (zoom != 1.f || isDisabled || hyperspaceCount || pilotError || cloak);
 }
 
 
