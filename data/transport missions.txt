@@ -2515,7 +2515,7 @@ mission "Terminus exploration"
 	npc assist
 		system "Terminus"
 		government "Uninhabited"
-		personality derelict target
+		personality derelict target pacifist mute
 		ship "Science Drone" "Beagle"
 		dialog `You board the science drone and discover that the pirates have stripped just about everything of value from it: the engines, the sensors, and the fuel cell that powered it. But the computer system is either too deeply integrated into the drone, or too specialized, to be of any value to the pirates. You transfer enough power to the drone's batteries to reactivate it, and are able to retrieve the data that the scientist was looking for. But it's clear that this drone, or what's left of it, is not going anywhere. You'll have to leave it behind.`
 	npc
@@ -2544,7 +2544,6 @@ ship "Science Drone"
 		mass 30
 		drag 2
 		"heat dissipation" 1
-		"self destruct" 1
 	explode "tiny explosion" 5
 	explode "small explosion" 2
 
