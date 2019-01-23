@@ -159,6 +159,7 @@ mission "Smuggler 1"
 		dialog `You have failed to deliver the package for Matthias's employer by <date>. This will not be good for your reputation.`
 	
 	on complete
+        "reputation: Pirate" += 10
 		payment 120000
 		conversation
 			`A few minutes after you land on <planet>, you receive a message asking to come aboard and pick up some cargo. This must be the person expecting the sealed container. You let him aboard.`
