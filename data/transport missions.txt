@@ -3170,7 +3170,7 @@ mission "Capture Smuggler"
 	description `A smuggler absconded with his illegal cargo near <system>. The unknown person he stole it from wants it back. Recover the cargo from the <npc> and return both it and the smuggler to <origin> for <payment>.`
 	to offer
 		random < 15
-		"combat rating" > 2000
+		"combat rating" > 700
 		"reputation: Pirate" > 10
 	passengers 1
 	source
@@ -3215,6 +3215,6 @@ mission "Capture Smuggler"
 	on visit
 		dialog `You land on <origin>, but you don't have the smuggler and the cargo he stole. You should probably be careful not to run into your contact until you do.`
 	on complete
-		payment 150000
+		payment 75000
 		conversation
 			`The huge man drags the unconscious smuggler out of the cargo container with one hand and carries the cargo box with the other. He stops in front of you. "<first> <last>," he says. "My employer, he will be very happy. Your payment, you will receive soon. Is it not good, to be reliable?" The man leaves your ship, letting the smuggler's legs scrape along the ground as he walks. A moment later, you receive <payment> from an anonymous account.`
