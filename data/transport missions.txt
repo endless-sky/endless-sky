@@ -3221,3 +3221,101 @@ mission "Capture Smuggler"
 		payment 75000
 		conversation
 			`The huge man drags the unconscious smuggler out of the cargo container with one hand and carries the cargo box with the other. He stops in front of you. "<first> <last>," he says. "My employer, he will be very happy. Your payment, you will receive soon. Is it not good, to be reliable?" The man leaves your ship, letting the smuggler's legs scrape along the ground as he walks. A moment later, you receive <payment> from an anonymous account.`
+
+
+
+mission "Smuggler 1"
+	name "Smuggle package to <planet>"
+	description `Deliver a package to <planet> for Matthias's unknown employer.`
+	deadline
+	deadline 4
+	source
+		government "Pirate"
+	destination
+		government "Syndicate"
+		attributes "urban"
+	to offer
+		has "event: smuggler: finished mission 0"
+	on offer
+		conversation
+			`On the way through the spaceport, you pass an unusually clean-looking building. There are no signs identifying it, and it doesn't have any exterior windows. You notice that other pedestrians all cross the street rather than pass by it. You turn to go, but before you take two steps you feel a heavy hand grip your shoulder.`
+			`	"<first> <last>." You can tell from the accent that it's the man who gave you a job to capture a rogue smuggler. Somehow he appeared behind you without making the slightest noise. The grip vanishes, and you turn slowly to face the man. "It is good, seeing you here. My employer, he has need of reliable person. You are reliable, yes?"`
+			choice
+				`	"Of course, friend. I am always reliable."`
+					goto friend
+				`	"Of course, sir. I am always reliable."`
+					goto sir
+				`	"Ah, yes. I am always reliable, but today I must be reliable for another job. Please give your employer my compliments and regrets, and feel free to contact me again in the future."`
+
+			`	"Reliable, yes, reliable friend. It is good to be reliable. My employer, he wishes you to be reliable today. To not be reliable, it would be sad thing. To talk only is not to be unreliable, yes?" He shows his shark-toothed smile once again. "Come, reliable friend. We will talk, yes, about work." He turns back toward the building behind you. The door opens silently to admit him when he's a step away. Clearly he expects you to follow him.`
+				goto choose
+
+			label friend
+			`	"Friend, yes! Reliable friend. We will talk, friend, about work." He turns back toward the building behind you. The door opens silently to admit him when he's a step away. Clearly he expects you to follow him.`
+				goto choose
+
+			label sir
+			`	"Sir!" It's the first time you've heard the man raise his voice. "My employer, he you will call ‘sir.' I am not ‘sir'." His voice returns to its usual flat tone. "I am friend, no? Yes, we will talk, reliable friend, about work." He turns back toward the building behind you. The door opens silently to admit him when he's a step away. Clearly he expects you to follow him.`
+
+			label choose
+			choice
+				`	(Follow him inside.)`
+					goto follow
+				`	(Run back to your ship.)`
+
+			`	The moment the man walks through the door you turn and bolt for your ship. You speed through the preflight check. A voice message notice pops up on your console. You play it out of habit. The voice of the man with the pointed teeth speaks. "<first> <last>, it is a sad thing to lose a friend so soon. My employer, he says 'let this man go.' Now, you will go."`
+			`	The message ends. You take off slightly faster than is strictly safe, leaving <origin> behind.`
+				flee
+
+			label follow
+			`	You grit your teeth and follow the man into the windowless building. The door closes behind you as silently as it opened. Your eyes take a moment to adjust to the slightly dimmer light inside. You walk down a short hallway. At the end it opens up into a small room. There are two chairs and a small table. The shark-toothed man is sitting in one of them, incongrously sipping a cup of tea. You sit in the other chair. As soon as you sit down, a door slides across the opening to the hallway.`
+			`	The shark-toothed man takes another sip of tea and gives you his trademark grin. "<first> <last>," he says. "Today, we are friends. Friends use names, yes? I am Matthias. Now, I am your friend. To celebrate, we will drink tea."`
+			`	Matthias pours you a cup of tea from a ceramic teapot. You raise it to your lips and take a sip. As far as you can tell, it is of very high quality and prepared flawlessly. It is already the perfect temperature to drink.`
+			`	You and Matthias finish your tea in silence. When you put down your teacup, the light in the room dims. A viewscreen concealed in the wall turns on, displaying only the dark silhouette of a man lit from behind. Matthias inclines his head slightly.`
+			`	The man speaks. "<first> <last>, it is good to see you at last." His voice is clear and unaccented. "Pardon my rudeness in concealing my identity, but in my business it is always better to be too cautious rather than not cautious enough."`
+			choice
+				`	Thank you for the generous gift of your time. How may I be of assistance?"`
+					goto assistance
+				`	"It is a pleasure to make your acquaintance, sir."`
+					goto acquaintance
+				
+			label assistance
+			`	The man chuckles softly. "A person of business, I see. Very well, to business." Matthias stares intently at the screen. He no longer gives off us usual air of menace.`
+				goto offer
+
+			label acquaintance
+			`	The man chuckles softly. "A person of civility, I see. You are most gracious. Now, to business." Matthias stares intently at the screen. He no longer gives off us usual air of menace.`
+				goto offer
+
+			label offer
+			`	"Matthias has recommended you to my attention thanks to your assistance with the matter of that detestable rogue smuggler. It is rare, even in this wide world, to find someone both willing and able to complete such sensitive work. I commend him for his discernment." He nods toward Matthias. Matthias bows his head for a moment, then focuses again on the screen.`
+			`	The man continues. "Normally, I would require more proof of reliability from one such as you, but time-sensitive matters do not allow for such luxuries. Put simply, I wish for you to complete the job I entrusted to the smuggler whom you brought to... justice."`
+			`	The man briefly looks aside at something on his desk, then back to you. "I'm afraid my time grows short, so I will be abrupt. The job is to deliver a small, easily concealable package to a particular man. He will provide your renumeration. I believe he will be most generous."`
+			`	"Of course, I will offer you the same conditions as the smuggler you captured so handily. If you wish to decline my offer, you may do so freely and with no consequence. Neither Matthias nor myself will contact you again. However, if you accept the task and fail, you will suffer retribution beyond your imagining. What do you say?"`
+
+			choice
+				`	"Thank you, sir for your most generous offer. I accept."`
+					goto accept
+				`	"Your offer is most generous, but I must decline."`
+
+			`	The man nods. "I am disappointed to hear that, Captain. As promised, we will go our separate ways. Farewell." The viewscreen blinks out, and the lights in the room return to their previous brightness.`
+			`	Matthias stands without meeting your eyes. "It is sad, to lose a friend so soon. Come, <first> <last>. Let us go." Matthias leads you back outside. As soon as you step out of the door, he goes back inside, and the door closes as silently as it opened.`
+				decline
+
+			label accept
+			`	The man nods. "Excellent. Matthias, please provide the Captain with his instructions. I believe it will be a pleasure doing business with you, Captain <last>." He pauses. "Is it not a good thing, to be reliable?" The viewscreen blinks out, and the lights in the room return to their previous brightness.`
+			`	Matthias stares at the viewscreen for a moment longer, then turns toward you. "Reliable friend <first>, let us go. To be reliable, there is still the matter of business." Matthias reaches into a pocket and retrives a small datapad. He hands it to you. "Here is job. On <planet>, a particular man will take container and read message. He will give you pay." His voice sounds somehow jovial.`
+			`	"Container, we will bring to <ship>. Our employer, he says time is short. You will deliver by <day>. Easy job, yes?" He stands up and heads toward the door, which opens to let him pass. You follow. When you step out of the door outside, Matthias nods at you ever so slightly. He then goes back inside, and the door closes as silently as it opened.`
+			`	Your return to your ship is uneventful. As promised, a storage container is waiting for you when you arrive. It looks identical to the one you retrieved from the rogue smuggler.`
+				accept
+
+	on fail
+		"reputation: Pirate" <?= -10
+		dialog `You have failed to deliver the package for Matthias's employer by <date>. This will not be good for your reputation.`
+	
+	on complete
+		payment 120000
+		conversation
+			`A few minutes after you land on <planet>, you receive a message asking to come aboard and pick up some cargo. This must be the person expecting the sealed container. You let him aboard.`
+			`	You bring the storage container to the ramp and let the man in. He's dressed in a poorly-fitting spaceport employee uniform with no name tag. He grimly accepts the data chip you offer him and looks closely at the container. You're not sure what he's looking for, but he nods in satisfaction. He quickly taps at his wristcom and you receive a transfer of <payment> labeled "Customs fee overcharge refund." He then strides out carrying the container.`
+			`	After he leaves, you realize neither of you spoke a word during the whole exchange.`
