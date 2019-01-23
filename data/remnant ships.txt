@@ -482,7 +482,6 @@ ship "Gascraft"
 		"outfit scan speed" 1
 		"tactical scan power" 50
 		"atmosphere scan" 100
-
 	outfits
 		"Millennium Cell"
 		"Emergency Ramscoop"
