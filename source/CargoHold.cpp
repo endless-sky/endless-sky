@@ -239,7 +239,7 @@ bool CargoHold::HasMissionCargo() const
 
 
 
-// Check if there is anythign in this cargo hold (including passengers).
+// Check if there is anything in this cargo hold (including passengers).
 bool CargoHold::IsEmpty() const
 {
 	// The outfits map's entries are not erased if they are equal to zero, so

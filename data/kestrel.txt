@@ -51,7 +51,7 @@ mission "Kestrel Testing"
 	
 	npc disable save
 		government "Test Dummy"
-		personality staying nemesis heroic
+		personality disables staying nemesis heroic
 		system "Umbral"
 		ship "Unknown Ship Type" "Tarazed Prototype"
 	
@@ -213,6 +213,7 @@ event "kestrel available: more shields"
 
 ship "Unknown Ship Type"
 	sprite "ship/kestrel"
+	thumbnail "thumbnail/kestrel"
 	attributes
 		category "Heavy Warship"
 		"cost" 10300000

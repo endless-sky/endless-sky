@@ -829,10 +829,10 @@ void Engine::Draw() const
 		Point pos = it.position * zoom;
 		double radius = it.radius * zoom;
 		if(it.outer > 0.)
-			RingShader::Draw(pos, radius + 3., 1.5, it.outer, color[it.type], 0., it.angle);
+			RingShader::Draw(pos, radius + 3., 1.5f, it.outer, color[it.type], 0.f, it.angle);
 		double dashes = (it.type >= 2) ? 0. : 20. * min(1., zoom);
 		if(it.inner > 0.)
-			RingShader::Draw(pos, radius, 1.5, it.inner, color[3 + it.type], dashes, it.angle);
+			RingShader::Draw(pos, radius, 1.5f, it.inner, color[3 + it.type], dashes, it.angle);
 	}
 	
 	// Draw the flagship highlight, if any.
@@ -863,7 +863,7 @@ void Engine::Draw() const
 		if(messagePoint.Y() < messageBox.Top())
 			break;
 		float alpha = (it->step + 1000 - step) * .001f;
-		Color color(alpha, 0.);
+		Color color(alpha, 0.f);
 		messageLine.Draw(messagePoint, color);
 	}
 	
@@ -875,7 +875,7 @@ void Engine::Draw() const
 		
 		for(int i = 0; i < target.count; ++i)
 		{
-			PointerShader::Draw(target.center * zoom, a.Unit(), 12., 14., -target.radius * zoom,
+			PointerShader::Draw(target.center * zoom, a.Unit(), 12.f, 14.f, -target.radius * zoom,
 				Radar::GetColor(target.type));
 			a += da;
 		}
@@ -895,7 +895,7 @@ void Engine::Draw() const
 	{
 		Point center = interface->GetPoint("target");
 		double radius = interface->GetValue("target radius");
-		PointerShader::Draw(center, targetVector.Unit(), 10., 10., radius, Color(1.));
+		PointerShader::Draw(center, targetVector.Unit(), 10.f, 10.f, radius, Color(1.f));
 	}
 	
 	// Draw the faction markers.
@@ -911,7 +911,7 @@ void Engine::Draw() const
 			SpriteShader::Draw(mark[i], center + Point(dx[i], 0.), 1., targetSwizzle);
 	}
 	if(jumpCount && Preferences::Has("Show mini-map"))
-		MapPanel::DrawMiniMap(player, .5 * min(1., jumpCount / 30.), jumpInProgress, step);
+		MapPanel::DrawMiniMap(player, .5f * min(1.f, jumpCount / 30.f), jumpInProgress, step);
 	
 	// Draw ammo status.
 	static const double ICON_SIZE = 30.;
@@ -1371,7 +1371,13 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		// Make sure this ship's destruction was recorded, even if it died from
 		// self-destruct.
 		if(ship->IsDestroyed())
+		{
 			eventQueue.emplace_back(nullptr, ship, ShipEvent::DESTROY);
+			// Any still-docked ships' destruction must be recorded as well.
+			for(const auto &bay : ship->Bays())
+				if(bay.ship)
+					eventQueue.emplace_back(nullptr, bay.ship, ShipEvent::DESTROY);
+		}
 		return;
 	}
 	
@@ -1701,7 +1707,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		// ship that they have hit.
 		if(!projectile.GetWeapon().IsPhasing())
 		{
-			Body *asteroid = asteroids.Collide(projectile, step, &closestHit);
+			Body *asteroid = asteroids.Collide(projectile, &closestHit);
 			if(asteroid)
 			{
 				hitVelocity = asteroid->Velocity();

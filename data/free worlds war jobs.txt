@@ -90,7 +90,7 @@ mission "FW Convoy Defense [0]"
 	repeat
 	name `Convoy to <planet>`
 	description `The shipyard on <planet> is in need of more supplies for building warships. Immediately escort a convoy of ships to <destination> by <date>. Payment is <payment>.`
-	deadline 0 1
+	deadline 1 1
 	to offer
 		random < 30
 		has "salary: Free Worlds"
@@ -152,7 +152,7 @@ mission "FW Convoy Defense [1]"
 	repeat
 	name `Convoy to <planet>`
 	description `The shipyard on <planet> is in need of more supplies for building warships. Immediately escort a convoy of ships to <destination> by <date>. Payment is <payment>.`
-	deadline 0 1
+	deadline 1 1
 	to offer
 		random < 20
 		has "salary: Free Worlds"
@@ -214,7 +214,7 @@ mission "FW Convoy Defense [2]"
 	repeat
 	name `Convoy to <planet>`
 	description `The shipyard on <planet> is in need of more supplies for building warships. Immediately escort a convoy of ships to <destination> by <date>. Payment is <payment>.`
-	deadline 0 1
+	deadline 1 1
 	to offer
 		random < 10
 		has "salary: Free Worlds"
@@ -278,7 +278,7 @@ mission "FW Reinforcements [0]"
 	repeat
 	name `Reinforcements to <planet>`
 	description `These <bunks> Free Worlds soldiers require immediate transport to <destination> by <date> in order to reinforce the frontlines. Payment is <payment>.`
-	deadline 1 1
+	deadline 2 1
 	passengers 5 5 .2
 	to offer
 		random < 20
@@ -305,7 +305,7 @@ mission "FW Reinforcements [1]"
 	repeat
 	name `Reinforcements to <planet>`
 	description `These <bunks> Free Worlds soldiers require immediate transport to <destination> by <date> in order to reinforce the frontlines. Payment is <payment>.`
-	deadline 1 1
+	deadline 2 1
 	passengers 5 5 .2
 	to offer
 		random < 10
@@ -334,7 +334,7 @@ mission "FW Outfitter Resupply [0]"
 	repeat
 	name `Resupply <planet>`
 	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
-	deadline 1 1
+	deadline 2 1
 	cargo random 5 2 .1
 	to offer
 		random < 50
@@ -355,7 +355,7 @@ mission "FW Outfitter Resupply [1]"
 	repeat
 	name `Resupply <planet>`
 	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
-	deadline 1 1
+	deadline 2 1
 	cargo random 5 2 .1
 	to offer
 		random < 40
@@ -376,7 +376,7 @@ mission "FW Outfitter Resupply [2]"
 	repeat
 	name `Resupply <planet>`
 	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
-	deadline 1 1
+	deadline 2 1
 	cargo random 5 2 .1
 	to offer
 		random < 30
@@ -397,7 +397,7 @@ mission "FW Bulk Outfitter Resupply [0]"
 	repeat
 	name `Resupply <planet>`
 	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
-	deadline 1 1
+	deadline 2 1
 	cargo random 25 2 .05
 	to offer
 		random < 30
@@ -418,7 +418,7 @@ mission "FW Bulk Outfitter Resupply [1]"
 	repeat
 	name `Resupply <planet>`
 	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
-	deadline 1 1
+	deadline 2 1
 	cargo random 25 2 .05
 	to offer
 		random < 25
@@ -439,7 +439,7 @@ mission "FW Bulk Outfitter Resupply [2]"
 	repeat
 	name `Resupply <planet>`
 	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
-	deadline 1 1
+	deadline 2 1
 	cargo random 25 2 .05
 	to offer
 		random < 20
@@ -460,7 +460,7 @@ mission "FW Frontline Resupply [0]"
 	repeat
 	name `Resupply <planet>`
 	description `The frontlines of the war are in need of a resupply. Immediately deliver <cargo> to <destination> by <date>. Payment is <payment>.`
-	deadline 1 1
+	deadline 2 1
 	cargo "food" 5 2 .1
 	to offer
 		random < 40
@@ -487,7 +487,7 @@ mission "FW Frontline Resupply [1]"
 	repeat
 	name `Resupply <planet>`
 	description `The frontlines of the war are in need of a resupply. Immediately deliver <cargo> to <destination> by <date>. Payment is <payment>.`
-	deadline 1 1
+	deadline 2 1
 	cargo "medical" 5 2 .1
 	to offer
 		random < 30
@@ -514,7 +514,7 @@ mission "FW Frontline Resupply [2]"
 	repeat
 	name `Resupply <planet>`
 	description `The frontlines of the war are in need of a resupply. Immediately deliver <cargo> to <destination> by <date>. Payment is <payment>.`
-	deadline 1 1
+	deadline 2 1
 	cargo "heavy metals" 5 2 .1
 	to offer
 		random < 20
@@ -541,7 +541,7 @@ mission "FW Bulk Frontline Resupply [0]"
 	repeat
 	name `Resupply <planet>`
 	description `The frontlines of the war are in need of a resupply. Immediately deliver <cargo> to <destination> by <date>. Payment is <payment>.`
-	deadline 1 1
+	deadline 2 1
 	cargo "food" 25 2 .95
 	to offer
 		random < 30
@@ -568,7 +568,7 @@ mission "FW Bulk Frontline Resupply [1]"
 	repeat
 	name `Resupply <planet>`
 	description `The frontlines of the war are in need of a resupply. Immediately deliver <cargo> to <destination> by <date>. Payment is <payment>.`
-	deadline 1 1
+	deadline 2 1
 	cargo "medical" 25 2 .95
 	to offer
 		random < 15
@@ -597,7 +597,7 @@ mission "FW Care Package to Republic [0]"
 	repeat
 	name `Care package to <planet>`
 	description `A citizen of the Free Worlds is worried about family members in the Republic. Immediately deliver a care package of <cargo> to <destination> by <date>. Payment is <payment>.`
-	deadline 0 1
+	deadline 1 1
 	cargo random 1 3
 	to offer
 		random < 30
@@ -617,7 +617,7 @@ mission "FW Care Package to Republic [1]"
 	repeat
 	name `Care package to <planet>`
 	description `A citizen of the Free Worlds is worried about family members in the Republic. Immediately deliver a care package of <cargo> to <destination> by <date>. Payment is <payment>.`
-	deadline 0 1
+	deadline 1 1
 	cargo random 1 3
 	to offer
 		random < 30
@@ -637,7 +637,7 @@ mission "FW Care Package from Republic [0]"
 	repeat
 	name `Care package to <planet>`
 	description `A citizen of the Republic is worried about family members in the Free Worlds. Immediately deliver a care package of <cargo> to <destination> by <date>. Payment is <payment>.`
-	deadline 0 1
+	deadline 1 1
 	cargo random 1 3
 	to offer
 		random < 30
@@ -657,7 +657,7 @@ mission "FW Care Package from Republic [1]"
 	repeat
 	name `Care package to <planet>`
 	description `A citizen of the Republic is worried about family members in the Free Worlds. Immediately deliver a care package of <cargo> to <destination> by <date>. Payment is <payment>.`
-	deadline 0 1
+	deadline 1 1
 	cargo random 1 3
 	to offer
 		random < 30
@@ -679,7 +679,7 @@ mission "FW Refugees [0]"
 	repeat
 	name `Refugees to <planet>`
 	description `These <bunks> passengers would like to escape the frontlines of the war and immediately settle on <destination> by <date>. Payment is <payment>.`
-	deadline 1 1
+	deadline 2 1
 	passengers 2 10 .9
 	to offer
 		random < 60
@@ -706,7 +706,7 @@ mission "FW Refugees [1]"
 	repeat
 	name `Refugees to <planet>`
 	description `These <bunks> passengers would like to escape the frontlines of the war and immediately settle on <destination> by <date>. Payment is <payment>.`
-	deadline 1 1
+	deadline 2 1
 	passengers 2 10 .9
 	to offer
 		random < 40
@@ -733,7 +733,7 @@ mission "FW Refugees [2]"
 	repeat
 	name `Refugees to <planet>`
 	description `These <bunks> passengers would like to escape the frontlines of the war and immediately settle on <destination> by <date>. Payment is <payment>.`
-	deadline 1 1
+	deadline 2 1
 	passengers 2 10 .9
 	to offer
 		random < 20
@@ -760,7 +760,7 @@ mission "FW Bulk Refugees [0]"
 	repeat
 	name `Refugees to <planet>`
 	description `These <bunks> passengers would like to escape the frontlines of the war and immediately settle on <destination> by <date>. Payment is <payment>.`
-	deadline 1 1
+	deadline 2 1
 	passengers 5 5 .5
 	to offer
 		random < 20

@@ -289,6 +289,7 @@ mission "FW Reconciliation 2A"
 	
 	on offer
 		log `The governor of Valhalla, in the Deep, has proposed a "police action" to arrest one or more of the Syndicate leaders and bring them to justice. It will be a secret joint operation between the Free Worlds, the Deep, and the Oathkeepers.`
+		event "fw tarazed joins"
 		conversation
 			`When you land on Valhalla, a man shows up at your ship and introduces himself as Edrick Flint, the governor of Valhalla. He invites all of you to join him for dinner at his home, which turns out to be an apartment on the twenty-third floor of one of the downtown skyscrapers. There, he introduces you to several other regional governors and authorities.`
 			`	"You may be aware," Edrick says, "that the Deep was self-governing before the formation of the Republic. Indeed, during some of the darkest centuries of the space age, the Deep stood out as a beacon of civilization, a place where piracy was not tolerated and all travelers were safe. When we joined the Republic, we retained the authority to police our own territory, and that authority includes the right to track down fugitives who have fled beyond our usual jurisdiction."`
@@ -309,7 +310,8 @@ mission "FW Reconciliation 2A"
 			`	"That's why the fleet will be composed of ships from three different organizations," says Edrick. "You will find a reason to travel to Earth with perhaps one of your fancy new Dreadnoughts as an escort. When you arrive, there will just happen to be an Oathkeeper patrol passing through the same system. And a merchant convoy from the Deep. With its own set of escorts, of course."`
 			`	"We'd need to know exactly where and on what planet our target lives, prior to entering Syndicate space," says Katya. "And, if you want to have a court trial immediately prior to the arrest, it sounds like Sawyer will need to stay here."`
 			`	"Indeed," says Edrick, "but I assure you, he is safer from the Syndicate here than anywhere else in human space, your own territory included. As for locating a target, that's why the Oathkeepers have requested that you visit them on Farpoint."`
-			`	The rest of the evening is a more casual time for conversation, with plenty of good food and wine. At one point, Edrick pulls you aside and says, "I've requested that you be granted access to some of the new technology that was developed here during the course of the war. In particular, please find space on your ship for a ramscoop; you will need it for your next mission. And also, here." He hands you a data card. "This is a copy of Sawyer's evidence, in case something happens here. Keep it very, very safe."`
+			`	The rest of the evening is a more casual time for conversation, with plenty of good food and wine. Alondo sends you a message to inform you that Tarazed has decided to officially join the Free Worlds after having received word of the Parliament hearing, news that brings joy to Katya and Ijs.`
+			`	At one point, Edrick pulls you aside and says, "I've requested that you be granted access to some of the new technology that was developed here during the course of the war. In particular, please find space on your ship for a ramscoop; you will need it for your next mission. And also, here." He hands you a data card. "This is a copy of Sawyer's evidence, in case something happens here. Keep it very, very safe."`
 				accept
 	
 	npc accompany save
