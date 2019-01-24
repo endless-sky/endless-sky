@@ -118,7 +118,7 @@ mission "Smuggler 1"
 			`	You and Matthias finish your tea in silence. When you put down your teacup, the light in the room dims. A viewscreen concealed in the wall turns on, displaying only the dark silhouette of a man lit from behind. Matthias inclines his head slightly.`
 			`	The man speaks. "<first> <last>, it is good to see you at last." His voice is clear and unaccented. "Pardon my rudeness in concealing my identity, but in my business it is always better to be too cautious rather than not cautious enough."`
 			choice
-				`	Thank you for the generous gift of your time. How may I be of assistance?"`
+				`	"Thank you for the generous gift of your time. How may I be of assistance?"`
 					goto assistance
 				`	"It is a pleasure to make your acquaintance, sir."`
 					goto acquaintance
