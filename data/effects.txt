@@ -45,13 +45,12 @@ effect "slowing spark"
 
 # TODO: Use a unique effect and sprite
 effect "cloak disruption spark"
-	sprite "effect/missile death"
-		"rewind"
+	sprite "effect/nano spark"
 		"random start frame"
-		"frame rate" 19
-	"lifetime" 10
+		"frame rate" 16
+	"lifetime" 1
 	"random angle" 360
-	"random spin" 30
+	"random spin" 4
 
 
 effect "flame"
