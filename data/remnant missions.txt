@@ -1049,8 +1049,6 @@ mission "Remnant: Salvage 4"
 		dialog "You have disabled the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
 	on fail
 		payment 250000
-		set "remnant: failed salvage 4"
-		set "Remnant: Salvage 4: done"
 		dialog `You are met by a prefect who looks upset. "The ship was supposed to be disabled so its contents could be salvaged!" he signs angrily. Nonetheless, he shoves a credit chip worth <payment> into your hand. "That's half what you would have earned if the ship had been disabled." He pauses and shakes his head. "I think Tali might have some more work for you in the spaceport, but in the meantime, why don't you go find some Korath to practice disabling? It is a valuable skill among the Remnant."`
 	on complete
 		payment 500000
@@ -1066,7 +1064,9 @@ mission "Remnant: Salvage 5"
 	blocked `Tali would like you to deliver some valuable Korath equipment to Caelian, but you will need 20 tons of space to carry it.`
 	destination "Caelian"
 	to offer
-		has "Remnant: Salvage 4: done"
+		or
+			has "Remnant: Salvage 4: done"
+			has "Remnant: Salvage 4: failed"
 	on offer
 		conversation
 			`As you stroll across the tarmac under the great dome you spot Tali heading your way with a flatbed tractor filled with components in tow.`
