@@ -22,15 +22,16 @@ mission "Deep Mystery Cube [0]"
 		attributes deep
 	destination
 		distance 7 16
-		government Republic "Free Worlds" Syndicate Neutral Hai Quarg
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 	on accept
 		dialog "You pick up the mystery package in an unmarked and uninhabited warehouse. It is a small black cube about two centimeters to a side, surprisingly heavy for its size, with no markings of any kind. Odd."
 	on complete
+		"mystery cube" ++
 		payment 5000 1000
 		dialog `As instructed, you leave the mystery cube by the side of the road a few miles away from the spaceport. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
 	npc
 		government "Bounty Hunter"
-		personality nemesis disables waiting
+		personality nemesis disables waiting plunders
 		system
 			distance 6 9
 		fleet "Bounty Hunters"
@@ -49,15 +50,16 @@ mission "Deep Mystery Cube [1]"
 		attributes deep
 	destination
 		distance 9 20
-		government Republic "Free Worlds" Syndicate Neutral Hai Quarg
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 	on accept
 		dialog "You pick up the mystery package in an unmarked and uninhabited warehouse. It is a small black cube about two centimeters to a side, surprisingly heavy for its size, with no markings of any kind. Odd."
 	on complete
+		"mystery cube" ++
 		payment 5000 1000
 		dialog `As instructed, you leave the mystery cube behind a rickety-looking wooden tower. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
 	npc
 		government "Bounty Hunter"
-		personality nemesis disables waiting
+		personality nemesis disables waiting plunders
 		system
 			distance 6 9
 		fleet "Bounty Hunters"
@@ -76,15 +78,16 @@ mission "Deep Mystery Cube [2]"
 		attributes deep
 	destination
 		distance 9 20
-		government Republic "Free Worlds" Syndicate Neutral Hai Quarg
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 	on accept
 		dialog "You pick up the mystery package in an unmarked and uninhabited warehouse. It is a small black cube about two centimeters to a side, surprisingly heavy for its size, with no markings of any kind. Odd."
 	on complete
+		"mystery cube" ++
 		payment 5000 1000
 		dialog `As instructed, you bury the cube out in the middle of nowhere before landing in the spaceport. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
 	npc
 		government "Bounty Hunter"
-		personality nemesis disables waiting
+		personality nemesis disables waiting plunders
 		system
 			distance 6 9
 		fleet "Bounty Hunters"
@@ -103,15 +106,16 @@ mission "Deep Mystery Cube [3]"
 		attributes deep
 	destination
 		distance 9 20
-		government Republic "Free Worlds" Syndicate Neutral Hai Quarg
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 	on accept
 		dialog "You pick up the mystery package in an unmarked and uninhabited warehouse. It is a small black cube about two centimeters to a side, surprisingly heavy for its size, with no markings of any kind. Odd."
 	on complete
+		"mystery cube" ++
 		payment 5000 1000
 		dialog `As instructed, you hand the cube to the first beggar woman you see planetside. She accepts it without a word. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
 	npc
 		government "Bounty Hunter"
-		personality nemesis disables waiting
+		personality nemesis disables waiting plunders
 		system
 			distance 6 9
 		fleet "Bounty Hunters"
@@ -129,15 +133,16 @@ mission "Mystery retrieval"
 		attributes deep
 	stopover
 		distance 9 20
-		government Republic "Free Worlds" Syndicate Neutral Hai Quarg
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 	on stopover
 		dialog "As instructed, you open a storage locker near your landing site and pick up the mystery package: a small black cube about two centimeters to a side, surprisingly heavy for its size, with no markings of any kind. Odd."
 	on complete
+		"mystery cube" ++
 		payment 5000 1000
 		dialog `You drop off the cube at a warehouse, as instructed. Nobody comes around to collect it, but nonetheless your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited. You wonder how they knew.`
 	npc
 		government "Bounty Hunter"
-		personality nemesis disables waiting
+		personality nemesis disables waiting plunders
 		system
 			distance 10 17
 		fleet "Bounty Hunters"
