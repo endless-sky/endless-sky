@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
+#include "Files.h"
 #include "Flotsam.h"
 #include "Format.h"
 #include "GameData.h"
@@ -25,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
+#include "Preferences.h"
 #include "Projectile.h"
 #include "Random.h"
 #include "ShipEvent.h"
@@ -36,11 +38,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
-#include <iostream>
+#include <sstream>
 
 using namespace std;
 
 namespace {
+	const string FIGHTER_REPAIR = "Repair fighters in";
 	const vector<string> BAY_TYPE = {"drone", "fighter"};
 	const vector<string> BAY_SIDE = {"inside", "over", "under"};
 	const vector<string> BAY_FACING = {"forward", "left", "right", "back"};
@@ -210,15 +213,29 @@ void Ship::Load(const DataNode &node)
 				hasBays = true;
 			}
 			bays.emplace_back(child.Value(1), child.Value(2), key == "fighter");
+			Bay &bay = bays.back();
 			for(int i = 3; i < child.Size(); ++i)
 			{
 				for(unsigned j = 1; j < BAY_SIDE.size(); ++j)
 					if(child.Token(i) == BAY_SIDE[j])
-						bays.back().side = j;
+						bay.side = j;
 				for(unsigned j = 1; j < BAY_FACING.size(); ++j)
 					if(child.Token(i) == BAY_FACING[j])
-						bays.back().facing = j;
+						bay.facing = j;
 			}
+			if(child.HasChildren())
+				for(const DataNode &grand : child)
+				{
+					// Load in the effect(s) to be displayed when the ship launches.
+					if(grand.Token(0) == "launch effect" && grand.Size() >= 2)
+					{
+						int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
+						const Effect *e = GameData::Effects().Get(grand.Token(1));
+						bay.launchEffects.insert(bay.launchEffects.end(), count, e);
+					}
+					else
+						grand.PrintTrace("Child nodes of \"bay\" tokens can only be \"launch effect\":");
+				}
 		}
 		else if(key == "leak" && child.Size() >= 2)
 		{
@@ -266,7 +283,10 @@ void Ship::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
-				outfits[GameData::Outfits().Get(grand.Token(0))] += count;
+				if(count > 0)
+					outfits[GameData::Outfits().Get(grand.Token(0))] += count;
+				else
+					grand.PrintTrace("Skipping invalid outfit count:");
 			}
 		}
 		else if(key == "cargo")
@@ -417,20 +437,22 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament.Add(it.first, -excess);
 			it.second -= excess;
 			
-			cerr << modelName;
+			string warning = modelName;
 			if(!name.empty())
-				cerr << " \"" << name << "\"";
-			cerr << ": outfit \"" << it.first->Name() << "\" equipped but not included in outfit list." << endl;
+				warning += " \"" + name + "\"";
+			warning += ": outfit \"" + it.first->Name() + "\" equipped but not included in outfit list.";
+			Files::LogError(warning);
 		}
 		else if(!it.first->IsWeapon())
 		{
 			// This ship was specified with a non-weapon outfit in a
 			// hardpoint. Hardpoint::Install removes it, but issue a
 			// warning so the definition can be fixed.
-			cerr << modelName;
+			string warning = modelName;
 			if(!name.empty())
-				cerr << " \"" << name << "\"";
-			cerr << ": outfit \"" << it.first->Name() << "\" is not a weapon, but is installed as one." << endl;
+				warning += " \"" + name + "\"";
+			warning += ": outfit \"" + it.first->Name() + "\" is not a weapon, but is installed as one.";
+			Files::LogError(warning);
 		}
 	}
 	
@@ -455,7 +477,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		if(it.first->Name().empty())
 		{
-			cerr << "Unrecognized outfit in " << modelName << " \"" << name << "\"" << endl;
+			Files::LogError("Unrecognized outfit in " + modelName + " \"" + name + "\"");
 			continue;
 		}
 		attributes.Add(*it.first, it.second);
@@ -481,15 +503,14 @@ void Ship::FinishLoading(bool isNewInstance)
 		const Outfit *outfit = hardpoint.GetOutfit();
 		if(outfit && (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
 		{
-			bool isTurret = hardpoint.IsTurret();
-			cerr << modelName;
+			string warning = modelName;
 			if(!name.empty())
-				cerr << " \"" << name << "\"";
-			cerr << ": outfit \"" << outfit->Name() << "\" installed as a ";
-			cerr << (isTurret ? "turret but is a gun." : "gun but is a turret.");
-			cerr << "\n\t" << (isTurret ? "turret " : "gun ");
-			cerr << 2. * hardpoint.GetPoint().X() << " " << 2. * hardpoint.GetPoint().Y();
-			cerr << " \"" << outfit->Name() << "\"" << endl;
+				warning += " \"" + name + "\"";
+			warning += ": outfit \"" + outfit->Name() + "\" installed as a ";
+			warning += (hardpoint.IsTurret() ? "turret but is a gun.\n\tturret" : "gun but is a turret.\n\tgun");
+			warning += to_string(2. * hardpoint.GetPoint().X()) + " " + to_string(2. * hardpoint.GetPoint().Y());
+			warning += " \"" + outfit->Name() + "\"";
+			Files::LogError(warning);
 		}
 	}
 	cargo.SetSize(attributes.Get("cargo space"));
@@ -506,9 +527,33 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(isNewInstance)
 		Recharge(true);
 	
+	// Add a default "launch effect" to any internal bays if this ship is crewed (i.e. pressurized).
+	for(Bay &bay : bays)
+		if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
+			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
+	
 	// Figure out if this ship can be carried.
 	const string &category = attributes.Category();
 	canBeCarried = (category == "Fighter" || category == "Drone");
+	
+	// Issue warnings if this ship has negative outfit, cargo, weapon, or engine capacity.
+	string warning;
+	for(const string &attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity"})
+	{
+		double val = attributes.Get(attr);
+		if(val < 0)
+			warning += attr + ": " + Format::Number(val) + "\n";
+	}
+	if(!warning.empty())
+	{
+		// This check is mostly useful for variants and stock ships, which have
+		// no names. Print the outfits to facilitate identifying this ship definition.
+		string message = (!name.empty() ? "Ship \"" + name + "\" " : "") + "(" + modelName + "):\n";
+		ostringstream outfitNames("outfits:\n");
+		for(const auto &it : outfits)
+			outfitNames << '\t' << it.second << " " + it.first->Name() << endl;
+		Files::LogError(message + warning + outfitNames.str());
+	}
 	
 	// Ships read from a save file may have non-default shields or hull.
 	// Perform a full IsDisabled calculation.
@@ -603,6 +648,15 @@ void Ship::Save(DataWriter &out) const
 				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_FACING[bay.facing]);
 			else
 				out.Write(BAY_TYPE[bay.isFighter], x, y);
+			if(!bay.launchEffects.empty())
+			{
+				out.BeginChild();
+				{
+					for(const Effect *effect : bay.launchEffects)
+						out.Write("launch effect", effect->Name());
+				}
+				out.EndChild();
+			}
 		}
 		for(const Leak &leak : leaks)
 			out.Write("leak", leak.effect->Name(), leak.openPeriod, leak.closePeriod);
@@ -703,6 +757,7 @@ string Ship::FlightCheck() const
 	double solar = attributes.Get("solar collection");
 	double battery = attributes.Get("energy capacity");
 	double energy = generation + solar + battery;
+	double fuelCapacity = attributes.Get("fuel capacity");
 	double thrust = attributes.Get("thrust");
 	double reverseThrust = attributes.Get("reverse thrust");
 	double afterburner = attributes.Get("afterburner thrust");
@@ -735,8 +790,13 @@ string Ship::FlightCheck() const
 		return "limited turn?";
 	if(energy - .8 * solar < .2 * (turnEnergy + thrustEnergy))
 		return "solar power?";
-	if(!hyperDrive && !jumpDrive && !canBeCarried)
-		return "no hyperdrive?";
+	if(!canBeCarried)
+	{
+		if(!hyperDrive && !jumpDrive)
+			return "no hyperdrive?";
+		if(fuelCapacity < JumpFuel())
+			return "no fuel?";
+	}
 	
 	return "";
 }
@@ -1031,6 +1091,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				for(shared_ptr<Flotsam> &it : jettisoned)
 					it->Place(*this);
 				flotsam.splice(flotsam.end(), jettisoned);
+				
+				// Any ships that failed to launch from this ship are destroyed.
+				for(Bay &bay : bays)
+					if(bay.ship)
+						bay.ship->Destroy();
 			}
 			energy = 0.;
 			heat = 0.;
@@ -1184,7 +1249,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		
 		return;
 	}
-	else if(landingPlanet || zoom < 1.)
+	else if(landingPlanet || zoom < 1.f)
 	{
 		// Don't apply external acceleration while landing.
 		acceleration = Point();
@@ -1201,8 +1266,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Move the ship toward the center of the planet while landing.
 			if(GetTargetStellar())
 				position = .97 * position + .03 * GetTargetStellar()->Position();
-			zoom -= .02;
-			if(zoom < 0.)
+			zoom -= .02f;
+			if(zoom < 0.f)
 			{
 				// If this is not a special ship, it ceases to exist when it
 				// lands on a true planet. If this is a wormhole, the ship is
@@ -1222,14 +1287,14 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					return;
 				}
 				
-				zoom = 0.;
+				zoom = 0.f;
 			}
 		}
 		// Only refuel if this planet has a spaceport.
 		else if(fuel >= attributes.Get("fuel capacity")
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
-			zoom = min(1., zoom + .02);
+			zoom = min(1.f, zoom + .02f);
 			SetTargetStellar(nullptr);
 			landingPlanet = nullptr;
 		}
@@ -1238,7 +1303,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		
 		// Move the ship at the velocity it had when it began landing, but
 		// scaled based on how small it is now.
-		if(zoom > 0.)
+		if(zoom > 0.f)
 			position += velocity * zoom;
 		
 		return;
@@ -1439,7 +1504,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					{
 						Messages::Add("The " + target->ModelName() + " \"" + target->Name()
 							+ "\" has activated its self-destruct mechanism.");
-						targetShip.lock()->SelfDestruct();
+						GetTargetShip()->SelfDestruct();
 					}
 					else
 						hasBoarded = true;
@@ -1450,7 +1515,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	
 	// Clear your target if it is destroyed. This is only important for NPCs,
 	// because ordinary ships cease to exist once they are destroyed.
-	target = targetShip.lock();
+	target = GetTargetShip();
 	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
 		targetShip.reset();
 	
@@ -1496,16 +1561,25 @@ void Ship::DoGeneration()
 		if(!bays.empty())
 		{
 			// If this ship is carrying fighters, determine their repair priority.
-			// Sort the ships in the bays so that the most "healthy" one will
-			// be given repairs first. In combat that is the optimal strategy in
-			// order to get fighters back out into battle as soon as possible.
 			vector<pair<double, Ship *>> carried;
 			for(const Bay &bay : bays)
 				if(bay.ship)
 					carried.emplace_back(1. - bay.ship->Health(), bay.ship.get());
+			sort(carried.begin(), carried.end(), (isYours && Preferences::Has(FIGHTER_REPAIR))
+				// Players may use a parallel strategy, to launch fighters in waves.
+				? [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
+				{
+					return lhs.first > rhs.first;
+				}
+				// The default strategy is to prioritize the healthiest ship first, in
+				// order to get fighters back out into the battle as soon as possible.
+				: [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
+				{
+					return lhs.first < rhs.first;
+				}
+			);
 			
 			// Apply shield and hull repair to carried fighters.
-			sort(carried.begin(), carried.end());
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
@@ -1620,26 +1694,59 @@ void Ship::DoGeneration()
 
 
 // Launch any ships that are ready to launch.
-void Ship::Launch(list<shared_ptr<Ship>> &ships)
+void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 {
 	// Allow fighters to launch from a disabled ship, but not from a ship that
-	// is landing, jumping, or cloaked.
-	if(!IsDestroyed() && (!commands.Has(Command::DEPLOY) || zoom != 1. || hyperspaceCount || cloak))
+	// is landing, jumping, or cloaked. If already destroyed (e.g. self-destructing),
+	// eject any ships still docked, possibly destroying them in the process.
+	bool ejecting = IsDestroyed();
+	if(!ejecting && (!commands.Has(Command::DEPLOY) || zoom != 1.f || hyperspaceCount || cloak))
 		return;
 	
 	for(Bay &bay : bays)
-		if(bay.ship && bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * bay.isFighter))
+		if(bay.ship && ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * bay.isFighter))
+				|| (ejecting && !Random::Int(6))))
 		{
+			// Resupply any ships launching of their own accord.
+			if(!ejecting)
+			{
+				// TODO: Restock fighter weaponry that needs ammo.
+				
+				// This ship will refuel naturally based on the carrier's fuel
+				// collection, but the carrier may have some reserves to spare.
+				double maxFuel = bay.ship->attributes.Get("fuel capacity");
+				if(maxFuel)
+				{
+					double spareFuel = fuel - JumpFuel();
+					if(spareFuel > 0.)
+						TransferFuel(min(maxFuel - bay.ship->fuel, spareFuel), bay.ship.get());
+					// If still low or out-of-fuel, re-stock the carrier and don't launch.
+					if(bay.ship->fuel < .25 * maxFuel)
+					{
+						TransferFuel(bay.ship->fuel, this);
+						continue;
+					}
+				}
+			}
+			// Those being ejected may be destroyed if they are already injured.
+			else if(bay.ship->Health() < Random::Real())
+				bay.ship->SelfDestruct();
+			
 			ships.push_back(bay.ship);
-			double maxV = bay.ship->MaxVelocity();
-			Angle launchAngle = angle + BAY_ANGLE[bay.facing];
+			double maxV = bay.ship->MaxVelocity() * (1 + bay.ship->IsDestroyed());
+			Point exitPoint = position + angle.Rotate(bay.point);
+			// When ejected, ships depart haphazardly.
+			Angle launchAngle = ejecting ? Angle(exitPoint - position) : angle + BAY_ANGLE[bay.facing];
 			Point v = velocity + (.3 * maxV) * launchAngle.Unit() + (.2 * maxV) * Angle::Random().Unit();
-			bay.ship->Place(position + angle.Rotate(bay.point), v, launchAngle);
+			bay.ship->Place(exitPoint, v, launchAngle);
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
 			bay.ship->UnmarkForRemoval();
 			// Update the cached sum of carried ship masses.
 			carriedMass -= bay.ship->Mass();
+			// Create the desired launch effects.
+			for(const Effect *effect : bay.launchEffects)
+				visuals.emplace_back(*effect, exitPoint, velocity, launchAngle);
 			
 			bay.ship.reset();
 		}
@@ -1724,10 +1831,8 @@ int Ship::Scan()
 		return 0;
 	
 	// The range of a scanner is proportional to the square root of its power.
-	double cargoPower = attributes.Get("cargo scan power");
-	double cargoDistance = cargoPower ? 100. * sqrt(cargoPower) : attributes.Get("cargo scan");
-	double outfitPower = attributes.Get("outfit scan power");
-	double outfitDistance = outfitPower ? 100. * sqrt(outfitPower) : attributes.Get("outfit scan");
+	double cargoDistance = 100. * sqrt(attributes.Get("cargo scan power"));
+	double outfitDistance = 100. * sqrt(attributes.Get("outfit scan power"));
 	
 	// Bail out if this ship has no scanners.
 	if(!cargoDistance && !outfitDistance)
@@ -1749,30 +1854,20 @@ int Ship::Scan()
 	bool startedScanning = false;
 	bool activeScanning = false;
 	int result = 0;
-	if(cargoScan < SCAN_TIME)
+	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, const int event) -> void
 	{
-		if(distance < cargoDistance)
+		if(elapsed < SCAN_TIME && distance < scannerRange)
 		{
-			startedScanning |= !cargoScan;
+			startedScanning |= !elapsed;
 			activeScanning = true;
 			// To make up for the scan decay above:
-			cargoScan += cargoSpeed + 1.;
-			if(cargoScan >= SCAN_TIME)
-				result |= ShipEvent::SCAN_CARGO;
+			elapsed += speed + 1.;
+			if(elapsed >= SCAN_TIME)
+				result |= event;
 		}
-	}
-	if(outfitScan < SCAN_TIME)
-	{
-		if(distance < outfitDistance)
-		{
-			startedScanning |= !outfitScan;
-			activeScanning = true;
-			// To make up for the scan decay above:
-			outfitScan += outfitSpeed + 1.;
-			if(outfitScan >= SCAN_TIME)
-				result |= ShipEvent::SCAN_OUTFITS;
-		}
-	}
+	};
+	doScan(cargoScan, cargoSpeed, cargoDistance, ShipEvent::SCAN_CARGO);
+	doScan(outfitScan, outfitSpeed, outfitDistance, ShipEvent::SCAN_OUTFITS);
 	
 	// Play the scanning sound if the actor or the target is the player's ship.
 	if(isYours || (target->isYours && activeScanning))
@@ -1903,7 +1998,7 @@ bool Ship::IsCapturable() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1. && !explosionRate && !forget && !isInvisible && cloak < 1. && hull >= 0. && hyperspaceCount < 70);
+	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && cloak < 1. && hull >= 0. && hyperspaceCount < 70);
 }
 
 
@@ -1960,7 +2055,7 @@ bool Ship::CanLand() const
 
 bool Ship::CannotAct() const
 {
-	return (zoom != 1. || isDisabled || hyperspaceCount || pilotError || cloak);
+	return (zoom != 1.f || isDisabled || hyperspaceCount || pilotError || cloak);
 }
 
 
@@ -2080,6 +2175,7 @@ void Ship::Destroy()
 
 
 
+// Trigger the death of this ship.
 void Ship::SelfDestruct()
 {
 	Destroy();
@@ -2642,6 +2738,13 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->SetParent(shared_from_this());
 			ship->isThrusting = false;
 			ship->commands.Clear();
+			// If this fighter collected anything in space, try to store it
+			// (unless this is a player-owned ship).
+			if(!isYours && cargo.Free() && !ship->Cargo().IsEmpty())
+				ship->Cargo().TransferAll(cargo);
+			// Return unused fuel to the carrier, for any launching fighter that needs it.
+			ship->TransferFuel(ship->fuel, this);
+			
 			// Update the cached mass of the mothership.
 			carriedMass += ship->Mass();
 			return true;
@@ -2832,6 +2935,10 @@ bool Ship::CanFire(const Weapon *weapon) const
 		return false;
 	if(fuel < weapon->FiringFuel())
 		return false;
+	// If a weapon requires heat to fire, (rather than generating heat), we must
+	// have enough heat to spare.
+	if(heat < -(weapon->FiringHeat()))
+		return false;
 	
 	return true;
 }
@@ -2902,7 +3009,7 @@ shared_ptr<Flotsam> Ship::GetTargetFlotsam() const
 // Set this ship's targets.
 void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {
-	if(ship != targetShip.lock())
+	if(ship != GetTargetShip())
 	{
 		targetShip = ship;
 		// When you change targets, clear your scanning records.

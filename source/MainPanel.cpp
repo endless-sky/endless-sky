@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LineShader.h"
 #include "MapDetailPanel.h"
 #include "Messages.h"
+#include "Mission.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlanetPanel.h"
@@ -152,10 +153,10 @@ void MainPanel::Draw()
 		if(canDrag)
 		{
 			const Color &dragColor = *GameData::Colors().Get("drag select");
-			LineShader::Draw(dragSource, Point(dragSource.X(), dragPoint.Y()), .8, dragColor);
-			LineShader::Draw(Point(dragSource.X(), dragPoint.Y()), dragPoint, .8, dragColor);
-			LineShader::Draw(dragPoint, Point(dragPoint.X(), dragSource.Y()), .8, dragColor);
-			LineShader::Draw(Point(dragPoint.X(), dragSource.Y()), dragSource, .8, dragColor);
+			LineShader::Draw(dragSource, Point(dragSource.X(), dragPoint.Y()), .8f, dragColor);
+			LineShader::Draw(Point(dragSource.X(), dragPoint.Y()), dragPoint, .8f, dragColor);
+			LineShader::Draw(dragPoint, Point(dragPoint.X(), dragSource.Y()), .8f, dragColor);
+			LineShader::Draw(Point(dragPoint.X(), dragSource.Y()), dragSource, .8f, dragColor);
 		}
 		else
 			isDragging = false;
@@ -469,8 +470,7 @@ void MainPanel::StepEvents(bool &isActive)
 				&& !event.Target()->IsDestroyed() && flagship && event.Actor().get() == flagship)
 		{
 			Mission *mission = player.BoardingMission(event.Target());
-			const CargoHold &cargo = flagship->Cargo();
-			if(mission && mission->CargoSize() <= cargo.Free() && mission->Passengers() <= cargo.BunksFree())
+			if(mission && mission->HasSpace(*flagship))
 				mission->Do(Mission::OFFER, player, GetUI());
 			else if(mission)
 				player.HandleBlockedMissions((event.Type() & ShipEvent::BOARD)

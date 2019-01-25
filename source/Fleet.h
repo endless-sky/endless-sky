@@ -14,14 +14,17 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define FLEET_H_
 
 #include "Personality.h"
+#include "Sale.h"
 
 #include <list>
 #include <memory>
+#include <set>
 #include <string>
 #include <vector>
 
 class DataNode;
 class Government;
+class Outfit;
 class Phrase;
 class Planet;
 class Ship;
@@ -82,9 +85,12 @@ private:
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
 	std::vector<Variant> variants;
+	// The sum of all available variant weights.
+	int total = 0;
+	// The number of different items the ships in this fleet will carry in cargo.
 	int cargo = 3;
 	std::vector<std::string> commodities;
-	int total = 0;
+	std::set<const Sale<Outfit> *> outfitters;
 	
 	Personality personality;
 };

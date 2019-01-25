@@ -48,10 +48,10 @@ public:
 	static const int SHOW_GOVERNMENT = -5;
 	static const int SHOW_REPUTATION = -6;
 	
-	static const double OUTER;
-	static const double INNER;
-	static const double LINK_WIDTH;
-	static const double LINK_OFFSET;
+	static const float OUTER;
+	static const float INNER;
+	static const float LINK_WIDTH;
+	static const float LINK_OFFSET;
 	
 	
 public:
@@ -61,7 +61,7 @@ public:
 	virtual void Draw() override;
 	
 	void DrawButtons(const std::string &condition);
-	static void DrawMiniMap(const PlayerInfo &player, double alpha, const System *const jump[2], int step);
+	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
 	
 	
 protected:

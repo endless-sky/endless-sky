@@ -149,7 +149,7 @@ void MissionPanel::Draw()
 {
 	MapPanel::Draw();
 	
-	Color routeColor(.2, .1, 0., 0.);
+	Color routeColor(.2f, .1f, 0.f, 0.f);
 	const System *system = selectedSystem;
 	while(distance.Days(system) > 0)
 	{
@@ -161,7 +161,7 @@ void MissionPanel::Draw()
 		from -= unit;
 		to += unit;
 		
-		LineShader::Draw(from, to, 5., routeColor);
+		LineShader::Draw(from, to, 5.f, routeColor);
 		
 		system = next;
 	}
@@ -471,7 +471,7 @@ void MissionPanel::DrawKey() const
 	
 	for(int i = 0; i < ROWS; ++i)
 	{
-		PointerShader::Draw(pos + pointerOff, angle, 10., 18., 0., COLOR[i]);
+		PointerShader::Draw(pos + pointerOff, angle, 10.f, 18.f, 0.f, COLOR[i]);
 		font.Draw(LABEL[i], pos + textOff, i == selected ? bright : dim);
 		pos.Y() += 20.;
 	}
@@ -483,7 +483,7 @@ void MissionPanel::DrawKey() const
 void MissionPanel::DrawSelectedSystem() const
 {
 	const Sprite *sprite = SpriteSet::Get("ui/selected system");
-	SpriteShader::Draw(sprite, Point(0., Screen::Top() + .5 * sprite->Height()));
+	SpriteShader::Draw(sprite, Point(0., Screen::Top() + .5f * sprite->Height()));
 	
 	string text;
 	if(!selectedSystem)
@@ -519,23 +519,25 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 {
 	const Color &waypoint = *GameData::Colors().Get("waypoint back");
 	const Color &visited = *GameData::Colors().Get("faint");
+	const float MISSION_OUTER = 22.f;
+	const float MISSION_INNER = 20.5f;
 	
 	double zoom = Zoom();
 	// Draw a colored ring around the destination system.
 	Point pos = zoom * (mission.Destination()->GetSystem()->Position() + center);
-	RingShader::Draw(pos, 22., 20.5, color);
+	RingShader::Draw(pos, MISSION_OUTER, MISSION_INNER, color);
 	
 	// Draw bright rings around systems that still need to be visited.
 	for(const System *system : mission.Waypoints())
-		RingShader::Draw(zoom * (system->Position() + center), 22., 20.5, waypoint);
+		RingShader::Draw(zoom * (system->Position() + center), MISSION_OUTER, MISSION_INNER, waypoint);
 	for(const Planet *planet : mission.Stopovers())
-		RingShader::Draw(zoom * (planet->GetSystem()->Position() + center), 22., 20.5, waypoint);
+		RingShader::Draw(zoom * (planet->GetSystem()->Position() + center), MISSION_OUTER, MISSION_INNER, waypoint);
 	
 	// Draw faint rings around systems already visited for this mission.
 	for(const System *system : mission.VisitedWaypoints())
-		RingShader::Draw(zoom * (system->Position() + center), 22., 20.5, visited);
+		RingShader::Draw(zoom * (system->Position() + center), MISSION_OUTER, MISSION_INNER, visited);
 	for(const Planet *planet : mission.VisitedStopovers())
-		RingShader::Draw(zoom * (planet->GetSystem()->Position() + center), 22., 20.5, visited);
+		RingShader::Draw(zoom * (planet->GetSystem()->Position() + center), MISSION_OUTER, MISSION_INNER, visited);
 }
 
 

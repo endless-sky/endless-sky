@@ -46,10 +46,10 @@ effect "inhibitor impact"
 		"frame rate" 30
 		"no repeat"
 	"lifetime" 11
-	"velocity scale" -.05
 	"random angle" 360
-	"random velocity" 6
 	"random frame rate" 15
+	"random velocity" 6
+	"velocity scale" -.05
 
 
 outfit "Thrasher Cannon"
@@ -84,10 +84,10 @@ effect "thrasher impact"
 		"frame rate" 30
 		"no repeat"
 	"lifetime" 11
-	"velocity scale" -.1
 	"random angle" 360
 	"random spin" 30
 	"random velocity" 3
+	"velocity scale" -.1
 
 
 outfit "Thrasher Turret"
@@ -149,8 +149,8 @@ effect "point defense fire"
 	sprite "effect/point defense fire"
 		"frame rate" 17
 		"no repeat"
-	"velocity scale" .5
 	lifetime 10
+	"velocity scale" .5
 
 effect "point defense hit"
 	sprite "effect/point defense hit"
@@ -226,30 +226,30 @@ effect "emp torpedo fire"
 		"no repeat"
 		"frame rate" 10
 	"lifetime" 31
-	"random frame rate" 10
-	"random velocity" 7
 	"random angle" 10
+	"random frame rate" 10
 	"random spin" 2
+	"random velocity" 7
 
 effect "emp ring"
 	sprite "effect/emp ring"
 		"no repeat"
 		"frame rate" 12
 	"lifetime" 60
-	"random frame rate" 6
-	"velocity scale" 0.1
 	"random angle" 360
+	"random frame rate" 6
 	"random velocity" 4
+	"velocity scale" 0.1
 
 effect "emp spark"
 	sprite "effect/emp spark"
 		"no repeat"
 		"frame rate" 8
 	"lifetime" 45
-	"random frame rate" 6
-	"velocity scale" 0.1
 	"random angle" 360
+	"random frame rate" 6
 	"random velocity" 7
+	"velocity scale" 0.1
 
 
 
@@ -268,7 +268,6 @@ outfit "Crystal Capacitor"
 	"heat generation" .4
 	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
 	description "	Also, the capacitors tend to leak small amounts of energy, in the form of excess heat."
-
 
 outfit "Millennium Cell"
 	category "Power"
@@ -306,7 +305,6 @@ outfit "Aeon Cell"
 	"heat generation" 31.5
 	description "The early Remnant engineers did not trust the finicky and unpredictable nuclear reactors that were then in use in human space, so they instead focused on perfecting the art of radioisotope thermoelectric power."
 
-
 outfit "Thermoelectric Cooler"
 	category "Systems"
 	licenses
@@ -328,8 +326,7 @@ outfit "Emergency Ramscoop"
 	"mass" 4
 	"outfit space" -4
 	"ramscoop" 0.5
-	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. This ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
-
+	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills' which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
 
 outfit "Quantum Key Stone"
 	category "Systems"
@@ -397,7 +394,6 @@ outfit "Smelter-Class Thruster"
 	"flare sound" "plasma medium"
 	description "It is not unheard of for a Remnant ship's engines to draw even more power than its weapon systems: an indication, perhaps, of their preference for avoiding battle when possible."
 
-
 outfit "Crucible-Class Steering"
 	category "Engines"
 	licenses
@@ -455,3 +451,8 @@ outfit "Remnant License"
 	category "Special"
 	thumbnail "outfit/remnant license"
 	description "The prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."
+
+outfit "Remnant Capital License"
+	category "Special"
+	thumbnail "outfit/unknown"
+	description "The prefects have decided that you should be trusted with their largest ships, and the valuable resources that go into making them."

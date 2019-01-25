@@ -91,16 +91,21 @@ License: CC-BY-SA-4.0
 
 Files:
  images/ship/vanguard*
+ images/outfit/luxury accommodations*
  images/outfit/proton turret*
  images/hardpoint/proton turret*
+ images/outfit/brig*
 Copyright: Nate Graham <pointedstick@zoho.com>
 License: CC-BY-SA-4.0
 
 Files:
- images/land/sky2.jpg
- images/land/sea3.jpg
+ images/land/sky2*
+ images/land/sea3*
+ images/land/beach4*
+ images/land/canyon9*
 Copyright: Emily Mell <hasmidas@gmail.com>
 License: public domain
+Based on public domain images taken from unsplash.com
 
 Files:
  images/icon/gat*
@@ -130,6 +135,11 @@ Files: images/outfit/*storage*
 Copyright: Jonathan Steck
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser and Maximilian Korber (under the same license).
+
+Files: images/outfit/city-ship?license*
+Copyright: Jonathan Steck
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Evan Fluharty (under the same license).
 
 Files:
  images/outfit/harvested*
@@ -277,23 +287,43 @@ Files:
  images/ship/hai?centipede*
  images/ship/hai?geocoris*
  images/ship/hai?grasshopper*
+ images/ship/gull*
+ images/ship/pelican*
+ images/ship/auxiliary*
+ images/ship/dropship*
  images/thumbnail/hai?centipede*
  images/thumbnail/hai?geocoris*
  images/thumbnail/hai?grasshopper*
- images/ship/auxiliary*
  images/thumbnail/auxiliary*
- images/ship/dropship*
  images/thumbnail/dropship*
+ images/thumbnail/gull*
+ images/thumbnail/pelican*
  images/outfit/auxiliary?license*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (from under the same license).
+Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files: images/portrait/*
 Copyright: Various
 License: public-domain
  Taken from unsplash.com, a collection of photographs that have been donated and
  placed in the public domain.
+ 
+ Files:
+ images/outfit/quarg?skylance*
+ images/hardpoint/quarg?skylance*
+Copyright: Evan Fluharty (Evanfluharty@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), Fernando S. Sáez (Azure Nyoki), and originally drawn up by Tommy Thach (Bladewood) (all under the same license)
+
+ Files:
+ images/outfit/quarg*
+ images/hardpoint/quarg*
+ images/outfit/small?quarg*
+ images/outfit/medium?quarg*
+ images/outfit/large?quarg*
+Copyright: Evan Fluharty (Evanfluharty@gmail.com)
+License: CC-BY-SA-4.0
 
 Files:
  images/land/badlands0*
@@ -306,7 +336,6 @@ Files:
  images/land/beach0*
  images/land/beach2*
  images/land/beach3*
- images/land/beach4*
  images/land/beach5*
  images/land/beach6*
  images/land/canyon0*
@@ -357,12 +386,10 @@ Files:
  images/land/mountain8*
  images/land/mountain9*
  images/land/sea1*
- images/land/sea3*
  images/land/sea5*
  images/land/sea7*
  images/land/sea8*
  images/land/sky0*
- images/land/sky2*
  images/land/sky3*
  images/land/sky4*
  images/land/sky5*

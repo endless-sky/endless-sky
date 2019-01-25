@@ -150,14 +150,15 @@ ship "Arrow"
 			"hull damage" 120
 			"hit force" 360
 	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 50
 		"Anti-Missile Turret"
 		
 		"Dwarf Core"
 		"Supercapacitor"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer"
+		"Luxury Accommodations"
 		
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
@@ -166,7 +167,7 @@ ship "Arrow"
 	engine -10 60
 	engine 10 60
 	gun -8 -34 "Sidewinder Missile Launcher"
-	gun 8 -34 "Sidewinder Missile Launcher"
+	gun 8 -34
 	turret 0 16 "Anti-Missile Turret"
 	leak "leak" 80 50
 	explode "tiny explosion" 12
@@ -284,6 +285,8 @@ ship "Bactrian"
 	sprite "ship/bactrian"
 	thumbnail "thumbnail/bactrian"
 	attributes
+		licenses
+			City-Ship
 		category "Heavy Warship"
 		"cost" 17600000
 		"shields" 17500
@@ -344,7 +347,8 @@ ship "Bactrian"
 	explode "large explosion" 45
 	explode "huge explosion" 30
 	"final explode" "final explosion large"
-	description "The Lionheart Bactrian is the last of the great city-ships, a design hearkening back to the early days of space colonization when a long-distance vessel needed to be a self-contained world, able to survive for weeks at a time without encountering an inhabited planet. It is not only a freighter, but a carrier, and a capable warship either at short range or at a distance. Naturally, this versatility also makes it extremely expensive, and the Bactrian is not normally for sale to ordinary citizens who have not been vetted by the local government of the Deep."
+	description "The Lionheart Bactrian is the last of the great city-ships, a design hearkening back to the early days of space colonization when a long-distance vessel needed to be a self-contained world, able to survive for weeks at a time without encountering an inhabited planet. It is not only a freighter, but a carrier, and a capable warship either at short range or at a distance."
+	description "	Naturally, this versatility also makes it extremely expensive, and the Bactrian is normally only for sale to citizens who have been vetted by the local government of the Deep."
 
 
 
@@ -631,6 +635,7 @@ ship "Blackbird"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		"Small Radar Jammer"
+		"Luxury Accommodations"
 		
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
@@ -831,6 +836,10 @@ ship "Carrier"
 		"D94-YV Shield Generator"
 		"Large Radar Jammer" 2
 		"Water Coolant System"
+		"Brig"
+		"Laser Rifle" 40
+		"Fragmentation Grenades" 40
+		"Security Station"
 		
 		"X5700 Ion Thruster"
 		"X4200 Ion Steering"
@@ -846,8 +855,8 @@ ship "Carrier"
 	gun 25 -166 "Particle Cannon"
 	gun -25 -166 "Meteor Missile Launcher"
 	gun 25 -166 "Meteor Missile Launcher"
-	turret 0 -114 "Heavy Laser Turret"
-	turret 0 15 "Heavy Anti-Missile Turret"
+	turret 0 -114 "Heavy Anti-Missile Turret"
+	turret 0 15 "Heavy Laser Turret"
 	turret 0 103 "Heavy Anti-Missile Turret"
 	turret 0 157 "Heavy Laser Turret"
 	fighter -37 -65
@@ -999,13 +1008,13 @@ ship "Combat Drone"
 			Navy
 		"cost" 83000
 		"hull" 700
+		"automaton" 1
 		"mass" 20
 		"drag" .59
 		"heat dissipation" .9
 		"outfit space" 58
 		"weapon capacity" 8
 		"engine capacity" 28
-		"automaton" 1
 		weapon
 			"blast radius" 5
 			"shield damage" 50
@@ -1125,6 +1134,9 @@ ship "Cruiser"
 		"D67-TM Shield Generator"
 		"Large Radar Jammer" 2
 		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 20
+		"Fragmentation Grenades" 20
+		"Security Station"
 		
 		"X4700 Ion Thruster"
 		"X4200 Ion Steering"
@@ -1609,6 +1621,9 @@ ship "Frigate"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
+		"Laser Rifle" 5
+		"Fragmentation Grenades" 5
+		"Security Station"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -1721,6 +1736,7 @@ ship "Gunboat"
 		"Small Radar Jammer"
 		"Cargo Scanner"
 		"Outfit Scanner"
+		"Brig"
 		
 		"X3700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -2001,8 +2017,10 @@ ship "Headhunter"
 	
 	engine -16 47
 	engine 16 47
-	gun -13 -27 "Heavy Laser"
-	gun 13 -27 "Heavy Laser"
+	gun -17.5 -17
+	gun 17.5 -17
+	gun -12 -25.5 "Heavy Laser"
+	gun 12 -25.5 "Heavy Laser"
 	turret 0 9 "Heavy Anti-Missile Turret"
 	leak "leak" 60 50
 	leak "flame" 80 80
@@ -2249,6 +2267,7 @@ ship "Modified Argosy"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		"Small Radar Jammer"
+		"Brig"
 		
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
@@ -2629,7 +2648,7 @@ ship "Raven"
 		"fuel capacity" 500
 		"cargo space" 30
 		"outfit space" 280
-		"weapon capacity" 90
+		"weapon capacity" 100
 		"engine capacity" 100
 		weapon
 			"blast radius" 60
@@ -2638,8 +2657,8 @@ ship "Raven"
 			"hit force" 900
 	outfits
 		"Heavy Laser" 2
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Torpedo Launcher" 2
+		"Torpedo" 60
 		
 		"RT-I Radiothermal"
 		"LP072a Battery Pack"
@@ -2653,8 +2672,8 @@ ship "Raven"
 	engine 12 43
 	gun -10 -33 "Heavy Laser"
 	gun 10 -33 "Heavy Laser"
-	gun -16 -28 "Sidewinder Missile Launcher"
-	gun 16 -28 "Sidewinder Missile Launcher"
+	gun -16 -28 "Torpedo Launcher"
+	gun 16 -28 "Torpedo Launcher"
 	leak "leak" 60 50
 	leak "flame" 50 80
 	explode "medium explosion" 24
@@ -3048,7 +3067,7 @@ ship "Star Queen"
 		"cost" 5500000
 		"shields" 4100
 		"hull" 2200
-		"required crew" 43
+		"required crew" 41
 		"bunks" 112
 		"mass" 230
 		"drag" 5.5
@@ -3069,9 +3088,10 @@ ship "Star Queen"
 		"Heavy Anti-Missile Turret" 2
 		
 		"NT-200 Nucleovoltaic"
-		"LP072a Battery Pack"
+		"LP036a Battery Pack"
 		"D94-YV Shield Generator"
 		"Small Radar Jammer" 3
+		"Luxury Accommodations"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -3104,13 +3124,13 @@ ship "Surveillance Drone"
 			Navy
 		"cost" 50000
 		"hull" 300
+		"automaton" 1
 		"mass" 15
 		"drag" .53
 		"heat dissipation" .9
 		"outfit space" 53
 		"weapon capacity" 0
 		"engine capacity" 28
-		"automaton" 1
 		weapon
 			"blast radius" 3
 			"shield damage" 30

@@ -107,7 +107,8 @@ mission "Hai Vacation [4]"
 		distance 2 7
 		attributes "hai tourism"
 	on complete
-		payment 4000 150
+		payment
+		payment 6000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 
@@ -121,6 +122,7 @@ mission "Wealthy Hai [1]"
 	to offer
 		random < 70
 	on offer
+		require "Luxury Accommodations"
 		require "Quantum Keystone"
 	source
 		government "Hai"
@@ -128,7 +130,7 @@ mission "Wealthy Hai [1]"
 		government "Hai"
 		distance 4 8
 	on complete
-		payment 10000 250
+		payment 15000 300
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Wealthy Hai [2]"
@@ -141,6 +143,7 @@ mission "Wealthy Hai [2]"
 	to offer
 		random < 30
 	on offer
+		require "Luxury Accommodations"
 		require "Quantum Keystone"
 	source
 		government "Hai"
@@ -148,7 +151,7 @@ mission "Wealthy Hai [2]"
 		government "Hai"
 		distance 4 8
 	on complete
-		payment 10000 250
+		payment 15000 300
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 
@@ -347,7 +350,7 @@ mission "Delivery to Human Space [0]"
 	job
 	repeat
 	description "This human wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
-	cargo random 2 10
+	cargo random 5 10
 	to offer
 		random < 30
 	source
@@ -356,7 +359,7 @@ mission "Delivery to Human Space [0]"
 	destination
 		attributes "north"
 	on complete
-		payment 80000
+		payment 60000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Delivery to Human Space [1]"
@@ -364,7 +367,7 @@ mission "Delivery to Human Space [1]"
 	job
 	repeat
 	description "This Hai wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
-	cargo random 2 10
+	cargo random 5 10
 	to offer
 		random < 25
 	source
@@ -373,7 +376,7 @@ mission "Delivery to Human Space [1]"
 	destination
 		attributes "north"
 	on complete
-		payment 80000
+		payment 60000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Delivery to Human Space [2]"
@@ -381,7 +384,7 @@ mission "Delivery to Human Space [2]"
 	job
 	repeat
 	description "This human wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
-	cargo random 2 10
+	cargo random 5 10
 	to offer
 		random < 20
 	source
@@ -390,8 +393,68 @@ mission "Delivery to Human Space [2]"
 	destination
 		attributes "north"
 	on complete
-		payment 80000
+		payment 60000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Hai Retrieve Human Luxury Goods"
+	name "Special order to <planet>"
+	job
+	repeat
+	description "A Hai socialite on <planet> wants to show off their knowledge of human culture to their peers. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
+	cargo "Luxury Goods" 5 10
+	deadline 24
+	to offer
+		random < 15
+	source
+		government "Hai"
+		near "Heia Due" 2
+	stopover
+		attributes "north"
+	on stopover
+		dialog "You gather the requested <commodity> and load them on your ship for return to <planet>."
+	on complete
+		payment 120000
+		dialog "Your payment of <payment> is waiting when you touch down, along with delivery instructions. You send the <commodity> by dedicated courier."
+
+mission "Hai Retrieve Human Food"
+	name "Special order to <planet>"
+	job
+	repeat
+	description "A Hai gourmet on <planet> is bored with local fare and wants to try food they heard about from human tourists. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
+	cargo "Food" 5 10
+	deadline 24
+	to offer
+		random < 15
+	source
+		government "Hai"
+		near "Heia Due" 2
+	stopover
+		attributes "north"
+	on stopover
+		dialog "You gather the requested <commodity> and load them on your ship for return to <planet>."
+	on complete
+		payment 120000
+		dialog "As soon as you touch down you receive a message from the Hai gourmet with thanks and your payment of <payment>."
+
+mission "Hai Retrieve Human Electronics"
+	name "Special order to <planet>"
+	job
+	repeat
+	description "A Hai tinkerer on <planet> wants to experiment with human technology. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
+	cargo "Electronics" 5 10
+	deadline 24
+	to offer
+		random < 15
+	source
+		government "Hai"
+		near "Heia Due" 2
+	stopover
+		attributes "north"
+	on stopover
+		dialog "You gather the requested <commodity> and load them on your ship for return to <planet>."
+	on complete
+		payment 120000
+		dialog "The Hai tinkerer is waiting for you when you arrive. They pay you <payment> and then run after the cargo pallets as though they plan to open them right there in the spaceport."
 
 
 
@@ -1104,3 +1167,24 @@ mission "Hai Large Rush Delivery [3]"
 		payment
 		payment 42000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+
+
+mission "Hai Prisoner Roleplay"
+	name `Hai "prison" cruise to <planet>`
+	job
+	repeat
+	description "A group of Hai want to experience what it's like to be human criminals. Transport them to <planet> in your brig. Payment is <payment>."
+	passengers 3 20
+	to offer
+		random < 5
+	source
+		government "Hai"
+	destination
+		distance 3 7
+		government "Hai"
+	on offer
+		require "Brig"
+	on complete
+		payment 15000 150
+		dialog "The Hai depart your ship chittering in excitement. One of them hands you your payment of <payment> before running to catch up with their friends."

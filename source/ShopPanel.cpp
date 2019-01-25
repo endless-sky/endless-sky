@@ -36,12 +36,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "gl_header.h"
 #include <SDL2/SDL.h>
 
+#include <algorithm>
+
 using namespace std;
 
 namespace {
 	const int ICON_TILE = 62;
 	const int ICON_COLS = 4;
-	const double ICON_SIZE = ICON_TILE - 8;
+	const float ICON_SIZE = ICON_TILE - 8;
 }
 
 
@@ -125,9 +127,9 @@ void ShopPanel::Draw()
 	
 	if(dragShip && dragShip->GetSprite())
 	{
-		static const Color selected(.8, 1.);
+		static const Color selected(.8f, 1.f);
 		const Sprite *sprite = dragShip->GetSprite();
-		double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
+		float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 		Point size(sprite->Width() * scale, sprite->Height() * scale);
 		OutlineShader::Draw(sprite, dragPoint, size, selected);
 	}
@@ -186,8 +188,8 @@ void ShopPanel::DrawSidebar()
 	Point mouse = GetUI()->GetMouse();
 	warningType.clear();
 	
-	static const Color selected(.8, 1.);
-	static const Color unselected(.4, 1.);
+	static const Color selected(.8f, 1.f);
+	static const Color unselected(.4f, 1.f);
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		// Skip any ships that are "absent" for whatever reason.
@@ -211,7 +213,7 @@ void ShopPanel::DrawSidebar()
 		const Sprite *sprite = ship->GetSprite();
 		if(sprite)
 		{
-			double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
+			float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 			Point size(sprite->Width() * scale, sprite->Height() * scale);
 			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
 		}
@@ -257,9 +259,9 @@ void ShopPanel::DrawSidebar()
 	maxSideScroll = max(0., point.Y() + sideScroll - Screen::Bottom() + BUTTON_HEIGHT);
 	
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
-		Point(0., -1.), 10., 10., 5., Color(sideScroll > 0 ? .8 : .2, 0.));
+		Point(0., -1.), 10.f, 10.f, 5.f, Color(sideScroll > 0 ? .8f : .2f, 0.f));
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Bottom() - 80),
-		Point(0., 1.), 10., 10., 5., Color(sideScroll < maxSideScroll ? .8 : .2, 0.));
+		Point(0., 1.), 10.f, 10.f, 5.f, Color(sideScroll < maxSideScroll ? .8f : .2f, 0.f));
 }
 
 
@@ -385,15 +387,15 @@ void ShopPanel::DrawMain()
 			
 			if(isSelected)
 			{
-				Color color(.2, 0.);
+				Color color(.2f, 0.f);
 				int dy = DividerOffset();
 				
 				float before = point.X() - TILE_SIZE / 2 - Screen::Left();
-				FillShader::Fill(Point(Screen::Left() + .5 * before, point.Y() + dy),
+				FillShader::Fill(Point(Screen::Left() + .5f * before, point.Y() + dy),
 					Point(before, 1.), color);
 				
-				float after = endX - (point.X() + TILE_SIZE / 2);
-				FillShader::Fill(Point(endX - .5 * after, point.Y() + dy),
+				float after = endX - (static_cast<float>(point.X()) + TILE_SIZE / 2);
+				FillShader::Fill(Point(endX - .5f * after, point.Y() + dy),
 					Point(after, 1.), color);
 				
 				// The center of the display needs to be between these two values:
@@ -449,9 +451,9 @@ void ShopPanel::DrawMain()
 	maxMainScroll = max(0., nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2 + 40.);
 	
 	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Top() + 10),
-		Point(0., -1.), 10., 10., 5., Color(mainScroll > 0 ? .8 : .2, 0.));
+		Point(0., -1.), 10.f, 10.f, 5.f, Color(mainScroll > 0 ? .8f : .2f, 0.f));
 	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Bottom() - 10),
-		Point(0., 1.), 10., 10., 5., Color(mainScroll < maxMainScroll ? .8 : .2, 0.));
+		Point(0., 1.), 10.f, 10.f, 5.f, Color(mainScroll < maxMainScroll ? .8f : .2f, 0.f));
 }
 
 

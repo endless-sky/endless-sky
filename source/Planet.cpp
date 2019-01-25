@@ -36,7 +36,7 @@ namespace {
 
 
 // Load a planet's description from a file.
-void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<Sale<Outfit>> &outfits)
+void Planet::Load(const DataNode &node)
 {
 	if(node.Size() < 2)
 		return;
@@ -124,16 +124,16 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 		else if(key == "shipyard")
 		{
 			if(remove)
-				shipSales.erase(ships.Get(value));
+				shipSales.erase(GameData::Shipyards().Get(value));
 			else
-				shipSales.insert(ships.Get(value));
+				shipSales.insert(GameData::Shipyards().Get(value));
 		}
 		else if(key == "outfitter")
 		{
 			if(remove)
-				outfitSales.erase(outfits.Get(value));
+				outfitSales.erase(GameData::Outfitters().Get(value));
 			else
-				outfitSales.insert(outfits.Get(value));
+				outfitSales.insert(GameData::Outfitters().Get(value));
 		}
 		// Handle the attributes which cannot be "removed."
 		else if(remove)

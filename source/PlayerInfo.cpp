@@ -1383,6 +1383,14 @@ const list<Mission> &PlayerInfo::AvailableJobs() const
 
 
 
+// Return a pointer to the mission that was most recently accepted while in-flight.
+const Mission *PlayerInfo::ActiveBoardingMission() const
+{
+	return activeBoardingMission;
+}
+
+
+
 // Accept the given job.
 void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 {
@@ -1421,6 +1429,8 @@ Mission *PlayerInfo::MissionToOffer(Mission::Location location)
 
 
 
+// Check if any of the game's missions can be offered from this ship, given its
+// relationship with the player. If none offer, return nullptr.
 Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 {
 	// Do not create missions from existing mission NPC's, or the player's ships.
@@ -1429,11 +1439,13 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 	// Ensure that boarding this NPC again does not create a mission.
 	ship->SetIsSpecial();
 	
+	// Update auto conditions to reflect the player's flagship's free capacity.
 	UpdateAutoConditions(true);
+	// "boardingMissions" is emptied by MissionCallback, but to be sure:
 	boardingMissions.clear();
 	
-	bool isEnemy = ship->GetGovernment()->IsEnemy();
-	Mission::Location location = (isEnemy ? Mission::BOARDING : Mission::ASSISTING);
+	Mission::Location location = (ship->GetGovernment()->IsEnemy()
+			? Mission::BOARDING : Mission::ASSISTING);
 	
 	// Check for available boarding or assisting missions.
 	for(const pair<const string, const Mission> &it : GameData::Missions())
@@ -1451,17 +1463,24 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 
 
 
+// Engine calls this after placing the boarding mission's NPCs.
+void PlayerInfo::ClearActiveBoardingMission()
+{
+	activeBoardingMission = nullptr;
+}
+
+
+
 // If one of your missions cannot be offered because you do not have enough
 // space for it, and it specifies a message to be shown in that situation,
 // show that message.
 void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 {
-	if(ships.empty())
+	list<Mission> &missionList = availableMissions.empty() ? boardingMissions : availableMissions;
+	if(ships.empty() || missionList.empty())
 		return;
 	
-	// If a mission can be offered right now, move it to the start of the list
-	// so we know what mission the callback is referring to, and return it.
-	for(auto it = availableMissions.begin(); it != availableMissions.end(); ++it)
+	for(auto it = missionList.begin(); it != missionList.end(); ++it)
 		if(it->IsAtLocation(location) && it->CanOffer(*this) && !it->HasSpace(*this))
 		{
 			string message = it->BlockedMessage(*this);
@@ -1501,11 +1520,19 @@ void PlayerInfo::MissionCallback(int response)
 		else
 			return;
 		
+		// Move this mission from the offering list into the "accepted"
+		// list, viewable on the MissionPanel. Unique missions are moved
+		// to the front, so they appear at the top of the list if viewed.
 		auto spliceIt = mission.IsUnique() ? missions.begin() : missions.end();
 		missions.splice(spliceIt, missionList, missionList.begin());
 		mission.Do(Mission::ACCEPT, *this);
 		if(shouldAutosave)
 			Autosave();
+		// If this is a mission offered in-flight, expose a pointer to it
+		// so Engine::SpawnFleets can add its ships without requiring the
+		// player to land.
+		if(mission.IsAtLocation(Mission::BOARDING) || mission.IsAtLocation(Mission::ASSISTING))
+			activeBoardingMission = &*--spliceIt;
 	}
 	else if(response == Conversation::DECLINE || response == Conversation::FLEE)
 	{

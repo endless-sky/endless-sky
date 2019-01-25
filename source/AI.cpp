@@ -396,13 +396,14 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 
 
 
+// Remove records of what happened in the previous system, now that
+// the player has entered a new one.
 void AI::Clean()
 {
 	actions.clear();
 	notoriety.clear();
 	governmentActions.clear();
 	playerActions.clear();
-	helperList.clear();
 	swarmCount.clear();
 	fenceCount.clear();
 	miningAngle.clear();
@@ -415,10 +416,11 @@ void AI::Clean()
 
 
 
-// Clear ship orders. This should be done when the player lands on a planet,
-// but not when they jump from one system to another.
+// Clear ship orders and assistance requests. These should be done
+// when the player lands, but not when they change systems.
 void AI::ClearOrders()
 {
+	helperList.clear();
 	orders.clear();
 }
 
@@ -727,30 +729,13 @@ void AI::Step(const PlayerInfo &player)
 				}
 			}
 			// Otherwise, check if this ship wants to return to its parent (e.g. to repair).
-			else if(hasSpace)
+			else if(hasSpace && ShouldDock(*it, *parent, thisIsLaunching))
 			{
-				// A fighter should retreat if its parent is calling it back, or
-				// it is a player's ship and is not in the current system, or if
-				// its health is low and it is not a player ship that is
-				// instructed to never retreat.
-				bool shouldRetreat = !parent->Commands().Has(Command::DEPLOY);
-				if(it->IsYours() && !thisIsLaunching)
-					shouldRetreat = true;
-				// If a fighter has repair abilities, avoid having it get stuck
-				// oscillating between retreating and attacking when at exactly
-				// 25% health by adding hysteresis to the check.
-				double minHealth = RETREAT_HEALTH + .1 * !it->Commands().Has(Command::DEPLOY);
-				if(it->Health() < minHealth && (!it->IsYours() || fightersRetreat))
-					shouldRetreat = true;
-				
-				if(shouldRetreat)
-				{
-					it->SetTargetShip(parent);
-					MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
-					command |= Command::BOARD;
-					it->SetCommands(command);
-					continue;
-				}
+				it->SetTargetShip(parent);
+				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
+				command |= Command::BOARD;
+				it->SetCommands(command);
+				continue;
 			}
 			// If we get here, it means that the ship has not decided to return
 			// to its mothership. So, it should continue to be deployed.
@@ -904,11 +889,13 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			if(helper.get() == &ship)
 				continue;
 			
-			// If any enemies of this ship are in its system, it cannot call for help.
+			// If any able enemies of this ship are in its system, it cannot call for help.
 			const System *system = ship.GetSystem();
 			if(helper->GetGovernment()->IsEnemy(gov) && flagship && system == flagship->GetSystem())
 			{
-				hasEnemy |= (system == helper->GetSystem() && !helper->IsDisabled());
+				// Disabled, overheated, or otherwise untargetable ships pose no threat.
+				bool harmless = helper->IsDisabled() || (helper->IsOverheated() && helper->Heat() >= 1.1) || !helper->IsTargetable();
+				hasEnemy |= (system == helper->GetSystem() && !harmless);
 				if(hasEnemy)
 					break;
 			}
@@ -1119,13 +1106,14 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	// AI ships without an in-range hostile target consider scanning other ships.
 	if(!isYours && !target)
 	{
-		bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
-		bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
+		bool cargoScan = ship.Attributes().Get("cargo scan power");
+		bool outfitScan = ship.Attributes().Get("outfit scan power");
 		if(cargoScan || outfitScan)
 		{
 			closest = numeric_limits<double>::infinity();
 			for(const auto &it : ships)
-				if(it->GetSystem() == system && it->GetGovernment() != gov && it->IsTargetable())
+				if(it->GetSystem() == system && it->GetGovernment() != gov
+						&& !gov->IsEnemy(it->GetGovernment()) && it->IsTargetable())
 				{
 					if((!cargoScan || Has(gov, it, ShipEvent::SCAN_CARGO))
 							&& (!outfitScan || Has(gov, it, ShipEvent::SCAN_OUTFITS)))
@@ -1281,8 +1269,8 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 	else if(target)
 	{
-		bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
-		bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
+		bool cargoScan = ship.Attributes().Get("cargo scan power");
+		bool outfitScan = ship.Attributes().Get("outfit scan power");
 		if((!cargoScan || Has(gov, target, ShipEvent::SCAN_CARGO))
 				&& (!outfitScan || Has(gov, target, ShipEvent::SCAN_OUTFITS)))
 			target.reset();
@@ -1536,6 +1524,54 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 		return false;
 	
 	return true;
+}
+
+
+
+// Determine if a fighter meets any of the criteria for returning to its parent.
+bool AI::ShouldDock(const Ship &ship, const Ship &parent, bool playerShipsLaunch) const
+{
+	// If your parent is disabled, you should not attempt to board it.
+	// (Doing so during combat will likely lead to its destruction.)
+	if(parent.IsDisabled())
+		return false;
+	
+	// A fighter should retreat if its parent is calling it back, or it is
+	// a player's ship and is not in the current system.
+	if(!parent.Commands().Has(Command::DEPLOY) || (ship.IsYours() && !playerShipsLaunch))
+		return true;
+	
+	// If a fighter has repair abilities, avoid having it get stuck oscillating between
+	// retreating and attacking when at exactly 25% health by adding hysteresis to the check.
+	double minHealth = RETREAT_HEALTH + .1 * !ship.Commands().Has(Command::DEPLOY);
+	if(ship.Health() < minHealth && (!ship.IsYours() || Preferences::Has("Damaged fighters retreat")))
+		return true;
+	
+	// TODO: Reboard if in need of ammo.
+	
+	// If a fighter has fuel capacity but is very low, it should return if
+	// the parent can refuel it.
+	double maxFuel = ship.Attributes().Get("fuel capacity");
+	if(maxFuel && ship.Fuel() < .005 && parent.JumpFuel() < parent.Fuel() *
+			parent.Attributes().Get("fuel capacity") - maxFuel)
+		return true;
+	
+	// If an out-of-combat NPC fighter is carrying a significant cargo
+	// load and can transfer some of it to the parent, it should do so.
+	if(!ship.IsYours())
+	{
+		bool hasEnemy = ship.GetTargetShip() && ship.GetTargetShip()->GetGovernment()->IsEnemy(ship.GetGovernment());
+		if(!hasEnemy)
+		{
+			const CargoHold &cargo = ship.Cargo();
+			// Mining ships only mine while they have 5 or more free space. While mining, fighters
+			// do not consider docking unless their parent is far from a targetable asteroid.
+			if(parent.Cargo().Free() && !cargo.IsEmpty() && cargo.Size() && cargo.Free() < 5)
+				return true;
+		}
+	}
+	
+	return false;
 }
 
 
@@ -1806,10 +1842,20 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	double targetAngle = Angle(facingGoal).Degrees() - currentAngle;
 	if(abs(targetAngle) > 180.)
 		targetAngle += (targetAngle < 0. ? 360. : -360.);
-	if(abs(targetAngle) < turn)
-		command.SetTurn(targetAngle / turn);
+	// Avoid "turn jitter" when position & velocity are well-matched.
+	bool changedDirection = (signbit(ship.Commands().Turn()) != signbit(targetAngle));
+	double targetTurn = abs(targetAngle / turn);
+	double lastTurn = abs(ship.Commands().Turn());
+	if(lastTurn && (changedDirection || (lastTurn < 1. && targetTurn > lastTurn)))
+	{
+		// Keep the desired turn direction, but damp the per-frame turn rate increase.
+		double dampedTurn = (changedDirection ? 0. : lastTurn) + min(.025, targetTurn);
+		command.SetTurn(copysign(dampedTurn, targetAngle));
+	}
+	else if(targetTurn < 1.)
+		command.SetTurn(copysign(targetTurn, targetAngle));
 	else
-		command.SetTurn(targetAngle < 0. ? -1. : 1.);
+		command.SetTurn(targetAngle);
 	
 	// Determine whether to apply thrust.
 	Point drag = ship.Velocity() * (ship.Attributes().Get("drag") / mass);
@@ -2075,8 +2121,8 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 	else if(target)
 	{
 		// Approach and scan the targeted, friendly ship's cargo or outfits.
-		bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
-		bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
+		bool cargoScan = ship.Attributes().Get("cargo scan power");
+		bool outfitScan = ship.Attributes().Get("outfit scan power");
 		// If the pointer to the target ship exists, it is targetable and in-system.
 		bool mustScanCargo = cargoScan && !Has(ship, target, ShipEvent::SCAN_CARGO);
 		bool mustScanOutfits = outfitScan && !Has(ship, target, ShipEvent::SCAN_OUTFITS);
@@ -2093,13 +2139,14 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		const System *system = ship.GetSystem();
 		const Government *gov = ship.GetGovernment();
 		
-		// Consider scanning any ship in this system that you haven't yet personally scanned.
+		// Consider scanning any non-hostile ship in this system that you haven't yet personally scanned.
 		vector<shared_ptr<Ship>> targetShips;
-		bool cargoScan = ship.Attributes().Get("cargo scan") || ship.Attributes().Get("cargo scan power");
-		bool outfitScan = ship.Attributes().Get("outfit scan") || ship.Attributes().Get("outfit scan power");
+		bool cargoScan = ship.Attributes().Get("cargo scan power");
+		bool outfitScan = ship.Attributes().Get("outfit scan power");
 		if(cargoScan || outfitScan)
 			for(const auto &it : ships)
-				if(it->GetGovernment() != gov && it->GetSystem() == system && it->IsTargetable())
+				if(it->GetGovernment() != gov && !it->GetGovernment()->IsEnemy(gov)
+						&& it->GetSystem() == system && it->IsTargetable())
 				{
 					if((!cargoScan || Has(ship, it, ShipEvent::SCAN_CARGO))
 							&& (!outfitScan || Has(ship, it, ShipEvent::SCAN_OUTFITS)))
