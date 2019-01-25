@@ -16,7 +16,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 
 #include <map>
+#ifdef CAIRO_HAS_WIN32_FONT
+#include <windows.h>
+#else
 #include <fontconfig/fontconfig.h>
+#endif
 
 using namespace std;
 
@@ -32,6 +36,10 @@ namespace {
 
 void FontSet::Add(const std::string &fontsDir)
 {
+#ifdef CAIRO_HAS_WIN32_FONT
+    for(const auto &file : Files::List(fontsDir))
+        AddFontResourceExW(Files::NativeFilePath(file).c_str(), FR_PRIVATE, nullptr);
+#else
 	const FcChar8* fontsDirFc8 = reinterpret_cast<const FcChar8*>(fontsDir.c_str());
 	const string cfgFile = fontsDir + "fonts.conf";
 	const FcChar8* cfgFileFc8 = reinterpret_cast<const FcChar8*>(cfgFile.c_str());
@@ -40,6 +48,7 @@ void FontSet::Add(const std::string &fontsDir)
 		Files::LogError("Warning: Fail to load fonts in \"" + fontsDir + "\".");
 	if(!FcConfigParseAndLoad(fcConfig, cfgFileFc8, FcFalse))
 		Files::LogError("Warning: Parse error in \"" + cfgFile + "\".");
+#endif
 }
 
 

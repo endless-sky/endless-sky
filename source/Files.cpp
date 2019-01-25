@@ -486,6 +486,17 @@ string Files::Extension(const string &path)
 
 
 
+Files::NativeStringT Files::NativeFilePath(const string &filePath)
+{
+#ifdef _WIN32
+	return ToUTF16(filePath);
+#else
+	return filePath;
+#endif
+}
+
+
+
 FILE *Files::Open(const string &path, bool write)
 {
 #if defined _WIN32
@@ -559,4 +570,5 @@ void Files::LogError(const string &message)
 	Write(errorLog, message);
 	fwrite("\n", 1, 1, errorLog);
 	fflush(errorLog);
+
 }
