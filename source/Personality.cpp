@@ -364,7 +364,7 @@ void Personality::UpdateConfusion(bool isFiring)
 Personality Personality::Defender()
 {
 	Personality defender;
-	defender.flags = STAYING | NEMESIS | HEROIC;
+	defender.flags = STAYING | MARKED | HEROIC | UNCONSTRAINED | TARGET;
 	return defender;
 }
 

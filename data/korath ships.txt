@@ -90,7 +90,28 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 	turret "Korath Banisher"
 	turret "Korath Warder"
 
+ship "Korath Raider" "Korath Raider (Crippled)"
+	sprite "ship/raider"
+	outfits
+		"Korath Grab-Strike" 2
+		"Korath Banisher"
+		"Korath Warder"
+		
+		"Triple Plasma Core"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
+		"Korath Repeater Rifle" 196
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Hyperdrive"
 
+	turret
+	turret
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Banisher"
+	turret "Korath Warder"
 
 ship "Korath Chaser"
 	sprite "ship/chaser"
@@ -197,6 +218,30 @@ ship "Korath World-Ship" "Korath World-Ship B"
 	turret 0 -92 "Korath Warder"
 	turret -83 165 "Korath Warder"
 	turret 83 165 "Korath Warder"
+	turret 0 277 "Korath Banisher"
+
+
+ship "Korath World-Ship" "Korath World-Ship B (Crippled)"
+	sprite "ship/world-ship b"
+	outfits
+		"Korath Banisher" 3
+		"Korath Warder" 1
+		
+		"Triple Plasma Core"
+		"Large Heat Shunt" 2
+		"Korath Repeater Rifle" 150
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Hyperdrive"
+	
+	turret -76 -219
+	turret 76 -219
+	turret -75 -112 "Korath Banisher"
+	turret 75 -112 "Korath Banisher"
+	turret 0 -92 "Korath Warder"
+	turret -83 165
+	turret 83 165
 	turret 0 277 "Korath Banisher"
 
 ship "Korath World-Ship" "Korath World-Ship C"
@@ -805,7 +850,6 @@ ship "Far Lek 14"
 		"weapon capacity" 11
 		"engine capacity" 24
 		"self destruct" .6
-		"ramscoop" 3
 		weapon
 			"blast radius" 5
 			"shield damage" 50
@@ -828,7 +872,6 @@ ship "Far Lek 14"
 	description "At the peak of their recent civil war, the Kor Sestor faction developed these automated attack drones, easy to manufacture and encased in an ultra-dense hull that can absorb a significant amount of damage."
 
 
-
 ship "Far Osk 27"
 	sprite "ship/far osk 27"
 	thumbnail "thumbnail/far osk 27"
@@ -845,7 +888,6 @@ ship "Far Osk 27"
 		"weapon capacity" 22
 		"engine capacity" 24
 		"self destruct" .6
-		"ramscoop" 3
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -867,6 +909,7 @@ ship "Far Osk 27"
 	explode "tiny explosion" 25
 	explode "small explosion" 15
 	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS27 fighter is able to carry far more weaponry than any comparable human ship."
+
 
 
 ship "Model 8"

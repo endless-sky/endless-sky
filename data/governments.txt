@@ -114,6 +114,7 @@ government "Heliarch"
 	color 1 .8 .5
 	"player reputation" 1
 	"friendly hail" "friendly heliarch"
+	"hostile hail" "hostile heliarch"
 	"attitude toward"
 		"Quarg" -.01
 		"Coalition" 1
@@ -302,6 +303,7 @@ government "Remnant"
 	color .89 .38 .62
 	
 	"player reputation" 1
+	"bribe" 0
 	"attitude toward"
 		"Korath" -.01
 
@@ -355,7 +357,7 @@ government "Test Dummy"
 	"hostile disabled hail" "disabled test dummy"
 
 government "Uninhabited"
-	color .3 .3 .3
+	color .4 .4 .4
 
 government "Wanderer"
 	swizzle 2

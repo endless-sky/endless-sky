@@ -119,7 +119,7 @@ void AsteroidField::Draw(DrawList &draw, const Point &center, double zoom) const
 
 
 // Check if the given projectile collides with any asteroids.
-Body *AsteroidField::Collide(const Projectile &projectile, int step, double *closestHit)
+Body *AsteroidField::Collide(const Projectile &projectile, double *closestHit)
 {
 	Body *hit = nullptr;
 	

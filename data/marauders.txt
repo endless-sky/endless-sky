@@ -812,7 +812,7 @@ ship "Marauder Raven"
 		"fuel capacity" 500
 		"cargo space" 20
 		"outfit space" 310
-		"weapon capacity" 105
+		"weapon capacity" 115
 		"engine capacity" 110
 		"self destruct" .25
 		weapon

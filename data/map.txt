@@ -2538,7 +2538,6 @@ system Algenib
 	fleet "Small Core Pirates" 300
 	fleet "Large Core Pirates" 500
 	fleet "Large Syndicate" 800
-	fleet "Small Core Merchants" 600
 	object
 		sprite star/k0-old
 		period 10
@@ -2604,10 +2603,8 @@ system Algieba
 	trade Plastic 476
 	fleet "Small Republic" 1400
 	fleet "Large Republic" 5000
-	fleet "Small Southern Merchants" 400
-	fleet "Small Northern Merchants" 800
-	fleet "Large Southern Merchants" 600
-	fleet "Large Northern Merchants" 1000
+	fleet "Small Northern Merchants" 400
+	fleet "Large Northern Merchants" 600
 	object
 		sprite star/f0
 		distance 5.86085
@@ -2916,7 +2913,7 @@ system Alioth
 	trade Metal 537
 	trade Plastic 458
 	fleet "Small Southern Merchants" 400
-	fleet "Large Northern Merchants" 600
+	fleet "Large Southern Merchants" 600
 	fleet "Small Militia" 900
 	fleet "Small Southern Pirates" 1200
 	fleet "Large Southern Pirates" 2400
@@ -3714,7 +3711,7 @@ system Alphecca
 	trade Metal 543
 	trade Plastic 498
 	fleet "Small Southern Merchants" 2000
-	fleet "Large Northern Merchants" 3500
+	fleet "Large Southern Merchants" 3500
 	fleet "Small Southern Pirates" 3000
 	fleet "Small Militia" 5000
 	object
@@ -4377,8 +4374,10 @@ system Arculus
 	trade Medical 510
 	trade Metal 417
 	trade Plastic 498
-	fleet "Large Remnant" 1500
-	fleet "Small Remnant" 1000
+	fleet "Large Remnant" 2100
+	fleet "Small Remnant" 1600
+	fleet "Remnant Transport" 1600
+	fleet "Korath Raid" 40000
 	object
 		sprite star/g5-old
 		period 10
@@ -5505,7 +5504,6 @@ system Boral
 	trade Metal 511
 	trade Plastic 535
 	fleet "Small Southern Merchants" 3000
-	fleet "Large Northern Merchants" 8000
 	fleet "Small Southern Pirates" 1500
 	fleet "Small Militia" 10000
 	fleet "Human Miners" 2000
@@ -5854,6 +5852,8 @@ system Caeculus
 	trade Metal 272
 	trade Plastic 289
 	fleet "Korath Raid" 20000
+	fleet "Small Remnant" 30000
+	fleet "Large Remnant" 30000
 	object
 		sprite star/wr
 		period 10
@@ -6712,8 +6712,9 @@ system Cinxia
 	trade Medical 516
 	trade Metal 354
 	trade Plastic 417
-	fleet "Large Remnant" 1200
-	fleet "Small Remnant" 900
+	fleet "Large Remnant" 1750
+	fleet "Small Remnant" 1300
+	fleet "Remnant Transport" 1300
 	fleet "Korath Raid" 30000
 	object
 		sprite star/k5-old
@@ -8210,8 +8211,10 @@ system Edusa
 	trade Medical 521
 	trade Metal 336
 	trade Plastic 475
-	fleet "Large Remnant" 3000
-	fleet "Small Remnant" 2000
+	fleet "Large Remnant" 3200
+	fleet "Small Remnant" 2400
+	fleet "Remnant Transport" 2400
+	fleet "Korath Raid" 40000
 	object
 		sprite star/giant
 		period 10
@@ -9495,8 +9498,10 @@ system Farinus
 	trade Medical 558
 	trade Metal 342
 	trade Plastic 354
-	fleet "Large Remnant" 9000
-	fleet "Small Remnant" 7000
+	fleet "Large Remnant" 14000
+	fleet "Small Remnant" 10000
+	fleet "Remnant Transport" 10000
+	fleet "Korath Raid" 40000
 	object
 		sprite star/k5-old
 		distance 36.894
@@ -9885,7 +9890,6 @@ system Fingol
 	trade Metal 416
 	trade Plastic 321
 	fleet "Small Northern Merchants" 1200
-	fleet "Large Northern Merchants" 3000
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 3000
 	fleet "Small Northern Pirates" 2000
@@ -11550,7 +11554,6 @@ system Hintar
 	trade Metal 575
 	trade Plastic 421
 	fleet "Small Southern Merchants" 1000
-	fleet "Large Southern Merchants" 3000
 	fleet "Small Militia" 5000
 	fleet "Small Southern Pirates" 2000
 	object
@@ -12188,7 +12191,6 @@ system Ipsing
 	trade Metal 388
 	trade Plastic 416
 	fleet "Small Southern Merchants" 2000
-	fleet "Large Southern Merchants" 5000
 	fleet "Small Southern Pirates" 3000
 	object
 		sprite star/g0-old
@@ -13813,7 +13815,6 @@ system Kugel
 	trade Medical 512
 	trade Metal 335
 	trade Plastic 421
-	fleet "Large Core Merchants" 4000
 	fleet "Small Core Merchants" 4000
 	fleet "Small Republic" 6000
 	fleet "Small Syndicate" 8000
@@ -14125,7 +14126,6 @@ system Limen
 	trade Metal 497
 	trade Plastic 378
 	fleet "Small Southern Merchants" 4000
-	fleet "Large Southern Merchants" 8000
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
 	fleet "Human Miners" 1000
@@ -14182,7 +14182,6 @@ system Lolami
 	trade Metal 439
 	trade Plastic 316
 	fleet "Small Northern Merchants" 2000
-	fleet "Large Northern Merchants" 3000
 	fleet "Small Republic" 5000
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 4000
@@ -16392,7 +16391,6 @@ system Naper
 	trade Metal 414
 	trade Plastic 326
 	fleet "Small Southern Merchants" 1500
-	fleet "Large Southern Merchants" 3000
 	fleet "Small Militia" 5000
 	fleet "Small Southern Pirates" 1000
 	fleet "Human Miners" 3000
@@ -16602,7 +16600,6 @@ system Nocte
 	trade Metal 285
 	trade Plastic 363
 	fleet "Small Northern Merchants" 1500
-	fleet "Large Northern Merchants" 5000
 	fleet "Small Republic" 3000
 	fleet "Large Republic" 7000
 	fleet "Small Northern Pirates" 2500
@@ -16863,7 +16860,6 @@ system Orvala
 	trade Metal 475
 	trade Plastic 327
 	fleet "Small Southern Merchants" 3000
-	fleet "Large Southern Merchants" 6000
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 3000
 	object
@@ -16990,8 +16986,10 @@ system Pantica
 	trade Medical 545
 	trade Metal 454
 	trade Plastic 469
-	fleet "Large Remnant" 1000
-	fleet "Small Remnant" 700
+	fleet "Large Remnant" 1400
+	fleet "Small Remnant" 1000
+	fleet "Remnant Transport" 1000
+	fleet "Korath Raid" 40000
 	object
 		sprite star/k0-old
 		period 10
@@ -17255,6 +17253,10 @@ system Peragenor
 	trade Medical 512
 	trade Metal 271
 	trade Plastic 373
+	fleet "Large Remnant" 10000
+	fleet "Small Remnant" 7000
+	fleet "Remnant Transport" 7000
+	fleet "Korath Raid" 40000
 	object
 		sprite star/g0-old
 		period 10
@@ -17354,8 +17356,9 @@ system Perfica
 	trade Medical 546
 	trade Metal 338
 	trade Plastic 368
-	fleet "Large Remnant" 8000
-	fleet "Small Remnant" 5000
+	fleet "Large Remnant" 10000
+	fleet "Small Remnant" 7500
+	fleet "Remnant Transport" 7500
 	fleet "Korath Raid" 30000
 	object
 		sprite star/g0-old
@@ -17957,6 +17960,8 @@ system Porrima
 	trade Medical 510
 	trade Metal 490
 	trade Plastic 381
+	fleet "Small Northern Merchants" 2000
+	fleet "Large Northern Merchants" 6000
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Republic" 8000
@@ -18795,7 +18800,6 @@ system Regulus
 	trade Metal 406
 	trade Plastic 318
 	fleet "Small Southern Merchants" 6000
-	fleet "Small Northern Merchants" 6000
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 8000
 	fleet "Small Republic" 10000
@@ -19821,6 +19825,9 @@ system Segesta
 	trade Medical 664
 	trade Metal 406
 	trade Plastic 295
+	fleet "Small Remnant" 40000
+	fleet "Large Remnant" 40000
+	fleet "Korath Raid" 40000
 	object
 		sprite star/k5-old
 		period 10
@@ -21490,6 +21497,9 @@ system Stercutus
 	trade Metal 299
 	trade Plastic 294
 	fleet "Korath Raid" 20000
+	fleet "Small Remnant" 20000
+	fleet "Large Remnant" 20000
+	fleet "Remnant Transport" 40000
 	object
 		sprite star/g5-old
 		distance 31.1534
@@ -22500,7 +22510,6 @@ system Umbral
 	trade Metal 334
 	trade Plastic 366
 	fleet "Small Southern Merchants" 4000
-	fleet "Large Southern Merchants" 5000
 	fleet Quarg 15000
 	fleet "Large Southern Pirates" 6000
 	object
@@ -24118,6 +24127,7 @@ planet Aventine
 	landscape land/mountain17-harro
 	description `This is not a particularly warm world, but it is the best that the first Remnant refugees were able to find when they explored the Ember Waste. It is here that they built their capital, in a deep valley that is almost always shrouded in clouds. In meadows farther up the mountain slopes, a few particularly hardy food crops are grown, but for the most part the Remnant relies on artificial greenhouses or cultured yeast for protein supplements. Remnant cuisine is unlikely to ever become a draw for tourists, even if their isolation here is broken.`
 	spaceport `The oldest buildings in the Remnant capital city harken back to classic human architecture, with stone facades and columns reminiscent of ancient Rome. But as you walk outward toward the more recent additions, the buildings become less and less recognizably human, with curved organic shapes and hundreds of overhanging walkways and balconies. It is as if the layers left behind by centuries of habitation are a frozen record of the slow transition of Remnant culture into something bizarre and almost alien.`
+	bribe 0
 	shipyard Remnant
 	outfitter Remnant
 
@@ -24141,7 +24151,7 @@ planet "Belug's Plunge"
 
 planet "Big Sky"
 	attributes "dirt belt" farming
-	landscape land/fields2
+	landscape land/mountain12-sfiera
 	description `Big Sky is a warm and fertile world, teeming with indigenous life. It would be an ideal farming world if it were not for the fact that the native plants are so abundant and so well adapted to this environment that they can take over an untended field in a matter of months. Farmers typically start the growing season by slashing and burning the plants that have taken root in their fields over the winter, and even so they must be constantly vigilant for weeds throughout the summer.`
 	description `	The Big Sky government recently financed a major project to genetically engineer a goat species so ravenous that it can control the growth of local vegetation. These "ubergoats" pose so great a threat to the typical biosphere that they are export-controlled as biological weapons.`
 	spaceport `The landing pads here are being gradually consumed by the local plant life. In most places grass and ivy has crept out to cover at least a meter of the pad on all sides, and every small crack or crevice has been colonized by moss and by the roots of larger plants. In places the forest has been cleared to make roads leading to the nearby farming villages, but in most directions all you see is green. It is a beautiful sight, and oddly peaceful, but you know what a nuisance these plants are to the locals.`
@@ -24293,6 +24303,7 @@ planet Caelian
 	landscape land/sky7
 	description `When the first members of the Remnant discovered this region of space, Caelian was the only habitable world they found with enough insolation to be able to operate solar-powered factories and bioreactors. The first settlements were scattered widely, with the houses hidden underground in order to be less visible from space, because they feared that the Alphas would overrun human space and eventually find their way into the Waste. Centuries later, when they learned that the Alpha Wars had ended, they began to expand the factories and settlements more openly.`
 	spaceport `Nearly all members of the Remnant are dark-skinned, either from exposure to high levels of ultraviolet radiation or because that is what their first ancestors who came here looked like. So, they walk around this spaceport village without much fear of the scorching desert sun, bringing supplies back and forth to the houses and to the flat clay pavement of the landing zone. Aside from some camels that the settlers brought with them, there are very few animals here.`
+	bribe 0
 	shipyard Remnant
 	outfitter Remnant
 
@@ -24371,7 +24382,7 @@ planet "Charybdis Station"
 
 planet Chiron
 	attributes "near earth" urban
-	landscape land/mfield3
+	landscape land/city18-iridium
 	description `Chiron is the only planet outside the solar system that was colonized by humanity prior to the discovery of the hyperdrive. It is now the second most populous planet in the Republic, with many sprawling cities and a burgeoning pollution problem.`
 	description `	Although Earth still has the most prestigious universities in the galaxy, Chiron has become the de-facto leader of the higher education industry, catering to those who value excellent teaching more highly than an illustrious name. As a result, off-world students form a noticeable fraction of the population.`
 	spaceport `There are two spaceports on Chiron. The Old Port was built back when it was first settled, and was placed in a desert region, far from where people would want to live, so that they would not be as affected by the fallout from the nuclear propulsion that was used in the first, pre-hyperspace starships.`
@@ -24391,7 +24402,7 @@ planet Chiron
 
 planet "Chosen Nexus"
 	attributes saryd shipping urban
-	landscape land/canyon3
+	landscape land/mountain23-spfld
 	description `The Saryds established a trading colony here in the early days of their era of space exploration, when they first made contact with the Quarg. When the Quarg gave them the gift of a small number of jump drives, in order to build relationships with the neighboring species, Chosen Nexus grew into a far larger and more important trading hub.`
 	description `	It has now been many millennia since the Quarg were driven out and free travel began between the members of the Coalition, and Chosen Nexus now has nearly as many Arach and Kimek inhabitants as native Saryds.`
 	spaceport `This is a truly cosmopolitan spaceport, a city where the distinctive architectures of the Coalition's species are blended together and where the food or lodgings unique to each of them can easily be found. Cargo drones hover over the landing pads, constantly loading and unloading the merchant ships that are parked here as their captains arrange to buy or sell cargo.`
@@ -24719,6 +24730,7 @@ planet "Ember Threshold"
 	description ""
 
 planet "Ember Wormhole"
+	attributes "requires: quantum keystone"
 	description ""
 
 planet "Esayaku Fen"
@@ -24752,7 +24764,7 @@ planet "Esperaktu Station"
 
 planet "Factory of Eblumab"
 	attributes arach factory mining
-	landscape land/badlands4
+	landscape land/mountain22-spfld
 	description `The tiny sun that the Factory of Eblumab orbits is too small to provide much power, so the manufacturing plants here are mostly powered by nuclear reactors running on radioisotopes that are mined and refined locally. It is a hot, dry, and mostly barren world, and most of the workers here are young and single, hoping to build up enough wealth to move somewhere more pleasant.`
 	spaceport `The spaceport village is under an artificial climate-controlled dome, and consists largely of pedestrian thoroughfares winding past fancy shops and restaurants. On torch-lit patios, young Arach couples sit gazing soulfully into each other's multiple eyes. This is where they come on their time off from the factories to dream of the day when they will hop aboard one of the ships parked here and start a more stable life elsewhere.`
 	"required reputation" 15
@@ -24864,7 +24876,7 @@ planet "Fenrir Station"
 
 planet Firelode
 	attributes unfettered
-	landscape land/canyon5
+	landscape land/mountain25-spfld
 	description `The Unfettered are operating several large strip mines here to collect uranium and plutonium to fuel the generators in their warships. Older, abandoned mining pits are scattered throughout the planet's surface. As a result of the mining activity, the groundwater here has become badly contaminated.`
 	spaceport `The spaceport is in the middle of a large city with typical Hai architecture: raw metal and chamfered corners. However, much of the city appears to have been ruined long ago, probably in a battle. The ruins have not been rebuilt, but instead it appears that most of the ruined buildings have been torn down for scrap metal. Several of the spaceport hangars are in bad repair, as well.`
 
@@ -25010,7 +25022,7 @@ planet Geminus
 
 planet Gemstone
 	attributes "dirt belt" mining
-	landscape land/hills3
+	landscape land/lava7-sfiera
 	description `Gemstone is a hot and unpleasant world, mostly due to a smoggy atmosphere high in methane. Much of the surface is covered in rugged mountains, making travel across land very difficult. However, the powerful tectonic forces here have created rich deposits of diamonds, emeralds, and sapphires, which are mined both for use in jewelry and for certain electronic components. Mining a tectonically active world is an insane project, and earthquakes cause frequent cave-ins, but the potential of wealth draws miners here despite the high mortality rate.`
 	description `	The miners are paid on commission on the stones they find. As a result most are dirt-poor, but the miners are full of stories of some distant acquaintance who became mind-bogglingly wealthy after striking a previously untapped gemstone deposit.`
 	spaceport `The spaceport is perched on top of a peak in an older and more stable mountain range. The landing pads here are used both by starships and by the helicopters that bring cargo to and from the mines. Overhead, helicopters fly by carrying heavy loads dangling from cables. A few low cement buildings serve as warehouses, and on the far end of the port, where an explosion would do the least damage if a sudden, severe earthquake struck, large steel tanks hold deuterium for refueling ships. Asphalt roads with flimsy guard rails connect the landing pads to the warehouses.`
@@ -25091,7 +25103,7 @@ planet Grakhord
 	attributes quarg moon
 	landscape land/badlands6
 	description `Although human beings who do not mind living in low gravity are welcome to settle here, Grakhord is part of Quarg territory, and has been terraformed to meet their environmental needs rather than those of human beings. The full extent of the Quarg mining operations here are not known, but rumors say that they have tunnels reaching down almost halfway to the moon's core, and Quarg ships can also sometimes be seen harvesting hydrogen gas from the upper atmosphere of the gas giant that Grakhord orbits.`
-	spaceport `Here, you feel like a young child lost among a crowd of tall, indifferent adults. The average adult Quarg is over three meters tall, and although they move slowly and gracefully, on their long legs they easily speed by you. Worse, the counters for the merchant exchange, bank, and job board are high enough that you can barely see over them. But, the Quargs have helpfully provided stepping stools stashed under the counters so that shorter humans can carry out business without having to constantly crane their necks upwards.`
+	spaceport `Here, you feel like a young child lost among a crowd of tall, indifferent adults. The average adult Quarg is over three meters tall, and although they move slowly and gracefully, on their long legs they easily speed by you. Worse, the counters for the merchant exchange, bank, and job board are high enough that you can barely see over them. But, the Quarg have helpfully provided stepping stools stashed under the counters so that shorter humans can carry out business without having to constantly crane their necks upwards.`
 	bribe 0
 	security 0.9
 
@@ -25324,7 +25336,7 @@ planet Humanika
 	attributes south farming
 	landscape land/beach2
 	description `The gravity is too strong on this planet for the Quarg to inhabit it, so they have welcomed human settlers instead. Many people who want freedom from the dangers of human space and the endless instability of human government have settled here. Although the regions near the equator are far too warm to be comfortable, the climate closer to the poles is almost ideal; the only reason Humanika is not as densely populated as some of the worlds farther to the galactic north is the distrust with which most humans view the Quarg.`
-	spaceport `The spaceport is a towering steel structure, built by the Quarg, with docks for their pilot-less cargo drones in addition to the platforms for human ships. The hallways inside have disconcerting proportions, somewhat narrow but with very tall ceilings. In addition to the human inhabitants, there are a few tall, almost fragile-looking robots with digitigrade limbs and narrow torsos patterned after the anatomy of a Quarg. Most of the robots stand still in the corners, like statues, but a few are moving around and interacting with people, apparently as remote control proxies for Quargs in orbit. It is a clear reminder of who owns this planet.`
+	spaceport `The spaceport is a towering steel structure, built by the Quarg, with docks for their pilot-less cargo drones in addition to the platforms for human ships. The hallways inside have disconcerting proportions, somewhat narrow but with very tall ceilings. In addition to the human inhabitants, there are a few tall, almost fragile-looking robots with digitigrade limbs and narrow torsos patterned after the anatomy of a Quarg. Most of the robots stand still in the corners, like statues, but a few are moving around and interacting with people, apparently as remote control proxies for Quarg in orbit. It is a clear reminder of who owns this planet.`
 	outfitter "Ammo South"
 	bribe 0.05
 	security 0.9
@@ -25402,7 +25414,7 @@ planet "Kasichara Fet"
 
 planet "Keneska Fek"
 	attributes korath
-	landscape land/canyon6
+	landscape land/desert10-harro
 	description `The Kor Sestor apparently use this as a mining world, but rather than digging for minerals they have been intentionally crashing metal-rich asteroids into undeveloped sections of the desert where the robots can then break them apart and extract the ore. Predictably, the ecological effects of this sort of mining are devastating.`
 	spaceport `The Kor Sestor refineries are laid out in a grid pattern. Each square of the grid is a few kilometers on each side, and is laid out in exactly the same way: a central power station, surrounded by smelters and repair bays and factories and storehouses laid out like spokes of a wheel. Each square produces and maintains a fleet of worker robots that occasionally collaborate to construct a new square, extending the city farther outward. Lines of harvester robots snake out from the refineries to the downed asteroids like trails of ants.`
 	"required reputation" 1
@@ -25480,9 +25492,9 @@ planet "Kuwaru Efreti"
 
 planet Lagrange
 	attributes quarg tourism station
-	landscape land/station2
+	landscape land/station5
 	description `The Quarg built this station centuries ago, before they began construction on the ringworld. From the dark side of the station, the ring is visible as a thin bright filament stretching out to either side of the system's sun. The ring itself is closed to human visitors, but tour shuttles depart from here on a regular basis, giving human tourists a closer view of this engineering feat that is so far beyond anything human beings have ever attempted to build.`
-	spaceport `In the docking section are flexible, oddly organic-looking tubes that snaked out to connect to your ship as it approached. Walking through the tube and into the station was a somewhat disconcerting experience. Inside, crowds of human tourists gawk at the tall, thin Quargs, who for the most part seem unfazed by the attention. The station is perfectly clean; every surface shines.`
+	spaceport `In the docking section are flexible, oddly organic-looking tubes that snaked out to connect to your ship as it approached. Walking through the tube and into the station was a somewhat disconcerting experience. Inside, crowds of human tourists gawk at the tall, thin Quarg, who for the most part seem unfazed by the attention. The station is perfectly clean; every surface shines.`
 	bribe 0
 	security 0.9
 
@@ -25535,6 +25547,7 @@ planet Longjump
 	attributes rim tourism factory
 	landscape land/city9
 	description `Longjump is a mostly industrial world, with lower than normal gravity that makes it relatively easy to operate and transport heavy equipment. Hang-gliding is also a popular sport here, although for safety reasons it is prohibited anywhere near the spaceport.`
+	description `	Longjump was the first planet discovered in the region of space known today as the Rim. Every year in the month of August, the Rim celebrates Han Sizer month, a whole month of activities commemorating the first explorer of the region. Wealthier citizens of the Rim celebrate by visiting as many Rim worlds as they can in the month, paralleling Han Sizer's month-long exploration of the region.`
 	spaceport `You can recognize the natives immediately because they are almost all taller than you, a result of growing up in a low-gravity environment. The spaceport consists of four large towers, connected by bridges, with openings for hangars in the sides. The upper stories are for landing ships; business takes place down below, at street level.`
 	outfitter "Basic Outfits"
 	outfitter "Delta V Basics"
@@ -25812,6 +25825,7 @@ planet Nasqueron
 	attributes "requires: gaslining"
 	landscape land/nasa8
 	description `Beneath Nasqueron's cloudy surface is a complex and thriving ecosystem of gas-dwelling organisms, from the massive void sprites all the way down to bacteria that inhabit tiny water droplets suspended in the air. Although the void sprites mostly feed on these organisms, it appears that in order to grow into their adult form or to give birth to young, they also need rare minerals that they can only find by feeding on asteroids, far beyond the planet's atmosphere.`
+	security 0
 
 planet "Nearby Jade"
 	attributes kimek farming urban
@@ -26214,7 +26228,7 @@ planet Pugglemug
 	security 1
 
 planet Pugglequat
-	landscape land/forest2
+	landscape land/valley15-harro
 	description `This planet has a handful of Pug cities on it, full of tall, graceful spires and arches. However, most of the land area is either left in its natural state, or in use for mining; it seems to abound in both oil reserves and metal ore. The climate is somewhat cold by human standards, but still quite livable. You are not sure if that is because the Pug were just lucky enough to have a star system with two hospitable planets, or whether they have employed some sort of terraforming.`
 	spaceport `The spaceport here is a set of seven tall towers of varying heights, each with landing pads jutting out from its sides like leaves from the stalk of a plant. The towers are joined to each other at various levels by arches.`
 	"required reputation" 2
@@ -26353,7 +26367,7 @@ planet Rust
 
 planet "Rusty Second"
 	attributes kimek shipping urban wealthy
-	landscape land/badlands0
+	landscape land/desert8-sfiera
 	description `The combination of a dry, temperate climate and its prestigious location near the Heliarch ringworlds make Rusty Second a highly desirable home for wealthy Kimek. Nothing is cheap here, and there is very little local industry aside from the banks, shipping conglomerations, and other corporations whose senior management offices are located here.`
 	spaceport `Although this is a Kimek world, the spaceport and the surrounding city more closely resembles Saryd architecture. This port was developed in the days when the Kimek had first made contact with the other species of the Coalition, and were still in awe of the technological sophistication of the Saryds.`
 	spaceport `	The original architecture also borrowed heavily from the Quarg, but anything reminiscent of them was stripped away after the Coalition's rebellion succeeded.`
@@ -26440,7 +26454,7 @@ planet "Second Rose"
 
 planet "Second Viridian"
 	attributes kimek farming urban
-	landscape land/forest0
+	landscape land/hills5-sfiera
 	description `More than ten billion Kimek live here, most of them living in one of several arcologies near the equator: massive structures that each nearly a kilometer tall and may house over half a billion individuals. As a result, despite the large population most of the land is either undeveloped or used for farming.`
 	description `	The Kimek arcologies are said to be able to recycle more than 99% of the waste produced in them each day, which is what makes it feasible for so many Kimek to live in such close proximity.`
 	spaceport `The spaceport facility is a kilometer-tall pyramid honeycombed with tunnels wide enough for a pair of bulk freighters to pass each other with plenty of room to spare. There is no single central warehouse district or meeting area. Instead, each cluster of docking bays is surrounded by its own storage facilities, food courts, and concourses.`
@@ -26652,6 +26666,7 @@ planet Slylandro
 	attributes "requires: gaslining"
 	landscape land/nasa9
 	description `Far beneath the swirling blue surface of Slylandro's atmosphere, void sprites and other strange creatures float about. As improbable as it may seem, the void sprites must have somehow evolved the capability to manipulate gravity fields, because every once in a while one of them will rise up from the surface powered by an antigravity field similar to the landing repulsors used by human ships. When they do so, the decrease in atmospheric pressure causes them to nearly double in size.`
+	security 0
 
 planet "Smuggler's Den"
 	attributes pirate station "south pirate"
@@ -26683,7 +26698,7 @@ planet Solace
 	landscape land/valley6
 	description `Solace is a fertile world that was already home to Earth-like vegetation and animals even before the first settlers arrived. It has now been inhabited for nearly half a millennium, and sprawling cities cover much of its surface.`
 	description `	In addition to being one of the major metropolitan centers of the galactic South, Solace is best known as the home of Delta V Corporation, makers of plasma engines and rockets of various sorts.`
-	spaceport `The spaceport on Solace served not only for incoming and outgoing commerce, but also as a testing ground for the next generation of Delta V technology. On your way around the port you stop to watch some tests of engines so powerful that the ground shakes beneath them.`
+	spaceport `The spaceport on Solace serves not only for incoming and outgoing commerce, but also as a testing ground for the next generation of Delta V technology. On your way around the port you stop to watch some tests of engines so powerful that the ground shakes beneath them.`
 	spaceport `	At the heart of the spaceport are a few bars, plus restaurants representing nearly every style of cuisine that you are familiar with. All the buildings are well maintained; this strikes you as a quite prosperous world, for this section of the galaxy.`
 	outfitter "Delta V Advanced"
 	outfitter "Kraz Basics"
@@ -26703,7 +26718,7 @@ planet "Solima Skarati"
 
 planet "Sopi Lefarkata"
 	attributes korath
-	landscape land/mountain8
+	landscape land/mountain24-spfld
 	description `This is a cold and mountainous world, and most of its oceans are covered in ice. A handful of giant craters gouged out from the sides of mountains are the only sign that there were once Korath settlements here. But, the Kor Sestor robots have begun building settlements of their own, in caverns deep under the mountains where they are safe from orbital bombardment. Where recent Kor Mereti attacks have collapsed one of the access tunnels, swarms of robots have gathered to dig them out like ants when their hill has been stepped on.`
 	spaceport `The caverns of the Kor Sestor are hidden deep under the mountains, but there are also a handful of refueling stations on the surface. Each one is guarded by towering weapon platforms and swarms of autonomous fighter drones.`
 	"required reputation" 1
@@ -26739,7 +26754,7 @@ planet Starcross
 
 planet Stonebreak
 	attributes hai manufacturing
-	landscape land/fog7
+	landscape land/hills7-harro
 	description `Stonebreak is home to some of the largest cities in Hai space aside from their homeworld: massive planned communities built in concentric rings, where housing space and community buildings alternate with zones of factories and shipyards. This star system has an unusual number of metallic asteroids, which the Hai harvest for the raw materials for Stonebreak's industries.`
 	spaceport `From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is made from the same metal alloy, a dull and slightly irregular grey color. The corners of each building are slightly beveled instead of meeting at right angles.`
 	spaceport `	Even the spaceport is symmetrical: a ring of hangars, facing outwards, at evenly spaced intervals, with warehouses and living quarters inside the ring.`
@@ -26865,7 +26880,7 @@ planet Thule
 
 planet Thunder
 	attributes rim
-	landscape land/myrabella0
+	landscape land/mountain20-harro
 	description `When the first colonists landed, they thought that they had found a dream world on Thunder: perfect gravity, perfect temperature, perfect atmosphere. Unfortunately, they soon discovered that the planet has unusually high tectonic activity, enough that building anything higher than two stories is almost impossible. Because of the earthquakes, attracting settlers has always been difficult for Thunder, and right now the population is only a few million.`
 	spaceport `The spaceport's landing pads are all solid slabs of metal; poured concrete would be far too prone to cracking. The spaceport village itself is a sprawling collection of squat, sturdy buildings, and a sign near the entrance to the cargo warehouse reads, "Do not stack crates."`
 	outfitter "Basic Outfits"
@@ -27080,7 +27095,7 @@ planet "Vara Kehi'ki"
 
 planet "Vara Pug"
 	attributes pug
-	landscape land/beach4
+	landscape land/bwerner5
 	description `Vara Pug is an ocean world, wild and almost unsettled, except for a single Pug city on the coast of one of the major continents. The animals and plants on the land are relatively uninteresting, but the oceans are home to an enormous variety of creatures, including whales the size of a bulk freighter, a highly intelligent species of jellyfish, and other, far stranger creatures that rarely venture up from the sunless ocean depths.`
 	description `	To avoid contact with these marine creatures, when the Pug travel to other parts of the planet they use massive solar-powered airships rather than boats.`
 	spaceport `The Pug here all seem to be busy with various tasks, none of which make any sense to you: rushing from building to building on their long, spindly legs; playing a game involving colored stones on a hexagonal table; constructing what appears to be collaborative holographic artwork.`
@@ -27168,6 +27183,7 @@ planet Viminal
 	landscape land/snow3
 	description `This cold and dreary world would certainly not be attractive to any modern settlers, but to those who were fleeing the chaos of the Alpha Wars it had the undeniable advantage of being isolated and undiscovered. Today the main reason for the continuing Remnant presence here is that this is the only world they have found where the "key stones" that enable ships to travel through certain wormholes in the Ember Waste can be found.`
 	spaceport `The spaceport is an enormous dome, built of the same resilient and semi-organic material as the hulls of Remnant ships. An opening at one end of the dome allows ships to fly in and out. Inside, the air is still cold, but at least you are sheltered from the violent winds that sweep across the rest of the planet's surface. Some of the locals, accustomed to the cold, walk about in their shirtsleeves as if this were a balmy summer day.`
+	bribe 0
 	shipyard Remnant
 	outfitter Remnant
 
@@ -27190,7 +27206,7 @@ planet Warfeed
 
 planet "Warm Slope"
 	attributes saryd urban
-	landscape land/forest1
+	landscape land/hills6-sfiera
 	description `This is an ideal world, by Saryd standards: rugged, hilly, mostly forested, with oceans and land masses in equal proportions. It serves mostly as a residential world, because this system's heavy industry is focused on the automated factories on its sister world of Ceaseless Toil.`
 	spaceport `The spaceport is part of a city built into one of the slopes of a large mountain, with the landing pads and spaceport facilities near the peak. Saryds, Arachi, and Kimek mingle freely here and converse with the aid of interpreters or translation devices as they amble up and down the steep city streets.`
 	outfitter "Coalition Basics"

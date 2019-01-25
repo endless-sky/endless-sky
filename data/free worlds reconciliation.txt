@@ -289,6 +289,7 @@ mission "FW Reconciliation 2A"
 	
 	on offer
 		log `The governor of Valhalla, in the Deep, has proposed a "police action" to arrest one or more of the Syndicate leaders and bring them to justice. It will be a secret joint operation between the Free Worlds, the Deep, and the Oathkeepers.`
+		event "fw tarazed joins"
 		conversation
 			`When you land on Valhalla, a man shows up at your ship and introduces himself as Edrick Flint, the governor of Valhalla. He invites all of you to join him for dinner at his home, which turns out to be an apartment on the twenty-third floor of one of the downtown skyscrapers. There, he introduces you to several other regional governors and authorities.`
 			`	"You may be aware," Edrick says, "that the Deep was self-governing before the formation of the Republic. Indeed, during some of the darkest centuries of the space age, the Deep stood out as a beacon of civilization, a place where piracy was not tolerated and all travelers were safe. When we joined the Republic, we retained the authority to police our own territory, and that authority includes the right to track down fugitives who have fled beyond our usual jurisdiction."`
@@ -309,7 +310,8 @@ mission "FW Reconciliation 2A"
 			`	"That's why the fleet will be composed of ships from three different organizations," says Edrick. "You will find a reason to travel to Earth with perhaps one of your fancy new Dreadnoughts as an escort. When you arrive, there will just happen to be an Oathkeeper patrol passing through the same system. And a merchant convoy from the Deep. With its own set of escorts, of course."`
 			`	"We'd need to know exactly where and on what planet our target lives, prior to entering Syndicate space," says Katya. "And, if you want to have a court trial immediately prior to the arrest, it sounds like Sawyer will need to stay here."`
 			`	"Indeed," says Edrick, "but I assure you, he is safer from the Syndicate here than anywhere else in human space, your own territory included. As for locating a target, that's why the Oathkeepers have requested that you visit them on Farpoint."`
-			`	The rest of the evening is a more casual time for conversation, with plenty of good food and wine. At one point, Edrick pulls you aside and says, "I've requested that you be granted access to some of the new technology that was developed here during the course of the war. In particular, please find space on your ship for a ramscoop; you will need it for your next mission. And also, here." He hands you a data card. "This is a copy of Sawyer's evidence, in case something happens here. Keep it very, very safe."`
+			`	The rest of the evening is a more casual time for conversation, with plenty of good food and wine. Alondo sends you a message to inform you that Tarazed has decided to officially join the Free Worlds after having received word of the Parliament hearing, news that brings joy to Katya and Ijs.`
+			`	At one point, Edrick pulls you aside and says, "I've requested that you be granted access to some of the new technology that was developed here during the course of the war. In particular, please find space on your ship for a ramscoop; you will need it for your next mission. And also, here." He hands you a data card. "This is a copy of Sawyer's evidence, in case something happens here. Keep it very, very safe."`
 				accept
 	
 	npc accompany save
@@ -460,6 +462,7 @@ mission "FW Embassy 1"
 	landing
 	source Farpoint
 	destination Earth
+	clearance
 	passengers 2
 	to offer
 		has "FW Defend Farpoint: done"
@@ -585,6 +588,7 @@ mission "FW Embassy 1C"
 	autosave
 	source Bourne
 	destination Earth
+	clearance
 	passengers 2
 	blocked "You do not have bunks available for Ijs and Katya. Return here when you do."
 	to offer
@@ -926,7 +930,7 @@ mission "FW Pug 1"
 			`Based on your previous maps of this sector, there should be a hyperspace link from here to the Rasalhague system. But your sensors show nothing. Something has severed the link.`
 	on enter "Ascella"
 		dialog
-			`The Ascella system used to be linked to Rasalhague and Delta Capricorni, but no longer. Either the Syndicate has discovered the ability to alter hyperspace links, and is using it to block the Free Worlds from interfering with them, or you have a much stranger problem on your hands...`
+			`The Ascella system used to be linked to Rasalhague and Zeta Aquilae, but no longer. Either the Syndicate has discovered the ability to alter hyperspace links, and is using it to block the Free Worlds from interfering with them, or you have a much stranger problem on your hands...`
 
 
 
@@ -980,6 +984,7 @@ mission "FW Pug 2"
 	autosave
 	source "New Tibet"
 	destination "Earth"
+	clearance
 	to offer
 		has "FW Pug 1: done"
 	passengers 1
@@ -998,7 +1003,7 @@ mission "FW Pug 2"
 					goto republic
 			
 			label go
-			`	"Freya says, "Somehow, they managed to annex several of our systems in the process of walling themselves off - our two best suppliers of heavy metals. That suggests that any of our systems on the border with the Syndicate may be taken over, and made completely inaccessible to us, at any time. That's not a risk we can take."`
+			`	Freya says, "Somehow, they managed to annex several of our systems in the process of walling themselves off - our two best suppliers of heavy metals. That suggests that any of our systems on the border with the Syndicate may be taken over, and made completely inaccessible to us, at any time. That's not a risk we can take."`
 			`	"And it's not just that," says Katya. "Think of how many workers are on Syndicate worlds right now, having left their families on a different planet in order to go earn money in a Syndicate factory for a few years. Imagine a future where those families are forever divided."`
 				goto communications
 			
@@ -1343,6 +1348,7 @@ mission "FW Pug 3"
 	landing
 	source Pugglemug
 	destination Earth
+	clearance
 	to offer
 		has "fw given jump drive"
 	passengers 1
@@ -1934,6 +1940,7 @@ mission "FW Pug 5A"
 	description `Bring this "graviton reflector" to <planet> and set it up there, in order to restore the hyperspace link between the Sol and Altair systems.`
 	source Shiver
 	destination Earth
+	clearance
 	to offer
 		has "FW Pug 5: done"
 	cargo "graviton reflector" 10
@@ -2355,6 +2362,7 @@ mission "FW Syndicate Extremists 1C"
 	autosave
 	source "Buccaneer Bay"
 	destination Earth
+	clearance
 	to offer
 		has "FW Syndicate Extremists 1B: done"
 	passengers 1

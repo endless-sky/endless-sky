@@ -46,10 +46,10 @@ effect "inhibitor impact"
 		"frame rate" 30
 		"no repeat"
 	"lifetime" 11
-	"velocity scale" -.05
 	"random angle" 360
-	"random velocity" 6
 	"random frame rate" 15
+	"random velocity" 6
+	"velocity scale" -.05
 
 
 outfit "Thrasher Cannon"
@@ -84,10 +84,10 @@ effect "thrasher impact"
 		"frame rate" 30
 		"no repeat"
 	"lifetime" 11
-	"velocity scale" -.1
 	"random angle" 360
 	"random spin" 30
 	"random velocity" 3
+	"velocity scale" -.1
 
 
 outfit "Thrasher Turret"
@@ -149,8 +149,8 @@ effect "point defense fire"
 	sprite "effect/point defense fire"
 		"frame rate" 17
 		"no repeat"
-	"velocity scale" .5
 	lifetime 10
+	"velocity scale" .5
 
 effect "point defense hit"
 	sprite "effect/point defense hit"
@@ -165,6 +165,91 @@ effect "point defense die"
 		"no repeat"
 	lifetime 15
 	"velocity scale" .2
+
+
+outfit "EMP Torpedo"
+	plural "EMP Torpedoes"
+	category "Ammunition"
+	cost 4400
+	thumbnail "outfit/emp torpedo"
+	"mass" 1
+	"emp torpedo capacity" -1
+	description "This is ammunition for the EMP Torpedo Bay, a weapon that is manufactured by the Remnant."
+
+outfit "EMP Torpedo Bay"
+	category "Secondary Weapons"
+	licenses
+		Remnant
+	cost 583000
+	thumbnail "outfit/emp torpedo bay"
+	"mass" 9
+	"outfit space" -18
+	"weapon capacity" -18
+	"gun ports" -1
+	"emp torpedo capacity" 9
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 2
+			"no repeat"
+		sound "torpedo"
+		ammo "EMP Torpedo"
+		icon "icon/emp"
+		"fire effect" "emp torpedo fire" 5
+		"hit effect" "nuke explosion"
+		"hit effect" "emp ring" 30
+		"hit effect" "emp spark" 20
+		"die effect" "tiny explosion"
+		stream
+		"reload" 330
+		"firing energy" 400
+		"firing heat" 18
+		"inaccuracy" 5
+		"lifetime" 300
+		"velocity" 7
+		"acceleration" .7
+		"drag" .1
+		"turn" 2
+		"homing" 3
+		"infrared tracking" .7
+		"radar tracking" .8
+		"trigger radius" 50
+		"blast radius" 200
+		"shield damage" 700
+		"hull damage" 100
+		"ion damage" 48
+		"hit force" 90
+		"missile strength" 80
+	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
+
+effect "emp torpedo fire"
+	sprite "effect/emp torpedo fire"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 31
+	"random angle" 10
+	"random frame rate" 10
+	"random spin" 2
+	"random velocity" 7
+
+effect "emp ring"
+	sprite "effect/emp ring"
+		"no repeat"
+		"frame rate" 12
+	"lifetime" 60
+	"random angle" 360
+	"random frame rate" 6
+	"random velocity" 4
+	"velocity scale" 0.1
+
+effect "emp spark"
+	sprite "effect/emp spark"
+		"no repeat"
+		"frame rate" 8
+	"lifetime" 45
+	"random angle" 360
+	"random frame rate" 6
+	"random velocity" 7
+	"velocity scale" 0.1
 
 
 
@@ -183,7 +268,6 @@ outfit "Crystal Capacitor"
 	"heat generation" .4
 	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
 	description "	Also, the capacitors tend to leak small amounts of energy, in the form of excess heat."
-
 
 outfit "Millennium Cell"
 	category "Power"
@@ -221,7 +305,6 @@ outfit "Aeon Cell"
 	"heat generation" 31.5
 	description "The early Remnant engineers did not trust the finicky and unpredictable nuclear reactors that were then in use in human space, so they instead focused on perfecting the art of radioisotope thermoelectric power."
 
-
 outfit "Thermoelectric Cooler"
 	category "Systems"
 	licenses
@@ -243,8 +326,7 @@ outfit "Emergency Ramscoop"
 	"mass" 4
 	"outfit space" -4
 	"ramscoop" 0.5
-	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. This ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
-
+	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills' which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
 
 outfit "Quantum Key Stone"
 	category "Systems"
@@ -312,7 +394,6 @@ outfit "Smelter-Class Thruster"
 	"flare sound" "plasma medium"
 	description "It is not unheard of for a Remnant ship's engines to draw even more power than its weapon systems: an indication, perhaps, of their preference for avoiding battle when possible."
 
-
 outfit "Crucible-Class Steering"
 	category "Engines"
 	licenses
@@ -355,7 +436,23 @@ outfit "Smelter-Class Steering"
 	"turning heat" 6.2
 	description "It's unclear whether the Remnant's powerful engine systems are purely their own invention, or whether they are partly inspired by alien technology."
 
+outfit "Tuning Rifle"
+	category "Hand to Hand"
+	licenses
+		Remnant
+	cost 65000
+	thumbnail "outfit/remnant rifle"
+	"capture attack" 1.2
+	"capture defense" 1.8
+	"unplunderable" 1
+	description "The Tuning Rifle uses sound waves to destabilize the weaker internal tissue of many races and liquefies them."
+
 outfit "Remnant License"
 	category "Special"
 	thumbnail "outfit/remnant license"
 	description "The prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."
+
+outfit "Remnant Capital License"
+	category "Special"
+	thumbnail "outfit/unknown"
+	description "The prefects have decided that you should be trusted with their largest ships, and the valuable resources that go into making them."

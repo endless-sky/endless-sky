@@ -67,7 +67,7 @@ public:
 	
 	// Sprite serialization.
 	void LoadSprite(const DataNode &node);
-	void SaveSprite(DataWriter &out) const;
+	void SaveSprite(DataWriter &out, const std::string &tag = "sprite") const;
 	// Set the sprite.
 	void SetSprite(const Sprite *sprite);
 	// Set the color swizzle.
@@ -76,8 +76,8 @@ public:
 	
 protected:
 	// Adjust the frame rate.
-	void SetFrameRate(double framesPerSecond);
-	void AddFrameRate(double framesPerSecond);
+	void SetFrameRate(float framesPerSecond);
+	void AddFrameRate(float framesPerSecond);
 	void PauseAnimation();
 	// Mark this object to be removed from the game.
 	void MarkForRemoval();
