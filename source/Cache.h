@@ -20,6 +20,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <unordered_map>
 #include <utility>
 
+#if __GNUC__ == 4 && __GNUC_MINOR__ == 8
+// GCC 4.8 reports a strange error, no type named std::unordered_map<>::iterator.
+#define GCC48_WORKAROUND
+#endif
+
 
 
 // This is the common timer class for the Cache class.
@@ -35,13 +40,13 @@ public:
 	// Notify to progress a frame time.
 	// This function will call StepThis() for all instances of Cache.
 	static void Step();
-
+	
 protected:
 	// Register an instance of CacheBase when constructing it.
 	static void RegisterCacheObject(CacheBase *cacheObject);
 	// Unregister an instance of CacheBase when destructing it.
 	static void UnregisterCacheObject(CacheBase *cacheObject);
-
+	
 private:
 	// Called from Step().
 	void StepThis();
@@ -102,7 +107,7 @@ public:
 	void Expire(const Key &key);
 	// Clear all data in this cache. This function calls AtRecycle for all values.
 	void Clear();
-
+	
 private:
 	struct ContainerElement;
 	typedef std::list<ContainerElement> ContainerType;
@@ -117,11 +122,23 @@ private:
 	struct ContainerElement {
 		T data;
 		size_t useCount;
+#if !defined(GCC48_WORKAROUND)
 		typename DirectoryType::iterator index;
 		
 		ContainerElement(const T &d, size_t c, const typename DirectoryType::iterator &i)
 			: data(d), useCount(c), index(i)
 		{}
+#define INDEX(d, e) ((e).index)
+#define EMPLACE_FRONT(directory, key, data) emplace_front(data, 1, (directory).end())
+#else
+		Key key;
+		
+		ContainerElement(const T &d, size_t c, const Key &k)
+			: data(d), useCount(c), key(k)
+		{}
+#define INDEX(d, e) ((d).find((e).key))
+#define EMPLACE_FRONT(directory, key, data) emplace_front(data, 1, key)
+#endif
 	};
 	
 	// begin() <= expire <= readyToRecycle <= end()
@@ -204,7 +221,7 @@ template<class Key, class T, bool autoExpired, class Hash, class AtRecycle>
 const T &Cache<Key, T, autoExpired, Hash, AtRecycle>::Set(const Key &key, T &&newData)
 {
 	if(readyToRecycle == container.end())
-		container.emplace_front(newData, 1, directory.end());
+		container.EMPLACE_FRONT(directory, key, newData);
 	else
 	{
 		auto it = --container.end();
@@ -213,11 +230,11 @@ const T &Cache<Key, T, autoExpired, Hash, AtRecycle>::Set(const Key &key, T &&ne
 		it->data = std::move(newData);
 		if(!autoExpired)
 			it->useCount = 1;
-		directory.erase(it->index);
+		directory.erase(INDEX(directory, *it));
 		container.splice(container.begin(), container, it);
 	}
 	const auto p = directory.emplace(key, container.begin());
-	container.front().index = p.first;
+	INDEX(directory, container.front()) = p.first;
 	return container.front().data;
 }
 
@@ -226,9 +243,9 @@ const T &Cache<Key, T, autoExpired, Hash, AtRecycle>::Set(const Key &key, T &&ne
 template<class Key, class T, bool autoExpired, class Hash, class AtRecycle>
 const T &Cache<Key, T, autoExpired, Hash, AtRecycle>::New(const Key &key, T &&newData)
 {
-	container.emplace_front(newData, 1, directory.end());
+	container.EMPLACE_FRONT(directory, key, newData);
 	const auto p = directory.emplace(key, container.begin());
-	container.front().index = p.first;
+	INDEX(directory, container.front()) = p.first;
 	return container.front().data;
 }
 
@@ -263,7 +280,7 @@ std::pair<T, bool> Cache<Key, T, autoExpired, Hash, AtRecycle>::Recycle()
 		auto it = --container.end();
 		AdjustPointerWhenErase(it);
 		const T result = it->data;
-		directory.erase(it->index);
+		directory.erase(INDEX(directory, *it));
 		container.pop_back();
 		return std::make_pair(result, true);
 	}
@@ -305,5 +322,9 @@ void Cache<Key, T, autoExpired, Hash, AtRecycle>::Clear()
 }
 
 
+
+#ifdef GCC48_WORKAROUND
+#undef GCC48_WORKAROUND
+#endif
 
 #endif
