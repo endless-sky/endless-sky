@@ -435,33 +435,17 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 	PangoRectangle ink_rect;
 	pango_layout_get_pixel_extents(layout, &ink_rect, nullptr);
 	textHeight = max(textHeight, ink_rect.y + ink_rect.height);
-	bool changeRequest = false;
+	// Check this surface has enough width.
 	if(surfaceWidth < textWidth)
 	{
 		surfaceWidth *= (textWidth / surfaceWidth) + 1;
-		changeRequest = true;
-	}
-	// Height needs some margins.
-	int heightMargin128 = 128;
-	const bool isDefaultLineHeight = viewParams.lineHeight == DEFAULT_LINE_HEIGHT;
-	const bool isDefaultSkip = isDefaultLineHeight && viewParams.paragraphBreak == 0;
-	if(!isDefaultSkip)
-	{
-		const int l = isDefaultLineHeight ? fontViewHeight : viewParams.lineHeight;
-		heightMargin128 = (l + viewParams.paragraphBreak) * 128 / fontViewHeight;
-	}
-	if(surfaceHeight < textHeight * heightMargin128 / 128)
-	{
-		surfaceHeight *= (textHeight * heightMargin128 / 128 / surfaceHeight) + 1;
-		changeRequest = true;
-	}
-	if(changeRequest)
-	{
 		UpdateSurfaceSize();
 		return Render(str, params);
 	}
 	
 	// Render
+	const bool isDefaultLineHeight = viewParams.lineHeight == DEFAULT_LINE_HEIGHT;
+	const bool isDefaultSkip = isDefaultLineHeight && viewParams.paragraphBreak == 0;
 	cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
 	if(isDefaultSkip)
 	{
@@ -507,6 +491,13 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 		textHeight += sumExtraY + viewParams.paragraphBreak;
 		pango_layout_iter_free(it);
 	}
+	// Check this surface has enough height.
+	if(surfaceHeight < textHeight)
+	{
+		surfaceHeight *= (textHeight / surfaceHeight) + 1;
+		UpdateSurfaceSize();
+		return Render(str, params);
+	}
 	
 	// Copy to image buffer and clear the surface.
 	cairo_surface_t *sf = cairo_get_target(cr);
@@ -516,8 +507,7 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 	uint32_t *src = reinterpret_cast<uint32_t*>(cairo_image_surface_get_data(sf));
 	uint32_t *dest = image.Pixels();
 	const int stride = surfaceWidth - textWidth;
-	const int maxHeight = min(textHeight, surfaceHeight);
-	for(int y = 0; y < maxHeight; ++y)
+	for(int y = 0; y < textHeight; ++y)
 	{
 		for(int x = 0; x < textWidth; ++x)
 		{
@@ -540,9 +530,9 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 	RenderedText &renderedText = recycled.first;
 	renderedText.texture = texture;
 	renderedText.width = textWidth;
-	renderedText.height = maxHeight;
+	renderedText.height = textHeight;
 	renderedText.center.X() = .5 * textWidth;
-	renderedText.center.Y() = .5 * maxHeight;
+	renderedText.center.Y() = .5 * textHeight;
 	
 	// Upload the image as a texture.
 	if(!renderedText.texture)
@@ -558,7 +548,7 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 	
 	// Upload the image data.
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, // target, mipmap level, internal format,
-		textWidth, maxHeight, 0, // width, height, border,
+		textWidth, textHeight, 0, // width, height, border,
 		GL_BGRA, GL_UNSIGNED_BYTE, image.Pixels()); // input format, data type, data.
 	
 	// Unbind the texture.
