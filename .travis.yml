@@ -35,7 +35,7 @@ before_install:
 
 env:
     global:
-        - DEP_ARGS="libsdl2-dev libpng12-dev libjpeg-turbo8-dev libglew-dev libopenal-dev libgl1-mesa-dev libmad0-dev libegl1-mesa-dev libgles2-mesa-dev"
+        - DEP_ARGS="libsdl2-dev libpng12-dev libjpeg-turbo8-dev libglew-dev libopenal-dev libgl1-mesa-dev libmad0-dev libegl1-mesa-dev libgles2-mesa-dev libpango1.0-dev"
 
 script:
     - |
