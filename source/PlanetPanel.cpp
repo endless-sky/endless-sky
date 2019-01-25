@@ -259,6 +259,12 @@ void PlanetPanel::TakeOffIfReady()
 		GetUI()->Push(new Dialog(this, &PlanetPanel::PreflightChecks, message));
 		return;
 	}
+	else if(player.TravelDestination() && !player.TravelDestination()->IsAccessible(player.Flagship()))
+	{
+		string message = "If you take off now, your intended landing target will be cleared as it is now inaccessible.\nThis may be due to changing your flagship or its installed outfits, or some unknown galactic event.";
+		GetUI()->Push(new Dialog(this, &PlanetPanel::PreflightChecks, message));
+		return;
+	}
 	
 	PreflightChecks();
 }

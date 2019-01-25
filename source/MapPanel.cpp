@@ -848,6 +848,7 @@ void MapPanel::DrawTravelPlan()
 	float invalidAlpha = .2f + .8f * pow(sin(.1f * step), 2);
 	
 	const System *previous = playerSystem;
+	float zoom = Zoom();
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i)
 	{
 		const System *next = player.TravelPlan()[i];
@@ -892,12 +893,23 @@ void MapPanel::DrawTravelPlan()
 		if(i < invalidIndex)
 			drawColor = drawColor.Transparent(invalidAlpha);
 		
-		Point from = Zoom() * (next->Position() + center);
-		Point to = Zoom() * (previous->Position() + center);
+		Point from = zoom * (next->Position() + center);
+		Point to = zoom * (previous->Position() + center);
 		Point unit = (from - to).Unit() * LINK_OFFSET;
 		LineShader::Draw(from - unit, to + unit, 3.f, drawColor);
 		
 		previous = next;
+	}
+	// If the player has selected an object to land on, and can no longer do so,
+	// highlight the containing system.
+	const Planet *destination = player.TravelDestination();
+	if(destination && !destination->IsAccessible(flagship))
+	{
+		// The destination may be a wormhole itself, and thus the result of Planet::GetSystem
+		// will not reliably indicate the correct system to highlight.
+		const System *destination = player.HasTravelPlan() ? player.TravelPlan().front() : player.GetSystem();
+		Point pos = zoom * (destination->Position() + center);
+		RingShader::Draw(pos, OUTER + 3., OUTER + 1., outOfFlagshipFuelRangeColor.Transparent(invalidAlpha));
 	}
 }
 
