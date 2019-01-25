@@ -253,20 +253,19 @@ void PlanetPanel::TakeOffIfReady()
 	}
 	
 	// Outfit changes or flagship reassignment may void a travel plan. Notify the player of this change.
+	string message;
 	if(player.HasInvalidTravelPlan())
-	{
-		string message = "If you take off now, your current travel plan will be cleared as parts of it are now inaccessible.\nThis may be due to changing your flagship or its installed outfits, or some unknown galactic event.";
-		GetUI()->Push(new Dialog(this, &PlanetPanel::PreflightChecks, message));
-		return;
-	}
+		message = "If you take off now, your current travel plan will be cleared as parts of it are now inaccessible.";
 	else if(player.TravelDestination() && !player.TravelDestination()->IsAccessible(player.Flagship()))
-	{
-		string message = "If you take off now, your intended landing target will be cleared as it is now inaccessible.\nThis may be due to changing your flagship or its installed outfits, or some unknown galactic event.";
-		GetUI()->Push(new Dialog(this, &PlanetPanel::PreflightChecks, message));
-		return;
-	}
+		message = "If you take off now, your intended landing target will be cleared as it is now inaccessible.";
 	
-	PreflightChecks();
+	if(message.empty())
+		PreflightChecks();
+	else
+	{
+		message += "\nThis may be due to changing your flagship or its installed outfits, or some unknown galactic event.\nAre you sure you want to continue?";
+		GetUI()->Push(new Dialog(this, &PlanetPanel::PreflightChecks, message));
+	}
 }
 
 
