@@ -339,6 +339,17 @@ outfit "Quantum Key Stone"
 	"quantum keystone" 1
 	description "This precious artifact attunes a ship's quantum oscillations in a way that allows it to travel through certain otherwise impassible wormholes in the Ember Waste. The stones are rare and valuable, because they can only be mined from one location in the Waste."
 
+outfit "Jump Drive (Broken)"
+	category "Systems"
+	cost 25000
+	thumbnail "outfit/jump_drive_(broken)"
+	"mass" 20
+	"outfit space" -20
+	"jump speed" .2
+	"jump fuel" 200
+	"hyperdrive" 1
+	description "The workings of the Jump Drive are a total mystery, especially now that this drive seems completely mangled. How it manages to continue working in this state is beyond you. It may, however, still hold some research potential."
+
 
 
 # Engines:

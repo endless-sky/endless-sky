@@ -188,7 +188,7 @@ ship "Korath World-Ship"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
-		"Jump Drive (Broken)"
+		"Hyperdrive"
 	
 	engine -37 343 .8
 	engine 0 343 .9

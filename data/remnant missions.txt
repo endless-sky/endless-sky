@@ -1265,6 +1265,8 @@ mission "Remnant: Broken Jump Drive 1"
 		has "Jump Drive (Broken)"
 	source
 		attributes "remnant"
+	destination 
+		attributes "remnant"
 	on offer
 		conversation
 			`The Remnant seem very interested in acquiring alien technology. Despite its broken nature, they might be interested in buying this partially functional Jump Drive. Do you want to ask someone about it?`
@@ -1323,14 +1325,16 @@ mission "Remnant: Broken Jump Drive 2"
 		has "Jump Drive (Broken)"
 	source
 		attributes "remnant"
+	destination 
+		attributes "remnant"
 	on offer
 		conversation
-			`This time when you land with a broken jump drive, an engineer is waiting at your landing pad with some heavy lifting equipment. Clearly he is hoping that you will be willing to sell it. Do you want to offer it to him?`
+			`This time when you land with a broken jump drive, an engineer is waiting at your landing pad with some heavy lifting equipment. Clearly they scanned your ship on approach and noticed you are carrying another broken jump drive, and he is hoping that you will be willing to sell it. Do you want to offer it to him?`
 			choice
 				`	(No.)`
 					defer
 				`	(Yes.)`
-			`	After sending a brief message to the engineer and opening the cargo bay, the engineer quickly leads his team into the <ship> along with a cart and camel to move the jump drive. `
+			`	As the cargo bay doors slide open, the engineer quickly leads his team into the <ship> along with a cart and camel to move the jump drive. `
 			`	Once inside, they delicately remove the broken jump drive and load it onto the cart. On their way out the engineer comes over to hand you your payment, which is far more than you could get for this wreckage elsewhere. "Our researchers are thoroughly enjoying digging into these enigmas" the engineer sings. "Hopefully they will lead to future innovations for the Remnant."`
 			choice
 				`	"Then I will continue to bring them to you."`
@@ -1358,6 +1362,8 @@ mission "Remnant: Broken Jump Drive 3"
 	to complete
 		has "Jump Drive (Broken)"
 	source
+		attributes "remnant"
+	destination 
 		attributes "remnant"
 	on offer
 		conversation
@@ -1396,6 +1402,8 @@ mission "Remnant: Broken Jump Drive 4"
 	to complete
 		has "Jump Drive (Broken)"
 	source
+		attributes "remnant"
+	destination 
 		attributes "remnant"
 	on offer
 		conversation
