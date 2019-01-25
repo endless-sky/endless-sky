@@ -51,7 +51,7 @@ mission "Kestrel Testing"
 	
 	npc disable save
 		government "Test Dummy"
-		personality staying nemesis heroic
+		personality disables staying nemesis heroic
 		system "Umbral"
 		ship "Unknown Ship Type" "Tarazed Prototype"
 	

@@ -32,7 +32,7 @@ public:
 	void SetCenter(const Point &center);
 	
 	// Add an object based on the Body class.
-	bool Add(const Body &body, double clip = 1.);
+	bool Add(const Body &body, float clip = 1.f);
 	
 	// Draw all the items in this list.
 	void Draw() const;

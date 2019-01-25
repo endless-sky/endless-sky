@@ -482,8 +482,8 @@ int DoError(string message, SDL_Window *window, SDL_GLContext context)
 		message += "\")";
 	}
 	
-	// Print the error message in the terminal.
-	cerr << message << endl;
+	// Print the error message in the terminal and the error file.
+	Files::LogError(message);
 	
 	// Show the error message both in a message box and in the terminal.
 	SDL_MessageBoxData box;

@@ -2222,7 +2222,7 @@ mission "Released Prisoners [0]"
 	job
 	repeat
 	description "Transport <bunks> prisoners home after completing their sentences of hard labor. Payment is <payment>."
-		passengers 2 10 .9
+	passengers 2 10 .9
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "mining" "factory"
@@ -2241,7 +2241,7 @@ mission "Released Prisoners [1]"
 	job
 	repeat
 	description "Transport <bunks> prisoners home after completing their sentences as domestic servants. Payment is <payment>."
-		passengers 2 10 .9
+	passengers 2 10 .9
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "paradise"
@@ -2259,7 +2259,7 @@ mission "Released Prisoners [2]"
 	job
 	repeat
 	description "Transport <bunks> prisoners home after completing their sentences in a penal colony. Payment is <payment>."
-		passengers 2 10 .9
+	passengers 2 10 .9
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "frontier" "moon" "military"

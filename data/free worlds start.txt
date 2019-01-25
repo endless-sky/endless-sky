@@ -1084,7 +1084,7 @@ mission "FW Flamethrower 2"
 				accept
 	
 	npc save disable
-		personality staying heroic
+		personality disables staying heroic
 		government "Test Dummy"
 		ship "Doombat" "Doombat"
 	
