@@ -1382,6 +1382,44 @@ mission "Remnant: Broken Jump Drive 3"
 				accept
 	
 	on accept
+		outfit "Jump Drive (Broken)" -1
+		"remnant: broken jump drive count" ++
+		payment 500000
+		"reputation: Remnant" ++
+		fail "Remnant: Broken Jump Drive 2"
+
+
+
+mission "Remnant: Broken Jump Drive 4"
+	name "More Jump Drives"
+	minor
+	invisible
+	landing
+	to offer
+		"remnant: broken jump drive count" == 3
+	to complete
+		has "Jump Drive (Broken)"
+	source
+		attributes "remnant"
+	destination 
+		attributes "remnant"
+	on offer
+		conversation
+			`You have salvaged another broken jump drive and brought it back to Remnant territory. Do you want to take advantage of their standing offer?`
+			choice
+				`	(No.)`
+					defer
+				`	(Yes.)`
+			`	You stop by the Outfitter, and notify an engineer that you have a drive for them. A few minutes later a young engineer is leading a team onto the <ship> to retrieve the malfunctioning drive. She hands you your payment and thanks you for supporting their research.`
+			choice
+				`	"Is there any news from the researchers?"`
+				`	"Your welcome."`
+					accept
+			`	The engineer checks her terminal, and jumpts through a few pages before turning back to you. "A new update just came in today!" She trills excitedly. "One team has made some progress investigating one of the mechanism, and it seems to add extra dimensions to the small pocket of regular space that the drive occupies. They suspect that this multi-dimensional function enables it to store significantly more equipment in the same space, which may contribute to their unstablity."`
+			`	When she resumes after skimming a few more pages she has a more subdued tone. "They have not had any success in determining how it works or how is it created, though. An interesting direction to pursue."`
+				accept
+	
+	on accept
 		event "remnant research update bjd1" 100 200
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
@@ -1389,16 +1427,19 @@ mission "Remnant: Broken Jump Drive 3"
 		"reputation: Remnant" ++
 		fail "Remnant: Broken Jump Drive 2"
 
+
+
 event "remnant research update bjd1"
 # bjd1 = Broken Jump Drive 1. This event is included for forward compatibility with future missions that will require this event to be complete.
 
 
-mission "Remnant: Broken Jump Drive 4"
+
+mission "Remnant: Broken Jump Drive 5"
 	repeat
 	minor
 	invisible
 	to offer
-		"remnant: broken jump drive count" >= 3
+		"remnant: broken jump drive count" >= 4
 	to complete
 		has "Jump Drive (Broken)"
 	source
@@ -1420,5 +1461,5 @@ mission "Remnant: Broken Jump Drive 4"
 		"remnant: broken jump drive count" ++
 		payment 500000
 		"reputation: Remnant" ++
-		fail "Remnant: Broken Jump Drive 3"
 		fail "Remnant: Broken Jump Drive 4"
+		fail "Remnant: Broken Jump Drive 5"
