@@ -8,6 +8,28 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+mission "Assisting Navy"
+	assisting
+	repeat
+	to offer
+		random < 13
+	source
+		government Republic
+	on offer
+		conversation
+			`After you've helped repair the <origin>, the captain confronts you. "Thank you for helping us back onto our feet, captain <last>. Please accept our gratitude, in the form of <payment>."`
+			choice
+				`	(Accept payment) "No problem, captain."`
+				`	(Refuse payment) "I'm just doing the right thing."`
+					goto refuse
+			`	"It has been a pleasure meeting you, <last>. May we meet again!"`
+				apply
+					payment 18000
+			label refuse
+			`	"If you say so," they seem a little befuddled, but eventually return to their ship and bid farewell.`
+				apply
+					"reputation: Republic" += 15
+
 mission "Assisting Merchant"
 	assisting
 	repeat
@@ -23,6 +45,47 @@ mission "Assisting Merchant"
 	# A mission with no destination will not be offered, so give it one.
 	# What the destination is doesn't matter, because you always 'decline' this.
 	destination Earth
+
+mission "Assisting Pirate"
+	assisting
+	repeat
+	to offer
+		random < 16
+	source
+		government Pirate
+	on offer
+		payment 12500
+		conversation
+			`The captain of the <origin> grumbles when you greet them, and pays you <payment> to get off their ship.`
+				decline
+	destination Earth
+
+mission "Assisting Quarg"
+	assisting
+	repeat
+	to offer
+		random < 70
+	source
+		government Quarg
+	on offer
+		payment 50000
+		conversation
+			`The Quarg captain of the <origin> is speechless as you repair its ship, and pays you <payment> for your trouble.`
+	destination Earth
+
+mission "Assisting Wanderer"
+	assisting
+	repeat
+	to offer
+		random < 33
+	source
+		government Wanderer
+	on offer
+		payment 25000
+		"reputation: Wanderer" += 10
+		conversation
+			`As you're repairing the <origin>, its avian crew watches you with curiosity. After you've finished, the one you assume is the captain chirps and pays you <payment> for your help.`
+	destination "Vara K'chrai"
 
 mission "Assisting Hai"
 	assisting
