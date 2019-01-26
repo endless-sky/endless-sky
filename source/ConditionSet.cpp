@@ -268,7 +268,7 @@ void ConditionSet::Add(const DataNode &node)
 			node.PrintTrace(UNRECOGNIZED);
 	}
 	else if(node.Size() == 1 && node.Token(0) == "never")
-		expressions.emplace_back(" ", "!=", "0");
+		expressions.emplace_back("'", "!=", "0");
 	else if(node.Size() == 1 && (node.Token(0) == "and" || node.Token(0) == "or"))
 	{
 		// The "and" and "or" keywords introduce a nested condition set.
@@ -551,11 +551,11 @@ ConditionSet::Expression::SubExpression::SubExpression(const vector<string> &sid
 
 
 
-// Simple condition constructor.
+// Simple condition constructor. For legacy support of the 'never' condition,
+// replace the empty string argument with a bare quote.
 ConditionSet::Expression::SubExpression::SubExpression(const string &side)
 {
-	if(!side.empty())
-		tokens.emplace_back(side);
+	tokens.emplace_back(side.empty() ? "'" : side);
 }
 
 
