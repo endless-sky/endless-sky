@@ -94,24 +94,6 @@ namespace {
 		return precedence.at(op);
 	}
 	
-	int CountCompares(const vector<string> &tokens)
-	{
-		int compares = 0;
-		for(const string &str : tokens)
-			if(IsComparison(str))
-				++compares;
-		return compares;
-	}
-	
-	int CountAssignment(const vector<string> &tokens)
-	{
-		int assigns = 0;
-		for(const string &str : tokens)
-			if(IsAssignment(str))
-				++assigns;
-		return assigns;
-	}
-	
 	// Test to determine if unsupported operations are requested.
 	bool HasInvalidOperators(const vector<string> &tokens)
 	{
@@ -146,8 +128,8 @@ namespace {
 	bool IsValidCondition(const DataNode &node)
 	{
 		const vector<string> &tokens = node.Tokens();
-		int assigns = CountAssignment(tokens);
-		int compares = CountCompares(tokens);
+		int assigns = count_if(tokens.begin(), tokens.end(), IsAssignment);
+		int compares = count_if(tokens.begin(), tokens.end(), IsComparison);
 		if(assigns > 1)
 			node.PrintTrace("Only one assignment operation may be performed per expression:");
 		else if(compares > 1)
@@ -169,7 +151,7 @@ namespace {
 	// Converts the given vector of strings into a vector of ints.
 	vector<int> SubstituteValues(const vector<string> &side, const map<string, int> &conditions, const map<string, int> &created)
 	{
-		vector<int> result;
+		auto result = vector<int>();
 		for(const string &str : side)
 		{
 			if(DataNode::IsNumber(str))
@@ -191,9 +173,9 @@ namespace {
 		return result;
 	}
 	
-	bool UsedAll(vector<bool> &status)
+	bool UsedAll(const vector<bool> &status)
 	{
-		for(const bool &v : status)
+		for(const bool v : status)
 			if(!v)
 				return false;
 		return true;
@@ -307,8 +289,8 @@ void ConditionSet::Add(const DataNode &node)
 		else
 		{
 			// Split the DataNode into left- and right-hand sides.
-			vector<string> lhs;
-			vector<string> rhs;
+			auto lhs = vector<string>();
+			auto rhs = vector<string>();
 			string op;
 			for(const string &token : node.Tokens())
 			{
@@ -609,7 +591,7 @@ const string ConditionSet::Expression::SubExpression::ToString() const
 // Interleave the tokens and operators, for use in the save file.
 const vector<string> ConditionSet::Expression::SubExpression::ToStrings() const
 {
-	vector<string> out;
+	auto out = vector<string>();
 	out.reserve(tokens.size() + operators.size());
 	size_t i = 0;
 	for( ; i < operators.size(); ++i)
@@ -642,7 +624,7 @@ int ConditionSet::Expression::SubExpression::Evaluate(const Conditions &conditio
 	
 	// For SubExpressions with no Operations (i.e. simple conditions), tokens will consist
 	// of only the condition or numeric value to be returned as-is after substitution.
-	vector<int> data(SubstituteValues(tokens, conditions, created));
+	auto data = SubstituteValues(tokens, conditions, created);
 	
 	if(!sequence.empty())
 	{
@@ -695,13 +677,8 @@ void ConditionSet::Expression::SubExpression::ParseSide(const vector<string> &si
 	// Remove empty strings that wrap simple conditions, so any token
 	// wrapped by only parentheses simplifies to just the token.
 	if(operators.empty() && !tokens.empty())
-		for(auto it = tokens.begin(); it != tokens.end();)
-		{
-			if((*it).empty())
-				it = tokens.erase(it);
-			else
-				++it;
-		}
+		tokens.erase(remove_if(tokens.begin(), tokens.end(),
+			[](const string &token) { return token.empty(); }), tokens.end());
 }
 
 
@@ -713,12 +690,12 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 	if(tokens.empty() || operators.empty())
 		return;
 	// Use a boolean vector to indicate when an operator has been used.
-	vector<bool> usedOps(operators.size(), false);
+	auto usedOps = vector<bool>(operators.size(), false);
 	// Read the operators vector just once by using a stack.
-	vector<size_t> opStack;
+	auto opStack = vector<size_t>();
 	// Store the data index for each Operation, for use by later Operations.
 	size_t dest = tokens.size();
-	vector<int> dataDest(dest + operatorCount, -1);
+	auto dataDest = vector<int>(dest + operatorCount, -1);
 	size_t opIndex = 0;
 	while(!UsedAll(usedOps))
 	{
