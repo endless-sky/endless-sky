@@ -166,7 +166,7 @@ bool Panel::Release(int x, int y)
 }
 
 
-	
+
 void Panel::SetIsFullScreen(bool set)
 {
 	isFullScreen = set;
@@ -187,7 +187,7 @@ void Panel::SetInterruptible(bool set)
 }
 
 
-	
+
 // Dim the background of this panel.
 void Panel::DrawBackdrop() const
 {

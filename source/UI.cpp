@@ -217,8 +217,22 @@ void UI::CanSave(bool canSave)
 
 
 
+// The game can be saved if the save file was loaded, and none of the
+// known panels inhibits saving--like an "on offer" dialog or conversation.
 bool UI::CanSave() const
 {
+	if(canSave)
+	{
+		auto BlocksSaving = [](const vector<shared_ptr<Panel>> &container)
+		{
+			for(const auto &panel : container)
+				if(panel->preventsSaving)
+					return true;
+			return false;
+		};
+		if(BlocksSaving(stack) || BlocksSaving(toPush))
+			return false;
+	}
 	return canSave;
 }
 

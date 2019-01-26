@@ -97,6 +97,10 @@ protected:
 	bool DoHelp(const std::string &name) const;
 	
 	
+protected:
+	bool preventsSaving = false;
+	
+	
 private:
 	class Zone : public Rectangle {
 	public:

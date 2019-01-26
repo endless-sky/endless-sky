@@ -359,7 +359,9 @@ int main(int argc, char *argv[])
 			timer.Wait();
 		}
 		
-		// If you quit while landed on a planet, save the game - if you did anything.
+		// If you quit while landed on a planet, save the game - if you did anything. If
+		// you're currently in a conversation, (e.g. a mission is offering or completing)
+		// you cannot save either, else the MissionAction will execute multiple times.
 		if(player.GetPlanet() && gamePanels.CanSave())
 			player.Save();
 		
