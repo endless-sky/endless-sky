@@ -137,6 +137,9 @@ private:
 template <class T>
 void ConversationPanel::SetCallback(T *t, void (T::*fun)(int))
 {
+	// If something is to be done with the result of this conversation,
+	// do not allow saving the game while it is displayed.
+	preventsSaving = true;
 	callback = std::bind(fun, t, std::placeholders::_1);
 }
 

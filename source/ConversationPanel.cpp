@@ -58,9 +58,6 @@ namespace {
 ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system, const shared_ptr<Ship> &ship)
 	: player(player), conversation(conversation), scroll(0.), system(system), ship(ship)
 {
-	// All conversation panels prevent saving the game while displayed.
-	preventsSaving = true;
-	
 #if defined _WIN32
 	PATH_LENGTH = Files::Saves().size();
 #endif
