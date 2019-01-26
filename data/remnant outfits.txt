@@ -342,7 +342,7 @@ outfit "Quantum Key Stone"
 outfit "Jump Drive (Broken)"
 	category "Systems"
 	cost 25000
-	thumbnail "outfit/jump_drive_(broken)"
+	thumbnail "outfit/jump drive (broken)"
 	"mass" 20
 	"outfit space" -20
 	"jump speed" .2
