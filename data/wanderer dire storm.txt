@@ -6,15 +6,15 @@ ship "Dire Storm"
 		licenses
 			"Wanderer Military"
 		"cost" 40500000
-		"shields" 64128
+		"shields" 54128
 		"hull" 48962
 		"required crew" 72
-		"bunks" 235
+		"bunks" 237
 		"mass" 832
 		"drag" 13.9
 		"heat dissipation" 0.5
 		"fuel capacity" 816
-		"cargo space" 624
+		"cargo space" 424
 		"outfit space" 864
 		"weapon capacity" 276
 		"engine capacity" 240
@@ -127,3 +127,10 @@ event "wanderers: hurricane mass production"
 		"Dire Storm"
 	planet "Spera Anatrusk"
 		shipyard "Wanderer Basics"
+		
+ship "Bactrian"
+	attributes
+		"shields" 12500
+		"cargo space" 260
+		"fighter bays" 3
+		"bunks" 233
