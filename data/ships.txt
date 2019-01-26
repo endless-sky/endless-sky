@@ -11,7 +11,7 @@
 ship "Aerie"
 	sprite "ship/aerie"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/aerie"
 	attributes
@@ -74,7 +74,7 @@ ship "Argosy"
 	plural "Argosies"
 	sprite "ship/argosy"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/argosy"
 	attributes
@@ -135,7 +135,7 @@ ship "Argosy"
 ship "Arrow"
 	sprite "ship/arrow"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/arrow"
 	attributes
@@ -190,7 +190,7 @@ ship "Arrow"
 ship "Bactrian"
 	sprite "ship/bactrian"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/bactrian"
 	attributes
@@ -264,7 +264,7 @@ ship "Bactrian"
 ship "Barb"
 	sprite "ship/barb"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/barb"
 	attributes
@@ -309,7 +309,7 @@ ship "Barb"
 ship "Barb" "Barb (Proton)"
 	sprite "ship/barbp"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/barbp"
 	attributes
@@ -352,7 +352,7 @@ ship "Barb" "Barb (Proton)"
 ship "Bastion"
 	sprite "ship/bastion"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/bastion"
 	attributes
@@ -416,7 +416,7 @@ ship "Bastion"
 ship "Behemoth"
 	sprite "ship/behemoth"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/behemoth"
 	attributes
@@ -477,7 +477,7 @@ ship "Behemoth"
 ship "Berserker"
 	sprite "ship/berserker"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/berserker"
 	attributes
@@ -531,7 +531,7 @@ ship "Berserker"
 ship "Blackbird"
 	sprite "ship/blackbird"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/blackbird"
 	attributes
@@ -586,7 +586,7 @@ ship "Blackbird"
 ship "Bounder"
 	sprite "ship/bounder"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/bounder"
 	attributes
@@ -636,7 +636,7 @@ ship "Bounder"
 ship "Boxwing"
 	sprite "ship/boxwing"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/boxwing"
 	attributes
@@ -676,7 +676,7 @@ ship "Boxwing"
 ship "Bulk Freighter"
 	sprite "ship/bulk freighter"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/bulk freighter"
 	attributes
@@ -737,7 +737,7 @@ ship "Bulk Freighter"
 ship "Carrier"
 	sprite "ship/carrier"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/carrier"
 	attributes
@@ -824,7 +824,7 @@ ship "Carrier"
 ship "Class C Freighter"
 	sprite "ship/bulk freighter"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/bulk freighter"
 	attributes
@@ -892,7 +892,7 @@ ship "Class C Freighter"
 ship "Clipper"
 	sprite "ship/clipper"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/clipper"
 	attributes
@@ -947,7 +947,7 @@ ship "Clipper"
 ship "Combat Drone"
 	sprite "ship/combat drone"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/combat drone"
 	attributes
@@ -988,7 +988,7 @@ ship "Combat Drone"
 ship "Corvette"
 	sprite "ship/corvette"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/corvette"
 	attributes
@@ -1050,7 +1050,7 @@ ship "Corvette"
 ship "Cruiser"
 	sprite "ship/cruiser"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/cruiser"
 	attributes
@@ -1128,7 +1128,7 @@ ship "Cruiser"
 ship "Dagger"
 	sprite "ship/dagger"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/dagger"
 	attributes
@@ -1176,7 +1176,7 @@ ship "Dagger"
 ship "Dreadnought"
 	sprite "ship/dreadnought"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/dreadnought"
 	attributes
@@ -1243,7 +1243,7 @@ ship "Dreadnought"
 ship "Falcon"
 	sprite "ship/falcon"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/falcon"
 	attributes
@@ -1309,7 +1309,7 @@ ship "Finch"
 	plural "Finches"
 	sprite "ship/finch"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/finch"
 	attributes
@@ -1356,7 +1356,7 @@ ship "Finch"
 ship "Firebird"
 	sprite "ship/firebird"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/firebird"
 	attributes
@@ -1417,7 +1417,7 @@ ship "Firebird"
 ship "Flivver"
 	sprite "ship/flivver"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/flivver"
 	attributes
@@ -1466,7 +1466,7 @@ ship "Flivver"
 ship "Freighter"
 	sprite "ship/freighter"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/freighter"
 	attributes
@@ -1520,7 +1520,7 @@ ship "Freighter"
 ship "Frigate"
 	sprite "ship/frigate"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/frigate"
 	attributes
@@ -1589,7 +1589,7 @@ ship "Fury"
 	plural "Furies"
 	sprite "ship/fury"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/fury"
 	attributes
@@ -1642,7 +1642,7 @@ ship "Fury"
 ship "Gunboat"
 	sprite "ship/gunboat"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/gunboat"
 	attributes
@@ -1701,7 +1701,7 @@ ship "Gunboat"
 ship "Hauler"
 	sprite "ship/hauler i"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/hauler i"
 	attributes
@@ -1762,7 +1762,7 @@ ship "Hauler"
 ship "Hauler II"
 	sprite "ship/hauler ii"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/hauler ii"
 	attributes
@@ -1823,7 +1823,7 @@ ship "Hauler II"
 ship "Hauler III"
 	sprite "ship/hauler iii"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/hauler iii"
 	attributes
@@ -1884,7 +1884,7 @@ ship "Hauler III"
 ship "Hawk"
 	sprite "ship/hawk"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/hawk"
 	attributes
@@ -1936,7 +1936,7 @@ ship "Hawk"
 ship "Headhunter"
 	sprite "ship/headhunter"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/headhunter"
 	attributes
@@ -1991,7 +1991,7 @@ ship "Headhunter"
 ship "Heavy Shuttle"
 	sprite "ship/heavy shuttle"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/heavy shuttle"
 	attributes
@@ -2037,7 +2037,7 @@ ship "Heavy Shuttle"
 ship "Lance"
 	sprite "ship/lance"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/lance"
 	attributes
@@ -2084,7 +2084,7 @@ ship "Lance"
 ship "Leviathan"
 	sprite "ship/leviathan"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/leviathan"
 	attributes
@@ -2146,7 +2146,7 @@ ship "Leviathan"
 ship "Manta"
 	sprite "ship/manta"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/manta"
 	attributes
@@ -2204,7 +2204,7 @@ ship "Modified Argosy"
 	plural "Modified Argosies"
 	sprite "ship/modified argosy"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/modified argosy"
 	attributes
@@ -2266,7 +2266,7 @@ ship "Modified Argosy"
 ship "Mule"
 	sprite "ship/mule"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/mule"
 	attributes
@@ -2328,7 +2328,7 @@ ship "Mule"
 ship "Nest"
 	sprite "ship/nest"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/nest"
 	attributes
@@ -2391,7 +2391,7 @@ ship "Nest"
 ship "Osprey"
 	sprite "ship/osprey"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/osprey"
 	attributes
@@ -2452,7 +2452,7 @@ ship "Osprey"
 ship "Protector"
 	sprite "ship/protector"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/protector"
 	attributes
@@ -2515,7 +2515,7 @@ ship "Protector"
 ship "Quicksilver"
 	sprite "ship/quicksilver"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/quicksilver"
 	attributes
@@ -2565,7 +2565,7 @@ ship "Quicksilver"
 ship "Rainmaker"
 	sprite "ship/rainmaker"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/rainmaker"
 	attributes
@@ -2624,7 +2624,7 @@ ship "Rainmaker"
 ship "Raven"
 	sprite "ship/raven"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/raven"
 	attributes
@@ -2680,7 +2680,7 @@ ship "Raven"
 ship "Roost"
 	sprite "ship/roost"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/roost"
 	attributes
@@ -2745,7 +2745,7 @@ ship "Roost"
 ship "Scout"
 	sprite "ship/scout"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/scout"
 	attributes
@@ -2800,7 +2800,7 @@ ship "Scout"
 ship "Shuttle"
 	sprite "ship/shuttle"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/shuttle"
 	attributes
@@ -2846,7 +2846,7 @@ ship "Shuttle"
 ship "Skein"
 	sprite "ship/skein"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/skein"
 	attributes
@@ -2915,7 +2915,7 @@ ship "Skein"
 ship "Sparrow"
 	sprite "ship/sparrow"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/sparrow"
 	attributes
@@ -2966,7 +2966,7 @@ ship "Sparrow"
 ship "Splinter"
 	sprite "ship/splinter"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/splinter"
 	attributes
@@ -3026,7 +3026,7 @@ ship "Splinter"
 ship "Star Barge"
 	sprite "ship/star barge"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/star barge"
 	attributes
@@ -3072,7 +3072,7 @@ ship "Star Barge"
 ship "Star Queen"
 	sprite "ship/star queen"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/star queen"
 	attributes
@@ -3131,7 +3131,7 @@ ship "Star Queen"
 ship "Surveillance Drone"
 	sprite "ship/surveillance drone"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/surveillance drone"
 	attributes
@@ -3169,7 +3169,7 @@ ship "Surveillance Drone"
 ship "Vanguard"
 	sprite "ship/vanguard"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/vanguard"
 	attributes
@@ -3229,7 +3229,7 @@ ship "Vanguard"
 ship "Wasp"
 	sprite "ship/wasp"
 		"frame time" 4
-		"delay" 14 
+		"delay" 20
 		"random start frame" 
 	thumbnail "thumbnail/wasp"
 	attributes
