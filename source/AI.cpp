@@ -2312,13 +2312,14 @@ bool AI::DoCloak(Ship &ship, Command &command)
 	{
 		// Never cloak if it will cause you to be stranded.
 		const Outfit &attributes = ship.Attributes();
+		double fuelCost = attributes.Get("cloaking fuel") + attributes.Get("fuel consumption") - attributes.Get("fuel generation");
 		if(attributes.Get("cloaking fuel") && !attributes.Get("ramscoop"))
 		{
 			double fuel = ship.Fuel() * attributes.Get("fuel capacity");
 			int steps = ceil((1. - ship.Cloaking()) / attributes.Get("cloak"));
 			// Only cloak if you will be able to fully cloak and also maintain it
 			// for as long as it will take you to reach full cloak.
-			fuel -= attributes.Get("cloaking fuel") * (1 + 2 * steps);
+			fuel -= fuelCost * (1 + 2 * steps);
 			if(fuel < ship.JumpFuel())
 				return false;
 		}
@@ -2354,7 +2355,7 @@ bool AI::DoCloak(Ship &ship, Command &command)
 		// or 40% farther away before it begins decloaking again.
 		double hysteresis = ship.Commands().Has(Command::CLOAK) ? .4 : 0.;
 		// If cloaking costs nothing, and no one has asked you for help, cloak at will.
-		bool cloakFreely = !attributes.Get("cloaking fuel") && !ship.GetShipToAssist();
+		bool cloakFreely = (fuelCost <= 0.) && !ship.GetShipToAssist();
 		// If this ship is injured / repairing, it should cloak while under threat.
 		bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
 				&& (attributes.Get("shield generation") || attributes.Get("hull repair rate"));

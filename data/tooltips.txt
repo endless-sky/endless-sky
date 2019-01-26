@@ -101,6 +101,18 @@ tip "fuel:"
 tip "fuel capacity:"
 	`An ordinary hyperdrive jump consumes 100 fuel. Fuel is replenished for free when you land on an inhabited planet.`
 
+tip "fuel consumption:"
+	`Fuel consumed per second while in flight (can generate energy or heat).`
+	
+tip "fuel energy:"
+	`Energy produced per second while in flight, as a consequence of fuel consumption.`
+	
+tip "fuel generation:"
+	`Fuel generated per second.`
+	
+tip "fuel heat:"
+	`Heat produced per second while in flight, as a consequence of fuel consumption.`
+
 tip "gun ports needed:"
 	`This weapon uses up a gun port. Guns always fire straight forward; turrets fire in the direction of your currently selected target.`
 
@@ -120,10 +132,13 @@ tip "hull:"
 	`Total hull strength. Small ships are disabled when their hull strength drops below 45%; larger ships are disabled at 15%.`
 
 tip "hull energy:"
-	`Energy per second consumed when repairing the hull.`
+	`Energy consumed per second when repairing the hull.`
+
+tip "hull fuel:"
+	`Fuel consumed per second when repairing the hull.`
 
 tip "hull heat:"
-	`Heat per second generated when repairing the hull.`
+	`Heat produced per second when repairing the hull.`
 
 tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
@@ -199,6 +214,9 @@ tip "sells for:"
 
 tip "shield energy:"
 	`Energy consumed per second when recharging shields.`
+
+tip "shield fuel:"
+	`Fuel consumed per second when recharging shields.`
 
 tip "shield heat:"
 	`Heat produced per second when recharging shields.`
@@ -440,6 +458,9 @@ tip "overheating!"
 tip "no energy!"
 	`This ship does not have any source of energy to power its systems. You should install some sort of generator.`
 
+tip "no fuel!"
+	`This ship does not have enough fuel to provide energy to power its systems. You should increase the fuel capacity.`
+
 tip "no thruster!"
 	`This ship does not have any sort of thruster installed. If it took off, it would be unable to move.`
 
@@ -463,6 +484,9 @@ tip "limited turn?"
 
 tip "solar power?"
 	`This ship is powered entirely by solar energy. If you fly too far from the center of a star system, maneuvering may become difficult because your engines will only have a fraction of the power they require.`
+
+tip "fuel?"
+	`This ship consumes fuel. However, it would immediately run out of fuel if it departs.`
 
 tip "no hyperdrive?"
 	`This ship has no hyperdrive. If it took off, it would be unable to leave this star system.`
