@@ -91,11 +91,13 @@ Dialog::Dialog(const string &text)
 
 
 
-// Mission accept / decline dialog.
+// Mission accept / decline dialog. The game should not be
+// saved while this particular Dialog is being shown.
 Dialog::Dialog(const string &text, PlayerInfo &player, const System *system)
 	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
 	system(system), player(&player)
 {
+	preventsSaving = true;
 	Init(text, true, true);
 }
 
