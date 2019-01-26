@@ -1,0 +1,129 @@
+
+ship "Dire Storm"
+	sprite "ship/dire storm"
+	attributes
+		category "Heavy Warship"
+		licenses
+			"Wanderer Military"
+		"cost" 40500000
+		"shields" 64128
+		"hull" 48962
+		"required crew" 72
+		"bunks" 235
+		"mass" 832
+		"drag" 13.9
+		"heat dissipation" 0.5
+		"fuel capacity" 816
+		"cargo space" 624
+		"outfit space" 864
+		"weapon capacity" 276
+		"engine capacity" 240
+		weapon
+			"blast radius" 340
+			"shield damage" 3400
+			"hull damage" 1700
+			"hit force" 5100
+	outfits
+		"Sunbeam" 2
+		"Thunderhead Launcher" 2
+		"Thunderhead Missile" 80
+		"Sunbeam Turret" 2
+		"Wanderer Anti-Missile" 2
+		
+		"Blue Sun Reactor"
+		"Large Biochemical Cell"
+		"Dark Storm Shielding" 2
+		"Bright Cloud Shielding"
+		"Wanderer Ramscoop" 2
+		"Fuel Pod" 2
+		
+		"Type 4 Radiant Thruster" 2
+		"Type 4 Radiant Steering" 2
+		"Hyperdrive"
+		
+	engine -98 160
+	engine 98 160
+	engine 0 289
+	engine -62 232
+	engine 62 232
+	gun -12 -156 "Sunbeam"
+	gun 12 -156 "Sunbeam"
+	gun -17 -134 "Thunderhead Launcher"
+	gun 17 -134 "Thunderhead Launcher"
+	turret -34 16 "Sunbeam Turret"
+	turret 34 16 "Sunbeam Turret"
+	turret -38 105 "Wanderer Anti-Missile"
+	turret 38 105 "Wanderer Anti-Missile"
+	drone 84 63
+	drone -84 63
+	drone -72 63
+	drone 72 63
+	explode "small explosion" 40
+	explode "medium explosion" 70
+	explode "large explosion" 50
+	explode "huge explosion" 20
+	"final explode" "final explosion large" 1
+	description "The Dire Storm is a deep space command, control and science vessel, designed to be one of the first ships through the Eye, to begin cataloging the dangers of the unknown space beyond, and to provide a secure, mobile headquarters for the warships that stay behind to cover the Wanderers' retreat. Endless banks of climate-controlled storage allow the dozen (or so) science labs to take hundreds of soil, water and even biological specimens from desolate worlds. Four drones allow remote, efficient harvesting and in an emergency can provide cover for a fleet of ships."
+	
+ship "Dire Storm" "Dire Storm (Passenger)"
+	outfits
+		"Thunderhead Launcher" 4
+		"Thunderhead Missile" 160
+		"Dual Sunbeam Turret"
+		"Wanderer Anti-Missile" 2
+		
+		"White Sun Reactor"
+		"Dark Storm Shielding" 2
+		"Wanderer Ramscoop"
+		"Outfits Expansion" 14
+		"Bunk Room" 23
+		
+		"Type 4 Radiant Thruster"
+		"Type 1 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Type 1 Radiant Steering"
+		"Hyperdrive"
+
+	gun "Thunderhead Launcher"
+	gun "Thunderhead Launcher"
+	gun "Thunderhead Launcher"
+	gun "Thunderhead Launcher"
+	turret "Dual Sunbeam Turret"
+	turret
+	turret "Wanderer Anti-Missile"
+	turret "Wanderer Anti-Missile"
+	
+event "wanderers: hurricane mass production"
+	fleet "Wanderer Defense"
+		add variant 5
+			"Hurricane"
+			"Dire Storm"
+			"Flycatcher" 4
+		add variant 2
+			"Hurricane (Turret)"
+		add variant 2
+			"Hurricane (Tough)"
+		add variant 3
+			"Hurricane"
+			"Tempest"
+			"Dire Storm"
+			"Flycatcher" 4
+		add variant 2
+			"Hurricane"
+			"Tempest" 2
+		add variant 3
+			"Hurricane (Turret)"
+			"Derecho (Turret)"
+			"Tempest (Heavy)"
+			"Dire Storm"
+			"Flycatcher" 4
+		add variant 2
+			"Hurricane (Tough)"
+			"Tempest (Missile)"
+			"Dire Storm"
+			"Flycatcher" 4
+	shipyard "Wanderer Advanced"
+		"Hurricane"
+		"Dire Storm"
+	planet "Spera Anatrusk"
+		shipyard "Wanderer Basics"
