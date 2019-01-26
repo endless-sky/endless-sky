@@ -130,18 +130,15 @@ namespace {
 		const vector<string> &tokens = node.Tokens();
 		int assigns = count_if(tokens.begin(), tokens.end(), IsAssignment);
 		int compares = count_if(tokens.begin(), tokens.end(), IsComparison);
-		if(assigns > 1)
-			node.PrintTrace("Only one assignment operation may be performed per expression:");
-		else if(compares > 1)
-			node.PrintTrace("Only one comparison operation may be performed per expression:");
-		else if(assigns && compares)
-			node.PrintTrace("A condition may only perform an assignment or a comparison, not both:");
-		else if(!assigns && !compares)
-			node.PrintTrace("Every condition must either perform a comparison, or an assign a value:");
+		if(assigns + compares != 1)
+			node.PrintTrace("An expression must either perform a comparison, or an assign a value:");
 		else if(HasInvalidOperators(tokens))
 			node.PrintTrace("Brackets, braces, exponentiation, and boolean/bitwise math are not supported:");
 		else if(HasUnbalancedParentheses(tokens))
 			node.PrintTrace("Unbalanced parentheses in condition expression:");
+		else if(count_if(tokens.begin(), tokens.end(), [](const string &token)
+				{ return token.size() > 1 && token.front() == '('; }))
+			node.PrintTrace("Parentheses must be separate from tokens:");
 		else
 			return true;
 		
