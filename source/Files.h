@@ -59,14 +59,6 @@ public:
 	// Get the last extension (.ext) of the filename from a path.
 	static std::string Extension(const std::string &path);
 	
-	// Convert a filename to the native string.
-#ifdef _WIN32
-    typedef std::wstring NativeStringT;
-#else
-    typedef std::string NativeStringT;
-#endif
-    static NativeStringT NativeFilePath(const std::string &filePath);
-	
 	// File IO.
 	static FILE *Open(const std::string &path, bool write = false);
 	static std::string Read(const std::string &path);
