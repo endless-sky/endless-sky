@@ -49,15 +49,16 @@ mission "Navy emergency"
 		random < 15
 	source
 		government "Navy (Oathkeeper)"
+		not category "Drone"
 		system "Arneb" "Hatysa" "Alnilam" "Unagi" "Almaaz" "Mintaka" "Gorvi" "Tortor" "Fah Root" "Rigel" "Hassaleh" "Danoa" "Rajak" "Sumar" "Ultima Thule" "Cardax" "Volax" "Moktar"
 	destination "Farpoint"
 	on offer
 		conversation
-			`When you repair the <origin>, the captain thanks you, but adds, "We had injuries during the battle. Could you bring the injured to the military hospital on <destination>? It would only be <bunks> <passengers>."`
+			`When you repair the <origin>, the captain thanks you, but adds, "We had injuries during the battle. Could you bring the injured to the military hospital on <destination>? It would only be <fare>."`
 			choice
-				`"Sure, I'll do it."`
+`				"Sure, I'll do it."`
 					accept
-				`"Sorry, it's not on my way."`
+`				"Sorry, it's not on my way."`
 					decline
 	on complete
 		"reputation: Navy (Oathkeeper)" += 2
