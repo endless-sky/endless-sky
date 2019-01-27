@@ -478,7 +478,7 @@ mission "Returning Home"
 			
 			`	"Yes. I've thought a lot about it lately. I want to see my family again."`
 			choice
-				`	"Alright, I'll take you to <planet>"`
+				`	"Alright, I'll take you to <planet>."`
 					goto accept
 				`	"Sorry, but I'm not able to take you that far."`
 			
