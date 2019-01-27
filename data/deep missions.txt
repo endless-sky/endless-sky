@@ -1653,7 +1653,7 @@ mission "Deep: Remnant: Engines"
 			`	"Yes," you respond. "I had to do a few odd jobs for them, but they eventually allowed me to purchase their outfits and ships."`
 			`	"Then all you need to do is buy whatever we ask you to and bring it back here. Are you interested?"`
 			choice
-				`	"I'd be glad to help"`
+				`	"I'd be glad to help."`
 				`	"Sorry, but I don't want to spend money for your research."`
 					decline
 			
