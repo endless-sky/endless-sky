@@ -1,4 +1,5 @@
 # Copyright (c) 2017 by Michael Zahniser
+# Copyright (c) 2019 by Zitchas
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -338,6 +339,17 @@ outfit "Quantum Key Stone"
 	"outfit space" -1
 	"quantum keystone" 1
 	description "This precious artifact attunes a ship's quantum oscillations in a way that allows it to travel through certain otherwise impassible wormholes in the Ember Waste. The stones are rare and valuable, because they can only be mined from one location in the Waste."
+
+outfit "Jump Drive (Broken)"
+	category "Systems"
+	cost 25000
+	thumbnail "outfit/jump drive (broken)"
+	"mass" 20
+	"outfit space" -20
+	"jump speed" .2
+	"jump fuel" 200
+	"hyperdrive" 1
+	description "The workings of the Jump Drive are a total mystery, especially now that this drive seems completely mangled. How it manages to continue working in this state is beyond you. It may, however, still hold some research potential."
 
 
 

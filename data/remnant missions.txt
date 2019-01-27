@@ -1252,3 +1252,43 @@ mission "Remnant: Expanded Horizons Quarg 3"
 			`	"Our historical records just have a few pictures and videos of Quarg ships, along with a basic scan that doesn't provide more than the general outline of the ship. These scans," he says while tapping the databanks, "actually picked up detailed structural layouts and even identified a number of key components. It isn't nearly enough information to be able to duplicate them, but it is enough that we can start trying to figure out how they work.`
 			`	Upon arriving at <planet> they quickly thank you, hand you <payment>, and run back to their offices to finish prepping their material to publish and distribute.`
 
+
+
+mission "Remnant: Broken Jump Drive 1"
+	name "Broken Jump Drive Delivery"
+	minor
+	landing
+	to offer
+		has "remnant blood test pure"
+		outfit "Jump Drive (Broken)"
+	source
+		attributes "remnant"
+	destination
+		attributes "remnant"
+	on offer
+		conversation
+			`As the <ship> settles onto its designated landing pad you see someone emerge from the nearby outfitter and quickly make their way over to your ship. They wait a safe distance back, then approaches once you cycle the hatch and disembark. "Greetings, Captain <last>" trills the Remnant. "We saw the news that the newcomer among us was tracking down the erratic Korath ship. When you came in to land we saw on the scans that you managed to salvage its malfunctioning jump drive. Could we take it to study?"`
+			choice
+				`	(Maybe later.)
+					goto refuse
+				`	(Yes.)`
+			`	"Excellent!" he glances at his datapad, "There are several teams working on aspects of the jump drive, and the one with the highest priority for a malfunctioning jump drive is on <planet>. I will notify them to expect you."`
+				accept
+			label refuse
+			`	He considers this, and sings, "If you wish. Our offer stands, whenever you choose to return."`
+				defer
+
+	on complete
+		conversation
+			`When you arrive on <planet> there is a team of engineers and mechanics waiting for you, along with a flatbed freight truck. Once you open the cargo doors they quickly free the broken jump drive from its moorings and load it delicately onto their truck. The lead engineer comes over to hand you <payment>. "Thank you for salvaging this. I suspect my compatriot who spoke to you never mentioned this, but we have a fund set aside for rewarding captains who bring in rare pieces of alien technology. If you find any more of these drives, there is sure to be a research team somewhere that is willing to reward you for it." 
+			choice
+				`	"Aren't you going to replace it with a hyperdrive?"`
+					goto hypderdrive
+				`	"I will keep a lookout for more."
+			label hyperdrive
+				`	The engineer looks at you incredulously. "You mean you were actually depending on this drive?" He shakes his head in disbelief. "You are lucky you managed to get this far, then. It is surprising that they exist at all, let alone still work properly. If you need a replacement drive, there are plenty available in the outfitter."
+			`	He turns and heads off with the rest of the team, turning briefly to give you friendly wave as they disembark.`
+		outfit "Jump Drive (Broken)" -1
+		"remnant: broken jump drive count" ++
+		payment 500000
+		"reputation: Remnant" ++

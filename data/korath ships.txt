@@ -81,7 +81,7 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
-		"Hyperdrive"
+		"Jump Drive (Broken)"
 
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -104,7 +104,7 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
-		"Hyperdrive"
+		"Jump Drive (Broken)"
 
 	turret
 	turret
@@ -233,7 +233,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Crippled)"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
-		"Hyperdrive"
+		"Jump Drive (Broken)"
 	
 	turret -76 -219
 	turret 76 -219
