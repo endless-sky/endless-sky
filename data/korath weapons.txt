@@ -187,8 +187,8 @@ effect "repeater impact"
 		"frame rate" 12
 	"lifetime" 21
 	"random angle" 360
-	"random velocity" .6
 	"random spin" 100
+	"random velocity" .6
 	"velocity scale" -.1
 
 outfit "Korath Repeater Turret"
@@ -299,8 +299,8 @@ effect "piercer impact"
 	sound "explosion tiny"
 	"lifetime" 31
 	"random angle" 360
-	"random velocity" .1
 	"random spin" 60
+	"random velocity" .1
 	"velocity scale" .001
 
 effect "piercer explosion"
@@ -309,8 +309,8 @@ effect "piercer explosion"
 		"frame rate" 20
 	"lifetime" 28
 	"random angle" 360
-	"random velocity" .1
 	"random spin" 60
+	"random velocity" .1
 	"velocity scale" .08
 
 
@@ -351,8 +351,8 @@ effect "detainer sparks"
 		"no repeat"
 		"frame rate" 10
 	"lifetime" 37
-	"random velocity" .1
 	"random spin" 2
+	"random velocity" .1
 	"velocity scale" .5
 
 effect "detainer impact"
@@ -360,8 +360,8 @@ effect "detainer impact"
 		"no repeat"
 		"frame rate" 40
 	"lifetime" 13
-	"random velocity" .5
 	"random spin" 10
+	"random velocity" .5
 	"velocity scale" -.01
 
 effect "detainer smoke"
@@ -441,11 +441,11 @@ outfit "Korath Mine Submunition"
 		"hit effect" "large explosion"
 		"die effect" "tiny explosion"
 		"inaccuracy" 360
+		"velocity" 2
+		"random velocity" 5
 		"lifetime" 1000
 		"random lifetime" 60
 		"acceleration" .00001
-		"velocity" 2
-		"random velocity" 5
 		"drag" .05
 		"shield damage" 350
 		"hull damage" 280

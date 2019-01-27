@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 #include "WrappedText.h"
 
+#include <algorithm>
 #include <set>
 
 using namespace std;

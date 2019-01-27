@@ -39,7 +39,7 @@ class System;
 class Planet {
 public:
 	// Load a planet's description from a file.
-	void Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<Sale<Outfit>> &outfits);
+	void Load(const DataNode &node);
 	
 	// Get the name of the planet.
 	const std::string &Name() const;

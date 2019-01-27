@@ -100,8 +100,8 @@ effect "seeker impact"
 		"frame rate" 10
 	"lifetime" 31
 	"random angle" 360
-	"velocity scale" 0.
 	"random spin" 360
+	"velocity scale" 0.
 
 
 outfit "Pug Anti-Missile"
@@ -187,6 +187,7 @@ outfit "Pug Gridfire Turret"
 		"turret turn" 20
 		"firing energy" 800
 		"firing heat" 400
+		"firing force" 150
 		"shield damage" 600
 		"hull damage" 600
 		"blast radius" 40
@@ -302,6 +303,7 @@ outfit "Pug Lohmar Steering"
 	description "This is a large steering system designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
 
 
+
 outfit "Pug Biodefenses"
 	plural "Pug Biodefenses"
 	category "Hand to Hand"
@@ -310,6 +312,7 @@ outfit "Pug Biodefenses"
 	"capture defense" 250
 	"unplunderable" 1
 	description "This defense system is designed to release a suite of toxins that are lethal to human beings (and probably to some other species, as well) but which have no effect at all on the Pug."
+
 
 
 ship "Pug Zibruka"
@@ -329,11 +332,11 @@ ship "Pug Zibruka"
 		"outfit space" 180
 		"weapon capacity" 68
 		"engine capacity" 76
+		"energy capacity" 1000
 		"energy generation" 10
+		"heat generation" 20
 		"shield generation" 6
 		"shield energy" 6
-		"heat generation" 20
-		"energy capacity" 1000
 		weapon
 			"blast radius" 100
 			"shield damage" 400
@@ -341,20 +344,24 @@ ship "Pug Zibruka"
 			"hit force" 600
 	outfits
 		"Pug Zapper" 2
+		
 		"Pug Biodefenses" 4
-		"Jump Drive"
+		
 		"Pug Akfar Thruster"
 		"Pug Akfar Steering"
+		"Jump Drive"
+		
 	engine -7 35
 	engine 7 35
 	gun -15 -42 "Pug Zapper"
 	gun 15 -42 "Pug Zapper"
-	explode "tiny explosion" 10
-	explode "small explosion" 15
-	explode "medium explosion" 20
-	explode "large explosion" 10
+	explode "pug tiny explosion" 10
+	explode "pug small explosion" 15
+	explode "pug medium explosion" 20
+	explode "pug large explosion" 10
 	"final explode" "final explosion small"
 	description "The Zibruka is the smallest Pug ship that you know of."
+
 
 ship "Pug Enfolta"
 	sprite "ship/pug enfolta"
@@ -373,11 +380,11 @@ ship "Pug Enfolta"
 		"outfit space" 360
 		"weapon capacity" 184
 		"engine capacity" 106
+		"energy capacity" 2000
 		"energy generation" 22
+		"heat generation" 32
 		"shield generation" 8
 		"shield energy" 8
-		"heat generation" 32
-		"energy capacity" 2000
 		weapon
 			"blast radius" 180
 			"shield damage" 720
@@ -387,10 +394,13 @@ ship "Pug Enfolta"
 		"Pug Zapper" 2
 		"Pug Seeker" 2
 		"Pug Zapper Turret"
+		
 		"Pug Biodefenses" 6
-		"Jump Drive"
+		
 		"Pug Cormet Thruster"
 		"Pug Cormet Steering"
+		"Jump Drive"
+		
 	engine -11 68
 	engine 11 68
 	gun -11 -85 "Pug Zapper"
@@ -398,12 +408,13 @@ ship "Pug Enfolta"
 	gun -11 -85 "Pug Seeker"
 	gun 11 -85 "Pug Seeker"
 	turret 0 7 "Pug Zapper Turret"
-	explode "tiny explosion" 5
-	explode "small explosion" 20
-	explode "medium explosion" 25
-	explode "large explosion" 15
+	explode "pug tiny explosion" 5
+	explode "pug small explosion" 20
+	explode "pug medium explosion" 25
+	explode "pug large explosion" 15
 	"final explode" "final explosion medium"
 	description "This is a medium-sized Pug warship."
+
 
 ship "Pug Maboro"
 	sprite "ship/pug maboro"
@@ -422,11 +433,11 @@ ship "Pug Maboro"
 		"outfit space" 560
 		"weapon capacity" 309
 		"engine capacity" 148
+		"energy capacity" 4000
 		"energy generation" 32
+		"heat generation" 48
 		"shield generation" 10
 		"shield energy" 10
-		"heat generation" 48
-		"energy capacity" 4000
 		weapon
 			"blast radius" 300
 			"shield damage" 1200
@@ -436,10 +447,13 @@ ship "Pug Maboro"
 		"Pug Seeker" 4
 		"Pug Zapper Turret" 2
 		"Pug Anti-Missile"
+		
 		"Pug Biodefenses" 8
-		"Jump Drive"
+		
 		"Pug Lohmar Thruster"
 		"Pug Lohmar Steering"
+		"Jump Drive"
+		
 	engine -20 136
 	engine 20 136
 	gun -20 -150 "Pug Seeker"
@@ -449,12 +463,13 @@ ship "Pug Maboro"
 	turret 0 -50 "Pug Anti-Missile"
 	turret -15 -35 "Pug Zapper Turret"
 	turret 15 -35 "Pug Zapper Turret"
-	explode "small explosion" 25
-	explode "medium explosion" 30
-	explode "large explosion" 20
-	explode "huge explosion" 5
+	explode "pug small explosion" 25
+	explode "pug medium explosion" 30
+	explode "pug large explosion" 20
+	explode "pug huge explosion" 5
 	"final explode" "final explosion large"
 	description "This is the largest Pug warship."
+
 
 ship "Pug Arfecta"
 	sprite "ship/pug arfecta"
@@ -473,14 +488,17 @@ ship "Pug Arfecta"
 		"outfit space" 640
 		"weapon capacity" 390
 		"engine capacity" 220
+		"energy capacity" 10000
 		"energy generation" 200
+		"heat generation" 10
 		"shield generation" 32
 		"shield energy" 32
 		"hull repair rate" 5
 		"hull energy" 5
-		"heat generation" 10
-		"energy capacity" 10000
 		"cloaking fuel" -.2
+		"reverse thrust" 66
+		"reverse thrusting energy" 4.9
+		"reverse thrusting heat" 6.9
 		weapon
 			"blast radius" 320
 			"shield damage" 9000
@@ -494,8 +512,7 @@ ship "Pug Arfecta"
 		"Pug Biodefenses" 12
 		
 		"Pug Lohmar Thruster"
-		"Pug Lohmar Steering"
-		"Pug Lohmar Steering"
+		"Pug Lohmar Steering" 2
 		"Jump Drive"
 	
 	engine -15 164
@@ -505,10 +522,10 @@ ship "Pug Arfecta"
 	turret 0 40 "Pug Gridfire Turret"
 	turret -73 84 "Pug Gridfire Turret"
 	turret 73 84 "Pug Gridfire Turret"
-	explode "tiny explosion" 100
-	explode "small explosion" 60
-	explode "medium explosion" 30
-	explode "large explosion" 10
+	explode "pug tiny explosion" 100
+	explode "pug small explosion" 60
+	explode "pug medium explosion" 30
+	explode "pug large explosion" 10
 	"final explode" "final explosion large"
 	description `This is a Pug "tier 3" warship, intended for use in combat against either a species on par with the Quarg, or a lesser species that has decided to be particularly meddlesome.`
 
@@ -722,7 +739,7 @@ mission "Pug Angry at Being Farmed"
 			not "chosen sides"
 		"reputation: Pug" < -100
 	npc kill
-		government Pug
-		personality nemesis heroic staying
+		government "Pug"
+		personality nemesis unconstrained staying
 		system "Pug Iyik"
 		ship "Pug Arfecta" "Ayee Eee Eek"

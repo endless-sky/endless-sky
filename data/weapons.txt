@@ -21,8 +21,8 @@ outfit "Energy Blaster"
 		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
-		"velocity" 8.5
-		"lifetime" 60
+		"velocity" 10.625
+		"lifetime" 48
 		"reload" 12
 		"firing energy" 9.6
 		"firing heat" 30
@@ -47,8 +47,8 @@ outfit "Blaster Turret"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
 		"turret turn" 3.7
-		"velocity" 8.5
-		"lifetime" 60
+		"velocity" 10.625
+		"lifetime" 48
 		"reload" 6
 		"firing energy" 9.6
 		"firing heat" 30
@@ -73,8 +73,8 @@ outfit "Quad Blaster Turret"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
 		"turret turn" 3.2
-		"velocity" 8.5
-		"lifetime" 60
+		"velocity" 10.625
+		"lifetime" 48
 		"reload" 3
 		"firing energy" 9.6
 		"firing heat" 30
@@ -104,8 +104,8 @@ outfit "Modified Blaster"
 		sound "mod blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 4
-		"velocity" 8
-		"lifetime" 60
+		"velocity" 10
+		"lifetime" 48
 		"reload" 12
 		"firing energy" 10.8
 		"firing heat" 42
@@ -130,8 +130,8 @@ outfit "Modified Blaster Turret"
 		"hit effect" "blaster impact"
 		"inaccuracy" 4
 		"turret turn" 3.5
-		"velocity" 8
-		"lifetime" 60
+		"velocity" 10
+		"lifetime" 48
 		"reload" 6
 		"firing energy" 10.8
 		"firing heat" 42
@@ -410,8 +410,8 @@ effect "particle impact"
 	sound "explosion small"
 	"lifetime" 20
 	"random angle" 2
-	"velocity scale" -.05
 	"random spin" 10
+	"velocity scale" -.05
 
 
 outfit "Proton Gun"
@@ -545,8 +545,8 @@ effect "plasma explosion"
 	sound "explosion tiny"
 	"lifetime" 21
 	"random angle" 360
-	"random velocity" .1
 	"random spin" 4
+	"random velocity" .1
 	"velocity scale" -.05
 
 
@@ -594,9 +594,9 @@ effect "flamethrower die"
 		"random start frame"
 	"lifetime" 24
 	"random angle" 360
-	"random velocity" .4
-	"random spin" 2
 	"random frame rate" 5
+	"random spin" 2
+	"random velocity" .4
 	"velocity scale" .4
 
 effect "flamethrower hit"
@@ -606,9 +606,9 @@ effect "flamethrower hit"
 		"random start frame"
 	"lifetime" 28
 	"random angle" 360
-	"random velocity" .6
-	"random spin" 3
 	"random frame rate" 5
+	"random spin" 3
+	"random velocity" .6
 	"velocity scale" .4
 
 
@@ -781,7 +781,8 @@ outfit "Javelin Pod"
 		"hull damage" 36
 		"hit force" 50
 		"missile strength" 2
-	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has fired off all its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles. As a result, they are very popular with pirates as a way to quickly disable a small target."
+	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has expended all of its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles."
+	description "	The weapon's high rate of fire also makes it useful for saturating well-protected ships' anti-missile defenses so that more dangerous projectiles fired by allied ships can sneak through."
 
 
 outfit "Torpedo"
@@ -966,9 +967,9 @@ effect "heavy rocket hit"
 	sound "heavy rocket hit"
 	"lifetime" 36
 	"random angle" 360
-	"random velocity" 1
-	"random spin" 5
 	"random frame rate" 5
+	"random spin" 5
+	"random velocity" 1
 	"velocity scale" .4
 
 
@@ -1020,8 +1021,8 @@ effect "nuke explosion"
 	sound "explosion nuke"
 	"lifetime" 15
 	"random angle" 360
-	"random velocity" 1
 	"random spin" 5
+	"random velocity" 1
 	"velocity scale" .4
 
 effect "nuke residue fast"
@@ -1030,8 +1031,8 @@ effect "nuke residue fast"
 		"frame rate" 15
 	"lifetime" 36
 	"random angle" 360
-	"random velocity" 8
 	"random spin" 5
+	"random velocity" 8
 	"velocity scale" 0.1
 
 effect "nuke residue slow"
@@ -1040,8 +1041,8 @@ effect "nuke residue slow"
 		"frame rate" 10
 	"lifetime" 60
 	"random angle" 360
-	"random velocity" 5
 	"random spin" 5
+	"random velocity" 5
 	"velocity scale" 0.1
 
 
