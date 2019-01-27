@@ -243,7 +243,7 @@ ship "Auxiliary"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Auxiliary acts as the logistical backbone of the Navy. By being built in stages the Auxiliary has the ability to act as a transport, freighter, or a hybrid of the two."
+	description "The Auxiliary is as the Republic Navy's logistical backbone. Built using flexible modules, the Auxiliary can serve as a transport, freighter, or a hybrid of the two."
 
 ship "Auxiliary" "Auxiliary (Cargo)"
 	sprite "ship/auxiliaryc"
