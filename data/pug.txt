@@ -490,12 +490,12 @@ ship "Pug Arfecta"
 		"engine capacity" 220
 		"energy capacity" 10000
 		"energy generation" 200
+		"fuel generation" .2
 		"heat generation" 10
 		"shield generation" 32
 		"shield energy" 32
 		"hull repair rate" 5
 		"hull energy" 5
-		"cloaking fuel" -.2
 		"reverse thrust" 66
 		"reverse thrusting energy" 4.9
 		"reverse thrusting heat" 6.9
