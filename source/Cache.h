@@ -324,5 +324,7 @@ void Cache<Key, T, autoExpired, Hash, AtRecycle>::Clear()
 #ifdef GCC48_WORKAROUND
 #undef GCC48_WORKAROUND
 #endif
+#undef INDEX
+#undef EMPLACE_FRONT
 
 #endif
