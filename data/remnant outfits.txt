@@ -269,7 +269,6 @@ outfit "Crystal Capacitor"
 	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
 	description "	Also, the capacitors tend to leak small amounts of energy, in the form of excess heat."
 
-
 outfit "Millennium Cell"
 	category "Power"
 	licenses
@@ -306,7 +305,6 @@ outfit "Aeon Cell"
 	"heat generation" 31.5
 	description "The early Remnant engineers did not trust the finicky and unpredictable nuclear reactors that were then in use in human space, so they instead focused on perfecting the art of radioisotope thermoelectric power."
 
-
 outfit "Thermoelectric Cooler"
 	category "Systems"
 	licenses
@@ -328,8 +326,7 @@ outfit "Emergency Ramscoop"
 	"mass" 4
 	"outfit space" -4
 	"ramscoop" 0.5
-	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. This ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
-
+	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills' which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
 
 outfit "Quantum Key Stone"
 	category "Systems"
@@ -397,7 +394,6 @@ outfit "Smelter-Class Thruster"
 	"flare sound" "plasma medium"
 	description "It is not unheard of for a Remnant ship's engines to draw even more power than its weapon systems: an indication, perhaps, of their preference for avoiding battle when possible."
 
-
 outfit "Crucible-Class Steering"
 	category "Engines"
 	licenses
@@ -455,3 +451,8 @@ outfit "Remnant License"
 	category "Special"
 	thumbnail "outfit/remnant license"
 	description "The prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."
+
+outfit "Remnant Capital License"
+	category "Special"
+	thumbnail "outfit/unknown"
+	description "The prefects have decided that you should be trusted with their largest ships, and the valuable resources that go into making them."

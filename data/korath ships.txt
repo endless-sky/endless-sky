@@ -90,7 +90,28 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 	turret "Korath Banisher"
 	turret "Korath Warder"
 
+ship "Korath Raider" "Korath Raider (Crippled)"
+	sprite "ship/raider"
+	outfits
+		"Korath Grab-Strike" 2
+		"Korath Banisher"
+		"Korath Warder"
+		
+		"Triple Plasma Core"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
+		"Korath Repeater Rifle" 196
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Hyperdrive"
 
+	turret
+	turret
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Banisher"
+	turret "Korath Warder"
 
 ship "Korath Chaser"
 	sprite "ship/chaser"
@@ -197,6 +218,30 @@ ship "Korath World-Ship" "Korath World-Ship B"
 	turret 0 -92 "Korath Warder"
 	turret -83 165 "Korath Warder"
 	turret 83 165 "Korath Warder"
+	turret 0 277 "Korath Banisher"
+
+
+ship "Korath World-Ship" "Korath World-Ship B (Crippled)"
+	sprite "ship/world-ship b"
+	outfits
+		"Korath Banisher" 3
+		"Korath Warder" 1
+		
+		"Triple Plasma Core"
+		"Large Heat Shunt" 2
+		"Korath Repeater Rifle" 150
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Hyperdrive"
+	
+	turret -76 -219
+	turret 76 -219
+	turret -75 -112 "Korath Banisher"
+	turret 75 -112 "Korath Banisher"
+	turret 0 -92 "Korath Warder"
+	turret -83 165
+	turret 83 165
 	turret 0 277 "Korath Banisher"
 
 ship "Korath World-Ship" "Korath World-Ship C"

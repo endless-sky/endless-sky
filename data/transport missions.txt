@@ -2515,7 +2515,7 @@ mission "Terminus exploration"
 	npc assist
 		system "Terminus"
 		government "Uninhabited"
-		personality derelict target
+		personality derelict target pacifist mute
 		ship "Science Drone" "Beagle"
 		dialog `You board the science drone and discover that the pirates have stripped just about everything of value from it: the engines, the sensors, and the fuel cell that powered it. But the computer system is either too deeply integrated into the drone, or too specialized, to be of any value to the pirates. You transfer enough power to the drone's batteries to reactivate it, and are able to retrieve the data that the scientist was looking for. But it's clear that this drone, or what's left of it, is not going anywhere. You'll have to leave it behind.`
 	npc
@@ -2656,7 +2656,7 @@ mission "Lost Boy 3"
 			`	"I'm fine, Mom," Tod says in an annoyed tone of voice. Some things never change.`
 			`	The mother gives you a handful of credit chips. At a glance, you guess that they couldn't be worth more than 1,000 credits. "I know it isn't much for the work you've done, Captain, but it's all I have to give you in return."`
 			choice
-				`	"Don't worry. "`
+				`	"Don't worry."`
 				`	"You're lucky I agreed to help you in the first place."`
 					goto money
 			
