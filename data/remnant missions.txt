@@ -1260,16 +1260,16 @@ mission "Remnant: Broken Jump Drive 1"
 	landing
 	to offer
 		has "remnant blood test pure"
-		outfit "Jump Drive (Broken)"
 	source
-		attributes "remnant"
+		government "Remnant"
 	destination
-		attributes "remnant"
+		government "Remnant"
 	on offer
+		require "Jump Drive (Broken)"
 		conversation
 			`As the <ship> settles onto its designated landing pad you see someone emerge from the nearby outfitter and quickly make their way over to your ship. They wait a safe distance back, then approaches once you cycle the hatch and disembark. "Greetings, Captain <last>" trills the Remnant. "We saw the news that the newcomer among us was tracking down the erratic Korath ship. When you came in to land we saw on the scans that you managed to salvage its malfunctioning jump drive. Could we take it to study?"`
 			choice
-				`	(Maybe later.)
+				`	(Maybe later.)`
 					goto refuse
 				`	(Yes.)`
 			`	"Excellent!" he glances at his datapad, "There are several teams working on aspects of the jump drive, and the one with the highest priority for a malfunctioning jump drive is on <planet>. I will notify them to expect you."`
@@ -1280,14 +1280,56 @@ mission "Remnant: Broken Jump Drive 1"
 
 	on complete
 		conversation
-			`When you arrive on <planet> there is a team of engineers and mechanics waiting for you, along with a flatbed freight truck. Once you open the cargo doors they quickly free the broken jump drive from its moorings and load it delicately onto their truck. The lead engineer comes over to hand you <payment>. "Thank you for salvaging this. I suspect my compatriot who spoke to you never mentioned this, but we have a fund set aside for rewarding captains who bring in rare pieces of alien technology. If you find any more of these drives, there is sure to be a research team somewhere that is willing to reward you for it." 
+			`When you arrive on <planet> there is a team of engineers and mechanics waiting for you, along with a flatbed freight truck. Once you open the cargo doors they quickly free the broken jump drive from its moorings and load it delicately onto their truck. The lead engineer comes over to hand you <payment>. "Thank you for salvaging this. I suspect my compatriot who spoke to you never mentioned this, but we have a fund set aside for rewarding captains who bring in rare pieces of alien technology. If you find any more of these drives, there is sure to be a research team somewhere that is willing to reward you for it."`
 			choice
 				`	"Aren't you going to replace it with a hyperdrive?"`
-					goto hypderdrive
-				`	"I will keep a lookout for more."
+					goto hyperdrive
+				`	"I will keep a lookout for more."`
 			label hyperdrive
-				`	The engineer looks at you incredulously. "You mean you were actually depending on this drive?" He shakes his head in disbelief. "You are lucky you managed to get this far, then. It is surprising that they exist at all, let alone still work properly. If you need a replacement drive, there are plenty available in the outfitter."
-			`	He turns and heads off with the rest of the team, turning briefly to give you friendly wave as they disembark.`
+				`	The engineer looks at you incredulously. "You mean you were actually depending on this drive?" He shakes his head in disbelief. "You are lucky you managed to get this far, then. It is surprising that they exist at all, let alone still work properly. If you need a replacement drive, there are plenty available in the outfitter."`
+			`	"Next time you find one of these drives, just check with starport director. They will know where it will need to go." He turns and heads off with the rest of the team, turning briefly to give you friendly wave as they disembark.`
+		outfit "Jump Drive (Broken)" -1
+		"remnant: broken jump drive count" ++
+		payment 500000
+		"reputation: Remnant" ++
+
+
+
+mission "Remnant: Broken Jump Drive 2"
+	name "Broken Jump Drive Delivery"
+	minor
+	to offer
+		has "Remnant: Broken Jump Drive 1: done"
+	source
+		government "Remnant"
+	destination
+		government "Remnant"
+	on offer
+		require "Jump Drive (Broken)"
+		conversation
+			`Remembering the advice given by the engineer who paid you for the broken jump drive, you stop by the starport director's desk. Information must flow quickly amongst the Remnant, because by the time you arrive at the director's desk she already has the information ready for you.`
+			`	"Greetings, Newcomer," she chants, "are you interested in turning in the broken jump drive you salvaged to our researchers?"`
+			choice
+				`	(Maybe later.)`
+					goto refuse
+				`	(Yes.)`
+			`	"They will definitely appreciate new material to research. The team is located on <planet>. I will send a notification ahead so they will be expecting you."`
+				accept
+			label refuse
+			`	She looks at you thoughtfully and sings, "It is unlikely that anyone else would pay for it, but it is your choice. Return if you change your mind."`
+				defer
+
+	on complete
+		conversation
+			`As promised, there is a team of researchers waiting when you settle onto the designated landing pad. One comes over to hand you <payment> while the rest carefully unload the broken drive and start hauling it back to their lab.`
+			`	"Our thanks, Captain <last>. Having a partially functional drive like this will be very beneficial to our efforts." His voice cracks a bit, as if unused to being used much.`
+			choice
+				`	"What are you studying?"`
+					goto studying
+				`	"Great! I will find more."`
+			label studying
+				`	"Our previous research into Jump Drives determined that these drives are unsurprisingly multi-part systems. We know the outer part that we can see and handle is mostly the machinery for generating some kind of containment field or pocket. As to how it works or why it is needed..." his chant trails off and he makes a gesture you suspect may be the equivalent of a shrug. "Anyway, our team is focused on the nature of this outer system. It is our hope that - damaged as it is - its continued functionality might allow us to look a little farther inside its inner workings to figure out exactly what that field does and how it is used."`
+			`	"Well, my compatriots finished unloading rather quickly, so I should be off. For all our sakes, I hope you find more of these for us."`
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
 		payment 500000
