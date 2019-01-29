@@ -53,6 +53,7 @@ public:
 	Point operator/(double scalar) const;
 	Point &operator/=(double scalar);
 	
+	// Multiply the respective components of each Point.
 	Point operator*(const Point &other) const;
 	Point &operator*=(const Point &other);
 	
@@ -74,8 +75,11 @@ public:
 	double Distance(const Point &point) const;
 	double DistanceSquared(const Point &point) const;
 	
+	// Take the absolute value of both coordinates.
 	friend Point abs(const Point &p);
+	// Use the min of each x and each y coordinates.
 	friend Point min(const Point &p, const Point &q);
+	// Use the max of each x and each y coordinates.
 	friend Point max(const Point &p, const Point &q);
 	
 	

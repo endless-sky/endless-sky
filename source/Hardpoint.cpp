@@ -194,7 +194,7 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 	
 	// Apply the aim and hardpoint offset.
 	aim += angle;
-	start += outfit->HardpointOffset() * aim.Unit();
+	start += aim.Rotate(outfit->HardpointOffset());
 	
 	// Create a new projectile, originating from this hardpoint.
 	projectiles.emplace_back(ship, start, aim, outfit);
@@ -229,7 +229,7 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 	// Firing effects are displayed at the anti-missile hardpoint that just fired.
 	Angle aim(offset);
 	angle = aim - ship.Facing();
-	start += outfit->HardpointOffset() * aim.Unit();
+	start += aim.Rotate(outfit->HardpointOffset());
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
 	
 	// Figure out where the effect should be placed. Anti-missiles do not create
