@@ -444,10 +444,12 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 	int textWidth;
 	int textHeight;
 	pango_layout_get_pixel_size(layout, &textWidth, &textHeight);
-	// Pango draws a PANGO_UNDERLINE_LOW under the logical rectangle.
+	// Pango draws a PANGO_UNDERLINE_LOW under the logical rectangle,
+	// and an underline may be longer than a text width.
 	PangoRectangle ink_rect;
 	pango_layout_get_pixel_extents(layout, &ink_rect, nullptr);
 	textHeight = max(textHeight, ink_rect.y + ink_rect.height);
+	textWidth = max(textWidth, ink_rect.x + ink_rect.width);
 	// Check this surface has enough width.
 	if(surfaceWidth < textWidth)
 	{
