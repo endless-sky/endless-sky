@@ -371,7 +371,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 
 
 
-// Place a fleet in the given system, already "in action."
+// Place one of the variants in the given system, already "in action."
 void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried) const
 {
 	if(!total || variants.empty())

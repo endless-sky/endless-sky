@@ -259,8 +259,7 @@ void Engine::Place()
 	for (const shared_ptr<Ship> &ship : ships)
 	{
 		Point pos;
-		Angle angle = Angle::Random(360.);
-		Point velocity = angle.Unit();
+		Angle angle = Angle::Random();
 		// Any ships in the same system as the player should be either
 		// taking off from a specific planet or nearby.
 		if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
@@ -281,15 +280,17 @@ void Engine::Place()
 			else if(hasOwnPlanet)
 				pos = object->Position() + angle.Unit() * Random::Real() * object->Radius();
 		}
-		// Any special ship with the default (0, 0) position is in a different system,
-		// disabled, or otherwise unable to land on viable planets in the player's system.
+		// If the position is still (0, 0), the special ship is in a different
+		// system, disabled, or otherwise unable to land on viable planets in
+		// the player's system: place it "in flight".
 		if(!pos)
 		{
 			ship->SetPlanet(nullptr);
 			Fleet::Place(*ship->GetSystem(), *ship);
 		}
+		// This ship is taking off from a planet.
 		else
-			ship->Place(pos, ship->IsDisabled() ? Point() : velocity, angle);
+			ship->Place(pos, angle.Unit(), angle);
 	}
 	// Move any ships that were randomly spawned into the main list, now
 	// that all special ships have been repositioned.
