@@ -348,6 +348,12 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 	if(!params)
 		params = &defaultParams;
 	
+	// Return if already cached.
+	const CacheKey key(str, *params, showUnderlines);
+	auto cached = cache.Use(key);
+	if(cached.second)
+		return *cached.first;
+	
 	// Convert to viewport coodinates.
 	Layout viewParams(*params);
 	if(params->width > 0)
@@ -356,12 +362,6 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 		viewParams.lineHeight = ViewFromTextFloorY(params->lineHeight);
 	if(params->paragraphBreak != 0)
 		viewParams.paragraphBreak = ViewFromTextFloorY(params->paragraphBreak);
-	
-	// Return if already cached.
-	const CacheKey key(str, viewParams, showUnderlines);
-	auto cached = cache.Use(key);
-	if(cached.second)
-		return *cached.first;
 	
 	// Truncate
 	const int layoutWidth = viewParams.width < 0 ? -1 : viewParams.width * PANGO_SCALE;
