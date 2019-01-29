@@ -251,9 +251,22 @@ string Font::RemoveAccelerator(const string &str)
 {
 	string dest;
 	bool afterAccel = false;
+	bool isTag = false;
 	for(char c : str)
 	{
-		if(c == '_')
+		if(isTag)
+		{
+			dest += c;
+			if(c == '>')
+				isTag = false;
+		}
+		else if(c == '<')
+		{
+			dest += c;
+			isTag = true;
+			afterAccel = false;
+		}
+		else if(c == '_')
 		{
 			if(afterAccel)
 				dest += c;
