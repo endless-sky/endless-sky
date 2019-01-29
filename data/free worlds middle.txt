@@ -993,7 +993,7 @@ mission "FW Northern 4.1A"
 		government "Navy (Oathkeeper)"
 		personality heroic staying uninterested
 		system Alioth
-		ship "Auxiliary (Transport)" "N.S. Peacemaker"
+		ship "Auxiliary (Transport)" "N.S. Redball"
 
 
 
@@ -1084,7 +1084,7 @@ mission "FW Alphas 1.1"
 	npc accompany save
 		government "Navy (Oathkeeper)"
 		personality escort heroic
-		ship "Auxiliary (Transport)" "N.S. Peacemaker"
+		ship "Auxiliary (Transport)" "N.S. Redball"
 	npc
 		government "Free Worlds"
 		personality heroic escort
@@ -1210,7 +1210,7 @@ mission "FW Alphas 1.1A"
 	npc accompany save
 		government "Navy (Oathkeeper)"
 		personality escort heroic
-		ship "Auxiliary (Transport)" "N.S. Peacemaker"
+		ship "Auxiliary (Transport)" "N.S. Redball"
 	
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
