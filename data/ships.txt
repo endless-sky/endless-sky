@@ -1284,6 +1284,8 @@ ship "Dropship"
 	thumbnail "thumbnail/dropship"
 	attributes
 		category "Fighter"
+		licenses
+			Navy
 		"cost" 91000
 		"shields" 600
 		"hull" 200
