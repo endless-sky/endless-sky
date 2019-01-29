@@ -993,7 +993,7 @@ mission "FW Northern 4.1A"
 		government "Navy (Oathkeeper)"
 		personality heroic staying uninterested
 		system Alioth
-		ship "Cruiser (Mark II)" "N.S. Peacemaker"
+		ship "Auxiliary (Transport)" "N.S. Peacemaker"
 
 
 
