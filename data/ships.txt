@@ -179,6 +179,7 @@ ship "Arrow"
 
 
 ship "Auxiliary"
+	plural "Auxiliaries"
 	sprite "ship/auxiliaryh"
 	thumbnail "thumbnail/auxiliaryh"
 	attributes
