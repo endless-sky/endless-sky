@@ -168,9 +168,10 @@ void Dialog::Draw()
 			inputPos.X() - (WIDTH - 20) * .5 + 5.,
 			inputPos.Y() - .5 * font.Height());
 		const Font::Layout layout(Font::TRUNC_FRONT, WIDTH - 30);
-		font.Draw(input, stringPos, bright, &layout);
+		const string validatedInput(Font::EscapeMarkupHasError(input));
+		font.Draw(validatedInput, stringPos, bright, &layout);
 		
-		Point barPos(stringPos.X() + font.Width(input, &layout) + 2., inputPos.Y());
+		Point barPos(stringPos.X() + font.Width(validatedInput, &layout) + 2., inputPos.Y());
 		FillShader::Fill(barPos, Point(1., 16.), dim);
 	}
 }
@@ -305,7 +306,7 @@ void Dialog::DoCallback() const
 	}
 	
 	if(stringFun)
-		stringFun(input);
+		stringFun(Font::EscapeMarkupHasError(input));
 	
 	if(voidFun)
 		voidFun();

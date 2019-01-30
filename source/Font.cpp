@@ -21,14 +21,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <string>
+#include <vector>
 
 using namespace std;
 
 namespace {
 	bool showUnderlines = false;
 	const int TOTAL_TAB_STOPS = 8;
-	
 	const Font::Layout defaultParams;
+	
+	// 95 and x5f means "_".
+	const vector<string> acceptableCharacterReferences{ "gt;", "lt;", "amp;", "#95;", "#x5f;", "#x5F;" };
 	
 	// Convert from PANGO to pixel scale.
 	int PixelFromPangoCeil(int pangoScale)
@@ -147,6 +151,29 @@ void Font::ShowUnderlines(bool show)
 
 
 
+string Font::EscapeMarkupHasError(const string &str)
+{
+	const string text = ReplaceCharacters(str);
+	if(pango_parse_markup(text.c_str(), -1, '_', nullptr, nullptr, nullptr, nullptr))
+		return str;
+	else
+	{
+		string result;
+		for(const auto &c : text)
+		{
+			if(c == '<')
+				result += "&lt;";
+			else if(c == '>')
+				result += "&gt;";
+			else
+				result += c;
+		}
+		return result;
+	}
+}
+
+
+
 void Font::UpdateSurfaceSize() const
 {
 	if(cr)
@@ -211,7 +238,9 @@ void Font::UpdateFontDesc() const
 
 
 
-// Replaces straight quotation marks with curly ones.
+// Replaces straight quotation marks with curly ones,
+// and escapes "&" except for minimum necessaries because a pilot name may
+// contain "&" and that representation should be the same as the old version.
 string Font::ReplaceCharacters(const string &str)
 {
 	string buf;
@@ -219,7 +248,8 @@ string Font::ReplaceCharacters(const string &str)
 	bool isAfterWhitespace = true;
 	bool isAfterAccel = false;
 	bool isTag = false;
-	for(size_t pos = 0; pos < str.length(); ++pos)
+	const size_t len = str.length();
+	for(size_t pos = 0; pos < len; ++pos)
 	{
 		if(isTag)
 		{
@@ -240,6 +270,22 @@ string Font::ReplaceCharacters(const string &str)
 			else if(isAfterAccel && str[pos] == '_')
 				// Remove an extra underbar.
 				;
+			else if(str[pos] == '&')
+			{
+				buf.append(1, '&');
+				bool hit = false;
+				for(const auto &s : acceptableCharacterReferences)
+				{
+					const size_t slen = s.length();
+					if(len - pos > slen && !str.compare(pos + 1, slen, s))
+					{
+						hit = true;
+						break;
+					}
+				}
+				if(!hit)
+					buf.append("amp;");
+			}
 			else
 				buf.append(1, str[pos]);
 			isAfterWhitespace = (str[pos] == ' ');

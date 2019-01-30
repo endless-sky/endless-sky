@@ -81,6 +81,9 @@ public:
 	
 	static void ShowUnderlines(bool show);
 	
+	// Escape markup characters if it causes some errors.
+	static std::string EscapeMarkupHasError(const std::string &str);
+	
 private:
 	// Text rendered as a sprite.
 	struct RenderedText {
