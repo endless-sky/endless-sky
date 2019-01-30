@@ -907,10 +907,10 @@ ship "Combat Drone"
 		"hull" 700
 		"automaton" 1
 		"mass" 20
-		"drag" .59
+		"drag" .6
 		"heat dissipation" .9
-		"outfit space" 58
-		"weapon capacity" 8
+		"outfit space" 62
+		"weapon capacity" 12
 		"engine capacity" 28
 		weapon
 			"blast radius" 5
@@ -918,7 +918,8 @@ ship "Combat Drone"
 			"hull damage" 25
 			"hit force" 75
 	outfits
-		"Beam Laser"
+		"Javelin Pod"
+		"Javelin" 200
 		
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor"
@@ -928,7 +929,7 @@ ship "Combat Drone"
 		
 	engine -9 29
 	engine 9 29
-	gun 0 -29 "Beam Laser"
+	gun 0 -29 "Javelin Pod"
 	explode "tiny explosion" 15
 	description "Combat drones are pilotless attack ships used primarily by the Republic Navy. Although very weak and easy to destroy, they can be very effective in large numbers. Because drones do not need a cockpit, they can be filled entirely with equipment and solid metal, which makes their hulls stronger than other small ships."
 
