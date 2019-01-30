@@ -79,8 +79,6 @@ public:
 	// Get the height of the fonts.
 	int Height() const;
 	
-	int Space() const;
-	
 	static void ShowUnderlines(bool show);
 	
 private:
