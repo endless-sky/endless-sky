@@ -1256,6 +1256,7 @@ mission "Remnant: Expanded Horizons Quarg 3"
 
 mission "Remnant: Broken Jump Drive 1"
 	name "Broken Jump Drive Delivery"
+	description "You have been asked to deliver a broken jump drive to the researchers on <planet>."
 	minor
 	landing
 	to offer
@@ -1296,6 +1297,7 @@ mission "Remnant: Broken Jump Drive 1"
 
 mission "Remnant: Broken Jump Drive 2"
 	name "Broken Jump Drive Delivery"
+	description "Please deliver a broken jump drive to the researchers on <planet>."
 	to offer
 		has "Remnant: Broken Jump Drive 1: done"
 	source
@@ -1325,7 +1327,7 @@ mission "Remnant: Broken Jump Drive 2"
 					goto studying
 				`	"Great! I will find more."`
 			label studying
-				`	"Our previous research into Jump Drives determined that these drives are unsurprisingly multi-part systems. We know the outer part that we can see and handle is mostly the machinery for generating some kind of containment field or pocket. As to how it works or why it is needed..." his chant trails off and he makes a gesture you suspect may be the equivalent of a shrug. "Anyway, our team is focused on the nature of this outer system. It is our hope that - damaged as it is - its continued functionality might allow us to look a little farther inside its inner workings to figure out exactly what that field does and how it is used."`
+			`	"Our previous research into Jump Drives determined that these drives are unsurprisingly multi-part systems. We know the outer part that we can see and handle is mostly the machinery for generating some kind of containment field or pocket. As to how it works or why it is needed..." his chant trails off and he makes a gesture you suspect may be the equivalent of a shrug. "Anyway, our team is focused on the nature of this outer system. It is our hope that - damaged as it is - its continued functionality might allow us to look a little farther inside its inner workings to figure out exactly what that field does and how it is used."`
 			`	"Well, my compatriots finished unloading rather quickly, so I should be off. For all our sakes, I hope you find more of these for us."`
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
@@ -1336,6 +1338,7 @@ mission "Remnant: Broken Jump Drive 2"
 
 mission "Remnant: Broken Jump Drive 3"
 	name "Broken Jump Drive Delivery"
+	description "The researchers on <planet> need a broken jump drive for testing."
 	to offer
 		has "Remnant: Broken Jump Drive 2: done"
 	source
@@ -1365,7 +1368,7 @@ mission "Remnant: Broken Jump Drive 3"
 					goto studying
 				`	"Great! I will find more."`
 			label studying
-				`	He looks thoughtful for a moment, then warbles "As you may know, standard hyperdrives work by generating a fusion reaction and folding it into the fabric of space/time, and these folds naturally fall along the known hyperlanes. I suppose one could view those lanes as the 'crease lines' of the universe. My favorite theory is that jump drives have some additional machinery to guide the fold. That way they can dictate where the fold occurs instead of just aligning with the nearest crease. Given their increase fuel draw, it makes sense that it would take more fuel to generate a fresh fold than to re-use an existing crease."`
+			`	He looks thoughtful for a moment, then warbles "As you may know, standard hyperdrives work by generating a fusion reaction and folding it into the fabric of space/time, and these folds naturally fall along the known hyperlanes. I suppose one could view those lanes as the 'crease lines' of the universe. My favorite theory is that jump drives have some additional machinery to guide the fold. That way they can dictate where the fold occurs instead of just aligning with the nearest crease. Given their increase fuel draw, it makes sense that it would take more fuel to generate a fresh fold than to re-use an existing crease."`
 			`	"Oh, before I forget.." he hands you <payment>. "Off to start setting up the tests" he trundles off after the wagon disappearing down a distant corridor.`
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
@@ -1376,6 +1379,7 @@ mission "Remnant: Broken Jump Drive 3"
 
 mission "Remnant: Broken Jump Drive 4"
 	name "Broken Jump Drive Delivery"
+	description "You have been asked to deliver a broken jump drive to the researchers on <planet>."
 	to offer
 		has "Remnant: Broken Jump Drive 3: done"
 	source
@@ -1404,7 +1408,7 @@ mission "Remnant: Broken Jump Drive 4"
 					goto studying
 				`	"Good luck with that."`
 			label studying
-				`	"Good, and about to get better" they sing. "We are working on various aspects of a theory that the jump drive actually disregards traditional jumping entirely, and uses the folding mechanism to put the ship itself into a pocket, while somehow triggering an opening to said pocket in the target system. If this is true, it could be fairly dangerous to try activating these anywhere close to fragile things like cities or mountains or whatnot, which is why they put our lab on the far side of the planet from all such things. So we have a bit of a trip to get to our lab, but it should be exciting once we get there. Fare well!" With that, they head off towards a large vehicle nearby.`
+			`	"Good, and about to get better" they sing. "We are working on various aspects of a theory that the jump drive actually disregards traditional jumping entirely, and uses the folding mechanism to put the ship itself into a pocket, while somehow triggering an opening to said pocket in the target system. If this is true, it could be fairly dangerous to try activating these anywhere close to fragile things like cities or mountains or whatnot, which is why they put our lab on the far side of the planet from all such things. So we have a bit of a trip to get to our lab, but it should be exciting once we get there. Fare well!" With that, they head off towards a large vehicle nearby.`
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
 		payment 500000
@@ -1414,6 +1418,7 @@ mission "Remnant: Broken Jump Drive 4"
 
 mission "Remnant: Broken Jump Drive 5"
 	name "Broken Jump Drive Delivery"
+	description "A team of engineers on <planet> would like a broken jump drive to study."
 	to offer
 		has "Remnant: Broken Jump Drive 4: done"
 	source
@@ -1428,21 +1433,48 @@ mission "Remnant: Broken Jump Drive 5"
 				`	(Maybe later.)`
 					goto refuse
 				`	(Yes.)`
-			`	"Much appreciated. The sooner they get it, the sooner they can start on their project."`
+			`	"Much appreciated. The sooner they get it, the sooner they can start on their project. That being said, I have spoken with the other directors, and we have decided that we are getting so many requests that we will put these into the job board for you. Any time the landing scans detect one of these broken jump drives, the system will display a message on the job board listing where the next one needs to be delivered."`
 				accept
 			label refuse
 			`	He looks surprised "Really? Oh. Let us know when you are ready to make the delivery. The researchers will be waiting for it."`
 				defer
 	on complete
 		conversation
-			`The landing pad on <planet is tucked away just behind the spaceport. A handful of engineers have a conveyor belt already set up to offload the drive from your ship when you arrive. When you open the hatch they extend it right up the ramp, and quickly offload the drive onto it. The machinery quickly wisks the drive into a nearby structure along with its escort. A couple of the engineers stop by to talk with you and hand you <payment>.`
+			`The landing pad on <planet is tucked away just behind the spaceport. A handful of engineers have a conveyor belt already set up to offload the drive from your ship when you arrive. When you open the hatch they extend it right up the ramp, and quickly offload the drive onto it. The machinery quickly whisks the drive into a nearby structure along with its escort. A couple of the engineers stop by to talk with you and hand you <payment>.`
 			`	"Thanks for bringing us this drive. It is a rare piece of technology for us to get our hands on."`
 			choice
 				`	"What are you studying?"`
 					goto studying
 				`	"	I will leave you to it."`
 			label studying
-				`	With a pleased expression they break into song about mining the deeps for the mysteries of the sky. As best you can tell, they are trying to figure out the materials that the drive is made with, along with anything they deduce about how they were made.`
+			`	With a pleased expression they break into song about mining the deeps for the mysteries of the sky. As best you can tell, they are trying to figure out the materials that the drive is made with, followed by experiments to replicate those materials.`
+		outfit "Jump Drive (Broken)" -1
+		"remnant: broken jump drive count" ++
+		payment 500000
+		event "remnant research update bjd1" 100 200
+		"reputation: Remnant" ++
+
+
+
+event "remnant research update bjd1"
+# bjd1 = Broken Jump Drive 1. This event is included for forward compatibility with future missions that will require this event to be complete.
+
+
+mission "Remnant: Broken Jump Drive job"
+	name "Broken Jump Drive Delivery"
+	description "The researchers on <planet> need another broken jump drive to continue their project."
+	job
+	repeat
+	to offer
+		has "Remnant: Broken Jump Drive 5: done"
+	source
+		government "Remnant"
+	destination
+		government "Remnant"
+	on offer
+		require "Jump Drive (Broken)"
+	on complete
+		dialog "The research team quickly offloads the broken jump drive and pays you <payment> before hurrying back to their lab."
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
 		payment 500000
