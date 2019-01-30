@@ -217,6 +217,7 @@ string Font::ReplaceCharacters(const string &str)
 	string buf;
 	buf.reserve(str.length());
 	bool isAfterWhitespace = true;
+	bool isAfterAccel = false;
 	bool isTag = false;
 	for(size_t pos = 0; pos < str.length(); ++pos)
 	{
@@ -236,9 +237,13 @@ string Font::ReplaceCharacters(const string &str)
 				buf.append(isAfterWhitespace ? "\xE2\x80\x98" : "\xE2\x80\x99");
 			else if(str[pos] == '"')
 				buf.append(isAfterWhitespace ? "\xE2\x80\x9C" : "\xE2\x80\x9D");
+			else if(isAfterAccel && str[pos] == '_')
+				// Remove an extra underbar.
+				;
 			else
 				buf.append(1, str[pos]);
 			isAfterWhitespace = (str[pos] == ' ');
+			isAfterAccel = (str[pos] == '_');
 			isTag = (str[pos] == '<');
 		}
 	}
@@ -250,33 +255,21 @@ string Font::ReplaceCharacters(const string &str)
 string Font::RemoveAccelerator(const string &str)
 {
 	string dest;
-	bool afterAccel = false;
 	bool isTag = false;
 	for(char c : str)
 	{
 		if(isTag)
 		{
 			dest += c;
-			if(c == '>')
-				isTag = false;
+			isTag = (c != '>');
 		}
 		else if(c == '<')
 		{
 			dest += c;
 			isTag = true;
-			afterAccel = false;
 		}
-		else if(c == '_')
-		{
-			if(afterAccel)
-				dest += c;
-			afterAccel = !afterAccel;
-		}
-		else
-		{
+		else if(c != '_')
 			dest += c;
-			afterAccel = false;
-		}
 	}
 	return dest;
 }
