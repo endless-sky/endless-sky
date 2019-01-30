@@ -2789,9 +2789,7 @@ ship "Sparrow"
 			"hull damage" 80
 			"hit force" 240
 	outfits
-		"Beam Laser"
-		"Meteor Missile Launcher"
-		"Meteor Missile" 35
+		"Beam Laser" 2
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -2804,7 +2802,7 @@ ship "Sparrow"
 	engine -5 35
 	engine 5 35
 	gun -7 -10 "Beam Laser"
-	gun 7 -10 "Meteor Missile Launcher"
+	gun 7 -10 "Beam Laser"
 	leak "flame" 60 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -2894,17 +2892,19 @@ ship "Star Barge"
 			"hull damage" 80
 			"hit force" 240
 	outfits
+		"Anti-Missile Turret"
+		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		
-		"Chipmunk Plasma Thruster"
-		"Chipmunk Plasma Steering"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
 		"Hyperdrive"
 		
 	engine -9 38
 	engine 9 38
-	turret 0 -8
+	turret 0 -8 "Anti-Missile Turret"
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 10
