@@ -1285,7 +1285,7 @@ mission "Remnant: Broken Jump Drive 1"
 					goto hyperdrive
 				`	"I will keep a lookout for more."`
 			label hyperdrive
-				`	The engineer looks at you incredulously. "You mean you were actually depending on this drive?" He shakes his head in disbelief. "You are lucky you managed to get this far, then. It is surprising that they exist at all, let alone still work properly. If you need a replacement drive, there are plenty available in the outfitter."`
+			`	The engineer looks at you incredulously. "You mean you were actually depending on this drive?" He shakes his head in disbelief. "You are lucky you managed to get this far, then. It is surprising that they exist at all, let alone still work properly. If you need a replacement drive, there are plenty available in the outfitter."`
 			`	"Next time you find one of these drives, just check with starport director. They will know where it will need to go." He turns and heads off with the rest of the team, turning briefly to give you friendly wave as they disembark.`
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
@@ -1391,7 +1391,7 @@ mission "Remnant: Broken Jump Drive 4"
 				`	(Maybe later.)`
 					goto refuse
 				`	(Yes.)`
-			`	"Excellent. Your finds have spurred discussion and excitement in various quarters. We have had teams researching jump drives for about at least a century now without a lot of success. I'm told they are rather intricate, but your finds are opening new avenues of investigation. That being said, I'll notify the team on <planet> to expect you."`
+			`	"Thank you. We are looking forward to seeing what comes from this."`
 				accept
 			label refuse
 			`	She taps something on her screen. "OK, I've notified them they will have to wait a bit. Let us know when you are ready."`
