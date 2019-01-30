@@ -1411,3 +1411,41 @@ mission "Remnant: Broken Jump Drive 4"
 		"reputation: Remnant" ++
 
 
+
+mission "Remnant: Broken Jump Drive 5"
+	name "Broken Jump Drive Delivery"
+	to offer
+		has "Remnant: Broken Jump Drive 4: done"
+	source
+		government "Remnant"
+	destination
+		government "Remnant"
+	on offer
+		require "Jump Drive (Broken)"
+		conversation
+			`You stop by the Director's desk to report another broken jump drive for one of their research times. The Director nods in appreciation and checks his list. "There is a new team starting a project on <planet>. Could you take it there please?"`
+			choice
+				`	(Maybe later.)`
+					goto refuse
+				`	(Yes.)`
+			`	"Much appreciated. The sooner they get it, the sooner they can start on their project."`
+				accept
+			label refuse
+			`	He looks surprised "Really? Oh. Let us know when you are ready to make the delivery. The researchers will be waiting for it."`
+				defer
+	on complete
+		conversation
+			`The landing pad on <planet is tucked away just behind the spaceport. A handful of engineers have a conveyor belt already set up to offload the drive from your ship when you arrive. When you open the hatch they extend it right up the ramp, and quickly offload the drive onto it. The machinery quickly wisks the drive into a nearby structure along with its escort. A couple of the engineers stop by to talk with you and hand you <payment>.`
+			`	"Thanks for bringing us this drive. It is a rare piece of technology for us to get our hands on."`
+			choice
+				`	"What are you studying?"`
+					goto studying
+				`	"	I will leave you to it."`
+			label studying
+				`	With a pleased expression they break into song about mining the deeps for the mysteries of the sky. As best you can tell, they are trying to figure out the materials that the drive is made with, along with anything they deduce about how they were made.`
+		outfit "Jump Drive (Broken)" -1
+		"remnant: broken jump drive count" ++
+		payment 500000
+		"reputation: Remnant" ++
+
+
