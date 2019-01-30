@@ -774,11 +774,13 @@ outfit "Javelin Pod"
 		"inaccuracy" 1
 		"velocity" 10
 		"lifetime" 60
-		"reload" 15
+		"reload" 12
+		"burst count" 5
+		"burst reload" 3
 		"firing energy" .2
 		"firing heat" 12
-		"shield damage" 57
-		"hull damage" 36
+		"shield damage" 48
+		"hull damage" 26
 		"hit force" 50
 		"missile strength" 2
 	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has expended all of its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles."
