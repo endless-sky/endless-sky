@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <functional>
 #include <string>
 
+class DataNode;
 class PlayerInfo;
 class System;
 
@@ -56,6 +57,9 @@ template <class T>
 	
 	// Draw this panel.
 	virtual void Draw() override;
+	
+	// Static method used to convert a DataNode into formatted Dialog text.
+	static void ParseTextNode(const DataNode &node, size_t startingIndex, std::string &text);
 	
 	
 protected:

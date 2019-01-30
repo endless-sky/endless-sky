@@ -97,21 +97,7 @@ void NPC::Load(const DataNode &node)
 		else if(child.Token(0) == "personality")
 			personality.Load(child);
 		else if(child.Token(0) == "dialog")
-		{
-			for(int i = 1; i < child.Size(); ++i)
-			{
-				if(!dialogText.empty())
-					dialogText += "\n\t";
-				dialogText += child.Token(i);
-			}
-			for(const DataNode &grand : child)
-				for(int i = 0; i < grand.Size(); ++i)
-				{
-					if(!dialogText.empty())
-						dialogText += "\n\t";
-					dialogText += grand.Token(i);
-				}
-		}
+			Dialog::ParseTextNode(child, 1, dialogText);
 		else if(child.Token(0) == "conversation" && child.HasChildren())
 			conversation.Load(child);
 		else if(child.Token(0) == "conversation" && child.Size() > 1)

@@ -129,24 +129,6 @@ namespace {
 		}
 		return available;
 	}
-	
-	// Parse the given node's text for a log or simple dialog.
-	void ParseSimpleText(string &text, bool isSpecial, const DataNode &node)
-	{
-		for(int i = isSpecial ? 3 : 1; i < node.Size(); ++i)
-		{
-			if(!text.empty())
-				text += "\n\t";
-			text += node.Token(i);
-		}
-		for(const DataNode &child : node)
-			for(int i = 0; i < child.Size(); ++i)
-			{
-				if(!text.empty())
-					text += "\n\t";
-				text += child.Token(i);
-			}
-	}
 }
 
 
@@ -176,7 +158,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			bool isSpecial = (child.Size() >= 3);
 			string &text = (isSpecial ?
 				specialLogText[child.Token(1)][child.Token(2)] : logText);
-			ParseSimpleText(text, isSpecial, child);
+			Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
 		}
 		else if(key == "dialog")
 		{
@@ -198,7 +180,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 					firstGrand.PrintTrace("Skipping unsupported dialog phrase syntax:");
 			}
 			else
-				ParseSimpleText(dialogText, false, child);
+				Dialog::ParseTextNode(child, 1, dialogText);
 		}
 		else if(key == "conversation" && child.HasChildren())
 			conversation.Load(child);
