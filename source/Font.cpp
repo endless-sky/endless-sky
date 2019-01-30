@@ -413,7 +413,6 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 	// Keyboard Accelerator
 	char *removeMarkupText;
 	const char *rawText;
-	vector<char> charBuffer(text.length() + 1);
 	PangoAttrList *al = nullptr;
 	GError *error = nullptr;
 	const char accel = showUnderlines ? '_' : '\0';
