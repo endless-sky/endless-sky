@@ -2806,7 +2806,7 @@ ship "Sparrow"
 	leak "flame" 60 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
-	description "Classified as an interceptor rather than a fighter because it has its own hyperdrive instead of needing to be carried inside a larger ship, the Tarazed Sparrow is the smallest and cheapest combat ship available. Its maneuverability and cheapness make the Sparrow a decent ship for asteroid mining, although its cargo space is limited. Another way for a Sparrow pilot to pay the bills is by hunting pirates... or by becoming one. In either case, it is a perilous way to earn a living."
+	description "Classified as an interceptor rather than a fighter because it has its own hyperdrive instead of needing to be carried inside a larger ship, the Tarazed Sparrow is the smallest and cheapest combat ship available. Although its cargo space is limited, the Sparrow's maneuverability makes it a decent ship for asteroid mining. Another way for a Sparrow pilot to pay the bills is by hunting pirates... or by becoming one. In either case, it is a perilous way to earn a living."
 	description "	Insurance reports indicate that as many as two out of every three first-time ship buyers who choose to pilot a Sparrow lose their ship (and often, their life as well) within the first month of owning it."
 
 
