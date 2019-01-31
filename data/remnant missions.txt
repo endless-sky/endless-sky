@@ -1432,7 +1432,7 @@ mission "Remnant: Broken Jump Drive 5"
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
-			`You stop by the director's desk to report having salvaged another broken jump drive for one of their research labs. The director nods in appreciation and checks his list. "There is a new team starting a project on <planet>. Could you take it there please?"`
+			`You stop by the director's desk to report having salvaged another broken jump drive for one of their research teams. The director nods in appreciation and checks his list. "There is a new team starting a project on <planet>. Could you take it there please?"`
 			choice
 				`	(Maybe later.)`
 					goto refuse
