@@ -38,7 +38,7 @@ mission "Frontier delivery [0]"
 		fleet "Small Northern Pirates" 2
 	on complete
 		payment 4000 180
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+		dialog phrase "generic cargo delivery payment"
 
 
 mission "Frontier delivery [1]"
@@ -69,7 +69,7 @@ mission "Frontier delivery [1]"
 		fleet "Small Northern Pirates" 3
 	on complete
 		payment 4000 180
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+		dialog phrase "generic cargo delivery payment"
 
 
 mission "Frontier delivery [2]"
@@ -99,7 +99,7 @@ mission "Frontier delivery [2]"
 		fleet "Large Northern Pirates"
 	on complete
 		payment 4000 180
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+		dialog phrase "generic cargo delivery payment"
 
 
 mission "Frontier Emigration [0]"
@@ -119,7 +119,7 @@ mission "Frontier Emigration [0]"
 		not attributes "frontier"
 	on complete
 		payment 3000 140
-		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
+		dialog phrase "generic passenger dropoff payment"
 
 
 mission "Frontier Emigration [1]"
@@ -139,7 +139,7 @@ mission "Frontier Emigration [1]"
 		not attributes "frontier"
 	on complete
 		payment 3000 140
-		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
+		dialog phrase "generic passenger dropoff payment"
 
 
 mission "Frontier Emigration [2]"
@@ -159,7 +159,7 @@ mission "Frontier Emigration [2]"
 		not attributes "frontier"
 	on complete
 		payment 3000 140
-		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
+		dialog phrase "generic passenger dropoff payment"
 
 
 mission "Disaster Relief"

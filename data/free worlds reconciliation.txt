@@ -509,7 +509,7 @@ mission "FW Embassy 1B"
 		ship "Star Queen" "Lady of the Lake"
 	
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"
 
 
 
@@ -2201,7 +2201,7 @@ mission "FW Syndicate Extremists 1"
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
 	
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"
 
 
 
@@ -2267,7 +2267,7 @@ mission "FW Syndicate Extremists 1A"
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
 	
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"
 
 
 

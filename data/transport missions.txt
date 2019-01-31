@@ -1755,7 +1755,7 @@ mission "Courier 1"
 	on complete
 		payment
 		payment 30000
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+		dialog phrase "generic cargo delivery payment"
 
 
 

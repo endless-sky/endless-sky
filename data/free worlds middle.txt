@@ -1213,7 +1213,7 @@ mission "FW Alphas 1.1A"
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
 	
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"
 	
 	on offer
 		log "With the help of the Oathkeepers, liberated Poisonwood from the Alpha invaders."

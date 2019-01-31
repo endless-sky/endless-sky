@@ -1714,7 +1714,7 @@ mission "FW Bounty 2"
 		system
 			near "Delta Sagittarii" 1 2
 		ship "Behemoth (Speedy)" "Moonless Night"
-		dialog `The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
+		dialog phrase "generic hunted bounty eliminated dialog"
 	
 	on complete
 		payment 200000
@@ -1758,7 +1758,7 @@ mission "FW Bounty 3"
 		government Bounty
 		system "Shaula"
 		ship "Osprey (Alien Weapons)" "Silverhawk"
-		dialog `The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
+		dialog phrase "generic hunted bounty eliminated dialog"
 	
 	on complete
 		"assisted free worlds" ++
