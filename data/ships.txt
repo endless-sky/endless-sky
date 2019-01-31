@@ -1153,6 +1153,7 @@ ship "Dreadnought"
 		"D41-HY Shield Generator"
 		"Small Radar Jammer"
 		"Liquid Helium Cooler"
+		"Laser Rifle" 21
 		
 		"Orca Plasma Thruster"
 		"Orca Plasma Steering"
@@ -2748,6 +2749,7 @@ ship "Skein"
 		"LP072a Battery Pack"
 		"D67-TM Shield Generator" 4
 		"Large Radar Jammer"
+		"Laser Rifle" 2
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
