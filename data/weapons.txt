@@ -664,7 +664,7 @@ outfit "Meteor Missile Launcher"
 		"shield damage" 260
 		"hull damage" 160
 		"hit force" 220
-		"missile strength" 4
+		"missile strength" 6
 	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
 
 effect "meteor fire"
@@ -777,10 +777,10 @@ outfit "Javelin Pod"
 		"reload" 15
 		"firing energy" .2
 		"firing heat" 12
-		"shield damage" 57
-		"hull damage" 36
+		"shield damage" 48
+		"hull damage" 28
 		"hit force" 50
-		"missile strength" 2
+		"missile strength" 3
 	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has expended all of its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles."
 	description "	The weapon's high rate of fire also makes it useful for saturating well-protected ships' anti-missile defenses so that more dangerous projectiles fired by allied ships can sneak through."
 
@@ -952,7 +952,7 @@ outfit "Heavy Rocket Launcher"
 		"firing heat" 250
 		"acceleration" .8
 		"drag" .1
-		"trigger radius" 30
+		"trigger radius" 20
 		"blast radius" 50
 		"shield damage" 850
 		"hull damage" 720
