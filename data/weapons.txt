@@ -774,7 +774,7 @@ outfit "Javelin Pod"
 		"inaccuracy" 1
 		"velocity" 10
 		"lifetime" 60
-		"reload" 12
+		"reload" 15
 		"burst count" 5
 		"burst reload" 3
 		"firing energy" .2
