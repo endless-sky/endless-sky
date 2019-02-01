@@ -614,7 +614,8 @@ const Planet *PlayerInfo::GetPlanet() const
 
 
 
-// If the player is landed, return the stellar object they are on.
+// If the player is landed, return the stellar object they are on. Some planets
+// (e.g. ringworlds) may include multiple stellar objects in the same system.
 const StellarObject *PlayerInfo::GetStellarObject() const
 {
 	if(!system || !planet)
@@ -1013,13 +1014,14 @@ void PlayerInfo::Land(UI *ui)
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
 	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsDisabled())
+		if(!ship->IsParked() && !ship->IsDisabled())
 		{
 			if(ship->GetSystem() == system)
 			{
 				ship->Recharge(hasSpaceport);
 				ship->Cargo().TransferAll(cargo);
-				ship->SetPlanet(planet);
+				if(!ship->GetPlanet())
+					ship->SetPlanet(planet);
 			}
 			else
 				ship->Recharge(false);
@@ -2168,7 +2170,7 @@ void PlayerInfo::ApplyChanges()
 	{
 		if(!ship->GetSystem() || ship->GetSystem()->Name().empty())
 			ship->SetSystem(system);
-		if(ship->GetSystem() == system)
+		if(ship->GetSystem() == system && (!ship->GetPlanet() || ship->GetPlanet()->Name().empty()))
 			ship->SetPlanet(planet);
 	}
 	
