@@ -39,7 +39,7 @@ phrase "deep mystery cube dropoff payment"
 		`hand the cube to the first beggar woman you see planetside. She accepts it without a word, and leaves.`
 		`drop the cube at a warehouse. Nobody comes around to collect it.`
 	word
-		` `
+		``
 		` "This has to be legal, or they couldn't post it to the job board," you remind yourself.`
 	word
 		` `
