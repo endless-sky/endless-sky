@@ -163,7 +163,7 @@ Point Rectangle::BottomRight() const
 // Check if a point is inside this rectangle.
 bool Rectangle::Contains(const Point &point) const
 {
-	// The point is withing the rectangle if its distance to the center is less
+	// The point is within the rectangle if its distance to the center is less
 	// than half the dimensions.
 	Point d = 2. * abs(point - center);
 	return (d.X() <= dimensions.X() && d.Y() <= dimensions.Y());

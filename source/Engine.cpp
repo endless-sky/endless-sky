@@ -245,6 +245,7 @@ void Engine::Place()
 		Place(mission.NPCs(), flagship);
 	
 	// Get the coordinates of the planet the player is leaving.
+	const Planet *planet = player.GetPlanet();
 	Point planetPos;
 	double planetRadius = 0.;
 	const StellarObject *object = player.GetStellarObject();
@@ -258,31 +259,38 @@ void Engine::Place()
 	for (const shared_ptr<Ship> &ship : ships)
 	{
 		Point pos;
-		Angle angle = Angle::Random(360.);
-		Point velocity = angle.Unit();
+		Angle angle = Angle::Random();
 		// Any ships in the same system as the player should be either
-		// taking off from the player's planet or nearby.
-		bool isHere = (ship->GetSystem() == player.GetSystem());
-		if(isHere)
-			pos = planetPos;
-		// Check whether this ship should take off with you. "Launching" ships can always take
-		// off, otherwise they must be able to land and also not be flagged to stay in space.
-		if(isHere && !ship->IsDisabled() && (ship->GetPersonality().IsLaunching()
-				|| ((player.GetPlanet()->CanLand(*ship) || ship->IsYours())
-				&& !(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting()))))
+		// taking off from a specific planet or nearby.
+		if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
 		{
-			if(player.GetPlanet())
-				ship->SetPlanet(player.GetPlanet());
-			pos += angle.Unit() * Random::Real() * planetRadius;
+			const Personality &person = ship->GetPersonality();
+			bool hasOwnPlanet = ship->GetPlanet();
+			bool launchesWithPlayer = (ship->IsYours() || planet->CanLand(*ship))
+					&& !(person.IsStaying() || person.IsWaiting() || hasOwnPlanet);
+			const StellarObject *object = hasOwnPlanet ?
+					ship->GetSystem()->FindStellar(ship->GetPlanet()) : nullptr;
+			// Default to the player's planet in the case of data definition errors.
+			if(person.IsLaunching() || launchesWithPlayer || (hasOwnPlanet && !object))
+			{
+				if(planet)
+					ship->SetPlanet(planet);
+				pos = planetPos + angle.Unit() * Random::Real() * planetRadius;
+			}
+			else if(hasOwnPlanet)
+				pos = object->Position() + angle.Unit() * Random::Real() * object->Radius();
 		}
-		else
+		// If the position is still (0, 0), the special ship is in a different
+		// system, disabled, or otherwise unable to land on viable planets in
+		// the player's system: place it "in flight".
+		if(!pos)
 		{
 			ship->SetPlanet(nullptr);
-			pos = planetPos + Angle::Random().Unit() * ((Random::Real() + 1.) * 400. + 2. * planetRadius);
-			velocity *= Random::Real() * ship->MaxVelocity();
+			Fleet::Place(*ship->GetSystem(), *ship);
 		}
-		
-		ship->Place(pos, ship->IsDisabled() ? Point() : velocity, angle);
+		// This ship is taking off from a planet.
+		else
+			ship->Place(pos, angle.Unit(), angle);
 	}
 	// Move any ships that were randomly spawned into the main list, now
 	// that all special ships have been repositioned.
