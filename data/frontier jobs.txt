@@ -210,7 +210,7 @@ mission "Instruct Novice Pilot"
 		system
 			distance 3 7
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort heroic vindictive
 		fleet
 			names "civilian"

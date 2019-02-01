@@ -22,7 +22,7 @@ mission "Wanderer Workers [0]"
 		government "Wanderer"
 	destination
 		distance 2 8
-		attributes factory urban
+		attributes "factory" "urban"
 		government "Wanderer"
 	on complete
 		payment
@@ -42,7 +42,7 @@ mission "Wanderer Workers [1]"
 		government "Wanderer"
 	destination
 		distance 2 8
-		attributes factory urban
+		attributes "factory" "urban"
 		government "Wanderer"
 	on complete
 		payment
@@ -63,7 +63,7 @@ mission "Wanderer Farmers [0]"
 		government "Wanderer"
 	destination
 		distance 2 8
-		attributes farming
+		attributes "farming"
 		government "Wanderer"
 	on complete
 		payment
@@ -84,7 +84,7 @@ mission "Wanderer Farmers [1]"
 		government "Wanderer"
 	destination
 		distance 2 8
-		attributes farming
+		attributes "farming"
 		government "Wanderer"
 	on complete
 		payment
@@ -147,7 +147,7 @@ mission "Wanderer Scientists (Pollution) [0]"
 		government "Wanderer"
 	destination
 		distance 2 8
-		attributes mining oil factory
+		attributes "mining" "oil" "factory"
 		government "Wanderer"
 	on complete
 		payment 15000 180
@@ -169,7 +169,7 @@ mission "Wanderer Scientists (Pollution) [1]"
 		government "Wanderer"
 	destination
 		distance 2 8
-		attributes mining oil factory
+		attributes "mining" "oil" "factory"
 		government "Wanderer"
 	on complete
 		payment 20000 180
@@ -313,7 +313,7 @@ mission "Wanderer Harvest [0]"
 		near "Ka'ch'chrai" 100
 	destination
 		distance 2 8
-		attributes farming
+		attributes "farming"
 		government "Wanderer"
 	on complete
 		payment
@@ -334,7 +334,7 @@ mission "Wanderer Harvest [1]"
 		near "Ka'ch'chrai" 100
 	destination
 		distance 2 8
-		attributes farming
+		attributes "farming"
 		government "Wanderer"
 	on complete
 		payment

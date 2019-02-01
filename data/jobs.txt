@@ -21,14 +21,14 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 			"combat rating" > 0
 			has "ships: Interceptor"
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes deep paradise "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "deep" "paradise" "near earth"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier north
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "north"
 		distance 2 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 			confusion 40
 		system destination
@@ -41,7 +41,7 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 			variant
 				"Berserker"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 40
 		system destination
@@ -55,7 +55,7 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 				"Berserker"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -82,14 +82,14 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 			"combat rating" > 0
 			has "ships: Interceptor"
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier north
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "north"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes deep paradise "near earth" core
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "deep" "paradise" "near earth" "core"
 		distance 2 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 40
 		fleet
@@ -101,7 +101,7 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 			variant
 				"Berserker"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 40
 		system
@@ -116,7 +116,7 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 				"Berserker"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -140,33 +140,33 @@ mission "Escort (Small, Northern, Dangerous Destination)"
 		random < 70
 		"combat rating" > 5
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes deep paradise "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "deep" "paradise" "near earth"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier north
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "north"
 		distance 3 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 30
 		system destination
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis entering harvests plunders
 			confusion 30
 		system destination
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 			confusion 30
 		system destination
 		fleet "Small Northern Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -188,26 +188,26 @@ mission "Escort (Small, Northern, Dangerous Origin)"
 		random < 40
 		"combat rating" > 5
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier north
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "north"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes deep paradise "near earth" core
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "deep" "paradise" "near earth" "core"
 		distance 3 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 30
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 30
 		system
 			distance 1
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 30
 		system
@@ -215,7 +215,7 @@ mission "Escort (Small, Northern, Dangerous Origin)"
 		fleet "Small Northern Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -237,39 +237,39 @@ mission "Escort (Medium, Northern, Dangerous Destination)"
 		random < 40
 		"combat rating" > 20
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes deep paradise "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "deep" "paradise" "near earth"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier north
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "north"
 		distance 3 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 20
 		system destination
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 20
 		system destination
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis entering harvests plunders
 			confusion 20
 		system destination
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 			confusion 20
 		system destination
 		fleet "Small Northern Pirates" 2
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -291,39 +291,39 @@ mission "Escort (Medium, Northern, Dangerous Origin)"
 		random < 40
 		"combat rating" > 20
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier north
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "north"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes deep paradise "near earth" core
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "deep" "paradise" "near earth" "core"
 		distance 3 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 20
 		fleet "Small Northern Pirates" 2
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 20
 		system
 			distance 1 2
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 20
 		system destination
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 			confusion 20
 		system destination
 		fleet "Small Northern Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -345,30 +345,30 @@ mission "Escort (Large, Northern, Dangerous Destination)"
 		random < 30
 		"combat rating" > 60
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes deep paradise "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "deep" "paradise" "near earth"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier north
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "north"
 		distance 3 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		system destination
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis entering harvests plunders
 		system destination
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 		system destination
 		fleet "Large Northern Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -390,31 +390,31 @@ mission "Escort (Large, Northern, Dangerous Origin)"
 		random < 30
 		"combat rating" > 60
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier north
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "north"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes deep paradise "near earth" core
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "deep" "paradise" "near earth" "core"
 		distance 3 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		system
 			distance 1
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		system
 			distance 1 2
 		fleet "Small Northern Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -436,32 +436,32 @@ mission "Escort (Extra Large, Northern, Dangerous Destination)"
 		random < 15
 		"combat rating" > 100
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes deep paradise "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "deep" "paradise" "near earth"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier north
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "north"
 		distance 3 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		system destination
 		fleet "Small Northern Pirates"
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis entering harvests plunders
 		system destination
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 		system destination
 		fleet "Small Northern Pirates"
 		fleet "Large Northern Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -483,37 +483,37 @@ mission "Escort (Extra Large, Northern, Dangerous Origin)"
 		random < 15
 		"combat rating" > 100
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier north
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "north"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes deep paradise "near earth" core
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "deep" "paradise" "near earth" "core"
 		distance 3 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		fleet "Small Northern Pirates"
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		system
 			distance 1 2
 		fleet "Small Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		system
 			distance 1 1
 		fleet "Large Northern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		system destination
 		fleet "Large Northern Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -539,14 +539,14 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 			"combat rating" > 0
 			has "ships: Interceptor"
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "core" "near earth"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core north frontier "dirt belt"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "core" "north" "frontier" "dirt belt"
 		distance 2 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 40
 		system destination
@@ -559,7 +559,7 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 			variant
 				"Berserker"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 			confusion 40
 		system destination
@@ -573,7 +573,7 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 				"Berserker"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -600,14 +600,14 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 			"combat rating" > 0
 			has "ships: Interceptor"
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core north frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "core" "north" "frontier"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes paradise "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "paradise" "near earth"
 		distance 2 5
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 40
 		system
@@ -621,7 +621,7 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 			variant
 				"Berserker"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 40
 		fleet
@@ -634,7 +634,7 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 				"Berserker"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -658,33 +658,33 @@ mission "Escort (Small, Core, Dangerous Destination)"
 		random < 70
 		"combat rating" > 5
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes paradise "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "paradise" "near earth"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core north frontier "dirt belt"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "core" "north" "frontier" "dirt belt"
 		distance 3 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 30
 		system destination
 		fleet "Small Core Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis entering harvests plunders
 			confusion 30
 		system destination
 		fleet "Small Core Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 			confusion 30
 		system destination
 		fleet "Small Core Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -706,34 +706,34 @@ mission "Escort (Small, Core, Dangerous Origin)"
 		random < 70
 		"combat rating" > 5
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core north frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "core" "north" "frontier"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes paradise "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "paradise" "near earth"
 		distance 3 5
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 30
 		system
 			distance 1
 		fleet "Small Core Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 30
 		system
 			distance 1 2
 		fleet "Small Core Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 30
 		fleet "Small Core Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -755,33 +755,33 @@ mission "Escort (Medium, Core, Dangerous Destination)"
 		random < 40
 		"combat rating" > 20
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes paradise "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "paradise" "near earth"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core north frontier "dirt belt"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "core" "north" "frontier" "dirt belt"
 		distance 3 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 20
 		system destination
 		fleet "Small Core Pirates" 2
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis entering harvests plunders
 			confusion 20
 		system destination
 		fleet "Small Core Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 			confusion 20
 		system destination
 		fleet "Small Core Pirates" 2
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -803,41 +803,41 @@ mission "Escort (Medium, Core, Dangerous Origin)"
 		random < 40
 		"combat rating" > 20
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core north frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "core" "north" "frontier"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes paradise "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "paradise" "near earth"
 		distance 3 5
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 20
 		system
 			distance 1
 		fleet "Small Core Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 20
 		system
 			distance 1
 		fleet "Small Core Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 20
 		system
 			distance 1 2
 		fleet "Small Core Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 20
 		fleet "Small Core Pirates" 2
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -859,30 +859,30 @@ mission "Escort (Large, Core, Dangerous Destination)"
 		random < 50
 		"combat rating" > 60
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes paradise "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "paradise" "near earth"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core north frontier "dirt belt"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "core" "north" "frontier" "dirt belt"
 		distance 3 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		system destination
 		fleet "Large Core Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis entering harvests plunders
 		system destination
 		fleet "Small Core Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 		system destination
 		fleet "Large Core Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -904,31 +904,31 @@ mission "Escort (Large, Core, Dangerous Origin)"
 		random < 50
 		"combat rating" > 60
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core north frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "core" "north" "frontier"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes paradise "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "paradise" "near earth"
 		distance 3 5
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		system
 			distance 1
 		fleet "Large Core Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		system
 			distance 1 2
 		fleet "Small Core Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		fleet "Large Core Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -950,32 +950,32 @@ mission "Escort (Extra Large, Core, Dangerous Destination)"
 		random < 20
 		"combat rating" > 100
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes paradise "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "paradise" "near earth"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core north frontier "dirt belt"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "core" "north" "frontier" "dirt belt"
 		distance 3 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		system destination
 		fleet "Large Core Pirates"
 		fleet "Small Core Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis entering harvests plunders
 		system destination
 		fleet "Small Core Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 		system destination
 		fleet "Large Core Pirates"
 		fleet "Small Core Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -997,38 +997,38 @@ mission "Escort (Extra Large, Core, Dangerous Origin)"
 		random < 20
 		"combat rating" > 100
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes core north frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "core" "north" "frontier"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes paradise "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "paradise" "near earth"
 		distance 3 5
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		system
 			distance 1
 		fleet "Large Core Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		system
 			distance 1
 		fleet "Small Core Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		system
 			distance 1 2
 		fleet "Small Core Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		fleet "Small Core Pirates"
 		fleet "Large Core Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -1054,14 +1054,14 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 			"combat rating" > 0
 			has "ships: Interceptor"
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier south rim "dirt belt"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "south" "rim" "dirt belt"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier south rim "dirt belt"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "south" "rim" "dirt belt"
 		distance 2 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 40
 		fleet
@@ -1073,7 +1073,7 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 			variant
 				"Hawk"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 			confusion 40
 		system destination
@@ -1087,7 +1087,7 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 				"Hawk"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -1111,26 +1111,26 @@ mission "Escort (Small, Southern, Dangerous Origin or Destination)"
 		random < 70
 		"combat rating" > 5
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier south rim "dirt belt"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "south" "rim" "dirt belt"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier south rim "dirt belt"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "south" "rim" "dirt belt"
 		distance 3 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 30
 		fleet "Small Southern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 			confusion 30
 		system destination
 		fleet "Small Southern Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -1152,26 +1152,26 @@ mission "Escort (Medium, Southern, Dangerous Origin or Destination)"
 		random < 40
 		"combat rating" > 20
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier south rim "dirt belt"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "south" "rim" "dirt belt"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier south rim "dirt belt"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "south" "rim" "dirt belt"
 		distance 3 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 			confusion 20
 		fleet "Small Southern Pirates" 2
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 			confusion 20
 		system destination
 		fleet "Small Southern Pirates" 2
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -1193,24 +1193,24 @@ mission "Escort (Large, Southern, Dangerous Origin or Destination)"
 		random < 50
 		"combat rating" > 60
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier south rim "dirt belt"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "south" "rim" "dirt belt"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier south rim "dirt belt"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "south" "rim" "dirt belt"
 		distance 3 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		fleet "Large Southern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 		system destination
 		fleet "Large Southern Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -1232,26 +1232,26 @@ mission "Escort (Extra Large, Southern, Dangerous Origin or Destination)"
 		random < 20
 		"combat rating" > 100
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier south rim "dirt belt"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "south" "rim" "dirt belt"
 	destination
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes frontier south rim "dirt belt"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "south" "rim" "dirt belt"
 		distance 3 4
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis harvests plunders
 		fleet "Large Southern Pirates"
 		fleet "Small Southern Pirates"
 	npc
-		government Pirate
+		government "Pirate"
 		personality nemesis staying harvests plunders
 		system destination
 		fleet "Large Southern Pirates"
 		fleet "Small Southern Pirates"
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
@@ -1272,15 +1272,15 @@ mission "Southern Pirate Attack"
 		"combat rating" > 100
 		random < 10
 	source
-		attributes frontier
+		attributes "frontier"
 		attributes rim south "dirt belt"
 	npc evade
-		government Pirate
+		government "Pirate"
 		personality heroic staying target harvests plunders
 		fleet "Small Southern Pirates"
 		fleet "Large Southern Pirates" 2
 	npc
-		government Militia
+		government "Militia"
 		personality heroic staying
 		fleet "Small Militia" 2
 	on offer
@@ -1305,15 +1305,15 @@ mission "Northern Pirate Attack"
 		"combat rating" > 100
 		random < 10
 	source
-		attributes frontier
+		attributes "frontier"
 		attributes north paradise deep
 	npc evade
-		government Pirate
+		government "Pirate"
 		personality heroic staying target harvests plunders
 		fleet "Small Northern Pirates"
 		fleet "Large Northern Pirates" 2
 	npc
-		government Republic
+		government "Republic"
 		personality heroic staying
 		fleet "Small Republic" 2
 	on offer
@@ -1338,15 +1338,15 @@ mission "Core Pirate Attack"
 		"combat rating" > 100
 		random < 10
 	source
-		attributes frontier
-		attributes core "near earth"
+		attributes "frontier"
+		attributes "core" "near earth"
 	npc evade
-		government Pirate
+		government "Pirate"
 		personality heroic staying target harvests plunders
 		fleet "Small Core Pirates"
 		fleet "Large Core Pirates" 2
 	npc
-		government Syndicate
+		government "Syndicate"
 		personality heroic staying
 		fleet "Small Syndicate" 2
 	on offer
@@ -1473,7 +1473,7 @@ mission "Cargo [2]"
 	to offer
 		random < 80
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 2 12
@@ -1491,7 +1491,7 @@ mission "Cargo [3]"
 	to offer
 		random < 70
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 3 14
@@ -1510,7 +1510,7 @@ mission "Cargo [4]"
 	to offer
 		random < 60
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 4 16
@@ -1564,7 +1564,7 @@ mission "Bulk Delivery [2]"
 	to offer
 		random < 50
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 4 16
@@ -1622,7 +1622,7 @@ mission "Rush Delivery [2]"
 	to offer
 		random < 70
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 6 14
@@ -1642,7 +1642,7 @@ mission "Rush Delivery [3]"
 	to offer
 		random < 60
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 7 16
@@ -2320,7 +2320,7 @@ mission "Large Bulk Delivery [2]"
 		random < 50
 		"cargo space" > 160
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 4 16
@@ -2381,7 +2381,7 @@ mission "Large Rush Delivery [2]"
 		random < 70
 		"cargo space" > 80
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 6 14
@@ -2402,7 +2402,7 @@ mission "Large Rush Delivery [3]"
 		random < 60
 		"cargo space" > 80
 	source
-		attributes mining textiles factory farming fishing oil
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 7 16
@@ -2423,7 +2423,7 @@ mission "Recycle garbage"
 	source
 		attributes station
 	destination
-		attributes factory mining "dirt belt"
+		attributes "factory" "mining" "dirt belt"
 		distance 9 12
 	on complete
 		dialog "You drop off the <commodity> at an especially smelly solid waste recycler and collect your payment of <payment>."
@@ -2634,10 +2634,10 @@ mission "Bounty Hunting (Marauder I)"
 				"combat rating" < 1200
 				random < 35
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
-		government Bounty
+		government "Bounty"
 		personality heroic staying nemesis target
 		system
 			distance 1 3
@@ -2660,10 +2660,10 @@ mission "Bounty Hunting (Marauder II)"
 				"combat rating" < 1800
 				random < 30
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
-		government Bounty
+		government "Bounty"
 		personality heroic staying nemesis target
 		system
 			distance 1 3
@@ -2686,10 +2686,10 @@ mission "Bounty Hunting (Marauder III)"
 				"combat rating" < 2200
 				random < 25
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
-		government Bounty
+		government "Bounty"
 		personality heroic staying nemesis target
 		system
 			distance 1 3
@@ -2712,10 +2712,10 @@ mission "Bounty Hunting (Marauder IV)"
 				"combat rating" < 2700
 				random < 30
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
-		government Bounty
+		government "Bounty"
 		personality heroic staying nemesis target
 		system
 			distance 1 3
@@ -2738,10 +2738,10 @@ mission "Bounty Hunting (Marauder V)"
 				"combat rating" < 3500
 				random < 25
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
-		government Bounty
+		government "Bounty"
 		personality heroic staying nemesis target
 		system
 			distance 1 3
@@ -2765,10 +2765,10 @@ mission "Bounty Hunting (Marauder VI)"
 				"combat rating" < 5000
 				random < 20
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
-		government Bounty
+		government "Bounty"
 		personality heroic staying nemesis target
 		system
 			distance 1 3
@@ -2787,10 +2787,10 @@ mission "Bounty Hunting (Marauder VII)"
 		"combat rating" > 2980
 		random < 20
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
-		government Bounty
+		government "Bounty"
 		personality heroic staying nemesis target
 		system
 			distance 1 3
@@ -2809,10 +2809,10 @@ mission "Bounty Hunting (Marauder VIII)"
 		"combat rating" > 4000
 		random < 15
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
-		government Bounty
+		government "Bounty"
 		personality heroic staying nemesis target
 		system
 			distance 1 3
@@ -2831,10 +2831,10 @@ mission "Bounty Hunting (Marauder IX)"
 		"combat rating" > 6000
 		random < 10
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core frontier
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
-		government Bounty
+		government "Bounty"
 		personality heroic unconstrained staying nemesis target
 		system
 			distance 1 3
@@ -2849,7 +2849,7 @@ mission "Marauder Hunted"
 	invisible
 	landing
 	repeat
-	destination Earth
+	destination "Earth"
 	source
 		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	to offer
