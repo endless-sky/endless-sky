@@ -35,7 +35,7 @@ government "Bounty Hunter"
 government "Coalition"
 	swizzle 5
 	color 1 .6 .7
-	"crew attack" 2
+	"crew attack" .6
 	"crew defense" 3
 	language "Coalition"
 	"player reputation" 1
