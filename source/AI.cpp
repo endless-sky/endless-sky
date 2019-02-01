@@ -3509,8 +3509,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 						allies.insert(ally.first);
 					}
 			}
-		// While iterating governments in the player's system, check if
-		// this is an enforcement zone for them.
+		// Check if this government has the authority to enforce scans & fines in this system.
 		if(!canScan.count(gov.first))
 			canScan.emplace(gov.first, gov.first->CanEnforce(playerSystem));
 	}

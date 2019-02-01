@@ -104,11 +104,7 @@ void Government::Load(const DataNode &node)
 		else if(child.Token(0) == "fine" && child.Size() >= 2)
 			fine = child.Value(1);
 		else if(child.Token(0) == "enforces" && child.HasChildren())
-		{
-			// Restrict this government's jurisdiction.
-			enforcementZones.emplace_back();
-			enforcementZones.back().Load(child);
-		}
+			enforcementZones.emplace_back(child);
 		else if(child.Token(0) == "enforces" && child.Size() == 2 && child.Token(1) == "all")
 			enforcementZones.clear();
 		else if(child.Token(0) == "death sentence" && child.Size() >= 2)
@@ -218,13 +214,10 @@ double Government::GetFineFraction() const
 // indicated system matches at least one enforcement zone.
 bool Government::CanEnforce(const System *system) const
 {
-	if(enforcementZones.empty())
-		return true;
-	else
-		for(const LocationFilter &filter : enforcementZones)
-			if(filter.Matches(system))
-				return true;
-	return false;
+	for(const LocationFilter &filter : enforcementZones)
+		if(filter.Matches(system))
+			return true;
+	return enforcementZones.empty();
 }
 
 
@@ -233,13 +226,10 @@ bool Government::CanEnforce(const System *system) const
 // indicated planet matches at least one enforcement zone.
 bool Government::CanEnforce(const Planet *planet) const
 {
-	if(enforcementZones.empty())
-		return true;
-	else
-		for(const LocationFilter &filter : enforcementZones)
-			if(filter.Matches(planet))
-				return true;
-	return false;
+	for(const LocationFilter &filter : enforcementZones)
+		if(filter.Matches(planet))
+			return true;
+	return enforcementZones.empty();
 }
 
 
