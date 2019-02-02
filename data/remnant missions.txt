@@ -1263,8 +1263,10 @@ mission "Remnant: Broken Jump Drive 1"
 		has "remnant blood test pure"
 	source
 		government "Remnant"
+		attributes outfitter
 	destination
 		government "Remnant"
+		attributes outfitter
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
@@ -1287,7 +1289,7 @@ mission "Remnant: Broken Jump Drive 1"
 				`	"Aren't you going to replace it with a hyperdrive?"`
 			`	The engineer looks at you incredulously. "You mean you were actually depending on this drive?" He shakes his head in disbelief. "You are lucky you managed to get this far, then. It is surprising that they exist at all, let alone still work properly. If you need a replacement drive, there are plenty available in the outfitter."`
 			label end
-			`	"Next time you find one of these drives, just check with a starport director. They will know where it will need to go." He turns and heads off with the rest of the team, turning briefly to give you friendly wave as they disembark.`
+			`	"Next time you find one of these drives, just check with a starport director. They will know where it will need to go. A word of warning: I strongly recommend not using these drives - there may disappear at the most inconvenient of times, and there won't always be an outfitter on hand." He turns and heads off with the rest of the team, turning briefly to give you friendly wave as they disembark.`
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
 		payment 500000
