@@ -945,8 +945,8 @@ outfit "Heavy Rocket Launcher"
 		"hit effect" "heavy rocket hit"
 		"die effect" "small explosion"
 		"inaccuracy" 1
-		"velocity" 9
-		"lifetime" 100
+		"velocity" 8
+		"lifetime" 125
 		"reload" 240
 		"firing energy" 1
 		"firing heat" 250
