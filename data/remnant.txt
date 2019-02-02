@@ -66,7 +66,46 @@ fleet "Large Remnant"
 		"Albatross (Heavy)"
 		"Albatross (Turret)"
 
-
+fleet "Remnant Transport"
+	government "Remnant"
+	names "remnant"
+	cargo 2
+	personality
+		disables plunders coward appeasing mining harvests
+	variant 10
+		"Gull"
+	variant 6
+		"Gull (Heavy)"
+	variant 5
+		"Gull (Sniper)"
+	variant 4
+		"Gull (Support)"
+	variant 5
+		"Gull (Cargo)"
+	variant 5
+		"Gull (Bunks)"
+	variant 10
+		"Pelican"
+	variant 10
+		"Pelican"
+		"Gull" 2
+	variant 8
+		"Pelican"
+		"Starling" 2
+	variant 6
+		"Pelican"
+		"Gull" 2
+		"Starling" 2
+	variant 2
+		"Pelican" 3
+		"Albatross (Heavy)"
+	variant 2
+		"Pelican" 2
+		"Starling (Thrasher)" 2
+		"Starling (Sniper)"
+	variant 2
+		"Pelican"
+		"Starling (Hunter)" 2
 
 phrase "remnant"
 	word
@@ -88,6 +127,16 @@ phrase "remnant"
 		"Green"
 		"New"
 		"Far"
+		"Ancient"
+		"Serene"
+		"Eternal"
+		"Gray"
+		"Starlit"
+		"Moonlit"
+		"Infinite"
+		"Steadfast"
+		"White"
+		"Black"
 	word
 		" "
 	word
@@ -110,6 +159,18 @@ phrase "remnant"
 		"Anchor"
 		"Beam"
 		"Forest"
+		"Mountain"
+		"Glen"
+		"Stronghold"
+		"Dream"
+		"Wind"
+		"Storm"
+		"Holdfast"
+		"Sea"
+		"Tower"
+		"Redoubt"
+		"Pillar"
+		"Matrix"
 	word
 		" "
 	word
@@ -131,12 +192,21 @@ phrase "remnant"
 		"Lost"
 		"Changed"
 		"Alive"
+		"Restored"
+		"Preserved"
+		"Renewed"
+		"Reborn"
+		"Ascending"
+		"Soaring"
+		"Enduring"
 
 
 
 shipyard "Remnant"
 	"Starling"
+	"Gull"
 	"Albatross"
+	"Pelican"
 
 shipyard "Remnant Gascraft"
 	"Gascraft"
@@ -171,3 +241,13 @@ outfitter "Remnant"
 	"Cargo Scanner"
 	"Outfit Scanner"
 	"Tuning Rifle"
+
+outfitter "Remnant Salvage"
+	"Generator (Furnace Class)"
+	"Small Heat Shunt"
+	"Systems Core (Small)"
+	"Thruster (Asteroid Class)"
+	"Thruster (Planetary Class)"
+	"Steering (Asteroid Class)"
+	"Steering (Planetary Class)"
+	"Korath Fire-Lance"

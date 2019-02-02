@@ -286,7 +286,7 @@ void PreferencesPanel::DrawControls()
 	const Color &bright = *GameData::Colors().Get("bright");
 	
 	// Check for conflicts.
-	Color red(.3, 0., 0., .3);
+	Color red(.3f, 0.f, 0.f, .3f);
 	
 	Table table;
 	table.AddColumn(-115, Table::LEFT);

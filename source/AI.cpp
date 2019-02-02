@@ -396,13 +396,14 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 
 
 
+// Remove records of what happened in the previous system, now that
+// the player has entered a new one.
 void AI::Clean()
 {
 	actions.clear();
 	notoriety.clear();
 	governmentActions.clear();
 	playerActions.clear();
-	helperList.clear();
 	swarmCount.clear();
 	fenceCount.clear();
 	miningAngle.clear();
@@ -415,10 +416,11 @@ void AI::Clean()
 
 
 
-// Clear ship orders. This should be done when the player lands on a planet,
-// but not when they jump from one system to another.
+// Clear ship orders and assistance requests. These should be done
+// when the player lands, but not when they change systems.
 void AI::ClearOrders()
 {
+	helperList.clear();
 	orders.clear();
 }
 
@@ -887,11 +889,13 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			if(helper.get() == &ship)
 				continue;
 			
-			// If any enemies of this ship are in its system, it cannot call for help.
+			// If any able enemies of this ship are in its system, it cannot call for help.
 			const System *system = ship.GetSystem();
 			if(helper->GetGovernment()->IsEnemy(gov) && flagship && system == flagship->GetSystem())
 			{
-				hasEnemy |= (system == helper->GetSystem() && !helper->IsDisabled());
+				// Disabled, overheated, or otherwise untargetable ships pose no threat.
+				bool harmless = helper->IsDisabled() || (helper->IsOverheated() && helper->Heat() >= 1.1) || !helper->IsTargetable();
+				hasEnemy |= (system == helper->GetSystem() && !harmless);
 				if(hasEnemy)
 					break;
 			}
@@ -1838,10 +1842,20 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	double targetAngle = Angle(facingGoal).Degrees() - currentAngle;
 	if(abs(targetAngle) > 180.)
 		targetAngle += (targetAngle < 0. ? 360. : -360.);
-	if(abs(targetAngle) < turn)
-		command.SetTurn(targetAngle / turn);
+	// Avoid "turn jitter" when position & velocity are well-matched.
+	bool changedDirection = (signbit(ship.Commands().Turn()) != signbit(targetAngle));
+	double targetTurn = abs(targetAngle / turn);
+	double lastTurn = abs(ship.Commands().Turn());
+	if(lastTurn && (changedDirection || (lastTurn < 1. && targetTurn > lastTurn)))
+	{
+		// Keep the desired turn direction, but damp the per-frame turn rate increase.
+		double dampedTurn = (changedDirection ? 0. : lastTurn) + min(.025, targetTurn);
+		command.SetTurn(copysign(dampedTurn, targetAngle));
+	}
+	else if(targetTurn < 1.)
+		command.SetTurn(copysign(targetTurn, targetAngle));
 	else
-		command.SetTurn(targetAngle < 0. ? -1. : 1.);
+		command.SetTurn(targetAngle);
 	
 	// Determine whether to apply thrust.
 	Point drag = ship.Velocity() * (ship.Attributes().Get("drag") / mass);
@@ -2298,13 +2312,14 @@ bool AI::DoCloak(Ship &ship, Command &command)
 	{
 		// Never cloak if it will cause you to be stranded.
 		const Outfit &attributes = ship.Attributes();
+		double fuelCost = attributes.Get("cloaking fuel") + attributes.Get("fuel consumption") - attributes.Get("fuel generation");
 		if(attributes.Get("cloaking fuel") && !attributes.Get("ramscoop"))
 		{
 			double fuel = ship.Fuel() * attributes.Get("fuel capacity");
 			int steps = ceil((1. - ship.Cloaking()) / attributes.Get("cloak"));
 			// Only cloak if you will be able to fully cloak and also maintain it
 			// for as long as it will take you to reach full cloak.
-			fuel -= attributes.Get("cloaking fuel") * (1 + 2 * steps);
+			fuel -= fuelCost * (1 + 2 * steps);
 			if(fuel < ship.JumpFuel())
 				return false;
 		}
@@ -2340,7 +2355,7 @@ bool AI::DoCloak(Ship &ship, Command &command)
 		// or 40% farther away before it begins decloaking again.
 		double hysteresis = ship.Commands().Has(Command::CLOAK) ? .4 : 0.;
 		// If cloaking costs nothing, and no one has asked you for help, cloak at will.
-		bool cloakFreely = !attributes.Get("cloaking fuel") && !ship.GetShipToAssist();
+		bool cloakFreely = (fuelCost <= 0.) && !ship.GetShipToAssist();
 		// If this ship is injured / repairing, it should cloak while under threat.
 		bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
 				&& (attributes.Get("shield generation") || attributes.Get("hull repair rate"));

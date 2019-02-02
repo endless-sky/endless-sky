@@ -478,7 +478,7 @@ mission "Returning Home"
 			
 			`	"Yes. I've thought a lot about it lately. I want to see my family again."`
 			choice
-				`	"Alright, I'll take you to <planet>"`
+				`	"Alright, I'll take you to <planet>."`
 					goto accept
 				`	"Sorry, but I'm not able to take you that far."`
 			
@@ -601,17 +601,18 @@ mission "Expanding Business [1]"
 					goto downplay
 				`	"Can I help you, sir?"`
 			
-			`	"I'm the one who should be using formal titles to address you, so please, Captain, don't call me sir. The name's David Joseph Turner, venture capitalist, entrepreneur, and famous Paradise Worlds businessman." Turner grabs a business card from the pocket and hands it to you. The card contains his contact information, an address on Martini, and makes sure to boast in golden letters his net worth of more than three billion credits.`
+			`	"I'm the one who should be using formal titles to address you, so please, Captain, don't call me sir.`
 				goto proposition
 			
 			label boast
-			`	"A personality as big as yourself should be receiving praise and recognition wherever you go! People must really have no respect these days. The name's David Joseph Turner, venture capitalist, entrepreneur, and famous Paradise Worlds businessman." Turner grabs a business card from the pocket and hands it to you. The card contains his contact information, an address on Martini, and makes sure to boast in golden letters his net worth of more than three billion credits.`
+			`	"A personality as big as yourself should be receiving praise and recognition wherever you go! People must really have no respect these days.`
 				goto proposition
 			
 			label downplay
-			`	"No need to downplay yourself, Captain! You've done God's work in saving humanity from that alien scourge. The name's David Joseph Turner, venture capitalist, entrepreneur, and famous Paradise Worlds businessman." Turner grabs a business card from the pocket and hands it to you. The card contains his contact information, an address on Martini, and makes sure to boast in golden letters his net worth of more than three billion credits.`
+			`	"No need to downplay yourself, Captain! You've done God's work in saving humanity from that alien scourge.`
 			
 			label proposition
+			`	"The name's David Joseph Turner, venture capitalist, entrepreneur, and famous Paradise Worlds businessman." Turner grabs a business card from his pocket and hands it to you. The card contains his contact information, an address on Martini, and makes sure to boast in golden letters his net worth of more than three billion credits.`
 			`	"You may not have heard of me, but I've sure as hell heard of you, and I'd like to make a proposition to you." Turner turns around and waves his arm across the crowd of people in the spaceport. "You see all the humans here? About one out of every four of these people only arrived here after war broke out through the wormhole. Captains who knew of the Hai came flocking here in droves after the Navy entered Kornephoros, hoping to avoid any troubles that the war would bring. Some captains returned after the war ended, but most stayed, and I see a massive market opportunity in that."`
 			branch rich
 				"net worth" >= 4000000000
@@ -662,6 +663,9 @@ mission "Expanding Business [1]"
 		government "Merchant"
 		ship "Star Queen (Hai)" "Chryso Vasilia"
 	
+	on visit
+		dialog `You've reached <planet>, but you've left Turner behind. Wait for Turner's ship to arrive before landing.`
+	
 	on complete
 		dialog `The freighters are ready to launch by the time you get to <planet>. "Now we just need to escort these freighters to Follower in the Alphard system and back in one piece," Turner exclaims, hopping back on to his Star Queen.`
 
@@ -700,6 +704,9 @@ mission "Expanding Business [2]"
 		government "Pirate"
 		system destination
 		fleet "Large Northern Pirates"
+	
+	on visit
+		dialog `You've reached <planet>, but you've left one of the ships you're suppose to be escorting behind. Wait for Turner's ship and all the Bulk Freighters to arrive before landing.`
 
 mission "Expanding Business [3]"
 	landing
@@ -713,13 +720,16 @@ mission "Expanding Business [3]"
 			`Turner jumps off of his Star Queen before the boarding ramp fully reaches the ground, clearly eager to get moving with this project.`
 			`	Turner swears under his breath when he walks up to you. "Low life pirates giving us trouble on the way here. That's the kind of trouble I'm talking about that an outfitter in Hai space would help with. There's no telling what would have happened had my Bulk Freighters not had their missiles. Or if you were not there to protect them, of course."`
 			`	Turner has a talk with the spaceport authorities, and within a short amount of time the necessary cargo is loaded on to the freighters. When the freighters are fully loaded, they take off without even giving you time to get to your ship.`
-			`	"They can get back to Greenwater on their own," Turner says from behind you as you watch the freighters fly off. "I told them to leave as soon as they could. As for you and me, I need escort to <destination>. I received a message from an old friend there who would like to have a chat with me ASAP."`
+			`	"They can get back to Greenwater on their own," Turner says from behind you as you watch the freighters fly off. "I told them to leave as soon as they could. As for you and me, I need escort to <destination>. I received a message from an old friend there who would like to have a chat with me."`
 				accept
 				
 	npc save
 		personality escort
 		government "Merchant"
 		ship "Star Queen (Hai)" "Chryso Vasilia"
+		
+	on visit
+		dialog `You've reached <planet>, but you've left Turner behind. Wait for Turner's ship to arrive before landing.`
 
 mission "Expanding Business [4]"
 	landing
@@ -733,12 +743,20 @@ mission "Expanding Business [4]"
 			`Turner lands his ship outside of the Kraz Cybernetics building. "Wait here while I have a talk with my friend, Edward. This should only take a few minutes."`
 			`	A few hours later, Turner returns carrying a black suitcase. "Sorry, that took longer than I expected. Now, let's get back to <destination>."`
 				accept
-			
+	
+	npc save
+		personality escort
+		government "Merchant"
+		ship "Star Queen (Hai)" "Chryso Vasilia"
+	
+	on visit
+		dialog `You've reached <planet>, but you've left Turner behind. Wait for Turner's ship to arrive before landing.`
+	
 	on complete
 		event "outfitter on greenwater" 95
 		conversation
 			`By the time you finally reach <planet>, construction on the outfitter is already underway. The construction workers have laid the foundation of the outfitter close to the spaceport, taking up a good portion of a park.`
-			`	"I had to pay a pretty penny to get the outfitter this close to the spaceport," Turner says to you, "but it'll all be worth it in the end."`
+			`	"I had to pay a pretty penny to get the outfitter this close to the spaceport," Turner says to you, "but it'll all be worth it in the end.`
 			`	"The outfitter should be done in three months or so. You'll know it's done once you find an extra two thousand credits in your pocket every day." Turner pats you on the back. "Have fun until then, Captain <last>. Keep yourself busy saving the galaxy."`
 
 event "outfitter on greenwater"
@@ -854,6 +872,9 @@ mission "Expanding Business [6]"
 		system destination
 		fleet "Large Northern Pirates"
 		
+	on visit
+		dialog `You've reached <planet>, but you've left one of the ships you're suppose to be escorting behind. Wait for Turner's ship and all the Bulk Freighters to arrive before landing.`
+
 	on complete
 		dialog `The Bulk Freighters are loaded with supplies without any problem. When one of the spaceport workers asks Turner where the supplies are going, he replies, "These are just to expand a business venture of mine on, uh, Glory."`
 
@@ -864,6 +885,18 @@ mission "Expanding Business [7]"
 	destination "Greenwater"
 	to offer
 		has "Expanding Business [6]: done"
+	
+	npc save
+		personality escort
+		government "Merchant"
+		ship "Star Queen (Hai)" "Chryso Vasilia"
+	npc save
+		personality escort
+		government "Merchant"
+		fleet
+			names "civilian"
+			variant
+				"Bulk Freighter (Hai)" 3
 	
 	npc
 		personality staying
@@ -876,11 +909,14 @@ mission "Expanding Business [7]"
 		system "Rajak"
 		fleet "Large Northern Pirates"
 		
+	on visit
+		dialog `You've reached <planet>, but you've left one of the ships you're suppose to be escorting behind. Wait for Turner's ship and all the Bulk Freighters to arrive before landing.`
+
 	on complete
 		event "shipyard on greenwater" 180
 		conversation
-			`	Construction on the shipyard begins almost immediately after the supplies are unloaded from the freighters, starting with the demolition of the rest of the park. A downtrodden looking crowd gathers to watch the demolition, but Turner ensures to you that there are plenty of other parks in the city for them to go to.`
-			`	"Something big is going to come of this, Captain <last>," Turner says. "Just know that you were all part of it. You'll know the shipyard is done when you find an extra nine thousand credits in your pocket each day. Goodbye until then, Captain <last>."`
+			`	Construction on the shipyard begins almost immediately after the supplies are unloaded from the freighters, starting with the demolition of the rest of the park. A downtrodden-looking crowd gathers to watch the demolition, but Turner assures you that there are plenty of other parks in the city for them to go to.`
+			`	"Something big is going to come of this, Captain <last>," Turner says. "Just know that you were all part of it. You'll know the shipyard is done when you find an extra four thousand credits in your pocket each day. Goodbye until then, Captain <last>."`
 
 event "shipyard on greenwater"
 	planet "Greenwater"

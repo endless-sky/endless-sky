@@ -10,7 +10,7 @@ environment:
     # Building with MinGW-w64 version 6.3.0. These env settings are used by the makefile.
     MINGW_ROOT: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64
     matrix:
-        - es_run_mode: 'release'
+        - es_run_mode: 'dist'
 
 install:
     - ps: |
@@ -55,7 +55,7 @@ before_test:
         Copy-Item -Path "C:\dev64\bin\*.dll" -Exclude "libstdc*" -Destination $here;
 
 test_script:
-    - ps: .\test_parse.ps1 'EndlessSky.exe';
+    - ps: .\tests\test_parse.ps1 'EndlessSky.exe';
 
 after_test:
     - ps: |

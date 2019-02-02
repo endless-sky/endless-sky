@@ -12,9 +12,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Shader.h"
 
+#include "Files.h"
+
 #include <cctype>
 #include <cstring>
-#include <iostream>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -111,15 +112,16 @@ GLuint Shader::Compile(const char *str, GLenum type)
 	glGetShaderiv(object, GL_COMPILE_STATUS, &status);
 	if(status == GL_FALSE)
 	{
-		cerr << version;
-		cerr.write(str, length);
+		string error = version;
+		error += string(str, length);
 		
 		static const int SIZE = 4096;
 		GLchar message[SIZE];
 		GLsizei length;
 		
 		glGetShaderInfoLog(object, SIZE, &length, message);
-		cerr.write(message, length);
+		error += string(message, length);
+		Files::LogError(error);
 		throw runtime_error("Shader compilation failed.");
 	}
 	

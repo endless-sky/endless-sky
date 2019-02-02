@@ -45,8 +45,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Politics.h"
 #include "Random.h"
 #include "RingShader.h"
-#include "Sale.h"
-#include "Set.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "SpriteQueue.h"
@@ -243,6 +241,9 @@ void GameData::CheckReferences()
 	for(const auto &it : outfits)
 		if(it.second.Name().empty())
 			Files::LogError("Warning: outfit \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : outfitSales)
+		if(it.second.empty())
+			Files::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
 	for(const auto &it : phrases)
 		if(it.second.Name().empty())
 			Files::LogError("Warning: phrase \"" + it.first + "\" is referred to, but never defined.");
@@ -252,6 +253,9 @@ void GameData::CheckReferences()
 	for(const auto &it : ships)
 		if(it.second.ModelName().empty())
 			Files::LogError("Warning: ship \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : shipSales)
+		if(it.second.empty())
+			Files::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
 	for(const auto &it : systems)
 		if(it.second.Name().empty())
 			Files::LogError("Warning: system \"" + it.first + "\" is referred to, but never defined.");
@@ -504,7 +508,7 @@ void GameData::Change(const DataNode &node)
 	else if(node.Token(0) == "outfitter" && node.Size() >= 2)
 		outfitSales.Get(node.Token(1))->Load(node, outfits);
 	else if(node.Token(0) == "planet" && node.Size() >= 2)
-		planets.Get(node.Token(1))->Load(node, shipSales, outfitSales);
+		planets.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "shipyard" && node.Size() >= 2)
 		shipSales.Get(node.Token(1))->Load(node, ships);
 	else if(node.Token(0) == "system" && node.Size() >= 2)
@@ -629,6 +633,13 @@ const Set<Outfit> &GameData::Outfits()
 
 
 
+const Set<Sale<Outfit>> &GameData::Outfitters()
+{
+	return outfitSales;
+}
+
+
+
 const Set<Person> &GameData::Persons()
 {
 	return persons;
@@ -653,6 +664,13 @@ const Set<Planet> &GameData::Planets()
 const Set<Ship> &GameData::Ships()
 {
 	return ships;
+}
+
+
+
+const Set<Sale<Ship>> &GameData::Shipyards()
+{
+	return shipSales;
 }
 
 
@@ -906,7 +924,7 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		else if(key == "phrase" && node.Size() >= 2)
 			phrases.Get(node.Token(1))->Load(node);
 		else if(key == "planet" && node.Size() >= 2)
-			planets.Get(node.Token(1))->Load(node, shipSales, outfitSales);
+			planets.Get(node.Token(1))->Load(node);
 		else if(key == "ship" && node.Size() >= 2)
 		{
 			// Allow multiple named variants of the same ship model.

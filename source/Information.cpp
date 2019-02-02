@@ -75,7 +75,7 @@ const pair<std::string, Font::Layout> &Information::GetString(const string &name
 void Information::SetBar(const string &name, double value, double segments)
 {
 	bars[name] = value;
-	barSegments[name] = static_cast<double>(segments);
+	barSegments[name] = segments;
 }
 
 
