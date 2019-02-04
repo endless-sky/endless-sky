@@ -176,7 +176,7 @@ outfit "Laser Turret"
 		sprite "projectile/2x laser"
 			"frame rate" 1
 		"hardpoint sprite" "hardpoint/laser turret"
-		"hardpoint offset" 7.
+		"hardpoint offset" -0.5 8.
 		sound "laser"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .5
