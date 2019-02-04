@@ -90,7 +90,7 @@ mission "Deep: Syndicate Convoy"
 		fleet "Large Northern Pirates"
 	
 	on stopover
-		dialog `You arrive at the pickup location on the night side of <planet>. The Syndicate employees who load the freighters do not allow you to see what is inside the cargo, and advise you to leave quickly once the cargo is loaded.`
+		dialog `You arrive at the pickup location on the night side of Hephaestus. The Syndicate employees who load the freighters do not allow you to see what is inside the cargo, and advise you to leave quickly once the cargo is loaded.`
 	on complete
 		"deep convoy" ++
 		payment 500000
@@ -403,7 +403,7 @@ mission "Deep: Mystery Cubes 1"
 mission "Deep: Mystery Cubes 2"
 	landing
 	name `Blockading the Devil`
-	description `Travel to <destination> to set up a blockade in homes of capturing the warlord Beelzebub.`
+	description `Travel to <destination> to set up a blockade in hopes of capturing the warlord Beelzebub.`
 	destination "Maelstrom"
 	deadline
 	to offer
