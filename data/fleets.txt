@@ -1892,12 +1892,6 @@ fleet "Small Core Pirates"
 		"Hawk (Rocket)"
 	variant 2
 		"Hawk (Speedy)"
-	variant 4
-		"Fury"
-	variant 2
-		"Fury (Laser)"
-	variant 1
-		"Fury (Missile)"
 	variant 1
 		"Headhunter"
 	variant 1
@@ -1911,9 +1905,9 @@ fleet "Small Core Pirates"
 		"Quicksilver (Proton)" 2
 	variant 2
 		"Wasp (Gatling)"
-	variant 2
+	variant 3
 		"Wasp (Javelin)"
-	variant 2
+	variant 8
 		"Wasp (Meteor)"
 	variant 2
 		"Wasp (Plasma)"
