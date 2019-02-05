@@ -676,11 +676,13 @@ mission "FW Syndicate Capture 1"
 		government "Free Worlds"
 	
 	npc accompany save
+		planet "Luna"
 		personality escort heroic waiting
 		government "Navy (Oathkeeper)"
 		ship "Cruiser (Mark II)" "N.S. Hand of Justice"
 	
 	npc accompany save
+		planet "Mars"
 		personality escort heroic waiting
 		government "Deep Security"
 		ship "Bactrian" "Unbreakable"
