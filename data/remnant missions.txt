@@ -1480,8 +1480,6 @@ mission "Remnant: Broken Jump Drive job"
 	destination
 		government "Remnant"
 		attributes outfitter
-	on offer
-		require "Jump Drive (Broken)"
 	on complete
 		dialog "The research team quickly offloads the broken jump drive and pays you <payment> before hurrying back to their lab."
 		outfit "Jump Drive (Broken)" -1
