@@ -95,7 +95,7 @@ namespace {
 		double maxFiringEnergy = 0.0;
 		for(const auto &it : outfits)
 			{
-				if (it.first->IsWeapon() && it.first->Reload() > 1) {
+				if (it.first->IsWeapon()) {
 					maxFiringEnergy = max(maxFiringEnergy, it.first->FiringEnergy());
 				}
 			}
@@ -824,7 +824,7 @@ string Ship::FlightCheck() const
 		if(fuelCapacity < JumpFuel())
 			return "no fuel?";
 	}
-	if(battery < maxWeaponEnergy)
+	if((generation + battery + solar) < maxWeaponEnergy)
 		return "insufficient energy to fire?";
 
 	return "";
