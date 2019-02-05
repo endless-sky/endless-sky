@@ -85,6 +85,22 @@ namespace {
 			fuel -= transfer * fuelCost;
 		}
 	}
+
+	
+
+	// Get the maximum firing energy among all installed weapons that
+	// don't fire continuously (like beams do).
+	double MaxWeaponEnergy(const map<const Outfit *, int> &outfits)
+	{
+		double maxFiringEnergy = 0.0;
+		for(const auto &it : outfits)
+			{
+				if (it.first->IsWeapon() && it.first->Reload() > 1) {
+					maxFiringEnergy = max(maxFiringEnergy, it.first->FiringEnergy());
+				}
+			}
+		return maxFiringEnergy;
+	}
 }
 
 const vector<string> Ship::CATEGORIES = {
@@ -752,22 +768,6 @@ int64_t Ship::ChassisCost() const
 
 
 
-// Get the maximum firing energy among all installed weapons that
-// don't fire continuously (like beams do).
-double Ship::MaxFiringEnergy() const
-{
-	double maxFiringEnergy = 0.0;
-	for(const auto &it : outfits)
-	{
-		if (it.first->IsWeapon() && it.first->Reload() > 1) {
-			maxFiringEnergy = max(maxFiringEnergy, it.first->FiringEnergy());
-		}
-	}
-	return maxFiringEnergy;
-}
-
-
-
 // Check if this ship is configured in such a way that it would be difficult
 // or impossible to fly.
 string Ship::FlightCheck() const
@@ -788,7 +788,7 @@ string Ship::FlightCheck() const
 	double turnEnergy = attributes.Get("turning energy");
 	double hyperDrive = attributes.Get("hyperdrive");
 	double jumpDrive = attributes.Get("jump drive");
-	double maxFiringEnergy = MaxFiringEnergy();
+	double maxWeaponEnergy = MaxWeaponEnergy(outfits);
 	
 	// Error conditions:
 	if(IdleHeat() >= MaximumHeat())
@@ -824,7 +824,7 @@ string Ship::FlightCheck() const
 		if(fuelCapacity < JumpFuel())
 			return "no fuel?";
 	}
-	if(battery < maxFiringEnergy)
+	if(battery < maxWeaponEnergy)
 		return "insufficient energy to fire?";
 
 	return "";

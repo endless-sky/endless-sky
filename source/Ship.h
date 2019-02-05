@@ -135,9 +135,6 @@ public:
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
 
-	// Get the maximum firing energy among all installed weapons that
-	// don't fire continuously (like beams do).
-	double MaxFiringEnergy() const;
 	// Check if this ship is configured in such a way that it would be difficult
 	// or impossible to fly.
 	std::string FlightCheck() const;
