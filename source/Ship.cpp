@@ -760,7 +760,7 @@ double Ship::MaxFiringEnergy() const
 	for(const auto &it : outfits)
 	{
 		if (it.first->IsWeapon() && it.first->Reload() > 1) {
-			maxFiringEnergy = std::max(maxFiringEnergy, it.first->FiringEnergy());
+			maxFiringEnergy = max(maxFiringEnergy, it.first->FiringEnergy());
 		}
 	}
 	return maxFiringEnergy;
