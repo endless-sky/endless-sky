@@ -10,9 +10,6 @@
 
 ship "Marauder Arrow"
 	sprite "ship/marrows"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	attributes
 		category "Interceptor"
 		"cost" 1320000
@@ -62,9 +59,6 @@ ship "Marauder Arrow"
 
 ship "Marauder Arrow" "Marauder Arrow (Engines)"
 	sprite "ship/marrowe"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	add attributes
 		"engine capacity" 20
 	outfits
@@ -87,9 +81,6 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 
 ship "Marauder Arrow" "Marauder Arrow (Weapons)"
 	sprite "ship/marroww"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	add attributes
 		"weapon capacity" 5
 	outfits
@@ -117,9 +108,6 @@ ship "Marauder Arrow" "Marauder Arrow (Weapons)"
 
 ship "Marauder Bounder"
 	sprite "ship/mbounders"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	attributes
 		category "Interceptor"
 		"cost" 1250000
@@ -172,9 +160,6 @@ ship "Marauder Bounder"
 
 ship "Marauder Bounder" "Marauder Bounder (Engines)"
 	sprite "ship/mboundere"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	add attributes
 		"engine capacity" 15
 	outfits
@@ -200,9 +185,6 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 
 ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 	sprite "ship/mbounderw"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	add attributes
 		"weapon capacity" 20
 	outfits
@@ -233,9 +215,6 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 
 ship "Marauder Falcon"
 	sprite "ship/mfalcons"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	attributes
 		category "Heavy Warship"
 		"cost" 13900000
@@ -293,9 +272,6 @@ ship "Marauder Falcon"
 
 ship "Marauder Falcon" "Marauder Falcon (Engines)"
 	sprite "ship/mfalcone"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	add attributes
 		"engine capacity" 55
 	outfits
@@ -331,9 +307,6 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 
 ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 	sprite "ship/mfalconw"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	add attributes
 		"weapon capacity" 35
 	outfits
@@ -370,9 +343,6 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 
 ship "Marauder Firebird"
 	sprite "ship/mfirebirds"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	attributes
 		category "Medium Warship"
 		"cost" 4100000
@@ -428,9 +398,6 @@ ship "Marauder Firebird"
 
 ship "Marauder Firebird" "Marauder Firebird (Engines)"
 	sprite "ship/mfirebirde"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	add attributes
 		"engine capacity" 20
 	outfits
@@ -465,9 +432,6 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 
 ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 	sprite "ship/mfirebirdw"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	add attributes
 		"weapon capacity" 35
 	outfits
@@ -492,9 +456,6 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 
 ship "Marauder Leviathan"
 	sprite "ship/mleviathans"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	attributes
 		category "Heavy Warship"
 		"cost" 10800000
@@ -554,9 +515,6 @@ ship "Marauder Leviathan"
 
 ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 	sprite "ship/mleviathane"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	add attributes
 		"engine capacity" 80
 	outfits
@@ -583,9 +541,6 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 
 ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 	sprite "ship/mleviathanw"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	add attributes
 		"weapon capacity" 35
 	outfits
@@ -619,9 +574,6 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 
 ship "Marauder Manta"
 	sprite "ship/mmantas"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	attributes
 		category "Medium Warship"
 		"cost" 3740000
@@ -679,9 +631,6 @@ ship "Marauder Manta"
 
 ship "Marauder Manta" "Marauder Manta (Engines)"
 	sprite "ship/mmantae"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	add attributes
 		"engine capacity" 20
 	outfits
@@ -715,9 +664,6 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 
 ship "Marauder Manta" "Marauder Manta (Weapons)"
 	sprite "ship/mmantaw"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	add attributes
 		"weapon capacity" 20
 	outfits
@@ -754,9 +700,6 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 
 ship "Marauder Quicksilver"
 	sprite "ship/mquicksilvers"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	attributes
 		category "Light Warship"
 		"cost" 1200000
@@ -806,9 +749,6 @@ ship "Marauder Quicksilver"
 
 ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 	sprite "ship/mquicksilvere"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	add attributes
 		"engine capacity" 40
 	outfits
@@ -834,9 +774,6 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 
 ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 	sprite "ship/mquicksilverw"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	add attributes
 		"weapon capacity" 15
 	outfits
@@ -862,9 +799,6 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 
 ship "Marauder Raven"
 	sprite "ship/mravens"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	attributes
 		category "Light Warship"
 		"cost" 2250000
@@ -918,9 +852,6 @@ ship "Marauder Raven"
 
 ship "Marauder Raven" "Marauder Raven (Engines)"
 	sprite "ship/mravene"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	add attributes
 		"engine capacity" 20
 	outfits
@@ -945,9 +876,6 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 
 ship "Marauder Raven" "Marauder Raven (Weapons)"
 	sprite "ship/mravenw"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	add attributes
 		"weapon capacity" 30
 	outfits
@@ -976,9 +904,6 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 
 ship "Marauder Splinter"
 	sprite "ship/msplinters"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	attributes
 		category "Medium Warship"
 		"cost" 3400000
@@ -1032,9 +957,6 @@ ship "Marauder Splinter"
 
 ship "Marauder Splinter" "Marauder Splinter (Engines)"
 	sprite "ship/msplintere"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	add attributes
 		"engine capacity" 20
 	outfits
@@ -1065,9 +987,6 @@ ship "Marauder Splinter" "Marauder Splinter (Engines)"
 
 ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 	sprite "ship/msplinterw"
-		"frame time" 4
-		"delay" 20
-		"random start frame" 
 	add attributes
 		"weapon capacity" 15
 	outfits
@@ -1094,3 +1013,4 @@ ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 	turret 0 -28 "Heavy Anti-Missile Turret"
 	turret 17 -28 "Quad Blaster Turret"
 	description "This Splinter has had extensive modification to its weapons space, with two new forward hard points on either side of the bridge. Large sections of the hull are covered with extra shield emitters and hull plating. Much of the stock cargo space has been converted to space for outfits, weapons and engines, coupled with streamlining of existing internal systems make the prospect of meeting this flexible war machine in an uninhabited system seem pretty unappealing."
+
