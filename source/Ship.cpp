@@ -825,7 +825,7 @@ string Ship::FlightCheck() const
 			return "no fuel?";
 	}
 	if(battery < maxFiringEnergy)
-		return "less battery than firing cost?";
+		return "insufficient energy to fire?";
 
 	return "";
 }
