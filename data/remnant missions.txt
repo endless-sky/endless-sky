@@ -1306,6 +1306,7 @@ mission "Remnant: Broken Jump Drive 2"
 		government "Remnant"
 	destination
 		government "Remnant"
+		attributes outfitter
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
@@ -1347,6 +1348,7 @@ mission "Remnant: Broken Jump Drive 3"
 		government "Remnant"
 	destination
 		government "Remnant"
+		attributes outfitter
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
@@ -1388,6 +1390,7 @@ mission "Remnant: Broken Jump Drive 4"
 		government "Remnant"
 	destination
 		government "Remnant"
+		attributes outfitter
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
@@ -1428,6 +1431,7 @@ mission "Remnant: Broken Jump Drive 5"
 		government "Remnant"
 	destination
 		government "Remnant"
+		attributes outfitter
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
@@ -1468,13 +1472,14 @@ mission "Remnant: Broken Jump Drive job"
 	name "Broken Jump Drive Delivery"
 	description "The researchers on <planet> need another broken jump drive to continue their project."
 	job
-	repeat
+	repeat 4
 	to offer
 		has "Remnant: Broken Jump Drive 5: done"
 	source
 		government "Remnant"
 	destination
 		government "Remnant"
+		attributes outfitter
 	on offer
 		require "Jump Drive (Broken)"
 	on complete
@@ -1483,5 +1488,6 @@ mission "Remnant: Broken Jump Drive job"
 		"remnant: broken jump drive count" ++
 		payment 500000
 		"reputation: Remnant" ++
+		"Remnant: Broken Jump Drive job: offered" --
 
 
