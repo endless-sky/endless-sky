@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Messages.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
@@ -84,6 +85,8 @@ void NPC::Load(const DataNode &node)
 			else
 				location.Load(child);
 		}
+		else if(child.Token(0) == "planet" && child.Size() >= 2)
+			planet = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "succeed" && child.Size() >= 2)
 			succeedIf = child.Value(1);
 		else if(child.Token(0) == "fail" && child.Size() >= 2)
@@ -415,6 +418,9 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		result.system = location.PickSystem(origin);
 	if(!result.system)
 		result.system = (isAtDestination && destination) ? destination : origin;
+	// If a planet was specified in the template, it must be in this system.
+	if(planet && result.system->FindStellar(planet))
+		result.planet = planet;
 	
 	// Convert fleets into instances of ships.
 	for(const shared_ptr<Ship> &ship : ships)
@@ -445,6 +451,12 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		
 		if(personality.IsEntering())
 			Fleet::Enter(*result.system, *ship);
+		else if(result.planet)
+		{
+			// A valid planet was specified in the template, so these NPCs start out landed.
+			ship->SetSystem(result.system);
+			ship->SetPlanet(result.planet);
+		}
 		else
 			Fleet::Place(*result.system, *ship);
 	}
