@@ -493,3 +493,6 @@ tip "no hyperdrive?"
 
 tip "no fuel?"
 	`This ship has insufficient fuel capacity to make a hyperspace jump. If it took off, it would be unable to leave this star system.`
+
+tip "insufficient energy to fire?"
+	`This ship has insufficient energy storage to fire an installed weapon.`
