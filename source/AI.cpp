@@ -1052,7 +1052,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		maxStrength = 2 * strengthIt->second;
 	
 	// Get a list of all targetable, hostile ships in this system.
-	const vector<shared_ptr<Ship>> enemies = GetShipsList(ship, true);
+	const auto enemies = GetShipsList(ship, true);
 	for(const auto &foe : enemies)
 	{
 		// If this is a "nemesis" ship and it has found one of the player's
@@ -1118,7 +1118,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		if(cargoScan || outfitScan)
 		{
 			closest = numeric_limits<double>::infinity();
-			const vector<shared_ptr<Ship>> allies = GetShipsList(ship, false);
+			const auto allies = GetShipsList(ship, false);
 			for(const auto &it : allies)
 				if(it->GetGovernment() != gov)
 				{
@@ -1181,13 +1181,13 @@ vector<shared_ptr<Ship>> AI::GetShipsList(const Ship &ship, bool targetEnemies, 
 	
 	const Government *gov = ship.GetGovernment();
 	// The cached list is built each step based on the current ships in the player's system.
-	const vector<shared_ptr<Ship>> &shipList = targetEnemies ? enemyLists.at(gov) : allyLists.at(gov);
-	vector<shared_ptr<Ship>> targets;
+	const auto &shipList = targetEnemies ? enemyLists.at(gov) : allyLists.at(gov);
+	auto targets = vector<shared_ptr<Ship>>();
 	targets.reserve(shipList.size());
 	
 	const System *here = ship.GetSystem();
 	const Point &p = ship.Position();
-	for(const shared_ptr<Ship> &target : shipList)
+	for(const auto &target : shipList)
 		if(target->IsTargetable() && target->GetSystem() == here
 				&& !(target->IsHyperspacing() && target->Velocity().Length() > 10.)
 				&& p.Distance(target->Position()) < maxRange
@@ -2034,7 +2034,7 @@ void AI::DoSwarming(Ship &ship, Command &command, shared_ptr<Ship> &target)
 		
 		int lowestCount = 7;
 		// Consider swarming around non-hostile ships in the same system.
-		const vector<shared_ptr<Ship>> others = GetShipsList(ship, false);
+		const auto others = GetShipsList(ship, false);
 		for(const shared_ptr<Ship> &other : others)
 			if(!other->GetPersonality().IsSwarming())
 			{
@@ -2323,7 +2323,7 @@ bool AI::DoCloak(Ship &ship, Command &command)
 		double range = MAX_RANGE;
 		shared_ptr<const Ship> nearestEnemy;
 		// Find the nearest targetable, in-system enemy that could attack this ship.
-		const vector<shared_ptr<Ship>> enemies = GetShipsList(ship, true);
+		const auto enemies = GetShipsList(ship, true);
 		for(const auto &foe : enemies)
 			if(!foe->IsDisabled())
 			{
@@ -2509,7 +2509,7 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) const
 {
 	// First, get the set of potential hostile ships.
-	vector<const Body *> targets;
+	auto targets = vector<const Body *>();
 	const Ship *currentTarget = ship.GetTargetShip().get();
 	if(opportunistic || !currentTarget || !currentTarget->IsTargetable())
 	{
@@ -2525,7 +2525,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 		maxRange *= 1.5;
 		
 		// Now, find all enemy ships within that radius.
-		vector<shared_ptr<Ship>> enemies = GetShipsList(ship, true, maxRange);
+		auto enemies = GetShipsList(ship, true, maxRange);
 		// Convert the shared_ptr<Ship> into const Body *, to allow aiming turrets
 		// at a targeted asteroid. Skip disabled ships, which pose no threat.
 		for(const shared_ptr<Ship> &ship : enemies)
@@ -2704,7 +2704,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 	maxRange *= 1.5;
 	
 	// Find all enemy ships within range of at least one weapon.
-	vector<shared_ptr<Ship>> enemies = GetShipsList(ship, true, maxRange);
+	auto enemies = GetShipsList(ship, true, maxRange);
 	// Consider the current target if it is not already considered (i.e. it
 	// is a friendly ship and this is a player ship ordered to attack it).
 	if(currentTarget && currentTarget->IsTargetable()
@@ -3506,16 +3506,16 @@ void AI::CacheShipLists()
 {
 	allyLists.clear();
 	enemyLists.clear();
-	for(const pair<const Government *, vector<shared_ptr<Ship>>> &git : governmentRosters)
+	for(const auto &git : governmentRosters)
 	{
 		allyLists.emplace(git.first, vector<shared_ptr<Ship>>());
 		allyLists.at(git.first).reserve(ships.size());
 		enemyLists.emplace(git.first, vector<shared_ptr<Ship>>());
 		enemyLists.at(git.first).reserve(ships.size());
-		for(const pair<const Government *, vector<shared_ptr<Ship>>> &oit : governmentRosters)
+		for(const auto &oit : governmentRosters)
 		{
-			vector<shared_ptr<Ship>> &list = git.first->IsEnemy(oit.first)
-					? enemyLists.at(git.first) : allyLists.at(git.first);
+			auto &list = git.first->IsEnemy(oit.first)
+					? enemyLists[git.first] : allyLists[git.first];
 			list.insert(list.end(), oit.second.begin(), oit.second.end());
 		}
 	}
