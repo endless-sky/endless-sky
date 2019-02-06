@@ -505,6 +505,7 @@ news "loan officer"
 			"You probably think the interest rates we charge are exorbitant, but with all the ships getting blown up by pirates these days, we barely break even."
 			"We charge however much interest the market will support. The only captains who can't manage to pay their debts are the ones with no business sense whatsoever."
 			"Sadly, for the last several centuries there have been laws against inflicting bodily harm on people to convince them to pay off their debts."
+			"I still think we should be able to charge double the interest on loans to buy a Sparrow, but the regulators won't let us."
 
 
 
@@ -670,6 +671,7 @@ news "reporter"
 			"My job is to bring sunlight into dark places and expose things that people are trying to keep hidden... and to avoid being killed in the process."
 			"A free and independent press is a critical component of any healthy democracy. But sensationalism is a whole lot more lucrative."
 			"I've been interviewing elderly starship captains. You wouldn't believe the tall tales that some of them tell!"
+			`Read my new article! "Ten Things the Quarg Are Hiding from Us - Number Seven Will Surprise You!"`
 
 
 
@@ -691,6 +693,7 @@ news "museum curator"
 			"I operate an arboretum with trees and shrubs from more than fifty worlds. Fortunately, none of them are particularly invasive species."
 			"The most popular exhibit in our entire Children's Museum is the interactive starship simulator. You're living a life that those kids can only dream of."
 			"Did you know that humans used to rely on explosive fuel mixtures to propel them into orbit? Imagine how mad you'd have to be to do that!"
+			"We recently put a restored 20th-century shipping container on display. You can hardly tell the difference from the ones in use today! Isn't historical inertia fascinating?"
 
 
 
@@ -820,6 +823,7 @@ news "excavation specialist"
 			"Sure, you may have been to outer space, but I bet you've never been ten kilometers underground."
 			"For hundreds of years we've been worried that asteroid harvesting will put terrestrial miners out of business, but it still hasn't happened."
 			"Once I've worked here for another decade, I plan to move to some paradise world and earn a living excavating bunkers for paranoid rich folks to hide in."
+			"Once we had to stop work on a mine for a month because the archaeologists thought we found evidence of a million-year-old civilization. It turned out the site was just radioactive. Dodged that one!"
 
 
 
@@ -841,6 +845,7 @@ news "chauffeur"
 			"The family I work for is so rich that they pay me to ride in the back of their self-driving car just so I can open the doors for them when they arrive wherever they're going."
 			"My company gives private gyrocopter rides to rich tourists. I built the gyrocopter myself, but it's a very safe vehicle."
 			"You wouldn't believe the sorts of things that go on in the back of my car after certain extravagant social galas."
+			"You'll never believe what happened on my first day on the job. Someone tried to rob a building while I was in the parking lot. I had to ram their van to keep them from getting away!"
 
 
 

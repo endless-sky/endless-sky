@@ -169,7 +169,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4C2DEF55201B8FAD0062315E /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "/usr/local/Cellar/sdl2/2.0.8/lib/libSDL2-2.0.0.dylib"; sourceTree = "<absolute>"; };
+		4C2DEF55201B8FAD0062315E /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "/usr/local/lib/libSDL2-2.0.0.dylib"; sourceTree = "<absolute>"; };
 		5155CD711DBB9FF900EF090B /* Depreciation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Depreciation.cpp; path = source/Depreciation.cpp; sourceTree = "<group>"; };
 		5155CD721DBB9FF900EF090B /* Depreciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Depreciation.h; path = source/Depreciation.h; sourceTree = "<group>"; };
 		6245F8231D301C7400A7A094 /* Body.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Body.cpp; path = source/Body.cpp; sourceTree = "<group>"; };
@@ -424,7 +424,7 @@
 		A9BDFB551E00B94700A6B27E /* libmad.0.2.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmad.0.2.1.dylib; path = /usr/local/lib/libmad.0.2.1.dylib; sourceTree = "<absolute>"; };
 		A9C70E0E1C0E5B51000B3D14 /* File.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = File.cpp; path = source/File.cpp; sourceTree = "<group>"; };
 		A9C70E0F1C0E5B51000B3D14 /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = File.h; path = source/File.h; sourceTree = "<group>"; };
-		A9CC52691950C9F6004E4E22 /* EndlessSky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EndlessSky.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9CC52691950C9F6004E4E22 /* Endless Sky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Endless Sky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9CC526C1950C9F6004E4E22 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A9CC526F1950C9F6004E4E22 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		A9CC52701950C9F6004E4E22 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -742,7 +742,7 @@
 		A9CC526A1950C9F6004E4E22 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A9CC52691950C9F6004E4E22 /* EndlessSky.app */,
+				A9CC52691950C9F6004E4E22 /* Endless Sky.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -807,7 +807,7 @@
 			);
 			name = EndlessSky;
 			productName = EndlessSky;
-			productReference = A9CC52691950C9F6004E4E22 /* EndlessSky.app */;
+			productReference = A9CC52691950C9F6004E4E22 /* Endless Sky.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -823,7 +823,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = A9CC52601950C9F6004E4E22;
@@ -1103,7 +1102,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Endless Sky";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1129,7 +1128,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Endless Sky";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

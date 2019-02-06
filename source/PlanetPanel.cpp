@@ -51,6 +51,9 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	spaceport.reset(new SpaceportPanel(player));
 	hiring.reset(new HiringPanel(player));
 	
+	// Only show one news item per day.
+	spaceport->UpdateNews();
+	
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(WrappedText::JUSTIFIED);
 	text.SetWrapWidth(480);
@@ -160,7 +163,6 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(key == 'p' && hasAccess && flagship && planet.HasSpaceport())
 	{
 		selectedPanel = spaceport.get();
-		spaceport->UpdateNews();
 		GetUI()->Push(spaceport);
 	}
 	else if(key == 's' && hasAccess && planet.HasShipyard())
