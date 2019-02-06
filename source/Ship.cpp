@@ -810,7 +810,7 @@ string Ship::FlightCheck() const
 	for(const auto &it : outfits)
 		if(it.first->IsWeapon() && it.first->FiringEnergy() > energy)
 			return "insufficient energy to fire?";
-
+	
 	return "";
 }
 
