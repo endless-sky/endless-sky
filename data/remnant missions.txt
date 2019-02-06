@@ -1270,7 +1270,7 @@ mission "Remnant: Broken Jump Drive 1"
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
-			`As your ship the <ship> settles onto its designated landing pad, you see someone emerge from the nearby outfitter and quickly make their way to you. He waits a safe distance back, then approach once you cycle the hatch and disembark. "Greetings, Captain <last>," trills the Remnant. "We saw the news that the newcomer among us was tracking down an erratic Korath ship. When you came in to land, we saw on the scans that you salvaged its malfunctioning jump drive. Could we take it, to study?"`
+			`As your ship the <ship> settles onto its designated landing pad, you see someone emerge from the nearby outfitter and quickly make their way to you. He waits a safe distance back, then approaches once you cycle the hatch and disembark. "Greetings, Captain <last>," trills the Remnant. "We saw the news that the newcomer among us was tracking down an erratic Korath ship. When you came in to land, we saw on the scans that you salvaged its malfunctioning jump drive. Could we take it, to study?"`
 			choice
 				`	(Maybe later.)`
 					goto refuse
