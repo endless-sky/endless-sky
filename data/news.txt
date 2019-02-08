@@ -1019,7 +1019,8 @@ news "human religious"
 news "human tourism"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "research" "deep" "rich" "paradise"
+		attributes "deep" "rich" "paradise" "tourism"
+		not attributes station
 	name
 		word
 			"Tourist"
