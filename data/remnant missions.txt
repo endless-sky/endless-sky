@@ -664,9 +664,7 @@ mission "Remnant: Heavy Laser"
 	to offer
 		has "Remnant: Technology Available: offered"
 		not "Remnant: Catalytic Ramscoop: active"
-		not "Remnant: Catalytic Ramscoop: done"
 		not "Remnant: Plasma Cannons: active"
-		not "Remnant: Plasma Cannons: done"
 		random < 50
 	on offer
 		require "Heavy Laser"
@@ -707,9 +705,7 @@ mission "Remnant: Catalytic Ramscoop"
 	to offer
 		has "Remnant: Technology Available: offered"
 		not "Remnant: Plasma Cannons: active"
-		not "Remnant: Plasma Cannons: done"
 		not "Remnant: Heavy Laser: active"
-		not "Remnant: Heavy Laser: done"
 		random < 50
 	on offer
 		require "Catalytic Ramscoop"
@@ -757,9 +753,7 @@ mission "Remnant: Plasma Cannons"
 	to offer
 		has "Remnant: Technology Available: offered"
 		not "Remnant: Catalytic Ramscoop: active"
-		not "Remnant: Catalytic Ramscoop: done"
 		not "Remnant: Heavy Laser: active"
-		not "Remnant: Heavy Laser: done"
 		random < 50
 	on offer
 		require "Plasma Cannon"
