@@ -108,6 +108,7 @@ ship "Bactrian" "Bactrian (Hai Engines)"
 		"D67-TM Shield Generator"
 		"Hai Williwaw Cooling" 3
 		"Ramscoop"
+		"Pulse Rifle" 18
 		"Outfits Expansion" 2
 		`"Bufaer" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
@@ -128,6 +129,7 @@ ship "Bactrian" "Bactrian (Hai Weapons)"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
 		"Ramscoop"
+		"Pulse Rifle" 18
 		"Large Radar Jammer"
 		"X4700 Ion Thruster"
 		"X5200 Ion Steering"
@@ -159,6 +161,7 @@ ship "Bactrian" "Bactrian (Hired Gun)"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 18
 
 
 
@@ -183,6 +186,7 @@ ship "Bastion" "Bastion (Heavy)"
 		"LP072a Battery Pack"
 		"D67-TM Shield Generator"
 		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 5
 		"Outfits Expansion" 2
 		"X3700 Ion Thruster"
 		"Orca Plasma Steering"
@@ -202,6 +206,7 @@ ship "Bastion" "Bastion (Laser)"
 		"D94-YV Shield Generator"
 		"Small Radar Jammer"
 		"Water Coolant System"
+		"Laser Rifle" 5
 		"Outfits Expansion"
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -222,6 +227,7 @@ ship "Bastion" "Bastion (Scanner)"
 		"nGVF-BB Fuel Cell"
 		"D67-TM Shield Generator"
 		"Water Coolant System"
+		"Laser Rifle" 5
 		"Cargo Scanner"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
@@ -564,6 +570,7 @@ ship "Corvette" "Corvette (Hai)"
 		"D94-YV Shield Generator"
 		"Cooling Ducts"
 		"Cargo Expansion"
+		"Pulse Rifle" 2
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		"Hyperdrive"
@@ -581,6 +588,7 @@ ship "Corvette" "Corvette (Missile)"
 		"D94-YV Shield Generator"
 		"Cooling Ducts"
 		"Cargo Expansion"
+		"Laser Rifle"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
@@ -599,6 +607,7 @@ ship "Corvette" "Corvette (Speedy)"
 		"D41-HY Shield Generator"
 		"Liquid Nitrogen Cooler"
 		"Cooling Ducts"
+		"Laser Rifle" 2
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
@@ -718,6 +727,7 @@ ship "Dreadnought" "Dreadnought (Jump)"
 		"D41-HY Shield Generator"
 		"Small Radar Jammer"
 		"Liquid Helium Cooler"
+		"Laser Rifle" 21
 		"Orca Plasma Thruster"
 		"Orca Plasma Steering"
 		"Jump Drive"
@@ -740,6 +750,7 @@ ship "Falcon" "Falcon (Heavy)"
 		"Fusion Reactor"
 		"D67-TM Shield Generator"
 		"Small Radar Jammer"
+		"Laser Rifle" 11
 		"Orca Plasma Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
@@ -758,6 +769,7 @@ ship "Falcon" "Falcon (Laser)"
 		"LP072a Battery Pack"
 		"D94-YV Shield Generator"
 		"Small Radar Jammer"
+		"Laser Rifle" 11
 		"Impala Plasma Thruster"
 		"Orca Plasma Steering"
 		"Hyperdrive"
@@ -771,6 +783,7 @@ ship "Falcon" "Falcon (Plasma)"
 		"D41-HY Shield Generator"
 		"Small Radar Jammer"
 		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 11
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
@@ -788,6 +801,7 @@ ship "Firebird" "Firebird (Hai Shields)"
 		"Liquid Nitrogen Cooler"
 		"Hai Williwaw Cooling"
 		"Outfits Expansion" 2
+		"Pulse Rifle" 2
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
@@ -803,6 +817,7 @@ ship "Firebird" "Firebird (Hai Weapons)"
 		"Hai Gorge Batteries"
 		"D41-HY Shield Generator"
 		"Hai Williwaw Cooling" 2
+		"Pulse Rifle" 2
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
@@ -816,6 +831,7 @@ ship "Firebird" "Firebird (Laser)"
 		"nGVF-AA Fuel Cell"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
+		"Laser Rifle" 2
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
@@ -832,6 +848,7 @@ ship "Firebird" "Firebird (Missile)"
 		"LP072a Battery Pack"
 		"D94-YV Shield Generator"
 		"Outfits Expansion"
+		"Laser Rifle" 2
 		"Impala Plasma Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
@@ -851,6 +868,7 @@ ship "Firebird" "Firebird (Plasma)"
 		"D41-HY Shield Generator"
 		"Liquid Nitrogen Cooler"
 		"Outfits Expansion"
+		"Laser Rifle" 2
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
@@ -1264,6 +1282,7 @@ ship "Leviathan" "Leviathan (Hai Engines)"
 		"Hai Ravine Batteries"
 		"D67-TM Shield Generator"
 		"Liquid Helium Cooler"
+		"Pulse Rifle" 11
 		`"Bondir" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		"Hyperdrive"
@@ -1278,6 +1297,7 @@ ship "Leviathan" "Leviathan (Hai Weapons)"
 		"Hai Ravine Batteries"
 		"Hai Diamond Regenerator"
 		"Liquid Nitrogen Cooler"
+		"Pulse Rifle" 11
 		"Impala Plasma Thruster"
 		"A375 Atomic Steering"
 		"Afterburner"
@@ -1297,6 +1317,7 @@ ship "Leviathan" "Leviathan (Heavy)"
 		"LP036a Battery Pack"
 		"D94-YV Shield Generator" 2
 		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 11
 		"Impala Plasma Thruster"
 		"A375 Atomic Steering"
 		"Afterburner"
@@ -1323,6 +1344,7 @@ ship "Leviathan" "Leviathan (Laser)"
 		"D94-YV Shield Generator"
 		"Liquid Helium Cooler"
 		"Ramscoop"
+		"Laser Rifle" 11
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
@@ -1343,6 +1365,7 @@ ship "Manta" "Manta (Mark II)"
 		"S-270 Regenerator"
 		"Water Coolant System"
 		"Outfits Expansion"
+		"Laser Rifle" 2
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
@@ -1364,6 +1387,7 @@ ship "Manta" "Manta (Nuclear)"
 		"S-270 Regenerator"
 		"Water Coolant System"
 		"Outfits Expansion"
+		"Laser Rifle" 2
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
@@ -1383,6 +1407,7 @@ ship "Manta" "Manta (Proton)"
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
 		"D14-RN Shield Generator"
+		"Laser Rifle" 2
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
@@ -1473,6 +1498,7 @@ ship "Mule" "Mule (Hai Engines)"
 		"Cooling Ducts"
 		"Outfits Expansion"
 		"Ramscoop"
+		"Pulse Rifle" 2
 		`"Bondir" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		`"Basrem" Atomic Steering`
@@ -1490,6 +1516,7 @@ ship "Mule" "Mule (Hai Weapons)"
 		"Water Coolant System"
 		"Outfits Expansion" 3
 		"Ramscoop"
+		"Pulse Rifle" 2
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
@@ -1507,6 +1534,7 @@ ship "Mule" "Mule (Heavy)"
 		"Water Coolant System"
 		"Outfits Expansion"
 		"Ramscoop"
+		"Laser Rifle" 2
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
@@ -1523,6 +1551,7 @@ ship "Nest" "Nest (Sidewinder)"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
 		"Large Radar Jammer"
+		"Laser Rifle" 2
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		Hyperdrive
@@ -1539,6 +1568,7 @@ ship "Osprey" "Osprey (Alien Weapons)"
 		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
 		"Liquid Nitrogen Cooler"
+		"Pulse Rifle" 3
 		`"Bondir" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		Hyperdrive
@@ -1554,6 +1584,7 @@ ship "Osprey" "Osprey (Laser)"
 		"Supercapacitor" 4
 		"D94-YV Shield Generator"
 		"Water Coolant System"
+		"Laser Rifle" 3
 		"Impala Plasma Thruster"
 		"X4200 Ion Steering"
 		"Hyperdrive"
@@ -1572,6 +1603,7 @@ ship "Osprey" "Osprey (Missile)"
 		"Supercapacitor" 3
 		"D41-HY Shield Generator"
 		"Water Coolant System"
+		"Laser Rifle" 3
 		"A520 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
@@ -1593,6 +1625,7 @@ ship "Protector" "Protector (Laser)"
 		"D94-YV Shield Generator"
 		"D67-TM Shield Generator"
 		"Water Coolant System"
+		"Laser Rifle" 8
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
@@ -1615,6 +1648,7 @@ ship "Protector" "Protector (Proton)"
 		"Supercapacitor" 1
 		"D94-YV Shield Generator" 2
 		"Water Coolant System"
+		"Laser Rifle" 8
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
@@ -1726,6 +1760,7 @@ ship "Roost" "Roost (Sidewinder)"
 		"S3 Thermionic"
 		"D94-YV Shield Generator" 2
 		"Small Radar Jammer"
+		"Laser Rifle" 2
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		Hyperdrive
@@ -1761,6 +1796,7 @@ ship "Skein" "Skein (Sidewinder)"
 		"D94-YV Shield Generator" 3
 		"Large Radar Jammer"
 		"Outfits Expansion" 2
+		"Laser Rifle" 2
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		Hyperdrive
@@ -1802,6 +1838,7 @@ ship "Splinter" "Splinter (Laser)"
 		"Fission Reactor"
 		"LP036a Battery Pack"
 		"D94-YV Shield Generator"
+		"Laser Rifle" 2
 		"X3700 Ion Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
@@ -1819,6 +1856,7 @@ ship "Splinter" "Splinter (Mark II)"
 		"S-970 Regenerator"
 		"Water Coolant System" 4
 		"Outfits Expansion" 2
+		"Laser Rifle" 2
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
@@ -1834,6 +1872,7 @@ ship "Splinter" "Splinter (Proton)"
 		"Fission Reactor"
 		"LP036a Battery Pack"
 		"D94-YV Shield Generator"
+		"Laser Rifle" 2
 		"X3700 Ion Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
@@ -1883,6 +1922,7 @@ ship "Vanguard" "Vanguard (Missile)"
 		"D94-YV Shield Generator" 2
 		"Large Radar Jammer" 2
 		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 6
 		"X3700 Ion Thruster"
 		"X4200 Ion Steering"
 		"Hyperdrive"
@@ -1902,6 +1942,7 @@ ship "Vanguard" "Vanguard (Particle)"
 		"LP072a Battery Pack"
 		"D67-TM Shield Generator"
 		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 6
 		"X3700 Ion Thruster"
 		"X4200 Ion Steering"
 		"Hyperdrive"
