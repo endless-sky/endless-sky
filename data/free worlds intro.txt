@@ -334,7 +334,7 @@ mission "FW Recon 1"
 			`	You cut the comlink and breathe a sigh of relief that the conversation is over.`
 	
 	on complete
-		dialog `Soon after you land, the militia officer comes to your ship and pays you <payment> in exchange for your sensor logs regarding <npc>. He says, "If you would be interested in continuing to work for us, meet me in the spaceport bar in an hour."`
+		dialog `Soon after you land, the militia officer comes to your ship and pays you <payment> in exchange for your sensor logs regarding the <npc>. He says, "If you would be interested in continuing to work for us, meet me in the spaceport bar in an hour."`
 		payment 10000
 
 
@@ -451,7 +451,7 @@ mission "FW Recon 3B"
 				"Gunboat"
 	
 	on visit
-		dialog `A minute after you land, a Republic gunboat, <npc>, lands directly next to you. JJ does not approach you. You notice from your ship's logs that this gunboat has been following you ever since you left <origin>; before you can hand over the information, you will need to escape its pursuit.`
+		dialog `A minute after you land, a Republic gunboat, the <npc>, lands directly next to you. JJ does not approach you. You notice from your ship's logs that this gunboat has been following you ever since you left <origin>; before you can hand over the information, you will need to escape its pursuit.`
 	
 	on complete
 		"assisted free worlds" ++
