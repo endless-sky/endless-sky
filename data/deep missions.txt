@@ -1083,7 +1083,7 @@ mission "Deep: Project Hawking"
 			
 			label next
 			`	Several dozen forklifts are waiting for your ship on the surface, and your passengers busy themselves by supervising the unloading process. The high fencing around the landing pads prevents you from wandering, but you stretch your legs and enjoy the clear mountain air while you can.`
-			`	Your stroll around the launchpads is interrupted by the familiar warning tones emitted by landing spacecraft, and you look up to see a Deep Security Raven, descending rapidly. It lands next to <ship>, and Lieutenant Paris steps out, looking rather distressed.`
+			`	Your stroll around the launchpads is interrupted by the familiar warning tones emitted by landing spacecraft, and you look up to see a Deep Security Raven, descending rapidly. It lands next to the <ship>, and Lieutenant Paris steps out, looking rather distressed.`
 			`	"Captain! I'm going to need your ship's scanner logs from as far back as when you took this job."`
 			`	Hearing the urgency in his voice, you hastily return to your ship's cockpit, copy the scanner logs onto a data chip, and bring it to Paris. He views the logs on a tablet.`
 			`	"There appear to be three unidentified ships that began following you after each time you retrieved more cargo. Whether their intent is malicious or not, they are clearly interested in this project."`
