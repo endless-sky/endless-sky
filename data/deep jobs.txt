@@ -15,7 +15,7 @@ phrase "deep mystery cube pickup"
 	word
 		` `
 	word
-		`open an deposit box`
+		`open a deposit box`
 		`open a storage locker`
 	word
 		` `
