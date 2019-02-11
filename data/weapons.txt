@@ -625,9 +625,9 @@ outfit "Meteor Missile Box"
 	category "Ammunition"
 	cost 9000
 	thumbnail "outfit/meteor storage"
-	"mass" 1.4
+	"mass" 2
 	"outfit space" -5
-	"meteor capacity" 18
+	"meteor capacity" 15
 	ammo "Meteor Missile"
 	description "The Meteor Missile Box is used to store extra ammunition for Meteor Missile Launchers."
 
@@ -635,11 +635,11 @@ outfit "Meteor Missile Launcher"
 	category "Secondary Weapons"
 	cost 15000
 	thumbnail "outfit/meteor launcher"
-	"mass" 3
+	"mass" 4
 	"outfit space" -10
 	"weapon capacity" -10
 	"gun ports" -1
-	"meteor capacity" 35
+	"meteor capacity" 30
 	weapon
 		sprite "projectile/meteor"
 			"no repeat"
@@ -664,7 +664,7 @@ outfit "Meteor Missile Launcher"
 		"shield damage" 260
 		"hull damage" 160
 		"hit force" 220
-		"missile strength" 4
+		"missile strength" 6
 	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
 
 effect "meteor fire"
@@ -687,9 +687,9 @@ outfit "Sidewinder Missile Rack"
 	category "Ammunition"
 	cost 20000
 	thumbnail "outfit/sidewinder storage"
-	"mass" 2
+	"mass" 2.4
 	"outfit space" -7
-	"sidewinder capacity" 25
+	"sidewinder capacity" 23
 	ammo "Sidewinder Missile"
 	description "The Sidewinder Missile Rack is used to store extra ammunition for Sidewinder Missile Launchers."
 
@@ -697,11 +697,11 @@ outfit "Sidewinder Missile Launcher"
 	category "Secondary Weapons"
 	cost 60000
 	thumbnail "outfit/sidewinder launcher"
-	"mass" 4
+	"mass" 5
 	"outfit space" -14
 	"weapon capacity" -14
 	"gun ports" -1
-	"sidewinder capacity" 50
+	"sidewinder capacity" 45
 	weapon
 		sprite "projectile/sidewinder"
 			"no repeat"
@@ -777,10 +777,10 @@ outfit "Javelin Pod"
 		"reload" 15
 		"firing energy" .2
 		"firing heat" 12
-		"shield damage" 57
-		"hull damage" 36
+		"shield damage" 48
+		"hull damage" 26
 		"hit force" 50
-		"missile strength" 2
+		"missile strength" 3
 	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has expended all of its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles."
 	description "	The weapon's high rate of fire also makes it useful for saturating well-protected ships' anti-missile defenses so that more dangerous projectiles fired by allied ships can sneak through."
 
@@ -945,14 +945,14 @@ outfit "Heavy Rocket Launcher"
 		"hit effect" "heavy rocket hit"
 		"die effect" "small explosion"
 		"inaccuracy" 1
-		"velocity" 9
-		"lifetime" 100
+		"velocity" 8
+		"lifetime" 125
 		"reload" 240
 		"firing energy" 1
 		"firing heat" 250
 		"acceleration" .8
 		"drag" .1
-		"trigger radius" 30
+		"trigger radius" 20
 		"blast radius" 50
 		"shield damage" 850
 		"hull damage" 720

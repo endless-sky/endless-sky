@@ -33,7 +33,7 @@ ship "Aerie"
 			"hit force" 1200
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile" 90
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret"
 		
@@ -94,7 +94,7 @@ ship "Argosy"
 	outfits
 		"Energy Blaster" 2
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 60
 		"Blaster Turret"
 		"Anti-Missile Turret"
 		
@@ -151,7 +151,7 @@ ship "Arrow"
 			"hit force" 360
 	outfits
 		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 50
+		"Sidewinder Missile" 45
 		"Anti-Missile Turret"
 		
 		"Dwarf Core"
@@ -205,7 +205,7 @@ ship "Bactrian"
 			"hit force" 3900
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile" 90
 		"Torpedo Launcher" 2
 		"Torpedo" 60
 		"Heavy Laser Turret" 4
@@ -662,7 +662,7 @@ ship "Bulk Freighter"
 			"hit force" 1800
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile" 90
 		"Laser Turret" 3
 		"Heavy Anti-Missile Turret" 2
 		
@@ -724,7 +724,7 @@ ship "Carrier"
 	outfits
 		"Particle Cannon" 4
 		"Meteor Missile Launcher" 4
-		"Meteor Missile" 140
+		"Meteor Missile" 120
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -960,7 +960,7 @@ ship "Corvette"
 	outfits
 		"Heavy Laser" 2
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile" 90
 		"Heavy Laser Turret"
 		"Anti-Missile Turret"
 		
@@ -1022,7 +1022,7 @@ ship "Cruiser"
 	outfits
 		"Particle Cannon" 4
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile" 90
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1310,7 +1310,7 @@ ship "Firebird"
 	outfits
 		"Particle Cannon" 2
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 60
 		"Quad Blaster Turret"
 		"Anti-Missile Turret"
 		
@@ -1367,7 +1367,7 @@ ship "Flivver"
 			"hit force" 240
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 60
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -1529,11 +1529,9 @@ ship "Fury"
 			"hull damage" 120
 			"hit force" 360
 	outfits
-		"Energy Blaster" 2
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Energy Blaster" 4
 		
-		"nGVF-BB Fuel Cell"
+		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer" 2
@@ -1544,10 +1542,10 @@ ship "Fury"
 		
 	engine -17 35
 	engine 17 35
-	gun -10 -26 "Energy Blaster"
-	gun 10 -26 "Energy Blaster"
-	gun -16 -20 "Meteor Missile Launcher"
-	gun 16 -20 "Meteor Missile Launcher"
+	gun -10 -26
+	gun 10 -26
+	gun -16 -20
+	gun 16 -20
 	leak "flame" 50 80
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -1636,7 +1634,7 @@ ship "Hauler"
 			"hit force" 900
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 60
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1694,7 +1692,7 @@ ship "Hauler II"
 			"hit force" 1200
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 60
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1752,7 +1750,7 @@ ship "Hauler III"
 			"hit force" 1500
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 60
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1809,9 +1807,7 @@ ship "Hawk"
 			"hull damage" 150
 			"hit force" 450
 	outfits
-		"Heavy Laser"
-		"Heavy Rocket Launcher"
-		"Heavy Rocket" 20
+		"Heavy Laser" 2
 		
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
@@ -1824,8 +1820,8 @@ ship "Hawk"
 		
 	engine -24 41
 	engine 24 41
-	gun -9 -17 "Heavy Laser"
-	gun 9 -17 "Heavy Rocket Launcher"
+	gun -9 -17
+	gun 9 -17
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1953,7 +1949,7 @@ ship "Lance"
 	outfits
 		"Energy Blaster"
 		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 50
+		"Sidewinder Missile" 45
 		
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
@@ -2058,7 +2054,7 @@ ship "Manta"
 	outfits
 		"Particle Cannon" 4
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 60
 		
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
@@ -2113,7 +2109,7 @@ ship "Modified Argosy"
 	outfits
 		"Heavy Laser" 2
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 60
 		"Heavy Laser Turret"
 		"Heavy Anti-Missile Turret"
 		
@@ -2171,7 +2167,7 @@ ship "Mule"
 			"hit force" 1500
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile" 90
 		"Heavy Laser Turret" 3
 		"Heavy Anti-Missile Turret"
 		
@@ -2230,7 +2226,7 @@ ship "Nest"
 			"hit force" 900
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 60
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -2348,7 +2344,7 @@ ship "Protector"
 			"hit force" 2400
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile" 90
 		"Quad Blaster Turret" 4
 		"Heavy Anti-Missile Turret" 2
 		
@@ -2458,7 +2454,7 @@ ship "Rainmaker"
 	outfits
 		"Energy Blaster" 2
 		"Meteor Missile Launcher" 4
-		"Meteor Missile" 140
+		"Meteor Missile" 120
 		
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
@@ -2564,7 +2560,7 @@ ship "Roost"
 			"hit force" 1200
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 60
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -2726,7 +2722,7 @@ ship "Skein"
 			"hit force" 1500
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 60
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -2789,9 +2785,7 @@ ship "Sparrow"
 			"hull damage" 80
 			"hit force" 240
 	outfits
-		"Beam Laser"
-		"Meteor Missile Launcher"
-		"Meteor Missile" 35
+		"Beam Laser" 2
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -2803,13 +2797,13 @@ ship "Sparrow"
 		
 	engine -5 35
 	engine 5 35
-	gun -7 -10 "Beam Laser"
-	gun 7 -10 "Meteor Missile Launcher"
+	gun -7 -10
+	gun 7 -10
 	leak "flame" 60 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "Classified as an interceptor rather than a fighter because it has its own hyperdrive instead of needing to be carried inside a larger ship, the Tarazed Sparrow is the smallest and cheapest combat ship available. Because of its limited cargo and passenger space, the primary way for a Sparrow pilot to pay the bills is by hunting pirates... or by becoming one. In either case, it is a perilous way to earn a living."
-	description "	Insurance reports indicate that as many as two out of every three first-time ship buyers who choose to pilot a Sparrow lose their ship (and often, their life as well) within the first month of owning it."
+	description "	Insurance reports indicate that as many as two out of every three first-time ship buyers who choose to pilot a Sparrow lose their ship (and often, their life as well) within the first month of owning it. Pilots who have survived longer than that tend to swear by replacing the stock weapons with missile launchers."
 
 
 
@@ -2938,7 +2932,7 @@ ship "Star Queen"
 			"hit force" 900
 	outfits
 		"Sidewinder Missile Launcher" 3
-		"Sidewinder Missile" 150
+		"Sidewinder Missile" 135
 		"Heavy Anti-Missile Turret" 2
 		
 		"NT-200 Nucleovoltaic"
@@ -3087,7 +3081,7 @@ ship "Wasp"
 	outfits
 		"Energy Blaster" 2
 		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 50
+		"Sidewinder Missile" 45
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
