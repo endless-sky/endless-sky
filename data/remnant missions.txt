@@ -1270,12 +1270,12 @@ mission "Remnant: Broken Jump Drive 1"
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
-			`As your ship the <ship> settles onto its designated landing pad, you see someone emerge from the nearby outfitter and quickly make their way to you. He waits a safe distance back, then approaches once you cycle the hatch and disembark. "Greetings, Captain <last>," trills the Remnant. "We saw the news that the newcomer among us was tracking down an erratic Korath ship. When you came in to land, we saw on the scans that you salvaged its malfunctioning jump drive. Could we take it, to study?"`
+			`As your ship, the <ship>, settles onto its designated landing pad, you see someone emerge from the nearby outfitter and quickly make their way to you. The man waits a safe distance before approaching once you cycle the hatch and disembark. "Greetings, Captain <last>," trills the Remnant, "we saw the news that the newcomer among us was tracking down an erratic Korath ship. When you came in to land, we saw on the scans that you salvaged its malfunctioning jump drive. Could we take it to study?"`
 			choice
 				`	(Maybe later.)`
 					goto refuse
 				`	(Yes.)`
-			`	"Excellent!" he glances at his datapad, "There are several teams working on aspects of the jump drive, and the one with the highest priority for this one is on <planet>. I will notify them to expect you."`
+			`	"Excellent!" he glances at his datapad, "there are several teams working on aspects of the jump drive, and the one with the highest priority for this one is on <planet>. I will notify them to expect you."`
 				accept
 			label refuse
 			`	He considers this, and sings, "If you wish. Our offer stands, whenever you choose to return."`
@@ -1289,7 +1289,7 @@ mission "Remnant: Broken Jump Drive 1"
 				`	"Aren't you going to replace it with a hyperdrive?"`
 			`	The engineer looks at you incredulously. "You mean you were actually depending on this drive?" He shakes his head in disbelief. "You are lucky you managed to get this far, then. It is surprising that they exist at all, let alone still work properly. If you need a replacement drive, there are plenty available in the outfitter."`
 			label end
-			`	"Next time you find one of these drives, just check with a starport director. They will know where it will need to go. A word of warning: I strongly recommend not using these drives - there may disappear at the most inconvenient of times, and there won't always be an outfitter on hand." He turns and heads off with the rest of the team, turning briefly to give you friendly wave as they disembark.`
+			`	"Next time you find one of these drives, just check with a starport director. They will know where it will need to go. A word of warning though; I strongly recommend not using these drives - there may disappear at the most inconvenient of times, and there won't always be an outfitter on hand." He turns and heads off with the rest of the team, turning briefly to give you friendly wave as they disembark.`
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
 		payment 500000
@@ -1329,7 +1329,7 @@ mission "Remnant: Broken Jump Drive 2"
 				`	"Great! I will find more."`
 					goto end
 				`	"What are you studying?"`
-			`	"Our previous research into Jump Drives determined that these drives are unsurprisingly multi-part systems. We know the outer part that we can see and handle is mostly the machinery for generating some kind of containment field or pocket. As to how it works or why it is needed..." his chant trails off and he makes a gesture you suspect may be the equivalent of a shrug. "Anyway, our team is focused on the nature of this outer system. It is our hope that - damaged as it is - its continued functionality might allow us to look a little farther inside its inner workings to figure out exactly what that field does and how it is used."`
+			`	"Our previous research into Jump Drives determined that these drives are unsurprisingly multi-part systems. We know the outer part that we can see and handle is mostly the machinery for generating some kind of containment field or pocket. As to how it works or why it is needed..." his chant trails off and he makes a gesture you suspect may be the equivalent of a shrug. "Anyways, our team is focused on the nature of this outer system. It is our hope that - damaged as it is - its continued functionality might allow us to look a little farther inside its inner workings to figure out exactly what that field does and how it is used."`
 			label end
 			`	"Well, my compatriots finished unloading rather quickly, so I should be off. For all our sakes, I hope you find more of these for us."`
 		outfit "Jump Drive (Broken)" -1
@@ -1365,7 +1365,7 @@ mission "Remnant: Broken Jump Drive 3"
 				defer
 	on complete
 		conversation
-			`The team waiting for you on <planet> is definitely eager to begin. You barely have the hatch open before they are chivying their camel-pulled wagon up the ramp. They load the broken jump drive surprisingly fast despite their delicate movements.`
+			`The team waiting for you on <planet> is definitely eager to begin. You barely have the hatch open before they are chivying their camel-pulled wagon up the ramp. They load the broken jump drive surprisingly quickly despite their delicate movements.`
 			`	"This is an exciting day, Captain <first>! Countless theories may be proven or put back into the fires of refinement based on the testing we can do with this!"`
 			choice
 				`	"Great! I will find more."`
