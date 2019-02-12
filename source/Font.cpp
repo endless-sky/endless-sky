@@ -201,7 +201,7 @@ void Font::UpdateFontDesc() const
 	
 	// Get font descriptions.
 	PangoFontDescription *fontDesc = pango_font_description_from_string(fontDescName.c_str());
-	PangoFontDescription *refDesc = pango_font_description_from_string(refDescName.c_str());
+	PangoFontDescription *refDesc = refDescName.empty() ? fontDesc : pango_font_description_from_string(refDescName.c_str());
 	
 	// Set the pixel size.
 	const int fontSize = ViewFromTextFloorY(pixelSize) * PANGO_SCALE;
@@ -223,7 +223,8 @@ void Font::UpdateFontDesc() const
 	// Clean up.
 	pango_font_metrics_unref(metrics);
 	pango_font_description_free(fontDesc);
-	pango_font_description_free(refDesc);
+	if(fontDesc != refDesc)
+		pango_font_description_free(refDesc);
 	cache.Clear();
 	
 	// Tab Stop

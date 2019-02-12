@@ -25,7 +25,7 @@ namespace {
 	map<int, Font> fonts;
 	
 	string fontDescription("Ubuntu");
-	string fontDescriptionForLayout("Ubuntu");
+	string fontDescriptionForLayout;
 	string fontLanguage("en");
 	char envBackend[] = "PANGOCAIRO_BACKEND=fc";
 }
