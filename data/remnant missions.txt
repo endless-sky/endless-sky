@@ -1143,7 +1143,7 @@ mission "Remnant: Bounty 2"
 		random < 60
 	npc kill
 		government "Korath"
-		personality heroic vindictive target uninterested waiting
+		personality heroic vindictive target uninterested waiting marked
 		system
 			distance 1 2
 		fleet
