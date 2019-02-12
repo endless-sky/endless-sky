@@ -149,23 +149,24 @@ namespace {
 	vector<int> SubstituteValues(const vector<string> &side, const map<string, int> &conditions, const map<string, int> &created)
 	{
 		auto result = vector<int>();
+		result.reserve(side.size());
 		for(const string &str : side)
 		{
-			if(DataNode::IsNumber(str))
-				result.emplace_back(static_cast<int>(DataNode::Value(str)));
-			else if(str == "random")
-				result.emplace_back(Random::Int(100));
+			int value = 0;
+			if(str == "random")
+				value = Random::Int(100);
+			else if(DataNode::IsNumber(str))
+				value = static_cast<int>(DataNode::Value(str));
 			else
 			{
-				const auto &temp = created.find(str);
-				const auto &perm = conditions.find(str);
+				const auto temp = created.find(str);
+				const auto perm = conditions.find(str);
 				if(temp != created.end())
-					result.emplace_back(temp->second);
+					value = temp->second;
 				else if(perm != conditions.end())
-					result.emplace_back(perm->second);
-				else
-					result.emplace_back(0);
+					value = perm->second;
 			}
+			result.emplace_back(value);
 		}
 		return result;
 	}
