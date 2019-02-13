@@ -69,7 +69,6 @@ ship "Aerie"
 
 ship "Argosy"
 	plural "Argosies"
-	thumbnail "thumbnail/ies"
 	sprite "ship/argosy"
 	thumbnail "thumbnail/argosy"
 	attributes
@@ -1242,7 +1241,6 @@ ship "Falcon"
 
 ship "Finch"
 	plural "Finches"
-	thumbnail "thumbnail/es"
 	sprite "ship/finch"
 	thumbnail "thumbnail/finch"
 	attributes
@@ -1508,7 +1506,6 @@ ship "Frigate"
 
 ship "Fury"
 	plural "Furies"
-	thumbnail "thumbnail/s"
 	sprite "ship/fury"
 	thumbnail "thumbnail/fury"
 	attributes
@@ -2087,7 +2084,6 @@ ship "Manta"
 
 ship "Modified Argosy"
 	plural "Modified Argosies"
-	thumbnail "thumbnail/es"
 	sprite "ship/modified argosy"
 	thumbnail "thumbnail/modified argosy"
 	attributes
@@ -2655,7 +2651,6 @@ ship "Scout"
 
 ship "Shuttle"
 	sprite "ship/shuttle"
-	thumbnail "thumbnail/shuttle"
 		"frame time" 4
 		"delay" 14
 		"random start frame"
