@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ConditionSet.h"
 #include "Conversation.h"
 #include "LocationFilter.h"
+#include "Phrase.h"
 
 #include <map>
 #include <memory>
@@ -73,6 +74,8 @@ private:
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
 	
 	std::string dialogText;
+	const Phrase *stockDialogPhrase = nullptr;
+	Phrase dialogPhrase;
 	
 	const Conversation *stockConversation = nullptr;
 	Conversation conversation;

@@ -1536,9 +1536,9 @@ mission "Mercenary Job (Medium, North, Dangerous Origin)"
 				"Corvette (Speedy)"
 	on complete
 		payment 180000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+		dialog phrase "generic safe escort completion dialog"
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"
 
 mission "Escort Illegal Cargo (Large, North, Dangerous Path)"
 	name "Protect cargo to <planet>"
@@ -1584,9 +1584,9 @@ mission "Escort Illegal Cargo (Large, North, Dangerous Path)"
 				"Leviathan"
 	on complete
 		payment 240000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+		dialog phrase "generic safe escort completion dialog"
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"
 
 mission "Escort Stolen Vessel (Extra Large, North, Dangerous Path)"
 	name "Protect ship to <planet>"
@@ -1631,9 +1631,9 @@ mission "Escort Stolen Vessel (Extra Large, North, Dangerous Path)"
 				"Shuttle"
 	on complete
 		payment 375000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+		dialog phrase "generic safe escort completion dialog"
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"
 
 mission "Mercenary Job (Medium, Core, Dangerous Origin)"
 	name "Protection to <planet>"
@@ -1677,9 +1677,9 @@ mission "Mercenary Job (Medium, Core, Dangerous Origin)"
 				"Quicksilver (Proton)"
 	on complete
 		payment 180000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+		dialog phrase "generic safe escort completion dialog"
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"
 
 mission "Escort Illegal Cargo (Large, Core, Dangerous Path)"
 	name "Protect cargo to <planet>"
@@ -1721,9 +1721,9 @@ mission "Escort Illegal Cargo (Large, Core, Dangerous Path)"
 				"Splinter (Laser)" 2
 	on complete
 		payment 240000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+		dialog phrase "generic safe escort completion dialog"
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"
 
 mission "Escort Stolen Vessel (Extra Large, Core, Dangerous Path)"
 	name "Protect ship to <planet>"
@@ -1774,9 +1774,9 @@ mission "Escort Stolen Vessel (Extra Large, Core, Dangerous Path)"
 				"Heavy Shuttle"
 	on complete
 		payment 375000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+		dialog phrase "generic safe escort completion dialog"
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"
 
 mission "Mercenary Job (Medium, South, Dangerous Origin)"
 	name "Protection to <planet>"
@@ -1820,9 +1820,9 @@ mission "Mercenary Job (Medium, South, Dangerous Origin)"
 				"Modified Argosy"
 	on complete
 		payment 180000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+		dialog phrase "generic safe escort completion dialog"
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"
 
 mission "Escort Illegal Cargo (Large, South, Dangerous Path)"
 	name "Protect cargo to <planet>"
@@ -1866,9 +1866,9 @@ mission "Escort Illegal Cargo (Large, South, Dangerous Path)"
 				"Bastion (Heavy)"
 	on complete
 		payment 240000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+		dialog phrase "generic safe escort completion dialog"
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"
 
 mission "Escort Stolen Vessel (Extra Large, South, Dangerous Path)"
 	name "Protect ship to <planet>"
@@ -1919,9 +1919,9 @@ mission "Escort Stolen Vessel (Extra Large, South, Dangerous Path)"
 				"Heavy Shuttle"
 	on complete
 		payment 375000
-		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+		dialog phrase "generic safe escort completion dialog"
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"
 
 
 

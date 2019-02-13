@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Fleet.h"
 #include "LocationFilter.h"
 #include "Personality.h"
+#include "Phrase.h"
 
 #include <string>
 #include <list>
@@ -76,6 +77,9 @@ private:
 	
 	// Dialog or conversation to show when all requirements for this NPC are met:
 	std::string dialogText;
+	const Phrase *stockDialogPhrase = nullptr;
+	Phrase dialogPhrase;
+	
 	Conversation conversation;
 	const Conversation *stockConversation = nullptr;
 	
