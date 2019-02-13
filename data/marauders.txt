@@ -10,7 +10,7 @@
 
 ship "Marauder Arrow"
 	sprite "ship/marrows"
-	thumbnail "thumbnail/ship/marrows"
+	thumbnail "thumbnail/marrows"
 	attributes
 		category "Interceptor"
 		"cost" 1320000
@@ -109,7 +109,7 @@ ship "Marauder Arrow" "Marauder Arrow (Weapons)"
 
 ship "Marauder Bounder"
 	sprite "ship/mbounders"
-	thumbnail "thumbnail/ship/mbounders"
+	thumbnail "thumbnail/mbounders"
 	attributes
 		category "Interceptor"
 		"cost" 1250000
@@ -217,7 +217,7 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 
 ship "Marauder Falcon"
 	sprite "ship/mfalcons"
-	thumbnail "thumbnail/ship/mfalcons"
+	thumbnail "thumbnail/mfalcons"
 	attributes
 		category "Heavy Warship"
 		"cost" 13900000
@@ -346,7 +346,7 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 
 ship "Marauder Firebird"
 	sprite "ship/mfirebirds"
-	thumbnail "thumbnail/ship/mfirebirds"
+	thumbnail "thumbnail/mfirebirds"
 	attributes
 		category "Medium Warship"
 		"cost" 4100000
@@ -460,7 +460,7 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 
 ship "Marauder Leviathan"
 	sprite "ship/mleviathans"
-	thumbnail "thumbnail/ship/mleviathans"
+	thumbnail "thumbnail/mleviathans"
 	attributes
 		category "Heavy Warship"
 		"cost" 10800000
@@ -579,7 +579,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 
 ship "Marauder Manta"
 	sprite "ship/mmantas"
-	thumbnail "thumbnail/ship/mmantas"
+	thumbnail "thumbnail/mmantas"
 	attributes
 		category "Medium Warship"
 		"cost" 3740000
@@ -706,7 +706,7 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 
 ship "Marauder Quicksilver"
 	sprite "ship/mquicksilvers"
-	thumbnail "thumbnail/ship/mquicksilvers"
+	thumbnail "thumbnail/mquicksilvers"
 	attributes
 		category "Light Warship"
 		"cost" 1200000
@@ -806,7 +806,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 
 ship "Marauder Raven"
 	sprite "ship/mravens"
-	thumbnail "thumbnail/ship/mravens"
+	thumbnail "thumbnail/mravens"
 	attributes
 		category "Light Warship"
 		"cost" 2250000
@@ -912,7 +912,7 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 
 ship "Marauder Splinter"
 	sprite "ship/msplinters"
-	thumbnail "thumbnail/ship/msplinters"
+	thumbnail "thumbnail/msplinters"
 	attributes
 		category "Medium Warship"
 		"cost" 3400000
