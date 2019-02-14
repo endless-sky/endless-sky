@@ -108,6 +108,7 @@ mission "Assisting Free Worlds"
 		random < 5
 	source
 		government "Free Worlds"
+		not category "Fighter" "Drone"
 	destination
 		government "Free Worlds"
 		distance 2 4
@@ -139,6 +140,7 @@ mission "Assisting Republic"
 		random < 5
 	source
 		government "Republic"
+		not category "Fighter" "Drone"
 	destination
 		government "Republic"
 		distance 2 4
@@ -170,6 +172,7 @@ mission "Assisting Deep Security"
 		random < 5
 	source
 		government "Deep Security"
+		not category "Fighter" "Drone"
 	destination
 		attributes "deep"
 		distance 2 4
@@ -201,6 +204,7 @@ mission "Assisting Syndicate"
 		random < 5
 	source
 		government "Syndicate"
+		not category "Fighter" "Drone"
 	destination
 		government "Syndicate"
 		distance 2 4
