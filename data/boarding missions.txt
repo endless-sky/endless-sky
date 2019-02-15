@@ -294,7 +294,7 @@ mission "Pirate Ambush"
 	
 	npc kill
 		government "Pirate"
-		personality nemisis harvests plunders entering
+		personality nemesis harvests plunders entering
 		fleet "pirate raid" 2
 
 
