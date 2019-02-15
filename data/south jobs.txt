@@ -39,8 +39,7 @@ mission "Pirate Occupation [0]"
 		conversation "pirate occupation"
 	on complete
 		payment 100000
-		dialog `The government of <planet> thanks you for defeating the pirates and pays you <payment>.`
-
+		dialog phrase "generic pirate attack payment dialog"
 
 mission "Pirate Occupation [1]"
 	name `Pirates occupying <system>`
@@ -74,8 +73,7 @@ mission "Pirate Occupation [1]"
 		conversation "pirate occupation"
 	on complete
 		payment 150000
-		dialog `The government of <planet> thanks you for defeating the pirates and pays you <payment>.`
-
+		dialog phrase "generic pirate attack payment dialog"
 
 mission "Pirate Occupation [2]"
 	name `Pirates occupying <system>`
@@ -109,7 +107,7 @@ mission "Pirate Occupation [2]"
 		conversation "pirate occupation"
 	on complete
 		payment 200000
-		dialog `The government of <planet> thanks you for defeating the pirates and pays you <payment>.`
+		dialog phrase "generic pirate attack payment dialog"
 
 conversation "pirate occupation"
 	`Suddenly you hear raised voices and shouting outside as pilots run for their ships: "<destination> is being occupied by a pirate fleet! They are requesting help from any combat-worthy ship in the region to join the defenses!" The authorities of <planet> will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
@@ -119,6 +117,7 @@ conversation "pirate occupation"
 		`	(Join the defense fleet.)`
 	`A few militia pilots have gathered to help repel the pirate attack. You join them, and take off together...`
 		launch
+
 
 
 mission "Sketchy Cargo [0]"
@@ -140,7 +139,6 @@ mission "Sketchy Cargo [0]"
 		payment 0 160
 		dialog "You drop off the unlabeled cargo in a warehouse not too dissimilar to the one you picked it up in. A man dressed in a cloak hands you <payment> after the last crate is removed from your ship."
 
-
 mission "Sketchy Cargo [1]"
 	name "Delivery to <planet>"
 	job
@@ -161,6 +159,7 @@ mission "Sketchy Cargo [1]"
 		dialog "You drop off the unlabeled cargo in a warehouse not too dissimilar to the one you picked it up in. A man dressed in a cloak hands you <payment> after the last crate is removed from your ship."
 
 
+
 mission "Sketchy Passenger [0]"
 	name "Passenger transport to <planet>"
 	job
@@ -179,7 +178,6 @@ mission "Sketchy Passenger [0]"
 	on complete
 		payment 2000 160
 		dialog "Your passengers ask that you land away from the busy spaceport center. They hand you <payment> and rush out of your ship and away from the spaceport with considerable speed."
-
 
 mission "Sketchy Passenger [1]"
 	name "Passenger transport to <planet>"

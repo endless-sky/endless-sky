@@ -1755,7 +1755,7 @@ mission "Courier 1"
 	on complete
 		payment
 		payment 30000
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+		dialog phrase "generic cargo delivery payment"
 
 
 
@@ -2612,7 +2612,7 @@ mission "Lost Boy 2"
 			
 			label description
 			`	You provide Cygnet with the description of Tod that his mother gave you, then explain to him that Tod would have been taken from a ship bound for Placer.`
-			`	"Oh yeah, that bugger! That little rebel was causin' me trouble so I sold him off soon as I could. If ya looking for him, then you're gonna need to look for a guy by the name of <npc>. He bought your boy Tod 'bout four days ago. He might be hangin' around a system nearby."`
+			`	"Oh yeah, that bugger! That little rebel was causin' me trouble so I sold him off soon as I could. If ya looking for him, then you're gonna need to look for a ship by the name of <npc>. They bought your boy Tod 'bout four days ago. Might be hangin' around a system nearby."`
 			`	You thank Cygnet, who has been surprisingly polite for a slave trader, for the information. "If ya ever need a slave, just come talk to me," he remarks as you walk back to your ship. "I've got the cheapest slaves this side of Sol."`
 				accept
 	

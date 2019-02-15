@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
+#include "DataNode.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -173,6 +174,26 @@ void Dialog::Draw()
 		Point barPos(stringPos.X() + font.Width(truncated) + 2., inputPos.Y());
 		FillShader::Fill(barPos, Point(1., 16.), dim);
 	}
+}
+
+
+
+// Format and add the text from the given node to the given string.
+void Dialog::ParseTextNode(const DataNode &node, size_t startingIndex, string &text)
+{
+	for(int i = startingIndex; i < node.Size(); ++i)
+	{
+		if(!text.empty())
+			text += "\n\t";
+		text += node.Token(i);
+	}
+	for(const DataNode &child : node)
+		for(int i = 0; i < child.Size(); ++i)
+		{
+			if(!text.empty())
+				text += "\n\t";
+			text += child.Token(i);
+		}
 }
 
 

@@ -467,8 +467,8 @@ trade
 		"plutonium"
 		"polonium"
 		"raw pitchblende"
-		"reactor grade plutonium"
-		"reactor grade uranium"
+		"reactor-grade plutonium"
+		"reactor-grade uranium"
 		"thorium"
 		"tungsten"
 	commodity "Luxury Goods" 920 1520

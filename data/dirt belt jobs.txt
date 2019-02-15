@@ -234,7 +234,7 @@ mission "Food Convoy [0]"
 		payment 100000
 		dialog "The captain of the <npc> thanks you for escorting their ships safely, and pays you <payment>."
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"
 
 
 mission "Food Convoy [1]"
@@ -279,7 +279,7 @@ mission "Food Convoy [1]"
 		payment 160000
 		dialog "The captain of the <npc> thanks you for escorting their ships safely, and pays you <payment>."
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"
 
 
 mission "Food Convoy [2]"
@@ -325,4 +325,4 @@ mission "Food Convoy [2]"
 		payment 220000
 		dialog "The captain of the <npc> thanks you for escorting their ships safely, and pays you <payment>."
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"

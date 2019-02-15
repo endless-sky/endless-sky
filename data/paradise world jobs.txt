@@ -18,11 +18,11 @@ mission "Care package to <planet>"
 	to offer
 		random < 10
 	source
-		attributes paradise
+		attributes "paradise"
 	destination
 		distance 2 5
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes paradise research rich
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "paradise" "research" "rich"
 	on complete
 		payment
 		payment 5000
@@ -38,11 +38,11 @@ mission "Birthday supplies to <planet>"
 	to offer
 		random < 10
 	source
-		attributes paradise
+		attributes "paradise"
 	destination
 		distance 2 10
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes paradise rich core "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "paradise" "rich" "core" "near earth"
 	on complete
 		payment
 		payment 5000
@@ -58,11 +58,11 @@ mission "Art delivery to <planet>"
 	to offer
 		random < 10
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rich
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rich"
 	destination
 		distance 2 5
-		attributes paradise
+		attributes "paradise"
 	on complete
 		payment
 		payment 5000
@@ -100,11 +100,11 @@ mission "Theater props to <planet>"
 	to offer
 		random < 10
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes rich urban
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rich" "urban"
 	destination
 		distance 2 8
-		attributes paradise
+		attributes "paradise"
 	on complete
 		payment
 		payment 8000
@@ -120,11 +120,11 @@ mission "Fine food to <planet>"
 	to offer
 		random < 10
 	source
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes farming fishing
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "farming" "fishing"
 	destination
 		distance 2 10
-		attributes paradise
+		attributes "paradise"
 	on complete
 		payment
 		payment 8000
@@ -182,10 +182,10 @@ mission "Food donations to <planet>"
 	to offer
 		random < 10
 	source
-		attributes paradise
+		attributes "paradise"
 	destination
 		distance 2 16
-		attributes rim south "dirt belt" frontier military
+		attributes "rim" "south" "dirt belt" "frontier" "military"
 	on complete
 		payment 1000 90
 		dialog "You collect your payment of <payment>, but not before noticing the general robustness and ample bellies of the dockworkers unloading the donation of <commodity>."
@@ -199,10 +199,10 @@ mission "Clothing donations to <planet>"
 	to offer
 		random < 10
 	source
-		attributes paradise
+		attributes "paradise"
 	destination
 		distance 2 16
-		attributes rim south "dirt belt" frontier military
+		attributes "rim" "south" "dirt belt" "frontier" "military"
 	on complete
 		payment 1000 100
 		dialog "You collect your payment of <payment>, but not before noticing the fine quality of the clothes worn by the dockworkers unloading the donation of <commodity>."
@@ -216,10 +216,10 @@ mission "Medical aid to <planet>"
 	to offer
 		random < 10
 	source
-		attributes paradise
+		attributes "paradise"
 	destination
 		distance 2 16
-		attributes rim south "dirt belt" frontier military
+		attributes "rim" "south" "dirt belt" "frontier" "military"
 	on complete
 		payment 1000 100
 		dialog "You collect your payment of <payment>, but not before noticing the general health and vigor of the dockworkers unloading the donation of <commodity>."
@@ -233,10 +233,10 @@ mission "Charity goods to <planet>"
 	to offer
 		random < 10
 	source
-		attributes paradise
+		attributes "paradise"
 	destination
 		distance 2 16
-		attributes rim south "dirt belt" frontier military
+		attributes "rim" "south" "dirt belt" "frontier" "military"
 	on complete
 		payment 1000 100
 		dialog "You collect your payment of <payment>, but not before noticing the quality of the clothes, jewelry, and personal electronics carried by the dockworkers unloading the donation of <commodity>."
@@ -251,11 +251,11 @@ mission "Party goods to <planet>"
 	to offer
 		random < 10
 	source
-		attributes paradise
+		attributes "paradise"
 	stopover
 		distance 5 9
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes paradise rich
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "paradise" "rich"
 	on stopover
 		dialog "You oversee the loading as dockworkers carry box after box of <commodity> onto your ship. Must be some party."
 	on visit
@@ -274,10 +274,10 @@ mission "Estate assets to <planet>"
 	to offer
 		random < 10
 	source
-		attributes paradise
+		attributes "paradise"
 	destination
 		distance 3 12
-		attributes rich
+		attributes "rich"
 	on complete
 		payment
 		payment 10000
@@ -292,11 +292,11 @@ mission "Contract laborers to <planet>"
 	to offer
 		random < 10
 	source
-		attributes paradise
+		attributes "paradise"
 	stopover
 		distance 7 15
-		government Republic "Free Worlds" Syndicate Neutral
-		attributes mining fishing textiles factory farming oil
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "mining" "fishing" "textiles" "factory" "farming" "oil"
 	on stopover
 		dialog "The shabbily-dressed young men and women in the group don't look nearly as happy to be boarding your ship as you expected, given the new opportunity that awaits them. They shuffle wearily up the ramp for the return trip to <planet>."
 	on complete
@@ -312,7 +312,7 @@ mission "Waste disposal on <planet>"
 	to offer
 		random < 10
 	source
-		attributes paradise
+		attributes "paradise"
 	destination
 		distance 2 20
 		attributes "dirt belt"
@@ -349,15 +349,15 @@ mission "Pleasure cruise security"
 		random < 10
 		"combat rating" > 10
 	source
-		attributes paradise rich
+		attributes "paradise" "rich"
 	stopover
-		attributes tourism religious quarg pirate volcanic frontier moon fishing
+		attributes "tourism" "religious" "quarg" "pirate" "volcanic" "frontier" "moon" "fishing"
 		distance 6 15
 	destination
-		attributes paradise
+		attributes "paradise"
 		distance 1 6
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		fleet
 			names "civilian"
