@@ -1259,8 +1259,11 @@ mission "Remnant: Broken Jump Drive 1"
 	description "You have been asked to deliver a broken jump drive to the researchers on <planet>."
 	minor
 	landing
+	repeat
 	to offer
 		has "remnant blood test pure"
+		not "Remnant: Broken Jump Drive 1: active"
+		not "Remnant: Broken Jump Drive 1: done"
 	source
 		government "Remnant"
 		attributes outfitter
@@ -1270,16 +1273,29 @@ mission "Remnant: Broken Jump Drive 1"
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
+			branch repeated
+				has "Remnant: Broken Jump Drive: offered"
 			`As the <ship> settles onto its designated landing pad, you see someone emerge from the nearby outfitter and quickly make their way to you. The man waits a safe distance before approaching once you cycle the hatch and disembark. "Greetings, Captain <last>," trills the Remnant, "we saw the news that the newcomer among us was tracking down an erratic Korath ship. When you came in to land, we saw on the scans that you salvaged its malfunctioning jump drive. Could we take it to study?"`
 			choice
 				`	"Maybe later."`
 					goto refuse
 				`	"That would be a good use for it."`
+					goto accept
+			
+			label repeated
+			`You have a broken jump drive that the Remnant might be interested on. Do you want to seek out someone to give it to?`
+			choice
+				`	(Maybe later.)`
+					defer
+				`	(Yes.)`
+			`	You find a Remnant director and inform them about the broken jump drive that you have.`
+			
+			label accept
 			`	"Excellent!" he glances at his datapad. "There are several teams working on aspects of the jump drive, and the team with the highest priority for this one is on <planet>. I will notify them to expect you."`
 				accept
 			label refuse
 			`	He considers this, and sings, "If you wish. Our offer stands, whenever you choose to return."`
-				defer
+				decline
 	on complete
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
