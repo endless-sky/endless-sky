@@ -181,8 +181,6 @@ fleet "Small Core Merchants"
 		"Freighter"
 		"Shuttle" 2
 		"Quicksilver"
-	variant 20
-		"Arrow (Luxury)"
 	variant 50
 		"Bounder"
 	variant 30
@@ -239,7 +237,7 @@ fleet "Large Core Merchants"
 	variant 50
 		"Bulk Freighter"
 		"Wasp"
-		"Wasp (Bomber)"
+		"Wasp (Meteor)"
 	variant 20
 		"Bulk Freighter (Blaster)"
 		"Wasp" 2
@@ -252,7 +250,7 @@ fleet "Large Core Merchants"
 	variant 10
 		"Bulk Freighter (Proton)"
 		"Wasp"
-		"Wasp (Bomber)"
+		"Wasp (Meteor)"
 	variant 20
 		"Bulk Freighter"
 	variant 10
@@ -304,7 +302,7 @@ fleet "Large Core Merchants"
 	variant 10
 		"Bulk Freighter" 2
 		"Wasp" 3
-		"Wasp (Bomber)" 2
+		"Wasp (Meteor)" 2
 	variant 10
 		"Bulk Freighter" 2
 		"Vanguard" 1
@@ -361,7 +359,7 @@ fleet "Paradise Merchants"
 	variant 2
 		"Star Queen"
 		"Wasp" 2
-		"Wasp (Bomber)"
+		"Wasp (Meteor)"
 	variant 2
 		"Star Queen"
 		"Berserker" 3
@@ -435,8 +433,6 @@ fleet "Small Northern Merchants"
 	variant 10
 		"Freighter" 3
 		"Sparrow" 1
-	variant 10
-		"Arrow (Luxury)"
 	variant 10
 		"Blackbird"
 	variant 3
@@ -1884,7 +1880,9 @@ fleet "Small Core Pirates"
 	personality
 		plunders harvests
 		confusion 20
-	variant 4
+	variant 3
+		"Quicksilver"
+	variant 3
 		"Quicksilver (Proton)"
 	variant 2
 		"Sparrow"
@@ -1894,28 +1892,27 @@ fleet "Small Core Pirates"
 		"Hawk (Rocket)"
 	variant 2
 		"Hawk (Speedy)"
-	variant 4
-		"Fury"
-	variant 2
-		"Fury (Bomber)"
-	variant 2
-		"Fury (Laser)"
-	variant 1
-		"Fury (Missile)"
 	variant 1
 		"Headhunter"
 	variant 1
 		"Headhunter (Particle)"
-	variant 2
+	variant 1
 		"Quicksilver" 2
 	variant 1
-		"Hawk (Bomber)"
-		"Sparrow"
+		"Quicksilver"
+		"Quicksilver (Proton)"
 	variant 1
-		"Fury (Bomber)"
-		"Sparrow"
-	variant 1
-		"Fury (Heavy)"
+		"Quicksilver (Proton)" 2
+	variant 2
+		"Wasp (Gatling)"
+	variant 3
+		"Wasp (Javelin)"
+	variant 8
+		"Wasp (Meteor)"
+	variant 2
+		"Wasp (Plasma)"
+	variant 2
+		"Wasp (Proton)"
 
 fleet "Large Core Pirates"
 	government "Pirate"
@@ -2036,32 +2033,26 @@ fleet "Large Northern Pirates"
 	cargo 1
 	personality
 		plunders harvests
-	variant 4
+	variant 2
 		"Firebird"
-	variant 3
+	variant 5
 		"Firebird (Laser)"
-	variant 2
+	variant 1
 		"Firebird (Missile)"
-	variant 2
+	variant 4
 		"Firebird (Plasma)"
-	variant 3
+	variant 1
 		"Firebird"
 		"Corvette"
-	variant 1
+	variant 4
 		"Firebird (Plasma)"
 		"Corvette (Speedy)"
-	variant 1
-		"Firebird (Missile)"
-		"Corvette (Missile)"
-	variant 1
+	variant 2
 		"Firebird (Plasma)"
 		"Corvette (Missile)"
 	variant 1
 		"Firebird (Laser)"
 		"Corvette (Missile)"
-	variant 1
-		"Firebird (Missile)"
-		"Corvette (Speedy)"
 	variant 2
 		"Firebird"
 		"Fury"
@@ -2074,12 +2065,12 @@ fleet "Large Northern Pirates"
 	variant 1
 		"Firebird (Missile)"
 		"Fury (Bomber)"
-	variant 2
+	variant 3
 		"Raven (Afterburner)" 2
-	variant 2
+	variant 1
 		"Raven (Heavy)" 2
 	variant 2
-		"Headhunter (Particle)" 1
+		"Headhunter (Particle)"
 		"Headhunter (Strike)"
 	variant 1
 		"Headhunter (Particle)" 2
@@ -2087,10 +2078,10 @@ fleet "Large Northern Pirates"
 	variant 2
 		"Leviathan"
 		"Firebird"
-	variant 2
+	variant 1
 		"Leviathan (Laser)"
 		"Firebird"
-	variant 2
+	variant 3
 		"Leviathan (Laser)"
 		"Firebird (Laser)"
 	variant 2
@@ -2102,27 +2093,15 @@ fleet "Large Northern Pirates"
 	variant 2
 		"Leviathan (Laser)"
 		"Firebird (Missile)"
-	variant 2
+	variant 3
 		"Leviathan"
-	variant 1
+	variant 2
 		"Leviathan (Laser)"
 	variant 1
 		"Leviathan (Heavy)"
 	variant 1
-		"Berserker" 3
-	variant 1
 		"Fury (Heavy)" 2
 		"Firebird (Missile)"
-	variant 1
-		"Berserker (Afterburner)" 3
-	variant 1
-		"Berserker (Strike)" 3
-	variant 2
-		"Berserker" 2
-	variant 2
-		"Berserker (Afterburner)" 2
-	variant 2
-		"Berserker (Strike)" 2
 	variant 1
 		"Bactrian"
 		"Dagger" 3

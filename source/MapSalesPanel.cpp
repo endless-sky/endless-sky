@@ -196,8 +196,8 @@ void MapSalesPanel::DrawKey() const
 	const Sprite *back = SpriteSet::Get("ui/sales key");
 	SpriteShader::Draw(back, Screen::TopLeft() + Point(WIDTH + 10, 0) + .5 * Point(back->Width(), back->Height()));
 	
-	Color bright(.6, .6);
-	Color dim(.3, .3);
+	Color bright(.6f, .6f);
+	Color dim(.3f, .3f);
 	const Font &font = FontSet::Get(14);
 	
 	Point pos(Screen::Left() + 50. + WIDTH, Screen::Top() + 12.);
@@ -218,7 +218,7 @@ void MapSalesPanel::DrawKey() const
 		if(onlyShowSoldHere && i == 2)
 		{
 			// If we're filtering out items not sold here, draw a pointer.
-			PointerShader::Draw(pos + Point(-7., 0.), Point(1., 0.), 10., 10., 0., bright);
+			PointerShader::Draw(pos + Point(-7., 0.), Point(1., 0.), 10.f, 10.f, 0.f, bright);
 		}
 		pos.Y() += 20.;
 	}
@@ -241,7 +241,7 @@ void MapSalesPanel::DrawPanel() const
 		for(int y = -steps; y <= steps; ++y)
 		{
 			Point pos(
-				Screen::Width() * -.5 + WIDTH + .5 * edgeSprite->Width(),
+				Screen::Width() * -.5f + WIDTH + .5f * edgeSprite->Width(),
 				y * edgeSprite->Height());
 			SpriteShader::Draw(edgeSprite, pos);
 		}
@@ -341,7 +341,7 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, bool isForSale, bo
 		const string &name, const string &price, const string &info)
 {
 	const Font &font = FontSet::Get(14);
-	Color selectionColor(0., .3);
+	Color selectionColor(0.f, .3f);
 	
 	Point nameOffset(ICON_HEIGHT, .5 * ICON_HEIGHT - PAD - 1.5 * font.Height());
 	Point priceOffset(ICON_HEIGHT, nameOffset.Y() + font.Height() + PAD);

@@ -391,7 +391,7 @@ void Font::CalculateAdvances(ImageBuffer &image)
 		{
 			int maxD = 0;
 			int glyphWidth = 0;
-			uint32_t *begin = reinterpret_cast<uint32_t *>(image.Pixels());
+			uint32_t *begin = image.Pixels();
 			for(int y = 0; y < height; ++y)
 			{
 				// Find the last non-empty pixel in the previous glyph.

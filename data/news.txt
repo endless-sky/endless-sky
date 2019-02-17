@@ -32,6 +32,7 @@ news "human merchant anywhere"
 		portrait/human76
 		portrait/human79
 		portrait/human98
+		portrait/human112
 	message
 		word
 			"Can you believe how little they pay for used ships and outfits these days? It's just a scandal!"
@@ -67,6 +68,9 @@ news "human merchant in human space"
 		portrait/human76
 		portrait/human79
 		portrait/human98
+		portrait/human108
+		portrait/human112
+		portrait/human125
 	message
 		word
 			"Pirate attacks keep getting more and more frequent, even in star systems that used to be perfectly safe. Why isn't the Navy doing something about it?"
@@ -108,6 +112,9 @@ news "human merchant in Hai space"
 		portrait/human76
 		portrait/human79
 		portrait/human98
+		portrait/human108
+		portrait/human112
+		portrait/human125
 	message
 		word
 			"Can you believe these Hai? They're light-years ahead of us, right under our noses."
@@ -139,6 +146,12 @@ news "human farming"
 		portrait/human52
 		portrait/human53
 		portrait/human78
+		portrait/human113
+		portrait/human116
+		portrait/human119
+		portrait/human120
+		portrait/human121
+		portrait/human126
 	message
 		word
 			"My neighbor is using some sort of newfangled pesticides. The wind carried their residue onto my fields and destroyed half my crops."
@@ -175,6 +188,9 @@ news "human textiles"
 		portrait/human55
 		portrait/human66
 		portrait/human69
+		portrait/human114
+		portrait/human123
+		portrait/human128
 	message
 		word
 			"Two days ago I ran over my finger with an industrial sewing machine. Put a hole straight through my thumb. But at least they paid my medical bill and gave me a week of sick leave."
@@ -205,6 +221,9 @@ news "human mining"
 		portrait/human70
 		portrait/human77
 		portrait/human82
+		portrait/human102
+		portrait/human115
+		portrait/human117
 	message
 		word
 			"Mining's the best opportunity on this whole planet, but I worry about my health. I've started to cough up blood when I get sick. It's a good thing the company pays for our medical bills."
@@ -228,6 +247,7 @@ news "human factory"
 		portrait/human92
 		portrait/human94
 		portrait/human97
+		portrait/human111
 	message
 		word
 			"Everybody I know wound up working in the plant, so I guess I was gonna go, too. It was inevitable or something, right?"
@@ -272,6 +292,7 @@ news "company psychologist"
 		portrait/human28
 		portrait/human47
 		portrait/human93
+		portrait/human103
 	message
 		word
 			"Studies have shown that ultimate fulfillment in life comes from doing valuable work. My calling is to help all our workers achieve that sort of self-actualization by being as productive as possible."
@@ -315,6 +336,7 @@ news "unemployed youth"
 		portrait/human34
 		portrait/human39
 		portrait/human98
+		portrait/human109
 	message
 		word
 			"I may be living on the street, but at least I haven't let myself get trapped in debt slavery like the workers on Syndicate worlds."
@@ -457,6 +479,7 @@ news "human resources worker"
 		portrait/human11
 		portrait/human33
 		portrait/human72
+		portrait/human125
 	message
 		word
 			"We always put our employees first. But sometimes they do things that are bad for their careers. Like, accusing a high-ranking manager of harassment."
@@ -482,6 +505,7 @@ news "loan officer"
 			"You probably think the interest rates we charge are exorbitant, but with all the ships getting blown up by pirates these days, we barely break even."
 			"We charge however much interest the market will support. The only captains who can't manage to pay their debts are the ones with no business sense whatsoever."
 			"Sadly, for the last several centuries there have been laws against inflicting bodily harm on people to convince them to pay off their debts."
+			"I still think we should be able to charge double the interest on loans to buy a Sparrow, but the regulators won't let us."
 
 
 
@@ -557,6 +581,7 @@ news "epidemiologist"
 		portrait/human10
 		portrait/human37
 		portrait/human79
+		portrait/human110
 	message
 		word
 			"People always worry about extra-terrestrial viruses and bacteria, but the deadliest diseases are very often caused by microbes we brought with us to the stars from good old Mother Earth."
@@ -577,6 +602,7 @@ news "economist"
 		portrait/human49
 		portrait/human83
 		portrait/human91
+		portrait/human104
 	message
 		word
 			"We're actually required by local law to predict that the economy will continue to do well, because the government thinks that any dire predictions will be a self-fulfilling prophecy."
@@ -645,6 +671,7 @@ news "reporter"
 			"My job is to bring sunlight into dark places and expose things that people are trying to keep hidden... and to avoid being killed in the process."
 			"A free and independent press is a critical component of any healthy democracy. But sensationalism is a whole lot more lucrative."
 			"I've been interviewing elderly starship captains. You wouldn't believe the tall tales that some of them tell!"
+			`Read my new article! "Ten Things the Quarg Are Hiding from Us - Number Seven Will Surprise You!"`
 
 
 
@@ -666,6 +693,7 @@ news "museum curator"
 			"I operate an arboretum with trees and shrubs from more than fifty worlds. Fortunately, none of them are particularly invasive species."
 			"The most popular exhibit in our entire Children's Museum is the interactive starship simulator. You're living a life that those kids can only dream of."
 			"Did you know that humans used to rely on explosive fuel mixtures to propel them into orbit? Imagine how mad you'd have to be to do that!"
+			"We recently put a restored 20th-century shipping container on display. You can hardly tell the difference from the ones in use today! Isn't historical inertia fascinating?"
 
 
 
@@ -681,6 +709,7 @@ news "actor"
 		portrait/human06
 		portrait/human51
 		portrait/human84
+		portrait/human105
 	message
 		word
 			"We're doing a production of the Scottish Play where the three witches are made up to look like Quarg. I know it sounds weird, but it works in our context."
@@ -765,6 +794,7 @@ news "insurance agent"
 		portrait/human49
 		portrait/human78
 		portrait/human97
+		portrait/human127
 	message
 		word
 			"No, we don't sell insurance policies on private starships in this day and age. We also don't insure buildings in flood plains and houses inhabited by convicted serial arsonists."
@@ -793,6 +823,7 @@ news "excavation specialist"
 			"Sure, you may have been to outer space, but I bet you've never been ten kilometers underground."
 			"For hundreds of years we've been worried that asteroid harvesting will put terrestrial miners out of business, but it still hasn't happened."
 			"Once I've worked here for another decade, I plan to move to some paradise world and earn a living excavating bunkers for paranoid rich folks to hide in."
+			"Once we had to stop work on a mine for a month because the archaeologists thought we found evidence of a million-year-old civilization. It turned out the site was just radioactive. Dodged that one!"
 
 
 
@@ -814,6 +845,7 @@ news "chauffeur"
 			"The family I work for is so rich that they pay me to ride in the back of their self-driving car just so I can open the doors for them when they arrive wherever they're going."
 			"My company gives private gyrocopter rides to rich tourists. I built the gyrocopter myself, but it's a very safe vehicle."
 			"You wouldn't believe the sorts of things that go on in the back of my car after certain extravagant social galas."
+			"You'll never believe what happened on my first day on the job. Someone tried to rob a building while I was in the parking lot. I had to ram their van to keep them from getting away!"
 
 
 
@@ -936,6 +968,7 @@ news "human student"
 		portrait/human90
 		portrait/human93
 		portrait/human96
+		portrait/human107
 	message
 		word
 			"I'm going to be a teacher some day!"
@@ -964,6 +997,8 @@ news "human religious"
 		portrait/human45
 		portrait/human57
 		portrait/human61
+		portrait/human124
+		portrait/human126
 	message
 		word
 			"May God be with you!"
@@ -984,7 +1019,8 @@ news "human religious"
 news "human tourism"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "research" "deep" "rich" "paradise"
+		attributes "deep" "rich" "paradise" "tourism"
+		not attributes station
 	name
 		word
 			"Tourist"
@@ -996,6 +1032,7 @@ news "human tourism"
 		portrait/human84
 		portrait/human86
 		portrait/human95
+		portrait/human122
 	message
 		word
 			"This place is so romantic. I wish I could stay forever."
@@ -1041,6 +1078,9 @@ news "human republic soldier"
 		portrait/human80
 		portrait/human81
 		portrait/human85
+		portrait/human100
+		portrait/human101
+		portrait/human118
 	message
 		word
 			"I bet you think that starship of yours is hot stuff, huh? Try tooling around in a cruiser with Atomic Engines sometime. You can run circles around interceptors."

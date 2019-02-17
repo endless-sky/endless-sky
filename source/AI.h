@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <list>
 #include <map>
 #include <memory>
+#include <vector>
 
 class Angle;
 class AsteroidField;
@@ -79,12 +80,15 @@ private:
 	bool HasHelper(const Ship &ship, const bool needsFuel);
 	// Pick a new target for the given ship.
 	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
+	// Obtain a list of ships matching the desired hostility.
+	std::vector<std::shared_ptr<Ship>> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
 	
 	bool FollowOrders(Ship &ship, Command &command) const;
 	void MoveIndependent(Ship &ship, Command &command) const;
 	void MoveEscort(Ship &ship, Command &command) const;
 	static void Refuel(Ship &ship, Command &command);
 	static bool CanRefuel(const Ship &ship, const StellarObject *target);
+	bool ShouldDock(const Ship &ship, const Ship &parent, bool playerShipsLaunch) const;
 	
 	// Methods of moving from the current position to a desired position / orientation.
 	static double TurnBackward(const Ship &ship);
@@ -140,6 +144,7 @@ private:
 	
 	// Functions to classify ships based on government and system.
 	void UpdateStrengths(std::map<const Government *, int64_t> &strength, const System *playerSystem);
+	void CacheShipLists();
 	
 	
 private:
@@ -211,6 +216,9 @@ private:
 	
 	std::map<const Government *, int64_t> enemyStrength;
 	std::map<const Government *, int64_t> allyStrength;
+	std::map<const Government *, std::vector<std::shared_ptr<Ship>>> governmentRosters;
+	std::map<const Government *, std::vector<std::shared_ptr<Ship>>> enemyLists;
+	std::map<const Government *, std::vector<std::shared_ptr<Ship>>> allyLists;
 };
 
 

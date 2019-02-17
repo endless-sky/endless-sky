@@ -28,7 +28,7 @@ void Person::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "system")
 			location.Load(child);
-		if(child.Token(0) == "frequency" && child.Size() >= 2)
+		else if(child.Token(0) == "frequency" && child.Size() >= 2)
 			frequency = child.Value(1);
 		else if(child.Token(0) == "ship" && child.Size() >= 2)
 		{

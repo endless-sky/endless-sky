@@ -794,9 +794,15 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		++player.Conditions()[name + ": active"];
 	}
 	else if(trigger == DECLINE)
+	{
 		++player.Conditions()[name + ": offered"];
+		++player.Conditions()[name + ": declined"];
+	}
 	else if(trigger == FAIL)
+	{
 		--player.Conditions()[name + ": active"];
+		++player.Conditions()[name + ": failed"];
+	}
 	else if(trigger == COMPLETE)
 	{
 		--player.Conditions()[name + ": active"];
@@ -1131,7 +1137,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 // Perform an "on enter" MissionAction associated with the current system.
 void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 {
-	const auto &eit = onEnter.find(system);
+	const auto eit = onEnter.find(system);
 	if(eit != onEnter.end() && !didEnter.count(&eit->second) && eit->second.CanBeDone(player))
 	{
 		eit->second.Do(player, ui);

@@ -76,8 +76,8 @@ public:
 	
 protected:
 	// Adjust the frame rate.
-	void SetFrameRate(double framesPerSecond);
-	void AddFrameRate(double framesPerSecond);
+	void SetFrameRate(float framesPerSecond);
+	void AddFrameRate(float framesPerSecond);
 	void PauseAnimation();
 	// Mark this object to be removed from the game.
 	void MarkForRemoval();
