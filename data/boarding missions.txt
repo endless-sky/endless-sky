@@ -80,7 +80,7 @@ mission "Dangerous Journey"
 				`	(Take the cargo.)`
 					accept
 				`	(Don't take the cargo.)`
-			`	The captain begins swearing you out, so you cut the feed. Hopefully they make it to their destination in one piece.`
+			`	The captain begins cussing you out, so you cut the feed. Hopefully they make it to their destination in one piece.`
 					decline
 	on complete
 		payment 7500
