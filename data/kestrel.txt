@@ -216,7 +216,7 @@ ship "Unknown Ship Type"
 	thumbnail "thumbnail/kestrel"
 	attributes
 		category "Heavy Warship"
-		"cost" 10300000
+		"cost" 14700000
 		"shields" 19400
 		"hull" 7200
 		"required crew" 64
@@ -273,7 +273,7 @@ ship "Kestrel"
 	thumbnail "thumbnail/kestrel"
 	attributes
 		category "Heavy Warship"
-		"cost" 10300000
+		"cost" 14700000
 		"shields" 19400
 		"hull" 7200
 		"required crew" 64

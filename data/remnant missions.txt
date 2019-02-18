@@ -726,10 +726,10 @@ mission "Remnant: Catalytic Ramscoop"
 				goto more
 
 			label deep
-			`	"Fascinating," she sings as she clambers over <ship> with the grace of someone who obviously knows her ships. "Above all else, I am an engineer of movement," she chants. "We have done well to hide as deep in the Ember Waste as we have, but our ships' limited ranges struggle to take us farther. Examining systems from elsewhere may inspire new developments."`
+			`	"Fascinating," she sings as she clambers over the <ship> with the grace of someone who obviously knows her ships. "Above all else, I am an engineer of movement," she chants. "We have done well to hide as deep in the Ember Waste as we have, but our ships' limited ranges struggle to take us farther. Examining systems from elsewhere may inspire new developments."`
 
 			label more
-			`	After examining <ship> for quite some time, she stops beneath it and looks up. "Is this a new form of ramscoop?" she asks as she gestures at your ship's ramscoop. As you nod in the affirmative, she continues. "Fuel has always been a great limiter of our exploration. If you could get a couple extra that we could dismantle, this could be very useful to us."`
+			`	After examining the <ship> for quite some time, she stops beneath it and looks up. "Is this a new form of ramscoop?" she asks as she gestures at your ship's ramscoop. As you nod in the affirmative, she continues. "Fuel has always been a great limiter of our exploration. If you could get a couple extra that we could dismantle, this could be very useful to us."`
 			choice
 				`	"Sure, I could bring you some."`
 				`	"Sorry, I'm really not interested in helping Remnant research."`
@@ -794,7 +794,7 @@ mission "Remnant: Plasma Cannons"
 		payment 1130000
 		log "People" "Tali" `As an engineering prefect, Tali is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
 		conversation
-			`As <ship> settles onto the pad closest to the research facility, you can see the weapons specialist checking over a large cannon on a platform beneath a nearby Albatross. When he sees you starting to unload the two plasma cannons, he snaps the casing closed and gestures to someone out of sight. Within moments both him and an empty flatbed are there to pick up the weapons.`
+			`As the <ship> settles onto the pad closest to the research facility, you can see the weapons specialist checking over a large cannon on a platform beneath a nearby Albatross. When he sees you starting to unload the two plasma cannons, he snaps the casing closed and gestures to someone out of sight. Within moments both him and an empty flatbed are there to pick up the weapons.`
 			`	"Thank you for your help," he says. "Our Inhibitors provide us with something of a mobility advantage against the Korath, but they aren't particularly effective at disabling them. These plasma cannons will open new avenues of research for us." He pauses, then continues. "I also included a bonus for you. It is a 'finder's fee,' as we always appreciate new tech."`
 			`	The weapon technician finishes strapping down the plasma cannons and looks up to see another Remnant approaching. He gives the new Remnant a respectful dip of his head that almost seems like a bow before turning to you and chanting, "Ah, Captain <last>, have you met Tali? She is the engineering prefect here on Viminal. She asked me to let her know when or if you managed to procure the new tech for me."`
 			`	Tali steps forward to face you. "Well met, newcomer among the Remnant," she trills. "Fresh blood amongst us sets songs in motion that have long been in caesura. I have a few things to finish up right now, but I hope to work with you soon." She gives you a polite nod and heads back the way she came.`
@@ -832,7 +832,7 @@ mission "Remnant: Return the Samples"
 	on stopover
 		conversation
 			`Once again you have successfully dodged the Archon to land on Nasqueron. Somehow, knowing it was going to be there was both better and worse than the surprise of the first time.`
-			`	As <ship> sinks through the cloud layers, you gently activate the repulsors to slow your descent to avoid startling the void sprites. A few nearby sprites descend with you, seeming to match your velocity. You slow down as you reach the altitude listed in the log of where the eggs are to be released.`
+			`	As the <ship> sinks through the cloud layers, you gently activate the repulsors to slow your descent to avoid startling the void sprites. A few nearby sprites descend with you, seeming to match your velocity. You slow down as you reach the altitude listed in the log of where the eggs are to be released.`
 			`	Setting the ship on auto-pilot, you walk to the back and struggle into the pressure suit. Readying the eggs in the cargo hold, you equalize pressure in the main cargo hold to the swirling clouds outside, and open the bay doors. As predicted, at this pressure level, the eggs are almost weightless, and are fairly easy to carry to the door of the ship and release.`	
 			`	By the time you finish releasing the eggs back into the clouds, several void sprites have converged on your ship and appear to be herding the eggs away from you with gentle buffets of their wings. You take a moment to appreciate the alien beauty of these creatures before closing the hatch and purging the ship with fresh air.`
 	on complete
@@ -859,7 +859,7 @@ mission "Remnant: Return the Samples 2"
 				`	"Sorry, I'm really not interested in risking the Archon a third time."`
 					decline
 
-			`	"Thank you. Like last time, we can't pay you for this. But we are still hopeful that the Archon might let us resume our studies." He follows you out to <ship> and helps you load the cocoons holding the eggs. Just before parting ways he asks, "Oh, could you record the void sprites this time? We would like to see the behaviors you mentioned last time."`
+			`	"Thank you. Like last time, we can't pay you for this. But we are still hopeful that the Archon might let us resume our studies." He follows you out to the <ship> and helps you load the cocoons holding the eggs. Just before parting ways he asks, "Oh, could you record the void sprites this time? We would like to see the behaviors you mentioned last time."`
 				accept
 	npc
 		government "Drak"
@@ -869,7 +869,7 @@ mission "Remnant: Return the Samples 2"
 	on stopover
 		conversation
 			`As you approach Slylandro you watch the Archon like a hawk, but this time it doesn't attempt to drive you off with tridents of white energy. Cautiously you make your way to Slylandro and begin your descent.`
-			`	As <ship> sinks through the cloud layers, you notice the void sprites seem to be tailing you. A few drop past you with startling speed, only to reappear from below as you approach the designated altitude. At the last minute you remember Plume's request to record them, and hit the switch to activate the recorder for the exterior cameras.`
+			`	As the <ship> sinks through the cloud layers, you notice the void sprites seem to be tailing you. A few drop past you with startling speed, only to reappear from below as you approach the designated altitude. At the last minute you remember Plume's request to record them, and hit the switch to activate the recorder for the exterior cameras.`
 			`	Setting the ship on auto-pilot, you head back and suit-up in the bulky pressure suit once again. Readying the eggs in the cargo hold, you equalize pressure and open the bay doors. As before, the eggs are already floating as you open the cocoons and gently carry them to the door.`
 			`	Almost as soon as you release the first egg, a void sprite is there, brushing against the ship to scoop the egg away into the swirling mists. By the time you return with the next one, another sprite is already waiting at the door, undulating in the eerie light. By the time the last egg is released you can see dozens of the strange creatures swarming around the collection of eggs. It occurs to you that very few humans would ever have the chance to see anything like this.`
 			`	After taking a moment to enjoy the view, you shut the door as gently as you can, purge the ship with fresh air, and begin the journey back to Aventine.`
@@ -988,7 +988,7 @@ mission "Remnant: Salvage 3"
 		has "Remnant: Salvage 2: done"
 	on offer
 		conversation
-			`After watching the mechanics start repairs on <ship>, you make the short trek to the spaceport common area. People are still rushing around as ships continue to land. No wrecks so far, and judging by the scrolling arrivals displays there are still quite a few ships on approach. Looking around for someone to talk to, you spot the prefect who had just visited your ship. He notices you and comes over. "No ships lost yet," he signs harshly, "but there are a few ships that haven't checked in."`
+			`After watching the mechanics start repairs on the <ship>, you make the short trek to the spaceport common area. People are still rushing around as ships continue to land. No wrecks so far, and judging by the scrolling arrivals displays there are still quite a few ships on approach. Looking around for someone to talk to, you spot the prefect who had just visited your ship. He notices you and comes over. "No ships lost yet," he signs harshly, "but there are a few ships that haven't checked in."`
 			`	He shakes his head and continues, "We need to keep our medical facilities as free as possible. Could you take some of our injured to Aventine? They are stable and healthy enough for an unattended transport, and it would free up medics and space here."`
 			choice
 				`	"Of course."`
@@ -1098,7 +1098,7 @@ mission "Remnant: Salvage 6"
 		conversation
 			`You spot the laboratory technician entering the cafeteria, and she approaches you.`
 			`	"Thank you for waiting. I have a shipment of parts ready for Tali, and with the recent increase in attacks she needs them sooner rather than later. Please take them to her."`
-			`	Outside you find a camel pulling a wagon filled with ship parts to be loaded on board <ship>.`
+			`	Outside you find a camel pulling a wagon filled with ship parts to be loaded on board the <ship>.`
 				accept
 		
 	on complete
@@ -1143,7 +1143,7 @@ mission "Remnant: Bounty 2"
 		random < 60
 	npc kill
 		government "Korath"
-		personality heroic vindictive target uninterested waiting
+		personality heroic vindictive target uninterested waiting marked
 		system
 			distance 1 2
 		fleet
@@ -1247,7 +1247,7 @@ mission "Remnant: Expanded Horizons Quarg 3"
 	on complete
 		payment 150000
 		conversation
-			`Once you are back in the privacy of <ship>, the stony reserve fades to cheerfulness as the trio are a blur of motion, chattering back and forth with their signs. Apparently this will be one of the biggest boosts to their research since the first time they salvaged the gear off a Korath raider.`
+			`Once you are back in the privacy of the <ship>, the stony reserve fades to cheerfulness as the trio are a blur of motion, chattering back and forth with their signs. Apparently this will be one of the biggest boosts to their research since the first time they salvaged the gear off a Korath raider.`
 			`	They eventually slow down their signs a bit and explain that up until the time the Remnant departed from ancestral space, human scanners had been unable to penetrate the outer layers of Quarg ships. One of Dawn's fellow researchers continues with the explanation.`
 			`	"Our historical records just have a few pictures and videos of Quarg ships, along with a basic scan that doesn't provide more than the general outline of the ship. These scans," he says while tapping the databanks, "actually picked up detailed structural layouts and even identified a number of key components. It isn't nearly enough information to be able to duplicate them, but it is enough that we can start trying to figure out how they work.`
 			`	Upon arriving at <planet> they quickly thank you, hand you <payment>, and run back to their offices to finish prepping their material to publish and distribute.`

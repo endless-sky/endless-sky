@@ -123,7 +123,7 @@ outfit "S-970 Regenerator"
 
 outfit "Small Radar Jammer"
 	category "Systems"
-	cost 70000
+	cost 24000
 	thumbnail "outfit/small radar jammer"
 	"mass" 4
 	"outfit space" -4
@@ -132,7 +132,7 @@ outfit "Small Radar Jammer"
 
 outfit "Large Radar Jammer"
 	category "Systems"
-	cost 490000
+	cost 138000
 	thumbnail "outfit/large radar jammer"
 	"mass" 14
 	"outfit space" -14

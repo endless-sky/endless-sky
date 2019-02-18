@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <memory>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
 class DataNode;
@@ -73,7 +74,7 @@ private:
 	
 private:
 	const Variant &ChooseVariant() const;
-	static Point ChooseCenter(const System &system);
+	static std::pair<Point, double> ChooseCenter(const System &system);
 	std::vector<std::shared_ptr<Ship>> Instantiate(const Variant &variant) const;
 	bool PlaceFighter(std::shared_ptr<Ship> fighter, std::vector<std::shared_ptr<Ship>> &placed) const;
 	void SetCargo(Ship *ship) const;

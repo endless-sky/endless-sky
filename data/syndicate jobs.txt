@@ -310,3 +310,183 @@ ship "Vanguard" "Vanguard Test Dummy"
 	add attributes
 		"automaton" 1
 		"self destruct" 1
+
+
+mission "Syndicate Prisoner Transport [0]"
+	name "Transport executive to house arrest"
+	job
+	repeat
+	description `Transport an indicted white-collar criminal with his assistants, lawyers, and collection of <cargo> to <planet>, where he will await trial under "house arrest." Payment is <payment>.`
+	cargo "Luxury Goods" 1 10
+	passengers 5 12
+	source
+		government "Syndicate"
+		attributes "urban"
+	destination
+		distance 2 10
+		government "Syndicate"
+		attributes "rich"
+		attributes "frontier"
+	to offer
+		random < 5
+	on offer
+		require "Luxury Accommodations"
+	on complete
+		payment 10000 200
+		dialog "The executive strolls off your ship with a sunny smile on his face. One of the lawyers hands you your payment of <payment> with muttered threats about libel lawsuits if you say anything about what you may or may not have overheard on your ship."
+
+
+mission "Syndicate Prisoner Transport [1]"
+	name "Transport convicted saboteur"
+	job
+	repeat
+	description `Transport a convicted industrial saboteur to <planet> for their sentence. Payment is <payment>.`
+	passengers 1
+	source
+		government "Syndicate"
+		not attributes "military"
+	destination
+		distance 2 10
+		government "Syndicate"
+		attributes "military"
+	to offer
+		random < 15
+	on offer
+		require "Brig"
+	on complete
+		payment 10000 200
+		dialog "A group of guards carry the prisoner off your ship more roughly than is strictly necessary. You receive your payment of <payment>."
+
+
+mission "Syndicate Prisoner Transport [2]"
+	name "Transport convicted corporate spies"
+	job
+	repeat
+	description `Transport a group of convicted corporate spies to <planet> for their sentences. Payment is <payment>.`
+	passengers 3 5
+	source
+		government "Syndicate"
+		not attributes "military"
+	destination
+		distance 2 10
+		government "Syndicate"
+		attributes "military"
+	to offer
+		random < 15
+	on offer
+		require "Brig"
+	on complete
+		payment 15000 175
+		dialog "A group of guards lead the prisoners off your ship, chained together at the ankles. You receive your payment of <payment>."
+
+
+mission "Syndicate Prisoner Transport [3]"
+	name "Transport detained protesters"
+	job
+	repeat
+	description `Transport a group of detained protesters to <planet> where they will await trial for inciting a riot. Payment is <payment>.`
+	passengers 10 40 .9
+	source
+		government "Syndicate"
+		attributes "urban"
+		not attributes "military"
+	destination
+		distance 2 10
+		government "Syndicate"
+		attributes "military"
+	to offer
+		random < 15
+	on offer
+		require "Brig"
+	on complete
+		payment 10000 150
+		dialog "The prisoners are still wearing their civilian clothes, and you can see bruises from when they were arrested as the guards lead them inside. You receive your payment of <payment>."
+
+
+mission "Syndicate Prisoner Transport [4]"
+	name "Transport detained labor organizers"
+	job
+	repeat
+	description `Transport a group of detained labor organizers to <planet> for "processing" as suspected terrorists. Payment is <payment>.`
+	passengers 3 15
+	source
+		government "Syndicate"
+		attributes "factory" "farming" "mining"
+		not attributes "military"
+	destination
+		distance 2 10
+		government "Syndicate"
+		attributes "military"
+	to offer
+		random < 10
+	on offer
+		require "Brig"
+	on complete
+		payment 15000 200
+		dialog `The union organizers are defiant as the guards drag them inside, and one of the organizers yells about "class traitors." You receive your payment of <payment>.`
+
+
+mission "Return Syndicate Prisoners [0]"
+	name "Return executive back from house arrest"
+	job
+	repeat
+	description `Transport an acquitted white-collar criminal with his assistants, lawyers, and collection of <cargo> home to <planet>. Payment is <payment>.`
+	cargo "Luxury Goods" 1 10
+	passengers 5 12
+	source
+		government "Syndicate"
+		attributes "rich"
+		attributes "frontier"
+	destination
+		distance 2 10
+		government "Syndicate"
+		attributes "urban"
+	to offer
+		random < 5
+	on offer
+		require "Luxury Accommodations"
+	on complete
+		payment 20000 200
+		dialog "The executive strides toward the express customs entrance with a smug grin. A paperwork-laden lawyer gives you your payment of <payment>."
+
+
+mission "Return Syndicate Prisoners [1]"
+	name "Return detained protesters home"
+	job
+	repeat
+	description `Transport a group of protesters home to <planet> from their detention on <source>. Payment is <payment>.`
+	passengers 10 40 .9
+	source
+		government "Syndicate"
+		attributes "military"
+	destination
+		distance 2 10
+		government "Syndicate"
+		attributes "urban"
+		not attributes "military"
+	to offer
+		random < 15
+	on complete
+		payment 5000 100
+		dialog "The protesters look around the spaceport nervously before disembarking. You receive your payment of <payment>."
+
+
+mission "Return Syndicate Prisoners [2]"
+	name "Return detained labor organizers home"
+	job
+	repeat
+	description `Transport a group of labor organizers home to <planet> from their imprisonment on <source>. Payment is <payment>.`
+	passengers 3 15 .9
+	source
+		government "Syndicate"
+		attributes "military"
+	destination
+		distance 2 10
+		government "Syndicate"
+		attributes "factory" "farming" "mining"
+		not attributes "military"
+	to offer
+		random < 10
+	on complete
+		payment 5000 100
+		dialog "The labor organizers are almost skeletally thin from their imprisonment. One of them raises his face to the sky as though showering in sunlight. You receive your payment of <payment>."

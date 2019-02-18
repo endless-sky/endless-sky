@@ -98,19 +98,26 @@ void NPC::Load(const DataNode &node)
 			personality.Load(child);
 		else if(child.Token(0) == "dialog")
 		{
-			for(int i = 1; i < child.Size(); ++i)
+			bool hasValue = (child.Size() > 1);
+			// Dialog text may be supplied from a stock named phrase, a
+			// private unnamed phrase, or directly specified.
+			if(hasValue && child.Token(1) == "phrase")
 			{
-				if(!dialogText.empty())
-					dialogText += "\n\t";
-				dialogText += child.Token(i);
+				if(!child.HasChildren() && child.Size() == 3)
+					stockDialogPhrase = GameData::Phrases().Get(child.Token(2));
+				else
+					child.PrintTrace("Skipping unsupported dialog phrase syntax:");
 			}
-			for(const DataNode &grand : child)
-				for(int i = 0; i < grand.Size(); ++i)
-				{
-					if(!dialogText.empty())
-						dialogText += "\n\t";
-					dialogText += grand.Token(i);
-				}
+			else if(!hasValue && child.HasChildren() && (*child.begin()).Token(0) == "phrase")
+			{
+				const DataNode &firstGrand = (*child.begin());
+				if(firstGrand.Size() == 1 && firstGrand.HasChildren())
+					dialogPhrase.Load(firstGrand);
+				else
+					firstGrand.PrintTrace("Skipping unsupported dialog phrase syntax:");
+			}
+			else
+				Dialog::ParseTextNode(child, 1, dialogText);
 		}
 		else if(child.Token(0) == "conversation" && child.HasChildren())
 			conversation.Load(child);
@@ -447,6 +454,9 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		subs["<npc>"] = result.ships.front()->Name();
 	
 	// Do string replacement on any dialog or conversation.
+	string dialogText = stockDialogPhrase ? stockDialogPhrase->Get()
+		: (!dialogPhrase.Name().empty() ? dialogPhrase.Get()
+		: this->dialogText);
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(dialogText, subs);
 	

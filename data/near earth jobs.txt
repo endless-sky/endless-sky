@@ -127,6 +127,7 @@ mission "From Earth Day celebration [1]"
 	description `Bring <fare> home to <destination> after the Earth Day celebration. Payment is <payment>.`
 	passengers 4 4 .3
 	to offer
+		or
 			and
 				random < 50
 				month == 4
