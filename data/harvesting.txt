@@ -8,6 +8,28 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+minable "meretidebris"
+	sprite "asteroid/mereti debris/spin"
+	hull 2000
+	payload "Silicon" 20
+	payload "Iron" 5
+	payload "Neodymium" 5
+	payload "Lead" 5
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
+minable "sestordebris"
+	sprite "asteroid/sestor debris/spin"
+	hull 2000
+	payload "Aluminum" 6
+	payload "Silicon" 18
+	payload "Copper" 6
+	payload "Titanium" 6
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
+
 minable "aluminum"
 	sprite "asteroid/silicon/spin"
 	hull 1000
