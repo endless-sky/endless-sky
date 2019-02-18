@@ -863,7 +863,7 @@ bool AI::CanPursue(const Ship &ship, const Ship &target) const
 		return true;
 	
 	// Check if the target is beyond the "invisible fence" for this system.
-	const auto &fit = fenceCount.find(&target);
+	const auto fit = fenceCount.find(&target);
 	if(fit == fenceCount.end())
 		return true;
 	else
@@ -1062,7 +1062,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		// Unless this ship is "heroic", it should not chase much stronger ships.
 		if(maxStrength && range > 1000. && !foe->IsDisabled())
 		{
-			const auto &otherStrengthIt = shipStrength.find(foe.get());
+			const auto otherStrengthIt = shipStrength.find(foe.get());
 			if(otherStrengthIt != shipStrength.end() && otherStrengthIt->second > maxStrength)
 				continue;
 		}
@@ -1166,21 +1166,26 @@ vector<shared_ptr<Ship>> AI::GetShipsList(const Ship &ship, bool targetEnemies, 
 	if(maxRange < 0.)
 		maxRange = numeric_limits<double>::infinity();
 	
-	const Government *gov = ship.GetGovernment();
-	// The cached list is built each step based on the current ships in the player's system.
-	const auto &shipList = targetEnemies ? enemyLists.at(gov) : allyLists.at(gov);
 	auto targets = vector<shared_ptr<Ship>>();
-	targets.reserve(shipList.size());
 	
-	const System *here = ship.GetSystem();
-	const Point &p = ship.Position();
-	for(const auto &target : shipList)
-		if(target->IsTargetable() && target->GetSystem() == here
-				&& !(target->IsHyperspacing() && target->Velocity().Length() > 10.)
-				&& p.Distance(target->Position()) < maxRange
-				&& (ship.IsYours() || !target->GetPersonality().IsMarked())
-				&& (target->IsYours() || !ship.GetPersonality().IsMarked()))
-			targets.emplace_back(target);
+	// The cached lists are built each step based on the current ships in the player's system.
+	const auto &rosters = targetEnemies ? enemyLists : allyLists;
+	
+	const auto it = rosters.find(ship.GetGovernment());
+	if (it != rosters.end() && !it->second.empty())
+	{
+		targets.reserve(it->second.size());
+		
+		const System *here = ship.GetSystem();
+		const Point &p = ship.Position();
+		for(const auto &target : it->second)
+			if(target->IsTargetable() && target->GetSystem() == here
+					&& !(target->IsHyperspacing() && target->Velocity().Length() > 10.)
+					&& p.Distance(target->Position()) < maxRange
+					&& (ship.IsYours() || !target->GetPersonality().IsMarked())
+					&& (target->IsYours() || !ship.GetPersonality().IsMarked()))
+				targets.emplace_back(target);
+	}
 	
 	return targets;
 }

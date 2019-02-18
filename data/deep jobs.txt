@@ -8,6 +8,43 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+phrase "deep mystery cube pickup"
+	word
+		`As instructed, you`
+		`You`
+	word
+		` `
+	word
+		`open a deposit box`
+		`open a storage locker`
+	word
+		` `
+	word
+		`in an unmarked and uninhabited warehouse`
+		`near your landing site`
+	word
+		` `
+	word
+		`and pick up the mystery package. It is a small black cube, about two centimeters to a side, surprisingly heavy for its size, with no markings of any kind. Odd.`
+
+phrase "deep mystery cube dropoff payment"
+	word
+		`As instructed, you`
+	word
+		` `
+	word
+		`leave the mystery cube by the side of the road a few miles away from the spaceport.`
+		`leave the mystery cube behind a rickety-looking wooden tower.`
+		`bury the cube out in the middle of nowhere before landing in the spaceport.`
+		`hand the cube to the first beggar woman you see planetside. She accepts it without a word, and leaves.`
+		`drop the cube at a warehouse. Nobody comes around to collect it.`
+	word
+		``
+		` "This has to be legal, or they couldn't post it to the job board," you remind yourself.`
+	word
+		` `
+	word
+		`Your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited. You wonder how they knew.`
 
 mission "Deep Mystery Cube [0]"
 	name "Mystery delivery to <planet>"
@@ -24,11 +61,11 @@ mission "Deep Mystery Cube [0]"
 		distance 7 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 	on accept
-		dialog "You pick up the mystery package in an unmarked and uninhabited warehouse. It is a small black cube about two centimeters to a side, surprisingly heavy for its size, with no markings of any kind. Odd."
+		dialog phrase "deep mystery cube pickup"
 	on complete
 		"mystery cube" ++
 		payment 5000 1000
-		dialog `As instructed, you leave the mystery cube by the side of the road a few miles away from the spaceport. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
+		dialog phrase "deep mystery cube dropoff payment"
 	npc
 		government "Bounty Hunter"
 		personality nemesis disables waiting plunders
@@ -52,11 +89,11 @@ mission "Deep Mystery Cube [1]"
 		distance 9 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 	on accept
-		dialog "You pick up the mystery package in an unmarked and uninhabited warehouse. It is a small black cube about two centimeters to a side, surprisingly heavy for its size, with no markings of any kind. Odd."
+		dialog phrase "deep mystery cube pickup"
 	on complete
 		"mystery cube" ++
 		payment 5000 1000
-		dialog `As instructed, you leave the mystery cube behind a rickety-looking wooden tower. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
+		dialog phrase "deep mystery cube dropoff payment"
 	npc
 		government "Bounty Hunter"
 		personality nemesis disables waiting plunders
@@ -80,11 +117,11 @@ mission "Deep Mystery Cube [2]"
 		distance 9 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 	on accept
-		dialog "You pick up the mystery package in an unmarked and uninhabited warehouse. It is a small black cube about two centimeters to a side, surprisingly heavy for its size, with no markings of any kind. Odd."
+		dialog phrase "deep mystery cube pickup"
 	on complete
 		"mystery cube" ++
 		payment 5000 1000
-		dialog `As instructed, you bury the cube out in the middle of nowhere before landing in the spaceport. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
+		dialog phrase "deep mystery cube dropoff payment"
 	npc
 		government "Bounty Hunter"
 		personality nemesis disables waiting plunders
@@ -108,11 +145,11 @@ mission "Deep Mystery Cube [3]"
 		distance 9 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 	on accept
-		dialog "You pick up the mystery package in an unmarked and uninhabited warehouse. It is a small black cube about two centimeters to a side, surprisingly heavy for its size, with no markings of any kind. Odd."
+		dialog phrase "deep mystery cube pickup"
 	on complete
 		"mystery cube" ++
 		payment 5000 1000
-		dialog `As instructed, you hand the cube to the first beggar woman you see planetside. She accepts it without a word. "This has to be legal, or they couldn't post it to the job board," you remind yourself as you collect the payment of <payment>.`
+		dialog phrase "deep mystery cube dropoff payment"
 	npc
 		government "Bounty Hunter"
 		personality nemesis disables waiting plunders
@@ -135,11 +172,11 @@ mission "Mystery retrieval"
 		distance 9 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 	on stopover
-		dialog "As instructed, you open a storage locker near your landing site and pick up the mystery package: a small black cube about two centimeters to a side, surprisingly heavy for its size, with no markings of any kind. Odd."
+		dialog phrase "deep mystery cube pickup"
 	on complete
 		"mystery cube" ++
 		payment 5000 1000
-		dialog `You drop off the cube at a warehouse, as instructed. Nobody comes around to collect it, but nonetheless your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited. You wonder how they knew.`
+		dialog phrase "deep mystery cube dropoff payment"
 	npc
 		government "Bounty Hunter"
 		personality nemesis disables waiting plunders
@@ -208,6 +245,17 @@ mission "Escort science vessel"
 		payment
 		payment 60000
 
+phrase "academic conference recording payment"
+	word
+		`You touch down on <planet> and make your way to the conference hall at a grand university. The provided credentials gain you access and you set up the recording equipment at the back of the room.`
+	word
+		` `
+	word
+		`The panelists are electrifying, speaking eloquently on a variety of cutting-edge topics in the sciences and humanities. The experience leaves you feeling remarkably optimistic about the future of humanity here in the stars.`
+	word
+		` `
+	word
+		`You transmit the video to your contact on <origin> and receive your payment of <payment>.`
 
 mission "Record academic conference"
 	job
@@ -222,5 +270,5 @@ mission "Record academic conference"
 		attributes "research" "quarg" "rich" "paradise"
 		distance 4 10
 	on complete
-		dialog "You touch down and make your way to the conference hall at a grand university. The provided credentials gain you access and you set up the recording equipment at the back of the room. The panelists are electrifying, speaking eloquently on a variety of cutting-edge topics in the sciences and humanities. The experience leaves you feeling remarkably optimistic about the future of humanity here in the stars. You transmit the video to your contact on <origin> and receive your payment of <payment>."
+		dialog phrase "academic conference recording payment"
 		payment 5000 1000

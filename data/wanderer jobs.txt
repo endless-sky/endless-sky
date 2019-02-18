@@ -27,7 +27,7 @@ mission "Wanderer Workers [0]"
 	on complete
 		payment
 		payment 10000
-		dialog "You say farewell to your <passengers> on <planet>, and collect your payment of <payment>."
+		dialog phrase "generic passenger dropoff payment"
 
 mission "Wanderer Workers [1]"
 	name "Wanderer workers to <planet>"
@@ -47,7 +47,7 @@ mission "Wanderer Workers [1]"
 	on complete
 		payment
 		payment 15000
-		dialog "You say farewell to your <passengers> on <planet>, and collect your payment of <payment>."
+		dialog phrase "generic passenger dropoff payment"
 
 mission "Wanderer Farmers [0]"
 	name "Wanderer farmers to <planet>"
@@ -68,7 +68,7 @@ mission "Wanderer Farmers [0]"
 	on complete
 		payment
 		payment 10000
-		dialog "You say farewell to your <passengers> on <planet>, and collect your payment of <payment>."
+		dialog phrase "generic passenger dropoff payment"
 
 mission "Wanderer Farmers [1]"
 	name "Wanderer farmers to <planet>"
@@ -89,7 +89,7 @@ mission "Wanderer Farmers [1]"
 	on complete
 		payment
 		payment 15000
-		dialog "You say farewell to your <passengers> on <planet>, and collect your payment of <payment>."
+		dialog phrase "generic passenger dropoff payment"
 
 mission "Wanderer Younglings [0]"
 	name "Wanderer younglings to <planet>"
@@ -387,6 +387,12 @@ mission "Wanderer Invasive Species [1]"
 		payment 30000 200
 		dialog `After handing the plants off to other Wanderers to plant elsewhere, the <bunks> Wanderers each thank you for assisting them in keeping the plants on <planet> and hand you <payment>.`
 
+
+
+phrase "wanderer cargo delivery payment"
+	word
+		`You drop off your cargo of <commodity>. The Wanderers thank you and you collect your payment of <payment>.`
+
 mission "Wanderer Cargo [0]"
 	name "Delivery to <planet>"
 	job
@@ -405,7 +411,7 @@ mission "Wanderer Cargo [0]"
 	on complete
 		payment
 		payment 2000
-		dialog "You drop off your cargo of <commodity>. The Wanderers thank you and you collect your payment of <payment>."
+		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Cargo [1]"
 	name "Delivery to <planet>"
@@ -425,7 +431,7 @@ mission "Wanderer Cargo [1]"
 	on complete
 		payment
 		payment 4000
-		dialog "You drop off your cargo of <commodity>. The Wanderers thank you and you collect your payment of <payment>."
+		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Cargo [2]"
 	name "Delivery to <planet>"
@@ -445,7 +451,7 @@ mission "Wanderer Cargo [2]"
 	on complete
 		payment
 		payment 6000
-		dialog "You drop off your cargo of <commodity>. The Wanderers thank you and you collect your payment of <payment>."
+		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Cargo [3]"
 	name "Delivery to <planet>"
@@ -464,7 +470,7 @@ mission "Wanderer Cargo [3]"
 	on complete
 		payment
 		payment 8000
-		dialog "You drop off your cargo of <commodity>. The Wanderers thank you and you collect your payment of <payment>."
+		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Cargo [4]"
 	name "Delivery to <planet>"
@@ -483,7 +489,8 @@ mission "Wanderer Cargo [4]"
 	on complete
 		payment
 		payment 10000
-		dialog "You drop off your cargo of <commodity>. The Wanderers thank you and you collect your payment of <payment>."
+		dialog phrase "wanderer cargo delivery payment"
+
 
 mission "Wanderer Rush Delivery [0]"
 	name "Rush delivery to <planet>"
@@ -504,7 +511,7 @@ mission "Wanderer Rush Delivery [0]"
 	on complete
 		payment
 		payment 32000
-		dialog "You drop off your cargo of <commodity>. The Wanderers thank you and you collect your payment of <payment>."
+		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Rush Delivery [1]"
 	name "Rush delivery to <planet>"
@@ -525,7 +532,7 @@ mission "Wanderer Rush Delivery [1]"
 	on complete
 		payment
 		payment 40000
-		dialog "You drop off your cargo of <commodity>. The Wanderers thank you and you collect your payment of <payment>."
+		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Rush Delivery [2]"
 	name "Rush delivery to <planet>"
@@ -545,7 +552,7 @@ mission "Wanderer Rush Delivery [2]"
 	on complete
 		payment
 		payment 44000
-		dialog "You drop off your cargo of <commodity>. The Wanderers thank you and you collect your payment of <payment>."
+		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Rush Delivery [3]"
 	name "Rush delivery to <planet>"
@@ -565,7 +572,8 @@ mission "Wanderer Rush Delivery [3]"
 	on complete
 		payment
 		payment 50000
-		dialog "You drop off your cargo of <commodity>. The Wanderers thank you and you collect your payment of <payment>."
+		dialog phrase "wanderer cargo delivery payment"
+
 
 mission "Wanderer Bulk Delivery [0]"
 	name "Bulk delivery to <planet>"
@@ -585,7 +593,7 @@ mission "Wanderer Bulk Delivery [0]"
 	on complete
 		payment
 		payment 10000
-		dialog "You drop off your cargo of <commodity>. The Wanderers thank you and you collect your payment of <payment>."
+		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Bulk Delivery [1]"
 	name "Bulk delivery to <planet>"
@@ -605,7 +613,7 @@ mission "Wanderer Bulk Delivery [1]"
 	on complete
 		payment
 		payment 14000
-		dialog "You drop off your cargo of <commodity>. The Wanderers thank you and you collect your payment of <payment>."
+		dialog phrase "wanderer cargo delivery payment"
 
 mission "Wanderer Bulk Delivery [2]"
 	name "Bulk delivery to <planet>"
@@ -624,4 +632,4 @@ mission "Wanderer Bulk Delivery [2]"
 	on complete
 		payment
 		payment 20000
-		dialog "You drop off your cargo of <commodity>. The Wanderers thank you and you collect your payment of <payment>."
+		dialog phrase "wanderer cargo delivery payment"

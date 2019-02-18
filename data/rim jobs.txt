@@ -26,7 +26,7 @@ mission "Southbound Shipment [0]"
 		fleet "Small Southern Pirates"
 	on complete
 		payment 0 160
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+		dialog phrase "generic cargo delivery payment"
 
 mission "Southbound Shipment [1]"
 	name "Shipment to <planet>"
@@ -46,7 +46,7 @@ mission "Southbound Shipment [1]"
 		fleet "Small Southern Pirates"
 	on complete
 		payment 0 160
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+		dialog phrase "generic cargo delivery payment"
 
 
 mission "Kraz Shipment"
@@ -67,7 +67,7 @@ mission "Kraz Shipment"
 		fleet "Small Southern Pirates"
 	on complete
 		payment 0 160
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+		dialog phrase "generic cargo delivery payment"
 
 mission "Han Sizer Month [0]"
 	name `Han Sizer celebration`
