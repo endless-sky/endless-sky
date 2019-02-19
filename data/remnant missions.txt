@@ -1498,11 +1498,11 @@ mission "Remnant: Broken Jump Drive job"
 		attributes outfitter
 		not distance 0
 	on complete
-		dialog "The research team quickly offloads the broken jump drive and pays you <payment> before hurrying back to their lab."
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
 		payment 500000
 		"reputation: Remnant" ++
 		"Remnant: Broken Jump Drive job: offered" --
+		dialog "The research team quickly offloads the broken jump drive and pays you <payment> before hurrying back to their lab."
 
 
