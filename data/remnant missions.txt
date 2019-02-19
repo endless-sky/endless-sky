@@ -1274,7 +1274,7 @@ mission "Remnant: Broken Jump Drive 1"
 		require "Jump Drive (Broken)"
 		conversation
 			branch repeated
-				has "Remnant: Broken Jump Drive: offered"
+				has "Remnant: Broken Jump Drive 1: offered"
 			`As the <ship> settles onto its designated landing pad, you see someone emerge from the nearby outfitter and quickly make their way to you. The man waits a safe distance before approaching once you cycle the hatch and disembark. "Greetings, Captain <last>," trills the Remnant, "we saw the news that the newcomer among us was tracking down an erratic Korath ship. When you came in to land, we saw on the scans that you salvaged its malfunctioning jump drive. Could we take it to study?"`
 			choice
 				`	"Maybe later."`
@@ -1283,7 +1283,7 @@ mission "Remnant: Broken Jump Drive 1"
 					goto accept
 			
 			label repeated
-			`You have a broken jump drive that the Remnant might be interested on. Do you want to seek out someone to give it to?`
+			`You have a broken jump drive that the Remnant might be interested in. Do you want to seek out someone to give it to?`
 			choice
 				`	(Maybe later.)`
 					defer
