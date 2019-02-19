@@ -1270,6 +1270,7 @@ mission "Remnant: Broken Jump Drive 1"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
@@ -1323,6 +1324,7 @@ mission "Remnant: Broken Jump Drive 2"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
@@ -1364,6 +1366,7 @@ mission "Remnant: Broken Jump Drive 3"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
@@ -1404,6 +1407,7 @@ mission "Remnant: Broken Jump Drive 4"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
@@ -1444,6 +1448,7 @@ mission "Remnant: Broken Jump Drive 5"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
@@ -1491,6 +1496,7 @@ mission "Remnant: Broken Jump Drive job"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not distance 0
 	on complete
 		dialog "The research team quickly offloads the broken jump drive and pays you <payment> before hurrying back to their lab."
 		outfit "Jump Drive (Broken)" -1
