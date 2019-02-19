@@ -291,7 +291,7 @@ mission "Pirate Ambush"
 		conversation
 			`You board the <origin>, but find no crew aboard. When you reach the cockpit of the ship, you look out into space to see an escape pod floating away. The <origin> is emitting a distress signal to nearby pirates, and a self destruct sequence has been activated. It looks like you're about to have company.`
 				launch
-	
+	destination "Earth"
 	npc kill
 		government "Pirate"
 		personality nemesis harvests plunders entering
