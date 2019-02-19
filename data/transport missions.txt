@@ -3218,3 +3218,58 @@ mission "Capture Smuggler"
 		payment 150000
 		conversation
 			`The huge man drags the unconscious smuggler out of the cargo container with one hand and carries the cargo box with the other. He stops in front of you. "<first> <last>," he says. "My employer, he will be very happy. Your payment, you will receive soon. Is it not good, to be reliable?" The man leaves your ship, letting the smuggler's legs scrape along the ground as he walks. A moment later, you receive <payment> from an anonymous account.`
+
+
+
+mission "The New Rigellian Plague"
+	name "Transport Vaccination Clinic"
+	description "Transport a team of nurses and vaccine supplies to <destination>. Payment will be 100,000 credits."
+	deadline
+	cargo "vaccine" 1
+	passengers 2
+	to offer
+		random < 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 3 5
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on offer
+		conversation
+			`The spaceport entry is practically at a standstill today, jammed with a winding line of people standing around irritably. You overhear one person grumble to another "Why'd they have to pick here to do this?" Their companion responds with a grin "You know as well as I do that if they did it somewhere out of the way, no-one would get the vaccination. They keep telling us that it is only a matter of time until it comes back, but how likely is that?"`
+			`	As the line moves forward, you can see a banner stating "Red Cross Vaccination Clinic - Free Rigellian Plague Vaccinations." The nurses are surprisingly fast, vaccinating people and giving them a card with information at a fast clip. Before you can even make a decision, you are at the front of the line and a nurse is standing in front of you scanning your ID.`
+			`	"Good morning Captain! I see your medical records indicate you haven't received the vaccine yet," she pauses, skimming a few lines on her scanner. "Ah, good. You aren't allergic to anything in this vaccine, and haven't had any reactions to medicines in the past. This vaccine is designed to boost your immune system against three variants of the Rigellian Plague. It won't guarantee your immunity, but it will significantly improve your resistance to it. In which arm would you prefer to receive the vaccine?"`
+			choice
+				`	"Vaccines are too risky. Goodbye."`
+					goto risky
+				`	"This one" you say, rolling up a sleeve.`
+			`	She quickly wipes a spot on your arm with something that smells acrid, then deftly applies the vaccine. You feel a momentary poke and are about to say something about it stinging when she removes the device with a satisfied look.`
+			`	She glances down the remaining line, then back at you. "It looks like we're almost done here, and we need transportation to <destination> by <day>. Could we get a lift from you?"`
+			choice
+				`	"Sorry, I'm not going that way."`
+					decline
+				`	"Sure. Here's my ship's berth."`
+			`	"Excellent. We will be there in a couple hours."`
+			label risky
+				`	"Risky?!" She calls after you. "You're more likely to die flying to the next system than suffer anything from our vaccines." She turns away from you in disgust to treat the next person.`
+				fail "The New Rigellian Plague"
+	
+	on complete
+		payment 100000
+		event "Plague Discovered" 7
+		dialog
+			`The pair of nurses pay you <payment> and quickly unload their precious cargo of vaccines and set up shop next to a busy gateway on <planet>.`
+			`	"Thank you for your help, Captain. Hopefully it comes to nothing, but you may have helped save billions."`
+	
+	on decline
+		event "Plague Discovered" 7
+	
+	on fail
+		event "Plague Spreading" 7
+
+event "Plague Discovered"
+
+
+... After a series of hacking coughs, you finally collapse. Without enough air in you, your limbs begin to numb. In, out, in, out, but it is of no use. You try and drag yourself to your ships panel to send a distress signal but your arms gave out beforehand, leaving you wanting upon the floor. You make a scream, scared and wanting someone, anyone to help you. It is of no use, you could barely get the noise out of you before a wheeze cut it short. Out of oxygen, your vision leaves you. All that remains to you is the hum of the ship and the feel of yourself upon the cold floor. Eventually, the feel of cold goes away. It is neither cold nor warm. As you begin to drift out of consciousness, you think of your life up until now; the journey you've taken. You think of your family back on New Boston waiting for you to make a return. All is quiet. 
+
+You have died.
