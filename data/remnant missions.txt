@@ -249,7 +249,7 @@ mission "Remnant: Bounty"
 				"Korath Raider (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on complete
-		payment 200000
+		payment 300000
 		dialog "A Remnant military leader thanks you for hunting down the <npc>, and gives you the agreed-upon payment of <payment>."
 
 
@@ -1048,10 +1048,10 @@ mission "Remnant: Salvage 4"
 				"Korath Raider (Hyperdrive)"
 		dialog "You have disabled the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
 	on fail
-		payment 250000
+		payment 300000
 		dialog `You are met by a prefect who looks upset. "The ship was supposed to be disabled so its contents could be salvaged!" he signs angrily. Nonetheless, he shoves a credit chip worth <payment> into your hand. "That's half what you would have earned if the ship had been disabled." He pauses and shakes his head. "I think Tali might have some more work for you in the spaceport, but in the meantime, why don't you go find some Korath to practice disabling? It is a valuable skill among the Remnant."`
 	on complete
-		payment 500000
+		payment 600000
 		dialog `You are met by a prefect who thanks you for disabling it and hands you a credit chip for <payment>. "I think Tali might have some more work for you in the spaceport, but in the meantime, don't forget to drop off any salvaged outfits in the outfitters so the researchers can look at them."`
 
 
@@ -1153,7 +1153,7 @@ mission "Remnant: Bounty 2"
 				"Korath Raider (Hyperdrive)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on complete
-		payment 300000
+		payment 400000
 		dialog "A Remnant military leader thanks you for hunting down the Korath ship <npc>, and gives you the agreed-upon payment of <payment>."
 
 
@@ -1300,7 +1300,7 @@ mission "Remnant: Broken Jump Drive 1"
 	on complete
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
-		payment 500000
+		payment 400000
 		"reputation: Remnant" ++
 		conversation
 			`When you arrive on <planet> there is a team of engineers and mechanics waiting for you, along with a flatbed freight truck. Once you open the cargo doors they quickly free the broken jump drive from its moorings and load it delicately onto their truck. The lead engineer comes over to hand you <payment>. "Thank you for salvaging this. I suspect my compatriot who spoke to you never mentioned this, but we have a fund set aside for rewarding captains who bring in rare pieces of alien technology. If you find any more of these drives, there is sure to be a research team somewhere that is willing to reward you for it."`
@@ -1341,7 +1341,7 @@ mission "Remnant: Broken Jump Drive 2"
 	on complete
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
-		payment 500000
+		payment 400000
 		"reputation: Remnant" ++
 		conversation
 			`As promised, there is a team of researchers waiting when you settle onto the designated landing pad. One comes over to hand you <payment> while the rest carefully unload the broken drive and start hauling it back to their lab.`
@@ -1382,7 +1382,7 @@ mission "Remnant: Broken Jump Drive 3"
 	on complete
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
-		payment 500000
+		payment 400000
 		"reputation: Remnant" ++
 		conversation
 			`The team waiting for you on <planet> is definitely eager to begin. You barely have the hatch open before they are chivying their camel-pulled wagon up the ramp. They load the broken jump drive surprisingly quickly despite their delicate movements.`
@@ -1424,7 +1424,7 @@ mission "Remnant: Broken Jump Drive 4"
 	on complete
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
-		payment 500000
+		payment 400000
 		"reputation: Remnant" ++
 		conversation
 			`As you approach your designated pad, you spot a team of researchers with unloading equipment hustling out of a nearby entrance. Once you have completed your shutdown sequence they quickly set to work unloading the drive. Once the task is complete, they pause for a moment to hand you <payment>. "Thanks for finding this," they sing in unison. "Our labs are eager to begin work on your most recent find, Captain <first>. Our thanks!"`
@@ -1464,7 +1464,7 @@ mission "Remnant: Broken Jump Drive 5"
 	on complete
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
-		payment 500000
+		payment 400000
 		event "remnant research update bjd1" 100 200
 		"reputation: Remnant" ++
 		conversation
@@ -1500,7 +1500,7 @@ mission "Remnant: Broken Jump Drive job"
 	on complete
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
-		payment 500000
+		payment 400000
 		"reputation: Remnant" ++
 		"Remnant: Broken Jump Drive job: offered" --
 		dialog "The research team quickly offloads the broken jump drive and pays you <payment> before hurrying back to their lab."
