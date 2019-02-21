@@ -1544,11 +1544,13 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 void Ship::DoGeneration()
 {
 	// Transfer heat to or from ships in bays before they can do their own generation.
-	if (!bays.empty()) {
+	if (!bays.empty())
+	{
 		const double area = Width() * Height();
 		const double heatDensity = heat / area;
 		for(Bay &bay : bays)
-			if(bay.ship) {
+			if(bay.ship)
+			{
 				const double bayArea = bay.ship->Width() * bay.ship->Height();
 				const double bayHeatDensity = bay.ship->heat / bayArea;
 				// The amount of heat transferred is proportional to the difference in heat per unit
