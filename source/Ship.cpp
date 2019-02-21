@@ -50,7 +50,7 @@ namespace {
 	const vector<Angle> BAY_ANGLE = {Angle(0.), Angle(-90.), Angle(90.), Angle(180.)};
 	
 	const double MAXIMUM_TEMPERATURE = 100.;
-	// The portion of the different in heat per unit area which is transferred per game tick:
+	// The portion of the different in heat per unit mass which is transferred per game tick:
 	const double HEAT_TRANSFER_COEFFICIENT = 0.04;
 	
 	const double SCAN_TIME = 60.;
@@ -1554,18 +1554,16 @@ void Ship::DoGeneration()
 	// Transfer heat to or from ships in bays before they can do their own generation.
 	if (!bays.empty())
 	{
-		const double area = Width() * Height();
-		const double heatDensity = heat / area;
+		const double heatDensity = heat / Mass();
 		for(Bay &bay : bays)
 			if(bay.ship)
 			{
-				const double bayArea = bay.ship->Width() * bay.ship->Height();
-				const double bayHeatDensity = bay.ship->heat / bayArea;
+				const double bayHeatDensity = bay.ship->heat / bay.ship->Mass();
 				// The amount of heat transferred is proportional to the difference in heat per unit
-				// area (the 2D heat density) and to the area through which the heat is transferred,
-				// which is the area of the ship in this bay.
+				// mass and to the mass through which the heat conducts, which is the mass of the ship
+				// in this bay.
 				const double transfer =
-					(heatDensity - bayHeatDensity) * HEAT_TRANSFER_COEFFICIENT * bayArea;
+					(heatDensity - bayHeatDensity) * HEAT_TRANSFER_COEFFICIENT * bay.ship->Mass();
 				heat -= transfer;
 				bay.ship->heat += transfer;
 				// The ships in bays must also be simulated alone.
