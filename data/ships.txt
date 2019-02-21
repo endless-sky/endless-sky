@@ -2501,7 +2501,7 @@ ship "Raven"
 	thumbnail "thumbnail/raven"
 	attributes
 		category "Light Warship"
-		"cost" 1800000
+		"cost" 2200000
 		"shields" 4700
 		"hull" 1400
 		"required crew" 6
