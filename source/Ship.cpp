@@ -826,11 +826,12 @@ void Ship::SetPosition(Point position)
 
 
 // Instantiate a newly-created ship in-flight.
-void Ship::Place(Point position, Point velocity, Angle angle)
+void Ship::Place(Point position, Point velocity, Angle angle, double heat)
 {
 	this->position = position;
 	this->velocity = velocity;
 	this->angle = angle;
+	this->heat = heat;
 	
 	// If landed, place the ship right above the planet.
 	// Escorts should take off a bit behind their flagships.
@@ -842,7 +843,6 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	else
 		zoom = 1.;
 	// Make sure various special status values are reset.
-	heat = IdleHeat();
 	ionization = 0.;
 	disruption = 0.;
 	slowness = 0.;
@@ -854,6 +854,14 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	shipToAssist.reset();
 	if(government)
 		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
+}
+
+
+
+// Version of Place with default IdleHeat
+void Ship::Place(Point position, Point velocity, Angle angle)
+{
+	Place(position, velocity, angle, IdleHeat());
 }
 
 
@@ -1779,7 +1787,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			// When ejected, ships depart haphazardly.
 			Angle launchAngle = ejecting ? Angle(exitPoint - position) : angle + BAY_ANGLE[bay.facing];
 			Point v = velocity + (.3 * maxV) * launchAngle.Unit() + (.2 * maxV) * Angle::Random().Unit();
-			bay.ship->Place(exitPoint, v, launchAngle);
+			bay.ship->Place(exitPoint, v, launchAngle, bay.ship->heat);
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
 			bay.ship->UnmarkForRemoval();
