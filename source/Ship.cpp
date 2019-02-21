@@ -50,6 +50,8 @@ namespace {
 	const vector<Angle> BAY_ANGLE = {Angle(0.), Angle(-90.), Angle(90.), Angle(180.)};
 	
 	const double MAXIMUM_TEMPERATURE = 100.;
+	// The portion of the different in heat per unit area which is transferred per game tick:
+	const double HEAT_TRANSFER_COEFFICIENT = 0.04;
 	
 	const double SCAN_TIME = 60.;
 	
@@ -1541,12 +1543,25 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 // Generate energy, heat, etc. (This is called by Move().)
 void Ship::DoGeneration()
 {
-	// First, allow any carried ships to do their own generation.
-	for(const Bay &bay : bays)
-		if(bay.ship)
-			bay.ship->DoGeneration();
-	
-	// TODO: Heat transfer between carried ships and the mothership?
+	// Transfer heat to or from ships in bays before they can do their own generation.
+	if (!bays.empty()) {
+		const double area = Width() * Height();
+		const double heatDensity = heat / area;
+		for(Bay &bay : bays)
+			if(bay.ship) {
+				const double bayArea = bay.ship->Width() * bay.ship->Height();
+				const double bayHeatDensity = bay.ship->heat / bayArea;
+				// The amount of heat transferred is proportional to the difference in heat per unit
+				// area (the 2D heat density) and to the area through which the heat is transferred,
+				// which is the area of the ship in this bay.
+				const double transfer =
+					(heatDensity - bayHeatDensity) * HEAT_TRANSFER_COEFFICIENT * bayArea;
+				heat -= transfer;
+				bay.ship->heat += transfer;
+				// The ships in bays must also be simulated alone.
+				bay.ship->DoGeneration();
+			}
+	}
 	
 	// Shield and hull recharge. This uses whatever energy is left over from the
 	// previous frame, so that it will not steal energy from movement, etc.
