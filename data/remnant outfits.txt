@@ -150,7 +150,6 @@ effect "point defense fire"
 		"frame rate" 17
 		"no repeat"
 	sound "point defense"
-	"velocity scale" .5
 
 	lifetime 10
 	"velocity scale" .5
