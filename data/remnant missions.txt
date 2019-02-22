@@ -1308,9 +1308,9 @@ mission "Remnant: Broken Jump Drive 1"
 				`	"I will keep a lookout for more."`
 					goto end
 				`	"Aren't you going to replace it with a hyperdrive?"`
-			`	The engineer looks at you incredulously. "You mean you were actually depending on this drive?" He shakes his head in disbelief. "You are lucky you managed to get this far, then. It is surprising that they exist at all, let alone still work properly. If you need a replacement drive, there are plenty available in the outfitter.`
+			`	The engineer looks at you incredulously. "You mean you were actually trying to use this drive?" He shakes his head in disbelief. "You are lucky you managed to get this far, then. It is surprising that they exist at all, so it is too much to expect them to work too. If you need a replacement drive, there are plenty available in the outfitter.`
 			label end
-			`	"Next time you find one of these drives, just check with a starport director. They will know where it will need to go. A word of warning though; I strongly recommend not using these drives - they may disappear at the most inconvenient of times, and there won't always be an outfitter on hand." He turns and heads off with the rest of the team, turning briefly to give you friendly wave as they disembark.`
+			`	"Next time you find one of these drives, just check with a starport director. They will know where it will need to go. A word of warning though; I strongly recommend not trying to use these drives - they may disappear at the most inconvenient of times, and there won't always be an outfitter on hand." He turns and heads off with the rest of the team, turning briefly to give you friendly wave as they disembark.`
 
 
 
@@ -1350,7 +1350,7 @@ mission "Remnant: Broken Jump Drive 2"
 				`	"Great! I will find more."`
 					goto end
 				`	"What are you studying?"`
-			`	"Our previous research into jump drives determined that these drives are unsurprisingly multi-part systems. We know the outer part that we can see and handle is mostly the machinery for generating some kind of containment field or pocket. As to how it works or why it is needed..." his chant trails off and he makes a gesture you suspect may be the equivalent of a shrug. "Anyways, our team is focused on the nature of this outer system. It is our hope that, damaged as it is, its continued functionality might allow us to look a little farther inside its inner workings to figure out exactly what that field does and how it is used.`
+			`	"Our previous research into jump drives determined that these drives are unsurprisingly multi-part systems. We know the outer part that we can see and handle is mostly the machinery for generating some kind of containment field or pocket. As to how it works or why it is needed..." his chant trails off and he makes a gesture you suspect may be the equivalent of a shrug. "Anyways, our team is focused on the nature of this outer system. It is our hope that, damaged as it is, its continued existence might allow us to look a little farther inside its inner workings to figure out exactly what that field does and how it is used.`
 			label end
 			`	"Well, my compatriots finished unloading rather quickly, so I should be off. For all our sakes, I hope you find more of these for us."`
 

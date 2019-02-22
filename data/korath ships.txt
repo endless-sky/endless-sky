@@ -23,7 +23,7 @@ ship "Korath Raider"
 		"heat dissipation" .5
 		"fuel capacity" 600
 		"cargo space" 175
-		"outfit space" 741
+		"outfit space" 721
 		"weapon capacity" 284
 		"engine capacity" 159
 		weapon
@@ -42,6 +42,7 @@ ship "Korath Raider"
 		"Small Heat Shunt"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 196
+		"Outfits Expansion"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -79,6 +80,7 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		"Small Heat Shunt"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 196
+		"Outfits Expansion"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -103,6 +105,7 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
 		"Korath Repeater Rifle" 196
+		"Outfits Expansion"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -170,7 +173,7 @@ ship "Korath World-Ship"
 		"heat dissipation" .4
 		"fuel capacity" 1000
 		"cargo space" 264
-		"outfit space" 798
+		"outfit space" 779
 		"weapon capacity" 314
 		"engine capacity" 165
 		weapon
@@ -188,6 +191,7 @@ ship "Korath World-Ship"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 150
+		"Outfits Expansion"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -233,6 +237,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Crippled)"
 		"Triple Plasma Core"
 		"Large Heat Shunt" 2
 		"Korath Repeater Rifle" 150
+		"Outfits Expansion"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -270,6 +275,7 @@ ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 150
+		"Outfits Expansion"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -297,6 +303,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 150
+		"Outfits Expansion"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -324,6 +331,7 @@ ship "Korath World-Ship" "Korath World-Ship C (Jump)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 150
+		"Outfits Expansion"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
