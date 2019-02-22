@@ -199,10 +199,7 @@ outfit "Jump Drive (Broken)"
 	thumbnail "outfit/jump drive (broken)"
 	"mass" 20
 	"outfit space" -20
-	"jump speed" .2
-	"jump fuel" 200
-	"hyperdrive" 1
-	description "The workings of the jump drive are a total mystery, especially now that this drive seems completely mangled. How it manages to continue working in this state is beyond you. It may, however, still hold some research potential."
+	description "The workings of the jump drive are a total mystery, especially now that this drive seems completely mangled. It is no longer functional in any way. It may, however, still hold some research potential."
 
 
 outfit "Cargo Scanner"
