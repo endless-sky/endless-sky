@@ -23,7 +23,7 @@ ship "Korath Raider"
 		"heat dissipation" .5
 		"fuel capacity" 600
 		"cargo space" 175
-		"outfit space" 721
+		"outfit space" 741
 		"weapon capacity" 284
 		"engine capacity" 159
 		weapon
@@ -46,6 +46,7 @@ ship "Korath Raider"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
+		"Hyperdrive"
 	
 	engine -20 130
 	engine 20 130
@@ -82,6 +83,7 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive (Broken)"
+		"Hyperdrive"
 
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -105,6 +107,7 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive (Broken)"
+		"Hyperdrive"
 
 	turret
 	turret
@@ -167,7 +170,7 @@ ship "Korath World-Ship"
 		"heat dissipation" .4
 		"fuel capacity" 1000
 		"cargo space" 264
-		"outfit space" 778
+		"outfit space" 798
 		"weapon capacity" 314
 		"engine capacity" 165
 		weapon
@@ -234,6 +237,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Crippled)"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive (Broken)"
+		"Hyperdrive"
 	
 	turret -76 -219
 	turret 76 -219
@@ -270,6 +274,7 @@ ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
+		"Hyperdrive"
 	
 	turret -76 -157 "Korath Grab-Strike"
 	turret 76 -157 "Korath Banisher"
@@ -296,6 +301,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
+		"Hyperdrive"
 	
 	turret -76 -219 "Korath Grab-Strike"
 	turret 76 -219 "Korath Grab-Strike"
@@ -322,6 +328,7 @@ ship "Korath World-Ship" "Korath World-Ship C (Jump)"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
+		"Hyperdrive"
 	
 	turret -45 -247 "Korath Warder"
 	turret 45 -247 "Korath Grab-Strike"
