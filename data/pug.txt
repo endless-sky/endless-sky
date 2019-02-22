@@ -193,7 +193,7 @@ outfit "Pug Gridfire Turret"
 		"hull damage" 600
 		"blast radius" 40
 		"piercing" .3
-	description "The Gridfire Turret is a very powerful weapon, designed to disable (or as well destroy) even the strongest of the warships designed by any faction that may want to gain new technology by plundering a Pug ship.
+	description "The Gridfire Turret is a very powerful weapon, designed to disable (or as well destroy) even the strongest of the warships."
 
 effect "gridfire fire"
 	sprite "effect/gridfire fire"
