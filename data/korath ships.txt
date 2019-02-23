@@ -173,7 +173,7 @@ ship "Korath World-Ship"
 		"heat dissipation" .4
 		"fuel capacity" 1000
 		"cargo space" 264
-		"outfit space" 780
+		"outfit space" 779
 		"weapon capacity" 314
 		"engine capacity" 165
 		weapon
