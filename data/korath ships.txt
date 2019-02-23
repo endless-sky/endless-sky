@@ -339,7 +339,6 @@ ship "Korath World-Ship" "Korath World-Ship E"
 		"Jump Drive"
 		"Hyperdrive"
 		
-	sprite "ship/world-ship b"
 	turret -76 -219 "Korath Grab-Strike"
 	turret 76 -219 "Korath Grab-Strike"
 	turret -75 -112 "Korath Banisher"
