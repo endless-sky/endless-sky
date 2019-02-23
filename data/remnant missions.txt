@@ -166,7 +166,7 @@ mission "Remnant: Defense 1"
 	npc evade
 		government "Korath"
 		personality heroic plunders harvests target
-		fleet "Korath Raid" 6
+		fleet "Korath Ember Waste Raid" 6
 	on visit
 		dialog "There are still Korath raiders circling overhead. You should take off and help the Remnant ships to fight them."
 	on complete
@@ -186,7 +186,7 @@ mission "Remnant: Defense 2"
 		has "Remnant: Defense 1: done"
 	on offer
 		conversation
-			`The people here are grateful for your help in fighting off the Korath raid, and they offer you a payment of 200,000 credits. They explain to you (in song, of course; the explanation takes the form of an epic ballad) that these raids have been taking place for nearly a century.`
+			`The people here are grateful for your help in fighting off the Korath raid, and they offer you a payment of <payment>. They explain to you (in song, of course; the explanation takes the form of an epic ballad) that these raids have been taking place for nearly a century.`
 			choice
 				`	"Have you done anything to try to stop the Korath from raiding you?"`
 				`	"What do you think the Korath are hoping to accomplish?"`
@@ -218,7 +218,7 @@ mission "Remnant: Defense 2"
 			names "korath"
 			cargo 3
 			variant
-				"Korath World-Ship B (Crippled)"
+				"Korath World-Ship E (Crippled)"
 		dialog "You have destroyed the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
 	on complete
 		payment 500000
@@ -302,11 +302,11 @@ mission "Remnant: Defense 3"
 
 event "remnant: surveillance begin"
 	system "Parca"
-		remove fleet "Korath Raid"
+		remove fleet "Korath Ember Waste Raid"
 
 event "remnant: surveillance end"
 	system "Parca"
-		add fleet "Korath Raid" 10000
+		add fleet "Korath Ember Waste Raid" 10000
 
 
 
@@ -959,12 +959,12 @@ mission "Remnant: Salvage 2"
 	npc evade
 		government "Korath"
 		personality heroic plunders harvests target
-		fleet "Korath Raid" 7
+		fleet "Korath Ember Waste Raid" 7
 		fleet
 			names "korath"
 			cargo 3
 			variant
-				"Korath World-Ship B"
+				"Korath World-Ship E"
 	on visit
 		dialog "There are still Korath raiders circling overhead. You should take off and help the Remnant ships to fight them."
 	on complete
@@ -1345,7 +1345,7 @@ mission "Remnant: Broken Jump Drive 2"
 		"reputation: Remnant" ++
 		conversation
 			`As promised, there is a team of researchers waiting when you settle onto the designated landing pad. One comes over to hand you <payment> while the rest carefully unload the broken drive and start hauling it back to their lab.`
-			`	"Our thanks, Captain <last>. Having a partially functional drive like this will be very beneficial to our efforts." His voice cracks a bit, as if unused to being used much.`
+			`	"Our thanks, Captain <last>. Having the remains of a drive like this will be very beneficial to our efforts." His voice cracks a bit, as if unused to being used much.`
 			choice
 				`	"Great! I will find more."`
 					goto end
