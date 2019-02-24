@@ -209,7 +209,7 @@ fleet "Korath Ember Waste Raid"
 	personality
 		disables plunders opportunistic harvests
 	variant
-		"Korath Raider"
+		"Korath Raider (Ember)"
 		"Korath Chaser" 2
 
 fleet "Korath Home"
