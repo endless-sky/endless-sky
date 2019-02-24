@@ -293,7 +293,7 @@ mission "Unfettered Aid [2]"
 		distance 5 6
 		attributes "unfettered"
 	on accept
-		dialog "unfettered aid pickup dialog"
+		dialog phrase "unfettered aid pickup dialog"
 	on complete
 		payment 7000 2000
 		dialog phrase "unfettered aid payment dialog"
