@@ -1971,6 +1971,8 @@ mission "Deep: Scientist Rescue 1"
 	description "Escort the <npc> to <destination> to retrieve the Star Queen. Escorts will be waiting for you on Memory in the Zosma system and Farpoint in the Alnitak system."
 	destination "Haven"
 	clearance
+	stopover "Memory"
+	stopover "Farpoint"
 	to offer
 		has "Deep: Scientist Rescue 0: done"
 	
@@ -2045,25 +2047,12 @@ mission "Deep: Scientist Rescue 1: Pirates"
 
 
 
-mission "Deep: Scientist Rescue 1: Recruit Escorts"
-	landing
-	name "Deep Security escorts on <planet>"
-	description "Lieutenant Paris mentioned an escort squadron of Deep Security ships was preparing to join you on your mission. Meet up with them on <destination>, if you want to."
-	source "Valhalla"
-	destination "Memory"
-	to offer
-		has "Deep: Scientist Rescue 0: done"
-	to fail
-		has "Deep: Scientist Rescue 1: done"
-
-
-
 mission "Deep: Scientist Rescue 1: Escorts"
 	invisible
 	landing
 	source "Memory"
 	to offer
-		has "Deep: Scientist Rescue 1: Recruit Escorts: done"
+		has "Deep: Scientist Rescue 1: active"
 	to fail
 		or
 			has "Deep: Scientist Rescue 3A: offered"
@@ -2085,25 +2074,12 @@ mission "Deep: Scientist Rescue 1: Escorts"
 
 
 
-mission "Deep: Scientist Rescue 1: Recruit Reinforcements"
-	landing
-	name "Republic Navy escorts on <planet>"
-	description "Lieutenant Paris mentioned that some Navy officers were interested in avenging the loss of their comrades. Meet up with them on <destination>, if you want to."
-	source "Valhalla"
-	destination "Farpoint"
-	to offer
-		has "Deep: Scientist Rescue 0: done"
-	to fail
-		has "Deep: Scientist Rescue 1: done"
-
-
-
 mission "Deep: Scientist Rescue 1: Reinforcements"
 	invisible
 	landing
 	source "Farpoint"
 	to offer
-		has "Deep: Scientist Rescue 1: Recruit Reinforcements: done"
+		has "Deep: Scientist Rescue 1: active"
 	to fail
 		or
 			has "Deep: Scientist Rescue 3A: offered"
