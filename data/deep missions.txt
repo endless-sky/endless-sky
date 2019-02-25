@@ -1288,7 +1288,7 @@ mission "Deep: Remnant 0"
 		or
 			"deep convoy" >= 2
 			has "Deep: Project Hawking: done"
-			has "Deep: TMBR 2: done"
+			has "Deep: TMBR 1: done"
 	
 	on offer
 		conversation
