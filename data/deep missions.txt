@@ -2054,9 +2054,7 @@ mission "Deep: Scientist Rescue 1: Escorts"
 	to offer
 		has "Deep: Scientist Rescue 1: active"
 	to fail
-		or
-			has "Deep: Scientist Rescue 3A: offered"
-			has "Deep: Scientist Rescue 3B: offered"
+		has "Deep: Scientist Rescue 2: done"
 	
 	on offer
 		conversation
@@ -2081,9 +2079,7 @@ mission "Deep: Scientist Rescue 1: Reinforcements"
 	to offer
 		has "Deep: Scientist Rescue 1: active"
 	to fail
-		or
-			has "Deep: Scientist Rescue 3A: offered"
-			has "Deep: Scientist Rescue 3B: offered"
+		has "Deep: Scientist Rescue 2: done"
 	
 	on offer
 		conversation
@@ -2170,13 +2166,15 @@ ship "Bactrian" "Bactrian (Cosmic Devil)"
 mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 	landing
 	invisible
-	destination "Valhalla"
 	to offer
 		has "Deep: Scientist Rescue 1: done"
-	npc kill
+	to complete
+		never
+	npc save
 		government "Pirate"
 		personality staying nemesis
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
+	on fail
 		dialog 
 			`After the Bactrian explodes, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
 			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
@@ -2209,7 +2207,7 @@ mission "Deep: Scientist Rescue 3A"
 	waypoint "Arneb"
 	to offer
 		has "Deep: Scientist Rescue 2: done"
-		not "Deep: Scientist Rescue 2: Pirate Bactrian: done"
+		not "Deep: Scientist Rescue 2: Pirate Bactrian: failed"
 		not "Deep: Scientist Rescue 3B: offered"
 	
 	on offer
@@ -2240,7 +2238,7 @@ mission "Deep: Scientist Rescue 3A"
 	on fail
 		event "battle in arneb end"
 	to complete
-		has "Deep: Scientist Rescue 2: Pirate Bactrian: done"
+		has "Deep: Scientist Rescue 2: Pirate Bactrian: failed"
 	on complete
 		set "license: City-Ship"
 		event "battle in arneb end"
@@ -2262,7 +2260,7 @@ mission "Deep: Scientist Rescue 3B"
 	invisible
 	to offer
 		has "Deep: Scientist Rescue 2: done"
-		has "Deep: Scientist Rescue 2: Pirate Bactrian: done"
+		has "Deep: Scientist Rescue 2: Pirate Bactrian: failed"
 		not "Deep: Scientist Rescue 3A: offered"
 	
 	on offer
