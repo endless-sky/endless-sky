@@ -1971,8 +1971,6 @@ mission "Deep: Scientist Rescue 1"
 	description "Escort the <npc> to <destination> to retrieve the Star Queen. Escorts will be waiting for you on Memory in the Zosma system and Farpoint in the Alnitak system."
 	destination "Haven"
 	clearance
-	stopover "Memory"
-	stopover "Farpoint"
 	to offer
 		has "Deep: Scientist Rescue 0: done"
 	
