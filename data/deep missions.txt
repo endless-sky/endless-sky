@@ -1922,7 +1922,9 @@ mission "Deep: Scientist Rescue 0: Pirates"
 	to offer
 		has "Deep: Scientist Rescue 0: active"
 	to fail
-		has "Deep: Scientist Rescue 2: Pirate Bactrian: failed"
+		or
+			has "Deep: Scientist Rescue 3A: done"
+			has "Deep: Scientist Rescue 3B: offered"
 	npc kill
 		government "Pirate"
 		personality nemesis staying
@@ -2030,7 +2032,9 @@ mission "Deep: Scientist Rescue 1: Pirates"
 	to offer
 		has "Deep: Scientist Rescue 0: done"
 	to fail
-		has "Deep: Scientist Rescue 2: Pirate Bactrian: failed"
+		or
+			has "Deep: Scientist Rescue 3A: done"
+			has "Deep: Scientist Rescue 3B: offered"
 	npc kill
 		government "Pirate"
 		personality nemesis staying
@@ -2161,17 +2165,15 @@ ship "Bactrian" "Bactrian (Cosmic Devil)"
 mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 	landing
 	invisible
+	destination "Valhalla"
 	to offer
 		has "Deep: Scientist Rescue 1: done"
-	to complete
-		never
-	npc save
+	npc kill
 		government "Pirate"
 		personality staying nemesis
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
-	on fail
 		dialog 
-			`You receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
+			`After the Bactrian explodes, you receive a transmission from an unknown source. It suddenly opens on its own andou receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
 			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
 			`The transmission cuts out as abruptly as it had started.`
 
@@ -2183,7 +2185,9 @@ mission "Deep: Scientist Rescue 2: More Pirates"
 	to offer
 		has "Deep: Scientist Rescue 1: done"
 	to fail
-		has "Deep: Scientist Rescue 2: Pirate Bactrian: failed"
+		or
+			has "Deep: Scientist Rescue 3A: done"
+			has "Deep: Scientist Rescue 3B: offered"
 	npc kill
 		government "Pirate"
 		personality staying nemesis
@@ -2200,11 +2204,12 @@ mission "Deep: Scientist Rescue 3A"
 	waypoint "Arneb"
 	to offer
 		has "Deep: Scientist Rescue 2: done"
-		not "Deep: Scientist Rescue 2: Pirate Bactrian: failed"
+		not "Deep: Scientist Rescue 2: Pirate Bactrian: done"
 		not "Deep: Scientist Rescue 3B: offered"
 	
 	on offer
 		payment 2000000
+		fail "Deep: Scientist Rescue 2: Pirate Bactrian"
 		log `Escorted the rescued Star Queen back to the Deep. Some of the crew didn't make it. The pirates still have a Bactrian, and the Deep wants it destroyed.`
 		conversation
 			`As you land near the Star Queen, you can see its passengers being escorted off. Rayna and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
@@ -2224,14 +2229,21 @@ mission "Deep: Scientist Rescue 3A"
 			`	"Thank you, <first>." Lieutenant Paris starts walking over to the Star Queen, leaving you alone next to your ship.`
 				accept
 	
+	npc kill
+		government "Pirate"
+		personality staying nemesis
+		system "Arneb"
+		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
+		dialog 
+			`After the Bactrian explodes, you receive a transmission from an unknown source. It suddenly opens on its own andou receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
+			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
+			`The transmission cuts out as abruptly as it had started.`
 	on decline
 		event "battle in arneb end"
 	on visit
 		dialog "You landed on Valhalla, but you didn't kill the Bactrian! Return to Arneb and make sure that the Bactrian is destroyed and forever out of pirate hands."
 	on fail
 		event "battle in arneb end"
-	to complete
-		has "Deep: Scientist Rescue 2: Pirate Bactrian: failed"
 	on complete
 		set "license: City-Ship"
 		event "battle in arneb end"
@@ -2253,7 +2265,7 @@ mission "Deep: Scientist Rescue 3B"
 	invisible
 	to offer
 		has "Deep: Scientist Rescue 2: done"
-		has "Deep: Scientist Rescue 2: Pirate Bactrian: failed"
+		has "Deep: Scientist Rescue 2: Pirate Bactrian: done"
 		not "Deep: Scientist Rescue 3A: offered"
 	
 	on offer
