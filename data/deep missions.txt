@@ -2198,6 +2198,8 @@ mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 	destination "Valhalla"
 	to offer
 		has "Deep: Scientist Rescue 1: done"
+	to fail
+		has "Deep: Scientist Rescue 2: done"
 	npc kill
 		government "Pirate"
 		personality staying nemesis
@@ -2239,7 +2241,6 @@ mission "Deep: Scientist Rescue 3A"
 	
 	on offer
 		payment 2000000
-		fail "Deep: Scientist Rescue 2: Pirate Bactrian"
 		log `Escorted the rescued Star Queen back to the Deep. Some of the crew didn't make it. The pirates still have a Bactrian, and the Deep wants it destroyed.`
 		conversation
 			`As you land near the Star Queen, you can see its passengers being escorted off. Rayna and Hannah come running off the ship in tears over to Garrison, who must have arrived as soon as he heard the news. A medical team is examining each passenger while a Deep Security officer asks questions and jots down the responses. Sadly, you also notice a number of body bags next to the ship, likely from scientists or crew that were found dead on the ship.`
