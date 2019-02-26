@@ -1922,9 +1922,7 @@ mission "Deep: Scientist Rescue 0: Pirates"
 	to offer
 		has "Deep: Scientist Rescue 0: active"
 	to fail
-		or
-			has "Deep: Scientist Rescue 3A: done"
-			has "Deep: Scientist Rescue 3B: offered"
+		has "Deep: Scientist Rescue 2: Pirate Bactrian: failed"
 	npc kill
 		government "Pirate"
 		personality nemesis staying
@@ -1949,6 +1947,7 @@ mission "Deep: Scientist Rescue 0: Haven"
 
 mission "Deep: Scientist Rescue 0: Haven Pirates Backup"
 	landing
+	invisible
 	source "Haven"
 	destination "Valhalla"
 	to offer
@@ -2031,9 +2030,7 @@ mission "Deep: Scientist Rescue 1: Pirates"
 	to offer
 		has "Deep: Scientist Rescue 0: done"
 	to fail
-		or
-			has "Deep: Scientist Rescue 3A: done"
-			has "Deep: Scientist Rescue 3B: offered"
+		has "Deep: Scientist Rescue 2: Pirate Bactrian: failed"
 	npc kill
 		government "Pirate"
 		personality nemesis staying
@@ -2174,7 +2171,7 @@ mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
 	on fail
 		dialog 
-			`After the Bactrian explodes, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
+			`You receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
 			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
 			`The transmission cuts out as abruptly as it had started.`
 
@@ -2186,9 +2183,7 @@ mission "Deep: Scientist Rescue 2: More Pirates"
 	to offer
 		has "Deep: Scientist Rescue 1: done"
 	to fail
-		or
-			has "Deep: Scientist Rescue 3A: done"
-			has "Deep: Scientist Rescue 3B: offered"
+		has "Deep: Scientist Rescue 2: Pirate Bactrian: failed"
 	npc kill
 		government "Pirate"
 		personality staying nemesis
