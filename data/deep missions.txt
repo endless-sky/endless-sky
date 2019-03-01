@@ -1288,7 +1288,7 @@ mission "Deep: Remnant 0"
 		or
 			"deep convoy" >= 2
 			has "Deep: Project Hawking: done"
-			has "Deep: TMBR 2: done"
+			has "Deep: TMBR 1: done"
 	
 	on offer
 		conversation
@@ -1949,6 +1949,7 @@ mission "Deep: Scientist Rescue 0: Haven"
 
 mission "Deep: Scientist Rescue 0: Haven Pirates Backup"
 	landing
+	invisible
 	source "Haven"
 	destination "Valhalla"
 	to offer
@@ -2054,7 +2055,9 @@ mission "Deep: Scientist Rescue 1: Recruit Escorts"
 	to offer
 		has "Deep: Scientist Rescue 0: done"
 	to fail
-		has "Deep: Scientist Rescue 1: done"
+		or
+			has "Deep: Scientist Rescue 1: declined"
+			has "Deep: Scientist Rescue 1: done"
 
 
 
@@ -2065,9 +2068,7 @@ mission "Deep: Scientist Rescue 1: Escorts"
 	to offer
 		has "Deep: Scientist Rescue 1: Recruit Escorts: done"
 	to fail
-		or
-			has "Deep: Scientist Rescue 3A: offered"
-			has "Deep: Scientist Rescue 3B: offered"
+		has "Deep: Scientist Rescue 2: done"
 	
 	on offer
 		conversation
@@ -2094,7 +2095,9 @@ mission "Deep: Scientist Rescue 1: Recruit Reinforcements"
 	to offer
 		has "Deep: Scientist Rescue 0: done"
 	to fail
-		has "Deep: Scientist Rescue 1: done"
+		or
+			has "Deep: Scientist Rescue 1: declined"
+			has "Deep: Scientist Rescue 1: done"
 
 
 
@@ -2105,9 +2108,7 @@ mission "Deep: Scientist Rescue 1: Reinforcements"
 	to offer
 		has "Deep: Scientist Rescue 1: Recruit Reinforcements: done"
 	to fail
-		or
-			has "Deep: Scientist Rescue 3A: offered"
-			has "Deep: Scientist Rescue 3B: offered"
+		has "Deep: Scientist Rescue 2: done"
 	
 	on offer
 		conversation
@@ -2197,11 +2198,13 @@ mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 	destination "Valhalla"
 	to offer
 		has "Deep: Scientist Rescue 1: done"
+	to fail
+		has "Deep: Scientist Rescue 2: done"
 	npc kill
 		government "Pirate"
 		personality staying nemesis
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
-		dialog 
+		dialog
 			`After the Bactrian explodes, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
 			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
 			`The transmission cuts out as abruptly as it had started.`
@@ -2257,14 +2260,21 @@ mission "Deep: Scientist Rescue 3A"
 			`	"Thank you, <first>." Lieutenant Paris starts walking over to the Star Queen, leaving you alone next to your ship.`
 				accept
 	
+	npc kill
+		government "Pirate"
+		personality staying nemesis
+		system "Arneb"
+		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
+		dialog
+			`After the Bactrian explodes, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
+			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
+			`The transmission cuts out as abruptly as it had started.`
 	on decline
 		event "battle in arneb end"
 	on visit
 		dialog "You landed on Valhalla, but you didn't kill the Bactrian! Return to Arneb and make sure that the Bactrian is destroyed and forever out of pirate hands."
 	on fail
 		event "battle in arneb end"
-	to complete
-		has "Deep: Scientist Rescue 2: Pirate Bactrian: done"
 	on complete
 		set "license: City-Ship"
 		event "battle in arneb end"
