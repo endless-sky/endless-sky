@@ -658,7 +658,7 @@ mission "Expanding Business [1]"
 			`	"Excellent, Captain! I'll be making myself comfy on my own ship. A convoy of freighters is waiting for us on <destination>. From there, we're off to Follower to pick up supplies."`
 				accept
 				
-	npc save
+	npc accompany save
 		personality escort
 		government "Merchant"
 		ship "Star Queen (Hai)" "Chryso Vasilia"
@@ -677,11 +677,11 @@ mission "Expanding Business [2]"
 	to offer
 		has "Expanding Business [1]: done"
 	
-	npc save
+	npc accompany save
 		personality escort
 		government "Merchant"
 		ship "Star Queen (Hai)" "Chryso Vasilia"
-	npc save
+	npc accompany save
 		personality escort
 		government "Merchant"
 		fleet
@@ -723,7 +723,7 @@ mission "Expanding Business [3]"
 			`	"They can get back to Greenwater on their own," Turner says from behind you as you watch the freighters fly off. "I told them to leave as soon as they could. As for you and me, I need escort to <destination>. I received a message from an old friend there who would like to have a chat with me."`
 				accept
 				
-	npc save
+	npc accompany save
 		personality escort
 		government "Merchant"
 		ship "Star Queen (Hai)" "Chryso Vasilia"
@@ -744,7 +744,7 @@ mission "Expanding Business [4]"
 			`	A few hours later, Turner returns carrying a black suitcase. "Sorry, that took longer than I expected. Now, let's get back to <destination>."`
 				accept
 	
-	npc save
+	npc accompany save
 		personality escort
 		government "Merchant"
 		ship "Star Queen (Hai)" "Chryso Vasilia"
@@ -844,11 +844,11 @@ mission "Expanding Business [6]"
 	on decline
 		clear "salary: Turner Incorporated"
 	
-	npc save
+	npc accompany save
 		personality escort
 		government "Merchant"
 		ship "Star Queen (Hai)" "Chryso Vasilia"
-	npc save
+	npc accompany save
 		personality escort
 		government "Merchant"
 		fleet
@@ -886,11 +886,11 @@ mission "Expanding Business [7]"
 	to offer
 		has "Expanding Business [6]: done"
 	
-	npc save
+	npc accompany save
 		personality escort
 		government "Merchant"
 		ship "Star Queen (Hai)" "Chryso Vasilia"
-	npc save
+	npc accompany save
 		personality escort
 		government "Merchant"
 		fleet
