@@ -454,5 +454,5 @@ outfit "Remnant License"
 
 outfit "Remnant Capital License"
 	category "Special"
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/remnant capital license"
 	description "The prefects have decided that you should be trusted with their largest ships, and the valuable resources that go into making them."
