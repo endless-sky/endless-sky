@@ -24,7 +24,7 @@ Version 0.9.9:
       * Out-of-system ships no longer bother trying not to overlap each other. (@tehhowch)
       * Fixed a situation where you couldn't cancel escort orders. (@flaviojs)
       * Fixed a bug when issuing a "hold position" command while escorts are hyperjumping.
-	  * Ships will no longer attempt to scan targets that they are hostile toward. (@tehhowch)
+      * Ships will no longer attempt to scan targets that they are hostile toward. (@tehhowch)
     * User interface:
       * Fixed "ton" vs. "tons" when harvesting materials with a unit size other than 1 ton. (@Rakete1111)
       * Fixed "invisible" ships (disabled escorts) getting selected in the shop panel. (@tehhowch)
@@ -46,13 +46,13 @@ Version 0.9.9:
       * Fixed a situation where a ship could have zero passengers tied to a mission. (@tehhowch)
       * Cargo from boarding missions now goes into the flagship's cargo hold.
       * Fixed some cases where reputation changes could disrupt the story line. (@temtemy)
-	  * Centered the Pointedstick Vanguard sprite. (@czartrak)
-	  * Ships can no longer have negative outfit counts. (@tehhowch)
-	  * Fixed some impossible deadlines in new Free Worlds jobs. (@Tadrix)
-	  * Fixed some odd merchant fleet spawns. (@Nescio)
-	  * FW Katya 1C now only offers on inhabited planets. (@Amazinite)
-	  * The Remembrance Day and war begins missions now only offer on inhabited planets. (@Fzzr)
-	  * The turret hardpoint and projectile of the Laser Turret now properly reflect the outfit image. (@Amazinite)
+      * Centered the Pointedstick Vanguard sprite. (@czartrak)
+      * Ships can no longer have negative outfit counts. (@tehhowch)
+      * Fixed some impossible deadlines in new Free Worlds jobs. (@Tadrix)
+      * Fixed some odd merchant fleet spawns. (@Nescio)
+      * FW Katya 1C now only offers on inhabited planets. (@Amazinite)
+      * The Remembrance Day and war begins missions now only offer on inhabited planets. (@Fzzr)
+      * The turret hardpoint and projectile of the Laser Turret now properly reflect the outfit image. (@Amazinite)
     * Minor issues:
       * Typo fixes. (@abenkovskii, @Alkallid, @Amazinite, @Bladewood, @Fzzr, @jafdy, @Janaszar, @jostephd, @Jugosloven1612, @LordInsane, @MessyMix, @Nescio0, @redshalken, @seanfahey, @solardawning, @temtemy, @themightygrunt, @tmbutterworth, @toilethinges, @Turtleroku, @UnciaPrima, @warp-core, @whismerhill)
       * Fixed missions that give "gifts" not being colored as ready to be completed. (@tehhowch)
@@ -83,25 +83,25 @@ Version 0.9.9:
       * Hostile hails for the Heliarchs. (@temtemy)
       * New sound effect for the Repeater and for various missiles. (@Pointedstick)
       * New special landscape image for Deep, with a volcanic island. (@DrBlight)
-	  * Added new hostile militia hails. (@Ferociousfiend)
-	  * Added new pirate jobs to assasinate high value targets. (@czartrak)
-	  * Added various new spaceport missions available in both Hai and human space. (@TheUnfetteredOne, @Amazinite, @Fzzr, @Pointedstick)
-	  * Added unique explosions to Pug ships. (@Vilhelm16)
-	  * Added a new landscape image for the Quarg station of Lagrange. (@Pointedstick)
-	  * Added new Remnant missions and content. (@Zitchas, @Brick63)
-	  * Added an image for the new Remnant capital license (@beccabunny)
-	  * Added three new Hai ships. (@Brick63)
-	  * Added new jobs that are offered by the Free Worlds during the campaign as another form of income. (@Amazinite)
-	  * Added images for the Quarg outfits. (@Brick63)
-	  * Added a luxury accommodations outfit and a brig outfit, as well as various jobs that are triggered by having them installed. (@Pointedstick)
-	  * Added more regional flavor jobs for the South, Rim, Dirt Belt, and Frontier. (@Amazinite)
-	  * The landscape images of Muspel and Norn now show the other planet in orbit. (@DrBlight)
-	  * Added new jobs to transport released prisoners home. (@Fzzr)
-	  * Added new Hai jobs to bring commodities back from human space. (@Fzzr)
-	  * The Bactrian now required a license to purchase, which can be earned through doing various missions now offered in the Deep. (@Amazinite, @tehhowch)
-	  * Added more portraits to be viewed through the new "news" system for increased variety. (@MCOfficer)
-	  * Added more jobs that are offered when a brig is installed. (@Fzzr)
-	  * Added more news entries. (@Fzzr)
+      * Added new hostile militia hails. (@Ferociousfiend)
+      * Added new pirate jobs to assasinate high value targets. (@czartrak)
+      * Added various new spaceport missions available in both Hai and human space. (@TheUnfetteredOne, @Amazinite, @Fzzr, @Pointedstick)
+      * Added unique explosions to Pug ships. (@Vilhelm16)
+      * Added a new landscape image for the Quarg station of Lagrange. (@Pointedstick)
+      * Added new Remnant missions and content. (@Zitchas, @Brick63)
+      * Added an image for the new Remnant capital license (@beccabunny)
+      * Added three new Hai ships. (@Brick63)
+      * Added new jobs that are offered by the Free Worlds during the campaign as another form of income. (@Amazinite)
+      * Added images for the Quarg outfits. (@Brick63)
+      * Added a luxury accommodations outfit and a brig outfit, as well as various jobs that are triggered by having them installed. (@Pointedstick)
+      * Added more regional flavor jobs for the South, Rim, Dirt Belt, and Frontier. (@Amazinite)
+      * The landscape images of Muspel and Norn now show the other planet in orbit. (@DrBlight)
+      * Added new jobs to transport released prisoners home. (@Fzzr)
+      * Added new Hai jobs to bring commodities back from human space. (@Fzzr)
+      * The Bactrian now required a license to purchase, which can be earned through doing various missions now offered in the Deep. (@Amazinite, @tehhowch)
+      * Added more portraits to be viewed through the new "news" system for increased variety. (@MCOfficer)
+      * Added more jobs that are offered when a brig is installed. (@Fzzr)
+      * Added more news entries. (@Fzzr)
     * Balancing:
       * Balance and price adjustments on some of the Remnant outfits.
       * The Surveillance Pod now has tactical scanning capabilities.
@@ -114,12 +114,12 @@ Version 0.9.9:
       * Quarg ships now have "hull repair." (@tehhowch)
       * Javelins now fire faster to make them a bit more deadly. (@Nescio0)
       * Missiles now do more damage but fire slower and don't track as well. (@Pointedstick, @Amazinite)
-	  * Tweaked various ship loadouts and fleet variants to reflect the changes to human missiles. (@Pointedstick, @Amazinite)
-	  * Altered the shield/hull balance of the Corvette and Firebird to better fit their intended roles. (@Pointedstick)
-	  * Adjusted the stats of the Kestrel to make it more enticing to use and to better reflect when it is unlock. (@Nescio0)
-	  * Tweaked the Headhunter and Raven to better differentiate the various human light warships. (@Amazinite)
-	  * Increased the velocity of blaster projectiles by roughly 25%. (@Nescio) 
-	  * Attacking the Pug Arfectas will now anger the Wanderers. (@tehhowch)
+      * Tweaked various ship loadouts and fleet variants to reflect the changes to human missiles. (@Pointedstick, @Amazinite)
+      * Altered the shield/hull balance of the Corvette and Firebird to better fit their intended roles. (@Pointedstick)
+      * Adjusted the stats of the Kestrel to make it more enticing to use and to better reflect when it is unlock. (@Nescio0)
+      * Tweaked the Headhunter and Raven to better differentiate the various human light warships. (@Amazinite)
+      * Increased the velocity of blaster projectiles by roughly 25%. (@Nescio) 
+      * Attacking the Pug Arfectas will now anger the Wanderers. (@tehhowch)
     * Missions:
       * Added a combat rating check to the "Hunted by the State" pirate missions. (@jjhankins)
       * Your behavior toward other factions no longer influences the Pug's attitude toward you.
@@ -131,11 +131,11 @@ Version 0.9.9:
       * Fixed "fw syndicate welcoming" happening too late for players with jump drives. (@tehhowch)
       * Added log entries for some of the side missions. (@Amazinite)
       * Drug running missions now fail if you are caught by the authorities. (@Pointedstick)
-	  * Added an extra player choice in response to the "Alondo is gay" revelation. (@elgeonmb)
-	  * Planets that turn neutral during the main plot campaign will now change to either Republic or Free Worlds worlds during the story. (@Amazinite)
-	  * Navy (Oathkeeper) fleets will now have Mark II variant ships when the rest of the Navy does. (@Fzzr)
-	  * The science drone can no longer be made hostile. (@tehhowch)
-	  * Added extra player choices that are more sympathetic to the Wanderers and Pug during Wanderer missions. (@10010101001)
+      * Added an extra player choice in response to the "Alondo is gay" revelation. (@elgeonmb)
+      * Planets that turn neutral during the main plot campaign will now change to either Republic or Free Worlds worlds during the story. (@Amazinite)
+      * Navy (Oathkeeper) fleets will now have Mark II variant ships when the rest of the Navy does. (@Fzzr)
+      * The science drone can no longer be made hostile. (@tehhowch)
+      * Added extra player choices that are more sympathetic to the Wanderers and Pug during Wanderer missions. (@10010101001)
     * Other:
       * Fixed the plural versions of some ship types.
       * Expanded the descriptions for the Hai ships. (@Amazinite)
@@ -144,12 +144,12 @@ Version 0.9.9:
       * Added more fancy passenger ships in the Paradise systems. (@Pointedstick)
       * The cloaking device is now unplunderable. (@Bladewood)
       * Switched some landscape images so that fewer of them are used for multiple planets. (@Amazinite)
-	  * All red wormholes now require the quantum keystone attribute to be used. (@Nescio)
-	  * Wasps will now spawn in small Core pirate fleets. (@Nescio)
-	  * Test dummy ships now only aim to disable instead of destroying. (@Tehhowch, @Amazinite)
-	  * Command centers are now unplunderable. (@AlexBassett)
-	  * Navy ships, human medium warships, and human heavy warships now come equipped with hand to hand weapons. (@Fzzr)
-	  * Ship names are now always preceeded by the word "the" in missions and jobs. (@DrBlight)
+      * All red wormholes now require the quantum keystone attribute to be used. (@Nescio)
+      * Wasps will now spawn in small Core pirate fleets. (@Nescio)
+      * Test dummy ships now only aim to disable instead of destroying. (@Tehhowch, @Amazinite)
+      * Command centers are now unplunderable. (@AlexBassett)
+      * Navy ships, human medium warships, and human heavy warships now come equipped with hand to hand weapons. (@Fzzr)
+      * Ship names are now always preceeded by the word "the" in missions and jobs. (@DrBlight)
   * Game mechanics:
     * Ship AI:
       * AI ships no longer keep trying to plunder if their cargo is full. (@tehhowch)
@@ -169,9 +169,9 @@ Version 0.9.9:
       * Adjustments to NPC behavior, especially outside the "invisible fence." (@tehhowch)
       * The "ship health" calculation now better represents how close a ship is to being disabled. (@tehhowch)
       * Overheated enemies now have lower priority when choosing targets to attack. (@tehhowch)
-	  * Carried ships will now unload any collected cargo into the carrier's cargo bay, but not for the player. (@tehhowch)
-	  * Fighters and drones will now return to their carrier if they need ammo or fuel. (@zwparchman)
-	  * Ships will now depart from their previously-specified planet, instead of always departing from the player's planet. (@tehhowch)
+      * Carried ships will now unload any collected cargo into the carrier's cargo bay, but not for the player. (@tehhowch)
+      * Fighters and drones will now return to their carrier if they need ammo or fuel. (@zwparchman)
+      * Ships will now depart from their previously-specified planet, instead of always departing from the player's planet. (@tehhowch)
     * Physics and game engine:
       * A dying ship can now have hull "leak" effects (e.g. flames or venting atmosphere).
       * Boarding is now suspended if the target to be boarded is knocked away. (@flaviojs)
@@ -182,18 +182,18 @@ Version 0.9.9:
       * Engine flares or afterburner effects may now be integrated into a ship definition.
       * Weapon hit force is now "inherited" from submunitions, like all the damage types.
       * Slight adjustments to the disabled hull percent calculation (now never higher than 45%).
-	  * Players may now control the strategy with which fighters and drones are repaired. (@tehhowch)
-	  * Fast forward now only applies when the player is in flight.
-	  * Ships can now randomly carry outfits like they do commodities. (@tehhowch)
-	  * Mission dialog can now be randomized through the use of phrases. (@tehhowch)
+      * Players may now control the strategy with which fighters and drones are repaired. (@tehhowch)
+      * Fast forward now only applies when the player is in flight.
+      * Ships can now randomly carry outfits like they do commodities. (@tehhowch)
+      * Mission dialog can now be randomized through the use of phrases. (@tehhowch)
     * Ship and outfit attributes:
       * Cloaking can now generate heat ("cloaking heat") as well as draining energy and fuel. (@Hadron1776)
       * Added "tactical scanners" that show more info about the selected target ship.
       * Added "fuel damage" that reduces (or increases) the target ship's fuel.
-	  * Heat can now be used as a weapon resource. (@pscamman)
-	  * Fighter and drone bays can now specify a launch effect that is played when the carried ship is launched. (@tehhowch)
-	  * Added various fuel related attributes for using or generating fuel. (@Nescio0)
-	  * Turret hardpoints can now have both a y-axis and x-axis offset. (@tehhowch)
+      * Heat can now be used as a weapon resource. (@pscamman)
+      * Fighter and drone bays can now specify a launch effect that is played when the carried ship is launched. (@tehhowch)
+      * Added various fuel related attributes for using or generating fuel. (@Nescio0)
+      * Turret hardpoints can now have both a y-axis and x-axis offset. (@tehhowch)
     * New automatic condition variables:
       * Added a "credits" auto-condition so missions can check the player's bank balance. (@Elyssaen)
       * Added auto-conditions "cargo attractiveness", "armament deterrence", and "pirate attraction".
@@ -216,7 +216,7 @@ Version 0.9.9:
       * "On enter" actions can now specify which system via a filter. (@tehhowch)
       * New "launching" personality for NPCs that always take off with the player. (@tehhowch)
       * New ways for a conversation to kill the player or an NPC the player is boarding. (@tehhowch)
-	  * Missions will now create "mission: failed" and "mission: declined" conditions upon failing and being declined respectively. (@Fzzr)
+      * Missions will now create "mission: failed" and "mission: declined" conditions upon failing and being declined respectively. (@Fzzr)
     * Other:
       * In an interface spec, different elements can now be anchored to different screen corners.
       * In the HUD interface spec, the location of the ammo, escorts, and messages is now customizable.
@@ -241,8 +241,8 @@ Version 0.9.9:
       * "Flight checks" now show up as warning icons rather than blocking you from leaving the outfitter.
       * Added a flight check for ships with no hyperdrive. (@jostephd)
       * Numbers now only show one decimal, to make ship attribute tables easier to read.
-	  * Ships without enough fuel to jump will now display a warning in the shipyard. (@Nescio0)
-	  * Ships without enough energy capacity to fire their weapons will now display a warning in the shipyard. (@mattsoulanille)
+      * Ships without enough fuel to jump will now display a warning in the shipyard. (@Nescio0)
+      * Ships without enough energy capacity to fire their weapons will now display a warning in the shipyard. (@mattsoulanille)
     * Maps:
       * Ships with no hyperdrive can now plan wormhole-only travel paths. (@tehhowch)
       * The "compare" boxes in the shipyard and outfitter maps are now side by side.
@@ -517,7 +517,7 @@ Version 0.9.7:
       * In the shop panels, the 'i' key is now only a "buy" shortcut if installing an outfit from cargo.
       * Made the "max heat" tooltip explain what it represents a bit more clearly.
       * The bank now displays whatever you owe in unpaid crew salaries.
-	  * Updated the hull tooltips to reflect the changes to when ships are disabled. (@Nescio0)
+      * Updated the hull tooltips to reflect the changes to when ships are disabled. (@Nescio0)
     * Player info panel:
       * The fleet list now always scrolls by one page on page up / down despite the scroll speed preference.
       * In the fleet list you can now view a ship's info by pressing return, instead of by clicking it.
@@ -538,7 +538,7 @@ Version 0.9.7:
       * Fixed the squashed and unsymmetrical shape of the "+" sign in the 14-point font.
       * When scanning a ship's cargo, harvested materials are now formatted like plain commodities.
       * A ship model can now specify the "noun" used for it (e.g. "creature" instead of "ship").
-	  * The player's name is now limited in how long it can be. (@tehhowch)
+      * The player's name is now limited in how long it can be. (@tehhowch)
   * Under the hood:
     * Condition expressions now support "random" on either side of the expression. (@EndrosG)
     * Reordering some hardpoint definitions for consistency. (@warp-core)
