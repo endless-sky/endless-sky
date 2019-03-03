@@ -345,6 +345,16 @@ outfit "Hai Williwaw Cooling"
 	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
 
 
+outfit "Hai Scanner"
+	category "Systems"
+	cost 420000
+	thumbnail "outfit/unknown"
+	"mass" 7
+	"outfit space" -7
+	"tactical scan power" 63
+	description "A tactical scanner developed by the Hai to allow them to determine the crew and condition of other ships."
+
+
 outfit "Quantum Keystone"
 	category "Systems"
 	cost 12000
