@@ -354,7 +354,7 @@ outfit "Salvage Scanner"
 	"outfit scan power" 13
 	"outfit scan speed" 1
 	"tactical scan power" 84
-	description "The remnant are too few in number to support extensive ground-breaking research in all areas of technology, so they prefer to focus their efforts on a few areas of importance. To make up the deficiency, the Remnant rely on salvaging and reverse engineering technology from those around them. This scanner is a key part of this effort, as it provides the capacity to do detailed long-range scans to determine what they want to target. Its ability to do individual outfit scans is much shorter than that of its ship-level scanning equipment, but it means every Remnant ship can be on the lookout for new technology while being aware of the capabilities of the target ship."
+	description "The Remnant are too few in number to support extensive ground-breaking research in all areas of technology, so they prefer to focus their efforts on a few areas of importance. To make up the deficiency, the Remnant rely on salvaging and reverse engineering technology from those around them. This scanner is a key part of this effort, as it provides the capacity to do detailed long-range scans to determine what they want to target. Its ability to do individual outfit scans is much shorter than that of its ship-level scanning equipment, but it means every Remnant ship can be on the lookout for new technology while being aware of the capabilities of the target ship."
 
 
 
