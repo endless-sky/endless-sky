@@ -83,25 +83,25 @@ Version 0.9.9:
       * Hostile hails for the Heliarchs. (@temtemy)
       * New sound effect for the Repeater and for various missiles. (@Pointedstick)
       * New special landscape image for Deep, with a volcanic island. (@DrBlight)
-      * Added new hostile militia hails. (@Ferociousfiend)
-      * Added new pirate jobs to assasinate high value targets. (@czartrak)
-      * Added various new spaceport missions available in both Hai and human space. (@TheUnfetteredOne, @Amazinite, @Fzzr, @Pointedstick)
-      * Added unique explosions to Pug ships. (@Vilhelm16)
-      * Added a new landscape image for the Quarg station of Lagrange. (@Pointedstick)
-      * Added new Remnant missions and content. (@Zitchas, @Brick63)
-      * Added an image for the new Remnant capital license (@beccabunny)
-      * Added three new Hai ships. (@Brick63)
-      * Added new jobs that are offered by the Free Worlds during the campaign as another form of income. (@Amazinite)
-      * Added images for the Quarg outfits. (@Brick63)
-      * Added a luxury accommodations outfit and a brig outfit, as well as various jobs that are triggered by having them installed. (@Pointedstick)
-      * Added more regional flavor jobs for the South, Rim, Dirt Belt, and Frontier. (@Amazinite)
+      * New hostile militia hails. (@Ferociousfiend)
+      * New pirate jobs to assasinate high value targets. (@czartrak)
+      * Various new spaceport missions available in both Hai and human space. (@TheUnfetteredOne, @Amazinite, @Fzzr, @Pointedstick)
+      * Unique explosions to Pug ships. (@Vilhelm16)
+      * New landscape image for the Quarg station of Lagrange. (@Pointedstick)
+      * New Remnant missions and content. (@Zitchas, @Brick63)
+      * An image for the new Remnant capital license (@beccabunny)
+      * Three new Hai ships. (@Brick63)
+      * New jobs that are offered by the Free Worlds during the campaign as another form of income. (@Amazinite)
+      * Images for the Quarg outfits. (@Brick63)
+      * A luxury accommodations outfit and a brig outfit, as well as various jobs that are triggered by having them installed. (@Pointedstick)
+      * More regional flavor jobs for the South, Rim, Dirt Belt, and Frontier. (@Amazinite)
       * The landscape images of Muspel and Norn now show the other planet in orbit. (@DrBlight)
-      * Added new jobs to transport released prisoners home. (@Fzzr)
-      * Added new Hai jobs to bring commodities back from human space. (@Fzzr)
+      * New jobs to transport released prisoners home. (@Fzzr)
+      * New Hai jobs to bring commodities back from human space. (@Fzzr)
       * The Bactrian now requires a license to purchase, which can be earned through doing various missions now offered in the Deep. (@Amazinite, @tehhowch)
-      * Added more portraits to be viewed through the new "news" system for increased variety. (@MCOfficer)
-      * Added more jobs that are offered when a brig is installed. (@Fzzr)
-      * Added more news entries. (@Fzzr)
+      * More portraits to be viewed through the new "news" system for increased variety. (@MCOfficer)
+      * More jobs that are offered when a brig is installed. (@Fzzr)
+      * More news entries. (@Fzzr)
     * Balancing:
       * Balance and price adjustments on some of the Remnant outfits.
       * The Surveillance Pod now has tactical scanning capabilities.
@@ -243,6 +243,7 @@ Version 0.9.9:
       * Numbers now only show one decimal, to make ship attribute tables easier to read.
       * Ships without enough fuel to jump will now display a warning in the shipyard. (@Nescio0)
       * Ships without enough energy capacity to fire their weapons will now display a warning in the shipyard. (@mattsoulanille)
+      * Updated the hull tooltips to reflect the changes to when ships are disabled. (@Nescio0)
     * Maps:
       * Ships with no hyperdrive can now plan wormhole-only travel paths. (@tehhowch)
       * The "compare" boxes in the shipyard and outfitter maps are now side by side.
@@ -274,6 +275,7 @@ Version 0.9.9:
       * Added help messages for new players who fly far out from the system center without jumping.
       * Reduced the volume scale to better match other games.
       * When formatting numbers, always put a digit to the left of the separator. (@Hacklin)
+      * The player's name is now limited in how long it can be. (@tehhowch)
   * Under the hood:
     * Lots of data file cleanup and simplification of redundant items. (@tehhowch)
     * Data file fixes. (@Amazinite, @jafdy, @luiges90, @Nescio0, @Rob59er, @toilethinges, @warp-core)
@@ -517,7 +519,6 @@ Version 0.9.7:
       * In the shop panels, the 'i' key is now only a "buy" shortcut if installing an outfit from cargo.
       * Made the "max heat" tooltip explain what it represents a bit more clearly.
       * The bank now displays whatever you owe in unpaid crew salaries.
-      * Updated the hull tooltips to reflect the changes to when ships are disabled. (@Nescio0)
     * Player info panel:
       * The fleet list now always scrolls by one page on page up / down despite the scroll speed preference.
       * In the fleet list you can now view a ship's info by pressing return, instead of by clicking it.
@@ -538,7 +539,6 @@ Version 0.9.7:
       * Fixed the squashed and unsymmetrical shape of the "+" sign in the 14-point font.
       * When scanning a ship's cargo, harvested materials are now formatted like plain commodities.
       * A ship model can now specify the "noun" used for it (e.g. "creature" instead of "ship").
-      * The player's name is now limited in how long it can be. (@tehhowch)
   * Under the hood:
     * Condition expressions now support "random" on either side of the expression. (@EndrosG)
     * Reordering some hardpoint definitions for consistency. (@warp-core)
