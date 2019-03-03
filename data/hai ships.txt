@@ -454,7 +454,7 @@ ship "Shield Beetle"
 		"heat dissipation" .60
 		"fuel capacity" 500
 		"cargo space" 142
-		"outfit space" 798
+		"outfit space" 805
 		"weapon capacity" 333
 		"engine capacity" 150
 		weapon
@@ -473,6 +473,7 @@ ship "Shield Beetle"
 		"Hai Ravine Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
+		"Hai Scanner"
 		"Quantum Keystone"
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
@@ -516,6 +517,7 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
 		"Hai Williwaw Cooling" 4
+		"Hai Scanner"
 		"Pulse Rifle" 55
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
@@ -544,6 +546,7 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
 		"Hai Williwaw Cooling" 6
+		"Hai Scanner"
 		"Pulse Rifle" 47
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
@@ -559,6 +562,7 @@ ship "Shield Beetle" "Shield Beetle (Pulse)"
 		"Hai Ravine Batteries"
 		"Hai Diamond Regenerator" 2
 		"Hai Williwaw Cooling" 3
+		"Hai Scanner"
 		"Pulse Rifle" 27
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
@@ -582,6 +586,7 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
+		"Hai Scanner"
 		"Quantum Keystone"
 		"Pulse Rifle" 32
 		`"Bondir" Atomic Thruster`
@@ -607,7 +612,7 @@ ship "Solifuge"
 		"heat dissipation" .42
 		"fuel capacity" 600
 		"cargo space" 142
-		"outfit space" 828
+		"outfit space" 835
 		"weapon capacity" 342
 		"engine capacity" 166
 		weapon
@@ -626,6 +631,7 @@ ship "Solifuge"
 		"Hai Gorge Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 6
+		"Hai Scanner"
 		"Quantum Keystone"
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
@@ -675,6 +681,7 @@ ship "Solifuge" "Solifuge (Jump)"
 		"Hai Gorge Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 6
+		"Hai Scanner"
 		"Pulse Rifle" 86
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
@@ -692,6 +699,7 @@ ship "Solifuge" "Solifuge (Jump, Pulse)"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 8
+		"Hai Scanner"
 		"Pulse Rifle" 71
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
@@ -715,6 +723,7 @@ ship "Solifuge" "Solifuge (Jump, Tracker)"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator" 2
 		"Hai Williwaw Cooling" 6
+		"Hai Scanner"
 		"Pulse Rifle" 68
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
@@ -732,6 +741,7 @@ ship "Solifuge" "Solifuge (Pulse)"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 8
+		"Hai Scanner"
 		"Pulse Rifle" 62
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
@@ -755,6 +765,7 @@ ship "Solifuge" "Solifuge (Tracker)"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator" 2
 		"Hai Williwaw Cooling" 6
+		"Hai Scanner"
 		"Pulse Rifle" 59
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
