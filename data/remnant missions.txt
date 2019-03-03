@@ -1168,7 +1168,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 	destination "Wayfarer"
 	to offer
 		has "Remnant: Learn Sign Follow Up: offered"
-		has "Remnant: Salvage 1: done"
+		has "Remnant: Salvage 2: done"
 		has "First Contact: Quarg: offered"
 		random < 40
 	on offer
