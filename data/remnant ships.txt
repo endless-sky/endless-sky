@@ -29,16 +29,16 @@ ship "Albatross"
 		"heat dissipation" 0.6
 		"fuel capacity" 600
 		"ramscoop" 2
-		"outfit space" 665
+		"outfit space" 663
 		"weapon capacity" 236
 		"engine capacity" 142
 		"shield generation" 5.2
 		"shield energy" 4.6
 		"hull repair rate" 1.5
 		"hull energy" 1.2
-		"outfit scan power" 3
+		"outfit scan power" 12
 		"outfit scan speed" 1
-		"tactical scan power" 6
+		"tactical scan power" 26
 		weapon
 			"blast radius" 360
 			"shield damage" 3600
@@ -54,7 +54,6 @@ ship "Albatross"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
-		"Salvage Scanner"
 
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
@@ -129,7 +128,6 @@ ship "Albatross" "Albatross (Turret)"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler"
 		"Outfits Expansion" 2
-		"Salvage Scanner"
 		"Tuning Rifle" 49
 
 		"Smelter-Class Thruster"
@@ -154,7 +152,6 @@ ship "Albatross" "Albatross (Heavy)"
 		"Crystal Capacitor" 2
 		"Thermoelectric Cooler" 2
 		"Outfits Expansion" 4
-		"Salvage Scanner"
 		"Tuning Rifle" 65
 
 		"Forge-Class Thruster"
@@ -241,7 +238,7 @@ ship "Gull"
 		"fuel capacity" 600
 		"ramscoop" 1
 		"cargo space" 175
-		"outfit space" 317
+		"outfit space" 316
 		"weapon capacity" 83
 		"engine capacity" 101
 		"shield generation" 1.6
@@ -382,16 +379,16 @@ ship "Pelican"
 		"heat dissipation" 0.7
 		"fuel capacity" 600
 		"ramscoop" 2
-		"outfit space" 445
+		"outfit space" 438
 		"weapon capacity" 157
 		"engine capacity" 129
 		"shield generation" 2.7
 		"shield energy" 1.8
 		"hull repair rate" 1
 		"hull energy" 0.75
-		"outfit scan power" 3
+		"outfit scan power" 12
 		"outfit scan speed" 1
-		"tactical scan power" 6
+		"tactical scan power" 26
 		weapon
 			"blast radius" 160
 			"shield damage" 1600
@@ -407,7 +404,6 @@ ship "Pelican"
 		"Thermoelectric Cooler" 2
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
-		"Salvage Scanner"
 		"Tuning Rifle" 15
 
 		"Forge-Class Thruster"
