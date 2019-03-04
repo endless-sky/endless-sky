@@ -8,6 +8,8 @@ Version 0.9.9:
     * Added a "news" system in the Spaceport, as an experiment to make it feel more "inhabited."
     * Added an "asteroid scanner," allowing you to target asteroids and letting turrets track them.
     * Ramscoop and solar power effectiveness now varies depending on the stars in each system.
+    * Added various new Remnant missions, ships, and outfits. (@Zitchas, with images from @Brick63, @Darcman99, and @beccabunny)
+    * The Bactrian now requires a license to purchase, which can be earned through doing various missions now offered in the Deep. (@Amazinite and @tehhowch, with an image from @Brick63)
   * Bug fixes:
     * Crashes and other serious bugs:
       * Fixed a crash when reordering escorts in the player info panel on Mac OS X.
@@ -88,9 +90,6 @@ Version 0.9.9:
       * Various new missions available in both Hai and human space. (@TheUnfetteredOne, @Amazinite, @Fzzr, @Pointedstick)
       * Unique explosions to Pug ships. (@Vilhelm16)
       * New landscape image for the Quarg station of Lagrange. (@Pointedstick)
-      * New Remnant missions and content. (@Zitchas)
-      * Two new Remnant ships. (@Brick63)
-      * An image for the new Remnant capital license (@beccabunny)
       * Three new Hai ships. (@Brick63)
       * New jobs that are offered by the Free Worlds during the campaign as another form of income. (@Amazinite)
       * Images for the Quarg outfits. (@Brick63)
@@ -99,8 +98,6 @@ Version 0.9.9:
       * The landscape images of Muspel and Norn now show the other planet in orbit. (@DrBlight)
       * New jobs to transport released prisoners home. (@Fzzr)
       * New Hai jobs to bring commodities back from human space. (@Fzzr)
-      * The Bactrian now requires a license to purchase, which can be earned through doing various missions now offered in the Deep. (@Amazinite, @tehhowch)
-      * An image for the new City-Ship license. (@Brick63)
       * More portraits to be viewed through the new "news" system for increased variety. (@MCOfficer)
       * More jobs that are offered when a brig is installed. (@Fzzr)
       * More news entries. (@Fzzr)
