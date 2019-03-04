@@ -85,7 +85,7 @@ Version 0.9.9:
       * New special landscape image for Deep, with a volcanic island. (@DrBlight)
       * New hostile militia hails. (@Ferociousfiend)
       * New pirate jobs to assasinate high value targets. (@czartrak)
-      * Various new spaceport missions available in both Hai and human space. (@TheUnfetteredOne, @Amazinite, @Fzzr, @Pointedstick)
+      * Various new missions available in both Hai and human space. (@TheUnfetteredOne, @Amazinite, @Fzzr, @Pointedstick)
       * Unique explosions to Pug ships. (@Vilhelm16)
       * New landscape image for the Quarg station of Lagrange. (@Pointedstick)
       * New Remnant missions and content. (@Zitchas)
@@ -122,6 +122,8 @@ Version 0.9.9:
       * Tweaked the Headhunter and Raven to better differentiate the various human light warships. (@Amazinite)
       * Increased the velocity of blaster projectiles by roughly 25%. (@Nescio0) 
       * Attacking the Pug Arfectas will now anger the Wanderers. (@tehhowch)
+      * Slightly lowered the heat generation of the Armageddon Core to make it a more viable choice. (@Lineth)
+      * Certain factions now have higher base crew attack and defense stats. (@Tadrix)
     * Missions:
       * Added a combat rating check to the "Hunted by the State" pirate missions. (@jjhankins)
       * Your behavior toward other factions no longer influences the Pug's attitude toward you.
