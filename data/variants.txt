@@ -2019,3 +2019,74 @@ ship "Wasp" "Wasp (Proton)"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Hyperdrive"
+
+
+
+ship "Marauder Firebird" "Marauder Firebird (Hai)"
+	outfits
+		"Hyperdrive"
+		"Outfits Expansion"
+		"A525 Atomic Steering"
+		"Pulse Cannon" 2
+		"Pulse Turret"
+		"Chameleon Anti-Missile"
+		"Hai Williwaw Cooling" 2
+		"Hai Chasm Batteries"
+		"Boulder Reactor"
+		`"Biroo" Atomic Thruster`
+		"Fuel Pod" 5
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 25
+		"Plasma Cannon" 2
+		"S-970 Regenerator"
+
+
+
+ship "Marauder Splinter" "Marauder Splinter (Hai)"
+	outfits
+		"Hyperdrive"
+		"A250 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Pulse Turret" 2
+		"Chameleon Anti-Missile"
+		"Hai Diamond Regenerator"
+		"Hai Chasm Batteries"
+		"Boulder Reactor"
+		"Fuel Pod" 3
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 22
+		"Security Station" 4
+		"Plasma Cannon" 2
+
+
+
+ship "Marauder Quicksilver" "Marauder Quicksilver (Hai)"
+	outfits
+		"Hyperdrive"
+		"A250 Atomic Thruster"
+		"Chameleon Anti-Missile"
+		"Pulse Cannon" 2
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Hai Chasm Batteries"
+		"Geode Reactor"
+		`"Biroo" Atomic Steering`
+		"Fuel Pod" 5
+		"Laser Rifle" 4
+		"Security Station" 2
+
+
+
+ship "Marauder Bounder" "Marauder Bounder (Hai)"
+	outfits
+		"Hyperdrive"
+		"Outfits Expansion"
+		"A250 Atomic Thruster"
+		"Hai Corundum Regenerator"
+		"Hai Gorge Batteries"
+		"Pebble Core"
+		`"Biroo" Atomic Steering`
+		"Particle Cannon"
+		"Laser Rifle" 18
+		"Security Station"
+		"Quad Blaster Turret" 2
