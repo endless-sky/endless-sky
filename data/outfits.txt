@@ -191,7 +191,15 @@ outfit "Jump Drive"
 	"jump speed" .3
 	"jump fuel" 200
 	"jump drive" 1
-	description "The workings of the Jump Drive are a total mystery. The best that human scientists have been able to find out is that this device is a containment field for matter in a state that cannot normally exist in this universe; if the drive is opened up, the field collapses and its contents disappear. Therefore, even though a few jump drives have been captured over the years, it has so far proved impossible to reverse engineer them."
+	description "The workings of the jump drive are a total mystery. The best that human scientists have been able to find out is that this device is a containment field for matter in a state that cannot normally exist in this universe; if the drive is opened up, the field collapses and its contents disappear. Therefore, even though a few jump drives have been captured over the years, it has so far proved impossible to reverse engineer them."
+
+outfit "Jump Drive (Broken)"
+	category "Systems"
+	cost 25000
+	thumbnail "outfit/jump drive (broken)"
+	"mass" 20
+	"outfit space" -20
+	description "The workings of the jump drive are a total mystery, especially now that this drive seems completely mangled. It is no longer functional in any way. It may, however, still hold some research potential."
 
 
 outfit "Cargo Scanner"
