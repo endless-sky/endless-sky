@@ -1735,6 +1735,7 @@ ship "Raven" "Raven (Afterburner)"
 		"Heavy Laser" 4
 		"NT-200 Nucleovoltaic"
 		"D41-HY Shield Generator"
+		"Laser Rifle" 2
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
@@ -1751,6 +1752,7 @@ ship "Raven" "Raven (Heavy)"
 		"D23-QP Shield Generator"
 		"Water Coolant System"
 		"Cooling Ducts"
+		"Laser Rifle" 2
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"

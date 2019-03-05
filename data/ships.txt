@@ -2532,6 +2532,7 @@ ship "Raven"
 		"RT-I Radiothermal"
 		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
+		"Laser Rifle" 2
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
