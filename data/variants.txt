@@ -496,8 +496,6 @@ ship "Carrier" "Carrier (Mark II)"
 		"Sidewinder Missile" 180
 		"Electron Turret" 2
 		"Heavy Anti-Missile Turret" 2
-		"Laser Rifle" 45
-		"Fragmentation Grenades" 45
 		"Armageddon Core"
 		"Dwarf Core"
 		"LP036a Battery Pack"
@@ -507,6 +505,8 @@ ship "Carrier" "Carrier (Mark II)"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 3
 		"Brig"
+		"Laser Rifle" 45
+		"Fragmentation Grenades" 45
 		"A860 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
@@ -696,8 +696,6 @@ ship "Cruiser" "Cruiser (Mark II)"
 		"Sidewinder Missile" 180
 		"Electron Turret" 2
 		"Heavy Anti-Missile Turret" 2
-		"Laser Rifle" 25
-		"Fragmentation Grenades" 25
 		"Armageddon Core"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
@@ -705,6 +703,8 @@ ship "Cruiser" "Cruiser (Mark II)"
 		"Small Radar Jammer" 2
 		"Liquid Helium Cooler"
 		"Fuel Pod"
+		"Laser Rifle" 25
+		"Fragmentation Grenades" 25
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
@@ -988,8 +988,6 @@ ship "Frigate" "Frigate (Mark II)"
 		"Particle Cannon" 4
 		"Anti-Missile Turret"
 		"Blaster Turret" 2
-		"Laser Rifle" 8
-		"Fragmentation Grenades" 8
 		"NT-200 Nucleovoltaic"
 		"Dwarf Core"
 		"LP036a Battery Pack"
@@ -997,6 +995,8 @@ ship "Frigate" "Frigate (Mark II)"
 		"Small Radar Jammer"
 		"Water Coolant System"
 		"Outfits Expansion"
+		"Laser Rifle" 8
+		"Fragmentation Grenades" 8
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
