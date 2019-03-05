@@ -329,6 +329,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 		"Large Repair Module"
 		"Cooling Module"
 		"Scanning Module" 3
+		"Outfits Expansion"
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module"
