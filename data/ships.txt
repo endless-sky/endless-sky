@@ -2132,7 +2132,7 @@ ship "Modified Argosy"
 		"D23-QP Shield Generator"
 		"Small Radar Jammer"
 		"Brig"
-		"Laser Rifle 2"
+		"Laser Rifle" 2
 		
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
