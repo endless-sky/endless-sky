@@ -344,7 +344,7 @@ mission "Intro [1 Interceptor]"
 		payment 30000
 		conversation
 			`The captain of the Horn of Plenty hands you <payment> and thanks you for your escort services. From the expression on his face, you'd guess that he's feeling lucky to still be alive after entrusting the safety of his fleet to a rookie pilot like yourself.`
-			`	After he is gone, James turns to you and says, "Not too bad for your first escort mission. If you've still got a hankering for some dangerous missions, come and find me in the spaceport before you leave." He picks up his suitcase and heads outside.`
+			`	After he is gone, James turns to you and says, "Not too bad for your first escort mission. I recognize that look on your face - it's the same one I had after my first job like this back when I was a lad. If I recall, my first priority after touching down was replacing some of the ship's fixed guns with missile launchers so I'd actually have a chance against pirates. It's a scandal how they sell interceptors with nothing but fixed guns these days; trying to use them in combat is practically suicide. Anyway, I'll stop rambling. If you've still got a hankering for some dangerous missions, come and find me in the spaceport before you leave." He picks up his suitcase and heads outside.`
 			``
 			`	(As before, click the "Spaceport" button to continue this mission. The next mission will involve carrying cargo, so it will only show up if you have all 15 tons of space free.)`
 
@@ -382,7 +382,7 @@ mission "Intro [2 Interceptor]"
 				`	"Got it."`
 					accept
 				`	"I really shouldn't try to fight?"`
-			`	"It just isn't feasible," he says. "If a ship has turrets, your Sparrow can't get close enough to hit it without being damaged, and then it's just a matter of whose weapons and shields are stronger. And one heavy rocket hit could nearly disable you. So, don't risk it."`
+			`	"It just isn't feasible," he says. "If a ship has gun turrets, your Sparrow can't get close enough to hit it with your own fixed guns without being damaged. If it has anti-missile turrets, you can't count on hanging back and bombarding it with missiles from long distance - at least not with weapons can fit in a Sparrow. In this case it's just a matter of whose weapons and shields are stronger. And one heavy rocket hit could nearly disable you. So, don't risk it."`
 				accept
 	
 	on complete
