@@ -2683,8 +2683,8 @@ ship "Shuttle"
 		"hull" 600
 		"required crew" 1
 		"bunks" 6
-		"mass" 70
-		"drag" 1.8
+		"mass" 80
+		"drag" 1.75
 		"heat dissipation" .8
 		"fuel capacity" 400
 		"cargo space" 20
