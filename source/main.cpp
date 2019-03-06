@@ -56,11 +56,18 @@ void AdjustViewport(SDL_Window *window);
 int DoError(string message, SDL_Window *window = nullptr, SDL_GLContext context = nullptr);
 void Cleanup(SDL_Window *window, SDL_GLContext context);
 Conversation LoadConversation();
+#ifdef _WIN32
+void InitConsole();
+#endif
 
 
 
 int main(int argc, char *argv[])
 {
+#ifdef _WIN32
+	if(argc > 1)
+		InitConsole();
+#endif
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
@@ -557,3 +564,29 @@ Conversation LoadConversation()
 	};
 	return conversation.Substitute(subs);
 }
+
+
+
+#ifdef _WIN32
+void InitConsole()
+{
+	bool redirectStdout = (_fileno)(stdout) == -2;
+	bool redirectStderr = (_fileno)(stderr) == -2;
+	
+	if(!redirectStdout && !redirectStderr)
+		return;
+		
+	if(!AttachConsole(ATTACH_PARENT_PROCESS))
+	{
+		AllocConsole();
+		return;
+	}
+	
+	if(redirectStdout)
+		if(freopen("CONOUT$", "w", stdout))
+			setvbuf(stdout, nullptr, _IOFBF, 4096);
+	if(redirectStderr)
+		if(freopen("CONOUT$", "w", stderr))
+			setvbuf(stderr, nullptr, _IOLBF, 1024);
+}
+#endif
