@@ -29,7 +29,7 @@ ship "Albatross"
 		"heat dissipation" 0.6
 		"fuel capacity" 600
 		"ramscoop" 2
-		"outfit space" 663
+		"outfit space" 658
 		"weapon capacity" 236
 		"engine capacity" 142
 		"shield generation" 5.2
@@ -95,6 +95,7 @@ ship "Albatross" "Albatross (Sniper)"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
 		"Salvage Scanner"
+		"Outfits Expansion"
 		"Tuning Rifle" 57
 
 		"Forge-Class Thruster"
