@@ -446,7 +446,7 @@ ship "Starling"
 		"fuel capacity" 900
 		"ramscoop" 1
 		"cargo space" 36
-		"outfit space" 319
+		"outfit space" 318
 		"weapon capacity" 83
 		"engine capacity" 94
 		"shield generation" 1.8
