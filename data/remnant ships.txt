@@ -420,6 +420,63 @@ ship "Pelican"
 
 
 
+ship "Penguin"
+	sprite "ship/penguin"
+		"frame rate" 3
+	thumbnail "thumbnail/penguin"
+	attributes
+		category Transport
+		cost 2530000
+		"shields" 3000
+		"hull" 1500
+		"required crew" 1
+		"bunks" 5
+		"mass" 88
+		"drag" 1.3
+		"heat dissipation" 0.9
+		"fuel capacity" 700
+		"energy capacity" 250
+		"ramscoop" 0.5
+		"cargo space" 19
+		"outfit space" 108
+		"engine capacity" 54
+		"weapon capacity" 33
+		"shield generation" 1
+		"shield energy" 0.4
+		"hull repair rate" 2
+		"hull energy" 0.9
+		"cloak" .03
+		"cloaking energy" 5
+		"cloaking fuel" .1
+		"outfit scan power" 50
+		"outfit scan speed" 1
+		"tactical scan power" 50
+		"atmosphere scan" 100
+		weapon
+			"blast radius" 20
+			"shield damage" 260
+			"hull damage" 160
+			"hit force" 800
+	outfits
+		"Millennium Cell"
+		"Emergency Ramscoop"
+		"Quantum Key Stone"
+		"Tuning Rifle" 1
+		
+		"Crucible-Class Thruster"
+		"Crucible-Class Steering"
+		"Hyperdrive"
+	
+	engine 0 30
+	gun 0 -60
+	turret 0 -60
+	explode "tiny explosion" 8
+	explode "small explosion" 7
+	description "Inspired by close contact with Void Sprites and the reinvigoration of xenobiology, these agile ships are designed to swim in the atmospheres of gas giants. Using revolutionary construction techniques that enable the hulls to flex under their own power, penguins can reshape their skin on the fly to adapt to their environment. Combined with prototypical nervous systems that approach self-awareness, these ships are the first that could be termed alive - if only by the loosest of definitions."
+	description "	The cloaking technology is built into the Penguin's hull; it cannot be removed or transferred to another ship."
+
+
+
 ship "Starling"
 	sprite "ship/starling"
 	thumbnail "thumbnail/starling"

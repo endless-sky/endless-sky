@@ -1531,14 +1531,13 @@ mission "Remnant: Face to Maw 1"
 					goto holdground
 			`	Your mind latches onto the idea and you trigger the shields in a rush. The millisecond that follows feels like an eternity: The void sprite is just a few meters away, one tendril reaches out and touches you just as the shield slams into place. You see it strike the tendril and severs it cleanly in the process of re-establishing a sealed barrier. The same instant that the pressure on your mind with the paralysis turns off, as if it was simply a dream. You momentarily stare at the immobile void sprite, both frozen in shock over what just happened. Then time reasserts itself and sprite spasms away from the ship with an unearthly crescendo of tones. It plunges down into the clouds, leaving you standing on your hull with the floating severed piece of tendril.`
 			`	You grab the tendril and store it a sealed container. While the attack spoiled the beautiful moment, at least you have a sample and some recordings that might be of interest to Plume.`
-			flee
+				flee
 			label holdground
 			`	Despite the feelings filling your mind, you resolve yourself to face down the void sprite without triggering your shields. Time seems to slow down as the sprite rushes up to you and its leading tentacle reaches out and touches you. As you brace for an impact you realize that the sprite has managed to bring itself to a complete stop and the tentacle has telescoped in on itself slightly. You can see that it is touching you, but you didn't even feel the impact. You and the void sprite stand frozen for a moment, and the mind-numbing paralysis snaps off, replaced by a feeling of weightlessness. Moments later the void sprite pulls back and pulses skyward, spiraling around the <ship> before disappearing into the swirling clouds.`
 			`	As you re-enter the ship, you notice that your suit is covered in some kind of translucent slime. You scrape off as much as you can into a sealed container, but your pressure suit appears to be permanently stained an iridescent purplish color as a result. You resolve to go find Plume, as he will almost certainly find this interesting.`
-			launch
+				launch
 	on accept
 		fail "Remnant: Face to Maw 1b"
-		event "remnant: penguin" 
 	on complete
 		conversation
 			'When you walk into Plume's lab on Aventine you find him berried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his datapad. After a few minutes he looks up and see you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
@@ -1553,12 +1552,17 @@ mission "Remnant: Face to Maw 1b"
 	landing
 	to offer
 		has "Remnant: Return the Samples 2: done"
+	to fail
+		has "Remnant: Face to Maw 1: done"
+		has "Remnant: Face to Maw 1: active"
+	to complete
+		has "Remnant: Face to Maw 1: declined"
 	source
 		system "Nenia"
 	destination "Aventine"
 	on complete
 		conversation
-			'When you walk into Plume's lab on Aventine you find him berried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his datapad. After a few minutes he looks up and see you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
+			`When you walk into Plume's lab on Aventine you find him berried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his datapad. After a few minutes he looks up and see you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
 			`	"Captain <first>! What a pleasant surprise," he trills. "If you are looking for more work, I don't have anything for you right now."`
 			`	"Actually, I have something for you," you reply. "I visited Nenia and a void sprite attacked me. I came away from it with some more footage for you and a this tentacle" you gesture at the container. Plume recoils from you in disgust. "After all our work rebuilding trust with the Archon and the Void Sprites, you go and risk it for... what, exactly? Sightseeing? Thrill of the hunt?" his chant settles into an angry tone. "Leave the recording on the console. I want no part of that tentacle, though."`
 			`	As you are leaving Plume's lab a technician pulls you aside. "Our records mention that the tentacles had some interesting properties that were useful in combat. If you are interested, meet me in the spaceport in a few hours."`
