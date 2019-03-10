@@ -1540,7 +1540,7 @@ mission "Remnant: Face to Maw 1"
 		fail "Remnant: Face to Maw 1b"
 	on complete
 		conversation
-			`When you walk into Plume's lab on Aventine you find him berried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his datapad. After a few minutes he looks up and see you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
+			`When you walk into Plume's lab on Aventine you find him buried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his datapad. After a few minutes he looks up and see you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
 			`	"Captain <first>! What a pleasant surprise," he trills. "If you are looking for more work, I don't have anything for you right now."`
 			`	"Actually, I have something for you," you reply. "I visited Nenia and had an interesting encounter with a void sprite. I came away from it with some more footage and a container of slime." He eagerly accepts the datacube and the container from you. He slides the container into some kind of machine that immediately starts whirring, and slots the datacube into his console. Moments later his holographic projection shifts to the new footage. He checks the time stamps, then chants "These will take me a little while to analyze. I will meet you in the spaceport in a few hours to discuss my preliminary findings."`
 
@@ -1563,7 +1563,7 @@ mission "Remnant: Face to Maw 1b"
 	destination "Aventine"
 	on complete
 		conversation
-			`When you walk into Plume's lab on Aventine you find him berried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his datapad. After a few minutes he looks up and see you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
+			`When you walk into Plume's lab on Aventine you find him buried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his datapad. After a few minutes he looks up and see you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
 			`	"Captain <first>! What a pleasant surprise," he trills. "If you are looking for more work, I don't have anything for you right now."`
 			`	"Actually, I have something for you," you reply. "I visited Nenia and a void sprite attacked me. I came away from it with some more footage for you and a this tentacle" you gesture at the container. Plume recoils from you in disgust. "After all our work rebuilding trust with the Archon and the Void Sprites, you go and risk it for... what, exactly? Sightseeing? Thrill of the hunt?" his chant settles into an angry tone. "Leave the recording on the console. I want no part of that tentacle, though."`
 			`	As you are leaving Plume's lab a technician pulls you aside. "Our records mention that the tentacles had some interesting properties that were useful in combat. If you are interested, meet me in the spaceport in a few hours."`
