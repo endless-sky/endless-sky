@@ -431,11 +431,11 @@ ship "Penguin"
 		"hull" 1500
 		"required crew" 1
 		"bunks" 5
-		"mass" 88
-		"drag" 1.3
+		"mass" 71
+		"drag" 1.25
 		"heat dissipation" 0.9
-		"fuel capacity" 700
-		"energy capacity" 250
+		"fuel capacity" 800
+		"energy capacity" 300
 		"ramscoop" 0.5
 		"cargo space" 19
 		"outfit space" 108
@@ -452,6 +452,9 @@ ship "Penguin"
 		"outfit scan speed" 1
 		"tactical scan power" 50
 		"atmosphere scan" 100
+		"reverse thrust" 16
+		"reverse thrusting energy" 2.5
+		"reverse thrusting heat" 2.0
 		weapon
 			"blast radius" 20
 			"shield damage" 260
@@ -472,7 +475,7 @@ ship "Penguin"
 	turret 0 -60
 	explode "tiny explosion" 8
 	explode "small explosion" 7
-	description "Inspired by close contact with Void Sprites and the reinvigoration of xenobiology, these agile ships are designed to swim in the atmospheres of gas giants. Using revolutionary construction techniques that enable the hulls to flex under their own power, penguins can reshape their skin on the fly to adapt to their environment. Combined with prototypical nervous systems that approach self-awareness, these ships are the first that could be termed alive - if only by the loosest of definitions."
+	description "Inspired by close contact with Void Sprites and the reinvigoration of xenobiology, the penguins are prototypes designed to serve the dual roles of testing new starship technology while exploring hostile planets throughout the Ember Waste. One of their distinguishing features is that these ships are truly alive and have a mind that approaches self-awareness."
 	description "	The cloaking technology is built into the Penguin's hull; it cannot be removed or transferred to another ship."
 
 
