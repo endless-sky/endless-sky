@@ -1535,12 +1535,12 @@ mission "Remnant: Face to Maw 1"
 			label holdground
 			`	Despite the feelings filling your mind, you resolve yourself to face down the void sprite without triggering your shields. Time seems to slow down as the sprite rushes up to you and its leading tentacle reaches out and touches you. As you brace for an impact you realize that the sprite has managed to bring itself to a complete stop and the tentacle has telescoped in on itself slightly. You can see that it is touching you, but you didn't even feel the impact. You and the void sprite stand frozen for a moment, and the mind-numbing paralysis snaps off, replaced by a feeling of weightlessness. Moments later the void sprite pulls back and pulses skyward, spiraling around the <ship> before disappearing into the swirling clouds.`
 			`	As you re-enter the ship, you notice that your suit is covered in some kind of translucent slime. You scrape off as much as you can into a sealed container, but your pressure suit appears to be permanently stained an iridescent purplish color as a result. You resolve to go find Plume, as he will almost certainly find this interesting.`
-				launch
+				accept
 	on accept
 		fail "Remnant: Face to Maw 1b"
 	on complete
 		conversation
-			'When you walk into Plume's lab on Aventine you find him berried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his datapad. After a few minutes he looks up and see you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
+			`When you walk into Plume's lab on Aventine you find him berried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his datapad. After a few minutes he looks up and see you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
 			`	"Captain <first>! What a pleasant surprise," he trills. "If you are looking for more work, I don't have anything for you right now."`
 			`	"Actually, I have something for you," you reply. "I visited Nenia and had an interesting encounter with a void sprite. I came away from it with some more footage and a container of slime." He eagerly accepts the datacube and the container from you. He slides the container into some kind of machine that immediately starts whirring, and slots the datacube into his console. Moments later his holographic projection shifts to the new footage. He checks the time stamps, then chants "These will take me a little while to analyze. I will meet you in the spaceport in a few hours to discuss my preliminary findings."`
 
@@ -1553,8 +1553,9 @@ mission "Remnant: Face to Maw 1b"
 	to offer
 		has "Remnant: Return the Samples 2: done"
 	to fail
-		has "Remnant: Face to Maw 1: done"
-		has "Remnant: Face to Maw 1: active"
+		or
+			has "Remnant: Face to Maw 1: done"
+			has "Remnant: Face to Maw 1: active"
 	to complete
 		has "Remnant: Face to Maw 1: declined"
 	source
@@ -1605,7 +1606,7 @@ mission "Remnant: Face to Maw 2"
 			`	"As the primary example of space-faring life, the Void Sprites have always been of interest to me. They have numerous advantages that we as atmosphere-bound creatures can only dream of, such as being able to experience space in a much more direct manner. I have been working on a side project to build a new generation of ships that melds these ideas with our current technology, but the data we have on the Void Sprites is centuries old and incomplete" her chant trails off as she pulls up a display with your original scans on them. "But your recent explorations provided new data I could use to update my designs, but they were still missing a key component. This slime that you retrieved has resolved that."`
 			`	The machine dings, and she looks over the results and then trills excitedly. "Yes, it matches! So it is time to begin the final activation." She strides over to a central console and taps in a series of commands, followed by an iris scan and a blood prick. The industrial hum of the room suddenly ramps up to a crescendo as your senses are assaulted by what you can only describe as the smell of a thunderstorm in a swamp. A few seconds later it begins to quieten again, and the tank starts lowering into the floor as a shape emerges from the liquid.`
 			`	The ship before you has some faint traces of the gascraft you have flown to Nenia, along with other elements of Remnant design, but it is clearly something new. Its antennae swivel around, as if taking in its surroundings, and the tendrils along the side twitch and reach out to touch its surroundings. Solidly built tendrils underneath it flex as it lifts itself off its supports and begins to move around. You have a momentary vision of what this ship might look like in the skies of Nenia.`
-			scene penguinscene
+			scene "scene/penguinscene"
 			`	Tali's droning chant of technical details finally seeps through your revery: "... so from a captain's point of view flying the penguin should be very similar to a normal ship, except she flies herself doesn't need a crew to make her work." She pauses, and looks at you. "Your curiosity provided the final ingredients to bring her to life. You should be the first to have one. You'll still have to go through the shipyard to register her and pay the resource cost to balance the logistics, but this first one is reserved for you." She pats the nose of the penguin and it makes a wooshing noise, then starts going over the ship with a scanner, leaving you to contemplate in silence.`
 
 event "remnant: penguin"
@@ -1641,7 +1642,7 @@ mission "Remnant: Face to Maw 2b"
 			branch chilia
 				"remnant chilia" > 1
 			`You follow the directions provided you and eventually find yourself at a Remnant weapons lab. You enter and are met by security, who ask you to wait. A few minutes later a fit young man emerges from another door "Greetings, captain <first>. I am prefect Chilia. I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles depreciatingly "I say 'nominal' as virtually all our activities are military in some way, but usually fall under the purview of those who better understand them."`
-			goto main
+				goto main
 			label chilia
 			`You follow the directions provided you and eventually find yourself at a Remnant weapons lab. You enter and are met by security, who ask you to wait. A few minutes later a fit young man emerges from another door "Greetings, captain <first>, we meet once again." You immediately recognize the voice as being the man who convinced you to provide the blood sample and get to know the Remnant. "We didn't get a proper introduction last time, but you have probably figured out that I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles depreciatingly "I say 'nominal' as virtually all our activities are military in some way, but usually fall under the purview of those who better understand them."`
 			label main
@@ -1653,6 +1654,6 @@ mission "Remnant: Face to Maw 2b"
 			`	"Yes, void rifle. I don't know who discovered it, but someone figured out that if a particularly high charge was poured through the tentacles nervous system in a specific pattern, it emits a paralyzing cone of energy with a reasonably decent range. I'm not an engineer, so I do not really understand the mechanics of it." He pauses to watch as a tech installs the now-caged tentacle on top of the stock. "Suffice to say, it is useless for sniping, but its ability to shoot through walls and affect areas makes it excellent for clearing ships and tight quarters. Back when we didn't have the ships to resist the Korath, most of our battles were resolved in building to building combat. These rifles gave us the advantage we needed to hold our own until we could even the battlefield up there." He gestures upwards.`
 			label end
 			`	"Enough of history, though." He turns to the techs who are finishing the assembly. "The tentacle has been treated to resist decay and the rifle itself will provide handle basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
-			scene "void rifle"
+			scene "outfit/void rifle"
 
 
