@@ -56,7 +56,7 @@ mission "First Contact: Remnant"
 				decline
 			
 	on enter
-	log "People" "Chilia" `As an military prefect, Chilia is responsible for the defence of Remnant space.`
+		log "People" "Chilia" `As an military prefect, Chilia is responsible for the defence of Remnant space.`
 		"remnant chilia" ++
 		conversation
 			`As you break orbit and get ready to escape, you receive a message from <planet>. A chant comes from your speakers.`
@@ -1528,7 +1528,7 @@ mission "Remnant: Face to Maw 1"
 			choice
 				`	(Activate shields)`
 				`	(Do not activate shields)`
-				goto holdground
+					goto holdground
 			`	Your mind latches onto the idea and you trigger the shields in a rush. The millisecond that follows feels like an eternity: The void sprite is just a few meters away, one tendril reaches out and touches you just as the shield slams into place. You see it strike the tendril and severs it cleanly in the process of re-establishing a sealed barrier. The same instant that the pressure on your mind with the paralysis turns off, as if it was simply a dream. You momentarily stare at the immobile void sprite, both frozen in shock over what just happened. Then time reasserts itself and sprite spasms away from the ship with an unearthly crescendo of tones. It plunges down into the clouds, leaving you standing on your hull with the floating severed piece of tendril.`
 			`	You grab the tendril and store it a sealed container. While the attack spoiled the beautiful moment, at least you have a sample and some recordings that might be of interest to Plume.`
 			flee
@@ -1629,9 +1629,10 @@ mission "Remnant: Face to Maw 2b"
 			`	Plume stoically accepts that with a nod "That is your choice. Good hunting."`
 			decline
 	on complete
-	log "People" "Chilia" `As an military prefect, Chilia is responsible for the defence of Remnant space. He can usually be found on the front lines of combat unless he is needed working on tactics for the Remnant as a whole.`
+		log "People" "Chilia" `As an military prefect, Chilia is responsible for the defence of Remnant space. He can usually be found on the front lines of combat unless he is needed working on tactics for the Remnant as a whole.`
 		payment 250000
 		"remnant chilia" ++
+		outfit "Void Rifle"
 		conversation
 			branch chilia
 				"remnant chilia" > 1
