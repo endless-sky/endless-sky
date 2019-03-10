@@ -56,7 +56,8 @@ mission "First Contact: Remnant"
 				decline
 			
 	on enter
-		event "remnant Chilia"
+	log "People" "Chilia" `As an military prefect, Chilia is responsible for the defence of Remnant space.`
+		"remnant chilia" ++
 		conversation
 			`As you break orbit and get ready to escape, you receive a message from <planet>. A chant comes from your speakers.`
 			`	"My compatriots seem to have gotten off on the wrong foot. I am Prefect Chilia of the Remnant. We established ourselves here as a bastion of humanity to survive when when the rest of human space was under threat by the Alphas.`
@@ -127,10 +128,6 @@ mission "First Contact: Remnant"
 event "ember waste label"
 	galaxy "label waste"
 		sprite label/waste
-
-event "remnant chilia"
-	"remnant chilia" ++
-	log "People" "Chilia" `As an military prefect, Chilia is responsible for the defence of Remnant space. He can usually be found on the front lines of combat unless he is needed working on tactics for the Remnant as a whole.`
 
 
 
@@ -1589,7 +1586,8 @@ mission "Remnant: Face to Maw 2"
 	on accept
 		event "remnant: penguin"
 	on complete
-		event "remnant: tali"
+		log "People" "Tali" `As an engineering prefect, Tali is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program. She is also a prominent engineer in the field of spacecraft propulsion.`
+		"remnant tali" ++
 		payment 1000000
 		conversation
 			branch tali
@@ -1609,10 +1607,6 @@ mission "Remnant: Face to Maw 2"
 event "remnant: penguin"
 	shipyard "Remnant Gascraft"
 		add "Penguin"
-
-event "remnant: tali"
-	"remnant tali" ++
-	log "People" "Tali" `As an engineering prefect, Tali is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program. She is also a prominent engineer in the field of spacecraft propulsion.`
 
 
 
@@ -1635,8 +1629,9 @@ mission "Remnant: Face to Maw 2b"
 			`	Plume stoically accepts that with a nod "That is your choice. Good hunting."`
 			decline
 	on complete
-		event "remnant: chilia"
+	log "People" "Chilia" `As an military prefect, Chilia is responsible for the defence of Remnant space. He can usually be found on the front lines of combat unless he is needed working on tactics for the Remnant as a whole.`
 		payment 250000
+		"remnant chilia" ++
 		conversation
 			branch chilia
 				"remnant chilia" > 1
@@ -1652,7 +1647,7 @@ mission "Remnant: Face to Maw 2b"
 					goto end
 			`	"Yes, void rifle. I don't know who discovered it, but someone figured out that if a particularly high charge was poured through the tentacles nervous system in a specific pattern, it emits a paralyzing cone of energy with a reasonably decent range. I'm not an engineer, so I do not really understand the mechanics of it." He pauses to watch as a tech installs the now-caged tentacle on top of the stock. "Suffice to say, it is useless for sniping, but its ability to shoot through walls and affect areas makes it excellent for clearing ships and tight quarters. Back when we didn't have the ships to resist the Korath, most of our battles were resolved in building to building combat. These rifles gave us the advantage we needed to hold our own until we could even the battlefield up there." He gestures upwards.`
 			label end
-			`	"Enough of history, though." He turns to the techs who are finishing the assembly. "The tentacle has been treated to resist decay and the rifle itself will provide handle basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"
+			`	"Enough of history, though." He turns to the techs who are finishing the assembly. "The tentacle has been treated to resist decay and the rifle itself will provide handle basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
 			scene "void rifle"
 
 
