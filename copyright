@@ -280,6 +280,11 @@ Comment: Screenshots of environments created with assets purchased by Tymoteusz
  Kapuściński from the Unity Asset Store. Post-processing applied by Michael
  Zahniser to make the images look less artificial.
  
+Files: images/outfit/scan?module*
+Copyright: Zachary Siple
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (from under the same license).
+ 
 Files: images/outfit/tactical?scanner*
 Copyright: Zachary Siple
 License: CC-BY-SA-4.0
@@ -495,6 +500,14 @@ Files: images/effect/explosion/pug/*
 Copyright: Vilhelm (https://github.com/Vilhelm16)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) 
+
+Files:
+ sounds/thrasher.wav
+ sounds/point?defense.wav
+Copyright: Lineth (https://github.com/Lineth)
+License: CC-BY-SA-4.0
+Comment: Derived from public domain sounds taken from freesound.org.
+
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
