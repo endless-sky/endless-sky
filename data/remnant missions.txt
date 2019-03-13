@@ -1571,7 +1571,7 @@ mission "Remnant: Face to Maw 1b"
 
 
 mission "Remnant: Face to Maw 2"
-	name "Take the slime sample to Tali on Viminal"
+	name "Take the slime sample to Viminal"
 	description "The slime has properties of interest to a team of engineers on <planet>."
 	to offer
 		has "Remnant: Face to Maw 1: done"
@@ -1626,12 +1626,12 @@ mission "Remnant: Face to Maw 2b"
 	on offer
 		conversation
 			`When the technician arrives in the spaceport he immediately strides over to you. "I checked the records, and my memory was correct. One of our research teams back then discovered that these tentacles could be used as a devastating weapon in close quarters combat."`
-			`	He pulls out an image of a strange looking rifle and continues to chant "the personal weapons lab under Prefect Chilia has a few of the old weapon frames. If you go there, they could turn this tentacle into a fairly potent weapon for you.`
+			`	He pulls out an image of a strange looking rifle and continues to chant "the personal weapons lab under Prefect Chilia has a few of the old weapon frames. If you go there, they could turn this tentacle into a fairly potent weapon for you."`
 			choice
 				`	"That sounds good."`
 					accept
 				`	"I would rather not."`
-			`	Plume stoically accepts that with a nod "That is your choice. Good hunting."`
+			`	The technician looks dissapointed. "Oh well, enjoy your trophy" he chants.`
 			decline
 	on complete
 		log "People" "Chilia" `As an military prefect, Chilia is responsible for the defence of Remnant space. He can usually be found on the front lines of combat unless required to work on tactics for the Remnant as a whole.`
@@ -1646,14 +1646,14 @@ mission "Remnant: Face to Maw 2b"
 			label chilia
 			`You follow the directions provided you and eventually find yourself at a Remnant weapons lab. You enter and are met by security, who ask you to wait. A few minutes later a fit young man emerges from another door "Greetings, captain <first>, we meet once again." You immediately recognize the voice as being the man who convinced you to provide the blood sample and get to know the Remnant. "We didn't get a proper introduction last time, but you have probably figured out that I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles depreciatingly "I say 'nominal' as virtually all our activities are military in some way, but usually fall under the purview of those who better understand them."`
 			label main
-			`	He leads you to a room that looks like an armory where a team of techs are putting the finishing touches on a rifle stock. The request from the tech on your behalf caught my attention, as we haven't had the key resources for making void rifles in centuries. Fortunately, we haven't really needed them since our starships have been brought up to their current capabilities." He gestures, and a tech takes the container with the tentacle from you and starts installing it in a framework.`
+			`	He leads you to a room that looks like an armory where a team of techs are putting the finishing touches on a rifle stock. "The request from the tech on your behalf caught my attention, as we haven't had the key resources for making void rifles in centuries. Fortunately, we haven't really needed them since our starships have been brought up to their current capabilities." He gestures, and a tech takes the container with the tentacle from you and starts installing it in a framework.`
 			choice
 				`	"Void rifle?"`
 				`	(expression of boredom)`
 					goto end
 			`	"Yes, void rifle. I don't know who discovered it, but someone figured out that if a particularly high charge was poured through the tentacles nervous system in a specific pattern, it emits a paralyzing cone of energy with a reasonably decent range. I'm not an engineer, so I do not really understand the mechanics of it." He pauses to watch as a tech installs the now-caged tentacle on top of the stock. "Suffice to say, it is useless for sniping, but its ability to shoot through walls and affect areas makes it excellent for clearing ships and tight quarters. Back when we didn't have the ships to resist the Korath, most of our battles were resolved in building to building combat. These rifles gave us the advantage we needed to hold our own until we could even the battlefield up there." He gestures upwards.`
 			label end
-			`	"Enough of history, though." He turns to the techs who are finishing the assembly. "The tentacle has been treated to resist decay and the rifle itself will provide handle basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
+			`	"Enough of history, though." He turns to the techs who are finishing the assembly. "The tentacle has been treated to resist decay and the rifle itself will provide basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
 			scene "outfit/void rifle"
 
 
