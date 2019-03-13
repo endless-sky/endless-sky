@@ -446,8 +446,8 @@ ship "Penguin"
 		"hull repair rate" 2
 		"hull energy" 0.9
 		"cloak" .03
-		"cloaking energy" 5
-		"cloaking fuel" .1
+		"cloaking energy" 3
+		"cloaking fuel" .05
 		"outfit scan power" 50
 		"outfit scan speed" 1
 		"tactical scan power" 50
