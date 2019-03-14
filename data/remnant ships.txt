@@ -36,9 +36,9 @@ ship "Albatross"
 		"shield energy" 4.6
 		"hull repair rate" 1.5
 		"hull energy" 1.2
-		"outfit scan power" 12
+		"outfit scan power" 50
 		"outfit scan speed" 1
-		"tactical scan power" 26
+		"tactical scan power" 50
 		weapon
 			"blast radius" 360
 			"shield damage" 3600
@@ -201,9 +201,9 @@ ship "Gascraft"
 		"hull repair rate" 1.2
 		"hull energy" 0.9
 		"gaslining" 1
-		"outfit scan power" 50
+		"outfit scan power" 26
 		"outfit scan speed" 1
-		"tactical scan power" 50
+		"tactical scan power" 26
 		"atmosphere scan" 100
 	outfits
 		"Millennium Cell"
@@ -249,9 +249,9 @@ ship "Gull"
 		"cloak" .02
 		"cloaking energy" 5
 		"cloaking fuel" .1
-		"outfit scan power" 3
+		"outfit scan power" 12
 		"outfit scan speed" 1
-		"tactical scan power" 6
+		"tactical scan power" 26
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -286,21 +286,6 @@ ship "Gull"
 	description "While the Starling was the first successful ship to use technology derived from alien ruins, the Gull is the most recent. The current increase in Korath activities has caused foraging for resources to become a risky endeavor, forcing the Remnant to develop a specialized freighter for hauling cargo from remote sites without revealing their presence to hostile aliens."
 	description "	The Gull has quickly proven its worth, allowing the Starling fleets to return to riskier activities while the Gull takes over the hazardous convoy routes. It is now the primary element of the Remnant's extra-territorial resource operations."
 	description "	The cloaking technology is built into the Gull's hull; it cannot be removed or transferred to another ship."
-
-ship "Gull" "Gull (Heavy)"
-	outfits
-		"Thrasher Cannon" 3
-		"Thrasher Turret"
-
-		"Epoch Cell"
-		"Millennium Cell"
-		"Crystal Capacitor"
-		"Salvage Scanner"
-		"Tuning Rifle" 4
-
-		"Forge-Class Thruster"
-		"Forge-Class Steering"
-		"Hyperdrive"
 
 ship "Gull" "Gull (Sniper)"
 	outfits
@@ -446,7 +431,7 @@ ship "Starling"
 		"fuel capacity" 900
 		"ramscoop" 1
 		"cargo space" 36
-		"outfit space" 318
+		"outfit space" 314
 		"weapon capacity" 83
 		"engine capacity" 94
 		"shield generation" 1.8
@@ -456,9 +441,9 @@ ship "Starling"
 		"cloak" .02
 		"cloaking energy" 5
 		"cloaking fuel" .1
-		"outfit scan power" 3
+		"outfit scan power" 12
 		"outfit scan speed" 1
-		"tactical scan power" 6
+		"tactical scan power" 26
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -503,7 +488,6 @@ ship "Starling" "Starling (Heavy)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
-		"Salvage Scanner"
 		"Tuning Rifle" 10
 
 		"Forge-Class Thruster"
@@ -564,7 +548,6 @@ ship "Starling" "Starling (Thrasher)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
-		"Salvage Scanner"
 		"Tuning Rifle" 8
 
 		"Forge-Class Thruster"
