@@ -296,6 +296,7 @@ ship "Gull" "Gull (Sniper)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Salvage Scanner"
+		"Outfits Expansion"
 		"Tuning Rifle" 4
 
 		"Forge-Class Thruster"
@@ -313,6 +314,7 @@ ship "Gull" "Gull (Support)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Salvage Scanner"
+		"Outfits Expansion"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -431,7 +433,7 @@ ship "Starling"
 		"fuel capacity" 900
 		"ramscoop" 1
 		"cargo space" 36
-		"outfit space" 314
+		"outfit space" 312
 		"weapon capacity" 83
 		"engine capacity" 94
 		"shield generation" 1.8
@@ -504,7 +506,6 @@ ship "Starling" "Starling (Sniper)"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
-		"Salvage Scanner"
 		"Tuning Rifle" 9
 
 		"Forge-Class Thruster"
@@ -526,7 +527,6 @@ ship "Starling" "Starling (Hunter)"
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Emergency Ramscoop"
-		"Salvage Scanner"
 		"Tuning Rifle" 11
 
 		"Forge-Class Thruster"
