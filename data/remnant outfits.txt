@@ -356,7 +356,7 @@ outfit "Salvage Scanner"
 	"outfit scan power" 13
 	"outfit scan speed" 1
 	"tactical scan power" 84
-	description "When the Remnant unraveled the secrets of the alien point defence turrets that guarded the vaults they found on Aventine, they also deciphered the mechanisms that guided the ancient weapons. With a little work they transformed those guiddance systems into the fundemental tools that support their aggressive pursuit of new technology."
+	description "When the Remnant unraveled the secrets of the alien point defence turrets that guarded the vaults they found on Aventine, they also deciphered the mechanisms that guided the ancient weapons. With a little work they transformed those guidance systems into the fundamental tools that supports their aggressive pursuit of new technology."
 
 
 
