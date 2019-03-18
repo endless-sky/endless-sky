@@ -321,6 +321,7 @@ outfit "Pug Biodefenses"
 
 ship "Pug Zibruka"
 	sprite "ship/pug zibruka"
+	thumbnail "thumbnail/pug zibruka"
 	attributes
 		category "Light Warship"
 		"cost" 1900000
@@ -369,6 +370,7 @@ ship "Pug Zibruka"
 
 ship "Pug Enfolta"
 	sprite "ship/pug enfolta"
+	thumbnail "thumbnail/pug enfolta"
 	attributes
 		category "Medium Warship"
 		"cost" 6300000
@@ -422,6 +424,7 @@ ship "Pug Enfolta"
 
 ship "Pug Maboro"
 	sprite "ship/pug maboro"
+	thumbnail "thumbnail/pug maboro"
 	attributes
 		category "Heavy Warship"
 		"cost" 9500000
@@ -477,6 +480,7 @@ ship "Pug Maboro"
 
 ship "Pug Arfecta"
 	sprite "ship/pug arfecta"
+	thumbnail "thumbnail/pug arfecta"
 	attributes
 		category "Medium Warship"
 		"cost" 90000000

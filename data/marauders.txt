@@ -801,7 +801,7 @@ ship "Marauder Raven"
 	sprite "ship/mravens"
 	attributes
 		category "Light Warship"
-		"cost" 2250000
+		"cost" 2750000
 		"shields" 5200
 		"hull" 1600
 		"required crew" 7

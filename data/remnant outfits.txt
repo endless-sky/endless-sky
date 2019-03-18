@@ -67,7 +67,7 @@ outfit "Thrasher Cannon"
 			"frame rate" 10
 			"random start frame"
 			"no repeat"
-		sound "particle"
+		sound "thrasher"
 		"hit effect" "thrasher impact"
 		"inaccuracy" 9
 		"velocity" 10
@@ -108,7 +108,7 @@ outfit "Thrasher Turret"
 			"no repeat"
 		"hardpoint sprite" "hardpoint/thrasher turret"
 		"hardpoint offset" 6.
-		sound "particle"
+		sound "thrasher"
 		"hit effect" "thrasher impact"
 		"inaccuracy" 6
 		"turret turn" 2.4
@@ -149,6 +149,8 @@ effect "point defense fire"
 	sprite "effect/point defense fire"
 		"frame rate" 17
 		"no repeat"
+	sound "point defense"
+
 	lifetime 10
 	"velocity scale" .5
 
@@ -454,5 +456,5 @@ outfit "Remnant License"
 
 outfit "Remnant Capital License"
 	category "Special"
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/remnant capital license"
 	description "The prefects have decided that you should be trusted with their largest ships, and the valuable resources that go into making them."

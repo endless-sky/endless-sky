@@ -972,7 +972,7 @@ mission "FW Pug 1 Return"
 	
 	on offer
 		conversation
-			`You receive an urgent message from JJ: "Captain <last>, return to New Tibet at once! We've received word that the Syndicate is somehow severing their hyperspace connections to the rest of human space. We're calling an emergency council meeting, to convene as soon as you arrive here."`
+			`You receive an urgent message from JJ: "Captain <last>, return to New Tibet at once! We've received word that the Syndicate is somehow severing their hyperspace connections to the rest of human space. We're calling an emergency Council meeting, to convene as soon as you arrive here."`
 				decline
 
 
@@ -1499,7 +1499,7 @@ mission "FW Pug 3A"
 		conversation
 			`Your ship caused quite a stir when it entered the Sol system via jump drive. Fortunately Parliament allowed you to land in one of their private hangars, but even so a few press drones managed to follow your ship into the hangar and have cameras pointed at you from the moment you and Alondo disembark.`
 			`	You report to Parliament that the hyperspace links are being cut not by the Syndicate, but by an alien species, and that the Syndicate has offered to supply jump drives for an attack fleet if the Republic and the Free Worlds will supply the ships. You also report that the aliens' intention is to spread out to occupy more of human space and to demand a fraction of the resource production of all human planets, supposedly in the name of bringing "peace."`
-			`	One of the Senators asks, "Do you think we have any chance of defeating the aliens?"`
+			`	One of the senators asks, "Do you think we have any chance of defeating the aliens?"`
 			choice
 				`	"It's possible. They all live in a single star system, so we outnumber them."`
 					goto questions
