@@ -142,6 +142,7 @@ outfit "Tier 3 Anti-Missile"
 	"weapon capacity" -67
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/T3 anti missile"
 		"fire effect" "tier 3 anti-missile fire"
 		"die effect" "tier 3 anti-missile die" 2
 		"anti-missile" 100
