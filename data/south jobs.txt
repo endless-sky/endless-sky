@@ -14,7 +14,7 @@ mission "Pirate Occupation [0]"
 	repeat
 	description `A small band of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
 	to offer
-		random < 15
+		random < 5
 		"combat rating" > 100
 	source
 		attributes "south" "rim"
@@ -47,7 +47,7 @@ mission "Pirate Occupation [1]"
 	repeat
 	description `A gang of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
 	to offer
-		random < 10
+		random < 5
 		"combat rating" > 200
 	source
 		attributes "south" "rim"

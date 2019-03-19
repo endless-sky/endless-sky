@@ -164,6 +164,12 @@ License: CC-BY-SA-4.0
 Comment: Incorporating a photo by Aram Dulyan, under the CC-BY-2.0 license.
 
 Files:
+ images/outfit/jump?drive?(broken)*
+Copyright: Darcy Manoel <Darcman00@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
  images/ui/galaxy*
  images/planet/callisto*
  images/planet/earth*
@@ -274,6 +280,11 @@ Comment: Screenshots of environments created with assets purchased by Tymoteusz
  Kapuściński from the Unity Asset Store. Post-processing applied by Michael
  Zahniser to make the images look less artificial.
  
+Files: images/outfit/scan?module*
+Copyright: Zachary Siple
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (from under the same license).
+ 
 Files: images/outfit/tactical?scanner*
 Copyright: Zachary Siple
 License: CC-BY-SA-4.0
@@ -319,6 +330,12 @@ Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), Fern
  images/outfit/large?quarg*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
+
+Files:
+ images/outfit/remnant?capital?license*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/land/badlands0*
@@ -485,7 +502,13 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) 
 
 Files:
- images/planet/station0
+ sounds/thrasher.wav
+ sounds/point?defense.wav
+Copyright: Lineth (https://github.com/Lineth)
+License: CC-BY-SA-4.0
+Comment: Derived from public domain sounds taken from freesound.org.
+
+Files: images/planet/station0
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
