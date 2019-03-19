@@ -195,7 +195,7 @@ outfit "Pug Gridfire Turret"
 		"hull damage" 600
 		"blast radius" 40
 		"piercing" .3
-	description "No one quite knows how the Gridfire Turret works, and the Pug aren't interested in explaining it. But it is clearly capable of releasing tremendous energies at any point in space to disable even the strongest of warships."
+	description "No one quite knows how the Gridfire Turret works, and the Pug aren't interested in explaining it."
 
 effect "gridfire fire"
 	sprite "effect/gridfire fire"
