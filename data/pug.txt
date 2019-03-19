@@ -151,7 +151,7 @@ outfit "Tier 3 Anti-Missile"
 		"reload" 6
 		"firing energy" 80
 		"firing heat" 10
-	description "Althought they serve different roles, this powerful anti-missile seems to have a close resemblance to the Pug gridfire turret."
+	description "Although they serve different roles, this powerful anti-missile turret seems to have a close resemblance to the Pug Gridfire Turret."
 
 effect "tier 3 anti-missile fire"
 	sprite "effect/anti-missile 3 fire"
