@@ -341,10 +341,6 @@ outfit "Quantum Key Stone"
 	"quantum keystone" 1
 	description "This precious artifact attunes a ship's quantum oscillations in a way that allows it to travel through certain otherwise impassible wormholes in the Ember Waste. The stones are rare and valuable, because they can only be mined from one location in the Waste."
 
-
-
-# Scanner:
-
 outfit "Salvage Scanner"
 	category "Systems"
 	licenses
@@ -357,6 +353,7 @@ outfit "Salvage Scanner"
 	"outfit scan speed" 1
 	"tactical scan power" 84
 	description "When the Remnant unraveled the alien point defence turrets that guarded the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After much research they transformed those guidance systems into important tools for analyzing alien ships."
+	description "	While all Remnant ships have built in outfit and tactical scanners in order to determine whether an enemy ship is worth engaging and looting, some captains still prefer to install external scanners in order to have superior scanning ranges."
 
 
 
