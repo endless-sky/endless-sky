@@ -101,6 +101,8 @@ Version 0.9.9:
       * More portraits to be viewed through the new "news" system for increased variety. (@MCOfficer)
       * More jobs that are offered when a brig is installed. (@Fzzr)
       * More news entries. (@Fzzr)
+      * New Scanning Module used by Heliarch ships. (@Nescio0, @Brick63)
+      * Unique sounds for the Thrasher and Point Defense Turret. (@Lineth)
     * Balancing:
       * Balance and price adjustments on some of the Remnant outfits.
       * The Surveillance Pod now has tactical scanning capabilities.
@@ -149,8 +151,9 @@ Version 0.9.9:
       * Wasps will now spawn in small Core pirate fleets. (@Nescio0)
       * Test dummy ships now only aim to disable instead of destroying. (@tehhowch, @Amazinite)
       * Command centers are now unplunderable. (@AlexBassett)
-      * Navy ships, human medium warships, and human heavy warships now come equipped with hand to hand weapons. (@Fzzr)
+      * Added small numbers of hand to hand weapons to various human ships. (@Fzzr)
       * Ship names are now always preceeded by the word "the" in missions and jobs. (@DrBlight)
+      * Lead's description no longer incorrectly claims that it is the heaviest non-radioactive element. (@Janaszar)
   * Game mechanics:
     * Ship AI:
       * AI ships no longer keep trying to plunder if their cargo is full. (@tehhowch)
