@@ -23,9 +23,10 @@ mission "Etarip Intro"
 	landing
 	
 	to offer
-		#random < 5
+		random < 5
 		"year" == 3013
 		"month" > 10
+		"unpaid mortgages" > 0
 		
 	source
 		government Republic
