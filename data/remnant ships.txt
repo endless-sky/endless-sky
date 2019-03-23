@@ -294,7 +294,7 @@ ship "Gull" "Gull (Sniper)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
-		"Salvage Scanner" 3
+		"Salvage Scanner" 2
 		"Outfits Expansion"
 		"Tuning Rifle" 4
 
