@@ -136,13 +136,13 @@ effect "pug anti-missile"
 outfit "Tier 3 Anti-Missile"
 	category "Turrets"
 	cost 12000000
-	thumbnail "outfit/T3 anti missile"
+	thumbnail "outfit/t3 anti missile"
 	"mass" 67
 	"outfit space" -67
 	"weapon capacity" -67
 	"turret mounts" -1
 	weapon
-		"hardpoint sprite" "hardpoint/T3 anti missile"
+		"hardpoint sprite" "hardpoint/t3 anti missile"
 		"fire effect" "tier 3 anti-missile fire"
 		"die effect" "tier 3 anti-missile die" 2
 		"anti-missile" 100
