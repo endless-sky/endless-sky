@@ -195,7 +195,7 @@ outfit "Pug Gridfire Turret"
 		"hull damage" 600
 		"blast radius" 40
 		"piercing" .3
-	description "No one quite knows how the Gridfire Turret works, and the Pug aren't interested in explaining it."
+	description "No one understands how the Gridfire Turret works, and the Pug aren't interested in explaining."
 
 effect "gridfire fire"
 	sprite "effect/gridfire fire"
