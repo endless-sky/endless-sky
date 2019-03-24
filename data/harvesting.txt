@@ -236,13 +236,29 @@ outfit "Uranium"
 	description "Uranium is best known for its use in the nuclear reactors that power large starships. Its most stable isotope U-238 is also used for ultra-strong hull plating and for armor-piercing projectiles."
 
 
-minable "void orchid"
+minable "plant"
 	sprite "asteroid/lead/spin"
 	hull 3200
 	payload "Void Orchid" 21
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "final explosion medium"
+
+minable "plant2"
+	sprite "asteroid/lead/spin"
+	hull 3200
+	payload "Void Orchid" 21
+	explode "smoke" 30
+	explode "bolide" 30
+	explode "final explosion medium"
+
+minable "plant cluster"
+	sprite "asteroid/lead/spin"
+	hull 3200
+	payload "Void Orchid" 11
+	explode "smoke" 20
+	explode "bolide" 20
+	explode "final explosion small"
 
 outfit "Void Orchid"
 	plural "Void Orchids"
