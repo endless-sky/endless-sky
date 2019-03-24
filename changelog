@@ -65,7 +65,6 @@ Version 0.9.9:
       * Fixed a blank pilot being created if you quit while in the intro conversation.
       * Disabled help message no longer shown if you're destroyed instead of just disabled. (@thomasballinger)
       * Fixed case-sensitive bug where music mp3's could not have the extension ".MP3". (@tehhowch)
-
   * Game content:
     * New content:
       * Doubled the number of unique planet sprites. (@comnom)
@@ -302,7 +301,7 @@ Version 0.9.9:
     * Updated the Mac OS build instructions and XCode settings to use Homebrew.
     * Reduced CPU usage when viewing the map.
     * A planet's inhabited status is cached to speed up inhabited checks. (@CyberShadow)
-    * Added the command-line flag `-p` to check the active save for content definition errors. (@tehhowch)
+    * Added the command-line flag -p to check the active save for content definition errors. (@tehhowch)
     * The game now quits after printing the --ships or --weapons tables, or checking a save.
     * Made game startup avoid rewriting the active save, unless the pilot was entered. (@tehhowch)
     * Replaced usage of stderr output with logging to file, to help Windows users track down issues (@tehhowch)
