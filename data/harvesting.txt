@@ -234,3 +234,23 @@ outfit "Uranium"
 	"mass" 1
 	"installable" -1
 	description "Uranium is best known for its use in the nuclear reactors that power large starships. Its most stable isotope U-238 is also used for ultra-strong hull plating and for armor-piercing projectiles."
+
+
+minable "void orchid"
+	sprite "asteroid/lead/spin"
+	hull 3200
+	payload "Void Orchid" 21
+	explode "smoke" 30
+	explode "bolide" 30
+	explode "final explosion medium"
+
+outfit "Void Orchid"
+	plural "Void Orchids"
+	category "Special"
+	cost 11000
+	thumbnail "outfit/harvested silicon"
+	"flotsam sprite" "effect/flotsam silicon"
+	"mass" 1
+	"installable" -1
+	description "Void orchids are a strange plant-like organism that live primarily on asteroids. Due to the way they concentrate minerals from their host asteroid, they are valued both as scientific curiosities as well as for their mineral content."
+

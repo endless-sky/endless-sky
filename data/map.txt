@@ -16439,12 +16439,16 @@ system Nenia
 	asteroids "large rock" 3 2.0608
 	asteroids "small metal" 2 2.3
 	asteroids "large metal" 3 1.2328
+	asteroids "plant" 3 1.2329
+	asteroids "plant2" 3 1.2327
+	asteroids "plant cluster" 3 1.2326
 	minables aluminum 7 1.96731
 	minables platinum 2 1.43013
 	minables titanium 5 1.78627
 	minables silicon 27 0.740133
 	minables iron 18 1.55307
 	minables silver 4 1.274
+	minables "void orchid" 4 1.275
 	trade Clothing 310
 	trade Electronics 804
 	trade Equipment 425
