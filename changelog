@@ -18,7 +18,7 @@ Version 0.9.9:
       * Fixed escorts doing nothing if near death. (@flaviojs)
       * Reverse thrust now works properly while turning. (@Hacklin)
       * Fixed a situation where carrier escorts in other systems wouldn't pick up their fighters. (@tehhowch)
-      * Ships will now request help if enemies are present as long as all enemies are disabled. (@tehhowch)
+      * Ships will now request help if enemies are present as long as all enemies are disabled or untargetable. (@tehhowch)
       * Avoiding a situation where ships can exit hyperspace with negative velocity. (@tehhowch)
       * Fixed autofire shooting at cloaked targets. (@tehhowch)
       * Pirates will no longer plunder passengers.
@@ -27,6 +27,7 @@ Version 0.9.9:
       * Fixed a situation where you couldn't cancel escort orders. (@flaviojs)
       * Fixed a bug when issuing a "hold position" command while escorts are hyperjumping.
       * Ships will no longer attempt to scan targets that they are hostile toward. (@tehhowch)
+      * Fixed a bug where carried ships might not be destroyed when their carrier self-destructs (@tehhowch)
     * User interface:
       * Fixed "ton" vs. "tons" when harvesting materials with a unit size other than 1 ton. (@Rakete1111)
       * Fixed "invisible" ships (disabled escorts) getting selected in the shop panel. (@tehhowch)
@@ -37,6 +38,7 @@ Version 0.9.9:
       * Fixed map re-centering at different zoom levels. (@dzhu)
       * The numeric entry dialog now treats non-numeric text as if you clicked "cancel."
       * Fixed jumpiness in map zooming. (@thomasballinger)
+      * Fixed trailing whitespace in a payment message (@tehhowch)
     * Other:
       * Fixed the FW "electron turret" mission not offering on landing. (@tehhowch)
       * Fixed the last fraction of a crate of commodities not getting jettisoned. (@flaviojs)
@@ -62,6 +64,8 @@ Version 0.9.9:
       * Added a warning for ships with more than 32 hardpoints. (@EndrosG)
       * Fixed a blank pilot being created if you quit while in the intro conversation.
       * Disabled help message no longer shown if you're destroyed instead of just disabled. (@thomasballinger)
+      * Fixed case-sensitive bug where music mp3's could not have the extension ".MP3". (@tehhowch)
+
   * Game content:
     * New content:
       * Doubled the number of unique planet sprites. (@comnom)
@@ -86,7 +90,7 @@ Version 0.9.9:
       * New sound effect for the Repeater and for various missiles. (@Pointedstick)
       * New special landscape image for Deep, with a volcanic island. (@DrBlight)
       * New hostile militia hails. (@Ferociousfiend)
-      * New pirate jobs to assasinate high value targets. (@czartrak)
+      * New pirate jobs to assassinate high value targets. (@czartrak)
       * Various new missions available in both Hai and human space. (@TheUnfetteredOne, @Amazinite, @Fzzr, @Pointedstick)
       * Unique explosions to Pug ships. (@Vilhelm16)
       * New landscape image for the Quarg station of Lagrange. (@Pointedstick)
@@ -154,6 +158,7 @@ Version 0.9.9:
       * Added small numbers of hand to hand weapons to various human ships. (@Fzzr)
       * Ship names are now always preceeded by the word "the" in missions and jobs. (@DrBlight)
       * Lead's description no longer incorrectly claims that it is the heaviest non-radioactive element. (@Janaszar)
+      * Added more content definition warnings & checks, to help modders develop functional content (@tehhowch)
   * Game mechanics:
     * Ship AI:
       * AI ships no longer keep trying to plunder if their cargo is full. (@tehhowch)
@@ -174,7 +179,7 @@ Version 0.9.9:
       * The "ship health" calculation now better represents how close a ship is to being disabled. (@tehhowch)
       * Overheated enemies now have lower priority when choosing targets to attack. (@tehhowch)
       * Carried ships will now unload any collected cargo into the carrier's cargo bay, but not for the player. (@tehhowch)
-      * Fighters and drones will now return to their carrier if they need ammo or fuel. (@zwparchman)
+      * Fighters and drones also return to their carrier if they need fuel. (@zwparchman)
       * Ships will now depart from their previously-specified planet, instead of always departing from the player's planet. (@tehhowch)
     * Physics and game engine:
       * A dying ship can now have hull "leak" effects (e.g. flames or venting atmosphere).
@@ -197,7 +202,7 @@ Version 0.9.9:
       * Heat can now be used as a weapon resource. (@pscamman)
       * Fighter and drone bays can now specify a launch effect that is played when the carried ship is launched. (@tehhowch)
       * Added various fuel related attributes for using or generating fuel. (@Nescio0)
-      * Turret hardpoints can now have both a y-axis and x-axis offset. (@tehhowch)
+      * Hardpoint offsets can now have both a y-axis and x-axis offset. (@tehhowch)
     * New automatic condition variables:
       * Added a "credits" auto-condition so missions can check the player's bank balance. (@Elyssaen)
       * Added auto-conditions "cargo attractiveness", "armament deterrence", and "pirate attraction".
@@ -212,15 +217,17 @@ Version 0.9.9:
       * Events can now "add" or "remove" specific personalities from a fleet.
       * Mission's Do() will no longer modify condition variables if the action cannot be done.
       * Location filters can now use "not" to specify things the location must not match.
+      * Location filters can now use "neighbor" to specify what criteria the location's neighboring systems must satisfy. (@tehhowch)
       * Added a text substitution for "<waypoints>" in missions. (@tehhowch)
       * Conversation "apply" nodes can now modify your reputations. (@tehhowch)
       * The "require" mission tag can now specify how many of an outfit to require. (@Elyssaen)
-      * Location filters can now specify what attributes neighboring systems have. (@tehhowch)
       * Any mission conversation can now trigger a "launch." (@tehhowch)
       * "On enter" actions can now specify which system via a filter. (@tehhowch)
       * New "launching" personality for NPCs that always take off with the player. (@tehhowch)
       * New ways for a conversation to kill the player or an NPC the player is boarding. (@tehhowch)
       * Missions will now create "mission: failed" and "mission: declined" conditions upon failing and being declined respectively. (@Fzzr)
+      * Assisting & boarding missions can spawn NPCs in-flight, without requiring the player to land (@tehhowch)
+      * The starting planet of NPCs can be specified (@tehhowch)
     * Other:
       * In an interface spec, different elements can now be anchored to different screen corners.
       * In the HUD interface spec, the location of the ammo, escorts, and messages is now customizable.
@@ -228,7 +235,7 @@ Version 0.9.9:
       * Added support for loading grayscale PNGs. (@dplepage)
       * Each government can now specify a baseline attack and defense multiplier for crew. (@Hadron1776)
       * Made it possible for ship variants to add attributes without redefining all of them. (@tehhowch)
-      * Wormhole links are now only drawn in the map is the "description" is not empty.
+      * Wormhole links are now only drawn in the map if their "description" is not empty.
       * An asteroid scanner lets you remember the minable types in a system even without harvesting them.
       * Ship hails now support some text replacements. (@dzhu)
       * Planetary defenses can now include multiple fleet types. (@tehhowch)
@@ -295,7 +302,14 @@ Version 0.9.9:
     * Updated the Mac OS build instructions and XCode settings to use Homebrew.
     * Reduced CPU usage when viewing the map.
     * A planet's inhabited status is cached to speed up inhabited checks. (@CyberShadow)
-    * The game now quits after printing the --ships or --weapons tables.
+    * Added the command-line flag `-p` to check the active save for content definition errors. (@tehhowch)
+    * The game now quits after printing the --ships or --weapons tables, or checking a save.
+    * Made game startup avoid rewriting the active save, unless the pilot was entered. (@tehhowch)
+    * Replaced usage of stderr output with logging to file, to help Windows users track down issues (@tehhowch)
+    * Reduced "turn jitter", where ships could rapidly alternate turning direction (@tehhowch)
+    * Interlaced .png's no longer produce warnings from libpng (@tehhowch)
+    * The application name on OSX is now properly "Endless Sky" (@nobodywasishere)
+    * Improved how the AI determines which ships other ships should consider targeting (@tehhowch)
 
 Version 0.9.8:
   * Bug fixes:
