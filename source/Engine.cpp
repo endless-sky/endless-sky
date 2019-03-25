@@ -316,12 +316,12 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			if(ship->IsDestroyed() || ship->IsDisabled())
 				continue;
 			
+			// Redo the loading up of fighters.
+			ship->UnloadBays();
 			if(ship->BaysFree(false))
 				droneCarriers[&*ship] = ship->BaysFree(false);
 			if(ship->BaysFree(true))
 				fighterCarriers[&*ship] = ship->BaysFree(true);
-			// Redo the loading up of fighters.
-			ship->UnloadBays();
 		}
 		
 		shared_ptr<Ship> npcFlagship;
