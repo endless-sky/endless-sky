@@ -1259,7 +1259,7 @@ ship "Finch"
 		"hull" 200
 		"required crew" 1
 		"bunks" 1
-		"mass" 30
+		"mass" 40
 		"drag" .83
 		"heat dissipation" .85
 		"outfit space" 110
@@ -2683,7 +2683,7 @@ ship "Shuttle"
 		"hull" 600
 		"required crew" 1
 		"bunks" 6
-		"mass" 80
+		"mass" 70
 		"drag" 1.75
 		"heat dissipation" .8
 		"fuel capacity" 400
@@ -2793,7 +2793,7 @@ ship "Sparrow"
 		"hull" 300
 		"required crew" 1
 		"bunks" 2
-		"mass" 35
+		"mass" 50
 		"drag" .9
 		"heat dissipation" .8
 		"fuel capacity" 300
