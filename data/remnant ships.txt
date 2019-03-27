@@ -475,7 +475,7 @@ ship "Penguin"
 	turret 0 -60
 	explode "tiny explosion" 8
 	explode "small explosion" 7
-	description "Inspired by close contact with Void Sprites and the reinvigoration of xenobiology, the penguins are prototypes designed to serve the dual roles of testing new starship technology while exploring hostile planets throughout the Ember Waste. One of their distinguishing features is that these ships are truly alive and have a mind that approaches self-awareness."
+	description "Inspired by close contact with Void Sprites and the reinvigoration of xenobiology, the penguin is a prototype designed to serve the dual roles of testing new starship technology while exploring hostile planets throughout the Ember Waste. One of it's distinguishing features is that this ship is truly alive and has a mind that approaches self-awareness."
 	description "	The cloaking technology is built into the Penguin's hull; it cannot be removed or transferred to another ship."
 
 

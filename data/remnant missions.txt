@@ -56,7 +56,7 @@ mission "First Contact: Remnant"
 				decline
 			
 	on enter
-		log "People" "Chilia" `As an military prefect, Chilia is responsible for the defence of Remnant space.`
+		log "People" "Chilia" `As a military prefect, Chilia is responsible for the defence of Remnant space.`
 		"remnant chilia" ++
 		conversation
 			`As you break orbit and get ready to escape, you receive a message from <planet>. A chant comes from your speakers.`
@@ -1607,7 +1607,7 @@ mission "Remnant: Face to Maw 2"
 			`	The machine dings, and she looks over the results and then trills excitedly. "Yes, it matches! So it is time to begin the final activation." She strides over to a central console and taps in a series of commands, followed by an iris scan and a blood prick. The industrial hum of the room suddenly ramps up to a crescendo as your senses are assaulted by what you can only describe as the smell of a thunderstorm in a swamp. A few seconds later it begins to quieten again, and the tank starts lowering into the floor as a shape emerges from the liquid.`
 			`	The ship before you has some faint traces of the gascraft you have flown to Nenia, along with other elements of Remnant design, but it is clearly something new. Its antennae swivel around, as if taking in its surroundings, and the tendrils along the side twitch and reach out to touch its surroundings. Solidly built tendrils underneath it flex as it lifts itself off its supports and begins to move around. You have a momentary vision of what this ship might look like in the skies of Nenia.`
 			scene "scene/penguinscene"
-			`	Tali's droning chant of technical details finally seeps through your revery: "... so from a captain's point of view flying the penguin should be very similar to a normal ship, except she flies herself doesn't need a crew to make her work." She pauses, and looks at you. "Your curiosity provided the final ingredients to bring her to life. You should be the first to have one. You'll still have to go through the shipyard to register her and pay the resource cost to balance the logistics, but this first one is reserved for you." She pats the nose of the penguin and it makes a wooshing noise, then starts going over the ship with a scanner, leaving you to contemplate in silence.`
+			`	Tali's droning chant of technical details finally seeps through your revery: "... so from a captain's point of view flying the penguin should be very similar to a normal ship, except she flies herself doesn't need a crew to make her work." She pauses, and looks at you. "Your curiosity provided the final ingredients to bring her to life. You should be the first to have one. You'll still have to go through the shipyard to register her and pay the resource cost to balance the logistics, but this first one is reserved for you." She pats the nose of the penguin and it makes a wooshing noise. After a moment she starts going over the ship with a scanner, leaving you to contemplate in silence.`
 
 event "remnant: penguin"
 	shipyard "Remnant Gascraft"

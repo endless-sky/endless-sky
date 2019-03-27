@@ -458,7 +458,7 @@ outfit "Void Rifle"
 	"capture attack" 20
 	"capture defense" 20
 	"unplunderable" 1
-	description "How the Void Rifle works isn't clearly understood, but when fired it emits some kind of non-visible radition that has a strong paralyzing effect on the nervous system. Given that it is an area effect that penetrates walls and other solid objects, it is an incredibly effective weapon."
+	description "How the Void Rifle works isn't clearly understood, but when fired it emits a form of non-visible radiation that has a strong paralyzing effect on the nervous system. Given that it has an area of effect that penetrates walls and other solid objects, it is an incredibly effective weapon."
 	description "The Remnant made a significant number of these weapons during the early years of their research on the Void Sprites, but haven't been able to make any new ones since the Archon stopped their research activities. While durable, they do rarely last more than a few years, so even the best cared for of the old void rifles degraded into uselessness centuries ago. These highly effective weapons are credited with helping the Remnant resist Korath invaders on the ground before they had ships capable of defending their skies."
 
 outfit "Remnant License"
