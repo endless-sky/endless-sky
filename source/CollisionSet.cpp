@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "CollisionSet.h"
 
 #include "Body.h"
+#include "Files.h"
 #include "Government.h"
 #include "Mask.h"
 #include "Point.h"
@@ -23,9 +24,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstdlib>
 #include <numeric>
 #include <set>
+#include <string>
 
 using namespace std;
 
+namespace {
+	// Maximum allowed projectile velocity.
+	constexpr int MAX_VELOCITY = 450000;
+	// Velocity used for any projectiles with v > MAX_VELOCITY
+	constexpr int USED_MAX_VELOCITY = MAX_VELOCITY - 1;
+	// Warn the user only once about too-large projectile velocities.
+	bool warned = false;
+}
 
 
 // Initialize a collision set. The cell size and cell count should both be
@@ -186,6 +196,19 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 		if(closest < 1. && closestHit)
 			*closestHit = closest;
 		return result;
+	}
+	
+	Point pVelocity = (to - from);
+	if(pVelocity.Length() > MAX_VELOCITY)
+	{
+		// Cap projectile velocity to prevent integer overflows.
+		if(!warned)
+		{
+			Files::LogError("Warning: maximum projectile velocity is " + to_string(MAX_VELOCITY));
+			warned = true;
+		}
+		Point newEnd = from + pVelocity.Unit() * USED_MAX_VELOCITY;
+		return Line(from, newEnd, closestHit, pGov, target);
 	}
 	
 	// When stepping from one grid cell to the next, we'll go in this direction.
