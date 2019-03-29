@@ -73,7 +73,7 @@ Version 0.9.9:
       * Added some new special "person" ships.
       * New galaxy background image. (@Aurelite)
       * Updated some landscape images.
-      * Added new station landscape images. (@sivael)
+      * Added new station landscape images. (@sivael, @Pointedstick)
       * Added a "Deep Security" government that's distinct from the Republic Navy (and has its own hails).
       * Outfit image for the Tactical Scanner. (@Kryes-Omega)
       * Added new ships and weapons for a new Wanderer faction.
@@ -93,7 +93,7 @@ Version 0.9.9:
       * New pirate jobs to assassinate high value targets. (@czartrak)
       * Various new missions available in both Hai and human space. (@TheUnfetteredOne, @Amazinite, @Fzzr, @Pointedstick)
       * Unique explosions to Pug ships. (@Vilhelm16)
-      * New landscape image for the Quarg station of Lagrange. (@Pointedstick)
+      * New station sprite for Lagrange. (@beccabunny)
       * Three new Hai ships. (@Brick63)
       * New jobs that are offered by the Free Worlds during the campaign as another form of income. (@Amazinite)
       * Images for the Quarg outfits. (@Brick63)
@@ -159,6 +159,7 @@ Version 0.9.9:
       * Ship names are now always preceeded by the word "the" in missions and jobs. (@DrBlight)
       * Lead's description no longer incorrectly claims that it is the heaviest non-radioactive element. (@Janaszar)
       * Added more content definition warnings & checks, to help modders develop functional content (@tehhowch)
+      * Content definition checks do not warn for certain objects defined solely by game events (@comnom)
   * Game mechanics:
     * Ship AI:
       * AI ships no longer keep trying to plunder if their cargo is full. (@tehhowch)
