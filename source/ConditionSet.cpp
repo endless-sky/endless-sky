@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <limits>
 
 using namespace std;
 
@@ -115,7 +116,13 @@ void ConditionSet::Add(const DataNode &node)
 	{
 		if(node.IsNumber(2))
 		{
-			if(!Add(node.Token(0), node.Token(1), node.Value(2)))
+			double value = node.Value(2);
+			if(value > static_cast<double>(numeric_limits<int>::max())
+					|| value < static_cast<double>(numeric_limits<int>::min()))
+			{
+				node.PrintTrace("Unrepresentable condition value " + to_string(value) + ":");
+			}
+			else if(!Add(node.Token(0), node.Token(1), static_cast<int>(value)))
 				node.PrintTrace("Unrecognized condition expression:");
 		}
 		else
