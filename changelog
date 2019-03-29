@@ -57,6 +57,7 @@ Version 0.9.9:
       * FW Katya 1C now only offers on inhabited planets. (@Amazinite)
       * The Remembrance Day and war begins missions now only offer on inhabited planets. (@Fzzr)
       * The turret hardpoint and projectile of the Laser Turret now properly reflect the outfit image. (@Amazinite)
+      * NPC carrier-fighter assignment properly counts available bays (@oo13)
     * Minor issues:
       * Typo fixes. (@abenkovskii, @Alkallid, @Amazinite, @Bladewood, @Fzzr, @jafdy, @Janaszar, @jostephd, @Jugosloven1612, @LordInsane, @MessyMix, @Nescio0, @redshalken, @seanfahey, @solardawning, @temtemy, @themightygrunt, @tmbutterworth, @toilethinges, @Turtleroku, @UnciaPrima, @warp-core, @whismerhill)
       * Fixed missions that give "gifts" not being colored as ready to be completed. (@tehhowch)
