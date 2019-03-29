@@ -485,7 +485,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	table.Draw(Format::Credits(player.Accounts().NetWorth()) + " credits", bright);
 	
 	// Determine the player's combat rating.
-	int combatLevel = log(max(1, player.GetCondition("combat rating")));
+	int combatLevel = log(max<int64_t>(1, player.GetCondition("combat rating")));
 	const string &combatRating = GameData::Rating("combat", combatLevel);
 	if(!combatRating.empty())
 	{
