@@ -540,7 +540,7 @@ void PlayerInfo::IncrementDate()
 			Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\".");
 	
 	// Check what salaries and tribute the player receives.
-	int total[2] = {0, 0};
+	int64_t total[2] = {0, 0};
 	static const string prefix[2] = {"salary: ", "tribute: "};
 	for(int i = 0; i < 2; ++i)
 	{
