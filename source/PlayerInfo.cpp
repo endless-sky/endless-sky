@@ -2223,7 +2223,7 @@ void PlayerInfo::ApplyChanges()
 void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 {
 	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
-	static constexpr int64_t limit = static_cast<int64_t>(2) << 62;
+	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
 	conditions["net worth"] = min(limit, max(-limit, accounts.NetWorth()));
 	conditions["credits"] = min(limit, accounts.Credits());
 	conditions["unpaid mortgages"] = min(limit, accounts.TotalDebt("Mortgage"));
