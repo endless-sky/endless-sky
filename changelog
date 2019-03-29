@@ -14,6 +14,7 @@ Version 0.9.9:
     * Crashes and other serious bugs:
       * Fixed a crash when reordering escorts in the player info panel on Mac OS X.
       * Fixed a bug that caused ships with nuclear missiles to launch them all at the same time.
+      * Fixed a bug where large projectile velocities would freeze the game (@tehhowch)
     * Ship behavior:
       * Fixed escorts doing nothing if near death. (@flaviojs)
       * Reverse thrust now works properly while turning. (@Hacklin)
@@ -66,6 +67,7 @@ Version 0.9.9:
       * Fixed a blank pilot being created if you quit while in the intro conversation.
       * Disabled help message no longer shown if you're destroyed instead of just disabled. (@thomasballinger)
       * Fixed case-sensitive bug where music mp3's could not have the extension ".MP3". (@tehhowch)
+      * Unrepresentable condition values generate a warning, rather than result in signed integer overflow (@tehhowch)
   * Game content:
     * New content:
       * Doubled the number of unique planet sprites. (@comnom)
@@ -311,6 +313,7 @@ Version 0.9.9:
     * Interlaced .png's no longer produce warnings from libpng (@tehhowch)
     * The application name on OSX is now properly "Endless Sky" (@nobodywasishere)
     * Improved how the AI determines which ships other ships should consider targeting (@tehhowch)
+    * Condition values may be +/- 4 quintillion instead of +/- 2 billion (@tehhowch)
 
 Version 0.9.8:
   * Bug fixes:
