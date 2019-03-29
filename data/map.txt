@@ -16453,7 +16453,7 @@ system Nenia
 	minables "large plant cluster" 20 1.4
 	minables "space flora" 40 1.1
 	minables "large space flora" 40 1.6
-	minables "stealth pace flora" 20 1.1
+	minables "stealth space flora" 20 1.1
 	minables "large stealth space flora" 20 1.6
 	trade Clothing 310
 	trade Electronics 804
