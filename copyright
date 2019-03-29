@@ -509,18 +509,13 @@ License: CC-BY-SA-4.0
 Comment: Derived from public domain sounds taken from freesound.org.
 
 Files:
- images/outfit/pug?gridfire?turret*
- images/hardpoint/pug?gridfire?turret*
-Copyright: Becca Tommaso
-License: CC-BY-SA-3.0
-Comment: Based on 10010101001 (https://github.com/10010101001) concept, derived from works by Frederick Goy IV and Michael Zahnier (under the same license) 
-
-Files:
  images/outfit/T3?anti?missile*
+ images/outfit/pug?gridfire?turret*
  images/hardpoint/T3?anti?missile*
-Copyright: Becca Tommaso
-License: CC-BY-SA-3.0
-Comment: Derived from works by Frederick Goy IV (under the same license) 
+ images/hardpoint/pug?gridfire?turret*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Frederick Goy IV (under the same license).
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
