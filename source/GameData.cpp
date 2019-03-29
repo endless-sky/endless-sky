@@ -213,37 +213,31 @@ bool GameData::BeginLoad(const char * const *argv)
 // Check for objects that are referred to but never defined.
 void GameData::CheckReferences()
 {
-	// Check events first, as they may contain additional definitions.
-	map<string, set<string>> deferred;
+	// Parse all GameEvents for object definitions & references.
+	auto deferred = map<string, set<string>>{};
+	const auto eventDefinitionNodes = set<string>{
+		"fleet",
+		"galaxy",
+		"government",
+		"outfitter",
+		"news",
+		"planet",
+		"shipyard",
+		"system"
+	};
 	for(const auto &it : events)
 	{
 		if(it.second.Name().empty())
-		{
 			Files::LogError("Warning: event \"" + it.first + "\" is referred to, but never defined.");
-		}
 		else
 		{
 			for(const DataNode &node : it.second.Changes())
-			{
-				const string key = node.Token(0);
-				const int size = node.Size();
-				if(key == "fleet" && size >= 2)
-					deferred[key].insert(node.Token(1));
-				else if(key == "galaxy" && size >= 2)
-					deferred[key].insert(node.Token(1));
-				else if(key == "government" && size >= 2)
-					deferred[key].insert(node.Token(1));
-				else if(key == "outfitter" && size >= 2)
-					deferred[key].insert(node.Token(1));
-				else if(key == "news" && size >= 2)
-					deferred[key].insert(node.Token(1));
-				else if(key == "planet" && size >= 2)
-					deferred[key].insert(node.Token(1));
-				else if(key == "shipyard" && size >= 2)
-					deferred[key].insert(node.Token(1));
-				else if(key == "system" && size >= 2)
-					deferred[key].insert(node.Token(1));
-			}
+				if(node.Size() >= 2)
+				{
+					const string &key = node.Token(0);
+					if(eventDefinitionNodes.count(key))
+						deferred[key].emplace(node.Token(1));
+				}
 		}
 	}
 	
