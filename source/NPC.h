@@ -27,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class DataWriter;
 class Government;
+class Planet;
 class PlayerInfo;
 class Ship;
 class ShipEvent;
@@ -74,6 +75,8 @@ private:
 	LocationFilter location;
 	const System *system = nullptr;
 	bool isAtDestination = false;
+	// Start out landed on this planet.
+	const Planet *planet = nullptr;
 	
 	// Dialog or conversation to show when all requirements for this NPC are met:
 	std::string dialogText;
