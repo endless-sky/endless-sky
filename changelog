@@ -29,6 +29,7 @@ Version 0.9.9:
       * Fixed a bug when issuing a "hold position" command while escorts are hyperjumping.
       * Ships will no longer attempt to scan targets that they are hostile toward. (@tehhowch)
       * Fixed a bug where carried ships might not be destroyed when their carrier self-destructs (@tehhowch)
+      * Ships will no longer take off from planets they do not have the required attributes to land on (@tehhowch)
     * User interface:
       * Fixed "ton" vs. "tons" when harvesting materials with a unit size other than 1 ton. (@Rakete1111)
       * Fixed "invisible" ships (disabled escorts) getting selected in the shop panel. (@tehhowch)
