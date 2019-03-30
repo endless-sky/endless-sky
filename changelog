@@ -39,7 +39,8 @@ Version 0.9.9:
       * Fixed map re-centering at different zoom levels. (@dzhu)
       * The numeric entry dialog now treats non-numeric text as if you clicked "cancel."
       * Fixed jumpiness in map zooming. (@thomasballinger)
-      * Fixed trailing whitespace in a payment message (@tehhowch)
+      * Fixed trailing whitespace and "1 credits" in payment messages (@tehhowch)
+      * The "fail" noise no longer plays on repeat if you have no way to jump (@tehhowch)
     * Other:
       * Fixed the FW "electron turret" mission not offering on landing. (@tehhowch)
       * Fixed the last fraction of a crate of commodities not getting jettisoned. (@flaviojs)
@@ -59,6 +60,7 @@ Version 0.9.9:
       * The Remembrance Day and war begins missions now only offer on inhabited planets. (@Fzzr)
       * The turret hardpoint and projectile of the Laser Turret now properly reflect the outfit image. (@Amazinite)
       * NPC carrier-fighter assignment properly counts available bays (@oo13)
+      * Unrepresentable condition values generate a warning, rather than result in signed integer overflow (@tehhowch)
     * Minor issues:
       * Typo fixes. (@abenkovskii, @Alkallid, @Amazinite, @Bladewood, @Fzzr, @jafdy, @Janaszar, @jostephd, @Jugosloven1612, @LordInsane, @MessyMix, @Nescio0, @redshalken, @seanfahey, @solardawning, @temtemy, @themightygrunt, @tmbutterworth, @toilethinges, @Turtleroku, @UnciaPrima, @warp-core, @whismerhill)
       * Fixed missions that give "gifts" not being colored as ready to be completed. (@tehhowch)
@@ -67,7 +69,6 @@ Version 0.9.9:
       * Fixed a blank pilot being created if you quit while in the intro conversation.
       * Disabled help message no longer shown if you're destroyed instead of just disabled. (@thomasballinger)
       * Fixed case-sensitive bug where music mp3's could not have the extension ".MP3". (@tehhowch)
-      * Unrepresentable condition values generate a warning, rather than result in signed integer overflow (@tehhowch)
   * Game content:
     * New content:
       * Doubled the number of unique planet sprites. (@comnom)
