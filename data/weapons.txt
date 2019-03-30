@@ -652,7 +652,7 @@ outfit "Meteor Missile Launcher"
 		"hit effect" "missile hit"
 		"inaccuracy" 5
 		"velocity" 11
-		"lifetime" 240
+		"lifetime" 350
 		"reload" 80
 		"firing energy" 1
 		"firing heat" 20
@@ -714,7 +714,7 @@ outfit "Sidewinder Missile Launcher"
 		"hit effect" "missile hit"
 		"inaccuracy" 4
 		"velocity" 14
-		"lifetime" 250
+		"lifetime" 350
 		"reload" 60
 		"firing energy" 1
 		"firing heat" 15
@@ -825,7 +825,7 @@ outfit "Torpedo Launcher"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
 		"velocity" 7
-		"lifetime" 600
+		"lifetime" 900
 		"reload" 150
 		"firing energy" 2
 		"firing heat" 45
@@ -834,8 +834,8 @@ outfit "Torpedo Launcher"
 		"turn" 1.5
 		"homing" 3
 		"optical tracking" .8
-		"shield damage" 720
-		"hull damage" 720
+		"shield damage" 680
+		"hull damage" 680
 		"hit force" 300
 		"missile strength" 30
 	description "Torpedoes are the most powerful homing weapon, but they move slowly enough that fast ships can simply outrun them, making them most useful against large targets or against small ships at times when they are too distracted to dodge. Torpedo launchers are also much larger than other missile systems, so they are most often found in capital ships."
@@ -887,7 +887,7 @@ outfit "Typhoon Launcher"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
 		"velocity" 6
-		"lifetime" 600
+		"lifetime" 1100
 		"reload" 120
 		"firing energy" 4
 		"firing heat" 50
