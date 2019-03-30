@@ -341,7 +341,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			return;
 		}
 		// To take off from the planet, all non-carried ships must be able to access it.
-		else if(all_of(placed.cbegin(), placed.cend(), [&](const shared_ptr<Ship> &ship)
+		else if(planet->IsUnrestricted() || all_of(placed.cbegin(), placed.cend(), [&](const shared_ptr<Ship> &ship)
 				{ return ship->GetParent() || planet->IsAccessible(ship.get()); }))
 		{
 			position = object->Position();
