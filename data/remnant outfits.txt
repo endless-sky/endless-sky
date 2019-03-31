@@ -352,8 +352,8 @@ outfit "Salvage Scanner"
 	"outfit scan power" 13
 	"outfit scan speed" 1
 	"tactical scan power" 84
-	description "When the Remnant unraveled the alien point defence turrets guarding the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After much research they transformed those guidance systems into important tools for analyzing alien ships."
-	description "	While all Remnant ships have built in outfit and tactical scanners in order to determine whether an enemy ship is worth engaging and looting, some captains still prefer to install external scanners in order to have superior scanning ranges."
+	description "When the Remnant unraveled the alien point defence turrets guarding the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After significant investments in research and development, they have transformed those guidance systems into sophisticated scanning technology."
+	description "	 While all Remnant ships are equipped with internal scanners, some captains still prefer to boost their range and power to more effectively select enemy ships worth targeting."
 
 
 
