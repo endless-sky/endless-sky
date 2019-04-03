@@ -9,7 +9,7 @@
 
 
 # * * * * * * * * * *  "INTRO"  * * * * * * * * * *
-mission "Etarip Intro"
+mission "Liekedeeler Intro"
 	invisible
 	landing
 	
@@ -92,7 +92,7 @@ mission "Etarip Intro"
 			label burn
 			`	The woman laughs, then in a raucous tone responds, "A bonfire of banknotes! And kindling of the bankers! All debts forgiven!"`
 				goto meetup3
-			label right
+			label disparity
 			`	The woman nods. "That's a surprisingly detailed criticism. Most people who disagree with the private finance industry are far less eloquent. I think it might serve you well, once you get out from under your current obligation to it."`
 			
 			label meetup3
@@ -109,11 +109,11 @@ mission "Etarip Intro"
 			label meetup4
 			`	"I'm a scout for a special courier firm. Basically, we look for new captains who bought their ships in debt, and are struggling to make due. We front enough money to forgive their debt in return for a few deliveries, passenger runs, you get the gist. Sort of like a network of amateur couriers spread across the Republic."`
 			choice
-				`	"That sounds a lot like starport job postings. What's the difference?"`
-				`	"So, basically, private starport jobs. How does that work? What's the difference?"`
+				`	"That sounds a lot like spaceport job postings. What's the difference?"`
+				`	"So, basically, private spaceport jobs. How does that work? What's the difference?"`
 			`	Alexandra smiles knowingly. "The difference is, we have a reliable courier, so we can cut expenses, and you get paid up front, so your debt goes away - no loan interest spoiling every delivery you make. I mean, if you took out a 500,000 credit loan to buy your ship, that's over 295,000 credits in interest by the end of the year. And all that assuming the bank gave you a 'fair' 0.3% daily interest rate."`
 			choice
-				`	"Pretty and good at math? I came to the right starport!"`
+				`	"Pretty and good at math? I came to the right spaceport!"`
 					goto pretty
 				`	"Actually, it was 0.4%..."`
 					goto actually
@@ -131,7 +131,7 @@ mission "Etarip Intro"
 				goto meetup5
 				
 			label meetup5
-			`	"Here's the deal: Etarip Enterprises, my employer, will pay you 500,000 credits right now to pay off your debts. In exchange, we'll contact you when we need you to make a delivery or transport passengers."`
+			`	"Here's the deal: Liekedeeler Enterprises, my employer, will pay you 500,000 credits right now to pay off your debts. In exchange, we'll contact you when we need you to make a delivery or transport passengers."`
 			choice
 				`	"Sounds a lot like a contract."`
 				`	"How many deliveries will I have to make?"`
@@ -184,10 +184,10 @@ mission "Etarip Intro"
 				decline
 	
 	on accept
-		set "etarip agreement"
-		event "Etarip Delivery 1" 8 10
-		log "People" "Alexandra Merrin" `Alexandra Merrin is a representative of a courier firm named 'Etarip Enterprises.'`
-		log `Alexandra Merrin of Etarip Enterprises has wired me enough money to pay my debts in exchange for some on-demand work in Republic space.`
+		set "liekedeeler agreement"
+		event "Liekedeeler Delivery 1" 8 10
+		log "People" "Alexandra Merrin" `Alexandra Merrin is a representative of a courier firm named 'Liekedeeler Enterprises.'`
+		log `Alexandra Merrin of Liekedeeler Enterprises has wired me enough money to pay my debts in exchange for some on-demand work in Republic space.`
 		payment 500000
 		
 #* * *  (Intro END)  * * *
@@ -195,11 +195,11 @@ mission "Etarip Intro"
 
 
 #* * * * * (Mission 1)  * * * * *
-event "Etarip Delivery 1"
+event "Liekedeeler Delivery 1"
 
-mission "Etarip Delivery [1]"
-	name "Etarip delivery to <planet>"
-	description "Deliver <cargo> to <destination> for Etarip Enterprises by <date>."
+mission "Liekedeeler Delivery [1]"
+	name "Liekedeeler delivery to <planet>"
+	description "Deliver <cargo> to <destination> for Liekedeeler Enterprises by <date>."
 	blocked `Alexandra contacts you just as you touch down on <origin>. "We have a job for you, <first>, but you're going to need <capacity>. Remember - we have a contract! Drop whatever you're doing and come back."`
 	deadline 2
 	landing
@@ -208,11 +208,11 @@ mission "Etarip Delivery [1]"
 	to offer
 		or
 			and
-				has "etarip agreement"
-				has "event: Etarip Delivery 1"
-				not "deferred etarip delivery 1"
+				has "liekedeeler agreement"
+				has "event: Liekedeeler Delivery 1"
+				not "deferred liekedeeler delivery 1"
 			and
-				has "event: Defer Etarip Delivery 1"
+				has "event: Defer Liekedeeler Delivery 1"
 	
 	source
 		government Republic
@@ -226,7 +226,7 @@ mission "Etarip Delivery [1]"
 	on offer
 		conversation
 			branch deferred
-				"deferred etarip delivery 1" == 1
+				"deferred liekedeeler delivery 1" == 1
 			`Shortly after landing, you receive an audio transmission from Alexandra. "Hello, <first>! I hope you're well-rested! Are you ready for your first cargo run?"`
 			choice
 				`	"Hey, Alexandra - sure, what do you need?"`
@@ -234,7 +234,7 @@ mission "Etarip Delivery [1]"
 				`	"Can it wait? I'm busy enjoying my freedom!"`
 			`	You hear Alexandra chuckle lightly. "You're hilarious. There'll be plenty of time for that, don't you worry."`
 			label sure
-			`	"Another courier dropped a shipment there on <origin>, and it needs to be taken to <destination>. Etarip promised delivery by <day>. Got it?"`
+			`	"Another courier dropped a shipment there on <origin>, and it needs to be taken to <destination>. Liekedeeler promised delivery by <day>. Got it?"`
 			label questions
 			choice
 				`	"My first run! I'm so excited. I'll head to the dock right away."`
@@ -242,15 +242,18 @@ mission "Etarip Delivery [1]"
 				`	"Alright. I'm on the way."`
 					goto yes
 				`	"What am I hauling?"`
+					goto hauling
 				`	"Will I get paid for this?"`
 					goto paid
 				`	"I'm too busy. Get someone else for this one."`
 					goto no
-			`	"Care packages for the miners. Things get pretty grim on <planet>, so Etarip is sponsoring a "Merriment for Miners" initiative. Big humanitarian publicity."`
+			label hauling
+			`	"Care packages for the miners. Things get pretty grim on <planet>, so Liekedeeler is sponsoring a "Merriment for Miners" initiative. Big humanitarian publicity."`
 				goto questions
 			label paid
 			`	"No, silly. We already paid you. But once you've finished your 5 promised deliveries, I'm sure there'll be more in it for you."` 
 				goto questions
+				
 			label yes
 			`	"Great! Should be a pretty simple one. I'll forward a message on to <planet> so they know to expect you. Have a nice trip!" Alexandra ends the transmission.`
 			`	You head to the cargo area to look for your consignment; you find a stray dockworker and give him the shipment code. He scratches his balding head uncertainly for a moment before remembering where it was stored. He returns with the cargo after a short delay.`
@@ -272,42 +275,13 @@ mission "Etarip Delivery [1]"
 			label deferred
 			`Almost immediately after powering down your ship, you receive another transmission from Alexandra.`
 			`	"Alright, <first> - you've had a nice break, and we're ready for you to do some deliveries! Same deal as before; pick up the shipment waiting there on <origin>, and take it to <destination> by <day>. Okay?"`
-			label questions2
-			choice
-				`	"Understood. I'll be there in a flash!"`
-				`	"Yeah, fine. I'm on the way."`
-					goto yes
-				`	"What am I hauling, again?"`
-				`	"Sorry, but will I get paid for this?"`
-					goto paid2
-				`	"Err... Still enjoying that freedom. Catch me next time, okay?"`
-					goto no2
-			`	"Care packages for the miners. Things get pretty grim on <planet>, so Etarip is sponsoring a "Merriment for Miners" initiative. Big humanitarian publicity."`
-				goto questions2
-			label paid2
-			`	"Yes. The 500,000 we've already paid you. But when you're finished with your promised deliveries, I'm sure we can find more work for an eager beaver like you!"` 
-				goto questions2
-			
-			label no2
-			`	"My god, you are as unreliable as they come. What do we need to do? Give you shipments that are already on the planet they need to go to?"`
-			choice
-				`	"Sorry, you're right. I'm on it."`
-					goto yes
-				`	"That would be nice. Can you do that for me?"`
-				`	"I'm afraid this particular chicken is flying the metaphorical coop. Maybe I'll do the next one."`
-					goto strikes
-			`	You hear a frustrated sigh, then a brief chuckle. "So, is that a no?"`
-			choice
-				`	"No, I'll do it."`
-					goto yes
-				`	"Yes. Easier deliveries, please!"`
-					goto strikes
+				goto questions
 			
 			label strikes
 			branch secondstrike
-				"rejected etarip" == 1
+				"rejected liekedeeler" == 1
 			branch thirdstrike
-				"rejected etarip" == 2
+				"rejected liekedeeler" == 2
 			`	Alexandra begins to say something, then stops. "I suppose everyone needs a day off, right? Don't let it happen again."`
 				defer
 			label secondstrike
@@ -318,38 +292,38 @@ mission "Etarip Delivery [1]"
 				decline
 	
 	on defer
-		"rejected etarip" += 1
-		set "deferred etarip delivery 1"
-		event "Defer Etarip Delivery 1" 8
+		"rejected liekedeeler" += 1
+		set "deferred liekedeeler delivery 1"
+		event "Defer Liekedeeler Delivery 1" 8
 	
 	on decline
-		"rejected etarip" = 3
+		"rejected liekedeeler" = 3
 		
 	on fail
-		"rejected etarip" += 1
-		set "deferred etarip delivery 1"
-		event "Defer Etarip Delivery 1" 8
+		"rejected liekedeeler" += 1
+		set "deferred liekedeeler delivery 1"
+		event "Defer Liekedeeler Delivery 1" 8
 		
 	on complete
-		event "Etarip Delivery 2" 8
+		event "Liekedeeler Delivery 2" 8
 		conversation
-			`You dock your ship on <planet>'s dingy spaceport and step out, looking for a dockmaster to sign off on your delivery. Two dockworkers and a man in official uniform approach you. "Delivery from Etarip Enterprises, yeah?"`
+			`You dock your ship on <planet>'s dingy spaceport and step out, looking for a dockmaster to sign off on your delivery. Two dockworkers and a man in official uniform approach you. "Delivery from Liekedeeler Enterprises, yeah?"`
 			choice
 				`	"Yes, sir. Care packages for the miners."`
 				`	"Yeah. Care packages, or some pansy nonsense."`
 			`The dockworkers begin unloading your ship while the uniformed man looks over your manifest. After a moment, he signs off on the delivery. "Good of you to do your part for the miners, Captain." A short time later, the two men finish unloading the crates.`
 
-event "Defer Etarip Delivery 1"
+event "Defer Liekedeeler Delivery 1"
 #* * *  (Mission 1 END)  * * *
 
 
 
 #* * * * *  (Mission 2)  * * * * *
-event "Etarip Delivery 2"
+event "Liekedeeler Delivery 2"
 
-mission "Etarip Delivery [2]"
-	name "Etarip delivery to <planet>"
-	description "Deliver <cargo> to <destination> for Etarip Enterprises."
+mission "Liekedeeler Delivery [2]"
+	name "Liekedeeler delivery to <planet>"
+	description "Deliver <cargo> to <destination> for Liekedeeler Enterprises."
 	blocked `Alexandra contacts you just as you touch down on <origin>. "We have a job for you, <first>, but you're going to need <capacity>. Remember - we have a contract! Drop whatever you're doing and come back."`
 	landing
 	cargo "Decorations" 3
@@ -361,11 +335,11 @@ mission "Etarip Delivery [2]"
 	to offer
 		or
 			and
-				has "Etarip Delivery [1]: done"
-				has "event: Etarip Delivery 2"
-				not "deferred etarip delivery 2"
+				has "Liekedeeler Delivery [1]: done"
+				has "event: Liekedeeler Delivery 2"
+				not "deferred liekedeeler delivery 2"
 			and
-				has "event: Defer Etarip Delivery 2"
+				has "event: Defer Liekedeeler Delivery 2"
 	
 	source
 		government Republic
@@ -377,22 +351,22 @@ mission "Etarip Delivery [2]"
 	on offer
 		conversation
 			branch deferred
-				"deferred etarip delivery 2" == 1
+				"deferred liekedeeler delivery 2" == 1
 			`As you're about to leave the ship, your computer notifies you of an incoming audio transmission from Alexandra. "Hi there, <first>! I bet you're never going to guess why I called."`
 			choice
 				`	"Let me try anyway - another cargo run?"`
-					goto business
+					goto meetup1
 				`	"You've finally succumbed to my charms?"`
 			
 			`	Alexandra laughs, though you can almost hear her eyes roll. "That's right. Your wit has swept me right off my feet; I'm not sure how I resisted so long. Let's run away from it all and live on Martini!"`
 			choice
 				`	"Really?"`
 				`	[Chuckle.]`
-					goto business
+					goto meetup1
 			`	You hear Alexandra sigh. "No, silly. Unless you have half a billion credits laying around, in which case, I don't think you would have signed up for courier work. Speaking of..."`
 			
-			label business
-			`	Alexandra clears her throat. "Some Paradise World big-wig on <planet> wants some rare decorations to fill out his fancy house. We've got the cargo sitting on Chiron, ready for you to pick up. Etarip promised delivery by <day>, so you'll have to hurry."`
+			label meetup1
+			`	Alexandra clears her throat. "Some Paradise World big-wig on <planet> wants some rare decorations to fill out his fancy house. We've got the cargo sitting on Chiron, ready for you to pick up. Liekedeeler promised delivery by <day>, so you'll have to hurry."`
 			label questions
 			choice
 				`	"Alright. Anything else I need to know?"`
@@ -408,15 +382,15 @@ mission "Etarip Delivery [2]"
 			`	"After this, only three more. Look on the bright side - it takes an average of twenty-one small courier runs to turn a profit from scratch. You only have to do five!"`
 				goto questions
 			label yes
-			`	"Not much; just head to Chiron, pick up the cargo, and bring it to <destination>. Someone from Etarip will meet you at the spaceport and take it off your hands once you get there. And, of course, I'll be in touch after that. Got it?"`
+			`	"Not much; just head to Chiron, pick up the cargo, and bring it to <destination>. Someone from Liekedeeler will meet you at the spaceport and take it off your hands once you get there. And, of course, I'll be in touch after that. Got it?"`
 			choice
 				`	"Got it." [End the transmission]`
 					accept
-				`	"Someone from Etarip? Why not leave it with the dockworkers?"`
+				`	"Someone from Liekedeeler? Why not leave it with the dockworkers?"`
 			`	You hear a light metallic thud on the other end of the line. "It's no slight to you or the dockworkers on <planet>, but most of our Paradise World clients are very particular about who handles their cargo."`
 			choice
 				`	"Alright, makes sense. I'm on my way." [End the transmission]`
-				`	"I do feel slighted, but I guess having several billion credits gives you the right to be a little particular about your deliveries. I'm on my way." [End the transmission]`
+				`	"I guess having several billion credits gives you the right to be a little particular about your deliveries. I'm on my way." [End the transmission]`
 			
 			label no
 			`	"Sorry, I think the transmission cut out - what was that?"`
@@ -429,33 +403,13 @@ mission "Etarip Delivery [2]"
 			label deferred
 			`Immediately after touching down, you receive another transmission from Alexandra.`
 			`	"I hope you had a nice break, but we need you for another pickup on Chiron. Same deal as before - Rare decorations, Paradise World, delivery by <day>. Got it?"`
-			label questions2
-			choice
-				`	"Geez. How many rare decorations do people need, anyway? What else do I need to know?"`
-					goto yes
-				`	"Rare decorations?"`
-				`	"How many more of these runs do I have to do again?"` 
-					goto howmany2
-				`	"I hate to do this again, but I can't do this one either."`
-					goto no2
-			`	"Don't ask me what crazy billionaires want in their homes. Probably the stuffed heads of some endangered species."`
-				goto questions2
-			label howmany2
-			`	"After this, only three more. Look on the bright side - it takes an average of twenty-one small courier runs to turn a profit from scratch. You only have to do five!"`
-				goto questions2
-			label no2
-			`	"Excuse me?"`
-			choice
-				`	"On second thought, I hear Chiron is lovely this time of year. Anything else I need to know?"`
-					goto yes
-				`	"No can do, sorry."`
-					goto strikes
+				goto questions
 			
 			label strikes
 			branch secondstrike
-				"rejected etarip" == 1
+				"rejected liekedeeler" == 1
 			branch thirdstrike
-				"rejected etarip" == 2
+				"rejected liekedeeler" == 2
 			`	Alexandra sighs. "I suppose everyone needs a day off, right? Don't let it happen again."`
 				defer
 			label secondstrike
@@ -466,36 +420,38 @@ mission "Etarip Delivery [2]"
 				decline
 	
 	on defer
-		"rejected etarip" += 1
-		set "deferred etarip delivery 2"
-		event "Defer Etarip Delivery 2" 8
+		"rejected liekedeeler" += 1
+		set "deferred liekedeeler delivery 2"
+		event "Defer Liekedeeler Delivery 2" 8
 	
 	on decline
-		"rejected etarip" = 3
+		"rejected liekedeeler" = 3
 		
 	on fail
-		"rejected etarip" += 1
-		set "deferred etarip delivery 2"
-		event "Defer Etarip Delivery 2" 8
+		"rejected liekedeeler" += 1
+		set "deferred liekedeeler delivery 2"
+		event "Defer Liekedeeler Delivery 2" 8
 	
 	on stopover
 		conversation
-			`Almost immediately upon arriving, a pair of dockworkers appear outside your ship. "You're with Etarip, right?" One of them taps his foot on the ground anxiously.`
+			`Almost immediately upon arriving, a pair of dockworkers appear outside your ship. "You're with Liekedeeler, right?" One of them taps her foot on the ground anxiously.`
 			choice
 				`	"That's right. You've got cargo for me?"`
+				`	"Yeah. Get it loaded up, will you?"`
 			`	Without answering, the two dockworkers hurriedly load several small containers onto your ship. When finished, one of them transfers the manifest and says, "Sorry for the rush, Captain. It's been a busy day here. Have a safe trip!"`
 				
 	on complete
 		event "Stolen Art" 6 12
-		event "Etarip Delivery 3"
+		event "Liekedeeler Delivery 3"
 		conversation
 			`You take in <planet>'s breathtaking beauty as you step off your ship. Shortly after arriving, a man wearing an exceptionally well-tailored black suit and sunglasses approaches you. He looks down at his datapad, then up at you. "Captain <last>, right?"`
 			choice
-				`	"That's me. You're from Etarip?"`
+				`	"That's me. You're from Liekedeeler?"`
+				`	"Funny; you don't look like a dockworker."`
 			`	The man smiles. "Guess I don't fit in with the dockworkers around here, huh? Thanks for making the trip out here in such a hurry. You know how these Paradise Worlds guys are - they want the world on a platter, and they want it now. I'll take that cargo off your hands."`
 			`	You open the cargo hold. The man gracefully loads the boxes onto a large hovercart and heads off in the direction of a fancy passenger shuttle.`
 
-event "Defer Etarip Delivery 2"
+event "Defer Liekedeeler Delivery 2"
 
 event "Stolen Art"
 
@@ -518,11 +474,11 @@ mission "Event: Stolen Art [Text]"
 
 
 #* * * * *  (Mission 3)  * * * * *
-event "Etarip Delivery 3"
+event "Liekedeeler Delivery 3"
 
-mission "Etarip Delivery [3]"
-	name "Etarip passenger transport to <planet>"
-	description "Deliver a businessman to <destination> for Etarip Enterprises."
+mission "Liekedeeler Delivery [3]"
+	name "Liekedeeler passenger transport to <planet>"
+	description "Deliver a businessman to <destination> for Liekedeeler Enterprises."
 	blocked `Alexandra contacts you just as you touch down on <origin>. "We have a job for you, <first>, but you're going to need <capacity>. Remember - we have a contract! Drop whatever you're doing and come back."`
 	landing
 	passengers 1
@@ -535,11 +491,11 @@ mission "Etarip Delivery [3]"
 	to offer
 		or
 			and
-				has "Etarip Delivery [2]: done"
-				has "event: Etarip Delivery 3"
-				not "deferred etarip delivery 3"
+				has "Liekedeeler Delivery [2]: done"
+				has "event: Liekedeeler Delivery 3"
+				not "deferred liekedeeler delivery 3"
 			and
-				has "event: Defer Etarip Delivery 3"
+				has "event: Defer Liekedeeler Delivery 3"
 		
 	source
 		government Republic
@@ -549,57 +505,58 @@ mission "Etarip Delivery [3]"
 	on offer
 		conversation
 			branch deferred
-				"deferred etarip delivery 3" == 1
+				"deferred liekedeeler delivery 3" == 1
 			`Upon landing, you instinctively tune your ear to the comm line for a transmission from Alexandra. Sure enough, it comes. "Hey there, <first>! If it isn't my lucky day - you're right where we need you."`
 			choice
 				`	"Alright. What am I in for this time?"`
-					goto business
+					goto meetup1
 				`	"What a coincidence - it's my lucky day too, seeing as I get to talk to you."`
 					goto lucky
 				`	"Really bad timing there, Alexandra. Maybe another time."`
 			`	Alexandra blows a raspberry. "Exactly what part of 'on-demand work' confused you?"`
 			choice
 				`	"Sorry, I wasn't thinking - what am I doing this time?"`
-					goto business
+					goto meetup1
 				`	"I'm taking this one off."`
 					goto strikes
 			
 			label lucky
 			`	You hear Alexandra snort. "More of this? Sheesh. It didn't work the first time."`
-				goto business
+				goto meetup1
 			
-			label deferred
-			`You gather your things, ready to head out onto <origin> when a transmission from Alexandra comes in. "<first> - you're just where we need you for a job. Talk about right place, right time!"`
-			choice
-				`	"That's right. What can I do for you today?"`
-					goto business
-				`	"Right place, wrong time - I'm gonna have to put a rain check on this one."`
-					goto strikes
-			
-			label business
+			label meetup1
 			`	"For a change of pace, we've got a businessman looking for transport down south immediately. He's waiting for you on <stopovers>. Pick him up and head to <destination> - he wants to get there by <day>."`
 			label questions
 			choice
 				`	"I'm on it."`
 					goto yes
 				`	"Who is he?"`
+					goto who
 				`	"Why the rush?"`
 					goto rush
-				
+			label who
 			`	"He's what you might call a 'financial prospector' - apparently, he caught wind of some untapped market down on <planet>."`
 				goto questions
 			label rush
-			`	Aleandra clears her throat. "Well, he's a paranoid type, and he contacted Etarip specifically for their speed and discretion. He's worried about someone else butting in on his venture."`
+			`	Aleandra clears her throat. "Well, he's a paranoid type, and he contacted Liekedeeler specifically for their speed and discretion. He's worried about someone else butting in on his venture."`
 				goto questions
 			label yes
 			`	You hear Alexandra crinkling something over the comm line. "Great! I'll be in contact. Have a fun trip!" She closes the channel.`
 				accept
 			
+			label deferred
+			`You gather your things, ready to head out onto <origin> when a transmission from Alexandra comes in. "<first> - you're just where we need you for a job. Talk about right place, right time!"`
+			choice
+				`	"That's right. What can I do for you today?"`
+					goto meetup1
+				`	"Right place, wrong time - I'm gonna have to put a rain check on this one."`
+					goto strikes
+			
 			label strikes
 			branch secondstrike
-				"rejected etarip" == 1
+				"rejected liekedeeler" == 1
 			branch thirdstrike
-				"rejected etarip" == 2
+				"rejected liekedeeler" == 2
 			`	Alexandra sighs. "I suppose everyone needs a day off, right? Don't let it happen again."`
 				defer
 			label secondstrike
@@ -610,22 +567,22 @@ mission "Etarip Delivery [3]"
 				decline
 			
 	on defer
-		"rejected etarip" += 1
-		set "deferred etarip delivery 3"
-		event "Defer Etarip Delivery 3" 8 14
+		"rejected liekedeeler" += 1
+		set "deferred liekedeeler delivery 3"
+		event "Defer Liekedeeler Delivery 3" 8 14
 	
 	on decline
-		"rejected etarip" = 3
+		"rejected liekedeeler" = 3
 		
 	on fail
-		"rejected etarip" += 1
-		set "deferred etarip delivery 3"
-		event "Defer Etarip Delivery 3" 8 14
+		"rejected liekedeeler" += 1
+		set "deferred liekedeeler delivery 3"
+		event "Defer Liekedeeler Delivery 3" 8 14
 	
 	on stopover
 		conversation
 			`As you step off your ship, you notice a small, fidgety man in a cheap suit wandering around the spaceport. He sees you and runs over, his flimsy suitcase swaying.`
-			`	"You're with Etarip, right?"`
+			`	"You're with Liekedeeler, right?"`
 			choice
 				`	"Yeah - you're heading down south?"`
 				`	"Yes, sir. I'm your ride down to Deep."`
@@ -637,11 +594,11 @@ mission "Etarip Delivery [3]"
 			label meetup1
 			choice
 				`	"I might need to take care of a few things first, but I'll show you to your-"`
-				`	"Yeah. You can wait here while I refuel, or you can-"`
+				`	"You can wait here while I refuel, or you can-"`
 			`	The man vigorously shakes your hand before you finish. "Great, great!" He walks past you and ducks into your ship.`
 				
 	on complete
-		event "Etarip Delivery 4" 4 12
+		event "Liekedeeler Delivery 4" 4 12
 		conversation
 			`As you land on Deep, you take note of the eerily dark ocean surrounding the main island. You find the businessman lounging in his room in a brightly-colored floral shirt, all traces of anxiety gone.`
 			choice
@@ -649,17 +606,17 @@ mission "Etarip Delivery [3]"
 				`	"Grab your stuff and follow me. I'm on a tight schedule here."`
 			`	The man stands, stretches, and shakes your hand gently. "You're a miracle worker, captain. Thanks for the help." You show him to the exit and wave him off.`
 		
-event "Defer Etarip Delivery 3"
+event "Defer Liekedeeler Delivery 3"
 #* * *  (Mission 3 END)  * * *
 
 
 
 #* * * * *  (Mission 4)  * * * * *
-event "Etarip Delivery 4"
+event "Liekedeeler Delivery 4"
 
-mission "Etarip Delivery [4]"
-	name "Etarip Delivery to <planet>"
-	description "Deliver <cargo> to <destination> for Etarip Enterprises."
+mission "Liekedeeler Delivery [4]"
+	name "Liekedeeler Delivery to <planet>"
+	description "Deliver <cargo> to <destination> for Liekedeeler Enterprises."
 	blocked `Alexandra contacts you just as you touch down on <origin>. "We have a job for you, <first>, but you're going to need <capacity>. Remember - we have a contract! Drop whatever you're doing and come back."`
 	landing
 	cargo "Personal Defense Weapons" 10
@@ -673,11 +630,11 @@ mission "Etarip Delivery [4]"
 	to offer
 		or
 			and
-				has "Etarip Delivery [3]: done"
-				has "event: Etarip Delivery 4"
-				not "deferred etarip delivery 4"
+				has "Liekedeeler Delivery [3]: done"
+				has "event: Liekedeeler Delivery 4"
+				not "deferred liekedeeler delivery 4"
 			and
-				has "event: Defer Etarip Delivery 4"
+				has "event: Defer Liekedeeler Delivery 4"
 	source
 		government Republic
 	destination
@@ -688,7 +645,7 @@ mission "Etarip Delivery [4]"
 	on offer
 		conversation
 			branch deferred
-				"deferred etarip delivery 4" == 1
+				"deferred liekedeeler delivery 4" == 1
 			`"Good afternoon, <first>!" Alexandra's cheerful voice fills the cabin as you perform final landing checks.`
 			choice
 				`	"Hey, Alexandra. What have you got for me?"`
@@ -707,10 +664,12 @@ mission "Etarip Delivery [4]"
 				`	"I'm on it."`
 					goto yes
 				`	"Personal defense weapons?"`
+					goto weapons
 				`	"This may be a dumb question, but is it legal for private couriers to transport weapons? What class do these fall under?"`
 					goto transport
 				`	"I don't think I can do this right now."`
 					goto no
+			label weapons
 			`	You hear Alexandra knock something metallic over. "Crap. Yeah, laser rifles, stun guns, you name it. If it can keep criminals out or in, they need it. You might even take this opportunity to get your hands on a few. No telling when someone might want to add your ship to their collection."`
 				goto questions
 			label transport
@@ -723,30 +682,17 @@ mission "Etarip Delivery [4]"
 				`	"What's the gig?"`
 				`	"Alright. What am I in for this time?"`
 			`	"Pretty similar to last time. We got another request from a security firm on <destination>. We found a good deal on personal defense weapons for you at an armory on <stopovers>, so pick them up and get to <planet> by <day>."`
-			label questions2
-			choice
-				`	"Consider it done."`
-					goto yes
-				`	"Personal defense weapons?"`
-				`	"I'm sorry, but is it even legal for private couriers to transport weapons? What class do these fall under?"`
-					goto transport2
-				`	"Sorry, Alexandra. I can't do this right now."`
-					goto no
-			`	Alexandra's comm crackles for a moment. "Laser rifles, stun guns, you name it. If it can keep criminals out or in, they need it. Speaking of, you might take this opportunity to get your hands on a few. No telling when someone might want to add your ship to their collection."`
-				goto questions2
-			label transport2
-			`	Alexandra pauses. "No, that's not a dumb question at all. Even much more experienced pilots screw up the documentation side of things once in awhile. Private couriers are allowed to transport and sell unrestricted weapons with nothing more than acquisition and sale records. Licensed and experimental weapons require a whole mess of special documentation I can't even begin to explain properly. Hand-held firearms have a few nuances, but the ones your dealing with basically fall under unrestricted."`
-				goto questions2
+				goto questions
 			
 			label yes
-			`	"Alright. I'll forward you the manifest and authorization papers, and let them know you're on the way. You'll be dropping the weapons off at their facility rather than the starport, so use the attached coordinates once you're on <planet>. Have a nice trip!"`
+			`	"Alright. I'll forward you the manifest and authorization papers, and let them know you're on the way. You'll be dropping the weapons off at their facility rather than the spaceport, so use the attached coordinates once you're on <planet>. Have a nice trip!"`
 				accept
 			
 			label no
 			branch secondstrike
-				"rejected etarip" == 1
+				"rejected liekedeeler" == 1
 			branch thirdstrike
-				"rejected etarip" == 2
+				"rejected liekedeeler" == 2
 			`	Alexandra sighs. "I suppose everyone needs a day off, right? Don't let it happen again."`
 				defer
 			label secondstrike
@@ -757,29 +703,29 @@ mission "Etarip Delivery [4]"
 				decline
 	
 	on defer
-		"rejected etarip" += 1
-		set "deferred etarip delivery 4"
-		event "Defer Etarip Delivery 4" 10 14
+		"rejected liekedeeler" += 1
+		set "deferred liekedeeler delivery 4"
+		event "Defer Liekedeeler Delivery 4" 10 14
 	
 	on decline
-		"rejected etarip" = 3
+		"rejected liekedeeler" = 3
 	
 	on fail
-		"rejected etarip" += 1
-		set "deferred etarip delivery 4"
-		event "Defer Etarip Delivery 4" 10 14
+		"rejected liekedeeler" += 1
+		set "deferred liekedeeler delivery 4"
+		event "Defer Liekedeeler Delivery 4" 10 14
 	
 	on stopover
 		conversation
 			`You head to an obscure personal weapons outfitter, carefully memorizing the important bits from the documents Alexandra forwarded you. A stocky woman - the apparent operator of the establishment - glances at you lazily from behind the counter near the entrance. Smoke wafts from her freshly-lit cigarette.`
 			choice
-				`	"Excuse me; I'm here to pick up a shipment of small arms for Etarip Enterprises."`
+				`	"Excuse me; I'm here to pick up a shipment of small arms for Liekedeeler Enterprises."`
 				`	"Hey, I'm here to pick up a bunch of guns. Get your rear in gear."`
 			`	The woman sighs and puts down her datapad. You notice the still-frame of a popular show playing on it. "Alright, let me check here..." She takes your documents and spends an excrutiating amount of time looking between them and the workstation in front of her, occasionally puffing out small rings of smoke. It's hard to tell if she's actually examining the documents.`
 			`	After what seems like an eternity, she says, "Yep. Looks good to me." She gestures to a pair of workers chatting nearby. "They'll get the stuff and meet you around front. Have a nice day." You stretch and head outside; the workers follow you to your ship and load the crates.`
 				
 	on complete
-		event "Etarip Delivery 5" 8 12
+		event "Liekedeeler Delivery 5" 8 12
 		conversation
 			`Alexandra's coordinates lead you to a remote landing strip just outside of <planet>'s largest metropolitan area. You land a short distance away from a small transport shuttle and greet the well-dressed group wating in the field. Most appear to be guards or professional workers. One larger balding man greets you cordially, smiling and clapping you on the shoulder.`
 			`	"Greetings, greetings! I hear you've got some merchandise for us?"`
@@ -787,25 +733,25 @@ mission "Etarip Delivery [4]"
 				`	"Yes, sir. Laser rifles, stun guns... Boom-boom sticks through and through."`
 				`	"Yeah, everything I was told to pick up. I'm sorry, but why are we meeting out here instead of the spaceport?"`
 					goto why
-			`	The man chuckles. "I like you - professional, but casual. Thanks for making your way out here." Two of his men break off and begin transferring cargo out of your ship.`
+			`	The man chuckles. "Excellent. Thanks for making your way out here, Captain." Two of his men break off and begin transferring cargo out of your ship.`
 				goto meetup1
 					
 			label why
-			`	The man gestures to his men to begin transferring cargo, then crosses his arms and looks off toward the outskirts of the city. "Friction, basically. We used to bring everything in through the spaceport, but we had a few misfires, and the authorities can't keep up with the demand in these urban airports. It takes *ages* to process everything. Plus, you never know what kind of city thugs might be hanging around, waiting to cause trouble."`
+			`	The man gestures to his men to begin transferring cargo, then crosses his arms and looks off toward the outskirts of the city. "Friction, basically. We used to bring everything in through the spaceport, but we had a few misfires, and the authorities can't keep up with the demand in these urban spaceports. It takes ages to process everything. Plus, you never know what kind of city thugs might be hanging around, waiting to cause trouble."`
 			label meetup1
 			`	A female guard approaches a few moments later. "We've got everything, sir. It looks clean." The man smiles and shakes your hand. "Pleasure doing business, captain - we won't keep you any longer." The small group boards the transport as you head back to your ship.`
 			
-event "Defer Etarip Delivery 4"
+event "Defer Liekedeeler Delivery 4"
 #* * *  (Mission 4 END)  * * *
 
 
 
 #* * * * *  (Mission 5)  * * * * *
-event "Etarip Delivery 5"
+event "Liekedeeler Delivery 5"
 
-mission "Etarip Delivery [5]"
+mission "Liekedeeler Delivery [5]"
 	name "Delivery to <planet>"
-	description "Deliver <cargo> to <destination> for Etarip Enterprises."
+	description "Deliver <cargo> to <destination> for Liekedeeler Enterprises."
 	blocked `Alexandra contacts you just as you touch down on <origin>. "We have a job for you, <first>, but you're going to need <capacity>. Remember - we have a contract! Drop whatever you're doing and come back."`
 	landing
 	cargo "Baking Supplies" 12
@@ -816,8 +762,8 @@ mission "Etarip Delivery [5]"
 		distance 1 4
 	
 	to offer
-		has "Etarip Delivery [4]: done"
-		has "event: Etarip Delivery 5"
+		has "Liekedeeler Delivery [4]: done"
+		has "event: Liekedeeler Delivery 5"
 		
 	source
 		government Republic
@@ -846,7 +792,7 @@ mission "Etarip Delivery [5]"
 				`	"Okay, okay. I'll do it. What's the deadline?"`
 					goto yes
 				`	"Nope. I'm taking this one off."`
-			`	"Allow me to reiterate, <first> - this is an ASAP shipment, and heads will roll if it's not delivered immediately. Probably mine, but definitely yours. Your contract will be voided, and Etarip will demand compensation. I'm afraid my hands are tied."`
+			`	"Allow me to reiterate, <first> - this is an ASAP shipment, and heads will roll if it's not delivered immediately. Probably mine, but definitely yours. Your contract will be voided, and Liekedeeler will demand compensation. I'm afraid my hands are tied."`
 			choice
 				`	"Fine, but only because you asked nicely. What's the due date?"`
 					goto yes
@@ -859,10 +805,10 @@ mission "Etarip Delivery [5]"
 				accept
 		
 	on decline
-		"rejected etarip" = 3
+		"rejected liekedeeler" = 3
 	
 	on fail
-		"rejected etarip" = 3
+		"rejected liekedeeler" = 3
 	
 	on stopover
 		conversation
@@ -870,7 +816,7 @@ mission "Etarip Delivery [5]"
 			`	You notice a pair of Republic security officers watching you closely as you sign the manifest. When you prepare to leave, you see them talking quite energetically to one of the dockworkers who loaded your ship.`
 
 	on complete
-		event "Etarip Intro Finale" 6
+		event "Liekedeeler Intro Finale" 6
 		conversation
 			`Following an uneventful trip, you land on <planet>'s pristine spaceport. A few exceptionally professional dockworkers begin unloading your cargo. You take the opportunity to observe and relax a little. But something feels off...`
 			`	Everything happens at once - you hear a series of shouts and yells as Republic security officers, dressed in full tactical gear, swarm your ship. Several point weapons at you, while others begin breaking into the locked cargo inside and outside your hold.`
@@ -900,15 +846,15 @@ mission "Etarip Delivery [5]"
 
 
 
-event "Etarip Intro Finale"
+event "Liekedeeler Intro Finale"
 
-mission "Etarip Intro Finale"
+mission "Liekedeeler Intro Finale"
 	name "Head to Earth"
-	description "Alexandra has offered you further work with Etarip Enterprises. Head to <destination> if you'd like to explore the offer."
+	description "Alexandra has offered you further work with Liekedeeler Enterprises. Head to <destination> if you'd like to explore the offer."
 	landing
 	
 	to offer
-		has "event: Etarip Intro Finale"
+		has "event: Liekedeeler Intro Finale"
 	
 	source
 		not planet Earth
@@ -917,7 +863,7 @@ mission "Etarip Intro Finale"
 	
 	on offer
 		conversation
-			`Almost as soon as you land on <planet>, Alexandra opens a comm line. "I forgot to congratulate you on finishing your deliveries! You must be so excited." Somehow, her voice seems a touch more cynical than you're used to.`
+			`Almost as soon as you land on <planet>, Alexandra opens a comm line. "I forgot to congratulate you on finishing your deliveries! You must be so excited." Her voice sounds a touch more cynical than you're used to.`
 			choice
 				`	"It was a heck of a deal, if you ask me. Too good..."`
 					goto deal
@@ -948,6 +894,7 @@ mission "Etarip Intro Finale"
 			`	Alexandra sounds shocked. "What kind of stuff?"`
 			choice
 				`	"Oh, you know. The usual - transporting definitely stolen art, acting as a decoy for a drug run..."`
+				`	"Let's see. Smuggling stolen art, transporting a probable criminal out of Republic reach..."`
 			`	Alexandra's tone turns distinctly to pretend surprise. "Oh, my! What villainy! Horrors upon horrors! Who would ask you to do such things?"`
 				goto meetup1
 				
@@ -955,15 +902,15 @@ mission "Etarip Intro Finale"
 			choice
 				`	"I'm nobody's fool - I knew I was involved in something shady from the moment you complimented my ship."`
 					goto knew
-				`	"Hold on a second... It's all becoming clear... 'Etarip' spelled backwards is 'Pirate.' Wait - have I been smuggling this whole time?!?"`
-			`	You hear the sound of clapping. "Yay! You got it! I'll send you some cookies as a reward for all that brainwork you just did. We're not really pirates, though; it just makes for a clever business card."`
+				`	"You could have just told me you wanted to cut me in on a smuggling operation."`
+			`	You hear a metallic tapping. "The funny thing about smuggling operations is that they tend to be illegal, and most people are a little scared of that word."`
 				goto meetup2
 			label knew
 			`	You hear something crinkle on the other end of the line. "Of course you did. My charm and 500,000 credits had absolutely no effect on you."`
 			
 			label meetup2
 			choice
-				`	"Honestly, if the rest of Etarip's work pays this well, sign me up!"`
+				`	"Honestly, if the rest of Liekedeeler's work pays this well, sign me up!"`
 				`	"What about all those runs I did? Were they all illegal?"`
 					goto illegal
 				`	"What if I got suspicious and opened some of that cargo? What if I reported you to the Republic? "`
@@ -979,10 +926,10 @@ mission "Etarip Intro Finale"
 				`	"You're right - I am dang sneaky. I guess I'm pretty good at this stuff, eh?"`
 					goto sneaky
 				`	"I don't care if I wasn't caught; I could have been! I don't want to be involved in this."`
-			`	She sighs. "Well, good news! You've completed your contract, and as far as Etarip is concerned, you're off the radar." After a brief pause, Alexandra continues. "But you still did a good job, pretending to be completely ignorant and all. If you change your mind, head to Earth.`
+			`	She sighs. "Well, good news! You've completed your contract, and as far as Liekedeeler is concerned, you're off the radar." After a brief pause, Alexandra continues. "But you still did a good job, pretending to be completely ignorant and all. If you change your mind, head to Earth.`
 				goto meetup3
 			label sneaky
-			`	Alexandra chuckles. "Sneaky, and just naive enough. A great combination for a... an honest courier. So if you want to put those skills to good use, you should head to Earth."`
+			`	Alexandra chuckles. "Sneaky, and just naive enough. A great combination for a- a completely honest and above-board courier. So if you want to put those skills to good use, you should head to Earth."`
 				goto meetup3
 				
 			label reported
@@ -1003,48 +950,24 @@ mission "Etarip Intro Finale"
 				goto meetup3
 			
 			label meetup3
-			`	The signal fades momentarily. "...and there'll be profit for you this time. No commitments, but I think you'll be excited to see all the advancement opportunities Etarip has to offer!" She ends the transmission.`
+			`	The signal fades momentarily. "...and there'll be profit for you this time. No commitments, but I think you'll be excited to see all the advancement opportunities Liekedeeler has to offer!" She ends the transmission.`
 			choice
 				`	[Log Earth as a destination.]`
 					accept
 				`	[Forget about it.]`
 					decline
-	
-	on complete
-		conversation
-			`You arrive at the massive concrete complex that is Earth's spaceport. It takes a surprising amount of time for the space traffic controller to direct you to an open landing site, but at long last, you're able to touch down.`
-			`	It's refreshing to call Alexandra for once, rather than the other way around. She answers your transmission almost instantly, and her cheery face appears on your console.`
-			`	"Hey, <first>! I wasn't sure you would show up."`
-			choice
-				`	"How could I pass up an offer for work like that? Usually I have to hang around the spaceport until some unwashed man in a trench coat approaches me."`
-					goto pass
-				`	"Honestly, I'm still not sure it was such a good idea."`
-					goto honestly
-				`	"Oh, no, I'm just here to see if you have any perfectly legitimate work for me. Custodian, gardener, window-washer..."`
-					goto legitimate
-			label pass
-			`	Alexandra laughs. "Really? I thought that was everyone's favorite part of shady jobs - the smelly guy with the box of perfectly legal pharmeceuticals."`
-				goto meetup1
-			label honestly
-			`	Alexandra clears her throat. "Well, you followed your instincts, so let's see if we can turn that frown upside-down."`
-				goto meetup1
-			label legitimate
-			`	Alexandra smiles. "Oh, yes, the classic 'riches to rags' story - the starship captain who dreams of escaping a monotonous life and sonic-vacuuming other people's carpets for a living."`
-				goto meetup1
-			
-			label meetup1
-			`	She taps on her datapad before looking up at you. "I've just sent a message to one of our " After exchanging goodbyes, you end the transmission.`
+
 
 
 # * * * * *  BOUNTY CHAIN * * * * *
 # If the player aborts or declines too many missions.
-mission "Etarip Bounty Hunters [Alexandra]"
+mission "Liekedeeler Bounty Hunters [Alexandra]"
 	invisible
 	landing
 	deadline 10
 	
 	to offer
-		"rejected etarip" >= 3
+		"rejected liekedeeler" >= 3
 	
 	on offer
 		conversation
@@ -1053,7 +976,7 @@ mission "Etarip Bounty Hunters [Alexandra]"
 				`	[Answer it.]`
 				`	[Ignore it.]`
 					goto ignore
-			`	You greet Alexandra. "Hey, <first>. I'm sorry to have to do this, but since you broke your contract with Etarip, you're going to have to return those 500,000 credits."`
+			`	You greet Alexandra. "Hey, <first>. I'm sorry to have to do this, but since you broke your contract with Liekedeeler, you're going to have to return those 500,000 credits."`
 			branch pay
 				"credits" >= 500000
 			choice
@@ -1101,11 +1024,11 @@ mission "Etarip Bounty Hunters [Alexandra]"
 			
 			label ignore
 			branch ignoramoose
-				"etarip payback ignored" = 3
+				"liekedeeler payback ignored" = 3
 			`	You ignore the transmission.`
 				defer
 			label ignoramoose
-			`	For the third time, you ignore Alexandra's transmission. Later, you receive a message. "<first> - you're as irresponsible as ever. In case you've not gotten it through your thick skull, you've broken your contract with Etarip, and you have until <day> to pay it back. Contact me when you have the money, or answer your damn comm line."`
+			`	For the third time, you ignore Alexandra's transmission. Later, you receive a message. "<first> - you're as irresponsible as ever. In case you've not gotten it through your thick skull, you've broken your contract with Liekedeeler, and you have until <day> to pay it back. Contact me when you have the money, or answer your damn comm line."`
 				accept
 			
 			label pay
@@ -1122,29 +1045,29 @@ mission "Etarip Bounty Hunters [Alexandra]"
 				goto meetup2
 	
 	on accept
-		set "etarip debt"
-		log `I've got until <day> to collect 500,000 credits and pay back Etarip for breaking their on-demand contract.`
+		set "liekedeeler debt"
+		log `I've got until <day> to collect 500,000 credits and pay back Liekedeeler for breaking their on-demand contract.`
 	
 	on decline
 		payment -500000
 		
 	on defer
-		"etarip payback ignored" += 1
+		"liekedeeler payback ignored" += 1
 	
 	on fail
-		set "bounty hunters [etarip]"
+		set "bounty hunters [liekedeeler]"
 
-mission "Etarip Bounty Hunters [Pay]"
+mission "Liekedeeler Bounty Hunters [Pay]"
 	invisible
 	landing
 	
 	to offer
-		has "etarip debt"
+		has "liekedeeler debt"
 		"credits" >= 500000
 	
 	on offer
 		conversation
-			`You've collected enough money to pay back Etarip.`
+			`You've collected enough money to pay back Liekedeeler.`
 			choice
 				`	[Input Alexandra's contact number.]`
 				`	[Wait.]`
@@ -1186,20 +1109,20 @@ mission "Etarip Bounty Hunters [Pay]"
 				decline
 			
 	on accept
-		clear "etarip debt"
+		clear "liekedeeler debt"
 		payment -500000
 	
 	on decline
-		set "bounty hunters [etarip]"
+		set "bounty hunters [liekedeeler]"
 		
 		
-mission "Etarip Bounty Hunters [Fail]"
+mission "Liekedeeler Bounty Hunters [Fail]"
 	invisible
 	landing
 
 	to offer
-		has "etarip debt"
-		has "bounty hunters [etarip]"
+		has "liekedeeler debt"
+		has "bounty hunters [liekedeeler]"
 		
 	npc kill
 		government Bounty
@@ -1208,7 +1131,7 @@ mission "Etarip Bounty Hunters [Fail]"
 	
 	on offer
 		conversation
-			`You feel a queasy sensation in your stomach as you land, having failed to pay back your debt in time. You feel eyes on you as you wander the starport.`
+			`You feel a queasy sensation in your stomach as you land, having failed to pay back your debt in time. You feel eyes on you as you wander the spaceport.`
 				accept
 
 # * * * END OF BOUNTY CHAIN * * *
