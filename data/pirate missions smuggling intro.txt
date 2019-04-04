@@ -14,7 +14,7 @@ mission "Liekedeeler Intro"
 	landing
 	
 	to offer
-		random < 5
+		"random" < 12
 		"year" == 3013
 		"month" > 10
 		"unpaid mortgages" > 100000
@@ -110,8 +110,27 @@ mission "Liekedeeler Intro"
 			`	"I'm a scout for a special courier firm. Basically, we look for new captains who bought their ships in debt, and are struggling to make due. We front enough money to forgive their debt in return for a few deliveries, passenger runs, you get the gist. Sort of like a network of amateur couriers spread across the Republic."`
 			choice
 				`	"That sounds a lot like spaceport job postings. What's the difference?"`
-				`	"So, basically, private spaceport jobs. How does that work? What's the difference?"`
-			`	Alexandra smiles knowingly. "The difference is, we have a reliable courier, so we can cut expenses, and you get paid up front, so your debt goes away - no loan interest spoiling every delivery you make. I mean, if you took out a 500,000 credit loan to buy your ship, that's over 295,000 credits in interest by the end of the year. And all that assuming the bank gave you a 'fair' 0.3% daily interest rate."`
+					goto postings
+				`	"Forgive their debt? Sure, I've heard that one before."`
+					goto forgive
+			
+			label postings
+			`	Alexandra smiles knowingly. "The difference is, we have a reliable courier, so we can cut expenses, and you get paid up front, so you can pay off your debt immediately - no loan interest spoiling every delivery you make. I mean, if you took out a 500,000 credit loan to buy your ship, that's over 295,000 credits in interest by the end of the year. And all that assuming the bank gave you a 'fair' 0.3% daily interest rate."`
+			label forgive
+			`	Alexandra nods. "Too good to be true, right? Here." She hands you her datapad. Graphs and statistics convey a detailed yet readable analysis. "As you can see, by spreading our network of couriers out, the average delivery time from request to delivery is cut by over 40%. Combined with a near-zero tolerance policy of abandoned cargo, high-end clients are willing to pay a hefty sum for faster and more reliable couriers. And since you're independent, we don't need to bring in a professional shipping company, which allows couriers the lion's share of profit from each run."`
+			choice
+				`	"Sounds straightforward enough to me."`
+					goto straightforward
+				`	"I'm not buying it. How do you justify passing that much money on to a new courier?"`
+					goto buying
+			label straightforward
+			`	She smiles. "And I haven't even mentioned the best part; you'll get paid up front, so you can pay your debt immediately - no loan interest spoiling every delivery you make. I mean, if you took out a 500,000 credit loan to buy your ship, that's over 295,000 credits in interest by the end of the year. And all that assuming the bank gave you a 'fair' 0.3% daily interest rate.`
+				goto meetup5
+			label buying
+			`	She rubs her chin thoughtfully. "I won't sugarcoat it. The 'new courier' branch of Liekedeeler is more of a charity service for struggling pilots. But with enough couriers, it keeps us in business while testing the waters for skilled couriers interested in working with us beyond their initial debt. Of course, most pilots are happy to walk out right there, seeing as they've paid off a 500,000 credit loan. I don't blame them, since they've also avoided paying close to 295,000 credits in interest. And all that assuming the bank gave them a 'fair' 0.3% daily interest rate."`
+				goto meetup5
+			
+			label meetup5
 			choice
 				`	"Pretty and good at math? I came to the right spaceport!"`
 					goto pretty
@@ -122,19 +141,19 @@ mission "Liekedeeler Intro"
 	
 			label pretty
 			`	Alexandra shakes her head, smiling. "Let's get back to the important part."`
-				goto meetup5
+				goto meetup6
 			label actually
 			`	Alexandra sighs. "Which is exactly why I'm here."`
-				goto meetup5
+				goto meetup6
 			label why
-			`	"No catch; like you said, it's a lot like job postings, except you don't have to wait for a perfect job to come around, and we don't have to wait for the perfect pilot." Alexandra smiles.`
-				goto meetup5
+			`	"No catch; it's a lot like job postings, except you don't have to wait for a perfect job to come around, and we don't have to wait for the perfect pilot." Alexandra smiles.`
+				goto meetup6
 				
-			label meetup5
+			label meetup6
 			`	"Here's the deal: Liekedeeler Enterprises, my employer, will pay you 500,000 credits right now to pay off your debts. In exchange, we'll contact you when we need you to make a delivery or transport passengers."`
 			choice
 				`	"Sounds a lot like a contract."`
-				`	"How many deliveries will I have to make?"`
+				`	"How many deliveries would I have to make?"`
 			`	Alexandra pulls up some sort of document on her pad and shows it to you. "Don't worry - you would only be on the hook for 5 deliveries, all to Republic space."`
 			label questions
 			choice
@@ -161,15 +180,16 @@ mission "Liekedeeler Intro"
 				goto questions
 			label somewhere
 			`	"Not really. Most of our work is in Republic space, and we would prefer it if you tried to stay close. But if you want to catch a few extra jobs here or there, feel free!"`
+				goto questions
 			
 			label yes
 			`	Alexandra smiles. "Great! I'll be in touch, <first>. In the meantime, enjoy your new-found freedom!"`
-				goto meetup6
+				goto meetup7
 			label angel
 			`	Alexandra laughs. "Oh, this is going to be fun. I'm looking forward to working with you, <first>. And, no more debt! Enjoy your freedom!"`
-				goto meetup6
+				goto meetup7
 			
-			label meetup6
+			label meetup7
 			`	When you make it back to your ship, you wonder if what Alexandra said is too good to be true; but sure enough, 500,000 credits have been transferred to your account; more money than you thought you'd see in a lifetime, and more than enough to pay off your debt.`
 				accept
 		
@@ -956,8 +976,7 @@ mission "Liekedeeler Intro Finale"
 					accept
 				`	[Forget about it.]`
 					decline
-
-
+	
 
 # * * * * *  BOUNTY CHAIN * * * * *
 # If the player aborts or declines too many missions.
@@ -1086,7 +1105,7 @@ mission "Liekedeeler Bounty Hunters [Pay]"
 			label dont
 			`	An uncomfortable pause ensues. "Well... That's unfortunate. I don't suppose there's anything I can do to convince you that's a terrible idea?"`
 			choice
-				`	"Just kidding - I'll send it over now."`
+				`	"Just kidding. I'll send it over now."`
 					goto kidding
 				`	"Maybe a kiss..."`
 					goto kiss
@@ -1099,7 +1118,7 @@ mission "Liekedeeler Bounty Hunters [Pay]"
 			label kiss
 			`	"Ew. You really need to work on your flirting. It's so cringey."`
 			choice
-				`	"I'm just kidding - I'll send it over now."`
+				`	"I'm just kidding. I'll send it over now."`
 					goto kidding
 				`	"Really, though; I'm not paying it back."`
 					goto no
