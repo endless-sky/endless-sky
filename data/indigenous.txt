@@ -94,6 +94,39 @@ effect "void sprite infant death"
 
 
 
+ship "Void Sprite Elder"
+	noun "creature"
+	sprite "ship/void sprite elder"
+		"frame rate" 2.0
+		rewind
+	"never disabled"
+	attributes
+		category "Heavy Warship"
+		"hull" 19600
+		"shield" 5000
+		"required crew" 4
+		"bunks" 4
+		"mass" 1480
+		"drag" 8.2
+		"heat dissipation" .8
+		"cargo space" 140
+		"thrust" 80
+		"turn" 3500
+		"hull repair rate" 3
+		"energy capacity" 1
+		"fuel capacity" 200
+		"inscrutable" 1
+		"gaslining" 1
+	outfits
+		Mouthparts? 5
+	gun -4 -111
+	gun 6 -111
+	leak "blood" 40 40
+	explode "blood" 40
+	"final explode" "void sprite adult death"
+
+
+
 outfit Mouthparts?
 	category "Guns"
 	"gun ports" -1
@@ -130,12 +163,18 @@ fleet "Void Sprites"
 		timid mining harvests mute
 	variant
 		"Void Sprite"
+		"Void Sprite Elder"
 	variant
 		"Void Sprite"
 		"Void Sprite (Infant)"
+		"Void Sprite Elder"
 	variant
 		"Void Sprite"
 		"Void Sprite (Infant)" 2
+		"Void Sprite Elder"
 	variant
 		"Void Sprite"
 		"Void Sprite (Infant)" 3
+		"Void Sprite Elder"
+	variant
+		"Void Sprite Elder"
