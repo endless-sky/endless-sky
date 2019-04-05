@@ -97,7 +97,7 @@ effect "void sprite infant death"
 ship "Void Sprite Elder"
 	noun "creature"
 	sprite "ship/void sprite elder"
-		"frame rate" 2.0
+		"frame rate" 5
 		rewind
 	"never disabled"
 	attributes
@@ -119,8 +119,11 @@ ship "Void Sprite Elder"
 		"gaslining" 1
 	outfits
 		Mouthparts? 5
-	gun -4 -111
-	gun 6 -111
+	gun 6.5 -218 Mouthparts?
+	gun -6.5 -218 Mouthparts?
+	gun 8 -216 Mouthparts?
+	gun -8 -216 Mouthparts?
+	gun 0 -219 Mouthparts?
 	leak "blood" 40 40
 	explode "blood" 40
 	"final explode" "void sprite adult death"
