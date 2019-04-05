@@ -277,8 +277,11 @@ void ShipyardPanel::Sell(bool toCargo)
 		toSell.push_back(it->shared_from_this());
 	int64_t total = player.FleetDepreciation().Value(toSell, day);
 	
-	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::Credits(total) + " credits?";
-	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, Font::TRUNC_MIDDLE));
+	const bool lineBreaking = initialCount > 2;
+	const string separator(lineBreaking ? "\nfor " : " for ");
+	const Font::Truncate truncation = lineBreaking ? Font::TRUNC_MIDDLE : Font::TRUNC_NONE;
+	message += separator + Format::Credits(total) + " credits?";
+	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, truncation));
 }
 
 
