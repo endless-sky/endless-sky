@@ -136,12 +136,13 @@ effect "pug anti-missile"
 outfit "Tier 3 Anti-Missile"
 	category "Turrets"
 	cost 12000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/t3 anti missile"
 	"mass" 67
 	"outfit space" -67
 	"weapon capacity" -67
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/t3 anti missile"
 		"fire effect" "tier 3 anti-missile fire"
 		"die effect" "tier 3 anti-missile die" 2
 		"anti-missile" 100
@@ -150,6 +151,7 @@ outfit "Tier 3 Anti-Missile"
 		"reload" 6
 		"firing energy" 80
 		"firing heat" 10
+	description "This powerful anti-missile turret is capable of destroying even the strongest of missiles."
 
 effect "tier 3 anti-missile fire"
 	sprite "effect/anti-missile 3 fire"
@@ -171,12 +173,13 @@ effect "tier 3 anti-missile die"
 outfit "Pug Gridfire Turret"
 	category "Turrets"
 	cost 24000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug gridfire turret"
 	"mass" 83
 	"outfit space" -83
 	"weapon capacity" -83
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/pug gridfire turret"
 		"fire effect" "gridfire fire"
 		"hit effect" "gridfire hit" 2
 		"hit effect" "gridfire cloud"
@@ -192,6 +195,7 @@ outfit "Pug Gridfire Turret"
 		"hull damage" 600
 		"blast radius" 40
 		"piercing" .3
+	description "No one understands how the Gridfire Turret works, and the Pug aren't interested in explaining."
 
 effect "gridfire fire"
 	sprite "effect/gridfire fire"

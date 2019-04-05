@@ -3398,23 +3398,26 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	}
 	else if(keyStuck.Has(Command::JUMP))
 	{
+		bool isNewPress = keyDown.Has(Command::JUMP) || !keyHeld.Has(Command::JUMP);
 		if(!ship.Attributes().Get("hyperdrive") && !ship.Attributes().Get("jump drive"))
 		{
 			Messages::Add("You do not have a hyperdrive installed.");
 			keyStuck.Clear();
-			Audio::Play(Audio::Get("fail"));
+			if(isNewPress)
+				Audio::Play(Audio::Get("fail"));
 		}
 		else if(!ship.JumpFuel(ship.GetTargetSystem()))
 		{
 			Messages::Add("You cannot jump to the selected system.");
 			keyStuck.Clear();
-			Audio::Play(Audio::Get("fail"));
+			if(isNewPress)
+				Audio::Play(Audio::Get("fail"));
 		}
 		else if(!ship.JumpsRemaining() && !ship.IsEnteringHyperspace())
 		{
 			Messages::Add("You do not have enough fuel to make a hyperspace jump.");
 			keyStuck.Clear();
-			if(keyDown.Has(Command::JUMP) || !keyHeld.Has(Command::JUMP))
+			if(isNewPress)
 				Audio::Play(Audio::Get("fail"));
 		}
 		else
