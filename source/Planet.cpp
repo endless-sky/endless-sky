@@ -31,6 +31,19 @@ using namespace std;
 namespace {
 	const string WORMHOLE = "wormhole";
 	const string PLANET = "planet";
+	
+	// Planet attributes in the form "requires: <attribute>" restrict the ability of ships to land
+	// unless the ship has all required attributes.
+	void SetRequiredAttributes(const set<string> &attributes, set<string> &required)
+	{
+		static const string PREFIX = "requires: ";
+		static const string PREFIX_END = "requires:!";
+		required.clear();
+		for_each(attributes.lower_bound(PREFIX), attributes.lower_bound(PREFIX_END), [&](const string &attribute)
+		{
+			required.emplace_hint(required.cend(), attribute.substr(PREFIX.length()));
+		});
+	}
 }
 
 
@@ -204,8 +217,10 @@ void Planet::Load(const DataNode &node)
 		else
 			attributes.erase(AUTO_ATTRIBUTES[i]);
 	}
-
+	
+	// Precalculate commonly used values that can only change due to Load().
 	inhabited = (HasSpaceport() || requiredReputation || !defenseFleets.empty()) && !attributes.count("uninhabited");
+	SetRequiredAttributes(Attributes(), requiredAttributes);
 }
 
 
@@ -454,22 +469,23 @@ const vector<const System *> &Planet::WormholeSystems() const
 // land on this planet.
 bool Planet::IsAccessible(const Ship *ship) const
 {
-	// Check whether any of this planet's attributes are in the form of the
-	// string "requires: <attribute>"; if so the ship must have that attribute.
-	static const string PREFIX = "requires: ";
-	static const string PREFIX_END = "requires:!";
-	auto it = attributes.lower_bound(PREFIX);
-	auto end = attributes.lower_bound(PREFIX_END);
-	if(it == end)
+	// If there are no required attributes, then any ship may land here.
+	if(IsUnrestricted())
 		return true;
 	if(!ship)
 		return false;
 	
-	for( ; it != end; ++it)
-		if(!ship->Attributes().Get(it->substr(PREFIX.length())))
-			return false;
-	
-	return true;
+	const auto &shipAttributes = ship->Attributes();
+	return all_of(requiredAttributes.cbegin(), requiredAttributes.cend(),
+			[&](const string &attr) -> bool { return shipAttributes.Get(attr); });
+}
+
+
+
+// Check if this planet has any required attributes that restrict landability.
+bool Planet::IsUnrestricted() const
+{
+	return requiredAttributes.empty();
 }
 
 
