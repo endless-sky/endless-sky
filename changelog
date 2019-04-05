@@ -14,6 +14,7 @@ Version 0.9.9:
     * Crashes and other serious bugs:
       * Fixed a crash when reordering escorts in the player info panel on Mac OS X.
       * Fixed a bug that caused ships with nuclear missiles to launch them all at the same time.
+      * Fixed a bug where large projectile velocities would freeze the game (@tehhowch)
     * Ship behavior:
       * Fixed escorts doing nothing if near death. (@flaviojs)
       * Reverse thrust now works properly while turning. (@Hacklin)
@@ -28,6 +29,7 @@ Version 0.9.9:
       * Fixed a bug when issuing a "hold position" command while escorts are hyperjumping.
       * Ships will no longer attempt to scan targets that they are hostile toward. (@tehhowch)
       * Fixed a bug where carried ships might not be destroyed when their carrier self-destructs (@tehhowch)
+      * Ships will no longer take off from planets they do not have the required attributes to land on (@tehhowch)
     * User interface:
       * Fixed "ton" vs. "tons" when harvesting materials with a unit size other than 1 ton. (@Rakete1111)
       * Fixed "invisible" ships (disabled escorts) getting selected in the shop panel. (@tehhowch)
@@ -38,7 +40,8 @@ Version 0.9.9:
       * Fixed map re-centering at different zoom levels. (@dzhu)
       * The numeric entry dialog now treats non-numeric text as if you clicked "cancel."
       * Fixed jumpiness in map zooming. (@thomasballinger)
-      * Fixed trailing whitespace in a payment message (@tehhowch)
+      * Fixed trailing whitespace and "1 credits" in payment messages (@tehhowch)
+      * The "fail" noise no longer plays on repeat if you have no way to jump (@tehhowch)
     * Other:
       * Fixed the FW "electron turret" mission not offering on landing. (@tehhowch)
       * Fixed the last fraction of a crate of commodities not getting jettisoned. (@flaviojs)
@@ -58,6 +61,7 @@ Version 0.9.9:
       * The Remembrance Day and war begins missions now only offer on inhabited planets. (@Fzzr)
       * The turret hardpoint and projectile of the Laser Turret now properly reflect the outfit image. (@Amazinite)
       * NPC carrier-fighter assignment properly counts available bays (@oo13)
+      * Unrepresentable condition values generate a warning, rather than result in signed integer overflow (@tehhowch)
     * Minor issues:
       * Typo fixes. (@abenkovskii, @Alkallid, @Amazinite, @Bladewood, @Fzzr, @jafdy, @Janaszar, @jostephd, @Jugosloven1612, @LordInsane, @MessyMix, @Nescio0, @redshalken, @seanfahey, @solardawning, @temtemy, @themightygrunt, @tmbutterworth, @toilethinges, @Turtleroku, @UnciaPrima, @warp-core, @whismerhill)
       * Fixed missions that give "gifts" not being colored as ready to be completed. (@tehhowch)
@@ -73,7 +77,7 @@ Version 0.9.9:
       * Added some new special "person" ships.
       * New galaxy background image. (@Aurelite)
       * Updated some landscape images.
-      * Added new station landscape images. (@sivael)
+      * Added new station landscape images. (@sivael, @Pointedstick)
       * Added a "Deep Security" government that's distinct from the Republic Navy (and has its own hails).
       * Outfit image for the Tactical Scanner. (@Kryes-Omega)
       * Added new ships and weapons for a new Wanderer faction.
@@ -93,7 +97,7 @@ Version 0.9.9:
       * New pirate jobs to assassinate high value targets. (@czartrak)
       * Various new missions available in both Hai and human space. (@TheUnfetteredOne, @Amazinite, @Fzzr, @Pointedstick)
       * Unique explosions to Pug ships. (@Vilhelm16)
-      * New landscape image for the Quarg station of Lagrange. (@Pointedstick)
+      * New station sprite for Lagrange. (@beccabunny)
       * Three new Hai ships. (@Brick63)
       * New jobs that are offered by the Free Worlds during the campaign as another form of income. (@Amazinite)
       * Images for the Quarg outfits. (@Brick63)
@@ -159,6 +163,7 @@ Version 0.9.9:
       * Ship names are now always preceeded by the word "the" in missions and jobs. (@DrBlight)
       * Lead's description no longer incorrectly claims that it is the heaviest non-radioactive element. (@Janaszar)
       * Added more content definition warnings & checks, to help modders develop functional content (@tehhowch)
+      * Content definition checks do not warn for certain objects defined solely by game events (@comnom)
   * Game mechanics:
     * Ship AI:
       * AI ships no longer keep trying to plunder if their cargo is full. (@tehhowch)
@@ -310,6 +315,7 @@ Version 0.9.9:
     * Interlaced .png's no longer produce warnings from libpng (@tehhowch)
     * The application name on OSX is now properly "Endless Sky" (@nobodywasishere)
     * Improved how the AI determines which ships other ships should consider targeting (@tehhowch)
+    * Condition values may be +/- 4 quintillion instead of +/- 2 billion (@tehhowch)
 
 Version 0.9.8:
   * Bug fixes:

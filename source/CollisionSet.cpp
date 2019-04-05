@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "CollisionSet.h"
 
 #include "Body.h"
+#include "Files.h"
 #include "Government.h"
 #include "Mask.h"
 #include "Point.h"
@@ -23,27 +24,36 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstdlib>
 #include <numeric>
 #include <set>
+#include <string>
 
 using namespace std;
 
+namespace {
+	// Maximum allowed projectile velocity.
+	constexpr int MAX_VELOCITY = 450000;
+	// Velocity used for any projectiles with v > MAX_VELOCITY
+	constexpr int USED_MAX_VELOCITY = MAX_VELOCITY - 1;
+	// Warn the user only once about too-large projectile velocities.
+	bool warned = false;
+}
 
 
 // Initialize a collision set. The cell size and cell count should both be
 // powers of two; otherwise, they are rounded down to a power of two.
-CollisionSet::CollisionSet(int cellSize, int cellCount)
+CollisionSet::CollisionSet(unsigned cellSize, unsigned cellCount)
 {
 	// Right shift amount to convert from (x, y) location to grid (x, y).
-	SHIFT = 0;
-	while(cellSize >>= 1)
+	SHIFT = 0u;
+	while(cellSize >>= 1u)
 		++SHIFT;
-	CELL_SIZE = (1 << SHIFT);
-	CELL_MASK = CELL_SIZE - 1;
+	CELL_SIZE = (1u << SHIFT);
+	CELL_MASK = CELL_SIZE - 1u;
 	
 	// Number of grid rows and columns.
-	CELLS = 1;
-	while(cellCount >>= 1)
+	CELLS = 1u;
+	while(cellCount >>= 1u)
 		CELLS <<= 1;
-	WRAP_MASK = CELLS - 1;
+	WRAP_MASK = CELLS - 1u;
 	
 	// Just in case Clear() isn't called before objects are added:
 	Clear(0);
@@ -61,7 +71,7 @@ void CollisionSet::Clear(int step)
 	counts.clear();
 	// The counts vector starts with two sentinel slots that will be used in the
 	// course of performing the radix sort.
-	counts.resize(CELLS * CELLS + 2, 0);
+	counts.resize(CELLS * CELLS + 2u, 0u);
 }
 
 
@@ -78,10 +88,10 @@ void CollisionSet::Add(Body &body)
 	// Add a pointer to this object in every grid cell it occupies.
 	for(int y = minY; y <= maxY; ++y)
 	{
-		int gy = y & WRAP_MASK;
+		auto gy = y & WRAP_MASK;
 		for(int x = minX; x <= maxX; ++x)
 		{
-			int gx = x & WRAP_MASK;
+			auto gx = x & WRAP_MASK;
 			added.emplace_back(&body, x, y);
 			++counts[gy * CELLS + gx + 2];
 		}
@@ -103,9 +113,9 @@ void CollisionSet::Finish()
 	// Now, perform a radix sort.
 	for(const Entry &entry : added)
 	{
-		int gx = entry.x & WRAP_MASK;
-		int gy = entry.y & WRAP_MASK;
-		int index = gy * CELLS + gx + 1;
+		auto gx = entry.x & WRAP_MASK;
+		auto gy = entry.y & WRAP_MASK;
+		auto index = gy * CELLS + gx + 1;
 		
 		sorted[counts[index]++] = entry;
 	}
@@ -157,7 +167,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 	if(gx == endGX && gy == endGY)
 	{
 		// Examine all objects in the current grid cell.
-		int i = (gy & WRAP_MASK) * CELLS + (gx & WRAP_MASK);
+		auto i = (gy & WRAP_MASK) * CELLS + (gx & WRAP_MASK);
 		vector<Entry>::const_iterator it = sorted.begin() + counts[i];
 		vector<Entry>::const_iterator end = sorted.begin() + counts[i + 1];
 		for( ; it != end; ++it)
@@ -188,32 +198,46 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 		return result;
 	}
 	
+	Point pVelocity = (to - from);
+	if(pVelocity.Length() > MAX_VELOCITY)
+	{
+		// Cap projectile velocity to prevent integer overflows.
+		if(!warned)
+		{
+			Files::LogError("Warning: maximum projectile velocity is " + to_string(MAX_VELOCITY));
+			warned = true;
+		}
+		Point newEnd = from + pVelocity.Unit() * USED_MAX_VELOCITY;
+		return Line(from, newEnd, closestHit, pGov, target);
+	}
+	
 	// When stepping from one grid cell to the next, we'll go in this direction.
 	int stepX = (x <= endX ? 1 : -1);
 	int stepY = (y <= endY ? 1 : -1);
 	// Calculate the slope of the line, shifted so it is positive in both axes.
-	int mx = abs(endX - x);
-	int my = abs(endY - y);
+	const uint64_t mx = abs(endX - x);
+	const uint64_t my = abs(endY - y);
 	// Behave as if each grid cell has this width and height. This guarantees
 	// that we only need to work with integer coordinates.
-	int scale = max(mx, 1) * max(my, 1);
-	int full = CELL_SIZE * scale;
+	const uint64_t scale = max<uint64_t>(mx, 1) * max<uint64_t>(my, 1);
+	const uint64_t fullScale = CELL_SIZE * scale;
 	
 	// Get the "remainder" distance that we must travel in x and y in order to
-	// reach the next grid cell.
-	int64_t rx = scale * (x & CELL_MASK);
-	int64_t ry = scale * (y & CELL_MASK);
+	// reach the next grid cell. These ensure we only check grid cells which the
+	// line will pass through.
+	uint64_t rx = scale * (x & CELL_MASK);
+	uint64_t ry = scale * (y & CELL_MASK);
 	if(stepX > 0)
-		rx = full - rx;
+		rx = fullScale - rx;
 	if(stepY > 0)
-		ry = full - ry;
+		ry = fullScale - ry;
 	
 	// Keep track of which objects we've already considered.
 	set<const Body *> seen;
 	while(true)
 	{
 		// Examine all objects in the current grid cell.
-		int i = (gy & WRAP_MASK) * CELLS + (gx & WRAP_MASK);
+		auto i = (gy & WRAP_MASK) * CELLS + (gx & WRAP_MASK);
 		vector<Entry>::const_iterator it = sorted.begin() + counts[i];
 		vector<Entry>::const_iterator end = sorted.begin() + counts[i + 1];
 		for( ; it != end; ++it)
@@ -252,8 +276,8 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 		if(!diff)
 		{
 			// The line is exactly intersecting a corner.
-			rx = full;
-			ry = full;
+			rx = fullScale;
+			ry = fullScale;
 			// Make sure we don't step past the end grid.
 			if(gx == endGX && gy + stepY == endGY)
 				break;
@@ -264,11 +288,11 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 		}
 		else if(diff < 0)
 		{
-			// Because of the scale used, the rx coordinate is always divisble
+			// Because of the scale used, the rx coordinate is always divisible
 			// by mx, so this will always come out even. The mx will always be
-			// nonzero because otherwise, the comparison would be false.
+			// nonzero because otherwise, the comparison would have been false.
 			ry -= my * (rx / mx);
-			rx = full;
+			rx = fullScale;
 			gx += stepX;
 		}
 		else
@@ -276,7 +300,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 			// Calculate how much x distance remains until the edge of the cell
 			// after moving forward to the edge in the y direction.
 			rx -= mx * (ry / my);
-			ry = full;
+			ry = fullScale;
 			gy += stepY;
 		}
 	}
@@ -302,11 +326,11 @@ const vector<Body *> &CollisionSet::Circle(const Point &center, double radius) c
 	result.clear();
 	for(int y = minY; y <= maxY; ++y)
 	{
-		int gy = y & WRAP_MASK;
+		auto gy = y & WRAP_MASK;
 		for(int x = minX; x <= maxX; ++x)
 		{
-			int gx = x & WRAP_MASK;
-			int i = gy * CELLS + gx;
+			auto gx = x & WRAP_MASK;
+			auto i = gy * CELLS + gx;
 			vector<Entry>::const_iterator it = sorted.begin() + counts[i];
 			vector<Entry>::const_iterator end = sorted.begin() + counts[i + 1];
 			
