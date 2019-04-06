@@ -207,6 +207,7 @@ shipyard "Remnant"
 	"Gull"
 	"Albatross"
 	"Pelican"
+	"Void Sprite Elder"
 
 shipyard "Remnant Gascraft"
 	"Gascraft"

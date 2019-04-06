@@ -103,9 +103,9 @@ ship "Void Sprite Elder"
 	attributes
 		category "Heavy Warship"
 		"hull" 19600
-		"shield" 5000
-		"required crew" 4
-		"bunks" 4
+		"shields" 5000
+		"required crew" 1
+		"bunks" 2
 		"mass" 1480
 		"drag" 8.2
 		"heat dissipation" .8
@@ -113,17 +113,27 @@ ship "Void Sprite Elder"
 		"thrust" 80
 		"turn" 3500
 		"hull repair rate" 3
-		"energy capacity" 1
+		"energy capacity" 100
+		"energy generation" 1
 		"fuel capacity" 200
+		"shield generation" 5.2
+		"hull repair rate" 2.0
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 26
+		"asteroid scan power" 40
 		"inscrutable" 1
 		"gaslining" 1
+		"jump speed" .3
+		"jump fuel" 1
+		"jump drive" 1
 	outfits
 		Mouthparts? 5
-	gun 6.5 -218 Mouthparts?
-	gun -6.5 -218 Mouthparts?
-	gun 8 -216 Mouthparts?
-	gun -8 -216 Mouthparts?
-	gun 0 -219 Mouthparts?
+	gun 3 -83.5 Mouthparts?
+	gun -3 -83.5 Mouthparts?
+	gun 9 -104 Mouthparts?
+	gun -9 -104 Mouthparts?
+	gun 0 -84 Mouthparts?
 	leak "blood" 40 40
 	explode "blood" 40
 	"final explode" "void sprite adult death"
