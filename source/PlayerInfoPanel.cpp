@@ -43,9 +43,9 @@ namespace {
 	// Find any condition strings that begin with the given prefix, and convert
 	// them to strings ending in the given suffix (if any). Return those strings
 	// plus the values of the conditions.
-	vector<pair<int, string>> Match(const PlayerInfo &player, const string &prefix, const string &suffix)
+	vector<pair<int64_t, string>> Match(const PlayerInfo &player, const string &prefix, const string &suffix)
 	{
-		vector<pair<int, string>> match;
+		vector<pair<int64_t, string>> match;
 		
 		auto it = player.Conditions().lower_bound(prefix);
 		for( ; it != player.Conditions().end(); ++it)
@@ -59,7 +59,7 @@ namespace {
 	}
 	
 	// Draw a list of (string, value) pairs.
-	void DrawList(vector<pair<int, string>> &list, Table &table, const string &title, int maxCount = 0, bool drawValues = true)
+	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title, int maxCount = 0, bool drawValues = true)
 	{
 		if(list.empty())
 			return;
@@ -83,7 +83,7 @@ namespace {
 		table.Advance();
 		table.DrawGap(5);
 		
-		for(const pair<int, string> &it : list)
+		for(const auto &it : list)
 		{
 			table.Draw(it.second, dim);
 			if(drawValues)
@@ -485,7 +485,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	table.Draw(Format::Credits(player.Accounts().NetWorth()) + " credits", bright);
 	
 	// Determine the player's combat rating.
-	int combatLevel = log(max(1, player.GetCondition("combat rating")));
+	int combatLevel = log(max<int64_t>(1, player.GetCondition("combat rating")));
 	const string &combatRating = GameData::Rating("combat", combatLevel);
 	if(!combatRating.empty())
 	{

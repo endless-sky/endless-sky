@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <iterator>
 
 using namespace std;
 
@@ -228,7 +229,7 @@ const Government *Fleet::GetGovernment() const
 }
 
 
-
+// Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
 void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
 {
 	if(!total || variants.empty())
@@ -239,14 +240,14 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	if(variant.ships.empty())
 		return;
 	
-	// Figure out what system the ship is starting in, where it is going, and
+	// Figure out what system the fleet is starting in, where it is going, and
 	// what position it should start from in the system.
 	const System *source = &system;
 	const System *target = &system;
 	Point position;
-	double radius = 0.;
+	double radius = 1000.;
 	
-	// Only pick a random entry point for this ship if a source planet was not specified.
+	// Only pick a random entry point for this fleet if a source planet was not specified.
 	if(!planet)
 	{
 		// Where this fleet can come from depends on whether it is friendly to any
@@ -261,7 +262,10 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		for(const Ship *ship : variant.ships)
 		{
 			if(ship->Attributes().Get("jump drive"))
+			{
 				hasJump = true;
+				break;
+			}
 			if(ship->Attributes().Get("hyperdrive"))
 				hasHyper = true;
 		}
@@ -314,33 +318,53 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			if(!linkVector.empty())
 				target = linkVector[Random::Int(linkVector.size())];
 		}
+		// We are entering this system via hyperspace, not taking off from a planet.
 		else
-		{
-			// We are entering this system via hyperspace, not taking off from a planet.
-			radius = 1000.;
 			source = linkVector[choice];
-		}
 	}
 	
-	// Find the stellar object for the given planet, and place the ships there.
+	auto placed = Instantiate(variant);
+	// Carry all ships that can be carried, as they don't need to be positioned
+	// or checked to see if they can access a particular planet.
+	for(auto &ship : placed)
+		PlaceFighter(ship, placed);
+	
+	// Find the stellar object for this planet, and place the ships there.
 	if(planet)
 	{
-		for(const StellarObject &object : system.Objects())
-			if(object.GetPlanet() == planet)
-			{
-				position = object.Position();
-				radius = object.Radius();
-				break;
-			}
+		const StellarObject *object = system.FindStellar(planet);
+		if(!object)
+		{
+			// Log this error.
+			Files::LogError("Fleet::Enter: Unable to find valid stellar object for planet \""
+				+ planet->TrueName() + "\" in system \"" + system.Name() + "\"");
+			return;
+		}
+		// To take off from the planet, all non-carried ships must be able to access it.
+		else if(planet->IsUnrestricted() || all_of(placed.cbegin(), placed.cend(), [&](const shared_ptr<Ship> &ship)
+				{ return ship->GetParent() || planet->IsAccessible(ship.get()); }))
+		{
+			position = object->Position();
+			radius = object->Radius();
+		}
+		// The chosen planet could not be departed from by all ships in the variant.
+		else
+		{
+			// If there are no departure paths, then there are no arrival paths either.
+			if(source == target)
+				return;
+			// Otherwise, have the fleet arrive here from the target system.
+			std::swap(source, target);
+			planet = nullptr;
+		}
 	}
 	
 	// Place all the ships in the chosen fleet variant.
 	shared_ptr<Ship> flagship;
-	vector<shared_ptr<Ship>> placed = Instantiate(variant);
 	for(shared_ptr<Ship> &ship : placed)
 	{
-		// If this is a fighter and someone can carry it, no need to position it.
-		if(PlaceFighter(ship, placed))
+		// If this is a carried fighter, no need to position it.
+		if(ship->GetParent())
 			continue;
 		
 		Angle angle = Angle::Random(360.);
@@ -371,7 +395,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 
 
 
-// Place one of the variants in the given system, already "in action."
+// Place one of the variants in the given system, already "in action." If the carried flag is set,
+// only uncarried ships will be added to the list (as any carriables will be stored in bays).
 void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried) const
 {
 	if(!total || variants.empty())
@@ -425,10 +450,8 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 	// Choose which system this ship is coming from.
 	if(!source)
 	{
-		int choice = Random::Int(system.Links().size());
-		set<const System *>::const_iterator it = system.Links().begin();
-		while(choice--)
-			++it;
+		auto it = system.Links().cbegin();
+		advance(it, Random::Int(system.Links().size()));
 		source = *it;
 	}
 	
@@ -506,7 +529,7 @@ const Fleet::Variant &Fleet::ChooseVariant() const
 
 
 // Obtain a positional reference and the radius of the object at that position (e.g. a planet).
-// Spaceport status can be modified during normal gameplay, so this information is not 
+// Spaceport status can be modified during normal gameplay, so this information is not cached.
 pair<Point, double> Fleet::ChooseCenter(const System &system)
 {
 	auto centers = vector<pair<Point, double>>();
