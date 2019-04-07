@@ -63,6 +63,8 @@ public:
 	// Draw the text.
 	void Draw(const Point &topLeft, const Color &color) const;
 	
+	// Bottom margin.
+	int BottomMargin() const;
 	
 private:
 	const Font *font;

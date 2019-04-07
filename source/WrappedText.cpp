@@ -157,3 +157,11 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 {
 	font->Draw(text, topLeft, color, &layout);
 }
+
+
+
+// Bottom Margin
+int WrappedText::BottomMargin() const
+{
+	return ParagraphBreak() + LineHeight() - font->Height();
+}

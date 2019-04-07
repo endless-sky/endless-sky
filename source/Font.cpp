@@ -542,7 +542,7 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 			pango_cairo_show_layout_line(cr, line);
 			y0 = y1;
 		}
-		textHeight += sumExtraY + viewParams.paragraphBreak;
+		textHeight += sumExtraY + viewParams.lineHeight + viewParams.paragraphBreak - Height();
 		pango_layout_iter_free(it);
 	}
 	// Check this surface has enough height.

@@ -310,9 +310,10 @@ void ConversationPanel::Goto(int index, int choice)
 		// Scroll to the start of the new text, unless the conversation ended.
 		if(index >= 0)
 		{
-			scroll = -11;
+			scroll = -MARGIN;
 			for(const Paragraph &it : text)
 				scroll -= it.Height();
+			scroll += text.back().BottomMargin();
 		}
 	}
 	
@@ -450,4 +451,12 @@ Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const
 	wrap.Draw(point, color);
 	point.Y() += wrap.Height();
 	return point;
+}
+
+
+
+// Bottom Margin
+int ConversationPanel::Paragraph::BottomMargin() const
+{
+	return wrap.BottomMargin();
 }
