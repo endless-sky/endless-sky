@@ -99,6 +99,7 @@ ship "Void Sprite Elder"
 	sprite "ship/void sprite elder"
 		"frame rate" 5
 		rewind
+	thumbnail "thumbnail/void sprite elder"
 	"never disabled"
 	attributes
 		category "Heavy Warship"
