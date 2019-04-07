@@ -421,7 +421,7 @@ ship "Pelican"
 
 
 ship "Penguin"
-	sprite "ship/penguin"
+	sprite "ship/penguin/penguin"
 		"frame rate" 3
 	thumbnail "thumbnail/penguin"
 	attributes
@@ -475,7 +475,7 @@ ship "Penguin"
 	turret 0 -60
 	explode "tiny explosion" 8
 	explode "small explosion" 7
-	description "Inspired by close contact with Void Sprites and the reinvigoration of xenobiology, the penguin is a prototype designed to serve the dual roles of testing new starship technology while exploring hostile planets throughout the Ember Waste. One of it's distinguishing features is that this ship is truly alive and has a mind that approaches self-awareness."
+	description "Inspired by close contact with void sprites and the reinvigoration of xenobiology, the Penguin is a prototype designed to serve the dual roles of testing new starship technology while exploring hostile planets throughout the Ember Waste. One of this ship's distinguishing features is that it is truly alive and has a mind that approaches self-awareness."
 	description "	The cloaking technology is built into the Penguin's hull; it cannot be removed or transferred to another ship."
 
 
