@@ -177,11 +177,9 @@ fleet "Void Sprites"
 		timid mining harvests mute
 	variant
 		"Void Sprite"
-		"Void Sprite Elder"
 	variant
 		"Void Sprite"
 		"Void Sprite (Infant)"
-		"Void Sprite Elder"
 	variant
 		"Void Sprite"
 		"Void Sprite (Infant)" 2
@@ -189,6 +187,10 @@ fleet "Void Sprites"
 	variant
 		"Void Sprite"
 		"Void Sprite (Infant)" 3
+		"Void Sprite Elder"
+	variant
+		"Void Sprite" 2
+		"Void Sprite (Infant)" 4
 		"Void Sprite Elder"
 	variant
 		"Void Sprite Elder"
