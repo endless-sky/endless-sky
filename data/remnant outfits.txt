@@ -458,3 +458,29 @@ outfit "Remnant Capital License"
 	category "Special"
 	thumbnail "outfit/remnant capital license"
 	description "The prefects have decided that you should be trusted with their largest ships, and the valuable resources that go into making them."
+
+outfit "Nullifier"
+	category "Ammunition"
+	thumbnail "outfit/nullifier"
+	description "This is just to test how the images work inside ES."
+
+outfit "Nullifier Launcher"
+	category "Secondary Weapons"
+	thumbnail "outfit/nullifier launcher"
+	description "This is just to test how the images work inside ES."
+
+outfit "Remnant Ramscoop"
+	category "Special"
+	thumbnail "outfit/remnant ramscoop"
+	description "This is just to test how the images work inside ES."
+
+outfit "Remnant Plasma Torch Turret"
+	category "Special"
+	thumbnail "outfit/remnant plasma torch turret"
+	description "This is just to test how the images work inside ES."
+
+outfit "Void Rifle"
+	category "Special"
+	thumbnail "outfit/void rifle"
+	description "This is just to test how the images work inside ES."
+
