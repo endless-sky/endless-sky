@@ -503,7 +503,7 @@ outfit "Nullifier Missile Pod"
 		"velocity" 9
 		"acceleration" .9
 		"drag" .1
-		"turn" 2
+		"turn" 1
 		"homing" 4
 		"infrared tracking" .9
 		"optical tracking" .7
