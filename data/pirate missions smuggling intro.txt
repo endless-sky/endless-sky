@@ -1090,7 +1090,7 @@ mission "Liekedeeler Intro Finale"
 				`	"Got it. So what kind of offers do you have for me?"`
 			`	She clears her throat and speaks in a strong, low tone. "We'd like to bring you on as an independent smuggler. Straight credits for every job, no more contracts, and a happier you! Our little operation is expanding rapidly, and we need reliable pilots who can think for themselves. We'll also spread the word to our contacts, so you can pick up jobs from operations within Republic space. The flipside is that any liabilities you incur will be your own; we'll do our best to get you out of tricky situations, but we can't promise your safety." She pauses a moment. "For now, we need smugglers for three of our core operations."`
 			branch freeworlds1
-				"event: war begins" = 1
+				"event: war begins" == 1
 			`	"You've probably heard of the Southern Defense Pact. Things are heating up between them and the Republic; unfair taxation, imbalanced trade, and reduced security. The eternal complaint of frontier colonies, am I right? That means an opening for more, shall we say, non-commercial movement of goods."`
 				goto meetup5
 			label freeworlds1
@@ -1111,7 +1111,7 @@ mission "Liekedeeler Intro Finale"
 			
 			label south
 			branch freeworlds2
-				"event: war begins" = 1
+				"event: war begins" == 1
 			`	Alexandra leans in closer. "The Southern Mutual Defense Pact isn't a recognized combat fleet, so the Republic doesn't like them having military-grade equipment. But as they say, where there's a will, there's a way! There are also wanted individuals on both sides trying to leverage the position of each faction in what many consider an inevitable conflict. You know, convince so-and-so to agitate, prepare defenses, stay loyal, yadda yadda. It's a perfect opportunity for Liekedeeler to step in, provide a much-needed service, and acquire favors from individuals on both sides. But the situation is already boiling over, so a misstep might leave you with surprisingly few places to go for the holidays."`
 				goto freeworlds2end
 			label freeworlds2
@@ -1406,19 +1406,3 @@ mission "Liekedeeler Bounty Hunters [Fail]"
 # * * * END OF BOUNTY CHAIN * * *
 
 # * * * * *  END OF INTRO"  * * * * *
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
