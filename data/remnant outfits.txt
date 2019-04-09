@@ -514,7 +514,7 @@ outfit "Nullifier Missile Pod"
 		"fuel damage" 250
 		"ion damage" 5
 		"hit force" 700
-		"missile strength" 110
+		"missile strength" 130
 	description "With the rest of the galaxy starting to intrude on the Remnant's territory, their designers created a weapon to ensure that no enemy ship manages to escape their territory."
 	description "The Nullifier missile makes use of the Remnant's experience in containing and degrading nuclear reactions to forcefully stabilize the fuel of enemy starships. While it is easy enough for affected ships to purge their tanks of the useless material, it will eat into their reserves substantially."
 
