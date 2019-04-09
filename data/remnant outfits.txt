@@ -459,15 +459,95 @@ outfit "Remnant Capital License"
 	thumbnail "outfit/remnant capital license"
 	description "The prefects have decided that you should be trusted with their largest ships, and the valuable resources that go into making them."
 
-outfit "Nullifier"
-	category "Ammunition"
-	thumbnail "outfit/nullifier"
-	description "This is just to test how the images work inside ES."
 
-outfit "Nullifier Launcher"
+
+outfit "Nullifier Missile"
+	plural "Nullifier Missiles"
+	category "Ammunition"
+	cost 3500
+	thumbnail "outfit/nullifier"
+	"mass" 1
+	"nullifier missile capacity" -1
+	description "This is ammunition for the Nullifier Missile Pod, a weapon that is manufactured by the Remnant."
+
+outfit "Nullifier Missile Pod"
 	category "Secondary Weapons"
-	thumbnail "outfit/nullifier launcher"
-	description "This is just to test how the images work inside ES."
+	licenses
+		Remnant
+	cost 475000
+	thumbnail "outfit/nullifier missile pod"
+	"mass" 9
+	"outfit space" -5
+	"weapon capacity" -5
+	"gun ports" -1
+	"nullifier missile capacity" 11
+	weapon
+		sprite "projectile/nullifier"
+			"frame rate" 2
+			"rewind"
+			"random start frame"
+		sound "rocket"
+		ammo "Nullifier Missile"
+		icon "icon/nullifier"
+		"fire effect" "nullifier fire" 5
+		"hit effect" "nullifier spark" 5
+		"die effect" "nullifier die" 5
+		cluster
+		safe
+		phasing
+		"reload" 240
+		"firing energy" 10
+		"firing heat" 25
+		"inaccuracy" 5
+		"lifetime" 300
+		"velocity" 9
+		"acceleration" .9
+		"drag" .1
+		"turn" 2
+		"homing" 4
+		"infrared tracking" .9
+		"optical tracking" .7
+		"trigger radius" 20
+		"blast radius" 100
+		"shield damage" 750
+		"hull damage" 100
+		"fuel damage" 250
+		"ion damage" 5
+		"hit force" 700
+		"missile strength" 110
+	description "With the rest of the galaxy starting to intrude on the Remnant's territory, their designers created a weapon to ensure that no enemy ship manages to escape their territory."
+	description "The Nullifier missile makes use of the Remnant's experience in containing and degrading nuclear reactions to forcefully stabilize the fuel of enemy starships. While it is easy enough for affected ships to purge their tanks of the useless material, it will eat into their reserves substantially."
+
+effect "nullifier fire"
+	sprite "effect/nullifier fire/nullifier fire"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 31
+	"random angle" 10
+	"random frame rate" 10
+	"random spin" 2
+	"random velocity" 7
+
+effect "nullifier spark"
+	sprite "effect/nullifier spark/nullifier spark"
+		"no repeat"
+		"frame rate" 8
+	"lifetime" 45
+	"random angle" 360
+	"random frame rate" 6
+	"random velocity" 7
+	"velocity scale" 0.1
+
+effect "nullifier die"
+	sprite "effect/nullifier die/nullifier die"
+		"no repeat"
+		"frame rate" 8
+	"lifetime" 45
+	"random angle" 360
+	"random frame rate" 6
+	"random velocity" 5
+	"velocity scale" 0.1
+
 
 outfit "Remnant Ramscoop"
 	category "Special"
