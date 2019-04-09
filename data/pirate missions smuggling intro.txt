@@ -1051,7 +1051,6 @@ mission "Liekedeeler Intro Finale"
 					goto tell
 				`	[Say nothing.]`
 					goto meetup3
-				goto meetup3
 			label tell
 			`	She glances over the balcony, then turns to you. "I'll give you the juicy details as soon as the performance starts. But it's actually three jobs. Long-term, with pay."`
 			choice
@@ -1211,10 +1210,13 @@ mission "Liekedeeler Intro Finale"
 					goto best
 			label terrible
 			`	"It must be difficult to capture the mindset of people so long ago. I mean, assuming they were even trying."`
+				goto meetup7
 			label incredible
 			`	"I'm glad you enjoyed it so much! I didn't think it would be your type of thing."`
+				goto meetup7
 			label crying
 			`	Alexandra rolls her eyes. "I never took you for a romantic."`
+				goto meetup7
 			label best
 			`	Alexandra growls, "This was NOT a date. This was a business meeting. I'm way out of your league, after all." She smiles.`
 			label meetup7
