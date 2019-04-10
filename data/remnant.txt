@@ -207,6 +207,7 @@ shipyard "Remnant"
 	"Gull"
 	"Albatross"
 	"Pelican"
+	"Condor"
 
 shipyard "Remnant Gascraft"
 	"Gascraft"

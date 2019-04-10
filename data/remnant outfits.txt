@@ -588,7 +588,7 @@ outfit "Flak Turret"
 	cost 350000
 	thumbnail "outfit/flak cannon small darker"
 	"mass" 40
-	"outfit space" -40
+	"outfit space" 40
 	"weapon capacity" -40
 	"turret mounts" -1
 	weapon
@@ -625,7 +625,7 @@ outfit "Remnant Flak Turret"
 	cost 450000
 	thumbnail "outfit/remnant flak turret"
 	"mass" 26
-	"outfit space" 26
+	"outfit space" -26
 	"weapon capacity" -26
 	"turret mounts" -1
 	weapon
@@ -644,11 +644,11 @@ outfit "Remnant Flak Turret"
 		"safe"
 		"inaccuracy" 20
 		"burst count" 10
-		"burst reload" 30
+		"burst reload" 5
 		"turret turn" 5
 		"velocity" 20
-		"lifetime" 35
-		"reload" 40
+		"lifetime" 55
+		"reload" 30
 		"blast radius" 150
 		"firing energy" 5
 		"firing heat" 10
