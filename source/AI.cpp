@@ -3101,10 +3101,15 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		bool selectNext = !target || !target->IsTargetable();
 		for(const shared_ptr<Ship> &other : ships)
 		{
-			bool isPlayer = other->IsYours() || other->GetPersonality().IsEscort();
+			// Do not target yourself.
+			if(other.get() == &ship)
+				continue;
+			// The default behavior is to ignore your fleet and any friendly escorts.
+			bool isPlayer = other->IsYours() || (other->GetPersonality().IsEscort()
+					&& !other->GetGovernment()->IsEnemy());
 			if(other == target)
 				selectNext = true;
-			else if(other.get() != &ship && selectNext && other->IsTargetable() && isPlayer == shift)
+			else if(selectNext && isPlayer == shift && other->IsTargetable())
 			{
 				ship.SetTargetShip(other);
 				selectNext = false;
