@@ -755,3 +755,18 @@ outfit "Remnant Artillery"
 		"hit force" 78
 		"slowing damage" .5
 	description `With the advent of longer ranged weapons on Korath warships, it was determined that some sort of weapon was needed to fulfill the 'sniper' role in the Remnant fleets. The result was the creation of the Remnant Artillery - a cannon that utilizes deuterium fuel solidified into armor piercing shells designed for long range anti-capital ship combat.`
+
+
+
+outfit "Tactical Assault System"
+	category "Hand to Hand"
+	licenses
+		Remnant
+	cost 15000
+	thumbnail "outfit/tas"
+	"mass" 2
+	"outfit space" -2
+	"capture defense" 4.3
+	"unplunderable" 1
+	description `The Remnant use arrangements of hooks, ropes and pulleys to maneuver on the outside of ships while planet-side. At your suggestion, some of these have been refitted to allow for use inside ships. When defending a ship, you  can suspend your crew from them and allow greater mobility in defense.`
+
