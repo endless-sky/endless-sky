@@ -723,3 +723,35 @@ effect "flak die"
 	"lifetime" 9
 	"velocity scale" .75
 	"random velocity" .25
+
+
+
+outfit "Remnant Artillery"
+	category "Guns"
+	licenses
+		"Remnant Capital"
+	cost 871000
+	thumbnail "outfit/remnant artillery"
+	"mass" 19
+	"outfit space" -19
+	"weapon capacity" -19
+	"gun ports" -1
+	weapon
+		sprite "projectile/inhibitor"
+			"frame rate" 10
+			"no repeat"
+		sound "inhibitor"
+		"hit effect" "inhibitor impact" 3
+		"inaccuracy" .1
+		"velocity" 47
+		"random velocity" .5
+		"lifetime" 35
+		"reload" 25
+		"firing energy" 26
+		"firing fuel" 5
+		"firing force" 13
+		"shield damage" 52
+		"hull damage" 38
+		"hit force" 78
+		"slowing damage" .5
+	description `With the advent of longer ranged weapons on Korath warships, it was determined that some sort of weapon was needed to fulfill the 'sniper' role in the Remnant fleets. The result was the creation of the Remnant Artillery - a cannon that utilizes deuterium fuel solidified into armor piercing shells designed for long range anti-capital ship combat.`

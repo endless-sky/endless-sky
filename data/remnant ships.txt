@@ -631,6 +631,8 @@ ship "Condor"
 	turret 0 -33 "Point Defense Turret"
 	turret -39 140 "Remnant Flak Turret"
 	turret 39 140 "Remnant Flak Turret"
+	turret -45 160 "Remnant Flak Turret"
+	turret 45 160 "Remnant Flak Turret"
 	explode "small explosion" 20
 	explode "medium explosion" 80
 	explode "large explosion" 70

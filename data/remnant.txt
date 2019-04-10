@@ -249,6 +249,7 @@ outfitter "Remnant"
 	"Remnant Flak Turret"
 	"Flak Turret"
 	"Void Rifle"
+	"Remnant Artillery"
 
 outfitter "Remnant Salvage"
 	"Generator (Furnace Class)"
