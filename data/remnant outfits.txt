@@ -586,7 +586,7 @@ outfit "Void Rifle"
 outfit "Flak Turret"
 	category "Turrets"
 	cost 350000
-	thumbnail "outfit/flak cannon small darker"
+	thumbnail "outfit/flak cannon"
 	"mass" 40
 	"outfit space" 40
 	"weapon capacity" -40
@@ -655,7 +655,7 @@ outfit "Remnant Flak Turret"
 		"hit force" 200
 		"shield damage" 224
 		"hull damage" 296
-	description `Tired of annoying fighters running circles around your larger ships? Shove some airbust shells in their faces!`
+	description `This turret was designed and manufactured by a dissenting group of Remnant engineers who firmly believe the old motto "by many small things great things can accomplish things." In response to the automaton threat, they believe that taking a page from the Korath tactics by filling the skies with lethal pieces of metal is one of the best ways to eliminate that threat.`
 
 effect "flak explosion"
 	sprite "effect/explosion/large"
