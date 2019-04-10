@@ -174,7 +174,7 @@ void PlayerInfoPanel::Draw()
 
 
 
-bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	bool control = (mod & (KMOD_CTRL | KMOD_GUI));
 	bool shift = (mod & KMOD_SHIFT);

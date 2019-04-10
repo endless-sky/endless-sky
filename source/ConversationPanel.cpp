@@ -197,7 +197,7 @@ void ConversationPanel::Draw()
 
 
 // Handle key presses.
-bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	// Map popup happens when you press the map key, unless the name text entry
 	// fields are currently active.

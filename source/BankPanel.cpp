@@ -236,7 +236,7 @@ void BankPanel::Draw()
 
 
 // Handle key presses, or clicks that the interface has mapped to a key press.
-bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(key == SDLK_UP && selectedRow)
 		--selectedRow;
