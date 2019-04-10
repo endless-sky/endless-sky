@@ -603,8 +603,8 @@ ship "Condor"
 			"hull damage" 2000
 			"hit force" 6000
 	outfits
-		"Inhibitor Cannon" 6
-		"Remnant Flak Turret" 5
+		"Remnant Artillery" 6
+		"Remnant Flak Turret" 6
 		"Point Defense Turret"
 
 		"Aeon Cell"
@@ -620,12 +620,12 @@ ship "Condor"
 	engine -30 215
 	engine 30 215
 	engine 0 220
-	gun -68 5 "Inhibitor Cannon"
-	gun 68 5 "Inhibitor Cannon"
-	gun -85 21 "Inhibitor Cannon"
-	gun 85 21 "Inhibitor Cannon"
-	gun -62 32 "Inhibitor Cannon"
-	gun 62 32 "Inhibitor Cannon"
+	gun -68 5 "Remnant Artillery"
+	gun 68 5 "Remnant Artillery"
+	gun -85 21 "Remnant Artillery"
+	gun 85 21 "Remnant Artillery"
+	gun -62 32 "Remnant Artillery"
+	gun 62 32 "Remnant Artillery"
 	turret -27 -80 "Remnant Flak Turret"
 	turret 27 -80 "Remnant Flak Turret"
 	turret 0 -33 "Point Defense Turret"
