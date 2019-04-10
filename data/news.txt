@@ -671,7 +671,7 @@ news "reporter"
 			"My job is to bring sunlight into dark places and expose things that people are trying to keep hidden... and to avoid being killed in the process."
 			"A free and independent press is a critical component of any healthy democracy. But sensationalism is a whole lot more lucrative."
 			"I've been interviewing elderly starship captains. You wouldn't believe the tall tales that some of them tell!"
-			`Read my new article! "Ten Things the Quarg Are Hiding from Us - Number Seven Will Surprise You!"`
+			`Read my new article! 'Ten Things the Quarg Are Hiding from Us - Number Seven Will Surprise You!'`
 
 
 
