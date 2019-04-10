@@ -561,10 +561,16 @@ effect "nullifier hit"
 	"velocity scale" 0.1
 
 
-outfit "Remnant Ramscoop"
-	category "Special"
-	thumbnail "outfit/remnant ramscoop"
-	description "This is just to test how the images work inside ES."
+outfit "Ember Waste Ramscoop"
+	category "Systems"
+	licenses
+		Remnant
+	cost 72000
+	thumbnail "outfit/ember waste ramscoop"
+	"mass" 3
+	"outfit space" -3
+	"ramscoop" 1.5
+	description "In contrast to most of the galaxy, the Ember Waste is comparatively dense with the raw elements necessary for the production of fuel. Driven by the ever present fear that war is about to return to their desolate corner, the Remnant combined reverse engineered Deep technology with alien technology to provide improved sources of fuel to power their weapons and cloaks."
 
 outfit "Remnant Plasma Torch Turret"
 	category "Special"
@@ -576,3 +582,144 @@ outfit "Void Rifle"
 	thumbnail "outfit/void rifle"
 	description "This is just to test how the images work inside ES."
 
+
+outfit "Flak Turret"
+	category "Turrets"
+	cost 350000
+	thumbnail "outfit/flak cannon small darker"
+	"mass" 40
+	"outfit space" -40
+	"weapon capacity" -40
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/flak cannon"
+		"hardpoint offset" 10
+		sprite "projectile/rail slug"
+			"frame rate" 3
+				"hardpoint offset" 15.
+		sound "explosion small"
+		"hit effect" "flak explosion"
+		"hit effect" "flak smoke slow" 10
+		"hit effect" "flak smoke fast" 5
+		"fire effect" "flak muzzle flash"
+		"fire effect" "flak muzzle smoke" 2
+		"die effect" "flak die"
+		"safe"
+		"inaccuracy" 1
+		"turret turn" 5
+		"velocity" 18
+		"lifetime" 35
+		"reload" 60
+		"blast radius" 150
+		"firing energy" 5
+		"firing heat" 10
+		"hit force" 200
+		"shield damage" 224
+		"hull damage" 296
+	description `Tired of annoying fighters running circles around your larger ships? Shove some airbust shells in their faces!`
+
+
+
+outfit "Remnant Flak Turret"
+	category "Turrets"
+	cost 450000
+	thumbnail "outfit/remnant flak turret"
+	"mass" 26
+	"outfit space" 26
+	"weapon capacity" -26
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/remnant flak turret"
+		"hardpoint offset" 10
+		sprite "projectile/rail slug"
+			"frame rate" 3
+				"hardpoint offset" 15.
+		sound "explosion small"
+		"hit effect" "flak explosion"
+		"hit effect" "flak smoke slow" 10
+		"hit effect" "flak smoke fast" 5
+		"fire effect" "flak muzzle flash"
+		"fire effect" "flak muzzle smoke" 2
+		"die effect" "flak die"
+		"safe"
+		"inaccuracy" 20
+		"burst count" 10
+		"burst reload" 30
+		"turret turn" 5
+		"velocity" 20
+		"lifetime" 35
+		"reload" 40
+		"blast radius" 150
+		"firing energy" 5
+		"firing heat" 10
+		"hit force" 200
+		"shield damage" 224
+		"hull damage" 296
+	description `Tired of annoying fighters running circles around your larger ships? Shove some airbust shells in their faces!`
+
+effect "flak explosion"
+	sprite "effect/explosion/large"
+		"no repeat"
+		"frame rate" 20
+	sound "explosion medium"
+	"lifetime" 120
+	"random angle" 360
+	"random velocity" .5
+	"random spin" 1
+	"random frame rate" 5
+	"velocity scale" .01
+	
+	
+effect "flak smoke slow"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 50
+	"random angle" 360
+	"random spin" 5
+	"velocity scale" .01
+	"random velocity" 1
+	
+effect "flak smoke fast"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 360
+	"random spin" 5
+	"velocity scale" .01
+	"random velocity" 2
+	
+effect "flak muzzle flash"
+	sprite "effect/explosion/tiny"
+		"no repeat"
+		"frame rate" 25
+	sound "explosion tiny"
+	"lifetime" 15
+	"random angle" 360
+	"random velocity" 0
+	"random spin" 1
+	"random frame rate" 5
+	"velocity scale" 1
+	
+effect "flak muzzle smoke"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 5
+	"random spin" 5
+	"random velocity" 13
+	"velocity scale" 1
+	"random velocity" 1
+	
+effect "flak die"
+	sprite "effect/sidewinder fire"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 9
+	"velocity scale" .75
+	"random velocity" .25
