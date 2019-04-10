@@ -2965,6 +2965,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	bool isWormhole = false;
 	if(player.HasTravelPlan())
 	{
+		// Determine if the player is jumping to their target system or landing on a wormhole.
 		const System *system = player.TravelPlan().back();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
 			if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship) && player.HasVisited(object.GetPlanet())
@@ -3048,6 +3049,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	
 	if(keyDown.Has(Command::NEAREST))
 	{
+		// Find the nearest ship to the flagship. If `Shift` is held, consider friendly ships too.
 		double closest = numeric_limits<double>::infinity();
 		int closeState = 0;
 		bool found = false;
@@ -3093,7 +3095,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	}
 	else if(keyDown.Has(Command::TARGET))
 	{
+		// Find the "next" ship to target. Holding `Shift` will cycle through escorts.
 		shared_ptr<const Ship> target = ship.GetTargetShip();
+		// Whether the next eligible ship should be targeted.
 		bool selectNext = !target || !target->IsTargetable();
 		for(const shared_ptr<Ship> &other : ships)
 		{
@@ -3112,6 +3116,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	}
 	else if(keyDown.Has(Command::BOARD))
 	{
+		// Board the nearest disabled ship, focusing on hostiles before allies. Holding
+		// `Shift` results in boarding only player-owned escorts in need of assistance.
 		shared_ptr<const Ship> target = ship.GetTargetShip();
 		if(!target || !CanBoard(ship, *target) || (shift && !target->IsYours()))
 		{
