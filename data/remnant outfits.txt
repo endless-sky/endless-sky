@@ -573,9 +573,30 @@ outfit "Ember Waste Ramscoop"
 	description "In contrast to most of the galaxy, the Ember Waste is comparatively dense with the raw elements necessary for the production of fuel. Driven by the ever present fear that war is about to return to their desolate corner, the Remnant combined reverse engineered Deep technology with alien technology to provide improved sources of fuel to power their weapons and cloaks."
 
 outfit "Remnant Plasma Torch Turret"
-	category "Special"
+	category "Turrets"
+	licenses
+		"Remnant Capital"
+	cost 1003000
 	thumbnail "outfit/remnant plasma torch turret"
-	description "This is just to test how the images work inside ES."
+	"mass" 15
+	"outfit space" -15
+	"weapon capacity" -15
+	"gun ports" -1
+	"cooling" 5
+	weapon
+		sprite "projectile/electron"
+			"frame rate" 60
+		sound "electron beam"
+		"hit effect" "electron impact"
+		"inaccuracy" .2
+		"velocity" 550
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 2.8
+		"firing heat" 5.2
+		"shield damage" 6.0
+		"hull damage" 10.0
+	description "This turret mounts a pair of gaser cannons on a newly designed platform. "
 
 outfit "Void Rifle"
 	category "Special"
@@ -763,7 +784,7 @@ outfit "Tactical Assault System"
 	licenses
 		Remnant
 	cost 15000
-	thumbnail "outfit/tas"
+	thumbnail "outfit/tactical assault system"
 	"mass" 2
 	"outfit space" -2
 	"capture defense" 4.3
@@ -816,7 +837,7 @@ outfit "Remnant GASER Cannon"
 
 
 outfit "Remnant GASER Turret"
-	category "Guns"
+	category "Turrets"
 	licenses
 		"Remnant Capital"
 	cost 903000
@@ -852,8 +873,8 @@ outfit "Crystal Grid"
 	"mass" 25
 	"outfit space" -25
 	"energy capacity" 7500
-	"energy consumption" .4
-	"heat generation" .4
+	"energy consumption" .3
+	"heat generation" .3
 	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
 	description "	While crystal grids still leak excess energy and heat, these new arrays reduce the leakage considerably."
 
