@@ -198,7 +198,7 @@ void MissionPanel::Draw()
 
 
 // Only override the ones you need; the default action is to return false.
-bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(key == 'a' && CanAccept())
 	{
@@ -260,7 +260,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		}
 	}
 	else
-		return MapPanel::KeyDown(key, mod, command);
+		return MapPanel::KeyDown(key, mod, command, isNewPress);
 	
 	if(availableIt != available.end())
 		selectedSystem = availableIt->Destination()->GetSystem();

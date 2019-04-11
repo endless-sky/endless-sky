@@ -179,14 +179,20 @@ private:
 	const List<Minable> &minables;
 	const List<Flotsam> &flotsam;
 	
+	// The current step count for the AI, ranging from 0 to 30. Its value
+	// helps limit how often certain actions occur (such as changing targets).
 	int step = 0;
 	
+	// Commands that are newly active for this step.
 	Command keyDown;
+	// Commands that are active for this step.
 	Command keyHeld;
+	// Commands applied by the player's "autopilot."
 	Command keyStuck;
-	bool wasHyperspacing = false;
+	
 	bool isLaunching = false;
 	bool isCloaking = false;
+	// Whether the `Shift` modifier key was pressed for this step.
 	bool shift = false;
 	
 	bool escortsAreFrugal = true;
