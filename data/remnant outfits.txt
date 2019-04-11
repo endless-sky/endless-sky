@@ -812,7 +812,7 @@ outfit "Remnant GASER Cannon"
 	licenses
 		"Remnant Capital"
 	cost 903000
-	thumbnail "outfit/remnant gaser canon"
+	thumbnail "outfit/remnant gaser cannon"
 	"mass" 17
 	"outfit space" -17
 	"weapon capacity" -17
