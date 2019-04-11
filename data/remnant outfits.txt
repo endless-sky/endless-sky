@@ -772,7 +772,21 @@ outfit "Tactical Assault System"
 
 
 
-outfit "Remnant GASER"
+outfit "Boarding Claws"
+	category "Hand to Hand"
+	licenses
+		Remnant
+	cost 15000
+	thumbnail "outfit/remnant boarding claws"
+	"mass" 4
+	"outfit space" -4
+	"capture offense" 8
+	"unplunderable" 1
+	description `With the advent of living ships paralleling their shift to the offense, the Remnant have developed new equipment for boarding enemy ships. These boarding claws ensure that enemy ships cannot escape, while providing specialized tools to forcefully take control of enemy internal systems. This gives the attacking Remnant a decided advantage in ship to ship combat.`
+
+
+
+outfit "Remnant GASER Cannon"
 	category "Guns"
 	licenses
 		"Remnant Capital"
@@ -801,7 +815,7 @@ outfit "Remnant GASER"
 
 
 
-outfit "Remnant GASER"
+outfit "Remnant GASER Turret"
 	category "Guns"
 	licenses
 		"Remnant Capital"
@@ -826,3 +840,33 @@ outfit "Remnant GASER"
 		"shield damage" 6.0
 		"hull damage" 10.0
 	description "This turret mounts a pair of gaser cannons on a newly designed platform. "
+
+
+
+outfit "Crystal Grid"
+	category "Power"
+	licenses
+		Remnant
+	cost 253000
+	thumbnail "outfit/crystal grid"
+	"mass" 25
+	"outfit space" -25
+	"energy capacity" 7500
+	"energy consumption" .4
+	"heat generation" .4
+	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
+	description "	While crystal grids still leak excess energy and heat, these new arrays reduce the leakage considerably."
+
+
+
+outfit "Crystal Cell"
+	category "Power"
+	licenses
+		Remnant
+	cost 5600000
+	thumbnail "outfit/crystal cell"
+	"mass" 110
+	"outfit space" -110
+	"energy generation" 22
+	"heat generation" 27
+	description "Building on new developments, Remnant engineers have developed ways to pull energy out of the fabric of space-time. The resulting generator does not produce much more than the Aeon cell, but it takes up much less space."

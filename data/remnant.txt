@@ -250,6 +250,13 @@ outfitter "Remnant"
 	"Flak Turret"
 	"Void Rifle"
 	"Remnant Artillery"
+	"Crystal Cell"
+	"Crystal Grid"
+	"Remnant GASER Cannon"
+	"Remnant GASER Turret"
+	"Boarding Claws"
+	"Tactical Assault System"
+	
 
 outfitter "Remnant Salvage"
 	"Generator (Furnace Class)"
