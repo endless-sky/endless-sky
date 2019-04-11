@@ -770,3 +770,59 @@ outfit "Tactical Assault System"
 	"unplunderable" 1
 	description `The Remnant use arrangements of hooks, ropes and pulleys to maneuver on the outside of ships while planet-side. At your suggestion, some of these have been refitted to allow for use inside ships. When defending a ship, you  can suspend your crew from them and allow greater mobility in defense.`
 
+
+
+outfit "Remnant GASER"
+	category "Guns"
+	licenses
+		"Remnant Capital"
+	cost 903000
+	thumbnail "outfit/remnant gaser canon"
+	"mass" 17
+	"outfit space" -17
+	"weapon capacity" -17
+	"gun ports" -1
+	"cooling" 5
+	weapon
+		sprite "projectile/electron"
+			"frame rate" 60
+		sound "electron beam"
+		"hit effect" "electron impact"
+		"inaccuracy" .2
+		"velocity" 550
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 1.4
+		"firing heat" 3.0
+		"shield damage" 3.0
+		"hull damage" 5.0
+	description "The GASER is the product of lengthy research into the field of spatially and temporally stabilized gamma rays produced through the use of di-positronium. Spurred by the acquisition of heavy lasers demonstrating new techniques used by the rest of humanity, Remnant researchers were able to significantly improve on these designs to create a highly effective beam weapon."
+	description "While they were not able to eliminate the heat produced by the gaser canon using integrated cooling systems, these colling systems are integrated so that they can provide continuous cooling to help minimize the thermaly-induced downtime between firing."
+
+
+
+outfit "Remnant GASER"
+	category "Guns"
+	licenses
+		"Remnant Capital"
+	cost 903000
+	thumbnail "outfit/remnant gaser turret"
+	"mass" 17
+	"outfit space" -17
+	"weapon capacity" -17
+	"gun ports" -1
+	"cooling" 5
+	weapon
+		sprite "projectile/electron"
+			"frame rate" 60
+		sound "electron beam"
+		"hit effect" "electron impact"
+		"inaccuracy" .2
+		"velocity" 550
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 2.8
+		"firing heat" 5.2
+		"shield damage" 6.0
+		"hull damage" 10.0
+	description "This turret mounts a pair of gaser cannons on a newly designed platform. "
