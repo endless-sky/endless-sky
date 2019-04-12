@@ -874,7 +874,7 @@ outfit "Remnant GASER Turret"
 	"mass" 17
 	"outfit space" -17
 	"weapon capacity" -17
-	"gun ports" -1
+	"turret ports" -1
 	"cooling" 5
 	weapon
 		sprite "projectile/electron"
