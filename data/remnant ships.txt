@@ -704,6 +704,8 @@ ship "Condor"
 
 ship "Peregrine"
 	sprite "ship/peregrine/peregrine"
+		"frame rate" 3
+		rewind
 	thumbnail "thumbnail/peregrine"
 	attributes
 		category "Medium Warship"
