@@ -420,6 +420,66 @@ ship "Pelican"
 
 
 
+ship "Penguin"
+	sprite "ship/penguin/penguin"
+		"frame rate" 3
+	thumbnail "thumbnail/penguin"
+	attributes
+		category Transport
+		cost 2530000
+		"shields" 3000
+		"hull" 1500
+		"required crew" 1
+		"bunks" 5
+		"mass" 71
+		"drag" 1.25
+		"heat dissipation" 0.9
+		"fuel capacity" 800
+		"energy capacity" 300
+		"ramscoop" 0.5
+		"cargo space" 19
+		"outfit space" 108
+		"engine capacity" 54
+		"weapon capacity" 33
+		"shield generation" 1
+		"shield energy" 0.4
+		"hull repair rate" 2
+		"hull energy" 0.9
+		"cloak" .03
+		"cloaking energy" 3
+		"cloaking fuel" .05
+		"outfit scan power" 50
+		"outfit scan speed" 1
+		"tactical scan power" 50
+		"atmosphere scan" 100
+		"reverse thrust" 16
+		"reverse thrusting energy" 2.5
+		"reverse thrusting heat" 2.0
+		weapon
+			"blast radius" 20
+			"shield damage" 260
+			"hull damage" 160
+			"hit force" 800
+	outfits
+		"Millennium Cell"
+		"Emergency Ramscoop"
+		"Quantum Key Stone"
+		"Tuning Rifle" 1
+		
+		"Crucible-Class Thruster"
+		"Crucible-Class Steering"
+		"Hyperdrive"
+	
+	engine 0 30
+	gun 0 -60
+	turret 0 -60
+	explode "tiny explosion" 8
+	explode "small explosion" 7
+	description "Inspired by close contact with void sprites and the reinvigoration of xenobiology, the Penguin is a prototype designed to serve the dual roles of testing new starship technology while exploring hostile planets throughout the Ember Waste. One of this ship's distinguishing features is that it is truly alive and has a mind that approaches self-awareness."
+	description "	The cloaking technology is built into the Penguin's hull; it cannot be removed or transferred to another ship."
+
+
+
 ship "Starling"
 	sprite "ship/starling"
 	thumbnail "thumbnail/starling"
