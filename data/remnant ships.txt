@@ -639,3 +639,78 @@ ship "Condor"
 	explode "huge explosion" 30
 	"final explode" "final explosion large" 1
 	description "The Condor is not a ship meant to be purchased. It is a prototype - a hybrid of so many novel technologies that the Remnant have only managed to build a single one. And that one is flown by Zitchas"
+
+
+
+ship "Peregrine"
+	sprite "ship/peregrine/peregrine"
+	thumbnail "thumbnail/peregrine"
+	attributes
+		category "Medium Warship"
+		licenses
+			"Remnant Capital"
+		"cost" 35500000
+		"shields" 50200
+		"hull" 35700
+		"required crew" 23
+		"bunks" 42
+		"mass" 540
+		"drag" 7.7
+		"heat dissipation" 0.8
+		"fuel capacity" 1000
+		"cargo space" 56
+		"outfit space" 796
+		"weapon capacity" 342
+		"engine capacity" 204
+		"shield generation" 5.2
+		"shield energy" 4.6
+		"hull repair rate" 1.5
+		"hull energy" 1.2
+		"cloak" .05
+		"cloaking energy" 5
+		"cloaking fuel" .1
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 100
+		weapon
+			"blast radius" 340
+			"shield damage" 3400
+			"hull damage" 1700
+			"hit force" 5100
+	outfits
+		"Sunbeam" 2
+		"Thunderhead Launcher" 2
+		"Thunderhead Missile" 80
+		"Dual Sunbeam Turret" 2
+		"Wanderer Anti-Missile" 2
+		
+		"Blue Sun Reactor"
+		"Red Sun Reactor"
+		"Dark Storm Shielding"
+		"Bright Cloud Shielding"
+		"Wanderer Heat Sink"
+		"Wanderer Ramscoop"
+		
+		"Type 4 Radiant Thruster"
+		"Type 1 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Type 3 Radiant Steering"
+		"Hyperdrive"
+		
+	gun 0 -133
+	gun -11 -105
+	gun 11 -105
+	gun -17 -81.5
+	gun 17 -81.5
+	turret -29 30
+	turret 29 30
+	turret 0 -41
+	engine -25 117
+	engine 0 116
+	engine 25 117
+	explode "small explosion" 40
+	explode "medium explosion" 70
+	explode "large explosion" 50
+	explode "huge explosion" 20
+	"final explode" "final explosion large" 1
+	description "The Peregrine is the first fully living starship designed for war. While it is clearly not sapient and must rely on its pilot for larger battle-space tactics, its neural network has an exquisite understanding of close quarters maneuvers and dogfights. These ships were built and designed to be fast-attack cruisers utilizing their combined advantages of speed and stealth to confuse, isolate, and disable their enemies."
