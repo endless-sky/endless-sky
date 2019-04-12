@@ -74,8 +74,6 @@ fleet "Remnant Transport"
 		disables plunders coward appeasing mining harvests
 	variant 10
 		"Gull"
-	variant 6
-		"Gull (Heavy)"
 	variant 5
 		"Gull (Sniper)"
 	variant 4
@@ -208,6 +206,8 @@ shipyard "Remnant"
 	"Albatross"
 	"Pelican"
 	"Void Sprite Elder"
+	"Condor"
+	"Peregrine"
 
 shipyard "Remnant Gascraft"
 	"Gascraft"
@@ -242,6 +242,21 @@ outfitter "Remnant"
 	"Cargo Scanner"
 	"Outfit Scanner"
 	"Tuning Rifle"
+	"Nullifier Missile"
+	"Nullifier Missile Pod"
+	"Ember Waste Ramscoop"
+	"Remnant Plasma Torch Turret"
+	"Remnant Flak Turret"
+	"Flak Turret"
+	"Void Rifle"
+	"Remnant Artillery"
+	"Crystal Cell"
+	"Crystal Grid"
+	"Remnant GASER Cannon"
+	"Remnant GASER Turret"
+	"Boarding Claws"
+	"Tactical Assault System"
+	
 
 outfitter "Remnant Salvage"
 	"Generator (Furnace Class)"

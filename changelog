@@ -14,7 +14,8 @@ Version 0.9.9:
     * Crashes and other serious bugs:
       * Fixed a crash when reordering escorts in the player info panel on Mac OS X.
       * Fixed a bug that caused ships with nuclear missiles to launch them all at the same time.
-      * Fixed a bug where large projectile velocities would freeze the game (@tehhowch)
+      * Fixed a bug where large projectile velocities would freeze the game. (@tehhowch)
+      * Fixed a crash when pressing "Land" at a specific time while jumping in uninhabited systems. (@tehhowch)
     * Ship behavior:
       * Fixed escorts doing nothing if near death. (@flaviojs)
       * Reverse thrust now works properly while turning. (@Hacklin)
@@ -28,8 +29,8 @@ Version 0.9.9:
       * Fixed a situation where you couldn't cancel escort orders. (@flaviojs)
       * Fixed a bug when issuing a "hold position" command while escorts are hyperjumping.
       * Ships will no longer attempt to scan targets that they are hostile toward. (@tehhowch)
-      * Fixed a bug where carried ships might not be destroyed when their carrier self-destructs (@tehhowch)
-      * Ships will no longer take off from planets they do not have the required attributes to land on (@tehhowch)
+      * Fixed a bug where carried ships might not be destroyed when their carrier self-destructs. (@tehhowch)
+      * Ships will no longer take off from planets they do not have the required attributes to land on. (@tehhowch)
     * User interface:
       * Fixed "ton" vs. "tons" when harvesting materials with a unit size other than 1 ton. (@Rakete1111)
       * Fixed "invisible" ships (disabled escorts) getting selected in the shop panel. (@tehhowch)
@@ -40,8 +41,8 @@ Version 0.9.9:
       * Fixed map re-centering at different zoom levels. (@dzhu)
       * The numeric entry dialog now treats non-numeric text as if you clicked "cancel."
       * Fixed jumpiness in map zooming. (@thomasballinger)
-      * Fixed trailing whitespace and "1 credits" in payment messages (@tehhowch)
-      * The "fail" noise no longer plays on repeat if you have no way to jump (@tehhowch)
+      * Fixed trailing whitespace and "1 credits" in payment messages. (@tehhowch)
+      * The "fail" noise no longer plays on repeat if you have no way to jump. (@tehhowch)
     * Other:
       * Fixed the FW "electron turret" mission not offering on landing. (@tehhowch)
       * Fixed the last fraction of a crate of commodities not getting jettisoned. (@flaviojs)
@@ -60,8 +61,8 @@ Version 0.9.9:
       * FW Katya 1C now only offers on inhabited planets. (@Amazinite)
       * The Remembrance Day and war begins missions now only offer on inhabited planets. (@Fzzr)
       * The turret hardpoint and projectile of the Laser Turret now properly reflect the outfit image. (@Amazinite)
-      * NPC carrier-fighter assignment properly counts available bays (@oo13)
-      * Unrepresentable condition values generate a warning, rather than result in signed integer overflow (@tehhowch)
+      * NPC carrier-fighter assignment properly counts available bays. (@oo13)
+      * Unrepresentable condition values generate a warning, rather than result in signed integer overflow. (@tehhowch)
     * Minor issues:
       * Typo fixes. (@abenkovskii, @Alkallid, @Amazinite, @Bladewood, @Fzzr, @jafdy, @Janaszar, @jostephd, @Jugosloven1612, @LordInsane, @MessyMix, @Nescio0, @redshalken, @seanfahey, @solardawning, @temtemy, @themightygrunt, @tmbutterworth, @toilethinges, @Turtleroku, @UnciaPrima, @warp-core, @whismerhill)
       * Fixed missions that give "gifts" not being colored as ready to be completed. (@tehhowch)
@@ -231,8 +232,8 @@ Version 0.9.9:
       * New "launching" personality for NPCs that always take off with the player. (@tehhowch)
       * New ways for a conversation to kill the player or an NPC the player is boarding. (@tehhowch)
       * Missions will now create "mission: failed" and "mission: declined" conditions upon failing and being declined respectively. (@Fzzr)
-      * Assisting & boarding missions can spawn NPCs in-flight, without requiring the player to land (@tehhowch)
-      * The starting planet of NPCs can be specified (@tehhowch)
+      * Assisting & boarding missions can spawn NPCs in-flight, without requiring the player to land. (@tehhowch)
+      * The starting planet of NPCs can be specified. (@tehhowch)
     * Other:
       * In an interface spec, different elements can now be anchored to different screen corners.
       * In the HUD interface spec, the location of the ammo, escorts, and messages is now customizable.

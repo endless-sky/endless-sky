@@ -36,9 +36,9 @@ ship "Albatross"
 		"shield energy" 4.6
 		"hull repair rate" 1.5
 		"hull energy" 1.2
-		"outfit scan power" 12
+		"outfit scan power" 18
 		"outfit scan speed" 1
-		"tactical scan power" 26
+		"tactical scan power" 39
 		weapon
 			"blast radius" 360
 			"shield damage" 3600
@@ -80,7 +80,6 @@ ship "Albatross"
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
 	description "Once they left human space, it became apparent to the Remnant that they would need to build their own shipyards in order to defend themselves if they were discovered by the Alphas or any other unfriendly faction. Using new composite materials that they discovered, they built ships very different from anything seen in human space."
-	description "	Spurred on by their exposure to alien ruins, the Remnant have ensured that every ship has detailed scanners built into their hull. While they continue to hope to find wrecks to accompany the ruins, these scanners have proven invaluable in their pursuit of livelier ships."
 
 ship "Albatross" "Albatross (Sniper)"
 	outfits
@@ -94,6 +93,8 @@ ship "Albatross" "Albatross (Sniper)"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Outfits Expansion"
 		"Tuning Rifle" 57
 
 		"Forge-Class Thruster"
@@ -199,9 +200,9 @@ ship "Gascraft"
 		"hull repair rate" 1.2
 		"hull energy" 0.9
 		"gaslining" 1
-		"outfit scan power" 50
+		"outfit scan power" 24
 		"outfit scan speed" 1
-		"tactical scan power" 50
+		"tactical scan power" 52
 		"atmosphere scan" 100
 	outfits
 		"Millennium Cell"
@@ -263,6 +264,7 @@ ship "Gull"
 		"Crystal Capacitor"
 		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
+		"Salvage Scanner"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -284,20 +286,6 @@ ship "Gull"
 	description "	The Gull has quickly proven its worth, allowing the Starling fleets to return to riskier activities while the Gull takes over the hazardous convoy routes. It is now the primary element of the Remnant's extra-territorial resource operations."
 	description "	The cloaking technology is built into the Gull's hull; it cannot be removed or transferred to another ship."
 
-ship "Gull" "Gull (Heavy)"
-	outfits
-		"Thrasher Cannon" 3
-		"Thrasher Turret"
-
-		"Epoch Cell"
-		"Millennium Cell"
-		"Crystal Capacitor"
-		"Tuning Rifle" 4
-
-		"Forge-Class Thruster"
-		"Forge-Class Steering"
-		"Hyperdrive"
-
 ship "Gull" "Gull (Sniper)"
 	outfits
 		"Inhibitor Cannon" 3
@@ -306,6 +294,8 @@ ship "Gull" "Gull (Sniper)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
+		"Salvage Scanner" 2
+		"Outfits Expansion"
 		"Tuning Rifle" 4
 
 		"Forge-Class Thruster"
@@ -322,6 +312,8 @@ ship "Gull" "Gull (Support)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
+		"Salvage Scanner" 2
+		"Outfits Expansion"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -334,6 +326,7 @@ ship "Gull" "Gull (Cargo)"
 
 		"Epoch Cell"
 		"Crystal Capacitor"
+		"Salvage Scanner"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -346,6 +339,7 @@ ship "Gull" "Gull (Bunks)"
 
 		"Epoch Cell"
 		"Crystal Capacitor"
+		"Salvage Scanner"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -420,6 +414,66 @@ ship "Pelican"
 
 
 
+ship "Penguin"
+	sprite "ship/penguin/penguin"
+		"frame rate" 3
+	thumbnail "thumbnail/penguin"
+	attributes
+		category Transport
+		cost 2530000
+		"shields" 3000
+		"hull" 1500
+		"required crew" 1
+		"bunks" 5
+		"mass" 71
+		"drag" 1.25
+		"heat dissipation" 0.9
+		"fuel capacity" 800
+		"energy capacity" 300
+		"ramscoop" 0.5
+		"cargo space" 19
+		"outfit space" 108
+		"engine capacity" 54
+		"weapon capacity" 33
+		"shield generation" 1
+		"shield energy" 0.4
+		"hull repair rate" 2
+		"hull energy" 0.9
+		"cloak" .03
+		"cloaking energy" 3
+		"cloaking fuel" .05
+		"outfit scan power" 50
+		"outfit scan speed" 1
+		"tactical scan power" 50
+		"atmosphere scan" 100
+		"reverse thrust" 16
+		"reverse thrusting energy" 2.5
+		"reverse thrusting heat" 2.0
+		weapon
+			"blast radius" 20
+			"shield damage" 260
+			"hull damage" 160
+			"hit force" 800
+	outfits
+		"Millennium Cell"
+		"Emergency Ramscoop"
+		"Quantum Key Stone"
+		"Tuning Rifle" 1
+		
+		"Crucible-Class Thruster"
+		"Crucible-Class Steering"
+		"Hyperdrive"
+	
+	engine 0 30
+	gun 0 -60
+	turret 0 -60
+	explode "tiny explosion" 8
+	explode "small explosion" 7
+	description "Inspired by close contact with void sprites and the reinvigoration of xenobiology, the Penguin is a prototype designed to serve the dual roles of testing new starship technology while exploring hostile planets throughout the Ember Waste. One of this ship's distinguishing features is that it is truly alive and has a mind that approaches self-awareness."
+	description "	The cloaking technology is built into the Penguin's hull; it cannot be removed or transferred to another ship."
+
+
+
 ship "Starling"
 	sprite "ship/starling"
 	thumbnail "thumbnail/starling"
@@ -464,6 +518,7 @@ ship "Starling"
 		"Crystal Capacitor"
 		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
+		"Salvage Scanner"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
@@ -565,3 +620,154 @@ ship "Starling" "Starling (Thrasher)"
 	gun
 
 
+
+ship "Condor"
+	sprite "ship/vulture"
+	thumbnail "thumbnail/vulture"
+	attributes
+		category "Heavy Warship"
+		licenses
+			"Remnant Capital"
+		"cost" 39100000
+		"shields" 60400
+		"hull" 50500
+		"required crew" 46
+		"bunks" 95
+		"mass" 700
+		"drag" 8.9
+		"heat dissipation" 0.85
+		"fuel capacity" 1000
+		"ramscoop" 2
+		"cargo space" 98
+		"outfit space" 960
+		"weapon capacity" 428
+		"engine capacity" 200
+		"shield generation" 5.2
+		"shield energy" 4.6
+		"hull repair rate" 1.5
+		"hull energy" 1.2
+		"cloak" .03
+		"cloaking energy" 5
+		"cloaking fuel" .1
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 100
+		weapon
+			"blast radius" 400
+			"shield damage" 4000
+			"hull damage" 2000
+			"hit force" 6000
+	outfits
+		"Remnant Artillery" 6
+		"Remnant Flak Turret" 6
+		"Point Defense Turret"
+
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 2
+		"Quantum Key Stone"
+
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
+		"Jump Drive"
+		
+	engine -30 215
+	engine 30 215
+	engine 0 220
+	gun -68 5 "Remnant Artillery"
+	gun 68 5 "Remnant Artillery"
+	gun -85 21 "Remnant Artillery"
+	gun 85 21 "Remnant Artillery"
+	gun -62 32 "Remnant Artillery"
+	gun 62 32 "Remnant Artillery"
+	turret -27 -80 "Remnant Flak Turret"
+	turret 27 -80 "Remnant Flak Turret"
+	turret 0 -33 "Point Defense Turret"
+	turret -39 140 "Remnant Flak Turret"
+	turret 39 140 "Remnant Flak Turret"
+	turret -45 160 "Remnant Flak Turret"
+	turret 45 160 "Remnant Flak Turret"
+	explode "small explosion" 20
+	explode "medium explosion" 80
+	explode "large explosion" 70
+	explode "huge explosion" 30
+	"final explode" "final explosion large" 1
+	description "The Condor is not a ship meant to be purchased. It is a prototype - a hybrid of so many novel technologies that the Remnant have only managed to build a single one. And that one is flown by Zitchas"
+
+
+
+ship "Peregrine"
+	sprite "ship/peregrine/peregrine"
+		"frame rate" 3
+		rewind
+	thumbnail "thumbnail/peregrine"
+	attributes
+		category "Medium Warship"
+		licenses
+			"Remnant Capital"
+		"cost" 35500000
+		"shields" 50200
+		"hull" 35700
+		"required crew" 23
+		"bunks" 42
+		"mass" 540
+		"drag" 7.7
+		"heat dissipation" 0.8
+		"fuel capacity" 1000
+		"cargo space" 56
+		"outfit space" 796
+		"weapon capacity" 342
+		"engine capacity" 204
+		"shield generation" 5.2
+		"shield energy" 4.6
+		"hull repair rate" 1.5
+		"hull energy" 1.2
+		"cloak" .05
+		"cloaking energy" 5
+		"cloaking fuel" .1
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 100
+		weapon
+			"blast radius" 340
+			"shield damage" 3400
+			"hull damage" 1700
+			"hit force" 5100
+	outfits
+		"Sunbeam" 2
+		"Thunderhead Launcher" 2
+		"Thunderhead Missile" 80
+		"Dual Sunbeam Turret" 2
+		"Wanderer Anti-Missile" 2
+		
+		"Blue Sun Reactor"
+		"Red Sun Reactor"
+		"Dark Storm Shielding"
+		"Bright Cloud Shielding"
+		"Wanderer Heat Sink"
+		"Wanderer Ramscoop"
+		
+		"Type 4 Radiant Thruster"
+		"Type 1 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Type 3 Radiant Steering"
+		"Hyperdrive"
+		
+	gun 0 -133
+	gun -11 -105
+	gun 11 -105
+	gun -17 -81.5
+	gun 17 -81.5
+	turret -29 30
+	turret 29 30
+	turret 0 -41
+	engine -25 117
+	engine 0 116
+	engine 25 117
+	explode "small explosion" 40
+	explode "medium explosion" 70
+	explode "large explosion" 50
+	explode "huge explosion" 20
+	"final explode" "final explosion large" 1
+	description "The Peregrine is the first fully living starship designed for war. While it is clearly not sapient and must rely on its pilot for larger battle-space tactics, its neural network has an exquisite understanding of close quarters maneuvers and dogfights. These ships were built and designed to be fast-attack cruisers utilizing their combined advantages of speed and stealth to confuse, isolate, and disable their enemies."
