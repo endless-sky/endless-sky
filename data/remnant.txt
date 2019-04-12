@@ -205,6 +205,7 @@ shipyard "Remnant"
 	"Gull"
 	"Albatross"
 	"Pelican"
+	"Void Sprite Elder"
 	"Condor"
 	"Peregrine"
 
