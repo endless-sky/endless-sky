@@ -859,7 +859,7 @@ outfit "Boarding Claws"
 	"outfit space" -4
 	"capture offense" 8
 	"unplunderable" 1
-	description `With the advent of living ships paralleling their shift to the offense, the Remnant have developed new equipment for boarding enemy ships. These boarding claws ensure that enemy ships cannot escape, while providing specialized tools to forcefully take control of enemy internal systems. This gives the attacking Remnant a decided advantage in ship to ship combat.`
+	description `With the advent of living ships paralleling their shift to the offense, the Remnant have developed new equipment for boarding enemy ships. These boarding claws ensure that enemy ships cannot escape, while providing specialized tools to forcefully take control of enemy internal systems. It also gives invaders several additional boarding routes aside from the standard gantries. This gives the attacking Remnant a decided advantage in ship to ship combat.`
 
 
 
@@ -888,7 +888,7 @@ outfit "Remnant GASER Cannon"
 		"shield damage" 3.0
 		"hull damage" 5.0
 	description "The GASER is the product of lengthy research into the field of spatially and temporally stabilized gamma rays produced through the use of di-positronium. Spurred by the acquisition of heavy lasers demonstrating new techniques used by the rest of humanity, Remnant researchers were able to significantly improve on these designs to create a highly effective beam weapon."
-	description "While they were not able to eliminate the heat produced by the gaser canon using integrated cooling systems, these colling systems are integrated so that they can provide continuous cooling to help minimize the thermaly-induced downtime between firing."
+	description "While they were not able to eliminate the heat produced by the gaser canon using integrated cooling systems, these cooling systems are integrated so that they can provide continuous cooling to help minimize the thermally-induced downtime between firing."
 
 
 
@@ -902,7 +902,7 @@ outfit "Remnant GASER Turret"
 	"outfit space" -17
 	"weapon capacity" -17
 	"turret mounts" -1
-	"cooling" 5
+	"cooling" 10
 	weapon
 		sprite "projectile/electron"
 			"frame rate" 60
