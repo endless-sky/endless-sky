@@ -1114,7 +1114,7 @@ mission "Nanachi 1"
 		government "Hai"
 		ship "Heavy Shuttle" "Acorn Chaser"
 	on visit
-		dialog `	You have reached <planet>, but you left Nanachi's ship behind! Better depart and wait for them to arrive in this star system.`
+		dialog `You have reached <planet>, but you left Nanachi's ship behind! Better depart and wait for them to arrive in this star system.`
 	on complete
 		conversation
 			`	Shortly after her ship lands, you meet up with Nanachi, who is doing her best to hide her excitement of being on another planet for the first time, gawking at some Hai military ships in particular. "So, how did you like your first time flying a ship?" you ask, to try and snap her out of it. "Oh um, I had a bit of trouble with the controls at first since they're a bit different from the ones in Hai ships, but I figured it out. I've always dreamt of being on other worlds, exploring and learning everything about them, I'm glad I'm finally able to do it." You help her get the crates out of the cargo hold and contact the client. Her share of the payment is small, as the client transfers most of the money to that merchant, but that doesn't make Nanachi any less excited about getting her first paycheck.`
