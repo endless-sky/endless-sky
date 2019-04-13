@@ -472,7 +472,7 @@ outfit "Void Rifle"
 	"capture attack" 20
 	"capture defense" 20
 	"unplunderable" 1
-	"energy consumption" 0.018
+	"energy consumption" 0.017
 	description "When fired, the Void Rifle emits a form of radiation that has a strong paralyzing effect on the nervous system. With an area of effect that penetrates walls and other solid objects, it is an incredibly effective weapon."
 	description "The Remnant made a significant number of these weapons during the early years of their research on the void sprites, but haven't been able to make any new ones since the Archon stopped their harvests. While durable, they do rarely last more than a few years, so even the best cared for of the old Void Rifles degraded into uselessness centuries ago. These highly effective weapons are credited with helping the Remnant resist Korath invaders on the ground before they had ships capable of defending their skies."
 
@@ -720,10 +720,9 @@ outfit "Remnant Flak Turret"
 		"die effect" "flak die"
 		"safe"
 		"inaccuracy" 20
-		"turret turn" 4
+		"turret turn" 5
 		"burst count" 10
 		"burst reload" 5
-		"turret turn" 5
 		"velocity" 20
 		"lifetime" 55
 		"reload" 30
@@ -881,7 +880,6 @@ outfit "Remnant GASER Cannon"
 		sound "electron beam"
 		"hit effect" "electron impact"
 		"inaccuracy" .2
-		"turret turn" 2.4
 		"velocity" 550
 		"lifetime" 1
 		"reload" 1
@@ -911,6 +909,7 @@ outfit "Remnant GASER Turret"
 		sound "electron beam"
 		"hit effect" "electron impact"
 		"inaccuracy" .2
+		"turret turn" 2.4
 		"velocity" 550
 		"lifetime" 1
 		"reload" 1
