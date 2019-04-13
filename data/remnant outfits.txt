@@ -645,6 +645,7 @@ outfit "Remnant Plasma Torch Turret"
 		sound "electron beam"
 		"hit effect" "electron impact"
 		"inaccuracy" .2
+		"turret turn" 2.5
 		"velocity" 550
 		"lifetime" 1
 		"reload" 1
