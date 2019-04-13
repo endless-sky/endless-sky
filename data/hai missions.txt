@@ -1058,7 +1058,7 @@ mission "Hai Honeymoon"
 
 mission "Nanachi 1"
 	name "Escort Nanachi to <planet>"
-	description "Help Nanachi, a Hai who just bought her first ship, make a simple delivery to Cloudfire."
+	description "Help Nanachi, a Hai who just bought her first ship, make a simple delivery to <destination>."
 	minor
 	source "Giverstone"
 	destination "Cloudfire"
