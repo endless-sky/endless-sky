@@ -1069,7 +1069,7 @@ mission "Nanachi 1"
 		year > 3018
 	on offer
 		conversation
-			`	As you are making your way through the spaceport you notice a worried-looking Hai staring at the local job board and back at some sort of document they are holding.`
+			`As you are making your way through the spaceport you notice a worried-looking Hai staring at the local job board and back at some sort of document they are holding.`
 			choice
 				`	(Approach the Hai.)`
 				`	(Leave them alone.)`
