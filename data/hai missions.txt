@@ -1084,7 +1084,7 @@ mission "Nanachi 1"
 			`	"Captain <first> <last>. Can you show me your ship so I can look for jobs it's better suited for?"`
 			`	She hesitates a bit, but leads you to her ship: you were expecting a small Hai ship, but to your surprise she shows you a rather old-looking Heavy Shuttle docked near your own ship.`
 			`	"You took a loan to buy a human ship?" you ask.`
-			`	She looks at the ground, as if ashamed of it. "It'd take way too long for me to qualify for a loan for even an Aphid, but I recently met a human merchant who wanted to sell his old ship; it was difficult but I managed to convince him to sell it to me instead of going to the shipyard office, I paid him its full price, but even for this one I had to take out the biggest loan I could. Its cargo hold isn't very impressive but it's got more bunks than our smallest ships, if that helps."`
+			`	She looks at the ground, as if ashamed of it. "It'd take way too long for me to qualify for a loan for even an Aphid, but I recently met a human merchant who wanted to sell his old ship; it was difficult, but I managed to convince him to sell it to me instead of going to the shipyard office, I paid him its full price, but even for this one I had to take out the biggest loan I could. Its cargo hold isn't very impressive but it's got more bunks than our smallest ships, if that helps."`
 			choice
 				`	(Help her check the job board.)`
 				`	(Try approaching some people here looking for transport or for a courier.)`
