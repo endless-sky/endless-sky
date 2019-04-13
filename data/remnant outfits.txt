@@ -720,6 +720,7 @@ outfit "Remnant Flak Turret"
 		"die effect" "flak die"
 		"safe"
 		"inaccuracy" 20
+		"turret turn" 4
 		"burst count" 10
 		"burst reload" 5
 		"turret turn" 5
@@ -880,6 +881,7 @@ outfit "Remnant GASER Cannon"
 		sound "electron beam"
 		"hit effect" "electron impact"
 		"inaccuracy" .2
+		"turret turn" 2.4
 		"velocity" 550
 		"lifetime" 1
 		"reload" 1
