@@ -59,7 +59,7 @@ help "lost 6"
 	`You slip deeper and deeper into the zenlike calm of outer space. The Tao which can be spoken is not the true Tao. The game that must be played is not the true game. You let go of all desire: your desire to press <Show main menu> and check the game's preferences to find out how to control your ship. The desire to view the other places you can travel to by pressing <View star map>. You release even the desire to press <Initiate hyperspace jump> and initiate a random hyperjump in whatever direction you are facing in. Enlightenment hovers on the edge of your consciousness, so close you can almost grasp it.`
 
 help "lost 7"
-	`The void whispers its secret to your soul: outer space, it says, is not about lasers or explosions. It is not about fighting space pirates or saving the galaxy. No, the true message of the void is the utter loneliness you have found while drifting here: one tiny speck of warmth, insignificant compared to the vasty nothingness between the stars and the trillions upon trillions of souls of proud humans and inscrutable aliens whom you will never meet.`
+	`The void whispers its secret to your soul: outer space, it says, is not about lasers or explosions. It is not about fighting space pirates or saving the galaxy. No, the true message of the void is the utter loneliness you have found while drifting here: one tiny speck of warmth, insignificant compared to the vast nothingness between the stars and the trillions upon trillions of souls of proud humans and inscrutable aliens whom you will never meet.`
 	`The inner voice urging you to do something, anything rather than just continuing to drift here, falls silent...`
 
 help "map"

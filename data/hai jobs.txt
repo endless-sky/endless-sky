@@ -760,7 +760,7 @@ mission "Hai Family [1]"
 mission "Transport Hai miners to <planet>"
 	job
 	repeat
-	description "This family of <bunks> miners is hoping to find work on <destination>, and they will pay you <payment> to take them there."
+	description "This family of <bunks> miners are hoping to find work on <destination>, and they will pay you <payment> to take them there."
 	passengers 3 3 .6
 	to offer
 		random < 40
@@ -778,7 +778,7 @@ mission "Transport Hai miners to <planet>"
 mission "Transport Hai farmers to <planet>"
 	job
 	repeat
-	description "This family of <bunks> farmers is hoping to find work on <destination>, and they will pay you <payment> to take them there."
+	description "This family of <bunks> farmers are hoping to find work on <destination>, and they will pay you <payment> to take them there."
 	passengers 3 3 .6
 	to offer
 		random < 40
@@ -796,7 +796,7 @@ mission "Transport Hai farmers to <planet>"
 mission "Transport Hai mill workers to <planet>"
 	job
 	repeat
-	description "This family of <bunks> mill workers is hoping to find work on <destination>, and they will pay you <payment> to take them there."
+	description "This family of <bunks> mill workers are hoping to find work on <destination>, and they will pay you <payment> to take them there."
 	passengers 3 3 .6
 	to offer
 		random < 40
@@ -814,7 +814,7 @@ mission "Transport Hai mill workers to <planet>"
 mission "Transport Hai workers to <planet>"
 	job
 	repeat
-	description "This family of <bunks> factory workers is hoping to find work on <destination>, and they will pay you <payment> to take them there."
+	description "This family of <bunks> factory workers are hoping to find work on <destination>, and they will pay you <payment> to take them there."
 	passengers 3 3 .6
 	to offer
 		random < 70
