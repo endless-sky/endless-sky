@@ -266,7 +266,7 @@ mission "Small Pirate gambling"
 				decline
 
 			label call
-			`	You confront them on their blatant cheating when one of them yells out, "We're just playin' a game here, see? You'd better shut your big mouth if you know what's good for you!" %he meanest-looking one growls at you. "We can make this ugly real fast."`
+			`	You confront them on their blatant cheating when one of them yells out, "We're just playin' a game here, see? You'd better shut your big mouth if you know what's good for you!" The meanest-looking one growls at you. "We can make this ugly real fast."`
 			`	The thugs stare at you menacingly and start to reach for their guns.`
 			choice
 				`(Shoot first!)`
