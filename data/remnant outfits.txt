@@ -561,10 +561,10 @@ effect "nullifier spark"
 	sprite "effect/nullifier spark/nullifier spark"
 		"no repeat"
 		"frame rate" 8
-	"lifetime" 45
+	"lifetime" 22
 	"random angle" 360
 	"random frame rate" 6
-	"random velocity" 7
+	"random velocity" 4
 	"velocity scale" 0.1
 
 effect "nullifier die"
@@ -581,10 +581,10 @@ effect "nullifier hit"
 	sprite "effect/nullifier hit/nullifier hit"
 		"no repeat"
 		"frame rate" 8
-	"lifetime" 45
+	"lifetime" 22
 	"random angle" 360
 	"random frame rate" 6
-	"random velocity" 5
+	"random velocity" 2
 	"velocity scale" 0.1
 
 
