@@ -900,9 +900,9 @@ outfit "Remnant GASER Cannon"
 effect "gaser hit"
 	sprite "effect/gaser hit/gaser hit"
 		"no repeat"
-		"frame rate" 8
-	"lifetime" 5
-	"random frame rate" 6
+		"frame rate" 4
+	"lifetime" 1
+	"random frame rate" 2
 	"random velocity" 0
 	"velocity scale" 0
 
