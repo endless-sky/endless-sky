@@ -540,8 +540,9 @@ outfit "Nullifier Missile Pod"
 		"blast radius" 100
 		"shield damage" 950
 		"hull damage" 150
-		"fuel damage" 250
+		"fuel damage" 100
 		"ion damage" 5
+		"slow damage" 5
 		"hit force" 700
 		"missile strength" 140
 	description "With the rest of the galaxy starting to intrude on the Ember Waste, the Remnant designers created a weapon to ensure that no enemy ship manages to escape their space."
@@ -881,6 +882,7 @@ outfit "Remnant GASER Cannon"
 			rewind
 		sound "electron beam"
 		"hit effect" "electron impact"
+		"hit effect" "gaser hit"
 		"inaccuracy" .2
 		"velocity" 600
 		"lifetime" 1
@@ -889,10 +891,21 @@ outfit "Remnant GASER Cannon"
 		"firing heat" 3.0
 		"shield damage" 3.0
 		"hull damage" 5.0
+		"fuel damage" 5.0
 	description "The GASER is the product of lengthy research into the field of spatially and temporally stabilized gamma rays produced through the use of di-positronium. Spurred by the acquisition of heavy lasers demonstrating new techniques used by the rest of humanity, Remnant researchers were able to significantly improve on these designs to create a highly effective beam weapon."
 	description "While they were not able to eliminate the heat produced by the gaser canon using integrated cooling systems, these cooling systems are integrated so that they can provide continuous cooling to help minimize the thermally-induced downtime between firing."
 
 
+
+effect "gaser hit"
+	sprite "effect/gaser hit/gaser hit"
+		"no repeat"
+		"frame rate" 8
+	"lifetime" 22
+	"random angle" 360
+	"random frame rate" 6
+	"random velocity" 1
+	"velocity scale" 0.1
 
 outfit "Remnant GASER Turret"
 	category "Turrets"
@@ -920,6 +933,7 @@ outfit "Remnant GASER Turret"
 		"firing heat" 5.2
 		"shield damage" 6.0
 		"hull damage" 10.0
+		"fuel damage" 10.0
 	description "This turret mounts a pair of gaser cannons on a newly designed platform. "
 
 
