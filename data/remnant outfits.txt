@@ -542,7 +542,7 @@ outfit "Nullifier Missile Pod"
 		"hull damage" 150
 		"fuel damage" 100
 		"ion damage" 5
-		"slow damage" 5
+		"slowing damage" 5
 		"hit force" 700
 		"missile strength" 140
 	description "With the rest of the galaxy starting to intrude on the Ember Waste, the Remnant designers created a weapon to ensure that no enemy ship manages to escape their space."
@@ -901,11 +901,10 @@ effect "gaser hit"
 	sprite "effect/gaser hit/gaser hit"
 		"no repeat"
 		"frame rate" 8
-	"lifetime" 22
-	"random angle" 360
+	"lifetime" 5
 	"random frame rate" 6
-	"random velocity" 1
-	"velocity scale" 0.1
+	"random velocity" 0
+	"velocity scale" 0
 
 outfit "Remnant GASER Turret"
 	category "Turrets"
