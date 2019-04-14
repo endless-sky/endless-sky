@@ -35,9 +35,9 @@ namespace {
 	const vector<string> acceptableCharacterReferences{ "gt;", "lt;", "amp;", "#95;", "#x5f;", "#x5F;" };
 	
 	// Convert from PANGO to pixel scale.
-	int PixelFromPangoCeil(int pangoScale)
+	int PixelFromPangoCeil(int pangoSize)
 	{
-		return (pangoScale + PANGO_SCALE - 1) / PANGO_SCALE;
+		return ceil(static_cast<double>(pangoSize) / PANGO_SCALE);
 	}
 }
 
@@ -363,7 +363,7 @@ void Font::DrawCommon(const std::string &str, double x, double y, const Color &c
 	// Update the center.
 	Point center = Point(ViewFromTextX(x), ViewFromTextY(y));
 	if(alignToDot)
-		center = Point(round(center.X()), round(center.Y()));
+		center = Point(floor(center.X()), floor(center.Y()));
 	center += text.center;
 	glUniform2f(centerI, center.X(), center.Y());
 	
@@ -724,42 +724,42 @@ double Font::ViewFromTextY(double y) const
 
 int Font::ViewFromTextX(int x) const
 {
-	return (x * viewWidth + screenWidth/2) / screenWidth;
+	return floor(static_cast<double>(x * viewWidth + screenWidth / 2.0) / screenWidth);
 }
 
 
 
 int Font::ViewFromTextY(int y) const
 {
-	return (y * viewHeight + screenHeight/2) / screenHeight;
+	return floor(static_cast<double>(y * viewHeight + screenHeight / 2.0) / screenHeight);
 }
 
 
 
 int Font::ViewFromTextCeilX(int x) const
 {
-	return (x * viewWidth + screenWidth - 1) / screenWidth;
+	return ceil(static_cast<double>(x * viewWidth) / screenWidth);
 }
 
 
 
 int Font::ViewFromTextCeilY(int y) const
 {
-	return (y * viewHeight + screenHeight - 1) / screenHeight;
+	return ceil(static_cast<double>(y * viewHeight) / screenHeight);
 }
 
 
 
 int Font::ViewFromTextFloorX(int x) const
 {
-	return (x * viewWidth) / screenWidth;
+	return floor(static_cast<double>(x * viewWidth) / screenWidth);
 }
 
 
 
 int Font::ViewFromTextFloorY(int y) const
 {
-	return (y * viewHeight) / screenHeight;
+	return floor(static_cast<double>(y * viewHeight) / screenHeight);
 }
 
 
@@ -780,40 +780,40 @@ double Font::TextFromViewY(double y) const
 
 int Font::TextFromViewX(int x) const
 {
-	return (x * screenWidth + viewWidth/2) / viewWidth;
+	return floor(static_cast<double>(x * screenWidth + viewWidth / 2.0) / viewWidth);
 }
 
 
 
 int Font::TextFromViewY(int y) const
 {
-	return (y * screenHeight + viewHeight/2) / viewHeight;
+	return floor(static_cast<double>(y * screenHeight + viewHeight / 2.0) / viewHeight);
 }
 
 
 
 int Font::TextFromViewCeilX(int x) const
 {
-	return (x * screenWidth + viewWidth - 1) / viewWidth;
+	return ceil(static_cast<double>(x * screenWidth) / viewWidth);
 }
 
 
 
 int Font::TextFromViewCeilY(int y) const
 {
-	return (y * screenHeight + viewHeight - 1) / viewHeight;
+	return ceil(static_cast<double>(y * screenHeight) / viewHeight);
 }
 
 
 
 int Font::TextFromViewFloorX(int x) const
 {
-	return (x * screenWidth) / viewWidth;
+	return floor(static_cast<double>(x * screenWidth) / viewWidth);
 }
 
 
 
 int Font::TextFromViewFloorY(int y) const
 {
-	return (y * screenHeight) / viewHeight;
+	return floor(static_cast<double>(y * screenHeight) / viewHeight);
 }
