@@ -317,7 +317,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 
 
 
-bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))

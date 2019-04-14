@@ -166,11 +166,11 @@ mission "Remnant: Defense 1"
 	npc evade
 		government "Korath"
 		personality heroic plunders harvests target
-		fleet "Korath Raid" 6
+		fleet "Korath Ember Waste Raid" 6
 	on visit
 		dialog "There are still Korath raiders circling overhead. You should take off and help the Remnant ships to fight them."
 	on complete
-		payment 200000
+		payment 500000
 
 event "remnant defense timer"
 	clear "Remnant defense delay"
@@ -186,7 +186,7 @@ mission "Remnant: Defense 2"
 		has "Remnant: Defense 1: done"
 	on offer
 		conversation
-			`The people here are grateful for your help in fighting off the Korath raid, and they offer you a payment of 200,000 credits. They explain to you (in song, of course; the explanation takes the form of an epic ballad) that these raids have been taking place for nearly a century.`
+			`The people here are grateful for your help in fighting off the Korath raid, and they offer you a payment of <payment>. They explain to you (in song, of course; the explanation takes the form of an epic ballad) that these raids have been taking place for nearly a century.`
 			choice
 				`	"Have you done anything to try to stop the Korath from raiding you?"`
 				`	"What do you think the Korath are hoping to accomplish?"`
@@ -221,7 +221,7 @@ mission "Remnant: Defense 2"
 				"Korath World-Ship B (Crippled)"
 		dialog "You have destroyed the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
 	on complete
-		payment 250000
+		payment 500000
 		dialog `The same woman meets you when you land on <planet>. "Again, thank you," she says. "I will suggest to others that they might offer you similar bounty hunting jobs in the future." She pays you <payment>.`
 		log "Factions" "Remnant" `Recently, Korath ships have begun raiding Remnant worlds. The Remnant have decided not to try to discourage these raids, because they are a perfect opportunity to steal jump drives and other valuable alien technology from the Korath.`
 
@@ -249,7 +249,7 @@ mission "Remnant: Bounty"
 				"Korath Raider (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on complete
-		payment 200000
+		payment 300000
 		dialog "A Remnant military leader thanks you for hunting down the <npc>, and gives you the agreed-upon payment of <payment>."
 
 
@@ -290,7 +290,7 @@ mission "Remnant: Defense 3"
 		dialog "Now that you are alone, you are able to deploy the Remnant surveillance satellite unobserved. Time to report back to <planet>."
 	on complete
 		event "remnant: surveillance end"
-		payment 400000
+		payment 500000
 		conversation
 			`When you return to <planet>, the same Remnant man meets you and says that they have begun receiving data from the surveillance satellite that you deployed. "Thank you for your assistance," he sings. He pays you <payment>.`
 			choice
@@ -302,11 +302,11 @@ mission "Remnant: Defense 3"
 
 event "remnant: surveillance begin"
 	system "Parca"
-		remove fleet "Korath Raid"
+		remove fleet "Korath Ember Waste Raid"
 
 event "remnant: surveillance end"
 	system "Parca"
-		add fleet "Korath Raid" 10000
+		add fleet "Korath Ember Waste Raid" 10000
 
 
 
@@ -600,7 +600,7 @@ mission "Remnant: Learn Sign 1"
 			label song
 			`	She looks surprised, but then recovers and sings a verse about how hands can learn, but must be cautious, and gestures at the hand scanner embedded in the desk.`
 			label scan
-			`	As you place your hand on the scanner you feel a quick tingle as it scans your hand, then a pinprick as it extracts a drop of blood. The lady behind the desk looks at her screen. She nods, taps on the screen a few times, then retrieves a datapad from beneath the desk.`
+			`	As you place your hand on the scanner, you feel a quick tingle as it scans your hand, then a pinprick as it extracts a drop of blood. The lady behind the desk looks at her screen. She nods, taps on the screen a few times, then retrieves a datapad from beneath the desk.`
 			`	She hands the pad to you, and sings a brief verse about perseverance and hope.`
 			`	Back on your ship you flip the pad on. The datapad appears to be loaded with a number of historic musicals and operas where the meaning of the lyrics has been replicated with gestures as subtitles. It is interspersed with what appear to be Remnant children's videos slowly explaining gestures and pausing to give you the opportunity to practice.`
 			`	You spend a few hours going through the lessons. It takes a while to start vaguely understanding the signs, but you eventually learn how to sign a number of basic phrases. Eventually, the pad goes black and a note pops up on the screen informing you that additional lessons are available from the director's desk on Aventine.`
@@ -744,7 +744,7 @@ mission "Remnant: Catalytic Ramscoop"
 		log "People" "Tali" `As an engineering prefect, Tali is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
 		conversation
 			`You visit the local shipyard and eventually find the engineer busily repairing a damaged Starling. You inform her that you have brought a pair of catalytic ramscoops for her to study. She quickly tightens a couple more connectors and jumps down from her perch, gesturing at an assistant to transfer you the credits you were promised. "Thank you! Our maps of human space are old, and if they are still accurate, you traveled a very long way to bring these to us." Her chanting voice echoes off the Starling above you with an interesting resonance.`
-			`	"If we can unlock the secrets of these ramscoops, it will give our ships greater range as they search for a safer refuge." As she picks up the remote control for the small loading truck with the two ramscoops she trills at you over her shoulder. "Oh, my name is Tali. I'll let you know what I find."`
+			`	"If we can unlock the secrets of these ramscoops, it will give our ships greater range as they search for a safer refuge." As she picks up the remote control for the small loading truck with the two ramscoops, she trills at you over her shoulder. "Oh, my name is Tali. I'll let you know what I find."`
 
 
 
@@ -876,7 +876,7 @@ mission "Remnant: Return the Samples 2"
 	on complete
 		"reputation: Drak" += 1
 		conversation
-			`Back on Aventine, you share the recording of the void sprite's behavior with Plume. "These Sprites demonstrate considerably more communication than we originally thought. And obviously they must have communicated what you did on Nasqueron. Interesting..." Plume's excited staccato exclamations trail off as he begins to make notes on a datapad he has on hand. "Thank you for your help, we will let you know what we find out.`
+			`Back on Aventine, you share the recording of the void sprite's behavior with Plume. "These Sprites demonstrate considerably more communication than we originally thought. And obviously they must have communicated what you did on Nasqueron. Interesting..." Plume's excited staccato exclamations trail off as he begins to make notes on a datapad he has on hand. "Thank you for your help, we will let you know what we find out."`
 
 
 
@@ -912,7 +912,7 @@ mission "Remnant: Salvage 1"
 			`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists, that would likely be where to go."`
 				accept
 			label library
-			`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists..." She stops when she notices you nodding with a knowing expression. "You have already been there? Well, you certainly get around, captain <last>. I suppose that makes things rather straight forward."`
+			`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists..." She stops when she notices you nodding with a knowing expression. "You have already been there? Well, you certainly get around, Captain <last>. I suppose that makes things rather straight forward."`
 				accept
 	on visit
 		dialog
@@ -959,16 +959,16 @@ mission "Remnant: Salvage 2"
 	npc evade
 		government "Korath"
 		personality heroic plunders harvests target
-		fleet "Korath Raid" 7
+		fleet "Korath Ember Waste Raid" 7
 		fleet
 			names "korath"
 			cargo 3
 			variant
-				"Korath World-Ship B"
+				"Korath World-Ship B (Ember)"
 	on visit
 		dialog "There are still Korath raiders circling overhead. You should take off and help the Remnant ships to fight them."
 	on complete
-		payment 1500000
+		payment 1000000
 		conversation
 			`As some ships maintain orbital sentry positions, most ships return to their berths. Mechanics are soon swarming over the ships, and what you suppose are ambulances are waiting at the ramps to collect the injured. Farther back, flatbed tractor units wait to pick up any salvage that has been collected.`
 			`	Eventually a tired but pleased-looking prefect stops by your ship. He starts chanting, "Do you understand our language, or do I need to sing?" He looks relieved when you reply that you can understand most of what is said so long as he signs slowly. "Thank you for your assistance during the raid. The sensors you placed in Parca picked up the fleet coming in and gave us sufficient warning to get everyone ready."`
@@ -1048,10 +1048,10 @@ mission "Remnant: Salvage 4"
 				"Korath Raider (Hyperdrive)"
 		dialog "You have disabled the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
 	on fail
-		payment 250000
+		payment 350000
 		dialog `You are met by a prefect who looks upset. "The ship was supposed to be disabled so its contents could be salvaged!" he signs angrily. Nonetheless, he shoves a credit chip worth <payment> into your hand. "That's half what you would have earned if the ship had been disabled." He pauses and shakes his head. "I think Tali might have some more work for you in the spaceport, but in the meantime, why don't you go find some Korath to practice disabling? It is a valuable skill among the Remnant."`
 	on complete
-		payment 500000
+		payment 700000
 		dialog `You are met by a prefect who thanks you for disabling it and hands you a credit chip for <payment>. "I think Tali might have some more work for you in the spaceport, but in the meantime, don't forget to drop off any salvaged outfits in the outfitters so the researchers can look at them."`
 
 
@@ -1153,7 +1153,7 @@ mission "Remnant: Bounty 2"
 				"Korath Raider (Hyperdrive)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on complete
-		payment 300000
+		payment 400000
 		dialog "A Remnant military leader thanks you for hunting down the Korath ship <npc>, and gives you the agreed-upon payment of <payment>."
 
 
@@ -1168,7 +1168,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 	destination "Wayfarer"
 	to offer
 		has "Remnant: Learn Sign Follow Up: offered"
-		has "Remnant: Salvage 1: done"
+		has "Remnant: Salvage 2: done"
 		has "First Contact: Quarg: offered"
 		random < 40
 	on offer
@@ -1251,4 +1251,258 @@ mission "Remnant: Expanded Horizons Quarg 3"
 			`	They eventually slow down their signs a bit and explain that up until the time the Remnant departed from ancestral space, human scanners had been unable to penetrate the outer layers of Quarg ships. One of Dawn's fellow researchers continues with the explanation.`
 			`	"Our historical records just have a few pictures and videos of Quarg ships, along with a basic scan that doesn't provide more than the general outline of the ship. These scans," he says while tapping the databanks, "actually picked up detailed structural layouts and even identified a number of key components. It isn't nearly enough information to be able to duplicate them, but it is enough that we can start trying to figure out how they work.`
 			`	Upon arriving at <planet> they quickly thank you, hand you <payment>, and run back to their offices to finish prepping their material to publish and distribute.`
+
+
+
+mission "Remnant: Broken Jump Drive 1"
+	name "Broken Jump Drive Delivery"
+	description "You have been asked to deliver a broken jump drive to the researchers on <planet>."
+	minor
+	landing
+	repeat
+	to offer
+		has "remnant blood test pure"
+		not "Remnant: Broken Jump Drive 1: active"
+		not "Remnant: Broken Jump Drive 1: done"
+	source
+		government "Remnant"
+		attributes outfitter
+	destination
+		government "Remnant"
+		attributes outfitter
+		not distance 0
+	on offer
+		require "Jump Drive (Broken)"
+		conversation
+			branch repeated
+				has "Remnant: Broken Jump Drive 1: offered"
+			`As the <ship> settles onto its designated landing pad, you see someone emerge from the nearby outfitter and quickly make their way to you. The man waits a safe distance before approaching once you cycle the hatch and disembark. "Greetings, Captain <last>," trills the Remnant, "we saw the news that the newcomer among us was tracking down an erratic Korath ship. When you came in to land, we saw on the scans that you salvaged its malfunctioning jump drive. Could we take it to study?"`
+			choice
+				`	"Maybe later."`
+					goto refuse
+				`	"That would be a good use for it."`
+					goto accept
+			
+			label repeated
+			`You have a broken jump drive that the Remnant might be interested in. Do you want to seek out someone to give it to?`
+			choice
+				`	(Maybe later.)`
+					defer
+				`	(Yes.)`
+			`	You find a Remnant director and inform them about the broken jump drive that you have.`
+			
+			label accept
+			`	"Excellent!" he glances at his datapad. "There are several teams working on aspects of the jump drive, and the team with the highest priority for this one is on <planet>. I will notify them to expect you."`
+				accept
+			label refuse
+			`	He considers this, and sings, "If you wish. Our offer stands, whenever you choose to return."`
+				decline
+	on complete
+		outfit "Jump Drive (Broken)" -1
+		"remnant: broken jump drive count" ++
+		payment 300000
+		"reputation: Remnant" ++
+		conversation
+			`When you arrive on <planet> there is a team of engineers and mechanics waiting for you, along with a flatbed freight truck. Once you open the cargo doors they quickly free the broken jump drive from its moorings and load it delicately onto their truck. The lead engineer comes over to hand you <payment>. "Thank you for salvaging this. I suspect my compatriot who spoke to you never mentioned this, but we have a fund set aside for rewarding captains who bring in rare pieces of alien technology. If you find any more of these drives, there is sure to be a research team somewhere that is willing to reward you for it."`
+			choice
+				`	"I will keep a lookout for more."`
+					goto end
+				`	"Aren't you going to replace it with a hyperdrive?"`
+			`	The engineer looks at you incredulously. "You mean you were actually trying to use this drive?" He shakes his head in disbelief. "You are lucky you managed to get this far, then. It is surprising that they exist at all, so it is too much to expect them to work too. If you need a replacement drive, there are plenty available in the outfitter.`
+			label end
+			`	"Next time you find one of these drives, just check with a starport director. They will know where it will need to go. A word of warning though; I strongly recommend not trying to use these drives - they may disappear at the most inconvenient of times, and there won't always be an outfitter on hand." He turns and heads off with the rest of the team, turning briefly to give you friendly wave as they disembark.`
+
+
+
+mission "Remnant: Broken Jump Drive 2"
+	name "Broken Jump Drive Delivery"
+	description "The researchers on <planet> have requested your broken jump drive."
+	to offer
+		has "Remnant: Broken Jump Drive 1: done"
+	source
+		government "Remnant"
+	destination
+		government "Remnant"
+		attributes outfitter
+		not distance 0
+	on offer
+		require "Jump Drive (Broken)"
+		conversation
+			`You've plundered another broken jump drive. Do you want to seek out a director to give it to?`
+			choice
+				`	(Maybe later.)`
+					defer
+				`	(Yes.)`
+			`	Information must flow quickly amongst the Remnant, because by the time you arrive at the director's desk she already has the information ready for you.`
+			`	"Greetings, newcomer," she chants. "Are you interested in turning in the broken jump drive you salvaged to our researchers?"`
+			`	You nod.`
+			`	"They will definitely appreciate new material to research. The team is located on <planet>. I will send a notification ahead so they will be expecting you."`
+				accept
+	on complete
+		outfit "Jump Drive (Broken)" -1
+		"remnant: broken jump drive count" ++
+		payment 300000
+		"reputation: Remnant" ++
+		conversation
+			`As promised, there is a team of researchers waiting when you settle onto the designated landing pad. One comes over to hand you <payment> while the rest carefully unload the broken drive and start hauling it back to their lab.`
+			`	"Our thanks, Captain <last>. Having the remains of a drive like this will be very beneficial to our efforts." His voice cracks a bit, as if unused to being used much.`
+			choice
+				`	"Great! I will find more."`
+					goto end
+				`	"What are you studying?"`
+			`	"Our previous research into jump drives determined that these drives are unsurprisingly multi-part systems. We know the outer part that we can see and handle is mostly the machinery for generating some kind of containment field or pocket. As to how it works or why it is needed..." his chant trails off and he makes a gesture you suspect may be the equivalent of a shrug. "Anyways, our team is focused on the nature of this outer system. It is our hope that, damaged as it is, its continued existence might allow us to look a little farther inside its inner workings to figure out exactly what that field does and how it is used.`
+			label end
+			`	"Well, my compatriots finished unloading rather quickly, so I should be off. For all our sakes, I hope you find more of these for us."`
+
+
+
+mission "Remnant: Broken Jump Drive 3"
+	name "Broken Jump Drive Delivery"
+	description "The researchers on <planet> need a broken jump drive for testing."
+	to offer
+		has "Remnant: Broken Jump Drive 2: done"
+	source
+		government "Remnant"
+	destination
+		government "Remnant"
+		attributes outfitter
+		not distance 0
+	on offer
+		require "Jump Drive (Broken)"
+		conversation
+			`You've plundered another broken jump drive. Do you want to seek out a director to give it to?`
+			choice
+				`	(Maybe later.)`
+					defer
+				`	(Yes.)`
+			`	As you approach the director in the spaceport concourse, he looks up and waves at you. "Good timing, Captain <first>," he sings. "We have a team of researchers on <planet> who have requested a broken jump drive. Could you deliver one to them?"`
+			`	"I can," you respond.`
+			`	"Excellent. The recent discovery of these broken drives has spurred discussion and excitement in various quarters. We have had teams researching jump drives for at least a century now without a lot of success. I'm told they are rather intricate, but your finds are opening new avenues of investigation. That being said, I'll notify the team on <planet> to expect you."`
+				accept
+	on complete
+		outfit "Jump Drive (Broken)" -1
+		"remnant: broken jump drive count" ++
+		payment 300000
+		"reputation: Remnant" ++
+		conversation
+			`The team waiting for you on <planet> is definitely eager to begin. You barely have the hatch open before they are chivying their camel-pulled wagon up the ramp. They load the broken jump drive surprisingly quickly despite their delicate movements.`
+			`	"This is an exciting day, Captain <first>! Countless theories may be proven or put back into the fires of refinement based on the testing we can do with this!"`
+			choice
+				`	"Great! I will find more."`
+					goto end
+				`	"Any theories of note?"`
+			`	He looks thoughtful for a moment, then warbles, "As you may know, standard hyperdrives work by generating a fusion reaction and folding it into the fabric of space/time, and these folds naturally fall along the known hyperlanes. I suppose one could view those lanes as the 'crease lines' of the universe. My favorite theory is that jump drives have some additional machinery to guide the fold. That way they can dictate where the fold occurs instead of just aligning with the nearest crease. Given their increased fuel draw, it makes sense that it would take more fuel to generate a fresh fold than to re-use an existing crease.`
+			label end
+			`	"Oh, before I forget..." he hands you <payment>. "Off to start setting up the tests." He sings half to himself as he trundles off after the wagon.`
+
+
+
+mission "Remnant: Broken Jump Drive 4"
+	name "Broken Jump Drive Delivery"
+	description "You have been asked to deliver a broken jump drive to the researchers on <planet>."
+	to offer
+		has "Remnant: Broken Jump Drive 3: done"
+	source
+		government "Remnant"
+	destination
+		government "Remnant"
+		attributes outfitter
+		not distance 0
+	on offer
+		require "Jump Drive (Broken)"
+		conversation
+			`You've plundered another broken jump drive. Do you want to seek out a director to give it to?`
+			choice
+				`	(Maybe later.)`
+					defer
+				`	(Yes.)`
+			`You head over to the director's desk to see who is in need of the next broken jump drive. The director smiles at you, looks over several messages on her screen, then clears her throat.`
+			`	"Your finds are very much in demand," she sings. "Could you bring this one to a team working on <planet>?"`
+			`	You nod in response.`
+			`	"Thank you. We are looking forward to seeing what comes from this."`
+				accept
+	on complete
+		outfit "Jump Drive (Broken)" -1
+		"remnant: broken jump drive count" ++
+		payment 300000
+		"reputation: Remnant" ++
+		conversation
+			`As you approach your designated pad, you spot a team of researchers with unloading equipment hustling out of a nearby entrance. Once you have completed your shutdown sequence they quickly set to work unloading the drive. Once the task is complete, they pause for a moment to hand you <payment>. "Thanks for finding this," they sing in unison. "Our labs are eager to begin work on your most recent find, Captain <first>. Our thanks!"`
+			choice
+				`	"Good luck with that."`
+					goto end
+				`	"How is your research going?"`
+			`	"Good, and about to get better," they sing. "We are working on various aspects of a theory that the jump drive actually disregards traditional jumping entirely, and uses the folding mechanism to put the ship itself into a pocket, while somehow triggering an opening to said pocket in the target system." One of them continues, "If this is true, it could be fairly dangerous to try activating these anywhere close to fragile things like cities or mountains, which is why they put our lab on the far side of the planet from all such things.`
+			label end
+			`	"Well, we have a bit of a trip to get to our lab, but it should be exciting once we get there. Fare well!" With that, they head off towards a large vehicle nearby.`
+
+
+
+mission "Remnant: Broken Jump Drive 5"
+	name "Broken Jump Drive Delivery"
+	description "A team of engineers on <planet> would like a broken jump drive to study."
+	to offer
+		has "Remnant: Broken Jump Drive 4: done"
+	source
+		government "Remnant"
+	destination
+		government "Remnant"
+		attributes outfitter
+		not distance 0
+	on offer
+		require "Jump Drive (Broken)"
+		conversation
+			`You've plundered another broken jump drive. Do you want to seek out a director to give it to?`
+			choice
+				`	(Maybe later.)`
+					defer
+				`	(Yes.)`
+			`	You stop by the director's desk to report having salvaged another broken jump drive for one of their research teams. The director nods in appreciation and checks his list. "There is a new team starting a project on <planet>. Could you take it there please?"`
+			`	"Sure," you respond.`
+			`	"Much appreciated. The sooner they get it, the sooner they can start on their project. That being said, I have spoken with the other directors, and we have decided that we are getting so many requests that we will put these into the job board for you. Any time the landing scans detect one of these broken jump drives, the system will display a message on the job board listing where the next one needs to be delivered."`
+				accept
+	on complete
+		outfit "Jump Drive (Broken)" -1
+		"remnant: broken jump drive count" ++
+		payment 300000
+		event "remnant research update bjd1" 100 200
+		"reputation: Remnant" ++
+		conversation
+			`The landing pad on <planet> is tucked away just behind the spaceport. A handful of engineers have a conveyor belt already set up to offload the drive from your ship when you arrive. When you open the hatch they extend it right up the ramp, and quickly load the drive onto it. The machinery quickly whisks the drive into a nearby structure along with its escort. A couple of the engineers stop by to talk with you and hand you <payment>.`
+			`	"Thanks for bringing us this drive. It is a rare piece of technology for us to get our hands on."`
+			choice
+				`	"I will leave you to it."`
+					goto end
+				`	"What are you studying?"`
+			`	With a pleased expression they break into song about mining the deeps for the mysteries of the sky. As best you can tell, they are trying to figure out the materials that the drive is made with, followed by experiments to replicate those materials.`
+			label end
+			`	"Our experiments await. May your search be fruitful!" they trill as they head off.`
+
+
+
+event "remnant research update bjd1"
+
+
+
+mission "Remnant: Broken Jump Drive job"
+	name "Broken Jump Drive Delivery"
+	description "The researchers on <planet> need another broken jump drive to continue their project."
+	job
+	repeat 4
+	to offer
+		has "Remnant: Broken Jump Drive 5: done"
+	source
+		government "Remnant"
+	destination
+		government "Remnant"
+		attributes outfitter
+		not distance 0
+	on complete
+		outfit "Jump Drive (Broken)" -1
+		"remnant: broken jump drive count" ++
+		payment 300000
+		"reputation: Remnant" ++
+		"Remnant: Broken Jump Drive job: offered" --
+		dialog "The research team quickly offloads the broken jump drive and pays you <payment> before hurrying back to their lab."
+
 
