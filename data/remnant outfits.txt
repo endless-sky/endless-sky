@@ -867,7 +867,7 @@ outfit "Boarding Claws"
 outfit "Remnant GASER Cannon"
 	category "Guns"
 	licenses
-		"Remnant Capital"
+		"Remnant"
 	cost 903000
 	thumbnail "outfit/remnant gaser cannon"
 	"mass" 17
@@ -876,12 +876,13 @@ outfit "Remnant GASER Cannon"
 	"gun ports" -1
 	"cooling" 5
 	weapon
-		sprite "projectile/electron"
-			"frame rate" 60
+		sprite "projectile/gaser cannon/gaser cannon"
+			"frame rate" 5
+			rewind
 		sound "electron beam"
 		"hit effect" "electron impact"
 		"inaccuracy" .2
-		"velocity" 550
+		"velocity" 600
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 1.4
@@ -896,7 +897,7 @@ outfit "Remnant GASER Cannon"
 outfit "Remnant GASER Turret"
 	category "Turrets"
 	licenses
-		"Remnant Capital"
+		"Remnant"
 	cost 903000
 	thumbnail "outfit/remnant gaser turret"
 	"mass" 17
@@ -905,8 +906,9 @@ outfit "Remnant GASER Turret"
 	"turret mounts" -1
 	"cooling" 10
 	weapon
-		sprite "projectile/electron"
+		sprite "projectile/gaser cannon/gaser cannon"
 			"frame rate" 60
+			rewind
 		sound "electron beam"
 		"hit effect" "electron impact"
 		"inaccuracy" .2
