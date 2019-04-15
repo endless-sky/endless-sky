@@ -878,7 +878,7 @@ outfit "Remnant GASER Cannon"
 	"cooling" 5
 	weapon
 		sprite "projectile/gaser cannon/gaser cannon"
-			"frame rate" 5
+			"frame rate" 10
 			rewind
 		sound "electron beam"
 		"hit effect" "gaser hit"
@@ -922,13 +922,13 @@ outfit "Remnant GASER Turret"
 		"hardpoint sprite" "hardpoint/remnant gaser turret"
 		"hardpoint offset" 8
 		sprite "projectile/gaser cannon/gaser cannon"
-			"frame rate" 60
+			"frame rate" 10
 			rewind
 		sound "electron beam"
-		"hit effect" "electron impact"
+		"hit effect" "gaser hit"
 		"inaccuracy" .2
 		"turret turn" 2.4
-		"velocity" 550
+		"velocity" 600
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 2.8
