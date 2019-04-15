@@ -919,6 +919,8 @@ outfit "Remnant GASER Turret"
 	"turret mounts" -1
 	"cooling" 10
 	weapon
+		"hardpoint sprite" "hardpoint/remnant gaser turret"
+		"hardpoint offset" 8
 		sprite "projectile/gaser cannon/gaser cannon"
 			"frame rate" 60
 			rewind
