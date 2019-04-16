@@ -801,6 +801,57 @@ mission "Remnant: Plasma Cannons"
 
 
 
+mission "Remnant: Wanderer Ramscoop"
+	name "Retrieve Wanderer Ramscoops for the Remnant"
+	description "A Remnant engineer on <planet> has offered to pay you <payment> in exchange for obtaining two ramscoops from the Wanderers for them to study."
+	minor
+	source
+		government "Remnant"
+	destination "Viminal"
+	to offer
+		has "Remnant: Technology Available: offered"
+		random < 50
+	on offer
+		require "Wanderer Ramscoop"
+		conversation
+			`Strolling into the starport, you wonder if someone from the nosy gull would be approaching you. While you have made the approach to <planet> many times, this time was differentiated by a gull that seemed to be shadowing you closely. Just looking at it, you guessed that it was probably a reconnaissance ship, or possibly a science vessel. Few other ships would carry quite so much scanning equipment.`
+			`	Looking around, you quickly notice a young Remnant trotting into the area from a different landing pad. He spots you and approaches, then clears his throat nervously "Greetings, traveler" he warbles, as if unused to singing. "We scanned you as you flew by, and noticed some unusual technology mounted to your hull. Can you tell us what they are?" With this, he pulls up his comlink and shows you an image of what appear to be your ramscoops.`
+			choice
+				`	"Those are wanderer ramscoops."`
+				`	"I'd rather not share that."`
+					decline
+			
+			`	"They are?" He looks disappointed. "I guess I'll be taking Mala's next watch duty, then. She guessed that they were ramscoops, I thought they were a scanning array." He looks slightly disappointed, but quickly regains his usual impassivity. "You said 'Wanderer' ramscoops? Who are these 'Wanderers?' Are they a group like us, hidden away somewhere?"`
+			choice
+				`	"Wanderers are an alien race that live in counter-spinward from humanity."`
+				`	"I would prefer to not talk about them."`
+					goto notalk
+			`	He listens to your explanation calmly, but his tone takes on a note of eagerness as he chants "These Wanderers sound very interesting. Thank you for telling me about them. It seems that we might have much that we could learn from them." He looks thoughtful for a moment before continuing.`
+			label notalk
+			`	"Be that as it may, the opportunity to study the fuel generation systems from someone with a different technological path would be most advantageous. If you could procure two of these 'Wanderer Ramscoops' for us, we would reimburse you for the cost, plus 750000 credits for your efforts."`
+			choice
+				`	"Sure, I could do that."`
+					accept
+				`	"Sorry, that's a bit too far to travel."`
+					decline
+	on complete
+		outfit "Wanderer Ramscoop" -2
+		payment 1670000
+		"remnant taely" ++
+		conversation
+			`Following the directions of the starport director, you land on the designated pad. A few minutes later a team of Remnant jog up with a flatbed transport following along behind. "Captain <first>? We were told to expect a delivery for the research labs" chants the man in the lead.`
+			`	You nod an affirmative and gesture at the two Wanderer ramscoops. The team takes a few minutes to examine them and figure out how they are secured, then carefully loads them onto the flatbed trailer. As they finish securing it the leader taps on his comlink a few times then approaches you and offers a credstick. "As agreed, here is your payment, Captain. It looks like the equipment arrived in good condition. Speaking of which, our engineering prefect likes to see new pieces of tech when they arrive. She should be here in a few moments."`
+			branch taely
+				"remnant taely" > 1
+			`	As the leader finishes saying that you see a tall solidly built woman in short sleeves approaching. She strides purposefully up to the two of you and chants "Greetings, Captain. I have received word that you brought us new ramscoops to study." The first Remnant you had been speaking to turns towards her. "Captain <first>, I would like to introduce you to Taely, the engineering prefect responsible for the study of alien technologies."`
+			`	Taely gestures in the direction of the Wanderer ramscoops. "I heard from the engineer who gave you this request that these are from a group known as the Wanderers. If they are as effective as the preliminary scans he gave me show, we could have much to learn from them. Now, if you will excuse me, I have some testing to do." And with that, Taely heads off after the departing flatbed trailers. The technician you had been speaking with turns back to you. "It can be hard to keep up with her sometimes, but she is definitely one of the most skilled among us. I should be off to." He gives you a polite nod, then quickly heads down the path following the others.`
+			label taely
+			`	As you are about to tell him that you've already met Taely, you see a tall solidly built woman in short sleeves approaching up the ramp behind him. "Looks like she is already here," you reply.`
+			`	"Greetings, Captain <first>. I have received word that you brought us new ramscoops to study." The first Remnant you had been speaking to turns towards her. "I see you two need no introduction. I should go catch up with my team." With that, the technician trots off to accompany the rest of his team.`
+			`	Taely gestures in the direction of the Wanderer ramscoops. "I heard from the engineer who gave you this request that these are from a group known as the Wanderers. If they are as effective as the preliminary scans he gave me show, we could have much to learn from them." She looks thoughtful, then continues. "One of these days we should have a conversation about these 'Wanderers,' but right now is not the time for it. For now, I have new technology to study. Farewell, Captain." Taely turns and strides across the spaceport, quickly catching up to the departing team of technicians.`
+
+
+
 mission "Remnant: Taely Intro Log"
 	description "You have just met Taely, an engineering prefect among the Remnant"
 	invisible
