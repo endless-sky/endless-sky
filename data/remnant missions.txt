@@ -814,6 +814,17 @@ mission "Remnant: Taely Intro Log"
 
 
 
+mission "Remnant: Tali to Taely"
+	invisible
+	to offer
+		"remnant tali" >= 1
+	on offer
+		"remnant taely" ++
+		clear "remnant tali"
+		fail
+
+
+
 mission "Remnant: Return the Samples"
 	name "Return the Samples"
 	description "A researcher on <planet> has asked you to return void sprite eggs to Nasqueron that the Remnant stole many years ago."
