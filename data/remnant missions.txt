@@ -1197,7 +1197,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 			`	Almost before you are in the main hall a sales manager is at your side, inquiring as to how he can help. You can almost see the credit signs in his eyes and you suspect that scanning your license may have done a quick check of your net worth too.`
 			`	You ask a few leading questions about new designs and play the part of a captain with more money than brains, and the manager eagerly directs you to the large hangars near the end that house their largest and fanciest ships. After it becomes clear that he doesn't have any experience flying them you politely disentangle yourselves from him to look at the ships in peace.`
 			label end
-			`	After an hour of browsing, the young remnants agree to meet you back at the spaceport in an hour and take off to the outfitters.`
+			`	After an hour of browsing, the young Remnants agree to meet you back at the spaceport in an hour and take off to the outfitters.`
 
 
 
