@@ -244,6 +244,7 @@ outfitter "Remnant"
 	"Tuning Rifle"
 	"Nullifier Missile"
 	"Nullifier Missile Pod"
+	"Remnant Ramscoop"
 	"Ember Waste Ramscoop"
 	"Remnant Plasma Torch Cannon"
 	"Remnant Plasma Torch Turret"
@@ -257,7 +258,7 @@ outfitter "Remnant"
 	"Remnant GASER Turret"
 	"Boarding Claws"
 	"Tactical Assault System"
-	
+
 
 outfitter "Remnant Salvage"
 	"Generator (Furnace Class)"

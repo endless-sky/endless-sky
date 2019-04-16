@@ -589,16 +589,30 @@ effect "nullifier hit"
 	"velocity scale" 0.1
 
 
+outfit "Remnant Ramscoop"
+	category "Systems"
+	licenses
+		Remnant
+	cost 450000
+	thumbnail "outfit/remnant ramscoop"
+	"mass" 3
+	"outfit space" -3
+	"ramscoop" 1.2
+	description "In contrast to most of the galaxy, the Ember Waste is comparatively dense with the raw elements necessary for the production of fuel. Driven by the ever present fear that war is about to return to their desolate corner, the Remnant combined reverse engineered Deep technology with alien technology to provide improved sources of fuel to power their systems. The resulting system isn't quite as efficient as the Deep's design, but its compact size makes it much easier to fit onto almost any ship."
+
+
 outfit "Ember Waste Ramscoop"
 	category "Systems"
 	licenses
 		Remnant
-	cost 72000
+	cost 625000
 	thumbnail "outfit/ember waste ramscoop"
-	"mass" 3
-	"outfit space" -3
-	"ramscoop" 1.5
-	description "In contrast to most of the galaxy, the Ember Waste is comparatively dense with the raw elements necessary for the production of fuel. Driven by the ever present fear that war is about to return to their desolate corner, the Remnant combined reverse engineered Deep technology with alien technology to provide improved sources of fuel to power their weapons and cloaks."
+	"mass" 11
+	"outfit space" -11
+	"ramscoop" 7
+	description "Driven by fear that their corner of the galaxy is becoming less and less secretive, the Remnant are leaping upon every opportunity to innovate, steal, or cobble together fuel systems of ever increasing capacity. Their latest creation builds upon what they learned from the catalytic ramscoops with new techniques learned from the Wanderer ramscoops. While the Wanderer ramscoop creates a big field to pull in available matter, the Remnant use a set of nine small ramscoops spread out over the periphery of the ship to effectively generate a larger mesh to catch material, which is then rerouted back to a central processing unit. Some Remnant engineers consider this system effectively a way to let their ships breath in space."
+
+
 
 outfit "Remnant Plasma Torch Cannon"
 	category "Guns"
@@ -921,11 +935,11 @@ outfit "Remnant GASER Turret"
 	weapon
 		"hardpoint sprite" "hardpoint/remnant gaser turret"
 		"hardpoint offset" 8
-		sprite "projectile/gaser cannon/gaser cannon"
+		sprite "projectile/gaser turret/gaser turret"
 			"frame rate" 10
 			rewind
 		sound "electron beam"
-		"hit effect" "gaser hit"
+		"hit effect" "gaser turret hit"
 		"inaccuracy" .2
 		"turret turn" 2.4
 		"velocity" 600
@@ -937,6 +951,17 @@ outfit "Remnant GASER Turret"
 		"hull damage" 12.0
 		"fuel damage" 6.0
 	description "This turret mounts a pair of gaser cannons on a newly designed platform. "
+
+
+
+effect "gaser turret hit"
+	sprite "effect/gaser turret hit/gaser turret hit"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 2
+	"random spin" 1
+	"velocity scale" -.003
 
 
 
