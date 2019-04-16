@@ -817,10 +817,13 @@ mission "Remnant: Taely Intro Log"
 mission "Remnant: Tali to Taely"
 	invisible
 	to offer
-		"remnant tali" >= 1
+		or
+			has "Remnant: Catalytic Ramscoop: done"
+			has "Remnant: Heavy Laser: done"
+			has "Remnant: Plasma Cannons: done"
 	on offer
 		"remnant taely" ++
-		clear "remnant tali"
+		clear log "People" "Tali" 
 		fail
 
 
