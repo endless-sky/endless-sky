@@ -1138,7 +1138,7 @@ mission "Nanachi 2"
 	on complete
 		conversation
 			`You help the family gather all their luggage, and bid them farewell, but right as they disappear into a hallway Nanachi lets out a heavy sigh. "I bit off more than I could chew, those kids kept wanting to play with the ship's controls, and one of them tried to go up the air vent in a game of hide-and-seek. I couldn't get any rest since I had to keep making sure they weren't about to dump their own bags into the void by accident." You can tell she is far less lively than before, it would be best to give her some time to rest before heading to the spaceport, especially considering how crowded it can be here compared to the other ones she has been to.`
-			`	"Do you want to get some sleep before trying to find another mission?" You ask, hoping she won't try to overwork herself. "Yes, I could really use that. Sorry to make you wait again captain <last>, I'll rest a bit, see if I can't find a tourist spot nearby to relax, I'll go meet up with you in spaceport after a while."`
+			`	"Do you want to get some sleep before trying to find another mission?" you ask, hoping she won't try to overwork herself. "Yes, I could really use that. Sorry to make you wait again captain <last>, I'll rest a bit, see if I can't find a tourist spot nearby to relax, I'll go meet up with you in the spaceport after a while."`
 
 
 
