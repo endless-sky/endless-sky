@@ -67,6 +67,9 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 			if(bribe)
 				message = "If you want us to leave you alone, it'll cost you "
 					+ Format::Credits(bribe) + " credits.";
+		} else {
+			message = "Please don't destroy our ship!";
+			SetExtortion(ship);
 		}
 	}
 	else if(ship->IsDisabled())
@@ -165,7 +168,13 @@ void HailPanel::Draw()
 	info.SetString("header", header);
 	if(ship)
 	{
-		info.SetCondition("show assist");
+		if (hasLanguage && ship->IsDisabled()){
+			//if ship disabled and has language allow extortion
+			info.SetCondition("can demand bribe");
+		} else {
+			//if does not have language or is not disabled show assist button
+			info.SetCondition("show assist");
+		}
 		if(hasLanguage && !ship->IsDisabled())
 		{
 			if(ship->GetGovernment()->IsEnemy())
@@ -286,19 +295,30 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		{
 			if(ship)
 			{
-				ship->GetGovernment()->Bribe();
-				Messages::Add("You bribed a " + ship->GetGovernment()->GetName() + " ship "
-					+ Format::Credits(bribe) + " credits to refrain from attacking you today.");
+				if(bribe < 0){
+					// if bribe < 0 player is demanding a bribe
+					if (!ship->GetPersonality().IsHeroic() && !ship->GetPersonality().IsForbearing() && !ship->wasExtorted()){
+						Messages::Add("The captain of the "+ship->Name()+" bribes you "+Format::Credits(-bribe)+" to go away.");
+						message = "Take the money and leave you heathen!";
+					} else {
+						message = "You will get nothing from me.";
+						bribe = 0;
+					}
+				}else{
+					ship->GetGovernment()->Bribe();
+					Messages::Add("You bribed a " + ship->GetGovernment()->GetName() + " ship "
+						+ Format::Credits(bribe) + " credits to refrain from attacking you today.");
+					message = "It's a pleasure doing business with you.";
+				}
 			}
 			else
 			{
 				planet->Bribe();
 				Messages::Add("You bribed the authorities on " + planet->Name() + " "
 					+ Format::Credits(bribe) + " credits to permit you to land.");
+				message = "It's a pleasure doing business with you.";
 			}
-			
 			player.Accounts().AddCredits(-bribe);
-			message = "It's a pleasure doing business with you.";
 		}
 		else
 			message = "I do not want your money.";
@@ -319,4 +339,11 @@ void HailPanel::SetBribe(double scale)
 	bribe = 1000 * static_cast<int64_t>(sqrt(value) * scale);
 	if(scale && !bribe)
 		bribe = 1000;
+}
+
+
+
+void HailPanel::SetExtortion(const shared_ptr<Ship> targetShip){
+	int64_t shipValue = targetShip->Cost();
+	bribe = -1 * shipValue * .01;
 }

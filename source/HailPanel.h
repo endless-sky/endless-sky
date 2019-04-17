@@ -48,6 +48,7 @@ protected:
 	
 private:
 	void SetBribe(double scale);
+	void SetExtortion(std::shared_ptr<Ship> targetShip);
 	
 	
 private:
