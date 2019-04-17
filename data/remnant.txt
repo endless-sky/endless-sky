@@ -258,6 +258,8 @@ outfitter "Remnant"
 	"Remnant GASER Turret"
 	"Boarding Claws"
 	"Tactical Assault System"
+	"Personal Cloak System"
+	"Personal Cloaking Suit"
 
 
 outfitter "Remnant Salvage"

@@ -670,10 +670,6 @@ outfit "Remnant Plasma Torch Turret"
 		"hull damage" 20.0
 		"heat damage" 20
 	description "This turret mounts a pair of plasma torches on a newly designed platform. "
-outfit "Void Rifle"
-	category "Special"
-	thumbnail "outfit/void rifle"
-	description "This is just to test how the images work inside ES."
 
 
 outfit "Flak Turret"
@@ -862,6 +858,37 @@ outfit "Tactical Assault System"
 	"capture defense" 4.3
 	"unplunderable" 1
 	description `The Remnant use arrangements of hooks, ropes and pulleys to maneuver on the outside of ships while planet-side. At your suggestion, some of these have been refitted to allow for use inside ships. When defending a ship, you  can suspend your crew from them and allow greater mobility in defense.`
+
+
+
+outfit "Personal Cloak System"
+	category "Hand to Hand"
+	licenses
+		Remnant
+	cost 15000
+	thumbnail "outfit/personal cloak system"
+	"mass" 10
+	"outfit space" -10
+	"cloak suit space" 4
+	"unplunderable" 1
+	description `These systems provide the behind-the-scenes technological wizardry that allows the personal cloaking suits to function. So long as the wearer of one of those suits is onboard a ship with this system installed, they will be able to appear and disappear at will. Unfortunately, the system only has the power to support 4 suits, and cannot project the cloaking field beyond the edge of the ship's shields.`
+
+
+
+outfit "Personal Cloaking Suit"
+	category "Hand to Hand"
+	licenses
+		Remnant
+	cost 15000
+	thumbnail "outfit/personal cloaking suit"
+	"mass" 2
+	"outfit space" 0
+	"capture defense" 8
+	"capture attack" 2
+	"cloak suit space" -1
+	"unplunderable" 1
+	description `The development of personal cloaking fields has the potential to revolutionize ship to ship combat. While the equipment necessary to generate the cloak still can't be miniaturized enough for an individual to wear, these suits contain the beacons and tracking points to allow the main equipment integrated into the ship to project a tight cloaking field specific to its wearer. As a result, these suits can render combat-trained personnel extremely effective on or in very close quarters to their own ship.`
+	description `This suit requires the 'Personal Cloak System' to be installed in order to function.`
 
 
 
