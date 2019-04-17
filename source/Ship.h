@@ -376,14 +376,8 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 	
-	bool wasExtorted(){
-		if(extorted){
-			return extorted;
-		} else {
-			extorted = true;
-			return false;
-		}
-	}
+	// check if player previously demanded a bribe. If not, sets extorted to true.
+	bool wasExtorted();
 	
 	
 private:

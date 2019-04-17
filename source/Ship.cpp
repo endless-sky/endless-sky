@@ -3225,3 +3225,15 @@ void Ship::CreateSparks(vector<Visual> &visuals, const string &name, double amou
 			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
 	}
 }
+
+
+
+// Check if player previously demanded a bribe
+bool Ship::wasExtorted(){
+	if(extorted){
+		return extorted;
+	} else {
+		extorted = true;
+		return false;
+	}
+}
