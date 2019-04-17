@@ -1085,7 +1085,7 @@ mission "Nanachi 1"
 				decline
 			label help
 			`	Her ears twitch a bit, and her previously crestfallen eyes light up as she nearly jumps in joy at your offer. "Thank you so much captain! My name is Nanachi, I promise I won't cause any trouble at all, just a few quick jobs and I'm sure I'll be fine by myself!"`
-			`	You introduce yourself to Nanachi and shake her paw. "Can you show me your ship so I can look for jobs it's better suited for?"`
+			`	You introduce yourself to Nanachi and shake her paw. "Can you show me your ship so I can look for jobs it's best suited for?" you ask.`
 			`	She hesitates a bit, but leads you to her ship. You were expecting a small Hai ship, but to your surprise she shows you a rather old-looking Heavy Shuttle docked near your own ship.`
 			`	"You took a loan to buy a human ship?" you ask.`
 			`	She looks at the ground, as if ashamed of it. "It'd take way too long for me to qualify for a loan for even an Aphid, but I recently met a human merchant who wanted to sell his old ship; it was difficult but I managed to convince him to sell it to me instead of going to the shipyard office, I paid him its full price, but even for this one I had to take out the biggest loan I could. Its cargo hold isn't very impressive but it's got more bunks than our smallest ships, if that helps."`
