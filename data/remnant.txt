@@ -260,6 +260,7 @@ outfitter "Remnant"
 	"Tactical Assault System"
 	"Personal Cloak System"
 	"Personal Cloaking Suit"
+	"Remnant Afterburner"
 
 
 outfitter "Remnant Salvage"
