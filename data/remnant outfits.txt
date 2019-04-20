@@ -1036,13 +1036,13 @@ outfit "Remnant Afterburner"
 	description "The Remnant live in an environment where the raw materials for fuel are relatively common on the winds of the nebula, and with ships that incorporate significant built-in ramscoop technology. As such, while they are reluctant to waste fuel, neither are they afraid of using it when needed. Far more important is the ability for their ships to quickly and efficiently enter or exit combat as needed. At the end of the day, it is continued life that is paramount."
 
 effect "remnant afterburner"
-	sprite "effect/remnant afterburner/remnant afterburner3"
+	sprite "effect/remnant afterburner/remnant afterburner"
 		"no repeat"
 		"frame rate" 30
 	sound "afterburner"
-	"lifetime" 10
-	"random angle" 30
-	"random spin" 10
+	"lifetime" 0.1
+	"random angle" 0
+	"random spin" 0
 	"random velocity" 1.
-	"velocity scale" -1
+	"velocity scale" 0.1
 
