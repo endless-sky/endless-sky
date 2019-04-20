@@ -2965,6 +2965,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	bool isWormhole = false;
 	if(player.HasTravelPlan())
 	{
+		// Determine if the player is jumping to their target system or landing on a wormhole.
 		const System *system = player.TravelPlan().back();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
 			if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship) && player.HasVisited(object.GetPlanet())
@@ -2978,7 +2979,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		if(!isWormhole)
 			ship.SetTargetSystem(system);
 	}
-	if(ship.IsEnteringHyperspace() && !wasHyperspacing)
+	
+	if(ship.IsEnteringHyperspace() && !ship.IsHyperspacing())
 	{
 		// Check if there's a particular planet there we want to visit.
 		const System *system = ship.GetTargetSystem();
@@ -3044,10 +3046,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		if(bestDestination)
 			ship.SetTargetStellar(system->FindStellar(bestDestination));
 	}
-	wasHyperspacing = ship.IsEnteringHyperspace();
 	
 	if(keyDown.Has(Command::NEAREST))
 	{
+		// Find the nearest ship to the flagship. If `Shift` is held, consider friendly ships too.
 		double closest = numeric_limits<double>::infinity();
 		int closeState = 0;
 		bool found = false;
@@ -3093,14 +3095,21 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	}
 	else if(keyDown.Has(Command::TARGET))
 	{
+		// Find the "next" ship to target. Holding `Shift` will cycle through escorts.
 		shared_ptr<const Ship> target = ship.GetTargetShip();
+		// Whether the next eligible ship should be targeted.
 		bool selectNext = !target || !target->IsTargetable();
 		for(const shared_ptr<Ship> &other : ships)
 		{
-			bool isPlayer = other->IsYours() || other->GetPersonality().IsEscort();
+			// Do not target yourself.
+			if(other.get() == &ship)
+				continue;
+			// The default behavior is to ignore your fleet and any friendly escorts.
+			bool isPlayer = other->IsYours() || (other->GetPersonality().IsEscort()
+					&& !other->GetGovernment()->IsEnemy());
 			if(other == target)
 				selectNext = true;
-			else if(other.get() != &ship && selectNext && other->IsTargetable() && isPlayer == shift)
+			else if(selectNext && isPlayer == shift && other->IsTargetable())
 			{
 				ship.SetTargetShip(other);
 				selectNext = false;
@@ -3112,6 +3121,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	}
 	else if(keyDown.Has(Command::BOARD))
 	{
+		// Board the nearest disabled ship, focusing on hostiles before allies. Holding
+		// `Shift` results in boarding only player-owned escorts in need of assistance.
 		shared_ptr<const Ship> target = ship.GetTargetShip();
 		if(!target || !CanBoard(ship, *target) || (shift && !target->IsYours()))
 		{
@@ -3141,23 +3152,35 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 				keyDown.Clear(Command::BOARD);
 		}
 	}
-	else if(keyDown.Has(Command::LAND))
+	else if(keyDown.Has(Command::LAND) && !ship.IsEnteringHyperspace())
 	{
+		// Track all possible landable objects in the current system.
+		auto landables = vector<const StellarObject *>{};
+		
 		// If the player is right over an uninhabited or inaccessible planet, display
 		// the default message explaining why they cannot land there.
 		string message;
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if((!object.GetPlanet() || !object.GetPlanet()->IsAccessible(&ship)) && object.HasSprite())
+		{
+			if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship))
+				landables.emplace_back(&object);
+			else if(object.HasSprite())
 			{
 				double distance = ship.Position().Distance(object.Position());
 				if(distance < object.Radius())
 					message = object.LandingMessage();
 			}
+		}
 		if(!message.empty())
 			Audio::Play(Audio::Get("fail"));
 		
 		const StellarObject *target = ship.GetTargetStellar();
-		if(target && (ship.Position().Distance(target->Position()) < target->Radius() || ship.Zoom() < 1.))
+		// Require that the player's planetary target is one of the current system's planets.
+		auto landIt = find(landables.cbegin(), landables.cend(), target);
+		if(landIt == landables.cend())
+			target = nullptr;
+		
+		if(target && (ship.Zoom() < 1. || ship.Position().Distance(target->Position()) < target->Radius()))
 		{
 			// Special case: if there are two planets in system and you have one
 			// selected, then press "land" again, do not toggle to the other if
@@ -3165,69 +3188,51 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		}
 		else if(message.empty() && target && landKeyInterval < 60)
 		{
-			bool found = false;
-			int count = 0;
-			const StellarObject *next = nullptr;
 			// Select the next landable in the list after the currently selected object.
-			for(const StellarObject &object : ship.GetSystem()->Objects())
-				if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship))
-				{
-					++count;
-					if(found)
-					{
-						next = &object;
-						break;
-					}
-					else if(&object == ship.GetTargetStellar())
-						found = true;
-				}
-			if(!next)
-			{
-				// No landable objects were found after the current object.
-				// Pick the first landable object in the list.
-				for(const StellarObject &object : ship.GetSystem()->Objects())
-					if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship))
-					{
-						next = &object;
-						break;
-					}
-			}
+			if(++landIt == landables.cend())
+				landIt = landables.cbegin();
+			const StellarObject *next = *landIt;
 			ship.SetTargetStellar(next);
 			
-			if(next->GetPlanet() && !next->GetPlanet()->CanLand())
+			if(!next->GetPlanet()->CanLand())
 			{
-				message = "The authorities on this " + ship.GetTargetStellar()->GetPlanet()->Noun() +
+				message = "The authorities on this " + next->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
 				Audio::Play(Audio::Get("fail"));
 			}
-			else if(count > 1)
+			else if(next != target)
 				message = "Switching landing targets. Now landing on " + next->Name() + ".";
 		}
 		else if(message.empty())
 		{
-			double closest = numeric_limits<double>::infinity();
-			int count = 0;
+			// This is the first press, or it has been long enough since the last press,
+			// so land on the nearest eligible planet. Prefer inhabited ones with fuel.
 			set<string> types;
-			if(!target)
+			if(!target && !landables.empty())
 			{
-				for(const StellarObject &object : ship.GetSystem()->Objects())
-					if(object.GetPlanet() && object.GetPlanet()->IsAccessible(&ship))
+				if(landables.size() == 1)
+					ship.SetTargetStellar(landables.front());
+				else
+				{
+					double closest = numeric_limits<double>::infinity();
+					for(const auto &object : landables)
 					{
-						++count;
-						types.insert(object.GetPlanet()->Noun());
-						double distance = ship.Position().Distance(object.Position());
-						const Planet *planet = object.GetPlanet();
+						double distance = ship.Position().Distance(object->Position());
+						const Planet *planet = object->GetPlanet();
+						types.insert(planet->Noun());
 						if((!planet->CanLand() || !planet->HasSpaceport()) && !planet->IsWormhole())
 							distance += 10000.;
 					
 						if(distance < closest)
 						{
-							ship.SetTargetStellar(&object);
+							ship.SetTargetStellar(object);
 							closest = distance;
 						}
 					}
+				}
 				target = ship.GetTargetStellar();
 			}
+			
 			if(!target)
 			{
 				message = "There are no planets in this system that you can land on.";
@@ -3235,11 +3240,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			}
 			else if(!target->GetPlanet()->CanLand())
 			{
-				message = "The authorities on this " + ship.GetTargetStellar()->GetPlanet()->Noun() +
+				message = "The authorities on this " + target->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
 				Audio::Play(Audio::Get("fail"));
 			}
-			else if(count > 1)
+			else if(!types.empty())
 			{
 				message = "You can land on more than one ";
 				set<string>::const_iterator it = types.begin();
