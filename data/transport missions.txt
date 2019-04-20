@@ -2264,6 +2264,8 @@ mission "Terraforming 8"
 	landing
 	name "Terraforming Research"
 	description "Meet with Amy and Nolan on <destination> to talk about experimentally terraforming another planet."
+	source
+		near "Epsilon Leonis" 1 100
 	destination "Valhalla"
 	to offer
 		has "event: terraforming research"
