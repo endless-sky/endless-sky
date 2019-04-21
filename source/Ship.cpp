@@ -1424,7 +1424,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 						for(const auto &it : attributes.AfterburnerEffects())
 							for(int i = 0; i < it.second; ++i)
 								visuals.emplace_back(*it.first,
-									pos + velocity, velocity - 6. * angle.Unit(), angle);
+									pos + .5 * velocity, velocity - 6. * angle.Unit(), angle);
 					}
 			}
 		}
