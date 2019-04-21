@@ -68,6 +68,7 @@ namespace {
 
 
 
+// Open the missions panel directly.
 MissionPanel::MissionPanel(PlayerInfo &player)
 	: MapPanel(player),
 	available(player.AvailableJobs()),
@@ -104,6 +105,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 
 
 
+// Switch to the missions panel from another map panel.
 MissionPanel::MissionPanel(const MapPanel &panel)
 	: MapPanel(panel),
 	available(player.AvailableJobs()),
@@ -168,6 +170,7 @@ void MissionPanel::Draw()
 	
 	DrawKey();
 	DrawSelectedSystem();
+	
 	Point pos = DrawPanel(
 		Screen::TopLeft() + Point(0., -availableScroll),
 		"Missions available here:",
@@ -214,11 +217,13 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	}
 	else if(key == SDLK_LEFT && availableIt == available.end())
 	{
+		// Switch to the first mission in the "available missions" list.
 		acceptedIt = accepted.end();
 		availableIt = available.begin();
 	}
 	else if(key == SDLK_RIGHT && acceptedIt == accepted.end() && AcceptedVisible())
 	{
+		// Switch to the first mission in the "accepted missions" list.
 		availableIt = available.end();
 		acceptedIt = accepted.begin();
 		while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
@@ -229,12 +234,14 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		SelectAnyMission();
 		if(availableIt != available.end())
 		{
+			// All available missions are, by definition, visible.
 			if(availableIt == available.begin())
 				availableIt = available.end();
 			--availableIt;
 		}
 		else if(acceptedIt != accepted.end())
 		{
+			// Skip over any invisible, accepted missions.
 			do {
 				if(acceptedIt == accepted.begin())
 					acceptedIt = accepted.end();
@@ -244,6 +251,8 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	}
 	else if(key == SDLK_DOWN && !SelectAnyMission())
 	{
+		// Keyed "Down," and didn't auto-select the first mission on a side,
+		// so update the existing selected mission.
 		if(availableIt != available.end())
 		{
 			++availableIt;
@@ -262,6 +271,8 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else
 		return MapPanel::KeyDown(key, mod, command, isNewPress);
 	
+	// To reach here, we changed the selected mission. Scroll the active
+	// mission list, update the selected system, and pan the map.
 	if(availableIt != available.end())
 		selectedSystem = availableIt->Destination()->GetSystem();
 	else if(acceptedIt != accepted.end())
