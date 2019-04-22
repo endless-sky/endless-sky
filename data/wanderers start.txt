@@ -364,6 +364,7 @@ mission "Tell Wanderers about the Pug"
 			choice
 				`	"But wouldn't you rather be free from their control, free to remain on these worlds you have worked so hard to restore?"`
 				`	"If your species is being secretly controlled by another, doesn't that bother you?"`
+				`	"Alright. I understand. It's just that I would be concerned if my species were being controlled in this way."`
 			`	"Are we being controlled," he says, "or is it a partnership? We have gifts for making [ruined, corrupted] worlds bloom with new life. They give us worlds where our gifts can be [put to use, valuable]. We need new challenges to drive our species to greater [transformation, perfection]. They open new galaxies to us."`
 			`	He pauses, and then says, "Of course we know that how the Eye works is too [convenient, tailor-made] to be a random phenomenon. But it is a [gift, blessing] to us, and you must do nothing to drive them away, or we will be [trapped, stranded] on these few worlds and will stagnate and decline."`
 				decline
@@ -2464,7 +2465,10 @@ mission "Wanderers Ap'arak 3"
 				`	"Let's hope that they offer you more help than they did last time I talked with them."`
 				`	"The Pug are dangerous and unpredictable. You should not trust them."`
 				`	"If they really cared about you, they would have intervened before so many of you died fighting the Unfettered."`
+				`	(Hear what the Pug have to say.)`
+					goto pug
 			`	"The Keepers are [subtle, mysterious]," says Tele'ek, "but always their [intervention, action] has been for our [benefit, good]. Now be silent, and allow them to speak."`
+			label pug
 			`	The Pug delegation reaches the pavilion, and one of them begins speaking in the Wanderer language. You have no idea what they are saying, and they all seem to be ignoring your presence. A few of the Wanderer leaders respond. There's an awful lot of fanning of wings, flipping of tails, and preening of feathers going on. That might be the Wanderer way of trying to make a good impression, or else they're just feeling pleased with themselves. Or maybe they're nervous; it's hard to tell.`
 			`	The Pug finish their conversation with the Wanderers and return to their ships, and only then does Sobari Tele'ek turn to you and say, "Great news! They say that their two ships will [patrol, remain in] this system and [hold off, hold at bay] the Hai fleets. Also," he adds, preening himself, "they are very pleased with us for [growing, becoming] so strong. And, they say we need not [fight? worry about?] the Hai anymore."`
 			choice

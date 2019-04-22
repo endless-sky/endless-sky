@@ -111,7 +111,18 @@ void Weapon::LoadWeapon(const DataNode &node)
 			else if(key == "drag")
 				drag = value;
 			else if(key == "hardpoint offset")
-				hardpointOffset = value;
+			{
+				// A single value specifies the y-offset, while two values
+				// specifies an x & y offset, e.g. for an asymmetric hardpoint.
+				// The point is specified in traditional XY orientation, but must
+				// be inverted along the y-dimension for internal use.
+				if(child.Size() == 2)
+					hardpointOffset = Point(0., -value);
+				else if(child.Size() == 3)
+					hardpointOffset = Point(value, -child.Value(2));
+				else
+					child.PrintTrace("Unsupported \"" + key + "\" specification:");
+			}
 			else if(key == "turn")
 				turn = value;
 			else if(key == "inaccuracy")

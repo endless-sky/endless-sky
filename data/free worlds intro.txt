@@ -334,7 +334,7 @@ mission "FW Recon 1"
 			`	You cut the comlink and breathe a sigh of relief that the conversation is over.`
 	
 	on complete
-		dialog `Soon after you land, the militia officer comes to your ship and pays you <payment> in exchange for your sensor logs regarding <npc>. He says, "If you would be interested in continuing to work for us, meet me in the spaceport bar in an hour."`
+		dialog `Soon after you land, the militia officer comes to your ship and pays you <payment> in exchange for your sensor logs regarding the <npc>. He says, "If you would be interested in continuing to work for us, meet me in the spaceport bar in an hour."`
 		payment 10000
 
 
@@ -451,11 +451,11 @@ mission "FW Recon 3B"
 				"Gunboat"
 	
 	on visit
-		dialog `A minute after you land, a Republic gunboat, <npc>, lands directly next to you. JJ does not approach you. You notice from your ship's logs that this gunboat has been following you ever since you left <origin>; before you can hand over the information, you will need to escape its pursuit.`
+		dialog `A minute after you land, a Republic gunboat, the <npc>, lands directly next to you. JJ does not approach you. You notice from your ship's logs that this gunboat has been following you ever since you left <origin>; before you can hand over the information, you will need to escape its pursuit.`
 	
 	on complete
 		"assisted free worlds" ++
-		dialog `JJ meets you as soon as you land, and you pass off your information and photos to him. He pays you <payment> and says, "I'll be sure to let the Free Worlds council know how helpful you have been."`
+		dialog `JJ meets you as soon as you land, and you pass off your information and photos to him. He pays you <payment> and says, "I'll be sure to let the Free Worlds Council know how helpful you have been."`
 		payment 80000
 		log "Gave the Free Worlds some photos and information on the Navy base on New Wales. Jean-Jacques, the militia contact, was very grateful for the help."
 
@@ -703,7 +703,7 @@ mission "FW Katya Alt 2"
 		has "chosen sides"
 	on offer
 		conversation
-			`As you are walking through the spaceport, someone calls out, "Captain <last>!" A Free Worlds officer is approaching you; you recognize her as the same woman who pulled a gun on you earlier as a way to "test" you. "I apologize for pulling that trick on you before," she says. "My name is Katya Reynolds. I've heard really good things about you from some other members of the Free Worlds council, and I'm hoping you'd reconsider working with me."`
+			`As you are walking through the spaceport, someone calls out, "Captain <last>!" A Free Worlds officer is approaching you; you recognize her as the same woman who pulled a gun on you earlier as a way to "test" you. "I apologize for pulling that trick on you before," she says. "My name is Katya Reynolds. I've heard really good things about you from some other members of the Free Worlds Council, and I'm hoping you'd reconsider working with me."`
 			choice
 				`	"Okay, as long as you don't point any more guns at me."`
 				`	"Sorry, I just really don't like you. Or the Free Worlds."`
@@ -855,7 +855,7 @@ mission "FW Katya 3"
 			`	Eyes glances at her, sees her expression, and says, "No, Councilor, don't even think of it. That's a horrible idea."`
 			`	"No," she says, "it's brilliant. Captain <last>, are you familiar with the Dereliction and Salvage Act of 2976?"`
 			choice
-				`	"Of course. I read Parliamentary proceedings every night when I'm trying to fall asleep."`
+				`	"Of course. I read parliamentary proceedings every night when I'm trying to fall asleep."`
 					goto yes
 				`	"No, I've never heard of it."`
 					goto no
@@ -1230,7 +1230,7 @@ mission "FW Katya 7C"
 				`	(Check what my computer says.)`
 			
 			`	You check your computer. "One job opening, for a janitor in the mess hall."`
-			`	She grimaces. "Okay, it's better than nothing. I'll take the job to go undercover and see what I can find out. You take Eyes to <planet>, where he can get in touch with the Free Worlds council. I'll find a way to send you a message once I've found the perpetrators."`
+			`	She grimaces. "Okay, it's better than nothing. I'll take the job to go undercover and see what I can find out. You take Eyes to <planet>, where he can get in touch with the Free Worlds Council. I'll find a way to send you a message once I've found the perpetrators."`
 			`	"Katerina," says Eyes, "this is way too dangerous."`
 			`	"There's no other way," she says. "We have no time to lose. I'm willing to risk it."`
 			`	With deep reservations, you drop her off at the outpost, where she is quickly offered the job. "Not many folks care to work up here," says the foreman, "so your help would be much appreciated." You and Eyes return to your ship and get ready to travel to <planet> with the evidence.`
@@ -1389,7 +1389,7 @@ mission "FW Escort 1B"
 	on complete
 		payment 400000
 		conversation
-			`You are met at the spaceport by Tomek Voigt, one of the members of the Free Worlds council. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "so meet me in the spaceport if you are willing to volunteer for escort duty again."`
+			`You are met at the spaceport by Tomek Voigt, one of the members of the Free Worlds Council. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "so meet me in the spaceport if you are willing to volunteer for escort duty again."`
 	
 	on fail
 		set "fw intro escort failed"
@@ -1561,7 +1561,7 @@ mission "FW Escort 3"
 		dialog
 			`	Voigt is immensely relieved to see the <npc> returned safely home. "You have done us a great service today, Captain," he says, as he hands you credit chips for <payment>. "I'll be sure to let the Council know how helpful you have been."`
 		"assisted free worlds" ++
-		log "Helped rescue a Free Worlds freighter that had been disabled by pirates. Earned the gratitude of Tomek Voigt, the council member in charge of the supply convoys."
+		log "Helped rescue a Free Worlds freighter that had been disabled by pirates. Earned the gratitude of Tomek Voigt, the Council member in charge of the supply convoys."
 	
 	on fail
 		set "fw intro escort failed"
@@ -1587,7 +1587,7 @@ mission "FW Escort Second Chance"
 	
 	on offer
 		conversation
-			`Soon after you exit your ship a man approaches you. "Captain <last>?" he asks. You nod. "My name is Alondo," he says. "I'm a member of the Free Worlds council. Katya speaks so highly of you that I would like to see you join us, even though you messed up that escort mission."`
+			`Soon after you exit your ship a man approaches you. "Captain <last>?" he asks. You nod. "My name is Alondo," he says. "I'm a member of the Free Worlds Council. Katya speaks so highly of you that I would like to see you join us, even though you messed up that escort mission."`
 			choice
 				`	"Yes, I'm very sorry about that."`
 				`	"Sorry, but I decided I don't want to assist the Free Worlds anyway."`
@@ -1714,7 +1714,7 @@ mission "FW Bounty 2"
 		system
 			near "Delta Sagittarii" 1 2
 		ship "Behemoth (Speedy)" "Moonless Night"
-		dialog `The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
+		dialog phrase "generic hunted bounty eliminated dialog"
 	
 	on complete
 		payment 200000
@@ -1758,7 +1758,7 @@ mission "FW Bounty 3"
 		government Bounty
 		system "Shaula"
 		ship "Osprey (Alien Weapons)" "Silverhawk"
-		dialog `The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
+		dialog phrase "generic hunted bounty eliminated dialog"
 	
 	on complete
 		"assisted free worlds" ++
@@ -1790,7 +1790,7 @@ mission "FW Commitment"
 			`Soon after you land, a courier arrives at your ship and hands you a formal looking letter. It reads:`
 			``
 			`Dear Captain <last>,`
-			`	The Free Worlds council would like to thank you for the invaluable assistance you have rendered to us recently. We are prepared to offer you a position as an officer in our militia, remaining in command of your own ship. Your starting salary will be 300 credits per diem. If you want to join us, please report to our headquarters on Bourne at your earliest convenience.`
+			`	The Free Worlds Council would like to thank you for the invaluable assistance you have rendered to us recently. We are prepared to offer you a position as an officer in our militia, remaining in command of your own ship. Your starting salary will be 300 credits per diem. If you want to join us, please report to our headquarters on Bourne at your earliest convenience.`
 			`	Sincerely,`
 			`				Tomek Voigt`
 			`				Jean-Jacques Soleau`
@@ -1859,7 +1859,7 @@ mission "Rescue Katya 1"
 mission "Rescue Katya 2"
 	landing
 	name "Rescue Katya"
-	description "Return to <planet> and report to the Free Worlds council that you were unable to locate Katya."
+	description "Return to <planet> and report to the Free Worlds Council that you were unable to locate Katya."
 	source Clink
 	destination Longjump
 	to offer

@@ -90,7 +90,7 @@ mission "Deep: Syndicate Convoy"
 		fleet "Large Northern Pirates"
 	
 	on stopover
-		dialog `You arrive at the pickup location on the night side of <planet>. The Syndicate employees who load the freighters do not allow you to see what is inside the cargo, and advise you to leave quickly once the cargo is loaded.`
+		dialog `You arrive at the pickup location on the night side of Hephaestus. The Syndicate employees who load the freighters do not allow you to see what is inside the cargo, and advise you to leave quickly once the cargo is loaded.`
 	on complete
 		"deep convoy" ++
 		payment 500000
@@ -403,7 +403,7 @@ mission "Deep: Mystery Cubes 1"
 mission "Deep: Mystery Cubes 2"
 	landing
 	name `Blockading the Devil`
-	description `Travel to <destination> to set up a blockade in homes of capturing the warlord Beelzebub.`
+	description `Travel to <destination> to set up a blockade in hopes of capturing the warlord Beelzebub.`
 	destination "Maelstrom"
 	deadline
 	to offer
@@ -1020,18 +1020,7 @@ mission "Deep: Project Hawking"
 	deadline 10
 	to offer
 		random < 40
-		or
-			has "Deep: Questions: done"
-			has "deep: helped before archaeology"
-			and
-				has "Deep: Mystery Cubes 4: done"
-				has "Deep Archaeology 1: offered"
-				not "Deep Archaeology 1: active"
-				not "Deep Archaeology 2: active"
-				not "Deep Archaeology 3: active"
-				not "Deep Archaeology 4: active"
-				not "Deep Archaeology 5: active"
-				not "Deep Archaeology 5: done"
+		has "Deep: Mystery Cubes 4: done"
 		
 	on offer
 		conversation
@@ -1083,7 +1072,7 @@ mission "Deep: Project Hawking"
 			
 			label next
 			`	Several dozen forklifts are waiting for your ship on the surface, and your passengers busy themselves by supervising the unloading process. The high fencing around the landing pads prevents you from wandering, but you stretch your legs and enjoy the clear mountain air while you can.`
-			`	Your stroll around the launchpads is interrupted by the familiar warning tones emitted by landing spacecraft, and you look up to see a Deep Security Raven, descending rapidly. It lands next to <ship>, and Lieutenant Paris steps out, looking rather distressed.`
+			`	Your stroll around the launchpads is interrupted by the familiar warning tones emitted by landing spacecraft, and you look up to see a Deep Security Raven, descending rapidly. It lands next to the <ship>, and Lieutenant Paris steps out, looking rather distressed.`
 			`	"Captain! I'm going to need your ship's scanner logs from as far back as when you took this job."`
 			`	Hearing the urgency in his voice, you hastily return to your ship's cockpit, copy the scanner logs onto a data chip, and bring it to Paris. He views the logs on a tablet.`
 			`	"There appear to be three unidentified ships that began following you after each time you retrieved more cargo. Whether their intent is malicious or not, they are clearly interested in this project."`
@@ -1285,10 +1274,6 @@ mission "Deep: Remnant 0"
 		has "Deep: Mystery Cubes 4: done"
 		has "Terminus exploration: done"
 		has "First Contact: Hai: offered"
-		or
-			"deep convoy" >= 2
-			has "Deep: Project Hawking: done"
-			has "Deep: TMBR 2: done"
 	
 	on offer
 		conversation
@@ -1653,7 +1638,7 @@ mission "Deep: Remnant: Engines"
 			`	"Yes," you respond. "I had to do a few odd jobs for them, but they eventually allowed me to purchase their outfits and ships."`
 			`	"Then all you need to do is buy whatever we ask you to and bring it back here. Are you interested?"`
 			choice
-				`	"I'd be glad to help"`
+				`	"I'd be glad to help."`
 				`	"Sorry, but I don't want to spend money for your research."`
 					decline
 			
@@ -1949,6 +1934,7 @@ mission "Deep: Scientist Rescue 0: Haven"
 
 mission "Deep: Scientist Rescue 0: Haven Pirates Backup"
 	landing
+	invisible
 	source "Haven"
 	destination "Valhalla"
 	to offer
@@ -2054,7 +2040,9 @@ mission "Deep: Scientist Rescue 1: Recruit Escorts"
 	to offer
 		has "Deep: Scientist Rescue 0: done"
 	to fail
-		has "Deep: Scientist Rescue 1: done"
+		or
+			has "Deep: Scientist Rescue 1: declined"
+			has "Deep: Scientist Rescue 1: done"
 
 
 
@@ -2065,9 +2053,7 @@ mission "Deep: Scientist Rescue 1: Escorts"
 	to offer
 		has "Deep: Scientist Rescue 1: Recruit Escorts: done"
 	to fail
-		or
-			has "Deep: Scientist Rescue 3A: offered"
-			has "Deep: Scientist Rescue 3B: offered"
+		has "Deep: Scientist Rescue 2: done"
 	
 	on offer
 		conversation
@@ -2094,7 +2080,9 @@ mission "Deep: Scientist Rescue 1: Recruit Reinforcements"
 	to offer
 		has "Deep: Scientist Rescue 0: done"
 	to fail
-		has "Deep: Scientist Rescue 1: done"
+		or
+			has "Deep: Scientist Rescue 1: declined"
+			has "Deep: Scientist Rescue 1: done"
 
 
 
@@ -2105,9 +2093,7 @@ mission "Deep: Scientist Rescue 1: Reinforcements"
 	to offer
 		has "Deep: Scientist Rescue 1: Recruit Reinforcements: done"
 	to fail
-		or
-			has "Deep: Scientist Rescue 3A: offered"
-			has "Deep: Scientist Rescue 3B: offered"
+		has "Deep: Scientist Rescue 2: done"
 	
 	on offer
 		conversation
@@ -2197,11 +2183,13 @@ mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 	destination "Valhalla"
 	to offer
 		has "Deep: Scientist Rescue 1: done"
+	to fail
+		has "Deep: Scientist Rescue 2: done"
 	npc kill
 		government "Pirate"
 		personality staying nemesis
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
-		dialog 
+		dialog
 			`After the Bactrian explodes, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
 			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
 			`The transmission cuts out as abruptly as it had started.`
@@ -2257,14 +2245,21 @@ mission "Deep: Scientist Rescue 3A"
 			`	"Thank you, <first>." Lieutenant Paris starts walking over to the Star Queen, leaving you alone next to your ship.`
 				accept
 	
+	npc kill
+		government "Pirate"
+		personality staying nemesis
+		system "Arneb"
+		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
+		dialog
+			`After the Bactrian explodes, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
+			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
+			`The transmission cuts out as abruptly as it had started.`
 	on decline
 		event "battle in arneb end"
 	on visit
 		dialog "You landed on Valhalla, but you didn't kill the Bactrian! Return to Arneb and make sure that the Bactrian is destroyed and forever out of pirate hands."
 	on fail
 		event "battle in arneb end"
-	to complete
-		has "Deep: Scientist Rescue 2: Pirate Bactrian: done"
 	on complete
 		set "license: City-Ship"
 		event "battle in arneb end"

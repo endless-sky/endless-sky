@@ -133,7 +133,7 @@ string Account::Step(int64_t assets, int64_t salaries)
 	
 	// Keep track of what payments were made and whether any could not be made.
 	salariesOwed += salaries;
-	bool paid = true;
+	bool missedPayment = false;
 	
 	// Crew salaries take highest priority.
 	int64_t salariesPaid = salariesOwed;
@@ -146,8 +146,8 @@ string Account::Step(int64_t assets, int64_t salaries)
 			salariesPaid = max<int64_t>(credits, 0);
 			salariesOwed -= salariesPaid;
 			credits -= salariesPaid;
-			paid = false;
-			out << "You could not pay all your crew salaries. ";
+			missedPayment = true;
+			out << "You could not pay all your crew salaries.";
 		}
 		else
 		{
@@ -166,9 +166,9 @@ string Account::Step(int64_t assets, int64_t salaries)
 		if(payment > credits)
 		{
 			mortgage.MissPayment();
-			if(paid)
-				out << "You missed a mortgage payment. ";
-			paid = false;
+			if(!missedPayment)
+				out << "You missed a mortgage payment.";
+			missedPayment = true;
 		}
 		else
 		{
@@ -199,30 +199,37 @@ string Account::Step(int64_t assets, int64_t salaries)
 	// If you failed to pay any debt, your credit score drops. Otherwise, even
 	// if you have no debts, it increases. (Because, having no debts at all
 	// makes you at least as credit-worthy as someone who pays debts on time.)
-	creditScore = max(200, min(800, creditScore + (paid ? 1 : -5)));
+	creditScore = max(200, min(800, creditScore + (missedPayment ? -5 : 1)));
 	
 	// If you didn't make any payments, no need to continue further.
 	if(!(salariesPaid + mortgagesPaid + finesPaid))
 		return out.str();
+	else if(missedPayment)
+		out << " ";
 	
 	out << "You paid ";
+	
+	auto creditString = [](int64_t payment) -> string
+	{
+		return payment == 1 ? "1 credit" : Format::Credits(payment) + " credits";
+	};
 	
 	// If you made payments of all three types, the punctuation needs to
 	// include commas, so just handle that separately here.
 	if(salariesPaid && mortgagesPaid && finesPaid)
-		out << Format::Credits(salariesPaid) << " credits in crew salaries, " << Format::Credits(mortgagesPaid)
-			<< " in mortgages, and " << Format::Credits(finesPaid) << " in fines.";
+		out << creditString(salariesPaid) << " in crew salaries, "
+			<< creditString(mortgagesPaid) << " in mortgages, and "
+			<< creditString(finesPaid) << " in fines.";
 	else
 	{
 		if(salariesPaid)
-			out << Format::Credits(salariesPaid) << ((mortgagesPaid || finesPaid) ?
-				" credits in crew salaries and " : " credits in crew salaries.");
+			out << creditString(salariesPaid) << " in crew salaries"
+				<< ((mortgagesPaid || finesPaid) ? " and " : ".");
 		if(mortgagesPaid)
-			out << Format::Credits(mortgagesPaid) << (salariesPaid ? " " : " credits ")
-				<< (finesPaid ? "in mortgage payments and " : "in mortgage payments.");
+			out << creditString(mortgagesPaid) << " in mortgages"
+				<< (finesPaid ? " and " : ".");
 		if(finesPaid)
-			out << Format::Credits(finesPaid) << ((salariesPaid || mortgagesPaid) ?
-				" in fines." : " credits in fines.");
+			out << creditString(finesPaid) << " in fines.";
 	}
 	return out.str();
 }

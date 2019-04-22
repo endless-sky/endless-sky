@@ -74,8 +74,6 @@ fleet "Remnant Transport"
 		disables plunders coward appeasing mining harvests
 	variant 10
 		"Gull"
-	variant 6
-		"Gull (Heavy)"
 	variant 5
 		"Gull (Sniper)"
 	variant 4

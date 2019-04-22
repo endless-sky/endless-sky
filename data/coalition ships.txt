@@ -295,6 +295,7 @@ ship "Heliarch Interdictor"
 		"Large Shield Module" 2
 		"Large Repair Module"
 		"Cooling Module"
+		"Scanning Module" 3
 		
 		"Large Thrust Module" 2
 		"Large Steering Module" 2
@@ -327,6 +328,8 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 		"Small Shield Module"
 		"Large Repair Module"
 		"Cooling Module"
+		"Scanning Module" 3
+		"Outfits Expansion"
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module"
@@ -368,6 +371,7 @@ ship "Heliarch Neutralizer"
 		"Large Shield Module"
 		"Large Repair Module"
 		"Cooling Module"
+		"Scanning Module" 2
 		
 		"Large Thrust Module"
 		"Small Thrust Module" 2
@@ -398,6 +402,7 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Missile)"
 		"Large Shield Module"
 		"Large Repair Module"
 		"Cooling Module"
+		"Scanning Module" 2
 		
 		"Large Thrust Module"
 		"Small Thrust Module" 2
@@ -419,6 +424,7 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Nimble)"
 		"Large Shield Module"
 		"Large Repair Module"
 		"Cooling Module"
+		"Scanning Module" 2
 		
 		"Large Thrust Module"
 		"Small Thrust Module"
@@ -436,6 +442,8 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 		"Small Shield Module"
 		"Large Repair Module"
 		"Cooling Module" 2
+		"Scanning Module" 2
+		"Outfits Expansion"
 		
 		"Large Thrust Module"
 		"Small Thrust Module"
@@ -479,6 +487,7 @@ ship "Heliarch Punisher"
 		"Large Shield Module" 3
 		"Large Repair Module" 2
 		"Cooling Module" 3
+		"Scanning Module" 4
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module" 2
@@ -520,6 +529,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 		"Large Shield Module" 3
 		"Large Repair Module" 2
 		"Cooling Module" 3
+		"Scanning Module" 4
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module" 2
@@ -550,6 +560,8 @@ ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 		"Large Shield Module" 5
 		"Large Repair Module" 2
 		"Cooling Module" 2
+		"Scanning Module" 4
+		"Outfits Expansion"
 		
 		"Large Thrust Module" 4
 		"Large Steering Module" 2
@@ -569,9 +581,11 @@ ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
 		"Large Reactor Module" 2
 		"Small Reactor Module"
 		"Large Battery Module"
-		"Large Shield Module" 4
+		"Large Shield Module" 3
+		"Small Shield Module" 2
 		"Large Repair Module" 2
 		"Cooling Module" 5
+		"Scanning Module" 4
 		"Outfits Expansion" 3
 		
 		"Large Thrust Module" 2

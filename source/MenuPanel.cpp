@@ -177,7 +177,7 @@ void MenuPanel::OnCallback(int)
 
 
 
-bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(!isReady)
 		return false;

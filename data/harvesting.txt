@@ -100,7 +100,7 @@ outfit "Lead"
 	"flotsam sprite" "effect/flotsam lead"
 	"mass" 1
 	"installable" -1
-	description "As the densest non-radioactive element, lead has been the material of choice for bullets ever since the invention of firearms. Its other uses are limited by regulations for preventing lead poisoning."
+	description "As one of the densest non-radioactive elements, lead has been the material of choice for bullets ever since the invention of firearms. Its other uses are limited by regulations for preventing lead poisoning."
 
 
 minable "neodymium"

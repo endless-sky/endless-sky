@@ -1755,7 +1755,7 @@ mission "Courier 1"
 	on complete
 		payment
 		payment 30000
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+		dialog phrase "generic cargo delivery payment"
 
 
 
@@ -2264,6 +2264,8 @@ mission "Terraforming 8"
 	landing
 	name "Terraforming Research"
 	description "Meet with Amy and Nolan on <destination> to talk about experimentally terraforming another planet."
+	source
+		near "Epsilon Leonis" 1 100
 	destination "Valhalla"
 	to offer
 		has "event: terraforming research"
@@ -2491,8 +2493,10 @@ mission "A wolf, a goat, and a cabbage"
 mission "Terminus exploration"
 	name "Missing drone"
 	description "Travel to the <waypoints> system to see if you can find any sign of a probe drone that had been launched by a team of scientists before they were attacked by pirates and forced to flee."
-	source "Bounty"
+	source 
+		planet "Memory" "Haze" "Nifel"
 	waypoint "Terminus"
+	destination "Bounty"
 	to offer
 		"combat rating" > 20
 	on offer
@@ -2510,7 +2514,7 @@ mission "Terminus exploration"
 				`	"Sorry, I don't want to help with this."`
 					decline
 			label end
-			`	"Thank you so much!" he says. "All I need you to do is board the drone and download its database. Unless the pirates have already stripped out the computer, of course. The drone is in the Terminus system, a few jumps away from here."`
+			`	"Thank you so much!" he says. "All I need you to do is board the drone and download its database. Unless the pirates have already stripped out the computer, of course. The drone is in the Terminus system, a few jumps away from here. We'll be waiting on <destination> for your return."`
 				accept
 	npc assist
 		system "Terminus"
@@ -2612,7 +2616,7 @@ mission "Lost Boy 2"
 			
 			label description
 			`	You provide Cygnet with the description of Tod that his mother gave you, then explain to him that Tod would have been taken from a ship bound for Placer.`
-			`	"Oh yeah, that bugger! That little rebel was causin' me trouble so I sold him off soon as I could. If ya looking for him, then you're gonna need to look for a guy by the name of <npc>. He bought your boy Tod 'bout four days ago. He might be hangin' around a system nearby."`
+			`	"Oh yeah, that bugger! That little rebel was causin' me trouble so I sold him off soon as I could. If ya looking for him, then you're gonna need to look for a ship by the name of <npc>. They bought your boy Tod 'bout four days ago. Might be hangin' around a system nearby."`
 			`	You thank Cygnet, who has been surprisingly polite for a slave trader, for the information. "If ya ever need a slave, just come talk to me," he remarks as you walk back to your ship. "I've got the cheapest slaves this side of Sol."`
 				accept
 	
@@ -2656,7 +2660,7 @@ mission "Lost Boy 3"
 			`	"I'm fine, Mom," Tod says in an annoyed tone of voice. Some things never change.`
 			`	The mother gives you a handful of credit chips. At a glance, you guess that they couldn't be worth more than 1,000 credits. "I know it isn't much for the work you've done, Captain, but it's all I have to give you in return."`
 			choice
-				`	"Don't worry. "`
+				`	"Don't worry."`
 				`	"You're lucky I agreed to help you in the first place."`
 					goto money
 			

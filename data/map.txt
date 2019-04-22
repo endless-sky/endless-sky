@@ -4377,7 +4377,7 @@ system Arculus
 	fleet "Large Remnant" 2100
 	fleet "Small Remnant" 1600
 	fleet "Remnant Transport" 1600
-	fleet "Korath Raid" 40000
+	fleet "Korath Ember Waste Raid" 40000
 	object
 		sprite star/g5-old
 		period 10
@@ -5851,7 +5851,7 @@ system Caeculus
 	trade Medical 508
 	trade Metal 272
 	trade Plastic 289
-	fleet "Korath Raid" 20000
+	fleet "Korath Ember Waste Raid" 20000
 	fleet "Small Remnant" 30000
 	fleet "Large Remnant" 30000
 	object
@@ -6715,7 +6715,7 @@ system Cinxia
 	fleet "Large Remnant" 1750
 	fleet "Small Remnant" 1300
 	fleet "Remnant Transport" 1300
-	fleet "Korath Raid" 30000
+	fleet "Korath Ember Waste Raid" 30000
 	object
 		sprite star/k5-old
 		period 10
@@ -6769,7 +6769,7 @@ system Coluber
 	trade Medical 798
 	trade Metal 475
 	trade Plastic 362
-	fleet "Korath Raid" 10000
+	fleet "Korath Ember Waste Raid" 10000
 	object
 		sprite star/k5-old
 		distance 40.6966
@@ -8214,7 +8214,7 @@ system Edusa
 	fleet "Large Remnant" 3200
 	fleet "Small Remnant" 2400
 	fleet "Remnant Transport" 2400
-	fleet "Korath Raid" 40000
+	fleet "Korath Ember Waste Raid" 40000
 	object
 		sprite star/giant
 		period 10
@@ -9501,7 +9501,7 @@ system Farinus
 	fleet "Large Remnant" 14000
 	fleet "Small Remnant" 10000
 	fleet "Remnant Transport" 10000
-	fleet "Korath Raid" 40000
+	fleet "Korath Ember Waste Raid" 40000
 	object
 		sprite star/k5-old
 		distance 36.894
@@ -14063,7 +14063,7 @@ system Levana
 	trade Medical 736
 	trade Metal 407
 	trade Plastic 222
-	fleet "Korath Raid" 10000
+	fleet "Korath Ember Waste Raid" 10000
 	object
 		sprite star/giant
 		distance 17.197
@@ -14370,7 +14370,7 @@ system Lucina
 	trade Medical 863
 	trade Metal 524
 	trade Plastic 410
-	fleet "Korath Raid" 20000
+	fleet "Korath Ember Waste Raid" 20000
 	object
 		sprite star/m0
 		period 10
@@ -16989,7 +16989,7 @@ system Pantica
 	fleet "Large Remnant" 1400
 	fleet "Small Remnant" 1000
 	fleet "Remnant Transport" 1000
-	fleet "Korath Raid" 40000
+	fleet "Korath Ember Waste Raid" 40000
 	object
 		sprite star/k0-old
 		period 10
@@ -17039,7 +17039,7 @@ system Parca
 	trade Medical 872
 	trade Metal 531
 	trade Plastic 445
-	fleet "Korath Raid" 10000
+	fleet "Korath Ember Waste Raid" 10000
 	object
 		sprite star/g5-old
 		distance 18.2961
@@ -17256,7 +17256,7 @@ system Peragenor
 	fleet "Large Remnant" 10000
 	fleet "Small Remnant" 7000
 	fleet "Remnant Transport" 7000
-	fleet "Korath Raid" 40000
+	fleet "Korath Ember Waste Raid" 40000
 	object
 		sprite star/g0-old
 		period 10
@@ -17359,7 +17359,7 @@ system Perfica
 	fleet "Large Remnant" 10000
 	fleet "Small Remnant" 7500
 	fleet "Remnant Transport" 7500
-	fleet "Korath Raid" 30000
+	fleet "Korath Ember Waste Raid" 30000
 	object
 		sprite star/g0-old
 		period 10
@@ -19827,7 +19827,7 @@ system Segesta
 	trade Plastic 295
 	fleet "Small Remnant" 40000
 	fleet "Large Remnant" 40000
-	fleet "Korath Raid" 40000
+	fleet "Korath Ember Waste Raid" 40000
 	object
 		sprite star/k5-old
 		period 10
@@ -21496,7 +21496,7 @@ system Stercutus
 	trade Medical 536
 	trade Metal 299
 	trade Plastic 294
-	fleet "Korath Raid" 20000
+	fleet "Korath Ember Waste Raid" 20000
 	fleet "Small Remnant" 20000
 	fleet "Large Remnant" 20000
 	fleet "Remnant Transport" 40000
@@ -23994,7 +23994,7 @@ planet Albatross
 		fleet "Small Southern Pirates" 20
 
 planet Alexandria
-	attributes deep station
+	attributes deep station tourism
 	landscape land/space7
 	description `At the height of the Alpha War, the government of the Deep constructed Alexandria as the galaxy's largest storehouse of human literature, scientific writing, and technology. It also houses a vast museum of cultural artifacts dating back to long before the start of the space age. Today the station is mostly populated by visitors looking for particularly arcane writings or information, and librarians who have devoted their lives to keeping the archives well-indexed and up to date.`
 	description `	Entire sections of the station are off limits to ordinary visitors. There are many rumors about what those restricted areas contain.`
@@ -24510,7 +24510,7 @@ planet Crossroads
 planet Dancer
 	attributes south research
 	landscape land/nasa7
-	description `Dancer is a resource rich world, but with unusually violent weather and strong atmospheric convection, which leads to lightning storms stronger than on any other settled human world. Straying outside on foot is unthinkable, and it is not uncommon to find a small crater blasted out by a particularly energetic strike.`
+	description `Dancer is a resource-rich world, but with unusually violent weather and strong atmospheric convection, which leads to lightning storms stronger than on any other settled human world. Straying outside on foot is unthinkable, and it is not uncommon to find a small crater blasted out by a particularly energetic strike.`
 	description `	A fair number of scientists have settled here to study the planet's weather systems, as well as others who do not mind, or who even enjoy, the wild weather. It might be possible for terraforming to moderate Dancer's atmospheric activity enough to make it a less dangerous place to live, but the cost would be prohibitive.`
 	spaceport `The spaceport town is a rather normal collection of wood and stone buildings, with large sheds for trade goods and a handful of pubs and restaurants. The only unusual thing is the fact that every single building has lightning rods mounted on its roof. The sky is perpetually cloudy here, with only occasional beams of sunlight glancing through. The clouds are moving awfully fast.`
 	outfitter "Basic Outfits"
