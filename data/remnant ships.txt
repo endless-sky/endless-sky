@@ -36,9 +36,9 @@ ship "Albatross"
 		"shield energy" 4.6
 		"hull repair rate" 1.5
 		"hull energy" 1.2
-		"outfit scan power" 12
+		"outfit scan power" 18
 		"outfit scan speed" 1
-		"tactical scan power" 26
+		"tactical scan power" 39
 		weapon
 			"blast radius" 360
 			"shield damage" 3600
@@ -80,7 +80,6 @@ ship "Albatross"
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
 	description "Once they left human space, it became apparent to the Remnant that they would need to build their own shipyards in order to defend themselves if they were discovered by the Alphas or any other unfriendly faction. Using new composite materials that they discovered, they built ships very different from anything seen in human space."
-	description "	Spurred on by their exposure to alien ruins, the Remnant have ensured that every ship has detailed scanners built into their hull. While they continue to hope to find wrecks to accompany the ruins, these scanners have proven invaluable in their pursuit of livelier ships."
 
 ship "Albatross" "Albatross (Sniper)"
 	outfits
@@ -94,6 +93,8 @@ ship "Albatross" "Albatross (Sniper)"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Outfits Expansion"
 		"Tuning Rifle" 57
 
 		"Forge-Class Thruster"
@@ -199,9 +200,9 @@ ship "Gascraft"
 		"hull repair rate" 1.2
 		"hull energy" 0.9
 		"gaslining" 1
-		"outfit scan power" 50
+		"outfit scan power" 24
 		"outfit scan speed" 1
-		"tactical scan power" 50
+		"tactical scan power" 52
 		"atmosphere scan" 100
 	outfits
 		"Millennium Cell"
@@ -263,6 +264,7 @@ ship "Gull"
 		"Crystal Capacitor"
 		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
+		"Salvage Scanner"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -284,20 +286,6 @@ ship "Gull"
 	description "	The Gull has quickly proven its worth, allowing the Starling fleets to return to riskier activities while the Gull takes over the hazardous convoy routes. It is now the primary element of the Remnant's extra-territorial resource operations."
 	description "	The cloaking technology is built into the Gull's hull; it cannot be removed or transferred to another ship."
 
-ship "Gull" "Gull (Heavy)"
-	outfits
-		"Thrasher Cannon" 3
-		"Thrasher Turret"
-
-		"Epoch Cell"
-		"Millennium Cell"
-		"Crystal Capacitor"
-		"Tuning Rifle" 4
-
-		"Forge-Class Thruster"
-		"Forge-Class Steering"
-		"Hyperdrive"
-
 ship "Gull" "Gull (Sniper)"
 	outfits
 		"Inhibitor Cannon" 3
@@ -306,6 +294,8 @@ ship "Gull" "Gull (Sniper)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
+		"Salvage Scanner" 2
+		"Outfits Expansion"
 		"Tuning Rifle" 4
 
 		"Forge-Class Thruster"
@@ -322,6 +312,8 @@ ship "Gull" "Gull (Support)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
+		"Salvage Scanner" 2
+		"Outfits Expansion"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -334,6 +326,7 @@ ship "Gull" "Gull (Cargo)"
 
 		"Epoch Cell"
 		"Crystal Capacitor"
+		"Salvage Scanner"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -346,6 +339,7 @@ ship "Gull" "Gull (Bunks)"
 
 		"Epoch Cell"
 		"Crystal Capacitor"
+		"Salvage Scanner"
 		"Tuning Rifle" 3
 
 		"Forge-Class Thruster"
@@ -464,6 +458,7 @@ ship "Starling"
 		"Crystal Capacitor"
 		"Emergency Ramscoop" 2
 		"Quantum Key Stone"
+		"Salvage Scanner"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"

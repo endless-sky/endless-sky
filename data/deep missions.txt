@@ -1020,18 +1020,7 @@ mission "Deep: Project Hawking"
 	deadline 10
 	to offer
 		random < 40
-		or
-			has "Deep: Questions: done"
-			has "deep: helped before archaeology"
-			and
-				has "Deep: Mystery Cubes 4: done"
-				has "Deep Archaeology 1: offered"
-				not "Deep Archaeology 1: active"
-				not "Deep Archaeology 2: active"
-				not "Deep Archaeology 3: active"
-				not "Deep Archaeology 4: active"
-				not "Deep Archaeology 5: active"
-				not "Deep Archaeology 5: done"
+		has "Deep: Mystery Cubes 4: done"
 		
 	on offer
 		conversation
@@ -1285,10 +1274,6 @@ mission "Deep: Remnant 0"
 		has "Deep: Mystery Cubes 4: done"
 		has "Terminus exploration: done"
 		has "First Contact: Hai: offered"
-		or
-			"deep convoy" >= 2
-			has "Deep: Project Hawking: done"
-			has "Deep: TMBR 1: done"
 	
 	on offer
 		conversation
