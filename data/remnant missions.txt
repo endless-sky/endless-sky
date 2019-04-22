@@ -693,7 +693,7 @@ mission "Remnant: Heavy Laser"
 		conversation
 			`As you land on a pad adjacent to the research center, a group of researchers mount some kind of weapon on a platform aimed down a firing range. The researcher that asked you for the heavy lasers presses a button from behind a thick barrier to activate the weapon. A flash of light erupts from the muzzle as the target downrange is cut in half. The barrel of the weapon raises into the air and the researchers rush out onto the range with tools and devices to inspect the damage.`
 			`	The researcher approaches you while the heavy lasers are being unloaded from your ship. She's dusty, but appears pleased with the results of her experiments. "Captain <first>, I see you have the lasers as we agreed." You aren't sure if Remnant rub their hands in eagerness, but she looks ready to do so.`
-			`	She taps her comlink, and moments later another Remnant appears from the scaffolding around a nearby Starling. The researcher straightens up and switches to a more stately melody. "Captain <last>, this is Prefect Taely. She is our most experienced engineer for dealing with alien tech."`
+			`	She taps her commlink, and moments later another Remnant appears from the scaffolding around a nearby Starling. The researcher straightens up and switches to a more stately melody. "Captain <last>, this is Prefect Taely. She is our most experienced engineer for dealing with alien tech."`
 			`	Taely steps forward and makes what seems to be a kind of welcoming gesture. "Greetings Captain. We appreciate your help in acquiring these samples. It looks like we are far behind the rest of humanity in some respects. We have a lot of work to do if we are to catch up with them."`
 
 
