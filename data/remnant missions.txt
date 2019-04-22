@@ -58,7 +58,7 @@ mission "First Contact: Remnant"
 	on enter
 		conversation
 			`As you break orbit and get ready to escape, you receive a message from <planet>. A chant comes from your speakers.`
-			`	"My compatriots seem to have gotten off on the wrong foot. I am Prefect Chilia of the Remnant. We established ourselves here as a bastion of humanity to survive when when the rest of human space was under threat by the Alphas.`
+			`	"My compatriots seem to have gotten off on the wrong foot. I am Prefect Chilia of the Remnant. We established ourselves here as a bastion of humanity to survive when the rest of human space was under threat by the Alphas.`
 			`	"The blood test we requested is mandatory for all who come to our worlds. We will not tolerate the presence of anyone of Alpha heritage. Should you agree to the blood test and pass, we will allow you to visit our worlds in peace."`
 			choice
 				`	"Okay, I'll take the blood test."`
@@ -649,7 +649,7 @@ mission "Remnant: Learn Sign Follow Up"
 	on offer
 		log "Have achieved a degree of fluency in the Remnant sign language sufficient for general conversation."
 		conversation
-			`As you make your way into the spaceport, it occurs to you that one of the information director who gave you the instructional videos might appreciate how much you have learned over the past months of practice. You stretch your fingers and stop by the desk where you are able to have a simple conversation with the information director.`
+			`As you make your way into the spaceport, it occurs to you that one of the information directors who gave you the instructional videos might appreciate how much you have learned over the past months of practice. You stretch your fingers and stop by the desk where you are able to have a simple conversation with the information director.`
 			`	"Congratulations, Captain <last>!" the director signs. "Your fluency is good enough that even those unwilling to sing with a stranger should be comfortable working with you. At this rate you will be one of us in more ways than just by blood. I look forward to seeing what results from your work with us." The director is interrupted by the arrival of other Remnant asking for something and bids you farewell with an apologetic gesture.`
 				decline
 
@@ -693,7 +693,7 @@ mission "Remnant: Heavy Laser"
 		conversation
 			`As you land on a pad adjacent to the research center, a group of researchers mount some kind of weapon on a platform aimed down a firing range. The researcher that asked you for the heavy lasers presses a button from behind a thick barrier to activate the weapon. A flash of light erupts from the muzzle as the target downrange is cut in half. The barrel of the weapon raises into the air and the researchers rush out onto the range with tools and devices to inspect the damage.`
 			`	The researcher approaches you while the heavy lasers are being unloaded from your ship. She's dusty, but appears pleased with the results of her experiments. "Captain <first>, I see you have the lasers as we agreed." You aren't sure if Remnant rub their hands in eagerness, but she looks ready to do so.`
-			`	She taps her comlink, and moments later another Remnant appears from the scaffolding around a nearby Starling. The researcher straightens up and switches to a more stately melody. "Captain <last>, this is Prefect Tali. She is our most experienced engineer for dealing with alien tech."`
+			`	She taps her commlink, and moments later another Remnant appears from the scaffolding around a nearby Starling. The researcher straightens up and switches to a more stately melody. "Captain <last>, this is Prefect Tali. She is our most experienced engineer for dealing with alien tech."`
 			`	Tali steps forward and makes what seems to be a kind of welcoming gesture. "Greetings Captain. We appreciate your help in acquiring these samples. It looks like we are far behind the rest of humanity in some respects. We have a lot of work to do if we are to catch up with them."`
 
 
@@ -820,7 +820,7 @@ mission "Remnant: Return the Samples"
 					decline
 
 			`	"Thank you. Since we are continuing to work together, I would like to introduce myself again." He takes a breath, thinks for a second, and speaks a short verse about plumage with a complex chord that sounds at once grandiose and self-deprecating. The best you can make out is that his name is "Plume."`
-			`	"Just remember: you will need to use a gascraft to make this delivery. If you don't still have one, there are a few in storage in Viminal." He taps on his comlink, and an assistant emerges from a nearby building with a flatbed truck. Onboard is a large collection of cocoon-like pods cradling large eggs, as well as a big spacesuit that looks more reminiscent of an ancient deep-sea diving suit than anything carried on a modern ship. "Now, remember, you need to remove the eggs from the cocoons and release them gently. Please make sure they don't hit anything on the way out."`
+			`	"Just remember: you will need to use a gascraft to make this delivery. If you don't still have one, there are a few in storage in Viminal." He taps on his commlink, and an assistant emerges from a nearby building with a flatbed truck. Onboard is a large collection of cocoon-like pods cradling large eggs, as well as a big spacesuit that looks more reminiscent of an ancient deep-sea diving suit than anything carried on a modern ship. "Now, remember, you need to remove the eggs from the cocoons and release them gently. Please make sure they don't hit anything on the way out."`
 				accept
 	npc
 		government " Drak "
@@ -948,7 +948,7 @@ mission "Remnant: Salvage 2"
 	on offer
 		conversation
 			`Having acquired a copy of the archive, you gently set your ship down on Viminal hoping that this information is helpful. The port seems unusually busy, but the comm channels are quiet beyond the bare minimum to keep traffic organized.`
-			`	Before you have even taken the time to shut down the engines Tali is halfway up the side of your ship securing a refueling hose and charging cable. As you reach for the comlink she scrambles up to the bridge windows and quickly rattles off a series of signs at you. All you can make out is "Keep it hot, incoming!" Before you can frame a reply she has raced across your wing and leapt to the Albatross parked next to you.`
+			`	Before you have even taken the time to shut down the engines Tali is halfway up the side of your ship securing a refueling hose and charging cable. As you reach for the commlink she scrambles up to the bridge windows and quickly rattles off a series of signs at you. All you can make out is "Keep it hot, incoming!" Before you can frame a reply she has raced across your wing and leapt to the Albatross parked next to you.`
 			`	Looking around more carefully, you note that every ship in the port is idling with fuel lines still connected. If this were some Republic port the safety inspectors would be having a nightmare. One Starling is getting holes in its wings patched even as the crew appear to be running prep-for-flight checklists. It also looks like every ship has a guard. Something tells you that right now would be a bad time to take a walk around town.`
 			`	After some tense minutes of waiting, the planetary defense sirens start and the idling ships begin to ascend one by one. You quickly figure out where you are in the launch sequence and follow the stream of craft heading for orbit.`
 				launch
@@ -994,7 +994,7 @@ mission "Remnant: Salvage 3"
 				`	"Of course."`
 				`	"I'd rather not."`
 					decline
-			`	He looks relieved. "Thanks. I was going to have to divert one of our sentries to take them." He pauses and consults his comlink. "The medical team will have the injured settled onboard shortly, along with everything they need to ensure they arrive safely. They will probably have some fresh crew to send back with you."`
+			`	He looks relieved. "Thanks. I was going to have to divert one of our sentries to take them." He pauses and consults his commlink. "The medical team will have the injured settled onboard shortly, along with everything they need to ensure they arrive safely. They will probably have some fresh crew to send back with you."`
 				accept
 	on stopover
 		dialog
@@ -1004,7 +1004,7 @@ mission "Remnant: Salvage 3"
 		payment 100000
 		set "license: Remnant Capital"
 		conversation
-			`When you return to Viminal, the Remnant crew members leave your ship and disperse across the tarmac to the ships they have been assigned to, each one of them signing their thanks as they leave. A few minutes after they leave your comlink beeps, notifying you that a message from the prefect has arrived:`
+			`When you return to Viminal, the Remnant crew members leave your ship and disperse across the tarmac to the ships they have been assigned to, each one of them signing their thanks as they leave. A few minutes after they leave your commlink beeps, notifying you that a message from the prefect has arrived:`
 			`	"Captain <last>! Thank you for your help in defending Viminal and transporting those wounded. I have transferred a small token of our gratitude to you. That being said, perhaps you would appreciate this a bit more: the other prefects and I have agreed to grant you access to a wider range of ships. Our capital class ships will now be available to you, including the Albatross and the Pelican. At the rate these raids are going, it is in everyone's best interests that you have access to a better warship. Please, meet us in the spaceport to further discuss the situation."`
 
 
@@ -1028,7 +1028,7 @@ mission "Remnant: Salvage 4"
 				goto next
 	
 			label next
-			`	While you're conversing with the group, the prefect suddenly glances down at his comlink, reads a message, then looks up at you. "It appears that a Korath ship survived the raid and has destroyed a few ships without taking cargo. Could you deal with it?"`
+			`	While you're conversing with the group, the prefect suddenly glances down at his commlink, reads a message, then looks up at you. "It appears that a Korath ship survived the raid and has destroyed a few ships without taking cargo. Could you deal with it?"`
 			choice
 				`	"Sure."`
 				`	"Sorry, I don't have time to help you out."`
@@ -1197,7 +1197,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 			`	Almost before you are in the main hall a sales manager is at your side, inquiring as to how he can help. You can almost see the credit signs in his eyes and you suspect that scanning your license may have done a quick check of your net worth too.`
 			`	You ask a few leading questions about new designs and play the part of a captain with more money than brains, and the manager eagerly directs you to the large hangars near the end that house their largest and fanciest ships. After it becomes clear that he doesn't have any experience flying them you politely disentangle yourselves from him to look at the ships in peace.`
 			label end
-			`	After an hour of browsing, the young remnant agree to meet you back at the spaceport in an hour and take off to the outfitters.`
+			`	After an hour of browsing, the young Remnant agree to meet you back at the spaceport in an hour and take off to the outfitters.`
 
 
 
