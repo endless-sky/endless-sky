@@ -813,20 +813,6 @@ mission "Remnant: taely intro log"
 
 
 
-mission "Remnant: Tali to Taely"
-	invisible
-	to offer
-		not "remnant met taely"
-		or
-			has "Remnant: Catalytic Ramscoop: done"
-			has "Remnant: Heavy Laser: done"
-			has "Remnant: Plasma Cannons: done"
-	on offer
-		"remnant met taely" ++
-		fail
-
-
-
 mission "Remnant: Return the Samples"
 	name "Return the Samples"
 	description "A researcher on <planet> has asked you to return void sprite eggs to Nasqueron that the Remnant stole many years ago."
