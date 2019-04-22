@@ -689,7 +689,7 @@ mission "Remnant: Heavy Laser"
 	on complete
 		outfit "Heavy Laser" -2
 		payment 870000
-		"remnant taely" ++
+		"remnant met taely" ++
 		conversation
 			`As you land on a pad adjacent to the research center, a group of researchers mount some kind of weapon on a platform aimed down a firing range. The researcher that asked you for the heavy lasers presses a button from behind a thick barrier to activate the weapon. A flash of light erupts from the muzzle as the target downrange is cut in half. The barrel of the weapon raises into the air and the researchers rush out onto the range with tools and devices to inspect the damage.`
 			`	The researcher approaches you while the heavy lasers are being unloaded from your ship. She's dusty, but appears pleased with the results of her experiments. "Captain <first>, I see you have the lasers as we agreed." You aren't sure if Remnant rub their hands in eagerness, but she looks ready to do so.`
@@ -741,7 +741,7 @@ mission "Remnant: Catalytic Ramscoop"
 	on complete
 		outfit "Catalytic Ramscoop" -2
 		payment 1390000
-		"remnant taely" ++
+		"remnant met taely" ++
 		conversation
 			`You visit the local shipyard and eventually find the engineer busily repairing a damaged Starling. You inform her that you have brought a pair of catalytic ramscoops for her to study. She quickly tightens a couple more connectors and jumps down from her perch, gesturing at an assistant to transfer you the credits you were promised. "Thank you! Our maps of human space are old, and if they are still accurate, you traveled a very long way to bring these to us." Her chanting voice echoes off the Starling above you with an interesting resonance.`
 			`	"If we can unlock the secrets of these ramscoops, it will give our ships greater range as they search for a safer refuge." As she picks up the remote control for the small loading truck with the two ramscoops, she trills at you over her shoulder. "Oh, my name is Taely. I'll let you know what I find."`
@@ -792,7 +792,7 @@ mission "Remnant: Plasma Cannons"
 	on complete
 		outfit "Plasma Cannon" -2
 		payment 1130000
-		"remnant taely" ++
+		"remnant met taely" ++
 		conversation
 			`As the <ship> settles onto the pad closest to the research facility, you can see the weapons specialist checking over a large cannon on a platform beneath a nearby Albatross. When he sees you starting to unload the two plasma cannons, he snaps the casing closed and gestures to someone out of sight. Within moments both him and an empty flatbed are there to pick up the weapons.`
 			`	"Thank you for your help," he says. "Our Inhibitors provide us with something of a mobility advantage against the Korath, but they aren't particularly effective at disabling them. These plasma cannons will open new avenues of research for us." He pauses, then continues. "I also included a bonus for you. It is a 'finder's fee,' as we always appreciate new tech."`
@@ -801,13 +801,12 @@ mission "Remnant: Plasma Cannons"
 
 
 
-mission "Remnant: Taely Intro Log"
-	description "You have just met Taely, an engineering prefect among the Remnant"
+mission "Remnant: taely intro log"
 	invisible
 	source
 		government "Remnant"
 	to offer
-		"remnant taely" >= 1
+		"remnant met taely" >= 1
 	on offer
 		log "People" "Taely" `As an engineering prefect, Taely is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
 		fail
@@ -817,13 +816,13 @@ mission "Remnant: Taely Intro Log"
 mission "Remnant: Tali to Taely"
 	invisible
 	to offer
+		not "remnant met taely"
 		or
 			has "Remnant: Catalytic Ramscoop: done"
 			has "Remnant: Heavy Laser: done"
 			has "Remnant: Plasma Cannons: done"
 	on offer
-		"remnant taely" ++
-		clear log "People" "Tali" 
+		"remnant met taely" ++
 		fail
 
 
