@@ -2189,7 +2189,7 @@ mission "Prisoners [2]"
 	name "Prisoner transport to <planet>"
 	job
 	repeat
-	description "Transport <bunks> petty petty criminals to <destination>, where they will serve their sentences as domestic servants. Payment is <payment>."
+	description "Transport <bunks> petty criminals to <destination>, where they will serve their sentences as domestic servants. Payment is <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 15
@@ -2659,7 +2659,7 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 				"Modified Argosy (Heavy)"
 			variant
 				"Raven (Heavy)"
-		dialog "You blast your way onto the ship, subdue the the fleeing criminals, and confine them to your ship's brig. Time to deliver them to <planet>."
+		dialog "You blast your way onto the ship, subdue the fleeing criminals, and confine them to your ship's brig. Time to deliver them to <planet>."
 	on complete
 		payment 350000
 		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal gang."
