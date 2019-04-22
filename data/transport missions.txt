@@ -2493,8 +2493,10 @@ mission "A wolf, a goat, and a cabbage"
 mission "Terminus exploration"
 	name "Missing drone"
 	description "Travel to the <waypoints> system to see if you can find any sign of a probe drone that had been launched by a team of scientists before they were attacked by pirates and forced to flee."
-	source "Bounty"
+	source 
+		planet "Memory" "Haze" "Nifel"
 	waypoint "Terminus"
+	destination "Bounty"
 	to offer
 		"combat rating" > 20
 	on offer
@@ -2512,7 +2514,7 @@ mission "Terminus exploration"
 				`	"Sorry, I don't want to help with this."`
 					decline
 			label end
-			`	"Thank you so much!" he says. "All I need you to do is board the drone and download its database. Unless the pirates have already stripped out the computer, of course. The drone is in the Terminus system, a few jumps away from here."`
+			`	"Thank you so much!" he says. "All I need you to do is board the drone and download its database. Unless the pirates have already stripped out the computer, of course. The drone is in the Terminus system, a few jumps away from here. We'll be waiting on <destination> for your return."`
 				accept
 	npc assist
 		system "Terminus"
