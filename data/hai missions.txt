@@ -493,7 +493,7 @@ mission "Returning Home"
 	on complete
 		payment 45000
 		conversation
-			`Elliot thanks your for bringing him to <planet> and hands you <payment>. He flags down a taxi just outside the spaceport, but before entering the taxi he turns back to you.`
+			`Elliot thanks you for bringing him to <planet> and hands you <payment>. He flags down a taxi just outside the spaceport, but before entering the taxi he turns back to you.`
 			`	"Do you want to come with me? I'd love for you to meet my family. They'll want to meet you when I tell them how I got back."`
 			choice
 				`	"Sorry, I have other places to be. Good luck."`
@@ -506,9 +506,9 @@ mission "Returning Home"
 			
 			label sure
 			`	The view for nearly the entire three hour drive is of hills and farmland with the occasional building or wild animal. Elliot shakes as the taxi approaches the house from the driveway. "I'm wondering if they still even live here," he says nervously.`
-			`	No one comes out of the house when the taxi stops. You walk up to the front door with Elliot and a middle aged woman answers the door with a mug of coffee and a bewildered look on her face.`
+			`	No one comes out of the house when the taxi stops. You walk up to the front door with Elliot and a middle-aged woman answers the door with a mug of coffee and a bewildered look on her face.`
 			`	"Can I help you?" the woman asks.`
-			`	Eliiot looks over at you with a big smile on his face. "Yes you can, mom," he says to her. The woman's face lights up with joy and she begins jumping up and down, spilling coffee from her mug.`
+			`	Elliot looks over at you with a big smile on his face. "Yes you can, mom," he says to her. The woman's face lights up with joy and she begins jumping up and down, spilling coffee from her mug.`
 			`	"Oh Elliot, I can't believe it!" Elliot's mom puts down her mug and leaps out the door to hug him. "Jackson! Sarah! Abby! Sean! Victor! Elliot is here!" Elliot's entire family comes out from the house and greets him, asking dozens of questions about where and how he's been and why he left.`
 			`	Elliot introduces you to his family, who thank you for bringing Elliot home. Victor, who was only seven years old when Elliot left and is now twelve, asks you question after question about being a pilot, sometimes asking new questions before you can even answer the old one.`
 			`	"Are you going back to the spaceport, <first>?" the taxi driver yells from the driveway. "I need to get back to the city as soon as I can."`
@@ -706,7 +706,7 @@ mission "Expanding Business [2]"
 		fleet "Large Northern Pirates"
 	
 	on visit
-		dialog `You've reached <planet>, but you've left one of the ships you're suppose to be escorting behind. Wait for Turner's ship and all the Bulk Freighters to arrive before landing.`
+		dialog `You've reached <planet>, but you've left one of the ships you're supposed to be escorting behind. Wait for Turner's ship and all the Bulk Freighters to arrive before landing.`
 
 mission "Expanding Business [3]"
 	landing
@@ -873,7 +873,7 @@ mission "Expanding Business [6]"
 		fleet "Large Northern Pirates"
 		
 	on visit
-		dialog `You've reached <planet>, but you've left one of the ships you're suppose to be escorting behind. Wait for Turner's ship and all the Bulk Freighters to arrive before landing.`
+		dialog `You've reached <planet>, but you've left one of the ships you're supposed to be escorting behind. Wait for Turner's ship and all the Bulk Freighters to arrive before landing.`
 
 	on complete
 		dialog `The Bulk Freighters are loaded with supplies without any problem. When one of the spaceport workers asks Turner where the supplies are going, he replies, "These are just to expand a business venture of mine on, uh, Glory."`
@@ -910,7 +910,7 @@ mission "Expanding Business [7]"
 		fleet "Large Northern Pirates"
 		
 	on visit
-		dialog `You've reached <planet>, but you've left one of the ships you're suppose to be escorting behind. Wait for Turner's ship and all the Bulk Freighters to arrive before landing.`
+		dialog `You've reached <planet>, but you've left one of the ships you're supposed to be escorting behind. Wait for Turner's ship and all the Bulk Freighters to arrive before landing.`
 
 	on complete
 		event "shipyard on greenwater" 180

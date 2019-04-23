@@ -30,7 +30,7 @@ mission "Immigrant Workers"
 				"	(Talk to them.)"
 				"	(Ignore them.)"
 					decline
-			"	The couple introduces themselves as George and Samantha. As you shake hands with them, you notice that Samatha's eyes under the goggles are rimmed in red, and she keeps coughing quietly: a dry, careful cough. George explains that they came here several years ago to take jobs in the factories, but the volcanic fumes have been giving Samantha trouble ever since they arrived. They will pay for transport for themselves and their household goods to <destination>."
+			"	The couple introduces themselves as George and Samantha. As you shake hands with them, you notice that Samantha's eyes under the goggles are rimmed in red, and she keeps coughing quietly: a dry, careful cough. George explains that they came here several years ago to take jobs in the factories, but the volcanic fumes have been giving Samantha trouble ever since they arrived. They will pay for transport for themselves and their household goods to <destination>."
 			choice
 				"	(Accept.)"
 				"	(Decline.)"
@@ -309,7 +309,7 @@ mission "Expedition to Hope 2"
 
 mission "Transport Workers A"
 	name "Transport Family"
-	description "Transport this family to <destination>, where they hope that steady work will be more easy to come by."
+	description "Transport this family to <destination>, where they hope that steady work will be easier to come by."
 	minor
 	source
 		attributes "dirt belt"
@@ -556,7 +556,7 @@ mission "Deep Archaeology 3"
 		payment 200000
 		log `Agreed to take a piece of wood from a church on Midgard for an archaeologist. Carbon dating suggests that the church was built many centuries before the discovery of the hyperdrive.`
 		conversation
-			`You return to the lab where you dropped off the anonymous archaeologist. Soon after you arrive, he appears and eagerly collects the two samples, giving you a payment of <payment> for your troubles. "But please," he says, "stick around long enough to learn the results." He hands the two envelopes to a lab technologist, and says, "Here you go, John, Take a look and let us know what you find."`
+			`You return to the lab where you dropped off the anonymous archaeologist. Soon after you arrive, he appears and eagerly collects the two samples, giving you a payment of <payment> for your troubles. "But please," he says, "stick around long enough to learn the results." He hands the two envelopes to a lab technologist, and says, "Here you go, John, take a look and let us know what you find."`
 			`	After the lab tech leaves, he explains, "You see, the ratio of Carbon 12 to Carbon 14 varies from world to world, so accurate dating can only be done if you have a control sample to compare against. Only a handful of archaeological studies have been done in the Deep, and those were sloppy - they used the standard tables of Earth's carbon ratios instead of determining the local concentrations."`
 			choice
 				`	(Wait and see what the results are.)`
@@ -647,7 +647,7 @@ mission "Deep Archaeology 5"
 			`	"I'm not sure," he says. "But I first became interested in the Deep while researching the Alpha Wars. I'm sure you know the history, how humanity was nearly enslaved by psychopathic 'super' humans that we ourselves had created by dabbling in genetic engineering. At that time, the Deep made a sudden, improbable technological leap that allowed them to construct weapons and ships far more powerful than what the Alphas had, and the war against them was won."`
 				goto end
 			label aliens
-			`	"There are popular folks tales in the Deep about 'elves,'" says Albert. "Thin, pale, graceful creatures, with blue blood."`
+			`	"There are popular folk tales in the Deep about 'elves,'" says Albert. "Thin, pale, graceful creatures, with blue blood."`
 			`	John frowns. "Hemocyanic blood. Not the Quarg, then. Their lungs are odd, but their blood uses hemoglobin for oxygen transport, just like ours."`
 			label end
 			`	Albert continues, "What I think is that an unknown alien species has been involved in events in the Deep since the beginning, and is perhaps still involved there today. I think this is known to at least some of the Deep's inhabitants."`
@@ -2454,7 +2454,7 @@ event "terraforming follow-up"
 	planet "Rand"
 		add attributes "tourism"
 		description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
-		description `	Due to the results of recent terraforming experiments, Rand has become a moderately more habitable place. Fascination with this change in climate has lead to Rand becoming a semi-popular tourist destination of the Dirt Belt.`
+		description `	Due to the results of recent terraforming experiments, Rand has become a moderately more habitable place. Fascination with this change in climate has led to Rand becoming a semi-popular tourist destination of the Dirt Belt.`
 	planet "Tundra"
 		spaceport `The spaceport village consists of several large domes, which keep out the wind and driving snow; ships enter and exit the largest of the domes through a hatch that closes as soon as they have come through. Before the planet was terraformed, enough snow would pile up on top of one of the domes every decade or so that it became a danger of collapsing under its own weight; the locals would simply move out of that dome and build another one higher up on the snowpack, but the changing climate has reduced the amount of snow enough that the locals may never need to build another dome again.`
 
@@ -2493,8 +2493,10 @@ mission "A wolf, a goat, and a cabbage"
 mission "Terminus exploration"
 	name "Missing drone"
 	description "Travel to the <waypoints> system to see if you can find any sign of a probe drone that had been launched by a team of scientists before they were attacked by pirates and forced to flee."
-	source "Bounty"
+	source 
+		planet "Memory" "Haze" "Nifel"
 	waypoint "Terminus"
+	destination "Bounty"
 	to offer
 		"combat rating" > 20
 	on offer
@@ -2512,7 +2514,7 @@ mission "Terminus exploration"
 				`	"Sorry, I don't want to help with this."`
 					decline
 			label end
-			`	"Thank you so much!" he says. "All I need you to do is board the drone and download its database. Unless the pirates have already stripped out the computer, of course. The drone is in the Terminus system, a few jumps away from here."`
+			`	"Thank you so much!" he says. "All I need you to do is board the drone and download its database. Unless the pirates have already stripped out the computer, of course. The drone is in the Terminus system, a few jumps away from here. We'll be waiting on <destination> for your return."`
 				accept
 	npc assist
 		system "Terminus"
@@ -2736,7 +2738,7 @@ mission "Paradise Fortune 2"
 	on offer
 		conversation
 			`"You need to explain what is going on here," you say just after setting your ship down.`
-			`	"Alright, alright, I'll explain." You notice that the girl has a strange mix between a posh Paradise World accent and a Dirt Belt or possibly even Rim accent. "My name is Diana Howl. My father is the CEO of a large marketing firm. And this," Diana opens her backpack, revealing its full contents of thousands of credit chips, "this is part of my family fortune, about half a billion credits of it. Don't worry, my father should be able to make this back in a few months time."`
+			`	"Alright, alright, I'll explain." You notice that the girl has a strange mix between a posh Paradise World accent and a Dirt Belt or possibly even Rim accent. "My name is Diana Howl. My father is the CEO of a large marketing firm. And this," Diana opens her backpack, revealing its full contents of thousands of credit chips, "this is part of my family fortune, about half a billion credits of it. Don't worry, my father should be able to make this back in a few months' time."`
 			choice
 				`	"Why have you stolen all this?"`
 					goto story
@@ -2862,7 +2864,7 @@ mission "Paradise Fortune 4"
 			label conversation
 			`	You meet with Alondo at his office in the Free Worlds Senate building. After he and Diana exchange greetings, you explain the situation to him.`
 			`	"You what?" Alondo responds. "You have to turn her in. The war may be over, Captain, but there is still tension between the Republic and Free Worlds that we can not have a situation like this exacerbating."`
-			`	"You can't do that!" Diana yells in protest. "I thought the Free Worlds was suppose to be all about going against the Republic, but you're just going to give in?"`
+			`	"You can't do that!" Diana yells in protest. "I thought the Free Worlds was supposed to be all about going against the Republic, but you're just going to give in?"`
 			`	"Look here, kid," Alondo says in a stern tone. "The Free Worlds was never about being against the Republic, it was only ever about being against Parliament. There's a big difference there. What you've done is a crime, even to the Free Worlds. We are not about to gain a reputation of harboring criminals of the Republic."`
 			`	Diana, instead of protesting further, puts her head down. "I'll be in your ship, Captain," she says. Diana storms off, making an effort to create as much noise as possible with the stomps of her feet.`
 			`	"Spoiled kid," Alondo says quietly. "Attitudes like that are why I joined the Southern Defense Pact. Anyway Captain, I suggest you hand her over to the Navy immediately. I'll contact the Republic if you need me to."`
@@ -2876,7 +2878,7 @@ mission "Paradise Fortune 4"
 			`	"I understand. Please, just don't drag the Free Worlds into this."`
 			
 			label end
-			`	You say goodbye to Alondo and return to your ship. When you arrive and look around, Diana is notably absent. In your pilot's seat she has left her backpack and a written note. The paper has noticable tear stains in one of the corners.`
+			`	You say goodbye to Alondo and return to your ship. When you arrive and look around, Diana is notably absent. In your pilot's seat she has left her backpack and a written note. The paper has noticeable tear stains in one of the corners.`
 			``
 			`Dear <first> <last>,`
 			`	I don't care about the credits anymore, but I can't go back to my family. I'll be too much of a disgrace, and I can't even imagine looking my parents in the eyes after what I've done. I've left the credits with you. You can do with them as you wish.`
