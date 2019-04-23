@@ -63,6 +63,7 @@ Version 0.9.9:
       * The turret hardpoint and projectile of the Laser Turret now properly reflect the outfit image. (@Amazinite)
       * NPC carrier-fighter assignment properly counts available bays. (@oo13)
       * Unrepresentable condition values generate a warning, rather than result in signed integer overflow. (@tehhowch)
+      * Weapon outfits that do not specify a hardpoint no longer occupy a gun port (@tehhowch)
     * Minor issues:
       * Typo fixes. (@abenkovskii, @Alkallid, @Amazinite, @Bladewood, @Fzzr, @jafdy, @Janaszar, @jostephd, @Jugosloven1612, @LordInsane, @MessyMix, @Nescio0, @redshalken, @seanfahey, @solardawning, @temtemy, @themightygrunt, @tmbutterworth, @toilethinges, @Turtleroku, @UnciaPrima, @warp-core, @whismerhill)
       * Fixed missions that give "gifts" not being colored as ready to be completed. (@tehhowch)
