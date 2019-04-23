@@ -239,6 +239,7 @@ outfitter "Remnant"
 	"Cargo Scanner"
 	"Outfit Scanner"
 	"Tuning Rifle"
+	"Salvage Scanner"
 
 outfitter "Remnant Salvage"
 	"Generator (Furnace Class)"
