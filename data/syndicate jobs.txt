@@ -454,7 +454,7 @@ mission "Return Syndicate Prisoners [1]"
 	name "Return detained protesters home"
 	job
 	repeat
-	description `Transport a group of protesters home to <planet> from their detention on <source>. Payment is <payment>.`
+	description `Transport a group of protesters home to <planet> from their detention on <origin>. Payment is <payment>.`
 	passengers 10 40 .9
 	source
 		government "Syndicate"
@@ -475,7 +475,7 @@ mission "Return Syndicate Prisoners [2]"
 	name "Return detained labor organizers home"
 	job
 	repeat
-	description `Transport a group of labor organizers home to <planet> from their imprisonment on <source>. Payment is <payment>.`
+	description `Transport a group of labor organizers home to <planet> from their imprisonment on <origin>. Payment is <payment>.`
 	passengers 3 15 .9
 	source
 		government "Syndicate"

@@ -209,22 +209,27 @@ string Account::Step(int64_t assets, int64_t salaries)
 	
 	out << "You paid ";
 	
+	auto creditString = [](int64_t payment) -> string
+	{
+		return payment == 1 ? "1 credit" : Format::Credits(payment) + " credits";
+	};
+	
 	// If you made payments of all three types, the punctuation needs to
 	// include commas, so just handle that separately here.
 	if(salariesPaid && mortgagesPaid && finesPaid)
-		out << Format::Credits(salariesPaid) << " credits in crew salaries, " << Format::Credits(mortgagesPaid)
-			<< " in mortgages, and " << Format::Credits(finesPaid) << " in fines.";
+		out << creditString(salariesPaid) << " in crew salaries, "
+			<< creditString(mortgagesPaid) << " in mortgages, and "
+			<< creditString(finesPaid) << " in fines.";
 	else
 	{
 		if(salariesPaid)
-			out << Format::Credits(salariesPaid) << ((mortgagesPaid || finesPaid) ?
-				" credits in crew salaries and " : " credits in crew salaries.");
+			out << creditString(salariesPaid) << " in crew salaries"
+				<< ((mortgagesPaid || finesPaid) ? " and " : ".");
 		if(mortgagesPaid)
-			out << Format::Credits(mortgagesPaid) << (salariesPaid ? " " : " credits ")
-				<< (finesPaid ? "in mortgage payments and " : "in mortgage payments.");
+			out << creditString(mortgagesPaid) << " in mortgages"
+				<< (finesPaid ? " and " : ".");
 		if(finesPaid)
-			out << Format::Credits(finesPaid) << ((salariesPaid || mortgagesPaid) ?
-				" in fines." : " credits in fines.");
+			out << creditString(finesPaid) << " in fines.";
 	}
 	return out.str();
 }

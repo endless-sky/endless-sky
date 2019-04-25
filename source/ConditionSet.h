@@ -43,18 +43,18 @@ public:
 	// Read a single condition from a data node.
 	void Add(const DataNode &node);
 	bool Add(const std::string &firstToken, const std::string &secondToken);
-	bool Add(const std::string &name, const std::string &op, int value);
+	bool Add(const std::string &name, const std::string &op, int64_t value);
 	bool Add(const std::string &name, const std::string &op, const std::string &strValue);
 	
 	// Check if the given condition values satisfy this set of conditions.
-	bool Test(const std::map<std::string, int> &conditions) const;
+	bool Test(const std::map<std::string, int64_t> &conditions) const;
 	// Modify the given set of conditions.
-	void Apply(std::map<std::string, int> &conditions) const;
+	void Apply(std::map<std::string, int64_t> &conditions) const;
 	
 	
 private:
 	// Check if the passed token is numeric or a string which has to be replaced, and return its value
-	double TokenValue(int numValue, const std::string &strValue, const std::map<std::string, int> &conditions) const;
+	int64_t TokenValue(int64_t numValue, const std::string &strValue, const std::map<std::string, int64_t> &conditions) const;
 	
 	
 private:
@@ -62,7 +62,7 @@ private:
 	// testing what value it has, or modifying it in some way.
 	class Expression {
 	public:
-		Expression(const std::string &name, const std::string &op, int value);
+		Expression(const std::string &name, const std::string &op, int64_t value);
 		
 		// This is the name of the condition that this entry operates on.
 		std::string name;
@@ -70,9 +70,9 @@ private:
 		std::string op;
 		// Pointer to a binary function that defines what operation should be
 		// performed on the condition and the constant value.
-		int (*fun)(int, int);
+		int64_t (*fun)(int64_t, int64_t);
 		// Constant value specified in the expression.
-		int value;
+		int64_t value;
 		// Allow for dynamic values.
 		std::string strValue;
 	};

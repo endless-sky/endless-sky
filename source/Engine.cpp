@@ -165,7 +165,7 @@ namespace {
 
 Engine::Engine(PlayerInfo &player)
 	: player(player), ai(ships, asteroids.Minables(), flotsam),
-	shipCollisions(256, 32)
+	shipCollisions(256u, 32u)
 {
 	zoom = Preferences::ViewZoom();
 	
@@ -316,12 +316,12 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			if(ship->IsDestroyed() || ship->IsDisabled())
 				continue;
 			
+			// Redo the loading up of fighters.
+			ship->UnloadBays();
 			if(ship->BaysFree(false))
 				droneCarriers[&*ship] = ship->BaysFree(false);
 			if(ship->BaysFree(true))
 				fighterCarriers[&*ship] = ship->BaysFree(true);
-			// Redo the loading up of fighters.
-			ship->UnloadBays();
 		}
 		
 		shared_ptr<Ship> npcFlagship;
@@ -1429,13 +1429,9 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 
 
 
-// Fill in the collision detection sets, which are used for projectile collision
-// and for flotsam collection. Cloaked ships are stored in a separate set because
-// they can still be hit by some weapons (e.g. ones with a blast radius) but not
-// by most others.
+// Populate the ship collision detection set for projectile & flotsam computations.
 void Engine::FillCollisionSets()
 {
-	// Populate the collision detection set.
 	shipCollisions.Clear(step);
 	for(const shared_ptr<Ship> &it : ships)
 		if(it->GetSystem() == player.GetSystem() && it->Zoom() == 1.)

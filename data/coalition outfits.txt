@@ -143,6 +143,21 @@ outfit "Cooling Module"
 	"cooling energy" 1.4
 	description "This cooling module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is very close to overheating."
 
+outfit "Scanning Module"
+	category "Systems"
+	licenses
+		Heliarch
+	cost 453600
+	thumbnail "outfit/scan module"
+	"mass" 3
+	"outfit space" -3
+	"outfit scan power" 25
+	"outfit scan speed" 1
+	"cargo scan power" 25
+	"cargo scan speed" 1
+	"tactical scan power" 25
+	description "This system allows the Heliarchs to scan nearby ships, enabling them to detect weapons or illegal goods."
+
 
 outfit "Small Thrust Module"
 	category "Engines"

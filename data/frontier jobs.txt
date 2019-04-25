@@ -166,7 +166,7 @@ mission "Disaster Relief"
 	name "Disaster relief to <planet>"
 	job
 	repeat
-	description "A disaster has occured in a colony on the frontier world of <destination>. Deliver <cargo> to the planet by <date> for <payment>."
+	description "A disaster has occurred in a colony on the frontier world of <destination>. Deliver <cargo> to the planet by <date> for <payment>."
 	cargo "disaster relief supplies" 25 2 .05
 	deadline
 	to offer
@@ -245,7 +245,7 @@ mission "Small Pirate gambling"
 					defer
 
 			label gamble
-			`	You walk over to the table. A closer examination indicates a strong liklihood that they are pirates; not one of them looks older than 19, and they all sport fearsome tattoos and dangerous-looking sidearms. After a few rounds of cards it becomes abundantly obvious that they're cheating, and making little effort to hide this from you.`
+			`	You walk over to the table. A closer examination indicates a strong likelihood that they are pirates; not one of them looks older than 19, and they all sport fearsome tattoos and dangerous-looking sidearms. After a few rounds of cards it becomes abundantly obvious that they're cheating, and making little effort to hide this from you.`
 			branch "good luck" "bad luck"
 				random < 30
 
@@ -266,7 +266,7 @@ mission "Small Pirate gambling"
 				decline
 
 			label call
-			`	"You confront them on their blatant cheating when one of them yells out, We're just playin' a game here, see? You'd better shut your big mouth if you know what's good for you," the meanest-looking one growls at you. "We can make this ugly real fast."`
+			`	You confront them on their blatant cheating when the meanest-looking one growls at you, "We're just playin' a game here, see? You'd better shut your big mouth if you know what's good for you! We can make this ugly real fast."`
 			`	The thugs stare at you menacingly and start to reach for their guns.`
 			choice
 				`(Shoot first!)`

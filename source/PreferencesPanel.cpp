@@ -93,7 +93,7 @@ void PreferencesPanel::Draw()
 
 
 
-bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(static_cast<unsigned>(editing) < zones.size())
 	{
