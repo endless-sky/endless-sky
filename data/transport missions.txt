@@ -3256,8 +3256,8 @@ mission "The New Rigellian Plague"
 			`	"Excellent. We will be there in a couple hours."`
 			accept
 			label risky
-				`	"Risky?!" She calls after you. "You're more likely to die flying to the next system than suffer anything from our vaccines." She turns away from you in disgust to treat the next person.`
-				fail "The New Rigellian Plague"
+			`	"Risky?!" She calls after you. "You're more likely to die flying to the next system than suffer anything from our vaccines." She turns away from you in disgust to treat the next person.`
+			fail "The New Rigellian Plague"
 	
 	on complete
 		payment 100000
