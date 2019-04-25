@@ -3232,7 +3232,7 @@ mission "The New Rigellian Plague"
 	cargo "vaccine" 1
 	passengers 2
 	to offer
-		random < 5
+		random < 100
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
@@ -3254,28 +3254,30 @@ mission "The New Rigellian Plague"
 					decline
 				`	"Sure. Here's my ship's berth."`
 			`	"Excellent. We will be there in a couple hours."`
+			accept
 			label risky
 				`	"Risky?!" She calls after you. "You're more likely to die flying to the next system than suffer anything from our vaccines." She turns away from you in disgust to treat the next person.`
 				fail "The New Rigellian Plague"
 	
 	on complete
 		payment 100000
-		event "plague discovered" 7
+		event "plague discovered" 2
 		dialog
 			`The pair of nurses pay you <payment> and quickly unload their precious cargo of vaccines and set up shop next to a busy gateway on <planet>.`
 			`	"Thank you for your help, Captain. Hopefully it comes to nothing, but you may have helped save billions."`
 	
 	on decline
-		event "plague discovered" 7
+		event "plague discovered" 2
 	
 	on fail
-		event "plague spreading" 7
+		event "plague spreading" 2
 
 
 event "plague discovered"
 
 
 event "plague spreading"
+
 
 
 mission "The New Rigellian Plague Discovered"
@@ -3288,8 +3290,19 @@ mission "The New Rigellian Plague Discovered"
 		conversation
 			`The crowd in the spaceport cantina are worriedly watching a news broadcast where the announcer has just finished listing off a number of planets. "Health authorities have stated that the current symptoms point to the first case of the Rigellian plague in over a century. Officials are currently crediting a recent vaccination push by independent humanitarian groups for preventing this from becoming a full fledged pandemic. We will have more updates after this message from our sponsor."`
 			`	The crowd disperses back to their tables and you can hear a variety of murmurs of people talking about the news and wondering where it might show up next.`
+			fail
 
 
-... After a series of hacking coughs, you finally collapse. Without enough air in you, your limbs begin to numb. In, out, in, out, but it is of no use. You try and drag yourself to your ships panel to send a distress signal but your arms gave out beforehand, leaving you wanting upon the floor. You make a scream, scared and wanting someone, anyone to help you. It is of no use, you could barely get the noise out of you before a wheeze cut it short. Out of oxygen, your vision leaves you. All that remains to you is the hum of the ship and the feel of yourself upon the cold floor. Eventually, the feel of cold goes away. It is neither cold nor warm. As you begin to drift out of consciousness, you think of your life up until now; the journey you've taken. You think of your family back on New Boston waiting for you to make a return. All is quiet. 
 
-You have died.
+mission "The New Rigellian Plague Spreading"
+	landing
+	invisible
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	to offer
+		has "event: plague spreading"
+	on enter
+		conversation
+			`... After a series of hacking coughs, you finally collapse. Without enough air in you, your limbs begin to numb. In, out, in, out, but it is of no use. You try and drag yourself to your ships panel to send a distress signal but your arms gave out beforehand, leaving you wanting upon the floor. You make a scream, scared and wanting someone, anyone to help you. It is of no use, you could barely get the noise out of you before a wheeze cut it short. Out of oxygen, your vision leaves you. All that remains to you is the hum of the ship and the feel of yourself upon the cold floor. Eventually, the feel of cold goes away. It is neither cold nor warm. As you begin to drift out of consciousness, you think of your life up until now; the journey you've taken. You think of your family back on New Boston waiting for you to make a return. All is quiet.`
+			`	You have died.`
+			die
