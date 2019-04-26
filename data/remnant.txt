@@ -8,6 +8,20 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+fleet "Small Tern"
+	government "Remnant"
+	names "remnant"
+	cargo 2
+	personality
+		heroic disables plunders appeasing
+	variant 30
+		"Tern"
+	variant 20
+		"Tern" 2
+	variant 10
+		"Tern" 3
+
+
 fleet "Small Remnant"
 	government "Remnant"
 	names "remnant"
@@ -205,6 +219,7 @@ shipyard "Remnant"
 	"Gull"
 	"Albatross"
 	"Pelican"
+	"Tern"
 	"Void Sprite Elder"
 	"Condor"
 	"Peregrine"

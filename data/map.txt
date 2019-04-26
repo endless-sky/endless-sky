@@ -4374,6 +4374,7 @@ system Arculus
 	trade Medical 510
 	trade Metal 417
 	trade Plastic 498
+	fleet "Small Tern" 1500
 	fleet "Large Remnant" 2100
 	fleet "Small Remnant" 1600
 	fleet "Remnant Transport" 1600
@@ -5851,6 +5852,7 @@ system Caeculus
 	trade Medical 508
 	trade Metal 272
 	trade Plastic 289
+	fleet "Small Tern" 1500
 	fleet "Korath Ember Waste Raid" 20000
 	fleet "Small Remnant" 30000
 	fleet "Large Remnant" 30000
@@ -6712,6 +6714,7 @@ system Cinxia
 	trade Medical 516
 	trade Metal 354
 	trade Plastic 417
+	fleet "Small Tern" 1500
 	fleet "Large Remnant" 1750
 	fleet "Small Remnant" 1300
 	fleet "Remnant Transport" 1300
