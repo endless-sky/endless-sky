@@ -26838,6 +26838,7 @@ planet "Tefkar Ret"
 	attributes korath station
 	landscape land/station0
 	description `This station is run down and completely abandoned, emptied of atmosphere so that air pressure will not put ongoing stress on the station's structure. Each section is sealed off from the others by heavy blast doors, leaving most of the station inaccessible.`
+	security 0
 
 planet "Third Umber"
 	attributes kimek factory research
