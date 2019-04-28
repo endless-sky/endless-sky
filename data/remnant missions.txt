@@ -734,7 +734,7 @@ mission "Remnant: Heavy Laser"
 			label stuff
 			`	Remembering that she spends most of her time in the shipyard, you head straight there and ask the nearest mechanic. They direct you to a large hanger tucked into a cliff face, where you find her working at a terminal filled with schematics. Behind her, the room fades quickly into darkness where you can faintly make out what appears to be a large tank and a lot of whirring machinery. As you approach she looks up from her work and turns to face you. "Ah, you have returned. Do you have something new for me?"`
 			label the_rest
-			`	You lead her back to your ship, where you show her the heavy laser cannon. "A laser cannon?" she asks. "Our records indicate that humanity had primitive laser technology at the time of the Exodus, but nothing that would be considered useful as weapons." She pauses to look down at her scanner. "And yet my scans indicate that they are capable of significant power output." She pauses for a moment before continuing, "These could be quite useful to examine more thoroughly. Please deliver two of these heavy laser cannons to a research team on <planet>."
+			`	You lead her back to your ship, where you show her the heavy laser cannon. "A laser cannon?" she asks. "Our records indicate that humanity had primitive laser technology at the time of the Exodus, but nothing that would be considered useful as weapons." She pauses to look down at her scanner. "And yet my scans indicate that they are capable of significant power output." She pauses for a moment before continuing, "These could be quite useful to examine more thoroughly. Please deliver two of these heavy laser cannons to a research team on <planet>."`
 				accept
 	on complete
 		outfit "Heavy Laser" -2
