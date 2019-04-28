@@ -1044,6 +1044,7 @@ mission "Remnant: Salvage 1"
 			has "Remnant: Catalytic Ramscoop: done"
 			has "Remnant: Plasma Cannons: done"
 			has "Remnant: Heavy Laser: done"
+			has "Remnant: Tech Retrieval: done"
 	on offer
 		conversation
 			`As you step out into the icy chill of Viminal, you get a message from Taely, the engineering prefect, asking if you could meet her in the cafeteria.`
