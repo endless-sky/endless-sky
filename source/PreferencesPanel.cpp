@@ -158,13 +158,15 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
 				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
-			if(zone.Value() == VIEW_ZOOM_FACTOR)
+			else if(zone.Value() == VIEW_ZOOM_FACTOR)
 			{
 				// Increase the zoom factor unless it is at the maximum. In that
 				// case, cycle around to the lowest zoom factor.
 				if(!Preferences::ZoomViewIn())
 					while(Preferences::ZoomViewOut()) {}
 			}
+			
+			// Update saved preferences.
 			if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == TURRET_TRACKING)
@@ -189,7 +191,10 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 	
 	for(const auto &zone : pluginZones)
 		if(zone.Contains(point))
+		{
 			selectedPlugin = zone.Value();
+			break;
+		}
 	
 	return true;
 }
