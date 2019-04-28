@@ -27,7 +27,7 @@ public:
 	// Zoom level as specified by the user.
 	static int UserZoom();
 	// Effective zoom level, as restricted by the current resolution / window size.
-	static int EffectiveZoom();
+	static int Zoom();
 	static void SetZoom(int percent);
 	
 	// Specify that this is a high-DPI window.

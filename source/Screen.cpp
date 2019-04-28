@@ -44,7 +44,7 @@ int Screen::UserZoom()
 
 
 
-int Screen::EffectiveZoom()
+int Screen::Zoom()
 {
 	return EFFECTIVE_ZOOM;
 }
@@ -121,7 +121,6 @@ int Screen::RawHeight()
 {
 	return RAW_HEIGHT;
 }
-
 
 
 

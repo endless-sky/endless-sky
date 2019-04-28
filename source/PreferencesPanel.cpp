@@ -142,9 +142,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 			{
 				int newZoom = Screen::UserZoom() + ZOOM_FACTOR_INCREMENT;
 				Screen::SetZoom(newZoom);
-				if(newZoom > ZOOM_FACTOR_MAX || Screen::EffectiveZoom() != newZoom)
+				if(newZoom > ZOOM_FACTOR_MAX || Screen::Zoom() != newZoom)
 				{
-					Screen::SetZoom(ZOOM_FACTOR_MIN);
 					// Notify the user why setting the zoom any higher isn't permitted.
 					// Only show this if it's not possible to zoom the view at all, as
 					// otherwise the dialog will show every time, which is annoying.
@@ -154,7 +153,7 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					Screen::SetZoom(ZOOM_FACTOR_MIN);
 				}
 				// Convert to raw window coordinates, at the new zoom level.
-				point *= Screen::EffectiveZoom() / 100.;
+				point *= Screen::Zoom() / 100.;
 				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
 				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
@@ -235,11 +234,11 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 			zoom += ZOOM_FACTOR_INCREMENT;
 		
 		Screen::SetZoom(zoom);
-		if (Screen::EffectiveZoom() != zoom)
-			Screen::SetZoom(Screen::EffectiveZoom());
+		if (Screen::Zoom() != zoom)
+			Screen::SetZoom(Screen::Zoom());
 		
 		// Convert to raw window coordinates, at the new zoom level.
-		Point point = hoverPoint * (Screen::EffectiveZoom() / 100.);
+		Point point = hoverPoint * (Screen::Zoom() / 100.);
 		point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
 		SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 	}
@@ -473,7 +472,7 @@ void PreferencesPanel::DrawSettings()
 		string text;
 		if(setting == ZOOM_FACTOR)
 		{
-			isOn = Screen::UserZoom() == Screen::EffectiveZoom();
+			isOn = Screen::UserZoom() == Screen::Zoom();
 			text = to_string(Screen::UserZoom());
 		}
 		else if(setting == VIEW_ZOOM_FACTOR)
