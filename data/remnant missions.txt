@@ -58,7 +58,7 @@ mission "First Contact: Remnant"
 	on enter
 		conversation
 			`As you break orbit and get ready to escape, you receive a message from <planet>. A chant comes from your speakers.`
-			`	"My compatriots seem to have gotten off on the wrong foot. I am Prefect Chilia of the Remnant. We established ourselves here as a bastion of humanity to survive when when the rest of human space was under threat by the Alphas.`
+			`	"My compatriots seem to have gotten off on the wrong foot. I am Prefect Chilia of the Remnant. We established ourselves here as a bastion of humanity to survive when the rest of human space was under threat by the Alphas.`
 			`	"The blood test we requested is mandatory for all who come to our worlds. We will not tolerate the presence of anyone of Alpha heritage. Should you agree to the blood test and pass, we will allow you to visit our worlds in peace."`
 			choice
 				`	"Okay, I'll take the blood test."`
@@ -649,7 +649,7 @@ mission "Remnant: Learn Sign Follow Up"
 	on offer
 		log "Have achieved a degree of fluency in the Remnant sign language sufficient for general conversation."
 		conversation
-			`As you make your way into the spaceport, it occurs to you that one of the information director who gave you the instructional videos might appreciate how much you have learned over the past months of practice. You stretch your fingers and stop by the desk where you are able to have a simple conversation with the information director.`
+			`As you make your way into the spaceport, it occurs to you that one of the information directors who gave you the instructional videos might appreciate how much you have learned over the past months of practice. You stretch your fingers and stop by the desk where you are able to have a simple conversation with the information director.`
 			`	"Congratulations, Captain <last>!" the director signs. "Your fluency is good enough that even those unwilling to sing with a stranger should be comfortable working with you. At this rate you will be one of us in more ways than just by blood. I look forward to seeing what results from your work with us." The director is interrupted by the arrival of other Remnant asking for something and bids you farewell with an apologetic gesture.`
 				decline
 
@@ -689,12 +689,12 @@ mission "Remnant: Heavy Laser"
 	on complete
 		outfit "Heavy Laser" -2
 		payment 870000
-		log "People" "Tali" `As an engineering prefect, Tali is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
+		"remnant met taely" ++
 		conversation
 			`As you land on a pad adjacent to the research center, a group of researchers mount some kind of weapon on a platform aimed down a firing range. The researcher that asked you for the heavy lasers presses a button from behind a thick barrier to activate the weapon. A flash of light erupts from the muzzle as the target downrange is cut in half. The barrel of the weapon raises into the air and the researchers rush out onto the range with tools and devices to inspect the damage.`
 			`	The researcher approaches you while the heavy lasers are being unloaded from your ship. She's dusty, but appears pleased with the results of her experiments. "Captain <first>, I see you have the lasers as we agreed." You aren't sure if Remnant rub their hands in eagerness, but she looks ready to do so.`
-			`	She taps her comlink, and moments later another Remnant appears from the scaffolding around a nearby Starling. The researcher straightens up and switches to a more stately melody. "Captain <last>, this is Prefect Tali. She is our most experienced engineer for dealing with alien tech."`
-			`	Tali steps forward and makes what seems to be a kind of welcoming gesture. "Greetings Captain. We appreciate your help in acquiring these samples. It looks like we are far behind the rest of humanity in some respects. We have a lot of work to do if we are to catch up with them."`
+			`	She taps her commlink, and moments later another Remnant appears from the scaffolding around a nearby Starling. The researcher straightens up and switches to a more stately melody. "Captain <last>, this is Prefect Taely. She is our most experienced engineer for dealing with alien tech."`
+			`	Taely steps forward and makes what seems to be a kind of welcoming gesture. "Greetings Captain. We appreciate your help in acquiring these samples. It looks like we are far behind the rest of humanity in some respects. We have a lot of work to do if we are to catch up with them."`
 
 
 
@@ -741,10 +741,10 @@ mission "Remnant: Catalytic Ramscoop"
 	on complete
 		outfit "Catalytic Ramscoop" -2
 		payment 1390000
-		log "People" "Tali" `As an engineering prefect, Tali is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
+		"remnant met taely" ++
 		conversation
 			`You visit the local shipyard and eventually find the engineer busily repairing a damaged Starling. You inform her that you have brought a pair of catalytic ramscoops for her to study. She quickly tightens a couple more connectors and jumps down from her perch, gesturing at an assistant to transfer you the credits you were promised. "Thank you! Our maps of human space are old, and if they are still accurate, you traveled a very long way to bring these to us." Her chanting voice echoes off the Starling above you with an interesting resonance.`
-			`	"If we can unlock the secrets of these ramscoops, it will give our ships greater range as they search for a safer refuge." As she picks up the remote control for the small loading truck with the two ramscoops, she trills at you over her shoulder. "Oh, my name is Tali. I'll let you know what I find."`
+			`	"If we can unlock the secrets of these ramscoops, it will give our ships greater range as they search for a safer refuge." As she picks up the remote control for the small loading truck with the two ramscoops, she trills at you over her shoulder. "Oh, my name is Taely. I'll let you know what I find."`
 
 
 
@@ -792,12 +792,24 @@ mission "Remnant: Plasma Cannons"
 	on complete
 		outfit "Plasma Cannon" -2
 		payment 1130000
-		log "People" "Tali" `As an engineering prefect, Tali is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
+		"remnant met taely" ++
 		conversation
 			`As the <ship> settles onto the pad closest to the research facility, you can see the weapons specialist checking over a large cannon on a platform beneath a nearby Albatross. When he sees you starting to unload the two plasma cannons, he snaps the casing closed and gestures to someone out of sight. Within moments both him and an empty flatbed are there to pick up the weapons.`
 			`	"Thank you for your help," he says. "Our Inhibitors provide us with something of a mobility advantage against the Korath, but they aren't particularly effective at disabling them. These plasma cannons will open new avenues of research for us." He pauses, then continues. "I also included a bonus for you. It is a 'finder's fee,' as we always appreciate new tech."`
-			`	The weapon technician finishes strapping down the plasma cannons and looks up to see another Remnant approaching. He gives the new Remnant a respectful dip of his head that almost seems like a bow before turning to you and chanting, "Ah, Captain <last>, have you met Tali? She is the engineering prefect here on Viminal. She asked me to let her know when or if you managed to procure the new tech for me."`
-			`	Tali steps forward to face you. "Well met, newcomer among the Remnant," she trills. "Fresh blood amongst us sets songs in motion that have long been in caesura. I have a few things to finish up right now, but I hope to work with you soon." She gives you a polite nod and heads back the way she came.`
+			`	The weapon technician finishes strapping down the plasma cannons and looks up to see another Remnant approaching. He gives the new Remnant a respectful dip of his head that almost seems like a bow before turning to you and chanting, "Ah, Captain <last>, have you met Taely? She is the engineering prefect here on Viminal. She asked me to let her know when or if you managed to procure the new tech for me."`
+			`	Taely steps forward to face you. "Well met, newcomer among the Remnant," she trills. "Fresh blood amongst us sets songs in motion that have long been in caesura. I have a few things to finish up right now, but I hope to work with you soon." She gives you a polite nod and heads back the way she came.`
+
+
+
+mission "Remnant: taely intro log"
+	invisible
+	source
+		government "Remnant"
+	to offer
+		"remnant met taely" >= 1
+	on offer
+		log "People" "Taely" `As an engineering prefect, Taely is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
+		fail
 
 
 
@@ -820,7 +832,7 @@ mission "Remnant: Return the Samples"
 					decline
 
 			`	"Thank you. Since we are continuing to work together, I would like to introduce myself again." He takes a breath, thinks for a second, and speaks a short verse about plumage with a complex chord that sounds at once grandiose and self-deprecating. The best you can make out is that his name is "Plume."`
-			`	"Just remember: you will need to use a gascraft to make this delivery. If you don't still have one, there are a few in storage in Viminal." He taps on his comlink, and an assistant emerges from a nearby building with a flatbed truck. Onboard is a large collection of cocoon-like pods cradling large eggs, as well as a big spacesuit that looks more reminiscent of an ancient deep-sea diving suit than anything carried on a modern ship. "Now, remember, you need to remove the eggs from the cocoons and release them gently. Please make sure they don't hit anything on the way out."`
+			`	"Just remember: you will need to use a gascraft to make this delivery. If you don't still have one, there are a few in storage in Viminal." He taps on his commlink, and an assistant emerges from a nearby building with a flatbed truck. Onboard is a large collection of cocoon-like pods cradling large eggs, as well as a big spacesuit that looks more reminiscent of an ancient deep-sea diving suit than anything carried on a modern ship. "Now, remember, you need to remove the eggs from the cocoons and release them gently. Please make sure they don't hit anything on the way out."`
 				accept
 	npc
 		government " Drak "
@@ -895,12 +907,12 @@ mission "Remnant: Salvage 1"
 			has "Remnant: Heavy Laser: done"
 	on offer
 		conversation
-			`As you step out into the icy chill of Viminal, you get a message from Tali, the engineering prefect, asking if you could meet her in the cafeteria.`
+			`As you step out into the icy chill of Viminal, you get a message from Taely, the engineering prefect, asking if you could meet her in the cafeteria.`
 			choice
 				`	(Not right now.)`
 					defer
 				`	(Accept her invitation.)`
-			`	Replying that you can, you make your way through the crowds and find an empty table. Moments later Tali appears and grabs two trays from the dispenser before heading towards you. She settles down in the opposite chair with a look of exhaustion.`
+			`	Replying that you can, you make your way through the crowds and find an empty table. Moments later Taely appears and grabs two trays from the dispenser before heading towards you. She settles down in the opposite chair with a look of exhaustion.`
 			`	"It is good to see you again, <first>," she sings softly. When you sign a reply she sits up, smiles, and switches to sign. "My, you are a quick learner. This is much faster." Her quick gestures are hard to follow, but the language videos seem to have focused on a practical vocabulary that has most of the words she uses.`
 			`	"I haven't fully..." (She makes a sign that you don't understand, but seems similar to the signs for "break" and "understand".) "...the technology you retrieved for us, but we are learning much from what we have already found. Could you help us catch up with what has happened in ancestral space since our Exodus?"`
 			choice
@@ -948,7 +960,7 @@ mission "Remnant: Salvage 2"
 	on offer
 		conversation
 			`Having acquired a copy of the archive, you gently set your ship down on Viminal hoping that this information is helpful. The port seems unusually busy, but the comm channels are quiet beyond the bare minimum to keep traffic organized.`
-			`	Before you have even taken the time to shut down the engines Tali is halfway up the side of your ship securing a refueling hose and charging cable. As you reach for the comlink she scrambles up to the bridge windows and quickly rattles off a series of signs at you. All you can make out is "Keep it hot, incoming!" Before you can frame a reply she has raced across your wing and leapt to the Albatross parked next to you.`
+			`	Before you have even taken the time to shut down the engines Taely is halfway up the side of your ship securing a refueling hose and charging cable. As you reach for the commlink she scrambles up to the bridge windows and quickly rattles off a series of signs at you. All you can make out is "Keep it hot, incoming!" Before you can frame a reply she has raced across your wing and leapt to the Albatross parked next to you.`
 			`	Looking around more carefully, you note that every ship in the port is idling with fuel lines still connected. If this were some Republic port the safety inspectors would be having a nightmare. One Starling is getting holes in its wings patched even as the crew appear to be running prep-for-flight checklists. It also looks like every ship has a guard. Something tells you that right now would be a bad time to take a walk around town.`
 			`	After some tense minutes of waiting, the planetary defense sirens start and the idling ships begin to ascend one by one. You quickly figure out where you are in the launch sequence and follow the stream of craft heading for orbit.`
 				launch
@@ -972,7 +984,7 @@ mission "Remnant: Salvage 2"
 		conversation
 			`As some ships maintain orbital sentry positions, most ships return to their berths. Mechanics are soon swarming over the ships, and what you suppose are ambulances are waiting at the ramps to collect the injured. Farther back, flatbed tractor units wait to pick up any salvage that has been collected.`
 			`	Eventually a tired but pleased-looking prefect stops by your ship. He starts chanting, "Do you understand our language, or do I need to sing?" He looks relieved when you reply that you can understand most of what is said so long as he signs slowly. "Thank you for your assistance during the raid. The sensors you placed in Parca picked up the fleet coming in and gave us sufficient warning to get everyone ready."`
-			`	He is silent for a moment, with the air of someone who is enjoying not having to run for the first time in a while. "Oh, Tali said that you might have some historical records for us?" You hand over the copy of the archive in response, telling him that is probably the best available. He hands you a credit chip with <payment> on it. "Thank you, I'll make sure this gets where it needs to go. In the meantime, we could use your help in the spaceport."`
+			`	He is silent for a moment, with the air of someone who is enjoying not having to run for the first time in a while. "Oh, Taely said that you might have some historical records for us?" You hand over the copy of the archive in response, telling him that is probably the best available. He hands you a credit chip with <payment> on it. "Thank you, I'll make sure this gets where it needs to go. In the meantime, we could use your help in the spaceport."`
 
 
 
@@ -994,7 +1006,7 @@ mission "Remnant: Salvage 3"
 				`	"Of course."`
 				`	"I'd rather not."`
 					decline
-			`	He looks relieved. "Thanks. I was going to have to divert one of our sentries to take them." He pauses and consults his comlink. "The medical team will have the injured settled onboard shortly, along with everything they need to ensure they arrive safely. They will probably have some fresh crew to send back with you."`
+			`	He looks relieved. "Thanks. I was going to have to divert one of our sentries to take them." He pauses and consults his commlink. "The medical team will have the injured settled onboard shortly, along with everything they need to ensure they arrive safely. They will probably have some fresh crew to send back with you."`
 				accept
 	on stopover
 		dialog
@@ -1004,7 +1016,7 @@ mission "Remnant: Salvage 3"
 		payment 100000
 		set "license: Remnant Capital"
 		conversation
-			`When you return to Viminal, the Remnant crew members leave your ship and disperse across the tarmac to the ships they have been assigned to, each one of them signing their thanks as they leave. A few minutes after they leave your comlink beeps, notifying you that a message from the prefect has arrived:`
+			`When you return to Viminal, the Remnant crew members leave your ship and disperse across the tarmac to the ships they have been assigned to, each one of them signing their thanks as they leave. A few minutes after they leave your commlink beeps, notifying you that a message from the prefect has arrived:`
 			`	"Captain <last>! Thank you for your help in defending Viminal and transporting those wounded. I have transferred a small token of our gratitude to you. That being said, perhaps you would appreciate this a bit more: the other prefects and I have agreed to grant you access to a wider range of ships. Our capital class ships will now be available to you, including the Albatross and the Pelican. At the rate these raids are going, it is in everyone's best interests that you have access to a better warship. Please, meet us in the spaceport to further discuss the situation."`
 
 
@@ -1018,7 +1030,7 @@ mission "Remnant: Salvage 4"
 	on offer
 		conversation
 			`Walking into the cafeteria you immediately sense the buoyant mood. According to a report on the video screen, very few Remnant ships were actually lost. Furthermore, of the ships that were lost, the escape pods worked perfectly, ensuring none of the crew were killed. Groups of crew are gathered around tables intermingled with the ground teams that keep their ships operational, and based on the snippets you can catch, they seem to be trading stories of crack shots and clever improvisations.`
-			`	Tali sits over at a corner booth with the prefect who met you at the dock and a couple other mechanics, and she waves you over. "Captain <last>! So, how do you like fighting with our fleet?" asks one of the mechanics.`
+			`	Taely sits over at a corner booth with the prefect who met you at the dock and a couple other mechanics, and she waves you over. "Captain <last>! So, how do you like fighting with our fleet?" asks one of the mechanics.`
 			choice
 				`	"It seems odd to have a planetary defense fleet plundering."`
 				`	"It was a tough battle."`
@@ -1028,7 +1040,7 @@ mission "Remnant: Salvage 4"
 				goto next
 	
 			label next
-			`	While you're conversing with the group, the prefect suddenly glances down at his comlink, reads a message, then looks up at you. "It appears that a Korath ship survived the raid and has destroyed a few ships without taking cargo. Could you deal with it?"`
+			`	While you're conversing with the group, the prefect suddenly glances down at his commlink, reads a message, then looks up at you. "It appears that a Korath ship survived the raid and has destroyed a few ships without taking cargo. Could you deal with it?"`
 			choice
 				`	"Sure."`
 				`	"Sorry, I don't have time to help you out."`
@@ -1049,10 +1061,10 @@ mission "Remnant: Salvage 4"
 		dialog "You have disabled the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
 	on fail
 		payment 350000
-		dialog `You are met by a prefect who looks upset. "The ship was supposed to be disabled so its contents could be salvaged!" he signs angrily. Nonetheless, he shoves a credit chip worth <payment> into your hand. "That's half what you would have earned if the ship had been disabled." He pauses and shakes his head. "I think Tali might have some more work for you in the spaceport, but in the meantime, why don't you go find some Korath to practice disabling? It is a valuable skill among the Remnant."`
+		dialog `You are met by a prefect who looks upset. "The ship was supposed to be disabled so its contents could be salvaged!" he signs angrily. Nonetheless, he shoves a credit chip worth <payment> into your hand. "That's half what you would have earned if the ship had been disabled." He pauses and shakes his head. "I think Taely might have some more work for you in the spaceport, but in the meantime, why don't you go find some Korath to practice disabling? It is a valuable skill among the Remnant."`
 	on complete
 		payment 700000
-		dialog `You are met by a prefect who thanks you for disabling it and hands you a credit chip for <payment>. "I think Tali might have some more work for you in the spaceport, but in the meantime, don't forget to drop off any salvaged outfits in the outfitters so the researchers can look at them."`
+		dialog `You are met by a prefect who thanks you for disabling it and hands you a credit chip for <payment>. "I think Taely might have some more work for you in the spaceport, but in the meantime, don't forget to drop off any salvaged outfits in the outfitters so the researchers can look at them."`
 
 
 
@@ -1061,7 +1073,7 @@ mission "Remnant: Salvage 5"
 	description `Deliver <cargo> to Caelian.`
 	source "Viminal"
 	cargo "Korath salvage" 20
-	blocked `Tali would like you to deliver some valuable Korath equipment to Caelian, but you will need 20 tons of space to carry it.`
+	blocked `Taely would like you to deliver some valuable Korath equipment to Caelian, but you will need 20 tons of space to carry it.`
 	destination "Caelian"
 	to offer
 		or
@@ -1069,27 +1081,27 @@ mission "Remnant: Salvage 5"
 			has "Remnant: Salvage 4: failed"
 	on offer
 		conversation
-			`As you stroll across the tarmac under the great dome you spot Tali heading your way with a flatbed tractor filled with components in tow.`
+			`As you stroll across the tarmac under the great dome you spot Taely heading your way with a flatbed tractor filled with components in tow.`
 			`	"<first>! I'm glad I ran into you. The last raid gave us some particularly good pieces of equipment to study. Could you take these to the weapons laboratory on Caelian?"`
 			choice
 				`	"I could do that."`
 				`	"I'm not interested."`
 					decline
-			`	Tali quickly helps load the cargo onboard your ship. It doesn't appear to be actual whole items anymore, but rather pieces thereof. "They will be expecting you, but you might have to pry them out of their lab to get some help unloading. They can be a bit single-minded when they have something interesting to work on."`
+			`	Taely quickly helps load the cargo onboard your ship. It doesn't appear to be actual whole items anymore, but rather pieces thereof. "They will be expecting you, but you might have to pry them out of their lab to get some help unloading. They can be a bit single-minded when they have something interesting to work on."`
 				accept
 	
 	on complete
 		payment 150000
-		dialog `On Caelian, you are able to find the appropriate research warehouse just off the main landing pad. After a few minutes, a lab technician disentangles herself from a project and brings a wagon and camel team out to the ship to unload the salvage. It strikes you as a bit incongruous that a lab technician is using a graviton repulsion lifter to load cargo from your ship into a wagon pulled by a camel. "If you can, I should have some things to send back to Tali if you could meet me in the cafeteria this afternoon."`
+		dialog `On Caelian, you are able to find the appropriate research warehouse just off the main landing pad. After a few minutes, a lab technician disentangles herself from a project and brings a wagon and camel team out to the ship to unload the salvage. It strikes you as a bit incongruous that a lab technician is using a graviton repulsion lifter to load cargo from your ship into a wagon pulled by a camel. "If you can, I should have some things to send back to Taely if you could meet me in the cafeteria this afternoon."`
 
 
 
 mission "Remnant: Salvage 6"
-	name "Transport outfits to Tali"
+	name "Transport outfits to Taely"
 	description `Deliver <cargo> to Viminal.`
 	source "Caelian"
 	cargo "ship parts" 20
-	blocked `The technician you delivered Tali's salvaged parts to would like you to take some finished parts back to Tali, but you will need 20 tons of space to do so.`
+	blocked `The technician you delivered Taely's salvaged parts to would like you to take some finished parts back to Taely, but you will need 20 tons of space to do so.`
 	destination "Viminal"
 	to offer
 		has "Remnant: Salvage 5: done"
@@ -1097,14 +1109,14 @@ mission "Remnant: Salvage 6"
 		event "Remnant Salvage Available"
 		conversation
 			`You spot the laboratory technician entering the cafeteria, and she approaches you.`
-			`	"Thank you for waiting. I have a shipment of parts ready for Tali, and with the recent increase in attacks she needs them sooner rather than later. Please take them to her."`
+			`	"Thank you for waiting. I have a shipment of parts ready for Taely, and with the recent increase in attacks she needs them sooner rather than later. Please take them to her."`
 			`	Outside you find a camel pulling a wagon filled with ship parts to be loaded on board the <ship>.`
 				accept
 		
 	on complete
 		payment 150000
 		conversation 
-			`Tali meets you at the dock with a flatbed ready to offload the shipment. As you run through your shutdown routine you hit the switch for the cargo bay doors, and by the time you have gone down to the hold, Tali has half the shipment already unloaded.`
+			`Taely meets you at the dock with a flatbed ready to offload the shipment. As you run through your shutdown routine you hit the switch for the cargo bay doors, and by the time you have gone down to the hold, Taely has half the shipment already unloaded.`
 			`	Her signs flick at you with a gentleness that you are slowly deciding equates to a cheerful tone. "Thank you for all the help you've provided in recovering this salvage," she says as she hands you <payment>. "I have discussed it with the other engineers, and we have decided to give you access to our salvage."`
 			`	She leads you over to the warehouse, scans her ID on the console, and taps a few commands. Then she scans your ID card. "There you go, I have updated your access codes," she signs cheerfully. She hands you your ID and pulls you to a door on the far side of the outfitting shop. Beyond the door is a vast room filled with outfits and weapons that clearly don't fit the same style as the other Remnant technology. You have seen most of the things here on scans and when salvaging equipment from other ships, but never up close.`
 			`	"This section of our warehouse is the salvage area. Everything in here we have we collected in sufficient quantities that it is available for general use." She nods at a rack of Korath Heat Shunts while she explains, then turns back to you.`
@@ -1119,7 +1131,7 @@ mission "Remnant: Salvage 6"
 			label threats
 			`	"Yes, sometimes salvage that is brought in is dangerous. System Cores come with fleets of micro-bots, for instance. If they aren't de-activated properly, they keep trying to rebuild their surroundings in the form of the last ship they were configured to serve. And while it hasn't happened yet, we are worried that someday we might run into someone who builds traps into their equipment, or uses nanobots that have run amok. We haven't seen any of that yet, but our science-fiction stories are filled with tales of nanotech apocalypses and things like that.`
 			label end
-			`	"Well, I need to get back to work. That last battle put us behind schedule on our repairs. Have a good day!" With a final flourish that you think is the equivalent of an exclamation mark, Tali strides out of the outfitters, heading towards another landing bay.`
+			`	"Well, I need to get back to work. That last battle put us behind schedule on our repairs. Have a good day!" With a final flourish that you think is the equivalent of an exclamation mark, Taely strides out of the outfitters, heading towards another landing bay.`
 
 event "Remnant Salvage Available"
 	planet "Aventine"
@@ -1197,7 +1209,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 			`	Almost before you are in the main hall a sales manager is at your side, inquiring as to how he can help. You can almost see the credit signs in his eyes and you suspect that scanning your license may have done a quick check of your net worth too.`
 			`	You ask a few leading questions about new designs and play the part of a captain with more money than brains, and the manager eagerly directs you to the large hangars near the end that house their largest and fanciest ships. After it becomes clear that he doesn't have any experience flying them you politely disentangle yourselves from him to look at the ships in peace.`
 			label end
-			`	After an hour of browsing, the young remnant agree to meet you back at the spaceport in an hour and take off to the outfitters.`
+			`	After an hour of browsing, the young Remnant agree to meet you back at the spaceport in an hour and take off to the outfitters.`
 
 
 

@@ -1046,7 +1046,7 @@ mission "Wanted Passenger [0]"
 	description "This wanted individual wishes to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 1
 	cargo "battle trophies" 1
-	illegal 50000 `Upon scanning your vessel, law enforcement notice the criminal that you have on board. Entering your ship to detain them, they find the criminal in the corner of one of the rooms of your ship, clutching their battle trohpies and screaming "you'll never take them from me!" After a short confrontation, they carry the criminal out and leave you with a small fine.`
+	illegal 50000 `Upon scanning your vessel, law enforcement notice the criminal that you have on board. Entering your ship to detain them, they find the criminal in the corner of one of the rooms of your ship, clutching their battle trophies and screaming "you'll never take them from me!" After a short confrontation, they carry the criminal out and leave you with a small fine.`
 	stealth
 	to offer
 		or
@@ -2662,7 +2662,7 @@ mission "FW Assassination [2]"
 		
 mission "FW Assassination [3]"
 	name "Assassinate a military target"
-	description "A Free Worlds militia commander who has lead a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Find and destroy them in order to send a message to the Free Worlds. Payment is <payment>."
+	description "A Free Worlds militia commander who has led a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Find and destroy them in order to send a message to the Free Worlds. Payment is <payment>."
 	repeat
 	job
 	to offer
@@ -2796,7 +2796,7 @@ mission "Syndicate Assassination [2]"
 		
 mission "Syndicate Assassination [3]"
 	name "Assassinate a military target"
-	description "A Syndicated Security commander who has lead a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Find and destroy them in order to send a message to the Syndicate. Payment is <payment>."
+	description "A Syndicated Security commander who has led a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Find and destroy them in order to send a message to the Syndicate. Payment is <payment>."
 	repeat
 	job
 	to offer
@@ -2837,7 +2837,7 @@ mission "Syndicate Assassination [4]"
 	to offer
 		"combat rating" > 800
 		random < 5
-		"reputatiion: Pirate" > 100
+		"reputation: Pirate" > 100
 	source
 		government "Pirate"
 		attributes "core pirate"
@@ -2889,7 +2889,7 @@ mission "Republic Assassination [1]"
 				"Flivver"
 				"Headhunter" 2
 				"Corvette"
-		dialog "The target has been destroyed. Return to <destination> for you payment."
+		dialog "The target has been destroyed. Return to <destination> for your payment."
 	on complete
 		payment 350000
 		dialog "A pirate warlord thanks you for eliminating the politician pays you <payment>."
@@ -2932,7 +2932,7 @@ mission "Republic Assassination [2]"
 		
 mission "Republic Assassination [3]"
 	name "Assassinate a military target"
-	description "A Republic Navy commander who has lead a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Find and destroy them in order to send a message to the Republic. Payment is <payment>."
+	description "A Republic Navy commander who has led a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Find and destroy them in order to send a message to the Republic. Payment is <payment>."
 	repeat
 	job
 	to offer
