@@ -683,7 +683,7 @@ ship "Tern"
 
 
 
-ship "Condor"
+ship "Vulture"
 	sprite "ship/vulture"
 	thumbnail "thumbnail/vulture"
 	attributes
@@ -755,7 +755,7 @@ ship "Condor"
 	explode "large explosion" 70
 	explode "huge explosion" 30
 	"final explode" "final explosion large" 1
-	description "The Condor is not a ship meant to be purchased. It is a prototype - a hybrid of so many novel technologies that the Remnant have only managed to build a single one. And that one is flown by Zitchas"
+	description "The Vulture is not a ship meant to be purchased in its current form. Eventually, this will be a Heavy Warship intended to be heavy tank complement to the Albatross, and a successor to it in terms of front-line survivability. Hence why it has fewer cannons, but more armor, shields, and space. Current stats are modeled after the Hurricane and Punisher. What stats it actually has will be determined by the state of the plot when it is added. In any event, it will be added via missions as a newly developped warship, much in the same way as the Dreadnought is in the FW campaign."
 
 
 
@@ -777,6 +777,7 @@ ship "Peregrine"
 		"drag" 7.7
 		"heat dissipation" 0.8
 		"fuel capacity" 1000
+		"ramscoop" 2
 		"cargo space" 56
 		"outfit space" 796
 		"weapon capacity" 342
@@ -833,3 +834,150 @@ ship "Peregrine"
 	explode "huge explosion" 20
 	"final explode" "final explosion large" 1
 	description "The Peregrine is the first fully living starship designed for war. While it is clearly not sapient and must rely on its pilot for larger battle-space tactics, its neural network has an exquisite understanding of close quarters maneuvers and dogfights. These ships were built and designed to be fast-attack cruisers utilizing their combined advantages of speed and stealth to confuse, isolate, and disable their enemies."
+
+
+
+ship "Condor"
+	sprite "ship/condor"
+	thumbnail "thumbnail/condor"
+	attributes
+		category "Transport"
+		licenses
+			"Remnant Capital"
+		"cost" 15375000
+		"shields" 18000
+		"hull" 9500
+		"required crew" 25
+		"bunks" 250
+		"mass" 590
+		"drag" 7
+		"heat dissipation" .80
+		"fuel capacity" 900
+		"ramscoop" 2
+		"cargo space" 83
+		"outfit space" 601
+		"weapon capacity" 256
+		"engine capacity" 200
+		"shield generation" 3.1
+		"shield energy" 1.8
+		"hull repair rate" 2
+		"hull energy" 0.75
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 26
+		weapon
+			"blast radius" 140
+			"shield damage" 1400
+			"hull damage" 700
+			"hit force" 2100
+	outfits
+		"Remnant Flak Turret" 3
+		"Point Defense Turret" 1
+
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 2
+		"Small Heat Shunt" 2
+		"Boarding Claws" 9
+		"Quantum Key Stone"
+
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
+		"Jump Drive"
+		
+	engine -43.5 156
+	engine -24 149
+	engine 0 175
+	engine 24 149
+	engine 43.5 156
+	gun -13.5 -173
+	gun 0 -150.5
+	gun 13.5 -173
+	turret 0 -35
+	turret -5.5 29
+	turret 5.5 29
+	turret 0 120
+	explode "small explosion" 10
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	explode "huge explosion" 5
+	"final explode" "final explosion large"
+	description `The Condor is the Remnant's combat transport, and was  built to serve two purposes. The first is to carry soldiers and salage crew for boarding operations against the Korath. The second is to carry as many people as possible during evacuations under fire from Alphas, Korath, or other unknown threats. As a result of these mandates, the Condor is built to be tough, fast, and fit as many people as possible.`
+
+
+
+ship "Diomedea"
+	sprite "ship/diomedea"
+	thumbnail "thumbnail/condor"
+	attributes
+		category "Transport"
+		licenses
+			"Remnant Capital"
+		"cost" 55375000
+		"shields" 78000
+		"hull" 40000
+		"required crew" 250
+		"bunks" 1500
+		"mass" 1590
+		"drag" 7
+		"heat dissipation" .80
+		"fuel capacity" 1100
+		"ramscoop" 3
+		"cargo space" 253
+		"outfit space" 701
+		"weapon capacity" 256
+		"engine capacity" 350
+		"shield generation" 4
+		"shield energy" 1.8
+		"hull repair rate" 4
+		"hull energy" 0.75
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 71
+		weapon
+			"blast radius" 540
+			"shield damage" 4400
+			"hull damage" 1700
+			"hit force" 3100
+	outfits
+		"Remnant Flak Turret" 6
+		"Point Defense Turret" 2
+
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 2
+		"Small Heat Shunt" 2
+		"Quantum Key Stone"
+		"Ember Waste Ramscoop" 2
+
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
+		"Jump Drive"
+		
+	engine -85 305
+	engine 85 305
+	engine -49 290
+	engine 49 290
+	engine 0 341
+	gun -22 -258
+	gun -13 -287
+	gun 0 -310
+	gun 13 -287
+	gun 22 -258
+	turret -9.5 57	"Remnant Flak Turret"
+	turret 9.5 57	"Remnant Flak Turret"
+	turret -0 281.5	"Point Defense Turret"
+	turret -0 -158.5	"Point Defense Turret"
+	turret -60 222.5	"Remnant Flak Turret"
+	turret 60 222.5	"Remnant Flak Turret"
+	turret -40.5 -246.5	"Remnant Flak Turret"
+	turret 40.5 -246.5	"Remnant Flak Turret"
+	explode "small explosion" 10
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	explode "huge explosion" 5
+	"final explode" "final explosion large"
+	description `The Diomedea is the remnant's final hope - A generation ship capable of carrying over a thousand survivors in a desperate flight to establish a new life somewhere else. These massive ships incorporate the latest of all remnant technology and are fully alive with a degree of sapience that puts them on equal terms with their crew. They are not servants of the remnant, they are one of them."`
+
