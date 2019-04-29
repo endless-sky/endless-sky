@@ -816,7 +816,7 @@ mission "Remnant: Catalytic Ramscoop"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely calibrating an inhibitor cannon on an albatross. "Greetings, <first>. I am just finishing these calibrations." She does a few more things inside the casing, reseals the hatch, and drops to the ground on a tether. "So, did you recover something?"`
 				goto the_rest
 			label stuff
-			`	Remembering that she spends most of her time in the shipyard, you head straight there and almost immediately are intercepted by another remnant who introduces herself as one of Taely's assistants. "Good day, Captain" he chants. "Our scans picked up a new form of ramscoop onboard your ship. Have you brought it for us to look at?"`
+			`	Remembering that she spends most of her time in the shipyard, you head straight there and almost immediately are intercepted by another remnant who introduces herself as one of Taely's assistants. "Good day, Captain" she chants. "Our scans picked up a new form of ramscoop onboard your ship. Have you brought it for us to look at?"`
 			label the_rest
 			`	You lead her back to your ship, where you show her the catalytic ramscoop. "Interesting. This is a new design?" She asks, gesturing at the ramscoop. You nod, and she continues, "Even if it does not perform well, new perspectives on the problem could be valuable. There is a research team on <planet> that is currently working on new ramscoop designs. If you could deliver two catalytic ramscoops to them we could offer you <payment>."`
 				accept
