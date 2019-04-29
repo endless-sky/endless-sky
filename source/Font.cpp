@@ -544,7 +544,7 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 		}
 		textHeight += sumExtraY + viewParams.paragraphBreak;
 		if(!isDefaultLineHeight)
-			textHeight +=  viewParams.lineHeight - Height();
+			textHeight +=  viewParams.lineHeight - fontViewHeight;
 		pango_layout_iter_free(it);
 	}
 	// Check this surface has enough height.
