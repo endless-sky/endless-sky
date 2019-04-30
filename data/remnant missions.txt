@@ -665,7 +665,7 @@ mission "Remnant: Tech Retrieval"
 	on offer
 		"remnant met taely" ++
 		conversation
-			`As you enter the spaceport, you notice someone across the plaza appears to have been waiting for you. A tall, solidly built woman in short-sleeved coveralls stands up from where she was sitting near the information desk. With a few quick gestures at the person behind the counter, she heads towards you with a confident stride. As she approaches, you note that the crowds of people moving around the plaza seem to staying out of her way as if she were someone important. In contrast, the tools at her belt and the wear marks on her clothing suggest someone who is more comfortable inside a ship access duct than behind a desk.`
+			`As you enter the spaceport, you notice someone across the plaza appears to have been waiting for you. A tall, solidly built woman in short-sleeved coveralls stands up from where she was sitting near the information desk. With a few quick gestures at the person behind the counter, she heads towards you with a confident stride. As she approaches, you note that the crowds of people moving around the plaza seem to staying out of her way as if she were someone important. In contrast, she reminds you of the mechanics who maintained the textile factories back on New Boston. In particular, the tools at her belt and the wear marks on her clothing suggest someone who is more comfortable inside a ship access duct than behind a desk.`
 			`	Before you can decide if you want to avoid this person or not, she is standing in front of you, clearing her throat. "You are captain <first> <last> of the <ship>?" She asks in a lyrical chant.`
 			choice
 				`	"That's me."`
@@ -673,7 +673,7 @@ mission "Remnant: Tech Retrieval"
 				`	"I don't know who that is."`
 			`	She looks at you with an inscrutable expression for a moment. "Trying to be inconspicuous is admirable. Being oblivious to the fact that you stand out like a star in empty space is not."`
 			label admit
-			`	"I have an opportunity for you, if you are interested in being helpful to the Remnant." When you express your interest she leads you over to a balcony overlooking the primary shipyards. As she leans on the railing a cold breeze makes you shiver, but she seems oblivious to it. "As a prefect among the Remnant, I am responsible for this." She gestures at the shipyards, where you can see a myriad of the Remnant's alien-looking ships in various stages of construction or repair. "The ships we have serve us well, but they are old designs. Only the Gull is comparatively new. We need new ideas, new inspiration." She pauses, focusing briefly on a small bay where several people appear to be pulling what looks like a supercapacitor out of a gascraft.`
+			`	"I have an opportunity for you, if you are interested in being helpful to the Remnant." When you express your interest she leads you over to a balcony overlooking the primary shipyards. As she leans on the railing a cold breeze makes you shiver, but she seems oblivious to it. "I am known as Taely. As a prefect among the Remnant, I am responsible for this." She gestures at the shipyards, where you can see a myriad of the Remnant's alien-looking ships in various stages of construction or repair. "The ships we have serve us well, but they are old designs. Only the Gull is comparatively new. We need new ideas, new inspiration." She pauses, focusing briefly on a small bay where several people appear to be pulling what looks like a supercapacitor out of a gascraft.`
 			choice
 				`	"So, what are you asking?"`
 					goto request
@@ -682,15 +682,15 @@ mission "Remnant: Tech Retrieval"
 			label request
 			`	"To the point," her tone shifts to a more martial cadence. "We want to know how humanity has advanced in the past five and a half centuries. If you found us, I am sure it is only a matter of time until the Alphas, their servants, or others intent on galactic domination discover us. We need to know what sort of weapons they will be wielding, how their ships will be protected, and how fast they can travel in deep space."`
 			choice
-				`"Could you elaborate on 'how fast they can travel in deep space?"`
-				`"OK, I will see what I can find."`
+				`	"Could you elaborate on 'how fast they can travel in deep space?"`
+				`	"Okay, I will see what I can find."`
 					goto find
-				`"No, I don't want to get involved in this."`
+				`	"No, I don't want to get involved in this."`
 					goto nothelp
 			`	She considers her thoughts briefly, then chants, "How fast a ship can move through an area of deep space basically depends on how fast they can collect fuel. Ramscoops were common at the time of the exodus, and if humanity has developped better ramscoops or other means of generating fuel, these would significantly improve their speed at exploring or crossing large volumes of space."`
 			choice
-				`"OK, I will see what I can find."`
-				`"No, I don't want to get involved in this."`
+				`	"Okay, I will see what I can find."`
+				`	"No, I don't want to get involved in this."`
 					goto nothelp
 			label find
 			`	Taely nods "I will look forward to seeing what you find. In the meantime, I should get back to work." With that, she swings over the railing and climbs quickly down the wall in the direction of the shipyard, seemingly unconcerned about the height.`
