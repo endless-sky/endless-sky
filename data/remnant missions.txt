@@ -682,9 +682,9 @@ mission "Remnant: Tech Retrieval"
 			label request
 			`	"To the point," her tone shifts to a more martial cadence. "We want to know how humanity has advanced in the past five and a half centuries. If you found us, I am sure it is only a matter of time until the Alphas, their servants, or others intent on galactic domination discover us. We need to know what sort of weapons they will be wielding, how their ships will be protected, and how fast they can travel in deep space."`
 			choice
-				`	"Could you elaborate on 'how fast they can travel in deep space?"`
 				`	"Okay, I will see what I can find."`
 					goto find
+				`	"Could you elaborate on 'how fast they can travel in deep space?"`
 				`	"No, I don't want to get involved in this."`
 					goto nothelp
 			`	She considers her thoughts briefly, then chants, "How fast a ship can move through an area of deep space basically depends on how fast they can collect fuel. Ramscoops were common at the time of the exodus, and if humanity has developped better ramscoops or other means of generating fuel, these would significantly improve their speed at exploring or crossing large volumes of space."`
