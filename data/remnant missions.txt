@@ -709,7 +709,7 @@ mission "Remnant: Tech Retrieval"
 
 
 mission "Remnant: Heavy Laser"
-	name "Retrieve Heavy Lasers for the Remnant"
+	name "Retrieve Heavy Lasers"
 	description "A Remnant engineer has offered to pay you <payment> in return for delivering two heavy lasers to <planet> for them to study."
 	minor
 	source "Viminal"
@@ -722,32 +722,32 @@ mission "Remnant: Heavy Laser"
 	on offer
 		require "Heavy Laser"
 		conversation
-			`You remember that Taely was interested in seeing examples of technology from human space. Would you like to show her your heavy laser cannons?`
+			`You remember that Taely was interested in seeing examples of technology from human space. Would you like to show her your heavy laser?`
 			choice
 				`	Not now.`
 					defer
 				`	Yes.`
-			branch stuff
+			branch familiar
 				has "Remnant Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a starling. "Greetings, <first>. I'll be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
-				goto the_rest
-			label stuff
-			`	Remembering that she spends most of her time in the shipyard, you head straight there and ask the nearest mechanic. They direct you to a large hanger tucked into a cliff face, where you find her working at a terminal filled with schematics. Behind her, the room fades quickly into darkness where you can faintly make out what appears to be a large tank and a lot of whirring machinery. As you approach she looks up from her work and turns to face you. "Ah, you have returned. Do you have something new for me?"`
-			label the_rest
-			`	You lead her back to your ship, where you show her the heavy laser cannon. "A laser cannon?" she asks. "Our records indicate that humanity had primitive laser technology at the time of the Exodus, but nothing that would be considered useful as weapons." She pauses to look down at her scanner. "And yet my scans indicate that they are capable of significant power output." She pauses for a moment before continuing, "These could be quite useful to examine more thoroughly. Please deliver two of these heavy laser cannons to a research team on <planet>."`
+				goto next
+			label familiar
+			`	You recall that Taely is responsible for the shipyards, so you head straight there and ask the nearest mechanic. They direct you to a large hanger tucked into a cliff face, where you find her working at a terminal filled with schematics. Behind her, the room fades quickly into darkness where you can faintly make out what appears to be a large tank and a lot of whirring machinery. As you approach she looks up from her work and turns to face you. "Ah, you have returned. Do you have something new for me?"`
+			label next
+			`	You lead her back to your ship, where you show her the heavy laser. "A laser cannon?" she asks. "Our records indicate that humanity had primitive laser technology at the time of the Exodus, but nothing that would be considered useful as weapons." She pauses to look down at her scanner. "And yet my scans indicate that they are capable of significant power output." She pauses for a moment before continuing, "These could be quite useful to examine more thoroughly. Please deliver two of these heavy lasers to a research team on <planet>."`
 				accept
 	on complete
 		outfit "Heavy Laser" -2
 		payment 870000
 		"remnant met taely" ++
 		conversation
-			`As you land on a pad adjacent to the research center, a group of researchers mount some kind of weapon on a platform aimed down a firing range. The researchers retreat behind a thick barrier and press a button to activate the weapon. A flash of light erupts from the muzzle as the target downrange is cut in half. The barrel of the weapon raises into the air, and the researchers rush out onto the range with tools and devices to inspect the damage. Noticing your arrival, one of the researchers veers off and heads towards you. "So, you are the one with the samples of humanity's laser weapons?" chants the researcher. "Always interesting to see new things." He turns and waves at a remnant standing near the edge of the landing pad with a camel hitched to a wagon.`
+			`As you land on a pad adjacent to the research center, a group of researchers mount some kind of weapon on a platform aimed down a firing range. The researchers retreat behind a thick barrier and press a button to activate the weapon. A flash of light erupts from the muzzle as the target downrange is cut in half. The barrel of the weapon raises into the air, and the researchers rush out onto the range with tools and devices to inspect the damage. Noticing your arrival, one of the researchers veers off and heads towards you. "So, you are the one with the samples of humanity's laser weapons?" chants the researcher. "Always interesting to see new things." He turns and waves at a Remnant standing near the edge of the landing pad with a camel hitched to a wagon.`
 			`	The researchers quickly unload the heavy lasers from your ship, and hand you a credstick with <payment>. "Thank you for bringing us something new to examine. We appreciate the breath of fresh air." With that, they quickly head off into a nearby lab, escorting their cargo of weaponry on the oddly archaic transportation.`
 
 
 
 mission "Remnant: Plasma Cannon"
-	name "Retrieve Plasma Cannons for the Remnant"
+	name "Retrieve Plasma Cannons"
 	description "A Remnant engineer has offered to pay you <payment> in exchange for delivering two plasma cannons to a team on <planet>."
 	minor
 	source "Viminal"
@@ -760,18 +760,18 @@ mission "Remnant: Plasma Cannon"
 	on offer
 		require "Plasma Cannon"
 		conversation
-			`You remember that Taely was interested in seeing examples of technology from human space. Would you like to show her the plasma cannons you retrieved?`
+			`You recall that Taely was interested in examining examples of technology from ancestral space. Would you like to show her the plasma cannons you retrieved?`
 			choice
 				`	Not now.`
 					defer
 				`	Yes.`
-			branch stuff
+			branch familiar
 				has "Remnant Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a starling. "Greetings, <first>. I will be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
-				goto the_rest
-			label stuff
-			`	Remembering that she spends most of her time in the shipyard, you head straight there and have almost arrived when you are approached by another remnant who introduces herself as one of Taely's aides. "Greetings, Captain" she trills. "Our scans picked up indications of uncatalogued human weaponry. Were you bringing it to show us?"`
-			label the_rest
+				goto next
+			label familiar
+			`	Aware that Taely's main area of responsibility is in the shipyards, you head straight there and have almost arrived when you are approached by another Remnant who introduces herself as one of Taely's aides. "Greetings, Captain" she trills. "Our scans picked up indications of uncatalogued human weaponry. Were you bringing it to show us?"`
+			label next
 			`	You lead her back to your ship, where you show her the plasma cannon. "I have never seen weapons designed to handle such a high heat output! Is this some kind of plasma based weapon?" she asks, gesturing at a cannon. You nod, and she continues, "Intriguing. We have noticed that the Korath ships seem to run particularly hot, and have speculated that overheating them might be an effective means of disabling them. I would enjoy researching these a bit more. If you could deliver two to <planet> for us you would be well compensated."`
 				accept
 	on complete
@@ -788,12 +788,12 @@ mission "Remnant: Plasma Cannon"
 			label wave
 			`	The weapons technician finishes strapping down the plasma cannons and makes a gesture that you recognize as "farewell," then heads off toward the lab.`
 			label end
-			`	As you watch the remnant heading off with their new weapons to study, you can not help but wonder what will be the result of it.`
+			`	As you watch the Remnant heading off with their new weapons to study, you can not help but wonder what will be the result of it.`
 
 
 
 mission "Remnant: Catalytic Ramscoop"
-	name "Retrieve Catalytic Ramscoops for the Remnant"
+	name "Retrieve Catalytic Ramscoops"
 	description "A Remnant engineer has offered you <payment> for delivering two catalytic ramscoops to a lab on <planet>."
 	minor
 	source "Viminal"
@@ -811,13 +811,13 @@ mission "Remnant: Catalytic Ramscoop"
 				`	Not now.`
 					defer
 				`	Yes.`
-			branch stuff
+			branch familiar
 				has "Remnant Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely calibrating an inhibitor cannon on an albatross. "Greetings, <first>. I am just finishing these calibrations." She does a few more things inside the casing, reseals the hatch, and drops to the ground on a tether. "So, did you recover something?"`
-				goto the_rest
-			label stuff
-			`	Remembering that she spends most of her time in the shipyard, you head straight there and almost immediately are intercepted by another remnant who introduces herself as one of Taely's assistants. "Good day, Captain" she chants. "Our scans picked up a new form of ramscoop onboard your ship. Have you brought it for us to look at?"`
-			label the_rest
+				goto next
+			label familiar
+			`	Remembering that she spends most of her time in the shipyard, you head straight there and almost immediately are intercepted by another Remnant who introduces herself as one of Taely's assistants. "Good day, Captain" she chants. "Our scans picked up a new form of ramscoop onboard your ship. Have you brought it for us to look at?"`
+			label next
 			`	You lead her back to your ship, where you show her the catalytic ramscoop. "Interesting. This is a new design?" She asks, gesturing at the ramscoop. You nod, and she continues, "Even if it does not perform well, new perspectives on the problem could be valuable. There is a research team on <planet> that is currently working on new ramscoop designs. If you could deliver two catalytic ramscoops to them we could offer you <payment>."`
 				accept
 	on complete
@@ -848,13 +848,13 @@ mission "Remnant: Electron Beam"
 				`	Not now.`
 					defer
 				`	Yes.`
-			branch stuff
+			branch familiar
 				has "Remnant Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely closing up the panel on a thasher turret. "Greetings, <first>. You have good timing: I was just finishing." She reseals the hatch, and drops to the ground on a tether. "So, did you recover something?"`
-				goto the_rest
-			label stuff
-			`	Remembering that she spends most of her time in the shipyard, you head straight there. After a frustrating half hour spent wandering around the spaceport tryping to find her, you finally encounter a helpful weapons tech who says they can check the weapon on Taely's behalf.`
-			label the_rest
+				goto next
+			label familiar
+			`	Given what you know about Taely, you decide to skip the spaceport proper and head for the shipyard. After a frustrating half hour spent wandering around tryping to find her, you finally encounter a helpful weapons tech who says they can check the weapon on Taely's behalf.`
+			label next
 			`	You accompany her back to your ship, where she examines the electron beam. "This could be useful. Focusing energy into continuous beams has been a popular idea for centuries. It is very useful to know that they have finally managed to make it into an effective weapon.`
 				accept
 	on complete
@@ -867,7 +867,7 @@ mission "Remnant: Electron Beam"
 
 
 mission "Remnant: D94-YV Shield Generator"
-	name "Retrieve D94-YV Shield Generators for the Remnant"
+	name "Retrieve D94-YV Shield Generators"
 	description "A Remnant engineer has offered you <payment> for delivering two D94-YV Shield Generators to a research facility on <planet>."
 	minor
 	source "Viminal"
@@ -880,31 +880,31 @@ mission "Remnant: D94-YV Shield Generator"
 	on offer
 		require "D94-YV Shield Generator"
 		conversation
-			`You recall that Taely was interested in seeing examples of new human technology, and the D94-YV Shield Generator probably fits the criteria. Would you like to show her?`
+			`You know that Taely was interested in seeing examples of recently developped human technology, and the D94-YV Shield Generator probably fits the criteria. Would you like to show her?`
 			choice
 				`	Not now.`
 					defer
 				`	Yes.`
-			branch stuff
+			branch familiar
 				has "Remnant Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely applying some kind of material over a hole in a hull. "Greetings, <first>. What brings you here today?" She reseals the hatch, and drops to the ground on a tether. "Did you bring us something?"`
-				goto the_rest
-			label stuff
-			`	Remembering that she spends most of her time in the shipyard, you head straight there. As you search through the yard you are soon approached by another engineer. "Well met, Captain. Taely said you may be bringing back samples of new technology from ancestral space. Do you have something to show us?`
-			label the_rest
-			`	You nod in the affirmative and lead her back to your ship, where she examines the D94-YV Shield Generator. "Huh, it certainly looks impressive," she comments as she paces around the massive piece of equipment. "It will be valuable to see what our enemies might be shielded with, and maybe something we can learn from it too." She comes to a stop in front of you. "If you could deliver two of these to a lab on <planet> we could compensate you with <payment>.`
+				goto next
+			label familiar
+			`	You decide that you are more likely to find her in the shipyard, so you skip the starport and head out among the ships. As you search through the yard you are soon approached by another engineer. "Well met, Captain. Taely said you may be bringing back samples of new technology from ancestral space. Do you have something to show us?`
+			label next
+			`	You nod in the affirmative and lead her back to your ship, where she examines the D94-YV Shield Generator. "It certainly looks impressive," she chants as she paces around the massive piece of equipment. "It will be valuable to see what our enemies might be shielded with, and maybe something we can learn from it too." She comes to a stop in front of you. "If you could deliver two of these to a lab on <planet> we could compensate you with <payment>.`
 				accept
 	on complete
 		outfit "D94-YV Shield Generator" -2
 		payment 1150000
 		"remnant met taely" ++
 		conversation
-			`On <planet> you follow the landing instructions to arrive at a pad set next to a large warehouse. As you complete your shutdown routine the doors slide open and a large crawler emerges, accompanied by several remnant. They carefully unload the D94-YV Shield Generators and strap them down. As they start heading back to the warehouse one of them comes over to hand you <payment>. "Thank you for the delivery. Our team is eager to see what humanity has achieved in these past centuries."`
+			`On <planet> you follow the landing instructions to arrive at a pad set next to a large warehouse. As you complete your shutdown routine the doors slide open and a large crawler emerges, accompanied by several Remnant. They carefully unload the D94-YV Shield Generators and strap them down. As they start heading back to the warehouse one of them comes over to hand you <payment>. "Thank you for the delivery. Our team is eager to see what humanity has achieved in these past centuries."`
 
 
 
 mission "Remnant: S-970 Regenerator"
-	name "Retrieve S-970 Regenerators for the Remnant"
+	name "Retrieve S-970 Regenerators"
 	description "A Remnant engineer has offered you <payment> for delivering two electron beams to a testing range on <planet>."
 	minor
 	source "Viminal"
@@ -922,13 +922,13 @@ mission "Remnant: S-970 Regenerator"
 				`	Not now.`
 					defer
 				`	Yes.`
-			branch stuff
+			branch familiar
 				has "Remnant Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely adjusting something on the hull that you can't quite see. "Greetings, <first>. What brings you here today?" She taps something, then hangs her tools on her belt and drops to the ground on a tether. "Did you bring us something?"`
-				goto the_rest
-			label stuff
-			`	You recall that she spends most of her time in the shipyard, so you head straight there. As you enter the maintnance section, you spot an engineer waiting for you. She quickly introduces herself as an engineer who works with Taely. "She was not able to be here, so she sent me to see what you have brought" chants the engineer.`
-			label the_rest
+				goto next
+			label familiar
+			`	Taely seems like the sort of person who spends most of their time working directly on ships, so finding people repairing ships seems the most likely place to find her. As you enter the maintnance section, you spot an engineer waiting for you. She quickly introduces herself as an engineer who works with Taely. "She was not able to be here, so she sent me to see what you have brought" chants the engineer.`
+			label next
 			`	You nod in the agreement and lead her back to your ship, where she does a cursory scan of the S-970 Regenerator. "Hmm," she murmurs as she peers at the readings on her instrument as she waves it up and down the regenerator. "This looks like they may have found a few techniques that would be beneficial for us to study. If you could deliver two of these to a lab on <planet> we could compensate you with <payment>.`
 				accept
 	on complete
@@ -936,7 +936,7 @@ mission "Remnant: S-970 Regenerator"
 		payment 2350000
 		"remnant met taely" ++
 		conversation
-			`On <planet> you follow the landing instructions to arrive at a pad set next to a substantial facility with a large equipment bay. As you complete your shutdown routine the doors to the bay slide open and a crawler emerges, accompanied by several remnant. They carefully unload the S-970 Regenerators and strap them down. As they start heading back into the bay, one of them comes over to hand you <payment>. "Thank you for the new outfits to study. Our team is quite interested to see what humanity has achieved since our exodus."`
+			`On <planet> you follow the landing instructions to arrive at a pad set next to a substantial facility with a large equipment bay. As you complete your shutdown routine the doors to the bay slide open and a crawler emerges, accompanied by several Remnant. They carefully unload the S-970 Regenerators and strap them down. As they start heading back into the bay, one of them comes over to hand you <payment>. "Thank you for the new outfits to study. Our team is quite interested to see what humanity has achieved since our exodus."`
 
 
 
