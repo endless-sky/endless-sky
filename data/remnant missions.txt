@@ -1254,7 +1254,7 @@ mission "Remnant: Expanded Horizons Quarg 3"
 	on offer
 		conversation
 			`Back in the spaceport bar you wait around for a couple hours. Just when you were about to go find them, the trio walk in looking like they had spent all day on the move, but otherwise unreadable.`
-			`	"OK, I think we are ready to go. Can you take us to <planet>?"`
+			`	"Okay, I think we are ready to go. Can you take us to <planet>?"`
 				accept
 	on complete
 		payment 150000
