@@ -694,6 +694,7 @@ mission "Remnant: Tech Retrieval"
 					goto nothelp
 			label find
 			`	Taely nods "I will look forward to seeing what you find. In the meantime, I should get back to work." With that, she swings over the railing and climbs quickly down the wall in the direction of the shipyard, seemingly unconcerned about the height.`
+				accept
 			label nothelp
 			`	Taely looks at you with a blank expression, then chants in a monotone voice "If that is your choice, you are unlikely to find much of interest to do among us." With that, she vaults over the edge of the railing and drops from view. As you quickly peer over the railing, you discover that she had must have caught a handhold somehow, as she is rapidly moving down the wall in a controlled fashion with ease of a spider.`
 				decline
@@ -784,7 +785,7 @@ mission "Remnant: Plasma Cannon"
 			branch wave
 				has "Remnant: Learn Sign 1: done"
 			`	The weapons technician finishes strapping down the plasma cannons and makes a gesture towards you, then heads off toward the lab.`
-			goto end
+				goto end
 			label wave
 			`	The weapons technician finishes strapping down the plasma cannons and makes a gesture that you recognize as "farewell," then heads off toward the lab.`
 			label end
