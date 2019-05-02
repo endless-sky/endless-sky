@@ -478,7 +478,7 @@ mission "Remnant: Void Sprites 3"
 		has "Remnant: Void Sprites 2: done"
 	on offer
 		conversation
-			`The Remnant researcher seems disappointed that an outfit scan didn't reveal any information about the void sprites, but he is also excited about a new idea for studying them. He says, "I found that our university had several old mothballed ships suitable for exploring the upper atmosphere of a gas giant," he says. "Until I can publish my results I won't have the money to purchase one, but if you buy one you could land on the void sprite worlds and observe them in their natural habitat."`
+			`The Remnant researcher seems disappointed that an outfit scan didn't reveal any information about the void sprites, but he is also excited about a new idea for studying them. "I found that our university had several old mothballed ships suitable for exploring the upper atmosphere of a gas giant," he says. "Until I can publish my results I won't have the money to purchase one, but if you buy one you could land on the void sprite worlds and observe them in their natural habitat."`
 			choice
 				`	"How much will it cost to buy one?"`
 				`	"Didn't you say before that anyone entering that system in a Remnant ship gets attacked?"`
@@ -1261,7 +1261,7 @@ mission "Remnant: Expanded Horizons Quarg 3"
 		conversation
 			`Once you are back in the privacy of the <ship>, the stony reserve fades to cheerfulness as the trio are a blur of motion, chattering back and forth with their signs. Apparently this will be one of the biggest boosts to their research since the first time they salvaged the gear off a Korath raider.`
 			`	They eventually slow down their signs a bit and explain that up until the time the Remnant departed from ancestral space, human scanners had been unable to penetrate the outer layers of Quarg ships. One of Dawn's fellow researchers continues with the explanation.`
-			`	"Our historical records just have a few pictures and videos of Quarg ships, along with a basic scan that doesn't provide more than the general outline of the ship. These scans," he says while tapping the databanks, "actually picked up detailed structural layouts and even identified a number of key components. It isn't nearly enough information to be able to duplicate them, but it is enough that we can start trying to figure out how they work.`
+			`	"Our historical records just have a few pictures and videos of Quarg ships, along with a basic scan that doesn't provide more than the general outline of the ship. These scans," he says while tapping the databanks, "actually picked up detailed structural layouts and even identified a number of key components. It isn't nearly enough information to be able to duplicate them, but it is enough that we can start trying to figure out how they work."`
 			`	Upon arriving at <planet> they quickly thank you, hand you <payment>, and run back to their offices to finish prepping their material to publish and distribute.`
 
 
