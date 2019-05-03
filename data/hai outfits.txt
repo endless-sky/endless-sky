@@ -140,7 +140,7 @@ outfit "Railgun"
 		"hit force" 44
 		"stream"
 		"submunition" "rslug" 1
-	description "The Hai created this compact weapon for their Flea drones, providing mobile long range support for the close quarters Pond Strider carrier."
+	description "The Hai created this compact weapon for their Flea drones, providing mobile long-range support for the close quarters Pond Strider carrier."
 
 outfit "rslug"
 	weapon
@@ -575,7 +575,7 @@ outfit `"Biroo" Atomic Steering`
 	"turn" 1054
 	"turning energy" 2.0
 	"turning heat" 5.1
-	description "Having such powerful engines is a double edged sword for the Hai, as the Unfettered Hai too own these powerful wonders. These engines allow most Hai ships to turn at amazing speeds, making them extremely deadly in combat."
+	description "Having such powerful engines is a double-edged sword for the Hai, as the Unfettered Hai too own these powerful wonders. These engines allow most Hai ships to turn at amazing speeds, making them extremely deadly in combat."
 
 outfit `"Bondir" Atomic Steering`
 	category "Engines"

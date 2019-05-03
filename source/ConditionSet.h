@@ -28,7 +28,7 @@ class DataWriter;
 // values.
 class ConditionSet {
 public:
-	using Conditions = std::map<std::string, int>;
+	using Conditions = std::map<std::string, int64_t>;
 	ConditionSet() = default;
 	// Construct and Load() at the same time.
 	ConditionSet(const DataNode &node);
@@ -110,7 +110,7 @@ private:
 			bool IsEmpty() const;
 			
 			// Substitute numbers for any string values and then compute the result.
-			int Evaluate(const Conditions &conditions, const Conditions &created) const;
+			int64_t Evaluate(const Conditions &conditions, const Conditions &created) const;
 			
 			
 		private:
@@ -126,7 +126,7 @@ private:
 			public:
 				explicit Operation(const std::string &op, size_t &a, size_t &b);
 				
-				int (*fun)(int, int);
+				int64_t (*fun)(int64_t, int64_t);
 				size_t a;
 				size_t b;
 			};
@@ -148,7 +148,7 @@ private:
 		std::string op;
 		// Pointer to a binary function that defines the assignment or
 		// comparison operation to be performed between SubExpressions.
-		int (*fun)(int, int);
+		int64_t (*fun)(int64_t, int64_t);
 		
 		// SubExpressions contain one or more tokens and any number of simple operators.
 		SubExpression left;

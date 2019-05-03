@@ -25,7 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	typedef int (*BinFun)(int, int);
+	typedef int64_t (*BinFun)(int64_t, int64_t);
 	BinFun Op(const string &op)
 	{
 		// This map defines functions that each "operator" should be mapped to.
@@ -35,24 +35,24 @@ namespace {
 		// "Apply" operators return the value that the condition should have
 		// after applying the expression.
 		static const map<string, BinFun> opMap = {
-			{"==", [](int a, int b) -> int { return a == b; }},
-			{"!=", [](int a, int b) -> int { return a != b; }},
-			{"<", [](int a, int b) -> int { return a < b; }},
-			{">", [](int a, int b) -> int { return a > b; }},
-			{"<=", [](int a, int b) -> int { return a <= b; }},
-			{">=", [](int a, int b) -> int { return a >= b; }},
-			{"=", [](int a, int b) { return b; }},
-			{"*=", [](int a, int b) { return a * b; }},
-			{"+=", [](int a, int b) { return a + b; }},
-			{"-=", [](int a, int b) { return a - b; }},
-			{"/=", [](int a, int b) { return b ? a / b : numeric_limits<int>::max(); }},
-			{"<?=", [](int a, int b) { return min(a, b); }},
-			{">?=", [](int a, int b) { return max(a, b); }},
-			{"%", [](int a, int b) { return (a % b); }},
-			{"*", [](int a, int b) { return a * b; }},
-			{"+", [](int a, int b) { return a + b; }},
-			{"-", [](int a, int b) { return a - b; }},
-			{"/", [](int a, int b) { return b ? a / b : numeric_limits<int>::max(); }}
+			{"==", [](int64_t a, int64_t b) -> int64_t { return a == b; }},
+			{"!=", [](int64_t a, int64_t b) -> int64_t { return a != b; }},
+			{"<", [](int64_t a, int64_t b) -> int64_t { return a < b; }},
+			{">", [](int64_t a, int64_t b) -> int64_t { return a > b; }},
+			{"<=", [](int64_t a, int64_t b) -> int64_t { return a <= b; }},
+			{">=", [](int64_t a, int64_t b) -> int64_t { return a >= b; }},
+			{"=", [](int64_t a, int64_t b) { return b; }},
+			{"*=", [](int64_t a, int64_t b) { return a * b; }},
+			{"+=", [](int64_t a, int64_t b) { return a + b; }},
+			{"-=", [](int64_t a, int64_t b) { return a - b; }},
+			{"/=", [](int64_t a, int64_t b) { return b ? a / b : numeric_limits<int64_t>::max(); }},
+			{"<?=", [](int64_t a, int64_t b) { return min(a, b); }},
+			{">?=", [](int64_t a, int64_t b) { return max(a, b); }},
+			{"%", [](int64_t a, int64_t b) { return (a % b); }},
+			{"*", [](int64_t a, int64_t b) { return a * b; }},
+			{"+", [](int64_t a, int64_t b) { return a + b; }},
+			{"-", [](int64_t a, int64_t b) { return a - b; }},
+			{"/", [](int64_t a, int64_t b) { return b ? a / b : numeric_limits<int64_t>::max(); }}
 		};
 		
 		auto it = opMap.find(op);
@@ -145,18 +145,18 @@ namespace {
 		return false;
 	}
 	
-	// Converts the given vector of strings into a vector of ints.
-	vector<int> SubstituteValues(const vector<string> &side, const map<string, int> &conditions, const map<string, int> &created)
+	// Converts the given vector of strings into a vector of 64-bit ints.
+	vector<int64_t> SubstituteValues(const vector<string> &side, const map<string, int64_t> &conditions, const map<string, int64_t> &created)
 	{
-		auto result = vector<int>();
+		auto result = vector<int64_t>();
 		result.reserve(side.size());
 		for(const string &str : side)
 		{
-			int value = 0;
+			int64_t value = 0;
 			if(str == "random")
 				value = Random::Int(100);
 			else if(DataNode::IsNumber(str))
-				value = static_cast<int>(DataNode::Value(str));
+				value = static_cast<int64_t>(DataNode::Value(str));
 			else
 			{
 				const auto temp = created.find(str);
@@ -180,7 +180,7 @@ namespace {
 	}
 	
 	// Finding the left operand's index if getLeft = true. The operand's index is the first non-empty, non-used index.
-	size_t FindOperandIndex(const vector<string> &tokens, const vector<int> &data, const size_t &opIndex, bool getLeft)
+	size_t FindOperandIndex(const vector<string> &tokens, const vector<int> &resultIndices, const size_t &opIndex, bool getLeft)
 	{
 		// Start at the operator index (left), or just past it (right).
 		size_t index = opIndex + !getLeft;
@@ -191,8 +191,8 @@ namespace {
 			while(tokens.at(index).empty() && index < tokens.size() - 2)
 				++index;
 		// Trace any used data to find the latest result.
-		while(data.at(index) > 0)
-			index = data.at(index);
+		while(resultIndices.at(index) > 0)
+			index = resultIndices.at(index);
 		
 		return index;
 	}
@@ -510,8 +510,8 @@ bool ConditionSet::Expression::IsTestable() const
 // Evaluate both the left- and right-hand sides of the expression, then compare the evaluated numeric values.
 bool ConditionSet::Expression::Test(const Conditions &conditions, const Conditions &created) const
 {
-	int lhs = left.Evaluate(conditions, created);
-	int rhs = right.Evaluate(conditions, created);
+	int64_t lhs = left.Evaluate(conditions, created);
+	int64_t rhs = right.Evaluate(conditions, created);
 	return fun(lhs, rhs);
 }
 
@@ -520,8 +520,8 @@ bool ConditionSet::Expression::Test(const Conditions &conditions, const Conditio
 // Assign the computed value to the desired condition.
 void ConditionSet::Expression::Apply(Conditions &conditions, Conditions &created) const
 {
-	int &c = conditions[Name()];
-	int value = right.Evaluate(conditions, created);
+	int64_t &c = conditions[Name()];
+	int64_t value = right.Evaluate(conditions, created);
 	c = fun(c, value);
 }
 
@@ -530,8 +530,8 @@ void ConditionSet::Expression::Apply(Conditions &conditions, Conditions &created
 // Assign the computed value to the desired temporary condition.
 void ConditionSet::Expression::TestApply(const Conditions &conditions, Conditions &created) const
 {
-	int &c = created[Name()];
-	int value = right.Evaluate(conditions, created);
+	int64_t &c = created[Name()];
+	int64_t value = right.Evaluate(conditions, created);
 	c = fun(c, value);
 }
 
@@ -614,7 +614,7 @@ bool ConditionSet::Expression::SubExpression::IsEmpty() const
 
 
 // Evaluate the SubExpression using the given condition maps.
-int ConditionSet::Expression::SubExpression::Evaluate(const Conditions &conditions, const Conditions &created) const
+int64_t ConditionSet::Expression::SubExpression::Evaluate(const Conditions &conditions, const Conditions &created) const
 {
 	// Sanity check.
 	if(tokens.empty())
@@ -692,8 +692,8 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 	// Read the operators vector just once by using a stack.
 	auto opStack = vector<size_t>();
 	// Store the data index for each Operation, for use by later Operations.
-	size_t dest = tokens.size();
-	auto dataDest = vector<int>(dest + operatorCount, -1);
+	size_t destinationIndex = tokens.size();
+	auto dataDest = vector<int>(destinationIndex + operatorCount, -1);
 	size_t opIndex = 0;
 	while(!UsedAll(usedOps))
 	{
@@ -728,7 +728,7 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 				usedOps.at(opIndex++) = true;
 				break;
 			}
-			else if(!AddOperation(dataDest, dest, workingIndex))
+			else if(!AddOperation(dataDest, destinationIndex, workingIndex))
 				return;
 		}
 	}
@@ -746,7 +746,7 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 			sequence.clear();
 			return;
 		}
-		else if(!AddOperation(dataDest, dest, workingIndex))
+		else if(!AddOperation(dataDest, destinationIndex, workingIndex))
 			return;
 	}
 	// All operators and tokens should now have been used.

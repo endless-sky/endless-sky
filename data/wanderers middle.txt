@@ -2824,7 +2824,7 @@ mission "Wanderers: Sestor: Scan Drones"
 		dialog `You fire up your ship's sensors and log the identification numbers and markings of the Kor Sestor ships in this system.`
 	on offer
 		conversation
-			`You are pleased to discover that the Wanderer colony here has grown into a small city; about a hundred thousand Wanderers have already come through the Eye to settle here. Sobari Tele'ek meets you in the airport. He has lost half of his feathers - his whole face is bare and scaly - but rather than wasting away like Rek he has gained considerable weight, and now towers over you.`
+			`You are pleased to discover that the Wanderer colony here has grown into a small city; about a hundred thousand Wanderers have already come through the Eye to settle here. Sobari Tele'ek meets you in the spaceport. He has lost half of his feathers - his whole face is bare and scaly - but rather than wasting away like Rek he has gained considerable weight, and now towers over you.`
 			`	He tells you, "Our Mereti [friends, kinsfolk] tell us that the Kor Sestor have become less [aggressive, warlike] of late. The factories on their worlds are still [producing, churning out] drones, but they no longer act with a [unified will? purpose?]."`
 			choice
 				`	"Do you think they are weakened enough that we can destroy them?"`

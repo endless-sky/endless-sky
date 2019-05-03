@@ -295,7 +295,7 @@ void OutfitterPanel::Buy(bool fromCargo)
 		// Special case: licenses.
 		if(IsLicense(selectedOutfit->Name()))
 		{
-			int &entry = player.Conditions()[LicenseName(selectedOutfit->Name())];
+			auto &entry = player.Conditions()[LicenseName(selectedOutfit->Name())];
 			if(entry <= 0)
 			{
 				entry = true;

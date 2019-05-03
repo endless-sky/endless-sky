@@ -869,7 +869,7 @@ mission "FW Northern 3"
 				accept
 	
 	on complete
-		log "Agreed to become a member of the Free Worlds council, taking Tomek's spot."
+		log "Agreed to become a member of the Free Worlds Council, taking Tomek's spot."
 		"salary: Free Worlds" = 2500
 		conversation
 			`As you are landing on <planet>, Freya says, "I miss Katya. It's hard being the only woman on the Council."`
@@ -1213,7 +1213,7 @@ mission "FW Alphas 1.1A"
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
 	
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"
 	
 	on offer
 		log "With the help of the Oathkeepers, liberated Poisonwood from the Alpha invaders."
@@ -1359,7 +1359,7 @@ mission "FW Bloodsea 1.1"
 				goto attack
 			label attack
 			`	"So, we attack them?" you ask.`
-			`	"You're on the council now," he says. "I'll leave it up to you. Option one is, we bring them the supplies and workers, in merchant ships, but use very heavily armed merchant ships in case they double cross us. Option two is, we go to Dancer and see if JJ can lend us an invasion fleet."`
+			`	"You're on the Council now," he says. "I'll leave it up to you. Option one is, we bring them the supplies and workers, in merchant ships, but use very heavily armed merchant ships in case they double cross us. Option two is, we go to Dancer and see if JJ can lend us an invasion fleet."`
 				accept
 
 
