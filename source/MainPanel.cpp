@@ -469,9 +469,10 @@ void MainPanel::StepEvents(bool &isActive)
 		if((event.Type() & (ShipEvent::BOARD | ShipEvent::ASSIST)) && actor->IsPlayer()
 				&& !event.Target()->IsDestroyed() && flagship && event.Actor().get() == flagship)
 		{
-			Mission *mission = player.BoardingMission(event.Target());
+			auto boardedShip = event.Target();
+			Mission *mission = player.BoardingMission(boardedShip);
 			if(mission && mission->HasSpace(*flagship))
-				mission->Do(Mission::OFFER, player, GetUI());
+				mission->Do(Mission::OFFER, player, GetUI(), boardedShip);
 			else if(mission)
 				player.HandleBlockedMissions((event.Type() & ShipEvent::BOARD)
 						? Mission::BOARDING : Mission::ASSISTING, GetUI());
@@ -486,11 +487,11 @@ void MainPanel::StepEvents(bool &isActive)
 			// completion conversation creates a BoardingPanel for it, or if the
 			// NPC completion conversation ends via `accept,` even if the ship is
 			// still hostile.
-			if(isActive && (event.Type() == ShipEvent::BOARD) && !event.Target()->IsDestroyed()
-					&& event.Target()->GetGovernment()->IsEnemy())
+			if(isActive && (event.Type() == ShipEvent::BOARD) && !boardedShip->IsDestroyed()
+					&& boardedShip->GetGovernment()->IsEnemy())
 			{
 				// Either no mission activated, or the one that did was "silent."
-				GetUI()->Push(new BoardingPanel(player, event.Target()));
+				GetUI()->Push(new BoardingPanel(player, boardedShip));
 				isActive = false;
 			}
 		}
