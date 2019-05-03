@@ -24131,8 +24131,8 @@ planet Aventine
 	shipyard Remnant
 	outfitter Remnant
 	tribute 4000
-		threshold 7500
-		fleet "Large Remnant" 60
+		threshold 8500
+		fleet "Large Remnant" 80
 
 planet "Bank of Blugtad"
 	attributes arach wealthy urban
@@ -24310,8 +24310,8 @@ planet Caelian
 	shipyard Remnant
 	outfitter Remnant
 	tribute 3000
-		threshold 7500
-		fleet "Large Remnant" 40
+		threshold 8000
+		fleet "Large Remnant" 60
 
 planet Calda
 	attributes paradise tourism rich
@@ -27194,8 +27194,8 @@ planet Viminal
 	shipyard Remnant
 	outfitter Remnant
 	tribute 3000
-		threshold 7500
-		fleet "Large Remnant" 40
+		threshold 8000
+		fleet "Large Remnant" 60
 
 planet Vinci
 	attributes paradise factory
