@@ -204,6 +204,21 @@ namespace {
 			message += " \"" + str + "\"";
 		Files::LogError(message);
 	}
+	
+	bool IsUnrepresentable(const string &token)
+	{
+		if(DataNode::IsNumber(token))
+		{
+			auto value = DataNode::Value(token);
+			if(value > static_cast<double>(numeric_limits<int64_t>::max()) ||
+					value < static_cast<double>(numeric_limits<int64_t>::min()))
+				return true;
+		}
+		// It's possible that a condition uses purely representable values, but performs math
+		// that result in unrepresentable values. However, that situation cannot be detected
+		// during expression construction, only during execution.
+		return false;
+	}
 }
 
 
@@ -260,9 +275,12 @@ void ConditionSet::Add(const DataNode &node)
 	// Simple conditions have a node size of 3, while complex conditions feature a single
 	// non-simple operator (e.g. <=) and any number of simple operators.
 	static const string UNRECOGNIZED = "Unrecognized condition expression:";
+	static const string UNREPRESENTABLE = "Unrepresentable condition value encountered";
 	if(node.Size() == 2)
 	{
-		if(!Add(node.Token(0), node.Token(1)))
+		if(IsUnrepresentable(node.Token(1)))
+			node.PrintTrace(UNREPRESENTABLE);
+		else if(!Add(node.Token(0), node.Token(1)))
 			node.PrintTrace(UNRECOGNIZED);
 	}
 	else if(node.Size() == 1 && node.Token(0) == "never")
@@ -281,7 +299,9 @@ void ConditionSet::Add(const DataNode &node)
 		// This is a valid condition containing a single assignment or comparison operator.
 		if(node.Size() == 3)
 		{
-			if(!Add(node.Token(0), node.Token(1), node.Token(2)))
+			if(IsUnrepresentable(node.Token(0)) || IsUnrepresentable(node.Token(2)))
+				node.PrintTrace(UNREPRESENTABLE);
+			else if(!Add(node.Token(0), node.Token(1), node.Token(2)))
 				node.PrintTrace(UNRECOGNIZED);
 		}
 		else
@@ -292,7 +312,12 @@ void ConditionSet::Add(const DataNode &node)
 			string op;
 			for(const string &token : node.Tokens())
 			{
-				if(!op.empty())
+				if(IsUnrepresentable(token))
+				{
+					node.PrintTrace(UNREPRESENTABLE);
+					return;
+				}
+				else if(!op.empty())
 					rhs.emplace_back(token);
 				else if(IsComparison(token))
 					op = token;
