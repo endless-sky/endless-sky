@@ -105,6 +105,14 @@ fleet "Remnant Transport"
 		"Pelican"
 		"Starling (Hunter)" 2
 
+fleet "Remnant Decoy Defense"
+	government "Remnant"
+	names "remnant"
+	personality
+		staying heroic marked unconstrained
+	variant 10
+		"Albatross (Shield)" 1
+
 fleet "Light Remnant Defense"
 	government "Remnant"
 	names "remnant"
@@ -135,9 +143,11 @@ fleet "Heavy Remnant Defense"
 	personality
 		staying heroic marked unconstrained
 	variant 6
+		"Albatross (Shield)" 1
 		"Albatross" 3
 		"Starling" 6
 	variant 6
+		"Albatross (Shield)" 1
 		"Albatross (Sniper)" 3
 		"Starling (Sniper)" 6
 	variant 6
@@ -156,6 +166,7 @@ fleet "Heavy Remnant Defense"
 		"Albatross" 3
 		"Albatross (Sniper)" 6
 	variant 2
+		"Albatross (Shield)" 1
 		"Albatross (Heavy)" 2
 		"Albatross (Turret)" 1
 
