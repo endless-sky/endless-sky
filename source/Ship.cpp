@@ -2601,7 +2601,7 @@ double Ship::MaxReverseVelocity() const
 
 // This ship just got hit by the given projectile. Take damage according to
 // what sort of weapon the projectile it.
-int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
+int Ship::TakeDamage(const PlayerInfo &player, const Projectile &projectile, bool isBlast)
 {
 	int type = 0;
 	
@@ -2668,7 +2668,16 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	if(!wasDestroyed && IsDestroyed())
 	{
 		type |= ShipEvent::DESTROY;
-		Messages::Add(modelName + " \"" + name + "\" destroyed.");
+
+		bool isEscort = false;
+		for(auto &s : player.Ships())
+			if(this == s.get())
+			{
+				isEscort = true;
+				break;
+			}
+		if(isEscort)
+			Messages::Add("Your " + modelName + " \"" + name + "\" has been destroyed.");
 	}
 	// If this ship was hit directly and did not consider itself an enemy of the
 	// ship that hit it, it is now "provoked" against that government.

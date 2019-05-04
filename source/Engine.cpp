@@ -1742,14 +1742,14 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 				
-				int eventType = ship->TakeDamage(projectile, ship != hit.get());
+				int eventType = ship->TakeDamage(player, projectile, ship != hit.get());
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
 		}
 		else if(hit)
 		{
-			int eventType = hit->TakeDamage(projectile);
+			int eventType = hit->TakeDamage(player, projectile);
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
 		}
