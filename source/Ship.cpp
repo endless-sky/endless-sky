@@ -2668,7 +2668,8 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	if(!wasDestroyed && IsDestroyed())
 	{
 		type |= ShipEvent::DESTROY;
-		Messages::Add(modelName + " \"" + name + "\" destroyed.");
+		if (isYours)
+			Messages::Add("Your " + modelName + " \"" + name + "\" has been destroyed.");
 	}
 	// If this ship was hit directly and did not consider itself an enemy of the
 	// ship that hit it, it is now "provoked" against that government.
