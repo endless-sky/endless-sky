@@ -175,7 +175,8 @@ ship "Albatross" "Albatross (Heavy)"
 
 ship "Albatross" "Albatross (Shield)"
 	outfits
-		"Point Defense Turret" 5
+		"Point Defense Turret" 4
+		"Thrasher Turret"
 
 		"Aeon Cell"
 		"Millennium Cell"
@@ -185,9 +186,9 @@ ship "Albatross" "Albatross (Shield)"
 		"Small Heat Shunt" 1
 		"Large Heat Shunt" 1
 		
-		"Tuning Rifle" 65
+		"Tuning Rifle" 75
 
-		"Forge-Class Thruster"
+		"Crucible-Class Thruster"
 		"Forge-Class Steering"
 		"Hyperdrive"
 
@@ -198,7 +199,7 @@ ship "Albatross" "Albatross (Shield)"
 	gun 
 	gun 
 	gun 
-	turret "Point Defense Turret"
+	turret "Thrasher Turret"
 	turret "Point Defense Turret"
 	turret "Point Defense Turret"
 	turret "Point Defense Turret"
