@@ -141,12 +141,9 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 		{
 			if(zone.Value() == ZOOM_FACTOR)
 			{
-				int newZoom = Screen::Zoom() + ZOOM_FACTOR_INCREMENT;
-				if(newZoom > ZOOM_FACTOR_MAX)
-					newZoom = ZOOM_FACTOR_MIN;
+				int newZoom = Screen::UserZoom() + ZOOM_FACTOR_INCREMENT;
 				Screen::SetZoom(newZoom);
-				// Make sure there is enough vertical space for the full UI.
-				if(Screen::Height() < 700)
+				if(newZoom > ZOOM_FACTOR_MAX || Screen::Zoom() != newZoom)
 				{
 					// Notify the user why setting the zoom any higher isn't permitted.
 					// Only show this if it's not possible to zoom the view at all, as
@@ -161,13 +158,15 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
 				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
-			if(zone.Value() == VIEW_ZOOM_FACTOR)
+			else if(zone.Value() == VIEW_ZOOM_FACTOR)
 			{
 				// Increase the zoom factor unless it is at the maximum. In that
 				// case, cycle around to the lowest zoom factor.
 				if(!Preferences::ZoomViewIn())
 					while(Preferences::ZoomViewOut()) {}
 			}
+			
+			// Update saved preferences.
 			if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == TURRET_TRACKING)
@@ -192,7 +191,10 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 	
 	for(const auto &zone : pluginZones)
 		if(zone.Contains(point))
+		{
 			selectedPlugin = zone.Value();
+			break;
+		}
 	
 	return true;
 }
@@ -231,19 +233,15 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 	
 	if(hoverPreference == ZOOM_FACTOR)
 	{
-		int zoom = Screen::Zoom();
+		int zoom = Screen::UserZoom();
 		if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
 			zoom -= ZOOM_FACTOR_INCREMENT;
 		if(dy > 0. && zoom < ZOOM_FACTOR_MAX)
 			zoom += ZOOM_FACTOR_INCREMENT;
 		
 		Screen::SetZoom(zoom);
-		// Make sure there is enough vertical space for the full UI.
-		while(Screen::Height() < 700 && zoom > ZOOM_FACTOR_MIN)
-		{
-			zoom -= ZOOM_FACTOR_INCREMENT;
-			Screen::SetZoom(zoom);
-		}
+		if (Screen::Zoom() != zoom)
+			Screen::SetZoom(Screen::Zoom());
 		
 		// Convert to raw window coordinates, at the new zoom level.
 		Point point = hoverPoint * (Screen::Zoom() / 100.);
@@ -482,8 +480,8 @@ void PreferencesPanel::DrawSettings()
 		string text;
 		if(setting == ZOOM_FACTOR)
 		{
-			isOn = true;
-			text = to_string(Screen::Zoom());
+			isOn = Screen::UserZoom() == Screen::Zoom();
+			text = to_string(Screen::UserZoom());
 		}
 		else if(setting == VIEW_ZOOM_FACTOR)
 		{
