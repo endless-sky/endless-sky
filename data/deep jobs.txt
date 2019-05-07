@@ -53,7 +53,7 @@ mission "Deep Mystery Cube [0]"
 	description "Deliver a package to <destination>. Payment is <payment>."
 	cargo "mystery package" 1
 	to offer
-		random < 10
+		random < 25
 		"combat rating" > 35
 	source
 		attributes "deep"
