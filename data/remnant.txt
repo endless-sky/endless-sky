@@ -109,7 +109,7 @@ fleet "Remnant Decoy Defense"
 	government "Remnant"
 	names "remnant"
 	personality
-		staying heroic marked unconstrained
+		staying heroic unconstrained
 	variant 10
 		"Albatross (Shield)" 1
 
@@ -117,7 +117,7 @@ fleet "Light Remnant Defense"
 	government "Remnant"
 	names "remnant"
 	personality
-		staying heroic marked unconstrained
+		staying heroic unconstrained
 	variant 10
 		"Starling" 2
 		"Starling (Heavy)" 2
@@ -141,7 +141,7 @@ fleet "Heavy Remnant Defense"
 	government "Remnant"
 	names "remnant"
 	personality
-		staying heroic marked unconstrained
+		staying heroic unconstrained
 	variant 6
 		"Albatross (Shield)" 1
 		"Albatross" 3
