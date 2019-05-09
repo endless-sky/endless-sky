@@ -1549,7 +1549,7 @@ mission "Remnant: Face to Maw 1"
 			`	As you re-enter the ship, you notice that your suit is covered in some kind of translucent slime. You scrape off as much as you can into a sealed container, but your pressure suit appears to be permanently stained an iridescent purplish color as a result. You resolve to go find Plume, since he will almost certainly find this interesting.`
 				accept
 	on accept
-		fail "Remnant: Face to Maw 1b"
+		fail "Remnant: Face to Maw 1B"
 	on complete
 		conversation
 			`When you walk into Plume's lab on Aventine you find him buried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his datapad. After a few minutes he looks up and see you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
@@ -1558,7 +1558,7 @@ mission "Remnant: Face to Maw 1"
 
 
 
-mission "Remnant: Face to Maw 1b"
+mission "Remnant: Face to Maw 1B"
 	name "Talk to Plume about the Void Sprites"
 	description "Plume would be very interested in a report on what happened with the Void Sprites"
 	landing
@@ -1627,11 +1627,11 @@ event "remnant: penguin"
 
 
 
-mission "Remnant: Face to Maw 2b"
+mission "Remnant: Face to Maw 2B"
 	name "Take the tentacle to Chilia's engineers on Caelian"
 	description "The tentacle has properties that may be put to use by the engineers on <planet>."
 	to offer
-		has "Remnant: Face to Maw 1b: done"
+		has "Remnant: Face to Maw 1B: done"
 	source "Aventine"
 	destination "Caelian"
 	cargo "tentacle" 1
