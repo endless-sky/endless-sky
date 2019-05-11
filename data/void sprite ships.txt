@@ -96,7 +96,7 @@ effect "void sprite infant death"
 
 ship "Void Sprite Elder"
 	noun "creature"
-	sprite "ship/void sprite elder"
+	sprite "ship/void sprite elder/void sprite elder"
 		"frame rate" 5
 		rewind
 	thumbnail "thumbnail/void sprite elder"
