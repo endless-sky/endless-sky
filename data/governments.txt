@@ -62,6 +62,7 @@ government "Drak"
 	"fine" 0
 	"attitude toward"
 		"Indigenous Lifeform" 1
+		"Void Sprite" 1
 
 government "Escort"
 	swizzle 5
@@ -369,6 +370,17 @@ government "Test Dummy"
 
 government "Uninhabited"
 	color .4 .4 .4
+
+government "Void Sprite"
+	"player reputation" 1
+	"bribe" 0
+	"fine" 0
+	"attitude toward"
+		"Indigenous Lifeform" 1
+		"Void Sprite" 1
+		"Drak" 1
+		"Korath" -.01
+		"Remnant" .01
 
 government "Wanderer"
 	swizzle 2
