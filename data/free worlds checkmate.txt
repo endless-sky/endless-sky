@@ -2316,6 +2316,8 @@ mission "FWC End"
 	on complete
 		event "deep sky tech available"
 		event "syndicate tech available"
+		event "add alien tech"
+		event "add military pirates"
 		set "main plot completed"
 		set "free worlds plot completed"
 		conversation

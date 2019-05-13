@@ -194,21 +194,614 @@ mission "Kestrel Available"
 			scene ship/kestrel
 			`You receive a message from Charles Atinoda, the ship designer at Tarazed Corporation: "Captain <last>, we are pleased to inform you that our latest warship is now available for sale here on Wayfarer. We've taken all your feedback into account in the final design. Thank you again!"`
 				decline
-
+				
+mission "Add KestrelWep AlienTech"
+	invisible
+	landing
+	to offer
+			has "kestrel: more weapons"
+			has "main plot completed"
+	on offer
+			event "Add Alien Kestrels (Wep)"
+			
+mission "Add KestrelDef AlienTech"
+	invisible
+	landing
+	to offer
+			has "kestrel: more shields"
+			has "main plot completed"
+	on offer
+			event "Add Alien Kestrels (Def)"
+			
+mission "Add KestrelEng AlienTech"
+	invisible
+	landing
+	to offer
+			has "kestrel: more engines"
+			has "main plot completed"
+	on offer
+			event "Add Alien Kestrels (Eng)"
 
 
 event "kestrel available: more weapons"
 	set "kestrel available"
 	shipyard "Tarazed Advanced"
 		"Kestrel (More Weapons)"
+	fleet "Marauder fleet XX"
+		add variant 3
+			"KestrelWep (Laser)"
+			"Marauder Falcon"
+			"Marauder Splinter"
+			"Marauder Manta"
+			"Marauder Firebird"
+			"Marauder Raven (Weapons)"
+			"Marauder Quicksilver (Engines)"
+			"Marauder Arrow (Weapons)"
+			"Marauder Bounder (Engines)"
+		add variant 3
+			"KestrelWep (Particle)"		
+			"Marauder Leviathan"
+			"Marauder Splinter"
+			"Marauder Manta"
+			"Marauder Firebird"
+			"Marauder Raven (Engines)"
+			"Marauder Quicksilver (Weapons)"
+			"Marauder Arrow (Engines)"
+			"Marauder Bounder (Weapons)"
+		add variant 2
+			"KestrelWep (Plasma)"
+			"Marauder Falcon (Engines)"
+			"Marauder Splinter (Engines)"
+			"Marauder Manta (Weapons)"
+			"Marauder Firebird (Engines)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 2
+			"KestrelWep (Laser)"
+			"Marauder Leviathan (Engines)"
+			"Marauder Splinter (Weapons)"
+			"Marauder Manta (Engines)"
+			"Marauder Firebird (Weapons)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 2
+			"KestrelWep (Particle)"	
+			"Marauder Falcon (Weapons)"
+			"Marauder Splinter (Engines)"
+			"Marauder Manta (Weapons)"
+			"Marauder Firebird (Engines)"
+			"Marauder Raven (Weapons)"
+			"Marauder Quicksilver (Engines)"
+			"Marauder Arrow (Weapons)"
+			"Marauder Bounder (Engines)"
+		add variant 2
+			"KestrelWep (Plasma)"
+			"Marauder Leviathan (Weapons)"
+			"Marauder Splinter (Weapons)"
+			"Marauder Manta (Engines)"
+			"Marauder Firebird (Weapons)"
+			"Marauder Raven (Engines)"
+			"Marauder Quicksilver (Weapons)"
+			"Marauder Arrow (Engines)"
+			"Marauder Bounder (Weapons)"
+			
+	fleet "Large Northern Pirates"
+		add variant 1
+			"KestrelWep (Laser)"
+	
+	fleet "Large Southern Pirates"
+		add variant 1
+			"KestrelWep (Plasma)"
+		add variant 1
+			"KestrelWep (Torp)"
+	
+	fleet "Large Core Pirates"
+		add variant 1
+			"KestrelWep (Particle)"
+	
+	fleet "Large Northern Merchants"
+		add variant 1
+			"Star Queen"
+			"KestrelWep (Particle)"
+		add variant 1
+			"Star Queen"
+			"KestrelWep (Plasma)"
+			
+	fleet "Large Southern Merchants"
+		add variant 1
+			"KestrelWep (Laser)"
+
+	fleet "Large Core Merchants"
+		add variant 1
+			"Bulk Freighter (Heavy)" 2
+			"KestrelWep (Laser)"
+		add variant 1
+			"Bulk Freighter" 4
+			"KestrelWep (Laser)"
+			
+	fleet "Large Deep Merchants"
+		add variant 1
+			"KestrelWep (Laser)"
+			"Bactrian"
+			"Dagger" 3
+		add variant 1
+			"Star Queen"
+			"KestrelWep (Plasma)"
+			
+	fleet "Large Human Merchants (Hai)"
+		add variant 1
+			"Star Queen (Hai)"
+			"KestrelWep (Hai)"
+		add variant 6
+			"Freighter (Hai)" 4
+			"KestrelWep (Hai)"
+			
 event "kestrel available: more engines"
 	set "kestrel available"
 	shipyard "Tarazed Advanced"
 		"Kestrel (More Engines)"
+	fleet "Marauder fleet XX"
+		add variant 3
+			"KestrelEng (Laser)"
+			"Marauder Falcon"
+			"Marauder Splinter"
+			"Marauder Manta"
+			"Marauder Firebird"
+			"Marauder Raven (Weapons)"
+			"Marauder Quicksilver (Engines)"
+			"Marauder Arrow (Weapons)"
+			"Marauder Bounder (Engines)"
+		add variant 3
+			"KestrelEng (Particle)"		
+			"Marauder Leviathan"
+			"Marauder Splinter"
+			"Marauder Manta"
+			"Marauder Firebird"
+			"Marauder Raven (Engines)"
+			"Marauder Quicksilver (Weapons)"
+			"Marauder Arrow (Engines)"
+			"Marauder Bounder (Weapons)"
+		add variant 2
+			"KestrelEng (Plasma)"
+			"Marauder Falcon (Engines)"
+			"Marauder Splinter (Engines)"
+			"Marauder Manta (Weapons)"
+			"Marauder Firebird (Engines)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 2
+			"KestrelEng (Laser)"
+			"Marauder Leviathan (Engines)"
+			"Marauder Splinter (Weapons)"
+			"Marauder Manta (Engines)"
+			"Marauder Firebird (Weapons)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 2
+			"KestrelEng (Particle)"	
+			"Marauder Falcon (Engines)"
+			"Marauder Splinter (Engines)"
+			"Marauder Manta (Weapons)"
+			"Marauder Firebird (Engines)"
+			"Marauder Raven (Weapons)"
+			"Marauder Quicksilver (Engines)"
+			"Marauder Arrow (Weapons)"
+			"Marauder Bounder (Engines)"
+		add variant 2
+			"KestrelEng (Plasma)"
+			"Marauder Leviathan (Engines)"
+			"Marauder Splinter (Weapons)"
+			"Marauder Manta (Engines)"
+			"Marauder Firebird (Weapons)"
+			"Marauder Raven (Engines)"
+			"Marauder Quicksilver (Weapons)"
+			"Marauder Arrow (Engines)"
+			"Marauder Bounder (Weapons)"
+
+	fleet "Large Northern Pirates"
+		add variant 1
+			"KestrelEng (Laser)"
+	
+	fleet "Large Southern Pirates"
+		add variant 1
+			"KestrelEng (Plasma)"
+		add variant 1
+			"KestrelEng (Torp)"
+	
+	fleet "Large Core Pirates"
+		add variant 1
+			"KestrelEng (Particle)"
+			
+	fleet "Large Northern Merchants"
+		add variant 1
+			"Star Queen"
+			"KestrelEng (Particle)"
+		add variant 1
+			"Star Queen"
+			"KestrelEng (Plasma)"
+			
+	fleet "Large Southern Merchants"
+		add variant 1
+			"KestrelEng (Laser)"
+	
+	fleet "Large Core Merchants"
+		add variant 1
+			"Bulk Freighter (Heavy)" 2
+			"KestrelEng (Laser)"
+		add variant 1
+			"Bulk Freighter" 4
+			"KestrelEng (Laser)"
+			
+	fleet "Large Deep Merchants"
+		add variant 1
+			"KestrelEng (Laser)"
+			"Bactrian"
+			"Dagger" 3
+		add variant 1
+			"Star Queen"
+			"KestrelEng (Plasma)"
+
+	fleet "Large Human Merchants (Hai)"
+		add variant 1
+			"Star Queen (Hai)"
+			"KestrelEng (Hai)"
+		add variant 6
+			"Freighter (Hai)" 4
+			"KestrelEng (Hai)"
+		
 event "kestrel available: more shields"
 	set "kestrel available"
 	shipyard "Tarazed Advanced"
 		"Kestrel (More Shields)"
+	fleet "Marauder fleet XX"
+		add variant 3
+			"KestrelDef (Laser)"
+			"Marauder Falcon"
+			"Marauder Splinter"
+			"Marauder Manta"
+			"Marauder Firebird"
+			"Marauder Raven (Weapons)"
+			"Marauder Quicksilver (Engines)"
+			"Marauder Arrow (Weapons)"
+			"Marauder Bounder (Engines)"
+		add variant 3
+			"KestrelDef (Particle)"		
+			"Marauder Leviathan"
+			"Marauder Splinter"
+			"Marauder Manta"
+			"Marauder Firebird"
+			"Marauder Raven (Engines)"
+			"Marauder Quicksilver (Weapons)"
+			"Marauder Arrow (Engines)"
+			"Marauder Bounder (Weapons)"
+		add variant 2
+			"KestrelDef (Plasma)"
+			"Marauder Falcon (Engines)"
+			"Marauder Splinter (Engines)"
+			"Marauder Manta (Weapons)"
+			"Marauder Firebird (Engines)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 2
+			"KestrelDef (Laser)"
+			"Marauder Leviathan (Engines)"
+			"Marauder Splinter (Weapons)"
+			"Marauder Manta (Engines)"
+			"Marauder Firebird (Weapons)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 2
+			"KestrelDef (Particle)"	
+			"Marauder Falcon (Engines)"
+			"Marauder Splinter (Engines)"
+			"Marauder Manta (Weapons)"
+			"Marauder Firebird (Engines)"
+			"Marauder Raven (Weapons)"
+			"Marauder Quicksilver (Engines)"
+			"Marauder Arrow (Weapons)"
+			"Marauder Bounder (Engines)"
+		add variant 2
+			"KestrelDef (Plasma)"
+			"Marauder Leviathan (Engines)"
+			"Marauder Splinter (Weapons)"
+			"Marauder Manta (Engines)"
+			"Marauder Firebird (Weapons)"
+			"Marauder Raven (Engines)"
+			"Marauder Quicksilver (Weapons)"
+			"Marauder Arrow (Engines)"
+			"Marauder Bounder (Weapons)"
+			
+	fleet "Large Northern Pirates"
+		add variant 1
+			"KestrelDef (Laser)"
+	
+	fleet "Large Southern Pirates"
+		add variant 1
+			"KestrelDef (Plasma)"
+		add variant 1
+			"KestrelDef (Torp)"
+	
+	fleet "Large Core Pirates"
+		add variant 1
+			"KestrelDef (Particle)"
+			
+	fleet "Large Northern Merchants"
+		add variant 1
+			"Star Queen"
+			"KestrelDef (Particle)"
+		add variant 1
+			"Star Queen"
+			"KestrelDef (Plasma)"
+			
+	fleet "Large Southern Merchants"
+		add variant 1
+			"KestrelDef (Laser)"
+			
+	fleet "Large Core Merchants"
+		add variant 1
+			"Bulk Freighter (Heavy)" 2
+			"KestrelDef (Laser)"
+		add variant 1
+			"Bulk Freighter" 4
+			"KestrelDef (Laser)"
+			
+	fleet "Large Deep Merchants"
+		add variant 1
+			"KestrelDef (Laser)"
+			"Bactrian"
+			"Dagger" 3
+		add variant 1
+			"Star Queen"
+			"KestrelDef (Plasma)"
+			
+	fleet "Large Human Merchants (Hai)"
+		add variant 1
+			"Star Queen (Hai)"
+			"KestrelDef (Hai)"
+		add variant 6
+			"Freighter (Hai)" 4
+			"KestrelDef (Hai)"
+			
+event "Add Alien Kestrels (Wep)"
+	fleet "Marauder fleet XX"
+		add variant 2
+			"KestrelWep (Hai)"
+			"Marauder Leviathan (Engines - AlienTech)"
+			"Marauder Splinter (Weapons)"
+			"Marauder Manta (Engines - AlienTech)"
+			"Marauder Firebird (Weapons)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 2
+			"KestrelWep (Hai)"	
+			"Marauder Falcon (Weapons - AlienTech)"
+			"Marauder Splinter (Engines - AlienTech)"
+			"Marauder Manta (Weapons)"
+			"Marauder Firebird (Engines - AlienTech)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 2
+			"KestrelWep (Hai)"
+			"Marauder Leviathan (Weapons - AlienTech)"
+			"Marauder Splinter (Weapons - AlienTech)"
+			"Marauder Manta (Engines)"
+			"Marauder Firebird (Weapons - AlienTech)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 2
+			"KestrelWep (Hai)"
+			"Marauder Falcon (Engines - AlienTech)"
+			"Marauder Splinter (Engines)"
+			"Marauder Manta (Weapons - AlienTech)"
+			"Marauder Firebird (Engines)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+			
+	fleet "Large Northern Pirates"
+		add variant 1
+			"KestrelWep (Hai)"
+	
+	fleet "Large Southern Pirates"
+		add variant 1
+			"KestrelWep (Hai)"
+	
+	fleet "Large Core Pirates"
+		add variant 1
+			"KestrelWep (Hai)"
+	
+	fleet "Large Northern Merchants"
+		add variant 1
+			"Star Queen"
+			"KestrelWep (Hai)"
+
+	fleet "Large Core Merchants"
+		add variant 1
+			"Bulk Freighter (Heavy)" 2
+			"KestrelWep (Hai)"
+		add variant 1
+			"Bulk Freighter" 4
+			"KestrelWep (Hai)"
+			
+	fleet "Large Human Merchants (Hai)"
+		add variant 1
+			"Star Queen (Hai)"
+			"KestrelWep (Hai)"
+		add variant 6
+			"Freighter (Hai)" 4
+			"KestrelWep (Hai)"
+	
+	
+event "Add Alien Kestrels (Def)"
+	fleet "Marauder fleet XX"
+		add variant 2
+			"KestrelDef (Hai)"
+			"Marauder Leviathan (Engines - AlienTech)"
+			"Marauder Splinter (Weapons)"
+			"Marauder Manta (Engines - AlienTech)"
+			"Marauder Firebird (Weapons)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 2
+			"KestrelDef (Hai)"	
+			"Marauder Falcon (Weapons - AlienTech)"
+			"Marauder Splinter (Engines - AlienTech)"
+			"Marauder Manta (Weapons)"
+			"Marauder Firebird (Engines - AlienTech)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 2
+			"KestrelDef (Hai)"
+			"Marauder Leviathan (Weapons - AlienTech)"
+			"Marauder Splinter (Weapons - AlienTech)"
+			"Marauder Manta (Engines)"
+			"Marauder Firebird (Weapons - AlienTech)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 2
+			"KestrelDef (Hai)"
+			"Marauder Falcon (Engines - AlienTech)"
+			"Marauder Splinter (Engines)"
+			"Marauder Manta (Weapons - AlienTech)"
+			"Marauder Firebird (Engines)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+			
+	fleet "Large Northern Pirates"
+		add variant 1
+			"KestrelDef (Hai)"
+	
+	fleet "Large Southern Pirates"
+		add variant 1
+			"KestrelDef (Hai)"
+	
+	fleet "Large Core Pirates"
+		add variant 1
+			"KestrelDef (Hai)"
+	
+	fleet "Large Northern Merchants"
+		add variant 1
+			"Star Queen"
+			"KestrelDef (Hai)"
+
+	fleet "Large Core Merchants"
+		add variant 1
+			"Bulk Freighter (Heavy)" 2
+			"KestrelDef (Hai)"
+		add variant 1
+			"Bulk Freighter" 4
+			"KestrelDef (Hai)"
+			
+	fleet "Large Human Merchants (Hai)"
+		add variant 1
+			"Star Queen (Hai)"
+			"KestrelDef (Hai)"
+		add variant 6
+			"Freighter (Hai)" 4
+			"KestrelDef (Hai)"
+
+event "Add Alien Kestrels (Eng)"
+	fleet "Marauder fleet XX"
+		add variant 2
+			"KestrelEng (Hai)"
+			"Marauder Leviathan (Engines - AlienTech)"
+			"Marauder Splinter (Weapons)"
+			"Marauder Manta (Engines - AlienTech)"
+			"Marauder Firebird (Weapons)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 2
+			"KestrelEng (Hai)"	
+			"Marauder Falcon (Weapons - AlienTech)"
+			"Marauder Splinter (Engines - AlienTech)"
+			"Marauder Manta (Weapons)"
+			"Marauder Firebird (Engines - AlienTech)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 2
+			"KestrelEng (Hai)"
+			"Marauder Leviathan (Weapons - AlienTech)"
+			"Marauder Splinter (Weapons - AlienTech)"
+			"Marauder Manta (Engines)"
+			"Marauder Firebird (Weapons - AlienTech)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 2
+			"KestrelEng (Hai)"
+			"Marauder Falcon (Engines - AlienTech)"
+			"Marauder Splinter (Engines)"
+			"Marauder Manta (Weapons - AlienTech)"
+			"Marauder Firebird (Engines)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+			
+	fleet "Large Northern Pirates"
+		add variant 1
+			"KestrelEng (Hai)"
+	
+	fleet "Large Southern Pirates"
+		add variant 1
+			"KestrelEng (Hai)"
+	
+	fleet "Large Core Pirates"
+		add variant 1
+			"KestrelEng (Hai)"
+	
+	fleet "Large Northern Merchants"
+		add variant 1
+			"Star Queen"
+			"KestrelEng (Hai)"
+
+	fleet "Large Core Merchants"
+		add variant 1
+			"Bulk Freighter (Heavy)" 2
+			"KestrelEng (Hai)"
+		add variant 1
+			"Bulk Freighter" 4
+			"KestrelEng (Hai)"
+			
+	fleet "Large Human Merchants (Hai)"
+		add variant 1
+			"Star Queen (Hai)"
+			"KestrelEng (Hai)"
+		add variant 6
+			"Freighter (Hai)" 4
+			"KestrelEng (Hai)"
 
 
 ship "Unknown Ship Type"

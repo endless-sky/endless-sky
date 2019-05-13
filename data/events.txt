@@ -2672,3 +2672,360 @@ mission "Geminus Rebuilt"
 	on offer
 		event "geminus rebuilt" 90
 		fail
+
+		
+event "add alien tech"
+	fleet "Marauder fleet X"
+		add variant 2
+			"Marauder Falcon (Weapons - AlienTech)"
+			"Marauder Firebird (Engines - AlienTech)"
+			"Marauder Raven (Weapons)"
+			"Marauder Quicksilver (Engines)"
+			"Marauder Arrow (Weapons)"
+			"Marauder Bounder (Engines)"
+		add variant 2
+			"Marauder Falcon (Engines - AlienTech)"
+			"Marauder Firebird (Weapons - AlienTech)"
+			"Marauder Raven (Engines)"
+			"Marauder Quicksilver (Weapons)"
+			"Marauder Arrow (Engines)"
+			"Marauder Bounder (Weapons)"
+		add variant 3
+			"Marauder Falcon (Weapons - AlienTech)"
+			"Marauder Firebird (Engines - AlienTech)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 3
+			"Marauder Falcon (Engines - AlienTech)"
+			"Marauder Firebird (Weapons - AlienTech)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 2
+			"Marauder Leviathan (Weapons - AlienTech)"
+			"Marauder Firebird (Engines - AlienTech)"
+			"Marauder Raven (Engines)"
+			"Marauder Quicksilver (Weapons)"
+			"Marauder Arrow (Engines)"
+			"Marauder Bounder (Weapons)"
+		add variant 2
+			"Marauder Leviathan (Engines - AlienTech)"
+			"Marauder Firebird (Weapons - AlienTech)"
+			"Marauder Raven (Weapons)"
+			"Marauder Quicksilver (Engines)"
+			"Marauder Arrow (Weapons)"
+			"Marauder Bounder (Engines)"
+		add variant 3
+			"Marauder Leviathan (Weapons - AlienTech)"
+			"Marauder Firebird (Engines - AlienTech)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 3
+			"Marauder Leviathan (Engines - AlienTech)"
+			"Marauder Firebird (Weapons - AlienTech)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+			
+	fleet "Marauder fleet XX"
+		add variant 2
+			"Marauder Falcon (Engines - AlienTech)"
+			"Marauder Leviathan (Weapons - AlienTech)"
+			"Marauder Splinter (Engines - AlienTech)"
+			"Marauder Manta (Weapons - AlienTech)"
+			"Marauder Firebird (Engines - AlienTech)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 2
+			"Marauder Falcon (Weapons - AlienTech)"
+			"Marauder Leviathan (Engines - AlienTech)"
+			"Marauder Splinter (Weapons - AlienTech)"
+			"Marauder Manta (Engines - AlienTech)"
+			"Marauder Firebird (Weapons - AlienTech)"
+			"Marauder Raven"
+			"Marauder Quicksilver"
+			"Marauder Arrow"
+			"Marauder Bounder"
+		add variant 2
+			"Marauder Falcon (Engines - AlienTech)"
+			"Marauder Leviathan (Weapons - AlienTech)"
+			"Marauder Splinter (Engines - AlienTech)"
+			"Marauder Manta (Weapons - AlienTech)"
+			"Marauder Firebird (Engines - AlienTech)"
+			"Marauder Raven (Weapons)"
+			"Marauder Quicksilver (Engines)"
+			"Marauder Arrow (Weapons)"
+			"Marauder Bounder (Engines)"
+		add variant 2
+			"Marauder Falcon (Weapons - AlienTech)"
+			"Marauder Leviathan (Engines - AlienTech)"
+			"Marauder Splinter (Weapons - AlienTech)"
+			"Marauder Manta (Engines - AlienTech)"
+			"Marauder Firebird (Weapons - AlienTech)"
+			"Marauder Raven (Engines)"
+			"Marauder Quicksilver (Weapons)"
+			"Marauder Arrow (Engines)"
+			"Marauder Bounder (Weapons)"
+	fleet "Small Southern Merchants"
+		add variant 1
+			"Mule (Hai Weapons)"
+			"Dagger"
+		add variant 1
+			"Mule (Hai Engines)"
+			"Dagger"
+		add variant 3
+			"Hauler (Hai)"
+		add variant 2
+			"Hauler II (Hai)"
+		add variant 2
+			"Hauler III (Hai)"
+		add variant 10
+			"Freighter (Hai)"
+			"Sparrow"
+	
+	fleet "Large Southern Merchants"
+		add variant 10
+			"Freighter (Hai)" 2
+			"Sparrow" 2
+		add variant 1
+			"Bactrian (Hai Weapons)"
+			"Dagger" 3
+		add variant 1	
+			"Bactrian (Hai Engines)"
+			"Dagger" 3
+		add variant 3
+			"Hauler (Hai)" 2
+			"Hauler II (Hai)"
+		add variant 2
+			"Hauler II (Hai)" 2
+			"Hauler III (Hai)"
+		add variant 2
+			"Hauler III (Hai)" 2
+			
+	fleet "Small Core Merchants"
+		add variant 10
+			"Freighter (Hai)"
+			"Sparrow"
+		add variant 20
+			"Bounder (Hai)"
+		add variant 1
+			"Flivver (Hai)"
+	
+	fleet "Large Core Merchants"
+		add variant 10
+			"Bulk Freighter (Hai)" 2
+			"Wasp" 2
+		add variant 1
+			"Bactrian (Hai Weapons)"
+			"Dagger" 3
+		add variant 1	
+			"Bactrian (Hai Engines)"
+			"Dagger" 3
+		add variant 3
+			"Freighter (Hai)" 2
+			"Wasp" 2
+		add variant 1
+			"Arrow (Hai)"
+			
+
+	fleet "Paradise Merchants"
+		add variant 10
+			"Star Queen (Hai)"
+		add variant 5
+			"Star Queen (Hai)"
+			"Wasp" 2
+		add variant 5
+			"Arrow (Hai)"
+		add variant 5
+			"Flivver (Hai)"
+			"Arrow (Hai)"
+		add variant 5
+			"Flivver (Hai)"
+			
+	fleet "Small Northern Merchants"
+		add variant 10
+			"Freighter (Hai)"
+		add variant 1
+			"Mule (Hai Engines)"
+			"Dagger"
+		add variant 1
+			"Mule (Hai Weapons)"
+			"Dagger"
+		add variant 3
+			"Hauler (Hai)" 2
+			"Hauler II (Hai)"
+		add variant 2
+			"Hauler II (Hai)" 2
+			"Hauler III (Hai)"
+		add variant 2
+			"Hauler III (Hai)" 2
+			
+	fleet "Large Northern Merchants"
+		add variant 10
+			"Freighter (Hai)" 2
+			"Firebird (Hai Weapons)"
+		add variant 10
+			"Freighter (Hai)" 2
+			"Firebird (Hai Shields)"
+		add variant 10
+			"Freighter (Hai)" 2
+			"Corvette (Hai)"
+		add variant 5
+			"Freighter (Hai)" 4
+			"Leviathan (Hai Weapons)"
+		add variant 5
+			"Freighter (Hai)" 4
+			"Leviathan (Hai Engines)"
+		add variant 5
+			"Bulk Freighter (Hai)"
+			"Headhunter (Hai)" 2
+		add variant 1
+			"Star Queen (Hai)"
+			"Leviathan (Hai Weapons)"
+		add variant 1
+			"Star Queen (Hai)"
+			"Firebird (Hai Weapons)"
+		add variant 1
+			"Star Queen (Hai)"
+			"Leviathan (Hai Engines)"
+		add variant 1
+			"Star Queen (Hai)"
+			"Firebird (Hai Shields)"
+		add variant 3
+			"Hauler (Hai)" 2
+			"Hauler II (Hai)"
+		add variant 2
+			"Hauler II (Hai)" 2
+			"Hauler III (Hai)"
+		add variant 2
+			"Hauler III (Hai)" 2
+		add variant 1
+			"Mule (Hai Engines)" 2
+			"Dagger" 2
+		add variant 1
+			"Mule (Hai Weapons)" 2
+			"Dagger" 2
+			
+	fleet "Small Deep Merchants"
+		add variant 1
+			"Mule (Hai Engines)"
+			"Dagger"
+		add variant 1
+			"Mule (Hai Weapons)"
+			"Dagger"
+		add variant 1
+			"Mule (Hai Weapons)"
+			"Dagger"
+			"Headhunter (Hai)"
+		add variant 1
+			"Flivver (Hai)"
+		add variant 1
+			"Headhunter (Hai)"
+			
+	fleet "Large Deep Merchants"
+		add variant 1
+			"Bactrian (Hai Weapons)"
+			"Dagger" 3
+			"Mule (Hai Weapons)" 2
+			"Dagger" 2
+		add variant 1
+			"Bactrian (Hai Engines)"
+			"Dagger" 3
+			"Mule (Hai Engines)" 2
+			"Dagger" 2
+		add variant 2
+			"Star Queen (Hai)"
+			"Headhunter (Hai)" 2
+		add variant 2
+			"Star Queen (Hai)"
+			"Aerie" 2
+			"Dagger" 4
+			
+	fleet "Small Core Pirates"
+		add variant 1
+			"Headhunter (Hai)"
+	
+	fleet "Large Core Pirates"
+		add variant 1
+			"Headhunter (Hai)"
+			"Firebird (Hai Weapons)" 2
+		add variant 1
+			"Firebird (Hai Shields)" 2
+			
+	fleet "Large Northern Pirates"
+		add variant 1
+			"Firebird (Hai Shields)"
+			"Corvette (Hai)"
+		add variant 1
+			"Firebird (Hai Weapons)" 
+			"Corvette (Hai)"
+		add variant 1
+			"Headhunter (Hai)"
+		add variant 1
+			"Leviathan (Hai Weapons)"
+			"Firebird (Hai Shields)"
+		add variant 1
+			"Leviathan (Hai Shields)"
+			"Firebird (Hai Weapons)"
+		add variant 1
+			"Leviathan (Hai Weapons)"
+			
+	fleet "Large Southern Pirates"
+		add variant 1
+			"Mule (Hai Engines)"
+			"Dagger"
+		add variant 1
+			"Mule (Hai Weapons)"
+			"Dagger"
+
+
+event "add military pirates"
+	fleet "Large Southern Pirates"
+		add variant 1
+			"Dreadnought"
+		add variant 1
+			"Skein"
+			"Finch" 6
+		add variant 2
+			"Gunboat (Mark II)"
+		add variant 1	
+			"Frigate (Mark II)"
+			
+			
+	fleet "Large Northern Pirates"
+		add variant 1
+			"Frigate"
+		add variant 2
+			"Rainmaker (Mark II)"
+		add variant 2
+			"Gunboat (Mark II)"
+		add variant 2
+			"Rainmaker"
+		add variant 2
+			"Gunboat"
+		add variant 1
+			"Cruiser"
+			"Combat Drone" 4
+		add variant 1
+			"Carrier"
+			"Lance" 4
+			"Combat Drone" 6
+			
+	fleet "Large Core Pirates"
+		add variant 1
+			"Dreadnought"
+		add variant 1
+			"Cruiser"
+			"Combat Drone" 4
+		add variant 2
+			"Rainmaker"
+		add variant 1
+			"Frigate"

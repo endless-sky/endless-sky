@@ -1265,6 +1265,434 @@ ship "Heavy Shuttle" "Heavy Shuttle (Armed)"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
+		
+		
+ship "Kestrel" "KestrelEng (Particle)"
+	add attributes
+		"drag" -1.0
+		"fuel capacity" 100
+		"engine capacity" 30
+	outfits
+		"Outfits Expansion" 6
+		Hyperdrive
+		"Liquid Helium Cooler"
+		"A125 Atomic Steering"
+		"A865 Atomic Steering"
+		"A860 Atomic Thruster"
+		"Particle Cannon" 4
+		"Heavy Laser Turret" 4
+		"Liquid Nitrogen Cooler"
+		"Torpedo Launcher" 2
+		Torpedo 60
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"LP288a Battery Pack"
+		"Laser Rifle" 128
+		
+		
+		
+ship "Kestrel" "KestrelEng (Laser)"
+	add attributes
+		"drag" -1.0
+		"fuel capacity" 100
+		"engine capacity" 30
+	outfits
+		"Outfits Expansion" 4
+		Hyperdrive
+		"LP072a Battery Pack"
+		"Liquid Helium Cooler"
+		"A125 Atomic Steering"
+		"Electron Beam" 6
+		"A865 Atomic Steering"
+		"A860 Atomic Thruster"
+		"Electron Turret" 4
+		"Tactical Scanner"
+		"LP144a Battery Pack"
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"Laser Rifle" 128
+		
+		
+		
+ship "Kestrel" "KestrelEng (Plasma)"
+	add attributes
+		"drag" -1.0
+		"fuel capacity" 100
+		"engine capacity" 30
+	outfits
+		"Outfits Expansion" 4
+		Hyperdrive
+		"Liquid Helium Cooler"
+		"A125 Atomic Steering"
+		"A865 Atomic Steering"
+		"A860 Atomic Thruster"
+		"Heavy Laser Turret" 4
+		"Liquid Nitrogen Cooler"
+		"Tactical Scanner" 2
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"Plasma Cannon" 4
+		"Heavy Laser" 2
+		"LP288a Battery Pack"
+		"Laser Rifle" 128
+		
+		
+		
+ship "Kestrel" "KestrelEng (Torp)"
+	add attributes
+		"drag" -1.0
+		"fuel capacity" 100
+		"engine capacity" 30
+	outfits
+		Hyperdrive
+		"Heavy Anti-Missile Turret" 4
+		"A865 Atomic Steering"
+		"A860 Atomic Thruster"
+		"Liquid Nitrogen Cooler"
+		"Torpedo Launcher" 6
+		"Tactical Scanner" 2
+		Torpedo 270
+		"LP144a Battery Pack"
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"Torpedo Storage Rack" 6
+		"Laser Rifle" 128
+		
+		
+		
+ship "Kestrel" "KestrelEng (Hai)"
+	add attributes
+		"drag" -1.0
+		"fuel capacity" 100
+		"engine capacity" 30
+	outfits
+		"Outfits Expansion" 4
+		Hyperdrive
+		"Hai Ravine Batteries"
+		"Liquid Helium Cooler"
+		"Quantum Keystone"
+		"Hai Diamond Regenerator"
+		"Boulder Reactor"
+		"A860 Atomic Thruster"
+		"A865 Atomic Steering"
+		"Pulse Cannon" 2
+		"Tracker Storage Pod"
+		"Ion Cannon" 2
+		"Hai Tracker" 140
+		"Hai Tracker Pod" 2
+		"Pulse Turret" 4
+		`"Benga" Atomic Steering`
+		"Geode Reactor"
+		"Tactical Scanner" 2
+		"Pulse Rifle" 128
+		
+		
+		
+ship "Kestrel" "KestrelDef (Particle)"
+	add attributes
+		"shields" 3000
+		"hull" 1500
+	outfits
+		"Outfits Expansion" 5
+		Hyperdrive
+		"Liquid Helium Cooler"
+		"A865 Atomic Steering"
+		"A250 Atomic Thruster"
+		"A520 Atomic Thruster"
+		"Particle Cannon" 4
+		"Heavy Laser Turret" 4
+		"Liquid Nitrogen Cooler"
+		"Torpedo Launcher" 2
+		"Tactical Scanner" 2
+		Torpedo 60
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"LP288a Battery Pack"
+		"Laser Rifle" 128
+		
+		
+		
+ship "Kestrel" "KestrelDef (Laser)"
+	add attributes
+		"shields" 3000
+		"hull" 1500
+	outfits
+		"Outfits Expansion" 4
+		Hyperdrive
+		"Liquid Helium Cooler"
+		"Electron Beam" 6
+		"A865 Atomic Steering"
+		"A250 Atomic Thruster"
+		"A520 Atomic Thruster"
+		"Electron Turret" 4
+		"Tactical Scanner" 2
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"LP288a Battery Pack"
+		"Laser Rifle" 128
+		
+		
+		
+ship "Kestrel" "KestrelDef (Plasma)"
+	add attributes
+		"shields" 3000
+		"hull" 1500
+	outfits
+		"Outfits Expansion" 5
+		Hyperdrive
+		"Liquid Helium Cooler" 2
+		"A865 Atomic Steering"
+		"A250 Atomic Thruster"
+		"A520 Atomic Thruster"
+		"Heavy Laser Turret" 4
+		"Tactical Scanner" 2
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"Plasma Cannon" 6
+		"LP288a Battery Pack"
+		"Laser Rifle" 128
+
+		
+		
+ship "Kestrel" "KestrelDef (Torp)"
+	add attributes
+		"shields" 3000
+		"hull" 1500
+	outfits
+		Hyperdrive
+		"Heavy Anti-Missile Turret" 4
+		"A525 Atomic Steering"
+		"A125 Atomic Steering"
+		"A860 Atomic Thruster"
+		"Liquid Nitrogen Cooler"
+		"Torpedo Launcher" 6
+		"Tactical Scanner" 2
+		Torpedo 270
+		"LP144a Battery Pack"
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"Torpedo Storage Rack" 6
+		"Laser Rifle" 128
+		
+		
+		
+ship "Kestrel" "KestrelDef (Hai)"
+	add attributes
+		"shields" 3000
+		"hull" 1500
+	outfits
+		"Outfits Expansion" 2
+		Hyperdrive
+		"Hai Ravine Batteries"
+		"Liquid Helium Cooler"
+		"Quantum Keystone"
+		"Hai Diamond Regenerator"
+		"Boulder Reactor"
+		"A865 Atomic Steering"
+		"Pulse Cannon" 2
+		"Tracker Storage Pod"
+		"Ion Cannon" 2
+		"Hai Tracker" 140
+		"Hai Tracker Pod" 2
+		"Pulse Turret" 4
+		`"Bufaer" Atomic Thruster`
+		"Geode Reactor"
+		`"Basrem" Atomic Steering`
+		"Tactical Scanner" 2
+		"Pulse Rifle" 128
+		
+		
+		
+ship "Kestrel" "KestrelWep (Particle)"
+	add attributes
+		"weapon capacity" 40
+	outfits
+		"Outfits Expansion" 6
+		Hyperdrive
+		"Liquid Helium Cooler"
+		"A255 Atomic Steering"
+		"A865 Atomic Steering"
+		"A520 Atomic Thruster"
+		"Particle Cannon" 6
+		"Liquid Nitrogen Cooler"
+		"Torpedo Launcher" 4
+		Torpedo 120
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"Heavy Laser" 6
+		"LP288a Battery Pack"
+		"Laser Rifle" 128
+	gun -31 66 "Heavy Laser"
+	gun 31 66 "Heavy Laser"
+	gun -31 66 "Particle Cannon"
+	gun 31 66 "Particle Cannon"
+	gun -31 66 "Particle Cannon"
+	gun 31 66 "Particle Cannon"
+	gun -53 61 "Particle Cannon"
+	gun 53 61 "Particle Cannon"
+	gun -53 61 "Torpedo Launcher"
+	gun 53 61 "Torpedo Launcher"
+	gun -53 61 "Heavy Laser"
+	gun 53 61 "Heavy Laser"
+	gun -75 57 "Torpedo Launcher"
+	gun 75 57 "Torpedo Launcher"
+	gun -75 57 "Heavy Laser"
+	gun 75 57 "Heavy Laser"
+	gun -75 57
+	gun 75 57
+	
+	
+	
+ship "Kestrel" "KestrelWep (Laser)"
+	add attributes
+		"weapon capacity" 40
+	outfits
+		"Outfits Expansion" 4
+		Hyperdrive
+		"Liquid Helium Cooler"
+		"Electron Beam" 12
+		"A865 Atomic Steering"
+		"A250 Atomic Thruster"
+		"A520 Atomic Thruster"
+		"Tactical Scanner" 2
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"Heavy Laser" 6
+		"LP288a Battery Pack"
+		"Laser Rifle" 128
+	gun -31 66 "Heavy Laser"
+	gun 31 66 "Heavy Laser"
+	gun -31 66 "Heavy Laser"
+	gun 31 66 "Heavy Laser"
+	gun -31 66 "Heavy Laser"
+	gun 31 66 "Heavy Laser"
+	gun -53 61 "Electron Beam"
+	gun 53 61 "Electron Beam"
+	gun -53 61 "Electron Beam"
+	gun 53 61 "Electron Beam"
+	gun -53 61 "Electron Beam"
+	gun 53 61 "Electron Beam"
+	gun -75 57 "Electron Beam"
+	gun 75 57 "Electron Beam"
+	gun -75 57 "Electron Beam"
+	gun 75 57 "Electron Beam"
+	gun -75 57 "Electron Beam"
+	gun 75 57 "Electron Beam"
+	
+	
+	
+ship "Kestrel" "KestrelWep (Plasma)"
+	add attributes
+		"weapon capacity" 40
+	outfits
+		"Outfits Expansion" 6
+		Hyperdrive
+		"Liquid Helium Cooler" 2
+		"A255 Atomic Steering"
+		"Electron Beam" 12
+		"A865 Atomic Steering"
+		"A520 Atomic Thruster"
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"Plasma Cannon" 4
+		"LP288a Battery Pack"
+		"Laser Rifle" 128
+	gun -31 66 "Electron Beam"
+	gun 31 66 "Electron Beam"
+	gun -31 66 "Plasma Cannon"
+	gun 31 66 "Plasma Cannon"
+	gun -53 61 "Plasma Cannon"
+	gun 53 61 "Plasma Cannon"
+	gun -53 61 "Electron Beam"
+	gun 53 61 "Electron Beam"
+	gun -53 61 "Electron Beam"
+	gun 53 61 "Electron Beam"
+	gun -75 57 "Electron Beam"
+	gun 75 57 "Electron Beam"
+	gun -75 57 "Electron Beam"
+	gun 75 57 "Electron Beam"
+	gun -75 57 "Electron Beam"
+	gun 75 57 "Electron Beam"
+	
+	
+	
+ship "Kestrel" "KestrelWep (Torp)"
+	add attributes
+		"weapon capacity" 40
+	outfits
+		"Outfits Expansion" 4
+		Hyperdrive
+		"Heavy Anti-Missile Turret" 2
+		"A525 Atomic Steering"
+		"A860 Atomic Thruster"
+		"A120 Atomic Thruster"
+		"Liquid Nitrogen Cooler"
+		"Torpedo Launcher" 14
+		Torpedo 420
+		"LP144a Battery Pack"
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"Laser Rifle" 128
+	gun -31 66
+	gun 31 66
+	gun -31 66 "Torpedo Launcher"
+	gun 31 66 "Torpedo Launcher"
+	gun -31 66 "Torpedo Launcher"
+	gun 31 66 "Torpedo Launcher"
+	gun -53 61 "Torpedo Launcher"
+	gun 53 61 "Torpedo Launcher"
+	gun -53 61 "Torpedo Launcher"
+	gun 53 61 "Torpedo Launcher"
+	gun -53 61 "Torpedo Launcher"
+	gun 53 61 "Torpedo Launcher"
+	gun -75 57 "Torpedo Launcher"
+	gun 75 57 "Torpedo Launcher"
+	gun -75 57 "Torpedo Launcher"
+	gun 75 57 "Torpedo Launcher"
+	gun -75 57
+	gun 75 57
+	
+	
+	
+ship "Kestrel" "KestrelWep (Hai)"
+	add attributes
+		"weapon capacity" 40
+	outfits
+		"Outfits Expansion" 4
+		Hyperdrive
+		"Hai Ravine Batteries"
+		"Liquid Helium Cooler"
+		"Quantum Keystone"
+		"Hai Diamond Regenerator"
+		"Boulder Reactor"
+		"A865 Atomic Steering"
+		"Pulse Cannon" 10
+		"Ion Cannon" 2
+		"Hai Tracker" 336
+		"Hai Tracker Pod" 6
+		`"Bufaer" Atomic Thruster`
+		"Geode Reactor"
+		`"Basrem" Atomic Steering`
+		"Tactical Scanner"
+		"Pulse Rifle" 128
+	gun -31 66 "Hai Tracker Pod"
+	gun 31 66 "Hai Tracker Pod"
+	gun -31 66 "Ion Cannon"
+	gun 31 66 "Ion Cannon"
+	gun -31 66 "Hai Tracker Pod"
+	gun 31 66 "Hai Tracker Pod"
+	gun -53 61 "Pulse Cannon"
+	gun 53 61 "Pulse Cannon"
+	gun -53 61 "Pulse Cannon"
+	gun 53 61 "Pulse Cannon"
+	gun -53 61 "Pulse Cannon"
+	gun 53 61 "Pulse Cannon"
+	gun -75 57 "Pulse Cannon"
+	gun 75 57 "Pulse Cannon"
+	gun -75 57 "Pulse Cannon"
+	gun 75 57 "Pulse Cannon"
+	gun -75 57 "Hai Tracker Pod"
+	gun 75 57 "Hai Tracker Pod"
 
 
 

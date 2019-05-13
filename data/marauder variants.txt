@@ -1,0 +1,317 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+ship "Marauder Falcon" "Marauder Falcon (Engines - AlienTech)"
+	sprite "ship/mfalcone"
+	add attributes
+		"engine capacity" 55
+	outfits
+		Hyperdrive
+		"Outfits Expansion" 3
+		"Boulder Reactor"
+		"Quantum Keystone"
+		"A860 Atomic Thruster"
+		"Pulse Turret" 2
+		"A865 Atomic Steering"
+		"Hai Tracker" 224
+		"Hai Tracker Pod" 4
+		"Bullfrog Anti-Missile" 2
+		"Hai Corundum Regenerator" 2
+		"Hai Gorge Batteries"
+		"Geode Reactor"
+		"Pulse Rifle" 80
+		"Small Heat Shunt"
+		"Security Station"
+	engine -21 138 0.7
+	engine 0 144 1
+	engine 21 138 0.7
+	gun -16 -88 "Hai Tracker Pod"
+	gun 16 -88 "Hai Tracker Pod"
+	gun -16 -88 "Hai Tracker Pod"
+	gun 16 -88 "Hai Tracker Pod"
+	turret -16 -24 "Bullfrog Anti-Missile"
+	turret 16 -24 "Bullfrog Anti-Missile"
+	turret -57 32.5 "Pulse Turret"
+	turret 57 32.5 "Pulse Turret"
+		
+ship "Marauder Falcon" "Marauder Falcon (Weapons - AlienTech)"
+	sprite "ship/mfalconw"
+	add attributes
+		"weapon capacity" 35
+	outfits
+		Hyperdrive
+		"Outfits Expansion" 3
+		`"Bufaer" Atomic Steering`
+		"Boulder Reactor"
+		"Hai Diamond Regenerator"
+		"Quantum Keystone"
+		"Pulse Cannon" 4
+		"Pulse Turret" 4
+		"A520 Atomic Thruster"
+		"Hai Tracker" 112
+		"Hai Tracker Pod" 2
+		"Hai Gorge Batteries"
+		"Pebble Core"
+		"Pulse Rifle" 80
+		"Small Heat Shunt" 2
+		"Security Station"
+	engine -16 142 1
+	engine 16 142 1
+	gun -18.5 -88 "Hai Tracker Pod"
+	gun 18.5 -88 "Hai Tracker Pod"
+	gun -18.5 -88 "Pulse Cannon"
+	gun 18.5 -88 "Pulse Cannon"
+	gun -21.5 -77 "Pulse Cannon"
+	gun 21.5 -77 "Pulse Cannon"
+	turret -16 -25 "Pulse Turret"
+	turret 16 -25 "Pulse Turret"
+	turret -57 32.5 "Pulse Turret"
+	turret 57 32.5 "Pulse Turret"
+	
+ship "Marauder Leviathan" "Marauder Leviathan (Engines - AlienTech)"
+	sprite "ship/mleviathane"
+	add attributes
+		"engine capacity" 80
+	outfits
+		Hyperdrive
+		"Outfits Expansion" 2
+		"Boulder Reactor"
+		"Hai Diamond Regenerator"
+		"Quantum Keystone"
+		"A860 Atomic Thruster"
+		"Pulse Cannon" 2
+		"Pulse Turret" 4
+		"A865 Atomic Steering"
+		"Hai Tracker" 112
+		"Hai Tracker Pod" 2
+		"Geode Reactor"
+		"Pulse Rifle" 69
+		"LP144a Battery Pack"
+		"Large Heat Shunt"
+		"Security Station"
+	engine -25 125 1
+	engine 25 125 1
+	gun -38 -34 "Pulse Cannon"
+	gun 38 -34 "Pulse Cannon"
+	gun -50 -23 "Hai Tracker Pod"
+	gun 50 -23 "Hai Tracker Pod"
+	turret -15 -50 "Pulse Turret"
+	turret 15 -50 "Pulse Turret"
+	turret -25 10 "Pulse Turret"
+	turret 25 10 "Pulse Turret"
+	
+ship "Marauder Leviathan" "Marauder Leviathan (Weapons - AlienTech)"
+	sprite "ship/mleviathanw"
+	add attributes
+		"weapon capacity" 35
+	outfits
+		Hyperdrive
+		"Outfits Expansion" 2
+		"Boulder Reactor"
+		"Hai Diamond Regenerator"
+		"Quantum Keystone"
+		"A370 Atomic Thruster"
+		"Pulse Turret" 4
+		"A525 Atomic Steering"
+		"Ion Cannon" 2
+		"Ionic Afterburner"
+		"Hai Tracker" 112
+		"Hai Tracker Pod" 2
+		"Geode Reactor"
+		"Pulse Rifle" 69
+		"LP144a Battery Pack"
+		"Large Heat Shunt"
+		"Security Station"
+		"Catalytic Ramscoop"
+	engine -25 120 1
+	engine 25 120 1
+	gun -38 -55 "Ion Cannon"
+	gun 38 -55 "Ion Cannon"
+	gun -50 -44 "Hai Tracker Pod"
+	gun 50 -44 "Hai Tracker Pod"
+	turret -15 -50 "Pulse Turret"
+	turret 15 -50 "Pulse Turret"
+	turret -25 10 "Pulse Turret"
+	turret 25 10 "Pulse Turret"
+	
+ship "Marauder Firebird" "Marauder Firebird (Engines - AlienTech)"
+	sprite "ship/mfirebirde"
+	add attributes
+		"engine capacity" 20
+	outfits
+		Hyperdrive
+		"Outfits Expansion"
+		`"Bufaer" Atomic Steering`
+		"Boulder Reactor"
+		"Hai Diamond Regenerator"
+		"Quantum Keystone"
+		"A370 Atomic Thruster"
+		"Pulse Cannon" 2
+		"Pulse Turret" 2
+		"Hai Tracker" 112
+		"Hai Tracker Pod" 2
+		"Hai Fissure Batteries"
+		"Pulse Rifle" 25
+		"Large Heat Shunt"
+		"Security Station"
+	engine -34 62 1
+	engine 0 74 1
+	engine 34 62 1
+	gun -26.5 -33 "Hai Tracker Pod"
+	gun 26.5 -33 "Hai Tracker Pod"
+	gun -38 -18 "Pulse Cannon"
+	gun 38 -18 "Pulse Cannon"
+	turret -5 3 "Pulse Turret"
+	turret 5 3 "Pulse Turret"
+	
+ship "Marauder Firebird" "Marauder Firebird (Weapons - AlienTech)"
+	sprite "ship/mfirebirdw"
+	add attributes
+		"weapon capacity" 35
+	outfits
+		Hyperdrive
+		"Outfits Expansion"
+		"Boulder Reactor"
+		"Quantum Keystone"
+		"Pulse Cannon" 2
+		"Pulse Turret" 2
+		"A525 Atomic Steering"
+		"Ion Cannon" 2
+		"Hai Corundum Regenerator" 2
+		"Pulse Rifle" 25
+		`"Biroo" Atomic Thruster`
+		"Small Heat Shunt" 2
+		"LP036a Battery Pack"
+		"Security Station"
+	engine -32 62 1
+	engine 32 62 1
+	gun -27 -32 "Ion Cannon"
+	gun 27 -32 "Ion Cannon"
+	gun -38 -18 "Pulse Cannon"
+	gun 38 -18 "Pulse Cannon"
+	turret -5 3 "Pulse Turret"
+	turret 5 3 "Pulse Turret"
+	
+ship "Marauder Splinter" "Marauder Splinter (Engines - AlienTech)"
+	sprite "ship/msplintere"
+	add attributes
+		"engine capacity" 20
+	outfits
+		Hyperdrive
+		"Outfits Expansion"
+		"Boulder Reactor"
+		"Hai Diamond Regenerator"
+		"Quantum Keystone"
+		"A370 Atomic Thruster"
+		"Pulse Turret" 3
+		"A525 Atomic Steering"
+		"Hai Tracker" 168
+		"Hai Tracker Pod" 2
+		"Tracker Storage Pod" 2
+		"Pulse Rifle" 22
+		"Small Heat Shunt" 2
+		"LP036a Battery Pack"
+		"Security Station"
+	engine -15 114 0.7
+	engine 0 118 1
+	engine 15 114 0.7
+	gun -15 -82 "Hai Tracker Pod"
+	gun 15 -82 "Hai Tracker Pod"
+	turret -17 -28 "Pulse Turret"
+	turret 0 -28 "Pulse Turret"
+	turret 17 -28 "Pulse Turret"
+	
+ship "Marauder Splinter" "Marauder Splinter (Weapons - AlienTech)"
+	sprite "ship/msplinterw"
+	add attributes
+		"weapon capacity" 15
+	outfits
+		Hyperdrive
+		"Outfits Expansion"
+		"Boulder Reactor"
+		"Quantum Keystone"
+		"Pulse Cannon" 2
+		"Pulse Turret" 3
+		"A525 Atomic Steering"
+		"A250 Atomic Thruster"
+		"Hai Tracker" 168
+		"Hai Tracker Pod" 2
+		"Tracker Storage Pod" 2
+		"Hai Corundum Regenerator" 2
+		"Pulse Rifle" 22
+		"Small Heat Shunt" 2
+		"LP036a Battery Pack"
+		"Security Station" 2
+	engine -14 112 1
+	engine 14 112 1
+	gun -7.5 -98 "Hai Tracker Pod"
+	gun 7.5 -98 "Hai Tracker Pod"
+	gun -15 -82 "Pulse Cannon"
+	gun 15 -82 "Pulse Cannon"
+	turret -17 -28 "Pulse Turret"
+	turret 0 -28 "Pulse Turret"
+	turret 17 -28 "Pulse Turret"
+	
+ship "Marauder Manta" "Marauder Manta (Engines - AlienTech)"
+	sprite "ship/mmantae"
+	add attributes
+		"engine capacity" 20
+	outfits
+		Hyperdrive
+		`"Bondir" Atomic Thruster`
+		"Boulder Reactor"
+		"LP072a Battery Pack"
+		"Quantum Keystone"
+		"Pulse Cannon" 4
+		"A525 Atomic Steering"
+		"Hai Tracker" 112
+		"Hai Tracker Pod" 2
+		"Bullfrog Anti-Missile"
+		"Hai Corundum Regenerator"
+		"Pulse Rifle" 11
+		"Small Heat Shunt" 2
+		"Security Station"
+	engine -33.5 38 1
+	engine 0 76 1
+	engine 33.5 38 1
+	gun -66 -30 "Hai Tracker Pod"
+	gun 66 -30 "Hai Tracker Pod"
+	gun -27 -30 "Pulse Cannon"
+	gun 27 -30 "Pulse Cannon"
+	gun -20 -30 "Pulse Cannon"
+	gun 20 -30 "Pulse Cannon"
+	turret 0 -29 "Bullfrog Anti-Missile"
+	
+ship "Marauder Manta" "Marauder Manta (Weapons - AlienTech)"
+	sprite "ship/mmantaw"
+	add attributes
+		"weapon capacity" 20
+	outfits
+		Hyperdrive
+		`"Bondir" Atomic Thruster`
+		"Boulder Reactor"
+		"Quantum Keystone"
+		Supercapacitor
+		"Pulse Cannon" 4
+		"A375 Atomic Steering"
+		"Ion Cannon" 2
+		"Pulse Rifle" 11
+		"Small Heat Shunt" 2
+		"S-270 Regenerator"
+		"Security Station"
+	engine -33.5 38 1
+	engine 33.5 38 1
+	gun -66 -34 "Ion Cannon"
+	gun 66 -34 "Ion Cannon"
+	gun -27 -35 "Pulse Cannon"
+	gun 27 -35 "Pulse Cannon"
+	gun -20 -35 "Pulse Cannon"
+	gun 20 -35 "Pulse Cannon"
+	turret 0 -29
