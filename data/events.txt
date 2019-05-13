@@ -2774,6 +2774,7 @@ event "add alien tech"
 			"Marauder Quicksilver (Weapons)"
 			"Marauder Arrow (Engines)"
 			"Marauder Bounder (Weapons)"
+			
 	fleet "Small Southern Merchants"
 		add variant 1
 			"Mule (Hai Weapons)"
@@ -2835,7 +2836,6 @@ event "add alien tech"
 		add variant 1
 			"Arrow (Hai)"
 			
-
 	fleet "Paradise Merchants"
 		add variant 10
 			"Star Queen (Hai)"
@@ -2998,8 +2998,7 @@ event "add military pirates"
 			"Gunboat (Mark II)"
 		add variant 1	
 			"Frigate (Mark II)"
-			
-			
+						
 	fleet "Large Northern Pirates"
 		add variant 1
 			"Frigate"

@@ -1517,7 +1517,7 @@ mission "Core Marauder Blockade"
 	name `Marauder fleet blockading <system>`
 	minor
 	repeat
-	description `A large pirate fleet including a Kestrel and several Marauder vessels has blockaded <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
+	description `A large pirate fleet including several Marauder vessels has blockaded <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
 	to offer
 		random < 10
 		"combat rating" > 8104
