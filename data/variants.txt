@@ -1870,7 +1870,7 @@ ship "Leviathan" "Leviathan (Heavy)"
 		"Heavy Anti-Missile Turret"
 		"Breeder Reactor"
 		"LP036a Battery Pack"
-		"D94-YV Shield Generator" 
+		"D94-YV Shield Generator" 2
 		"Liquid Nitrogen Cooler"
 		"Laser Rifle" 25
 		"Impala Plasma Thruster"
