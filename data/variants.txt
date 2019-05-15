@@ -1265,8 +1265,9 @@ ship "Heavy Shuttle" "Heavy Shuttle (Armed)"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
-		
-		
+
+
+
 ship "Kestrel" "KestrelEng (Particle)"
 	add attributes
 		"drag" -1.0
@@ -1295,7 +1296,8 @@ ship "Kestrel" "KestrelEng (Particle)"
 	gun 53 61 "Particle Cannon"
 	gun -31 66 "Particle Cannon"
 	gun 31 66 "Particle Cannon"
-		
+
+
 ship "Kestrel" "KestrelEng (Laser)"		
 	add attributes
 		"drag" -1.0
@@ -1316,6 +1318,7 @@ ship "Kestrel" "KestrelEng (Laser)"
 		"A865 Atomic Steering"
 		"A125 Atomic Steering"
 		Hyperdrive
+
 
 ship "Kestrel" "KestrelEng (Electron)"
 	add attributes
@@ -1392,8 +1395,8 @@ ship "Kestrel" "KestrelEng (Torp)"
 		"A860 Atomic Thruster"
 		"A865 Atomic Steering"
 		Hyperdrive
-		
-		
+
+
 ship "Kestrel" "KestrelEng (Hai)"
 	add attributes
 		"drag" -1.0
@@ -1547,7 +1550,7 @@ ship "Kestrel" "KestrelDef (Torp)"
 		"A525 Atomic Steering"
 		Hyperdrive
 
-		
+
 ship "Kestrel" "KestrelDef (Hai)"
 	add attributes
 		"shields" 3000
@@ -1814,7 +1817,7 @@ ship "Kestrel" "KestrelWep (Hai)"
 	gun -75 57 "Hai Tracker Pod"
 	gun 75 57 "Hai Tracker Pod"
 
-	
+
 
 ship "Lance" "Lance (Gatling)"
 	outfits
