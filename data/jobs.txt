@@ -1462,9 +1462,9 @@ mission "Northern Marauder Blockade"
 		conversation
 			`You notice a Republic officer hurriedly briefing a group of pilots nearby. The officer catches your eye and exclaims: "Captain <last>! A large pirate fleet including several Marauders is blockading <destination>. We are sending all currently available combat vessels immediately to assist the local militia and break the blockade, but we are barely able to match their numbers and could use your help. Will you join us?" The authorities of <planet> will probably pay you quite well if you assist them, but the mention of several Marauders makes you think twice...`
 			choice
-				`	(Don't join the militia fleet.)`
+				`	(Don't join the Republic fleet.)`
 					decline
-				`	(Join the militia fleet.)`
+				`	(Join the Republic fleet.)`
 			`The officer seems relieved. "We depart immediately! I'll see you all on the other side." Several of the Republic pilots also approach to thank you by name before dispersing to their ships, apparently you are somewhat well known around here. As you take off together, you can't help but wonder how many will not survive the imminent battle...`
 				launch
 	on complete
@@ -1504,9 +1504,9 @@ mission "Deep Marauder Blockade"
 		conversation
 			`You notice a Deep Security officer hurriedly briefing a group of pilots nearby. The officer catches your eye and exclaims: "Captain <last>! A large pirate fleet including several Marauders is blockading <destination>. We are sending all currently available combat vessels immediately to assist the local militia and break the blockade, but we are barely able to match their numbers and could use your help. Will you join us?" The authorities of <planet> will probably pay you quite well if you assist them, but the mention of several Marauders makes you think twice...`
 			choice
-				`	(Don't join the militia fleet.)`
+				`	(Don't join the Deep Security fleet.)`
 					decline
-				`	(Join the militia fleet.)`
+				`	(Join the Deep Security fleet.)`
 			`The officer seems relieved. "We depart immediately! I'll see you all on the other side." Several of the Deep Security pilots also approach to thank you by name before dispersing to their ships, apparently you are somewhat well known around here. As you take off together, you can't help but wonder how many will not survive the imminent battle...`
 				launch
 	on complete
@@ -1546,9 +1546,9 @@ mission "Core Marauder Blockade"
 		conversation
 			`You notice a Syndicate officer hurriedly briefing a group of pilots nearby. The officer catches your eye and exclaims: "Captain <last>! A large pirate fleet including several Marauders is blockading <destination>. We are sending all currently available combat vessels immediately to assist the local militia and break the blockade, but we are barely able to match their numbers and could use your help. Will you join us?" The authorities of <planet> will probably pay you quite well if you assist them, but the mention of several Marauders makes you think twice...`
 			choice
-				`	(Don't join the militia fleet.)`
+				`	(Don't join the Syndicate fleet.)`
 					decline
-				`	(Join the militia fleet.)`
+				`	(Join the Syndicate fleet.)`
 			`The officer seems relieved. "We depart immediately! I'll see you all on the other side." Several of the Syndicate pilots also approach to thank you by name before dispersing to their ships, apparently you are somewhat well known around here. As you take off together, you can't help but wonder how many will not survive the imminent battle...`
 				launch
 	on complete
