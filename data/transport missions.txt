@@ -2849,14 +2849,6 @@ mission "Paradise Fortune 4"
 			`While in flight, Diana tells you the stories that she heard of the war. In the Paradise Planets region, they were told that declaring independence and bombing Geminus and Martini was the Free Worlds' first step in overthrowing the Republic.`
 			`	"We should talk to Alondo," Diana says. "He'll be able to handle this situation."`
 			
-			branch epilogue
-				has "FW Epilogue: Alondo: offered"
-			`	As you're coming in for a landing on Bourne, you receive a message from Alondo. "<first>!" he says. "I just heard that you were in system. Want to meet up for a drink and talk about old times?"`
-			choice
-				`	"I'd be glad to any other time, but I need your help at the moment."`
-					goto conversation
-			
-			label epilogue
 			`	As you're coming in for a landing, you contact Alondo, who is luckily on Bourne. "What have you gotten yourself into?" he responds after you mention that you need his help.`
 			choice
 				`	"I'll explain the situation when we meet."`
