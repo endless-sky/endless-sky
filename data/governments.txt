@@ -377,8 +377,8 @@ government "Void Sprite"
 	"fine" 0
 	"attitude toward"
 		"Indigenous Lifeform" 1
-		"Void Sprite" 1
 		"Drak" 1
+		" Drak " .01
 		"Korath" -.01
 		"Remnant" .01
 
