@@ -339,11 +339,16 @@ bool NPC::HasSucceeded(const System *playerSystem) const
 				// A ship that was disabled, captured, or destroyed is considered 'immobile'.
 				isImmobile = (it->second
 					& (ShipEvent::DISABLE | ShipEvent::CAPTURE | ShipEvent::DESTROY));
-				// if this NPC is 'derelict' and has no ASSIST on record, it is immobile.
+				// If this NPC is 'derelict' and has no ASSIST on record, it is immobile.
 				isImmobile |= ship->GetPersonality().IsDerelict()
 					&& !(it->second & ShipEvent::ASSIST);
 			}
-			bool isHere = (!ship->GetSystem() || ship->GetSystem() == playerSystem);
+			bool isHere = false;
+			// If this ship is being carried, check the parent's system.
+			if(!ship->GetSystem() && ship->CanBeCarried())
+				isHere = ship->GetParent()->GetSystem() == playerSystem;
+			else
+				isHere = (!ship->GetSystem() || ship->GetSystem() == playerSystem);
 			if((isHere && !isImmobile) ^ mustAccompany)
 				return false;
 		}
