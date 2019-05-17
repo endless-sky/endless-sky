@@ -4381,15 +4381,15 @@ system Arculus
 	object
 		sprite star/g5-old
 		period 10
-	object
+	object Seraglio
 		sprite planet/rock13-b
 		distance 209.29
 		period 48.4443
-	object
+	object Eminonu
 		sprite planet/rock16-b
 		distance 490.5
 		period 173.811
-		object
+		object Babiali
 			sprite planet/desert4-b
 			distance 122
 			period 18.3911
@@ -4397,23 +4397,23 @@ system Arculus
 		sprite planet/ocean2
 		distance 923.75
 		period 449.212
-		object
+		object Kumkapi
 			sprite planet/io-b
 			distance 162
 			period 17.8986
-	object
+	object Xerolophos
 		sprite planet/gas8-b
 		distance 1734.39
 		period 1155.69
-		object
+		object Topkapi
 			sprite planet/tethys-b
 			distance 200
 			period 15.0564
-		object
+		object Aksaray
 			sprite planet/miranda-b
 			distance 273
 			period 24.0116
-		object
+		object Yedikule
 			sprite planet/ice7
 			distance 431
 			period 47.6313
@@ -6723,23 +6723,23 @@ system Cinxia
 		sprite planet/cloud3
 		distance 279.25
 		period 90.4452
-		object
+		object Tibernia
 			sprite planet/dust1
 			distance 135
 			period 17.2478
-	object
+	object Janiculum
 		sprite planet/ice6
 		distance 745.09
 		period 394.193
-	object
+	object Vatican
 		sprite planet/lava0
 		distance 922.93
 		period 543.437
-	object
+	object Palatine
 		sprite planet/gas9-b
 		distance 2326.18
 		period 2174.51
-		object
+		object Pincian
 			sprite planet/rhea-b
 			distance 270
 			period 16.6355
@@ -16993,7 +16993,7 @@ system Pantica
 	object
 		sprite star/k0-old
 		period 10
-	object
+	object Capitoline
 		sprite planet/lava1
 		distance 140.44
 		period 30.1769
@@ -17001,15 +17001,15 @@ system Pantica
 		sprite planet/ocean0
 		distance 542.45
 		period 229.075
-	object
+	object Esquiline
 		sprite planet/gas9-b
 		distance 1268.21
 		period 818.889
-		object
+		object Quirinal
 			sprite planet/lava0
 			distance 248
 			period 14.6443
-	object
+	object Servian
 		sprite planet/gas8
 		distance 1879.46
 		period 1477.37
@@ -24762,6 +24762,12 @@ planet "Esperaktu Station"
 	description `	For food, the Korath set up vats of photosynthetic yeast and bacteria in some rooms on the outer shell of the station. In their absence, the bacterial soup has worked its way through the ventilation system into the rest of the station and formed a thin layer of slime on almost every sun-facing wall.`
 	security 0
 
+planet Esquiline
+	attributes "requires: gaslining" "gas giant" uninhabited
+	landscape land/nasa8
+	description `Esquiline's wispy skies billow with raging winds and continuous storms. Although few craft can penetrate its depths, the Remnant have discovered that its upper atmosphere can be a useful source of certain chemicals. As such, aeroscoop drones dipping into its atmosphere for shipments to Aventine are a regular occurance.`
+	security 0
+
 planet "Factory of Eblumab"
 	attributes arach factory mining
 	landscape land/mountain22-spfld
@@ -26511,6 +26517,13 @@ planet Serpens
 	tribute 900
 		threshold 3000
 		fleet "Large Republic" 3
+
+planet Servian
+	attributes "requires: gaslining" "gas giant" uninhabited
+	landscape land/nasa8
+	description `The clouds of Servian swirl in deceptive calmness around the outer limits of the system. Underneath the peaceful exterior, violent storms and extreme turbulence are the norm. While the Remnant initially sought to discover what was below the storms, they finally ceased their attempts after a lengthy exploration program involving twenty successive probes and three early gascrafts. While every ship was destroyed before reaching the depths of the planet, it nontheless proved a valuable testing ground for testing their early hulls and helped refine their ship technology.`
+	description `At present, Servian is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Aventine.
+	security 0
 
 planet "Sessiliki Far"
 	attributes korath station
