@@ -1118,6 +1118,16 @@ bool PlayerInfo::TakeOff(UI *ui)
 			++it;
 	}
 	
+	// Track if we have preferred transporters.
+	bool havePreferredTransporters = false;
+
+	// If the flagship has space for passengers, then load them into the flagship.
+	// Your flagship takes first priority for passengers but last for cargo.
+	desiredCrew = flagship->Crew();
+	flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - desiredCrew);
+	for(const auto &it : cargo.PassengerList())
+		cargo.TransferPassengers(it.first, it.second, flagship->Cargo());
+
 	// Recharge any ships that can be recharged, and load available cargo.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
@@ -1134,17 +1144,37 @@ bool PlayerInfo::TakeOff(UI *ui)
 			if(ship != flagship)
 			{
 				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
-				cargo.TransferAll(ship->Cargo());
-			}
-			else
-			{
-				// Your flagship takes first priority for passengers but last for cargo.
-				desiredCrew = ship->Crew();
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - desiredCrew);
-				for(const auto &it : cargo.PassengerList())
-					cargo.TransferPassengers(it.first, it.second, ship->Cargo());
+				// Load cargo and passengers into preferred transporters
+				if (ship->Attributes().Get("preferred transporter"))
+				{
+					havePreferredTransporters = true;
+					cargo.TransferAll(ship->Cargo());
+					for(const auto &it : cargo.PassengerList())
+						cargo.TransferPassengers(it.first, it.second, ship->Cargo());
+				}
 			}
 		}
+
+	// Load left-over cargo into flagship if it is a preferred transporter
+	if (flagship->Attributes().Get("preferred transporter"))
+	{
+		havePreferredTransporters = true;
+		cargo.TransferAll(flagship->Cargo());
+	}
+
+	// Give a warning if important cargo didn't fit in the preferred transporters
+	if (havePreferredTransporters && ! cargo.IsEmptyExceptCommododities())
+		Messages::Add("Insufficient space, you are transporting critical cargo or passengers outside the preferred transporters.");
+
+	// Load any left-over cargo and passengers in any available ships
+	for(const shared_ptr<Ship> &ship : ships)
+		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() != system && ship != flagship)
+		{
+			cargo.TransferAll(ship->Cargo());
+			for(const auto &it : cargo.PassengerList())
+				cargo.TransferPassengers(it.first, it.second, ship->Cargo());
+		}
+
 	// Load up your flagship last, so that it will have space free for any
 	// plunder that you happen to acquire.
 	cargo.TransferAll(flagship->Cargo());
@@ -1355,16 +1385,34 @@ void PlayerInfo::UpdateCargoCapacities()
 {
 	int size = 0;
 	int bunks = 0;
+	int safeSize = 0;
+	int passengerBunks = 0;
+	bool hasPreferredTransporter = false;
 	flagship = FlagshipPtr();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system && !ship->IsParked() && !ship->IsDisabled())
 		{
-			size += ship->Attributes().Get("cargo space");
+			int cargoSpace = ship->Attributes().Get("cargo space");
+			size += cargoSpace;
 			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
-			bunks += ship->Attributes().Get("bunks") - crew;
+			int shipBunks = ship->Attributes().Get("bunks") - crew;
+			bunks += shipBunks;
+			if (ship->Attributes().Get("preferred transporter"))
+			{
+				hasPreferredTransporter = true;
+				safeSize += cargoSpace;
+				passengerBunks += shipBunks;
+			}
 		}
+	// If we have no preferred transporter, then all transports are ok/safe.
+	if (! hasPreferredTransporter){
+		safeSize = size;
+		passengerBunks = bunks;
+	}
 	cargo.SetSize(size);
 	cargo.SetBunks(bunks);
+	cargo.SetSafeSize(safeSize);
+	cargo.SetPassengerBunks(passengerBunks);
 }
 
 

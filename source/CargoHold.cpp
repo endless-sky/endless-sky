@@ -52,6 +52,8 @@ void CargoHold::Clear()
 {
 	size = 0;
 	bunks = 0;
+	safeSize = 0;
+	passengerBunks = 0;
 	commodities.clear();
 	outfits.clear();
 	missionCargo.clear();
@@ -149,7 +151,7 @@ void CargoHold::Save(DataWriter &out) const
 
 
 
-// Set the capacity of this cargo hold.
+// Set the total cargo capacity of this cargo hold.
 void CargoHold::SetSize(int tons)
 {
 	size = tons;
@@ -157,7 +159,15 @@ void CargoHold::SetSize(int tons)
 
 
 
-// Get the capacity of this hold.
+// Set the cargo capacity for mission-cargo and outfits.
+void CargoHold::SetSafeSize(int tons)
+{
+	safeSize = tons;
+}
+
+
+
+// Get the total cargo capacity of this hold.
 int CargoHold::Size() const
 {
 	return size;
@@ -165,10 +175,26 @@ int CargoHold::Size() const
 
 
 
-// Get the amount of free cargo space.
+// Get the cargo capacity for mission-cargo and outfits.
+int CargoHold::SafeSize() const
+{
+	return safeSize;
+}
+
+
+
+// Get the total amount of free cargo space.
 int CargoHold::Free() const
 {
 	return size - Used();
+}
+
+
+
+// Get the amount of free cargo space for mission-cargo and outfits.
+int CargoHold::SafeFree() const
+{
+	return min(safeSize - MissionCargoSize() - OutfitsSize(), Free());
 }
 
 
@@ -189,6 +215,14 @@ int CargoHold::CommoditiesSize() const
 	for(const auto &it : commodities)
 		size += it.second;
 	return size;
+}
+
+
+
+// Get the number of tons of commodotities that takes up cargo space that could be used for Outfits and Mission cargo.
+int CargoHold::CommoditiesOversize() const
+{
+	return max(0, CommoditiesSize() - (Size() - SafeSize()));
 }
 
 
@@ -242,17 +276,35 @@ bool CargoHold::HasMissionCargo() const
 // Check if there is anything in this cargo hold (including passengers).
 bool CargoHold::IsEmpty() const
 {
-	// The outfits map's entries are not erased if they are equal to zero, so
-	// it's not enough to just test outfits.empty().
-	return commodities.empty() && !HasOutfits() && missionCargo.empty() && passengers.empty();
+	return commodities.empty() && IsEmptyExceptCommododities();
 }
 
 
 
-// Set the number of free bunks for passengers.
+// Check if there is anything in this cargo hold (including passengers) except commodoties.
+bool CargoHold::IsEmptyExceptCommododities() const
+{
+	// The outfits map's entries are not erased if they are equal to zero, so
+	// it's not enough to just test outfits.empty().
+	return !HasOutfits() && missionCargo.empty() && passengers.empty();
+}
+
+
+
+// Set the absolute number of free bunks for passengers.
+// Missions can only be accepted with empty certified bunks, but it is
+// possible to have passengers in non-certified bunks for ongoing missions.
 void CargoHold::SetBunks(int count)
 {
 	bunks = count;
+}
+
+
+
+// Set the number of free passenger certified bunks.
+void CargoHold::SetPassengerBunks(int count)
+{
+	passengerBunks = count;
 }
 
 
@@ -261,6 +313,14 @@ void CargoHold::SetBunks(int count)
 int CargoHold::BunksFree() const
 {
 	return bunks - Passengers();
+}
+
+
+
+// Check how many passenger certified bunks are free.
+int CargoHold::PassengerBunksFree() const
+{
+	return max(0, passengerBunks - Passengers());
 }
 
 

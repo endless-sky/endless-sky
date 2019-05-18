@@ -169,6 +169,7 @@ outfitter "Common Outfits"
 	"Supercapacitor"
 	"Local Map"
 	"Pilot's License"
+	"Safe Transporter Certificate"
 	"Laser Rifle"
 
 outfitter "Basic Weapons"

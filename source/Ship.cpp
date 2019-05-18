@@ -516,7 +516,12 @@ void Ship::FinishLoading(bool isNewInstance)
 			Files::LogError(warning);
 		}
 	}
-	cargo.SetSize(attributes.Get("cargo space"));
+	int cargoSpace = attributes.Get("cargo space");
+	int safeCargoSpace = cargoSpace;
+	if (! attributes.Get("preferred transporter"))
+		safeCargoSpace = 0;
+	cargo.SetSize(cargoSpace);
+	cargo.SetSafeSize(safeCargoSpace);
 	equipped.clear();
 	armament.FinishLoading();
 	
@@ -2917,8 +2922,15 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		if(outfit->IsWeapon())
 			armament.Add(outfit, count);
 		
-		if(outfit->Get("cargo space"))
-			cargo.SetSize(attributes.Get("cargo space"));
+		if(outfit->Get("cargo space") || outfit->Get("preferred transporter"))
+		{
+			int cargoSpace = attributes.Get("cargo space");
+			int safeCargoSpace = cargoSpace;
+			if (!attributes.Get("preferred transporter"))
+				safeCargoSpace = 0;
+			cargo.SetSize(cargoSpace);
+			cargo.SetSafeSize(safeCargoSpace);
+		}
 		if(outfit->Get("hull"))
 			hull += outfit->Get("hull") * count;
 	}

@@ -46,16 +46,23 @@ public:
 	int Size() const;
 	int Free() const;
 	int Used() const;
+	void SetSafeSize(int tons);
+	int SafeSize() const;
+	int SafeFree() const;
 	int CommoditiesSize() const;
+	int CommoditiesOversize() const;
 	int OutfitsSize() const;
 	bool HasOutfits() const;
 	int MissionCargoSize() const;
 	bool HasMissionCargo() const;
 	bool IsEmpty() const;
+	bool IsEmptyExceptCommododities() const;
 	
 	// Set the number of free bunks for passengers.
 	void SetBunks(int count);
+	void SetPassengerBunks(int count);
 	int BunksFree() const;
+	int PassengerBunksFree() const;
 	int Passengers() const;
 	
 	// Normal cargo:
@@ -108,6 +115,8 @@ private:
 	// Use -1 to indicate unlimited capacity.
 	int size = -1;
 	int bunks = -1;
+	int passengerBunks = -1;
+	int safeSize = -1;
 	
 	// Track how many objects of each type are being carried:
 	std::map<std::string, int> commodities;

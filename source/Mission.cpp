@@ -608,8 +608,8 @@ bool Mission::HasSpace(const PlayerInfo &player) const
 	int extraCrew = 0;
 	if(player.Flagship())
 		extraCrew = player.Flagship()->Crew() - player.Flagship()->RequiredCrew();
-	return (cargoSize <= player.Cargo().Free() + player.Cargo().CommoditiesSize()
-		&& passengers <= player.Cargo().BunksFree() + extraCrew);
+	return (cargoSize <= player.Cargo().SafeFree() + player.Cargo().CommoditiesOversize()
+		&& passengers <= player.Cargo().PassengerBunksFree() + extraCrew);
 }
 
 
@@ -617,7 +617,7 @@ bool Mission::HasSpace(const PlayerInfo &player) const
 // Check if this mission's cargo can fit entirely on the referenced ship.
 bool Mission::HasSpace(const Ship &ship) const
 {
-	return (cargoSize <= ship.Cargo().Free() && passengers <= ship.Cargo().BunksFree());
+	return (cargoSize <= ship.Cargo().SafeFree() && passengers <= ship.Cargo().PassengerBunksFree());
 }
 
 
@@ -705,8 +705,8 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	int bunksNeeded = passengers;
 	if(player.GetPlanet())
 	{
-		cargoNeeded -= (player.Cargo().Free() + player.Cargo().CommoditiesSize());
-		bunksNeeded -= (player.Cargo().BunksFree() + extraCrew);
+		cargoNeeded -= (player.Cargo().SafeFree() + player.Cargo().CommoditiesOversize());
+		bunksNeeded -= (player.Cargo().PassengerBunksFree() + extraCrew);
 	}
 	else
 	{
