@@ -56,11 +56,18 @@ void AdjustViewport(SDL_Window *window);
 int DoError(string message, SDL_Window *window = nullptr, SDL_GLContext context = nullptr);
 void Cleanup(SDL_Window *window, SDL_GLContext context);
 Conversation LoadConversation();
+#ifdef _WIN32
+void InitConsole();
+#endif
 
 
 
 int main(int argc, char *argv[])
 {
+#ifdef _WIN32
+	if(argc > 1)
+		InitConsole();
+#endif
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
@@ -553,3 +560,29 @@ Conversation LoadConversation()
 	};
 	return conversation.Substitute(subs);
 }
+
+
+
+#ifdef _WIN32
+void InitConsole()
+{
+	// If both stdout and stderr are already initialized (e.g. writing to a file), do nothing.
+	const int UNINITIALIZED = -2;
+	bool redirectStdout = _fileno(stdout) == UNINITIALIZED;
+	bool redirectStderr = _fileno(stderr) == UNINITIALIZED;
+	bool redirectStdin = _fileno(stdin) == UNINITIALIZED;
+
+	if(!redirectStdout && !redirectStderr && !redirectStdin)
+		return;
+	
+	if(!AttachConsole(ATTACH_PARENT_PROCESS) && !AllocConsole())
+		return;
+
+	if(redirectStdout && freopen("CONOUT$", "w", stdout))
+		setvbuf(stdout, nullptr, _IOFBF, 4096);
+	if(redirectStderr && freopen("CONOUT$", "w", stderr))
+		setvbuf(stderr, nullptr, _IOLBF, 1024);
+	if(redirectStdin && freopen("CONIN$", "r", stdin))
+		setvbuf(stdin, nullptr, _IONBF, 0);
+}
+#endif
