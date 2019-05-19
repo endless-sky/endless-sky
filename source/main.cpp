@@ -570,23 +570,23 @@ Conversation LoadConversation()
 #ifdef _WIN32
 void InitConsole()
 {
-	bool redirectStdout = (_fileno)(stdout) == -2;
-	bool redirectStderr = (_fileno)(stderr) == -2;
-	
-	if(!redirectStdout && !redirectStderr)
+	// If both stdout and stderr are already initialized (e.g. writing to a file), do nothing.
+	const int UNINITIALIZED = -2;
+	bool redirectStdout = _fileno(stdout) == UNINITIALIZED;
+	bool redirectStderr = _fileno(stderr) == UNINITIALIZED;
+	bool redirectStdin = _fileno(stdin) == UNINITIALIZED;
+
+	if(!redirectStdout && !redirectStderr && !redirectStdin)
 		return;
-		
-	if(!AttachConsole(ATTACH_PARENT_PROCESS))
-	{
-		AllocConsole();
-		return;
-	}
 	
-	if(redirectStdout)
-		if(freopen("CONOUT$", "w", stdout))
-			setvbuf(stdout, nullptr, _IOFBF, 4096);
-	if(redirectStderr)
-		if(freopen("CONOUT$", "w", stderr))
-			setvbuf(stderr, nullptr, _IOLBF, 1024);
+	if(!AttachConsole(ATTACH_PARENT_PROCESS) && !AllocConsole())
+		return;
+
+	if(redirectStdout && freopen("CONOUT$", "w", stdout))
+		setvbuf(stdout, nullptr, _IOFBF, 4096);
+	if(redirectStderr && freopen("CONOUT$", "w", stderr))
+		setvbuf(stderr, nullptr, _IOLBF, 1024);
+	if(redirectStdin && freopen("CONIN$", "r", stdin))
+		setvbuf(stdin, nullptr, _IONBF, 0);
 }
 #endif
