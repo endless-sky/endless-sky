@@ -284,6 +284,8 @@ Version 0.9.9:
       * The radar now shows the viewport boundaries. (@tehhowch)
     * Other:
       * The UI zoom level can now be adjusted in smaller increments. (@tehhowch)
+      * The zoom level updates dynamically and restores after minimization / tabbing. (@CyberShadow)
+      * Scrolling the display zoom in flight is smoother. (@thomasballinger)
       * The "<payment>" substitution is now formatted as a positive number even for fines. (@tehhowch)
       * Added a preference to rehire extra crew (beyond the minimum) if lost. (@tehhowch, @flaviojs)
       * Scrolling past the end of a logbook page now wraps around to the top. (@tehhowch)
