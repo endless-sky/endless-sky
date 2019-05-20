@@ -326,7 +326,6 @@ outfit "Luxury Accommodations"
 	"mass" 10
 	"outfit space" -10
 	"required crew" 2
-	"preferred transporter" 1
 	"unplunderable" 1
 	description "Most deep space voyages involve a certain amount of passenger discomfort. With the addition of a few extra fresh water tanks, private bathrooms, wooden fixtures, and some hospitality staff, any ship can be made attractive to a significantly higher - and better paying - class of passenger."
 
@@ -398,12 +397,12 @@ outfit "Local Map"
 	"map" 12
 	description "This data chip contains complete information on the twelve star systems closest to this one: planets, ports, governments, trade prices, available services, etc. You can get all the same information just by exploring those systems yourself, but having a map can save you from making wrong turns if you are trying to travel through new territory to reach a certain system quickly."
 
-outfit "Safe Transporter Certificate"
+outfit "Loading Priority Marker"
 	category "Special"
 	cost 500
 	thumbnail "outfit/license"
 	"preferred transporter" 1
-	description "This certificate indicates that a ship can safely carry passengers and cargo. The certification is ignored by nearly everybody, but spaceports are only allowed to board passengers and load customer cargo into certified ships if some ships in the fleet are certified. Those regulations allow fleet captains to reduce the risk of losing passengers or valuable cargo by only certifying their strongest or most-protected transport ships."
+	description "This transponder signals that the ship carrying it is a preferred ship for transporting passengers and cargo. Spaceport crews will board passengers and load customer cargo into preferred ships before boarding and loading other ships. Priority markers allow fleet captains to reduce the risk of losing passengers or valuable cargo by only marking their strongest or most-protected ships as preferred transporters."
 
 outfit "Pilot's License"
 	category "Special"
