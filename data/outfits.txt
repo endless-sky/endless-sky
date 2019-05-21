@@ -402,7 +402,7 @@ outfit "Loading Priority Marker"
 	cost 500
 	thumbnail "outfit/license"
 	"preferred transporter" 1
-	description "This transponder signals that the ship carrying it is a preferred ship for transporting passengers and cargo. Spaceport crews will board passengers and load customer cargo into preferred ships before any other ships. Priority markers allow fleet captains to reduce the risk of losing passengers or valuable cargo by only marking their strongest or most-protected ships as preferred transport ships."
+	description "This transponder signals that the vessel it is installed in is preferred for transporting passengers and cargo. Spaceport crews will board passengers and load cargo into such ships before the other ones that belong to the same owner. Priority markers allow fleet captains to reduce the risk of losing passengers or valuable cargo by only marking their strongest or most-protected ships as preferred transports."
 
 outfit "Pilot's License"
 	category "Special"
