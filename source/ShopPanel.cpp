@@ -246,12 +246,12 @@ void ShopPanel::DrawSidebar()
 		sideDetailHeight = DrawPlayerShipInfo(point + offset);
 		point.Y() += sideDetailHeight + SHIP_SIZE / 2;
 	}
-	else if(player.Cargo().Size())
+	else if(player.Cargo().SafeSize())
 	{
 		point.X() = Screen::Right() - SIDE_WIDTH + 10;
 		font.Draw("cargo space:", point, medium);
 		
-		string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
+		string space = Format::Number(player.Cargo().SafeFree()) + " / " + Format::Number(player.Cargo().SafeSize());
 		Point right(Screen::Right() - font.Width(space) - 10, point.Y());
 		font.Draw(space, right, bright);
 		point.Y() += 20.;
