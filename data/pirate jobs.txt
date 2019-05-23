@@ -354,8 +354,8 @@ mission "Stealth Cargo Smuggling (North) [0]"
 			variant
 				"Gunboat"
 	on fail
-		"reputation: Republic" -= 15
-		"reputation: Navy (Oathkeeper)" -= 15
+		"reputation: Republic" -= 5
+		"reputation: Navy (Oathkeeper)" -= 5
 	on complete
 		payment 50000 300
 		"reputation: Pirate" += 5
@@ -429,8 +429,8 @@ mission "Stealth Cargo Smuggling (North) [1]"
 		government Republic
 		fleet "Navy Surveillance"
 	on fail
-		"reputation: Republic" -= 15
-		"reputation: Navy (Oathkeeper)" -= 15
+		"reputation: Republic" -= 5
+		"reputation: Navy (Oathkeeper)" -= 5
 	on complete
 		payment 75000 300
 		"reputation: Pirate" += 5
@@ -481,7 +481,7 @@ mission "Stealth Cargo Smuggling (Core) [0]"
 			variant
 				"Quicksilver (Scanner)"
 	on fail
-		"reputation: Syndicate" -= 15
+		"reputation: Syndicate" -= 5
 	on complete
 		payment 50000 300
 		"reputation: Pirate" += 5
@@ -558,7 +558,7 @@ mission "Stealth Cargo Smuggling (Core) [1]"
 			variant
 				"Quicksilver (Scanner)" 2
 	on fail
-		"reputation: Syndicate" -= 15
+		"reputation: Syndicate" -= 5
 	on complete
 		payment 75000 300
 		"reputation: Pirate" += 5
@@ -609,8 +609,8 @@ mission "Stealth Cargo Smuggling (South) [0]"
 			variant
 				"Bastion (Scanner)"
 	on fail
-		"reputation: Free Worlds" -= 15
-		"reputation: Militia" -= 15
+		"reputation: Free Worlds" -= 5
+		"reputation: Militia" -= 5
 	on complete
 		payment 50000 300
 		"reputation: Pirate" += 5
@@ -687,8 +687,8 @@ mission "Stealth Cargo Smuggling (South) [1]"
 			variant
 				"Bastion (Scanner)" 2
 	on fail
-		"reputation: Free Worlds" -= 15
-		"reputation: Militia" -= 15
+		"reputation: Free Worlds" -= 5
+		"reputation: Militia" -= 5
 	on complete
 		payment 75000 300
 		"reputation: Pirate" += 5
@@ -741,8 +741,8 @@ mission "Stealth Drug Running (North) [0]"
 			variant
 				"Gunboat"
 	on fail
-		"reputation: Republic" -= 15
-		"reputation: Navy (Oathkeeper)" -= 15
+		"reputation: Republic" -= 5
+		"reputation: Navy (Oathkeeper)" -= 5
 	on complete
 		payment 75000 375
 		"reputation: Pirate" += 5
@@ -816,8 +816,8 @@ mission "Stealth Drug Running (North) [1]"
 		system destination
 		fleet "Navy Surveillance"
 	on fail
-		"reputation: Republic" -= 15
-		"reputation: Navy (Oathkeeper)" -= 15
+		"reputation: Republic" -= 5
+		"reputation: Navy (Oathkeeper)" -= 5
 	on complete
 		payment 100000 375
 		"reputation: Pirate" += 5
@@ -868,7 +868,7 @@ mission "Stealth Drug Running (Core) [0]"
 			variant
 				"Quicksilver (Scanner)"
 	on fail
-		"reputation: Syndicate" -= 15
+		"reputation: Syndicate" -= 5
 	on complete
 		payment 75000 375
 		"reputation: Pirate" += 5
@@ -945,7 +945,7 @@ mission "Stealth Drug Running (Core) [1]"
 			variant
 				"Quicksilver (Scanner)" 2
 	on fail
-		"reputation: Syndicate" -= 15
+		"reputation: Syndicate" -= 5
 	on complete
 		payment 100000 375
 		"reputation: Pirate" += 5
@@ -996,8 +996,8 @@ mission "Stealth Drug Running (South) [0]"
 			variant
 				"Bastion (Scanner)"
 	on fail
-		"reputation: Free Worlds" -= 15
-		"reputation: Militia" -= 15
+		"reputation: Free Worlds" -= 5
+		"reputation: Militia" -= 5
 	on complete
 		payment 75000 375
 		"reputation: Pirate" += 5
@@ -1074,8 +1074,8 @@ mission "Stealth Drug Running (South) [1]"
 			variant
 				"Bastion (Scanner)" 2
 	on fail
-		"reputation: Free Worlds" -= 15
-		"reputation: Militia" -= 15
+		"reputation: Free Worlds" -= 5
+		"reputation: Militia" -= 5
 	on complete
 		payment 100000 375
 		"reputation: Pirate" += 5
@@ -1249,8 +1249,8 @@ mission "Highly Wanted Passenger (North)"
 		system destination
 		fleet "Navy Surveillance"
 	on fail
-		"reputation: Republic" -= 15
-		"reputation: Navy (Oathkeeper)" -= 15
+		"reputation: Republic" -= 5
+		"reputation: Navy (Oathkeeper)" -= 5
 	on complete
 		payment 200000 1000
 		"reputation: Pirate" += 5
@@ -1335,7 +1335,7 @@ mission "Highly Wanted Passenger (Core)"
 			variant
 				"Quicksilver (Scanner)" 2
 	on fail
-		"reputation: Syndicate" -= 15
+		"reputation: Syndicate" -= 5
 	on complete
 		payment 200000 1000
 		"reputation: Pirate" += 5
@@ -1420,8 +1420,8 @@ mission "Highly Wanted Passenger (South)"
 			variant
 				"Bastion (Scanner)" 2
 	on fail
-		"reputation: Free Worlds" -= 15
-		"reputation: Militia" -= 15
+		"reputation: Free Worlds" -= 5
+		"reputation: Militia" -= 5
 	on complete
 		payment 200000 1000
 		"reputation: Pirate" += 5
