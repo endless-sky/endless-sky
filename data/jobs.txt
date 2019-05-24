@@ -1744,7 +1744,7 @@ mission "Southern Marauder Blockade Attempt"
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
 				`	("Let's do this! What's the plan?")`
-			`The officer leads you into a small windowless room where a group of pilots is waiting in discussion, but quieten down when they see the officer, who quickly summarises the situation. "There are three hostile fleets including  Marauders incoming from varying locations, the first of which will be arriving any moment. A nearby militia fleet is also en route and will be reinforcing you shortly. Take off immediately and prepare for the assault. Good luck!"`
+			`The officer leads you into a small windowless room where a group of pilots is waiting in discussion, but quieten down when they see the officer, who quickly summarises the situation. "There are three hostile fleets, each including several Marauders, incoming from varying locations, the first of which will be arriving at any moment. A nearby militia fleet is also en route and will be reinforcing you shortly. Take off immediately and prepare for the assault. Good luck!"`
 				launch
 	on complete
 		payment 10000000
@@ -1799,7 +1799,7 @@ mission "Northern Marauder Blockade Attempt"
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
 				`	("Let's do this! What's the plan?")`
-			`The officer leads you into a small windowless room where a group of Republic pilots is waiting in discussion, but quieten down when they see the officer, who quickly summarises the situation. "There are three hostile fleets including Marauders incoming from varying locations, the first of which will be arriving any moment. A nearby Republic fleet is also en route and will be reinforcing you shortly. Take off immediately and prepare for the assault. Good luck!"`
+			`The officer leads you into a small windowless room where a group of Republic pilots is waiting in discussion, but quieten down when they see the officer, who quickly summarises the situation. "There are three hostile fleets, each including several Marauders, incoming from varying locations, the first of which will be arriving at any moment. A nearby Republic fleet is also en route and will be reinforcing you shortly. Take off immediately and prepare for the assault. Good luck!"`
 				launch
 	on complete
 		payment 10000000
@@ -1854,7 +1854,7 @@ mission "Deep Marauder Blockade Attempt"
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
 				`	("Let's do this! What's the plan?")`
-			`The officer leads you into a small windowless room where a group of Deep Security pilots is waiting in discussion, but quieten down when they see the officer, who quickly summarises the situation. "There are three hostile fleets including Marauders incoming from varying locations, the first of which will be arriving any moment. A nearby Deep Security fleet is also en route and will be reinforcing you shortly. Take off immediately and prepare for the assault. Good luck!"`
+			`The officer leads you into a small windowless room where a group of Deep Security pilots is waiting in discussion, but quieten down when they see the officer, who quickly summarises the situation. "There are three hostile fleets, each including several Marauders, incoming from varying locations, the first of which will be arriving at any moment. A nearby Deep Security fleet is also en route and will be reinforcing you shortly. Take off immediately and prepare for the assault. Good luck!"`
 				launch
 	on complete
 		payment 10000000
@@ -1909,7 +1909,7 @@ mission "Core Marauder Blockade Attempt"
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
 				`	("Let's do this! What's the plan?")`
-			`The officer leads you into a small windowless room where a group of Syndicate pilots is waiting in discussion, but quieten down when they see the officer, who quickly summarises the situation. "There are three hostile fleets including Marauders incoming from varying locations, the first of which will be arriving any moment. A nearby Syndicate fleet is also en route and will be reinforcing you shortly. Take off immediately and prepare for the assault. Good luck!"`
+			`The officer leads you into a small windowless room where a group of Syndicate pilots is waiting in discussion, but quieten down when they see the officer, who quickly summarises the situation. "There are three hostile fleets, each including several Marauders, incoming from varying locations, the first of which will be arriving at any moment. A nearby Syndicate fleet is also en route and will be reinforcing you shortly. Take off immediately and prepare for the assault. Good luck!"`
 				launch
 	on complete
 		payment 10000000
@@ -1955,7 +1955,7 @@ mission "Core Marauder Fleet Clear"
 		fleet "Large Syndicate" 2
 	on offer
 		conversation
-			`You notice many damaged combat vessels coming in to land, and a few medics tending to wounded people. "Captain <last>?" You turn to see a serious looking senior Syndicate officer. "This system and others nearby have just been hit by a large surprise pirate attack. Our intelligence suggests approximately ten heavy warships and dozens of smaller craft have now split into three fleets to continue the attack on nearby systems up to two jumps away. They need to be eliminated immediately. Can you help?"`
+			`You notice many damaged combat vessels coming in to land, and a few medics tending to wounded people. "Captain <last>?" You turn to see a serious looking senior Syndicate officer. "This system and others nearby have just been hit by a large surprise Marauder attack. Our intelligence suggests approximately ten heavy warships and dozens of smaller craft have now split into three fleets to continue the attack on nearby systems up to two jumps away. They need to be eliminated immediately. Can you help?"`
 			choice
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
@@ -2006,7 +2006,7 @@ mission "Southern Marauder Fleet Clear"
 		fleet "Large Militia" 3
 	on offer
 		conversation
-			`You notice many damaged combat vessels coming in to land, and a few medics tending to wounded people. "Captain <last>?" You turn to see a serious looking senior militia officer. "This system and others nearby have just been hit by a large surprise pirate attack. Our intelligence suggests approximately ten heavy warships and dozens of smaller craft have now split into three fleets to continue the attack on nearby systems up to two jumps away. They need to be eliminated immediately. Can you help?"`
+			`You notice many damaged combat vessels coming in to land, and a few medics tending to wounded people. "Captain <last>?" You turn to see a serious looking senior militia officer. "This system and others nearby have just been hit by a large surprise Marauder attack. Our intelligence suggests approximately ten heavy warships and dozens of smaller craft have now split into three fleets to continue the attack on nearby systems up to two jumps away. They need to be eliminated immediately. Can you help?"`
 			choice
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
@@ -2057,7 +2057,7 @@ mission "Northern Marauder Fleet Clear"
 		fleet "Large Republic" 2
 	on offer
 		conversation
-			`You notice many damaged combat vessels coming in to land, and a few medics tending to wounded people. "Captain <last>?" You turn to see a serious looking senior Republic officer. "This system and others nearby have just been hit by a large surprise pirate attack. Our intelligence suggests approximately ten heavy warships and dozens of smaller craft have now split into three fleets to continue the attack on nearby systems up to two jumps away. They need to be eliminated immediately. Can you help?"`
+			`You notice many damaged combat vessels coming in to land, and a few medics tending to wounded people. "Captain <last>?" You turn to see a serious looking senior Republic officer. "This system and others nearby have just been hit by a large surprise Marauder attack. Our intelligence suggests approximately ten heavy warships and dozens of smaller craft have now split into three fleets to continue the attack on nearby systems up to two jumps away. They need to be eliminated immediately. Can you help?"`
 			choice
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
@@ -2108,7 +2108,7 @@ mission "Deep Marauder Fleet Clear"
 		fleet "Large Deep Security" 3
 	on offer
 		conversation
-			`You notice many damaged combat vessels coming in to land, and a few medics tending to wounded people. "Captain <last>?" You turn to see a serious looking senior Deep Security officer. "This system and others nearby have just been hit by a large surprise pirate attack. Our intelligence suggests approximately ten heavy warships and dozens of smaller craft have now split into three fleets to continue the attack on nearby systems up to two jumps away. They need to be eliminated immediately. Can you help?"`
+			`You notice many damaged combat vessels coming in to land, and a few medics tending to wounded people. "Captain <last>?" You turn to see a serious looking senior Deep Security officer. "This system and others nearby have just been hit by a large surprise Marauder attack. Our intelligence suggests approximately ten heavy warships and dozens of smaller craft have now split into three fleets to continue the attack on nearby systems up to two jumps away. They need to be eliminated immediately. Can you help?"`
 			choice
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
@@ -2170,7 +2170,7 @@ mission "Deep Marauder Blockade Attempt 2"
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
 				`	("Let's do this! What's the plan?")`
-			`As combat ships continue to launch with an alarming disregard for safety checklists, the officer continues, "The hostile fleets total at least fifteen heavy warships, several marauders, and dozens of smaller craft. They are currently incoming from varying locations and the first will be arriving any moment, as will our own reinforcements. Take off immediately and prepare for the assault. Good luck!"`
+			`As combat ships continue to launch with an alarming disregard for safety checklists, the officer continues, "The hostile fleets total at least fifteen heavy warships, several Marauders, and dozens of smaller craft. They are currently incoming from varying locations and the first will be arriving any moment, as will our own reinforcements. Take off immediately and prepare for the assault. Good luck!"`
 				launch
 	on complete
 		payment 20000000
@@ -2228,7 +2228,7 @@ mission "North Marauder Blockade Attempt 2"
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
 				`	("Let's do this! What's the plan?")`
-			`As combat ships continue to launch with an alarming disregard for safety checklists, the officer continues, "The hostile fleets total at least fifteen heavy warships, several marauders, and dozens of smaller craft. They are currently incoming from varying locations and the first will be arriving any moment, as will our own reinforcements. Take off immediately and prepare for the assault. Good luck!"`
+			`As combat ships continue to launch with an alarming disregard for safety checklists, the officer continues, "The hostile fleets total at least fifteen heavy warships, several Marauders, and dozens of smaller craft. They are currently incoming from varying locations and the first will be arriving any moment, as will our own reinforcements. Take off immediately and prepare for the assault. Good luck!"`
 				launch
 	on complete
 		payment 20000000
@@ -2285,7 +2285,7 @@ mission "South Marauder Blockade Attempt 2"
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
 				`	("Let's do this! What's the plan?")`
-			`As combat ships continue to launch with an alarming disregard for safety checklists, the officer continues, "The hostile fleets total at least fifteen heavy warships, several marauders, and dozens of smaller craft. They are currently incoming from varying locations and the first will be arriving any moment, as will our own reinforcements. Take off immediately and prepare for the assault. Good luck!"`
+			`As combat ships continue to launch with an alarming disregard for safety checklists, the officer continues, "The hostile fleets total at least fifteen heavy warships, several Marauders, and dozens of smaller craft. They are currently incoming from varying locations and the first will be arriving any moment, as will our own reinforcements. Take off immediately and prepare for the assault. Good luck!"`
 				launch
 	on complete
 		payment 20000000
@@ -2342,7 +2342,7 @@ mission "Core Marauder Blockade Attempt 2"
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
 				`	("Let's do this! What's the plan?")`
-			`As combat ships continue to launch with an alarming disregard for safety checklists, the officer continues, "The hostile fleets total at least fifteen heavy warships, several marauders, and dozens of smaller craft. They are currently incoming from varying locations and the first will be arriving any moment, as will our own reinforcements. Take off immediately and prepare for the assault. Good luck!"`
+			`As combat ships continue to launch with an alarming disregard for safety checklists, the officer continues, "The hostile fleets total at least fifteen heavy warships, several Marauders, and dozens of smaller craft. They are currently incoming from varying locations and the first will be arriving any moment, as will our own reinforcements. Take off immediately and prepare for the assault. Good luck!"`
 				launch
 	on complete
 		payment 20000000
@@ -2388,7 +2388,7 @@ mission "Core Marauder Fleet Clear 2"
 		fleet "Large Syndicate" 4
 	on offer
 		conversation
-			`You notice many damaged combat vessels coming in to land, and a few medics tending to wounded people. "Captain <last>?" You turn to see a serious looking senior Syndicate officer. "This system and others nearby have just been hit by a huge surprise pirate attack. Our intelligence suggests approximately twenty heavy warships and dozens of smaller craft have now split into three fleets to continue the attack on nearby systems up to two jumps away. They need to be eliminated immediately. Can you help?"`
+			`You notice many damaged combat vessels coming in to land, and a few medics tending to wounded people. "Captain <last>?" You turn to see a serious looking senior Syndicate officer. "This system and others nearby have just been hit by a huge surprise Marauder attack. Our intelligence suggests approximately twenty heavy warships and dozens of smaller craft have now split into three fleets to continue the attack on nearby systems up to two jumps away. They need to be eliminated immediately. Can you help?"`
 			choice
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
@@ -2439,7 +2439,7 @@ mission "Northern Marauder Fleet Clear 2"
 		fleet "Large Republic" 2
 	on offer
 		conversation
-			`You notice many damaged combat vessels coming in to land, and a few medics tending to wounded people. "Captain <last>?" You turn to see a serious looking senior Republic officer. "This system and others nearby have just been hit by a huge surprise pirate attack. Our intelligence suggests approximately twenty heavy warships and dozens of smaller craft have now split into three fleets to continue the attack on nearby systems up to two jumps away. They need to be eliminated immediately. Can you help?"`
+			`You notice many damaged combat vessels coming in to land, and a few medics tending to wounded people. "Captain <last>?" You turn to see a serious looking senior Republic officer. "This system and others nearby have just been hit by a huge surprise Marauder attack. Our intelligence suggests approximately twenty heavy warships and dozens of smaller craft have now split into three fleets to continue the attack on nearby systems up to two jumps away. They need to be eliminated immediately. Can you help?"`
 			choice
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
@@ -2490,7 +2490,7 @@ mission "Southern Marauder Fleet Clear 2"
 		fleet "Large Militia" 4
 	on offer
 		conversation
-			`You notice many damaged combat vessels coming in to land, and a few medics tending to wounded people. "Captain <last>?" You turn to see a serious looking senior militia officer. "This system and others nearby have just been hit by a huge surprise pirate attack. Our intelligence suggests approximately twenty heavy warships and dozens of smaller craft have now split into three fleets to continue the attack on nearby systems up to two jumps away. They need to be eliminated immediately. Can you help?"`
+			`You notice many damaged combat vessels coming in to land, and a few medics tending to wounded people. "Captain <last>?" You turn to see a serious looking senior militia officer. "This system and others nearby have just been hit by a huge surprise Marauder attack. Our intelligence suggests approximately twenty heavy warships and dozens of smaller craft have now split into three fleets to continue the attack on nearby systems up to two jumps away. They need to be eliminated immediately. Can you help?"`
 			choice
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
@@ -2541,7 +2541,7 @@ mission "Deep Marauder Fleet Clear 2"
 		fleet "Large Deep Security" 4
 	on offer
 		conversation
-			`You notice many damaged combat vessels coming in to land, and a few medics tending to wounded people. "Captain <last>?" You turn to see a serious looking senior Deep Security officer. "This system and others nearby have just been hit by a huge surprise pirate attack. Our intelligence suggests approximately twenty heavy warships and dozens of smaller craft have now split into three fleets to continue the attack on nearby systems up to two jumps away. They need to be eliminated immediately. Can you help?"`
+			`You notice many damaged combat vessels coming in to land, and a few medics tending to wounded people. "Captain <last>?" You turn to see a serious looking senior Deep Security officer. "This system and others nearby have just been hit by a huge surprise Marauder attack. Our intelligence suggests approximately twenty heavy warships and dozens of smaller craft have now split into three fleets to continue the attack on nearby systems up to two jumps away. They need to be eliminated immediately. Can you help?"`
 			choice
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
@@ -2607,7 +2607,7 @@ mission "Deep Marauder Blockade Attempt 2 (Var1)"
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
 				`	("Let's do this! What's the plan?")`
-			`As combat ships continue to launch with an alarming disregard for safety checklists, the officer continues, "The hostile fleets total at least fifteen heavy warships, several marauders, and dozens of smaller craft. They are currently incoming from varying locations and the first will be arriving any moment, as will our own reinforcements. Take off immediately and prepare for the assault. Good luck!"`
+			`As combat ships continue to launch with an alarming disregard for safety checklists, the officer continues, "The hostile fleets total at least fifteen heavy warships, several Marauders, and dozens of smaller craft. They are currently incoming from varying locations and the first will be arriving any moment, as will our own reinforcements. Take off immediately and prepare for the assault. Good luck!"`
 			choice
 				`	("Thanks!")`
 			`As you make ready for a quick launch, you hear a voice call "I've got your back Captain!" The voice is coming from a young and inexperienced looking merchant captain with aviator sunglasses, standing near a shiny new Bactrian.`
@@ -2675,7 +2675,7 @@ mission "Deep Marauder Blockade Attempt 2 (Var2)"
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
 				`	("Let's do this! What's the plan?")`
-			`As combat ships continue to launch with an alarming disregard for safety checklists, the officer continues, "The hostile fleets total at least fifteen heavy warships, several marauders, and dozens of smaller craft. They are currently incoming from varying locations and the first will be arriving any moment, as will our own reinforcements. Take off immediately and prepare for the assault. Good luck!"`
+			`As combat ships continue to launch with an alarming disregard for safety checklists, the officer continues, "The hostile fleets total at least fifteen heavy warships, several Marauders, and dozens of smaller craft. They are currently incoming from varying locations and the first will be arriving any moment, as will our own reinforcements. Take off immediately and prepare for the assault. Good luck!"`
 			choice
 				`	("Thanks!")`
 			`As you make ready for a quick launch, you notice a captain nearby directing crew to a group of four Bactrians, all looking like they've seen their fair share of battles and toting what seems to be alien weaponry, quite a lot of it in fact.`
@@ -2740,7 +2740,7 @@ mission "Northern Marauder Blockade Attempt 2 (Var1)"
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
 				`	("Let's do this! What's the plan?")`
-			`As combat ships continue to launch with an alarming disregard for safety checklists, the officer continues, "The hostile fleets total at least fifteen heavy warships, several marauders, and dozens of smaller craft. They are currently incoming from varying locations and the first will be arriving any moment, as will our own reinforcements. Take off immediately and prepare for the assault. Good luck!"`
+			`As combat ships continue to launch with an alarming disregard for safety checklists, the officer continues, "The hostile fleets total at least fifteen heavy warships, several Marauders, and dozens of smaller craft. They are currently incoming from varying locations and the first will be arriving any moment, as will our own reinforcements. Take off immediately and prepare for the assault. Good luck!"`
 			choice
 				`	("Thanks!")`
 			`As you make ready for a quick launch, you notice a squadron of eight Gunboats taking off together, flying in tight formation and looking like they've seen their fair share of laser fire.`
@@ -2809,7 +2809,7 @@ mission "Southern Marauder Blockade Attempt 2 (Var1)"
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
 				`	("Let's do this! What's the plan?")`
-			`As combat ships continue to launch with an alarming disregard for safety checklists, the officer continues, "The hostile fleets total at least fifteen heavy warships, several marauders, and dozens of smaller craft. They are currently incoming from varying locations and the first will be arriving any moment, as will our own reinforcements. Take off immediately and prepare for the assault. Good luck!"`
+			`As combat ships continue to launch with an alarming disregard for safety checklists, the officer continues, "The hostile fleets total at least fifteen heavy warships, several Marauders, and dozens of smaller craft. They are currently incoming from varying locations and the first will be arriving any moment, as will our own reinforcements. Take off immediately and prepare for the assault. Good luck!"`
 			choice
 				`	("Thanks!")`
 			`As you make ready for a quick launch, you notice a captain running to a Leviathan toting what looks to be alien weaponry, quite a lot of it in fact. The captain catches your eye and shouts "Good luck captain, four more Leviathans of mine are en route and will be assisting in the defence. We'll see you on other side.`
@@ -2874,7 +2874,7 @@ mission "Core Marauder Blockade Attempt 2 (Var1)"
 				`	("I'm sorry I've got other things to do right now.")`
 					decline
 				`	("Let's do this! What's the plan?")`
-			`As combat ships continue to launch with an alarming disregard for safety checklists, the officer continues, "The hostile fleets total at least fifteen heavy warships, several marauders, and dozens of smaller craft. They are currently incoming from varying locations and the first will be arriving any moment, as will our own reinforcements. Take off immediately and prepare for the assault. Good luck!"`
+			`As combat ships continue to launch with an alarming disregard for safety checklists, the officer continues, "The hostile fleets total at least fifteen heavy warships, several Marauders, and dozens of smaller craft. They are currently incoming from varying locations and the first will be arriving any moment, as will our own reinforcements. Take off immediately and prepare for the assault. Good luck!"`
 			choice
 				`	("Thanks!")`
 			`As you make ready for a quick launch, you notice a squadron of beautiful Vanguards taking off together, flying in tight formation.`
@@ -4446,7 +4446,7 @@ mission "Bounty Hunting (Marauder XX)"
 		
 mission "Bounty Hunting (Marauder X Trio)"
 	name "Destroy Marauder Fleet"
-	description "A huge Marauder fleet consisting of at least three Heavy Warships has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A huge Marauder fleet consisting of at least three heavy warships has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -4471,7 +4471,7 @@ mission "Bounty Hunting (Marauder X Trio)"
 		
 mission "Bounty Hunting (Marauder XX Trio)"
 	name "Destroy Marauder Fleet"
-	description "A gigantic Marauder fleet consisting of at least six Heavy Warships has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A gigantic Marauder fleet consisting of at least six heavy warships has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -4496,7 +4496,7 @@ mission "Bounty Hunting (Marauder XX Trio)"
 		
 mission "Bounty Hunting Mega"
 	name "Destroy Marauder Fleet"
-	description "An armada of Marauder vessels consisting of at least ten Heavy Warships and dozens of smaller craft, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "An armada of Marauder vessels consisting of at least ten heavy warships and dozens of smaller craft, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
