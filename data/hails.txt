@@ -1029,7 +1029,6 @@ phrase "friendly civilian"
 	word
 		"Look here,"
 		"Hey look at my ship,"
-		"See this vessel? You know that"
 		"Wow,"
 	word
 		" my company"
@@ -1062,15 +1061,12 @@ phrase "friendly civilian"
 		" delivered"
 		" transferred"
 	word
-		""
 		" me"
 		" my family"
 		" my village"
 		" my sister"
 		" my parents"
 		" my wife"
-		" my ex-wife"
-		" my planet"
 	word
 		" this"
 	word
