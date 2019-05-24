@@ -1665,7 +1665,7 @@ mission "Remnant: Broken Jump Drive job"
 
 
 mission "Remnant: Face to Maw 1"
-	name "Talk to Plume about the Void Sprites"
+	name "Talk to Plume about the void sprites"
 	description "Plume would be very interested in a report on what happened with the void sprites"
 	landing
 	to offer
@@ -1676,7 +1676,7 @@ mission "Remnant: Face to Maw 1"
 	on offer
 		conversation
 			`As the swirls of gas close over the <ship> you wonder idly what brought you back here. This time, there is no apologetic researcher asking you to risk your life for research, or to return eggs from where they were stolen. The last glimpse of the Archon drifting overhead as you descend below the cloud deck provides no answers; for now, it is nothing more than a silent, brooding presence in the skies of Nenia. The silent depths of an alien world fold over you, gradually erasing the rest of the galaxy from sight.`
-			`	As the <ship> levels off at the designated altitude, you strap yourself into a pressure suit. Stepping into the airlock, you grimace at the antiquity of these hard-shell shield systems, and tap the 'lower shields' button so you can exit onto the hull. Out on the surface, you admire the misty kaleidescope of colors filtering down through the cloud layers, playing over distant shapes moving in the mists. Before long several void sprites emerge, weaving and dancing among the clouds. They swirl for a few minutes around your cargo bay doors as if waiting for something, then pulse briefly with flickers of light and drop into the clouds below. Another void sprite flutters around the <ship>, poking at things and sliding over them. You quickly think to turn on your video recorder to catch the scene. The void sprite notices your brief movement, and turns towards you with a lunge. As it closes on you, your attention is drawn to what you suspect is its mouth: A zig-zagging crack that peels open like a zipper to reveal an opening that resembles an industrial grinder.`
+			`	As the <ship> levels off at the designated altitude, you strap yourself into a pressure suit. Stepping into the airlock, you grimace at the antiquity of these hard-shell shield systems, and tap the 'lower shields' button so you can exit onto the hull. Out on the surface, you admire the misty kaleidescope of colors filtering down through the cloud layers, playing over distant shapes moving in the mists. Before long several void sprites emerge, weaving and dancing among the clouds. They swirl for a few minutes around your cargo bay doors as if waiting for something, then pulse briefly with flickers of light and drop into the clouds below. Another void sprite flutters around the <ship>, poking at things and sliding over them. You quickly think to turn on your video recorder to catch the scene. The void sprite notices your brief movement, and turns towards you with a lunge. As it closes on you, your attention is drawn to what you suspect is its mouth: A zig-zagging crack that peels open like a zipper to reveal an opening resembling an industrial grinder.`
 			`	Up close, the void sprite is massive: Most of its tentacles are easily as thick as your leg, and move with surprising speed and precision. It shifts through the air like a strange kind of fish and you can make out a low vibration you suspect is probably from the air whistling over it as it closes with you. Facing down this rapidly approaching giant, you feel something click in the back of your mind and a wave of paralysis washes over you. In a moment of lucidity moments before the void sprite hits, you recall that your shields are keyed to your equipment: You could activate them to protect yourself from this attack, and they would extend around you. It probably wouldn't be too healthy for the void sprite, though.`
 			choice
 				`	(Activate shields.)`
@@ -1700,7 +1700,7 @@ mission "Remnant: Face to Maw 1"
 
 
 mission "Remnant: Face to Maw 1B"
-	name "Talk to Plume about the Void Sprites"
+	name "Talk to Plume about the void sprites"
 	description "Plume would be very interested in a report on what happened with the void sprites"
 	landing
 	to offer
@@ -1744,23 +1744,23 @@ mission "Remnant: Face to Maw 2"
 	on accept
 		event "remnant: penguin"
 	on complete
-		log "People" "Taly" `One of Taly's main priorities is improving the maneuverability characteristics of Remnant Ships. To this end she has been working on building a new prototype ship based on the void sprites.`
-		"remnant taly" ++
+		log "People" "Taely" `One of Taely's main priorities is improving the maneuverability characteristics of Remnant Ships. To this end she has been working on building a new prototype ship based on the void sprites.`
+		"remnant taely" ++
 		payment 1000000
 		conversation
-			branch taly
-				"remnant taly" > 1
-			`When you land on Viminal a solidly-built female Remnant in coveralls is waiting for you. "Greetings, Captain <first>. My name is Taly, and I am a Prefect among the Remnant. Above all else, I study motion, and in particular how our starships move."`
+			branch taely
+				"remnant taely" > 1
+			`When you land on Viminal a solidly-built female Remnant in coveralls is waiting for you. "Greetings, Captain <first>. My name is Taely, and I am a Prefect among the Remnant. Above all else, I study motion, and in particular how our starships move."`
 			goto main
-			label taly
-			`	When you land on Viminal you spot Taly waiting for you. "Greetings, Captain <first>. It is good to see you again."`
+			label taely
+			`	When you land on Viminal you spot Taely waiting for you. "Greetings, Captain <first>. It is good to see you again."`
 			label main
 			`	"So, Plume sent us some very interesting data, along with a message to expect you with a sample?" You hand her the container with the slime sample and she holds it up to the light. "Interesting looking stuff," she chants. "Let's go back to my shop." She leads the way through several side passages to an out-of-the-way landing pad connected to a large hanger. Inside, you can see a giant tank filled with a murky fluid, surrounded by equipment and displays. She makes her way over to a large machine with several slots which she slides the container into. As the machine starts to work, she turns back to you.`
 			`	"As the primary example of space-faring life, the void sprites have always been of interest to me. They have numerous advantages that we as atmosphere-bound creatures can only dream of, such as being able to experience space in a much more direct manner. I have been working on a side project to build a new generation of ships that melds these ideas with our current technology, but the data we have on the void sprites is centuries old and incomplete," her chant trails off as she pulls up a display with your original scans on them. "However, your recent explorations provided new data I could use to update my designs. This slime that you retrieved is the final ingredient."`
 			`	The machine dings, and she looks over the results and then trills excitedly. "Yes, it matches! So it is time to begin the final activation." She strides over to a central console and taps in a series of commands, followed by an iris scan and a blood prick. The industrial hum of the room suddenly ramps up to a crescendo as your nose is assaulted by what you can only describe as the smell of a thunderstorm in a swamp. A few seconds later the noise softens, and the tank starts lowering into the floor as a shape emerges from the liquid.`
-			`	The ship before you has some faint traces of the gascraft you have flown to Nenia, along with other elements of Remnant design, but it is clearly something new. Its antennae swivel around, as if taking in its surroundings, and the tendrils along the side twitch and reach out to touch its surroundings. Solidly built tendrils underneath it flex as it lifts itself off its supports and begins to move around. You have a momentary vision of what this ship might look like in the skies of Nenia.`
+			`	The ship before you has some faint traces of the gascraft you have flown to Nenia, along with other elements of Remnant design, but it is clearly something new. Its antennae swivel around, as if taking in its surroundings, and the tentacles along the side twitch and reach out to touch its surroundings. Solidly built tendrils underneath it flex as it lifts itself off its supports and begins to move around. You have a momentary vision of what this ship might look like in the skies of Nenia.`
 			scene "scene/penguinscene"
-			`	Taly's droning chant of technical details finally seeps through your reverie: "... so from a captain's point of view flying the penguin should be very similar to a normal ship, except she flies herself and doesn't need a crew to run her systems." She pauses, and looks at you. "Your curiosity provided the final ingredients to bring her to life. You should be the first to have one. You'll still have to go through the shipyard to register her and pay the resource cost to balance the logistics, but this first one is reserved for you." She pats the nose of the penguin and it makes a wooshing noise. After a moment she starts going over the ship with a scanner, leaving you to contemplate in silence.`
+			`	Taely's droning chant of technical details finally seeps through your reverie: "... so from a captain's point of view flying the penguin should be very similar to a normal ship, except she flies herself and doesn't need a crew to run her systems." She pauses, and looks at you. "Your curiosity provided the final ingredients to bring her to life. You should be the first to have one. You'll still have to go through the shipyard to register her and pay the resource cost to balance the logistics, but this first one is reserved for you." She pats the nose of the penguin and it makes a wooshing noise. After a moment she starts going over the ship with a scanner, leaving you to contemplate in silence.`
 
 event "remnant: penguin"
 	shipyard "Remnant Gascraft"
@@ -1801,12 +1801,12 @@ mission "Remnant: Face to Maw 2B"
 			label main
 			`	He leads you to a room that looks like an armory where a team of techs are putting the finishing touches on a rifle stock. "The request from the tech on your behalf caught my attention, as we haven't had the key resources for making void rifles in centuries. Fortunately, we haven't really needed them since we resolved the threats that originally plagued our settlements.`
 			choice
-				`	"It is called a Void Rifle?"`
-				`	"I do not need details."`
+				`	"It's called a Void Rifle?"`
+				`	"I don't need details."`
 					goto end
-			`	"Yes, Void Rifle. I don't know who discovered it, but someone figured out that if a particularly high charge was poured through the tentacle's nervous system in a specific pattern, it emits a paralyzing cone of energy with a reasonably decent range. I'm not an engineer, so I do not really understand the mechanics of it." He pauses to watch as a tech installs the now-caged tentacle on top of the stock. "Suffice to say, it is useless for sniping, but its ability to shoot through walls and affect areas makes it excellent for clearing ships and tight quarters. Back then we had a number of threats that made building-to-building clearing operations an unfortunately frequent occurance." His grim tone catches your attention, but he seems unwilling to pursue the topic.`
+			`	"Yes, Void Rifle. I don't know who discovered it, but someone figured out that if a particularly high charge was poured through the tentacle's nervous system in a specific pattern, it emits a paralyzing cone of energy with a reasonably decent range. I'm not an engineer, so I do not really understand the mechanics of it." He pauses to watch as a tech installs the now-caged tentacle on top of the stock. "Suffice it to say, it is useless for sniping, but its ability to shoot through walls and affect areas makes it excellent for clearing ships and tight quarters. Back then we had a number of threats that made building-to-building clearing operations an unfortunately frequent occurance." His grim tone catches your attention, but he seems unwilling to pursue the topic.`
 			label end
-			`	"Enough of history, though." He turns to the techs who are finishing the assembly. "The tentacle has been treated to resist decay and the stock mechanisms will provide basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
+			`	"All right, enough history." He turns to the techs who are finishing the assembly. "The tentacle has been treated to resist decay and the stock mechanisms will provide basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
 			scene "outfit/void rifle"
 
 
