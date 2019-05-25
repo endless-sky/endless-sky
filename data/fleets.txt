@@ -2827,6 +2827,115 @@ fleet "Marauder fleet X"
 		"Marauder Arrow"
 		"Marauder Bounder"
 
+fleet "Marauder fleet XX"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 3
+		"Marauder Falcon"
+		"Marauder Leviathan"
+		"Marauder Splinter"
+		"Marauder Manta"
+		"Marauder Firebird"
+		"Marauder Raven (Weapons)"
+		"Marauder Quicksilver (Engines)"
+		"Marauder Arrow (Weapons)"
+		"Marauder Bounder (Engines)"
+	variant 3
+		"Marauder Falcon"
+		"Marauder Leviathan"
+		"Marauder Splinter"
+		"Marauder Manta"
+		"Marauder Firebird"
+		"Marauder Raven (Engines)"
+		"Marauder Quicksilver (Weapons)"
+		"Marauder Arrow (Engines)"
+		"Marauder Bounder (Weapons)"
+	variant 2
+		"Marauder Falcon (Engines)"
+		"Marauder Leviathan (Weapons)"
+		"Marauder Splinter (Engines)"
+		"Marauder Manta (Weapons)"
+		"Marauder Firebird (Engines)"
+		"Marauder Raven"
+		"Marauder Quicksilver"
+		"Marauder Arrow"
+		"Marauder Bounder"
+	variant 2
+		"Marauder Falcon (Weapons)"
+		"Marauder Leviathan (Engines)"
+		"Marauder Splinter (Weapons)"
+		"Marauder Manta (Engines)"
+		"Marauder Firebird (Weapons)"
+		"Marauder Raven"
+		"Marauder Quicksilver"
+		"Marauder Arrow"
+		"Marauder Bounder"
+	variant 2
+		"Marauder Falcon (Engines)"
+		"Marauder Leviathan (Weapons)"
+		"Marauder Splinter (Engines)"
+		"Marauder Manta (Weapons)"
+		"Marauder Firebird (Engines)"
+		"Marauder Raven (Weapons)"
+		"Marauder Quicksilver (Engines)"
+		"Marauder Arrow (Weapons)"
+		"Marauder Bounder (Engines)"
+	variant 2
+		"Marauder Falcon (Weapons)"
+		"Marauder Leviathan (Engines)"
+		"Marauder Splinter (Weapons)"
+		"Marauder Manta (Engines)"
+		"Marauder Firebird (Weapons)"
+		"Marauder Raven (Engines)"
+		"Marauder Quicksilver (Weapons)"
+		"Marauder Arrow (Engines)"
+		"Marauder Bounder (Weapons)"
+		
+fleet "Elite Bactrian Merchants"
+	government "Merchant"
+	names "civilian"
+	cargo 2
+	personality
+		heroic frugal
+		confusion 20
+	variant 1
+		"Bactrian (Hai Weapons)" 1
+		"Dagger" 3
+		
+fleet "Elite Gunboats"
+	government "Republic"
+	names "republic small"
+	cargo 0
+	personality
+		heroic opportunistic
+	variant 1
+		"Gunboat"
+		
+fleet "Elite Leviathans"
+	government "Merchant"
+	names "civilian"
+	cargo 0
+	personality
+		heroic frugal
+		confusion 20
+	variant 1
+		"Leviathan (Hai Weapons)"
+		
+fleet "Elite Vanguards"
+	government "Syndicate"
+	names "syndicate capital"
+	fighters "syndicate fighter"
+	cargo 2
+	personality
+		heroic
+	variant 1
+		"Vanguard"
+	variant 1
+		"Vanguard (Particle)"
+
 fleet "Hired Guns"
 	government "Bounty Hunter"
 	names "bounty hunter"
