@@ -171,6 +171,7 @@ Version 0.9.9:
       * Content definition checks do not warn for certain objects defined solely by game events (@comnom)
       * Changed the human anti-missile turret models to increase their hardpoint image visibility. (@comnom)
       * Lowered the pitch of the scan sound effect by one octave. (@comnom)
+      * Some regional pirate jobs now increase your reputation with pirates if completed, but decrease your reputation with the regional government (i.e. Republic, Syndicate, or Free Worlds) if failed. (@Amazinite)
   * Game mechanics:
     * Ship AI:
       * AI ships no longer keep trying to plunder if their cargo is full. (@tehhowch)
