@@ -144,6 +144,18 @@ interface "main menu"
 		center -420 155
 		dimensions 120 30
 
+	# For Beta Only
+	label "THIS IS THE BETA VERSION"
+		center 0 100
+	label "PLEASE REPORT ALL ISSUES TO"
+		center 0 120
+	label "US ON GITHUB, STEAM FORUMS,"
+		center 0 140
+	label "OR DISCORD (/ZeuASSx)"
+		center 0 160
+	label "Thanks for playing!"
+		center 0 180
+
 
 
 interface "menu player info"
