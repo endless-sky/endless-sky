@@ -2256,6 +2256,11 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 		conditions["passenger space"] = flagship->Cargo().BunksFree();
 	}
 	
+	// Store conditions for flagship current crew, required crew, and bunks.
+	conditions["crew"] = flagship->Crew();
+	conditions["required crew"] = flagship->RequiredCrew();
+	conditions["bunks"] = flagship->Attributes().Get("bunks");
+	
 	// Conditions for your fleet's attractiveness to pirates:
 	pair<double, double> factors = RaidFleetFactors();
 	conditions["cargo attractiveness"] = factors.first;
