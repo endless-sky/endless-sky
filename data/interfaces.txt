@@ -144,8 +144,8 @@ interface "main menu"
 		center -420 155
 		dimensions 120 30
 
-	# For Beta Only
-	label "THIS IS THE BETA VERSION"
+	# For Unstable Only
+	label "THIS IS THE UNSTABLE VERSION"
 		center 0 100
 	label "PLEASE REPORT ALL ISSUES TO"
 		center 0 120
