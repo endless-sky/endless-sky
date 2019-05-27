@@ -725,9 +725,9 @@ mission "Remnant: Heavy Laser"
 		conversation
 			`You remember that Taely was interested in seeing examples of technology from human space. Would you like to show her your heavy laser?`
 			choice
-				`	Not now.`
+				`	(Not now.)`
 					defer
-				`	Yes.`
+				`	(Yes.)`
 			branch familiar
 				has "Remnant Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a starling. "Greetings, <first>. I'll be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
@@ -763,9 +763,9 @@ mission "Remnant: Plasma Cannon"
 		conversation
 			`You recall that Taely was interested in examining examples of technology from ancestral space. Would you like to show her the plasma cannons you retrieved?`
 			choice
-				`	Not now.`
+				`	(Not now.)`
 					defer
-				`	Yes.`
+				`	(Yes.)`
 			branch familiar
 				has "Remnant Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a starling. "Greetings, <first>. I will be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
@@ -809,9 +809,9 @@ mission "Remnant: Catalytic Ramscoop"
 		conversation
 			`You recall that Taely was interested in seeing examples of new human technology, and the catalytic ramscoop definitely fits the criteria. Would you like to show her?`
 			choice
-				`	Not now.`
+				`	(Not now.)`
 					defer
-				`	Yes.`
+				`	(Yes.)`
 			branch familiar
 				has "Remnant Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely calibrating an inhibitor cannon on an albatross. "Greetings, <first>. I am just finishing these calibrations." She does a few more things inside the casing, reseals the hatch, and drops to the ground on a tether. "So, did you recover something?"`
@@ -846,9 +846,9 @@ mission "Remnant: Electron Beam"
 		conversation
 			`You recall that Taely was interested in seeing examples of new human technology, and the electron beam certainly fits the criteria. Would you like to show her?`
 			choice
-				`	Not now.`
+				`	(Not now.)`
 					defer
-				`	Yes.`
+				`	(Yes.)`
 			branch familiar
 				has "Remnant Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely closing up the panel on a thasher turret. "Greetings, <first>. You have good timing: I was just finishing." She reseals the hatch, and drops to the ground on a tether. "So, did you recover something?"`
@@ -883,9 +883,9 @@ mission "Remnant: D94-YV Shield Generator"
 		conversation
 			`You know that Taely was interested in seeing examples of recently developped human technology, and the D94-YV Shield Generator probably fits the criteria. Would you like to show her?`
 			choice
-				`	Not now.`
+				`	(Not now.)`
 					defer
-				`	Yes.`
+				`	(Yes.)`
 			branch familiar
 				has "Remnant Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely applying some kind of material over a hole in a hull. "Greetings, <first>. What brings you here today?" She reseals the hatch, and drops to the ground on a tether. "Did you bring us something?"`
@@ -920,9 +920,9 @@ mission "Remnant: S-970 Regenerator"
 		conversation
 			`You recall that Taely was interested in seeing instances of new human technology, and the S-970 Regenerator is definitely a recent development. Would you like to show her?`
 			choice
-				`	Not now.`
+				`	(Not now.)`
 					defer
-				`	Yes.`
+				`	(Yes.)`
 			branch familiar
 				has "Remnant Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely adjusting something on the hull that you can't quite see. "Greetings, <first>. What brings you here today?" She taps something, then hangs her tools on her belt and drops to the ground on a tether. "Did you bring us something?"`
