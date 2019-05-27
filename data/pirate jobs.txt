@@ -353,8 +353,12 @@ mission "Stealth Cargo Smuggling (North) [0]"
 			names "republic small"
 			variant
 				"Gunboat"
+	on fail
+		"reputation: Republic" -= 5
+		"reputation: Navy (Oathkeeper)" -= 5
 	on complete
 		payment 50000 300
+		"reputation: Pirate" += 5
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Cargo Smuggling (North) [1]"
@@ -424,8 +428,12 @@ mission "Stealth Cargo Smuggling (North) [1]"
 		personality heroic staying
 		government Republic
 		fleet "Navy Surveillance"
+	on fail
+		"reputation: Republic" -= 5
+		"reputation: Navy (Oathkeeper)" -= 5
 	on complete
 		payment 75000 300
+		"reputation: Pirate" += 5
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Cargo Smuggling (Core) [0]"
@@ -472,8 +480,11 @@ mission "Stealth Cargo Smuggling (Core) [0]"
 			names "syndicate small"
 			variant
 				"Quicksilver (Scanner)"
+	on fail
+		"reputation: Syndicate" -= 5
 	on complete
 		payment 50000 300
+		"reputation: Pirate" += 5
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Cargo Smuggling (Core) [1]"
@@ -546,8 +557,11 @@ mission "Stealth Cargo Smuggling (Core) [1]"
 			names "syndicate small"
 			variant
 				"Quicksilver (Scanner)" 2
+	on fail
+		"reputation: Syndicate" -= 5
 	on complete
 		payment 75000 300
+		"reputation: Pirate" += 5
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Cargo Smuggling (South) [0]"
@@ -594,8 +608,12 @@ mission "Stealth Cargo Smuggling (South) [0]"
 			names "militia"
 			variant
 				"Bastion (Scanner)"
+	on fail
+		"reputation: Free Worlds" -= 5
+		"reputation: Militia" -= 5
 	on complete
 		payment 50000 300
+		"reputation: Pirate" += 5
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Cargo Smuggling (South) [1]"
@@ -668,8 +686,12 @@ mission "Stealth Cargo Smuggling (South) [1]"
 			names "militia"
 			variant
 				"Bastion (Scanner)" 2
+	on fail
+		"reputation: Free Worlds" -= 5
+		"reputation: Militia" -= 5
 	on complete
 		payment 75000 300
+		"reputation: Pirate" += 5
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 
@@ -718,8 +740,12 @@ mission "Stealth Drug Running (North) [0]"
 			names "republic small"
 			variant
 				"Gunboat"
+	on fail
+		"reputation: Republic" -= 5
+		"reputation: Navy (Oathkeeper)" -= 5
 	on complete
 		payment 75000 375
+		"reputation: Pirate" += 5
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Drug Running (North) [1]"
@@ -789,8 +815,12 @@ mission "Stealth Drug Running (North) [1]"
 		personality heroic staying
 		system destination
 		fleet "Navy Surveillance"
+	on fail
+		"reputation: Republic" -= 5
+		"reputation: Navy (Oathkeeper)" -= 5
 	on complete
 		payment 100000 375
+		"reputation: Pirate" += 5
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Drug Running (Core) [0]"
@@ -837,8 +867,11 @@ mission "Stealth Drug Running (Core) [0]"
 			names "syndicate small"
 			variant
 				"Quicksilver (Scanner)"
+	on fail
+		"reputation: Syndicate" -= 5
 	on complete
 		payment 75000 375
+		"reputation: Pirate" += 5
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Drug Running (Core) [1]"
@@ -911,8 +944,11 @@ mission "Stealth Drug Running (Core) [1]"
 			names "syndicate small"
 			variant
 				"Quicksilver (Scanner)" 2
+	on fail
+		"reputation: Syndicate" -= 5
 	on complete
 		payment 100000 375
+		"reputation: Pirate" += 5
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Drug Running (South) [0]"
@@ -959,8 +995,12 @@ mission "Stealth Drug Running (South) [0]"
 			names "militia"
 			variant
 				"Bastion (Scanner)"
+	on fail
+		"reputation: Free Worlds" -= 5
+		"reputation: Militia" -= 5
 	on complete
 		payment 75000 375
+		"reputation: Pirate" += 5
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 mission "Stealth Drug Running (South) [1]"
@@ -1033,8 +1073,12 @@ mission "Stealth Drug Running (South) [1]"
 			names "militia"
 			variant
 				"Bastion (Scanner)" 2
+	on fail
+		"reputation: Free Worlds" -= 5
+		"reputation: Militia" -= 5
 	on complete
 		payment 100000 375
+		"reputation: Pirate" += 5
 		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
 
 
@@ -1204,8 +1248,12 @@ mission "Highly Wanted Passenger (North)"
 		personality heroic staying
 		system destination
 		fleet "Navy Surveillance"
+	on fail
+		"reputation: Republic" -= 5
+		"reputation: Navy (Oathkeeper)" -= 5
 	on complete
 		payment 200000 1000
+		"reputation: Pirate" += 5
 		dialog "You land outside of the main city to avoid any chances of your passenger being seen. They grab their things and make their way off of your ship after paying you <payment>."
 
 mission "Highly Wanted Passenger (Core)"
@@ -1286,8 +1334,11 @@ mission "Highly Wanted Passenger (Core)"
 			names "syndicate small"
 			variant
 				"Quicksilver (Scanner)" 2
+	on fail
+		"reputation: Syndicate" -= 5
 	on complete
 		payment 200000 1000
+		"reputation: Pirate" += 5
 		dialog "You land outside of the main city to avoid any chances of your passenger being seen. They grab their things and make their way off of your ship after paying you <payment>."
 
 mission "Highly Wanted Passenger (South)"
@@ -1368,8 +1419,12 @@ mission "Highly Wanted Passenger (South)"
 			names "militia"
 			variant
 				"Bastion (Scanner)" 2
+	on fail
+		"reputation: Free Worlds" -= 5
+		"reputation: Militia" -= 5
 	on complete
 		payment 200000 1000
+		"reputation: Pirate" += 5
 		dialog "You land outside of the main city to avoid any chances of your passenger being seen. They grab their things and make their way off of your ship after paying you <payment>."
 
 
@@ -1945,6 +2000,7 @@ mission "Eliminating Law Enforcement (North, Small)"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 250000
+		"reputation: Pirate" += 5
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Navy fleet."
 
 mission "Eliminating Law Enforcement (North, Large)"
@@ -1968,6 +2024,7 @@ mission "Eliminating Law Enforcement (North, Large)"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 400000
+		"reputation: Pirate" += 10
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Navy fleet."
 
 mission "Eliminating Law Enforcement (Core, Small)"
@@ -1990,6 +2047,7 @@ mission "Eliminating Law Enforcement (Core, Small)"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 250000
+		"reputation: Pirate" += 5
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Syndicate fleet."
 
 mission "Eliminating Law Enforcement (Core, Large)"
@@ -2013,6 +2071,7 @@ mission "Eliminating Law Enforcement (Core, Large)"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 400000
+		"reputation: Pirate" += 10
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Syndicate fleet."
 
 mission "Eliminating Law Enforcement (South, Small)"
@@ -2035,6 +2094,7 @@ mission "Eliminating Law Enforcement (South, Small)"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 250000
+		"reputation: Pirate" += 5
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the militia fleet."
 
 mission "Eliminating Law Enforcement (South, Large)"
@@ -2058,6 +2118,7 @@ mission "Eliminating Law Enforcement (South, Large)"
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 400000
+		"reputation: Pirate" += 10
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the militia fleet."
 
 
@@ -2894,6 +2955,7 @@ mission "Republic Assassination [1]"
 		payment 350000
 		dialog "A pirate warlord thanks you for eliminating the politician pays you <payment>."
 		"reputation: Republic" -= 10
+		"reputation: Navy (Oathkeeper)" -= 10
 		"reputation: Pirate" += 3
 		
 mission "Republic Assassination [2]"
@@ -2928,6 +2990,7 @@ mission "Republic Assassination [2]"
 		payment 600000
 		dialog "A band of drug traders thank you for eliminating the politician and pay you <payment>."
 		"reputation: Republic" -= 15
+		"reputation: Navy (Oathkeeper)" -= 15
 		"reputation: Pirate" += 5
 		
 mission "Republic Assassination [3]"
@@ -2964,6 +3027,7 @@ mission "Republic Assassination [3]"
 		payment 750000
 		dialog "A gang of pirates on <planet> thank you for taking out the Navy commander and pay you <payment>."
 		"reputation: Republic" -= 20
+		"reputation: Navy (Oathkeeper)" -= 20
 		"reputation: Pirate" += 7
 		
 mission "Republic Assassination [4]"
@@ -3004,6 +3068,7 @@ mission "Republic Assassination [4]"
 		payment 1000000
 		dialog "You are greeted by applause from many pirates when you land and a powerful pirate warlord pays you <payment>."
 		"reputation: Republic" -= 25
+		"reputation: Navy (Oathkeeper)" -= 25
 		"reputation: Pirate" += 10
 
 
