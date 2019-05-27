@@ -320,12 +320,13 @@ Version 0.9.9:
     * Added the command-line flag -p to check the active save for content definition errors. (@tehhowch)
     * The game now quits after printing the --ships or --weapons tables, or checking a save.
     * Made game startup avoid rewriting the active save, unless the pilot was entered. (@tehhowch)
-    * Replaced usage of stderr output with logging to file, to help Windows users track down issues (@tehhowch)
-    * Reduced "turn jitter", where ships could rapidly alternate turning direction (@tehhowch)
-    * Interlaced .png's no longer produce warnings from libpng (@tehhowch)
-    * The application name on OSX is now properly "Endless Sky" (@nobodywasishere)
-    * Improved how the AI determines which ships other ships should consider targeting (@tehhowch)
-    * Condition values may be +/- 4 quintillion instead of +/- 2 billion (@tehhowch)
+    * Replaced usage of stderr output with logging to file, to help Windows users track down issues. (@tehhowch)
+    * Reduced "turn jitter", where ships could rapidly alternate turning direction. (@tehhowch)
+    * Interlaced .png's no longer produce warnings from libpng. (@tehhowch)
+    * The application name on OSX is now properly "Endless Sky". (@nobodywasishere)
+    * Improved how the AI determines which ships other ships should consider targeting. (@tehhowch)
+    * Condition values may be +/- 4 quintillion instead of +/- 2 billion. (@tehhowch)
+    * Windows console output now works properly. (@comnom)
 
 Version 0.9.8:
   * Bug fixes:
