@@ -626,7 +626,7 @@ ship "Tern"
 	sprite "ship/tern"
 	thumbnail "thumbnail/tern"
 	attributes
-		category "drone"
+		category "Drone"
 		licenses
 			Remnant
 		"cost" 830000
@@ -995,7 +995,7 @@ ship "Harrier"
 	sprite "ship/harrier"
 	thumbnail "thumbnail/harrier"
 	attributes
-		category "intercepter"
+		category "Interceptor"
 		licenses
 			Remnant
 		"cost" 6830000
