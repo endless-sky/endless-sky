@@ -1044,11 +1044,12 @@ ship "Harrier"
 		"Remnant Afterburner"
 		"Hyperdrive"
 		
-	gun 0 -34
-	gun -15 -32 "Remnant GASER Cannon"
-	gun 15 -32 "Remnant GASER Cannon"
-	engine -10 41.5
-	engine 10 41.5
+	gun 0 -48.5 "Nullifier Missile Pod"
+	gun -6 -41 "Remnant GASER Cannon"
+	gun 6 -41 "Remnant GASER Cannon"
+	engine 0 45
+	engine -10 49
+	engine 10 49
 	explode "tiny explosion" 30
 	explode "small explosion" 20
 	description "The Harrier is a short range (for the Remnant) interceptor designed to patrol the upper atmosphere of gas giants and use their decisive speed advantage to conduct hit and run attacks on threats in nearby systems. While technically weaker than the Starlings, but it is a faster and cheaper alternative for providing covering fire in engagements near Remnant systems."
