@@ -1001,6 +1001,8 @@ ship "Harrier"
 		"cost" 6830000
 		"shields" 4000
 		"hull" 4800
+		"required crew" 1
+		"bunks" 2
 		"cargo space" 23
 		"fuel capacity" 500
 		"ramscoop" 1
