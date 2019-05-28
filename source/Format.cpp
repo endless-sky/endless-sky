@@ -122,9 +122,9 @@ string Format::Number(double value)
 
 		// Add the thousands separators.
 		dot -= 3;
-		while (dot < result.size())
+		while (dot && dot < result.size())
 		{
-			result.insert(dot, 1, ' ');
+			result.insert(dot, 1, ',');
 			dot -= 3;
 		}
 	} else
