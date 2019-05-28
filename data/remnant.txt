@@ -225,6 +225,7 @@ shipyard "Remnant"
 	"Peregrine"
 	"Condor"
 	"Diomedea"
+	"Harrier"
 
 shipyard "Remnant Gascraft"
 	"Gascraft"
