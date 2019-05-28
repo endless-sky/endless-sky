@@ -1009,7 +1009,7 @@ ship "Harrier"
 		"drag" .9
 		"heat dissipation" .9
 		"gaslining" 1
-		"outfit space" 164
+		"outfit space" 200
 		"shield generation" 2.8
 		"shield energy" 1.2
 		"hull repair rate" 1.8
@@ -1022,15 +1022,16 @@ ship "Harrier"
 		"outfit scan speed" 1
 		"tactical scan power" 26
 		"weapon capacity" 85
-		"engine capacity" 45
+		"engine capacity" 70
 		weapon
 			"blast radius" 10
 			"shield damage" 100
 			"hull damage" 150
 			"hit force" 250
 	outfits
-		"Point Defense Turret"
-		"Inhibitor Cannon" 2
+		"Nullifier Missile Pod"
+		"Remnant GASER Cannon" 2
+		"Nullifier Missile" 6
 		
 		"Millennium Cell"
 		"Crystal Capacitor"
@@ -1038,11 +1039,12 @@ ship "Harrier"
 		
 		"Crucible-Class Thruster" 2
 		"Crucible-Class Steering"
+		"Remnant Afterburner"
 		"Hyperdrive"
 		
-	gun -15 -32 "Inhibitor Cannon"
-	gun 15 -32 "Inhibitor Cannon"
-	turret 0 11.5 "Point Defense Turret"
+	gun 0 -34
+	gun -15 -32 "Remnant GASER Cannon"
+	gun 15 -32 "Remnant GASER Cannon"
 	engine -10 41.5
 	engine 10 41.5
 	explode "tiny explosion" 30
