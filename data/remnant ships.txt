@@ -626,7 +626,7 @@ ship "Tern"
 	sprite "ship/tern"
 	thumbnail "thumbnail/tern"
 	attributes
-		category "Interceptor"
+		category "drone"
 		licenses
 			Remnant
 		"cost" 830000
@@ -898,12 +898,20 @@ ship "Condor"
 	turret -5.5 29
 	turret 5.5 29
 	turret 0 120
+	drone -17 5
+	drone 17 5
+	drone -44.5 -16.5
+	drone 44.5 -16.5
+	drone -67 7.5
+	drone 67 7.5
+	drone -22.5 65
+	drone 22.5 65
 	explode "small explosion" 10
 	explode "medium explosion" 30
 	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion large"
-	description `The Condor is the Remnant's combat transport, and was  built to serve two purposes. The first is to carry soldiers and salage crew for boarding operations against the Korath. The second is to carry as many people as possible during evacuations under fire from Alphas, Korath, or other unknown threats. As a result of these mandates, the Condor is built to be tough, fast, and fit as many people as possible.`
+	description `The Condor is the Remnant's combat transport, and was  built to serve two purposes. The first is to carry soldiers and salage crew for boarding operations against the Korath. The second is to carry as many people as possible during evacuations under fire from Alphas, Korath, or other unknown threats. As a result of these mandates, the Condor is built to be tough, fast, and fit as many people as possible. Given its importance in keeping the Remnant safe during evactuations, it often carries a small squad of terns to cover its retreat and distract enemies from that which the Remnant value far more than material wealth.`
 
 
 
