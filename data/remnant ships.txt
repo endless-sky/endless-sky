@@ -1006,7 +1006,6 @@ ship "Harrier"
 		"cargo space" 23
 		"fuel capacity" 500
 		"ramscoop" 1
-		"automaton" 1
 		"mass" 120
 		"drag" .9
 		"heat dissipation" .9
