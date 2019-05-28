@@ -1035,7 +1035,7 @@ ship "Harrier"
 		"Nullifier Missile" 6
 		
 		"Millennium Cell"
-		"Crystal Capacitor"
+		"Crystal Capacitor" 2
 		"Thermoelectric Cooler"
 		
 		"Crucible-Class Thruster" 2
