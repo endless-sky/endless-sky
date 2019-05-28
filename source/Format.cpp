@@ -96,27 +96,41 @@ string Format::Number(double value)
 	if(!value)
 		return "0";
 	
-	string result;
 	bool isNegative = (value < 0.);
 	value = fabs(value);
 	
 	// Check if this is a whole number.
-	double decimal = modf(value, &value);
-	if(decimal)
-	{
-		if(decimal >= .95)
-		{
-			result += '0';
-			++value;
-		}
+	string result = to_string(value);
+
+	size_t dot = result.find('.');
+	if (dot != string::npos) {
+		// Numbers up to 1000 have two decimals places, up to 10000 one and
+		// otherwise none.
+		if (value < 1000 && dot + 3 < result.size())
+			result.erase(dot + 3);
+		else if (value < 10000 && dot + 2 < result.size())
+			result.erase(dot + 2);
 		else
-			result += static_cast<char>('0' + static_cast<int>(round(decimal * 10.)));
-		
-		result += '.';
-	}
-	
-	// Convert the number to a string, adding commas if needed.
-	FormatInteger(value, isNegative, result);
+			result.erase(dot);
+
+		// Remove trailing zeroes.
+		while (result.back() == '0')
+			result.pop_back();
+		// Lingering comma.
+		if (result.back() == '.')
+			result.pop_back();
+
+		// Add the thousands separators.
+		dot -= 3;
+		while (dot < result.size())
+		{
+			result.insert(dot, 1, ' ');
+			dot -= 3;
+		}
+	} else
+		// Convert the number to a string, adding commas if needed.
+		FormatInteger(value, isNegative, result);
+
 	return result;
 }
 
