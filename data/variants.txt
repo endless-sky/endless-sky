@@ -164,6 +164,53 @@ ship "Bactrian" "Bactrian (Hired Gun)"
 		"Hyperdrive"
 
 
+ship "Bactrian" "Elite Bactrian"
+	outfits
+		"Electron Beam" 4
+		"Electron Turret" 4
+		"Armageddon Core"
+		"LP288a Battery Pack"
+		"S-970 Regenerator"
+		"Liquid Helium Cooler"
+		"Outfits Expansion" 3
+		"Laser Rifle" 245
+		"Security Station" 2
+		"Fragmentation Grenades" 245
+		"A520 Atomic Thruster"
+		"A865 Atomic Steering"
+		Hyperdrive
+	gun -15 -226 "Electron Beam"
+	gun 15 -226 "Electron Beam"
+	gun -40 -133 "Electron Beam"
+	gun -45 -128 "Electron Beam"
+	turret -22 -148 "Electron Turret"
+	turret 26 -80 "Electron Turret"
+	turret -41 -20 "Electron Turret"
+	turret 32 -7 "Electron Turret"
+	turret 53 82
+	turret -37 186
+
+
+ship "Bactrian" "Elite Bactrian (Alien)"
+	outfits
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 224
+		"Pulse Turret" 6
+		"Boulder Reactor"
+		"Geode Reactor"
+		"LP144a Battery Pack"
+		"Hai Diamond Regenerator"
+		"Large Heat Shunt"
+		"Small Heat Shunt"
+		"Outfits Expansion"
+		"Pulse Rifle" 245
+		"Security Station" 2
+		"Fragmentation Grenades" 245
+		`"Bufaer" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		Hyperdrive
+
+
 
 ship "Barb" "Barb (Gatling)"
 	outfits
@@ -1919,6 +1966,47 @@ ship "Star Queen" "Star Queen (Hai)"
 		"Luxury Accommodations"
 		"Hyperdrive"
 
+
+
+ship "Vanguard" "Elite Vanguard"
+	outfits
+		"Particle Cannon" 7
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"LP072a Battery Pack"
+		"S-970 Regenerator"
+		"S-270 Regenerator"
+		"Liquid Nitrogen Cooler"
+		"Water Coolant System"
+		"Laser Rifle" 23
+		"Outfits Expansion" 2
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		Hyperdrive
+
+
+ship "Vanguard" "Elite Vanguard (Alien)"
+	outfits
+		"Ion Cannon" 2
+		"Pulse Cannon" 5
+		"Pulse Turret"
+		"Boulder Reactor"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Corundum Regenerator"
+		"Small Heat Shunt" 2
+		"Pulse Rifle" 23
+		"Security Station" 2
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		Hyperdrive
+	gun 0 -132 "Pulse Cannon"
+	gun -22 -122 "Ion Cannon"
+	gun 22 -122 "Ion Cannon"
+	gun -21 -45 "Pulse Cannon"
+	gun 21 -45 "Pulse Cannon"
+	gun -31 -45 "Pulse Cannon"
+	gun 31 -45 "Pulse Cannon"
 
 
 ship "Vanguard" "Vanguard (Missile)"
