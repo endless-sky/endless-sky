@@ -63,9 +63,10 @@ Version 0.9.9:
       * The turret hardpoint and projectile of the Laser Turret now properly reflect the outfit image. (@Amazinite)
       * NPC carrier-fighter assignment properly counts available bays. (@oo13)
       * Unrepresentable condition values generate a warning, rather than result in signed integer overflow. (@tehhowch)
-      * Weapon outfits that do not specify a hardpoint no longer occupy a gun port (@tehhowch)
+      * Weapon outfits that do not specify a hardpoint no longer occupy a gun port. (@tehhowch)
+      * The system of a carried ship's parent is now checked for mission NPCs that must be evaded or accompanied. (@comnom) 
     * Minor issues:
-      * Typo fixes. (@abenkovskii, @Alkallid, @Amazinite, @Bladewood, @Fzzr, @jafdy, @Janaszar, @jostephd, @Jugosloven1612, @LordInsane, @MessyMix, @Nescio0, @redshalken, @seanfahey, @solardawning, @temtemy, @themightygrunt, @tmbutterworth, @toilethinges, @Turtleroku, @UnciaPrima, @warp-core, @whismerhill)
+      * Typo fixes. (@abenkovskii, @Alkallid, @Amazinite, @Bladewood, @Fzzr, @jafdy, @Janaszar, @jostephd, @Jugosloven1612, @LordInsane, @MCOfficer, @MessyMix, @Nescio0, @redshalken, @seanfahey, @solardawning, @temtemy, @themightygrunt, @tmbutterworth, @toilethinges, @Turtleroku, @UnciaPrima, @warp-core, @whismerhill)
       * Fixed missions that give "gifts" not being colored as ready to be completed. (@tehhowch)
       * Fixed ship placement when traveling through a wormhole that moves a lot in one day. (@tehhowch)
       * Added a warning for ships with more than 32 hardpoints. (@EndrosG)
@@ -78,6 +79,7 @@ Version 0.9.9:
       * Added a bunch of new ship names. (@Pointedstick)
       * Added some new special "person" ships.
       * New galaxy background image. (@Aurelite)
+      * New Pleiades background image. (@beccabunny)
       * Updated some landscape images.
       * Added new station landscape images. (@sivael, @Pointedstick)
       * Added a "Deep Security" government that's distinct from the Republic Navy (and has its own hails).
@@ -149,6 +151,7 @@ Version 0.9.9:
       * Navy (Oathkeeper) fleets will now have Mark II variant ships when the rest of the Navy does. (@Fzzr)
       * The science drone can no longer be made hostile. (@tehhowch)
       * Added extra player choices that are more sympathetic to the Wanderers and Pug during Wanderer missions. (@10010101001)
+      * The FW Epilogue missions are now marked as minor. (@comnom)
     * Other:
       * Fixed the plural versions of some ship types.
       * Expanded the descriptions for the Hai ships. (@Amazinite)
@@ -166,6 +169,9 @@ Version 0.9.9:
       * Lead's description no longer incorrectly claims that it is the heaviest non-radioactive element. (@Janaszar)
       * Added more content definition warnings & checks, to help modders develop functional content (@tehhowch)
       * Content definition checks do not warn for certain objects defined solely by game events (@comnom)
+      * Changed the human anti-missile turret models to increase their hardpoint image visibility. (@comnom)
+      * Lowered the pitch of the scan sound effect by one octave. (@comnom)
+      * Some regional pirate jobs now increase your reputation with pirates if completed, but decrease your reputation with the regional government (i.e. Republic, Syndicate, or Free Worlds) if failed. (@Amazinite)
   * Game mechanics:
     * Ship AI:
       * AI ships no longer keep trying to plunder if their cargo is full. (@tehhowch)
@@ -296,6 +302,7 @@ Version 0.9.9:
       * Reduced the volume scale to better match other games.
       * When formatting numbers, always put a digit to the left of the separator. (@Hacklin)
       * The player's name is now limited in how long it can be. (@tehhowch)
+      * Moved the contribution information to the top of the credits in order to increase exposure. (@Amazinite)
   * Under the hood:
     * Lots of data file cleanup and simplification of redundant items. (@tehhowch)
     * Data file fixes. (@Amazinite, @jafdy, @luiges90, @Nescio0, @Rob59er, @toilethinges, @warp-core)
@@ -314,12 +321,13 @@ Version 0.9.9:
     * Added the command-line flag -p to check the active save for content definition errors. (@tehhowch)
     * The game now quits after printing the --ships or --weapons tables, or checking a save.
     * Made game startup avoid rewriting the active save, unless the pilot was entered. (@tehhowch)
-    * Replaced usage of stderr output with logging to file, to help Windows users track down issues (@tehhowch)
-    * Reduced "turn jitter", where ships could rapidly alternate turning direction (@tehhowch)
-    * Interlaced .png's no longer produce warnings from libpng (@tehhowch)
-    * The application name on OSX is now properly "Endless Sky" (@nobodywasishere)
-    * Improved how the AI determines which ships other ships should consider targeting (@tehhowch)
-    * Condition values may be +/- 4 quintillion instead of +/- 2 billion (@tehhowch)
+    * Replaced usage of stderr output with logging to file, to help Windows users track down issues. (@tehhowch)
+    * Reduced "turn jitter", where ships could rapidly alternate turning direction. (@tehhowch)
+    * Interlaced .png's no longer produce warnings from libpng. (@tehhowch)
+    * The application name on OSX is now properly "Endless Sky". (@nobodywasishere)
+    * Improved how the AI determines which ships other ships should consider targeting. (@tehhowch)
+    * Condition values may be +/- 4 quintillion instead of +/- 2 billion. (@tehhowch)
+    * Windows console output now works properly. (@comnom)
 
 Version 0.9.8:
   * Bug fixes:

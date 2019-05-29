@@ -906,7 +906,7 @@ mission "Remnant: D94-YV Shield Generator"
 
 mission "Remnant: S-970 Regenerator"
 	name "Retrieve S-970 Regenerators"
-	description "A Remnant engineer has offered you <payment> for delivering two electron beams to a testing range on <planet>."
+	description "A Remnant engineer has offered you <payment> for delivering two S-970 Regenerators to an impact testing facility on <planet>."
 	minor
 	source "Viminal"
 	destination
