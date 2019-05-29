@@ -938,7 +938,7 @@ mission "FWC Checkmate Escorts"
 		has "FWC Pug 4: done"
 	
 	npc kill
-		government "Free Worlds"
+		government "Escort"
 		personality heroic escort disables
 		fleet
 			names "free worlds capital"
