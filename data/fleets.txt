@@ -2893,7 +2893,7 @@ fleet "Marauder fleet XX"
 		"Marauder Quicksilver (Weapons)"
 		"Marauder Arrow (Engines)"
 		"Marauder Bounder (Weapons)"
-		
+
 fleet "Elite Bactrian Merchants"
 	government "Merchant"
 	names "civilian"
@@ -2904,7 +2904,7 @@ fleet "Elite Bactrian Merchants"
 	variant 1
 		"Bactrian (Hai Weapons)" 1
 		"Dagger" 3
-		
+
 fleet "Elite Gunboats"
 	government "Republic"
 	names "republic small"
@@ -2913,7 +2913,7 @@ fleet "Elite Gunboats"
 		heroic opportunistic
 	variant 1
 		"Gunboat"
-		
+
 fleet "Elite Leviathans"
 	government "Merchant"
 	names "civilian"
@@ -2923,7 +2923,7 @@ fleet "Elite Leviathans"
 		confusion 20
 	variant 1
 		"Leviathan (Hai Weapons)"
-		
+
 fleet "Elite Vanguards"
 	government "Syndicate"
 	names "syndicate capital"
@@ -2935,6 +2935,26 @@ fleet "Elite Vanguards"
 		"Vanguard"
 	variant 1
 		"Vanguard (Particle)"
+
+fleet "Elite Bounty Hunters"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 2
+		"Elite Vanguard" 5
+	variant 2
+		"Elite Bactrian" 4
+		"Barb (Proton)" 12
+	variant 1
+		"Marauder Falcon (Engines)" 4
+	variant 1
+		"Marauder Falcon (Weapons)" 4
+	variant 1
+		"Marauder Leviathan (Engines)" 4
+	variant 1
+		"Marauder Leviathan (Weapons)" 4
 
 fleet "Hired Guns"
 	government "Bounty Hunter"

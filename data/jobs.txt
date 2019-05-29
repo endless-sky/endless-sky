@@ -1418,13 +1418,13 @@ mission "Southern Marauder Blockade"
 		fleet "Marauder fleet XX"
 	on offer
 		conversation
-			`You notice a militia officer hurriedly briefing a group of pilots nearby. The officer catches your eye and exclaims: "Captain <last>! A large pirate fleet including several Marauders is blockading <destination>. We are sending all currently available combat vessels immediately to assist the local militia and break the blockade, but we are barely able to match their numbers and could use your help. Will you join us?" The authorities of <planet> will probably pay you quite well if you assist them, but the mention of several Marauders makes you think twice...`
+			`You notice a militia officer hurriedly briefing a group of pilots nearby. The officer catches your eye and exclaims: "Captain <last>! A large pirate fleet including several Marauders is blockading <destination>. We are sending all currently available combat vessels immediately to assist the locals and break the blockade, but we are barely able to match their numbers and could use your help. Will you join us?" The authorities of <planet> will probably pay you quite well if you assist them, but the mention of several Marauders makes you think twice...`
 			choice
 				`	(Don't join the militia fleet.)`
 					decline
 				`	(Join the militia fleet.)`
-			`The officer seems relieved. "We depart immediately! I'll see you all on the other side." Several of the militia pilots also approach to thank you by name before dispersing to their ships, apparently you are somewhat well known around here. As you take off together, you can't help but wonder how many will not survive the imminent battle...`
-				launch
+			`The officer seems relieved. "We depart immediately! I'll see you all on the other side." Several of the militia pilots also approach to thank you by name before dispersing to their ships, apparently you are somewhat well known around here. As you prepare your ships for combat, you can't help but wonder how many will not survive the imminent battle...`
+				accept
 	on complete
 		payment 3000000
 		dialog phrase "generic pirate attack payment dialog"
@@ -1460,13 +1460,13 @@ mission "Northern Marauder Blockade"
 		fleet "Marauder fleet XX"
 	on offer
 		conversation
-			`You notice a Republic officer hurriedly briefing a group of pilots nearby. The officer catches your eye and exclaims: "Captain <last>! A large pirate fleet including several Marauders is blockading <destination>. We are sending all currently available combat vessels immediately to assist the local militia and break the blockade, but we are barely able to match their numbers and could use your help. Will you join us?" The authorities of <planet> will probably pay you quite well if you assist them, but the mention of several Marauders makes you think twice...`
+			`You notice a Republic officer hurriedly briefing a group of pilots nearby. The officer catches your eye and exclaims: "Captain <last>! A large pirate fleet including several Marauders is blockading <destination>. We are sending all currently available combat vessels immediately to assist the locals and break the blockade, but we are barely able to match their numbers and could use your help. Will you join us?" The authorities of <planet> will probably pay you quite well if you assist them, but the mention of several Marauders makes you think twice...`
 			choice
 				`	(Don't join the Republic fleet.)`
 					decline
 				`	(Join the Republic fleet.)`
-			`The officer seems relieved. "We depart immediately! I'll see you all on the other side." Several of the Republic pilots also approach to thank you by name before dispersing to their ships, apparently you are somewhat well known around here. As you take off together, you can't help but wonder how many will not survive the imminent battle...`
-				launch
+			`The officer seems relieved. "We depart immediately! I'll see you all on the other side." Several of the Republic pilots also approach to thank you by name before dispersing to their ships, apparently you are somewhat well known around here. As you prepare your ships for combat, you can't help but wonder how many will not survive the imminent battle...`
+				accept
 	on complete
 		payment 3000000
 		dialog phrase "generic pirate attack payment dialog"
@@ -1502,13 +1502,13 @@ mission "Deep Marauder Blockade"
 		fleet "Marauder fleet XX"
 	on offer
 		conversation
-			`You notice a Deep Security officer hurriedly briefing a group of pilots nearby. The officer catches your eye and exclaims: "Captain <last>! A large pirate fleet including several Marauders is blockading <destination>. We are sending all currently available combat vessels immediately to assist the local militia and break the blockade, but we are barely able to match their numbers and could use your help. Will you join us?" The authorities of <planet> will probably pay you quite well if you assist them, but the mention of several Marauders makes you think twice...`
+			`You notice a Deep Security officer hurriedly briefing a group of pilots nearby. The officer catches your eye and exclaims: "Captain <last>! A large pirate fleet including several Marauders is blockading <destination>. We are sending all currently available combat vessels immediately to assist the locals and break the blockade, but we are barely able to match their numbers and could use your help. Will you join us?" The authorities of <planet> will probably pay you quite well if you assist them, but the mention of several Marauders makes you think twice...`
 			choice
 				`	(Don't join the Deep Security fleet.)`
 					decline
 				`	(Join the Deep Security fleet.)`
-			`The officer seems relieved. "We depart immediately! I'll see you all on the other side." Several of the Deep Security pilots also approach to thank you by name before dispersing to their ships, apparently you are somewhat well known around here. As you take off together, you can't help but wonder how many will not survive the imminent battle...`
-				launch
+			`The officer seems relieved. "We depart immediately! I'll see you all on the other side." Several of the Deep Security pilots also approach to thank you by name before dispersing to their ships, apparently you are somewhat well known around here. As you prepare your ships for combat, you can't help but wonder how many will not survive the imminent battle...`
+				accept
 	on complete
 		payment 3000000
 		dialog phrase "generic pirate attack payment dialog"
@@ -1544,13 +1544,13 @@ mission "Core Marauder Blockade"
 		fleet "Marauder fleet XX"
 	on offer
 		conversation
-			`You notice a Syndicate officer hurriedly briefing a group of pilots nearby. The officer catches your eye and exclaims: "Captain <last>! A large pirate fleet including several Marauders is blockading <destination>. We are sending all currently available combat vessels immediately to assist the local militia and break the blockade, but we are barely able to match their numbers and could use your help. Will you join us?" The authorities of <planet> will probably pay you quite well if you assist them, but the mention of several Marauders makes you think twice...`
+			`You notice a Syndicate officer hurriedly briefing a group of pilots nearby. The officer catches your eye and exclaims: "Captain <last>! A large pirate fleet including several Marauders is blockading <destination>. We are sending all currently available combat vessels immediately to assist the locals and break the blockade, but we are barely able to match their numbers and could use your help. Will you join us?" The authorities of <planet> will probably pay you quite well if you assist them, but the mention of several Marauders makes you think twice...`
 			choice
 				`	(Don't join the Syndicate fleet.)`
 					decline
 				`	(Join the Syndicate fleet.)`
-			`The officer seems relieved. "We depart immediately! I'll see you all on the other side." Several of the Syndicate pilots also approach to thank you by name before dispersing to their ships, apparently you are somewhat well known around here. As you take off together, you can't help but wonder how many will not survive the imminent battle...`
-				launch
+			`The officer seems relieved. "We depart immediately! I'll see you all on the other side." Several of the Syndicate pilots also approach to thank you by name before dispersing to their ships, apparently you are somewhat well known around here. As you prepare your ships for combat, you can't help but wonder how many will not survive the imminent battle...`
+				accept
 	on complete
 		payment 3000000
 		dialog phrase "generic pirate attack payment dialog"
@@ -1961,7 +1961,7 @@ mission "Core Marauder Fleet Clear"
 					decline
 				`	("I'm ready and willing!")`
 			`"Thank you Captain. We will send as many ships as we can spare to join you. Several of the hostile fleets may have converged on a single system by the time you find them, so take the utmost care. Your map will be marked when you've destroyed all of the hostile ships. Good luck!"`
-				launch
+				accept
 	on complete
 		payment 10000000
 		dialog phrase "generic pirate attack payment dialog"
@@ -2012,7 +2012,7 @@ mission "Southern Marauder Fleet Clear"
 					decline
 				`	("I'm ready and willing!")`
 			`"Thank you Captain. We will send as many ships as we can spare to join you. Several of the hostile fleets may have converged on a single system by the time you find them, so take the utmost care. Your map will be marked when you've destroyed all of the hostile ships. Good luck!"`
-				launch
+				accept
 	on complete
 		payment 10000000
 		dialog phrase "generic pirate attack payment dialog"
@@ -2063,7 +2063,7 @@ mission "Northern Marauder Fleet Clear"
 					decline
 				`	("I'm ready and willing!")`
 			`"Thank you Captain. We will send as many ships as we can spare to join you. Several of the hostile fleets may have converged on a single system by the time you find them, so take the utmost care. Your map will be marked when you've destroyed all of the hostile ships. Good luck!"`
-				launch
+				accept
 	on complete
 		payment 10000000
 		dialog phrase "generic pirate attack payment dialog"
@@ -2114,7 +2114,7 @@ mission "Deep Marauder Fleet Clear"
 					decline
 				`	("I'm ready and willing!")`
 			`"Thank you Captain. We will send as many ships as we can spare to join you. Several of the hostile fleets may have converged on a single system by the time you find them, so take the utmost care. Your map will be marked when you've destroyed all of the hostile ships. Good luck!"`
-				launch
+				accept
 	on complete
 		payment 10000000
 		dialog phrase "generic pirate attack payment dialog"
@@ -2394,7 +2394,7 @@ mission "Core Marauder Fleet Clear 2"
 					decline
 				`	("I'm ready and willing!")`
 			`"Thank you Captain. We will send as many ships as we can spare to join you. Several of the hostile fleets may have converged on a single system by the time you find them, so take the utmost care. Your map will be marked when you've destroyed all of the hostile ships. Good luck!"`
-				launch
+				accept
 	on complete
 		payment 20000000
 		dialog phrase "generic pirate attack payment dialog"
@@ -2445,7 +2445,7 @@ mission "Northern Marauder Fleet Clear 2"
 					decline
 				`	("I'm ready and willing!")`
 			`"Thank you Captain. We will send as many ships as we can spare to join you. The pirate fleets may have converged on a single system by the time you find them, so take the utmost care. Your map will be marked when you've destroyed all of the hostile ships. Good luck!"`
-				launch
+				accept
 	on complete
 		payment 20000000
 		dialog phrase "generic pirate attack payment dialog"
@@ -2496,7 +2496,7 @@ mission "Southern Marauder Fleet Clear 2"
 					decline
 				`	("I'm ready and willing!")`
 			`"Thank you Captain. We will send as many ships as we can spare to join you. The pirate fleets may have converged on a single system by the time you find them, so take the utmost care. Your map will be marked when you've destroyed all of the hostile ships. Good luck!"`
-				launch
+				accept
 	on complete
 		payment 20000000
 		dialog phrase "generic pirate attack payment dialog"
@@ -2547,7 +2547,7 @@ mission "Deep Marauder Fleet Clear 2"
 					decline
 				`	("I'm ready and willing!")`
 			`"Thank you Captain. We will send as many ships as we can spare to join you. The pirate fleets may have converged on a single system by the time you find them, so take the utmost care. Your map will be marked when you've destroyed all of the hostile ships. Good luck!"`
-				launch
+				accept
 	on complete
 		payment 20000000
 		dialog phrase "generic pirate attack payment dialog"
@@ -2611,8 +2611,8 @@ mission "Deep Marauder Blockade Attempt 2 (Var1)"
 			choice
 				`	("Thanks!")`
 			`As you make ready for a quick launch, you hear a voice call "I've got your back Captain!" The voice is coming from a young and inexperienced looking merchant captain with aviator sunglasses, standing near a shiny new Bactrian.`
-			`"My dad just bought me this and it needs to see some action, what better way than to fight with the famous Captain <last>" "Are you insane?" you reply, "Several dozen pirate ships are about to blockade this system, this is not a fight for a novice."`
-			`The merchant captain grins and says "Yeah well I like to live on the wild side. See you up there!"`
+			`"My dad just bought me this and it needs to see some action, what better way than to fight with the famous Captain <last>?" "Are you insane?" you reply, "Several dozen pirate ships are about to blockade this system, this is not a fight for a novice."`
+			`The merchant captain grins and says "Yeah well, I like to live on the wild side. See you up there!"`
 			
 			`You don't have a good feeling about this.`
 				launch
@@ -4421,7 +4421,7 @@ mission "Bounty Hunting (Marauder X)"
 	on complete
 		payment 1000000
 		dialog phrase "generic fleet bounty hunting payment dialog"
-		
+
 mission "Bounty Hunting (Marauder XX)"
 	name "Hunt down the <npc>"
 	description "A pirate vessel named the <npc>, leading a very powerful Marauder fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
@@ -4443,7 +4443,7 @@ mission "Bounty Hunting (Marauder XX)"
 	on complete
 		payment 3000000
 		dialog phrase "generic fleet bounty hunting payment dialog"
-		
+
 mission "Bounty Hunting (Marauder X Trio)"
 	name "Destroy Marauder Fleet"
 	description "A huge Marauder fleet consisting of at least three heavy warships has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
@@ -4468,7 +4468,7 @@ mission "Bounty Hunting (Marauder X Trio)"
 	on complete
 		payment 6000000
 		dialog phrase "generic big fleet bounty hunting payment dialog"
-		
+
 mission "Bounty Hunting (Marauder XX Trio)"
 	name "Destroy Marauder Fleet"
 	description "A gigantic Marauder fleet consisting of at least six heavy warships has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
@@ -4493,7 +4493,7 @@ mission "Bounty Hunting (Marauder XX Trio)"
 	on complete
 		payment 12000000
 		dialog phrase "generic big fleet bounty hunting payment dialog"
-		
+
 mission "Bounty Hunting Mega"
 	name "Destroy Marauder Fleet"
 	description "An armada of Marauder vessels consisting of at least ten heavy warships and dozens of smaller craft, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
@@ -4550,6 +4550,8 @@ mission "Marauder Hunted Two"
 	to offer
 		"combat rating" > 59875
 		"combat rating" < 162755
+		not "Marauder Hunted Two: active"
+		not "Elite Marauder Hunted: active"
 		random < 3
 	to complete
 		never
@@ -4562,7 +4564,7 @@ mission "Marauder Hunted Two"
 		fleet "Large Northern Pirates"
 		fleet "Large Southern Pirates"
 		fleet "Large Core Pirates"
-		
+
 mission "Marauder Hunted Three"
 	invisible
 	landing
@@ -4573,6 +4575,8 @@ mission "Marauder Hunted Three"
 	to offer
 		"combat rating" > 162755
 		"combat rating" < 442414
+		not "Marauder Hunted Three: active"
+		not "Elite Marauder Hunted: active"
 		random < 3
 	to complete
 		never
@@ -4595,6 +4599,8 @@ mission "Marauder Hunted Four"
 		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	to offer
 		"combat rating" > 442414
+		not "Marauder Hunted Four: active"
+		not "Elite Marauder Hunted: active"
 		random < 3
 	to complete
 		never
@@ -4607,3 +4613,26 @@ mission "Marauder Hunted Four"
 		fleet "Large Northern Pirates" 4
 		fleet "Large Southern Pirates" 4
 		fleet "Large Core Pirates" 4
+
+mission "Elite Marauder Hunted"
+	invisible
+	landing
+	repeat
+	destination "Earth"
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+	to offer
+		"combat rating" > 59875
+		not "Elite Marauder Hunted: active"
+		not "Marauder Hunted Two: active"
+		not "Marauder Hunted Three: active"
+		not "Marauder Hunted Four: active"
+		random < 3
+	to complete
+		never
+	npc save
+		government "Bounty Hunter"
+		personality heroic unconstrained waiting nemesis plunders harvests
+		system
+			distance 5 5
+		fleet "Elite Bounty Hunters"
