@@ -777,6 +777,7 @@ mission "Deep: TMBR 1"
 
 mission "Deep: Interrogation"
 	landing
+	invisible
 	source
 		attributes "deep"
 		attributes "spaceport"
@@ -999,6 +1000,7 @@ conversation "deep: questioning"
 
 	label question4
 	`	The woman opens the hatch to the ship. "We might meet again in the future. Stay on your best behavior and our next meeting will surely be on good terms. Goodbye, Captain."`
+		decline
 	
 
 
