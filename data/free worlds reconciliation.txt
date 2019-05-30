@@ -1193,6 +1193,7 @@ mission "FW Pug 2C: Hyperdrive"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		require "Jump Drive" 0
 		outfit "Hyperdrive" -1
 		conversation
 			`You are directed to land in a hangar some distance away from the spaceport, in a cluster of buildings owned by Syndicated Systems. A team of engineers meets you and quickly and efficiently removes your Hyperdrive and replaces it with a strange, alien-looking device that you assume must be a Jump Drive. "Now, be careful with your fuel gauge," one of them tells you. "This thing guzzles twice as much fuel per jump as an ordinary hyperdrive, and you don't want to become stranded while outside human space."`
@@ -1218,6 +1219,7 @@ mission "FW Pug 2C: Scram Drive"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		require "Jump Drive" 0
 		outfit "Scram Drive" -1
 		conversation
 			`You are directed to land in a hangar some distance away from the spaceport, in a cluster of buildings owned by Syndicated Systems. A team of engineers meets you and quickly and efficiently removes your Scram Drive and replaces it with a strange, alien-looking device that you assume must be a Jump Drive. "Now, be careful with your fuel gauge," one of them tells you. "This thing guzzles twice as much fuel per jump as an ordinary hyperdrive, and you don't want to become stranded while outside human space."`
