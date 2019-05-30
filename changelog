@@ -302,6 +302,7 @@ Version 0.9.9:
       * Reduced the volume scale to better match other games.
       * When formatting numbers, always put a digit to the left of the separator. (@Hacklin)
       * The player's name is now limited in how long it can be. (@tehhowch)
+      * Moved the contribution information to the top of the credits in order to increase exposure. (@Amazinite)
   * Under the hood:
     * Lots of data file cleanup and simplification of redundant items. (@tehhowch)
     * Data file fixes. (@Amazinite, @jafdy, @luiges90, @Nescio0, @Rob59er, @toilethinges, @warp-core)
