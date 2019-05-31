@@ -1716,6 +1716,24 @@ ship "Protector" "Protector (Proton)"
 	turret "Proton Turret"
 
 
+ship "Protector" "Elite Protector"
+	outfits
+		"Torpedo Launcher" 2
+		Torpedo 60
+		"Quad Blaster Turret" 6
+		"Armageddon Core"
+		"LP144a Battery Pack"
+		"S-970 Regenerator"
+		"Liquid Helium Cooler"
+		"Liquid Nitrogen Cooler"
+		"Outfits Expansion"
+		"Laser Rifle" 36
+		"Security Station" 2
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		Hyperdrive
+
+
 
 ship "Quicksilver" "Quicksilver (Mark II)"
 	outfits

@@ -4551,7 +4551,6 @@ mission "Marauder Hunted Two"
 		"combat rating" > 59875
 		"combat rating" < 162755
 		not "Marauder Hunted Two: active"
-		not "Elite Marauder Hunted: active"
 		random < 3
 	to complete
 		never
@@ -4622,9 +4621,8 @@ mission "Elite Marauder Hunted"
 	source
 		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	to offer
-		"combat rating" > 59875
+		"combat rating" > 162755
 		not "Elite Marauder Hunted: active"
-		not "Marauder Hunted Two: active"
 		not "Marauder Hunted Three: active"
 		not "Marauder Hunted Four: active"
 		random < 3

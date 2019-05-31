@@ -2955,6 +2955,8 @@ fleet "Elite Bounty Hunters"
 		"Marauder Leviathan (Engines)" 4
 	variant 1
 		"Marauder Leviathan (Weapons)" 4
+	variant 2
+		"Elite Protector" 5
 
 fleet "Hired Guns"
 	government "Bounty Hunter"
