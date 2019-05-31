@@ -1,0 +1,12 @@
+test-data
+	status "Known Failure"
+	bug-id "None yet"
+	test-sequence
+		load "Bobbi Bughunter" "Three Earthly Barges"
+		assert on-planet "Sol" "Earth"
+		outfits buy-to-cargo "Large System Core" OK
+		assert in-cargo outfits "Large System Core" 1
+		depart
+		land
+		assert on-planet "Sol" "Earth"
+		assert in-cargo "Large System Core" 1

@@ -1,0 +1,5 @@
+test-data
+	status "Active"
+	description "Tests only loading of a game and then exits the game"
+	sequence
+		load "Bobbi Bughunter" "Three Earthly Barges"

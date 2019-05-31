@@ -1,0 +1,3 @@
+test-data
+	status "Active"
+	description "Test with an empty sequence. Only starts and exits the game"

@@ -1,0 +1,14 @@
+test-data
+	status "Active"
+	test-sequence
+		load "Bobbi Bughunter" "Three Earthly Barges"
+		assert on-planet "Sol" "Earth"
+		assert in-cargo commodities "Electronics" 0
+		commodities buy "Electronics" 100
+		assert in-cargo commodities "Electronics" 100
+		depart
+		land
+		assert on-planet "Sol" "Earth"
+		assert in-cargo commodoties "Electronics" 100
+		commodities sell "Electronics" 100
+		assert in-cargo commodoties "Electronics" 0

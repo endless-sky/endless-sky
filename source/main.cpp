@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
 #include "Audio.h"
+#include "AutoTester.h"
 #include "Command.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
@@ -71,6 +72,9 @@ int main(int argc, char *argv[])
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
+	bool runAutoTest = false;
+	string autoTestToRun = "";
+	AutoTester autoTester;
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
@@ -90,6 +94,11 @@ int main(int argc, char *argv[])
 			debugMode = true;
 		else if(arg == "-p" || arg == "--parse-save")
 			loadOnly = true;
+		else if((arg == "-a" || arg == "--auto-test") && *++it)
+		{
+			runAutoTest = true;
+			autoTestToRun = *it;
+		}
 	}
 	PlayerInfo player;
 	
@@ -97,9 +106,15 @@ int main(int argc, char *argv[])
 		// Begin loading the game data. Exit early if we are not using the UI.
 		if(!GameData::BeginLoad(argv))
 			return 0;
-		
+
 		// Load player data, including reference-checking.
-		player.LoadRecent();
+		if (!runAutoTest)
+			player.LoadRecent();
+		else
+		{
+			// TODO: Load the test-file as savegame
+			player.New();
+		}
 		if(loadOnly)
 		{
 			cout << "Parse completed." << endl;
@@ -311,6 +326,10 @@ int main(int argc, char *argv[])
 					// No need to do anything more!
 				}
 			}
+
+			// All manual events done. Handle any auto-tester inputs/events if we have any.
+			autoTester.Step(menuPanels, gamePanels, player);
+
 			SDL_Keymod mod = SDL_GetModState();
 			Font::ShowUnderlines(mod & KMOD_ALT);
 			
@@ -367,7 +386,7 @@ int main(int argc, char *argv[])
 		}
 		
 		// If you quit while landed on a planet, save the game - if you did anything.
-		if(player.GetPlanet() && gamePanels.CanSave())
+		if(!runAutoTest && player.GetPlanet() && gamePanels.CanSave())
 			player.Save();
 		
 		// Remember the window state.
@@ -377,7 +396,8 @@ int main(int argc, char *argv[])
 		// The Preferences class reads the screen dimensions, so update them to
 		// match the actual window size.
 		Screen::SetRaw(windowWidth, windowHeight);
-		Preferences::Save();
+		if (! runAutoTest)
+			Preferences::Save();
 		
 		Cleanup(window, context);
 	}
@@ -404,6 +424,7 @@ void PrintHelp()
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
 	cerr << "    -d, --debug: turn on debugging features (e.g. Caps Lock slows down instead of speeds up)." << endl;
 	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors" << endl;
+	cerr << "    -a, --auto-test <name>: run given autotester from resources directory" << endl;
 	cerr << endl;
 	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;
 	cerr << "Home page: <https://endless-sky.github.io>" << endl;
