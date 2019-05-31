@@ -465,7 +465,7 @@ mission "Intro Epilogue"
 		not "main plot completed"
 	on offer
 		conversation
-			`The spaceport at <origin> is a completely different experience than you remember. When you first came here, you were a mere child gawking at the spaceships passing through to refuel on their way to bigger and richer worlds; when you left, you were a greenie captain, fighting tooth and nail to remain one step ahead of the bank's repossessors.`
+			`Visiting the spaceport at <origin> is a completely different experience from the one you remember. When you first came here, you were a mere child gawking at the spaceships passing through to refuel on their way to bigger and richer worlds; when you left, you were a greenie captain, fighting tooth and nail to remain one step ahead of the bank's repossessors.`
 			branch "during main plot"
 				has "event: joined the free worlds"
 
