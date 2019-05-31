@@ -451,3 +451,39 @@ conversation "end of intro missions"
 	label next
 	`	There's an awkward pause. You're unsure of how to respond. Then he says, "Thing is, this here planet is one of the most exclusive retirement communities in the galaxy. Plenty of the locals are probably worth more than a billion credits. But they're mostly financial or business types, or old money. I'm rich enough to be here, but I just hope they're willing to socialize with someone who made his fortune flying a ship."`
 	`	He hands you a credit chip worth <payment>, and says, "Best of luck to you, Captain. Don't hesitate to look me up if you're ever in the area."`
+
+
+
+mission "Intro Epilogue"
+	minor
+	landing
+	source "New Boston"
+	to offer
+		or
+			"net worth" > 100000
+			has "event: joined the free worlds"
+		not "main plot completed"
+	on offer
+		conversation
+			`The spaceport at <origin> is a completely different experience than you remember. When you first came here, you were a mere child gawking at the spaceships passing through to refuel on their way to bigger and richer worlds; when you left, you were a greenie captain, fighting tooth and nail to remain one step ahead of the bank's repossessors.`
+			branch "during main plot"
+				has "event: joined the free worlds"
+
+			`This time, however, you're an established merchant captain.`
+			`You receive a VIP's welcome in this small trading post. Merchants who shooed you away as a child are queueing up to buy your goods; young pilots are asking you for apprenticeships.`
+			`You ignore them all and walk over to the airport adjacent to the spaceport, where you rent a private jet and fly to your village. You spend a few days there, but soon you start feeling landsick. After resisting the symptoms for a few days, you finally give in, say your goodbyes and head back to your ship.`
+				decline
+
+			label "during main plot"
+			`This time, however, you're a card-carrying warship captain, flying under the colors of the Free Worlds.`
+			`Everyone keeps their distance from you, some respectfully, some in fear of getting tangled in the hostilities. You're all too used to this experience by now, but it still feels jarring to receive this treatment on your homeworld, in a spaceport you know as well as the back of your hand.`
+
+			branch "not surprised"
+				has "FW Diplomacy 1D: offered"
+
+			`Finally, you look up an old friend. When his shift is over, you meet and catch up. You welcome the breath of normal human interaction; the brotherhood of the sea has always felt a little shallow to you. Later in the evening two retired Navy officers join the two of you for a hand of contract bridge. As you walk back to your spaceship, you are surprised to find yourself thinking of the retired officers as friends.`
+				decline
+
+			label "not surprised"
+			`Finally, you look up an old friend. When his shift is over, you meet and catch up. You welcome the breath of normal human interaction; the brotherhood of the sea has always felt a little shallow to you. Later in the evening two retired Navy officers join the two of you for a hand of contract bridge. As you walk back to your spaceship, you are not surprised to find yourself thinking of the retired officers as friends.`
+				decline
