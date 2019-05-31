@@ -74,8 +74,6 @@ fleet "Remnant Transport"
 		disables plunders coward appeasing mining harvests
 	variant 10
 		"Gull"
-	variant 6
-		"Gull (Heavy)"
 	variant 5
 		"Gull (Sniper)"
 	variant 4
@@ -241,6 +239,7 @@ outfitter "Remnant"
 	"Cargo Scanner"
 	"Outfit Scanner"
 	"Tuning Rifle"
+	"Salvage Scanner"
 
 outfitter "Remnant Salvage"
 	"Generator (Furnace Class)"
