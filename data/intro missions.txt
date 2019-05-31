@@ -476,7 +476,7 @@ mission "Intro Epilogue"
 
 			label "during main plot"
 			`This time, however, you're a card-carrying warship captain, flying under the colors of the Free Worlds.`
-			`Everyone keeps their distance from you, some respectfully, some in fear of getting tangled in the hostilities. You're all too used to this experience by now, but it still feels jarring to receive this treatment on your homeworld, in a spaceport you know as well as the back of your hand.`
+			`Everyone keeps their distance from you, some respectfully, some in fear of getting tangled up in the hostilities. You're all too used to this experience by now, but it still feels jarring to receive this treatment on your homeworld, in a spaceport you know as well as the back of your hand.`
 
 			branch "not surprised"
 				has "FW Diplomacy 1D: offered"
