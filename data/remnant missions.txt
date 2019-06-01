@@ -687,7 +687,7 @@ mission "Remnant: Tech Retrieval"
 				`	"Could you elaborate on 'how fast they can travel in deep space?"`
 				`	"No, I don't want to get involved in this."`
 					goto nothelp
-			`	She considers her thoughts briefly, then chants, "How fast a ship can move through an area of deep space basically depends on how fast they can collect fuel. Ramscoops were common at the time of the exodus, and if humanity has developped better ramscoops or other means of generating fuel, these would significantly improve their speed at exploring or crossing large volumes of space."`
+			`	She considers her thoughts briefly, then chants, "How fast a ship can move through an area of deep space basically depends on how fast they can collect fuel. Ramscoops were common at the time of the exodus, and if humanity has developed better ramscoops or other means of generating fuel, these would significantly improve their speed at exploring or crossing large volumes of space."`
 			choice
 				`	"Okay, I will see what I can find."`
 				`	"No, I don't want to get involved in this."`
@@ -881,7 +881,7 @@ mission "Remnant: D94-YV Shield Generator"
 	on offer
 		require "D94-YV Shield Generator"
 		conversation
-			`You know that Taely was interested in seeing examples of recently developped human technology, and the D94-YV Shield Generator probably fits the criteria. Would you like to show her?`
+			`You know that Taely was interested in seeing examples of recently developed human technology, and the D94-YV Shield Generator probably fits the criteria. Would you like to show her?`
 			choice
 				`	(Not now.)`
 					defer
