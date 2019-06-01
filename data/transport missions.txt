@@ -2171,8 +2171,10 @@ mission "Terraforming 6"
 	source
 		government "Republic"
 		not attributes "deep"
+		not system "Sol"
 	destination "Earth"
 	deadline
+	deadline 2
 	to offer
 		has "event: terraforming timer"
 		or

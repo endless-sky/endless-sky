@@ -115,8 +115,8 @@ conversation "pirate occupation"
 		`	(Don't join the fight.)`
 			decline
 		`	(Join the defense fleet.)`
-	`A few militia pilots have gathered to help repel the pirate attack. You join them, and take off together...`
-		launch
+	`A few militia pilots have gathered to help repel the pirate attack. You join them, and prepare your ship for the upcoming battle...`
+		accept
 
 
 
