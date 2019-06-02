@@ -712,7 +712,6 @@ mission "Remnant: Tech Retrieval"
 mission "Remnant: Heavy Laser"
 	name "Retrieve Heavy Lasers"
 	description "A Remnant engineer has offered to pay you <payment> in return for delivering two heavy lasers to <planet> for them to study."
-	minor
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -750,7 +749,6 @@ mission "Remnant: Heavy Laser"
 mission "Remnant: Plasma Cannon"
 	name "Retrieve Plasma Cannons"
 	description "A Remnant engineer has offered to pay you <payment> in exchange for delivering two plasma cannons to a team on <planet>."
-	minor
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -796,7 +794,6 @@ mission "Remnant: Plasma Cannon"
 mission "Remnant: Catalytic Ramscoop"
 	name "Retrieve Catalytic Ramscoops"
 	description "A Remnant engineer has offered you <payment> for delivering two catalytic ramscoops to a lab on <planet>."
-	minor
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -833,7 +830,6 @@ mission "Remnant: Catalytic Ramscoop"
 mission "Remnant: Electron Beam"
 	name "Retrieve Electron Beams for the Remnant"
 	description "A Remnant engineer has offered you <payment> for delivering two electron beams to a testing range on <planet>."
-	minor
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -870,7 +866,6 @@ mission "Remnant: Electron Beam"
 mission "Remnant: D94-YV Shield Generator"
 	name "Retrieve D94-YV Shield Generators"
 	description "A Remnant engineer has offered you <payment> for delivering two D94-YV Shield Generators to a research facility on <planet>."
-	minor
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -907,7 +902,6 @@ mission "Remnant: D94-YV Shield Generator"
 mission "Remnant: S-970 Regenerator"
 	name "Retrieve S-970 Regenerators"
 	description "A Remnant engineer has offered you <payment> for delivering two S-970 Regenerators to an impact testing facility on <planet>."
-	minor
 	source "Viminal"
 	destination
 		government "Remnant"
