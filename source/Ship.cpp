@@ -1303,16 +1303,39 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				zoom = 0.f;
 			}
 		}
-		// Only refuel if this planet has a spaceport.
-		else if(fuel >= attributes.Get("fuel capacity")
-				|| !landingPlanet || !landingPlanet->HasSpaceport())
-		{
-			zoom = min(1.f, zoom + .02f);
-			SetTargetStellar(nullptr);
-			landingPlanet = nullptr;
-		}
 		else
-			fuel = min(fuel + 1., attributes.Get("fuel capacity"));
+		{
+			bool delayLaunch = false;
+			
+			if (landingPlanet && !zoom)
+			{
+				// Only refuel if this planet has a spaceport.
+				if(landingPlanet->HasSpaceport()
+						&& fuel < attributes.Get("fuel capacity"))
+				{
+					fuel = min(fuel + 1., attributes.Get("fuel capacity"));
+					delayLaunch = true;
+				}
+				
+				// If the player would have the opportunity to hire crew on this
+				// planet, then the ship should do so now.
+				if (landingPlanet->CanUseServices()
+						&& landingPlanet->IsInhabited()
+						&& Crew() < requiredCrew)
+				{
+					// This can be rate-limited like fuel, if desired.  Set
+					// delayLaunch = true if we aren't yet ready to blast off.
+					crew = min<int>(requiredCrew, attributes.Get("bunks"));
+				}
+			}
+			
+			if (!delayLaunch)
+			{
+				zoom = min(1.f, zoom + .02f);
+				SetTargetStellar(nullptr);
+				landingPlanet = nullptr;
+			}
+		}
 		
 		// Move the ship at the velocity it had when it began landing, but
 		// scaled based on how small it is now.
