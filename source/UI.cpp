@@ -240,7 +240,7 @@ bool UI::IsDone() const
 
 
 
-// Check if it is time to quit.
+// Check if there are no panels left.
 bool UI::IsEmpty() const
 {
 	return stack.empty() && toPush.empty();
