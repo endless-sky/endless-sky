@@ -76,7 +76,8 @@ namespace {
 		{"unplunderable", "This outfit cannot be plundered."},
 		{"installable", "This is not an installable item."},
 		{"hyperdrive", "Allows you to make hyperjumps."},
-		{"jump drive", "Lets you jump to any nearby system."}
+		{"jump drive", "Lets you jump to any nearby system."},
+		{"turret noturn", "Stationary hardpoint."}
 	};
 }
 

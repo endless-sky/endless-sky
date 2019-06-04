@@ -92,8 +92,13 @@ void Outfit::Load(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
+	// Stationary turret for missile hardpoint
+	if (IsWeapon() && attributes.Get("turret mounts") && attributes.Get("turret noturn"))
+	{
+		SetTurretTurn(0.);
+	}
 	// Legacy support for turrets that don't specify a turn rate:
-	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
+	else if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
 	{
 		SetTurretTurn(4.);
 		node.PrintTrace("Warning: Deprecated use of a turret without specified \"turret turn\":");
