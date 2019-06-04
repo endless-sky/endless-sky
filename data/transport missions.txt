@@ -944,8 +944,6 @@ outfit "Timer Weapon"
 		"submunition" "Timer Submunition"
 
 outfit "Timer Submunition"
-	category "Ammunition"
-	thumbnail "outfit/unknown"
 	weapon
 		"lifetime" 20
 		"trigger radius" 200
