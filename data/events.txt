@@ -1708,8 +1708,16 @@ event "pug invasion"
 		fleet "Large Pug" 9000
 	planet "Rand"
 		security 0
+		tribute 500
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Oblivion"
 		security 0
+		tribute 500
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 
 
 
@@ -1754,10 +1762,22 @@ event "pug invasion 2"
 		fleet "Human Miners" 1600
 	planet "Silver"
 		security 0
+		tribute 500
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Shiver"
 		security 0
+		tribute 500
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Millrace"
 		security 0
+		tribute 500
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 
 
 
@@ -1785,8 +1805,16 @@ event "pug invasion 3"
 		fleet "Large Pug" 2500
 	planet "Maker"
 		security 0
+		tribute 500
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Furnace"
 		security 0
+		tribute 500
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 
 
 
@@ -1821,8 +1849,16 @@ event "pug invasion 4"
 		fleet "Human Miners" 2000
 	planet "Reunion"
 		security 0
+		tribute 500
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Kraken Station"
 		security 0
+		tribute 500
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 
 
 
@@ -1857,6 +1893,11 @@ event "at war with the pug"
 event "battle for delta capricorni"
 	system "Delta Capricorni"
 		government Syndicate
+	planet "Maker"
+		security 0.4
+		tribute 1700
+			threshold 4500
+			fleet "Large Syndicate" 12
 
 
 
@@ -1884,6 +1925,12 @@ event "liberation of altair"
 		fleet "Large Core Merchants" 2000
 		fleet "Small Pug" 2000
 		fleet "Large Syndicate" 800
+	planet "Shiver"
+		security 0.1
+		tribute 300
+			threshold 2000
+			fleet "Small Republic" 10
+			fleet "Large Republic" 2
 
 
 
@@ -2027,22 +2074,52 @@ event "pug territory liberated"
 		fleet "Large Syndicate" 2000
 	planet "Rand"
 		security 0.05
+		tribute 500
+			threshold 3000
+			fleet "Large Militia" 10
 	planet "Oblivion"
 		security 0.05
+		tribute 500
+			threshold 3000
+			fleet "Large Militia" 10
 	planet "Silver"
 		security 0.1
+		tribute 700
+			threshold 4000
+			fleet "Small Republic" 25
+			fleet "Large Republic" 2
 	planet "Shiver"
 		security 0.1
+		tribute 300
+			threshold 2000
+			fleet "Small Republic" 10
+			fleet "Large Republic" 2
 	planet "Millrace"
 		security 0.2
+		tribute 1400
+			threshold 4000
+			fleet "Large Syndicate" 10
 	planet "Maker"
 		security 0.4
+		tribute 1700
+			threshold 4500
+			fleet "Large Syndicate" 12
 	planet "Furnace"
 		security 0.1
+		tribute 1200
+			threshold 3500
+			fleet "Large Syndicate" 9
 	planet "Reunion"
 		security 0.3
+		tribute 2900
+			threshold 5000
+			fleet "Large Syndicate" 19
 	planet "Kraken Station"
 		security 0.3
+		tribute 500
+			threshold 3500
+			fleet "Small Syndicate" 7
+			fleet "Large Syndicate" 2
 
 
 
