@@ -8,13 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-phrase "generic arrived-without-npc dialog"
-	word
-		`You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system.`
-phrase "generic safe escort completion dialog"
-	word
-		`The captain of the <npc> thanks you for escorting them safely, and pays you <payment>.`
-
 mission "Escort (Tiny, Northern, Dangerous Destination)"
 	name "Escort to <planet>"
 	description "Despite your relative inexperience, the captain of the <npc> is willing to pay you <payment> for an escort into a dangerous region of space to reach <destination> by <date>."
@@ -1270,23 +1263,7 @@ mission "Escort (Extra Large, Southern, Dangerous Origin or Destination)"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
 
-phrase "generic pirate attack payment dialog"
-	word
-		`The government of <planet>`
-	word
-		` `
-		` gratefully `
-	word
-		`pays you <payment> for helping to`
-	word
-		` drive off `
-		` defeat `
-	word
-		`the `
-	word
-		`pirates.`
-		`raiders.`
-		`attackers.`
+
 
 mission "Southern Pirate Attack"
 	name "Defend <planet>"
@@ -1458,12 +1435,6 @@ mission "Raider Attack 2"
 		dialog `The government of <planet> pays you <payment> for helping to drive off the raiders.`
 
 
-phrase "generic cargo delivery payment"
-	word
-		`You drop off your cargo of <commodity> and collect your payment of <payment>.`
-phrase "generic cargo on visit"
-	word
-		`You have reached <planet>, but not all of the cargo is in the system! Better depart and wait for your escorts to arrive in this star system.`
 
 mission "Cargo [0]"
 	name "Delivery to <planet>"
@@ -1710,14 +1681,6 @@ mission "Rush Delivery [3]"
 		dialog phrase "generic cargo delivery payment"
 
 
-
-phrase "generic passenger dropoff payment"
-	word
-		`You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>.`
-		`You say farewell to your <passengers> on <planet>, and collect your payment of <payment>.`
-phrase "generic passenger on visit"
-	word
-		`You have reached <planet>, but not all of the passengers are in the system! Better depart and wait for your escorts to arrive in this star system.`
 
 mission "Passengers [0]"
 	name "Passenger transport to <planet>"
@@ -2575,13 +2538,7 @@ mission "Recycle garbage"
 		payment
 		payment 20000
 
-phrase "generic hunted bounty eliminated dialog"
-	word
-		`The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
 
-phrase "generic bounty hunting payment dialog"
-	word
-		`The government of <planet> gratefully pays you <payment> for eliminating the <npc>.`
 
 mission "Bounty Hunting (Small)"
 	name "Hunt down the <npc>"
@@ -2773,14 +2730,6 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 	on complete
 		payment 350000
 		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal gang."
-
-phrase "generic hunted bounty fleet eliminated dialog"
-	word
-		`The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>.`
-
-phrase "generic fleet bounty hunting payment dialog"
-	word
-		`The government of <planet> gratefully pays you <payment> for eliminating the <npc> and their fleet.`
 
 mission "Bounty Hunting (Marauder I)"
 	name "Hunt down the <npc>"
