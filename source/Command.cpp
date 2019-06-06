@@ -78,7 +78,7 @@ string Command::ReplaceNamesWithKeys(const string &text)
 	map<string, string> subs;
 	for(const auto &it : description)
 		subs['<' + it.second + '>'] = '"' + keyName[it.first] + '"';
-
+	
 	return Format::Replace(text, subs);
 }
 
@@ -99,7 +99,7 @@ void Command::ReadKeyboard()
 {
 	Clear();
 	const Uint8 *keyDown = SDL_GetKeyboardState(nullptr);
-
+	
 	// Each command can only have one keycode, but misconfigured settings can
 	// temporarily cause one keycode to be used for two commands. Also, more
 	// than one key can be held down at once.
@@ -114,12 +114,12 @@ void Command::ReadKeyboard()
 void Command::LoadSettings(const string &path)
 {
 	DataFile file(path);
-
+	
 	// Create a map of command names to Command objects in the enumeration above.
 	map<string, Command> commands;
 	for(const auto &it : description)
 		commands[it.second] = it.first;
-
+	
 	// Each command can only have one keycode, but misconfigured settings can
 	// temporarily cause one keycode to be used for two commands.
 	for(const DataNode &node : file)
@@ -133,7 +133,7 @@ void Command::LoadSettings(const string &path)
 			keyName[command] = SDL_GetKeyName(keycode);
 		}
 	}
-
+	
 	// Regenerate the lookup tables.
 	commandForKeycode.clear();
 	keycodeCount.clear();
@@ -150,7 +150,7 @@ void Command::LoadSettings(const string &path)
 void Command::SaveSettings(const string &path)
 {
 	DataWriter out(path);
-
+	
 	for(const auto &it : commandForKeycode)
 	{
 		auto dit = description.find(it.second);
@@ -168,10 +168,10 @@ void Command::SetKey(Command command, int keycode)
 	// are mapped to the same key and you change one of them, the other stays mapped.
 	keycodeForCommand[command] = keycode;
 	keyName[command] = SDL_GetKeyName(keycode);
-
+	
 	commandForKeycode.clear();
 	keycodeCount.clear();
-
+	
 	for(const auto &it : keycodeForCommand)
 	{
 		commandForKeycode[it.second] = it.first;
@@ -209,7 +209,7 @@ bool Command::HasConflict() const
 	auto it = keycodeForCommand.find(*this);
 	if(it == keycodeForCommand.end())
 		return false;
-
+	
 	auto cit = keycodeCount.find(it->second);
 	return (cit != keycodeCount.end() && cit->second > 1);
 }
@@ -277,7 +277,7 @@ bool Command::HasFire(int index) const
 {
 	if(index < 0 || index >= 32)
 		return false;
-
+	
 	return state & ((1ull << 32) << index);
 }
 
@@ -288,7 +288,7 @@ void Command::SetFire(int index)
 {
 	if(index < 0 || index >= 32)
 		return;
-
+	
 	state |= ((1ull << 32) << index);
 }
 
@@ -308,7 +308,7 @@ double Command::Aim(int index) const
 {
 	if(index < 0 || index >= 32)
 		return 0;
-
+	
 	return aim[index] / 127.;
 }
 
@@ -318,7 +318,7 @@ void Command::SetAim(int index, double amount)
 {
 	if(index < 0 || index >= 32)
 		return;
-
+	
 	aim[index] = round(127. * max(-1., min(1., amount)));
 }
 
