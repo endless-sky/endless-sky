@@ -665,7 +665,7 @@ mission "Remnant: Tech Retrieval"
 	on offer
 		"remnant met taely" ++
 		conversation
-			`As you enter the spaceport, you notice someone across the plaza appears to have been waiting for you. A tall, solidly built woman in short-sleeved coveralls stands up from where she was sitting near the information desk. With a few quick gestures at the person behind the counter, she heads towards you with a confident stride. As she approaches, you note that the crowds of people moving around the plaza seem to staying out of her way as if she were someone important. In contrast, she reminds you of the mechanics who maintained the textile factories back on New Boston. In particular, the tools at her belt and the wear marks on her clothing suggest someone who is more comfortable inside a ship access duct than behind a desk.`
+			`As you enter the spaceport, you notice someone across the plaza appears to have been waiting for you. A tall, solidly built woman in short-sleeved coveralls stands up from where she was sitting near the information desk. With a few quick gestures at the person behind the counter, she heads towards you with a confident stride. As she approaches, you note that the crowds of people moving around the plaza seem to be staying out of her way as if she were someone important. In contrast, she reminds you of the mechanics who maintained the textile factories back on New Boston. In particular, the tools at her belt and the wear marks on her clothing suggest someone who is more comfortable inside a ship access duct than behind a desk.`
 			`	Before you can decide if you want to avoid this person or not, she is standing in front of you, clearing her throat. "You are captain <first> <last> of the <ship>?" She asks in a lyrical chant.`
 			choice
 				`	"That's me."`
@@ -712,7 +712,6 @@ mission "Remnant: Tech Retrieval"
 mission "Remnant: Heavy Laser"
 	name "Retrieve Heavy Lasers"
 	description "A Remnant engineer has offered to pay you <payment> in return for delivering two heavy lasers to <planet> for them to study."
-	minor
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -750,7 +749,6 @@ mission "Remnant: Heavy Laser"
 mission "Remnant: Plasma Cannon"
 	name "Retrieve Plasma Cannons"
 	description "A Remnant engineer has offered to pay you <payment> in exchange for delivering two plasma cannons to a team on <planet>."
-	minor
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -796,7 +794,6 @@ mission "Remnant: Plasma Cannon"
 mission "Remnant: Catalytic Ramscoop"
 	name "Retrieve Catalytic Ramscoops"
 	description "A Remnant engineer has offered you <payment> for delivering two catalytic ramscoops to a lab on <planet>."
-	minor
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -833,7 +830,6 @@ mission "Remnant: Catalytic Ramscoop"
 mission "Remnant: Electron Beam"
 	name "Retrieve Electron Beams for the Remnant"
 	description "A Remnant engineer has offered you <payment> for delivering two electron beams to a testing range on <planet>."
-	minor
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -870,7 +866,6 @@ mission "Remnant: Electron Beam"
 mission "Remnant: D94-YV Shield Generator"
 	name "Retrieve D94-YV Shield Generators"
 	description "A Remnant engineer has offered you <payment> for delivering two D94-YV Shield Generators to a research facility on <planet>."
-	minor
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -907,7 +902,6 @@ mission "Remnant: D94-YV Shield Generator"
 mission "Remnant: S-970 Regenerator"
 	name "Retrieve S-970 Regenerators"
 	description "A Remnant engineer has offered you <payment> for delivering two S-970 Regenerators to an impact testing facility on <planet>."
-	minor
 	source "Viminal"
 	destination
 		government "Remnant"
