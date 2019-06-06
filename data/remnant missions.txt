@@ -859,7 +859,7 @@ mission "Remnant: Electron Beam"
 		payment 1090000
 		"remnant met taely" ++
 		conversation
-			`On <planet> you follow the landing instructions to arrive at a pad set next to a small complex of testing ranges and workshops. A group of technicians is just finishing the disassembly of a weapon from the test stand when you settle onto the stand, and a few minutes later they arrive to unload the electron beams from your ship. They move eagerly to secure the new weapons to their flatbed and quickly hand you your payment of <payment> before giving vanishing into the lab.`
+			`On <planet> you follow the landing instructions to arrive at a pad set next to a small complex of testing ranges and workshops. A group of technicians is just finishing the disassembly of a weapon from the test stand when you settle onto the stand, and a few minutes later they arrive to unload the electron beams from your ship. They move eagerly to secure the new weapons to their flatbed and quickly hand you your payment of <payment> before vanishing into the lab.`
 
 
 
