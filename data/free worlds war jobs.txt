@@ -30,7 +30,7 @@ mission "FW Scout Run [0]"
 		distance 1 2
 		government "Republic"
 	on visit
-		dialog phrase "generic stopover on visit"
+		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 10000 180
 		dialog phrase "free worlds scanner payment"
@@ -58,7 +58,7 @@ mission "FW Scout Run [1]"
 		distance 2 3
 		government "Republic"
 	on visit
-		dialog phrase "generic stopover on visit"
+		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 20000 180
 		dialog phrase "free worlds scanner payment"
@@ -86,7 +86,7 @@ mission "FW Scout Run [2]"
 		distance 3 4
 		government "Republic"
 	on visit
-		dialog phrase "generic stopover on visit"
+		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 30000 180
 		dialog phrase "free worlds scanner payment"

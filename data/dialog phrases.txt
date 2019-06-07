@@ -67,7 +67,11 @@ phrase "generic missing stopover or escort"
 
 phrase "generic stopover on visit"
 	word
-		`You have reached <planet>, but you haven't visited all the stopovers yet! Better depart and make sure you visit <stopovers>.`
+		`You have reached <planet>, but you haven't visited all the planets yet! Better depart and make sure you visit <stopovers>.`
+phrase "generic waypoint on visit"
+	word
+		`You have reached <planet>, but you haven't visited all the systems yet! Better depart and make sure you visit <waypoints>.`
+
 
 phrase "generic hunted bounty eliminated dialog"
 	word
