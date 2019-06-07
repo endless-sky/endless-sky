@@ -185,18 +185,18 @@ ship "Bactrian"
 	attributes
 		licenses
 			City-Ship
-		category "Heavy Warship"
+		category "Transport"
 		"cost" 17600000
 		"shields" 17500
 		"hull" 8600
 		"required crew" 70
 		"bunks" 245
-		"mass" 940
+		"mass" 1040
 		"drag" 16.1
 		"heat dissipation" .4
 		"fuel capacity" 700
 		"cargo space" 530
-		"outfit space" 740
+		"outfit space" 630
 		"weapon capacity" 300
 		"engine capacity" 180
 		weapon
@@ -207,8 +207,6 @@ ship "Bactrian"
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
-		"Torpedo Launcher" 2
-		"Torpedo" 60
 		"Heavy Laser Turret" 4
 		"Heavy Anti-Missile Turret" 2
 		
@@ -220,15 +218,13 @@ ship "Bactrian"
 		"Laser Rifle" 15
 		
 		"X4700 Ion Thruster"
-		"X5200 Ion Steering"
+		"X4200 Ion Steering"
 		"Hyperdrive"
 		
 	engine -18 230
 	engine 18 230
-	gun -15 -226 "Torpedo Launcher"
-	gun 15 -226 "Torpedo Launcher"
+	gun 15 -226 "Sidewinder Missile Launcher"
 	gun -40 -133 "Sidewinder Missile Launcher"
-	gun -45 -128 "Sidewinder Missile Launcher"
 	turret -22 -148 "Heavy Laser Turret"
 	turret 26 -80 "Heavy Anti-Missile Turret"
 	turret -41 -20 "Heavy Laser Turret"
