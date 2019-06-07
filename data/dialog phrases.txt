@@ -79,6 +79,9 @@ phrase "generic hunted bounty eliminated dialog"
 phrase "generic bounty hunting payment dialog"
 	word
 		`The government of <planet> gratefully pays you <payment> for eliminating the <npc>.`
+phrase "generic bounty hunting on visit"
+	word
+		`You've landed on <planet>, but the <npc> has not been eliminated yet. Hunt it down and destroy it before returning.`
 
 phrase "generic hunted bounty fleet eliminated dialog"
 	word
@@ -86,3 +89,10 @@ phrase "generic hunted bounty fleet eliminated dialog"
 phrase "generic fleet bounty hunting payment dialog"
 	word
 		`The government of <planet> gratefully pays you <payment> for eliminating the <npc> and their fleet.`
+phrase "generic fleet bounty hunting on visit"
+	word
+		`You've landed on <planet>, but the <npc> and its fleet has not been eliminated yet. Hunt it down and destroy it before returning.`
+
+phrase "generic pirate fleet battle on visit"
+	word
+		`You've landed on <planet>, but there are still pirates circling overhead. You should take off and help finish them off.`
