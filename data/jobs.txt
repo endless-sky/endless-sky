@@ -2958,6 +2958,9 @@ mission "Raider Attack 2"
 phrase "generic cargo delivery payment"
 	word
 		`You drop off your cargo of <commodity> and collect your payment of <payment>.`
+phrase "generic cargo on visit"
+	word
+		`You have reached <planet>, but not all of the cargo is in the system! Better depart and wait for your escorts to arrive in this star system.`
 
 mission "Cargo [0]"
 	name "Delivery to <planet>"
@@ -2970,6 +2973,8 @@ mission "Cargo [0]"
 	destination
 		distance 2 8
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		dialog phrase "generic cargo delivery payment"
@@ -2987,6 +2992,8 @@ mission "Cargo [1]"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		dialog phrase "generic cargo delivery payment"
@@ -3005,6 +3012,8 @@ mission "Cargo [2]"
 	destination
 		distance 2 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		dialog phrase "generic cargo delivery payment"
@@ -3023,6 +3032,8 @@ mission "Cargo [3]"
 	destination
 		distance 3 14
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 2000
@@ -3042,6 +3053,8 @@ mission "Cargo [4]"
 	destination
 		distance 4 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 4000
@@ -3060,6 +3073,8 @@ mission "Bulk Delivery [0]"
 	destination
 		distance 2 8
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		dialog phrase "generic cargo delivery payment"
@@ -3077,6 +3092,8 @@ mission "Bulk Delivery [1]"
 	destination
 		distance 3 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 2000
@@ -3096,6 +3113,8 @@ mission "Bulk Delivery [2]"
 	destination
 		distance 4 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 4000
@@ -3115,6 +3134,8 @@ mission "Rush Delivery [0]"
 	destination
 		distance 4 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 16000
@@ -3134,6 +3155,8 @@ mission "Rush Delivery [1]"
 	destination
 		distance 5 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 18000
@@ -3154,6 +3177,8 @@ mission "Rush Delivery [2]"
 	destination
 		distance 6 14
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 20000
@@ -3174,6 +3199,8 @@ mission "Rush Delivery [3]"
 	destination
 		distance 7 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 22000
@@ -3185,6 +3212,9 @@ phrase "generic passenger dropoff payment"
 	word
 		`You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>.`
 		`You say farewell to your <passengers> on <planet>, and collect your payment of <payment>.`
+phrase "generic passenger on visit"
+	word
+		`You have reached <planet>, but not all of the passengers are in the system! Better depart and wait for your escorts to arrive in this star system.`
 
 mission "Passengers [0]"
 	name "Passenger transport to <planet>"
@@ -3197,6 +3227,8 @@ mission "Passengers [0]"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -3215,6 +3247,8 @@ mission "Passengers [1]"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		dialog phrase "generic passenger dropoff payment"
@@ -3232,6 +3266,8 @@ mission "Passengers [2]"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		dialog phrase "generic passenger dropoff payment"
@@ -3249,6 +3285,8 @@ mission "Passengers [3]"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		dialog phrase "generic passenger dropoff payment"
@@ -3267,6 +3305,8 @@ mission "Passengers [4]"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -3285,6 +3325,8 @@ mission "Transport miners to <planet>"
 		attributes "mining"
 		distance 3 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -3303,6 +3345,8 @@ mission "Transport farmers to <planet>"
 		attributes "farming"
 		distance 3 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -3321,6 +3365,8 @@ mission "Transport mill workers to <planet>"
 		attributes "textiles"
 		distance 3 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -3339,6 +3385,8 @@ mission "Transport workers to <planet>"
 		attributes "factory"
 		distance 3 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -3358,6 +3406,8 @@ mission "Tourists out [0]"
 		attributes "tourism"
 		distance 6 35
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 6000
@@ -3377,6 +3427,8 @@ mission "Tourists out [1]"
 		attributes "tourism"
 		distance 2 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 4000
@@ -3399,6 +3451,8 @@ mission "Wealthy tourists out"
 		attributes "tourism"
 		distance 4 30
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 200
 		dialog phrase "generic passenger dropoff payment"
@@ -3417,6 +3471,8 @@ mission "Tourists back [0]"
 	destination
 		distance 6 35
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 6000
@@ -3436,6 +3492,8 @@ mission "Tourists back [1]"
 	destination
 		distance 2 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 4000
@@ -3458,6 +3516,8 @@ mission "Wealthy tourists back"
 		attributes "rich" "urban"
 		distance 4 30
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 200
 		dialog phrase "generic passenger dropoff payment"
@@ -3476,6 +3536,8 @@ mission "Family [0]"
 	destination
 		distance 4 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 4000
@@ -3495,6 +3557,8 @@ mission "Family [1]"
 	destination
 		distance 5 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 6000
@@ -3514,6 +3578,8 @@ mission "Family [2]"
 	destination
 		distance 6 24
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 8000
@@ -3533,6 +3599,8 @@ mission "Family [3]"
 	destination
 		distance 8 32
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 10000
@@ -3553,6 +3621,8 @@ mission "Strike Breakers [mining]"
 		attributes "mining"
 		distance 2 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 10000
@@ -3573,6 +3643,8 @@ mission "Strike Breakers [textile]"
 		attributes "textiles"
 		distance 2 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 10000
@@ -3593,6 +3665,8 @@ mission "Strike Breakers [factory]"
 		attributes "factory"
 		distance 2 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 10000
@@ -3614,6 +3688,8 @@ mission "Colonists [0]"
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
 		distance 2 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 8000
@@ -3635,6 +3711,8 @@ mission "Colonists [1]"
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
 		distance 4 30
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 10000
@@ -3657,6 +3735,8 @@ mission "Prisoners [0]"
 		random < 15
 	on offer
 		require "Brig"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 165
 		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of several well-armed guards as they prepare to repay their debts to society as forced laborers in <planet>'s mines. You collect your payment of <payment>."
@@ -3678,6 +3758,8 @@ mission "Prisoners [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "factory"
 		attributes "north" "south" "rim" "frontier" "core"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 165
 		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of several well-armed guards as they prepare to repay their debts to society as forced laborers in <planet>'s factories. You collect your payment of <payment>."
@@ -3698,6 +3780,8 @@ mission "Prisoners [2]"
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "paradise"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 165
 		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of several well-armed guards as they prepare to repay their debts to society as domestic servants for <planet>'s wealthy elite. You collect your payment of <payment>."
@@ -3718,6 +3802,8 @@ mission "Prisoners [3]"
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "frontier" "moon" "military"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 165
 		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of several well-armed guards as they prepare to repay their debts to society in a penal colony on this remote world. You collect your payment of <payment>."
@@ -3739,6 +3825,8 @@ mission "Prisoners [4]"
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "frontier" "moon" "military"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 25000 175
 		dialog "Your shackled passengers offer bitter curses as burly and well-armed guards practically beat them out of your ship, driving them in the direction of a penal colony on this remote world. You collect your payment of <payment>."
@@ -3764,6 +3852,8 @@ mission "Released Prisoners [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	to offer
 		random < 15
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 3000 150
 		dialog "The released prisoners walk out into the spaceport with nothing but their meager belongings and discharge paperwork. You collect your payment of <payment>."
@@ -3782,6 +3872,8 @@ mission "Released Prisoners [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	to offer
 		random < 15
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 3000 150
 		dialog "The released prisoners walk out into the spaceport with nothing but their meager belongings and discharge paperwork. You collect your payment of <payment>."
@@ -3800,6 +3892,8 @@ mission "Released Prisoners [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	to offer
 		random < 15
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 3000 150
 		dialog "The released prisoners walk into the spaceport with nothing but discharge paperwork and the clothes on their backs. You collect your payment of <payment>."
@@ -3818,6 +3912,8 @@ mission "Large Bulk Delivery [0]"
 	destination
 		distance 2 8
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 4000
@@ -3837,6 +3933,8 @@ mission "Large Bulk Delivery [1]"
 	destination
 		distance 3 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 6000
@@ -3857,6 +3955,8 @@ mission "Large Bulk Delivery [2]"
 	destination
 		distance 4 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 8000
@@ -3877,6 +3977,8 @@ mission "Large Rush Delivery [0]"
 	destination
 		distance 4 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 36000
@@ -3897,6 +3999,8 @@ mission "Large Rush Delivery [1]"
 	destination
 		distance 5 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 38000
@@ -3918,6 +4022,8 @@ mission "Large Rush Delivery [2]"
 	destination
 		distance 6 14
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 40000
@@ -3939,6 +4045,8 @@ mission "Large Rush Delivery [3]"
 	destination
 		distance 7 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 42000
@@ -3957,6 +4065,8 @@ mission "Recycle garbage"
 	destination
 		attributes "factory" "mining" "dirt belt"
 		distance 9 12
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		dialog "You drop off the <commodity> at an especially smelly solid waste recycler and collect your payment of <payment>."
 		payment

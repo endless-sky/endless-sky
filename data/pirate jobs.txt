@@ -24,6 +24,8 @@ mission "Cargo Smuggling [0]"
 	destination
 		distance 3 6
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 4000 200
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -45,6 +47,8 @@ mission "Cargo Smuggling [1]"
 	destination
 		distance 3 8
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 4000 200
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -66,6 +70,8 @@ mission "Cargo Smuggling [2]"
 	destination
 		distance 4 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 200
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -87,6 +93,8 @@ mission "Cargo Smuggling [3]"
 	destination
 		distance 5 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 6000 200
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -110,6 +118,8 @@ mission "Drug Running [0]"
 	destination
 		distance 3 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 250
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -131,6 +141,8 @@ mission "Drug Running [1]"
 	destination
 		distance 4 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 250
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -152,6 +164,8 @@ mission "Drug Running [2]"
 	destination
 		distance 5 14
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 7000 250
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -173,6 +187,8 @@ mission "Drug Running [3]"
 	destination
 		distance 6 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 9000 250
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -196,6 +212,8 @@ mission "Bulk Cargo Smuggling [0]"
 	destination
 		distance 3 8
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 7000 200
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -217,6 +235,8 @@ mission "Bulk Cargo Smuggling [1]"
 	destination
 		distance 3 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 10000 200
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -238,6 +258,8 @@ mission "Bulk Cargo Smuggling [2]"
 	destination
 		distance 4 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 15000 200
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -261,6 +283,8 @@ mission "Bulk Drug Running [0]"
 	destination
 		distance 4 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 10000 250
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -282,6 +306,8 @@ mission "Bulk Drug Running [1]"
 	destination
 		distance 5 14
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 15000 250
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -303,6 +329,8 @@ mission "Bulk Drug Running [2]"
 	destination
 		distance 6 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 20000 250
 		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
@@ -356,6 +384,8 @@ mission "Stealth Cargo Smuggling (North) [0]"
 	on fail
 		"reputation: Republic" -= 5
 		"reputation: Navy (Oathkeeper)" -= 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 50000 300
 		"reputation: Pirate" += 5
@@ -431,6 +461,8 @@ mission "Stealth Cargo Smuggling (North) [1]"
 	on fail
 		"reputation: Republic" -= 5
 		"reputation: Navy (Oathkeeper)" -= 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 75000 300
 		"reputation: Pirate" += 5
@@ -482,6 +514,8 @@ mission "Stealth Cargo Smuggling (Core) [0]"
 				"Quicksilver (Scanner)"
 	on fail
 		"reputation: Syndicate" -= 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 50000 300
 		"reputation: Pirate" += 5
@@ -559,6 +593,8 @@ mission "Stealth Cargo Smuggling (Core) [1]"
 				"Quicksilver (Scanner)" 2
 	on fail
 		"reputation: Syndicate" -= 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 75000 300
 		"reputation: Pirate" += 5
@@ -611,6 +647,8 @@ mission "Stealth Cargo Smuggling (South) [0]"
 	on fail
 		"reputation: Free Worlds" -= 5
 		"reputation: Militia" -= 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 50000 300
 		"reputation: Pirate" += 5
@@ -689,6 +727,8 @@ mission "Stealth Cargo Smuggling (South) [1]"
 	on fail
 		"reputation: Free Worlds" -= 5
 		"reputation: Militia" -= 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 75000 300
 		"reputation: Pirate" += 5
@@ -743,6 +783,8 @@ mission "Stealth Drug Running (North) [0]"
 	on fail
 		"reputation: Republic" -= 5
 		"reputation: Navy (Oathkeeper)" -= 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 75000 375
 		"reputation: Pirate" += 5
@@ -818,6 +860,8 @@ mission "Stealth Drug Running (North) [1]"
 	on fail
 		"reputation: Republic" -= 5
 		"reputation: Navy (Oathkeeper)" -= 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 100000 375
 		"reputation: Pirate" += 5
@@ -869,6 +913,8 @@ mission "Stealth Drug Running (Core) [0]"
 				"Quicksilver (Scanner)"
 	on fail
 		"reputation: Syndicate" -= 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 75000 375
 		"reputation: Pirate" += 5
@@ -946,6 +992,8 @@ mission "Stealth Drug Running (Core) [1]"
 				"Quicksilver (Scanner)" 2
 	on fail
 		"reputation: Syndicate" -= 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 100000 375
 		"reputation: Pirate" += 5
@@ -998,6 +1046,8 @@ mission "Stealth Drug Running (South) [0]"
 	on fail
 		"reputation: Free Worlds" -= 5
 		"reputation: Militia" -= 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 75000 375
 		"reputation: Pirate" += 5
@@ -1076,6 +1126,8 @@ mission "Stealth Drug Running (South) [1]"
 	on fail
 		"reputation: Free Worlds" -= 5
 		"reputation: Militia" -= 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 100000 375
 		"reputation: Pirate" += 5
@@ -1101,6 +1153,8 @@ mission "Wanted Passenger [0]"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 30000 300
 		dialog "Your <passengers> insists that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
@@ -1123,6 +1177,8 @@ mission "Wanted Passengers [1]"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 20000 300
 		dialog "Your <passengers> insist that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
@@ -1145,6 +1201,8 @@ mission "Wanted Passengers [2]"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 20000 300
 		dialog "Your <passengers> insist that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
@@ -1167,6 +1225,8 @@ mission "Wanted Passengers [3]"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 20000 300
 		dialog "Your <passengers> insist that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
@@ -1251,6 +1311,8 @@ mission "Highly Wanted Passenger (North)"
 	on fail
 		"reputation: Republic" -= 5
 		"reputation: Navy (Oathkeeper)" -= 5
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 200000 1000
 		"reputation: Pirate" += 5
@@ -1336,6 +1398,8 @@ mission "Highly Wanted Passenger (Core)"
 				"Quicksilver (Scanner)" 2
 	on fail
 		"reputation: Syndicate" -= 5
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 200000 1000
 		"reputation: Pirate" += 5
@@ -1422,6 +1486,8 @@ mission "Highly Wanted Passenger (South)"
 	on fail
 		"reputation: Free Worlds" -= 5
 		"reputation: Militia" -= 5
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 200000 1000
 		"reputation: Pirate" += 5
@@ -1447,6 +1513,8 @@ mission "Slave Transport [0]"
 	destination
 		distance 3 30
 		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 75000 400
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
@@ -1469,6 +1537,8 @@ mission "Slave Transport [1]"
 	destination
 		distance 3 30
 		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 75000 400
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
@@ -1491,6 +1561,8 @@ mission "Slave Transport [2]"
 	destination
 		distance 3 30
 		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 75000 400
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
@@ -1515,6 +1587,8 @@ mission "Bulk Slave Transport [0]"
 	destination
 		distance 3 30
 		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 100000 400
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
@@ -1537,6 +1611,8 @@ mission "Bulk Slave Transport [1]"
 	destination
 		distance 3 30
 		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 100000 400
 		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."

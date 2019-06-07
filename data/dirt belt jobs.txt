@@ -24,6 +24,8 @@ mission "Drought Relief"
 		distance 3 10
 		attributes "dirt belt"
 		attributes "farming"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 10000 160
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>. A group of <planet> citizens thank you and bid you farewell."
@@ -56,6 +58,8 @@ mission "To Remembrance Day celebration [0]"
 	destination
 		distance 3 15
 		attributes "dirt belt"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 1000 180
 		dialog "You wish your <passengers> the best of luck on <planet>. The children run off your ship in green face paint, and the parents pay you <payment>."
@@ -88,6 +92,8 @@ mission "To Remembrance Day celebration [1]"
 	destination
 		distance 3 15
 		attributes "dirt belt"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1000 180
 		dialog `Spaceport workers already festively dressed for Remembrance Day remove the cargo of <commodity> from your ship and hand you your payment of <payment>.`
@@ -119,6 +125,8 @@ mission "To Remembrance Day celebration [2]"
 	destination
 		distance 3 15
 		attributes "dirt belt"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1000 180
 		dialog `Spaceport workers already festively dressed for Remembrance Day remove the cargo of <commodity> from your ship and hand you your payment of <payment>.`
@@ -148,6 +156,8 @@ mission "From Remembrance Day celebration [0]"
 	destination
 		distance 3 15
 		attributes "dirt belt"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 1000
@@ -178,6 +188,8 @@ mission "From Remembrance Day celebration [1]"
 	destination
 		distance 3 15
 		attributes "dirt belt"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 1000

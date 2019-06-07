@@ -135,6 +135,8 @@ mission "Sketchy Cargo [0]"
 		attributes "south"
 	on accept
 		dialog `You follow the directions specified in the job to an abandoned-looking warehouse and find your cargo in unlabeled crates. As you load it onto your ship, you get the feeling that you are being watched.`
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 0 160
 		dialog "You drop off the unlabeled cargo in a warehouse not too dissimilar to the one you picked it up in. A man dressed in a cloak hands you <payment> after the last crate is removed from your ship."
@@ -154,6 +156,8 @@ mission "Sketchy Cargo [1]"
 		attributes "south"
 	on accept
 		dialog `You follow the directions specified in the job to an abandoned-looking warehouse and find your cargo in unlabeled crates. As you load it onto your ship, you get the feeling that you are being watched.`
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 0 160
 		dialog "You drop off the unlabeled cargo in a warehouse not too dissimilar to the one you picked it up in. A man dressed in a cloak hands you <payment> after the last crate is removed from your ship."
@@ -175,6 +179,8 @@ mission "Sketchy Passenger [0]"
 		attributes "south"
 	on accept
 		dialog `You have some difficulty finding your passengers, but after almost an hour of searching you finally find them. As they follow you back to your ship, you hear them whispering to each other, but you can't make out what they're saying.`
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 2000 160
 		dialog "Your passengers ask that you land away from the busy spaceport center. They hand you <payment> and rush out of your ship and away from the spaceport with considerable speed."
@@ -194,6 +200,8 @@ mission "Sketchy Passenger [1]"
 		attributes "south"
 	on accept
 		dialog `You have some difficulty finding your passengers, but after almost an hour of searching you finally find them. As they follow you back to your ship, you hear them whispering to each other, but you can't make out what they're saying.`
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 2000 160
 		dialog "Your passengers ask that you land away from the busy spaceport center. They hand you <payment> and rush out of your ship and away from the spaceport with considerable speed."
