@@ -193,12 +193,18 @@ ship "Gascraft"
 		"energy capacity" 150
 		"ramscoop" 0.5
 		"cargo space" 8
-		"outfit space" 88
+		"outfit space" 54
 		"engine capacity" 34
 		"shield generation" 0.6
 		"shield energy" 0.4
 		"hull repair rate" 1.2
 		"hull energy" 0.9
+		"turn" 448.0
+		"turning energy" 1.32
+		"turning heat" 1.4
+		"thrust" 18.0
+		"thrusting energy" 2.65
+		"thrusting heat" 2.5
 		"gaslining" 1
 		"outfit scan power" 24
 		"outfit scan speed" 1
@@ -209,8 +215,6 @@ ship "Gascraft"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
 
-		"Crucible-Class Thruster"
-		"Crucible-Class Steering"
 		"Hyperdrive"
 
 	engine 0 30
