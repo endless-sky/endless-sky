@@ -82,6 +82,9 @@ phrase "generic bounty hunting payment dialog"
 phrase "generic bounty hunting on visit"
 	word
 		`You've landed on <planet>, but the <npc> has not been eliminated yet. Hunt it down and destroy it before returning.`
+phrase "generic bounty hunting boarding on visit"
+	word
+		`You've landed on <planet>, but you have not boarded the <npc> yet. Hunt it down and board it before returning.`
 
 phrase "generic hunted bounty fleet eliminated dialog"
 	word
