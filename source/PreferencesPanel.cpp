@@ -299,7 +299,8 @@ void PreferencesPanel::DrawControls()
 		"Weapons",
 		"Targeting",
 		"Menus",
-		"Fleet"
+		"Fleet",
+		"Special abilities"
 	};
 	const string *category = CATEGORIES;
 	static const Command COMMANDS[] = {
@@ -316,7 +317,6 @@ void PreferencesPanel::DrawControls()
 		Command::PRIMARY,
 		Command::SELECT,
 		Command::SECONDARY,
-		Command::CLOAK,
 		Command::NONE,
 		Command::NEAREST,
 		Command::TARGET,
@@ -333,7 +333,9 @@ void PreferencesPanel::DrawControls()
 		Command::FIGHT,
 		Command::GATHER,
 		Command::HOLD,
-		Command::AMMO
+		Command::AMMO,
+		Command::NONE,
+        Command::CLOAK
 	};
 	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)
