@@ -937,11 +937,19 @@ outfit "Timer Weapon"
 	"gun ports" -1
 	weapon
 		"velocity" 10
-		"lifetime" 20
+		"lifetime" 2
 		"reload" 100
+		"blast radius" 10
+		"split range" 200
+		"submunition" "Timer Submunition"
+
+outfit "Timer Submunition"
+	weapon
+		"lifetime" 20
 		"trigger radius" 200
 		"blast radius" 20
-		"hull damage" .1
+		"hull damage" .15
+		"no damage scaling"
 
 mission "Sad Archie"
 	landing
@@ -2174,6 +2182,7 @@ mission "Terraforming 6"
 		not system "Sol"
 	destination "Earth"
 	deadline
+	deadline 2
 	to offer
 		has "event: terraforming timer"
 		or
