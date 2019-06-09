@@ -189,8 +189,8 @@ ship "Bactrian"
 		"cost" 17600000
 		"shields" 17500
 		"hull" 8600
-		"required crew" 80
-		"bunks" 275
+		"required crew" 70
+		"bunks" 245
 		"mass" 1040
 		"drag" 16.1
 		"heat dissipation" .4
