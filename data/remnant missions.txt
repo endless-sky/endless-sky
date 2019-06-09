@@ -702,7 +702,7 @@ mission "Remnant: Tech Retrieval"
 		or
 			has "Remnant: Heavy Laser: done"
 			has "Remnant: Catalytic Ramscoop: done"
-			has "Remnant: Plasma Cannons: done"
+			has "Remnant: Plasma Cannon: done"
 			has "Remnant: Electron Beam: done"
 			has "Remnant: D94-YV Shield Generator: done"
 			has "Remnant: S-970 Regenerator: done"
@@ -1037,7 +1037,7 @@ mission "Remnant: Salvage 1"
 		random < 50
 		or
 			has "Remnant: Catalytic Ramscoop: done"
-			has "Remnant: Plasma Cannons: done"
+			has "Remnant: Plasma Cannon: done"
 			has "Remnant: Heavy Laser: done"
 			has "Remnant: Tech Retrieval: done"
 	on offer
