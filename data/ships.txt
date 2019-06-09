@@ -191,7 +191,7 @@ ship "Bactrian"
 		"hull" 8600
 		"required crew" 70
 		"bunks" 245
-		"mass" 1040
+		"mass" 940
 		"drag" 16.1
 		"heat dissipation" .4
 		"fuel capacity" 700
