@@ -1163,13 +1163,6 @@ char ShopPanel::CheckButton(int x, int y)
 		return 's';
 	else if (x > 169 && x < 239)
 		return 'l';
-		
-//	if(x < 80)
-//		return 'b';
-//	else if(x < 160)
-//		return 's';
-//	else
-//		return 'l';
-	
+    
 	return ' ';
 }
