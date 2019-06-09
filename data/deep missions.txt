@@ -28,6 +28,9 @@ mission "Deep: Syndicate Convoy"
 			and
 				"deep convoy" == 2
 				random < 40
+		or
+			not "chosen sides"
+			has "main plot completed"
 				
 	on offer
 		conversation
@@ -119,6 +122,9 @@ mission "Deep: Tarazed Convoy"
 			and
 				"deep convoy" == 2
 				random < 40
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		conversation
@@ -213,6 +219,9 @@ mission "Deep: Kraz Convoy"
 			and
 				"deep convoy" == 2
 				random < 40
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		conversation
@@ -309,6 +318,9 @@ mission "Deep: Mystery Cubes 0"
 			and
 				"deep convoy" == 3
 				random < 90
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		conversation
@@ -394,6 +406,9 @@ mission "Deep: Mystery Cubes 1"
 	destination "Luna"
 	to offer
 		has "event: deep: warlord detected"
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		dialog `You receive a message from Lieutenant Paris. "Greetings, Captain. The situation involving Beelzebub has gone slightly sour, and the Navy is involved now. I have been asked to gather the merchants who assisted the Deep previously in placing the cubes. If you are interested, please come to <destination>."`
@@ -668,6 +683,9 @@ mission "Deep: TMBR 0"
 		has "There Might Be Riots part 3B: done"
 		not "Deep: Remnant 0: offered"
 		not "Deep: Project Hawking: offered"
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		conversation
@@ -1023,6 +1041,9 @@ mission "Deep: Project Hawking"
 	to offer
 		random < 40
 		has "Deep: Mystery Cubes 4: done"
+		or
+			not "chosen sides"
+			has "main plot completed"
 		
 	on offer
 		conversation
@@ -1276,6 +1297,9 @@ mission "Deep: Remnant 0"
 		has "Deep: Mystery Cubes 4: done"
 		has "Terminus exploration: done"
 		has "First Contact: Hai: offered"
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		conversation
@@ -1348,6 +1372,9 @@ mission "Deep: Remnant: Keystone Research"
 	destination "Valhalla"
 	to offer
 		has "event: deep: keystone research"
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		dialog
@@ -1830,6 +1857,9 @@ mission "Deep: Scientist Rescue 0"
 	waypoint "Betelgeuse"
 	to offer
 		has "event: deep: scientist rescue timer"
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		conversation
