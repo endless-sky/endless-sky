@@ -345,7 +345,7 @@ bool NPC::HasSucceeded(const System *playerSystem) const
 			}
 			bool isHere = false;
 			// If this ship is being carried, check the parent's system.
-			if(!ship->GetSystem() && ship->CanBeCarried())
+			if(!ship->GetSystem() && ship->CanBeCarried() && ship->GetParent())
 				isHere = ship->GetParent()->GetSystem() == playerSystem;
 			else
 				isHere = (!ship->GetSystem() || ship->GetSystem() == playerSystem);
