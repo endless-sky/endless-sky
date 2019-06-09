@@ -1157,12 +1157,19 @@ char ShopPanel::CheckButton(int x, int y)
 		return ' ';
 	
 	x -= Screen::Right() - SIDE_WIDTH;
-	if(x < 80)
+	if(x > 9 && x < 69)
 		return 'b';
-	else if(x < 160)
+	else if(x > 89 && x < 149)
 		return 's';
-	else
+	else if (x > 169 && x < 239)
 		return 'l';
+		
+//	if(x < 80)
+//		return 'b';
+//	else if(x < 160)
+//		return 's';
+//	else
+//		return 'l';
 	
 	return ' ';
 }
