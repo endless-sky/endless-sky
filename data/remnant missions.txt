@@ -669,7 +669,7 @@ mission "Remnant: Tech Retrieval"
 	on offer
 		"remnant met taely" ++
 		conversation
-			`As you enter the spaceport, you notice someone across the plaza appears to have been waiting for you. A tall, solidly built woman in short-sleeved coveralls stands up from where she was sitting near the information desk. With a few quick gestures at the person behind the counter, she heads towards you with a confident stride. As she approaches, you note that the crowds of people moving around the plaza seem to staying out of her way as if she were someone important. In contrast, she reminds you of the mechanics who maintained the textile factories back on New Boston. In particular, the tools at her belt and the wear marks on her clothing suggest someone who is more comfortable inside a ship access duct than behind a desk.`
+			`As you enter the spaceport, you notice someone across the plaza appears to have been waiting for you. A tall, solidly built woman in short-sleeved coveralls stands up from where she was sitting near the information desk. With a few quick gestures at the person behind the counter, she heads towards you with a confident stride. As she approaches, you note that the crowds of people moving around the plaza seem to be staying out of her way as if she were someone important. In contrast, she reminds you of the mechanics who maintained the textile factories back on New Boston. In particular, the tools at her belt and the wear marks on her clothing suggest someone who is more comfortable inside a ship access duct than behind a desk.`
 			`	Before you can decide if you want to avoid this person or not, she is standing in front of you, clearing her throat. "You are captain <first> <last> of the <ship>?" She asks in a lyrical chant.`
 			choice
 				`	"That's me."`
@@ -691,7 +691,7 @@ mission "Remnant: Tech Retrieval"
 				`	"Could you elaborate on 'how fast they can travel in deep space?"`
 				`	"No, I don't want to get involved in this."`
 					goto nothelp
-			`	She considers her thoughts briefly, then chants, "How fast a ship can move through an area of deep space basically depends on how fast they can collect fuel. Ramscoops were common at the time of the exodus, and if humanity has developped better ramscoops or other means of generating fuel, these would significantly improve their speed at exploring or crossing large volumes of space."`
+			`	She considers her thoughts briefly, then chants, "How fast a ship can move through an area of deep space basically depends on how fast they can collect fuel. Ramscoops were common at the time of the exodus, and if humanity has developed better ramscoops or other means of generating fuel, these would significantly improve their speed at exploring or crossing large volumes of space."`
 			choice
 				`	"Okay, I will see what I can find."`
 				`	"No, I don't want to get involved in this."`
@@ -716,7 +716,6 @@ mission "Remnant: Tech Retrieval"
 mission "Remnant: Heavy Laser"
 	name "Retrieve Heavy Lasers"
 	description "A Remnant engineer has offered to pay you <payment> in return for delivering two heavy lasers to <planet> for them to study."
-	minor
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -754,7 +753,6 @@ mission "Remnant: Heavy Laser"
 mission "Remnant: Plasma Cannon"
 	name "Retrieve Plasma Cannons"
 	description "A Remnant engineer has offered to pay you <payment> in exchange for delivering two plasma cannons to a team on <planet>."
-	minor
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -800,7 +798,6 @@ mission "Remnant: Plasma Cannon"
 mission "Remnant: Catalytic Ramscoop"
 	name "Retrieve Catalytic Ramscoops"
 	description "A Remnant engineer has offered you <payment> for delivering two catalytic ramscoops to a lab on <planet>."
-	minor
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -837,7 +834,6 @@ mission "Remnant: Catalytic Ramscoop"
 mission "Remnant: Electron Beam"
 	name "Retrieve Electron Beams for the Remnant"
 	description "A Remnant engineer has offered you <payment> for delivering two electron beams to a testing range on <planet>."
-	minor
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -867,14 +863,13 @@ mission "Remnant: Electron Beam"
 		payment 1090000
 		"remnant met taely" ++
 		conversation
-			`On <planet> you follow the landing instructions to arrive at a pad set next to a small complex of testing ranges and workshops. A group of technicians is just finishing the disassembly of a weapon from the test stand when you settle onto the stand, and a few minutes later they arrive to unload the electron beams from your ship. They move eagerly to secure the new weapons to their flatbed and quickly hand you your payment of <payment> before giving vanishing into the lab.`
+			`On <planet> you follow the landing instructions to arrive at a pad set next to a small complex of testing ranges and workshops. A group of technicians is just finishing the disassembly of a weapon from the test stand when you settle onto the stand, and a few minutes later they arrive to unload the electron beams from your ship. They move eagerly to secure the new weapons to their flatbed and quickly hand you your payment of <payment> before vanishing into the lab.`
 
 
 
 mission "Remnant: D94-YV Shield Generator"
 	name "Retrieve D94-YV Shield Generators"
 	description "A Remnant engineer has offered you <payment> for delivering two D94-YV Shield Generators to a research facility on <planet>."
-	minor
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -885,7 +880,7 @@ mission "Remnant: D94-YV Shield Generator"
 	on offer
 		require "D94-YV Shield Generator"
 		conversation
-			`You know that Taely was interested in seeing examples of recently developped human technology, and the D94-YV Shield Generator probably fits the criteria. Would you like to show her?`
+			`You know that Taely was interested in seeing examples of recently developed human technology, and the D94-YV Shield Generator probably fits the criteria. Would you like to show her?`
 			choice
 				`	(Not now.)`
 					defer
@@ -911,7 +906,6 @@ mission "Remnant: D94-YV Shield Generator"
 mission "Remnant: S-970 Regenerator"
 	name "Retrieve S-970 Regenerators"
 	description "A Remnant engineer has offered you <payment> for delivering two S-970 Regenerators to an impact testing facility on <planet>."
-	minor
 	source "Viminal"
 	destination
 		government "Remnant"
