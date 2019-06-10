@@ -196,7 +196,7 @@ ship "Bactrian"
 		"heat dissipation" .4
 		"fuel capacity" 700
 		"cargo space" 530
-		"outfit space" 630
+		"outfit space" 740
 		"weapon capacity" 300
 		"engine capacity" 180
 		weapon
