@@ -729,7 +729,7 @@ mission "Remnant: Heavy Laser"
 				`	(Yes.)`
 			branch familiar
 				has "Remnant Tech Retrieval: done"
-			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a starling. "Greetings, <first>. I'll be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
+			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a Starling. "Greetings, <first>. I'll be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
 				goto next
 			label familiar
 			`	You recall that Taely is responsible for the shipyards, so you head straight there and ask the nearest mechanic. They direct you to a large hanger tucked into a cliff face, where you find her working at a terminal filled with schematics. Behind her, the room fades quickly into darkness where you can faintly make out what appears to be a large tank and a lot of whirring machinery. As you approach she looks up from her work and turns to face you. "Ah, you have returned. Do you have something new for me?"`
@@ -766,7 +766,7 @@ mission "Remnant: Plasma Cannon"
 				`	(Yes.)`
 			branch familiar
 				has "Remnant Tech Retrieval: done"
-			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a starling. "Greetings, <first>. I will be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
+			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a Starling. "Greetings, <first>. I will be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
 				goto next
 			label familiar
 			`	Aware that Taely's main area of responsibility is in the shipyards, you head straight there and have almost arrived when you are approached by another Remnant who introduces herself as one of Taely's aides. "Greetings, Captain" she trills. "Our scans picked up indications of uncatalogued human weaponry. Were you bringing it to show us?"`
@@ -811,7 +811,7 @@ mission "Remnant: Catalytic Ramscoop"
 				`	(Yes.)`
 			branch familiar
 				has "Remnant Tech Retrieval: done"
-			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely calibrating an inhibitor cannon on an albatross. "Greetings, <first>. I am just finishing these calibrations." She does a few more things inside the casing, reseals the hatch, and drops to the ground on a tether. "So, did you recover something?"`
+			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely calibrating an Inhibitor Cannon on an Albatross. "Greetings, <first>. I am just finishing these calibrations." She does a few more things inside the casing, reseals the hatch, and drops to the ground on a tether. "So, did you recover something?"`
 				goto next
 			label familiar
 			`	Remembering that she spends most of her time in the shipyard, you head straight there and almost immediately are intercepted by another Remnant who introduces herself as one of Taely's assistants. "Good day, Captain" she chants. "Our scans picked up a new form of ramscoop onboard your ship. Have you brought it for us to look at?"`
