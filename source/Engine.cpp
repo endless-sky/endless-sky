@@ -1621,6 +1621,7 @@ void Engine::HandleMouseClicks()
 					break;
 			}
 		}
+    bool clickedAsteroid = false;
 	if(clickTarget)
 	{
 		if(isRightClick)
@@ -1655,9 +1656,15 @@ void Engine::HandleMouseClicks()
 			{
 				clickRange = range;
 				flagship->SetTargetAsteroid(minable);
+				clickedAsteroid = true;
 			}
 		}
 	}
+	if (!clickTarget && !isRightClick && !clickedAsteroid)
+    {
+        //clear target, this also clears current asteroid target.
+        flagship->SetTargetShip(nullptr);
+    }
 }
 
 
