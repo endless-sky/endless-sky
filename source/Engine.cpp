@@ -1621,7 +1621,7 @@ void Engine::HandleMouseClicks()
 					break;
 			}
 		}
-    bool clickedAsteroid = false;
+	bool clickedAsteroid = false;
 	if(clickTarget)
 	{
 		if(isRightClick)
@@ -1661,10 +1661,10 @@ void Engine::HandleMouseClicks()
 		}
 	}
 	if (!clickTarget && !isRightClick && !clickedAsteroid)
-    {
-        //clear target, this also clears current asteroid target.
-        flagship->SetTargetShip(nullptr);
-    }
+	{
+		//clear target, this also clears current asteroid target.
+		flagship->SetTargetShip(nullptr);
+	}
 }
 
 
