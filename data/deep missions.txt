@@ -466,12 +466,15 @@ mission "Deep: Mystery Cubes 2"
 	
 	npc accompany save
 		government "Deep Security"
-		personality heroic opportunistic escort
+		personality heroic escort
 		fleet
 			names "deep"
 			variant
 				"Mule"
 				"Raven" 2
+	npc accompany save
+		government "Republic"
+		personality heroic opportunistic escort
 		fleet
 			names "republic capital"
 			variant
