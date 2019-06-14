@@ -2178,6 +2178,7 @@ mission "Terraforming 6"
 	description `Travel to <destination> by <date> for questioning on your "unlawful use of an asteroid."`
 	source
 		government "Republic"
+		attributes "spaceport"
 		not attributes "deep"
 		not system "Sol"
 	destination "Earth"
