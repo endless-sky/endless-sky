@@ -688,7 +688,7 @@ mission "Remnant: Tech Retrieval"
 			choice
 				`	"Okay, I will see what I can find."`
 					goto find
-				`	"Could you elaborate on 'how fast they can travel in deep space?"`
+				`	"Could you elaborate on 'how fast they can travel in deep space'?"`
 				`	"No, I don't want to get involved in this."`
 					goto nothelp
 			`	She considers her thoughts briefly, then chants, "How fast a ship can move through an area of deep space basically depends on how fast they can collect fuel. Ramscoops were common at the time of the exodus, and if humanity has developed better ramscoops or other means of generating fuel, these would significantly improve their speed at exploring or crossing large volumes of space."`
@@ -706,7 +706,7 @@ mission "Remnant: Tech Retrieval"
 		or
 			has "Remnant: Heavy Laser: done"
 			has "Remnant: Catalytic Ramscoop: done"
-			has "Remnant: Plasma Cannons: done"
+			has "Remnant: Plasma Cannon: done"
 			has "Remnant: Electron Beam: done"
 			has "Remnant: D94-YV Shield Generator: done"
 			has "Remnant: S-970 Regenerator: done"
@@ -733,7 +733,7 @@ mission "Remnant: Heavy Laser"
 				`	(Yes.)`
 			branch familiar
 				has "Remnant Tech Retrieval: done"
-			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a starling. "Greetings, <first>. I'll be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
+			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a Starling. "Greetings, <first>. I'll be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
 				goto next
 			label familiar
 			`	You recall that Taely is responsible for the shipyards, so you head straight there and ask the nearest mechanic. They direct you to a large hanger tucked into a cliff face, where you find her working at a terminal filled with schematics. Behind her, the room fades quickly into darkness where you can faintly make out what appears to be a large tank and a lot of whirring machinery. As you approach she looks up from her work and turns to face you. "Ah, you have returned. Do you have something new for me?"`
@@ -770,7 +770,7 @@ mission "Remnant: Plasma Cannon"
 				`	(Yes.)`
 			branch familiar
 				has "Remnant Tech Retrieval: done"
-			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a starling. "Greetings, <first>. I will be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
+			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a Starling. "Greetings, <first>. I will be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
 				goto next
 			label familiar
 			`	Aware that Taely's main area of responsibility is in the shipyards, you head straight there and have almost arrived when you are approached by another Remnant who introduces herself as one of Taely's aides. "Greetings, Captain" she trills. "Our scans picked up indications of uncatalogued human weaponry. Were you bringing it to show us?"`
@@ -815,7 +815,7 @@ mission "Remnant: Catalytic Ramscoop"
 				`	(Yes.)`
 			branch familiar
 				has "Remnant Tech Retrieval: done"
-			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely calibrating an inhibitor cannon on an albatross. "Greetings, <first>. I am just finishing these calibrations." She does a few more things inside the casing, reseals the hatch, and drops to the ground on a tether. "So, did you recover something?"`
+			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely calibrating an Inhibitor Cannon on an Albatross. "Greetings, <first>. I am just finishing these calibrations." She does a few more things inside the casing, reseals the hatch, and drops to the ground on a tether. "So, did you recover something?"`
 				goto next
 			label familiar
 			`	Remembering that she spends most of her time in the shipyard, you head straight there and almost immediately are intercepted by another Remnant who introduces herself as one of Taely's assistants. "Good day, Captain" she chants. "Our scans picked up a new form of ramscoop onboard your ship. Have you brought it for us to look at?"`
@@ -1041,7 +1041,7 @@ mission "Remnant: Salvage 1"
 		random < 50
 		or
 			has "Remnant: Catalytic Ramscoop: done"
-			has "Remnant: Plasma Cannons: done"
+			has "Remnant: Plasma Cannon: done"
 			has "Remnant: Heavy Laser: done"
 			has "Remnant: Tech Retrieval: done"
 	on offer
@@ -1123,7 +1123,7 @@ mission "Remnant: Salvage 2"
 		conversation
 			`As some ships maintain orbital sentry positions, most ships return to their berths. Mechanics are soon swarming over the ships, and what you suppose are ambulances are waiting at the ramps to collect the injured. Farther back, flatbed tractor units wait to pick up any salvage that has been collected.`
 			`	Eventually a tired but pleased-looking prefect stops by your ship. He starts chanting, "Do you understand our language, or do I need to sing?" He looks relieved when you reply that you can understand most of what is said so long as he signs slowly. "Thank you for your assistance during the raid. The sensors you placed in Parca picked up the fleet coming in and gave us sufficient warning to get everyone ready."`
-			`	He is silent for a moment, with the air of someone who is enjoying not having to run for the first time in a while. "Oh, Taely said that you might have some historical records for us?" You hand over the copy of the archive in response, telling him that is probably the best available. He hands you a credit chip with <payment> on it. "Thank you, I'll make sure this gets where it needs to go. In the meantime, we could use your help in the spaceport."`
+			`	He is silent for a moment, with the air of someone who is enjoying not having to run for the first time in a while. "Oh, Taely said that you might have some historical records for us?" You hand over the copy of the archive in response, telling him that it is probably the best available. He hands you a credit chip with <payment> on it. "Thank you, I'll make sure this gets where it needs to go. In the meantime, we could use your help in the spaceport."`
 
 
 
