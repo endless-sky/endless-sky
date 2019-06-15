@@ -18,6 +18,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 
+using namespace std;
+
+
 TestStep::TestStep()
 {
 	// Initialize with some sensible default values.
@@ -41,7 +44,7 @@ int TestStep::StepType()
 
 
 
-const std::string TestStep::SaveGameName()
+const string TestStep::SaveGameName()
 {
 	return saveGameName;
 }

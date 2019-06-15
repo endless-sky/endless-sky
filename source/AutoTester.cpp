@@ -18,6 +18,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <stdexcept>
 #include <string>
 
+using namespace std;
+
+
 
 AutoTester::AutoTester()
 {
@@ -64,14 +67,14 @@ void AutoTester::Load(const DataNode &node)
 
 
 
-std::string AutoTester::Name() const
+string AutoTester::Name() const
 {
 	return name;
 }
 
 
 
-std::string AutoTester::StatusText() const
+string AutoTester::StatusText() const
 {
 	switch (status)
 	{
@@ -121,5 +124,5 @@ void AutoTester::Step(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
 	// the autotester. Might want to add a menuPanels.QuitError() function in
 	// a later version (which can set a non-zero exitcode and exit properly).
 	if ((testResult != TestStep::RESULT_DONE) and (testResult != TestStep::RESULT_RETRY))
-		throw std::runtime_error("Teststep failed");
+		throw runtime_error("Teststep failed");
 }
