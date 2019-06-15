@@ -2161,7 +2161,7 @@ ship "Mule"
 	sprite "ship/mule"
 	thumbnail "thumbnail/mule"
 	attributes
-		category "Medium Warship"
+		category "Heavy Freighter"
 		"cost" 4580000
 		"shields" 5400
 		"hull" 4400
@@ -2213,7 +2213,7 @@ ship "Mule"
 	explode "small explosion" 30
 	explode "medium explosion" 20
 	"final explode" "final explosion medium"
-	description "The Mule is as much of a hodgepodge as its looks suggest. The Lionheart ship designers combined a good deal of cargo space with a decent amount of weaponry and even a fighter bay, and ended up with a ship that is mostly used as a freighter but must be classified as a warship because of its heavy armament and shields."
+	description "The Mule is as much of a hodgepodge as its looks suggest. The Lionheart ship designers combined a good deal of cargo space with a decent amount of weaponry and even a fighter bay, and ended up with a ship that is mostly used as a freighter but tempted Republic officials to classify it as a warship because of its heavy armament and shields."
 
 
 
