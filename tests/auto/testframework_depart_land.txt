@@ -1,7 +1,0 @@
-test-data
-	status "Active"
-	description "Test with only a departure and landing. Mostly tests the testframework itself."
-	sequence
-		load "Bobbi Bughunter" "Three Earthly Barges"
-		depart
-		land

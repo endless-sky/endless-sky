@@ -5,20 +5,10 @@ NUM_FAILED=0
 # Determine path of the current script
 HERE=$(cd `dirname $0` && pwd)
 
-# Determine base path for resources
-RESOURCES=$(cd "${HERE}"; cd .. ; pwd)
-
-# Determine path to auto-testers
-AUTO_TEST_PATH="${RESOURCES}/tests"
+RESOURCES="${HERE}/.."
 
 # Determine path to endless-sky executable
 ES_EXEC_PATH="${RESOURCES}/endless-sky"
-
-if [ ! -d "${AUTO_TEST_PATH}" ]
-then
-	echo "No auto-testers directory found. Probably path issue. Returning failure."
-	exit 1
-fi
 
 if [ ! -f "${ES_EXEC_PATH}" ] || [ ! -x "${ES_EXEC_PATH}" ]
 then
@@ -26,15 +16,18 @@ then
 	exit 1
 fi
 
-TESTS=$(cd "${AUTO_TEST_PATH}"; ls *.txt -1 | sed "s/\.txt\$//")
+TESTS=$("${ES_EXEC_PATH}" --list-tests)
+TESTS_OK=$(echo "${TESTS}" | grep -e "ACTIVE$" | cut -d$'\t' -f1)
+TESTS_NOK=$(echo "${TESTS}" | grep -e "KNOWN FAILURE$" -e "MISSING FEATURE$" | cut -d$'\t' -f1)
 
 echo "***********************************************"
 echo "***         ES Autotest-runner              ***"
 echo "***********************************************"
-echo "Resources is ${RESOURCES}"
-echo "***********************************************"
+echo "Tests not to execute (known failure or missing feature):"
+echo "${TESTS_NOK}"
+echo ""
 echo "Tests to execute:"
-echo "${TESTS}"
+echo "${TESTS_OK}"
 echo "***********************************************"
 
 # Set separator to newline (in case tests have spaces in their name)
@@ -43,7 +36,7 @@ IFS="
 "
 
 # Run all the tests
-for TEST in ${TESTS}
+for TEST in ${TESTS_OK}
 do
 	TEST_RESULT="PASS"
 	echo "Running test ${TEST}"
@@ -54,6 +47,7 @@ do
 		NUM_FAILED=$((NUM_FAILED + 1))
 	fi
 	echo "Test ${TEST}: ${TEST_RESULT}"
+	echo ""
 done
 
 IFS=${IFS_OLD}

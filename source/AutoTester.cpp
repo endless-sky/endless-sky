@@ -15,15 +15,76 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "TestStep.h"
 #include "UI.h"
+#include <stdexcept>
+#include <string>
+
 
 AutoTester::AutoTester()
 {
+	name = "";
 }
+
+
 
 void AutoTester::Load(const DataNode &node)
 {
-	//TODO: implement
+	if(node.Size() < 2)
+	{
+		node.PrintTrace("No name specified for auto-tester");
+		return;
+	}
+	if (node.Token(0) != "auto-test")
+	{
+		node.PrintTrace("Non-auto-test found in auto-test parsing");
+		return;
+	}
+	name = node.Token(1);
+
+	for(const DataNode &child : node)
+	{
+		if(child.Token(0) == "status" && child.Size() >= 2)
+		{
+			if (child.Token(1) == "Active")
+				status = STATUS_ACTIVE;
+			else if (child.Token(1) == "Known Failure")
+				status = STATUS_KNOWN_FAILURE;
+			else if (child.Token(1) == "Missing Feature")
+				status = STATUS_MISSING_FEATURE;
+		}
+		else if (child.Token(0) == "test-sequence")
+		{
+			for (const DataNode &seqChild : child)
+			{
+				testSteps.push_back(new TestStep());
+				(testSteps.back())->Load(seqChild);
+			}
+		}
+	}
 }
+
+
+
+std::string AutoTester::Name() const
+{
+	return name;
+}
+
+
+
+std::string AutoTester::StatusText() const
+{
+	switch (status)
+	{
+		case AutoTester::STATUS_KNOWN_FAILURE:
+			return "KNOWN FAILURE";
+		case AutoTester::STATUS_MISSING_FEATURE:
+			return "MISSING FEATURE";
+		case AutoTester::STATUS_ACTIVE:
+		default:
+			return "ACTIVE";
+	}
+}
+
 
 
 // The panel-stacks determine both what the player sees and the state of the
@@ -44,29 +105,21 @@ void AutoTester::Step(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
 		menuPanels.Quit();
 		return;
 	}
-	TestStep testStep = testSteps.front();
-	switch (testStep.StepType())
+	TestStep* testStep = testSteps.front();
+
+	int testResult = testStep->DoStep(menuPanels, gamePanels, player);
+	// Only keep the teststep if we have a retry result. Remove the step
+	// in all other cases.
+	if (testResult != TestStep::RESULT_RETRY)
 	{
-		case TestStep::ASSERT:
-		case TestStep::WAITFOR:
-			//TODO: implement the ASSERT and WAITFOR condition checkers.
-			break;
-		case TestStep::LAUNCH:
-			//TODO: implement LAUNCH
-			testSteps.erase(testSteps.begin());
-			break;
-		case TestStep::LAND:
-			//TODO: implement LAND
-			testSteps.erase(testSteps.begin());
-			break;
-		case TestStep::LOAD_GAME:
-			//TODO: implement LOAD_GAME
-			testSteps.erase(testSteps.begin());
-			break;
-		default:
-			// ERROR, unknown test-step-type
-			// TODO: report error and exit with non-zero return-code
-			menuPanels.Quit();
-			break;
+		testSteps.erase(testSteps.begin());
+		delete testStep;
 	}
+
+	// Exit with error if we are not succesfull and not retrying.
+	// Throwing a runtime_error is kinda rude, but works for this version of 
+	// the autotester. Might want to add a menuPanels.QuitError() function in
+	// a later version (which can set a non-zero exitcode and exit properly).
+	if ((testResult != TestStep::RESULT_DONE) and (testResult != TestStep::RESULT_RETRY))
+		throw std::runtime_error("Teststep failed");
 }

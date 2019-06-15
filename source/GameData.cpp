@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 
 #include "Audio.h"
+#include "AutoTester.h"
 #include "BatchShader.h"
 #include "Color.h"
 #include "Command.h"
@@ -81,6 +82,7 @@ namespace {
 	Set<Planet> planets;
 	Set<Ship> ships;
 	Set<System> systems;
+	Set<AutoTester> tests;
 	
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
@@ -125,6 +127,7 @@ namespace {
 bool GameData::BeginLoad(const char * const *argv)
 {
 	bool printShips = false;
+	bool printTests = false;
 	bool printWeapons = false;
 	bool debugMode = false;
 	for(const char * const *it = argv + 1; *it; ++it)
@@ -136,6 +139,8 @@ bool GameData::BeginLoad(const char * const *argv)
 				printShips = true;
 			if(arg == "-w" || arg == "--weapons")
 				printWeapons = true;
+			if(arg == "-l" || arg == "--list-tests")
+				printTests = true;
 			if(arg == "-d" || arg == "--debug")
 				debugMode = true;
 			continue;
@@ -203,9 +208,11 @@ bool GameData::BeginLoad(const char * const *argv)
 	
 	if(printShips)
 		PrintShipTable();
+	if(printTests)
+		PrintAutoTestsTable();
 	if(printWeapons)
 		PrintWeaponTable();
-	return !(printShips || printWeapons);
+	return !(printShips || printWeapons || printTests);
 }
 
 
@@ -692,6 +699,12 @@ const Set<Ship> &GameData::Ships()
 
 
 
+AutoTester * GameData::Test(string testName)
+{
+	return tests.Get(testName);
+}
+
+
 const Set<Sale<Ship>> &GameData::Shipyards()
 {
 	return shipSales;
@@ -961,6 +974,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			startConditions.Load(node);
 		else if(key == "system" && node.Size() >= 2)
 			systems.Get(node.Token(1))->Load(node, planets);
+		else if((key == "auto-test") && node.Size() >= 2)
+			tests.Get(node.Token(1))->Load(node);
 		else if(key == "trade")
 			trade.Load(node);
 		else if(key == "landing message" && node.Size() >= 2)
@@ -1035,6 +1050,24 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 			}
 	}
 	return images;
+}
+
+
+
+// This prints out the list of auto-tests that are available and their status
+// (active/missing feature/known failure)..
+// TODO: add command-line parameter to run this function.
+void GameData::PrintAutoTestsTable()
+{
+	cout << "name" << '\t' << "status" << '\n';
+	// TODO: further implement this function
+	for(auto &it : tests)
+	{
+		const AutoTester &test = it.second;
+		cout << test.Name() << '\t';
+		cout << test.StatusText() << '\n';
+	}
+	cout.flush();
 }
 
 

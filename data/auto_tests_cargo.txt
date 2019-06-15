@@ -1,0 +1,22 @@
+auto-test "Cargo Commodoties Transport"
+	status "Missing Feature"
+	test-sequence
+		load "commodity barges"
+		assert
+			"cargo space" = 0
+		launch
+		land
+		assert
+			"cargo space" = 0
+
+auto-test "Cargo oversized outfit"
+	status "Known Failure"
+	bug-id "None yet"
+	test-sequence
+		load "outfits cargo overload"
+		assert
+			"cargo space" = 10
+		launch
+		land
+		assert
+			"cargo space" = 10

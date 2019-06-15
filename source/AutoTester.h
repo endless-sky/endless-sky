@@ -17,12 +17,21 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "TestStep.h"
 #include "UI.h"
+#include <string>
 
 // Class representing the controller for automatic testing.
 class AutoTester {
 public:
 	AutoTester();
 	
+	// Status indicators for the test that we selected (if any).
+	static const int STATUS_ACTIVE = 0;
+	static const int STATUS_KNOWN_FAILURE = 1;
+	static const int STATUS_MISSING_FEATURE = 2;
+	
+	virtual std::string Name() const;
+	virtual std::string StatusText() const;
+
 	virtual void Load(const DataNode &node);
 	
 	// PlayerInfo, the gamePanels and the MenuPanels together give the state of
@@ -32,7 +41,9 @@ public:
 	virtual void Step(UI &menuPanels, UI &gamePanels, PlayerInfo &player);
 	
 private:
-	std::vector<TestStep> testSteps;
+	std::vector<TestStep *> testSteps;
+	std::string name = "";
+	int status = STATUS_ACTIVE;
 };
 
 #endif

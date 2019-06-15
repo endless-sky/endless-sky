@@ -15,13 +15,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "DataNode.h"
+#include "PlayerInfo.h"
+#include "UI.h"
 #include <string>
 
 // Class representing a single step in a test
 class TestStep {
 public:
 	TestStep();
+	virtual ~TestStep();
 
+	// TODO: rename to LOAD_GAME_INLINE (and allow other loaders later?)
+	// Switch to game loading from inline in the test (from a child datanode)
 	static const int LOAD_GAME = 1;
 	static const int ASSERT = 2;
 	static const int WAITFOR = 3;
@@ -38,6 +43,7 @@ public:
 	virtual void Load(const DataNode &node);
 	virtual const std::string SaveGameName();
 	virtual int StepType();
+	virtual int DoStep(UI &menuPanels, UI &gamePanels, PlayerInfo &player);
 
 	
 private:
@@ -45,8 +51,11 @@ private:
 	int stepType;
 	// Checked condition, for teststeps of types ASSERT and WAITFOR
 	ConditionSet checkedCondition;
-	// Savegame to load or save to. For teststep of type LOAD_GAME (and SAVE_GAME)
+	// Savegame pilot and name to load or save to. For teststep of type LOAD_GAME (and SAVE_GAME)
 	std::string saveGameName;
+	// Timer to slow down the teststep to human readable speeds
+	// TODO: only enable this in debug mode
+	int frameWait = 20;
 };
 
 #endif

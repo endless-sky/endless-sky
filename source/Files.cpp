@@ -40,6 +40,7 @@ namespace {
 	string images;
 	string sounds;
 	string saves;
+	string tests;
 	
 	mutex errorMutex;
 	FILE *errorLog = nullptr;
@@ -85,6 +86,11 @@ namespace {
 
 void Files::Init(const char * const *argv)
 {
+	// Variable that controls loading of auto-testers and that also
+	// triggers overriding of the config-directory (to make sure that
+	// auto-tests don't load data from a user homedirectory).
+	bool setAutoTestPath = false;
+
 	// Parse the command line arguments to see if the user has specified
 	// different directories to use.
 	for(const char * const *it = argv + 1; *it; ++it)
@@ -94,7 +100,8 @@ void Files::Init(const char * const *argv)
 			resources = *it;
 		else if((arg == "-c" || arg == "--config") && *++it)
 			config = *it;
-			
+		else if(arg == "-a" || arg == "--auto-test" || arg == "l" || arg == "list-tests")
+			setAutoTestPath = true;
 	}
 	
 	if(resources.empty())
@@ -142,6 +149,11 @@ void Files::Init(const char * const *argv)
 	images = resources + "images/";
 	sounds = resources + "sounds/";
 	
+	// If we have no explicit config-dir given and we are using auto-testers
+	// then set the default auto-testers config dir.
+	if(setAutoTestPath and config.empty())
+		config = resources + "tests/config/";
+
 	if(config.empty())
 	{
 		// Find the path to the directory for saved games (and create it if it does
@@ -224,6 +236,13 @@ const string &Files::Sounds()
 const string &Files::Saves()
 {
 	return saves;
+}
+
+
+
+const string &Files::Tests()
+{
+	return tests;
 }
 
 

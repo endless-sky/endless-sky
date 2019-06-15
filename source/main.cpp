@@ -69,12 +69,12 @@ int main(int argc, char *argv[])
 	if(argc > 1)
 		InitConsole();
 #endif
+	AutoTester* autoTester = NULL;
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
-	bool runAutoTest = false;
 	string autoTestToRun = "";
-	AutoTester autoTester;
+
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
@@ -95,10 +95,7 @@ int main(int argc, char *argv[])
 		else if(arg == "-p" || arg == "--parse-save")
 			loadOnly = true;
 		else if((arg == "-a" || arg == "--auto-test") && *++it)
-		{
-			runAutoTest = true;
 			autoTestToRun = *it;
-		}
 	}
 	PlayerInfo player;
 	
@@ -107,12 +104,21 @@ int main(int argc, char *argv[])
 		if(!GameData::BeginLoad(argv))
 			return 0;
 
+		if (! autoTestToRun.empty())
+		{
+			autoTester = GameData::Test(autoTestToRun);
+			if (!autoTester)
+			{
+				cout << "Autotester not found." << endl;
+				return 1;
+			}
+		}
+
 		// Load player data, including reference-checking.
-		if (!runAutoTest)
+		if (!autoTester)
 			player.LoadRecent();
 		else
 		{
-			// TODO: Load the test-file as savegame
 			player.New();
 		}
 		if(loadOnly)
@@ -328,7 +334,8 @@ int main(int argc, char *argv[])
 			}
 
 			// All manual events done. Handle any auto-tester inputs/events if we have any.
-			autoTester.Step(menuPanels, gamePanels, player);
+			if (autoTester)
+				autoTester->Step(menuPanels, gamePanels, player);
 
 			SDL_Keymod mod = SDL_GetModState();
 			Font::ShowUnderlines(mod & KMOD_ALT);
@@ -386,7 +393,7 @@ int main(int argc, char *argv[])
 		}
 		
 		// If you quit while landed on a planet, save the game - if you did anything.
-		if(!runAutoTest && player.GetPlanet() && gamePanels.CanSave())
+		if(!autoTester && player.GetPlanet() && gamePanels.CanSave())
 			player.Save();
 		
 		// Remember the window state.
@@ -396,7 +403,7 @@ int main(int argc, char *argv[])
 		// The Preferences class reads the screen dimensions, so update them to
 		// match the actual window size.
 		Screen::SetRaw(windowWidth, windowHeight);
-		if (! runAutoTest)
+		if (!autoTester)
 			Preferences::Save();
 		
 		Cleanup(window, context);
@@ -404,6 +411,7 @@ int main(int argc, char *argv[])
 	catch(const runtime_error &error)
 	{
 		DoError(error.what());
+		return 1;
 	}
 	
 	return 0;
@@ -419,6 +427,7 @@ void PrintHelp()
 	cerr << "    -v, --version: print version information." << endl;
 	cerr << "    -s, --ships: print table of ship statistics, then exit." << endl;
 	cerr << "    -w, --weapons: print table of weapon statistics, then exit." << endl;
+	cerr << "    -l, --list-tests: print table of available autotests, then exit." << endl;
 	cerr << "    -t, --talk: read and display a conversation from STDIN." << endl;
 	cerr << "    -r, --resources <path>: load resources from given directory." << endl;
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;

@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class AutoTester;
 class Color;
 class Conversation;
 class DataNode;
@@ -109,6 +110,7 @@ public:
 	static const Set<Ship> &Ships();
 	static const Set<Sale<Ship>> &Shipyards();
 	static const Set<System> &Systems();
+	static AutoTester* Test(std::string);
 	
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();
@@ -146,8 +148,10 @@ private:
 	static void LoadFile(const std::string &path, bool debugMode);
 	static std::map<std::string, std::shared_ptr<ImageSet>> FindImages();
 	
+	static void PrintAutoTestsTable();
 	static void PrintShipTable();
 	static void PrintWeaponTable();
+
 };
 
 
