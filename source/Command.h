@@ -56,7 +56,7 @@ public:
 	static const Command HOLD;
 	static const Command AMMO;
 	// Special ability commands:
-    static const Command CLOAK;
+	static const Command CLOAK;
 	// This command from the AI tells a ship not to jump or land yet even if it
 	// is in position to do so. (There is no key mapped to this command.)
 	static const Command WAIT;

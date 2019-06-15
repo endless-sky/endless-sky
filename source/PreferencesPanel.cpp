@@ -335,7 +335,7 @@ void PreferencesPanel::DrawControls()
 		Command::HOLD,
 		Command::AMMO,
 		Command::NONE,
-        Command::CLOAK
+		Command::CLOAK
 	};
 	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)
