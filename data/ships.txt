@@ -368,6 +368,7 @@ ship "Bastion"
 		"nGVF-BB Fuel Cell"
 		"D67-TM Shield Generator"
 		"Water Coolant System"
+		"Tactical Scanner"
 		"Laser Rifle" 7
 		
 		"Impala Plasma Thruster"
@@ -742,6 +743,7 @@ ship "Carrier"
 		"Laser Rifle" 40
 		"Fragmentation Grenades" 40
 		"Security Station"
+		"Tactical Scanner"
 		
 		"X5700 Ion Thruster"
 		"X4200 Ion Steering"
@@ -1041,6 +1043,7 @@ ship "Cruiser"
 		"Laser Rifle" 20
 		"Fragmentation Grenades" 20
 		"Security Station"
+		"Tactical Scanner"
 		
 		"X4700 Ion Thruster"
 		"X4200 Ion Steering"
@@ -1155,6 +1158,7 @@ ship "Dreadnought"
 		"D41-HY Shield Generator"
 		"Small Radar Jammer"
 		"Liquid Helium Cooler"
+		"Tactical Scanner"
 		"Laser Rifle" 25
 		
 		"Orca Plasma Thruster"
@@ -1598,6 +1602,7 @@ ship "Gunboat"
 		"Small Radar Jammer"
 		"Cargo Scanner"
 		"Outfit Scanner"
+		"Tactical Scanner"
 		"Brig"
 		
 		"X3700 Ion Thruster"
@@ -2479,6 +2484,7 @@ ship "Rainmaker"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		"Large Radar Jammer"
+		"Tactical Scanner"
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -2588,6 +2594,7 @@ ship "Roost"
 		"LP072a Battery Pack"
 		"D41-HY Shield Generator" 4
 		"Large Radar Jammer"
+		"Tactical Scanner"
 		"Laser Rifle" 2
 		
 		"Greyhound Plasma Thruster"
@@ -2751,6 +2758,7 @@ ship "Skein"
 		"LP072a Battery Pack"
 		"D67-TM Shield Generator" 4
 		"Large Radar Jammer"
+		"Tactical Scanner"
 		"Laser Rifle" 4
 		
 		"Greyhound Plasma Thruster"
