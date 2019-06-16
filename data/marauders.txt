@@ -909,7 +909,7 @@ ship "Marauder Splinter"
 		"cost" 3400000
 		"shields" 5700
 		"hull" 1950
-		"required crew" 14
+		"required crew" 8
 		"bunks" 22
 		"mass" 275
 		"drag" 4.0
