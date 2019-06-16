@@ -176,6 +176,7 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(key == "gun" || key == "turret")
 		{
+			bool isBuiltIn = false;
 			if(!hasArmament)
 			{
 				armament = Armament();
@@ -194,12 +195,20 @@ void Ship::Load(const DataNode &node)
 				if(child.Size() >= 2)
 					outfit = GameData::Outfits().Get(child.Token(1));
 			}
-			if(outfit)
-				++equipped[outfit];
+			if(outfit){
+				if (((child.Size() >= 5) && child.Token(4) == "built-in") ||
+					(child.Size() == 3 && child.Token(2) == "built-in"))
+				{
+					isBuiltIn = true;
+					++builtIn[outfit];
+				}
+				else
+					++equipped[outfit];
+			}
 			if(key == "gun")
-				armament.AddGunPort(hardpoint, outfit);
+				armament.AddGunPort(hardpoint, outfit, isBuiltIn);
 			else
-				armament.AddTurret(hardpoint, outfit);
+				armament.AddTurret(hardpoint, outfit, isBuiltIn);
 			// Print a warning for the first hardpoint after 32, i.e. only 1 warning per ship.
 			if(armament.Get().size() == 33)
 				child.PrintTrace("Warning: ship has more than 32 weapon hardpoints. Some weapons may not fire:");
@@ -432,7 +441,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	// warn if any non-weapon outfits are "installed" in a hardpoint.
 	for(auto &it : equipped)
 	{
-		int excess = it.second - outfits[it.first];
+		int excess = it.second - outfits[it.first] - builtIn[it.first];
 		if(excess > 0)
 		{
 			// If there are more hardpoints specifying this outfit than there
@@ -476,6 +485,17 @@ void Ship::FinishLoading(bool isNewInstance)
 	}
 	// Add the attributes of all your outfits to the ship's base attributes.
 	attributes = baseAttributes;
+	for(const auto &it : builtIn)
+	{
+		if(it.first->Name().empty())
+		{
+			Files::LogError("Unrecognized built-in outfit in " + modelName + " \"" + name + "\"");
+			continue;
+		}
+		attributes.Add(*it.first, it.second);
+		// Built-In weapons are already explicitly added to hardpoints.
+		// No need to re-check if they are set to hardpoints.
+	}
 	for(const auto &it : outfits)
 	{
 		if(it.first->Name().empty())
@@ -633,7 +653,10 @@ void Ship::Save(DataWriter &out) const
 		for(const Hardpoint &hardpoint : armament.Get())
 		{
 			const char *type = (hardpoint.IsTurret() ? "turret" : "gun");
-			if(hardpoint.GetOutfit())
+			if(hardpoint.GetOutfit() && hardpoint.IsBuiltIn())
+				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y(),
+					hardpoint.GetOutfit()->Name(), "built-in");
+			else if(hardpoint.GetOutfit())
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y(),
 					hardpoint.GetOutfit()->Name());
 			else

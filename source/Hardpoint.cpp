@@ -39,8 +39,8 @@ namespace {
 
 
 // Constructor.
-Hardpoint::Hardpoint(const Point &point, bool isTurret, const Outfit *outfit)
-	: outfit(outfit), point(point * .5), isTurret(isTurret)
+Hardpoint::Hardpoint(const Point &point, bool isTurret, const Outfit *outfit, bool builtIn)
+	: outfit(outfit), point(point * .5), isTurret(isTurret), isBuiltIn(builtIn)
 {
 }
 
@@ -84,6 +84,13 @@ Angle Hardpoint::HarmonizedAngle() const
 	// Projectiles with a range of zero should fire straight forward. A
 	// special check is needed to avoid divide by zero errors.
 	return Angle(d <= 0. ? 0. : -asin(point.X() / d) * TO_DEG);
+}
+
+
+
+bool Hardpoint::IsBuiltIn() const
+{
+	return isBuiltIn;
 }
 
 

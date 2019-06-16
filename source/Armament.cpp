@@ -26,17 +26,17 @@ using namespace std;
 
 
 // Add a gun hardpoint (fixed-direction weapon).
-void Armament::AddGunPort(const Point &point, const Outfit *outfit)
+void Armament::AddGunPort(const Point &point, const Outfit *outfit, bool builtIn)
 {
-	hardpoints.emplace_back(point, false, outfit);
+	hardpoints.emplace_back(point, false, outfit, builtIn);
 }
 
 
 
 // Add a turret hardpoint (omnidirectional weapon).
-void Armament::AddTurret(const Point &point, const Outfit *outfit)
+void Armament::AddTurret(const Point &point, const Outfit *outfit, bool builtIn)
 {
-	hardpoints.emplace_back(point, true, outfit);
+	hardpoints.emplace_back(point, true, outfit, builtIn);
 }
 
 
@@ -70,7 +70,7 @@ void Armament::Add(const Outfit *outfit, int count)
 			// If this slot has the given outfit in it and we need to uninstall
 			// some of them, uninstall it. Otherwise, remember the fact that one
 			// of these outfits is installed.
-			if(count < 0)
+			if((count < 0) && (!hardpoint.IsBuiltIn()))
 			{
 				hardpoint.Uninstall();
 				++count;
@@ -149,6 +149,8 @@ void Armament::Swap(int first, int second)
 	if(static_cast<unsigned>(second) >= hardpoints.size())
 		return;
 	if(hardpoints[first].IsTurret() != hardpoints[second].IsTurret())
+		return;
+	if(hardpoints[first].IsBuiltIn() || hardpoints[second].IsBuiltIn())
 		return;
 	
 	// Swap the weapons in the two hardpoints.

@@ -30,7 +30,7 @@ class Visual;
 class Hardpoint {
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
-	Hardpoint(const Point &point, bool isTurret, const Outfit *outfit = nullptr);
+	Hardpoint(const Point &point, bool isTurret, const Outfit *outfit = nullptr, bool builtIn = false);
 	
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
@@ -43,6 +43,7 @@ public:
 	// Get the angle this weapon ought to point at for ideal gun harmonization.
 	Angle HarmonizedAngle() const;
 	// Shortcuts for querying weapon characteristics.
+	bool IsBuiltIn() const;
 	bool IsTurret() const;
 	bool IsHoming() const;
 	bool IsAntiMissile() const;
@@ -95,6 +96,9 @@ private:
 	bool isTurret = false;
 	bool isFiring = false;
 	bool wasFiring = false;
+	// Indicates if this weapon is built-in. Meaning that it cannot be swapped or removed
+	// from the ship and also cannot be plundered.
+	bool isBuiltIn = false;
 };
 
 

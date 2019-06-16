@@ -462,6 +462,12 @@ private:
 	// (That is, they were specified as linked to a given gun or turret point.)
 	std::map<const Outfit *, int> equipped;
 	
+	// Also keep track how many built-in outfits we have. They will not
+	// show up as explicit outfits, but they do take up space like weapon-
+	// space and gun or turret points.
+	//TODO: make those builtIn weapons part of the hull value (they are now silently ignored).
+	std::map<const Outfit *, int> builtIn;
+
 	// Various energy levels:
 	double shields = 0.;
 	double hull = 0.;
