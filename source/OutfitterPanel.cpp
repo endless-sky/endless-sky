@@ -825,7 +825,7 @@ void OutfitterPanel::Refill()
 		for(const Outfit *outfit : toRefill)
 		{
 			int neededAmmo = ship->Attributes().CanAdd(*outfit, numeric_limits<int>::max());
-			if(neededAmmo)
+			if(neededAmmo > 0)
 			{
 				// Fill first from any stockpiles in cargo.
 				int fromCargo = player.Cargo().Remove(outfit, neededAmmo);
