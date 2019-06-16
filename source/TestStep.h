@@ -47,6 +47,11 @@ public:
 
 	
 private:
+	// Functions to test for a game state
+	bool PlayerOnPlanetMainScreen(UI &menuPanels, UI &gamePanels, PlayerInfo &player);
+	bool PlayerIsFlyingAround(UI &menuPanels, UI &gamePanels, PlayerInfo &player);
+	bool PlayerMenuIsActive(UI &menuPanels);
+
 	// The type of this step
 	int stepType;
 	// Checked condition, for teststeps of types ASSERT and WAITFOR

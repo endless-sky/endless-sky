@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "DataNode.h"
+#include "Panel.h"
+#include "PlanetPanel.h"
 #include "PlayerInfo.h"
 #include "TestStep.h"
 #include "UI.h"
@@ -48,6 +50,37 @@ const string TestStep::SaveGameName()
 {
 	return saveGameName;
 }
+
+
+
+bool TestStep::PlayerIsFlyingAround(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
+{
+	// Code borrowed from main.cpp
+	bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
+	return inFlight;
+}
+
+
+
+bool TestStep::PlayerMenuIsActive(UI &menuPanels)
+{
+	return !menuPanels.IsEmpty();
+}
+
+
+
+bool TestStep::PlayerOnPlanetMainScreen(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
+{
+	if (! menuPanels.IsEmpty())
+		return false;
+	if (gamePanels.Root() == gamePanels.Top())
+		return false;
+	Panel *topPanel = gamePanels.Top().get();
+	// If we can cast the topPanel from the gamePanels to planetpanel, then we have landed.
+	PlanetPanel *topPlanetPanel = dynamic_cast<PlanetPanel*>(topPanel);
+	return topPlanetPanel != nullptr;
+}
+
 
 
 
@@ -95,11 +128,29 @@ int TestStep::DoStep(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
 			return RESULT_FAIL;
 			break;
 		case TestStep::LAUNCH:
-			//TODO: implement LAUNCH
+			// If flying around, then this step succeeded/passed.
+			if (PlayerIsFlyingAround(menuPanels, gamePanels, player))
+				return RESULT_DONE;
+			// Should implement some function to close this menu. But
+			// fail for now if the player/game menu is active.
+			if (PlayerMenuIsActive(menuPanels))
+				return RESULT_FAIL;
+
+			//TODO: implement sending the actual LAUNCH command
 			return RESULT_FAIL;
 			break;
 		case TestStep::LAND:
-			//TODO: implement LAND
+			// If the player/game menu is active, then we are not in a state
+			// where land makes sense.
+			if (PlayerMenuIsActive(menuPanels))
+				return RESULT_FAIL;
+			// If we are still flying around, then we are not on a planet.
+			if (PlayerIsFlyingAround(menuPanels, gamePanels, player))
+				return RESULT_RETRY;
+			if (PlayerOnPlanetMainScreen(menuPanels, gamePanels, player))
+				return RESULT_DONE;
+
+			//TODO: implement sending of LAND command
 			return RESULT_FAIL;
 			break;
 		case TestStep::LOAD_GAME:
