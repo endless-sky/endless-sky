@@ -10,6 +10,7 @@
 
 ship "Marauder Arrow"
 	sprite "ship/marrows"
+	thumbnail "thumbnail/marrows"
 	attributes
 		category "Interceptor"
 		"cost" 1320000
@@ -59,6 +60,7 @@ ship "Marauder Arrow"
 
 ship "Marauder Arrow" "Marauder Arrow (Engines)"
 	sprite "ship/marrowe"
+	thumbnail "thumbnail/marrowe"
 	add attributes
 		"engine capacity" 20
 	outfits
@@ -81,6 +83,7 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 
 ship "Marauder Arrow" "Marauder Arrow (Weapons)"
 	sprite "ship/marroww"
+	thumbnail "thumbnail/marroww"
 	add attributes
 		"weapon capacity" 5
 	outfits
@@ -108,6 +111,7 @@ ship "Marauder Arrow" "Marauder Arrow (Weapons)"
 
 ship "Marauder Bounder"
 	sprite "ship/mbounders"
+	thumbnail "thumbnail/mbounders"
 	attributes
 		category "Interceptor"
 		"cost" 1250000
@@ -160,6 +164,7 @@ ship "Marauder Bounder"
 
 ship "Marauder Bounder" "Marauder Bounder (Engines)"
 	sprite "ship/mboundere"
+	thumbnail "thumbnail/mboundere"
 	add attributes
 		"engine capacity" 15
 	outfits
@@ -185,6 +190,7 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 
 ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 	sprite "ship/mbounderw"
+	thumbnail "thumbnail/mbounderw"
 	add attributes
 		"weapon capacity" 20
 	outfits
@@ -215,6 +221,7 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 
 ship "Marauder Falcon"
 	sprite "ship/mfalcons"
+	thumbnail "thumbnail/mfalcons"
 	attributes
 		category "Heavy Warship"
 		"cost" 13900000
@@ -272,6 +279,7 @@ ship "Marauder Falcon"
 
 ship "Marauder Falcon" "Marauder Falcon (Engines)"
 	sprite "ship/mfalcone"
+	thumbnail "thumbnail/mfalcone"
 	add attributes
 		"engine capacity" 55
 	outfits
@@ -307,6 +315,7 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 
 ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 	sprite "ship/mfalconw"
+	thumbnail "thumbnail/mfalconw"
 	add attributes
 		"weapon capacity" 35
 	outfits
@@ -343,6 +352,7 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 
 ship "Marauder Firebird"
 	sprite "ship/mfirebirds"
+	thumbnail "thumbnail/mfirebirds"
 	attributes
 		category "Medium Warship"
 		"cost" 4100000
@@ -398,6 +408,7 @@ ship "Marauder Firebird"
 
 ship "Marauder Firebird" "Marauder Firebird (Engines)"
 	sprite "ship/mfirebirde"
+	thumbnail "thumbnail/mfirebirds"
 	add attributes
 		"engine capacity" 20
 	outfits
@@ -432,6 +443,7 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 
 ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 	sprite "ship/mfirebirdw"
+	thumbnail "thumbnail/mfirebirdw"
 	add attributes
 		"weapon capacity" 35
 	outfits
@@ -456,6 +468,7 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 
 ship "Marauder Leviathan"
 	sprite "ship/mleviathans"
+	thumbnail "thumbnail/mleviathans"
 	attributes
 		category "Heavy Warship"
 		"cost" 10800000
@@ -515,6 +528,7 @@ ship "Marauder Leviathan"
 
 ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 	sprite "ship/mleviathane"
+	thumbnail "thumbnail/mleviathane"
 	add attributes
 		"engine capacity" 80
 	outfits
@@ -541,6 +555,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 
 ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 	sprite "ship/mleviathanw"
+	thumbnail "thumbnail/mleviathanw"
 	add attributes
 		"weapon capacity" 35
 	outfits
@@ -574,6 +589,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 
 ship "Marauder Manta"
 	sprite "ship/mmantas"
+	thumbnail "thumbnail/mmantas"
 	attributes
 		category "Medium Warship"
 		"cost" 3740000
@@ -631,6 +647,7 @@ ship "Marauder Manta"
 
 ship "Marauder Manta" "Marauder Manta (Engines)"
 	sprite "ship/mmantae"
+	thumbnail "thumbnail/mmantae"
 	add attributes
 		"engine capacity" 20
 	outfits
@@ -664,6 +681,7 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 
 ship "Marauder Manta" "Marauder Manta (Weapons)"
 	sprite "ship/mmantaw"
+	thumbnail "thumbnail/mmantaw"
 	add attributes
 		"weapon capacity" 20
 	outfits
@@ -700,6 +718,7 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 
 ship "Marauder Quicksilver"
 	sprite "ship/mquicksilvers"
+	thumbnail "thumbnail/mquicksilvers"
 	attributes
 		category "Light Warship"
 		"cost" 1200000
@@ -749,6 +768,7 @@ ship "Marauder Quicksilver"
 
 ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 	sprite "ship/mquicksilvere"
+	thumbnail "thumbnail/mquicksilvere"
 	add attributes
 		"engine capacity" 40
 	outfits
@@ -774,6 +794,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 
 ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 	sprite "ship/mquicksilverw"
+	thumbnail "thumbnail/mquicksilverw"
 	add attributes
 		"weapon capacity" 15
 	outfits
@@ -799,6 +820,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 
 ship "Marauder Raven"
 	sprite "ship/mravens"
+	thumbnail "thumbnail/mravens"
 	attributes
 		category "Light Warship"
 		"cost" 2750000
@@ -852,6 +874,7 @@ ship "Marauder Raven"
 
 ship "Marauder Raven" "Marauder Raven (Engines)"
 	sprite "ship/mravene"
+	thumbnail "thumbnail/mravene"
 	add attributes
 		"engine capacity" 20
 	outfits
@@ -876,6 +899,7 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 
 ship "Marauder Raven" "Marauder Raven (Weapons)"
 	sprite "ship/mravenw"
+	thumbnail "thumbnail/mravenw"
 	add attributes
 		"weapon capacity" 30
 	outfits
@@ -904,6 +928,7 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 
 ship "Marauder Splinter"
 	sprite "ship/msplinters"
+	thumbnail "thumbnail/msplinters"
 	attributes
 		category "Medium Warship"
 		"cost" 3400000
@@ -957,6 +982,7 @@ ship "Marauder Splinter"
 
 ship "Marauder Splinter" "Marauder Splinter (Engines)"
 	sprite "ship/msplintere"
+	thumbnail "thumbnail/msplintere"
 	add attributes
 		"engine capacity" 20
 	outfits
@@ -987,6 +1013,7 @@ ship "Marauder Splinter" "Marauder Splinter (Engines)"
 
 ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 	sprite "ship/msplinterw"
+	thumbnail "thumbnail/msplinterw"
 	add attributes
 		"weapon capacity" 15
 	outfits
