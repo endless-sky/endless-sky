@@ -56,6 +56,8 @@ private:
 
 	// The type of this step
 	int stepType;
+	// Stage of the step
+	int stepStage = 0;
 	// Checked condition, for teststeps of types ASSERT and WAITFOR
 	ConditionSet checkedCondition;
 	// Savegame pilot and name to load or save to. For teststep of type LOAD_GAME (and SAVE_GAME)

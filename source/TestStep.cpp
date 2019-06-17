@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ConditionSet.h"
 #include "DataNode.h"
 #include "Files.h"
+#include "MainPanel.h"
 #include "Panel.h"
 #include "PlanetPanel.h"
 #include "PlayerInfo.h"
@@ -174,15 +175,56 @@ int TestStep::DoStep(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
 			return RESULT_FAIL;
 			break;
 		case TestStep::LOAD_GAME:
-			// Check if the savegame actually exists
-			if (! Files::Exists(Files::Saves() + SaveGameName()))
+			if (stepStage == 0){
+				// Check if the savegame actually exists
+				if (! Files::Exists(Files::Saves() + SaveGameName()))
+					return RESULT_FAIL;
+				// Perform the load and verify that player is loaded.
+				player.Load(Files::Saves() + SaveGameName());
+				if (!player.IsLoaded())
+					return RESULT_FAIL;
+				// Actual load succeeded. Allow game to adopt to new
+				// situation and then continue with enter/pilot step.
+				stepStage++;
+				frameWait = 20;
+				return RESULT_RETRY;
+			}
+			else if (stepStage == 1)
+			{
+				// Clear the menu entries and go to main game screen
+				if (! menuPanels.IsEmpty())
+					menuPanels.Pop(menuPanels.Top().get());
+				stepStage++;
+				frameWait = 20;
+				// Transfer control to game before final check to allow
+				// closing of menuPanel.
+				return RESULT_RETRY;
+			}
+			else if (stepStage == 2)
+			{
+				if (! menuPanels.IsEmpty())
+					return RESULT_FAIL;
+				// TODO: this should be called/loaded from LoadPanel
+				gamePanels.Reset();
+				stepStage++;
+				return RESULT_RETRY;
+			}
+			else if (stepStage == 3)
+			{
+				// TODO: this should be called/loaded from LoadPanel
+				gamePanels.Push(new MainPanel(player));
+				stepStage++;
+				return RESULT_RETRY;
+			}
+			else if (stepStage == 4)
+			{
+				if (gamePanels.IsEmpty())
+					return RESULT_FAIL;
+				return RESULT_DONE;
+			}
+			else
 				return RESULT_FAIL;
-			// Perform the load and verify that player is loaded.
-			player.Load(Files::Saves() + SaveGameName());
-			if (!player.IsLoaded())
-				return RESULT_FAIL;
-			// TODO: Clear the menu entries and go to main game screen
-			return RESULT_DONE;
+
 			break;
 		default:
 			// ERROR, unknown test-step-type
