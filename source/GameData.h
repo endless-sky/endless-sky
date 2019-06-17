@@ -109,7 +109,7 @@ public:
 	static const Set<Ship> &Ships();
 	static const Set<Sale<Ship>> &Shipyards();
 	static const Set<System> &Systems();
-	static Test* Tests(std::string);
+	static const Set<Test> &Tests();
 	
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();

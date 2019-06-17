@@ -10,34 +10,30 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef TEST_H_
-#define TEST_H_
+#ifndef TESTRUNNER_H_
+#define TESTRUNNER_H_
 
-#include "DataNode.h"
+#include "PlayerInfo.h"
+#include "Test.h"
 #include "TestStep.h"
+#include "UI.h"
 #include <string>
 
-// Class representing a single test.
-class Test {
+// Class representing the controller for automatic testing.
+class TestRunner {
 public:
-	Test();
-	virtual ~Test();
+	TestRunner(const Test *testToRun);
+	virtual ~TestRunner();
 	
-	// Status indicators for the test that we selected (if any).
-	static const int STATUS_ACTIVE = 0;
-	static const int STATUS_KNOWN_FAILURE = 1;
-	static const int STATUS_MISSING_FEATURE = 2;
-	
-	virtual std::string Name() const;
-	virtual std::string StatusText() const;
-	virtual std::vector<TestStep *> TestSteps() const;
-
-	virtual void Load(const DataNode &node);
+	// PlayerInfo, the gamePanels and the MenuPanels together give the state of
+	// the game. We just provide them as parameter here, because they are not
+	// available when the test got created (and they can change due to loading
+	// and saving of games).
+	virtual void Step(UI &menuPanels, UI &gamePanels, PlayerInfo &player);
 	
 private:
+	const Test* testToRun;
 	std::vector<TestStep *> testSteps;
-	std::string name = "";
-	int status = STATUS_ACTIVE;
 };
 
 #endif

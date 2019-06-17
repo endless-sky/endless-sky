@@ -699,9 +699,9 @@ const Set<Ship> &GameData::Ships()
 
 
 
-Test * GameData::Tests(string testName)
+const Set<Test> &GameData::Tests()
 {
-	return tests.Get(testName);
+	return tests;
 }
 
 

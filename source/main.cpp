@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "Test.h"
+#include "TestRunner.h"
 #include "UI.h"
 
 #include "gl_header.h"
@@ -69,7 +70,7 @@ int main(int argc, char *argv[])
 	if(argc > 1)
 		InitConsole();
 #endif
-	Test* testRunner = NULL;
+	TestRunner* testRunner = NULL;
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
@@ -106,7 +107,7 @@ int main(int argc, char *argv[])
 
 		if (! testToRun.empty())
 		{
-			testRunner = GameData::Tests(testToRun);
+			testRunner = new TestRunner((GameData::Tests()).Get(testToRun));
 			if (!testRunner)
 			{
 				cout << "Test not found." << endl;
