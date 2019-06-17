@@ -96,9 +96,6 @@ PlanetPanel * TestStep::GetPlanetPanelIfAvailable(UI &gamePanels)
 
 
 
-
-
-
 void TestStep::Load(const DataNode &node)
 {
 	if (node.Token(0) == "load" and node.Size() > 1)
@@ -135,7 +132,6 @@ int TestStep::DoStep(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
 		return RESULT_RETRY;
 	}
 
-	string saveGamePath = Files::Saves() + SaveGameName();
 	switch (stepType)
 	{
 		case TestStep::ASSERT:
@@ -178,7 +174,14 @@ int TestStep::DoStep(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
 			return RESULT_FAIL;
 			break;
 		case TestStep::LOAD_GAME:
+			// Check if the savegame actually exists
+			if (! Files::Exists(Files::Saves() + SaveGameName()))
+				return RESULT_FAIL;
+			// Perform the load and verify that player is loaded.
 			player.Load(Files::Saves() + SaveGameName());
+			if (!player.IsLoaded())
+				return RESULT_FAIL;
+			// TODO: Clear the menu entries and go to main game screen
 			return RESULT_DONE;
 			break;
 		default:
