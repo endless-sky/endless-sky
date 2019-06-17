@@ -86,10 +86,10 @@ namespace {
 
 void Files::Init(const char * const *argv)
 {
-	// Variable that controls loading of auto-testers and that also
-	// triggers overriding of the config-directory (to make sure that
-	// auto-tests don't load data from a user homedirectory).
-	bool setAutoTestPath = false;
+	// Variable that controls loading of tests and that also triggers
+	// overriding of the config-directory (to make sure that tests don't
+	// load data from a user homedirectory).
+	bool setTestingPath = false;
 
 	// Parse the command line arguments to see if the user has specified
 	// different directories to use.
@@ -101,7 +101,7 @@ void Files::Init(const char * const *argv)
 		else if((arg == "-c" || arg == "--config") && *++it)
 			config = *it;
 		else if(arg == "-a" || arg == "--auto-test" || arg == "l" || arg == "list-tests")
-			setAutoTestPath = true;
+			setTestingPath = true;
 	}
 	
 	if(resources.empty())
@@ -149,9 +149,9 @@ void Files::Init(const char * const *argv)
 	images = resources + "images/";
 	sounds = resources + "sounds/";
 	
-	// If we have no explicit config-dir given and we are using auto-testers
-	// then set the default auto-testers config dir.
-	if(setAutoTestPath and config.empty())
+	// If we have no explicit config-dir given and we are using testers
+	// then set the default test config dir.
+	if(setTestingPath and config.empty())
 		config = resources + "tests/config/";
 
 	if(config.empty())

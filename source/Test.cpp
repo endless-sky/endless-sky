@@ -1,4 +1,4 @@
-/* AutoTester.cpp
+/* Test.cpp
 Copyright (c) 2019 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -10,9 +10,10 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#include "AutoTester.h"
+
 #include "DataNode.h"
 #include "PlayerInfo.h"
+#include "Test.h"
 #include "TestStep.h"
 #include "UI.h"
 #include <stdexcept>
@@ -22,23 +23,23 @@ using namespace std;
 
 
 
-AutoTester::AutoTester()
+Test::Test()
 {
 	name = "";
 }
 
 
 
-void AutoTester::Load(const DataNode &node)
+void Test::Load(const DataNode &node)
 {
 	if(node.Size() < 2)
 	{
-		node.PrintTrace("No name specified for auto-tester");
+		node.PrintTrace("No name specified for test");
 		return;
 	}
-	if (node.Token(0) != "auto-test")
+	if (node.Token(0) != "test")
 	{
-		node.PrintTrace("Non-auto-test found in auto-test parsing");
+		node.PrintTrace("Non-test found in test parsing");
 		return;
 	}
 	name = node.Token(1);
@@ -54,7 +55,7 @@ void AutoTester::Load(const DataNode &node)
 			else if (child.Token(1) == "Missing Feature")
 				status = STATUS_MISSING_FEATURE;
 		}
-		else if (child.Token(0) == "test-sequence")
+		else if (child.Token(0) == "sequence")
 		{
 			for (const DataNode &seqChild : child)
 			{
@@ -67,22 +68,22 @@ void AutoTester::Load(const DataNode &node)
 
 
 
-string AutoTester::Name() const
+string Test::Name() const
 {
 	return name;
 }
 
 
 
-string AutoTester::StatusText() const
+string Test::StatusText() const
 {
 	switch (status)
 	{
-		case AutoTester::STATUS_KNOWN_FAILURE:
+		case Test::STATUS_KNOWN_FAILURE:
 			return "KNOWN FAILURE";
-		case AutoTester::STATUS_MISSING_FEATURE:
+		case Test::STATUS_MISSING_FEATURE:
 			return "MISSING FEATURE";
-		case AutoTester::STATUS_ACTIVE:
+		case Test::STATUS_ACTIVE:
 		default:
 			return "ACTIVE";
 	}
@@ -100,7 +101,7 @@ string AutoTester::StatusText() const
 // something like a mission-dialog, hailing or boarding.
 // If the gamePanels stack contains only a single panel, then we are flying
 // around in our flagship.
-void AutoTester::Step(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
+void Test::Step(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
 {
 	if (testSteps.empty())
 	{
@@ -121,7 +122,7 @@ void AutoTester::Step(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
 
 	// Exit with error if we are not succesfull and not retrying.
 	// Throwing a runtime_error is kinda rude, but works for this version of 
-	// the autotester. Might want to add a menuPanels.QuitError() function in
+	// the tester. Might want to add a menuPanels.QuitError() function in
 	// a later version (which can set a non-zero exitcode and exit properly).
 	if ((testResult != TestStep::RESULT_DONE) and (testResult != TestStep::RESULT_RETRY))
 		throw runtime_error("Teststep failed");

@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 
 #include "Audio.h"
-#include "AutoTester.h"
 #include "BatchShader.h"
 #include "Color.h"
 #include "Command.h"
@@ -54,6 +53,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 #include "StartConditions.h"
 #include "System.h"
+#include "Test.h"
 
 #include <algorithm>
 #include <iostream>
@@ -82,7 +82,7 @@ namespace {
 	Set<Planet> planets;
 	Set<Ship> ships;
 	Set<System> systems;
-	Set<AutoTester> tests;
+	Set<Test> tests;
 	
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
@@ -209,7 +209,7 @@ bool GameData::BeginLoad(const char * const *argv)
 	if(printShips)
 		PrintShipTable();
 	if(printTests)
-		PrintAutoTestsTable();
+		PrintTestsTable();
 	if(printWeapons)
 		PrintWeaponTable();
 	return !(printShips || printWeapons || printTests);
@@ -699,7 +699,7 @@ const Set<Ship> &GameData::Ships()
 
 
 
-AutoTester * GameData::Test(string testName)
+Test * GameData::Tests(string testName)
 {
 	return tests.Get(testName);
 }
@@ -974,7 +974,7 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			startConditions.Load(node);
 		else if(key == "system" && node.Size() >= 2)
 			systems.Get(node.Token(1))->Load(node, planets);
-		else if((key == "auto-test") && node.Size() >= 2)
+		else if((key == "test") && node.Size() >= 2)
 			tests.Get(node.Token(1))->Load(node);
 		else if(key == "trade")
 			trade.Load(node);
@@ -1054,16 +1054,15 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 
 
 
-// This prints out the list of auto-tests that are available and their status
+// This prints out the list of tests that are available and their status
 // (active/missing feature/known failure)..
-// TODO: add command-line parameter to run this function.
-void GameData::PrintAutoTestsTable()
+void GameData::PrintTestsTable()
 {
 	cout << "name" << '\t' << "status" << '\n';
 	// TODO: further implement this function
 	for(auto &it : tests)
 	{
-		const AutoTester &test = it.second;
+		const Test &test = it.second;
 		cout << test.Name() << '\t';
 		cout << test.StatusText() << '\n';
 	}

@@ -1,4 +1,4 @@
-/* AutoTester.h
+/* Test.h
 Copyright (c) 2019 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -10,8 +10,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef AUTOTESTER_H_
-#define AUTOTESTER_H_
+#ifndef TEST_H_
+#define TEST_H_
 
 #include "DataNode.h"
 #include "PlayerInfo.h"
@@ -20,9 +20,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 // Class representing the controller for automatic testing.
-class AutoTester {
+class Test {
 public:
-	AutoTester();
+	Test();
 	
 	// Status indicators for the test that we selected (if any).
 	static const int STATUS_ACTIVE = 0;
@@ -36,8 +36,8 @@ public:
 	
 	// PlayerInfo, the gamePanels and the MenuPanels together give the state of
 	// the game. We just provide them as parameter here, because they are not
-	// available when the autotester got created (and they can change due to
-	// loading and saving of games).
+	// available when the testegot created (and they can change due to loading
+	// and saving of games).
 	virtual void Step(UI &menuPanels, UI &gamePanels, PlayerInfo &player);
 	
 private:

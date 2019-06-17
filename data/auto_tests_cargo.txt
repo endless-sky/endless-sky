@@ -1,6 +1,6 @@
-auto-test "Cargo Commodoties Transport"
+test "Cargo Commodoties Transport"
 	status "Missing Feature"
-	test-sequence
+	sequence
 		load "commodity barges.txt"
 		assert
 			"cargo space" = 0
@@ -9,10 +9,10 @@ auto-test "Cargo Commodoties Transport"
 		assert
 			"cargo space" = 0
 
-auto-test "Cargo oversized outfit"
+test "Cargo oversized outfit"
 	status "Known Failure"
 	bug-id "None yet"
-	test-sequence
+	sequence
 		load "outfits cargo overload.txt"
 		assert
 			"cargo space" = 10
