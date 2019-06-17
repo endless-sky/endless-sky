@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "DataNode.h"
+#include "Files.h"
 #include "Panel.h"
 #include "PlanetPanel.h"
 #include "PlayerInfo.h"
@@ -75,11 +76,25 @@ bool TestStep::PlayerOnPlanetMainScreen(UI &menuPanels, UI &gamePanels, PlayerIn
 		return false;
 	if (gamePanels.Root() == gamePanels.Top())
 		return false;
-	Panel *topPanel = gamePanels.Top().get();
-	// If we can cast the topPanel from the gamePanels to planetpanel, then we have landed.
-	PlanetPanel *topPlanetPanel = dynamic_cast<PlanetPanel*>(topPanel);
+
+	PlanetPanel *topPlanetPanel = GetPlanetPanelIfAvailable(gamePanels);
 	return topPlanetPanel != nullptr;
 }
+
+
+
+PlanetPanel * TestStep::GetPlanetPanelIfAvailable(UI &gamePanels)
+{
+	if (gamePanels.IsEmpty()){
+		return nullptr;
+	}
+	Panel *topPanel = gamePanels.Top().get();
+	// If we can cast the topPanel from the gamePanels to planetpanel,
+	// then we have landed and are on a planet.
+	return dynamic_cast<PlanetPanel*>(topPanel);
+}
+
+
 
 
 
@@ -120,6 +135,7 @@ int TestStep::DoStep(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
 		return RESULT_RETRY;
 	}
 
+	string saveGamePath = Files::Saves() + SaveGameName();
 	switch (stepType)
 	{
 		case TestStep::ASSERT:
@@ -128,15 +144,21 @@ int TestStep::DoStep(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
 			return RESULT_FAIL;
 			break;
 		case TestStep::LAUNCH:
-			// If flying around, then this step succeeded/passed.
+			// If flying around, then launching the ship succesfully happened
 			if (PlayerIsFlyingAround(menuPanels, gamePanels, player))
 				return RESULT_DONE;
 			// Should implement some function to close this menu. But
 			// fail for now if the player/game menu is active.
 			if (PlayerMenuIsActive(menuPanels))
 				return RESULT_FAIL;
-
-			//TODO: implement sending the actual LAUNCH command
+			if (PlayerOnPlanetMainScreen(menuPanels, gamePanels, player)){
+				// Launch using the conversation mechanism. Not the most
+				// appropriate way to launch, but works for now.
+				player.BasicCallback(Conversation::LAUNCH);
+				return RESULT_RETRY;
+			}
+			// No idea where we are and what we are doing. But we are not
+			// in a position to launch, so fail this teststep.
 			return RESULT_FAIL;
 			break;
 		case TestStep::LAND:
@@ -146,16 +168,18 @@ int TestStep::DoStep(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
 				return RESULT_FAIL;
 			// If we are still flying around, then we are not on a planet.
 			if (PlayerIsFlyingAround(menuPanels, gamePanels, player))
+			{
+				//TODO: implement sending of LAND command here
 				return RESULT_RETRY;
+			}
 			if (PlayerOnPlanetMainScreen(menuPanels, gamePanels, player))
 				return RESULT_DONE;
 
-			//TODO: implement sending of LAND command
 			return RESULT_FAIL;
 			break;
 		case TestStep::LOAD_GAME:
-			//TODO: implement LOAD_GAME
-			return RESULT_FAIL;
+			player.Load(Files::Saves() + SaveGameName());
+			return RESULT_DONE;
 			break;
 		default:
 			// ERROR, unknown test-step-type

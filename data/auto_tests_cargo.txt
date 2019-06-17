@@ -1,7 +1,7 @@
 auto-test "Cargo Commodoties Transport"
 	status "Missing Feature"
 	test-sequence
-		load "commodity barges"
+		load "commodity barges.txt"
 		assert
 			"cargo space" = 0
 		launch
@@ -13,7 +13,7 @@ auto-test "Cargo oversized outfit"
 	status "Known Failure"
 	bug-id "None yet"
 	test-sequence
-		load "outfits cargo overload"
+		load "outfits cargo overload.txt"
 		assert
 			"cargo space" = 10
 		launch

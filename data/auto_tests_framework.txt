@@ -6,12 +6,19 @@ auto-test "Test-Framework - Load only"
 	status "Active"
 	description "Tests only loading of a game and then exits the game"
 	test-sequence
-		load "commodity barges"
+		load "commodity barges.txt"
+
+auto-test "Test-Framework - Load and depart"
+	status "Active"
+	description "Test with only a departure. Mostly tests the testframework itself."
+	test-sequence
+		load "commodity barges.txt"
+		launch
 
 auto-test "Test-Framework - Simple depart land"
 	status "Active"
 	description "Test with only a departure and landing. Mostly tests the testframework itself."
 	test-sequence
-		load "commodity barges"
+		load "commodity barges.txt"
 		launch
 		land

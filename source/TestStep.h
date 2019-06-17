@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "DataNode.h"
+#include "PlanetPanel.h"
 #include "PlayerInfo.h"
 #include "UI.h"
 #include <string>
@@ -51,6 +52,7 @@ private:
 	bool PlayerOnPlanetMainScreen(UI &menuPanels, UI &gamePanels, PlayerInfo &player);
 	bool PlayerIsFlyingAround(UI &menuPanels, UI &gamePanels, PlayerInfo &player);
 	bool PlayerMenuIsActive(UI &menuPanels);
+	PlanetPanel *GetPlanetPanelIfAvailable(UI &gamePanels);
 
 	// The type of this step
 	int stepType;
