@@ -37,6 +37,8 @@ mission "Immigrant Workers"
 					decline
 			"	They thank you for your assistance, and you give them a hand pushing the heavy cart into your cargo bay."
 				accept
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 
 
 
@@ -60,6 +62,8 @@ mission "Pookie, Part 1"
 					decline
 			"	You tell her that you would be glad to assist, and that you can personally assure her that no harm will come to Pookie while on board your ship. She thanks you, and gives you contact information for her aunt in the <system> system."
 				accept
+	on visit
+		dialog `You have reached <planet>, but your escort with the space reserved for Pookie has not arrived! Better depart and and wait for your escorts to arrive in this star sytem.`
 
 
 
@@ -96,6 +100,8 @@ mission "Pookie, Part 2"
 			`	As she continues rattling off instructions, you ask, "Wait, Pookie is the dog?"`
 			`	"Short for 'Pocahontas,"' she explains. "Good luck, and I hope my sister pays you well." She walks away. There's nothing else you can do but bring Pookie back to your ship, where she immediately lifts her leg against the landing strut.`
 				accept
+	on visit
+		dialog `You have reached <planet>, but your escort carrying Pookie has not arrived! Better depart and and wait for your escorts to arrive in this star sytem.`
 	on complete
 		payment 80000
 		dialog "In the past few days, Pookie has barked incessantly and thrown up several times despite being fed perfectly on schedule, and the room you've been keeping her in will likely smell like dog urine for months. You are all too happy to return her to her owner, who pays you <payment>."
@@ -172,6 +178,8 @@ mission "Smuggler's Den, Part 1"
 			`	You quickly make your way back to your ship. As soon as the door has closed behind you, all three of you breathe a sigh of relief. A second later, the baby begins to wail, loudly. As you show them to their bunks, they introduce themselves as Joe and Maria; the baby's name is Jesse. "I don't know how to thank you," says Maria.`
 			`	"Please don't take too long leaving the station," adds Joe. "But, I think we'll be safe here until you're ready to leave. There's no way they can search all the ships at the dock."`
 				accept
+	on visit
+		dialog `You land on <planet> and look for Joe and Maria, but you realize that they were in one of your escorts that has not yet entered the system. Better depart and wait for them.`
 
 
 
@@ -196,6 +204,8 @@ mission "Smuggler's Den, Part 2"
 			`	Despite his shock and grief, Joe is quite grateful. "You know we can't pay you, right?"`
 			`	"Don't worry about it," you say. You return to your ship and tell the bad news to Maria.`
 				accept
+	on visit
+		dialog `You land on <planet> and look for Joe and Maria, but you realize that they were in one of your escorts that has not yet entered the system. Better depart and wait for them.`
 	on complete
 		event "smuggler's den: payment" 365
 		log `Helped two teens named Joe and Maria and their daughter Jesse to escape their pirate captain. Dropped them off on Millrace where they'll start a new life.`
@@ -278,6 +288,8 @@ mission "Expedition to Hope 1"
 			`	"Thank you," he says. You help them to load their meteorological equipment onto your ship.`
 				accept
 	
+	on visit
+		dialog `You enter the atmosphere of <planet>, but realize that the scientists and their equipment were on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 	on complete
 		payment 40000
 
@@ -301,6 +313,8 @@ mission "Expedition to Hope 2"
 			`	The lead scientist hands you forty thousand credits, and says, "Here's the first part of your payment. Now we need to get home to <planet>. I'll pay you the rest once we get there."`
 				accept
 	
+	on visit
+		dialog `You land on <planet>, but realize that the scientists and their equipment were on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 	on complete
 		payment 40000
 		dialog `You drop the team of scientists off on <planet>. They thank you for helping them out, and pay you <payment>.`
@@ -324,6 +338,8 @@ mission "Transport Workers A"
 	on offer
 		dialog `In one of the corners of the spaceport, you meet a family with two kids, and a pile of trunks and boxes spread out next to them. They tell you that they are trying to book passage to <planet>. "Work has gotten way too hard to come by here," explains the father. "I've had seven different jobs in the past year, and none of them lasted more than a month. So we thought we'd try our luck on a Syndicate world."`
 	
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment
 		payment 20000
@@ -376,6 +392,8 @@ mission "Transport Workers B"
 			`	"Thank you, Captain," he says, shaking your hand. You bring him aboard your ship and show him to one of the empty bunks.`
 				accept
 	
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment
 		payment 10000
@@ -412,6 +430,8 @@ mission "Transport Workers C"
 				`	"Sorry, that's way too far from here."`
 					decline
 	
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment
 		payment 10000
@@ -435,6 +455,8 @@ mission "WR Star 1"
 	on offer
 		dialog `A group of scientists approaches you and asks if you will be headed to the Rim any time soon. "We're doing research on Wolf-Rayet stars," they explain, "and we're hoping to find a captain who can do a fly-by of <waypoints>." Scientific research in the Deep is notoriously well-funded, so they will probably pay you quite well.`
 	
+	on visit
+		dialog `You land on <planet>, but realize that the scientists and their equipment were on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 	on complete
 		payment 250000
 		dialog `The team of scientists thanks you for bringing them to <waypoints> and back, and pays you <payment>. They seem eager to get back to their lab and start analyzing their measurements.`
@@ -486,6 +508,8 @@ mission "Deep Archaeology 1"
 			label yes
 			`	"Thank you," he says. "Trust me, this could give us some very important information. I'll need you to drop me off on Vinci first, to meet with some scientists. We can then meet up back on Vinci once you have the samples."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the archaeologist hasn't entered the system yet. Better depart and wait for it.`
 
 
 
@@ -590,6 +614,8 @@ mission "Deep Archaeology 4"
 					decline
 			`	"Excellent," says Albert. "We just need to do a flyover of <planet>, and see what our radar turns up."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Albert, John, and the mapping equipment hasn't entered the system yet. Better depart and wait for it.`
 
 
 
@@ -632,6 +658,8 @@ mission "Deep Archaeology 5"
 		ship "Raven (Afterburner)" "D.P.S. Skuld"
 		ship "Raven (Afterburner)" "D.P.S. Verthandi"
 	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Albert, John, and the mapping equipment hasn't entered the system yet. Better depart and wait for it.`
 	on complete
 		payment 300000
 		log `Returned to Midgard with Albert Foster, the archaeologist, to map the area around the church. The instruments discovered what looked like an artificial singularity. Got chased away by Deep ships before being able to look closer.`
@@ -687,6 +715,8 @@ mission "There Might Be Riots 1"
 			`	Eventually, the spaceport police arrive and disperse the crowd, and the band settles in for their trip to <destination>.`
 				accept
 	
+	on visit
+		dialog `You arrive on <planet>, but realize that your escort carrying the band and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
 	on complete
 		payment
 		payment 100000
@@ -751,6 +781,8 @@ mission "There Might Be Riots part 2"
 			`	"Then I suggest you do your job and transport them. Immediately." The guards leave. As soon as the band is packed up, you leave the planet...`
 				launch
 	
+	on visit
+		dialog `You arrive on <planet>, but realize that your escort carrying the band and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
 	on complete
 		payment
 		payment 200000
@@ -831,6 +863,8 @@ mission "There Might Be Riots part 3A"
 			`	"Excellent," he says. "We go thumb our noses at the military industrial complex, then you take us to stay with the peaceful squirrel people where the government won't bother us."`
 			`	Once more, they begin loading their stuff onto your ship, while you chart a course to <destination>.`
 				accept
+	on visit
+		dialog `You arrive on <planet>, but realize that your escort carrying the band and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
 
 
 
@@ -896,6 +930,8 @@ mission "There Might Be Riots part 3B"
 			variant
 				"Combat Drone" 35
 	
+	on visit
+		dialog `You arrive on <planet>, but realize that your escort carrying the band and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
 	on complete
 		payment 500000
 		log `Brought "There Might Be Riots" to the Hai world of Allhome after escaping a swarm of combat drones that disrupted their performance on Pilot. Ulrich spoke of a cloudy star in the Rim where he heard a voice in his head after parking his ship.`
@@ -1017,6 +1053,8 @@ mission "Rim Archaeology 1"
 			`	Foster makes a few phone calls to cancel his upcoming plans, and then shows up at your ship with a large collection of geological surveying tools. "Let's go check it out," he says.`
 				accept
 	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Albert hasn't entered the system yet. Better depart and wait for it.`
 	on complete
 		log `Found the archaeologist Albert Foster and told him about the vision of the dragon-people on Zug. Foster suggested that the vision was the doing of an Archon. He discovered a buried city under the lava flows on Zug; perhaps the vision was a real view of the past.`
 		conversation
@@ -1073,6 +1111,8 @@ mission "Rim Archaeology 2B"
 			`When you arrive on <origin>, the excavation machines requested by Albert Foster are already waiting for you at the spaceport. They are some of the largest terrestrial vehicles you have ever seen: a truck with enormous toothed grinding wheels for cutting through stone, and a front-end loader for carrying the loose stone away. You are barely able to fit them through the entrance of your cargo bay.`
 				accept
 	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the excavation equipment hasn't entered the system yet. Better depart and wait for it.`
 	on complete
 		payment 300000
 
@@ -1172,6 +1212,8 @@ mission "Rim Archaeology 4B"
 		system Dabih
 		ship "Marauder Arrow (Engines)" "Naukratis"
 	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Amelia and Yarthis hasn't entered the system yet. Better depart and wait for it.`
 	on complete
 		payment 200000
 
@@ -1295,6 +1337,8 @@ mission "Drug Running 1"
 	on decline
 		"said no to drugs" ++
 	
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 80000
@@ -1323,6 +1367,8 @@ mission "Drug Running 2"
 	on offer
 		dialog `When you walk into the local bar, a man sitting in the corner waves you over and says in a hushed voice, "Captain, we've got a shipment of the good stuff that needs to get to <planet>. I promise you this will be a very lucrative operation. What do you say?"`
 	
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 100000
@@ -1351,6 +1397,8 @@ mission "Drug Running 3"
 	on offer
 		dialog `A well-dressed woman approaches you as you are walking through the spaceport and asks quietly if you would be willing to help facilitate the transport of some "naughty substances" to a certain individual on <planet>.`
 	
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 120000
@@ -1469,6 +1517,8 @@ mission "Shady passenger transport 1"
 	on decline
 		"rejected illegal jobs" ++
 
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"getaway driver" ++
 		payment 50000
@@ -1506,6 +1556,8 @@ mission "Shady passenger transport 2"
 	on decline
 		"rejected illegal jobs" ++
 
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"getaway driver" ++
 		payment 100000
@@ -1550,6 +1602,8 @@ mission "Shady passenger transport 3"
 	on decline
 		"rejected illegal jobs" ++
 
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 350000
 		dialog `During the voyage, you've come to understand that your passengers are mercenaries whose latest exploits put them on the wrong side of the law. They pay you the agreed-upon sum of <payment> and disappear into a crowd, no doubt off to cause chaos and mayhem for some unsuspecting victims. Oh well, not your problem...`
@@ -1659,6 +1713,8 @@ mission "Shady passenger transport 3 - double cross"
 			`	Your first shot finds its mark, and the gang leader crumples to the floor. The other thugs shriek in alarm and begin to spray gunfire in all directions, but it's ineffective panic fire. Taking cover behind the armored captain's chair, you dispatch two more with well-aimed shots.`
 			`	The remaining goons attempt to flee, but your fingers find the button controlling the bridge door and it slams down before they can escape. They throw down their weapons and surrender. You toss them into the brig and decide that it might be a hoot to take them to their original destination as prisoners instead of passengers, and see if you can get a bounty for bringing them in.`
 
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		dialog `You hand off your prisoners to the planetary authorities who gratefully take them into custody. It turns out that they were wanted, and there's a substantial bounty. You find yourself richer to the tune of <payment>.`
 		payment 250000
@@ -1719,6 +1775,8 @@ mission "Rescue Miners 1"
 	
 	on offer
 		dialog `You've just sat down in the spaceport bar and ordered a drink when someone in uniform runs into the room and shouts, "There's been a mine explosion on <planet>! We need all available ships to carry relief workers and supplies and to evacuate the injured to a world where there are better medical facilities." Do you volunteer?`
+	on visit
+		dialog phrase "generic cargo passenger on visit"
 
 
 
@@ -1738,6 +1796,8 @@ mission "Rescue Miners 2"
 	on offer
 		dialog `You drop off the medical personnel on <origin>. There are nearly a hundred injured miners waiting for medical evacuation to <planet>. Do you volunteer to carry some of them?`
 	
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 80000
 		dialog `You drop off the injured miners at one of the medical facilities on <planet> that has agreed to care for the survivors. It's a somewhat chaotic process, but eventually someone thanks you for your help and pays you <payment>.`
@@ -1760,6 +1820,8 @@ mission "Courier 1"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
 		dialog `As you are walking through the spaceport, a man approaches you and says, "Excuse me, Captain. I took on a rush delivery to <planet>, but my ship needs repairs and there's no way I can make it there before <day>. Can you take this job for me?"`
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 30000
@@ -1783,6 +1845,8 @@ mission "Courier 2"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
 		dialog `A woman in the spaceport flags you down and asks, "Excuse me, Captain. I have small package that needs to get to <planet> by <day>. Can you carry it for me?"`
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 50000
@@ -1805,6 +1869,8 @@ mission "Courier 3"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
 		dialog `A woman in a suit walks up to you and says, "Pardon me, Captain. I represent a recently deceased client here on <origin> whose legal papers need to be delivered to his next of kin on <destination>. Would you be willing to do some courier work? The papers must be delivered by <day>."`
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 100000
 		dialog "You drop off the legal papers and collect your payment of <payment>."
@@ -1840,6 +1906,8 @@ mission "Courier 4"
 			`	"Excellent!" he says. "Come, let me introduce you to your cargo." He leads you to a supply shed where an enormous lizard, taller than you and probably weighing several tons, is being held in a cage that looks far too flimsy for it. "I'll have my men load her aboard your ship at once," says the man, "along with some meat for her to eat on the journey. Watch out for your fingers when you feed her, by the way. Thank you!"`
 				accept
 	
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 100000
@@ -1874,6 +1942,8 @@ mission "Migrant Workers 1"
 				`	"No, sorry, I'm not headed in that direction."`
 					decline
 	
+	on visit
+		dialog phrase "generic passengers on visit"
 	on complete
 		payment
 		payment 20000
@@ -1911,6 +1981,8 @@ mission "Humanitarian 1"
 			`	"Thank you," she says. "Your contact on <planet> will be a man named 'Raven Hunter.' Don't let anyone but him trick you into giving them the supplies."`
 				accept
 	
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 50000
@@ -1949,6 +2021,8 @@ mission "Humanitarian 2"
 			`	"Thank you," he says. "We'll load the food into your cargo hold immediately. The sooner you can drop it off on <planet>, the better."`
 				accept
 	
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 50000
@@ -1984,6 +2058,8 @@ mission "Terraforming 1"
 					accept
 				`	"Sorry, that's way too far away for me to travel right now."`
 					decline
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the managers hasn't entered the system yet. Better depart and wait for it.`
 
 
 
@@ -2016,6 +2092,8 @@ mission "Terraforming 2"
 			`	An hour later, you meet up with Amy, and arrange for her to join you on your ship before it takes off. Eric and Alaric are very excited, but you are a bit worried about the wisdom of entrusting their planet's future to someone so young and inexperienced.`
 				accept
 	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Eric, Alaric, and Amy hasn't entered the system yet. Better depart and wait for it.`
 	on complete
 		payment 140000
 		dialog `On the entire return journey, Eric and Alaric have been busy showing Amy geological survey maps of Rand and asking her for ideas. The moment you land, they hurry out of the ship. "I'm going to show Amy around," says Eric, "but meet us in the spaceport bar later if you want to help out with whatever we do next." Alaric hands you <payment> as payment for your services, and then follows after them.`
@@ -2089,6 +2167,8 @@ mission "Terraforming 3"
 		personality derelict fleeing uninterested waiting pacifist mute
 		ship "Asteroid" "Target Asteroid"
 	
+	on visit
+		dialog `You return to the spaceport to the confused looks of Eric, Alaric, and Amy. "You didn't put the thrusters on the asteroid," Amy says. "Just board the asteroid to attach the thrusters." Amy begins pushing you back to your ship, clearly eager to see the results of this experiment.`
 	on complete
 		payment 20000
 		log `Agreed with Amy's idea to steer an asteroid into Rand's polar ice cap in order to change the planet's climate. Hopefully this ends well.`
@@ -2117,6 +2197,8 @@ mission "Terraforming 4"
 				`	"Sorry, I need to move on to some other work now."`
 					decline
 	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Amy hasn't entered the system yet. Better depart and wait for it.`
 	on complete
 		dialog `As soon as you land, Amy heads off to meet with some local biologists who she contacted during the trip over here. "We'll be back in the spaceport in two hours," she says. "Be sure to have ten tons of cargo space free."`
 
@@ -2152,6 +2234,8 @@ mission "Terraforming 5"
 			`	"For a century or so, yes," she says. "But that's a whole lot more economical than vaporizing the ice caps using traditional terraforming equipment. Come on, let's get back to <planet>."`
 				accept
 	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Amy and the seeds hasn't entered the system yet. Better depart and wait for it.`
 	on complete
 		payment 60000
 		event "terraforming timer" 4 8
@@ -2261,6 +2345,8 @@ mission "Terraforming 7"
 				`	"Sorry, I have other places to be."`
 					decline
 	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Amy and Nolan hasn't entered the system yet. Better depart and wait for it.`
 	on complete
 		payment 50000
 		event "terraforming research" 120 180
@@ -2306,6 +2392,8 @@ mission "Terraforming 9"
 			`	"Once you're ready, Captain, please bring us to <destination>. Tundra was a tropical world millions of years ago, but became cold after a cataclysmic event of some sort. There's a good chance that we may be able to nudge the planet back toward a warmer climate if we do this right."`
 					accept
 	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the scientists and their equipment hasn't entered the system yet. Better depart and wait for it.`
 	on complete
 		dialog 
 			`The journey to Tundra was spent by your passengers discussing the possible methods of terraforming the planet. The Republic representative was none too pleased when Nolan, perhaps jokingly, suggested crashing an asteroid into it.`
@@ -2349,6 +2437,8 @@ mission "Terraforming 10"
 			
 			`	The representative leaves the bar. "We'll wait here," Amy says to you. "I'll speak with the Tundra government about evacuating the area around where the impact site will be so that we can start when you get back."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the representative hasn't entered the system yet. Better depart and wait for it.`
 
 
 
@@ -2370,6 +2460,8 @@ mission "Terraforming 11"
 		dialog
 			`Your ship is targeted by pirate fleets when you enter the system. Before you engage, you receive a message from Amy.`
 			`"Captain, these pirate ships have been occupying the system for days. You must take them out if we are to safely crash an asteroid into Tundra."`
+	on visit
+		dialog `You return to <planet>, but not all of the pirates have been fought off. They don't look like they're leaving any time soon either. Better depart and finish them off for good.`
 	npc evade
 		government "Pirate"
 		personality nemesis staying target
@@ -2406,6 +2498,8 @@ mission "Terraforming 12"
 		personality derelict fleeing uninterested waiting pacifist mute
 		ship "Asteroid" "Target Asteroid"
 	
+	on visit
+		dialog `You return to the spaceport to the confused looks of Amy and the rest of the scientists. "You didn't put the thrusters on the asteroid," Amy says. "Just board the asteroid to attach the thrusters." Amy begins pushing you back to your ship, clearly eager to see the results of this experiment.`
 	on complete
 		payment 200000
 		event "terraforming timer 2" 730 912
@@ -2538,6 +2632,8 @@ mission "Terminus exploration"
 		government "Pirate"
 		personality staying
 		fleet "Small Southern Pirates" 2
+	on visit
+		dialog `You've returned to <planet>, but you don't have the drone's data. Go to Terminus and board the science drone to retrieve the data.`
 	on complete
 		payment 90000
 		log `Recovered data from a derelict science drone for a team of scientists, who were studying a strange red anomaly in the Terminus system. They suggest that it may be a partially collapsed wormhole.`
@@ -2630,6 +2726,8 @@ mission "Lost Boy 2"
 			`	"Oh yeah, that bugger! That little rebel was causin' me trouble so I sold him off soon as I could. If ya looking for him, then you're gonna need to look for a ship by the name of <npc>. They bought your boy Tod 'bout four days ago. Might be hangin' around a system nearby."`
 			`	You thank Cygnet, who has been surprisingly polite for a slave trader, for the information. "If ya ever need a slave, just come talk to me," he remarks as you walk back to your ship. "I've got the cheapest slaves this side of Sol."`
 				accept
+	on visit
+		dialog `You've landed on <planet>, but you haven't yet found Tod. Keep looking for the <npc> and then board the ship; it can't be far from Deadman's Cove.`
 	
 	npc board
 		personality staying nemesis target plunders
@@ -2661,6 +2759,8 @@ mission "Lost Boy 3"
 	name `Bring Tod to <planet>`
 	description `Now that Tod's mother knows he is safe, bring him to <destination> so that he may start his mining job to support him and his mother.`
 	destination "Placer"
+	passengers 1
+	blocked "This mission requires that you have at least one free bunk. Return once you have the space."
 	to offer
 		has "Lost Boy 2: done"
 	
@@ -2697,6 +2797,8 @@ mission "Lost Boy 3"
 		system "Al Dhanab"
 		ship "Falcon (Heavy)" "Cygnet's Slaver"
 	
+	on visit
+		dialog `You land on <planet>, but remember that Tod is in one of your escorts that has yet to enter the system. Better depart and wait for it to arrive.`
 	on complete
 		dialog `You wish Tod the best of luck on <planet>. "Thank you, Captain. Hopefully I can repay you one day. As cliche as it sounds, I owe you my life."`
 
@@ -2732,6 +2834,8 @@ mission "Paradise Fortune 1"
 			`	You open the hatch to your ship and yell "Get on!" as the girl approaches. "Thank you, Captain," she says while getting closer, to much protest from the approaching security guards.`
 			`	As she enters your ship, she grabs your arm and pulls you in with her before closing the hatch. "Launch and go to <destination>, now! I'll explain when we get there."`
 				launch
+	on visit
+		dialog `You land on <planet>, but realize that Diana is in one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -2783,6 +2887,8 @@ mission "Paradise Fortune 2"
 			
 	on decline
 		payment 150000
+	on visit
+		dialog `You land on <planet>, but realize that Diana is in one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -2839,6 +2945,9 @@ mission "Paradise Fortune 3"
 	
 	on decline
 		payment 500000
+	
+	on visit
+		dialog `You land on <planet>, but realize that Diana is in one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 	
 	npc evade
 		government "Republic"
@@ -2972,6 +3081,8 @@ mission "Northern Blockade"
 		fleet "Large Northern Pirates"
 		fleet "Small Northern Pirates" 3
 	
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 7500
@@ -3050,6 +3161,8 @@ mission "Southern Blockade"
 		fleet "Large Free Worlds"
 	on stopover
 		dialog `The last of the defenses are quickly unloaded from your ship, put into place, and activated. A pirate ship attacking the system attempts to follow you down to the surface, but the fire coming from the newly installed spaceport turrets forces the pirate to turn away and flee for orbit. Time to return to <destination>.`
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 5000
@@ -3091,6 +3204,8 @@ mission "Core Blockade"
 		fleet "Large Core Pirates"
 		fleet "Small Core Pirates" 3
 	
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 10000
@@ -3169,6 +3284,8 @@ mission "Pirate Blockade"
 		personality nemesis staying harvests plunders
 		fleet "Large Core Pirates"
 	
+	on visit
+		dialog `You land on <planet> and begin looking around for the man you are suppose to meet, but then you realize that not all of the escaped slaves are here. Better depart and wait for your escorts holding the rest to arrive.`
 	on complete
 		payment
 		payment 1000
