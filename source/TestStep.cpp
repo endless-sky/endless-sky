@@ -29,7 +29,6 @@ TestStep::TestStep()
 {
 	// Initialize with some sensible default values.
 	stepType = 0;
-	frameWait = 20;
 	saveGameName = "";
 }
 
@@ -126,13 +125,8 @@ void TestStep::Load(const DataNode &node)
 		node.PrintTrace("Skipping unrecognized test-step: " + node.Token(0));
 }
 
-int TestStep::DoStep(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
+int TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player)
 {
-	if (frameWait > 0){
-		frameWait--;
-		return RESULT_RETRY;
-	}
-
 	switch (stepType)
 	{
 		case TestStep::ASSERT:
@@ -175,7 +169,7 @@ int TestStep::DoStep(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
 			return RESULT_FAIL;
 			break;
 		case TestStep::LOAD_GAME:
-			if (stepStage == 0){
+			if (stepAction == 0){
 				// Check if the savegame actually exists
 				if (! Files::Exists(Files::Saves() + SaveGameName()))
 					return RESULT_FAIL;
@@ -185,38 +179,32 @@ int TestStep::DoStep(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
 					return RESULT_FAIL;
 				// Actual load succeeded. Allow game to adopt to new
 				// situation and then continue with enter/pilot step.
-				stepStage++;
-				frameWait = 20;
-				return RESULT_RETRY;
+				return RESULT_NEXTACTION;
 			}
-			else if (stepStage == 1)
+			else if (stepAction == 1)
 			{
 				// Clear the menu entries and go to main game screen
 				if (! menuPanels.IsEmpty())
 					menuPanels.Pop(menuPanels.Top().get());
-				stepStage++;
-				frameWait = 20;
 				// Transfer control to game before final check to allow
 				// closing of menuPanel.
-				return RESULT_RETRY;
+				return RESULT_NEXTACTION;
 			}
-			else if (stepStage == 2)
+			else if (stepAction == 2)
 			{
 				if (! menuPanels.IsEmpty())
 					return RESULT_FAIL;
 				// TODO: this should be called/loaded from LoadPanel
 				gamePanels.Reset();
-				stepStage++;
-				return RESULT_RETRY;
+				return RESULT_NEXTACTION;
 			}
-			else if (stepStage == 3)
+			else if (stepAction == 3)
 			{
 				// TODO: this should be called/loaded from LoadPanel
 				gamePanels.Push(new MainPanel(player));
-				stepStage++;
-				return RESULT_RETRY;
+				return RESULT_NEXTACTION;
 			}
-			else if (stepStage == 4)
+			else if (stepAction == 4)
 			{
 				if (gamePanels.IsEmpty())
 					return RESULT_FAIL;

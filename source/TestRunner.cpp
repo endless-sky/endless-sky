@@ -47,27 +47,35 @@ TestRunner::~TestRunner()
 // around in our flagship.
 void TestRunner::Step(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
 {
-	if (testSteps.empty())
+	if (stepToRun >= testSteps.size())
 	{
 		//Done, no failures, exit the game with exitcode success.
 		menuPanels.Quit();
 		return;
 	}
-	TestStep* testStep = testSteps.front();
 
-	int testResult = testStep->DoStep(menuPanels, gamePanels, player);
-	// Only keep the teststep if we have a retry result. Remove the step
-	// in all other cases.
-	if (testResult != TestStep::RESULT_RETRY)
+	TestStep* testStep = testSteps[stepToRun];
+
+	int testResult = testStep->DoStep(stepAction, menuPanels, gamePanels, player);
+	switch (testResult)
 	{
-		testSteps.erase(testSteps.begin());
-		delete testStep;
+		case TestStep::RESULT_DONE:
+			// Test-step is done. Start with the first action of the next
+			// step next time this function gets called.
+			stepToRun++;
+			stepAction = 0;
+			break;
+		case TestStep::RESULT_NEXTACTION:
+			stepAction++;
+			break;
+		case TestStep::RESULT_RETRY:
+			break;
+		case TestStep::RESULT_FAIL:
+		default:
+			// Exit with error on a failing testStep.
+			// Throwing a runtime_error is kinda rude, but works for this version of
+			// the tester. Might want to add a menuPanels.QuitError() function in
+			// a later version (which can set a non-zero exitcode and exit properly).
+			throw runtime_error("Teststep " + to_string(stepToRun) + " action " + to_string(stepAction) + " failed");
 	}
-
-	// Exit with error if we are not succesfull and not retrying.
-	// Throwing a runtime_error is kinda rude, but works for this version of 
-	// the tester. Might want to add a menuPanels.QuitError() function in
-	// a later version (which can set a non-zero exitcode and exit properly).
-	if ((testResult != TestStep::RESULT_DONE) and (testResult != TestStep::RESULT_RETRY))
-		throw runtime_error("Teststep failed");
 }

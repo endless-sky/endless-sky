@@ -37,14 +37,16 @@ public:
 	// Result-Done:  Teststep succesfull. Remove step and proceed with next.
 	// Result-Fail:  Teststep failed. Fail test. Exit program with non-zero exitcode
 	// Result-Retry: Teststep incomplete (waiting for a condition). Retry teststep in next update.
+	// Result-NextAction: Action in teststep succesfull. Retry, but with action counter one higher.
 	static const int RESULT_DONE = 0;
 	static const int RESULT_FAIL = 1;
 	static const int RESULT_RETRY = 2;
+	static const int RESULT_NEXTACTION = 3;
 
 	virtual void Load(const DataNode &node);
 	virtual const std::string SaveGameName();
 	virtual int StepType();
-	virtual int DoStep(UI &menuPanels, UI &gamePanels, PlayerInfo &player);
+	virtual int DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player);
 
 	
 private:
@@ -56,15 +58,10 @@ private:
 
 	// The type of this step
 	int stepType;
-	// Stage of the step
-	int stepStage = 0;
 	// Checked condition, for teststeps of types ASSERT and WAITFOR
 	ConditionSet checkedCondition;
 	// Savegame pilot and name to load or save to. For teststep of type LOAD_GAME (and SAVE_GAME)
 	std::string saveGameName;
-	// Timer to slow down the teststep to human readable speeds
-	// TODO: only enable this in debug mode
-	int frameWait = 20;
 };
 
 #endif
