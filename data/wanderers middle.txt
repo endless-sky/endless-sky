@@ -2632,11 +2632,27 @@ mission "Wanderers: Sestor: Remnant Visit"
 
 
 
+mission "Wanderers: Sestor: Drones in Alnilam Waypoint"
+	landing
+	source
+	name "Drones in Alnilam"
+	description "Eliminate the remaining Kor Sestor fleet in the Alnilam system."
+	waypoint "Alnilam"
+	to offer
+		has "Wanderers: Sestor: Scattered Remnant: done"
+		or
+			not "Wanderers: Sestor: Alnilam Fleet 1: done"
+			not "Wanderers: Sestor: Alnilam Fleet 2: done"
+	to complete
+		has "Wanderers: Sestor: Alnilam Fleet 1: done"
+		has "Wanderers: Sestor: Alnilam Fleet 2: done"
+
+
+
 mission "Wanderers: Sestor: Drones in Alnilam"
 	landing
+	invisible
 	source "Farpoint"
-	name "Drones in Alnilam"
-	description "With the help of the Oathkeepers, eliminate the Kor Sestor fleet in the Alnilam system."
 	to offer
 		has "Wanderers: Sestor: Scattered Remnant: done"
 		or
