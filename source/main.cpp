@@ -394,7 +394,7 @@ int main(int argc, char *argv[])
 		}
 		
 		// If you quit while landed on a planet, save the game - if you did anything.
-		if(!testRunner && player.GetPlanet() && gamePanels.CanSave())
+		if(player.GetPlanet() && gamePanels.CanSave())
 			player.Save();
 		
 		// Remember the window state.

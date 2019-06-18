@@ -238,8 +238,9 @@ public:
 	void SetMapZoom(int level);
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
-	
-	
+	// Enable test-mode which prevents automatic creation of savegames.
+	void SetTestMode();
+
 private:
 	// Don't anyone else to copy this class, because pointers won't get
 	// transferred properly.
@@ -334,6 +335,10 @@ private:
 	// Currently collapsed categories for various panels.
 	std::map<std::string, std::set<std::string>> collapsed;
 	
+	// Set to true when running in test-mode. Setting this to true will
+	// prevent things like automatic saving of progress/games.
+	bool testMode = false;
+
 	bool freshlyLoaded = true;
 	int desiredCrew = 0;
 };
