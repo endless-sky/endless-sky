@@ -74,8 +74,8 @@ ship "Centipede"
 		"hull" 2400
 		"required crew" 35
 		"bunks" 131
-		"mass" 128
-		"drag" 3
+		"mass" 168
+		"drag" 4
 		"heat dissipation" .75
 		"fuel capacity" 600
 		"cargo space" 38
@@ -465,7 +465,8 @@ ship "Shield Beetle"
 	outfits
 		"Ion Cannon" 4
 		"Hai Tracker Pod" 4
-		"Hai Tracker" 224
+		"Hai Tracker" 280
+		"Tracker Storage Pod" 2
 		"Chameleon Anti-Missile" 2
 		"Boulder Reactor"
 		"Geode Reactor"
@@ -575,7 +576,8 @@ ship "Shield Beetle" "Shield Beetle (Pulse)"
 ship "Shield Beetle" "Shield Beetle (Tracker)"
 	outfits
 		"Hai Tracker Pod" 8
-		"Hai Tracker" 448
+		"Hai Tracker" 476
+		"Tracker Storage Pod"
 		"Pulse Turret" 4
 		"Boulder Reactor"
 		"Geode Reactor"
@@ -841,7 +843,8 @@ ship "Water Bug"
 			"hit force" 1860
 	outfits
 		"Hai Tracker Pod" 2
-		"Hai Tracker" 112
+		"Hai Tracker" 168
+		"Tracker Storage Pod" 2
 		"Pulse Turret"
 		"Chameleon Anti-Missile" 2
 		"Geode Reactor"

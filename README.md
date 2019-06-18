@@ -9,7 +9,7 @@ Endless Sky is a sandbox-style space exploration game similar to Elite, Escape V
 See the [player's manual](https://github.com/endless-sky/endless-sky/wiki/PlayersManual) for more information, or the [home page](https://endless-sky.github.io/) for screenshots and the occasional blog post.
 
 # Installing the game
-Official releases of Endless Sky are available on [Steam](https://steamcommunity.com/app/404410/) and as direct downloads from [GitHub](https://github.com/endless-sky/endless-sky/releases). A PPA is available for [Ubuntu](https://launchpad.net/~mzahniser/+archive/ubuntu/endless-sky) and for [Debian](https://packages.debian.org/source/sid/endless-sky). Other package managers may also include the game, though the specific version provided may not be up-to-date.
+Official releases of Endless Sky are available on [Steam](https://store.steampowered.com/app/404410/Endless_Sky/) and as direct downloads from [GitHub](https://github.com/endless-sky/endless-sky/releases). A PPA is available for [Ubuntu](https://launchpad.net/~mzahniser/+archive/ubuntu/endless-sky) and for [Debian](https://packages.debian.org/source/sid/endless-sky). Other package managers may also include the game, though the specific version provided may not be up-to-date.
 
 ### System Requirements
 Endless Sky has very minimal system requirements, meaning most systems should be able to run the game. The most restrictive requirement is likely that your device must support at least OpenGL 3.

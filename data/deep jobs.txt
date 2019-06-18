@@ -62,6 +62,8 @@ mission "Deep Mystery Cube [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 	on accept
 		dialog phrase "deep mystery cube pickup"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"mystery cube" ++
 		payment 5000 1000
@@ -90,6 +92,8 @@ mission "Deep Mystery Cube [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 	on accept
 		dialog phrase "deep mystery cube pickup"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"mystery cube" ++
 		payment 5000 1000
@@ -118,6 +122,8 @@ mission "Deep Mystery Cube [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 	on accept
 		dialog phrase "deep mystery cube pickup"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"mystery cube" ++
 		payment 5000 1000
@@ -146,6 +152,8 @@ mission "Deep Mystery Cube [3]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 	on accept
 		dialog phrase "deep mystery cube pickup"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"mystery cube" ++
 		payment 5000 1000
@@ -161,7 +169,7 @@ mission "Deep Mystery Cube [3]"
 mission "Mystery retrieval"
 	job
 	repeat
-	description "Retrieve a package from <stopovers>. Payment is <payment>."
+	description "Retrieve a package from <stopovers>, then return to <destination>. Payment is <payment>."
 	cargo "mystery package" 1
 	to offer
 		random < 10
@@ -173,6 +181,8 @@ mission "Mystery retrieval"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 	on stopover
 		dialog phrase "deep mystery cube pickup"
+	on visit
+		dialog phrase "generic missing stopover or cargo"
 	on complete
 		"mystery cube" ++
 		payment 5000 1000
@@ -200,6 +210,8 @@ mission "Transport scientists"
 		distance 2 50
 	on stopover
 		dialog "The scientists have been giddily discussing the results of their research during the entire trip. You're happy for a bit of peace and quiet as they make tracks for a prominent research lab to have the results analyzed. You prepare for the return journey to <planet>."
+	on visit
+		dialog phrase "generic missing stopover or passengers"
 	on complete
 		dialog "You bid goodbye to the scientists and accept your payment of <payment>."
 		payment
@@ -269,6 +281,8 @@ mission "Record academic conference"
 	destination
 		attributes "research" "quarg" "rich" "paradise"
 		distance 4 10
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		dialog phrase "academic conference recording payment"
 		payment 5000 1000

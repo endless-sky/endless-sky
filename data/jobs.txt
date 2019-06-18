@@ -8,13 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-phrase "generic arrived-without-npc dialog"
-	word
-		`You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system.`
-phrase "generic safe escort completion dialog"
-	word
-		`The captain of the <npc> thanks you for escorting them safely, and pays you <payment>.`
-
 mission "Escort (Tiny, Northern, Dangerous Destination)"
 	name "Escort to <planet>"
 	description "Despite your relative inexperience, the captain of the <npc> is willing to pay you <payment> for an escort into a dangerous region of space to reach <destination> by <date>."
@@ -1270,23 +1263,7 @@ mission "Escort (Extra Large, Southern, Dangerous Origin or Destination)"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
 
-phrase "generic pirate attack payment dialog"
-	word
-		`The government of <planet>`
-	word
-		` `
-		` gratefully `
-	word
-		`pays you <payment> for helping to`
-	word
-		` drive off `
-		` defeat `
-	word
-		`the `
-	word
-		`pirates.`
-		`raiders.`
-		`attackers.`
+
 
 mission "Southern Pirate Attack"
 	name "Defend <planet>"
@@ -1318,6 +1295,8 @@ mission "Southern Pirate Attack"
 				`	(Join the defense fleet.)`
 			`A few militia pilots have gathered to help repel the pirate attack. You join them, and take off together...`
 				launch
+	on visit
+		dialog phrase "generic pirate fleet battle on visit"
 	on complete
 		payment 150000
 		dialog phrase "generic pirate attack payment dialog"
@@ -1352,6 +1331,8 @@ mission "Northern Pirate Attack"
 				`	(Join the defense fleet.)`
 			`The local Navy garrison is preparing to repel the pirate attack. You join them, and take off together...`
 				launch
+	on visit
+		dialog phrase "generic pirate fleet battle on visit"
 	on complete
 		payment 250000
 		dialog phrase "generic pirate attack payment dialog"
@@ -1386,6 +1367,8 @@ mission "Core Pirate Attack"
 				`	(Join the defense fleet.)`
 			`The local Syndicate defense forces are preparing to repel the pirate attack. You join them, and take off together...`
 				launch
+	on visit
+		dialog phrase "generic pirate fleet battle on visit"
 	on complete
 		payment 200000
 		dialog phrase "generic pirate attack payment dialog"
@@ -1421,6 +1404,8 @@ mission "Raider Attack 1"
 				`	(Join the defense fleet.)`
 			`The local Syndicate defense forces are preparing to repel the alien attack. You join them, and take off together...`
 				launch
+	on visit
+		dialog `You've landed on <planet>, but there are still Korath circling overhead. You should take off and help finish them off.`
 	on complete
 		payment 550000
 		dialog `The government of <planet> pays you <payment> for helping to drive off the raiders.`
@@ -1456,14 +1441,13 @@ mission "Raider Attack 2"
 				`	(Join the defense fleet.)`
 			`The local Syndicate defense forces are preparing to repel the alien attack. You join them, and take off together...`
 				launch
+	on visit
+		dialog `You've landed on <planet>, but there are still Korath circling overhead. You should take off and help finish them off.`
 	on complete
 		payment 750000
 		dialog `The government of <planet> pays you <payment> for helping to drive off the raiders.`
 
 
-phrase "generic cargo delivery payment"
-	word
-		`You drop off your cargo of <commodity> and collect your payment of <payment>.`
 
 mission "Cargo [0]"
 	name "Delivery to <planet>"
@@ -1476,6 +1460,8 @@ mission "Cargo [0]"
 	destination
 		distance 2 8
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		dialog phrase "generic cargo delivery payment"
@@ -1493,6 +1479,8 @@ mission "Cargo [1]"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		dialog phrase "generic cargo delivery payment"
@@ -1511,6 +1499,8 @@ mission "Cargo [2]"
 	destination
 		distance 2 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		dialog phrase "generic cargo delivery payment"
@@ -1529,6 +1519,8 @@ mission "Cargo [3]"
 	destination
 		distance 3 14
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 2000
@@ -1548,6 +1540,8 @@ mission "Cargo [4]"
 	destination
 		distance 4 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 4000
@@ -1566,6 +1560,8 @@ mission "Bulk Delivery [0]"
 	destination
 		distance 2 8
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		dialog phrase "generic cargo delivery payment"
@@ -1583,6 +1579,8 @@ mission "Bulk Delivery [1]"
 	destination
 		distance 3 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 2000
@@ -1602,6 +1600,8 @@ mission "Bulk Delivery [2]"
 	destination
 		distance 4 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 4000
@@ -1621,6 +1621,8 @@ mission "Rush Delivery [0]"
 	destination
 		distance 4 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 16000
@@ -1640,6 +1642,8 @@ mission "Rush Delivery [1]"
 	destination
 		distance 5 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 18000
@@ -1660,6 +1664,8 @@ mission "Rush Delivery [2]"
 	destination
 		distance 6 14
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 20000
@@ -1680,17 +1686,14 @@ mission "Rush Delivery [3]"
 	destination
 		distance 7 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 22000
 		dialog phrase "generic cargo delivery payment"
 
 
-
-phrase "generic passenger dropoff payment"
-	word
-		`You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>.`
-		`You say farewell to your <passengers> on <planet>, and collect your payment of <payment>.`
 
 mission "Passengers [0]"
 	name "Passenger transport to <planet>"
@@ -1703,6 +1706,8 @@ mission "Passengers [0]"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -1721,6 +1726,8 @@ mission "Passengers [1]"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		dialog phrase "generic passenger dropoff payment"
@@ -1738,6 +1745,8 @@ mission "Passengers [2]"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		dialog phrase "generic passenger dropoff payment"
@@ -1755,6 +1764,8 @@ mission "Passengers [3]"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		dialog phrase "generic passenger dropoff payment"
@@ -1773,6 +1784,8 @@ mission "Passengers [4]"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -1791,6 +1804,8 @@ mission "Transport miners to <planet>"
 		attributes "mining"
 		distance 3 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -1809,6 +1824,8 @@ mission "Transport farmers to <planet>"
 		attributes "farming"
 		distance 3 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -1827,6 +1844,8 @@ mission "Transport mill workers to <planet>"
 		attributes "textiles"
 		distance 3 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -1845,6 +1864,8 @@ mission "Transport workers to <planet>"
 		attributes "factory"
 		distance 3 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -1864,6 +1885,8 @@ mission "Tourists out [0]"
 		attributes "tourism"
 		distance 6 35
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 6000
@@ -1883,6 +1906,8 @@ mission "Tourists out [1]"
 		attributes "tourism"
 		distance 2 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 4000
@@ -1905,6 +1930,8 @@ mission "Wealthy tourists out"
 		attributes "tourism"
 		distance 4 30
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 200
 		dialog phrase "generic passenger dropoff payment"
@@ -1923,6 +1950,8 @@ mission "Tourists back [0]"
 	destination
 		distance 6 35
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 6000
@@ -1942,6 +1971,8 @@ mission "Tourists back [1]"
 	destination
 		distance 2 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 4000
@@ -1964,6 +1995,8 @@ mission "Wealthy tourists back"
 		attributes "rich" "urban"
 		distance 4 30
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 200
 		dialog phrase "generic passenger dropoff payment"
@@ -1982,6 +2015,8 @@ mission "Family [0]"
 	destination
 		distance 4 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 4000
@@ -2001,6 +2036,8 @@ mission "Family [1]"
 	destination
 		distance 5 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 6000
@@ -2020,6 +2057,8 @@ mission "Family [2]"
 	destination
 		distance 6 24
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 8000
@@ -2039,6 +2078,8 @@ mission "Family [3]"
 	destination
 		distance 8 32
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 10000
@@ -2059,6 +2100,8 @@ mission "Strike Breakers [mining]"
 		attributes "mining"
 		distance 2 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 10000
@@ -2079,6 +2122,8 @@ mission "Strike Breakers [textile]"
 		attributes "textiles"
 		distance 2 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 10000
@@ -2099,6 +2144,8 @@ mission "Strike Breakers [factory]"
 		attributes "factory"
 		distance 2 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 10000
@@ -2120,6 +2167,8 @@ mission "Colonists [0]"
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
 		distance 2 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 8000
@@ -2141,6 +2190,8 @@ mission "Colonists [1]"
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
 		distance 4 30
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 10000
@@ -2163,6 +2214,8 @@ mission "Prisoners [0]"
 		random < 15
 	on offer
 		require "Brig"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 165
 		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of several well-armed guards as they prepare to repay their debts to society as forced laborers in <planet>'s mines. You collect your payment of <payment>."
@@ -2184,6 +2237,8 @@ mission "Prisoners [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "factory"
 		attributes "north" "south" "rim" "frontier" "core"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 165
 		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of several well-armed guards as they prepare to repay their debts to society as forced laborers in <planet>'s factories. You collect your payment of <payment>."
@@ -2204,6 +2259,8 @@ mission "Prisoners [2]"
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 165
 		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of several well-armed guards as they prepare to repay their debts to society as domestic servants for <planet>'s wealthy elite. You collect your payment of <payment>."
@@ -2224,6 +2281,8 @@ mission "Prisoners [3]"
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "moon" "military"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 165
 		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of several well-armed guards as they prepare to repay their debts to society in a penal colony on this remote world. You collect your payment of <payment>."
@@ -2245,6 +2304,8 @@ mission "Prisoners [4]"
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "moon" "military"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 25000 175
 		dialog "Your shackled passengers offer bitter curses as burly and well-armed guards practically beat them out of your ship, driving them in the direction of a penal colony on this remote world. You collect your payment of <payment>."
@@ -2270,6 +2331,8 @@ mission "Released Prisoners [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		random < 15
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 3000 150
 		dialog "The released prisoners walk out into the spaceport with nothing but their meager belongings and discharge paperwork. You collect your payment of <payment>."
@@ -2288,6 +2351,8 @@ mission "Released Prisoners [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		random < 15
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 3000 150
 		dialog "The released prisoners walk out into the spaceport with nothing but their meager belongings and discharge paperwork. You collect your payment of <payment>."
@@ -2306,6 +2371,8 @@ mission "Released Prisoners [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		random < 15
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 3000 150
 		dialog "The released prisoners walk into the spaceport with nothing but discharge paperwork and the clothes on their backs. You collect your payment of <payment>."
@@ -2324,6 +2391,8 @@ mission "Large Bulk Delivery [0]"
 	destination
 		distance 2 8
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 4000
@@ -2343,6 +2412,8 @@ mission "Large Bulk Delivery [1]"
 	destination
 		distance 3 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 6000
@@ -2363,6 +2434,8 @@ mission "Large Bulk Delivery [2]"
 	destination
 		distance 4 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 8000
@@ -2383,6 +2456,8 @@ mission "Large Rush Delivery [0]"
 	destination
 		distance 4 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 36000
@@ -2403,6 +2478,8 @@ mission "Large Rush Delivery [1]"
 	destination
 		distance 5 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 38000
@@ -2424,6 +2501,8 @@ mission "Large Rush Delivery [2]"
 	destination
 		distance 6 14
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 40000
@@ -2445,6 +2524,8 @@ mission "Large Rush Delivery [3]"
 	destination
 		distance 7 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 42000
@@ -2463,18 +2544,14 @@ mission "Recycle garbage"
 	destination
 		attributes "factory" "mining" "dirt belt"
 		distance 9 12
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		dialog "You drop off the <commodity> at an especially smelly solid waste recycler and collect your payment of <payment>."
 		payment
 		payment 20000
 
-phrase "generic hunted bounty eliminated dialog"
-	word
-		`The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
 
-phrase "generic bounty hunting payment dialog"
-	word
-		`The government of <planet> gratefully pays you <payment> for eliminating the <npc>.`
 
 mission "Bounty Hunting (Small)"
 	name "Hunt down the <npc>"
@@ -2513,6 +2590,8 @@ mission "Bounty Hunting (Small)"
 			variant
 				"Manta (Proton)"
 		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
 	on complete
 		payment 150000
 		dialog phrase "generic bounty hunting payment dialog"
@@ -2548,6 +2627,8 @@ mission "Bounty Hunting (Medium)"
 			variant
 				"Firebird (Plasma)"
 		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
 	on complete
 		payment 200000
 		dialog phrase "generic bounty hunting payment dialog"
@@ -2587,6 +2668,8 @@ mission "Bounty Hunting (Big)"
 			variant
 				"Vanguard (Particle)"
 		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
 	on complete
 		payment 250000
 		dialog phrase "generic bounty hunting payment dialog"
@@ -2624,6 +2707,8 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 			variant
 				"Clipper (Speedy)"
 		dialog "You blast your way onto the ship and confine the fleeing criminal to your ship's brig. Time to deliver them to <planet>."
+	on visit
+		dialog phrase "generic bounty hunting boarding on visit"
 	on complete
 		payment 175000
 		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal."
@@ -2663,17 +2748,11 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 			variant
 				"Raven (Heavy)"
 		dialog "You blast your way onto the ship, subdue the fleeing criminals, and confine them to your ship's brig. Time to deliver them to <planet>."
+	on visit
+		dialog phrase "generic bounty hunting boarding on visit"
 	on complete
 		payment 350000
 		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal gang."
-
-phrase "generic hunted bounty fleet eliminated dialog"
-	word
-		`The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>.`
-
-phrase "generic fleet bounty hunting payment dialog"
-	word
-		`The government of <planet> gratefully pays you <payment> for eliminating the <npc> and their fleet.`
 
 mission "Bounty Hunting (Marauder I)"
 	name "Hunt down the <npc>"
@@ -2697,6 +2776,8 @@ mission "Bounty Hunting (Marauder I)"
 			distance 1 3
 		fleet "Marauder fleet I"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 300000
 		dialog phrase "generic fleet bounty hunting payment dialog"
@@ -2723,6 +2804,8 @@ mission "Bounty Hunting (Marauder II)"
 			distance 1 3
 		fleet "Marauder fleet II"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 350000
 		dialog phrase "generic fleet bounty hunting payment dialog"
@@ -2749,6 +2832,8 @@ mission "Bounty Hunting (Marauder III)"
 			distance 1 3
 		fleet "Marauder fleet III"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 400000
 		dialog phrase "generic fleet bounty hunting payment dialog"
@@ -2775,6 +2860,8 @@ mission "Bounty Hunting (Marauder IV)"
 			distance 1 3
 		fleet "Marauder fleet IV"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 425000
 		dialog phrase "generic fleet bounty hunting payment dialog"
@@ -2801,6 +2888,8 @@ mission "Bounty Hunting (Marauder V)"
 			distance 1 3
 		fleet "Marauder fleet V"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 450000
 		dialog phrase "generic fleet bounty hunting payment dialog"
@@ -2828,6 +2917,8 @@ mission "Bounty Hunting (Marauder VI)"
 			distance 1 3
 		fleet "Marauder fleet VI"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 475000
 		dialog phrase "generic fleet bounty hunting payment dialog"
@@ -2850,6 +2941,8 @@ mission "Bounty Hunting (Marauder VII)"
 			distance 1 3
 		fleet "Marauder fleet VII"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 500000
 		dialog phrase "generic fleet bounty hunting payment dialog"
@@ -2872,6 +2965,8 @@ mission "Bounty Hunting (Marauder VIII)"
 			distance 1 3
 		fleet "Marauder fleet VIII"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 550000
 		dialog phrase "generic fleet bounty hunting payment dialog"
@@ -2894,6 +2989,8 @@ mission "Bounty Hunting (Marauder IX)"
 			distance 1 3
 		fleet "Marauder fleet IX"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 600000
 		dialog phrase "generic fleet bounty hunting payment dialog"
