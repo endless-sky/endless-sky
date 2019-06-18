@@ -376,6 +376,7 @@ person "Tranquility"
 
 ship "Lampyrid-Class Transport"
 	sprite "ship/lampyrid"
+	thumbnail "thumbnail/lampyrid"
 	attributes
 		category "Heavy Freighter"
 		cost 2760000
