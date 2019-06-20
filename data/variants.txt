@@ -1656,7 +1656,7 @@ ship "Osprey" "Osprey (Missile)"
 		"Torpedo Storage Rack"
 		"Heavy Rocket Launcher" 2
 		"Heavy Rocket" 60
-		"Heavy Rocker Rack" 2
+		"Heavy Rocket Rack" 2
 		"Heavy Laser Turret"
 		"Heavy Anti-Missile Turret"
 		"Breeder Reactor"

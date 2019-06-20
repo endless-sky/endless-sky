@@ -1776,7 +1776,7 @@ mission "Rescue Miners 1"
 	on offer
 		dialog `You've just sat down in the spaceport bar and ordered a drink when someone in uniform runs into the room and shouts, "There's been a mine explosion on <planet>! We need all available ships to carry relief workers and supplies and to evacuate the injured to a world where there are better medical facilities." Do you volunteer?`
 	on visit
-		dialog phrase "generic cargo passenger on visit"
+		dialog phrase "generic cargo and passenger on visit"
 
 
 
@@ -1943,7 +1943,7 @@ mission "Migrant Workers 1"
 					decline
 	
 	on visit
-		dialog phrase "generic passengers on visit"
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 20000
