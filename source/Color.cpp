@@ -80,3 +80,13 @@ Color Color::Additive(float alpha) const
 	
 	return result;
 }
+
+
+
+// Blend two colors with blendRatio between 0 and 1 determining how much blendColor is used.
+Color Color::Blend(Color blendColor, float blendRatio) const
+{
+	float alt = 1 - blendRatio;
+	return Color(alt * color[0] + blendRatio * blendColor.color[0],alt * color[1] + blendRatio * blendColor.color[1],
+				alt * color[2] + blendRatio * blendColor.color[2],alt * color[3] + blendRatio * blendColor.color[3]);
+}

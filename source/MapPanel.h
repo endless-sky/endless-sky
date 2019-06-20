@@ -81,7 +81,7 @@ protected:
 	
 	virtual double SystemValue(const System *system) const;
 	
-	void Select(const System *system);
+	virtual void Select(const System *system);
 	void Find(const std::string &name);
 	
 	double Zoom() const;

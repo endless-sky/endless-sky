@@ -12,6 +12,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapDetailPanel.h"
 
+
+#include "Files.h"
+
+
 #include "Color.h"
 #include "Command.h"
 #include "Font.h"
@@ -19,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "LineShader.h"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
 #include "pi.h"
@@ -76,14 +81,14 @@ namespace {
 
 
 MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system)
-	: MapPanel(player, system ? MapPanel::SHOW_REPUTATION : player.MapColoring(), system)
+	: MapPanel(player, system ? MapPanel::SHOW_REPUTATION : player.MapColoring(), system), compareSystem(player.GetSystem())
 {
 }
 
 
 
 MapDetailPanel::MapDetailPanel(const MapPanel &panel)
-	: MapPanel(panel)
+	: MapPanel(panel), compareSystem(player.GetSystem())
 {
 	// Use whatever map coloring is specified in the PlayerInfo.
 	commodity = player.MapColoring();
@@ -107,6 +112,7 @@ void MapDetailPanel::Draw()
 	DrawInfo();
 	DrawOrbits();
 	DrawKey();
+	DrawTradePlan();
 }
 
 
@@ -203,14 +209,14 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 
 bool MapDetailPanel::Click(int x, int y, int clicks)
 {
+	if(x < Screen::Left() + (wideCommodity ? 190 : 160) && y >= tradeY && y < tradeY + 200)
+	{
+		SetCommodity((y - tradeY) / 20);
+		return true;
+	}
 	if(x < Screen::Left() + 160)
 	{
-		if(y >= tradeY && y < tradeY + 200)
-		{
-			SetCommodity((y - tradeY) / 20);
-			return true;
-		}
-		else if(y < governmentY)
+		if(y < governmentY)
 			SetCommodity(SHOW_REPUTATION);
 		else if(y >= governmentY && y < governmentY + 20)
 			SetCommodity(SHOW_GOVERNMENT);
@@ -277,6 +283,100 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	if(selectedPlanet && !selectedPlanet->IsInSystem(selectedSystem))
 		selectedPlanet = nullptr;
 	return true;
+}
+
+
+
+void MapDetailPanel::Select(const System *system)
+{
+	// We handle ctrl click entirely here.
+	if(SDL_GetModState() & KMOD_CTRL)
+	{
+		if(system && player.Flagship() && system->IsInhabited(player.Flagship()))
+			compareSystem = system;
+		else
+			compareSystem = player.GetSystem();
+	}
+	else
+		MapPanel::Select(system);
+	
+	tradeRoute.clear();
+	
+	// check compareSystem and selectedSystem
+	if(!compareSystem || !selectedSystem || compareSystem == selectedSystem)
+		return;
+	
+	// create a map around compareSystem and save a route to selectedSystem
+	DistanceMap localRoute(player,compareSystem);
+	const System *curSystem = selectedSystem;
+	
+	// Todo: don't include selected in list, modify drawing to deal with this, compare with travelplan and remove extra links.  Check if uninhabited then don't make route.
+	
+	vector<const System *> &plan = player.TravelPlan();
+	// temporarily add start system to plan.
+	plan.push_back(player.GetSystem());
+//	for(const System *sysz : plan)
+//	{
+//		Files::LogError(sysz->Name());
+//	}
+	
+	
+	while(curSystem != compareSystem)
+	{
+		const System *prevSystem = curSystem;
+		curSystem = localRoute.Route(curSystem);
+		if(!curSystem)
+		{
+			// no route to system
+			tradeRoute.clear();
+			break;
+		}
+		
+		bool addLink = true;
+		for (size_t j = 0; j < plan.size(); ++j)
+		{
+			if((curSystem == plan[j] && ((j - 1 > 0 && prevSystem == plan[j-1])
+							|| (j + 1 < plan.size() && prevSystem == plan[j+1])))
+			|| (prevSystem == plan[j] && ((j - 1 > 0 && curSystem == plan[j-1])
+							|| (j + 1 < plan.size() && curSystem == plan[j+1]))))
+			{
+				addLink = false;
+				break;
+			}
+		}
+		
+		if(addLink)
+		{
+			tradeRoute.push_back(prevSystem);
+			tradeRoute.push_back(curSystem);
+		}
+	}
+	// remove temporarily added player system
+	plan.pop_back();
+	
+	
+		
+		// Look for link in travel plan, if it's not there, add it to our trade route.
+		
+//			if(overlap && pos < plan.size() && plan[pos] == curSystem)
+//			{
+//				++pos;
+//			}
+//			else if(overlap)
+//			{
+//				overlap = false;
+//				tradeRoute.push_back(prevSystem);
+//			}
+//			
+//			if(!overlap)
+//			{
+//				tradeRoute.push_back(curSystem);
+//			}
+	
+	
+	
+	// should now have all systems along route in traderoute.
+
 }
 
 
@@ -410,6 +510,8 @@ void MapDetailPanel::DrawInfo()
 	const Color &faint = *GameData::Colors().Get("faint");
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
+	//const Color &red = *GameData::Colors().Get("red");
+	//const Color &green = *GameData::Colors().Get("green");
 	
 	Point uiPoint(Screen::Left() + 100., Screen::Top() + 45.);
 	
@@ -432,9 +534,14 @@ void MapDetailPanel::DrawInfo()
 	
 	uiPoint.Y() += 115.;
 	
+	// temp
+	//compareSystem = player.GetSystem();
+	bool hasVisitedSelectedSystem = player.HasVisited(selectedSystem);
+	bool hasVisitedCompareSystem = player.HasVisited(compareSystem);
+	
 	planetY.clear();
 	// Draw the basic information for visitable planets in this system.
-	if(player.HasVisited(selectedSystem))
+	if(hasVisitedSelectedSystem)
 	{
 		set<const Planet *> shown;
 		const Sprite *planetSprite = SpriteSet::Get("ui/map planet");
@@ -498,7 +605,28 @@ void MapDetailPanel::DrawInfo()
 	
 	// Trade sprite goes from 310 to 540.
 	const Sprite *tradeSprite = SpriteSet::Get("ui/map trade");
-	SpriteShader::Draw(tradeSprite, uiPoint);
+	const Sprite *tradeSpriteExtended = SpriteSet::Get("ui/map trade extended");
+	
+
+	
+	bool compare = compareSystem && compareSystem->IsInhabited(player.Flagship()) && compareSystem != selectedSystem
+						&& hasVisitedCompareSystem && hasVisitedSelectedSystem && selectedSystem->IsInhabited(player.Flagship());
+	// Determine trade type and draw correct background UI sprite.
+	//if(hasVisitedSelectedSystem && selectedSystem->IsInhabited(player.Flagship()))
+		//compare = ); //player.GetSystem() && player.GetSystem()->IsInhabited(player.Flagship());
+	if (compare)
+	{
+		SpriteShader::Draw(tradeSpriteExtended, uiPoint);
+		wideCommodity = true;
+		// Set var to tell click area to expand.
+	}
+	else
+	{
+		SpriteShader::Draw(tradeSprite, uiPoint);
+		wideCommodity = false;
+	}
+		
+	
 	
 	uiPoint.X() -= 90.;
 	uiPoint.Y() -= 97.;
@@ -512,33 +640,45 @@ void MapDetailPanel::DrawInfo()
 		font.Draw(commodity.name, uiPoint, color);
 		
 		string price;
+		string priceDifference;
 		
-		bool hasVisited = player.HasVisited(selectedSystem);
-		if(hasVisited && selectedSystem->IsInhabited(player.Flagship()))
+		if(hasVisitedSelectedSystem && selectedSystem->IsInhabited(player.Flagship()))
 		{
 			int value = selectedSystem->Trade(commodity.name);
-			int localValue = (player.GetSystem() ? player.GetSystem()->Trade(commodity.name) : 0);
+			int localValue = (compareSystem ? compareSystem->Trade(commodity.name) : 0);
 			// Don't "compare" prices if the current system is uninhabited and
 			// thus has no prices to compare to.
-			bool noCompare = (!player.GetSystem() || !player.GetSystem()->IsInhabited(player.Flagship()));
+			////bool noCompare = (!player.GetSystem() || !player.GetSystem()->IsInhabited(player.Flagship()));
 			if(!value)
 				price = "----";
-			else if(noCompare || player.GetSystem() == selectedSystem || !localValue)
+			else if(!compare || compareSystem == selectedSystem || !localValue)
 				price = to_string(value);
 			else
 			{
-				value -= localValue;
-				price += "(";
-				if(value > 0)
-					price += '+';
 				price += to_string(value);
-				price += ")";
+				
+				int difference = value - localValue;
+				
+				if(difference > 0)
+					priceDifference += '+';
+				priceDifference += to_string(difference);
+				
+				Color red = Color(.75,0.,0.,0.);
+				Color green = Color(0.,.75,0.,0.);
+				Point posDifference = uiPoint + Point(140.,0.);
+				float blend = max(min(difference,500),-500) / 500.;
+				
+				font.Draw("(", posDifference, color);
+				font.Draw(priceDifference, posDifference + Point(5,0), dim.Blend(blend > 0 ? green : red, sqrt(abs(blend))));
+				font.Draw(")", posDifference + Point(3 + font.Width(priceDifference),0), color);
+				
+				//need to tell click box area to move right in this case.
 			}
 		}
 		else
-			price = (hasVisited ? "n/a" : "?");
+			price = (hasVisitedSelectedSystem ? "n/a" : "?");
 		
-		Point pos = uiPoint + Point(140. - font.Width(price), 0.);
+		Point pos = uiPoint + Point(136. - font.Width(price), 0.);
 		font.Draw(price, pos, color);
 		
 		if(isSelected)
@@ -652,6 +792,56 @@ void MapDetailPanel::DrawOrbits()
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
 	Point namePos(Screen::Right() - .5 * font.Width(name) - 100., Screen::Top() + 7.);
 	font.Draw(name, namePos, *GameData::Colors().Get("medium"));
+}
+
+
+
+// Draw the quickest trade route when comparing commodity prices.
+void MapDetailPanel::DrawTradePlan()
+{
+	// First draw the route
+	
+	//const System *previous = nullptr;
+	
+	//bool firstRun = true;
+	// Cycle through every pair of systems to draw the links.
+	for (size_t pos = 0; pos + 1 < tradeRoute.size(); pos += 2)
+//	for(auto next : tradeRoute)
+	{
+//		if(firstRun)
+//		{
+//			firstRun = false;
+//		}
+//		else
+//		{
+		const System *previous = tradeRoute[pos];
+		const System *next = tradeRoute[pos+1];
+
+		Color lightBlue = Color(0.,.5,.8,0.);
+
+		Point from = Zoom() * (next->Position() + center);
+		Point to = Zoom() * (previous->Position() + center);
+		Point unit = (from - to).Unit() * LINK_OFFSET;
+		LineShader::Draw(from - unit, to + unit, 3.f, lightBlue);
+//		}
+		//previous = next;
+		
+	}
+	
+	if (compareSystem && compareSystem != player.GetSystem())
+	{
+		Color tradeRingColor(.4f, .4f, 0.f, 0.f);
+		RingShader::Draw(Zoom() * (compareSystem->Position() + center), 14.f, 12.f, tradeRingColor);
+	}
+	
+	
+//	
+//		Point from = Zoom() * (next->Position() + center);
+//		Point to = Zoom() * (previous->Position() + center);
+//		Point unit = (from - to).Unit() * LINK_OFFSET;
+//		LineShader::Draw(from - unit, to + unit, 3.f, drawColor);
+
+	// Then draw the bigger circle +2.f around control system. yellow?
 }
 
 

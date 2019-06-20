@@ -42,12 +42,15 @@ protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
+	virtual void Select(const System *system) override;
 	
 	
 private:
 	void DrawKey();
 	void DrawInfo();
 	void DrawOrbits();
+	// Draw the quickest trade route when comparing commodity prices.
+	void DrawTradePlan();
 	
 	// Set the commodity coloring, and update the player info as well.
 	void SetCommodity(int index);
@@ -56,9 +59,15 @@ private:
 private:
 	int governmentY = 0;
 	int tradeY = 0;
+	bool wideCommodity = false;
 	
 	std::map<const Planet *, int> planetY;
 	std::map<const Planet *, Point> planets;
+	
+	// A system pointer used to compare commodity prices.
+	const System *compareSystem = nullptr;
+	// Every two systems form a link, each pair is separate from the next pair allowing a disjointed path.
+	std::vector<const System *> tradeRoute;
 };
 
 

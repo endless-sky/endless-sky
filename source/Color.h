@@ -41,6 +41,8 @@ public:
 	// Assuming that this is an opaque color, get its additive equivalent with
 	// the given fraction of its full brightness.
 	Color Additive(float alpha) const;
+	// Blend two colors with blendRatio between 0 and 1 determining how much blendColor is used.
+	Color Blend(Color blendColor, float blendRatio) const;
 	
 	
 private:
