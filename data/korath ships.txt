@@ -185,7 +185,7 @@ ship "Korath Chaser"
 
 ship "Korath World-Ship"
 	sprite "ship/world-ship a"
-	thumbnail "thumbnail/world-ship"
+	thumbnail "thumbnail/world-ship a"
 	attributes
 		category "Heavy Freighter"
 		cost 27690000
@@ -242,6 +242,7 @@ ship "Korath World-Ship"
 
 ship "Korath World-Ship" "Korath World-Ship B"
 	sprite "ship/world-ship b"
+	thumbnail "thumbnail/world-ship b"
 	turret -76 -219 "Korath Grab-Strike"
 	turret 76 -219 "Korath Grab-Strike"
 	turret -75 -112 "Korath Banisher"
@@ -253,6 +254,7 @@ ship "Korath World-Ship" "Korath World-Ship B"
 
 ship "Korath World-Ship" "Korath World-Ship C"
 	sprite "ship/world-ship c"
+	thumbnail "thumbnail/world-ship c"
 	turret -45 -243 "Korath Warder"
 	turret 45 -243 "Korath Grab-Strike"
 	turret -47 -136 "Korath Grab-Strike"
