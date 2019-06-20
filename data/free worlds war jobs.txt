@@ -29,6 +29,8 @@ mission "FW Scout Run [0]"
 	waypoint
 		distance 1 2
 		government "Republic"
+	on visit
+		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 10000 180
 		dialog phrase "free worlds scanner payment"
@@ -55,6 +57,8 @@ mission "FW Scout Run [1]"
 	waypoint
 		distance 2 3
 		government "Republic"
+	on visit
+		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 20000 180
 		dialog phrase "free worlds scanner payment"
@@ -81,6 +85,8 @@ mission "FW Scout Run [2]"
 	waypoint
 		distance 3 4
 		government "Republic"
+	on visit
+		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 30000 180
 		dialog phrase "free worlds scanner payment"
@@ -304,6 +310,8 @@ mission "FW Reinforcements [0]"
 		government "Free Worlds"
 		neighbor
 			neighbor government "Republic"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 180
 		dialog `You unload the Free Worlds soldiers into the busy spaceport of <planet>, and collect your payment of <payment>.`
@@ -331,6 +339,8 @@ mission "FW Reinforcements [1]"
 		government "Free Worlds"
 		neighbor
 			neighbor government "Republic"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 180
 		dialog `You unload the Free Worlds soldiers into the busy spaceport of <planet>, and collect your payment of <payment>.`
@@ -362,6 +372,8 @@ mission "FW Outfitter Resupply [0]"
 		distance 4 8
 		government "Free Worlds"
 		attributes outfitter
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2000 180
 		dialog phrase "free worlds thanked resupply payment"
@@ -383,6 +395,8 @@ mission "FW Outfitter Resupply [1]"
 		distance 5 10
 		government "Free Worlds"
 		attributes outfitter
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2000 180
 		dialog phrase "free worlds thanked resupply payment"
@@ -404,6 +418,8 @@ mission "FW Outfitter Resupply [2]"
 		distance 6 12
 		government "Free Worlds"
 		attributes outfitter
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2000 180
 		dialog phrase "free worlds thanked resupply payment"
@@ -425,6 +441,8 @@ mission "FW Bulk Outfitter Resupply [0]"
 		distance 4 8
 		government "Free Worlds"
 		attributes outfitter
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 180
 		dialog phrase "free worlds thanked resupply payment"
@@ -446,6 +464,8 @@ mission "FW Bulk Outfitter Resupply [1]"
 		distance 5 10
 		government "Free Worlds"
 		attributes outfitter
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 180
 		dialog phrase "free worlds thanked resupply payment"
@@ -467,6 +487,8 @@ mission "FW Bulk Outfitter Resupply [2]"
 		distance 6 12
 		government "Free Worlds"
 		attributes outfitter
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 180
 		dialog phrase "free worlds thanked resupply payment"
@@ -494,6 +516,8 @@ mission "FW Frontline Resupply [0]"
 		government "Free Worlds"
 		neighbor
 			neighbor government "Republic"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2000 180
 		dialog phrase "free worlds thanked resupply payment"
@@ -521,6 +545,8 @@ mission "FW Frontline Resupply [1]"
 		government "Free Worlds"
 		neighbor
 			neighbor government "Republic"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2000 180
 		dialog phrase "free worlds thanked resupply payment"
@@ -548,6 +574,8 @@ mission "FW Frontline Resupply [2]"
 		government "Free Worlds"
 		neighbor
 			neighbor government "Republic"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2000 180
 		dialog phrase "free worlds thanked resupply payment"
@@ -575,6 +603,8 @@ mission "FW Bulk Frontline Resupply [0]"
 		government "Free Worlds"
 		neighbor
 			neighbor government "Republic"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 180
 		dialog phrase "free worlds thanked resupply payment"
@@ -602,6 +632,8 @@ mission "FW Bulk Frontline Resupply [1]"
 		government "Free Worlds"
 		neighbor
 			neighbor government "Republic"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 180
 		dialog phrase "free worlds thanked resupply payment"
@@ -628,6 +660,8 @@ mission "FW Care Package to Republic [0]"
 	destination
 		government "Republic"
 		distance 2 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1000 180
 		dialog phrase "free worlds thanked care package"
@@ -648,6 +682,8 @@ mission "FW Care Package to Republic [1]"
 	destination
 		government "Republic"
 		distance 2 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1000 180
 		dialog phrase "free worlds thanked care package"
@@ -668,6 +704,8 @@ mission "FW Care Package from Republic [0]"
 	destination
 		government "Free Worlds"
 		distance 2 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1000 180
 		dialog phrase "free worlds thanked care package"
@@ -688,6 +726,8 @@ mission "FW Care Package from Republic [1]"
 	destination
 		government "Free Worlds"
 		distance 2 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1000 180
 		dialog phrase "free worlds thanked care package"
@@ -721,6 +761,8 @@ mission "FW Refugees [0]"
 		not
 			neighbor
 				neighbor government "Republic"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 2000 180
 		dialog phrase "free worlds thanked refugee transport"
@@ -748,6 +790,8 @@ mission "FW Refugees [1]"
 		not
 			neighbor
 				neighbor government "Republic"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 2000 180
 		dialog phrase "free worlds thanked refugee transport"
@@ -775,6 +819,8 @@ mission "FW Refugees [2]"
 		not
 			neighbor
 				neighbor government "Republic"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 2000 180
 		dialog phrase "free worlds thanked refugee transport"
@@ -802,6 +848,8 @@ mission "FW Bulk Refugees [0]"
 		not
 			neighbor
 				neighbor government "Republic"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 180
 		dialog phrase "free worlds thanked refugee transport"
