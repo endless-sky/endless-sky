@@ -1046,7 +1046,7 @@ void GameData::PrintShipTable()
 		<< "fuel" << '\t' << "outfit" << '\t' << "weapon" << '\t' << "engine" << '\t'
 		<< "speed" << '\t' << "accel" << '\t' << "turn" << '\t'
 		<< "e_gen" << '\t' << "e_use" << '\t' << "h_gen" << '\t' << "h_max" << '\t'
-		<< "guns" << '\t' << "turrets" << '\n';
+		<< "gun_mnts" << '\t' << "turret_mnts" << '\n';
 	for(auto &it : ships)
 	{
 		// Skip variants.
