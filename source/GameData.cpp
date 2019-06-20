@@ -1045,7 +1045,8 @@ void GameData::PrintShipTable()
 		<< "mass" << '\t' << "crew" << '\t' << "cargo" << '\t' << "bunks" << '\t'
 		<< "fuel" << '\t' << "outfit" << '\t' << "weapon" << '\t' << "engine" << '\t'
 		<< "speed" << '\t' << "accel" << '\t' << "turn" << '\t'
-		<< "e_gen" << '\t' << "e_use" << '\t' << "h_gen" << '\t' << "h_max" << '\n';
+		<< "e_gen" << '\t' << "e_use" << '\t' << "h_gen" << '\t' << "h_max" << '\t'
+		<< "guns" << '\t' << "turrets" << '\n';
 	for(auto &it : ships)
 	{
 		// Skip variants.
@@ -1088,7 +1089,18 @@ void GameData::PrintShipTable()
 		cout << 60. * heat << '\t';
 		// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000
 		// per 60th of a second, so:
-		cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << '\n';
+		cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << '\t';
+
+		int numTurrets = 0;
+		int numGuns = 0;
+		for (auto &hardpoint : ship.Weapons())
+		{
+			if(hardpoint.IsTurret())
+				numTurrets++;
+			else
+				numGuns++;
+		}
+		cout << numGuns << '\t' << numTurrets << '\n';
 	}
 	cout.flush();
 }
