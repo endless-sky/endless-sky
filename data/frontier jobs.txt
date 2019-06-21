@@ -19,9 +19,10 @@ mission "Frontier delivery [0]"
 	to offer
 		random < 30
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	destination
+		not government "Pirate"
 		distance 2 10
 		attributes "frontier"
 	npc
@@ -50,9 +51,10 @@ mission "Frontier delivery [1]"
 	to offer
 		random < 25
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	destination
+		not government "Pirate"
 		distance 2 10
 		attributes "frontier"
 	npc
@@ -81,9 +83,10 @@ mission "Frontier delivery [2]"
 	to offer
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	destination
+		not government "Pirate"
 		distance 2 10
 		attributes "frontier"
 	npc
@@ -111,11 +114,12 @@ mission "Frontier Emigration [0]"
 	to offer
 		random < 30
 	source
+		not government "Pirate"
 		attributes "frontier"
 		not planet "Shangri-La"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	on complete
 		payment 3000 140
@@ -131,11 +135,12 @@ mission "Frontier Emigration [1]"
 	to offer
 		random < 25
 	source
+		not government "Pirate"
 		attributes "frontier"
 		not planet "Shangri-La"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	on complete
 		payment 3000 140
@@ -151,11 +156,12 @@ mission "Frontier Emigration [2]"
 	to offer
 		random < 20
 	source
+		not government "Pirate"
 		attributes "frontier"
 		not planet "Shangri-La"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	on complete
 		payment 3000 140
@@ -172,9 +178,10 @@ mission "Disaster Relief"
 	to offer
 		random < 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	destination
+		not government "Pirate"
 		distance 2 10
 		attributes "frontier"
 		not planet "Shangri-La"
@@ -194,6 +201,7 @@ mission "Instruct Novice Pilot"
 		government "Republic" "Free Worlds" "Neutral" "Independent"
 		attributes "frontier" "dirt belt" "rim" "north" "south" "mining" "farming"
 	stopover
+		not government "Pirate"
 		attributes "frontier" "outfitter"
 		distance 3 7
 	on stopover
@@ -234,7 +242,7 @@ mission "Small Pirate gambling"
 		"combat rating" < 200
 		credits > 14357
 	source
-		attributes "dirt belt" "south" "rim" "pirate"
+		attributes "dirt belt" "south" "rim" "pirate" "frontier"
 	on offer
 		conversation
 			`You're having a drink in a dimly lit spaceport bar when you notice a group of young men in crimson leather outfits gambling in a dark corner. The barman eyes them warily. One of them raises his drink and waves you over, beckoning to join their game.`
