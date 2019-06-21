@@ -224,6 +224,8 @@ mission "Remnant: Defense 2"
 			variant
 				"Korath World-Ship B (Crippled)"
 		dialog "You have destroyed the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
+	on visit
+		dialog phrase "generic bounty hunting on visit"
 	on complete
 		payment 500000
 		dialog `The same woman meets you when you land on <planet>. "Again, thank you," she says. "I will suggest to others that they might offer you similar bounty hunting jobs in the future." She pays you <payment>.`
@@ -252,6 +254,8 @@ mission "Remnant: Bounty"
 			variant
 				"Korath Raider (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
+	on visit
+		dialog phrase "generic bounty hunting on visit"
 	on complete
 		payment 300000
 		dialog "A Remnant military leader thanks you for hunting down the <npc>, and gives you the agreed-upon payment of <payment>."
@@ -292,6 +296,8 @@ mission "Remnant: Defense 3"
 				"Korath Raider (Crippled)"
 				"Korath Chaser" 2
 		dialog "Now that you are alone, you are able to deploy the Remnant surveillance satellite unobserved. Time to report back to <planet>."
+	on visit
+		dialog `You have returned to <planet>, but you haven't deployed the surveillance satellite yet. Return to <waypoints> and make sure that all of the Korath there have been eliminated.`
 	on complete
 		event "remnant: surveillance end"
 		payment 500000
@@ -346,6 +352,8 @@ mission "Remnant: Key Stones"
 			`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
 				accept
 	
+	on visit
+		dialog `You have returned to <planet>, but you don't have 50 "Quantum Keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
 	on complete
 		outfit "Quantum Keystone" -50
 		payment 6000000
@@ -413,6 +421,8 @@ mission "Remnant: Void Sprites 1"
 				"Void Sprite (Infant)" 3
 	on enter "Nenia"
 		dialog `There are indeed some strange space-faring life forms in this system. You collect measurements with the special sensors, and then prepare to return to <planet>.`
+	on visit
+		dialog `You have returned to <planet>, but you're missing something! Either you haven't visited <waypoints> to scan the void sprites, or your escort carrying the scanning equipment has not arrived in the system.`
 
 
 
@@ -455,6 +465,8 @@ mission "Remnant: Void Sprites 2"
 				"Void Sprite (Infant)"
 	on accept
 		event "remnant: nenia empty"
+	on visit
+		dialog `You land on <planet>, but you haven't scanned the void sprites in <waypoints>. Make sure you scan all the void sprites using an outfit scanner.`
 	on complete
 		event "remnant: nenia restored"
 
@@ -516,6 +528,8 @@ mission "Remnant: Void Sprites 3"
 			`You have dodged the Archon and landed on the second of the two gas giants where the void sprites live. The hull of your tiny ship creaks and groans under the high atmospheric pressure, but seems to be holding together. Its sensors pick up flocks of void sprites floating between the planet's cloud layers, presumably feeding on airborne creatures too small to detect from this range.`
 			`	You also observe some void sprites leaving the planet, soaring upward on thermal updrafts. As they rise, their bodies swell to several times their original size, like an aerostat balloon gaining altitude. But clearly they have another form of propulsion as well, something akin to the antigravity repulsors that human ships use to travel from a planet's surface into orbit.`
 			`	After collecting some atmospheric samples for good measure, you prepare to return to <planet>. Hopefully the Archon will calm down once it sees that you have not attacked or disturbed the Sprites on either of these planets.`
+	on visit
+		dialog phrase "generic stopover on visit"
 	on complete
 		event "remnant: void sprite research" 20
 		log "Factions" "Void Sprites" `The "void sprites" are space-dwelling lifeforms. They are apparently not sentient. They evolved in the atmosphere of a gas giant, but have some biological mechanism for altering or reflecting gravity that allows them to fly into outer space, in the same way that human ships use antigravity to escape a planet's gravity well. The void sprites are not particularly powerful or dangerous creatures, but they are guarded by a Drak Archon.`
@@ -732,7 +746,7 @@ mission "Remnant: Heavy Laser"
 					defer
 				`	(Yes.)`
 			branch familiar
-				has "Remnant Tech Retrieval: done"
+				has "Remnant: Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a Starling. "Greetings, <first>. I'll be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
 				goto next
 			label familiar
@@ -740,6 +754,8 @@ mission "Remnant: Heavy Laser"
 			label next
 			`	You lead her back to your ship, where you show her the heavy laser. "A laser cannon?" she asks. "Our records indicate that humanity had primitive laser technology at the time of the Exodus, but nothing that would be considered useful as weapons." She pauses to look down at her scanner. "And yet my scans indicate that they are capable of significant power output." She pauses for a moment before continuing, "These could be quite useful to examine more thoroughly. Please deliver two of these heavy lasers to a research team on <planet>."`
 				accept
+	on visit
+		dialog `You have returned to <planet>, but you don't have the two heavy lasers that Taely requested. Go buy two heavy lasers before returning.`
 	on complete
 		outfit "Heavy Laser" -2
 		payment 870000
@@ -769,7 +785,7 @@ mission "Remnant: Plasma Cannon"
 					defer
 				`	(Yes.)`
 			branch familiar
-				has "Remnant Tech Retrieval: done"
+				has "Remnant: Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a Starling. "Greetings, <first>. I will be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
 				goto next
 			label familiar
@@ -777,6 +793,8 @@ mission "Remnant: Plasma Cannon"
 			label next
 			`	You lead her back to your ship, where you show her the plasma cannon. "I have never seen weapons designed to handle such a high heat output! Is this some kind of plasma based weapon?" she asks, gesturing at a cannon. You nod, and she continues, "Intriguing. We have noticed that the Korath ships seem to run particularly hot, and have speculated that overheating them might be an effective means of disabling them. I would enjoy researching these a bit more. If you could deliver two to <planet> for us you would be well compensated."`
 				accept
+	on visit
+		dialog `You have returned to <planet>, but you don't have the two plasma cannons that Taely requested. Go buy two plasma cannons before returning.`
 	on complete
 		outfit "Plasma Cannon" -2
 		payment 1130000
@@ -814,7 +832,7 @@ mission "Remnant: Catalytic Ramscoop"
 					defer
 				`	(Yes.)`
 			branch familiar
-				has "Remnant Tech Retrieval: done"
+				has "Remnant: Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely calibrating an Inhibitor Cannon on an Albatross. "Greetings, <first>. I am just finishing these calibrations." She does a few more things inside the casing, reseals the hatch, and drops to the ground on a tether. "So, did you recover something?"`
 				goto next
 			label familiar
@@ -822,6 +840,8 @@ mission "Remnant: Catalytic Ramscoop"
 			label next
 			`	You lead her back to your ship, where you show her the catalytic ramscoop. "Interesting. This is a new design?" She asks, gesturing at the ramscoop. You nod, and she continues, "Even if it does not perform well, new perspectives on the problem could be valuable. There is a research team on <planet> that is currently working on new ramscoop designs. If you could deliver two catalytic ramscoops to them we could offer you <payment>."`
 				accept
+	on visit
+		dialog `You have returned to <planet>, but you don't have the two catalytic ramscoops that Taely requested. Go buy two catalytic ramscoops before returning.`
 	on complete
 		outfit "Catalytic Ramscoop" -2
 		payment 1390000
@@ -850,7 +870,7 @@ mission "Remnant: Electron Beam"
 					defer
 				`	(Yes.)`
 			branch familiar
-				has "Remnant Tech Retrieval: done"
+				has "Remnant: Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely closing up the panel on a thasher turret. "Greetings, <first>. You have good timing: I was just finishing." She reseals the hatch, and drops to the ground on a tether. "So, did you recover something?"`
 				goto next
 			label familiar
@@ -858,6 +878,8 @@ mission "Remnant: Electron Beam"
 			label next
 			`	You accompany her back to your ship, where she examines the electron beam. "This could be useful. Focusing energy into continuous beams has been a popular idea for centuries. It is very useful to know that they have finally managed to make it into an effective weapon.`
 				accept
+	on visit
+		dialog `You have returned to <planet>, but you don't have the two electron beams that Taely requested. Go buy two electron beams before returning.`
 	on complete
 		outfit "Electron Beam" -2
 		payment 1090000
@@ -886,7 +908,7 @@ mission "Remnant: D94-YV Shield Generator"
 					defer
 				`	(Yes.)`
 			branch familiar
-				has "Remnant Tech Retrieval: done"
+				has "Remnant: Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely applying some kind of material over a hole in a hull. "Greetings, <first>. What brings you here today?" She reseals the hatch, and drops to the ground on a tether. "Did you bring us something?"`
 				goto next
 			label familiar
@@ -894,6 +916,8 @@ mission "Remnant: D94-YV Shield Generator"
 			label next
 			`	You nod in the affirmative and lead her back to your ship, where she examines the D94-YV Shield Generator. "It certainly looks impressive," she chants as she paces around the massive piece of equipment. "It will be valuable to see what our enemies might be shielded with, and maybe something we can learn from it too." She comes to a stop in front of you. "If you could deliver two of these to a lab on <planet> we could compensate you with <payment>.`
 				accept
+	on visit
+		dialog `You have returned to <planet>, but you don't have the two D94-YV Shield Generators that Taely requested. Go buy the two shield generators before returning.`
 	on complete
 		outfit "D94-YV Shield Generator" -2
 		payment 1150000
@@ -922,7 +946,7 @@ mission "Remnant: S-970 Regenerator"
 					defer
 				`	(Yes.)`
 			branch familiar
-				has "Remnant Tech Retrieval: done"
+				has "Remnant: Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely adjusting something on the hull that you can't quite see. "Greetings, <first>. What brings you here today?" She taps something, then hangs her tools on her belt and drops to the ground on a tether. "Did you bring us something?"`
 				goto next
 			label familiar
@@ -930,6 +954,8 @@ mission "Remnant: S-970 Regenerator"
 			label next
 			`	You nod in the agreement and lead her back to your ship, where she does a cursory scan of the S-970 Regenerator. "Hmm," she murmurs as she peers at the readings on her instrument as she waves it up and down the regenerator. "This looks like they may have found a few techniques that would be beneficial for us to study. If you could deliver two of these to a lab on <planet> we could compensate you with <payment>.`
 				accept
+	on visit
+		dialog `You have returned to <planet>, but you don't have the two S-970 Regenerator that Taely requested. Go buy the two shield regenerators before returning.`
 	on complete
 		outfit "S-970 Regenerator" -2
 		payment 2350000
@@ -985,6 +1011,8 @@ mission "Remnant: Return the Samples"
 			`	As the <ship> sinks through the cloud layers, you gently activate the repulsors to slow your descent to avoid startling the void sprites. A few nearby sprites descend with you, seeming to match your velocity. You slow down as you reach the altitude listed in the log of where the eggs are to be released.`
 			`	Setting the ship on auto-pilot, you walk to the back and struggle into the pressure suit. Readying the eggs in the cargo hold, you equalize pressure in the main cargo hold to the swirling clouds outside, and open the bay doors. As predicted, at this pressure level, the eggs are almost weightless, and are fairly easy to carry to the door of the ship and release.`	
 			`	By the time you finish releasing the eggs back into the clouds, several void sprites have converged on your ship and appear to be herding the eggs away from you with gentle buffets of their wings. You take a moment to appreciate the alien beauty of these creatures before closing the hatch and purging the ship with fresh air.`
+	on visit
+		dialog phrase "generic stopover on visit"
 	on complete
 		conversation
 			`Back on the ground, you report on how the release went. The researcher is pleased to hear that the void sprites responded to their presence. "We will give them a few weeks, then try sending another ship to monitor them. Hopefully the Archon will be pacified by this. Meet me in the alien environments lab just off the spaceport if you are interested in pursuing this."`
@@ -1023,6 +1051,8 @@ mission "Remnant: Return the Samples 2"
 			`	Setting the ship on auto-pilot, you head back and suit-up in the bulky pressure suit once again. Readying the eggs in the cargo hold, you equalize pressure and open the bay doors. As before, the eggs are already floating as you open the cocoons and gently carry them to the door.`
 			`	Almost as soon as you release the first egg, a void sprite is there, brushing against the ship to scoop the egg away into the swirling mists. By the time you return with the next one, another sprite is already waiting at the door, undulating in the eerie light. By the time the last egg is released you can see dozens of the strange creatures swarming around the collection of eggs. It occurs to you that very few humans would ever have the chance to see anything like this.`
 			`	After taking a moment to enjoy the view, you shut the door as gently as you can, purge the ship with fresh air, and begin the journey back to Aventine.`
+	on visit
+		dialog phrase "generic stopover on visit"
 	on complete
 		"reputation: Drak" += 1
 		conversation
@@ -1151,6 +1181,8 @@ mission "Remnant: Salvage 3"
 		dialog
 			`The injured crew made for an eerily quiet jaunt from Viminal to Aventine. They didn't sing, and rarely signed. Some spent the trip mellowed out on powerful painkillers, while the few that left their rooms seem to be mostly intent on doing prescribed stretches and movements to help damaged muscles heal. A few are interested in visiting with someone from outside the Ember Waste, but they lacked the energy to do so for long.`
 			`	On Aventine there are ambulances and medical staff waiting to transport the injured to longer-term medical facilities. As they depart, a fresh crew arrives to take their places.`
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 100000
 		set "license: Remnant Capital"
@@ -1229,6 +1261,8 @@ mission "Remnant: Salvage 5"
 			`	Taely quickly helps load the cargo onboard your ship. It doesn't appear to be actual whole items anymore, but rather pieces thereof. "They will be expecting you, but you might have to pry them out of their lab to get some help unloading. They can be a bit single-minded when they have something interesting to work on."`
 				accept
 	
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 150000
 		dialog `On Caelian, you are able to find the appropriate research warehouse just off the main landing pad. After a few minutes, a lab technician disentangles herself from a project and brings a wagon and camel team out to the ship to unload the salvage. It strikes you as a bit incongruous that a lab technician is using a graviton repulsion lifter to load cargo from your ship into a wagon pulled by a camel. "If you can, I should have some things to send back to Taely if you could meet me in the cafeteria this afternoon."`
@@ -1252,6 +1286,8 @@ mission "Remnant: Salvage 6"
 			`	Outside you find a camel pulling a wagon filled with ship parts to be loaded on board the <ship>.`
 				accept
 		
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 150000
 		conversation 
@@ -1303,6 +1339,8 @@ mission "Remnant: Bounty 2"
 			variant
 				"Korath Raider (Hyperdrive)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
+	on visit
+		dialog phrase "generic bounty hunting on visit"
 	on complete
 		payment 400000
 		dialog "A Remnant military leader thanks you for hunting down the Korath ship <npc>, and gives you the agreed-upon payment of <payment>."
@@ -1334,6 +1372,8 @@ mission "Remnant: Expanded Horizons Quarg 1"
 					decline
 			`	 You offer to take her and a couple of her colleagues to see the Quarg. She eagerly accepts, although she expresses a preference for landing on the human world, so they can observe the Quarg ships from a distance, as they would rather not draw any attention to themselves. She runs out of the cafeteria after telling you they will meet you at your ship in half an hour.`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that you left Dawn and her colleagues on one of you escorts that hasn't entered the system. Better depart and wait for it to arrive.`
 	on complete
 		log "People" "Dawn" `Dawn is a young Remnant researcher with a strong interest in engineering. She has yet to pick a specialty, but appears to have a talent for exo-engineering.`
 		conversation
@@ -1373,6 +1413,8 @@ mission "Remnant: Expanded Horizons Quarg 2"
 		dialog
 			`Dawn and her compatriots eagerly pore over the readouts as they come in, then ask if you could land again to compare their scans to ones taken on the ground.`
 
+	on visit
+		dialog `You've landed on <planet>, but you haven't yet scanned the <npc>'s. Depart and use an outfit scanner to scan the ship.`
 	on complete
 		conversation
 			`The Remnant researcher's attention to detail is impressive. They carefully quantify every aspect of the scans, including notes about the ship's behaviors. By the time you are on the ground again, they have amassed quite a collection of data crystals filled with analysis. You note that they are careful to ensure everything they collect is backed up in multiple places, including what appears to be a small lead lined box.`
@@ -1395,6 +1437,8 @@ mission "Remnant: Expanded Horizons Quarg 3"
 			`Back in the spaceport bar you wait around for a couple hours. Just when you were about to go find them, the trio walk in looking like they had spent all day on the move, but otherwise unreadable.`
 			`	"Okay, I think we are ready to go. Can you take us to <planet>?"`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that you left Dawn and her colleagues on one of you escorts that hasn't entered the system. Better depart and wait for it to arrive.`
 	on complete
 		payment 150000
 		conversation
@@ -1404,6 +1448,10 @@ mission "Remnant: Expanded Horizons Quarg 3"
 			`	Upon arriving at <planet> they quickly thank you, hand you <payment>, and run back to their offices to finish prepping their material to publish and distribute.`
 
 
+
+phrase "broken jump drive on visit"
+	word
+		`You've landed on <planet>, but you don't have a broken jump drive to give to the Remnant. You may need to steal one from Korath Raiders found through Remnant jobs, or depart and wait for an escort carrying one to enter the system.`
 
 mission "Remnant: Broken Jump Drive 1"
 	name "Broken Jump Drive Delivery"
@@ -1448,6 +1496,8 @@ mission "Remnant: Broken Jump Drive 1"
 			label refuse
 			`	He considers this, and sings, "If you wish. Our offer stands, whenever you choose to return."`
 				decline
+	on visit
+		dialog phrase "broken jump drive on visit"
 	on complete
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
@@ -1489,6 +1539,8 @@ mission "Remnant: Broken Jump Drive 2"
 			`	You nod.`
 			`	"They will definitely appreciate new material to research. The team is located on <planet>. I will send a notification ahead so they will be expecting you."`
 				accept
+	on visit
+		dialog phrase "broken jump drive on visit"
 	on complete
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
@@ -1530,6 +1582,8 @@ mission "Remnant: Broken Jump Drive 3"
 			`	"I can," you respond.`
 			`	"Excellent. The recent discovery of these broken drives has spurred discussion and excitement in various quarters. We have had teams researching jump drives for at least a century now without a lot of success. I'm told they are rather intricate, but your finds are opening new avenues of investigation. That being said, I'll notify the team on <planet> to expect you."`
 				accept
+	on visit
+		dialog phrase "broken jump drive on visit"
 	on complete
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
@@ -1572,6 +1626,8 @@ mission "Remnant: Broken Jump Drive 4"
 			`	You nod in response.`
 			`	"Thank you. We are looking forward to seeing what comes from this."`
 				accept
+	on visit
+		dialog phrase "broken jump drive on visit"
 	on complete
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
@@ -1612,6 +1668,8 @@ mission "Remnant: Broken Jump Drive 5"
 			`	"Sure," you respond.`
 			`	"Much appreciated. The sooner they get it, the sooner they can start on their project. That being said, I have spoken with the other directors, and we have decided that we are getting so many requests that we will put these into the job board for you. Any time the landing scans detect one of these broken jump drives, the system will display a message on the job board listing where the next one needs to be delivered."`
 				accept
+	on visit
+		dialog phrase "broken jump drive on visit"
 	on complete
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
@@ -1648,6 +1706,8 @@ mission "Remnant: Broken Jump Drive job"
 		government "Remnant"
 		attributes outfitter
 		not distance 0
+	on visit
+		dialog phrase "broken jump drive on visit"
 	on complete
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
