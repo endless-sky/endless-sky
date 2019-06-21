@@ -1660,7 +1660,7 @@ void Engine::HandleMouseClicks()
 			}
 		}
 	}
-	if (!clickTarget && !isRightClick && !clickedAsteroid)
+	if(!clickTarget && !isRightClick && !clickedAsteroid)
 	{
 		//clear target, this also clears current asteroid target.
 		flagship->SetTargetShip(nullptr);
