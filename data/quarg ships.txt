@@ -10,6 +10,7 @@
 
 ship "Quarg Skylark"
 	sprite "ship/skylark"
+	thumbnail "thumbnail/skylark"
 	attributes
 		category "Heavy Warship"
 		"cost" 5900000
@@ -63,6 +64,7 @@ ship "Quarg Skylark"
 
 ship "Quarg Wardragon"
 	sprite "ship/wardragon"
+	thumbnail "thumbnail/wardragon"
 	attributes
 		category "Heavy Warship"
 		"cost" 5900000

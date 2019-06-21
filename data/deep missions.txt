@@ -94,6 +94,8 @@ mission "Deep: Syndicate Convoy"
 	
 	on stopover
 		dialog `You arrive at the pickup location on the night side of Hephaestus. The Syndicate employees who load the freighters do not allow you to see what is inside the cargo, and advise you to leave quickly once the cargo is loaded.`
+	on visit
+		dialog `You have reached <planet>, but you're missing something! Either you haven't visited <stopovers>, or you left part of the convoy behind.`
 	on complete
 		"deep convoy" ++
 		payment 500000
@@ -191,6 +193,8 @@ mission "Deep: Tarazed Convoy"
 	
 	on stopover
 		dialog `You and the freighters are directed to park in a private hangar owned by the Tarazed Corporation. While watching the cargo crates get loaded on to the freighters, you notice that the crates have labels on them which read "To be opened by addressee only" in large red letters.`
+	on visit
+		dialog `You have reached <planet>, but you're missing something! Either you haven't visited <stopovers>, or you left part of the convoy behind.`
 	on complete
 		"deep convoy" ++
 		payment 650000
@@ -279,6 +283,8 @@ mission "Deep: Kraz Convoy"
 	
 	on stopover
 		dialog `When you arrive, Kraz Cybernetics already has the cargo waiting by the spaceport. After a few hours of loading the massive freighters, the spaceport crew gives you the 'all clear' signal, and the Behemoth captains get ready to depart.`
+	on visit
+		dialog `You have reached <planet>, but you're missing something! Either you haven't visited <stopovers>, or you left part of the convoy behind.`
 	on complete
 		"deep convoy" ++
 		payment 800000
@@ -304,7 +310,6 @@ mission "Deep: Mystery Cubes 0"
 	stopover "New Switzerland"
 	stopover "Tundra"
 	stopover "Arabia"
-	cargo "mystery cubes" 1
 	to offer
 		"mystery cube" >= 3
 		"combat rating" > 100
@@ -466,12 +471,15 @@ mission "Deep: Mystery Cubes 2"
 	
 	npc accompany save
 		government "Deep Security"
-		personality heroic opportunistic escort
+		personality heroic escort
 		fleet
 			names "deep"
 			variant
 				"Mule"
 				"Raven" 2
+	npc accompany save
+		government "Republic"
+		personality heroic opportunistic escort
 		fleet
 			names "republic capital"
 			variant
@@ -781,6 +789,8 @@ mission "Deep: TMBR 1"
 			`	Ulrich gathers up the rest of the band and they pack up their supplies. You chart a course for <destination> as the band load their musical equipment on your ship and get ready for the long ride back to human space.`
 				accept
 	
+	on visit
+		dialog `You arrive on <planet>, but realize that your escort carrying the band and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
 	on complete
 		payment 250000
 		log `Brought "There Might Be Riots" back to human space from their vacation in Hai space to play a concert for a team of scientists in the Deep.`
@@ -1080,6 +1090,8 @@ mission "Deep: Project Hawking"
 		system "Naos"
 		ship "Marauder Quicksilver (Engines)" "Gusoyn"
 	
+	on visit
+		dialog `You arrive on <planet>, but realize that your escort carrying the scientists and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
 	on complete
 		payment 1500000
 		log `Helped gather materials for "Project Hawking," an energy and weapons research project being conducted by scientists of the Deep. A pirate Quicksilver attacked the building where the supplies were being placed and crashlanded into the ground, triggering an earthquake.`
@@ -1436,6 +1448,8 @@ mission "Deep: Remnant 2A"
 				"Starling"
 		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
 	
+	on visit
+		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <stopovers>. Make sure you're using an outfit scanner as well."`
 	on complete
 		event "deep: scan log research" 15 32
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
@@ -1469,6 +1483,8 @@ mission "Deep: Remnant 1B"
 				"Starling"
 		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
 	
+	on visit
+		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <stopovers>. Make sure you're using an outfit scanner as well."`
 	on complete
 		event "deep: scan log research" 15 32
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
@@ -1504,6 +1520,8 @@ mission "Deep: Remnant 1C"
 				"Starling"
 		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
 	
+	on visit
+		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <stopovers>. Make sure you're using an outfit scanner as well."`
 	on complete
 		event "deep: scan log research" 15 32
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
