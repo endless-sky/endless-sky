@@ -322,7 +322,7 @@ void MapDetailPanel::Select(const System *system)
 		
 		// Make sure the new trade link is not in the travel plan so we don't draw over it.
 		bool addLink = true;
-		for (size_t j = 0; j < plan.size(); ++j)
+		for(size_t j = 0; j < plan.size(); ++j)
 		{
 			if((curSystem == plan[j] && ((j - 1 > 0 && prevSystem == plan[j-1])
 							|| (j + 1 < plan.size() && prevSystem == plan[j+1])))
@@ -496,8 +496,8 @@ void MapDetailPanel::DrawInfo()
 	
 	uiPoint.Y() += 115.;
 	
-	bool hasVisitedSelectedSystem = player.HasVisited(selectedSystem);
-	bool hasVisitedCompareSystem = player.HasVisited(compareSystem);
+	const bool hasVisitedSelectedSystem = player.HasVisited(selectedSystem);
+	const bool hasVisitedCompareSystem = player.HasVisited(compareSystem);
 	
 	planetY.clear();
 	// Draw the basic information for visitable planets in this system.
@@ -566,9 +566,8 @@ void MapDetailPanel::DrawInfo()
 	bool compare = compareSystem && compareSystem->IsInhabited(player.Flagship()) && compareSystem != selectedSystem
 						&& hasVisitedCompareSystem && hasVisitedSelectedSystem && selectedSystem->IsInhabited(player.Flagship());
 	
-	// Trade sprite goes from 310 to 540.
-	// Determine trade type and draw correct background UI sprite.
-	if (compare)
+	// Trade sprite goes from 310 to 540.  Draw correct background UI sprite.
+	if(compare)
 	{
 		const Sprite *tradeSpriteExtended = SpriteSet::Get("ui/map trade extended");
 		SpriteShader::Draw(tradeSpriteExtended, uiPoint);
@@ -614,8 +613,8 @@ void MapDetailPanel::DrawInfo()
 					priceDifference += '+';
 				priceDifference += to_string(difference);
 				
-				Color red = Color(.75,0.,0.,0.);
-				Color green = Color(0.,.75,0.,0.);
+				const Color red = Color(.75,0.,0.,0.);
+				const Color green = Color(0.,.75,0.,0.);
 				Point posDifference = uiPoint + Point(140.,0.);
 				float blend = max(min(difference,500),-500) / 500.;
 				
@@ -749,7 +748,7 @@ void MapDetailPanel::DrawOrbits()
 void MapDetailPanel::DrawTradePlan()
 {
 	// Cycle through every pair of systems to draw the route.  Never draws over travel plan.
-	for (size_t pos = 0; pos + 1 < tradeRoute.size(); pos += 2)
+	for(size_t pos = 0; pos + 1 < tradeRoute.size(); pos += 2)
 	{
 		const System *previous = tradeRoute[pos];
 		const System *next = tradeRoute[pos+1];
@@ -761,9 +760,9 @@ void MapDetailPanel::DrawTradePlan()
 		LineShader::Draw(from - unit, to + unit, 3.f, lightBlue);
 	}
 	// Draw the ring around compareSystem
-	if (compareSystem && compareSystem != player.GetSystem())
+	if(compareSystem && compareSystem != player.GetSystem())
 	{
-		Color tradeRingColor(.4f, .4f, 0.f, 0.f);
+		const Color tradeRingColor(.4f, .4f, 0.f, 0.f);
 		RingShader::Draw(Zoom() * (compareSystem->Position() + center), 14.f, 12.f, tradeRingColor);
 	}
 }
