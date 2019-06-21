@@ -33,7 +33,8 @@ ship "Aerie"
 			"hit force" 1200
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile" 136
+		"Sidewinder Missile Rack" 2
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret"
 		
@@ -359,7 +360,8 @@ ship "Bastion"
 	outfits
 		"Plasma Cannon" 2
 		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 40
+		"Heavy Rocket" 60
+		"Heavy Rocket Rack" 2
 		"Blaster Turret" 2
 		"Anti-Missile Turret"
 		
@@ -368,6 +370,7 @@ ship "Bastion"
 		"nGVF-BB Fuel Cell"
 		"D67-TM Shield Generator"
 		"Water Coolant System"
+		"Tactical Scanner"
 		"Laser Rifle" 7
 		
 		"Impala Plasma Thruster"
@@ -729,7 +732,8 @@ ship "Carrier"
 	outfits
 		"Particle Cannon" 4
 		"Meteor Missile Launcher" 4
-		"Meteor Missile" 120
+		"Meteor Missile" 150
+		"Meteor Missile Box" 2
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -742,6 +746,7 @@ ship "Carrier"
 		"Laser Rifle" 40
 		"Fragmentation Grenades" 40
 		"Security Station"
+		"Tactical Scanner"
 		
 		"X5700 Ion Thruster"
 		"X4200 Ion Steering"
@@ -1041,6 +1046,7 @@ ship "Cruiser"
 		"Laser Rifle" 20
 		"Fragmentation Grenades" 20
 		"Security Station"
+		"Tactical Scanner"
 		
 		"X4700 Ion Thruster"
 		"X4200 Ion Steering"
@@ -1155,6 +1161,7 @@ ship "Dreadnought"
 		"D41-HY Shield Generator"
 		"Small Radar Jammer"
 		"Liquid Helium Cooler"
+		"Tactical Scanner"
 		"Laser Rifle" 25
 		
 		"Orca Plasma Thruster"
@@ -1598,6 +1605,7 @@ ship "Gunboat"
 		"Small Radar Jammer"
 		"Cargo Scanner"
 		"Outfit Scanner"
+		"Tactical Scanner"
 		"Brig"
 		
 		"X3700 Ion Thruster"
@@ -2067,7 +2075,8 @@ ship "Manta"
 	outfits
 		"Particle Cannon" 4
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 75
+		"Meteor Missile Box"
 		
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
@@ -2182,7 +2191,8 @@ ship "Mule"
 			"hit force" 1500
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile" 136
+		"Sidewinder Missile Rack" 2
 		"Heavy Laser Turret" 3
 		"Heavy Anti-Missile Turret"
 		
@@ -2473,12 +2483,14 @@ ship "Rainmaker"
 	outfits
 		"Energy Blaster" 2
 		"Meteor Missile Launcher" 4
-		"Meteor Missile" 120
+		"Meteor Missile" 180
+		"Meteor Missile Box" 4
 		
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		"Large Radar Jammer"
+		"Tactical Scanner"
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -2588,6 +2600,7 @@ ship "Roost"
 		"LP072a Battery Pack"
 		"D41-HY Shield Generator" 4
 		"Large Radar Jammer"
+		"Tactical Scanner"
 		"Laser Rifle" 2
 		
 		"Greyhound Plasma Thruster"
@@ -2751,6 +2764,7 @@ ship "Skein"
 		"LP072a Battery Pack"
 		"D67-TM Shield Generator" 4
 		"Large Radar Jammer"
+		"Tactical Scanner"
 		"Laser Rifle" 4
 		
 		"Greyhound Plasma Thruster"

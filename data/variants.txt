@@ -38,13 +38,14 @@ ship "Argosy" "Argosy (Laser)"
 ship "Argosy" "Argosy (Missile)"
 	outfits
 		"Meteor Missile Launcher" 4
-		"Meteor Missile" 120
+		"Meteor Missile" 165
+		"Meteor Missile Box" 3
 		"Anti-Missile Turret"
 		"Heavy Anti-Missile Turret"
 		"Fission Reactor"
 		"Supercapacitor"
 		"D41-HY Shield Generator"
-		"Outfits Expansion"
+		"Outfits Expansion" 2
 		"A370 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
@@ -186,6 +187,7 @@ ship "Bastion" "Bastion (Heavy)"
 		"LP072a Battery Pack"
 		"D67-TM Shield Generator"
 		"Liquid Nitrogen Cooler"
+		"Tactical Scanner"
 		"Laser Rifle" 8
 		"Outfits Expansion" 2
 		"X3700 Ion Thruster"
@@ -586,11 +588,12 @@ ship "Corvette" "Corvette (Missile)"
 		"Torpedo Launcher" 2
 		"Torpedo" 60
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile" 159
+		"Sidewinder Missile Rack" 3
 		"Heavy Anti-Missile Turret" 2
 		"Fission Reactor"
 		"LP036a Battery Pack"
-		"D94-YV Shield Generator"
+		"D67-TM Shield Generator"
 		"Cooling Ducts"
 		"Cargo Expansion"
 		"Laser Rifle" 4
@@ -703,6 +706,7 @@ ship "Cruiser" "Cruiser (Mark II)"
 		"Small Radar Jammer" 2
 		"Liquid Helium Cooler"
 		"Fuel Pod"
+		"Tactical Scanner"
 		"Laser Rifle" 25
 		"Fragmentation Grenades" 25
 		"A520 Atomic Thruster"
@@ -732,6 +736,7 @@ ship "Dreadnought" "Dreadnought (Jump)"
 		"D41-HY Shield Generator"
 		"Small Radar Jammer"
 		"Liquid Helium Cooler"
+		"Tactical Scanner"
 		"Laser Rifle" 25
 		"Orca Plasma Thruster"
 		"Orca Plasma Steering"
@@ -755,6 +760,7 @@ ship "Falcon" "Falcon (Heavy)"
 		"Fusion Reactor"
 		"D67-TM Shield Generator"
 		"Small Radar Jammer"
+		"Tactical Scanner"
 		"Laser Rifle" 20
 		"Orca Plasma Thruster"
 		"A375 Atomic Steering"
@@ -774,6 +780,7 @@ ship "Falcon" "Falcon (Laser)"
 		"LP072a Battery Pack"
 		"D94-YV Shield Generator"
 		"Small Radar Jammer"
+		"Tactical Scanner"
 		"Laser Rifle" 18
 		"Impala Plasma Thruster"
 		"Orca Plasma Steering"
@@ -788,6 +795,7 @@ ship "Falcon" "Falcon (Plasma)"
 		"D41-HY Shield Generator"
 		"Small Radar Jammer"
 		"Liquid Nitrogen Cooler"
+		"Tactical Scanner"
 		"Laser Rifle" 16
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
@@ -845,13 +853,15 @@ ship "Firebird" "Firebird (Laser)"
 ship "Firebird" "Firebird (Missile)"
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 90
+		"Meteor Missile Box" 2
 		"Torpedo Launcher" 2
-		Torpedo 60
+		"Torpedo" 75
+		"Torpedo Storage Rack"
 		"Heavy Laser Turret" 2
 		"Fission Reactor"
 		"LP072a Battery Pack"
-		"D94-YV Shield Generator"
+		"D67-TM Shield Generator"
 		"Outfits Expansion"
 		"Laser Rifle" 2
 		"Impala Plasma Thruster"
@@ -1075,12 +1085,25 @@ ship "Fury" "Fury (Missile)"
 		"Javelin Pod"
 		"Javelin" 200
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 75
+		"Meteor Missile Box"
 		"nGVF-BB Fuel Cell"
 		"Supercapacitor" 3
 		"D14-RN Shield Generator"
 		"Greyhound Plasma Thruster"
 		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Fury" "Fury (Miner)"
+	outfits
+		"Heavy Laser" 2
+		"nGVF-CC Fuel Cell"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		"Asteroid Scanner"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
 		"Hyperdrive"
 
 
@@ -1216,6 +1239,18 @@ ship "Hawk" "Hawk (Speedy)"
 		"Hyperdrive"
 
 
+ship "Hawk" "Hawk (Miner)"
+	outfits
+		"Heavy Laser" 2
+		"S3 Thermionic"
+		"LP036a Battery Pack"
+		"D41-HY Shield Generator"
+		"Asteroid Scanner"
+		"A120 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+
+
 
 ship "Headhunter" "Headhunter (Hai)"
 	outfits
@@ -1235,6 +1270,18 @@ ship "Headhunter" "Headhunter (Particle)"
 		"NT-200 Nucleovoltaic"
 		"LP036a Battery Pack"
 		"D23-QP Shield Generator"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+ship "Headhunter" "Headhunter (Miner)"
+	outfits
+		"Particle Cannon" 2
+		"NT-200 Nucleovoltaic"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Asteroid Scanner"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
@@ -1462,7 +1509,8 @@ ship "Modified Argosy" "Modified Argosy (Heavy)"
 ship "Modified Argosy" "Modified Argosy (Missile)"
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 105
+		"Meteor Missile Box" 3
 		"Torpedo Launcher" 2
 		"Torpedo" 60
 		"Heavy Laser Turret"
@@ -1471,6 +1519,7 @@ ship "Modified Argosy" "Modified Argosy (Missile)"
 		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
 		"Brig"
+		"Outfits Expansion"
 		"Laser Rifle"
 		"X3700 Ion Thruster"
 		"Greyhound Plasma Steering"
@@ -1593,6 +1642,7 @@ ship "Osprey" "Osprey (Laser)"
 		"Supercapacitor" 4
 		"D94-YV Shield Generator"
 		"Water Coolant System"
+		"Tactical Scanner"
 		"Laser Rifle" 3
 		"Impala Plasma Thruster"
 		"X4200 Ion Steering"
@@ -1602,9 +1652,11 @@ ship "Osprey" "Osprey (Laser)"
 ship "Osprey" "Osprey (Missile)"
 	outfits
 		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo" 75
+		"Torpedo Storage Rack"
 		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 40
+		"Heavy Rocket" 60
+		"Heavy Rocket Rack" 2
 		"Heavy Laser Turret"
 		"Heavy Anti-Missile Turret"
 		"Breeder Reactor"
@@ -1612,6 +1664,8 @@ ship "Osprey" "Osprey (Missile)"
 		"Supercapacitor" 3
 		"D41-HY Shield Generator"
 		"Water Coolant System"
+		"Tactical Scanner"
+		"Outfits Expansion"
 		"Laser Rifle" 3
 		"A520 Atomic Thruster"
 		"A375 Atomic Steering"
@@ -1924,13 +1978,16 @@ ship "Star Queen" "Star Queen (Hai)"
 ship "Vanguard" "Vanguard (Missile)"
 	outfits
 		"Sidewinder Missile Launcher" 4
-		"Sidewinder Missile" 180
+		"Sidewinder Missile" 295
+		"Sidewinder Missile Rack" 5
 		"Torpedo Launcher" 3
-		"Torpedo" 90
+		"Torpedo" 120
+		"Torpedo Storage Rack" 2
 		"Heavy Anti-Missile Turret"
 		"Fission Reactor"
 		"Supercapacitor"
-		"D94-YV Shield Generator" 2
+		"D94-YV Shield Generator"
+		"D67-TM Shield Generator"
 		"Large Radar Jammer" 2
 		"Liquid Nitrogen Cooler"
 		"Laser Rifle" 2
