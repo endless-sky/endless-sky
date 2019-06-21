@@ -181,6 +181,8 @@ mission "Mystery retrieval"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 	on stopover
 		dialog phrase "deep mystery cube pickup"
+	on visit
+		dialog phrase "generic missing stopover or cargo"
 	on complete
 		"mystery cube" ++
 		payment 5000 1000
@@ -209,7 +211,7 @@ mission "Transport scientists"
 	on stopover
 		dialog "The scientists have been giddily discussing the results of their research during the entire trip. You're happy for a bit of peace and quiet as they make tracks for a prominent research lab to have the results analyzed. You prepare for the return journey to <planet>."
 	on visit
-		dialog phrase "generic passenger on visit"
+		dialog phrase "generic missing stopover or passengers"
 	on complete
 		dialog "You bid goodbye to the scientists and accept your payment of <payment>."
 		payment
