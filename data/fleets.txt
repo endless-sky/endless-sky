@@ -867,15 +867,15 @@ fleet "Human Miners"
 	variant 1
 		"Fury"
 	variant 2
-		"Fury (Laser)"
-	variant 3
+		"Fury (Miner)"
+	variant 1
 		"Hawk"
-	variant 1
-		"Hawk (Speedy)"
 	variant 2
-		"Headhunter"
+		"Hawk (Miner)"
 	variant 1
-		"Headhunter (Particle)"
+		"Headhunter"
+	variant 2
+		"Headhunter (Miner)"
 
 fleet "Small Free Worlds"
 	government "Free Worlds"

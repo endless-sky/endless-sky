@@ -17,8 +17,10 @@ mission "Pirate Occupation [0]"
 		random < 5
 		"combat rating" > 100
 	source
+		not government "Pirate"
 		attributes "south" "rim"
 	destination
+		not government "Pirate"
 		distance 2 3
 		attributes "south"
 	npc
@@ -37,6 +39,8 @@ mission "Pirate Occupation [0]"
 		fleet "Small Southern Pirates" 3
 	on offer
 		conversation "pirate occupation"
+	on visit
+		dialog phrase "generic pirate fleet battle on visit"
 	on complete
 		payment 100000
 		dialog phrase "generic pirate attack payment dialog"
@@ -50,8 +54,10 @@ mission "Pirate Occupation [1]"
 		random < 5
 		"combat rating" > 200
 	source
+		not government "Pirate"
 		attributes "south" "rim"
 	destination
+		not government "Pirate"
 		distance 2 3
 		attributes "south"
 	npc
@@ -71,6 +77,8 @@ mission "Pirate Occupation [1]"
 		fleet "Large Southern Pirates"
 	on offer
 		conversation "pirate occupation"
+	on visit
+		dialog phrase "generic pirate fleet battle on visit"
 	on complete
 		payment 150000
 		dialog phrase "generic pirate attack payment dialog"
@@ -84,8 +92,10 @@ mission "Pirate Occupation [2]"
 		random < 5
 		"combat rating" > 300
 	source
+		not government "Pirate"
 		attributes "south" "rim"
 	destination
+		not government "Pirate"
 		distance 2 3
 		attributes "south"
 	npc
@@ -105,6 +115,8 @@ mission "Pirate Occupation [2]"
 		fleet "Large Southern Pirates" 3
 	on offer
 		conversation "pirate occupation"
+	on visit
+		dialog phrase "generic pirate fleet battle on visit"
 	on complete
 		payment 200000
 		dialog phrase "generic pirate attack payment dialog"
