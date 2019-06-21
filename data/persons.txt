@@ -167,6 +167,7 @@ person "Marauding Max K"
 ship "Marauder Fury"
 	plural "Marauder Furies"
 	sprite "ship/mfury"
+	thumbnail "thumbnail/mfury"
 	attributes
 		category "Interceptor"
 		"cost" 750000
@@ -375,6 +376,7 @@ person "Tranquility"
 
 ship "Lampyrid-Class Transport"
 	sprite "ship/lampyrid"
+	thumbnail "thumbnail/lampyrid"
 	attributes
 		category "Heavy Freighter"
 		cost 2760000

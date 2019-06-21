@@ -28,8 +28,9 @@ namespace {
 	string NAME[2] = {"fleet depreciation", "stock depreciation"};
 	// Depreciation parameters.
 	double FULL_DEPRECIATION = 0.25;
-	double DAILY_DEPRECIATION = 0.99;
+	double DAILY_DEPRECIATION = 0.997;
 	int MAX_AGE = 1000;
+	int GRACE_PERIOD = 7;
 }
 
 
@@ -331,13 +332,13 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count)
 // Calculate the value fraction for an item of the given age.
 double Depreciation::Depreciate(int age) const
 {
-	if(age <= 0)
+	if(age <= GRACE_PERIOD)
 		return 1.;
-	if(age >= MAX_AGE)
+	if(age >= MAX_AGE + GRACE_PERIOD)
 		return FULL_DEPRECIATION;
 	
-	double daily = pow(DAILY_DEPRECIATION, age);
-	double linear = static_cast<double>(MAX_AGE - age) / MAX_AGE;
+	double daily = pow(DAILY_DEPRECIATION, age - GRACE_PERIOD);
+	double linear = static_cast<double>(MAX_AGE - (age - GRACE_PERIOD)) / MAX_AGE;
 	return FULL_DEPRECIATION + (1. - FULL_DEPRECIATION) * daily * linear;
 }
 

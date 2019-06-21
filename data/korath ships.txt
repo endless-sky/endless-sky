@@ -185,7 +185,7 @@ ship "Korath Chaser"
 
 ship "Korath World-Ship"
 	sprite "ship/world-ship a"
-	thumbnail "thumbnail/world-ship"
+	thumbnail "thumbnail/world-ship a"
 	attributes
 		category "Heavy Freighter"
 		cost 27690000
@@ -242,6 +242,7 @@ ship "Korath World-Ship"
 
 ship "Korath World-Ship" "Korath World-Ship B"
 	sprite "ship/world-ship b"
+	thumbnail "thumbnail/world-ship b"
 	turret -76 -219 "Korath Grab-Strike"
 	turret 76 -219 "Korath Grab-Strike"
 	turret -75 -112 "Korath Banisher"
@@ -253,6 +254,7 @@ ship "Korath World-Ship" "Korath World-Ship B"
 
 ship "Korath World-Ship" "Korath World-Ship C"
 	sprite "ship/world-ship c"
+	thumbnail "thumbnail/world-ship c"
 	turret -45 -243 "Korath Warder"
 	turret 45 -243 "Korath Grab-Strike"
 	turret -47 -136 "Korath Grab-Strike"
@@ -421,7 +423,8 @@ ship "Kar Ik Vot 349"
 	outfits
 		"Korath Detainer" 2
 		"Korath Piercer Launcher" 2
-		"Korath Piercer" 62
+		"Korath Piercer" 94
+		"Korath Piercer Rack" 2
 		"Korath Warder" 2
 		"Korath Repeater Turret" 6
 		
@@ -490,7 +493,8 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
 	outfits
 		"Korath Piercer Launcher" 4
-		"Korath Piercer" 124
+		"Korath Piercer" 140
+		"Korath Piercer Rack"
 		"Korath Warder" 3
 		"Korath Grab-Strike" 3
 		"Korath Banisher" 2
@@ -1151,7 +1155,8 @@ ship "Model 64"
 			"hit force" 6000
 	outfits
 		"Korath Minelayer"
-		"Korath Mine" 17
+		"Korath Mine" 35
+		"Korath Mine Rack" 2
 		"Korath Disruptor" 2
 		"Korath Slicer Turret" 2
 		
@@ -1263,7 +1268,8 @@ ship "Model 256"
 			"hit force" 7800
 	outfits
 		"Korath Minelayer" 2
-		"Korath Mine" 34
+		"Korath Mine" 61
+		"Korath Mine Rack" 3
 		"Korath Disruptor" 3
 		"Korath Slicer Turret" 3
 		
@@ -1321,7 +1327,8 @@ ship "Model 512"
 			"hit force" 8400
 	outfits
 		"Korath Minelayer" 2
-		"Korath Mine" 34
+		"Korath Mine" 52
+		"Korath Mine Rack" 2
 		"Korath Disruptor" 3
 		"Korath Slicer Turret" 4
 		
