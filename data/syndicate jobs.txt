@@ -321,9 +321,6 @@ ship "Vanguard" "Vanguard Test Dummy"
 		"automaton" 1
 		"self destruct" 1
 
-phrase "generic cargo and passenger on visit"
-	word
-		`You have reached <planet>, but not all of the cargo and passengers are in the system! Better depart and wait for your escorts to arrive in this star system.`
 
 mission "Syndicate Prisoner Transport [0]"
 	name "Transport executive to house arrest"
