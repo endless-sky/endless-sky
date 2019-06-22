@@ -265,17 +265,8 @@ void PlanetPanel::TakeOffIfReady()
 	int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
 	// Will you have to sell something other than regular cargo?
 	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
-	int droneCount = 0;
-	int fighterCount = 0;
-	for(const auto &it : player.Ships())
-		if(!it->IsParked() && !it->IsDisabled() && it->GetSystem() == &system)
-		{
-			const string &category = it->Attributes().Category();
-			droneCount += (category == "Drone") - it->BaysFree(false);
-			fighterCount += (category == "Fighter") - it->BaysFree(true);
-		}
 	
-	if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0 || overbooked > 0)
+	if(cargoToSell > 0 || overbooked > 0)
 	{
 		ostringstream out;
 		if(missionCargoToSell > 0 || overbooked > 0)
@@ -300,21 +291,6 @@ void PlanetPanel::TakeOffIfReady()
 		else
 		{
 			out << "If you take off now you will have to sell ";
-			bool triple = (fighterCount > 0 && droneCount > 0 && cargoToSell > 0);
-
-			if(fighterCount == 1)
-				out << "a fighter";
-			else if(fighterCount > 0)
-				out << fighterCount << " fighters";
-			if(fighterCount > 0 && (droneCount > 0 || cargoToSell > 0))
-				out << (triple ? ", " : " and ");
-		
-			if(droneCount == 1)
-				out << "a drone";
-			else if(droneCount > 0)
-				out << droneCount << " drones";
-			if(droneCount > 0 && cargoToSell > 0)
-				out << (triple ? ", and " : " and ");
 
 			if(cargoToSell == 1)
 				out << "a ton of cargo";

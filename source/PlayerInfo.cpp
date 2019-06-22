@@ -1170,10 +1170,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 	}
 	
 	// For each fighter and drone you own, try to find a ship that has a bay to
-	// carry it in. Any excess ships will need to be sold.
-	int shipsSold[2] = {0, 0};
-	int64_t income = 0;
-	int day = date.DaysSinceEpoch();
+	// carry it in. Any excess ships will be launched outside carriers.
+	int shipsUnCarried = 0;
 	for(auto it = ships.begin(); it != ships.end(); )
 	{
 		shared_ptr<Ship> &ship = *it;
@@ -1197,34 +1195,19 @@ bool PlayerInfo::TakeOff(UI *ui)
 					break;
 				}
 		}
-		if(!fit && ship->GetSystem() == system)
-		{
-			++shipsSold[isFighter];
-			int64_t cost = depreciation.Value(*ship, day);
-			stockDepreciation.Buy(*ship, day, &depreciation);
-			income += cost;
-			it = ships.erase(it);
-		}
-		else
-			++it;
+		if(!fit)
+			shipsUnCarried += 1;
+
+		++it;
 	}
-	if(shipsSold[0] || shipsSold[1])
+	if(shipsUnCarried > 0)
 	{
 		// If your fleet contains more fighters or drones than you can carry,
-		// some of them must be sold.
+		// some of them are launched without a carrier.
 		ostringstream out;
-		out << "Because none of your ships can carry them, you sold ";
-		if(shipsSold[1])
-			out << shipsSold[1]
-				<< (shipsSold[1] == 1 ? " fighter" : " fighters");
-		if(shipsSold[0] && shipsSold[1])
-			out << " and ";
-		if(shipsSold[0])
-			out << shipsSold[0]
-				<< (shipsSold[0] == 1 ? " drone" : " drones");
-		
-		out << ", earning " << Format::Credits(income) << " credits.";
-		accounts.AddCredits(income);
+		out << "Because none of your ships can carry them, you launched ";
+		out << shipsUnCarried;
+		out << " non-jump capable ships outside carriers.";
 		Messages::Add(out.str());
 	}
 	
@@ -1253,8 +1236,9 @@ bool PlayerInfo::TakeOff(UI *ui)
 		RemoveMission(Mission::FAIL, *mission, ui);
 	
 	// Any ordinary cargo left behind can be sold.
+	int64_t income = 0;
+	int day = date.DaysSinceEpoch();
 	int64_t sold = cargo.Used();
-	income = 0;
 	int64_t totalBasis = 0;
 	if(sold)
 	{
