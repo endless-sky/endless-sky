@@ -266,7 +266,17 @@ void PlanetPanel::TakeOffIfReady()
 	// Will you have to sell something other than regular cargo?
 	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
 	
-	if(cargoToSell > 0 || overbooked > 0)
+	int droneCount = 0;
+	int fighterCount = 0;
+	for(const auto &it : player.Ships())
+		if(!it->IsParked() && !it->IsDisabled() && it->GetSystem() == &system)
+		{
+			const string &category = it->Attributes().Category();
+			droneCount += (category == "Drone") - it->BaysFree(false);
+			fighterCount += (category == "Fighter") - it->BaysFree(true);
+		}
+
+	if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0 || overbooked > 0)
 	{
 		ostringstream out;
 		if(missionCargoToSell > 0 || overbooked > 0)
@@ -287,6 +297,17 @@ void PlanetPanel::TakeOffIfReady()
 				out << (missionCargoToSell > 1 ? " tons" : " ton");
 				out << " of your mission cargo.";
 			}
+		}
+		else if (fighterCount > 0 || droneCount > 0)
+		{
+			int nonJumpCount = fighterCount > 0 ? fighterCount : 0;
+			nonJumpCount += droneCount > 0 ? droneCount : 0;
+			out << "If you take off now you will launch with ";
+			if (nonJumpCount == 1)
+				out << "a ship";
+			else
+				out << nonJumpCount << " ships";
+			out << " that will not be able to leave the system.";
 		}
 		else
 		{
