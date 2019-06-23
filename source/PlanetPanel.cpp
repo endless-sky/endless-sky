@@ -266,17 +266,29 @@ void PlanetPanel::TakeOffIfReady()
 	// Will you have to sell something other than regular cargo?
 	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
 	
+	// Check how many ships we have that cannot jump. Drones and fighters
+	// are counted separately, because they usually don't jump by themselves
+	// but are carried in fighter and drone bays.
+	int nonJumpCount = 0;
 	int droneCount = 0;
 	int fighterCount = 0;
 	for(const auto &it : player.Ships())
 		if(!it->IsParked() && !it->IsDisabled() && it->GetSystem() == &system)
 		{
 			const string &category = it->Attributes().Category();
-			droneCount += (category == "Drone") - it->BaysFree(false);
-			fighterCount += (category == "Fighter") - it->BaysFree(true);
+			droneCount -= it->BaysFree(false);
+			fighterCount -= it->BaysFree(true);
+			if (category == "Drone")
+				droneCount += 1;
+			else if (category == "Fighter")
+				fighterCount += 1;
+			else if (it->JumpsRemaining() < 1)
+				nonJumpCount += 1;
 		}
+	nonJumpCount += fighterCount > 0 ? fighterCount : 0;
+	nonJumpCount += droneCount > 0 ? droneCount : 0;
 
-	if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0 || overbooked > 0)
+	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0)
 	{
 		ostringstream out;
 		if(missionCargoToSell > 0 || overbooked > 0)
@@ -298,10 +310,8 @@ void PlanetPanel::TakeOffIfReady()
 				out << " of your mission cargo.";
 			}
 		}
-		else if (fighterCount > 0 || droneCount > 0)
+		else if (nonJumpCount > 0)
 		{
-			int nonJumpCount = fighterCount > 0 ? fighterCount : 0;
-			nonJumpCount += droneCount > 0 ? droneCount : 0;
 			out << "If you take off now you will launch with ";
 			if (nonJumpCount == 1)
 				out << "a ship";
