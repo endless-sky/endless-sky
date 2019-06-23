@@ -697,7 +697,7 @@ mission "Deep: TMBR 0"
 	
 	on offer
 		conversation
-			`When you enter the <planet> spaceport, you hear what is undoubtedly a "There Might Be Riots" song playing loudly enough for everyone in the spaceport to hear. A quick glance around reveals the source of the noise to be the external speakers of a nearby Bounder and several people dancing.`
+			`When you enter the <origin> spaceport, you hear what is undoubtedly a "There Might Be Riots" song playing loudly enough for everyone in the spaceport to hear. A quick glance around reveals the source of the noise to be the external speakers of a nearby Bounder and several people dancing.`
 			choice
 				`	(Dance with them.)`
 					goto dance
