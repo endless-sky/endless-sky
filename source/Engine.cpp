@@ -308,8 +308,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 {
 	for(const NPC &npc : npcs)
 	{
-		map<Ship *, int> droneCarriers;
-		map<Ship *, int> fighterCarriers;
+		set<Ship *> carriers;
 		for(const shared_ptr<Ship> &ship : npc.Ships())
 		{
 			// Skip ships that have been destroyed.
@@ -317,11 +316,11 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 				continue;
 			
 			// Redo the loading up of fighters.
-			ship->UnloadBays();
-			if(ship->BaysFree(false))
-				droneCarriers[&*ship] = ship->BaysFree(false);
-			if(ship->BaysFree(true))
-				fighterCarriers[&*ship] = ship->BaysFree(true);
+			if(ship->HasBays())
+			{
+				ship->UnloadBays();
+				carriers.insert(&*ship);
+			}
 		}
 		
 		shared_ptr<Ship> npcFlagship;
@@ -340,12 +339,9 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			if(ship->CanBeCarried())
 			{
 				bool docked = false;
-				map<Ship *, int> &carriers = (ship->Attributes().Category() == "Drone") ?
-					droneCarriers : fighterCarriers;
 				for(auto &it : carriers)
-					if(it.second && it.first->Carry(ship))
+					if(it->Carry(ship))
 					{
-						--it.second;
 						docked = true;
 						break;
 					}

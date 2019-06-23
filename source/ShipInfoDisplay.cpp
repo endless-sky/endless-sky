@@ -240,18 +240,18 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		attributesHeight += 20;
 	}
 	
-	if(ship.BaysFree(false))
-	{
-		attributeLabels.push_back("drone bays:");
-		attributeValues.push_back(to_string(ship.BaysFree(false)));
-		attributesHeight += 20;
-	}
-	if(ship.BaysFree(true))
-	{
-		attributeLabels.push_back("fighter bays:");
-		attributeValues.push_back(to_string(ship.BaysFree(true)));
-		attributesHeight += 20;
-	}
+	// Print the number of bays for each bay-type we have
+	for (auto bayType : Ship::BAY_TYPES())
+		if (ship.BaysFree(bayType))
+		{
+			// make sure the label is printed in lower case
+			string bayLabel = bayType;
+			transform(bayLabel.begin(), bayLabel.end(), bayLabel.begin(), ::tolower);
+
+			attributeLabels.push_back(bayLabel + " bays:");
+			attributeValues.push_back(to_string(ship.BaysFree(bayType)));
+			attributesHeight += 20;
+		}
 	
 	tableLabels.clear();
 	energyTable.clear();

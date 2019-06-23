@@ -695,17 +695,16 @@ void AI::Step(const PlayerInfo &player)
 				it->SetTargetAsteroid(nullptr);
 		}
 		
-		// Handle fighters:
+		// Handle carried ships:
 		if(it->CanBeCarried())
 		{
-			bool isFighter = (it->Attributes().Category() == "Fighter");
-			// A fighter must belong to the same government as its parent to dock with it.
+			// A carried ship must belong to the same government as its parent to dock with it.
 			bool hasParent = parent && parent->GetGovernment() == gov;
-			bool hasSpace = hasParent && parent->BaysFree(isFighter);
+			bool hasSpace = hasParent && parent->BaysFree(it->Attributes().Category());
 			if(!hasParent || (!hasSpace && !Random::Int(600)) || parent->IsDestroyed()
 					|| parent->GetSystem() != it->GetSystem())
 			{
-				// Find a parent for orphaned fighters and drones.
+				// Find a parent for orphaned carryable ships.
 				parent.reset();
 				it->SetParent(parent);
 				vector<shared_ptr<Ship>> parentChoices;
@@ -751,7 +750,7 @@ void AI::Step(const PlayerInfo &player)
 			{
 				shared_ptr<const Ship> escort = ptr.lock();
 				if(escort && escort->CanBeCarried() && escort->GetSystem() == it->GetSystem()
-						&& !escort->IsDisabled() && it->BaysFree(escort->Attributes().Category() == "Fighter"))
+						&& !escort->IsDisabled() && it->BaysFree(escort->Attributes().Category()))
 				{
 					mustRecall = true;
 					break;
