@@ -202,12 +202,6 @@ ship "Archon"
 			"hull damage" 10000
 			"hit force" 30000
 	outfits
-		"Drak Antimatter Cannon"
-		"Drak Anti-Missile Field" 2
-		"Drak Draining Field"
-		"Drak Distancer" 2
-		"Drak Turret" 3
-		
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Hyperdrive"
@@ -215,15 +209,15 @@ ship "Archon"
 	
 	engine -17 92
 	engine 17 92
-	gun 0 -74 "Drak Antimatter Cannon"
-	turret 0 -10 "Drak Anti-Missile Field"
-	turret 0 -10 "Drak Anti-Missile Field"
-	turret 0 -10 "Drak Draining Field"
-	turret -40 -13 "Drak Turret"
-	turret 40 -13 "Drak Turret"
-	turret 0 81 "Drak Turret"
-	turret -55 16 "Drak Distancer"
-	turret 55 16 "Drak Distancer"
+	gun 0 -74 "Drak Antimatter Cannon" built-in
+	turret 0 -10 "Drak Anti-Missile Field" built-in
+	turret 0 -10 "Drak Anti-Missile Field" built-in
+	turret 0 -10 "Drak Draining Field" built-in
+	turret -40 -13 "Drak Turret" built-in
+	turret 40 -13 "Drak Turret" built-in
+	turret 0 81 "Drak Turret" built-in
+	turret -55 16 "Drak Distancer" built-in
+	turret 55 16 "Drak Distancer" built-in
 	explode "nuke explosion" 3
 	"final explode" "final explosion large"
 
@@ -231,11 +225,12 @@ ship "Archon" "Archon (Cloaked)"
 	"never disabled"
 	add attributes
 		"cloak" .04
-	turret "Drak Anti-Missile Field"
-	turret "Drak Anti-Missile Field"
-	turret "Drak Draining Field"
-	turret "Drak Turret"
-	turret "Drak Turret"
-	turret "Drak Turret"
-	turret "Drak Distancer"
-	turret "Drak Distancer"
+	gun "Drak Antimatter Cannon" built-in
+	turret "Drak Anti-Missile Field" built-in
+	turret "Drak Anti-Missile Field" built-in
+	turret "Drak Draining Field" built-in
+	turret "Drak Turret" built-in
+	turret "Drak Turret" built-in
+	turret "Drak Turret" built-in
+	turret "Drak Distancer" built-in
+	turret "Drak Distancer" built-in
