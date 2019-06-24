@@ -742,7 +742,7 @@ mission "Remnant: Heavy Laser"
 					defer
 				`	(Yes.)`
 			branch familiar
-				has "Remnant Tech Retrieval: done"
+				has "Remnant: Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a Starling. "Greetings, <first>. I'll be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
 				goto next
 			label familiar
@@ -781,7 +781,7 @@ mission "Remnant: Plasma Cannon"
 					defer
 				`	(Yes.)`
 			branch familiar
-				has "Remnant Tech Retrieval: done"
+				has "Remnant: Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a Starling. "Greetings, <first>. I will be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
 				goto next
 			label familiar
@@ -828,7 +828,7 @@ mission "Remnant: Catalytic Ramscoop"
 					defer
 				`	(Yes.)`
 			branch familiar
-				has "Remnant Tech Retrieval: done"
+				has "Remnant: Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely calibrating an Inhibitor Cannon on an Albatross. "Greetings, <first>. I am just finishing these calibrations." She does a few more things inside the casing, reseals the hatch, and drops to the ground on a tether. "So, did you recover something?"`
 				goto next
 			label familiar
@@ -866,7 +866,7 @@ mission "Remnant: Electron Beam"
 					defer
 				`	(Yes.)`
 			branch familiar
-				has "Remnant Tech Retrieval: done"
+				has "Remnant: Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely closing up the panel on a thasher turret. "Greetings, <first>. You have good timing: I was just finishing." She reseals the hatch, and drops to the ground on a tether. "So, did you recover something?"`
 				goto next
 			label familiar
@@ -904,7 +904,7 @@ mission "Remnant: D94-YV Shield Generator"
 					defer
 				`	(Yes.)`
 			branch familiar
-				has "Remnant Tech Retrieval: done"
+				has "Remnant: Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely applying some kind of material over a hole in a hull. "Greetings, <first>. What brings you here today?" She reseals the hatch, and drops to the ground on a tether. "Did you bring us something?"`
 				goto next
 			label familiar
@@ -942,7 +942,7 @@ mission "Remnant: S-970 Regenerator"
 					defer
 				`	(Yes.)`
 			branch familiar
-				has "Remnant Tech Retrieval: done"
+				has "Remnant: Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely adjusting something on the hull that you can't quite see. "Greetings, <first>. What brings you here today?" She taps something, then hangs her tools on her belt and drops to the ground on a tether. "Did you bring us something?"`
 				goto next
 			label familiar
