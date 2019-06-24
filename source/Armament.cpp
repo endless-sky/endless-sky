@@ -238,7 +238,13 @@ void Armament::Step(const Ship &ship)
 	
 	for(auto &it : streamReload)
 	{
-		int count = ship.OutfitCount(it.first);
+		// Count how many we have from each outfit. We count using the
+		// hardpoints to make sure we also reach built-in weapons.
+		int count = 0;
+		for (Hardpoint &hardpoint : hardpoints)
+			if (hardpoint.GetOutfit() == it.first)
+				count++;
+
 		it.second -= count;
 		// Always reload to the quickest firing interval.
 		it.second = max(it.second, 1 - count);

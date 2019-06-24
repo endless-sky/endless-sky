@@ -120,7 +120,6 @@ void Ship::Load(const DataNode &node)
 		base = GameData::Ships().Get(modelName);
 	
 	government = GameData::PlayerGovernment();
-	equipped.clear();
 	
 	// Note: I do not clear the attributes list here so that it is permissible
 	// to override one ship definition with another.
@@ -177,6 +176,7 @@ void Ship::Load(const DataNode &node)
 		else if(key == "gun" || key == "turret")
 		{
 			bool isBuiltIn = false;
+			int coordinatesShift = 0;
 			if(!hasArmament)
 			{
 				armament = Armament();
@@ -184,26 +184,19 @@ void Ship::Load(const DataNode &node)
 			}
 			const Outfit *outfit = nullptr;
 			Point hardpoint;
-			if(child.Size() >= 3)
+			if((child.Size() >= 3) && child.IsNumber(1))
 			{
 				hardpoint = Point(child.Value(1), child.Value(2));
-				if(child.Size() >= 4)
-					outfit = GameData::Outfits().Get(child.Token(3));
+				// We have coordinates, all later parameters are shifted 2 positions
+				coordinatesShift = 2;
 			}
-			else
+			// Load outfit from index 1 or from index 3, depending on if we had
+			// hardpoint coordinates in the step just above here.
+			if(child.Size() >= (coordinatesShift + 2))
 			{
-				if(child.Size() >= 2)
-					outfit = GameData::Outfits().Get(child.Token(1));
-			}
-			if(outfit){
-				if (((child.Size() >= 5) && child.Token(4) == "built-in") ||
-					(child.Size() == 3 && child.Token(2) == "built-in"))
-				{
+				outfit = GameData::Outfits().Get(child.Token(coordinatesShift + 1));
+				if ((child.Size() >= (coordinatesShift + 3)) && child.Token(coordinatesShift + 2) == "built-in")
 					isBuiltIn = true;
-					++builtIn[outfit];
-				}
-				else
-					++equipped[outfit];
 			}
 			if(key == "gun")
 				armament.AddGunPort(hardpoint, outfit, isBuiltIn);
@@ -401,9 +394,6 @@ void Ship::FinishLoading(bool isNewInstance)
 			auto nextTurret = armament.Get().begin();
 			auto end = armament.Get().end();
 			Armament merged;
-			// Reset the "equipped" map to match exactly what the code below
-			// places in the weapon hardpoints.
-			equipped.clear();
 			for( ; bit != bend; ++bit)
 			{
 				if(!bit->IsTurret())
@@ -411,29 +401,41 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextGun != end && nextGun->IsTurret())
 						++nextGun;
 					const Outfit *outfit = (nextGun == end) ? nullptr : nextGun->GetOutfit();
-					merged.AddGunPort(bit->GetPoint() * 2., outfit);
+					const bool isBuiltIn = (nextGun == end) ? false : nextGun->IsBuiltIn();
+					merged.AddGunPort(bit->GetPoint() * 2., outfit, isBuiltIn);
 					if(nextGun != end)
-					{
-						if(outfit)
-							++equipped[outfit];
 						++nextGun;
-					}
 				}
 				else
 				{
 					while(nextTurret != end && !nextTurret->IsTurret())
 						++nextTurret;
 					const Outfit *outfit = (nextTurret == end) ? nullptr : nextTurret->GetOutfit();
-					merged.AddTurret(bit->GetPoint() * 2., outfit);
+					const bool isBuiltIn = (nextTurret == end) ? false : nextTurret->IsBuiltIn();
+					merged.AddTurret(bit->GetPoint() * 2., outfit, isBuiltIn);
 					if(nextTurret != end)
-					{
-						if(outfit)
-							++equipped[outfit];
 						++nextTurret;
-					}
 				}
 			}
 			armament = merged;
+		}
+	}
+	// Get a list of already "equipped" weapons. That is, weapons that
+	// were specified as linked to a given gun or turret point.
+	map<const Outfit *, int> equipped;
+	// Also keep track how many built-in outfits we have. They will not
+	// show up as explicit outfits, but they do take up space like weapon-
+	// space and gun or turret points.
+	//TODO: make those builtIn weapons part of the hull value (they are now silently ignored).
+	map<const Outfit *, int> builtIn;
+	for (auto &it : armament.Get())
+	{
+		const Outfit *outfit = it.GetOutfit();
+		if (outfit)
+		{
+			++equipped[outfit];
+			if (it.IsBuiltIn())
+				++builtIn[outfit];
 		}
 	}
 	// Check that all the "equipped" weapons actually match what your ship
@@ -441,7 +443,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	// warn if any non-weapon outfits are "installed" in a hardpoint.
 	for(auto &it : equipped)
 	{
-		int excess = it.second - outfits[it.first] - builtIn[it.first];
+		int excess = it.second - OutfitCount(it.first) - builtIn[it.first];
 		if(excess > 0)
 		{
 			// If there are more hardpoints specifying this outfit than there
@@ -537,6 +539,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		}
 	}
 	cargo.SetSize(attributes.Get("cargo space"));
+	builtIn.clear();
 	equipped.clear();
 	armament.FinishLoading();
 	
