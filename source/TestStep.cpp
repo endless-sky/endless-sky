@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 #include "PlanetPanel.h"
 #include "PlayerInfo.h"
+#include "Ship.h"
 #include "TestStep.h"
 #include "UI.h"
 #include <string>
@@ -160,12 +161,26 @@ int TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo 
 			// If we are still flying around, then we are not on a planet.
 			if (PlayerIsFlyingAround(menuPanels, gamePanels, player))
 			{
-				//TODO: implement sending of LAND command here
-				return RESULT_RETRY;
+				Ship * playerFlagShip = player.Flagship();
+				if (playerFlagShip == nullptr)
+					return RESULT_FAIL;
+				if (stepAction == 0)
+				{
+					// Send the land command here
+					// TODO: Player commands are handled in AI.cpp (at the moment this code was written), not handled on flagship. Change this code or change handling in AI.
+					// TODO: Landing should also have a stellar target (just to reduce ambiguity)
+					// TODO: Different command to start hovering over planet?
+					Command command;
+					command.Set(Command::LAND);
+					playerFlagShip->SetCommands(command);
+					stepAction++;
+				}
+				return RESULT_NEXTACTION;
 			}
 			if (PlayerOnPlanetMainScreen(menuPanels, gamePanels, player))
 				return RESULT_DONE;
 
+			// Unknown state/screen. Landing fails.
 			return RESULT_FAIL;
 			break;
 		case TestStep::LOAD_GAME:
