@@ -2486,12 +2486,12 @@ mission "Wanderers Ap'arak 3: Pug"
 	source "Varu Tev'kei"
 	to offer
 		has "Wanderers Ap'arak 2: done"
-	npc kill
+	npc save
 		personality staying unconstrained uninterested
 		government "Pug"
 		ship "Pug Arfecta" "Hork Ekekek Ptui"
 		ship "Pug Arfecta" "Graak Sput Kchoo"
-	on complete
+	on fail
 		dialog `Shortly after defeating the Pug ships, you receive a message from Sobari Tele'ek: "We are [aware? incredulous?] of reports that you have [exterminated, eradicated] our Keepers in the Ap'arak system. This is unacceptable! From now on, you are no longer welcome in our [territory, space]."`
 		"reputation: Wanderer" <?= -1
 
