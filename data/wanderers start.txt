@@ -2484,6 +2484,8 @@ mission "Wanderers Ap'arak 3: Pug"
 	landing
 	invisible
 	source "Varu Tev'kei"
+	destination
+		government "Wanderer"
 	to offer
 		has "Wanderers Ap'arak 2: done"
 	npc kill
