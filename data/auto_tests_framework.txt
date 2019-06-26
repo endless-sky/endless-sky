@@ -6,12 +6,14 @@ test "Test-Framework - Load only"
 	status "Active"
 	description "Tests only loading of a game and then exits the game"
 	sequence
+		inject "commodity barges"
 		load "commodity barges.txt"
 
 test "Test-Framework - Load and depart"
 	status "Active"
 	description "Test with only a departure. Mostly tests the testframework itself."
 	sequence
+		inject "commodity barges"
 		load "commodity barges.txt"
 		launch
 
@@ -19,6 +21,7 @@ test "Test-Framework - Simple depart land"
 	status "Active"
 	description "Test with only a departure and landing. Mostly tests the testframework itself."
 	sequence
+		inject "commodity barges"
 		load "commodity barges.txt"
 		launch
 		land

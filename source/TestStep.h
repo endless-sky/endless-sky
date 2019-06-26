@@ -33,6 +33,7 @@ public:
 	static const int WAITFOR = 3;
 	static const int LAUNCH = 4;
 	static const int LAND = 5;
+	static const int INJECT = 6;
 
 	// Result-Done:  Teststep succesfull. Remove step and proceed with next.
 	// Result-Fail:  Teststep failed. Fail test. Exit program with non-zero exitcode
@@ -44,7 +45,7 @@ public:
 	static const int RESULT_NEXTACTION = 3;
 
 	virtual void Load(const DataNode &node);
-	virtual const std::string SaveGameName();
+	virtual const std::string FilePathOrName();
 	virtual int StepType();
 	virtual int DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player);
 
@@ -61,7 +62,7 @@ private:
 	// Checked condition, for teststeps of types ASSERT and WAITFOR
 	ConditionSet checkedCondition;
 	// Savegame pilot and name to load or save to. For teststep of type LOAD_GAME (and SAVE_GAME)
-	std::string saveGameName;
+	std::string filePathOrName;
 };
 
 #endif

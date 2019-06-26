@@ -48,6 +48,7 @@ class StarField;
 class StartConditions;
 class System;
 class Test;
+class TestData;
 
 
 // Class storing all the data used in the game: sprites, data files, etc. This
@@ -110,6 +111,7 @@ public:
 	static const Set<Sale<Ship>> &Shipyards();
 	static const Set<System> &Systems();
 	static const Set<Test> &Tests();
+	static const Set<TestData> &TestDataSets();
 	
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();

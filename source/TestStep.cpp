@@ -13,11 +13,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ConditionSet.h"
 #include "DataNode.h"
 #include "Files.h"
+#include "GameData.h"
 #include "MainPanel.h"
 #include "Panel.h"
 #include "PlanetPanel.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
+#include "TestData.h"
 #include "TestStep.h"
 #include "UI.h"
 #include <string>
@@ -30,7 +32,7 @@ TestStep::TestStep()
 {
 	// Initialize with some sensible default values.
 	stepType = 0;
-	saveGameName = "";
+	filePathOrName = "";
 }
 
 
@@ -48,9 +50,9 @@ int TestStep::StepType()
 
 
 
-const string TestStep::SaveGameName()
+const string TestStep::FilePathOrName()
 {
-	return saveGameName;
+	return filePathOrName;
 }
 
 
@@ -102,7 +104,7 @@ void TestStep::Load(const DataNode &node)
 	if (node.Token(0) == "load" and node.Size() > 1)
 	{
 		stepType = LOAD_GAME;
-		saveGameName = node.Token(1);
+		filePathOrName = node.Token(1);
 	}
 	else if (node.Token(0) == "assert")
 	{
@@ -121,6 +123,11 @@ void TestStep::Load(const DataNode &node)
 	else if (node.Token(0) == "launch")
 	{
 		stepType = LAUNCH;
+	}
+	else if (node.Size() > 1 and node.Token(0) == "inject")
+	{
+		stepType = INJECT;
+		filePathOrName = node.Token(1);
 	}
 	else
 		node.PrintTrace("Skipping unrecognized test-step: " + node.Token(0));
@@ -186,10 +193,10 @@ int TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo 
 		case TestStep::LOAD_GAME:
 			if (stepAction == 0){
 				// Check if the savegame actually exists
-				if (! Files::Exists(Files::Saves() + SaveGameName()))
+				if (! Files::Exists(Files::Saves() + FilePathOrName()))
 					return RESULT_FAIL;
 				// Perform the load and verify that player is loaded.
-				player.Load(Files::Saves() + SaveGameName());
+				player.Load(Files::Saves() + FilePathOrName());
 				if (!player.IsLoaded())
 					return RESULT_FAIL;
 				// Enable testmode to prevent automatic saving.
@@ -230,6 +237,15 @@ int TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo 
 			else
 				return RESULT_FAIL;
 
+			break;
+		case TestStep::INJECT:
+			{
+				// Lookup the data and inject it in the game or the games environment
+				const TestData* testData = (GameData::TestDataSets()).Get(filePathOrName);
+				if (testData->Inject())
+					return RESULT_DONE;
+				return RESULT_FAIL;
+			}
 			break;
 		default:
 			// ERROR, unknown test-step-type

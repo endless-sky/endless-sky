@@ -54,6 +54,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StartConditions.h"
 #include "System.h"
 #include "Test.h"
+#include "TestData.h"
 
 #include <algorithm>
 #include <iostream>
@@ -83,6 +84,7 @@ namespace {
 	Set<Ship> ships;
 	Set<System> systems;
 	Set<Test> tests;
+	Set<TestData> testDataSets;
 	
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
@@ -705,6 +707,14 @@ const Set<Test> &GameData::Tests()
 }
 
 
+
+const Set<TestData> &GameData::TestDataSets()
+{
+	return testDataSets;
+}
+
+
+
 const Set<Sale<Ship>> &GameData::Shipyards()
 {
 	return shipSales;
@@ -976,6 +986,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if((key == "test") && node.Size() >= 2)
 			tests.Get(node.Token(1))->Load(node);
+		else if((key == "test-data") && node.Size() >= 2)
+			testDataSets.Get(node.Token(1))->Load(node, path);
 		else if(key == "trade")
 			trade.Load(node);
 		else if(key == "landing message" && node.Size() >= 2)
