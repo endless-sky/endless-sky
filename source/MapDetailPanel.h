@@ -70,7 +70,6 @@ private:
 	const System *compareSystem = nullptr;
 	// Every two systems form a link, each pair is separate from the next pair allowing a disjointed path.
 	std::vector<const System *> tradeRoute;
-	int tradeRouteJumps = 0;
 };
 
 

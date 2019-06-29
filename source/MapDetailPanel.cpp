@@ -299,7 +299,6 @@ void MapDetailPanel::Select(const System *system)
 		MapPanel::Select(system);
 	
 	tradeRoute.clear();
-	tradeRouteJumps = 0;
 	dimTravelPlan = false;
 	
 	// Check compareSystem and selectedSystem
@@ -310,9 +309,6 @@ void MapDetailPanel::Select(const System *system)
 	// Create a map around compareSystem and save a route to selectedSystem
 	DistanceMap localRoute(player,compareSystem);
 	const System *curSystem = selectedSystem;
-//	vector<const System *> &plan = player.TravelPlan();
-//	// Temporarily add player system to travel plan.
-//	plan.push_back(player.GetSystem());
 	
 	while(curSystem != compareSystem)
 	{
@@ -322,37 +318,13 @@ void MapDetailPanel::Select(const System *system)
 		{
 			// no route to system
 			tradeRoute.clear();
-			tradeRouteJumps = 0;
 			break;
 		}
-		++tradeRouteJumps;
-		
-		// Make sure the new trade link is not in the travel plan so we don't draw over it.
-//		bool addLink = true;
-//		for(size_t j = 0; j < plan.size(); ++j)
-//		{
-//			if((curSystem == plan[j] && ((j - 1 > 0 && prevSystem == plan[j-1])
-//							|| (j + 1 < plan.size() && prevSystem == plan[j+1])))
-//							|| (prevSystem == plan[j] && ((j - 1 > 0 && curSystem == plan[j-1])
-//							|| (j + 1 < plan.size() && curSystem == plan[j+1]))))
-//			{
-//				addLink = false;
-//				break;
-//			}
-//		}
-//		if(addLink)
-//		{
-			tradeRoute.push_back(prevSystem);
-			tradeRoute.push_back(curSystem);
-			dimTravelPlan = true;
-//		}
-	}
-	// Remove temporarily added player system from travel plan
-//	plan.pop_back();
 
-	
-	// Todo: multiple systems?
-	// Update and save trade route info
+		tradeRoute.push_back(prevSystem);
+		tradeRoute.push_back(curSystem);
+		dimTravelPlan = true;
+	}
 }
 
 
@@ -593,10 +565,6 @@ void MapDetailPanel::DrawInfo()
 		wideCommodity = false;
 	}
 	
-	// Best trade tracking
-	int largest = 0;
-	int smallest = 0;
-	
 	uiPoint.X() -= 90.;
 	uiPoint.Y() -= 97.;
 	for(const Trade::Commodity &commodity : GameData::Commodities())
@@ -626,13 +594,7 @@ void MapDetailPanel::DrawInfo()
 				
 				int difference = value - localValue;
 				if(difference > 0)
-				{
 					priceDifference += '+';
-					largest = max(largest,difference);
-				}
-				else
-					smallest = min(smallest,difference);
-					
 				priceDifference += to_string(difference);
 				
 				const Color red = Color(.75,0.,0.,0.);
@@ -656,50 +618,6 @@ void MapDetailPanel::DrawInfo()
 		
 		uiPoint.Y() += 20.;
 	}
-	
-	// Show trade route's profit.
-	if(compare && tradeRouteJumps)
-	{
-		// Center of sprite
-		uiPoint.X() = Screen::Left() + 100.;
-		uiPoint.Y() += 30;
-		
-		//Todo draw sprite her
-		
-		// Position for text
-		uiPoint.X() -= 90;
-		uiPoint.Y() -= 10;
-		
-		int64_t tradeRouteProfit = (largest - smallest) * player.Cargo().Size();
-		int tradeRouteDays = 2 * tradeRouteJumps + 2;
-		
-		font.Draw("Daily", uiPoint + Point(90,0), medium);
-		font.Draw("Total", uiPoint + Point(150,0), medium);
-		
-		uiPoint.Y() += 20;
-		font.Draw("Earnings", uiPoint, medium);
-		// TODO minimize string length, make 1,000,000 show up as 1M.  Mouse over shows total?
-		// TODO check if earnings per ton is good, and color appropriately?
-		string dailyEarnings = to_string(tradeRouteProfit/tradeRouteDays);
-		string totalEarnings = to_string(tradeRouteProfit);
-		const Color green = Color(0.,.75,0.,0.);
-		font.Draw(dailyEarnings, uiPoint + Point(90,0), green);
-		font.Draw(totalEarnings, uiPoint + Point(150,0), green);
-		
-		uiPoint.X() += 20;
-		// Todo: add expenses, requires simplified accounting pull request
-		//font.Draw("Expenses",uiPOint,medium);
-		
-		//tradeRouteCost = 0;
-		//totalRouteProfit = ;
-		
-//					per day	route
-//		Earnings    25k		150k
-//		Expenses	5k		30k
-//		Profit		20k		120k
-		
-	}
-	
 	
 	// Show selected planet's detailed description.
 	if(selectedPlanet && !selectedPlanet->Description().empty()
