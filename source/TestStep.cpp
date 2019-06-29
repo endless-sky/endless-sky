@@ -133,14 +133,21 @@ void TestStep::Load(const DataNode &node)
 		node.PrintTrace("Skipping unrecognized test-step: " + node.Token(0));
 }
 
+
+
 int TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player)
 {
 	switch (stepType)
 	{
 		case TestStep::ASSERT:
 		case TestStep::WAITFOR:
-			//TODO: implement the ASSERT and WAITFOR condition checkers.
-			return RESULT_FAIL;
+			// If we reached the condition, then done
+			if (checkedCondition.Test(player.Conditions()))
+				return RESULT_DONE;
+			if (stepType == TestStep::ASSERT)
+				return RESULT_FAIL;
+			// In this case, we are waiting for the condition
+			return RESULT_RETRY;
 			break;
 		case TestStep::LAUNCH:
 			// If flying around, then launching the ship succesfully happened

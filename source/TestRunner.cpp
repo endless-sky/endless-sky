@@ -35,6 +35,15 @@ TestRunner::~TestRunner()
 
 
 
+string TestRunner::ConditionsText(PlayerInfo &player)
+{
+	string conditions = "";
+	for (auto condition : player.Conditions())
+		conditions += "\n" + condition.first + "=" + to_string(condition.second);
+	return conditions;
+}
+
+
 // The panel-stacks determine both what the player sees and the state of the
 // game.
 // If the menuPanels stack is not empty, then we are in a menu for something

@@ -25,6 +25,9 @@ public:
 	TestRunner(const Test *testToRun);
 	virtual ~TestRunner();
 	
+	// Helper function to print conditions to text.
+	std::string ConditionsText(PlayerInfo &player);
+
 	// PlayerInfo, the gamePanels and the MenuPanels together give the state of
 	// the game. We just provide them as parameter here, because they are not
 	// available when the test got created (and they can change due to loading
