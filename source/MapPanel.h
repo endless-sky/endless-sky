@@ -112,6 +112,7 @@ protected:
 	int commodity;
 	int step = 0;
 	std::string buttonCondition;
+	bool dimTravelPlan = false;
 	
 	// Distance from the screen center to the nearest owned system,
 	// for use in determining which governments are in the legend.

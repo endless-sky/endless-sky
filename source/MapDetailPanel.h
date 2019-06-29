@@ -57,6 +57,7 @@ private:
 	
 	
 private:
+	// Keep track of UI click zones
 	int governmentY = 0;
 	int tradeY = 0;
 	bool wideCommodity = false;
@@ -64,10 +65,12 @@ private:
 	std::map<const Planet *, int> planetY;
 	std::map<const Planet *, Point> planets;
 	
+	bool dimTravelPlan = false;
 	// A system pointer used to compare commodity prices.
 	const System *compareSystem = nullptr;
 	// Every two systems form a link, each pair is separate from the next pair allowing a disjointed path.
 	std::vector<const System *> tradeRoute;
+	int tradeRouteJumps = 0;
 };
 
 

@@ -884,6 +884,9 @@ void MapPanel::DrawTravelPlan()
 		else if(fuel[flagship] >= 0.)
 			drawColor = defaultColor;
 		
+		if(dimTravelPlan)
+			drawColor = drawColor.Blend(Color(0,0,0,0),.5);
+		
 		Point from = Zoom() * (next->Position() + center);
 		Point to = Zoom() * (previous->Position() + center);
 		Point unit = (from - to).Unit() * LINK_OFFSET;
