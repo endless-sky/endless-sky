@@ -201,6 +201,10 @@ void Body::LoadSprite(const DataNode &node)
 			frameOffset += static_cast<float>(child.Value(1));
 			startAtZero = true;
 		}
+		else if(child.Token(0) == "pre rendered rotation" && child.Size() >= 2)
+		{
+			preRenderedRotation = static_cast<int>(child.Value(1));
+		}
 		else if(child.Token(0) == "random start frame")
 			randomize = true;
 		else if(child.Token(0) == "no repeat")
@@ -236,6 +240,8 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 			out.Write("no repeat");
 		if(rewind)
 			out.Write("rewind");
+		if(preRenderedRotation);
+			out.Write("pre rendered rotation", preRenderedRotation);
 	}
 	out.EndChild();
 }
@@ -257,6 +263,10 @@ void Body::SetSwizzle(int swizzle)
 	this->swizzle = swizzle;
 }
 
+int Body::GetPreRenderedRotation() const
+{
+	return preRenderedRotation;
+}
 
 
 // Set the frame rate of the sprite. This is used for objects that just specify
@@ -298,21 +308,20 @@ void Body::UnmarkForRemoval()
 }
 
 
-
 // Set the current time step.
 void Body::SetStep(int step) const
 {
 	// If the animation is paused, reduce the step by however many frames it has
 	// been paused for.
 	step -= pause;
-	
+
 	// If the step is negative or there is no sprite, do nothing. This updates
 	// and caches the mask and the frame so that if further queries are made at
 	// this same time step, we don't need to redo the calculations.
 	if(step == currentStep || step < 0 || !sprite || !sprite->Frames())
 		return;
 	currentStep = step;
-	
+
 	// If the sprite only has one frame, no need to animate anything.
 	float frames = sprite->Frames();
 	if(frames <= 1.f)
@@ -320,50 +329,60 @@ void Body::SetStep(int step) const
 		frame = 0.f;
 		return;
 	}
-	float lastFrame = frames - 1.f;
-	// This is the number of frames per full cycle. If rewinding, a full cycle
-	// includes the first and last frames once and every other frame twice.
-	float cycle = (rewind ? 2.f * lastFrame : frames) + delay;
-	
-	// If this is the very first step, fill in some values that we could not set
-	// until we knew the sprite's frame count and the starting step.
-	if(randomize)
-	{
-		randomize = false;
-		// The random offset can be a fractional frame.
-		frameOffset += static_cast<float>(Random::Real()) * cycle;
-	}
-	else if(startAtZero)
-	{
-		startAtZero = false;
-		// Adjust frameOffset so that this step's frame is exactly 0 (no fade).
-		frameOffset -= frameRate * step;
-	}
-	
-	// Figure out what fraction of the way in between frames we are. Avoid any
-	// possible floating-point glitches that might result in a negative frame.
-	frame = max(0.f, frameRate * step + frameOffset);
-	// If repeating, wrap the frame index by the total cycle time.
-	if(repeat)
-		frame = fmod(frame, cycle);
-	
-	if(!rewind)
-	{
-		// If not repeating, frame should never go higher than the index of the
-		// final frame.
-		if(!repeat)
-			frame = min(frame, lastFrame);
-		else if(frame >= frames)
+
+	if(preRenderedRotation) {
+		int curAngle = (int)(angle.Degrees() + 360.0) % 360;
+		frame = (curAngle / 360.f) * preRenderedRotation;
+	} else {
+
+
+		float lastFrame = frames - 1.f;
+		// This is the number of frames per full cycle. If rewinding, a full cycle
+		// includes the first and last frames once and every other frame twice.
+		float cycle = (rewind ? 2.f * lastFrame : frames) + delay;
+
+		// If this is the very first step, fill in some values that we could not set
+		// until we knew the sprite's frame count and the starting step.
+		if(randomize)
 		{
 			// If we're in the delay portion of the loop, set the frame to 0.
 			frame = 0.f;
+			randomize = false;
+			// The random offset can be a fractional frame.
+			frameOffset += static_cast<float>(Random::Real()) * cycle;
 		}
-	}
-	else if(frame >= lastFrame)
-	{
-		// In rewind mode, once you get to the last frame, count backwards.
-		// Regardless of whether we're repeating, if the frame count gets to
-		// be less than 0, clamp it to 0.
-		frame = max(0.f, lastFrame * 2.f - frame);
+		else if(startAtZero)
+		{
+			startAtZero = false;
+			// Adjust frameOffset so that this step's frame is exactly 0 (no fade).
+			frameOffset -= frameRate * step;
+		}
+
+		// Figure out what fraction of the way in between frames we are. Avoid any
+		// possible floating-point glitches that might result in a negative frame.
+		frame = max(0.f, frameRate * step + frameOffset);
+		// If repeating, wrap the frame index by the total cycle time.
+		if(repeat)
+			frame = fmod(frame, cycle);
+
+		if(!rewind)
+		{
+			// If not repeating, frame should never go higher than the index of the
+			// final frame.
+			if(!repeat)
+				frame = min(frame, lastFrame);
+			else if(frame >= frames)
+			{
+				// If we're in the delay portion of the loop, set the frame to 0.
+				frame = 0.f;
+			}
+		}
+		else if(frame >= lastFrame)
+		{
+			// In rewind mode, once you get to the last frame, count backwards.
+			// Regardless of whether we're repeating, if the frame count gets to
+			// be less than 0, clamp it to 0.
+			frame = max(0.f, lastFrame * 2.f - frame);
+		}
 	}
 }

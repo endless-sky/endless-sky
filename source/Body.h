@@ -72,6 +72,8 @@ public:
 	void SetSprite(const Sprite *sprite);
 	// Set the color swizzle.
 	void SetSwizzle(int swizzle);
+
+	int GetPreRenderedRotation() const;
 	
 	
 protected:
@@ -120,6 +122,8 @@ private:
 	bool rewind = false;
 	int pause = 0;
 	
+	int preRenderedRotation = 0;
+
 	// Record when this object is marked for removal from the game.
 	bool shouldBeRemoved = false;
 	

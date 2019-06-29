@@ -146,7 +146,6 @@ bool DrawList::Cull(const Body &body, const Point &position, const Point &blur) 
 }
 
 
-
 void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, double clip, int swizzle)
 {
 	SpriteShader::Item item;
@@ -173,14 +172,22 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, doubl
 	item.position[0] = static_cast<float>(pos.X() * zoom);
 	item.position[1] = static_cast<float>(pos.Y() * zoom);
 	
-	// (0, -1) means a zero-degree rotation (since negative Y is up).
-	uw *= zoom;
-	uh *= zoom;
-	item.transform[0] = -uw.Y();
-	item.transform[1] = uw.X();
-	item.transform[2] = -uh.X();
-	item.transform[3] = -uh.Y();
-	
+	if(body.GetPreRenderedRotation()) {
+		// Rotation (none) and scale.
+		item.transform[0] = width * zoom;
+		item.transform[1] = 0.f;
+		item.transform[2] = -1.f;
+		item.transform[3] = height * zoom;
+	} else {
+		// (0, -1) means a zero-degree rotation (since negative Y is up).
+		uw *= zoom;
+		uh *= zoom;
+		item.transform[0] = -uw.Y();
+		item.transform[1] = uw.X();
+		item.transform[2] = -uh.X();
+		item.transform[3] = -uh.Y();
+	}
+
 	// Calculate the blur vector, in texture coordinates.
 	blur *= zoom;
 	item.blur[0] = unit.Cross(blur) / (width * 4.);
