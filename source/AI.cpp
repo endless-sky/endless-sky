@@ -16,6 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "DistanceMap.h"
 #include "Flotsam.h"
+#include "FormationPattern.h"
+#include "FormationPositioner.h"
 #include "Government.h"
 #include "Hardpoint.h"
 #include "Mask.h"
@@ -451,6 +453,10 @@ void AI::Step(const PlayerInfo &player)
 			int &value = fenceCount[&*it];
 			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
 		}
+	
+	// Clear formation data so that it can be refilled this cycle. We might want
+	// to reset the counters instead of just clearing in a future update.
+	formations.clear();
 	
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
@@ -1247,6 +1253,22 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 
 
 
+void AI::MoveInFormation(Ship &ship, Command &command)
+{
+	shared_ptr<Ship> parent = ship.GetParent();
+	if(!parent)
+		return;
+	
+	// Add a formation-positioner for the parent if none exists yet
+	auto it = formations.find(parent.get());
+	if(it == formations.end())
+		(formations[parent.get()]).Start(*(parent.get()));
+	
+	MoveTo(ship, command, (formations[parent.get()]).NextPosition(ship), parent->Velocity(), 50, .1);
+}
+
+
+
 void AI::MoveIndependent(Ship &ship, Command &command) const
 {
 	shared_ptr<const Ship> target = ship.GetTargetShip();
@@ -1427,7 +1449,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 
 
 
-void AI::MoveEscort(Ship &ship, Command &command) const
+void AI::MoveEscort(Ship &ship, Command &command)
 {
 	const Ship &parent = *ship.GetParent();
 	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity") && ship.JumpFuel();
@@ -1515,6 +1537,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	}
 	else if(parent.Commands().Has(Command::BOARD) && parent.GetTargetShip().get() == &ship)
 		Stop(ship, command, .2);
+	else if(ship.GetFormationPattern())
+		MoveInFormation(ship, command);
 	else
 		KeepStation(ship, command, parent);
 }
@@ -1823,6 +1847,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	static const double LEAD_TIME = 500.;
 	static const double POSITION_DEADBAND = 200.;
 	static const double VELOCITY_DEADBAND = 1.5;
+
 	static const double TIME_DEADBAND = 120.;
 	static const double THRUST_DEADBAND = .5;
 	

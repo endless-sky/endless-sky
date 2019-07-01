@@ -1,0 +1,76 @@
+# Copyright (c) 2019 by Peter van der Meer
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+
+# Triangular shaped formation forming behind the formation leader with each alternating
+# line getting filled from the other direction.
+formation "Delta Tailing"
+	line -1 2 2 90
+		repeat -2 4
+			increase 2
+	line 2 4 3 270
+		repeat 2 4
+			increase 2
+
+# Triangular shaped formation (forming in front of the formation leader)
+formation "Arrowhead"
+	line -2 0 1 45
+		spacing 2.8284
+		repeat -4 0
+			increase 2
+	line 0 -2 2 135
+		spacing 2.8284
+		repeat 0 -4
+			increase 2
+	line 4 0 2 315
+		spacing 2.8284
+		repeat 4 0
+			increase 2
+	line 0 -4 3 225
+		spacing 2.8284
+		repeat 0 -4
+			increase 2
+
+# Hexagon shape around the formation leader
+formation "Hexagon"
+	line -1 1.732 1 330
+		spacing 2
+		repeat -1 1.732
+			increase 1
+	line -2 0 1 30
+		spacing 2
+		repeat -2 0
+			increase 1
+	line -1 -1.732 1 90
+		spacing 2
+		repeat -1 -1.732
+			increase 1
+	line 1 -1.732 1 150
+		spacing 2
+		repeat 1 -1.732
+			increase 1
+	line 2 0 1 210
+		spacing 2
+		repeat 2 0
+			increase 1
+	line 1 1.732 1 270
+		spacing 2
+		repeat 1 1.732
+			increase 1
+
+# Formation with two legs extending on a 45 degree angle behind the lead ship.
+# This formation is naturally used by birds due to energy efficiency and it
+# is realatively easy to fly for pilots, since they just look at 1 ship in
+# front of them.
+formation "Vee"
+	line -2 2 1 225
+		repeat -2 2
+	line  2 2 1 135
+		repeat  2 2

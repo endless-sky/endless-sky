@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define AI_H_
 
 #include "Command.h"
+#include "FormationPositioner.h"
 #include "Point.h"
 
 #include <cstdint>
@@ -26,6 +27,7 @@ class Angle;
 class AsteroidField;
 class Body;
 class Flotsam;
+class Formation;
 class Government;
 class Minable;
 class PlayerInfo;
@@ -33,7 +35,6 @@ class Ship;
 class ShipEvent;
 class StellarObject;
 class System;
-
 
 
 // This class is responsible for controlling all the ships in the game,
@@ -84,8 +85,9 @@ private:
 	std::vector<std::shared_ptr<Ship>> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
 	
 	bool FollowOrders(Ship &ship, Command &command) const;
+	void MoveInFormation(Ship &ship, Command &command);
 	void MoveIndependent(Ship &ship, Command &command) const;
-	void MoveEscort(Ship &ship, Command &command) const;
+	void MoveEscort(Ship &ship, Command &command);
 	static void Refuel(Ship &ship, Command &command);
 	static bool CanRefuel(const Ship &ship, const StellarObject *target);
 	bool ShouldDock(const Ship &ship, const Ship &parent, bool playerShipsLaunch) const;
@@ -218,6 +220,9 @@ private:
 	std::map<const Ship *, int> miningTime;
 	std::map<const Ship *, double> appeasmentThreshold;
 	
+	// Records for formations flying around leadships
+	std::map<const Ship *, FormationPositioner> formations;
+	
 	std::map<const Ship *, int64_t> shipStrength;
 	
 	std::map<const Government *, int64_t> enemyStrength;
@@ -226,7 +231,5 @@ private:
 	std::map<const Government *, std::vector<std::shared_ptr<Ship>>> enemyLists;
 	std::map<const Government *, std::vector<std::shared_ptr<Ship>>> allyLists;
 };
-
-
 
 #endif
