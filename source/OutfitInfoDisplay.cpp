@@ -248,6 +248,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	static const vector<string> VALUE_NAMES = {
 		"shield damage",
 		"hull damage",
+		"disabled damage",
 		"fuel damage",
 		"heat damage",
 		"ion damage",
@@ -261,6 +262,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	vector<double> values = {
 		outfit.ShieldDamage(),
 		outfit.HullDamage(),
+		outfit.DisabledDamage() == outfit.HullDamage() ? 0. : 1., // only show if different from hull damage, handled below
 		outfit.FuelDamage(),
 		outfit.HeatDamage(),
 		outfit.IonDamage() * 100.,
@@ -280,7 +282,10 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			if(values[i])
 			{
 				attributeLabels.emplace_back(VALUE_NAMES[i] + PER_SECOND);
-				attributeValues.emplace_back(Format::Number(60. * values[i] / reload));
+				if(VALUE_NAMES[i] == "disabled damage")
+					attributeValues.emplace_back(Format::Number(60. * outfit.DisabledDamage() / reload));
+				else
+					attributeValues.emplace_back(Format::Number(60. * values[i] / reload));
 				attributesHeight += 20;
 			}
 	}
@@ -351,7 +356,10 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			if(values[i])
 			{
 				attributeLabels.emplace_back(VALUE_NAMES[i] + PER_SHOT);
-				attributeValues.emplace_back(Format::Number(values[i]));
+				if(VALUE_NAMES[i] == "disabled damage")
+					attributeValues.emplace_back(Format::Number(outfit.DisabledDamage()));
+				else
+					attributeValues.emplace_back(Format::Number(values[i]));
 				attributesHeight += 20;
 			}
 	}

@@ -32,6 +32,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 	bool isClustered = false;
 	calculatedDamage = false;
 	doesDamage = false;
+	bool disabledDamageSet = false;
 	
 	for(const DataNode &child : node)
 	{
@@ -49,7 +50,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
+		{
 			sprite.LoadSprite(child);
+			weaponName = child.Token(1);
+		}
 		else if(key == "hardpoint sprite")
 			hardpointSprite.LoadSprite(child);
 		else if(key == "sound")
@@ -155,6 +159,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[SHIELD_DAMAGE] = value;
 			else if(key == "hull damage")
 				damage[HULL_DAMAGE] = value;
+			else if(key == "disabled damage")
+			{
+				damage[DISABLED_DAMAGE] = value;
+				disabledDamageSet = true;
+			}
 			else if(key == "fuel damage")
 				damage[FUEL_DAMAGE] = value;
 			else if(key == "heat damage")
@@ -173,6 +182,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 				child.PrintTrace("Unrecognized weapon attribute: \"" + key + "\":");
 		}
 	}
+	// Disabled Damage defaults to hull damage instead of 0.
+	if (!disabledDamageSet)
+		damage[DISABLED_DAMAGE] = damage[HULL_DAMAGE];
+	
 	// Sanity check:
 	if(burstReload > reload)
 		burstReload = reload;

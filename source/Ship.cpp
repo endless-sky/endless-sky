@@ -1648,7 +1648,8 @@ void Ship::DoGeneration()
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
 	
-	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
+	if (!isDisabled)
+		isDisabled = isOverheated || hull <= MinimumHull() || (!crew && RequiredCrew());
 	
 	// Whenever not actively scanning, the amount of scan information the ship
 	// has "decays" over time. For a scanner with a speed of 1, one second of
@@ -2041,7 +2042,7 @@ bool Ship::IsDisabled() const
 	
 	double minimumHull = MinimumHull();
 	bool needsCrew = RequiredCrew() != 0;
-	return (hull < minimumHull || (!crew && needsCrew));
+	return (hull <= minimumHull || (!crew && needsCrew));
 }
 
 
@@ -2624,6 +2625,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	}
 	double shieldDamage = weapon.ShieldDamage() * damageScaling;
 	double hullDamage = weapon.HullDamage() * damageScaling;
+	double disabledDamage = weapon.DisabledDamage() * damageScaling;
 	double hitForce = weapon.HitForce() * damageScaling;
 	double fuelDamage = weapon.FuelDamage() * damageScaling;
 	double heatDamage = weapon.HeatDamage() * damageScaling;
@@ -2640,7 +2642,26 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	else if(shieldDamage > shields)
 		shieldFraction = min(shieldFraction, shields / shieldDamage);
 	shields -= shieldDamage * shieldFraction;
-	hull -= hullDamage * (1. - shieldFraction);
+	
+	double hullFraction = (1. - shieldFraction);
+	double disabledFraction = 0;
+	
+	double nonDisabledHull = hull - MinimumHull();
+	if (hullDamage * hullFraction > nonDisabledHull)
+	{
+		hullFraction = max(nonDisabledHull/hullDamage,0.d);
+		disabledFraction = 1 - shieldFraction - hullFraction;
+		if(disabledFraction + hullFraction + shieldFraction > 1.00001 || disabledFraction + hullFraction + shieldFraction < 0.99999)
+			Files::LogError("Fraction Error" + to_string(shieldFraction) + " " + to_string(hullFraction) + " " + to_string(disabledFraction));
+	}
+	
+	if (numstep < 2000)
+	{
+		Files::LogError("Weapon: " + weapon.weaponName + "SD: " + to_string(shieldDamage) + ":" + to_string(shieldFraction) + " HD: " + to_string(hullDamage) + ":" + to_string(hullFraction) + " DD: " + to_string(disabledDamage) + ":" + to_string(disabledFraction));
+		++numstep;
+	}
+	
+	hull -= hullDamage * hullFraction + disabledDamage * disabledFraction;
 	// For the following damage types, the total effect depends on how much is
 	// "leaking" through the shields.
 	double leakage = (1. - .5 * shieldFraction);
@@ -2663,6 +2684,10 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	// Recalculate the disabled ship check.
 	isDisabled = true;
 	isDisabled = IsDisabled();
+	if (isDisabled)
+	{
+		Files::LogError(ModelName() + ": " + Name() + " Disabled.  hull: " + to_string(hull) + " Min Hull: " + to_string(MinimumHull()));
+	}
 	if(!wasDisabled && isDisabled)
 		type |= ShipEvent::DISABLE;
 	if(!wasDestroyed && IsDestroyed())
