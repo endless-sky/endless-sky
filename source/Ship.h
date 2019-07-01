@@ -106,7 +106,7 @@ public:
 	double Zoom() const;
 	const Government *GetGovernment() const;
 	*/
-int numstep = 0;
+
 	Ship() = default;
 	// Construct and Load() at the same time.
 	Ship(const DataNode &node);

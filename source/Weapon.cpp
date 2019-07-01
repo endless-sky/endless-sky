@@ -50,10 +50,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
-		{
 			sprite.LoadSprite(child);
-			weaponName = child.Token(1);
-		}
 		else if(key == "hardpoint sprite")
 			hardpointSprite.LoadSprite(child);
 		else if(key == "sound")

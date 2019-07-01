@@ -2645,20 +2645,11 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	
 	double hullFraction = (1. - shieldFraction);
 	double disabledFraction = 0;
-	
 	double nonDisabledHull = hull - MinimumHull();
 	if (hullDamage * hullFraction > nonDisabledHull)
 	{
 		hullFraction = max(nonDisabledHull/hullDamage,0.d);
 		disabledFraction = 1 - shieldFraction - hullFraction;
-		if(disabledFraction + hullFraction + shieldFraction > 1.00001 || disabledFraction + hullFraction + shieldFraction < 0.99999)
-			Files::LogError("Fraction Error" + to_string(shieldFraction) + " " + to_string(hullFraction) + " " + to_string(disabledFraction));
-	}
-	
-	if (numstep < 2000)
-	{
-		Files::LogError("Weapon: " + weapon.weaponName + "SD: " + to_string(shieldDamage) + ":" + to_string(shieldFraction) + " HD: " + to_string(hullDamage) + ":" + to_string(hullFraction) + " DD: " + to_string(disabledDamage) + ":" + to_string(disabledFraction));
-		++numstep;
 	}
 	
 	hull -= hullDamage * hullFraction + disabledDamage * disabledFraction;
@@ -2684,10 +2675,6 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	// Recalculate the disabled ship check.
 	isDisabled = true;
 	isDisabled = IsDisabled();
-	if (isDisabled)
-	{
-		Files::LogError(ModelName() + ": " + Name() + " Disabled.  hull: " + to_string(hull) + " Min Hull: " + to_string(MinimumHull()));
-	}
 	if(!wasDisabled && isDisabled)
 		type |= ShipEvent::DISABLE;
 	if(!wasDestroyed && IsDestroyed())

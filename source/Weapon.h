@@ -50,7 +50,7 @@ public:
 	const std::map<const Effect *, int> &HitEffects() const;
 	const std::map<const Effect *, int> &DieEffects() const;
 	const std::map<const Outfit *, int> &Submunitions() const;
-std::string weaponName;	
+	
 	// Accessor functions for various attributes.
 	int Lifetime() const;
 	int RandomLifetime() const;
