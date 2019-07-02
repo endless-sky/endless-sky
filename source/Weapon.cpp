@@ -180,7 +180,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 		}
 	}
 	// Disabled Damage defaults to hull damage instead of 0.
-	if (!disabledDamageSet)
+	if(!disabledDamageSet)
 		damage[DISABLED_DAMAGE] = damage[HULL_DAMAGE];
 	
 	// Sanity check:

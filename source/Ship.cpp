@@ -1648,7 +1648,7 @@ void Ship::DoGeneration()
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
 	
-	if (!isDisabled)
+	if(!isDisabled)
 		isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
 	
 	// Whenever not actively scanning, the amount of scan information the ship
@@ -2646,7 +2646,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	double hullFraction = (1. - shieldFraction);
 	double disabledFraction = 0;
 	double nonDisabledHull = hull - MinimumHull() + .25d;
-	if (hullDamage * hullFraction > nonDisabledHull)
+	if(hullDamage * hullFraction > nonDisabledHull)
 	{
 		hullFraction = max(nonDisabledHull/hullDamage,0.d);
 		disabledFraction = 1 - shieldFraction - hullFraction;
