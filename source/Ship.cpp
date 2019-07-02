@@ -2651,8 +2651,8 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		hullFraction = max(nonDisabledHull/hullDamage,0.d);
 		disabledFraction = 1 - shieldFraction - hullFraction;
 	}
-	
 	hull -= hullDamage * hullFraction + disabledDamage * disabledFraction;
+	
 	// For the following damage types, the total effect depends on how much is
 	// "leaking" through the shields.
 	double leakage = (1. - .5 * shieldFraction);
