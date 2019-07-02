@@ -281,11 +281,16 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		for(unsigned i = 0; i < values.size(); ++i)
 			if(values[i])
 			{
-				attributeLabels.emplace_back(VALUE_NAMES[i] + PER_SECOND);
 				if(VALUE_NAMES[i] == "disabled damage")
+				{
+					attributeLabels.emplace_back("   if disabled" + PER_SECOND);
 					attributeValues.emplace_back(Format::Number(60. * outfit.DisabledDamage() / reload));
+				}
 				else
+				{
+					attributeLabels.emplace_back(VALUE_NAMES[i] + PER_SECOND);
 					attributeValues.emplace_back(Format::Number(60. * values[i] / reload));
+				}
 				attributesHeight += 20;
 			}
 	}
@@ -355,11 +360,16 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		for(unsigned i = 0; i < VALUE_NAMES.size(); ++i)
 			if(values[i])
 			{
-				attributeLabels.emplace_back(VALUE_NAMES[i] + PER_SHOT);
 				if(VALUE_NAMES[i] == "disabled damage")
+				{
+					attributeLabels.emplace_back("   if disabled" + PER_SHOT);
 					attributeValues.emplace_back(Format::Number(outfit.DisabledDamage()));
+				}
 				else
+				{
+					attributeLabels.emplace_back(VALUE_NAMES[i] + PER_SHOT);
 					attributeValues.emplace_back(Format::Number(values[i]));
+				}
 				attributesHeight += 20;
 			}
 	}

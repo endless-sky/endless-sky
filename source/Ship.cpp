@@ -1649,7 +1649,7 @@ void Ship::DoGeneration()
 	hull = min(hull, maxHull);
 	
 	if (!isDisabled)
-		isDisabled = isOverheated || hull <= MinimumHull() || (!crew && RequiredCrew());
+		isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
 	
 	// Whenever not actively scanning, the amount of scan information the ship
 	// has "decays" over time. For a scanner with a speed of 1, one second of
@@ -2042,7 +2042,7 @@ bool Ship::IsDisabled() const
 	
 	double minimumHull = MinimumHull();
 	bool needsCrew = RequiredCrew() != 0;
-	return (hull <= minimumHull || (!crew && needsCrew));
+	return (hull < minimumHull || (!crew && needsCrew));
 }
 
 
@@ -2645,7 +2645,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	
 	double hullFraction = (1. - shieldFraction);
 	double disabledFraction = 0;
-	double nonDisabledHull = hull - MinimumHull();
+	double nonDisabledHull = hull - MinimumHull() + .25d;
 	if (hullDamage * hullFraction > nonDisabledHull)
 	{
 		hullFraction = max(nonDisabledHull/hullDamage,0.d);
