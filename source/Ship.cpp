@@ -1648,8 +1648,7 @@ void Ship::DoGeneration()
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
 	
-	if(!isDisabled)
-		isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
+	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
 	
 	// Whenever not actively scanning, the amount of scan information the ship
 	// has "decays" over time. For a scanner with a speed of 1, one second of
@@ -2637,19 +2636,49 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	
 	double shieldFraction = 1. - weapon.Piercing();
 	shieldFraction *= 1. / (1. + disruption * .01);
-	if(shields <= 0.)
+	
+	// Heals the ship and any piercing/disruption remains in effect.
+	if(shields <= 0. && shieldDamage >= 0.)
 		shieldFraction = 0.;
 	else if(shieldDamage > shields)
 		shieldFraction = min(shieldFraction, shields / shieldDamage);
 	shields -= shieldDamage * shieldFraction;
 	
-	double hullFraction = (1. - shieldFraction);
+	double hullFraction = 0;
 	double disabledFraction = 0;
-	double nonDisabledHull = hull - MinimumHull() + .25d;
-	if(hullDamage * hullFraction > nonDisabledHull)
+	double minHull = MinimumHull();
+	
+	// Dealing with hull damage when it may heal requires applying disabled damage first if the hull is below the disabled hull threshold.
+	if(hull < minHull)
 	{
-		hullFraction = max(nonDisabledHull/hullDamage,0.d);
-		disabledFraction = 1 - shieldFraction - hullFraction;
+		double healPart = minHull - hull - 0.25d;
+		disabledFraction = 1. - shieldFraction;
+		
+		// Test if healing will reach disabled threshold.
+		if(-disabledDamage * disabledFraction > healPart)
+		{
+			disabledFraction = healPart / -disabledDamage;
+			
+			// hullDamage only applies here if it heals.
+			if(hullDamage < 0)
+				hullFraction = 1. - shieldFraction - disabledFraction;
+		}
+	}
+	else
+	{
+		// The hull is above the disabled hull threshold.
+		double nonDisabledHull = hull - minHull + .25d;
+		hullFraction = 1. - shieldFraction;
+		
+		// Test if damage will pass disabled threshold.
+		if(hullDamage * hullFraction > nonDisabledHull)
+		{
+			hullFraction = nonDisabledHull / hullDamage;
+			
+			// disabledDamage only applies here if it damages.
+			if(disabledDamage >= 0)
+				disabledFraction = 1 - shieldFraction - hullFraction;
+		}
 	}
 	hull -= hullDamage * hullFraction + disabledDamage * disabledFraction;
 	

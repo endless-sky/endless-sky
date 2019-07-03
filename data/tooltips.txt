@@ -360,7 +360,7 @@ tip "hull damage / second:"
 	`Hull damage, converted to damage per second to allow easy comparisons between different weapons.`
 
 tip "   if disabled / second:"
-	`Hull damage if disabled, converted to damage per second to allow easy comparison between different weapons.`
+	`Hull damage if target is disabled, converted to damage per second to allow easy comparison between different weapons.`
 
 tip "fuel damage / second:"
 	`The amount of fuel lost by the target per second when hit by this weapon. If its shields are up, the loss will be cut in half. A negative amount means fuel is added.`
