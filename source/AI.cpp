@@ -1437,11 +1437,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	const Planet *parentPlanet = (parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr);
 	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
 	bool systemHasFuel = hasFuelCapacity && ship.GetSystem()->HasFuelFor(ship);
-	// If an escort is out of fuel, they should refuel without waiting for the
-	// "parent" to land (because the parent may not be planning on landing).
-	if(systemHasFuel && !ship.JumpsRemaining())
-		Refuel(ship, command);
-	else if(!parentIsHere && !isStaying)
+	// Non-staying escorts should route to their parent ship's system if not already in it.
+	if(!parentIsHere && !isStaying)
 	{
 		if(ship.GetTargetStellar())
 		{
@@ -1482,16 +1479,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			// This ship has no route to the parent's system, so park at the system's center.
 			MoveTo(ship, command, Point(), Point(), 40., 0.1);
 	}
-	else if(parent.Commands().Has(Command::LAND) && parentIsHere && planetIsHere && parentPlanet->CanLand(ship))
-	{
-		ship.SetTargetSystem(nullptr);
-		ship.SetTargetStellar(parent.GetTargetStellar());
-		MoveToPlanet(ship, command);
-		if(parent.IsLanding() || parent.CanLand())
-			command |= Command::LAND;
-	}
-	else if(parent.Commands().Has(Command::BOARD) && parent.GetTargetShip().get() == &ship)
-		Stop(ship, command, .2);
+	// If the parent is in-system and planning to jump, non-staying escorts should follow suit.
 	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
 	{
 		DistanceMap distance(ship, parent.GetTargetSystem());
@@ -1503,6 +1491,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		else if(ShouldRefuel(ship, dest))
 			Refuel(ship, command);
 		else if(!ship.JumpsRemaining())
+			// Return to the system center to maximize solar collection rate.
 			MoveTo(ship, command, Point(), Point(), 40., 0.1);
 		else
 		{
@@ -1512,6 +1501,20 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 				command |= Command::WAIT;
 		}
 	}
+	// If an escort is out of fuel, they should refuel without waiting for the
+	// "parent" to land (because the parent may not be planning on landing).
+	else if(systemHasFuel && !ship.JumpsRemaining())
+		Refuel(ship, command);
+	else if(parent.Commands().Has(Command::LAND) && parentIsHere && planetIsHere && parentPlanet->CanLand(ship))
+	{
+		ship.SetTargetSystem(nullptr);
+		ship.SetTargetStellar(parent.GetTargetStellar());
+		MoveToPlanet(ship, command);
+		if(parent.IsLanding() || parent.CanLand())
+			command |= Command::LAND;
+	}
+	else if(parent.Commands().Has(Command::BOARD) && parent.GetTargetShip().get() == &ship)
+		Stop(ship, command, .2);
 	else
 		KeepStation(ship, command, parent);
 }
