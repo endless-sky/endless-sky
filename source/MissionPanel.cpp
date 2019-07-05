@@ -327,6 +327,13 @@ bool MissionPanel::Click(int x, int y, int clicks)
 		}
 	if(system)
 	{
+		// Always go to the first available mission when clicking a new system.
+		if(selectedSystem && selectedSystem != system)
+		{
+			availableIt == available.end();
+			acceptedIt == accepted.end();
+		}
+
 		Select(system);
 		int options = available.size() + accepted.size();
 		// If you just aborted your last mission, it is possible that neither
