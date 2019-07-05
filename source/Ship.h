@@ -376,7 +376,10 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 	
-	
+	// Positions relative to parents or tracked objects
+	const Point GetGuardPosition() const;
+
+
 private:
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
@@ -523,8 +526,9 @@ private:
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;
 	std::weak_ptr<Ship> parent;
+
+	// References and offsets for idle/stationkeeping positions
+	Point guardPosition;
 };
-
-
 
 #endif

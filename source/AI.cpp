@@ -1830,9 +1830,18 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	double mass = ship.Mass();
 	Point unit = ship.Facing().Unit();
 	double currentAngle = ship.Facing().Degrees();
+
+	// Target position, either the target-ship, or a relative position compared to
+	// the target ship if such a relative position is set
+	Point targetPosition = target.Position();
+	Point targetVelocity = target.Velocity();
+	Point guardPosition = ship.GetGuardPosition();
+	if (guardPosition)
+		targetPosition += (Angle(targetVelocity)).Rotate(guardPosition);
+
 	// This is where we want to be relative to where we are now:
-	Point velocityDelta = target.Velocity() - ship.Velocity();
-	Point positionDelta = target.Position() + LEAD_TIME * velocityDelta - ship.Position();
+	Point velocityDelta = targetVelocity - ship.Velocity();
+	Point positionDelta = targetPosition + LEAD_TIME * velocityDelta - ship.Position();
 	double positionSize = positionDelta.Length();
 	double positionWeight = positionSize / (positionSize + POSITION_DEADBAND);
 	// This is how fast we want to be going relative to how fast we're going now:

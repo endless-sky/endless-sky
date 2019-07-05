@@ -325,6 +325,13 @@ void Ship::Load(const DataNode &node)
 			description += child.Token(1);
 			description += '\n';
 		}
+		else if(key == "guard")
+		{
+			if(child.HasChildren())
+				for(const DataNode &grand : child)
+					if(grand.Token(0) == "position" && grand.Size() >= 3)
+						guardPosition = Point(grand.Value(1), grand.Value(2));
+		}
 		else if(key != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -684,6 +691,15 @@ void Ship::Save(DataWriter &out) const
 			out.Write("destination system", targetSystem->Name());
 		if(isParked)
 			out.Write("parked");
+		if(guardPosition)
+		{
+			out.Write("guard");
+			out.BeginChild();
+			{
+				out.Write("position", guardPosition.X(), guardPosition.Y());
+			}
+			out.EndChild();
+		}
 	}
 	out.EndChild();
 }
@@ -3103,6 +3119,14 @@ shared_ptr<Ship> Ship::GetParent() const
 const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 {
 	return escorts;
+}
+
+
+
+// Positions relative to parents or tracked objects
+const Point Ship::GetGuardPosition() const
+{
+	return guardPosition;
 }
 
 
