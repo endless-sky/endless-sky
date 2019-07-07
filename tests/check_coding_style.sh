@@ -57,7 +57,9 @@ function filter_exceptions()
 		-e "Files.cpp:	struct _stat buf;" \
 		-e "Files.cpp:	struct stat buf;" \
 		-e "ImageBuffer.cpp:		struct jpeg_error_mgr jerr;" \
-		-e "Point.h:		struct {"
+		-e "Point.h:		struct {" \
+		-e "gl_header.h: #include <OpenGL/GL3.h>" \
+		-e "gl_header.h: #include <GL/glew.h>"
 }
 
 
@@ -123,6 +125,21 @@ for FILE in *; do
 done |\
 	report_issue "Each file should begin with a header which specifies the file name, copyright, and licensing information"
 
+for FILE in *.h; do
+	FILE_GUARD_NAME=$(echo "${FILE}" | sed "s/\([a-z]\)\([A-Z]\)/\1_\2/g" | sed "s,\.h,_H_,")
+	FILE_GUARD_NAME=$(echo "${FILE_GUARD_NAME^^}")
+	# By also grepping for includes we check that the ifndef and defines are before includes.
+	GUARDS=$(cat ${FILE} | grep -e "#ifndef" -e "#define" -e "#include" )
+	GUARD_IFNDEF=$(echo "${GUARDS}" | head -n 1)
+	GUARD_DEFINE=$(echo "${GUARDS}" | head -n 2 | tail -n 1)
+	if [ "${GUARD_IFNDEF}" != "#ifndef ${FILE_GUARD_NAME}" ]; then
+		echo "${FILE}: ${GUARD_IFNDEF}"
+	fi
+	if [ "${GUARD_DEFINE}" != "#define ${FILE_GUARD_NAME}" ]; then
+		echo "${FILE}: ${GUARD_DEFINE}"
+	fi
+done |\
+	report_issue "All header files should have #define guards, and they should be in the format \"#ifndef MY_CLASS_H_\"."
 
 
 
