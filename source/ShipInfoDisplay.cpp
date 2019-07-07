@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Table.h"
 
 #include <algorithm>
+#include <cmath>
 #include <map>
 #include <sstream>
 
@@ -176,13 +177,39 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributeValues.push_back(Format::Number(ship.RequiredCrew())
 		+ " / " + Format::Number(attributes.Get("bunks")));
 	attributesHeight += 20;
-	attributeLabels.push_back(isGeneric ? "fuel capacity:" : "fuel:");
+	
+	// The average ramscoop value assumes a solar wind of 1 and directly on top of a star.
+	double avgRamscoop = .06 * (sqrt(attributes.Get("ramscoop")) + .1);
+	double fuelGain = 60 * (avgRamscoop + attributes.Get("fuel generation") - attributes.Get("fuel consumption"));
 	double fuelCapacity = attributes.Get("fuel capacity");
 	if(isGeneric)
-		attributeValues.push_back(Format::Number(fuelCapacity));
+	{
+		if(fuelGain)
+		{
+			attributeLabels.push_back("fuel gain / capacity:");
+			attributeValues.push_back(Format::Number(fuelGain) + " / " + Format::Number(fuelCapacity));
+		}
+		else
+		{
+			attributeLabels.push_back("fuel capacity:");
+			attributeValues.push_back(Format::Number(fuelCapacity));
+		}
+	}
 	else
-		attributeValues.push_back(Format::Number(ship.Fuel() * fuelCapacity)
-			+ " / " + Format::Number(fuelCapacity));
+	{
+		if(fuelGain)
+		{
+			attributeLabels.push_back("fuel / gain / max:");
+			attributeValues.push_back(Format::Number(ship.Fuel() * fuelCapacity)
+				+ " / " + Format::Number(fuelGain) + " / " + Format::Number(fuelCapacity));
+		}
+		else
+		{
+			attributeLabels.push_back("fuel / capacity:");
+			attributeValues.push_back(Format::Number(ship.Fuel() * fuelCapacity)
+				+ " / " + Format::Number(fuelCapacity));
+		}
+	}
 	attributesHeight += 20;
 	
 	double fullMass = emptyMass + (isGeneric ? attributes.Get("cargo space") : ship.Cargo().Used());

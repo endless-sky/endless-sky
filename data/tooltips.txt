@@ -95,11 +95,17 @@ tip "    engine capacity:"
 tip "fighter bays:"
 	`The number of ships from the "Fighter" category that this ship can carry.`
 
-tip "fuel:"
-	`This ship's current fuel amount. An ordinary hyperdrive jump consumes 100 fuel.`
+tip "fuel gain / capacity:"
+	`This ship's average fuel gain per second and total fuel capacity. An ordinary hyperdrive consumes 100 fuel per jump. Fuel gain is the sum of fuel generation, consumption and the performance of any ramscoops installed while near an average star.`
 
 tip "fuel capacity:"
-	`An ordinary hyperdrive jump consumes 100 fuel. Fuel is replenished for free when you land on an inhabited planet.`
+	`This ship's total fuel capacity. An ordinary hyperdrive consumes 100 fuel per jump.`
+
+tip "fuel / gain / max:"
+	`This ship's current fuel level, average fuel gain per second, and total fuel capacity. An ordinary hyperdrive jump consumes 100 fuel per jump. Fuel gain is the sum of fuel generation, consumption and the performance of any ramscoops installed while near an average star.`
+
+tip "fuel / capacity:"
+	`This ship's current fuel level and total fuel capacity. An ordinary hyperdrive jump consumes 100 fuel per jump.`
 
 tip "fuel consumption:"
 	`Fuel consumed per second while in flight (can generate energy or heat).`
