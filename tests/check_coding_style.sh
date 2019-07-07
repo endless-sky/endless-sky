@@ -141,6 +141,11 @@ for FILE in *.h; do
 done |\
 	report_issue "All header files should have #define guards, and they should be in the format \"#ifndef MY_CLASS_H_\"."
 
+for FILE in *.cpp; do
+	grep --with-filename -e "#include " -e "using namespace std;" "${FILE}" | tail -n 1 | sed "/${FILE}:using namespace std;/d"
+done |\
+	report_issue "Each .cpp file should put \"using namespace std;\" immediately after the #includes."
+
 
 
 # Formatting section
