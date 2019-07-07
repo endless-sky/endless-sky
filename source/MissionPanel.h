@@ -81,6 +81,8 @@ private:
 	std::list<Mission>::const_iterator acceptedIt;
 	double availableScroll = 0.;
 	double acceptedScroll = 0.;
+	int scrolling = 0;
+	double scrollAmount = 0.;
 	
 	int dragSide = 0;
 	WrappedText wrap;

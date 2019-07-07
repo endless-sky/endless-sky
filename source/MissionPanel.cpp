@@ -38,12 +38,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <algorithm>
+#include <cmath>
 #include <sstream>
 
 using namespace std;
 
 namespace {
-	const int SIDE_WIDTH = 280;
+	constexpr int SIDE_WIDTH = 280;
+	constexpr int SCROLL_TIME = 20;
 	
 	// Check if the mission involves the given system,
 	bool Involves(const Mission &mission, const System *system)
@@ -63,6 +65,38 @@ namespace {
 				return true;
 		
 		return false;
+	}
+	
+	size_t MaxDisplayedMissions(bool onRight)
+	{
+		return static_cast<unsigned>(max(0, static_cast<int>(floor((Screen::Height() - (onRight ? 160. : 190.)) / 20.))));
+	}
+	
+	// Compute the required scroll amount for the given list of jobs/missions.
+	double SetScroll(const list<Mission> &missionList, const list<Mission>::const_iterator &it, const int sideScroll, int &newScrollTime, bool checkVisibility)
+	{
+		// We don't need to scroll at all if the selection must be within the viewport.
+		const auto maxViewable = MaxDisplayedMissions(checkVisibility);
+		const auto missionCount = missionList.size();
+		if(missionCount < maxViewable)
+			return 0.;
+		
+		auto isShown = [](const Mission &m) { return m.IsVisible(); };
+		const auto countBefore = static_cast<size_t>(checkVisibility
+				? std::count_if(missionList.begin(), it, isShown)
+				: std::distance(missionList.begin(), it));
+		const auto countAfter = static_cast<size_t>(checkVisibility
+				? std::count_if(it, missionList.end(), isShown)
+				: missionCount - countBefore - 1);
+		
+		double maxScroll = 20. * countBefore - sideScroll;
+		// Clamp the scroll such that the bottom of the mission list does not "overscroll."
+		double scrollAmount = (countAfter < maxViewable) ? min(maxScroll, maxViewable * 20.) : maxScroll;
+		
+		// If scrolling, set the animation duration.
+		if(scrollAmount)
+			newScrollTime = SCROLL_TIME;
+		return scrollAmount;
 	}
 }
 
@@ -95,9 +129,15 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	
 	// Auto select the destination system for the current mission.
 	if(availableIt != available.end())
+	{
 		selectedSystem = availableIt->Destination()->GetSystem();
+		scrollAmount = SetScroll(available, availableIt, availableScroll, scrolling, false);
+	}
 	else if(acceptedIt != accepted.end())
+	{
 		selectedSystem = acceptedIt->Destination()->GetSystem();
+		scrollAmount = SetScroll(accepted, acceptedIt, acceptedScroll, scrolling, true);
+	}
 	
 	// Center on the selected system.
 	CenterOnSystem(selectedSystem, true);
@@ -142,6 +182,20 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 void MissionPanel::Step()
 {
 	MapPanel::Step();
+
+	// Scroll the mission list to the selected mission.
+	if(scrolling > 0 && (availableIt != available.end() || acceptedIt != accepted.end()))
+	{
+		double &scrollValue = availableIt != available.end() ? availableScroll : acceptedScroll;
+		double step = (scrolling - .5) / SCROLL_TIME;
+		// Interpolate with the smoothstep function, 3x^2 - 2x^3. Its derivative
+		// gives the fraction of the distance to move at each time step:
+		scrollValue += scrollAmount * (step * (1. - step) * (6. / SCROLL_TIME));
+		--scrolling;
+	} else {
+		scrolling = 0;
+	}
+	
 	DoHelp("jobs");
 }
 
@@ -274,9 +328,15 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	// To reach here, we changed the selected mission. Scroll the active
 	// mission list, update the selected system, and pan the map.
 	if(availableIt != available.end())
+	{
 		selectedSystem = availableIt->Destination()->GetSystem();
+		scrollAmount = SetScroll(available, availableIt, availableScroll, scrolling, false);
+	}
 	else if(acceptedIt != accepted.end())
+	{
 		selectedSystem = acceptedIt->Destination()->GetSystem();
+		scrollAmount = SetScroll(accepted, acceptedIt, acceptedScroll, scrolling, true);
+	}
 	if(selectedSystem)
 		CenterOnSystem(selectedSystem);
 	
@@ -285,6 +345,8 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 
 
+// Handle mouse clicks. The side scrolls do not need to be updated as clicking on a mission
+// requires it to be visible within the viewport.
 bool MissionPanel::Click(int x, int y, int clicks)
 {
 	dragSide = 0;
@@ -796,7 +858,7 @@ bool MissionPanel::SelectAnyMission()
 {
 	if(availableIt == available.end() && acceptedIt == accepted.end())
 	{
-		// no previous selection, reset
+		// No previous selected mission, so select the first job/mission for any system.
 		if(!available.empty())
 			availableIt = available.begin();
 		else
