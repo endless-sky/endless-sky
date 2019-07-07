@@ -26,7 +26,18 @@
 HERE=$(cd `dirname $0` && pwd)
 SOURCES="${HERE}/../source"
 
+# Desired header, adapted for automatic parsing
+DESIRED_HEADER="/* FILENAME
+Copyright (c) 2xxx by Michael Zahniser
 
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+*/"
 
 function die()
 {
@@ -38,7 +49,7 @@ function die()
 
 # This is a white-list of allowed exceptions. For now just included in the script;
 # might want to make this a separate text-file later.
-function filter_exceptions
+function filter_exceptions()
 {
 	grep -v \
 		-e "WinApp.rc" \
@@ -101,6 +112,17 @@ find -type f | grep -v -e ".h$" -e ".cpp$" | sed "s,^./,," |\
 
 grep "^class" *.h | grep -v -e ";$" | cut -d\: -f1,2 | sed "s,[{].*$,," | sed "s, *$,," | filter_non_matched_class |\
 	report_issue "Files: Each class \"MyClass\" should have its own .h and .cpp files, and they should be named \"MyClass.h\" and \"MyClass.cpp\""
+
+for FILE in *; do
+	HEADER=$(head -n 11 ${FILE})
+	HEADER_CHECK=$(echo "${HEADER}" | sed "s,^/\* ${FILE}$,/* FILENAME," |\
+		sed "s,^Copyright (c) 2[0-9]* by [A-Za-z0-9 ]*,Copyright (c) 2xxx by Michael Zahniser,")
+	if [ "${HEADER_CHECK}" != "${DESIRED_HEADER}" ]; then
+		echo "${FILE}: mismatch in header"
+	fi
+done |\
+	report_issue "Each file should begin with a header which specifies the file name, copyright, and licensing information"
+
 
 
 
