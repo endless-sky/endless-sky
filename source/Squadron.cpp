@@ -10,12 +10,13 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-using namespace std;
-
 #include "DataNode.h"
 #include "Ship.h"
 #include "Squadron.h"
+
 #include <string>
+
+using namespace std;
 
 void Squadron::Load(const DataNode &node)
 {
