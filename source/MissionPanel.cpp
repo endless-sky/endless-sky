@@ -76,27 +76,38 @@ namespace {
 	double SetScroll(const list<Mission> &missionList, const list<Mission>::const_iterator &it, const int sideScroll, int &newScrollTime, bool checkVisibility)
 	{
 		// We don't need to scroll at all if the selection must be within the viewport.
+		// The current side scroll could be non-zero if missions were added/aborted, so reset it.
 		const auto maxViewable = MaxDisplayedMissions(checkVisibility);
 		const auto missionCount = missionList.size();
 		if(missionCount < maxViewable)
-			return 0.;
+			return -sideScroll;
 		
-		auto isShown = [](const Mission &m) { return m.IsVisible(); };
 		const auto countBefore = static_cast<size_t>(checkVisibility
-				? std::count_if(missionList.begin(), it, isShown)
+				? std::count_if(missionList.begin(), it, [](const Mission &m) { return m.IsVisible(); })
 				: std::distance(missionList.begin(), it));
-		const auto countAfter = static_cast<size_t>(checkVisibility
-				? std::count_if(it, missionList.end(), isShown)
-				: missionCount - countBefore - 1);
 		
-		double maxScroll = 20. * countBefore - sideScroll;
-		// Clamp the scroll such that the bottom of the mission list does not "overscroll."
-		double scrollAmount = (countAfter < maxViewable) ? min(maxScroll, maxViewable * 20.) : maxScroll;
+		// If the current selection is still within the viewport, don't scroll either (i.e. paginate scrolling vs constant scrolling).
+		const auto maximumScroll = (missionCount - maxViewable) * 20.;
+		const auto pageScroll = maxViewable * 20.;
+		const auto desiredScroll = countBefore * 20.;
+		double scrollTarget = 0.;
+		if(desiredScroll >= maximumScroll)
+			// Go to the start of the "last page."
+			scrollTarget = maximumScroll;
+		else if(desiredScroll < pageScroll)
+			// Go to the start of the "first page."
+			scrollTarget = 0.;
+		else
+		{
+			const auto pageNumber = static_cast<size_t>(floor(desiredScroll / pageScroll));
+			scrollTarget = pageNumber * pageScroll;
+		}
 		
 		// If scrolling, set the animation duration.
-		if(scrollAmount)
+		if(scrollTarget != sideScroll)
 			newScrollTime = SCROLL_TIME;
-		return scrollAmount;
+		// Return the change in scroll.
+		return scrollTarget - sideScroll;
 	}
 }
 
