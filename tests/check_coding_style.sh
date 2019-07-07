@@ -217,9 +217,16 @@ for FILE in *.cpp; do
 done |\
 	report_issue "Each .cpp file should put \"using namespace std;\" immediately after the #includes."
 
-check_includes_sort_order |\
-	report_issue "Order of #includes in a .h or .c file"
 
+# Disabled for now. Sorting algorithm currently ignores dots
+# Need to inform the sorting algorithm that the following order is not the best one:
+# BoardingPanel.cpp:#include "Ship.h": Include order not according to style guide
+# -Expected 2:#include "ShipEvent.h"
+# -Expected 2:#include "Ship.h"
+# -Expected 2:#include "ShipInfoPanel.h"
+
+#check_includes_sort_order |\
+#	report_issue "Order of #includes in a .h or .c file"
 
 
 # Formatting section
