@@ -99,8 +99,17 @@ namespace {
 			scrollTarget = 0.;
 		else
 		{
-			const auto pageNumber = static_cast<size_t>(floor(desiredScroll / pageScroll));
-			scrollTarget = pageNumber * pageScroll;
+			// Compute the current "page boundary," i.e. where the relative "title" would be.
+			const auto topOfPage = sideScroll;
+			const auto bottomOfPage = sideScroll + pageScroll;
+			if(desiredScroll > topOfPage && desiredScroll < bottomOfPage)
+				scrollTarget = sideScroll;
+			else
+			{
+				// Change pages.
+				const auto pageNumber = static_cast<size_t>(floor(desiredScroll / pageScroll));
+				scrollTarget = pageNumber * pageScroll;
+			}
 		}
 		
 		// If scrolling, set the animation duration.
@@ -356,8 +365,6 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 
 
-// Handle mouse clicks. The side scrolls do not need to be updated as clicking on a mission
-// requires it to be visible within the viewport.
 bool MissionPanel::Click(int x, int y, int clicks)
 {
 	dragSide = 0;
@@ -376,6 +383,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			acceptedIt = accepted.end();
 			dragSide = -1;
 			selectedSystem = availableIt->Destination()->GetSystem();
+			scrollAmount = SetScroll(available, availableIt, availableScroll, scrolling, false);
 			CenterOnSystem(selectedSystem);
 			return true;
 		}
@@ -394,6 +402,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			availableIt = available.end();
 			dragSide = 1;
 			selectedSystem = acceptedIt->Destination()->GetSystem();
+			scrollAmount = SetScroll(accepted, acceptedIt, acceptedScroll, scrolling, true);
 			CenterOnSystem(selectedSystem);
 			return true;
 		}
@@ -458,6 +467,11 @@ bool MissionPanel::Click(int x, int y, int clicks)
 		// no other missions in this system.
 		if(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 			acceptedIt = accepted.end();
+		// Scroll the relevant panel so that the mission highlighted is visible.
+		if(availableIt != available.end())
+			scrollAmount = SetScroll(available, availableIt, availableScroll, scrolling, false);
+		else if(acceptedIt != accepted.end())
+			scrollAmount = SetScroll(accepted, acceptedIt, acceptedScroll, scrolling, true);
 	}
 	
 	return true;
