@@ -120,7 +120,8 @@ function check_includes_sort_order()
 	SORT_KEY=$(echo "${ALL_INCL}" | sed "s/:#include </:4:#include </")
 
 	# Get all base classes for classes. Not fully exact, but non-exact matches will be filtered out because there
-	# is no matching class in the codebase.
+	# is no matching class in the codebase. For future coding checking scripts we might want to consider to get
+	# this information from the C++ compiler.
 	CLASS_BASES=$(grep "^class" *.h | grep -e "public" -e "private" | grep -v ";$" | sed "s/ {//" |\
 		sed "s,std::[A-Za-z0-9_]*, ,g" | sed "s,[<>,\*], ,g" |\
 		sed -e "s/class [A-Za-z0-9]*[ :]*/ /" -e "s/public//g" -e "s/private//g" | sed "s/[ ]\+/ /g")
@@ -168,6 +169,9 @@ function check_includes_sort_order()
 
 	# The list sorted according to the Style guide keys should be in the same order as the original list above.
 	# Report all entries that are out of order by comparing the lists.
+	# This section starts quite a number of subshells. Subshells are quite resource intensive in Bash. If the
+	# performance of this script should be improved, then the recommendation is to handle the lists in temporary files
+	# instead of in-memory (or another recommendation is to re-write this functionality in a language like Python).
 	while [ $(echo "${ALL_INCL}" | wc -l) -gt 1 ]; do
 		if [ "$(echo "${ALL_INCL}" | head -n 1)" == "$(echo "${SORT_KEY}" | head -n 1)" ]; then
 			# Entries match, move to the next
