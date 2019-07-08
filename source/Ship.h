@@ -378,8 +378,8 @@ public:
 	
 	// Positions relative to parents or tracked objects
 	const Point GetGuardPosition() const;
-
-
+	
+	
 private:
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
