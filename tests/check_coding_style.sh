@@ -58,8 +58,16 @@ function filter_exceptions()
 		-e "Files.cpp:	struct stat buf;" \
 		-e "ImageBuffer.cpp:		struct jpeg_error_mgr jerr;" \
 		-e "Point.h:		struct {" \
-		-e "gl_header.h: #include <OpenGL/GL3.h>" \
-		-e "gl_header.h: #include <GL/glew.h>"
+		-e "#include <OpenGL/GL3.h>" \
+		-e "#include <GL/glew.h>" \
+		-e "#include <OpenAL/al.h>" \
+		-e "#include <OpenAL/alc.h>" \
+		-e "#include <SDL2/SDL.h>" \
+		-e "#include <SDL2/SDL_events.h>" \
+		-e "#include \"gl_header.h\"" \
+		-e "#include <jpeglib.h>" \
+		-e "#include <png.h>" \
+		-e "#include <mad.h>"
 }
 
 
@@ -104,6 +112,9 @@ function check_includes_sort_order()
 	# The filenames are sorted, but the include statements are taken in the order in which they are in the file
 	ALL_INCL=$(find -type f \( -name "*.h" -or -name "*.cpp" \) | grep "[A-Za-z0-9_.]" | sort | sed "s,./,," | xargs grep --with-filename "#include")
 
+	# Filter known issues out of the list
+	ALL_INCL=$(echo "${ALL_INCL}" | filter_exceptions)
+
 	# Now we prepare a list that we sort according to the style guide (by using additional ordering keys). (file:sortkey:include)
 	# Add sort-key 4 for all system includes
 	SORT_KEY=$(echo "${ALL_INCL}" | sed "s/:#include </:4:#include </")
@@ -139,9 +150,20 @@ function check_includes_sort_order()
 	done
 
 	# Add sort-key 3 for non-standard third-party libaries.
+	SORT_KEY=$(echo "${SORT_KEY}" | sed "s/\(\.[hc]\):\(#include \"\)/\1:3:\2/")
+
+	# Add include as sorting key, remove .h extention from sorting order and add AAAA to sort key to ensure that an
+	# include like Ship.his sorted before ShipEvent.h and before ShipInfoPanel.h.
+
 	# And re-sort the full list, including the sort-keys.
 	# And then remove the sort keys
-	SORT_KEY_EXPECTED=$(echo "${SORT_KEY}" | sed "s/\(\.[hc]\):\(#include \"\)/\1:3:\2/" | sort)
+	SORT_KEY=$(echo "${SORT_KEY}" | sed "s/:\(\#include [<\"]\)\([^>\"]*\)\([>\"]\)/:\2AAAA:\1\2\3/" |\
+		sed "s/\.hAAAA/AAAA/" | sort )
+
+	# Remove actual include from sort-key for displaying.
+	SORT_KEY_EXPECTED=$(echo "${SORT_KEY}" | sed "s/:[^:]*AAAA:/:/")
+
+	# Remove all sort-keys from sort key for comparing with actual code.
 	SORT_KEY=$(echo "${SORT_KEY_EXPECTED}" | sed "s/:[0-9]:/:/")
 
 	# The list sorted according to the Style guide keys should be in the same order as the original list above.
@@ -225,8 +247,8 @@ done |\
 # -Expected 2:#include "Ship.h"
 # -Expected 2:#include "ShipInfoPanel.h"
 
-#check_includes_sort_order |\
-#	report_issue "Order of #includes in a .h or .c file"
+check_includes_sort_order |\
+	report_issue "Order of #includes in a .h or .c file"
 
 
 # Formatting section
