@@ -339,14 +339,14 @@ double Depreciation::Depreciate(int age) const
 		return 1.;
 	if(age >= MAX_AGE + GRACE_PERIOD)
 		return FULL_DEPRECIATION;
-	
-	double exponent = exp((-STEEPNESS * ((age - GRACE_PERIOD) - SIGMOID_MIDPOINT));
-	double percent -(CURVE_MAX / (1. + exponent)) + Y_INTERCEPT_CORRECTION;
+
+	double exponent = exp((-STEEPNESS * ((age - GRACE_PERIOD) - SIGMOID_MIDPOINT)));
+	double percent = -(CURVE_MAX / (1. + exponent)) + Y_INTERCEPT_CORRECTION;
 	if(percent > 1)
 	{
 		return 1.;
 	}
-	else return percent
+	else return percent;
 
 }
 
