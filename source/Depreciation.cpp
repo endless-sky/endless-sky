@@ -27,10 +27,10 @@ namespace {
 	// Names for the two kinds of depreciation records.
 	string NAME[2] = {"fleet depreciation", "stock depreciation"};
 	// Depreciation parameters.
-	double SIGMOID_MIDPOINT = 500
-	double STEEPNESS = .0052
-	double CURVE_MAX = .87
-	double Y_INTERCEPT_CORRECTION = 1.06
+	double SIGMOID_MIDPOINT = 500;
+	double STEEPNESS = .0052;
+	double CURVE_MAX = .87;
+	double Y_INTERCEPT_CORRECTION = 1.06;
 	int MAX_AGE = 1000;
 	int GRACE_PERIOD = 7;
 }
@@ -339,8 +339,8 @@ double Depreciation::Depreciate(int age) const
 	if(age >= MAX_AGE + GRACE_PERIOD)
 		return FULL_DEPRECIATION;
 	
-	double exponent = exp((-STEEPNESS * ((age - GRACE_PERIOD) - SIGMOID_MIDPOINT))
-	return (CURVE_MAX / (1. + exponent)) + Y_INTERCEPT_CORRECTION
+	double exponent = exp((-STEEPNESS * ((age - GRACE_PERIOD) - SIGMOID_MIDPOINT));
+	return -(CURVE_MAX / (1. + exponent)) + Y_INTERCEPT_CORRECTION;
 }
 
 
