@@ -1197,7 +1197,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 		}
 		if(!fit)
 			shipsUnCarried += 1;
-
+		
 		++it;
 	}
 	if(shipsUnCarried > 0)

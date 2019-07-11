@@ -278,16 +278,16 @@ void PlanetPanel::TakeOffIfReady()
 			const string &category = it->Attributes().Category();
 			droneCount -= it->BaysFree(false);
 			fighterCount -= it->BaysFree(true);
-			if (category == "Drone")
+			if(category == "Drone")
 				droneCount += 1;
-			else if (category == "Fighter")
+			else if(category == "Fighter")
 				fighterCount += 1;
-			else if (it->JumpsRemaining() < 1)
+			else if(it->JumpsRemaining() < 1)
 				nonJumpCount += 1;
 		}
 	nonJumpCount += fighterCount > 0 ? fighterCount : 0;
 	nonJumpCount += droneCount > 0 ? droneCount : 0;
-
+	
 	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0)
 	{
 		ostringstream out;
@@ -310,10 +310,10 @@ void PlanetPanel::TakeOffIfReady()
 				out << " of your mission cargo.";
 			}
 		}
-		else if (nonJumpCount > 0)
+		else if(nonJumpCount > 0)
 		{
 			out << "If you take off now you will launch with ";
-			if (nonJumpCount == 1)
+			if(nonJumpCount == 1)
 				out << "a ship";
 			else
 				out << nonJumpCount << " ships";
