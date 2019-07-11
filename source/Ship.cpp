@@ -226,9 +226,9 @@ void Ship::Load(const DataNode &node)
 			// Newer format is bay "BayCategory".
 			string category = "Fighter";
 			int childOffset = 0;
-			if (key == "drone")
+			if(key == "drone")
 				category = "Drone";			
-			else if (key == "bay")
+			else if(key == "bay")
 			{
 				category = child.Token(1);
 				// The "bay" key has category as first child, so all
