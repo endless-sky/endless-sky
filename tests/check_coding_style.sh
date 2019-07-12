@@ -65,9 +65,23 @@ function filter_exceptions()
 		-e "#include <SDL2/SDL.h>" \
 		-e "#include <SDL2/SDL_events.h>" \
 		-e "#include \"gl_header.h\"" \
+		-e "#include \"Information.h\"" \
+		-e "#include \"Rectangle.h\"" \
+		-e "#include \"Body.h\"" \
+		-e "#include <windows.h>" \
+		-e "#include <sys/stat.h>" \
+		-e "#include <dirent.h>" \
+		-e "#include <unistd.h>" \
+		-e "#include <mutex>" \
 		-e "#include <jpeglib.h>" \
 		-e "#include <png.h>" \
-		-e "#include <mad.h>"
+		-e "#include <mad.h>" \
+		-e "#include \"Files.h\"" \
+		-e "main.cpp: mismatch in header" \
+		-e "Color.cpp:#include \"Color.h\"" \
+		-e "Rectangle.cpp:#include \"Rectangle.h\"" \
+		-e "DataWriter.h:  template <class A, class ...B>" \
+		-e "DataWriter.h:  template <class A>"
 }
 
 
