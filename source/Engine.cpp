@@ -256,7 +256,7 @@ void Engine::Place()
 	}
 	
 	// Give each special ship we just added a random heading and position.
-	for (const shared_ptr<Ship> &ship : ships)
+	for(const shared_ptr<Ship> &ship : ships)
 	{
 		Point pos;
 		Angle angle = Angle::Random();
