@@ -1172,7 +1172,7 @@ vector<shared_ptr<Ship>> AI::GetShipsList(const Ship &ship, bool targetEnemies, 
 	const auto &rosters = targetEnemies ? enemyLists : allyLists;
 	
 	const auto it = rosters.find(ship.GetGovernment());
-	if (it != rosters.end() && !it->second.empty())
+	if(it != rosters.end() && !it->second.empty())
 	{
 		targets.reserve(it->second.size());
 		

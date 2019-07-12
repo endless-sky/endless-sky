@@ -240,7 +240,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 			zoom += ZOOM_FACTOR_INCREMENT;
 		
 		Screen::SetZoom(zoom);
-		if (Screen::Zoom() != zoom)
+		if(Screen::Zoom() != zoom)
 			Screen::SetZoom(Screen::Zoom());
 		
 		// Convert to raw window coordinates, at the new zoom level.
