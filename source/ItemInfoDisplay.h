@@ -16,8 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "WrappedText.h"
 
-#include <vector>
 #include <string>
+#include <vector>
 
 class Table;
 
