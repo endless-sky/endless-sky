@@ -252,9 +252,6 @@ void MissionPanel::Draw()
 	if(acceptedIt != accepted.end() && acceptedIt->Destination())
 		DrawMissionSystem(*acceptedIt, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
 	
-	DrawKey();
-	DrawSelectedSystem();
-	
 	Point pos = DrawPanel(
 		Screen::TopLeft() + Point(0., -availableScroll),
 		"Missions available here:",
@@ -267,8 +264,10 @@ void MissionPanel::Draw()
 		AcceptedVisible());
 	DrawList(accepted, pos);
 	
+	// Now that the mission lists and map elements are drawn, draw the top-most UI elements.
+	DrawKey();
+	DrawSelectedSystem();
 	DrawMissionInfo();
-	
 	DrawButtons("is missions");
 }
 
