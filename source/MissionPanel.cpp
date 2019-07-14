@@ -75,46 +75,35 @@ namespace {
 	// Compute the required scroll amount for the given list of jobs/missions.
 	double SetScroll(const list<Mission> &missionList, const list<Mission>::const_iterator &it, const int sideScroll, int &newScrollTime, bool checkVisibility)
 	{
-		// We don't need to scroll at all if the selection must be within the viewport.
-		// The current side scroll could be non-zero if missions were added/aborted, so reset it.
+		// We don't need to scroll at all if the selection must be within the viewport. The current
+		// scroll could be non-zero if missions were added/aborted, so return the delta that will reset it.
 		const auto maxViewable = MaxDisplayedMissions(checkVisibility);
 		const auto missionCount = missionList.size();
 		if(missionCount < maxViewable)
 			return -sideScroll;
 		
 		const auto countBefore = static_cast<size_t>(checkVisibility
-				? std::count_if(missionList.begin(), it, [](const Mission &m) { return m.IsVisible(); })
-				: std::distance(missionList.begin(), it));
+				? count_if(missionList.begin(), it, [](const Mission &m) { return m.IsVisible(); })
+				: distance(missionList.begin(), it));
 		
-		// If the current selection is still within the viewport, don't scroll either (i.e. paginate scrolling vs constant scrolling).
 		const auto maximumScroll = (missionCount - maxViewable) * 20.;
 		const auto pageScroll = maxViewable * 20.;
 		const auto desiredScroll = countBefore * 20.;
-		double scrollTarget = 0.;
-		if(desiredScroll >= maximumScroll)
-			// Go to the start of the "last page."
-			scrollTarget = maximumScroll;
-		else if(desiredScroll < pageScroll)
-			// Go to the start of the "first page."
-			scrollTarget = 0.;
-		else
+		double scrollTarget = sideScroll;
+		const auto bottomOfPage = sideScroll + pageScroll;
+		if(desiredScroll < sideScroll)
 		{
-			// Compute the current "page boundary," i.e. where the relative "title" would be.
-			const auto topOfPage = sideScroll;
-			const auto bottomOfPage = sideScroll + pageScroll;
-			if(desiredScroll > topOfPage && desiredScroll < bottomOfPage)
-				scrollTarget = sideScroll;
-			else
-			{
-				// Change pages.
-				const auto pageNumber = static_cast<size_t>(floor(desiredScroll / pageScroll));
-				scrollTarget = pageNumber * pageScroll;
-			}
+			// Scroll upwards.
+			scrollTarget = desiredScroll;
+			newScrollTime = SCROLL_TIME;
+		}
+		else if(desiredScroll > bottomOfPage)
+		{
+			// Scroll downwards (but not so far that the list's bottom sprite comes upwards further than needed).
+			scrollTarget = min(maximumScroll, sideScroll + (desiredScroll - bottomOfPage));
+			newScrollTime = SCROLL_TIME;
 		}
 		
-		// If scrolling, set the animation duration.
-		if(scrollTarget != sideScroll)
-			newScrollTime = SCROLL_TIME;
 		// Return the change in scroll.
 		return scrollTarget - sideScroll;
 	}
