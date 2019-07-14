@@ -376,15 +376,15 @@ ship "Bastion"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -28 85
-	engine 28 85
-	gun -54 -14 "Plasma Cannon"
-	gun 54 -14 "Plasma Cannon"
-	gun -54 -14 "Heavy Rocket Launcher"
-	gun 54 -14 "Heavy Rocket Launcher"
-	turret 0 0 "Anti-Missile Turret"
-	turret -30 14 "Blaster Turret"
-	turret 30 14 "Blaster Turret"
+	engine 31.5 89.5
+	engine -31.5 89.5
+	gun 52.5 -0.5 "Heavy Rocket Launcher"
+	gun 52.5 -0.5 "Plasma Cannon"
+	gun -52.5 -0.5 "Heavy Rocket Launcher"
+	gun -52.5 -0.5 "Plasma Cannon"
+	turret 35.5 29.5 "Blaster Turret"
+	turret -35.5 29.5 "Blaster Turret"
+	turret 0 0.5 "Anti-Missile Turret"
 	leak "leak" 40 50
 	leak "flame" 40 80
 	leak "big leak" 70 30
