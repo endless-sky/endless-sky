@@ -534,10 +534,11 @@ Files:
  images/ship/clipper*
  images/ship/dreadnought*
  images/ship/fury*
- images/ship/hauler i*
- images/ship/hauler ii*
- images/ship/hauler iii*
+ images/ship/hauler?i*
+ images/ship/hauler?ii*
+ images/ship/hauler?iii*
  images/ship/modified argosy*
+ images/ship/bastion*
  Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
