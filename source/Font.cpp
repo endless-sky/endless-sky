@@ -310,7 +310,7 @@ string Font::TruncateMiddle(const string &str, int width) const
 		bool nextWorks = (nextWidth <= width);
 		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
 		{
-			leftChars = min(prevChars,nextChars) / 2;
+			leftChars = min(prevChars, nextChars) / 2;
 			rightChars = min(prevChars, nextChars) - leftChars;
 			return str.substr(0, leftChars) + "..." + str.substr(str.size() - rightChars);
 		}
