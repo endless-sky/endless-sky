@@ -268,6 +268,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			trade[value].SetBase(child.Value(valueIndex + 1));
 		else if(key == "object")
 			LoadObject(child, planets);
+		else if(key == "link-shortfall" && child.Size() >= 2)
+			linkShortfall = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -429,6 +431,14 @@ const set<string> &System::Attributes() const
 const set<const System *> &System::Links() const
 {
 	return links;
+}
+
+
+
+// Additional travel distance to target for ships entering through hyperspace.
+const double System::LinkShortfall() const
+{
+	return linkShortfall;
 }
 
 
