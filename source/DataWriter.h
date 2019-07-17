@@ -13,8 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef DATA_WRITER_H_
 #define DATA_WRITER_H_
 
-#include <string>
 #include <sstream>
+#include <string>
 
 class DataNode;
 
