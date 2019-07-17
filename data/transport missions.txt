@@ -2990,11 +2990,15 @@ mission "Paradise Fortune 4"
 			`	"Spoiled kid," Alondo says quietly. "Attitudes like that are why I joined the Southern Defense Pact. Anyway Captain, I suggest you hand her over to the Navy immediately. I'll contact the Republic if you need me to."`
 			choice
 				`	"Alright, I'll hand her over."`
-					goto end
 				`	"Sorry, Alondo, but I agree with her cause."`
+					goto agree
 			
 			apply
 				set "navy contacted"
+			`	Alondo breathes a sigh of relief. "You should probably go check on her. I'll message you where the Navy want to pick her up.`
+				goto end
+			
+			label agree
 			`	"I understand. Please, just don't drag the Free Worlds into this."`
 			
 			label end
