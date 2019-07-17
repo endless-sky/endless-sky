@@ -44,6 +44,7 @@ MapShipyardPanel::MapShipyardPanel(const MapPanel &panel, bool onlyHere)
 {
 	Init();
 	onlyShowSoldHere = onlyHere;
+	UpdateCache();
 }
 
 

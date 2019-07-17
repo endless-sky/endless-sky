@@ -20,7 +20,7 @@ mission "Pirate Occupation [0]"
 		not government "Pirate"
 		attributes "south" "rim"
 	destination
-		not government "Pirate"
+		not government "Pirate" "Quarg"
 		distance 2 3
 		attributes "south"
 	npc
@@ -57,7 +57,7 @@ mission "Pirate Occupation [1]"
 		not government "Pirate"
 		attributes "south" "rim"
 	destination
-		not government "Pirate"
+		not government "Pirate" "Quarg"
 		distance 2 3
 		attributes "south"
 	npc
@@ -95,7 +95,7 @@ mission "Pirate Occupation [2]"
 		not government "Pirate"
 		attributes "south" "rim"
 	destination
-		not government "Pirate"
+		not government "Pirate" "Quarg"
 		distance 2 3
 		attributes "south"
 	npc
