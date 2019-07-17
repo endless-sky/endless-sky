@@ -378,7 +378,7 @@ mission "Deep: Mystery Cubes 0"
 	on stopover
 		dialog `You have placed cubes on the last of the planets that Paris has asked you to. When you look into the bag you find that there are three left. Go to <destination> to give the remaining cubes to Paris.`
 	on complete
-		event "deep: warlord detected" 20 30
+		event "deep: warlord detected" 21
 		payment 500000
 		log `Placed multiple mysterious cubes on planets in the Dirt Belt for the Deep. Deep Security is using these cubes to somehow help in their hunt for a pirate warlord named "Beelzebub."`
 		conversation
@@ -656,7 +656,7 @@ mission "Deep: Mystery Cubes 4"
 	on enter "Hassaleh"
 		set "deep: passed through north"
 	on complete
-		event "assisted the deep" 3 7
+		event "assisted the deep" 7
 		payment 1000000
 		log `Helped to destroy the last of the Navy Cruisers stolen by Beelzebub, but he has escaped. The Navy is still searching, but is no longer asking for help from merchants.`
 		conversation
@@ -697,7 +697,7 @@ mission "Deep: TMBR 0"
 	
 	on offer
 		conversation
-			`When you enter the <planet> spaceport, you hear what is undoubtedly a "There Might Be Riots" song playing loudly enough for everyone in the spaceport to hear. A quick glance around reveals the source of the noise to be the external speakers of a nearby Bounder and several people dancing.`
+			`When you enter the <origin> spaceport, you hear what is undoubtedly a "There Might Be Riots" song playing loudly enough for everyone in the spaceport to hear. A quick glance around reveals the source of the noise to be the external speakers of a nearby Bounder and several people dancing.`
 			choice
 				`	(Dance with them.)`
 					goto dance
@@ -1355,7 +1355,7 @@ mission "Deep: Remnant 0"
 		dialog `You do not have the 10 Quantum Keystones that Ivan asked you to purchase in Hai space. You should return here after obtaining them.`
 	on complete
 		outfit "Quantum Keystone" -10
-		event "deep: keystone research" 31 62
+		event "deep: keystone research" 14
 		payment 60000
 		log `Ran into the scientists who are investigating the anomaly in Terminus. Gave them ten Quantum Keystones from Hai space to examine.`
 		conversation
@@ -1451,7 +1451,7 @@ mission "Deep: Remnant 2A"
 	on visit
 		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <stopovers>. Make sure you're using an outfit scanner as well."`
 	on complete
-		event "deep: scan log research" 15 32
+		event "deep: scan log research" 14
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
 		dialog
 			`The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
@@ -1486,7 +1486,7 @@ mission "Deep: Remnant 1B"
 	on visit
 		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <stopovers>. Make sure you're using an outfit scanner as well."`
 	on complete
-		event "deep: scan log research" 15 32
+		event "deep: scan log research" 14
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
 		dialog
 			`The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
@@ -1523,7 +1523,7 @@ mission "Deep: Remnant 1C"
 	on visit
 		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <stopovers>. Make sure you're using an outfit scanner as well."`
 	on complete
-		event "deep: scan log research" 15 32
+		event "deep: scan log research" 14
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
 		dialog
 			`The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
@@ -1857,7 +1857,7 @@ mission "Deep: Scientist Rescue Timer"
 		has "Deep: Remnant Research: done"
 		has "Deep: Project Hawking: done"
 	on offer
-		event "deep: scientist rescue timer" 90
+		event "deep: scientist rescue timer" 60
 		fail
 
 event "deep: scientist rescue timer"
