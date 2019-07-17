@@ -2995,7 +2995,7 @@ mission "Paradise Fortune 4"
 			
 			apply
 				set "navy contacted"
-			`	Alondo breathes a sigh of relief. "You should probably go check on her. I'll message you where the Navy want to pick her up.`
+			`	Alondo breathes a sigh of relief. "You should probably go check on her. I'll message you where the Navy wants to pick her up."`
 				goto end
 			
 			label agree
