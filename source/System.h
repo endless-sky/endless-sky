@@ -96,7 +96,7 @@ public:
 	// Get a list of systems you can travel to through hyperspace from here.
 	const std::set<const System *> &Links() const;
 	// Additional travel distance to target for ships entering through hyperspace.
-	const double LinkShortfall() const;
+	const double ArrivalDistance() const;
 	// Get a list of systems you can "see" from here, whether or not there is a
 	// direct hyperspace link to them. This is also the set of systems that you
 	// can travel to from here via the jump drive.
@@ -189,7 +189,7 @@ private:
 	// The amount of additional distance that ships will arrive away from their
 	// target (system center or planet) when entering this system through a
 	// hyperspace link.
-	double linkShortfall = 0.;
+	double arrivalDistance = 0.;
 	
 	// Commodity prices.
 	std::map<std::string, Price> trade;
