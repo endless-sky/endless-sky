@@ -108,14 +108,16 @@ ship "Argosy"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 		
-	engine -20 91
-	engine 20 91
 	gun -22 -37 "Energy Blaster"
 	gun 22 -37 "Energy Blaster"
-	gun -23 -37 "Meteor Missile Launcher"
-	gun 23 -37 "Meteor Missile Launcher"
-	turret 0 -12 "Blaster Turret"
-	turret 0 8 "Anti-Missile Turret"
+	gun -22 -37 "Meteor Missile Launcher"
+	gun 22 -37 "Meteor Missile Launcher"
+	turret 0 -12.5 "Blaster Turret"
+	turret 0 9.5 "Anti-Missile Turret"
+	engine -25 91 0.6
+	engine -14 91 0.8
+	engine 14 91 0.8
+	engine 25 91 0.6
 	leak "leak" 60 50
 	leak "flame" 60 80
 	explode "tiny explosion" 10
@@ -377,15 +379,15 @@ ship "Bastion"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -28 85
-	engine 28 85
-	gun -54 -14 "Plasma Cannon"
-	gun 54 -14 "Plasma Cannon"
-	gun -54 -14 "Heavy Rocket Launcher"
-	gun 54 -14 "Heavy Rocket Launcher"
-	turret 0 0 "Anti-Missile Turret"
-	turret -30 14 "Blaster Turret"
-	turret 30 14 "Blaster Turret"
+	engine 31.5 89.5
+	engine -31.5 89.5
+	gun 52.5 -0.5 "Heavy Rocket Launcher"
+	gun 52.5 -0.5 "Plasma Cannon"
+	gun -52.5 -0.5 "Heavy Rocket Launcher"
+	gun -52.5 -0.5 "Plasma Cannon"
+	turret 35.5 29.5 "Blaster Turret"
+	turret -35.5 29.5 "Blaster Turret"
+	turret 0 0.5 "Anti-Missile Turret"
 	leak "leak" 40 50
 	leak "flame" 40 80
 	leak "big leak" 70 30
@@ -891,12 +893,12 @@ ship "Clipper"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 		
-	engine -20 45
-	engine 20 45
-	gun -23 -19 "Javelin Pod"
-	gun 23 -19 "Javelin Pod"
-	gun -12 -7 "Beam Laser"
-	gun 12 -7 "Beam Laser"
+	gun -21.5 -18 "Javelin Pod"
+	gun 21.5 -18 "Javelin Pod"
+	gun 11 -8.5 "Beam Laser"
+	gun -11 -8.5 "Beam Laser"
+	engine -22 47
+	engine 22 47
 	leak "leak" 60 50
 	leak "flame" 50 80
 	explode "tiny explosion" 15
@@ -1168,17 +1170,17 @@ ship "Dreadnought"
 		"Orca Plasma Steering"
 		"Hyperdrive"
 		
-	engine -25 172
-	engine 25 172
-	gun -10 -167 "Torpedo Launcher"
-	gun 10 -167 "Torpedo Launcher"
-	gun -20 -151 "Torpedo Launcher"
-	gun 20 -151 "Torpedo Launcher"
-	turret 0 -94 "Plasma Turret"
-	turret -38 -56 "Heavy Anti-Missile Turret"
-	turret 38 -56 "Heavy Anti-Missile Turret"
-	turret -44 118 "Plasma Turret"
-	turret 44 118 "Plasma Turret"
+	gun 18.5 -173.5 "Torpedo Launcher"
+	gun -18.5 -173.5 "Torpedo Launcher"
+	gun 9.5 -186 "Torpedo Launcher"
+	gun -9.5 -186 "Torpedo Launcher"
+	turret 0 -99.5 "Plasma Turret"
+	turret 39 -63.5 "Heavy Anti-Missile Turret"
+	turret -39 -63.5 "Heavy Anti-Missile Turret"
+	turret 39 107.5 "Plasma Turret"
+	turret -39 107.5 "Plasma Turret"
+	engine 25.5 173.5
+	engine -25.5 173.5
 	leak "leak" 40 50
 	leak "flame" 20 80
 	leak "big leak" 80 30
@@ -1557,12 +1559,14 @@ ship "Fury"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -17 35
-	engine 17 35
-	gun -10 -26
-	gun 10 -26
-	gun -16 -20
-	gun 16 -20
+	gun -17 -19.5
+	gun 17 -19.5
+	gun -10.5 -25.5
+	gun 10.5 -25.5
+	engine -18 37 0.6
+	engine 18 37 0.6
+	engine -11 35 0.8
+	engine 11 35 0.8
 	leak "flame" 50 80
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -1664,15 +1668,15 @@ ship "Hauler"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
-		
-	engine -45 122
-	engine 45 122
-	gun -15 -91
-	gun 15 -91
-	turret -26 -49 "Quad Blaster Turret"
-	turret 26 -49 "Heavy Anti-Missile Turret"
-	turret -19 77 "Heavy Anti-Missile Turret"
-	turret 19 77 "Quad Blaster Turret"
+
+	gun -14.5 -92.5
+	gun 14.5 -92.5
+	turret -21.5 -48 "Quad Blaster Turret"
+	turret 21.5 -48 "Heavy Anti-Missile Turret"
+	turret -18.5 78.5 "Heavy Anti-Missile Turret"
+	turret 18.5 78.5 "Quad Blaster Turret"
+	engine -45 122.5
+	engine 45 122.5
 	leak "leak" 60 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -1724,14 +1728,14 @@ ship "Hauler II"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -45 160
-	engine 45 160
-	gun -15 -128
-	gun 15 -128
-	turret -26 -85 "Quad Blaster Turret"
-	turret 26 -85 "Heavy Anti-Missile Turret"
-	turret -19 115 "Heavy Anti-Missile Turret"
-	turret 19 115 "Quad Blaster Turret"
+	gun 14.5 -129.5
+	gun -14.5 -129.5
+	turret 21.5 -84.5 "Heavy Anti-Missile Turret"
+	turret -21.5 -84.5 "Quad Blaster Turret"
+	turret 18.5 115.5 "Quad Blaster Turret"
+	turret -18.5 115.5 "Heavy Anti-Missile Turret"
+	engine 45 159.5
+	engine -45 159.5
 	leak "leak" 60 50
 	leak "flame" 40 80
 	leak "big leak" 80 30
@@ -1782,15 +1786,15 @@ ship "Hauler III"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
-		
-	engine -45 196
-	engine 45 196
-	gun -15 -165
-	gun 15 -165
-	turret -26 -122 "Quad Blaster Turret"
-	turret 26 -122 "Heavy Anti-Missile Turret"
-	turret -19 151 "Heavy Anti-Missile Turret"
-	turret 19 151 "Quad Blaster Turret"
+
+	gun -14.5 -166.5
+	gun 14.5 -166.5
+	turret -21.5 -122 "Quad Blaster Turret"
+	turret 21.5 -122 "Heavy Anti-Missile Turret"
+	turret -18.5 152.5 "Heavy Anti-Missile Turret"
+	turret 18.5 152.5 "Quad Blaster Turret"
+	engine -45 196.5
+	engine 45 196.5
 	leak "leak" 50 50
 	leak "flame" 40 80
 	leak "big leak" 80 30
@@ -2147,14 +2151,16 @@ ship "Modified Argosy"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -20 91
-	engine 20 91
+	engine -25 93 0.6
+	engine -14 93 0.8
+	engine 14 93 0.8
+	engine 25 93 0.6
 	gun -22 -37 "Heavy Laser"
-	gun 22 -37 "Heavy Laser"
-	gun -23 -37 "Meteor Missile Launcher"
-	gun 23 -37 "Meteor Missile Launcher"
-	turret 0 -12 "Heavy Laser Turret"
-	turret 0 8 "Heavy Anti-Missile Turret"
+	gun 22.5 -37 "Heavy Laser"
+	gun -22 -37 "Meteor Missile Launcher"
+	gun 22.5 -37 "Meteor Missile Launcher"
+	turret 0 -12.5 "Heavy Anti-Missile Turret"
+	turret 0 9.5 "Heavy Laser Turret"
 	leak "leak" 70 50
 	leak "flame" 30 80
 	explode "tiny explosion" 10
@@ -2266,14 +2272,14 @@ ship "Nest"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -45 122
-	engine 45 122
-	gun -15 -91
-	gun 15 -91
-	turret -26 -50 "Quad Blaster Turret"
-	turret 26 -50 "Heavy Anti-Missile Turret"
-	turret -18 75 "Heavy Anti-Missile Turret"
-	turret 18 75 "Quad Blaster Turret"
+	gun -14.5 -92.5
+	gun 14.5 -92.5
+	turret -21.5 -48 "Quad Blaster Turret"
+	turret 21.5 -48 "Heavy Anti-Missile Turret"
+	turret -18.5 78.5 "Heavy Anti-Missile Turret"
+	turret 18.5 78.5 "Quad Blaster Turret"
+	engine -45 122.5
+	engine 45 122.5
 	fighter -47 12 under
 	fighter 47 12 under
 	leak "leak" 60 50
@@ -2607,14 +2613,14 @@ ship "Roost"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -45 159
-	engine 45 159
-	gun -15 -128
-	gun 15 -128
-	turret -26 -85 "Quad Blaster Turret"
-	turret 26 -85 "Heavy Anti-Missile Turret"
-	turret -18 114 "Heavy Anti-Missile Turret"
-	turret 18 114 "Quad Blaster Turret"
+	gun 14.5 -129.5
+	gun -14.5 -129.5
+	turret 21.5 -84.5 "Heavy Anti-Missile Turret"
+	turret -21.5 -84.5 "Quad Blaster Turret"
+	turret 18.5 115.5 "Quad Blaster Turret"
+	turret -18.5 115.5 "Heavy Anti-Missile Turret"
+	engine 45 159.5
+	engine -45 159.5
 	fighter -47 -24 under
 	fighter 47 -24 under
 	fighter -47 50 under
@@ -2770,15 +2776,15 @@ ship "Skein"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
-		
-	engine -45 197
-	engine 45 197
-	gun -15 -165
-	gun 15 -165
-	turret -26 -123 "Quad Blaster Turret"
-	turret 26 -123 "Heavy Anti-Missile Turret"
-	turret -18.5 154 "Heavy Anti-Missile Turret"
-	turret 18.5 154 "Quad Blaster Turret"
+
+	gun -14.5 -166.5
+	gun 14.5 -166.5
+	turret -21.5 -122 "Quad Blaster Turret"
+	turret 21.5 -122 "Heavy Anti-Missile Turret"
+	turret -18.5 152.5 "Heavy Anti-Missile Turret"
+	turret 18.5 152.5 "Quad Blaster Turret"
+	engine -45 196.5
+	engine 45 196.5
 	fighter -47 -61 under
 	fighter 47 -61 under
 	fighter -47 14 under

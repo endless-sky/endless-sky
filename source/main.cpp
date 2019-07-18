@@ -214,8 +214,15 @@ int main(int argc, char *argv[])
 		if(!isFullscreen)
 			SDL_GetWindowSize(window, &windowWidth, &windowHeight);
 		
-		
+		// GamePanels is used for the main-panel (flying your spaceship). The planet
+		// dialog and all other game-content related dialogs are placed on top of the
+		// main-panel.
+		// If there are both menuPanels and gamePanels, then the menuPanels take
+		// priority over the gamePanels. The gamePanels will then not be shown until
+		// the stack of menuPanels is empty.
 		UI gamePanels;
+		// MenuPanels is used for the panels related to pilot creation, preferences,
+		// game loading and game saving.
 		UI menuPanels;
 		menuPanels.Push(new MenuPanel(player, gamePanels));
 		if(!conversation.IsEmpty())
