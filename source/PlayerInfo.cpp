@@ -175,6 +175,15 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "groups" && child.Size() >= 2 && !ships.empty())
 			groups[ships.back().get()] = child.Value(1);
+		else if(child.Token(0) == "storage")
+		{
+			for(const DataNode &grand : child)
+				if (grand.Size() >= 2 && grand.Token(0) == "planet")
+				{
+					CargoHold& storage = planetaryStorage[GameData::Planets().Get(grand.Token(1))];
+					storage.Load(grand);
+				}
+		}
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
 		else if(child.Token(0) == "cargo")
@@ -936,6 +945,20 @@ CargoHold &PlayerInfo::Cargo()
 const CargoHold &PlayerInfo::Cargo() const
 {
 	return cargo;
+}
+
+
+
+// Get planetary storage information
+// Pointer, since we might not be on a planet, or since the storage might be empty
+CargoHold *PlayerInfo::Storage(bool forceCreate)
+{
+	if(planet && (forceCreate || planetaryStorage.count(planet)))
+		return &(planetaryStorage[planet]);
+
+	// nullptr can be returned when forceCreate is true if there is no planet
+	// but nullptr is the best we can offer in such cases.
+	return nullptr;
 }
 
 
@@ -2466,6 +2489,23 @@ void PlayerInfo::Save(const string &path) const
 		auto it = groups.find(ship.get());
 		if(it != groups.end() && it->second)
 			out.Write("groups", it->second);
+	}
+	if(!planetaryStorage.empty())
+	{
+		out.Write("storage");
+		out.BeginChild();
+		{
+			for(const auto &it : planetaryStorage)
+				if(!it.second.IsEmpty()){
+					out.Write("planet", it.first->TrueName());
+					out.BeginChild();
+					{
+						it.second.Save(out);
+					}
+					out.EndChild();
+				}
+		}
+		out.EndChild();
 	}
 	
 	// Save accounting information, cargo, and cargo cost bases.

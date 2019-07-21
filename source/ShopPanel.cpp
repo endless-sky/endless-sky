@@ -296,7 +296,8 @@ void ShopPanel::DrawButtons()
 	
 	Point buyCenter = Screen::BottomRight() - Point(210, 25);
 	FillShader::Fill(buyCenter, Point(60, 30), back);
-	string BUY = (playerShip && selectedOutfit && player.Cargo().Get(selectedOutfit)) ? "_Install" : "_Buy";
+	string BUY = (playerShip && selectedOutfit && (player.Cargo().Get(selectedOutfit)
+		|| (player.Storage() && player.Storage()->Get(selectedOutfit)) )) ? "_Install" : "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
 		CanBuy() ? hoverButton == 'b' ? hover : active : inactive);
@@ -486,7 +487,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 
 
-void ShopPanel::FailSell(bool toCargo) const
+void ShopPanel::FailSell(bool toCargo, bool toStorage) const
 {
 }
 
@@ -531,13 +532,15 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 {
 	scrollDetailsIntoView = false;
 	bool toCargo = selectedOutfit && (key == 'r' || key == 'u');
+	bool toStorage = selectedOutfit && (key == 't');
 	if(key == 'l' || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
 	}
-	else if(key == 'b' || (key == 'i' && selectedOutfit && player.Cargo().Get(selectedOutfit)))
+	else if(key == 'b' || (key == 'i' && selectedOutfit && (player.Cargo().Get(selectedOutfit)
+			|| (player.Storage() && player.Storage()->Get(selectedOutfit)))))
 	{
 		if(!CanBuy())
 			FailBuy();
@@ -547,15 +550,15 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			player.UpdateCargoCapacities();
 		}
 	}
-	else if(key == 's' || toCargo)
+	else if(key == 's' || toCargo || toStorage)
 	{
-		if(!CanSell(toCargo))
-			FailSell(toCargo);
+		if(!CanSell(toCargo, toStorage))
+			FailSell(toCargo, toStorage);
 		else
 		{
 			int modifier = CanSellMultiple() ? Modifier() : 1;
-			for(int i = 0; i < modifier && CanSell(toCargo); ++i)
-				Sell(toCargo);
+			for(int i = 0; i < modifier && CanSell(toCargo, toStorage); ++i)
+				Sell(toCargo, toStorage);
 			player.UpdateCargoCapacities();
 		}
 	}
