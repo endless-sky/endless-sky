@@ -8,6 +8,10 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+phrase "coalition ringworld workers"
+	word
+		`You drop off the workers on the <planet>. A few minutes later you receive a transfer of <payment>.`
+
 mission "Coalition: Ringworld Workers 1"
 	job
 	repeat
@@ -21,11 +25,13 @@ mission "Coalition: Ringworld Workers 1"
 		government "Coalition"
 	destination
 		government "Heliarch"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 10000
-		dialog `You drop off the volunteers on the <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition ringworld workers"
 
 mission "Coalition: Ringworld Workers 2"
 	job
@@ -40,11 +46,13 @@ mission "Coalition: Ringworld Workers 2"
 		government "Coalition"
 	destination
 		government "Heliarch"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 15000
-		dialog `You drop off the volunteers on the <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition ringworld workers"
 
 mission "Coalition: Ringworld Workers 3"
 	job
@@ -59,12 +67,18 @@ mission "Coalition: Ringworld Workers 3"
 		government "Coalition"
 	destination
 		government "Heliarch"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 20000
-		dialog `You drop off the volunteers on the <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition ringworld workers"
 
+
+phrase "coalition ringworld volunteers"
+	word
+		`You drop off the volunteers on the <planet>, where they are met by a Heliarch agent. A few minutes later you receive a transfer of <payment>.`
 
 mission "Coalition: Ringworld Volunteers 1"
 	job
@@ -79,11 +93,13 @@ mission "Coalition: Ringworld Volunteers 1"
 		government "Coalition"
 	destination
 		government "Heliarch"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 4000
-		dialog `You drop off the volunteers on the <planet>, where they are met by a Heliarch agent. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition ringworld volunteers"
 
 mission "Coalition: Ringworld Volunteers 2"
 	job
@@ -98,11 +114,13 @@ mission "Coalition: Ringworld Volunteers 2"
 		government "Coalition"
 	destination
 		government "Heliarch"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 8000
-		dialog `You drop off the volunteers on the <planet>, where they are met by a Heliarch agent. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition ringworld volunteers"
 
 mission "Coalition: Ringworld Volunteers 3"
 	job
@@ -117,12 +135,18 @@ mission "Coalition: Ringworld Volunteers 3"
 		government "Coalition"
 	destination
 		government "Heliarch"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 12000
-		dialog `You drop off the volunteers on the <planet>, where they are met by a Heliarch agent. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition ringworld volunteers"
 
+
+phrase "coalition ringworld materials"
+	word
+		`You drop off the construction materials and receive <payment> in payment.`
 
 mission "Coalition: Ringworld Materials 1"
 	job
@@ -138,11 +162,13 @@ mission "Coalition: Ringworld Materials 1"
 		government "Coalition"
 	destination
 		government "Heliarch"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 30000
-		dialog `You drop off the construction materials and receive <payment> in payment.`
+		dialog phrase "coalition ringworld materials"
 
 mission "Coalition: Ringworld Materials 2"
 	job
@@ -158,11 +184,13 @@ mission "Coalition: Ringworld Materials 2"
 		government "Coalition"
 	destination
 		government "Heliarch"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 40000
-		dialog `You drop off the construction materials and receive <payment> in payment.`
+		dialog phrase "coalition ringworld materials"
 
 mission "Coalition: Ringworld Materials 3"
 	job
@@ -178,12 +206,18 @@ mission "Coalition: Ringworld Materials 3"
 		government "Coalition"
 	destination
 		government "Heliarch"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 50000
-		dialog `You drop off the construction materials and receive <payment> in payment.`
+		dialog phrase "coalition ringworld materials"
 
+
+phrase "coalition ringworld supplies"
+	word
+		`You drop off the donation of <commodity> and receive <payment> in payment.`
 
 mission "Coalition: Ringworld Supplies 1"
 	job
@@ -198,11 +232,13 @@ mission "Coalition: Ringworld Supplies 1"
 		government "Coalition"
 	destination
 		government "Heliarch"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 2000
-		dialog `You drop off the donation of <commodity> and receive <payment> in payment.`
+		dialog phrase "coalition ringworld supplies"
 
 mission "Coalition: Ringworld Supplies 2"
 	job
@@ -217,11 +253,13 @@ mission "Coalition: Ringworld Supplies 2"
 		government "Coalition"
 	destination
 		government "Heliarch"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 4000
-		dialog `You drop off the donation of <commodity> and receive <payment> in payment.`
+		dialog phrase "coalition ringworld supplies"
 
 mission "Coalition: Ringworld Supplies 3"
 	job
@@ -236,11 +274,13 @@ mission "Coalition: Ringworld Supplies 3"
 		government "Coalition"
 	destination
 		government "Heliarch"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 6000
-		dialog `You drop off the donation of <commodity> and receive <payment> in payment.`
+		dialog phrase "coalition ringworld supplies"
 
 
 mission "Coalition: Heliarch Candidate"
@@ -257,12 +297,18 @@ mission "Coalition: Heliarch Candidate"
 		government "Coalition"
 	destination
 		government "Heliarch"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 50000
 		dialog `Heliarch agents meet your ship as soon as it docks and receive the candidate whom you have been transporting, in a small ceremony. A few minutes later you receive a transfer of <payment>.`
 
+
+phrase "coalition interpreters dialog"
+	word
+		`You drop off the interpreters on <planet>. A few minutes later you receive a transfer of <payment>.`
 
 mission "Coalition: Interpreters 1"
 	job
@@ -277,11 +323,13 @@ mission "Coalition: Interpreters 1"
 		government "Heliarch"
 	destination
 		government "Coalition"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 5000
-		dialog `You drop off the interpreters on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition interpreters dialog"
 
 mission "Coalition: Interpreters 2"
 	job
@@ -296,11 +344,13 @@ mission "Coalition: Interpreters 2"
 		government "Heliarch"
 	destination
 		government "Coalition"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 10000
-		dialog `You drop off the interpreters on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition interpreters dialog"
 
 mission "Coalition: Interpreters 3"
 	job
@@ -315,12 +365,18 @@ mission "Coalition: Interpreters 3"
 		government "Heliarch"
 	destination
 		government "Coalition"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 10000
-		dialog `You drop off the interpreters on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition interpreters dialog"
 
+
+phrase "coalition peacekeepers dialog"
+	word
+		`You drop off the peacekeepers on <planet>. A few minutes later you receive a transfer of <payment>.`
 
 mission "Coalition: Peacekeepers 1"
 	job
@@ -335,11 +391,13 @@ mission "Coalition: Peacekeepers 1"
 		government "Heliarch"
 	destination
 		government "Coalition"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 20000
-		dialog `You drop off the peacekeepers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition peacekeepers dialog"
 
 mission "Coalition: Peacekeepers 2"
 	job
@@ -354,12 +412,18 @@ mission "Coalition: Peacekeepers 2"
 		government "Heliarch"
 	destination
 		government "Coalition"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 30000
-		dialog `You drop off the peacekeepers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition peacekeepers dialog"
 
+
+phrase "coalition interspecies settlers"
+	word
+		`You drop off the settlers on <planet>. A few minutes later you receive a transfer of <payment>.`
 
 mission "Coalition: Saryd Interspecies 1"
 	job
@@ -374,11 +438,13 @@ mission "Coalition: Saryd Interspecies 1"
 		attributes "saryd"
 	destination
 		attributes "kimek" "arach"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 10000
-		dialog `You drop off the settlers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition interspecies settlers"
 
 mission "Coalition: Saryd Interspecies 2"
 	job
@@ -393,11 +459,13 @@ mission "Coalition: Saryd Interspecies 2"
 		attributes "saryd"
 	destination
 		attributes "kimek" "arach"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 15000
-		dialog `You drop off the settlers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition interspecies settlers"
 
 mission "Coalition: Kimek Interspecies 1"
 	job
@@ -412,11 +480,13 @@ mission "Coalition: Kimek Interspecies 1"
 		attributes "kimek"
 	destination
 		attributes "saryd" "arach"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 10000
-		dialog `You drop off the settlers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition interspecies settlers"
 
 mission "Coalition: Kimek Interspecies 2"
 	job
@@ -431,11 +501,13 @@ mission "Coalition: Kimek Interspecies 2"
 		attributes "kimek"
 	destination
 		attributes "saryd" "arach"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 15000
-		dialog `You drop off the settlers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition interspecies settlers"
 
 mission "Coalition: Arach Interspecies 1"
 	job
@@ -450,11 +522,13 @@ mission "Coalition: Arach Interspecies 1"
 		attributes "arach"
 	destination
 		attributes "saryd" "kimek"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 10000
-		dialog `You drop off the settlers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition interspecies settlers"
 
 mission "Coalition: Arach Interspecies 2"
 	job
@@ -469,12 +543,18 @@ mission "Coalition: Arach Interspecies 2"
 		attributes "arach"
 	destination
 		attributes "saryd" "kimek"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 15000
-		dialog `You drop off the settlers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition interspecies settlers"
 
+
+phrase "coalition transfer dialog"
+	word
+		`You drop off the workers on <planet>. A few minutes later you receive a transfer of <payment>.`
 
 mission "Coalition: Transfer 1"
 	job
@@ -491,11 +571,13 @@ mission "Coalition: Transfer 1"
 		government "Coalition"
 		attributes "mining" "farming" "factory" "oil"
 		distance 2 20
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 5000
-		dialog `You drop off the workers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition transfer dialog"
 
 mission "Coalition: Transfer 2"
 	job
@@ -512,11 +594,13 @@ mission "Coalition: Transfer 2"
 		government "Coalition"
 		attributes "mining" "farming" "factory" "oil"
 		distance 2 20
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 10000
-		dialog `You drop off the workers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition transfer dialog"
 
 mission "Coalition: Transfer 3"
 	job
@@ -533,12 +617,18 @@ mission "Coalition: Transfer 3"
 		government "Coalition"
 		attributes "mining" "farming" "factory" "oil"
 		distance 2 20
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 15000
-		dialog `You drop off the workers on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition transfer dialog"
 
+
+phrase "coalition tourists outbound"
+	word
+		`The tourists thank you for bringing them to <planet> and pay you <payment>.`
 
 mission "Coalition: Tourists Out 1"
 	job
@@ -558,10 +648,12 @@ mission "Coalition: Tourists Out 1"
 		government "Coalition"
 		attributes "tourism"
 		distance 5 20
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment 22000 200
-		dialog `The tourists thank you for bringing them to <planet> and pay you <payment>.`
+		dialog phrase "coalition tourists outbound"
 
 mission "Coalition: Tourists Out 2"
 	job
@@ -581,10 +673,12 @@ mission "Coalition: Tourists Out 2"
 		government "Coalition"
 		attributes "tourism"
 		distance 5 20
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment 32000 200
-		dialog `The tourists thank you for bringing them to <planet> and pay you <payment>.`
+		dialog phrase "coalition tourists outbound"
 
 mission "Coalition: Tourists Out 3"
 	job
@@ -604,11 +698,17 @@ mission "Coalition: Tourists Out 3"
 		government "Coalition"
 		attributes "tourism"
 		distance 5 20
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment 42000 200
-		dialog `The tourists thank you for bringing them to <planet> and pay you <payment>.`
+		dialog phrase "coalition tourists outbound"
 
+
+phrase "coalition tourists homebound"
+	word
+		`The tourists thank you for bringing them home and pay you <payment>.`
 
 mission "Coalition: Tourists Home 1"
 	job
@@ -628,10 +728,12 @@ mission "Coalition: Tourists Home 1"
 	destination
 		government "Coalition"
 		distance 5 20
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment 22000 200
-		dialog `The tourists thank you for bringing them home and pay you <payment>.`
+		dialog phrase "coalition tourists homebound"
 
 mission "Coalition: Tourists Home 2"
 	job
@@ -651,10 +753,12 @@ mission "Coalition: Tourists Home 2"
 	destination
 		government "Coalition"
 		distance 5 20
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment 32000 200
-		dialog `The tourists thank you for bringing them home and pay you <payment>.`
+		dialog phrase "coalition tourists homebound"
 
 mission "Coalition: Tourists Home 3"
 	job
@@ -674,11 +778,17 @@ mission "Coalition: Tourists Home 3"
 	destination
 		government "Coalition"
 		distance 5 20
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment 42000 200
-		dialog `The tourists thank you for bringing them home and pay you <payment>.`
+		dialog phrase "coalition tourists homebound"
 
+
+phrase "coalition fast courier"
+	word
+		`The recipient thanks you for bringing the <commodity> here so quickly, and pays you <payment>.`
 
 mission "Coalition: Fast Courier 1"
 	job
@@ -695,11 +805,13 @@ mission "Coalition: Fast Courier 1"
 	destination
 		government "Coalition"
 		distance 6 20
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 30000
-		dialog `The recipient thanks you for bringing the <commodity> here so quickly, and pays you <payment>.`
+		dialog phrase "coalition fast courier"
 
 mission "Coalition: Fast Courier 2"
 	job
@@ -716,11 +828,13 @@ mission "Coalition: Fast Courier 2"
 	destination
 		government "Coalition"
 		distance 6 20
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 40000
-		dialog `The recipient thanks you for bringing the <commodity> here so quickly, and pays you <payment>.`
+		dialog phrase "coalition fast courier"
 
 mission "Coalition: Fast Courier 3"
 	job
@@ -737,12 +851,18 @@ mission "Coalition: Fast Courier 3"
 	destination
 		government "Coalition"
 		distance 6 20
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 50000
-		dialog `The recipient thanks you for bringing the <commodity> here so quickly, and pays you <payment>.`
+		dialog phrase "coalition fast courier"
 
+
+phrase "coalition commodity delivery"
+	word
+		`You drop off the <commodity> on <planet>, and receive <payment> in payment.`
 
 mission "Coalition: Cargo 1"
 	job
@@ -758,11 +878,13 @@ mission "Coalition: Cargo 1"
 	destination
 		government "Coalition"
 		distance 2 20
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 2000
-		dialog `You drop off the <commodity> on <planet>, and receive <payment> in payment.`
+		dialog phrase "coalition commodity delivery"
 
 mission "Coalition: Cargo 2"
 	job
@@ -778,11 +900,13 @@ mission "Coalition: Cargo 2"
 	destination
 		government "Coalition"
 		distance 2 20
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 4000
-		dialog `You drop off the <commodity> on <planet>, and receive <payment> in payment.`
+		dialog phrase "coalition commodity delivery"
 
 mission "Coalition: Cargo 3"
 	job
@@ -798,11 +922,13 @@ mission "Coalition: Cargo 3"
 	destination
 		government "Coalition"
 		distance 2 20
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 6000
-		dialog `You drop off the <commodity> on <planet>, and receive <payment> in payment.`
+		dialog phrase "coalition commodity delivery"
 
 mission "Coalition: Cargo 4"
 	job
@@ -818,11 +944,13 @@ mission "Coalition: Cargo 4"
 	destination
 		government "Coalition"
 		distance 2 20
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 8000
-		dialog `You drop off the <commodity> on <planet>, and receive <payment> in payment.`
+		dialog phrase "coalition commodity delivery"
 
 
 mission "Coalition: Bulk 1"
@@ -839,11 +967,13 @@ mission "Coalition: Bulk 1"
 	destination
 		government "Coalition"
 		distance 3 20
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 10000
-		dialog `You drop off the <commodity> on <planet>, and receive <payment> in payment.`
+		dialog phrase "coalition commodity delivery"
 
 mission "Coalition: Bulk 2"
 	job
@@ -859,11 +989,13 @@ mission "Coalition: Bulk 2"
 	destination
 		government "Coalition"
 		distance 3 20
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 14000
-		dialog `You drop off the <commodity> on <planet>, and receive <payment> in payment.`
+		dialog phrase "coalition commodity delivery"
 
 mission "Coalition: Bulk 3"
 	job
@@ -879,11 +1011,13 @@ mission "Coalition: Bulk 3"
 	destination
 		government "Coalition"
 		distance 3 20
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 20000
-		dialog `You drop off the <commodity> on <planet>, and receive <payment> in payment.`
+		dialog phrase "coalition commodity delivery"
 
 mission "Coalition: Bulk 4"
 	job
@@ -899,11 +1033,13 @@ mission "Coalition: Bulk 4"
 	destination
 		government "Coalition"
 		distance 3 20
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 30000
-		dialog `You drop off the <commodity> on <planet>, and receive <payment> in payment.`
+		dialog phrase "coalition commodity delivery"
 
 
 mission "Coalition: Rush 1"
@@ -921,11 +1057,13 @@ mission "Coalition: Rush 1"
 	destination
 		government "Coalition"
 		distance 4 20
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 32000
-		dialog `You drop off the <commodity> on <planet>, and receive <payment> in payment.`
+		dialog phrase "coalition commodity delivery"
 
 mission "Coalition: Rush 2"
 	job
@@ -942,11 +1080,13 @@ mission "Coalition: Rush 2"
 	destination
 		government "Coalition"
 		distance 4 20
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 40000
-		dialog `You drop off the <commodity> on <planet>, and receive <payment> in payment.`
+		dialog phrase "coalition commodity delivery"
 
 mission "Coalition: Rush 3"
 	job
@@ -963,11 +1103,13 @@ mission "Coalition: Rush 3"
 	destination
 		government "Coalition"
 		distance 4 20
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 50000
-		dialog `You drop off the <commodity> on <planet>, and receive <payment> in payment.`
+		dialog phrase "coalition commodity delivery"
 
 
 mission "Coalition: Doctors"
@@ -985,12 +1127,18 @@ mission "Coalition: Doctors"
 	destination
 		government "Coalition"
 		distance 4 20
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 50000
 		dialog `The doctors methodically pack up their equipment and leave your ship. From their lack of urgency, it appears that this is a routine event, not a crisis. A few minutes later you receive a transfer of <payment>.`
 
+
+phrase "coalition cadets dialog"
+	word
+		`You drop off the cadets on <planet>. A few minutes later you receive a transfer of <payment>.`
 
 mission "Coalition: Cadets 1"
 	job
@@ -1005,11 +1153,13 @@ mission "Coalition: Cadets 1"
 		near "Belug" 1 20
 		government "Coalition"
 	destination "Belug's Plunge"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 10000
-		dialog `You drop off the cadets on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition cadets dialog"
 
 mission "Coalition: Cadets 2"
 	job
@@ -1024,12 +1174,18 @@ mission "Coalition: Cadets 2"
 		near "Belug" 2 20
 		government "Coalition"
 	destination "Belug's Plunge"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 12000
-		dialog `You drop off the cadets on <planet>. A few minutes later you receive a transfer of <payment>.`
+		dialog phrase "coalition cadets dialog"
 
+
+phrase "coalition games dialog"
+	word
+		`The passengers thank you for bringing them to <planet> and pay you <payment>.`
 
 mission "Coalition: To Games 1"
 	job
@@ -1046,10 +1202,12 @@ mission "Coalition: To Games 1"
 		near "Homeward" 2 20
 		government "Coalition"
 	destination "Far Home"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment 10000 200
-		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>.`
+		dialog phrase "coalition games dialog"
 
 mission "Coalition: To Games 2"
 	job
@@ -1066,10 +1224,12 @@ mission "Coalition: To Games 2"
 		near "Homeward" 2 20
 		government "Coalition"
 	destination "Far Home"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment 15000 200
-		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>.`
+		dialog phrase "coalition games dialog"
 
 mission "Coalition: To Games 3"
 	job
@@ -1086,10 +1246,12 @@ mission "Coalition: To Games 3"
 		near "Homeward" 2 20
 		government "Coalition"
 	destination "Far Home"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment 25000 200
-		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>.`
+		dialog phrase "coalition games dialog"
 
 
 mission "Coalition: From Games 1"
@@ -1107,11 +1269,13 @@ mission "Coalition: From Games 1"
 	destination
 		government "Coalition"
 		distance 2 20
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 10000
-		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>.`
+		dialog phrase "coalition games dialog"
 
 mission "Coalition: From Games 2"
 	job
@@ -1128,11 +1292,13 @@ mission "Coalition: From Games 2"
 	destination
 		government "Coalition"
 		distance 2 20
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 15000
-		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>.`
+		dialog phrase "coalition games dialog"
 
 mission "Coalition: From Games 3"
 	job
@@ -1149,8 +1315,10 @@ mission "Coalition: From Games 3"
 	destination
 		government "Coalition"
 		distance 2 20
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		"coalition jobs" ++
 		payment
 		payment 25000
-		dialog `The passengers thank you for bringing them to <planet> and pay you <payment>.`
+		dialog phrase "coalition games dialog"

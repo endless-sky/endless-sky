@@ -228,7 +228,7 @@ void HailPanel::Draw()
 
 
 
-bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
 	

@@ -319,6 +319,8 @@ mission "FW Syndicate Diplomacy 1"
 			choice
 				`	"Okay. Let's get going!"`
 					accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -385,6 +387,8 @@ mission "FW Syndicate Diplomacy 1B"
 			label katya
 			`	"We'll have to talk that over with the Council when we get back. But if she is a prisoner of the Intelligence bureau, there is no way we can rescue her. Her only hope is that they will recognize her innocence. For now, we must continue with our mission, and head to Tarazed."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -418,6 +422,8 @@ mission "FW Syndicate Diplomacy 1C"
 			`	"Now," says Alondo, "I'd like to make one more diplomatic visit. The planet Poisonwood has insisted on remaining loyal to the Republic, even though they are deep inside our space. I'd like to meet with their leaders and see if they will reconsider joining us."`
 				accept
 		event "Tarazed neutrality"
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 	
 	
 	
@@ -483,7 +489,7 @@ mission "FW Syndicate Diplomacy 1D"
 			choice
 				`	"What was the Disappearance?"`
 			
-			`	"I was a teenage slave working in the factories at the time," she says. "Exactly the wrong age, as it turned out. One day the overseers informed us that all the eighteen year old girls had to have mandatory 'health checkups' that day. I won't describe what the 'checkup' involved, but it was bewildering and unpleasant. And nearly all those girls disappeared, that day. They never returned from the 'checkups.' Only a few of us were left behind. Most of the leftovers were girls who had been unlucky enough to already be pregnant at that age. Or lucky, as it turned out. But I didn't understand why they didn't take me."`
+			`	"I was a teenage slave working in the factories at the time," she says. "Exactly the wrong age, as it turned out. One day the overseers informed us that all the eighteen-year-old girls had to have mandatory 'health checkups' that day. I won't describe what the 'checkup' involved, but it was bewildering and unpleasant. And nearly all those girls disappeared, that day. They never returned from the 'checkups.' Only a few of us were left behind. Most of the leftovers were girls who had been unlucky enough to already be pregnant at that age. Or lucky, as it turned out. But I didn't understand why they didn't take me."`
 			`	Alondo seems very disturbed by the story. "They were selling girls into prostitution?" he says.`
 			`	"That's what we assumed," she says, "but there were dozens of girls like me who were not taken, even though we were not pregnant. It didn't make sense. Anyway, somehow news of that event got off-world and not long after, the Navy came in massive numbers, destroyed the slaver fleets and liberated our planet. In the process, they tried to invade an underground facility up in the mountains, which is where they thought the girls were being kept. But the facility was rigged to self-destruct, and they never found out what had been going on inside the facility. No one inside it survived."`
 			choice
@@ -495,6 +501,8 @@ mission "FW Syndicate Diplomacy 1D"
 			`	You and Alondo return to your ship with one more thing for the fledgling Free Worlds to worry about. "I guess now we should return to <planet> and report to the Council," he says.`
 				accept
 	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		payment 200000
 		conversation
@@ -514,7 +522,7 @@ mission "FW Hope Recon 1"
 	destination Hope
 	to offer
 		has "FW Syndicate Diplomacy 1D: done"
-	cargo sensors 10
+	cargo "sensors" 10
 	blocked `Freya contacts you and says, "<first>, you're going to need ten tons of cargo space for this next mission." You should return here after freeing up <capacity>.`
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -527,6 +535,8 @@ mission "FW Hope Recon 1"
 			choice
 				`	"No, sounds good."`
 					accept
+	on visit
+		dialog phrase "generic cargo on visit"
 
 
 
@@ -883,7 +893,7 @@ mission "FW Pirates 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		log "Tomek, from the Free Worlds council, is trying to decide how to best deal with the threat of the pirates to the south of Free Worlds space."
+		log "Tomek, from the Free Worlds Council, is trying to decide how to best deal with the threat of the pirates to the south of Free Worlds space."
 		conversation
 			`Tomek is sitting at the bar with a galactic map and a tumbler of whiskey. The map has notes written all over it, with lines marking the current Free Worlds and Republic territories. "Good to see you, <first>!" he says. "I hope whatever weapons Barmy Edward had you testing worked well. Most of his inventions are pure genius, but some are just bizarre and useless."`
 			`	You describe to him the impressive performance of the Plasma Turrets, and the challenge of finding a ship with enough size for them. "Excellent!" he says. "That opens up some interesting tactical possibilities. But now it's time to switch gears entirely."`
@@ -904,6 +914,8 @@ mission "FW Pirates 1"
 	on accept
 		"salary: Free Worlds" = 800
 	
+	on visit
+		dialog phrase "generic waypoint on visit"
 	on complete
 		dialog
 			`You have scouted out all four pirate systems that Tomek asked you to visit. Time to head back to the spaceport bar and see if he is waiting for you.`
@@ -1011,6 +1023,8 @@ mission "FW Senate 1B"
 			`	"The correct answer," she says, "was, 'nothing whatsoever; they are entirely different disciplines.' Now, hurry up, I hope to be on Bourne a week from now." You consider explaining to her that it's impossible to get there that fast, but decide against it.`
 				accept
 	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Senator Huygens hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		conversation
 			`You drop off Senator Huygens, who says nothing by way of acknowledging your help except, "It's about time we got here." She hurries off.`
@@ -1032,7 +1046,7 @@ mission "FW Senate 1B"
 			`	"It's brilliant. And probably totally unsustainable. Each world that joins us negotiates a certain yearly tax amount based on their population and resources. In return they gain access to our defense fleet and other shared resources. Twenty percent of each planet's tax payments are 'unrestricted,' money the Free Worlds can use for whatever we think is most important. But the rest of the taxes can be earmarked for whatever projects that world thinks are most important. Those taxes can also be an in kind donation, such as supplying ships or crews for the common militia..."`
 			`	He continues talking for quite some time. You stop even trying to follow what he is saying. Finally he sees the blank expression on your face and stops babbling. "The point is," he says, "if we can convince enough worlds to pool their money, the Conservatory will become a reality. Our own public university."`
 			choice
-				`	"So you're here to talk to the Senators?"`
+				`	"So you're here to talk to the senators?"`
 				`	"Sounds like that could be a great public relations move for convincing more worlds to join us."`
 			`	"Indeed," he says. "Anyway, I'm off to a meeting, but meet me later in the spaceport if you've got room for some passengers."`
 
@@ -1088,6 +1102,8 @@ mission "FW Flamethrower 2"
 		government "Test Dummy"
 		ship "Doombat" "Doombat"
 	
+	on visit
+		dialog `You've landed on <planet>, but you have not disabled the <npc> yet. Disable it and before returning.`
 	on complete
 		event "flamethrower available" 30
 		log "Assisted Barmy Edward with another weapon test: this time, a flamethrower weapon that works by overheating and disabling its target rather than dealing lots of damage to it. It may or may not be useful in actual combat."
@@ -1203,6 +1219,8 @@ mission "FW Pirates 2"
 		fleet "Small Free Worlds" 2
 		fleet "Large Free Worlds"
 	
+	on visit
+		dialog phrase "generic waypoint on visit"
 	on complete
 		dialog "Your patrol fleet is still busy finding landing spots, but your work is done. Time to head to the spaceport bar and see if Tomek is there."
 
@@ -1228,7 +1246,7 @@ mission "FW Pirates 3"
 		log "Given orders by the Free Worlds Senate to escort a diplomatic mission to the anarchist planet Thule. Tomek is not happy about bargaining with the pirates instead of fighting them."
 	
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"
 	
 	on complete
 		karma ++
@@ -1296,6 +1314,8 @@ mission "FW Pirates 3.1"
 			`	"Never mind," he says, "I guess you're as weak-willed as the rest of them." He walks back into the bar and leaves you alone.`
 				accept
 	
+	on visit
+		dialog `You've landed on <planet>, but there are still pirates defending the system. All pirates in the system must be eliminated before <planet> can be taken.`
 	on complete
 		set "fw pirates: disobeyed senate"
 		set "fw pirates: victory"
@@ -1386,6 +1406,8 @@ mission "FW Pirates 3.2A"
 		fleet "Small Northern Pirates"
 		fleet "Large Northern Pirates" 4
 	
+	on visit
+		dialog `You've landed on <planet>, but there are still pirates defending the system. All pirates in the system must be eliminated before <planet> can be taken.`
 	on complete
 		event "fw suppressed Greenrock"
 		event "fw abandoned Greenrock" 40
@@ -1493,6 +1515,8 @@ mission "FW Pirates 4"
 	
 	on accept
 		event "battle for Thule"
+	on visit
+		dialog phrase "generic pirate fleet battle on visit"
 
 
 
@@ -1520,7 +1544,7 @@ mission "FW Pirates 4B"
 		ship "Falcon" "F.S. Terebinth"
 	
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog phrase "generic arrived-without-npc dialog"
 	
 	on offer
 		log "The elders on Thule do not want to join the Free Worlds, but they have agreed to crack down on pirate activity in their system and to welcome Free Worlds visitors to their planet."
@@ -1611,7 +1635,7 @@ mission "FW Pirates 4.1"
 				`	"No, I was led to believe that I was following the Senate's orders."`
 			`	"Interesting," says Arianna. "That's not what Tomek told us. And JJ and Freya both said that you were well aware of the Senate's wishes."`
 			label reason
-			`	One of the other Senators, an older man, asks, "Why did you choose to take part in the attack?"`
+			`	One of the other senators, an older man, asks, "Why did you choose to take part in the attack?"`
 			choice
 				`	"I wanted to do something to end the pirate threat."`
 				`	"I trusted that Tomek would know the best strategy."`
@@ -1656,7 +1680,7 @@ mission "FW Refinery 1"
 			`	"That's easy to answer," says JJ. "He didn't like the idea of taking orders from the Senate. He thought they should treat him like a hero and go along with whatever he thought best."`
 				goto next
 			label defend
-			`	JJ and Freya are both quiet for a minute, then Freya says, "You know, there are people in the Senate who worry that the Council could become the ruling authority in the Free Worlds, instead of a democratic Senate. It wouldn't be the first time a people's revolution turned into an oligarchy. We of the council have to be careful not to let that happen."`
+			`	JJ and Freya are both quiet for a minute, then Freya says, "You know, there are people in the Senate who worry that the Council could become the ruling authority in the Free Worlds, instead of a democratic Senate. It wouldn't be the first time a people's revolution turned into an oligarchy. We of the Council have to be careful not to let that happen."`
 				goto next
 			label next
 			`	"So, what will happen to Tomek?" you ask.`
@@ -1705,6 +1729,8 @@ mission "FW Refinery 1A"
 			`Your landing site is an abandoned settlement a thousand kilometers from Tundra's main spaceport. It's an old oil field that ran dry decades ago, and only a few of the landing pads are still usable. The Syndicate employees quickly load the cargo onto your ship, and say, "Now, take off quickly, before the Navy sees us doing business with a ship flying Free Worlds colors."`
 				launch
 	
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		log "Brought supplies to Smuggler's Den to help upgrade the station into a working deuterium refinery. No further orders from the Free Worlds, so this might be a good time to find ways to earn more money on the side."
 		dialog

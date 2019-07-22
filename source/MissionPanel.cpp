@@ -166,6 +166,16 @@ void MissionPanel::Draw()
 		system = next;
 	}
 	
+	const Set<Color> &colors = GameData::Colors();
+	const Color &availableColor = *colors.Get("available back");
+	const Color &unavailableColor = *colors.Get("unavailable back");
+	const Color &currentColor = *colors.Get("active back");
+	const Color &blockedColor = *colors.Get("blocked back");
+	if(availableIt != available.end() && availableIt->Destination())
+		DrawMissionSystem(*availableIt, CanAccept() ? availableColor : unavailableColor);
+	if(acceptedIt != accepted.end() && acceptedIt->Destination())
+		DrawMissionSystem(*acceptedIt, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
+	
 	DrawKey();
 	DrawSelectedSystem();
 	Point pos = DrawPanel(
@@ -182,23 +192,13 @@ void MissionPanel::Draw()
 	
 	DrawMissionInfo();
 	
-	const Set<Color> &colors = GameData::Colors();
-	const Color &availableColor = *colors.Get("available back");
-	const Color &unavailableColor = *colors.Get("unavailable back");
-	const Color &currentColor = *colors.Get("active back");
-	const Color &blockedColor = *colors.Get("blocked back");
-	if(availableIt != available.end() && availableIt->Destination())
-		DrawMissionSystem(*availableIt, CanAccept() ? availableColor : unavailableColor);
-	if(acceptedIt != accepted.end() && acceptedIt->Destination())
-		DrawMissionSystem(*acceptedIt, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
-	
 	DrawButtons("is missions");
 }
 
 
 
 // Only override the ones you need; the default action is to return false.
-bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(key == 'a' && CanAccept())
 	{
@@ -260,7 +260,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		}
 	}
 	else
-		return MapPanel::KeyDown(key, mod, command);
+		return MapPanel::KeyDown(key, mod, command, isNewPress);
 	
 	if(availableIt != available.end())
 		selectedSystem = availableIt->Destination()->GetSystem();

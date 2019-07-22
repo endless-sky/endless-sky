@@ -102,7 +102,7 @@ void HiringPanel::Draw()
 
 
 
-bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(!player.Flagship())
 		return false;

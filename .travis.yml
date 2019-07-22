@@ -16,7 +16,7 @@ addons:
         - libpng
         - jpeg-turbo
         - sdl2
-    update: true
+        update: true
 
 git:
     quiet: true
@@ -51,6 +51,13 @@ script:
             es_path='/tmp/EndlessSky.dst/Applications/Endless Sky.app/Contents/MacOS/Endless Sky'
         fi
         ./tests/test_parse.sh "$es_path"
+
+before_cache:
+    - brew cleanup
+
+cache:
+    directories:
+        - $HOME/Library/Caches/Homebrew
 
 notifications:
     email:

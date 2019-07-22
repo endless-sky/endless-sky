@@ -112,7 +112,7 @@ void MapDetailPanel::Draw()
 
 
 // Only override the ones you need; the default action is to return false.
-bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if((key == SDLK_TAB || command.Has(Command::JUMP)) && player.Flagship())
 	{
@@ -194,7 +194,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 			SetCommodity(commodity - 1);
 	}
 	else
-		return MapPanel::KeyDown(key, mod, command);
+		return MapPanel::KeyDown(key, mod, command, isNewPress);
 	
 	return true;
 }
@@ -261,16 +261,6 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			player.SetTravelDestination(selectedPlanet);
 		
 		return true;
-	}
-	else if(y >= Screen::Bottom() - 40 && x >= Screen::Right() - 335 && x < Screen::Right() - 265)
-	{
-		// The user clicked the "done" button.
-		return DoKey(SDLK_d);
-	}
-	else if(y >= Screen::Bottom() - 40 && x >= Screen::Right() - 415 && x < Screen::Right() - 345)
-	{
-		// The user clicked the "missions" button.
-		return DoKey(SDLK_PAGEDOWN);
 	}
 	
 	MapPanel::Click(x, y, clicks);

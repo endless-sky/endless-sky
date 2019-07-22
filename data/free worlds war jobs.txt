@@ -8,6 +8,10 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+phrase "free worlds scanner payment"
+	word
+		`A Free Worlds captain is waiting for you when you land and takes a copy of your scanner logs, and you collect your payment of <payment>.`
+
 mission "FW Scout Run [0]"
 	job
 	repeat
@@ -25,9 +29,11 @@ mission "FW Scout Run [0]"
 	waypoint
 		distance 1 2
 		government "Republic"
+	on visit
+		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 10000 180
-		dialog `A Free Worlds captain is waiting for you when you land and takes a copy of your scanner logs, and you collect your payment of <payment>.`
+		dialog phrase "free worlds scanner payment"
 	on visit
 		dialog `You have landed on <planet>, but you have yet to scout out all the marked systems. Visit all the systems marked on your map before returning.`
 
@@ -51,9 +57,11 @@ mission "FW Scout Run [1]"
 	waypoint
 		distance 2 3
 		government "Republic"
+	on visit
+		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 20000 180
-		dialog `A Free Worlds captain is waiting for you when you land and takes a copy of your scanner logs, and you collect your payment of <payment>.`
+		dialog phrase "free worlds scanner payment"
 	on visit
 		dialog `You have landed on <planet>, but you have yet to scout out all the marked systems. Visit all the systems marked on your map before returning.`
 
@@ -77,13 +85,19 @@ mission "FW Scout Run [2]"
 	waypoint
 		distance 3 4
 		government "Republic"
+	on visit
+		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 30000 180
-		dialog `A Free Worlds captain is waiting for you when you land and takes a copy of your scanner logs, and you collect your payment of <payment>.`
+		dialog phrase "free worlds scanner payment"
 	on visit
 		dialog `You have landed on <planet>, but you have yet to scout out all the marked systems. Visit all the systems marked on your map before returning.`
 
 
+
+phrase "free worlds convoy supplies payment"
+	word
+		`The captain of the <npc> thanks you for escorting them safely, and the shipyard pays you <payment> for helping to deliver the supplies.`
 
 mission "FW Convoy Defense [0]"
 	job
@@ -143,7 +157,7 @@ mission "FW Convoy Defense [0]"
 				"Osprey"
 	on complete
 		payment 270000
-		dialog `The captain of the <npc> thanks you for escorting them safely, and the shipyard pays you <payment> for helping to deliver the supplies.`
+		dialog phrase "free worlds convoy supplies payment"
 	on visit
 		dialog `You have reached <planet>, but you left part or all of the convoy behind! Better depart and wait for them to arrive in this star system.`
 
@@ -205,7 +219,7 @@ mission "FW Convoy Defense [1]"
 				"Osprey"
 	on complete
 		payment 270000
-		dialog `The captain of the <npc> thanks you for escorting them safely, and the shipyard pays you <payment> for helping to deliver the supplies.`
+		dialog phrase "free worlds convoy supplies payment"
 	on visit
 		dialog `You have reached <planet>, but you left part or all of the convoy behind! Better depart and wait for them to arrive in this star system.`
 
@@ -267,7 +281,7 @@ mission "FW Convoy Defense [2]"
 				"Osprey"
 	on complete
 		payment 270000
-		dialog `The captain of the <npc> thanks you for escorting them safely, and the shipyard pays you <payment> for helping to deliver the supplies.`
+		dialog phrase "free worlds convoy supplies payment"
 	on visit
 		dialog `You have reached <planet>, but you left part or all of the convoy behind! Better depart and wait for them to arrive in this star system.`
 
@@ -296,6 +310,8 @@ mission "FW Reinforcements [0]"
 		government "Free Worlds"
 		neighbor
 			neighbor government "Republic"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 180
 		dialog `You unload the Free Worlds soldiers into the busy spaceport of <planet>, and collect your payment of <payment>.`
@@ -323,11 +339,21 @@ mission "FW Reinforcements [1]"
 		government "Free Worlds"
 		neighbor
 			neighbor government "Republic"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 180
 		dialog `You unload the Free Worlds soldiers into the busy spaceport of <planet>, and collect your payment of <payment>.`
 
 
+phrase "free worlds thanked resupply payment"
+	phrase
+		"generic cargo delivery payment"
+	word
+		` `
+	word
+		`A Free Worlds captain stationed on <planet> thanks you for delivering the much-needed supplies.`
+		`The Free Worlds captains stationed on <planet> thank you for delivering the much-needed supplies.`
 
 mission "FW Outfitter Resupply [0]"
 	job
@@ -346,9 +372,11 @@ mission "FW Outfitter Resupply [0]"
 		distance 4 8
 		government "Free Worlds"
 		attributes outfitter
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2000 180
-		dialog `You drop off your cargo of <commodity> and collect your payment of <payment>. A Free Worlds captain stationed on <planet> thanks you for delivering the much needed supplies.`
+		dialog phrase "free worlds thanked resupply payment"
 
 mission "FW Outfitter Resupply [1]"
 	job
@@ -367,9 +395,11 @@ mission "FW Outfitter Resupply [1]"
 		distance 5 10
 		government "Free Worlds"
 		attributes outfitter
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2000 180
-		dialog `You drop off your cargo of <commodity> and collect your payment of <payment>. A Free Worlds captain stationed on <planet> thanks you for delivering the much needed supplies.`
+		dialog phrase "free worlds thanked resupply payment"
 
 mission "FW Outfitter Resupply [2]"
 	job
@@ -388,9 +418,11 @@ mission "FW Outfitter Resupply [2]"
 		distance 6 12
 		government "Free Worlds"
 		attributes outfitter
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2000 180
-		dialog `You drop off your cargo of <commodity> and collect your payment of <payment>. A Free Worlds captain stationed on <planet> thanks you for delivering the much needed supplies.`
+		dialog phrase "free worlds thanked resupply payment"
 
 mission "FW Bulk Outfitter Resupply [0]"
 	job
@@ -409,9 +441,11 @@ mission "FW Bulk Outfitter Resupply [0]"
 		distance 4 8
 		government "Free Worlds"
 		attributes outfitter
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 180
-		dialog `You drop off your cargo of <commodity> and collect your payment of <payment>. A Free Worlds captain stationed on <planet> thanks you for delivering the much needed supplies.`
+		dialog phrase "free worlds thanked resupply payment"
 
 mission "FW Bulk Outfitter Resupply [1]"
 	job
@@ -430,9 +464,11 @@ mission "FW Bulk Outfitter Resupply [1]"
 		distance 5 10
 		government "Free Worlds"
 		attributes outfitter
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 180
-		dialog `You drop off your cargo of <commodity> and collect your payment of <payment>. A Free Worlds captain stationed on <planet> thanks you for delivering the much needed supplies.`
+		dialog phrase "free worlds thanked resupply payment"
 
 mission "FW Bulk Outfitter Resupply [2]"
 	job
@@ -451,9 +487,11 @@ mission "FW Bulk Outfitter Resupply [2]"
 		distance 6 12
 		government "Free Worlds"
 		attributes outfitter
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 180
-		dialog `You drop off your cargo of <commodity> and collect your payment of <payment>. A Free Worlds captain stationed on <planet> thanks you for delivering the much needed supplies.`
+		dialog phrase "free worlds thanked resupply payment"
 
 mission "FW Frontline Resupply [0]"
 	job
@@ -478,9 +516,11 @@ mission "FW Frontline Resupply [0]"
 		government "Free Worlds"
 		neighbor
 			neighbor government "Republic"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2000 180
-		dialog `You drop off your cargo of <commodity> and collect your payment of <payment>. The Free Worlds captains stationed on <planet> thank you for delivering the much needed supplies.`
+		dialog phrase "free worlds thanked resupply payment"
 
 mission "FW Frontline Resupply [1]"
 	job
@@ -505,9 +545,11 @@ mission "FW Frontline Resupply [1]"
 		government "Free Worlds"
 		neighbor
 			neighbor government "Republic"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2000 180
-		dialog `You drop off your cargo of <commodity> and collect your payment of <payment>. The Free Worlds captains stationed on <planet> thank you for delivering the much needed supplies.`
+		dialog phrase "free worlds thanked resupply payment"
 
 mission "FW Frontline Resupply [2]"
 	job
@@ -532,9 +574,11 @@ mission "FW Frontline Resupply [2]"
 		government "Free Worlds"
 		neighbor
 			neighbor government "Republic"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2000 180
-		dialog `You drop off your cargo of <commodity> and collect your payment of <payment>. The Free Worlds captains stationed on <planet> thank you for delivering the much needed supplies.`
+		dialog phrase "free worlds thanked resupply payment"
 
 mission "FW Bulk Frontline Resupply [0]"
 	job
@@ -559,9 +603,11 @@ mission "FW Bulk Frontline Resupply [0]"
 		government "Free Worlds"
 		neighbor
 			neighbor government "Republic"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 180
-		dialog `You drop off your cargo of <commodity> and collect your payment of <payment>. The Free Worlds captains stationed on <planet> thank you for delivering the much needed supplies.`
+		dialog phrase "free worlds thanked resupply payment"
 
 mission "FW Bulk Frontline Resupply [1]"
 	job
@@ -586,11 +632,17 @@ mission "FW Bulk Frontline Resupply [1]"
 		government "Free Worlds"
 		neighbor
 			neighbor government "Republic"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 180
-		dialog `You drop off your cargo of <commodity> and collect your payment of <payment>. The Free Worlds captains stationed on <planet> thank you for delivering the much needed supplies.`
+		dialog phrase "free worlds thanked resupply payment"
 
 
+
+phrase "free worlds thanked care package"
+	word
+		`You deliver the care package of <commodity> to the specified address and explain to the people where the care package came from. They thank you for delivering it, and you collect your payment of <payment>.`
 
 mission "FW Care Package to Republic [0]"
 	job
@@ -608,9 +660,11 @@ mission "FW Care Package to Republic [0]"
 	destination
 		government "Republic"
 		distance 2 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1000 180
-		dialog `You deliver the care package of <commodity> to the specified address and explain to the people where the care package came from. They thank you for delivering it, and you collect your payment of <payment>.`
+		dialog phrase "free worlds thanked care package"
 
 mission "FW Care Package to Republic [1]"
 	job
@@ -628,9 +682,11 @@ mission "FW Care Package to Republic [1]"
 	destination
 		government "Republic"
 		distance 2 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1000 180
-		dialog `You deliver the care package of <commodity> to the specified address and explain to the people where the care package came from. They thank you for delivering it, and you collect your payment of <payment>.`
+		dialog phrase "free worlds thanked care package"
 
 mission "FW Care Package from Republic [0]"
 	job
@@ -648,9 +704,11 @@ mission "FW Care Package from Republic [0]"
 	destination
 		government "Free Worlds"
 		distance 2 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1000 180
-		dialog `You deliver the care package of <commodity> to the specified address and explain to the people where the care package came from. They thank you for delivering it, and you collect your payment of <payment>.`
+		dialog phrase "free worlds thanked care package"
 
 mission "FW Care Package from Republic [1]"
 	job
@@ -668,11 +726,17 @@ mission "FW Care Package from Republic [1]"
 	destination
 		government "Free Worlds"
 		distance 2 5
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1000 180
-		dialog `You deliver the care package of <commodity> to the specified address and explain to the people where the care package came from. They thank you for delivering it, and you collect your payment of <payment>.`
+		dialog phrase "free worlds thanked care package"
 
 
+
+phrase "free worlds thanked refugee transport"
+	word
+		`Your passengers thank you graciously for taking them away from the dangerous frontlines of the war. You wish them the best of luck on <planet>, and collect your payment of <payment>.`
 
 mission "FW Refugees [0]"
 	job
@@ -697,9 +761,11 @@ mission "FW Refugees [0]"
 		not
 			neighbor
 				neighbor government "Republic"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 2000 180
-		dialog `Your passengers thank you graciously for taking them away from the dangerous frontlines of the war. You wish them the best of luck on <planet>, and collect your payment of <payment>.`
+		dialog phrase "free worlds thanked refugee transport"
 
 mission "FW Refugees [1]"
 	job
@@ -724,9 +790,11 @@ mission "FW Refugees [1]"
 		not
 			neighbor
 				neighbor government "Republic"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 2000 180
-		dialog `Your passengers thank you graciously for taking them away from the dangerous frontlines of the war. You wish them the best of luck on <planet>, and collect your payment of <payment>.`
+		dialog phrase "free worlds thanked refugee transport"
 
 mission "FW Refugees [2]"
 	job
@@ -751,9 +819,11 @@ mission "FW Refugees [2]"
 		not
 			neighbor
 				neighbor government "Republic"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 2000 180
-		dialog `Your passengers thank you graciously for taking them away from the dangerous frontlines of the war. You wish them the best of luck on <planet>, and collect your payment of <payment>.`
+		dialog phrase "free worlds thanked refugee transport"
 
 mission "FW Bulk Refugees [0]"
 	job
@@ -778,6 +848,8 @@ mission "FW Bulk Refugees [0]"
 		not
 			neighbor
 				neighbor government "Republic"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 180
-		dialog `Your passengers thank you graciously for taking them away from the dangerous frontlines of the war. You wish them the best of luck on <planet>, and collect your payment of <payment>.`
+		dialog phrase "free worlds thanked refugee transport"

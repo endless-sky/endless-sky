@@ -51,12 +51,24 @@ void SpaceportPanel::UpdateNews()
 	if(!news)
 		return;
 	
-	// Randomly pick a name, portrait, and message. These must be cached here
-	// because every time the functions in News are called, they return a new
-	// random element.
 	hasNews = true;
-	newsInfo.SetString("name", news->Name() + ':');
-	newsInfo.SetSprite("portrait", news->Portrait());
+	// Randomly pick which portrait is to be shown.
+	auto portrait = news->Portrait();
+	
+	// Ensure we only display one name for a given portrait.
+	const auto it = displayedProfessions.find(portrait);
+	auto name = string{};
+	if(it == displayedProfessions.end())
+	{
+		name = news->Name();
+		displayedProfessions.emplace(portrait, name);
+	}
+	else
+		name = it->second;
+	
+	// Cache the randomly picked results until the next update is requested.
+	newsInfo.SetString("name", name + ':');
+	newsInfo.SetSprite("portrait", portrait);
 	newsMessage.Wrap('"' + news->Message() + '"');
 }
 

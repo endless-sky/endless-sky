@@ -18,8 +18,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "Dialog.h"
-#include "GameData.h"
 #include "FontSet.h"
+#include "GameData.h"
 #include "HiringPanel.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
@@ -50,9 +50,6 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	bank.reset(new BankPanel(player));
 	spaceport.reset(new SpaceportPanel(player));
 	hiring.reset(new HiringPanel(player));
-	
-	// Only show one news item per day.
-	spaceport->UpdateNews();
 	
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(Font::JUSTIFIED);
@@ -138,7 +135,7 @@ void PlanetPanel::Draw()
 
 
 // Only override the ones you need; the default action is to return false.
-bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
@@ -163,6 +160,8 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(key == 'p' && hasAccess && flagship && planet.HasSpaceport())
 	{
 		selectedPanel = spaceport.get();
+		if(isNewPress)
+			spaceport->UpdateNews();
 		GetUI()->Push(spaceport);
 	}
 	else if(key == 's' && hasAccess && planet.HasShipyard())

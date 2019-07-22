@@ -528,7 +528,7 @@ void ShopPanel::ToggleCargo()
 
 
 // Only override the ones you need; the default action is to return false.
-bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	scrollDetailsIntoView = false;
 	bool toCargo = selectedOutfit && (key == 'r' || key == 'u');
@@ -1158,11 +1158,11 @@ char ShopPanel::CheckButton(int x, int y)
 		return ' ';
 	
 	x -= Screen::Right() - SIDE_WIDTH;
-	if(x < 80)
+	if(x > 9 && x < 70)
 		return 'b';
-	else if(x < 160)
+	else if(x > 89 && x < 150)
 		return 's';
-	else
+	else if(x > 169 && x < 240)
 		return 'l';
 	
 	return ' ';

@@ -35,8 +35,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlanetLabel.h"
 #include "PlayerInfo.h"
-#include "Politics.h"
 #include "PointerShader.h"
+#include "Politics.h"
 #include "Preferences.h"
 #include "Projectile.h"
 #include "Random.h"
@@ -165,7 +165,7 @@ namespace {
 
 Engine::Engine(PlayerInfo &player)
 	: player(player), ai(ships, asteroids.Minables(), flotsam),
-	shipCollisions(256, 32)
+	shipCollisions(256u, 32u)
 {
 	zoom = Preferences::ViewZoom();
 	
@@ -256,7 +256,7 @@ void Engine::Place()
 	}
 	
 	// Give each special ship we just added a random heading and position.
-	for (const shared_ptr<Ship> &ship : ships)
+	for(const shared_ptr<Ship> &ship : ships)
 	{
 		Point pos;
 		Angle angle = Angle::Random();
@@ -316,12 +316,12 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			if(ship->IsDestroyed() || ship->IsDisabled())
 				continue;
 			
+			// Redo the loading up of fighters.
+			ship->UnloadBays();
 			if(ship->BaysFree(false))
 				droneCarriers[&*ship] = ship->BaysFree(false);
 			if(ship->BaysFree(true))
 				fighterCarriers[&*ship] = ship->BaysFree(true);
-			// Redo the loading up of fighters.
-			ship->UnloadBays();
 		}
 		
 		shared_ptr<Ship> npcFlagship;
@@ -430,12 +430,22 @@ void Engine::Step(bool isActive)
 	if(isActive)
 	{
 		double zoomTarget = Preferences::ViewZoom();
-		if(zoom < zoomTarget)
-			zoom = min(zoomTarget, zoom * 1.03);
-		else if(zoom > zoomTarget)
-			zoom = max(zoomTarget, zoom * .97);
+		if(zoom != zoomTarget)
+		{
+			static const double ZOOM_SPEED = .05;
+			
+			// Define zoom speed bounds to prevent asymptotic behavior.
+			static const double MAX_SPEED = .05;
+			static const double MIN_SPEED = .002;
+			
+			double zoomRatio = max(MIN_SPEED, min(MAX_SPEED, abs(log2(zoom) - log2(zoomTarget)) * ZOOM_SPEED));
+			if(zoom < zoomTarget)
+				zoom = min(zoomTarget, zoom * (1. + zoomRatio));
+			else if(zoom > zoomTarget)
+				zoom = max(zoomTarget, zoom * (1. / (1. + zoomRatio)));
+		}
 	}
-		
+	
 	// Draw a highlight to distinguish the flagship from other ships.
 	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
 	{
@@ -1429,13 +1439,9 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 
 
 
-// Fill in the collision detection sets, which are used for projectile collision
-// and for flotsam collection. Cloaked ships are stored in a separate set because
-// they can still be hit by some weapons (e.g. ones with a blast radius) but not
-// by most others.
+// Populate the ship collision detection set for projectile & flotsam computations.
 void Engine::FillCollisionSets()
 {
-	// Populate the collision detection set.
 	shipCollisions.Clear(step);
 	for(const shared_ptr<Ship> &it : ships)
 		if(it->GetSystem() == player.GetSystem() && it->Zoom() == 1.)

@@ -242,7 +242,7 @@ void ShipyardPanel::Sell(bool toCargo)
 	
 	int count = playerShips.size();
 	int initialCount = count;
-	string message = "Sell ";
+	string message = "Sell the ";
 	if(count == 1)
 		message += playerShip->Name();
 	else if(count <= MAX_LIST)
