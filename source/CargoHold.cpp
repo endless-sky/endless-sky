@@ -97,11 +97,9 @@ void CargoHold::Save(DataWriter &out) const
 	for(const auto &it : commodities)
 		if(it.second)
 		{
-			// Only write a "cargo" block if it is not going to be empty.
+			// Only write a "commodities" block if it is not going to be empty.
 			if(first)
 			{
-				out.Write("cargo");
-				out.BeginChild();
 				out.Write("commodities");
 				out.BeginChild();
 			}
@@ -117,15 +115,6 @@ void CargoHold::Save(DataWriter &out) const
 	for(const auto &it : outfits)
 		if(it.second && !it.first->Name().empty())
 		{
-			// It is possible this cargo hold contained no commodities, meaning
-			// we must print the opening tag now.
-			if(first)
-			{
-				out.Write("cargo");
-				out.BeginChild();
-			}
-			first = false;
-			
 			// If this is the first outfit to be written, print the opening tag.
 			if(firstOutfit)
 			{
@@ -136,11 +125,8 @@ void CargoHold::Save(DataWriter &out) const
 			
 			out.Write(it.first->Name(), it.second);
 		}
-	// Back out any indentation blocks that are set, depending on what sorts of
-	// cargo were written to the file.
+	// We only need to EndChild() if at least one line was written above.
 	if(!firstOutfit)
-		out.EndChild();
-	if(!first)
 		out.EndChild();
 	
 	// Mission cargo is not saved because it is repopulated when the missions
