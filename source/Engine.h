@@ -15,27 +15,35 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "AI.h"
 #include "AsteroidField.h"
+#include "BatchDrawList.h"
+#include "CollisionSet.h"
+#include "Command.h"
 #include "DrawList.h"
 #include "EscortDisplay.h"
-#include "Flotsam.h"
 #include "Information.h"
-#include "PlanetLabel.h"
 #include "Point.h"
-#include "Projectile.h"
 #include "Radar.h"
-#include "Ship.h"
-#include "ShipEvent.h"
+#include "Rectangle.h"
 
 #include <condition_variable>
 #include <list>
 #include <map>
 #include <memory>
 #include <thread>
+#include <utility>
 #include <vector>
 
+class Flotsam;
 class Government;
+class NPC;
 class Outfit;
+class PlanetLabel;
 class PlayerInfo;
+class Projectile;
+class Ship;
+class ShipEvent;
+class Sprite;
+class Visual;
 
 
 
@@ -48,11 +56,13 @@ class PlayerInfo;
 // situations where there are many objects on screen at once.
 class Engine {
 public:
-	Engine(PlayerInfo &player);
+	explicit Engine(PlayerInfo &player);
 	~Engine();
 	
 	// Place all the player's ships, and "enter" the system the player is in.
 	void Place();
+	// Place NPCs spawned by a mission that offers when the player is not landed.
+	void Place(const std::list<NPC> &npcs, std::shared_ptr<Ship> flagship = nullptr);
 	
 	// Wait for the previous calculations (if any) to be done.
 	void Wait();
@@ -63,13 +73,16 @@ public:
 	void Go();
 	
 	// Get any special events that happened in this step.
-	const std::list<ShipEvent> &Events() const;
+	// MainPanel::Step will clear this list.
+	std::list<ShipEvent> &Events();
 	
 	// Draw a frame.
 	void Draw() const;
 	
 	// Select the object the player clicked on.
-	void Click(const Point &point);
+	void Click(const Point &from, const Point &to, bool hasShift);
+	void RClick(const Point &point);
+	void SelectGroup(int group, bool hasShift, bool hasControl);
 	
 	
 private:
@@ -77,6 +90,22 @@ private:
 	
 	void ThreadEntryPoint();
 	void CalculateStep();
+	
+	void MoveShip(const std::shared_ptr<Ship> &ship);
+	
+	void SpawnFleets();
+	void SpawnPersons();
+	void SendHails();
+	void HandleMouseClicks();
+	
+	void FillCollisionSets();
+	
+	void DoCollisions(Projectile &projectile);
+	void DoCollection(Flotsam &flotsam);
+	void DoScanning(const std::shared_ptr<Ship> &ship);
+	
+	void FillRadar();
+	
 	void AddSprites(const Ship &ship);
 	
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
@@ -89,22 +118,39 @@ private:
 		Angle angle;
 		double radius;
 		int type;
+		int count;
 	};
 	
 	class Status {
 	public:
-		Status(const Point &position, double shields, double hull, double radius, bool isEnemy);
+		Status(const Point &position, double outer, double inner, double radius, int type, double angle = 0.);
 		
 		Point position;
-		double shields;
-		double hull;
+		double outer;
+		double inner;
 		double radius;
-		bool isEnemy;
+		int type;
+		double angle;
 	};
 	
 	
 private:
 	PlayerInfo &player;
+	
+	std::list<std::shared_ptr<Ship>> ships;
+	std::vector<Projectile> projectiles;
+	std::list<std::shared_ptr<Flotsam>> flotsam;
+	std::vector<Visual> visuals;
+	AsteroidField asteroids;
+	
+	// New objects created within the latest step:
+	std::list<std::shared_ptr<Ship>> newShips;
+	std::vector<Projectile> newProjectiles;
+	std::list<std::shared_ptr<Flotsam>> newFlotsam;
+	std::vector<Visual> newVisuals;
+	
+	// Track which ships currently have anti-missiles ready to fire.
+	std::vector<Ship *> hasAntiMissile;
 	
 	AI ai;
 	
@@ -117,6 +163,7 @@ private:
 	bool terminate = false;
 	bool wasActive = false;
 	DrawList draw[2];
+	BatchDrawList batchDraw[2];
 	Radar radar[2];
 	// Viewport position and velocity.
 	Point center;
@@ -124,24 +171,20 @@ private:
 	// Other information to display.
 	Information info;
 	std::vector<Target> targets;
-	Point targetAngle;
+	Point targetVector;
 	Point targetUnit;
+	int targetSwizzle = -1;
 	EscortDisplay escorts;
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};
+	const Sprite *highlightSprite = nullptr;
+	Point highlightUnit;
+	float highlightFrame = 0.f;
 	
 	int step = 0;
-	
-	std::list<std::shared_ptr<Ship>> ships;
-	std::list<Projectile> projectiles;
-	std::list<Flotsam> flotsam;
-	std::list<Effect> effects;
-	// Keep track of which ships we have not seen for long enough that it is
-	// time to stop tracking their movements.
-	std::map<std::list<Ship>::iterator, int> forget;
 	
 	std::list<ShipEvent> eventQueue;
 	std::list<ShipEvent> events;
@@ -149,7 +192,7 @@ private:
 	std::map<const Government *, std::weak_ptr<const Ship>> grudge;
 	int grudgeTime = 0;
 	
-	AsteroidField asteroids;
+	CollisionSet shipCollisions;
 	
 	int alarmTime = 0;
 	double flash = 0.;
@@ -157,9 +200,18 @@ private:
 	bool doEnter = false;
 	bool hadHostiles = false;
 	
+	bool doClickNextStep = false;
 	bool doClick = false;
-	Command clickCommands;
+	bool hasShift = false;
+	bool hasControl = false;
+	bool isRightClick = false;
+	bool isRadarClick = false;
 	Point clickPoint;
+	Rectangle clickBox;
+	int groupSelect = -1;
+	Command clickCommands;
+	
+	double zoom = 1.;
 	
 	double load = 0.;
 	int loadCount = 0;

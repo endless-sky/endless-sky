@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 
 #include "Angle.h"
+#include "Body.h"
 #include "DrawList.h"
 #include "pi.h"
 #include "Point.h"
@@ -22,23 +23,23 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 
-#include <cassert>
+#include <algorithm>
 #include <cmath>
 #include <numeric>
 
 using namespace std;
 
 namespace {
-	static const int TILE_SIZE = 256;
+	const int TILE_SIZE = 256;
 	// The star field tiles in 4000 pixel increments. Have the tiling of the haze
 	// field be as different from that as possible. (Note: this may need adjusting
 	// in the future if monitors larger than this width ever become commonplace.)
-	static const double HAZE_WRAP = 6627.;
+	const double HAZE_WRAP = 6627.;
 	// Don't let two haze patches be closer to each other than this distance. This
 	// avoids having very bright haze where several patches overlap.
-	static const double HAZE_DISTANCE = 1200.;
+	const double HAZE_DISTANCE = 1200.;
 	// This is how many haze fields should be drawn.
-	static const size_t HAZE_COUNT = 16;
+	const size_t HAZE_COUNT = 16;
 }
 
 
@@ -75,15 +76,31 @@ void StarField::Init(int stars, int width)
 
 
 
-void StarField::Draw(const Point &pos, const Point &vel) const
+void StarField::SetHaze(const Sprite *sprite)
+{
+	// If no sprite is given, set the default one.
+	if(!sprite)
+		sprite = SpriteSet::Get("_menu/haze");
+	
+	for(Body &body : haze)
+		body.SetSprite(sprite);
+}
+
+
+
+void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 {
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
 	
 	float length = vel.Length();
 	Point unit = length ? vel.Unit() : Point(1., 0.);
+	// Don't zoom the stars at the same rate as the field; otherwise, at the
+	// farthest out zoom they are too small to draw well.
+	unit /= pow(zoom, .75);
 	
-	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
+	float baseZoom = static_cast<float>(2. * zoom);
+	GLfloat scale[2] = {baseZoom / Screen::Width(), -baseZoom / Screen::Height()};
 	glUniform2fv(scaleI, 1, scale);
 	
 	GLfloat rotate[4] = {
@@ -91,22 +108,23 @@ void StarField::Draw(const Point &pos, const Point &vel) const
 		static_cast<float>(unit.X()), static_cast<float>(unit.Y())};
 	glUniformMatrix2fv(rotateI, 1, false, rotate);
 	
-	glUniform1f(lengthI, length);
+	glUniform1f(elongationI, length * zoom);
+	glUniform1f(brightnessI, min(1., pow(zoom, .5)));
 	
 	// Stars this far beyond the border may still overlap the screen.
 	double borderX = fabs(vel.X()) + 1.;
 	double borderY = fabs(vel.Y()) + 1.;
 	// Find the absolute bounds of the star field we must draw.
-	long minX = Screen::Left() + pos.X() - borderX;
-	long minY = Screen::Top() + pos.Y() - borderY;
-	long maxX = Screen::Right() + pos.X() + borderX;
-	long maxY = Screen::Bottom() + pos.Y() + borderY;
+	int minX = pos.X() + (Screen::Left() - borderX) / zoom;
+	int minY = pos.Y() + (Screen::Top() - borderY) / zoom;
+	int maxX = pos.X() + (Screen::Right() + borderX) / zoom;
+	int maxY = pos.Y() + (Screen::Bottom() + borderY) / zoom;
 	// Round down to the start of the nearest tile.
 	minX &= ~(TILE_SIZE - 1l);
 	minY &= ~(TILE_SIZE - 1l);
 	
-	for(long gy = minY; gy < maxY; gy += TILE_SIZE)
-		for(long gx = minX; gx < maxX; gx += TILE_SIZE)
+	for(int gy = minY; gy < maxY; gy += TILE_SIZE)
+		for(int gx = minX; gx < maxX; gx += TILE_SIZE)
 		{
 			Point off = Point(gx, gy) - pos;
 			GLfloat translate[2] = {
@@ -124,16 +142,32 @@ void StarField::Draw(const Point &pos, const Point &vel) const
 	glBindVertexArray(0);
 	glUseProgram(0);
 	
+	// Draw the background haze unless it is disabled in the preferences.
 	if(!Preferences::Has("Draw background haze"))
 		return;
 	
 	DrawList drawList;
+	drawList.Clear(0, zoom);
+	drawList.SetCenter(pos);
+	
+	// Any object within this range must be drawn. Some haze sprites may repeat
+	// more than once if the view covers a very large area.
+	Point size = Point(1., 1.) * haze.front().Radius();
+	Point topLeft = pos + (Screen::TopLeft() - size) / zoom;
+	Point bottomRight = pos + (Screen::BottomRight() + size) / zoom;
 	for(const Body &it : haze)
 	{
-		Point offset(
-			remainder(it.Position().X() - pos.X(), HAZE_WRAP),
-			remainder(it.Position().Y() - pos.Y(), HAZE_WRAP));
-		drawList.Add(it, offset);
+		// Figure out the position of the first instance of this haze that is to
+		// the right of and below the top left corner of the screen.
+		double startX = fmod(it.Position().X() - topLeft.X(), HAZE_WRAP);
+		startX += topLeft.X() + HAZE_WRAP * (startX < 0.);
+		double startY = fmod(it.Position().Y() - topLeft.Y(), HAZE_WRAP);
+		startY += topLeft.Y() + HAZE_WRAP * (startY < 0.);
+	
+		// Draw any instances of this haze that are on screen.
+		for(double y = startY; y < bottomRight.Y(); y += HAZE_WRAP)
+			for(double x = startX; x < bottomRight.X(); x += HAZE_WRAP)
+				drawList.Add(it, Point(x, y));
 	}
 	drawList.Draw();
 }
@@ -147,6 +181,7 @@ void StarField::SetUpGraphics()
 		"uniform vec2 translate;\n"
 		"uniform vec2 scale;\n"
 		"uniform float elongation;\n"
+		"uniform float brightness;\n"
 		
 		"in vec2 offset;\n"
 		"in float size;\n"
@@ -155,7 +190,7 @@ void StarField::SetUpGraphics()
 		"out vec2 coord;\n"
 		
 		"void main() {\n"
-		"  fragmentAlpha = (4. / (4. + elongation)) * size * .2 + .05;\n"
+		"  fragmentAlpha = brightness * (4. / (4. + elongation)) * size * .2 + .05;\n"
 		"  coord = vec2(sin(corner), cos(corner));\n"
 		"  vec2 elongated = vec2(coord.x * size, coord.y * (size + elongation));\n"
 		"  gl_Position = vec4((rotate * elongated + translate + offset) * scale, 0, 1);\n"
@@ -187,8 +222,9 @@ void StarField::SetUpGraphics()
 	
 	scaleI = shader.Uniform("scale");
 	rotateI = shader.Uniform("rotate");
-	lengthI = shader.Uniform("elongation");
+	elongationI = shader.Uniform("elongation");
 	translateI = shader.Uniform("translate");
+	brightnessI = shader.Uniform("brightness");
 }
 
 
@@ -196,7 +232,8 @@ void StarField::SetUpGraphics()
 void StarField::MakeStars(int stars, int width)
 {
 	// We can only work with power-of-two widths above 256.
-	assert(width >= TILE_SIZE && !(width & (width - 1)));
+	if(width < TILE_SIZE || (width & (width - 1)))
+		return;
 	
 	widthMod = width - 1;
 	
@@ -204,15 +241,15 @@ void StarField::MakeStars(int stars, int width)
 	tileIndex.clear();
 	tileIndex.resize(tileCols * tileCols, 0);
 	
-	vector<short> off;
-	static const short MAX_OFF = 50;
-	static const short MAX_D = MAX_OFF * MAX_OFF;
-	static const short MIN_D = MAX_D / 4;
+	vector<int> off;
+	static const int MAX_OFF = 50;
+	static const int MAX_D = MAX_OFF * MAX_OFF;
+	static const int MIN_D = MAX_D / 4;
 	off.reserve(MAX_OFF * MAX_OFF * 5);
-	for(short x = -MAX_OFF; x <= MAX_OFF; ++x)
-		for(short y = -MAX_OFF; y <= MAX_OFF; ++y)
+	for(int x = -MAX_OFF; x <= MAX_OFF; ++x)
+		for(int y = -MAX_OFF; y <= MAX_OFF; ++y)
 		{
-			short d = x * x + y * y;
+			int d = x * x + y * y;
 			if(d < MIN_D || d > MAX_D)
 				continue;
 			
@@ -222,11 +259,11 @@ void StarField::MakeStars(int stars, int width)
 	
 	// Generate random points in a temporary vector.
 	// Keep track of how many fall into each tile, for sorting out later.
-	vector<short> temp;
+	vector<int> temp;
 	temp.reserve(2 * stars);
 	
-	short x = Random::Int(width);
-	short y = Random::Int(width);
+	int x = Random::Int(width);
+	int y = Random::Int(width);
 	for(int i = 0; i < stars; ++i)
 	{
 		for(int j = 0; j < 10; ++j)
@@ -254,12 +291,12 @@ void StarField::MakeStars(int stars, int width)
 	for(auto it = temp.begin(); it != temp.end(); )
 	{
 		// Figure out what tile this star is in.
-		short x = *it++;
-		short y = *it++;
+		int x = *it++;
+		int y = *it++;
 		int index = (x / TILE_SIZE) + (y / TILE_SIZE) * tileCols;
 		
 		// Randomize its sub-pixel position and its size / brightness.
-		short random = Random::Int(4096);
+		int random = Random::Int(4096);
 		float fx = (x & (TILE_SIZE - 1)) + (random & 15) * 0.0625f;
 		float fy = (y & (TILE_SIZE - 1)) + (random >> 8) * 0.0625f;
 		float size = (((random >> 4) & 15) + 20) * 0.0625f;

@@ -12,20 +12,32 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "AsteroidField.h"
 
-#include "SpriteSet.h"
 #include "DrawList.h"
 #include "Mask.h"
+#include "Minable.h"
 #include "Projectile.h"
 #include "Random.h"
 #include "Screen.h"
+#include "SpriteSet.h"
 
+#include <algorithm>
 #include <cmath>
 #include <cstdlib>
 
 using namespace std;
 
 namespace {
-	static const double WRAP = 4096.;
+	constexpr double WRAP = 4096.;
+	constexpr unsigned CELL_SIZE = 256u;
+	constexpr unsigned CELL_COUNT = WRAP / CELL_SIZE;
+}
+
+
+
+// Constructor, to set up the collision set parameters.
+AsteroidField::AsteroidField()
+	: asteroidCollisions(CELL_SIZE, CELL_COUNT), minableCollisions(CELL_SIZE, CELL_COUNT)
+{
 }
 
 
@@ -52,84 +64,110 @@ void AsteroidField::Add(const string &name, int count, double energy)
 void AsteroidField::Add(const Minable *minable, int count, double energy, double beltRadius)
 {
 	// Double check that the given asteroid is defined.
-	if(!minable)
+	if(!minable || !minable->GetMask().IsLoaded())
 		return;
 	
 	// Place copies of the given minable asteroid throughout the system.
 	for(int i = 0; i < count; ++i)
 	{
-		minables.emplace_back(*minable);
-		minables.back().Place(energy, beltRadius);
+		minables.emplace_back(new Minable(*minable));
+		minables.back()->Place(energy, beltRadius);
 	}
 }
 
 
 
 // Move all the asteroids forward one step.
-void AsteroidField::Step(list<Effect> &effects, list<Flotsam> &flotsam)
+void AsteroidField::Step(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int step)
 {
+	asteroidCollisions.Clear(step);
 	for(Asteroid &asteroid : asteroids)
+	{
+		asteroidCollisions.Add(asteroid);
 		asteroid.Step();
+	}
+	asteroidCollisions.Finish();
 	
 	// Step through the minables. Since they are destructible, we may need to
 	// remove them from the list.
+	minableCollisions.Clear(step);
 	auto it = minables.begin();
 	while(it != minables.end())
 	{
-		if(it->Move(effects, flotsam))
+		if((*it)->Move(visuals, flotsam))
+		{
+			minableCollisions.Add(**it);
 			++it;
+		}
 		else
 			it = minables.erase(it);
 	}
+	minableCollisions.Finish();
 }
 
 
 
 // Draw the asteroids, centered on the given location.
-void AsteroidField::Draw(DrawList &draw, const Point &center) const
+void AsteroidField::Draw(DrawList &draw, const Point &center, double zoom) const
 {
 	for(const Asteroid &asteroid : asteroids)
-		asteroid.Draw(draw, center);
-	for(const Minable &minable : minables)
-		draw.Add(minable);
+		asteroid.Draw(draw, center, zoom);
+	for(const shared_ptr<Minable> &minable : minables)
+		draw.Add(*minable);
 }
 
 
 
 // Check if the given projectile collides with any asteroids.
-double AsteroidField::Collide(const Projectile &projectile, int step, double closestHit, Point *hitVelocity)
+Body *AsteroidField::Collide(const Projectile &projectile, double *closestHit)
 {
-	// First, check for collisions with ordinary asteroids.
-	for(const Asteroid &asteroid : asteroids)
-	{
-		double thisDistance = asteroid.Collide(projectile, step);
-		if(thisDistance < closestHit)
+	Body *hit = nullptr;
+	
+	// First, check for collisions with ordinary asteroids, which are tiled.
+	// Rather than tiling the collision set, tile the projectile.
+	Point from = projectile.Position();
+	Point to = from + projectile.Velocity();
+	
+	// Map the projectile to a position within the wrap square.
+	Point minimum = Point(min(from.X(), to.X()), min(from.Y(), to.Y()));
+	Point maximum = from + to - minimum;
+	Point grid = WRAP * Point(floor(maximum.X() / WRAP), floor(maximum.Y() / WRAP));
+	from -= grid;
+	to -= grid;
+	// The projectile's bounding rectangle now overlaps the wrap square. If it
+	// extends outside that square, it does so only on the low end (assuming no
+	// projectile has a length longer than the wrap distance). If it does extend
+	// outside the square, it must be "tiled" once in that direction.
+	int tileX = 1 + (minimum.X() < grid.X());
+	int tileY = 1 + (minimum.Y() < grid.Y());
+	for(int y = 0; y < tileY; ++y)
+		for(int x = 0; x < tileX; ++x)
 		{
-			closestHit = thisDistance;
-			if(hitVelocity)
-				*hitVelocity = asteroid.Velocity();
+			Point offset = Point(x, y) * WRAP;
+			Body *body = asteroidCollisions.Line(from + offset, to + offset, closestHit);
+			if(body)
+				hit = body;
 		}
-	}
+	
 	// Now, check for collisions with minable asteroids. Because this is the
 	// very last collision check to be done, if a minable asteroid is the
 	// closest hit, it really is what the projectile struck - that is, we are
 	// not going to later find a ship or something else that is closer.
-	Minable *hit = nullptr;
-	for(Minable &minable : minables)
+	Body *body = minableCollisions.Line(projectile, closestHit);
+	if(body)
 	{
-		double thisDistance = minable.Collide(projectile, step);
-		if(thisDistance < closestHit)
-		{
-			closestHit = thisDistance;
-			hit = &minable;
-			if(hitVelocity)
-				*hitVelocity = minable.Velocity();
-		}
+		hit = body;
+		reinterpret_cast<Minable *>(body)->TakeDamage(projectile);
 	}
-	if(hit)
-		hit->TakeDamage(projectile);
-	
-	return closestHit;
+	return hit;
+}
+
+
+
+// Get the list of mainable asteroids.
+const list<shared_ptr<Minable>> &AsteroidField::Minables() const
+{
+	return minables;
 }
 
 
@@ -183,11 +221,11 @@ void AsteroidField::Asteroid::Step()
 
 
 // Draw any instances of this asteroid that are on screen.
-void AsteroidField::Asteroid::Draw(DrawList &draw, const Point &center) const
+void AsteroidField::Asteroid::Draw(DrawList &draw, const Point &center, double zoom) const
 {
 	// Any object within this range must be drawn.
-	Point topLeft = center + Screen::TopLeft() - size;
-	Point bottomRight = center + Screen::BottomRight() + size;
+	Point topLeft = center + (Screen::TopLeft() - size) / zoom;
+	Point bottomRight = center + (Screen::BottomRight() + size) / zoom;
 	
 	// Figure out the position of the first instance of this asteroid that is to
 	// the right of and below the top left corner of the screen.
@@ -200,23 +238,4 @@ void AsteroidField::Asteroid::Draw(DrawList &draw, const Point &center) const
 	for(double y = startY; y < bottomRight.Y(); y += WRAP)
 		for(double x = startX; x < bottomRight.X(); x += WRAP)
 			draw.Add(*this, Point(x, y));
-}
-
-
-
-// Check if the given projectile collides with this asteroid. If so, a value
-// less than 1 is returned indicating how far along its path the collision occurs.
-double AsteroidField::Asteroid::Collide(const Projectile &projectile, int step) const
-{
-	// Note: this only checks the instance of the asteroid that is closest to
-	// the projectile. If a projectile has a range longer than 4096 pixels, it
-	// may "pass through" asteroids near the end of its range.
-	
-	// Find the asteroid instance closest to the center of the projectile,
-	// i.e. where it will be when halfway through its path.
-	Point halfVelocity = .5 * projectile.Velocity();
-	Point pos = position - (projectile.Position() + halfVelocity);
-	pos = Point(-remainder(pos.X(), WRAP), -remainder(pos.Y(), WRAP));
-	
-	return GetMask(step).Collide(pos - halfVelocity, projectile.Velocity(), angle);
 }

@@ -22,13 +22,13 @@ using namespace std;
 
 namespace {
 	// Trace out a pixmap.
-	void Trace(ImageBuffer *image, vector<Point> *raw)
+	void Trace(const ImageBuffer &image, int frame, vector<Point> *raw)
 	{
 		uint32_t on = 0xFF000000;
-		const uint32_t *begin = image->Pixels();
+		const uint32_t *begin = image.Pixels() + frame * image.Width() * image.Height();
 		
 		// Convert the pitch to uint32_ts instead of bytes.
-		int pitch = image->Width();
+		int pitch = image.Width();
 		
 		// First, find a non-empty pixel.
 		// This points to the current pixel.
@@ -36,15 +36,15 @@ namespace {
 		// This is where we will store the point:
 		Point point;
 		
-		for(int y = 0; y < image->Height(); ++y)
-			for(int x = 0; x < image->Width(); ++x)
+		for(int y = 0; y < image.Height(); ++y)
+			for(int x = 0; x < image.Width(); ++x)
 			{
 				// If this pixel is occupied, bail out of both loops.
 				if(*it & on)
 				{
 					point.Set(x, y);
 					// Break out of both loops.
-					y = image->Height();
+					y = image.Height();
 					break;
 				}
 				++it;
@@ -60,8 +60,8 @@ namespace {
 			pitch, pitch - 1, -1, -pitch - 1};
 		int d = 0;
 		// All points must be less than this,
-		const double maxX = image->Width() - .5;
-		const double maxY = image->Height() - .5;
+		const double maxX = image.Width() - .5;
+		const double maxY = image.Height() - .5;
 		
 		// Loop until we come back here.
 		begin = it;
@@ -171,22 +171,21 @@ namespace {
 	{
 		result->clear();
 		
-		// The image has been scaled to 50% size, so the raw outline must have
-		// vertices every half-pixel. Find all vertices with X coordinates
-		// within a quarter-pixel of 0, and of those, select the top-most and
-		// bottom-most ones.
+		// Out of all the top-most and bottom-most pixels, find the ones that
+		// are closest to the center of the image.
 		int top = -1;
 		int bottom = -1;
 		for(int i = 0; static_cast<unsigned>(i) < raw.size(); ++i)
-			if(raw[i].X() >= -.25 && raw[i].X() < .25)
-			{
-				if(top == -1)
-					top = bottom = i;
-				else if(raw[i].Y() > raw[bottom].Y())
-					bottom = i;
-				else
-					top = i;
-			}
+		{
+			double ax = fabs(raw[i].X());
+			double y = raw[i].Y();
+			if(top == -1)
+				top = bottom = i;
+			else if(y > raw[bottom].Y() || (y == raw[bottom].Y() && ax < fabs(raw[bottom].X())))
+				bottom = i;
+			else if(y < raw[top].Y() || (y == raw[top].Y() && ax < fabs(raw[top].X())))
+				top = i;
+		}
 		
 		// Bail out if we couldn't find top and bottom vertices.
 		if(top == bottom)
@@ -200,7 +199,7 @@ namespace {
 	
 	
 	// Find the radius of the object.
-	double Radius(const vector<Point> &outline)
+	double ComputeRadius(const vector<Point> &outline)
 	{
 		double radius = 0.;
 		for(const Point &p : outline)
@@ -221,16 +220,16 @@ Mask::Mask()
 
 // Construct a mask from the alpha channel of an SDL surface. (The surface
 // must therefore be a 4-byte RGBA format.)
-void Mask::Create(ImageBuffer *image)
+void Mask::Create(const ImageBuffer &image, int frame)
 {
 	vector<Point> raw;
-	Trace(image, &raw);
+	Trace(image, frame, &raw);
 	
-	SmoothAndCenter(&raw, Point(image->Width(), image->Height()));
+	SmoothAndCenter(&raw, Point(image.Width(), image.Height()));
 	
 	Simplify(raw, &outline);
 	
-	radius = Radius(outline);
+	radius = ComputeRadius(outline);
 }
 
 
@@ -312,6 +311,8 @@ bool Mask::WithinRange(Point point, Angle facing, double range) const
 double Mask::Range(Point point, Angle facing) const
 {
 	double range = numeric_limits<double>::infinity();
+	if(outline.empty())
+		return range;
 	
 	// Rotate into the mask's frame of reference.
 	point = (-facing).Rotate(point);
@@ -322,6 +323,21 @@ double Mask::Range(Point point, Angle facing) const
 		range = min(range, p.Distance(point));
 	
 	return range;
+}
+
+
+
+double Mask::Radius() const
+{
+	return radius;
+}
+
+
+
+// Get the list of points in the outline.
+const vector<Point> &Mask::Points() const
+{
+	return outline;
 }
 
 

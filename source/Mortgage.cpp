@@ -41,12 +41,20 @@ int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, int64_t curren
 
 // Create a new mortgage of the given amount.
 Mortgage::Mortgage(int64_t principal, int creditScore, int term)
-	: type(creditScore <= 0 ? "Fine" : creditScore > 800 ? "Death Benefits" : "Mortgage"),
+	: type(creditScore <= 0 ? "Fine" : "Mortgage"),
 	principal(principal),
 	interest((600 - creditScore / 2) * .00001),
 	interestString("0." + to_string(600 - creditScore / 2) + "%"),
 	term(term)
 {
+}
+
+
+
+// Construct and Load() at the same time.
+Mortgage::Mortgage(const DataNode &node)
+{
+	Load(node);
 }
 
 
@@ -105,7 +113,7 @@ int64_t Mortgage::MakePayment()
 
 void Mortgage::MissPayment()
 {
-	principal += static_cast<int>(principal * interest + .5);
+	principal += lround(principal * interest);
 }
 
 
@@ -163,6 +171,7 @@ int64_t Mortgage::Payment() const
 	if(!interest)
 		return round(principal / term);
 	
+	// Always require every payment to be at least 1 credit.
 	double power = pow(1. + interest, term);
-	return round(principal * interest * power / (power - 1.));
+	return max<int64_t>(1, round(principal * interest * power / (power - 1.)));
 }

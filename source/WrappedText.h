@@ -28,7 +28,7 @@ class Font;
 class WrappedText {
 public:
 	WrappedText();
-	WrappedText(const Font &font);
+	explicit WrappedText(const Font &font);
 	
 	// Set the alignment mode.
 	enum Align {LEFT, CENTER, RIGHT, JUSTIFIED};

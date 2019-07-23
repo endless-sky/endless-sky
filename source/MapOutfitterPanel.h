@@ -30,8 +30,8 @@ class Sprite;
 // to see which systems it is available in.
 class MapOutfitterPanel : public MapSalesPanel {
 public:
-	MapOutfitterPanel(PlayerInfo &player);
-	MapOutfitterPanel(const MapPanel &panel);
+	explicit MapOutfitterPanel(PlayerInfo &player);
+	explicit MapOutfitterPanel(const MapPanel &panel, bool onlyHere = false);
 	
 	
 protected:
@@ -55,7 +55,7 @@ private:
 	
 private:
 	std::map<std::string, std::vector<const Outfit *>> catalog;
-	mutable std::vector<const Outfit *> list;
+	std::vector<const Outfit *> list;
 	
 	const Outfit *selected = nullptr;
 	const Outfit *compare = nullptr;

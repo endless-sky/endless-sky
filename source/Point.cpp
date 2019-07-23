@@ -287,10 +287,15 @@ Point Point::Unit() const
 #ifdef __SSE3__
 	__m128d b = v * v;
 	b = _mm_hadd_pd(b, b);
+	if(!_mm_cvtsd_f64(b))
+		return Point(1., 0.);
 	b = _mm_sqrt_pd(b);
 	return Point(v / b);
 #else
-	double b = 1. / sqrt(x * x + y * y);
+	double b = x * x + y * y;
+	if(!b)
+		return Point(1., 0.);
+	b = 1. / sqrt(b);
 	return Point(x * b, y * b);
 #endif
 }
@@ -317,7 +322,7 @@ Point abs(const Point &p)
 #ifdef __SSE3__
 	// Absolute value for doubles just involves clearing the sign bit.
 	static const __m128d sign_mask = _mm_set1_pd(-0.);
-    return Point(_mm_andnot_pd(sign_mask, p.v));
+	return Point(_mm_andnot_pd(sign_mask, p.v));
 #else
 	return Point(abs(p.x), abs(p.y));
 #endif

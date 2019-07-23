@@ -24,45 +24,43 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 
+#include <algorithm>
 #include <cmath>
-#include <iostream>
 
 using namespace std;
 
 namespace {
-	static const double LINE_ANGLE[4] = {60., 120., 300., 240.};
-	static const double LINE_LENGTH = 60.;
-	static const double INNER_SPACE = 10.;
-	static const double LINE_GAP = 1.7;
-	static const double GAP = 6.;
-	static const double MIN_DISTANCE = 30.;
+	const double LINE_ANGLE[4] = {60., 120., 300., 240.};
+	const double LINE_LENGTH = 60.;
+	const double INNER_SPACE = 10.;
+	const double LINE_GAP = 1.7;
+	const double GAP = 6.;
+	const double MIN_DISTANCE = 30.;
 }
 
 
 
-PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, const System *system)
-	: position(position), radius(object.Radius())
+PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, const System *system, double zoom)
+	: position(position * zoom), radius(object.Radius() * zoom)
 {
 	const Planet &planet = *object.GetPlanet();
-	color = object.TargetColor();
 	name = planet.Name();
-	if(!planet.IsWormhole())
+	if(planet.IsWormhole())
+		color = Color(.8f, .3f, 1.f, 1.f);
+	else if(planet.GetGovernment())
 	{
-		if(planet.GetGovernment())
-		{
-			government = "(" + planet.GetGovernment()->GetName() + ")";
-			if(planet.CanLand())
-			{
-				color = planet.GetGovernment()->GetColor();
-				color = Color(color.Get()[0] * .5 + .3, color.Get()[1] * .5 + .3, color.Get()[2] * .5 + .3);
-			}
-			else
-				hostility = 3 + 2 * planet.GetGovernment()->IsEnemy();
-		}
-		else
-			government = "(No government)";
+		government = "(" + planet.GetGovernment()->GetName() + ")";
+		color = planet.GetGovernment()->GetColor();
+		color = Color(color.Get()[0] * .5f + .3f, color.Get()[1] * .5f + .3f, color.Get()[2] * .5f + .3f);
+		if(!planet.CanLand())
+			hostility = 3 + 2 * planet.GetGovernment()->IsEnemy();
 	}
-	double alpha = min(.5, max(0., .6 - (position.Length() - radius) * .001));
+	else
+	{
+		color = Color(.3f, .3f, .3f, 1.f);
+		government = "(No government)";
+	}
+	float alpha = static_cast<float>(min(.5, max(0., .6 - (position.Length() - radius) * .001 * zoom)));
 	color = Color(color.Get()[0] * alpha, color.Get()[1] * alpha, color.Get()[2] * alpha, 0.);
 	
 	if(!system)
@@ -119,14 +117,14 @@ void PlanetLabel::Draw() const
 	double innerAngle = LINE_ANGLE[direction];
 	double outerAngle = innerAngle - 360. * GAP / (2. * PI * radius);
 	Point unit = Angle(innerAngle).Unit();
-	RingShader::Draw(position, radius + INNER_SPACE, 2.3, .9, color, 0., innerAngle);
-	RingShader::Draw(position, radius + INNER_SPACE + GAP, 1.3, .6, color, 0., outerAngle);
+	RingShader::Draw(position, radius + INNER_SPACE, 2.3f, .9f, color, 0.f, innerAngle);
+	RingShader::Draw(position, radius + INNER_SPACE + GAP, 1.3f, .6f, color, 0.f, outerAngle);
 	
 	if(!name.empty())
 	{
 		Point from = position + (radius + INNER_SPACE + LINE_GAP) * unit;
 		Point to = from + LINE_LENGTH * unit;
-		LineShader::Draw(from, to, 1.3, color);
+		LineShader::Draw(from, to, 1.3f, color);
 		
 		double nameX = to.X() + (direction < 2 ? 2. : -bigFont.Width(name) - 2.);
 		bigFont.DrawAliased(name, nameX, to.Y() - .5 * bigFont.Height(), color);
@@ -138,6 +136,6 @@ void PlanetLabel::Draw() const
 	for(int i = 0; i < hostility; ++i)
 	{
 		barbAngle += Angle(800. / (radius + 25.));
-		PointerShader::Draw(position, barbAngle.Unit(), 15., 15., radius + 25., color);
+		PointerShader::Draw(position, barbAngle.Unit(), 15.f, 15.f, radius + 25., color);
 	}
 }

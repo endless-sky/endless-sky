@@ -16,15 +16,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-
-
 namespace {
-	static int RAW_WIDTH = 0;
-	static int RAW_HEIGHT = 0;
-	static int WIDTH = 0;
-	static int HEIGHT = 0;
-	static int ZOOM = 100;
-	static bool HIGH_DPI = false;
+	int RAW_WIDTH = 0;
+	int RAW_HEIGHT = 0;
+	int WIDTH = 0;
+	int HEIGHT = 0;
+	int USER_ZOOM = 100;
+	int EFFECTIVE_ZOOM = 100;
+	bool HIGH_DPI = false;
 }
 
 
@@ -33,23 +32,43 @@ void Screen::SetRaw(int width, int height)
 {
 	RAW_WIDTH = width;
 	RAW_HEIGHT = height;
-	SetZoom(ZOOM);
+	SetZoom(USER_ZOOM);
+}
+
+
+
+int Screen::UserZoom()
+{
+	return USER_ZOOM;
 }
 
 
 
 int Screen::Zoom()
 {
-	return ZOOM;
+	return EFFECTIVE_ZOOM;
 }
 
 
 
 void Screen::SetZoom(int percent)
 {
-	ZOOM = max(100, min(200, percent));
-	WIDTH = RAW_WIDTH * 100 / ZOOM;
-	HEIGHT = RAW_HEIGHT * 100 / ZOOM;
+	USER_ZOOM = max(100, min(200, percent));
+	
+	// Make sure the zoom factor is not set too high for the full UI to fit.
+	static const int MIN_WIDTH = 1000; // Width of main menu
+	static const int MIN_HEIGHT = 500; // Height of preferences panel
+	int minZoomX = 100 * RAW_WIDTH / MIN_WIDTH;
+	int minZoomY = 100 * RAW_HEIGHT / MIN_HEIGHT;
+	int minZoom = min(minZoomX, minZoomY);
+	// Never go below 100% zoom, no matter how small the window is
+	minZoom = max(minZoom, 100);
+	// Use increments of 10, like the user setting
+	minZoom -= minZoom % 10;
+	EFFECTIVE_ZOOM = min(minZoom, UserZoom());
+	
+	WIDTH = RAW_WIDTH * 100 / EFFECTIVE_ZOOM;
+	HEIGHT = RAW_HEIGHT * 100 / EFFECTIVE_ZOOM;
 }
 
 
@@ -65,7 +84,7 @@ void Screen::SetHighDPI(bool isHighDPI)
 // This is true if the screen is high DPI, or if the zoom is above 100%.
 bool Screen::IsHighResolution()
 {
-	return HIGH_DPI || (ZOOM > 100);
+	return HIGH_DPI || (EFFECTIVE_ZOOM > 100);
 }
 
 
@@ -102,7 +121,6 @@ int Screen::RawHeight()
 {
 	return RAW_HEIGHT;
 }
-
 
 
 

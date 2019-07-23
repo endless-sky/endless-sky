@@ -13,10 +13,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef GAME_DATA_H_
 #define GAME_DATA_H_
 
+#include "Sale.h"
 #include "Set.h"
 #include "Trade.h"
 
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -30,9 +32,11 @@ class Fleet;
 class Galaxy;
 class GameEvent;
 class Government;
+class ImageSet;
 class Interface;
 class Minable;
 class Mission;
+class News;
 class Outfit;
 class Person;
 class Phrase;
@@ -54,7 +58,9 @@ class System;
 // universe.
 class GameData {
 public:
-	static void BeginLoad(const char * const *argv);
+	static bool BeginLoad(const char * const *argv);
+	// Check for objects that are referred to but never defined.
+	static void CheckReferences();
 	static void LoadShaders();
 	static double Progress();
 	// Begin loading a sprite that was previously deferred. Currently this is
@@ -79,6 +85,12 @@ public:
 	// that a change creates or moves a system.
 	static void UpdateNeighbors();
 	
+	// Re-activate any special persons that were created previously but that are
+	// still alive.
+	static void ResetPersons();
+	// Mark all persons in the given list as dead.
+	static void DestroyPersons(std::vector<std::string> &names);
+	
 	static const Set<Color> &Colors();
 	static const Set<Conversation> &Conversations();
 	static const Set<Effect> &Effects();
@@ -90,10 +102,12 @@ public:
 	static const Set<Minable> &Minables();
 	static const Set<Mission> &Missions();
 	static const Set<Outfit> &Outfits();
+	static const Set<Sale<Outfit>> &Outfitters();
 	static const Set<Person> &Persons();
 	static const Set<Phrase> &Phrases();
 	static const Set<Planet> &Planets();
 	static const Set<Ship> &Ships();
+	static const Set<Sale<Ship>> &Shipyards();
 	static const Set<System> &Systems();
 	
 	static const Government *PlayerGovernment();
@@ -106,19 +120,31 @@ public:
 	// Custom messages to be shown when trying to land on certain stellar objects.
 	static bool HasLandingMessage(const Sprite *sprite);
 	static const std::string &LandingMessage(const Sprite *sprite);
+	// Get the solar power and wind output of the given stellar object sprite.
+	static double SolarPower(const Sprite *sprite);
+	static double SolarWind(const Sprite *sprite);
+	
+	// Pick a random news object that applies to the given planet. If there is
+	// no applicable news, this returns null.
+	static const News *PickNews(const Planet *planet);
+	
+	// Strings for combat rating levels, etc.
+	static const std::string &Rating(const std::string &type, int level);
 	
 	static const StarField &Background();
+	static void SetHaze(const Sprite *sprite);
 	
 	static const std::string &Tooltip(const std::string &label);
 	static std::string HelpMessage(const std::string &name);
+	static const std::map<std::string, std::string> &HelpTemplates();
+	
+	static const std::map<std::string, std::string> &PluginAboutText();
 	
 	
 private:
 	static void LoadSources();
 	static void LoadFile(const std::string &path, bool debugMode);
-	static void LoadImages(std::map<std::string, std::string> &images);
-	static void LoadImage(const std::string &path, std::map<std::string, std::string> &images, size_t start);
-	static std::string Name(const std::string &path);
+	static std::map<std::string, std::shared_ptr<ImageSet>> FindImages();
 	
 	static void PrintShipTable();
 	static void PrintWeaponTable();

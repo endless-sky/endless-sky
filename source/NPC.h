@@ -17,16 +17,19 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Fleet.h"
 #include "LocationFilter.h"
 #include "Personality.h"
+#include "Phrase.h"
 
-#include <string>
 #include <list>
 #include <map>
 #include <memory>
+#include <string>
 
 class DataNode;
 class DataWriter;
 class Government;
+class Planet;
 class PlayerInfo;
+class Ship;
 class ShipEvent;
 class System;
 class UI;
@@ -39,6 +42,10 @@ class UI;
 // staying in the system they started in, or attacking only the player's ships.
 class NPC {
 public:
+	NPC() = default;
+	// Construct and Load() at the same time.
+	NPC(const DataNode &node);
+	
 	void Load(const DataNode &node);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so fleets will be replaced by individual ships already.
@@ -68,9 +75,14 @@ private:
 	LocationFilter location;
 	const System *system = nullptr;
 	bool isAtDestination = false;
+	// Start out landed on this planet.
+	const Planet *planet = nullptr;
 	
 	// Dialog or conversation to show when all requirements for this NPC are met:
 	std::string dialogText;
+	const Phrase *stockDialogPhrase = nullptr;
+	Phrase dialogPhrase;
+	
 	Conversation conversation;
 	const Conversation *stockConversation = nullptr;
 	

@@ -21,7 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // RAII wrapper for FILE, to make sure it gets closed if an error occurs.
 class File {
 public:
-	File(const std::string &path, bool write = false);
+	explicit File(const std::string &path, bool write = false);
 	File(const File &) = delete;
 	File(File &&other);
 	~File();

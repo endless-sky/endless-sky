@@ -18,6 +18,7 @@ outfit "Drak Distancer"
 	"turret mounts" -1
 	weapon
 		"fire effect" "distancer flare"
+		"turret turn" 4.
 		"velocity" 2000
 		"lifetime" 1
 		"reload" 1
@@ -41,6 +42,7 @@ outfit "Drak Draining Field"
 	"weapon capacity" -84
 	"turret mounts" -1
 	weapon
+		"turret turn" 4.
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
@@ -83,6 +85,7 @@ outfit "Drak Turret"
 			"random start frame"
 		"hit effect" "drak bolt impact"
 		"inaccuracy" 1
+		"turret turn" 4.
 		"velocity" 36
 		"lifetime" 30
 		"reload" 16
@@ -100,8 +103,8 @@ effect "drak bolt impact"
 	sound "explosion small"
 	"lifetime" 20
 	"random angle" 20
-	"velocity scale" -.05
 	"random spin" 10
+	"velocity scale" -.05
 
 outfit "Drak Antimatter Cannon"
 	category "Guns"
@@ -111,6 +114,7 @@ outfit "Drak Antimatter Cannon"
 	"outfit space" -96
 	"weapon capacity" -96
 	"gun ports" -1
+	"inscrutable" 1
 	weapon
 		"inaccuracy" 0
 		"velocity" 20
@@ -118,6 +122,7 @@ outfit "Drak Antimatter Cannon"
 		"submunition" "Drak Antimatter Fragment" 3
 		"hit effect" "antimatter dust" 10
 		"hit effect" "nuke explosion"
+		"safe"
 		"reload" 187
 		"firing energy" 5610
 		"firing heat" 1870
@@ -134,6 +139,7 @@ outfit "Drak Antimatter Fragment"
 		"live effect" "antimatter dust" 249
 		"hit effect" "antimatter dust" 10
 		"hit effect" "nuke explosion"
+		"safe"
 		"inaccuracy" 1
 		"lifetime" 499
 		"hit force" 1000
@@ -146,9 +152,9 @@ effect "antimatter spark"
 		"frame rate" 3
 	"lifetime" 40
 	"random angle" 1
-	"velocity scale" .6
-	"random velocity" 8
 	"random spin" .1
+	"random velocity" 8
+	"velocity scale" .6
 
 effect "antimatter dust"
 	sprite "effect/smoke"
@@ -156,14 +162,17 @@ effect "antimatter dust"
 		"frame rate" 30
 	"lifetime" 13
 	"random angle" 30
-	"velocity scale" .1
-	"random velocity" 12
 	"random spin" 50
+	"random velocity" 12
+	"velocity scale" .1
 
 
-ship Archon
-	sprite ship/archon
+
+ship "Archon"
+	noun "entity"
+	sprite "ship/archon"
 		"frame rate" 0.87
+	thumbnail "thumbnail/archon"
 	"never disabled"
 	attributes
 		category "Heavy Warship"
@@ -182,11 +191,11 @@ ship Archon
 		"engine capacity" 200
 		"energy capacity" 10000
 		"energy generation" 500
+		"heat generation" 17
 		"shield generation" 100
 		"shield energy" 100
 		"hull repair rate" 100
 		"hull energy" 100
-		"heat generation" 17
 		"ramscoop" 100
 		weapon
 			"blast radius" 200
@@ -218,3 +227,16 @@ ship Archon
 	turret 55 16 "Drak Distancer"
 	explode "nuke explosion" 3
 	"final explode" "final explosion large"
+
+ship "Archon" "Archon (Cloaked)"
+	"never disabled"
+	add attributes
+		"cloak" .04
+	turret "Drak Anti-Missile Field"
+	turret "Drak Anti-Missile Field"
+	turret "Drak Draining Field"
+	turret "Drak Turret"
+	turret "Drak Turret"
+	turret "Drak Turret"
+	turret "Drak Distancer"
+	turret "Drak Distancer"

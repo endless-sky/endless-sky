@@ -32,30 +32,28 @@ class Ship;
 // a government that is particularly repressive of independent pilots.)
 class ShipyardPanel : public ShopPanel {
 public:
-	ShipyardPanel(PlayerInfo &player);
+	explicit ShipyardPanel(PlayerInfo &player);
 	
 	
 protected:
 	virtual int TileSize() const override;
-	virtual int DrawPlayerShipInfo(const Point &point) const override;
+	virtual int DrawPlayerShipInfo(const Point &point) override;
 	virtual bool HasItem(const std::string &name) const override;
-	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) const override;
+	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) override;
 	virtual int DividerOffset() const override;
 	virtual int DetailWidth() const override;
-	virtual int DrawDetails(const Point &center) const override;
+	virtual int DrawDetails(const Point &center) override;
 	virtual bool CanBuy() const override;
-	virtual void Buy() override;
+	virtual void Buy(bool fromCargo = false) override;
 	virtual void FailBuy() const override;
-	virtual bool CanSell() const override;
-	virtual void Sell() override;
-	virtual bool FlightCheck() override;
+	virtual bool CanSell(bool toCargo = false) const override;
+	virtual void Sell(bool toCargo = false) override;
 	virtual bool CanSellMultiple() const override;
 	
 	
 private:
 	void BuyShip(const std::string &name);
 	void SellShip();
-	int64_t LicenseCost() const;
 	
 	
 private:

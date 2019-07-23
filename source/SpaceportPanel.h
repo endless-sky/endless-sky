@@ -15,10 +15,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "Information.h"
 #include "WrappedText.h"
 
-class PlayerInfo;
+#include <map>
 
+class PlayerInfo;
+class Sprite;
 
 
 // GUI panel to be shown when you are in a spaceport. This just draws the port
@@ -26,7 +29,9 @@ class PlayerInfo;
 // missions that are marked as originating in the spaceport.
 class SpaceportPanel : public Panel {
 public:
-	SpaceportPanel(PlayerInfo &player);
+	explicit SpaceportPanel(PlayerInfo &player);
+	
+	void UpdateNews();
 	
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -35,6 +40,14 @@ public:
 private:
 	PlayerInfo &player;
 	WrappedText text;
+	
+	// Current news item (if any):
+	bool hasNews = false;
+	Information newsInfo;
+	WrappedText newsMessage;
+	// After displaying a portrait for a particular profession,
+	// only show it for that same profession.
+	std::map<const Sprite *, std::string> displayedProfessions;
 };
 
 

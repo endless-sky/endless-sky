@@ -45,11 +45,24 @@ public:
 	// Get the location of a named point or box.
 	bool HasPoint(const std::string &name) const;
 	Point GetPoint(const std::string &name) const;
-	Point GetSize(const std::string &name) const;
 	Rectangle GetBox(const std::string &name) const;
+	
+	// Get a named value.
+	double GetValue(const std::string &name) const;
 	
 	
 private:
+	class AnchoredPoint {
+	public:
+		// Get the point's location, given the current screen dimensions.
+		Point Get() const;
+		void Set(const Point &position, const Point &anchor);
+		
+	private:
+		Point position;
+		Point anchor;
+	};
+	
 	class Element {
 	public:
 		// State enumeration:
@@ -65,18 +78,18 @@ private:
 		
 		// Create a new element. The alignment of the interface that contains
 		// this element is used to calculate the element's position.
-		void Load(const DataNode &node, const Point &globalAlignment);
+		void Load(const DataNode &node, const Point &globalAnchor);
 		
 		// Draw this element, relative to the given anchor point. If this is a
 		// button, it will add a clickable zone to the given panel.
-		void DrawAt(const Point &anchor, const Information &info, Panel *panel) const;
+		void Draw(const Information &info, Panel *panel) const;
 		
 		// Set the conditions that control when this element is visible and active.
 		// An empty string means it is always visible or active.
 		void SetConditions(const std::string &visible, const std::string &active);
 		
-		// Get the bounding rectangle, relative to the anchor point.
-		const Rectangle &Bounds() const;
+		// Get the bounding rectangle, given the current screen dimensions.
+		Rectangle Bounds() const;
 		
 	protected:
 		// Parse the given data line: one that is not recognized by Element
@@ -91,7 +104,8 @@ private:
 		virtual void Place(const Rectangle &bounds, Panel *panel) const;
 		
 	protected:
-		Rectangle bounds;
+		AnchoredPoint from;
+		AnchoredPoint to;
 		Point alignment;
 		Point padding;
 		std::string visibleIf;
@@ -101,7 +115,7 @@ private:
 	// This class handles "sprite", "image", and "outline" elements.
 	class ImageElement : public Element {
 	public:
-		ImageElement(const DataNode &node, const Point &globalAlignment);
+		ImageElement(const DataNode &node, const Point &globalAnchor);
 		
 	protected:
 		// Parse the given data line: one that is not recognized by Element
@@ -130,7 +144,7 @@ private:
 	// This class handles "label", "string", and "button" elements.
 	class TextElement : public Element {
 	public:
-		TextElement(const DataNode &node, const Point &globalAlignment);
+		TextElement(const DataNode &node, const Point &globalAnchor);
 		
 	protected:
 		// Parse the given data line: one that is not recognized by Element
@@ -160,7 +174,7 @@ private:
 	// This class handles "bar" and "ring" elements.
 	class BarElement : public Element {
 	public:
-		BarElement(const DataNode &node, const Point &globalAlignment);
+		BarElement(const DataNode &node, const Point &globalAnchor);
 		
 	protected:
 		// Parse the given data line: one that is not recognized by Element
@@ -178,10 +192,9 @@ private:
 	
 	
 private:
-	Point alignment;
-	
 	std::vector<Element *> elements;
 	std::map<std::string, Element> points;
+	std::map<std::string, double> values;
 };
 
 

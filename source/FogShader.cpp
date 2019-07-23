@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "gl_header.h"
 
+#include <algorithm>
 #include <cmath>
 #include <vector>
 
@@ -28,15 +29,15 @@ using namespace std;
 
 namespace {
 	// Scale of the mask image:
-	static const int GRID = 16;
+	const int GRID = 16;
 	// Distance represented by one orthogonal or diagonal step:
-	static const int ORTH = 5;
-	static const int DIAG = 7;
+	const int ORTH = 5;
+	const int DIAG = 7;
 	// Limit distances to the size of an unsigned char.
-	static const int LIMIT = 255;
+	const int LIMIT = 255;
 	// Pad beyond the screen enough to include any system that might "cast light"
 	// on the on-screen view.
-	static const int PAD = LIMIT / ORTH;
+	const int PAD = LIMIT / ORTH;
 	
 	// OpenGL objects:
 	Shader shader;
@@ -146,6 +147,8 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 		left != previousLeft || top != previousTop || columns != previousColumns || rows != previousRows);
 	if(shouldRegenerate)
 	{
+		bool sizeChanged = (!texture || columns != previousColumns || rows != previousRows);
+		
 		// Remember the current viewport attributes.
 		previousZoom = zoom;
 		previousCenter = center;
@@ -177,12 +180,12 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 		// opposite direction. Once these two passes are done, each value is equal
 		for(int y = 1; y < rows; ++y)
 			for(int x = 1; x < columns; ++x)
-				buffer[x + y * columns] = min(static_cast<int>(buffer[x + y * columns]), min(
+				buffer[x + y * columns] = min<int>(buffer[x + y * columns], min(
 					ORTH + min(buffer[(x - 1) + y * columns], buffer[x + (y - 1) * columns]),
 					DIAG + min(buffer[(x - 1) + (y - 1) * columns], buffer[(x + 1) + (y - 1) * columns])));
 		for(int y = rows - 2; y >= 0; --y)
 			for(int x = columns - 2; x >= 0; --x)
-				buffer[x + y * columns] = min(static_cast<int>(buffer[x + y * columns]), min(
+				buffer[x + y * columns] = min<int>(buffer[x + y * columns], min(
 					ORTH + min(buffer[(x + 1) + y * columns], buffer[x + (y + 1) * columns]),
 					DIAG + min(buffer[(x - 1) + (y + 1) * columns], buffer[(x + 1) + (y + 1) * columns])));
 	
@@ -190,22 +193,30 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 		// away, then it transitions somewhat quickly.
 		for(unsigned char &value : buffer)
 			value = max(0, min(LIMIT, (value - 60) * 4));
-	
+		const void *data = &buffer.front();
+		
 		// Set up the OpenGL texture if it doesn't exist yet.
-		if(!texture)
+		if(sizeChanged)
 		{
+			// If the texture size changed, it must be reallocated.
+			if(texture)
+				glDeleteTextures(1, &texture);
+			
 			glGenTextures(1, &texture);
 			glBindTexture(GL_TEXTURE_2D, texture);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+			
+			// Upload the new "image."
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, columns, rows, 0, GL_RED, GL_UNSIGNED_BYTE, data);
 		}
 		else
+		{
 			glBindTexture(GL_TEXTURE_2D, texture);
-	
-		// Upload the new "image."
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, columns, rows, 0, GL_RED, GL_UNSIGNED_BYTE, &buffer.front());
+			glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, columns, rows, GL_RED, GL_UNSIGNED_BYTE, data);
+		}
 	}
 	else
 		glBindTexture(GL_TEXTURE_2D, texture);
@@ -213,15 +224,14 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 	// Set up to draw the image.
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
-	glActiveTexture(GL_TEXTURE0);
 	
 	GLfloat corner[2] = {
-		static_cast<float>((left - .5f * GRID * zoom) / (.5f * Screen::Width())),
-		static_cast<float>((top - .5f * GRID * zoom) / (-.5f * Screen::Height()))};
+		static_cast<float>(left - .5 * GRID * zoom) / (.5f * Screen::Width()),
+		static_cast<float>(top - .5 * GRID * zoom) / (-.5f * Screen::Height())};
 	glUniform2fv(cornerI, 1, corner);
 	GLfloat dimensions[2] = {
-		static_cast<float>(GRID * zoom * (columns + 1.f) / (.5f * Screen::Width())),
-		static_cast<float>(GRID * zoom * (rows + 1.f) / (-.5f * Screen::Height()))};
+		GRID * static_cast<float>(zoom) * (columns + 1.f) / (.5f * Screen::Width()),
+		GRID * static_cast<float>(zoom) * (rows + 1.f) / (-.5f * Screen::Height())};
 	glUniform2fv(dimensionsI, 1, dimensions);
 	
 	// Call the shader program to draw the image.

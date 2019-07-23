@@ -9,6 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 outfit "Generator (Candle Class)"
+	plural "Generators (Candle Class)"
 	category "Power"
 	cost 493000
 	thumbnail "outfit/small korath generator"
@@ -19,6 +20,7 @@ outfit "Generator (Candle Class)"
 	description "This tiny generator produces a significant amount of energy using the heat produced by the radioactive decay of some particularly unstable nuclear isotopes."
 
 outfit "Generator (Furnace Class)"
+	plural "Generators (Furnace Class)"
 	category "Power"
 	cost 925000
 	thumbnail "outfit/medium korath generator"
@@ -29,6 +31,7 @@ outfit "Generator (Furnace Class)"
 	description "Because Korath equipment is so power-hungry, they use radiothermal generators even in their fighters and interceptors, rather than relying on fuel cells or other comparable technology."
 
 outfit "Generator (Inferno Class)"
+	plural "Generators (Inferno Class)"
 	category "Power"
 	cost 1877000
 	thumbnail "outfit/large korath generator"
@@ -90,46 +93,61 @@ outfit "Large Heat Shunt"
 
 
 outfit "Systems Core (Small)"
+	plural "Systems Cores (Small)"
 	category "Systems"
 	cost 1452000
 	thumbnail "outfit/small systems core"
 	"mass" 31
 	"outfit space" -31
+	"energy capacity" 1300
 	"shield generation" 1.6
 	"shield energy" 2.4
 	"hull repair rate" 0.2
 	"hull energy" 0.2
 	"hull heat" 0.3
-	"energy capacity" 1300
 	description `The heart of any Korath ship is the Systems Core, which houses the ship's central computer, shield generators, and a small number of "hull-walking" welding robots that can make minor repairs to the ship's outer armor while in flight.`
 
 outfit "Systems Core (Medium)"
+	plural "Systems Cores (Medium)"
 	category "Systems"
 	cost 3630000
 	thumbnail "outfit/medium systems core"
 	"mass" 53
 	"outfit space" -53
+	"energy capacity" 2600
 	"shield generation" 3.1
 	"shield energy" 4.6
 	"hull repair rate" 0.4
 	"hull energy" 0.4
 	"hull heat" 0.6
-	"energy capacity" 2600
 	description `This "systems core" houses a powerful computer, shield generators, and a control center for small repair robots that can walk across a ship's exterior on magnetic feet and slowly repair damage to the hull.`
 
 outfit "Systems Core (Large)"
+	plural "Systems Cores (Large)"
 	category "Systems"
 	cost 9075000
 	thumbnail "outfit/large systems core"
 	"mass" 91
 	"outfit space" -91
+	"energy capacity" 5200
 	"shield generation" 6.0
 	"shield energy" 8.8
 	"hull repair rate" 0.8
 	"hull energy" 0.8
 	"hull heat" 1.2
-	"energy capacity" 5200
 	description `This massive bank of computers, shield generators, and repair stations holds everything needed to keep the very largest of Korath ships in working condition.`
+
+
+outfit "Fuel Processor"
+	category "Systems"
+	cost 400000
+	thumbnail "outfit/korath fuel processor"
+	"mass" 14
+	"outfit space" -14
+	"fuel capacity" 200
+	"ramscoop" 2
+	description "The fuel processor was developed during the latter half of the Korath Civil War, when Korath factions attempted to provide for their war effort by raiding the Hai for supplies. Their ships would often end up stranded after they had run out of fuel and were unable to escape from the Hai military fleets, prompting the creation of this hybrid fuel storage and ramscoop device. These outfits are now the main source of fuel for the remaining Korath in the galaxy."
+
 
 outfit "Command Center"
 	category "Systems"
@@ -140,6 +158,7 @@ outfit "Command Center"
 	"bunks" 1
 	"required crew" 1
 	"automaton" -1
+	unplunderable 1
 	description "In response to occasional raids by the robotic war machines left behind after their recent conflict, the Kor Efret have developed this minimal, spartan command center that can be installed in a captured robotic ship to allow a pilot to override the AI and interface with the ship's controls. The command center only provides a single bunk for the captain, so more may be necessary if the ship has turrets or other systems that require crew."
 
 outfit "Reasoning Node"
@@ -161,6 +180,7 @@ outfit "Control Transceiver"
 
 
 outfit "Thruster (Asteroid Class)"
+	plural "Thrusters (Asteroid Class)"
 	category "Engines"
 	"cost" 113000
 	thumbnail "outfit/tiny korath thruster"
@@ -176,6 +196,7 @@ outfit "Thruster (Asteroid Class)"
 	description "Given its size, this tiny Korath thruster produces quite a kick. But, it also draws a considerable amount of power."
 
 outfit "Thruster (Comet Class)"
+	plural "Thrusters (Comet Class)"
 	category "Engines"
 	"cost" 249000
 	thumbnail "outfit/small korath thruster"
@@ -191,6 +212,7 @@ outfit "Thruster (Comet Class)"
 	description "Like most Korath technology, this thruster's power is offset by its energy requirements and heat output."
 
 outfit "Thruster (Lunar Class)"
+	plural "Thrusters (Lunar Class)"
 	category "Engines"
 	"cost" 539000
 	thumbnail "outfit/medium korath thruster"
@@ -206,6 +228,7 @@ outfit "Thruster (Lunar Class)"
 	description "The Korath have the dubious distinction of relying on propulsion systems that produce more waste heat than the weapon systems of most other species."
 
 outfit "Thruster (Planetary Class)"
+	plural "Thrusters (Planetary Class)"
 	category "Engines"
 	"cost" 1216000
 	thumbnail "outfit/large korath thruster"
@@ -221,6 +244,7 @@ outfit "Thruster (Planetary Class)"
 	description "The Quarg, who do all things efficiently, view the Korath propulsion systems with particular distaste."
 
 outfit "Thruster (Stellar Class)"
+	plural "Thrusters (Stellar Class)"
 	category "Engines"
 	"cost" 2733000
 	thumbnail "outfit/huge korath thruster"
@@ -236,6 +260,7 @@ outfit "Thruster (Stellar Class)"
 	description "A legend among the Korath claims that when they were first testing out their latest generation of plasma thrusters, a concerned Quarg fleet approached and volunteered to help evacuate the Korath crew from what they assumed was a dying ship. The Quarg were surprised to learn that the flames shooting out the back of the ship were in fact its intended mode of propulsion."
 
 outfit "Steering (Asteroid Class)"
+	plural "Steerings (Asteroid Class)"
 	category "Engines"
 	"cost" 95000
 	thumbnail "outfit/tiny korath steering"
@@ -248,6 +273,7 @@ outfit "Steering (Asteroid Class)"
 	description "The Korath use these steering systems only in the very smallest of their ships."
 
 outfit "Steering (Comet Class)"
+	plural "Steerings (Comet Class)"
 	category "Engines"
 	"cost" 221000
 	thumbnail "outfit/small korath steering"
@@ -260,6 +286,7 @@ outfit "Steering (Comet Class)"
 	description "This compact steering system is a classic example of Korath technology: small, powerful, and woefully inefficient."
 
 outfit "Steering (Lunar Class)"
+	plural "Steerings (Lunar Class)"
 	category "Engines"
 	"cost" 473000
 	thumbnail "outfit/medium korath steering"
@@ -272,6 +299,7 @@ outfit "Steering (Lunar Class)"
 	description "Korath engines can be fitted into just about any ship, but unless accompanied by some Korath cooling systems as well, their heat output will often be more than the ship can handle."
 
 outfit "Steering (Planetary Class)"
+	plural "Steerings (Planetary Class)"
 	category "Engines"
 	"cost" 1077000
 	thumbnail "outfit/large korath steering"
@@ -284,6 +312,7 @@ outfit "Steering (Planetary Class)"
 	description "Where other species might focus on converting energy into thrust as efficiently as possible, the Korath instead strive to pack as much power as possible into the smallest area. This steering system is a classic example of their work."
 
 outfit "Steering (Stellar Class)"
+	plural "Steerings (Stellar Class)"
 	category "Engines"
 	"cost" 2435000
 	thumbnail "outfit/huge korath steering"
@@ -294,3 +323,12 @@ outfit "Steering (Stellar Class)"
 	"turning energy" 8.2
 	"turning heat" 26.7
 	description "After millennia of war, the Korath have developed some truly enormous warships. These steering systems give even their largest warships a reasonable amount of agility in combat."
+	
+outfit "Korath Repeater Rifle"
+	category "Hand to Hand"
+	cost 73000
+	thumbnail "outfit/korath rifle"
+	"capture attack" 1.6
+	"capture defense" 2.4
+	"unplunderable" 1
+	description "This rifle is commonplace among the Korath, predating the creation of the Repeater by at least two centuries. As it uses superheated plasma instead of lasers, the rifle is slow to fire and can sometimes burn its user's hands if they aren't careful. It makes up for these setbacks by guaranteeing that those hit won't live long enough to fire back."

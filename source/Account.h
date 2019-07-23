@@ -43,17 +43,22 @@ public:
 	// Step forward one day, and return a string summarizing payments made.
 	std::string Step(int64_t assets, int64_t salaries);
 	
+	// Overdue crew salaries:
+	int64_t SalariesOwed() const;
+	void PaySalaries(int64_t amount);
+	
 	// Liabilities:
 	const std::vector<Mortgage> &Mortgages() const;
 	void AddMortgage(int64_t principal);
 	void AddFine(int64_t amount);
-	void AddDeathBenefits(int64_t bonus);
 	int64_t Prequalify() const;
 	// Assets:
 	int64_t NetWorth() const;
 	
 	// Find out the player's credit rating.
 	int CreditScore() const;
+	// Get the total amount owed for "Mortgage", "Fine", or both.
+	int64_t TotalDebt(const std::string &type = "") const;
 	
 	
 private:

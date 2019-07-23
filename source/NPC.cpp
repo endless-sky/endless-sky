@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Messages.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
@@ -30,6 +31,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 using namespace std;
+
+
+
+// Construct and Load() at the same time.
+NPC::NPC(const DataNode &node)
+{
+	Load(node);
+}
 
 
 
@@ -56,7 +65,10 @@ void NPC::Load(const DataNode &node)
 		else if(node.Token(i) == "evade")
 			mustEvade = true;
 		else if(node.Token(i) == "accompany")
+		{
 			mustAccompany = true;
+			failIf |= ShipEvent::DESTROY;
+		}
 	}
 	
 	for(const DataNode &child : node)
@@ -73,6 +85,8 @@ void NPC::Load(const DataNode &node)
 			else
 				location.Load(child);
 		}
+		else if(child.Token(0) == "planet" && child.Size() >= 2)
+			planet = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "succeed" && child.Size() >= 2)
 			succeedIf = child.Value(1);
 		else if(child.Token(0) == "fail" && child.Size() >= 2)
@@ -87,19 +101,26 @@ void NPC::Load(const DataNode &node)
 			personality.Load(child);
 		else if(child.Token(0) == "dialog")
 		{
-			for(int i = 1; i < child.Size(); ++i)
+			bool hasValue = (child.Size() > 1);
+			// Dialog text may be supplied from a stock named phrase, a
+			// private unnamed phrase, or directly specified.
+			if(hasValue && child.Token(1) == "phrase")
 			{
-				if(!dialogText.empty())
-					dialogText += "\n\t";
-				dialogText += child.Token(i);
+				if(!child.HasChildren() && child.Size() == 3)
+					stockDialogPhrase = GameData::Phrases().Get(child.Token(2));
+				else
+					child.PrintTrace("Skipping unsupported dialog phrase syntax:");
 			}
-			for(const DataNode &grand : child)
-				for(int i = 0; i < grand.Size(); ++i)
-				{
-					if(!dialogText.empty())
-						dialogText += "\n\t";
-					dialogText += grand.Token(i);
-				}
+			else if(!hasValue && child.HasChildren() && (*child.begin()).Token(0) == "phrase")
+			{
+				const DataNode &firstGrand = (*child.begin());
+				if(firstGrand.Size() == 1 && firstGrand.HasChildren())
+					dialogPhrase.Load(firstGrand);
+				else
+					firstGrand.PrintTrace("Skipping unsupported dialog phrase syntax:");
+			}
+			else
+				Dialog::ParseTextNode(child, 1, dialogText);
 		}
 		else if(child.Token(0) == "conversation" && child.HasChildren())
 			conversation.Load(child);
@@ -107,39 +128,60 @@ void NPC::Load(const DataNode &node)
 			stockConversation = GameData::Conversations().Get(child.Token(1));
 		else if(child.Token(0) == "ship")
 		{
-			if(child.HasChildren())
+			if(child.HasChildren() && child.Size() == 2)
 			{
-				ships.push_back(make_shared<Ship>());
-				ships.back()->Load(child);
+				// Loading an NPC from a save file, or an entire ship specification.
+				// The latter may result in references to non-instantiated outfits.
+				ships.emplace_back(make_shared<Ship>(child));
 				for(const DataNode &grand : child)
 					if(grand.Token(0) == "actions" && grand.Size() >= 2)
 						actions[ships.back().get()] = grand.Value(1);
 			}
 			else if(child.Size() >= 2)
 			{
+				// Loading a ship managed by GameData, i.e. "base models" and variants.
 				stockShips.push_back(GameData::Ships().Get(child.Token(1)));
 				shipNames.push_back(child.Token(1 + (child.Size() > 2)));
+			}
+			else
+			{
+				string message = "Skipping unsupported use of a ship token and child nodes: ";
+				if(child.Size() >= 3)
+					message += "to both name and customize a ship, create a variant and then reference it here.";
+				else
+					message += "the \'ship\' token must be followed by the name of a ship, e.g. ship \"Bulk Freighter\"";
+				child.PrintTrace(message);
 			}
 		}
 		else if(child.Token(0) == "fleet")
 		{
 			if(child.HasChildren())
 			{
-				fleets.push_back(Fleet());
-				fleets.back().Load(child);
+				fleets.emplace_back(child);
+				if(child.Size() >= 2)
+				{
+					// Copy the custom fleet in lieu of reparsing the same DataNode.
+					size_t numAdded = child.Value(1);
+					for(size_t i = 1; i < numAdded; ++i)
+						fleets.push_back(fleets.back());
+				}
 			}
+			else if(child.Size() >= 3 && child.Value(2) > 1.)
+				stockFleets.insert(stockFleets.end(), child.Value(2), GameData::Fleets().Get(child.Token(1)));
 			else if(child.Size() >= 2)
 				stockFleets.push_back(GameData::Fleets().Get(child.Token(1)));
 		}
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
 	// Since a ship's government is not serialized, set it now.
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		ship->FinishLoading();
 		ship->SetGovernment(government);
 		ship->SetPersonality(personality);
 		ship->SetIsSpecial();
+		ship->FinishLoading(false);
 	}
 }
 
@@ -171,17 +213,8 @@ void NPC::Save(DataWriter &out) const
 			out.BeginChild();
 			{
 				// Break the text up into paragraphs.
-				size_t begin = 0;
-				while(true)
-				{
-					size_t pos = dialogText.find("\n\t", begin);
-					if(pos == string::npos)
-						pos = dialogText.length();
-					out.Write(dialogText.substr(begin, pos - begin));
-					if(pos == dialogText.length())
-						break;
-					begin = pos + 2;
-				}
+				for(const string &line : Format::Split(dialogText, "\n\t"))
+					out.Write(line);
 			}
 			out.EndChild();
 		}
@@ -219,34 +252,64 @@ const list<shared_ptr<Ship>> NPC::Ships() const
 // Handle the given ShipEvent.
 void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 {
-	bool hasSucceeded = HasSucceeded(player.GetSystem());
-	bool hasFailed = HasFailed();
-	for(shared_ptr<Ship> &ship : ships)
-		if(ship == event.Target())
+	// First, check if this ship is part of this NPC. If not, do nothing. If it
+	// is an NPC and it just got captured, replace it with a destroyed copy of
+	// itself so that this class thinks the ship is destroyed.
+	shared_ptr<Ship> ship;
+	int type = event.Type();
+	for(shared_ptr<Ship> &ptr : ships)
+		if(ptr == event.Target())
 		{
-			actions[ship.get()] |= event.Type();
-			for(const Ship::Bay &bay : ship->Bays())
-				if(bay.ship)
-					actions[bay.ship.get()] |= event.Type();
-			
 			// If a mission ship is captured, let it live on under its new
-			// ownership but mark our copy of it as destroyed.
+			// ownership but mark our copy of it as destroyed. This must be done
+			// before we check the mission's success status because otherwise
+			// momentarily reactivating a ship you're supposed to evade would
+			// clear the success status and cause the success message to be
+			// displayed a second time below. 
 			if(event.Type() & ShipEvent::CAPTURE)
 			{
-				Ship *copy = new Ship(*ship);
+				Ship *copy = new Ship(*ptr);
 				copy->Destroy();
-				actions[copy] = actions[ship.get()] | ShipEvent::DESTROY;
-				ship.reset(copy);
+				actions[copy] = actions[ptr.get()];
+				// Count this ship as destroyed, as well as captured.
+				type |= ShipEvent::DESTROY;
+				ptr.reset(copy);
 			}
+			ship = ptr;
 			break;
 		}
+	if(!ship)
+		return;
 	
+	// Check if this NPC is already in the succeeded state.
+	bool hasSucceeded = HasSucceeded(player.GetSystem());
+	bool hasFailed = HasFailed();
+	
+	// If this event was "ASSIST", the ship is now known as not disabled.
+	if(type == ShipEvent::ASSIST)
+		actions[ship.get()] &= ~(ShipEvent::DISABLE);
+	
+	// Certain events only count towards the NPC's status if originated by
+	// the player: scanning, boarding, or assisting.
+	if(!event.ActorGovernment()->IsPlayer())
+		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS
+				| ShipEvent::ASSIST | ShipEvent::BOARD);
+	
+	// Apply this event to the ship and any ships it is carrying.
+	actions[ship.get()] |= type;
+	for(const Ship::Bay &bay : ship->Bays())
+		if(bay.ship)
+			actions[bay.ship.get()] |= type;
+	
+	// Check if the success status has changed. If so, display a message.
 	if(HasFailed() && !hasFailed && isVisible)
 		Messages::Add("Mission failed.");
 	else if(ui && HasSucceeded(player.GetSystem()) && !hasSucceeded)
 	{
+		// If "completing" this NPC displays a conversation, reference
+		// it, to allow the completing event's target to be destroyed.
 		if(!conversation.IsEmpty())
-			ui->Push(new ConversationPanel(player, conversation));
+			ui->Push(new ConversationPanel(player, conversation, nullptr, ship));
 		else if(!dialogText.empty())
 			ui->Push(new Dialog(dialogText));
 	}
@@ -259,21 +322,34 @@ bool NPC::HasSucceeded(const System *playerSystem) const
 	if(HasFailed())
 		return false;
 	
-	// Check what system each ship is in, if there is a requirement that we
-	// either evade them, or accompany them. If you are accompanying a ship, it
-	// must not be disabled (so that it can land with you). If trying to evade
-	// it, disabling it is sufficient (you do not have to kill it).
+	// Evaluate the status of each ship in this NPC block. If it has `accompany`,
+	// it cannot be disabled or destroyed, and must be in the player's system.
+	// Destroyed `accompany` are handled in HasFailed(). If the NPC block has
+	// `evade`, the ship can be disabled, destroyed, captured, or not present.
 	if(mustEvade || mustAccompany)
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			// Special case: if a ship has been captured, it counts as having
-			// been evaded.
 			auto it = actions.find(ship.get());
-			bool isCapturedOrDisabled = ship->IsDisabled();
+			// If a derelict ship has not received any ShipEvents, it is immobile.
+			bool isImmobile = ship->GetPersonality().IsDerelict();
+			// The success status calculation can only be based on recorded
+			// events (and the current system).
 			if(it != actions.end())
-				isCapturedOrDisabled |= (it->second & ShipEvent::CAPTURE);
-			bool isHere = (!ship->GetSystem() || ship->GetSystem() == playerSystem);
-			if((isHere && !isCapturedOrDisabled) ^ mustAccompany)
+			{
+				// A ship that was disabled, captured, or destroyed is considered 'immobile'.
+				isImmobile = (it->second
+					& (ShipEvent::DISABLE | ShipEvent::CAPTURE | ShipEvent::DESTROY));
+				// If this NPC is 'derelict' and has no ASSIST on record, it is immobile.
+				isImmobile |= ship->GetPersonality().IsDerelict()
+					&& !(it->second & ShipEvent::ASSIST);
+			}
+			bool isHere = false;
+			// If this ship is being carried, check the parent's system.
+			if(!ship->GetSystem() && ship->CanBeCarried() && ship->GetParent())
+				isHere = ship->GetParent()->GetSystem() == playerSystem;
+			else
+				isHere = (!ship->GetSystem() || ship->GetSystem() == playerSystem);
+			if((isHere && !isImmobile) ^ mustAccompany)
 				return false;
 		}
 	
@@ -310,11 +386,18 @@ bool NPC::IsLeftBehind(const System *playerSystem) const
 
 
 bool NPC::HasFailed() const
-{
+{					
 	for(const auto &it : actions)
+	{
 		if(it.second & failIf)
 			return true;
 	
+		// If we still need to perform an action on this NPC, then that ship
+		// being destroyed should cause the mission to fail.
+		if((~it.second & succeedIf) && (it.second & ShipEvent::DESTROY))
+			return true;
+	}
+
 	return false;
 }
 
@@ -337,28 +420,19 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	// Pick the system for this NPC to start out in.
 	result.system = system;
 	if(!result.system && !location.IsEmpty())
-	{
-		// Find a destination that satisfies the filter.
-		vector<const System *> options;
-		for(const auto &it : GameData::Systems())
-		{
-			// Skip entries with incomplete data.
-			if(it.second.Name().empty())
-				continue;
-			if(location.Matches(&it.second, origin))
-				options.push_back(&it.second);
-		}
-		if(!options.empty())
-			result.system = options[Random::Int(options.size())];
-	}
+		result.system = location.PickSystem(origin);
 	if(!result.system)
 		result.system = (isAtDestination && destination) ? destination : origin;
+	// If a planet was specified in the template, it must be in this system.
+	if(planet && result.system->FindStellar(planet))
+		result.planet = planet;
 	
 	// Convert fleets into instances of ships.
 	for(const shared_ptr<Ship> &ship : ships)
 	{
+		// This ship is being defined from scratch.
 		result.ships.push_back(make_shared<Ship>(*ship));
-		result.ships.back()->FinishLoading();
+		result.ships.back()->FinishLoading(true);
 	}
 	auto shipIt = stockShips.begin();
 	auto nameIt = shipNames.begin();
@@ -377,9 +451,17 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		ship->SetGovernment(result.government);
 		ship->SetIsSpecial();
 		ship->SetPersonality(result.personality);
+		if(result.personality.IsDerelict())
+			ship->Disable();
 		
 		if(personality.IsEntering())
 			Fleet::Enter(*result.system, *ship);
+		else if(result.planet)
+		{
+			// A valid planet was specified in the template, so these NPCs start out landed.
+			ship->SetSystem(result.system);
+			ship->SetPlanet(result.planet);
+		}
 		else
 			Fleet::Place(*result.system, *ship);
 	}
@@ -389,6 +471,9 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		subs["<npc>"] = result.ships.front()->Name();
 	
 	// Do string replacement on any dialog or conversation.
+	string dialogText = stockDialogPhrase ? stockDialogPhrase->Get()
+		: (!dialogPhrase.Name().empty() ? dialogPhrase.Get()
+		: this->dialogText);
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(dialogText, subs);
 	

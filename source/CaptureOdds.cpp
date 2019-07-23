@@ -1,4 +1,4 @@
-/* CaptureOdds.h
+/* CaptureOdds.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -12,10 +12,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "CaptureOdds.h"
 
+#include "Government.h"
 #include "Outfit.h"
 #include "Ship.h"
 
 #include <algorithm>
+#include <functional>
 
 using namespace std;
 
@@ -169,7 +171,8 @@ vector<double> CaptureOdds::Power(const Ship &ship, bool isDefender)
 	
 	// Check for any outfits that assist with attacking or defending:
 	const string attribute = (isDefender ? "capture defense" : "capture attack");
-	const double crewPower = (isDefender ? 2. : 1.);
+	const double crewPower = (isDefender ?
+		ship.GetGovernment()->CrewDefense() : ship.GetGovernment()->CrewAttack());
 	
 	// Each crew member can wield one weapon. They use the most powerful ones
 	// that can be wielded by the remaining crew.

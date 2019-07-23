@@ -20,17 +20,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Politics.h"
 #include "ShipEvent.h"
 
+#include <algorithm>
+
 using namespace std;
 
 namespace {
-	static unsigned nextID = 0;
+	unsigned nextID = 0;
 }
 
 
 
 // Default constructor.
 Government::Government()
-	: name("Uninhabited")
 {
 	// Default penalties:
 	penaltyFor[ShipEvent::ASSIST] = -0.1;
@@ -59,6 +60,10 @@ void Government::Load(const DataNode &node)
 			color = Color(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "player reputation" && child.Size() >= 2)
 			initialPlayerReputation = child.Value(1);
+		else if(child.Token(0) == "crew attack" && child.Size() >= 2)
+			crewAttack = max(0., child.Value(1));
+		else if(child.Token(0) == "crew defense" && child.Size() >= 2)
+			crewDefense = max(0., child.Value(1));
 		else if(child.Token(0) == "attitude toward")
 		{
 			for(const DataNode &grand : child)
@@ -102,8 +107,12 @@ void Government::Load(const DataNode &node)
 			deathSentence = GameData::Conversations().Get(child.Token(1));
 		else if(child.Token(0) == "friendly hail" && child.Size() >= 2)
 			friendlyHail = GameData::Phrases().Get(child.Token(1));
+		else if(child.Token(0) == "friendly disabled hail" && child.Size() >= 2)
+			friendlyDisabledHail = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "hostile hail" && child.Size() >= 2)
 			hostileHail = GameData::Phrases().Get(child.Token(1));
+		else if(child.Token(0) == "hostile disabled hail" && child.Size() >= 2)
+			hostileDisabledHail = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "language" && child.Size() >= 2)
 			language = child.Token(1);
 		else if(child.Token(0) == "raid" && child.Size() >= 2)
@@ -111,6 +120,12 @@ void Government::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	// Default to the standard disabled hail messages.
+	if(!friendlyDisabledHail)
+		friendlyDisabledHail = GameData::Phrases().Get("friendly disabled");
+	if(!hostileDisabledHail)
+		hostileDisabledHail = GameData::Phrases().Get("hostile disabled");
 }
 
 
@@ -198,10 +213,17 @@ const Conversation *Government::DeathSentence() const
 
 
 
-// Get a random hail message (depending on whether this is an enemy government).
-string Government::GetHail() const
+// Get a hail message (which depends on whether this is an enemy government
+// and if the ship is disabled).
+string Government::GetHail(bool isDisabled) const
 {
-	const Phrase *phrase = IsEnemy() ? hostileHail : friendlyHail;
+	const Phrase *phrase = nullptr;
+	
+	if(IsEnemy())
+		phrase = isDisabled ? hostileDisabledHail : hostileHail;
+	else
+		phrase = isDisabled ? friendlyDisabledHail : friendlyHail;
+		
 	return phrase ? phrase->Get() : "";
 }
 
@@ -296,3 +318,18 @@ void Government::SetReputation(double value) const
 {
 	GameData::GetPolitics().SetReputation(this, value);
 }
+
+
+
+double Government::CrewAttack() const
+{
+	return crewAttack;
+}
+
+
+
+double Government::CrewDefense() const
+{
+	return crewDefense;
+}
+

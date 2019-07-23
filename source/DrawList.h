@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define DRAW_LIST_H_
 
 #include "Point.h"
+#include "SpriteShader.h"
 
 #include <cstdint>
 #include <vector>
@@ -30,11 +31,8 @@ class Sprite;
 // a DrawList first does not make sense.
 class DrawList {
 public:
-	// Default constructor.
-	DrawList();
-	
 	// Clear the list, also setting the global time step for animation.
-	void Clear(int step = 0);
+	void Clear(int step = 0, double zoom = 1.);
 	void SetCenter(const Point &center, const Point &centerVelocity = Point());
 	
 	// Add an object based on the Body class.
@@ -49,49 +47,16 @@ public:
 	
 	
 private:
-	static bool Cull(const Body &body, const Point &position, const Point &blur);
+	bool Cull(const Body &body, const Point &position, const Point &blur) const;
+	
+	void Push(const Body &body, Point pos, Point blur, double cloak, double clip, int swizzle);
 	
 	
 private:
-	class Item {
-	public:
-		Item() = default;
-		Item(const Body &body, Point pos, Point blur, float cloak, float clip, int swizzle, int step);
-		
-		// Get the texture of this sprite.
-		uint32_t Texture0() const;
-		uint32_t Texture1() const;
-		
-		// These two items can be uploaded directly to the shader:
-		// Get the (x, y) position of the center of the sprite.
-		const float *Position() const;
-		// Get the [a, b; c, d] size and rotation matrix.
-		const float *Transform() const;
-		// Get the blur vector, in texture space.
-		const float *Blur() const;
-		
-		// Get the color swizzle.
-		uint32_t Swizzle() const;
-		
-		float Clip() const;
-		float Fade() const;
-		
-		void Cloak(double cloak);
-		
-	private:
-		uint32_t tex0;
-		uint32_t tex1;
-		float position[2];
-		float transform[4];
-		float blur[2];
-		float clip;
-		uint32_t flags;
-	};
-	
-	
-private:
-	int step;
-	std::vector<Item> items;
+	int step = 0;
+	double zoom = 1.;
+	bool isHighDPI = false;
+	std::vector<SpriteShader::Item> items;
 	
 	Point center;
 	Point centerVelocity;

@@ -15,15 +15,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Hardpoint.h"
 
-#include <list>
 #include <map>
 #include <vector>
 
-class Effect;
+class Command;
 class Outfit;
 class Point;
 class Projectile;
 class Ship;
+class Visual;
 
 
 
@@ -49,6 +49,8 @@ public:
 	// Call this once all the outfits have been loaded to make sure they are all
 	// set up properly (even the ones that were pre-assigned to a hardpoint).
 	void FinishLoading();
+	// Reload all weapons (because a day passed in-game).
+	void ReloadAll();
 	
 	// Swap the weapons in the given two hardpoints.
 	void Swap(int first, int second);
@@ -58,19 +60,16 @@ public:
 	int GunCount() const;
 	int TurretCount() const;
 	
+	// Adjust the aim of the turrets.
+	void Aim(const Command &command);
 	// Fire the given weapon, if it is ready. If it did not fire because it is
 	// not ready, return false.
-	void Fire(int index, Ship &ship, std::list<Projectile> &projectiles, std::list<Effect> &effects);
+	void Fire(int index, Ship &ship, std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
 	// Fire the given anti-missile system.
-	bool FireAntiMissile(int index, Ship &ship, const Projectile &projectile, std::list<Effect> &effects);
+	bool FireAntiMissile(int index, Ship &ship, const Projectile &projectile, std::vector<Visual> &visuals);
 	
 	// Update the reload counters.
 	void Step(const Ship &ship);
-	
-	// Calculate how long it will take a projectile to reach a target given the
-	// target's relative position and velocity and the velocity of the
-	// projectile. If it cannot hit the target, this returns NaN.
-	static double RendezvousTime(const Point &p, const Point &v, double vp);
 	
 	
 private:

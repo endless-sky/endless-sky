@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "PointerShader.h"
 #include "PreferencesPanel.h"
+#include "Ship.h"
 #include "ShipyardPanel.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
@@ -35,12 +36,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "UI.h"
 
+#include "gl_header.h"
+
+#include <algorithm>
+
 using namespace std;
 
 namespace {
-	static bool isReady = false;
-	static float alpha = 1.;
-	static const int scrollSpeed = 2;
+	bool isReady = false;
+	float alpha = 1.f;
+	const int scrollSpeed = 2;
 }
 
 
@@ -50,24 +55,14 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 {
 	SetIsFullScreen(true);
 	
-	string data = Files::Read(Files::Resources() + "credits.txt");
-	size_t pos = 0;
-	while(pos < data.size())
-	{
-		size_t end = data.find('\n', pos);
-		if(end == string::npos)
-			end = data.size();
-		
-		credits.push_back(data.substr(pos, end - pos));
-		pos = end + 1;
-	}
+	credits = Format::Split(Files::Read(Files::Resources() + "credits.txt"), "\n");
 }
 
 
 
 void MenuPanel::Step()
 {
-	if(GetUI()->IsTop(this) && alpha < 1.)
+	if(GetUI()->IsTop(this) && alpha < 1.f)
 	{
 		++scroll;
 		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
@@ -94,29 +89,30 @@ void MenuPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
+	const Font &font = FontSet::Get(14);
 	
 	Information info;
 	if(player.IsLoaded() && !player.IsDead())
 	{
 		info.SetCondition("pilot loaded");
-		info.SetString("pilot", player.FirstName() + " " + player.LastName());
+		info.SetString("pilot", font.TruncateMiddle(player.FirstName() + " " + player.LastName(), 165));
 		if(player.Flagship())
 		{
 			const Ship &flagship = *player.Flagship();
 			info.SetSprite("ship sprite", flagship.GetSprite());
-			info.SetString("ship", flagship.Name());
+			info.SetString("ship", font.TruncateMiddle(flagship.Name(), 165));
 		}
 		if(player.GetSystem())
 			info.SetString("system", player.GetSystem()->Name());
 		if(player.GetPlanet())
 			info.SetString("planet", player.GetPlanet()->Name());
-		info.SetString("credits", Format::Number(player.Accounts().Credits()));
+		info.SetString("credits", Format::Credits(player.Accounts().Credits()));
 		info.SetString("date", player.GetDate().ToString());
 	}
 	else if(player.IsLoaded())
 	{
 		info.SetCondition("no pilot loaded");
-		info.SetString("pilot", player.FirstName() + " " + player.LastName());
+		info.SetString("pilot", font.TruncateMiddle(player.FirstName() + " " + player.LastName(), 165));
 		info.SetString("ship", "You have died.");
 	}
 	else
@@ -137,13 +133,12 @@ void MenuPanel::Draw()
 		Angle a(0.);
 		for(int i = 0; i < progress; ++i)
 		{
-			Color color(.5 * alpha, 0.f);
-			PointerShader::Draw(Point(), a.Unit(), 8., 20., 140. * alpha, color);
+			Color color(.5f * alpha, 0.f);
+			PointerShader::Draw(Point(), a.Unit(), 8.f, 20.f, 140.f * alpha, color);
 			a += da;
 		}
 	}
 	
-	const Font &font = FontSet::Get(14);
 	int y = 120 - scroll / scrollSpeed;
 	for(const string &line : credits)
 	{
@@ -154,7 +149,7 @@ void MenuPanel::Draw()
 			fade = max(0.f, (115 - y) / 20.f);
 		if(fade)
 		{
-			Color color(((line.empty() || line[0] == ' ') ? .2 : .4) * fade, 0.);
+			Color color(((line.empty() || line[0] == ' ') ? .2f : .4f) * fade, 0.f);
 			font.Draw(line, Point(-470., y), color);
 		}
 		y += 20;
@@ -169,29 +164,36 @@ void MenuPanel::OnCallback(int)
 	GetUI()->Pop(this);
 	gamePanels.Reset();
 	gamePanels.Push(new MainPanel(player));
+	gamePanels.CanSave(true);
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
 	gamePanels.StepAll();
-	gamePanels.Push(new ShipyardPanel(player));
-	gamePanels.StepAll();
+	// If the starting conditions don't specify any ships, let the player buy one.
+	if(player.Ships().empty())
+	{
+		gamePanels.Push(new ShipyardPanel(player));
+		gamePanels.StepAll();
+	}
 }
 
 
 
-bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(!isReady)
 		return false;
 	
 	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))
+	{
+		gamePanels.CanSave(true);
 		GetUI()->Pop(this);
+	}
 	else if(key == 'p')
 		GetUI()->Push(new PreferencesPanel());
 	else if(key == 'l')
 		GetUI()->Push(new LoadPanel(player, gamePanels));
-	else if(key == 'n' || key == 'e')
+	else if(key == 'n' && (!player.IsLoaded() || player.IsDead()))
 	{
-		// The "New Pilot" and "Enter Ship" buttons are in the same place.
-		GameData::Revert();
+		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
 		player.New();
 		
 		ConversationPanel *panel = new ConversationPanel(

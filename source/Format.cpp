@@ -1,4 +1,4 @@
-/* Format.h
+/* Format.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -19,96 +19,122 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	// Format an integer value, inserting its digits into the given string in
+	// reverse order and then reversing the string.
+	void FormatInteger(int64_t value, bool isNegative, string &result)
+	{
+		int places = 0;
+		do {
+			if(places && !(places % 3))
+				result += ',';
+			++places;
+			
+			result += static_cast<char>('0' + value % 10);
+			value /= 10;
+		} while(value);
+		
+		if(isNegative)
+			result += '-';
+		
+		reverse(result.begin(), result.end());
+	}
+}
 
 
+
+// Convert the given number into abbreviated format with a suffix like
+// "M" for million, "B" for billion, or "T" for trillion. Any number
+// above 1 quadrillion is instead shown in scientific notation.
+string Format::Credits(int64_t value)
+{
+	bool isNegative = (value < 0);
+	int64_t absolute = abs(value);
+	
+	// If the value is above one quadrillion, show it in scientific notation.
+	if(absolute > 1000000000000000ll)
+	{
+		ostringstream out;
+		out.precision(3);
+		out << static_cast<double>(value);
+		return out.str();
+	}
+	
+	// Reserve enough space for something like "-123.456M".
+	string result;
+	result.reserve(8);
+	
+	// Handle numbers bigger than a million.
+	static const vector<char> SUFFIX = {'T', 'B', 'M'};
+	static const vector<int64_t> THRESHOLD = {1000000000000ll, 1000000000ll, 1000000ll};
+	for(size_t i = 0; i < SUFFIX.size(); ++i)
+		if(absolute > THRESHOLD[i])
+		{
+			result += SUFFIX[i];
+			int decimals = (absolute / (THRESHOLD[i] / 1000)) % 1000;
+			for(int d = 0; d < 3; ++d)
+			{
+				result += static_cast<char>('0' + decimals % 10);
+				decimals /= 10;
+			}
+			result += '.';
+			absolute /= THRESHOLD[i];
+			break;
+		}
+	
+	// Convert the number to a string, adding commas if needed.
+	FormatInteger(absolute, isNegative, result);
+	return result;
+}
+
+
+
+// Convert the given number to a string, with at most one decimal place.
+// This is primarily for displaying ship and outfit attributes.
 string Format::Number(double value)
 {
 	if(!value)
 		return "0";
 	
-	// Check what the power will be, after the value is rounded to five digits.
-	int power = floor(log10(fabs(value)) - log10(.999995));
-	if(power >= 15 || power <= -5)
-	{
-		// Fall back to scientific notation if the number is outside the range
-		// we can format "nicely".
-		ostringstream out;
-		out.precision(3);
-		out << value;
-		return out.str();
-	}
-	
 	string result;
-	result.reserve(8);
-	
 	bool isNegative = (value < 0.);
-	bool nonzero = false;
+	value = fabs(value);
 	
-	if(power >= 6)
+	// Check if this is a whole number.
+	double decimal = modf(value, &value);
+	if(decimal)
 	{
-		nonzero = true;
-		int place = (power - 6) / 3;
-		
-		static const char suffix[3] = {'M', 'B', 'T'};
-		static const double multiplier[3] = {1e-6, 1e-9, 1e-12};
-		result += suffix[place];
-		value *= multiplier[place];
-		power %= 3;
-	}
-	
-	// The number of digits to the left of the decimal is max(0, power + 1).
-	// e.g. if power = 0, 10 > value >= 1.
-	int left = max(0, power + 1);
-	int right = max(0, 5 - left);
-	if(nonzero)
-		right = min(right, 3);
-	nonzero |= !right;
-	int rounded = round(fabs(value) * pow(10., right));
-	int delimiterIndex = -1;
-	
-	// Special case: the value is close enough to a power of 10 that it rounds
-	// up to one. There is now an extra digit on the left. (This should never
-	// happen due to the rounding in the initial power calculation.)
-	if(pow(10., left) <= rounded)
-		++left;
-	if(left > 3)
-		delimiterIndex = left - 3;
-	
-	while(rounded | right)
-	{
-		int digit = rounded % 10;
-		if(nonzero | digit)
+		if(decimal >= .95)
 		{
-			result += digit + '0';
-			nonzero = true;
-		}
-		rounded /= 10;
-		
-		if(right)
-		{
-			--right;
-			if(!right)
-			{
-				if(nonzero)
-					result += '.';
-				nonzero = true;
-			}
+			result += '0';
+			++value;
 		}
 		else
-		{
-			--left;
-			if(left == delimiterIndex && rounded)
-				result += ',';
-		}
+			result += static_cast<char>('0' + static_cast<int>(round(decimal * 10.)));
+		
+		result += '.';
 	}
 	
-	// Add the negative sign if needed.
-	if(isNegative)
-		result += '-';
+	// Convert the number to a string, adding commas if needed.
+	FormatInteger(value, isNegative, result);
+	return result;
+}
+
+
+
+// Format the given value as a number with exactly the given number of
+// decimal places (even if they are all 0).
+string Format::Decimal(double value, int places)
+{
+	double integer;
+	double fraction = fabs(modf(value, &integer));
 	
-	// Reverse the string.
-	reverse(result.begin(), result.end());
-	
+	string result = to_string(static_cast<int>(integer)) + ".";
+	while(places--)
+	{
+		fraction = modf(fraction * 10., &integer);
+		result += ('0' + static_cast<int>(integer));
+	}
 	return result;
 }
 
@@ -231,5 +257,25 @@ string Format::LowerCase(const string &str)
 	string result = str;
 	for(char &c : result)
 		c = tolower(c);
+	return result;
+}
+
+
+
+// Split a single string into substrings with the given separator.
+vector<string> Format::Split(const string &str, const string &separator)
+{
+	vector<string> result;
+	size_t begin = 0;
+	while(true)
+	{
+		size_t pos = str.find(separator, begin);
+		if(pos == string::npos)
+			pos = str.length();
+		result.emplace_back(str, begin, pos - begin);
+		begin = pos + separator.size();
+		if(begin >= str.length())
+			break;
+	}
 	return result;
 }

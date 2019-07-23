@@ -13,11 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef BODY_H_
 #define BODY_H_
 
-#include <cstdint>
-#include <string>
-
 #include "Angle.h"
 #include "Point.h"
+
+#include <cstdint>
+#include <string>
 
 class DataNode;
 class DataWriter;
@@ -30,17 +30,6 @@ class Sprite;
 // Class representing any object in the game that has a position, velocity, and
 // facing direction and usually also has a sprite.
 class Body {
-public:
-	// Class representing the current animation state, which may be halfway in
-	// between two frames.
-	class Frame {
-	public:
-		uint32_t first = 0;
-		uint32_t second = 0;
-		float fade = 0.f;
-	};
-	
-	
 public:
 	// Constructors.
 	Body() = default;
@@ -59,7 +48,7 @@ public:
 	// Which color swizzle should be applied to the sprite?
 	int GetSwizzle() const;
 	// Get the sprite and mask for the given time step.
-	Frame GetFrame(int step = -1) const;
+	float GetFrame(int step = -1) const;
 	const Mask &GetMask(int step = -1) const;
 	
 	// Positional attributes.
@@ -69,13 +58,16 @@ public:
 	Point Unit() const;
 	double Zoom() const;
 	
+	// Check if this object is marked for removal from the game.
+	bool ShouldBeRemoved() const;
+	
 	// Store the government here too, so that collision detection that is based
 	// on the Body class can figure out which objects will collide.
 	const Government *GetGovernment() const;
 	
 	// Sprite serialization.
 	void LoadSprite(const DataNode &node);
-	void SaveSprite(DataWriter &out) const;
+	void SaveSprite(DataWriter &out, const std::string &tag = "sprite") const;
 	// Set the sprite.
 	void SetSprite(const Sprite *sprite);
 	// Set the color swizzle.
@@ -84,8 +76,13 @@ public:
 	
 protected:
 	// Adjust the frame rate.
-	void SetFrameRate(double framesPerSecond);
-	void AddFrameRate(double framesPerSecond);
+	void SetFrameRate(float framesPerSecond);
+	void AddFrameRate(float framesPerSecond);
+	void PauseAnimation();
+	// Mark this object to be removed from the game.
+	void MarkForRemoval();
+	// Mark that this object should not be removed (e.g. a launched fighter).
+	void UnmarkForRemoval();
 	
 	
 protected:
@@ -95,7 +92,7 @@ protected:
 	Angle angle;
 	// A zoom of 1 means the sprite should be drawn at half size. For objects
 	// whose sprites should be full size, use zoom = 2.
-	double zoom = 1.;
+	float zoom = 1.f;
 	
 	// Government, for use in collision checks.
 	const Government *government = nullptr;
@@ -121,11 +118,15 @@ private:
 	mutable bool randomize = false;
 	bool repeat = true;
 	bool rewind = false;
+	int pause = 0;
 	
-	// Frame info for the current step:
+	// Record when this object is marked for removal from the game.
+	bool shouldBeRemoved = false;
+	
+	// Cache the frame calculation so it doesn't have to be repeated if given
+	// the same step over and over again.
 	mutable int currentStep = -1;
-	mutable const Mask *mask = nullptr;
-	mutable Frame frame;
+	mutable float frame = 0.f;
 };
 
 

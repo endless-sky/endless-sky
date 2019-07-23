@@ -14,13 +14,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Random.h"
 
+#include <algorithm>
 #include <cmath>
+#include <limits>
 
 using namespace std;
 
 namespace {
-	typedef int (*BinFun)(int, int);
+	typedef int64_t (*BinFun)(int64_t, int64_t);
 	BinFun Op(const string &op)
 	{
 		// This map defines functions that each "operator" should be mapped to.
@@ -30,22 +33,30 @@ namespace {
 		// "Apply" operators return the value that the condition should have
 		// after applying the expression.
 		static const map<string, BinFun> opMap = {
-			{"==", [](int a, int b) -> int { return a == b; }},
-			{"!=", [](int a, int b) -> int { return a != b; }},
-			{"<", [](int a, int b) -> int { return a < b; }},
-			{">", [](int a, int b) -> int { return a > b; }},
-			{"<=", [](int a, int b) -> int { return a <= b; }},
-			{">=", [](int a, int b) -> int { return a >= b; }},
-			{"=", [](int a, int b) { return b; }},
-			{"+=", [](int a, int b) { return a + b; }},
-			{"-=", [](int a, int b) { return a - b; }},
-			{"<?=", [](int a, int b) { return min(a, b); }},
-			{">?=", [](int a, int b) { return max(a, b); }}
+			{"==", [](int64_t a, int64_t b) -> int64_t { return a == b; }},
+			{"!=", [](int64_t a, int64_t b) -> int64_t { return a != b; }},
+			{"<", [](int64_t a, int64_t b) -> int64_t { return a < b; }},
+			{">", [](int64_t a, int64_t b) -> int64_t { return a > b; }},
+			{"<=", [](int64_t a, int64_t b) -> int64_t { return a <= b; }},
+			{">=", [](int64_t a, int64_t b) -> int64_t { return a >= b; }},
+			{"=", [](int64_t a, int64_t b) { return b; }},
+			{"+=", [](int64_t a, int64_t b) { return a + b; }},
+			{"-=", [](int64_t a, int64_t b) { return a - b; }},
+			{"<?=", [](int64_t a, int64_t b) { return min(a, b); }},
+			{">?=", [](int64_t a, int64_t b) { return max(a, b); }}
 		};
 		
 		auto it = opMap.find(op);
 		return (it != opMap.end() ? it->second : nullptr);
 	}
+}
+
+
+
+// Construct and Load() at the same time.
+ConditionSet::ConditionSet(const DataNode &node)
+{
+	Load(node);
 }
 
 
@@ -64,7 +75,12 @@ void ConditionSet::Load(const DataNode &node)
 void ConditionSet::Save(DataWriter &out) const
 {
 	for(const Expression &expression : expressions)
-		out.Write(expression.name, expression.op, expression.value);
+	{
+		if(!expression.value && !expression.strValue.empty())
+			out.Write(expression.name, expression.op, expression.strValue);
+		else
+			out.Write(expression.name, expression.op, expression.value);
+	}
 	for(const ConditionSet &child : children)
 	{
 		out.Write(child.isOr ? "or" : "and");
@@ -98,16 +114,29 @@ void ConditionSet::Add(const DataNode &node)
 	}
 	else if(node.Size() == 3)
 	{
-		if(!Add(node.Token(0), node.Token(1), node.Value(2)))
-			node.PrintTrace("Unrecognized condition expression:");
+		if(node.IsNumber(2))
+		{
+			double value = node.Value(2);
+			if(value > static_cast<double>(numeric_limits<int64_t>::max())
+					|| value < static_cast<double>(numeric_limits<int64_t>::min()))
+			{
+				node.PrintTrace("Unrepresentable condition value " + to_string(value) + ":");
+			}
+			else if(!Add(node.Token(0), node.Token(1), static_cast<int64_t>(value)))
+				node.PrintTrace("Unrecognized condition expression:");
+		}
+		else
+		{
+			if(!Add(node.Token(0), node.Token(1), node.Token(2)))
+				node.PrintTrace("Unrecognized condition expression:");
+		}
 	}
 	else if(node.Size() == 1 && node.Token(0) == "never")
 		expressions.emplace_back("", "!=", 0);
 	else if(node.Size() == 1 && (node.Token(0) == "and" || node.Token(0) == "or"))
 	{
 		// The "and" and "or" keywords introduce a nested condition set.
-		children.emplace_back();
-		children.back().Load(node);
+		children.emplace_back(node);
 	}
 	else
 		node.PrintTrace("Unrecognized condition expression:");
@@ -140,11 +169,11 @@ bool ConditionSet::Add(const string &firstToken, const string &secondToken)
 
 
 // Add a binary operator line to the list of expressions.
-bool ConditionSet::Add(const string &name, const string &op, int value)
+bool ConditionSet::Add(const string &name, const string &op, int64_t value)
 {
 	// If the operator is recognized, map it to a binary function.
 	BinFun fun = Op(op);
-	if(!fun || isnan(value))
+	if(!fun)
 		return false;
 	
 	expressions.emplace_back(name, op, value);
@@ -153,13 +182,29 @@ bool ConditionSet::Add(const string &name, const string &op, int value)
 
 
 
+// Add a binary operator line to the list of expressions with a string as value
+bool ConditionSet::Add(const string &name, const string &op, const string &strValue)
+{
+	// If the operator is recognized, map it to a binary function.
+	BinFun fun = Op(op);
+	if(!fun)
+		return false;
+	
+	expressions.emplace_back(name, op, 0);
+	expressions.back().strValue = strValue;
+	return true;
+}
+
+
+
 // Check if the given condition values satisfy this set of conditions.
-bool ConditionSet::Test(const map<string, int> &conditions) const
+bool ConditionSet::Test(const map<string, int64_t> &conditions) const
 {
 	for(const Expression &expression : expressions)
 	{
-		auto it = conditions.find(expression.name);
-		bool result = expression.fun(it != conditions.end() ? it->second : 0, expression.value);
+		auto firstValue = TokenValue(0, expression.name, conditions);
+		auto secondValue = TokenValue(expression.value, expression.strValue, conditions);
+		bool result = expression.fun(firstValue, secondValue);
 		// If this is a set of "and" conditions, bail out as soon as one of them
 		// returns false. If it is an "or", bail out if anything returns true.
 		if(result == isOr)
@@ -180,12 +225,13 @@ bool ConditionSet::Test(const map<string, int> &conditions) const
 
 
 // Modify the given set of conditions.
-void ConditionSet::Apply(map<string, int> &conditions) const
+void ConditionSet::Apply(map<string, int64_t> &conditions) const
 {
 	for(const Expression &expression : expressions)
 	{
-		int &c = conditions[expression.name];
-		c = expression.fun(c, expression.value);
+		auto &c = conditions[expression.name];
+		auto value = TokenValue(expression.value, expression.strValue, conditions);
+		c = expression.fun(c, value);
 	}
 	// Note: "and" and "or" make no sense for "Apply()," so a condition set that
 	// is meant to be applied rather than tested should never include them. But
@@ -196,8 +242,27 @@ void ConditionSet::Apply(map<string, int> &conditions) const
 
 
 
+// Check if the passed token is numeric or a string which has to be replaced, and return its value
+int64_t ConditionSet::TokenValue(int64_t numValue, const string &strValue, const map<string, int64_t> &conditions) const
+{
+	auto value = numValue;
+	// Special case: if the string of the token is "random," that means to
+	// generate a random number from 0 to 99 each time it is queried.
+	if(strValue == "random")
+		value = Random::Int(100);
+	else
+	{
+		auto it = conditions.find(strValue);
+		if(it != conditions.end())
+			value = it->second;
+	}
+	return value;
+}
+
+
+
 // Constructor for an expression.
-ConditionSet::Expression::Expression(const string &name, const string &op, int value)
+ConditionSet::Expression::Expression(const string &name, const string &op, int64_t value)
 	: name(name), op(op), fun(Op(op)), value(value)
 {
 }

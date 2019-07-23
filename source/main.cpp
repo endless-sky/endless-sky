@@ -19,14 +19,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Dialog.h"
+#include "Files.h"
 #include "Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "ImageBuffer.h"
 #include "MenuPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
+#include "SpriteSet.h"
+#include "SpriteShader.h"
 #include "UI.h"
 
 #include "gl_header.h"
@@ -47,16 +51,26 @@ using namespace std;
 
 void PrintHelp();
 void PrintVersion();
+void SetIcon(SDL_Window *window);
+void AdjustViewport(SDL_Window *window);
 int DoError(string message, SDL_Window *window = nullptr, SDL_GLContext context = nullptr);
 void Cleanup(SDL_Window *window, SDL_GLContext context);
 Conversation LoadConversation();
+#ifdef _WIN32
+void InitConsole();
+#endif
 
 
 
 int main(int argc, char *argv[])
 {
+#ifdef _WIN32
+	if(argc > 1)
+		InitConsole();
+#endif
 	Conversation conversation;
 	bool debugMode = false;
+	bool loadOnly = false;
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
@@ -74,14 +88,26 @@ int main(int argc, char *argv[])
 			conversation = LoadConversation();
 		else if(arg == "-d" || arg == "--debug")
 			debugMode = true;
+		else if(arg == "-p" || arg == "--parse-save")
+			loadOnly = true;
 	}
 	PlayerInfo player;
 	
 	try {
+		// Begin loading the game data. Exit early if we are not using the UI.
+		if(!GameData::BeginLoad(argv))
+			return 0;
+		
+		// Load player data, including reference-checking.
+		player.LoadRecent();
+		if(loadOnly)
+		{
+			cout << "Parse completed." << endl;
+			return 0;
+		}
+		
 		SDL_Init(SDL_INIT_VIDEO);
 		
-		// Begin loading the game data.
-		GameData::BeginLoad(argv);
 		Audio::Init(GameData::Sources());
 		
 		// On Windows, make sure that the sleep timer has at least 1 ms resolution
@@ -90,9 +116,6 @@ int main(int argc, char *argv[])
 		timeBeginPeriod(1);
 #endif
 		
-		player.LoadRecent();
-		player.ApplyChanges();
-		
 		// Check how big the window can be.
 		SDL_DisplayMode mode;
 		if(SDL_GetCurrentDisplayMode(0, &mode))
@@ -100,39 +123,27 @@ int main(int argc, char *argv[])
 		
 		Preferences::Load();
 		Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI;
-		if(Preferences::Has("fullscreen"))
+		bool isFullscreen = Preferences::Has("fullscreen");
+		if(isFullscreen)
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+		else if(Preferences::Has("maximized"))
+			flags |= SDL_WINDOW_MAXIMIZED;
 		
 		// Make the window just slightly smaller than the monitor resolution.
 		int maxWidth = mode.w;
 		int maxHeight = mode.h;
-		// Restore this after toggling fullscreen.
-		int restoreWidth = 0;
-		int restoreHeight = 0;
 		if(maxWidth < 640 || maxHeight < 480)
 			return DoError("Monitor resolution is too small!");
 		
+		// Decide how big the window should be.
+		int windowWidth = (maxWidth - 100);
+		int windowHeight = (maxHeight - 100);
 		if(Screen::RawWidth() && Screen::RawHeight())
 		{
-			// Never allow the saved screen width to be leaving less than 100
-			// pixels free around the window. This avoids the problem where you
-			// maximize without going full-screen, and next time the window pops
-			// up you can't access the resize control because it is offscreen.
-			Screen::SetRaw(
-				min(Screen::RawWidth(), (maxWidth - 100)),
-				min(Screen::RawHeight(), (maxHeight - 100)));
-			if(flags & SDL_WINDOW_FULLSCREEN_DESKTOP)
-			{
-				restoreWidth = Screen::RawWidth();
-				restoreHeight = Screen::RawHeight();
-				Screen::SetRaw(maxWidth, maxHeight);
-			}
+			// Load the previously saved window dimensions.
+			windowWidth = min(windowWidth, Screen::RawWidth());
+			windowHeight = min(windowHeight, Screen::RawHeight());
 		}
-		else
-			Screen::SetRaw(maxWidth - 100, maxHeight - 100);
-		// Make sure the zoom factor is not set too high for the full UI to fit.
-		if(Screen::Height() < 700)
-			Screen::SetZoom(100);
 		
 		// Create the window.
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -144,7 +155,7 @@ int main(int argc, char *argv[])
 		
 		SDL_Window *window = SDL_CreateWindow("Endless Sky",
 			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-			Screen::RawWidth(), Screen::RawHeight(), flags);
+			windowWidth, windowHeight, flags);
 		if(!window)
 			return DoError("Unable to create window!");
 		
@@ -192,20 +203,26 @@ int main(int argc, char *argv[])
 		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 		
 		GameData::LoadShaders();
+		// Make sure the screen size and viewport are set correctly.
+		AdjustViewport(window);
+#ifndef __APPLE__
+		// On OS X, setting the window icon will cause that same icon to be used
+		// in the dock and the application switcher. That's not something we
+		// want, because the .icns icon that is used automatically is prettier.
+		SetIcon(window);
+#endif
+		if(!isFullscreen)
+			SDL_GetWindowSize(window, &windowWidth, &windowHeight);
 		
-		{
-			// Check whether this is a high-DPI window.
-			int width = 0;
-			int height = 0;
-			SDL_GL_GetDrawableSize(window, &width, &height);
-			Screen::SetHighDPI(width > Screen::RawWidth() && height > Screen::RawHeight());
-			
-			// Fix a possible race condition leading to the wrong window dimensions.
-			glViewport(0, 0, width, height);
-		}
-		
-		
+		// GamePanels is used for the main-panel (flying your spaceship). The planet
+		// dialog and all other game-content related dialogs are placed on top of the
+		// main-panel.
+		// If there are both menuPanels and gamePanels, then the menuPanels take
+		// priority over the gamePanels. The gamePanels will then not be shown until
+		// the stack of menuPanels is empty.
 		UI gamePanels;
+		// MenuPanels is used for the panels related to pilot creation, preferences,
+		// game loading and game saving.
 		UI menuPanels;
 		menuPanels.Push(new MenuPanel(player, gamePanels));
 		if(!conversation.IsEmpty())
@@ -232,24 +249,32 @@ int main(int argc, char *argv[])
 				"government they belong to. So, all human ships will be the same color, which "
 				"may be confusing. Consider upgrading your graphics driver (or your OS)."));
 		
-		FrameTimer timer(60);
+		bool showCursor = true;
+		int cursorTime = 0;
+		int frameRate = 60;
+		FrameTimer timer(frameRate);
 		bool isPaused = false;
+		// If fast forwarding, keep track of whether the current frame should be drawn.
+		int skipFrame = 0;
+		// Limit how quickly fullscreen mode can be toggled.
+		int toggleTimeout = 0;
 		while(!menuPanels.IsDone())
 		{
+			if(toggleTimeout)
+				--toggleTimeout;
 			// Handle any events that occurred in this frame.
 			SDL_Event event;
 			while(SDL_PollEvent(&event))
 			{
 				UI &activeUI = (menuPanels.IsEmpty() ? gamePanels : menuPanels);
 				
+				// If the mouse moves, reset the cursor movement timeout.
+				if(event.type == SDL_MOUSEMOTION)
+					cursorTime = 0;
+				
 				// The caps lock key slows the game down (to make it easier to
 				// see and debug things that are happening quickly).
-				if(debugMode && (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
-						&& event.key.keysym.sym == SDLK_CAPSLOCK)
-				{
-					timer.SetFrameRate((event.key.keysym.mod & KMOD_CAPS) ? 10 : 60);
-				}
-				else if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
+				if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 				{
 					isPaused = !isPaused;
 				}
@@ -266,82 +291,99 @@ int main(int argc, char *argv[])
 				}
 				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
 				{
-					if(event.window.data1 != Screen::RawWidth() || event.window.data2 != Screen::RawHeight())
-					{
-						int width = event.window.data1;
-						int height = event.window.data2;
-						
-						// If the window's dimensions are odd, if possible
-						// resize it to have even dimensions. If it is
-						// maximized, resizing will not be possible.
-						bool isMaximized = (SDL_GetWindowFlags(window) & SDL_WINDOW_MAXIMIZED);
-						bool isOdd = (width | height) & 1;
-						if(!isMaximized && isOdd)
-							SDL_SetWindowSize(window, width & ~1, height & ~1);
-						else
-						{
-							// We either can't resize the window, or don't have to.
-							// So, just inform Screen and OpenGL of the new size.
-							// Note: this may mean that a maximized window with
-							// odd dimensions ends up blurry because everything
-							// is offset by half a pixel.
-							Screen::SetRaw(width, height);
-							SDL_GL_GetDrawableSize(window, &width, &height);
-							glViewport(0, 0, width, height);
-						}
-					}
+					// The window has been resized. Adjust the raw screen size
+					// and the OpenGL viewport to match.
+					AdjustViewport(window);
+					if(!isFullscreen)
+						SDL_GetWindowSize(window, &windowWidth, &windowHeight);
 				}
-				else if(event.type == SDL_KEYDOWN
+				else if(event.type == SDL_KEYDOWN && !toggleTimeout
 						&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
 						|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
 				{
-					if(restoreWidth)
+					// Toggle full-screen mode. This will generate a window size
+					// change event, so no need to adjust the viewport here.
+					isFullscreen = !isFullscreen;
+					toggleTimeout = 30;
+					if(!isFullscreen)
 					{
 						SDL_SetWindowFullscreen(window, 0);
-						Screen::SetRaw(restoreWidth, restoreHeight);
-						SDL_SetWindowSize(window, Screen::RawWidth(), Screen::RawHeight());
-						restoreWidth = 0;
-						restoreHeight = 0;
+						SDL_SetWindowSize(window, windowWidth, windowHeight);
 					}
 					else
-					{
-						restoreWidth = Screen::RawWidth();
-						restoreHeight = Screen::RawHeight();
-						Screen::SetRaw(maxWidth, maxHeight);
 						SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
-					}
-					int width, height;
-					SDL_GL_GetDrawableSize(window, &width, &height);
-					glViewport(0, 0, width, height);
 				}
 				else if(activeUI.Handle(event))
 				{
 					// No need to do anything more!
 				}
 			}
-			Font::ShowUnderlines(SDL_GetModState() & KMOD_ALT);
+			SDL_Keymod mod = SDL_GetModState();
+			Font::ShowUnderlines(mod & KMOD_ALT);
+			
+			// In fullscreen mode, hide the cursor if inactive for ten seconds,
+			// but only if the player is flying around in the main view.
+			bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
+			++cursorTime;
+			bool shouldShowCursor = (!isFullscreen || cursorTime < 600 || !inFlight);
+			if(shouldShowCursor != showCursor)
+			{
+				showCursor = shouldShowCursor;
+				SDL_ShowCursor(showCursor);
+			}
 			
 			// Tell all the panels to step forward, then draw them.
 			((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
+			
+			// Caps lock slows the frame rate in debug mode, but raises it in
+			// normal mode. Slowing eases in and out over a couple of frames.
+			bool fastForward = false;
+			if((mod & KMOD_CAPS) && inFlight)
+			{
+				if(debugMode)
+				{
+					if(frameRate > 10)
+					{
+						frameRate = max(frameRate - 5, 10);
+						timer.SetFrameRate(frameRate);
+					}
+				}
+				else
+				{
+					fastForward = true;
+					skipFrame = (skipFrame + 1) % 3;
+					if(skipFrame)
+						continue;
+				}
+			}
+			else if(frameRate < 60)
+			{
+				frameRate = min(frameRate + 5, 60);
+				timer.SetFrameRate(frameRate);
+			}
+			
 			Audio::Step();
-			// That may have cleared out the menu, in which case we should draw
-			// the game panels instead:
+			// Events in this frame may have cleared out the menu, in which case
+			// we should draw the game panels instead:
 			(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
+			if(fastForward)
+				SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 			
 			SDL_GL_SwapWindow(window);
 			timer.Wait();
 		}
 		
-		// If you quit while landed on a planet, save the game.
-		if(player.GetPlanet())
+		// If you quit while landed on a planet, save the game - if you did anything.
+		if(player.GetPlanet() && gamePanels.CanSave())
 			player.Save();
 		
-		// The Preferences class reads the screen dimensions, so update them if
-		// the window is full screen:
-		bool isFullscreen = (restoreWidth != 0);
+		// Remember the window state.
+		bool isMaximized = (SDL_GetWindowFlags(window) & SDL_WINDOW_MAXIMIZED);
+		Preferences::Set("maximized", isMaximized);		
 		Preferences::Set("fullscreen", isFullscreen);
-		if(isFullscreen)
-			Screen::SetRaw(restoreWidth, restoreHeight);
+		// The Preferences class reads the screen dimensions, so update them to
+		// match the actual window size.
+		Screen::SetRaw(windowWidth, windowHeight);
 		Preferences::Save();
 		
 		Cleanup(window, context);
@@ -362,14 +404,15 @@ void PrintHelp()
 	cerr << "Command line options:" << endl;
 	cerr << "    -h, --help: print this help message." << endl;
 	cerr << "    -v, --version: print version information." << endl;
-	cerr << "    -s, --ships: print table of ship statistics." << endl;
-	cerr << "    -w, --weapons: print table of weapon statistics." << endl;
+	cerr << "    -s, --ships: print table of ship statistics, then exit." << endl;
+	cerr << "    -w, --weapons: print table of weapon statistics, then exit." << endl;
 	cerr << "    -t, --talk: read and display a conversation from STDIN." << endl;
 	cerr << "    -r, --resources <path>: load resources from given directory." << endl;
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
-	cerr << "    -d, --debug: turn on debugging features (e.g. caps lock slow motion)." << endl;
+	cerr << "    -d, --debug: turn on debugging features (e.g. Caps Lock slows down instead of speeds up)." << endl;
+	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors" << endl;
 	cerr << endl;
-	cerr << "Report bugs to: mzahniser@gmail.com" << endl;
+	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;
 	cerr << "Home page: <https://endless-sky.github.io>" << endl;
 	cerr << endl;
 }
@@ -379,11 +422,59 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky 0.9.4" << endl;
+	cerr << "Endless Sky 0.9.9" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
 	cerr << endl;
+}
+
+
+
+void SetIcon(SDL_Window *window)
+{
+	// Load the icon file.
+	ImageBuffer buffer;
+	if(!buffer.Read(Files::Resources() + "icon.png"))
+		return;
+	if(!buffer.Pixels() || !buffer.Width() || !buffer.Height())
+		return;
+	
+	// Convert the icon to an SDL surface.
+	SDL_Surface *surface = SDL_CreateRGBSurfaceFrom(buffer.Pixels(), buffer.Width(), buffer.Height(),
+		32, 4 * buffer.Width(), 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
+	if(surface)
+	{
+		SDL_SetWindowIcon(window, surface);
+		SDL_FreeSurface(surface);
+	}
+}
+
+
+
+void AdjustViewport(SDL_Window *window)
+{
+	// Get the window's size in screen coordinates.
+	int width, height;
+	SDL_GetWindowSize(window, &width, &height);
+	
+	// Round the window size up to a multiple of 2, even if this
+	// means one pixel of the display will be clipped.
+	int roundWidth = (width + 1) & ~1;
+	int roundHeight = (height + 1) & ~1;
+	Screen::SetRaw(roundWidth, roundHeight);
+	
+	// Find out the drawable dimensions. If this is a high- DPI display, this
+	// may be larger than the window.
+	int drawWidth, drawHeight;
+	SDL_GL_GetDrawableSize(window, &drawWidth, &drawHeight);
+	Screen::SetHighDPI(drawWidth > width || drawHeight > height);	
+	
+	// Set the viewport to go off the edge of the window, if necessary, to get
+	// everything pixel-aligned.
+	drawWidth = (drawWidth * roundWidth) / width;
+	drawHeight = (drawHeight * roundHeight) / height;
+	glViewport(0, 0, drawWidth, drawHeight);
 }
 
 
@@ -401,8 +492,8 @@ int DoError(string message, SDL_Window *window, SDL_GLContext context)
 		message += "\")";
 	}
 	
-	// Print the error message in the terminal.
-	cerr << message << endl;
+	// Print the error message in the terminal and the error file.
+	Files::LogError(message);
 	
 	// Show the error message both in a message box and in the terminal.
 	SDL_MessageBoxData box;
@@ -429,6 +520,9 @@ int DoError(string message, SDL_Window *window, SDL_GLContext context)
 
 void Cleanup(SDL_Window *window, SDL_GLContext context)
 {
+	// Make sure the cursor is visible.
+	SDL_ShowCursor(true);
+	
 	// Clean up in the reverse order that everything is launched.
 #ifndef _WIN32
 	// Under windows, this cleanup code causes intermittent crashes.
@@ -474,3 +568,28 @@ Conversation LoadConversation()
 	return conversation.Substitute(subs);
 }
 
+
+
+#ifdef _WIN32
+void InitConsole()
+{
+	// If both stdout and stderr are already initialized (e.g. writing to a file), do nothing.
+	const int UNINITIALIZED = -2;
+	bool redirectStdout = _fileno(stdout) == UNINITIALIZED;
+	bool redirectStderr = _fileno(stderr) == UNINITIALIZED;
+	bool redirectStdin = _fileno(stdin) == UNINITIALIZED;
+
+	if(!redirectStdout && !redirectStderr && !redirectStdin)
+		return;
+	
+	if(!AttachConsole(ATTACH_PARENT_PROCESS) && !AllocConsole())
+		return;
+
+	if(redirectStdout && freopen("CONOUT$", "w", stdout))
+		setvbuf(stdout, nullptr, _IOFBF, 4096);
+	if(redirectStderr && freopen("CONOUT$", "w", stderr))
+		setvbuf(stderr, nullptr, _IOLBF, 1024);
+	if(redirectStdin && freopen("CONIN$", "r", stdin))
+		setvbuf(stdin, nullptr, _IONBF, 0);
+}
+#endif

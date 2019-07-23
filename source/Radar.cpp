@@ -12,8 +12,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Radar.h"
 
+#include "GameData.h"
+#include "LineShader.h"
 #include "PointerShader.h"
 #include "RingShader.h"
+
+#include <cmath>
 
 using namespace std;
 
@@ -24,20 +28,8 @@ const int Radar::HOSTILE = 3;
 const int Radar::INACTIVE = 4;
 const int Radar::SPECIAL = 5;
 const int Radar::ANOMALOUS = 6;
-static const int SIZE = 7;
-
-namespace {
-	// Colors.
-	static const Color color[SIZE] = {
-		Color(.2, 1., 0., 0.), // PLAYER: green
-		Color(.4, .6, 1., 0.), // FRIENDLY: blue
-		Color(.8, .8, .4, 0.), // UNFRIENDLY: yellow
-		Color(1., .6, .4, 0.), // HOSTILE: red
-		Color(.4, .4, .4, 0.), // INACTIVE: grey
-		Color(1., 1., 1., 0.),  // SPECIAL: white
-		Color(.7, 0., 1., 0.)  // ANOMALOUS: magenta
-	};
-}
+const int Radar::BLINK = 7;
+const int Radar::VIEWPORT = 8;
 
 
 
@@ -45,6 +37,7 @@ void Radar::Clear()
 {
 	objects.clear();
 	pointers.clear();
+	lines.clear();
 }
 
 
@@ -60,10 +53,7 @@ void Radar::SetCenter(const Point &center)
 // given position should be in world units (not shrunk to radar units).
 void Radar::Add(int type, Point position, double outer, double inner)
 {
-	if(type < 0 || type >= SIZE)
-		return;
-	
-	objects.emplace_back(color[type].Opaque(), position - center, outer, inner);
+	objects.emplace_back(GetColor(type).Opaque(), position - center, outer, inner);
 }
 
 
@@ -71,10 +61,21 @@ void Radar::Add(int type, Point position, double outer, double inner)
 // Add a pointer, pointing in the direction of the given vector.
 void Radar::AddPointer(int type, const Point &position)
 {
-	if(type < 0 || type >= SIZE)
-		return;
+	pointers.emplace_back(GetColor(type), position.Unit());
+}
+
+
+
+// Create a "corner" from a vertical and horizontal leg.
+void Radar::AddViewportBoundary(const Point &vertex)
+{
+	Point start(vertex.X() - copysign(200., vertex.X()), vertex.Y());
+	Point end(vertex.X(), vertex.Y() - copysign(200., vertex.Y()));
 	
-	pointers.emplace_back(color[type], position.Unit());
+	// Add the horizontal leg, pointing from start to vertex.
+	lines.emplace_back(GetColor(VIEWPORT), start, vertex - start);
+	// Add the vertical leg, pointing from end to vertex.
+	lines.emplace_back(GetColor(VIEWPORT), end, vertex - end);
 }
 
 
@@ -82,6 +83,31 @@ void Radar::AddPointer(int type, const Point &position)
 // Draw the radar display at the given coordinates.
 void Radar::Draw(const Point &center, double scale, double radius, double pointerRadius) const
 {
+	// Draw any desired line vectors.
+	for(const Line &line : lines)
+	{
+		Point start = line.base * scale;
+		Point v = line.vector * scale;
+		
+		// At least one endpoint must be within the radar display.
+		double startExcess = start.Length() - radius;
+		double endExcess = (start + v).Length() - radius;
+		if(startExcess > 0 && endExcess > 0)
+			continue;
+		else if(startExcess > 0)
+		{
+			// Move "start" along "v" until it is within the radius.
+			start += startExcess * v.Unit();
+			// Shorten "v" to keep the desired length.
+			v -= startExcess * v.Unit();
+		}
+		else if(endExcess > 0)
+			v -= endExcess * v.Unit();
+		
+		LineShader::Draw(start + center, start + v + center, 1.f, line.color);
+	}
+	
+	// Draw StellarObjects and ships.
 	RingShader::Bind();
 	for(const Object &object : objects)
 	{
@@ -95,9 +121,10 @@ void Radar::Draw(const Point &center, double scale, double radius, double pointe
 	}
 	RingShader::Unbind();
 	
+	// Draw neighboring system indicators.
 	PointerShader::Bind();
 	for(const Pointer &pointer : pointers)
-		PointerShader::Add(center, pointer.unit, 10., 10., pointerRadius, pointer.color);
+		PointerShader::Add(center, pointer.unit, 10.f, 10.f, pointerRadius, pointer.color);
 	PointerShader::Unbind();
 }
 
@@ -105,7 +132,19 @@ void Radar::Draw(const Point &center, double scale, double radius, double pointe
 
 const Color &Radar::GetColor(int type)
 {
-	if(type < 0 || type >= SIZE)
+	static const vector<Color> color = {
+		*GameData::Colors().Get("radar player"),
+		*GameData::Colors().Get("radar friendly"),
+		*GameData::Colors().Get("radar unfriendly"),
+		*GameData::Colors().Get("radar hostile"),
+		*GameData::Colors().Get("radar inactive"),
+		*GameData::Colors().Get("radar special"),
+		*GameData::Colors().Get("radar anomalous"),
+		*GameData::Colors().Get("radar blink"),
+		*GameData::Colors().Get("radar viewport")
+	};
+	
+	if(static_cast<size_t>(type) >= color.size())
 		type = INACTIVE;
 	
 	return color[type];
@@ -122,5 +161,13 @@ Radar::Object::Object(const Color &color, const Point &pos, double out, double i
 
 Radar::Pointer::Pointer(const Color &color, const Point &unit)
 	: color(color), unit(unit)
+{
+}
+
+
+
+// Create a line starting from "base" with length and angle described by "vector."
+Radar::Line::Line(const Color &color, const Point &base, const Point &vector)
+	: color(color), base(base), vector(vector)
 {
 }

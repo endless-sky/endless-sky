@@ -18,9 +18,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
+#include "WrappedText.h"
 
 #include <map>
 #include <string>
+#include <utility>
+#include <vector>
 
 class Angle;
 class Government;
@@ -45,21 +48,27 @@ public:
 	static const int SHOW_GOVERNMENT = -5;
 	static const int SHOW_REPUTATION = -6;
 	
-	static const double OUTER;
-	static const double INNER;
+	static const float OUTER;
+	static const float INNER;
+	static const float LINK_WIDTH;
+	static const float LINK_OFFSET;
 	
 	
 public:
-	MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
+	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
 	
+	virtual void Step() override;
 	virtual void Draw() override;
 	
-	static void DrawMiniMap(const PlayerInfo &player, double alpha, const System *const jump[2], int step);
+	void DrawButtons(const std::string &condition);
+	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
 	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool Click(int x, int y) override;
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
+	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 	
@@ -73,13 +82,9 @@ protected:
 	virtual double SystemValue(const System *system) const;
 	
 	void Select(const System *system);
-	const Planet *Find(const std::string &name);
+	void Find(const std::string &name);
 	
-	void ZoomMap();
-	void UnzoomMap();
 	double Zoom() const;
-	bool ZoomIsMax() const;
-	bool ZoomIsMin() const;
 	
 	// Check whether the NPC and waypoint conditions of the given mission have
 	// been satisfied.
@@ -97,26 +102,79 @@ protected:
 	
 	const System *playerSystem;
 	const System *selectedSystem;
+	const Planet *selectedPlanet = nullptr;
+	// A system associated with a dialog or conversation.
 	const System *specialSystem;
 	
 	Point center;
+	Point recenterVector;
+	int recentering = 0;
 	int commodity;
-	const int maxZoom = 2;
-	int zoom = 0;
-	mutable int step = 0;
+	int step = 0;
+	std::string buttonCondition;
 	
-	mutable std::map<const Government *, double> closeGovernments;
+	// Distance from the screen center to the nearest owned system,
+	// for use in determining which governments are in the legend.
+	std::map<const Government *, double> closeGovernments;
+	// Systems in which your escorts are located.
+	std::map<const System *, std::pair<int, int>> escortSystems;
+	// Center the view on the given system (may actually be slightly offset
+	// to account for panels on the screen).
+	void CenterOnSystem(const System *system, bool immediate = false);
+	
+	// Cache the map layout, so it doesn't have to be re-calculated every frame.
+	// The cache must be updated when the coloring mode changes.
+	void UpdateCache();
+	
+	// For tooltips:
+	int hoverCount = 0;
+	const System *hoverSystem = nullptr;
+	std::string tooltip;
+	WrappedText hoverText;
 	
 	
 private:
-	void DrawTravelPlan() const;
-	void DrawWormholes() const;
-	void DrawLinks() const;
-	void DrawSystems() const;
-	void DrawNames() const;
-	void DrawMissions() const;
-	void DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger = false) const;
+	void DrawTravelPlan();
+	// Indicate which other systems have player escorts.
+	void DrawEscorts();
+	void DrawWormholes();
+	void DrawLinks();
+	// Draw systems in accordance to the set commodity color scheme.
+	void DrawSystems();
+	void DrawNames();
+	void DrawMissions();
+	void DrawTooltips();
+	void DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger = false);
 	static void DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack = true, bool bigger = false);
+	
+	
+private:
+	// This is the coloring mode currently used in the cache.
+	int cachedCommodity = -10;
+	
+	class Node {
+	public:
+		Node(const Point &position, const Color &color, const std::string &name, const Color &nameColor, const Government *government)
+			: position(position), color(color), name(name), nameColor(nameColor), government(government) {}
+		
+		Point position;
+		Color color;
+		std::string name;
+		Color nameColor;
+		const Government *government;
+	};
+	std::vector<Node> nodes;
+	
+	class Link {
+	public:
+		Link(const Point &start, const Point &end, const Color &color)
+			: start(start), end(end), color(color) {}
+		
+		Point start;
+		Point end;
+		Color color;
+	};
+	std::vector<Link> links;
 };
 
 

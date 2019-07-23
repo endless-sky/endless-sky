@@ -8,20 +8,10 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-effect "seeker impact"
-	sprite "effect/seeker impact"
-		"no repeat"
-		"frame rate" 10
-	"lifetime" 31
-	"random angle" 360
-	"velocity scale" 0.
-	"random spin" 360
-
-
 outfit "Pug Zapper"
 	category "Guns"
 	cost 290000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug zapper"
 	"mass" 25
 	"outfit space" -25
 	"weapon capacity" -25
@@ -46,7 +36,7 @@ outfit "Pug Zapper"
 outfit "Pug Zapper Turret"
 	category "Turrets"
 	cost 860000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug zapper turret"
 	"mass" 66
 	"outfit space" -66
 	"weapon capacity" -66
@@ -56,9 +46,12 @@ outfit "Pug Zapper Turret"
 		sprite "projectile/lightning"
 			"frame rate" 60
 			"random start frame"
+		"hardpoint sprite" "hardpoint/pug zapper turret"
+		"hardpoint offset" 7.
 		sound "zapper"
 		"hit effect" "skylance impact"
 		"inaccuracy" .3
+		"turret turn" 2.5
 		"velocity" 320
 		"lifetime" 1
 		"reload" 1
@@ -68,10 +61,11 @@ outfit "Pug Zapper Turret"
 		"hull damage" 5.8
 	description "Mounted on a turret, this Pug weapon becomes even more devastatingly powerful. However, its energy requirements are higher than most human ships can support."
 
+
 outfit "Pug Seeker"
 	category "Guns"
 	cost 540000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug seeker"
 	"mass" 34
 	"outfit space" -34
 	"weapon capacity" -34
@@ -84,12 +78,12 @@ outfit "Pug Seeker"
 		"hit effect" "seeker impact"
 		"die effect" "seeker impact"
 		"inaccuracy" 2
-		"velocity" 15
+		"velocity" 13
 		"lifetime" 200
 		"reload" 10
 		"firing energy" 25
 		"firing heat" 20
-		"acceleration" 1.5
+		"acceleration" 1.3
 		"drag" .1
 		"turn" 4
 		"homing" 5
@@ -100,15 +94,27 @@ outfit "Pug Seeker"
 		"missile strength" 40
 	description "You have no idea how this weapon works. It requires no ammunition, but its energy-based projectiles have the ability to home in on a target ship."
 
+effect "seeker impact"
+	sprite "effect/seeker impact"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 31
+	"random angle" 360
+	"random spin" 360
+	"velocity scale" 0.
+
+
 outfit "Pug Anti-Missile"
 	category "Turrets"
 	cost 350000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug anti-missile"
 	"mass" 41
 	"outfit space" -41
 	"weapon capacity" -41
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/pug anti-missile"
+		"hardpoint offset" 6.
 		"hit effect" "pug anti-missile"
 		"anti-missile" 5
 		"velocity" 200
@@ -118,15 +124,25 @@ outfit "Pug Anti-Missile"
 		"firing heat" 2
 	description "This anti-missile system designed by the Pug draws a lot of energy, but its fast firing rate makes it twice as effective as anything that Lovelace Labs has been able to come up with. A ship with one of these turrets will be very difficult to hit with missiles."
 
+effect "pug anti-missile"
+	sprite "effect/large anti missile"
+		"no repeat"
+		"frame rate" 6
+	sound "pug anti-missile"
+	"lifetime" 11
+	"velocity scale" 1
+
+
 outfit "Tier 3 Anti-Missile"
 	category "Turrets"
 	cost 12000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/t3 anti missile"
 	"mass" 67
 	"outfit space" -67
 	"weapon capacity" -67
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/t3 anti missile"
 		"fire effect" "tier 3 anti-missile fire"
 		"die effect" "tier 3 anti-missile die" 2
 		"anti-missile" 100
@@ -135,6 +151,7 @@ outfit "Tier 3 Anti-Missile"
 		"reload" 6
 		"firing energy" 80
 		"firing heat" 10
+	description "This powerful anti-missile turret is capable of destroying even the strongest of missiles."
 
 effect "tier 3 anti-missile fire"
 	sprite "effect/anti-missile 3 fire"
@@ -152,27 +169,33 @@ effect "tier 3 anti-missile die"
 	"random angle" 360
 	"velocity scale" .4
 
+
 outfit "Pug Gridfire Turret"
 	category "Turrets"
 	cost 24000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug gridfire turret"
 	"mass" 83
 	"outfit space" -83
 	"weapon capacity" -83
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/pug gridfire turret"
 		"fire effect" "gridfire fire"
 		"hit effect" "gridfire hit" 2
 		"hit effect" "gridfire cloud"
+		"phasing"
 		"velocity" 1440
 		"lifetime" 1
 		"reload" 20
+		"turret turn" 20
 		"firing energy" 800
 		"firing heat" 400
+		"firing force" 150
 		"shield damage" 600
 		"hull damage" 600
 		"blast radius" 40
 		"piercing" .3
+	description "No one understands how the Gridfire Turret works, and the Pug aren't interested in explaining."
 
 effect "gridfire fire"
 	sprite "effect/gridfire fire"
@@ -201,10 +224,11 @@ effect "gridfire cloud"
 	"velocity scale" .00001
 
 
+
 outfit "Pug Akfar Thruster"
 	category "Engines"
 	"cost" 608000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug akfar thruster"
 	"mass" 43
 	"outfit space" -43
 	"engine capacity" -43
@@ -219,7 +243,7 @@ outfit "Pug Akfar Thruster"
 outfit "Pug Akfar Steering"
 	category "Engines"
 	"cost" 472000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug akfar steering"
 	"mass" 33
 	"outfit space" -33
 	"engine capacity" -33
@@ -231,7 +255,7 @@ outfit "Pug Akfar Steering"
 outfit "Pug Cormet Thruster"
 	category "Engines"
 	"cost" 1050000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug cormet thruster"
 	"mass" 60
 	"outfit space" -60
 	"engine capacity" -60
@@ -246,7 +270,7 @@ outfit "Pug Cormet Thruster"
 outfit "Pug Cormet Steering"
 	category "Engines"
 	"cost" 880000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug cormet steering"
 	"mass" 46
 	"outfit space" -46
 	"engine capacity" -46
@@ -258,7 +282,7 @@ outfit "Pug Cormet Steering"
 outfit "Pug Lohmar Thruster"
 	category "Engines"
 	"cost" 1740000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug lohmar thruster"
 	"mass" 84
 	"outfit space" -84
 	"engine capacity" -84
@@ -273,7 +297,7 @@ outfit "Pug Lohmar Thruster"
 outfit "Pug Lohmar Steering"
 	category "Engines"
 	"cost" 1580000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug lohmar steering"
 	"mass" 64
 	"outfit space" -64
 	"engine capacity" -64
@@ -283,17 +307,21 @@ outfit "Pug Lohmar Steering"
 	description "This is a large steering system designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
 
 
+
 outfit "Pug Biodefenses"
+	plural "Pug Biodefenses"
 	category "Hand to Hand"
 	cost 100000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pug biodefenses"
 	"capture defense" 250
 	"unplunderable" 1
 	description "This defense system is designed to release a suite of toxins that are lethal to human beings (and probably to some other species, as well) but which have no effect at all on the Pug."
 
 
+
 ship "Pug Zibruka"
 	sprite "ship/pug zibruka"
+	thumbnail "thumbnail/pug zibruka"
 	attributes
 		category "Light Warship"
 		"cost" 1900000
@@ -309,11 +337,11 @@ ship "Pug Zibruka"
 		"outfit space" 180
 		"weapon capacity" 68
 		"engine capacity" 76
+		"energy capacity" 1000
 		"energy generation" 10
+		"heat generation" 20
 		"shield generation" 6
 		"shield energy" 6
-		"heat generation" 20
-		"energy capacity" 1000
 		weapon
 			"blast radius" 100
 			"shield damage" 400
@@ -321,23 +349,28 @@ ship "Pug Zibruka"
 			"hit force" 600
 	outfits
 		"Pug Zapper" 2
+		
 		"Pug Biodefenses" 4
-		"Jump Drive"
+		
 		"Pug Akfar Thruster"
 		"Pug Akfar Steering"
+		"Jump Drive"
+		
 	engine -7 35
 	engine 7 35
 	gun -15 -42 "Pug Zapper"
 	gun 15 -42 "Pug Zapper"
-	explode "tiny explosion" 10
-	explode "small explosion" 15
-	explode "medium explosion" 20
-	explode "large explosion" 10
+	explode "pug tiny explosion" 10
+	explode "pug small explosion" 15
+	explode "pug medium explosion" 20
+	explode "pug large explosion" 10
 	"final explode" "final explosion small"
 	description "The Zibruka is the smallest Pug ship that you know of."
 
+
 ship "Pug Enfolta"
 	sprite "ship/pug enfolta"
+	thumbnail "thumbnail/pug enfolta"
 	attributes
 		category "Medium Warship"
 		"cost" 6300000
@@ -353,11 +386,11 @@ ship "Pug Enfolta"
 		"outfit space" 360
 		"weapon capacity" 184
 		"engine capacity" 106
+		"energy capacity" 2000
 		"energy generation" 22
+		"heat generation" 32
 		"shield generation" 8
 		"shield energy" 8
-		"heat generation" 32
-		"energy capacity" 2000
 		weapon
 			"blast radius" 180
 			"shield damage" 720
@@ -367,10 +400,13 @@ ship "Pug Enfolta"
 		"Pug Zapper" 2
 		"Pug Seeker" 2
 		"Pug Zapper Turret"
+		
 		"Pug Biodefenses" 6
-		"Jump Drive"
+		
 		"Pug Cormet Thruster"
 		"Pug Cormet Steering"
+		"Jump Drive"
+		
 	engine -11 68
 	engine 11 68
 	gun -11 -85 "Pug Zapper"
@@ -378,15 +414,17 @@ ship "Pug Enfolta"
 	gun -11 -85 "Pug Seeker"
 	gun 11 -85 "Pug Seeker"
 	turret 0 7 "Pug Zapper Turret"
-	explode "tiny explosion" 5
-	explode "small explosion" 20
-	explode "medium explosion" 25
-	explode "large explosion" 15
+	explode "pug tiny explosion" 5
+	explode "pug small explosion" 20
+	explode "pug medium explosion" 25
+	explode "pug large explosion" 15
 	"final explode" "final explosion medium"
 	description "This is a medium-sized Pug warship."
 
+
 ship "Pug Maboro"
 	sprite "ship/pug maboro"
+	thumbnail "thumbnail/pug maboro"
 	attributes
 		category "Heavy Warship"
 		"cost" 9500000
@@ -402,11 +440,11 @@ ship "Pug Maboro"
 		"outfit space" 560
 		"weapon capacity" 309
 		"engine capacity" 148
+		"energy capacity" 4000
 		"energy generation" 32
+		"heat generation" 48
 		"shield generation" 10
 		"shield energy" 10
-		"heat generation" 48
-		"energy capacity" 4000
 		weapon
 			"blast radius" 300
 			"shield damage" 1200
@@ -416,10 +454,13 @@ ship "Pug Maboro"
 		"Pug Seeker" 4
 		"Pug Zapper Turret" 2
 		"Pug Anti-Missile"
+		
 		"Pug Biodefenses" 8
-		"Jump Drive"
+		
 		"Pug Lohmar Thruster"
 		"Pug Lohmar Steering"
+		"Jump Drive"
+		
 	engine -20 136
 	engine 20 136
 	gun -20 -150 "Pug Seeker"
@@ -429,15 +470,17 @@ ship "Pug Maboro"
 	turret 0 -50 "Pug Anti-Missile"
 	turret -15 -35 "Pug Zapper Turret"
 	turret 15 -35 "Pug Zapper Turret"
-	explode "small explosion" 25
-	explode "medium explosion" 30
-	explode "large explosion" 20
-	explode "huge explosion" 5
+	explode "pug small explosion" 25
+	explode "pug medium explosion" 30
+	explode "pug large explosion" 20
+	explode "pug huge explosion" 5
 	"final explode" "final explosion large"
 	description "This is the largest Pug warship."
 
+
 ship "Pug Arfecta"
 	sprite "ship/pug arfecta"
+	thumbnail "thumbnail/pug arfecta"
 	attributes
 		category "Medium Warship"
 		"cost" 90000000
@@ -453,14 +496,17 @@ ship "Pug Arfecta"
 		"outfit space" 640
 		"weapon capacity" 390
 		"engine capacity" 220
+		"energy capacity" 10000
 		"energy generation" 200
+		"heat generation" 10
 		"shield generation" 32
 		"shield energy" 32
 		"hull repair rate" 5
 		"hull energy" 5
-		"heat generation" 10
-		"energy capacity" 10000
 		"cloaking fuel" -.2
+		"reverse thrust" 66
+		"reverse thrusting energy" 4.9
+		"reverse thrusting heat" 6.9
 		weapon
 			"blast radius" 320
 			"shield damage" 9000
@@ -474,8 +520,7 @@ ship "Pug Arfecta"
 		"Pug Biodefenses" 12
 		
 		"Pug Lohmar Thruster"
-		"Pug Lohmar Steering"
-		"Pug Lohmar Steering"
+		"Pug Lohmar Steering" 2
 		"Jump Drive"
 	
 	engine -15 164
@@ -485,10 +530,10 @@ ship "Pug Arfecta"
 	turret 0 40 "Pug Gridfire Turret"
 	turret -73 84 "Pug Gridfire Turret"
 	turret 73 84 "Pug Gridfire Turret"
-	explode "tiny explosion" 100
-	explode "small explosion" 60
-	explode "medium explosion" 30
-	explode "large explosion" 10
+	explode "pug tiny explosion" 100
+	explode "pug small explosion" 60
+	explode "pug medium explosion" 30
+	explode "pug large explosion" 10
 	"final explode" "final explosion large"
 	description `This is a Pug "tier 3" warship, intended for use in combat against either a species on par with the Quarg, or a lesser species that has decided to be particularly meddlesome.`
 
@@ -630,6 +675,8 @@ system "World's End"
 		period 360
 		offset 290
 
+planet "Pug Wormhole"
+
 planet Ruin
 	attributes uninhabited
 	landscape land/hills3
@@ -700,7 +747,7 @@ mission "Pug Angry at Being Farmed"
 			not "chosen sides"
 		"reputation: Pug" < -100
 	npc kill
-		government Pug
-		personality nemesis heroic staying
+		government "Pug"
+		personality nemesis unconstrained staying
 		system "Pug Iyik"
 		ship "Pug Arfecta" "Ayee Eee Eek"

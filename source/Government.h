@@ -66,8 +66,9 @@ public:
 	// sentence to the player (for carrying highly illegal cargo).
 	const Conversation *DeathSentence() const;
 	
-	// Get a hail message (which depends on whether this is an enemy government).
-	std::string GetHail() const;
+	// Get a hail message (which depends on whether this is an enemy government
+	// and if the ship is disabled).
+	std::string GetHail(bool isDisabled) const;
 	// Find out if this government speaks a different language.
 	const std::string &Language() const;
 	// Pirate raids in this government's systems use this fleet definition. If
@@ -101,6 +102,10 @@ public:
 	void AddReputation(double value) const;
 	void SetReputation(double value) const;
 	
+	// Get the government's crew attack/defense values
+	double CrewAttack() const;
+	double CrewDefense() const;
+	
 	
 private:
 	unsigned id;
@@ -115,9 +120,13 @@ private:
 	double fine = 1.;
 	const Conversation *deathSentence = nullptr;
 	const Phrase *friendlyHail = nullptr;
+	const Phrase *friendlyDisabledHail = nullptr;
 	const Phrase *hostileHail = nullptr;
+	const Phrase *hostileDisabledHail = nullptr;
 	std::string language;
 	const Fleet *raidFleet = nullptr;
+	double crewAttack = 1.;
+	double crewDefense = 2.;
 };
 
 

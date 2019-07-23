@@ -1,4 +1,4 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+﻿Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: endless-sky
 Upstream-Contact: Michael Zahniser <mzahniser@gmail.com>
 Source: https://github.com/endless-sky/endless-sky
@@ -47,6 +47,12 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Christian Rhodes (under the same license).
 
 Files:
+ images/ship/pointedstick_vanguard*
+Copyright: Maximilian Korber
+License: CC-BY-SA-4.0
+Comment: Derived from works by Nate Graham (under the same license).
+
+Files:
  images/effect/railspark*
  images/projectile/tinyflare*
  images/outfit/*engines?hai*
@@ -54,9 +60,6 @@ Files:
  images/outfit/*thruster?hai*
  images/outfit/tiny?ion?engines*
  images/ship/finch*
- images/ship/nest*
- images/ship/roost*
- images/ship/skein*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -71,7 +74,6 @@ Comment: Derived from works by Jonathan Steck derived from works by Michael Zahn
 Files:
  images/ship/hai?pond?strider*
  images/ship/barb*
- images/ship/boxwing*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
 
@@ -83,9 +85,23 @@ Files:
 Copyright: Matthew Smestad
 License: CC-BY-SA-4.0
 
-Files: images/ship/vanguard*
+Files:
+ images/ship/vanguard*
+ images/outfit/luxury accommodations*
+ images/outfit/proton turret*
+ images/hardpoint/proton turret*
+ images/outfit/brig*
 Copyright: Nate Graham <pointedstick@zoho.com>
 License: CC-BY-SA-4.0
+
+Files:
+ images/land/sky2*
+ images/land/sea3*
+ images/land/beach4*
+ images/land/canyon9*
+Copyright: Emily Mell <hasmidas@gmail.com>
+License: public domain
+Based on public domain images taken from unsplash.com
 
 Files:
  images/icon/gat*
@@ -106,9 +122,25 @@ Comment: Derived from works by Michael Zahniser <mzahniser@gmail.com> and
  David Monniaux (commons.wikimedia.org/wiki/User:David.Monniaux)
 
 Files:
+ images/outfit/pug*
+ images/planet/*-b*
+Copyright: Frederick Goy IV (https://github.com/comnom)
+License: CC-BY-SA-4.0
+
+Files: images/outfit/*storage*
+Copyright: Jonathan Steck
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Maximilian Korber (under the same license).
+
+Files: images/outfit/city-ship?license*
+Copyright: Jonathan Steck
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Evan Fluharty (under the same license).
+
+Files:
  images/outfit/harvested*
 Copyright: Michael Zahniser (mzahniser@gmail.com)
-License: CC-BY-SA 4.0
+License: CC-BY-SA-4.0
 Comment: Unless otherwise noted below, mineral photos are by Rob Lavinsky, under
  the CC-BY-SA-3.0 license.
 
@@ -118,17 +150,24 @@ Files:
  images/outfit/harvested?platinum*
  images/outfit/harvested?silver*
 Copyright: Michael Zahniser (mzahniser@gmail.com)
-License: CC-BY-SA 4.0
+License: CC-BY-SA-4.0
 Comment: Incorporating photos by James St. John, under the CC-BY-2.0 license.
 
 Files:
  images/outfit/harvested?gold*
 Copyright: Michael Zahniser (mzahniser@gmail.com)
-License: CC-BY-SA 4.0
+License: CC-BY-SA-4.0
 Comment: Incorporating a photo by Aram Dulyan, under the CC-BY-2.0 license.
 
 Files:
+ images/outfit/jump?drive?(broken)*
+Copyright: Darcy Manoel <Darcman00@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
  images/ui/galaxy*
+ images/ui/pleiades*
  images/planet/callisto*
  images/planet/earth*
  images/planet/europa*
@@ -215,43 +254,171 @@ Files: images/land/*-sfiera*
 Copyright: Chris Pickel (sfiera.net)
 License: CC-BY-SA-4.0
 
+Files: images/land/*-striker*
+Copyright: Michael Wilso (sixfootplus@gmail.com)
+License: CC-BY-SA-4.0
+
+Files: images/land/*-harro*
+Copyright: @harro.eu (copyright@harro.eu)
+License: CC-BY-SA-4.0
+
+Files: images/land/*-iridium*
+Copyright: @Iridium Ore (blueajp@gmail.com)
+License: CC-BY-SA-4.0
+
+Files: images/land/*-spfld*
+Copyright: Eric Denni (spfldsatellite@gmail.com)
+License: CC-BY-SA-4.0
+
+Files: images/land/sivael*
+Copyright: Tymoteusz Kapuściński (Sivael)
+License: CC-BY-SA-4.0
+Comment: Screenshots of environments created with assets purchased by Tymoteusz
+ Kapuściński from the Unity Asset Store. Post-processing applied by Michael
+ Zahniser to make the images look less artificial.
+ 
+Files: images/outfit/scan?module*
+Copyright: Zachary Siple
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (from under the same license).
+ 
+Files: images/outfit/tactical?scanner*
+Copyright: Zachary Siple
+License: CC-BY-SA-4.0
+
 Files:
+ images/outfit/korath?rifle*
+ images/outfit/hai?rifle*
+ images/outfit/scram?drive*
+ images/outfit/korath?fuel?processor*
+ images/outfit/remnant?rifle*
+ images/ship/hai?centipede*
+ images/ship/hai?geocoris*
+ images/ship/hai?grasshopper*
+ images/ship/gull*
+ images/ship/pelican*
+ images/thumbnail/hai?centipede*
+ images/thumbnail/hai?geocoris*
+ images/thumbnail/hai?grasshopper*
+ images/thumbnail/gull*
+ images/thumbnail/pelican*
+Copyright: Evan Fluharty (Evanfluharty@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files: images/portrait/*
+Copyright: Various
+License: public-domain
+ Taken from unsplash.com, a collection of photographs that have been donated and
+ placed in the public domain.
+ 
+ Files:
+ images/outfit/quarg?skylance*
+ images/hardpoint/quarg?skylance*
+Copyright: Evan Fluharty (Evanfluharty@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), Fernando S. Sáez (Azure Nyoki), and originally drawn up by Tommy Thach (Bladewood) (all under the same license)
+
+ Files:
+ images/outfit/quarg*
+ images/hardpoint/quarg*
+ images/outfit/small?quarg*
+ images/outfit/medium?quarg*
+ images/outfit/large?quarg*
+Copyright: Evan Fluharty (Evanfluharty@gmail.com)
+License: CC-BY-SA-4.0
+
+Files:
+ images/outfit/remnant?capital?license*
+ images/outfit/salvage?scanner*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/land/badlands0*
+ images/land/badlands1*
+ images/land/badlands2*
+ images/land/badlands5*
+ images/land/badlands6*
+ images/land/badlands7*
+ images/land/badlands8*
  images/land/beach0*
  images/land/beach2*
  images/land/beach3*
- images/land/beach4*
  images/land/beach5*
  images/land/beach6*
+ images/land/canyon0*
+ images/land/canyon1*
+ images/land/canyon7*
+ images/land/canyon8*
+ images/land/city2*
+ images/land/city4*
+ images/land/city6*
+ images/land/city7*
+ images/land/city8*
  images/land/city9*
+ images/land/city10*
  images/land/city11*
  images/land/city12*
  images/land/desert1*
  images/land/desert2*
+ images/land/dune1*
  images/land/fields1*
  images/land/fields2*
+ images/land/fields3*
  images/land/fields5*
+ images/land/fields6*
+ images/land/fields7*
  images/land/fields9*
  images/land/fog0*
+ images/land/fog1*
  images/land/fog2*
+ images/land/fog4*
+ images/land/fog6*
  images/land/forest1*
  images/land/forest2*
  images/land/forest3*
+ images/land/forest4*
  images/land/forest5*
+ images/land/hills0*
+ images/land/hills2*
+ images/land/lava1*
  images/land/lava2*
+ images/land/lava6*
+ images/land/mountain0*
  images/land/mountain1*
  images/land/mountain3*
  images/land/mountain4*
+ images/land/mountain5*
+ images/land/mountain6*
  images/land/mountain7*
  images/land/mountain8*
  images/land/mountain9*
+ images/land/sea1*
+ images/land/sea5*
+ images/land/sea7*
  images/land/sea8*
- images/land/sky2*
+ images/land/sky0*
+ images/land/sky3*
+ images/land/sky4*
+ images/land/sky5*
+ images/land/sky7*
+ images/land/sky8*
  images/land/sky9*
  images/land/snow0*
  images/land/snow1*
  images/land/snow2*
+ images/land/snow3*
  images/land/snow4*
+ images/land/snow5*
  images/land/snow6*
+ images/land/snow7*
+ images/land/snow10*
+ images/land/space2*
+ images/land/water0*
+ images/land/water3*
+ images/land/water4*
  images/land/water8*
 Copyright: Various
 License: public-domain
@@ -280,9 +447,13 @@ License: public-domain
  government employees while doing work for the government.
 
 Files:
- images/land/lava1*
+ images/land/station5.jpg
+Copyright: Damien Jemison
+License: CC-BY-SA-3.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Preamplifier_at_the_National_Ignition_Facility.jpg
+
+Files:
  images/land/lava5*
- images/land/lava6*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
@@ -291,19 +462,90 @@ Copyright: Various
 License: public-domain
  Based on public domain sounds taken from freesound.org.
 
-Files: sounds/heavy rocket hit.wav
+Files: sounds/heavy?rocket?hit.wav
 Copyright: Copyright Mike Koenig
 License: CC-BY-SA-3.0
- Taken from http://soundbible.com/1467-Grenade-Explosion.html
+Comment: Taken from http://soundbible.com/1467-Grenade-Explosion.html
 
-Files: sounds/explosion huge.wav
+Files: sounds/missile?hit.wav
+Copyright: Copyright "Nbs Dark"
+License: public-domain
+Comment: Taken from https://freesound.org/people/Nbs%20Dark/sounds/94185/
+
+Files: sounds/torpedo?hit.wav
+License: public-domain
+
+Files: sounds/meteor.wav
+Copyright: Copyright "18hiltc"
+License: CC-BY-SA-3.0
+Comment: Taken from https://freesound.org/people/18hiltc/sounds/202725/
+
+Files: sounds/sidewinder.wav
+License: public-domain
+Comment: Taken from https://freesound.org/people/NHMWretched/sounds/151858/
+
+Files: sounds/explosion?huge.wav
 Copyright: Copyright Mike Koenig
 License: CC-BY-SA-3.0
- Taken from http://soundbible.com/1151-Grenade.html
+Comment: Taken from http://soundbible.com/1151-Grenade.html
 
-Files: images/ship/vanguard*
-Copyright: Copyright Nate Graham <pointedstick@zoho.com>
+Files: images/ship/mosprey*
+Copyright: tehhowch (https://github.com/tehhowch)
 License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files: images/effect/explosion/pug/* 
+Copyright: Vilhelm (https://github.com/Vilhelm16)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) 
+
+Files:
+ sounds/thrasher.wav
+ sounds/point?defense.wav
+Copyright: Lineth (https://github.com/Lineth)
+License: CC-BY-SA-4.0
+Comment: Derived from public domain sounds taken from freesound.org.
+
+Files:
+ images/outfit/T3?anti?missile*
+ images/outfit/pug?gridfire?turret*
+ images/hardpoint/T3?anti?missile*
+ images/hardpoint/pug?gridfire?turret*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Frederick Goy IV (under the same license).
+
+Files: images/planet/station0
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/ship/nest*
+ images/ship/roost*
+ images/ship/skein*
+Copyright: Iaz Poolar
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
+
+Files: images/ship/boxwing*
+Copyright: Iaz Poolar
+License: CC-BY-SA-4.0
+Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
+
+Files:
+ images/ship/argosy*
+ images/ship/clipper*
+ images/ship/dreadnought*
+ images/ship/fury*
+ images/ship/hauler?i*
+ images/ship/hauler?ii*
+ images/ship/hauler?iii*
+ images/ship/modified argosy*
+ images/ship/bastion*
+ Copyright: Michael Zahniser <mzahniser@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

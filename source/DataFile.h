@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <istream>
 #include <list>
+#include <string>
 
 
 
@@ -30,8 +31,8 @@ class DataFile {
 public:
 	// A DataFile can be loaded either from a file path or an istream.
 	DataFile() = default;
-	DataFile(const std::string &path);
-	DataFile(std::istream &in);
+	explicit DataFile(const std::string &path);
+	explicit DataFile(std::istream &in);
 	
 	void Load(const std::string &path);
 	void Load(std::istream &in);

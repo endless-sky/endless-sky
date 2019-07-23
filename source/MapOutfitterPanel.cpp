@@ -40,10 +40,12 @@ MapOutfitterPanel::MapOutfitterPanel(PlayerInfo &player)
 
 
 
-MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel)
+MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel, bool onlyHere)
 	: MapSalesPanel(panel, true)
 {
 	Init();
+	onlyShowSoldHere = onlyHere;
+	UpdateCache();
 }
 
 
@@ -99,8 +101,9 @@ void MapOutfitterPanel::Select(int index)
 	else
 	{
 		selected = list[index];
-		selectedInfo.Update(*selected);
+		selectedInfo.Update(*selected, player);
 	}
+	UpdateCache();
 }
 
 
@@ -112,7 +115,7 @@ void MapOutfitterPanel::Compare(int index)
 	else
 	{
 		compare = list[index];
-		compareInfo.Update(*compare);
+		compareInfo.Update(*compare, player);
 	}
 }
 
@@ -128,7 +131,7 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 		if(it->second == selected)
 			return 1.;
 	
-	if(!system->IsInhabited())
+	if(!system->IsInhabited(player.Flagship()))
 		return numeric_limits<double>::quiet_NaN();
 	
 	double value = -.5;
@@ -182,7 +185,7 @@ void MapOutfitterPanel::DrawItems()
 		
 		for(const Outfit *outfit : it->second)
 		{
-			string price = Format::Number(outfit->Cost()) + " credits";
+			string price = Format::Credits(outfit->Cost()) + " credits";
 			
 			string info;
 			if(outfit->Get("installable") < 0.)
@@ -200,7 +203,7 @@ void MapOutfitterPanel::DrawItems()
 			}
 			
 			bool isForSale = true;
-			if(selectedSystem)
+			if(selectedSystem && player.HasVisited(selectedSystem))
 			{
 				isForSale = false;
 				for(const StellarObject &object : selectedSystem->Objects())
@@ -210,6 +213,8 @@ void MapOutfitterPanel::DrawItems()
 						break;
 					}
 			}
+			if(!isForSale && onlyShowSoldHere)
+				continue;
 			
 			Draw(corner, outfit->Thumbnail(), isForSale, outfit == selected,
 				outfit->Name(), price, info);

@@ -1,4 +1,4 @@
-/* Table.h
+/* Table.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -43,7 +43,7 @@ void Table::Clear()
 	
 	point = Point();
 	it = columns.begin();
-	color = Color(1., 0.);
+	color = Color(1.f, 0.f);
 }
 
 

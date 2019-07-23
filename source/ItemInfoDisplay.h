@@ -10,14 +10,14 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef INFO_DISPLAY_H_
-#define INFO_DISPLAY_H_
+#ifndef ITEM_INFO_DISPLAY_H_
+#define ITEM_INFO_DISPLAY_H_
 
 #include "Point.h"
 #include "WrappedText.h"
 
-#include <vector>
 #include <string>
+#include <vector>
 
 class Table;
 
@@ -48,7 +48,7 @@ public:
 	
 	
 protected:
-	void UpdateDescription(const std::string &text);
+	void UpdateDescription(const std::string &text, const std::vector<std::string> &licenses, bool isShip);
 	Point Draw(Point point, const std::vector<std::string> &labels, const std::vector<std::string> &values) const;
 	void CheckHover(const Table &table, const std::string &label) const;
 	

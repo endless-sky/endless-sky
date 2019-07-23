@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 
 #include <algorithm>
-#include <cassert>
 
 using namespace std;
 
@@ -23,8 +22,6 @@ using namespace std;
 
 void Trade::Load(const DataNode &node)
 {
-	assert(node.Token(0) == "trade");
-	
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "commodity" && child.Size() >= 2)

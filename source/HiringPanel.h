@@ -24,7 +24,7 @@ class PlayerInfo;
 // hunting other ships to capture.
 class HiringPanel : public Panel {
 public:
-	HiringPanel(PlayerInfo &player);
+	explicit HiringPanel(PlayerInfo &player);
 	
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -32,7 +32,7 @@ public:
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	
 	
 private:

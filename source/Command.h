@@ -54,6 +54,7 @@ public:
 	static const Command FIGHT;
 	static const Command GATHER;
 	static const Command HOLD;
+	static const Command AMMO;
 	// This command from the AI tells a ship not to jump or land yet even if it
 	// is in position to do so. (There is no key mapped to this command.)
 	static const Command WAIT;
@@ -104,6 +105,10 @@ public:
 	void SetFire(int index);
 	// Check if any weapons are firing.
 	bool IsFiring() const;
+	// Set the turn rate of the turret with the given weapon index. A value of
+	// -1 or 1 means to turn at the full speed the turret is capable of.
+	double Aim(int index) const;
+	void SetAim(int index, double amount);
 	
 	// Check if any bits are set in this command (including a nonzero turn).
 	explicit operator bool() const;
@@ -117,16 +122,19 @@ public:
 	
 	
 private:
-	Command(uint64_t state);
+	explicit Command(uint64_t state);
 	Command(uint64_t state, const std::string &text);
 	
 	
 private:
 	// The key commands and weapons to fire are stored in a single bitmask, with
 	// 32 bits for key commands and 32 bits for individual weapons.
+	// Ship::Load gives a soft warning for ships with more than 32 weapons.
 	uint64_t state = 0;
 	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
+	// Turret turn rates, reduced to 8 bits to save space.
+	char aim[32] = {};
 };
 
 

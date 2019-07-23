@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 
 #include "Audio.h"
+#include "BatchShader.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
@@ -28,10 +29,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Galaxy.h"
 #include "GameEvent.h"
 #include "Government.h"
+#include "ImageSet.h"
 #include "Interface.h"
 #include "LineShader.h"
 #include "Minable.h"
 #include "Mission.h"
+#include "Music.h"
+#include "News.h"
 #include "Outfit.h"
 #include "OutlineShader.h"
 #include "Person.h"
@@ -39,10 +43,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PointerShader.h"
 #include "Politics.h"
+#include "Random.h"
 #include "RingShader.h"
-#include "Sale.h"
-#include "Set.h"
 #include "Ship.h"
+#include "Sprite.h"
 #include "SpriteQueue.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -53,7 +57,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <iostream>
 #include <map>
-#include <tuple>
 #include <utility>
 #include <vector>
 
@@ -86,6 +89,7 @@ namespace {
 	Set<Government> defaultGovernments;
 	Set<Planet> defaultPlanets;
 	Set<System> defaultSystems;
+	Set<Galaxy> defaultGalaxies;
 	Set<Sale<Ship>> defaultShipSales;
 	Set<Sale<Outfit>> defaultOutfitSales;
 	
@@ -96,24 +100,29 @@ namespace {
 	map<const System *, map<string, int>> purchases;
 	
 	map<const Sprite *, string> landingMessages;
+	map<const Sprite *, double> solarPower;
+	map<const Sprite *, double> solarWind;
+	Set<News> news;
+	map<string, vector<string>> ratings;
 	
 	StarField background;
 	
 	map<string, string> tooltips;
 	map<string, string> helpMessages;
+	map<string, string> plugins;
 	
 	SpriteQueue spriteQueue;
 	
 	vector<string> sources;
-	multimap<const Sprite *, pair<string, string>> deferred;
-	multimap<const Sprite *, tuple<string, string, int>> preloaded;
+	map<const Sprite *, shared_ptr<ImageSet>> deferred;
+	map<const Sprite *, int> preloaded;
 	
 	const Government *playerGovernment = nullptr;
 }
 
 
 
-void GameData::BeginLoad(const char * const *argv)
+bool GameData::BeginLoad(const char * const *argv)
 {
 	bool printShips = false;
 	bool printWeapons = false;
@@ -140,18 +149,26 @@ void GameData::BeginLoad(const char * const *argv)
 	// Now, read all the images in all the path directories. For each unique
 	// name, only remember one instance, letting things on the higher priority
 	// paths override the default images.
-	map<string, string> images;
-	LoadImages(images);
+	map<string, shared_ptr<ImageSet>> images = FindImages();
 	
 	// From the name, strip out any frame number, plus the extension.
 	for(const auto &it : images)
 	{
-		string name = Name(it.first);
-		if(name.substr(0, 5) == "land/")
-			deferred.emplace(SpriteSet::Get(name), pair<string, string>(name, it.second));
+		// This should never happen, but just in case:
+		if(!it.second)
+			continue;
+		
+		// Check that the image set is complete.
+		it.second->Check();
+		// For landscapes, remember all the source files but don't load them yet.
+		if(ImageSet::IsDeferred(it.first))
+			deferred[SpriteSet::Get(it.first)] = it.second;
 		else
-			spriteQueue.Add(name, it.second);
+			spriteQueue.Add(it.second);
 	}
+	
+	// Generate a catalog of music files.
+	Music::Init(sources);
 	
 	for(const string &source : sources)
 	{
@@ -167,15 +184,17 @@ void GameData::BeginLoad(const char * const *argv)
 	UpdateNeighbors();
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &it : ships)
+		it.second.FinishLoading(true);
+	for(auto &it : persons)
 		it.second.FinishLoading();
-	for(const auto &it : persons)
-		it.second.GetShip()->FinishLoading();
+	startConditions.FinishLoading();
 	
 	// Store the current state, to revert back to later.
 	defaultFleets = fleets;
 	defaultGovernments = governments;
 	defaultPlanets = planets;
 	defaultSystems = systems;
+	defaultGalaxies = galaxies;
 	defaultShipSales = shipSales;
 	defaultOutfitSales = outfitSales;
 	playerGovernment = governments.Get("Escort");
@@ -186,6 +205,81 @@ void GameData::BeginLoad(const char * const *argv)
 		PrintShipTable();
 	if(printWeapons)
 		PrintWeaponTable();
+	return !(printShips || printWeapons);
+}
+
+
+
+// Check for objects that are referred to but never defined.
+void GameData::CheckReferences()
+{
+	// Parse all GameEvents for object definitions & references.
+	auto deferred = map<string, set<string>>{};
+	const auto eventDefinitionNodes = set<string>{
+		"fleet",
+		"galaxy",
+		"government",
+		"outfitter",
+		"news",
+		"planet",
+		"shipyard",
+		"system"
+	};
+	for(const auto &it : events)
+	{
+		if(it.second.Name().empty())
+			Files::LogError("Warning: event \"" + it.first + "\" is referred to, but never defined.");
+		else
+		{
+			for(const DataNode &node : it.second.Changes())
+				if(node.Size() >= 2)
+				{
+					const string &key = node.Token(0);
+					if(eventDefinitionNodes.count(key))
+						deferred[key].emplace(node.Token(1));
+				}
+		}
+	}
+	
+	for(const auto &it : conversations)
+		if(it.second.IsEmpty())
+			Files::LogError("Warning: conversation \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : effects)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: effect \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : fleets)
+		if(!it.second.GetGovernment() && !deferred["fleet"].count(it.first))
+			Files::LogError("Warning: fleet \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : governments)
+		if(it.second.GetName().empty() && !deferred["government"].count(it.first))
+			Files::LogError("Warning: government \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : minables)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: minable \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : missions)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: mission \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : outfits)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: outfit \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : outfitSales)
+		if(it.second.empty() && !deferred["outfitter"].count(it.first))
+			Files::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
+	for(const auto &it : phrases)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: phrase \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : planets)
+		if(it.second.Name().empty() && !deferred["planet"].count(it.first))
+			Files::LogError("Warning: planet \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : ships)
+		if(it.second.ModelName().empty())
+			Files::LogError("Warning: ship \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : shipSales)
+		if(it.second.empty() && !deferred["shipyard"].count(it.first))
+			Files::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
+	for(const auto &it : systems)
+		if(it.second.Name().empty() && !deferred["system"].count(it.first))
+			Files::LogError("Warning: system \"" + it.first + "\" is referred to, but never defined.");
 }
 
 
@@ -206,6 +300,7 @@ void GameData::LoadShaders()
 	PointerShader::Init();
 	RingShader::Init();
 	SpriteShader::Init();
+	BatchShader::Init();
 	
 	background.Init(16384, 4096);
 }
@@ -223,46 +318,45 @@ double GameData::Progress()
 // done with all landscapes to speed up the program's startup.
 void GameData::Preload(const Sprite *sprite)
 {
-	if(!sprite)
+	// Make sure this sprite actually is one that uses deferred loading.
+	auto dit = deferred.find(sprite);
+	if(!sprite || dit == deferred.end())
 		return;
 	
-	auto loadedRange = preloaded.equal_range(sprite);
-	if(loadedRange.first != loadedRange.second)
+	// If this sprite is one of the currently loaded ones, there is no need to
+	// load it again. But, make note of the fact that it is the most recently
+	// asked-for sprite.
+	map<const Sprite *, int>::iterator pit = preloaded.find(sprite);
+	if(pit != preloaded.end())
 	{
-		int priority = get<2>(loadedRange.first->second);
-		for(auto &it : preloaded)
-			if(get<2>(it.second) < priority)
-				++get<2>(it.second);
-		for( ; loadedRange.first != loadedRange.second; ++loadedRange.first)
-			get<2>(loadedRange.first->second) = 0;
-	}
-	
-	auto range = deferred.equal_range(sprite);
-	if(range.first == range.second)
+		for(pair<const Sprite * const, int> &it : preloaded)
+			if(it.second < pit->second)
+				++it.second;
+		
+		pit->second = 0;
 		return;
-	
-	// Remove the oldest thing in the priority queue if it has grown big enough.
-	vector<multimap<const Sprite *, tuple<string, string, int>>::iterator> toErase;
-	for(auto it = preloaded.begin(); it != preloaded.end(); ++it)
-		if(++get<2>(it->second) >= 20)
-			toErase.push_back(it);
-	while(!toErase.empty())
-	{
-		const auto &next = *toErase.back();
-		deferred.emplace(next.first, make_pair(get<0>(next.second), get<1>(next.second)));
-		spriteQueue.Unload(get<0>(toErase.back()->second));
-		preloaded.erase(toErase.back());
-		toErase.pop_back();
 	}
 	
-	// Load this new sprite.
-	for(auto it = range.first; it != range.second; ++it)
+	// This sprite is not currently preloaded. Check to see whether we already
+	// have the maximum number of sprites loaded, in which case the oldest one
+	// must be unloaded to make room for this one.
+	const string &name = sprite->Name();
+	pit = preloaded.begin();
+	while(pit != preloaded.end())
 	{
-		spriteQueue.Add(it->second.first, it->second.second);
-		preloaded.emplace(sprite, make_tuple(it->second.first, it->second.second, 0));
+		++pit->second;
+		if(pit->second >= 20)
+		{
+			spriteQueue.Unload(name);
+			pit = preloaded.erase(pit);
+		}
+		else
+			++pit;
 	}
 	
-	deferred.erase(range.first, range.second);
+	// Now, load all the files for this sprite.
+	preloaded[sprite] = 0;
+	spriteQueue.Add(dit->second);
 }
 
 
@@ -285,20 +379,15 @@ const vector<string> &GameData::Sources()
 // Revert any changes that have been made to the universe.
 void GameData::Revert()
 {
-	for(auto &it : fleets)
-		it.second = *defaultFleets.Get(it.first);
-	for(auto &it : governments)
-		it.second = *defaultGovernments.Get(it.first);
-	for(auto &it : planets)
-		it.second = *defaultPlanets.Get(it.first);
-	for(auto &it : systems)
-		it.second = *defaultSystems.Get(it.first);
-	for(auto &it : shipSales)
-		it.second = *defaultShipSales.Get(it.first);
-	for(auto &it : outfitSales)
-		it.second = *defaultOutfitSales.Get(it.first);
+	fleets.Revert(defaultFleets);
+	governments.Revert(defaultGovernments);
+	planets.Revert(defaultPlanets);
+	systems.Revert(defaultSystems);
+	galaxies.Revert(defaultGalaxies);
+	shipSales.Revert(defaultShipSales);
+	outfitSales.Revert(defaultOutfitSales);
 	for(auto &it : persons)
-		it.second.GetShip()->Restore();
+		it.second.Restore();
 	
 	politics.Reset();
 	purchases.clear();
@@ -406,7 +495,7 @@ void GameData::StepEconomy()
 	for(auto &it : systems)
 	{
 		System &system = it.second;
-		if(system.Links().size())
+		if(!system.Links().empty())
 			for(const Trade::Commodity &commodity : trade.Commodities())
 			{
 				double supply = system.Supply(commodity.name);
@@ -436,20 +525,26 @@ void GameData::Change(const DataNode &node)
 {
 	if(node.Token(0) == "fleet" && node.Size() >= 2)
 		fleets.Get(node.Token(1))->Load(node);
+	else if(node.Token(0) == "galaxy" && node.Size() >= 2)
+		galaxies.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "government" && node.Size() >= 2)
 		governments.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "outfitter" && node.Size() >= 2)
 		outfitSales.Get(node.Token(1))->Load(node, outfits);
 	else if(node.Token(0) == "planet" && node.Size() >= 2)
-		planets.Get(node.Token(1))->Load(node, shipSales, outfitSales);
+		planets.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "shipyard" && node.Size() >= 2)
 		shipSales.Get(node.Token(1))->Load(node, ships);
 	else if(node.Token(0) == "system" && node.Size() >= 2)
 		systems.Get(node.Token(1))->Load(node, planets);
+	else if(node.Token(0) == "news" && node.Size() >= 2)
+		news.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "link" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "unlink" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Unlink(systems.Get(node.Token(2)));
+	else
+		node.PrintTrace("Invalid \"event\" data:");
 }
 
 
@@ -460,6 +555,25 @@ void GameData::UpdateNeighbors()
 {
 	for(auto &it : systems)
 		it.second.UpdateNeighbors(systems);
+}
+
+
+
+// Re-activate any special persons that were created previously but that are
+// still alive.
+void GameData::ResetPersons()
+{
+	for(auto &it : persons)
+		it.second.ClearPlacement();
+}
+
+
+
+// Mark all persons in the given list as dead.
+void GameData::DestroyPersons(vector<string> &names)
+{
+	for(const string &name : names)
+		persons.Get(name)->Destroy();
 }
 
 
@@ -543,6 +657,13 @@ const Set<Outfit> &GameData::Outfits()
 
 
 
+const Set<Sale<Outfit>> &GameData::Outfitters()
+{
+	return outfitSales;
+}
+
+
+
 const Set<Person> &GameData::Persons()
 {
 	return persons;
@@ -567,6 +688,13 @@ const Set<Planet> &GameData::Planets()
 const Set<Ship> &GameData::Ships()
 {
 	return ships;
+}
+
+
+
+const Set<Sale<Ship>> &GameData::Shipyards()
+{
+	return shipSales;
 }
 
 
@@ -631,9 +759,61 @@ const string &GameData::LandingMessage(const Sprite *sprite)
 
 
 
+// Get the solar power and wind output of the given stellar object sprite.
+double GameData::SolarPower(const Sprite *sprite)
+{
+	auto it = solarPower.find(sprite);
+	return (it == solarPower.end() ? 0. : it->second);
+}
+
+
+
+double GameData::SolarWind(const Sprite *sprite)
+{
+	auto it = solarWind.find(sprite);
+	return (it == solarWind.end() ? 0. : it->second);
+}
+
+
+
+// Pick a random news object that applies to the given planet. If there is
+// no applicable news, this returns null.
+const News *GameData::PickNews(const Planet *planet)
+{
+	vector<const News *> matches;
+	for(const auto &it : news)
+		if(it.second.Matches(planet))
+			matches.push_back(&it.second);
+	
+	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];
+}
+
+
+
+// Strings for combat rating levels, etc.
+const string &GameData::Rating(const string &type, int level)
+{
+	static const string EMPTY;
+	auto it = ratings.find(type);
+	if(it == ratings.end() || it->second.empty())
+		return EMPTY;
+	
+	level = max(0, min<int>(it->second.size() - 1, level));
+	return it->second[level];
+}
+
+
+
 const StarField &GameData::Background()
 {
 	return background;
+}
+
+
+
+void GameData::SetHaze(const Sprite *sprite)
+{
+	background.SetHaze(sprite);
 }
 
 
@@ -642,16 +822,36 @@ const string &GameData::Tooltip(const string &label)
 {
 	static const string EMPTY;
 	auto it = tooltips.find(label);
+	// Special case: the "cost" and "sells for" labels include the percentage of
+	// the full price, so they will not match exactly.
+	if(it == tooltips.end() && !label.compare(0, 4, "cost"))
+		it = tooltips.find("cost:");
+	if(it == tooltips.end() && !label.compare(0, 9, "sells for"))
+		it = tooltips.find("sells for:");
 	return (it == tooltips.end() ? EMPTY : it->second);
 }
 
 
 
-string GameData::HelpMessage(const std::string &name)
+string GameData::HelpMessage(const string &name)
 {
 	static const string EMPTY;
 	auto it = helpMessages.find(name);
 	return Command::ReplaceNamesWithKeys(it == helpMessages.end() ? EMPTY : it->second);
+}
+
+
+
+const map<string, string> &GameData::HelpTemplates()
+{
+	return helpMessages;
+}
+
+
+
+const map<string, string> &GameData::PluginAboutText()
+{
+	return plugins;
 }
 
 
@@ -673,6 +873,33 @@ void GameData::LoadSources()
 	{
 		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
 			sources.push_back(path);
+	}
+	
+	// Load the plugin data, if any.
+	for(auto it = sources.begin() + 1; it != sources.end(); ++it)
+	{
+		// Get the name of the folder containing the plugin.
+		size_t pos = it->rfind('/', it->length() - 2) + 1;
+		string name = it->substr(pos, it->length() - 1 - pos);
+		
+		// Load the about text and the icon, if any.
+		plugins[name] = Files::Read(*it + "about.txt");
+		
+		// Create an image set for the plugin icon.
+		shared_ptr<ImageSet> icon(new ImageSet(name));
+		
+		// Try adding all the possible icon variants.
+		if(Files::Exists(*it + "icon.png"))
+			icon->Add(*it + "icon.png");
+		else if(Files::Exists(*it + "icon.jpg"))
+			icon->Add(*it + "icon.jpg");
+		
+		if(Files::Exists(*it + "icon@2x.png"))
+			icon->Add(*it + "icon@2x.png");
+		else if(Files::Exists(*it + "icon@2x.jpg"))
+			icon->Add(*it + "icon@2x.jpg");
+		
+		spriteQueue.Add(icon);
 	}
 }
 
@@ -721,7 +948,7 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		else if(key == "phrase" && node.Size() >= 2)
 			phrases.Get(node.Token(1))->Load(node);
 		else if(key == "planet" && node.Size() >= 2)
-			planets.Get(node.Token(1))->Load(node, shipSales, outfitSales);
+			planets.Get(node.Token(1))->Load(node);
 		else if(key == "ship" && node.Size() >= 2)
 		{
 			// Allow multiple named variants of the same ship model.
@@ -740,6 +967,28 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		{
 			for(const DataNode &child : node)
 				landingMessages[SpriteSet::Get(child.Token(0))] = node.Token(1);
+		}
+		else if(key == "star" && node.Size() >= 2)
+		{
+			const Sprite *sprite = SpriteSet::Get(node.Token(1));
+			for(const DataNode &child : node)
+			{
+				if(child.Token(0) == "power" && child.Size() >= 2)
+					solarPower[sprite] = child.Value(1);
+				else if(child.Token(0) == "wind" && child.Size() >= 2)
+					solarWind[sprite] = child.Value(1);
+				else
+					child.PrintTrace("Unrecognized star attribute:");
+			}
+		}
+		else if(key == "news" && node.Size() >= 2)
+			news.Get(node.Token(1))->Load(node);
+		else if(key == "rating" && node.Size() >= 2)
+		{
+			vector<string> &list = ratings[node.Token(1)];
+			list.clear();
+			for(const DataNode &child : node)
+				list.push_back(child.Token(0));
 		}
 		else if((key == "tip" || key == "help") && node.Size() >= 2)
 		{
@@ -763,54 +1012,29 @@ void GameData::LoadFile(const string &path, bool debugMode)
 
 
 
-void GameData::LoadImages(map<string, string> &images)
+map<string, shared_ptr<ImageSet>> GameData::FindImages()
 {
+	map<string, shared_ptr<ImageSet>> images;
 	for(const string &source : sources)
 	{
+		// All names will only include the portion of the path that comes after
+		// this directory prefix.
 		string directoryPath = source + "images/";
+		size_t start = directoryPath.size();
+		
 		vector<string> imageFiles = Files::RecursiveList(directoryPath);
 		for(const string &path : imageFiles)
-			LoadImage(path, images, directoryPath.length());
+			if(ImageSet::IsImage(path))
+			{
+				string name = ImageSet::Name(path.substr(start));
+				
+				shared_ptr<ImageSet> &imageSet = images[name];
+				if(!imageSet)
+					imageSet.reset(new ImageSet(name));
+				imageSet->Add(path);
+			}
 	}
-}
-
-
-
-void GameData::LoadImage(const string &path, map<string, string> &images, size_t start)
-{
-	bool isJpg = !path.compare(path.length() - 4, 4, ".jpg");
-	bool isPng = !path.compare(path.length() - 4, 4, ".png");
-	
-	// This is an ordinary file. Check to see if it is an image.
-	if(isJpg || isPng)
-		images[path.substr(start)] = path;
-}
-
-
-
-string GameData::Name(const string &path)
-{
-	// The path always ends in a three-letter extension, ".png" or ".jpg".
-	int end = path.length() - 4;
-	
-	// Check if the name ends in "@2x". If so, that's not part of the name.
-	if(end > 3 && path[end - 3] == '@' && path[end - 2] == '2' && path[end - 1] == 'x')
-		end -= 3;
-	
-	// Skip any numbers at the end of the name.
-	int pos = end;
-	while(pos--)
-		if(path[pos] < '0' || path[pos] > '9')
-			break;
-	
-	// This should never happen, but just in case someone creates a file named
-	// "images/123.jpg" or something:
-	if(pos < 0)
-		pos = end;
-	else if(path[pos] != '-' && path[pos] != '~' && path[pos] != '+' && path[pos] != '=')
-		pos = end;
-	
-	return path.substr(0, pos);
+	return images;
 }
 
 
@@ -824,6 +1048,10 @@ void GameData::PrintShipTable()
 		<< "e_gen" << '\t' << "e_use" << '\t' << "h_gen" << '\t' << "h_max" << '\n';
 	for(auto &it : ships)
 	{
+		// Skip variants.
+		if(it.second.ModelName() != it.first)
+			continue;
+		
 		const Ship &ship = it.second;
 		cout << it.first << '\t';
 		cout << ship.Cost() << '\t';
@@ -831,18 +1059,18 @@ void GameData::PrintShipTable()
 		const Outfit &attributes = ship.Attributes();
 		cout << attributes.Get("shields") << '\t';
 		cout << attributes.Get("hull") << '\t';
-		cout << attributes.Get("mass") << '\t';
+		cout << attributes.Mass() << '\t';
 		cout << attributes.Get("required crew") << '\t';
 		cout << attributes.Get("cargo space") << '\t';
 		cout << attributes.Get("bunks") << '\t';
 		cout << attributes.Get("fuel capacity") << '\t';
 		
-		cout << attributes.Get("outfit space") << '\t';
-		cout << attributes.Get("weapon capacity") << '\t';
-		cout << attributes.Get("engine capacity") << '\t';
+		cout << ship.BaseAttributes().Get("outfit space") << '\t';
+		cout << ship.BaseAttributes().Get("weapon capacity") << '\t';
+		cout << ship.BaseAttributes().Get("engine capacity") << '\t';
 		cout << 60. * attributes.Get("thrust") / attributes.Get("drag") << '\t';
-		cout << 3600. * attributes.Get("thrust") / attributes.Get("mass") << '\t';
-		cout << 60. * attributes.Get("turn") / attributes.Get("mass") << '\t';
+		cout << 3600. * attributes.Get("thrust") / attributes.Mass() << '\t';
+		cout << 60. * attributes.Get("turn") / attributes.Mass() << '\t';
 		
 		double energy = attributes.Get("thrusting energy")
 			+ attributes.Get("turning energy");
@@ -860,7 +1088,7 @@ void GameData::PrintShipTable()
 		cout << 60. * heat << '\t';
 		// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000
 		// per 60th of a second, so:
-		cout << 60. * ship.Mass() * .1 * attributes.Get("heat dissipation") << '\n';
+		cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << '\n';
 	}
 	cout.flush();
 }
@@ -875,7 +1103,7 @@ void GameData::PrintWeaponTable()
 	for(auto &it : outfits)
 	{
 		// Skip non-weapons and submunitions.
-		if(!it.second.IsWeapon() || !it.second.Reload())
+		if(!it.second.IsWeapon() || it.second.Category().empty())
 			continue;
 		
 		const Outfit &outfit = it.second;

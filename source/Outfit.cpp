@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 
 #include "Audio.h"
+#include "Body.h"
 #include "DataNode.h"
 #include "Effect.h"
 #include "GameData.h"
@@ -23,7 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const double EPS = 0.0000000001;
+	const double EPS = 0.0000000001;
 }
 
 const vector<string> Outfit::CATEGORIES = {
@@ -43,12 +44,17 @@ const vector<string> Outfit::CATEGORIES = {
 void Outfit::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
+	{
 		name = node.Token(1);
+		pluralName = name + 's';
+	}
 	
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
+		else if(child.Token(0) == "plural" && child.Size() >= 2)
+			pluralName = child.Token(1);
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
 		{
 			flareSprites.emplace_back(Body(), 1);
@@ -64,6 +70,8 @@ void Outfit::Load(const DataNode &node)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "weapon")
 			LoadWeapon(child);
+		else if(child.Token(0) == "ammo" && child.Size() >= 2)
+			ammo = GameData::Outfits().Get(child.Token(1));
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 		{
 			description += child.Token(1);
@@ -71,11 +79,47 @@ void Outfit::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "cost" && child.Size() >= 2)
 			cost = child.Value(1);
+		else if(child.Token(0) == "mass" && child.Size() >= 2)
+			mass = child.Value(1);
+		else if(child.Token(0) == "licenses")
+		{
+			for(const DataNode &grand : child)
+				licenses.push_back(grand.Token(0));
+		}
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	// Legacy support for turrets that don't specify a turn rate:
+	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
+	{
+		SetTurretTurn(4.);
+		node.PrintTrace("Warning: Deprecated use of a turret without specified \"turret turn\":");
+	}
+	// Convert any legacy cargo / outfit scan definitions into power & speed,
+	// so no runtime code has to check for both.
+	auto convertScan = [&](string &&kind) -> void
+	{
+		const string label = kind + " scan";
+		double initial = attributes.Get(label);
+		if(initial)
+		{
+			attributes[label] = 0.;
+			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
+					+ label + " power\" and \"" + label + " speed\":");
+			
+			// A scan value of 300 is equivalent to a scan power of 9.
+			attributes[label + " power"] += initial * initial * .0001;
+			// The default scan speed of 1 is unrelated to the magnitude of the scan value.
+			// It may have been already specified, and if so, should not be increased.
+			if(!attributes.Get(label + " speed"))
+				attributes[label + " speed"] = 1.;
+		}
+	};
+	convertScan("outfit");
+	convertScan("cargo");
 }
 
 
@@ -83,6 +127,13 @@ void Outfit::Load(const DataNode &node)
 const string &Outfit::Name() const
 {
 	return name;
+}
+
+
+
+const string &Outfit::PluralName() const
+{
+	return pluralName;
 }
 
 
@@ -101,6 +152,14 @@ const string &Outfit::Description() const
 
 
 
+// Get the licenses needed to purchase this outfit.
+const vector<string> &Outfit::Licenses() const
+{
+	return licenses;
+}
+
+
+
 // Get the image to display in the outfitter when buying this item.
 const Sprite *Outfit::Thumbnail() const
 {
@@ -109,15 +168,21 @@ const Sprite *Outfit::Thumbnail() const
 
 
 
-double Outfit::Get(const string &attribute) const
+double Outfit::Get(const char *attribute) const
 {
-	auto it = attributes.find(attribute);
-	return (it == attributes.end()) ? 0. : it->second;
+	return attributes.Get(attribute);
 }
 
 
 
-const map<string, double> &Outfit::Attributes() const
+double Outfit::Get(const string &attribute) const
+{
+	return Get(attribute.c_str());
+}
+
+
+
+const Dictionary &Outfit::Attributes() const
 {
 	return attributes;
 }
@@ -147,6 +212,7 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 void Outfit::Add(const Outfit &other, int count)
 {
 	cost += other.cost * count;
+	mass += other.mass * count;
 	for(const auto &at : other.attributes)
 	{
 		attributes[at.first] += at.second * count;
@@ -175,17 +241,7 @@ void Outfit::Add(const Outfit &other, int count)
 
 
 // Modify this outfit's attributes.
-void Outfit::Add(const string &attribute, double value)
-{
-	attributes[attribute] += value;
-	if(fabs(attributes[attribute]) < EPS)
-		attributes[attribute] = 0.;
-}
-
-
-
-// Modify this outfit's attributes.
-void Outfit::Reset(const string &attribute, double value)
+void Outfit::Set(const char *attribute, double value)
 {
 	attributes[attribute] = value;
 }

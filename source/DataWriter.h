@@ -13,8 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef DATA_WRITER_H_
 #define DATA_WRITER_H_
 
-#include <string>
 #include <sstream>
+#include <string>
 
 class DataNode;
 
@@ -28,7 +28,7 @@ class DataNode;
 class DataWriter {
 public:
 	// Constructor, specifying the file to write.
-	DataWriter(const std::string &path);
+	explicit DataWriter(const std::string &path);
 	// The file is not actually saved until the destructor is called. This makes
 	// it possible to write the whole file in a single chunk.
 	~DataWriter();

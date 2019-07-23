@@ -32,6 +32,9 @@ public:
 	static const int INACTIVE;
 	static const int SPECIAL;
 	static const int ANOMALOUS;
+	static const int BLINK;
+	static const int VIEWPORT;
+	
 	
 public:
 	void Clear();
@@ -42,6 +45,8 @@ public:
 	void Add(int type, Point position, double outer, double inner = 0.);
 	// Add a pointer, pointing in the direction of the given vector.
 	void AddPointer(int type, const Point &position);
+	// Add a viewport vertex indicating the extent of what can be seen on screen.
+	void AddViewportBoundary(const Point &vertex);
 	
 	// Draw the radar display at the given coordinates.
 	void Draw(const Point &center, double scale, double radius, double pointerRadius) const;
@@ -69,11 +74,20 @@ private:
 		Point unit;
 	};
 	
+	class Line {
+	public:
+		Line(const Color &color, const Point &base, const Point &vector);
+		
+		Color color;
+		Point base;
+		Point vector;
+	};
 	
 private:
 	Point center;
 	std::vector<Object> objects;
 	std::vector<Pointer> pointers;
+	std::vector<Line> lines;
 };
 
 

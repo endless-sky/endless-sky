@@ -15,10 +15,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "GameData.h"
+#include "Government.h"
 #include "LineShader.h"
-#include "Point.h"
 #include "OutlineShader.h"
-#include "Screen.h"
+#include "Point.h"
+#include "Rectangle.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "System.h"
@@ -28,6 +30,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	//  Horizontal layout of each escort icon:
+	// (PAD) ICON (BAR_PAD) BARS (BAR_PAD) (PAD)
+	const double PAD = 10.;
+	const double ICON_SIZE = 20.;
+	const double BAR_PAD = 5.;
+	const double WIDTH = 120.;
+	const double BAR_WIDTH = WIDTH - ICON_SIZE - 2. * PAD - 2. * BAR_PAD;
+}
 
 
 
@@ -38,60 +49,79 @@ void EscortDisplay::Clear()
 
 
 
-void EscortDisplay::Add(const Ship &ship, bool isHere, bool fleetIsJumping)
+void EscortDisplay::Add(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
 {
-	icons.emplace_back(ship, isHere, fleetIsJumping);
+	icons.emplace_back(ship, isHere, fleetIsJumping, isSelected);
 }
 
 
 
-// The display starts in the lower left corner of the screen and takes up
-// all but the top 450 pixels of the screen.
-void EscortDisplay::Draw() const
+// Draw as many escort icons as will fit in the given bounding box.
+void EscortDisplay::Draw(const Rectangle &bounds) const
 {
-	MergeStacks();
+	// Figure out how much space there is for the icons.
+	int maxColumns = max(1., bounds.Width() / WIDTH);
+	MergeStacks(maxColumns * bounds.Height());
 	icons.sort();
+	stacks.clear();
+	zones.clear();
+	static const Set<Color> &colors = GameData::Colors();
 	
 	// Draw escort status.
-	static const Font &font = FontSet::Get(14);
-	Point pos = Point(Screen::Left() + 20., Screen::Bottom());
-	static const Color hereColor(.8, 1.);
-	static const Color elsewhereColor(.4, .4, .6, 1.);
-	static const Color readyToJumpColor(.2, .8, .2, 1.);
-	static const Color cannotJumpColor(.9, .2, 0., 1.);
+	const Font &font = FontSet::Get(14);
+	// Top left corner of the current escort icon.
+	Point corner = Point(bounds.Left(), bounds.Bottom());
+	const Color &elsewhereColor = *colors.Get("escort elsewhere");
+	const Color &cannotJumpColor = *colors.Get("escort blocked");
+	const Color &notReadyToJumpColor = *colors.Get("escort not ready");
+	const Color &selectedColor = *colors.Get("escort selected");
+	const Color &hereColor = *colors.Get("escort present");
+	const Color &hostileColor = *colors.Get("escort hostile");
 	for(const Icon &escort : icons)
 	{
 		if(!escort.sprite)
 			continue;
 		
-		pos.Y() -= escort.Height();
+		corner.Y() -= escort.Height();
 		// Show only as many escorts as we have room for on screen.
-		if(pos.Y() <= Screen::Top() + 450.)
-			break;
+		if(corner.Y() <= bounds.Top())
+		{
+			corner.X() += WIDTH;
+			if(corner.X() + WIDTH > bounds.Right())
+				break;
+			corner.Y() = bounds.Bottom() - escort.Height();
+		}
+		Point pos = corner + Point(PAD + .5 * ICON_SIZE, .5 * ICON_SIZE);
 		
 		// Draw the system name for any escort not in the current system.
 		if(!escort.system.empty())
 			font.Draw(escort.system, pos + Point(-10., 10.), elsewhereColor);
 
 		Color color;
-		if(!escort.isHere)
+		if(escort.isHostile)
+			color = hostileColor;
+		else if(!escort.isHere)
 			color = elsewhereColor;
 		else if(escort.cannotJump)
 			color = cannotJumpColor;
-		else if(escort.isReadyToJump)
-			color = readyToJumpColor;
+		else if(escort.notReadyToJump)
+			color = notReadyToJumpColor;
+		else if(escort.isSelected)
+			color = selectedColor;
 		else
 			color = hereColor;
 		
 		// Figure out what scale should be applied to the ship sprite.
-		double scale = min(20. / escort.sprite->Width(), 20. / escort.sprite->Height());
+		float scale = min(ICON_SIZE / escort.sprite->Width(), ICON_SIZE / escort.sprite->Height());
 		Point size(escort.sprite->Width() * scale, escort.sprite->Height() * scale);
 		OutlineShader::Draw(escort.sprite, pos, size, color);
+		zones.push_back(pos);
+		stacks.push_back(escort.ships);
 		// Draw the number of ships in this stack.
-		double width = 70.;
-		if(escort.stackSize > 1)
+		double width = BAR_WIDTH;
+		if(escort.ships.size() > 1)
 		{
-			string number = to_string(escort.stackSize);
+			string number = to_string(escort.ships.size());
 		
 			Point numberPos = pos;
 			numberPos.X() += 15. + width - font.Width(number);
@@ -102,14 +132,14 @@ void EscortDisplay::Draw() const
 		
 		// Draw the status bars.
 		static const Color fullColor[5] = {
-			Color(.44, .56, .70, 0), Color(.70, .62, .44, 0),
-			Color(.60, .60, .60, 0), Color(.70, .44, .44, 0), Color(.70, .62, .44, 0)
+			colors.Get("shields")->Additive(1.), colors.Get("hull")->Additive(1.),
+			colors.Get("energy")->Additive(1.), colors.Get("heat")->Additive(1.), colors.Get("fuel")->Additive(1.)
 		};
 		static const Color halfColor[5] = {
-			Color(.22, .28, .35, 0), Color(.35, .31, .22, 0),
-			Color(.30, .30, .30, 0), Color(.35, .22, .22, 0), Color(.35, .31, .22, 0)
+			fullColor[0].Additive(.5), fullColor[1].Additive(.5),
+			fullColor[2].Additive(.5), fullColor[3].Additive(.5), fullColor[4].Additive(.5),
 		};
-		Point from(pos.X() + 15., pos.Y() - 8.5);
+		Point from(pos.X() + .5 * ICON_SIZE + BAR_PAD, pos.Y() - 8.5);
 		for(int i = 0; i < 5; ++i)
 		{
 			// If the low and high levels are different, draw a fully opaque bar up
@@ -120,12 +150,12 @@ void EscortDisplay::Draw() const
 				const Color &color = (isSplit ? halfColor : fullColor)[i];
 				
 				Point to = from + Point(width * min(1., escort.high[i]), 0.);
-				LineShader::Draw(from, to, 1.5, color);
+				LineShader::Draw(from, to, 1.5f, color);
 				
 				if(isSplit)
 				{
 					Point to = from + Point(width * max(0., escort.low[i]), 0.);
-					LineShader::Draw(from, to, 1.5, color);
+					LineShader::Draw(from, to, 1.5f, color);
 				}
 			}
 			from.Y() += 4.;
@@ -140,16 +170,32 @@ void EscortDisplay::Draw() const
 
 
 
-EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping)
+// Check if the given point is a click on an escort icon. If so, return the
+// stack of ships represented by the icon. Otherwise, return an empty stack.
+const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
+{
+	for(unsigned i = 0; i < zones.size(); ++i)
+		if(point.Distance(zones[i]) < 15.)
+			return stacks[i];
+	
+	static const vector<const Ship *> empty;
+	return empty;
+}
+
+
+
+EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
 	: sprite(ship.GetSprite()),
 	isHere(isHere && !ship.IsDisabled()),
-	isReadyToJump(ship.CheckHyperspace()),
+	isHostile(ship.GetGovernment() && ship.GetGovernment()->IsEnemy()),
+	notReadyToJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.IsReadyToJump(true)),
 	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
-	stackSize(1),
+	isSelected(isSelected),
 	cost(ship.Cost()),
 	system((!isHere && ship.GetSystem()) ? ship.GetSystem()->Name() : ""),
 	low{ship.Shields(), ship.Hull(), ship.Energy(), ship.Heat(), ship.Fuel()},
-	high(low)
+	high(low),
+	ships(1, &ship)
 {
 }
 
@@ -173,8 +219,10 @@ int EscortDisplay::Icon::Height() const
 void EscortDisplay::Icon::Merge(const Icon &other)
 {
 	isHere &= other.isHere;
-	isReadyToJump &= other.isReadyToJump;
-	stackSize += other.stackSize;
+	isHostile |= other.isHostile;
+	notReadyToJump |= other.notReadyToJump;
+	cannotJump |= other.cannotJump;
+	isSelected |= other.isSelected;
 	if(system.empty() && !other.system.empty())
 		system = other.system;
 	
@@ -183,16 +231,16 @@ void EscortDisplay::Icon::Merge(const Icon &other)
 		low[i] = min(low[i], other.low[i]);
 		high[i] = max(high[i], other.high[i]);
 	}
+	ships.insert(ships.end(), other.ships.begin(), other.ships.end());
 }
 
 
 
-void EscortDisplay::MergeStacks() const
+void EscortDisplay::MergeStacks(int maxHeight) const
 {
 	if(icons.empty())
 		return;
 	
-	int maxHeight = Screen::Height() - 450;
 	set<const Sprite *> unstackable;
 	while(true)
 	{
@@ -210,9 +258,9 @@ void EscortDisplay::MergeStacks() const
 		if(height < maxHeight || !cheapest)
 			break;
 		
-		// Merge together each group of escorts that have this icon annd are in
-		// the same system.
-		map<string, Icon *> merged;
+		// Merge together each group of escorts that have this icon and are in
+		// the same system and have the same attitude towards the player.
+		map<const bool, map<string, Icon *>> merged;
 		
 		// The "cheapest" element in the list may be removed to merge it with an
 		// earlier ship of the same type, so store a copy of its sprite pointer:
@@ -228,10 +276,10 @@ void EscortDisplay::MergeStacks() const
 			
 			// If this is the first escort we've seen so far in its system, it
 			// is the one we will merge all others in this system into.
-			auto mit = merged.find(it->system);
-			if(mit == merged.end())
+			auto mit = merged[it->isHostile].find(it->system);
+			if(mit == merged[it->isHostile].end())
 			{
-				merged[it->system] = &*it;
+				merged[it->isHostile][it->system] = &*it;
 				++it;
 			}
 			else

@@ -19,8 +19,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "Ship.h"
 #include "SpriteSet.h"
+#include "Visual.h"
+
+#include <cmath>
 
 using namespace std;
+
+
+
+const int Flotsam::TONS_PER_BOX = 5;
 
 
 
@@ -29,6 +36,9 @@ Flotsam::Flotsam(const string &commodity, int count)
 	: commodity(commodity), count(count)
 {
 	lifetime = Random::Int(300) + 360;
+	// Scale lifetime in proportion to the expected amount per box.
+	if(count != TONS_PER_BOX)
+		lifetime = sqrt(count * (1. / TONS_PER_BOX)) * lifetime;
 }
 
 
@@ -82,26 +92,24 @@ void Flotsam::Place(const Body &source, const Point &dv)
 
 
 // Move the object one time-step forward.
-bool Flotsam::Move(list<Effect> &effects)
+void Flotsam::Move(vector<Visual> &visuals)
 {
 	position += velocity;
 	angle += spin;
 	--lifetime;
 	if(lifetime > 0)
-		return true;
+		return;
 	
 	// This flotsam has reached the end of its life. 
 	const Effect *effect = GameData::Effects().Get("flotsam death");
 	for(int i = 0; i < 3; ++i)
 	{
-		effects.push_back(*effect);
-	
 		Angle smokeAngle = Angle::Random();
 		velocity += smokeAngle.Unit() * Random::Real();
-		effects.back().Place(position, velocity, smokeAngle);
+		
+		visuals.emplace_back(*effect, position, velocity, smokeAngle);
 	}
-	
-	return false;
+	MarkForRemoval();
 }
 
 
@@ -140,5 +148,27 @@ int Flotsam::Count() const
 // less than this amount of space, it can't pick up anything here.
 double Flotsam::UnitSize() const
 {
-	return outfit ? outfit->Get("mass") : 1;
+	return outfit ? outfit->Mass() : 1.;
+}
+
+
+
+// Transfer contents to the collector ship. The flotsam velocity is
+// stabilized in proportion to the amount being transferred.
+int Flotsam::TransferTo(Ship *collector)
+{
+	int amount = outfit ?
+		collector->Cargo().Add(outfit, count) :
+		collector->Cargo().Add(commodity, count);
+	
+	Point relative = collector->Velocity() - velocity;
+	double proportion = static_cast<double>(amount) / count;
+	velocity += relative * proportion;
+	
+	count -= amount;
+	// If this flotsam is now empty, remove it.
+	if(count <= 0)
+		MarkForRemoval();
+	
+	return amount;
 }

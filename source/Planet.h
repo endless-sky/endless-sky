@@ -39,7 +39,7 @@ class System;
 class Planet {
 public:
 	// Load a planet's description from a file.
-	void Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<Sale<Outfit>> &outfits);
+	void Load(const DataNode &node);
 	
 	// Get the name of the planet.
 	const std::string &Name() const;
@@ -49,6 +49,8 @@ public:
 	const std::string &Description() const;
 	// Get the landscape sprite.
 	const Sprite *Landscape() const;
+	// Get the name of the ambient audio to play on this planet.
+	const std::string &MusicName() const;
 	
 	// Get the list of "attributes" of the planet.
 	const std::set<std::string> &Attributes() const;
@@ -89,6 +91,9 @@ public:
 	// Set or get what system this planet is in. This is so that missions, for
 	// example, can just hold a planet pointer instead of a system as well.
 	const System *GetSystem() const;
+	// Check if this planet is in the given system. Note that wormholes may be
+	// in more than one system.
+	bool IsInSystem(const System *system) const;
 	void SetSystem(const System *system);
 	// Remove the given system from the list of systems this planet is in. This
 	// must be done when game events rearrange the planets in a system.
@@ -96,11 +101,19 @@ public:
 	
 	// Check if this is a wormhole (that is, it appears in multiple systems).
 	bool IsWormhole() const;
-	const System *WormholeSource(const System *from) const;
+	const System *WormholeSource(const System *to) const;
 	const System *WormholeDestination(const System *from) const;
+	const std::vector<const System *> &WormholeSystems() const;
+	
+	// Check if the given ship has all the attributes necessary to allow it to
+	// land on this planet.
+	bool IsAccessible(const Ship *ship) const;
+	// Check if this planet has any required attributes that restrict landability.
+	bool IsUnrestricted() const;
 	
 	// Below are convenience functions which access the game state in Politics,
 	// but do so with a less convoluted syntax:
+	bool HasFuelFor(const Ship &ship) const;
 	bool CanLand(const Ship &ship) const;
 	bool CanLand() const;
 	bool CanUseServices() const;
@@ -117,11 +130,12 @@ private:
 	std::string description;
 	std::string spaceport;
 	const Sprite *landscape = nullptr;
+	std::string music;
 	
 	std::set<std::string> attributes;
 	
-	std::vector<const Sale<Ship> *> shipSales;
-	std::vector<const Sale<Outfit> *> outfitSales;
+	std::set<const Sale<Ship> *> shipSales;
+	std::set<const Sale<Outfit> *> outfitSales;
 	// The lists above will be converted into actual ship lists when they are
 	// first asked for:
 	mutable Sale<Ship> shipyard;
@@ -131,13 +145,20 @@ private:
 	double requiredReputation = 0.;
 	double bribe = 0.01;
 	double security = .25;
+	bool inhabited = false;
+	// Any required attributes needed to land on this planet.
+	std::set<std::string> requiredAttributes;
 	
+	// The salary to be paid if this planet is dominated.
 	int tribute = 0;
-	const Fleet *defenseFleet = nullptr;
-	int defenseCount = 0;
-	mutable int defenseDeployed = 0;
+	// The minimum combat rating needed to dominate this planet.
 	int defenseThreshold = 4000;
 	mutable bool isDefending = false;
+	// The defense fleets that should be spawned (in order of specification).
+	std::vector<const Fleet *> defenseFleets;
+	// How many fleets have been spawned, and the index of the next to be spawned.
+	mutable size_t defenseDeployed = 0;
+	// Ships that have been created by instantiating its defense fleets.
 	mutable std::list<std::shared_ptr<Ship>> defenders;
 	
 	std::vector<const System *> systems;
