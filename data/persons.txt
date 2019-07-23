@@ -420,7 +420,7 @@ ship "Lampyrid-Class Transport"
 
 
 person "Power of the People"
-	government "Author"
+	government " Author "
 	frequency 200
 	personality
 		mining harvests opportunistic frugal unconstrained
