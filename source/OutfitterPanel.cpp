@@ -176,11 +176,11 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	string message;
 	if(cargo && storage && stock)
 		message = "cargo+stored: " + to_string(cargo + storage) + ", stock: " + to_string(stock);
-	else if (cargo && storage)
+	else if(cargo && storage)
 		message = "in cargo: " + to_string(cargo) + ", stored: " + to_string(storage);
 	else if(cargo && stock)
 		message = "in cargo: " + to_string(cargo) + ", in stock: " + to_string(stock);
-	else if (storage && stock)
+	else if(storage && stock)
 		message = "stored: " + to_string(storage) + ", in stock: " + to_string(stock);
 	else if(cargo)
 		message = "in cargo: " + to_string(cargo);
@@ -337,7 +337,7 @@ void OutfitterPanel::Buy(bool fromCargoOrStorage)
 		
 			if(player.Cargo().Get(selectedOutfit))
 				player.Cargo().Remove(selectedOutfit);
-			else if (player.Storage() && player.Storage()->Get(selectedOutfit))
+			else if(player.Storage() && player.Storage()->Get(selectedOutfit))
 				player.Storage()->Remove(selectedOutfit);
 			else if(fromCargoOrStorage || !(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
 				break;
