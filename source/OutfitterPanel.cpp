@@ -175,13 +175,13 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	
 	string message;
 	if(cargo && storage && stock)
-		message = "cargo+stored: " + to_string(cargo + storage) + ", stock: " + to_string(stock);
+		message = "cargo+stored: " + to_string(cargo + storage) + ", in stock: " + to_string(stock);
 	else if(cargo && storage)
-		message = "in cargo: " + to_string(cargo) + ", stored: " + to_string(storage);
+		message = "in cargo: " + to_string(cargo) + ", in storage: " + to_string(storage);
 	else if(cargo && stock)
 		message = "in cargo: " + to_string(cargo) + ", in stock: " + to_string(stock);
 	else if(storage && stock)
-		message = "stored: " + to_string(storage) + ", in stock: " + to_string(stock);
+		message = "in storage: " + to_string(storage) + ", in stock: " + to_string(stock);
 	else if(cargo)
 		message = "in cargo: " + to_string(cargo);
 	else if(storage)
