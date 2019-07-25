@@ -45,7 +45,6 @@ using namespace std;
 
 namespace {
 	constexpr int SIDE_WIDTH = 280;
-	constexpr int SCROLL_TIME = 20;
 	
 	// Check if the mission involves the given system,
 	bool Involves(const Mission &mission, const System *system)
@@ -73,39 +72,35 @@ namespace {
 	}
 	
 	// Compute the required scroll amount for the given list of jobs/missions.
-	double SetScroll(const list<Mission> &missionList, const list<Mission>::const_iterator &it, const int sideScroll, int &newScrollTime, bool checkVisibility)
+	void DoScroll(const list<Mission> &missionList, const list<Mission>::const_iterator &it, double &sideScroll, bool checkVisibility)
 	{
 		// We don't need to scroll at all if the selection must be within the viewport. The current
 		// scroll could be non-zero if missions were added/aborted, so return the delta that will reset it.
 		const auto maxViewable = MaxDisplayedMissions(checkVisibility);
 		const auto missionCount = missionList.size();
 		if(missionCount < maxViewable)
-			return -sideScroll;
-		
-		const auto countBefore = static_cast<size_t>(checkVisibility
-				? count_if(missionList.begin(), it, [](const Mission &m) { return m.IsVisible(); })
-				: distance(missionList.begin(), it));
-		
-		const auto maximumScroll = (missionCount - maxViewable) * 20.;
-		const auto pageScroll = maxViewable * 20.;
-		const auto desiredScroll = countBefore * 20.;
-		double scrollTarget = sideScroll;
-		const auto bottomOfPage = sideScroll + pageScroll;
-		if(desiredScroll < sideScroll)
+			sideScroll = 0;
+		else
 		{
-			// Scroll upwards.
-			scrollTarget = desiredScroll;
-			newScrollTime = SCROLL_TIME;
+			const auto countBefore = static_cast<size_t>(checkVisibility
+					? count_if(missionList.begin(), it, [](const Mission &m) { return m.IsVisible(); })
+					: distance(missionList.begin(), it));
+			
+			const auto maximumScroll = (missionCount - maxViewable) * 20.;
+			const auto pageScroll = maxViewable * 20.;
+			const auto desiredScroll = countBefore * 20.;
+			const auto bottomOfPage = sideScroll + pageScroll;
+			if(desiredScroll < sideScroll)
+			{
+				// Scroll upwards.
+				sideScroll = desiredScroll;
+			}
+			else if(desiredScroll > bottomOfPage)
+			{
+				// Scroll downwards (but not so far that the list's bottom sprite comes upwards further than needed).
+				sideScroll = min(maximumScroll, sideScroll + (desiredScroll - bottomOfPage));
+			}
 		}
-		else if(desiredScroll > bottomOfPage)
-		{
-			// Scroll downwards (but not so far that the list's bottom sprite comes upwards further than needed).
-			scrollTarget = min(maximumScroll, sideScroll + (desiredScroll - bottomOfPage));
-			newScrollTime = SCROLL_TIME;
-		}
-		
-		// Return the change in scroll.
-		return scrollTarget - sideScroll;
 	}
 }
 
@@ -140,12 +135,12 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	if(availableIt != available.end())
 	{
 		selectedSystem = availableIt->Destination()->GetSystem();
-		scrollAmount = SetScroll(available, availableIt, availableScroll, scrolling, false);
+		DoScroll(available, availableIt, availableScroll, false);
 	}
 	else if(acceptedIt != accepted.end())
 	{
 		selectedSystem = acceptedIt->Destination()->GetSystem();
-		scrollAmount = SetScroll(accepted, acceptedIt, acceptedScroll, scrolling, true);
+		DoScroll(accepted, acceptedIt, acceptedScroll, true);
 	}
 	
 	// Center on the selected system.
@@ -191,20 +186,6 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 void MissionPanel::Step()
 {
 	MapPanel::Step();
-
-	// Scroll the mission list to the selected mission.
-	if(scrolling > 0 && (availableIt != available.end() || acceptedIt != accepted.end()))
-	{
-		double &scrollValue = availableIt != available.end() ? availableScroll : acceptedScroll;
-		double step = (scrolling - .5) / SCROLL_TIME;
-		// Interpolate with the smoothstep function, 3x^2 - 2x^3. Its derivative
-		// gives the fraction of the distance to move at each time step:
-		scrollValue += scrollAmount * (step * (1. - step) * (6. / SCROLL_TIME));
-		--scrolling;
-	} else {
-		scrolling = 0;
-	}
-	
 	DoHelp("jobs");
 }
 
@@ -338,12 +319,12 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	if(availableIt != available.end())
 	{
 		selectedSystem = availableIt->Destination()->GetSystem();
-		scrollAmount = SetScroll(available, availableIt, availableScroll, scrolling, false);
+		DoScroll(available, availableIt, availableScroll, false);
 	}
 	else if(acceptedIt != accepted.end())
 	{
 		selectedSystem = acceptedIt->Destination()->GetSystem();
-		scrollAmount = SetScroll(accepted, acceptedIt, acceptedScroll, scrolling, true);
+		DoScroll(accepted, acceptedIt, acceptedScroll, true);
 	}
 	if(selectedSystem)
 		CenterOnSystem(selectedSystem);
@@ -371,7 +352,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			acceptedIt = accepted.end();
 			dragSide = -1;
 			selectedSystem = availableIt->Destination()->GetSystem();
-			scrollAmount = SetScroll(available, availableIt, availableScroll, scrolling, false);
+			DoScroll(available, availableIt, availableScroll, false);
 			CenterOnSystem(selectedSystem);
 			return true;
 		}
@@ -390,7 +371,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			availableIt = available.end();
 			dragSide = 1;
 			selectedSystem = acceptedIt->Destination()->GetSystem();
-			scrollAmount = SetScroll(accepted, acceptedIt, acceptedScroll, scrolling, true);
+			DoScroll(accepted, acceptedIt, acceptedScroll, true);
 			CenterOnSystem(selectedSystem);
 			return true;
 		}
@@ -457,9 +438,9 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			acceptedIt = accepted.end();
 		// Scroll the relevant panel so that the mission highlighted is visible.
 		if(availableIt != available.end())
-			scrollAmount = SetScroll(available, availableIt, availableScroll, scrolling, false);
+			DoScroll(available, availableIt, availableScroll, false);
 		else if(acceptedIt != accepted.end())
-			scrollAmount = SetScroll(accepted, acceptedIt, acceptedScroll, scrolling, true);
+			DoScroll(accepted, acceptedIt, acceptedScroll, true);
 	}
 	
 	return true;
