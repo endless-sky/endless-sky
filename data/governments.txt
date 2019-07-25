@@ -276,6 +276,7 @@ government "Pirate"
 	
 	"player reputation" -10
 	"attitude toward"
+		" Author " -.01
 		"Author" -.01
 		"Hai" -.01
 		"Korath" -.01
