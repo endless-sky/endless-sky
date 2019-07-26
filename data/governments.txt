@@ -9,8 +9,11 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 government " Author "
-	"player reputation" 1
+	"player reputation" 40
 	"bribe" 0
+	"attitude toward"
+		"Author" .1
+
 
 government "Alpha"
 	swizzle 1
