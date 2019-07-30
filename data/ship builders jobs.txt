@@ -8,40 +8,39 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-mission "Escort Hauler prototype to formal dinner"
-	description "Escort the ship with the new cargo-systems to <destination> to allow it to deliver sushi to a formal party."
+mission "Hauler VI cargo prototype 1"
+	name "Escort Hauler prototype to formal dinner"
+	description "Escort the Hauler prototype to <destination> to deliver sushi to a formal dinner."
 	source
 		neighbor planet "Skymoot"
 		not planet "Skymoot"
 	destination "Skymoot"
 	npc accompany
 		government "Merchant"
-		ship "Hauler III" "SB-Labs Cargo Tester"
+		ship "Hauler III" "SB-Labs Testament"
 	on offer
 		conversation
-			`An elegantly looking lady is approaching you.`
-			`	"Captain <last>, captain <last>! It is such an honour to meet you!"`
+			`An elegant-looking lady approaches you.`
+			`	"Captain <last>, Captain <last>! It is such an honor to meet you!"`
 			choice
-				`	"Wow, that's quite a greeting. Why is it an honour to meet me?."`
+				`	"Wow, that's quite a greeting. Why is it an honor to meet me?"`
 				`	"Hello, nice to meet you too."`
 					goto "hello too"
 				`	"Sorry, I don't have time to talk. I'm really busy."`
 					defer
-			`	She briefly smiles and says: "Well, I actually don't know you, but I just read your name on one of the cargo-manifests. And my experience is that this greeting works best if you need something from a spaceship captain."`
+			`	She smiles and says, "Well, I actually don't know you, but I just read your name on one of the cargo manifests. And my experience is that this greeting works best if you need something from a spaceship captain."`
 			label "hello too"
-			`The lady continues talking;`
-			`	"My name is Vanessa Oxygenpocket and I am part of the development team that is designing a highly cost-effective transport ship series at Southbound."`
+			`She says, "My name is Vanessa Oxygenpocket and I am part of a team that is designing a highly cost-effective transport ship series here at Southbound Shipyards."`
 			choice
-				`	"Oxygenpocket, that is an uncommon name.`
+				`	"'Oxygenpocket' is an uncommon name."`
 				`	"What is the name of the series?"`
 					goto "series name"
 				`	"How is it cost effective?"`
 					goto "cost effective"
 				`	"And what help do you need from me?"`
 					goto "help request"
-			`	Ms. Oxygenpocket briefly looks surprised and then responds: `
-			`	"Well, it might sound uncommon to people from a planet with a breathable atmosphere, but it is actually similar to Vanderberg, which means from the mountain, or Langley, which means woodland.`
-			`	My grand-grand-grand parents lived on a planet with no atmosphere and oxygenpockets were as much a feature there as mountains and woodlands are on more habitable planets."`
+			`	Vanessa briefly looks surprised and then responds, "Well, it might sound uncommon to people from a planet with a breathable atmosphere, but it is actually similar to Vanderberg, which means 'from the mountain', or Langley, which means 'woodland'.`
+			`	"My grand-grand-grand parents lived on a planet with no atmosphere and oxygenpockets were as much a feature there as mountains and woodlands are on more habitable planets."`
 			label "series name"
 			`	She continues to talk about the ship, "The new series will be called Hauler VI and it will look like two Hauler III series side-by-side, but the cockpit and engine construction will obviously be a lot more complex."`
 			label "cost effective"
@@ -54,10 +53,7 @@ mission "Escort Hauler prototype to formal dinner"
 			label "combat effective"
 			`	"The VI will have twice the hull of a III-series, but it is also 25% slower and we are still working to get the shields up to the same level as the III-series."`
 			label "help request"
-			`	Ms. Oxygenpocket pauses for a moment and then continues; "We have an Hauler III that we upgraded with the cargo-handling systems for the VI so that we can test those new systems.`
-			`Normally our own department would escort such prototypes, but there is a mole in our organisation and we have very strong competition from the Syndicated Shipyards.`
-			`I only need you to help us travel to the nearby planet Skymoot to deliver sushi for a formal dinner. You will be paid for your expenses.`
-			`Will you help us?"`
+			`	Vanessa pauses for a moment and then continues, "We're testing the VI's cargo systems using a Hauler III. Normally our own department would escort such prototypes, but there is a mole in our organization and we have very strong competition from Syndicated Shipyards. I need you to help us travel to <destination> to deliver sushi for a formal dinner. You will be paid for your expenses. Will you help us?"`
 			choice
 				`	"Isn't it dangerous to transport food in an untested prototype?`
 					goto "risky transport"
@@ -75,58 +71,60 @@ mission "Escort Hauler prototype to formal dinner"
 	on complete
 		dialog
 			`You are waiting for the Hauler prototype to land, but it appears to stay in orbit.`
-			`There is no response to your hails by radio. Looks like you need to take off and investigate.`
+			`There is no response to your hails by radio. It looks like you need to take off and investigate.`
 
-
-mission "Escort Hauler prototype to student party"
-	description "Escort the ship with the new cargo-systems to <destination> to allow it to deliver cooked fish dishes to an archeology students party."
+mission "Hauler VI cargo prototype 2"
+	name "Escort Hauler prototype to student party"
+	description "Escort the Hauler prototype to <destination> to deliver cooked fish dishes to an archeology students party."
 	source "Skymoot"
 	destination "Zug"
 	landing
 	to offer
-		has "Escort Hauler prototype to formal dinner: offered"	
+		has "Hauler VI cargo prototype 1: done"	
 	npc accompany
 		government "Merchant"
-		ship "Hauler III" "SB-Labs Cargo Cooker"
+		ship "Hauler III" "SB-Labs Testament"
 	on enter
 		dialog
-			`As soon as you take off you receive an angry voice message over a short-range inter-ship communications channel: "Why were you trying to contact me over radio! Does everybody here need to know that we are flying around here???`
-			`Let's go to <destination>." You wonder why the destination changed.`
+			`As soon as you take off you receive an angry voice message over a short-range inter-ship communications channel, "Why were you trying to contact me over radio! Does everyone need to know that we are flying around here?"`
+			`She adds, "Let's go to <destination>." You wonder why the destination changed.`
 	on complete
 		dialog
-			`This time the Hauler prototype appears to be landing right behind you, but the ship executes a go-around just before touching the landing pad and flies away at full thrust.`
-			`You receive a short text-message over the short-range inter-ship communiation channel: "The colleagues at the shipyard cannot see us like this!"`
+			`This time the Hauler prototype appears to be landing right behind you, but the ship flies away at full thrust just before touching the landing pad.`
+			`You receive a short text-message over the short-range inter-ship communiation channel, "The colleagues at the shipyard cannot see us like this!"`
 
-mission "Escort Hauler prototype to factory"
-	description "Escort the ship with the new cargo-systems to <destination> to allow it to deliver overcooked fish to a floating catfood factory."
+mission "Hauler VI cargo prototype 3"
+	name "Escort Hauler prototype to factory"
+	description "Escort the Hauler prototype to <destination> to deliver overcooked fish to a floating catfood factory."
 	source "Zug"
 	destination "Mere"
 	landing
 	to offer
-		has "Escort Hauler prototype to student party: offered"
+		has "Hauler VI cargo prototype 2: done"
 	npc accompany
 		government "Merchant"
-		ship "Hauler III" "SB-Labs Cargo Processor"
+		ship "Hauler III" "SB-Labs Testament"
 	on complete
 		dialog
-			`The Hauler VI prototype descends at full thrust and lands way ahead of you on a landing pad from a floating catfood factory.`
-			`Your infrared sensors show that the ship emits a lot of heat, but it not from the heavily used thrusters but from the cargo-hold.`
-			`Ms. Oxygenpocket steps out of the ship and says: "This is no good for living creatures, we go to <destination>."`
-			`She enters the prototype and takes off before you have time to respond. Apparently there is something seriously wrong with the cargo that was formerly known as sushi.`
+			`The Hauler VI prototype enters the planets atmosphere at high speed and lands way ahead of you near a catfood factory on one of the artifical islands.`
+			`Your infrared sensors show that the ship is emitting a lot of heat, but it's not comming from the heavily used thrusters, rather from the cargo-hold.`
+			`Vanessa steps out of the ship and says, "This is no good for living creatures, we go to <destination>."`
+			`She boards the Hauler prototype and takes off before you have time to respond. Apparently there is something seriously wrong with the cargo that you once thought was sushi.`
 
-mission "Escort Hauler prototype to waste plant"
-	description "Escort the ship with the new cargo-systems to <destination> to allow it to deliver charred fish wasteproducts to a waste processing plant."
+mission "Hauler VI cargo prototype 4"
+	name "Escort Hauler prototype to waste plant"
+	description "Escort the Hauler prototype to <destination> to deliver charred fish waste product to a waste-processing plant."
 	destination "Longjump"
 	landing
 	on offer
 	to offer
-		has "Escort Hauler prototype to factory: offered"
+		has "Hauler VI cargo prototype 3: done"
 	on complete
 		payment 200000
 		dialog
 			`The Hauler prototype lands somewhat uncontrolled near a waste processing plant. The cargo hold is glowing red hot and some areas in the cargo hold appear to be on fire.`
-			`Ms. Oxygenpocket disembarks, walks to you and apologises for the difficult trip. She explains that the cooling systems failed causing the sushi to get cooked, get overcooked and finally on fire.`
-			`You get paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quicky in order to escape the horrible smell of overheated fish that is comming from Ms. Oxygenpocket and her ship.`
+			`Vanessa disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi to get cooked, get overcooked and finally burning the sushi.`
+			`You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is comming from Vanessa and her ship.`
 	npc accompany
 		government "Merchant"
-		ship "Hauler III" "SB-Labs Waste Mover"
+		ship "Hauler III" "SB-Labs Testament"
