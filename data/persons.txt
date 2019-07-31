@@ -108,7 +108,7 @@ person "Cap'n Pester"
 
 
 person "Marauding Max"
-	government "Indigenous Lifeform"
+	government "Marauder"
 	frequency 400
 	personality
 		surveillance unconstrained harvests
@@ -116,13 +116,13 @@ person "Marauding Max"
 		word
 			"Do you think you "
 			"Ever wondered if you "
-			"Think you'll also need some luck if you think you "
+			"Think you'll also need some luck if you "
 		word
 			"got what it takes to "
 			"got the gumption to "
 			"could "
 			"are capable of "
-			"have the cojones to "
+			"have the guramba to "
 			"are good enough to "
 		word
 			"capture "
@@ -219,9 +219,9 @@ ship "Marauder Fury"
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 		
-	engine -21 42
+	engine -21 42 .9
 	engine 0 48
-	engine 21 42
+	engine 21 42 .9
 	gun -12 -33 "Meteor Missile Launcher"
 	gun 12 -33 "Meteor Missile Launcher"
 	gun -20 -25 "Meteor Missile Launcher"

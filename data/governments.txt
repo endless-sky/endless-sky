@@ -196,6 +196,15 @@ government "Kor Sestor"
 	
 	"player reputation" -1000
 
+government "Marauder"
+	swizzle 6
+	color .78 .36 .36
+	"player reputation" 1
+	"bribe" .1
+	"fine" 0
+	"hostile hail" "hostile pirate"
+	raid "Marauder fleet X"
+
 government "Merchant"
 	swizzle 5
 	
