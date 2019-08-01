@@ -28,54 +28,30 @@ mission "Hauler VI cargo prototype 1"
 					goto "hello too"
 				`	"Sorry, I don't have time to talk. I'm really busy."`
 					defer
-			`	She smiles and says, "Well, I actually don't know you, but I just read your name on one of the cargo manifests. And my experience is that this greeting works best if you need something from a spaceship captain."`
+			`	She smiles and replies, "Well, I actually don't know you, but I just read your name on one of the cargo manifests. And my experience is that this greeting works best if you need something from a spaceship captain."`
 			label "hello too"
-			`She says, "My name is Vanessa Oxygenpocket and I am part of a team that is designing a highly cost-effective transport ship series here at Southbound Shipyards."`
+			`She says, "My name is Vanessa Oxygenpocket and I am part of a team that is designing the new Hauler VI transport ship series here at Southbound Shipyards."`
 			choice
 				`	"'Oxygenpocket' is an uncommon name."`
-				`	"What is the name of the series?"`
-					goto "series name"
-				`	"How is it cost effective?"`
-					goto "cost effective"
 				`	"And what help do you need from me?"`
 					goto "help request"
 			`	Vanessa briefly looks surprised and then responds, "Well, it might sound uncommon to people from a planet with a breathable atmosphere, but it is actually similar to Vanderberg, which means 'from the mountain', or Langley, which means 'woodland'.`
-			`	"My grand-grand-grand parents lived on a planet with no atmosphere and oxygenpockets were as much a feature there as mountains and woodlands are on more habitable planets."`
-			label "series name"
-			`	She continues to talk about the ship, "The new series will be called Hauler VI and it will look like two Hauler III series side-by-side, but the cockpit and engine construction will obviously be a lot more complex."`
-			label "cost effective"
-			`	"The Hauler VI will have twice the cargo capacity of a III series." She thinks for a moment, "In it's current design the VI would however require more than twice the crew and we obviously needs to fix that before we can put it into the market."`
-			choice
-				`	"Ok, and how will it perform in combat?"`
-					goto "combat effective"
-				`	"Ok, and what help do you need from me?"`
-					goto "help request"
-			label "combat effective"
-			`	"The VI will have twice the hull of a III-series, but it is also 25% slower and we are still working to get the shields up to the same level as the III-series."`
+			`	"Oxygenpockets were as much a feature on my home-planet as mountains and woodlands are on more habitable planets."`
 			label "help request"
 			`	Vanessa pauses for a moment and then continues, "We're testing the VI's cargo systems using a Hauler III. Normally our own department would escort such prototypes, but there is a mole in our organization and we have very strong competition from Syndicated Shipyards. I need you to help us travel to <destination> to deliver sushi for a formal dinner. You will be paid for your expenses. Will you help us?"`
 			choice
-				`	"Isn't it dangerous to transport food in an untested prototype?`
-					goto "risky transport"
 				`	"Sure, I'll help you."`
-					accept
-				`	"Sorry, I don't have time to help you."`
-					decline
-			label "risky transport"
-			`	"No it's actually more of a formality. Those systems have gone through a lot of simulation cycles already."`
-			choice
-				`	"I'll help you."`
 					accept
 				`	"Sorry, I don't have time to help you."`
 					decline
 	on complete
 		dialog
-			`You are waiting for the Hauler prototype to land, but it appears to stay in orbit.`
-			`There is no response to your hails by radio. It looks like you need to take off and investigate.`
+			`You are waiting for the Hauler prototype to land, but it remains in orbit.`
+			`There is no response to your hails by radio. You need to take off and investigate.`
 
 mission "Hauler VI cargo prototype 2"
 	name "Escort Hauler prototype to student party"
-	description "Escort the Hauler prototype to <destination> to deliver cooked fish dishes to an archeology students party."
+	description "Escort the Hauler prototype to <destination> to deliver cooked fish dishes to a streetfood festival."
 	source "Skymoot"
 	destination "Zug"
 	landing
@@ -87,11 +63,12 @@ mission "Hauler VI cargo prototype 2"
 	on enter
 		dialog
 			`As soon as you take off you receive an angry voice message over a short-range inter-ship communications channel, "Why were you trying to contact me over radio! Does everyone need to know that we are flying around here?"`
-			`She adds, "Let's go to <destination>." You wonder why the destination changed.`
+			`She adds, "The cooling failed and the sushi nearly cooked, let's go to <destination> to deliver it as fish dishes to a streetfood festival."`
 	on complete
 		dialog
 			`This time the Hauler prototype appears to be landing right behind you, but the ship flies away at full thrust just before touching the landing pad.`
-			`You receive a short text-message over the short-range inter-ship communiation channel, "The colleagues at the shipyard cannot see us like this!"`
+			`You receive a short text-message over the short-range inter-ship communiation channel, "The sushi overcooked! We cannot be seen near the festival or near the shipyard with this overcooked sushi!"`
+			`The new destination is a floating factory on Mere.`
 
 mission "Hauler VI cargo prototype 3"
 	name "Escort Hauler prototype to factory"
@@ -106,10 +83,10 @@ mission "Hauler VI cargo prototype 3"
 		ship "Hauler III" "SB-Labs Testament"
 	on complete
 		dialog
-			`The Hauler VI prototype enters the planets atmosphere at high speed and lands way ahead of you near a catfood factory on one of the artifical islands.`
+			`The Hauler prototype enters the planets atmosphere at high speed and lands way ahead of you near a catfood factory on one of the floating artifical islands.`
 			`Your infrared sensors show that the ship is emitting a lot of heat, but it's not comming from the heavily used thrusters, rather from the cargo-hold.`
-			`Vanessa steps out of the ship and says, "This is no good for living creatures, we go to <destination>."`
-			`She boards the Hauler prototype and takes off before you have time to respond. Apparently there is something seriously wrong with the cargo that you once thought was sushi.`
+			`Vanessa steps out of the ship and says, "The Sushi completely burned. We should unload it at the waste processing plant at <destination>."`
+			`She boards the Hauler prototype and takes off before you have time to respond. Apparently the cargo systems are not working as well as Vanessa had hoped.`
 
 mission "Hauler VI cargo prototype 4"
 	name "Escort Hauler prototype to waste plant"
