@@ -3456,7 +3456,7 @@ mission "Hauler VI cargo prototype 4"
 	on visit
 		dialog `You land on <destination>, but the Hauler prototype didn't catch up with you yet.`
 	on complete
-		payment 200000
+		payment 140000
 		dialog
 			`The Hauler prototype lands somewhat uncontrolled near a waste processing plant. The cargo hold is glowing red hot and some areas in the cargo hold appear to be on fire.`
 			`Vanessa disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi to get cooked, get overcooked and finally burning the sushi.`
