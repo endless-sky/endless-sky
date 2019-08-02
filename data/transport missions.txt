@@ -3362,6 +3362,7 @@ mission "Hauler VI cargo prototype 1"
 	destination "Skymoot"
 	npc accompany
 		government "Merchant"
+		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
 	on offer
 		conversation
@@ -3380,7 +3381,7 @@ mission "Hauler VI cargo prototype 1"
 				`	"'Oxygenpocket' is an uncommon name."`
 				`	"And what help do you need from me?"`
 					goto "help request"
-			`	Vanessa briefly looks surprised and then responds, "Well, it might sound uncommon to people from a planet with a breathable atmosphere, but it is actually similar to Vanderberg, which means 'from the mountain', or Langley, which means 'woodland'.`
+			`	Vanessa looks surprised and then responds, "Well, it might sound uncommon to people from a planet with a breathable atmosphere, but it is actually similar to Vanderberg, which means 'from the mountain', or Langley, which means 'woodland'.`
 			`	"Oxygenpockets were as much a feature on my home-planet as mountains and woodlands are on more habitable planets."`
 			label "help request"
 			`	Vanessa pauses for a moment and then continues, "We're testing the VI's cargo systems using a Hauler III. Normally our own department would escort such prototypes, but there is a mole in our organization and we have very strong competition from Syndicated Shipyards. I need you to help us travel to <destination> to deliver sushi for a formal dinner. You will be paid for your expenses. Will you help us?"`
@@ -3406,6 +3407,7 @@ mission "Hauler VI cargo prototype 2"
 		has "Hauler VI cargo prototype 1: done"	
 	npc accompany
 		government "Merchant"
+		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
 	on enter
 		dialog
@@ -3429,6 +3431,7 @@ mission "Hauler VI cargo prototype 3"
 		has "Hauler VI cargo prototype 2: done"
 	npc accompany
 		government "Merchant"
+		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
 	on visit
 		dialog `You land on <destination>, but the Hauler prototype didn't catch up with you yet.`
@@ -3436,7 +3439,7 @@ mission "Hauler VI cargo prototype 3"
 		dialog
 			`The Hauler prototype enters the planets atmosphere at high speed and lands way ahead of you near a catfood factory on one of the floating artifical islands.`
 			`Your infrared sensors show that the ship is emitting a lot of heat, but it's not comming from the heavily used thrusters, rather from the cargo-hold.`
-			`Vanessa steps out of the ship and says, "The Sushi completely burned. We should unload it at the waste processing plant at <destination>."`
+			`Vanessa steps out of the ship and says, "The Sushi completely burned. We should unload it at the waste processing plant at Longjump."`
 			`She boards the Hauler prototype and takes off before you have time to respond. Apparently the cargo systems are not working as well as Vanessa had hoped.`
 
 mission "Hauler VI cargo prototype 4"
@@ -3444,9 +3447,12 @@ mission "Hauler VI cargo prototype 4"
 	description "Escort the Hauler prototype to <destination> to deliver charred fish waste product to a waste-processing plant."
 	destination "Longjump"
 	landing
-	on offer
 	to offer
 		has "Hauler VI cargo prototype 3: done"
+	npc accompany
+		government "Merchant"
+		personality escort timid
+		ship "Hauler III" "SB-Labs Testament"
 	on visit
 		dialog `You land on <destination>, but the Hauler prototype didn't catch up with you yet.`
 	on complete
@@ -3455,6 +3461,3 @@ mission "Hauler VI cargo prototype 4"
 			`The Hauler prototype lands somewhat uncontrolled near a waste processing plant. The cargo hold is glowing red hot and some areas in the cargo hold appear to be on fire.`
 			`Vanessa disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi to get cooked, get overcooked and finally burning the sushi.`
 			`You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is comming from Vanessa and her ship.`
-	npc accompany
-		government "Merchant"
-		ship "Hauler III" "SB-Labs Testament"
