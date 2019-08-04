@@ -188,7 +188,7 @@ ship "Bactrian"
 	attributes
 		licenses
 			City-Ship
-		category "Transport"
+		category "Heavy Warship"
 		"cost" 17600000
 		"shields" 17500
 		"hull" 8600
