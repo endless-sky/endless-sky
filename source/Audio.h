@@ -56,13 +56,13 @@ public:
 	// Play the given sound, as if it is at the given distance from the
 	// "listener". This will make it softer and change the left / right balance.
 	static void Play(const Sound *sound, const Point &position);
-
+	
 	// Pause playing of all sources of audio.
 	static void Pause();
 	
 	// Pause one source by ALuint ID
 	static void Pause(unsigned int id);
-
+	
 	// Resume playing of all sources of audio.
 	static void Resume();
 		
