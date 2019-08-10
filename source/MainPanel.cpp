@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MainPanel.h"
 
+#include "Audio.h"
 #include "BoardingPanel.h"
 #include "Dialog.h"
 #include "Font.h"
@@ -132,10 +133,18 @@ void MainPanel::Step()
 	// and updating the isActive flag).
 	StepEvents(isActive);
 	
+	// Run the game, or pause the game
 	if(isActive)
-		engine.Go();
+	{	 
+		Audio::Resume();
+		engine.Go(); 
+	}
 	else
-		canDrag = false;
+	{
+		Audio::Pause();
+		canDrag = false; 
+	}
+	
 	canClick = isActive;
 }
 

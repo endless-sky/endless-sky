@@ -95,6 +95,11 @@ namespace {
 	vector<unsigned> recycledSources;
 	vector<unsigned> endingSources;
 	unsigned maxSources = 255;
+	// Keep track of paused sources
+	vector<unsigned> pausedSources;
+	bool isPaused = false;
+	unsigned uiSource = 1;
+	vector<Source> uiSoundFX;
 	
 	// Queue and thread for loading sound files in the background.
 	map<string, string> loadQueue;
@@ -116,7 +121,7 @@ namespace {
 
 
 // Begin loading sounds (in a separate thread).
-void Audio::Init(const vector<string> &sources)
+void Audio::Init(const vector<string> &soundSources)
 {
 	device = alcOpenDevice(nullptr);
 	if(!device)
@@ -143,7 +148,7 @@ void Audio::Init(const vector<string> &sources)
 	alDopplerFactor(0.);
 	
 	// Get all the sound files in the game data and all plugins.
-	for(const string &source : sources)
+	for(const string &source : soundSources)
 	{
 		string root = source + "sounds/";
 		vector<string> files = Files::RecursiveList(root);
@@ -177,6 +182,9 @@ void Audio::Init(const vector<string> &sources)
 	}
 	alSourceQueueBuffers(musicSource, MUSIC_BUFFERS, musicBuffers);
 	alSourcePlay(musicSource);
+	
+	// Initialize UI source:
+	alGenSources(1, &uiSource);
 }
 
 
@@ -256,15 +264,87 @@ void Audio::Play(const Sound *sound, const Point &position)
 	if(!isInitialized || !sound || !sound->Buffer() || !volume)
 		return;
 	
-	// Place sounds from the main thread directly into the queue. They are from
-	// the UI, and the Engine may not be running right now to call Update().
+	// Play sounds from the main thread directly on dedicated UI Source
 	if(this_thread::get_id() == mainThreadID)
-		queue[sound].Add(position - listener);
+	{
+		uiSoundFX.emplace_back(sound, uiSource);
+		alSourcePlay(uiSource);
+		uiSoundFX.pop_back(); 
+	}
 	else
 	{
 		unique_lock<mutex> lock(audioMutex);
 		deferred[sound].Add(position - listener);
 	}
+}
+
+
+
+// Pause playing of all sources of audio.
+void Audio::Pause()
+{
+	if(!isInitialized)
+		return;
+	
+	// Allow sounds to load
+	if(loadThread.joinable())
+	{
+		loadThread.join();
+	}
+	
+	// Pause all sources
+	for(const Source &source : sources)
+	{
+		Pause(source.ID());
+	}
+	
+	// Pause all fading sources
+	for(unsigned id : endingSources)
+	{
+		Pause(id);
+	}
+
+	isPaused = true;
+}
+
+
+
+// Pause one source by ALuint ID
+void Audio::Pause(unsigned int id)
+{
+	if(!alIsSource(id))
+		return;
+	
+	unique_lock<mutex> lock(audioMutex);
+	
+	ALint state;
+	alGetSourcei(id, AL_SOURCE_STATE, &state);
+	if(state == AL_PLAYING)
+	{
+		alSourcePause(id);
+		pausedSources.emplace_back(id);
+	}
+}
+
+
+// Resume playing of all sources of audio.
+void Audio::Resume()
+{
+	if(!isInitialized || !isPaused)
+		return;
+	
+	unique_lock<mutex> lock(audioMutex);
+	
+	for(unsigned id : pausedSources)
+	{
+		ALint state;
+		alGetSourcei(id, AL_SOURCE_STATE, &state);
+		if(state == AL_PAUSED)
+			alSourcePlay(id);
+	}
+
+	pausedSources.clear();
+	isPaused = false;
 }
 
 
@@ -361,6 +441,10 @@ void Audio::Step()
 			alGenSources(1, &source);
 			if(!source)
 			{
+				// Clear the error
+				ALenum alErr = alGetError();
+				Files::LogError("OpenAL error generating new sources: " + to_string(alErr));
+				
 				// If we just tried to generate a new source and OpenAL would
 				// not give us one, we've reached this system's limit for the
 				// number of concurrent sounds.
@@ -456,6 +540,7 @@ void Audio::Quit()
 	for(unsigned id : recycledSources)
 		alDeleteSources(1, &id);
 	recycledSources.clear();
+	pausedSources.clear();
 	
 	// Free the memory buffers for all the sound resources.
 	for(const auto &it : sounds)
@@ -464,8 +549,9 @@ void Audio::Quit()
 		alDeleteBuffers(1, &id);
 	}
 	sounds.clear();
+	uiSoundFX.clear();
 	
-	// Clean up the music source and buffers.
+	// Clean up the music source and UI source.
 	if(isInitialized)
 	{
 		alSourceStop(musicSource);
@@ -473,6 +559,8 @@ void Audio::Quit()
 		alDeleteBuffers(MUSIC_BUFFERS, musicBuffers);
 		currentTrack.reset();
 		previousTrack.reset();
+		alSourceStop(uiSource);
+		alDeleteSources(1, &uiSource);
 	}
 	
 	// Close the connection to the OpenAL library.

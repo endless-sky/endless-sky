@@ -31,7 +31,7 @@ class Sound;
 class Audio {
 public:
 	// Begin loading sounds (in a separate thread).
-	static void Init(const std::vector<std::string> &sources);
+	static void Init(const std::vector<std::string> &soundSources);
 	
 	// Check the progress of loading sounds.
 	static double Progress();
@@ -56,7 +56,16 @@ public:
 	// Play the given sound, as if it is at the given distance from the
 	// "listener". This will make it softer and change the left / right balance.
 	static void Play(const Sound *sound, const Point &position);
+
+	// Pause playing of all sources of audio.
+	static void Pause();
 	
+	// Pause one source by ALuint ID
+	static void Pause(unsigned int id);
+
+	// Resume playing of all sources of audio.
+	static void Resume();
+		
 	// Play the given music. An empty string means to play nothing.
 	static void PlayMusic(const std::string &name);
 	
