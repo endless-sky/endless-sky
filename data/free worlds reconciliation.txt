@@ -1635,7 +1635,7 @@ mission "FW Pug 3C"
 		dialog "You have reached <planet>, but part of your fleet is not here yet. Better depart and wait for them to arrive in this star system."
 
 
-mission "FW Pug 3C(Extra ship)"
+mission "FW Pug 3C(Extra Ship)"
 	landing
 	name "Escort to Hephaestus"
 	description "Escort the combined Free Worlds and Navy fleet to <destination>, where the Syndicate will fit all the ships with jump drives."
@@ -1693,7 +1693,7 @@ mission "FW Pug 4: Escorts"
 	to offer
 		or
 			has "FW Pug 3C: done"
-			has "FW Pug 3C(Extra ship): done"
+			has "FW Pug 3C(Extra Ship): done"
 	to fail
 		has "FW Pug 6: done"
 	
