@@ -128,7 +128,7 @@ person "Marauding Max"
 			"capture "
 			"collect "
 			"gather "
-		woed
+		word
 			"all 28 Marauder models?"
 	phrase
 		word
