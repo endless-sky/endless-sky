@@ -1169,12 +1169,11 @@ bool PlayerInfo::TakeOff(UI *ui)
 		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 	}
 	
-	// For each fighter and drone you own, try to find a ship that has a bay to
-	// carry it in. Any excess ships will be launched outside carriers.
-	int shipsUnCarried = 0;
+	// For each carryable ship you own, try to find a ship that has a bay for it.
+	int uncarried = 0;
 	for(auto it = ships.begin(); it != ships.end(); )
 	{
-		shared_ptr<Ship> &ship = *it;
+		const shared_ptr<Ship> &ship = *it;
 		if(ship->IsParked() || ship->IsDisabled())
 		{
 			++it;
@@ -1182,31 +1181,29 @@ bool PlayerInfo::TakeOff(UI *ui)
 		}
 		
 		bool fit = true;
-		const string &category = ship->Attributes().Category();
-		bool isFighter = (category == "Fighter");
-		if(isFighter || category == "Drone")
+		if(ship->CanBeCarried())
 		{
 			fit = false;
-			for(shared_ptr<Ship> &parent : ships)
-				if(parent->GetSystem() == ship->GetSystem() && !parent->IsParked()
-						&& !parent->IsDisabled() && parent->Carry(ship))
+			for(auto &parent : ships)
+				if(parent.get() != ship.get() && !parent->IsParked() && !parent->IsDisabled()
+						&& parent->GetSystem() == ship->GetSystem() && parent->Carry(ship))
 				{
 					fit = true;
 					break;
 				}
 		}
 		if(!fit)
-			shipsUnCarried += 1;
+			++uncarried;
 		
 		++it;
 	}
-	if(shipsUnCarried > 0)
+	if(uncarried)
 	{
 		// If your fleet contains more fighters or drones than you can carry,
 		// some of them are launched without a carrier.
 		ostringstream out;
 		out << "Because none of your ships can carry them, you launched ";
-		out << shipsUnCarried;
+		out << uncarried;
 		out << " non-jump capable ships outside carriers.";
 		Messages::Add(out.str());
 	}

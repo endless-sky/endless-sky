@@ -266,9 +266,7 @@ void PlanetPanel::TakeOffIfReady()
 	// Will you have to sell something other than regular cargo?
 	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
 	
-	// Check how many ships we have that cannot jump. Drones and fighters
-	// are counted separately, because they usually don't jump by themselves
-	// but are carried in fighter and drone bays.
+	// Count how many ships we have that cannot make the jump (e.g. due to lack of fuel, drive, or carrier).
 	int nonJumpCount = 0;
 	int droneCount = 0;
 	int fighterCount = 0;
@@ -279,14 +277,14 @@ void PlanetPanel::TakeOffIfReady()
 			droneCount -= it->BaysFree(false);
 			fighterCount -= it->BaysFree(true);
 			if(category == "Drone")
-				droneCount += 1;
+				++droneCount;
 			else if(category == "Fighter")
-				fighterCount += 1;
+				++fighterCount;
 			else if(it->JumpsRemaining() < 1)
-				nonJumpCount += 1;
+				++nonJumpCount;
 		}
-	nonJumpCount += fighterCount > 0 ? fighterCount : 0;
-	nonJumpCount += droneCount > 0 ? droneCount : 0;
+	nonJumpCount += max(fighterCount, 0);
+	nonJumpCount += max(droneCount, 0);
 	
 	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0)
 	{
