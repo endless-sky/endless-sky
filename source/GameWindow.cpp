@@ -27,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
+	SDL_Window *mainWindow;
 	SDL_GLContext context;
 	int minWidth = 640;
 	int minHeight = 480;
@@ -34,8 +35,7 @@ namespace {
 	int height;
 	int monitorHz;
 	bool hasSwizzle;
-	SDL_Window *mainWindow;
-	
+		
 	// Logs SDL errors and returns 1 if found
 	int checkSDLerror()
 	{
@@ -101,26 +101,18 @@ bool GameWindow::HasSwizzle()
 
 int GameWindow::Init()
 {
+	// This needs to be called before any other SDL commands.
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) 
 		return 1;
 	
 	// Start with a clear the error state
 	SDL_GetError();
 	
-	// Check how big the window can be.
+	// Get details about the current display.
 	SDL_DisplayMode mode;
 	if(SDL_GetCurrentDisplayMode(0, &mode))
 		return DoError("Unable to query monitor resolution!");
-	
-	monitorHz = mode.refresh_rate;
-	
-	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI;
-
-	if(Preferences::Has("fullscreen"))
-		flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
-	else if(Preferences::Has("maximized"))
-		flags |= SDL_WINDOW_MAXIMIZED;
-	
+		
 	// Make the window just slightly smaller than the monitor resolution.
 	int maxWidth = mode.w;
 	int maxHeight = mode.h;
@@ -138,20 +130,36 @@ int GameWindow::Init()
 		windowHeight = min(windowHeight, Screen::RawHeight());
 	}
 	
-	// Create the window.
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-#ifdef _WIN32
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
-#endif
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+	monitorHz = mode.refresh_rate;
 	
+	// Settings that must be declared before the window creation.
+	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
+
+	if(Preferences::Has("fullscreen"))
+		flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+	else if(Preferences::Has("maximized"))
+		flags |= SDL_WINDOW_MAXIMIZED;
+	
+	// The main window spawns visibly at this point.
 	mainWindow = SDL_CreateWindow("Endless Sky", SDL_WINDOWPOS_UNDEFINED, 
 		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, flags);
 		
 	if(!mainWindow)
 		return DoError("Unable to create window!");
 	
+	// Settings that must be declared before the context creation.
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+#ifdef _WIN32
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+#endif
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);	
+	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
+	
+	// FSAA?
+	//SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
+	//SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 2);
+		
 	context = SDL_GL_CreateContext(mainWindow);
 	if(!context)
 		return DoError("Unable to create OpenGL context! Check if your system supports OpenGL 3.0.");
@@ -188,8 +196,6 @@ int GameWindow::Init()
 		return DoError(out.str());
 	}
 	
-	checkSDLerror();
-	
 	// OpenGL settings
 	glClearColor(0.f, 0.f, 0.0f, 1.f);
 	glEnable(GL_BLEND);
@@ -206,15 +212,14 @@ int GameWindow::Init()
 	// Make sure the screen size and view-port are set correctly.
 	AdjustViewport();
 	
+	string swizzleName = "_texture_swizzle";
+	
 #ifndef __APPLE__
 	// On OS X, setting the window icon will cause that same icon to be used
 	// in the dock and the application switcher. That's not something we
 	// want, because the ".icns" icon that is used automatically is prettier.
 	SetIcon();
-#endif
-
-string swizzleName = "_texture_swizzle";		
-#ifndef __APPLE__
+	
 	const char *extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
 	hasSwizzle = strstr(extensions, swizzleName.c_str());
 #else
@@ -263,7 +268,7 @@ void GameWindow::AdjustViewport()
 	if(!mainWindow)
 		return;
 		
-	// Get the window's size in screen coordinates.
+	// Keep track of the actual size of the window when it is resized.
 	SDL_GetWindowSize(mainWindow, &width, &height);
 	
 	// Round the window size up to a multiple of 2, even if this
@@ -315,13 +320,15 @@ void GameWindow::Quit()
 	SDL_ShowCursor(true);
 	
 	// Clean up in the reverse order that everything is launched.
-#ifndef _WIN32
+//#ifndef _WIN32
 	// Under windows, this cleanup code causes intermittent crashes.
 	if(context)
 		SDL_GL_DeleteContext(context);
-#endif
+//#endif
+
 	if(mainWindow)
 		SDL_DestroyWindow(mainWindow);
+		
 	SDL_Quit();
 }	
 
@@ -329,13 +336,11 @@ void GameWindow::Quit()
 
 int GameWindow::DoError(const string& message)
 {
-	GameWindow::Quit();			
-	
 	// Print the error message in the terminal and the error file.
 	Files::LogError(message);		
 	checkSDLerror();
 	
-	// Show the error message both in a message box and in the terminal.
+	// Show the error message in a message box.
 	SDL_MessageBoxData box;
 	box.flags = SDL_MESSAGEBOX_ERROR;
 	box.window = nullptr;
@@ -353,5 +358,6 @@ int GameWindow::DoError(const string& message)
 	int result = 0;
 	SDL_ShowMessageBox(&box, &result);
 	
+	GameWindow::Quit();	
 	return 1;
 }
