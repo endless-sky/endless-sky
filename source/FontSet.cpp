@@ -33,7 +33,7 @@ namespace {
 
 
 
-void FontSet::Add(const std::string &fontsDir)
+void FontSet::Add(const string &fontsDir)
 {
 	const FcChar8* fontsDirFc8 = reinterpret_cast<const FcChar8*>(fontsDir.c_str());
 	const string cfgFile = fontsDir + "fonts.conf";
@@ -63,7 +63,7 @@ const Font &FontSet::Get(int size)
 
 
 
-void FontSet::SetFontDescription(const std::string &desc)
+void FontSet::SetFontDescription(const string &desc)
 {
 	fontDescription = desc.empty() ? defaultFontDescription : desc;
 	for(auto &it : fonts)
@@ -72,7 +72,7 @@ void FontSet::SetFontDescription(const std::string &desc)
 
 
 
-void FontSet::SetLayoutReference(const std::string &desc)
+void FontSet::SetLayoutReference(const string &desc)
 {
 	fontDescriptionForLayout = desc;
 	for(auto &it : fonts)
@@ -81,7 +81,7 @@ void FontSet::SetLayoutReference(const std::string &desc)
 
 
 
-void FontSet::SetLanguage(const std::string &lang)
+void FontSet::SetLanguage(const string &lang)
 {
 	fontLanguage = lang;
 	for(auto &it : fonts)

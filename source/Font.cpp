@@ -68,7 +68,7 @@ Font::~Font()
 
 
 
-void Font::SetFontDescription(const std::string &desc)
+void Font::SetFontDescription(const string &desc)
 {
 	fontDescName = desc;
 	UpdateFontDesc();
@@ -77,7 +77,7 @@ void Font::SetFontDescription(const std::string &desc)
 
 
 
-void Font::SetLayoutReference(const std::string &desc)
+void Font::SetLayoutReference(const string &desc)
 {
 	refDescName = desc;
 	UpdateFontDesc();
@@ -93,7 +93,7 @@ void Font::SetPixelSize(int size)
 
 
 
-void Font::SetLanguage(const std::string &langCode)
+void Font::SetLanguage(const string &langCode)
 {
 	lang = pango_language_from_string(langCode.c_str());
 	UpdateFontDesc();
@@ -101,7 +101,7 @@ void Font::SetLanguage(const std::string &langCode)
 
 
 
-void Font::Draw(const std::string &str, const Point &point, const Color &color,
+void Font::Draw(const string &str, const Point &point, const Color &color,
 	const Layout *params) const
 {
 	DrawCommon(str, point.X(), point.Y(), color, params, true);
@@ -109,7 +109,7 @@ void Font::Draw(const std::string &str, const Point &point, const Color &color,
 
 
 
-void Font::DrawAliased(const std::string &str, double x, double y, const Color &color,
+void Font::DrawAliased(const string &str, double x, double y, const Color &color,
 	const Layout *params) const
 {
 	DrawCommon(str, x, y, color, params, false);
@@ -117,7 +117,7 @@ void Font::DrawAliased(const std::string &str, double x, double y, const Color &
 
 
 
-int Font::Height(const std::string &str, const Layout *params) const
+int Font::Height(const string &str, const Layout *params) const
 {
 	if(str.empty())
 		return 0;
@@ -130,7 +130,7 @@ int Font::Height(const std::string &str, const Layout *params) const
 
 
 
-int Font::Width(const std::string &str, const Layout *params) const
+int Font::Width(const string &str, const Layout *params) const
 {
 	return TextFromViewCeilX(ViewWidth(str, params));
 }
@@ -323,7 +323,7 @@ string Font::RemoveAccelerator(const string &str)
 
 
 
-void Font::DrawCommon(const std::string &str, double x, double y, const Color &color,
+void Font::DrawCommon(const string &str, double x, double y, const Color &color,
 	const Layout *params, bool alignToDot) const
 {
 	if(str.empty())
@@ -695,7 +695,7 @@ void Font::SetUpShader()
 
 
 
-int Font::ViewWidth(const std::string &str, const Layout *params) const
+int Font::ViewWidth(const string &str, const Layout *params) const
 {
 	if(str.empty())
 		return 0;
