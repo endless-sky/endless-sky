@@ -15,6 +15,7 @@ addons:
         - libmad
         - libpng
         - jpeg-turbo
+        - pango
         - sdl2
         update: true
 

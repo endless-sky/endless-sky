@@ -144,6 +144,20 @@
 		A9C70E101C0E5B51000B3D14 /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C70E0E1C0E5B51000B3D14 /* File.cpp */; };
 		A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC526C1950C9F6004E4E22 /* Cocoa.framework */; };
 		A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
+		B59015FB21ED2DD100799178 /* libpangocairo-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B59015FA21ED2DD100799178 /* libpangocairo-1.0.0.dylib */; };
+		B59015FE21ED2E7400799178 /* libpangocairo-1.0.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B59015FA21ED2DD100799178 /* libpangocairo-1.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B590160021ED2EC400799178 /* libpango-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B59015FF21ED2EC400799178 /* libpango-1.0.0.dylib */; };
+		B590160121ED2ECC00799178 /* libpango-1.0.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B59015FF21ED2EC400799178 /* libpango-1.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B590160321ED330400799178 /* libglib-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B590160221ED330400799178 /* libglib-2.0.0.dylib */; };
+		B590160421ED330900799178 /* libglib-2.0.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B590160221ED330400799178 /* libglib-2.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B590160621ED3D0C00799178 /* libcairo.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B590160521ED3D0C00799178 /* libcairo.2.dylib */; };
+		B590160721ED3D1000799178 /* libcairo.2.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B590160521ED3D0C00799178 /* libcairo.2.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B590160921ED3F7900799178 /* libfontconfig.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B590160821ED3F7900799178 /* libfontconfig.1.dylib */; };
+		B590160A21ED3F7C00799178 /* libfontconfig.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B590160821ED3F7900799178 /* libfontconfig.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B590160C21ED43EB00799178 /* libgobject-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B590160B21ED43EB00799178 /* libgobject-2.0.0.dylib */; };
+		B590160D21ED43EF00799178 /* libgobject-2.0.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B590160B21ED43EB00799178 /* libgobject-2.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B590161021ED49F300799178 /* Cache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B590160F21ED49F200799178 /* Cache.cpp */; };
+		B590161321ED4A0F00799178 /* Utf8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B590161121ED4A0E00799178 /* Utf8.cpp */; };
 		B5DDA6942001B7F600DBA76A /* News.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5DDA6922001B7F600DBA76A /* News.cpp */; };
 		DF8D57E11FC25842001525DA /* Dictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF8D57DF1FC25842001525DA /* Dictionary.cpp */; };
 		DF8D57E51FC25889001525DA /* Visual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF8D57E21FC25889001525DA /* Visual.cpp */; };
@@ -159,10 +173,16 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B590160121ED2ECC00799178 /* libpango-1.0.0.dylib in CopyFiles */,
 				4C2DEF57201B90310062315E /* libSDL2-2.0.0.dylib in CopyFiles */,
 				A9BDFB571E00BD6A00A6B27E /* libmad.0.2.1.dylib in CopyFiles */,
+				B590160421ED330900799178 /* libglib-2.0.0.dylib in CopyFiles */,
+				B59015FE21ED2E7400799178 /* libpangocairo-1.0.0.dylib in CopyFiles */,
+				B590160A21ED3F7C00799178 /* libfontconfig.1.dylib in CopyFiles */,
+				B590160D21ED43EF00799178 /* libgobject-2.0.0.dylib in CopyFiles */,
 				A93931FF1988136F00C2A87B /* libpng16.16.dylib in CopyFiles */,
 				A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */,
+				B590160721ED3D1000799178 /* libcairo.2.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +450,16 @@
 		A9CC52701950C9F6004E4E22 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A9CC52711950C9F6004E4E22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A9D40D19195DFAA60086EE52 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		B59015FA21ED2DD100799178 /* libpangocairo-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libpangocairo-1.0.0.dylib"; path = "/usr/local/lib/libpangocairo-1.0.0.dylib"; sourceTree = "<absolute>"; };
+		B59015FF21ED2EC400799178 /* libpango-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libpango-1.0.0.dylib"; path = "/usr/local/lib/libpango-1.0.0.dylib"; sourceTree = "<absolute>"; };
+		B590160221ED330400799178 /* libglib-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libglib-2.0.0.dylib"; path = "/usr/local/lib/libglib-2.0.0.dylib"; sourceTree = "<absolute>"; };
+		B590160521ED3D0C00799178 /* libcairo.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcairo.2.dylib; path = /usr/local/lib/libcairo.2.dylib; sourceTree = "<absolute>"; };
+		B590160821ED3F7900799178 /* libfontconfig.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfontconfig.1.dylib; path = /usr/local/lib/libfontconfig.1.dylib; sourceTree = "<absolute>"; };
+		B590160B21ED43EB00799178 /* libgobject-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgobject-2.0.0.dylib"; path = "/usr/local/lib/libgobject-2.0.0.dylib"; sourceTree = "<absolute>"; };
+		B590160E21ED49F200799178 /* Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cache.h; path = source/Cache.h; sourceTree = "<group>"; };
+		B590160F21ED49F200799178 /* Cache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cache.cpp; path = source/Cache.cpp; sourceTree = "<group>"; };
+		B590161121ED4A0E00799178 /* Utf8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utf8.cpp; path = source/Utf8.cpp; sourceTree = "<group>"; };
+		B590161221ED4A0F00799178 /* Utf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utf8.h; path = source/Utf8.h; sourceTree = "<group>"; };
 		B5DDA6922001B7F600DBA76A /* News.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = News.cpp; path = source/News.cpp; sourceTree = "<group>"; };
 		B5DDA6932001B7F600DBA76A /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = News.h; path = source/News.h; sourceTree = "<group>"; };
 		DF8D57DF1FC25842001525DA /* Dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dictionary.cpp; path = source/Dictionary.cpp; sourceTree = "<group>"; };
@@ -449,6 +479,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B590160C21ED43EB00799178 /* libgobject-2.0.0.dylib in Frameworks */,
+				B590160921ED3F7900799178 /* libfontconfig.1.dylib in Frameworks */,
+				B590160621ED3D0C00799178 /* libcairo.2.dylib in Frameworks */,
+				B590160321ED330400799178 /* libglib-2.0.0.dylib in Frameworks */,
+				B590160021ED2EC400799178 /* libpango-1.0.0.dylib in Frameworks */,
+				B59015FB21ED2DD100799178 /* libpangocairo-1.0.0.dylib in Frameworks */,
 				A9BDFB561E00B94700A6B27E /* libmad.0.2.1.dylib in Frameworks */,
 				A9A5297619996CC3002D7C35 /* OpenAL.framework in Frameworks */,
 				4C2DEF56201B8FAE0062315E /* libSDL2-2.0.0.dylib in Frameworks */,
@@ -487,6 +523,8 @@
 				A96862E01AE6FD0A004FE1FE /* BoardingPanel.h */,
 				6245F8231D301C7400A7A094 /* Body.cpp */,
 				6245F8241D301C7400A7A094 /* Body.h */,
+				B590160F21ED49F200799178 /* Cache.cpp */,
+				B590160E21ED49F200799178 /* Cache.h */,
 				A96862E11AE6FD0A004FE1FE /* CaptureOdds.cpp */,
 				A96862E21AE6FD0A004FE1FE /* CaptureOdds.h */,
 				A96862E31AE6FD0A004FE1FE /* CargoHold.cpp */,
@@ -712,6 +750,8 @@
 				A96863991AE6FD0D004FE1FE /* TradingPanel.h */,
 				A968639A1AE6FD0D004FE1FE /* UI.cpp */,
 				A968639B1AE6FD0D004FE1FE /* UI.h */,
+				B590161121ED4A0E00799178 /* Utf8.cpp */,
+				B590161221ED4A0F00799178 /* Utf8.h */,
 				DF8D57E21FC25889001525DA /* Visual.cpp */,
 				DF8D57E31FC25889001525DA /* Visual.h */,
 				A968639C1AE6FD0D004FE1FE /* Weapon.cpp */,
@@ -750,6 +790,12 @@
 		A9CC526B1950C9F6004E4E22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B590160B21ED43EB00799178 /* libgobject-2.0.0.dylib */,
+				B590160821ED3F7900799178 /* libfontconfig.1.dylib */,
+				B590160521ED3D0C00799178 /* libcairo.2.dylib */,
+				B590160221ED330400799178 /* libglib-2.0.0.dylib */,
+				B59015FF21ED2EC400799178 /* libpango-1.0.0.dylib */,
+				B59015FA21ED2DD100799178 /* libpangocairo-1.0.0.dylib */,
 				A9A5297519996CC3002D7C35 /* OpenAL.framework */,
 				A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */,
 				A93931FC1988136B00C2A87B /* libpng16.16.dylib */,
@@ -876,6 +922,7 @@
 				A96863E01AE6FD0E004FE1FE /* Panel.cpp in Sources */,
 				A96863D21AE6FD0E004FE1FE /* MapDetailPanel.cpp in Sources */,
 				DFAAE2AA1FD4A27B0072C0A8 /* ImageSet.cpp in Sources */,
+				B590161321ED4A0F00799178 /* Utf8.cpp in Sources */,
 				A96863D41AE6FD0E004FE1FE /* Mask.cpp in Sources */,
 				A96863E61AE6FD0E004FE1FE /* Point.cpp in Sources */,
 				A96863DE1AE6FD0E004FE1FE /* OutfitterPanel.cpp in Sources */,
@@ -972,6 +1019,7 @@
 				A96863C91AE6FD0E004FE1FE /* ImageBuffer.cpp in Sources */,
 				6A5716331E25BE6F00585EB2 /* CollisionSet.cpp in Sources */,
 				A96863E11AE6FD0E004FE1FE /* Personality.cpp in Sources */,
+				B590161021ED49F300799178 /* Cache.cpp in Sources */,
 				A96863B41AE6FD0E004FE1FE /* Date.cpp in Sources */,
 				DF8D57E51FC25889001525DA /* Visual.cpp in Sources */,
 				A96863EF1AE6FD0E004FE1FE /* SavedGame.cpp in Sources */,
@@ -1092,6 +1140,16 @@
 					"$(inherited)",
 					"/usr/local/opt/libjpeg-turbo/include",
 					/usr/local/include,
+					/usr/local/include/pango-1.0,
+					/usr/local/include/harfbuzz,
+					/usr/local/include/fribidi,
+					/usr/local/include/cairo,
+					/usr/local/include/glib-2.0,
+					/usr/local/include/glib-2.0/include,
+					/usr/local/include/pixman-1,
+					/usr/local/include/freetype2,
+					/usr/local/include/libpng16,
+					/usr/local/lib/glib-2.0/include,
 				);
 				INFOPLIST_FILE = "XCode/EndlessSky-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
@@ -1118,6 +1176,16 @@
 					"$(inherited)",
 					"/usr/local/opt/libjpeg-turbo/include",
 					/usr/local/include,
+					/usr/local/include/pango-1.0,
+					/usr/local/include/harfbuzz,
+					/usr/local/include/fribidi,
+					/usr/local/include/cairo,
+					/usr/local/include/glib-2.0,
+					/usr/local/include/glib-2.0/include,
+					/usr/local/include/pixman-1,
+					/usr/local/include/freetype2,
+					/usr/local/include/libpng16,
+					/usr/local/lib/glib-2.0/include,
 				);
 				INFOPLIST_FILE = "XCode/EndlessSky-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
