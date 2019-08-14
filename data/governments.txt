@@ -196,6 +196,13 @@ government "Kor Sestor"
 	
 	"player reputation" -1000
 
+government "Marauder"
+	swizzle 6
+	"player reputation" 1
+	"bribe" .1
+	"fine" 0
+	"hostile hail" "hostile pirate"
+
 government "Merchant"
 	swizzle 5
 	
