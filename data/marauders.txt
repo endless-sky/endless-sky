@@ -390,14 +390,14 @@ ship "Marauder Firebird"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	turret 0 3.5 "Heavy Laser Turret"
-	turret 0 -39 "Heavy Anti-Missile Turret"
-	gun 28 -29 "Plasma Cannon"
-	gun -28 -29 "Plasma Cannon"
-	gun 39 -14 "Plasma Cannon"
-	gun -39 -14 "Plasma Cannon"
-	engine -31.5 73
-	engine 31.5 73
+	turret 0 8.5 "Heavy Laser Turret"
+	turret 0 -34 "Heavy Anti-Missile Turret"
+	gun 28 -24 "Plasma Cannon"
+	gun -28 -24 "Plasma Cannon"
+	gun 39 -9 "Plasma Cannon"
+	gun -39 -9 "Plasma Cannon"
+	engine -31.5 78
+	engine 31.5 78
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -429,15 +429,15 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	gun -37.5 -19 "Plasma Cannon"
-	gun 37.5 -19 "Plasma Cannon"
-	gun -27 -33.5 "Plasma Cannon"
-	gun 27 -33.5 "Plasma Cannon"
-	turret 0 -1.5 "Quad Blaster Turret"
-	turret 0 -43.5 "Anti-Missile Turret"
-	engine -31.5 70.5
-	engine 31.5 70.5
-	engine 0 73
+	gun -37.5 -14 "Plasma Cannon"
+	gun 37.5 -14 "Plasma Cannon"
+	gun -27 -28.5 "Plasma Cannon"
+	gun 27 -28.5 "Plasma Cannon"
+	turret 0 -3.5 "Quad Blaster Turret"
+	turret 0 -38.5 "Anti-Missile Turret"
+	engine -31.5 75.5
+	engine 31.5 75.5
+	engine 0 78
 	description "One of the biggest complaints about Betelgeuse's venerable classic from younger pilots is that it's heavy and slow. A previous owner of this ship also believed so, and has fitted another engine port, in addition to setting aside more space for outfits and giving the old ship some new hull plating and shield emitters."
 
 
@@ -462,10 +462,10 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	gun 27.5 -38.5 "Plasma Cannon"
-	gun -27.5 -38.5 "Plasma Cannon"
-	gun 38.5 -23.5 "Plasma Cannon"
-	gun -38.5 -23.5 "Plasma Cannon"
+	gun 27.5 -33.5 "Plasma Cannon"
+	gun -27.5 -33.5 "Plasma Cannon"
+	gun 38.5 -18.5 "Plasma Cannon"
+	gun -38.5 -18.5 "Plasma Cannon"
 	description "This Medium Warship with one of the heaviest armaments possible just got heavier. With more outfit space, giant gun ports, extra hull plating, and more shield emitters - this blast from the past will make its targets history."
 
 

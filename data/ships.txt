@@ -1344,14 +1344,14 @@ ship "Firebird"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -31.5 66.5
-	engine 31.5 66.5
-	gun 38 -13.5 "Meteor Missile Launcher"
-	gun -38 -13.5 "Meteor Missile Launcher"
-	gun 27 -28.5 "Particle Cannon"
-	gun -27 -28.5 "Particle Cannon"
-	turret 0 3.5 "Quad Blaster Turret"
-	turret 0 -38.5 "Anti-Missile Turret"
+	engine -31.5 71.5
+	engine 31.5 71.5
+	gun 38 -8.5 "Meteor Missile Launcher"
+	gun -38 -8.5 "Meteor Missile Launcher"
+	gun 27 -23.5 "Particle Cannon"
+	gun -27 -23.5 "Particle Cannon"
+	turret 0 8.5 "Quad Blaster Turret"
+	turret 0 -33.5 "Anti-Missile Turret"
 	leak "leak" 50 50
 	leak "flame" 30 80
 	explode "tiny explosion" 18
