@@ -437,18 +437,18 @@ ship "Behemoth"
 		"X3200 Ion Steering"
 		"Scram Drive"
 		
-	gun 47.5 -57.5
-	gun -47.5 -57.5
-	engine 34 143 0.8
 	engine -34 143 0.8
-	engine 56 148.5 0.6
+	engine 34 143 0.8
 	engine -56 148.5 0.6
-	turret 47.5 33.5 "Heavy Laser Turret"
+	engine 56 148.5 0.6
+	gun -47.5 -57.5
+	gun 47.5 -57.5
+	turret -31 -50 "Heavy Laser Turret"	
+	turret 31 -50 "Heavy Anti-Missile Turret"	
 	turret -47.5 33.5 "Heavy Laser Turret"
-	turret 22 66.5 "Heavy Laser Turret"
+	turret 47.5 33.5 "Heavy Laser Turret"
 	turret -22 66.5 "Heavy Anti-Missile Turret"
-	turret 31 -50 "Heavy Anti-Missile Turret"
-	turret -31 -50 "Heavy Laser Turret"
+	turret 22 66.5 "Heavy Laser Turret"
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
@@ -1346,12 +1346,12 @@ ship "Firebird"
 		
 	engine -31.5 71.5
 	engine 31.5 71.5
-	gun 38 -8.5 "Meteor Missile Launcher"
-	gun -38 -8.5 "Meteor Missile Launcher"
-	gun 27 -23.5 "Particle Cannon"
 	gun -27 -23.5 "Particle Cannon"
+	gun 27 -23.5 "Particle Cannon"
+	gun -38 -8.5 "Meteor Missile Launcher"
+	gun 38 -8.5 "Meteor Missile Launcher"
+	turret 0 -33.5 "Anti-Missile Turret"	
 	turret 0 8.5 "Quad Blaster Turret"
-	turret 0 -33.5 "Anti-Missile Turret"
 	leak "leak" 50 50
 	leak "flame" 30 80
 	explode "tiny explosion" 18
@@ -2033,16 +2033,16 @@ ship "Leviathan"
 		"X4200 Ion Steering"
 		"Hyperdrive"
 		
-	engine 24 126
 	engine -24 126
+	engine 24 126
 	gun -37.5 -31.5 "Particle Cannon"
 	gun 37.5 -31.5 "Particle Cannon"
 	gun -49 -19.5 "Particle Cannon"
 	gun 49 -19.5 "Particle Cannon"
-	turret 25.5 12.5 "Anti-Missile Turret"
-	turret -25.5 12.5 "Quad Blaster Turret"
-	turret 14 -10 "Quad Blaster Turret"
 	turret -14 -10 "Quad Blaster Turret"
+	turret 14 -10 "Quad Blaster Turret"
+	turret -25.5 12.5 "Quad Blaster Turret"
+	turret 25.5 12.5 "Anti-Missile Turret"
 	leak "leak" 50 50
 	leak "flame" 30 80
 	leak "big leak" 60 30
@@ -2726,8 +2726,8 @@ ship "Shuttle"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-	engine 6 30
 	engine -6 30
+	engine 6 30
 	gun 0 -31
 	leak "leak" 60 50
 	explode "tiny explosion" 10
@@ -2992,13 +2992,13 @@ ship "Star Queen"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine 18.5 115
 	engine -18.5 115
-	gun 24 -76 "Sidewinder Missile Launcher"
-	gun -24 -76 "Sidewinder Missile Launcher"
+	engine 18.5 115
 	gun 0 -113 "Sidewinder Missile Launcher"
-	turret 21.5 2.5 "Heavy Anti-Missile Turret"
+	gun -24 -76 "Sidewinder Missile Launcher"
+	gun 24 -76 "Sidewinder Missile Launcher"
 	turret -21.5 2.5 "Heavy Anti-Missile Turret"
+	turret 21.5 2.5 "Heavy Anti-Missile Turret"
 	leak "leak" 50 50
 	leak "big leak" 80 30
 	explode "tiny explosion" 10
