@@ -392,12 +392,12 @@ ship "Marauder Firebird"
 	
 	engine -31.5 68
 	engine 31.5 68
-	turret 0 -44 "Heavy Anti-Missile Turret"
-	turret 0 -2.5 "Heavy Laser Turret"
 	gun -28 -34 "Plasma Cannon"
 	gun 28 -34 "Plasma Cannon"
 	gun -39 -19 "Plasma Cannon"
 	gun 39 -19 "Plasma Cannon"
+	turret 0 -44 "Heavy Anti-Missile Turret"
+	turret 0 -2.5 "Heavy Laser Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -520,7 +520,7 @@ ship "Marauder Leviathan"
 	gun 51 -21 "Particle Cannon"
 	turret -14.5 -11.5 "Quad Blaster Turret"
 	turret 14.5 -11.5 "Quad Blaster Turret"
-	turret -26 11.5 "Heavy Laser Turret"	
+	turret -26 11.5 "Heavy Laser Turret"
 	turret 26 11.5 "Heavy Laser Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
