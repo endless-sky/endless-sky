@@ -390,14 +390,14 @@ ship "Marauder Firebird"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -31.5 78
-	engine 31.5 78
-	turret 0 -34 "Heavy Anti-Missile Turret"
-	turret 0 8.5 "Heavy Laser Turret"
-	gun -28 -24 "Plasma Cannon"
-	gun 28 -24 "Plasma Cannon"
-	gun -39 -9 "Plasma Cannon"
-	gun 39 -9 "Plasma Cannon"
+	engine -31.5 68
+	engine 31.5 68
+	turret 0 -44 "Heavy Anti-Missile Turret"
+	turret 0 -2.5 "Heavy Laser Turret"
+	gun -28 -34 "Plasma Cannon"
+	gun 28 -34 "Plasma Cannon"
+	gun -39 -19 "Plasma Cannon"
+	gun 39 -19 "Plasma Cannon"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
