@@ -1058,11 +1058,6 @@ void MapPanel::DrawMissions()
 	const Color &blockedColor = *colors.Get("blocked mission");
 	const Color &specialColor = *colors.Get("special mission");
 	const Color &waypointColor = *colors.Get("waypoint");
-	for(const Mission &mission : player.AvailableJobs())
-	{
-		const System *system = mission.Destination()->GetSystem();
-		DrawPointer(system, angle[system], mission.HasSpace(player) ? availableColor : unavailableColor);
-	}
 	for(const Mission &mission : player.Missions())
 	{
 		if(!mission.IsVisible())
@@ -1083,6 +1078,11 @@ void MapPanel::DrawMissions()
 			DrawPointer(waypoint, angle[waypoint], waypointColor);
 		for(const Planet *stopover : mission.Stopovers())
 			DrawPointer(stopover->GetSystem(), angle[stopover->GetSystem()], waypointColor);
+	}
+	for(const Mission &mission : player.AvailableJobs())
+	{
+		const System *system = mission.Destination()->GetSystem();
+		DrawPointer(system, angle[system], mission.HasSpace(player) ? availableColor : unavailableColor);
 	}
 	if(specialSystem)
 	{
