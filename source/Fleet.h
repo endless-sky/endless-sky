@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef FLEET_H_
 #define FLEET_H_
 
+#include "FormationPattern.h"
 #include "Personality.h"
 #include "Sale.h"
 
@@ -87,6 +88,7 @@ private:
 	const Government *government = nullptr;
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
+	const FormationPattern* formation = nullptr;
 	std::vector<Variant> variants;
 	// The sum of all available variant weights.
 	int total = 0;
