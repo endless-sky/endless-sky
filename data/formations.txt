@@ -20,7 +20,7 @@ formation "Delta Tailing"
 			increase 2
 
 # Triangular shaped formation (forming in front of the formation leader)
-formation "Arrowhead"
+formation "Wedge"
 	line -2 0 1 45
 		spacing 2.8284
 		repeat -4 0
