@@ -43,10 +43,11 @@ private:
 	class Iter {
 	public:
 		Iter(const FormationPattern &pattern);
-		
-		const FormationPattern &pattern;
-		
+
 		Point NextPosition(Ship &ship);
+
+	public:
+		const FormationPattern &pattern;
 		
 		// The scaling factor currently being used.
 		double activeScalingFactor = 80.;
@@ -60,6 +61,7 @@ private:
 		int positionsOnLine = 0;
 	};
 	
+private:
 	// Anchor position and direction of the formation(s) being positioned.
 	Point anchor;
 	Angle direction;

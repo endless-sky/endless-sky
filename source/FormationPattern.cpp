@@ -45,7 +45,7 @@ void FormationPattern::Load(const DataNode &node)
 	{
 		if(child.Size() >= 5 && child.Token(0) == "line")
 		{
-			lines.emplace_back(child.Value(1), child.Value(2), (int) (child.Value(3) + 0.5), child.Value(4));
+			lines.emplace_back(child.Value(1), child.Value(2), static_cast<int>(child.Value(3) + 0.5), child.Value(4));
 			Line &line = lines[lines.size()-1];
 			for(const DataNode &grand : child)
 			{
@@ -76,7 +76,7 @@ int FormationPattern::NextLine(unsigned int iteration, unsigned int lineNr) cons
 	unsigned int linesScanned = 0;
 	while(linesScanned <= lines.size())
 	{
-		lineNr = (lineNr + 1) % (lines.size());
+		lineNr = (lineNr + 1) % lines.size();
 		if((lines[lineNr]).slotsIncrease >= 0)
 			return lineNr;
 		
@@ -116,6 +116,6 @@ Point FormationPattern::Position(unsigned int iteration, unsigned int lineNr, un
 	
 	// Calculate position based
 	return line.anchor +
-		(line.repeatVector * iteration) +
+		line.repeatVector * iteration +
 		line.direction.Rotate(Point(0, -line.spacing * posOnLine));
 }

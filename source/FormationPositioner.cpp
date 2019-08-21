@@ -54,11 +54,9 @@ Point FormationPositioner::NextPosition(Ship &ship)
 	
 	auto it = patterns.find(shipsPattern);
 	if(it == patterns.end())
-	{
 		patterns.emplace(shipsPattern, Iter(*shipsPattern));
-	}
 	
-	return anchor + direction.Rotate((patterns.at(shipsPattern)).NextPosition(ship));
+	return anchor + direction.Rotate(patterns.at(shipsPattern).NextPosition(ship));
 }
 
 
@@ -92,7 +90,7 @@ Point FormationPositioner::Iter::NextPosition(Ship &ship)
 			activeLine = -1;
 			return Point();
 		}
-		if (nextLine <= activeLine)
+		if(nextLine <= activeLine)
 			iteration++;
 		
 		posOnLine = 0;

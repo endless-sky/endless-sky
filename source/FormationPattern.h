@@ -44,6 +44,7 @@ protected:
 	public:
 		Line(double X, double Y, int nrPositions, double directionAngle);
 		
+	public:
 		// The initial anchor point for this line
 		Point anchor;
 		// Vector to apply to get to the next anchor point for the next iteration

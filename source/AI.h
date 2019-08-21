@@ -37,6 +37,7 @@ class StellarObject;
 class System;
 
 
+
 // This class is responsible for controlling all the ships in the game,
 // including the player's "flagship" - which is usually controlled via the
 // keyboard but can also make use of the AI's autopilot for landing, aiming,
@@ -231,5 +232,7 @@ private:
 	std::map<const Government *, std::vector<std::shared_ptr<Ship>>> enemyLists;
 	std::map<const Government *, std::vector<std::shared_ptr<Ship>>> allyLists;
 };
+
+
 
 #endif

@@ -1847,7 +1847,6 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 	static const double LEAD_TIME = 500.;
 	static const double POSITION_DEADBAND = 200.;
 	static const double VELOCITY_DEADBAND = 1.5;
-
 	static const double TIME_DEADBAND = 120.;
 	static const double THRUST_DEADBAND = .5;
 	
