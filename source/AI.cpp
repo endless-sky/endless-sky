@@ -43,12 +43,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	const Command &AutopilotCancelKeys()
+	// If the player issues any of those commands, then any auto-pilot actions for the player get cancelled
+	const Command &AutopilotCancelCommands()
 	{
-		static const Command keys(Command::LAND | Command::JUMP | Command::BOARD | Command::AFTERBURNER
+		static const Command cancelers(Command::LAND | Command::JUMP | Command::BOARD | Command::AFTERBURNER
 			| Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT);
 		
-		return keys;
+		return cancelers;
 	}
 	
 	bool IsStranded(const Ship &ship)
@@ -286,7 +287,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 	keyStuck |= clickCommands;
 	clickCommands.Clear();
 	keyDown = keyHeld.AndNot(oldHeld);
-	if(keyHeld.Has(AutopilotCancelKeys()))
+	if(keyHeld.Has(AutopilotCancelCommands()))
 	{
 		bool canceled = (keyStuck.Has(Command::JUMP) && !keyHeld.Has(Command::JUMP));
 		canceled |= (keyStuck.Has(Command::LAND) && !keyHeld.Has(Command::LAND));
@@ -3348,7 +3349,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		if(keyHeld.Has(Command::AFTERBURNER))
 			command |= Command::AFTERBURNER;
 		
-		if(keyHeld.Has(AutopilotCancelKeys()))
+		if(keyHeld.Has(AutopilotCancelCommands()))
 			keyStuck = keyHeld;
 	}
 	bool shouldAutoAim = false;
