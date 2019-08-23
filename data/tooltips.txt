@@ -245,7 +245,7 @@ tip "max speed:"
 tip "acceleration:"
 	`How quickly this ship gains speed. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
 
-tip "movement, full / no cargo:"
+tip "movement, full - no cargo:"
 	`How quickly this ship can accelerate and turn when its cargo hold is full versus when it is empty.`
 
 tip "thrust:"

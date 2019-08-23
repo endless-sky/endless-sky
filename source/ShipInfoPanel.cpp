@@ -295,9 +295,6 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 	table.Draw("ship:", dim);
 	table.Draw(font.TruncateMiddle(ship.Name(), WIDTH - 50), bright);
 	
-	table.Draw("model:", dim);
-	table.Draw(ship.ModelName(), bright);
-	
 	info.DrawAttributes(table.GetRowBounds().TopLeft() - Point(10., 10.));
 }
 
