@@ -713,7 +713,7 @@ mission "Unfettered: Jump Drive Source"
 			choice
 				`	(Yes.)`
 				`	(Not now.)`
-						defer
+					defer
 			`	You eventually find one of the Unfettered who speaks your language. She directs you to the office of the "governor" (or perhaps warlord) in charge of the spaceport. The governor says, "I offer you same terms as to the other humans. One million credits, and we give you hyperdrive in place of jump drive. Is this acceptable?"`
 			choice
 				`	"Yes."`
@@ -1986,7 +1986,7 @@ mission "Wanderers Evacuation 1C"
 	source "Vara K'chrai"
 	destination "Vara Ke'sok"
 	to offer
-		has "Wanderers Evacuation 1: done"
+		has "Wanderers Evacuation 1B: done"
 	on offer
 		conversation
 			`The transports offload the refugees, and one of the captains tells you that they are wanted back on <planet>. But now that you know that Iktat Rek may be dying, perhaps you should visit him while you are here.`
