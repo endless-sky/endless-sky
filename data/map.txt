@@ -24188,7 +24188,7 @@ planet Bivrost
 		fleet "Large Deep Security" 35
 
 planet Bloodsea
-	attributes pirate
+	attributes pirate "south pirate" south frontier
 	landscape land/beach5
 	description `Bloodsea is nearly uninhabited, except for a few pirate outposts. Its name comes from the planet's oceans, which are blood-red due to rhodophyte algae. Although the climate is temperate and there are many white sand beaches, no one comes here hoping to go swimming.`
 	description `	The pirates have no industry of their own, but instead make a living by reselling stolen cargo from raids on merchant fleets.`

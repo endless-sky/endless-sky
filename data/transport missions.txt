@@ -2390,7 +2390,7 @@ mission "Terraforming 9"
 			`	"Not everyone is as happy with the prospect of affordable terraforming as we are," Amy says to you as she boards your ship along with suitcases full of scientific supplies. "But that's no reason to stop, now is it?"`
 			`	Amy introduces you to the four others that she brought on board. Two of them are terraforming experts who helped Amy and Nolan with their research. The other two are representatives: one sent by the Republic Parliament in order to oversee the project, and another from Tundra.`
 			`	"Once you're ready, Captain, please bring us to <destination>. Tundra was a tropical world millions of years ago, but became cold after a cataclysmic event of some sort. There's a good chance that we may be able to nudge the planet back toward a warmer climate if we do this right."`
-					accept
+				accept
 	
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the scientists and their equipment hasn't entered the system yet. Better depart and wait for it.`
@@ -2828,7 +2828,7 @@ mission "Paradise Fortune 1"
 				`	(Ignore the scene.)`
 			
 			`	The girl looks you in the eyes as she approaches, expecting help that will never come. Air rushes past you as she and the security guards run by. After a few meters, the security guards catch up to the girl, tackling her to the ground and detaining her as they remove her backpack full of credit chips.`
-					decline
+				decline
 			
 			label continue
 			`	You open the hatch to your ship and yell "Get on!" as the girl approaches. "Thank you, Captain," she says while getting closer, to much protest from the approaching security guards.`
@@ -2990,11 +2990,15 @@ mission "Paradise Fortune 4"
 			`	"Spoiled kid," Alondo says quietly. "Attitudes like that are why I joined the Southern Defense Pact. Anyway Captain, I suggest you hand her over to the Navy immediately. I'll contact the Republic if you need me to."`
 			choice
 				`	"Alright, I'll hand her over."`
-					goto end
 				`	"Sorry, Alondo, but I agree with her cause."`
+					goto agree
 			
 			apply
 				set "navy contacted"
+			`	Alondo breathes a sigh of relief. "You should probably go check on her. I'll message you where the Navy wants to pick her up."`
+				goto end
+			
+			label agree
 			`	"I understand. Please, just don't drag the Free Worlds into this."`
 			
 			label end
