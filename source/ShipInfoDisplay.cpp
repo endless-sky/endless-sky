@@ -62,10 +62,30 @@ int ShipInfoDisplay::SaleHeight() const
 
 
 
-// Draw each of the panels.
 void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 {
-	Point point = Draw(topLeft, attributeLabels, attributeValues);
+	DrawAttributes(topLeft, false);
+}
+
+
+
+// Draw each of the panels.
+void ShipInfoDisplay::DrawAttributes(const Point &topLeft, const bool sale) const
+{
+	// Header.
+	Point point = Draw(topLeft, attributeHeaderLabels, attributeHeaderValues);
+
+	// Sale info.
+	if(sale)
+	{
+		point = Draw(point, saleLabels, saleValues);
+
+		const Color &color = *GameData::Colors().Get("medium");
+		FillShader::Fill(point + Point(.5 * WIDTH, 5.), Point(WIDTH - 20., 1.), color);
+	}
+
+	// Body.
+	point = Draw(point, attributeLabels, attributeValues);
 	
 	// Get standard colors to draw with.
 	const Color &labelColor = *GameData::Colors().Get("medium");
@@ -101,28 +121,21 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 
 
-void ShipInfoDisplay::DrawSale(const Point &topLeft) const
-{
-	Draw(topLeft, saleLabels, saleValues);
-	
-	const Color &color = *GameData::Colors().Get("medium");
-	FillShader::Fill(topLeft + Point(.5 * WIDTH, saleHeight + 8.), Point(WIDTH - 20., 1.), color);
-}
-
-
-
 void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day)
 {
 	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
 	
+	attributeHeaderLabels.clear();
+	attributeHeaderValues.clear();
+
+	attributeHeaderLabels.push_back("model:");
+	attributeHeaderValues.push_back(ship.ModelName());
+	attributesHeight = 20;
+
 	attributeLabels.clear();
 	attributeValues.clear();
-	attributesHeight = 20;
 	
 	const Outfit &attributes = ship.Attributes();
-
-	attributeLabels.push_back("model:");
-	attributeValues.push_back(ship.ModelName());
 	
 	int64_t fullCost = ship.Cost();
 	int64_t depreciated = depreciation.Value(ship, day);
@@ -175,9 +188,16 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		attributeValues.push_back(Format::Number(ship.Cargo().Used())
 			+ " / " + Format::Number(attributes.Get("cargo space")) + " tons");
 	attributesHeight += 20;
-	attributeLabels.push_back("crew (min - max):");
-	attributeValues.push_back(Format::Number(ship.RequiredCrew())
-		+ " - " + Format::Number(attributes.Get("bunks")));
+	if(ship.RequiredCrew() != attributes.Get("bunks"))
+	{
+		attributeLabels.push_back("crew (min - max):");
+		attributeValues.push_back(Format::Number(ship.RequiredCrew()) + " - " + Format::Number(attributes.Get("bunks")));
+	}
+	else
+	{
+		attributeLabels.push_back("crew:");
+		attributeValues.push_back(Format::Number(ship.RequiredCrew()));
+	}
 	attributesHeight += 20;
 	attributeLabels.push_back(isGeneric ? "fuel capacity:" : "fuel:");
 	double fuelCapacity = attributes.Get("fuel capacity");

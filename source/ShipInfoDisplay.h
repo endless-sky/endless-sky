@@ -47,8 +47,8 @@ public:
 	// Provided by ItemInfoDisplay:
 	// void DrawDescription(const Point &topLeft) const;
 	virtual void DrawAttributes(const Point &topLeft) const override;
+	virtual void DrawAttributes(const Point &topLeft, const bool sale) const;
 	void DrawOutfits(const Point &topLeft) const;
-	void DrawSale(const Point &topLeft) const;
 	
 	
 private:
@@ -57,6 +57,9 @@ private:
 	
 	
 private:
+	std::vector<std::string> attributeHeaderLabels;
+	std::vector<std::string> attributeHeaderValues;
+
 	std::vector<std::string> tableLabels;
 	std::vector<std::string> energyTable;
 	std::vector<std::string> heatTable;

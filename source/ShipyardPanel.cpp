@@ -94,8 +94,7 @@ int ShipyardPanel::TileSize() const
 int ShipyardPanel::DrawPlayerShipInfo(const Point &point)
 {
 	shipInfo.Update(*playerShip, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
-	shipInfo.DrawSale(point);
-	shipInfo.DrawAttributes(point + Point(0, shipInfo.SaleHeight()));
+	shipInfo.DrawAttributes(point, true);
 	
 	return shipInfo.SaleHeight() + shipInfo.AttributesHeight();
 }
