@@ -185,6 +185,9 @@ tip "radar jamming:"
 tip "ramscoop:"
 	`Replenishes fuel by harvesting the stellar wind. Ramscoops are more effective when closer to a star. If you add more than one ramscoop, each additional one is less effective: you need four ramscoops to achieve double the recharge rate that one ramscoop provides.`
 
+tip "crew:"
+	`How many crew members are required to operate this ship. This ship has no spare bunks, but extra bunks can be installed for passengers or extra crew.`
+
 tip "crew (min - max):"
 	`How many crew members are required to operate this ship, and how many total bunks are available. Extra bunks can be used for passengers or extra crew.`
 
