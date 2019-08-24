@@ -41,8 +41,8 @@ public:
 	// int MaximumHeight() const;
 	// int DescriptionHeight() const;
 	// int AttributesHeight() const;
+	int GetAttributesHeight(bool sale) const;
 	int OutfitsHeight() const;
-	int SaleHeight() const;
 	
 	// Provided by ItemInfoDisplay:
 	// void DrawDescription(const Point &topLeft) const;

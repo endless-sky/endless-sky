@@ -48,16 +48,16 @@ void ShipInfoDisplay::Update(const Ship &ship, const Depreciation &depreciation,
 
 
 
-int ShipInfoDisplay::OutfitsHeight() const
+int ShipInfoDisplay::GetAttributesHeight(bool sale) const
 {
-	return outfitsHeight;
+	return attributesHeight + (sale ? saleHeight : 0);
 }
 
 
 
-int ShipInfoDisplay::SaleHeight() const
+int ShipInfoDisplay::OutfitsHeight() const
 {
-	return saleHeight;
+	return outfitsHeight;
 }
 
 
