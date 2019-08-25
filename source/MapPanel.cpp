@@ -261,7 +261,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			RingShader::Draw(to, OUTER, INNER, color);
 		}
 		
-		Angle angle;
+		int missionCounter = 0;
 		for(const Mission &mission : player.Missions())
 		{
 			if(!mission.IsVisible())
@@ -279,16 +279,16 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 				if(!blink)
 				{
 					bool isSatisfied = IsSatisfied(player, mission);
-					DrawPointer(from, angle, isSatisfied ? currentColor : blockedColor, false);
+					DrawPointer(from, missionCounter, isSatisfied ? currentColor : blockedColor, false);
 				}
 			}
 			
 			for(const System *waypoint : mission.Waypoints())
 				if(waypoint == system)
-					DrawPointer(from, angle, waypointColor, false);
+					DrawPointer(from, missionCounter, waypointColor, false);
 			for(const Planet *stopover : mission.Stopovers())
 				if(stopover->IsInSystem(system))
-					DrawPointer(from, angle, waypointColor, false);
+					DrawPointer(from, missionCounter, waypointColor, false);
 		}
 	}
 	
@@ -1049,7 +1049,7 @@ void MapPanel::DrawNames()
 void MapPanel::DrawMissions()
 {
 	// Draw a pointer for each active or available mission.
-	map<const System *, Angle> angle;
+	map<const System *, int> pointerCount;
 	
 	const Set<Color> &colors = GameData::Colors();
 	const Color &availableColor = *colors.Get("available job");
@@ -1058,6 +1058,21 @@ void MapPanel::DrawMissions()
 	const Color &blockedColor = *colors.Get("blocked mission");
 	const Color &specialColor = *colors.Get("special mission");
 	const Color &waypointColor = *colors.Get("waypoint");
+	if(specialSystem)
+	{
+		// The special system pointer is larger than the others.
+		pointerCount[specialSystem] += 1;
+		Angle a = Angle();
+		a += (30 * ( pointerCount[specialSystem] ) );
+		Point pos = Zoom() * (specialSystem->Position() + center);
+		PointerShader::Draw(pos, a.Unit(), 20.f, 27.f, -4.f, black);
+		PointerShader::Draw(pos, a.Unit(), 11.5f, 21.5f, -6.f, specialColor);
+	}
+	for(const Mission &mission : player.AvailableJobs())
+	{
+		const System *system = mission.Destination()->GetSystem();
+		DrawPointer(system, pointerCount[system], mission.HasSpace(player) ? availableColor : unavailableColor);
+	}
 	for(const Mission &mission : player.Missions())
 	{
 		if(!mission.IsVisible())
@@ -1072,25 +1087,12 @@ void MapPanel::DrawMissions()
 				blink = (step % (10 * days) > 5 * days);
 		}
 		bool isSatisfied = IsSatisfied(player, mission);
-		DrawPointer(system, angle[system], blink ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
+		DrawPointer(system, pointerCount[system], blink ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
 		
 		for(const System *waypoint : mission.Waypoints())
-			DrawPointer(waypoint, angle[waypoint], waypointColor);
+			DrawPointer(waypoint, pointerCount[waypoint], waypointColor);
 		for(const Planet *stopover : mission.Stopovers())
-			DrawPointer(stopover->GetSystem(), angle[stopover->GetSystem()], waypointColor);
-	}
-	for(const Mission &mission : player.AvailableJobs())
-	{
-		const System *system = mission.Destination()->GetSystem();
-		DrawPointer(system, angle[system], mission.HasSpace(player) ? availableColor : unavailableColor);
-	}
-	if(specialSystem)
-	{
-		// The special system pointer is larger than the others.
-		Angle a = (angle[specialSystem] += Angle(30.));
-		Point pos = Zoom() * (specialSystem->Position() + center);
-		PointerShader::Draw(pos, a.Unit(), 20.f, 27.f, -4.f, black);
-		PointerShader::Draw(pos, a.Unit(), 11.5f, 21.5f, -6.f, specialColor);
+			DrawPointer(stopover->GetSystem(), pointerCount[stopover->GetSystem()], waypointColor);
 	}
 }
 
@@ -1143,16 +1145,21 @@ void MapPanel::DrawTooltips()
 
 
 
-void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger)
+void MapPanel::DrawPointer(const System *system, int &systemCount, const Color &color, bool bigger)
 {
-	DrawPointer(Zoom() * (system->Position() + center), angle, color, true, bigger);
+	DrawPointer(Zoom() * (system->Position() + center), systemCount, color, true, bigger);
 }
 
 
 
-void MapPanel::DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack, bool bigger)
+void MapPanel::DrawPointer(Point position, int &systemCount, const Color &color, bool drawBack, bool bigger)
 {
-	angle += Angle(30.);
+	Angle angle = Angle();
+	++systemCount;
+	angle += Angle(30.*systemCount);
+	if(systemCount>12) {
+        return;
+    }
 	if(drawBack)
 		PointerShader::Draw(position, angle.Unit(), 14.f + bigger, 19.f + 2 * bigger, -4.f, black);
 	PointerShader::Draw(position, angle.Unit(), 8.f + bigger, 15.f + 2 * bigger, -6.f, color);

@@ -144,8 +144,8 @@ private:
 	void DrawNames();
 	void DrawMissions();
 	void DrawTooltips();
-	void DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger = false);
-	static void DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack = true, bool bigger = false);
+	void DrawPointer(const System *system, int &systemCount, const Color &color, bool bigger = false);
+	static void DrawPointer(Point position, int &systemCount, const Color &color, bool drawBack = true, bool bigger = false);
 	
 	
 private:
