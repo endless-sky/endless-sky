@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "Body.h"
 #include "DrawList.h"
-#include "pi.h"
+#include "global.h"
 #include "Point.h"
 #include "Preferences.h"
 #include "Random.h"

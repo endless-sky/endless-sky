@@ -11,8 +11,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
 #include "Angle.h"
-
-#include "pi.h"
+#include "global.h"
 #include "Random.h"
 
 #include <algorithm>

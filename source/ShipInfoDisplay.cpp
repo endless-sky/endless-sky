@@ -129,7 +129,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	else
 	{
 		ostringstream out;
-		out << "cost (" << (100 * depreciated) / fullCost << "%):";
+		out << "cost (" << (PERCENT * depreciated) / fullCost << "%):";
 		attributeLabels.push_back(out.str());
 	}
 	attributeValues.push_back(Format::Credits(depreciated));

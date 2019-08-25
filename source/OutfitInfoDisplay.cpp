@@ -64,13 +64,13 @@ namespace {
 		{"turning energy", FRAME_RATE},
 		{"turning heat", FRAME_RATE},
 		
-		{"thrust", FRAME_RATE * 60.},
-		{"reverse thrust", FRAME_RATE * 60.},
-		{"afterburner thrust", FRAME_RATE * 60.},
+		{"thrust", FRAME_RATE * FRAME_RATE},
+		{"reverse thrust", FRAME_RATE * FRAME_RATE},
+		{"afterburner thrust", FRAME_RATE * FRAME_RATE},
 		
-		{"ion resistance", FRAME_RATE * 100.},
-		{"disruption resistance", FRAME_RATE * 100.},
-		{"slowing resistance", FRAME_RATE * 100.}
+		{"ion resistance", FRAME_RATE * PERCENT},
+		{"disruption resistance", FRAME_RATE * PERCENT},
+		{"slowing resistance", FRAME_RATE * PERCENT}
 	};
 	
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
@@ -132,7 +132,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	else
 	{
 		ostringstream out;
-		out << "cost (" << (100 * buyValue) / cost << "%):";
+		out << "cost (" << (PERCENT * buyValue) / cost << "%):";
 		requirementLabels.push_back(out.str());
 	}
 	requirementValues.push_back(Format::Credits(buyValue));
@@ -145,7 +145,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		else
 		{
 			ostringstream out;
-			out << "sells for (" << (100 * sellValue) / cost << "%):";
+			out << "sells for (" << (PERCENT * sellValue) / cost << "%):";
 			requirementLabels.push_back(out.str());
 		}
 		requirementValues.push_back(Format::Credits(sellValue));
@@ -264,9 +264,9 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.HullDamage(),
 		outfit.FuelDamage(),
 		outfit.HeatDamage(),
-		outfit.IonDamage() * 100.,
-		outfit.SlowingDamage() * 100.,
-		outfit.DisruptionDamage() * 100.,
+		outfit.IonDamage() * PERCENT,
+		outfit.SlowingDamage() * PERCENT,
+		outfit.DisruptionDamage() * PERCENT,
 		outfit.FiringEnergy(),
 		outfit.FiringHeat(),
 		outfit.FiringFuel()
@@ -332,7 +332,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	for(unsigned i = 0; i < PERCENT_NAMES.size(); ++i)
 		if(percentValues[i])
 		{
-			int percent = lround(100. * percentValues[i]);
+			int percent = lround(PERCENT * percentValues[i]);
 			attributeLabels.push_back(PERCENT_NAMES[i]);
 			attributeValues.push_back(Format::Number(percent) + "%");
 			attributesHeight += 20;

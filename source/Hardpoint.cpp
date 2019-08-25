@@ -14,8 +14,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "Effect.h"
+#include "global.h"
 #include "Outfit.h"
-#include "pi.h"
 #include "Projectile.h"
 #include "Random.h"
 #include "Ship.h"

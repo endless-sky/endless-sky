@@ -22,7 +22,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Mask.h"
 #include "Messages.h"
 #include "Minable.h"
-#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"

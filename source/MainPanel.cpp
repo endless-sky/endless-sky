@@ -165,7 +165,7 @@ void MainPanel::Draw()
 	
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
-		string loadString = to_string(lround(load * 100.)) + "% GPU";
+		string loadString = to_string(lround(load * PERCENT)) + "% GPU";
 		const Color &color = *GameData::Colors().Get("medium");
 		FontSet::Get(14).Draw(loadString, Point(10., Screen::Height() * -.5 + 5.), color);
 	

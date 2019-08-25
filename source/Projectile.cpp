@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Effect.h"
 #include "global.h"
-#include "pi.h"
 #include "Random.h"
 #include "Ship.h"
 #include "Visual.h"

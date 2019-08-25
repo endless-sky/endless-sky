@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "RingShader.h"
 
 #include "Color.h"
-#include "pi.h"
+#include "global.h"
 #include "Point.h"
 #include "Screen.h"
 #include "Shader.h"

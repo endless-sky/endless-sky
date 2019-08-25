@@ -33,7 +33,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "NPC.h"
 #include "OutlineShader.h"
 #include "Person.h"
-#include "pi.h"
 #include "Planet.h"
 #include "PlanetLabel.h"
 #include "PlayerInfo.h"
@@ -717,7 +716,7 @@ void Engine::Step(bool isActive)
 				info.SetString("target fuel", to_string(fuel));
 				int energy = round(target->Energy() * target->Attributes().Get("energy capacity"));
 				info.SetString("target energy", to_string(energy));
-				int heat = round(100. * target->Heat());
+				int heat = round(PERCENT * target->Heat());
 				info.SetString("target heat", to_string(heat) + "%");
 			}
 		}
@@ -980,7 +979,7 @@ void Engine::Draw() const
 	
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
-		string loadString = to_string(lround(load * 100.)) + "% CPU";
+		string loadString = to_string(lround(load * PERCENT)) + "% CPU";
 		Color color = *colors.Get("medium");
 		font.Draw(loadString,
 			Point(-10 - font.Width(loadString), Screen::Height() * -.5 + 5.), color);
