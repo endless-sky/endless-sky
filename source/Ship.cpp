@@ -48,7 +48,7 @@ namespace {
 	const vector<string> BAY_TYPE = {"drone", "fighter"};
 	const vector<string> BAY_SIDE = {"inside", "over", "under"};
 	const vector<string> BAY_FACING = {"forward", "left", "right", "back"};
-	const vector<Angle> BAY_ANGLE = {Angle(0.), Angle(-90.), Angle(90.), Angle(180.)};
+	const vector<Angle> BAY_ANGLE = {Angle(DEG_0), Angle(-DEG_90), Angle(DEG_90), Angle(DEG_180)};
 	
 	const double MAXIMUM_TEMPERATURE = 100.;
 	
@@ -1137,7 +1137,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				
 				// Position the leak along the outline of the ship, facing outward.
 				activeLeaks.back().location = (outline[i] + outline[i + 1]) * .5;
-				activeLeaks.back().angle = Angle(outline[i] - outline[i + 1]) + Angle(90.);
+				activeLeaks.back().angle = Angle(outline[i] - outline[i + 1]) + Angle(DEG_90);
 			}
 		for(Leak &leak : activeLeaks)
 			if(leak.effect)

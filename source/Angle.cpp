@@ -28,7 +28,7 @@ namespace {
 	// plenty accurate to me. At that step size, the lookup table is exactly 1 MB.
 	const int32_t STEPS = 0x10000;
 	const int32_t MASK = STEPS - 1;
-	const double DEG_TO_STEP = STEPS / CIRCLE_DEG;
+	const double DEG_TO_STEP = STEPS / DEG_360;
 	const double STEP_TO_RAD = PI / (STEPS / 2);
 }
 
@@ -153,7 +153,7 @@ double Angle::Degrees() const
 	// Most often when this function is used, it's in settings where it makes
 	// sense to return an angle in the range [-180, 180) rather than in the
 	// Angle's native range of [0, 360).
-	return angle / DEG_TO_STEP - CIRCLE_DEG * (angle >= STEPS / 2);
+	return angle / DEG_TO_STEP - DEG_360 * (angle >= STEPS / 2);
 }
 
 

@@ -74,7 +74,7 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 		
 		Point start = object.Position() +
 			(radius + INNER_SPACE + LINE_GAP + LINE_LENGTH) * Angle(LINE_ANGLE[d]).Unit();
-		Point unit(LINE_ANGLE[d] > 180. ? -1. : 1., 0.);
+		Point unit(LINE_ANGLE[d] > DEG_180 ? -1. : 1., 0.);
 		Point end = start + unit * width;
 		
 		for(const StellarObject &other : system->Objects())
@@ -115,7 +115,7 @@ void PlanetLabel::Draw() const
 	// The angle of the outer ring should be reduced by just enough that the
 	// circumference is reduced by 6 pixels.
 	double innerAngle = LINE_ANGLE[direction];
-	double outerAngle = innerAngle - CIRCLE_DEG * GAP / (2. * PI * radius);
+	double outerAngle = innerAngle - DEG_360 * GAP / (2. * PI * radius);
 	Point unit = Angle(innerAngle).Unit();
 	RingShader::Draw(position, radius + INNER_SPACE, 2.3f, .9f, color, 0.f, innerAngle);
 	RingShader::Draw(position, radius + INNER_SPACE + GAP, 1.3f, .6f, color, 0.f, outerAngle);

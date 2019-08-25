@@ -17,13 +17,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 const int FRAME_RATE = 60;
 
-const double CIRCLE_DEG = 360;
-const double SEMICIRCLE_DEG = CIRCLE_DEG / 2;
+const double DEG_0 = 0;
+const double DEG_90 = 90;
+const double DEG_180 = DEG_90 * 2;
+const double DEG_360 = DEG_90 * 4;
 
 // Constants to replace M_PI (which is not available on all operating systems).
 const double PI = 3.14159265358979323846;
-const double TO_RAD = PI / SEMICIRCLE_DEG;
-const double TO_DEG = SEMICIRCLE_DEG / PI;
+const double TO_RAD = PI / DEG_180;
+const double TO_DEG = DEG_180 / PI;
 
 const double PERCENT = 100;
 

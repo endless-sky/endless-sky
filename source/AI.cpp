@@ -83,7 +83,7 @@ namespace {
 	double AngleDiff(double a, double b)
 	{
 		a = abs(a - b);
-		return min(a, CIRCLE_DEG - a);
+		return min(a, DEG_360 - a);
 	}
 	
 	// Determine if all able, non-carried escorts are ready to jump with this
@@ -1706,7 +1706,7 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point directi
 		
 		// Figure out your reverse thruster stopping time:
 		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.Mass();
-		double reverseTime = (180. - degreesToTurn) / ship.TurnRate();
+		double reverseTime = (DEG_180 - degreesToTurn) / ship.TurnRate();
 		reverseTime += speed / reverseAcceleration;
 		
 		// If you want to end up facing a specific direction, add the extra turning time.
@@ -1872,8 +1872,8 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 		+ velocityDelta.Unit() * velocityWeight
 		+ target.Facing().Unit() * facingWeight;
 	double targetAngle = Angle(facingGoal).Degrees() - currentAngle;
-	if(abs(targetAngle) > 180.)
-		targetAngle += (targetAngle < 0. ? CIRCLE_DEG : -CIRCLE_DEG);
+	if(abs(targetAngle) > DEG_180)
+		targetAngle += (targetAngle < 0. ? DEG_360 : -DEG_360);
 	// Avoid "turn jitter" when position & velocity are well-matched.
 	bool changedDirection = (signbit(ship.Commands().Turn()) != signbit(targetAngle));
 	double targetTurn = abs(targetAngle / turn);
@@ -1992,7 +1992,7 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 	
 	// Calculate this ship's "turning radius"; that is, the smallest circle it
 	// can make while at full speed.
-	double stepsInFullTurn = CIRCLE_DEG / ship.TurnRate();
+	double stepsInFullTurn = DEG_360 / ship.TurnRate();
 	double circumference = stepsInFullTurn * ship.Velocity().Length();
 	double diameter = max(200., circumference / PI);
 	
@@ -2497,7 +2497,7 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 	{
 		// Figure out your reverse thruster stopping distance:
 		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.Mass();
-		double reverseDistance = v * (180. - degreesToTurn) / turnRate;
+		double reverseDistance = v * (DEG_180 - degreesToTurn) / turnRate;
 		reverseDistance += .5 * v * v / reverseAcceleration;
 		
 		if(reverseDistance < stopDistance)
@@ -2626,7 +2626,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 					continue;
 				
 				Angle centerAngle = Angle(hardpoint.GetPoint());
-				double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / 180.;
+				double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / DEG_180;
 				double acceleration = Random::Real() - Random::Real() + bias;
 				command.SetAim(index, previous + .1 * acceleration);
 			}
@@ -2679,7 +2679,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 				// weight. Outside that range, give them lower priority.
 				rendezvousTime = max(0., rendezvousTime - weapon->TotalLifetime());
 				// Always prefer targets that you are able to hit.
-				double score = turnTime + (180. / weapon->TurretTurn()) * rendezvousTime;
+				double score = turnTime + (DEG_180 / weapon->TurretTurn()) * rendezvousTime;
 				if(score < bestScore)
 				{
 					bestScore = score;

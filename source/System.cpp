@@ -700,7 +700,7 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 		else if(child.Token(0) == "distance" && child.Size() >= 2)
 			object.distance = child.Value(1);
 		else if(child.Token(0) == "period" && child.Size() >= 2)
-			object.speed = CIRCLE_DEG / child.Value(1);
+			object.speed = DEG_360 / child.Value(1);
 		else if(child.Token(0) == "offset" && child.Size() >= 2)
 			object.offset = child.Value(1);
 		else if(child.Token(0) == "object")

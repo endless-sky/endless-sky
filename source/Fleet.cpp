@@ -378,7 +378,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		if(ship->GetParent())
 			continue;
 		
-		Angle angle = Angle::Random(CIRCLE_DEG);
+		Angle angle = Angle::Random(DEG_360);
 		Point pos = position + angle.Unit() * (Random::Real() * radius);
 		
 		ships.push_front(ship);

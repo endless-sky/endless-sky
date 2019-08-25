@@ -727,7 +727,7 @@ void Engine::Step(bool isActive)
 		double width = max(target->Width(), target->Height());
 		Point pos = target->Position() - center;
 		statuses.emplace_back(pos, flagship->OutfitScanFraction(), flagship->CargoScanFraction(),
-			10. + max(20., width * .5), 2, Angle(pos).Degrees() + 180.);
+			10. + max(20., width * .5), 2, Angle(pos).Degrees() + DEG_180);
 	}
 	// Handle any events that change the selected ships.
 	if(groupSelect >= 0)
@@ -890,7 +890,7 @@ void Engine::Draw() const
 	for(const Target &target : targets)
 	{
 		Angle a = target.angle;
-		Angle da(CIRCLE_DEG / target.count);
+		Angle da(DEG_360 / target.count);
 		
 		for(int i = 0; i < target.count; ++i)
 		{
