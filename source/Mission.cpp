@@ -92,14 +92,29 @@ void Mission::Load(const DataNode &node)
 		node.PrintTrace("No name specified for mission:");
 		return;
 	}
-	// If a mission object is "loaded" twice, that is most likely an error (e.g.
-	// due to a plugin containing a mission with the same name as the base game
-	// or another plugin). This class is not designed to allow merging or
-	// overriding of mission data from two different definitions.
+	bool isOverride = (node.Size() >= 3 && node.Token(2) == "override");
+	// If a mission object is "loaded" twice, that is most likely an error
+	// (e.g. due to a plugin containing a mission with the same name as the
+	// base game or another plugin). However, sometimes it's useful to
+	// intentionally override a specific mission from a plugin.
 	if(!name.empty())
 	{
-		node.PrintTrace("Duplicate definition of mission:");
-		return;
+		if(isOverride)
+		{
+			// If explicitly requested, start from a blank slate,
+			// so that all data is replaced.
+			*this = Mission();
+		}
+		else
+		{
+			node.PrintTrace("Duplicate definition of mission:");
+			return;
+		}
+	}
+	else if(isOverride)
+	{
+		node.PrintTrace("Warning: overriding a non-existent mission:");
+		// Proceed to load the mission as if override were not given.
 	}
 	name = node.Token(1);
 	
