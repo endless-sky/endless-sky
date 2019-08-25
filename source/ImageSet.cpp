@@ -191,7 +191,7 @@ void ImageSet::Check() const
 // worker threads. This also generates collision masks if needed.
 void ImageSet::Load()
 {
-	// Determine how many frames there will be, total. THe image buffers will
+	// Determine how many frames there will be, total. The image buffers will
 	// not actually be allocated until the first image is loaded (at which point
 	// the sprite's dimensions will be known).
 	size_t frames = paths[0].size();
