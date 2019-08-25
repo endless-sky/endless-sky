@@ -201,10 +201,10 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	
 	attributeLabels.push_back("acceleration:");
 	if(!isGeneric)
-		attributeValues.push_back(Format::Number(3600. * forwardThrust / fullMass));
+		attributeValues.push_back(Format::Number(FRAME_RATE * FRAME_RATE * forwardThrust / fullMass));
 	else
-		attributeValues.push_back(Format::Number(3600. * forwardThrust / fullMass)
-			+ " / " + Format::Number(3600. *forwardThrust / emptyMass));
+		attributeValues.push_back(Format::Number(FRAME_RATE * FRAME_RATE * forwardThrust / fullMass)
+			+ " / " + Format::Number(FRAME_RATE * FRAME_RATE *forwardThrust / emptyMass));
 	attributesHeight += 20;
 	
 	attributeLabels.push_back("turning:");

@@ -1070,7 +1070,7 @@ void GameData::PrintShipTable()
 		cout << ship.BaseAttributes().Get("weapon capacity") << '\t';
 		cout << ship.BaseAttributes().Get("engine capacity") << '\t';
 		cout << FRAME_RATE * attributes.Get("thrust") / attributes.Get("drag") << '\t';
-		cout << 3600. * attributes.Get("thrust") / attributes.Mass() << '\t';
+		cout << FRAME_RATE * FRAME_RATE * attributes.Get("thrust") / attributes.Mass() << '\t';
 		cout << FRAME_RATE * attributes.Get("turn") / attributes.Mass() << '\t';
 		
 		double energy = attributes.Get("thrusting energy")
