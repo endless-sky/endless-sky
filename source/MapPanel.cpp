@@ -1062,8 +1062,7 @@ void MapPanel::DrawMissions()
 	{
 		// The special system pointer is larger than the others.
 		pointerCount[specialSystem] += 1;
-		Angle a = Angle();
-		a += (30 * ( pointerCount[specialSystem] ) );
+		Angle a = Angle(30.*pointerCount[specialSystem] );
 		Point pos = Zoom() * (specialSystem->Position() + center);
 		PointerShader::Draw(pos, a.Unit(), 20.f, 27.f, -4.f, black);
 		PointerShader::Draw(pos, a.Unit(), 11.5f, 21.5f, -6.f, specialColor);
@@ -1154,12 +1153,11 @@ void MapPanel::DrawPointer(const System *system, int &systemCount, const Color &
 
 void MapPanel::DrawPointer(Point position, int &systemCount, const Color &color, bool drawBack, bool bigger)
 {
-	Angle angle = Angle();
 	++systemCount;
-	angle += Angle(30.*systemCount);
+	Angle angle = Angle(30.*systemCount);
 	if(systemCount>12) {
-        return;
-    }
+    	return;
+	}
 	if(drawBack)
 		PointerShader::Draw(position, angle.Unit(), 14.f + bigger, 19.f + 2 * bigger, -4.f, black);
 	PointerShader::Draw(position, angle.Unit(), 8.f + bigger, 15.f + 2 * bigger, -6.f, color);
