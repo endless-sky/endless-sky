@@ -171,7 +171,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributesHeight += 20;
 	if(attributes.Get("hull repair rate"))
 	{
-		attributeLabels.push_back("hull (repair rate):");
+		attributeLabels.push_back("hull (repair):");
 		attributeValues.push_back(Format::Number(attributes.Get("hull"))
 			+ " (" + Format::Number(60. * attributes.Get("hull repair rate")) + "/s)");
 	}
@@ -200,7 +200,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	else
 	{
 		attributeLabels.push_back("crew:");
-		attributeValues.push_back(Format::Number(ship.RequiredCrew()));
+		attributeValues.push_back(ship.RequiredCrew() == 0 ? "(unmanned)" : Format::Number(ship.RequiredCrew()));
 	}
 	attributesHeight += 20;
 	attributeLabels.push_back(isGeneric ? "fuel capacity:" : "fuel:");
@@ -218,7 +218,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
-	attributeLabels.push_back(isGeneric ? "movement, full - no cargo:" : "movement:");
+	attributeLabels.push_back(isGeneric ? "movement (full - no cargo):" : "movement:");
 	attributeValues.push_back(string());
 	attributesHeight += 20;
 	attributeLabels.push_back("max speed:");
