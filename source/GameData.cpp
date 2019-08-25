@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
+#include "global.h"
 #include "Government.h"
 #include "ImageSet.h"
 #include "Interface.h"
@@ -1068,9 +1069,9 @@ void GameData::PrintShipTable()
 		cout << ship.BaseAttributes().Get("outfit space") << '\t';
 		cout << ship.BaseAttributes().Get("weapon capacity") << '\t';
 		cout << ship.BaseAttributes().Get("engine capacity") << '\t';
-		cout << 60. * attributes.Get("thrust") / attributes.Get("drag") << '\t';
+		cout << FRAME_RATE * attributes.Get("thrust") / attributes.Get("drag") << '\t';
 		cout << 3600. * attributes.Get("thrust") / attributes.Mass() << '\t';
-		cout << 60. * attributes.Get("turn") / attributes.Mass() << '\t';
+		cout << FRAME_RATE * attributes.Get("turn") / attributes.Mass() << '\t';
 		
 		double energy = attributes.Get("thrusting energy")
 			+ attributes.Get("turning energy");
@@ -1083,12 +1084,12 @@ void GameData::PrintShipTable()
 				energy += oit.second * oit.first->FiringEnergy() / reload;
 				heat += oit.second * oit.first->FiringHeat() / reload;
 			}
-		cout << 60. * attributes.Get("energy generation") << '\t';
-		cout << 60. * energy << '\t';
-		cout << 60. * heat << '\t';
+		cout << FRAME_RATE * attributes.Get("energy generation") << '\t';
+		cout << FRAME_RATE * energy << '\t';
+		cout << FRAME_RATE * heat << '\t';
 		// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000
 		// per 60th of a second, so:
-		cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << '\n';
+		cout << FRAME_RATE * ship.HeatDissipation() * ship.MaximumHeat() << '\n';
 	}
 	cout.flush();
 }
@@ -1113,14 +1114,14 @@ void GameData::PrintWeaponTable()
 		
 		cout << outfit.Range() << '\t';
 		
-		double energy = outfit.FiringEnergy() * 60. / outfit.Reload();
+		double energy = outfit.FiringEnergy() * FRAME_RATE / outfit.Reload();
 		cout << energy << '\t';
-		double heat = outfit.FiringHeat() * 60. / outfit.Reload();
+		double heat = outfit.FiringHeat() * FRAME_RATE / outfit.Reload();
 		cout << heat << '\t';
 		
-		double shield = outfit.ShieldDamage() * 60. / outfit.Reload();
+		double shield = outfit.ShieldDamage() * FRAME_RATE / outfit.Reload();
 		cout << shield << '\t';
-		double hull = outfit.HullDamage() * 60. / outfit.Reload();
+		double hull = outfit.HullDamage() * FRAME_RATE / outfit.Reload();
 		cout << hull << '\t';
 		
 		cout << outfit.Homing() << '\t';

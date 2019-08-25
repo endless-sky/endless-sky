@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "DistanceMap.h"
 #include "Flotsam.h"
+#include "global.h"
 #include "Government.h"
 #include "Hardpoint.h"
 #include "Mask.h"
@@ -83,7 +84,7 @@ namespace {
 	double AngleDiff(double a, double b)
 	{
 		a = abs(a - b);
-		return min(a, 360. - a);
+		return min(a, CIRCLE_DEG - a);
 	}
 	
 	// Determine if all able, non-carried escorts are ready to jump with this
@@ -1053,8 +1054,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			continue;
 		
 		// Estimate the range a second from now, so ships prefer foes they are approaching.
-		double range = (foe->Position() + 60. * foe->Velocity()).Distance(
-			ship.Position() + 60. * ship.Velocity());
+		double range = (foe->Position() + FRAME_RATE * foe->Velocity()).Distance(
+			ship.Position() + FRAME_RATE * ship.Velocity());
 		// Prefer the previous target, or the parent's target, if they are nearby.
 		if(foe == oldTarget || foe == parentTarget)
 			range -= 500.;
@@ -1873,7 +1874,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
 		+ target.Facing().Unit() * facingWeight;
 	double targetAngle = Angle(facingGoal).Degrees() - currentAngle;
 	if(abs(targetAngle) > 180.)
-		targetAngle += (targetAngle < 0. ? 360. : -360.);
+		targetAngle += (targetAngle < 0. ? CIRCLE_DEG : -CIRCLE_DEG);
 	// Avoid "turn jitter" when position & velocity are well-matched.
 	bool changedDirection = (signbit(ship.Commands().Turn()) != signbit(targetAngle));
 	double targetTurn = abs(targetAngle / turn);
@@ -1992,7 +1993,7 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 	
 	// Calculate this ship's "turning radius"; that is, the smallest circle it
 	// can make while at full speed.
-	double stepsInFullTurn = 360. / ship.TurnRate();
+	double stepsInFullTurn = CIRCLE_DEG / ship.TurnRate();
 	double circumference = stepsInFullTurn * ship.Velocity().Length();
 	double diameter = max(200., circumference / PI);
 	
@@ -3189,7 +3190,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			// selected, then press "land" again, do not toggle to the other if
 			// you are within landing range of the one you have selected.
 		}
-		else if(message.empty() && target && landKeyInterval < 60)
+		else if(message.empty() && target && landKeyInterval < FRAME_RATE)
 		{
 			// Select the next landable in the list after the currently selected object.
 			if(++landIt == landables.cend())
@@ -3545,7 +3546,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 	{
 		const Government *gov = it->GetGovernment();
 		// Only have ships update their strength estimate once per second on average.
-		if(!gov || it->GetSystem() != playerSystem || it->IsDisabled() || Random::Int(60))
+		if(!gov || it->GetSystem() != playerSystem || it->IsDisabled() || Random::Int(FRAME_RATE))
 			continue;
 		
 		int64_t &myStrength = shipStrength[it.get()];

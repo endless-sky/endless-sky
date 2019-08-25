@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "global.h"
 #include "Random.h"
 #include "Screen.h"
 #include "Sprite.h"
@@ -191,7 +192,7 @@ void Body::LoadSprite(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "frame rate" && child.Size() >= 2 && child.Value(1) >= 0.)
-			frameRate = child.Value(1) / 60.;
+			frameRate = child.Value(1) / FRAME_RATE;
 		else if(child.Token(0) == "frame time" && child.Size() >= 2 && child.Value(1) > 0.)
 			frameRate = 1. / child.Value(1);
 		else if(child.Token(0) == "delay" && child.Size() >= 2 && child.Value(1) > 0.)
@@ -226,8 +227,8 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 	out.Write(tag, sprite->Name());
 	out.BeginChild();
 	{
-		if(frameRate != static_cast<float>(2. / 60.))
-			out.Write("frame rate", frameRate * 60.);
+		if(frameRate != static_cast<float>(2. / FRAME_RATE))
+			out.Write("frame rate", frameRate * FRAME_RATE);
 		if(delay)
 			out.Write("delay", delay);
 		if(randomize)
@@ -263,7 +264,7 @@ void Body::SetSwizzle(int swizzle)
 // a sprite instead of a full animation data structure.
 void Body::SetFrameRate(float framesPerSecond)
 {
-	frameRate = framesPerSecond / 60.f;
+	frameRate = framesPerSecond / FRAME_RATE;
 }
 
 
@@ -271,7 +272,7 @@ void Body::SetFrameRate(float framesPerSecond)
 // Add the given amount to the frame rate.
 void Body::AddFrameRate(float framesPerSecond)
 {
-	frameRate += framesPerSecond / 60.f;
+	frameRate += framesPerSecond / FRAME_RATE;
 }
 
 

@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "Format.h"
 #include "GameData.h"
+#include "global.h"
 #include "Government.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
@@ -574,7 +575,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 // While being tributed, attempt to spawn the next specified defense fleet.
 void Planet::DeployDefense(list<shared_ptr<Ship>> &ships) const
 {
-	if(!isDefending || Random::Int(60) || defenseDeployed == defenseFleets.size())
+	if(!isDefending || Random::Int(FRAME_RATE) || defenseDeployed == defenseFleets.size())
 		return;
 	
 	auto end = defenders.begin();

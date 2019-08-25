@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Projectile.h"
 
 #include "Effect.h"
+#include "global.h"
 #include "pi.h"
 #include "Random.h"
 #include "Ship.h"
@@ -139,7 +140,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	double turn = weapon->Turn();
 	double accel = weapon->Acceleration();
 	int homing = weapon->Homing();
-	if(target && homing && !Random::Int(60))
+	if(target && homing && !Random::Int(FRAME_RATE))
 		CheckLock(*target);
 	if(target && homing && hasLock)
 	{

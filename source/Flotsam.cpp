@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "Effect.h"
 #include "GameData.h"
+#include "global.h"
 #include "Outfit.h"
 #include "Random.h"
 #include "Ship.h"
@@ -48,7 +49,7 @@ Flotsam::Flotsam(const Outfit *outfit, int count)
 {
 	// The more the outfit costs, the faster this flotsam should disappear.
 	int lifetimeBase = 300000000 / (outfit->Cost() * count + 1000000);
-	lifetime = Random::Int(lifetimeBase) + lifetimeBase + 60;
+	lifetime = Random::Int(lifetimeBase) + lifetimeBase + FRAME_RATE;
 }
 
 

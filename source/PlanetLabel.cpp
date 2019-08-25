@@ -115,7 +115,7 @@ void PlanetLabel::Draw() const
 	// The angle of the outer ring should be reduced by just enough that the
 	// circumference is reduced by 6 pixels.
 	double innerAngle = LINE_ANGLE[direction];
-	double outerAngle = innerAngle - 360. * GAP / (2. * PI * radius);
+	double outerAngle = innerAngle - CIRCLE_DEG * GAP / (2. * PI * radius);
 	Point unit = Angle(innerAngle).Unit();
 	RingShader::Draw(position, radius + INNER_SPACE, 2.3f, .9f, color, 0.f, innerAngle);
 	RingShader::Draw(position, radius + INNER_SPACE + GAP, 1.3f, .6f, color, 0.f, outerAngle);

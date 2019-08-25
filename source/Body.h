@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define BODY_H_
 
 #include "Angle.h"
+#include "global.h"
 #include "Point.h"
 
 #include <cstdint>
@@ -110,7 +111,7 @@ private:
 	// Allow objects based on this one to adjust their frame rate and swizzle.
 	int swizzle = 0;
 	
-	float frameRate = 2.f / 60.f;
+	float frameRate = 2.f / FRAME_RATE;
 	int delay = 0;
 	// The chosen frame will be (step * frameRate) + frameOffset.
 	mutable float frameOffset = 0.f;

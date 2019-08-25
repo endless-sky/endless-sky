@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "global.h"
 #include "Government.h"
 #include "HailPanel.h"
 #include "LineShader.h"
@@ -169,7 +170,7 @@ void MainPanel::Draw()
 		FontSet::Get(14).Draw(loadString, Point(10., Screen::Height() * -.5 + 5.), color);
 	
 		loadSum += loadTimer.Time();
-		if(++loadCount == 60)
+		if(++loadCount == FRAME_RATE)
 		{
 			load = loadSum;
 			loadSum = 0.;

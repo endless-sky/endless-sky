@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Flotsam.h"
 #include "Format.h"
 #include "GameData.h"
+#include "global.h"
 #include "Government.h"
 #include "Mask.h"
 #include "Messages.h"
@@ -51,7 +52,7 @@ namespace {
 	
 	const double MAXIMUM_TEMPERATURE = 100.;
 	
-	const double SCAN_TIME = 60.;
+	const double SCAN_TIME = FRAME_RATE;
 	
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.

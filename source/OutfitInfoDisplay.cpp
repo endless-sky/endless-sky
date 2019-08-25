@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Depreciation.h"
 #include "Format.h"
+#include "global.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
 
@@ -27,49 +28,49 @@ using namespace std;
 
 namespace {
 	const map<string, double> SCALE = {
-		{"active cooling", 60.},
-		{"afterburner energy", 60.},
-		{"afterburner fuel", 60.},
-		{"afterburner heat", 60.},
-		{"cloak", 60.},
-		{"cloaking energy", 60.},
-		{"cloaking fuel", 60.},
-		{"cloaking heat", 60.},
-		{"cooling", 60.},
-		{"cooling energy", 60.},
-		{"energy consumption", 60.},
-		{"energy generation", 60.},
-		{"fuel consumption", 60.},
-		{"fuel energy", 60.},
-		{"fuel generation", 60.},
-		{"fuel heat", 60.},
-		{"heat generation", 60.},
-		{"heat dissipation", 60.},
-		{"hull repair rate", 60.},
-		{"hull energy", 60.},
-		{"hull fuel", 60.},
-		{"hull heat", 60.},
-		{"jump speed", 60.},
-		{"reverse thrusting energy", 60.},
-		{"reverse thrusting heat", 60.},
-		{"shield generation", 60.},
-		{"shield energy", 60.},
-		{"shield fuel", 60.},
-		{"shield heat", 60.},
-		{"solar collection", 60.},
-		{"thrusting energy", 60.},
-		{"thrusting heat", 60.},
-		{"turn", 60.},
-		{"turning energy", 60.},
-		{"turning heat", 60.},
+		{"active cooling", FRAME_RATE},
+		{"afterburner energy", FRAME_RATE},
+		{"afterburner fuel", FRAME_RATE},
+		{"afterburner heat", FRAME_RATE},
+		{"cloak", FRAME_RATE},
+		{"cloaking energy", FRAME_RATE},
+		{"cloaking fuel", FRAME_RATE},
+		{"cloaking heat", FRAME_RATE},
+		{"cooling", FRAME_RATE},
+		{"cooling energy", FRAME_RATE},
+		{"energy consumption", FRAME_RATE},
+		{"energy generation", FRAME_RATE},
+		{"fuel consumption", FRAME_RATE},
+		{"fuel energy", FRAME_RATE},
+		{"fuel generation", FRAME_RATE},
+		{"fuel heat", FRAME_RATE},
+		{"heat generation", FRAME_RATE},
+		{"heat dissipation", FRAME_RATE},
+		{"hull repair rate", FRAME_RATE},
+		{"hull energy", FRAME_RATE},
+		{"hull fuel", FRAME_RATE},
+		{"hull heat", FRAME_RATE},
+		{"jump speed", FRAME_RATE},
+		{"reverse thrusting energy", FRAME_RATE},
+		{"reverse thrusting heat", FRAME_RATE},
+		{"shield generation", FRAME_RATE},
+		{"shield energy", FRAME_RATE},
+		{"shield fuel", FRAME_RATE},
+		{"shield heat", FRAME_RATE},
+		{"solar collection", FRAME_RATE},
+		{"thrusting energy", FRAME_RATE},
+		{"thrusting heat", FRAME_RATE},
+		{"turn", FRAME_RATE},
+		{"turning energy", FRAME_RATE},
+		{"turning heat", FRAME_RATE},
 		
-		{"thrust", 60. * 60.},
-		{"reverse thrust", 60. * 60.},
-		{"afterburner thrust", 60. * 60.},
+		{"thrust", FRAME_RATE * 60.},
+		{"reverse thrust", FRAME_RATE * 60.},
+		{"afterburner thrust", FRAME_RATE * 60.},
 		
-		{"ion resistance", 60. * 100.},
-		{"disruption resistance", 60. * 100.},
-		{"slowing resistance", 60. * 100.}
+		{"ion resistance", FRAME_RATE * 100.},
+		{"disruption resistance", FRAME_RATE * 100.},
+		{"slowing resistance", FRAME_RATE * 100.}
 	};
 	
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
@@ -280,7 +281,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			if(values[i])
 			{
 				attributeLabels.emplace_back(VALUE_NAMES[i] + PER_SECOND);
-				attributeValues.emplace_back(Format::Number(60. * values[i] / reload));
+				attributeValues.emplace_back(Format::Number(FRAME_RATE * values[i] / reload));
 				attributesHeight += 20;
 			}
 	}
@@ -290,10 +291,10 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	if(isContinuous)
 		attributeValues.emplace_back("continuous");
 	else
-		attributeValues.emplace_back(Format::Number(60. / reload));
+		attributeValues.emplace_back(Format::Number(FRAME_RATE / reload));
 	attributesHeight += 20;
 	
-	double turretTurn = outfit.TurretTurn() * 60.;
+	double turretTurn = outfit.TurretTurn() * FRAME_RATE;
 	if(turretTurn)
 	{
 		attributeLabels.emplace_back("turret turn rate:");

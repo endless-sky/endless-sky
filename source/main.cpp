@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "global.h"
 #include "ImageBuffer.h"
 #include "MenuPanel.h"
 #include "Panel.h"
@@ -251,7 +252,7 @@ int main(int argc, char *argv[])
 		
 		bool showCursor = true;
 		int cursorTime = 0;
-		int frameRate = 60;
+		int frameRate = FRAME_RATE;
 		FrameTimer timer(frameRate);
 		bool isPaused = false;
 		// If fast forwarding, keep track of whether the current frame should be drawn.
@@ -356,9 +357,9 @@ int main(int argc, char *argv[])
 						continue;
 				}
 			}
-			else if(frameRate < 60)
+			else if(frameRate < FRAME_RATE)
 			{
-				frameRate = min(frameRate + 5, 60);
+				frameRate = min(frameRate + 5, FRAME_RATE);
 				timer.SetFrameRate(frameRate);
 			}
 			

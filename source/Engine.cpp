@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "global.h"
 #include "Government.h"
 #include "Interface.h"
 #include "MapPanel.h"
@@ -32,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "NPC.h"
 #include "OutlineShader.h"
 #include "Person.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlanetLabel.h"
 #include "PlayerInfo.h"
@@ -889,7 +891,7 @@ void Engine::Draw() const
 	for(const Target &target : targets)
 	{
 		Angle a = target.angle;
-		Angle da(360. / target.count);
+		Angle da(CIRCLE_DEG / target.count);
 		
 		for(int i = 0; i < target.count; ++i)
 		{
@@ -1117,7 +1119,7 @@ void Engine::EnterSystem()
 	// trying to create anything with no government set.
 	for(int i = 0; i < 5; ++i)
 		for(const System::FleetProbability &fleet : system->Fleets())
-			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
+			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < FRAME_RATE)
 				fleet.Get()->Place(*system, newShips);
 	
 	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
@@ -1361,7 +1363,7 @@ void Engine::CalculateStep()
 	
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();
-	if(++loadCount == 60)
+	if(++loadCount == FRAME_RATE)
 	{
 		load = loadSum;
 		loadSum = 0.;
