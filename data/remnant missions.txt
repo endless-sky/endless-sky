@@ -398,6 +398,7 @@ mision "Remnant: Key Stones (Pre-Hai) 1"
 	to offer
 		not "Remnant: Key Stones (Hai): offered"
 		not "Remnant: Key Stones: offered"
+		not "First Contact: Hai: offered"
 		or
 			has "event: remnant: void sprite research"
 			has "Remnant: Defense 3: done"
