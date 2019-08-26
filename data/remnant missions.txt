@@ -333,12 +333,12 @@ conversation "remnant key stones"
 
 	label quest
 	`	"You may have noticed the red anomalies scattered within this region of space. What you may not have known is that these are wormholes, accessible only with the possession of a Quantum Key Stone. My people highly value these Key Stones because of this, but our mines produce very few of them." The manager shows you a Key Stone that he has with him.`
-	scene "outfit/keystone"`
+	scene "outfit/keystone"
 	
 	branch hai1
 		has "First Contact: Hai: offered"
 	
-	`	"We have explored all of the Ember Waste, but have been unable to find any large concentrations of these stones."
+	`	"We have explored all of the Ember Waste, but have been unable to find any large concentrations of these stones."`
 	`	"You seem to be able to easily explore outside of this region. If you manage to discover a source of Key Stones outside of the Ember Waste, would you please inform me of them?"`
 	choice
 		`	"If I find anything, I'll let you know."`
@@ -391,7 +391,7 @@ conversation "remnant key stones done"
 
 
 
-mision "Remnant: Key Stones (Pre-Hai) 1"
+mission "Remnant: Key Stones (Pre-Hai) 1"
 	name "Key Stones"
 	description "The manager of the outfitter on <planet> is interested in finding alternative sources of Key Stones. The Remnant have explored the entire Ember Waste, so you will need to search elsewhere for these stones."
 	source "Viminal"
@@ -446,7 +446,7 @@ mission "Remnant: Key Stones (Pre-Hai) 2"
 	
 	
 	
-mision "Remnant: Key Stones (Hai)"
+mission "Remnant: Key Stones (Hai)"
 	name "Keystones"
 	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty Quantum Keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
