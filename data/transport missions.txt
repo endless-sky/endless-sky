@@ -2835,7 +2835,7 @@ mission "Paradise Fortune 1"
 			`	As she enters your ship, she grabs your arm and pulls you in with her before closing the hatch. "Launch and go to <destination>, now! I'll explain when we get there."`
 				launch
 	on visit
-		dialog `You land on <planet>, but realize that Diana is in one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
+		dialog `You land on <planet>, but realize that the girl is in one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
