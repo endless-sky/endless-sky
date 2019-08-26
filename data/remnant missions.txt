@@ -432,7 +432,7 @@ mission "Remnant: Key Stones (Pre-Hai) 2"
 	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty Quantum Keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
 	to offer
-		has "Remnant: Key Stones (Pre-Hai): done"
+		has "Remnant: Key Stones (Pre-Hai) 1: done"
 	on offer
 		conversation "remnant key stones"
 			
