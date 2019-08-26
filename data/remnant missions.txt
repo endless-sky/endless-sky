@@ -316,12 +316,12 @@ event "remnant: surveillance end"
 
 
 
-mision "Remnant: Key Stones (Pre-Hai)"
+mision "Remnant: Key Stones (Pre-Hai) 1"
 	name "Key Stones"
 	description "The manager of the outfitter on <planet> is interested in finding alternative sources of Key Stones. The Remnant have explored the entire Ember Waste, so you will need to search elsewhere for these stones."
 	source "Viminal"
 	to offer
-		not "Remnant: Key Stones (Pre-Hai): offered"
+		not "Remnant: Key Stones (Hai): offered"
 		not "Remnant: Key Stones: offered"
 		or
 			has "event: remnant: void sprite research"
@@ -338,7 +338,9 @@ mision "Remnant: Key Stones (Pre-Hai)"
 			`	"Please, I assure you, this quest will be very lucrative for you.`
 			
 			label quest
-			`	"You may have noticed the red anomalies scattered within this region of space. What you may not have known is that these are wormholes, accessible only with the possession of a Quantum Key Stone. My people highly value these Key Stones because of this, but our mines produce very few of them. We have explored all of the Ember Waste, but have been unable to find any large concentrations of these stones."
+			`	"You may have noticed the red anomalies scattered within this region of space. What you may not have known is that these are wormholes, accessible only with the possession of a Quantum Key Stone. My people highly value these Key Stones because of this, but our mines produce very few of them." The manager shows you a Key Stone that he has with him.`
+			scene "outfit/keystone"`
+			`	"We have explored all of the Ember Waste, but have been unable to find any large concentrations of these stones."
 			`	"You seem to be able to easily explore outside of this region. If you manage to discover a source of Key Stones outside of the Ember Waste, would you please inform me of them?"`
 			choice
 				`	"If I find anything, I'll let you know."`
@@ -399,6 +401,15 @@ mission "Remnant: Key Stones (Pre-Hai) 2"
 
 			`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
 				accept
+			
+	on visit
+		dialog `You have returned to <planet>, but you don't have 50 "Quantum Keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
+	on complete
+		outfit "Quantum Keystone" -50
+		payment 6000000
+		conversation
+			`You visit the local outfitter and tell the manager that you have brought a shipment of "Quantum Keystones" to sell to him. He is overjoyed, and gladly pays you six million credits for them. You can't help noticing that based on how much the Key Stones sell for here, he will be earning even more profit than you did, even though you did nearly all the work.`
+			`	"You have made a valuable contribution to our people by doing this," he says. "These stones will allow more of our ships to explore the Ember Waste and discover the secrets that it holds."`
 	
 	
 	
@@ -408,7 +419,7 @@ mision "Remnant: Key Stones (Hai)"
 	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty Quantum Keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
 	to offer
-		not "Remnant: Key Stones (Pre-Hai): offered"
+		not "Remnant: Key Stones (Pre-Hai) 1: offered"
 		not "Remnant: Key Stones: offered"
 		has "First Contact: Hai: offered"
 		or
@@ -451,6 +462,15 @@ mision "Remnant: Key Stones (Hai)"
 
 			`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
 				accept
+			
+	on visit
+		dialog `You have returned to <planet>, but you don't have 50 "Quantum Keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
+	on complete
+		outfit "Quantum Keystone" -50
+		payment 6000000
+		conversation
+			`You visit the local outfitter and tell the manager that you have brought a shipment of "Quantum Keystones" to sell to him. He is overjoyed, and gladly pays you six million credits for them. You can't help noticing that based on how much the Key Stones sell for here, he will be earning even more profit than you did, even though you did nearly all the work.`
+			`	"You have made a valuable contribution to our people by doing this," he says. "These stones will allow more of our ships to explore the Ember Waste and discover the secrets that it holds."`
 		
 
 
@@ -460,7 +480,7 @@ mission "Remnant: Key Stones"
 	source "Viminal"
 	to offer
 		has "remnant blood test pure"
-		not "Remnant: Key Stones (Pre-Hai): offered"
+		not "Remnant: Key Stones (Pre-Hai) 1: offered"
 		not "Remnant: Key Stones (Hai): offered"
 	on offer
 		require "Quantum Keystone"
@@ -704,8 +724,11 @@ mission "Remnant: Technology Available"
 		government "Remnant"
 	to offer
 		has "event: remnant: void sprite research"
-		has "Remnant: Key Stones: done"
 		has "Remnant: Defense 3: done"
+		or
+			has "Remnant: Key Stones: done"
+			has "Remnant: Key Stones (Hai): done"
+			has "Remnant: Key Stones (Pre-Hai) 2: done"
 	on offer
 		payment 2000000
 		set "license: Remnant"
