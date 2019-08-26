@@ -107,9 +107,9 @@ effect "ion impact"
 
 outfit "Railgun Slug"
 	category "Ammunition"
-	cost 60
+	cost 2
 	thumbnail "outfit/railslug"
-	"mass" 0.02
+	"mass" 0.0006
 	"railgun slug capacity" -1
 	description "These railgun slugs incorporate energy-discharging capacitors that deal a small amount of hull damage even when the target's shields are functioning, and they can punch crippling holes in the hull of a ship whose shields are down."
 
@@ -117,46 +117,47 @@ outfit "Railgun"
 	category "Secondary Weapons"
 	cost 20000
 	thumbnail "outfit/railgun"
-	"mass" 4
-	"outfit space" -7
-	"weapon capacity" -7
+	"mass" 1
+	"outfit space" -3
+	"weapon capacity" -3
 	"gun ports" -1
-	"railgun slug capacity" 150
+	"railgun slug capacity" 3210
 	weapon
 		sprite "projectile/rail slug"
 			"frame rate" 30
 		ammo "Railgun Slug"
 		icon "icon/rail gun"
 		sound "ion impact"
-		"fire effect" "rail sparks" 2
-		"live effect" "rail sparks" 5
+		"fire effect" "rail sparks"
+		"live effect" "rail sparks"
 		"hit effect" "bullet impact"
 		"inaccuracy" 3
 		"velocity" 22
 		"lifetime" 1
-		"reload" 120
-		"firing energy" 92
-		"firing heat" 39
-		"hit force" 44
+		"reload" 3
+		"firing energy" 1.7
+		"firing heat" 1.6
+		"hit force" 17
+		"firing force" 17
 		"stream"
 		"submunition" "rslug" 1
 	description "The Hai created this compact weapon for their Flea drones, providing mobile long-range support for the close quarters Pond Strider carrier."
 
 outfit "rslug"
 	weapon
-		"acceleration" .022
-		"drag" .001
+		"acceleration" .22
+		"drag" .01
 		"lifetime" 99
 		sprite "projectile/rail slug"
 			"frame rate" 30
-		"live effect" "rail sparks" 5
+		"live effect" "rail sparks"
 		"hit effect" "bullet impact"
-		"shield damage" 65
-		"hull damage" 95
+		"shield damage" 1.6
+		"hull damage" 2.4
 		"homing" 1
 		"optical tracking" .4
 		"turn" .3
-		"hit force" 44
+		"hit force" 17
 		"missile strength" 14
 		"piercing" .1
 
@@ -442,8 +443,8 @@ outfit "Sand Cell"
 	thumbnail "outfit/fuel cell hai"
 	"mass" 24
 	"outfit space" -24
-	"energy generation" 1.55
-	"heat generation" 2.4
+	"energy generation" 1.65
+	"heat generation" 2.45
 	description "The Sand Cell is the smallest Hai generator. It was designed to fit their drones, and it clearly resembles human fuel cells."
 
 
@@ -455,12 +456,12 @@ outfit `"Baellie" Atomic Engines`
 	"mass" 24
 	"outfit space" -24
 	"engine capacity" -24
-	"turn" 250
-	"turning energy" .6
-	"turning heat" 1.3
-	"thrust" 10.1
-	"thrusting energy" 1.2
-	"thrusting heat" 2.4
+	"turn" 275
+	"turning energy" .7
+	"turning heat" 1.4
+	"thrust" 8.4
+	"thrusting energy" 1
+	"thrusting heat" 2
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
