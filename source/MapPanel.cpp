@@ -1156,7 +1156,7 @@ void MapPanel::DrawPointer(Point position, int &systemCount, const Color &color,
 	++systemCount;
 	Angle angle = Angle(30.*systemCount);
 	if(systemCount>12) {
-    	return;
+		return;
 	}
 	if(drawBack)
 		PointerShader::Draw(position, angle.Unit(), 14.f + bigger, 19.f + 2 * bigger, -4.f, black);
