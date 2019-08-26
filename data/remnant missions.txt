@@ -316,6 +316,81 @@ event "remnant: surveillance end"
 
 
 
+conversation "remnant key stones"
+	branch normal
+		has "Remnant: Key Stones: offered"
+	
+	branch found
+		has "Remnant: Found Keystones: offered"
+	
+	`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. "Greetings, outsider," he says. "I have heard many good things about you and your assistance to our people. Would you be interested in going on a quest for me?"`
+	choice
+		`	"What kind of quest?"`
+			goto quest
+		`	"Sorry, I'm not interested."`
+
+	`	"Please, I assure you, this quest will be very lucrative for you.`
+
+	label quest
+	`	"You may have noticed the red anomalies scattered within this region of space. What you may not have known is that these are wormholes, accessible only with the possession of a Quantum Key Stone. My people highly value these Key Stones because of this, but our mines produce very few of them." The manager shows you a Key Stone that he has with him.`
+	scene "outfit/keystone"`
+	
+	branch hai
+		has "First Contact: Hai: offered"
+	
+	`	"We have explored all of the Ember Waste, but have been unable to find any large concentrations of these stones."
+	`	"You seem to be able to easily explore outside of this region. If you manage to discover a source of Key Stones outside of the Ember Waste, would you please inform me of them?"`
+	choice
+		`	"If I find anything, I'll let you know."`
+		`	"No thanks. This seems like a wild goose chase to me."`
+			decline
+
+	`	The outfitter manager thanks you. "We'll discuss payment once you return," he says.`
+		accept
+	
+	label found
+	`You find the outfitter manager and tell him that you have good news. "You found another world where the stones can be mined?" he asks.`
+		goto exchange
+	
+	label hai
+	`	"I've seen that before," you say.`
+	`	He looks at you with surprise. "You found another world where these stones can be mined?"`
+		goto exchange
+	
+	label normal
+	`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. He says, "I could not help but notice that you have a Key Stone that looks different from the ones from our mines. You may have noticed the red anomalies scattered within this region of space. What you may not have known is that these are wormholes, accessible only with the possession of a Quantum Key Stone. My people highly value these Key Stones because of this, but our mines produce very few of them. Have you found another world where these stones can be mined?"`
+	
+	label exchange
+	choice
+		`	"Yes, in the territory of some aliens far to the north of here."`
+			goto hai
+		`	"Yes, but I would prefer not to tell you where."`
+
+	`	"That is understandable," he says. "I am a businessman and I understand how valuable certain trade secrets can be. But perhaps I can interest you in a mutually profitable endeavor?"`
+		goto more
+
+	label hai
+	`	"Intriguing," he sings. "Are they aware of how valuable these stones are?" You tell him about the Hai, that they are an old species and that to them the Key Stones are just good luck charms. "Perhaps they have forgotten the true use of the Stones," says the man. "This may give us an opportunity for a mutually profitable endeavor."`
+
+	label more
+	`	"Tell me more," you say.`
+	`	He says, "If you could fetch me a large supply of these stones, say fifty of them, I would purchase them from you for a high enough price that you would earn a tidy profit. What do you say?"`
+	choice
+		`	"Sure, I would be glad to accept that deal."`
+		`	"Sorry, I'm really not interested in doing business with you Remnant folks."`
+			decline
+
+	`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
+		accept
+
+
+
+conversation "remnant key stones done"
+	`You visit the local outfitter and tell the manager that you have brought a shipment of "Quantum Keystones" to sell to him. He is overjoyed, and gladly pays you six million credits for them. You can't help noticing that based on how much the Key Stones sell for here, he will be earning even more profit than you did, even though you did nearly all the work.`
+	`	"You have made a valuable contribution to our people by doing this," he says. "These stones will allow more of our ships to explore the Ember Waste and discover the secrets that it holds."`
+
+
+
 mision "Remnant: Key Stones (Pre-Hai) 1"
 	name "Key Stones"
 	description "The manager of the outfitter on <planet> is interested in finding alternative sources of Key Stones. The Remnant have explored the entire Ember Waste, so you will need to search elsewhere for these stones."
@@ -328,27 +403,7 @@ mision "Remnant: Key Stones (Pre-Hai) 1"
 			has "Remnant: Defense 3: done"
 	on offer
 		require "Quantum Keystone" 0
-		conversation
-			`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. "Greetings, outsider," he says. "I have heard many good things about you and your assistance to our people. Would you be interested in going on a quest for me?"`
-			choice
-				`	"What kind of quest?"`
-					goto quest
-				`	"Sorry, I'm not interested."`
-			
-			`	"Please, I assure you, this quest will be very lucrative for you.`
-			
-			label quest
-			`	"You may have noticed the red anomalies scattered within this region of space. What you may not have known is that these are wormholes, accessible only with the possession of a Quantum Key Stone. My people highly value these Key Stones because of this, but our mines produce very few of them." The manager shows you a Key Stone that he has with him.`
-			scene "outfit/keystone"`
-			`	"We have explored all of the Ember Waste, but have been unable to find any large concentrations of these stones."
-			`	"You seem to be able to easily explore outside of this region. If you manage to discover a source of Key Stones outside of the Ember Waste, would you please inform me of them?"`
-			choice
-				`	"If I find anything, I'll let you know."`
-				`	"No thanks. This seems like a wild goose chase to me."`
-					decline
-			
-			`	The outfitter manager thanks you. "We'll discuss payment once you return," he says.`
-				accept
+		conversation "remnant key stones"
 		
 	to complete
 		has "Remnant: Found Keystones: offered"
@@ -378,38 +433,14 @@ mission "Remnant: Key Stones (Pre-Hai) 2"
 	to offer
 		has "Remnant: Key Stones (Pre-Hai): done"
 	on offer
-		conversation
-			`You find the outfitter manager and tell him that you have good news. "You found another world where these stones can be mined?" he asks.`
-			choice
-				`	"Yes, in the territory of some aliens far to the north of here."`
-					goto hai
-				`	"Yes, but I would prefer not to tell you where."`
-
-			`	"That is understandable," he says. "I am a businessman and I understand how valuable certain trade secrets can be. But perhaps I can interest you in a mutually profitable endeavor?"`
-				goto more
-
-			label hai
-			`	"Intriguing," he sings. "Are they aware of how valuable these stones are?" You tell him about the Hai, that they are an old species and that to them the Key Stones are just good luck charms. "Perhaps they have forgotten the true use of the Stones," says the man. "This may give us an opportunity for a mutually profitable endeavor."`
-
-			label more
-			`	"Tell me more," you say.`
-			`	He says, "If you could fetch me a large supply of these stones, say fifty of them, I would purchase them from you for a high enough price that you would earn a tidy profit. What do you say?"`
-			choice
-				`	"Sure, I would be glad to accept that deal."`
-				`	"Sorry, I'm really not interested in doing business with you Remnant folks."`
-					decline
-
-			`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
-				accept
+		conversation "remnant key stones"
 			
 	on visit
 		dialog `You have returned to <planet>, but you don't have 50 "Quantum Keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
 	on complete
 		outfit "Quantum Keystone" -50
 		payment 6000000
-		conversation
-			`You visit the local outfitter and tell the manager that you have brought a shipment of "Quantum Keystones" to sell to him. He is overjoyed, and gladly pays you six million credits for them. You can't help noticing that based on how much the Key Stones sell for here, he will be earning even more profit than you did, even though you did nearly all the work.`
-			`	"You have made a valuable contribution to our people by doing this," he says. "These stones will allow more of our ships to explore the Ember Waste and discover the secrets that it holds."`
+		conversation "remnant key stones done"
 	
 	
 	
@@ -427,50 +458,14 @@ mision "Remnant: Key Stones (Hai)"
 			has "Remnant: Defense 3: done"
 	on offer
 		require "Quantum Keystone" 0
-		conversation
-			`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. "Greetings, outsider," he says. "I have heard many good things about you and your assistance to our people. Would you be interested in going on a quest for me?"`
-			choice
-				`	"What kind of quest?"`
-					goto quest
-				`	"Sorry, I'm not interested."`
-			
-			`	"Please, I assure you, this quest will be very lucrative for you.`
-			
-			label quest
-			`	"You may have noticed the red anomalies scattered within this region of space. What you may not have known is that these are wormholes, accessible only with the possession of a Quantum Key Stone. My people highly value these Key Stones because of this, but our mines produce very few of them." The manager shows you a Key Stone that he has with him.`
-			scene "outfit/keystone"
-			`	"I've seen that before," you say.`
-			`	He looks at you with surprise. "You found another world where these stones can be mined?"`
-			choice
-				`	"Yes, in the territory of some aliens far to the north of here."`
-					goto hai
-				`	"Yes, but I would prefer not to tell you where."`
-
-			`	"That is understandable," he says. "I am a businessman and I understand how valuable certain trade secrets can be. But perhaps I can interest you in a mutually profitable endeavor?"`
-				goto more
-
-			label hai
-			`	"Intriguing," he sings. "Are they aware of how valuable these stones are?" You tell him about the Hai, that they are an old species and that to them the Key Stones are just good luck charms. "Perhaps they have forgotten the true use of the Stones," says the man. "This may give us an opportunity for a mutually profitable endeavor."`
-
-			label more
-			`	"Tell me more," you say.`
-			`	He says, "If you could fetch me a large supply of these stones, say fifty of them, I would purchase them from you for a high enough price that you would earn a tidy profit. What do you say?"`
-			choice
-				`	"Sure, I would be glad to accept that deal."`
-				`	"Sorry, I'm really not interested in doing business with you Remnant folks."`
-					decline
-
-			`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
-				accept
+		conversation "remnant key stones"
 			
 	on visit
 		dialog `You have returned to <planet>, but you don't have 50 "Quantum Keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
 	on complete
 		outfit "Quantum Keystone" -50
 		payment 6000000
-		conversation
-			`You visit the local outfitter and tell the manager that you have brought a shipment of "Quantum Keystones" to sell to him. He is overjoyed, and gladly pays you six million credits for them. You can't help noticing that based on how much the Key Stones sell for here, he will be earning even more profit than you did, even though you did nearly all the work.`
-			`	"You have made a valuable contribution to our people by doing this," he says. "These stones will allow more of our ships to explore the Ember Waste and discover the secrets that it holds."`
+		conversation "remnant key stones done"
 		
 
 
@@ -484,38 +479,14 @@ mission "Remnant: Key Stones"
 		not "Remnant: Key Stones (Hai): offered"
 	on offer
 		require "Quantum Keystone"
-		conversation
-			`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. He says, "I could not help but notice that you have a Key Stone that looks different from the ones from our mines. Have you found another world where these stones can be mined?"`
-			choice
-				`	"Yes, in the territory of some aliens far to the north of here."`
-					goto hai
-				`	"Yes, but I would prefer not to tell you where."`
-
-			`	"That is understandable," he says. "I am a businessman and I understand how valuable certain trade secrets can be. But perhaps I can interest you in a mutually profitable endeavor?"`
-				goto more
-
-			label hai
-			`	"Intriguing," he sings. "Are they aware of how valuable these stones are?" You tell him about the Hai, that they are an old species and that to them the Key Stones are just good luck charms. "Perhaps they have forgotten the true use of the Stones," says the man. "This may give us an opportunity for a mutually profitable endeavor."`
-
-			label more
-			`	"Tell me more," you say.`
-			`	He says, "If you could fetch me a large supply of these stones, say fifty of them, I would purchase them from you for a high enough price that you would earn a tidy profit. What do you say?"`
-			choice
-				`	"Sure, I would be glad to accept that deal."`
-				`	"Sorry, I'm really not interested in doing business with you Remnant folks."`
-					decline
-
-			`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
-				accept
+		conversation "remnant key stones"
 	
 	on visit
 		dialog `You have returned to <planet>, but you don't have 50 "Quantum Keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
 	on complete
 		outfit "Quantum Keystone" -50
 		payment 6000000
-		conversation
-			`You visit the local outfitter and tell the manager that you have brought a shipment of "Quantum Keystones" to sell to him. He is overjoyed, and gladly pays you six million credits for them. You can't help noticing that based on how much the Key Stones sell for here, he will be earning even more profit than you did, even though you did nearly all the work.`
-			`	"You have made a valuable contribution to our people by doing this," he says. "These stones will allow more of our ships to explore the Ember Waste and discover the secrets that it holds."`
+		conversation "remnant key stones done"
 
 
 
