@@ -54,7 +54,7 @@ void InitConsole();
 
 
 
-// Entry point for the executable "EndlessSky.exe"
+// Entry point for the EndlessSky executable 
 int main(int argc, char *argv[])
 {
 	// Handle command-line arguments
@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
 	
 	GameData::LoadShaders();
 	
-	// Show something other than a blank window while we get going.
+	// Show something other than a blank window.
 	GameWindow::Step();
 	
 	Audio::Init(GameData::Sources());
@@ -145,11 +145,12 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 	// If there are both menuPanels and gamePanels, then the menuPanels take
 	// priority over the gamePanels. The gamePanels will not be shown until
 	// the stack of menuPanels is empty.
-	
 	UI gamePanels;
-	// MenuPanels is used for the panels related to pilot creation, preferences,
+	
+	// menuPanels is used for the panels related to pilot creation, preferences,
 	// game loading and game saving.
 	UI menuPanels;
+	
 	menuPanels.Push(new MenuPanel(player, gamePanels));
 	if(!conversation.IsEmpty())
 		menuPanels.Push(new ConversationPanel(player, conversation));
@@ -163,17 +164,22 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 			
 	bool showCursor = true;
 	int cursorTime = 0;
-	int frameRate = 60; // GameWindow::MonitorHz; // You could match the rate here.
+	int frameRate = 60; 
 	FrameTimer timer(frameRate);
 	bool isPaused = false;
+	
 	// If fast forwarding, keep track of whether the current frame should be drawn.
 	int skipFrame = 0;
+	
 	// Limit how quickly full-screen mode can be toggled.
 	int toggleTimeout = 0;
+	
+	// IsDone becomes true when the game is quit.
 	while(!menuPanels.IsDone())
 	{
 		if(toggleTimeout)
 			--toggleTimeout;
+			
 		// Handle any events that occurred in this frame.
 		SDL_Event event;
 		while(SDL_PollEvent(&event))
@@ -190,11 +196,10 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 			{
 				isPaused = !isPaused;
 			}
-			// User pressed the Menu key
 			else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
 					&& Command(event.key.keysym.sym).Has(Command::MENU)
 					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
-			{
+			{   // User pressed the Menu key
 				menuPanels.Push(shared_ptr<Panel>(
 					new MenuPanel(player, gamePanels)));
 			}
@@ -352,18 +357,20 @@ Conversation LoadConversation()
 #ifdef _WIN32
 void InitConsole()
 {
-	// If both stdout and stderr are already initialized (e.g. writing to a file), do nothing.
 	const int UNINITIALIZED = -2;
 	bool redirectStdout = _fileno(stdout) == UNINITIALIZED;
 	bool redirectStderr = _fileno(stderr) == UNINITIALIZED;
 	bool redirectStdin = _fileno(stdin) == UNINITIALIZED;
-
+	
+	// Bail if stdin, stdout, and stderr are already initialized (e.g. writing to a file)
 	if(!redirectStdout && !redirectStderr && !redirectStdin)
 		return;
 	
+	// Bail if we fail to attach to the console
 	if(!AttachConsole(ATTACH_PARENT_PROCESS) && !AllocConsole())
 		return;
-
+	
+	// Perform console redirection.
 	if(redirectStdout && freopen("CONOUT$", "w", stdout))
 		setvbuf(stdout, nullptr, _IOFBF, 4096);
 	if(redirectStderr && freopen("CONOUT$", "w", stderr))
