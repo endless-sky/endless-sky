@@ -28,7 +28,7 @@ public:
 	static int Height();
 	
 	// The refresh rate of the current display
-	static int MonitorHz();
+	//static int MonitorHz();
 
 	// Returns true if the main window is in full screen mode
 	static bool IsFullscreen();
@@ -61,7 +61,5 @@ public:
 	// Checks for video system errors and records those as well.
 	static int DoError(const std::string& message);
 };
-
-
 
 #endif

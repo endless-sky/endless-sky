@@ -29,11 +29,9 @@ using namespace std;
 namespace {
 	SDL_Window *mainWindow;
 	SDL_GLContext context;
-	int minWidth = 640;
-	int minHeight = 480;
-	int width;
-	int height;
-	int monitorHz;
+	int width = 0;
+	int height = 0;
+	//int monitorHz;
 	bool hasSwizzle;
 		
 	// Logs SDL errors and returns 1 if found
@@ -71,10 +69,10 @@ int GameWindow::Height()
 
 
 
-int GameWindow::MonitorHz()
-{
-	return monitorHz;
-}
+//int GameWindow::MonitorHz()
+//{
+//	return monitorHz;
+//}
 
 
 
@@ -105,7 +103,7 @@ int GameWindow::Init()
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) 
 		return 1;
 	
-	// Start with a clear the error state
+	// Start with a clear error state
 	SDL_GetError();
 	
 	// Get details about the current display.
@@ -114,6 +112,8 @@ int GameWindow::Init()
 		return DoError("Unable to query monitor resolution!");
 		
 	// Make the window just slightly smaller than the monitor resolution.
+	int minWidth = 640;
+	int minHeight = 480;
 	int maxWidth = mode.w;
 	int maxHeight = mode.h;
 	if(maxWidth < minWidth || maxHeight < minHeight)
@@ -130,7 +130,7 @@ int GameWindow::Init()
 		windowHeight = min(windowHeight, Screen::RawHeight());
 	}
 	
-	monitorHz = mode.refresh_rate;
+	//monitorHz = mode.refresh_rate;
 	
 	// Settings that must be declared before the window creation.
 	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
