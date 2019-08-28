@@ -322,7 +322,6 @@
 		A96863511AE6FD0C004FE1FE /* Personality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Personality.h; path = source/Personality.h; sourceTree = "<group>"; };
 		A96863521AE6FD0C004FE1FE /* Phrase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Phrase.cpp; path = source/Phrase.cpp; sourceTree = "<group>"; };
 		A96863531AE6FD0C004FE1FE /* Phrase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Phrase.h; path = source/Phrase.h; sourceTree = "<group>"; };
-		A96863541AE6FD0C004FE1FE /* pi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pi.h; path = source/pi.h; sourceTree = "<group>"; };
 		A96863551AE6FD0C004FE1FE /* Planet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Planet.cpp; path = source/Planet.cpp; sourceTree = "<group>"; };
 		A96863561AE6FD0C004FE1FE /* Planet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Planet.h; path = source/Planet.h; sourceTree = "<group>"; };
 		A96863571AE6FD0C004FE1FE /* PlanetPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlanetPanel.cpp; path = source/PlanetPanel.cpp; sourceTree = "<group>"; };
@@ -430,6 +429,7 @@
 		A9CC52701950C9F6004E4E22 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A9CC52711950C9F6004E4E22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A9D40D19195DFAA60086EE52 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		B51D1C1923170D9200026D25 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = global.h; path = source/global.h; sourceTree = "<group>"; };
 		B5DDA6922001B7F600DBA76A /* News.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = News.cpp; path = source/News.cpp; sourceTree = "<group>"; };
 		B5DDA6932001B7F600DBA76A /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = News.h; path = source/News.h; sourceTree = "<group>"; };
 		DF8D57DF1FC25842001525DA /* Dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dictionary.cpp; path = source/Dictionary.cpp; sourceTree = "<group>"; };
@@ -465,6 +465,7 @@
 		654D33611BE92C9200D1E5AB /* source */ = {
 			isa = PBXGroup;
 			children = (
+				B51D1C1923170D9200026D25 /* global.h */,
 				A96862CD1AE6FD0A004FE1FE /* Account.cpp */,
 				A96862CE1AE6FD0A004FE1FE /* Account.h */,
 				A96862CF1AE6FD0A004FE1FE /* AI.cpp */,
@@ -632,7 +633,6 @@
 				A96863511AE6FD0C004FE1FE /* Personality.h */,
 				A96863521AE6FD0C004FE1FE /* Phrase.cpp */,
 				A96863531AE6FD0C004FE1FE /* Phrase.h */,
-				A96863541AE6FD0C004FE1FE /* pi.h */,
 				A96863551AE6FD0C004FE1FE /* Planet.cpp */,
 				A96863561AE6FD0C004FE1FE /* Planet.h */,
 				628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */,
