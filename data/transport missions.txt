@@ -561,19 +561,19 @@ mission "Deep Archaeology 3"
 	
 	npc
 		personality waiting
-		government Republic
+		government "Deep Security"
 		ship "Raven (Afterburner)" "D.P.S. Wyrd"
 	
 	npc
 		personality waiting
 		system Aspidiske
-		government Republic
+		government "Deep Security"
 		ship "Raven (Afterburner)" "D.P.S. Skuld"
 	
 	npc
 		personality waiting
 		system Gomeisa
-		government Republic
+		government "Deep Security"
 		ship "Raven (Afterburner)" "D.P.S. Verthandi"
 	
 	on complete
