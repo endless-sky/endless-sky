@@ -432,12 +432,6 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 	engine -31.5 75.5
 	engine 31.5 75.5
 	engine 0 78
-	gun -27 -28.5 "Plasma Cannon"
-	gun 27 -28.5 "Plasma Cannon"
-	gun -37.5 -14 "Plasma Cannon"
-	gun 37.5 -14 "Plasma Cannon"
-	turret 0 -38.5 "Anti-Missile Turret"
-	turret 0 -3.5 "Quad Blaster Turret"
 	description "One of the biggest complaints about Betelgeuse's venerable classic from younger pilots is that it's heavy and slow. A previous owner of this ship also believed so, and has fitted another engine port, in addition to setting aside more space for outfits and giving the old ship some new hull plating and shield emitters."
 
 
