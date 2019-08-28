@@ -462,10 +462,12 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	gun -27.5 -33.5 "Plasma Cannon"
-	gun 27.5 -33.5 "Plasma Cannon"
-	gun -38.5 -18.5 "Plasma Cannon"
-	gun 38.5 -18.5 "Plasma Cannon"
+	gun -27.5 -33.5 "Particle Cannon"
+	gun 27.5 -33.5 "Particle Cannon"
+	gun -38.5 -18.5 "Particle Cannon"
+	gun 38.5 -18.5 "Particle Cannon"
+	turret 0 -44 "Quad Blaster Turret"
+	turret 0 -2.5 "Quad Blaster Turret"
 	description "This Medium Warship with one of the heaviest armaments possible just got heavier. With more outfit space, giant gun ports, extra hull plating, and more shield emitters - this blast from the past will make its targets history."
 
 
