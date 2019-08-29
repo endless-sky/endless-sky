@@ -568,7 +568,7 @@ void Engine::Step(bool isActive)
 	if(flagship && flagship->Hull())
 	{
 		Point shipFacingUnit(0., -1.);
-		if(Preferences::Has("Rotate flagship in HUD"))
+		if(Preferences::Has("Rotate flagship in HUD") || zoom < 1)
 			shipFacingUnit = flagship->Facing().Unit();
 		
 		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step));
@@ -592,6 +592,10 @@ void Engine::Step(bool isActive)
 		info.SetBar("shields", flagship->Shields());
 		info.SetBar("hull", flagship->Hull(), 20.);
 		info.SetBar("disabled hull", min(flagship->Hull(), flagship->DisabledHull()), 20.);
+		if(flagshipHit)
+		{
+			info.SetBar("hit", --flagshipHit > 0 ?  1. : 0, 1.);
+		}
 	}
 	info.SetString("credits",
 		Format::Credits(player.Accounts().Credits()) + " credits");
@@ -683,7 +687,11 @@ void Engine::Step(bool isActive)
 			info.SetBar("target shields", target->Shields());
 			info.SetBar("target hull", target->Hull(), 20.);
 			info.SetBar("target disabled hull", min(target->Hull(), target->DisabledHull()), 20.);
-		
+			if(targetHit)
+			{
+				info.SetBar("target hit", --targetHit > 0 ?  1. : 0, 1.);
+			}
+
 			// The target area will be a square, with sides proportional to the average
 			// of the width and the height of the sprite.
 			double size = (target->Width() + target->Height()) * .35;
@@ -913,6 +921,12 @@ void Engine::Draw() const
 	{
 		Point center = interface->GetPoint("target");
 		double radius = interface->GetValue("target radius");
+		PointerShader::Draw(center, targetVector.Unit(), 10.f, 10.f, radius, Color(1.f));
+	}
+	if(interface->HasPoint("player target") && targetVector.Length() > 20.)
+	{
+		Point center = interface->GetPoint("player target");
+		double radius = interface->GetValue("player target radius");
 		PointerShader::Draw(center, targetVector.Unit(), 10.f, 10.f, radius, Color(1.f));
 	}
 	
@@ -1762,6 +1776,21 @@ void Engine::DoCollisions(Projectile &projectile)
 			int eventType = hit->TakeDamage(projectile);
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
+
+			shared_ptr<const Ship> flagship = player.FlagshipPtr();
+			if(flagship)
+			{
+				if(flagship == hit)
+				{
+					// Shows the flagship hit detection for 200 milliseconds.
+					flagshipHit = 60 / 5;
+				}
+				else if(flagship->GetTargetShip() == hit)
+				{
+					// Shows the target hit detection for 200 milliseconds.
+					targetHit = 60 / 5;
+				}
+			}
 		}
 		
 		if(hit)

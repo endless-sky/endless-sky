@@ -174,6 +174,10 @@ private:
 	Point targetVector;
 	Point targetUnit;
 	int targetSwizzle = -1;
+
+	int flagshipHit;
+	int targetHit;
+
 	EscortDisplay escorts;
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;

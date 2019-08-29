@@ -40,6 +40,7 @@ color "heat" .70 .43 .43 .75
 color "overheat" .70 .61 .43 .75
 color "energy" .6 .6 .6 .75
 color "fuel" .70 .62 .43 .75
+color "hit" 5. .2 .2 1.
 
 color "flagship highlight" .5 .8 .2 0.
 
@@ -318,6 +319,10 @@ interface "hud"
 		color "medium"
 		align right
 	
+	point "player target"
+		center -75 155
+		dimensions 140 140
+	value "player target radius" 70
 	outline "player sprite"
 		center -75 155
 		dimensions 70 70
@@ -336,6 +341,11 @@ interface "hud"
 		dimensions 110 110
 		color "disabled hull"
 		size 1.5
+	ring "hit"
+		center -75 155
+		dimensions 100 100
+		color "hit"
+		size 3
 	bar "fuel"
 		from -53.5 425
 		dimensions 0 -192
@@ -410,6 +420,11 @@ interface "hud"
 		dimensions 110 110
 		color "disabled hull"
 		size 1.5
+	ring "target hit"
+		center 75 315
+		dimensions 100 100
+		color "hit"
+		size 3
 	
 	visible if "range display"
 	sprite "ui/range"
