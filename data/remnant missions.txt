@@ -746,7 +746,7 @@ mission "Remnant: Heavy Laser"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a Starling. "Greetings, <first>. I'll be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
 				goto next
 			label familiar
-			`	You recall that Taely is responsible for the shipyards, so you head straight there and ask the nearest mechanic. They direct you to a large hanger tucked into a cliff face, where you find her working at a terminal filled with schematics. Behind her, the room fades quickly into darkness where you can faintly make out what appears to be a large tank and a lot of whirring machinery. As you approach she looks up from her work and turns to face you. "Ah, you have returned. Do you have something new for me?"`
+			`	You recall that Taely is responsible for the shipyards, so you head straight there and ask the nearest mechanic. They direct you to a large hangar tucked into a cliff face, where you find her working at a terminal filled with schematics. Behind her, the room fades quickly into darkness where you can faintly make out what appears to be a large tank and a lot of whirring machinery. As you approach she looks up from her work and turns to face you. "Ah, you have returned. Do you have something new for me?"`
 			label next
 			`	You lead her back to your ship, where you show her the heavy laser. "A laser cannon?" she asks. "Our records indicate that humanity had primitive laser technology at the time of the Exodus, but nothing that would be considered useful as weapons." She pauses to look down at her scanner. "And yet my scans indicate that they are capable of significant power output." She pauses for a moment before continuing, "These could be quite useful to examine more thoroughly. Please deliver two of these heavy lasers to a research team on <planet>."`
 				accept
@@ -843,7 +843,7 @@ mission "Remnant: Catalytic Ramscoop"
 		payment 1390000
 		"remnant met taely" ++
 		conversation
-			`As the <ship> settles onto the pad closest to the research laboratory, you can see several people exiting an adjacent hanger with a trailer pulled by a camel. They quickly approach your landing pad and wait for you to complete your shutdown routines before boarding and starting to unload the ramscoops. Once they are done one of the comes up to you and hands you your payment of <payment>. "Thank you for the delivery, Captain. We are looking forward to seeing what they have done differently."`
+			`As the <ship> settles onto the pad closest to the research laboratory, you can see several people exiting an adjacent hangar with a trailer pulled by a camel. They quickly approach your landing pad and wait for you to complete your shutdown routines before boarding and starting to unload the ramscoops. Once they are done one of the comes up to you and hands you your payment of <payment>. "Thank you for the delivery, Captain. We are looking forward to seeing what they have done differently."`
 
 
 
