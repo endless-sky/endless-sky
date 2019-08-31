@@ -543,9 +543,22 @@ Files:
  images/ship/hauler?iii*
  images/ship/modified argosy*
  images/ship/bastion*
+ images/ship/behemoth*
+ images/ship/heavy?shuttle*
+ images/ship/firebird*
+ images/ship/leviathan*
+ images/ship/shuttle*
+ images/ship/star?queen*
  Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
+
+Files:
+ images/ship/mfirebird*
+ images/ship/mleviathan*
+Copyright: Maximilian Korber
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
