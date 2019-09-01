@@ -867,10 +867,10 @@ mission "Remnant: Electron Beam"
 				`	(Yes.)`
 			branch familiar
 				has "Remnant: Tech Retrieval: done"
-			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely closing up the panel on a thasher turret. "Greetings, <first>. You have good timing: I was just finishing." She reseals the hatch, and drops to the ground on a tether. "So, did you recover something?"`
+			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely closing up the panel on a thrasher turret. "Greetings, <first>. You have good timing: I was just finishing." She reseals the hatch, and drops to the ground on a tether. "So, did you recover something?"`
 				goto next
 			label familiar
-			`	Given what you know about Taely, you decide to skip the spaceport proper and head for the shipyard. After a frustrating half hour spent wandering around tryping to find her, you finally encounter a helpful weapons tech who says they can check the weapon on Taely's behalf.`
+			`	Given what you know about Taely, you decide to skip the spaceport proper and head for the shipyard. After a frustrating half hour spent wandering around trying to find her, you finally encounter a helpful weapons tech who says they can check the weapon on Taely's behalf.`
 			label next
 			`	You accompany her back to your ship, where she examines the electron beam. "This could be useful. Focusing energy into continuous beams has been a popular idea for centuries. It is very useful to know that they have finally managed to make it into an effective weapon.`
 				accept
