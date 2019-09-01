@@ -2555,7 +2555,7 @@ mission "Recycle garbage"
 
 mission "Bounty Hunting (Small)"
 	name "Hunt down the <npc>"
-	description "A pirate vessel named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A small pirate vessel named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2598,7 +2598,7 @@ mission "Bounty Hunting (Small)"
 
 mission "Bounty Hunting (Medium)"
 	name "Hunt down the <npc>"
-	description "A pirate vessel named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A medium pirate vessel named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2635,7 +2635,7 @@ mission "Bounty Hunting (Medium)"
 
 mission "Bounty Hunting (Big)"
 	name "Hunt down the <npc>"
-	description "A pirate vessel named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A large pirate vessel named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2676,7 +2676,7 @@ mission "Bounty Hunting (Big)"
 
 mission "Bounty Hunting (Small, Boarding, Entering)"
 	name "Board the <npc>"
-	description "A wanted criminal is fleeing in a stolen hot rod ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminal to <destination> to stand trial on <date>. Reward for capture: <payment>."
+	description "A wanted criminal is fleeing in a small stolen hot rod ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminal to <destination> to stand trial on <date>. Reward for capture: <payment>."
 	passengers 1
 	deadline 14
 	repeat
@@ -2715,7 +2715,7 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 
 mission "Bounty Hunting (Medium, Boarding, Entering)"
 	name "Board the <npc>"
-	description "A wanted criminal and several accomplices are fleeing in a stolen hot rod ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminals to <destination> to stand trial on <date>. Reward for capture: <payment>."
+	description "A wanted criminal and several accomplices are fleeing in a large stolen hot rod ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminals to <destination> to stand trial on <date>. Reward for capture: <payment>."
 	passengers 4
 	deadline 14
 	repeat
@@ -2756,7 +2756,7 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 
 mission "Bounty Hunting (Marauder I)"
 	name "Hunt down the <npc>"
-	description "A Marauder vessel named the <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of small Marauder ships, lead by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2784,7 +2784,7 @@ mission "Bounty Hunting (Marauder I)"
 
 mission "Bounty Hunting (Marauder II)"
 	name "Hunt down the <npc>"
-	description "A Marauder vessel named the <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of small Marauder ships, lead by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2812,7 +2812,7 @@ mission "Bounty Hunting (Marauder II)"
 
 mission "Bounty Hunting (Marauder III)"
 	name "Hunt down the <npc>"
-	description "A Marauder vessel named the <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of small Marauder ships, lead by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2840,7 +2840,7 @@ mission "Bounty Hunting (Marauder III)"
 
 mission "Bounty Hunting (Marauder IV)"
 	name "Hunt down the <npc>"
-	description "A Marauder vessel named the <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of medium Marauder ships, lead by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2868,7 +2868,7 @@ mission "Bounty Hunting (Marauder IV)"
 
 mission "Bounty Hunting (Marauder V)"
 	name "Hunt down the <npc>"
-	description "A Marauder vessel named the <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of medium Marauder ships, lead by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2897,7 +2897,7 @@ mission "Bounty Hunting (Marauder V)"
 
 mission "Bounty Hunting (Marauder VI)"
 	name "Hunt down the <npc>"
-	description "A Marauder vessel named the <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of medium Marauder ships, lead by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2925,7 +2925,7 @@ mission "Bounty Hunting (Marauder VI)"
 
 mission "Bounty Hunting (Marauder VII)"
 	name "Hunt down the <npc>"
-	description "A Marauder vessel named the <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of large Marauder ships, lead by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2949,7 +2949,7 @@ mission "Bounty Hunting (Marauder VII)"
 
 mission "Bounty Hunting (Marauder VIII)"
 	name "Hunt down the <npc>"
-	description "A Marauder vessel named the <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of large Marauder ships, lead by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2973,7 +2973,7 @@ mission "Bounty Hunting (Marauder VIII)"
 
 mission "Bounty Hunting (Marauder IX)"
 	name "Hunt down the <npc>"
-	description "A Marauder vessel named the <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of large Marauder ships, lead by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
