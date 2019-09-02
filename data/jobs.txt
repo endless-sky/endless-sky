@@ -2714,7 +2714,7 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal."
 
 mission "Bounty Hunting (Medium, Boarding, Entering)"
-	name "Large stolen ship near <system>"
+	name "Stolen warship near <system>"
 	description "A wanted criminal and several accomplices are fleeing in a large stolen hot rod ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminals to <destination> to stand trial on <date>. Reward for capture: <payment>."
 	passengers 4
 	deadline 14
