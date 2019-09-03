@@ -358,15 +358,21 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		int available = 0;
 		// Requiring the player to have 0 of this outfit means all ships and all cargo holds
 		// must be checked, even if the ship is disabled, parked, or out-of-system.
-		bool checkAll = !it.second;
-		if(checkAll)
+		if(!it.second)
 		{
+			// If the required count is 0, the player must not have any of the outfit.
 			for(const auto &ship : player.Ships())
 				if(!ship->IsDestroyed())
 				{
-					available += ship->Cargo().Get(it.first);
-					available += ship->OutfitCount(it.first);
+					if(ship->Cargo().Get(it.first))
+						return false;
+					if(ship->OutfitCount(it.first))
+						return false;
 				}
+			
+			// When landed, ships pool their cargo into the player's cargo, so check that too.
+			if(player.Cargo().Get(it.first))
+				return false;
 		}
 		else
 		{
@@ -378,10 +384,6 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		}
 		
 		if(available < it.second)
-			return false;
-		
-		// If the required count is 0, the player must not have any of the outfit.
-		if(checkAll && available)
 			return false;
 	}
 	
