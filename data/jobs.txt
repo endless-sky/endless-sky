@@ -2597,7 +2597,7 @@ mission "Bounty Hunting (Small)"
 		dialog phrase "generic bounty hunting payment dialog"
 
 mission "Bounty Hunting (Medium)"
-	name "Pirate near <system>"
+	name "Wanted pirate near <system>"
 	description "A medium pirate warship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
@@ -2634,7 +2634,7 @@ mission "Bounty Hunting (Medium)"
 		dialog phrase "generic bounty hunting payment dialog"
 
 mission "Bounty Hunting (Big)"
-	name "Pirate warlord spotted near <system>"
+	name "Wanted pirate warlord spotted near <system>"
 	description "A heavy warship known as the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
