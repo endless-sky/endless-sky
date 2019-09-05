@@ -2554,7 +2554,7 @@ mission "Recycle garbage"
 
 
 mission "Bounty Hunting (Small)"
-	name "Wanted privateer near <system>"
+	name "Wanted bandit near <system>"
 	description "A low-end pirate warship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
@@ -2634,7 +2634,7 @@ mission "Bounty Hunting (Medium)"
 		dialog phrase "generic bounty hunting payment dialog"
 
 mission "Bounty Hunting (Big)"
-	name "Wanted pirate warlord spotted near <system>"
+	name "Wanted warlord near <system>"
 	description "A heavy warship known as the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
