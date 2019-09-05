@@ -58,8 +58,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <string>
 
-#include <iostream>
-
 using namespace std;
 
 namespace {
