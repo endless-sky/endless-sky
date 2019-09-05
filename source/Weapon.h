@@ -59,6 +59,8 @@ public:
 	int BurstCount() const;
 	int Homing() const;
 	
+	int AmmoUsage() const;
+	
 	int MissileStrength() const;
 	int AntiMissile() const;
 	// Weapons of the same type will alternate firing (streaming) rather than
@@ -159,6 +161,8 @@ private:
 	int burstCount = 1;
 	int homing = 0;
 	
+	int ammoUsage = 1;
+	
 	int missileStrength = 0;
 	int antiMissile = 0;
 	
@@ -214,6 +218,8 @@ inline double Weapon::Reload() const { return reload; }
 inline double Weapon::BurstReload() const { return burstReload; }
 inline int Weapon::BurstCount() const { return burstCount; }
 inline int Weapon::Homing() const { return homing; }
+
+inline int Weapon::AmmoUsage() const { return ammoUsage; }
 
 inline int Weapon::MissileStrength() const { return missileStrength; }
 inline int Weapon::AntiMissile() const { return antiMissile; }
