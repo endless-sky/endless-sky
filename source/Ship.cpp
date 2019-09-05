@@ -1624,11 +1624,11 @@ void Ship::DoGeneration()
 	}
 	// Handle ionization effects, etc.
 	if(ionization)
-		ionization = max(0., .99 * ionization - attributes.Get("ion resistance"));
+		ionization = max(0., .99 * (ionization / (1 + attributes.get("ion protection")) - attributes.Get("ion resistance"));
 	if(disruption)
-		disruption = max(0., .99 * disruption - attributes.Get("disruption resistance"));
+		disruption = max(0., .99 * (disruption / (1 + attributes.get("disruption protection") - attributes.Get("disruption resistance"));
 	if(slowness)
-		slowness = max(0., .99 * slowness - attributes.Get("slowing resistance"));
+		slowness = max(0., .99 * (slowness / (1 + attributes.get("slowing protection") - attributes.Get("slowing resistance"));
 	
 	// When ships recharge, what actually happens is that they can exceed their
 	// maximum capacity for the rest of the turn, but must be clamped to the
