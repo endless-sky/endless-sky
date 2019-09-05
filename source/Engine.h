@@ -132,6 +132,39 @@ private:
 		int type;
 		double angle;
 	};
+
+	// Gathers ship damage information.
+	//
+	// Single projectiles (missiles) are associated to their respective event
+	// frame, while repetitive projectiles (beams, blasters,...) are cumulated
+	// over the last second to better represent their effect (otherwise, due to
+	// their low intensity, they would pass undetected at event-frame level).
+	class HitDetection {
+	public:
+		// Returns the overall damage on current frame and moves to next frame.
+		double Pop(std::shared_ptr<const Ship> ship);
+		// Adds the given repetitive damage to current frame detection.
+		// @param damage Frame-specific damage.
+		void OnRepetitiveHit(double damage);
+
+	private:
+		std::shared_ptr<const Ship> ship;
+
+		// Overall damage (both instantaneous damage (by missiles) and cumulative,
+		// repetitive damage (by non-missile weapons, like beams, blasters,...))
+		// on current frame.
+		double damage;
+		// Initial ship health on current frame.
+		double health;
+
+		// Cumulative non-missile damage.
+		double repetitiveDamage;
+		// Non-missile damage by frame on last second.
+		double repetitiveFrameDamages[60];
+
+		int retention;
+		int step = 0;
+	};
 	
 	
 private:
@@ -175,8 +208,8 @@ private:
 	Point targetUnit;
 	int targetSwizzle = -1;
 
-	int flagshipHit;
-	int targetHit;
+	HitDetection flagshipHitDetection;
+	HitDetection targetHitDetection;
 
 	EscortDisplay escorts;
 	std::vector<Status> statuses;

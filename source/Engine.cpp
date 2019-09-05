@@ -58,6 +58,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <string>
 
+#include <iostream>
+
 using namespace std;
 
 namespace {
@@ -592,10 +594,7 @@ void Engine::Step(bool isActive)
 		info.SetBar("shields", flagship->Shields());
 		info.SetBar("hull", flagship->Hull(), 20.);
 		info.SetBar("disabled hull", min(flagship->Hull(), flagship->DisabledHull()), 20.);
-		if(flagshipHit)
-		{
-			info.SetBar("hit", --flagshipHit > 0 ?  1. : 0, 1.);
-		}
+		info.SetBar("hit", flagshipHitDetection.Pop(flagship), 1);
 	}
 	info.SetString("credits",
 		Format::Credits(player.Accounts().Credits()) + " credits");
@@ -687,10 +686,7 @@ void Engine::Step(bool isActive)
 			info.SetBar("target shields", target->Shields());
 			info.SetBar("target hull", target->Hull(), 20.);
 			info.SetBar("target disabled hull", min(target->Hull(), target->DisabledHull()), 20.);
-			if(targetHit)
-			{
-				info.SetBar("target hit", --targetHit > 0 ?  1. : 0, 1.);
-			}
+			info.SetBar("target hit", targetHitDetection.Pop(target), 1);
 
 			// The target area will be a square, with sides proportional to the average
 			// of the width and the height of the sprite.
@@ -1773,22 +1769,26 @@ void Engine::DoCollisions(Projectile &projectile)
 		}
 		else if(hit)
 		{
+			double health = hit->Shields() + hit->Hull();
+
 			int eventType = hit->TakeDamage(projectile);
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
 
-			shared_ptr<const Ship> flagship = player.FlagshipPtr();
-			if(flagship)
+			// Non-missile hit?
+			if(!projectile.MissileStrength())
 			{
-				if(flagship == hit)
+				shared_ptr<const Ship> flagship = player.FlagshipPtr();
+				if(flagship)
 				{
-					// Shows the flagship hit detection for 200 milliseconds.
-					flagshipHit = 60 / 5;
-				}
-				else if(flagship->GetTargetShip() == hit)
-				{
-					// Shows the target hit detection for 200 milliseconds.
-					targetHit = 60 / 5;
+					HitDetection *hitDetection = flagship == hit ? &flagshipHitDetection
+							: flagship->GetTargetShip() == hit ? &targetHitDetection
+									: nullptr;
+					if(hitDetection)
+						// NOTE: Repetitive damage is weighted by projectile
+						// frequency to obtain frame-specific damage (DPF).
+						hitDetection->OnRepetitiveHit((health - (hit->Shields() + hit->Hull()))
+								/ projectile.GetWeapon().Reload());
 				}
 			}
 		}
@@ -2127,4 +2127,57 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 Engine::Status::Status(const Point &position, double outer, double inner, double radius, int type, double angle)
 	: position(position), outer(outer), inner(inner), radius(radius), type(type), angle(angle)
 {
+}
+
+double Engine::HitDetection::Pop(std::shared_ptr<const Ship> ship)
+{
+	static const double DAMAGE_SCALE = 20;
+
+	double currentHealth = ship->Shields() + ship->Hull();
+	if(ship != this->ship)
+	{
+		if(this->ship)
+		{
+			damage = 0;
+			retention = 0;
+			repetitiveDamage = 0;
+			fill_n(repetitiveFrameDamages, 60, 0);
+		}
+
+		this->ship = ship;
+	}
+	else
+	{
+		// Damage on current frame?
+		if(currentHealth < health)
+		{
+			damage = (health - currentHealth
+					+ (min(repetitiveFrameDamages[step] * 60, repetitiveDamage) - repetitiveFrameDamages[step]))
+							/ health * DAMAGE_SCALE;
+
+			// Keep the last damage for 200 milliseconds!
+			retention = 60 / 5;
+		}
+		// No damage on current frame: retention just finished?
+		else if(retention && !--retention)
+		{
+			damage = 0;
+		}
+
+		// Move to next frame!
+		step = (step + 1) % 60;
+
+		// Purge old tail frame!
+		repetitiveDamage -= repetitiveFrameDamages[step];
+		repetitiveFrameDamages[step] = 0;
+	}
+	health = currentHealth;
+
+	return damage;
+}
+
+void Engine::HitDetection::OnRepetitiveHit(double damage)
+{
+	repetitiveDamage += damage;
+	repetitiveFrameDamages[step] += damage;
 }

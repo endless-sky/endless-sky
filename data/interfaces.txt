@@ -346,6 +346,7 @@ interface "hud"
 		dimensions 100 100
 		color "hit"
 		size 3
+		mode "alpha"
 	bar "fuel"
 		from -53.5 425
 		dimensions 0 -192
@@ -425,6 +426,7 @@ interface "hud"
 		dimensions 100 100
 		color "hit"
 		size 3
+		mode "alpha"
 	
 	visible if "range display"
 	sprite "ui/range"

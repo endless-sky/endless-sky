@@ -174,6 +174,11 @@ private:
 	// This class handles "bar" and "ring" elements.
 	class BarElement : public Element {
 	public:
+		enum Mode {
+			LENGTH,
+			ALPHA
+		};
+	public:
 		BarElement(const DataNode &node, const Point &globalAnchor);
 		
 	protected:
@@ -188,6 +193,7 @@ private:
 		const Color *color = nullptr;
 		float width = 2.f;
 		bool isRing = false;
+		Mode mode = LENGTH;
 	};
 	
 	

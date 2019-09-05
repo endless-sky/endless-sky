@@ -606,6 +606,13 @@ bool Interface::BarElement::ParseLine(const DataNode &node)
 		color = GameData::Colors().Get(node.Token(1));
 	else if(node.Token(0) == "size" && node.Size() >= 2)
 		width = node.Value(1);
+	else if(node.Token(0) == "mode" && node.Size() >= 2)
+		if(node.Token(1) == "alpha")
+			mode = ALPHA;
+		else if(node.Token(1) == "length")
+			mode = LENGTH;
+		else
+			node.PrintTrace("Unrecognized interface element attribute value:");
 	else
 		return false;
 	
@@ -632,7 +639,18 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 		if(!rect.Width() || !rect.Height())
 			return;
 		
-		RingShader::Draw(rect.Center(), .5 * rect.Width(), width, value, *color, segments > 1. ? segments : 0.);
+		Color drawColor;
+		switch(mode) {
+		case ALPHA:
+			drawColor = color->Transparent(value);
+			value = 1;
+			break;
+		case LENGTH:
+		default:
+			drawColor = *color;
+			break;
+		}
+		RingShader::Draw(rect.Center(), .5 * rect.Width(), width, value, drawColor, segments);
 	}
 	else
 	{
