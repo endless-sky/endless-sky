@@ -57,7 +57,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else if(key == "ammo")
 		{
 			int usage = (child.Size() >= 3) ? child.Value(2) : 1;
-			ammoPair = make_pair(GameData::Outfits().Get(child.Token(1)), max(1, usage));
+			ammoPair = make_pair(GameData::Outfits().Get(child.Token(1)), max(0, usage));
 		}
 		else if(key == "icon")
 			icon = SpriteSet::Get(child.Token(1));
