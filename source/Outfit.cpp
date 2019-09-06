@@ -71,7 +71,7 @@ void Outfit::Load(const DataNode &node)
 		else if(child.Token(0) == "weapon")
 			LoadWeapon(child);
 		else if(child.Token(0) == "ammo" && child.Size() >= 2)
-			ammo = GameData::Outfits().Get(child.Token(1));
+			ammoPair = make_pair(GameData::Outfits().Get(child.Token(1)),0);
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 		{
 			description += child.Token(1);

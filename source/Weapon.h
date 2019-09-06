@@ -125,7 +125,7 @@ protected:
 	// default turnrate.
 	void SetTurretTurn(double rate);
 	
-	const Outfit *ammo = nullptr;
+	std::pair<const Outfit*,int> ammoPair;
 	
 	
 private:
@@ -160,8 +160,6 @@ private:
 	double burstReload = 1.;
 	int burstCount = 1;
 	int homing = 0;
-	
-	int ammoUsage = 1;
 	
 	int missileStrength = 0;
 	int antiMissile = 0;
@@ -218,8 +216,6 @@ inline double Weapon::Reload() const { return reload; }
 inline double Weapon::BurstReload() const { return burstReload; }
 inline int Weapon::BurstCount() const { return burstCount; }
 inline int Weapon::Homing() const { return homing; }
-
-inline int Weapon::AmmoUsage() const { return ammoUsage; }
 
 inline int Weapon::MissileStrength() const { return missileStrength; }
 inline int Weapon::AntiMissile() const { return antiMissile; }

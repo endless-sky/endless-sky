@@ -55,7 +55,12 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else if(key == "sound")
 			sound = Audio::Get(child.Token(1));
 		else if(key == "ammo")
-			ammo = GameData::Outfits().Get(child.Token(1));
+		{
+			if(child.Size() <= 2)
+				ammoPair = make_pair(GameData::Outfits().Get(child.Token(1)),1);
+			else
+				ammoPair = make_pair(GameData::Outfits().Get(child.Token(1)),max(1,static_cast<int>(child.Value(2))));
+		}
 		else if(key == "icon")
 			icon = SpriteSet::Get(child.Token(1));
 		else if(key == "fire effect")
@@ -90,8 +95,6 @@ void Weapon::LoadWeapon(const DataNode &node)
 				lifetime = max(0., value);
 			else if(key == "random lifetime")
 				randomLifetime = max(0., value);
-			else if(key == "ammo usage")
-				ammoUsage = max(1.,value);
 			else if(key == "reload")
 				reload = max(1., value);
 			else if(key == "burst reload")
@@ -241,9 +244,13 @@ const Sound *Weapon::WeaponSound() const
 
 const Outfit *Weapon::Ammo() const
 {
-	return ammo;
+	return ammoPair.first;
 }
 
+int Weapon::AmmoUsage() const
+{
+	return ammoPair.second;
+}
 
 
 const Sprite *Weapon::Icon() const
