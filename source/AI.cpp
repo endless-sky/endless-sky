@@ -711,7 +711,7 @@ void AI::Step(const PlayerInfo &player)
 				
 				auto parentChoices = vector<shared_ptr<Ship>>{};
 				parentChoices.reserve(ships.size() * .1);
-				auto reparentWith = [&](const list<shared_ptr<Ship>> otherShips) -> bool
+				auto reparentWith = [&it, &gov, &parent, &parentChoices](const list<shared_ptr<Ship>> otherShips) -> bool
 				{
 					for(const auto &other : otherShips)
 						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
@@ -729,23 +729,16 @@ void AI::Step(const PlayerInfo &player)
 				};
 				// Mission ships should only pick ships from the same mission.
 				auto missionIt = it->IsSpecial() && !it->IsYours()
-					? find_if(player.Missions().begin(), player.Missions().end(), [&it](const Mission &m)
-					{
-						auto nend = m.NPCs().end();
-						return nend != find_if(m.NPCs().begin(), nend, [&it](const NPC &n)
+					? find_if(player.Missions().begin(), player.Missions().end(),
+						[&it](const Mission &m) -> bool
 						{
-							auto send = n.Ships().end();
-							return send != find_if(n.Ships().begin(), send, [&it](const shared_ptr<Ship> &s)
-							{
-								return s.get() == it.get();
-							});
-						});
-					})
+							return m.HasShip(it);
+						})
 					: player.Missions().end();
 				if(missionIt != player.Missions().end())
 				{
-					auto npcs = missionIt->NPCs();
-					for(const auto npc : npcs)
+					auto &npcs = missionIt->NPCs();
+					for(const auto &npc : npcs)
 						if(reparentWith(npc.Ships()))
 							break;
 				}
