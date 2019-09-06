@@ -394,7 +394,6 @@ double Planet::Security() const
 
 
 
-
 bool Planet::SecurityChanged() const
 {
 	return securityChanged;
