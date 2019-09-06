@@ -56,10 +56,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			sound = Audio::Get(child.Token(1));
 		else if(key == "ammo")
 		{
-			if(child.Size() <= 2)
-				ammoPair = make_pair(GameData::Outfits().Get(child.Token(1)), 1);
-			else
-				ammoPair = make_pair(GameData::Outfits().Get(child.Token(1)), max(1, static_cast<int>(child.Value(2))));
+			int usage = (child.Size() >= 3) ? child.Value(2) : 1;
+			ammoPair = make_pair(GameData::Outfits().Get(child.Token(1)), max(1, usage));
 		}
 		else if(key == "icon")
 			icon = SpriteSet::Get(child.Token(1));
