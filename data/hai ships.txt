@@ -162,16 +162,16 @@ ship "Flea"
 		"Railgun" 3
 		"Railgun Slug" 9630
 		"Sand Cell"
-		"Hai Chasm Batteries"
+		"Supercapacitor" 2
 		`"Baellie" Atomic Engines`
 
-	engine 0 27
+	engine 0 27 1.4
 	gun 0 -27 "Railgun"
 	gun 0 -27 "Railgun"
 	gun 0 -27 "Railgun"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
-	description `This is a combat drone designed to help contain Unfettered aggression with a minimum risk to Hai life.`
+	description `This combat drone is built to help contain Unfettered aggression with a minimum risk to Hai lives.  It was designed in conjunction with the reverse-thrusting Railgun so as to kite its targets, and prolong its combat efficacy.`
 
 
 
@@ -372,8 +372,6 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 
-
-
 ship "Pond Strider"
 	sprite "ship/hai pond strider"
 	thumbnail "thumbnail/hai pond strider"
@@ -381,13 +379,13 @@ ship "Pond Strider"
 		category "Medium Warship"
 		"cost" 5250000
 		"shields" 10000
-		"hull" 2500
+		"hull" 3000
 		"required crew" 9
 		"bunks" 18
-		"mass" 132
+		"mass" 168
 		"drag" 3.6
 		"hull repair rate" 1
-		"heat dissipation" .65
+		"heat dissipation" .5
 		"fuel capacity" 300
 		"cargo space" 71
 		"outfit space" 354
@@ -399,28 +397,28 @@ ship "Pond Strider"
 			"hull damage" 750
 			"hit force" 1750
 	outfits
-		"Ion Cannon" 2
-		"Hai Tracker Pod"
-		"Hai Tracker" 84
-		"Tracker Storage Pod"
-		"Bullfrog Anti-Missile" 3
-		"Hai Corundum Regenerator"
+		"Ion Cannon"
+		"Railgun" 2
+		"Railgun Slug" 6420
+		"Chameleon Anti-Missile" 3
+		"Hai Diamond Regenerator"
 		"Hai Gorge Batteries"
 		"Geode Reactor"
 		"Hai Williwaw Cooling" 2
 		"Quantum Keystone"
-		`"Benga" Atomic Thruster`
+		"Pulse Rifle" 9
+		`"Basrem" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
 		
 	engine -23 80
 	engine 23 80
-	gun 0 -76 "Hai Tracker Pod"
-	gun -15 -72 "Ion Cannon"
-	gun 15 -72 "Ion Cannon"
-	turret -18 -65 "Bullfrog Anti-Missile"
-	turret 18 -65 "Bullfrog Anti-Missile"
-	turret 0 26 "Bullfrog Anti-Missile"
+	gun 0 -76 "Ion Cannon"
+	gun -15 -72 "Railgun"
+	gun 15 -72 "Railgun"
+	turret -18 -65 "Chameleon Anti-Missile"
+	turret 18 -65 "Chameleon Anti-Missile"
+	turret 0 26 "Chameleon Anti-Missile"
 	drone -70 -45 left under
 	drone 70 -45 right under
 	drone -70 28 left under
@@ -438,9 +436,69 @@ ship "Pond Strider"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "This short-range drone carrier was built with hull repair bots by the Hai to contain the increasingly aggressive Unfettered with their new Solifuge and Violin Spider ships. The Hai's greater value for life is evident in the remotely-piloted robotic fighter craft, preferring to keep valuable pilots out of harm's way."
+	description "The Hai upgraded their original Pond Strider after acquiring technology through alien diplomacy.  These improvements have greatly reduced casualties in their conflict with the Unfettered, since the light Pond Striders become vulnerable as they collect damaged drones."
 
+ship "Pond Strider" "Hai Pond Strider"
+	add attributes
+		"cost" -2250000
+		"hull" -500
+		"mass" -36
+		"hull repair rate" -1
+		"heat dissipation" .15
+		"fuel capacity" 100
+	outfits
+		"Railgun" 3
+		"Railgun Slug" 9630
+		"Chameleon Anti-Missile" 3
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator"
+		"Hai Chasm Batteries"
+		"Boulder Reactor"
+		"Hai Williwaw Cooling" 3
+		"Quantum Keystone"
+		"Pulse Rifle" 9
+		`"Baellie" Atomic Engines`
+		`"Basrem" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
 
+	description "This short-range drone carrier was built by the Hai to contain the increasingly aggressive Unfettered with their new Solifuge and Violin Spider ships. The Hai's greater value for life is evident in the remotely-piloted robotic fighter craft, preferring to keep valuable pilots out of harm's way."
+
+ship "Pond Strider" "Pond Strider (Tracker)"
+	outfits
+		"Hai Tracker Pod"
+		"Tracker Storage Pod"
+		"Hai Tracker" 112
+		"Railgun" 2
+		"Railgun Slug" 6420
+		"Chameleon Anti-Missile" 3
+		"Hai Diamond Regenerator"
+		"Hai Chasm Batteries"
+		"Boulder Reactor"
+		"Hai Williwaw Cooling" 3
+		"Quantum Keystone"
+		"Pulse Rifle" 9
+		`"Baellie" Atomic Engines`
+		`"Basrem" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
+
+ship "Pond Strider" "Pond Strider (Ion)"
+		"Railgun"
+		"Ion Cannon" 2
+		"Railgun Slug" 3210
+		"Bullfrog Anti-Missile" 3
+		"Hai Diamond Regenerator"
+		"Hai Chasm Batteries" 2
+		"Hai Fissure Batteries"
+		"Geode Reactor"
+		"Hai Williwaw Cooling" 2
+		"Quantum Keystone"
+		"Pulse Rifle" 9
+		`"Baellie" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
+	
 
 ship "Shield Beetle"
 	sprite "ship/hai shield beetle"
