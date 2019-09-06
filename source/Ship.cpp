@@ -1624,11 +1624,11 @@ void Ship::DoGeneration()
 	}
 	// Handle ionization effects, etc.
 	if(ionization)
-		ionization = max(0., .99 * (ionization / (1 + attributes.get("ion protection")) - attributes.Get("ion resistance"));
+		ionization = max(0., .99 * ionization - attributes.Get("ion resistance"));
 	if(disruption)
-		disruption = max(0., .99 * (disruption / (1 + attributes.get("disruption protection") - attributes.Get("disruption resistance"));
+		disruption = max(0., .99 * disruption - attributes.Get("disruption resistance"));
 	if(slowness)
-		slowness = max(0., .99 * (slowness / (1 + attributes.get("slowing protection") - attributes.Get("slowing resistance"));
+		slowness = max(0., .99 * slowness - attributes.Get("slowing resistance"));
 	
 	// When ships recharge, what actually happens is that they can exceed their
 	// maximum capacity for the rest of the turn, but must be clamped to the
@@ -2622,14 +2622,14 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		double rSquared = d * d / (blastRadius * blastRadius);
 		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
 	}
-	double shieldDamage = weapon.ShieldDamage() * damageScaling;
-	double hullDamage = weapon.HullDamage() * damageScaling;
-	double hitForce = weapon.HitForce() * damageScaling;
-	double fuelDamage = weapon.FuelDamage() * damageScaling;
-	double heatDamage = weapon.HeatDamage() * damageScaling;
-	double ionDamage = weapon.IonDamage() * damageScaling;
-	double disruptionDamage = weapon.DisruptionDamage() * damageScaling;
-	double slowingDamage = weapon.SlowingDamage() * damageScaling;
+	double shieldDamage = (weapon.ShieldDamage() (1 + attributes.get("shield protection"))) * damageScaling;
+	double hullDamage = (weapon.HullDamage() / (1 + attributes.get("hull protection"))) * damageScaling;
+	double hitForce = (weapon.HitForce() / (1 + attributes.get("inertia protection"))) * damageScaling;
+	double fuelDamage = (weapon.FuelDamage() / (1 + attributes.get("fuel protection"))) * damageScaling;
+	double heatDamage = (weapon.HeatDamage() / (1 + attributes.get("heat protection"))) * damageScaling;
+	double ionDamage = (weapon.IonDamage() / (1 + attributes.get("ion protection"))) * damageScaling;
+	double disruptionDamage = (weapon.DisruptionDamage() / (1 + attributes.get("disruption protection"))) * damageScaling;
+	double slowingDamage = (weapon.SlowingDamage() / (1 + attributes.get("slowing protection"))) * damageScaling;
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
