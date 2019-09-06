@@ -247,10 +247,13 @@ const Outfit *Weapon::Ammo() const
 	return ammoPair.first;
 }
 
+
+
 int Weapon::AmmoUsage() const
 {
 	return ammoPair.second;
 }
+
 
 
 const Sprite *Weapon::Icon() const
