@@ -525,6 +525,12 @@ void ShopPanel::ToggleCargo()
 }
 
 
+void ShopPanel::SelectShip(Ship *ship)
+{
+	playerShip = ship;
+}
+
+
 
 // Only override the ones you need; the default action is to return false.
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
@@ -618,7 +624,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 					playerShips.insert(ship);
 			
 			if(!playerShips.count(playerShip))
-				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
+				SelectShip(playerShips.empty() ? nullptr : *playerShips.begin());
 		}
 		else
 		{
@@ -632,7 +638,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 					playerShips.insert(ship);
 			
 			if(!playerShips.count(playerShip))
-				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
+				SelectShip(playerShips.empty() ? nullptr : *playerShips.begin());
 		}
 	}
 	else
@@ -892,7 +898,7 @@ void ShopPanel::SideSelect(int count)
 	if(it == player.Ships().end())
 	{
 		playerShips.clear();
-		playerShip = player.Flagship();
+		SelectShip(player.Flagship());
 		if(playerShip)
 			playerShips.insert(playerShip);
 		
@@ -957,11 +963,11 @@ void ShopPanel::SideSelect(Ship *ship)
 	{
 		playerShips.erase(ship);
 		if(playerShip == ship)
-			playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
+			SelectShip(playerShips.empty() ? nullptr : *playerShips.begin());
 		return;
 	}
 	
-	playerShip = ship;
+	SelectShip(ship);
 	playerShips.insert(playerShip);
 	sameSelectedTopY = true;
 }
