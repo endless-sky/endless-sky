@@ -428,6 +428,9 @@ tip "radar tracking:"
 tip "piercing:"
 	`This percentage of this weapon's damage always leaks through to the hull.`
 
+tip "piercing protection:"
+	`Protection against weapons that pierce shields. A value of 1 cuts damage leak to the hull in half, and 2 cuts it to a third of what it would otherwise be.`
+
 tip "shield damage / shot:"
 	`Each shot fired by this weapon does this amount of shield damage.`
 
