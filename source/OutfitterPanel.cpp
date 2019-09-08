@@ -643,8 +643,8 @@ void OutfitterPanel::DrawKey()
 	
 	Font font = FontSet::Get(14);
 	Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
-	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
-	Point pos = Screen::BottomLeft() + Point(10., -(10 + 20 * VIEW_MODES_COUNT));
+	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/opted")};
+	Point pos = Screen::BottomLeft() + Point(20, -(20 + 20 * VIEW_MODES_COUNT));
 	Point off = Point(10., -.5 * font.Height());
 	for(int i = 0; i < VIEW_MODES_COUNT; i++)
 	{
