@@ -2633,7 +2633,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
-	double shieldFraction = 1. - weapon.Piercing();
+	double shieldFraction = 1. - (weapon.Piercing() / (1 + attributes.get("piercing protection")));
 	shieldFraction *= 1. / (1. + disruption * .01);
 	if(shields <= 0.)
 		shieldFraction = 0.;
