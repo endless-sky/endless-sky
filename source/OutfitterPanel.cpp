@@ -67,7 +67,7 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 	if(player.GetPlanet())
 		outfitter = player.GetPlanet()->Outfitter();
 
-	SetViewMode(ALL);
+	SetViewMode(INSTALLABLE);
 }
 
 
@@ -98,31 +98,32 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 
 
 
-bool OutfitterPanel::HasItem(const string &name) const
+ShopPanel::ItemStatus OutfitterPanel::GetItemStatus(const string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
 	switch(viewMode)
 	{
-	case ALL:
-		return outfitter.Has(outfit) || player.Stock(outfit) || player.Cargo().Get(outfit) || HasLicense(name);
 	case CARGO:
-		return player.Cargo().Get(outfit);
+		return player.Cargo().Get(outfit) ? ENABLED : UNAVAILABLE;
 	case INSTALLED:
 		for(const Ship *ship : playerShips)
 			if(ship->OutfitCount(outfit))
-				return true;
+				return ENABLED;
 		break;
 	case PURCHASABLE:
 	case INSTALLABLE:
-		return CanBuy(outfit);
+		if(CanBuy(outfit))
+			return ENABLED;
+		else if(outfitter.Has(outfit) || player.Stock(outfit) || player.Cargo().Get(outfit) || HasLicense(name))
+			return DISABLED;
+		break;
 	}
-
-	return false;
+	return UNAVAILABLE;
 }
 
 
 
-void OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY)
+void OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY, bool isEnabled)
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
 	zones.emplace_back(point, Point(OUTFIT_SIZE, OUTFIT_SIZE), outfit, scrollY);
@@ -131,7 +132,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	
 	bool isSelected = (outfit == selectedOutfit);
 	bool isOwned = playerShip && playerShip->OutfitCount(outfit);
-	DrawOutfit(*outfit, point, isSelected, isOwned);
+	DrawOutfit(*outfit, point, isSelected, isOwned, isEnabled);
 	
 	// Check if this outfit is a "license".
 	bool isLicense = IsLicense(name);
@@ -632,7 +633,7 @@ bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 
 void OutfitterPanel::DrawKey()
 {
-	static const ViewMode VIEW_MODES[] = { ALL, PURCHASABLE, CARGO, INSTALLED, INSTALLABLE };
+	static const ViewMode VIEW_MODES[] = { INSTALLABLE, PURCHASABLE, INSTALLED, CARGO };
 	static const int VIEW_MODES_COUNT = sizeof(VIEW_MODES) / sizeof(VIEW_MODES[0]);
 
 	const Sprite *back = SpriteSet::Get("ui/outfitter key");
@@ -649,20 +650,17 @@ void OutfitterPanel::DrawKey()
 		string caption;
 		switch(viewMode)
 		{
-		case ALL:
-			caption = "Show outfits available";
-			break;
 		case PURCHASABLE:
-			caption = "Show outfits purchasable";
+			caption = "buy to cargo";
 			break;
 		case CARGO:
-			caption = "Show outfits in cargo";
+			caption = "in cargo";
 			break;
 		case INSTALLED:
-			caption = "Show outfits installed";
+			caption = "installed";
 			break;
 		case INSTALLABLE:
-			caption = "Show outfits installable";
+			caption = "install to ship";
 			break;
 		}
 
@@ -712,7 +710,6 @@ void OutfitterPanel::SelectShip(Ship *ship)
 	case CARGO:
 		SetViewMode(INSTALLED);
 		break;
-	case ALL:
 	case INSTALLED:
 	case INSTALLABLE:
 		// NOOP.
@@ -726,7 +723,6 @@ void OutfitterPanel::SetViewMode(OutfitterPanel::ViewMode value)
 {
 	switch(viewMode = value)
 	{
-	case ALL:
 	case PURCHASABLE:
 	case CARGO:
 		if(playerShip)
@@ -771,13 +767,13 @@ bool OutfitterPanel::ShipCanSell(const Ship *ship, const Outfit *outfit)
 
 
 
-void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned)
+void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned, bool isEnabled)
 {
 	const Sprite *thumbnail = outfit.Thumbnail();
 	const Sprite *back = SpriteSet::Get(
 		isSelected ? "ui/outfitter selected" : "ui/outfitter unselected");
 	SpriteShader::Draw(back, center);
-	SpriteShader::Draw(thumbnail, center);
+	SpriteShader::Draw(thumbnail, center, 1, 0, 0, isEnabled ? 1 : .25f);
 	
 	// Draw the outfit name.
 	const string &name = outfit.Name();

@@ -42,6 +42,13 @@ public:
 	virtual void Draw() override;
 	
 protected:
+	enum ItemStatus
+	{
+		UNAVAILABLE,
+		ENABLED,
+		DISABLED
+	};
+
 	void DrawSidebar();
 	void DrawButtons();
 	void DrawMain();
@@ -51,8 +58,8 @@ protected:
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
 	virtual int DrawPlayerShipInfo(const Point &point) = 0;
-	virtual bool HasItem(const std::string &name) const = 0;
-	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) = 0;
+	virtual ItemStatus GetItemStatus(const std::string &name) const = 0;
+	virtual void DrawItem(const std::string &name, const Point &point, int scrollY, bool isEnabled) = 0;
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) = 0;

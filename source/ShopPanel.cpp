@@ -377,13 +377,15 @@ void ShopPanel::DrawMain()
 			if(isSelected)
 				selectedTopY = point.Y() - TILE_SIZE / 2;
 			
-			if(!HasItem(name))
+			ItemStatus itemStatus = GetItemStatus(name);
+			if(itemStatus == UNAVAILABLE)
 				continue;
+
 			isEmpty = false;
 			if(isCollapsed)
 				break;
 			
-			DrawItem(name, point, scrollY);
+			DrawItem(name, point, scrollY, itemStatus == ENABLED);
 			
 			if(isSelected)
 			{

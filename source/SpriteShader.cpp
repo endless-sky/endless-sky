@@ -154,7 +154,7 @@ void SpriteShader::Init()
 
 
 
-void SpriteShader::Draw(const Sprite *sprite, const Point &position, float zoom, int swizzle, float frame)
+void SpriteShader::Draw(const Sprite *sprite, const Point &position, float zoom, int swizzle, float frame, float alpha)
 {
 	if(!sprite)
 		return;
@@ -169,6 +169,8 @@ void SpriteShader::Draw(const Sprite *sprite, const Point &position, float zoom,
 	// Rotation (none) and scale.
 	item.transform[0] = sprite->Width() * zoom;
 	item.transform[3] = sprite->Height() * zoom;
+	// Opacity.
+	item.alpha = alpha;
 	// Swizzle.
 	item.swizzle = swizzle;
 	

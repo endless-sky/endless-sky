@@ -102,15 +102,15 @@ int ShipyardPanel::DrawPlayerShipInfo(const Point &point)
 
 
 
-bool ShipyardPanel::HasItem(const string &name) const
+ShopPanel::ItemStatus ShipyardPanel::GetItemStatus(const string &name) const
 {
 	const Ship *ship = GameData::Ships().Get(name);
-	return shipyard.Has(ship);
+	return shipyard.Has(ship) ? ENABLED : UNAVAILABLE;
 }
 
 
 
-void ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY)
+void ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY, bool isEnabled)
 {
 	const Ship *ship = GameData::Ships().Get(name);
 	zones.emplace_back(point, Point(SHIP_SIZE, SHIP_SIZE), ship, scrollY);
