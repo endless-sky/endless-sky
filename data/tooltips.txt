@@ -155,7 +155,7 @@ tip "hull protection:"
 tip "illegal:"
 	`Amount of credits you can be fined for carrying this outfit.`
 
-tip "inertia protection:"
+tip "force protection:"
 	`Protection against weapons that apply a hit force. A value of 1 cuts the force in half, and 2 cuts it to a third of what it would otherwise be.`
 
 tip "ion protection:"

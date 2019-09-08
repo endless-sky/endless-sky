@@ -2624,7 +2624,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	}
 	double shieldDamage = (weapon.ShieldDamage() (1 + attributes.get("shield protection"))) * damageScaling;
 	double hullDamage = (weapon.HullDamage() / (1 + attributes.get("hull protection"))) * damageScaling;
-	double hitForce = (weapon.HitForce() / (1 + attributes.get("inertia protection"))) * damageScaling;
+	double hitForce = (weapon.HitForce() / (1 + attributes.get("force protection"))) * damageScaling;
 	double fuelDamage = (weapon.FuelDamage() / (1 + attributes.get("fuel protection"))) * damageScaling;
 	double heatDamage = (weapon.HeatDamage() / (1 + attributes.get("heat protection"))) * damageScaling;
 	double ionDamage = (weapon.IonDamage() / (1 + attributes.get("ion protection"))) * damageScaling;
