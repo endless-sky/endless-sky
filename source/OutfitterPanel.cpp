@@ -104,7 +104,9 @@ ShopPanel::ItemStatus OutfitterPanel::GetItemStatus(const string &name) const
 	switch(viewMode)
 	{
 	case CARGO:
-		return player.Cargo().Get(outfit) ? ENABLED : UNAVAILABLE;
+		if(player.Cargo().Get(outfit))
+			return ENABLED;
+		break;
 	case INSTALLED:
 		for(const Ship *ship : playerShips)
 			if(ship->OutfitCount(outfit))
