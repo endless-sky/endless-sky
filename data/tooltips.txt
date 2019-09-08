@@ -150,7 +150,7 @@ tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
 
 tip "hull protection:"
-	`Protection against hull damage. A value of 1 cuts damage in half, and 2 cuts it to a third of what it would otherwise be.`
+	`Protection against weapons that do hull damage. A value of 1 cuts damage in half, and 2 cuts it to a third of what it would otherwise be.`
 
 tip "illegal:"
 	`Amount of credits you can be fined for carrying this outfit.`
@@ -246,7 +246,7 @@ tip "shields:"
 	`Total shield strength. Most weapons cannot damage your hull until your shields are depleted. Some weapon effects, such as heat damage, become more severe once shields are down.`
 
 tip "shield protection:"
-	`Protection against shield damage. A value of 1 cuts damage in half, and 2 cuts it to a third of what it would otherwise be.`
+	`Protection against weapons that do shield damage. A value of 1 cuts damage in half, and 2 cuts it to a third of what it would otherwise be.`
 
 tip "slowing protection:"
 	`Protection against weapons that have a slowing effect. A value of 1 cuts the effect in half, and 2 cuts it to a third of what it would otherwise be.`
