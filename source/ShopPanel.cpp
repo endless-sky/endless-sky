@@ -149,6 +149,13 @@ void ShopPanel::Draw()
 
 
 
+float ShopPanel::GetItemOpacity(bool isSelected, bool isEnabled)
+{
+	return isEnabled ? 1 : isSelected ? .7 : .25;
+}
+
+
+
 void ShopPanel::DrawSidebar()
 {
 	const Font &font = FontSet::Get(14);
@@ -240,7 +247,7 @@ void ShopPanel::DrawSidebar()
 	{
 		point.Y() += SHIP_SIZE / 2;
 		point.X() = Screen::Right() - SIDE_WIDTH / 2;
-		DrawShip(*playerShip, point, true);
+		DrawShip(*playerShip, point, true, true);
 		
 		Point offset(SIDE_WIDTH / -2, SHIP_SIZE / 2);
 		sideDetailHeight = DrawPlayerShipInfo(point + offset);
@@ -460,7 +467,7 @@ void ShopPanel::DrawMain()
 
 
 
-void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
+void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected, bool isEnabled)
 {
 	const Sprite *back = SpriteSet::Get(
 		isSelected ? "ui/shipyard selected" : "ui/shipyard unselected");
@@ -476,7 +483,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	const Sprite *sprite = ship.GetSprite();
 	int swizzle = ship.CustomSwizzle() >= 0 ? ship.CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 	if(thumbnail)
-		SpriteShader::Draw(thumbnail, center + Point(0., 10.), 1., swizzle);
+		SpriteShader::Draw(thumbnail, center + Point(0., 10.), 1., swizzle, 0, GetItemOpacity(isSelected, isEnabled));
 	else if(sprite)
 	{
 		// Make sure the ship sprite leaves 10 pixels padding all around.

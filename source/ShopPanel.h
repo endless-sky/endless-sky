@@ -49,11 +49,13 @@ protected:
 		DISABLED
 	};
 
+	static float GetItemOpacity(bool isSelected, bool isEnabled);
+
 	void DrawSidebar();
 	void DrawButtons();
 	void DrawMain();
 	
-	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
+	void DrawShip(const Ship &ship, const Point &center, bool isSelected, bool isEnabled);
 	
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
@@ -85,8 +87,8 @@ protected:
 	virtual bool Scroll(double dx, double dy) override;
 	
 	int64_t LicenseCost(const Outfit *outfit) const;
-	
-	
+
+
 protected:
 	class Zone : public ClickZone<const Ship *> {
 	public:
