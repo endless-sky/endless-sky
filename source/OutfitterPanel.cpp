@@ -133,7 +133,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		return;
 	
 	bool isSelected = (outfit == selectedOutfit);
-	bool isOwned = playerShip && playerShip->OutfitCount(outfit);
+	bool isOwned = (playerShip && playerShip->OutfitCount(outfit)) || (!playerShip && player.Cargo().Get(outfit));
 	DrawOutfit(*outfit, point, isSelected, isOwned, isEnabled);
 	
 	// Check if this outfit is a "license".
