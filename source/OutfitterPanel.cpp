@@ -637,15 +637,20 @@ void OutfitterPanel::DrawKey()
 {
 	static const ViewMode VIEW_MODES[] = { INSTALLABLE, PURCHASABLE, INSTALLED, CARGO };
 	static const int VIEW_MODES_COUNT = sizeof(VIEW_MODES) / sizeof(VIEW_MODES[0]);
+	static const double OPTION_HEIGHT = 20;
+	static const double OPTION_MARGIN = 20;
+	static const double CAPTION_MARGIN = 3;
 
-	const Sprite *back = SpriteSet::Get("ui/outfitter key");
-	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
+	const Sprite *background = SpriteSet::Get("ui/outfitter key");
+	SpriteShader::Draw(background, Screen::BottomLeft() + .5 * Point(background->Width(), -background->Height()));
 	
 	Font font = FontSet::Get(14);
 	Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
 	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/opted")};
-	Point pos = Screen::BottomLeft() + Point(20, -(20 + 20 * VIEW_MODES_COUNT));
-	Point off = Point(10., -.5 * font.Height());
+	double boxWidth = box[0]->Width();
+	Point optionPosition = Screen::BottomLeft() + Point(OPTION_MARGIN,
+			-(OPTION_MARGIN + OPTION_HEIGHT * VIEW_MODES_COUNT));
+	Point captionOffset = Point(boxWidth / 2. + CAPTION_MARGIN, -font.Height() / 2.);
 	for(int i = 0; i < VIEW_MODES_COUNT; i++)
 	{
 		ViewMode viewMode = VIEW_MODES[i];
@@ -666,10 +671,12 @@ void OutfitterPanel::DrawKey()
 			break;
 		}
 
-		pos.Y() += 20.;
-		SpriteShader::Draw(box[this->viewMode == viewMode], pos);
-		font.Draw(caption, pos + off, color[this->viewMode == viewMode]);
-		AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this, viewMode](){ SetViewMode(viewMode); });
+		optionPosition.Y() += OPTION_HEIGHT;
+		SpriteShader::Draw(box[this->viewMode == viewMode], optionPosition);
+		font.Draw(caption, optionPosition + captionOffset, color[this->viewMode == viewMode]);
+		AddZone(Rectangle::FromCorner(optionPosition - Point(boxWidth / 2., OPTION_HEIGHT / 2.),
+				Point(boxWidth + CAPTION_MARGIN + font.Width(caption), OPTION_HEIGHT)),
+				[this, viewMode](){ SetViewMode(viewMode); });
 	}
 }
 
