@@ -294,7 +294,7 @@ const map<const Outfit *, int> &Weapon::Submunitions() const
 double Weapon::TotalLifetime() const
 {
 	if(optimalRange)
-		return optimalRange / Velocity();
+		return optimalRange / WeightedVelocity();
 	if(totalLifetime < 0.)
 	{
 		totalLifetime = 0.;
@@ -309,7 +309,7 @@ double Weapon::TotalLifetime() const
 
 double Weapon::Range() const
 {
-	return (optimalRange > 0) ? optimalRange : Velocity() * TotalLifetime();
+	return (optimalRange > 0) ? optimalRange : WeightedVelocity() * TotalLifetime();
 }
 
 

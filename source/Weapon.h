@@ -68,6 +68,7 @@ public:
 	
 	double Velocity() const;
 	double RandomVelocity() const;
+	double WeightedVelocity() const;
 	double Acceleration() const;
 	double Drag() const;
 	const Point &HardpointOffset() const;
@@ -222,8 +223,9 @@ inline int Weapon::MissileStrength() const { return missileStrength; }
 inline int Weapon::AntiMissile() const { return antiMissile; }
 inline bool Weapon::IsStreamed() const { return isStreamed; }
 
-inline double Weapon::Velocity() const { return (optimalVelocity > 0.) ? optimalVelocity : velocity; }
+inline double Weapon::Velocity() const { return velocity; }
 inline double Weapon::RandomVelocity() const { return randomVelocity; }
+inline double Weapon::WeightedVelocity() const { return (optimalVelocity > 0.) ? optimalVelocity : velocity; }
 inline double Weapon::Acceleration() const { return acceleration; }
 inline double Weapon::Drag() const { return drag; }
 inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
