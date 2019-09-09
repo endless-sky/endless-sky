@@ -26,52 +26,59 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	const map<string, pair<double, string>> SCALE = {
-		{"active cooling", make_pair(60., "")},
-		{"afterburner energy", make_pair(60., "")},
-		{"afterburner fuel", make_pair(60., "")},
-		{"afterburner heat", make_pair(60., "")},
-		{"cloak", make_pair(60., "")},
-		{"cloaking energy", make_pair(60., "")},
-		{"cloaking fuel", make_pair(60., "")},
-		{"cloaking heat", make_pair(60., "")},
-		{"cooling", make_pair(60., "")},
-		{"cooling energy", make_pair(60., "")},
-		{"energy consumption", make_pair(60., "")},
-		{"energy generation", make_pair(60., "")},
-		{"fuel consumption", make_pair(60., "")},
-		{"fuel energy", make_pair(60., "")},
-		{"fuel generation", make_pair(60., "")},
-		{"fuel heat", make_pair(60., "")},
-		{"heat generation", make_pair(60., "")},
-		{"heat dissipation", make_pair(60., "")},
-		{"hull repair rate", make_pair(60., "")},
-		{"hull energy", make_pair(60., "")},
-		{"hull fuel", make_pair(60., "")},
-		{"hull heat", make_pair(60., "")},
-		{"jump speed", make_pair(60., "")},
-		{"reverse thrusting energy", make_pair(60., "")},
-		{"reverse thrusting heat", make_pair(60., "")},
-		{"shield generation", make_pair(60., "")},
-		{"shield energy", make_pair(60., "")},
-		{"shield fuel", make_pair(60., "")},
-		{"shield heat", make_pair(60., "")},
-		{"solar collection", make_pair(60., "")},
-		{"thrusting energy", make_pair(60., "")},
-		{"thrusting heat", make_pair(60., "")},
-		{"turn", make_pair(60., "")},
-		{"turning energy", make_pair(60., "")},
-		{"turning heat", make_pair(60., "")},
+	const vector<pair<double, string>> UNIT_PAIRS = {
+		make_pair(60., ""),
+		make_pair(60. * 60., ""),
+		make_pair(60. * 100., ""),
+		make_pair(100., "%")
+	};
+	
+	const map<string, int> SCALE = {
+		{"active cooling", 0},
+		{"afterburner energy", 0},
+		{"afterburner fuel", 0},
+		{"afterburner heat", 0},
+		{"cloak", 0},
+		{"cloaking energy", 0},
+		{"cloaking fuel", 0},
+		{"cloaking heat", 0},
+		{"cooling", 0},
+		{"cooling energy", 0},
+		{"energy consumption", 0},
+		{"energy generation", 0},
+		{"fuel consumption", 0},
+		{"fuel energy", 0},
+		{"fuel generation", 0},
+		{"fuel heat", 0},
+		{"heat generation", 0},
+		{"heat dissipation", 0},
+		{"hull repair rate", 0},
+		{"hull energy", 0},
+		{"hull fuel", 0},
+		{"hull heat", 0},
+		{"jump speed", 0},
+		{"reverse thrusting energy", 0},
+		{"reverse thrusting heat", 0},
+		{"shield generation", 0},
+		{"shield energy", 0},
+		{"shield fuel", 0},
+		{"shield heat", 0},
+		{"solar collection", 0},
+		{"thrusting energy", 0},
+		{"thrusting heat", 0},
+		{"turn", 0},
+		{"turning energy", 0},
+		{"turning heat", 0},
 		
-		{"thrust",  make_pair(60. * 60., "")},
-		{"reverse thrust",  make_pair(60. * 60., "")},
-		{"afterburner thrust",  make_pair(60. * 60., "")},
+		{"thrust", 1},
+		{"reverse thrust", 1},
+		{"afterburner thrust", 1},
 		
-		{"ion resistance",  make_pair(60. * 100., "")},
-		{"disruption resistance",  make_pair(60. * 100., "")},
-		{"slowing resistance",  make_pair(60. * 100., "")},
+		{"ion resistance", 2},
+		{"disruption resistance", 2},
+		{"slowing resistance", 2},
 		
-		{"piercing resistance",  make_pair(100., "%")}
+		{"piercing resistance", 3}
 	};
 	
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
@@ -207,8 +214,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			continue;
 		
 		auto sit = SCALE.find(it.first);
-		double scale = (sit == SCALE.end() ? 1. : sit->second.first);
-		string units = (sit == SCALE.end() ? "" : sit->second.second);
+		double scale = (sit == SCALE.end() ? 1. : UNIT_PAIRS[sit->second].first);
+		string units = (sit == SCALE.end() ? "" : UNIT_PAIRS[sit->second].second);
 		
 		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
 		if(bit != BOOLEAN_ATTRIBUTES.end()) 
