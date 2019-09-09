@@ -302,10 +302,6 @@ void Ship::Load(const DataNode &node)
 			shields = child.Value(1);
 		else if(key == "hull" && child.Size() >= 2)
 			hull = child.Value(1);
-		else if(key == "disabled" && child.Size() >= 2)
-			disabled = max(0., child.Value(1));
-		else if(key == "disabled percentage" && child.Size() >= 2)
-			disabledPercent = max(0., min(child.Value(1), 1.));
 		else if(key == "position" && child.Size() >= 3)
 			position = Point(child.Value(1), child.Value(2));
 		else if(key == "system" && child.Size() >= 2)
@@ -3139,9 +3135,8 @@ double Ship::MinimumHull() const
 		return 0.;
 	
 	double maximumHull = attributes.Get("hull");
-	
-	double disabled = attributes.Get("disabled");
-	double disabledPercent = attributes.Get("disabled percentage");
+	double disabled = max(0., attributes.Get("disabled"));
+	double disabledPercent = max(0., min(1., attributes.Get("disabled percentage")));
 	if(disabled > 0. || disabledPercent > 0.)
 		return max(disabled, disabledPercent * maximumHull);
 	
