@@ -21,7 +21,7 @@ Version 0.9.10:
     * Reduced the speed of the Centipede. (@Amazinite)
     * Remnant Tech Retrieval missions will no longer be blocked by other missions. (@Zitchas)
     * EMP torpedoes now require a Remnant license to purchase. (@Zitchas)
-    * Nearly all missions that could possibly trigger an on visit dialog no have one, making it easier to tell why you aren't completing a mission when at the destination. (@Amazinite)
+    * Nearly all missions that could possibly trigger an on visit dialog now have one, making it easier to tell why you aren't completing a mission when at the destination. (@Amazinite)
     * Mystery Retrieval jobs now mention their source and destination in the description. (@Amazinite)
     * Tactical and asteroid scanners and missile storage outfits can now be found on various NPC ships. (@Amazinite)
     * The Marauder Splinter's required crew now better matches the normal Splinter's. (@starcollide5)
