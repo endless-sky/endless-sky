@@ -498,7 +498,7 @@ bool OutfitterPanel::CanSell(bool toCargo) const
 	if(!planet || !selectedOutfit)
 		return false;
 	
-	if(!toCargo && player.Cargo().Get(selectedOutfit))
+	if(!toCargo && !playerShip && player.Cargo().Get(selectedOutfit))
 		return true;
 	
 	for(const Ship *ship : playerShips)
