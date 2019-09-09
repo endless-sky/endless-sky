@@ -69,7 +69,9 @@ namespace {
 		
 		{"ion resistance", 60. * 100.},
 		{"disruption resistance", 60. * 100.},
-		{"slowing resistance", 60. * 100.}
+		{"slowing resistance", 60. * 100.},
+		
+		{"piercing resistance", 100.}
 	};
 	
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
