@@ -782,7 +782,7 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	const Sprite *back = SpriteSet::Get(
 		isSelected ? "ui/outfitter selected" : "ui/outfitter unselected");
 	SpriteShader::Draw(back, center);
-	SpriteShader::Draw(thumbnail, center, 1, 0, 0, GetItemOpacity(isSelected, isEnabled));
+	SpriteShader::Draw(thumbnail, center, 1, 0, 0, GetItemOpacity(isSelected | isOwned, isEnabled || (isSelected && isOwned)));
 	
 	// Draw the outfit name.
 	const string &name = outfit.Name();
