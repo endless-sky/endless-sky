@@ -512,7 +512,7 @@ bool OutfitterPanel::CanSell(bool toCargo) const
 
 void OutfitterPanel::Sell(bool toCargo)
 {
-	if(!toCargo && player.Cargo().Get(selectedOutfit))
+	if(!toCargo && !playerShip && player.Cargo().Get(selectedOutfit))
 	{
 		player.Cargo().Remove(selectedOutfit);
 		int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);

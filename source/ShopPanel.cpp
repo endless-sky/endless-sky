@@ -303,14 +303,14 @@ void ShopPanel::DrawButtons()
 	
 	Point buyCenter = Screen::BottomRight() - Point(210, 25);
 	FillShader::Fill(buyCenter, Point(60, 30), back);
-	string BUY = (playerShip && selectedOutfit && player.Cargo().Get(selectedOutfit)) ? "_Install" : "_Buy";
+	string BUY = playerShip ? "_Install" : "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
 		CanBuy() ? hoverButton == 'b' ? hover : active : inactive);
 	
 	Point sellCenter = Screen::BottomRight() - Point(130, 25);
-	FillShader::Fill(sellCenter, Point(60, 30), back);
-	static const string SELL = "_Sell";
+	FillShader::Fill(sellCenter, Point(80, 30), back);
+	string SELL = playerShip ? "_Uninstall" : "_Sell";
 	bigFont.Draw(SELL,
 		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
 		CanSell() ? hoverButton == 's' ? hover : active : inactive);
@@ -545,24 +545,24 @@ void ShopPanel::SelectShip(Ship *ship)
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	scrollDetailsIntoView = false;
-	bool toCargo = selectedOutfit && (key == 'r' || key == 'u');
+	bool toCargo = (key == 'r' || key == 'u');
 	if(key == 'l' || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
 	}
-	else if(key == '+' || key == 'b' || (key == 'i' && selectedOutfit && player.Cargo().Get(selectedOutfit)))
+	else if(selectedOutfit && (key == '+' || key == 'b' || (key == 'i' && player.Cargo().Get(selectedOutfit))))
 	{
 		if(!CanBuy())
 			FailBuy();
 		else
 		{
-			Buy(key == 'i');
+			Buy(key != 'b' && player.Cargo().Get(selectedOutfit));
 			player.UpdateCargoCapacities();
 		}
 	}
-	else if(key == '-' || key == 's' || toCargo)
+	else if(selectedOutfit && (key == '-' || key == 's' || toCargo))
 	{
 		if(!CanSell(toCargo))
 			FailSell(toCargo);
