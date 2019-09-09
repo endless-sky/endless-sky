@@ -85,6 +85,40 @@ namespace {
 			fuel -= transfer * fuelCost;
 		}
 	}
+	
+	// Helper function to reduce a given status effect according 
+	// to its resistance, limited by how much energy and fuel are available.
+	// Updates the stat and the energy, fuel, and heat amounts.
+	void DoResistance(bool isDisabled, double &stat, double resistance, double &energy, double energyCost, double &fuel, double fuelCost, double &heat, double heatCost)
+	{
+		if(isDisabled || resistance <= 0)
+		{
+			stat = .99 * stat;
+			return;
+		}
+		
+		// Calculate how much resistance can be used assuming no 
+		// energy or fuel cost.
+		const double before = stat;
+		const double after = max(0., .99 * before - resistance);
+		resistance = .99 * before - after;
+		
+		// Limit the resistance by the available energy and fuel
+		if(energyCost)
+			resistance = min(resistance, energy / energyCost);
+		if(fuelCost)
+			resistance = min(resistance, fuel / fuelCost);
+		
+		// Update the energy, fuel, and heat given how much resistance is being used,
+		// then update the stat.
+		if(resistance > 0.)
+		{
+			energy -= resistance * energyCost;
+			fuel -= resistance * fuelCost;
+			heat += resistance * heatCost;
+		}
+		stat = max(0., .99 * stat - resistance);
+	}
 }
 
 const vector<string> Ship::CATEGORIES = {
@@ -1622,13 +1656,29 @@ void Ship::DoGeneration()
 		if(shieldsAvailable)
 			heat += (shieldsAvailable - shieldsRemaining) * shieldsHeat;
 	}
+	
 	// Handle ionization effects, etc.
+	// TODO: Mothership gives status resistance to carried ships?
+	const double ionResistance = attributes.Get("ion resistance");
+	const double ionEnergy = attributes.Get("ion resistance energy") / ionResistance;
+	const double ionFuel = attributes.Get("ion resistance fuel") / ionResistance;
+	const double ionHeat = attributes.Get("ion resistance heat") / ionResistance;
 	if(ionization)
-		ionization = max(0., .99 * ionization - attributes.Get("ion resistance"));
+		DoResistance(isDisabled, ionization, ionResistance, energy, ionEnergy, fuel, ionFuel, heat, ionHeat);
+	
+	const double disruptionResistance = attributes.Get("disruption resistance");
+	const double disruptionEnergy = attributes.Get("disruption resistance energy") / disruptionResistance;
+	const double disruptionFuel = attributes.Get("disruption resistance fuel") / disruptionResistance;
+	const double disruptionHeat = attributes.Get("disruption resistance heat") / disruptionResistance;
 	if(disruption)
-		disruption = max(0., .99 * disruption - attributes.Get("disruption resistance"));
+		DoResistance(isDisabled, disruption, disruptionResistance, energy, disruptionEnergy, fuel, disruptionFuel, heat, disruptionHeat);
+	
+	const double slowingResistance = attributes.Get("slowing resistance");
+	const double slowingEnergy = attributes.Get("slowing resistance energy") / slowingResistance;
+	const double slowingFuel = attributes.Get("slowing resistance fuel") / slowingResistance;
+	const double slowingHeat = attributes.Get("slowing resistance heat") / slowingResistance;
 	if(slowness)
-		slowness = max(0., .99 * slowness - attributes.Get("slowing resistance"));
+		DoResistance(isDisabled, slowness, slowingResistance, energy, slowingEnergy, fuel, slowingFuel, heat, slowingHeat);
 	
 	// When ships recharge, what actually happens is that they can exceed their
 	// maximum capacity for the rest of the turn, but must be clamped to the
