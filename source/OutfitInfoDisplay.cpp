@@ -26,52 +26,52 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	const map<string, double> SCALE = {
-		{"active cooling", 60.},
-		{"afterburner energy", 60.},
-		{"afterburner fuel", 60.},
-		{"afterburner heat", 60.},
-		{"cloak", 60.},
-		{"cloaking energy", 60.},
-		{"cloaking fuel", 60.},
-		{"cloaking heat", 60.},
-		{"cooling", 60.},
-		{"cooling energy", 60.},
-		{"energy consumption", 60.},
-		{"energy generation", 60.},
-		{"fuel consumption", 60.},
-		{"fuel energy", 60.},
-		{"fuel generation", 60.},
-		{"fuel heat", 60.},
-		{"heat generation", 60.},
-		{"heat dissipation", 60.},
-		{"hull repair rate", 60.},
-		{"hull energy", 60.},
-		{"hull fuel", 60.},
-		{"hull heat", 60.},
-		{"jump speed", 60.},
-		{"reverse thrusting energy", 60.},
-		{"reverse thrusting heat", 60.},
-		{"shield generation", 60.},
-		{"shield energy", 60.},
-		{"shield fuel", 60.},
-		{"shield heat", 60.},
-		{"solar collection", 60.},
-		{"thrusting energy", 60.},
-		{"thrusting heat", 60.},
-		{"turn", 60.},
-		{"turning energy", 60.},
-		{"turning heat", 60.},
+	const map<string, pair<double, string>> SCALE = {
+		{"active cooling", make_pair(60., "")},
+		{"afterburner energy", make_pair(60., "")},
+		{"afterburner fuel", make_pair(60., "")},
+		{"afterburner heat", make_pair(60., "")},
+		{"cloak", make_pair(60., "")},
+		{"cloaking energy", make_pair(60., "")},
+		{"cloaking fuel", make_pair(60., "")},
+		{"cloaking heat", make_pair(60., "")},
+		{"cooling", make_pair(60., "")},
+		{"cooling energy", make_pair(60., "")},
+		{"energy consumption", make_pair(60., "")},
+		{"energy generation", make_pair(60., "")},
+		{"fuel consumption", make_pair(60., "")},
+		{"fuel energy", make_pair(60., "")},
+		{"fuel generation", make_pair(60., "")},
+		{"fuel heat", make_pair(60., "")},
+		{"heat generation", make_pair(60., "")},
+		{"heat dissipation", make_pair(60., "")},
+		{"hull repair rate", make_pair(60., "")},
+		{"hull energy", make_pair(60., "")},
+		{"hull fuel", make_pair(60., "")},
+		{"hull heat", make_pair(60., "")},
+		{"jump speed", make_pair(60., "")},
+		{"reverse thrusting energy", make_pair(60., "")},
+		{"reverse thrusting heat", make_pair(60., "")},
+		{"shield generation", make_pair(60., "")},
+		{"shield energy", make_pair(60., "")},
+		{"shield fuel", make_pair(60., "")},
+		{"shield heat", make_pair(60., "")},
+		{"solar collection", make_pair(60., "")},
+		{"thrusting energy", make_pair(60., "")},
+		{"thrusting heat", make_pair(60., "")},
+		{"turn", make_pair(60., "")},
+		{"turning energy", make_pair(60., "")},
+		{"turning heat", make_pair(60., "")},
 		
-		{"thrust", 60. * 60.},
-		{"reverse thrust", 60. * 60.},
-		{"afterburner thrust", 60. * 60.},
+		{"thrust",  make_pair(60. * 60., "")},
+		{"reverse thrust",  make_pair(60. * 60., "")},
+		{"afterburner thrust",  make_pair(60. * 60., "")},
 		
-		{"ion resistance", 60. * 100.},
-		{"disruption resistance", 60. * 100.},
-		{"slowing resistance", 60. * 100.},
+		{"ion resistance",  make_pair(60. * 100., "")},
+		{"disruption resistance",  make_pair(60. * 100., "")},
+		{"slowing resistance",  make_pair(60. * 100., "")},
 		
-		{"piercing resistance", 100.}
+		{"piercing resistance",  make_pair(100., "%")}
 	};
 	
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
@@ -207,7 +207,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			continue;
 		
 		auto sit = SCALE.find(it.first);
-		double scale = (sit == SCALE.end() ? 1. : sit->second);
+		double scale = (sit == SCALE.end() ? 1. : sit->second.first);
+		string units = (sit == SCALE.end() ? "" : sit->second.second);
 		
 		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
 		if(bit != BOOLEAN_ATTRIBUTES.end()) 
@@ -219,7 +220,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		else
 		{
 			attributeLabels.emplace_back(static_cast<string>(it.first) + ":");
-			attributeValues.emplace_back(Format::Number(it.second * scale));
+			attributeValues.emplace_back(Format::Number(it.second * scale) + units);
 			attributesHeight += 20;
 		}
 		hasNormalAttributes = true;
