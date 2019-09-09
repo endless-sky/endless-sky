@@ -552,7 +552,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
 	}
-	else if(key == 'b' || (key == 'i' && selectedOutfit && player.Cargo().Get(selectedOutfit)))
+	else if(key == '+' || key == 'b' || (key == 'i' && selectedOutfit && player.Cargo().Get(selectedOutfit)))
 	{
 		if(!CanBuy())
 			FailBuy();
@@ -562,7 +562,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			player.UpdateCargoCapacities();
 		}
 	}
-	else if(key == 's' || toCargo)
+	else if(key == '-' || key == 's' || toCargo)
 	{
 		if(!CanSell(toCargo))
 			FailSell(toCargo);
