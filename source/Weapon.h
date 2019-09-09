@@ -199,6 +199,9 @@ private:
 	
 	double piercing = 0.;
 	
+	double optimalRange = 0.;
+	double optimalVelocity = 0.;
+	
 	// Cache the calculation of these values, for faster access.
 	mutable bool calculatedDamage = true;
 	mutable bool doesDamage = false;
@@ -219,7 +222,7 @@ inline int Weapon::MissileStrength() const { return missileStrength; }
 inline int Weapon::AntiMissile() const { return antiMissile; }
 inline bool Weapon::IsStreamed() const { return isStreamed; }
 
-inline double Weapon::Velocity() const { return velocity; }
+inline double Weapon::Velocity() const { return (optimalVelocity > 0.) ? optimalVelocity : velocity; }
 inline double Weapon::RandomVelocity() const { return randomVelocity; }
 inline double Weapon::Acceleration() const { return acceleration; }
 inline double Weapon::Drag() const { return drag; }

@@ -169,6 +169,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[HIT_FORCE] = value;
 			else if(key == "piercing")
 				piercing = max(0., min(1., value));
+			else if(key == "optimal range")
+				optimalRange = max(0., value);
+			else if(key == "optimal velocity")
+				optimalVelocity = max(0., value);
 			else
 				child.PrintTrace("Unrecognized weapon attribute: \"" + key + "\":");
 		}
@@ -289,6 +293,8 @@ const map<const Outfit *, int> &Weapon::Submunitions() const
 
 double Weapon::TotalLifetime() const
 {
+	if(optimalRange)
+		return optimalRange / Velocity();
 	if(totalLifetime < 0.)
 	{
 		totalLifetime = 0.;
@@ -303,7 +309,7 @@ double Weapon::TotalLifetime() const
 
 double Weapon::Range() const
 {
-	return Velocity() * TotalLifetime();
+	return (optimalRange > 0) ? optimalRange : Velocity() * TotalLifetime();
 }
 
 
