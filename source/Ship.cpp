@@ -3135,7 +3135,7 @@ double Ship::MinimumHull() const
 		return 0.;
 	
 	double maximumHull = attributes.Get("hull");
-	double disabled = max(0., attributes.Get("disabled"));
+	double disabled = max(0., min(attributes.Get("disabled"), maximumHull));
 	double disabledPercent = max(0., min(1., attributes.Get("disabled percentage")));
 	if(disabled > 0. || disabledPercent > 0.)
 		return max(disabled, disabledPercent * maximumHull);
