@@ -148,8 +148,6 @@ protected:
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
 	
-	bool isOutfitter;
-
 	mutable Point warningPoint;
 	mutable std::string warningType;
 	
