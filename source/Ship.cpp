@@ -844,6 +844,8 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	ionization = 0.;
 	disruption = 0.;
 	slowness = 0.;
+	shieldDelay = 0;
+	hullDelay = 0;
 	isInvisible = !HasSprite();
 	jettisoned.clear();
 	hyperspaceCount = 0;
@@ -1564,14 +1566,16 @@ void Ship::DoGeneration()
 		const double hullFuel = attributes.Get("hull fuel") / hullAvailable;
 		const double hullHeat = attributes.Get("hull heat") / hullAvailable;
 		double hullRemaining = hullAvailable;
-		DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel);
+		if(hullDelay == 0)
+			DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel);
 		
 		const double shieldsAvailable = attributes.Get("shield generation");
 		const double shieldsEnergy = attributes.Get("shield energy") / shieldsAvailable;
 		const double shieldsFuel = attributes.Get("shield fuel") / shieldsAvailable;
 		const double shieldsHeat = attributes.Get("shield heat") / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
-		DoRepair(shields, shieldsRemaining, attributes.Get("shields"), energy, shieldsEnergy, fuel, shieldsFuel);
+		if(shieldDelay == 0)
+			DoRepair(shields, shieldsRemaining, attributes.Get("shields"), energy, shieldsEnergy, fuel, shieldsFuel);
 		
 		if(!bays.empty())
 		{
@@ -1598,8 +1602,10 @@ void Ship::DoGeneration()
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
-				DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel);
-				DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"), energy, shieldsEnergy, fuel, shieldsFuel);
+				if(hullDelay == 0)
+					DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel);
+				if(shieldDelay == 0)
+					DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"), energy, shieldsEnergy, fuel, shieldsFuel);
 			}
 			
 			// Now that there is no more need to use energy for hull and shield
@@ -1621,6 +1627,11 @@ void Ship::DoGeneration()
 			heat += (hullAvailable - hullRemaining) * hullHeat;
 		if(shieldsAvailable)
 			heat += (shieldsAvailable - shieldsRemaining) * shieldsHeat;
+		
+		// Decrease the shield and hull delays by 1 now that shield generation
+		// and hull repair have been skipped over.
+		shieldDelay = max(0., shieldDelay - 1.);
+		hullDelay = max(0., hullDelay - 1.);
 	}
 	// Handle ionization effects, etc.
 	if(ionization)
@@ -2252,6 +2263,8 @@ void Ship::Recharge(bool atSpaceport)
 	ionization = 0.;
 	disruption = 0.;
 	slowness = 0.;
+	shieldDelay = 0;
+	hullDelay = 0;
 }
 
 
@@ -2640,7 +2653,11 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	else if(shieldDamage > shields)
 		shieldFraction = min(shieldFraction, shields / shieldDamage);
 	shields -= shieldDamage * shieldFraction;
+	if(shieldDamage)
+		shieldDelay = (shields <= 0.) ? attributes.Get("disabled shield delay") : attributes.Get("shield delay");
 	hull -= hullDamage * (1. - shieldFraction);
+	if(hullDamage)
+		hullDelay = attributes.Get("repair delay");
 	// For the following damage types, the total effect depends on how much is
 	// "leaking" through the shields.
 	double leakage = (1. - .5 * shieldFraction);
@@ -2664,7 +2681,10 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	isDisabled = true;
 	isDisabled = IsDisabled();
 	if(!wasDisabled && isDisabled)
+	{
 		type |= ShipEvent::DISABLE;
+		hullDelay = attributes.Get("disabled repair delay");
+	}
 	if(!wasDestroyed && IsDestroyed())
 		type |= ShipEvent::DESTROY;
 	// If this ship was hit directly and did not consider itself an enemy of the
