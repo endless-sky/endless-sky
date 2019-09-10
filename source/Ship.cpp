@@ -97,11 +97,10 @@ namespace {
 			return;
 		}
 		
-		// Calculate how much resistance can be used assuming no 
+		// Calculate how much resistance can be used assuming no
 		// energy or fuel cost.
-		const double before = stat;
-		const double after = max(0., .99 * before - resistance);
-		resistance = .99 * before - after;
+		double after = max(0., .99 * stat - resistance);
+		resistance = .99 * stat - after;
 		
 		// Limit the resistance by the available energy and fuel
 		if(energyCost)
