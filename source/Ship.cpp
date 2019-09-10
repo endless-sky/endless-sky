@@ -89,7 +89,7 @@ namespace {
 	// Helper function to reduce a given status effect according 
 	// to its resistance, limited by how much energy and fuel are available.
 	// Updates the stat and the energy, fuel, and heat amounts.
-	void DoResistance(bool isDisabled, double &stat, double resistance, double &energy, double energyCost, double &fuel, double fuelCost, double &heat, double heatCost)
+	void DoStatusEffect(bool isDisabled, double &stat, double resistance, double &energy, double energyCost, double &fuel, double fuelCost, double &heat, double heatCost)
 	{
 		if(isDisabled || resistance <= 0)
 		{
@@ -1664,21 +1664,21 @@ void Ship::DoGeneration()
 	const double ionFuel = attributes.Get("ion resistance fuel") / ionResistance;
 	const double ionHeat = attributes.Get("ion resistance heat") / ionResistance;
 	if(ionization)
-		DoResistance(isDisabled, ionization, ionResistance, energy, ionEnergy, fuel, ionFuel, heat, ionHeat);
+		DoStatusEffect(isDisabled, ionization, ionResistance, energy, ionEnergy, fuel, ionFuel, heat, ionHeat);
 	
 	const double disruptionResistance = attributes.Get("disruption resistance");
 	const double disruptionEnergy = attributes.Get("disruption resistance energy") / disruptionResistance;
 	const double disruptionFuel = attributes.Get("disruption resistance fuel") / disruptionResistance;
 	const double disruptionHeat = attributes.Get("disruption resistance heat") / disruptionResistance;
 	if(disruption)
-		DoResistance(isDisabled, disruption, disruptionResistance, energy, disruptionEnergy, fuel, disruptionFuel, heat, disruptionHeat);
+		DoStatusEffect(isDisabled, disruption, disruptionResistance, energy, disruptionEnergy, fuel, disruptionFuel, heat, disruptionHeat);
 	
 	const double slowingResistance = attributes.Get("slowing resistance");
 	const double slowingEnergy = attributes.Get("slowing resistance energy") / slowingResistance;
 	const double slowingFuel = attributes.Get("slowing resistance fuel") / slowingResistance;
 	const double slowingHeat = attributes.Get("slowing resistance heat") / slowingResistance;
 	if(slowness)
-		DoResistance(isDisabled, slowness, slowingResistance, energy, slowingEnergy, fuel, slowingFuel, heat, slowingHeat);
+		DoStatusEffect(isDisabled, slowness, slowingResistance, energy, slowingEnergy, fuel, slowingFuel, heat, slowingHeat);
 	
 	// When ships recharge, what actually happens is that they can exceed their
 	// maximum capacity for the rest of the turn, but must be clamped to the
