@@ -134,14 +134,26 @@ tip "hull:"
 tip "hull energy:"
 	`Energy consumed per second when repairing the hull.`
 
+tip "hull energy multiplier"
+	`A multiplier that affects hull energy. A multiplier of 10% will increase the stat by 10%. Multipliers from multiple outfits are additive.`
+
 tip "hull fuel:"
 	`Fuel consumed per second when repairing the hull.`
+
+tip "hull fuel multiplier"
+	`A multiplier that affects hull fuel. A multiplier of 10% will increase the stat by 10%. Multipliers from multiple outfits are additive.`
 
 tip "hull heat:"
 	`Heat produced per second when repairing the hull.`
 
+tip "hull heat multiplier"
+	`A multiplier that affects hull heat. A multiplier of 10% will increase the stat by 10%. Multipliers from multiple outfits are additive.`
+
 tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
+
+tip "hull repair multiplier"
+	`A multiplier that affects hull repair rate. A multiplier of 10% will increase the stat by 10%. Multipliers from multiple outfits are additive.`
 
 tip "illegal:"
 	`Amount of credits you can be fined for carrying this outfit.`
@@ -215,14 +227,26 @@ tip "sells for:"
 tip "shield energy:"
 	`Energy consumed per second when recharging shields.`
 
+tip "shield energy multiplier:"
+	`A multiplier that affects shield energy. A multiplier of 10% will increase the stat by 10%. Multipliers from multiple outfits are additive.`
+
 tip "shield fuel:"
 	`Fuel consumed per second when recharging shields.`
+
+tip "shield fuel multiplier"
+	`A multiplier that affects shield fuel. A multiplier of 10% will increase the stat by 10%. Multipliers from multiple outfits are additive.`
 
 tip "shield heat:"
 	`Heat produced per second when recharging shields.`
 
+tip "shield heat multiplier"
+	`A multiplier that affects shield heat. A multiplier of 10% will increase the stat by 10%. Multipliers from multiple outfits are additive.`
+
 tip "shield generation:"
 	`Shield points recharged per second. Recharging shields usually consumes energy, and may also produce heat.`
+
+tip "shield generation multiplier"
+	`A multiplier that affects shield generation. A multiplier of 10% will increase the stat by 10%. Multipliers from multiple outfits are additive.`
 
 tip "shields charge / max:"
 	`Shield regeneration rate (per second) and total shields.`
