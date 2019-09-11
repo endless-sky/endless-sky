@@ -80,7 +80,7 @@ namespace {
 		{"slowing resistance", 2},
 		
 		{"repair delay", 4},
-		{"disabled shield delay", 4},
+		{"disabled repair delay", 4},
 		{"shield delay", 4},
 		{"disabled shield delay", 4}
 	};
