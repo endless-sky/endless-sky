@@ -35,6 +35,7 @@ Version 0.9.10:
     * Quantum Key Stones no longer require a Remnant license to buy as to avoid having the player get stuck in Remnant space with no way out. (@Naminson)
     * Added an improved graphic for graviton engines. (@beccabunny)
     * Changed the names and descriptions of various bounty jobs to better highlight the difficulty of the jobs. (@Naminson)
+    * Added an autosave point to FW Rescue Katya 2, meaning that players can jump to a safe point from before Liberate Kornephoros if they're having issues with the battle in their current ship. (@Amazinite)
   * Game mechanics:
     * Daily depreciation has been reduced so that depreciation should now happen three times slower; the change in v0.9.6 claiming to do this did not change depreciation as intended. (@Amazinite)
     * Depreciation now has a grace period of seven days before starting. (@Amazinite)
@@ -53,6 +54,7 @@ Version 0.9.10:
     * Style enforcement of the source code. (@petervdmeer)
     * The variable for turret aiming is now explicitly signed as to avoid some architectures assuming it is unsigned. (@sdennie)
     * The game's title is no longer translated in the appdata. (@rugk)
+    * Altered the outfit info display to allow for attributes to have unit labels. (@Amazinite)
 
 Version 0.9.9:
   * Big changes:
