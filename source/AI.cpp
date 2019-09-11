@@ -702,29 +702,52 @@ void AI::Step(const PlayerInfo &player)
 			// A fighter must belong to the same government as its parent to dock with it.
 			bool hasParent = parent && parent->GetGovernment() == gov;
 			bool hasSpace = hasParent && parent->BaysFree(isFighter);
-			if(!hasParent || (!hasSpace && !Random::Int(600)) || parent->IsDestroyed()
+			if(!hasParent || (!hasSpace && !Random::Int(1200)) || parent->IsDestroyed()
 					|| parent->GetSystem() != it->GetSystem())
 			{
 				// Find a parent for orphaned fighters and drones.
 				parent.reset();
 				it->SetParent(parent);
-				vector<shared_ptr<Ship>> parentChoices;
+				
+				auto parentChoices = vector<shared_ptr<Ship>>{};
 				parentChoices.reserve(ships.size() * .1);
-				for(const auto &other : ships)
-					if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
-					{
-						if(!other->IsDisabled() && other->CanCarry(*it.get()))
+				auto reparentWith = [&it, &gov, &parent, &parentChoices](const list<shared_ptr<Ship>> otherShips) -> bool
+				{
+					for(const auto &other : otherShips)
+						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
 						{
-							parent = other;
-							it->SetParent(other);
-							break;
+							if(!other->IsDisabled() && other->CanCarry(*it.get()))
+							{
+								parent = other;
+								it->SetParent(other);
+								return true;
+							}
+							else
+								parentChoices.emplace_back(other);
 						}
-						else
-							parentChoices.emplace_back(other);
-					}
+					return false;
+				};
+				// Mission ships should only pick ships from the same mission.
+				auto missionIt = it->IsSpecial() && !it->IsYours()
+					? find_if(player.Missions().begin(), player.Missions().end(),
+						[&it](const Mission &m) -> bool
+						{
+							return m.HasShip(it);
+						})
+					: player.Missions().end();
+				if(missionIt != player.Missions().end())
+				{
+					auto &npcs = missionIt->NPCs();
+					for(const auto &npc : npcs)
+						if(reparentWith(npc.Ships()))
+							break;
+				}
+				else
+					reparentWith(ships);
 				
 				if(!parent && !parentChoices.empty())
 				{
+					// No suitable candidate can carry this ship, but this ship can still act as an escort.
 					parent = parentChoices[Random::Int(parentChoices.size())];
 					it->SetParent(parent);
 				}
