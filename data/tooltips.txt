@@ -147,7 +147,7 @@ tip "repair delay:"
 	`How many seconds it takes for hull repairs to begin after taking damage.`
 
 tip "disabled repair delay:"
-	`How many seconds it takes for hull repairs to begin after having been disabled.`
+	`How many seconds it takes for hull repairs to begin once this ship is repaired after being disabled.`
 
 tip "illegal:"
 	`Amount of credits you can be fined for carrying this outfit.`
@@ -240,7 +240,7 @@ tip "shield delay:"
 	`How many seconds it takes for shield generation to begin after taking damage.`
 
 tip "disabled shield delay:"
-	`How many seconds it takes for shield generation to begin after having been disabled.`
+	`How many seconds it takes for shield generation to begin after the shields have been depleted.`
 
 tip "slowing resistance:"
 	`How much slowing damage this ship can resist per second.`
