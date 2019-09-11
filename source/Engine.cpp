@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "Effect.h"
+#include "Files.h"
 #include "FillShader.h"
 #include "Fleet.h"
 #include "Flotsam.h"
@@ -284,7 +285,11 @@ void Engine::Place()
 		// If a special ship somehow was saved without a system reference, place it into the
 		// player's system to avoid a nullptr deference.
 		else if(!ship->GetSystem())
+		{
+			// Log this error.
+			Files::LogError("Engine::Place: Set fallback system for the NPC \"" + ship->Name() + "\" as it had no system");
 			ship->SetSystem(player.GetSystem());
+		}
 		
 		// If the position is still (0, 0), the special ship is in a different
 		// system, disabled, or otherwise unable to land on viable planets in
