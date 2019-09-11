@@ -65,6 +65,8 @@ mission "First Contact: Wanderer"
 				`	"Are there any Hai here?"`
 			`	The same alien speaks again, pantomiming your ship flying into the sky and then returning, and then points to your airlock and mimics your rodent-ear gesture for the Hai. You think it is telling you to go find one of the Hai who can serve as an interpreter, and bring them back here.`
 				accept
+	on visit
+		dialog `Your ship is surrounded by the birdlike aliens. When you step onto the planet, one of the aliens seems to recognize you. "Ka'hai?" it seems to ask, once again mimicking the rodent-like ears of the Hai with its feathered limbs. You shake your head, for you have returned without a Hai to act as an interpreter. Maybe it would be wise to actually go to the Hai before returning to see if one will come with you.`
 
 
 
@@ -139,6 +141,8 @@ mission "Wanderers: Diplomacy"
 	
 	on accept
 		fail "First Contact: Wanderer"
+	on visit
+		dialog `Your ship is surrounded by the birdlike aliens. When you step onto the planet, one of the aliens seems to recognize you. "Ka'hai?" it seems to ask, once again mimicking the rodent-like ears of the Hai with its feathered limbs. You attempt to gesture to Sayari, but become embarrassed when you realize that you left her on one of your escorts that hasn't yet entered the system. Better depart and wait for it to arrive.`
 
 
 
@@ -394,6 +398,8 @@ mission "Wanderers: Defend Vara Ke'sok"
 	on accept
 		"reputation: Hai (Unfettered)" <?= -1
 		event "Sich'ka'ara empty"
+	on visit
+		dialog "There are still Unfettered warships overhead. You should take off again and assist in the fight."
 	on complete
 		event "Sich'ka'ara restored"
 	
@@ -492,6 +498,8 @@ mission "Wanderers: Unfettered Diplomacy 1"
 					decline
 	on accept
 		log `Volunteered to help bring a shipment of food to the Unfettered, as "tribute" from the Wanderers, in the hope that it will placate the Unfettered into making peace.`
+	on visit
+		dialog `When you land on <planet>, you ask one of the Wanderers where the food shipment is. They only tilt their head and respond to you in the Wanderer language. You look around for Iktat Rek to translate, but you realize that you left him on one of your escorts that hasn't yet entered the system. Better depart and wait for it to arrive.`
 
 ship "Deep River" "Deep River (Jump, Unarmed)"
 	outfits
@@ -523,6 +531,8 @@ mission "Wanderers: Unfettered Diplomacy 1A"
 			`	"I would prefer that you avoid combat," he says. "The Unfettered are said to be [greedy, eager] for bribes, if you are willing to spend money to buy peace. Or simply avoid returning fire; the freighter is well shielded."`
 			`	It takes several hours for the massive Wanderer freighter to be loaded. Rek explains that they have kept track of which kinds of food the Unfettered prefer to steal, so they know what will be edible for them. He says, "Our destination is called <planet>. Sayari tells me that all Hai share a [custom, taboo] concerning guests, so once we land on their planet we will be able to [speak, parley] with them in safety."`
 				accept
+	on visit
+		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't enetered the system yet. Better depart and wait for it.`
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
@@ -555,6 +565,8 @@ mission "Wanderers: Unfettered Diplomacy 1B"
 				accept
 	on accept
 		event "wanderer / unfettered peace"
+	on visit
+		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't enetered the system yet. Better depart and wait for it.`
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
@@ -597,6 +609,8 @@ mission "Wanderers: Unfettered Diplomacy 1C"
 		conversation
 			`You drop the freighter off safely on <origin>. Iktat Rek says, "Now I must return to our home, to [discuss, plan] with our elders. We cannot trust the Unfettered with a world in our space; they would build a [garrison, war fleet] there and attack us. But perhaps this [agreement, settlement] will give us peace for long enough to find a better solution."`
 				accept
+	on visit
+		dialog `When you return to <planet>, you're approached by Sayari and a few of the Wanderer elders. "Where is Iktat Rek?" Sayari asks. You realize that you left him on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		"reputation: Wanderer" >?= 20
 		set "license: Wanderer"
@@ -699,7 +713,7 @@ mission "Unfettered: Jump Drive Source"
 			choice
 				`	(Yes.)`
 				`	(Not now.)`
-						defer
+					defer
 			`	You eventually find one of the Unfettered who speaks your language. She directs you to the office of the "governor" (or perhaps warlord) in charge of the spaceport. The governor says, "I offer you same terms as to the other humans. One million credits, and we give you hyperdrive in place of jump drive. Is this acceptable?"`
 			choice
 				`	"Yes."`
@@ -772,6 +786,8 @@ mission "Wanderers: Alpha Surveillance A"
 			`	You split the devices up into three piles, one for each of the Unfettered systems, and keep one of them for yourself, well hidden in a safe place on your ship.`
 				accept
 	
+	on visit
+		dialog phrase "generic waypoint on visit"
 	on complete
 		log "Planted some surveillance devices, designed by the Wanderers, in Unfettered Hai space. A month from now, they will be done collecting data on ship movements in the area, and may provide a hint of where the Alphas who are selling jump drives to the Unfettered are coming from."
 		event "wanderers: alpha surveillance done" 30
@@ -822,6 +838,8 @@ mission "Wanderers: Alpha Surveillance B"
 			`	Hopefully you will be able to collect the data without the Unfettered intercepting the transmissions and realizing they have been spied on.`
 				accept
 	
+	on visit
+		dialog phrase "generic waypoint on visit"
 	on complete
 		conversation
 			`When you arrive at the spaceport, you contact Iktat Rek and send him a copy of the encrypted recordings. You also mention to him that the Unfettered attacked you after you sent out the data retrieval signal. "That is [unfortunate, regrettable]," says Rek. "I hope they will [cool off, calm down] in time. I suspect you could buy their [friendship, favor] back with another jump drive, or just ignore their [attacks, antagonism] for now."`
@@ -1060,6 +1078,8 @@ mission "Wanderers: Alpha Surveillance D"
 		ship "Far Lek 14" "Rudolph"
 		ship "Far Lek 14" "Ralph"
 	
+	on visit
+		dialog `You've returned to <planet>, but you have a feeling that your job isn't done. Either find where the Alphas are hiding, or return to where they are hiding and finish what you started.`
 	on complete
 		log "Defeated a Navy Carrier, presumably being operated by the Alphas, that was equipped with Korath fighters and drones. Presumably there is an Alpha base hidden somewhere on the earth-like planet that the carrier was guarding."
 		conversation
@@ -1102,6 +1122,8 @@ mission "Wanderers: Alpha Surveillance E"
 			`	He comes back aboard your ship, and you prepare to travel to Danforth's base on <destination>.`
 				accept
 	
+	on visit
+		dialog `You've landed on <planet>, but you realize that Elias is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive before meeting with Admiral Danforth.`
 	on complete
 		conversation
 			`Admiral Danforth is very pleased to see you, but his expression turns grim when you explain why you have come. When you mention the Alphas, he hushes you. "Let's not speak of that, out here in the open," he says. "Not that I do not trust my people, but it is best to be safe. I will gather troops who I know are able to operate discreetly and have them be ready to join us on an expedition. Meet me in my private office at the spaceport when you're ready."`
@@ -1311,6 +1333,8 @@ mission "Wanderers: Alpha Surveillance I"
 			label leave
 			`	You agree that you will take Elias back to Alta Hai. Whatever Elias is, whoever might wish him harm, you can only hope that a Quarg ringworld is the safest place for him right now.`
 				accept
+	on visit
+		dialog `You've landed on <planet>, but you realize that Elias is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1326,7 +1350,7 @@ mission "Wanderers: Alpha Surveillance J"
 	on offer
 		event "wanderers: first tech increase"
 		conversation
-			`Your drop Elias off on <origin>. "Don't worry about me," he says, "The Quarg have kept me safe here for a long time. Thanks for being willing to risk your life against the Alphas."`
+			`You drop Elias off on <origin>. "Don't worry about me," he says, "The Quarg have kept me safe here for a long time. Thanks for being willing to risk your life against the Alphas."`
 			choice
 				`	"Wait, won't you tell me whether anything that officer said about you was true?"`
 				`	(Let him go without pressing him for more information.)`
@@ -1619,6 +1643,8 @@ mission "Wanderers Invaded 3B"
 					decline
 			`	"Thank you," she says. "We should go there quickly, so that we can decide our next [gambit, strategy] before the Hai attack us again."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Isai hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1651,6 +1677,8 @@ mission "Wanderers Invaded 3C"
 				accept
 	on accept
 		"reputation: Pug" >?= 1
+	on visit
+		dialog `You return to <planet> without any more information on who or what controls the Eye. Perhaps the answer is closer than you think.`
 	on complete
 		dialog
 			`You have collected some useful information on the nature of the "Eye." You should probably head to the spaceport and meet up with Iktat Rek.`
@@ -1736,6 +1764,8 @@ mission "Wanderers Hai Assistance 1"
 			`	Sayari says, "I have offered to speak to the Hai governors, to see if they can do anything to restrain the Unfettered from making further incursions into Wanderer space. Would you be willing to transport me to <planet>?"`
 			`	"Of course," you say. She leaves to gather some traveling gear and to meet you at your ship.`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Sayari hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1769,6 +1799,8 @@ mission "Wanderers Hai Assistance 2"
 			`	"Perhaps it would be enough merely to threaten them," says another of the elders. "We could gather a massive war fleet above Cloudfire. The Unfettered would need to muster a matching fleet above Darkcloak. It would draw many of their warships away from the alien territory."`
 			`	After well over an hour of further discussion, they reach consensus that that is their best option. As you leave the meeting, Sayari says, "And now, I would like to visit the Unfettered themselves. Perhaps we can talk sense into them."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Sayari hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 mission "Wanderers Hai Assistance Fleet"
 	landing
@@ -1802,6 +1834,8 @@ mission "Wanderers Hai Assistance 3"
 			`	"Better to die asserting our strength than to live with our hands outstretched to beg," says another of the chiefs.`
 			`	You are unable to convince them to change their plans, and as soon as the conversation ends they insist that you leave their planet. "Our warriors in orbit are eager to test this human's strength," says one of the chiefs, laughing.`
 				launch
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Sayari hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1871,6 +1905,8 @@ mission "Wanderers Solifuge Recon 2"
 				"Violin Spider" 6
 				"Violin Spider (Pulse)" 6
 		dialog "That was the last of the new Unfettered ships. You can now report back to Tele'ek on <planet>."
+	on visit
+		dialog `Tele'ek approaches you when you land. "I have [reports, word] that the Unfettered ships are still [present, alive] within Prakacha'a. Please destroy them all before returning."`
 	on complete
 		conversation
 			`Tele'ek listens carefully as you outline the strengths and weaknesses of the new Unfettered carriers. "I am not greatly [concerned, frightened] by tiny fighters," he says. "The weapon that has done us most harm is their ion cannons, which no ship so small can [wield, carry]. But thank you for your assistance. Alas, we have no other [fights, brawls] for you to take part in right now, but if you visit the spaceport, you will find another evacuation fleet that needs an [escort, protector]."`
@@ -1937,6 +1973,8 @@ mission "Wanderers Evacuation 1B"
 		personality heroic staying
 		system "Sich'ka'ara"
 		fleet "Large Unfettered" 3
+	on visit
+		dialog `You've landed on <planet>, but not all of the Deep River transports carrying the refugees are in the system. Better depart and wait for them all to arrive.`
 
 
 
@@ -1948,7 +1986,7 @@ mission "Wanderers Evacuation 1C"
 	source "Vara K'chrai"
 	destination "Vara Ke'sok"
 	to offer
-		has "Wanderers Evacuation 1: done"
+		has "Wanderers Evacuation 1B: done"
 	on offer
 		conversation
 			`The transports offload the refugees, and one of the captains tells you that they are wanted back on <planet>. But now that you know that Iktat Rek may be dying, perhaps you should visit him while you are here.`
@@ -1973,6 +2011,8 @@ mission "Wanderers Evacuation 1C"
 		personality heroic staying
 		system "Sich'ka'ara"
 		fleet "Large Unfettered" 4
+	on visit
+		dialog `You've landed on <planet>, but not all of the Deep River transports carrying the refugees are in the system. Better depart and wait for them all to arrive.`
 
 
 
@@ -2216,6 +2256,8 @@ mission "Wanderers Rek 0"
 			`	He makes a sound halfway between a laugh and a cough, and says, "Even as my body decays, my mind has grown sharper. The more I listened to your box speaking to you, the more its words began to make sense to me."`
 			`	He seems too tired to answer any more questions. You make sure Rek is comfortable in one of your bunk rooms, then prepare to travel to <planet>.`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Iktat Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -2236,6 +2278,8 @@ mission "Wanderers Rek 1"
 	on enter "Sko'karak"
 		dialog
 			`You enter this system with high hopes that Rek, despite his weakened state, has sensed something significant happening here and sent you to discover it. But, your sensors pick up nothing out of the ordinary.`
+	on visit
+		dialog `You've returned to <planet>, but you haven't yet entered the Sko'karak system to investigate. Better depart and make sure you visit it before returning.`
 
 
 
@@ -2261,6 +2305,8 @@ mission "Wanderers Rek 2"
 	on enter "Sko'karak"
 		dialog
 			`You enter the system again, and do an even more detailed sensor sweep in case you missed something the first time. You find nothing.`
+	on visit
+		dialog `You've returned to <planet>, but you haven't yet entered the Sko'karak system to investigate. Better depart and make sure you visit it before returning.`
 
 
 
@@ -2288,6 +2334,8 @@ mission "Wanderers Rek 3"
 	on enter "Sko'karak"
 		dialog
 			`This time when you enter the system, your sensors pick up some strange astronomical phenomenon out beyond the orbit of the farthest planet, a wisp of light like a gathering raincloud. It's not a wormhole, but it is a change. Perhaps it will be enough to give Rek hope.`
+	on visit
+		dialog `You've returned to <planet>, but you haven't yet entered the Sko'karak system to investigate. Better depart and make sure you visit it before returning.`
 
 
 

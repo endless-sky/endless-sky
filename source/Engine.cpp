@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "Effect.h"
+#include "Files.h"
 #include "FillShader.h"
 #include "Fleet.h"
 #include "Flotsam.h"
@@ -35,8 +36,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlanetLabel.h"
 #include "PlayerInfo.h"
-#include "Politics.h"
 #include "PointerShader.h"
+#include "Politics.h"
 #include "Preferences.h"
 #include "Projectile.h"
 #include "Random.h"
@@ -255,8 +256,9 @@ void Engine::Place()
 		planetRadius = object->Radius();
 	}
 	
-	// Give each special ship we just added a random heading and position.
-	for (const shared_ptr<Ship> &ship : ships)
+	// Give each non-carried, special ship we just added a random heading and position.
+	// (While carried by a parent, ships will not be present in `Engine::ships`.)
+	for(const shared_ptr<Ship> &ship : ships)
 	{
 		Point pos;
 		Angle angle = Angle::Random();
@@ -280,6 +282,15 @@ void Engine::Place()
 			else if(hasOwnPlanet)
 				pos = object->Position() + angle.Unit() * Random::Real() * object->Radius();
 		}
+		// If a special ship somehow was saved without a system reference, place it into the
+		// player's system to avoid a nullptr deference.
+		else if(!ship->GetSystem())
+		{
+			// Log this error.
+			Files::LogError("Engine::Place: Set fallback system for the NPC \"" + ship->Name() + "\" as it had no system");
+			ship->SetSystem(player.GetSystem());
+		}
+		
 		// If the position is still (0, 0), the special ship is in a different
 		// system, disabled, or otherwise unable to land on viable planets in
 		// the player's system: place it "in flight".

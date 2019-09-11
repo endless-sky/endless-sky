@@ -49,6 +49,8 @@ mission "FW Conservatory 1"
 				`	"Sorry, I'm just not interested."`
 					decline
 	
+	on visit
+		dialog `You land on <planet>, but you realize that Mr. Eyes and the Andersons are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		payment 50000
 		dialog `Ijs thanks you for the lift and gives you a credit chip for <payment>. He says, "Next we need to pick up some equipment from Tarazed Corporation. Meet me in the spaceport if you're willing to help out as an escort."`
@@ -315,6 +317,8 @@ mission "FW Wolf Pack 2A"
 		ship "Gunboat (Mark II)" "R.N.S. Atherstone"
 		ship "Gunboat (Mark II)" "R.N.S. Tyndale"
 	
+	on visit
+		dialog `You've landed on <planet>, but the freighters have not been eliminated yet. Hunt them down in the Sarin system and destroy them before returning.`
 	on complete
 		event "wolf pack 3 ready" 10
 		karma --
@@ -388,6 +392,8 @@ mission "FW Wolf Pack 3"
 		ship "Protector" "R.N.S. Citadel"
 		ship "Protector" "R.N.S. Rampart"
 	
+	on visit
+		dialog `You've landed on <planet>, but the freighters have not been eliminated yet. Hunt them down in the Gacrux system and destroy them before returning.`
 	on complete
 		event "wolf pack gacrux end"
 		event "wolf pack 4 ready" 20
@@ -463,6 +469,8 @@ mission "FW Wolf Pack 4"
 				"Lance" 4
 				"Combat Drone" 6
 	
+	on visit
+		dialog `You've landed on <planet>, but the freighter has not been eliminated yet. Hunt it down in the Mizar system and destroy it before returning.`
 	on complete
 		event "wolf pack mizar end"
 		karma --

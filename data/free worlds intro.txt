@@ -60,6 +60,8 @@ mission "Pact Recon 0"
 	on accept
 		log "Volunteered to help the Southern Mutual Defense Pact keep tabs on pirate activity in their region of space. Pirate attacks seem to be getting worse because the Navy doesn't bother to patrol down here anymore."
 	
+	on visit
+		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 25000
 		dialog
@@ -87,6 +89,8 @@ mission "Pact Recon 1"
 		dialog
 			`You receive a message from Freya, the militia officer in charge of tracking pirate activity. "We need some more eyes on the empty systems in the middle of the Dirt Belt," she says. "Pay would be a bit better than last time. Interested?"`
 	
+	on visit
+		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 35000
 		dialog
@@ -114,6 +118,8 @@ mission "Pact Recon 2"
 		dialog
 			`You receive another message from Freya: "Hello Captain! I've got a more challenging and lucrative mission for you. We need someone to do a flyby of all four pirate systems here in the south, to gauge their strength. Again, no fighting is required. What do you say?"`
 	
+	on visit
+		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 60000
 		dialog
@@ -148,6 +154,8 @@ mission "Pact Recon 3"
 		fleet "Small Southern Pirates" 3
 		fleet "Large Northern Pirates"
 	
+	on visit
+		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 80000
 		dialog
@@ -274,6 +282,8 @@ mission "FW Recon 0"
 				`	"No problem. But I'm afraid I don't have space for you right now."`
 					defer
 	
+	on visit
+		dialog `You land on <planet>, but you realize that the militia officer is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		payment
 		dialog
@@ -310,7 +320,7 @@ mission "FW Recon 1"
 	
 	npc "scan outfits"
 		government Republic
-		personality staying uninterested
+		personality staying uninterested target
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
@@ -333,6 +343,8 @@ mission "FW Recon 1"
 			label close
 			`	You cut the commlink and breathe a sigh of relief that the conversation is over.`
 	
+	on visit
+		dialog `You land on <planet>, but you haven't yet scanned the Navy Cruiser patrolling the system. Depart and scan the Cruiser's outfits before returning.`
 	on complete
 		dialog `Soon after you land, the militia officer comes to your ship and pays you <payment> in exchange for your sensor logs regarding the <npc>. He says, "If you would be interested in continuing to work for us, meet me in the spaceport bar in an hour."`
 		payment 10000
@@ -363,7 +375,7 @@ mission "FW Recon 2"
 	
 	npc "scan outfits"
 		government "Republic"
-		personality staying uninterested
+		personality staying uninterested target
 		system "Menkent"
 		fleet
 			names "republic capital"
@@ -372,6 +384,8 @@ mission "FW Recon 2"
 				"Cruiser (Heavy)" 4
 		dialog "You've scanned all the ships you can find here that seem to be upgraded for combat. Time to return to <planet> to collect your payment."
 	
+	on visit
+		dialog `You land on <planet>, but you haven't yet scanned the Navy Cruisers patrolling Menkent. Depart and scan the Cruisers' outfits before returning.`
 	on complete
 		dialog `JJ meets you as soon as you land, and you hand over the scanner data. "Thank you again," he says. "If you're willing to take on one more recon mission, meet me in the bar." He hands you <payment>.`
 		payment 50000
@@ -580,6 +594,8 @@ mission "FW Katya 1B"
 			`	Much later that night, as planned, three shadowy figures load a set of unmarked crates into your cargo bay. Katya assured you that the contents are harmless, just intended to distract the Republic security officers, but you can't help feeling like you're getting involved in something shady.`
 				accept
 	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Marty, Sarah, and the medical supplies hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		payment 100000
 		conversation
@@ -685,7 +701,6 @@ mission "FW Katya Alt 2"
 	source
 		government "Free Worlds"
 	destination Foundry
-	blocked "You have reached <origin>, but you have no bunks free for Mr. Eyes. Return here when you have a bunk available, or abort one of your other missions to make room for this one."
 	passengers 1
 	to offer
 		has "event: FW Katya Alt 2: ready"
@@ -715,6 +730,8 @@ mission "FW Katya Alt 2"
 				`	"Sorry, this sounds a bit too shady to me."`
 					decline
 	
+	on visit
+		dialog `You land on <planet>, but your escort with room for Mr. Eyes hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		set "FW Katya 2: done"
 
@@ -740,6 +757,8 @@ mission "FW Katya 2"
 			
 			`	"Great!" she says. "His name is Mr. Eyes, and he'll meet you on <destination>. For his safety, I'd rather not tell you anything about his work, but I assure you he's an upstanding citizen. A little unpopular with big corporations and certain corrupt local governments, though."`
 				accept
+	on visit
+		dialog `You land on <planet>, but your escort with room for Mr. Eyes hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -809,6 +828,8 @@ mission "FW Katya 2B"
 			`	"First," he says, "we need to go to Geminus, where the attack happened. I can explain more when we get there. In the meantime, I should also warn you that I seem to have terrible luck with pirates showing up wherever I go. It's almost like someone has put a price on my head." He grins.`
 				accept
 	
+	on visit
+		dialog `You land on <planet>, but you realize that Mr. Eyes is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on accept
 		log `Met up with a friend of Katya's named Mr. Eyes, who calls himself a "vigilante nuclear power plant inspector." He thinks he can help hunt down the people who bombed Geminus and Martini, to prove that the Free Worlds were not behind it.`
 
@@ -830,6 +851,8 @@ mission "FW Katya 2C"
 			`It turns out that the suitcase Mr. Eyes is carrying is full of portable sensors. He fires them up while explaining to you what he is doing. "Each world, and even each mine, has a slightly different mix of isotopes in their fissionable elements," he explains. "So what I'm doing right now is almost like taking a fingerprint. Once we've got it, we can try to find a match on another planet. I'd be willing to bet the material just came from a civilian reactor core, so tracking it back to the mine wouldn't necessarily incriminate anyone. But developing nukes is tricky, so they probably did tests. And if we can find the test site, that may lead us to the perpetrators."`
 			`	A few minutes later, his measurements are done. "Got it," he says. "Time to start hunting. Katya said to meet up with her on <planet>. It's not our best bet, but it's on the list of suspects."`
 				accept
+	on visit
+		dialog `You land on <planet>, but you realize that Mr. Eyes is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		payment 100000
 		conversation
@@ -891,6 +914,8 @@ mission "FW Katya 3"
 	on accept
 		log "Katya's plan for hunting down the nuclear terrorists involves stealing the sensor equipment from a Navy surveillance drone. Supposedly taking equipment from a drone counts as a salvage operation as long as none of its owners are present, due to a legal loophole in an old act of Parliament."
 	
+	on visit
+		dialog `You land on <planet>, but you don't have a Surveillance Pod. You must disable a Navy surveillance drone and plunder the outfit from it before returning.`
 	on complete
 		outfit "Surveillance Pod" -1
 		conversation
@@ -932,6 +957,8 @@ mission "FW Katya 4"
 			`	"I'd hate to be rich," says Katya. "So much to fear."`
 			`	You finish your meal (Katya pays the tab), and agree to take off for <planet> first thing in the morning.`
 				accept
+	on visit
+		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -988,6 +1015,8 @@ mission "FW Katya 5"
 					accept
 				`	"Sorry, but I think I'm done with helping the Free Worlds. I'd rather strike out on my own."`
 					decline
+	on visit
+		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1046,6 +1075,8 @@ mission "FW Katya 5B"
 			label morning
 			`	At breakfast in the monastery, Mr. Eyes tells you, "I'm going to be staying here until you get back. Greenrock is no place for a man with a price on his head. But Katya will be going with you." You bring Katya and Greg back to your ship and get ready to take off.`
 				accept
+	on visit
+		dialog `You land on <planet>, but you realize that Katya and Brother Greg are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1070,6 +1101,8 @@ mission "FW Katya 5C"
 			`	"Well, let's head back to <planet> and see what Eyes thinks," says Katya, "but I can't imagine the Navy would have such an arsenal. Searching on mining planets sounds like our best bet for now."`
 				accept
 	
+	on visit
+		dialog `You land on <planet>, but you realize that Katya and Brother Greg are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		payment 100000
 		conversation
@@ -1101,6 +1134,8 @@ mission "FW Katya 6"
 			
 			`	"Great!" says Katya. "We'll stop on <planet> first, then swing by Hopper and on to New Iceland. If we still haven't found anything by that point, we'll start working our way up the Rim."`
 				accept
+	on visit
+		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1118,8 +1153,10 @@ mission "FW Katya 6B"
 	on offer
 		conversation
 			`Mr. Eyes fires up his instruments and looks at the results for a few minutes. "Nothing," he says. "Even underground testing would've thrown up a debris plume large enough to measure traces of it. But I'm picking up nothing."`
-			`	"No problem," says Katya, "let's continue to <planet>."`
+			`	"No problem," says Katya. "Let's continue to <planet>."`
 				accept
+	on visit
+		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1138,6 +1175,8 @@ mission "FW Katya 6C"
 		conversation
 			`Again, Eyes runs his tests, and again, nothing shows up. "One more planet to go," he says. "Time to try <planet>." You can tell that they are both starting to feel a bit discouraged, and you are overwhelmed by the thought of how many planets in this sector you may need to search unless you get a lucky break soon.`
 				accept
+	on visit
+		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1162,6 +1201,8 @@ mission "FW Katya 7"
 					accept
 				`	"Sorry, I've got some other missions I need to run instead of continuing this wild goose chase."`
 					decline
+	on visit
+		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1204,6 +1245,8 @@ mission "FW Katya 7B"
 					accept
 				`	"Sorry, 'one more world' is what you said two planets ago. I'm done with this."`
 					decline
+	on visit
+		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1236,6 +1279,8 @@ mission "FW Katya 7C"
 			`	With deep reservations, you drop her off at the outpost, where she is quickly offered the job. "Not many folks care to work up here," says the foreman, "so your help would be much appreciated." You and Eyes return to your ship and get ready to travel to <planet> with the evidence.`
 				accept
 	
+	on visit
+		dialog `You land on <planet>, but you realize that Mr. Eyes is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		"assisted free worlds" ++
 		payment 250000
@@ -1671,6 +1716,8 @@ mission "FW Bounty 1"
 		ship "Sparrow" "Rat"
 		dialog `The "Rat Pack" has been eliminated. You can claim the bounty payment by returning to <destination>.`
 	
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 200000
 		dialog `The militia officer who asked you to hunt down the "Rat Pack" arrives at your ship soon after you land and thanks you profusely. "Now we won't have to worry about them bothering ships in this sector anymore." She pays you <payment> and says she'll tell other militia leaders how helpful you were.`
@@ -1716,6 +1763,8 @@ mission "FW Bounty 2"
 		ship "Behemoth (Speedy)" "Moonless Night"
 		dialog phrase "generic hunted bounty eliminated dialog"
 	
+	on visit
+		dialog phrase "generic bounty hunting on visit"
 	on complete
 		payment 200000
 		dialog `The militia officer who asked you to hunt down the <npc> meets you in the spaceport and pays you <payment>. "Once again, thank you for assisting us," he says.`
@@ -1760,6 +1809,8 @@ mission "FW Bounty 3"
 		ship "Osprey (Alien Weapons)" "Silverhawk"
 		dialog phrase "generic hunted bounty eliminated dialog"
 	
+	on visit
+		dialog phrase "generic bounty hunting on visit"
 	on complete
 		"assisted free worlds" ++
 		payment 300000
@@ -1858,6 +1909,7 @@ mission "Rescue Katya 1"
 
 mission "Rescue Katya 2"
 	landing
+	autosave
 	name "Rescue Katya"
 	description "Return to <planet> and report to the Free Worlds Council that you were unable to locate Katya."
 	source Clink
@@ -2038,6 +2090,8 @@ mission "Defend Sabik"
 				"Hawk" 2
 				"Sparrow" 1
 	
+	on visit
+		dialog `You've landed on <planet>, but there are still Navy ships circling overhead. You should take off and help finish them off.`
 	on complete
 		dialog `The Navy has been driven off, but at a great cost. You should probably visit the spaceport and see if Tomek is there, or someone else who can tell you what to do next.`
 

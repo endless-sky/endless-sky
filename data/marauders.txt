@@ -10,6 +10,7 @@
 
 ship "Marauder Arrow"
 	sprite "ship/marrows"
+	thumbnail "thumbnail/marrows"
 	attributes
 		category "Interceptor"
 		"cost" 1320000
@@ -59,6 +60,7 @@ ship "Marauder Arrow"
 
 ship "Marauder Arrow" "Marauder Arrow (Engines)"
 	sprite "ship/marrowe"
+	thumbnail "thumbnail/marrowe"
 	add attributes
 		"engine capacity" 20
 	outfits
@@ -81,6 +83,7 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 
 ship "Marauder Arrow" "Marauder Arrow (Weapons)"
 	sprite "ship/marroww"
+	thumbnail "thumbnail/marroww"
 	add attributes
 		"weapon capacity" 5
 	outfits
@@ -108,6 +111,7 @@ ship "Marauder Arrow" "Marauder Arrow (Weapons)"
 
 ship "Marauder Bounder"
 	sprite "ship/mbounders"
+	thumbnail "thumbnail/mbounders"
 	attributes
 		category "Interceptor"
 		"cost" 1250000
@@ -160,6 +164,7 @@ ship "Marauder Bounder"
 
 ship "Marauder Bounder" "Marauder Bounder (Engines)"
 	sprite "ship/mboundere"
+	thumbnail "thumbnail/mboundere"
 	add attributes
 		"engine capacity" 15
 	outfits
@@ -185,6 +190,7 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 
 ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 	sprite "ship/mbounderw"
+	thumbnail "thumbnail/mbounderw"
 	add attributes
 		"weapon capacity" 20
 	outfits
@@ -215,6 +221,7 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 
 ship "Marauder Falcon"
 	sprite "ship/mfalcons"
+	thumbnail "thumbnail/mfalcons"
 	attributes
 		category "Heavy Warship"
 		"cost" 13900000
@@ -272,6 +279,7 @@ ship "Marauder Falcon"
 
 ship "Marauder Falcon" "Marauder Falcon (Engines)"
 	sprite "ship/mfalcone"
+	thumbnail "thumbnail/mfalcone"
 	add attributes
 		"engine capacity" 55
 	outfits
@@ -307,6 +315,7 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 
 ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 	sprite "ship/mfalconw"
+	thumbnail "thumbnail/mfalconw"
 	add attributes
 		"weapon capacity" 35
 	outfits
@@ -343,6 +352,7 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 
 ship "Marauder Firebird"
 	sprite "ship/mfirebirds"
+	thumbnail "thumbnail/mfirebirds"
 	attributes
 		category "Medium Warship"
 		"cost" 4100000
@@ -380,14 +390,14 @@ ship "Marauder Firebird"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -32 62
-	engine 32 62
-	gun -27 -32 "Plasma Cannon"
-	gun 27 -32 "Plasma Cannon"
-	gun -38 -18 "Plasma Cannon"
-	gun 38 -18 "Plasma Cannon"
-	turret -5 3 "Heavy Laser Turret"
-	turret 5 3 "Heavy Anti-Missile Turret"
+	engine -31.5 68
+	engine 31.5 68
+	gun -28 -34 "Plasma Cannon"
+	gun 28 -34 "Plasma Cannon"
+	gun -39 -19 "Plasma Cannon"
+	gun 39 -19 "Plasma Cannon"
+	turret 0 -44 "Heavy Anti-Missile Turret"
+	turret 0 -2.5 "Heavy Laser Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -398,6 +408,7 @@ ship "Marauder Firebird"
 
 ship "Marauder Firebird" "Marauder Firebird (Engines)"
 	sprite "ship/mfirebirde"
+	thumbnail "thumbnail/mfirebirds"
 	add attributes
 		"engine capacity" 20
 	outfits
@@ -417,21 +428,16 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
-	
-	engine -34 62
-	engine 0 74
-	engine 34 62
-	gun -26.5 -33 "Plasma Cannon"
-	gun 26.5 -33 "Plasma Cannon"
-	gun -38 -18 "Plasma Cannon"
-	gun 38 -18 "Plasma Cannon"
-	turret -5 3 "Quad Blaster Turret"
-	turret 5 3 "Anti-Missile Turret"
+
+	engine -31.5 75.5
+	engine 31.5 75.5
+	engine 0 78
 	description "One of the biggest complaints about Betelgeuse's venerable classic from younger pilots is that it's heavy and slow. A previous owner of this ship also believed so, and has fitted another engine port, in addition to setting aside more space for outfits and giving the old ship some new hull plating and shield emitters."
 
 
 ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 	sprite "ship/mfirebirdw"
+	thumbnail "thumbnail/mfirebirdw"
 	add attributes
 		"weapon capacity" 35
 	outfits
@@ -450,12 +456,19 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
+	gun -27.5 -33.5 "Particle Cannon"
+	gun 27.5 -33.5 "Particle Cannon"
+	gun -38.5 -18.5 "Particle Cannon"
+	gun 38.5 -18.5 "Particle Cannon"
+	turret 0 -44 "Quad Blaster Turret"
+	turret 0 -2.5 "Quad Blaster Turret"
 	description "This Medium Warship with one of the heaviest armaments possible just got heavier. With more outfit space, giant gun ports, extra hull plating, and more shield emitters - this blast from the past will make its targets history."
 
 
 
 ship "Marauder Leviathan"
 	sprite "ship/mleviathans"
+	thumbnail "thumbnail/mleviathans"
 	attributes
 		category "Heavy Warship"
 		"cost" 10800000
@@ -495,16 +508,16 @@ ship "Marauder Leviathan"
 		"Ionic Afterburner"
 		"Hyperdrive"
 	
-	engine -25 120
-	engine 25 120
-	gun -38 -34 "Particle Cannon"
-	gun 38 -34 "Particle Cannon"
-	gun -50 -23 "Particle Cannon"
-	gun 50 -23 "Particle Cannon"
-	turret -15 -50 "Quad Blaster Turret"
-	turret 15 -50 "Quad Blaster Turret"
-	turret -25 10 "Heavy Laser Turret"
-	turret 25 10 "Heavy Laser Turret"
+	engine -23 126.5
+	engine 23 126.5
+	gun -39.5 -33 "Particle Cannon"
+	gun 39.5 -33 "Particle Cannon"
+	gun -51 -21 "Particle Cannon"
+	gun 51 -21 "Particle Cannon"
+	turret -14.5 -11.5 "Quad Blaster Turret"
+	turret 14.5 -11.5 "Quad Blaster Turret"
+	turret -26 11.5 "Heavy Laser Turret"
+	turret 26 11.5 "Heavy Laser Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -515,6 +528,7 @@ ship "Marauder Leviathan"
 
 ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 	sprite "ship/mleviathane"
+	thumbnail "thumbnail/mleviathane"
 	add attributes
 		"engine capacity" 80
 	outfits
@@ -534,13 +548,16 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 		"A865 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -25 125
-	engine 25 125
+	engine -41 118.5 0.6
+	engine 41 118.5 0.6
+	engine -21 126.5 0.8
+	engine 21 126.5 0.8
 	description "As if the Leviathan isn't a terrifying enough ship already, this one has been heavily modified with special attention paid to the engine capacity, enabling it to bring its guns to bear even faster."
 
 
 ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 	sprite "ship/mleviathanw"
+	thumbnail "thumbnail/mleviathanw"
 	add attributes
 		"weapon capacity" 35
 	outfits
@@ -560,20 +577,21 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 		"Ionic Afterburner"
 		"Hyperdrive"
 	
-	gun -38 -55 "Particle Cannon"
-	gun 38 -55 "Particle Cannon"
-	gun -50 -44 "Particle Cannon"
-	gun 50 -44 "Particle Cannon"
-	turret -15 -50 "Heavy Laser Turret"
-	turret 15 -50 "Heavy Laser Turret"
-	turret -25 10 "Heavy Laser Turret"
-	turret 25 10 "Heavy Laser Turret"
+	gun -37.5 -41.5 "Particle Cannon"
+	gun 37.5 -41.5 "Particle Cannon"
+	gun -49.5 -29.5 "Particle Cannon"
+	gun 49.5 -29.5 "Particle Cannon"
+	turret -14.5 -11.5 "Heavy Laser Turret"
+	turret 14.5 -11.5 "Heavy Laser Turret"
+	turret -26 11.5 "Heavy Laser Turret"
+	turret 26 11.5 "Heavy Laser Turret"
 	description "This Leviathan once belonged to an infamous pirate captain whose name has been lost to the ages. It's had so much custom work done to it that can hardly even be considered the same ship. The weapons capacity, in particular has been massively increased."
 
 
 
 ship "Marauder Manta"
 	sprite "ship/mmantas"
+	thumbnail "thumbnail/mmantas"
 	attributes
 		category "Medium Warship"
 		"cost" 3740000
@@ -631,6 +649,7 @@ ship "Marauder Manta"
 
 ship "Marauder Manta" "Marauder Manta (Engines)"
 	sprite "ship/mmantae"
+	thumbnail "thumbnail/mmantae"
 	add attributes
 		"engine capacity" 20
 	outfits
@@ -664,6 +683,7 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 
 ship "Marauder Manta" "Marauder Manta (Weapons)"
 	sprite "ship/mmantaw"
+	thumbnail "thumbnail/mmantaw"
 	add attributes
 		"weapon capacity" 20
 	outfits
@@ -700,6 +720,7 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 
 ship "Marauder Quicksilver"
 	sprite "ship/mquicksilvers"
+	thumbnail "thumbnail/mquicksilvers"
 	attributes
 		category "Light Warship"
 		"cost" 1200000
@@ -749,6 +770,7 @@ ship "Marauder Quicksilver"
 
 ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 	sprite "ship/mquicksilvere"
+	thumbnail "thumbnail/mquicksilvere"
 	add attributes
 		"engine capacity" 40
 	outfits
@@ -774,6 +796,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 
 ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 	sprite "ship/mquicksilverw"
+	thumbnail "thumbnail/mquicksilverw"
 	add attributes
 		"weapon capacity" 15
 	outfits
@@ -799,6 +822,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 
 ship "Marauder Raven"
 	sprite "ship/mravens"
+	thumbnail "thumbnail/mravens"
 	attributes
 		category "Light Warship"
 		"cost" 2750000
@@ -852,6 +876,7 @@ ship "Marauder Raven"
 
 ship "Marauder Raven" "Marauder Raven (Engines)"
 	sprite "ship/mravene"
+	thumbnail "thumbnail/mravene"
 	add attributes
 		"engine capacity" 20
 	outfits
@@ -876,6 +901,7 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 
 ship "Marauder Raven" "Marauder Raven (Weapons)"
 	sprite "ship/mravenw"
+	thumbnail "thumbnail/mravenw"
 	add attributes
 		"weapon capacity" 30
 	outfits
@@ -904,12 +930,13 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 
 ship "Marauder Splinter"
 	sprite "ship/msplinters"
+	thumbnail "thumbnail/msplinters"
 	attributes
 		category "Medium Warship"
 		"cost" 3400000
 		"shields" 5700
 		"hull" 1950
-		"required crew" 14
+		"required crew" 8
 		"bunks" 22
 		"mass" 275
 		"drag" 4.0
@@ -957,6 +984,7 @@ ship "Marauder Splinter"
 
 ship "Marauder Splinter" "Marauder Splinter (Engines)"
 	sprite "ship/msplintere"
+	thumbnail "thumbnail/msplintere"
 	add attributes
 		"engine capacity" 20
 	outfits
@@ -987,6 +1015,7 @@ ship "Marauder Splinter" "Marauder Splinter (Engines)"
 
 ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 	sprite "ship/msplinterw"
+	thumbnail "thumbnail/msplinterw"
 	add attributes
 		"weapon capacity" 15
 	outfits
