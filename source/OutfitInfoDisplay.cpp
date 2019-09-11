@@ -77,7 +77,12 @@ namespace {
 		
 		{"ion resistance", 2},
 		{"disruption resistance", 2},
-		{"slowing resistance", 2}
+		{"slowing resistance", 2},
+		
+		{"repair delay", 4},
+		{"disabled shield delay", 4},
+		{"shield delay", 4},
+		{"disabled shield delay", 4}
 	};
 	
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
