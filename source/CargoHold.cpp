@@ -567,12 +567,16 @@ int CargoHold::IllegalCargoFine() const
 		worst = max(worst, fine / 2);
 	}
 	
+	// Fines for illegal mission cargo and passengers are summed up to avoid the
+	// player being able to stack multiple illegal jobs at once and avoid the 
+	// bulk of the penalties when fined.
 	for(const auto &it : missionCargo)
 	{
 		int fine = it.first->IllegalCargoFine();
 		if(fine < 0)
 			return fine;
-		worst = max(worst, fine);
+		if(!it.first->HasFailed())
+			worst += fine;
 	}
 	
 	for(const auto &it : passengers)
@@ -580,7 +584,8 @@ int CargoHold::IllegalCargoFine() const
 		int fine = it.first->IllegalCargoFine();
 		if(fine < 0)
 			return fine;
-		worst = max(worst, fine);
+		if(!it.first->HasFailed())
+			worst += fine;
 	}
 	
 	return worst;

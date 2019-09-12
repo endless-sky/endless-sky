@@ -225,6 +225,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		if(!scan || (scan & ShipEvent::SCAN_CARGO))
 		{
 			int64_t fine = ship->Cargo().IllegalCargoFine();
+			int failedMissions = -1;
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
 				maxFine = fine;
@@ -234,14 +235,26 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 				{
 					// Append the illegalCargoMessage from each applicable mission, if available
 					string illegalCargoMessage = mission.IllegalCargoMessage();
-					if(!illegalCargoMessage.empty())
+					if(!illegalCargoMessage.empty() && !mission.HasFailed())
 					{
 						reason = ".\n\t";
 						reason.append(illegalCargoMessage);
 					}
 					// Fail any missions with illegal cargo and "Stealth" set
 					if(mission.IllegalCargoFine() > 0 && mission.FailIfDiscovered())
+					{
 						player.FailMission(mission);
+						failedMissions++;
+					}
+				}
+				if(failedMissions > 0)
+				{
+					reason.append("\n\tYou failed ");
+					reason.append(Format::Number(failedMissions));
+					if(failedMissions > 1)
+						reason.append(" other missions.");
+					else
+						reason.append(" other mission.");
 				}
 			}
 		}
