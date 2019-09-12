@@ -251,10 +251,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 				{
 					reason.append("\n\tYou failed ");
 					reason.append(Format::Number(failedMissions));
-					if(failedMissions > 1)
-						reason.append(" other missions.");
-					else
-						reason.append(" other mission.");
+					reason.append((failedMissions > 1) ? " other missions." : " other mission.");
 				}
 			}
 		}
