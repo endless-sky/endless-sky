@@ -241,7 +241,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 						reason.append(illegalCargoMessage);
 					}
 					// Fail any missions with illegal cargo and "Stealth" set
-					if(mission.IllegalCargoFine() > 0 && mission.FailIfDiscovered())
+					if(!mission.HasFailed() && mission.IllegalCargoFine() > 0 && mission.FailIfDiscovered())
 					{
 						player.FailMission(mission);
 						failedMissions++;
