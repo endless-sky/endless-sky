@@ -161,6 +161,7 @@ mission "Remnant: Lost in Ember Waste"
 	to offer
 		has "event: lost in ember waste"
 		outfit "Quantum Key Stone" 1
+		log `Became stuck in the Ember Waste, but was given a quantum key stone by an old woman who claims to have once been stuck in Republic space under similar circumstances.`
 		conversation
 			`You wander the <origin> spaceport feeling very lost in this strange region of space. Having flown around for a few weeks with no idea of how to get out, you wonder if you'll be stuck here forever.`
 			`	You sit down on a bench and think about how you're going to get out of this situation. While you think, an old woman approaches you and signs something.`
@@ -214,7 +215,7 @@ mission "Remnant: Lost in Ember Waste"
 			`	"Well of course. How else would I have been able to return home?`
 			
 			label next
-			`	"To my surprise, the Hai had a large number of quantum key stones. I was so thrilled that I didn't even ask any questions about how they had them. I bought one and flew as fast as I could back to the Ember Waste, and I've been here ever since."`
+			`	"To my surprise, the Hai had a large number of quantum key stones." She pauses for a moment. "Might be a good idea for you to bring some of those Hai key stones here. Anyways, I was so thrilled that I didn't even ask any questions about how they had them. I bought one and flew as fast as I could back to the Ember Waste, and I've been here ever since."`
 			choice
 				`	"How long ago was that?"`
 				`	"What about your daughters?"`
@@ -224,7 +225,7 @@ mission "Remnant: Lost in Ember Waste"
 				goto end
 			
 			label daughtesr
-			`	"Oh, I made sure to tell them I was returning home. They know where to find me if they ever need me, and I have made trips to see them every decade or so.`
+			`	"Oh, I made sure to tell them I was returning home. They know where to find me if they ever need me, and I have made trips to see them every decade or so. I'm nearing the end of my days, though, so I may only have one more trip left in me.`
 			
 			label end
 			`	"I really must get going, now," she says. The woman gets up to leave, but before walking away she turns to you and sings, "Safe travels, Captain," with a big grin on her face. You say goodbye to her in return and part ways.`
