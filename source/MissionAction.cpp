@@ -406,10 +406,10 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		{
 			for(const auto &ship : player.Ships())
 				if(!ship->IsDestroyed())
-					attribute += ship->Attributes.Get(it.first);
+					attribute += ship->Attributes().Get(it.first);
 		}
 		else
-			attribute += flagship ? flagship->Attributes.Get(it.first) : 0;
+			attribute += flagship ? flagship->Attributes().Get(it.first) : 0;
 		
 		if(attribute < it.second)
 			return false;
