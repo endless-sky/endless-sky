@@ -206,6 +206,14 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			else
 				child.PrintTrace("Skipping invalid \"require\" amount:");
 		}
+		else if(key == "attribute" && hasValue)
+		{
+			double count = (child.Size() < 3 ? 1. : static_cast<double>(child.Value(2)));
+			if(count >= 0.)
+				requiredAttributes[child.Token(1)] = count;
+			else
+				child.PrintTrace("Skipping invalid \"attribute\" amount:");
+		}
 		else if(key == "payment")
 		{
 			if(child.Size() == 1)
@@ -301,6 +309,8 @@ void MissionAction::Save(DataWriter &out) const
 			out.Write("outfit", it.first->Name(), it.second);
 		for(const auto &it : requiredOutfits)
 			out.Write("require", it.first->Name(), it.second);
+		for(const auto &it : requiredAttributes)
+			out.Write("attribute", it.first, it.second);
 		if(payment)
 			out.Write("payment", payment);
 		for(const auto &it : events)
@@ -382,6 +392,30 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		
 		// If the required count is 0, the player must not have any of the outfit.
 		if(checkAll && available)
+			return false;
+	}
+	
+	for(const auto &it : requiredAttributes)
+	{
+		double attribute = 0;
+		
+		// Requiring the player to have 0 of this attributes means all ships must be
+		// checked, even if the ship is disabled, parked, or out-of-system.
+		bool checkAll = !it.second;
+		if(checkAll)
+		{
+			for(const auto &ship : player.Ships())
+				if(!ship->IsDestroyed())
+					attribute += ship->Attributes.Get(it.first);
+		}
+		else
+			attribute += flagship ? flagship->Attributes.Get(it.first) : 0;
+		
+		if(attribute < it.second)
+			return false;
+		
+		// If the required attribute count is 0, the player must not have any of the attribute.
+		if(checkAll && attribute)
 			return false;
 	}
 	
