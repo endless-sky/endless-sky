@@ -15,6 +15,7 @@ Version 0.9.10:
     * The "Unwanted Cargo" mission now correctly identifies when you have the translator. (@Amazinite)
     * Paradise Fortune 1's on visit dialog no longer refers to Diana by name. (@petervdmeer)
     * Mission NPCs that have no saved system will not crash the game when the player departs a planet. (@tehhowch)
+    * Ship thumbnails are now saved, just like sprites. (@MageKing17)
   * Game content:
     * Black holes now have a landing message. (@Comnom)
     * Pirate occupation spaceport missions will no longer cause the player to launch if the occupation is in another system. (@ZBok)
