@@ -224,7 +224,7 @@ mission "Remnant: Lost in Ember Waste"
 			`	"Well I got lost when I was 17 and returned when I was 64, so perhaps some 130 years ago now that I returned." She chuckles at the surprised look on your face as you realize that she is nearly 200 years old. "Uncovering ancient alien technology is quite the blessing.`
 				goto end
 			
-			label daughtesr
+			label daughters
 			`	"Oh, I made sure to tell them I was returning home. They know where to find me if they ever need me, and I have made trips to see them every decade or so. I'm nearing the end of my days, though, so I may only have one more trip left in me.`
 			
 			label end
