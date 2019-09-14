@@ -401,21 +401,16 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		
 		// Requiring the player to have 0 of this attributes means all ships must be
 		// checked, even if the ship is disabled, parked, or out-of-system.
-		bool checkAll = !it.second;
-		if(checkAll)
+		if(!it.second)
 		{
 			for(const auto &ship : player.Ships())
-				if(!ship->IsDestroyed())
-					attribute += ship->Attributes().Get(it.first);
+				if(!ship->IsDestroyed() && ship->Attributes().Get(it.first))
+					return false;
 		}
 		else
 			attribute += flagship ? flagship->Attributes().Get(it.first) : 0;
 		
 		if(attribute < it.second)
-			return false;
-		
-		// If the required attribute count is 0, the player must not have any of the attribute.
-		if(checkAll && attribute)
 			return false;
 	}
 	
