@@ -215,7 +215,7 @@ mission "Remnant: Lost in Ember Waste"
 			`	"Well of course. How else would I have been able to return home?`
 			
 			label next
-			`	"To my surprise, the Hai had a large number of quantum key stones." She pauses for a moment. "Might be a good idea for you to bring some of those Hai key stones here. Anyways, I was so thrilled that I didn't even ask any questions about how they had them. I bought one and flew as fast as I could back to the Ember Waste, and I've been here ever since."`
+			`	"To my surprise, the Hai had a large number of quantum key stones." She pauses for a moment. "Might be a good idea for you to bring some of those Hai key stones here. Anyway, I was so thrilled that I didn't even ask any questions about how they had them. I bought one and flew as fast as I could back to the Ember Waste, and I've been here ever since."`
 			choice
 				`	"How long ago was that?"`
 				`	"What about your daughters?"`
@@ -1642,7 +1642,7 @@ mission "Remnant: Broken Jump Drive 2"
 				`	"Great! I will find more."`
 					goto end
 				`	"What are you studying?"`
-			`	"Our previous research into jump drives determined that these drives are unsurprisingly multi-part systems. We know the outer part that we can see and handle is mostly the machinery for generating some kind of containment field or pocket. As to how it works or why it is needed..." his chant trails off and he makes a gesture you suspect may be the equivalent of a shrug. "Anyways, our team is focused on the nature of this outer system. It is our hope that, damaged as it is, its continued existence might allow us to look a little farther inside its inner workings to figure out exactly what that field does and how it is used.`
+			`	"Our previous research into jump drives determined that these drives are unsurprisingly multi-part systems. We know the outer part that we can see and handle is mostly the machinery for generating some kind of containment field or pocket. As to how it works or why it is needed..." his chant trails off and he makes a gesture you suspect may be the equivalent of a shrug. "Anyway, our team is focused on the nature of this outer system. It is our hope that, damaged as it is, its continued existence might allow us to look a little farther inside its inner workings to figure out exactly what that field does and how it is used.`
 			label end
 			`	"Well, my compatriots finished unloading rather quickly, so I should be off. For all our sakes, I hope you find more of these for us."`
 
