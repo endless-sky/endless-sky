@@ -201,7 +201,7 @@ mission "Remnant: Lost in Ember Waste"
 			label republic
 			`	"I was an adventurous spirit in my youth," she says. "One day I found my way out of the Ember Waste and back to what I learned was the rest of humanity. For years my people had hidden here believing the Alphas had killed everyone else, but I discovered that we had little to fear.`
 			`	"I explored the Republic for many months, learning what had happened since the Alpha Wars, but when I attempted to return to the Ember Waste to tell my people, I found that my key stone had been stolen at some point during my journey. I had no way to return."`
-			`	She lets out a long sigh. "I don't want to bore you with all the details, but I resigned myself to my new life. I met a man, had two daughters, but never lost hope of returning to my true home. One day, after my daughters had grown and my husband had passed in an accident, I decided to go on another adventure. I dusted off my old ship, and soon discovered Hai space."`
+			`	She lets out a long sigh. "I don't want to bore you with all the details, but I resigned myself to my new life. I met a man, had two daughters, but never lost hope of returning to my true home. One day, after my daughters had grown and my husband had passed in an accident, I decided to go on another adventure. I dusted off my old ship, and soon discovered the Hai."`
 			branch hai
 				has "First Contact: Hai"
 			choice
@@ -225,7 +225,7 @@ mission "Remnant: Lost in Ember Waste"
 				goto end
 			
 			label daughters
-			`	"Oh, I made sure to tell them I was returning home. They know where to find me if they ever need me, and I have made trips to see them every decade or so. I'm nearing the end of my days, though, so I may only have one more trip left in me.`
+			`	"Oh, I only told them about deciding to travel the galaxy. Never told them about returning home. I made trips to see them every so often, but they both passed many decades ago now. It seems like the Republic can't quite get anyone to live past 130 years.`
 			
 			label end
 			`	"I really must get going, now," she says. The woman gets up to leave, but before walking away she turns to you and sings, "Safe travels, Captain," with a big grin on her face. You say goodbye to her in return and part ways.`
