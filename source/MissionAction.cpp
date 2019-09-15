@@ -208,7 +208,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		}
 		else if(key == "attribute" && hasValue)
 		{
-			double count = (child.Size() < 3 ? 1. : static_cast<double>(child.Value(2)));
+			double count = (child.Size() < 3 ? 1. : child.Value(2));
 			requiredAttributes[child.Token(1)] = count;
 		}
 		else if(key == "payment")
