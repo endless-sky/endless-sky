@@ -1889,6 +1889,8 @@ mission "Courier 2"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
 		dialog phrase "generic package offer"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 50000
