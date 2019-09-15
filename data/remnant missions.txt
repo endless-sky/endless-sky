@@ -142,6 +142,8 @@ mission "Remnant Blood Test Patch"
 mission "lost in ember waste"
 	landing
 	invisible
+	source
+		governmant "Remnant"
 	to offer
 		has "remnant blood test pure"
 		not "license: Remnant"
@@ -158,6 +160,8 @@ event "lost in ember waste"
 mission "Remnant: Lost in Ember Waste"
 	landing
 	invisible
+	source
+		governmant "Remnant"
 	to offer
 		has "event: lost in ember waste"
 		outfit "Quantum Key Stone" 1
