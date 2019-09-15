@@ -90,6 +90,10 @@ void StarField::SetHaze(const Sprite *sprite)
 
 void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 {
+	// Draw the starfield unless it is disabled in the preferences.
+	if(!Preferences::Has("Draw starfield"))
+		return;
+	
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
 	
