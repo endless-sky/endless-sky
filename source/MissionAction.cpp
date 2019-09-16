@@ -370,7 +370,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		
 		// If required has a child, then specific locations are going to be checked.
 		// TODO: Only enter this if statement if require has a child.
-		if(true)
+		if(false)
 		{
 			// TODO: Switch the location check booleans to true based off of the keywords in the child.
 			// checkFlag = child.contains("flagship"); or something like that
@@ -408,7 +408,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 			}
 		}
 		else if(!it.second)
-		{	
+		{
 			// Requiring the player to have 0 of this outfit and not specifying where to look
 			// means all ships and all cargo holds must be checked, even if the ship is disabled, 
 			// parked, or out-of-system.
@@ -423,9 +423,11 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		}
 		else
 		{
-			// If no check locations where specified and the required amount is greater than one, 
+			// If no check locations were specified and the required amount is greater than zero, 
 			// check only the flagship.
 			checkFlag = true;
+			checkCargo = true;
+			checkInstalled = true;
 		}
 		
 		// Now that the check booleans have been handled, check the flagship
