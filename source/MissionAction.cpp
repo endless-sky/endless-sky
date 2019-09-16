@@ -356,32 +356,127 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 	for(const auto &it : requiredOutfits)
 	{
 		int available = 0;
-		// Requiring the player to have 0 of this outfit means all ships and all cargo holds
-		// must be checked, even if the ship is disabled, parked, or out-of-system.
-		bool checkAll = !it.second;
-		if(checkAll)
+		
+		bool checkFlag = false;
+		bool checkEscorts = false;
+		bool checkInstalled = false;
+		bool checkCargo = false;
+		bool checkPresent = false;
+		bool checkAbsent = false;
+		bool checkParked = false;
+		bool checkUnparked = false;
+		// TODO: checkDisabled and checkEnabled?
+		// TODO: Figure out when to check player.Cargo().Get(it.first).
+		
+		// If required has a child, then specific locations are going to be checked.
+		// TODO: Only enter this if statement if require has a child.
+		if(true)
 		{
-			for(const auto &ship : player.Ships())
-				if(!ship->IsDestroyed())
-				{
-					available += ship->Cargo().Get(it.first);
-					available += ship->OutfitCount(it.first);
-				}
+			// TODO: Switch the location check booleans to true based off of the keywords in the child.
+			// checkFlag = child.contains("flagship"); or something like that
+			
+			// TODO: Allow multiple unique children instead of pooling the keywords from all children?
+			//	The way this is set up now, having the following:
+			//		require "Heavy Laser"
+			//			flagship
+			//			escorts cargo
+			//	is treated the same as if "flagship escorts cargo" were all on one line, meaning only 
+			//	the flagship's cargo is checked, not everything on the flagship but only the cargo of the escorts.
+			//	Such a change would require a for(each child) loop.
+			
+			// The following if statements swap location checks to true if certain keywords have
+			// been omitted, e.g, not specifying installed or cargo means check both.
+			if(!checkFlag && !checkEscorts) {
+				checkEscorts = true;
+				if(!checkAbsent && !checkParked)
+					checkFlag = true;
+			}
+			if(!checkCargo && !checkInstalled)
+			{
+				checkCargo = true;
+				checkInstalled = true;
+			}
+			if(!checkPresent && !checkAbsent)
+			{
+				checkPresent = true;
+				checkAbsent = true;
+			}
+			if(!checkParked && !checkUnparked)
+			{
+				checkParked = true;
+				checkUnparked = true;
+			}
+		}
+		else if(!it.second)
+		{	
+			// Requiring the player to have 0 of this outfit and not specifying where to look
+			// means all ships and all cargo holds must be checked, even if the ship is disabled, 
+			// parked, or out-of-system.
+			checkFlag = true;
+			checkEscorts = true;
+			checkInstalled = true;
+			checkCargo = true;
+			checkPresent = true;
+			checkAbsent = true;
+			checkParked = true;
+			checkUnparked = true;
 		}
 		else
 		{
-			// Required outfits must be present on able ships in the
-			// player's location (or the respective cargo hold).
-			available += flagship ? flagship->OutfitCount(it.first) : 0;
-			available += boardingShip ? flagship->Cargo().Get(it.first)
+			// If no check locations where specified and the required amount is greater than one, 
+			// check only the flagship.
+			checkFlag = true;
+		}
+		
+		// Now that the check booleans have been handled, check the flagship
+		// if necessary.
+		if(checkFlag)
+		{
+			if(checkCargo)
+				available += boardingShip ? flagship->Cargo().Get(it.first)
 					: CountInCargo(it.first, player);
+			if(checkInstalled)
+				available += flagship ? flagship->OutfitCount(it.first) : 0;
+		}
+		
+		// If the required amount is 0 and an outfit has already been found,
+		// then return false.
+		if(!it.second && available > 0)
+			return false;
+		
+		// If the escorts need to be checked, then iterate through all the player's ships
+		if(checkEscorts)
+		{
+			for(const auto &ship : player.Ships())
+			{
+				// Ignore destroyed ships.
+				// TODO: Also ignore the player's flagship here.
+				if(ship->IsDestroyed())
+					continue;
+
+				if(checkCargo) {
+					if((checkPresent && ship->GetSystem() == player.GetSystem()) || 
+						(checkAbsent && ship->GetSystem() != player.GetSystem()))
+						available += ship->Cargo().Get(it.first);
+				}
+				
+				if(checkInstalled) {
+					if((checkPresent && ship->GetSystem() == player.GetSystem()) ||
+						(checkAbsent && ship->GetSystem() != player.GetSystem()))
+					{
+						if((checkParked && ship->IsParked()) || 
+							(checkUnparked && !ship->IsParked()))
+							available += ship->OutfitCount(it.first);
+					}
+				}
+				
+				// Again, if the required amount is 0 and an outfit has already been found, return false
+				if(!it.second && available > 0)
+					return false;
+			}
 		}
 		
 		if(available < it.second)
-			return false;
-		
-		// If the required count is 0, the player must not have any of the outfit.
-		if(checkAll && available)
 			return false;
 	}
 	
