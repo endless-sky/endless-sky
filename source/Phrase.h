@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef PHRASE_H_
 #define PHRASE_H_
 
+#include <functional>
 #include <string>
 #include <vector>
 
@@ -38,6 +39,7 @@ private:
 	public:
 		std::vector<std::string> words;
 		std::vector<const Phrase *> phrases;
+		std::vector<std::function<std::string(const std::string&)>> replaceRules;
 	};
 	
 	

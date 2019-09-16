@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef FORMAT_H_
 #define FORMAT_H_
 
+#include <functional>
 #include <map>
 #include <string>
 #include <vector>
@@ -38,6 +39,9 @@ public:
 	// Replace a set of "keys," which must be strings in the form "<name>", with
 	// a new set of strings, and return the result.
 	static std::string Replace(const std::string &source, const std::map<std::string, std::string> keys);
+	// Replace a sub-string "${name}" with a result of subst("name").
+	static std::string Replace(const std::string &source,
+		const std::function<std::string (const std::string&)> &subst);
 	
 	// Convert a string to title caps or to lower case.
 	static std::string Capitalize(const std::string &str);
