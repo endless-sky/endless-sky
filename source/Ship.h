@@ -56,7 +56,7 @@ public:
 	// These are all the possible category strings for ships.
 	static const std::vector<std::string> CATEGORIES;
 	// Allow retrieving the available bay types for the current game;
-	static const std::set<std::string> BAY_TYPES();
+	static const std::set<std::string> BAY_TYPES;
 	
 	class Bay {
 	public:
@@ -307,7 +307,7 @@ public:
 	bool HasBays() const;
 	// Check how many bays are not occupied at present. This does not check
 	// whether one of your escorts plans to use that bay.
-	int BaysFree(const std::string forCategory) const;
+	int BaysFree(const std::string &category) const;
 	// Check if this ship has a bay free for the given other ship, and the
 	// bay is not reserved for one of its existing escorts.
 	bool CanCarry(const Ship &ship) const;
@@ -414,6 +414,7 @@ private:
 	const Sprite *thumbnail = nullptr;
 	// Characteristics of this particular ship:
 	std::string name;
+	bool canBeCarried = false;
 	
 	int forget = 0;
 	bool isInSystem = true;

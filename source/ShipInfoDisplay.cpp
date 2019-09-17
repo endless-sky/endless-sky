@@ -241,7 +241,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	}
 	
 	// Print the number of bays for each bay-type we have
-	for(auto bayType : Ship::BAY_TYPES())
+	for(auto bayType : Ship::BAY_TYPES)
 		if(ship.BaysFree(bayType))
 		{
 			// make sure the label is printed in lower case

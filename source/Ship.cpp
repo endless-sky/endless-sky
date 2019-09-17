@@ -44,8 +44,6 @@ using namespace std;
 
 namespace {
 	const string FIGHTER_REPAIR = "Repair fighters in";
-	// Set of ship types that can be carried in bays.
-	const set<string> BAY_TYPE = {"Drone", "Fighter"};
 	const vector<string> BAY_SIDE = {"inside", "over", "under"};
 	const vector<string> BAY_FACING = {"forward", "left", "right", "back"};
 	const vector<Angle> BAY_ANGLE = {Angle(0.), Angle(-90.), Angle(90.), Angle(180.)};
@@ -103,10 +101,12 @@ const vector<string> Ship::CATEGORIES = {
 };
 
 
-const set<string> Ship::BAY_TYPES()
-{
-	return BAY_TYPE;
-}
+
+// Set of ship types that can be carried in bays.
+const set<string> Ship::BAY_TYPES = {
+	"Drone",
+	"Fighter"
+};
 
 
 
@@ -560,6 +560,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	for(Bay &bay : bays)
 		if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
 			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
+	
+	canBeCarried = (BAY_TYPES.count(attributes.Category()) > 0);
 	
 	// Issue warnings if this ship has negative outfit, cargo, weapon, or engine capacity.
 	string warning;
@@ -1750,7 +1752,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 		return;
 	
 	for(Bay &bay : bays)
-		if(bay.ship && ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(50))
+		if(bay.ship && ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * (crew > 0)))
 				|| (ejecting && !Random::Int(6))))
 		{
 			// Resupply any ships launching of their own accord.
@@ -2724,7 +2726,7 @@ bool Ship::HasBays() const
 
 
 
-int Ship::BaysFree(string category) const
+int Ship::BaysFree(const string &category) const
 {
 	int count = 0;
 	for(const Bay &bay : bays)
@@ -2741,7 +2743,7 @@ bool Ship::CanCarry(const Ship &ship) const
 	if(!ship.CanBeCarried())
 		return false;
 	// Check only for the category that we are interrested in.
-	string category = ship.attributes.Category();
+	const string &category = ship.attributes.Category();
 	
 	int free = BaysFree(category);
 	if(!free)
@@ -2760,7 +2762,7 @@ bool Ship::CanCarry(const Ship &ship) const
 
 bool Ship::CanBeCarried() const
 {
-	return (BAY_TYPE.count(attributes.Category()) > 0);
+	return canBeCarried;
 }
 
 
@@ -2770,8 +2772,8 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 	if(!ship || !ship->CanBeCarried())
 		return false;
 	
-	// Check only for the category that we are interrested in.
-	string category = ship->attributes.Category();
+	// Check only for the category that we are interested in.
+	const string &category = ship->attributes.Category();
 	
 	for(Bay &bay : bays)
 		if((bay.forCategory == category) && !bay.ship)
