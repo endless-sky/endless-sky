@@ -74,7 +74,9 @@ public:
 	
 	// Get this outfit's engine flare sprites, if any.
 	const std::vector<std::pair<Body, int>> &FlareSprites() const;
+	const std::vector<std::pair<Body, int>> &ReverseFlareSprites() const;
 	const std::map<const Sound *, int> &FlareSounds() const;
+	const std::map<const Sound *, int> &ReverseFlareSounds() const;
 	// Get the afterburner effect, if any.
 	const std::map<const Effect *, int> &AfterburnerEffects() const;
 	// Get the sprite this outfit uses when dumped into space.
@@ -95,7 +97,9 @@ private:
 	Dictionary attributes;
 	
 	std::vector<std::pair<Body, int>> flareSprites;
+	std::vector<std::pair<Body, int>> reverseFlareSprites;
 	std::map<const Sound *, int> flareSounds;
+	std::map<const Sound *, int> reverseFlareSounds;
 	std::map<const Effect *, int> afterburnerEffects;
 	const Sprite *flotsamSprite = nullptr;
 };

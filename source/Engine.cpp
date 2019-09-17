@@ -1348,6 +1348,12 @@ void Engine::CalculateStep()
 						if(it.second > 0)
 							Audio::Play(it.first, ship->Position());
 				}
+				if(ship->IsReversing())
+				{
+					for(const auto &it : ship->Attributes().ReverseFlareSounds())
+						if(it.second > 0)
+							Audio::Play(it.first, ship->Position());
+				}
 			}
 			else
 				showFlagship = true;
@@ -1359,6 +1365,12 @@ void Engine::CalculateStep()
 		if(flagship->IsThrusting())
 		{
 			for(const auto &it : flagship->Attributes().FlareSounds())
+				if(it.second > 0)
+					Audio::Play(it.first);
+		}
+		if(flagship->IsReversing())
+		{
+			for(const auto &it : flagship->Attributes().ReverseFlareSounds())
 				if(it.second > 0)
 					Audio::Play(it.first);
 		}
@@ -1987,6 +1999,19 @@ void Engine::AddSprites(const Ship &ship)
 				for(int i = 0; i < it.second && i < 3; ++i)
 				{
 					Body sprite(it.first, pos, ship.Velocity(), ship.Facing(), point.Zoom());
+					draw[calcTickTock].Add(sprite, cloak);
+				}
+		}
+	if(ship.IsReversing())
+		for(const Ship::EnginePoint &point : ship.ReverseEnginePoints())
+		{
+			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
+			// If multiple engines with the same flare are installed, draw up to
+			// three copies of the flare sprite.
+			for(const auto &it : ship.Attributes().ReverseFlareSprites())
+				for(int i = 0; i < it.second && i < 3; ++i)
+				{
+					Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + 180, point.Zoom());
 					draw[calcTickTock].Add(sprite, cloak);
 				}
 		}

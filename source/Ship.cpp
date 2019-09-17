@@ -126,6 +126,7 @@ void Ship::Load(const DataNode &node)
 	// Note: I do not clear the attributes list here so that it is permissible
 	// to override one ship definition with another.
 	bool hasEngine = false;
+	bool hasReverseEngine = false;
 	bool hasArmament = false;
 	bool hasBays = false;
 	bool hasExplode = false;
@@ -173,6 +174,16 @@ void Ship::Load(const DataNode &node)
 				hasEngine = true;
 			}
 			enginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
+				(child.Size() > 3 ? child.Value(3) : 1.));
+		}
+		else if(key == "reverse engine" && child.Size() >= 3)
+		{
+			if(!hasReverseEngine)
+			{
+				reverseEnginePoints.clear();
+				hasReverseEngine = true;
+			}
+			reverseEnginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
 				(child.Size() > 3 ? child.Value(3) : 1.));
 		}
 		else if(key == "gun" || key == "turret")
@@ -367,6 +378,8 @@ void Ship::FinishLoading(bool isNewInstance)
 			bays = base->bays;
 		if(enginePoints.empty())
 			enginePoints = base->enginePoints;
+		if(reverseEnginePoints.empty())
+			reverseEnginePoints = base->reverseEnginePoints;
 		if(explosionEffects.empty())
 		{
 			explosionEffects = base->explosionEffects;
@@ -633,6 +646,8 @@ void Ship::Save(DataWriter &out) const
 		
 		for(const EnginePoint &point : enginePoints)
 			out.Write("engine", 2. * point.X(), 2. * point.Y(), point.Zoom());
+		for(const EnginePoint &point : reverseEnginePoints)
+			out.Write("reverse engine", 2. * point.X(), 2. * point.Y(), point.Zoom());
 		for(const Hardpoint &hardpoint : armament.Get())
 		{
 			const char *type = (hardpoint.IsTurret() ? "turret" : "gun");
@@ -1000,6 +1015,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// system set because they just entered a fighter bay.
 	forget += !isInSystem;
 	isThrusting = false;
+	isReversing = false;
 	if((!isSpecial && forget >= 1000) || !currentSystem)
 	{
 		MarkForRemoval();
@@ -1396,6 +1412,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// If a reverse thrust is commanded and the capability does not
 				// exist, ignore it (do not even slow under drag).
 				isThrusting = (thrustCommand > 0.);
+				isReversing = !isThrusting;
 				thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
 				if(thrust)
 				{
@@ -2175,10 +2192,24 @@ bool Ship::IsThrusting() const
 
 
 
+bool Ship::IsReversing() const
+{
+	return isReversing;
+}
+
+
+
 // Get the points from which engine flares should be drawn.
 const vector<Ship::EnginePoint> &Ship::EnginePoints() const
 {
 	return enginePoints;
+}
+
+
+
+const vector<Ship::EnginePoint> &Ship::ReverseEnginePoints() const
+{
+	return reverseEnginePoints;
 }
 
 
@@ -2764,6 +2795,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->SetTargetStellar(nullptr);
 			ship->SetParent(shared_from_this());
 			ship->isThrusting = false;
+			ship->isReversing = false;
 			ship->commands.Clear();
 			// If this fighter collected anything in space, try to store it
 			// (unless this is a player-owned ship).

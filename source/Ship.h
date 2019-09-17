@@ -225,8 +225,10 @@ public:
 	
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
+	bool IsReversing() const;
 	// Get the points from which engine flares should be drawn.
 	const std::vector<EnginePoint> &EnginePoints() const;
+	const std::vector<EnginePoint> &ReverseEnginePoints() const;
 	
 	// Make a ship disabled or destroyed, or bring back a destroyed ship.
 	void Disable();
@@ -425,6 +427,7 @@ private:
 	bool isBoarding = false;
 	bool hasBoarded = false;
 	bool isThrusting = false;
+	bool isReversing = false;
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
@@ -457,6 +460,7 @@ private:
 	double carriedMass = 0.;
 	
 	std::vector<EnginePoint> enginePoints;
+	std::vector<EnginePoint> reverseEnginePoints;
 	Armament armament;
 	// While loading, keep track of which outfits already have been equipped.
 	// (That is, they were specified as linked to a given gun or turret point.)
