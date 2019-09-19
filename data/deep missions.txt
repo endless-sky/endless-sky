@@ -2207,7 +2207,7 @@ mission "Deep: Scientist Rescue 2"
 
 
 ship "Bactrian" "Bactrian (Cosmic Devil)"
-	"never disabled"
+	"uncapturable"
 	outfits
 		"Inhibitor Cannon" 2
 		"Thrasher Turret" 4
