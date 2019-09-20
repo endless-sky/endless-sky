@@ -107,11 +107,11 @@ effect "ion impact"
 
 outfit "Railgun Slug"
 	category "Ammunition"
-	cost 6
+	cost 9
 	thumbnail "outfit/railslug"
 	"mass" 0.002
 	"railgun slug capacity" -1
-	description "These railgun slugs incorporate energy-discharging capacitors that deal a small amount of hull damage even when the target's shields are functioning.  Drone jocks call them reverse thrust fuel."
+	description "These railgun slugs incorporate energy-discharging capacitors that deal a small amount of hull damage even when the target's shields are functioning.  The Hai use them in Railguns that propel the slug to relativistic speed, simultaneously using the stored charge to amplify recoil, propelling their Flea drones away from danger, and turning them into effective long range support."
 
 outfit "Railgun"
 	category "Secondary Weapons"
@@ -129,38 +129,36 @@ outfit "Railgun"
 		icon "icon/rail gun"
 		sound "ion impact"
 		"fire effect" "rail sparks"
-		"live effect" "rail sparks"
 		"hit effect" "bullet impact"
 		"inaccuracy" 3
 		"velocity" 44
 		"lifetime" 1
 		"reload" 3
-		"firing energy" 1.7
-		"firing heat" 1.6
+		"firing energy" 1.5
+		"firing heat" 1.8
 		"hit force" 10
-		"firing force" 15
+		"firing force" 20
 		"stream"
 		"submunition" "rslug" 1
-	description "Power demands for the Railgun involves large shielded cables, so it takes up more outfit space than weapon capacity.  The Hai created this compact, reverse-thrusting weapon for their newer Light Support Craft.  Pond Strider crew joke that they provide more thrust than the engines, so maybe Unfettered should consider using them at the back of their ships.  There's probably a cultural component to the joke that many miss, because it's told quite often and the Hai laugh hysterically about it - every time."
+	description "The Hai created this compact, reverse-thrusting weapon for their Flea drones.  Their drone pilots joke that they provide more thrust than engines of similar size, so Unfettered should be using them at the back of their ships.  There's probably a cultural component to the joke that many miss, because it's told quite often and the Hai laugh hysterically about it - every time."
 
 outfit "rslug"
 	weapon
-		"acceleration" 4.4
-		"drag" 0.1
+		"acceleration" 2.2
+		"drag" .05
 		"lifetime" 49
 		sprite "projectile/rail slug"
 			"frame rate" 30
-#		"live effect" "rail sparks"
 		"hit effect" "bullet impact"
-		"shield damage" .6
+		"shield damage" .2
 		"hull damage" .8
-		"ion damage" .02
+		"ion damage" .025
 		"homing" 1
 		"optical tracking" .4
 		"turn" .3
-		"hit force" 10
-		"missile strength" 14
-		"piercing" .1
+		"hit force" 5
+		"missile strength" 18
+		"piercing" .3
 
 effect "bullet impact"
 	sprite "effect/bullet impact"
@@ -452,7 +450,7 @@ outfit "Sand Cell"
 outfit `"Baellie" Atomic Engines`
 	plural `"Baellie" Atomic Engines`
 	category "Engines"
-	"cost" 240000
+	"cost" 230000
 	thumbnail "outfit/tiny atomic engines hai"
 	"mass" 22
 	"outfit space" -22
