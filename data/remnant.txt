@@ -217,6 +217,7 @@ shipyard "Remnant"
 	"Starling"
 	"Gull"
 	"Albatross"
+	"Ibis"
 	"Pelican"
 	"Tern"
 

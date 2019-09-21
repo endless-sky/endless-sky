@@ -348,6 +348,72 @@ ship "Gull" "Gull (Bunks)"
 
 
 
+ship "Ibis"
+	sprite "ship/ibis"
+	thumbnail "thumbnail/ibis"
+	attributes
+		category "Medium Warship"
+		licenses
+			"Remnant Capital"
+		"cost" 30000000
+		"shields" 25700
+		"hull" 12000
+		"required crew" 30
+		"bunks" 60
+		"mass" 500
+		"drag" 8.6
+		"heat dissipation" 0.6
+		"fuel capacity" 700
+		"ramscoop" 2
+		"outfit space" 658
+		"weapon capacity" 236
+		"engine capacity" 142
+		"shield generation" 5.2
+		"shield energy" 4.6
+		"hull repair rate" 1.5
+		"hull energy" 1.2
+		"outfit scan power" 18
+		"outfit scan speed" 1
+		"tactical scan power" 39
+		weapon
+			"blast radius" 360
+			"shield damage" 3600
+			"hull damage" 1800
+			"hit force" 5400
+	outfits
+		"Inhibitor Cannon" 2
+		"Thrasher Turret" 2
+		"Point Defense Turret"
+
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 2
+		"Quantum Key Stone"
+
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
+		"Hyperdrive"
+		
+	drone 0 35
+	fighter -25 10 under
+	fighter 25 10 under
+	engine -16.5 120
+	engine 0 116.5
+	engine 16.5 120
+		
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "This is the Ibis. A slightly carrier that serves as a mining platform for terns, as well as an escort ship for pelican fleets and a combat platform for terns used in screening roles. Stats are currently made up from whole cloth and need revision."
+
+
+
 ship "Pelican"
 	sprite "ship/pelican"
 	thumbnail "thumbnail/pelican"
