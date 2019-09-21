@@ -1,6 +1,6 @@
 Version 0.9.10:
   * Bug fixes:
-    * Typo fixes. (@Amazinite, @Darcman99, @Kryes-Omega, @MCOfficer, @petervdmeer, @realityforge, @SolraBizna, @tehhowch, @warp-core, @Zitchas)
+    * Typo fixes. (@Amazinite, @Darcman99, @Kryes-Omega, @MCOfficer, @petervdmeer, @realityforge, @RestingImmortal, @SolraBizna, @tehhowch, @warp-core, @Zitchas)
     * Terraforming 6 will no longer offer on planets that make it impossible to complete before the deadline. (@Comnom)
     * Pug and Free Worlds ships will now properly be hostile toward each other during FWC Pug 3B. (@Amazinite)
     * The Timer Ship will now properly destroy itself. (@tehhowch)
@@ -16,6 +16,7 @@ Version 0.9.10:
     * Paradise Fortune 1's on visit dialog no longer refers to Diana by name. (@petervdmeer)
     * Mission NPCs that have no saved system will not crash the game when the player departs a planet. (@tehhowch)
     * Ship thumbnails are now saved, just like sprites. (@MageKing17)
+    * Hostile Mereti ships during the Wanderer Mind missions will no longer return understandable hails. (@Amazinite)
   * Game content:
     * Black holes now have a landing message. (@Comnom)
     * Pirate occupation spaceport missions will no longer cause the player to launch if the occupation is in another system. (@ZBok)
@@ -38,6 +39,7 @@ Version 0.9.10:
     * Added an improved graphic for graviton engines. (@beccabunny)
     * Changed the names and descriptions of various bounty jobs to better highlight the difficulty of the jobs. (@Naminson)
     * Added an autosave point to Rescue Katya 2, meaning that players can jump to a safe point from before Liberate Kornephoros if they're having issues with the battle in their current ship. (@Amazinite)
+    * Reduced the price of the asteroid scanner to make it easier for new pilots to buy. (@Amazinite)
   * Game mechanics:
     * Modified depreciation rates so it occurs three times slower, as was intended for v0.9.6. (@Amazinite)
     * Added a 7-day grace period to depreciation. (@Amazinite)
