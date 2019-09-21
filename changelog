@@ -1,6 +1,6 @@
 Version 0.9.10:
   * Bug fixes:
-    * Typo fixes. (@Amazinite, @Darcman99, @Kryes-Omega, @MCOfficer, @petervdmeer, @realityforge, @SolraBizna, @tehhowch, @warp-core, @Zitchas)
+    * Typo fixes. (@Amazinite, @Darcman99, @Kryes-Omega, @MCOfficer, @petervdmeer, @realityforge, @RestingImmortal, @SolraBizna, @tehhowch, @warp-core, @Zitchas)
     * Terraforming 6 will no longer offer on planets that make it impossible to complete before the deadline. (@Comnom)
     * Pug and Free Worlds ships will now properly be hostile toward each other during FWC Pug 3B. (@Amazinite)
     * The Timer Ship will now properly destroy itself. (@tehhowch)
