@@ -4377,6 +4377,7 @@ system Arculus
 	fleet "Large Remnant" 2100
 	fleet "Small Remnant" 1600
 	fleet "Remnant Transport" 1600
+	fleet "Remnant Home Guard" 1500
 	fleet "Korath Ember Waste Raid" 40000
 	object
 		sprite star/g5-old
@@ -6714,6 +6715,7 @@ system Cinxia
 	trade Plastic 417
 	fleet "Large Remnant" 1750
 	fleet "Small Remnant" 1300
+	fleet "Remnant Home Guard" 1200
 	fleet "Remnant Transport" 1300
 	fleet "Korath Ember Waste Raid" 30000
 	object
@@ -16989,6 +16991,7 @@ system Pantica
 	fleet "Large Remnant" 1400
 	fleet "Small Remnant" 1000
 	fleet "Remnant Transport" 1000
+	fleet "Remnant Home Guard" 900
 	fleet "Korath Ember Waste Raid" 40000
 	object
 		sprite star/k0-old
