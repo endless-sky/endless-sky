@@ -542,8 +542,7 @@ ship "Petrel"
 	gun -10.5 -24 "Inhibitor Cannon"
 	gun 10.5 -24 "Inhibitor Cannon"
 	turret 0 2.5
-	engine -5 41.5
-	engine 5 41.5
+	engine 0 41.5
 	explode "tiny explosion" 30
 	explode "small explosion" 20
 	description "The Petrel is a multi-role mining/wing leader fightercraft designed to give remnant a forward control position for flights of Terns in higher risk or quickly changing environments. Their initial design was used as a urban mobile gun platform that flitted around structures, caverns, and natural terrain on their worlds while fighting on-planet threats."
