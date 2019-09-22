@@ -110,7 +110,7 @@ fleet "Remnant Home Guard"
 	names "remnant"
 	cargo 2
 	personality
-		disables plunders coward appeasing mining harvests
+		disables plunders appeasing mining harvests surveillance
 	variant 20
 		"Tern" 1
 	variant 10
@@ -219,6 +219,7 @@ shipyard "Remnant"
 	"Albatross"
 	"Ibis"
 	"Pelican"
+	"Petrel"
 	"Tern"
 
 shipyard "Remnant Gascraft"

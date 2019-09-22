@@ -360,48 +360,62 @@ ship "Ibis"
 		"hull" 12000
 		"required crew" 30
 		"bunks" 60
-		"mass" 500
-		"drag" 8.6
-		"heat dissipation" 0.6
+		"mass" 300
+		"drag" 7.1
+		"heat dissipation" 0.7
 		"fuel capacity" 700
 		"ramscoop" 2
-		"outfit space" 658
-		"weapon capacity" 236
+		"outfit space" 558
+		"cargo space" 103
+		"weapon capacity" 200
 		"engine capacity" 142
-		"shield generation" 5.2
+		"shield generation" 6
 		"shield energy" 4.6
-		"hull repair rate" 1.5
+		"hull repair rate" 2
 		"hull energy" 1.2
 		"outfit scan power" 18
 		"outfit scan speed" 1
 		"tactical scan power" 39
 		weapon
-			"blast radius" 360
-			"shield damage" 3600
-			"hull damage" 1800
-			"hit force" 5400
+			"blast radius" 240
+			"shield damage" 2400
+			"hull damage" 1200
+			"hit force" 3000
 	outfits
-		"Inhibitor Cannon" 2
-		"Thrasher Turret" 2
-		"Point Defense Turret"
+		"Inhibitor Cannon" 3
+		"Thrasher Turret" 1
+		"Point Defense Turret" 2
 
 		"Aeon Cell"
-		"Epoch Cell"
 		"Crystal Capacitor"
-		"Thermoelectric Cooler" 2
+		"Emergency Ramscoop" 2
+		"Thermoelectric Cooler" 3
 		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Tuning Rifle" 30
 
-		"Smelter-Class Thruster"
-		"Smelter-Class Steering"
+		"Forge-Class Thruster"
+		"Crucible-Class Thruster"
+		"Forge-Class Steering"
+		"Crucible-Class Steering"
 		"Hyperdrive"
 		
-	drone 0 35
+	drone 0 30 over 
+	drone -34 68 over
+	drone 0 81 over
+	drone 34 68 over
 	fighter -25 10 under
 	fighter 25 10 under
-	engine -16.5 120
-	engine 0 116.5
-	engine 16.5 120
-		
+	engine -16.5 120 0.7
+	engine 0 116.5 1
+	engine 16.5 120 0.7
+	gun 0 -135.5 "Inhibitor Cannon"
+	gun 15.5 -102 "Inhibitor Cannon"
+	gun -15.5 -102 "Inhibitor Cannon"
+	turret 0 -62 "Thrasher Turret"
+	turret 0 -20.5 "Point Defense Turret"
+	turret 0 58.5 "Point Defense Turret"
+	
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -477,6 +491,63 @@ ship "Pelican"
 	explode "huge explosion" 5
 	"final explode" "final explosion large" 1
 	description "The Pelican is closely based on the original semi-organic materials the Remnant found in the Ember Waste. While they are not technically alive, their internal mechanisms and method of construction bear such a close resemblance to living organisms that they are often considered as such. These ships serve as the backbone of Remnant salvage efforts, as well as their resource distribution network."
+
+
+
+ship "Petrel"
+	sprite "ship/petrel"
+	thumbnail "thumbnail/petrel"
+	attributes
+		category "Fighter"
+		licenses
+			Remnant
+		"cost" 4500000
+		"shields" 2500
+		"hull" 3000
+		"cargo space" 31
+		"fuel capacity" 100
+		"ramscoop" 1
+		"required crew" 1
+		"bunks" 3
+		"mass" 35
+		"drag" .9
+		"heat dissipation" .9
+		"outfit space" 195
+		"shield generation" 1.9
+		"shield energy" 1.1
+		"hull repair rate" 0.9
+		"hull energy" 0.6
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 26
+		"asteroid scan power" 30
+		"weapon capacity" 80
+		"engine capacity" 55
+		weapon
+			"blast radius" 15
+			"shield damage" 150
+			"hull damage" 200
+			"hit force" 350
+	outfits
+		"Inhibitor Cannon" 3
+		
+		"Millennium Cell" 2
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 3
+		
+		"Crucible-Class Thruster"
+		"Crucible-Class Steering"
+		
+	gun 0 -38.5 "Inhibitor Cannon"
+	gun -10.5 -24 "Inhibitor Cannon"
+	gun 10.5 -24 "Inhibitor Cannon"
+	turret 0 2.5
+	engine -5 41.5
+	engine 5 41.5
+	explode "tiny explosion" 30
+	explode "small explosion" 20
+	description "The Petrel is a multi-role mining/wing leader fightercraft designed to give remnant a forward control position for flights of Terns in higher risk or quickly changing environments. Their initial design was used as a urban mobile gun platform that flitted around structures, caverns, and natural terrain on their worlds while fighting on-planet threats."
+	description "Due to the comparatively small pool the Remnant draw on for pilots and crew they are loath to throw mass waves of people into the line of fire. As such, their fighters are not intended to be up-close glass cannons like most other factions of humanity tend to build. Instead, these ships are highly agile fighters equipped with medium range weaponry designed to snipe enemies from behind cover."
 
 
 
@@ -636,26 +707,29 @@ ship "Tern"
 			Remnant
 		"cost" 3830000
 		"shields" 1000
-		"hull" 4800
+		"hull" 4000
 		"cargo space" 27
 		"fuel capacity" 100
 		"ramscoop" 1
 		"automaton" 1
-		"mass" 20
+		"mass" 30
 		"drag" .9
 		"heat dissipation" .9
 		"gaslining" 1
-		"outfit space" 140
+		"outfit space" 111
 		"shield generation" 1.8
-		"shield energy" 1.2
-		"hull repair rate" 0.8
+		"shield energy" 1.1
+		"hull repair rate" 0.7
 		"hull energy" 0.6
+		"energy generation" 1.8
+		"heat generation" 3.0
 		"atmosphere scan" 100
 		"outfit scan power" 12
 		"outfit scan speed" 1
 		"tactical scan power" 26
-		"weapon capacity" 85
-		"engine capacity" 45
+		"asteroid scan power" 30
+		"weapon capacity" 36
+		"engine capacity" 40
 		weapon
 			"blast radius" 10
 			"shield damage" 100
@@ -664,7 +738,7 @@ ship "Tern"
 	outfits
 		"Inhibitor Cannon" 2
 		
-		"Millennium Cell" 2
+		"Millennium Cell"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler"
 		
