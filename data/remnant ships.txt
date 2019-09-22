@@ -358,8 +358,8 @@ ship "Ibis"
 		"cost" 30000000
 		"shields" 25700
 		"hull" 12000
-		"required crew" 30
-		"bunks" 60
+		"required crew" 20
+		"bunks" 48
 		"mass" 300
 		"drag" 7.1
 		"heat dissipation" 0.7
@@ -392,7 +392,7 @@ ship "Ibis"
 		"Thermoelectric Cooler" 3
 		"Quantum Key Stone"
 		"Salvage Scanner"
-		"Tuning Rifle" 30
+		"Tuning Rifle" 20
 
 		"Forge-Class Thruster"
 		"Crucible-Class Thruster"
@@ -504,7 +504,7 @@ ship "Petrel"
 		"cost" 4500000
 		"shields" 2500
 		"hull" 3000
-		"cargo space" 31
+		"cargo space" 20
 		"fuel capacity" 100
 		"ramscoop" 1
 		"required crew" 1
@@ -707,7 +707,7 @@ ship "Tern"
 		"cost" 3830000
 		"shields" 1000
 		"hull" 4000
-		"cargo space" 27
+		"cargo space" 10
 		"fuel capacity" 100
 		"ramscoop" 1
 		"automaton" 1
