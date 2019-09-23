@@ -195,7 +195,7 @@ void Ship::Load(const DataNode &node)
 				hasReverseEngine = true;
 			}
 			reverseEnginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
-				(child.Size() > 3 ? child.Value(3) : 1.), 0.);
+				(child.Size() > 3 ? child.Value(3) : 1.), 180.);
 			EnginePoint &engine = reverseEnginePoints.back();
 			for(int i = 4; i < child.Size(); ++i)
 			{
