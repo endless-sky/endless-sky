@@ -19,12 +19,29 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "SpriteSet.h"
 
+#include <algorithm>
 #include <cmath>
 
 using namespace std;
 
 namespace {
 	const double EPS = 0.0000000001;
+	
+	vector<pair<Body,int>> AddFlareSprites(vector<pair<Body,int>> thisFlares, pair<Body,int> it, int count)
+	{
+		auto oit = find_if(thisFlares.begin(), thisFlares.end(), 
+            [&it](pair<Body, int> flare)
+            {
+                return it.first.GetSprite() == flare.first.GetSprite();
+            });
+		
+		if(oit == thisFlares.end())
+			thisFlares.emplace_back(it.first, count * it.second);
+		else
+			oit->second += count * it.second;
+		
+		return thisFlares;
+	}
 }
 
 const vector<string> Outfit::CATEGORIES = {
@@ -235,41 +252,11 @@ void Outfit::Add(const Outfit &other, int count)
 	}
 	
 	for(const auto &it : other.flareSprites)
-	{
-		auto oit = flareSprites.begin();
-		for( ; oit != flareSprites.end(); ++oit)
-			if(oit->first.GetSprite() == it.first.GetSprite())
-				break;
-		
-		if(oit == flareSprites.end())
-			flareSprites.emplace_back(it.first, count * it.second);
-		else
-			oit->second += count * it.second;
-	}
+		flareSprites = AddFlareSprites(flareSprites, it, count);
 	for(const auto &it : other.reverseFlareSprites)
-	{
-		auto oit = reverseFlareSprites.begin();
-		for( ; oit != reverseFlareSprites.end(); ++oit)
-			if(oit->first.GetSprite() == it.first.GetSprite())
-				break;
-		
-		if(oit == reverseFlareSprites.end())
-			reverseFlareSprites.emplace_back(it.first, count * it.second);
-		else
-			oit->second += count * it.second;
-	}
+		reverseFlareSprites = AddFlareSprites(reverseFlareSprites, it, count);
 	for(const auto &it : other.steeringFlareSprites)
-	{
-		auto oit = steeringFlareSprites.begin();
-		for( ; oit != steeringFlareSprites.end(); ++oit)
-			if(oit->first.GetSprite() == it.first.GetSprite())
-				break;
-		
-		if(oit == steeringFlareSprites.end())
-			steeringFlareSprites.emplace_back(it.first, count * it.second);
-		else
-			oit->second += count * it.second;
-	}
+		steeringFlareSprites = AddFlareSprites(steeringFlareSprites, it, count);
 	for(const auto &it : other.flareSounds)
 		flareSounds[it.first] += count * it.second;
 	for(const auto &it : other.reverseFlareSounds)
