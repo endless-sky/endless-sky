@@ -159,7 +159,7 @@ namespace {
 		Messages::Add(tag + message);
 	}
 	
-	void DrawFlares(Ship ship, DrawList *draw, bool calcTickTock, double cloak, vector<Ship::EnginePoint> enginePoints, vector<pair<Body, int>> flareSprites, uint8_t side)
+	void DrawFlareSprites(Ship ship, DrawList *draw, bool calcTickTock, double cloak, vector<Ship::EnginePoint> enginePoints, vector<pair<Body, int>> flareSprites, uint8_t side)
 	{
 		for(const Ship::EnginePoint &point : enginePoints)
 		{
@@ -2022,11 +2022,11 @@ void Engine::AddSprites(const Ship &ship)
 			}
 	
 	if(ship.IsThrusting())
-		DrawFlares(ship, draw, calcTickTock, cloak, ship.EnginePoints(), ship.Attributes().FlareSprites(), 0., Ship::EnginePoint::UNDER);
+		DrawFlareSprites(ship, draw, calcTickTock, cloak, ship.EnginePoints(), ship.Attributes().FlareSprites(), Ship::EnginePoint::UNDER);
 	if(ship.IsReversing())
-		DrawFlares(ship, draw, calcTickTock, cloak, ship.ReverseEnginePoints(), ship.Attributes().ReverseFlareSprites(), 180., Ship::EnginePoint::UNDER);
+		DrawFlareSprites(ship, draw, calcTickTock, cloak, ship.ReverseEnginePoints(), ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::UNDER);
 	if(ship.IsSteering())
-		DrawFlares(ship, draw, calcTickTock, cloak, ship.SteeringEnginePoints(), ship.Attributes().SteeringFlareSprites(), 0., Ship::EnginePoint::UNDER);
+		DrawFlareSprites(ship, draw, calcTickTock, cloak, ship.SteeringEnginePoints(), ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER);
 	
 	if(drawCloaked)
 		draw[calcTickTock].AddSwizzled(ship, 7);
@@ -2044,11 +2044,11 @@ void Engine::AddSprites(const Ship &ship)
 		}
 	
 	if(ship.IsThrusting())
-		DrawFlares(ship, draw, calcTickTock, cloak, ship.EnginePoints(), ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER);
+		DrawFlareSprites(ship, draw, calcTickTock, cloak, ship.EnginePoints(), ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER);
 	if(ship.IsReversing())
-		DrawFlares(ship, draw, calcTickTock, cloak, ship.ReverseEnginePoints(), ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::OVER);
+		DrawFlareSprites(ship, draw, calcTickTock, cloak, ship.ReverseEnginePoints(), ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::OVER);
 	if(ship.IsSteering())
-		DrawFlares(ship, draw, calcTickTock, cloak, ship.SteeringEnginePoints(), ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::OVER);
+		DrawFlareSprites(ship, draw, calcTickTock, cloak, ship.SteeringEnginePoints(), ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::OVER);
 	
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())
