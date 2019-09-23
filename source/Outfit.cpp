@@ -65,10 +65,17 @@ void Outfit::Load(const DataNode &node)
 			reverseFlareSprites.emplace_back(Body(), 1);
 			reverseFlareSprites.back().first.LoadSprite(child);
 		}
+		else if(child.Token(0) == "steering flare sprite" && child.Size() >= 2)
+		{
+			steeringFlareSprites.emplace_back(Body(), 1);
+			steeringFlareSprites.back().first.LoadSprite(child);
+		}
 		else if(child.Token(0) == "flare sound" && child.Size() >= 2)
 			++flareSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "reverse flare sound" && child.Size() >= 2)
 			++reverseFlareSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "steering flare sound" && child.Size() >= 2)
+			++steeringFlareSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "afterburner effect" && child.Size() >= 2)
 			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
 		else if(child.Token(0) == "flotsam sprite" && child.Size() >= 2)
@@ -251,10 +258,24 @@ void Outfit::Add(const Outfit &other, int count)
 		else
 			oit->second += count * it.second;
 	}
+	for(const auto &it : other.steeringFlareSprites)
+	{
+		auto oit = steeringFlareSprites.begin();
+		for( ; oit != steeringFlareSprites.end(); ++oit)
+			if(oit->first.GetSprite() == it.first.GetSprite())
+				break;
+		
+		if(oit == steeringFlareSprites.end())
+			steeringFlareSprites.emplace_back(it.first, count * it.second);
+		else
+			oit->second += count * it.second;
+	}
 	for(const auto &it : other.flareSounds)
 		flareSounds[it.first] += count * it.second;
 	for(const auto &it : other.reverseFlareSounds)
 		reverseFlareSounds[it.first] += count * it.second;
+	for(const auto &it : other.steeringFlareSounds)
+		steeringFlareSounds[it.first] += count * it.second;
 	for(const auto &it : other.afterburnerEffects)
 		afterburnerEffects[it.first] += count * it.second;
 }
@@ -284,6 +305,13 @@ const vector<pair<Body, int>> &Outfit::ReverseFlareSprites() const
 
 
 
+const vector<pair<Body, int>> &Outfit::SteeringFlareSprites() const
+{
+	return steeringFlareSprites;
+}
+
+
+
 const map<const Sound *, int> &Outfit::FlareSounds() const
 {
 	return flareSounds;
@@ -294,6 +322,13 @@ const map<const Sound *, int> &Outfit::FlareSounds() const
 const map<const Sound *, int> &Outfit::ReverseFlareSounds() const
 {
 	return reverseFlareSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::SteeringFlareSounds() const
+{
+	return steeringFlareSounds;
 }
 
 

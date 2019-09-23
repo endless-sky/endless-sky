@@ -1354,6 +1354,12 @@ void Engine::CalculateStep()
 						if(it.second > 0)
 							Audio::Play(it.first, ship->Position());
 				}
+				if(ship->IsSteering())
+				{
+					for(const auto &it : ship->Attributes().SteeringFlareSounds())
+						if(it.second > 0)
+							Audio::Play(it.first, ship->Position());
+				}
 			}
 			else
 				showFlagship = true;
@@ -1371,6 +1377,12 @@ void Engine::CalculateStep()
 		if(flagship->IsReversing())
 		{
 			for(const auto &it : flagship->Attributes().ReverseFlareSounds())
+				if(it.second > 0)
+					Audio::Play(it.first);
+		}
+		if(flagship->IsSteering())
+		{
+			for(const auto &it : flagship->Attributes().SteeringFlareSounds())
 				if(it.second > 0)
 					Audio::Play(it.first);
 		}
@@ -2006,14 +2018,26 @@ void Engine::AddSprites(const Ship &ship)
 		for(const Ship::EnginePoint &point : ship.ReverseEnginePoints())
 		{
 			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
-			// If multiple engines with the same flare are installed, draw up to
-			// three copies of the flare sprite.
 			for(const auto &it : ship.Attributes().ReverseFlareSprites())
 				for(int i = 0; i < it.second && i < 3; ++i)
 				{
 					Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + 180, point.Zoom());
 					draw[calcTickTock].Add(sprite, cloak);
 				}
+		}
+	if(ship.IsSteering())
+		for(const Ship::EnginePoint &point : ship.SteeringEnginePoints())
+		{
+			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
+			for(const auto &it : ship.Attributes().SteeringFlareSprites())
+				if((point.facing == Ship::EnginePoint::LEFT && !ship.SteeringDirection()) 
+					|| (point.facing == Ship::EnginePoint::RIGHT && ship.SteeringDirection()) 
+					|| point.facing == Ship::EnginePoint::NONE)
+					for(int i = 0; i < it.second && i < 3; ++i)
+					{
+						Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.Angle(), point.Zoom());
+						draw[calcTickTock].Add(sprite, cloak);
+					}
 		}
 	
 	if(drawCloaked)
