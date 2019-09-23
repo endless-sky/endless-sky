@@ -86,6 +86,10 @@ public:
 		double Zoom() const { return zoom; }
 		double Angle() const { return angle; }
 		
+		uint8_t side = 0;
+		static const uint8_t UNDER = 0;
+		static const uint8_t OVER = 1;
+		
 		uint8_t facing = 0;
 		static const uint8_t NONE = 0;
 		static const uint8_t LEFT = 1;
