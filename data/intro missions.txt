@@ -457,14 +457,11 @@ conversation "end of intro missions"
 			goto aliens
 		`	"I think I'll manage."`
 			goto end
-	`	"Stay near Sol and around the Paradise Worlds. The Navy stays there the most, so even if a pirate does show up, they won't last long. The Deep is also a pretty safe place, as they have their own security forces.`
-		goto next
+	`	"Stay near Sol and around the Paradise Worlds. The Navy stays there the most, so even if a pirate does show up, they won't last long. The Deep is also a pretty safe place, as they have their own security forces."`
+		goto end
 	
 	label aliens
-	`	"I've spoken with the Quarg a few times, but what captain hasn't? You'll find them down south by Tarazed. I haven't met any other aliens, but I'm sure they're out there if you go looking hard enough.`
-	
-	label next
-	`	"Alright, I must get going."`
+	`	"I've spoken with the Quarg a few times, but what captain hasn't? You'll find them down south by Tarazed. I haven't met any other aliens, but I'm sure they're out there if you go looking hard enough."`
 	
 	label end
 	`	He hands you a credit chip worth <payment>, and says, "Best of luck to you, Captain. Don't hesitate to look me up if you're ever in the area. And remember to check the spaceports wherever you land. You never know who you'll find wandering around there."`
