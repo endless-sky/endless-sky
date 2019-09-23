@@ -1050,7 +1050,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	isThrusting = false;
 	isReversing = false;
 	isSteering = false;
-	steeringDirection = false;
+	steeringDirection = 0.;
 	if((!isSpecial && forget >= 1000) || !currentSystem)
 	{
 		MarkForRemoval();
@@ -1424,8 +1424,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			if(commands.Turn())
 			{
 				isSteering = true;
-				if(commands.Turn() > 0)
-					steeringDirection = true;
+				steeringDirection = commands.Turn();
 				// If turning at a fraction of the full rate (either from lack of
 				// energy or because of tracking a target), only consume a fraction
 				// of the turning energy and produce a fraction of the heat.
@@ -2244,7 +2243,7 @@ bool Ship::IsSteering() const
 
 
 
-bool Ship::SteeringDirection() const
+double Ship::SteeringDirection() const
 {
 	return steeringDirection;
 }

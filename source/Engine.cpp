@@ -2030,8 +2030,8 @@ void Engine::AddSprites(const Ship &ship)
 		{
 			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
 			for(const auto &it : ship.Attributes().SteeringFlareSprites())
-				if((point.facing == Ship::EnginePoint::LEFT && !ship.SteeringDirection()) 
-					|| (point.facing == Ship::EnginePoint::RIGHT && ship.SteeringDirection()) 
+				if((point.facing == Ship::EnginePoint::LEFT && ship.SteeringDirection() < 0.) 
+					|| (point.facing == Ship::EnginePoint::RIGHT && ship.SteeringDirection() > 0.) 
 					|| point.facing == Ship::EnginePoint::NONE)
 					for(int i = 0; i < it.second && i < 3; ++i)
 					{

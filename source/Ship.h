@@ -234,9 +234,9 @@ public:
 	bool IsThrusting() const;
 	bool IsReversing() const;
 	bool IsSteering() const;
-	// The direction that the ship is steering. If true, the ship is steering right. 
-	// If false, the ship is steering left.
-	bool SteeringDirection() const;
+	// The direction that the ship is steering. If positive, the ship is steering right. 
+	// If negative, the ship is steering left.
+	double SteeringDirection() const;
 	// Get the points from which engine flares should be drawn.
 	const std::vector<EnginePoint> &EnginePoints() const;
 	const std::vector<EnginePoint> &ReverseEnginePoints() const;
@@ -441,7 +441,7 @@ private:
 	bool isThrusting = false;
 	bool isReversing = false;
 	bool isSteering = false;
-	bool steeringDirection = false;
+	double steeringDirection = 0.;
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
