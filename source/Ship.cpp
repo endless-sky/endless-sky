@@ -180,11 +180,14 @@ void Ship::Load(const DataNode &node)
 			enginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
 				(child.Size() > 3 ? child.Value(3) : 1.), 0.);
 			EnginePoint &engine = enginePoints.back();
-			for(int i = 4; i < child.Size(); ++i)
+			for(const DataNode &it : child)
 			{
-				for(unsigned j = 1; j < ENGINE_SIDE.size(); ++j)
-					if(child.Token(i) == ENGINE_SIDE[j])
-						engine.side = j;
+				for(int i = 0; i < it.Size(); ++i)
+				{
+					for(unsigned j = 1; j < ENGINE_SIDE.size(); ++j)
+						if(it.Token(i) == ENGINE_SIDE[j])
+							engine.side = j;
+				}
 			}
 		}
 		else if(key == "reverse engine" && child.Size() >= 3)
@@ -197,11 +200,14 @@ void Ship::Load(const DataNode &node)
 			reverseEnginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
 				(child.Size() > 3 ? child.Value(3) : 1.), 180.);
 			EnginePoint &engine = reverseEnginePoints.back();
-			for(int i = 4; i < child.Size(); ++i)
+			for(const DataNode &it : child)
 			{
-				for(unsigned j = 1; j < ENGINE_SIDE.size(); ++j)
-					if(child.Token(i) == ENGINE_SIDE[j])
-						engine.side = j;
+				for(int i = 0; i < it.Size(); ++i)
+				{
+					for(unsigned j = 1; j < ENGINE_SIDE.size(); ++j)
+						if(it.Token(i) == ENGINE_SIDE[j])
+							engine.side = j;
+				}
 			}
 		}
 		else if(key == "steering engine" && child.Size() >= 3)
@@ -214,14 +220,17 @@ void Ship::Load(const DataNode &node)
 			steeringEnginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
 				(child.Size() > 4 ? child.Value(4) : 1.), (child.Size() > 3 ? child.Value(3) : 0));
 			EnginePoint &engine = steeringEnginePoints.back();
-			for(int i = 5; i < child.Size(); ++i)
+			for(const DataNode &it : child)
 			{
-				for(unsigned j = 1; j < ENGINE_SIDE.size(); ++j)
-					if(child.Token(i) == ENGINE_SIDE[j])
-						engine.side = j;
-				for(unsigned j = 1; j < STEERING_FACING.size(); ++j)
-					if(child.Token(i) == STEERING_FACING[j])
-						engine.facing = j;
+				for(int i = 0; i < it.Size(); ++i)
+				{
+					for(unsigned j = 1; j < ENGINE_SIDE.size(); ++j)
+						if(it.Token(i) == ENGINE_SIDE[j])
+							engine.side = j;
+					for(unsigned j = 1; j < STEERING_FACING.size(); ++j)
+						if(it.Token(i) == STEERING_FACING[j])
+							engine.facing = j;
+				}
 			}
 		}
 		else if(key == "gun" || key == "turret")
@@ -686,39 +695,46 @@ void Ship::Save(DataWriter &out) const
 		
 		for(const EnginePoint &point : enginePoints)
 		{
-			double x = 2. * point.X();
-			double y = 2. * point.Y();
-			double zoom = point.Zoom();
+			out.Write("engine", 2. * point.X(), 2. * point.Y(), point.Zoom());
 			if(point.side)
-				out.Write("engine", x, y, zoom, ENGINE_SIDE[point.side]);
-			else
-				out.Write("engine", x, y, zoom);
+			{
+				out.BeginChild();
+				out.Write(ENGINE_SIDE[point.side]);
+				out.EndChild();
+			}
 				
 		}
 		for(const EnginePoint &point : reverseEnginePoints)
 		{
-			double x = 2. * point.X();
-			double y = 2. * point.Y();
-			double zoom = point.Zoom();
+			out.Write("reverse engine", 2. * point.X(), 2. * point.Y(), point.Zoom());
 			if(point.side)
-				out.Write("reverse engine", x, y, zoom, ENGINE_SIDE[point.side]);
-			else
-				out.Write("reverse engine", x, y, zoom);
+			{
+				out.BeginChild();
+				out.Write(ENGINE_SIDE[point.side]);
+				out.EndChild();
+			}
 		}
 		for(const EnginePoint &point : steeringEnginePoints)
 		{
-			double x = 2. * point.X();
-			double y = 2. * point.Y();
-			double angle = point.Angle();
-			double zoom = point.Zoom();
+			out.Write("steering engine", 2. * point.X(), 2. * point.Y(), point.Angle(), point.Zoom());
 			if(point.side && point.facing)
-				out.Write("steering engine", x, y, angle, zoom, ENGINE_SIDE[point.side], STEERING_FACING[point.facing]);
+			{
+				out.BeginChild();
+				out.Write(ENGINE_SIDE[point.side], STEERING_FACING[point.facing]);
+				out.EndChild();
+			}
 			else if(point.side)
-				out.Write("steering engine", x, y, angle, zoom, ENGINE_SIDE[point.side]);
+			{
+				out.BeginChild();
+				out.Write(ENGINE_SIDE[point.side]);
+				out.EndChild();
+			}
 			else if(point.facing)
-				out.Write("steering engine", x, y, angle, zoom, STEERING_FACING[point.facing]);
-			else
-				out.Write("steering engine", x, y, angle, zoom);
+			{
+				out.BeginChild();
+				out.Write(STEERING_FACING[point.facing]);
+				out.EndChild();
+			}
 		}
 		for(const Hardpoint &hardpoint : armament.Get())
 		{
