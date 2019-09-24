@@ -178,7 +178,7 @@ void Ship::Load(const DataNode &node)
 				hasEngine = true;
 			}
 			enginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
-				(child.Size() > 3 ? child.Value(3) : 1.), 0.);
+				(child.Size() > 3 ? child.Value(3) : 1.), (child.Size() > 4 ? child.Value(4) : 0.));
 			EnginePoint &engine = enginePoints.back();
 			for(const DataNode &it : child)
 			{
@@ -198,7 +198,7 @@ void Ship::Load(const DataNode &node)
 				hasReverseEngine = true;
 			}
 			reverseEnginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
-				(child.Size() > 3 ? child.Value(3) : 1.), 180.);
+				(child.Size() > 3 ? child.Value(3) : 1.), 180. + (child.Size() > 4 ? child.Value(4) : 0.));
 			EnginePoint &engine = reverseEnginePoints.back();
 			for(const DataNode &it : child)
 			{
@@ -218,7 +218,7 @@ void Ship::Load(const DataNode &node)
 				hasSteeringEngine = true;
 			}
 			steeringEnginePoints.emplace_back(.5 * child.Value(1), .5 * child.Value(2),
-				(child.Size() > 4 ? child.Value(4) : 1.), (child.Size() > 3 ? child.Value(3) : 0));
+				(child.Size() > 3 ? child.Value(3) : 1.), (child.Size() > 4 ? child.Value(4) : 0));
 			EnginePoint &engine = steeringEnginePoints.back();
 			for(const DataNode &it : child)
 			{
@@ -695,7 +695,7 @@ void Ship::Save(DataWriter &out) const
 		
 		for(const EnginePoint &point : enginePoints)
 		{
-			out.Write("engine", 2. * point.X(), 2. * point.Y(), point.Zoom());
+			out.Write("engine", 2. * point.X(), 2. * point.Y(), point.Zoom(), point.Angle());
 			if(point.side)
 			{
 				out.BeginChild();
@@ -706,7 +706,7 @@ void Ship::Save(DataWriter &out) const
 		}
 		for(const EnginePoint &point : reverseEnginePoints)
 		{
-			out.Write("reverse engine", 2. * point.X(), 2. * point.Y(), point.Zoom());
+			out.Write("reverse engine", 2. * point.X(), 2. * point.Y(), point.Zoom(), point.Angle());
 			if(point.side)
 			{
 				out.BeginChild();
@@ -716,7 +716,7 @@ void Ship::Save(DataWriter &out) const
 		}
 		for(const EnginePoint &point : steeringEnginePoints)
 		{
-			out.Write("steering engine", 2. * point.X(), 2. * point.Y(), point.Angle(), point.Zoom());
+			out.Write("steering engine", 2. * point.X(), 2. * point.Y(), point.Zoom(), point.Angle());
 			if(point.side && point.facing)
 			{
 				out.BeginChild();
