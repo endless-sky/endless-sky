@@ -197,6 +197,50 @@ fleet "Large Hai"
 		"Water Bug"
 		"Grasshopper (Tracker)"
 
+fleet "Hai Defense"
+	government "Hai"
+	names "hai"
+	personality
+		opportunistic
+	variant 2
+		"Shield Beetle"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+	variant 1
+		"Shield Beetle"
+		"Lightning Bug (Pulse)"
+	variant 1
+		"Shield Beetle (Tracker)"
+		"Lightning Bug"
+	variant 3
+		"Shield Beetle (Tracker)"
+		"Shield Beetle"
+	variant 1
+		"Shield Beetle (Tracker)" 2
+	variant 1
+		"Shield Beetle" 2
+	variant 1
+		"Lightning Bug" 5
+	variant 3
+		"Shield Beetle (Pulse)"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+		"Lightning Bug (Pulse)" 2
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+
 fleet "Small Unfettered"
 	government "Hai (Unfettered)"
 	names "hai"
@@ -519,7 +563,22 @@ phrase "friendly hai"
 		"harmony."
 		"concord."
 		"cooperation."
-		
+
+phrase "friendly disabled hai"
+	word
+		"Fellow peacekeeper"
+		"Human visitor"
+		"Friend"
+	word
+		", "
+	word
+		"please provide assistance to us"
+		"our ship has been disabled and needs repaired"
+		"please spare a moment to rescue us"
+	word
+		"."
+		"!"
+
 phrase "hostile hai"
 	word
 		"You "
@@ -577,7 +636,40 @@ phrase "hostile hai"
 		"space."
 		"territory."
 		"worlds."
-	
+
+phrase "hostile disabled hai"
+	word
+		"You "
+	word
+		"impure"
+		"unclean"
+		"tainted"
+		"foul"
+		"shameful"
+		"violent"
+		"greedy"
+		"immoral"
+		"belligerent"
+		"brutal"
+		"cruel"
+		"heartless"
+	word
+		" "
+	word
+		"human"
+		"creature"
+		"thing"
+		"being"
+	word
+		". "
+		"! "
+	word
+		" We provided you sanctuary and you betrayed us."
+		" We were nothing but peaceful to you but you did not reciprocate."
+		" We live only in peace yet you come bringing war."
+		" Have you no soul?"
+		
+
 phrase "friendly unfettered"
 	word
 		"We "
@@ -625,6 +717,43 @@ phrase "friendly unfettered"
 		"unaltered"
 	word
 		" Hai."
+
+phrase "friendly disabled unfettered"
+	word
+		"Strong"
+		"True"
+		"Ambitious"
+		"Worthy"
+	word
+		" "
+	word
+		"warrior"
+		"human"
+		"ally"
+	word
+		"! "
+		". "
+	word
+		"These weaklings"
+		"Our enemies"
+		"They"
+	word
+		" have "
+	word
+		"disabled us"
+		"gotten the better of us"
+		"defeated us"
+	word
+		"! "
+		". "
+	word
+		"Assist us in our fight"
+		"Repair us so that we may continue in glorious battle"
+		"Fix our ship so that we may fight"
+		"Destroy our enemies before they destroy us"
+	word
+		"!"
+		"."
 		
 phrase "hostile unfettered"
 	word
@@ -662,3 +791,23 @@ phrase "hostile unfettered"
 		"unaltered"
 	word
 		" Hai!"
+
+phrase "hostile disabled unfettered"
+	word
+		"You coward"
+		"You weakling"
+		"You monkey"
+		"You pathetic nut"
+	word
+		"! "
+		". "
+	word
+		"Finish what you have started"
+		"My brothers and sisters will avenge me"
+		"My brothers and sisters will make short work of you after this"
+		"I challenge you to a duel! Board me"
+		"I dare you to board me"
+		"Let's finish this face to face"
+	word
+		"!"
+		"."

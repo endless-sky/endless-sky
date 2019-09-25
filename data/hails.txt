@@ -1519,6 +1519,20 @@ phrase "friendly pug"
 		" through-out the universe."
 		" among all sentient beings."
 
+phrase "friendly disabled pug"
+	word
+		"We are only a part of a larger whole"
+		"Our time has come"
+		"We are defeated, but the casue continues"
+	word
+		"; "
+	word
+		"leave us be to perish"
+		"continue fighting without us"
+		"worry not about us"
+	word
+		"."
+
 phrase "friendly pirate"
 	word
 		"We're"
@@ -2175,8 +2189,13 @@ phrase "hostile disabled"
 		"You'd better not cross me, you"
 		"My friends will avenge me, you"
 		"Stay away from me, you"
+	phrase
+		"shakespearean insults"
 	word
-		" "
+		"."
+		"!"
+
+phrase "shakespearean insults"
 	word
 		"artless"
 		"bawdy"
@@ -2334,9 +2353,6 @@ phrase "hostile disabled"
 		"vassal"
 		"whey-face"
 		"wagtail"
-	word
-		"."
-		"!"
 
 phrase "hostile civilian"
 	word
@@ -3121,7 +3137,7 @@ phrase "hostile pug"
 		"misdeed"
 	word
 		"."
-		
+
 phrase "hostile syndicate"
 	word
 		"We defend the Syndicate"
