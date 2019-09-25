@@ -464,6 +464,9 @@ outfit `"Baellie" Atomic Engines`
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
+	"steering flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"steering flare sound" "atomic tiny"
 	description `While the Hai were designing the Flea, it quickly became apparent that even the "Basrem" engine set was too large for the purpose. As a result, a combined thruster steering set was created: "Baellie".`
 
 outfit `"Basrem" Atomic Thruster`
@@ -551,6 +554,9 @@ outfit `"Basrem" Atomic Steering`
 	"turn" 309
 	"turning energy" .7
 	"turning heat" 1.6
+	"steering flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"steering flare sound" "atomic tiny"
 	description "Hai atomic engines are too expensive to buy for most humans. All but the smallest of the engines are worth more than many of the most common ships flown in human space."
 
 outfit `"Benga" Atomic Steering`
@@ -563,6 +569,9 @@ outfit `"Benga" Atomic Steering`
 	"turn" 577
 	"turning energy" 1.1
 	"turning heat" 2.8
+	"steering flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"steering flare sound" "atomic tiny"
 	description "Hai atomic engines allow for some of the most customizable ships in known space due to their size and efficiency. The few humans that are able to save up enough money to buy a set of Hai engines usually astound others in human space with the efficiency of their ship."
 
 outfit `"Biroo" Atomic Steering`
@@ -575,6 +584,9 @@ outfit `"Biroo" Atomic Steering`
 	"turn" 1054
 	"turning energy" 2.0
 	"turning heat" 5.1
+	"steering flare sprite" "effect/atomic flare/small"
+		"frame rate" 13
+	"steering flare sound" "atomic small"
 	description "Having such powerful engines is a double-edged sword for the Hai, as the Unfettered Hai too own these powerful wonders. These engines allow most Hai ships to turn at amazing speeds, making them extremely deadly in combat."
 
 outfit `"Bondir" Atomic Steering`
@@ -587,6 +599,9 @@ outfit `"Bondir" Atomic Steering`
 	"turn" 1758
 	"turning energy" 3.2
 	"turning heat" 8.2
+	"steering flare sprite" "effect/atomic flare/medium"
+		"frame rate" 12
+	"steering flare sound" "atomic medium"
 	description "Reserved for special use on only a small number of Hai ships, these engines are one of the most expensive outfits that one could buy. Considerably more efficient than any other engine of the same size, Hai atomic engines are a go-to choice for anyone in need of a high turn speed."
 
 outfit `"Bufaer" Atomic Steering`
@@ -599,6 +614,9 @@ outfit `"Bufaer" Atomic Steering`
 	"turn" 3043
 	"turning energy" 5.2
 	"turning heat" 13.8
+	"steering flare sprite" "effect/atomic flare/large"
+		"frame rate" 11
+	"steering flare sound" "atomic large"
 	description "Nine out of ten human captains interviewed in Hai space say that they would choose Hai atomic engines over those of Deep Sky any day... that is, if they could afford such expensive engines."
 
 outfit "Pulse Rifle"

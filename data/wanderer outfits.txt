@@ -505,6 +505,9 @@ outfit "Type 1 Radiant Steering"
 	"turning energy" .3
 	"turning heat" 0.6
 	"cooling" 1.0
+	"steering flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 12
+	"steering flare sound" "plasma tiny"
 	description "This tiny steering system is used by the Wanderers to power their unpiloted mining and surveying drones."
 
 outfit "Type 2 Radiant Steering"
@@ -520,6 +523,9 @@ outfit "Type 2 Radiant Steering"
 	"turning energy" .7
 	"turning heat" 1.5
 	"cooling" 2.1
+	"steering flare sprite" "effect/plasma flare/small"
+		"frame rate" 14
+	"steering flare sound" "plasma small"
 	description "This small Wanderer steering system vents excess heat from your ship even when it is not in use, allowing it to double as a cooling system."
 
 outfit "Type 3 Radiant Steering"
@@ -535,6 +541,9 @@ outfit "Type 3 Radiant Steering"
 	"turning energy" 1.2
 	"turning heat" 2.6
 	"cooling" 3.9
+	"steering flare sprite" "effect/plasma flare/medium"
+		"frame rate" 16
+	"steering flare sound" "plasma medium"
 	description "This steering system is used by the Wanderers in their mid-sized ships. In addition to turning your ship, it is able to vent a considerable amount of heat."
 
 outfit "Type 4 Radiant Steering"
@@ -550,6 +559,9 @@ outfit "Type 4 Radiant Steering"
 	"turning energy" 2.0
 	"turning heat" 4.5
 	"cooling" 6.7
+	"steering flare sprite" "effect/plasma flare/large"
+		"frame rate" 18
+	"steering flare sound" "plasma large"
 	description "This is the largest steering system that the Wanderers sell."
 
 outfit "Wanderer Outfits License"
