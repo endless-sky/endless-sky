@@ -1523,7 +1523,7 @@ phrase "friendly disabled pug"
 	word
 		"We are only a part of a larger whole"
 		"Our time has come"
-		"We are defeated, but the casue continues"
+		"We are defeated, but the cause continues"
 	word
 		"; "
 	word

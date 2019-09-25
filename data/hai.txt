@@ -197,50 +197,6 @@ fleet "Large Hai"
 		"Water Bug"
 		"Grasshopper (Tracker)"
 
-fleet "Hai Defense"
-	government "Hai"
-	names "hai"
-	personality
-		opportunistic
-	variant 2
-		"Shield Beetle"
-		"Lightning Bug (Pulse)" 2
-	variant 2
-		"Shield Beetle (Tracker)"
-		"Lightning Bug" 2
-	variant 1
-		"Shield Beetle"
-		"Lightning Bug (Pulse)"
-	variant 1
-		"Shield Beetle (Tracker)"
-		"Lightning Bug"
-	variant 3
-		"Shield Beetle (Tracker)"
-		"Shield Beetle"
-	variant 1
-		"Shield Beetle (Tracker)" 2
-	variant 1
-		"Shield Beetle" 2
-	variant 1
-		"Lightning Bug" 5
-	variant 3
-		"Shield Beetle (Pulse)"
-		"Lightning Bug (Pulse)" 2
-	variant 2
-		"Shield Beetle (Pulse)"
-		"Shield Beetle"
-	variant 2
-		"Shield Beetle (Pulse)"
-		"Shield Beetle (Tracker)"
-	variant
-		"Shield Beetle (Pulse)"
-		"Shield Beetle"
-		"Lightning Bug (Pulse)" 2
-	variant
-		"Shield Beetle (Pulse)"
-		"Shield Beetle (Tracker)"
-		"Lightning Bug" 2
-
 fleet "Small Unfettered"
 	government "Hai (Unfettered)"
 	names "hai"
