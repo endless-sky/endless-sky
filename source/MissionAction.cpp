@@ -407,7 +407,12 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		else
 			attribute += flagship ? flagship->Attributes().Get(it.first) : 0;
 		
-		if(attribute < it.second)
+		// Attributes are capable of being negative, so if a mission is requiring a
+		// negative attribute, return false if the player's attribute is greater
+		// than the required attribute.
+		// Do the opposite if the required attribute is positive.
+		if((it.second > 0 && attribute < it.second)
+			|| (it.second < 0 && attribute > it.second))
 			return false;
 	}
 	
