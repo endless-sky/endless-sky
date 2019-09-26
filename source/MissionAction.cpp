@@ -129,6 +129,30 @@ namespace {
 		}
 		return available;
 	}
+	
+	string GetLocations(MissionAction::OutfitLocations locations)
+	{
+		string locs;
+		
+		if(locations.flag == true)
+			locs.append("flagship ");
+		if(locations.escorts == true)
+			locs.append("escorts ");
+		if(locations.installed == true)
+			locs.append("installed ");
+		if(locations.cargo == true)
+			locs.append("cargo ");
+		if(locations.present == true)
+			locs.append("present ");
+		if(locations.absent == true)
+			locs.append("absent ");
+		if(locations.parked == true)
+			locs.append("parked ");
+		if(locations.unparked == true)
+			locs.append("unparked ");
+		
+		return locs;
+	}
 }
 
 
@@ -195,14 +219,41 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			{
 				// outfit <outfit> 0 means the player must have this outfit.
 				child.PrintTrace("Warning: deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
-				requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
+				OutfitLocations location;
+				requiredOutfits[GameData::Outfits().Get(child.Token(1))] = make_pair(1,location);
 			}
 		}
 		else if(key == "require" && hasValue)
 		{
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
+			
+			OutfitLocations location;
+			for(const DataNode &it : child)
+			{
+				location.empty = false;
+				for(int i = 0; i < it.Size(); ++i)
+				{
+					if(it.Token(i) == "flagship")
+						location.flag = true;
+					else if(it.Token(i) == "escorts")
+						location.escorts = true;
+					else if(it.Token(i) == "installed")
+						location.installed = true;
+					else if(it.Token(i) == "cargo")
+						location.cargo = true;
+					else if(it.Token(i) == "present")
+						location.present = true;
+					else if(it.Token(i) == "absent")
+						location.absent = true;
+					else if(it.Token(i) == "parked")
+						location.parked = true;
+					else if(it.Token(i) == "unparked")
+						location.unparked = true;
+				}
+			}
+			
 			if(count >= 0)
-				requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
+				requiredOutfits[GameData::Outfits().Get(child.Token(1))] = make_pair(count, location);
 			else
 				child.PrintTrace("Skipping invalid \"require\" amount:");
 		}
@@ -300,7 +351,18 @@ void MissionAction::Save(DataWriter &out) const
 		for(const auto &it : gifts)
 			out.Write("outfit", it.first->Name(), it.second);
 		for(const auto &it : requiredOutfits)
-			out.Write("require", it.first->Name(), it.second);
+		{
+			int count = it.second.first;
+			OutfitLocations locations = it.second.second;
+			out.Write("require", it.first->Name(), count);
+			if(locations.empty == false)
+			{
+				string locs = GetLocations(locations);
+				out.BeginChild();
+				out.Write(locs);
+				out.EndChild();
+			}
+		}
 		if(payment)
 			out.Write("payment", payment);
 		for(const auto &it : events)
@@ -356,6 +418,8 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 	for(const auto &it : requiredOutfits)
 	{
 		int available = 0;
+		int count = it.second.first;
+		OutfitLocations locations = it.second.second;
 		
 		bool checkFlag = false;
 		bool checkEscorts = false;
@@ -368,13 +432,8 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		// TODO: checkDisabled and checkEnabled?
 		// TODO: Figure out when to check player.Cargo().Get(it.first).
 		
-		// If required has a child, then specific locations are going to be checked.
-		// TODO: Only enter this if statement if require has a child.
-		if(false)
+		if(!locations.empty)
 		{
-			// TODO: Switch the location check booleans to true based off of the keywords in the child.
-			// checkFlag = child.contains("flagship"); or something like that
-			
 			// TODO: Allow multiple unique children instead of pooling the keywords from all children?
 			//	The way this is set up now, having the following:
 			//		require "Heavy Laser"
@@ -382,7 +441,16 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 			//			escorts cargo
 			//	is treated the same as if "flagship escorts cargo" were all on one line, meaning only 
 			//	the flagship's cargo is checked, not everything on the flagship but only the cargo of the escorts.
-			//	Such a change would require a for(each child) loop.
+			//	Such a change would require a for(each locations) loop.
+			
+			checkFlag = locations.flag;
+			checkEscorts = locations.escorts;
+			checkInstalled = locations.installed;
+			checkCargo = locations.cargo;
+			checkPresent = locations.present;
+			checkAbsent = locations.absent;
+			checkParked = locations.parked;
+			checkUnparked = locations.unparked;
 			
 			// The following if statements swap location checks to true if certain keywords have
 			// been omitted, e.g, not specifying installed or cargo means check both.
@@ -407,7 +475,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 				checkUnparked = true;
 			}
 		}
-		else if(!it.second)
+		else if(!count)
 		{
 			// Requiring the player to have 0 of this outfit and not specifying where to look
 			// means all ships and all cargo holds must be checked, even if the ship is disabled, 
@@ -443,7 +511,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		
 		// If the required amount is 0 and an outfit has already been found,
 		// then return false.
-		if(!it.second && available > 0)
+		if(!count && available > 0)
 			return false;
 		
 		// If the escorts need to be checked, then iterate through all the player's ships
@@ -473,12 +541,12 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 				}
 				
 				// Again, if the required amount is 0 and an outfit has already been found, return false
-				if(!it.second && available > 0)
+				if(!count && available > 0)
 					return false;
 			}
 		}
 		
-		if(available < it.second)
+		if(available < count)
 			return false;
 	}
 	

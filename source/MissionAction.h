@@ -41,6 +41,22 @@ class UI;
 // special item, modifying condition flags, or queueing an event to occur.
 class MissionAction {
 public:
+	
+	class OutfitLocations {
+	public:
+		bool empty = true;
+		
+		bool flag = false;
+		bool escorts = false;
+		bool installed = false;
+		bool cargo = false;
+		bool present = false;
+		bool absent = false;
+		bool parked = false;
+		bool unparked = false;
+	};
+
+public:
 	MissionAction() = default;
 	// Construct and Load() at the same time.
 	MissionAction(const DataNode &node, const std::string &missionName);
@@ -82,7 +98,7 @@ private:
 	
 	std::map<const GameEvent *, std::pair<int, int>> events;
 	std::map<const Outfit *, int> gifts;
-	std::map<const Outfit *, int> requiredOutfits;
+	std::map<const Outfit *, std::pair<int, OutfitLocations>> requiredOutfits;
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	
