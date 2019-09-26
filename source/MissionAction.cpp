@@ -483,6 +483,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 		result.events[it.first] = make_pair(day, day);
 	}
 	result.gifts = gifts;
+	result.requiredOutfits = requiredOutfits;
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	// Fill in the payment amount if this is the "complete" action.
 	string previousPayment = subs["<payment>"];
