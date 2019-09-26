@@ -357,9 +357,8 @@ void MissionAction::Save(DataWriter &out) const
 			out.Write("require", it.first->Name(), count);
 			if(locations.empty == false)
 			{
-				string locs = GetLocations(locations);
 				out.BeginChild();
-				out.Write(locs);
+				out.Write(GetLocations(locations));
 				out.EndChild();
 			}
 		}
@@ -421,37 +420,18 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		int count = it.second.first;
 		OutfitLocations locations = it.second.second;
 		
-		bool checkFlag = false;
-		bool checkEscorts = false;
-		bool checkInstalled = false;
-		bool checkCargo = false;
-		bool checkPresent = false;
-		bool checkAbsent = false;
-		bool checkParked = false;
-		bool checkUnparked = false;
-		// TODO: checkDisabled and checkEnabled?
+		bool checkFlag = locations.flag;
+		bool checkEscorts = locations.escorts;
+		bool checkInstalled = locations.installed;
+		bool checkCargo = locations.cargo;
+		bool checkPresent = locations.present;
+		bool checkAbsent = locations.absent;
+		bool checkParked = locations.parked;
+		bool checkUnparked = locations.unparked;
 		// TODO: Figure out when to check player.Cargo().Get(it.first).
 		
 		if(!locations.empty)
 		{
-			// TODO: Allow multiple unique children instead of pooling the keywords from all children?
-			//	The way this is set up now, having the following:
-			//		require "Heavy Laser"
-			//			flagship
-			//			escorts cargo
-			//	is treated the same as if "flagship escorts cargo" were all on one line, meaning only 
-			//	the flagship's cargo is checked, not everything on the flagship but only the cargo of the escorts.
-			//	Such a change would require a for(each locations) loop.
-			
-			checkFlag = locations.flag;
-			checkEscorts = locations.escorts;
-			checkInstalled = locations.installed;
-			checkCargo = locations.cargo;
-			checkPresent = locations.present;
-			checkAbsent = locations.absent;
-			checkParked = locations.parked;
-			checkUnparked = locations.unparked;
-			
 			// The following if statements swap location checks to true if certain keywords have
 			// been omitted, e.g, not specifying installed or cargo means check both.
 			if(!checkFlag && !checkEscorts) {
@@ -507,12 +487,13 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 					: CountInCargo(it.first, player);
 			if(checkInstalled)
 				available += flagship ? flagship->OutfitCount(it.first) : 0;
+			
+			// If the required amount is 0 and an outfit has already been found,
+			// then return false.
+			if(!count && available > 0)
+				return false;
 		}
 		
-		// If the required amount is 0 and an outfit has already been found,
-		// then return false.
-		if(!count && available > 0)
-			return false;
 		
 		// If the escorts need to be checked, then iterate through all the player's ships
 		if(checkEscorts)
@@ -524,23 +505,18 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 				if(ship->IsDestroyed())
 					continue;
 
-				if(checkCargo) {
+				if(checkCargo)
 					if((checkPresent && ship->GetSystem() == player.GetSystem()) || 
 						(checkAbsent && ship->GetSystem() != player.GetSystem()))
 						available += ship->Cargo().Get(it.first);
-				}
 				
-				if(checkInstalled) {
+				if(checkInstalled)
 					if((checkPresent && ship->GetSystem() == player.GetSystem()) ||
 						(checkAbsent && ship->GetSystem() != player.GetSystem()))
-					{
 						if((checkParked && ship->IsParked()) || 
 							(checkUnparked && !ship->IsParked()))
 							available += ship->OutfitCount(it.first);
-					}
-				}
 				
-				// Again, if the required amount is 0 and an outfit has already been found, return false
 				if(!count && available > 0)
 					return false;
 			}
