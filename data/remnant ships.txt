@@ -494,6 +494,67 @@ ship "Pelican"
 
 
 
+ship "Penguin"
+	sprite "ship/penguin/penguin"
+		"frame rate" 3
+	thumbnail "thumbnail/penguin"
+	attributes
+		category Transport
+		cost 2530000
+		"shields" 3000
+		"hull" 1500
+		"required crew" 1
+		"bunks" 5
+		"mass" 71
+		"drag" 1.25
+		"heat dissipation" 0.9
+		"fuel capacity" 800
+		"energy capacity" 300
+		"ramscoop" 0.5
+		"gaslining" 1
+		"cargo space" 19
+		"outfit space" 108
+		"engine capacity" 54
+		"weapon capacity" 33
+		"shield generation" 1
+		"shield energy" 0.4
+		"hull repair rate" 2
+		"hull energy" 0.9
+		"cloak" .03
+		"cloaking energy" 3
+		"cloaking fuel" .05
+		"outfit scan power" 50
+		"outfit scan speed" 1
+		"tactical scan power" 50
+		"atmosphere scan" 100
+		"reverse thrust" 16
+		"reverse thrusting energy" 2.5
+		"reverse thrusting heat" 2.0
+		weapon
+			"blast radius" 20
+			"shield damage" 260
+			"hull damage" 160
+			"hit force" 800
+	outfits
+		"Millennium Cell"
+		"Emergency Ramscoop"
+		"Quantum Key Stone"
+		"Tuning Rifle" 1
+		
+		"Crucible-Class Thruster"
+		"Crucible-Class Steering"
+		"Hyperdrive"
+	
+	engine 0 30
+	gun 0 -60
+	turret 0 -60
+	explode "tiny explosion" 8
+	explode "small explosion" 7
+	description "Inspired by close contact with void sprites and the reinvigoration of xenobiology, the Penguin is a prototype designed to serve the dual roles of testing new starship technology while exploring hostile planets throughout the Ember Waste. One of this ship's distinguishing features is that it is truly alive and has a mind that approaches self-awareness."
+	description "	The cloaking technology is built into the Penguin's hull; it cannot be removed or transferred to another ship."
+
+
+
 ship "Petrel"
 	sprite "ship/petrel"
 	thumbnail "thumbnail/petrel"
@@ -753,5 +814,454 @@ ship "Tern"
 	explode "small explosion" 20
 	description "The Tern is a small, hardy drone developed to plunge into the atmosphere of nearby gas giants to collect valuable resources for the nearby Remnant worlds. As a result, these tough, thick shelled craft are surprisingly effective at providing distraction and covering fire when enemies intrude on Remnant space."
 	description "Unlike most empires, the Remnant do not have sufficient people to pilot fighter wings in waves likely to sustain significant casualties. As such, they frequently use these hardy drones to fulfill similar screening roles in their home systems, allowing manned craft to focus on more specialized tasks."
+
+
+
+ship "Vulture"
+	sprite "ship/vulture"
+	thumbnail "thumbnail/vulture"
+	attributes
+		category "Heavy Warship"
+		licenses
+			"Remnant Capital"
+		"cost" 39100000
+		"shields" 60400
+		"hull" 50500
+		"required crew" 46
+		"bunks" 95
+		"mass" 700
+		"drag" 8.9
+		"heat dissipation" 0.85
+		"fuel capacity" 1000
+		"ramscoop" 2
+		"cargo space" 98
+		"outfit space" 960
+		"weapon capacity" 428
+		"engine capacity" 200
+		"shield generation" 5.2
+		"shield energy" 4.6
+		"hull repair rate" 1.5
+		"hull energy" 1.2
+		"cloak" .03
+		"cloaking energy" 5
+		"cloaking fuel" .1
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 100
+		weapon
+			"blast radius" 400
+			"shield damage" 4000
+			"hull damage" 2000
+			"hit force" 6000
+	outfits
+		"Remnant Artillery" 6
+		"Remnant Flak Turret" 6
+		"Point Defense Turret"
+
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 2
+		"Quantum Key Stone"
+
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
+		"Jump Drive"
+		
+	engine -30 215
+	engine 30 215
+	engine 0 220
+	gun -68 5 "Remnant Artillery"
+	gun 68 5 "Remnant Artillery"
+	gun -85 21 "Remnant Artillery"
+	gun 85 21 "Remnant Artillery"
+	gun -62 32 "Remnant Artillery"
+	gun 62 32 "Remnant Artillery"
+	turret -27 -80 "Remnant Flak Turret"
+	turret 27 -80 "Remnant Flak Turret"
+	turret 0 -33 "Point Defense Turret"
+	turret -39 140 "Remnant Flak Turret"
+	turret 39 140 "Remnant Flak Turret"
+	turret -45 160 "Remnant Flak Turret"
+	turret 45 160 "Remnant Flak Turret"
+	explode "small explosion" 20
+	explode "medium explosion" 80
+	explode "large explosion" 70
+	explode "huge explosion" 30
+	"final explode" "final explosion large" 1
+	description "The Vulture is not a ship meant to be purchased in its current form. Eventually, this will be a Heavy Warship intended to be heavy tank complement to the Albatross, and a successor to it in terms of front-line survivability. Hence why it has fewer cannons, but more armor, shields, and space. Current stats are modeled after the Hurricane and Punisher. What stats it actually has will be determined by the state of the plot when it is added. In any event, it will be added via missions as a newly developped warship, much in the same way as the Dreadnought is in the FW campaign."
+
+
+
+ship "Peregrine"
+	sprite "ship/peregrine/peregrine"
+		"frame rate" 3
+		rewind
+	thumbnail "thumbnail/peregrine"
+	attributes
+		category "Medium Warship"
+		licenses
+			"Remnant Capital"
+		"cost" 35500000
+		"shields" 50200
+		"hull" 35700
+		"required crew" 23
+		"bunks" 42
+		"mass" 540
+		"drag" 7.7
+		"heat dissipation" 0.8
+		"fuel capacity" 1000
+		"ramscoop" 2
+		"cargo space" 56
+		"outfit space" 796
+		"weapon capacity" 342
+		"engine capacity" 204
+		"shield generation" 5.2
+		"shield energy" 4.6
+		"hull repair rate" 1.5
+		"hull energy" 1.2
+		"cloak" .05
+		"cloaking energy" 5
+		"cloaking fuel" .1
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 100
+		weapon
+			"blast radius" 340
+			"shield damage" 3400
+			"hull damage" 1700
+			"hit force" 5100
+	outfits
+		"Sunbeam" 2
+		"Thunderhead Launcher" 2
+		"Thunderhead Missile" 80
+		"Dual Sunbeam Turret" 2
+		"Wanderer Anti-Missile" 2
+		
+		"Blue Sun Reactor"
+		"Red Sun Reactor"
+		"Dark Storm Shielding"
+		"Bright Cloud Shielding"
+		"Wanderer Heat Sink"
+		"Wanderer Ramscoop"
+		
+		"Type 4 Radiant Thruster"
+		"Type 1 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Type 3 Radiant Steering"
+		"Hyperdrive"
+		
+	gun 0 -133
+	gun -11 -105
+	gun 11 -105
+	gun -17 -81.5
+	gun 17 -81.5
+	turret -29 30
+	turret 29 30
+	turret 0 -41
+	engine -25 117
+	engine 0 116
+	engine 25 117
+	explode "small explosion" 40
+	explode "medium explosion" 70
+	explode "large explosion" 50
+	explode "huge explosion" 20
+	"final explode" "final explosion large" 1
+	description "The Peregrine is the first fully living starship designed for war. While it is clearly not sapient and must rely on its pilot for larger battle-space tactics, its neural network has an exquisite understanding of close quarters maneuvers and dogfights. These ships were built and designed to be fast-attack cruisers utilizing their combined advantages of speed and stealth to confuse, isolate, and disable their enemies."
+
+
+
+ship "Condor"
+	sprite "ship/condor"
+	thumbnail "thumbnail/condor"
+	attributes
+		category "Transport"
+		licenses
+			"Remnant Capital"
+		"cost" 15375000
+		"shields" 18000
+		"hull" 9500
+		"required crew" 25
+		"bunks" 250
+		"mass" 590
+		"drag" 7
+		"heat dissipation" .80
+		"fuel capacity" 900
+		"ramscoop" 2
+		"cargo space" 83
+		"outfit space" 601
+		"weapon capacity" 256
+		"engine capacity" 200
+		"shield generation" 3.1
+		"shield energy" 1.8
+		"hull repair rate" 2
+		"hull energy" 0.75
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 26
+		weapon
+			"blast radius" 140
+			"shield damage" 1400
+			"hull damage" 700
+			"hit force" 2100
+	outfits
+		"Remnant Flak Turret" 3
+		"Point Defense Turret" 1
+
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 2
+		"Small Heat Shunt" 2
+		"Boarding Claws" 9
+		"Quantum Key Stone"
+
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
+		"Jump Drive"
+		
+	engine -43.5 156
+	engine -24 149
+	engine 0 175
+	engine 24 149
+	engine 43.5 156
+	gun -13.5 -173
+	gun 0 -150.5
+	gun 13.5 -173
+	turret 0 -35
+	turret -5.5 29
+	turret 5.5 29
+	turret 0 120
+	drone -17 5
+	drone 17 5
+	drone -44.5 -16.5
+	drone 44.5 -16.5
+	drone -67 7.5
+	drone 67 7.5
+	drone -22.5 65
+	drone 22.5 65
+	explode "small explosion" 10
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	explode "huge explosion" 5
+	"final explode" "final explosion large"
+	description `The Condor is the Remnant's combat transport, and was  built to serve two purposes. The first is to carry soldiers and salage crew for boarding operations against the Korath. The second is to carry as many people as possible during evacuations under fire from Alphas, Korath, or other unknown threats. As a result of these mandates, the Condor is built to be tough, fast, and fit as many people as possible. Given its importance in keeping the Remnant safe during evactuations, it often carries a small squad of terns to cover its retreat and distract enemies from that which the Remnant value far more than material wealth.`
+
+
+
+ship "Diomedea"
+	sprite "ship/diomedea"
+	thumbnail "thumbnail/condor"
+	attributes
+		category "Transport"
+		licenses
+			"Remnant Capital"
+		"cost" 55375000
+		"shields" 78000
+		"hull" 40000
+		"required crew" 250
+		"bunks" 1500
+		"mass" 1590
+		"drag" 7
+		"heat dissipation" .80
+		"fuel capacity" 1100
+		"ramscoop" 3
+		"cargo space" 253
+		"outfit space" 701
+		"weapon capacity" 256
+		"engine capacity" 350
+		"shield generation" 4
+		"shield energy" 1.8
+		"hull repair rate" 4
+		"hull energy" 0.75
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 71
+		weapon
+			"blast radius" 540
+			"shield damage" 4400
+			"hull damage" 1700
+			"hit force" 3100
+	outfits
+		"Remnant Flak Turret" 6
+		"Point Defense Turret" 2
+
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 2
+		"Small Heat Shunt" 2
+		"Quantum Key Stone"
+		"Ember Waste Ramscoop" 2
+
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
+		"Jump Drive"
+		
+	engine -85 305
+	engine 85 305
+	engine -49 290
+	engine 49 290
+	engine 0 341
+	gun -22 -258
+	gun -13 -287
+	gun 0 -310
+	gun 13 -287
+	gun 22 -258
+	turret -9.5 57	"Remnant Flak Turret"
+	turret 9.5 57	"Remnant Flak Turret"
+	turret -0 281.5	"Point Defense Turret"
+	turret -0 -158.5	"Point Defense Turret"
+	turret -60 222.5	"Remnant Flak Turret"
+	turret 60 222.5	"Remnant Flak Turret"
+	turret -40.5 -246.5	"Remnant Flak Turret"
+	turret 40.5 -246.5	"Remnant Flak Turret"
+	explode "small explosion" 10
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	explode "huge explosion" 5
+	"final explode" "final explosion large"
+	description `The Diomedea is the remnant's final hope - A generation ship capable of carrying over a thousand survivors in a desperate flight to establish a new life somewhere else. These massive ships incorporate the latest of all remnant technology and are fully alive with a degree of sapience that puts them on equal terms with their crew. They are not servants of the remnant, they are one of them."`
+
+
+
+ship "Harrier"
+	sprite "ship/harrier"
+	thumbnail "thumbnail/harrier"
+	attributes
+		category "Interceptor"
+		licenses
+			Remnant
+		"cost" 6830000
+		"shields" 4000
+		"hull" 4800
+		"required crew" 1
+		"bunks" 2
+		"cargo space" 23
+		"fuel capacity" 500
+		"ramscoop" 1
+		"mass" 120
+		"drag" .9
+		"heat dissipation" .9
+		"gaslining" 1
+		"outfit space" 200
+		"shield generation" 2.8
+		"shield energy" 1.2
+		"hull repair rate" 1.8
+		"hull energy" 0.6
+		"cloak" .02
+		"cloaking energy" 5
+		"cloaking fuel" .1
+		"atmosphere scan" 100
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 26
+		"weapon capacity" 85
+		"engine capacity" 70
+		weapon
+			"blast radius" 10
+			"shield damage" 100
+			"hull damage" 150
+			"hit force" 250
+	outfits
+		"Nullifier Missile Pod"
+		"Remnant GASER Cannon" 2
+		"Nullifier Missile" 6
+		
+		"Millennium Cell"
+		"Crystal Capacitor" 2
+		"Thermoelectric Cooler"
+		
+		"Crucible-Class Thruster" 2
+		"Crucible-Class Steering"
+		"Remnant Afterburner"
+		"Hyperdrive"
+		
+	gun 0 -48.5 "Nullifier Missile Pod"
+	gun -6 -41 "Remnant GASER Cannon"
+	gun 6 -41 "Remnant GASER Cannon"
+	engine 0 45
+	engine -10 49
+	engine 10 49
+	explode "tiny explosion" 30
+	explode "small explosion" 20
+	description "The Harrier is a short range (for the Remnant) interceptor designed to patrol the upper atmosphere of gas giants and use their decisive speed advantage to conduct hit and run attacks on threats in nearby systems. While technically weaker than the Starlings, but it is a faster and cheaper alternative for providing covering fire in engagements near Remnant systems. Typically, the Remnant use Harriers to ambush Korath ships with a barrage of nullifiers which pins the target ship in-system. They then harass it with their GASER cannons until heavier ships arrive to finish the work."
+
+
+
+ship "Phoenix"
+	sprite "ship/vulture"
+	thumbnail "thumbnail/vulture"
+	attributes
+		category "Heavy Warship"
+		licenses
+			"Remnant Capital"
+		"cost" 39100000
+		"shields" 60400
+		"hull" 50500
+		"required crew" 46
+		"bunks" 95
+		"mass" 800
+		"drag" 8.9
+		"heat dissipation" 0.85
+		"fuel capacity" 1000
+		"ramscoop" 2
+		"cargo space" 98
+		"outfit space" 2060
+		"weapon capacity" 428
+		"engine capacity" 400
+		"shield generation" 5.2
+		"shield energy" 4.6
+		"hull repair rate" 1.5
+		"hull energy" 1.2
+		"cloak" .03
+		"cloaking energy" 5
+		"cloaking fuel" .1
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 100
+		weapon
+			"blast radius" 400
+			"shield damage" 4000
+			"hull damage" 2000
+			"hit force" 6000
+	outfits
+		"Remnant Artillery" 6
+		"Remnant Flak Turret" 6
+		"Point Defense Turret"
+
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 2
+		"Large Heat Shunt" 10
+		"Quantum Key Stone"
+
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
+		"Jump Drive"
+		
+	engine -30 215
+	engine 30 215
+	engine 0 220
+	gun -68 5 "Remnant Artillery"
+	gun 68 5 "Remnant Artillery"
+	gun -85 21 "Remnant Artillery"
+	gun 85 21 "Remnant Artillery"
+	gun -62 32 "Remnant Artillery"
+	gun 62 32 "Remnant Artillery"
+	turret -27 -80 "Remnant Flak Turret"
+	turret 27 -80 "Remnant Flak Turret"
+	turret 0 -33 "Point Defense Turret"
+	turret -39 140 "Remnant Flak Turret"
+	turret 39 140 "Remnant Flak Turret"
+	turret -45 160 "Remnant Flak Turret"
+	turret 45 160 "Remnant Flak Turret"
+	explode "small explosion" 20
+	explode "medium explosion" 80
+	explode "large explosion" 70
+	explode "huge explosion" 30
+	"final explode" "final explosion large" 1
+	description "The Phoenix is a test platform version of the Vulture. It is not a ship meant to be purchased in its current form. It is basically a vulture with an extra several hundreds of tons of outfit and engine space for testing purposes."
 
 
