@@ -310,6 +310,7 @@ outfitter "Remnant"
 	"Personal Cloak System"
 	"Personal Cloaking Suit"
 	"Remnant Afterburner"
+	"Quantum Tear"
 
 outfitter "Remnant Salvage"
 	"Generator (Furnace Class)"
