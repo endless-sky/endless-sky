@@ -348,6 +348,86 @@ ship "Gull" "Gull (Bunks)"
 
 
 
+ship "Ibis"
+	sprite "ship/ibis"
+	thumbnail "thumbnail/ibis"
+	attributes
+		category "Medium Warship"
+		licenses
+			"Remnant Capital"
+		"cost" 30000000
+		"shields" 25700
+		"hull" 12000
+		"required crew" 20
+		"bunks" 48
+		"mass" 300
+		"drag" 7.1
+		"heat dissipation" 0.7
+		"fuel capacity" 700
+		"ramscoop" 2
+		"outfit space" 558
+		"cargo space" 103
+		"weapon capacity" 200
+		"engine capacity" 142
+		"shield generation" 6
+		"shield energy" 4.6
+		"hull repair rate" 2
+		"hull energy" 1.2
+		"outfit scan power" 18
+		"outfit scan speed" 1
+		"tactical scan power" 39
+		weapon
+			"blast radius" 240
+			"shield damage" 2400
+			"hull damage" 1200
+			"hit force" 3000
+	outfits
+		"Inhibitor Cannon" 3
+		"Thrasher Turret" 1
+		"Point Defense Turret" 2
+
+		"Aeon Cell"
+		"Crystal Capacitor"
+		"Emergency Ramscoop" 2
+		"Thermoelectric Cooler" 3
+		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Tuning Rifle" 20
+
+		"Forge-Class Thruster"
+		"Crucible-Class Thruster"
+		"Forge-Class Steering"
+		"Crucible-Class Steering"
+		"Hyperdrive"
+		
+	drone 0 30 over 
+	drone -34 68 over
+	drone 0 81 over
+	drone 34 68 over
+	fighter -25 10 under
+	fighter 25 10 under
+	engine -16.5 120 0.7
+	engine 0 116.5 1
+	engine 16.5 120 0.7
+	gun 0 -135.5 "Inhibitor Cannon"
+	gun 15.5 -102 "Inhibitor Cannon"
+	gun -15.5 -102 "Inhibitor Cannon"
+	turret 0 -62 "Thrasher Turret"
+	turret 0 -20.5 "Point Defense Turret"
+	turret 0 58.5 "Point Defense Turret"
+	
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "This is the Ibis. A slightly carrier that serves as a mining platform for terns, as well as an escort ship for pelican fleets and a combat platform for terns used in screening roles. Stats are currently made up from whole cloth and need revision."
+
+
+
 ship "Pelican"
 	sprite "ship/pelican"
 	thumbnail "thumbnail/pelican"
@@ -472,6 +552,62 @@ ship "Penguin"
 	explode "small explosion" 7
 	description "Inspired by close contact with void sprites and the reinvigoration of xenobiology, the Penguin is a prototype designed to serve the dual roles of testing new starship technology while exploring hostile planets throughout the Ember Waste. One of this ship's distinguishing features is that it is truly alive and has a mind that approaches self-awareness."
 	description "	The cloaking technology is built into the Penguin's hull; it cannot be removed or transferred to another ship."
+
+
+
+ship "Petrel"
+	sprite "ship/petrel"
+	thumbnail "thumbnail/petrel"
+	attributes
+		category "Fighter"
+		licenses
+			Remnant
+		"cost" 4500000
+		"shields" 2500
+		"hull" 3000
+		"cargo space" 20
+		"fuel capacity" 100
+		"ramscoop" 1
+		"required crew" 1
+		"bunks" 3
+		"mass" 35
+		"drag" .9
+		"heat dissipation" .9
+		"outfit space" 195
+		"shield generation" 1.9
+		"shield energy" 1.1
+		"hull repair rate" 0.9
+		"hull energy" 0.6
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 26
+		"asteroid scan power" 30
+		"weapon capacity" 80
+		"engine capacity" 55
+		weapon
+			"blast radius" 15
+			"shield damage" 150
+			"hull damage" 200
+			"hit force" 350
+	outfits
+		"Inhibitor Cannon" 3
+		
+		"Millennium Cell" 2
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 3
+		
+		"Crucible-Class Thruster"
+		"Crucible-Class Steering"
+		
+	gun 0 -38.5 "Inhibitor Cannon"
+	gun -10.5 -24 "Inhibitor Cannon"
+	gun 10.5 -24 "Inhibitor Cannon"
+	turret 0 2.5
+	engine 0 41.5
+	explode "tiny explosion" 30
+	explode "small explosion" 20
+	description "The Petrel is a multi-role mining/wing leader fightercraft designed to give remnant a forward control position for flights of Terns in higher risk or quickly changing environments. Their initial design was used as a urban mobile gun platform that flitted around structures, caverns, and natural terrain on their worlds while fighting on-planet threats."
+	description "Due to the comparatively small pool the Remnant draw on for pilots and crew they are loath to throw mass waves of people into the line of fire. As such, their fighters are not intended to be up-close glass cannons like most other factions of humanity tend to build. Instead, these ships are highly agile fighters equipped with medium range weaponry designed to snipe enemies from behind cover."
 
 
 
@@ -629,38 +765,37 @@ ship "Tern"
 		category "Drone"
 		licenses
 			Remnant
-		"cost" 830000
-		"shields" 2000
-		"hull" 4800
-		"cargo space" 27
-		"fuel capacity" 200
+		"cost" 3830000
+		"shields" 1000
+		"hull" 4000
+		"cargo space" 10
+		"fuel capacity" 100
 		"ramscoop" 1
 		"automaton" 1
-		"mass" 20
+		"mass" 30
 		"drag" .9
 		"heat dissipation" .9
 		"gaslining" 1
-		"outfit space" 164
+		"outfit space" 111
 		"shield generation" 1.8
-		"shield energy" 1.2
-		"hull repair rate" 0.8
+		"shield energy" 1.1
+		"hull repair rate" 0.7
 		"hull energy" 0.6
-		"cloak" .02
-		"cloaking energy" 5
-		"cloaking fuel" .1
+		"energy generation" 1.8
+		"heat generation" 3.0
 		"atmosphere scan" 100
 		"outfit scan power" 12
 		"outfit scan speed" 1
 		"tactical scan power" 26
-		"weapon capacity" 85
-		"engine capacity" 45
+		"asteroid scan power" 30
+		"weapon capacity" 36
+		"engine capacity" 40
 		weapon
 			"blast radius" 10
 			"shield damage" 100
 			"hull damage" 150
 			"hit force" 250
 	outfits
-		"Point Defense Turret"
 		"Inhibitor Cannon" 2
 		
 		"Millennium Cell"
@@ -669,17 +804,16 @@ ship "Tern"
 		
 		"Crucible-Class Thruster"
 		"Crucible-Class Steering"
-		"Hyperdrive"
 		
-	gun -15 -32 "Inhibitor Cannon"
-	gun 15 -32 "Inhibitor Cannon"
-	turret 0 11.5 "Point Defense Turret"
-	engine -10 41.5
-	engine 10 41.5
+	gun -5 -20 "Inhibitor Cannon"
+	gun 5 -20 "Inhibitor Cannon"
+	turret 0 -8
+	engine -5 20.5
+	engine 5 20.5
 	explode "tiny explosion" 30
 	explode "small explosion" 20
-	description "The Tern is a small, hardy, drone developped to plunge into the atmosphere of nearby gas giants to collect valuable ressources for the nearby Remnant worlds. As a result, these tough, thick shelled craft are surprisingly effective at providing distraction and covering fire when enemies intrude on Remnant space."
-	description "Unlike many drones, the terns are designed for short range resource gathering, and thus have hyperdrives installed to allow them to make short hops to neighboring systems. Unfortunately, their short range prevents them from being effective over any significant distance."
+	description "The Tern is a small, hardy drone developed to plunge into the atmosphere of nearby gas giants to collect valuable resources for the nearby Remnant worlds. As a result, these tough, thick shelled craft are surprisingly effective at providing distraction and covering fire when enemies intrude on Remnant space."
+	description "Unlike most empires, the Remnant do not have sufficient people to pilot fighter wings in waves likely to sustain significant casualties. As such, they frequently use these hardy drones to fulfill similar screening roles in their home systems, allowing manned craft to focus on more specialized tasks."
 
 
 
