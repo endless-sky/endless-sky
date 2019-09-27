@@ -240,6 +240,7 @@ shipyard "Remnant"
 	"Condor"
 	"Diomedea"
 	"Harrier"
+	"Phoenix"
 
 shipyard "Remnant Gascraft"
 	"Gascraft"

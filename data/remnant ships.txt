@@ -1054,3 +1054,80 @@ ship "Harrier"
 	description "The Harrier is a short range (for the Remnant) interceptor designed to patrol the upper atmosphere of gas giants and use their decisive speed advantage to conduct hit and run attacks on threats in nearby systems. While technically weaker than the Starlings, but it is a faster and cheaper alternative for providing covering fire in engagements near Remnant systems. Typically, the Remnant use Harriers to ambush Korath ships with a barrage of nullifiers which pins the target ship in-system. They then harass it with their GASER cannons until heavier ships arrive to finish the work."
 
 
+
+ship "Phoenix"
+	sprite "ship/vulture"
+	thumbnail "thumbnail/vulture"
+	attributes
+		category "Heavy Warship"
+		licenses
+			"Remnant Capital"
+		"cost" 39100000
+		"shields" 60400
+		"hull" 50500
+		"required crew" 46
+		"bunks" 95
+		"mass" 800
+		"drag" 8.9
+		"heat dissipation" 0.85
+		"fuel capacity" 1000
+		"ramscoop" 2
+		"cargo space" 98
+		"outfit space" 2060
+		"weapon capacity" 428
+		"engine capacity" 400
+		"shield generation" 5.2
+		"shield energy" 4.6
+		"hull repair rate" 1.5
+		"hull energy" 1.2
+		"cloak" .03
+		"cloaking energy" 5
+		"cloaking fuel" .1
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 100
+		weapon
+			"blast radius" 400
+			"shield damage" 4000
+			"hull damage" 2000
+			"hit force" 6000
+	outfits
+		"Remnant Artillery" 6
+		"Remnant Flak Turret" 6
+		"Point Defense Turret"
+
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 2
+		"Large Heat Shunt" 10
+		"Quantum Key Stone"
+
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
+		"Jump Drive"
+		
+	engine -30 215
+	engine 30 215
+	engine 0 220
+	gun -68 5 "Remnant Artillery"
+	gun 68 5 "Remnant Artillery"
+	gun -85 21 "Remnant Artillery"
+	gun 85 21 "Remnant Artillery"
+	gun -62 32 "Remnant Artillery"
+	gun 62 32 "Remnant Artillery"
+	turret -27 -80 "Remnant Flak Turret"
+	turret 27 -80 "Remnant Flak Turret"
+	turret 0 -33 "Point Defense Turret"
+	turret -39 140 "Remnant Flak Turret"
+	turret 39 140 "Remnant Flak Turret"
+	turret -45 160 "Remnant Flak Turret"
+	turret 45 160 "Remnant Flak Turret"
+	explode "small explosion" 20
+	explode "medium explosion" 80
+	explode "large explosion" 70
+	explode "huge explosion" 30
+	"final explode" "final explosion large" 1
+	description "The Phoenix is a test platform version of the Vulture. It is not a ship meant to be purchased in its current form. It is basically a vulture with an extra several hundreds of tons of outfit and engine space for testing purposes."
+
+
