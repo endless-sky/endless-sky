@@ -1886,7 +1886,7 @@ mission "Courier 2"
 		distance 7 14
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
-		dialog phrase "generic package offer"
+		dialog phrase "generic human package offer"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
