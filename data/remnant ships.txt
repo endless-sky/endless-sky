@@ -419,12 +419,12 @@ ship "Penguin"
 		"frame rate" 3
 	thumbnail "thumbnail/penguin"
 	attributes
-		category Transport
+		category "Transport"
 		cost 2530000
 		"shields" 3000
 		"hull" 1500
 		"required crew" 1
-		"bunks" 5
+		"bunks" 3
 		"mass" 71
 		"drag" 1.25
 		"heat dissipation" 0.9
@@ -433,12 +433,12 @@ ship "Penguin"
 		"ramscoop" 0.5
 		"cargo space" 19
 		"outfit space" 108
-		"engine capacity" 54
 		"weapon capacity" 33
+		"engine capacity" 54
 		"shield generation" 1
-		"shield energy" 0.4
+		"shield energy" 0.5
 		"hull repair rate" 2
-		"hull energy" 0.9
+		"hull energy" 1.0
 		"cloak" .03
 		"cloaking energy" 3
 		"cloaking fuel" .05
