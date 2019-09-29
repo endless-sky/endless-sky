@@ -1835,7 +1835,6 @@ phrase "generic human package offer"
 		`A resident of <source>`
 		`A stranger`
 		`A woman`
-		`One of the spaceport's dock workers`
 	word
 		` `
 	word
@@ -1843,20 +1842,20 @@ phrase "generic human package offer"
 		`approaches you and says,`
 		`flags you down and asks,`
 		`walks up to you and asks,`
+		`stops you and asks,`
 	word
-		` `
+		` "`
 	word
-		`"Captain,`
-		`"Excuse me, Captain.`
-		`"Hello, Captain.`
-		`"Hello.`
-		`"Sorry to interrupt, but`
+		`Captain,`
+		`Excuse me, Captain.`
+		`Sorry to interrupt, but`
+		`Hey there, Captain.`
 	word
 		` `
 	word
 		`I have a small package that needs to get to <planet> by <day>.`
 		`I'm trying to get a package to a relative on <planet> by <day>.`
-		`one of my clients on <planet> needs this package by <day>.`
+		`I need to get this package to one of my clients on <planet> by <day>.`
 		`I'm trying to get this package to <planet> before <day>.`
 	word
 		` `
@@ -1866,7 +1865,6 @@ phrase "generic human package offer"
 		`Could you take it there?`
 		`Can you help me out with this?`
 	word
-		``
 		` I'll give you <payment> for the effort.`
 		` I'm willing to pay you <payment>.`
 		` I can afford to give you <payment> for it.`
