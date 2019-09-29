@@ -17,6 +17,7 @@ Version 0.9.10:
     * Mission NPCs that have no saved system will not crash the game when the player departs a planet. (@tehhowch)
     * Ship thumbnails are now saved, just like sprites. (@MageKing17)
     * Hostile Mereti ships during the Wanderer Mind missions will no longer return understandable hails. (@Amazinite)
+    * The "require" mission tag is now evaluated in all actions, not just when the mission is offered. (@MageKing17)
   * Game content:
     * Black holes now have a landing message. (@Comnom)
     * Pirate occupation spaceport missions will no longer cause the player to launch if the occupation is in another system. (@ZBok)
