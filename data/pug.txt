@@ -319,6 +319,18 @@ outfit "Pug Biodefenses"
 
 
 
+outfit "Pug Peacekeeping Staff"
+	plural "Pug Peacekeeping Staves"
+	category "Hand to Hand"
+	cost 11000
+	thumbnail "outfit/pug staff"
+	"capture attack" 0.8
+	"capture defense" 1.5
+	"unplunderable" 1
+	description "These tools designed for the control of planetary populations are also good at protecting their ships. Using minor amounts of radiation and electric shocks it Non-Lethally removes the complete ability to oppose the pug."
+
+
+
 ship "Pug Zibruka"
 	sprite "ship/pug zibruka"
 	thumbnail "thumbnail/pug zibruka"
