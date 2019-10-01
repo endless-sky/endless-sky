@@ -68,6 +68,15 @@ tip "cooling inefficiency:"
 tip "cost:"
 	`Cost, in credits. If you have sold any used (depreciated) items today, you can buy them back for the same price you sold them for.`
 
+tip "disabled:"
+	`Alters the hull strength value at which the ship will become disabled.`
+
+tip "disabled percentage:"
+	`Alters the hull strength percentage at which the ship will become disabled.`
+
+tip "disabled threshold:"
+	`The hull strength remaining at which this ship becomes disabled.`
+
 tip "disruption resistance:"
 	`How much shield disruption damage this ship can resist per second.`
 
