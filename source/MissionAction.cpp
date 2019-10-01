@@ -151,6 +151,9 @@ namespace {
 		if(locations.unparked == true)
 			locs.append("unparked ");
 		
+		// Pop back the extraneous space.
+		if(!locs.empty())
+			locs.pop_back();
 		return locs;
 	}
 }
