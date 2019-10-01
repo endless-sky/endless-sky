@@ -836,6 +836,18 @@ const list<NPC> &Mission::NPCs() const
 
 
 
+// Checks if the given ship belongs to one of the mission's NPCs.
+bool Mission::HasShip(const shared_ptr<Ship> &ship) const
+{
+	for(const auto &npc : npcs)
+		for(const auto &npcShip : npc.Ships())
+			if(npcShip == ship)
+				return true;
+	return false;
+}
+
+
+
 // If any event occurs between two ships, check to see if this mission cares
 // about it. This may affect the mission status or display a message.
 void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
