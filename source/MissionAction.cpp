@@ -428,7 +428,6 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		bool checkAbsent = locations.absent;
 		bool checkParked = locations.parked;
 		bool checkUnparked = locations.unparked;
-		// TODO: Figure out when to check player.Cargo().Get(it.first).
 		
 		if(!locations.empty)
 		{
