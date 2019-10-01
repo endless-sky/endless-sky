@@ -363,6 +363,7 @@ ship "Pug Zibruka"
 		"Pug Zapper" 2
 		
 		"Pug Biodefenses" 4
+		"Pug Peacekeeping Staff" 4
 		
 		"Pug Akfar Thruster"
 		"Pug Akfar Steering"
@@ -414,6 +415,7 @@ ship "Pug Enfolta"
 		"Pug Zapper Turret"
 		
 		"Pug Biodefenses" 6
+		"Pug Peacekeeping Staff" 19
 		
 		"Pug Cormet Thruster"
 		"Pug Cormet Steering"
@@ -468,6 +470,7 @@ ship "Pug Maboro"
 		"Pug Anti-Missile"
 		
 		"Pug Biodefenses" 8
+		"Pug Peacekeeping Staff" 54
 		
 		"Pug Lohmar Thruster"
 		"Pug Lohmar Steering"
@@ -530,6 +533,7 @@ ship "Pug Arfecta"
 		
 		"Cloaking Device"
 		"Pug Biodefenses" 12
+		"Pug Peacekeeping Staff" 36
 		
 		"Pug Lohmar Thruster"
 		"Pug Lohmar Steering" 2
