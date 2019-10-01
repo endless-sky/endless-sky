@@ -513,7 +513,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 					{
 						// If the player is landed then check the player's pooled cargo
 						if(player.GetPlanet())
-							available += player.Cargo().Get(it.first)
+							available += player.Cargo().Get(it.first);
 						else
 							available += ship->Cargo().Get(it.first);
 					}
