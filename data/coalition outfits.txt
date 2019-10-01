@@ -241,7 +241,7 @@ outfit "Enforcer Riot Staff"
 	"capture attack" 2.3
 	"capture defense" 3.5
 	"unplunderable" 1
-	description "The peak of Heliarch combat engineering, this weapon uses condensed blasts of energy to dispatch any who dare threaten the coalition safety."
+	description "Made to deal with the occasional dissidents that pop up around coalition space in a non lethal manor, these see minimal use in shipbound combat but are ther in the event a dissident gets aboard"
 
 outfit "Coalition License"
 	category "Special"
