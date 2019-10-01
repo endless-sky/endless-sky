@@ -508,9 +508,18 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 					continue;
 
 				if(checkCargo)
-					if((checkPresent && ship->GetSystem() == player.GetSystem()) || 
-						(checkAbsent && ship->GetSystem() != player.GetSystem()))
+				{
+					if(checkPresent && ship->GetSystem() == player.GetSystem())
+					{
+						// If the player is landed then check the player's pooled cargo
+						if(player.GetPlanet())
+							available += player.Cargo().Get(it.first)
+						else
+							available += ship->Cargo().Get(it.first);
+					}
+					if(checkAbsent && ship->GetSystem() != player.GetSystem())
 						available += ship->Cargo().Get(it.first);
+				}
 				
 				if(checkInstalled)
 					if((checkPresent && ship->GetSystem() == player.GetSystem()) ||
