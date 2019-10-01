@@ -358,7 +358,7 @@ void MissionAction::Save(DataWriter &out) const
 			int count = it.second.first;
 			OutfitLocations locations = it.second.second;
 			out.Write("require", it.first->Name(), count);
-			if(locations.empty == false)
+			if(!locations.empty)
 			{
 				out.BeginChild();
 				out.Write(GetLocations(locations));
@@ -517,8 +517,8 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 				{
 					if(checkPresent && ship->GetSystem() == player.GetSystem())
 					{
-						// If the player is landed then check the player's pooled cargo
-						if(player.GetPlanet())
+						// If the player is landed and not parked then check the player's pooled cargo
+						if(player.GetPlanet() && !ship->IsParked())
 							available += player.Cargo().Get(it.first);
 						else
 							available += ship->Cargo().Get(it.first);
