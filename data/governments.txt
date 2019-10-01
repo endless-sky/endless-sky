@@ -37,6 +37,8 @@ government "Bounty Hunter"
 government "Coalition"
 	swizzle 5
 	color 1 .6 .7
+	"crew attack" .6
+	"crew defense" 3
 	language "Coalition"
 	"player reputation" 1
 	"attitude toward"
@@ -114,6 +116,8 @@ government "Hai (Unfettered)"
 government "Heliarch"
 	swizzle 0
 	color 1 .8 .5
+	"crew attack" 3
+	"crew defense" 4
 	"player reputation" 1
 	"friendly hail" "friendly heliarch"
 	"hostile hail" "hostile heliarch"
