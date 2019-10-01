@@ -500,32 +500,23 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		// If the escorts need to be checked, then iterate through all the player's ships
 		if(checkEscorts)
 		{
-			checkFlag = true;
+			// If checking the cargo of present escorts, and the player is landed, and the
+			// flagship's cargo wasn't checked previously, check the player's pooled cargo.
+			if(!checkFlag && checkCargo && checkPresent && player.GetPlanet())
+				available += player.Cargo().Get(it.first);
+			if(!count && available > 0)
+				return false;
+			
 			for(const auto &ship : player.Ships())
 			{
-				// Ignore destroyed ships.
-				if(ship->IsDestroyed())
+				// Ignore destroyed ships and the player's flagship.
+				if(ship->IsDestroyed() || ship.get() == flagship)
 					continue;
-				// The first ship in list is the flagship, so skip over it.
-				if(checkFlag)
-				{
-					checkFlag = false;
-					continue;
-				}
 
 				if(checkCargo)
-				{
-					if(checkPresent && ship->GetSystem() == player.GetSystem())
-					{
-						// If the player is landed and not parked then check the player's pooled cargo
-						if(player.GetPlanet() && !ship->IsParked())
-							available += player.Cargo().Get(it.first);
-						else
-							available += ship->Cargo().Get(it.first);
-					}
-					if(checkAbsent && ship->GetSystem() != player.GetSystem())
+					if((checkPresent && ship->GetSystem() == player.GetSystem()) ||
+						(checkAbsent && ship->GetSystem() != player.GetSystem()))
 						available += ship->Cargo().Get(it.first);
-				}
 				
 				if(checkInstalled)
 					if((checkPresent && ship->GetSystem() == player.GetSystem()) ||
