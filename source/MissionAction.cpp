@@ -500,12 +500,18 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		// If the escorts need to be checked, then iterate through all the player's ships
 		if(checkEscorts)
 		{
+			checkFlag = true;
 			for(const auto &ship : player.Ships())
 			{
 				// Ignore destroyed ships.
-				// TODO: Also ignore the player's flagship here.
 				if(ship->IsDestroyed())
 					continue;
+				// The first ship in list is the flagship, so skip over it.
+				if(checkFlag)
+				{
+					checkFlag = false;
+					continue;
+				}
 
 				if(checkCargo)
 				{
