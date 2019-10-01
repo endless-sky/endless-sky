@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <memory>
 #include <set>
 #include <string>
+#include <vector>
 #include <utility>
 
 class DataNode;
@@ -44,16 +45,33 @@ public:
 	
 	class CheckLocations {
 	public:
+		CheckLocations()
+		{
+			for(int i = 0; i < 8; i++)
+				checks.push_back(false);
+		}
+		
 		bool empty = true;
 		
-		bool flag = false;
-		bool escorts = false;
-		bool installed = false;
-		bool cargo = false;
-		bool present = false;
-		bool absent = false;
-		bool parked = false;
-		bool unparked = false;
+		bool Flagship() { return checks[0]; }
+		bool Escorts() { return checks[1]; }
+		bool Installed() { return checks[2]; }
+		bool Cargo() { return checks[3]; }
+		bool Present() { return checks[4]; }
+		bool Absent() { return checks[5]; }
+		bool Parked() { return checks[6]; }
+		bool Unparked() { return checks[7]; }
+		
+		void CheckFlagship() { checks[0] = true; }
+		void CheckEscorts() { checks[1] = true; }
+		void CheckInstalled() { checks[2] = true; }
+		void CheckCargo() { checks[3] = true; }
+		void CheckPresent() { checks[4] = true; }
+		void CheckAbsent() { checks[5] = true; }
+		void CheckParked() { checks[6] = true; }
+		void CheckUnparked() { checks[7] = true; }
+	private:
+		std::vector<bool> checks;
 	};
 
 public:

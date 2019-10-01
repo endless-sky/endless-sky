@@ -134,21 +134,21 @@ namespace {
 	{
 		string locs;
 		
-		if(locations.flag == true)
+		if(locations.Flagship())
 			locs.append("flagship ");
-		if(locations.escorts == true)
+		if(locations.Escorts())
 			locs.append("escorts ");
-		if(locations.installed == true)
+		if(locations.Installed())
 			locs.append("installed ");
-		if(locations.cargo == true)
+		if(locations.Cargo())
 			locs.append("cargo ");
-		if(locations.present == true)
+		if(locations.Present())
 			locs.append("present ");
-		if(locations.absent == true)
+		if(locations.Absent())
 			locs.append("absent ");
-		if(locations.parked == true)
+		if(locations.Parked())
 			locs.append("parked ");
-		if(locations.unparked == true)
+		if(locations.Unparked())
 			locs.append("unparked ");
 		
 		// Pop back the extraneous space.
@@ -237,21 +237,21 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 				for(int i = 0; i < it.Size(); ++i)
 				{
 					if(it.Token(i) == "flagship")
-						location.flag = true;
+						location.CheckFlagship();
 					else if(it.Token(i) == "escorts")
-						location.escorts = true;
+						location.CheckEscorts();
 					else if(it.Token(i) == "installed")
-						location.installed = true;
+						location.CheckInstalled();
 					else if(it.Token(i) == "cargo")
-						location.cargo = true;
+						location.CheckCargo();
 					else if(it.Token(i) == "present")
-						location.present = true;
+						location.CheckPresent();
 					else if(it.Token(i) == "absent")
-						location.absent = true;
+						location.CheckAbsent();
 					else if(it.Token(i) == "parked")
-						location.parked = true;
+						location.CheckParked();
 					else if(it.Token(i) == "unparked")
-						location.unparked = true;
+						location.CheckUnparked();
 				}
 			}
 			
@@ -423,14 +423,14 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		int count = it.second.first;
 		CheckLocations locations = it.second.second;
 		
-		bool checkFlag = locations.flag;
-		bool checkEscorts = locations.escorts;
-		bool checkInstalled = locations.installed;
-		bool checkCargo = locations.cargo;
-		bool checkPresent = locations.present;
-		bool checkAbsent = locations.absent;
-		bool checkParked = locations.parked;
-		bool checkUnparked = locations.unparked;
+		bool checkFlag = locations.Flagship();
+		bool checkEscorts = locations.Escorts();
+		bool checkInstalled = locations.Installed();
+		bool checkCargo = locations.Cargo();
+		bool checkPresent = locations.Present();
+		bool checkAbsent = locations.Absent();
+		bool checkParked = locations.Parked();
+		bool checkUnparked = locations.Unparked();
 		
 		if(!locations.empty)
 		{
@@ -503,9 +503,11 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 			// If checking the cargo of present escorts, and the player is landed, and the
 			// flagship's cargo wasn't checked previously, check the player's pooled cargo.
 			if(!checkFlag && checkCargo && checkPresent && player.GetPlanet())
+			{
 				available += player.Cargo().Get(it.first);
-			if(!count && available > 0)
-				return false;
+				if(!count && available > 0)
+					return false;
+			}
 			
 			for(const auto &ship : player.Ships())
 			{
