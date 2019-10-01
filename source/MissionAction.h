@@ -42,7 +42,7 @@ class UI;
 class MissionAction {
 public:
 	
-	class OutfitLocations {
+	class CheckLocations {
 	public:
 		bool empty = true;
 		
@@ -98,7 +98,7 @@ private:
 	
 	std::map<const GameEvent *, std::pair<int, int>> events;
 	std::map<const Outfit *, int> gifts;
-	std::map<const Outfit *, std::pair<int, OutfitLocations>> requiredOutfits;
+	std::map<const Outfit *, std::pair<int, CheckLocations>> requiredOutfits;
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	

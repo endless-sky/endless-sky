@@ -130,7 +130,7 @@ namespace {
 		return available;
 	}
 	
-	string GetLocations(MissionAction::OutfitLocations locations)
+	string GetLocations(MissionAction::CheckLocations locations)
 	{
 		string locs;
 		
@@ -222,7 +222,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			{
 				// outfit <outfit> 0 means the player must have this outfit.
 				child.PrintTrace("Warning: deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
-				OutfitLocations location;
+				CheckLocations location;
 				requiredOutfits[GameData::Outfits().Get(child.Token(1))] = make_pair(1,location);
 			}
 		}
@@ -230,7 +230,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		{
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
 			
-			OutfitLocations location;
+			CheckLocations location;
 			for(const DataNode &it : child)
 			{
 				location.empty = false;
@@ -356,7 +356,7 @@ void MissionAction::Save(DataWriter &out) const
 		for(const auto &it : requiredOutfits)
 		{
 			int count = it.second.first;
-			OutfitLocations locations = it.second.second;
+			CheckLocations locations = it.second.second;
 			out.Write("require", it.first->Name(), count);
 			if(!locations.empty)
 			{
@@ -421,7 +421,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 	{
 		int available = 0;
 		int count = it.second.first;
-		OutfitLocations locations = it.second.second;
+		CheckLocations locations = it.second.second;
 		
 		bool checkFlag = locations.flag;
 		bool checkEscorts = locations.escorts;
