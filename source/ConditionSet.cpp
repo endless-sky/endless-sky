@@ -125,6 +125,8 @@ namespace {
 		return parentheses;
 	}
 	
+	// Perform a preliminary assessment of the input condition, to determine if it is remotely well-formed.
+	// The final assessment of its validity will be whether it parses into an evaluable Expression.
 	bool IsValidCondition(const DataNode &node)
 	{
 		const vector<string> &tokens = node.Tokens();
@@ -145,7 +147,8 @@ namespace {
 		return false;
 	}
 	
-	// Converts the given vector of strings into a vector of 64-bit ints.
+	// Converts the given vector of condition tokens (like "reputation: Republic",
+	// "random", or "4") into the integral values they have at runtime.
 	vector<int64_t> SubstituteValues(const vector<string> &side, const map<string, int64_t> &conditions, const map<string, int64_t> &created)
 	{
 		auto result = vector<int64_t>();
@@ -173,7 +176,7 @@ namespace {
 	
 	bool UsedAll(const vector<bool> &status)
 	{
-		for(const bool v : status)
+		for(auto v : status)
 			if(!v)
 				return false;
 		return true;
