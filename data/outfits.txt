@@ -396,7 +396,7 @@ outfit "Laser Pistol"
 	"capture attack" .3
 	"capture defense" .4
 	"unplunderable" 1
-	description "A high quality sidearm that offers increased protection for less than a rifle, it is often times used to dual wield it and a standard sidearm. The result of this action varies, but generally don't end up well."
+	description "A high quality sidearm that offers increased protection for less than a rifle, it is often times used to dual wield it and a standard sidearm. The result of this action varies, but generally doesn't end up well."
 
 
 outfit "Local Map"
