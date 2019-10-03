@@ -70,7 +70,7 @@ mission "Coalition: First Contact"
 					goto end
 				`	"Perhaps the Quarg will change their minds in the future."`
 			`	The giant beetle considers you gravely. "Hope, we can only," it says.`
-					goto end
+				goto end
 			label hai
 			choice
 				`	"I suppose you may be right about the Quarg."`

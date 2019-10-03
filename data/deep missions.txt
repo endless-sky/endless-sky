@@ -21,7 +21,10 @@ mission "Deep: Syndicate Convoy"
 		"combat rating" > 65
 		not "Deep: Mystery Cubes 4: done"
 		random < 20 + "deep convoy" * 15
-	
+		or
+			not "chosen sides"
+			not "main plot completed"
+		
 	on offer
 		conversation
 			`You are approached by a man in a Deep Security uniform who asks if you would be willing to escort a few freighters to <stopovers> and back by <day>. "We would normally have our own fleet do it," he says, "but we're short on available ships given certain circumstances."`
@@ -84,6 +87,8 @@ mission "Deep: Syndicate Convoy"
 	
 	on stopover
 		dialog `You arrive at the pickup location on the night side of Hephaestus. The Syndicate employees who load the freighters do not allow you to see what is inside the cargo, and advise you to leave quickly once the cargo is loaded.`
+	on visit
+		dialog `You have reached <planet>, but you're missing something! Either you haven't visited <stopovers>, or you left part of the convoy behind.`
 	on complete
 		"deep convoy" ++
 		payment 500000
@@ -105,6 +110,9 @@ mission "Deep: Tarazed Convoy"
 		"combat rating" > 65
 		not "Deep: Mystery Cubes 4: done"
 		random < 20 + "deep convoy" * 15
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		conversation
@@ -171,6 +179,8 @@ mission "Deep: Tarazed Convoy"
 	
 	on stopover
 		dialog `You and the freighters are directed to park in a private hangar owned by the Tarazed Corporation. While watching the cargo crates get loaded on to the freighters, you notice that the crates have labels on them which read "To be opened by addressee only" in large red letters.`
+	on visit
+		dialog `You have reached <planet>, but you're missing something! Either you haven't visited <stopovers>, or you left part of the convoy behind.`
 	on complete
 		"deep convoy" ++
 		payment 650000
@@ -192,6 +202,9 @@ mission "Deep: Kraz Convoy"
 		"combat rating" > 80
 		not "Deep: Mystery Cubes 4: done"
 		random < 20 + "deep convoy" * 15
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		conversation
@@ -249,6 +262,8 @@ mission "Deep: Kraz Convoy"
 	
 	on stopover
 		dialog `When you arrive, Kraz Cybernetics already has the cargo waiting by the spaceport. After a few hours of loading the massive freighters, the spaceport crew gives you the 'all clear' signal, and the Behemoth captains get ready to depart.`
+	on visit
+		dialog `You have reached <planet>, but you're missing something! Either you haven't visited <stopovers>, or you left part of the convoy behind.`
 	on complete
 		"deep convoy" ++
 		payment 800000
@@ -274,11 +289,13 @@ mission "Deep: Mystery Cubes 0"
 	stopover "New Switzerland"
 	stopover "Tundra"
 	stopover "Arabia"
-	cargo "mystery cubes" 1
 	to offer
 		"mystery cube" >= 3
 		"combat rating" > 100
 		random < "deep convoy" * 30
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		conversation
@@ -331,7 +348,7 @@ mission "Deep: Mystery Cubes 0"
 	on stopover
 		dialog `You have placed cubes on the last of the planets that Paris has asked you to. When you look into the bag you find that there are three left. Go to <destination> to give the remaining cubes to Paris.`
 	on complete
-		event "deep: warlord detected" 20 30
+		event "deep: warlord detected" 21
 		payment 500000
 		log `Placed multiple mysterious cubes on planets in the Dirt Belt for the Deep. Deep Security is using these cubes to somehow help in their hunt for a pirate warlord named "Beelzebub."`
 		conversation
@@ -364,6 +381,9 @@ mission "Deep: Mystery Cubes 1"
 	destination "Luna"
 	to offer
 		has "event: deep: warlord detected"
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		dialog `You receive a message from Lieutenant Paris. "Greetings, Captain. The situation involving Beelzebub has gone slightly sour, and the Navy is involved now. I have been asked to gather the merchants who assisted the Deep previously in placing the cubes. If you are interested, please come to <destination>."`
@@ -421,12 +441,15 @@ mission "Deep: Mystery Cubes 2"
 	
 	npc accompany save
 		government "Deep Security"
-		personality heroic opportunistic escort
+		personality heroic escort
 		fleet
 			names "deep"
 			variant
 				"Mule"
 				"Raven" 2
+	npc accompany save
+		government "Republic"
+		personality heroic opportunistic escort
 		fleet
 			names "republic capital"
 			variant
@@ -603,7 +626,7 @@ mission "Deep: Mystery Cubes 4"
 	on enter "Hassaleh"
 		set "deep: passed through north"
 	on complete
-		event "assisted the deep" 3 7
+		event "assisted the deep" 7
 		payment 1000000
 		log `Helped to destroy the last of the Navy Cruisers stolen by Beelzebub, but he has escaped. The Navy is still searching, but is no longer asking for help from merchants.`
 		conversation
@@ -638,10 +661,13 @@ mission "Deep: TMBR 0"
 		has "There Might Be Riots part 3B: done"
 		not "Deep: Remnant 0: offered"
 		not "Deep: Project Hawking: offered"
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		conversation
-			`When you enter the <planet> spaceport, you hear what is undoubtedly a "There Might Be Riots" song playing loudly enough for everyone in the spaceport to hear. A quick glance around reveals the source of the noise to be the external speakers of a nearby Bounder and several people dancing.`
+			`When you enter the <origin> spaceport, you hear what is undoubtedly a "There Might Be Riots" song playing loudly enough for everyone in the spaceport to hear. A quick glance around reveals the source of the noise to be the external speakers of a nearby Bounder and several people dancing.`
 			choice
 				`	(Dance with them.)`
 					goto dance
@@ -733,6 +759,8 @@ mission "Deep: TMBR 1"
 			`	Ulrich gathers up the rest of the band and they pack up their supplies. You chart a course for <destination> as the band load their musical equipment on your ship and get ready for the long ride back to human space.`
 				accept
 	
+	on visit
+		dialog `You arrive on <planet>, but realize that your escort carrying the band and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
 	on complete
 		payment 250000
 		log `Brought "There Might Be Riots" back to human space from their vacation in Hai space to play a concert for a team of scientists in the Deep.`
@@ -747,6 +775,7 @@ mission "Deep: TMBR 1"
 
 mission "Deep: Interrogation"
 	landing
+	invisible
 	source
 		attributes "deep"
 		attributes "spaceport"
@@ -969,6 +998,7 @@ conversation "deep: questioning"
 
 	label question4
 	`	The woman opens the hatch to the ship. "We might meet again in the future. Stay on your best behavior and our next meeting will surely be on good terms. Goodbye, Captain."`
+		decline
 	
 
 
@@ -991,6 +1021,9 @@ mission "Deep: Project Hawking"
 	to offer
 		random < 40
 		has "Deep: Mystery Cubes 4: done"
+		or
+			not "chosen sides"
+			has "main plot completed"
 		
 	on offer
 		conversation
@@ -1027,6 +1060,8 @@ mission "Deep: Project Hawking"
 		system "Naos"
 		ship "Marauder Quicksilver (Engines)" "Gusoyn"
 	
+	on visit
+		dialog `You arrive on <planet>, but realize that your escort carrying the scientists and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
 	on complete
 		payment 1500000
 		log `Helped gather materials for "Project Hawking," an energy and weapons research project being conducted by scientists of the Deep. A pirate Quicksilver attacked the building where the supplies were being placed and crashlanded into the ground, triggering an earthquake.`
@@ -1244,6 +1279,9 @@ mission "Deep: Remnant 0"
 		has "Deep: Mystery Cubes 4: done"
 		has "Terminus exploration: done"
 		has "First Contact: Hai: offered"
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		conversation
@@ -1287,7 +1325,7 @@ mission "Deep: Remnant 0"
 		dialog `You do not have the 10 Quantum Keystones that Ivan asked you to purchase in Hai space. You should return here after obtaining them.`
 	on complete
 		outfit "Quantum Keystone" -10
-		event "deep: keystone research" 31 62
+		event "deep: keystone research" 14
 		payment 60000
 		log `Ran into the scientists who are investigating the anomaly in Terminus. Gave them ten Quantum Keystones from Hai space to examine.`
 		conversation
@@ -1316,6 +1354,9 @@ mission "Deep: Remnant: Keystone Research"
 	destination "Valhalla"
 	to offer
 		has "event: deep: keystone research"
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		dialog
@@ -1377,8 +1418,10 @@ mission "Deep: Remnant 2A"
 				"Starling"
 		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
 	
+	on visit
+		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <stopovers>. Make sure you're using an outfit scanner as well."`
 	on complete
-		event "deep: scan log research" 15 32
+		event "deep: scan log research" 14
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
 		dialog
 			`The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
@@ -1410,8 +1453,10 @@ mission "Deep: Remnant 1B"
 				"Starling"
 		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
 	
+	on visit
+		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <stopovers>. Make sure you're using an outfit scanner as well."`
 	on complete
-		event "deep: scan log research" 15 32
+		event "deep: scan log research" 14
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
 		dialog
 			`The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
@@ -1445,8 +1490,10 @@ mission "Deep: Remnant 1C"
 				"Starling"
 		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
 	
+	on visit
+		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <stopovers>. Make sure you're using an outfit scanner as well."`
 	on complete
-		event "deep: scan log research" 15 32
+		event "deep: scan log research" 14
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
 		dialog
 			`The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
@@ -1780,7 +1827,7 @@ mission "Deep: Scientist Rescue Timer"
 		has "Deep: Remnant Research: done"
 		has "Deep: Project Hawking: done"
 	on offer
-		event "deep: scientist rescue timer" 90
+		event "deep: scientist rescue timer" 60
 		fail
 
 event "deep: scientist rescue timer"
@@ -1798,6 +1845,9 @@ mission "Deep: Scientist Rescue 0"
 	waypoint "Betelgeuse"
 	to offer
 		has "event: deep: scientist rescue timer"
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		conversation
@@ -2127,7 +2177,6 @@ mission "Deep: Scientist Rescue 2"
 
 
 ship "Bactrian" "Bactrian (Cosmic Devil)"
-	"never disabled"
 	outfits
 		"Inhibitor Cannon" 2
 		"Thrasher Turret" 4
@@ -2160,7 +2209,7 @@ mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 		personality staying nemesis
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
 		dialog
-			`After the Bactrian explodes, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
+			`After the Bactrian is eliminated, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
 			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
 			`The transmission cuts out as abruptly as it had started.`
 
@@ -2221,7 +2270,7 @@ mission "Deep: Scientist Rescue 3A"
 		system "Arneb"
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
 		dialog
-			`After the Bactrian explodes, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
+			`After the Bactrian is eliminated, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
 			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
 			`The transmission cuts out as abruptly as it had started.`
 	on decline

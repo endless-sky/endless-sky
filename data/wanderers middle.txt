@@ -61,6 +61,8 @@ mission "Wanderers: Surveying 1"
 			label end
 			`	The Wanderers load a large amount of scientific equipment onto your ship and explain how to use it. They also indicate several planets that their long-range sensors have detected that they would like you to investigate further.`
 				accept
+	on visit
+		dialog phrase "generic stopover on visit"
 
 
 
@@ -121,6 +123,8 @@ mission "Wanderers: Surveying 2"
 			`	You leave the meeting with a long list of tasks to perform for the Wanderers. You hope they appreciate all the assistance you are giving them.`
 				accept
 	
+	on visit
+		dialog phrase "generic stopover on visit"
 	on complete
 		conversation
 			`You present your planetary measurements to Tema'a Iriket, the terraforming director. She is very excited about the data. "So many worlds," she says, "each with their own [personality? idiosyncrasies?]. We will learn more about each one, and discover how we can [partner, collaborate] with them to help them [recover, be reborn]."`
@@ -147,6 +151,8 @@ mission "Wanderers: Nova Remnants"
 			"You fire up your ship's sensors and collect the data that the Wanderers asked for on this system's sun."
 	to offer
 		has "Wanderers: Surveying 1: done"
+	on visit
+		dialog phrase "generic waypoint on visit"
 	on complete
 		log "Factions" "Archons" `Archons are partly biological, partly technological, and partly something that human language has no words for. They are extremely powerful. The Archons are somehow affiliated with the Drak, yet separate from them.`
 		conversation
@@ -184,6 +190,8 @@ mission "Wanderers: Mereti Controller"
 	source "Spera Anatrusk"
 	to offer
 		has "Wanderers: Surveying 1: done"
+	on visit
+		dialog `You have returned to <planet>, but you don't yet have a the component that is controlling the Kor Mereti drones. Depart and attempt to board one of the drones to plunder one.`
 	on complete
 		log `Discovered that the "Kor Mereti" drone ships are controlled by some sort of collective and decentralized artificial intelligence, with no obvious weaknesses.`
 		outfit "Reasoning Node" -1
@@ -210,6 +218,8 @@ mission "Wanderers: Sestor Controller"
 	source "Spera Anatrusk"
 	to offer
 		has "Wanderers: Surveying 1: done"
+	on visit
+		dialog `You have returned to <planet>, but you don't yet have a the component that is controlling the Kor Sestor drones. Depart and attempt to board one of the drones to plunder one.`
 	on complete
 		log `The "Kor Sestor" drones turn out to all be controlled remotely, presumably by either an artificial intelligence or by Korath leaders in hiding on one of their worlds. If the control center could be found, it would be possible to gain control of the entire Kor Sestor fleet.`
 		outfit "Control Transceiver" -1
@@ -362,6 +372,8 @@ mission "Wanderers: Rek To Kor Efret"
 			label end
 			`	Rek has no trouble finding the bunk rooms, and cheerfully settles in while you prepare for the journey to <planet>.`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -433,6 +445,8 @@ mission "Wanderers: Quarg Assistance 2"
 			`	The Quarg blinks slowly, with its strange eyelids moving from side to side rather than top to bottom. Then it says, "Grant you shall we three warships to with you travel back to the settlement of these friends of the loathsome Pug. They will help to keep the death-bringing robots at bay. And oversee will they the Wanderers, and judge if as benevolent as you say are they."`
 			`	It is extremely strange that the first random Quarg you accosted in the hallway happened to be one with the authority to launch a fleet of warships, but it would be impolite to question such a generous, if extremely verbose offer. You thank the Quarg and return to your ship. Hopefully the Wanderers will be glad for the protection and will not object to having a Quarg fleet overhead scrutinizing their actions.`
 				accept
+	on visit
+		dialog `You've reached <planet>, but you left one of the Quarg ships behind. Better depart and wait for it to arrive.`
 	npc accompany save
 		government "Quarg"
 		personality escort
@@ -620,6 +634,8 @@ mission "Wanderers: Mereti Observation"
 				"Model 64"
 				"Model 32" 2
 				"Model 16" 5
+	on visit
+		dialog `You've returned to <planet>, but you don't have enough data for the Wanderers. Return to Mesuket and wait until the device notifies you that it has enough data.`
 
 
 
@@ -673,6 +689,8 @@ mission "Wanderers: Kor Efret 2"
 			`	Rek does her best to explain your suggestion to the Korath. One of them responds, and she translates, "She said that there is a team of Korath engineers on <planet> who have been working for fifty years to find a way to destroy the automata. She says perhaps they can assist us."`
 			`	You agree to travel with Rek to <planet> and see what the engineers can tell you.`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -805,6 +823,8 @@ mission "Wanderers: Kor Efret 4"
 			label end
 			`	Rek tells you that she wants to return to <planet> to continue her work with the Korath community there. You agree to take her there before returning to report to Tele'ek.`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -850,6 +870,8 @@ mission "Wanderers: Kor Mereti Hacking"
 			label end
 			`	You aren't sure what you can say that would be helpful to him, so you return to your ship and prepare to travel to the Mekislepti system to test out the Kor Mereti hacking program.`
 				accept
+	on visit
+		dialog phrase "generic waypoint on visit"
 	on enter "Mekislepti"
 		dialog
 			`When you enter the Mekislepti system, an entire fleet of drones moves to intercept you. Hardly daring to hope, you press the button that activates the Wanderer program. For a fraction of a second, the drones' engines stop firing and they drift as if out of control. Then, with renewed purpose, they move to attack you.`
@@ -930,6 +952,8 @@ mission "Wanderers: Mind 2"
 			label end
 			`	The "artificial Mind" turns out to be a computer not much larger than a typical cargo crate. Pa'aret walks beside it with one wing draped around it like an overprotective parent while Wanderer workers load it onto your ship. Clearly this particular piece of technology is very valuable to the Wanderers.`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Meto Pa'aret and the Mind hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1010,6 +1034,8 @@ mission "Wanderers: Mind 5"
 			label end
 			`	A team of Wanderer engineers boards your ship, and you prepare to deliver them, along with the artificial Mind, to the Kor Mereti space station in the <system> system.`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Wanderer engineers and the Mind hasn't entered the system yet. Better depart and wait for it to arrive.`
 	npc
 		government "Kor Mereti"
 		personality staying heroic
@@ -1028,6 +1054,7 @@ mission "Wanderers: Mind 5"
 
 government " Kor Mereti "
 	swizzle 5
+	language "Korath"
 	"attitude toward"
 		"Wanderer" -.01
 		"Kor Mereti" -.01
@@ -1088,6 +1115,8 @@ mission "Wanderers: Mind 6"
 				"Model 64" 3
 				"Model 32" 5
 				"Model 16" 8
+	on visit
+		dialog `You've landed on <planet>, but there are still hostile Kor Mereti drones in the Chimitarp system. Better depart and make sure they've been taken care of.`
 
 
 
@@ -1191,6 +1220,8 @@ mission "Wanderers: Mind 8"
 			`	The drone says, "We gave it water. But maybe the dirt was [poisoned, unhealthy]. Or the light is too bright. A human cannot fix it, but our [parents? ancestors?] would know how. Will you bring it to them?"`
 			`	They seem too distraught about the dead plant to be willing to give you more information about themselves. Despite the absurdity of the situation, you agree to take the plant back to the Wanderers and see if they can do anything for it.`
 				accept
+	on visit
+		dialog `You've reached <planet>, but your escort who is carrying the dead plant hasn't arrived in the system yet. Better depart and wait for it.`
 
 
 
@@ -1515,6 +1546,8 @@ mission "Wanderers: Sestor Scanning"
 			`	Iriket says, "I can supply Captain <last> with [surveying?] scanners and [ground-penetrating radar?] from the terraforming team. Such a [facility, installation] might well be deep underground."`
 			`	The Wanderers begin loading the scanning equipment onto your ship, and ask you to land on each of the planets in Kor Sestor space to collect measurements. "Bring the [data, results] back to us to be analyzed," says Iriket.`
 				accept
+	on visit
+		dialog phrase "generic stopover on visit"
 	on stopover
 		dialog `That was the last of the Kor Sestor planets that the Wanderers asked you to scan. Time to return to <planet> with the data.`
 
@@ -1699,6 +1732,8 @@ mission "Wanderers: Sestor Search"
 			`You return to the planet expecting the Wanderers to be celebrating their victory, but the leaders have grim news. "The drones we fought were only the [rearguard? remnant?] of the fleet," says Tele'ek. "Dozens of [capital ships?] passed through this system and continued on. With this [heading, destination]." On the holographic projector, he brings up a star map, and points to the system where the Eye is. The wormhole leading back to Wanderer space.`
 			`	Tele'ek says, "Every ship we can spare must [pursue, follow] the Sestor drones through the Eye, and hope that we [locate, track down] the drones before they can cause [harm, destruction] to our people." You should probably join them.`
 				accept
+	on visit
+		dialog `You've returned to <planet>, but you haven't yet found out where the Sestor fleet has gone. Keep searching for it; it's dangerous letting such a powerful hostile fleet roam free.`
 	to fail
 		has "wanderers: found the sestor fleet"
 	on enter "Aya'k'k"
@@ -1840,7 +1875,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 			
 			label thanks
 			`	"No problem, kiddo," the captain says, although he looks awed that you are even attempting to fight such powerful ships. "Remember, northwest of Farpoint. If they're anarchists of any sort, they'll be hiding in one of those pirate systems up there. Take care of yourself out there; those are some dangerous ships that jumped us." With that, he bids you farewell.`
-					decline
+				decline
 					
 			label glad
 			`	"Yeah, those ships would have obliterated us if we hadn't jumped pronto." The pilot looks at you, then asks quizzically, "Say, do you know anything about those ships?"`
@@ -1922,6 +1957,8 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 			`	You tell him about the underground bunker that the Wanderers discovered, and the signs that someone either recently departed from it, or recently infiltrated it from the surface. He says, "We already know that a group of Alphas was active in that region of space. You and I fought them there just recently, and failed to capture them. I bet that after they fled, they somehow gained access to the Kor Sestor bunker and took over control of the drone fleets."`
 			`	It is not particularly surprising when, a few seconds after he says that, an alarm siren begins to sound...`
 				launch
+	on visit
+		dialog `There are still Sestor warships overhead. You should take off again and assist in the fight.`
 	npc evade
 		government "Kor Sestor"
 		personality heroic staying
@@ -2051,6 +2088,8 @@ mission "Wanderers: Sestor: Quarg Help 2"
 		personality heroic staying
 		system "Alnitak"
 		fleet "Large Kor Sestor" 2
+	on visit
+		dialog `You've reached <planet>, but you've either left one of the Quarg warships behind, or your escort carrying the medical supplies from Elias hasn't entered the system yet. Better depart and wait for it.`
 
 
 
@@ -2112,6 +2151,8 @@ mission "Wanderers: Sestor: Bomb Zenith 1"
 		dialog
 			`Danforth wasn't joking when he said that the device may be your only chance. There are almost a dozen Sestor capital ships in the system, and countless smaller craft tearing the Navy to shreds.`
 			`Even the Quarg warships are having trouble with an opposing fleet this size. Perhaps a more powerful fleet could defeat the automata, but it would be a difficult battle.`
+	on visit
+		dialog `You go to push the device out of the airlock, but realize that you left it on one of your escorts. Better depart and wait for it to enter the system.`
 	on complete
 		fail "Wanderers: Sestor: Farpoint Attack 2"
 	to fail
@@ -2125,6 +2166,8 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 	source "Farpoint"
 	to offer
 		has "Wanderers: Sestor: Quarg Help 2: done"
+	on visit
+		dialog `Danforth notices your ship land as the sky lights up with the explosions of Navy ships. "Did you use the bomb?" he asks. The stress in his voice is palpable. You shake your head. "Then what the hell are you doing here? Get up there and drop the bomb already!"`
 	npc
 		government "Quarg"
 		personality heroic staying
@@ -2632,11 +2675,27 @@ mission "Wanderers: Sestor: Remnant Visit"
 
 
 
+mission "Wanderers: Sestor: Drones in Alnilam Waypoint"
+	landing
+	source
+	name "Drones in Alnilam"
+	description "Eliminate the remaining Kor Sestor fleet in the Alnilam system."
+	waypoint "Alnilam"
+	to offer
+		has "Wanderers: Sestor: Scattered Remnant: done"
+		or
+			not "Wanderers: Sestor: Alnilam Fleet 1: done"
+			not "Wanderers: Sestor: Alnilam Fleet 2: done"
+	to complete
+		has "Wanderers: Sestor: Alnilam Fleet 1: done"
+		has "Wanderers: Sestor: Alnilam Fleet 2: done"
+
+
+
 mission "Wanderers: Sestor: Drones in Alnilam"
 	landing
+	invisible
 	source "Farpoint"
-	name "Drones in Alnilam"
-	description "With the help of the Oathkeepers, eliminate the Kor Sestor fleet in the Alnilam system."
 	to offer
 		has "Wanderers: Sestor: Scattered Remnant: done"
 		or
@@ -2655,6 +2714,8 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 				`	"Are any of your ships repaired yet? I could use some assistance."`
 			`	He agrees to send some Oathkeeper ships with you to destroy the remaining drones, but it is clear that it pains him to risk the last few ships he has that are still spaceworthy.`
 				accept
+	on visit
+		dialog `You've returned to <planet>, but not all of the Sestor ships in Alnilam have been defeated yet. Return to the system and make sure they are all destroyed.`
 	npc
 		government "Navy (Oathkeeper)"
 		personality heroic escort
@@ -2762,6 +2823,8 @@ mission "Wanderers: Sestor Alt: Alnilam 2"
 		ship "Cruiser (Mark II)" "R.N.S. Dauntless"
 		ship "Cruiser (Mark II)" "R.N.S. Forthright"
 		ship "Cruiser (Mark II)" "R.N.S. Virtue"
+	on visit
+		dialog `You've reached <planet>, but not all of the Navy Cruisers have entered the system yet. Better depart and wait for them to arrive, because there's no way you're going to assault the Alpha base without them.`
 
 
 
@@ -2785,6 +2848,8 @@ mission "Wanderers: Sestor Alt: Alnilam 3"
 		ship "Cruiser (Mark II)" "R.N.S. Dauntless"
 		ship "Cruiser (Mark II)" "R.N.S. Forthright"
 		ship "Cruiser (Mark II)" "R.N.S. Virtue"
+	on visit
+		dialog `You've reached <planet>, but not all of the Navy Cruisers have entered the system yet. Better depart and wait for them to arrive.`
 
 
 
@@ -2843,6 +2908,8 @@ mission "Wanderers: Sestor: Scan Drones"
 			label data
 			`	Tele'ek introduces you to the team of scientists who will tackle the problem of shutting down the Kor Sestor factories. They explain to you that they are looking for any identifying information on the drones, including the alloy composition of their hulls and prevalence of blast marks or other signs of age. That will allow them to estimate how quickly the drones are being produced.`
 				accept
+	on visit
+		dialog phrase "generic waypoint on visit"
 	npc
 		system "Silikatakfar"
 		government "Kor Sestor"
@@ -2920,6 +2987,8 @@ mission "Wanderers: Sestor: Exiles 2"
 			label end
 			`	Rek makes herself comfortable in one of your bunk rooms, and you prepare for a visit to the territory of the Korath exiles. "We must somehow earn their trust," she says, "so do not fire on any of their ships. Instead we must find a way to communicate with them or a place where they will meet with us peacefully."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 	npc save
 		government "Korath"
 		system "Kor Fel'tar"
@@ -2997,6 +3066,8 @@ mission "Wanderers: Sestor: Exiles 3"
 		ship "Korath World-Ship A (Jump)" "Seskerat Pratka"
 		ship "Korath World-Ship B (Jump)" "Eskretakfakta"
 		ship "Korath World-Ship C (Jump)" "Prekaprat Skata"
+	on visit
+		dialog `You have reached <planet>, but you're missing something! Either you've left one of the Korath ships behind, or your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -3029,6 +3100,8 @@ mission "Wanderers: Sestor: Factory 1"
 		ship "Korath World-Ship A (Jump)" "Seskerat Pratka"
 		ship "Korath World-Ship B (Jump)" "Eskretakfakta"
 		ship "Korath World-Ship C (Jump)" "Prekaprat Skata"
+	on visit
+		dialog `You have reached <planet>, but you're missing something! Either you've left one of the Korath ships behind, or your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -3160,6 +3233,8 @@ mission "Wanderers: Sestor: Factory 3"
 			label end
 			`	With nothing else to do here, you get ready to return to <planet> and report to the Wanderer leaders.`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -3290,6 +3365,8 @@ mission "Wanderers: Sestor: Final"
 				"Model 16" 3
 				"Tek Far 78 - Osk"
 				"Met Par Tek 53 (Sniper)" 2
+	on visit
+		dialog phrase "generic waypoint on visit"
 	on complete
 		log "Discovered that when the Korath exiles shut down the Kor Sestor factory, they also took enough technology from the factory to be able to begin producing war drones of their own. It is possible that the exiles have just become a whole lot more dangerous than they used to be."
 		event "wanderers: exiles have drones" 20

@@ -107,14 +107,29 @@ person "Cap'n Pester"
 
 
 
-person "Marauding Max K"
-	government "Author"
-	frequency 300
+person "Marauding Max"
+	government "Marauder"
+	frequency 400
 	personality
-		surveillance
+		surveillance unconstrained harvests
 	phrase
-		phrase
-			"friendly author"
+		word
+			"Do you think you "
+			"Ever wondered if you "
+			"Think you'll also need some luck if you "
+		word
+			"got what it takes to "
+			"got the gumption to "
+			"could "
+			"are capable of "
+			"have the guramba to "
+			"are good enough to "
+		word
+			"capture "
+			"collect "
+			"gather "
+		word
+			"all 28 Marauder models?"
 	phrase
 		word
 			"Have you "
@@ -144,10 +159,10 @@ person "Marauding Max K"
 			"lately?"
 			"recently?"
 			"in the past couple of days?"
-	# Not sure about implying there is a shop that people can have this done to their ships, but it's fun banter...(there is no shop).
+	# Not sure about implying there is a shop that people can have this done to their ships, but it's fun banter that encourages the player to explore...(there is no shop).
 	phrase
 		word
-			"If you can find me or my crew within the community, we'll help you turning that "
+			"If you can find my crew, we'll help you turn that "
 		word
 			"trash heap "
 			"rust bucket "
@@ -167,6 +182,7 @@ person "Marauding Max K"
 ship "Marauder Fury"
 	plural "Marauder Furies"
 	sprite "ship/mfury"
+	thumbnail "thumbnail/mfury"
 	attributes
 		category "Interceptor"
 		"cost" 750000
@@ -193,20 +209,19 @@ ship "Marauder Fury"
 		"Meteor Missile Launcher" 4
 		"Hai Tracker" 112
 		"Meteor Missile" 140
-		
-		"Pebble Core"
-		"Small Biochemical Cell"
-		"Hai Williwaw Cooling"
-		"Hai Corundum Regenerator"
+
+		"Systems Core (Small)"
+		"Red Sun Reactor"
 		"Intrusion Countermeasures" 3
-		
+		"Nerve Gas"
+
 		`"Biroo" Atomic Thruster`
-		"A255 Atomic Steering"
+		`"Benga" Atomic Steering`
 		"Hyperdrive"
 		
-	engine -21 42
+	engine -21 42 .9
 	engine 0 48
-	engine 21 42
+	engine 21 42 .9
 	gun -12 -33 "Meteor Missile Launcher"
 	gun 12 -33 "Meteor Missile Launcher"
 	gun -20 -25 "Meteor Missile Launcher"
@@ -375,6 +390,7 @@ person "Tranquility"
 
 ship "Lampyrid-Class Transport"
 	sprite "ship/lampyrid"
+	thumbnail "thumbnail/lampyrid"
 	attributes
 		category "Heavy Freighter"
 		cost 2760000

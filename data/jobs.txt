@@ -8,13 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-phrase "generic arrived-without-npc dialog"
-	word
-		`You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system.`
-phrase "generic safe escort completion dialog"
-	word
-		`The captain of the <npc> thanks you for escorting them safely, and pays you <payment>.`
-
 mission "Escort (Tiny, Northern, Dangerous Destination)"
 	name "Escort to <planet>"
 	description "Despite your relative inexperience, the captain of the <npc> is willing to pay you <payment> for an escort into a dangerous region of space to reach <destination> by <date>."
@@ -28,10 +21,10 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 			"combat rating" > 0
 			has "ships: Interceptor"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 		distance 2 4
 	npc
@@ -89,10 +82,10 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 			"combat rating" > 0
 			has "ships: Interceptor"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth" "core"
 		distance 2 4
 	npc
@@ -147,10 +140,10 @@ mission "Escort (Small, Northern, Dangerous Destination)"
 		random < 70
 		"combat rating" > 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 		distance 3 4
 	npc
@@ -195,10 +188,10 @@ mission "Escort (Small, Northern, Dangerous Origin)"
 		random < 40
 		"combat rating" > 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth" "core"
 		distance 3 4
 	npc
@@ -244,10 +237,10 @@ mission "Escort (Medium, Northern, Dangerous Destination)"
 		random < 40
 		"combat rating" > 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 		distance 3 4
 	npc
@@ -298,10 +291,10 @@ mission "Escort (Medium, Northern, Dangerous Origin)"
 		random < 40
 		"combat rating" > 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth" "core"
 		distance 3 4
 	npc
@@ -352,10 +345,10 @@ mission "Escort (Large, Northern, Dangerous Destination)"
 		random < 30
 		"combat rating" > 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 		distance 3 4
 	npc
@@ -397,10 +390,10 @@ mission "Escort (Large, Northern, Dangerous Origin)"
 		random < 30
 		"combat rating" > 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth" "core"
 		distance 3 4
 	npc
@@ -443,10 +436,10 @@ mission "Escort (Extra Large, Northern, Dangerous Destination)"
 		random < 15
 		"combat rating" > 100
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 		distance 3 4
 	npc
@@ -490,10 +483,10 @@ mission "Escort (Extra Large, Northern, Dangerous Origin)"
 		random < 15
 		"combat rating" > 100
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth" "core"
 		distance 3 4
 	npc
@@ -546,10 +539,10 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 			"combat rating" > 0
 			has "ships: Interceptor"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier" "dirt belt"
 		distance 2 4
 	npc
@@ -607,10 +600,10 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 			"combat rating" > 0
 			has "ships: Interceptor"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise" "near earth"
 		distance 2 5
 	npc
@@ -665,10 +658,10 @@ mission "Escort (Small, Core, Dangerous Destination)"
 		random < 70
 		"combat rating" > 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier" "dirt belt"
 		distance 3 4
 	npc
@@ -713,10 +706,10 @@ mission "Escort (Small, Core, Dangerous Origin)"
 		random < 70
 		"combat rating" > 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise" "near earth"
 		distance 3 5
 	npc
@@ -762,10 +755,10 @@ mission "Escort (Medium, Core, Dangerous Destination)"
 		random < 40
 		"combat rating" > 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier" "dirt belt"
 		distance 3 4
 	npc
@@ -810,10 +803,10 @@ mission "Escort (Medium, Core, Dangerous Origin)"
 		random < 40
 		"combat rating" > 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise" "near earth"
 		distance 3 5
 	npc
@@ -866,10 +859,10 @@ mission "Escort (Large, Core, Dangerous Destination)"
 		random < 50
 		"combat rating" > 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier" "dirt belt"
 		distance 3 4
 	npc
@@ -911,10 +904,10 @@ mission "Escort (Large, Core, Dangerous Origin)"
 		random < 50
 		"combat rating" > 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise" "near earth"
 		distance 3 5
 	npc
@@ -957,10 +950,10 @@ mission "Escort (Extra Large, Core, Dangerous Destination)"
 		random < 20
 		"combat rating" > 100
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier" "dirt belt"
 		distance 3 4
 	npc
@@ -1004,10 +997,10 @@ mission "Escort (Extra Large, Core, Dangerous Origin)"
 		random < 20
 		"combat rating" > 100
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise" "near earth"
 		distance 3 5
 	npc
@@ -1061,10 +1054,10 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 			"combat rating" > 0
 			has "ships: Interceptor"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 		distance 2 4
 	npc
@@ -1118,10 +1111,10 @@ mission "Escort (Small, Southern, Dangerous Origin or Destination)"
 		random < 70
 		"combat rating" > 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 		distance 3 4
 	npc
@@ -1159,10 +1152,10 @@ mission "Escort (Medium, Southern, Dangerous Origin or Destination)"
 		random < 40
 		"combat rating" > 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 		distance 3 4
 	npc
@@ -1200,10 +1193,10 @@ mission "Escort (Large, Southern, Dangerous Origin or Destination)"
 		random < 50
 		"combat rating" > 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 		distance 3 4
 	npc
@@ -1239,10 +1232,10 @@ mission "Escort (Extra Large, Southern, Dangerous Origin or Destination)"
 		random < 20
 		"combat rating" > 100
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 		distance 3 4
 	npc
@@ -1270,23 +1263,7 @@ mission "Escort (Extra Large, Southern, Dangerous Origin or Destination)"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
 
-phrase "generic pirate attack payment dialog"
-	word
-		`The government of <planet>`
-	word
-		` `
-		` gratefully `
-	word
-		`pays you <payment> for helping to`
-	word
-		` drive off `
-		` defeat `
-	word
-		`the `
-	word
-		`pirates.`
-		`raiders.`
-		`attackers.`
+
 
 mission "Southern Pirate Attack"
 	name "Defend <planet>"
@@ -1297,8 +1274,9 @@ mission "Southern Pirate Attack"
 		"combat rating" > 100
 		random < 10
 	source
+		not government "Pirate"
 		attributes "frontier"
-		attributes rim south "dirt belt"
+		attributes "rim" "south" "dirt belt"
 	npc evade
 		government "Pirate"
 		personality heroic staying target harvests plunders
@@ -1317,6 +1295,8 @@ mission "Southern Pirate Attack"
 				`	(Join the defense fleet.)`
 			`A few militia pilots have gathered to help repel the pirate attack. You join them, and take off together...`
 				launch
+	on visit
+		dialog phrase "generic pirate fleet battle on visit"
 	on complete
 		payment 150000
 		dialog phrase "generic pirate attack payment dialog"
@@ -1330,8 +1310,9 @@ mission "Northern Pirate Attack"
 		"combat rating" > 100
 		random < 10
 	source
+		not government "Pirate"
 		attributes "frontier"
-		attributes north paradise deep
+		attributes "north" "paradise" "deep"
 	npc evade
 		government "Pirate"
 		personality heroic staying target harvests plunders
@@ -1350,6 +1331,8 @@ mission "Northern Pirate Attack"
 				`	(Join the defense fleet.)`
 			`The local Navy garrison is preparing to repel the pirate attack. You join them, and take off together...`
 				launch
+	on visit
+		dialog phrase "generic pirate fleet battle on visit"
 	on complete
 		payment 250000
 		dialog phrase "generic pirate attack payment dialog"
@@ -1363,6 +1346,7 @@ mission "Core Pirate Attack"
 		"combat rating" > 100
 		random < 10
 	source
+		not government "Pirate"
 		attributes "frontier"
 		attributes "core" "near earth"
 	npc evade
@@ -1383,6 +1367,8 @@ mission "Core Pirate Attack"
 				`	(Join the defense fleet.)`
 			`The local Syndicate defense forces are preparing to repel the pirate attack. You join them, and take off together...`
 				launch
+	on visit
+		dialog phrase "generic pirate fleet battle on visit"
 	on complete
 		payment 200000
 		dialog phrase "generic pirate attack payment dialog"
@@ -1418,6 +1404,8 @@ mission "Raider Attack 1"
 				`	(Join the defense fleet.)`
 			`The local Syndicate defense forces are preparing to repel the alien attack. You join them, and take off together...`
 				launch
+	on visit
+		dialog `You've landed on <planet>, but there are still Korath circling overhead. You should take off and help finish them off.`
 	on complete
 		payment 550000
 		dialog `The government of <planet> pays you <payment> for helping to drive off the raiders.`
@@ -1453,14 +1441,13 @@ mission "Raider Attack 2"
 				`	(Join the defense fleet.)`
 			`The local Syndicate defense forces are preparing to repel the alien attack. You join them, and take off together...`
 				launch
+	on visit
+		dialog `You've landed on <planet>, but there are still Korath circling overhead. You should take off and help finish them off.`
 	on complete
 		payment 750000
 		dialog `The government of <planet> pays you <payment> for helping to drive off the raiders.`
 
 
-phrase "generic cargo delivery payment"
-	word
-		`You drop off your cargo of <commodity> and collect your payment of <payment>.`
 
 mission "Cargo [0]"
 	name "Delivery to <planet>"
@@ -1469,10 +1456,12 @@ mission "Cargo [0]"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 5 2 .1
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 8
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		dialog phrase "generic cargo delivery payment"
@@ -1486,10 +1475,12 @@ mission "Cargo [1]"
 	to offer
 		random < 90
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		dialog phrase "generic cargo delivery payment"
@@ -1504,10 +1495,12 @@ mission "Cargo [2]"
 		random < 80
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		dialog phrase "generic cargo delivery payment"
@@ -1522,10 +1515,12 @@ mission "Cargo [3]"
 		random < 70
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 3 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 2000
@@ -1541,10 +1536,12 @@ mission "Cargo [4]"
 		random < 60
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 4000
@@ -1559,10 +1556,12 @@ mission "Bulk Delivery [0]"
 	to offer
 		random < 70
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 8
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		dialog phrase "generic cargo delivery payment"
@@ -1576,10 +1575,12 @@ mission "Bulk Delivery [1]"
 	to offer
 		random < 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 2000
@@ -1595,10 +1596,12 @@ mission "Bulk Delivery [2]"
 		random < 50
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 4000
@@ -1614,10 +1617,12 @@ mission "Rush Delivery [0]"
 	to offer
 		random < 90
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 4 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 16000
@@ -1633,10 +1638,12 @@ mission "Rush Delivery [1]"
 	to offer
 		random < 80
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 5 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 18000
@@ -1653,10 +1660,12 @@ mission "Rush Delivery [2]"
 		random < 70
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 6 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 20000
@@ -1673,21 +1682,18 @@ mission "Rush Delivery [3]"
 		random < 60
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 7 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 22000
 		dialog phrase "generic cargo delivery payment"
 
 
-
-phrase "generic passenger dropoff payment"
-	word
-		`You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>.`
-		`You say farewell to your <passengers> on <planet>, and collect your payment of <payment>.`
 
 mission "Passengers [0]"
 	name "Passenger transport to <planet>"
@@ -1696,10 +1702,12 @@ mission "Passengers [0]"
 	description "Bring <fare> to <destination>. Payment is <payment>."
 	passengers 1 10 .9
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -1714,10 +1722,12 @@ mission "Passengers [1]"
 	to offer
 		random < 75
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		dialog phrase "generic passenger dropoff payment"
@@ -1731,10 +1741,12 @@ mission "Passengers [2]"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		dialog phrase "generic passenger dropoff payment"
@@ -1748,10 +1760,12 @@ mission "Passengers [3]"
 	to offer
 		random < 25
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		dialog phrase "generic passenger dropoff payment"
@@ -1766,10 +1780,12 @@ mission "Passengers [4]"
 		random < 50
 	source
 		attributes "urban"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -1783,11 +1799,13 @@ mission "Transport miners to <planet>"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "mining"
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -1801,11 +1819,13 @@ mission "Transport farmers to <planet>"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "farming"
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -1819,11 +1839,13 @@ mission "Transport mill workers to <planet>"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "textiles"
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -1837,11 +1859,13 @@ mission "Transport workers to <planet>"
 	to offer
 		random < 80
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "factory"
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -1856,11 +1880,13 @@ mission "Tourists out [0]"
 	to offer
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "tourism"
 		distance 6 35
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 6000
@@ -1875,11 +1901,13 @@ mission "Tourists out [1]"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "tourism"
 		distance 2 25
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 4000
@@ -1897,11 +1925,13 @@ mission "Wealthy tourists out"
 		require "Luxury Accommodations"
 	source
 		attributes "rich" "urban"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "tourism"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 200
 		dialog phrase "generic passenger dropoff payment"
@@ -1915,11 +1945,13 @@ mission "Tourists back [0]"
 	to offer
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "tourism"
 	destination
 		distance 6 35
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 6000
@@ -1934,11 +1966,13 @@ mission "Tourists back [1]"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "tourism"
 	destination
 		distance 2 25
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 4000
@@ -1956,11 +1990,13 @@ mission "Wealthy tourists back"
 		require "Luxury Accommodations"
 	source
 		attributes "tourism"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "rich" "urban"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 200
 		dialog phrase "generic passenger dropoff payment"
@@ -1975,10 +2011,12 @@ mission "Family [0]"
 		random < 60
 		"passenger space" > 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 4000
@@ -1994,10 +2032,12 @@ mission "Family [1]"
 		random < 50
 		"passenger space" > 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 5 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 6000
@@ -2013,10 +2053,12 @@ mission "Family [2]"
 		random < 40
 		"passenger space" > 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 6 24
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 8000
@@ -2032,10 +2074,12 @@ mission "Family [3]"
 		random < 30
 		"passenger space" > 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 8 32
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 10000
@@ -2051,11 +2095,13 @@ mission "Strike Breakers [mining]"
 		random < 10
 		"passenger space" > 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "mining"
 		distance 2 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 10000
@@ -2071,11 +2117,13 @@ mission "Strike Breakers [textile]"
 		random < 10
 		"passenger space" > 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "textiles"
 		distance 2 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 10000
@@ -2091,11 +2139,13 @@ mission "Strike Breakers [factory]"
 		random < 10
 		"passenger space" > 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "factory"
 		distance 2 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 10000
@@ -2112,11 +2162,13 @@ mission "Colonists [0]"
 		"passenger space" > 30
 	source
 		attributes "urban" "near earth" "core" "factory"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
 		distance 2 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 8000
@@ -2133,11 +2185,13 @@ mission "Colonists [1]"
 		"passenger space" > 30
 	source
 		attributes "urban" "near earth" "core" "factory"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 10000
@@ -2150,16 +2204,18 @@ mission "Prisoners [0]"
 	description "Bring <bunks> petty criminals to <destination>, where they will serve their sentences as mine laborers. Payment is <payment>."
 	passengers 2 10 .9
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "mining"
 		attributes "north" "south" "rim" "frontier" "core"
 	to offer
 		random < 15
 	on offer
 		require "Brig"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 165
 		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of several well-armed guards as they prepare to repay their debts to society as forced laborers in <planet>'s mines. You collect your payment of <payment>."
@@ -2175,12 +2231,14 @@ mission "Prisoners [1]"
 	on offer
 		require "Brig"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "factory"
 		attributes "north" "south" "rim" "frontier" "core"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 165
 		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of several well-armed guards as they prepare to repay their debts to society as forced laborers in <planet>'s factories. You collect your payment of <payment>."
@@ -2196,11 +2254,13 @@ mission "Prisoners [2]"
 	on offer
 		require "Brig"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 165
 		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of several well-armed guards as they prepare to repay their debts to society as domestic servants for <planet>'s wealthy elite. You collect your payment of <payment>."
@@ -2216,11 +2276,13 @@ mission "Prisoners [3]"
 	on offer
 		require "Brig"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "moon" "military"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 165
 		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of several well-armed guards as they prepare to repay their debts to society in a penal colony on this remote world. You collect your payment of <payment>."
@@ -2237,11 +2299,13 @@ mission "Prisoners [4]"
 	on offer
 		require "Brig"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "moon" "military"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 25000 175
 		dialog "Your shackled passengers offer bitter curses as burly and well-armed guards practically beat them out of your ship, driving them in the direction of a penal colony on this remote world. You collect your payment of <payment>."
@@ -2259,14 +2323,16 @@ mission "Released Prisoners [0]"
 	description "Transport <bunks> prisoners home after completing their sentences of hard labor. Payment is <payment>."
 	passengers 2 10 .9
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "mining" "factory"
 		attributes "north" "south" "rim" "frontier" "core"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		random < 15
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 3000 150
 		dialog "The released prisoners walk out into the spaceport with nothing but their meager belongings and discharge paperwork. You collect your payment of <payment>."
@@ -2278,13 +2344,15 @@ mission "Released Prisoners [1]"
 	description "Transport <bunks> prisoners home after completing their sentences as domestic servants. Payment is <payment>."
 	passengers 2 10 .9
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		random < 15
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 3000 150
 		dialog "The released prisoners walk out into the spaceport with nothing but their meager belongings and discharge paperwork. You collect your payment of <payment>."
@@ -2296,13 +2364,15 @@ mission "Released Prisoners [2]"
 	description "Transport <bunks> prisoners home after completing their sentences in a penal colony. Payment is <payment>."
 	passengers 2 10 .9
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "moon" "military"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		random < 15
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 3000 150
 		dialog "The released prisoners walk into the spaceport with nothing but discharge paperwork and the clothes on their backs. You collect your payment of <payment>."
@@ -2317,10 +2387,12 @@ mission "Large Bulk Delivery [0]"
 		random < 70
 		"cargo space" > 160
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 8
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 4000
@@ -2336,10 +2408,12 @@ mission "Large Bulk Delivery [1]"
 		random < 60
 		"cargo space" > 160
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 6000
@@ -2356,10 +2430,12 @@ mission "Large Bulk Delivery [2]"
 		"cargo space" > 160
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 8000
@@ -2376,10 +2452,12 @@ mission "Large Rush Delivery [0]"
 		random < 90
 		"cargo space" > 80
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 4 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 36000
@@ -2396,10 +2474,12 @@ mission "Large Rush Delivery [1]"
 		random < 80
 		"cargo space" > 80
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 5 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 38000
@@ -2417,10 +2497,12 @@ mission "Large Rush Delivery [2]"
 		"cargo space" > 80
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 6 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 40000
@@ -2438,10 +2520,12 @@ mission "Large Rush Delivery [3]"
 		"cargo space" > 80
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 7 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 42000
@@ -2460,22 +2544,18 @@ mission "Recycle garbage"
 	destination
 		attributes "factory" "mining" "dirt belt"
 		distance 9 12
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		dialog "You drop off the <commodity> at an especially smelly solid waste recycler and collect your payment of <payment>."
 		payment
 		payment 20000
 
-phrase "generic hunted bounty eliminated dialog"
-	word
-		`The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
 
-phrase "generic bounty hunting payment dialog"
-	word
-		`The government of <planet> gratefully pays you <payment> for eliminating the <npc>.`
 
 mission "Bounty Hunting (Small)"
-	name "Hunt down the <npc>"
-	description "A pirate vessel named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	name "Wanted bandit near <system>"
+	description "A low-end pirate warship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2510,13 +2590,15 @@ mission "Bounty Hunting (Small)"
 			variant
 				"Manta (Proton)"
 		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
 	on complete
 		payment 150000
 		dialog phrase "generic bounty hunting payment dialog"
 
 mission "Bounty Hunting (Medium)"
-	name "Hunt down the <npc>"
-	description "A pirate vessel named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	name "Wanted pirate near <system>"
+	description "A medium pirate warship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2545,13 +2627,15 @@ mission "Bounty Hunting (Medium)"
 			variant
 				"Firebird (Plasma)"
 		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
 	on complete
 		payment 200000
 		dialog phrase "generic bounty hunting payment dialog"
 
 mission "Bounty Hunting (Big)"
-	name "Hunt down the <npc>"
-	description "A pirate vessel named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	name "Wanted warlord near <system>"
+	description "A heavy warship known as the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2584,13 +2668,15 @@ mission "Bounty Hunting (Big)"
 			variant
 				"Vanguard (Particle)"
 		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
 	on complete
 		payment 250000
 		dialog phrase "generic bounty hunting payment dialog"
 
 mission "Bounty Hunting (Small, Boarding, Entering)"
-	name "Board the <npc>"
-	description "A wanted criminal is fleeing in a stolen hot rod ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminal to <destination> to stand trial on <date>. Reward for capture: <payment>."
+	name "Stolen ship near <system>"
+	description "A wanted criminal is fleeing in a stolen ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminal to <destination> to stand trial on <date>. Reward for capture: <payment>."
 	passengers 1
 	deadline 14
 	repeat
@@ -2621,13 +2707,15 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 			variant
 				"Clipper (Speedy)"
 		dialog "You blast your way onto the ship and confine the fleeing criminal to your ship's brig. Time to deliver them to <planet>."
+	on visit
+		dialog phrase "generic bounty hunting boarding on visit"
 	on complete
 		payment 175000
 		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal."
 
 mission "Bounty Hunting (Medium, Boarding, Entering)"
-	name "Board the <npc>"
-	description "A wanted criminal and several accomplices are fleeing in a stolen hot rod ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminals to <destination> to stand trial on <date>. Reward for capture: <payment>."
+	name "Stolen warship near <system>"
+	description "A wanted criminal and several accomplices are fleeing in a stolen warship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminals to <destination> to stand trial on <date>. Reward for capture: <payment>."
 	passengers 4
 	deadline 14
 	repeat
@@ -2660,21 +2748,15 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 			variant
 				"Raven (Heavy)"
 		dialog "You blast your way onto the ship, subdue the fleeing criminals, and confine them to your ship's brig. Time to deliver them to <planet>."
+	on visit
+		dialog phrase "generic bounty hunting boarding on visit"
 	on complete
 		payment 350000
 		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal gang."
 
-phrase "generic hunted bounty fleet eliminated dialog"
-	word
-		`The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>.`
-
-phrase "generic fleet bounty hunting payment dialog"
-	word
-		`The government of <planet> gratefully pays you <payment> for eliminating the <npc> and their fleet.`
-
 mission "Bounty Hunting (Marauder I)"
-	name "Hunt down the <npc>"
-	description "A Marauder vessel named the <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	name "Small Marauders near <system>"
+	description "A fleet of small Marauder ships, lead by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2685,7 +2767,7 @@ mission "Bounty Hunting (Marauder I)"
 				"combat rating" < 1200
 				random < 35
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -2694,13 +2776,15 @@ mission "Bounty Hunting (Marauder I)"
 			distance 1 3
 		fleet "Marauder fleet I"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 300000
 		dialog phrase "generic fleet bounty hunting payment dialog"
 
 mission "Bounty Hunting (Marauder II)"
-	name "Hunt down the <npc>"
-	description "A Marauder vessel named the <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	name "Small Marauders near <system>"
+	description "A fleet of small Marauder ships, lead by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2711,7 +2795,7 @@ mission "Bounty Hunting (Marauder II)"
 				"combat rating" < 1800
 				random < 30
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -2720,13 +2804,15 @@ mission "Bounty Hunting (Marauder II)"
 			distance 1 3
 		fleet "Marauder fleet II"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 350000
 		dialog phrase "generic fleet bounty hunting payment dialog"
 
 mission "Bounty Hunting (Marauder III)"
-	name "Hunt down the <npc>"
-	description "A Marauder vessel named the <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	name "Small Marauders near <system>"
+	description "A fleet of small Marauder ships, lead by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2737,7 +2823,7 @@ mission "Bounty Hunting (Marauder III)"
 				"combat rating" < 2200
 				random < 25
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -2746,13 +2832,15 @@ mission "Bounty Hunting (Marauder III)"
 			distance 1 3
 		fleet "Marauder fleet III"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 400000
 		dialog phrase "generic fleet bounty hunting payment dialog"
 
 mission "Bounty Hunting (Marauder IV)"
-	name "Hunt down the <npc>"
-	description "A Marauder vessel named the <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	name "Marauders near <system>"
+	description "A fleet of Marauder ships, lead by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2763,7 +2851,7 @@ mission "Bounty Hunting (Marauder IV)"
 				"combat rating" < 2700
 				random < 30
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -2772,13 +2860,15 @@ mission "Bounty Hunting (Marauder IV)"
 			distance 1 3
 		fleet "Marauder fleet IV"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 425000
 		dialog phrase "generic fleet bounty hunting payment dialog"
 
 mission "Bounty Hunting (Marauder V)"
-	name "Hunt down the <npc>"
-	description "A Marauder vessel named the <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	name "Marauders near <system>"
+	description "A fleet of Marauder ships, lead by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2789,7 +2879,7 @@ mission "Bounty Hunting (Marauder V)"
 				"combat rating" < 3500
 				random < 25
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -2798,14 +2888,16 @@ mission "Bounty Hunting (Marauder V)"
 			distance 1 3
 		fleet "Marauder fleet V"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 450000
 		dialog phrase "generic fleet bounty hunting payment dialog"
 
 
 mission "Bounty Hunting (Marauder VI)"
-	name "Hunt down the <npc>"
-	description "A Marauder vessel named the <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	name "Marauders near <system>"
+	description "A fleet of Marauder ships, lead by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -2816,7 +2908,7 @@ mission "Bounty Hunting (Marauder VI)"
 				"combat rating" < 5000
 				random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -2825,20 +2917,22 @@ mission "Bounty Hunting (Marauder VI)"
 			distance 1 3
 		fleet "Marauder fleet VI"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 475000
 		dialog phrase "generic fleet bounty hunting payment dialog"
 
 mission "Bounty Hunting (Marauder VII)"
-	name "Hunt down the <npc>"
-	description "A Marauder vessel named the <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	name "Large Marauders near <system>"
+	description "A fleet of large Marauder ships, lead by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
 		"combat rating" > 2980
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -2847,20 +2941,22 @@ mission "Bounty Hunting (Marauder VII)"
 			distance 1 3
 		fleet "Marauder fleet VII"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 500000
 		dialog phrase "generic fleet bounty hunting payment dialog"
 
 mission "Bounty Hunting (Marauder VIII)"
-	name "Hunt down the <npc>"
-	description "A Marauder vessel named the <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	name "Large Marauders near <system>"
+	description "A fleet of large Marauder ships, lead by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
 		"combat rating" > 4000
 		random < 15
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -2869,20 +2965,22 @@ mission "Bounty Hunting (Marauder VIII)"
 			distance 1 3
 		fleet "Marauder fleet VIII"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 550000
 		dialog phrase "generic fleet bounty hunting payment dialog"
 
 mission "Bounty Hunting (Marauder IX)"
-	name "Hunt down the <npc>"
-	description "A Marauder vessel named the <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	name "Large Marauders near <system>"
+	description "A fleet of large Marauder ships, lead by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
 		"combat rating" > 6000
 		random < 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -2891,6 +2989,8 @@ mission "Bounty Hunting (Marauder IX)"
 			distance 1 3
 		fleet "Marauder fleet IX"
 		dialog phrase "generic hunted bounty fleet eliminated dialog"
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
 		payment 600000
 		dialog phrase "generic fleet bounty hunting payment dialog"

@@ -172,6 +172,8 @@ effect "point defense die"
 outfit "EMP Torpedo"
 	plural "EMP Torpedoes"
 	category "Ammunition"
+	licenses
+		Remnant
 	cost 4400
 	thumbnail "outfit/emp torpedo"
 	"mass" 1
@@ -332,8 +334,6 @@ outfit "Emergency Ramscoop"
 
 outfit "Quantum Key Stone"
 	category "Systems"
-	licenses
-		Remnant
 	cost 240000
 	thumbnail "outfit/keystone"
 	"mass" 1

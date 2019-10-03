@@ -17,6 +17,7 @@ mission "Southbound Shipment [0]"
 	to offer
 		random < 10
 	source
+		not government "Pirate"
 		near "Zubeneschamali" 2 10
 		attributes "rim" "south"
 	destination "Zug"
@@ -24,6 +25,8 @@ mission "Southbound Shipment [0]"
 		government "Pirate"
 		personality heroic harvests plunders
 		fleet "Small Southern Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 0 160
 		dialog phrase "generic cargo delivery payment"
@@ -37,6 +40,7 @@ mission "Southbound Shipment [1]"
 	to offer
 		random < 10
 	source
+		not government "Pirate"
 		near "Zubeneschamali" 2 10
 		attributes "rim" "south"
 	destination "Zug"
@@ -44,6 +48,8 @@ mission "Southbound Shipment [1]"
 		government "Pirate"
 		personality heroic harvests plunders
 		fleet "Small Southern Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 0 160
 		dialog phrase "generic cargo delivery payment"
@@ -58,6 +64,7 @@ mission "Kraz Shipment"
 	to offer
 		random < 10
 	source
+		not government "Pirate"
 		near "Kraz" 2 10
 		attributes "rim" "south"
 	destination "Rust"
@@ -65,6 +72,8 @@ mission "Kraz Shipment"
 		government "Pirate"
 		personality heroic harvests plunders
 		fleet "Small Southern Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 0 160
 		dialog phrase "generic cargo delivery payment"

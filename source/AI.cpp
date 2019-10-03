@@ -702,29 +702,52 @@ void AI::Step(const PlayerInfo &player)
 			// A fighter must belong to the same government as its parent to dock with it.
 			bool hasParent = parent && parent->GetGovernment() == gov;
 			bool hasSpace = hasParent && parent->BaysFree(isFighter);
-			if(!hasParent || (!hasSpace && !Random::Int(600)) || parent->IsDestroyed()
+			if(!hasParent || (!hasSpace && !Random::Int(1200)) || parent->IsDestroyed()
 					|| parent->GetSystem() != it->GetSystem())
 			{
 				// Find a parent for orphaned fighters and drones.
 				parent.reset();
 				it->SetParent(parent);
-				vector<shared_ptr<Ship>> parentChoices;
+				
+				auto parentChoices = vector<shared_ptr<Ship>>{};
 				parentChoices.reserve(ships.size() * .1);
-				for(const auto &other : ships)
-					if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
-					{
-						if(!other->IsDisabled() && other->CanCarry(*it.get()))
+				auto reparentWith = [&it, &gov, &parent, &parentChoices](const list<shared_ptr<Ship>> otherShips) -> bool
+				{
+					for(const auto &other : otherShips)
+						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
 						{
-							parent = other;
-							it->SetParent(other);
-							break;
+							if(!other->IsDisabled() && other->CanCarry(*it.get()))
+							{
+								parent = other;
+								it->SetParent(other);
+								return true;
+							}
+							else
+								parentChoices.emplace_back(other);
 						}
-						else
-							parentChoices.emplace_back(other);
-					}
+					return false;
+				};
+				// Mission ships should only pick ships from the same mission.
+				auto missionIt = it->IsSpecial() && !it->IsYours()
+					? find_if(player.Missions().begin(), player.Missions().end(),
+						[&it](const Mission &m) -> bool
+						{
+							return m.HasShip(it);
+						})
+					: player.Missions().end();
+				if(missionIt != player.Missions().end())
+				{
+					auto &npcs = missionIt->NPCs();
+					for(const auto &npc : npcs)
+						if(reparentWith(npc.Ships()))
+							break;
+				}
+				else
+					reparentWith(ships);
 				
 				if(!parent && !parentChoices.empty())
 				{
+					// No suitable candidate can carry this ship, but this ship can still act as an escort.
 					parent = parentChoices[Random::Int(parentChoices.size())];
 					it->SetParent(parent);
 				}
@@ -1172,7 +1195,7 @@ vector<shared_ptr<Ship>> AI::GetShipsList(const Ship &ship, bool targetEnemies, 
 	const auto &rosters = targetEnemies ? enemyLists : allyLists;
 	
 	const auto it = rosters.find(ship.GetGovernment());
-	if (it != rosters.end() && !it->second.empty())
+	if(it != rosters.end() && !it->second.empty())
 	{
 		targets.reserve(it->second.size());
 		
@@ -1437,11 +1460,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	const Planet *parentPlanet = (parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr);
 	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
 	bool systemHasFuel = hasFuelCapacity && ship.GetSystem()->HasFuelFor(ship);
-	// If an escort is out of fuel, they should refuel without waiting for the
-	// "parent" to land (because the parent may not be planning on landing).
-	if(systemHasFuel && !ship.JumpsRemaining())
-		Refuel(ship, command);
-	else if(!parentIsHere && !isStaying)
+	// Non-staying escorts should route to their parent ship's system if not already in it.
+	if(!parentIsHere && !isStaying)
 	{
 		if(ship.GetTargetStellar())
 		{
@@ -1482,16 +1502,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			// This ship has no route to the parent's system, so park at the system's center.
 			MoveTo(ship, command, Point(), Point(), 40., 0.1);
 	}
-	else if(parent.Commands().Has(Command::LAND) && parentIsHere && planetIsHere && parentPlanet->CanLand(ship))
-	{
-		ship.SetTargetSystem(nullptr);
-		ship.SetTargetStellar(parent.GetTargetStellar());
-		MoveToPlanet(ship, command);
-		if(parent.IsLanding() || parent.CanLand())
-			command |= Command::LAND;
-	}
-	else if(parent.Commands().Has(Command::BOARD) && parent.GetTargetShip().get() == &ship)
-		Stop(ship, command, .2);
+	// If the parent is in-system and planning to jump, non-staying escorts should follow suit.
 	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
 	{
 		DistanceMap distance(ship, parent.GetTargetSystem());
@@ -1503,6 +1514,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		else if(ShouldRefuel(ship, dest))
 			Refuel(ship, command);
 		else if(!ship.JumpsRemaining())
+			// Return to the system center to maximize solar collection rate.
 			MoveTo(ship, command, Point(), Point(), 40., 0.1);
 		else
 		{
@@ -1512,6 +1524,20 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 				command |= Command::WAIT;
 		}
 	}
+	// If an escort is out of fuel, they should refuel without waiting for the
+	// "parent" to land (because the parent may not be planning on landing).
+	else if(systemHasFuel && !ship.JumpsRemaining())
+		Refuel(ship, command);
+	else if(parent.Commands().Has(Command::LAND) && parentIsHere && planetIsHere && parentPlanet->CanLand(ship))
+	{
+		ship.SetTargetSystem(nullptr);
+		ship.SetTargetStellar(parent.GetTargetStellar());
+		MoveToPlanet(ship, command);
+		if(parent.IsLanding() || parent.CanLand())
+			command |= Command::LAND;
+	}
+	else if(parent.Commands().Has(Command::BOARD) && parent.GetTargetShip().get() == &ship)
+		Stop(ship, command, .2);
 	else
 		KeepStation(ship, command, parent);
 }

@@ -87,6 +87,8 @@ mission "FW Reconciliation 1"
 			`	You tell her that the last you heard, Ijs was helping to found a new university on <planet>. She says, "We should bring him with us. Raven, will you be traveling with us too?"`
 			`	"Yes," she says. "I'll tell my ship and crew to get ready."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Katya and Sawyer hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -353,6 +355,8 @@ mission "FW Reconciliation 2B"
 			`	"Indeed," says Danforth. "Southeast of here is a region of uninhabited star systems, a sort of back entrance into Syndicate space. Few ships travel through there, because there is nowhere to refuel, but with a ramscoop or enough fuel capacity, travel is possible. One of the first inhabited worlds on the other side is the lawless world of Stormhold. There, you can surely find a contact who knows enough about the inner workings of the Syndicate to tell you the home of at least a few of our targets... for a price." He hands Katya a large stack of credit chips.`
 			`	Raven says, "I'm going to stay here with the Oathkeepers. Captain <last>, it's been a pleasure working with you. We're counting on you to fetch us this information and return here as quickly as possible."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Katya and Mr. Eyes hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -377,6 +381,8 @@ mission "FW Reconciliation 2C"
 			`	Katya shows him Sawyer's list of names. "So, these are the bad boys, huh?" he says. Clearly the news of Sawyer's revelations has spread even to this remote world. He looks through the list, and is able to tell you where three of the five men live. "I'd love to see all these bastards taken down," he says.`
 			`	You give him the rest of Danforth's money and thank him for helping you - and ask that he keep your visit secret. "No problem," he says. As you are leaving, he adds, "Also, Mister Springborn... you're my hero, man. Glad you're still finding ways to pester the Syndicate." Ijs seems pleasantly surprised to be recognized.`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Katya and Mr. Eyes hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -450,6 +456,8 @@ mission "FW Defend Farpoint"
 				"Manta" 2
 				"Quicksilver" 5
 	
+	on visit
+		dialog `You've landed on <planet>, but there are still Pirate ships circling overhead. You should take off and help finish them off.`
 	on complete
 		payment 1000000
 
@@ -482,6 +490,8 @@ mission "FW Embassy 1"
 			label next
 			`	"Don't mention it," he says, with a wink. "And now, I think it's best that you head to Earth and pick up those ambassadors. From what I hear, now that Raven is not traveling with you, people are beginning to ask questions about what this Free Worlds captain is doing flying all around Republic space unescorted."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Katya and Mr. Eyes hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -557,6 +567,8 @@ mission "FW Reconciliation Break"
 			`	You tell him you would be glad to, and you all get ready for yet another journey together.`
 				accept
 	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Katya and Mr. Eyes hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		conversation
 			`You drop Ijs and Katya off on Skymoot, and wish them well. They both seem eager for a chance to relax, enjoy one another's company, and forget about matters of galactic importance for a while. "We'll see you soon, <first>," says Katya. "Just be sure your ship is in good fighting shape when the time comes to bring the Syndicate to justice."`
@@ -669,6 +681,8 @@ mission "FW Syndicate Capture 1"
 			`You land on Earth and make a show of being very busy ensuring that the Free Worlds ambassadors are comfortable and well cared for, until finally you receive a secure message from Edrick. He tells you that the convoy from the Deep is landing on Mars right now, and an Oathkeeper cruiser is visiting the shipyard on Luna. As soon as you are ready, you can take off, and travel together into the heart of Syndicate space.`
 			`	You make an excuse to depart, and return to your ship. "Well," says Ijs, "this is it. If we're lucky, they won't see us coming, but no matter what, getting back out of Syndicate space will be a nightmare. Good luck, all."`
 				accept
+	on visit
+		dialog `You have reached <planet>, but you left one of your escorts! Better depart and wait for them to arrive in this star system.`
 	
 	npc accompany save
 		personality escort heroic
@@ -723,6 +737,8 @@ mission "FW Syndicate Capture 1B"
 			`	The officers soon radio you that they have found Soylent, and they bring him aboard your ship. Amid all the confusion, you notice a figure in diving gear who jumps off the rear of the yacht and disappears beneath the waves - one of Soylent's men, trying to escape. But since his leader is now in your custody, and your mission is accomplished, you see no reason to chase after him.`
 			`	The Oathkeeper captain sends you a brief message: "Your first priority is to reach the Deep with the prisoner. Our crew is prepared to serve as a rearguard, staying behind if necessary to ensure that you survive. Good luck, Captain."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Katya and Mr. Eyes hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		event "fw end syndicate capture"
 	
@@ -897,6 +913,8 @@ mission "FW Syndicate Capture 1C"
 			label katya
 			`	Katya says, "It sounds like if the Free Worlds enters Sol, we'll be the spark that sets off an explosion. So, we'll have to trust the Deep, or the Navy, or someone else to try to defuse the situation. Meanwhile, I suggest we return to Free space and muster our entire fleet, to assist the Navy against the Syndicate if it comes to that. JJ ought to be on <planet>; we can meet up with him there."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Katya and Mr. Eyes hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -926,6 +944,8 @@ mission "FW Pug 1"
 				`	"What should we do?"`
 			`	"Our fleet is still scattered throughout this quadrant," he says, "and I'll need Katya to command a part of it. Right now I just need you to travel to Rand, if possible, and find out what's going on. It could just be a communications malfunction, but I seriously doubt it. Meanwhile, Katya and Ijs can help me with organizing the fleet."`
 				accept
+	on visit
+		dialog phrase "generic waypoint on visit"
 	
 	on enter "Cebalrai"
 		dialog
@@ -1023,6 +1043,8 @@ mission "FW Pug 2"
 			
 			`	"We don't," says JJ, "but this all certainly plays out very well for them; their section of the galaxy has suddenly become a very defensible enclave. And the timing of that fleet leaving, and then the link closing - it's too much to be a coincidence. But we can't learn anything for sure by staying here talking; you must go to Earth."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 	
 	npc
 		system "Sol"
@@ -1080,6 +1102,8 @@ mission "FW Pug 2A"
 			government "Syndicate"
 		"reputation: Syndicate" = 1
 		event "fw syndicate welcoming"
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 	
 	npc
 		system "Sol"
@@ -1176,6 +1200,8 @@ mission "FW Pug 2B"
 			`	"Hold on," says Alondo, "I have one condition to add. You will give us one of your jump drives immediately. We will install it in our ship and verify that you are telling the truth about the Pug. If you are, we will work together until this threat is dealt with... and once it is dealt with, we will return our attention to bringing every member of the Syndicate who had a hand in those terrorist attacks to justice. That is our best and final offer." You nod in agreement.`
 			`	It's clear that Alastair is none too happy about that deal, but he accepts it. "The jump drives are all being kept on Hephaestus," he says. "Our Systems division was trying to discover the secret behind them, with little success. If you travel there, I'll tell them to install one of the drives in your ship."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1201,6 +1227,8 @@ mission "FW Pug 2C: Hyperdrive"
 	on accept
 		outfit "Jump Drive" 1
 		set "fw given jump drive"
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1226,6 +1254,8 @@ mission "FW Pug 2C: Scram Drive"
 	on accept
 		outfit "Jump Drive" 1
 		set "fw given jump drive"
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1252,6 +1282,8 @@ mission "FW Pug 2C: Jump Drive"
 	on accept
 		outfit "Jump Drive" 1
 		set "fw given jump drive"
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1385,6 +1417,8 @@ mission "FW Pug 3"
 			`	"We mean bringing an end to your war and your divisions," the alien says. "Those of your worlds and your people who have shown themselves unable to live peacefully, we must govern, to teach them peace. Any who attack us, we must destroy, because we are the bringers of peace, and whoever attacks us is not on the side of peace. And so we will send you back to your people now, to tell them that they have nothing to fear, and that they should await our peace and our protection."`
 			`	The aliens appear to think the conversation is over; they walk away and leave you puzzling over what they said. "We should report back to Earth," says Alondo. "This situation is far beyond what we can handle alone."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1511,6 +1545,8 @@ mission "FW Pug 3A"
 			`	They have many other questions after that; you answer them as best you can, and leave them with full copies of your sensor logs of the alien ships and planets. Parliament agrees that the next step is for you to convince the Free Worlds to contribute two Dreadnoughts to the attack fleet. "Also," one of the members of Parliament says, "maybe you could talk to those aliens who live down in your part of space, see if they can help us out in any way. It sure would be handy if the Pug turn out to be an enemy of theirs."`
 			`	During the hearing, you refrained from mentioning that the Pug claimed to have assisted the Deep in the past, but once you are back in your ship Alondo says, "Maybe we should also visit Valhalla and see if Governor Flint has any information for us."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1691,6 +1727,8 @@ mission "FW Pug 4"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
 	
+	on visit
+		dialog `You've landed on <planet>, but there are still Pug ships circling overhead. You should take off and help finish them off.`
 	on complete
 		event "battle for delta capricorni"
 
@@ -1723,6 +1761,8 @@ mission "FW Pug 4A"
 			`	Freya directs you to fly over the planet and survey the buildings and equipment that the Pug left behind, and after searching for a while you discover an alien building that vaguely resembles a radio transmitter. You land nearby, and as you approach the building on foot, you feel as if the ground beneath you is heaving and rolling like the deck of a ship on choppy seas. "Graviton distortions," she says. "This may be it, the equipment they used to disrupt the hyperspace links. It will take me a while to figure out how it works, though."`
 			`	You agree that she will stay here to try to figure out the alien technology, while you do your best to defend the planet and to keep the Pug from retaking it.`
 				accept
+	on visit
+		dialog `You've landed on <planet>, but there are still Pug ships circling overhead. You should take off and help finish them off.`
 	
 	npc
 		system Deneb
@@ -1794,6 +1834,8 @@ mission "FW Pug 4B"
 			label load
 			`	You load the reflector onto your ship, and get ready to travel to Hephaestus. You suspect that the Pug are going to try to stop you, once they realize what is happening...`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the graviton reflector hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1895,6 +1937,8 @@ mission "FW Pug 5"
 			label next
 			`	Freya leads you to a warehouse in the spaceport where another one of the "graviton reflectors" is stored. "This should work the same as the one you brought to Hephaestus," she says. "If there's a transmitter on Shiver, we can bring the reflector to Sol and open a link back to the very heart of human space. And at that point, we may even have the Pug outgunned. But first, we need to drive them away from that star system for long enough for me to work the transmitter."`
 				accept
+	on visit
+		dialog `You've landed on <planet>, but there are still Pug ships circling overhead. You should take off and help finish them off.`
 	
 	npc evade
 		personality staying disables
@@ -1957,6 +2001,8 @@ mission "FW Pug 5A"
 				`	"I'm worried that you won't survive if I leave this system undefended."`
 			`	"Don't worry about us here," she says. "We have a fair number of ships here on the ground, if it comes to that. But the most important thing is that you rendezvous with the Navy reinforcements in the <system> system, and if you can draw the Pug fleet to pursue you, all the better. Good luck, <first>."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the graviton reflector hasn't entered the system yet. Better depart and wait for it to arrive.`
 	
 	npc
 		government Republic
@@ -1999,6 +2045,8 @@ mission "FW Pug 5B"
 			`You help some Navy engineers on Earth to set up the graviton reflector according to Freya's instructions. As before, soon after the reflector is operational the ground seems to tilt and roll as Freya's beam hones in on the reflector and sets up a harmonic oscillation between the two. "The link is reopening!" says one of the engineers. "We're beginning to receive hyperspace communications from Altair again, and from the Syndicate too."`
 			`	A second later your own communicator beeps. It's Freya. "Get back here quickly," she says. "Bring whatever reinforcements you can. A massive Pug fleet just appeared in orbit."`
 				accept
+	on visit
+		dialog `You've landed on <planet>, but there are still Pug ships circling overhead. You should take off and help finish them off.`
 	
 	npc
 		government Republic
@@ -2114,6 +2162,8 @@ mission "FW Pug 6"
 			variant
 				"Protector" 2
 	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Freya hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		log `The Pug have fled, apparently traveling through an artificial wormhole back to whatever galaxy they came from. And, it turns out that many of their cities on "Pugglemug" were only for show: buildings with no inhabitants, and with holograms creating the appearance of a heavily populated world. They left no advanced technology behind, and no sign of what their true intentions were, but it turns out that the fake cities here were designed for human habitation. They must have been planning this departure for a very long time.`
 		log `Now that the Pug are gone, the Navy will be able to use the "graviton reflectors" to repair the broken hyperspace links and to reconnect all of human space.`
@@ -2294,6 +2344,8 @@ mission "FW Syndicate Extremists 1B"
 			`You land in the same private hangar that you visited previously to have the jump drive installed, and you think these engineers are the same crew that met you back then. "This thing is almost as bizarre as the jump drive itself," one of them says. "We have no clue how it works, and we weren't done studying it when Korban ordered us to give it to you, so please don't get yourself blown up. Okay?"`
 			`	Meanwhile, Danforth is on his way back to Deneb to rally the Oathkeepers. You should head directly for the <system> system, so that you arrive there far enough in advance of the Oathkeeper fleet.`
 				accept
+	on visit
+		dialog `You've landed on <planet>, but there are still Syndicate ships circling overhead. You should take off and help finish them off.`
 	
 	npc evade
 		government "Syndicate (Extremist)"
@@ -2389,6 +2441,8 @@ mission "FW Syndicate Extremists 1C"
 			`	You return to your ship, and prepare for the journey back to Earth, hopeful that at last Parliament will be willing to negotiate a permanent peace with the Free Worlds.`
 				accept
 	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Freya hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		log "Received an official commendation from Parliament and a promise that the war with the Free Worlds is officially over. Humanity is at peace once more, but new challenges may await in the star systems out beyond human space that are accessible only by jump drive."
 		payment 5000000
