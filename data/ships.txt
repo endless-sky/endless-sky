@@ -2965,7 +2965,7 @@ ship "Star Queen"
 		"required crew" 41
 		"bunks" 112
 		"mass" 230
-		"drag" 5.5
+		"drag" 4.5
 		"heat dissipation" .65
 		"fuel capacity" 700
 		"cargo space" 60
