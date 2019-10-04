@@ -403,7 +403,7 @@ void AI::Clean()
 	actions.clear();
 	notoriety.clear();
 	governmentActions.clear();
-	canScan.clear();
+	scanPermissions.clear();
 	playerActions.clear();
 	swarmCount.clear();
 	fenceCount.clear();
@@ -652,7 +652,7 @@ void AI::Step(const PlayerInfo &player)
 		// Surveillance NPCs with enforcement authority (or those from
 		// missions) should perform scans and surveys of the system.
 		if(isPresent && personality.IsSurveillance() && !isStranded
-				&& (canScan[gov] || it->IsSpecial()))
+				&& (scanPermissions[gov] || it->IsSpecial()))
 		{
 			DoSurveillance(*it, command, target);
 			it->SetCommands(command);
@@ -1126,7 +1126,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	
 	// With no hostile targets, NPCs with enforcement authority (and any
 	// mission NPCs) should consider friendly targets for surveillance.
-	if(!isYours && !target && (ship.IsSpecial() || canScan.at(gov)))
+	if(!isYours && !target && (ship.IsSpecial() || scanPermissions.at(gov)))
 	{
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
 		bool outfitScan = ship.Attributes().Get("outfit scan power");
@@ -1336,7 +1336,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		else
 		{
 			CircleAround(ship, command, *target);
-			if(!ship.IsYours() && (ship.IsSpecial() || canScan.at(gov)))
+			if(!ship.IsYours() && (ship.IsSpecial() || scanPermissions.at(gov)))
 				command |= Command::SCAN;
 		}
 		return;
@@ -3569,8 +3569,8 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 					}
 			}
 		// Check if this government has the authority to enforce scans & fines in this system.
-		if(!canScan.count(gov.first))
-			canScan.emplace(gov.first, gov.first->CanEnforce(playerSystem));
+		if(!scanPermissions.count(gov.first))
+			scanPermissions.emplace(gov.first, gov.first->CanEnforce(playerSystem));
 	}
 	
 	// Ships with nearby allies consider their allies' strength as well as their own.
