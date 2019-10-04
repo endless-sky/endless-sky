@@ -2,18 +2,19 @@ NOTICE: Delete the sections that do not apply to your PR, and fill out the secti
 (You can open a PR to add or improve a section, if you find them lacking!) 
 
 ----------------------
-**Content**
+**Content (Artwork / Missions / Jobs)**
 
 ## Summary
-{{summarize your content! Include links to related issues}}
+{{summarize your content! Include links to related issues, in-game screenshots, etc.}}
 
 ## Save File
-This save file can be used to play through the new content:
-{{attach a save file that allows people to easily test your added content}}
+This save file can be used to play through the new mission content:
+{{attach a save file that allows people to easily test your added mission content or see your new in-game art}}
 
 ## PR Checklist
  - [ ] I updated the copyright attributions, or decline to claim copyright of any assets produced or modified
  - [ ] I uploaded the necessary image, blend, and texture assets here: {{insert link to assets}}
+ - [ ] I created a PR to the [endless-sky-high-dpi repo](https://github.com/endless-sky/endless-sky-high-dpi) with the `@2x` versions of these art assets: {{insert PR link}}
   
   
 -----------------------
