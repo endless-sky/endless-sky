@@ -1940,10 +1940,10 @@ ship "Heavy Shuttle"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -6.5 37.5
-	engine 6.5 37.5
-	gun -3 -39.5
-	gun 3 -39.5
+	engine -6.5 38.5
+	engine 6.5 38.5
+	gun -3 -38.5
+	gun 3 -38.5
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 5
