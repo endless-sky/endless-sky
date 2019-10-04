@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipEvent.h"
 #include "Sound.h"
 #include "SpriteSet.h"
+#include "Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Visual.h"
@@ -578,6 +579,8 @@ void Ship::Save(DataWriter &out) const
 		if(!noun.empty())
 			out.Write("noun", noun);
 		SaveSprite(out);
+		if(thumbnail)
+			out.Write("thumbnail", thumbnail->Name());
 		
 		if(neverDisabled)
 			out.Write("never disabled");
@@ -807,6 +810,9 @@ string Ship::FlightCheck() const
 		if(fuelCapacity < JumpFuel())
 			return "no fuel?";
 	}
+	for(const auto &it : outfits)
+		if(it.first->IsWeapon() && it.first->FiringEnergy() > energy)
+			return "insufficient energy to fire?";
 	
 	return "";
 }
@@ -1343,7 +1349,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	{
 		pilotError = 30;
 		if(parent.lock() || !isYours)
-			Messages::Add(name + " is moving erratically because there are not enough crew to pilot it.");
+			Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it.");
 		else
 			Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it.");
 	}

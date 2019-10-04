@@ -10,6 +10,8 @@
 
 government "Alpha"
 	swizzle 1
+	"crew attack" 1.4
+	"crew defense" 2.2
 	"player reputation" -1000
 	"bribe" 0
 
@@ -35,6 +37,8 @@ government "Bounty Hunter"
 government "Coalition"
 	swizzle 5
 	color 1 .6 .7
+	"crew attack" .6
+	"crew defense" 3
 	language "Coalition"
 	"player reputation" 1
 	"attitude toward"
@@ -112,6 +116,8 @@ government "Hai (Unfettered)"
 government "Heliarch"
 	swizzle 0
 	color 1 .8 .5
+	"crew attack" 3
+	"crew defense" 4
 	"player reputation" 1
 	"friendly hail" "friendly heliarch"
 	"hostile hail" "hostile heliarch"
@@ -145,6 +151,8 @@ government "Indigenous Lifeform"
 government "Korath"
 	swizzle 0
 	color .8 .5 .1
+	"crew attack" 1.4
+	"crew defense" 2.6
 	language "Korath"
 	
 	"attitude toward"
@@ -192,6 +200,13 @@ government "Kor Sestor"
 	
 	"player reputation" -1000
 
+government "Marauder"
+	swizzle 6
+	"player reputation" 1
+	"bribe" .1
+	"fine" 0
+	"hostile hail" "hostile pirate"
+
 government "Merchant"
 	swizzle 5
 	
@@ -218,6 +233,8 @@ government "Militia"
 
 government "Navy Intelligence"
 	swizzle 0
+	"crew attack" 1.2
+	"crew defense" 2.2
 	"attitude toward"
 		"Syndicate" -.1
 		"Pirate" -.3
@@ -225,6 +242,8 @@ government "Navy Intelligence"
 government "Navy (Oathkeeper)"
 	swizzle 0
 	color .91 .42 .09
+	"crew attack" 1.2
+	"crew defense" 2.2
 	
 	"player reputation" 100
 	"attitude toward"
@@ -301,6 +320,7 @@ government "Quarg"
 government "Remnant"
 	swizzle 0
 	color .89 .38 .62
+	"crew defense" 2.2
 	
 	"player reputation" 1
 	"bribe" 0
@@ -310,6 +330,8 @@ government "Remnant"
 government "Republic"
 	swizzle 0
 	color .91 .42 .09
+	"crew attack" 1.2
+	"crew defense" 2.2
 	
 	"player reputation" 2
 	"attitude toward"
