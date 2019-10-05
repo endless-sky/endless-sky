@@ -1846,13 +1846,13 @@ mission "Remnant: Face to Maw 2B"
 	cargo "tentacle" 1
 	on offer
 		conversation
-			`When the technician arrives in the spaceport he immediately strides over to you. "I checked the records, and my memory was correct. One of our research teams back then discovered that these tentacles could be used as a devastating weapon in close quarters combat."`
-			`	He pulls out an image of a strange looking rifle and continues to chant, "the personal weapons lab under Prefect Chilia has a few of the old weapon frames. If you go visit it on Aventine, they could turn this tentacle into a potent weapon for you."
+			`When the technician arrives in the spaceport he immediately strides over to you. "I checked the records, and my memory was correct. One of our research teams centuries ago discovered that these tentacles could be used as a devastating weapon in close quarters combat."`
+			`	He pulls out an image of a strange looking rifle and continues to chant, "The personal weapons lab under Prefect Chilia has a few of the old weapon frames. If you go visit it on Aventine, they could turn this tentacle into a potent weapon for you."
 			choice
 				`	"That sounds good."`
 					accept
 				`	"I would rather not."`
-			`	The technician looks disappointed. "Oh well, enjoy your trophy," he chants.`
+			`	The technician looks disappointed. "Oh well, enjoy your trophy."`
 			decline
 	on complete
 		log "People" "Chilia" `As an military prefect, Chilia is responsible for the defence of Remnant space. He can usually be found on the front lines of combat unless required to work on tactics for the Remnant as a whole.`
@@ -1872,9 +1872,9 @@ mission "Remnant: Face to Maw 2B"
 				`	"It's called a void rifle?"`
 				`	"I don't need details."`
 					goto end
-			`	"Yes, void rifle. I don't know who discovered it, but someone figured out that if a particularly high charge was poured through the tentacle's nervous system in a specific pattern, it emits a paralyzing cone of energy with a reasonably decent range. I'm not an engineer, so I do not really understand the mechanics of it." He pauses to watch as a tech installs the now-caged tentacle on top of the stock. "Suffice it to say, it is useless for sniping, but its ability to shoot through walls and affect areas makes it excellent for clearing ships and tight quarters. Back then we had a number of threats that made building-to-building clearing operations an unfortunately frequent occurrence." His grim tone catches your attention, but he seems unwilling to pursue the topic.`
+			`	"Yes, void rifle. I don't know who discovered it, but someone figured out that if a particularly high charge was poured through the tentacle's nervous system in a specific pattern, it emits a paralyzing cone of energy with a reasonably decent range. I'm neither an engineer or a biologist, so I do not really understand the mechanics of it." He pauses to watch as a tech installs the now-caged tentacle on top of the stock. "Suffice it to say, it is useless for sniping, but its ability to shoot through walls and affect areas makes it excellent for sweeping ships and building-to-building clearing operations.`
 			label end
-			`	"All right, enough history." He turns to the techicianss who are finishing the assembly. "The tentacle has been treated to resist decay and the stock mechanisms will provide basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
+			`	"All right, enough history." He turns to the technicians who are finishing the assembly. "The tentacle has been treated to resist decay and the stock mechanisms will provide basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
 			scene "outfit/void rifle"
 
 
