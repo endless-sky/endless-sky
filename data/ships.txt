@@ -141,13 +141,13 @@ ship "Arrow"
 		"required crew" 1
 		"bunks" 5
 		"mass" 130
-		"drag" 2.7
+		"drag" 2.0
 		"heat dissipation" .85
-		"fuel capacity" 400
+		"fuel capacity" 600
 		"cargo space" 10
 		"outfit space" 180
 		"weapon capacity" 50
-		"engine capacity" 60
+		"engine capacity" 75
 		weapon
 			"blast radius" 24
 			"shield damage" 240
@@ -1572,7 +1572,7 @@ ship "Fury"
 	leak "flame" 50 80
 	explode "tiny explosion" 10
 	explode "small explosion" 20
-	description "The Fury is Southbound Shipyard's most popular design of escort ship. They have greater firepower than any other interceptor-class vessel, meaning that any pirate flying solo will think twice before attacking a convoy that is accompanied by a Fury. However, Furies are also much less maneuverable than other small ships."
+	description "The Fury is Southbound Shipyards' most popular design of escort ship. They have greater firepower than any other interceptor-class vessel, meaning that any pirate flying solo will think twice before attacking a convoy that is accompanied by a Fury. However, Furies are also much less maneuverable than other small ships."
 
 
 
@@ -1940,10 +1940,10 @@ ship "Heavy Shuttle"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -6.5 37.5
-	engine 6.5 37.5
-	gun -3 -39.5
-	gun 3 -39.5
+	engine -6.5 38.5
+	engine 6.5 38.5
+	gun -3 -38.5
+	gun 3 -38.5
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 5
@@ -2965,9 +2965,9 @@ ship "Star Queen"
 		"required crew" 41
 		"bunks" 112
 		"mass" 230
-		"drag" 5.5
+		"drag" 4.5
 		"heat dissipation" .65
-		"fuel capacity" 500
+		"fuel capacity" 700
 		"cargo space" 60
 		"outfit space" 360
 		"weapon capacity" 120
