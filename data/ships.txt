@@ -141,13 +141,13 @@ ship "Arrow"
 		"required crew" 1
 		"bunks" 5
 		"mass" 130
-		"drag" 2.7
+		"drag" 2.0
 		"heat dissipation" .85
-		"fuel capacity" 400
+		"fuel capacity" 600
 		"cargo space" 10
 		"outfit space" 180
 		"weapon capacity" 50
-		"engine capacity" 60
+		"engine capacity" 75
 		weapon
 			"blast radius" 24
 			"shield damage" 240
@@ -2965,9 +2965,9 @@ ship "Star Queen"
 		"required crew" 41
 		"bunks" 112
 		"mass" 230
-		"drag" 5.5
+		"drag" 4.5
 		"heat dissipation" .65
-		"fuel capacity" 500
+		"fuel capacity" 700
 		"cargo space" 60
 		"outfit space" 360
 		"weapon capacity" 120
