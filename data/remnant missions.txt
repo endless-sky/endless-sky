@@ -1806,13 +1806,26 @@ mission "Remnant: Face to Maw 2"
 			branch taely
 				"remnant taely" > 1
 			`When you land on Viminal a solidly built female Remnant in coveralls is waiting for you. "Greetings, Captain <first>. My name is Taely, and I am a Prefect among the Remnant. Above all else, I study motion, and in particular how our starships move."`
-			goto main
+				goto main
 			label taely
 			`	When you land on Viminal you spot Taely waiting for you. "Greetings, Captain <first>. It is good to see you again."`
 			label main
-			`	She makes a gesture you are starting to recognize as a sign of curiosity. "So, Plume sent us some very interesting data, along with a message to expect you with a sample?" You hand her the container with the slime sample and she holds it up to the light. "Interesting looking stuff," she chants. "Let's go back to my shop." She leads the way through several side passages to an out-of-the-way landing pad connected to a large hangar. Inside, you can see a giant tank filled with a murky fluid, surrounded by equipment and displays. She makes her way over to a large machine with several slots which she slides the container into.`
+			`	She makes a gesture you are starting to recognize as a sign of curiosity. "So, Plume sent us some very interesting data, along with a message to expect you with a sample?" You hand her the container with the slime sample and she holds it up to the light. "Interesting looking stuff," she chants. "Let's go back to my workshop." `
+			choice
+				`	(Ask if you can catch up in a few minutes)`
+				`	(Follow her back to her workshop)`
+					goto follow
+			`	"Sure, just don't take too long. My project has reached its final stage."
+			`	You take your time to get to the workshop, admiring the view along the way. When you finally arrive at the workshop you can hear strange noises coming form inside, accompanied by the smell of a thunderstorm in a swamp. You step into the workshop and come to a stop to stare at the thing in front of you.`
+				goto skip
+			label follow
+			`	She leads the way through several side passages to an out-of-the-way landing pad connected to a large hangar. Inside, you can see a giant tank filled with a murky fluid, surrounded by equipment and displays. She makes her way over to a large machine with several slots which she slides the container into.`
 			`	As the machine starts to work, she turns back to you. "As the primary example of space-faring life, the void sprites have always been of interest to me. They have numerous advantages that we as atmosphere-bound creatures can only dream of, such as being able to experience space in a much more direct manner. I have been working on a side project to build a new generation of ships that melds these ideas with our current technology, but the data we have on the void sprites is centuries old and incomplete." Her chant trails off as she pulls up a display with your original scans on them. "However, your recent explorations provided new data I could use to update my designs. This slime that you retrieved is the final ingredient."`
+			choice
+				`	"So my data is helping to develop new technology?"`
+				`	"That's good. Any chance of a bonus for me?"`
 			`	The machine dings, and she looks over the results and then trills excitedly. "Yes, it matches! So it is time to begin the final activation." She strides over to a central console and taps in a series of commands, followed by an iris scan and a blood prick. The industrial hum of the room suddenly ramps up to a crescendo as your nose is assaulted by what you can only describe as the smell of a thunderstorm in a swamp. A few seconds later the noise softens, and the tank starts lowering into the floor as a shape emerges from the liquid.`
+			label skip
 			`	The ship before you has some faint traces of the gascraft you have flown to Nenia, along with other elements of Remnant design, but it is clearly something new. Its antennae swivel around, as if taking in its environment, and the tentacles along the side twitch and reach out to touch its surroundings. Solidly built tendrils underneath it flex as it lifts itself off its supports and begins to move around. You have a momentary vision of what this ship might look like in the skies of Nenia.`
 			scene "scene/penguinscene"
 			`	Taely's droning chant of technical details finally seeps through your reverie: "... So from a captain's point of view flying the penguin should be very similar to a normal ship, except she flies herself and doesn't need a crew to run her systems." She pauses, and looks at you. "Your curiosity provided the final ingredients to bring her to life. You should be the first to have one. You'll still have to go through the shipyard to register her and pay the resource cost to balance the logistics, but this first one is reserved for you." She pats the nose of the penguin and it makes a wooshing noise. After a moment she starts going over the ship with a scanner, leaving you to contemplate in silence.`
