@@ -13,6 +13,11 @@ shipyard "Basic Ships"
 	"Sparrow"
 	"Star Barge"
 
+shipyard "Buccaneer Bay"
+	"Quicksilver"
+	"Splinter"
+	"Wasp"
+
 shipyard "Tarazed Basics"
 	"Sparrow"
 	"Hawk"
