@@ -403,6 +403,7 @@ void AI::Clean()
 	actions.clear();
 	notoriety.clear();
 	governmentActions.clear();
+	scanPermissions.clear();
 	playerActions.clear();
 	swarmCount.clear();
 	fenceCount.clear();
@@ -648,7 +649,10 @@ void AI::Step(const PlayerInfo &player)
 			continue;
 		}
 		
-		if(isPresent && personality.IsSurveillance() && !isStranded)
+		// Surveillance NPCs with enforcement authority (or those from
+		// missions) should perform scans and surveys of the system.
+		if(isPresent && personality.IsSurveillance() && !isStranded
+				&& (scanPermissions[gov] || it->IsSpecial()))
 		{
 			DoSurveillance(*it, command, target);
 			it->SetCommands(command);
@@ -1120,8 +1124,9 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		}
 	}
 	
-	// AI ships without an in-range hostile target consider scanning other ships.
-	if(!isYours && !target)
+	// With no hostile targets, NPCs with enforcement authority (and any
+	// mission NPCs) should consider friendly targets for surveillance.
+	if(!isYours && !target && (ship.IsSpecial() || scanPermissions.at(gov)))
 	{
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
 		bool outfitScan = ship.Attributes().Get("outfit scan power");
@@ -1132,6 +1137,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			for(const auto &it : allies)
 				if(it->GetGovernment() != gov)
 				{
+					// Scan friendly ships that are as-yet unscanned by this ship's government.
 					if((!cargoScan || Has(gov, it, ShipEvent::SCAN_CARGO))
 							&& (!outfitScan || Has(gov, it, ShipEvent::SCAN_OUTFITS)))
 						continue;
@@ -1321,6 +1327,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 	else if(target)
 	{
+		// An AI ship that is targeting a non-hostile ship should scan it, or move on.
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
 		bool outfitScan = ship.Attributes().Get("outfit scan power");
 		if((!cargoScan || Has(gov, target, ShipEvent::SCAN_CARGO))
@@ -1329,7 +1336,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		else
 		{
 			CircleAround(ship, command, *target);
-			if(!ship.IsYours())
+			if(!ship.IsYours() && (ship.IsSpecial() || scanPermissions.at(gov)))
 				command |= Command::SCAN;
 		}
 		return;
@@ -3567,6 +3574,11 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 	for(const auto &it : ships)
 	{
 		const Government *gov = it->GetGovernment();
+	
+		// Check if this ship's government has the authority to enforce scans & fines in this system.
+		if(!scanPermissions.count(gov))
+			scanPermissions.emplace(gov, gov && gov->CanEnforce(playerSystem));
+
 		// Only have ships update their strength estimate once per second on average.
 		if(!gov || it->GetSystem() != playerSystem || it->IsDisabled() || Random::Int(60))
 			continue;

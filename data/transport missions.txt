@@ -1828,6 +1828,48 @@ mission "Courier 1"
 		dialog phrase "generic cargo delivery payment"
 
 
+phrase "generic human package offer"
+	word
+		`A local`
+		`A man`
+		`A resident of <source>`
+		`A stranger`
+		`A woman`
+	word
+		` `
+	word
+		`appears from seemingly nowhere to ask,`
+		`approaches you and says,`
+		`flags you down and asks,`
+		`walks up to you and asks,`
+		`stops you and asks,`
+	word
+		` "`
+	word
+		`Captain,`
+		`Excuse me, Captain.`
+		`Sorry to interrupt, but`
+		`Hey there, Captain.`
+	word
+		` `
+	word
+		`I have a small package that needs to get to <planet> by <day>.`
+		`I'm trying to get a package to a relative on <planet> by <day>.`
+		`I need to get this package to one of my clients on <planet> by <day>.`
+		`I'm trying to get this package to <planet> before <day>.`
+	word
+		` `
+	word
+		`Are you able to carry it for me?`
+		`Can you carry it for me?`
+		`Could you take it there?`
+		`Can you help me out with this?`
+	word
+		` I'll give you <payment> for the effort.`
+		` I'm willing to pay you <payment>.`
+		` I can afford to give you <payment> for it.`
+	word
+		`"`
 
 mission "Courier 2"
 	name "Package to <planet>"
@@ -1844,7 +1886,7 @@ mission "Courier 2"
 		distance 7 14
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
-		dialog `A woman in the spaceport flags you down and asks, "Excuse me, Captain. I have small package that needs to get to <planet> by <day>. Can you carry it for me?"`
+		dialog phrase "generic human package offer"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -2319,6 +2361,7 @@ mission "Terraforming 6"
 mission "Terraforming 7"
 	name "Terraforming Research"
 	description "Bring Amy and Nolan to <destination>, where they will research and publish Amy's terraforming methods."
+	source "Earth"
 	destination "Valhalla"
 	passengers 2
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
