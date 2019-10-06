@@ -446,9 +446,9 @@ ship "Pelican"
 		"heat dissipation" 0.7
 		"fuel capacity" 600
 		"ramscoop" 2
-		"outfit space" 438
+		"outfit space" 470
 		"weapon capacity" 157
-		"engine capacity" 129
+		"engine capacity" 144
 		"shield generation" 2.7
 		"shield energy" 1.8
 		"hull repair rate" 1
@@ -462,18 +462,17 @@ ship "Pelican"
 			"hull damage" 800
 			"hit force" 2400
 	outfits
-		"Thrasher Cannon" 2
 		"Thrasher Turret"
 		"Point Defense Turret" 2
 
 		"Aeon Cell"
-		"Crystal Capacitor"
-		"Thermoelectric Cooler" 2
+		"Crystal Capacitor" 2
+		"Thermoelectric Cooler" 3
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
 		"Tuning Rifle" 15
 
-		"Forge-Class Thruster"
+		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
 		"Hyperdrive"
 
@@ -490,7 +489,7 @@ ship "Pelican"
 	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion large" 1
-	description "The Pelican is closely based on the original semi-organic materials the Remnant found in the Ember Waste. While they are not technically alive, their internal mechanisms and method of construction bear such a close resemblance to living organisms that they are often considered as such. These ships serve as the backbone of Remnant salvage efforts, as well as their resource distribution network."
+	description "The Pelican is closely based on the original semi-organic materials the Remnant found in the Ember Waste. While they are not technically alive, their internal mechanisms and method of construction bear such a close resemblance to living organisms that they are often considered as such. One key feature of this living resemblence is the innate sensory capabilities they posses, akin to sensor suites less advanced ships require for detailed scanning. These ships serve as the backbone of Remnant bulk salvage efforts, as well as their fast-logistics distribution network."
 
 
 
