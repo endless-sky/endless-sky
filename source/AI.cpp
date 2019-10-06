@@ -3568,15 +3568,17 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 						allies.insert(ally.first);
 					}
 			}
-		// Check if this government has the authority to enforce scans & fines in this system.
-		if(!scanPermissions.count(gov.first))
-			scanPermissions.emplace(gov.first, gov.first->CanEnforce(playerSystem));
 	}
 	
 	// Ships with nearby allies consider their allies' strength as well as their own.
 	for(const auto &it : ships)
 	{
 		const Government *gov = it->GetGovernment();
+	
+		// Check if this ship's government has the authority to enforce scans & fines in this system.
+		if(!scanPermissions.count(gov))
+			scanPermissions.emplace(gov, gov && gov->CanEnforce(playerSystem));
+
 		// Only have ships update their strength estimate once per second on average.
 		if(!gov || it->GetSystem() != playerSystem || it->IsDisabled() || Random::Int(60))
 			continue;

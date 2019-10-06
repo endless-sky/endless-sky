@@ -2361,6 +2361,7 @@ mission "Terraforming 6"
 mission "Terraforming 7"
 	name "Terraforming Research"
 	description "Bring Amy and Nolan to <destination>, where they will research and publish Amy's terraforming methods."
+	source "Earth"
 	destination "Valhalla"
 	passengers 2
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
