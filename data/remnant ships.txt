@@ -365,7 +365,7 @@ ship "Ibis"
 		"heat dissipation" 0.7
 		"fuel capacity" 700
 		"ramscoop" 2
-		"outfit space" 558
+		"outfit space" 568
 		"cargo space" 103
 		"weapon capacity" 200
 		"engine capacity" 142
@@ -398,7 +398,7 @@ ship "Ibis"
 		"Crucible-Class Thruster"
 		"Forge-Class Steering"
 		"Crucible-Class Steering"
-		"Hyperdrive"
+		"Scram Drive"
 		
 	drone 0 30 over 
 	drone -34 68 over
