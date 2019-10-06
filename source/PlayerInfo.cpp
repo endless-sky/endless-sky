@@ -27,8 +27,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "Person.h"
 #include "Planet.h"
-#include "Preferences.h"
 #include "Politics.h"
+#include "Preferences.h"
 #include "Random.h"
 #include "SavedGame.h"
 #include "Ship.h"
@@ -2621,7 +2621,11 @@ void PlayerInfo::Fine(UI *ui)
 					(mission.Destination() == planet || mission.Stopovers().count(planet))))
 			return;
 	
+	// The planet's government must have the authority to enforce laws.
 	const Government *gov = planet->GetGovernment();
+	if(!gov->CanEnforce(planet))
+		return;
+	
 	string message = gov->Fine(*this, 0, nullptr, planet->Security());
 	if(!message.empty())
 	{

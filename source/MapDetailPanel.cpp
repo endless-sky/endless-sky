@@ -262,16 +262,6 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		
 		return true;
 	}
-	else if(y >= Screen::Bottom() - 40 && x >= Screen::Right() - 335 && x < Screen::Right() - 265)
-	{
-		// The user clicked the "done" button.
-		return DoKey(SDLK_d);
-	}
-	else if(y >= Screen::Bottom() - 40 && x >= Screen::Right() - 415 && x < Screen::Right() - 345)
-	{
-		// The user clicked the "missions" button.
-		return DoKey(SDLK_PAGEDOWN);
-	}
 	
 	MapPanel::Click(x, y, clicks);
 	if(selectedPlanet && !selectedPlanet->IsInSystem(selectedSystem))

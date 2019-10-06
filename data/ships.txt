@@ -108,14 +108,16 @@ ship "Argosy"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 		
-	engine -20 91
-	engine 20 91
+	engine -25 91 0.6
+	engine -14 91 0.8
+	engine 14 91 0.8
+	engine 25 91 0.6
 	gun -22 -37 "Energy Blaster"
+	gun -22 -37 "Meteor Missile Launcher"
 	gun 22 -37 "Energy Blaster"
-	gun -23 -37 "Meteor Missile Launcher"
-	gun 23 -37 "Meteor Missile Launcher"
-	turret 0 -12 "Blaster Turret"
-	turret 0 8 "Anti-Missile Turret"
+	gun 22 -37 "Meteor Missile Launcher"
+	turret 0 -12.5 "Blaster Turret"
+	turret 0 9.5 "Anti-Missile Turret"
 	leak "leak" 60 50
 	leak "flame" 60 80
 	explode "tiny explosion" 10
@@ -139,13 +141,13 @@ ship "Arrow"
 		"required crew" 1
 		"bunks" 5
 		"mass" 130
-		"drag" 2.7
+		"drag" 2.0
 		"heat dissipation" .85
-		"fuel capacity" 400
+		"fuel capacity" 600
 		"cargo space" 10
 		"outfit space" 180
 		"weapon capacity" 50
-		"engine capacity" 60
+		"engine capacity" 75
 		weapon
 			"blast radius" 24
 			"shield damage" 240
@@ -377,15 +379,15 @@ ship "Bastion"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -28 85
-	engine 28 85
-	gun -54 -14 "Plasma Cannon"
-	gun 54 -14 "Plasma Cannon"
-	gun -54 -14 "Heavy Rocket Launcher"
-	gun 54 -14 "Heavy Rocket Launcher"
-	turret 0 0 "Anti-Missile Turret"
-	turret -30 14 "Blaster Turret"
-	turret 30 14 "Blaster Turret"
+	engine 31.5 89.5
+	engine -31.5 89.5
+	gun 52.5 -0.5 "Heavy Rocket Launcher"
+	gun 52.5 -0.5 "Plasma Cannon"
+	gun -52.5 -0.5 "Heavy Rocket Launcher"
+	gun -52.5 -0.5 "Plasma Cannon"
+	turret 35.5 29.5 "Blaster Turret"
+	turret -35.5 29.5 "Blaster Turret"
+	turret 0 0.5 "Anti-Missile Turret"
 	leak "leak" 40 50
 	leak "flame" 40 80
 	leak "big leak" 70 30
@@ -435,16 +437,18 @@ ship "Behemoth"
 		"X3200 Ion Steering"
 		"Scram Drive"
 		
-	engine -34 154
-	engine 34 154
-	gun -27 -83
-	gun 27 -83
-	turret -34 -64 "Heavy Laser Turret"
-	turret 34 -64 "Heavy Anti-Missile Turret"
-	turret -58 11 "Heavy Laser Turret"
-	turret 58 11 "Heavy Laser Turret"
-	turret -24 78 "Heavy Anti-Missile Turret"
-	turret 24 78 "Heavy Laser Turret"
+	engine -34 143 0.8
+	engine 34 143 0.8
+	engine -56 148.5 0.6
+	engine 56 148.5 0.6
+	gun -47.5 -57.5
+	gun 47.5 -57.5
+	turret -31 -50 "Heavy Laser Turret"	
+	turret 31 -50 "Heavy Anti-Missile Turret"	
+	turret -47.5 33.5 "Heavy Laser Turret"
+	turret 47.5 33.5 "Heavy Laser Turret"
+	turret -22 66.5 "Heavy Anti-Missile Turret"
+	turret 22 66.5 "Heavy Laser Turret"
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
@@ -891,12 +895,12 @@ ship "Clipper"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 		
-	engine -20 45
-	engine 20 45
-	gun -23 -19 "Javelin Pod"
-	gun 23 -19 "Javelin Pod"
-	gun -12 -7 "Beam Laser"
-	gun 12 -7 "Beam Laser"
+	engine -22 47
+	engine 22 47
+	gun -21.5 -18 "Javelin Pod"
+	gun 21.5 -18 "Javelin Pod"
+	gun -11 -8.5 "Beam Laser"
+	gun 11 -8.5 "Beam Laser"
 	leak "leak" 60 50
 	leak "flame" 50 80
 	explode "tiny explosion" 15
@@ -1168,17 +1172,17 @@ ship "Dreadnought"
 		"Orca Plasma Steering"
 		"Hyperdrive"
 		
-	engine -25 172
-	engine 25 172
-	gun -10 -167 "Torpedo Launcher"
-	gun 10 -167 "Torpedo Launcher"
-	gun -20 -151 "Torpedo Launcher"
-	gun 20 -151 "Torpedo Launcher"
-	turret 0 -94 "Plasma Turret"
-	turret -38 -56 "Heavy Anti-Missile Turret"
-	turret 38 -56 "Heavy Anti-Missile Turret"
-	turret -44 118 "Plasma Turret"
-	turret 44 118 "Plasma Turret"
+	engine -25.5 173.5
+	engine 25.5 173.5
+	gun -9.5 -186 "Torpedo Launcher"
+	gun 9.5 -186 "Torpedo Launcher"
+	gun -18.5 -173.5 "Torpedo Launcher"
+	gun 18.5 -173.5 "Torpedo Launcher"
+	turret 0 -99.5 "Plasma Turret"
+	turret -39 -63.5 "Heavy Anti-Missile Turret"
+	turret 39 -63.5 "Heavy Anti-Missile Turret"
+	turret -39 107.5 "Plasma Turret"
+	turret 39 107.5 "Plasma Turret"
 	leak "leak" 40 50
 	leak "flame" 20 80
 	leak "big leak" 80 30
@@ -1340,14 +1344,14 @@ ship "Firebird"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -33 65
-	engine 33 65
-	gun -28 -27 "Particle Cannon"
-	gun 28 -27 "Particle Cannon"
-	gun -39 -13 "Meteor Missile Launcher"
-	gun 39 -13 "Meteor Missile Launcher"
-	turret -5 3 "Anti-Missile Turret"
-	turret 5 3 "Quad Blaster Turret"
+	engine -31.5 67
+	engine 31.5 67
+	gun -27 -28 "Particle Cannon"
+	gun 27 -28 "Particle Cannon"
+	gun -38 -13 "Meteor Missile Launcher"
+	gun 38 -13 "Meteor Missile Launcher"
+	turret 0 -38 "Anti-Missile Turret"	
+	turret 0 3 "Quad Blaster Turret"
 	leak "leak" 50 50
 	leak "flame" 30 80
 	explode "tiny explosion" 18
@@ -1557,16 +1561,18 @@ ship "Fury"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -17 35
-	engine 17 35
-	gun -10 -26
-	gun 10 -26
-	gun -16 -20
-	gun 16 -20
+	engine -11 35 0.8
+	engine 11 35 0.8
+	engine -18 37 0.6
+	engine 18 37 0.6
+	gun -10.5 -25.5
+	gun 10.5 -25.5
+	gun -17 -19.5
+	gun 17 -19.5
 	leak "flame" 50 80
 	explode "tiny explosion" 10
 	explode "small explosion" 20
-	description "The Fury is Southbound Shipyard's most popular design of escort ship. They have greater firepower than any other interceptor-class vessel, meaning that any pirate flying solo will think twice before attacking a convoy that is accompanied by a Fury. However, Furies are also much less maneuverable than other small ships."
+	description "The Fury is Southbound Shipyards' most popular design of escort ship. They have greater firepower than any other interceptor-class vessel, meaning that any pirate flying solo will think twice before attacking a convoy that is accompanied by a Fury. However, Furies are also much less maneuverable than other small ships."
 
 
 
@@ -1664,15 +1670,15 @@ ship "Hauler"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
-		
-	engine -45 122
-	engine 45 122
-	gun -15 -91
-	gun 15 -91
-	turret -26 -49 "Quad Blaster Turret"
-	turret 26 -49 "Heavy Anti-Missile Turret"
-	turret -19 77 "Heavy Anti-Missile Turret"
-	turret 19 77 "Quad Blaster Turret"
+
+	engine -45 122.5
+	engine 45 122.5
+	gun -14.5 -92.5
+	gun 14.5 -92.5
+	turret -21.5 -48 "Quad Blaster Turret"
+	turret 21.5 -48 "Heavy Anti-Missile Turret"
+	turret -18.5 78.5 "Heavy Anti-Missile Turret"
+	turret 18.5 78.5 "Quad Blaster Turret"
 	leak "leak" 60 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -1724,14 +1730,14 @@ ship "Hauler II"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -45 160
-	engine 45 160
-	gun -15 -128
-	gun 15 -128
-	turret -26 -85 "Quad Blaster Turret"
-	turret 26 -85 "Heavy Anti-Missile Turret"
-	turret -19 115 "Heavy Anti-Missile Turret"
-	turret 19 115 "Quad Blaster Turret"
+	engine -45 159.5
+	engine 45 159.5
+	gun -14.5 -129.5
+	gun 14.5 -129.5
+	turret -21.5 -84.5 "Quad Blaster Turret"
+	turret 21.5 -84.5 "Heavy Anti-Missile Turret"
+	turret -18.5 115.5 "Heavy Anti-Missile Turret"
+	turret 18.5 115.5 "Quad Blaster Turret"
 	leak "leak" 60 50
 	leak "flame" 40 80
 	leak "big leak" 80 30
@@ -1782,15 +1788,15 @@ ship "Hauler III"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
-		
-	engine -45 196
-	engine 45 196
-	gun -15 -165
-	gun 15 -165
-	turret -26 -122 "Quad Blaster Turret"
-	turret 26 -122 "Heavy Anti-Missile Turret"
-	turret -19 151 "Heavy Anti-Missile Turret"
-	turret 19 151 "Quad Blaster Turret"
+
+	engine -45 196.5
+	engine 45 196.5
+	gun -14.5 -166.5
+	gun 14.5 -166.5
+	turret -21.5 -122 "Quad Blaster Turret"
+	turret 21.5 -122 "Heavy Anti-Missile Turret"
+	turret -18.5 152.5 "Heavy Anti-Missile Turret"
+	turret 18.5 152.5 "Quad Blaster Turret"
 	leak "leak" 50 50
 	leak "flame" 40 80
 	leak "big leak" 80 30
@@ -1934,10 +1940,10 @@ ship "Heavy Shuttle"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-	engine 6 30
-	engine -6 30
-	gun -7 -37
-	gun 7 -37
+	engine -6.5 38.5
+	engine 6.5 38.5
+	gun -3 -38.5
+	gun 3 -38.5
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 5
@@ -2027,16 +2033,16 @@ ship "Leviathan"
 		"X4200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -25 125
-	engine 25 125
-	gun -39 -33 "Particle Cannon"
-	gun 39 -33 "Particle Cannon"
-	gun -51 -21 "Particle Cannon"
-	gun 51 -21 "Particle Cannon"
-	turret -15 -50 "Quad Blaster Turret"
-	turret 15 -50 "Quad Blaster Turret"
-	turret -25 10 "Anti-Missile Turret"
-	turret 25 10 "Quad Blaster Turret"
+	engine -24 126
+	engine 24 126
+	gun -37.5 -31.5 "Particle Cannon"
+	gun 37.5 -31.5 "Particle Cannon"
+	gun -49 -19.5 "Particle Cannon"
+	gun 49 -19.5 "Particle Cannon"
+	turret -14 -10 "Quad Blaster Turret"
+	turret 14 -10 "Quad Blaster Turret"
+	turret -25.5 12.5 "Quad Blaster Turret"
+	turret 25.5 12.5 "Anti-Missile Turret"
 	leak "leak" 50 50
 	leak "flame" 30 80
 	leak "big leak" 60 30
@@ -2147,14 +2153,16 @@ ship "Modified Argosy"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -20 91
-	engine 20 91
+	engine -25 93 0.6
+	engine -14 93 0.8
+	engine 14 93 0.8
+	engine 25 93 0.6
 	gun -22 -37 "Heavy Laser"
-	gun 22 -37 "Heavy Laser"
-	gun -23 -37 "Meteor Missile Launcher"
-	gun 23 -37 "Meteor Missile Launcher"
-	turret 0 -12 "Heavy Laser Turret"
-	turret 0 8 "Heavy Anti-Missile Turret"
+	gun 22.5 -37 "Heavy Laser"
+	gun -22 -37 "Meteor Missile Launcher"
+	gun 22.5 -37 "Meteor Missile Launcher"
+	turret 0 -12.5 "Heavy Anti-Missile Turret"
+	turret 0 9.5 "Heavy Laser Turret"
 	leak "leak" 70 50
 	leak "flame" 30 80
 	explode "tiny explosion" 10
@@ -2266,14 +2274,14 @@ ship "Nest"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -45 122
-	engine 45 122
-	gun -15 -91
-	gun 15 -91
-	turret -26 -50 "Quad Blaster Turret"
-	turret 26 -50 "Heavy Anti-Missile Turret"
-	turret -18 75 "Heavy Anti-Missile Turret"
-	turret 18 75 "Quad Blaster Turret"
+	engine -45 122.5
+	engine 45 122.5
+	gun -14.5 -92.5
+	gun 14.5 -92.5
+	turret -21.5 -48 "Quad Blaster Turret"
+	turret 21.5 -48 "Heavy Anti-Missile Turret"
+	turret -18.5 78.5 "Heavy Anti-Missile Turret"
+	turret 18.5 78.5 "Quad Blaster Turret"
 	fighter -47 12 under
 	fighter 47 12 under
 	leak "leak" 60 50
@@ -2404,7 +2412,7 @@ ship "Protector"
 	explode "medium explosion" 24
 	explode "large explosion" 8
 	"final explode" "final explosion large"
-	description `Voted the "ugliest ship in the sky" by Stars and Starships Magazine, the Protector is a typical example of brutally efficient Syndicate engineering. It is basically nothing more than six blaster turrets attached to a set of engines and crew's quarters, designed as a defense platform that can accompany merchant convoys.`
+	description `Voted the "ugliest ship in the sky" by Stars and Starships Magazine, the Protector is a typical example of brutally efficient Syndicate engineering. It is basically nothing more than six turrets attached to a set of engines and crew's quarters, designed as a defense platform that can accompany merchant convoys.`
 
 
 
@@ -2607,14 +2615,14 @@ ship "Roost"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -45 159
-	engine 45 159
-	gun -15 -128
-	gun 15 -128
-	turret -26 -85 "Quad Blaster Turret"
-	turret 26 -85 "Heavy Anti-Missile Turret"
-	turret -18 114 "Heavy Anti-Missile Turret"
-	turret 18 114 "Quad Blaster Turret"
+	engine -45 159.5
+	engine 45 159.5
+	gun -14.5 -129.5
+	gun 14.5 -129.5
+	turret -21.5 -84.5 "Quad Blaster Turret"
+	turret 21.5 -84.5 "Heavy Anti-Missile Turret"
+	turret -18.5 115.5 "Heavy Anti-Missile Turret"
+	turret 18.5 115.5 "Quad Blaster Turret"
 	fighter -47 -24 under
 	fighter 47 -24 under
 	fighter -47 50 under
@@ -2718,9 +2726,9 @@ ship "Shuttle"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-	engine 6 30
 	engine -6 30
-	gun 0 -30
+	engine 6 30
+	gun 0 -31
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 5
@@ -2770,15 +2778,15 @@ ship "Skein"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
-		
-	engine -45 197
-	engine 45 197
-	gun -15 -165
-	gun 15 -165
-	turret -26 -123 "Quad Blaster Turret"
-	turret 26 -123 "Heavy Anti-Missile Turret"
-	turret -18.5 154 "Heavy Anti-Missile Turret"
-	turret 18.5 154 "Quad Blaster Turret"
+
+	engine -45 196.5
+	engine 45 196.5
+	gun -14.5 -166.5
+	gun 14.5 -166.5
+	turret -21.5 -122 "Quad Blaster Turret"
+	turret 21.5 -122 "Heavy Anti-Missile Turret"
+	turret -18.5 152.5 "Heavy Anti-Missile Turret"
+	turret 18.5 152.5 "Quad Blaster Turret"
 	fighter -47 -61 under
 	fighter 47 -61 under
 	fighter -47 14 under
@@ -2957,9 +2965,9 @@ ship "Star Queen"
 		"required crew" 41
 		"bunks" 112
 		"mass" 230
-		"drag" 5.5
+		"drag" 4.5
 		"heat dissipation" .65
-		"fuel capacity" 500
+		"fuel capacity" 700
 		"cargo space" 60
 		"outfit space" 360
 		"weapon capacity" 120
@@ -2984,13 +2992,13 @@ ship "Star Queen"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -18 116
-	engine 18 116
-	gun 0 -116 "Sidewinder Missile Launcher"
-	gun -22 -80 "Sidewinder Missile Launcher"
-	gun 22 -80 "Sidewinder Missile Launcher"
-	turret -28 -9 "Heavy Anti-Missile Turret"
-	turret 28 -9 "Heavy Anti-Missile Turret"
+	engine -18.5 115
+	engine 18.5 115
+	gun 0 -113 "Sidewinder Missile Launcher"
+	gun -24 -76 "Sidewinder Missile Launcher"
+	gun 24 -76 "Sidewinder Missile Launcher"
+	turret -21.5 2.5 "Heavy Anti-Missile Turret"
+	turret 21.5 2.5 "Heavy Anti-Missile Turret"
 	leak "leak" 50 50
 	leak "big leak" 80 30
 	explode "tiny explosion" 10

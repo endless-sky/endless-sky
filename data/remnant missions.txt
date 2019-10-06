@@ -614,9 +614,9 @@ mission "Remnant: Learn Sign 1"
 			label song
 			`	She looks surprised, but then recovers and sings a verse about how hands can learn, but must be cautious, and gestures at the hand scanner embedded in the desk.`
 			label scan
-			`	As you place your hand on the scanner, you feel a quick tingle as it scans your hand, then a pinprick as it extracts a drop of blood. The lady behind the desk looks at her screen. She nods, taps on the screen a few times, then retrieves a datapad from beneath the desk.`
+			`	As you place your hand on the scanner, you feel a quick tingle as it scans your hand, then a pinprick as it extracts a drop of blood. The lady behind the desk looks at her screen. She nods, taps on the screen a few times, then retrieves a data pad from beneath the desk.`
 			`	She hands the pad to you, and sings a brief verse about perseverance and hope.`
-			`	Back on your ship you flip the pad on. The datapad appears to be loaded with a number of historic musicals and operas where the meaning of the lyrics has been replicated with gestures as subtitles. It is interspersed with what appear to be Remnant children's videos slowly explaining gestures and pausing to give you the opportunity to practice.`
+			`	Back on your ship you flip the pad on. The data pad appears to be loaded with a number of historic musicals and operas where the meaning of the lyrics has been replicated with gestures as subtitles. It is interspersed with what appear to be Remnant children's videos slowly explaining gestures and pausing to give you the opportunity to practice.`
 			`	You spend a few hours going through the lessons. It takes a while to start vaguely understanding the signs, but you eventually learn how to sign a number of basic phrases. Eventually, the pad goes black and a note pops up on the screen informing you that additional lessons are available from the director's desk on Aventine.`
 				accept
 
@@ -692,7 +692,7 @@ mission "Remnant: Tech Retrieval"
 				`	"So, what are you asking?"`
 					goto request
 				`	"What are they doing?"`
-			`	"Oh, those are apprentices," she trills with a touch of amusement. "They need to learn how to handle unusual tech. One of the first steps is to deal with old tech. Like salvaging an obslete supercapacitor out of that gascraft so it can be reprocessed into something useful, and replacing it with newer integrated energy storage." She glances at you in amusement. "You've flown the gascraft, you know how old that ship is: primitive energy systems, antique 'hard-shell' shields that have to be manually raised and lowered..." she trails off into momentary silence. "Be glad that you got one that had already been refurbished prior to your visit to Nenia. At least it had modern engines and an updated sensor array."`
+			`	"Oh, those are apprentices," she trills with a touch of amusement. "They need to learn how to handle unusual tech. One of the first steps is to deal with old tech. Like salvaging an obsolete supercapacitor out of that gascraft so it can be reprocessed into something useful, and replacing it with newer integrated energy storage." She glances at you in amusement. "You've flown the gascraft, you know how old that ship is: primitive energy systems, antique 'hard-shell' shields that have to be manually raised and lowered..." She trails off into momentary silence. "Be glad that you got one that had already been refurbished prior to your visit to Nenia. At least it had modern engines and an updated sensor array."`
 			label request
 			`	"To the point," her tone shifts to a more martial cadence. "We want to know how humanity has advanced in the past five and a half centuries. If you found us, I am sure it is only a matter of time until the Alphas, their servants, or others intent on galactic domination discover us. We need to know what sort of weapons they will be wielding, how their ships will be protected, and how fast they can travel in deep space."`
 			choice
@@ -746,7 +746,7 @@ mission "Remnant: Heavy Laser"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a Starling. "Greetings, <first>. I'll be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
 				goto next
 			label familiar
-			`	You recall that Taely is responsible for the shipyards, so you head straight there and ask the nearest mechanic. They direct you to a large hanger tucked into a cliff face, where you find her working at a terminal filled with schematics. Behind her, the room fades quickly into darkness where you can faintly make out what appears to be a large tank and a lot of whirring machinery. As you approach she looks up from her work and turns to face you. "Ah, you have returned. Do you have something new for me?"`
+			`	You recall that Taely is responsible for the shipyards, so you head straight there and ask the nearest mechanic. They direct you to a large hangar tucked into a cliff face, where you find her working at a terminal filled with schematics. Behind her, the room fades quickly into darkness where you can faintly make out what appears to be a large tank and a lot of whirring machinery. As you approach she looks up from her work and turns to face you. "Ah, you have returned. Do you have something new for me?"`
 			label next
 			`	You lead her back to your ship, where you show her the heavy laser. "A laser cannon?" she asks. "Our records indicate that humanity had primitive laser technology at the time of the Exodus, but nothing that would be considered useful as weapons." She pauses to look down at her scanner. "And yet my scans indicate that they are capable of significant power output." She pauses for a moment before continuing, "These could be quite useful to examine more thoroughly. Please deliver two of these heavy lasers to a research team on <planet>."`
 				accept
@@ -843,7 +843,7 @@ mission "Remnant: Catalytic Ramscoop"
 		payment 1390000
 		"remnant met taely" ++
 		conversation
-			`As the <ship> settles onto the pad closest to the research laboratory, you can see several people exiting an adjacent hanger with a trailer pulled by a camel. They quickly approach your landing pad and wait for you to complete your shutdown routines before boarding and starting to unload the ramscoops. Once they are done one of the comes up to you and hands you your payment of <payment>. "Thank you for the delivery, Captain. We are looking forward to seeing what they have done differently."`
+			`As the <ship> settles onto the pad closest to the research laboratory, you can see several people exiting an adjacent hangar with a trailer pulled by a camel. They quickly approach your landing pad and wait for you to complete your shutdown routines before boarding and starting to unload the ramscoops. Once they are done one of the comes up to you and hands you your payment of <payment>. "Thank you for the delivery, Captain. We are looking forward to seeing what they have done differently."`
 
 
 
@@ -867,10 +867,10 @@ mission "Remnant: Electron Beam"
 				`	(Yes.)`
 			branch familiar
 				has "Remnant: Tech Retrieval: done"
-			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely closing up the panel on a thasher turret. "Greetings, <first>. You have good timing: I was just finishing." She reseals the hatch, and drops to the ground on a tether. "So, did you recover something?"`
+			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely closing up the panel on a thrasher turret. "Greetings, <first>. You have good timing: I was just finishing." She reseals the hatch, and drops to the ground on a tether. "So, did you recover something?"`
 				goto next
 			label familiar
-			`	Given what you know about Taely, you decide to skip the spaceport proper and head for the shipyard. After a frustrating half hour spent wandering around tryping to find her, you finally encounter a helpful weapons tech who says they can check the weapon on Taely's behalf.`
+			`	Given what you know about Taely, you decide to skip the spaceport proper and head for the shipyard. After a frustrating half hour spent wandering around trying to find her, you finally encounter a helpful weapons tech who says they can check the weapon on Taely's behalf.`
 			label next
 			`	You accompany her back to your ship, where she examines the electron beam. "This could be useful. Focusing energy into continuous beams has been a popular idea for centuries. It is very useful to know that they have finally managed to make it into an effective weapon.`
 				accept
@@ -1104,7 +1104,7 @@ mission "Remnant: Return the Samples 2"
 	on complete
 		"reputation: Drak" += 1
 		conversation
-			`Back on Aventine, you share the recording of the void sprite's behavior with Plume. "These Sprites demonstrate considerably more communication than we originally thought. And obviously they must have communicated what you did on Nasqueron. Interesting..." Plume's excited staccato exclamations trail off as he begins to make notes on a datapad he has on hand. "Thank you for your help, we will let you know what we find out."`
+			`Back on Aventine, you share the recording of the void sprite's behavior with Plume. "These Sprites demonstrate considerably more communication than we originally thought. And obviously they must have communicated what you did on Nasqueron. Interesting..." Plume's excited staccato exclamations trail off as he begins to make notes on a data pad he has on hand. "Thank you for your help, we will let you know what we find out."`
 
 
 
@@ -1412,7 +1412,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 		conversation
 			`As you relax in the cafeteria on <origin> you are approached by a young Remnant. Judging by the hand-held sensors and tools hanging off her belt, you suppose she is a researcher or an engineer.`
 			`	"Hello Captain <last>. My name is Dawn, and I have been spending the past few days skimming the archive you retrieved. I wanted to ask you a few questions. May I?"`
-			`	She slides into the chair opposite you without waiting for your reply, and pulls out a datapad. "Firstly, our histories mention how humanity met a race called the 'Quarg' and had some ongoing dialogs with them, but not much beyond that. Now here in this history that you brought us, it says that humanity has started exchanging technology with them! Is this true?" She looks at you intently. You sign negatively, and she dejectedly continues. "Could you explain about them, then?" You reply that the Quarg have allowed humanity to live near them, and that the Quarg are usually willing to answer questions, including scientific ones. You continue, elaborating that while the Quarg don't seem to mind having an innovative shipyard studying them as best it can, they don't actually share their technology with anyone.`
+			`	She slides into the chair opposite you without waiting for your reply, and pulls out a data pad. "Firstly, our histories mention how humanity met a race called the 'Quarg' and had some ongoing dialogs with them, but not much beyond that. Now here in this history that you brought us, it says that humanity has started exchanging technology with them! Is this true?" She looks at you intently. You sign negatively, and she dejectedly continues. "Could you explain about them, then?" You reply that the Quarg have allowed humanity to live near them, and that the Quarg are usually willing to answer questions, including scientific ones. You continue, elaborating that while the Quarg don't seem to mind having an innovative shipyard studying them as best it can, they don't actually share their technology with anyone.`
 			`	After several hours of telling her about meeting the Quarg and visiting their worlds, it finally occurs to you that it would be easy enough to take her to visit the Tarazed system.`
 			choice
 				`	(Offer to take her there.)`
@@ -1539,7 +1539,7 @@ mission "Remnant: Broken Jump Drive 1"
 			`	You find a Remnant director and inform them about the broken jump drive that you have.`
 			
 			label accept
-			`	"Excellent!" he glances at his datapad. "There are several teams working on aspects of the jump drive, and the team with the highest priority for this one is on <planet>. I will notify them to expect you."`
+			`	"Excellent!" he glances at his data pad. "There are several teams working on aspects of the jump drive, and the team with the highest priority for this one is on <planet>. I will notify them to expect you."`
 				accept
 			label refuse
 			`	He considers this, and sings, "If you wish. Our offer stands, whenever you choose to return."`

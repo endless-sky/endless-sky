@@ -162,7 +162,7 @@ mission "Smuggler's Den, Part 1"
 			label `tunnel`
 			`	The boy stands up. "Wait ten seconds, then head to the tunnel," he says. He walks into the bathroom, which is right next to the back entrance that she pointed out. You wait for a few seconds, then stand up. "Don't run," says the girl. "Walk slowly. Pretend. You've had a bit too much to drink. We're headed out back to find some privacy." You don't dare look behind you to see if the men in the doorway are watching you.`
 			`	Finally, you reach the back entrance, and she spins the wheel to unlock it. The hinges squeal, but it opens enough for you to squeeze through. You find yourselves in a narrow corridor lit only by flickering sodium lamps. In the yellow lamplight her face and hands look pale, jaundiced. The floor of the corridor is littered with beer bottles and discarded hypodermic needles. To one side of the door are several over-stuffed trash cans. As you step into the corridor, a rat scurries away into the darkness.`
-			`	A few second later, watching through the open airlock, you see the boy walk out of the bathroom. He can't help stealing a quick glance towards the men in the doorway, after which he quickly ducks through the airlock and slams the door shut. "Run!" he whispers.`
+			`	A few seconds later, watching through the open airlock, you see the boy walk out of the bathroom. He can't help stealing a quick glance towards the men in the doorway, after which he quickly ducks through the airlock and slams the door shut. "Run!" he whispers.`
 			`	You begin running down the corridor, in the direction of your ship. You pass a man, slumped over in a corner; there is no time to see if he is dead, or just sleeping. In places the lights have gone out, and it is so dim that you can barely see the floor beneath you. Your footsteps pounding on the metal decking ring terribly loud up and down the empty hallway.`
 			`	Eventually the passageway widens out into a maintenance room, full of humming equipment and large tanks. You duck behind one of them and listen for sounds of pursuit. "I think we're safe," says the boy. He walks over to another airlock door on the opposite wall and tugs it open. Light pours in, almost blinding at first. You are looking out into the rimway, the main passage in this ring of the station. Crowds of people are walking past, paying no attention to you. He glances quickly in both directions, then gestures for you to follow.`
 				goto ship
@@ -561,19 +561,19 @@ mission "Deep Archaeology 3"
 	
 	npc
 		personality waiting
-		government Republic
+		government "Deep Security"
 		ship "Raven (Afterburner)" "D.P.S. Wyrd"
 	
 	npc
 		personality waiting
 		system Aspidiske
-		government Republic
+		government "Deep Security"
 		ship "Raven (Afterburner)" "D.P.S. Skuld"
 	
 	npc
 		personality waiting
 		system Gomeisa
-		government Republic
+		government "Deep Security"
 		ship "Raven (Afterburner)" "D.P.S. Verthandi"
 	
 	on complete
@@ -1828,6 +1828,48 @@ mission "Courier 1"
 		dialog phrase "generic cargo delivery payment"
 
 
+phrase "generic human package offer"
+	word
+		`A local`
+		`A man`
+		`A resident of <source>`
+		`A stranger`
+		`A woman`
+	word
+		` `
+	word
+		`appears from seemingly nowhere to ask,`
+		`approaches you and says,`
+		`flags you down and asks,`
+		`walks up to you and asks,`
+		`stops you and asks,`
+	word
+		` "`
+	word
+		`Captain,`
+		`Excuse me, Captain.`
+		`Sorry to interrupt, but`
+		`Hey there, Captain.`
+	word
+		` `
+	word
+		`I have a small package that needs to get to <planet> by <day>.`
+		`I'm trying to get a package to a relative on <planet> by <day>.`
+		`I need to get this package to one of my clients on <planet> by <day>.`
+		`I'm trying to get this package to <planet> before <day>.`
+	word
+		` `
+	word
+		`Are you able to carry it for me?`
+		`Can you carry it for me?`
+		`Could you take it there?`
+		`Can you help me out with this?`
+	word
+		` I'll give you <payment> for the effort.`
+		` I'm willing to pay you <payment>.`
+		` I can afford to give you <payment> for it.`
+	word
+		`"`
 
 mission "Courier 2"
 	name "Package to <planet>"
@@ -1844,7 +1886,7 @@ mission "Courier 2"
 		distance 7 14
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
-		dialog `A woman in the spaceport flags you down and asks, "Excuse me, Captain. I have small package that needs to get to <planet> by <day>. Can you carry it for me?"`
+		dialog phrase "generic human package offer"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -2319,6 +2361,7 @@ mission "Terraforming 6"
 mission "Terraforming 7"
 	name "Terraforming Research"
 	description "Bring Amy and Nolan to <destination>, where they will research and publish Amy's terraforming methods."
+	source "Earth"
 	destination "Valhalla"
 	passengers 2
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
@@ -2390,7 +2433,7 @@ mission "Terraforming 9"
 			`	"Not everyone is as happy with the prospect of affordable terraforming as we are," Amy says to you as she boards your ship along with suitcases full of scientific supplies. "But that's no reason to stop, now is it?"`
 			`	Amy introduces you to the four others that she brought on board. Two of them are terraforming experts who helped Amy and Nolan with their research. The other two are representatives: one sent by the Republic Parliament in order to oversee the project, and another from Tundra.`
 			`	"Once you're ready, Captain, please bring us to <destination>. Tundra was a tropical world millions of years ago, but became cold after a cataclysmic event of some sort. There's a good chance that we may be able to nudge the planet back toward a warmer climate if we do this right."`
-					accept
+				accept
 	
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the scientists and their equipment hasn't entered the system yet. Better depart and wait for it.`
@@ -2828,14 +2871,14 @@ mission "Paradise Fortune 1"
 				`	(Ignore the scene.)`
 			
 			`	The girl looks you in the eyes as she approaches, expecting help that will never come. Air rushes past you as she and the security guards run by. After a few meters, the security guards catch up to the girl, tackling her to the ground and detaining her as they remove her backpack full of credit chips.`
-					decline
+				decline
 			
 			label continue
 			`	You open the hatch to your ship and yell "Get on!" as the girl approaches. "Thank you, Captain," she says while getting closer, to much protest from the approaching security guards.`
 			`	As she enters your ship, she grabs your arm and pulls you in with her before closing the hatch. "Launch and go to <destination>, now! I'll explain when we get there."`
 				launch
 	on visit
-		dialog `You land on <planet>, but realize that Diana is in one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
+		dialog `You land on <planet>, but realize that the girl is in one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -2990,11 +3033,15 @@ mission "Paradise Fortune 4"
 			`	"Spoiled kid," Alondo says quietly. "Attitudes like that are why I joined the Southern Defense Pact. Anyway Captain, I suggest you hand her over to the Navy immediately. I'll contact the Republic if you need me to."`
 			choice
 				`	"Alright, I'll hand her over."`
-					goto end
 				`	"Sorry, Alondo, but I agree with her cause."`
+					goto agree
 			
 			apply
 				set "navy contacted"
+			`	Alondo breathes a sigh of relief. "You should probably go check on her. I'll message you where the Navy wants to pick her up."`
+				goto end
+			
+			label agree
 			`	"I understand. Please, just don't drag the Free Worlds into this."`
 			
 			label end
