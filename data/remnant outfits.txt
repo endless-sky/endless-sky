@@ -712,11 +712,13 @@ outfit "Remnant Plasma Torch Turret"
 
 outfit "Flak Turret"
 	category "Turrets"
+	licenses
+		Remnant
 	cost 350000
 	thumbnail "outfit/flak cannon"
-	"mass" 40
-	"outfit space" 40
-	"weapon capacity" -40
+	"mass" 10
+	"outfit space" 10
+	"weapon capacity" -10
 	"turret mounts" -1
 	weapon
 		"hardpoint sprite" "hardpoint/flak cannon"
@@ -732,18 +734,21 @@ outfit "Flak Turret"
 		"fire effect" "flak muzzle smoke" 2
 		"die effect" "flak die"
 		"safe"
-		"inaccuracy" 1
-		"turret turn" 5
-		"velocity" 18
+		"inaccuracy" 25
+		"turret turn" 4
+		"burst count" 10
+		"burst reload" 5
+		"velocity" 15
 		"lifetime" 35
-		"reload" 60
+		"reload" 25
 		"blast radius" 150
-		"firing energy" 5
+		"firing energy" 1
 		"firing heat" 10
-		"hit force" 200
-		"shield damage" 224
-		"hull damage" 296
-	description `Tired of annoying fighters running circles around your larger ships? Shove some airbust shells in their faces!`
+		"hit force" 100
+		"shield damage" 40
+		"hull damage" 20
+	description `These flak turrets date back to the era when the most serious thing planets needed to protect against was the ocassional pirate raid. Desperate for weaponry to fend of the Alphas, the Remnants salvaged many of these for their ships.`
+	description `	While these weapons are poor in terms of their direct damage potential, the Remnant keep them in service because of their utility at disrupting incoming fighter formations.
 
 
 
@@ -771,18 +776,18 @@ outfit "Remnant Flak Turret"
 		"safe"
 		"inaccuracy" 20
 		"turret turn" 5
-		"burst count" 10
-		"burst reload" 5
+		"burst count" 11
+		"burst reload" 4
 		"velocity" 20
 		"lifetime" 55
-		"reload" 30
+		"reload" 20
 		"blast radius" 150
 		"firing energy" 5
 		"firing heat" 10
 		"hit force" 200
 		"shield damage" 224
 		"hull damage" 296
-	description `This turret was designed and manufactured by a dissenting group of Remnant engineers who firmly believe the old motto "by many small things great things can accomplish things." In response to the automaton threat, they believe that taking a page from the Korath tactics by filling the skies with lethal pieces of metal is one of the best ways to eliminate that threat.`
+	description `This turret was designed and manufactured by a group of Remnant engineers who firmly believe the old motto "by many small things great things can accomplish things." In response to the automaton threat, they believe that taking a page from the Korath tactics by filling the skies with lethal pieces of metal is one of the best ways to eliminate that threat.`
 
 effect "flak explosion"
 	sprite "effect/explosion/large"
