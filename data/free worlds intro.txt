@@ -1909,6 +1909,7 @@ mission "Rescue Katya 1"
 
 mission "Rescue Katya 2"
 	landing
+	autosave
 	name "Rescue Katya"
 	description "Return to <planet> and report to the Free Worlds Council that you were unable to locate Katya."
 	source Clink

@@ -2340,7 +2340,7 @@ mission "Raid on Merchants (North)"
 	name "Merchants near <system>"
 	repeat
 	job
-	description "A merchant fleet has been spotted near the <system>. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
+	description "A merchant fleet has been spotted near the <system> system. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
 	to offer
 		random < 50
 		"combat rating" > 150
@@ -2369,7 +2369,7 @@ mission "Raid on Merchants (Core)"
 	name "Merchants near <system>"
 	repeat
 	job
-	description "A merchant fleet has been spotted near the <system>. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
+	description "A merchant fleet has been spotted near the <system> system. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
 	to offer
 		random < 50
 		"combat rating" > 150
@@ -2398,7 +2398,7 @@ mission "Raid on Merchants (South)"
 	name "Merchants near <system>"
 	repeat
 	job
-	description "A merchant fleet has been spotted near the <system>. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
+	description "A merchant fleet has been spotted near the <system> system. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
 	to offer
 		random < 50
 		"combat rating" > 150
