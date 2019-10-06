@@ -614,9 +614,9 @@ mission "Remnant: Learn Sign 1"
 			label song
 			`	She looks surprised, but then recovers and sings a verse about how hands can learn, but must be cautious, and gestures at the hand scanner embedded in the desk.`
 			label scan
-			`	As you place your hand on the scanner, you feel a quick tingle as it scans your hand, then a pinprick as it extracts a drop of blood. The lady behind the desk looks at her screen. She nods, taps on the screen a few times, then retrieves a datapad from beneath the desk.`
+			`	As you place your hand on the scanner, you feel a quick tingle as it scans your hand, then a pinprick as it extracts a drop of blood. The lady behind the desk looks at her screen. She nods, taps on the screen a few times, then retrieves a data pad from beneath the desk.`
 			`	She hands the pad to you, and sings a brief verse about perseverance and hope.`
-			`	Back on your ship you flip the pad on. The datapad appears to be loaded with a number of historic musicals and operas where the meaning of the lyrics has been replicated with gestures as subtitles. It is interspersed with what appear to be Remnant children's videos slowly explaining gestures and pausing to give you the opportunity to practice.`
+			`	Back on your ship you flip the pad on. The data pad appears to be loaded with a number of historic musicals and operas where the meaning of the lyrics has been replicated with gestures as subtitles. It is interspersed with what appear to be Remnant children's videos slowly explaining gestures and pausing to give you the opportunity to practice.`
 			`	You spend a few hours going through the lessons. It takes a while to start vaguely understanding the signs, but you eventually learn how to sign a number of basic phrases. Eventually, the pad goes black and a note pops up on the screen informing you that additional lessons are available from the director's desk on Aventine.`
 				accept
 
@@ -1052,7 +1052,7 @@ mission "Remnant: Return the Samples 2"
 	on complete
 		"reputation: Drak" += 1
 		conversation
-			`Back on Aventine, you share the recording of the void sprite's behavior with Plume. "These Sprites demonstrate considerably more communication than we originally thought. And obviously they must have communicated what you did on Nasqueron. Interesting..." Plume's excited staccato exclamations trail off as he begins to make notes on a datapad he has on hand. "Thank you for your help, we will let you know what we find out."`
+			`Back on Aventine, you share the recording of the void sprite's behavior with Plume. "These Sprites demonstrate considerably more communication than we originally thought. And obviously they must have communicated what you did on Nasqueron. Interesting..." Plume's excited staccato exclamations trail off as he begins to make notes on a data pad he has on hand. "Thank you for your help, we will let you know what we find out."`
 
 
 
@@ -1360,7 +1360,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 		conversation
 			`As you relax in the cafeteria on <origin> you are approached by a young Remnant. Judging by the hand-held sensors and tools hanging off her belt, you suppose she is a researcher or an engineer.`
 			`	"Hello Captain <last>. My name is Dawn, and I have been spending the past few days skimming the archive you retrieved. I wanted to ask you a few questions. May I?"`
-			`	She slides into the chair opposite you without waiting for your reply, and pulls out a datapad. "Firstly, our histories mention how humanity met a race called the 'Quarg' and had some ongoing dialogs with them, but not much beyond that. Now here in this history that you brought us, it says that humanity has started exchanging technology with them! Is this true?" She looks at you intently. You sign negatively, and she dejectedly continues. "Could you explain about them, then?" You reply that the Quarg have allowed humanity to live near them, and that the Quarg are usually willing to answer questions, including scientific ones. You continue, elaborating that while the Quarg don't seem to mind having an innovative shipyard studying them as best it can, they don't actually share their technology with anyone.`
+			`	She slides into the chair opposite you without waiting for your reply, and pulls out a data pad. "Firstly, our histories mention how humanity met a race called the 'Quarg' and had some ongoing dialogs with them, but not much beyond that. Now here in this history that you brought us, it says that humanity has started exchanging technology with them! Is this true?" She looks at you intently. You sign negatively, and she dejectedly continues. "Could you explain about them, then?" You reply that the Quarg have allowed humanity to live near them, and that the Quarg are usually willing to answer questions, including scientific ones. You continue, elaborating that while the Quarg don't seem to mind having an innovative shipyard studying them as best it can, they don't actually share their technology with anyone.`
 			`	After several hours of telling her about meeting the Quarg and visiting their worlds, it finally occurs to you that it would be easy enough to take her to visit the Tarazed system.`
 			choice
 				`	(Offer to take her there.)`
@@ -1487,7 +1487,7 @@ mission "Remnant: Broken Jump Drive 1"
 			`	You find a Remnant director and inform them about the broken jump drive that you have.`
 			
 			label accept
-			`	"Excellent!" he glances at his datapad. "There are several teams working on aspects of the jump drive, and the team with the highest priority for this one is on <planet>. I will notify them to expect you."`
+			`	"Excellent!" he glances at his data pad. "There are several teams working on aspects of the jump drive, and the team with the highest priority for this one is on <planet>. I will notify them to expect you."`
 				accept
 			label refuse
 			`	He considers this, and sings, "If you wish. Our offer stands, whenever you choose to return."`

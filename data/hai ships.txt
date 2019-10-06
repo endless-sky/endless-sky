@@ -74,8 +74,8 @@ ship "Centipede"
 		"hull" 2400
 		"required crew" 35
 		"bunks" 131
-		"mass" 168
-		"drag" 4
+		"mass" 187
+		"drag" 3.9
 		"heat dissipation" .75
 		"fuel capacity" 600
 		"cargo space" 38
