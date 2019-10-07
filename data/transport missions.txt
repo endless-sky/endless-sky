@@ -2419,6 +2419,7 @@ mission "Terraforming 9"
 	landing
 	name "Terraforming Tundra"
 	description "Travel to <destination> with Amy, Nolan, and four others."
+	source "Valhalla"
 	destination "Tundra"
 	passengers 6
 	cargo "scientific equipment" 10
@@ -2447,6 +2448,7 @@ mission "Terraforming 9"
 mission "Terraforming 10"
 	name "Terraforming Tundra"
 	description "Bring the Republic representative overseeing the terraforming project to <destination>, where he will attempt to find an alternative solution to terraforming Tundra that does not involve an asteroid."
+	source "Tundra"
 	destination "Earth"
 	passengers 1
 	to offer
@@ -2489,6 +2491,7 @@ mission "Terraforming 11"
 	landing
 	name "Terraforming Tundra"
 	description "Return to <destination> with the Republic representative."
+	source "Earth"
 	destination "Tundra"
 	passengers 1
 	to offer
@@ -2523,6 +2526,7 @@ mission "Terraforming 12"
 	landing
 	name "Terraforming Tundra"
 	description "Plant a thruster on an asteroid to guide it into a collision with the dormant supervolcano on Tundra."
+	source "Tundra"
 	cargo "thruster equipment" 10
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
@@ -2748,7 +2752,8 @@ mission "Lost Boy 2"
 	landing
 	name `Rescue Tod`
 	description `Locate the <npc> and board it to rescue Tod, then bring him to <destination> so that he may reunite with his mother.`
-	destination Moonshake
+	source "Deadman's Cove"
+	destination "Moonshake"
 	to offer
 		has "Lost Boy 1: done"
 	
@@ -2801,6 +2806,7 @@ mission "Lost Boy 3"
 	landing
 	name `Bring Tod to <planet>`
 	description `Now that Tod's mother knows he is safe, bring him to <destination> so that he may start his mining job to support him and his mother.`
+	source "Moonshake"
 	destination "Placer"
 	passengers 1
 	blocked "This mission requires that you have at least one free bunk. Return once you have the space."
@@ -2939,7 +2945,7 @@ mission "Paradise Fortune 3"
 	landing
 	name `Last Hope`
 	description `Escape from the Navy and travel to <destination> where Diana Howl hopes that the Free Worlds will help her.`
-	destination Bourne
+	destination "Bourne"
 	passengers 1
 	to offer
 		has "Paradise Fortune 2: done"
@@ -3003,6 +3009,7 @@ mission "Paradise Fortune 4"
 	landing
 	name `Exchange of Goods`
 	description `Travel to <destination> and hand the backpack of credits and Diana Howl's note over to the Navy.`
+	source "Bourne"
 	destination "New Boston"
 	to offer
 		has "Paradise Fortune 3: done"
