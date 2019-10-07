@@ -2301,13 +2301,13 @@ ship "Osprey"
 	thumbnail "thumbnail/osprey"
 	attributes
 		category "Medium Warship"
-		"cost" 4400000
+		"cost" 3900000
 		"shields" 7200
 		"hull" 1600
 		"required crew" 9
 		"bunks" 24
 		"mass" 270
-		"drag" 6.1
+		"drag" 5.9
 		"heat dissipation" .8
 		"fuel capacity" 600
 		"cargo space" 40
