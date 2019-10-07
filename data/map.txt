@@ -25180,7 +25180,7 @@ planet Harmony
 planet Haven
 	attributes pirate mining "north pirate" north frontier
 	landscape land/dune1
-	description `Haven was founded by highly successful "privateers" nearly two centuries ago. Since then, as rival bands of pirates have fought over it, it has changed hands fourteen times, but has never been successfully invaded by the Republic. Numerous small manufacturing shops sell outfits that cannot be bought legally, and there is even a small shipyard where customized ships are sold.`
+	description `Haven was founded by highly successful "privateers" nearly two centuries ago. Since then, as rival bands of pirates have fought over it, it has changed hands fourteen times, but has never been successfully invaded by the Republic. Numerous small manufacturing shops sell outfits that cannot be bought legally, and there is even a small shipyard where customized ships are sold to those who have the right connections.`
 	description `	Much of the planet is desert, but with enough moisture to grow enough crops to feed the entire population. Strip mining has turned other parts of the planet into barren wastelands, and has polluted many of the rivers.`
 	spaceport `The spaceport is old and dingy, with piles of litter in the gutters and graffiti on many of the alley walls. Many of the shops are closed, the windows boarded over or covered with yellowing paper. This is an independent world, and a relatively stable settlement, but the effects of its separation from the rest of the galaxy are evident. A few young people carrying large backpacks eye you with interest, perhaps trying to gauge their chances of getting you to give them a cheap lift off-planet.`
 	shipyard "Northern Pirates"
@@ -26672,13 +26672,14 @@ planet Slylandro
 planet "Smuggler's Den"
 	attributes pirate station "south pirate" south frontier
 	landscape land/loc1
-	description `Smuggler's Den was formerly known as Grendel Station, back when it was an operating refinery. But, it has since been taken over by pirates, who turned it into a haven for all manner of smugglers and privateers. The repair shops here can make a variety of legal and illegal modifications to your ship, and in the shipyard you can buy refurbished starships... if it does not trouble your conscience to think about the likely fates of their previous owners.`
+	description `Smuggler's Den was formerly known as Grendel Station, back when it was an operating refinery. But, it has since been taken over by pirates, who turned it into a haven for all manner of smugglers and privateers. Being a hub of pirate activity, Smuggler's Den has access to fenced goods from beyond the region. The repair shops here can make a variety of legal and illegal modifications to your ship, and in the shipyard you can buy refurbished starships... if it does not trouble your conscience to think about the likely fates of their previous owners. Rumor has it that pilots with the right connections may be able to purchase heavily modified ships here.`
 	spaceport `It is a strange but indisputable fact that pirates smell worse than ordinary human beings. In this day and age, where even the cheapest shuttlecraft at least has a sonic shower, there is no logical explanation for it, except that anarchist tendencies must somehow go hand in hand with a tendency to reject society's norms around hygiene. Here in a space station, with nothing but recycled air to breathe, the effect is overpowering.`
 	shipyard "Southern Pirates"
 	shipyard "Advanced Pirates"
 	outfitter "Delta V Advanced"
 	outfitter "Kraz Advanced"
 	outfitter "Common Outfits"
+	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
