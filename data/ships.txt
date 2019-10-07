@@ -341,9 +341,9 @@ ship "Bastion"
 	thumbnail "thumbnail/bastion"
 	attributes
 		category "Medium Warship"
-		"cost" 3560000
-		"shields" 6700
-		"hull" 4200
+		"cost" 4060000
+		"shields" 7500
+		"hull" 4700
 		"required crew" 17
 		"bunks" 40
 		"mass" 580
@@ -352,7 +352,7 @@ ship "Bastion"
 		"fuel capacity" 500
 		"cargo space" 110
 		"outfit space" 470
-		"weapon capacity" 180
+		"weapon capacity" 190
 		"engine capacity" 120
 		weapon
 			"blast radius" 120
