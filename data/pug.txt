@@ -317,8 +317,6 @@ outfit "Pug Biodefenses"
 	"unplunderable" 1
 	description "This defense system is designed to release a suite of toxins that are lethal to human beings (and probably to some other species, as well) but which have no effect at all on the Pug."
 
-
-
 outfit "Pug Peacekeeping Staff"
 	plural "Pug Peacekeeping Staves"
 	category "Hand to Hand"
@@ -327,7 +325,7 @@ outfit "Pug Peacekeeping Staff"
 	"capture attack" 0.8
 	"capture defense" 1.5
 	"unplunderable" 1
-	description "These tools designed for the control of planetary populations are also good at protecting their ships. Using minor amounts of radiation and electric shocks it Non-Lethally removes the complete ability to oppose the pug."
+	description "These tools designed for the control of planetary populations are also good at protecting their ships. Using minor amounts of radiation and electric shocks it non-lethally removes the complete ability to oppose the pug."
 
 
 
