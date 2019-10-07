@@ -341,7 +341,7 @@ ship "Bastion"
 	thumbnail "thumbnail/bastion"
 	attributes
 		category "Medium Warship"
-		"cost" 4060000
+		"cost" 3860000
 		"shields" 7500
 		"hull" 4700
 		"required crew" 17
@@ -2179,7 +2179,7 @@ ship "Mule"
 	thumbnail "thumbnail/mule"
 	attributes
 		category "Medium Warship"
-		"cost" 4580000
+		"cost" 4080000
 		"shields" 5400
 		"hull" 4400
 		"required crew" 22
@@ -2301,7 +2301,7 @@ ship "Osprey"
 	thumbnail "thumbnail/osprey"
 	attributes
 		category "Medium Warship"
-		"cost" 3900000
+		"cost" 4200000
 		"shields" 7200
 		"hull" 1600
 		"required crew" 9
