@@ -352,7 +352,7 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"Did you catch the latest installment of "
+		"You should check out the latest installment of "
 		"I gotta admit, I'm hooked on "
 		"Once I finish my trip, I'm catching up on "
 		"I'm off to a fan convention for "
