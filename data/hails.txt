@@ -358,7 +358,7 @@ phrase "friendly civilian"
 		"I'm off to a fan convention for "
 		"Gotta say, I enjoy watching "
 	phrase
-		"band"
+		"media name"
 	word
 		". It's "
 		", "
