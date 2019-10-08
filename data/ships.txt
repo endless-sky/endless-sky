@@ -344,7 +344,7 @@ ship "Bastion"
 		"cost" 3860000
 		"shields" 7500
 		"hull" 4700
-		"required crew" 17
+		"required crew" 14
 		"bunks" 40
 		"mass" 580
 		"drag" 10.3
@@ -2182,7 +2182,7 @@ ship "Mule"
 		"cost" 4080000
 		"shields" 5400
 		"hull" 4400
-		"required crew" 22
+		"required crew" 17
 		"bunks" 43
 		"mass" 320
 		"drag" 5.7
