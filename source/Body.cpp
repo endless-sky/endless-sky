@@ -160,6 +160,13 @@ double Body::Zoom() const
 
 
 
+double Body::Scale() const
+{
+	return scale;
+}
+
+
+
 // Check if this object is marked for removal from the game.
 bool Body::ShouldBeRemoved() const
 {
@@ -196,6 +203,8 @@ void Body::LoadSprite(const DataNode &node)
 			frameRate = 1. / child.Value(1);
 		else if(child.Token(0) == "delay" && child.Size() >= 2 && child.Value(1) > 0.)
 			delay = child.Value(1);
+		else if(child.Token(0) == "scale" && child.Size() >= 2 && child.Value(1) > 0.)
+			scale = child.Value(1);
 		else if(child.Token(0) == "start frame" && child.Size() >= 2)
 		{
 			frameOffset += static_cast<float>(child.Value(1));
@@ -230,6 +239,8 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 			out.Write("frame rate", frameRate * 60.);
 		if(delay)
 			out.Write("delay", delay);
+		if(scale != 1.)
+			out.Write("scale", scale);
 		if(randomize)
 			out.Write("random start frame");
 		if(!repeat)
