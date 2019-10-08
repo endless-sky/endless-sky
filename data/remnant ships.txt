@@ -387,9 +387,9 @@ ship "Ibis"
 		"Point Defense Turret" 2
 
 		"Aeon Cell"
-		"Crystal Capacitor"
+		"Crystal Capacitor" 3
 		"Emergency Ramscoop" 2
-		"Thermoelectric Cooler" 3
+		"Thermoelectric Cooler" 5
 		"Quantum Key Stone"
 		"Salvage Scanner"
 		"Tuning Rifle" 20
