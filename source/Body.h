@@ -94,7 +94,7 @@ protected:
 	// A zoom of 1 means the sprite should be drawn at half size. For objects
 	// whose sprites should be full size, use zoom = 2.
 	float zoom = 1.f;
-	double scale = 1.;
+	float scale = 1.f;
 	
 	// Government, for use in collision checks.
 	const Government *government = nullptr;

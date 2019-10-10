@@ -147,7 +147,7 @@ const Angle &Body::Facing() const
 // and transform that should be applied to the sprite before drawing it.
 Point Body::Unit() const
 {
-	return angle.Unit() * (.5 * Zoom()) * scale;
+	return angle.Unit() * (.5 * Zoom()) * Scale();
 }
 
 
@@ -162,7 +162,7 @@ double Body::Zoom() const
 
 double Body::Scale() const
 {
-	return scale;
+	return static_cast<double>(scale);
 }
 
 
@@ -204,7 +204,7 @@ void Body::LoadSprite(const DataNode &node)
 		else if(child.Token(0) == "delay" && child.Size() >= 2 && child.Value(1) > 0.)
 			delay = child.Value(1);
 		else if(child.Token(0) == "scale" && child.Size() >= 2 && child.Value(1) > 0.)
-			scale = child.Value(1);
+			scale = static_cast<float>(child.Value(1));
 		else if(child.Token(0) == "start frame" && child.Size() >= 2)
 		{
 			frameOffset += static_cast<float>(child.Value(1));
@@ -239,7 +239,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 			out.Write("frame rate", frameRate * 60.);
 		if(delay)
 			out.Write("delay", delay);
-		if(scale != 1.)
+		if(scale != 1.f)
 			out.Write("scale", scale);
 		if(randomize)
 			out.Write("random start frame");
