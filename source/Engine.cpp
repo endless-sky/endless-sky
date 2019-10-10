@@ -1986,7 +1986,7 @@ void Engine::AddSprites(const Ship &ship)
 			for(const auto &it : ship.Attributes().FlareSprites())
 				for(int i = 0; i < it.second && i < 3; ++i)
 				{
-					Body sprite(it.first, pos, ship.Velocity(), ship.Facing(), point.Zoom() * it.first.Scale());
+					Body sprite(it.first, pos, ship.Velocity(), ship.Facing(), point.Zoom());
 					draw[calcTickTock].Add(sprite, cloak);
 				}
 		}

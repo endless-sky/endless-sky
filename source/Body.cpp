@@ -65,7 +65,7 @@ const Sprite *Body::GetSprite() const
 // Get the width of this object, in world coordinates (i.e. taking zoom into account).
 double Body::Width() const
 {
-	return static_cast<double>(sprite ? (.5f * zoom) * sprite->Width() : 0.f);
+	return static_cast<double>(sprite ? (.5f * zoom) * scale * sprite->Width() : 0.f);
 }
 
 
@@ -73,7 +73,7 @@ double Body::Width() const
 // Get the height of this object, in world coordinates (i.e. taking zoom into account).
 double Body::Height() const
 {
-	return static_cast<double>(sprite ? (.5f * zoom) * sprite->Height() : 0.f);
+	return static_cast<double>(sprite ? (.5f * zoom) * scale * sprite->Height() : 0.f);
 }
 
 
@@ -147,7 +147,7 @@ const Angle &Body::Facing() const
 // and transform that should be applied to the sprite before drawing it.
 Point Body::Unit() const
 {
-	return angle.Unit() * (.5 * Zoom());
+	return angle.Unit() * (.5 * Zoom()) * scale;
 }
 
 
