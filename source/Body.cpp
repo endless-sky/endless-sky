@@ -62,7 +62,7 @@ const Sprite *Body::GetSprite() const
 
 
 
-// Get the width of this object, in world coordinates (i.e. taking zoom into account).
+// Get the width of this object, in world coordinates (i.e. taking zoom and scale into account).
 double Body::Width() const
 {
 	return static_cast<double>(sprite ? (.5f * zoom) * scale * sprite->Width() : 0.f);
@@ -70,7 +70,7 @@ double Body::Width() const
 
 
 
-// Get the height of this object, in world coordinates (i.e. taking zoom into account).
+// Get the height of this object, in world coordinates (i.e. taking zoom and scale into account).
 double Body::Height() const
 {
 	return static_cast<double>(sprite ? (.5f * zoom) * scale * sprite->Height() : 0.f);

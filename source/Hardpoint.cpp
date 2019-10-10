@@ -190,11 +190,11 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 	// Get projectiles to start at the right position. They are drawn at an
 	// offset of (.5 * velocity) and that velocity includes the velocity of the
 	// ship that fired them.
-	Point start = ship.Position() + aim.Rotate(point) - .5 * ship.Velocity();
+	Point start = ship.Position() + aim.Rotate(point * ship.Scale()) - .5 * ship.Velocity();
 	
 	// Apply the aim and hardpoint offset.
 	aim += angle;
-	start += aim.Rotate(outfit->HardpointOffset());
+	start += aim.Rotate(outfit->HardpointOffset() * outfit->HardpointSprite().Scale());
 	
 	// Create a new projectile, originating from this hardpoint.
 	projectiles.emplace_back(ship, start, aim, outfit);
