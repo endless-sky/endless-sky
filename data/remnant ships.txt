@@ -18,7 +18,7 @@ ship "Albatross"
 		category "Heavy Warship"
 		licenses
 			"Remnant Capital"
-		cost 20000000
+		cost 20250000
 		"shields" 34200
 		"hull" 12600
 		"required crew" 44
@@ -355,7 +355,7 @@ ship "Pelican"
 		category "Heavy Freighter"
 		licenses
 			"Remnant Capital"
-		cost 9770000
+		cost 9900000
 		"shields" 11300
 		"hull" 5700
 		"required crew" 14
