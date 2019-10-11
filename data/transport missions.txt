@@ -3415,7 +3415,7 @@ mission "Inheritance Redirection"
 		distance 7 9
 		government "Republic" "Free Worlds" "Syndicate"
 	to offer
-		"net worth" >= 2000000
+		credits >= 400000
 	on accept
 		payment -200000
 	on offer
@@ -3469,4 +3469,4 @@ mission "Inheritance Redirection"
 			`	The terminal suddenly goes black. Mr. Smith is apparently no longer interested in doing business with you.`
 				decline
 	on complete
-		dialog "There is no inheritance for Mr. Pappa waiting for you at the bank, but there are many other victims that paid some credits while expecting to earn a larger amount of credits in return. Some other victims make a big fuss and the alerted authorities fine those victims for attempted inheritance fraud. You leave the bank in silence."
+		dialog "There is no inheritance for Mr. Pappa waiting for you at the bank, but there are many other victims that paid some credits while expecting to earn a larger amount of credits in return. Some make a big fuss about it, until the alerted authorities start fining them for attempted inheritance fraud. You leave the bank in silence."
