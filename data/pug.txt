@@ -322,10 +322,10 @@ outfit "Pug Peacekeeping Staff"
 	category "Hand to Hand"
 	cost 11000
 	thumbnail "outfit/pug staff"
-	"capture attack" 0.8
-	"capture defense" 1.5
+	"capture attack" 2.3
+	"capture defense" 2.3
 	"unplunderable" 1
-	description "These tools designed for the control of planetary populations are also good at protecting their ships. Using minor amounts of radiation and electric shocks it non-lethally removes the complete ability to oppose the pug."
+	description "Despite being designed for planetary population control, peacekeeping staves also work exceptionally well in ship defense. The staff emits a short-ranged beam that immediately incapacitates anyone it touches by causing them to enter a euphoric and hallucinogenic state. wandering off to somewhere where they won't cause any trouble. Exiting this euphoric state is never pleasant, though, often resulting in vomiting."
 
 
 
