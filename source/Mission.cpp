@@ -913,6 +913,14 @@ const string &Mission::Identifier() const
 
 
 
+// Get the mission actions for this mission.
+map<Mission::Trigger, MissionAction> Mission::GetActions() const
+{
+	return actions;
+}
+
+
+
 // "Instantiate" a mission by replacing randomly selected values and places
 // with a single choice, and then replacing any wildcard text as well.
 Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const

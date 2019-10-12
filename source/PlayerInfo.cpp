@@ -2340,6 +2340,8 @@ void PlayerInfo::StepMissions(UI *ui)
 				if(ship->IsDestroyed())
 					mission.Do(ShipEvent(nullptr, ship, ShipEvent::DESTROY), *this, ui);
 	
+	string visitText;
+	int visitDialogs = 0;
 	auto mit = missions.begin();
 	while(mit != missions.end())
 	{
@@ -2354,7 +2356,35 @@ void PlayerInfo::StepMissions(UI *ui)
 		else if(mission.CanComplete(*this))
 			RemoveMission(Mission::COMPLETE, mission, ui);
 		else if(mission.Destination() == GetPlanet() && !freshlyLoaded)
+		{
 			mission.Do(Mission::VISIT, *this, ui);
+			
+			// On visit dialogs are handled separately as to avoid a player
+			// getting spammed by on visit dialogs if they are stacking jobs
+			// from the same destination.
+			map<Mission::Trigger, MissionAction> actions = mission.GetActions();
+			auto ait = actions.find(Mission::VISIT);
+			if(ait != actions.end())
+			{
+				if(visitText.empty())
+				{
+					map<string, string> subs;
+					subs["<first>"] = firstName;
+					subs["<last>"] = lastName;
+					if(Flagship())
+						subs["<ship>"] = Flagship()->Name();
+					visitText = Format::Replace(ait->second.DialogText(), subs);
+				}
+				else
+					++visitDialogs;
+			}
+		}
+	}
+	if(!visitText.empty())
+	{
+		if(visitDialogs)
+			visitText += "\n\tYou have " + Format::Number(visitDialogs) + " other incomplete " + ((visitDialogs > 1) ? "missions" : "mission") + " at this location.";
+		ui->Push(new Dialog(visitText));
 	}
 	// One mission's actions may influence another mission, so loop through one
 	// more time to see if any mission is now completed or failed due to a change
