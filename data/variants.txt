@@ -995,22 +995,22 @@ ship "Freighter" "Freighter (Secret Cargo)"
 
 ship "Frigate" "Frigate (Mark II)"
 	outfits
+		"Particle Cannon" 4
+		"Anti-Missile Turret"
+		"Blaster Turret" 2
 		"NT-200 Nucleovoltaic"
+		"Dwarf Core"
 		"LP072a Battery Pack"
+		"Supercapacitor"
+		"D41-HY Shield Generator"
 		"Small Radar Jammer"
+		"Water Coolant System"
+		"Outfits Expansion"
+		"Laser Rifle" 8
+		"Fragmentation Grenades" 8
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
-		"Fragmentation Grenades" 8
 		"Hyperdrive"
-		"Outfits Expansion"
-		"Supercapacitor"
-		"Particle Cannon" 4
-		"Dwarf Core"
-		"Laser Rifle" 8
-		"Anti-Missile Turret"
-		"Water Coolant System"
-		"Blaster Turret" 2
-		"D41-HY Shield Generator"
 	turret "Anti-Missile Turret"
 	turret "Blaster Turret"
 	turret "Blaster Turret"
