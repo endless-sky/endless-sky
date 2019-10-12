@@ -1024,8 +1024,8 @@ mission "Remnant: Return the Samples 2"
 		has "Remnant: Return the Samples: done"
 	on offer
 		conversation
-			`Following Plume's directions, you find a lab tucked behind the main area of the spaceport, where a short walkway leads into an underground structure. Stepping inside the door you note a rack of camouflage netting positioned easily at hand. Given what you have learned of their history, it is probably a last ditch preparation in case they need to hide the entrance from a raid.`
-			`	The lab itself is a microcosm of Remnant development, the structure appears to be some strange semi-organic material, and you can see an eclectic mix of familiar and unfamiliar shapes cluttering the tables. If you had to guess, you would think that this lab was the result of several different families of technology, only one of which was human.`
+			`Following Plume's directions, you find a lab tucked behind the main area of the spaceport, where a short walkway leads into an underground structure. Stepping inside the door you note a rack of camouflage netting positioned easily at hand. Given what you have learned of their history, it is probably a last-ditch preparation in case they need to hide the entrance from a raid.`
+			`	The lab itself is a microcosm of Remnant development. The structure appears to be some strange semi-organic material, and you can see an eclectic mix of familiar and unfamiliar shapes cluttering the tables. If you had to guess, you would say that this lab was the result of several different families of technology, only one of which was human.`
 			`	Plume and several other Remnant are at the back of the room inspecting a bunch of cocoon-like containers, similar to the ones that carried the last batch of eggs back to Nasqueron. After checking a screen he looks up and seems momentarily startled to see you.`
 			`	"Ah, <first>! You are just in time," Plume chants quickly, his hands unconsciously dancing in a quick series of gestures. "These eggs are ready to be delivered, this time to Slylandro. Could you drop them off like you did before?"`
 			choice
