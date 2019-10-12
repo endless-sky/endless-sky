@@ -1000,14 +1000,15 @@ ship "Frigate" "Frigate (Mark II)"
 		"Blaster Turret" 2
 		"NT-200 Nucleovoltaic"
 		"Dwarf Core"
-		"LP036a Battery Pack"
+		"LP072a Battery Pack"
+		"Supercapacitor"
 		"D41-HY Shield Generator"
 		"Small Radar Jammer"
 		"Water Coolant System"
 		"Outfits Expansion"
 		"Laser Rifle" 8
 		"Fragmentation Grenades" 8
-		"X3700 Ion Thruster"
+		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 	turret "Anti-Missile Turret"
