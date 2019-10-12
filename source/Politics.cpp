@@ -247,12 +247,8 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 						failedMissions++;
 					}
 				}
-				if(failedMissions > 0)
-				{
-					reason.append("\n\tYou failed ");
-					reason.append(Format::Number(failedMissions));
-					reason.append((failedMissions > 1) ? " other missions." : " other mission.");
-				}
+				if(failedMissions)
+					reason += "\n\tYou failed " + Format::Number(failedMissions) + " other " + ((failedMissions > 1) ? "missions." : "mission.");
 			}
 		}
 		if(!scan || (scan & ShipEvent::SCAN_OUTFITS))
