@@ -2341,7 +2341,8 @@ void PlayerInfo::StepMissions(UI *ui)
 					mission.Do(ShipEvent(nullptr, ship, ShipEvent::DESTROY), *this, ui);
 	
 	string visitText;
-	int visitDialogs = 0;
+	int extraVisitDialogs = 0;
+	int deadlineMissions = 0;
 	auto mit = missions.begin();
 	while(mit != missions.end())
 	{
@@ -2366,24 +2367,35 @@ void PlayerInfo::StepMissions(UI *ui)
 			auto ait = actions.find(Mission::VISIT);
 			if(ait != actions.end())
 			{
-				if(visitText.empty())
+				if(!mission.IsUnique())
 				{
-					map<string, string> subs;
-					subs["<first>"] = firstName;
-					subs["<last>"] = lastName;
-					if(Flagship())
-						subs["<ship>"] = Flagship()->Name();
-					visitText = Format::Replace(ait->second.DialogText(), subs);
+					if(visitText.empty())
+					{
+						map<string, string> subs;
+						subs["<first>"] = firstName;
+						subs["<last>"] = lastName;
+						if(Flagship())
+							subs["<ship>"] = Flagship()->Name();
+						visitText = Format::Replace(ait->second.DialogText(), subs);
+					}
+					else
+						++extraVisitDialogs;
+					if(mission.Deadline())
+						++deadlineMissions;
 				}
-				else
-					++visitDialogs;
 			}
 		}
 	}
 	if(!visitText.empty())
 	{
-		if(visitDialogs)
-			visitText += "\n\tYou have " + Format::Number(visitDialogs) + " other incomplete " + ((visitDialogs > 1) ? "missions" : "mission") + " at this location.";
+		if(extraVisitDialogs)
+		{
+			visitText += "\n\tYou have " + Format::Number(extraVisitDialogs) + " other unfinished " + ((extraVisitDialogs > 1) ? "missions" : "mission") + " at this location.";
+			if(deadlineMissions)
+			{
+				visitText += "\n\t" + Format::Number(deadlineMissions) + " of your unfinished missions here " + ((deadlineMissions > 1) ? "have approaching deadlines." : "has an approaching deadline.");
+			}
+		}
 		ui->Push(new Dialog(visitText));
 	}
 	// One mission's actions may influence another mission, so loop through one
