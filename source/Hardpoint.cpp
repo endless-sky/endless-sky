@@ -221,7 +221,7 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 	double range = outfit->Velocity();
 	
 	// Check if the missile is within range of this hardpoint.
-	Point start = ship.Position() + ship.Facing().Rotate(point);
+	Point start = ship.Position() + ship.Facing().Rotate(point * ship.Scale());
 	Point offset = projectile.Position() - start;
 	if(offset.Length() > range)
 		return false;
