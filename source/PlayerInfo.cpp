@@ -2343,6 +2343,12 @@ void PlayerInfo::StepMissions(UI *ui)
 	string visitText;
 	int extraVisitDialogs = 0;
 	int deadlineMissions = 0;
+	map<string, string> subs;
+	subs["<first>"] = firstName;
+	subs["<last>"] = lastName;
+	if(Flagship())
+		subs["<ship>"] = Flagship()->Name();
+	
 	auto mit = missions.begin();
 	while(mit != missions.end())
 	{
@@ -2359,30 +2365,21 @@ void PlayerInfo::StepMissions(UI *ui)
 		else if(mission.Destination() == GetPlanet() && !freshlyLoaded)
 		{
 			mission.Do(Mission::VISIT, *this, ui);
+			if(mission.IsUnique())
+				continue;
 			
 			// On visit dialogs are handled separately as to avoid a player
 			// getting spammed by on visit dialogs if they are stacking jobs
 			// from the same destination.
-			map<Mission::Trigger, MissionAction> actions = mission.GetActions();
-			auto ait = actions.find(Mission::VISIT);
-			if(ait != actions.end())
+			auto ait = mission.GetAction(Mission::VISIT);
+			if(!ait.DialogText().empty())
 			{
-				if(!mission.IsUnique())
-				{
-					if(visitText.empty())
-					{
-						map<string, string> subs;
-						subs["<first>"] = firstName;
-						subs["<last>"] = lastName;
-						if(Flagship())
-							subs["<ship>"] = Flagship()->Name();
-						visitText = Format::Replace(ait->second.DialogText(), subs);
-					}
-					else
-						++extraVisitDialogs;
-					if(mission.Deadline())
-						++deadlineMissions;
-				}
+				if(visitText.empty())
+					visitText = Format::Replace(ait.DialogText(), subs);
+				else
+					++extraVisitDialogs;
+				if(mission.Deadline())
+					++deadlineMissions;
 			}
 		}
 	}

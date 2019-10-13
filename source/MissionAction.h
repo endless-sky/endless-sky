@@ -52,7 +52,7 @@ public:
 	
 	int Payment() const;
 	
-	std::string DialogText() const;
+	const std::string &DialogText() const;
 	
 	// Check if this action can be completed right now. It cannot be completed
 	// if it takes away money or outfits that the player does not have, or should

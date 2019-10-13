@@ -327,7 +327,7 @@ int MissionAction::Payment() const
 
 
 
-string MissionAction::DialogText() const
+const string &MissionAction::DialogText() const
 {
 	return dialogText;
 }
@@ -433,7 +433,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 		// stacking bounty jobs).
 		if(isOffer)
 			ui->Push(new Dialog(text, player, destination));
-		else if(!(trigger == "visit" && !isUnique))
+		else if(isUnique || trigger != "visit")
 			ui->Push(new Dialog(text));
 	}
 	else if(isOffer && ui)

@@ -913,10 +913,17 @@ const string &Mission::Identifier() const
 
 
 
-// Get the mission actions for this mission.
-map<Mission::Trigger, MissionAction> Mission::GetActions() const
+// Get a specific mission action from this mission.
+// If a mission action is not found for the given trigger, returns an empty 
+// mission action.
+const MissionAction &Mission::GetAction(Trigger trigger) const
 {
-	return actions;
+	auto ait = actions.find(trigger);
+	static const MissionAction EMPTY;
+	if(ait != actions.end())
+		return ait->second;
+	else
+		return EMPTY;
 }
 
 
