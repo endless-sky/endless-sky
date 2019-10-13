@@ -711,10 +711,10 @@ ship "Tern"
 		"ramscoop" 1
 		"automaton" 1
 		"mass" 30
-		"drag" .9
+		"drag" .8
 		"heat dissipation" .9
 		"gaslining" 1
-		"outfit space" 111
+		"outfit space" 103
 		"shield generation" 1.8
 		"shield energy" 1.1
 		"hull repair rate" 0.7
@@ -727,24 +727,22 @@ ship "Tern"
 		"tactical scan power" 26
 		"asteroid scan power" 30
 		"weapon capacity" 33
-		"engine capacity" 40
+		"engine capacity" 26
 		weapon
 			"blast radius" 10
 			"shield damage" 100
 			"hull damage" 150
 			"hit force" 250
 	outfits
-		"Inhibitor Cannon" 2
+		"Inhibitor Cannon"
 		
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Thermoelectric Cooler"
 		
-		"Crucible-Class Thruster"
-		"Crucible-Class Steering"
+		"Cassette-Class Engine"
 		
-	gun -5 -20 "Inhibitor Cannon"
-	gun 5 -20 "Inhibitor Cannon"
+	gun 0 -22 "Inhibitor Cannon"
 	turret 0 -8
 	engine -5 20.5
 	engine 5 20.5
