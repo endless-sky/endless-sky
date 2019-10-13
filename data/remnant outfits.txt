@@ -359,11 +359,31 @@ outfit "Salvage Scanner"
 
 # Engines:
 
+outfit "Cassette-Class Engine"
+	category "Engines"
+	licenses
+		Remnant
+	"cost" 290000
+	thumbnail "outfit/tiny remnant engine"
+	"mass" 26
+	"outfit space" -26
+	"engine capacity" -26
+	"thrust" 13.5
+	"thrusting energy" 2.65
+	"thrusting heat" 2.5
+	"turn" 336.0
+	"turning energy" 1.32
+	"turning heat" 1.4
+	"flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"flare sound" "plasma tiny"
+	description "This tiny set of engines were designed specifically for craft so small that they to combine both thrusters and steering into one unit."
+
 outfit "Crucible-Class Thruster"
 	category "Engines"
 	licenses
 		Remnant
-	"cost" 200000
+	"cost" 190000
 	thumbnail "outfit/small remnant thruster"
 	"mass" 20
 	"outfit space" -20
