@@ -3437,14 +3437,14 @@ mission "Inheritance Redirection"
 					goto proposal
 				`	"This sounds like a credits-stealing scam, I will not fall for this!"`
 					decline
-			`	"Oh, euuh, Mr. Pappa was specialized into tricking rich victims to transfer credits to him.`
+			`	"Oh, uh, Mr. Pappa was specialized into tricking rich victims to transfer credits to him.`
 			label proposal
-			`	"I obviously cannot make myself a heir to Mr. Pappa. So what I propose is to present you as heir and have the inheritance transferred to you.`
+			`	"I obviously cannot make myself an heir to Mr. Pappa. So what I propose is to present you as an heir and have the inheritance transferred to you.`
 			`	"When you receive the inheritance on <destination>, then you send half of it back to me."`
 			choice
 				`	"Okay, let's do this."`
-				`	"Sounds too good to be true, what is the catch?"`
-				`	"Sorry, this sounds too illegal for me."`
+				`	"Sounds too good to be true. What's the catch?"`
+				`	"Sorry, this sounds too fishy for me."`
 					decline
 			`	Mr. Smith responds: "There is one small problem with the inheritance tax, it needs to be paid upfront. Can you pay 200,000 credits so that I can get the process going?"`
 			choice
