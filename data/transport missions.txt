@@ -1832,7 +1832,7 @@ phrase "generic human package offer"
 	word
 		`A local`
 		`A man`
-		`A resident of <source>`
+		`A resident of <origin>`
 		`A stranger`
 		`A woman`
 	word
