@@ -363,7 +363,7 @@ outfit "Cassette-Class Engine"
 	category "Engines"
 	licenses
 		Remnant
-	"cost" 200000
+	"cost" 290000
 	thumbnail "outfit/tiny remnant engine"
 	"mass" 26
 	"outfit space" -26
