@@ -708,13 +708,14 @@ ship "Tern"
 		"hull" 2500
 		"cargo space" 10
 		"fuel capacity" 100
+		"energy capacity" 500
 		"ramscoop" 1
 		"automaton" 1
-		"mass" 30
+		"mass" 32
 		"drag" .8
 		"heat dissipation" .9
 		"gaslining" 1
-		"outfit space" 103
+		"outfit space" 91
 		"shield generation" 1.8
 		"shield energy" 1.1
 		"hull repair rate" 0.7
@@ -737,7 +738,6 @@ ship "Tern"
 		"Inhibitor Cannon"
 		
 		"Millennium Cell"
-		"Crystal Capacitor"
 		"Thermoelectric Cooler"
 		
 		"Cassette-Class Engine"
