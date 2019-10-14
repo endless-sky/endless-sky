@@ -155,8 +155,8 @@ tip "jump speed:"
 tip "jump fuel:"
 	`How much fuel is consumed when you jump between systems using this drive.`
 
-tip "maintenance cost:"
-	`How many credits per day you need to spend to maintain this outfit.`
+tip "maintenance costs:"
+	`How many credits per day you need to spend to maintain this outfit. Even if a ship is parked, you still need to pay for its maintenance.`
 
 tip "map:"
 	`How many star systems are included in this map.`
@@ -166,6 +166,9 @@ tip "mass with no cargo:"
 
 tip "mass:"
 	`Mass, in tons. A ship's mass determines how fast it turns and accelerates.`
+
+tip "operating costs:"
+	`How many credits per day you need to spend to maintain this outfit while it is in active use.`
 
 tip "outfit scan:"
 	`Lets you scan your target ship's outfits from up to this distance away.`

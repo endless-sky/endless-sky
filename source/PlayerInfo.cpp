@@ -693,8 +693,12 @@ int64_t PlayerInfo::Maintenance() const
 {
 	int64_t maintenance = 0;
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked() && !ship->IsDestroyed())
-			maintenance += ship->Attributes().Get("maintenance cost");
+		if(!ship->IsDestroyed())
+		{
+			maintenance += ship->Attributes().Get("maintenance costs");
+			if(!ship->IsParked())
+				maintenance += ship->Attributes().Get("operating costs");
+		}
 	return maintenance;
 }
 
