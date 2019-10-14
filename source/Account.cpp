@@ -197,8 +197,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 			++it;
 	}
 	
-	// Maintenance costs are dealt with last since missing maintenance costs do
-	// not impact your credit score.
+	// Maintenance costs are dealt with last.
 	int64_t maintenancePaid = maintenanceDue;
 	if(maintenanceDue)
 	{
@@ -209,6 +208,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 			credits -= maintenancePaid;
 			if(!missedPayment)
 				out << "You could not pay all your maintenance costs.";
+			missedPayment = true;
 		}
 		else
 		{
@@ -230,7 +230,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	// If you didn't make any payments, no need to continue further.
 	if(!(salariesPaid + mortgagesPaid + maintenancePaid + finesPaid))
 		return out.str();
-	else if(missedPayment || maintenanceDue)
+	else if(missedPayment)
 		out << " ";
 	
 	out << "You paid ";
