@@ -551,7 +551,10 @@ event "remnant: gascraft"
 		add shipyard "Remnant Gascraft"
 
 government " Drak "
+	swizzle 5
 	"player reputation" -1000
+	"attitude toward"
+		"Indigenous Lifeform" 1
 
 event "remnant: void sprite research"
 
