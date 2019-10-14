@@ -103,6 +103,7 @@ void BankPanel::Draw()
 	
 	// Check if salaries need to be drawn.
 	int64_t salaries = player.Salaries();
+	int64_t salariesOwed = player.Accounts().SalariesOwed();
 	int64_t income[2] = {0, 0};
 	static const string prefix[2] = {"salary: ", "tribute: "};
 	for(int i = 0; i < 2; ++i)
@@ -111,8 +112,12 @@ void BankPanel::Draw()
 		for( ; it != player.Conditions().end() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
 			income[i] += it->second;
 	}
-	// Checl if maintenance needs to be drawn.
+	// Check if maintenance needs to be drawn. The player can still have due
+	// maintenance even if they no longer have outfits that require maintenance, 
+	// as to avoid the player being able to dodge payments by selling the outfit,
+	// so also check for any overdue maintenance costs.
 	int64_t maintenance = player.Maintenance();
+	int64_t maintenanceDue = player.Accounts().MaintenanceDue();
 	// Figure out how many rows of the display are for mortgages, and also check
 	// whether multiple mortgages have to be combined into the last row.
 	mortgageRows = MAX_ROWS - (salaries != 0) - (maintenance != 0) - (income[0] != 0 || income[1] != 0);
@@ -168,16 +173,16 @@ void BankPanel::Draw()
 	}
 	table.SetColor(unselected);
 	// Draw the salaries, if necessary.
-	if(salaries)
+	if(salaries || salariesOwed)
 	{
 		// Include salaries in the total daily payment.
 		totalPayment += salaries;
 		
 		table.Draw("Crew Salaries");
 		// Check whether the player owes back salaries.
-		if(player.Accounts().SalariesOwed())
+		if(salariesOwed)
 		{
-			table.Draw(Format::Credits(player.Accounts().SalariesOwed()));
+			table.Draw(Format::Credits(salariesOwed));
 			table.Draw("(overdue)");
 			table.Advance(1);
 		}
@@ -187,14 +192,14 @@ void BankPanel::Draw()
 		table.Advance();
 	}
 	// Draw the maintenance costs, if necessary.
-	if(maintenance)
+	if(maintenance || maintenanceDue)
 	{
 		totalPayment += maintenance;
 		
 		table.Draw("Maintenance");
-		if(player.Accounts().MaintenanceDue())
+		if(maintenanceDue)
 		{
-			table.Draw(Format::Credits(player.Accounts().MaintenanceDue()));
+			table.Draw(Format::Credits(maintenanceDue));
 			table.Draw("(overdue)");
 			table.Advance(1);
 		}
@@ -246,9 +251,12 @@ void BankPanel::Draw()
 	// Draw the "Pay All" button.
 	const Interface *interface = GameData::Interfaces().Get("bank");
 	Information info;
-	for(const Mortgage &mortgage : player.Accounts().Mortgages())
-		if(mortgage.Principal() <= player.Accounts().Credits())
-			info.SetCondition("can pay");
+	if((salariesOwed || maintenanceDue) && player.Accounts().Credits() != 0)
+		info.SetCondition("can pay");
+	else
+		for(const Mortgage &mortgage : player.Accounts().Mortgages())
+			if(mortgage.Principal() <= player.Accounts().Credits())
+				info.SetCondition("can pay");
 	interface->Draw(info, this);
 }
 
@@ -281,6 +289,7 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				++i;
 		}
 		player.Accounts().PaySalaries(player.Accounts().SalariesOwed());
+		player.Accounts().PayMaintenance(player.Accounts().MaintenanceDue());
 		qualify = player.Accounts().Prequalify();
 	}
 	else
