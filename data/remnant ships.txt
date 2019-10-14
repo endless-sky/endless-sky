@@ -716,12 +716,10 @@ ship "Tern"
 		"heat dissipation" .9
 		"gaslining" 1
 		"outfit space" 91
-		"shield generation" 1.8
-		"shield energy" 1.1
-		"hull repair rate" 0.7
-		"hull energy" 0.6
-		"energy generation" 1.8
-		"heat generation" 3.0
+		"shield generation" 0.6
+		"shield energy" 0.4
+		"hull repair rate" 1.2
+		"hull energy" 0.9
 		"atmosphere scan" 100
 		"outfit scan power" 12
 		"outfit scan speed" 1
