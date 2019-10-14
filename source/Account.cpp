@@ -254,15 +254,13 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	// include commas, so just handle that separately here.
 	if(typesPaid.size() >= 3)
 	{
-		string output;
 		auto it = typesPaid.begin();
 		for(unsigned int i = 0; i < typesPaid.size() - 1; ++i)
 		{
-			output += creditString(it->second) + " in " + it->first + ", ";
+			out << creditString(it->second) << " in " << it->first << ", ";
 			++it;
 		}
-		output += "and " + creditString(it->second) + " in " + it->first + ".";
-		out << output;
+		out << "and " << creditString(it->second) << " in " << it->first + ".";
 	}
 	else
 	{
