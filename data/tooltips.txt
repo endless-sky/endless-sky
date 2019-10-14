@@ -155,6 +155,9 @@ tip "jump speed:"
 tip "jump fuel:"
 	`How much fuel is consumed when you jump between systems using this drive.`
 
+tip "maintenance cost:"
+	`How many credits per day you need to spend to maintain this outfit.`
+
 tip "map:"
 	`How many star systems are included in this map.`
 

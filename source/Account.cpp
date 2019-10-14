@@ -31,7 +31,7 @@ namespace {
 
 // Default constructor.
 Account::Account()
-	: credits(0), salariesOwed(0), creditScore(400)
+	: credits(0), salariesOwed(0), maintenanceDue(0), creditScore(400)
 {
 }
 
@@ -42,6 +42,7 @@ void Account::Load(const DataNode &node)
 {
 	credits = 0;
 	salariesOwed = 0;
+	maintenanceDue = 0;
 	creditScore = 400;
 	history.clear();
 	mortgages.clear();
@@ -52,6 +53,8 @@ void Account::Load(const DataNode &node)
 			credits = child.Value(1);
 		else if(child.Token(0) == "salaries" && child.Size() >= 2)
 			salariesOwed = child.Value(1);
+		else if(child.Token(0) == "maintenance" && child.Size() >= 2)
+			maintenanceDue = child.Value(1);
 		else if(child.Token(0) == "score" && child.Size() >= 2)
 			creditScore = child.Value(1);
 		else if(child.Token(0) == "mortgage")
@@ -73,6 +76,8 @@ void Account::Save(DataWriter &out) const
 		out.Write("credits", credits);
 		if(salariesOwed)
 			out.Write("salaries", salariesOwed);
+		if(maintenanceDue)
+			out.Write("maintenance", maintenanceDue);
 		out.Write("score", creditScore);
 		
 		out.Write("history");
@@ -127,12 +132,13 @@ void Account::PayExtra(int mortgage, int64_t amount)
 
 
 // Step forward one day, and return a string summarizing payments made.
-string Account::Step(int64_t assets, int64_t salaries)
+string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 {
 	ostringstream out;
 	
 	// Keep track of what payments were made and whether any could not be made.
 	salariesOwed += salaries;
+	maintenanceDue += maintenance;
 	bool missedPayment = false;
 	
 	// Crew salaries take highest priority.
@@ -191,10 +197,30 @@ string Account::Step(int64_t assets, int64_t salaries)
 			++it;
 	}
 	
+	// Maintenance costs are dealt with last since missing maintenance costs do
+	// not impact your credit score.
+	int64_t maintenancePaid = maintenanceDue;
+	if(maintenanceDue)
+	{
+		if(maintenanceDue > credits)
+		{
+			maintenancePaid = max<int64_t>(credits, 0);
+			maintenanceDue -= maintenancePaid;
+			credits -= maintenancePaid;
+			if(!missedPayment)
+				out << "You could not pay all your maintenance costs.";
+		}
+		else
+		{
+			credits -= maintenanceDue;
+			maintenanceDue = 0;
+		}
+	}
+	
 	// Keep track of your net worth over the last HISTORY days.
 	if(history.size() > HISTORY)
 		history.erase(history.begin());
-	history.push_back(credits + assets - salariesOwed);
+	history.push_back(credits + assets - salariesOwed - maintenanceDue);
 	
 	// If you failed to pay any debt, your credit score drops. Otherwise, even
 	// if you have no debts, it increases. (Because, having no debts at all
@@ -202,9 +228,9 @@ string Account::Step(int64_t assets, int64_t salaries)
 	creditScore = max(200, min(800, creditScore + (missedPayment ? -5 : 1)));
 	
 	// If you didn't make any payments, no need to continue further.
-	if(!(salariesPaid + mortgagesPaid + finesPaid))
+	if(!(salariesPaid + mortgagesPaid + maintenancePaid + finesPaid))
 		return out.str();
-	else if(missedPayment)
+	else if(missedPayment || maintenanceDue)
 		out << " ";
 	
 	out << "You paid ";
@@ -214,16 +240,37 @@ string Account::Step(int64_t assets, int64_t salaries)
 		return payment == 1 ? "1 credit" : Format::Credits(payment) + " credits";
 	};
 	
-	// If you made payments of all three types, the punctuation needs to
+	map<string, int64_t> typesPaid;
+	if(salariesPaid)
+		typesPaid["crew salaries"] = salariesPaid;
+	if(maintenancePaid)
+		typesPaid["maintenance"] = maintenancePaid;
+	if(mortgagesPaid)
+		typesPaid["mortgages"] = mortgagesPaid;
+	if(finesPaid)
+		typesPaid["fines"] = finesPaid;
+	
+	// If you made payments of three or more types, the punctuation needs to
 	// include commas, so just handle that separately here.
-	if(salariesPaid && mortgagesPaid && finesPaid)
-		out << creditString(salariesPaid) << " in crew salaries, "
-			<< creditString(mortgagesPaid) << " in mortgages, and "
-			<< creditString(finesPaid) << " in fines.";
+	if(typesPaid.size() >= 3)
+	{
+		string output;
+		auto it = typesPaid.begin();
+		for(unsigned int i = 0; i < typesPaid.size() - 1; ++i)
+		{
+			output += creditString(it->second) + " in " + it->first + ", ";
+			++it;
+		}
+		output += "and " + creditString(it->second) + " in " + it->first + ".";
+		out << output;
+	}
 	else
 	{
 		if(salariesPaid)
 			out << creditString(salariesPaid) << " in crew salaries"
+				<< ((mortgagesPaid || finesPaid || maintenancePaid) ? " and " : ".");
+		if(maintenancePaid)
+			out << creditString(maintenancePaid) << "  in maintenance"
 				<< ((mortgagesPaid || finesPaid) ? " and " : ".");
 		if(mortgagesPaid)
 			out << creditString(mortgagesPaid) << " in mortgages"
@@ -231,6 +278,7 @@ string Account::Step(int64_t assets, int64_t salaries)
 		if(finesPaid)
 			out << creditString(finesPaid) << " in fines.";
 	}
+	
 	return out.str();
 }
 
@@ -248,6 +296,22 @@ void Account::PaySalaries(int64_t amount)
 	amount = min(min(amount, salariesOwed), credits);
 	credits -= amount;
 	salariesOwed -= amount;
+}
+
+
+
+int64_t Account::MaintenanceDue() const
+{
+	return maintenanceDue;
+}
+
+
+
+void Account::PayMaintenance(int64_t amount)
+{
+	amount = min(min(amount, maintenanceDue), credits);
+	credits -= amount;
+	maintenanceDue -= amount;
 }
 
 
