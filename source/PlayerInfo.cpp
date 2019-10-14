@@ -688,7 +688,7 @@ int64_t PlayerInfo::Salaries() const
 
 
 
-// Calculate the daily maintenance cost for all unparked ships.
+// Calculate the daily maintenance cost for all ships and in cargo outfits.
 int64_t PlayerInfo::Maintenance() const
 {
 	int64_t maintenance = 0;
