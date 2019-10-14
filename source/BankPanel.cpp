@@ -112,10 +112,7 @@ void BankPanel::Draw()
 		for( ; it != player.Conditions().end() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
 			income[i] += it->second;
 	}
-	// Check if maintenance needs to be drawn. The player can still have due
-	// maintenance even if they no longer have outfits that require maintenance, 
-	// as to avoid the player being able to dodge payments by selling the outfit,
-	// so also check for any overdue maintenance costs.
+	// Check if maintenance needs to be drawn.
 	int64_t maintenance = player.Maintenance();
 	int64_t maintenanceDue = player.Accounts().MaintenanceDue();
 	// Figure out how many rows of the display are for mortgages, and also check
