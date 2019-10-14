@@ -111,9 +111,11 @@ void BankPanel::Draw()
 		for( ; it != player.Conditions().end() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
 			income[i] += it->second;
 	}
+	// Checl if maintenance needs to be drawn.
+	int64_t maintenance = player.Maintenance();
 	// Figure out how many rows of the display are for mortgages, and also check
 	// whether multiple mortgages have to be combined into the last row.
-	mortgageRows = MAX_ROWS - (salaries != 0) - (income[0] != 0 || income[1] != 0);
+	mortgageRows = MAX_ROWS - (salaries != 0) - (maintenance != 0) - (income[0] != 0 || income[1] != 0);
 	int mortgageCount = player.Accounts().Mortgages().size();
 	mergedMortgages = (mortgageCount > mortgageRows);
 	if(!mergedMortgages)
@@ -182,6 +184,23 @@ void BankPanel::Draw()
 		else
 			table.Advance(3);
 		table.Draw(salaries);
+		table.Advance();
+	}
+	// Draw the maintenance costs, if necessary.
+	if(maintenance)
+	{
+		totalPayment += maintenance;
+		
+		table.Draw("Maintenance");
+		if(player.Accounts().MaintenanceDue())
+		{
+			table.Draw(Format::Credits(player.Accounts().MaintenanceDue()));
+			table.Draw("(overdue)");
+			table.Advance(1);
+		}
+		else
+			table.Advance(3);
+		table.Draw(maintenance);
 		table.Advance();
 	}
 	if(income[0] || income[1])
