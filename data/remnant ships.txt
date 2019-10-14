@@ -706,10 +706,10 @@ ship "Tern"
 		"cost" 3830000
 		"shields" 500
 		"hull" 2500
-		"cargo space" 10
-		"fuel capacity" 100
+		"cargo space" 5
+		"fuel capacity" 50
 		"energy capacity" 500
-		"ramscoop" 1
+		"ramscoop" 0.5
 		"automaton" 1
 		"mass" 32
 		"drag" .8
