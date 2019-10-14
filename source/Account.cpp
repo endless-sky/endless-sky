@@ -162,6 +162,28 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 		}
 	}
 	
+	// Maintenance costs are dealt with after crew salaries given that they act similarly.
+	int64_t maintenancePaid = maintenanceDue;
+	if(maintenanceDue)
+	{
+		if(maintenanceDue > credits)
+		{
+			// Like with crew salaries, maintenance costs can be paid in part with
+			// the unpaid costs being paid later.
+			maintenancePaid = max<int64_t>(credits, 0);
+			maintenanceDue -= maintenancePaid;
+			credits -= maintenancePaid;
+			if(!missedPayment)
+				out << "You could not pay all your maintenance costs.";
+			missedPayment = true;
+		}
+		else
+		{
+			credits -= maintenanceDue;
+			maintenanceDue = 0;
+		}
+	}
+	
 	// Unlike salaries, each mortgage payment must either be made in its entirety,
 	// or skipped completely (accruing interest and reducing your credit score).
 	int64_t mortgagesPaid = 0;
@@ -197,26 +219,6 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 			++it;
 	}
 	
-	// Maintenance costs are dealt with last.
-	int64_t maintenancePaid = maintenanceDue;
-	if(maintenanceDue)
-	{
-		if(maintenanceDue > credits)
-		{
-			maintenancePaid = max<int64_t>(credits, 0);
-			maintenanceDue -= maintenancePaid;
-			credits -= maintenancePaid;
-			if(!missedPayment)
-				out << "You could not pay all your maintenance costs.";
-			missedPayment = true;
-		}
-		else
-		{
-			credits -= maintenanceDue;
-			maintenanceDue = 0;
-		}
-	}
-	
 	// Keep track of your net worth over the last HISTORY days.
 	if(history.size() > HISTORY)
 		history.erase(history.begin());
@@ -228,7 +230,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	creditScore = max(200, min(800, creditScore + (missedPayment ? -5 : 1)));
 	
 	// If you didn't make any payments, no need to continue further.
-	if(!(salariesPaid + mortgagesPaid + maintenancePaid + finesPaid))
+	if(!(salariesPaid + maintenancePaid + mortgagesPaid + finesPaid))
 		return out.str();
 	else if(missedPayment)
 		out << " ";
@@ -276,7 +278,6 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 		if(finesPaid)
 			out << creditString(finesPaid) << " in fines.";
 	}
-	
 	return out.str();
 }
 
