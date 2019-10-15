@@ -1700,12 +1700,6 @@ fleet "Large Southern Pirates"
 	variant 1
 		"Osprey (Laser)"
 	variant 2
-		"Mule"
-		"Dagger"
-	variant 2
-		"Mule (Heavy)"
-		"Dagger"
-	variant 2
 		"Clipper"
 		"Hawk"
 	variant 1
@@ -1977,12 +1971,6 @@ fleet "Large Core Pirates"
 		"Splinter (Laser)" 2
 	variant 1
 		"Splinter (Proton)" 2
-	variant 2
-		"Mule"
-		"Dagger"
-	variant 1
-		"Mule (Heavy)"
-		"Dagger"
 	variant 2
 		"Falcon"
 	variant 1
