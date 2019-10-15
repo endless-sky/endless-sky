@@ -451,17 +451,40 @@ conversation "end of intro missions"
 	label next
 	`	There's an awkward pause. You're unsure of how to respond. Then he says, "Thing is, this here planet is one of the most exclusive retirement communities in the galaxy. Plenty of the locals are probably worth more than a billion credits. But they're mostly financial or business types, or old money. I'm rich enough to be here, but I just hope they're willing to socialize with someone who made his fortune flying a ship.`
 	`	"Before you go, is there anything else you'd like to ask me about being a new pilot?"`
+	label choices
 	choice
 		`	"Where in space should I go if I want to avoid pirates?"`
+		`	"Where is a good place to mine asteroids?"`
+			goto asteroids
 		`	"Have you ever met any aliens?"`
 			goto aliens
+		`	"Are there any good trade routes you can give me?"`
+			goto trade
+		`	"Where can I find well-paying jobs?"`
+			goto jobs
 		`	"I think I'll manage."`
 			goto end
-	`	"Stay near Sol and around the Paradise Worlds. The Navy stays there the most, so even if a pirate does show up, they won't last long. The Deep is also a pretty safe place, as they have their own security forces."`
-		goto end
+	`	"Stay near Sol and around the Paradise Worlds. The Navy stays there the most, so even if a pirate does show up, they won't last long. The Deep is also a pretty safe place, as they have their own security forces. Once you start moving farther south, things get riskier. The worlds down there don't bring in as much tax revenue as the Paradise Worlds do, so the Navy tends to ignore them. You'll find some local militia to back you up, but they're nothing compared to one of the Navy's Cruisers.`
+		goto more
+	
+	label asteroids
+	`	"Well to start off, you'll want to stay right here in the Paradise Worlds. The asteroids aren't the best, but it's the safest place to mine while you're still in a small ship. But once you're in something that's able to take a hit, you'll want to explore for an uninhabited system with lots of asteroids. You'll encounter more pirates, but you'll likely find better asteroids.`
+		goto more
 	
 	label aliens
-	`	"I've spoken with the Quarg a few times, but what captain hasn't? You'll find them down south by Tarazed. I haven't met any other aliens, but I'm sure they're out there if you go looking hard enough."`
+	`	"I've spoken with the Quarg a few times, but what captain hasn't? You'll find them down south by Tarazed. I haven't met any other aliens," he pauses for a moment, " as far as I'm aware, that is, but I'm sure they're out there if you go looking hard enough. I've explored all of Republic space in my many years, but there are far more systems out there that we don't even know how to reach.`
+		goto more
 	
+	label trade
+	`	"One of the most reliable trade routes is to bring food from the Dirt Belt to Earth or the other urban worlds around it. There are billions of mouths to feed on those worlds, and the Dirt Belt sells food for cheap, so it's a great place to get started. Just remember though that if you use the same trade route for too long, you might end up causing the prices to stabilize. The Dirt Belt can only produce food and people can only eat it so fast, so change up your trade routes if you notice the return getting worse.`
+		goto more
+	
+	label jobs
+	`	"Getting good jobs is more about having the space to accept the good jobs than it is finding them, but if you're looking for jobs that pay good for little effort, then you'll want to watch out around the holidays. There's always a big celebration on Earth every Earth Day, so watch out in the months leading up to that. The people down in the Rim have some month long celebration every August that you should look out for too.`
+	
+	label more
+	`	"Anything else you want to ask me?"`
+		goto choices
+		
 	label end
 	`	He hands you a credit chip worth <payment>, and says, "Best of luck to you, Captain. Don't hesitate to look me up if you're ever in the area. And remember to check the spaceports wherever you land. You never know who you'll find wandering around there."`
