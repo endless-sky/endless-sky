@@ -320,7 +320,7 @@ outfit "Pug Biodefenses"
 outfit "Pug Peacekeeping Staff"
 	plural "Pug Peacekeeping Staves"
 	category "Hand to Hand"
-	cost 11000
+	cost 123456
 	thumbnail "outfit/pug staff"
 	"capture attack" 2.3
 	"capture defense" 2.3
