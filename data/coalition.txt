@@ -756,15 +756,15 @@ phrase "friendly heliarch"
 
 phrase "friendly disabled heliarch"
 	word
-		"Repairs, we do need."
-		"Disabled, our ship has become."
-		"Disabled, our ship is. "
+		"Repairs, we do need"
+		"Disabled, our ship has become"
+		"Disabled, our ship is"
 	word
-		" "
+		". "
 	word
 		"Board our ship, you must"
 		"Help, you must"
-		"Appreciated, assistance would be."
+		"Appreciated, assistance would be"
 	word
 		"."
 
@@ -959,6 +959,8 @@ phrase "hostile disabled heliarch"
 		"A "
 	phrase
 		"shakespearean insults"
+	word
+		" "
 	word
 		", you are"
 		"at the mercy of, I can not believe I am"
