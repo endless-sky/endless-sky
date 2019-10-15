@@ -225,7 +225,7 @@ outfit "Enforcer Confrontation Gear"
 	category "Hand to Hand"
 	licenses
 		Heliarch
-	cost 230000
+	cost 369000
 	thumbnail "outfit/enforcer confrontation gear"
 	"capture attack" 3.1
 	"capture defense" 4.9
@@ -236,9 +236,9 @@ outfit "Enforcer Riot Staff"
 	category "Hand to Hand"
 	licenses
 		Heliarch
-	cost 130000
+	cost 97000
 	thumbnail "outfit/enforcer riot staff"
-	"capture attack" 2.3
+	"capture attack" 2.0
 	"capture defense" 3.5
 	"unplunderable" 1
 	description "Made to deal with the occasional dissidents that pop up around Coalition space in a non lethal manner, these see minimal use in shipbound combat, but are there in the event a dissident gets aboard."
