@@ -695,12 +695,8 @@ int64_t PlayerInfo::Maintenance() const
 		if(!ship->IsDestroyed())
 		{
 			maintenance += ship->Attributes().Get("maintenance costs");
-			auto outfit = ship->Cargo().Outfits().begin();
-			for(unsigned int i = 0; i < ship->Cargo().Outfits().size(); ++i)
-			{
-				maintenance += outfit->first->Get("maintenance costs") * outfit->second;
-				++outfit;
-			}
+			for(const auto &outfit : ship->Cargo().Outfits())
+				maintenance += outfit.first->Get("maintenance costs") * outfit.second;
 			if(!ship->IsParked())
 				maintenance += ship->Attributes().Get("operating costs");
 		}
