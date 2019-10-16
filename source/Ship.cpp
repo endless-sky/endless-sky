@@ -847,6 +847,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	ionization = 0.;
 	disruption = 0.;
 	slowness = 0.;
+	cloakDisruption = 0.;
 	isInvisible = !HasSprite();
 	jettisoned.clear();
 	hyperspaceCount = 0;
@@ -1022,6 +1023,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		CreateSparks(visuals, "disruption spark", disruption * .1);
 	if(slowness)
 		CreateSparks(visuals, "slowing spark", slowness * .1);
+	if(cloakDisruption)
+		CreateSparks(visuals, "cloak disruption spark", cloakDisruption * .1);
 	// Jettisoned cargo effects (only for ships in the current system).
 	if(!jettisoned.empty() && !forget)
 	{
@@ -2606,8 +2609,6 @@ double Ship::MaxReverseVelocity() const
 // what sort of weapon the projectile it.
 int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 {
-	int type = 0;
-	
 	double damageScaling = 1.;
 	const Weapon &weapon = projectile.GetWeapon();
 	if(isBlast && weapon.IsDamageScaled())
@@ -2633,6 +2634,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	double ionDamage = weapon.IonDamage() * damageScaling;
 	double disruptionDamage = weapon.DisruptionDamage() * damageScaling;
 	double slowingDamage = weapon.SlowingDamage() * damageScaling;
+	double cloakDisruptionDamage = weapon.CloakDisruptionDamage() * damageScaling;
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
@@ -2654,6 +2656,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	ionization += ionDamage * leakage;
 	disruption += disruptionDamage * leakage;
 	slowness += slowingDamage * leakage;
+	cloakDisruption += cloakDisruptionDamage * leakage;
 	
 	if(hitForce)
 	{
@@ -2666,6 +2669,9 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	// Recalculate the disabled ship check.
 	isDisabled = true;
 	isDisabled = IsDisabled();
+	
+	// Report what happened to this ship from this projectile.
+	int type = 0;
 	if(!wasDisabled && isDisabled)
 		type |= ShipEvent::DISABLE;
 	if(!wasDestroyed && IsDestroyed())

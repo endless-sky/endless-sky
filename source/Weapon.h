@@ -108,6 +108,7 @@ public:
 	double IonDamage() const;
 	double DisruptionDamage() const;
 	double SlowingDamage() const;
+	double CloakDisruptionDamage() const;
 	// Check if this weapon does damage. If not, attacking a ship with this
 	// weapon is not a provocation (even if you push or pull it).
 	bool DoesDamage() const;
@@ -186,7 +187,7 @@ private:
 	double triggerRadius = 0.;
 	double blastRadius = 0.;
 	
-	static const int DAMAGE_TYPES = 8;
+	static const int DAMAGE_TYPES = 9;
 	static const int SHIELD_DAMAGE = 0;
 	static const int HULL_DAMAGE = 1;
 	static const int FUEL_DAMAGE = 2;
@@ -195,7 +196,8 @@ private:
 	static const int DISRUPTION_DAMAGE = 5;
 	static const int SLOWING_DAMAGE = 6;
 	static const int HIT_FORCE = 7;
-	mutable double damage[DAMAGE_TYPES] = {0., 0., 0., 0., 0., 0., 0., 0.};
+	static const int ANTICLOAK_DAMAGE = 8;
+	mutable double damage[DAMAGE_TYPES] = {};
 	
 	double piercing = 0.;
 	
@@ -257,6 +259,7 @@ inline double Weapon::HeatDamage() const { return TotalDamage(HEAT_DAMAGE); }
 inline double Weapon::IonDamage() const { return TotalDamage(ION_DAMAGE); }
 inline double Weapon::DisruptionDamage() const { return TotalDamage(DISRUPTION_DAMAGE); }
 inline double Weapon::SlowingDamage() const { return TotalDamage(SLOWING_DAMAGE); }
+inline double Weapon::CloakDisruptionDamage() const { return TotalDamage(ANTICLOAK_DAMAGE); }
 
 inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); return doesDamage; }
 

@@ -145,6 +145,7 @@ outfit "Drak Antimatter Fragment"
 		"hit force" 1000
 		"shield damage" 5610
 		"hull damage" 5610
+		"cloak disruption" 150
 		"blast radius" 100
 
 effect "antimatter spark"
