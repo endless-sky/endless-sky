@@ -40,6 +40,9 @@ color "heat" .70 .43 .43 .75
 color "overheat" .70 .61 .43 .75
 color "energy" .6 .6 .6 .75
 color "fuel" .70 .62 .43 .75
+color "hyper disrupted" .5 .0 .0 .75
+color "jump disrupted" .0 .0 .5 .75
+color "double disrupted" .35 .0 .35 .75
 
 color "flagship highlight" .5 .8 .2 0.
 
@@ -340,6 +343,21 @@ interface "hud"
 		from -53.5 425
 		dimensions 0 -192
 		color "fuel"
+		size 2
+	bar "hyper disrupted"
+		from -53.5 425
+		dimensions 0 -192
+		color "hyper disrupted"
+		size 2
+	bar "jump disrupted"
+		from -53.5 425
+		dimensions 0 -192
+		color "jump disrupted"
+		size 2
+	bar "double disrupted"
+		from -53.5 425
+		dimensions 0 -192
+		color "double disrupted"
 		size 2
 	bar "energy"
 		from -33.5 415

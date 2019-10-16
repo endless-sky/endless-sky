@@ -266,6 +266,11 @@ public:
 	double JumpDriveFuel() const;
 	// Get the amount of fuel missing for the next jump (smart refuelling)
 	double JumpFuelMissing() const;
+	// Get if this ship can't leave the system because its hyperdrive or jump
+	// drive is being disrupted.
+	bool IsDisrupted() const;
+	bool HyperDisrupted() const;
+	bool JumpDisrupted() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
 	// Get the heat dissipation, in heat units per heat unit per frame.

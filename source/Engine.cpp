@@ -589,8 +589,20 @@ void Engine::Step(bool isActive)
 	info.SetString("date", player.GetDate().ToString());
 	if(flagship)
 	{
-		info.SetBar("fuel", flagship->Fuel(),
-			flagship->Attributes().Get("fuel capacity") * .01);
+		double fuel = flagship->Fuel();
+		double fuelCap = flagship->Attributes().Get("fuel capacity") * .01;
+		bool hyperDisrupted = flagship->HyperDisrupted();
+		bool jumpDisrupted = flagship->JumpDisrupted();
+		info.SetBar("fuel", fuel, fuelCap);
+		if((step / 20) % 2)
+		{
+			if(jumpDisrupted && hyperDisrupted)
+				info.SetBar("double disrupted", fuel, fuelCap);
+			else if(hyperDisrupted)
+				info.SetBar("hyper disrupted", fuel, fuelCap);
+			else if(jumpDisrupted)
+				info.SetBar("jump disrupted", fuel, fuelCap);
+		}
 		info.SetBar("energy", flagship->Energy());
 		double heat = flagship->Heat();
 		info.SetBar("heat", min(1., heat));

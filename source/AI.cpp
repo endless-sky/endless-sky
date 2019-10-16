@@ -3444,6 +3444,13 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			if(isNewPress)
 				Audio::Play(Audio::Get("fail"));
 		}
+		else if(ship.IsDisrupted())
+		{
+			Messages::Add("Your drive is being disrupted!");
+			keyStuck.Clear();
+			if(isNewPress)
+				Audio::Play(Audio::Get("fail"));
+		}
 		else if(!ship.JumpFuel(ship.GetTargetSystem()))
 		{
 			Messages::Add("You cannot jump to the selected system.");

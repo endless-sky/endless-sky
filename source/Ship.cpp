@@ -2558,6 +2558,27 @@ double Ship::JumpFuelMissing() const
 
 
 
+bool Ship::IsDisrupted() const
+{
+	return (!IsReadyToJump() && (HyperDisrupted() || JumpDisrupted()));
+}
+
+
+
+bool Ship::HyperDisrupted() const
+{
+	return (hyperDisruption > 0.);
+}
+
+
+
+bool Ship::JumpDisrupted() const
+{
+	return (jumpDisruption > 0.);
+}
+
+
+
 // Get the heat level at idle.
 double Ship::IdleHeat() const
 {
