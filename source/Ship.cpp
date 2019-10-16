@@ -96,42 +96,44 @@ namespace {
 		tie(minMass,maxMass,deviation) = effect;
 		
 		// If this weapon doesn't have an effect range, max damage is always dealt
-		if(minMass == 0. && maxMass == 0) {}
-		else if(deviation == 0.)
+		if(minMass != 0. && maxMass != 0.)
 		{
-			// For deviation values of 0, any ship outside the mass range takes 
-			// no disruption damage.
-			if(currentMass < minMass || currentMass > maxMass)
-				damage = 0.;
-		}
-		else if(deviation < 0.)
-		{
-			// For deviation values less than 0, any ship inside the mass range
-			// takes no damage, and ships outside the range take more damage 
-			// the farther from the range that they are.
-			if(currentMass >= minMass && currentMass <= maxMass)
-				damage = 0.;
-			else if(currentMass < minMass)
+			if(deviation == 0.)
 			{
-				damage *= 1 - exp(-pow(currentMass - minMass, 2) / (2 * pow(deviation, 2)));
+				// For deviation values of 0, any ship outside the mass range takes 
+				// no disruption damage.
+				if(currentMass < minMass || currentMass > maxMass)
+					damage = 0.;
 			}
-			else if(currentMass > maxMass)
+			else if(deviation < 0.)
 			{
-				damage *= 1 - exp(-pow(currentMass - maxMass, 2) / (2 * pow(deviation, 2)));
+				// For deviation values less than 0, any ship inside the mass range
+				// takes no damage, and ships outside the range take more damage 
+				// the farther from the range that they are.
+				if(currentMass >= minMass && currentMass <= maxMass)
+					damage = 0.;
+				else if(currentMass < minMass)
+				{
+					damage *= 1. - exp(-pow(currentMass - minMass, 2.) / (2. * pow(deviation, 2.)));
+				}
+				else if(currentMass > maxMass)
+				{
+					damage *= 1. - exp(-pow(currentMass - maxMass, 2.) / (2. * pow(deviation, 2.)));
+				}
 			}
-		}
-		else if(deviation > 0.)
-		{
-			// For deviation vales greater than 0, any ship inside the mass range
-			// takes max damage, and ships outide the range take less damage
-			// the farther from the range that they are.
-			if(currentMass < minMass)
+			else if(deviation > 0.)
 			{
-				damage *= exp(-pow(currentMass - minMass, 2) / (2 * pow(deviation, 2)));
-			}
-			else if(currentMass > maxMass)
-			{
-				damage *= exp(-pow(currentMass - maxMass, 2) / (2 * pow(deviation, 2)));
+				// For deviation vales greater than 0, any ship inside the mass range
+				// takes max damage, and ships outide the range take less damage
+				// the farther from the range that they are.
+				if(currentMass < minMass)
+				{
+					damage *= exp(-pow(currentMass - minMass, 2.) / (2. * pow(deviation, 2.)));
+				}
+				else if(currentMass > maxMass)
+				{
+					damage *= exp(-pow(currentMass - maxMass, 2.) / (2. * pow(deviation, 2.)));
+				}
 			}
 		}
 		
