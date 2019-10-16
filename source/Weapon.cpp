@@ -83,6 +83,20 @@ void Weapon::LoadWeapon(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			submunitions[GameData::Outfits().Get(child.Token(1))] += count;
 		}
+		else if(key == "hyperdrive disruption effect")
+		{
+			double minMass = max(0., child.Value(1));
+			double maxMass = (child.Size() >= 3) ? max(minMass, (child.Value(2))) : max(0., minMass);
+			double deviation = (child.Size() >= 4) ? child.Value(3) : 0.;
+			hyperDisruptEffect = make_tuple(minMass, maxMass, deviation);
+		}
+		else if(key == "jump disruption effect")
+		{
+			double minMass = max(0., child.Value(1));
+			double maxMass = (child.Size() >= 3) ? max(minMass, (child.Value(2))) : max(0., minMass);
+			double deviation = (child.Size() >= 4) ? child.Value(3) : 0.;
+			jumpDisruptEffect = make_tuple(minMass, maxMass, deviation);
+		}
 		else
 		{
 			double value = child.Value(1);
@@ -167,6 +181,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[SLOWING_DAMAGE] = value;
 			else if(key == "cloak disruption")
 				damage[ANTICLOAK_DAMAGE] = value;
+			else if(key == "hyperdrive disruption")
+				damage[ANTIHYPER_DAMAGE] = value;
+			else if(key == "jump disruption")
+				damage[ANTIJUMP_DAMAGE] = value;
 			else if(key == "hit force")
 				damage[HIT_FORCE] = value;
 			else if(key == "piercing")

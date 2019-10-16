@@ -431,6 +431,8 @@ private:
 	int customSwizzle = -1;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
+	double hyperDisruption = 0.;
+	double jumpDisruption = 0.;
 	// Cached values for figuring out when anti-missile is in range.
 	double antiMissileRange = 0.;
 	double weaponRadius = 0.;

@@ -40,6 +40,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <cmath>
 #include <sstream>
+#include <tuple>
 
 using namespace std;
 
@@ -85,6 +86,56 @@ namespace {
 			energy -= transfer * energyCost;
 			fuel -= transfer * fuelCost;
 		}
+	}
+	
+	void AddDisruptionEffect(double &stat, double damage, tuple<double,double,double> effect, double currentMass)
+	{
+		double minMass;
+		double maxMass;
+		double deviation;
+		tie(minMass,maxMass,deviation) = effect;
+		
+		// If this weapon doesn't have an effect range, max damage is always dealt
+		if(minMass == 0. && maxMass == 0) {}
+		else if(deviation == 0.)
+		{
+			// For deviation values of 0, any ship outside the mass range takes 
+			// no disruption damage.
+			if(currentMass < minMass || currentMass > maxMass)
+				damage = 0.;
+		}
+		else if(deviation < 0.)
+		{
+			// For deviation values less than 0, any ship inside the mass range
+			// takes no damage, and ships outside the range take more damage 
+			// the farther from the range that they are.
+			if(currentMass >= minMass && currentMass <= maxMass)
+				damage = 0.;
+			else if(currentMass < minMass)
+			{
+				damage *= 1 - exp(-pow(currentMass - minMass, 2) / (2 * pow(deviation, 2)));
+			}
+			else if(currentMass > maxMass)
+			{
+				damage *= 1 - exp(-pow(currentMass - maxMass, 2) / (2 * pow(deviation, 2)));
+			}
+		}
+		else if(deviation > 0.)
+		{
+			// For deviation vales greater than 0, any ship inside the mass range
+			// takes max damage, and ships outide the range take less damage
+			// the farther form the range that they are.
+			if(currentMass < minMass)
+			{
+				damage *= exp(-pow(currentMass - minMass, 2) / (2 * pow(deviation, 2)));
+			}
+			else if(currentMass > maxMass)
+			{
+				damage *= exp(-pow(currentMass - maxMass, 2) / (2 * pow(deviation, 2)));
+			}
+		}
+		
+		stat += damage;
 	}
 }
 
@@ -848,6 +899,8 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	disruption = 0.;
 	slowness = 0.;
 	cloakDisruption = 0.;
+	hyperDisruption = 0.;
+	jumpDisruption = 0.;
 	isInvisible = !HasSprite();
 	jettisoned.clear();
 	hyperspaceCount = 0;
@@ -1067,6 +1120,23 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		else
 			cloak = 0.;
+	}
+	
+	if(hyperDisruption)
+	{
+		// A standard hyperdrive has a jump speed of 0.2.
+		const double DEFAULT_HYPERSPEED = 0.2;
+		// Hyperdrive disruption is lost by a rate of at least one per frame,
+		// but each additional hyperdrive will increase the loss rate by 1.
+		hyperDisruption = max(0., hyperDisruption - (1. + attributes.Get("jump speed") / DEFAULT_HYPERSPEED));
+	}
+	if(jumpDisruption)
+	{
+		// A standard jump drive has a jump speed of 0.3.
+		const double DEFAULT_JUMPSPEED = 0.3;
+		// Jump drive disruption is lost by a rate of at least one per frame,
+		// but each additional jump drive will increase the loss rate by 1.
+		jumpDisruption = max(0., jumpDisruption -  (1. + attributes.Get("jump speed") / DEFAULT_JUMPSPEED));
 	}
 	
 	if(IsDestroyed())
@@ -2635,6 +2705,10 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	double disruptionDamage = weapon.DisruptionDamage() * damageScaling;
 	double slowingDamage = weapon.SlowingDamage() * damageScaling;
 	double cloakDisruptionDamage = weapon.CloakDisruptionDamage() * damageScaling;
+	double hyperDisruptionDamage = weapon.HyperDisruptionDamage() * damageScaling;
+	tuple<double,double,double> hyperDisruptionEffect = weapon.HyperDisruptionEffect();
+	double jumpDisruptionDamage = weapon.JumpDisruptionDamage() * damageScaling;
+	tuple<double,double,double> jumpDisruptionEffect = weapon.JumpDisruptionEffect();
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
@@ -2657,6 +2731,12 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	disruption += disruptionDamage * leakage;
 	slowness += slowingDamage * leakage;
 	cloakDisruption += cloakDisruptionDamage * leakage;
+	
+	// Handle hyperdrive and jump drive disruption.
+	if(hyperDisruptionDamage)
+		AddDisruptionEffect(hyperDisruption, hyperDisruptionDamage, hyperDisruptionEffect, Mass());
+	if(jumpDisruptionDamage)
+		AddDisruptionEffect(jumpDisruption, jumpDisruptionDamage, jumpDisruptionEffect, Mass());
 	
 	if(hitForce)
 	{

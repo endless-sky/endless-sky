@@ -262,6 +262,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"ion damage",
 		"slowing damage",
 		"disruption damage",
+		"drive disruption",
+		"jump disruption",
 		"firing energy",
 		"firing heat",
 		"firing fuel"
@@ -275,6 +277,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.IonDamage() * 100.,
 		outfit.SlowingDamage() * 100.,
 		outfit.DisruptionDamage() * 100.,
+		outfit.HyperDisruptionDamage() / 60.,
+		outfit.JumpDisruptionDamage() / 60.,
 		outfit.FiringEnergy(),
 		outfit.FiringHeat(),
 		outfit.FiringFuel()

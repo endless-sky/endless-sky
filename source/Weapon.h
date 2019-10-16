@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 
 #include <map>
+#include <tuple>
 
 class DataNode;
 class Effect;
@@ -109,6 +110,12 @@ public:
 	double DisruptionDamage() const;
 	double SlowingDamage() const;
 	double CloakDisruptionDamage() const;
+	double HyperDisruptionDamage() const;
+	double JumpDisruptionDamage() const;
+	// Values dictating how ship is affected by this weapon's hyper and jump
+	// disruption given the ship's mass.
+	std::tuple<double,double,double> HyperDisruptionEffect() const;
+	std::tuple<double,double,double> JumpDisruptionEffect() const;
 	// Check if this weapon does damage. If not, attacking a ship with this
 	// weapon is not a provocation (even if you push or pull it).
 	bool DoesDamage() const;
@@ -187,7 +194,7 @@ private:
 	double triggerRadius = 0.;
 	double blastRadius = 0.;
 	
-	static const int DAMAGE_TYPES = 9;
+	static const int DAMAGE_TYPES = 11;
 	static const int SHIELD_DAMAGE = 0;
 	static const int HULL_DAMAGE = 1;
 	static const int FUEL_DAMAGE = 2;
@@ -197,7 +204,12 @@ private:
 	static const int SLOWING_DAMAGE = 6;
 	static const int HIT_FORCE = 7;
 	static const int ANTICLOAK_DAMAGE = 8;
+	static const int ANTIHYPER_DAMAGE = 9;
+	static const int ANTIJUMP_DAMAGE = 10;
 	mutable double damage[DAMAGE_TYPES] = {};
+	
+	std::tuple<double,double,double> hyperDisruptEffect;
+	std::tuple<double,double,double> jumpDisruptEffect;
 	
 	double piercing = 0.;
 	
@@ -260,6 +272,11 @@ inline double Weapon::IonDamage() const { return TotalDamage(ION_DAMAGE); }
 inline double Weapon::DisruptionDamage() const { return TotalDamage(DISRUPTION_DAMAGE); }
 inline double Weapon::SlowingDamage() const { return TotalDamage(SLOWING_DAMAGE); }
 inline double Weapon::CloakDisruptionDamage() const { return TotalDamage(ANTICLOAK_DAMAGE); }
+inline double Weapon::HyperDisruptionDamage() const { return TotalDamage(ANTIHYPER_DAMAGE); }
+inline double Weapon::JumpDisruptionDamage() const { return TotalDamage(ANTIJUMP_DAMAGE); }
+
+inline std::tuple<double,double,double> Weapon::HyperDisruptionEffect() const { return hyperDisruptEffect; }
+inline std::tuple<double,double,double> Weapon::JumpDisruptionEffect() const { return jumpDisruptEffect; }
 
 inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); return doesDamage; }
 
