@@ -1128,7 +1128,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		const double DEFAULT_HYPERSPEED = 0.2;
 		// Hyperdrive disruption is lost by a rate of at least one per frame,
 		// but each additional hyperdrive will increase the loss rate by 1.
-		hyperDisruption = max(0., hyperDisruption - (1. + attributes.Get("jump speed") / DEFAULT_HYPERSPEED));
+		hyperDisruption = max(0., hyperDisruption - (1. + (attributes.Get("jump speed") + attributes.Get("scram drive"))/ DEFAULT_HYPERSPEED));
 	}
 	if(jumpDisruption)
 	{
