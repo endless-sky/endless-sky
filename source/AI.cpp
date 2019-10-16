@@ -403,6 +403,7 @@ void AI::Clean()
 	actions.clear();
 	notoriety.clear();
 	governmentActions.clear();
+	scanPermissions.clear();
 	playerActions.clear();
 	swarmCount.clear();
 	fenceCount.clear();
@@ -648,7 +649,10 @@ void AI::Step(const PlayerInfo &player)
 			continue;
 		}
 		
-		if(isPresent && personality.IsSurveillance() && !isStranded)
+		// Surveillance NPCs with enforcement authority (or those from
+		// missions) should perform scans and surveys of the system.
+		if(isPresent && personality.IsSurveillance() && !isStranded
+				&& (scanPermissions[gov] || it->IsSpecial()))
 		{
 			DoSurveillance(*it, command, target);
 			it->SetCommands(command);
@@ -702,29 +706,52 @@ void AI::Step(const PlayerInfo &player)
 			// A fighter must belong to the same government as its parent to dock with it.
 			bool hasParent = parent && parent->GetGovernment() == gov;
 			bool hasSpace = hasParent && parent->BaysFree(isFighter);
-			if(!hasParent || (!hasSpace && !Random::Int(600)) || parent->IsDestroyed()
+			if(!hasParent || (!hasSpace && !Random::Int(1200)) || parent->IsDestroyed()
 					|| parent->GetSystem() != it->GetSystem())
 			{
 				// Find a parent for orphaned fighters and drones.
 				parent.reset();
 				it->SetParent(parent);
-				vector<shared_ptr<Ship>> parentChoices;
+				
+				auto parentChoices = vector<shared_ptr<Ship>>{};
 				parentChoices.reserve(ships.size() * .1);
-				for(const auto &other : ships)
-					if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
-					{
-						if(!other->IsDisabled() && other->CanCarry(*it.get()))
+				auto reparentWith = [&it, &gov, &parent, &parentChoices](const list<shared_ptr<Ship>> otherShips) -> bool
+				{
+					for(const auto &other : otherShips)
+						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
 						{
-							parent = other;
-							it->SetParent(other);
-							break;
+							if(!other->IsDisabled() && other->CanCarry(*it.get()))
+							{
+								parent = other;
+								it->SetParent(other);
+								return true;
+							}
+							else
+								parentChoices.emplace_back(other);
 						}
-						else
-							parentChoices.emplace_back(other);
-					}
+					return false;
+				};
+				// Mission ships should only pick ships from the same mission.
+				auto missionIt = it->IsSpecial() && !it->IsYours()
+					? find_if(player.Missions().begin(), player.Missions().end(),
+						[&it](const Mission &m) -> bool
+						{
+							return m.HasShip(it);
+						})
+					: player.Missions().end();
+				if(missionIt != player.Missions().end())
+				{
+					auto &npcs = missionIt->NPCs();
+					for(const auto &npc : npcs)
+						if(reparentWith(npc.Ships()))
+							break;
+				}
+				else
+					reparentWith(ships);
 				
 				if(!parent && !parentChoices.empty())
 				{
+					// No suitable candidate can carry this ship, but this ship can still act as an escort.
 					parent = parentChoices[Random::Int(parentChoices.size())];
 					it->SetParent(parent);
 				}
@@ -1097,8 +1124,9 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		}
 	}
 	
-	// AI ships without an in-range hostile target consider scanning other ships.
-	if(!isYours && !target)
+	// With no hostile targets, NPCs with enforcement authority (and any
+	// mission NPCs) should consider friendly targets for surveillance.
+	if(!isYours && !target && (ship.IsSpecial() || scanPermissions.at(gov)))
 	{
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
 		bool outfitScan = ship.Attributes().Get("outfit scan power");
@@ -1109,6 +1137,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			for(const auto &it : allies)
 				if(it->GetGovernment() != gov)
 				{
+					// Scan friendly ships that are as-yet unscanned by this ship's government.
 					if((!cargoScan || Has(gov, it, ShipEvent::SCAN_CARGO))
 							&& (!outfitScan || Has(gov, it, ShipEvent::SCAN_OUTFITS)))
 						continue;
@@ -1298,6 +1327,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 	else if(target)
 	{
+		// An AI ship that is targeting a non-hostile ship should scan it, or move on.
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
 		bool outfitScan = ship.Attributes().Get("outfit scan power");
 		if((!cargoScan || Has(gov, target, ShipEvent::SCAN_CARGO))
@@ -1306,7 +1336,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		else
 		{
 			CircleAround(ship, command, *target);
-			if(!ship.IsYours())
+			if(!ship.IsYours() && (ship.IsSpecial() || scanPermissions.at(gov)))
 				command |= Command::SCAN;
 		}
 		return;
@@ -3544,6 +3574,11 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 	for(const auto &it : ships)
 	{
 		const Government *gov = it->GetGovernment();
+	
+		// Check if this ship's government has the authority to enforce scans & fines in this system.
+		if(!scanPermissions.count(gov))
+			scanPermissions.emplace(gov, gov && gov->CanEnforce(playerSystem));
+
 		// Only have ships update their strength estimate once per second on average.
 		if(!gov || it->GetSystem() != playerSystem || it->IsDisabled() || Random::Int(60))
 			continue;
