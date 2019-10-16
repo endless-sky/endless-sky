@@ -124,7 +124,7 @@ namespace {
 		{
 			// For deviation vales greater than 0, any ship inside the mass range
 			// takes max damage, and ships outide the range take less damage
-			// the farther form the range that they are.
+			// the farther from the range that they are.
 			if(currentMass < minMass)
 			{
 				damage *= exp(-pow(currentMass - minMass, 2) / (2 * pow(deviation, 2)));
@@ -1406,7 +1406,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	else if(commands.Has(Command::JUMP) && IsReadyToJump())
 	{
 		hyperspaceSystem = GetTargetSystem();
-		isUsingJumpDrive = !attributes.Get("hyperdrive") || !currentSystem->Links().count(hyperspaceSystem);
+		isUsingJumpDrive = attributes.Get("jump drive") && !jumpDisruption && 
+			(!attributes.Get("hyperdrive") || (attributes.Get("hyperdrive") && hyperDisruption) || !currentSystem->Links().count(hyperspaceSystem));
 		hyperspaceFuelCost = JumpFuel(hyperspaceSystem);
 	}
 	
@@ -2203,7 +2204,9 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 		return false;
 	
 	Point direction = targetSystem->Position() - currentSystem->Position();
-	bool isJump = !attributes.Get("hyperdrive") || !currentSystem->Links().count(targetSystem);
+	bool isJump = attributes.Get("jump drive") && (!attributes.Get("hyperdrive") || (attributes.Get("hyperdrive") && hyperDisruption) || !currentSystem->Links().count(targetSystem));
+	if((isJump && jumpDisruption) || (!isJump && hyperDisruption))
+		return false;
 	double scramThreshold = attributes.Get("scram drive");
 	
 	// The ship can only enter hyperspace if it is traveling slowly enough
