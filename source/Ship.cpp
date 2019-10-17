@@ -2560,9 +2560,16 @@ double Ship::JumpFuelMissing() const
 
 
 
-bool Ship::IsDisrupted() const
+bool Ship::IsDisrupted(const System *start, const System *destination) const
 {
-	return (!IsReadyToJump() && (HyperDisrupted() || JumpDisrupted()));
+	if(!start || !destination)
+	{
+		start = currentSystem;
+		destination = targetSystem;
+	}
+	
+	bool isJump = attributes.Get("jump drive") && (!attributes.Get("hyperdrive") || (attributes.Get("hyperdrive") && hyperDisruption) || !start->Links().count(destination));
+	return ((isJump && jumpDisruption) || (!isJump && hyperDisruption));
 }
 
 

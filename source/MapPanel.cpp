@@ -831,7 +831,7 @@ void MapPanel::DrawTravelPlan()
 	for(const shared_ptr<Ship> &it : player.Ships())
 		if(!it->IsParked() && !it->CanBeCarried() && it->GetSystem() == flagship->GetSystem())
 		{
-			if(it->IsDisabled() || it->IsDisrupted())
+			if(it->IsDisabled())
 			{
 				stranded = true;
 				continue;
@@ -865,7 +865,7 @@ void MapPanel::DrawTravelPlan()
 				if(it.second >= 0.)
 				{
 					double cost = isJump ? it.first->JumpDriveFuel() : it.first->HyperdriveFuel();
-					if(!cost || cost > it.second)
+					if(!cost || cost > it.second || it.first->IsDisrupted(previous, next))
 					{
 						it.second = -1.;
 						stranded = true;
@@ -881,7 +881,7 @@ void MapPanel::DrawTravelPlan()
 			drawColor = wormholeColor;
 		else if(!stranded)
 			drawColor = withinFleetFuelRangeColor;
-		else if(fuel[flagship] >= 0. && !flagship->IsDisrupted())
+		else if(fuel[flagship] >= 0. && !flagship->IsDisrupted(previous, next))
 			drawColor = defaultColor;
 		
 		Point from = Zoom() * (next->Position() + center);

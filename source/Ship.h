@@ -268,7 +268,7 @@ public:
 	double JumpFuelMissing() const;
 	// Get if this ship can't leave the system because its hyperdrive or jump
 	// drive is being disrupted.
-	bool IsDisrupted() const;
+	bool IsDisrupted(const System *start = nullptr, const System *destination = nullptr) const;
 	bool HyperDisrupted() const;
 	bool JumpDisrupted() const;
 	// Get the heat level at idle.
