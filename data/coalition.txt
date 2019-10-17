@@ -978,6 +978,6 @@ phrase "hostile disabled heliarch"
 		" "
 	word
 		"Their translation device must be broken"
-		"You can only wonder what they're saying
+		"You can only wonder what they're saying"
 	word
 		".)"
