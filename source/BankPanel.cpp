@@ -248,7 +248,7 @@ void BankPanel::Draw()
 	// Draw the "Pay All" button.
 	const Interface *interface = GameData::Interfaces().Get("bank");
 	Information info;
-	if((salariesOwed || maintenanceDue) && player.Accounts().Credits() != 0)
+	if((salariesOwed || maintenanceDue) && player.Accounts().Credits() > 0)
 		info.SetCondition("can pay");
 	else
 		for(const Mortgage &mortgage : player.Accounts().Mortgages())
