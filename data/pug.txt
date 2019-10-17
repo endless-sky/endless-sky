@@ -325,7 +325,7 @@ outfit "Pug Peacekeeping Staff"
 	"capture attack" 2.3
 	"capture defense" 2.3
 	"unplunderable" 1
-	description "Despite being designed for planetary population control, peacekeeping staves also work exceptionally well in ship defense. The staff emits a short-ranged beam that immediately incapacitates anyone it touches by causing them to enter a euphoric and hallucinogenic state, wandering off to somewhere where they won't cause any trouble. Exiting this euphoric state is never pleasant, though, often resulting in vomiting."
+	description "Though designed for planetary population control, the peacekeeping staff also works exceptionally well for ship defense. The staff emits a short-ranged beam that incapacitates anyone it touches by causing them to enter a euphoric and hallucinogenic state, wandering off to somewhere where they won't cause any trouble. Coming down from the state of euphoria is never pleasant."
 
 
 
