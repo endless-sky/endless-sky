@@ -18,7 +18,7 @@ ship "Albatross"
 		category "Heavy Warship"
 		licenses
 			"Remnant Capital"
-		cost 20000000
+		cost 20250000
 		"shields" 34200
 		"hull" 12600
 		"required crew" 44
@@ -29,7 +29,7 @@ ship "Albatross"
 		"heat dissipation" 0.6
 		"fuel capacity" 600
 		"ramscoop" 2
-		"outfit space" 658
+		"outfit space" 668
 		"weapon capacity" 236
 		"engine capacity" 142
 		"shield generation" 5.2
@@ -57,7 +57,7 @@ ship "Albatross"
 
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
-		"Hyperdrive"
+		"Scram Drive"
 
 	engine -28 155 .8
 	engine 28 155 .8
@@ -101,7 +101,7 @@ ship "Albatross" "Albatross (Sniper)"
 		"Crucible-Class Thruster"
 		"Smelter-Class Steering"
 		"Forge-Class Steering"
-		"Hyperdrive"
+		"Scram Drive"
 
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
@@ -132,7 +132,7 @@ ship "Albatross" "Albatross (Turret)"
 
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
-		"Hyperdrive"
+		"Scram Drive"
 
 	turret "Thrasher Turret"
 	turret "Thrasher Turret"
@@ -158,7 +158,7 @@ ship "Albatross" "Albatross (Heavy)"
 		"Crucible-Class Thruster"
 		"Smelter-Class Steering"
 		"Forge-Class Steering"
-		"Hyperdrive"
+		"Scram Drive"
 
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
@@ -355,7 +355,7 @@ ship "Pelican"
 		category "Heavy Freighter"
 		licenses
 			"Remnant Capital"
-		cost 9770000
+		cost 9900000
 		"shields" 11300
 		"hull" 5700
 		"required crew" 14
@@ -366,7 +366,7 @@ ship "Pelican"
 		"heat dissipation" 0.7
 		"fuel capacity" 600
 		"ramscoop" 2
-		"outfit space" 470
+		"outfit space" 480
 		"weapon capacity" 157
 		"engine capacity" 144
 		"shield generation" 2.7
@@ -394,7 +394,7 @@ ship "Pelican"
 
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
-		"Hyperdrive"
+		"Scram Drive"
 
 	engine 22 92 0.7
 	engine -22 92 0.7
