@@ -529,7 +529,7 @@ phrase "friendly disabled hai"
 		", "
 	word
 		"please provide assistance to us"
-		"our ship has been disabled and needs repaired"
+		"our ship has been disabled and needs repair"
 		"please spare a moment to rescue us"
 	word
 		"."
