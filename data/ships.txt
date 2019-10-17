@@ -2188,9 +2188,9 @@ ship "Mule"
 		"drag" 5.7
 		"heat dissipation" .5
 		"fuel capacity" 600
-		"cargo space" 200
+		"cargo space" 170
 		"outfit space" 440
-		"weapon capacity" 180
+		"weapon capacity" 170
 		"engine capacity" 110
 		weapon
 			"blast radius" 100
