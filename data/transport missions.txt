@@ -3404,3 +3404,68 @@ mission "Capture Smuggler"
 		payment 150000
 		conversation
 			`The huge man drags the unconscious smuggler out of the cargo container with one hand and carries the cargo box with the other. He stops in front of you. "<first> <last>," he says. "My employer, he will be very happy. Your payment, you will receive soon. Is it not good, to be reliable?" The man leaves your ship, letting the smuggler's legs scrape along the ground as he walks. A moment later, you receive <payment> from an anonymous account.`
+
+
+
+mission "Inheritance Redirection"
+	description "Travel to <destination> to act as heir for the late warlord Limping Pappa."
+	source
+		attributes "frontier"
+	destination
+		distance 7 9
+		government "Republic" "Free Worlds" "Syndicate"
+	to offer
+		credits >= 400000
+	on accept
+		payment -200000
+	on offer
+		conversation
+			`You are walking near the spaceport and suddenly a computer terminal starts blinking and beeping when you pass it.`
+			choice
+				`	(Check it out.)`
+				`	(Ignore it.)`
+					decline
+			`When you approach, you are greeted by a voice from the terminal: "Dear Sir or Madam, please respond!"`
+			choice
+				`	"Hello!"`
+				`	(Ignore it and walk away.)`
+					decline
+			`	"My name is Mr. Smith and I'm contacting you with a highly confidential and urgent proposal. I am, or more accurately was, the financial manager of the recently deceased warlord Limping Pappa. I am looking for a highly trustworthy individual who can help me relocate Mr. Pappa's fortune of 300 million credits."`
+			choice
+				`	"How did Mr. Pappa acquire his fortune exactly?"`
+				`	"What are you proposing?"`
+					goto proposal
+				`	"This sounds like a credits-stealing scam, I will not fall for this!"`
+					decline
+			`	"Oh, uh, Mr. Pappa was specialized into tricking rich victims to transfer credits to him.`
+			label proposal
+			`	"I obviously cannot make myself an heir to Mr. Pappa. So what I propose is to present you as an heir and have the inheritance transferred to you.`
+			`	"When you receive the inheritance on <destination>, then you send half of it back to me."`
+			choice
+				`	"Okay, let's do this."`
+				`	"Sounds too good to be true. What's the catch?"`
+				`	"Sorry, this sounds too fishy for me."`
+					decline
+			`	Mr. Smith responds: "There is one small problem with the inheritance tax, it needs to be paid upfront. Can you pay 200,000 credits so that I can get the process going?"`
+			choice
+				`	"Sure, no problem."`
+					goto pay
+				`	"Are you trying to trick me?"`
+				`	"Sounds too risky, I don't want to pay anything upfront."`
+					goto no
+			`	"Of course I'm not trying to trick you! Mr. Pappa's victims were all persons that had more credits than common sense. But you look a lot smarter than any of Mr. Pappa's victims.`
+			`	"Think of the huge amount of credits you will receive just for acting as heir! Can I count on you to pay the tax and make both of us very wealthy?"`
+			choice
+				`	"Sure, no problem."`
+					goto pay
+				`	"Sounds too risky, I don't want to pay anything upfront."`
+					goto no
+			label pay
+			`	The terminal suddenly goes black after you transfer 200,000 credits to the account given by Mr. Smith.`
+			`	You wonder if you did the right thing.`
+				accept
+			label no
+			`	The terminal suddenly goes black. Mr. Smith is apparently no longer interested in doing business with you.`
+				decline
+	on complete
+		dialog "There is no inheritance for Mr. Pappa waiting for you at the bank, but there are many other victims that paid some credits while expecting to earn a larger amount of credits in return. Some make a big fuss about it, until the alerted authorities start fining them for attempted inheritance fraud. You leave the bank in silence."
