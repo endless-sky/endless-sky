@@ -382,7 +382,7 @@ mission "Intro [2 Interceptor]"
 				`	"Got it."`
 					accept
 				`	"I really shouldn't try to fight?"`
-			`	"It just isn't feasible," he says. "If a ship has turrets, your Sparrow can't get close enough to hit it with your guns without being damaged, and then it's just a matter of whose weapons and shields are stronger. And one heavy rocket hit could nearly disable you. So, don't risk it. And if it has anti-missile turrets, you can't count on hanging back and bombarding it with missiles from long distances, or at least not with weapons that can fit in a Sparrow. It's like rock paper scissors; recgonize what your enemy's strengths and weaknesses are, as well as your own."`
+			`	"It just isn't feasible," he says. "If a ship has turrets, your Sparrow can't get close enough to hit it with your guns without being damaged, and then it's just a matter of whose weapons and shields are stronger. And one heavy rocket hit could nearly disable you. Also, if it has anti-missile turrets, you can't count on hanging back and bombarding it with missiles from long distances, or at least not with weapons that can fit in a Sparrow. So, don't risk it. It's like rock paper scissors; recgonize what your enemy's strengths and weaknesses are, as well as your own."`
 				accept
 	
 	on complete
@@ -453,8 +453,8 @@ conversation "end of intro missions"
 	`	"Before you go, is there anything else you'd like to ask me about being a new pilot?"`
 	label choices
 	choice
-		`	"Where in space should I go if I want to avoid pirates?"`
-		`	"Where is a good place to mine asteroids?"`
+		`	"Where should I go if I want to avoid pirates?"`
+		`	"What's a good place to mine asteroids?"`
 			goto asteroids
 		`	"Have you ever met any aliens?"`
 			goto aliens
@@ -480,7 +480,7 @@ conversation "end of intro missions"
 		goto more
 	
 	label jobs
-	`	"Getting good jobs is more about having the space to accept the good jobs than it is finding them, but if you're looking for jobs that pay good for little effort, then you'll want to watch out around the holidays. There's always a big celebration on Earth every Earth Day, so watch out in the months leading up to that. The people down in the Rim have some month long celebration every August that you should look out for too.`
+	`	"Getting good jobs is more about having the space to accept the good jobs than it is finding them, but if you're looking for jobs that pay well for little effort, then you'll want to watch out around the holidays. There's always a big celebration on Earth every Earth Day, so pay attention to the job board in the months leading up to that. The people down in the Rim have some month-long celebration every August that you should look out for too.`
 	
 	label more
 	`	"Anything else you want to ask me?"`
