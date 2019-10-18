@@ -19,13 +19,13 @@ ship "Marauder Arrow"
 		"required crew" 2
 		"bunks" 5
 		"mass" 145
-		"drag" 2.7
+		"drag" 2.0
 		"heat dissipation" .85
-		"fuel capacity" 400
+		"fuel capacity" 600
 		"cargo space" 5
 		"outfit space" 210
 		"weapon capacity" 55
-		"engine capacity" 80
+		"engine capacity" 95
 		"self destruct" .25
 		weapon
 			"blast radius" 27

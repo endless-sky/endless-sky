@@ -317,6 +317,16 @@ outfit "Pug Biodefenses"
 	"unplunderable" 1
 	description "This defense system is designed to release a suite of toxins that are lethal to human beings (and probably to some other species, as well) but which have no effect at all on the Pug."
 
+outfit "Pug Peacekeeping Staff"
+	plural "Pug Peacekeeping Staves"
+	category "Hand to Hand"
+	cost 123456
+	thumbnail "outfit/pug staff"
+	"capture attack" 2.3
+	"capture defense" 2.3
+	"unplunderable" 1
+	description "Though designed for planetary population control, the peacekeeping staff also works exceptionally well for ship defense. The staff emits a short-ranged beam that incapacitates anyone it touches by causing them to enter a euphoric and hallucinogenic state, wandering off to somewhere where they won't cause any trouble. Coming down from the state of euphoria is never pleasant."
+
 
 
 ship "Pug Zibruka"
@@ -351,6 +361,7 @@ ship "Pug Zibruka"
 		"Pug Zapper" 2
 		
 		"Pug Biodefenses" 4
+		"Pug Peacekeeping Staff" 4
 		
 		"Pug Akfar Thruster"
 		"Pug Akfar Steering"
@@ -402,6 +413,7 @@ ship "Pug Enfolta"
 		"Pug Zapper Turret"
 		
 		"Pug Biodefenses" 6
+		"Pug Peacekeeping Staff" 19
 		
 		"Pug Cormet Thruster"
 		"Pug Cormet Steering"
@@ -456,6 +468,7 @@ ship "Pug Maboro"
 		"Pug Anti-Missile"
 		
 		"Pug Biodefenses" 8
+		"Pug Peacekeeping Staff" 54
 		
 		"Pug Lohmar Thruster"
 		"Pug Lohmar Steering"
@@ -518,6 +531,7 @@ ship "Pug Arfecta"
 		
 		"Cloaking Device"
 		"Pug Biodefenses" 12
+		"Pug Peacekeeping Staff" 36
 		
 		"Pug Lohmar Thruster"
 		"Pug Lohmar Steering" 2

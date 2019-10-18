@@ -424,6 +424,7 @@ mission "Deep: Mystery Cubes 2"
 	landing
 	name `Blockading the Devil`
 	description `Travel to <destination> to set up a blockade in hopes of capturing the warlord Beelzebub.`
+	source "Luna"
 	destination "Maelstrom"
 	deadline
 	to offer
@@ -527,6 +528,7 @@ mission "Deep: Mystery Cubes 3"
 	landing
 	name `Defend <planet>`
 	description `Destroy the pirates attacking <planet>.`
+	source "Maelstrom"
 	to offer
 		has "Deep: Mystery Cubes 2: done"
 	
@@ -569,6 +571,7 @@ mission "Deep: Mystery Cubes 4"
 	landing
 	name `Rendezvous on <planet>`
 	description `Travel to <destination> with reinforcements for its blockade.`
+	source "Maelstrom"
 	destination "Farpoint"
 	to offer
 		has "Deep: Mystery Cubes 3: done"
@@ -2005,6 +2008,7 @@ mission "Deep: Scientist Rescue 1"
 	landing
 	name "Secure the Scientists"
 	description "Escort the <npc> to <destination> to retrieve the Star Queen. Escorts will be waiting for you on Memory in the Zosma system and Farpoint in the Alnitak system."
+	source "Valhalla"
 	destination "Haven"
 	clearance
 	to offer
@@ -2177,6 +2181,7 @@ mission "Deep: Scientist Rescue 2"
 	landing
 	name "Return to <planet>"
 	description "Now that you have secured the Star Queen, escort it safely to <destination>."
+	source "Haven"
 	destination "Valhalla"
 	to offer
 		has "Deep: Scientist Rescue 1: done"
@@ -2266,7 +2271,7 @@ mission "Deep: Scientist Rescue 3A"
 	landing
 	name "Take down the Devil"
 	description "You have returned the scientists, but the pirates still have a Bactrian. Eliminate it and return to <destination>."
-	destination "Valhalla"
+	source "Valhalla"
 	waypoint "Arneb"
 	to offer
 		has "Deep: Scientist Rescue 2: done"
