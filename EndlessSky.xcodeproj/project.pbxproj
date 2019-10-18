@@ -16,6 +16,8 @@
 		62A405BA1D47DA4D0054F6A0 /* FogShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62A405B81D47DA4D0054F6A0 /* FogShader.cpp */; };
 		62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62C311181CE172D000409D91 /* Flotsam.cpp */; };
 		6A5716331E25BE6F00585EB2 /* CollisionSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */; };
+		938E07E4235970CE00DC2C2B /* FormationPattern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 938E07E0235970CE00DC2C2B /* FormationPattern.cpp */; };
+		938E07E5235970CE00DC2C2B /* FormationPositioner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 938E07E2235970CE00DC2C2B /* FormationPositioner.cpp */; };
 		A90633FF1EE602FD000DA6C0 /* LogbookPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90633FD1EE602FD000DA6C0 /* LogbookPanel.cpp */; };
 		A90C15D91D5BD55700708F3A /* Minable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90C15D71D5BD55700708F3A /* Minable.cpp */; };
 		A90C15DC1D5BD56800708F3A /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90C15DA1D5BD56800708F3A /* Rectangle.cpp */; };
@@ -184,6 +186,10 @@
 		62C311191CE172D000409D91 /* Flotsam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flotsam.h; path = source/Flotsam.h; sourceTree = "<group>"; };
 		6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionSet.cpp; path = source/CollisionSet.cpp; sourceTree = "<group>"; };
 		6A5716321E25BE6F00585EB2 /* CollisionSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollisionSet.h; path = source/CollisionSet.h; sourceTree = "<group>"; };
+		938E07E0235970CE00DC2C2B /* FormationPattern.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FormationPattern.cpp; path = source/FormationPattern.cpp; sourceTree = "<group>"; };
+		938E07E1235970CE00DC2C2B /* FormationPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormationPattern.h; path = source/FormationPattern.h; sourceTree = "<group>"; };
+		938E07E2235970CE00DC2C2B /* FormationPositioner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FormationPositioner.cpp; path = source/FormationPositioner.cpp; sourceTree = "<group>"; };
+		938E07E3235970CE00DC2C2B /* FormationPositioner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormationPositioner.h; path = source/FormationPositioner.h; sourceTree = "<group>"; };
 		A90633FD1EE602FD000DA6C0 /* LogbookPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LogbookPanel.cpp; path = source/LogbookPanel.cpp; sourceTree = "<group>"; };
 		A90633FE1EE602FD000DA6C0 /* LogbookPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogbookPanel.h; path = source/LogbookPanel.h; sourceTree = "<group>"; };
 		A90C15D71D5BD55700708F3A /* Minable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Minable.cpp; path = source/Minable.cpp; sourceTree = "<group>"; };
@@ -465,6 +471,10 @@
 		654D33611BE92C9200D1E5AB /* source */ = {
 			isa = PBXGroup;
 			children = (
+				938E07E0235970CE00DC2C2B /* FormationPattern.cpp */,
+				938E07E1235970CE00DC2C2B /* FormationPattern.h */,
+				938E07E2235970CE00DC2C2B /* FormationPositioner.cpp */,
+				938E07E3235970CE00DC2C2B /* FormationPositioner.h */,
 				A96862CD1AE6FD0A004FE1FE /* Account.cpp */,
 				A96862CE1AE6FD0A004FE1FE /* Account.h */,
 				A96862CF1AE6FD0A004FE1FE /* AI.cpp */,
@@ -878,6 +888,7 @@
 				DFAAE2AA1FD4A27B0072C0A8 /* ImageSet.cpp in Sources */,
 				A96863D41AE6FD0E004FE1FE /* Mask.cpp in Sources */,
 				A96863E61AE6FD0E004FE1FE /* Point.cpp in Sources */,
+				938E07E4235970CE00DC2C2B /* FormationPattern.cpp in Sources */,
 				A96863DE1AE6FD0E004FE1FE /* OutfitterPanel.cpp in Sources */,
 				62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */,
 				A96863B91AE6FD0E004FE1FE /* Effect.cpp in Sources */,
@@ -934,6 +945,7 @@
 				A96863F21AE6FD0E004FE1FE /* Ship.cpp in Sources */,
 				B5DDA6942001B7F600DBA76A /* News.cpp in Sources */,
 				A96863D01AE6FD0E004FE1FE /* main.cpp in Sources */,
+				938E07E5235970CE00DC2C2B /* FormationPositioner.cpp in Sources */,
 				A96863BE1AE6FD0E004FE1FE /* Fleet.cpp in Sources */,
 				A98150821EA9634A00428AD6 /* ShipInfoPanel.cpp in Sources */,
 				A96864011AE6FD0E004FE1FE /* Table.cpp in Sources */,
