@@ -118,7 +118,7 @@ outfit "Overcharged Shield Module"
 	"shield heat" 1.4
 	"energy consumption" 1.5
 	description "These modular shield generators are the most powerful emitters produced in Coalition space, and as such they are strictly controlled and exclusively used by the Heliarchs."
-	description "The additions made to the Large Shield Module more than tripled its shield generation, but at the cost of it requiring a constant supply of energy to stabilize it."
+	description "The additions made to the Large Shield Module nearly tripled its shield generation, but at the cost of it requiring a constant supply of energy to stabilize it."
 
 outfit "Small Repair Module"
 	category "Systems"
