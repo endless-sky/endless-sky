@@ -2201,8 +2201,8 @@ ship "Mule"
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 136
 		"Sidewinder Missile Rack" 2
-		"Heavy Laser Turret" 3
-		"Heavy Anti-Missile Turret"
+		"Heavy Laser Turret" 2
+		"Heavy Anti-Missile Turret" 2
 		
 		"NT-200 Nucleovoltaic"
 		"LP072a Battery Pack"
@@ -2219,7 +2219,7 @@ ship "Mule"
 	engine 12 123
 	gun -9 -119 "Sidewinder Missile Launcher"
 	gun 9 -119 "Sidewinder Missile Launcher"
-	turret 22 -65 "Heavy Laser Turret"
+	turret 22 -65 "Heavy Anti-Missile Turret"
 	turret -37 -21 "Heavy Laser Turret"
 	turret 39 35 "Heavy Laser Turret"
 	turret -9 59 "Heavy Anti-Missile Turret"
