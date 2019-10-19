@@ -510,7 +510,7 @@ mission "Remnant: Void Sprites 3"
 				`	"Sorry, that's more than I'm willing to commit to."`
 					decline
 
-			`	"Excellent," he says. "The ship should be available for purchase in the shipyard on Viminal."`
+			`	"Excellent," he says. "This ship is an antique, so be careful with the shields. They are projected around the ship and are unable to adapt to new obstacles. Hard-shell shields, I believe they were called at the time of the Exodus, as opposed to the skin shields of today that fit close to the hull." He pauses and looks thoughtful, then continues. "Just make sure nothing valuable is near the hull when the shields activate - it will either be sheared in two or break the shields. And it is important to know that the pressure suit included with the ship is able to remotely activate and deactivate the shields and other ship systems. Good luck."`
 				accept
 	on accept
 		event "remnant: gascraft"
@@ -551,7 +551,10 @@ event "remnant: gascraft"
 		add shipyard "Remnant Gascraft"
 
 government " Drak "
+	swizzle 5
 	"player reputation" -1000
+	"attitude toward"
+		"Indigenous Lifeform" 1
 
 event "remnant: void sprite research"
 

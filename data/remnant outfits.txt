@@ -456,7 +456,7 @@ outfit "Tuning Rifle"
 	category "Hand to Hand"
 	licenses
 		Remnant
-	cost 65000
+	cost 22000
 	thumbnail "outfit/remnant rifle"
 	"capture attack" 1.2
 	"capture defense" 1.8

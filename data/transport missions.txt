@@ -1832,7 +1832,7 @@ phrase "generic human package offer"
 	word
 		`A local`
 		`A man`
-		`A resident of <source>`
+		`A resident of <origin>`
 		`A stranger`
 		`A woman`
 	word
@@ -2419,6 +2419,7 @@ mission "Terraforming 9"
 	landing
 	name "Terraforming Tundra"
 	description "Travel to <destination> with Amy, Nolan, and four others."
+	source "Valhalla"
 	destination "Tundra"
 	passengers 6
 	cargo "scientific equipment" 10
@@ -2447,6 +2448,7 @@ mission "Terraforming 9"
 mission "Terraforming 10"
 	name "Terraforming Tundra"
 	description "Bring the Republic representative overseeing the terraforming project to <destination>, where he will attempt to find an alternative solution to terraforming Tundra that does not involve an asteroid."
+	source "Tundra"
 	destination "Earth"
 	passengers 1
 	to offer
@@ -2489,6 +2491,7 @@ mission "Terraforming 11"
 	landing
 	name "Terraforming Tundra"
 	description "Return to <destination> with the Republic representative."
+	source "Earth"
 	destination "Tundra"
 	passengers 1
 	to offer
@@ -2523,6 +2526,7 @@ mission "Terraforming 12"
 	landing
 	name "Terraforming Tundra"
 	description "Plant a thruster on an asteroid to guide it into a collision with the dormant supervolcano on Tundra."
+	source "Tundra"
 	cargo "thruster equipment" 10
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
@@ -2748,7 +2752,8 @@ mission "Lost Boy 2"
 	landing
 	name `Rescue Tod`
 	description `Locate the <npc> and board it to rescue Tod, then bring him to <destination> so that he may reunite with his mother.`
-	destination Moonshake
+	source "Deadman's Cove"
+	destination "Moonshake"
 	to offer
 		has "Lost Boy 1: done"
 	
@@ -2779,7 +2784,7 @@ mission "Lost Boy 2"
 			distance 2 4
 		ship "Vanguard (Particle)" "Lord Ligonier"
 		conversation
-			`When you breach the ship's hull, you find the crew of the <npc> more concerned with containing the fires caused by your weapons than with you walking onto their ship. Almost every one of the crew members is a teenager. One looks at you and the laser pistol in your hand with mortal fear in his eyes.`
+			`When you breach the ship's hull, you find the crew of the <npc> more concerned with containing the fires caused by your weapons than with you walking onto their ship. Almost every one of the crew members is a teenager. One looks at you and the pistol in your hand with mortal fear in his eyes.`
 			`	Through the smoke and steam, you see a boy running toward you who fits the description of Tod Copper.`
 			choice
 				`	"Get on my ship!"`
@@ -2801,6 +2806,7 @@ mission "Lost Boy 3"
 	landing
 	name `Bring Tod to <planet>`
 	description `Now that Tod's mother knows he is safe, bring him to <destination> so that he may start his mining job to support him and his mother.`
+	source "Moonshake"
 	destination "Placer"
 	passengers 1
 	blocked "This mission requires that you have at least one free bunk. Return once you have the space."
@@ -2939,7 +2945,7 @@ mission "Paradise Fortune 3"
 	landing
 	name `Last Hope`
 	description `Escape from the Navy and travel to <destination> where Diana Howl hopes that the Free Worlds will help her.`
-	destination Bourne
+	destination "Bourne"
 	passengers 1
 	to offer
 		has "Paradise Fortune 2: done"
@@ -3003,6 +3009,7 @@ mission "Paradise Fortune 4"
 	landing
 	name `Exchange of Goods`
 	description `Travel to <destination> and hand the backpack of credits and Diana Howl's note over to the Navy.`
+	source "Bourne"
 	destination "New Boston"
 	to offer
 		has "Paradise Fortune 3: done"
@@ -3397,3 +3404,68 @@ mission "Capture Smuggler"
 		payment 150000
 		conversation
 			`The huge man drags the unconscious smuggler out of the cargo container with one hand and carries the cargo box with the other. He stops in front of you. "<first> <last>," he says. "My employer, he will be very happy. Your payment, you will receive soon. Is it not good, to be reliable?" The man leaves your ship, letting the smuggler's legs scrape along the ground as he walks. A moment later, you receive <payment> from an anonymous account.`
+
+
+
+mission "Inheritance Redirection"
+	description "Travel to <destination> to act as heir for the late warlord Limping Pappa."
+	source
+		attributes "frontier"
+	destination
+		distance 7 9
+		government "Republic" "Free Worlds" "Syndicate"
+	to offer
+		credits >= 400000
+	on accept
+		payment -200000
+	on offer
+		conversation
+			`You are walking near the spaceport and suddenly a computer terminal starts blinking and beeping when you pass it.`
+			choice
+				`	(Check it out.)`
+				`	(Ignore it.)`
+					decline
+			`When you approach, you are greeted by a voice from the terminal: "Dear Sir or Madam, please respond!"`
+			choice
+				`	"Hello!"`
+				`	(Ignore it and walk away.)`
+					decline
+			`	"My name is Mr. Smith and I'm contacting you with a highly confidential and urgent proposal. I am, or more accurately was, the financial manager of the recently deceased warlord Limping Pappa. I am looking for a highly trustworthy individual who can help me relocate Mr. Pappa's fortune of 300 million credits."`
+			choice
+				`	"How did Mr. Pappa acquire his fortune exactly?"`
+				`	"What are you proposing?"`
+					goto proposal
+				`	"This sounds like a credits-stealing scam, I will not fall for this!"`
+					decline
+			`	"Oh, uh, Mr. Pappa was specialized into tricking rich victims to transfer credits to him.`
+			label proposal
+			`	"I obviously cannot make myself an heir to Mr. Pappa. So what I propose is to present you as an heir and have the inheritance transferred to you.`
+			`	"When you receive the inheritance on <destination>, then you send half of it back to me."`
+			choice
+				`	"Okay, let's do this."`
+				`	"Sounds too good to be true. What's the catch?"`
+				`	"Sorry, this sounds too fishy for me."`
+					decline
+			`	Mr. Smith responds: "There is one small problem with the inheritance tax, it needs to be paid upfront. Can you pay 200,000 credits so that I can get the process going?"`
+			choice
+				`	"Sure, no problem."`
+					goto pay
+				`	"Are you trying to trick me?"`
+				`	"Sounds too risky, I don't want to pay anything upfront."`
+					goto no
+			`	"Of course I'm not trying to trick you! Mr. Pappa's victims were all persons that had more credits than common sense. But you look a lot smarter than any of Mr. Pappa's victims.`
+			`	"Think of the huge amount of credits you will receive just for acting as heir! Can I count on you to pay the tax and make both of us very wealthy?"`
+			choice
+				`	"Sure, no problem."`
+					goto pay
+				`	"Sounds too risky, I don't want to pay anything upfront."`
+					goto no
+			label pay
+			`	The terminal suddenly goes black after you transfer 200,000 credits to the account given by Mr. Smith.`
+			`	You wonder if you did the right thing.`
+				accept
+			label no
+			`	The terminal suddenly goes black. Mr. Smith is apparently no longer interested in doing business with you.`
+				decline
+	on complete
+		dialog "There is no inheritance for Mr. Pappa waiting for you at the bank, but there are many other victims that paid some credits while expecting to earn a larger amount of credits in return. Some make a big fuss about it, until the alerted authorities start fining them for attempted inheritance fraud. You leave the bank in silence."
