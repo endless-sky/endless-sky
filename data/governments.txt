@@ -95,7 +95,9 @@ government "Hai"
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly hai"
+	"friendly disabled hail" "friendly disabled hai"
 	"hostile hail" "hostile hai"
+	"hostile disabled hail" "hostile disabled hai"
 
 government "Hai (Unfettered)"
 	swizzle 4
@@ -111,16 +113,20 @@ government "Hai (Unfettered)"
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
+	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered"
+	"hostile disabled hail" "hostile disabled unfettered"
 
 government "Heliarch"
 	swizzle 0
 	color 1 .8 .5
-	"crew attack" 3
-	"crew defense" 4
+	"crew attack" 1.3
+	"crew defense" 2.8
 	"player reputation" 1
 	"friendly hail" "friendly heliarch"
+	"friendly disabled hail" "friendly disabled heliarch"
 	"hostile hail" "hostile heliarch"
+	"hostile disabled hail" "hostile disabled heliarch"
 	"attitude toward"
 		"Quarg" -.01
 		"Coalition" 1
@@ -301,7 +307,9 @@ government "Pug"
 		"Drak" -.01
 		"Quarg" -.01
 	"friendly hail" "friendly pug"
+	"friendly disabled hail" "friendly disabled pug"
 	"hostile hail" "hostile pug"
+	"hostile disabled hail" "hostile pug"
 
 government "Quarg"
 	swizzle 0
@@ -316,6 +324,7 @@ government "Quarg"
 		"Hai" .01
 		"Pirate" -.01
 	"hostile hail" "hostile quarg"
+	"hostile disabled hail" "hostile quarg"
 
 government "Remnant"
 	swizzle 0
@@ -387,5 +396,6 @@ government "Wanderer"
 	"player reputation" 1
 	language "Wanderer"
 	"friendly hail" "wanderer untranslated"
+	"friendly disabled hail" "wanderer untranslated"
 	"hostile hail" "wanderer untranslated"
 	"hostile disabled hail" "wanderer untranslated"

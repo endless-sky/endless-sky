@@ -341,9 +341,9 @@ ship "Bastion"
 	thumbnail "thumbnail/bastion"
 	attributes
 		category "Medium Warship"
-		"cost" 3560000
-		"shields" 6700
-		"hull" 4200
+		"cost" 3860000
+		"shields" 7500
+		"hull" 4700
 		"required crew" 17
 		"bunks" 40
 		"mass" 580
@@ -352,7 +352,7 @@ ship "Bastion"
 		"fuel capacity" 500
 		"cargo space" 110
 		"outfit space" 470
-		"weapon capacity" 180
+		"weapon capacity" 190
 		"engine capacity" 120
 		weapon
 			"blast radius" 120
@@ -2179,18 +2179,18 @@ ship "Mule"
 	thumbnail "thumbnail/mule"
 	attributes
 		category "Medium Warship"
-		"cost" 4580000
+		"cost" 4080000
 		"shields" 5400
 		"hull" 4400
-		"required crew" 6
+		"required crew" 14
 		"bunks" 43
 		"mass" 320
 		"drag" 5.7
 		"heat dissipation" .5
 		"fuel capacity" 600
-		"cargo space" 270
-		"outfit space" 450
-		"weapon capacity" 210
+		"cargo space" 170
+		"outfit space" 440
+		"weapon capacity" 170
 		"engine capacity" 110
 		weapon
 			"blast radius" 100
@@ -2201,8 +2201,8 @@ ship "Mule"
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 136
 		"Sidewinder Missile Rack" 2
-		"Heavy Laser Turret" 3
-		"Heavy Anti-Missile Turret"
+		"Heavy Laser Turret" 2
+		"Heavy Anti-Missile Turret" 2
 		
 		"NT-200 Nucleovoltaic"
 		"LP072a Battery Pack"
@@ -2219,7 +2219,7 @@ ship "Mule"
 	engine 12 123
 	gun -9 -119 "Sidewinder Missile Launcher"
 	gun 9 -119 "Sidewinder Missile Launcher"
-	turret 22 -65 "Heavy Laser Turret"
+	turret 22 -65 "Heavy Anti-Missile Turret"
 	turret -37 -21 "Heavy Laser Turret"
 	turret 39 35 "Heavy Laser Turret"
 	turret -9 59 "Heavy Anti-Missile Turret"
@@ -2231,7 +2231,7 @@ ship "Mule"
 	explode "small explosion" 30
 	explode "medium explosion" 20
 	"final explode" "final explosion medium"
-	description "The Mule is as much of a hodgepodge as its looks suggest. The Lionheart ship designers combined a good deal of cargo space with a decent amount of weaponry and even a fighter bay, and ended up with a ship that is mostly used as a freighter but must be classified as a warship because of its heavy armament and shields."
+	description "The Mule is as much of a hodgepodge as its looks suggest. The Lionheart ship designers combined a good deal of cargo space with a decent amount of weaponry and even a fighter bay, and ended up with a ship that is mostly used as a freighter but must be classified as a warship because of its heavy armament and shields. This hodgepodge nature has its downside, though, namely its high crew requirement and the fact that any dedicated ship of the same cost will do better in a specialized role than the Mule will."
 
 
 
@@ -2301,13 +2301,13 @@ ship "Osprey"
 	thumbnail "thumbnail/osprey"
 	attributes
 		category "Medium Warship"
-		"cost" 4400000
+		"cost" 4200000
 		"shields" 7200
 		"hull" 1600
 		"required crew" 9
 		"bunks" 24
 		"mass" 270
-		"drag" 6.1
+		"drag" 5.9
 		"heat dissipation" .8
 		"fuel capacity" 600
 		"cargo space" 40
