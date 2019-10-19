@@ -481,8 +481,34 @@ phrase "friendly wanderer"
 		"[cure, remedy]"
 	word
 		" them."
-		
-		
+
+phrase "friendly disabled wanderer"
+	word
+		"[Visitor, Traveler]"
+		"Guest"
+	word
+		", "
+	word
+		"our work is in [danger, peril]"
+		"we have been [assaulted, attacked]"
+		"we have become [disabled, incapacitated]"
+	word
+		". "
+		"! "
+	word
+		"We need to be [repaired, fixed]"
+		"Assist us"
+		"Fight for us"
+	word
+		", please"
+		", we beg you"
+		""
+		""
+		""
+	word
+		"."
+		"!"
+
 phrase "hostile wanderer"
 	word
 		"We do not wish to "
