@@ -117,8 +117,7 @@ outfit "Overcharged Shield Module"
 	"shield energy" 3.7
 	"shield heat" 1.4
 	"energy consumption" 1.5
-	description "These modular shield generators are the most powerful emitters produced in Coalition space, and as such they are strictly controlled and exclusively used by the Heliarchs."
-	description "The additions made to the Large Shield Module nearly tripled its shield generation, but at the cost of it requiring a constant supply of energy to stabilize it."
+	description "These modular shield generators are the most powerful emitters produced in Coalition space, and as such they are strictly controlled and exclusively used by the Heliarchs. The additions made to the Large Shield Module nearly tripled its shield generation, but at the cost of it requiring a constant supply of energy to stabilize it."
 
 outfit "Small Repair Module"
 	category "Systems"
@@ -158,8 +157,7 @@ outfit "Overclocked Repair Module"
 	"hull energy" 1.3
 	"hull heat" 1.14
 	"heat generation" .6
-	description "These advanced repair modules are issued to Heliarch ships, providing unparalled hull repair in all of Coalition space."
-	description "The legions of small repair drones come with the extensive pathways they use to quickly get around a ship, and as such the outfit can interfere with a ship's cooling and heat dissipation systems."
+	description "These advanced repair modules are issued to Heliarch ships, providing unparalled hull repair in all of Coalition space. The legions of small repair drones come with the extensive pathways they use to quickly get around a ship, and as such the outfit can interfere with a ship's cooling and heat dissipation systems."
 
 outfit "Cooling Module"
 	category "Systems"
