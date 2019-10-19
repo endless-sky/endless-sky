@@ -231,7 +231,7 @@ ship "Marauder Fury"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	"final explode" "final explosion small"
-	description "You're sure there's a Southbound Fury under all the extra modifications. This ship appears to be one man's insane quest to make the most powerful single pilot warship ever. Upon closer inspection, you're inclined to believe he may have succeeded."
+	description "You're sure there's a Southbound Shipyards Fury under all the extra modifications. This ship appears to be one man's insane quest to make the most powerful single-pilot warship ever; after close inspection, you're inclined to believe he may have succeeded."
 
 
 
