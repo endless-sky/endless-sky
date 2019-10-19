@@ -24275,6 +24275,8 @@ planet "Buccaneer Bay"
 	description `Pirates who have struck it rich dream of retiring on Buccaneer Bay. It is a warm ocean planet, with many places reminiscent of the islands in the ancient Caribbean where humanity's first pirate fleets sailed.`
 	description `	Many of the inhabitants are in fact not pirates, but their descendants, and these children and grand-children of anarchist outlaws have built a system of regional government that oversees hospitals, schools, and other public services, all created without funding from the Republic or taxes paid to it. The planet even sports its own shipyard, although many of the ships built here are, not surprisingly, based on designs pirated from the Syndicate and Republic shipyards.`
 	spaceport `This is the sort of spaceport you picture in your head when you think of pirates. Half the storefronts are bars, and rum seems to be on the menu everywhere. It is almost like the stories of ancient Earth, except that the eye patches are cybernetic implants and the peg legs are motorized prosthetics. Swarthy, dangerous-looking women glance at you as you pass by, and scantily clad men crowd around the bars, which is what you seem to remember the stories said it was like on Earth, too, although there it may have been the other way around.`
+	shipyard "Core Pirates"
+	shipyard "Advanced Core Pirates"
 	shipyard "Southern Pirates"
 	shipyard "Northern Pirates"
 	outfitter "Syndicate Basics"
@@ -24483,6 +24485,7 @@ planet Covert
 	description `Covert is home to a powerful mining cartel, operating outside the control of Republic law or any other external authority. It is rumored to be one of the few planets in human space where weapons-grade uranium and plutonium is mined and enriched. Any goods for sale here were most likely produced by slave labor, often by survivors of ships that have been captured by pirates. A massive pirate fleet is docked on the outskirts of the spaceport, a warning to any private pilot who might think of cheating or opposing the cartel.`
 	spaceport `From the moment you landed, you have been followed by a pair of security guards with earpieces and laser guns. The spaceport is one enormous building, with square, straight hallways and featureless walls, and nearly every door you pass is locked. Cameras at each hallway intersection pivot to watch as you approach. This is simultaneously one of the most secure spaceports you have visited, and one of the most dangerous, although if you do not do anything to provoke the animosity of the cartel, you will probably be able to leave in peace.`
 	shipyard "Southern Pirates"
+	shipyard "Core Pirates"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
@@ -25119,7 +25122,9 @@ planet Greenrock
 	description `Greenrock is the closest thing that the pirates in southern human space have to a center of government, but taking the form of large, powerful corporations rather than elected officials. When rival pirate bands seek to negotiate on neutral territory, this is where they meet. Nearly everything is for sale here: illegal weapons, ships customized for pirating, and even slaves.`
 	spaceport `You have heard enough about this port's reputation that you are not surprised to see the slave markets, heavily guarded in case any visitors happen to find themselves in possession of a conscience. Nor are you shocked by the shady establishments catering to all manner of prurient interests. This is, after all, a pirate port, and everything is for sale here.`
 	spaceport `	Everything, in fact, including the very bizarre. At the end of one dark alley you see a shop called "Mike's Mustelids," with weasels and ferrets in cages in the window. Beside them, a fully-grown wolverine glares at you from behind the bars of a large and sturdy cage.`
+	shipyard "Core Pirates"
 	shipyard "Southern Pirates"
+	shipyard "Advanced Southern Pirates"
 	shipyard "Northern Pirates"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
@@ -25179,10 +25184,12 @@ planet Harmony
 planet Haven
 	attributes pirate mining "north pirate" north frontier
 	landscape land/dune1
-	description `Haven was founded by highly successful "privateers" nearly two centuries ago. Since then, as rival bands of pirates have fought over it, it has changed hands fourteen times, but has never been successfully invaded by the Republic. Numerous small manufacturing shops sell outfits that cannot be bought legally, and there is even a small shipyard where customized ships are sold.`
+	description `Haven was founded by highly successful "privateers" nearly two centuries ago. Since then, as rival bands of pirates have fought over it, it has changed hands fourteen times, but has never been successfully invaded by the Republic. Numerous small manufacturing shops sell outfits that cannot be bought legally, and there is even a small shipyard where customized ships are sold to those who have the right connections.`
 	description `	Much of the planet is desert, but with enough moisture to grow enough crops to feed the entire population. Strip mining has turned other parts of the planet into barren wastelands, and has polluted many of the rivers.`
 	spaceport `The spaceport is old and dingy, with piles of litter in the gutters and graffiti on many of the alley walls. Many of the shops are closed, the windows boarded over or covered with yellowing paper. This is an independent world, and a relatively stable settlement, but the effects of its separation from the rest of the galaxy are evident. A few young people carrying large backpacks eye you with interest, perhaps trying to gauge their chances of getting you to give them a cheap lift off-planet.`
+	shipyard "Core Pirates"
 	shipyard "Northern Pirates"
+	shipyard "Advanced Northern Pirates"
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
@@ -26455,7 +26462,7 @@ planet "Second Rose"
 planet "Second Viridian"
 	attributes kimek farming urban
 	landscape land/hills5-sfiera
-	description `More than ten billion Kimek live here, most of them living in one of several arcologies near the equator: massive structures that each nearly a kilometer tall and may house over half a billion individuals. As a result, despite the large population most of the land is either undeveloped or used for farming.`
+	description `More than ten billion Kimek live here, most of them living in one of several arcologies near the equator: massive structures that reach nearly a kilometer tall and may house over half a billion individuals. As a result, despite the large population most of the land is either undeveloped or used for farming.`
 	description `	The Kimek arcologies are said to be able to recycle more than 99% of the waste produced in them each day, which is what makes it feasible for so many Kimek to live in such close proximity.`
 	spaceport `The spaceport facility is a kilometer-tall pyramid honeycombed with tunnels wide enough for a pair of bulk freighters to pass each other with plenty of room to spare. There is no single central warehouse district or meeting area. Instead, each cluster of docking bays is surrounded by its own storage facilities, food courts, and concourses.`
 	outfitter "Coalition Basics"
@@ -26671,12 +26678,16 @@ planet Slylandro
 planet "Smuggler's Den"
 	attributes pirate station "south pirate" south frontier
 	landscape land/loc1
-	description `Smuggler's Den was formerly known as Grendel Station, back when it was an operating refinery. But, it has since been taken over by pirates, who turned it into a haven for all manner of smugglers and privateers. The repair shops here can make a variety of legal and illegal modifications to your ship, and in the shipyard you can buy refurbished starships... if it does not trouble your conscience to think about the likely fates of their previous owners.`
+	description `Smuggler's Den was formerly known as Grendel Station, back when it was an operating refinery. But, it has since been taken over by pirates, who turned it into a haven for all manner of smugglers and privateers. As a hub of pirate activity, Smuggler's Den has access to fenced goods from beyond the region, resulting in repair shops that can make a variety of legal and illegal modifications to your ship. This confluence also provides the opportunity to buy refurbished starships... if it does not trouble your conscience to think about the likely fates of their previous owners. Rumor has it that pilots with the right connections may be able to purchase heavily modified ships here.`
 	spaceport `It is a strange but indisputable fact that pirates smell worse than ordinary human beings. In this day and age, where even the cheapest shuttlecraft at least has a sonic shower, there is no logical explanation for it, except that anarchist tendencies must somehow go hand in hand with a tendency to reject society's norms around hygiene. Here in a space station, with nothing but recycled air to breathe, the effect is overpowering.`
 	shipyard "Southern Pirates"
+	shipyard "Advanced Southern Pirates"
+	shipyard "Core Pirates"
+	shipyard "Advanced Core Pirates"
 	outfitter "Delta V Advanced"
 	outfitter "Kraz Advanced"
 	outfitter "Common Outfits"
+	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
