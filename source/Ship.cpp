@@ -2622,18 +2622,18 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		double rSquared = d * d / (blastRadius * blastRadius);
 		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
 	}
-	double shieldDamage = (weapon.ShieldDamage() / (1 + max(0., attributes.Get("shield protection")))) * damageScaling;
-	double hullDamage = (weapon.HullDamage() / (1 + max(0., attributes.Get("hull protection")))) * damageScaling;
-	double hitForce = (weapon.HitForce() / (1 + max(0., attributes.Get("force protection")))) * damageScaling;
-	double fuelDamage = (weapon.FuelDamage() / (1 + max(0., attributes.Get("fuel protection")))) * damageScaling;
-	double heatDamage = (weapon.HeatDamage() / (1 + max(0., attributes.Get("heat protection")))) * damageScaling;
-	double ionDamage = (weapon.IonDamage() / (1 + max(0., attributes.Get("ion protection")))) * damageScaling;
-	double disruptionDamage = (weapon.DisruptionDamage() / (1 + max(0., attributes.Get("disruption protection")))) * damageScaling;
-	double slowingDamage = (weapon.SlowingDamage() / (1 + max(0., attributes.Get("slowing protection")))) * damageScaling;
+	double shieldDamage = (weapon.ShieldDamage() / (1 + attributes.Get("shield protection"))) * damageScaling;
+	double hullDamage = (weapon.HullDamage() / (1 + attributes.Get("hull protection"))) * damageScaling;
+	double hitForce = (weapon.HitForce() / (1 + attributes.Get("force protection"))) * damageScaling;
+	double fuelDamage = (weapon.FuelDamage() / (1 + attributes.Get("fuel protection"))) * damageScaling;
+	double heatDamage = (weapon.HeatDamage() / (1 + attributes.Get("heat protection"))) * damageScaling;
+	double ionDamage = (weapon.IonDamage() / (1 + attributes.Get("ion protection"))) * damageScaling;
+	double disruptionDamage = (weapon.DisruptionDamage() / (1 + attributes.Get("disruption protection"))) * damageScaling;
+	double slowingDamage = (weapon.SlowingDamage() / (1 + attributes.Get("slowing protection"))) * damageScaling;
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
-	double shieldFraction = 1. - (weapon.Piercing() / (1 + max(0., attributes.Get("piercing protection"))));
+	double shieldFraction = 1. - (weapon.Piercing() / (1 + attributes.Get("piercing protection")));
 	shieldFraction *= 1. / (1. + disruption * .01);
 	if(shields <= 0.)
 		shieldFraction = 0.;

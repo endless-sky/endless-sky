@@ -25,6 +25,18 @@ using namespace std;
 
 namespace {
 	const double EPS = 0.0000000001;
+	
+	const set<string> PROTECTION_TYPES = {
+		"shield protection",
+		"hull protection",
+		"force protection",
+		"fuel protection",
+		"heat protection",
+		"ion protection",
+		"disruption protection",
+		"slowing protection",
+		"piercing protection"
+	};
 }
 
 const vector<string> Outfit::CATEGORIES = {
@@ -87,7 +99,15 @@ void Outfit::Load(const DataNode &node)
 				licenses.push_back(grand.Token(0));
 		}
 		else if(child.Size() >= 2)
+		{	
 			attributes[child.Token(0)] = child.Value(1);
+			if(PROTECTION_TYPES.find(child.Token(0)) != PROTECTION_TYPES.end())
+				if(child.Value(1) < 0.)
+				{
+					child.PrintTrace("Skipping illegal negative attribute:");
+					attributes[child.Token(0)] = 0.;
+				}
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
