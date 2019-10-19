@@ -102,7 +102,7 @@ void Outfit::Load(const DataNode &node)
 		{	
 			attributes[child.Token(0)] = child.Value(1);
 			if(PROTECTION_TYPES.find(child.Token(0)) != PROTECTION_TYPES.end())
-				if(child.Value(1) < 0.)
+				if(child.Value(1) <= -1.)
 				{
 					child.PrintTrace("Skipping illegal negative attribute:");
 					attributes[child.Token(0)] = 0.;
