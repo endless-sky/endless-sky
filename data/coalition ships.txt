@@ -330,7 +330,6 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 		"Overclocked Repair Module"
 		"Cooling Module"
 		"Scanning Module" 3
-		"Outfits Expansion"
 		"Enforcer Riot Staff" 31
 		"Enforcer Confrontation Gear" 27
 		
@@ -451,7 +450,6 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 		"Overclocked Repair Module"
 		"Cooling Module" 2
 		"Scanning Module" 2
-		"Outfits Expansion"
 		"Enforcer Riot Staff" 11
 		"Enforcer Confrontation Gear" 9
 		
@@ -570,12 +568,11 @@ ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 		
 		"Large Reactor Module"
 		"Small Reactor Module"
-		"Large Battery Module"
+		"Large Battery Module" 2
 		"Overcharged Shield Module" 3
 		"Overclocked Repair Module" 2
-		"Cooling Module" 2
+		"Cooling Module" 3
 		"Scanning Module" 4
-		"Outfits Expansion"
 		"Enforcer Riot Staff" 85
 		"Enforcer Confrontation Gear" 40
 		
