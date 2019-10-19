@@ -221,6 +221,28 @@ outfit "Large Steering Module"
 	"turning heat" 8.2
 	description "By focusing on small, modular engines rather than the massive capital ship drives that most other species develop, the Coalition loses some of the potential efficiency for very large ships, but gains a considerable amount of flexibility."
 
+outfit "Enforcer Confrontation Gear"
+	category "Hand to Hand"
+	licenses
+		Heliarch
+	cost 369000
+	thumbnail "outfit/enforcer confrontation gear"
+	"capture attack" 3.1
+	"capture defense" 4.9
+	"unplunderable" 1
+	description "The peak of Heliarch combat engineering, this weapon uses condensed blasts of energy to dispatch any who dare threaten the Coalition safety."
+
+outfit "Enforcer Riot Staff"
+	category "Hand to Hand"
+	licenses
+		Heliarch
+	cost 97000
+	thumbnail "outfit/enforcer riot staff"
+	"capture attack" 2.0
+	"capture defense" 3.5
+	"unplunderable" 1
+	description "Made to deal with the occasional dissidents that pop up around Coalition space in a non lethal manner, these weapons see minimal use in shipbound combat, but are carried anyway in the event a dissident gets aboard."
+
 outfit "Coalition License"
 	category "Special"
 	thumbnail "outfit/coalition license"

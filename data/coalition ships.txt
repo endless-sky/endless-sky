@@ -296,6 +296,8 @@ ship "Heliarch Interdictor"
 		"Large Repair Module"
 		"Cooling Module"
 		"Scanning Module" 3
+		"Enforcer Riot Staff" 28
+		"Enforcer Confrontation Gear" 30
 		
 		"Large Thrust Module" 2
 		"Large Steering Module" 2
@@ -330,6 +332,8 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 		"Cooling Module"
 		"Scanning Module" 3
 		"Outfits Expansion"
+		"Enforcer Riot Staff" 31
+		"Enforcer Confrontation Gear" 27
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module"
@@ -372,6 +376,8 @@ ship "Heliarch Neutralizer"
 		"Large Repair Module"
 		"Cooling Module"
 		"Scanning Module" 2
+		"Enforcer Riot Staff" 9
+		"Enforcer Confrontation Gear" 11
 		
 		"Large Thrust Module"
 		"Small Thrust Module" 2
@@ -403,6 +409,8 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Missile)"
 		"Large Repair Module"
 		"Cooling Module"
 		"Scanning Module" 2
+		"Enforcer Riot Staff" 8
+		"Enforcer Confrontation Gear" 12
 		
 		"Large Thrust Module"
 		"Small Thrust Module" 2
@@ -425,6 +433,8 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Nimble)"
 		"Large Repair Module"
 		"Cooling Module"
 		"Scanning Module" 2
+		"Enforcer Riot Staff" 10
+		"Enforcer Confrontation Gear" 10
 		
 		"Large Thrust Module"
 		"Small Thrust Module"
@@ -444,6 +454,8 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 		"Cooling Module" 2
 		"Scanning Module" 2
 		"Outfits Expansion"
+		"Enforcer Riot Staff" 11
+		"Enforcer Confrontation Gear" 9
 		
 		"Large Thrust Module"
 		"Small Thrust Module"
@@ -488,6 +500,8 @@ ship "Heliarch Punisher"
 		"Large Repair Module" 2
 		"Cooling Module" 3
 		"Scanning Module" 4
+		"Enforcer Riot Staff" 78
+		"Enforcer Confrontation Gear" 44
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module" 2
@@ -530,6 +544,8 @@ ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 		"Large Repair Module" 2
 		"Cooling Module" 3
 		"Scanning Module" 4
+		"Enforcer Riot Staff" 80
+		"Enforcer Confrontation Gear" 42
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module" 2
@@ -562,6 +578,8 @@ ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 		"Cooling Module" 2
 		"Scanning Module" 4
 		"Outfits Expansion"
+		"Enforcer Riot Staff" 85
+		"Enforcer Confrontation Gear" 40
 		
 		"Large Thrust Module" 4
 		"Large Steering Module" 2
@@ -587,6 +605,8 @@ ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
 		"Cooling Module" 5
 		"Scanning Module" 4
 		"Outfits Expansion" 3
+		"Enforcer Riot Staff" 77
+		"Enforcer Confrontation Gear" 45
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module"
