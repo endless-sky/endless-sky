@@ -359,7 +359,7 @@ outfit "Salvage Scanner"
 
 # Engines:
 
-outfit "Cassette-Class Engine"
+outfit "Anvil-Class Engine"
 	category "Engines"
 	licenses
 		Remnant
