@@ -3531,7 +3531,7 @@ mission "Hauler VI cargo prototype 2"
 	on enter
 		dialog
 			`As soon as you take off you receive an angry voice message over a short-range inter-ship communications channel: "Why were you trying to contact me over radio? Does everyone need to know that we are flying around here?"`
-			`She adds, "The cooling failed and the sushi nearly cooked, let's go to <destination> to deliver it as fish dishes to a streetfood festival."`
+			`She adds, "The cooling failed and the sushi nearly cooked. Let's go to <destination> to deliver it as fish dishes to a streetfood festival."`
 	on visit
 		dialog `You land on <destination>, but the Hauler prototype didn't catch up with you yet.`
 	on complete
