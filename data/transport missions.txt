@@ -3578,5 +3578,5 @@ mission "Hauler VI cargo prototype 4"
 		payment 140000
 		dialog
 			`The Hauler prototype lands somewhat uncontrolled near a waste processing plant. The cargo hold is glowing red hot and some areas in the cargo hold appear to be on fire.`
-			`Vanessa disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi to get cooked, get overcooked and finally burning the sushi.`
+			`Vanessa disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi calamity you experienced during the multiple legs of your journey.`
 			`You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is comming from Vanessa and her ship.`
