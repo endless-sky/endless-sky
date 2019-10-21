@@ -1061,3 +1061,227 @@ mission "Hai Honeymoon"
 	on complete
 		payment 100000
 		dialog `Instead of landing in the spaceport where they can be seen, you drop Anaya and Touhar off as close as you can to where they will be staying. The house is a few kilometers away, but they assure you that they can make it on their own. They pay you <payment> and thank you for bringing them this far.`
+
+mission "Hai Solifuge response"
+	landing
+	invisible
+	destination "Hai-Home"
+	to offer
+		has "event: battle for sich'ka'ara ends"
+	on offer
+		event "Hai Pond Striders released" 20
+		fail
+
+event "Hai Pond Striders released"
+	fleet "Large Hai"
+		add variant 3
+			"Hai Pond Strider" 2
+			"Flea" 16
+			"Lightning Bug" 2
+		add variant 2
+			"Hai Pond Strider" 3
+			"Flea" 24
+		add variant 1
+			"Hai Pond Strider"
+			"Flea" 8
+			"Geocoris"
+			"Aphid (Anti-Missile)" 2
+			"Grasshopper"
+		add variant 1
+			"Hai Pond Strider" 2
+			"Flea" 16
+			"Centipede"
+
+mission "Strider: View of the Pond"
+	description "Deliver a message from Ambassador Sayari to Hai Home."
+	landing
+	source "Vara K'chrai"
+	destination "Hai-home"
+	to offer
+		has "Wanderers Solifuge Recon 1: done"
+	on offer
+		conversation
+			`"Ambassador Sayari has been informed of the Solifuge, and has a message for the Hai Homeworld, and needs your help to deliver it to Hai-Home."`
+				accept
+
+mission "Strider: Widen the new coalition"
+	description "Take Ambassador Yashili to <destination>."
+	landing
+	source "Hai-home"
+	destination "Ring of Friendship"
+	passengers 1
+	to offer
+		has "Strider: View of the Pond: done"
+		has "Coalition: First Contact: offered"
+	on offer
+		conversation
+			`"Hai, as usual, receive the message, and a local prefect inquires if you've met another race with hull repair technology.  You consider your encounters with the Coalition and their repair outfits."`
+			choice
+				`You mention the Coalition, and offer to take an ambassador to the Ring of Friendship.`
+					accept
+				`You decide that the Hai are not ready to learn of the Coalition's existence`
+					decline
+				
+mission "Strider: A tale of two remnants"
+	description "Transport Ambassador Yashili to <destination>."
+	landing
+	source "Hai-home"
+	destination "Aventine"
+	passengers 1
+	to offer
+		has "Strider: View of the Pond: done"
+		has "remnant blood test pure"
+		not "Strider: Widen the new coalition: offered"
+	on offer
+		conversation
+			`"Hai, as usual, receive the message, and a local prefect inquires if you've met another race with hull repair technology.  You consider your encounters with the Remnants and their self-repairing hulls."`
+			choice
+				`You mention the Remnants, and offer to take an ambassador to the Aventine.`
+					accept
+				`You decide that the Hai are not ready to learn of the Remnants' existence.`
+					decline
+
+mission "Strider: Of the Pond"
+	description "Transport an ambassadorial entourage to Hai Home."
+	landing
+	destination "Hai-home"
+	passengers 3
+	to offer
+		or
+			has "Strider: Widen the new coalition: done"
+			has "Strider: A tale of two remnants: done"
+	on offer
+		conversation
+			`"Your hosts are thrilled about their new contact with the Hai, and request that you return to Hai-Home with an ambassadorial entourage that's interested in immersing themselves in Hai culture."`
+			choice
+				`"I'd be happy to take your entourage back to Hai space.  There are accommodations on the <ship> waiting for them."`
+					accept
+				`"I'm busy right now, perhaps ask the Quarg."`
+					decline
+	on complete
+		event "Pond Strider release" 45
+		conversation
+			`The delegation thanks you for the safe trip as they exit the <ship>, and are greeted by a group of Hai who seem very excited to receive new the visitors.`
+
+event "Pond Strider release"
+	shipyard "Hai Advanced"
+		"Pond Strider"
+		"Flea"
+	shipyard "Hai Basics"
+		"Flea"
+	outfitter "Hai Intermediate"
+		"Railgun"
+		"Railgun Slug"
+		"Sand Cell"
+		`"Baellie" Atomic Engines`
+	outfitter "Hai Advanced"
+		"Railgun"
+		"Railgun Slug"
+		"Sand Cell"
+		`"Baellie" Atomic Engines`
+	fleet "Large Hai"
+		add variant 1
+			"Pond Strider" 4
+			"Flea" 32
+			"Geocoris"
+		add variant 1
+			"Centipede (Pulse)" 3
+			"Centipede" 2
+			"Pond Strider" 3
+			"Flea" 24
+		add variant 1
+			"Pond Strider" 3
+			"Flea" 24
+			"Aphid" 10
+		add variant 2
+			"Pond Strider" 3
+			"Flea" 24
+			"Lightning Bug (Pulse)" 2
+		add variant 2
+			"Pond Strider (Pulse)" 3
+			"Flea" 24
+			"Lightning Bug" 2
+		add variant 1
+			"Pond Strider" 3
+			"Flea" 24
+			"Lightning Bug (Pulse)"
+			"Aphid" 4
+		add variant 1
+			"Pond Strider (Railgun)" 3
+			"Flea" 24
+			"Lightning Bug"
+			"Aphid (Anti-Missile)" 4
+		add variant 3
+			"Pond Strider" 3
+			"Flea" 24
+			"Lightning Bug (Pulse)"
+			"Water Bug"
+			"Water Bug (Pulse)"
+		add variant 3
+			"Pond Strider" 3
+			"Flea" 24
+			"Water Bug"
+			"Water Bug (Pulse)"
+		add variant 3
+			"Pond Strider" 3
+			"Flea" 24
+			"Lightning Bug" 2
+			"Water Bug"
+		add variant 3
+			"Pond Strider (Pulse)" 3
+			"Flea" 24
+			"Water Bug" 3
+		add variant 3
+			"Pond Strider" 3
+			"Flea" 24
+			"Lightning Bug (Pulse)" 2
+		add variant 2
+			"Pond Strider (Pulse)" 3
+			"Flea" 24
+			"Shield Beetle"
+		add variant 2
+			"Shield Beetle (Pulse)"
+			"Pond Strider" 3
+			"Flea" 24
+		add variant
+			"Pond Strider (Pulse)" 3
+			"Flea" 24
+			"Shield Beetle"
+			"Lightning Bug (Pulse)" 2
+		add variant
+			"Shield Beetle (Pulse)"
+			"Pond Strider" 3
+			"Flea" 24
+			"Lightning Bug" 2
+		add variant
+			"Pond Strider" 3
+			"Flea" 24
+			"Centipede" 3
+		add variant 2
+			"Centipede"
+			"Shield Beetle (Pulse)" 2
+			"Pond Strider (Railgun)" 3
+			"Flea" 24
+		add variant 1
+			"Geocoris"
+			"Shield Beetle (Pulse)"
+			"Pond Strider (Tracker)" 3
+			"Flea" 24
+		add variant 1
+			"Geocoris"
+			"Pond Strider (Pulse)" 3
+			"Flea" 24
+			"Grasshopper"
+			"Grasshopper (Tracker)"
+		add variant 1
+			"Geocoris"
+			"Pond Strider (Pulse)" 3
+			"Flea" 24
+			"Grasshopper"
+			"Grasshopper (Tracker)"
+		add variant 1
+			"Geocoris (Tracker)"
+			"Aphid (Anti-Missile)" 2
+			"Aphid"
+			"Pond Strider" 3
+			"Flea" 24
