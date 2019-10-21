@@ -107,7 +107,8 @@ void Mission::Load(const DataNode &node)
 		}
 		else
 		{
-			node.PrintTrace("Duplicate definition of mission:");
+			node.PrintTrace("Duplicate definition of mission "
+					"(add \"override\" if intentional):");
 			return;
 		}
 	}
