@@ -335,6 +335,8 @@ Files:
  images/thumbnail/penguin*
  images/scene/penguinscene*
  images/outfit/salvage?scanner*
+ images/outfit/overcharged?shield?module*
+ images/outfit/overclocked?repair?module*
  images/outfit/void?rifle*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
