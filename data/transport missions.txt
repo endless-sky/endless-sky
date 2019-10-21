@@ -3474,7 +3474,7 @@ mission "Inheritance Redirection"
 
 mission "Hauler VI cargo prototype 1"
 	name "Escort Hauler prototype to formal dinner"
-	description "Escort the Hauler prototype to <destination> to deliver sushi to a formal dinner."
+	description "Escort the Hauler prototype to <destination> to deliver sushi for a formal dinner."
 	source
 		neighbor planet "Skymoot"
 		not planet "Skymoot"
@@ -3495,12 +3495,12 @@ mission "Hauler VI cargo prototype 1"
 					defer
 			`	She smiles and replies, "Well, I actually don't know you, but I just read your name on one of the cargo manifests. And my experience is that this greeting works best if you need something from a spaceship captain."`
 			label "hello too"
-			`She says, "My name is Vanessa Oxygenpocket and I am part of a team that is designing the new Hauler VI transport ship series here at Southbound Shipyards."`
+			`She says, "My name is Vanessa Oxygenpocket and I'm part of a team that's designing the new Hauler VI transport ship series here at Southbound Shipyards."`
 			choice
 				`	"'Oxygenpocket' is an uncommon name."`
 				`	"And what help do you need from me?"`
 					goto "help request"
-			`	Vanessa looks surprised and then responds, "Well, it might sound uncommon to people from a planet with a breathable atmosphere, but it is actually similar to Vanderberg, which means 'from the mountain', or Langley, which means 'woodland'.`
+			`	Vanessa responds, "Well, it might sound uncommon to people from a planet with a breathable atmosphere, but it is actually similar to Vanderberg, which means 'from the mountain', or Langley, which means 'woodland'.`
 			`	"Oxygenpockets were as much a feature on my home-planet as mountains and woodlands are on more habitable planets."`
 			label "help request"
 			`	Vanessa pauses for a moment and then continues, "We're testing the VI's cargo systems using a Hauler III. Normally our own department would escort such prototypes, but there is a mole in our organization and we have very strong competition from Syndicated Shipyards. I need you to help us travel to <destination> to deliver sushi for a formal dinner. You will be paid for your expenses. Will you help us?"`
@@ -3514,7 +3514,7 @@ mission "Hauler VI cargo prototype 1"
 	on complete
 		dialog
 			`You are waiting for the Hauler prototype to land, but it remains in orbit.`
-			`There is no response to your hails by radio. You need to take off and investigate.`
+			`There is no response to your hails. You need to take off and investigate.`
 
 mission "Hauler VI cargo prototype 2"
 	name "Escort Hauler prototype to student party"
@@ -3530,7 +3530,7 @@ mission "Hauler VI cargo prototype 2"
 		ship "Hauler III" "SB-Labs Testament"
 	on enter
 		dialog
-			`As soon as you take off you receive an angry voice message over a short-range inter-ship communications channel: "Why were you trying to contact me over radio? Does everyone need to know that we are flying around here?"`
+			`As soon as you take off you receive an angry voice message over a short-range inter-ship communications channel: "Why were you trying to contact me? Does everyone need to know that we are here?"`
 			`She adds, "The cooling failed and the sushi nearly cooked. Let's go to <destination> to deliver it as fish dishes to a streetfood festival."`
 	on visit
 		dialog `You land on <destination>, but the Hauler prototype didn't catch up with you yet.`
