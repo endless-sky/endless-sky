@@ -3537,7 +3537,7 @@ mission "Hauler VI cargo prototype 2"
 	on complete
 		dialog
 			`This time the Hauler prototype appears to be landing right behind you, but the ship flies away at full thrust just before touching the landing pad.`
-			`You receive a short text-message over the short-range inter-ship communiation channel, "The sushi overcooked! We cannot be seen near the festival or near the shipyard with this overcooked sushi!"`
+			`You receive a text message over the short-range inter-ship communication channel: "The sushi overcooked! We cannot be seen near the festival or near the shipyard with this overcooked sushi!"`
 			`The new destination is a floating factory on Mere.`
 
 mission "Hauler VI cargo prototype 3"
@@ -3556,7 +3556,7 @@ mission "Hauler VI cargo prototype 3"
 		dialog `You land on <destination>, but the Hauler prototype didn't catch up with you yet.`
 	on complete
 		dialog
-			`The Hauler prototype enters the planets atmosphere at high speed and lands way ahead of you near a catfood factory on one of the floating artifical islands.`
+			`The Hauler prototype enters the planets atmosphere at high speed and lands ahead of you near a catfood factory on one of the floating artificial islands.`
 			`Your infrared sensors show that the ship is emitting a lot of heat, but it's not coming from the thrusters, but rather from the cargo hold.`
 			`Vanessa steps out of the ship and says, "The Sushi completely burned. We should unload it at the waste processing plant at Longjump."`
 			`She boards the Hauler prototype and takes off before you have time to respond. Apparently the cargo systems are not working as well as Vanessa had hoped.`
