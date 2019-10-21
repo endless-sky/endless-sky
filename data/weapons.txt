@@ -1089,6 +1089,7 @@ outfit "Gatling Gun"
 		"burst reload" 1
 		"firing energy" .03
 		"firing heat" 2.5
+		"firing force" 5
 		"submunition" "gbullet"
 		"cluster"
 		"hit effect" "bullet impact"

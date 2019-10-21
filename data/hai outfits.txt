@@ -119,7 +119,7 @@ outfit "Railgun"
 	thumbnail "outfit/railgun"
 	"mass" 1
 	"outfit space" -4
-	"weapon capacity" -3
+	"weapon capacity" -4
 	"gun ports" -1
 	"railgun slug capacity" 3210
 	weapon
@@ -152,12 +152,11 @@ outfit "rslug"
 		"hit effect" "bullet impact"
 		"shield damage" .2
 		"hull damage" .8
-		"ion damage" .025
+		"ion damage" .03
 		"homing" 1
 		"optical tracking" .4
 		"turn" .3
 		"hit force" 5
-		"missile strength" 18
 		"piercing" .3
 
 effect "bullet impact"

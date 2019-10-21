@@ -2127,24 +2127,6 @@ event "battle for sich'ka'ara ends"
 			"Violin Spider" 4
 			"Violin Spider (Pulse)" 2
 			"Lightning Bug" 2
-	fleet "Large Hai"
-		add variant 3
-			"Hai Pond Strider" 2
-			"Flea" 16
-			"Lightning Bug" 2
-		add variant 2
-			"Hai Pond Strider" 3
-			"Flea" 24
-		add variant 1
-			"Hai Pond Strider"
-			"Flea" 8
-			"Geocoris"
-			"Aphid (Anti-Missile)" 2
-			"Grasshopper"
-		add variant 1
-			"Hai Pond Strider" 2
-			"Flea" 16
-			"Centipede"
 
 
 mission "Wanderers Rescue 1"

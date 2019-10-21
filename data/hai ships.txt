@@ -139,15 +139,15 @@ ship "Flea"
 	thumbnail "thumbnail/hai flea"
 	attributes
 		category "Drone"
-		"cost" 122400
+		"cost" 142400
 		"shields" 200
 		"hull" 700
 		"mass" 21
 		"drag" .55
 		"heat dissipation" .83
-		"outfit space" 62
-		"weapon capacity" 9
-		"engine capacity" 29
+		"outfit space" 63
+		"weapon capacity" 13
+		"engine capacity" 22
 		"automaton" 1
 		weapon
 			"blast radius" 6
@@ -849,6 +849,98 @@ ship "Solifuge" "Solifuge (Tracker)"
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Hyperdrive"
+
+
+ship "Tzetze"
+	sprite "ship/hai_supercarrier"
+	thumbnail "thumbnail/hai_supercarrier"
+	attributes
+		category "Heavy Warship"
+		"cost" 25000000
+		"shields" 23000
+		"hull" 8800
+		"required crew" 18
+		"bunks" 52
+		"mass" 375
+		"drag" 8.1
+		"hull repair rate" 1.5
+		"heat dissipation" .7
+		"fuel capacity" 900
+		"cargo space" 168
+		"outfit space" 505
+		"weapon capacity" 222
+		"engine capacity" 160
+		weapon
+			"blast radius" 400
+			"shield damage" 4000
+			"hull damage" 2000
+			"hit force" 3000
+	outfits
+		"Railgun" 3
+		"Ion Cannon" 2
+		"Railgun Slug" 9630
+		"Pulse Turret"
+		"Bullfrog Anti-Missile" 4
+		"Hai Diamond Regenerator"
+		"Hai Chasm Batteries" 2
+		"Boulder Reactor"
+		"Hai Williwaw Cooling" 2
+		"Quantum Keystone"
+		"Pulse Rifle" 16
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+
+	gun 0 -183 "Railgun"
+	gun 27.5 -152.5 "Ion Cannon"
+	gun -27.5 -152.5 "Ion Cannon"
+	gun 84.5 -165 "Railgun"
+	gun -84.5 -165 "Railgun"
+	turret 0 -150
+	turret 0 -74.5
+	turret 0 -22
+	turret 11 123.5
+	turret -11 123.5
+	drone 79 35 right under
+	drone -79 35 left under
+	drone 79 -62.5 right under
+	drone -79 -62.5 left under
+	drone 79 125.5 right under
+	drone -79 125.5 left under
+	drone 88.5 -136.5 right under
+	drone -88.5 -136.5 left under
+	drone 30 -20.5 over
+	drone -30 -20.5 over
+	drone 30 85.5 over
+	drone -30 85.5 over
+	drone 30 -104 over
+	drone -30 -104 over
+	drone 30 169.5 over
+	drone -30 169.5 over
+	drone 129 86 right under
+	drone -129 86 left under
+	drone 129 -4.5 right under
+	drone -129 -4.5 left under
+	drone 79 35 over
+	drone -79 35 over
+	drone 79 -62.5 over
+	drone -79 -62.5 over
+	drone 79 125.5 over
+	drone -79 125.5 over
+	drone 129 86 over
+	drone -129 86 over
+	drone 129 -4.5 over
+	drone -129 -4.5 over
+	drone 88.5 -136.5 over
+	drone -88.5 -136.5 over
+	leak "leak" -35 103.5
+	leak "flame" 28.5 46
+	leak "big leak" -13.5 -40.5
+	engine 22.5 214.5
+	engine -22.5 214.5
+
+	"final explode" "final explosion large"
+	description "After the Unfettered encountered the Pond Strider and Fleas, they set out to reverse engineer its technology and build the ultimate warfleet support ship - with bunks and cargo to spare, not to mention docking facilities for 32 drones, the Tzetze will keep up with a warfleet while en-route, and become an agile attacker when its drones deploy."
 
 
 
