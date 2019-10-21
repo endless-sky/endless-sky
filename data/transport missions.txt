@@ -3485,16 +3485,12 @@ mission "Hauler VI cargo prototype 1"
 		ship "Hauler III" "SB-Labs Testament"
 	on offer
 		conversation
-			`An elegant-looking lady approaches you.`
-			`	"Captain <last>, Captain <last>! It is such an honor to meet you!"`
+			`A lady in a formal business suit gracefully walks to you.`
+			`	"Captain <last>, Captain <last>! It is so nice to meet you here!"`
 			choice
-				`	"Wow, that's quite a greeting. Why is it an honor to meet me?"`
 				`	"Hello, nice to meet you too."`
-					goto "hello too"
 				`	"Sorry, I don't have time to talk. I'm really busy."`
 					defer
-			`	She smiles and replies, "Well, I actually don't know you, but I just read your name on one of the cargo manifests. And my experience is that this greeting works best if you need something from a spaceship captain."`
-			label "hello too"
 			`She says, "My name is Vanessa Oxygenpocket and I'm part of a team that's designing the new Hauler VI transport ship series here at Southbound Shipyards."`
 			choice
 				`	"'Oxygenpocket' is an uncommon name."`
