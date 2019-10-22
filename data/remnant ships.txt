@@ -192,13 +192,6 @@ ship "Albatross" "Albatross (Shield)"
 		"Forge-Class Steering"
 		"Hyperdrive"
 
-	gun 
-	gun 
-	gun 
-	gun 
-	gun 
-	gun 
-	gun 
 	turret "Thrasher Turret"
 	turret "Point Defense Turret"
 	turret "Point Defense Turret"
