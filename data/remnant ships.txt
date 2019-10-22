@@ -354,24 +354,24 @@ ship "Ibis"
 		category "Medium Warship"
 		licenses
 			"Remnant Capital"
-		"cost" 30000000
-		"shields" 22000
-		"hull" 11000
+		"cost" 15000000
+		"shields" 20000
+		"hull" 10000
 		"required crew" 20
 		"bunks" 48
-		"mass" 300
+		"mass" 350
 		"drag" 7.1
 		"heat dissipation" 0.7
 		"fuel capacity" 700
 		"ramscoop" 2
-		"outfit space" 568
 		"cargo space" 103
-		"weapon capacity" 200
-		"engine capacity" 142
-		"shield generation" 6
-		"shield energy" 4.6
-		"hull repair rate" 2
-		"hull energy" 1.2
+		"outfit space" 570
+		"weapon capacity" 180
+		"engine capacity" 170
+		"shield generation" 5.0
+		"shield energy" 4.5
+		"hull repair rate" 1.4
+		"hull energy" 1.1
 		"outfit scan power" 18
 		"outfit scan speed" 1
 		"tactical scan power" 39
@@ -382,7 +382,7 @@ ship "Ibis"
 			"hit force" 3000
 	outfits
 		"Inhibitor Cannon" 3
-		"Thrasher Turret" 1
+		"Thrasher Turret"
 		"Point Defense Turret" 2
 
 		"Aeon Cell"
@@ -414,7 +414,6 @@ ship "Ibis"
 	turret 0 -62 "Thrasher Turret"
 	turret 0 -20.5 "Point Defense Turret"
 	turret 0 58.5 "Point Defense Turret"
-	
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -424,7 +423,7 @@ ship "Ibis"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 	description "This is the Ibis, a multipurpose carrier that serves as a mining platform for terns, as an escort ship for pelican fleets, and a combat platform for terns used in screening roles. It is capable of fielding a single wing of support craft, consisting of two petrels and four terns."
-	description "	The Ibis was designed shortly after the albatross as a means of extending the range of their resource collection efforts after the Remnant realized that an Alpha invsion might not be as imminent as original thought."
+	description "	The Ibis was designed shortly after the albatross as a means of extending the range of their resource collection efforts after the Remnant realized that an Alpha invasion might not be as imminent as original thought."
 
 
 
@@ -520,8 +519,8 @@ ship "Petrel"
 		"outfit scan speed" 1
 		"tactical scan power" 26
 		"asteroid scan power" 30
-		"weapon capacity" 80
 		"engine capacity" 55
+		"weapon capacity" 80
 		weapon
 			"blast radius" 15
 			"shield damage" 150
@@ -725,8 +724,8 @@ ship "Tern"
 		"outfit scan speed" 1
 		"tactical scan power" 26
 		"asteroid scan power" 30
-		"weapon capacity" 16
 		"engine capacity" 26
+		"weapon capacity" 16
 		weapon
 			"blast radius" 10
 			"shield damage" 100
