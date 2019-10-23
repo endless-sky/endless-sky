@@ -186,15 +186,15 @@ ship "Gascraft"
 		"hull" 1500
 		"required crew" 1
 		"bunks" 2
-		"mass" 80
-		"drag" 1.7
+		"mass" 44
+		"drag" 1.27
 		"heat dissipation" 0.9
 		"fuel capacity" 700
 		"energy capacity" 150
 		"ramscoop" 0.5
 		"cargo space" 8
-		"outfit space" 88
-		"engine capacity" 34
+		"outfit space" 80
+		"engine capacity" 26
 		"shield generation" 0.6
 		"shield energy" 0.4
 		"hull repair rate" 1.2
@@ -209,8 +209,7 @@ ship "Gascraft"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
 
-		"Crucible-Class Thruster"
-		"Crucible-Class Steering"
+		"Anvil-Class Engine"
 		"Hyperdrive"
 
 	engine 0 30
