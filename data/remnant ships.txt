@@ -355,8 +355,8 @@ ship "Ibis"
 		licenses
 			"Remnant Capital"
 		"cost" 15000000
-		"shields" 20000
-		"hull" 10000
+		"shields" 20250
+		"hull" 10500
 		"required crew" 20
 		"bunks" 48
 		"mass" 350
@@ -365,9 +365,9 @@ ship "Ibis"
 		"fuel capacity" 700
 		"ramscoop" 2
 		"cargo space" 103
-		"outfit space" 570
-		"weapon capacity" 180
-		"engine capacity" 170
+		"outfit space" 573
+		"engine capacity" 172
+		"weapon capacity" 181
 		"shield generation" 5.0
 		"shield energy" 4.5
 		"hull repair rate" 1.4
@@ -422,8 +422,8 @@ ship "Ibis"
 	explode "medium explosion" 25
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description "This is the Ibis, a multipurpose carrier that serves as a mining platform for terns, as an escort ship for pelican fleets, and a combat platform for terns used in screening roles. It is capable of fielding a single wing of support craft, consisting of two petrels and four terns."
-	description "	The Ibis was designed shortly after the albatross as a means of extending the range of their resource collection efforts after the Remnant realized that an Alpha invasion might not be as imminent as original thought."
+	description "The Ibis is a multipurpose carrier that serves as a mining platform for Terns, as an escort ship for Pelican fleets, and a combat platform for terns used in screening roles. It is capable of fielding a single wing of support craft, consisting of two Petrels and four Terns."
+	description "	The Ibis was designed shortly after the Albatross as a means of extending the range of their resource collection efforts after the Remnant realized that an Alpha invasion might not be as imminent as original thought."
 
 
 
@@ -511,6 +511,8 @@ ship "Petrel"
 		"drag" 1.2
 		"heat dissipation" .9
 		"outfit space" 195
+		"engine capacity" 55
+		"weapon capacity" 80
 		"shield generation" 1.9
 		"shield energy" 1.1
 		"hull repair rate" 0.9
@@ -519,8 +521,6 @@ ship "Petrel"
 		"outfit scan speed" 1
 		"tactical scan power" 26
 		"asteroid scan power" 30
-		"engine capacity" 55
-		"weapon capacity" 80
 		weapon
 			"blast radius" 15
 			"shield damage" 150
@@ -715,6 +715,8 @@ ship "Tern"
 		"heat dissipation" .9
 		"gaslining" 1
 		"outfit space" 75
+		"engine capacity" 26
+		"weapon capacity" 16
 		"shield generation" 0.6
 		"shield energy" 0.4
 		"hull repair rate" 1.2
@@ -724,8 +726,6 @@ ship "Tern"
 		"outfit scan speed" 1
 		"tactical scan power" 26
 		"asteroid scan power" 30
-		"engine capacity" 26
-		"weapon capacity" 16
 		weapon
 			"blast radius" 10
 			"shield damage" 100
