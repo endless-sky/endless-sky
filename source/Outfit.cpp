@@ -46,26 +46,10 @@ void Outfit::Load(const DataNode &node)
 	// Note: an outfit with no name wouldn't be global and therefore
 	// overriding wouldn't make sense (?).
 	bool isOverride = (node.Size() >= 3 && node.Token(2) == "override");
-	if(!name.empty())
-	{
-		if(isOverride)
-		{
-			// If explicitly requested, start from a blank slate,
-			// so that all data is replaced.
-			*this = Outfit();
-		}
-		else
-		{
-			node.PrintTrace("Duplicate definition of outfit "
-					"(add \"override\" if intentional):");
-			return;
-		}
-	}
+	if(!name.empty() && isOverride)
+		*this = Outfit();
 	else if(isOverride)
-	{
 		node.PrintTrace("Warning: overriding a non-existent outfit:");
-		// Proceed to load the outfit as if override were not given.
-	}
 	
 	if(node.Size() >= 2)
 	{
