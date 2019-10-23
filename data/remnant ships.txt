@@ -173,6 +173,31 @@ ship "Albatross" "Albatross (Heavy)"
 	turret
 	turret "Thrasher Turret"
 
+ship "Albatross" "Albatross (Shield)"
+	outfits
+		"Point Defense Turret" 4
+		"Thrasher Turret"
+
+		"Aeon Cell"
+		"Millennium Cell"
+		"Thermoelectric Cooler" 1
+		"Outfits Expansion" 6
+		"Systems Core (Large)" 3
+		"Small Heat Shunt" 1
+		"Large Heat Shunt" 1
+		
+		"Tuning Rifle" 75
+
+		"Crucible-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
+	turret "Thrasher Turret"
+	turret "Point Defense Turret"
+	turret "Point Defense Turret"
+	turret "Point Defense Turret"
+	turret "Point Defense Turret"
+
 
 
 ship "Gascraft"
