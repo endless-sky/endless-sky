@@ -24130,6 +24130,11 @@ planet Aventine
 	bribe 0
 	shipyard Remnant
 	outfitter Remnant
+	tribute 4000
+		threshold 8500
+		fleet "Remnant Decoy Defense" 3
+		fleet "Light Remnant Defense" 10
+		fleet "Heavy Remnant Defense" 30
 
 planet "Bank of Blugtad"
 	attributes arach wealthy urban
@@ -24308,6 +24313,11 @@ planet Caelian
 	bribe 0
 	shipyard Remnant
 	outfitter Remnant
+	tribute 3000
+		threshold 8000
+		fleet "Remnant Decoy Defense" 3
+		fleet "Light Remnant Defense" 8
+		fleet "Heavy Remnant Defense" 25
 
 planet Calda
 	attributes paradise tourism rich
@@ -27198,6 +27208,11 @@ planet Viminal
 	bribe 0
 	shipyard Remnant
 	outfitter Remnant
+	tribute 3000
+		threshold 8000
+		fleet "Remnant Decoy Defense" 3
+		fleet "Light Remnant Defense" 8
+		fleet "Heavy Remnant Defense" 25
 
 planet Vinci
 	attributes paradise factory
