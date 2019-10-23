@@ -379,9 +379,9 @@ ship "Ibis"
 		category "Medium Warship"
 		licenses
 			"Remnant Capital"
-		"cost" 15000000
-		"shields" 20250
-		"hull" 10500
+		"cost" 11627000
+		"shields" 14400
+		"hull" 6200
 		"required crew" 20
 		"bunks" 48
 		"mass" 350
@@ -390,13 +390,13 @@ ship "Ibis"
 		"fuel capacity" 700
 		"ramscoop" 2
 		"cargo space" 103
-		"outfit space" 573
-		"engine capacity" 172
-		"weapon capacity" 181
-		"shield generation" 5.0
-		"shield energy" 4.5
-		"hull repair rate" 1.4
-		"hull energy" 1.1
+		"outfit space" 543
+		"weapon capacity" 171
+		"engine capacity" 162
+		"shield generation" 4.1
+		"shield energy" 3.6
+		"hull repair rate" 1.2
+		"hull energy" 0.95
 		"outfit scan power" 18
 		"outfit scan speed" 1
 		"tactical scan power" 39
@@ -407,21 +407,19 @@ ship "Ibis"
 			"hit force" 3000
 	outfits
 		"Inhibitor Cannon" 3
-		"Thrasher Turret"
 		"Point Defense Turret" 2
 
 		"Aeon Cell"
 		"Crystal Capacitor" 3
 		"Emergency Ramscoop" 2
-		"Thermoelectric Cooler" 5
+		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
 		"Salvage Scanner"
 		"Tuning Rifle" 20
 
-		"Forge-Class Thruster"
-		"Crucible-Class Thruster"
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
 		"Forge-Class Steering"
-		"Crucible-Class Steering"
 		"Scram Drive"
 		
 	drone 0 30 over 
@@ -436,8 +434,8 @@ ship "Ibis"
 	gun 0 -135.5 "Inhibitor Cannon"
 	gun 15.5 -102 "Inhibitor Cannon"
 	gun -15.5 -102 "Inhibitor Cannon"
-	turret 0 -62 "Thrasher Turret"
-	turret 0 -20.5 "Point Defense Turret"
+	turret 0 -62 "Point Defense Turret"
+	turret 0 -20.5
 	turret 0 58.5 "Point Defense Turret"
 	leak "leak" 50 50
 	leak "flame" 50 80
@@ -524,24 +522,24 @@ ship "Petrel"
 		category "Fighter"
 		licenses
 			Remnant
-		"cost" 4500000
-		"shields" 2000
-		"hull" 2500
+		"cost" 1141000
+		"shields" 2300
+		"hull" 1000
 		"cargo space" 20
 		"fuel capacity" 100
 		"ramscoop" 1
-		"required crew" 1
+		"required crew" 2
 		"bunks" 3
 		"mass" 50
-		"drag" 1.2
+		"drag" 1.4
 		"heat dissipation" .9
-		"outfit space" 195
-		"engine capacity" 55
-		"weapon capacity" 80
-		"shield generation" 1.9
-		"shield energy" 1.1
-		"hull repair rate" 0.9
-		"hull energy" 0.6
+		"outfit space" 165
+		"weapon capacity" 49
+		"engine capacity" 34
+		"shield generation" 0.85
+		"shield energy" 0.55
+		"hull repair rate" 0.38
+		"hull energy" 0.28
 		"outfit scan power" 12
 		"outfit scan speed" 1
 		"tactical scan power" 26
@@ -556,7 +554,7 @@ ship "Petrel"
 		
 		"Millennium Cell" 2
 		"Crystal Capacitor"
-		"Thermoelectric Cooler" 3
+		"Thermoelectric Cooler"
 		
 		"Crucible-Class Thruster"
 		"Crucible-Class Steering"
@@ -727,25 +725,25 @@ ship "Tern"
 		category "Drone"
 		licenses
 			Remnant
-		"cost" 2530000
-		"shields" 500
-		"hull" 2500
+		"cost" 860000
+		"shields" 1500
+		"hull" 700
+		"automaton" 1
 		"cargo space" 5
+		"mass" 32
+		"drag" 1
+		"heat dissipation" .9
 		"fuel capacity" 50
 		"energy capacity" 500
 		"ramscoop" 0.5
-		"automaton" 1
-		"mass" 32
-		"drag" .8
-		"heat dissipation" .9
-		"gaslining" 1
 		"outfit space" 75
-		"engine capacity" 26
 		"weapon capacity" 16
+		"engine capacity" 26
 		"shield generation" 0.6
 		"shield energy" 0.4
-		"hull repair rate" 1.2
-		"hull energy" 0.9
+		"hull repair rate" 0.27
+		"hull energy" 0.2
+		"gaslining" 1
 		"atmosphere scan" 100
 		"outfit scan power" 12
 		"outfit scan speed" 1
