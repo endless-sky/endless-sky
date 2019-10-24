@@ -697,15 +697,15 @@ int64_t PlayerInfo::Maintenance() const
 	// in the player's ships instead of in the pooled cargo, so no outfit 
 	// will be counted twice.
 	for(const auto &outfit : Cargo().Outfits())
-		maintenance += max(0, outfit.first->Get("maintenance costs")) * outfit.second;
+		maintenance += max<int64_t>(0, outfit.first->Get("maintenance costs")) * outfit.second;
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsDestroyed())
 		{
-			maintenance += max(0, ship->Attributes().Get("maintenance costs"));
+			maintenance += max<int64_t>(0, ship->Attributes().Get("maintenance costs"));
 			for(const auto &outfit : ship->Cargo().Outfits())
-				maintenance += max(0, outfit.first->Get("maintenance costs")) * outfit.second;
+				maintenance += max<int64_t>(0, outfit.first->Get("maintenance costs")) * outfit.second;
 			if(!ship->IsParked())
-				maintenance += max(0, ship->Attributes().Get("operating costs"));
+				maintenance += max<int64_t>(0, ship->Attributes().Get("operating costs"));
 		}
 	return maintenance;
 }
