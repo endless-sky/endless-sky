@@ -446,7 +446,7 @@ ship "Ibis"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 	description "The Ibis is a multipurpose carrier that serves as a mobile mining platform, an escort ship for Pelican fleets, and a combat platform using Terns for screening. It is capable of fielding a single wing of support craft, consisting of two Petrels and four Terns."
-	description "	The Ibis was designed shortly after the Albatross as a means of extending the range of their resource collection efforts after the Remnant realized that an Alpha invasion might not be as imminent as original thought."
+	description "	The Ibis was designed shortly after the Albatross as a means of extending the range of resource collection efforts after the Remnant realized that an Alpha invasion might not be as imminent as originally believed."
 
 
 
