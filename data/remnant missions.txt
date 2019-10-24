@@ -1738,7 +1738,7 @@ mission "Remnant: Face to Maw 1"
 			`	Up close, the void sprite is massive. Most of its tentacles are easily as thick as your leg, and move with surprising speed and precision. It shifts through the air like a strange deep sea fish in water. You can make out a low vibration you suspect is from the air whistling over the void sprite as it closes with you. As the giant creature rapidly approaches, you can feel a heavy paralysis weigh down on you. Suddenly, you recall that your shields are keyed to your equipment; you could activate them to protect yourself and they would extend around you. It probably wouldn't be too healthy for the void sprite, though.`
 			choice
 				`	(Activate shields.)`
-				`	(Do not activate shields.)`
+				`	(Do not activate the shields.)`
 					goto holdground
 			`	You push against the paralysis and trigger the shields in a rush. The millisecond that follows feels like an eternity. The void sprite is just a few meters away, one tendril reaches out and touches you just as the shield slams into place. The tendril becomes caught on both sides of the shield, cleaving it in two. In the same instant, the pressure on your mind vanishes as if it was simply a dream. You momentarily stare at the immobile void sprite, frozen in shock over what just happened. Then time reasserts itself and the sprite spasms away from the ship with an unearthly crescendo of dissonant tones. It plunges down into the clouds, leaving you standing on your hull with the floating severed piece of tendril.`
 			`	You carefully scoop up the tendril in a container and seal it. While the attack spoiled the beautiful moment, at least you have a sample and some recordings that might be of interest to Plume.`
@@ -1813,12 +1813,12 @@ mission "Remnant: Face to Maw 2"
 			label taely
 			`	When you land on Viminal you spot Taely waiting for you. "Greetings, Captain <first>. It is good to see you again."`
 			label main
-			`	She makes a gesture you are starting to recognize as a sign of curiosity. "So, Plume sent us some very interesting data, along with a message to expect you with a sample?" You hand her the container with the slime sample and she holds it up to the light. "Interesting looking stuff," she chants. "Let's go back to my workshop." `
+			`	She makes a gesture you are starting to recognize as a sign of curiosity. "So, Plume sent us some very interesting data, along with a message to expect you with a sample?" You hand her the container with the slime sample and she holds it up to the light. "Interesting looking stuff," she chants. "Let's go back to my workshop."`
 			choice
-				`	(Ask if you can catch up in a few minutes)`
 				`	(Follow her back to her workshop)`
 					goto follow
-			`	"Sure, just don't take too long. My project has reached its final stage."
+				`	(Ask if you can catch up in a few minutes)`
+			`	"Sure, just don't take too long. My project has reached its final stage."`
 			`	You take your time to get to the workshop, admiring the view along the way. When you finally arrive at the workshop you can hear strange noises coming form inside, accompanied by the smell of a thunderstorm in a swamp. You step into the workshop and come to a stop to stare at the thing in front of you.`
 				goto skip
 			label follow
@@ -1831,7 +1831,7 @@ mission "Remnant: Face to Maw 2"
 			label skip
 			`	The ship before you has some faint traces of the gascraft you have flown to Nenia, along with other elements of Remnant design, but it is clearly something new. Its antennae swivel around, as if taking in its environment, and the tentacles along the side twitch and reach out to touch its surroundings. Solidly built tendrils underneath it flex as it lifts itself off its supports and begins to move around. You have a momentary vision of what this ship might look like in the skies of Nenia.`
 			scene "scene/penguinscene"
-			`	Taely's droning chant of technical details finally seeps through your reverie: "... So from a captain's point of view flying the penguin should be very similar to a normal ship, except she flies herself and doesn't need a crew to run her systems." She pauses, and looks at you. "Your curiosity provided the final ingredients to bring her to life. You should be the first to have one. You'll still have to go through the shipyard to register her and pay the resource cost to balance the logistics, but this first one is reserved for you." She pats the nose of the penguin and it makes a wooshing noise. After a moment she starts going over the ship with a scanner, leaving you to contemplate in silence.`
+			`	Taely's droning chant of technical details finally seeps through your reverie: "... So from a captain's point of view flying the penguin should be very similar to a normal ship, except she flies herself and doesn't need a crew to run her systems." She pauses, and looks at you. "Your curiosity provided the final ingredients to bring her to life. You should be the first to have one. You'll still have to go through the shipyard to register her and pay the resource cost to balance the logistics, but this first one is reserved for you." She pats the nose of the Penguin and it makes a wooshing noise. After a moment she starts going over the ship with a scanner, leaving you to contemplate in silence.`
 
 event "remnant: penguin"
 	shipyard "Remnant Gascraft"
