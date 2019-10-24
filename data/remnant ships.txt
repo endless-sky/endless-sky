@@ -731,7 +731,7 @@ ship "Tern"
 		"automaton" 1
 		"cargo space" 5
 		"mass" 32
-		"drag" 0.8
+		"drag" 1.0
 		"heat dissipation" .9
 		"fuel capacity" 50
 		"energy capacity" 500
@@ -739,10 +739,10 @@ ship "Tern"
 		"outfit space" 75
 		"weapon capacity" 16
 		"engine capacity" 26
-		"shield generation" 0.6
-		"shield energy" 0.4
-		"hull repair rate" 1.2
-		"hull energy" 0.9
+		"shield generation" 0.3
+		"shield energy" 0.2
+		"hull repair rate" 0.6
+		"hull energy" 0.4
 		"gaslining" 1
 		"atmosphere scan" 100
 		"outfit scan power" 12
