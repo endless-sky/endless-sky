@@ -691,24 +691,23 @@ int64_t PlayerInfo::Salaries() const
 int64_t PlayerInfo::Maintenance() const
 {
 	int64_t maintenance = 0;
-	// If the player is landed, then all cargo will be in the player's 
+	// If the player is landed, then cargo will be in the player's 
 	// pooled cargo. Check there so that the bank panel can display the
 	// correct total maintenance costs. When launched all cargo will be
 	// in the player's ships instead of in the pooled cargo, so no outfit 
 	// will be counted twice.
 	for(const auto &outfit : Cargo().Outfits())
-		maintenance += outfit.first->Get("maintenance costs") * outfit.second;
+		maintenance += max(0, outfit.first->Get("maintenance costs")) * outfit.second;
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsDestroyed())
 		{
-			maintenance += ship->Attributes().Get("maintenance costs");
+			maintenance += max(0, ship->Attributes().Get("maintenance costs"));
 			for(const auto &outfit : ship->Cargo().Outfits())
-				maintenance += outfit.first->Get("maintenance costs") * outfit.second;
+				maintenance += max(0, outfit.first->Get("maintenance costs")) * outfit.second;
 			if(!ship->IsParked())
-				maintenance += ship->Attributes().Get("operating costs");
+				maintenance += max(0, ship->Attributes().Get("operating costs"));
 		}
-	// Maintenance costs should never be net negative.
-	return max(0, maintenance);
+	return maintenance;
 }
 
 
