@@ -567,7 +567,7 @@ ship "Petrel"
 	explode "tiny explosion" 30
 	explode "small explosion" 20
 	description "The Petrel is a multi-role mining/wing leader fightercraft designed to provide support for flights of lighter Terns in high risk environments. The ship's design originated as an a urban mobile gun platform that flitted around structures and natural terrain, but proved easy to adapt into a spacecraft."
-	description "	Due to the comparatively small pool the Remnant draw on for pilots and crew they are loath to throw mass waves of people into the line of fire. As such, their fighters are not intended to be up-close glass cannons like most other factions of humanity tend to build. Instead, these ships are highly agile fighters equipped with medium range weaponry designed to snipe enemies from behind cover."
+	description "	The Remnant are loath to sacrifice pilots and crew from the comparatively small pool they are drawn from. As such, their fighters are equipped with medium-range weaponry designed to strike enemies from afar."
 
 
 
