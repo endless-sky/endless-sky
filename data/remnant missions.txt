@@ -1740,7 +1740,7 @@ mission "Remnant: Face to Maw 1"
 				`	(Activate shields.)`
 				`	(Do not activate shields.)`
 					goto holdground
-			`	You trigger the shields in a rush. The millisecond that follows feels like an eternity: The void sprite is just a few meters away, one tendril reaches out and touches you just as the shield slams into place. The tendril becomes caught on both sides of the shield, cleaving it in two. In the same instant, the pressure on your mind vanishes as if it was simply a dream. You momentarily stare at the immobile void sprite, frozen in shock over what just happened. Then time reasserts itself and the sprite spasms away from the ship with an unearthly crescendo of dissonant tones. It plunges down into the clouds, leaving you standing on your hull with the floating severed piece of tendril.`
+			`	You push against the paralysis and trigger the shields in a rush. The millisecond that follows feels like an eternity. The void sprite is just a few meters away, one tendril reaches out and touches you just as the shield slams into place. The tendril becomes caught on both sides of the shield, cleaving it in two. In the same instant, the pressure on your mind vanishes as if it was simply a dream. You momentarily stare at the immobile void sprite, frozen in shock over what just happened. Then time reasserts itself and the sprite spasms away from the ship with an unearthly crescendo of dissonant tones. It plunges down into the clouds, leaving you standing on your hull with the floating severed piece of tendril.`
 			`	You carefully scoop up the tendril in a container and seal it. While the attack spoiled the beautiful moment, at least you have a sample and some recordings that might be of interest to Plume.`
 				flee
 			label holdground
