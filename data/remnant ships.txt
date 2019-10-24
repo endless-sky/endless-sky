@@ -540,6 +540,7 @@ ship "Petrel"
 		"shield energy" 0.55
 		"hull repair rate" 0.38
 		"hull energy" 0.28
+		"gaslining" 1
 		"outfit scan power" 12
 		"outfit scan speed" 1
 		"tactical scan power" 26
