@@ -2612,7 +2612,9 @@ void PlayerInfo::Fine(UI *ui)
 {
 	const Planet *planet = GetPlanet();
 	// Dominated planets should never fine you.
-	if(GameData::GetPolitics().HasDominated(planet))
+	// By default, uninhabited planets should not fine the player.
+	if(GameData::GetPolitics().HasDominated(planet)
+		|| !(planet->IsInhabited() || planet->HasCustomSecurity()))
 		return;
 	
 	// Planets should not fine you if you have mission clearance or are infiltrating.
