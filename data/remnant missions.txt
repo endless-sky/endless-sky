@@ -1819,7 +1819,7 @@ mission "Remnant: Face to Maw 2"
 					goto follow
 				`	(Ask if you can catch up in a few minutes)`
 			`	"Sure, just don't take too long. My project has reached its final stage."`
-			`	You take your time to get to the workshop, admiring the view along the way. When you finally arrive at the workshop you can hear strange noises coming form inside, accompanied by the smell of a thunderstorm in a swamp. You step into the workshop and come to a stop to stare at the thing in front of you.`
+			`	You take your time to get to the workshop, admiring the view along the way. When you finally arrive at the workshop you can hear strange noises coming from inside, accompanied by the smell of a thunderstorm in a swamp. You step into the workshop and come to a stop to stare at the thing in front of you.`
 				goto skip
 			label follow
 			`	She leads the way through several side passages to an out-of-the-way landing pad connected to a large hangar. Inside, you can see a giant tank filled with a murky fluid, surrounded by equipment and displays. She makes her way over to a large machine with several slots which she slides the container into.`
