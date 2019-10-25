@@ -17,6 +17,7 @@ mission "Pact Recon 0"
 	waypoint "Lesath"
 	source
 		attributes "south"
+		not government "Pirate"
 	destination "Glaze"
 	to offer
 		random < 60
@@ -79,6 +80,7 @@ mission "Pact Recon 1"
 	waypoint "Alpha Arae"
 	source
 		attributes "south" "dirt belt" "rim" "near earth"
+		not government "Pirate"
 	destination "Glaze"
 	to offer
 		random < 40
@@ -108,6 +110,7 @@ mission "Pact Recon 2"
 	waypoint "Nunki"
 	source
 		attributes "south" "dirt belt" "rim" "near earth"
+		not government "Pirate"
 	destination "Glaze"
 	to offer
 		random < 40
@@ -137,6 +140,7 @@ mission "Pact Recon 3"
 	waypoint "Boral"
 	source
 		attributes "south" "dirt belt" "rim" "near earth"
+		not government "Pirate"
 	destination "Glaze"
 	to offer
 		random < 40
