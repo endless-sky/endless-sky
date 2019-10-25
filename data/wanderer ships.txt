@@ -905,8 +905,6 @@ ship "Riptide"
 	turret 0 -28 "Sunbeam Turret"
 	turret 40 110 "Wanderer Anti-Missile"
 	turret -40 110 "Wanderer Anti-Missile"
-	drone 57 120
-	drone -57 120
 	explode "small explosion" 60
 	explode "medium explosion" 40
 	explode "large explosion" 20
