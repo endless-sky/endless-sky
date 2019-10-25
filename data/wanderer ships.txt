@@ -890,11 +890,11 @@ ship "Riptide"
 	outfits
 		"Sunbeam Turret"
 		"Wanderer Anti-Missile" 2
-        
+		
 		"White Sun Reactor"
 		"Bright Cloud Shielding"
 		"Wanderer Ramscoop"
-        
+		
 		"Type 4 Radiant Thruster"
 		"Type 2 Radiant Thruster"
 		"Type 4 Radiant Steering"
