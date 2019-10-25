@@ -224,7 +224,8 @@ ship "Strong Wind"
 	outfits
 		"Sunbeam" 4
 		"Thunderhead Launcher" 2
-		"Thunderhead Missile" 80
+		"Thunderhead Missile" 120
+		"Thunderhead Storage Array" 2
 		
 		"White Sun Reactor"
 		"Dark Storm Shielding"
@@ -329,13 +330,15 @@ ship "Tempest" "Tempest (Heavy)"
 ship "Tempest" "Tempest (Missile)"
 	outfits
 		"Thunderhead Launcher" 4
-		"Thunderhead Missile" 160
+		"Thunderhead Missile" 220
+		"Thunderhead Storage Array" 3
 		"Dual Sunbeam Turret" 2
 		
 		"White Sun Reactor"
 		"Small Biochemical Cell"
 		"Dark Storm Shielding"
 		"Wanderer Ramscoop"
+		"Outfits Expansion"
 		
 		"Type 4 Radiant Thruster"
 		"Type 4 Radiant Steering"
@@ -745,7 +748,8 @@ ship "Deep River"
 			"hit force" 4200
 	outfits
 		"Thunderhead Launcher" 6
-		"Thunderhead Missile" 240
+		"Thunderhead Missile" 320
+		"Thunderhead Storage Array" 4
 		
 		"Large Biochemical Cell"
 		"Bright Cloud Shielding"

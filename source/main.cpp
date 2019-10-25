@@ -56,11 +56,18 @@ void AdjustViewport(SDL_Window *window);
 int DoError(string message, SDL_Window *window = nullptr, SDL_GLContext context = nullptr);
 void Cleanup(SDL_Window *window, SDL_GLContext context);
 Conversation LoadConversation();
+#ifdef _WIN32
+void InitConsole();
+#endif
 
 
 
 int main(int argc, char *argv[])
 {
+#ifdef _WIN32
+	if(argc > 1)
+		InitConsole();
+#endif
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
@@ -207,8 +214,15 @@ int main(int argc, char *argv[])
 		if(!isFullscreen)
 			SDL_GetWindowSize(window, &windowWidth, &windowHeight);
 		
-		
+		// GamePanels is used for the main-panel (flying your spaceship). The planet
+		// dialog and all other game-content related dialogs are placed on top of the
+		// main-panel.
+		// If there are both menuPanels and gamePanels, then the menuPanels take
+		// priority over the gamePanels. The gamePanels will then not be shown until
+		// the stack of menuPanels is empty.
 		UI gamePanels;
+		// MenuPanels is used for the panels related to pilot creation, preferences,
+		// game loading and game saving.
 		UI menuPanels;
 		menuPanels.Push(new MenuPanel(player, gamePanels));
 		if(!conversation.IsEmpty())
@@ -408,7 +422,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky 0.9.8" << endl;
+	cerr << "Endless Sky 0.9.10" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
@@ -461,10 +475,6 @@ void AdjustViewport(SDL_Window *window)
 	drawWidth = (drawWidth * roundWidth) / width;
 	drawHeight = (drawHeight * roundHeight) / height;
 	glViewport(0, 0, drawWidth, drawHeight);
-	
-	// Make sure the zoom factor is not set too high for the full UI to fit.
-	if(Screen::Height() < 700)
-		Screen::SetZoom(100);
 }
 
 
@@ -557,3 +567,29 @@ Conversation LoadConversation()
 	};
 	return conversation.Substitute(subs);
 }
+
+
+
+#ifdef _WIN32
+void InitConsole()
+{
+	// If both stdout and stderr are already initialized (e.g. writing to a file), do nothing.
+	const int UNINITIALIZED = -2;
+	bool redirectStdout = _fileno(stdout) == UNINITIALIZED;
+	bool redirectStderr = _fileno(stderr) == UNINITIALIZED;
+	bool redirectStdin = _fileno(stdin) == UNINITIALIZED;
+
+	if(!redirectStdout && !redirectStderr && !redirectStdin)
+		return;
+	
+	if(!AttachConsole(ATTACH_PARENT_PROCESS) && !AllocConsole())
+		return;
+
+	if(redirectStdout && freopen("CONOUT$", "w", stdout))
+		setvbuf(stdout, nullptr, _IOFBF, 4096);
+	if(redirectStderr && freopen("CONOUT$", "w", stderr))
+		setvbuf(stderr, nullptr, _IOLBF, 1024);
+	if(redirectStdin && freopen("CONIN$", "r", stdin))
+		setvbuf(stdin, nullptr, _IONBF, 0);
+}
+#endif

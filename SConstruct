@@ -67,7 +67,7 @@ env.Install("$DESTDIR$PREFIX/share/appdata", "endless-sky.appdata.xml")
 
 # Install icons, keeping track of all the paths.
 # Most Ubuntu apps supply 16, 22, 24, 32, 48, and 256, and sometimes others.
-sizes = ["16x16", "22x22", "24x24", "32x32", "48x48", "256x256"]
+sizes = ["16x16", "22x22", "24x24", "32x32", "48x48", "128x128", "256x256", "512x512"]
 icons = []
 for size in sizes:
 	destination = "$DESTDIR$PREFIX/share/icons/hicolor/" + size + "/apps/endless-sky.png"

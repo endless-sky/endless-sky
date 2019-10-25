@@ -20,7 +20,7 @@ class DataNode;
 
 
 
-// Class representing a set of rules for generating random ship names.
+// Class representing a set of rules for generating text strings from words.
 class Phrase {
 public:
 	void Load(const DataNode &node);

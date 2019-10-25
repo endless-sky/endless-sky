@@ -4377,7 +4377,7 @@ system Arculus
 	fleet "Large Remnant" 2100
 	fleet "Small Remnant" 1600
 	fleet "Remnant Transport" 1600
-	fleet "Korath Raid" 40000
+	fleet "Korath Ember Waste Raid" 40000
 	object
 		sprite star/g5-old
 		period 10
@@ -5851,7 +5851,7 @@ system Caeculus
 	trade Medical 508
 	trade Metal 272
 	trade Plastic 289
-	fleet "Korath Raid" 20000
+	fleet "Korath Ember Waste Raid" 20000
 	fleet "Small Remnant" 30000
 	fleet "Large Remnant" 30000
 	object
@@ -6715,7 +6715,7 @@ system Cinxia
 	fleet "Large Remnant" 1750
 	fleet "Small Remnant" 1300
 	fleet "Remnant Transport" 1300
-	fleet "Korath Raid" 30000
+	fleet "Korath Ember Waste Raid" 30000
 	object
 		sprite star/k5-old
 		period 10
@@ -6769,7 +6769,7 @@ system Coluber
 	trade Medical 798
 	trade Metal 475
 	trade Plastic 362
-	fleet "Korath Raid" 10000
+	fleet "Korath Ember Waste Raid" 10000
 	object
 		sprite star/k5-old
 		distance 40.6966
@@ -8214,7 +8214,7 @@ system Edusa
 	fleet "Large Remnant" 3200
 	fleet "Small Remnant" 2400
 	fleet "Remnant Transport" 2400
-	fleet "Korath Raid" 40000
+	fleet "Korath Ember Waste Raid" 40000
 	object
 		sprite star/giant
 		period 10
@@ -9501,7 +9501,7 @@ system Farinus
 	fleet "Large Remnant" 14000
 	fleet "Small Remnant" 10000
 	fleet "Remnant Transport" 10000
-	fleet "Korath Raid" 40000
+	fleet "Korath Ember Waste Raid" 40000
 	object
 		sprite star/k5-old
 		distance 36.894
@@ -14063,7 +14063,7 @@ system Levana
 	trade Medical 736
 	trade Metal 407
 	trade Plastic 222
-	fleet "Korath Raid" 10000
+	fleet "Korath Ember Waste Raid" 10000
 	object
 		sprite star/giant
 		distance 17.197
@@ -14370,7 +14370,7 @@ system Lucina
 	trade Medical 863
 	trade Metal 524
 	trade Plastic 410
-	fleet "Korath Raid" 20000
+	fleet "Korath Ember Waste Raid" 20000
 	object
 		sprite star/m0
 		period 10
@@ -16989,7 +16989,7 @@ system Pantica
 	fleet "Large Remnant" 1400
 	fleet "Small Remnant" 1000
 	fleet "Remnant Transport" 1000
-	fleet "Korath Raid" 40000
+	fleet "Korath Ember Waste Raid" 40000
 	object
 		sprite star/k0-old
 		period 10
@@ -17039,7 +17039,7 @@ system Parca
 	trade Medical 872
 	trade Metal 531
 	trade Plastic 445
-	fleet "Korath Raid" 10000
+	fleet "Korath Ember Waste Raid" 10000
 	object
 		sprite star/g5-old
 		distance 18.2961
@@ -17256,7 +17256,7 @@ system Peragenor
 	fleet "Large Remnant" 10000
 	fleet "Small Remnant" 7000
 	fleet "Remnant Transport" 7000
-	fleet "Korath Raid" 40000
+	fleet "Korath Ember Waste Raid" 40000
 	object
 		sprite star/g0-old
 		period 10
@@ -17359,7 +17359,7 @@ system Perfica
 	fleet "Large Remnant" 10000
 	fleet "Small Remnant" 7500
 	fleet "Remnant Transport" 7500
-	fleet "Korath Raid" 30000
+	fleet "Korath Ember Waste Raid" 30000
 	object
 		sprite star/g0-old
 		period 10
@@ -19827,7 +19827,7 @@ system Segesta
 	trade Plastic 295
 	fleet "Small Remnant" 40000
 	fleet "Large Remnant" 40000
-	fleet "Korath Raid" 40000
+	fleet "Korath Ember Waste Raid" 40000
 	object
 		sprite star/k5-old
 		period 10
@@ -21496,7 +21496,7 @@ system Stercutus
 	trade Medical 536
 	trade Metal 299
 	trade Plastic 294
-	fleet "Korath Raid" 20000
+	fleet "Korath Ember Waste Raid" 20000
 	fleet "Small Remnant" 20000
 	fleet "Large Remnant" 20000
 	fleet "Remnant Transport" 40000
@@ -23977,7 +23977,7 @@ planet Ahr
 	outfitter "Coalition Advanced"
 
 planet Albatross
-	attributes pirate "south pirate"
+	attributes pirate "south pirate" south frontier
 	landscape land/snow6
 	description `Albatross is a cold ocean world orbiting a small, cold sun. The first settlers on Albatross were anarchists who believed that in a society free from unnatural laws and constraints, everyone would happily and freely work for the common good. The next settlers were pirates who believed that a planet free from laws and constraints would be a great base of operations.`
 	description `	The anarchist farming communes, each operating independently but trading with outsiders to gain necessary supplies, are clustered in the barely temperate climate near the equator. The pirate bases, having a much more ready source of supplies, are located wherever there are flat landing areas close to craggy, defensible mountains.`
@@ -23994,7 +23994,7 @@ planet Albatross
 		fleet "Small Southern Pirates" 20
 
 planet Alexandria
-	attributes deep station
+	attributes deep station tourism
 	landscape land/space7
 	description `At the height of the Alpha War, the government of the Deep constructed Alexandria as the galaxy's largest storehouse of human literature, scientific writing, and technology. It also houses a vast museum of cultural artifacts dating back to long before the start of the space age. Today the station is mostly populated by visitors looking for particularly arcane writings or information, and librarians who have devoted their lives to keeping the archives well-indexed and up to date.`
 	description `	Entire sections of the station are off limits to ordinary visitors. There are many rumors about what those restricted areas contain.`
@@ -24130,6 +24130,11 @@ planet Aventine
 	bribe 0
 	shipyard Remnant
 	outfitter Remnant
+	tribute 4000
+		threshold 8500
+		fleet "Remnant Decoy Defense" 3
+		fleet "Light Remnant Defense" 10
+		fleet "Heavy Remnant Defense" 30
 
 planet "Bank of Blugtad"
 	attributes arach wealthy urban
@@ -24175,7 +24180,7 @@ planet Bivrost
 		fleet "Large Deep Security" 35
 
 planet Bloodsea
-	attributes pirate
+	attributes pirate "south pirate" south frontier
 	landscape land/beach5
 	description `Bloodsea is nearly uninhabited, except for a few pirate outposts. Its name comes from the planet's oceans, which are blood-red due to rhodophyte algae. Although the climate is temperate and there are many white sand beaches, no one comes here hoping to go swimming.`
 	description `	The pirates have no industry of their own, but instead make a living by reselling stolen cargo from raids on merchant fleets.`
@@ -24270,11 +24275,13 @@ planet "Bright Echo"
 	outfitter "Coalition Basics"
 
 planet "Buccaneer Bay"
-	attributes pirate "core pirate"
+	attributes pirate "core pirate" core frontier
 	landscape land/beach0
 	description `Pirates who have struck it rich dream of retiring on Buccaneer Bay. It is a warm ocean planet, with many places reminiscent of the islands in the ancient Caribbean where humanity's first pirate fleets sailed.`
 	description `	Many of the inhabitants are in fact not pirates, but their descendants, and these children and grand-children of anarchist outlaws have built a system of regional government that oversees hospitals, schools, and other public services, all created without funding from the Republic or taxes paid to it. The planet even sports its own shipyard, although many of the ships built here are, not surprisingly, based on designs pirated from the Syndicate and Republic shipyards.`
 	spaceport `This is the sort of spaceport you picture in your head when you think of pirates. Half the storefronts are bars, and rum seems to be on the menu everywhere. It is almost like the stories of ancient Earth, except that the eye patches are cybernetic implants and the peg legs are motorized prosthetics. Swarthy, dangerous-looking women glance at you as you pass by, and scantily clad men crowd around the bars, which is what you seem to remember the stories said it was like on Earth, too, although there it may have been the other way around.`
+	shipyard "Core Pirates"
+	shipyard "Advanced Core Pirates"
 	shipyard "Southern Pirates"
 	shipyard "Northern Pirates"
 	outfitter "Syndicate Basics"
@@ -24306,6 +24313,11 @@ planet Caelian
 	bribe 0
 	shipyard Remnant
 	outfitter Remnant
+	tribute 3000
+		threshold 8000
+		fleet "Remnant Decoy Defense" 3
+		fleet "Light Remnant Defense" 8
+		fleet "Heavy Remnant Defense" 25
 
 planet Calda
 	attributes paradise tourism rich
@@ -24478,11 +24490,12 @@ planet "Corral of Meblumem"
 	"required reputation" 15
 
 planet Covert
-	attributes pirate mining "core pirate"
+	attributes pirate mining "core pirate" core frontier
 	landscape land/badlands2
 	description `Covert is home to a powerful mining cartel, operating outside the control of Republic law or any other external authority. It is rumored to be one of the few planets in human space where weapons-grade uranium and plutonium is mined and enriched. Any goods for sale here were most likely produced by slave labor, often by survivors of ships that have been captured by pirates. A massive pirate fleet is docked on the outskirts of the spaceport, a warning to any private pilot who might think of cheating or opposing the cartel.`
 	spaceport `From the moment you landed, you have been followed by a pair of security guards with earpieces and laser guns. The spaceport is one enormous building, with square, straight hallways and featureless walls, and nearly every door you pass is locked. Cameras at each hallway intersection pivot to watch as you approach. This is simultaneously one of the most secure spaceports you have visited, and one of the most dangerous, although if you do not do anything to provoke the animosity of the cartel, you will probably be able to leave in peace.`
 	shipyard "Southern Pirates"
+	shipyard "Core Pirates"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
@@ -24510,7 +24523,7 @@ planet Crossroads
 planet Dancer
 	attributes south research
 	landscape land/nasa7
-	description `Dancer is a resource rich world, but with unusually violent weather and strong atmospheric convection, which leads to lightning storms stronger than on any other settled human world. Straying outside on foot is unthinkable, and it is not uncommon to find a small crater blasted out by a particularly energetic strike.`
+	description `Dancer is a resource-rich world, but with unusually violent weather and strong atmospheric convection, which leads to lightning storms stronger than on any other settled human world. Straying outside on foot is unthinkable, and it is not uncommon to find a small crater blasted out by a particularly energetic strike.`
 	description `	A fair number of scientists have settled here to study the planet's weather systems, as well as others who do not mind, or who even enjoy, the wild weather. It might be possible for terraforming to moderate Dancer's atmospheric activity enough to make it a less dangerous place to live, but the cost would be prohibitive.`
 	spaceport `The spaceport town is a rather normal collection of wood and stone buildings, with large sheds for trade goods and a handful of pubs and restaurants. The only unusual thing is the fact that every single building has lightning rods mounted on its roof. The sky is perpetually cloudy here, with only occasional beams of sunlight glancing through. The clouds are moving awfully fast.`
 	outfitter "Basic Outfits"
@@ -24552,7 +24565,7 @@ planet Darkwaste
 	description `This planet seems to have all the conditions necessary for a vibrant, Earth-like ecology. The gravity and temperature are moderate, and there is a fair amount of surface water, although the oceans are quite small. However, aside from a few stunted plants and lichen, there is almost no native life here. Given how skilled the Hai appear to be at terraforming other worlds, it is strange that this one has been left barren.`
 
 planet "Deadman's Cove"
-	attributes pirate "core pirate"
+	attributes pirate "core pirate" core frontier
 	landscape land/sea1
 	description `Deadman's Cove is an ocean planet; the continents take up only a tenth of its surface area. Legends tell of massive sea creatures hiding in the deeps: serpents hundreds of meters long; colossal sea turtles; strange tentacled monsters and exotic fish.`
 	description `	One island archipelago is home to the spaceport, the only part of the planet where it is safe to land uninvited. The other islands - even some that seem from a distance to be uninhabited - are often used as staging bases for pirate fleets, who guard their secrets closely.`
@@ -24800,7 +24813,6 @@ planet "Far'en Lai"
 	landscape land/dune3
 	description `When the Korath were banished to the Core, they were left with only one living world, a planet they call "Far'en Lai," meaning, "the last candle-flame." Afraid that this planet's biosphere will turn to dust in their hands like all the other worlds they once controlled, the Korath have left Far'en Lai entirely unsettled and unexploited. It is rumored that the terms of their exile dictate that if Far'en Lai withers and dies, the remaining Korath exiles will be exterminated, but that if they can learn to make the planet flourish, their place in the galaxy will be restored.`
 	government Uninhabited
-	security 0
 
 planet "Fara Skaeruti"
 	attributes korath station
@@ -24859,7 +24871,6 @@ planet "Fek Rembatu"
 	attributes korath
 	landscape land/beach10-sfiera
 	description `Everything on this planet that is made of metal is overgrown with a thick layer of a reddish lichen or fungus. In the cities, the tallest buildings look like they have been melted or half digested by the fungus: tall towers lean at crazy angles, and smaller buildings are entirely buried and indistinct. The air smells like sauerkraut and roses.`
-	security 0
 
 planet "Fenrir Station"
 	attributes deep station
@@ -24884,7 +24895,6 @@ planet "Firka Tesk"
 	attributes korath
 	landscape land/lava0
 	description `This appears to have once been an inhabited world, and the remnants of a few cities still remain. But the planet's crust has been cracked like an eggshell, releasing rivers of lava and leaving behind unnaturally steep mountains and fault lines. The wind whistles and howls through the rifts and fissures as if the planet itself is screaming in pain. A thick haze of sulfur dioxide and ash hangs over everything.`
-	security 0
 
 planet Flood
 	attributes rim tourism farming
@@ -24958,7 +24968,7 @@ planet "Fourth Shadow"
 	spaceport `The spaceport is crowded with travelers, about equally divided between those who are freshly arriving, drawn by the promise of plentiful work and a cheap cost of living, and those who are preparing to leave and attempt to build a better life somewhere else. Most Kimek choose to specialize as workers rather than raising families, so the vast majority of the travelers are alone or traveling only with a loosely knit group of friends.`
 
 planet Freedom
-	attributes pirate farming "north pirate"
+	attributes pirate farming "north pirate" north frontier
 	landscape land/bwerner7
 	description `Freedom is home to the oldest and largest anarchist colonies in human history. The original settlers arrived in the first century after the invention of the hyperdrive, coming with the goal of simply getting as far away from civilization as possible. The colony has reinvented itself countless times since then as different leaders have taken control, and in fact at present it is split into two separate towns, East Mesa and West Mesa.`
 	description `	The environment is a mix of deserts and brackish oceans, with a fair amount of native wildlife and good potential for farming. Anywhere else in human space, this planet would have become densely settled, but out here it has remained mostly empty.`
@@ -25114,12 +25124,14 @@ planet Greenbloom
 	spaceport `The spaceport is a massive floating island built by the Hai - a network of hexagonal platforms, each roughly half a kilometer in diameter, linked by bridges that can bend to accommodate the platforms rising and falling in rough weather. You are not sure what sort of alloy the platforms are built from, but judging by the fact that some of them have coral colonies growing on their edges, they can probably last for centuries without requiring any maintenance.`
 
 planet Greenrock
-	attributes pirate "south pirate"
+	attributes pirate "south pirate" south frontier
 	landscape land/sky0
 	description `Greenrock is the closest thing that the pirates in southern human space have to a center of government, but taking the form of large, powerful corporations rather than elected officials. When rival pirate bands seek to negotiate on neutral territory, this is where they meet. Nearly everything is for sale here: illegal weapons, ships customized for pirating, and even slaves.`
 	spaceport `You have heard enough about this port's reputation that you are not surprised to see the slave markets, heavily guarded in case any visitors happen to find themselves in possession of a conscience. Nor are you shocked by the shady establishments catering to all manner of prurient interests. This is, after all, a pirate port, and everything is for sale here.`
 	spaceport `	Everything, in fact, including the very bizarre. At the end of one dark alley you see a shop called "Mike's Mustelids," with weasels and ferrets in cages in the window. Beside them, a fully-grown wolverine glares at you from behind the bars of a large and sturdy cage.`
+	shipyard "Core Pirates"
 	shipyard "Southern Pirates"
+	shipyard "Advanced Southern Pirates"
 	shipyard "Northern Pirates"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
@@ -25177,12 +25189,14 @@ planet Harmony
 	security 0
 
 planet Haven
-	attributes pirate mining "north pirate"
+	attributes pirate mining "north pirate" north frontier
 	landscape land/dune1
-	description `Haven was founded by highly successful "privateers" nearly two centuries ago. Since then, as rival bands of pirates have fought over it, it has changed hands fourteen times, but has never been successfully invaded by the Republic. Numerous small manufacturing shops sell outfits that cannot be bought legally, and there is even a small shipyard where customized ships are sold.`
+	description `Haven was founded by highly successful "privateers" nearly two centuries ago. Since then, as rival bands of pirates have fought over it, it has changed hands fourteen times, but has never been successfully invaded by the Republic. Numerous small manufacturing shops sell outfits that cannot be bought legally, and there is even a small shipyard where customized ships are sold to those who have the right connections.`
 	description `	Much of the planet is desert, but with enough moisture to grow enough crops to feed the entire population. Strip mining has turned other parts of the planet into barren wastelands, and has polluted many of the rivers.`
 	spaceport `The spaceport is old and dingy, with piles of litter in the gutters and graffiti on many of the alley walls. Many of the shops are closed, the windows boarded over or covered with yellowing paper. This is an independent world, and a relatively stable settlement, but the effects of its separation from the rest of the galaxy are evident. A few young people carrying large backpacks eye you with interest, perhaps trying to gauge their chances of getting you to give them a cheap lift off-planet.`
+	shipyard "Core Pirates"
 	shipyard "Northern Pirates"
+	shipyard "Advanced Northern Pirates"
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
@@ -25306,7 +25320,6 @@ planet Hope
 	description `In the year 2994, Hope was a somewhat cold but otherwise hospitable planet, home to a burgeoning population of almost two million people. But that year, a supervolcano eruption ejected so much dust into the upper atmosphere that a new ice age set in and the planet became unlivable. As the temperatures steadily dropped, nearly half the Republic Navy was mobilized to evacuate settlers from Hope and transport them to nearby colonies. The evacuation effort took six months.`
 	description `	The abandoned villages and towns are now buried deep beneath the snow, and occasional treasure hunters come here to explore them and find items of value that were left behind.`
 	"required reputation" -1000
-	security 0
 
 planet Hopper
 	attributes "dirt belt" mining
@@ -25410,7 +25423,6 @@ planet "Kasichara Fet"
 	attributes korath
 	landscape land/sky8
 	description `This planet appears to have suffered irradiation when the neighboring star of Peresedersi went nova. The local flora and fauna are alive but still struggling to recover from the loss. Several large Korath cities remain. It seems that they were not able, or not willing, to evacuate the entire population in time to escape the nova's gamma radiation; sun-bleached bones are scattered in the streets of the largest cities.`
-	security 0
 
 planet "Keneska Fek"
 	attributes korath
@@ -25451,7 +25463,6 @@ planet "Korbatri Eska"
 	attributes korath
 	landscape land/myrabella7
 	description `The cities on this world have been hit by an astonishing variety of weapons. Some were leveled by massive explosions, while others show signs of strafing by low-flying ships or of orbital bombardment. Outside the cities, the land is fruitful and varied: forests, mountains, oceans, desert, and tundra.`
-	security 0
 
 planet "Kort Kehai"
 	attributes wanderer
@@ -25825,7 +25836,6 @@ planet Nasqueron
 	attributes "requires: gaslining"
 	landscape land/nasa8
 	description `Beneath Nasqueron's cloudy surface is a complex and thriving ecosystem of gas-dwelling organisms, from the massive void sprites all the way down to bacteria that inhabit tiny water droplets suspended in the air. Although the void sprites mostly feed on these organisms, it appears that in order to grow into their adult form or to give birth to young, they also need rare minerals that they can only find by feeding on asteroids, far beyond the planet's atmosphere.`
-	security 0
 
 planet "Nearby Jade"
 	attributes kimek farming urban
@@ -26379,7 +26389,6 @@ planet "Sabira Eseskrai"
 	landscape land/bwerner3
 	description `Long ago, this planet was home to several Korath oil mining settlements, but now all that remains visible are the tops of a few dozen of the tallest buildings. Everything else has been buried by sandstorms.`
 	description `	Due to a recent shift in climate the deserts have begun shrinking once more, with local vegetation growing to cover more and more land each year, but the Korath are no longer here to benefit from the change.`
-	security 0
 
 planet "Safaresk Enlai"
 	attributes korath station
@@ -26410,7 +26419,6 @@ planet "Sarisa Fentra"
 	landscape land/sky1
 	description `This planet's atmosphere has dangerously high radiation levels. On several of the continents there are patches, each nearly a hundred kilometers across, where the soil has been melted into glass by a nuclear explosion. Outside these blasted regions the plant life still flourishes, but the only land animals left alive are insects.`
 	description `	In the oceans, bizarre and corrupted creatures frolic.`
-	security 0
 
 planet Saros
 	attributes saryd tourism urban
@@ -26425,7 +26433,6 @@ planet "Sasirka Gatru"
 	attributes korath
 	landscape land/desert7
 	description `This was probably a habitable world at one point. It is no longer. Nothing lives or grows here, and the atmosphere is full of toxic chemicals.`
-	security 0
 
 planet "Sebra Skira"
 	attributes korath station
@@ -26455,7 +26462,7 @@ planet "Second Rose"
 planet "Second Viridian"
 	attributes kimek farming urban
 	landscape land/hills5-sfiera
-	description `More than ten billion Kimek live here, most of them living in one of several arcologies near the equator: massive structures that each nearly a kilometer tall and may house over half a billion individuals. As a result, despite the large population most of the land is either undeveloped or used for farming.`
+	description `More than ten billion Kimek live here, most of them living in one of several arcologies near the equator: massive structures that reach nearly a kilometer tall and may house over half a billion individuals. As a result, despite the large population most of the land is either undeveloped or used for farming.`
 	description `	The Kimek arcologies are said to be able to recycle more than 99% of the waste produced in them each day, which is what makes it feasible for so many Kimek to live in such close proximity.`
 	spaceport `The spaceport facility is a kilometer-tall pyramid honeycombed with tunnels wide enough for a pair of bulk freighters to pass each other with plenty of room to spare. There is no single central warehouse district or meeting area. Instead, each cluster of docking bays is surrounded by its own storage facilities, food courts, and concourses.`
 	outfitter "Coalition Basics"
@@ -26472,7 +26479,6 @@ planet "Sek Alarfarat"
 	attributes korath
 	landscape land/bwerner2
 	description `A hideously powerful weapon tore open scars on this planet's surface so deep that pools of magma bled out through them. Presumably these wounds were inflicted on the planet by yet another Korath super-weapon devised in the final years of their civil war. A few ruined cities remain, some of which were sliced in two by the trail of weapon fire.`
-	security 0
 
 planet "Selefkar Refinery"
 	attributes korath station
@@ -26486,7 +26492,6 @@ planet "Seleptra Nak"
 	landscape land/fog2
 	description `The most disturbing thing about the empty Korath cities on this planet is how pristine they are: no sign of bombing or of weapons fire. Either everyone who lived here chose to leave, or they were killed by a weapon that did no damage to the buildings they live in.`
 	description `	Outside the cities, plant and animal life has begun to flourish, and some of the smaller villages have already been swallowed up by the growing forests. The climate is temperate, and rainfall is plentiful; aside from the reduction in biodiversity, it will not take this planet long to forget its former owners.`
-	security 0
 
 planet "Separa Tiklar"
 	attributes korath station
@@ -26666,17 +26671,20 @@ planet Slylandro
 	attributes "requires: gaslining"
 	landscape land/nasa9
 	description `Far beneath the swirling blue surface of Slylandro's atmosphere, void sprites and other strange creatures float about. As improbable as it may seem, the void sprites must have somehow evolved the capability to manipulate gravity fields, because every once in a while one of them will rise up from the surface powered by an antigravity field similar to the landing repulsors used by human ships. When they do so, the decrease in atmospheric pressure causes them to nearly double in size.`
-	security 0
 
 planet "Smuggler's Den"
-	attributes pirate station "south pirate"
+	attributes pirate station "south pirate" south frontier
 	landscape land/loc1
-	description `Smuggler's Den was formerly known as Grendel Station, back when it was an operating refinery. But, it has since been taken over by pirates, who turned it into a haven for all manner of smugglers and privateers. The repair shops here can make a variety of legal and illegal modifications to your ship, and in the shipyard you can buy refurbished starships... if it does not trouble your conscience to think about the likely fates of their previous owners.`
+	description `Smuggler's Den was formerly known as Grendel Station, back when it was an operating refinery. But, it has since been taken over by pirates, who turned it into a haven for all manner of smugglers and privateers. As a hub of pirate activity, Smuggler's Den has access to fenced goods from beyond the region, resulting in repair shops that can make a variety of legal and illegal modifications to your ship. This confluence also provides the opportunity to buy refurbished starships... if it does not trouble your conscience to think about the likely fates of their previous owners. Rumor has it that pilots with the right connections may be able to purchase heavily modified ships here.`
 	spaceport `It is a strange but indisputable fact that pirates smell worse than ordinary human beings. In this day and age, where even the cheapest shuttlecraft at least has a sonic shower, there is no logical explanation for it, except that anarchist tendencies must somehow go hand in hand with a tendency to reject society's norms around hygiene. Here in a space station, with nothing but recycled air to breathe, the effect is overpowering.`
 	shipyard "Southern Pirates"
+	shipyard "Advanced Southern Pirates"
+	shipyard "Core Pirates"
+	shipyard "Advanced Core Pirates"
 	outfitter "Delta V Advanced"
 	outfitter "Kraz Advanced"
 	outfitter "Common Outfits"
+	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
@@ -26714,7 +26722,6 @@ planet "Solima Skarati"
 	attributes korath
 	landscape land/beach12-harro
 	description `The Korath were endlessly creative in devising new weapons of war during the twilight years of their empire, but what destroyed this planet in the end was not a military disaster but an ecological one. Small villages along the ocean shores and rusting fleets of boats bear witness to the fact that this ocean world was once a fruitful fishery. But now the ocean carries high levels of industrial toxins, and in place of large fish only small invertebrates remain.`
-	security 0
 
 planet "Sopi Lefarkata"
 	attributes korath
@@ -26729,7 +26736,6 @@ planet "Spera Anatrusk"
 	attributes korath
 	landscape land/badlands6
 	description `This is a relatively dry planet, and the only Korath cities were close to the poles where the temperatures are more mild and the lifeless deserts give way to grasslands and even a few scattered forests. The largest city was clearly destroyed by orbital bombardment. The other cities seem to have been done in by rioting or looting, leaving smashed windows and burned-out buildings behind. Some of the damage is very recent; the Korath survivors here held out for a long time.`
-	security 0
 
 planet Splashdown
 	attributes north farming
@@ -26762,7 +26768,7 @@ planet Stonebreak
 	outfitter "Hai Intermediate"
 
 planet Stormhold
-	attributes pirate "core pirate"
+	attributes pirate "core pirate" core frontier
 	landscape land/fog3
 	description `A cold planet, with dense, foggy atmosphere. As with many pirate outposts, Stormhold is home to an unknown number of villages and hidden outposts, each controlled by a different pirate faction. It is also said that some of the most dangerous fugitives in the galaxy live deep in the forests of this planet, escaping detection by living underground or by avoiding the use of electronic devices.`
 	spaceport `The spaceport is a large town, with a population of roughly thirty thousand. People of all races and cultures mingle freely, while keeping a wary eye open for off-worlders who may be Republic agents in disguise.`
@@ -26862,7 +26868,7 @@ planet Thrall
 		fleet "Large Republic" 8
 
 planet Thule
-	attributes pirate "south pirate"
+	attributes pirate "south pirate" south frontier
 	landscape land/dmottl2
 	description `Thule is a mountainous world with a population of nearly a billion, settled in the early days of space exploration. When the colony was first established, the Earth government did not yet have the strength to control any system but its own, and when the Republic was formed, Thule did not join, and has repulsed all efforts to force them to do so. It is well-known that the planet sponsors pirate fleets which bring it cheap materials to bolster its economy, but the planet is so far from the center of Republic space that fighting a war here would be prohibitively expensive, and so they remain unopposed.`
 	spaceport `The inhabitants of Thule are notoriously suspicious of strangers. They all seem to immediately recognize you as an off-worlder, perhaps by your clothing or your accent. The food sold in the shops is like nothing you have seen elsewhere, and the natives' accents are so strong that they almost seem to be speaking a different language. You feel as if you are visiting an alien world; centuries of separation has created a culture here that is very different from your own.`
@@ -27186,6 +27192,11 @@ planet Viminal
 	bribe 0
 	shipyard Remnant
 	outfitter Remnant
+	tribute 3000
+		threshold 8000
+		fleet "Remnant Decoy Defense" 3
+		fleet "Light Remnant Defense" 8
+		fleet "Heavy Remnant Defense" 25
 
 planet Vinci
 	attributes paradise factory
@@ -27222,7 +27233,6 @@ planet Watcher
 	attributes "dirt belt" research uninhabited moon
 	landscape land/hills4
 	description `Watcher is a small moon, the only world in this system that sustains any indigenous life. Because of the low gravity, humans have not yet built a permanent settlement here, but it is occasionally visited by biologists interested in studying low-gravity life forms. There are forests here where the trees grow over two hundred meters tall.`
-	security 0
 
 planet Wayfarer
 	attributes south factory
@@ -27293,7 +27303,7 @@ planet "Wyvern Station"
 		fleet "Large Militia" 6
 
 planet Zenith
-	attributes pirate "north pirate"
+	attributes pirate "north pirate" north frontier
 	landscape land/water4
 	description `Zenith is a cold and unpleasant world, where the fog seldom lifts and the sun is rarely seen, where much of the lowlands are flooded each day by the tide, and storms are unpredictable and fierce. It has, however, one major advantage as a place to settle: it is far enough away that the Republic makes no attempt to control it.`
 	description `	Several villages have been founded near the equator, and in addition there are an unknown number of private holdings, ranging from underground bunkers to enormous cement fortresses. Because the land is owned by no government and anyone can build a dwelling without permission or paperwork as long as they are willing to fight off any other claimants, the total population of Zenith is unknown.`
