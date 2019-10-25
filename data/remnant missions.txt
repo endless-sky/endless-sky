@@ -1751,7 +1751,7 @@ mission "Remnant: Face to Maw 1"
 		fail "Remnant: Face to Maw 1B"
 	on complete
 		conversation
-			`When you walk into Plume's lab on Aventine you find him buried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his data pad. After a few minutes he looks up and see you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
+			`When you walk into Plume's lab on Aventine you find him buried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his data pad. After a few minutes he looks up and sees you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
 			`	"Captain <first>! What a pleasant surprise," he trills. "If you are looking for more work, I don't have anything for you right now."`
 			`	You tell Plume about how you visited Nenia and had an interesting encounter with a void sprite, and offer him the recording and container of slime. He eagerly accepts the data chip and the container from you. He slides the container into some kind of machine that immediately starts whirring, and slots the data chip into his console. Moments later his holographic projection shifts to the new footage. He checks the time stamps, then chants, "These will take me a little while to analyze. I will meet you in the spaceport in a few hours to discuss my preliminary findings."`
 
