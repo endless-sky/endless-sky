@@ -1058,8 +1058,13 @@ mission "Remnant: Return the Samples 2"
 		dialog phrase "generic stopover on visit"
 	on complete
 		"reputation: Drak" += 1
+		event "remnant: return the samples timer" 14
 		conversation
 			`Back on Aventine, you share the recording of the void sprite's behavior with Plume. "These Sprites demonstrate considerably more communication than we originally thought. And obviously they must have communicated what you did on Nasqueron. Interesting..." Plume's excited staccato exclamations trail off as he begins to make notes on a data pad he has on hand. "Thank you for your help, we will let you know what we find out."`
+
+
+
+event "remnant: return the samples timer"
 
 
 
@@ -1726,7 +1731,7 @@ mission "Remnant: Face to Maw 1"
 	description "Plume would be very interested in a report on what happened with the void sprites."
 	landing
 	to offer
-		has "Remnant: Return the Samples 2: done"
+		has "remnant: return the samples timer"
 	source
 		system "Nenia"
 	destination "Aventine"
@@ -1753,7 +1758,7 @@ mission "Remnant: Face to Maw 1"
 		conversation
 			`When you walk into Plume's lab on Aventine you find him buried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his data pad. After a few minutes he looks up and sees you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
 			`	"Captain <first>! What a pleasant surprise," he trills. "If you are looking for more work, I don't have anything for you right now."`
-			`	You tell Plume about how you visited Nenia and had an interesting encounter with a void sprite, and offer him the recording and container of slime. He eagerly accepts the data chip and the container from you. He slides the container into some kind of machine that immediately starts whirring, and slots the data chip into his console. Moments later his holographic projection shifts to the new footage. He checks the time stamps, then chants, "These will take me a little while to analyze. I will meet you in the spaceport in a few hours to discuss my preliminary findings."`
+			`	You tell Plume about how you visited Nenia and had an interesting encounter with a void sprite, and offer him the recording and container of slime. He eagerly accepts the data chip and the container from you. Sliding the container into some kind of machine, it immediately starts to whir as he slots the data chip into his console. Moments later his holographic projection shifts to the new footage. He checks the time stamps, then chants, "These will take me a little while to analyze. I will meet you in the spaceport in a few hours to discuss my preliminary findings."`
 
 
 
@@ -1762,7 +1767,7 @@ mission "Remnant: Face to Maw 1B"
 	description "Plume would be very interested in a report on what happened with the void sprites."
 	landing
 	to offer
-		has "Remnant: Return the Samples 2: done"
+		has "remnant: return the samples timer"
 	to fail
 		or
 			has "Remnant: Face to Maw 1: done"
@@ -1791,7 +1796,7 @@ mission "Remnant: Face to Maw 2"
 	cargo "slime sample" 1
 	on offer
 		conversation
-			`When Plume finally arrives you can tell from his step that he is excited. He slides onto the bench opposite to you and pulls out a data pad. "I admire your bravery, Captain. I don't think I would have the courage to hold my ground against a void sprite like that," he chants respectfully, then changes tone to one of wonder. "In that last moment it almost looked like it was sizing you up or examining you." He shakes his head with an amused expression. "I spend so much time studying non-human creatures I sometimes slip and start anthropomorphizing them." His voice takes on a more militant cadence. "That was probably some kind of territorial display, or possibly some kind of dominance challenge. We don't know enough about void sprite behaviors to speculate further, though.`
+			`When Plume finally arrives you can tell from his step that he is excited. He slides onto the bench opposite to you and pulls out a data pad. "I admire your bravery, Captain. I don't think I would have had the courage to hold my ground against a void sprite like that," he chants respectfully, then changes tone to one of wonder. "In that last moment it almost looked like it was sizing you up or examining you." He shakes his head with an amused expression. "I spend so much time studying non-human creatures I sometimes slip and start anthropomorphizing them." His voice takes on a more militant cadence. "That was probably some kind of territorial display, or possibly some kind of dominance challenge. We don't know enough about void sprite behavior to speculate further, though.`
 			`	"Be that as it may be, the more immediate reward for your curiosity is in this sample," he trills with excitement. "Several of our labs on Viminal have been working on the development of a new generation of ship technology, and this substance contains some chemicals that could be a key component. I have already transmitted the data to them, but they would like to compare with the original. Could you take this sample to them?"`
 			choice
 				`	"Yes, I can."`
@@ -1813,7 +1818,7 @@ mission "Remnant: Face to Maw 2"
 			label taely
 			`	When you land on Viminal you spot Taely waiting for you. "Greetings, Captain <first>. It is good to see you again."`
 			label main
-			`	She makes a gesture you are starting to recognize as a sign of curiosity. "So, Plume sent us some very interesting data, along with a message to expect you with a sample?" You hand her the container with the slime sample and she holds it up to the light. "Interesting looking stuff," she chants. "Let's go back to my workshop."`
+			`	She makes a gesture you are starting to recognize as a sign of curiosity. "So, Plume sent us some very interesting data, along with a message to expect you with a sample?" You hand her the container with the slime sample and she holds it up to the light. "Interesting looking substance," she chants. "Let's go back to my workshop."`
 			choice
 				`	(Follow her back to her workshop)`
 					goto follow
@@ -1870,12 +1875,12 @@ mission "Remnant: Face to Maw 2B"
 			label chilia
 			`You follow the directions provided to you and eventually find yourself at a Remnant weapons lab. You enter and are met by security, who ask you to wait. A few minutes later a fit young man emerges from another door. "Greetings, captain <first>," he sings. "We meet once again." You immediately recognize the voice as being the man who convinced you to provide the blood sample and get to know the Remnant. "We didn't get a proper introduction last time, but you have probably figured out that I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles depreciatingly, "I say 'nominal' as virtually all our activities are military in some way, but usually fall under the purview of those who better understand them."`
 			label main
-			`	He leads you to a room that looks like an armory where a team of technicians are putting the finishing touches on a rifle stock. "The request from the tech on your behalf caught my attention, as we haven't had the key resources for making void rifles in centuries. Fortunately, we haven't really needed them since we resolved the threats that originally plagued our settlements.`
+			`	He leads you to a room that looks like an armory where a team of technicians are putting the finishing touches on a rifle stock. "The request from the technician on your behalf caught my attention, as we haven't had the key resources for making void rifles in centuries. Fortunately, we haven't really needed them since we resolved the threats that originally plagued our settlements.`
 			choice
 				`	"It's called a void rifle?"`
 				`	"I don't need details."`
 					goto end
-			`	"Yes, void rifle. I don't know who discovered it, but someone figured out that if a particularly high charge was poured through the tentacle's nervous system in a specific pattern, it emits a paralyzing cone of energy with a reasonably decent range. I'm neither an engineer or a biologist, so I do not really understand the mechanics of it." He pauses to watch as a tech installs the now-caged tentacle on top of the stock. "Suffice it to say, it is useless for sniping, but its ability to shoot through walls and affect areas makes it excellent for sweeping ships and building-to-building clearing operations.`
+			`	"Yes, void rifle. I don't know who discovered it, but someone figured out that if a particularly high charge was poured through the tentacle's nervous system in a specific pattern, it emits a paralyzing cone of energy with a reasonably decent range. I'm neither an engineer or a biologist, so I do not really understand the mechanics of it." He pauses to watch as a technician installs the now-caged tentacle on top of the stock. "Suffice it to say, it is useless for sniping, but its ability to shoot through walls and affect areas makes it excellent for sweeping ships and building-to-building clearing operations.`
 			label end
 			`	"All right, enough history." He turns to the technicians who are finishing the assembly. "The tentacle has been treated to resist decay and the stock mechanisms will provide basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
 			scene "outfit/void rifle"
