@@ -23,7 +23,7 @@ mission "Deep: Syndicate Convoy"
 		random < 20 + "deep convoy" * 15
 		or
 			not "chosen sides"
-			not "main plot completed"
+			has "main plot completed"
 		
 	on offer
 		conversation
