@@ -1820,9 +1820,9 @@ mission "Remnant: Face to Maw 2"
 			label main
 			`	She makes a gesture you are starting to recognize as a sign of curiosity. "So, Plume sent us some very interesting data, along with a message to expect you with a sample?" You hand her the container with the slime sample and she holds it up to the light. "Interesting looking substance," she chants. "Let's go back to my workshop."`
 			choice
-				`	(Follow her back to her workshop)`
+				`	"OK, let's go."`
 					goto follow
-				`	(Ask if you can catch up in a few minutes)`
+				`	"Could I catch up with  you in a minute?"`
 			`	"Sure, just don't take too long. My project has reached its final stage."`
 			`	You take your time to get to the workshop, admiring the view along the way. When you finally arrive at the workshop you can hear strange noises coming from inside, accompanied by the smell of a thunderstorm in a swamp. You step into the workshop and come to a stop to stare at the thing in front of you.`
 				goto skip
