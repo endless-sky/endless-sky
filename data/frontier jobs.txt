@@ -19,9 +19,10 @@ mission "Frontier delivery [0]"
 	to offer
 		random < 30
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	destination
+		not government "Pirate"
 		distance 2 10
 		attributes "frontier"
 	npc
@@ -50,9 +51,10 @@ mission "Frontier delivery [1]"
 	to offer
 		random < 25
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	destination
+		not government "Pirate"
 		distance 2 10
 		attributes "frontier"
 	npc
@@ -81,9 +83,10 @@ mission "Frontier delivery [2]"
 	to offer
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	destination
+		not government "Pirate"
 		distance 2 10
 		attributes "frontier"
 	npc
@@ -111,11 +114,12 @@ mission "Frontier Emigration [0]"
 	to offer
 		random < 30
 	source
+		not government "Pirate"
 		attributes "frontier"
 		not planet "Shangri-La"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	on complete
 		payment 3000 140
@@ -131,11 +135,12 @@ mission "Frontier Emigration [1]"
 	to offer
 		random < 25
 	source
+		not government "Pirate"
 		attributes "frontier"
 		not planet "Shangri-La"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	on complete
 		payment 3000 140
@@ -151,11 +156,12 @@ mission "Frontier Emigration [2]"
 	to offer
 		random < 20
 	source
+		not government "Pirate"
 		attributes "frontier"
 		not planet "Shangri-La"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	on complete
 		payment 3000 140
@@ -166,15 +172,16 @@ mission "Disaster Relief"
 	name "Disaster relief to <planet>"
 	job
 	repeat
-	description "A disaster has occured in a colony on the frontier world of <destination>. Deliver <cargo> to the planet by <date> for <payment>."
+	description "A disaster has occurred in a colony on the frontier world of <destination>. Deliver <cargo> to the planet by <date> for <payment>."
 	cargo "disaster relief supplies" 25 2 .05
 	deadline
 	to offer
 		random < 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	destination
+		not government "Pirate"
 		distance 2 10
 		attributes "frontier"
 		not planet "Shangri-La"
@@ -194,6 +201,7 @@ mission "Instruct Novice Pilot"
 		government "Republic" "Free Worlds" "Neutral" "Independent"
 		attributes "frontier" "dirt belt" "rim" "north" "south" "mining" "farming"
 	stopover
+		not government "Pirate"
 		attributes "frontier" "outfitter"
 		distance 3 7
 	on stopover
@@ -234,7 +242,7 @@ mission "Small Pirate gambling"
 		"combat rating" < 200
 		credits > 14357
 	source
-		attributes "dirt belt" "south" "rim" "pirate"
+		attributes "dirt belt" "south" "rim" "pirate" "frontier"
 	on offer
 		conversation
 			`You're having a drink in a dimly lit spaceport bar when you notice a group of young men in crimson leather outfits gambling in a dark corner. The barman eyes them warily. One of them raises his drink and waves you over, beckoning to join their game.`
@@ -245,7 +253,7 @@ mission "Small Pirate gambling"
 					defer
 
 			label gamble
-			`	You walk over to the table. A closer examination indicates a strong liklihood that they are pirates; not one of them looks older than 19, and they all sport fearsome tattoos and dangerous-looking sidearms. After a few rounds of cards it becomes abundantly obvious that they're cheating, and making little effort to hide this from you.`
+			`	You walk over to the table. A closer examination indicates a strong likelihood that they are pirates; not one of them looks older than 19, and they all sport fearsome tattoos and dangerous-looking sidearms. After a few rounds of cards it becomes abundantly obvious that they're cheating, and making little effort to hide this from you.`
 			branch "good luck" "bad luck"
 				random < 30
 
@@ -266,7 +274,7 @@ mission "Small Pirate gambling"
 				decline
 
 			label call
-			`	"You confront them on their blatant cheating when one of them yells out, We're just playin' a game here, see? You'd better shut your big mouth if you know what's good for you," the meanest-looking one growls at you. "We can make this ugly real fast."`
+			`	You confront them on their blatant cheating when the meanest-looking one growls at you, "We're just playin' a game here, see? You'd better shut your big mouth if you know what's good for you! We can make this ugly real fast."`
 			`	The thugs stare at you menacingly and start to reach for their guns.`
 			choice
 				`(Shoot first!)`

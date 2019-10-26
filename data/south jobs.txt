@@ -17,8 +17,10 @@ mission "Pirate Occupation [0]"
 		random < 5
 		"combat rating" > 100
 	source
+		not government "Pirate"
 		attributes "south" "rim"
 	destination
+		not government "Pirate" "Quarg"
 		distance 2 3
 		attributes "south"
 	npc
@@ -37,6 +39,8 @@ mission "Pirate Occupation [0]"
 		fleet "Small Southern Pirates" 3
 	on offer
 		conversation "pirate occupation"
+	on visit
+		dialog phrase "generic pirate fleet battle on visit"
 	on complete
 		payment 100000
 		dialog phrase "generic pirate attack payment dialog"
@@ -50,8 +54,10 @@ mission "Pirate Occupation [1]"
 		random < 5
 		"combat rating" > 200
 	source
+		not government "Pirate"
 		attributes "south" "rim"
 	destination
+		not government "Pirate" "Quarg"
 		distance 2 3
 		attributes "south"
 	npc
@@ -71,6 +77,8 @@ mission "Pirate Occupation [1]"
 		fleet "Large Southern Pirates"
 	on offer
 		conversation "pirate occupation"
+	on visit
+		dialog phrase "generic pirate fleet battle on visit"
 	on complete
 		payment 150000
 		dialog phrase "generic pirate attack payment dialog"
@@ -84,8 +92,10 @@ mission "Pirate Occupation [2]"
 		random < 5
 		"combat rating" > 300
 	source
+		not government "Pirate"
 		attributes "south" "rim"
 	destination
+		not government "Pirate" "Quarg"
 		distance 2 3
 		attributes "south"
 	npc
@@ -105,6 +115,8 @@ mission "Pirate Occupation [2]"
 		fleet "Large Southern Pirates" 3
 	on offer
 		conversation "pirate occupation"
+	on visit
+		dialog phrase "generic pirate fleet battle on visit"
 	on complete
 		payment 200000
 		dialog phrase "generic pirate attack payment dialog"
@@ -115,8 +127,8 @@ conversation "pirate occupation"
 		`	(Don't join the fight.)`
 			decline
 		`	(Join the defense fleet.)`
-	`A few militia pilots have gathered to help repel the pirate attack. You join them, and take off together...`
-		launch
+	`A few militia pilots have gathered to help repel the pirate attack. You join them, and prepare your ship for the upcoming battle...`
+		accept
 
 
 
@@ -135,6 +147,8 @@ mission "Sketchy Cargo [0]"
 		attributes "south"
 	on accept
 		dialog `You follow the directions specified in the job to an abandoned-looking warehouse and find your cargo in unlabeled crates. As you load it onto your ship, you get the feeling that you are being watched.`
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 0 160
 		dialog "You drop off the unlabeled cargo in a warehouse not too dissimilar to the one you picked it up in. A man dressed in a cloak hands you <payment> after the last crate is removed from your ship."
@@ -154,6 +168,8 @@ mission "Sketchy Cargo [1]"
 		attributes "south"
 	on accept
 		dialog `You follow the directions specified in the job to an abandoned-looking warehouse and find your cargo in unlabeled crates. As you load it onto your ship, you get the feeling that you are being watched.`
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 0 160
 		dialog "You drop off the unlabeled cargo in a warehouse not too dissimilar to the one you picked it up in. A man dressed in a cloak hands you <payment> after the last crate is removed from your ship."
@@ -175,6 +191,8 @@ mission "Sketchy Passenger [0]"
 		attributes "south"
 	on accept
 		dialog `You have some difficulty finding your passengers, but after almost an hour of searching you finally find them. As they follow you back to your ship, you hear them whispering to each other, but you can't make out what they're saying.`
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 2000 160
 		dialog "Your passengers ask that you land away from the busy spaceport center. They hand you <payment> and rush out of your ship and away from the spaceport with considerable speed."
@@ -194,6 +212,8 @@ mission "Sketchy Passenger [1]"
 		attributes "south"
 	on accept
 		dialog `You have some difficulty finding your passengers, but after almost an hour of searching you finally find them. As they follow you back to your ship, you hear them whispering to each other, but you can't make out what they're saying.`
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 2000 160
 		dialog "Your passengers ask that you land away from the busy spaceport center. They hand you <payment> and rush out of your ship and away from the spaceport with considerable speed."

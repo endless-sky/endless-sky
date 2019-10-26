@@ -292,10 +292,12 @@ ship "Heliarch Interdictor"
 		
 		"Large Reactor Module"
 		"Large Battery Module"
-		"Large Shield Module" 2
-		"Large Repair Module"
-		"Cooling Module"
+		"Overcharged Shield Module"
+		"Overclocked Repair Module"
+		"Cooling Module" 2
 		"Scanning Module" 3
+		"Enforcer Riot Staff" 28
+		"Enforcer Confrontation Gear" 30
 		
 		"Large Thrust Module" 2
 		"Large Steering Module" 2
@@ -324,12 +326,12 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 		
 		"Large Reactor Module"
 		"Large Battery Module"
-		"Large Shield Module" 2
-		"Small Shield Module"
-		"Large Repair Module"
+		"Overcharged Shield Module"
+		"Overclocked Repair Module"
 		"Cooling Module"
 		"Scanning Module" 3
-		"Outfits Expansion"
+		"Enforcer Riot Staff" 31
+		"Enforcer Confrontation Gear" 27
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module"
@@ -368,10 +370,12 @@ ship "Heliarch Neutralizer"
 		
 		"Small Reactor Module" 2
 		"Large Battery Module"
-		"Large Shield Module"
-		"Large Repair Module"
+		"Overcharged Shield Module"
+		"Overclocked Repair Module"
 		"Cooling Module"
 		"Scanning Module" 2
+		"Enforcer Riot Staff" 9
+		"Enforcer Confrontation Gear" 11
 		
 		"Large Thrust Module"
 		"Small Thrust Module" 2
@@ -399,10 +403,12 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Missile)"
 		
 		"Small Reactor Module"
 		"Large Battery Module"
-		"Large Shield Module"
-		"Large Repair Module"
+		"Overcharged Shield Module"
+		"Overclocked Repair Module"
 		"Cooling Module"
 		"Scanning Module" 2
+		"Enforcer Riot Staff" 8
+		"Enforcer Confrontation Gear" 12
 		
 		"Large Thrust Module"
 		"Small Thrust Module" 2
@@ -421,10 +427,12 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Nimble)"
 		
 		"Small Reactor Module" 2
 		"Large Battery Module"
-		"Large Shield Module"
+		"Overcharged Shield Module"
 		"Large Repair Module"
 		"Cooling Module"
 		"Scanning Module" 2
+		"Enforcer Riot Staff" 10
+		"Enforcer Confrontation Gear" 10
 		
 		"Large Thrust Module"
 		"Small Thrust Module"
@@ -438,12 +446,12 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 		
 		"Small Reactor Module" 2
 		"Small Battery Module"
-		"Large Shield Module" 2
-		"Small Shield Module"
-		"Large Repair Module"
+		"Overcharged Shield Module"
+		"Overclocked Repair Module"
 		"Cooling Module" 2
 		"Scanning Module" 2
-		"Outfits Expansion"
+		"Enforcer Riot Staff" 11
+		"Enforcer Confrontation Gear" 9
 		
 		"Large Thrust Module"
 		"Small Thrust Module"
@@ -484,10 +492,12 @@ ship "Heliarch Punisher"
 		
 		"Large Reactor Module" 2
 		"Large Battery Module"
-		"Large Shield Module" 3
-		"Large Repair Module" 2
-		"Cooling Module" 3
+		"Overcharged Shield Module" 2
+		"Overclocked Repair Module" 2
+		"Cooling Module" 4
 		"Scanning Module" 4
+		"Enforcer Riot Staff" 78
+		"Enforcer Confrontation Gear" 44
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module" 2
@@ -526,10 +536,12 @@ ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 		
 		"Large Reactor Module" 2
 		"Large Battery Module"
-		"Large Shield Module" 3
-		"Large Repair Module" 2
-		"Cooling Module" 3
+		"Overcharged Shield Module" 2
+		"Overclocked Repair Module" 2
+		"Cooling Module" 4
 		"Scanning Module" 4
+		"Enforcer Riot Staff" 80
+		"Enforcer Confrontation Gear" 42
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module" 2
@@ -556,12 +568,13 @@ ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 		
 		"Large Reactor Module"
 		"Small Reactor Module"
-		"Large Battery Module"
-		"Large Shield Module" 5
-		"Large Repair Module" 2
-		"Cooling Module" 2
+		"Large Battery Module" 2
+		"Overcharged Shield Module" 3
+		"Overclocked Repair Module" 2
+		"Cooling Module" 3
 		"Scanning Module" 4
-		"Outfits Expansion"
+		"Enforcer Riot Staff" 85
+		"Enforcer Confrontation Gear" 40
 		
 		"Large Thrust Module" 4
 		"Large Steering Module" 2
@@ -581,12 +594,13 @@ ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
 		"Large Reactor Module" 2
 		"Small Reactor Module"
 		"Large Battery Module"
-		"Large Shield Module" 3
-		"Small Shield Module" 2
-		"Large Repair Module" 2
+		"Overcharged Shield Module" 2
+		"Overclocked Repair Module" 3
 		"Cooling Module" 5
 		"Scanning Module" 4
 		"Outfits Expansion" 3
+		"Enforcer Riot Staff" 77
+		"Enforcer Confrontation Gear" 45
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module"

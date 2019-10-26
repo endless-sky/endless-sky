@@ -21,6 +21,8 @@ mission "Historical field trip to <planet>"
 	destination
 		distance 4 12
 		attributes "near earth"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 10000
@@ -54,6 +56,8 @@ mission "To Earth Day celebration [0]"
 		near "Sol" 1 15
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination "Earth"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 1000 180
 		dialog "You wish your <passengers> the best of luck on <planet>. After collecting your payment of <payment>, your <passengers> put on their Earth Day hats and leave with their belongings."
@@ -86,6 +90,8 @@ mission "To Earth Day celebration [1]"
 		near "Sol" 1 15
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination "Earth"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1000 180
 		dialog `Spaceport workers already festively dressed for Earth Day remove the cargo of <commodity> from your ship and hand you your payment of <payment>.`
@@ -114,6 +120,8 @@ mission "From Earth Day celebration [0]"
 	destination
 		distance 1 15
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 1000
@@ -143,6 +151,8 @@ mission "From Earth Day celebration [1]"
 	destination
 		distance 1 15
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 1000

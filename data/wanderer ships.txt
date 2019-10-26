@@ -224,7 +224,8 @@ ship "Strong Wind"
 	outfits
 		"Sunbeam" 4
 		"Thunderhead Launcher" 2
-		"Thunderhead Missile" 80
+		"Thunderhead Missile" 120
+		"Thunderhead Storage Array" 2
 		
 		"White Sun Reactor"
 		"Dark Storm Shielding"
@@ -329,13 +330,15 @@ ship "Tempest" "Tempest (Heavy)"
 ship "Tempest" "Tempest (Missile)"
 	outfits
 		"Thunderhead Launcher" 4
-		"Thunderhead Missile" 160
+		"Thunderhead Missile" 220
+		"Thunderhead Storage Array" 3
 		"Dual Sunbeam Turret" 2
 		
 		"White Sun Reactor"
 		"Small Biochemical Cell"
 		"Dark Storm Shielding"
 		"Wanderer Ramscoop"
+		"Outfits Expansion"
 		
 		"Type 4 Radiant Thruster"
 		"Type 4 Radiant Steering"
@@ -745,7 +748,8 @@ ship "Deep River"
 			"hit force" 4200
 	outfits
 		"Thunderhead Launcher" 6
-		"Thunderhead Missile" 240
+		"Thunderhead Missile" 320
+		"Thunderhead Storage Array" 4
 		
 		"Large Biochemical Cell"
 		"Bright Cloud Shielding"
@@ -855,3 +859,54 @@ ship "Deep River Transport"
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
 	description "This is a Deep River freighter that has been converted into a transport ship for refugees."
+
+
+
+ship "Riptide"
+	sprite "ship/riptide"
+	thumbnail "thumbnail/riptide"
+	attributes
+		category "Transport"
+		licenses
+			Wanderer
+		"cost" 21120000
+		"shields" 38600
+		"hull" 22350
+		"required crew" 47
+		"bunks" 233
+		"mass" 500
+		"drag" 7.3
+		"heat dissipation" .7
+		"fuel capacity" 800
+		"cargo space" 164
+		"outfit space" 488
+		"weapon capacity" 98
+		"engine capacity" 186
+		weapon
+			"blast radius" 260
+			"shield damage" 2600
+			"hull damage" 1300
+			"hit force" 3900
+	outfits
+		"Sunbeam Turret"
+		"Wanderer Anti-Missile" 2
+		
+		"White Sun Reactor"
+		"Bright Cloud Shielding"
+		"Wanderer Ramscoop"
+		
+		"Type 4 Radiant Thruster"
+		"Type 2 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Type 3 Radiant Steering"
+		"Hyperdrive"
+	engine 30 165
+	engine -30 165
+	turret 0 -28 "Sunbeam Turret"
+	turret 40 110 "Wanderer Anti-Missile"
+	turret -40 110 "Wanderer Anti-Missile"
+	explode "small explosion" 60
+	explode "medium explosion" 40
+	explode "large explosion" 20
+	"final explode" "final explosion medium"
+	description "As with many Wanderer ships the Riptide is an old design, brought back to help move civilians in response to the Unfettered invasion."

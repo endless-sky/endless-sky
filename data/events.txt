@@ -2498,13 +2498,20 @@ event "fwc peace with the navy"
 
 
 
+event "fwc defend oblivion"
+	"reputation: Pug" <?= -10
+	government "Pug"
+		"attitude toward"
+			"Free Worlds" -.01
+
+
+
 event "fwc battle for rasalhague"
 	link Rasalhague Cebalrai
 	system Rasalhague
 		fleet "Small Southern Merchants" 10000
 	government "Pug"
 		"attitude toward"
-			"Free Worlds" -.01
 			"Republic" -.01
 			"Navy (Oathkeeper)" -.01
 

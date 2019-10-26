@@ -754,6 +754,20 @@ phrase "friendly heliarch"
 	word
 		"."
 
+phrase "friendly disabled heliarch"
+	word
+		"Repairs, we do need"
+		"Disabled, our ship has become"
+		"Disabled, our ship is"
+	word
+		". "
+	word
+		"Board our ship, you must"
+		"Help, you must"
+		"Appreciated, assistance would be"
+	word
+		"."
+
 phrase "hostile heliarch phrase 1 (the+our)"
 	word
 		"the"
@@ -922,3 +936,48 @@ phrase "hostile heliarch"
 		"not be extinct"
 	word
 		"!"
+
+phrase "hostile disabled heliarch"
+	word
+		"You"
+		"Alone, you must leave me, you"
+		"Meet me again, you'd better hope never happen, you"
+		"Cross me, you'd better not, you"
+		"Avenge me, my friends will, you"
+		"Away from me, you must stay, you"
+		"Board me, I dare the"
+	word
+		" "
+	phrase
+		"shakespearean insults"
+	word
+		"."
+		"!"
+
+phrase "hostile disabled heliarch"
+	word
+		"A "
+	phrase
+		"shakespearean insults"
+	word
+		" "
+	word
+		", you are"
+		"at the mercy of, I can not believe I am"
+	word
+		"."
+		"!"
+
+phrase "hostile disabled heliarch"
+	word
+		"("
+	word
+		"The Heliarch ship hails you, speaking in a language you do not understand."
+		"The Heliarch yell at you in an alien language."
+	word
+		" "
+	word
+		"Their translation device must be broken"
+		"You can only wonder what they're saying"
+	word
+		".)"
