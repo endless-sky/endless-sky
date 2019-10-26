@@ -1855,7 +1855,7 @@ mission "Remnant: Face to Maw 2B"
 	on offer
 		conversation
 			`When the technician arrives in the spaceport he immediately strides over to you. "I checked the records, and my memory was correct. One of our research teams centuries ago discovered that these tentacles could be used as a devastating weapon in close quarters combat."`
-			`	He pulls out an image of a strange looking rifle and continues to chant, "The personal weapons lab under Prefect Chilia has a few of the old weapon frames. If you go visit it on Aventine, they could turn this tentacle into a potent weapon for you."`
+			`	He pulls out an image of a strange-looking rifle and continues to chant, "The personal weapons lab under Prefect Chilia has a few of the old weapon frames. If you go visit it on Aventine, they could turn this tentacle into a potent weapon for you."`
 			choice
 				`	"That sounds good."`
 					accept
