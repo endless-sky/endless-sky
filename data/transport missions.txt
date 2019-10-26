@@ -3475,9 +3475,7 @@ mission "Inheritance Redirection"
 mission "Hauler VI cargo prototype 1"
 	name "Escort Hauler prototype to formal dinner"
 	description "Escort the Testament to <destination> to deliver sushi for a formal dinner."
-	source
-		neighbor planet "Skymoot"
-		not planet "Skymoot"
+	source "Deep"
 	destination "Skymoot"
 	npc accompany
 		government "Merchant"
@@ -3506,13 +3504,15 @@ mission "Hauler VI cargo prototype 1"
 					goto invited
 				`	"Why do you need me to escort the ship?"`
 					goto internal
+				`	"Sure, I'll help you."`
+					accept
 			`	"Risky, why? I don't see what can go wrong. The system is quite well designed. I'm so proud of my team."`
 			choice
 				`	"Am I also invited for the dinner?"`
 				`	"Why do you need me to escort the ship?`
 					goto internal
 			label "invited"
-			`	"I'm sorry, but you are not invited. This dinner is only for Southbound Shipping's top-level management and <destination>'s government leaders."`
+			`	"I'm sorry, but you are not invited. This dinner is only for Southbound Shipyards top-level management and representatives of the <destination> government."`
 			label "internal"
 			`	"Normally we'd look internally to satisfy any escort needs, that's true. But we've discovered a mole in our organization and there's very strong competition from Syndicated Shipyards. Going externally is safer in this case, and you came recommended when we searched through the list of captains available on short notice. You will be paid well for your time. Will you help us?"`
 			choice
@@ -3574,7 +3574,7 @@ mission "Hauler VI cargo prototype 3"
 
 mission "Hauler VI cargo prototype 4"
 	name "Escort Hauler prototype to waste plant"
-	description "Escort the Testament to <destination> to deliver charred fish waste product to a waste-processing plant."
+	description "Escort the Testament to <destination> to deliver charred food waste to a waste-processing plant."
 	destination "Longjump"
 	landing
 	to offer
