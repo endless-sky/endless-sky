@@ -1863,7 +1863,7 @@ mission "Remnant: Face to Maw 2B"
 			`	The technician looks disappointed. "Oh well, enjoy your trophy."`
 			decline
 	on complete
-		log "People" "Chilia" `As an military prefect, Chilia is responsible for the defence of Remnant space. He can usually be found on the front lines of combat unless required to work on tactics for the Remnant as a whole.`
+		log "People" "Chilia" `As a military prefect, Chilia is responsible for the defence of Remnant space. He can usually be found on the front lines of combat unless required to work on tactics for the Remnant as a whole.`
 		payment 250000
 		"remnant chilia" ++
 		outfit "Void Rifle"
