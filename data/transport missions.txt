@@ -3541,21 +3541,20 @@ mission "Hauler VI cargo prototype 2"
 		ship "Hauler III" "SB-Labs Testament"
 	on enter
 		dialog
-			`As soon as you take off, you receive an angry voice message over a short-range inter-ship communications channel: "Why were you trying to contact me? Does everyone need to know that we're here?"`
-			`She adds, "The cooling failed and the sushi nearly cooked. Let's go to <destination> to deliver it as fish dishes to a streetfood festival."`
+			`As soon as you take off, you receive an angry voice message from Vanessa over a short-range inter-ship communications channel: "Why were you trying to contact me? Does everyone need to know that we're here?"`
+			`She adds, "The cooling failed and the sushi nearly cooked. Let's go to the Southbound Shipyards on <destination> instead, then we can save face by claiming that we were in time for the dinner, but on the wrong planet due to some miscommunication. We might even be able to hide all evidence of the overheating by giving away the sushi as fish dishes on a streetfood festival."`
 	on visit
 		dialog `You land on <destination>, but the Testament didn't catch up with you yet.`
 	on complete
 		dialog
 			`This time the Testament appears to be landing right behind you, but the ship flies away at full thrust just before touching the landing pad.`
-			`You receive a text message over the short-range inter-ship communication channel: "The sushi overcooked! We cannot be seen near the festival or near the shipyard with this overcooked sushi!"`
-			`The new destination is a floating factory on Mere.`
+			`You receive a text message over the short-range inter-ship communication channel: "The Sushi completely burned. We cannot be seen near the festival or near the shipyard with this burned sushi!"`
+			`Our new destination is the waste processing plant at Longjump."`
 
 mission "Hauler VI cargo prototype 3"
-	name "Escort Hauler prototype to factory"
-	description "Escort the Testament to <destination> to deliver overcooked fish to a floating catfood factory."
-	source "Zug"
-	destination "Mere"
+	name "Escort Hauler prototype to waste plant"
+	description "Escort the Testament to <destination> to deliver charred food waste to a waste-processing plant."
+	destination "Longjump"
 	landing
 	to offer
 		has "Hauler VI cargo prototype 2: done"
@@ -3566,28 +3565,8 @@ mission "Hauler VI cargo prototype 3"
 	on visit
 		dialog `You land on <destination>, but the Testament didn't catch up with you yet.`
 	on complete
-		dialog
-			`The Testament enters the planets atmosphere at high speed and lands ahead of you near a catfood factory on one of the floating artificial islands.`
-			`Your infrared sensors show that the ship is emitting a lot of heat, but it's not coming from the thrusters, but rather from the cargo hold that appears to be seriously overheated.`
-			`Vanessa steps out of the ship and says, "The Sushi completely burned. We should unload it at the waste processing plant at Longjump."`
-			`She boards the Testament and takes off before you have time to respond. Apparently the cargo refrigeration systems are not working as well as Vanessa had hoped.`
-
-mission "Hauler VI cargo prototype 4"
-	name "Escort Hauler prototype to waste plant"
-	description "Escort the Testament to <destination> to deliver charred food waste to a waste-processing plant."
-	destination "Longjump"
-	landing
-	to offer
-		has "Hauler VI cargo prototype 3: done"
-	npc accompany
-		government "Merchant"
-		personality escort timid
-		ship "Hauler III" "SB-Labs Testament"
-	on visit
-		dialog `You land on <destination>, but the Testament didn't catch up with you yet.`
-	on complete
 		payment 140000
 		dialog
-			`The Testament lands somewhat uncontrolled near a waste processing plant. The cargo hold is glowing red hot and some areas in the cargo hold appear to be on fire.`
+			`The Testament enters the planets atmosphere at high speed and lands somewhat uncontrolled near a waste processing plant. The cargo hold is glowing red hot and some areas in the cargo hold appear to be on fire.`
 			`Vanessa disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi calamity you experienced during the multiple legs of your journey.`
 			`You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is coming from Vanessa and her ship.`
