@@ -1237,115 +1237,50 @@ fleet "Republic Logistics"
 	cargo 3
 	personality
 		heroic opportunistic
-	variant 5
+	variant 19
 		"Auxiliary"
 		"Dropship" 2
 		"Lance" 2
-		"Frigate"
-		"Gunboat"
-	variant 5
-		"Auxiliary (Cargo)"
-		"Dropship" 2
-		"Lance" 2
-		"Frigate"
-		"Gunboat"
-	variant 5
-		"Auxiliary (Transport)"
-		"Dropship" 2
-		"Lance" 2
-		"Frigate"
-		"Gunboat"
-	variant 4
-		"Auxiliary"
-		"Dropship" 2
-		"Lance" 2
-		"Frigate"
-		"Gunboat" 2
-	variant 4
-		"Auxiliary (Cargo)"
-		"Dropship" 2
-		"Lance" 2
-		"Frigate"
-		"Gunboat" 2
-	variant 4
-		"Auxiliary (Transport)"
-		"Dropship" 2
-		"Lance" 2
-		"Frigate"
-		"Gunboat" 2
-	variant 3
-		"Auxiliary"
-		"Dropship" 2
-		"Lance" 2
-		"Frigate" 2
-		"Gunboat"
-	variant 3
-		"Auxiliary (Cargo)"
-		"Dropship" 2
-		"Lance" 2
-		"Frigate" 2
-		"Gunboat"
-	variant 3
-		"Auxiliary (Transport)"
-		"Dropship" 2
-		"Lance" 2
-		"Frigate" 2
-		"Gunboat"
-	variant 2
-		"Auxiliary" 2
-		"Dropship" 4
-		"Lance" 4
-		"Frigate"
-		"Gunboat" 2
-	variant 2
-		"Auxiliary (Cargo)" 2
-		"Dropship" 4
-		"Lance" 4
-		"Frigate"
-		"Gunboat" 2
-	variant 2
-		"Auxiliary (Transport)" 2
-		"Dropship" 4
-		"Lance" 4
-		"Frigate"
-		"Gunboat" 2
-	variant 1
-		"Auxiliary" 3
-		"Dropship" 6
-		"Lance" 6
 		"Cruiser"
 		"Combat Drone" 4
 		"Frigate"
-		"Gunboat"
+		"Gunboat" 2
+	variant 19
+		"Auxiliary (Cargo)"
+		"Dropship" 2
+		"Lance" 2
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate"
+		"Gunboat" 2
+	variant 19
+		"Auxiliary (Transport)"
+		"Dropship" 2
+		"Lance" 2
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate"
+		"Gunboat" 2
 	variant 1
 		"Auxiliary (Cargo)" 3
 		"Dropship" 3
 		"Lance" 9
-		"Frigate" 2
-		"Rainmaker"
-		"Gunboat" 2
+		"Cruiser" 2
+		"Combat Drone" 8
 	variant 1
 		"Auxiliary (Transport)"
 		"Auxiliary (Cargo)"
 		"Auxiliary"
 		"Dropship" 6
 		"Lance" 6
-		"Frigate" 2
-		"Gunboat" 2
+		"Cruiser" 2
+		"Combat Drone" 8
 	variant 1
 		"Auxiliary (Transport)" 3
 		"Dropship" 9
 		"Lance" 3
-		"Frigate" 2
-		"Rainmaker"
-		"Gunboat" 2
-	variant 1
-		"Auxiliary" 3
-		"Dropship" 6
-		"Lance" 6
-		"Frigate" 2
-		"Rainmaker"
-		"Gunboat" 2
+		"Cruiser" 2
+		"Combat Drone" 8
 
 fleet "Navy Surveillance"
 	government "Republic"
