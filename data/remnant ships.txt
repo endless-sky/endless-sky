@@ -597,10 +597,10 @@ ship "Petrel"
 		"outfit space" 165
 		"weapon capacity" 49
 		"engine capacity" 34
-		"shield generation" 0.38
-		"shield energy" 0.28
-		"hull repair rate" 0.85
-		"hull energy" 0.55
+		"shield generation" 0.36
+		"shield energy" 0.24
+		"hull repair rate" 0.82
+		"hull energy" 0.54
 		"gaslining" 1
 		"outfit scan power" 12
 		"outfit scan speed" 1
@@ -801,10 +801,10 @@ ship "Tern"
 		"outfit space" 75
 		"weapon capacity" 16
 		"engine capacity" 26
-		"shield generation" 0.3
-		"shield energy" 0.2
-		"hull repair rate" 0.6
-		"hull energy" 0.4
+		"shield generation" 0.25
+		"shield energy" 0.16
+		"hull repair rate" 0.55
+		"hull energy" 0.37
 		"gaslining" 1
 		"atmosphere scan" 100
 		"outfit scan power" 12
