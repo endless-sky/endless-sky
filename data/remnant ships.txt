@@ -390,7 +390,7 @@ ship "Ibis"
 		"fuel capacity" 700
 		"ramscoop" 2
 		"cargo space" 103
-		"outfit space" 543
+		"outfit space" 553
 		"weapon capacity" 171
 		"engine capacity" 162
 		"shield generation" 4.1
@@ -407,7 +407,8 @@ ship "Ibis"
 			"hit force" 3000
 	outfits
 		"Inhibitor Cannon" 3
-		"Point Defense Turret" 2
+		"Point Defense Turret" 1
+		"Thrasher Turret"
 
 		"Aeon Cell"
 		"Crystal Capacitor" 3
@@ -434,9 +435,9 @@ ship "Ibis"
 	gun 0 -135.5 "Inhibitor Cannon"
 	gun 15.5 -102 "Inhibitor Cannon"
 	gun -15.5 -102 "Inhibitor Cannon"
-	turret 0 -62 "Point Defense Turret"
-	turret 0 -20.5
-	turret 0 58.5 "Point Defense Turret"
+	turret 0 -62
+	turret 0 -20.5 "Point Defense Turret"
+	turret 0 58.5 "Thrasher Turret"
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
