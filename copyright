@@ -15,6 +15,9 @@ Files:
  images/outfit/*battery?hai*
  images/outfit/anti-missile?hai*
  images/outfit/cooling ducts?hai*
+ images/outfit/dwarf?core?hai*
+ images/outfit/fission?hai*
+ images/outfit/fusion?hai*
  images/outfit/heavy?anti-missile?hai*
  images/ship/marrow*
  images/ship/mbounder*
@@ -324,9 +327,9 @@ Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), Fern
  images/outfit/large?quarg*
  images/outfit/enforcer?riot?staff*
  images/outfit/laser?rifle*
- images/outfit/dwarf?core?hai*
- images/outfit/fission?hai*
- images/outfit/fusion?hai*
+ images/outfit/hai?pebble?core*
+ images/outfit/hai?boulder*
+ images/outfit/hai?geode*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 
