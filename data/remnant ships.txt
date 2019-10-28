@@ -584,8 +584,8 @@ ship "Petrel"
 		licenses
 			Remnant
 		"cost" 1141000
-		"shields" 2300
-		"hull" 1000
+		"shields" 1000
+		"hull" 2300
 		"cargo space" 20
 		"fuel capacity" 100
 		"ramscoop" 1
@@ -597,10 +597,10 @@ ship "Petrel"
 		"outfit space" 165
 		"weapon capacity" 49
 		"engine capacity" 34
-		"shield generation" 0.85
-		"shield energy" 0.55
-		"hull repair rate" 0.38
-		"hull energy" 0.28
+		"shield generation" 0.38
+		"shield energy" 0.28
+		"hull repair rate" 0.85
+		"hull energy" 0.55
 		"gaslining" 1
 		"outfit scan power" 12
 		"outfit scan speed" 1
