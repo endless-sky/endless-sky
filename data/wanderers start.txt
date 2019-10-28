@@ -1955,7 +1955,7 @@ mission "Wanderers Riptide Patch"
 	to offer
 		has "Wanderers Evacuation 1: offered"
 	on offer
-		event "wanderers: riptide mass production"
+		event "wanderers: riptide mass production" 30
 		fail
 
 
