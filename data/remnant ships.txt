@@ -173,6 +173,31 @@ ship "Albatross" "Albatross (Heavy)"
 	turret
 	turret "Thrasher Turret"
 
+ship "Albatross" "Albatross (Shield)"
+	outfits
+		"Point Defense Turret" 4
+		"Thrasher Turret"
+
+		"Aeon Cell"
+		"Millennium Cell"
+		"Thermoelectric Cooler" 1
+		"Outfits Expansion" 6
+		"Systems Core (Large)" 3
+		"Small Heat Shunt" 1
+		"Large Heat Shunt" 1
+		
+		"Tuning Rifle" 75
+
+		"Crucible-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
+	turret "Thrasher Turret"
+	turret "Point Defense Turret"
+	turret "Point Defense Turret"
+	turret "Point Defense Turret"
+	turret "Point Defense Turret"
+
 
 
 ship "Gascraft"
@@ -186,15 +211,15 @@ ship "Gascraft"
 		"hull" 1500
 		"required crew" 1
 		"bunks" 2
-		"mass" 80
-		"drag" 1.7
+		"mass" 44
+		"drag" 1.27
 		"heat dissipation" 0.9
 		"fuel capacity" 700
 		"energy capacity" 150
 		"ramscoop" 0.5
 		"cargo space" 8
-		"outfit space" 88
-		"engine capacity" 34
+		"outfit space" 80
+		"engine capacity" 26
 		"shield generation" 0.6
 		"shield energy" 0.4
 		"hull repair rate" 1.2
@@ -209,8 +234,7 @@ ship "Gascraft"
 		"Emergency Ramscoop"
 		"Quantum Key Stone"
 
-		"Crucible-Class Thruster"
-		"Crucible-Class Steering"
+		"Anvil-Class Engine"
 		"Hyperdrive"
 
 	engine 0 30
@@ -418,12 +442,12 @@ ship "Penguin"
 		"frame rate" 3
 	thumbnail "thumbnail/penguin"
 	attributes
-		category Transport
+		category "Transport"
 		cost 2530000
 		"shields" 3000
 		"hull" 1500
 		"required crew" 1
-		"bunks" 5
+		"bunks" 3
 		"mass" 71
 		"drag" 1.25
 		"heat dissipation" 0.9
@@ -432,12 +456,12 @@ ship "Penguin"
 		"ramscoop" 0.5
 		"cargo space" 19
 		"outfit space" 108
-		"engine capacity" 54
 		"weapon capacity" 33
+		"engine capacity" 54
 		"shield generation" 1
-		"shield energy" 0.4
+		"shield energy" 0.5
 		"hull repair rate" 2
-		"hull energy" 0.9
+		"hull energy" 1.0
 		"cloak" .03
 		"cloaking energy" 3
 		"cloaking fuel" .05

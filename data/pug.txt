@@ -698,7 +698,6 @@ planet Ruin
 	description `	Most of the surface is ocean, but atop one of the higher mountains is an odd, abandoned spaceport.`
 	spaceport `Perhaps the oddest thing about this planet is this spaceport: a ring of landing pads surrounding a collection of fuel tanks. The landing pads are not cement or any other material humans customarily use, but monolithic slabs of basalt. One of the fuel tanks has a human-style connector on it, but there are a dozen other connectors branching off from it as well.`
 	spaceport `	A few insectoid robots scuttle slowly across the tanks and landing pads, removing ice and rust and lichen and polishing the surfaces of the tanks. No living creatures are present.`
-	security 0
 
 mission "Ruin: Landing"
 	landing
