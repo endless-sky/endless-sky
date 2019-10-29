@@ -1708,13 +1708,13 @@ event "pug invasion"
 		fleet "Large Pug" 9000
 	planet "Rand"
 		security 0
-		tribute 500
+		tribute 1
 			threshold 3000
 			fleet "Small Pug" 15
 			fleet "Large Pug" 3
 	planet "Oblivion"
 		security 0
-		tribute 500
+		tribute 1
 			threshold 3000
 			fleet "Small Pug" 15
 			fleet "Large Pug" 3
@@ -1762,19 +1762,19 @@ event "pug invasion 2"
 		fleet "Human Miners" 1600
 	planet "Silver"
 		security 0
-		tribute 500
+		tribute 1
 			threshold 3000
 			fleet "Small Pug" 15
 			fleet "Large Pug" 3
 	planet "Shiver"
 		security 0
-		tribute 500
+		tribute 1
 			threshold 3000
 			fleet "Small Pug" 15
 			fleet "Large Pug" 3
 	planet "Millrace"
 		security 0
-		tribute 500
+		tribute 1
 			threshold 3000
 			fleet "Small Pug" 15
 			fleet "Large Pug" 3
@@ -1805,13 +1805,13 @@ event "pug invasion 3"
 		fleet "Large Pug" 2500
 	planet "Maker"
 		security 0
-		tribute 500
+		tribute 1
 			threshold 3000
 			fleet "Small Pug" 15
 			fleet "Large Pug" 3
 	planet "Furnace"
 		security 0
-		tribute 500
+		tribute 1
 			threshold 3000
 			fleet "Small Pug" 15
 			fleet "Large Pug" 3
@@ -1849,13 +1849,13 @@ event "pug invasion 4"
 		fleet "Human Miners" 2000
 	planet "Reunion"
 		security 0
-		tribute 500
+		tribute 1
 			threshold 3000
 			fleet "Small Pug" 15
 			fleet "Large Pug" 3
 	planet "Kraken Station"
 		security 0
-		tribute 500
+		tribute 1
 			threshold 3000
 			fleet "Small Pug" 15
 			fleet "Large Pug" 3
