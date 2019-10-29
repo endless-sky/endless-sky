@@ -3489,7 +3489,7 @@ mission "Hauler VI cargo prototype 1"
 				`	"Hello, nice to meet you too."`
 				`	"Sorry, I don't have time to talk. I'm really busy."`
 					defer
-			`She says, "My name is Vanessa Oxygenpocket and I'm part of a team that's designing the new Hauler VI transport ship series here at Southbound Shipyards."`
+			`She says, "My name is Vanessa Oxygenpocket and I'm the lead for a team that's designing the new Hauler VI transport ship series here at Southbound Shipyards."`
 			choice
 				`	"'Oxygenpocket' is an uncommon name."`
 				`	"And what help do you need from me?"`
