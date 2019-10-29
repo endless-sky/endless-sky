@@ -372,6 +372,85 @@ ship "Gull" "Gull (Bunks)"
 
 
 
+ship "Ibis"
+	sprite "ship/ibis"
+	thumbnail "thumbnail/ibis"
+	attributes
+		category "Medium Warship"
+		licenses
+			"Remnant Capital"
+		"cost" 11627000
+		"shields" 14400
+		"hull" 6200
+		"required crew" 20
+		"bunks" 48
+		"mass" 350
+		"drag" 7.1
+		"heat dissipation" 0.7
+		"fuel capacity" 700
+		"ramscoop" 2
+		"cargo space" 103
+		"outfit space" 553
+		"weapon capacity" 171
+		"engine capacity" 162
+		"shield generation" 4.1
+		"shield energy" 3.6
+		"hull repair rate" 1.2
+		"hull energy" 0.95
+		"outfit scan power" 18
+		"outfit scan speed" 1
+		"tactical scan power" 39
+		weapon
+			"blast radius" 240
+			"shield damage" 2400
+			"hull damage" 1200
+			"hit force" 3000
+	outfits
+		"Inhibitor Cannon" 3
+		"Point Defense Turret" 1
+		"Thrasher Turret"
+
+		"Aeon Cell"
+		"Crystal Capacitor" 3
+		"Emergency Ramscoop" 2
+		"Thermoelectric Cooler" 2
+		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Tuning Rifle" 20
+
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
+		"Forge-Class Steering"
+		"Scram Drive"
+		
+	drone 0 30 over 
+	drone -34 68 over
+	drone 0 81 over
+	drone 34 68 over
+	fighter -25 10 under
+	fighter 25 10 under
+	engine -16.5 120 0.7
+	engine 0 116.5 1
+	engine 16.5 120 0.7
+	gun 0 -135.5 "Inhibitor Cannon"
+	gun 15.5 -102 "Inhibitor Cannon"
+	gun -15.5 -102 "Inhibitor Cannon"
+	turret 0 -62
+	turret 0 -20.5 "Point Defense Turret"
+	turret 0 58.5 "Thrasher Turret"
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "The Ibis is a multipurpose carrier that serves as a mobile mining platform, an escort ship for Pelican fleets, and a combat platform using Terns for screening. It is capable of fielding a single wing of support craft, consisting of two Petrels and four Terns."
+	description "	The Ibis was designed shortly after the Albatross as a means of extending the range of resource collection efforts after the Remnant realized that an Alpha invasion might not be as imminent as originally believed."
+
+
+
 ship "Pelican"
 	sprite "ship/pelican"
 	thumbnail "thumbnail/pelican"
@@ -494,6 +573,63 @@ ship "Penguin"
 	explode "small explosion" 7
 	description "Inspired by close contact with void sprites and the reinvigoration of xenobiology, the Penguin is a prototype designed to serve the dual roles of testing new starship technology while exploring hostile planets throughout the Ember Waste. One of this ship's distinguishing features is that it is truly alive and has a mind that approaches self-awareness."
 	description "	The cloaking technology is built into the Penguin's hull; it cannot be removed or transferred to another ship."
+	
+	
+	
+ship "Petrel"
+	sprite "ship/petrel"
+	thumbnail "thumbnail/petrel"
+	attributes
+		category "Fighter"
+		licenses
+			Remnant
+		"cost" 1141000
+		"shields" 1000
+		"hull" 2300
+		"cargo space" 20
+		"fuel capacity" 100
+		"ramscoop" 1
+		"required crew" 2
+		"bunks" 3
+		"mass" 50
+		"drag" 1.4
+		"heat dissipation" .9
+		"outfit space" 165
+		"weapon capacity" 49
+		"engine capacity" 34
+		"shield generation" 0.36
+		"shield energy" 0.24
+		"hull repair rate" 0.82
+		"hull energy" 0.54
+		"gaslining" 1
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 26
+		"asteroid scan power" 30
+		weapon
+			"blast radius" 15
+			"shield damage" 150
+			"hull damage" 200
+			"hit force" 350
+	outfits
+		"Inhibitor Cannon" 3
+		
+		"Millennium Cell" 2
+		"Crystal Capacitor"
+		"Thermoelectric Cooler"
+		
+		"Crucible-Class Thruster"
+		"Crucible-Class Steering"
+		
+	gun 0 -38.5 "Inhibitor Cannon"
+	gun -10.5 -24 "Inhibitor Cannon"
+	gun 10.5 -24 "Inhibitor Cannon"
+	turret 0 2.5
+	engine 0 41.5
+	explode "tiny explosion" 30
+	explode "small explosion" 20
+	description "The Petrel is a multi-role mining/wing leader fightercraft designed to provide support for flights of lighter Terns in high-risk environments. The ship's design originated as an an urban mobile gun platform that flitted around structures and natural terrain, but proved easy to adapt into a spacecraft."
+	description "	The Remnant are loath to sacrifice pilots and crew from the comparatively small pool they are drawn from. As such, their fighters are equipped with medium-range weaponry designed to strike enemies from afar."
 
 
 
@@ -641,5 +777,59 @@ ship "Starling" "Starling (Thrasher)"
 	gun "Thrasher Cannon"
 	gun
 	gun
+
+
+
+ship "Tern"
+	sprite "ship/tern"
+	thumbnail "thumbnail/tern"
+	attributes
+		category "Drone"
+		licenses
+			Remnant
+		"cost" 860000
+		"shields" 500
+		"hull" 2500
+		"automaton" 1
+		"cargo space" 5
+		"mass" 32
+		"drag" 1.0
+		"heat dissipation" .9
+		"fuel capacity" 50
+		"energy capacity" 500
+		"ramscoop" 0.5
+		"outfit space" 75
+		"weapon capacity" 16
+		"engine capacity" 26
+		"shield generation" 0.25
+		"shield energy" 0.16
+		"hull repair rate" 0.55
+		"hull energy" 0.37
+		"gaslining" 1
+		"atmosphere scan" 100
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 26
+		"asteroid scan power" 30
+		weapon
+			"blast radius" 10
+			"shield damage" 100
+			"hull damage" 150
+			"hit force" 250
+	outfits
+		"Inhibitor Cannon"
+		
+		"Millennium Cell"
+		"Thermoelectric Cooler"
+		
+		"Anvil-Class Engine"
+		
+	gun 0 -22 "Inhibitor Cannon"
+	engine -5 20.5
+	engine 5 20.5
+	explode "tiny explosion" 30
+	explode "small explosion" 20
+	description "The Tern is a small, hardy drone developed to plunge into the atmosphere of nearby gas giants for collecting valuable resources. These thick-shelled craft are also surprisingly effective when pressed into service as screening ships when enemies intrude into Remnant space."
+	description "	Unlike most spacefaring nations, the Remnant do not have enough people to pilot fighter wings in waves likely to sustain significant casualties. As such, they frequently use these hardy drones to fulfill similar screening roles in their home systems, allowing manned craft to focus on more specialized tasks."
 
 

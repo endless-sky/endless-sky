@@ -4374,9 +4374,10 @@ system Arculus
 	trade Medical 510
 	trade Metal 417
 	trade Plastic 498
-	fleet "Large Remnant" 2100
-	fleet "Small Remnant" 1600
-	fleet "Remnant Transport" 1600
+	fleet "Large Remnant" 3000
+	fleet "Small Remnant" 2200
+	fleet "Remnant Transport" 2200
+	fleet "Remnant Home Guard" 2000
 	fleet "Korath Ember Waste Raid" 40000
 	object
 		sprite star/g5-old
@@ -6712,9 +6713,10 @@ system Cinxia
 	trade Medical 516
 	trade Metal 354
 	trade Plastic 417
-	fleet "Large Remnant" 1750
-	fleet "Small Remnant" 1300
-	fleet "Remnant Transport" 1300
+	fleet "Large Remnant" 2400
+	fleet "Small Remnant" 1800
+	fleet "Remnant Transport" 1800
+	fleet "Remnant Home Guard" 1600
 	fleet "Korath Ember Waste Raid" 30000
 	object
 		sprite star/k5-old
@@ -16986,9 +16988,10 @@ system Pantica
 	trade Medical 545
 	trade Metal 454
 	trade Plastic 469
-	fleet "Large Remnant" 1400
-	fleet "Small Remnant" 1000
-	fleet "Remnant Transport" 1000
+	fleet "Large Remnant" 2000
+	fleet "Small Remnant" 1400
+	fleet "Remnant Transport" 1400
+	fleet "Remnant Home Guard" 1300
 	fleet "Korath Ember Waste Raid" 40000
 	object
 		sprite star/k0-old

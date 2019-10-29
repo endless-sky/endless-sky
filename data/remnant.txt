@@ -105,6 +105,19 @@ fleet "Remnant Transport"
 		"Pelican"
 		"Starling (Hunter)" 2
 
+fleet "Remnant Home Guard"
+	government "Remnant"
+	names "remnant"
+	cargo 2
+	personality
+		disables plunders appeasing mining harvests surveillance
+	variant 20
+		"Tern" 1
+	variant 10
+		"Tern" 2
+	variant 5
+		"Tern" 3
+
 fleet "Remnant Decoy Defense"
 	government "Remnant"
 	names "remnant"
@@ -269,7 +282,10 @@ shipyard "Remnant"
 	"Starling"
 	"Gull"
 	"Albatross"
+	"Ibis"
 	"Pelican"
+	"Petrel"
+	"Tern"
 
 shipyard "Remnant Gascraft"
 	"Gascraft"
