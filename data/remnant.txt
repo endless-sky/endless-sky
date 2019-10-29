@@ -105,6 +105,84 @@ fleet "Remnant Transport"
 		"Pelican"
 		"Starling (Hunter)" 2
 
+fleet "Remnant Home Guard"
+	government "Remnant"
+	names "remnant"
+	cargo 2
+	personality
+		disables plunders appeasing mining harvests surveillance
+	variant 20
+		"Tern" 1
+	variant 10
+		"Tern" 2
+	variant 5
+		"Tern" 3
+
+fleet "Remnant Decoy Defense"
+	government "Remnant"
+	names "remnant"
+	personality
+		staying heroic unconstrained
+	variant 10
+		"Albatross (Shield)"
+
+fleet "Light Remnant Defense"
+	government "Remnant"
+	names "remnant"
+	personality
+		staying heroic unconstrained
+	variant 10
+		"Starling" 2
+		"Starling (Heavy)" 2
+		"Starling (Sniper)" 2
+		"Starling (Hunter)" 2
+		"Starling (Thrasher)" 2
+	variant 10
+		"Starling (Heavy)" 4
+		"Starling (Sniper)" 6
+	variant 10
+		"Starling" 10
+	variant 10
+		"Starling (Heavy)" 10
+	variant 10
+		"Starling (Sniper)" 10
+	variant 10
+		"Starling (Heavy)" 5
+		"Starling (Hunter)" 5
+
+fleet "Heavy Remnant Defense"
+	government "Remnant"
+	names "remnant"
+	personality
+		staying heroic unconstrained
+	variant 6
+		"Albatross (Shield)"
+		"Albatross" 3
+		"Starling" 6
+	variant 6
+		"Albatross (Shield)"
+		"Albatross (Sniper)" 3
+		"Starling (Sniper)" 6
+	variant 6
+		"Albatross (Turret)" 3
+		"Starling (Thrasher)" 6
+	variant 6
+		"Albatross (Heavy)" 3
+		"Starling (Heavy)" 6
+	variant 3
+		"Albatross" 3
+		"Starling (Hunter)" 6
+	variant 3
+		"Albatross (Sniper)" 3
+		"Starling (Hunter)" 6
+	variant 2
+		"Albatross" 3
+		"Albatross (Sniper)" 6
+	variant 2
+		"Albatross (Shield)"
+		"Albatross (Heavy)" 2
+		"Albatross (Turret)"
+
 phrase "remnant"
 	word
 		"Great"
@@ -204,7 +282,10 @@ shipyard "Remnant"
 	"Starling"
 	"Gull"
 	"Albatross"
+	"Ibis"
 	"Pelican"
+	"Petrel"
+	"Tern"
 
 shipyard "Remnant Gascraft"
 	"Gascraft"
@@ -223,6 +304,7 @@ outfitter "Remnant"
 	"EMP Torpedo Bay"
 	"Emergency Ramscoop"
 	"Quantum Key Stone"
+	"Anvil-Class Engine"
 	"Crucible-Class Thruster"
 	"Forge-Class Thruster"
 	"Smelter-Class Thruster"
