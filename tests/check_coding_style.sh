@@ -119,95 +119,6 @@ function filter_non_matched_class()
 
 
 
-# Helper function to check the sort order of all includes
-function check_includes_sort_order()
-{
-	# List of all files in the codebase with their includes. (file:include)
-	# The filenames are sorted, but the include statements are taken in the order in which they are in the file
-	ALL_INCL=$(find -type f \( -name "*.h" -or -name "*.cpp" \) | grep "[A-Za-z0-9_.]" | sort | sed "s,./,," | xargs grep --with-filename "#include")
-
-	# Filter known issues out of the list
-	ALL_INCL=$(echo "${ALL_INCL}" | filter_exceptions)
-
-	# Now we prepare a list that we sort according to the style guide (by using additional ordering keys). (file:sortkey:include)
-	# Add sort-key 4 for all system includes
-	SORT_KEY=$(echo "${ALL_INCL}" | sed "s/:#include </:4:#include </")
-
-	# Get all base classes for classes. Not fully exact, but non-exact matches will be filtered out because there
-	# is no matching class in the codebase. For future coding checking scripts we might want to consider to get
-	# this information from the C++ compiler.
-	CLASS_BASES=$(grep "^class" *.h | grep -e "public" -e "private" | grep -v ";$" | sed "s/ {//" |\
-		sed "s,std::[A-Za-z0-9_]*, ,g" | sed "s,[<>,\*], ,g" |\
-		sed -e "s/class [A-Za-z0-9]*[ :]*/ /" -e "s/public//g" -e "s/private//g" | sed "s/[ ]\+/ /g")
-
-	# Add sort-key 1 for classes/h-files that include it's base class
-	IFS_OLD=${IFS}
-	IFS="
-	"
-	for CLASS_BASE in ${CLASS_BASES}; do
-		HF=$(echo "${CLASS_BASE}" | cut -d\: -f1)
-		BASES=$(echo "${CLASS_BASE}" | cut -d\: -f2)
-		IFS=" "
-		for BASE in ${BASES}; do
-			SORT_KEY=$(echo "${SORT_KEY}" | sed "s/\(^${HF}\):\(#include \"${BASE}.h\"\)/\1:1:\2/")
-		done
-	done
-	IFS=${IFS_OLD}
-
-	# Loop over all header files in the codebase
-	# Add sort-key 1 for cpp-files that include its matching header file
-	# Add sort-key 2 for regular includes from the codebase
-	for CB_HF in $(find *.h -type f | sed "s,^./,,"); do
-		CB_CPPF=$(echo "${CB_HF}" | sed "s/\.h$/.cpp/")
-		SORT_KEY=$(echo "${SORT_KEY}" |\
-			sed "s/\(^${CB_CPPF}\):\(#include \"${CB_HF}\"\)/\1:1:\2/" |\
-			sed "s/\([hp]\):\(#include \"${CB_HF}\"\)/\1:2:\2/")
-	done
-
-	# Add sort-key 3 for non-standard third-party libaries.
-	SORT_KEY=$(echo "${SORT_KEY}" | sed "s/\(\.[hc]\):\(#include \"\)/\1:3:\2/")
-
-	# Add include as sorting key, remove .h extention from sorting order and add AAAA to sort key to ensure that an
-	# include like Ship.his sorted before ShipEvent.h and before ShipInfoPanel.h.
-
-	# And re-sort the full list, including the sort-keys.
-	# And then remove the sort keys
-	SORT_KEY=$(echo "${SORT_KEY}" | sed "s/:\(\#include [<\"]\)\([^>\"]*\)\([>\"]\)/:\2AAAA:\1\2\3/" |\
-		sed "s/\.hAAAA/AAAA/" | sort )
-
-	# Remove actual include from sort-key for displaying.
-	SORT_KEY_EXPECTED=$(echo "${SORT_KEY}" | sed "s/:[^:]*AAAA:/:/")
-
-	# Remove all sort-keys from sort key for comparing with actual code.
-	SORT_KEY=$(echo "${SORT_KEY_EXPECTED}" | sed "s/:[0-9]:/:/")
-
-	# The list sorted according to the Style guide keys should be in the same order as the original list above.
-	# Report all entries that are out of order by comparing the lists.
-	# This section starts quite a number of subshells. Subshells are quite resource intensive in Bash. If the
-	# performance of this script should be improved, then the recommendation is to handle the lists in temporary files
-	# instead of in-memory (or another recommendation is to re-write this functionality in a language like Python).
-	while [ $(echo "${ALL_INCL}" | wc -l) -gt 1 ]; do
-		if [ "$(echo "${ALL_INCL}" | head -n 1)" == "$(echo "${SORT_KEY}" | head -n 1)" ]; then
-			# Entries match, move to the next
-			ALL_INCL=$(echo "${ALL_INCL}" | tail -n +2)
-			SORT_KEY=$(echo "${SORT_KEY}" | tail -n +2)
-		else
-			# Mismatch in entries. Report the first include
-			MISMATCH=$(echo "${ALL_INCL}" | head -n 1)
-			echo "${MISMATCH}: Include order not according to style guide"
-			MISFILE=$(echo "${MISMATCH}" | cut -d: -f1)
-			echo "${SORT_KEY_EXPECTED}" | grep "^${MISFILE}" | sed "s/^${MISFILE}:/-Expected /"
-			# Make sure we always move to the next element
-			ALL_INCL=$(echo "${ALL_INCL}" | tail -n +2)
-			# Remove the mis-matching file from both lists
-			ALL_INCL=$(echo "${ALL_INCL}" | grep -v "^${MISFILE}:")
-			SORT_KEY=$(echo "${SORT_KEY}" | grep -v "^${MISFILE}:")
-		fi
-	done
-}
-
-
-
 # Go to the sources directory
 cd "${SOURCES}" || die "Sources directory not found"
 
@@ -256,9 +167,6 @@ for FILE in *.cpp; do
 	grep --with-filename -e "#include " -e "using namespace std;" "${FILE}" | tail -n 1 | sed "/${FILE}:using namespace std;/d"
 done |\
 	report_issue "Each .cpp file should put \"using namespace std;\" immediately after the #includes."
-
-check_includes_sort_order |\
-	report_issue "Order of #includes in a .h or .c file"
 
 
 
