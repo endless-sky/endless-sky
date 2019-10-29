@@ -125,9 +125,6 @@ cd "${SOURCES}" || die "Sources directory not found"
 
 
 # Files section
-grep -P -e "\r\n$" * |\
-	report_issue "Files: All files should have Unix-style line endings."
-
 grep -P -n "[^\x00-\x7F]" * |\
 	report_issue "Files: All files should be plain ASCII."
 
