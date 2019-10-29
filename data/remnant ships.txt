@@ -567,8 +567,8 @@ ship "Penguin"
 		"Hyperdrive"
 	
 	engine 0 30
-	gun 0 -60
-	turret 0 -60
+	gun 0 -33
+	turret 0 5.5
 	explode "tiny explosion" 8
 	explode "small explosion" 7
 	description "Inspired by close contact with void sprites and the reinvigoration of xenobiology, the Penguin is a prototype designed to serve the dual roles of testing new starship technology while exploring hostile planets throughout the Ember Waste. One of this ship's distinguishing features is that it is truly alive and has a mind that approaches self-awareness."
