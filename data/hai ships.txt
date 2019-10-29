@@ -167,7 +167,7 @@ ship "Flea"
 	gun 0 -27 "Railgun"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
-	description `This combat drone is built to help contain Unfettered aggression with a minimum risk to Hai lives.  It was designed in conjunction with the reverse-thrusting Railgun so as to kite its targets, and prolong its combat efficacy.`
+	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible.  It was designed in conjunction with the reverse-thrusting Railgun so as to kite its targets, prolonging its combat efficacy while it supports friendly ships that are engaged with hostile targets.`
 
 ship "Geocoris"
 	sprite "ship/hai geocoris"
@@ -851,7 +851,7 @@ ship "Solifuge" "Solifuge (Tracker)"
 		"Hyperdrive"
 
 
-ship "Tzetze"
+ship "Buthidae"
 	sprite "ship/hai_supercarrier"
 	thumbnail "thumbnail/hai_supercarrier"
 	attributes
@@ -940,7 +940,7 @@ ship "Tzetze"
 	engine -22.5 214.5
 
 	"final explode" "final explosion large"
-	description "After the Unfettered encountered the Pond Strider and Fleas, they set out to reverse engineer its technology and build the ultimate warfleet support ship - with bunks and cargo to spare, not to mention docking facilities for 32 drones, the Tzetze will keep up with a warfleet while en-route, and become an agile attacker when its drones deploy."
+	description "After the Unfettered encountered the Pond Strider and Fleas, they set out to reverse engineer its technology and build the ultimate warfleet support ship - with bunks and cargo to spare, not to mention docking facilities for 32 drones, the Buthidae will keep up with a warfleet while en-route, and become an agile attacker when its drones deploy."
 
 
 

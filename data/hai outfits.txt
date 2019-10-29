@@ -109,9 +109,19 @@ outfit "Railgun Slug"
 	category "Ammunition"
 	cost 9
 	thumbnail "outfit/railslug"
-	"mass" 0.002
+	"mass" 0.001
 	"railgun slug capacity" -1
 	description "These railgun slugs incorporate energy-discharging capacitors that deal a small amount of hull damage even when the target's shields are functioning.  The Hai use them in Railguns that propel the slug to relativistic speed, simultaneously using the stored charge to amplify recoil, propelling their Flea drones away from danger, and turning them into effective long range support."
+
+outfit "Railgun Slug Rack"
+	category "Ammunition"
+	cost 28000
+	thumbnail "outfit/railslug_rack"
+	"mass" 1
+	"outfit space" -3
+	"railgun slug capacity" 1500
+	ammo "Railgun Slug"
+	description "The Railgun Slug Rack is used to store and load extra Railgun ammunition."
 
 outfit "Railgun"
 	category "Secondary Weapons"

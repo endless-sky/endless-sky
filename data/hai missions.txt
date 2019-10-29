@@ -1101,45 +1101,59 @@ mission "Strider: View of the Pond"
 		has "Wanderers Solifuge Recon 1: done"
 	on offer
 		conversation
-			`"Ambassador Sayari has been informed of the Solifuge, and has a message for the Hai Homeworld, and needs your help to deliver it to Hai-Home."`
+			`"Ambassador Sayari has been informed of the Solifuge, has a message for the Hai Homeworld, and needs your help to deliver it to Hai-Home."`
 				accept
+	on complete
+		conversation
+			`The Hai, as usual, mysteriously and efficiently deliver your message from Ambassador Sayari, and a local prefect appears within minutes to inquire if you've encountered a friendly race with hull repair technology.`
+			`The prefect continues to tell you how the Solifuge was not entirely a surprise to the Hai government, but that it posed a threat to the Hai public mindset that couldn't be ignored.`
+			`A much smaller, short range drone carrier and combat drone solution is being worked on, but initial simulations predict that actual escort casualties would go up unless significant hull repair technology could be implemented to fix docked drones that would otherwise weigh down the agile warship.`
 
 mission "Strider: Widen the new coalition"
-	description "Take Ambassador Yashili to <destination>."
+	description "Take Ambassador Yashili and her delegation to <destination>."
 	landing
 	source "Hai-home"
 	destination "Ring of Friendship"
-	passengers 1
+	passengers 3
+	blocked "The Hai wish to send a delegation to <destination>, and will require 3 bunks for the trip."
 	to offer
 		has "Strider: View of the Pond: done"
 		has "Coalition: First Contact: offered"
 	on offer
 		conversation
-			`"Hai, as usual, receive the message, and a local prefect inquires if you've met another race with hull repair technology.  You consider your encounters with the Coalition and their repair outfits."`
+			`You consider your encounters with the Coalition and their repair outfits.`
 			choice
-				`You mention the Coalition, and offer to take an ambassador to the Ring of Friendship.`
+				`Mention the Coalition, and offer to take a delegation to the Ring of Friendship.`
 					accept
-				`You decide that the Hai are not ready to learn of the Coalition's existence`
+				`The Hai are not ready to learn of the Coalition's existence`
 					decline
-				
+	on complete
+		conversation
+			`The Heliarchs are pleased to meet the Hai delegation, and immediately begin an exchange of information.  Three Heliarch ambassadors interested in immersing themselves in Hai culture request to return to Hai-Home with you.`
+
 mission "Strider: A tale of two remnants"
-	description "Transport Ambassador Yashili to <destination>."
+	description "Transport Ambassador Yashili and her delegation to <destination>."
 	landing
 	source "Hai-home"
 	destination "Aventine"
-	passengers 1
+	passengers 3
+	blocked "The Hai wish to send a delegation to <destination>, and will require 3 bunks for the trip."
 	to offer
 		has "Strider: View of the Pond: done"
 		has "remnant blood test pure"
-		not "Strider: Widen the new coalition: offered"
+	to fail
+		has "Strider: Widen the new coalition: active"
 	on offer
 		conversation
-			`"Hai, as usual, receive the message, and a local prefect inquires if you've met another race with hull repair technology.  You consider your encounters with the Remnants and their self-repairing hulls."`
+			`You consider your encounters with the Remnants and their self-repairing hulls.`
 			choice
-				`You mention the Remnants, and offer to take an ambassador to the Aventine.`
+				`Mention the Remnants, and offer to take a delegation to Aventine.`
 					accept
-				`You decide that the Hai are not ready to learn of the Remnants' existence.`
+				`The Hai are not ready to learn of the Remnants' existence.`
 					decline
+	on complete
+		conversation
+			`The Remnants are pleased to meet the Hai delegation, and immediately begin an exchange of information.  Three Remnants interested in immersing themselves in Hai culture request to return to Hai-Home with you.`
 
 mission "Strider: Of the Pond"
 	description "Transport an ambassadorial entourage to Hai Home."
@@ -1152,16 +1166,15 @@ mission "Strider: Of the Pond"
 			has "Strider: A tale of two remnants: done"
 	on offer
 		conversation
-			`"Your hosts are thrilled about their new contact with the Hai, and request that you return to Hai-Home with an ambassadorial entourage that's interested in immersing themselves in Hai culture."`
 			choice
-				`"I'd be happy to take your entourage back to Hai space.  There are accommodations on the <ship> waiting for them."`
+				`"I'd be happy to take your entourage back to Hai space.  There are accommodations on the <ship> waiting for you."`
 					accept
 				`"I'm busy right now, perhaps ask the Quarg."`
 					decline
 	on complete
 		event "Pond Strider release" 45
 		conversation
-			`The delegation thanks you for the safe trip as they exit the <ship>, and are greeted by a group of Hai who seem very excited to receive new the visitors.`
+			`The entourage thanks you for the safe trip as they exit the <ship>, and are greeted by a group of Hai who seem very excited to receive the delegation.`
 
 event "Pond Strider release"
 	shipyard "Hai Advanced"
