@@ -340,8 +340,14 @@ Files:
  images/outfit/tiny?remnant?engine*
  images/outfit/void?rifle*
  images/scene/penguinscene*
+ images/ship/ibis*
  images/ship/penguin/penguin*
+ images/ship/petrel*
+ images/ship/tern*
+ images/thumbnail/ibis*
  images/thumbnail/penguin*
+ images/thumbnail/petrel*
+ images/thumbnail/tern*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
