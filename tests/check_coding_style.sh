@@ -131,7 +131,7 @@ grep -P -n "[^\x00-\x7F]" * |\
 find -type f | grep -v -e ".h$" -e ".cpp$" | sed "s,^./,," |\
 	report_issue "Files: All C++ files should use \".h\" and \".cpp\" for their extensions."
 
-grep "^class" *.h | grep -v -e ";$" | cut -d\: -f1,2 | sed "s,[{].*$,," | sed "s, *$,," | filter_non_matched_class |\
+grep "^class" *.h | tr -d '\r' | grep -v -e ";$" | cut -d\: -f1,2 | sed "s,[{].*$,," | sed "s, *$,," | filter_non_matched_class |\
 	report_issue "Files: Each class \"MyClass\" should have its own .h and .cpp files, and they should be named \"MyClass.h\" and \"MyClass.cpp\""
 
 for FILE in *; do
@@ -174,7 +174,7 @@ grep "^  " * |\
 grep -e "if (" -e "while (" -e "for (" * | grep -v -e ".*//.*(.*" | grep -v "<<" |\
 	report_issue "Do not put a space before or after the parentheses for functions and control statements."
 
-grep -e ",[^ \"'0\`\\]" * |\
+grep "," * | tr -d '\r' | grep -e ",[^ \"'0\`\\]" |\
 	report_issue "Put a space after commas."
 
 # Classes section
