@@ -1426,7 +1426,7 @@ mission "Wanderers Invaded 1"
 			choice
 				`	"Okay, I'll help you to evacuate."`
 			label end
-			`	"Thank you," he says. "We have assembled a fleet of freighters, refitted to carry [refugees, evacuees]. Please escort the fleet to <planet>. You will receive further [orders, directions] when you land."`
+			`	"Thank you," he says. "We have assembled a fleet of freighters, refitted to carry [refugees, evacuees]. These ships are not ideal, but they will suffice for now until we can produce dedicated [transportation, evacuation] ships. Please escort the fleet to <planet>. You will receive further [orders, directions] when you land."`
 				accept
 	npc accompany save
 		government "Wanderer"
@@ -1926,7 +1926,7 @@ mission "Wanderers Evacuation 1"
 			has "Wanderers Pond Strider Recon 2: done"
 	on offer
 		conversation
-			`Four Wanderer transports - perhaps, in fact, the same four you escorted before - are parked here. One of the captains approaches you and says, "We are evacuating the worlds that will be [isolated, trapped] if the Unfettered gain more territory. Will you escort us to <planet>, and from there to the capital?"`
+			`Four Wanderer ships that you've never seen before are parked here. These must be the dedicated transport ships that Iktat Rek mentioned. One of the captains approaches you and says, "We are evacuating the worlds that will be [isolated, trapped] if the Unfettered gain more territory. Will you escort us to <planet>, and from there to the capital?"`
 			choice
 				`	"I would be glad to."`
 					accept
@@ -1935,17 +1935,28 @@ mission "Wanderers Evacuation 1"
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
-		ship "Deep River Transport" "Espret Si'yakar"
-		ship "Deep River Transport" "Fel'tar Kor'meti'i"
-		ship "Deep River Transport" "Tok'tobar'tek La'a"
-		ship "Deep River Transport" "Eka'ta Turuk'ta"
+		ship "Riptide" "Vek'sek Kach'ik"
+		ship "Riptide" "Fel'tar Kri'esei"
+		ship "Riptide" "Vori'yek'tek La'a"
+		ship "Riptide" "Iyik'ta Rei'ta"
 	npc
 		government "Hai (Unfettered)"
 		personality heroic staying
 		fleet "Large Unfettered" 2
 	on visit
-		dialog
-			`You have reached <planet>, but the Wanderer transports have not all arrived yet. You should take off and wait for them to catch up with you.`
+		dialog `You've landed on <planet>, but not all of the Riptide transports carrying the refugees are in the system. Better depart and wait for them all to arrive.`
+
+
+
+# The Riptide was added after these missions, so it is triggered separately for backward compatibility.
+mission "Wanderers Riptide Patch"
+	invisible
+	landing
+	to offer
+		has "Wanderers Evacuation 1: offered"
+	on offer
+		event "wanderers: riptide mass production" 30
+		fail
 
 
 
@@ -1965,17 +1976,17 @@ mission "Wanderers Evacuation 1B"
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
-		ship "Deep River Transport" "Espret Si'yakar"
-		ship "Deep River Transport" "Fel'tar Kor'meti'i"
-		ship "Deep River Transport" "Tok'tobar'tek La'a"
-		ship "Deep River Transport" "Eka'ta Turuk'ta"
+		ship "Riptide" "Vek'sek Kach'ik"
+		ship "Riptide" "Fel'tar Kri'esei"
+		ship "Riptide" "Vori'yek'tek La'a"
+		ship "Riptide" "Iyik'ta Rei'ta"
 	npc
 		government "Hai (Unfettered)"
 		personality heroic staying
 		system "Sich'ka'ara"
 		fleet "Large Unfettered" 3
 	on visit
-		dialog `You've landed on <planet>, but not all of the Deep River transports carrying the refugees are in the system. Better depart and wait for them all to arrive.`
+		dialog `You've landed on <planet>, but not all of the Riptide transports carrying the refugees are in the system. Better depart and wait for them all to arrive.`
 
 
 
@@ -2003,17 +2014,17 @@ mission "Wanderers Evacuation 1C"
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
-		ship "Deep River Transport" "Espret Si'yakar"
-		ship "Deep River Transport" "Fel'tar Kor'meti'i"
-		ship "Deep River Transport" "Tok'tobar'tek La'a"
-		ship "Deep River Transport" "Eka'ta Turuk'ta"
+		ship "Riptide" "Vek'sek Kach'ik"
+		ship "Riptide" "Fel'tar Kri'esei"
+		ship "Riptide" "Vori'yek'tek La'a"
+		ship "Riptide" "Iyik'ta Rei'ta"
 	npc
 		government "Hai (Unfettered)"
 		personality heroic staying
 		system "Sich'ka'ara"
 		fleet "Large Unfettered" 4
 	on visit
-		dialog `You've landed on <planet>, but not all of the Deep River transports carrying the refugees are in the system. Better depart and wait for them all to arrive.`
+		dialog `You've landed on <planet>, but not all of the Riptide transports carrying the refugees are in the system. Better depart and wait for them all to arrive.`
 
 
 
