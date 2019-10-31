@@ -1928,6 +1928,7 @@ event "battle for altair"
 
 
 event "liberation of altair"
+	"tribute: Shiver" *= 300
 	system "Altair"
 		government "Republic"
 		fleet "Small Core Merchants" 1000
@@ -2071,6 +2072,14 @@ event "pug territory liberated"
 		government Syndicate
 	system Caph
 		government Syndicate
+	"tribute: Rand" *= 500
+	"tribute: Oblivion" *= 500
+	"tribute: Silver" *= 700
+	"tribute: Milrace" *= 1400
+	"tribute: Maker" *= 1700
+	"tribute: Furnace" *= 1200
+	"tribute: Reunion" *= 2900
+	"tribute: Kraken Station" *= 500
 	system Deneb
 		government Neutral
 		fleet "Small Core Merchants" 400
