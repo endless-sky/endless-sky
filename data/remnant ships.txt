@@ -382,19 +382,19 @@ ship "Ibis"
 		"cost" 11627000
 		"shields" 14400
 		"hull" 6200
-		"required crew" 20
-		"bunks" 48
+		"required crew" 16
+		"bunks" 36
 		"mass" 350
-		"drag" 7.1
+		"drag" 5.1
 		"heat dissipation" 0.7
 		"fuel capacity" 700
 		"ramscoop" 2
 		"cargo space" 103
-		"outfit space" 553
-		"weapon capacity" 171
-		"engine capacity" 162
-		"shield generation" 4.1
-		"shield energy" 3.6
+		"outfit space" 427
+		"weapon capacity" 147
+		"engine capacity" 109
+		"shield generation" 3.5
+		"shield energy" 3.1
 		"hull repair rate" 1.2
 		"hull energy" 0.95
 		"outfit scan power" 18
@@ -407,20 +407,20 @@ ship "Ibis"
 			"hit force" 3000
 	outfits
 		"Inhibitor Cannon" 3
-		"Point Defense Turret" 1
+		"Point Defense Turret"
 		"Thrasher Turret"
-
-		"Aeon Cell"
-		"Crystal Capacitor" 3
-		"Emergency Ramscoop" 2
+		
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor" 2
+		"Emergency Ramscoop"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
 		"Salvage Scanner"
 		"Tuning Rifle" 20
-
-		"Smelter-Class Thruster"
-		"Smelter-Class Steering"
-		"Forge-Class Steering"
+		
+		"Forge-Class Thruster"
+		"Forge-Class Steering" 2
 		"Scram Drive"
 		
 	drone 0 30 over 
