@@ -909,4 +909,4 @@ ship "Riptide"
 	explode "medium explosion" 40
 	explode "large explosion" 20
 	"final explode" "final explosion medium"
-	description "As with many Wanderer ships the Riptide is an old design, brought back to help move civilians in response to the Unfettered invasion."
+	description "The Riptide is a dedicated transport ship meant to replace the temporary Deep River freighters that were converted into transport ships for refugee evacuation. Although not as durable as the Deep River, the Riptide is far more nimble of a ship while at the same time being able to carry more passengers."
