@@ -2097,12 +2097,6 @@ event "pug territory liberated"
 			threshold 4000
 			fleet "Small Republic" 25
 			fleet "Large Republic" 2
-	planet "Shiver"
-		security 0.1
-		tribute 300
-			threshold 2000
-			fleet "Small Republic" 10
-			fleet "Large Republic" 2
 	planet "Millrace"
 		security 0.2
 		tribute 1400
