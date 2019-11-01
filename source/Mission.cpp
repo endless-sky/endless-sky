@@ -836,6 +836,18 @@ const list<NPC> &Mission::NPCs() const
 
 
 
+// Checks if the given ship belongs to one of the mission's NPCs.
+bool Mission::HasShip(const shared_ptr<Ship> &ship) const
+{
+	for(const auto &npc : npcs)
+		for(const auto &npcShip : npc.Ships())
+			if(npcShip == ship)
+				return true;
+	return false;
+}
+
+
+
 // If any event occurs between two ships, check to see if this mission cares
 // about it. This may affect the mission status or display a message.
 void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
@@ -1137,7 +1149,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 // Perform an "on enter" MissionAction associated with the current system.
 void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 {
-	const auto &eit = onEnter.find(system);
+	const auto eit = onEnter.find(system);
 	if(eit != onEnter.end() && !didEnter.count(&eit->second) && eit->second.CanBeDone(player))
 	{
 		eit->second.Do(player, ui);

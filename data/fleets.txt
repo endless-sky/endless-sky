@@ -867,15 +867,15 @@ fleet "Human Miners"
 	variant 1
 		"Fury"
 	variant 2
-		"Fury (Laser)"
-	variant 3
+		"Fury (Miner)"
+	variant 1
 		"Hawk"
-	variant 1
-		"Hawk (Speedy)"
 	variant 2
-		"Headhunter"
+		"Hawk (Miner)"
 	variant 1
-		"Headhunter (Particle)"
+		"Headhunter"
+	variant 2
+		"Headhunter (Miner)"
 
 fleet "Small Free Worlds"
 	government "Free Worlds"
@@ -1689,6 +1689,16 @@ fleet "Large Southern Pirates"
 		"Clipper (Heavy)"
 	variant 2
 		"Clipper (Speedy)"
+	variant 1
+		"Osprey"
+		"Fury"
+	variant 1
+		"Osprey"
+		"Sparrow"
+	variant 1
+		"Osprey (Missile)"
+	variant 1
+		"Osprey (Laser)"
 	variant 2
 		"Clipper"
 		"Hawk"
@@ -1892,12 +1902,6 @@ fleet "Small Core Pirates"
 		"Hawk (Rocket)"
 	variant 2
 		"Hawk (Speedy)"
-	variant 4
-		"Fury"
-	variant 2
-		"Fury (Laser)"
-	variant 1
-		"Fury (Missile)"
 	variant 1
 		"Headhunter"
 	variant 1
@@ -1911,9 +1915,9 @@ fleet "Small Core Pirates"
 		"Quicksilver (Proton)" 2
 	variant 2
 		"Wasp (Gatling)"
-	variant 2
+	variant 3
 		"Wasp (Javelin)"
-	variant 2
+	variant 8
 		"Wasp (Meteor)"
 	variant 2
 		"Wasp (Plasma)"
@@ -1981,6 +1985,18 @@ fleet "Large Core Pirates"
 		"Firebird (Plasma)"
 	variant 1
 		"Firebird (Missile)"
+	variant 1
+		"Vanguard (Particle)"
+	variant 1
+		"Vanguard (Missile)"
+	variant 1
+		"Vanguard"
+	variant 1
+		"Protector (Laser)"
+	variant 1
+		"Protector (Proton)"
+	variant 1
+		"Protector"
 
 fleet "Small Northern Pirates"
 	government "Pirate"
@@ -2016,6 +2032,12 @@ fleet "Small Northern Pirates"
 	variant 1
 		"Hawk (Bomber)"
 		"Sparrow"
+	variant 1
+		"Aerie"
+		"Lance" 2
+	variant 1
+		"Aerie"
+		"Dagger" 2
 	variant 3
 		"Headhunter"
 	variant 2
@@ -2039,32 +2061,26 @@ fleet "Large Northern Pirates"
 	cargo 1
 	personality
 		plunders harvests
-	variant 4
+	variant 2
 		"Firebird"
-	variant 3
+	variant 5
 		"Firebird (Laser)"
-	variant 2
+	variant 1
 		"Firebird (Missile)"
-	variant 2
+	variant 4
 		"Firebird (Plasma)"
-	variant 3
+	variant 1
 		"Firebird"
 		"Corvette"
-	variant 1
+	variant 4
 		"Firebird (Plasma)"
 		"Corvette (Speedy)"
-	variant 1
-		"Firebird (Missile)"
-		"Corvette (Missile)"
-	variant 1
+	variant 2
 		"Firebird (Plasma)"
 		"Corvette (Missile)"
 	variant 1
 		"Firebird (Laser)"
 		"Corvette (Missile)"
-	variant 1
-		"Firebird (Missile)"
-		"Corvette (Speedy)"
 	variant 2
 		"Firebird"
 		"Fury"
@@ -2077,23 +2093,48 @@ fleet "Large Northern Pirates"
 	variant 1
 		"Firebird (Missile)"
 		"Fury (Bomber)"
-	variant 2
+	variant 3
 		"Raven (Afterburner)" 2
-	variant 2
+	variant 1
 		"Raven (Heavy)" 2
 	variant 2
-		"Headhunter (Particle)" 1
+		"Headhunter (Particle)"
 		"Headhunter (Strike)"
 	variant 1
 		"Headhunter (Particle)" 2
 		"Headhunter (Strike)"
+	variant 1
+		"Aerie"
+		"Dagger" 2
+		"Corvette"
+	variant 1
+		"Aerie"
+		"Dagger" 2
+		"Raven"
+	variant 2
+		"Aerie" 2
+		"Dagger" 4
+	variant 2
+		"Aerie"
+		"Dagger" 2
+		"Corvette (Missile)"
+	variant 1
+		"Aerie" 2
+		"Dagger" 4
+		"Firebird"
+	variant 2
+		"Mule"
+		"Lance"
+	variant 2
+		"Mule (Heavy)"
+		"Dagger"
 	variant 2
 		"Leviathan"
 		"Firebird"
-	variant 2
+	variant 1
 		"Leviathan (Laser)"
 		"Firebird"
-	variant 2
+	variant 3
 		"Leviathan (Laser)"
 		"Firebird (Laser)"
 	variant 2
@@ -2105,27 +2146,15 @@ fleet "Large Northern Pirates"
 	variant 2
 		"Leviathan (Laser)"
 		"Firebird (Missile)"
-	variant 2
+	variant 3
 		"Leviathan"
-	variant 1
+	variant 2
 		"Leviathan (Laser)"
 	variant 1
 		"Leviathan (Heavy)"
 	variant 1
-		"Berserker" 3
-	variant 1
 		"Fury (Heavy)" 2
 		"Firebird (Missile)"
-	variant 1
-		"Berserker (Afterburner)" 3
-	variant 1
-		"Berserker (Strike)" 3
-	variant 2
-		"Berserker" 2
-	variant 2
-		"Berserker (Afterburner)" 2
-	variant 2
-		"Berserker (Strike)" 2
 	variant 1
 		"Bactrian"
 		"Dagger" 3

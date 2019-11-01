@@ -201,6 +201,17 @@ fleet "Korath Raid"
 		"Korath Raider"
 		"Korath Chaser" 2
 
+fleet "Korath Ember Waste Raid"
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests
+	variant
+		"Korath Raider (Ember)"
+		"Korath Chaser" 2
+
 fleet "Korath Home"
 	government "Korath"
 	names "korath"
@@ -574,6 +585,7 @@ outfitter "Korath Basics"
 	"Korath Piercer Rack"
 	"Korath Mine Rack"
 	"Command Center"
+	"Hyperdrive"
 	"Small Bunk Room"
 	"Bunk Room"
 	"Fuel Processor"

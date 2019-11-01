@@ -10,14 +10,14 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef INFO_DISPLAY_H_
-#define INFO_DISPLAY_H_
+#ifndef ITEM_INFO_DISPLAY_H_
+#define ITEM_INFO_DISPLAY_H_
 
 #include "Point.h"
 #include "WrappedText.h"
 
-#include <vector>
 #include <string>
+#include <vector>
 
 class Table;
 

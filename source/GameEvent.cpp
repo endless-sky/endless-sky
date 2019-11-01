@@ -158,3 +158,10 @@ void GameEvent::Apply(PlayerInfo &player)
 	for(const Planet *planet : planetsToVisit)
 		player.Visit(planet);
 }
+
+
+
+const list<DataNode> &GameEvent::Changes() const
+{
+	return changes;
+}

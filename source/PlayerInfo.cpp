@@ -27,8 +27,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "Person.h"
 #include "Planet.h"
-#include "Preferences.h"
 #include "Politics.h"
+#include "Preferences.h"
 #include "Random.h"
 #include "SavedGame.h"
 #include "Ship.h"
@@ -540,7 +540,7 @@ void PlayerInfo::IncrementDate()
 			Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\".");
 	
 	// Check what salaries and tribute the player receives.
-	int total[2] = {0, 0};
+	int64_t total[2] = {0, 0};
 	static const string prefix[2] = {"salary: ", "tribute: "};
 	for(int i = 0; i < 2; ++i)
 	{
@@ -570,7 +570,7 @@ void PlayerInfo::IncrementDate()
 	
 	// Have the player pay salaries, mortgages, etc. and print a message that
 	// summarizes the payments that were made.
-	string message = accounts.Step(assets, Salaries());
+	string message = accounts.Step(assets, Salaries(), Maintenance());
 	if(!message.empty())
 		Messages::Add(message);
 	
@@ -614,7 +614,8 @@ const Planet *PlayerInfo::GetPlanet() const
 
 
 
-// If the player is landed, return the stellar object they are on.
+// If the player is landed, return the stellar object they are on. Some planets
+// (e.g. ringworlds) may include multiple stellar objects in the same system.
 const StellarObject *PlayerInfo::GetStellarObject() const
 {
 	if(!system || !planet)
@@ -682,6 +683,31 @@ int64_t PlayerInfo::Salaries() const
 	
 	// Every crew member except the player receives 100 credits per day.
 	return 100 * (crew - 1);
+}
+
+
+
+// Calculate the daily maintenance cost for all ships and in cargo outfits.
+int64_t PlayerInfo::Maintenance() const
+{
+	int64_t maintenance = 0;
+	// If the player is landed, then cargo will be in the player's 
+	// pooled cargo. Check there so that the bank panel can display the
+	// correct total maintenance costs. When launched all cargo will be
+	// in the player's ships instead of in the pooled cargo, so no outfit 
+	// will be counted twice.
+	for(const auto &outfit : Cargo().Outfits())
+		maintenance += max<int64_t>(0, outfit.first->Get("maintenance costs")) * outfit.second;
+	for(const shared_ptr<Ship> &ship : ships)
+		if(!ship->IsDestroyed())
+		{
+			maintenance += max<int64_t>(0, ship->Attributes().Get("maintenance costs"));
+			for(const auto &outfit : ship->Cargo().Outfits())
+				maintenance += max<int64_t>(0, outfit.first->Get("maintenance costs")) * outfit.second;
+			if(!ship->IsParked())
+				maintenance += max<int64_t>(0, ship->Attributes().Get("operating costs"));
+		}
+	return maintenance;
 }
 
 
@@ -1013,13 +1039,14 @@ void PlayerInfo::Land(UI *ui)
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
 	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsDisabled())
+		if(!ship->IsParked() && !ship->IsDisabled())
 		{
 			if(ship->GetSystem() == system)
 			{
 				ship->Recharge(hasSpaceport);
 				ship->Cargo().TransferAll(cargo);
-				ship->SetPlanet(planet);
+				if(!ship->GetPlanet())
+					ship->SetPlanet(planet);
 			}
 			else
 				ship->Recharge(false);
@@ -1607,7 +1634,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 	if(event.ActorGovernment()->IsPlayer())
 		if((event.Type() & ShipEvent::DISABLE) && event.Target())
 		{
-			int &rating = conditions["combat rating"];
+			auto &rating = conditions["combat rating"];
 			static const int64_t maxRating = 2000000000;
 			rating = min(maxRating, rating + (event.Target()->Cost() + 250000) / 500000);
 		}
@@ -1623,7 +1650,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 
 
 // Get the value of the given condition (default 0).
-int PlayerInfo::GetCondition(const string &name) const
+int64_t PlayerInfo::GetCondition(const string &name) const
 {
 	auto it = conditions.find(name);
 	return (it == conditions.end()) ? 0 : it->second;
@@ -1632,7 +1659,7 @@ int PlayerInfo::GetCondition(const string &name) const
 
 
 // Get mutable access to the player's list of conditions.
-map<string, int> &PlayerInfo::Conditions()
+map<string, int64_t> &PlayerInfo::Conditions()
 {
 	return conditions;
 }
@@ -1640,7 +1667,7 @@ map<string, int> &PlayerInfo::Conditions()
 
 
 // Access the player's list of conditions.
-const map<string, int> &PlayerInfo::Conditions() const
+const map<string, int64_t> &PlayerInfo::Conditions() const
 {
 	return conditions;
 }
@@ -1653,7 +1680,7 @@ void PlayerInfo::SetReputationConditions()
 {
 	for(const auto &it : GameData::Governments())
 	{
-		int rep = it.second.Reputation();
+		int64_t rep = it.second.Reputation();
 		conditions["reputation: " + it.first] = rep;
 	}
 }
@@ -1664,8 +1691,8 @@ void PlayerInfo::CheckReputationConditions()
 {
 	for(const auto &it : GameData::Governments())
 	{
-		int rep = it.second.Reputation();
-		int newRep = conditions["reputation: " + it.first];
+		int64_t rep = it.second.Reputation();
+		int64_t newRep = conditions["reputation: " + it.first];
 		if(newRep != rep)
 			it.second.AddReputation(newRep - rep);
 	}
@@ -2233,7 +2260,7 @@ void PlayerInfo::ApplyChanges()
 	{
 		if(!ship->GetSystem() || ship->GetSystem()->Name().empty())
 			ship->SetSystem(system);
-		if(ship->GetSystem() == system)
+		if(ship->GetSystem() == system && (!ship->GetPlanet() || ship->GetPlanet()->Name().empty()))
 			ship->SetPlanet(planet);
 	}
 	
@@ -2285,13 +2312,14 @@ void PlayerInfo::ApplyChanges()
 // Update the conditions that reflect the current status of the player.
 void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 {
-	// Set a condition for the player's net worth. Limit it to the range of a 32-bit int.
-	static const int64_t limit = 2000000000;
+	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
+	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
 	conditions["net worth"] = min(limit, max(-limit, accounts.NetWorth()));
 	conditions["credits"] = min(limit, accounts.Credits());
 	conditions["unpaid mortgages"] = min(limit, accounts.TotalDebt("Mortgage"));
 	conditions["unpaid fines"] = min(limit, accounts.TotalDebt("Fine"));
 	conditions["unpaid salaries"] = min(limit, accounts.SalariesOwed());
+	conditions["unpaid maintenance"] = min(limit, accounts.MaintenanceDue());
 	conditions["credit score"] = accounts.CreditScore();
 	// Serialize the current reputation with other governments.
 	SetReputationConditions();
@@ -2675,7 +2703,9 @@ void PlayerInfo::Fine(UI *ui)
 {
 	const Planet *planet = GetPlanet();
 	// Dominated planets should never fine you.
-	if(GameData::GetPolitics().HasDominated(planet))
+	// By default, uninhabited planets should not fine the player.
+	if(GameData::GetPolitics().HasDominated(planet)
+		|| !(planet->IsInhabited() || planet->HasCustomSecurity()))
 		return;
 	
 	// Planets should not fine you if you have mission clearance or are infiltrating.
@@ -2684,7 +2714,11 @@ void PlayerInfo::Fine(UI *ui)
 					(mission.Destination() == planet || mission.Stopovers().count(planet))))
 			return;
 	
+	// The planet's government must have the authority to enforce laws.
 	const Government *gov = planet->GetGovernment();
+	if(!gov->CanEnforce(planet))
+		return;
+	
 	string message = gov->Fine(*this, 0, nullptr, planet->Security());
 	if(!message.empty())
 	{
