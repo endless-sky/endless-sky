@@ -594,7 +594,7 @@ ship "Petrel"
 		"mass" 50
 		"drag" 1.8
 		"heat dissipation" .8
-		"outfit space" 140
+		"outfit space" 133
 		"weapon capacity" 33
 		"engine capacity" 34
 		"shield generation" 0.36
@@ -612,7 +612,7 @@ ship "Petrel"
 			"hull damage" 200
 			"hit force" 350
 	outfits
-		"Inhibitor Cannon" 2
+		"Inhibitor Cannon"
 		
 		"Millennium Cell" 2
 		"Crystal Capacitor"
@@ -621,9 +621,9 @@ ship "Petrel"
 		"Crucible-Class Thruster"
 		"Crucible-Class Steering"
 		
-	gun 0 -38.5
-	gun -10.5 -24 "Inhibitor Cannon"
-	gun 10.5 -24 "Inhibitor Cannon"
+	gun 0 -38.5 "Inhibitor Cannon"
+	gun -10.5 -24 
+	gun 10.5 -24
 	turret 0 2.5
 	engine 0 41.5
 	explode "tiny explosion" 30
