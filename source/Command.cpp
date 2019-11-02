@@ -27,15 +27,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-// These lookup tables make it possible to map a command to its description,
-// the name of the key it is mapped to, or the SDL keycode it is mapped to.
-map<Command, string> description;
-map<Command, string> keyName;
-map<int, Command> commandForKeycode;
-map<Command, int> keycodeForCommand;
-// Keep track of any keycodes that are mapped to multiple commands, in order
-// to display a warning to the player.
-map<int, int> keycodeCount;
+	// These lookup tables make it possible to map a command to its description,
+	// the name of the key it is mapped to, or the SDL keycode it is mapped to.
+	map<Command, string> description;
+	map<Command, string> keyName;
+	map<int, Command> commandForKeycode;
+	map<Command, int> keycodeForCommand;
+	// Keep track of any keycodes that are mapped to multiple commands, in order
+	// to display a warning to the player.
+	map<int, int> keycodeCount;
 } // namespace
 
 // Command enumeration, including the descriptive strings that are used for the
@@ -72,117 +72,117 @@ const Command Command::STOP(1ul << 26, "");
 // In the given text, replace any instances of command names (in angle brackets)
 // with key names (in quotes).
 string Command::ReplaceNamesWithKeys(const string &text) {
-  map<string, string> subs;
-  for (const auto &it : description)
-    subs['<' + it.second + '>'] = '"' + keyName[it.first] + '"';
+	map<string, string> subs;
+	for (const auto &it : description)
+		subs['<' + it.second + '>'] = '"' + keyName[it.first] + '"';
 
-  return Format::Replace(text, subs);
+	return Format::Replace(text, subs);
 }
 
 Command::Command() : firing_weps{0, 0, 0, 0, 0, 0, 0, 0} {}
 
 // Create a command representing whatever is mapped to the given key code.
 Command::Command(int keycode) : firing_weps{0, 0, 0, 0, 0, 0, 0, 0} {
-  auto it = commandForKeycode.find(keycode);
-  if (it != commandForKeycode.end())
-    *this = it->second;
+	auto it = commandForKeycode.find(keycode);
+	if (it != commandForKeycode.end())
+		*this = it->second;
 }
 
 // Read the current keyboard state.
 void Command::ReadKeyboard() {
-  Clear();
-  const Uint8 *keyDown = SDL_GetKeyboardState(nullptr);
+	Clear();
+	const Uint8 *keyDown = SDL_GetKeyboardState(nullptr);
 
-  // Each command can only have one keycode, but misconfigured settings can
-  // temporarily cause one keycode to be used for two commands. Also, more
-  // than one key can be held down at once.
-  for (const auto &it : keycodeForCommand)
-    if (keyDown[SDL_GetScancodeFromKey(it.second)])
-      *this |= it.first;
+	// Each command can only have one keycode, but misconfigured settings can
+	// temporarily cause one keycode to be used for two commands. Also, more
+	// than one key can be held down at once.
+	for (const auto &it : keycodeForCommand)
+		if (keyDown[SDL_GetScancodeFromKey(it.second)])
+			*this |= it.first;
 }
 
 // Load the keyboard preferences.
 void Command::LoadSettings(const string &path) {
-  DataFile file(path);
+	DataFile file(path);
 
-  // Create a map of command names to Command objects in the enumeration above.
-  map<string, Command> commands;
-  for (const auto &it : description)
-    commands[it.second] = it.first;
+	// Create a map of command names to Command objects in the enumeration above.
+	map<string, Command> commands;
+	for (const auto &it : description)
+		commands[it.second] = it.first;
 
-  // Each command can only have one keycode, but misconfigured settings can
-  // temporarily cause one keycode to be used for two commands.
-  for (const DataNode &node : file) {
-    auto it = commands.find(node.Token(0));
-    if (it != commands.end() && node.Size() >= 2) {
-      Command command = it->second;
-      int keycode = node.Value(1);
-      keycodeForCommand[command] = keycode;
-      keyName[command] = SDL_GetKeyName(keycode);
-    }
-  }
+	// Each command can only have one keycode, but misconfigured settings can
+	// temporarily cause one keycode to be used for two commands.
+	for (const DataNode &node : file) {
+		auto it = commands.find(node.Token(0));
+		if (it != commands.end() && node.Size() >= 2) {
+			Command command = it->second;
+			int keycode = node.Value(1);
+			keycodeForCommand[command] = keycode;
+			keyName[command] = SDL_GetKeyName(keycode);
+		}
+	}
 
-  // Regenerate the lookup tables.
-  commandForKeycode.clear();
-  keycodeCount.clear();
-  for (const auto &it : keycodeForCommand) {
-    commandForKeycode[it.second] = it.first;
-    ++keycodeCount[it.second];
-  }
+	// Regenerate the lookup tables.
+	commandForKeycode.clear();
+	keycodeCount.clear();
+	for (const auto &it : keycodeForCommand) {
+		commandForKeycode[it.second] = it.first;
+		++keycodeCount[it.second];
+	}
 }
 
 // Save the keyboard preferences.
 void Command::SaveSettings(const string &path) {
-  DataWriter out(path);
+	DataWriter out(path);
 
-  for (const auto &it : commandForKeycode) {
-    auto dit = description.find(it.second);
-    if (dit != description.end())
-      out.Write(dit->second, it.first);
-  }
+	for (const auto &it : commandForKeycode) {
+		auto dit = description.find(it.second);
+		if (dit != description.end())
+			out.Write(dit->second, it.first);
+	}
 }
 
 // Set the key that is mapped to the given command.
 void Command::SetKey(Command command, int keycode) {
-  // Always reset *all* the mappings when one is set. That way, if two commands
-  // are mapped to the same key and you change one of them, the other stays
-  // mapped.
-  keycodeForCommand[command] = keycode;
-  keyName[command] = SDL_GetKeyName(keycode);
+	// Always reset *all* the mappings when one is set. That way, if two commands
+	// are mapped to the same key and you change one of them, the other stays
+	// mapped.
+	keycodeForCommand[command] = keycode;
+	keyName[command] = SDL_GetKeyName(keycode);
 
-  commandForKeycode.clear();
-  keycodeCount.clear();
+	commandForKeycode.clear();
+	keycodeCount.clear();
 
-  for (const auto &it : keycodeForCommand) {
-    commandForKeycode[it.second] = it.first;
-    ++keycodeCount[it.second];
-  }
+	for (const auto &it : keycodeForCommand) {
+		commandForKeycode[it.second] = it.first;
+		++keycodeCount[it.second];
+	}
 }
 
 // Get the description of this command. If this command is a combination of more
 // than one command, an empty string is returned.
 const string &Command::Description() const {
-  static const string empty;
-  auto it = description.find(*this);
-  return (it == description.end() ? empty : it->second);
+	static const string empty;
+	auto it = description.find(*this);
+	return (it == description.end() ? empty : it->second);
 }
 
 // Get the name of the key that is mapped to this command. If this command is
 // a combination of more than one command, an empty string is returned.
 const string &Command::KeyName() const {
-  static const string empty;
-  auto it = keyName.find(*this);
-  return (it == keyName.end() ? empty : it->second);
+	static const string empty;
+	auto it = keyName.find(*this);
+	return (it == keyName.end() ? empty : it->second);
 }
 
 // Check whether this is the only command mapped to the key it is mapped to.
 bool Command::HasConflict() const {
-  auto it = keycodeForCommand.find(*this);
-  if (it == keycodeForCommand.end())
-    return false;
+	auto it = keycodeForCommand.find(*this);
+	if (it == keycodeForCommand.end())
+		return false;
 
-  auto cit = keycodeCount.find(it->second);
-  return (cit != keycodeCount.end() && cit->second > 1);
+	auto cit = keycodeCount.find(it->second);
+	return (cit != keycodeCount.end() && cit->second > 1);
 }
 
 // Reset this to an empty command.
@@ -190,35 +190,35 @@ void Command::Clear() { *this = Command(); }
 
 // Clear any commands that are set in the given command.
 void Command::Clear(Command command) {
-  state &= ~command.state;
-  for (size_t i = 0; i < 8; i++) {
-    firing_weps[i] &= ~(command.firing_weps[i]);
-  }
+	state &= ~command.state;
+	for (size_t i = 0; i < 8; i++) {
+		firing_weps[i] &= ~(command.firing_weps[i]);
+	}
 }
 
 // Set any commands that are set in the given command.
 void Command::Set(Command command) {
-  state |= command.state;
-  for (size_t i = 0; i < 8; i++) {
-    firing_weps[i] |= command.firing_weps[i];
-  }
+	state |= command.state;
+	for (size_t i = 0; i < 8; i++) {
+		firing_weps[i] |= command.firing_weps[i];
+	}
 }
 
 // Check if any of the given command's bits that are set, are also set here.
 bool Command::Has(Command command) const {
-  if (state & command.state)
-    return true;
-  for (size_t i = 0; i < 8; i++) {
-    if (firing_weps[i] & command.firing_weps[i])
-      return true;
-  }
-  return false;
+	if (state & command.state)
+		return true;
+	for (size_t i = 0; i < 8; i++) {
+		if (firing_weps[i] & command.firing_weps[i])
+			return true;
+	}
+	return false;
 }
 
 // Get the commands that are set in this and not in the given command.
 Command Command::AndNot(Command command) const {
-  // At the moment, this is only used for key commands (AI.cpp:288)
-  return Command(state & ~command.state);
+	// At the moment, this is only used for key commands (AI.cpp:288)
+	return Command(state & ~command.state);
 }
 
 // Set the turn direction and amount to a value between -1 and 1.
@@ -229,39 +229,39 @@ double Command::Turn() const { return turn; }
 
 // Check if this command includes a command to fire the given weapon.
 bool Command::HasFire(int index) const {
-  if (index < 0 || index >= 8)
-    return false;
+	if (index < 0 || index >= 8)
+		return false;
 
-  return firing_weps[index >> 6] & (1ull << index % 64);
+	return firing_weps[index >> 6] & (1ull << index % 64);
 }
 
 // Add to this set of commands a command to fire the given weapon.
 void Command::SetFire(int index) {
-  if (index < 0 || index >= 8)
-    return;
+	if (index < 0 || index >= 8)
+		return;
 
-  firing_weps[index >> 6] |= (1ull << index % 64);
+	firing_weps[index >> 6] |= (1ull << index % 64);
 }
 
 // Check if any weapons are firing.
 bool Command::IsFiring() const {
-  return !!(firing_weps[0] | firing_weps[1] | firing_weps[2] | firing_weps[3] |
-            firing_weps[4] | firing_weps[5] | firing_weps[6] | firing_weps[7]);
+	return !!(firing_weps[0] | firing_weps[1] | firing_weps[2] | firing_weps[3] |
+						firing_weps[4] | firing_weps[5] | firing_weps[6] | firing_weps[7]);
 }
 
 // Set the turn rate of the turret with the given weapon index. A value of
 // -1 or 1 means to turn at the full speed the turret is capable of.
 double Command::Aim(int index) const {
-  if (index < 0 || index >= 512)
-    return 0.;
+	if (index < 0 || index >= 512)
+		return 0.;
 
-  return aim[index] / 127.;
+	return aim[index] / 127.;
 }
 
 void Command::SetAim(int index, double amount) {
-  if (index < 0 || index >= 512)
-    return;
-  aim[index] = round(127. * max(-1., min(1., amount)));
+	if (index < 0 || index >= 512)
+		return;
+	aim[index] = round(127. * max(-1., min(1., amount)));
 }
 
 // Check if any bits are set in this command (including a nonzero turn).
@@ -272,37 +272,37 @@ bool Command::operator!() const { return !state && !turn && !IsFiring(); }
 
 // For sorting commands (e.g. so a command can be the key in a map):
 bool Command::operator<(const Command &command) const {
-  // Only used by sorting keys, it appears
-  return (state < command.state);
+	// Only used by sorting keys, it appears
+	return (state < command.state);
 }
 
 // Get the commands that are set in either of these commands.
 Command Command::operator|(const Command &command) const {
-  Command result = *this;
-  result |= command;
-  return result;
+	Command result = *this;
+	result |= command;
+	return result;
 }
 
 // Combine everything in the given command with this command. If the given
 // command has a nonzero turn set, it overrides this command's turn value.
 Command &Command::operator|=(const Command &command) {
-  state |= command.state;
-  if (command.turn)
-    turn = command.turn;
-  for (size_t i = 0; i < 8; i++) {
-    firing_weps[i] = command.firing_weps[i];
-  }
-  return *this;
+	state |= command.state;
+	if (command.turn)
+		turn = command.turn;
+	for (size_t i = 0; i < 8; i++) {
+		firing_weps[i] = command.firing_weps[i];
+	}
+	return *this;
 }
 
 // Private constructor.
 Command::Command(uint32_t state)
-    : state(state), firing_weps{0, 0, 0, 0, 0, 0, 0, 0} {}
+		: state(state), firing_weps{0, 0, 0, 0, 0, 0, 0, 0} {}
 
 // Private constructor that also stores the given description in the lookup
 // table. (This is used for the enumeration at the top of this file.)
 Command::Command(uint32_t state, const string &text)
-    : state(state), firing_weps{0, 0, 0, 0, 0, 0, 0, 0} {
-  if (!text.empty())
-    description[*this] = text;
+		: state(state), firing_weps{0, 0, 0, 0, 0, 0, 0, 0} {
+	if (!text.empty())
+		description[*this] = text;
 }
