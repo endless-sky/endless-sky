@@ -52,5 +52,3 @@ ipch/
 *.sln.docstates
 *.xcodeproj/**
 lib*.dylib
-.gitignore
-EndlessSky.xcodeproj/project.pbxproj
