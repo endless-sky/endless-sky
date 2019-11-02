@@ -208,12 +208,10 @@ ship "Archon"
 		"Drak Draining Field"
 		"Drak Distancer" 2
 		"Drak Turret" 3
-		
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Hyperdrive"
 		"Jump Drive"
-	
 	engine -17 92
 	engine 17 92
 	gun 0 -74 "Drak Antimatter Cannon"

@@ -56,6 +56,8 @@ mission "First Contact: Remnant"
 				decline
 			
 	on enter
+		log "People" "Chilia" `Despite being quite young, Chilia is the Remnant Prefect in charge of Remnant military actions. He is highly respected among Remnant society.`
+		"remnant chilia" ++
 		conversation
 			`As you break orbit and get ready to escape, you receive a message from <planet>. A chant comes from your speakers.`
 			`	"My compatriots seem to have gotten off on the wrong foot. I am Prefect Chilia of the Remnant. We established ourselves here as a bastion of humanity to survive when the rest of human space was under threat by the Alphas.`
@@ -126,6 +128,8 @@ mission "First Contact: Remnant"
 event "ember waste label"
 	galaxy "label waste"
 		sprite label/waste
+
+
 
 # Compatibility patch for those who made contact with the Remnant prior to v0.9.9
 mission "Remnant Blood Test Patch"
@@ -1054,8 +1058,13 @@ mission "Remnant: Return the Samples 2"
 		dialog phrase "generic stopover on visit"
 	on complete
 		"reputation: Drak" += 1
+		event "remnant: return the samples timer" 14
 		conversation
 			`Back on Aventine, you share the recording of the void sprite's behavior with Plume. "These Sprites demonstrate considerably more communication than we originally thought. And obviously they must have communicated what you did on Nasqueron. Interesting..." Plume's excited staccato exclamations trail off as he begins to make notes on a data pad he has on hand. "Thank you for your help, we will let you know what we find out."`
+
+
+
+event "remnant: return the samples timer"
 
 
 
@@ -1714,5 +1723,166 @@ mission "Remnant: Broken Jump Drive job"
 		"reputation: Remnant" ++
 		"Remnant: Broken Jump Drive job: offered" --
 		dialog "The research team quickly offloads the broken jump drive and pays you <payment> before hurrying back to their lab."
+
+
+
+mission "Remnant: Face to Maw 1"
+	name "Talk to Plume about the void sprites"
+	description "Plume would be very interested in a report on what happened with the void sprites."
+	landing
+	to offer
+		has "event: remnant: return the samples timer"
+	source
+		system "Nenia"
+	destination "Aventine"
+	on offer
+		conversation
+			`As the swirls of gas close over the <ship> you wonder idly what brought you back here. This time, there is no apologetic researcher asking you to risk your life for research, or to return eggs from where they were stolen. You catch a glimpse of the Archon materializing above the clouds as it decloaks, letting you know that you're being watched, but saying nothing; for now, it is nothing more than a silent, brooding presence in the skies of Nenia. The silent depths of an alien world fold over you, gradually erasing the rest of the galaxy from sight.`
+			`	As the <ship> levels off at the designated altitude, you strap yourself into a pressure suit. Stepping into the airlock, you grimace at the antiquity of these "hard-shell" shield systems, and lower the shields so that you can exit onto the hull. Out on the surface, you admire the misty kaleidoscope of colors filtering down through the cloud layers, playing over distant shapes moving in the mists.`
+			`	Before long several void sprites emerge, weaving and dancing among the clouds. They swirl for a few minutes around your cargo bay doors as if waiting for something, then pulse briefly with flickers of light and drop into the clouds below. Another void sprite flutters around the <ship>, poking at the hull and sliding over it with its tentacles. You quickly think to turn on your video recorder to catch the scene. The void sprite notices your brief movement, and turns towards you with a lunge. As it closes on you, your attention is drawn to what you suspect is its mouth: a zig-zagging crack that peels open like a zipper to reveal an opening that resembles an industrial grinder.`
+			`	Up close, the void sprite is massive. Most of its tentacles are easily as thick as your leg, and move with surprising speed and precision. It shifts through the air like a strange deep-sea fish in water. You can make out a low vibration you suspect is from the air whistling over the void sprite as it closes with you. As the giant creature rapidly approaches, you can feel a heavy paralysis weigh down on you. Suddenly, you recall that your shields are keyed to your equipment; you could activate them to protect yourself and they would extend around you. It probably wouldn't be too healthy for the void sprite, though.`
+			choice
+				`	(Activate the shields.)`
+				`	(Do not activate the shields.)`
+					goto holdground
+			`	You push against the paralysis and trigger the shields in a rush. The millisecond that follows feels like an eternity. The void sprite is just a few meters away, one tendril reaches out and touches you just as the shield slams into place. The tendril becomes caught on both sides of the shield, cleaving it in two. In the same instant, the pressure on your mind vanishes as if it was simply a dream. You momentarily stare at the immobile void sprite, frozen in shock over what just happened. Then time reasserts itself and the sprite spasms away from the ship with an unearthly crescendo of dissonant tones. It plunges down into the clouds, leaving you standing on your hull with the floating severed piece of tendril.`
+			`	You carefully scoop up the tendril in a container and seal it. While the attack spoiled the beautiful moment, at least you have a sample and some recordings that might be of interest to Plume.`
+				flee
+			label holdground
+			`	The feeling of paralysis leaves your body as the void sprite is only a few meters away, but you resolve yourself to face down the creature without triggering your shields. Time seems to slow down as the sprite rushes up to you and its leading tentacle reaches out to touch you. As you brace for an impact you realize that the sprite has managed to bring itself to a complete stop and the tentacle has telescoped in on itself slightly. You can see that it is touching you, but you didn't even feel the impact. You and the void sprite stand frozen for a moment, and the force trying to paralyze you snaps off, replaced by a feeling of weightlessness. Moments later the void sprite pulls back and pulses skyward with an unearthly fountain of sounds, spiraling around the <ship> before disappearing into the swirling clouds.`
+			`	As you re-enter the ship, you notice that your suit is covered in some kind of translucent slime. You scrape off as much as you can into a sealed container, but your pressure suit appears to be permanently stained an iridescent purplish color as a result. You resolve to go find Plume, since he will almost certainly find this interesting.`
+				accept
+	on accept
+		fail "Remnant: Face to Maw 1B"
+	on complete
+		conversation
+			`When you walk into Plume's lab on Aventine you find him buried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his data pad. After a few minutes he looks up and sees you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
+			`	"Captain <first>! What a pleasant surprise," he trills. "If you are looking for more work, I don't have anything for you right now."`
+			`	You tell Plume about how you visited Nenia and had an interesting encounter with a void sprite, and offer him the recording and container of slime. He eagerly accepts the data chip and the container from you. Sliding the container into some kind of machine, it immediately starts to whir as he slots the data chip into his console. Moments later his holographic projection shifts to the new footage. He checks the timestamps, then chants, "These will take me a little while to analyze. I will meet you in the spaceport in a few hours to discuss my preliminary findings."`
+
+
+
+mission "Remnant: Face to Maw 1B"
+	name "Talk to Plume about the void sprites"
+	description "Plume would be very interested in a report on what happened with the void sprites."
+	landing
+	to offer
+		has "remnant: return the samples timer"
+	to fail
+		or
+			has "Remnant: Face to Maw 1: done"
+			has "Remnant: Face to Maw 1: active"
+	to complete
+		has "Remnant: Face to Maw 1: declined"
+	source
+		system "Nenia"
+	destination "Aventine"
+	on complete
+		conversation
+			`When you walk into Plume's lab on Aventine you find him buried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his data pad. After a few minutes he looks up and sees you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
+			`	"Captain <first>! What a pleasant surprise," he trills. "If you are looking for more work, I don't have anything for you right now."`
+			`	You tell Plume about how you visited Nenia and had a threatening encounter with a void sprite, and offer him the recording and container with the tentacle. Plume recoils from you in disgust. "After all our work rebuilding trust with the Archon and the void sprites, you go and risk it for... what, exactly? Sightseeing? Thrill of the hunt?" His chant settles into an angry tone. "Leave the recording on the console. I want no part of that tentacle, though."`
+			`	As you are leaving Plume's lab a technician pulls you aside. "Our records mention that the tentacles had some interesting properties that were useful in combat. If you are interested, meet me in the spaceport in a few hours."`
+
+
+
+mission "Remnant: Face to Maw 2"
+	name "Take the slime sample to Viminal"
+	description "The void sprite slime has properties of interest to a team of engineers on <planet>."
+	to offer
+		has "Remnant: Face to Maw 1: done"
+	source "Aventine"
+	destination "Viminal"
+	cargo "slime sample" 1
+	on offer
+		conversation
+			`When Plume finally arrives you can tell from his step that he is excited. He slides onto the bench opposite to you and pulls out a data pad. "I admire your bravery, Captain. I don't think I would have had the courage to hold my ground against a void sprite like that," he chants respectfully, then changes tone to one of wonder. "In that last moment it almost looked like it was sizing you up or examining you." He shakes his head with an amused expression. "I spend so much time studying non-human creatures I sometimes slip and start anthropomorphizing them." His voice takes on a more militant cadence. "That was probably some kind of territorial display, or possibly some kind of dominance challenge. We don't know enough about void sprite behavior to speculate further, though.`
+			`	"Be that as it may be, the more immediate reward for your curiosity is in this sample," he trills with excitement. "Several of our labs on Viminal have been working on the development of a new generation of ship technology, and this substance contains some chemicals that could be a key component. I have already transmitted the data to them, but they would like to compare with the original. Could you take this sample to them?"`
+			choice
+				`	"Yes, I can."`
+					accept
+				`	"I would rather not."`
+			`	Plume stoically accepts that with a nod. "That is your choice. I will arrange for another ship to transport it."`
+			decline
+	on accept
+		event "remnant: penguin"
+	on complete
+		log "People" "Taely" `One of Taely's main priorities is improving the maneuverability characteristics of Remnant Ships. To this end she has been working on building a new prototype ship based on the void sprites.`
+		"remnant taely" ++
+		payment 1000000
+		conversation
+			branch taely
+				"remnant taely" > 1
+			`When you land on Viminal a solidly built female Remnant in coveralls is waiting for you. "Greetings, Captain <first>. My name is Taely, and I am a Prefect among the Remnant. Above all else, I study motion, and in particular how our starships move."`
+				goto main
+			label taely
+			`	When you land on Viminal you spot Taely waiting for you. "Greetings, Captain <first>. It is good to see you again."`
+			label main
+			`	She makes a gesture you are starting to recognize as a sign of curiosity. "So, Plume sent us some very interesting data, along with a message to expect you with a sample?" You hand her the container with the slime sample and she holds it up to the light. "Interesting looking substance," she chants. "Let's go back to my workshop."`
+			choice
+				`	"Okay, let's go."`
+					goto follow
+				`	"Could I catch up with you in a minute?"`
+			`	"Sure, just don't take too long. My project has reached its final stage."`
+			`	You take your time to get to the workshop, admiring the view along the way. When you finally arrive at the workshop you can hear strange noises coming from inside, accompanied by the smell of a thunderstorm in a swamp. You step into the workshop and come to a stop to stare at the thing in front of you.`
+				goto skip
+			label follow
+			`	She leads the way through several side passages to an out-of-the-way landing pad connected to a large hangar. Inside, you can see a giant tank filled with a murky fluid, surrounded by equipment and displays. She makes her way over to a large machine with several slots which she slides the container into.`
+			`	As the machine starts to work, she turns back to you. "As the primary example of space-faring life, the void sprites have always been of interest to me. They have numerous advantages that we as atmosphere-bound creatures can only dream of, such as being able to experience space in a much more direct manner. I have been working on a side project to build a new generation of ships that melds these ideas with our current technology, but the data we have on the void sprites is centuries old and incomplete." Her chant trails off as she pulls up a display with your original scans on them. "However, your recent explorations provided new data I could use to update my designs. This slime that you retrieved is the final ingredient."`
+			choice
+				`	"So my data is helping to develop new technology?"`
+				`	"That's good. Any chance of a bonus for me?"`
+			`	The machine dings, and she looks over the results and then trills excitedly. "Yes, it matches! So it is time to begin the final activation." She strides over to a central console and taps in a series of commands, followed by an iris scan and a blood prick. The industrial hum of the room suddenly ramps up to a crescendo as your nose is assaulted by what you can only describe as the smell of a thunderstorm in a swamp. A few seconds later the noise softens, and the tank starts lowering into the floor as a shape emerges from the liquid.`
+			label skip
+			`	The ship before you has some faint traces of the gascraft you have flown to Nenia, along with other elements of Remnant design, but it is clearly something new. Its antennae swivel around, as if taking in its environment, and the tentacles along the side twitch and reach out to touch its surroundings. Solidly built tendrils underneath it flex as it lifts itself off its supports and begins to move around. You have a momentary vision of what this ship might look like in the skies of Nenia.`
+			scene "scene/penguinscene"
+			`	Taely's droning chant of technical details finally seeps through your reverie: "... So from a captain's point of view flying the penguin should be very similar to a normal ship, except she flies herself and doesn't need a crew to run her systems." She pauses, and looks at you. "Your curiosity provided the final ingredients to bring her to life. You should be the first to have one. You'll still have to go through the shipyard to register her and pay the resource cost to balance the logistics, but this first one is reserved for you." She pats the nose of the Penguin and it makes a wooshing noise. After a moment she starts going over the ship with a scanner, leaving you to contemplate in silence.`
+
+event "remnant: penguin"
+	shipyard "Remnant Gascraft"
+		"Penguin"
+
+
+
+mission "Remnant: Face to Maw 2B"
+	name "Take the tentacle to Chilia's engineers on Caelian"
+	description "The tentacle has properties that may be put to use by the engineers on <planet>."
+	to offer
+		has "Remnant: Face to Maw 1B: done"
+	source "Aventine"
+	destination "Caelian"
+	cargo "tentacle" 1
+	on offer
+		conversation
+			`When the technician arrives in the spaceport he immediately strides over to you. "I checked the records, and my memory was correct. One of our research teams centuries ago discovered that these tentacles could be used as a devastating weapon in close quarters combat."`
+			`	He pulls out an image of a strange-looking rifle and continues to chant, "The personal weapons lab under Prefect Chilia has a few of the old weapon frames. If you go visit it on Aventine, they could turn this tentacle into a potent weapon for you."`
+			choice
+				`	"That sounds good."`
+					accept
+				`	"I would rather not."`
+			`	The technician looks disappointed. "Oh well, enjoy your trophy."`
+			decline
+	on complete
+		log "People" "Chilia" `As a military prefect, Chilia is responsible for the defense of Remnant space. He can usually be found on the front lines of combat unless required to work on tactics for the Remnant as a whole.`
+		payment 250000
+		"remnant chilia" ++
+		outfit "Void Rifle"
+		conversation
+			branch chilia
+				"remnant chilia" > 1
+			`You follow the directions provided to you and eventually find yourself at a Remnant weapons lab. You enter and are met by security, who asks you to wait. A few minutes later a fit young man emerges from another door. "Greetings, Captain <first>," he sings. "I am Prefect Chilia. I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles depreciatingly. "I say 'nominal' as virtually all our activities are militaristic in some way, but usually fall under the purview of those who better understand them."`
+				goto main
+			label chilia
+			`You follow the directions provided to you and eventually find yourself at a Remnant weapons lab. You enter and are met by security, who asks you to wait. A few minutes later a fit young man emerges from another door. "Greetings, captain <first>," he sings. "We meet once again." You immediately recognize the voice as being the man who convinced you to provide the blood sample and get to know the Remnant. "We didn't get a proper introduction last time, but you have probably figured out that I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles depreciatingly, "I say 'nominal' as virtually all our activities are military in some way, but usually fall under the purview of those who better understand them."`
+			label main
+			`	He leads you to a room that looks like an armory where a team of technicians is putting the finishing touches on a rifle stock. "The request from the technician on your behalf caught my attention, as we haven't had the key resources for making void rifles in centuries. Fortunately, we haven't really needed them since we resolved the threats that originally plagued our settlements.`
+			choice
+				`	"It's called a void rifle?"`
+				`	"I don't need details."`
+					goto end
+			`	"Yes, void rifle. I don't know who discovered it, but someone figured out that if a particularly high charge was poured through the tentacle's nervous system in a specific pattern, it emits a paralyzing cone of energy with a reasonably decent range. I'm neither an engineer or a biologist, so I do not really understand the mechanics of it." He pauses to watch as a technician installs the now-caged tentacle on top of the stock. "Suffice it to say, it is useless for sniping, but its ability to shoot through walls and affect areas makes it excellent for sweeping ships and building-to-building clearing operations.`
+			label end
+			`	"All right, enough history." He turns to the technicians who are finishing the assembly. "The tentacle has been treated to resist decay and the stock mechanisms will provide basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
+			scene "outfit/void rifle"
 
 

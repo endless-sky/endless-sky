@@ -20,18 +20,11 @@ mission "Deep: Syndicate Convoy"
 	to offer
 		"combat rating" > 65
 		not "Deep: Mystery Cubes 4: done"
-		or
-			random < 20
-			and
-				"deep convoy" == 1
-				random < 30
-			and
-				"deep convoy" == 2
-				random < 40
+		random < 20 + "deep convoy" * 15
 		or
 			not "chosen sides"
 			has "main plot completed"
-				
+		
 	on offer
 		conversation
 			`You are approached by a man in a Deep Security uniform who asks if you would be willing to escort a few freighters to <stopovers> and back by <day>. "We would normally have our own fleet do it," he says, "but we're short on available ships given certain circumstances."`
@@ -116,14 +109,7 @@ mission "Deep: Tarazed Convoy"
 	to offer
 		"combat rating" > 65
 		not "Deep: Mystery Cubes 4: done"
-		or
-			random < 20
-			and
-				"deep convoy" == 1
-				random < 30
-			and
-				"deep convoy" == 2
-				random < 40
+		random < 20 + "deep convoy" * 15
 		or
 			not "chosen sides"
 			has "main plot completed"
@@ -215,14 +201,7 @@ mission "Deep: Kraz Convoy"
 	to offer
 		"combat rating" > 80
 		not "Deep: Mystery Cubes 4: done"
-		or
-			random < 20
-			and
-				"deep convoy" == 1
-				random < 30
-			and
-				"deep convoy" == 2
-				random < 40
+		random < 20 + "deep convoy" * 15
 		or
 			not "chosen sides"
 			has "main plot completed"
@@ -313,16 +292,7 @@ mission "Deep: Mystery Cubes 0"
 	to offer
 		"mystery cube" >= 3
 		"combat rating" > 100
-		or
-			and
-				"deep convoy" == 1
-				random < 30
-			and
-				"deep convoy" == 2
-				random < 60
-			and
-				"deep convoy" == 3
-				random < 90
+		random < "deep convoy" * 30
 		or
 			not "chosen sides"
 			has "main plot completed"
@@ -1452,7 +1422,7 @@ mission "Deep: Remnant 2A"
 		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
 	
 	on visit
-		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <stopovers>. Make sure you're using an outfit scanner as well."`
+		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <waypoints>. Make sure you're using an outfit scanner as well."`
 	on complete
 		event "deep: scan log research" 14
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
@@ -1487,7 +1457,7 @@ mission "Deep: Remnant 1B"
 		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
 	
 	on visit
-		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <stopovers>. Make sure you're using an outfit scanner as well."`
+		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <waypoints>. Make sure you're using an outfit scanner as well."`
 	on complete
 		event "deep: scan log research" 14
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
@@ -1524,7 +1494,7 @@ mission "Deep: Remnant 1C"
 		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
 	
 	on visit
-		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <stopovers>. Make sure you're using an outfit scanner as well."`
+		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <waypoints>. Make sure you're using an outfit scanner as well."`
 	on complete
 		event "deep: scan log research" 14
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
