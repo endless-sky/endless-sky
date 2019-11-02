@@ -51,4 +51,3 @@ ipch/
 *.userosscache
 *.sln.docstates
 *.xcodeproj/**
-lib*.dylib
