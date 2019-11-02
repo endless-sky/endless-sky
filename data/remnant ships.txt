@@ -806,6 +806,9 @@ ship "Tern"
 		"hull repair rate" 0.55
 		"hull energy" 0.37
 		"gaslining" 1
+		"outfit scan power" 10
+		"outfit scan speed" 1
+		"tactical scan power" 20
 		"atmosphere scan" 100
 		"asteroid scan power" 30
 		weapon
