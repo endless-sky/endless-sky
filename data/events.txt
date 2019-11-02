@@ -2439,6 +2439,15 @@ event "fwc pug invasion"
 	link "Zeta Aquilae" Deneb
 	link Rasalhague Deneb
 	"reputation: Pug" <?= -1000
+	"tribute: Rand" /= 500
+	"tribute: Oblivion" /= 500
+	"tribute: Silver" /= 700
+	"tribute: Shiver" /= 300
+	"tribute: Millrace" /= 1400
+	"tribute: Maker" /= 1700
+	"tribute: Furnace" /= 1200
+	"tribute: Reunion" /= 2900
+	"tribute: Kraken Station" /= 500
 	government Pug
 		"attitude toward"
 			"Free Worlds" -.01
@@ -2491,22 +2500,58 @@ event "fwc pug invasion"
 		fleet "Human Miners" 1600
 	planet "Rand"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Oblivion"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Silver"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Shiver"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Millrace"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Maker"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Furnace"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Reunion"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Kraken Station"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 
 
 
@@ -2607,6 +2652,7 @@ event "fwc battle for rasalhague"
 
 
 event "fwc liberation of rasalhague"
+	"tribute: Oblivion" *= 500
 	system Rasalhague
 		government "Free Worlds"
 		fleet "Small Southern Merchants" 1500
@@ -2634,6 +2680,11 @@ event "fwc liberation of rasalhague"
 		fleet "Small Core Merchants" 10000
 		fleet "Small Pug" 100
 		fleet "Large Pug" 100
+	planet "Oblivion"
+		security 0.05
+		tribute 500
+			threshold 3000
+			fleet "Large Militia" 10
 
 
 
@@ -2644,6 +2695,7 @@ event "fwc reconnect ascella"
 
 event "fwc reconnect zeta aquilae"
 	link "Zeta Aquilae" Ascella
+	"tribute: Rand" *= 500
 	system "Zeta Aquilae"
 		government "Free Worlds"
 		fleet "Small Southern Merchants" 1500
@@ -2654,12 +2706,24 @@ event "fwc reconnect zeta aquilae"
 		fleet "Large Free Worlds" 800
 	system Orvala
 		government "Free Worlds"
+	planet "Rand"
+		security 0.05
+		tribute 500
+			threshold 3000
+			fleet "Large Militia" 10
 
 
 
 event "fwc liberation of vega"
+	"tribute: Silver" *= 700
 	system Vega
 		government "Republic"
+	planet "Silver"
+		security 0.1
+		tribute 700
+			threshold 4000
+			fleet "Small Republic" 25
+			fleet "Large Republic" 2
 
 
 
@@ -2676,6 +2740,12 @@ event "fwc reconnect vega"
 
 
 event "fwc pug defeated"
+	"tribute: Shiver" *= 300
+	"tribute: Milrace" *= 1400
+	"tribute: Maker" *= 1700
+	"tribute: Furnace" *= 1200
+	"tribute: Reunion" *= 2900
+	"tribute: Kraken Station" *= 500
 	system Altair
 		government Republic
 	system "Delta Capricorni"
@@ -2702,16 +2772,36 @@ event "fwc pug defeated"
 		security 0.1
 	planet "Shiver"
 		security 0.1
+		tribute 300
+			threshold 2000
+			fleet "Small Republic" 10
+			fleet "Large Republic" 2
 	planet "Millrace"
 		security 0.2
+		tribute 1400
+			threshold 4000
+			fleet "Large Syndicate" 10
 	planet "Maker"
 		security 0.4
+		tribute 1700
+			threshold 4500
+			fleet "Large Syndicate" 12
 	planet "Furnace"
 		security 0.1
+		tribute 1200
+			threshold 3500
+			fleet "Large Syndicate" 9
 	planet "Reunion"
 		security 0.3
+		tribute 2900
+			threshold 5000
+			fleet "Large Syndicate" 19
 	planet "Kraken Station"
 		security 0.3
+		tribute 500
+			threshold 3500
+			fleet "Small Syndicate" 7
+			fleet "Large Syndicate" 2
 
 
 
