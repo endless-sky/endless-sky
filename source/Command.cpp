@@ -75,7 +75,7 @@ string Command::ReplaceNamesWithKeys(const string &text) {
 	map<string, string> subs;
 	for (const auto &it : description)
 		subs['<' + it.second + '>'] = '"' + keyName[it.first] + '"';
-
+	
 	return Format::Replace(text, subs);
 }
 
@@ -92,7 +92,7 @@ Command::Command(int keycode) : firing_weps{0, 0, 0, 0, 0, 0, 0, 0} {
 void Command::ReadKeyboard() {
 	Clear();
 	const Uint8 *keyDown = SDL_GetKeyboardState(nullptr);
-
+	
 	// Each command can only have one keycode, but misconfigured settings can
 	// temporarily cause one keycode to be used for two commands. Also, more
 	// than one key can be held down at once.
@@ -104,12 +104,12 @@ void Command::ReadKeyboard() {
 // Load the keyboard preferences.
 void Command::LoadSettings(const string &path) {
 	DataFile file(path);
-
+	
 	// Create a map of command names to Command objects in the enumeration above.
 	map<string, Command> commands;
 	for (const auto &it : description)
 		commands[it.second] = it.first;
-
+	
 	// Each command can only have one keycode, but misconfigured settings can
 	// temporarily cause one keycode to be used for two commands.
 	for (const DataNode &node : file) {
@@ -121,7 +121,7 @@ void Command::LoadSettings(const string &path) {
 			keyName[command] = SDL_GetKeyName(keycode);
 		}
 	}
-
+	
 	// Regenerate the lookup tables.
 	commandForKeycode.clear();
 	keycodeCount.clear();
@@ -134,7 +134,7 @@ void Command::LoadSettings(const string &path) {
 // Save the keyboard preferences.
 void Command::SaveSettings(const string &path) {
 	DataWriter out(path);
-
+	
 	for (const auto &it : commandForKeycode) {
 		auto dit = description.find(it.second);
 		if (dit != description.end())
@@ -149,10 +149,10 @@ void Command::SetKey(Command command, int keycode) {
 	// mapped.
 	keycodeForCommand[command] = keycode;
 	keyName[command] = SDL_GetKeyName(keycode);
-
+	
 	commandForKeycode.clear();
 	keycodeCount.clear();
-
+	
 	for (const auto &it : keycodeForCommand) {
 		commandForKeycode[it.second] = it.first;
 		++keycodeCount[it.second];
@@ -180,7 +180,7 @@ bool Command::HasConflict() const {
 	auto it = keycodeForCommand.find(*this);
 	if (it == keycodeForCommand.end())
 		return false;
-
+	
 	auto cit = keycodeCount.find(it->second);
 	return (cit != keycodeCount.end() && cit->second > 1);
 }
@@ -231,7 +231,7 @@ double Command::Turn() const { return turn; }
 bool Command::HasFire(int index) const {
 	if (index < 0 || index >= 8)
 		return false;
-
+	
 	return firing_weps[index >> 6] & (1ull << index % 64);
 }
 
@@ -239,7 +239,7 @@ bool Command::HasFire(int index) const {
 void Command::SetFire(int index) {
 	if (index < 0 || index >= 8)
 		return;
-
+	
 	firing_weps[index >> 6] |= (1ull << index % 64);
 }
 
@@ -254,7 +254,7 @@ bool Command::IsFiring() const {
 double Command::Aim(int index) const {
 	if (index < 0 || index >= 512)
 		return 0.;
-
+	
 	return aim[index] / 127.;
 }
 
