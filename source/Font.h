@@ -61,7 +61,7 @@ public:
 		uint_fast8_t paragraphBreak = 0;
 		
 		Layout() noexcept = default;
-		Layout(Truncate t, int w) noexcept;
+		Layout(Truncate t, int w, Align a = LEFT) noexcept;
 		Layout(const Layout& a) noexcept = default;
 		Layout &operator=(const Layout& a) noexcept = default;
 		bool operator==(const Layout &a) const;
@@ -188,8 +188,8 @@ private:
 
 
 inline
-Font::Layout::Layout(Truncate t, int w) noexcept
-	: truncate(t), width(w)
+Font::Layout::Layout(Truncate t, int w, Align a) noexcept
+	: align(a), truncate(t), width(w)
 {
 }
 
