@@ -103,12 +103,15 @@ void PlanetPanel::Draw()
 	
 	if(planet.CanUseServices())
 	{
-		if(flagship && planet.IsInhabited())
+		if(planet.IsInhabited())
 		{
-			info.SetCondition("is inhabited");
 			info.SetCondition("has bank");
-			if(system.HasTrade())
-				info.SetCondition("has trade");
+			if(flagship)
+			{
+				info.SetCondition("is inhabited");
+				if(system.HasTrade())
+					info.SetCondition("has trade");
+			}
 		}
 		
 		if(flagship && planet.HasSpaceport())
