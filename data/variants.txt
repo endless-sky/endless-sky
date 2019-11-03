@@ -1000,14 +1000,15 @@ ship "Frigate" "Frigate (Mark II)"
 		"Blaster Turret" 2
 		"NT-200 Nucleovoltaic"
 		"Dwarf Core"
-		"LP036a Battery Pack"
+		"LP072a Battery Pack"
+		"Supercapacitor"
 		"D41-HY Shield Generator"
 		"Small Radar Jammer"
 		"Water Coolant System"
 		"Outfits Expansion"
 		"Laser Rifle" 8
 		"Fragmentation Grenades" 8
-		"X3700 Ion Thruster"
+		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 	turret "Anti-Missile Turret"
@@ -1559,14 +1560,14 @@ ship "Mule" "Mule (Hai Engines)"
 		"Pulse Rifle"
 		`"Bondir" Atomic Thruster`
 		`"Biroo" Atomic Steering`
-		`"Basrem" Atomic Steering`
 		"Hyperdrive"
 
 
 ship "Mule" "Mule (Hai Weapons)"
 	outfits
 		"Ion Cannon"
-		"Pulse Turret" 4
+		"Pulse Turret" 2
+		"Chameleon Anti-Missile" 2
 		"Geode Reactor"
 		"Hai Ravine Batteries"
 		"Hai Fissure Batteries"
@@ -1582,9 +1583,10 @@ ship "Mule" "Mule (Hai Weapons)"
 
 ship "Mule" "Mule (Heavy)"
 	outfits
-		"Heavy Laser Turret" 4
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
+		"Heavy Laser Turret" 3
+		"Heavy Anti-Missile Turret"
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"Supercapacitor" 4
