@@ -2075,7 +2075,7 @@ event "pug territory liberated"
 	"tribute: Rand" *= 500
 	"tribute: Oblivion" *= 500
 	"tribute: Silver" *= 700
-	"tribute: Milrace" *= 1400
+	"tribute: Millrace" *= 1400
 	"tribute: Maker" *= 1700
 	"tribute: Furnace" *= 1200
 	"tribute: Reunion" *= 2900
@@ -2741,7 +2741,7 @@ event "fwc reconnect vega"
 
 event "fwc pug defeated"
 	"tribute: Shiver" *= 300
-	"tribute: Milrace" *= 1400
+	"tribute: Millrace" *= 1400
 	"tribute: Maker" *= 1700
 	"tribute: Furnace" *= 1200
 	"tribute: Reunion" *= 2900
