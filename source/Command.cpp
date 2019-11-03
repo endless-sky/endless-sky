@@ -264,6 +264,7 @@ bool Command::Has(Command command) const
 			return true;
 	}
 	return false;
+	// return (state & command.state);
 }
 
 
@@ -296,10 +297,10 @@ double Command::Turn() const
 // Check if this command includes a command to fire the given weapon.
 bool Command::HasFire(int index) const
 {
-	if(index < 0 || index >= 8)
+	if(index < 0 || index >= 512)
 		return false;
 	
-	return firing_weps[index >> 6] & (1ull << index % 64);
+	return firing_weps[index >> 6] & (1ull << (index % 64));
 }
 
 
@@ -307,10 +308,10 @@ bool Command::HasFire(int index) const
 // Add to this set of commands a command to fire the given weapon.
 void Command::SetFire(int index)
 {
-	if(index < 0 || index >= 8)
+	if(index < 0 || index >= 512)
 		return;
 	
-	firing_weps[index >> 6] |= (1ull << index % 64);
+	firing_weps[index >> 6] |= (1ull << (index % 64));
 }
 
 
@@ -318,8 +319,8 @@ void Command::SetFire(int index)
 // Check if any weapons are firing.
 bool Command::IsFiring() const
 {
-	return !!(firing_weps[0] | firing_weps[1] | firing_weps[2] | firing_weps[3] |
-						firing_weps[4] | firing_weps[5] | firing_weps[6] | firing_weps[7]);
+	return (firing_weps[0] || firing_weps[1] || firing_weps[2] || firing_weps[3] ||
+						firing_weps[4] || firing_weps[5] || firing_weps[6] || firing_weps[7]);
 }
 
 
@@ -388,7 +389,7 @@ Command &Command::operator|=(const Command &command)
 	if(command.turn)
 		turn = command.turn;
 	for(size_t i = 0; i < 8; i++)
-		firing_weps[i] = command.firing_weps[i];
+		firing_weps[i] |= command.firing_weps[i];
 	return *this;
 }
 
