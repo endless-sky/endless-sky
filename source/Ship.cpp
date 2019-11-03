@@ -201,6 +201,9 @@ void Ship::Load(const DataNode &node)
 				armament.AddGunPort(hardpoint, outfit);
 			else
 				armament.AddTurret(hardpoint, outfit);
+			// Print a warning for the first hardpoint after 512, i.e. only 1 warning per ship.
+			if(armament.Get().size() == 513)
+				child.PrintTrace("Warning: ship has more than 512 weapon hardpoints. Some weapons may not fire:");
 		}
 		else if(key == "never disabled")
 			neverDisabled = true;
@@ -1684,7 +1687,7 @@ void Ship::DoGeneration()
 		
 		// Convert fuel into energy and heat only when the required amount of fuel is available.
 		if(attributes.Get("fuel consumption") <= fuel)
-		{	
+		{
 			fuel -= attributes.Get("fuel consumption");
 			energy += attributes.Get("fuel energy");
 			heat += attributes.Get("fuel heat");
