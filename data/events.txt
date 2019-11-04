@@ -2443,11 +2443,8 @@ event "fwc pug invasion"
 	"tribute: Oblivion" /= 500
 	"tribute: Silver" /= 700
 	"tribute: Shiver" /= 300
-	"tribute: Millrace" /= 1400
 	"tribute: Maker" /= 1700
 	"tribute: Furnace" /= 1200
-	"tribute: Reunion" /= 2900
-	"tribute: Kraken Station" /= 500
 	government Pug
 		"attitude toward"
 			"Free Worlds" -.01
@@ -2522,12 +2519,6 @@ event "fwc pug invasion"
 			threshold 3000
 			fleet "Small Pug" 15
 			fleet "Large Pug" 3
-	planet "Millrace"
-		security 0
-		tribute 1
-			threshold 3000
-			fleet "Small Pug" 15
-			fleet "Large Pug" 3
 	planet "Maker"
 		security 0
 		tribute 1
@@ -2535,18 +2526,6 @@ event "fwc pug invasion"
 			fleet "Small Pug" 15
 			fleet "Large Pug" 3
 	planet "Furnace"
-		security 0
-		tribute 1
-			threshold 3000
-			fleet "Small Pug" 15
-			fleet "Large Pug" 3
-	planet "Reunion"
-		security 0
-		tribute 1
-			threshold 3000
-			fleet "Small Pug" 15
-			fleet "Large Pug" 3
-	planet "Kraken Station"
 		security 0
 		tribute 1
 			threshold 3000
@@ -2741,11 +2720,8 @@ event "fwc reconnect vega"
 
 event "fwc pug defeated"
 	"tribute: Shiver" *= 300
-	"tribute: Millrace" *= 1400
 	"tribute: Maker" *= 1700
 	"tribute: Furnace" *= 1200
-	"tribute: Reunion" *= 2900
-	"tribute: Kraken Station" *= 500
 	system Altair
 		government Republic
 	system "Delta Capricorni"
@@ -2770,11 +2746,6 @@ event "fwc pug defeated"
 			threshold 2000
 			fleet "Small Republic" 10
 			fleet "Large Republic" 2
-	planet "Millrace"
-		security 0.2
-		tribute 1400
-			threshold 4000
-			fleet "Large Syndicate" 10
 	planet "Maker"
 		security 0.4
 		tribute 1700
@@ -2785,17 +2756,6 @@ event "fwc pug defeated"
 		tribute 1200
 			threshold 3500
 			fleet "Large Syndicate" 9
-	planet "Reunion"
-		security 0.3
-		tribute 2900
-			threshold 5000
-			fleet "Large Syndicate" 19
-	planet "Kraken Station"
-		security 0.3
-		tribute 500
-			threshold 3500
-			fleet "Small Syndicate" 7
-			fleet "Large Syndicate" 2
 
 
 
