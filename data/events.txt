@@ -2441,7 +2441,6 @@ event "fwc pug invasion"
 	"reputation: Pug" <?= -1000
 	"tribute: Rand" /= 500
 	"tribute: Oblivion" /= 500
-	"tribute: Silver" /= 700
 	"tribute: Shiver" /= 300
 	"tribute: Maker" /= 1700
 	"tribute: Furnace" /= 1200
@@ -2507,12 +2506,6 @@ event "fwc pug invasion"
 			threshold 3000
 			fleet "Small Pug" 15
 			fleet "Large Pug" 3
-	planet "Silver"
-		security 0
-		tribute 1
-			threshold 3000
-			fleet "Small Pug" 15
-			fleet "Large Pug" 3
 	planet "Shiver"
 		security 0
 		tribute 1
@@ -2573,6 +2566,13 @@ event "fwc peace with the navy"
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" 0
+	"tribute: Silver" /= 700
+	planet "Silver"
+		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3	
 	planet Martini
 		"required reputation" 80
 	planet Thrall
