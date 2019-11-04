@@ -1767,7 +1767,7 @@ mission "Remnant: Face to Maw 1B"
 	description "Plume would be very interested in a report on what happened with the void sprites."
 	landing
 	to offer
-		has "remnant: return the samples timer"
+		has "event: remnant: return the samples timer"
 	to fail
 		or
 			has "Remnant: Face to Maw 1: done"
@@ -1803,7 +1803,7 @@ mission "Remnant: Face to Maw 2"
 					accept
 				`	"I would rather not."`
 			`	Plume stoically accepts that with a nod. "That is your choice. I will arrange for another ship to transport it."`
-			decline
+				decline
 	on accept
 		event "remnant: penguin"
 	on complete
@@ -1861,7 +1861,7 @@ mission "Remnant: Face to Maw 2B"
 					accept
 				`	"I would rather not."`
 			`	The technician looks disappointed. "Oh well, enjoy your trophy."`
-			decline
+				decline
 	on complete
 		log "People" "Chilia" `As a military prefect, Chilia is responsible for the defense of Remnant space. He can usually be found on the front lines of combat unless required to work on tactics for the Remnant as a whole.`
 		payment 250000
