@@ -1767,7 +1767,7 @@ mission "Remnant: Face to Maw 1B"
 	description "Plume would be very interested in a report on what happened with the void sprites."
 	landing
 	to offer
-		has "remnant: return the samples timer"
+		has "event: remnant: return the samples timer"
 	to fail
 		or
 			has "Remnant: Face to Maw 1: done"
