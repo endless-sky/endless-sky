@@ -592,7 +592,7 @@ ship "Petrel"
 		"required crew" 2
 		"bunks" 3
 		"mass" 50
-		"drag" 1.3
+		"drag" 1.4
 		"heat dissipation" .8
 		"outfit space" 133
 		"weapon capacity" 33
