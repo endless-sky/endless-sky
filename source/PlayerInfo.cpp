@@ -1475,7 +1475,7 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 			? Mission::BOARDING : Mission::ASSISTING);
 	
 	// Check for available boarding or assisting missions.
-	for(const pair<const string, const Mission> &it : GameData::Missions())
+	for(const auto &it : GameData::Missions())
 		if(it.second.IsAtLocation(location) && it.second.CanOffer(*this, ship))
 		{
 			boardingMissions.push_back(it.second.Instantiate(*this, ship));

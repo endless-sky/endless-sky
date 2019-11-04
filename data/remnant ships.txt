@@ -382,19 +382,19 @@ ship "Ibis"
 		"cost" 11627000
 		"shields" 14400
 		"hull" 6200
-		"required crew" 20
-		"bunks" 48
+		"required crew" 16
+		"bunks" 36
 		"mass" 350
-		"drag" 7.1
+		"drag" 5.1
 		"heat dissipation" 0.7
 		"fuel capacity" 700
 		"ramscoop" 2
 		"cargo space" 103
-		"outfit space" 553
-		"weapon capacity" 171
-		"engine capacity" 162
-		"shield generation" 4.1
-		"shield energy" 3.6
+		"outfit space" 427
+		"weapon capacity" 147
+		"engine capacity" 109
+		"shield generation" 3.5
+		"shield energy" 3.1
 		"hull repair rate" 1.2
 		"hull energy" 0.95
 		"outfit scan power" 18
@@ -407,20 +407,20 @@ ship "Ibis"
 			"hit force" 3000
 	outfits
 		"Inhibitor Cannon" 3
-		"Point Defense Turret" 1
+		"Point Defense Turret"
 		"Thrasher Turret"
-
-		"Aeon Cell"
-		"Crystal Capacitor" 3
-		"Emergency Ramscoop" 2
+		
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor" 2
+		"Emergency Ramscoop"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
 		"Salvage Scanner"
 		"Tuning Rifle" 20
-
-		"Smelter-Class Thruster"
-		"Smelter-Class Steering"
-		"Forge-Class Steering"
+		
+		"Forge-Class Thruster"
+		"Forge-Class Steering" 2
 		"Scram Drive"
 		
 	drone 0 30 over 
@@ -586,25 +586,20 @@ ship "Petrel"
 		"cost" 1141000
 		"shields" 1000
 		"hull" 2300
-		"cargo space" 20
-		"fuel capacity" 100
-		"ramscoop" 1
+		"cargo space" 19
 		"required crew" 2
 		"bunks" 3
 		"mass" 50
-		"drag" 1.4
-		"heat dissipation" .9
-		"outfit space" 142
+		"drag" 1.8
+		"heat dissipation" .8
+		"outfit space" 133
 		"weapon capacity" 33
-		"engine capacity" 34
+		"engine capacity" 26
 		"shield generation" 0.36
 		"shield energy" 0.24
 		"hull repair rate" 0.82
 		"hull energy" 0.54
 		"gaslining" 1
-		"outfit scan power" 12
-		"outfit scan speed" 1
-		"tactical scan power" 26
 		"asteroid scan power" 30
 		weapon
 			"blast radius" 15
@@ -612,24 +607,24 @@ ship "Petrel"
 			"hull damage" 200
 			"hit force" 350
 	outfits
-		"Inhibitor Cannon" 2
+		"Thrasher Cannon" 2
 		
 		"Millennium Cell" 2
 		"Crystal Capacitor"
 		"Thermoelectric Cooler"
+		"Fuel Pod"
+		"Emergency Ramscoop"
 		
-		"Crucible-Class Thruster"
-		"Crucible-Class Steering"
+		"Anvil-Class Engine"
 		
 	gun 0 -38.5
-	gun -10.5 -24 "Inhibitor Cannon"
-	gun 10.5 -24 "Inhibitor Cannon"
+	gun -10.5 -24 "Thrasher Cannon"
+	gun 10.5 -24 "Thrasher Cannon"
 	turret 0 2.5
 	engine 0 41.5
 	explode "tiny explosion" 30
 	explode "small explosion" 20
 	description "The Petrel is a multi-role mining/wing leader fightercraft designed to provide support for flights of lighter Terns in high-risk environments. The ship's design originated as an an urban mobile gun platform that flitted around structures and natural terrain, but proved easy to adapt into a spacecraft."
-	description "	The Remnant are loath to sacrifice pilots and crew from the comparatively small pool they are drawn from. As such, their fighters are equipped with medium-range weaponry designed to strike enemies from afar."
 
 
 
@@ -807,9 +802,6 @@ ship "Tern"
 		"hull energy" 0.37
 		"gaslining" 1
 		"atmosphere scan" 100
-		"outfit scan power" 12
-		"outfit scan speed" 1
-		"tactical scan power" 26
 		"asteroid scan power" 30
 		weapon
 			"blast radius" 10
