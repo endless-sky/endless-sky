@@ -1836,6 +1836,7 @@ event "pug invasion 4"
 	unvisit Ankaa
 	"tribute: Reunion" /= 2900
 	"tribute: Kraken Station" /= 500
+	"tribute: Tinker" /= 1100
 	system Sol
 		fleet "Small Northern Merchants" 300
 		fleet "Large Northern Merchants" 500
@@ -1866,6 +1867,12 @@ event "pug invasion 4"
 		security 0
 		tribute 1
 			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
+	planet "Tinker"
+		security 0
+		tribute 1
+			threshold 4000
 			fleet "Small Pug" 15
 			fleet "Large Pug" 3
 
@@ -2132,6 +2139,11 @@ event "pug territory liberated"
 			threshold 3500
 			fleet "Small Syndicate" 7
 			fleet "Large Syndicate" 2
+	planet "Tinker"
+		security 0.4
+		tribute 1100
+			threshold 4000
+			fleet "Large Syndicate" 9
 
 
 
