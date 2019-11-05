@@ -586,13 +586,13 @@ ship "Petrel"
 		"cost" 1141000
 		"shields" 1000
 		"hull" 2300
-		"cargo space" 19
+		"cargo space" 15
 		"fuel capacity" 50
 		"ramscoop" 0.5
 		"required crew" 2
 		"bunks" 3
 		"mass" 50
-		"drag" 1.4
+		"drag" 1.44
 		"heat dissipation" .8
 		"outfit space" 133
 		"weapon capacity" 33
