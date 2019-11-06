@@ -2129,6 +2129,7 @@ event "battle for sich'ka'ara ends"
 			"Lightning Bug" 2
 
 
+
 mission "Wanderers Rescue 1"
 	name "Wanderer Rescue"
 	description "Some Wanderer warriors were left behind on <planet> when the Unfettered captured the planet. Land on the planet with two Wanderer warships, and rescue them."

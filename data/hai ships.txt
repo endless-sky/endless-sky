@@ -174,7 +174,7 @@ ship "Geocoris"
 	thumbnail "thumbnail/hai geocoris"
 	attributes
 		category "Heavy Freighter"
- 		"cost" 12540000
+		"cost" 12540000
 		"shields" 13300
 		"hull" 6200
 		"required crew" 15
@@ -365,6 +365,8 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 		`"Biroo" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
+
+
 
 ship "Pond Strider"
 	sprite "ship/hai pond strider"

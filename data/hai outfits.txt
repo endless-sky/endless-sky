@@ -107,7 +107,7 @@ effect "ion impact"
 
 outfit "Railgun Slug"
 	category "Ammunition"
-	cost 9
+	cost 13
 	thumbnail "outfit/railslug"
 	"mass" 0.001
 	"railgun slug capacity" -1
@@ -115,7 +115,7 @@ outfit "Railgun Slug"
 
 outfit "Railgun Slug Rack"
 	category "Ammunition"
-	cost 28000
+	cost 15000
 	thumbnail "outfit/railslug_rack"
 	"mass" 1
 	"outfit space" -3
@@ -160,8 +160,8 @@ outfit "rslug"
 		sprite "projectile/rail slug"
 			"frame rate" 30
 		"hit effect" "bullet impact"
-		"shield damage" .2
-		"hull damage" .8
+		"shield damage" .7
+		"hull damage" 1.4
 		"ion damage" .03
 		"homing" 1
 		"optical tracking" .4
