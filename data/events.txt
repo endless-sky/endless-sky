@@ -2083,7 +2083,6 @@ event "pug territory liberated"
 	"tribute: Oblivion" *= 500
 	"tribute: Silver" *= 700
 	"tribute: Millrace" *= 1400
-	"tribute: Maker" *= 1700
 	"tribute: Furnace" *= 1200
 	"tribute: Reunion" *= 2900
 	"tribute: Kraken Station" *= 500
@@ -2118,11 +2117,6 @@ event "pug territory liberated"
 		tribute 1400
 			threshold 4000
 			fleet "Large Syndicate" 10
-	planet "Maker"
-		security 0.4
-		tribute 1700
-			threshold 4500
-			fleet "Large Syndicate" 12
 	planet "Furnace"
 		security 0.1
 		tribute 1200
