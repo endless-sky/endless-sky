@@ -1640,6 +1640,7 @@ mission "FW Pug 3C (Extra)"
 	destination Hephaestus
 	to offer
 		has "FW Pug 3B: done"
+		has "already had jump drive"
 	npc save
 		personality escort
 		government "Republic"
@@ -1652,9 +1653,7 @@ mission "FW Pug 4: Escorts"
 	invisible
 	source Hephaestus
 	to offer
-		or
-			has "FW Pug 3C: done"
-			has "FW Pug 3C(Extra Ship): done"
+		has "FW Pug 3C: done"
 	to fail
 		has "FW Pug 6: done"
 	
@@ -1704,11 +1703,10 @@ mission "FW Pug 4: Escorts (Extra)"
 	invisible
 	source Hephaestus
 	to offer
+		has "FW Pug 3C: done"
 		has "already had jump drive"
-	
 	to fail
 		has "FW Pug 6: done"
-
 	npc kill
 		personality escort heroic disables
 		government "Republic"
@@ -1723,6 +1721,8 @@ mission "FW Pug 4: Escorts (Extra)"
 		ship "Combat Drone" "Yellow Sixteen"
 		ship "Combat Drone" "Yellow Seventeen"
 		ship "Combat Drone" "Yellow Eighteen"
+
+
 
 mission "FW Pug 4"
 	landing
