@@ -106,7 +106,7 @@ mission "Wanderers: Hai Diplomat"
 			`	You manage to contact the local governor's office, but when you speak with the governor he says, "First contact? Human, this is not a task for just any Hai. You must go to our home world, where an official ambassador can join you. I will contact them and tell them to expect you."`
 				accept
 	on accept
-		"reputation: Hai" >?= 20
+		"reputation: Hai" >?= 50
 
 
 
@@ -758,6 +758,7 @@ mission "Wanderers: Alpha Surveillance A"
 	autosave
 	source "Vara K'chrai"
 	destination "Hai-home"
+	clearance
 	to offer
 		has "Wanderers: Jump Drive Source: done"
 	
