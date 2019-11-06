@@ -444,6 +444,8 @@ ship "Shield Beetle"
 	thumbnail "thumbnail/hai shield beetle"
 	attributes
 		category "Heavy Warship"
+		licenses
+			"Hai Trust"
 		"cost" 17900000
 		"shields" 32000
 		"hull" 9800
