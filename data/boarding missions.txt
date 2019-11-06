@@ -85,7 +85,7 @@ mission "Dangerous Journey"
 					accept
 				`	(Don't take the cargo.)`
 			`	The captain begins loudly swearing, so you cut the feed. Hopefully they make it to their destination in one piece.`
-					decline
+				decline
 	on complete
 		payment 7500
 		dialog `You drop off your cargo of <commodity>, explain how the original merchant who took the job quit and handed off the cargo to you, and collect your payment of <payment>.`
