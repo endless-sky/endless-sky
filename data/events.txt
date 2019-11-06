@@ -1175,6 +1175,7 @@ event "navy using mark ii ships"
 			"Frigate (Mark II)"
 			"Rainmaker (Mark II)" 2
 			"Gunboat (Mark II)"
+
 fleet "gunboat only"
 	government "Republic"
 	names "republic small"
@@ -1188,7 +1189,7 @@ event "gunboats in Alnasl"
 	system "Alnasl"
 		fleet "Small Southern Merchants" 1300
 		fleet "Large Southern Merchants" 2500
-		fleet "gunboat only" 3600
+		fleet "gunboat only" 2400
 	system "Wei"
 		remove fleet "Large Republic"
 
