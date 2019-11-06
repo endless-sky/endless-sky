@@ -1069,16 +1069,16 @@ mission "Enlisted by Hai [1]"
 	description "Defeat a pirate raid on <destination>."
 	to offer
 		"combat rating" > 400
-		"random" < 35
+		"random" < 25
 	source "Allhome"
 	npc
 		government "Hai"
-		personality "heroic" staying"
+		personality heroic staying
 		fleet "Large Hai" 2
 		fleet "Large Militia"
 	npc evade
 		government "Pirate"
-		personality "heroic" "staying"
+		personality coward waiting
 		fleet "Large Northern Pirates" 10
 	on offer
 		conversation
@@ -1096,7 +1096,7 @@ mission "Enlisted by Hai [1]"
 
 mission "Enlisted by Hai [2]"
 	name "Enlist with the Hai"
-	description "You have been recommended for your attentiveness for keeping the peace throughout Hai space. Hai officials would like to consult you about possible enlistment."
+	description "You have been recommended following your demonstration of peacekeeping. Hai officials would like to consult you about possible enlistment."
 	priority
 	to offer
 		has "Enlisted by Hai [1]: done"
@@ -1109,11 +1109,11 @@ mission "Enlisted by Hai [2]"
 	destination "Hai-home"
 	on offer
 		conversation
-			`As soon as you depart your ship you discover an envoy of sorts awaiting you. "Few human visitors demonstrate care for the lasting peace we have established so long ago," the Hai begins hastily. "You are a prominent example of your kind, and we request audience on <destination>. The unfettered humans have revealed a tentativeness to prey on those who follow a path unlike their own."`
+			`As soon as you depart your ship you discover an envoy of sorts awaiting you. "Not all human visitors demonstrate care for the lasting peace we have established so long ago," the Hai begins hastily. "You are a prominent example of your kind, and we request audience on <destination>. The unfettered humans have revealed a tentativeness to prey on those who follow a path unlike their own."`
 			choice
 				`	"I suppose I can hear you out."`
 				`	"I would prefer to not get caught up in any trouble."`
-					defer
+					decline
 			`	"That is most pleasing," it says. "the consuls will be notified of this news and will be expecting attendance."`
 				accept
 
@@ -1124,11 +1124,11 @@ mission "Enlisted by Hai [3]"
 	to offer
 		has "Enlisted by Hai [2]: offered"
 	source "Hai-home"
-	npc "kill"
+	npc kill
 		government "Pirate"
 		dialog
 			`You have eliminated the pirate leader's ships. Hopefully this sends a warning to any other pirate warlords who meddles in the affairs of the Hai.`
-		personality "disables" "heroic" "nemesis" "plunders" "staying" "target"
+		personality disables heroic nemesis plunders staying target
 		system "Oblate"
 		ship "Falcon (Heavy)" "Gash"
 		ship "Splinter (Laser)" "Gnar"
