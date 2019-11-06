@@ -1909,6 +1909,7 @@ event "at war with the pug"
 event "battle for delta capricorni"
 	system "Delta Capricorni"
 		government Syndicate
+	"tribute: Maker" *= 1700
 	planet "Maker"
 		security 0.4
 		tribute 1700
