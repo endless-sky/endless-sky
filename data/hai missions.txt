@@ -1067,9 +1067,9 @@ mission "Hai Solifuge response"
 	invisible
 	destination "Hai-Home"
 	to offer
-		has "event: battle for sich'ka'ara ends"
+		has "Wanderers Hai Assistance 3: done"
 	on offer
-		event "Hai Pond Striders released" 20
+		event "Hai Pond Striders released" 10
 		fail
 
 event "Hai Pond Striders released"
@@ -1107,53 +1107,110 @@ mission "Strider: View of the Pond"
 		conversation
 			`The Hai, as usual, mysteriously and efficiently deliver your message from Ambassador Sayari, and a local prefect appears within minutes to inquire if you've encountered a friendly race with hull repair technology.`
 			`The prefect continues to tell you how the Solifuge was not entirely a surprise to the Hai government, but that it posed a threat to the Hai public mindset that couldn't be ignored.`
-			`A much smaller, short range drone carrier and combat drone solution is being worked on, but initial simulations predict that actual escort casualties would go up unless significant hull repair technology could be implemented to fix docked drones that would otherwise weigh down the agile warship.`
 
-mission "Strider: Widen the new coalition"
+mission "Strider: Have language, will travel"
 	description "Take Ambassador Yashili and her delegation to <destination>."
 	landing
 	source "Hai-home"
-	destination "Ring of Friendship"
+	destination "Greenwater"
 	passengers 3
-	blocked "The Hai wish to send a delegation to <destination>, and will require 3 bunks for the trip."
+	blocked "The Hai wish to send a delegation to a species that has hull repair technology, and will require 3 bunks for the trip."
 	to offer
 		has "Strider: View of the Pond: done"
-		has "Coalition: First Contact: offered"
 	on offer
+		log `The Hai are working on a Medium Warship that carries drones, but need help contacting a species with hull repair technology to make it viable.`
 		conversation
+			`"A small, short range drone carrier and combat drone solution is being worked on, but initial simulations predict that actual escort casualties would go up unless significant hull repair technology could be implemented to fix docked drones that would otherwise weigh down the agile warship" the prefect explains.`
+			branch neither
+				not "remnant blood test pure"
+				not "Coalition: First Contact: offered"
+			`The delegation will need to stop at <destination> to pick up translation devices they can use to communicate with other species.`
+			branch coalition
+				has "Coalition: First Contact: offered"
+				not "remnant blood test pure"
+			branch remnants
+				has "remnant blood test pure"
+				not "Coalition: First Contact: offered"
+			branch both
+				has "remnant blood test pure"
+				has "Coalition: First Contact: offered"
+			label coalition
 			`You consider your encounters with the Coalition and their repair outfits.`
 			choice
 				`Mention the Coalition, and offer to take a delegation to the Ring of Friendship.`
-					accept
-				`The Hai are not ready to learn of the Coalition's existence`
-					decline
+					goto ring
+				`The Hai are not ready to learn of the Coalition's existence yet.`
+					defer
+			label remnants
+			`You consider your encounters with the Remnants and their self-repairing hulls.`
+			choice
+				`Mention the Remnants, and offer to take a delegation to Aventine.`
+					goto aventine
+				`The Hai are not ready to learn of the Remnants' existence yet.`
+					defer
+			label both
+			`You consider that both the Remnants and the Coalition have technology that repairs hulls.`
+			choice
+				`Mention the Remnants, and offer to take a delegation to Aventine.`
+					goto aventine
+				`Mention the Coalition, and offer to take a delegation to the Ring of Friendship.`
+					goto ring
+				`The Hai are not ready to learn of hull repair technology yet.`
+					defer
+			label ring
+			apply
+				set "Strider: Coalition"
+			`The grateful Hai ambassadors request a stop at <destination> before proceeding to the Ring of Friendship.`
+				accept
+			label aventine
+			apply
+				set "Strider: Remnants"
+			`The grateful Hai ambassadors request a stop at <destination> before proceeding to Aventine.`
+				accept
+			label neither
+			`You explain that you have not encountered a friendly civilization with hull repair technology, but that when you do, you might be able to introduce the Hai to them.`
+				defer
 	on complete
 		conversation
-			`The Heliarchs are pleased to meet the Hai delegation, and immediately begin an exchange of information.  Three Heliarch ambassadors interested in immersing themselves in Hai culture request to return to Hai-Home with you.`
+			`One of the Hai ambassadors rushes out of the <ship> as soon as you touch down, and returns minutes later with a set of translation devices similar to the one you acquired to speak with the Wanderers.`
 
 mission "Strider: A tale of two remnants"
 	description "Transport Ambassador Yashili and her delegation to <destination>."
 	landing
-	source "Hai-home"
+	source "Greenwater"
 	destination "Aventine"
 	passengers 3
-	blocked "The Hai wish to send a delegation to <destination>, and will require 3 bunks for the trip."
+	blocked "The Hai are sending a delegation to <destination>, and will require 3 bunks for the trip."
 	to offer
-		has "Strider: View of the Pond: done"
-		has "remnant blood test pure"
-	to fail
-		has "Strider: Widen the new coalition: active"
+		has "Strider: Have language, will travel: done"
+		has "Strider: Remnants"
 	on offer
 		conversation
-			`You consider your encounters with the Remnants and their self-repairing hulls.`
-			choice
-				`Mention the Remnants, and offer to take a delegation to Aventine.`
-					accept
-				`The Hai are not ready to learn of the Remnants' existence.`
-					decline
+			`Ambassador Yashili urges "Now to <destination>, so we may meet the Remnants."`
+				accept
 	on complete
+		log `Helped establish a Hai embassy on Aventine`
 		conversation
 			`The Remnants are pleased to meet the Hai delegation, and immediately begin an exchange of information.  Three Remnants interested in immersing themselves in Hai culture request to return to Hai-Home with you.`
+
+mission "Strider: Widen the new coalition"
+	description "Transport Ambassador Yashili and her delegation to <destination>."
+	landing
+	source "Greenwater"
+	destination "Ring of Friendship"
+	passengers 3
+	blocked "The Hai are sending a delegation to <destination>, and will require 3 bunks for the trip."
+	to offer
+		has "Strider: Have language, will travel: done"
+		has "Strider: Coalition"
+	on offer
+		conversation
+			`Ambassador Yashili urges "Now to <destination>, so we may meet the Heliarchs."`
+				accept
+	on complete
+		log `Helped establish a Hai embassy on the Ring of Friendship`
+		conversation
+			`The Heliarchs are pleased to meet the Hai delegation, and immediately begin an exchange of information.  Three Heliarchs interested in immersing themselves in Hai culture request to return to Hai-Home with you.`
 
 mission "Strider: Of the Pond"
 	description "Transport an ambassadorial entourage to Hai Home."
@@ -1172,9 +1229,31 @@ mission "Strider: Of the Pond"
 				`"I'm busy right now, perhaps ask the Quarg."`
 					decline
 	on complete
-		event "Pond Strider release" 45
+		event "Pond Strider release" 30
 		conversation
 			`The entourage thanks you for the safe trip as they exit the <ship>, and are greeted by a group of Hai who seem very excited to receive the delegation.`
+
+mission "Strider: Asked the Quarg"
+	invisible
+	landing
+	destination "Hai-home"
+	to offer
+		has "Strider: Quarg"
+	on offer
+		event "Pond Strider release" 90
+		fail
+
+mission "Strider: notification"
+	invisible
+	landing
+	destination "Hai-home"
+	to offer
+		has "event: Pond Strider release"
+	on offer
+		log `The assistance offered to the Hai in establishing an alien embassy has culminated in the development of the Pond Strider, Fleas and some outfits, which they've made available.`
+		conversation
+			 `The Hai thank you for your assistance with interspecies diplomacy.  They have begun production of some new military ships and outfits that they've granted you access to in their shipyards and outfitters.`
+				decline
 
 event "Pond Strider release"
 	shipyard "Hai Advanced"
