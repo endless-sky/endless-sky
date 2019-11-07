@@ -499,7 +499,7 @@ mission "FWC Diplomacy 1B"
 			`	Alondo sighs. "Yes, but the Senate thought if we brought anything bigger, it might look like an attack fleet rather than an escort. And of course, it's not carrying nukes, because if the Navy picked those up on their sensors, they'd blast us out of the sky long before we could land on Earth. Anyway, let's get going and hope for the best."`
 				accept
 			label nukes
-			`	"No, no, of course not," sys Alondo. "If the Navy picked those up on their sensors, they'd blast us out of the sky long before we could land on Earth. Anyway, let's get going and hope for the best."`
+			`	"No, no, of course not," says Alondo. "If the Navy picked those up on their sensors, they'd blast us out of the sky long before we could land on Earth. Anyway, let's get going and hope for the best."`
 				accept
 	
 	npc accompany save
