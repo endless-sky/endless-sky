@@ -2872,7 +2872,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 			continue;
 		}
 		// For non-homing weapons:
-		for(const shared_ptr<const Ship> &target : enemies)
+		for(const auto &target : enemies)
 		{
 			// Don't shoot ships we want to plunder.
 			bool hasBoarded = Has(ship, target, ShipEvent::BOARD);
