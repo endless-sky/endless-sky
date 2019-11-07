@@ -4374,11 +4374,10 @@ system Arculus
 	trade Medical 510
 	trade Metal 417
 	trade Plastic 498
-	fleet "Small Tern" 1500
-	fleet "Large Remnant" 2100
-	fleet "Small Remnant" 1600
-	fleet "Remnant Transport" 1600
-	fleet "Remnant Home Guard" 1500
+	fleet "Large Remnant" 3000
+	fleet "Small Remnant" 2200
+	fleet "Remnant Transport" 2200
+	fleet "Remnant Home Guard" 2000
 	fleet "Korath Ember Waste Raid" 40000
 	object
 		sprite star/g5-old
@@ -6715,11 +6714,10 @@ system Cinxia
 	trade Medical 516
 	trade Metal 354
 	trade Plastic 417
-	fleet "Small Tern" 1500
-	fleet "Large Remnant" 1750
-	fleet "Small Remnant" 1300
-	fleet "Remnant Home Guard" 1200
-	fleet "Remnant Transport" 1300
+	fleet "Large Remnant" 2400
+	fleet "Small Remnant" 1800
+	fleet "Remnant Transport" 1800
+	fleet "Remnant Home Guard" 1600
 	fleet "Korath Ember Waste Raid" 30000
 	object
 		sprite star/k5-old
@@ -17001,10 +16999,10 @@ system Pantica
 	trade Medical 545
 	trade Metal 454
 	trade Plastic 469
-	fleet "Large Remnant" 1400
-	fleet "Small Remnant" 1000
-	fleet "Remnant Transport" 1000
-	fleet "Remnant Home Guard" 900
+	fleet "Large Remnant" 2000
+	fleet "Small Remnant" 1400
+	fleet "Remnant Transport" 1400
+	fleet "Remnant Home Guard" 1300
 	fleet "Korath Ember Waste Raid" 40000
 	object
 		sprite star/k0-old
@@ -24146,6 +24144,11 @@ planet Aventine
 	bribe 0
 	shipyard Remnant
 	outfitter Remnant
+	tribute 4000
+		threshold 8500
+		fleet "Remnant Decoy Defense" 3
+		fleet "Light Remnant Defense" 10
+		fleet "Heavy Remnant Defense" 30
 
 planet "Bank of Blugtad"
 	attributes arach wealthy urban
@@ -24324,6 +24327,11 @@ planet Caelian
 	bribe 0
 	shipyard Remnant
 	outfitter Remnant
+	tribute 3000
+		threshold 8000
+		fleet "Remnant Decoy Defense" 3
+		fleet "Light Remnant Defense" 8
+		fleet "Heavy Remnant Defense" 25
 
 planet Calda
 	attributes paradise tourism rich
@@ -24819,7 +24827,6 @@ planet "Far'en Lai"
 	landscape land/dune3
 	description `When the Korath were banished to the Core, they were left with only one living world, a planet they call "Far'en Lai," meaning, "the last candle-flame." Afraid that this planet's biosphere will turn to dust in their hands like all the other worlds they once controlled, the Korath have left Far'en Lai entirely unsettled and unexploited. It is rumored that the terms of their exile dictate that if Far'en Lai withers and dies, the remaining Korath exiles will be exterminated, but that if they can learn to make the planet flourish, their place in the galaxy will be restored.`
 	government Uninhabited
-	security 0
 
 planet "Fara Skaeruti"
 	attributes korath station
@@ -24878,7 +24885,6 @@ planet "Fek Rembatu"
 	attributes korath
 	landscape land/beach10-sfiera
 	description `Everything on this planet that is made of metal is overgrown with a thick layer of a reddish lichen or fungus. In the cities, the tallest buildings look like they have been melted or half digested by the fungus: tall towers lean at crazy angles, and smaller buildings are entirely buried and indistinct. The air smells like sauerkraut and roses.`
-	security 0
 
 planet "Fenrir Station"
 	attributes deep station
@@ -24903,7 +24909,6 @@ planet "Firka Tesk"
 	attributes korath
 	landscape land/lava0
 	description `This appears to have once been an inhabited world, and the remnants of a few cities still remain. But the planet's crust has been cracked like an eggshell, releasing rivers of lava and leaving behind unnaturally steep mountains and fault lines. The wind whistles and howls through the rifts and fissures as if the planet itself is screaming in pain. A thick haze of sulfur dioxide and ash hangs over everything.`
-	security 0
 
 planet Flood
 	attributes rim tourism farming
@@ -25329,7 +25334,6 @@ planet Hope
 	description `In the year 2994, Hope was a somewhat cold but otherwise hospitable planet, home to a burgeoning population of almost two million people. But that year, a supervolcano eruption ejected so much dust into the upper atmosphere that a new ice age set in and the planet became unlivable. As the temperatures steadily dropped, nearly half the Republic Navy was mobilized to evacuate settlers from Hope and transport them to nearby colonies. The evacuation effort took six months.`
 	description `	The abandoned villages and towns are now buried deep beneath the snow, and occasional treasure hunters come here to explore them and find items of value that were left behind.`
 	"required reputation" -1000
-	security 0
 
 planet Hopper
 	attributes "dirt belt" mining
@@ -25433,7 +25437,6 @@ planet "Kasichara Fet"
 	attributes korath
 	landscape land/sky8
 	description `This planet appears to have suffered irradiation when the neighboring star of Peresedersi went nova. The local flora and fauna are alive but still struggling to recover from the loss. Several large Korath cities remain. It seems that they were not able, or not willing, to evacuate the entire population in time to escape the nova's gamma radiation; sun-bleached bones are scattered in the streets of the largest cities.`
-	security 0
 
 planet "Keneska Fek"
 	attributes korath
@@ -25474,7 +25477,6 @@ planet "Korbatri Eska"
 	attributes korath
 	landscape land/myrabella7
 	description `The cities on this world have been hit by an astonishing variety of weapons. Some were leveled by massive explosions, while others show signs of strafing by low-flying ships or of orbital bombardment. Outside the cities, the land is fruitful and varied: forests, mountains, oceans, desert, and tundra.`
-	security 0
 
 planet "Kort Kehai"
 	attributes wanderer
@@ -25848,7 +25850,6 @@ planet Nasqueron
 	attributes "requires: gaslining"
 	landscape land/nasa8
 	description `Beneath Nasqueron's cloudy surface is a complex and thriving ecosystem of gas-dwelling organisms, from the massive void sprites all the way down to bacteria that inhabit tiny water droplets suspended in the air. Although the void sprites mostly feed on these organisms, it appears that in order to grow into their adult form or to give birth to young, they also need rare minerals that they can only find by feeding on asteroids, far beyond the planet's atmosphere.`
-	security 0
 
 planet "Nearby Jade"
 	attributes kimek farming urban
@@ -26402,7 +26403,6 @@ planet "Sabira Eseskrai"
 	landscape land/bwerner3
 	description `Long ago, this planet was home to several Korath oil mining settlements, but now all that remains visible are the tops of a few dozen of the tallest buildings. Everything else has been buried by sandstorms.`
 	description `	Due to a recent shift in climate the deserts have begun shrinking once more, with local vegetation growing to cover more and more land each year, but the Korath are no longer here to benefit from the change.`
-	security 0
 
 planet "Safaresk Enlai"
 	attributes korath station
@@ -26433,7 +26433,6 @@ planet "Sarisa Fentra"
 	landscape land/sky1
 	description `This planet's atmosphere has dangerously high radiation levels. On several of the continents there are patches, each nearly a hundred kilometers across, where the soil has been melted into glass by a nuclear explosion. Outside these blasted regions the plant life still flourishes, but the only land animals left alive are insects.`
 	description `	In the oceans, bizarre and corrupted creatures frolic.`
-	security 0
 
 planet Saros
 	attributes saryd tourism urban
@@ -26448,7 +26447,6 @@ planet "Sasirka Gatru"
 	attributes korath
 	landscape land/desert7
 	description `This was probably a habitable world at one point. It is no longer. Nothing lives or grows here, and the atmosphere is full of toxic chemicals.`
-	security 0
 
 planet "Sebra Skira"
 	attributes korath station
@@ -26495,7 +26493,6 @@ planet "Sek Alarfarat"
 	attributes korath
 	landscape land/bwerner2
 	description `A hideously powerful weapon tore open scars on this planet's surface so deep that pools of magma bled out through them. Presumably these wounds were inflicted on the planet by yet another Korath super-weapon devised in the final years of their civil war. A few ruined cities remain, some of which were sliced in two by the trail of weapon fire.`
-	security 0
 
 planet "Selefkar Refinery"
 	attributes korath station
@@ -26509,7 +26506,6 @@ planet "Seleptra Nak"
 	landscape land/fog2
 	description `The most disturbing thing about the empty Korath cities on this planet is how pristine they are: no sign of bombing or of weapons fire. Either everyone who lived here chose to leave, or they were killed by a weapon that did no damage to the buildings they live in.`
 	description `	Outside the cities, plant and animal life has begun to flourish, and some of the smaller villages have already been swallowed up by the growing forests. The climate is temperate, and rainfall is plentiful; aside from the reduction in biodiversity, it will not take this planet long to forget its former owners.`
-	security 0
 
 planet "Separa Tiklar"
 	attributes korath station
@@ -26689,7 +26685,6 @@ planet Slylandro
 	attributes "requires: gaslining"
 	landscape land/nasa9
 	description `Far beneath the swirling blue surface of Slylandro's atmosphere, void sprites and other strange creatures float about. As improbable as it may seem, the void sprites must have somehow evolved the capability to manipulate gravity fields, because every once in a while one of them will rise up from the surface powered by an antigravity field similar to the landing repulsors used by human ships. When they do so, the decrease in atmospheric pressure causes them to nearly double in size.`
-	security 0
 
 planet "Smuggler's Den"
 	attributes pirate station "south pirate" south frontier
@@ -26741,7 +26736,6 @@ planet "Solima Skarati"
 	attributes korath
 	landscape land/beach12-harro
 	description `The Korath were endlessly creative in devising new weapons of war during the twilight years of their empire, but what destroyed this planet in the end was not a military disaster but an ecological one. Small villages along the ocean shores and rusting fleets of boats bear witness to the fact that this ocean world was once a fruitful fishery. But now the ocean carries high levels of industrial toxins, and in place of large fish only small invertebrates remain.`
-	security 0
 
 planet "Sopi Lefarkata"
 	attributes korath
@@ -26756,7 +26750,6 @@ planet "Spera Anatrusk"
 	attributes korath
 	landscape land/badlands6
 	description `This is a relatively dry planet, and the only Korath cities were close to the poles where the temperatures are more mild and the lifeless deserts give way to grasslands and even a few scattered forests. The largest city was clearly destroyed by orbital bombardment. The other cities seem to have been done in by rioting or looting, leaving smashed windows and burned-out buildings behind. Some of the damage is very recent; the Korath survivors here held out for a long time.`
-	security 0
 
 planet Splashdown
 	attributes north farming
@@ -26865,7 +26858,6 @@ planet "Tefkar Ret"
 	attributes korath station
 	landscape land/station0
 	description `This station is run down and completely abandoned, emptied of atmosphere so that air pressure will not put ongoing stress on the station's structure. Each section is sealed off from the others by heavy blast doors, leaving most of the station inaccessible.`
-	security 0
 
 planet "Third Umber"
 	attributes kimek factory research
@@ -27214,6 +27206,11 @@ planet Viminal
 	bribe 0
 	shipyard Remnant
 	outfitter Remnant
+	tribute 3000
+		threshold 8000
+		fleet "Remnant Decoy Defense" 3
+		fleet "Light Remnant Defense" 8
+		fleet "Heavy Remnant Defense" 25
 
 planet Vinci
 	attributes paradise factory
@@ -27250,7 +27247,6 @@ planet Watcher
 	attributes "dirt belt" research uninhabited moon
 	landscape land/hills4
 	description `Watcher is a small moon, the only world in this system that sustains any indigenous life. Because of the low gravity, humans have not yet built a permanent settlement here, but it is occasionally visited by biologists interested in studying low-gravity life forms. There are forests here where the trees grow over two hundred meters tall.`
-	security 0
 
 planet Wayfarer
 	attributes south factory

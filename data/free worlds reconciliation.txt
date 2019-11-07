@@ -1994,6 +1994,7 @@ mission "FW Pug 5A"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		event "liberation of altair"
 		conversation
 			`Sure enough, Freya finds a graviton wave transmitter on <origin>, set up to broadcast incoherent graviton noise in the direction of the Sol system. "This is it," she says. "If you can reach <planet> with the reflector before we are overrun by the Pug here, we can reopen the hyperspace link and the entire Navy will be at our backs. Hopefully the Syndicate got a message through and they'll have a fleet waiting for you when you arrive."`
 			choice
