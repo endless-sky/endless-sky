@@ -366,7 +366,7 @@ outfit "Bellows-Class Afterburner"
 	"mass" 13
 	"outfit space" -13
 	"engine capacity" -13
-	"afterburner thrust" 38.0
+	"afterburner thrust" 46.0
 	"afterburner fuel" .5
 	"afterburner energy" 3.0
 	"afterburner heat" 8.0
