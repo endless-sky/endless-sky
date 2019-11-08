@@ -169,6 +169,13 @@ ship "Flea"
 	explode "tiny explosion" 15
 	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible.  It was designed in conjunction with the reverse-thrusting Railgun so as to kite its targets, prolonging its combat efficacy while it supports friendly ships that are engaged with hostile targets.`
 
+ship "Flea" "Flea (Pulse)"
+	outfits
+		"Pulse Cannon"
+		"Sand Cell"
+		"Supercapacitor" 2
+		`"Baellie" Atomic Engines`
+
 ship "Geocoris"
 	sprite "ship/hai geocoris"
 	thumbnail "thumbnail/hai geocoris"
@@ -413,9 +420,9 @@ ship "Pond Strider"
 	gun 0 -76 "Railgun"
 	gun -15 -72 "Ion Cannon"
 	gun 15 -72 "Ion Cannon"
-	turret -18 -65 "Bullfrog Anti-Missile"
-	turret 18 -65 "Bullfrog Anti-Missile"
-	turret 0 26 "Chameleon Anti-Missile"
+	turret -18 -53 "Bullfrog Anti-Missile"
+	turret 18 -53 "Bullfrog Anti-Missile"
+	turret 0 14 "Chameleon Anti-Missile"
 	drone -70 -45 left under
 	drone 70 -45 right under
 	drone -70 28 left under

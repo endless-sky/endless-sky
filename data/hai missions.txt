@@ -1065,7 +1065,6 @@ mission "Hai Honeymoon"
 mission "Hai Solifuge response"
 	landing
 	invisible
-	destination "Hai-Home"
 	to offer
 		has "Wanderers Hai Assistance 3: done"
 	on offer
@@ -1094,6 +1093,7 @@ event "Hai Pond Striders released"
 
 mission "Strider: View of the Pond"
 	description "Deliver a message from Ambassador Sayari to Hai Home."
+	name "Message Hai-home"
 	landing
 	source "Vara K'chrai"
 	destination "Hai-home"
@@ -1110,6 +1110,7 @@ mission "Strider: View of the Pond"
 
 mission "Strider: Have language, will travel"
 	description "Take Ambassador Yashili and her delegation to <destination>."
+	name "Have language, will travel"
 	landing
 	source "Hai-home"
 	destination "Greenwater"
@@ -1173,9 +1174,12 @@ mission "Strider: Have language, will travel"
 	on complete
 		conversation
 			`One of the Hai ambassadors rushes out of the <ship> as soon as you touch down, and returns minutes later with a set of translation devices similar to the one you acquired to speak with the Wanderers.`
+	on visit
+		dialog `It appears that the delegation is bunked on escorts that have not arrived in this system yet.  Take off and wait for them.`
 
 mission "Strider: A tale of two remnants"
 	description "Transport Ambassador Yashili and her delegation to <destination>."
+	name "A tale of two remnants"
 	landing
 	source "Greenwater"
 	destination "Aventine"
@@ -1192,9 +1196,12 @@ mission "Strider: A tale of two remnants"
 		log `Helped establish a Hai embassy on Aventine.`
 		conversation
 			`The Remnants are pleased to meet the Hai delegation, and immediately begin an exchange of information.`
+	on visit
+		dialog `It appears that the delegation is bunked on escorts that have not arrived in this system yet.  Take off and wait for them.`
 
 mission "Strider: Widen the new coalition"
 	description "Transport Ambassador Yashili and her delegation to <destination>."
+	name "Widen the new coalition"
 	landing
 	source "Greenwater"
 	destination "Ring of Friendship"
@@ -1211,13 +1218,17 @@ mission "Strider: Widen the new coalition"
 		log `Helped establish a Hai embassy on the Ring of Friendship.`
 		conversation
 			`The Heliarchs are pleased to meet the Hai delegation, and immediately begin exchanging information about their respective cultures, history and technologies.  The Hai marvel at the Coalition translation devices, and the Heliarchs seem oddly tickled by the genetic variation Humans and Hai represent.`
+	on visit
+		dialog `It appears that the delegation is bunked on escorts that have not arrived in this system yet.  Take off and wait for them.`
 
 mission "Strider: Of the Pond R"
 	description "Transport an ambassadorial entourage to <destination>."
+	name "Establish Remnant embassy"
 	landing
 	source "Aventine"
 	destination "Hai-home"
 	passengers 3
+	blocked "The Remnants are sending a delegation to <destination>, and require 3 bunks for the trip."
 	to offer
 		has "Strider: A tale of two remnants: done"
 	on offer
@@ -1235,13 +1246,17 @@ mission "Strider: Of the Pond R"
 		conversation
 			`The three Remnants interested in immersing themselves in Hai culture thank you for the safe trip as they exit the <ship>.  The Hai interpretation device has even more difficulty than usual translating the Remnants singing.  The Hai appear oddly amused by this, and seem even more interested in the Remnants and their linguistic style as a result.`
 		log `Transported Remnant delegation to their reciprocal embassy on Hai-home.`
+	on visit
+		dialog `It appears that the delegation is bunked on escorts that have not arrived in this system yet.  Take off and wait for them.`
 
 mission "Strider: Of the Pond C"
 	description "Transport an ambassadorial entourage to <destination>."
+	name "Establish Coalition embassy"
 	landing
 	source "Ring of Friendship"
 	destination "Hai-home"
 	passengers 3
+	blocked "The Heliarchs are sending a delegation to <destination>, and require 3 bunks for the trip."
 	to offer
 		has "Strider: Widen the new coalition: done"
 	on offer
@@ -1259,6 +1274,8 @@ mission "Strider: Of the Pond C"
 		conversation
 			`The three Heliarchs interested in immersing themselves in Hai culture thank you for the safe trip as they exit the <ship>. Immediately setting to work on learning to communicate with each other without electronic aid, the four species within minutes seem to be having a basic conversation.`
 		log `Transported Heliarch delegation to their reciprocal embassy on Hai-home.`
+	on visit
+		dialog `It appears that the delegation is bunked on escorts that have not arrived in this system yet.  Take off and wait for them.`
 
 mission "Strider: Found their own way"
 	invisible
