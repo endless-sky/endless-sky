@@ -3,8 +3,7 @@ Copyright (c) 2015 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
-Foundation, either version 3 of the License, or (at your option) any later
-version.
+Foundation, either version 3 of the License, or (at your option) any later version.
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -16,7 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <cstdint>
 #include <string>
-#include <vector>
+
+
 
 // Class mapping key presses to specific commands / actions. The player can
 // change the mappings for most of these keys in the preferences panel.
@@ -68,7 +68,7 @@ public:
 	static std::string ReplaceNamesWithKeys(const std::string &text);
 	
 public:
-	Command();
+	Command() = default;
 	// Create a command representing whatever command is mapped to the given
 	// keycode (if any).
 	explicit Command(int keycode);
@@ -120,20 +120,21 @@ public:
 	Command operator|(const Command &command) const;
 	Command &operator|=(const Command &command);
 	
+	
 private:
 	explicit Command(uint32_t state);
 	Command(uint32_t state, const std::string &text);
 	
+	
 private:
 	// Turret turn rates, reduced to 8 bits to save space.
-	signed char aim[512];
+	signed char aim[512] = {};
+	// The key commands are stored in a single bitmask, with 32 bits for key commands.
+	uint32_t state = 0;
 	// 512 bits for weapons firing.
-	uint64_t firing_weps[8];
+	uint64_t firing_weps[8] = {};
 	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
-	// The key commands are stored in a single bitmask, with
-	// 32 bits for key commands
-	uint32_t state = 0;
 };
 
 #endif
