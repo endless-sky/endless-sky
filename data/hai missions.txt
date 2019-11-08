@@ -1189,9 +1189,9 @@ mission "Strider: A tale of two remnants"
 			`Ambassador Yashili urges "Now to <destination>, so we may meet the Remnants."`
 				accept
 	on complete
-		log `Helped establish a Hai embassy on Aventine`
+		log `Helped establish a Hai embassy on Aventine.`
 		conversation
-			`The Remnants are pleased to meet the Hai delegation, and immediately begin an exchange of information.  Three Remnants interested in immersing themselves in Hai culture request to return to Hai-Home with you.`
+			`The Remnants are pleased to meet the Hai delegation, and immediately begin an exchange of information.`
 
 mission "Strider: Widen the new coalition"
 	description "Transport Ambassador Yashili and her delegation to <destination>."
@@ -1208,52 +1208,78 @@ mission "Strider: Widen the new coalition"
 			`Ambassador Yashili urges "Now to <destination>, so we may meet the Heliarchs."`
 				accept
 	on complete
-		log `Helped establish a Hai embassy on the Ring of Friendship`
+		log `Helped establish a Hai embassy on the Ring of Friendship.`
 		conversation
-			`The Heliarchs are pleased to meet the Hai delegation, and immediately begin an exchange of information.  Three Heliarchs interested in immersing themselves in Hai culture request to return to Hai-Home with you.`
+			`The Heliarchs are pleased to meet the Hai delegation, and immediately begin exchanging information about their respective cultures, history and technologies.  The Hai marvel at the Coalition translation devices, and the Heliarchs seem oddly tickled by the genetic variation Humans and Hai represent.`
 
-mission "Strider: Of the Pond"
-	description "Transport an ambassadorial entourage to Hai Home."
+mission "Strider: Of the Pond R"
+	description "Transport an ambassadorial entourage to <destination>."
 	landing
+	source "Aventine"
 	destination "Hai-home"
 	passengers 3
 	to offer
-		or
-			has "Strider: Widen the new coalition: done"
-			has "Strider: A tale of two remnants: done"
+		has "Strider: A tale of two remnants: done"
 	on offer
 		conversation
+			`Three Remnants interested in immersing themselves in Hai culture request to return to Hai-Home with you.`
 			choice
-				`"I'd be happy to take your entourage back to Hai space.  There are accommodations on the <ship> waiting for you."`
+				`"I'd be happy to take your entourage back to Hai space.  There are accommodations on the <ship> waiting for you, and I'm sure the Hai are prepared for your delegation."`
 					accept
-				`"I'm busy right now, perhaps ask the Quarg."`
-					decline
+				`"I'm busy right now, but it should not be too difficult to find your way through Human space."`
+			apply
+				set "Strider: Quarg"
+			decline
 	on complete
 		event "Pond Strider release" 30
 		conversation
-			`The entourage thanks you for the safe trip as they exit the <ship>, and are greeted by a group of Hai who seem very excited to receive the delegation.`
+			`The three Remnants interested in immersing themselves in Hai culture thank you for the safe trip as they exit the <ship>.  The Hai interpretation device has even more difficulty than usual translating the Remnants singing.  The Hai appear oddly amused by this, and seem even more interested in the Remnants and their linguistic style as a result.`
+		log `Transported Remnant delegation to their reciprocal embassy on Hai-home.`
 
-mission "Strider: Asked the Quarg"
+mission "Strider: Of the Pond C"
+	description "Transport an ambassadorial entourage to <destination>."
+	landing
+	source "Ring of Friendship"
+	destination "Hai-home"
+	passengers 3
+	to offer
+		has "Strider: Widen the new coalition: done"
+	on offer
+		conversation
+			`Three Heliarchs interested in immersing themselves in Hai culture request to return to Hai-Home with you.`
+			choice
+				`"I'd be happy to take your entourage back to Hai space.  There are accommodations on the <ship> waiting for you, and I'm sure the Hai are prepared for your delegation."`
+					accept
+				`"I'm busy right now, perhaps ask the Quarg."`
+			apply
+				set "Strider: Quarg"
+			decline
+	on complete
+		event "Pond Strider release" 30
+		conversation
+			`The three Heliarchs interested in immersing themselves in Hai culture thank you for the safe trip as they exit the <ship>. Immediately setting to work on learning to communicate with each other without electronic aid, the four species within minutes seem to be having a basic conversation.`
+		log `Transported Heliarch delegation to their reciprocal embassy on Hai-home.`
+
+mission "Strider: Found their own way"
 	invisible
 	landing
-	destination "Hai-home"
 	to offer
 		has "Strider: Quarg"
 	on offer
-		event "Pond Strider release" 90
+		event "Pond Strider release" 120
 		fail
 
 mission "Strider: notification"
 	invisible
 	landing
-	destination "Hai-home"
 	to offer
 		has "event: Pond Strider release"
 	on offer
-		log `The assistance offered to the Hai in establishing an alien embassy has culminated in the development of the Pond Strider, Fleas and some outfits, which they've made available.`
+		log `For assisting the Hai establish an alien embassy, they've made newly developed warships and outfits available.`
 		conversation
-			 `The Hai thank you for your assistance with interspecies diplomacy.  They have begun production of some new military ships and outfits that they've granted you access to in their shipyards and outfitters.`
-				decline
+			scene `thumbnail/hai pond strider`
+			`The Hai thank you for your assistance with interspecies diplomacy.  They have begun production of some new military ships and outfits that they've granted you access to in their shipyards and outfitters.`
+		fail
 
 event "Pond Strider release"
 	shipyard "Hai Advanced"
