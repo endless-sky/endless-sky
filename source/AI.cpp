@@ -1829,6 +1829,10 @@ void AI::CircleAround(Ship &ship, Command &command, const Ship &target)
 	command.SetTurn(TurnToward(ship, direction));
 	if(ship.Facing().Unit().Dot(direction) >= 0. && direction.Length() > 200.)
 		command |= Command::FORWARD;
+
+	// Use an equipped afterburner if possible
+	if (command.Has(Command::FORWARD) && direction.Length() > 600 && ShouldUseAfterburner(ship))
+		command |= Command::AFTERBURNER;
 }
 
 
