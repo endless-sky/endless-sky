@@ -1271,12 +1271,12 @@ mission "Wanderers: Mentors 2"
 		conversation
 			`A team of Wanderer terraforming experts has been assembled on <origin>. They have requisitioned a transport and filled it with an overwhelming variety of sensors, bioreactors, chemical filters, and other scientific devices. But, it's clear that none of them quite understand what is going on with the Kor Mereti. The team's manager says, "We are to meet with [sentient? awakened?] robots? They are interested in [foliage, plants]? There are worlds to be [repaired, healed]?"`
 			`	You do your best to answer their questions, but this is clearly not a situation that any of them had anticipated. Perhaps not even a situation that their species has ever had to deal with before, given that usually they are working in regions of space that have long since been abandoned by their former inhabitants.`
-			`	The freighter gets ready to follow you back to <planet>, where hopefully more of their questions will be answered.`
+			`	The transport gets ready to follow you back to <planet>, where hopefully more of their questions will be answered.`
 				accept
 	npc accompany save
 		government "Wanderer"
 		personality escort
-		ship "Deep River Transport" "Green Talon"
+		ship "Riptide" "Green Talon"
 
 
 
