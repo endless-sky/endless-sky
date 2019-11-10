@@ -691,10 +691,10 @@ int64_t PlayerInfo::Salaries() const
 int64_t PlayerInfo::Maintenance() const
 {
 	int64_t maintenance = 0;
-	// If the player is landed, then cargo will be in the player's 
+	// If the player is landed, then cargo will be in the player's
 	// pooled cargo. Check there so that the bank panel can display the
 	// correct total maintenance costs. When launched all cargo will be
-	// in the player's ships instead of in the pooled cargo, so no outfit 
+	// in the player's ships instead of in the pooled cargo, so no outfit
 	// will be counted twice.
 	for(const auto &outfit : Cargo().Outfits())
 		maintenance += max<int64_t>(0, outfit.first->Get("maintenance costs")) * outfit.second;
@@ -1196,41 +1196,25 @@ bool PlayerInfo::TakeOff(UI *ui)
 	
 	// For each carryable ship you own, try to find a ship that has a bay for it.
 	int uncarried = 0;
-	for(auto it = ships.begin(); it != ships.end(); )
-	{
-		const shared_ptr<Ship> &ship = *it;
-		if(ship->IsParked() || ship->IsDisabled())
+	for(auto &ship : ships)
+		if(ship->CanBeCarried() && !ship->IsParked() && !ship->IsDisabled())
 		{
-			++it;
-			continue;
-		}
-		
-		bool fit = true;
-		if(ship->CanBeCarried())
-		{
-			fit = false;
+			bool fit = false;
 			for(auto &parent : ships)
-				if(parent.get() != ship.get() && !parent->IsParked() && !parent->IsDisabled()
+				if(parent != ship && !parent->IsParked() && !parent->IsDisabled()
 						&& parent->GetSystem() == ship->GetSystem() && parent->Carry(ship))
 				{
 					fit = true;
 					break;
 				}
+			if(!fit)
+				++uncarried;
 		}
-		if(!fit)
-			++uncarried;
-		
-		++it;
-	}
 	if(uncarried)
 	{
-		// If your fleet contains more fighters or drones than you can carry,
-		// some of them are launched without a carrier.
-		ostringstream out;
-		out << "Because none of your ships can carry them, you launched ";
-		out << uncarried;
-		out << " non-jump capable ships outside carriers.";
-		Messages::Add(out.str());
+		// The remaining uncarried ships are launched alongside the player.
+		string message = (uncarried > 1) ? "Some escorts were" : "One escort was";
+		Messages::Add(message + " unable to dock with a carrier.");
 	}
 	
 	// By now, all cargo should have been divvied up among your ships. So, any
