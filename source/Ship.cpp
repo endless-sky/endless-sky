@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipEvent.h"
 #include "Sound.h"
 #include "SpriteSet.h"
+#include "Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Visual.h"
@@ -578,6 +579,8 @@ void Ship::Save(DataWriter &out) const
 		if(!noun.empty())
 			out.Write("noun", noun);
 		SaveSprite(out);
+		if(thumbnail)
+			out.Write("thumbnail", thumbnail->Name());
 		
 		if(neverDisabled)
 			out.Write("never disabled");

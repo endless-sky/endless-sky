@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define GOVERNMENT_H_
 
 #include "Color.h"
+#include "LocationFilter.h"
 
 #include <map>
 #include <string>
@@ -23,8 +24,10 @@ class Conversation;
 class DataNode;
 class Fleet;
 class Phrase;
+class Planet;
 class PlayerInfo;
 class Ship;
+class System;
 
 
 
@@ -62,6 +65,10 @@ public:
 	// This government will fine you the given fraction of the maximum fine for
 	// carrying illegal cargo or outfits. Zero means they will not fine you.
 	double GetFineFraction() const;
+	// A government might not exercise the ability to perform scans or fine
+	// the player in every system.
+	bool CanEnforce(const System *system) const;
+	bool CanEnforce(const Planet *planet) const;
 	// Get the conversation that will be shown if this government gives a death
 	// sentence to the player (for carrying highly illegal cargo).
 	const Conversation *DeathSentence() const;
@@ -118,6 +125,7 @@ private:
 	std::map<int, double> penaltyFor;
 	double bribe = 0.;
 	double fine = 1.;
+	std::vector<LocationFilter> enforcementZones;
 	const Conversation *deathSentence = nullptr;
 	const Phrase *friendlyHail = nullptr;
 	const Phrase *friendlyDisabledHail = nullptr;

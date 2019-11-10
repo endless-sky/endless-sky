@@ -430,6 +430,8 @@ mission "Unfettered returning home"
 			`	You show the youth to one of your bunk rooms, and tell him to stay hidden there until you reach Hai-home.`
 				accept
 	
+	on visit
+		dialog `You look for the young Hai, but realize that he took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 100000
 		dialog
@@ -490,6 +492,8 @@ mission "Returning Home"
 			`	You lead Elliot to your ship and show him to a bunk room. After leaving Elliot there, you wonder if his family is still even on <planet> anymore.`
 				accept
 			
+	on visit
+		dialog `You look for Elliot, but realize that he took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 45000
 		conversation
@@ -543,7 +547,7 @@ mission "Unwanted Cargo"
 			`The "Check Cargo" light for your ship begins blinking when you land, meaning that a cargo crate may have come loose in flight. You shut off the ship's engines and walk to the cargo hold.`
 			`	You check every cargo crate in the hold, but can't find anything wrong. Right as you decide to leave, one of the smaller crates begins rocking back and forth.`
 			branch translator
-				has "Human Cultural Archives: done"
+				has "language: Wanderer"
 				
 			`	You hear a voice come from the crate, but it is not a language you understand. The voice continues to speak, and you recognize it as the Hai language.`
 			choice
@@ -1002,6 +1006,8 @@ mission "Hiding in Plain Sight"
 				`	"Sorry, you'll have to find someone else to bring you."`
 					decline
 					
+	on visit
+		dialog `You look for Arthur and Kiru, but realize that they took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 75000
 		dialog `Arthur and Kiru pay you <payment> before running off to the convention center. As they run away, you notice that Kiru is drawing a number of eyes from the crowd, but no one seems to suspect that he is an actual alien.`
@@ -1050,6 +1056,8 @@ mission "Hai Honeymoon"
 				`	"Sorry, I can't travel that far from here."`
 					decline
 					
+	on visit
+		dialog `You look for Anaya and Touhar, but realize that they took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 100000
 		dialog `Instead of landing in the spaceport where they can be seen, you drop Anaya and Touhar off as close as you can to where they will be staying. The house is a few kilometers away, but they assure you that they can make it on their own. They pay you <payment> and thank you for bringing them this far.`

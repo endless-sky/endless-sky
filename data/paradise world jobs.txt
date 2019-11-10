@@ -325,6 +325,8 @@ mission "Contract laborers to <planet>"
 		attributes "mining" "fishing" "textiles" "factory" "farming" "oil"
 	on stopover
 		dialog "The shabbily-dressed young men and women in the group don't look nearly as happy to be boarding your ship as you expected, given the new opportunity that awaits them. They shuffle wearily up the ramp for the return trip to <planet>."
+	on visit
+		dialog phrase "generic missing stopover or passengers"
 	on complete
 		payment 10000 50
 		dialog "The bedraggled contract laborers kept to themselves and didn't say a word to you throughout the entire trip. The scruffy foreman who receives you on <origin> seems pleased, however. He hands you your payment of <payment>."
