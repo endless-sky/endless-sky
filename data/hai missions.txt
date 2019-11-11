@@ -1066,7 +1066,7 @@ mission "Hai Honeymoon"
 
 mission "Pirate Troubles [0]"
 	name "Defend <system>"
-	description "A sizeable group of pirates has found their way into Hai space and is terrorizing the system. Help the Hai fight back against them."
+	description "A sizable group of pirates has found their way into Hai space and is terrorizing the system. Help the Hai fight back against them."
 	source
 		near "Waypoint" 2
 		government "Hai"
