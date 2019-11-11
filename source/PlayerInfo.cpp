@@ -1169,8 +1169,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 	}
 	
-	// For each fighter and drone you own, try to find a ship that has a bay to
-	// carry it in. Any excess ships will be launched outside carriers.
+	// For each non-jump-capable fighter and drone you own, try to find a ship that has
+	// a bay to carry it in. Any excess ships will be launched outside carriers.
 	int shipsUnCarried = 0;
 	for(auto it = ships.begin(); it != ships.end(); )
 	{
@@ -1183,8 +1183,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 		
 		bool fit = true;
 		const string &category = ship->Attributes().Category();
-		bool isFighter = (category == "Fighter");
-		if(isFighter || category == "Drone")
+		// Load only fighters and drones that cannot jump by themselves
+		if((ship->JumpsRemaining() < 1) && (category == "Fighter" || category == "Drone"))
 		{
 			fit = false;
 			for(shared_ptr<Ship> &parent : ships)

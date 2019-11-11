@@ -267,8 +267,8 @@ void PlanetPanel::TakeOffIfReady()
 	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
 	
 	// Check how many ships we have that cannot jump. Drones and fighters
-	// are counted separately, because they usually don't jump by themselves
-	// but are carried in fighter and drone bays.
+	// are counted separately, since we need to match them with the correct
+	// type of bays for carrying them.
 	int nonJumpCount = 0;
 	int droneCount = 0;
 	int fighterCount = 0;
@@ -278,12 +278,15 @@ void PlanetPanel::TakeOffIfReady()
 			const string &category = it->Attributes().Category();
 			droneCount -= it->BaysFree(false);
 			fighterCount -= it->BaysFree(true);
-			if(category == "Drone")
-				droneCount += 1;
-			else if(category == "Fighter")
-				fighterCount += 1;
-			else if(it->JumpsRemaining() < 1)
-				nonJumpCount += 1;
+			if(it->JumpsRemaining() < 1)
+			{
+				if(category == "Drone")
+					droneCount += 1;
+				else if(category == "Fighter")
+					fighterCount += 1;
+				else
+					nonJumpCount += 1;
+			}
 		}
 	nonJumpCount += fighterCount > 0 ? fighterCount : 0;
 	nonJumpCount += droneCount > 0 ? droneCount : 0;
