@@ -443,7 +443,7 @@ system "12 Autumn Above"
 		period 1226.52
 		offset 159.403
 		object "Station Cian"
-			sprite planet/station3
+			sprite planet/station3c
 			distance 392.805
 			period 251.263
 			offset 170.143
@@ -21073,7 +21073,7 @@ system "Sol Kimek"
 		period 343.442
 		offset 43.5788
 		object "Starting Rubin"
-			sprite planet/station4
+			sprite planet/station1c
 			distance 194.851
 			period 27.367
 			offset 56.4009
