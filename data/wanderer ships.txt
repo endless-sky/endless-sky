@@ -211,9 +211,9 @@ ship "Strong Wind"
 		"mass" 260
 		"drag" 4.7
 		"heat dissipation" .7
-		"fuel capacity" 400
+		"fuel capacity" 600
 		"cargo space" 68
-		"outfit space" 493
+		"outfit space" 496
 		"weapon capacity" 198
 		"engine capacity" 114
 		"asteroid scan power" 100
@@ -232,7 +232,7 @@ ship "Strong Wind"
 		
 		"White Sun Reactor"
 		"Dark Storm Shielding"
-		"Wanderer Ramscoop"
+		"Wanderer Ramscoop" 2
 		
 		"Type 3 Radiant Thruster"
 		"Type 4 Radiant Steering"
