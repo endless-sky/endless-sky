@@ -578,7 +578,8 @@ ship "Penguin"
 	
 ship "Peregrine"
 	sprite "ship/peregrine/peregrine"
-		"frame rate" 3 "rewind"
+		"frame rate" 3 
+		"rewind"
 	thumbnail "thumbnail/peregrine"
 	attributes
 		category "Medium Warship"
@@ -593,7 +594,7 @@ ship "Peregrine"
 		"drag" 4.3
 		"heat dissipation" 0.8
 		"fuel capacity" 900
-		"ramscoop" 2
+		"ramscoop" 2.5
 		"cargo space" 49
 		"outfit space" 588
 		"weapon capacity" 220
@@ -622,12 +623,11 @@ ship "Peregrine"
 		
 		"Aeon Cell"
 		"Crystal Capacitor" 2
-		"Emergency Ramscoop"
 		"Thermoelectric Cooler" 2
 		"Small Heat Shunt"
 		"Quantum Key Stone"
 		"Salvage Scanner"
-		"Tuning Rifle" 9
+		"Tuning Rifle" 11
 		
 		"Bellows-Class Afterburner"
 		"Smelter-Class Thruster"
