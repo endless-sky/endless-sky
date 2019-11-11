@@ -216,6 +216,9 @@ ship "Strong Wind"
 		"outfit space" 493
 		"weapon capacity" 198
 		"engine capacity" 114
+		"asteroid scan power" 100
+		"atmosphere scan" 100
+		"tactical scan power" 25
 		weapon
 			"blast radius" 200
 			"shield damage" 2000
