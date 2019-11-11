@@ -1147,6 +1147,8 @@ mission "Pirate Troubles [1]"
 			label yes
 			`	"Thank you. Please return to <destination> after you have sought to resolve this situation."`
 				accept
+	on visit
+		dialog "You've returned to <planet>, but you haven't yet tracked down Scar's Legion. Perhaps you should ask around the spaceport of pirate planets near the wormhole into Hai space for information."
 	to complete
 		or
 			has "accepted scar's legion tribute"
@@ -1255,7 +1257,7 @@ planet "Scar's Hideout"
 mission "Pirate Troubles [2]"
 	landing
 	name "Scar's Legion"
-	description "You've pieced together enough information to find out that the Scar's Legion is in one of four systems in the Far North. Search those systems for the gang's hideout and confront them."
+	description "You've pieced together enough information to find out that the Scar's Legion hideout is in one of four systems in the Far North. Search those systems for the gang's hideout and confront them."
 	waypoint "Danoa"
 	waypoint "Rajak"
 	waypoint "Sumar"
@@ -1306,11 +1308,11 @@ event "battle against scar's legion over"
 mission "Pirate Troubles [3]"
 	landing
 	name "Scar's Legion"
-	description "Having declined the tribute, the leader of Scar's Legion has challenged you to a fight to the death. Defeat the <npc>, then return to <destination>"
+	description "Having declined the tribute, the leader of Scar's Legion has challenged you to a fight to the death. Defeat the <npc>, then return to <destination>."
 	source "Scar's Hideout"
 	destination "Hai-home"
 	to offer
-		has "Pirate Troubles [2]: done"
+		has "event: scar's hideout"
 	on offer
 		conversation
 			`You've located the Scar's Hideout, a massive asteroid in orbit around a gas giant. As you fly over the asteroid's surface, you spot an open blast door. They must be inviting you inside. It surprises you that a gang of pirates would be capable of creating such a base, as the materials and time needed to make something like this are immense.`
@@ -1384,6 +1386,9 @@ mission "Pirate Troubles [3]"
 	on enter
 	on enter
 		"reputation: Scar's Legion" = -1000
+	
+	on visit
+		dialog phrase "generic bounty hunting on visit"
 		
 	on complete
 		set "defeated scar's legion"
