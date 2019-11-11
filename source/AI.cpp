@@ -284,17 +284,17 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 	
 	Command oldHeld = keyHeld;
 	keyHeld.ReadKeyboard();
-	autopilotCommand |= clickCommands;
+	autoPilot |= clickCommands;
 	clickCommands.Clear();
 	keyDown = keyHeld.AndNot(oldHeld);
 	if(keyHeld.Has(AutopilotCancelCommands()))
 	{
-		bool canceled = (autopilotCommand.Has(Command::JUMP) && !keyHeld.Has(Command::JUMP));
-		canceled |= (autopilotCommand.Has(Command::LAND) && !keyHeld.Has(Command::LAND));
-		canceled |= (autopilotCommand.Has(Command::BOARD) && !keyHeld.Has(Command::BOARD));
+		bool canceled = (autoPilot.Has(Command::JUMP) && !keyHeld.Has(Command::JUMP));
+		canceled |= (autoPilot.Has(Command::LAND) && !keyHeld.Has(Command::LAND));
+		canceled |= (autoPilot.Has(Command::BOARD) && !keyHeld.Has(Command::BOARD));
 		if(canceled)
 			Messages::Add("Disengaging autopilot.");
-		autopilotCommand.Clear();
+		autoPilot.Clear();
 	}
 	const Ship *flagship = player.Flagship();
 	
@@ -511,7 +511,7 @@ void AI::Step(const PlayerInfo &player)
 		// Special case: if the player's flagship tries to board a ship to
 		// refuel it, that escort should hold position for boarding.
 		isStranded |= (flagship && it == flagship->GetTargetShip() && CanBoard(*flagship, *it)
-			&& autopilotCommand.Has(Command::BOARD));
+			&& autoPilot.Has(Command::BOARD));
 		
 		Command command;
 		if(it->IsYours())
@@ -2976,7 +2976,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 				&& object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system && player.HasVisited(system))
 			{
 				isWormhole = true;
-				if(!ship.GetTargetStellar() || autopilotCommand.Has(Command::JUMP))
+				if(!ship.GetTargetStellar() || autoPilot.Has(Command::JUMP))
 					ship.SetTargetStellar(&object);
 				break;
 			}
@@ -3309,7 +3309,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	const shared_ptr<const Ship> target = ship.GetTargetShip();
 	AimTurrets(ship, command, !Preferences::Has("Turrets focus fire"));
 	if(Preferences::Has("Automatic firing") && !ship.IsBoarding()
-			&& !(autopilotCommand | keyHeld).Has(Command::LAND | Command::JUMP | Command::BOARD)
+			&& !(autoPilot | keyHeld).Has(Command::LAND | Command::JUMP | Command::BOARD)
 			&& (!target || target->GetGovernment()->IsEnemy()))
 		AutoFire(ship, command, false);
 	if(keyHeld)
@@ -3350,14 +3350,14 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			command |= Command::AFTERBURNER;
 		
 		if(keyHeld.Has(AutopilotCancelCommands()))
-			autopilotCommand = keyHeld;
+			autoPilot = keyHeld;
 	}
 	bool shouldAutoAim = false;
 	if(Preferences::Has("Automatic aiming") && !command.Turn() && !ship.IsBoarding()
 			&& (Preferences::Has("Automatic firing") || keyHeld.Has(Command::PRIMARY))
 			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable())
 				|| ship.GetTargetAsteroid())
-			&& !autopilotCommand.Has(Command::LAND | Command::JUMP | Command::BOARD))
+			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::BOARD))
 	{
 		// Check if this ship has any forward-facing weapons.
 		for(const Hardpoint &weapon : ship.Weapons())
@@ -3374,58 +3374,58 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
 	}
 	
-	if(autopilotCommand.Has(Command::JUMP) && !player.HasTravelPlan())
+	if(autoPilot.Has(Command::JUMP) && !player.HasTravelPlan())
 	{
 		// The player completed their travel plan, which may have indicated a destination within the final system.
-		autopilotCommand.Clear(Command::JUMP);
+		autoPilot.Clear(Command::JUMP);
 		const Planet *planet = player.TravelDestination();
 		if(planet && planet->IsInSystem(ship.GetSystem()) && planet->IsAccessible(&ship))
 		{
 			Messages::Add("Autopilot: landing on " + planet->Name() + ".");
-			autopilotCommand |= Command::LAND;
+			autoPilot |= Command::LAND;
 			ship.SetTargetStellar(ship.GetSystem()->FindStellar(planet));
 		}
 	}
 	
 	// Clear autopilot actions if actions can't be performed.
-	if(autopilotCommand.Has(Command::LAND) && !ship.GetTargetStellar())
-		autopilotCommand.Clear(Command::LAND);
-	if(autopilotCommand.Has(Command::JUMP) && !(ship.GetTargetSystem() || isWormhole))
-		autopilotCommand.Clear(Command::JUMP);
-	if(autopilotCommand.Has(Command::BOARD) && !(ship.GetTargetShip() && CanBoard(ship, *ship.GetTargetShip())))
-		autopilotCommand.Clear(Command::BOARD);
+	if(autoPilot.Has(Command::LAND) && !ship.GetTargetStellar())
+		autoPilot.Clear(Command::LAND);
+	if(autoPilot.Has(Command::JUMP) && !(ship.GetTargetSystem() || isWormhole))
+		autoPilot.Clear(Command::JUMP);
+	if(autoPilot.Has(Command::BOARD) && !(ship.GetTargetShip() && CanBoard(ship, *ship.GetTargetShip())))
+		autoPilot.Clear(Command::BOARD);
 	
-	if(autopilotCommand.Has(Command::LAND) || (autopilotCommand.Has(Command::JUMP) && isWormhole))
+	if(autoPilot.Has(Command::LAND) || (autoPilot.Has(Command::JUMP) && isWormhole))
 	{
 		if(ship.GetPlanet())
-			autopilotCommand.Clear();
+			autoPilot.Clear();
 		else
 		{
 			MoveToPlanet(ship, command);
 			command |= Command::LAND;
 		}
 	}
-	else if(autopilotCommand.Has(Command::JUMP))
+	else if(autoPilot.Has(Command::JUMP))
 	{
 		bool isNewPress = keyDown.Has(Command::JUMP) || !keyHeld.Has(Command::JUMP);
 		if(!ship.Attributes().Get("hyperdrive") && !ship.Attributes().Get("jump drive"))
 		{
 			Messages::Add("You do not have a hyperdrive installed.");
-			autopilotCommand.Clear();
+			autoPilot.Clear();
 			if(isNewPress)
 				Audio::Play(Audio::Get("fail"));
 		}
 		else if(!ship.JumpFuel(ship.GetTargetSystem()))
 		{
 			Messages::Add("You cannot jump to the selected system.");
-			autopilotCommand.Clear();
+			autoPilot.Clear();
 			if(isNewPress)
 				Audio::Play(Audio::Get("fail"));
 		}
 		else if(!ship.JumpsRemaining() && !ship.IsEnteringHyperspace())
 		{
 			Messages::Add("You do not have enough fuel to make a hyperspace jump.");
-			autopilotCommand.Clear();
+			autoPilot.Clear();
 			if(isNewPress)
 				Audio::Play(Audio::Get("fail"));
 		}
@@ -3437,10 +3437,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 				command |= Command::WAIT;
 		}
 	}
-	else if(autopilotCommand.Has(Command::BOARD))
+	else if(autoPilot.Has(Command::BOARD))
 	{
 		if(!CanBoard(ship, *target))
-			autopilotCommand.Clear(Command::BOARD);
+			autoPilot.Clear(Command::BOARD);
 		else
 		{
 			MoveTo(ship, command, target->Position(), target->Velocity(), 40., .8);

@@ -188,7 +188,7 @@ private:
 	// Commands that are active for this step.
 	Command keyHeld;
 	// Command applied by the player's "autopilot."
-	Command autopilotCommand;
+	Command autoPilot;
 	
 	bool isLaunching = false;
 	bool isCloaking = false;
