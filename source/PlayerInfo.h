@@ -112,6 +112,7 @@ public:
 	const Ship *Flagship() const;
 	Ship *Flagship();
 	const std::shared_ptr<Ship> &FlagshipPtr();
+	const std::shared_ptr<Ship> &FlagshipPtrReadOnly() const;
 	// Get the full list of ships the player owns.
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;
 	// Add a captured ship to your fleet.
