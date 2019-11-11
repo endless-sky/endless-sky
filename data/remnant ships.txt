@@ -596,7 +596,7 @@ ship "Peregrine"
 		"fuel capacity" 900
 		"ramscoop" 2.5
 		"cargo space" 49
-		"outfit space" 588
+		"outfit space" 592
 		"weapon capacity" 220
 		"engine capacity" 171
 		"shield generation" 3.9
