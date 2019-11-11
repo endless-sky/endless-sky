@@ -708,25 +708,36 @@ void AI::Step(const PlayerInfo &player)
 				// Find a parent for orphaned fighters and drones.
 				parent.reset();
 				it->SetParent(parent);
-				vector<shared_ptr<Ship>> parentChoices;
-				parentChoices.reserve(ships.size() * .1);
-				for(const auto &other : ships)
-					if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
-					{
-						if(!other->IsDisabled() && other->CanCarry(*it.get()))
-						{
-							parent = other;
-							it->SetParent(other);
-							break;
-						}
-						else
-							parentChoices.emplace_back(other);
-					}
 				
-				if(!parent && !parentChoices.empty())
+				// The players jump-capable fighters and drones act as regular fighers and
+				// drones, except when the players flagship is in a different system. If
+				// the flagship is in a different system, then the fighter or drone will be
+				// reparented to the flagship to ensure that fighters and drones jump towards
+				// the flagship.
+				if(it->IsYours() && it->JumpsRemaining() > 0 && flagship && flagship->GetSystem() != it->GetSystem())
+					it->SetParent(player.FlagshipPtrReadOnly());
+				else
 				{
-					parent = parentChoices[Random::Int(parentChoices.size())];
-					it->SetParent(parent);
+					vector<shared_ptr<Ship>> parentChoices;
+					parentChoices.reserve(ships.size() * .1);
+					for(const auto &other : ships)
+						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
+						{
+							if(!other->IsDisabled() && other->CanCarry(*it.get()))
+							{
+								parent = other;
+								it->SetParent(other);
+								break;
+							}
+							else
+								parentChoices.emplace_back(other);
+						}
+					
+					if(!parent && !parentChoices.empty())
+					{
+						parent = parentChoices[Random::Int(parentChoices.size())];
+						it->SetParent(parent);
+					}
 				}
 			}
 			// Otherwise, check if this ship wants to return to its parent (e.g. to repair).
