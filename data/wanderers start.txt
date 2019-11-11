@@ -107,6 +107,7 @@ mission "Wanderers: Hai Diplomat"
 				accept
 	on accept
 		"reputation: Hai" >?= 20
+		"reputation: Hai" += 30
 
 
 
@@ -758,6 +759,7 @@ mission "Wanderers: Alpha Surveillance A"
 	autosave
 	source "Vara K'chrai"
 	destination "Hai-home"
+	clearance
 	to offer
 		has "Wanderers: Jump Drive Source: done"
 	
