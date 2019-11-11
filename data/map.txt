@@ -25171,7 +25171,8 @@ planet Hai-home
 	spaceport `The spaceport in the capital city of Haimat is massive, with towers well over a kilometer high and hangars large enough to park an entire fleet of capital ships in. Although the port is bustling, with ships taking off and landing almost every minute, nearly three quarters of the landing pads and hangars are empty, and whole sections of the spaceport appear to be unused. Clearly, this port was designed to handle far more traffic than this.`
 	shipyard "Hai Advanced"
 	outfitter "Hai Advanced"
-	"required reputation" 10
+	"required reputation" 100
+	bribe 0
 
 planet "Hammer of Debrugt"
 	attributes arach mining shipping urban
