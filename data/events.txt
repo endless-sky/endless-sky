@@ -1186,19 +1186,23 @@ fleet "gunboat only"
 		"Gunboat (Mark II)"
 
 event "gunboats in Alnasl"
-	system Alnasl
+	system "Alnasl"
 		fleet "Small Southern Merchants" 1300
 		fleet "Large Southern Merchants" 2500
-		fleet "gunboat only" 800
+		fleet "gunboat only" 2400
+	system "Wei"
+		remove fleet "Large Republic"
 
 event "normal in Alnasl"
-	system Alnasl
+	system "Alnasl"
 		fleet "Small Southern Merchants" 1300
 		fleet "Large Southern Merchants" 2500
 		fleet "Small Southern Pirates" 6000
 		fleet "Small Republic" 900
 		fleet "Large Republic" 1100
 		fleet "Navy Surveillance" 1200
+	system "Wei"
+		add fleet "Large Republic" 700
 
 
 
