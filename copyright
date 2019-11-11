@@ -132,6 +132,11 @@ Copyright: Jonathan Steck
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser and Maximilian Korber (under the same license).
 
+Files: images/ship/peregrine/peregrine?
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Evan Fluharty (under the same license).
+
 Files: images/outfit/city-ship?license*
 Copyright: Jonathan Steck
 License: CC-BY-SA-4.0
@@ -297,12 +302,14 @@ Files:
  images/ship/hai?grasshopper*
  images/ship/gull*
  images/ship/pelican*
+ images/ship/peregrine/peregrine*
  images/ship/riptide*
  images/thumbnail/hai?centipede*
  images/thumbnail/hai?geocoris*
  images/thumbnail/hai?grasshopper*
  images/thumbnail/gull*
  images/thumbnail/pelican*
+ images/thumbnail/peregrine*
  images/thumbnail/riptide*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
