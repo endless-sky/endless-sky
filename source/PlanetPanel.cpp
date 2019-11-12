@@ -18,8 +18,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "Dialog.h"
-#include "GameData.h"
 #include "FontSet.h"
+#include "GameData.h"
 #include "HiringPanel.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
@@ -103,12 +103,15 @@ void PlanetPanel::Draw()
 	
 	if(planet.CanUseServices())
 	{
-		if(flagship && planet.IsInhabited())
+		if(planet.IsInhabited())
 		{
-			info.SetCondition("is inhabited");
 			info.SetCondition("has bank");
-			if(system.HasTrade())
-				info.SetCondition("has trade");
+			if(flagship)
+			{
+				info.SetCondition("is inhabited");
+				if(system.HasTrade())
+					info.SetCondition("has trade");
+			}
 		}
 		
 		if(flagship && planet.HasSpaceport())

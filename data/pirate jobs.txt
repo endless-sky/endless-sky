@@ -2340,7 +2340,7 @@ mission "Raid on Merchants (North)"
 	name "Merchants near <system>"
 	repeat
 	job
-	description "A merchant fleet has been spotted near the <system>. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
+	description "A merchant fleet has been spotted near the <system> system. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
 	to offer
 		random < 50
 		"combat rating" > 150
@@ -2369,7 +2369,7 @@ mission "Raid on Merchants (Core)"
 	name "Merchants near <system>"
 	repeat
 	job
-	description "A merchant fleet has been spotted near the <system>. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
+	description "A merchant fleet has been spotted near the <system> system. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
 	to offer
 		random < 50
 		"combat rating" > 150
@@ -2398,7 +2398,7 @@ mission "Raid on Merchants (South)"
 	name "Merchants near <system>"
 	repeat
 	job
-	description "A merchant fleet has been spotted near the <system>. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
+	description "A merchant fleet has been spotted near the <system> system. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
 	to offer
 		random < 50
 		"combat rating" > 150
@@ -3146,58 +3146,3 @@ mission "Republic Assassination [4]"
 		"reputation: Republic" -= 25
 		"reputation: Navy (Oathkeeper)" -= 25
 		"reputation: Pirate" += 10
-
-
-
-# Must destroy hunters and land to fail
-mission "Hunted by State [0]"
-	invisible
-	landing
-	repeat
-	destination Earth
-	source
-		government "Republic" "Syndicate" "Free Worlds" "Neutral" "Pirate"
-	to offer
-		random < 10
-		"combat rating" > 150
-		or
-			not "chosen sides"
-			has "main plot completed"
-		or
-			"reputation: Republic" < -10
-			"reputation: Syndicate" < -10
-			"reputation: Free Worlds" < -10
-	to complete
-		never
-	npc save
-		government "Bounty Hunter"
-		personality heroic nemesis plunders
-		system
-			distance 5 5
-		fleet "Bounty Hunters"
-		
-mission "Hunted by State [1]"
-	invisible
-	landing
-	repeat
-	destination Earth
-	source
-		government "Republic" "Syndicate" "Free Worlds" "Neutral" "Pirate"
-	to offer
-		random > 95
-		"combat rating" > 1100
-		or
-			not "chosen sides"
-			has "main plot completed"
-		or
-			"reputation: Republic" < -200
-			"reputation: Syndicate" < -200
-			"reputation: Free Worlds" < -200
-	to complete
-		never
-	npc save
-		government "Bounty Hunter"
-		personality heroic nemesis plunders
-		system
-			distance 5 5
-		fleet "Hired Guns"

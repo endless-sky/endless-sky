@@ -21,6 +21,8 @@ mission "Human Vacation [1]"
 	destination
 		distance 2 7
 		attributes "human tourism"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 8000 150
 		dialog phrase "generic passenger dropoff payment"
@@ -38,6 +40,8 @@ mission "Human Vacation [2]"
 	destination
 		distance 2 7
 		attributes "human tourism"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 150
 		dialog phrase "generic passenger dropoff payment"
@@ -55,6 +59,8 @@ mission "Hai Vacation [1]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 6000 150
 		dialog phrase "generic passenger dropoff payment"
@@ -72,6 +78,8 @@ mission "Hai Vacation [2]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 4000 150
 		dialog phrase "generic passenger dropoff payment"
@@ -89,6 +97,8 @@ mission "Hai Vacation [3]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 4000 150
 		dialog phrase "generic passenger dropoff payment"
@@ -106,6 +116,8 @@ mission "Hai Vacation [4]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 6000
@@ -129,6 +141,8 @@ mission "Wealthy Hai [1]"
 	destination
 		government "Hai"
 		distance 4 8
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 15000 300
 		dialog phrase "generic passenger dropoff payment"
@@ -150,6 +164,8 @@ mission "Wealthy Hai [2]"
 	destination
 		government "Hai"
 		distance 4 8
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 15000 300
 		dialog phrase "generic passenger dropoff payment"
@@ -174,6 +190,8 @@ mission "Hai Festival [1]"
 	destination
 		distance 2 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 10000 200
 		dialog phrase "hai festival payment dialog"
@@ -193,6 +211,8 @@ mission "Hai Festival [2]"
 	destination
 		distance 2 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 10000 200
 		dialog phrase "hai festival payment dialog"
@@ -212,6 +232,8 @@ mission "Hai Festival [3]"
 	destination
 		distance 2 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 10000 200
 		dialog phrase "hai festival payment dialog"
@@ -250,6 +272,8 @@ mission "Unfettered Aid [0]"
 		attributes "unfettered"
 	on accept
 		dialog phrase "unfettered aid pickup dialog"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 1600
 		dialog phrase "unfettered aid payment dialog"
@@ -272,6 +296,8 @@ mission "Unfettered Aid [1]"
 		attributes "unfettered"
 	on accept
 		dialog phrase "unfettered aid pickup dialog"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 6000 1800
 		dialog phrase "unfettered aid payment dialog"
@@ -294,6 +320,8 @@ mission "Unfettered Aid [2]"
 		attributes "unfettered"
 	on accept
 		dialog phrase "unfettered aid pickup dialog"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 7000 2000
 		dialog phrase "unfettered aid payment dialog"
@@ -325,6 +353,8 @@ mission "Unfettered Tribute 1"
 	stopover
 		distance 3 4
 		attributes "hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
 
@@ -345,6 +375,8 @@ mission "Unfettered Tribute 2"
 	stopover
 		distance 4 5
 		attributes "hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
 
@@ -365,6 +397,8 @@ mission "Unfettered Tribute 3"
 	stopover
 		distance 5 6
 		attributes "hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
 
@@ -383,6 +417,8 @@ mission "Delivery to Human Space [0]"
 		near "Heia Due" 2
 	destination
 		attributes "north"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 60000
 		dialog phrase "generic cargo delivery payment"
@@ -400,6 +436,8 @@ mission "Delivery to Human Space [1]"
 		near "Heia Due" 2
 	destination
 		attributes "north"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 60000
 		dialog phrase "generic cargo delivery payment"
@@ -417,6 +455,8 @@ mission "Delivery to Human Space [2]"
 		near "Heia Due" 2
 	destination
 		attributes "north"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment 60000
 		dialog phrase "generic cargo delivery payment"
@@ -437,6 +477,8 @@ mission "Hai Retrieve Human Luxury Goods"
 		attributes "north"
 	on stopover
 		dialog "You gather the requested <commodity> and load them on your ship for return to <planet>."
+	on visit
+		dialog phrase "generic missing stopover or cargo"
 	on complete
 		payment 120000
 		dialog "Your payment of <payment> is waiting when you touch down, along with delivery instructions. You send the <commodity> by dedicated courier."
@@ -457,6 +499,8 @@ mission "Hai Retrieve Human Food"
 		attributes "north"
 	on stopover
 		dialog "You gather the requested <commodity> and load them on your ship for return to <planet>."
+	on visit
+		dialog phrase "generic missing stopover or cargo"
 	on complete
 		payment 120000
 		dialog "As soon as you touch down you receive a message from the Hai gourmet with thanks and your payment of <payment>."
@@ -477,6 +521,8 @@ mission "Hai Retrieve Human Electronics"
 		attributes "north"
 	on stopover
 		dialog "You gather the requested <commodity> and load them on your ship for return to <planet>."
+	on visit
+		dialog phrase "generic missing stopover or cargo"
 	on complete
 		payment 120000
 		dialog "The Hai tinkerer is waiting for you when you arrive. They pay you <payment> and then run after the cargo pallets as though they plan to open them right there in the spaceport."
@@ -681,6 +727,8 @@ mission "Hai Passengers [1]"
 	destination
 		distance 2 7
 		government "Hai"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		dialog phrase "generic passenger dropoff payment"
@@ -698,6 +746,8 @@ mission "Hai Passengers [2]"
 	destination
 		distance 2 7
 		government "Hai"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		dialog phrase "generic passenger dropoff payment"
@@ -715,6 +765,8 @@ mission "Hai Passengers [3]"
 	destination
 		distance 2 7
 		government "Hai"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		dialog phrase "generic passenger dropoff payment"
@@ -733,6 +785,8 @@ mission "Hai Family [0]"
 	destination
 		distance 4 16
 		government "Hai"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 4000
@@ -752,6 +806,8 @@ mission "Hai Family [1]"
 	destination
 		distance 5 20
 		government "Hai"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 6000
@@ -770,6 +826,8 @@ mission "Transport Hai miners to <planet>"
 		attributes "mining"
 		distance 3 12
 		government "Hai"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -788,6 +846,8 @@ mission "Transport Hai farmers to <planet>"
 		attributes "farming"
 		distance 3 12
 		government "Hai"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -806,6 +866,8 @@ mission "Transport Hai mill workers to <planet>"
 		attributes "textiles"
 		distance 3 12
 		government "Hai"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -824,6 +886,8 @@ mission "Transport Hai workers to <planet>"
 		attributes "factory"
 		distance 3 12
 		government "Hai"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment
 		payment 2000
@@ -844,6 +908,8 @@ mission "Hai Cargo [0]"
 	destination
 		distance 2 8
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		dialog phrase "generic cargo delivery payment"
@@ -861,6 +927,8 @@ mission "Hai Cargo [1]"
 	destination
 		distance 2 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		dialog phrase "generic cargo delivery payment"
@@ -879,6 +947,8 @@ mission "Hai Cargo [2]"
 	destination
 		distance 2 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		dialog phrase "generic cargo delivery payment"
@@ -897,6 +967,8 @@ mission "Hai Cargo [3]"
 	destination
 		distance 3 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 2000
@@ -916,6 +988,8 @@ mission "Hai Cargo [4]"
 	destination
 		distance 4 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 4000
@@ -934,6 +1008,8 @@ mission "Hai Bulk Delivery [0]"
 	destination
 		distance 2 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		dialog phrase "generic cargo delivery payment"
@@ -951,6 +1027,8 @@ mission "Hai Bulk Delivery [1]"
 	destination
 		distance 3 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 2000
@@ -970,6 +1048,8 @@ mission "Hai Bulk Delivery [2]"
 	destination
 		distance 4 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 4000
@@ -989,6 +1069,8 @@ mission "Hai Large Bulk Delivery [0]"
 	destination
 		distance 2 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 4000
@@ -1008,6 +1090,8 @@ mission "Hai Large Bulk Delivery [1]"
 	destination
 		distance 3 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 6000
@@ -1028,6 +1112,8 @@ mission "Hai Large Bulk Delivery [2]"
 	destination
 		distance 4 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 8000
@@ -1047,6 +1133,8 @@ mission "Hai Rush Delivery [0]"
 	destination
 		distance 3 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 16000
@@ -1066,6 +1154,8 @@ mission "Hai Rush Delivery [1]"
 	destination
 		distance 4 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 18000
@@ -1086,6 +1176,8 @@ mission "Hai Rush Delivery [2]"
 	destination
 		distance 5 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 20000
@@ -1106,6 +1198,8 @@ mission "Hai Rush Delivery [3]"
 	destination
 		distance 6 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 22000
@@ -1126,6 +1220,8 @@ mission "Hai Large Rush Delivery [0]"
 	destination
 		distance 3 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 36000
@@ -1146,6 +1242,8 @@ mission "Hai Large Rush Delivery [1]"
 	destination
 		distance 4 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 38000
@@ -1167,6 +1265,8 @@ mission "Hai Large Rush Delivery [2]"
 	destination
 		distance 5 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 40000
@@ -1188,6 +1288,8 @@ mission "Hai Large Rush Delivery [3]"
 	destination
 		distance 6 7
 		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 42000
@@ -1210,6 +1312,8 @@ mission "Hai Prisoner Roleplay"
 		government "Hai"
 	on offer
 		require "Brig"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 15000 150
 		dialog "The Hai depart your ship chittering in excitement. One of them hands you your payment of <payment> before running to catch up with their friends."

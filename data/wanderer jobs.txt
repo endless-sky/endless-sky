@@ -392,6 +392,8 @@ mission "Wanderer Invasive Species [0]"
 		government "Wanderer"
 	on stopover
 		dialog `The Wanderers quickly make their way out of your ship with their equipment to contain the invasive animals. After roughly an hour, they return to your ship with cages that they place into your cargo hold. Now return to <origin> for payment.`
+	on visit
+		dialog phrase "generic missing stopover or cargo and passengers"
 	on complete
 		payment 25000 200
 		dialog `After releasing the animals, the <bunks> Wanderers each thank you for assisting them in returning the animals to <planet> and hand you <payment>.`
@@ -415,6 +417,8 @@ mission "Wanderer Invasive Species [1]"
 		government "Wanderer"
 	on stopover
 		dialog `The Wanderers quickly make their way out of your ship with their equipment to contain the invasive plant. After roughly an hour, they return to your ship with plants in containers of some sort that they place into your cargo hold. Now return to <origin> for payment.`
+	on visit
+		dialog phrase "generic missing stopover or cargo and passengers"
 	on complete
 		payment 30000 200
 		dialog `After handing the plants off to other Wanderers to plant elsewhere, the <bunks> Wanderers each thank you for assisting them in keeping the plants on <planet> and hand you <payment>.`

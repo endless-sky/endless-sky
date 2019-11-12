@@ -1186,19 +1186,23 @@ fleet "gunboat only"
 		"Gunboat (Mark II)"
 
 event "gunboats in Alnasl"
-	system Alnasl
+	system "Alnasl"
 		fleet "Small Southern Merchants" 1300
 		fleet "Large Southern Merchants" 2500
-		fleet "gunboat only" 800
+		fleet "gunboat only" 2400
+	system "Wei"
+		remove fleet "Large Republic"
 
 event "normal in Alnasl"
-	system Alnasl
+	system "Alnasl"
 		fleet "Small Southern Merchants" 1300
 		fleet "Large Southern Merchants" 2500
 		fleet "Small Southern Pirates" 6000
 		fleet "Small Republic" 900
 		fleet "Large Republic" 1100
 		fleet "Navy Surveillance" 1200
+	system "Wei"
+		add fleet "Large Republic" 700
 
 
 
@@ -1688,6 +1692,8 @@ event "pug invasion"
 	unvisit Cebalrai
 	unvisit Ascella
 	unvisit Peacock
+	"tribute: Rand" /= 500
+	"tribute: Oblivion" /= 500
 	system "Zeta Aquilae"
 		government Pug
 		fleet "Small Southern Merchants" 1000
@@ -1708,8 +1714,16 @@ event "pug invasion"
 		fleet "Large Pug" 9000
 	planet "Rand"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Oblivion"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 
 
 
@@ -1725,6 +1739,9 @@ event "pug invasion 2"
 	unvisit Nocte
 	unvisit Fomalhaut
 	unvisit Markab
+	"tribute: Silver" /= 700
+	"tribute: Shiver" /= 300
+	"tribute: Millrace" /= 1400
 	system Vega
 		government Pug
 		fleet "Small Northern Merchants" 800
@@ -1754,10 +1771,22 @@ event "pug invasion 2"
 		fleet "Human Miners" 1600
 	planet "Silver"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Shiver"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Millrace"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 
 
 
@@ -1771,6 +1800,8 @@ event "pug invasion 3"
 	unvisit Alderamin
 	unvisit Scheat
 	unvisit Alnair
+	"tribute: Maker" /= 1700
+	"tribute: Furnace" /= 1200
 	system "Delta Capricorni"
 		government Pug
 		fleet "Small Core Merchants" 700
@@ -1785,8 +1816,16 @@ event "pug invasion 3"
 		fleet "Large Pug" 2500
 	planet "Maker"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Furnace"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 
 
 
@@ -1799,6 +1838,9 @@ event "pug invasion 4"
 	unvisit Caph
 	unvisit Diphda
 	unvisit Ankaa
+	"tribute: Reunion" /= 2900
+	"tribute: Kraken Station" /= 500
+	"tribute: Tinker" /= 1100
 	system Sol
 		fleet "Small Northern Merchants" 300
 		fleet "Large Northern Merchants" 500
@@ -1821,8 +1863,22 @@ event "pug invasion 4"
 		fleet "Human Miners" 2000
 	planet "Reunion"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Kraken Station"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
+	planet "Tinker"
+		security 0
+		tribute 1
+			threshold 4000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 
 
 
@@ -1857,6 +1913,12 @@ event "at war with the pug"
 event "battle for delta capricorni"
 	system "Delta Capricorni"
 		government Syndicate
+	"tribute: Maker" *= 1700
+	planet "Maker"
+		security 0.4
+		tribute 1700
+			threshold 4500
+			fleet "Large Syndicate" 12
 
 
 
@@ -1878,12 +1940,19 @@ event "battle for altair"
 
 
 event "liberation of altair"
+	"tribute: Shiver" *= 300
 	system "Altair"
 		government "Republic"
 		fleet "Small Core Merchants" 1000
 		fleet "Large Core Merchants" 2000
 		fleet "Small Pug" 2000
 		fleet "Large Syndicate" 800
+	planet "Shiver"
+		security 0.1
+		tribute 300
+			threshold 2000
+			fleet "Small Republic" 10
+			fleet "Large Republic" 2
 
 
 
@@ -2015,6 +2084,13 @@ event "pug territory liberated"
 		government Syndicate
 	system Caph
 		government Syndicate
+	"tribute: Rand" *= 500
+	"tribute: Oblivion" *= 500
+	"tribute: Silver" *= 700
+	"tribute: Millrace" *= 1400
+	"tribute: Furnace" *= 1200
+	"tribute: Reunion" *= 2900
+	"tribute: Kraken Station" *= 500
 	system Deneb
 		government Neutral
 		fleet "Small Core Merchants" 400
@@ -2027,22 +2103,46 @@ event "pug territory liberated"
 		fleet "Large Syndicate" 2000
 	planet "Rand"
 		security 0.05
+		tribute 500
+			threshold 3000
+			fleet "Large Militia" 10
 	planet "Oblivion"
 		security 0.05
+		tribute 500
+			threshold 3000
+			fleet "Large Militia" 10
 	planet "Silver"
 		security 0.1
-	planet "Shiver"
-		security 0.1
+		tribute 700
+			threshold 4000
+			fleet "Small Republic" 25
+			fleet "Large Republic" 2
 	planet "Millrace"
 		security 0.2
-	planet "Maker"
-		security 0.4
+		tribute 1400
+			threshold 4000
+			fleet "Large Syndicate" 10
 	planet "Furnace"
 		security 0.1
+		tribute 1200
+			threshold 3500
+			fleet "Large Syndicate" 9
 	planet "Reunion"
 		security 0.3
+		tribute 2900
+			threshold 5000
+			fleet "Large Syndicate" 19
 	planet "Kraken Station"
 		security 0.3
+		tribute 500
+			threshold 3500
+			fleet "Small Syndicate" 7
+			fleet "Large Syndicate" 2
+	planet "Tinker"
+		security 0.4
+		tribute 1100
+			threshold 4000
+			fleet "Large Syndicate" 9
 
 
 
@@ -2350,6 +2450,11 @@ event "fwc pug invasion"
 	link "Zeta Aquilae" Deneb
 	link Rasalhague Deneb
 	"reputation: Pug" <?= -1000
+	"tribute: Rand" /= 500
+	"tribute: Oblivion" /= 500
+	"tribute: Shiver" /= 300
+	"tribute: Maker" /= 1700
+	"tribute: Furnace" /= 1200
 	government Pug
 		"attitude toward"
 			"Free Worlds" -.01
@@ -2402,22 +2507,34 @@ event "fwc pug invasion"
 		fleet "Human Miners" 1600
 	planet "Rand"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Oblivion"
 		security 0
-	planet "Silver"
-		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Shiver"
 		security 0
-	planet "Millrace"
-		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Maker"
 		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 	planet "Furnace"
 		security 0
-	planet "Reunion"
-		security 0
-	planet "Kraken Station"
-		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3
 
 
 
@@ -2460,6 +2577,13 @@ event "fwc peace with the navy"
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" 0
+	"tribute: Silver" /= 700
+	planet "Silver"
+		security 0
+		tribute 1
+			threshold 3000
+			fleet "Small Pug" 15
+			fleet "Large Pug" 3	
 	planet Martini
 		"required reputation" 80
 	planet Thrall
@@ -2518,6 +2642,7 @@ event "fwc battle for rasalhague"
 
 
 event "fwc liberation of rasalhague"
+	"tribute: Oblivion" *= 500
 	system Rasalhague
 		government "Free Worlds"
 		fleet "Small Southern Merchants" 1500
@@ -2545,6 +2670,11 @@ event "fwc liberation of rasalhague"
 		fleet "Small Core Merchants" 10000
 		fleet "Small Pug" 100
 		fleet "Large Pug" 100
+	planet "Oblivion"
+		security 0.05
+		tribute 500
+			threshold 3000
+			fleet "Large Militia" 10
 
 
 
@@ -2555,6 +2685,7 @@ event "fwc reconnect ascella"
 
 event "fwc reconnect zeta aquilae"
 	link "Zeta Aquilae" Ascella
+	"tribute: Rand" *= 500
 	system "Zeta Aquilae"
 		government "Free Worlds"
 		fleet "Small Southern Merchants" 1500
@@ -2565,12 +2696,24 @@ event "fwc reconnect zeta aquilae"
 		fleet "Large Free Worlds" 800
 	system Orvala
 		government "Free Worlds"
+	planet "Rand"
+		security 0.05
+		tribute 500
+			threshold 3000
+			fleet "Large Militia" 10
 
 
 
 event "fwc liberation of vega"
+	"tribute: Silver" *= 700
 	system Vega
 		government "Republic"
+	planet "Silver"
+		security 0.1
+		tribute 700
+			threshold 4000
+			fleet "Small Republic" 25
+			fleet "Large Republic" 2
 
 
 
@@ -2587,6 +2730,9 @@ event "fwc reconnect vega"
 
 
 event "fwc pug defeated"
+	"tribute: Shiver" *= 300
+	"tribute: Maker" *= 1700
+	"tribute: Furnace" *= 1200
 	system Altair
 		government Republic
 	system "Delta Capricorni"
@@ -2605,24 +2751,22 @@ event "fwc pug defeated"
 		fleet "Large Syndicate" 2000
 	system Nocte
 		government Republic
-	planet "Rand"
-		security 0.05
-	planet "Oblivion"
-		security 0.05
-	planet "Silver"
-		security 0.1
 	planet "Shiver"
 		security 0.1
-	planet "Millrace"
-		security 0.2
+		tribute 300
+			threshold 2000
+			fleet "Small Republic" 10
+			fleet "Large Republic" 2
 	planet "Maker"
 		security 0.4
+		tribute 1700
+			threshold 4500
+			fleet "Large Syndicate" 12
 	planet "Furnace"
 		security 0.1
-	planet "Reunion"
-		security 0.3
-	planet "Kraken Station"
-		security 0.3
+		tribute 1200
+			threshold 3500
+			fleet "Large Syndicate" 9
 
 
 
