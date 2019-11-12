@@ -209,7 +209,14 @@ mission "FW Southern Recon 1B"
 				`	"How can I find a gunboat that's all by itself? They're usually a part of a bigger fleet."`
 			`	She thinks about that for a moment, then says, "The Navy has shifted most of their capital ships to the defecting systems in the south. That means that some of the systems up north will have lighter defenses. You might try Wei or Alnasl. Good luck, Captain."`
 				accept
-	
+	npc
+		government "Republic"
+		system "Alnasl"
+		personality heroic opportunistic staying
+		fleet
+			names "republic small"
+			variant
+				"Gunboat (Mark II)"
 	to complete
 		not "FW Southern Recon 1B (Turret): done"
 	to fail
