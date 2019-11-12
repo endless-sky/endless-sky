@@ -700,15 +700,16 @@ void AI::Step(const PlayerInfo &player)
 				it->SetTargetAsteroid(nullptr);
 		}
 		
-		// Handle fighters:
+		// Handle carried ships:
 		if(it->CanBeCarried())
 		{
-			bool isFighter = (it->Attributes().Category() == "Fighter");
-			// A fighter must belong to the same government as its parent to dock with it.
+			// A carried ship must belong to the same government as its parent to dock with it.
 			bool hasParent = parent && parent->GetGovernment() == gov;
-			bool hasSpace = hasParent && parent->BaysFree(isFighter);
-			if(!hasParent || (!hasSpace && !Random::Int(1200)) || parent->IsDestroyed()
-					|| parent->GetSystem() != it->GetSystem())
+			bool hasSpace = hasParent && parent->BaysFree(it->Attributes().Category() == "Fighter");
+			bool inParentSystem = hasParent && parent->GetSystem() == it->GetSystem();
+			if(!hasParent || parent->IsDestroyed() || (!hasSpace && !Random::Int(1200))
+					// Any carried ship that cannot jump should reparent if not in its parent's system.
+					|| (!inParentSystem && !it->JumpFuel()))
 			{
 				// Find a parent for orphaned fighters and drones.
 				parent.reset();
@@ -758,7 +759,7 @@ void AI::Step(const PlayerInfo &player)
 				}
 			}
 			// Otherwise, check if this ship wants to return to its parent (e.g. to repair).
-			else if(hasSpace && ShouldDock(*it, *parent, thisIsLaunching))
+			else if(hasSpace && inParentSystem && ShouldDock(*it, *parent, thisIsLaunching))
 			{
 				it->SetTargetShip(parent);
 				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
