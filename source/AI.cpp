@@ -707,9 +707,19 @@ void AI::Step(const PlayerInfo &player)
 			bool hasParent = parent && parent->GetGovernment() == gov;
 			bool hasSpace = hasParent && parent->BaysFree(it->Attributes().Category() == "Fighter");
 			bool inParentSystem = hasParent && parent->GetSystem() == it->GetSystem();
-			if(!hasParent || parent->IsDestroyed() || (!hasSpace && !Random::Int(1200))
+			bool canJump = it->JumpFuel();
+			// If the flagship is in a different system, then set it as parent for orphaned jump-capable
+			// carried ships to ensure that the orphaned ships jump towards the flagship.
+			if(it->IsYours() && canJump && !hasParent && flagship && flagship->GetSystem() != it->GetSystem())
+			{
+				// Set flagship as parent for orphaned fighters and drones.
+				parent.reset();
+				parent = player.FlagshipPtrReadOnly();
+				it->SetParent(parent);
+			}
+			else if(!hasParent || parent->IsDestroyed() || (!hasSpace && !Random::Int(1200))
 					// Any carried ship that cannot jump should reparent if not in its parent's system.
-					|| (!inParentSystem && !it->JumpFuel()))
+					|| (!inParentSystem && !canJump))
 			{
 				// Find a parent for orphaned fighters and drones.
 				parent.reset();
