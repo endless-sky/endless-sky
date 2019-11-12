@@ -43,12 +43,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	const Command &AutopilotCancelKeys()
+	// If the player issues any of those commands, then any auto-pilot actions for the player get cancelled
+	const Command &AutopilotCancelCommands()
 	{
-		static const Command keys(Command::LAND | Command::JUMP | Command::BOARD | Command::AFTERBURNER
+		static const Command cancelers(Command::LAND | Command::JUMP | Command::BOARD | Command::AFTERBURNER
 			| Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT);
 		
-		return keys;
+		return cancelers;
 	}
 	
 	bool IsStranded(const Ship &ship)
@@ -283,17 +284,17 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 	
 	Command oldHeld = keyHeld;
 	keyHeld.ReadKeyboard();
-	keyStuck |= clickCommands;
+	autoPilot |= clickCommands;
 	clickCommands.Clear();
 	keyDown = keyHeld.AndNot(oldHeld);
-	if(keyHeld.Has(AutopilotCancelKeys()))
+	if(keyHeld.Has(AutopilotCancelCommands()))
 	{
-		bool canceled = (keyStuck.Has(Command::JUMP) && !keyHeld.Has(Command::JUMP));
-		canceled |= (keyStuck.Has(Command::LAND) && !keyHeld.Has(Command::LAND));
-		canceled |= (keyStuck.Has(Command::BOARD) && !keyHeld.Has(Command::BOARD));
+		bool canceled = (autoPilot.Has(Command::JUMP) && !keyHeld.Has(Command::JUMP));
+		canceled |= (autoPilot.Has(Command::LAND) && !keyHeld.Has(Command::LAND));
+		canceled |= (autoPilot.Has(Command::BOARD) && !keyHeld.Has(Command::BOARD));
 		if(canceled)
 			Messages::Add("Disengaging autopilot.");
-		keyStuck.Clear();
+		autoPilot.Clear();
 	}
 	const Ship *flagship = player.Flagship();
 	
@@ -511,7 +512,7 @@ void AI::Step(const PlayerInfo &player)
 		// Special case: if the player's flagship tries to board a ship to
 		// refuel it, that escort should hold position for boarding.
 		isStranded |= (flagship && it == flagship->GetTargetShip() && CanBoard(*flagship, *it)
-			&& keyStuck.Has(Command::BOARD));
+			&& autoPilot.Has(Command::BOARD));
 		
 		Command command;
 		if(it->IsYours())
@@ -699,15 +700,16 @@ void AI::Step(const PlayerInfo &player)
 				it->SetTargetAsteroid(nullptr);
 		}
 		
-		// Handle fighters:
+		// Handle carried ships:
 		if(it->CanBeCarried())
 		{
-			bool isFighter = (it->Attributes().Category() == "Fighter");
-			// A fighter must belong to the same government as its parent to dock with it.
+			// A carried ship must belong to the same government as its parent to dock with it.
 			bool hasParent = parent && parent->GetGovernment() == gov;
-			bool hasSpace = hasParent && parent->BaysFree(isFighter);
-			if(!hasParent || (!hasSpace && !Random::Int(1200)) || parent->IsDestroyed()
-					|| parent->GetSystem() != it->GetSystem())
+			bool hasSpace = hasParent && parent->BaysFree(it->Attributes().Category() == "Fighter");
+			bool inParentSystem = hasParent && parent->GetSystem() == it->GetSystem();
+			if(!hasParent || parent->IsDestroyed() || (!hasSpace && !Random::Int(1200))
+					// Any carried ship that cannot jump should reparent if not in its parent's system.
+					|| (!inParentSystem && !it->JumpFuel()))
 			{
 				// Find a parent for orphaned fighters and drones.
 				parent.reset();
@@ -757,7 +759,7 @@ void AI::Step(const PlayerInfo &player)
 				}
 			}
 			// Otherwise, check if this ship wants to return to its parent (e.g. to repair).
-			else if(hasSpace && ShouldDock(*it, *parent, thisIsLaunching))
+			else if(hasSpace && inParentSystem && ShouldDock(*it, *parent, thisIsLaunching))
 			{
 				it->SetTargetShip(parent);
 				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
@@ -3005,7 +3007,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 				&& object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system && player.HasVisited(system))
 			{
 				isWormhole = true;
-				if(!ship.GetTargetStellar() || keyStuck.Has(Command::JUMP))
+				if(!ship.GetTargetStellar() || autoPilot.Has(Command::JUMP))
 					ship.SetTargetStellar(&object);
 				break;
 			}
@@ -3338,7 +3340,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	const shared_ptr<const Ship> target = ship.GetTargetShip();
 	AimTurrets(ship, command, !Preferences::Has("Turrets focus fire"));
 	if(Preferences::Has("Automatic firing") && !ship.IsBoarding()
-			&& !(keyStuck | keyHeld).Has(Command::LAND | Command::JUMP | Command::BOARD)
+			&& !(autoPilot | keyHeld).Has(Command::LAND | Command::JUMP | Command::BOARD)
 			&& (!target || target->GetGovernment()->IsEnemy()))
 		AutoFire(ship, command, false);
 	if(keyHeld)
@@ -3378,15 +3380,15 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		if(keyHeld.Has(Command::AFTERBURNER))
 			command |= Command::AFTERBURNER;
 		
-		if(keyHeld.Has(AutopilotCancelKeys()))
-			keyStuck = keyHeld;
+		if(keyHeld.Has(AutopilotCancelCommands()))
+			autoPilot = keyHeld;
 	}
 	bool shouldAutoAim = false;
 	if(Preferences::Has("Automatic aiming") && !command.Turn() && !ship.IsBoarding()
 			&& (Preferences::Has("Automatic firing") || keyHeld.Has(Command::PRIMARY))
 			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable())
 				|| ship.GetTargetAsteroid())
-			&& !keyStuck.Has(Command::LAND | Command::JUMP | Command::BOARD))
+			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::BOARD))
 	{
 		// Check if this ship has any forward-facing weapons.
 		for(const Hardpoint &weapon : ship.Weapons())
@@ -3403,58 +3405,58 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
 	}
 	
-	if(keyStuck.Has(Command::JUMP) && !player.HasTravelPlan())
+	if(autoPilot.Has(Command::JUMP) && !player.HasTravelPlan())
 	{
 		// The player completed their travel plan, which may have indicated a destination within the final system.
-		keyStuck.Clear(Command::JUMP);
+		autoPilot.Clear(Command::JUMP);
 		const Planet *planet = player.TravelDestination();
 		if(planet && planet->IsInSystem(ship.GetSystem()) && planet->IsAccessible(&ship))
 		{
 			Messages::Add("Autopilot: landing on " + planet->Name() + ".");
-			keyStuck |= Command::LAND;
+			autoPilot |= Command::LAND;
 			ship.SetTargetStellar(ship.GetSystem()->FindStellar(planet));
 		}
 	}
 	
-	// Clear "stuck" keys if actions can't be performed.
-	if(keyStuck.Has(Command::LAND) && !ship.GetTargetStellar())
-		keyStuck.Clear(Command::LAND);
-	if(keyStuck.Has(Command::JUMP) && !(ship.GetTargetSystem() || isWormhole))
-		keyStuck.Clear(Command::JUMP);
-	if(keyStuck.Has(Command::BOARD) && !(ship.GetTargetShip() && CanBoard(ship, *ship.GetTargetShip())))
-		keyStuck.Clear(Command::BOARD);
+	// Clear autopilot actions if actions can't be performed.
+	if(autoPilot.Has(Command::LAND) && !ship.GetTargetStellar())
+		autoPilot.Clear(Command::LAND);
+	if(autoPilot.Has(Command::JUMP) && !(ship.GetTargetSystem() || isWormhole))
+		autoPilot.Clear(Command::JUMP);
+	if(autoPilot.Has(Command::BOARD) && !(ship.GetTargetShip() && CanBoard(ship, *ship.GetTargetShip())))
+		autoPilot.Clear(Command::BOARD);
 	
-	if(keyStuck.Has(Command::LAND) || (keyStuck.Has(Command::JUMP) && isWormhole))
+	if(autoPilot.Has(Command::LAND) || (autoPilot.Has(Command::JUMP) && isWormhole))
 	{
 		if(ship.GetPlanet())
-			keyStuck.Clear();
+			autoPilot.Clear();
 		else
 		{
 			MoveToPlanet(ship, command);
 			command |= Command::LAND;
 		}
 	}
-	else if(keyStuck.Has(Command::JUMP))
+	else if(autoPilot.Has(Command::JUMP))
 	{
 		bool isNewPress = keyDown.Has(Command::JUMP) || !keyHeld.Has(Command::JUMP);
 		if(!ship.Attributes().Get("hyperdrive") && !ship.Attributes().Get("jump drive"))
 		{
 			Messages::Add("You do not have a hyperdrive installed.");
-			keyStuck.Clear();
+			autoPilot.Clear();
 			if(isNewPress)
 				Audio::Play(Audio::Get("fail"));
 		}
 		else if(!ship.JumpFuel(ship.GetTargetSystem()))
 		{
 			Messages::Add("You cannot jump to the selected system.");
-			keyStuck.Clear();
+			autoPilot.Clear();
 			if(isNewPress)
 				Audio::Play(Audio::Get("fail"));
 		}
 		else if(!ship.JumpsRemaining() && !ship.IsEnteringHyperspace())
 		{
 			Messages::Add("You do not have enough fuel to make a hyperspace jump.");
-			keyStuck.Clear();
+			autoPilot.Clear();
 			if(isNewPress)
 				Audio::Play(Audio::Get("fail"));
 		}
@@ -3466,10 +3468,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 				command |= Command::WAIT;
 		}
 	}
-	else if(keyStuck.Has(Command::BOARD))
+	else if(autoPilot.Has(Command::BOARD))
 	{
 		if(!CanBoard(ship, *target))
-			keyStuck.Clear(Command::BOARD);
+			autoPilot.Clear(Command::BOARD);
 		else
 		{
 			MoveTo(ship, command, target->Position(), target->Velocity(), 40., .8);

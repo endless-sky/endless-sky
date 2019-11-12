@@ -187,8 +187,8 @@ private:
 	Command keyDown;
 	// Commands that are active for this step.
 	Command keyHeld;
-	// Commands applied by the player's "autopilot."
-	Command keyStuck;
+	// Command applied by the player's "autopilot."
+	Command autoPilot;
 	
 	bool isLaunching = false;
 	bool isCloaking = false;
