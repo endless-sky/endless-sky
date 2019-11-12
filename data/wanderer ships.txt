@@ -213,7 +213,7 @@ ship "Strong Wind"
 		"heat dissipation" .7
 		"fuel capacity" 600
 		"cargo space" 68
-		"outfit space" 496
+		"outfit space" 493
 		"weapon capacity" 198
 		"engine capacity" 114
 		"asteroid scan power" 100
@@ -227,8 +227,8 @@ ship "Strong Wind"
 	outfits
 		"Sunbeam" 4
 		"Thunderhead Launcher" 2
-		"Thunderhead Missile" 120
-		"Thunderhead Storage Array" 2
+		"Thunderhead Missile" 100
+		"Thunderhead Storage Array"
 		
 		"White Sun Reactor"
 		"Dark Storm Shielding"
