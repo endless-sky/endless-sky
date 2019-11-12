@@ -49,6 +49,8 @@ mission "FW Conservatory 1"
 				`	"Sorry, I'm just not interested."`
 					decline
 	
+	on visit
+		dialog `You land on <planet>, but you realize that Mr. Eyes and the Andersons are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		payment 50000
 		dialog `Ijs thanks you for the lift and gives you a credit chip for <payment>. He says, "Next we need to pick up some equipment from Tarazed Corporation. Meet me in the spaceport if you're willing to help out as an escort."`
@@ -185,7 +187,7 @@ mission "FW Wolf Pack 1"
 			choice
 				`	"Will your contacts also provide me with planets to refuel on along the way?"`
 				`	"The Deep is farther away than my fuel tanks can take me."`
-			`	"You'll have to bribe some Dirt Belt worlds into letting you land, to get there," he says. "Or, you could wait for the next time there's a ceasefire. But here's the great part: if this works, you won't need to pay any bribes on the way back, because the new technology we're after is a super efficient ramscoop. What do you say?"`
+			`	"You'll have to bribe some Dirt Belt worlds into letting you land, to get there," he says. "Or, you could wait for the next time there's a ceasefire. But here's the great part: if this works, you won't need to pay any bribes on the way back, because the new technology we're after is a super-efficient ramscoop. What do you say?"`
 			choice
 				`	"Okay, I'll give it a try."`
 					accept
@@ -287,7 +289,7 @@ mission "FW Wolf Pack 2A"
 			choice
 				`	"I'd be glad to join you. That does sound like a much quicker solution than our current policies that the Senate and the Council support."`
 					goto join
-				`	"You're trying to starve the Republic into submission? Won't that just just add more brutality to a war that has already been far too bloody?"`
+				`	"You're trying to starve the Republic into submission? Won't that just add more brutality to a war that has already been far too bloody?"`
 			`	"In the short run, perhaps," says Rex. "But think how many lives will be saved - how many bloody battles will be averted - by forcing them to end this war quickly rather than dragging it out across years of time."`
 			choice
 				`	"I don't buy your argument. If we use such reprehensible tactics to build our new society, the society we build will be as corrupt as the old one."`
@@ -315,6 +317,8 @@ mission "FW Wolf Pack 2A"
 		ship "Gunboat (Mark II)" "R.N.S. Atherstone"
 		ship "Gunboat (Mark II)" "R.N.S. Tyndale"
 	
+	on visit
+		dialog `You've landed on <planet>, but the freighters have not been eliminated yet. Hunt them down in the Sarin system and destroy them before returning.`
 	on complete
 		event "wolf pack 3 ready" 10
 		karma --
@@ -388,6 +392,8 @@ mission "FW Wolf Pack 3"
 		ship "Protector" "R.N.S. Citadel"
 		ship "Protector" "R.N.S. Rampart"
 	
+	on visit
+		dialog `You've landed on <planet>, but the freighters have not been eliminated yet. Hunt them down in the Gacrux system and destroy them before returning.`
 	on complete
 		event "wolf pack gacrux end"
 		event "wolf pack 4 ready" 20
@@ -463,6 +469,8 @@ mission "FW Wolf Pack 4"
 				"Lance" 4
 				"Combat Drone" 6
 	
+	on visit
+		dialog `You've landed on <planet>, but the freighter has not been eliminated yet. Hunt it down in the Mizar system and destroy it before returning.`
 	on complete
 		event "wolf pack mizar end"
 		karma --

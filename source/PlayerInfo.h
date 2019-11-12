@@ -106,6 +106,8 @@ public:
 	Account &Accounts();
 	// Calculate the daily salaries for crew, not counting crew on "parked" ships.
 	int64_t Salaries() const;
+	// Calculate the daily maintenance cost for all ships and in cargo outfits.
+	int64_t Maintenance() const;
 	
 	// Access the flagship (the first ship in the list). This returns null if
 	// the player does not have any ships.
@@ -173,9 +175,9 @@ public:
 	void HandleEvent(const ShipEvent &event, UI *ui);
 	
 	// Access the "condition" flags for this player.
-	int GetCondition(const std::string &name) const;
-	std::map<std::string, int> &Conditions();
-	const std::map<std::string, int> &Conditions() const;
+	int64_t GetCondition(const std::string &name) const;
+	std::map<std::string, int64_t> &Conditions();
+	const std::map<std::string, int64_t> &Conditions() const;
 	// Set and check the reputation conditions, which missions and events
 	// can use to modify the player's reputation with other governments.
 	void SetReputationConditions();
@@ -304,7 +306,7 @@ private:
 	// its NPCs to be placed before the player lands, and is then cleared.
 	Mission *activeBoardingMission = nullptr;
 	
-	std::map<std::string, int> conditions;
+	std::map<std::string, int64_t> conditions;
 	
 	std::set<const System *> seen;
 	std::set<const System *> visitedSystems;

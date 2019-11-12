@@ -87,6 +87,8 @@ mission "FWC Attack Kaus Borealis"
 			`	"That's right," he says. "Once again, the Wolf Pack will go in first and soften them up, then you and your ships will clean up. I've already given the Wolf Pack orders to attack, so please head straight to Kaus Borealis so you can join the fray before they have time to recover."`
 				accept
 	
+	on visit
+		dialog `You've landed on <planet>, but there are still Navy ships circling overhead. You should take off and help finish them off.`
 	on complete
 		event "fwc capture kaus borealis"
 	
@@ -196,6 +198,8 @@ mission "FWC Cebalrai 1"
 			label end
 			`	"Well," he says, "if we can take Cebalrai, our entire territory will be behind just two choke points, which will allow us to defend ourselves against the Navy without spreading the fleet too thin. So next, I'd like you to go scout out the Cebalrai system and report on the Navy's position there."`
 				accept
+	on visit
+		dialog phrase "generic waypoint on visit"
 	
 	on enter "Cebalrai"
 		dialog
@@ -239,6 +243,8 @@ mission "FWC Cebalrai 1B"
 			`	Tomek looks rather somber before saying, "Bold move for a system we have completely surrounded. They're none of our concern right now. Let's make our way to Cebalrai."`
 				accept
 	
+	on visit
+		dialog `You've landed on <planet>, but there are still Navy ships circling overhead. You should take off and help finish them off.`
 	on complete
 		event "fwc capture cebalrai"
 	
@@ -411,6 +417,8 @@ mission "FWC Nuke Supply 1C"
 		conversation
 			`You land at one of the many private fortresses on Greenrock owned by various competing warlords. Some workers unload the cargo from the Blue Yonder, and load it up with some lead-lined, well-padded crates that must contain nuclear warheads. You're not sure you like being a part of this, but it may be true that this is the only way you will stand a chance against the Navy.`
 				accept
+	on visit
+		dialog phrase "generic arrived-without-npc dialog"
 	
 	npc accompany save
 		personality escort timid
@@ -491,7 +499,7 @@ mission "FWC Diplomacy 1B"
 			`	Alondo sighs. "Yes, but the Senate thought if we brought anything bigger, it might look like an attack fleet rather than an escort. And of course, it's not carrying nukes, because if the Navy picked those up on their sensors, they'd blast us out of the sky long before we could land on Earth. Anyway, let's get going and hope for the best."`
 				accept
 			label nukes
-			`	"No, no, of course not," sys Alondo. "If the Navy picked those up on their sensors, they'd blast us out of the sky long before we could land on Earth. Anyway, let's get going and hope for the best."`
+			`	"No, no, of course not," says Alondo. "If the Navy picked those up on their sensors, they'd blast us out of the sky long before we could land on Earth. Anyway, let's get going and hope for the best."`
 				accept
 	
 	npc accompany save
@@ -538,6 +546,8 @@ mission "FWC Diplomacy 1C"
 			`	Alondo says, "That's right. Tungsten, to be exact. Aerodynamic tungsten rods, each the size of a tree trunk, with a simple guidance system on one end. Our ship is in low earth orbit, traveling at a velocity of roughly eight kilometers per second." As he speaks, the Parliament chamber gradually grows very quiet. "So we will be returning to our ship," says Alondo, "with Miss Reynolds. If the ship in orbit does not hear from me every two minutes, it will jettison its cargo, and there will be nothing left of this building but a crater." He points to the watch he is wearing, and you realize that it must be some sort of communicator.`
 			`	After a brief whispered consultation with a few of the other members of Parliament, Xao says, "You will lose this war, and you will pay dearly for it. Guards, let them return to their ship." You hurry back to your ship and take off immediately, aware that as soon as you are out of range of Earth, the Navy will probably be more than willing to attack you.`
 				launch
+	on visit
+		dialog `You land on <planet>, but you realize that Alondo and Katya are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 	
 	npc
 		government "Escort"
@@ -755,6 +765,8 @@ mission "FWC Checkmate 1"
 				"Dreadnought"
 				"Osprey (Missile)"
 	
+	on visit
+		dialog `You've landed on <planet>, but there are still Navy ships circling overhead. You should take off and help finish them off.`
 	on complete
 		log "Defended Tundra against a major Navy counter-offensive. From here, the only recourse available to the Free Worlds seems to be to push deep into Republic territory and capture the Sol system, forcing the Navy to surrender. Nuclear weapons are now for sale on Solace to aid in the final assault."
 		event "fwc defended cebalrai"
@@ -822,6 +834,8 @@ mission "FWC Checkmate 1B"
 			`	Tomek tells the Wolf Pack captain, "Okay, we're ready to go. Launch immediately, and Captain <last> will follow behind you. <first>, Katya has asked to travel with you; she wants to get back into the action, and I thought she might have the best chance of anyone at dealing with the folks on the ground on <planet>. Once again, you'll need to drive off any Navy ships before landing there. Good luck."`
 				accept
 	
+	on visit
+		dialog `You've landed on <planet>, but there are still Navy ships circling overhead. You should take off and help finish them off.`
 	on complete
 		event "fwc capture menkent"
 
@@ -921,6 +935,8 @@ mission "FWC Checkmate 1C"
 			`[Take good care of this fleet, because it will have to last you for the rest of this campaign: if ships are disabled, board them to "repair" them once the battle is over. And, when jumping into battle, remember that you can hold down the jump key to get all your ships ready to jump simultaneously, so no single ship enters the system first and bears the brunt of the enemy fire.]`
 				accept
 	
+	on visit
+		dialog `You land on <planet>, but you realize that Katya is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		log "The Free Worlds have captured the Vega system, only one hyperjump away from Earth. Nuclear-armed Wolf Pack ships will be arriving shortly to spearhead the assault, but the Navy fleet defending Earth will be massive. Casualties on both sides are likely to be extremely high."
 		conversation
@@ -1014,6 +1030,8 @@ mission "FWC Pug 1"
 			label end
 			`	You and hurry to your ship and fire it up for a hasty launch...`
 				launch
+	on visit
+		dialog `You've landed on <planet>, but there are still alien ships circling overhead. You should take off and help finish them off.`
 	
 	npc
 		personality waiting heroic
@@ -1235,6 +1253,8 @@ mission "FWC Pug 2B"
 			label end
 			`	Katya boards your ship, and you get ready for a diplomatic visit to the alien homeworld.`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Katya hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1307,6 +1327,8 @@ mission "FWC Pug 2C"
 			label end
 			`	"I don't like this at all," says Katya. "Let's head to <planet> and see if any of our equipment is left there from back when it was part of the front in the war against the Republic. Maybe we can find something useful there."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Katya hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1340,6 +1362,8 @@ mission "FWC Pug 2D"
 			
 			`	"I don't think we have any other choice," she says. "Our friends out there need to know what is happening here. And maybe this, at last, will give the Navy a reason to stop fighting us and to begin working together for peace." Reluctantly, you agree.`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Katya hasn't entered the system yet. Better depart and wait for it to arrive. (If your escorts don't have jump drives, try parking them so that Katya will be on your flagship.)`
 
 
 
@@ -1401,6 +1425,8 @@ mission "FWC Pug 3"
 			`	You and Katya return to your ship and prepare to make a visit to <planet>. Hopefully Freya will still be there, and the Navy will let you talk to her.`
 				accept
 
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Katya hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 mission "FWC Pug 3A"
@@ -1461,6 +1487,8 @@ mission "FWC Pug 3A"
 			label end
 			`	You return to your ship with Freya, who is carrying a large collection of sensors and equipment. "Let's try <planet> first," she says, "and see if there's any alien technology there that we can use. I hope you still have some ships left in your battle fleet to help defend us."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Freya hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1477,7 +1505,7 @@ mission "FWC Pug 3B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		"reputation: Pug" = -10
+		event "fwc defend oblivion"
 		conversation
 			`Flying low over <planet> and hoping the Pug are not tracking you, you contact the resistance group you met earlier. Meanwhile, Freya says, "I've got an energy signal. Looks like the graviton pulses that are disrupting the hyperspace link." She gives you the coordinates, and you forward them to the resistance group. With some help from your ship's weapons, they are able to eliminate the Pug guards that are nearby.`
 			`	You land your ship, meet up with the resistance fighters, and approach the facility cautiously. "That was way too easy," says Freya. "Maybe they just didn't expect anyone to fight back against them?" The building looks vaguely like a radio transmitter, and as you get closer to it the ground seems to roll and pitch beneath your feet like the deck of a boat. "Graviton waves," says Freya. "This is it, all right. Captain, do you think you can hold off the Pug for long enough for me to figure out how this thing works?"`
@@ -1495,6 +1523,8 @@ mission "FWC Pug 3B"
 			label alone
 			`	The resistance fighters tell you their own fleet will be launching shortly. You return to your ship and fire up the engines, wishing that you had managed to keep some of the ships from your attack fleet alive, and hoping you will be able to hold off the Pug until Freya finishes her work down here...`
 				launch
+	on visit
+		dialog `You've landed on <planet>, but there are still Pug ships circling overhead. You should take off and help finish them off.`
 	
 	npc
 		government "Free Worlds"
@@ -1558,6 +1588,8 @@ mission "FWC Pug 3C"
 				`	"Do you actually have any idea what you're doing?"`
 			`	"None whatsoever," she says. "I'm just making this up as I go along, based on what I know of hyperspace physics. And for all I know the Pug ships carry the same hyperspace disruption capabilities as this facility, and this is all for nought. But let's give it a try, okay?"`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Freya and the graviton reflector hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1582,6 +1614,8 @@ mission "FWC Pug 3D"
 			`	You try to establish a communications link to the resistance fighters, and brief snatches of conversation come through, interspersed with static. After a few minutes the static begins to die down, and you can hear their voices more clearly. "It's working!" says Freya.`
 			`	Meanwhile, Navy and Free Worlds ships have begun pouring into the system. You suspect that the battle ahead will be a fierce one, but with a Navy war fleet on your side, it no longer feels like a hopeless cause. "The link should be strong enough for us to travel through it soon," says Freya. "Time to get back to <system>."`
 				accept
+	on visit
+		dialog `You've landed on <planet>, but there are still Pug ships circling overhead. You should take off and help finish them off.`
 	
 	npc evade
 		personality disables heroic staying
@@ -1689,6 +1723,8 @@ mission "FWC Pug 4"
 			`Your fleet lands on <planet>, and to your surprise the locals say that soon before your fleet arrived, all the Pug who were present on the planet departed; clearly they expected your arrival and had no desire to become your prisoners. You only have a few hours to take stock of the situation before the Navy informs you that they have detected another Pug fleet incoming...`
 				launch
 	
+	on visit
+		dialog `You've landed on <planet>, but there are still Pug ships circling overhead. You should take off and help finish them off.`
 	on complete
 		event "fwc liberation of rasalhague"
 	
@@ -1802,6 +1838,8 @@ mission "FWC Pug 4A"
 			label attack
 			`	"'Such a big fleet'?" he says. "This is not even a twentieth of the Navy's current fighting power. And I think we'll need many more ships before we're ready to take on the alien homeworld. But don't worry, reinforcements are arriving here constantly. You go do your part, and we'll see to ours."`
 				accept
+	on visit
+		dialog `You land on <planet>, but you realize that Freya is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1840,6 +1878,8 @@ mission "FWC Pug 4B"
 			`	"Trust me," she says, "it's worth it, if we can get some real answers."`
 			`	"Straight answers from the Quarg?" you say. "Not likely, but it can't hurt to try."`
 				accept
+	on visit
+		dialog `You land on <planet>, but you realize that Freya and the graviton reflector are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -1918,6 +1958,8 @@ mission "FWC Pug 4C"
 			`You help Freya to unload and set up the reflector equipment, then contact the Navy on Oblivion and instruct them to point the transmitter in your direction. A few minutes later Admiral Danforth contacts you. "This link appears to be returning too," he says. "So, let's move on. We're going to make an attack on the <system> system, now, and we would welcome your assistance in this battle." You leave the equipment on <origin> and return to your ship with Freya.`
 				accept
 	
+	on visit
+		dialog `You've landed on <planet>, but there are still Pug ships circling overhead. You should take off and help finish them off.`
 	on complete
 		log "Succeeded in restoring a few more hyperspace connections, and in driving back the Pug (with the help of the Navy). But, Freya thinks it is way too coincidental that the aliens have left behind the exact technology needed to fix the hyperspace disruptions; it feels like the Pug are playing a game rather than fighting a serious war."
 		event "fwc reconnect zeta aquilae"
@@ -2006,6 +2048,8 @@ mission "FWC Pug 5"
 			`	"Captain," he says, "the point isn't who deserves more credit. The point is, how do we tell this story in a way that makes people on my side and on yours more willing to make peace with each other? That's all I care about." He wishes you the best of luck in your attack on Vega, and says to contact him as soon as the link is restored and the reinforcements are ready.`
 				accept
 	
+	on visit
+		dialog `You've landed on <planet>, but there are still Pug ships circling overhead. You should take off and help finish them off.`
 	on complete
 		event "fwc liberation of vega"
 	
@@ -2067,6 +2111,8 @@ mission "FWC Pug 5B"
 			label next
 			`	You load the equipment onto your ship, and Freya says, "Let's set it up on <planet>, rather than Earth. I don't think the graviton radiation is harmful to human beings, but there's no point in placing it on such a densely populated planet."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Freya and the graviton reflector hasn't entered the system yet. Better depart and wait for it to arrive.`
 	
 	npc
 		government Republic
@@ -2107,6 +2153,8 @@ mission "FWC Pug 5C"
 			`	"Excellent," he says. "Please contact your Council and arrange for your fleet to strike from the south at the same time as the fleet from Vega jumps in from the north."`
 			`	You contact Tomek and tell him the Navy is ready for a final assault, and he agrees to send as many ships as he can spare to join you. Now it's time to return to <planet> and await the attack signal.`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Freya hasn't entered the system yet. Better depart and wait for it to arrive.`
 	
 	npc
 		government Republic
@@ -2226,6 +2274,8 @@ mission "FWC Pug 6"
 				"Osprey (Laser)"
 				"Argosy (Turret)"
 	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Freya hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		log `The Pug have fled, apparently traveling through an artificial wormhole back to whatever galaxy they came from. And, it turns out that many of their cities on "Pugglemug" were only for show: buildings with no inhabitants, and with holograms creating the appearance of a heavily populated world. They left no advanced technology behind, and no sign of what their true intentions were, but it turns out that the fake cities here were designed for human habitation. They must have been planning this departure for a very long time.`
 		log `Now that the Pug are gone, the Navy will be able to use the "graviton reflectors" to repair the broken hyperspace links and to reconnect all of human space.`
