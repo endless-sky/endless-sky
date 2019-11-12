@@ -1087,7 +1087,7 @@ mission "Pirate Troubles [0]"
 			label choice
 			choice
 				`	(Join the defense fleet.)`
-					accept
+					launch
 				`	(Stay here until the fight is over.)`
 					decline
 	npc
