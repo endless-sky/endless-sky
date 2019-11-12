@@ -1342,7 +1342,7 @@ mission "Pirate Troubles [3]"
 			`	You step out of your ship, and a tall man with a scar across his cheek steps forward from the crowd of pirates, presumably the leader of the gang.`
 			choice
 				`	"The Hai ask that you stop attacking their systems."`
-					goto negotiation
+					goto negotiations
 				`	"You must be Scar."`
 			`	"No. Scar is long dead," the leader says.`
 			choice
@@ -1403,8 +1403,8 @@ mission "Pirate Troubles [4]"
 	clearance
 	to offer
 		or
-			"defeated scar's legion"
-			"accepted scar's legion tribute"
+			has "defeated scar's legion"
+			has "accepted scar's legion tribute"
 	on offer
 		"reputation: Hai" += 20
 		payment 1000000
