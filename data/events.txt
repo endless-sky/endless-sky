@@ -1510,8 +1510,8 @@ event "fw at war with Syndicate"
 	government Syndicate
 		"attitude toward"
 			"Free Worlds" -.3
-			"Pirate" -.4
-			"Korath" -.5
+			"Pirate" -.01
+			"Korath" -.01
 		bribe 0
 	system Rutilicus
 		fleet "Small Southern Merchants" 600
@@ -1888,6 +1888,8 @@ event "fw syndicate welcoming"
 			"Free Worlds" 0
 			"Republic" 0
 			"Navy (Oathkeeper)" 0
+			"Pirate" -.4
+			"Korath" -.5
 		bribe .08
 	system "Algenib"
 		government "Syndicate (Extremist)"

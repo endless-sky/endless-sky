@@ -937,6 +937,7 @@ mission "FW Pug 1"
 		event "pug invasion 2" 6
 		event "pug invasion 3" 10
 		event "pug invasion 4" 14
+		"reputation: Pug" >?= 1
 		conversation
 			`As soon as you land on <origin>, JJ comes running up to your ship. "<first>," he says, "we have serious trouble. A few minutes ago I received a distress call from Rand, then their transmission was cut off. I'm afraid the Syndicate may be expanding into our space."`
 			choice
