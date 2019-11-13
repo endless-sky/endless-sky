@@ -1100,7 +1100,7 @@ mission "Pirate Troubles [0]"
 		fleet "Large Human Merchants (Hai)"
 	npc evade
 		government "Pirate"
-		personality
+		personality staying
 		fleet
 			names "pirate"
 			variant
@@ -1130,7 +1130,7 @@ mission "Pirate Troubles [1]"
 				`	"What issue?"`
 			`	"I understand that you just defended this system from human pirates. That is the issue that needs resolved.`
 			label explain
-			`	"Human attacks on our systems are very rare, but recently we have experienced an increased number of raids. We captured one of the crew of this most recent attack who was attempting to flee in an escape pod, and he gave us information that a gang that calls themselves 'Scar's Legion' has discovered our territory and is responsible for the recent raids.`
+			`	"Human attacks on our systems are very rare, but recently we have experienced an increased number of raids. Not all have been as unsuccessful as this one. We captured a crew member of this most recent attack who was attempting to flee in an escape pod, and he gave us information that a gang that calls themselves 'Scar's Legion' has discovered our territory and is responsible for the recent raids.`
 			`	"Unfortunately, he would not tell us where this gang is, or who the leader is, so there is nothing we are able to do about it. Many humans who live peacefully among us told us that you might be capable of assistance, though."`
 			choice
 				`	"I'll see what I can do."`
