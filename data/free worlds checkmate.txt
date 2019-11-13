@@ -1158,12 +1158,12 @@ mission "FWC Pug 2"
 	on offer
 		log "Found out that the aliens who attacked the Wolf Pack fleet call themselves the Pug. After destroying that fleet, the aliens have not attacked anyone else except a few merchants who tried to resist them. They came from a nearby star system that did not previously have any hyperspace connections to human space, and seem intent on controlling and perhaps enslaving the local human population."
 		conversation
-			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens who you assume are the Pug. Each one is holding a metal staff that looks like some sort of weapon, but none of them move to attack you.`
-			`	Soon after you land, you spot a man making his way towards your ship, ducking behind other ships and crates every time a group of Pug look in his direction. If he is some sort of fugitive from them, it might be unwise to throw your lot in with him. On the other hand, he could have valuable information for you.`
+			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens. Each one is holding a metal staff that looks like some sort of weapon, but none of them move to attack you.`
+			`	Soon after you land, you spot a man making his way towards your ship, ducking behind other ships and crates every time a group of aliens looks in his direction. If he is some sort of fugitive from them, it might be unwise to throw your lot in with him. On the other hand, he could have valuable information for you.`
 			choice
 				`	(Stay around and talk to him.)`
 					goto board
-				`	(Take off before I draw the Pug's attention.)`
+				`	(Take off before I draw the aliens' attention.)`
 			
 			`	You start to get ready to take off, but he gestures urgently to you. Reluctantly, you decide to wait and hear what he has to say.`
 			label board
