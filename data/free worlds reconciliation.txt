@@ -2454,3 +2454,15 @@ mission "FW Syndicate Extremists 1C"
 			`	You discover that Parliament has made a treaty with the Free Worlds, agreeing that the Free Worlds will be allowed autonomy in the region they currently control as long as they do not seek to expand their territory further. As of now, your war against the Republic is officially over.`
 			`	Your meeting with Parliament is long and grueling, as they press you and Freya for every detail you can give them about the enigmatic Pug and their apparent motivation in invading human space. The questions about the Syndicate are equally hard to answer. But at the end of the session, one of the members of Parliament informs you that they have authorized an official commendation for you, along with a reward of five million credits "to cover any of your expenses from fighting the aliens, and to help you integrate back into civilian life."`
 			`	The war is over; your work for the Free Worlds is at an end. What you do next is up to you...`
+
+
+
+mission "FW Navy Out Of Rastaban (Bad Karma)"
+	landing
+	invisible
+	to offer
+		has "FW Syndicate Extremists 1C: done"
+		not "event: navy out of rastaban"
+	on offer
+		event "navy out of rastaban" 30
+		fail
