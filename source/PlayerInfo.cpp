@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "ConversationPanel.h"
+#include "CrewEconomics.h"
 #include "DataFile.h"
 #include "DataWriter.h"
 #include "Dialog.h"
@@ -668,21 +669,7 @@ Account &PlayerInfo::Accounts()
 // Calculate how much the player pays in daily salaries.
 int64_t PlayerInfo::Salaries() const
 {
-	// Don't count extra crew on anything but the flagship.
-	int64_t crew = 0;
-	const Ship *flagship = Flagship();
-	if(flagship)
-		crew = flagship->Crew() - flagship->RequiredCrew();
-	
-	// A ship that is "parked" remains on a planet and requires no salaries.
-	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked() && !ship->IsDestroyed())
-			crew += ship->RequiredCrew();
-	if(!crew)
-		return 0;
-	
-	// Every crew member except the player receives 100 credits per day.
-	return 100 * (crew - 1);
+	return CrewEconomics::CalculateSalaries(Flagship(), ships);
 }
 
 
