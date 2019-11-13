@@ -23,7 +23,14 @@ mission "FW Diplomacy 1"
 	on offer
 		conversation
 			`As you are landing, you receive a message from JJ, on behalf of the Council. The message reads:`
+			branch suspended
+				has "FW Pirates 4.1: offered"
 			`	Captain <last>, sorry that we have been out of contact. We need your help once again, to assist in a diplomatic mission. Please meet up with Alondo on <planet> as soon as possible. He will give you more information.`
+				goto end
+			
+			label suspended
+			`	Captain <last>. Your suspension from the Free Worlds has just ended. The Senate is still not happy with what you did, and has therefore not reinstated your pay, but they have allowed you to continue working for us. Don't cause any more issues and you'll regain your pay. Please meet up with Alondo on <planet> as soon as possible. He will give you more information.`
+			label end
 			`			Sincerely,`
 			`				Jean-Jacques and Freya`
 				accept
@@ -654,14 +661,23 @@ mission "FW Southern Break"
 	on offer
 		log "Once again there is no immediate work to be done for the Free Worlds. This would be a good time to earn some money for an upgraded ship, if possible."
 		event "fw occupying the north" 50
+		"salary: Free Worlds" >?= 800
 		conversation
 			`You land on Dancer and report to Alondo and Freya that the prisoner transfer is complete. "What do we do now?" you ask.`
 			`	Freya says, "Well, I hope we're done with fighting for a while, now. We'll stay here to hold this system against any Navy retaliation. And, we'll keep hoping that Parliament might come to their senses and agree to a diplomatic end to this conflict. In the meantime I suggest you spend some time doing whatever it is you do to earn money on the side - carrying passengers or freight or hunting pirates. We'll contact you when things begin to move forward again."`
 			choice
 				`	"Sounds good. I'll hope to hear from you soon."`
-					decline
+					goto salary
 				`	"You're sure there's nothing else I can do to help the Free Worlds right now?"`
-			`	Alondo says, "You might hear from some other folks who could use your assistance, but as for the Council, I think it's a waiting game for us right now. Please don't think we aren't grateful for your help, Captain. All we're saying is that hopefully, for a few months at least, we'll all be able to take a break from fighting and go back to actually living our lives. And don't worry, we'll contact you as soon as things get interesting again."`
+			`	Alondo says, "You might hear from some other folks who could use your assistance, but as for the Council, I think it's a waiting game for us right now. Please don't think we aren't grateful for your help, Captain. All we're saying is that hopefully, for a few months at least, we'll all be able to take a break from fighting and go back to actually living our lives."`
+			
+			label salary
+			branch end
+				not "FW Pirates 4.1: offered"
+			`	"Before you leave, Captain," Freya says. "The Senate has decided to reinstate your pay after these recent events. You should now have a salary of 800 credits, just like before."`
+			
+			label end
+			`	Alondo gives you a nod. "We'll contact you as soon as things get interesting again."`
 				decline
 
 
