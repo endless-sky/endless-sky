@@ -148,7 +148,7 @@ mission "FW Epilogue: Danforth"
 	landing
 	source "Farpoint"
 	to offer
-		has "free worlds plot completed"
+		has "free worlds reconciliation"
 		not "Wanderers: Alpha Surveillance E: offered"
 	
 	on offer
