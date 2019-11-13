@@ -192,7 +192,7 @@ mission "FW Southern Recon 1"
 mission "FW Southern Recon 1B"
 	landing
 	name "Electron Beam"
-	description "Steal an Electron Beam from a Navy gunboat and return it to <planet> for Freya to look at. She thought your best bet for finding lone gunboats might be the Wei or Alnasl systems."
+	description "Steal an Electron Beam from a Navy Gunboat and return it to <planet> for Freya to look at. She thought your best bet for finding lone Gunboats might be the Wei or Alnasl systems."
 	autosave
 	source "Trinket"
 	destination "Trinket"
@@ -211,9 +211,9 @@ mission "FW Southern Recon 1B"
 			`	"Well," she says, "the plasma turrets weren't the only ace up our sleeve, but still, it's frustrating that the Navy still has such an advantage over us technologically."`
 			`	"What should we do?" you ask.`
 			label attack
-			`	"We're going to have to fight them eventually, but first we need as much information as we can get on their new weapon systems. I'd like you to find one of their gunboats that has the new electron beams installed, steal one of them, and bring it back here. I imagine one of them can't be much bigger than twenty or thirty tons, so you ought to be able to find space for it. Think you can do that?"`
+			`	"We're going to have to fight them eventually, but first we need as much information as we can get on their new weapon systems. I'd like you to find one of their Gunboats that has the new electron beams installed, steal one of them, and bring it back here. I imagine one of them can't be much bigger than twenty or thirty tons, so you ought to be able to find space for it. Think you can do that?"`
 			choice
-				`	"How can I find a gunboat that's all by itself? They're usually a part of a bigger fleet."`
+				`	"How can I find a Gunboat that's all by itself? They're usually a part of a bigger fleet."`
 			`	She thinks about that for a moment, then says, "The Navy has shifted most of their capital ships to the defecting systems in the south. That means that some of the systems up north will have lighter defenses. You might try Wei or Alnasl. Good luck, Captain."`
 				accept
 	npc
@@ -1127,11 +1127,11 @@ mission "FW Alphas 1.1"
 			choice
 				`	"It must be a trick. There can't still be Alphas around. Maybe the pirates dyed their skin green to make people fear them."`
 				`	"How is it possible that some of the Alphas are still alive?"`
-			`	Alondo says, "This may be a trick, but we can't afford to take that risk. The Alphas were the greatest threat humanity has ever faced. And before they contacted us for help, Poisonwood reached out to the Navy." As he is speaking, a shadow passes overhead. You look up and see the unmistakable silhouette of a Navy cruiser, coming in for a landing.`
+			`	Alondo says, "This may be a trick, but we can't afford to take that risk. The Alphas were the greatest threat humanity has ever faced. And before they contacted us for help, Poisonwood reached out to the Navy." As he is speaking, a shadow passes overhead. You look up and see the unmistakable silhouette of a Navy Cruiser, coming in for a landing.`
 			choice
 				`	"Are you insane? You're letting the Navy come here?"`
 				`	"We're going to work side by side with the Navy right after that awful battle?"`
-			`	Alondo explains, "It's only one cruiser, an 'Oathkeeper' ship, sworn to take no part in our war. The Free Worlds have almost no troops trained for ground combat, so without the Navy's help we would be unlikely to be able to eliminate the Alphas."`
+			`	Alondo explains, "It's only one Cruiser, an 'Oathkeeper' ship, sworn to take no part in our war. The Free Worlds have almost no troops trained for ground combat, so without the Navy's help we would be unlikely to be able to eliminate the Alphas."`
 			`	The Navy ship lands, and a man steps off who you recognize immediately: Admiral William Danforth, who is something of a folk hero throughout human space, and who you have heard is the commander of the entire Oathkeepers regiment. With him is a man who he introduces as Commander Aaron Nguyen of the Navy Humanitarian Corps. As Nguyen shakes your hand, you are struck by the fact that although he is your enemy, you see no trace of hostility in his eyes - in fact, his expression is surprisingly warm and affectionate.`
 			`	"We have no room for error," says Danforth. "These Alphas must be eliminated, and they must not be allowed to escape. On that, at least, we can all agree."`
 			`	Freya says, "Captain <last> will lead the attack." She beckons to two of the Free Worlds captains. "Marco, Emily, you will join them with your Falcons. Destroy any pirate ships in orbit, then land and secure the facility. Understood?" You nod, and prepare to take off for the <system> system.`
@@ -1800,7 +1800,7 @@ mission "FW Rand 1"
 				`	"Are you saying we shouldn't let them join, even though they want to?"`
 				`	"Well, I say, if they want to join us, we should let them. Who knows if they'll be this enthusiastic about the Free Worlds later if we let them down now."`
 			`	JJ thinks about that for a moment, then says, "Well, I guess we should let them join. It will mean we may need to launch an assault to drive the Navy off New Iceland. But if we do that, our tactical position shifts from one that's worse than what we have now, to something much better. Freya, did they say if there's any sign that the Navy has gotten word of this?"`
-			`	"A few carriers are in orbit around Rand," she says, "so they must suspect something. But the bulk of the Navy fleet is still to the north and east of here."`
+			`	"A few Carriers are in orbit around Rand," she says, "so they must suspect something. But the bulk of the Navy fleet is still to the north and east of here."`
 			`	JJ says, "Okay Captain, here's what I propose. We'll leave the bulk of our fleet here to defend Dancer and New Portland, but take a few of our best ships to Zeta Aquilae and drive out the Navy. Freya and I will travel with you so that if we need to make any decisions, we'll have most of the Council there in person. How does that sound?"`
 			choice
 				`	"It sounds like a good plan. Let's do it!"`

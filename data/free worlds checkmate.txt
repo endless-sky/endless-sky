@@ -1455,7 +1455,7 @@ mission "FWC Pug 3A"
 			label introductions
 			`	Standing next to Danforth is someone you think might be his bodyguard: a dark-skinned woman dressed entirely in black. Even the whites of her eyes are black: when she gets closer, you can see that it is actually a scleric tattoo, an intricate Celtic knotwork pattern inked into the whites of her eyes. Surprisingly, Katya recognizes her. "Raven!" says Katya. You aren't sure if Katya sounds happy to see her, or scared.`
 			`	"Hello Councilor," says the woman.`
-			`	Danforth says, "We hear you have come from the disconnected territory, and that you bring word of a potential alien invasion. Come with us, please." He ushers you into one of the Navy cruisers that are parked nearby, and into a room you assume is his private office; the guards check you and Katya for weapons and then leave you alone with Danforth and Raven. "Now," says Danforth, "you will answer our questions."`
+			`	Danforth says, "We hear you have come from the disconnected territory, and that you bring word of a potential alien invasion. Come with us, please." He ushers you into one of the Navy Cruisers that are parked nearby, and into a room you assume is his private office; the guards check you and Katya for weapons and then leave you alone with Danforth and Raven. "Now," says Danforth, "you will answer our questions."`
 			`	He gestures to Raven, who walks up to you and holds out her hands. "Take my hands, please, Captain," she says.`
 			choice
 				`	(Take her hands.)`
@@ -2033,7 +2033,7 @@ mission "FWC Pug 5"
 			choice
 				`	"That does sound like a good strategic choice."`
 				`	"How will your fleet get to Vega without traveling through the Pug home system? That system is swarming with their ships."`
-			`	Danforth says, "During the battle, we managed to salvage jump drives from a few of the Pug ships. We've installed them in three of our carriers. Hopefully, with your help, that will be enough to overcome any resistance in the Vega system. Then Miss Winters can work her magic with the hyperlinks again, and we'll be able to bring a massive reinforcement fleet from Sol."`
+			`	Danforth says, "During the battle, we managed to salvage jump drives from a few of the Pug ships. We've installed them in three of our Carriers. Hopefully, with your help, that will be enough to overcome any resistance in the Vega system. Then Miss Winters can work her magic with the hyperlinks again, and we'll be able to bring a massive reinforcement fleet from Sol."`
 			`	"Sounds good to me," says Freya. "I wish more of our own ships had jump drives, so we could assist you."`
 			`	"Indeed," says Danforth. "That's why it's so important for Captain <last>'s ship to be part of this battle. When it's all over, I want to be able to tell Parliament that this war was won by the Free Worlds and the Navy fighting side by side every step of the way. And I hope you will be able to tell your Senate the same thing, so that they will be more amenable to a compromise between us."`
 			choice

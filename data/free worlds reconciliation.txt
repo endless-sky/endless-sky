@@ -175,7 +175,7 @@ mission "FW Reconciliation 1C"
 			`	Sawyer directs you to the site where the secret development took place. Nothing is left but a wide and slightly overgrown clearing. After checking your radar and seeing no incoming ships, you risk landing. Sawyer says that there were buildings here a few years ago, but now not even their foundations remain, and a sensor sweep for metallic objects turns up nothing, not even as small as a single nail.`
 			`	However, Ijs points out a few subtle signs of human habitation. "A clearing like this would normally form in a fire," he says, "but notice, no fire scars on the trees on the edges of the clearing."`
 			`	Raven says, "And our geophysical radar is picking up structures underground. Several deep shafts, and rock that's been stressed and fractured by a large explosion. They did a good job of hiding everything else, but if you scar a planet that badly, it doesn't go away. The stones speak."`
-			`	As you continue inspecting the site, suddenly Raven's copilot shouts out the door of her gunboat at you. "Syndicate ships have entered the system! We need to get back to Earth with the evidence, quickly!"`
+			`	As you continue inspecting the site, suddenly Raven's copilot shouts out the door of her Gunboat at you. "Syndicate ships have entered the system! We need to get back to Earth with the evidence, quickly!"`
 				launch
 	
 	npc accompany save
@@ -678,7 +678,7 @@ mission "FW Syndicate Capture 1"
 	on offer
 		log "Preparing to invade Syndicate space with a joint strike force made up of Free Worlds, Deep security, and Oathkeeper ships. The plan is to capture one of the Syndicate executives and bring him to trial."
 		conversation
-			`You land on Earth and make a show of being very busy ensuring that the Free Worlds ambassadors are comfortable and well cared for, until finally you receive a secure message from Edrick. He tells you that the convoy from the Deep is landing on Mars right now, and an Oathkeeper cruiser is visiting the shipyard on Luna. As soon as you are ready, you can take off, and travel together into the heart of Syndicate space.`
+			`You land on Earth and make a show of being very busy ensuring that the Free Worlds ambassadors are comfortable and well cared for, until finally you receive a secure message from Edrick. He tells you that the convoy from the Deep is landing on Mars right now, and an Oathkeeper Cruiser is visiting the shipyard on Luna. As soon as you are ready, you can take off, and travel together into the heart of Syndicate space.`
 			`	You make an excuse to depart, and return to your ship. "Well," says Ijs, "this is it. If we're lucky, they won't see us coming, but no matter what, getting back out of Syndicate space will be a nightmare. Good luck, all."`
 				accept
 	on visit
@@ -2275,7 +2275,7 @@ mission "FW Syndicate Extremists 1A"
 	on offer
 		log "With the Pug defeated, it is finally time to deal with the Syndicate extremists and the Alphas that they allied with. The extremists are armed with nuclear missiles, but the Syndicate CEO has agreed to provide a cloaking device that will make it possible to dodge the missiles."
 		conversation
-			`The presence of a Navy cruiser in orbit seldom goes unnoticed, especially a cruiser captained by someone as famous as William Danforth. As soon as you land, a Syndicate employee meets you and escorts you, Freya, and Danforth to the office of Alastair Korban, the CEO. He does not seem very happy to see you. "I only just got word that the aliens were defeated a few days ago," he says. "I'm surprised you're back here already."`
+			`The presence of a Navy Cruiser in orbit seldom goes unnoticed, especially a Cruiser captained by someone as famous as William Danforth. As soon as you land, a Syndicate employee meets you and escorts you, Freya, and Danforth to the office of Alastair Korban, the CEO. He does not seem very happy to see you. "I only just got word that the aliens were defeated a few days ago," he says. "I'm surprised you're back here already."`
 			`	Danforth says, "I've got a whole Navy fleet just a few jumps away from here who are itching to destroy something. So here's the deal. You name me some targets: the men who were responsible for the terrorist attack. Then I will do you a favor and take them off your hands. Fair enough?"`
 			`	Korban sighs, and then opens his desk and pulls out a sheet of paper. "This is my resignation letter," he says. "I've been working on it since my first meeting with Captain <last>. I've failed in my leadership of this company. But you have no idea how deep that failure goes."`
 			choice
@@ -2430,7 +2430,7 @@ mission "FW Syndicate Extremists 1C"
 		event "navy occupies algenib"
 		event "navy done with algenib" 50
 		conversation
-			`Soon after you land, more Navy ships begin pouring into the system, including Admiral Danforth's own cruiser. Navy soldiers and ships are scouring the whole surface of the planet; there is very little chance that any of the Alphas who remain here will be able to escape their detection. Admiral Danforth meets with you and Freya and thanks you for providing the decoy that kept his own ships from bearing the brunt of the Alphas' nuclear arsenal.`
+			`Soon after you land, more Navy ships begin pouring into the system, including Admiral Danforth's own Cruiser. Navy soldiers and ships are scouring the whole surface of the planet; there is very little chance that any of the Alphas who remain here will be able to escape their detection. Admiral Danforth meets with you and Freya and thanks you for providing the decoy that kept his own ships from bearing the brunt of the Alphas' nuclear arsenal.`
 			`	"Do you need us to do anything more here?" asks Freya.`
 			`	"No," he says, "and I hear that Parliament wants to speak with you, Captain <last>. Something about an official commendation for your part in the battle against the Pug, I think. Meanwhile, this may not be the end of our trouble with the Syndicate, but at least it's a good start. It's been an honor to fight alongside you."`
 			choice
