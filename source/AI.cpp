@@ -750,6 +750,7 @@ void AI::Step(const PlayerInfo &player)
 				}
 				else
 					reparentWith(ships);
+				
 				if(!parent && !parentChoices.empty())
 				{
 					// No suitable candidate can carry this ship, but this ship can still act as an escort.
