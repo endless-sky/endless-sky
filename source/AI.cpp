@@ -715,58 +715,47 @@ void AI::Step(const PlayerInfo &player)
 				parent.reset();
 				it->SetParent(parent);
 				
-
-				// The players jump-capable fighters and drones act as regular fighters and
-				// drones, except when the players flagship is in a different system. If
-				// the flagship is in a different system, then the fighter or drone will be
-				// reparented to the flagship to ensure that fighters and drones jump towards
-				// the flagship.
-				if(it->IsYours() && it->JumpsRemaining() > 0 && flagship && flagship->GetSystem() != it->GetSystem())
-					it->SetParent(player.FlagshipPtrReadOnly());
-				else
+				auto parentChoices = vector<shared_ptr<Ship>>{};
+				parentChoices.reserve(ships.size() * .1);
+				auto reparentWith = [&it, &gov, &parent, &parentChoices](const list<shared_ptr<Ship>> otherShips) -> bool
 				{
-          auto parentChoices = vector<shared_ptr<Ship>>{};
-					parentChoices.reserve(ships.size() * .1);
-          auto reparentWith = [&it, &gov, &parent, &parentChoices](const list<shared_ptr<Ship>> otherShips) -> bool
-          {
-            for(const auto &other : otherShips)
-              if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
-              {
-                if(!other->IsDisabled() && other->CanCarry(*it.get()))
-                {
-                  parent = other;
-                  it->SetParent(other);
-                  return true;
-                }
-                else
-                  parentChoices.emplace_back(other);
-              }
-            return false;
-          };
-          // Mission ships should only pick ships from the same mission.
-          auto missionIt = it->IsSpecial() && !it->IsYours()
-            ? find_if(player.Missions().begin(), player.Missions().end(),
-              [&it](const Mission &m) -> bool
-              {
-                return m.HasShip(it);
-              })
-            : player.Missions().end();
-          if(missionIt != player.Missions().end())
-          {
-            auto &npcs = missionIt->NPCs();
-            for(const auto &npc : npcs)
-              if(reparentWith(npc.Ships()))
-                break;
-          }
-          else
-            reparentWith(ships);
-        }
-				if(!parent && !parentChoices.empty())
+					for(const auto &other : otherShips)
+						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
+						{
+							if(!other->IsDisabled() && other->CanCarry(*it.get()))
+							{
+								parent = other;
+								it->SetParent(other);
+								return true;
+							}
+							else
+								parentChoices.emplace_back(other);
+						}
+					return false;
+				};
+				// Mission ships should only pick ships from the same mission.
+				auto missionIt = it->IsSpecial() && !it->IsYours()
+					? find_if(player.Missions().begin(), player.Missions().end(),
+						[&it](const Mission &m) -> bool
+						{
+							return m.HasShip(it);
+						})
+					: player.Missions().end();
+				if(missionIt != player.Missions().end())
 				{
-					// No suitable candidate can carry this ship, but this ship can still act as an escort.
-					parent = parentChoices[Random::Int(parentChoices.size())];
-					it->SetParent(parent);
+					auto &npcs = missionIt->NPCs();
+					for(const auto &npc : npcs)
+						if(reparentWith(npc.Ships()))
+							break;
 				}
+				else
+					reparentWith(ships);
+			}
+			if(!parent && !parentChoices.empty())
+			{
+				// No suitable candidate can carry this ship, but this ship can still act as an escort.
+				parent = parentChoices[Random::Int(parentChoices.size())];
+				it->SetParent(parent);
 			}
 			// Otherwise, check if this ship wants to return to its parent (e.g. to repair).
 			else if(hasSpace && inParentSystem && ShouldDock(*it, *parent, thisIsLaunching))
