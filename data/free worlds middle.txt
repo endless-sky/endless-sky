@@ -1930,15 +1930,16 @@ event "end battle of alioth"
 
 
 
-mission "FW Defend New Tibet"
+mission "FW Question the Syndicate"
 	landing
 	name "The Defector"
 	description "Travel to New Tibet to question the Syndicate about the defector supposedly carrying vital evidence and information that the Syndicate are behind the bombings."
-	source Wayfarer
+	source "Wayfarer"
 	destination "New Tibet"
 	passengers 2
 	to offer
 		has "FW Rand 1B: done"
+		not "FW Defend New Tibet: offered"
 	
 	on offer
 		log "As a member of the Council, must make the deciding vote on a difficult decision. A defector from the Syndicate is claiming to have proof that the Syndicate was behind the bombings of Martini and Gemini. If that is true, the Republic may agree to make peace with the Free Worlds. But, refusing to return the defector to the Syndicate would certainly earn their enmity."
@@ -1956,18 +1957,18 @@ mission "FW Defend New Tibet"
 			`	"That's insane," says Freya.`
 			`	"But not completely implausible," says JJ.`
 			label evidence
-			`	The monk says, "He was unable to show us his evidence, but he made claims of having plans for a nuclear device. After arriving he hid his ship in a cave, and a Syndicate fleet appeared in orbit shortly afterward. They do not know where the defector landed, but they have threatened to destroy whatever settlement is harboring him unless he is returned to them immediately."`
+			`	The monk says, "He was unable to show us his evidence, but he made claims of having plans for a nuclear device. After arriving he hid his ship in a cave, and a Syndicate fleet appeared in orbit shortly afterward. They do not know where the defector landed, but they have begun searching settlement to settlement believing that one may be harboring him. They are currently here, wrecking the monastery in search of him."`
 			`	After a moment, JJ says, "If these allegations are true, if we can prove that the Free Worlds was innocent of any involvement in those attacks, the Republic might make peace with us, or at least agree to a ceasefire. I vote that we try to shelter this defector and hear his story."`
 			`	"And if it's a lie," says Freya, "and we refuse the Syndicate's demands, we lose our only ally. We don't even know what the evidence is. And many civilians will be killed, as well. I care about justice, but trading a definite ally for a slim possibility of peace: that is an unwise investment. I vote that we hand this man over to the Syndicate."`
 			`	You look back at the video screen to see that the monk is gone, replaced by a man in a Syndicated Security uniform. "Greetings, Councilmembers."`
 			choice
 				`	"What is the meaning of this?"`
 				`	"Is the Syndicate really behind the bombings?"`
-			`	"I'm sorry for the confusion," the man responds, "but please understand. We're hunting a terrorist. This man claiming that we are the ones that caused the bombings is in fact the leader of the extremist group that caused them. He developed the nukes, and now that we've discovered that, he's attempting to run and frame us for his crimes against humanity. Allow us to find him, and we'll--"`
+			`	"I'm sorry for the confusion," the man responds, "but please understand. We're hunting a terrorist. This man claiming that we are the ones that caused the bombings is in fact the leader of the extremist group that caused them. He developed the nukes with the help of a faction of pirates looking to profit from the instability, and now that we've discovered that, he's attempting to run and frame us for his crimes against humanity. Allow us to find him, and we'll--"`
 			`	The feed cuts off. "I've lost the signal. It looks like it's been jammed," the communications officer says.`
 			`	The room falls silent.`
 			`	JJ breaks the silence. "I still say we rescue this defector. The Syndicate could be lying to us. They don't exactly have a reputation for being moral."`
-			`	"This 'defector' could easily be the one lying as well," Freya says. "I say we let them have him while we focus on defending against the Navy. The Syndicate could be able to prove our innocence in due time if they get their hands on the true terrorist."`
+			`	"This 'defector' could easily be the one lying as well," Freya says. "I say we let them have him while we focus on defending against the Navy. The Syndicate could be able to prove our innocence if they get their hands on the true terrorist."`
 			`	As the third Council member present, you have the deciding vote, and the entire course of this war may rest on your decision.`
 			choice
 				`	"I say we rescue the defector, even if it means war with the Syndicate."`
@@ -1998,13 +1999,7 @@ mission "FW Defend New Tibet"
 			label "definitely rescue"
 			`	JJ seems very relieved at your choice. "I think that's the right choice, Captain," he says. "We can take the fleet we have here, sweep up north to avoid the thickest part of the Navy's occupying fleet, and cut over to New Tibet to question the Syndicate in person."`
 				accept
-	
-	on accept
-		"reputation: Syndicate" = -1000
-		event "fw at war with Syndicate"
-		event "battle of alioth"
-	
-	npc evade
+	npc
 		government Syndicate
 		personality heroic staying
 		system Alioth
@@ -2014,6 +2009,16 @@ mission "FW Defend New Tibet"
 				"Splinter (Mark II)" 2
 				"Manta (Mark II)" 3
 				"Quicksilver (Mark II)" 5
+
+mission "FW Defector Escorts"
+	landing
+	invisible
+	to offer
+		has "FW Rand 1B: done"
+		not "FW Defend New Tibet: offered"
+	to fail
+		has "fw did not rescue defector"
+		has "FW Defend New Tibet: done"
 	npc
 		government "Free Worlds"
 		personality heroic escort disables
@@ -2034,6 +2039,70 @@ mission "FW Defend New Tibet"
 		ship "Finch" "Echo 2-4"
 		ship "Finch" "Echo 6-9"
 		ship "Argosy" "F.S. Nightingale"
+
+
+
+mision "FW Defend New Tibet"
+	landing
+	name "Defend New Tibet"
+	description "Defend New Tibet from the attacking Syndicate fleet."
+	source "New Tibet"
+	to offer
+		has "FW Question the Syndicate: done"
+	on offer
+		conversation
+			`It doesn't take long to find the monastery that contacted you earlier. The monk that you spoke to on Wayfarer approaches you and whispers, "They know where the defector is and are retrieving him now. We had to tell them before they destroyed the entire monastery looking for him." The monk then runs off to the monastery.`
+			`	The Syndicate ships that were in orbit land alongside you, and a group of Syndicated Security approach, one of whom you recognize as the man you spoke to previously. "Greetings again, Councilmembers. I'm Officer Khalid," he says to you. "I take it you're here to help us search for the terrorist, but I'm afraid we already have him. My men radioed me moments ago that they found him hiding in a cave in the mountains, and they're on their way right now."`
+			choice
+				`	"Actually, we're here to take the defector into our hands."`
+				`	"We're here to question him before you go."`
+			
+			`	Khalid raises an eyebrow. "Now why might that be?"`
+			`	"New Tibet is Free Worlds territory. Therefore we have jurisdiction over any criminals here," JJ responds quickly.`
+			`	"He'll have little more than lies to tell you, Councilmember," Khalid says. "We believe that the rest of the terrorist network he is involved in is located in the Core, so we have every right to take him into our hands. Using him we'll be able to uncover the rest of the terrorist network responsible for all this and prove your innocence in due time. Unfortunately you may need to fight this war against the Navy for a little while longer until we have enough evidence." JJ shuffles at this response.`
+			
+			label approach
+			`	"Look," Freya says. "That must be them coming down the mountain slope toward us." Sure enough, you spot a group of people wearing Syndicated Security uniforms, as well as one man in ordinary attire who is restrainted.`
+			`	The defector spots you when he gets close enough and begins yelling. "Please, don't believe them! I have the evidence! Underground test data, manufactured bomb casings, fissile material!"`
+			`	"Gag him," Khalid interjects, prompting one of the men to stuff a cloth into the defector's mouth and tie it into place.`
+			choice
+				`	"We'll be taking him now."`
+					goto take
+				`	"Okay, we'll let you have him."`
+			
+			apply
+				set "fw did not rescue defector"
+			`	"Thank you, Councilmember," Khalid says with a slight bow and a smirk on his face. "We'll keep you posted on our progress, and attempt to persuade the Republic to cease fire while we uncover more."`
+			`	The Syndicate ships launch with the defector. "I thought we were here to take him!" JJ yells.`
+			`	"Well I changed my mind," you say.`
+			`	"Calm down, JJ," Freya says. "If the rest of the terrorists responsible for this are in the Core then there's nothing we could have done about it, even with the defector in our hands."`
+			`	"Very well," says JJ. "In that case, we'll need to meet with the fleet captains and figure out how to take on the Navy. Let's meet in the spaceport bar in an hour."`
+				decline
+			
+			label take
+			`	Khalid's expression turns to one of anger. "I already told you, he's ours."`
+			`	"I'm sorry, Khalid, but I also already told you that you're in our territory," JJ snaps back. "And frankly, we have more ships than you right now. Please, hand him over."`
+			`	Khalid stares daggers at JJ, then nods to his men. "Hand him over." They push the defector over to you, who stumbles to the ground due to his restraints. "You'll regret this, Councilmember," Khalid says, looking directly at you.`
+			`	The Syndicate ships launch while you help the defector out of his restraints. "Thank you, thank you," the defector says. "The evidence is in my ship. They were unable to find it when they took me."`
+			`	Before you can begin making the journey up the mountains, you're suddenly shook as the sky lights up with incoming proton beams.`
+			`	"The Syndicate are attacking us!" one of the Free Worlds captains yells. You run to your ship and fire it up to defend.`
+				launch
+	
+	on accept
+		"reputation: Syndicate" = -1000
+		event "fw at war with Syndicate"
+		event "battle of alioth"
+	
+	npc evade
+		government Syndicate
+		personality heroic staying
+		system Alioth
+		fleet
+			names "syndicate capital"
+			variant
+				"Splinter (Mark II)" 2
+				"Manta (Mark II)" 3
+				"Quicksilver (Mark II)" 5
 	
 	on visit
 		dialog `You've landed on <planet>, but there are still Syndicate ships circling overhead. You should take off and help finish them off.`
@@ -2042,38 +2111,30 @@ mission "FW Defend New Tibet"
 		event "fw armistice"
 		event "end battle of alioth"
 		conversation
-			`It doesn't take long to find the monastery that contacted you earlier, but nothing is left of it but burnt-out shells of buildings. You land and look around for survivors. You find several corpses dressed in maroon robes, some of them badly burnt, but no sign of the defector or the monk you spoke with earlier.`
-			choice
-				`	(Wait to see if anyone approaches now that the Syndicate fleet is gone.)`
-				`	(Give up and contact the rest of the Free Worlds fleet to figure out what to do next.)`
-					goto leave
-			`	You wait around for a while, but this mountain valley seems to be entirely desolate. Then finally, when you are about to give up hope, Freya spots the distant figures of a few dozen people coming down the side of one of the mountains.`
-				goto gunboat
-			label leave
-			`	You are just about to leave when Freya spots something and points. "Look," she says, "someone is coming down the mountain slope toward us." Sure enough, it's a group of several dozen people wearing the distinctive robes of the monks.`
-			label gunboat
-			`	As you wait for them to approach, JJ receives a message from one of the militia crews. "Sir, you have incoming! A scout ship, with Republic markings. Apparently unarmed. Shall we intercept them?"`
+			`You land after taking out the Syndicate and regroup with Freya, JJ, and the defector. "Those bastards!" Freya yells. "What in the world were they thinking?"`
+			`	"They were attempting to silence me," the defector says. "And take out the rest of you with me so that the war would go on. They would have never attempted to convince the Republic to stop until one side was close to victory so that they could continue to profit."`
+			`	JJ receives a message from one of the militia crews. "Sir, you have incoming! A scout ship, with Republic markings. Apparently unarmed. Shall we intercept them?"`
 			`	"Oathkeepers?" asks JJ. "Or ordinary Navy? Who are they?"`
 			`	The voice on the other end pauses. "Neither. Navy Intelligence."`
 			`	JJ thinks about that for a second, then says, "Let them land. But follow them down, and if you see so much as a hint of them powering up weapons, blow them out of the sky. Understand?" The officer acknowledges his order and signs off.`
-			`	As the group of monks approaches from the mountainside, the scout ship comes in for a landing and skids to a halt in the dirt a few dozen meters away. A woman steps off it. She has dark skin, and is dressed entirely in black. Even the whites of her eyes are black: when she gets closer, you can see that it is actually a scleric tattoo, an intricate Celtic knotwork pattern inked into the whites of her eyes. She sees you staring at her, and winks at you with a friendly grin.`
+			`	The scout ship comes in for a landing and skids to a halt in the dirt a few dozen meters away. A woman steps off it. She has dark skin, and is dressed entirely in black. Even the whites of her eyes are black: when she gets closer, you can see that it is actually a scleric tattoo, an intricate Celtic knotwork pattern inked into the whites of her eyes. She sees you staring at her, and winks at you with a friendly grin.`
 			choice
 				`	"I'm Captain <last> of the Free Worlds. What is your business here?"`
 				`	"Who are you, and what gives you the right to land on our planet?"`
 					goto hostile
-			`	"My name is Raven," she says. "I'm here to question this defector. If he is telling the truth, our war with you will end today." She pauses, then adds, grimly, "And, another war will begin."`
+			`	"My name is Raven," she says. "I'm here to question this defector. If he is telling the truth, our war with you will end today." She pauses, then adds, grimly, "And, another war will begin.`
 				goto questioning
 			label hostile
-			`	She frowns. "My name is Raven," she says. "I am here to question this defector. If you are interested in knowing the truth, you will allow me to do so."`
+			`	She frowns. "My name is Raven," she says. "I am here to question this defector. If you are interested in knowing the truth, you will allow me to do so.`
 			label questioning
-			`	The monks approach, and you see that among them is a man in more ordinary attire, who must be the defector. "Now," says Raven, "I will question him alone, on my ship."`
+			`	"Now," says Raven, "I will question him alone, on my ship."`
 			choice
 				`	"No, we insist on being present for your interrogation."`
 					goto present
 				`	"Very well, we'll wait outside."`
 			`	"No!" says JJ. "We're staying here."`
 			label present
-			`	She hesitates for a long moment. This is probably going against whatever orders she is following. But finally she says, "Very well." The monks step aside. She approaches the defector, and reaches out her hands to him. Hesitantly, he takes her hands. It's an oddly intimate scene, the two of them quietly holding hands and locking eyes - not like any interrogation you have seen before. "Now," she says, "tell me your story."`
+			`	She hesitates for a long moment. This is probably going against whatever orders she is following. But finally she says, "Very well." She approaches the defector, and reaches out her hands to him. Hesitantly, he takes her hands. It's an oddly intimate scene, the two of them quietly holding hands and locking eyes - not like any interrogation you have seen before. "Now," she says, "tell me your story."`
 			`	"My name is Sawyer," says the man. "I'm a physicist, a Syndicate employee. We had a secret project on Mutiny, a planet in a pirate system. We were developing nuclear weapons." He hesitates, and looks away for a second, then says, "They told me it was for fighting the pirates. I didn't realize otherwise until--"`
 			`	"That is a lie," says Raven, calmly.`
 			`	He seems flustered. "Okay, they didn't tell me what the weapons were for, and I didn't ask."`
@@ -2095,7 +2156,8 @@ mission "FW Defend New Tibet"
 mission "FW Liberate Delta Sagittarii"
 	name "Liberate Delta Sagittarii"
 	description "Lead a Free Worlds fleet to drive the Navy out of Delta Sagittarii. Another fleet ought to be arriving from the Rim at about the same time."
-	source Wayfarer
+	source 
+		planet "Wayfarer" "New Tibet"
 	destination "New Portland"
 	clearance
 	passengers 2
