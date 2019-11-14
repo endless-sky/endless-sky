@@ -750,12 +750,12 @@ void AI::Step(const PlayerInfo &player)
 				}
 				else
 					reparentWith(ships);
-			}
-			if(!parent && !parentChoices.empty())
-			{
-				// No suitable candidate can carry this ship, but this ship can still act as an escort.
-				parent = parentChoices[Random::Int(parentChoices.size())];
-				it->SetParent(parent);
+				if(!parent && !parentChoices.empty())
+				{
+					// No suitable candidate can carry this ship, but this ship can still act as an escort.
+					parent = parentChoices[Random::Int(parentChoices.size())];
+					it->SetParent(parent);
+				}
 			}
 			// Otherwise, check if this ship wants to return to its parent (e.g. to repair).
 			else if(hasSpace && inParentSystem && ShouldDock(*it, *parent, thisIsLaunching))
