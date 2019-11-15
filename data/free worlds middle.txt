@@ -1620,8 +1620,8 @@ mission "FW Albatross 1"
 	name "Freya to <planet>"
 	description "Bring Freya to <planet> to meet up with JJ and make plans for convincing Albatross to give up piracy and join the Free Worlds."
 	autosave
-	source Zug
-	destination Dancer
+	source "Zug"
+	destination "Dancer"
 	to offer
 		has "FW Dreadnoughts Ready: done"
 	passengers 1
@@ -1658,7 +1658,9 @@ mission "FW Albatross 1"
 			`	"Yes," she says. "Yes, it does. Now, let's go meet up with JJ."`
 				accept
 			label metoo
-			`	Freya raises an eyebrow. "I hadn't heard. We don't have time to find someone else for this mission, so try not to say that so loudly when you're on Albatross."`
+			apply
+				set "gay"
+			`	Freya raises an eyebrow. "I hadn't heard. We don't have time to find someone else for this mission, so you'll need to be the one to transport JJ. Stay safe."`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Freya hasn't entered the system yet. Better depart and wait for it to arrive.`
@@ -1700,8 +1702,8 @@ mission "FW Albatross 2A"
 	name "Hunt Ryk Bartlett"
 	description "Hunt down the pirate warlord Ryk Bartlett, who has been plundering merchant convoys in the vicinity of Zeta Aquilae. (Only his personal ship, the Dread, must be destroyed.) Then, return to Albatross."
 	autosave
-	source Albatross
-	destination Albatross
+	source "Albatross"
+	destination "Albatross"
 	clearance
 	to offer
 		has "FW Albatross 2: done"
@@ -1711,6 +1713,16 @@ mission "FW Albatross 2A"
 	
 	on offer
 		conversation
+			branch meeting
+				not "gay"
+			apply
+				clear "gay"
+			`JJ puts a hand on your shoulder before leaving the ship. "Freya let me know. For safety reasons only, of course. You can stay here if you aren't comfortable."`
+			choice
+				`	"No, I'll come with you."`
+				`	"Thank you. I'll stay."`
+					goto alt
+			label meeting
 			`Your meeting with the elders of Albatross happens in secret, by night. They are afraid that if their current pirate overlord, Ryk Bartlett, finds out that they have met with you, they will face retribution. JJ begins by describing the Free Worlds' offer: all the benefits of the mutual defense pact, in exchange for an agreement to uphold human rights and the rule of law, plus offering financial support for the Free Worlds.`
 			`	"Begging your pardon," says one of the elders, "but what makes you different from any pirate organization that comes in here, demanding our money in return for 'protection'?"`
 			choice
@@ -1725,6 +1737,11 @@ mission "FW Albatross 2A"
 			`	The elder who spoke seems unconvinced. "Seems to me that you 'Council' folks are the real rulers, and your 'Senate' is a figurehead," he says. "So I don't call that true democracy."`
 			`	"Maybe," says another of the elders, "but they're still better than Bartlett. I say, if the Free Worlds can free us from him, we'll at least give their new government a try." A few of the others nod in agreement.`
 			`	They explain that to the best of their knowledge, Bartlett is spending most of his time near the Zeta Aquilae system, plundering merchant convoys of heavy metals coming out of Rand and Oblivion. If you can destroy Bartlett and his flagship, the Dread, his followers will probably disperse.`
+				accept
+			label alt
+			`	The meeting with the elders of Albatross happens in secret, by night. They are afraid that if their current pirate overlord, Ryk Bartlett, finds out that they have met with you, they will face retribution. You wait in your ship while JJ attempts to convince the elders that they should join the Free Worlds. After some hours, JJ returns.`
+			`	"They're interested," JJ says to you, "but they want the current warlord dead."`
+			`	They explained that to the best of their knowledge, Bartlett is spending most of his time near the Zeta Aquilae system, plundering merchant convoys of heavy metals coming out of Rand and Oblivion. If you can destroy Bartlett and his flagship, the Dread, his followers will probably disperse.`
 				accept
 	on visit
 		dialog phrase "generic bounty hunting on visit"
