@@ -76,7 +76,7 @@ mission "FWC Attack Kaus Borealis"
 					goto diplomacy
 				`	"It sounds to me like we need to make a convincing enough show of strength that Parliament will agree to a ceasefire."`
 					goto strength
-				`	"Have you heard anything from the Syndicate about finding the terrorists."`
+				`	"Have you heard anything from the Syndicate about finding the terrorists?"`
 					goto syndicate
 			label diplomacy
 			`	"Yes," says JJ, "it will have to be a diplomatic solution in the end. But we must negotiate that solution from a position of strength, not weakness. And that means driving the Navy out of our territory."`
@@ -342,7 +342,7 @@ mission "FWC Nuke Supply 1"
 				`	"Has JJ been able to get in contact with the Syndicate yet?"`
 			`	"Yes, but they didn't send good news. They say the terrorist they took is dead. They were able to get some names out of him before that happened though, so there's still a chance they can prove our innocence."`
 			choice
-				`	"Let's hope that do that soon."`
+				`	"Let's hope they do that soon."`
 					goto end
 				`	"We don't seem very innocent anymore."`
 			`	Tomek sighs. "We're doing what we have to to save the Free Worlds. We're fighting for what we believe in. Remember that."`
