@@ -2343,9 +2343,10 @@ void PlayerInfo::StepMissions(UI *ui)
 	string visitText;
 	int extraVisitDialogs = 0;
 	int deadlineMissions = 0;
-	map<string, string> substitutions;
-	substitutions["<first>"] = firstName;
-	substitutions["<last>"] = lastName;
+	auto subs = map<string, string>{
+		{"<first>", firstName},
+		{"<last>", lastName}
+	};
 	if(Flagship())
 		substitutions["<ship>"] = Flagship()->Name();
 	
@@ -2388,12 +2389,13 @@ void PlayerInfo::StepMissions(UI *ui)
 		if(extraVisitDialogs)
 		{
 			visitText += "\n\tYou have " + Format::Number(extraVisitDialogs) + " other unfinished " 
-				+ ((extraVisitDialogs > 1) ? "missions" : "mission") + " at this location.";
+				+ ((extraVisitDialogs > 1) ? "missions" : "mission") + " at this location";
 			if(deadlineMissions)
 			{
-				visitText += "\n\tOf your unfinished missions here " + Format::Number(deadlineMissions) 
-					+ ((deadlineMissions > 1) ? " have approaching deadlines." : " has an approaching deadline.");
+				visitText += "(" + Format::Number(deadlineMissions) + " of which "
+					+ ((deadlineMissions > 1) ? "have approaching deadlines" : "has an approaching deadline)");
 			}
+			visitTest += ".";
 		}
 		ui->Push(new Dialog(visitText));
 	}
