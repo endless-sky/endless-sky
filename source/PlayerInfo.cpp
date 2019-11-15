@@ -2376,7 +2376,7 @@ void PlayerInfo::StepMissions(UI *ui)
 			if(!action.DialogText().empty())
 			{
 				if(visitText.empty())
-					visitText = Format::Replace(ait.DialogText(), substitutions);
+					visitText = Format::Replace(action.DialogText(), substitutions);
 				else
 					++extraVisitDialogs;
 				if(mission.Deadline())
@@ -2395,7 +2395,7 @@ void PlayerInfo::StepMissions(UI *ui)
 				visitText += "(" + Format::Number(deadlineMissions) + " of which "
 					+ ((deadlineMissions > 1) ? "have approaching deadlines" : "has an approaching deadline)");
 			}
-			visitTest += ".";
+			visitText += ".";
 		}
 		ui->Push(new Dialog(visitText));
 	}
