@@ -2343,7 +2343,7 @@ void PlayerInfo::StepMissions(UI *ui)
 	string visitText;
 	int extraVisitDialogs = 0;
 	int deadlineMissions = 0;
-	auto subs = map<string, string>{
+	auto substitutions = map<string, string>{
 		{"<first>", firstName},
 		{"<last>", lastName}
 	};
