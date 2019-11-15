@@ -76,12 +76,16 @@ mission "FWC Attack Kaus Borealis"
 					goto diplomacy
 				`	"It sounds to me like we need to make a convincing enough show of strength that Parliament will agree to a ceasefire."`
 					goto strength
+				`	"Have you heard anything from the Syndicate about finding the terrorists."`
+					goto syndicate
 			label diplomacy
 			`	"Yes," says JJ, "it will have to be a diplomatic solution in the end. But we must negotiate that solution from a position of strength, not weakness. And that means driving the Navy out of our territory."`
 				goto plan
 			label strength
 			`	"Precisely," says JJ, "and the only way to do that is to drive the Navy out of our territory. And if that isn't enough... we have plans for that contingency as well."`
 				goto plan
+			label syndicate
+			`	"Nothing," says JJ. "They've been silent since we allowed them to take the terrorist from New Tibet. I'll attempt to get in touch with them, though."`
 			label plan
 			`	"So, now we attack Kaus Borealis?" you ask.`
 			`	"That's right," he says. "Once again, the Wolf Pack will go in first and soften them up, then you and your ships will clean up. I've already given the Wolf Pack orders to attack, so please head straight to Kaus Borealis so you can join the fray before they have time to recover."`
@@ -332,6 +336,17 @@ mission "FWC Nuke Supply 1"
 				goto next
 			label next
 			`	You wait for about an hour. Meanwhile, more Free Worlds ships continue to enter the system, one of which is carrying Tomek. He radios you and says, "I think we've got things under control here, which means there's a new mission for you. You probably aren't going to like this, but we need you to escort a freighter from Oblivion. Part of our ongoing deal with the Devil: a shipment of uranium headed for Greenrock."`
+			choice
+				`	"Okay, I'll get it done."`
+					goto end
+				`	"Has JJ been able to get in contact with the Syndicate yet?"`
+			`	"Yes, but they didn't send good news. They say the terrorist they took is dead. They were able to get some names out of him before that happened though, so there's still a chance they can prove our innocence."`
+			choice
+				`	"Let's hope that do that soon."`
+					goto end
+				`	"We don't seem very innocent anymore."`
+			`	Tomek sighs. "We're doing what we have to to save the Free Worlds. We're fighting for what we believe in. Remember that."`
+			label end
 			`	A Free Worlds ship lands close enough to your own ship that Alondo can transfer over to it without being in sight of the snipers. "Good luck," he says as he departs. "I hope when you return we will have negotiated some sort of meeting with Parliament."`
 				accept
 
@@ -928,10 +943,18 @@ mission "FWC Checkmate 1C"
 			`As soon as you land, you and Katya contact Tomek and inform him that the system is yours. "Excellent," he says. "Press on with your fleet and take Vega before they have time to regroup. Another Wolf Pack fleet will meet you there for the final assault on the Sol system."`
 			choice
 				`	"Understood. We will depart immediately."`
-					accept
+					goto end
 				`	"Are we really sure we want to attack Earth?"`
-			`	"Have they given us any other choice?" asks Tomek. "We tried diplomacy. And we cannot hope to defeat the entire Navy. So, unless we wish to surrender and all be put on trial as war criminals, we need to press on and gain the upper hand in the only way we can. The Senate and the Council are agreed on this." You have no choice but to follow his orders and to begin getting your fleet ready for the next attack.`
+				`	"Shouldn't we just be able to stall our time until the Syndicate prove our innocence?"`
+					goto syndicate
+			`	"Have they given us any other choice?" asks Tomek. "We tried diplomacy. And we cannot hope to defeat the entire Navy.`
+				goto orders
+			label syndicate
+			`	"I wish we could just stall here, but we don't have the means to defend ourselves if the Navy decide to mount a counteroffensive large enough to overpower our nukes.`
+			label orders
+			`	"So, unless we wish to surrender and all be put on trial as war criminals, we need to press on and gain the upper hand in the only way we can. The Senate and the Council are agreed on this." You have no choice but to follow his orders and to begin getting your fleet ready for the next attack.`
 			``
+			label end
 			`[Take good care of this fleet, because it will have to last you for the rest of this campaign: if ships are disabled, board them to "repair" them once the battle is over. And, when jumping into battle, remember that you can hold down the jump key to get all your ships ready to jump simultaneously, so no single ship enters the system first and bears the brunt of the enemy fire.]`
 				accept
 	
