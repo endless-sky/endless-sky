@@ -478,6 +478,8 @@ mission "FW Embassy 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		set "license: Navy"
+		set "license: Cruiser"
 		conversation
 			`As you are landing, Katya tells you, "<first>, we just received a message from the Free Worlds Senate. They've arranged for a Republic embassy to be set up on Bourne, and a Free Worlds embassy on Earth. We've been asked to meet the ambassadors on Earth and escort them to Bourne."`
 			`	A few minutes later, Admiral Danforth arrives at your ship. "Captain <last>," he says, "I'd like to thank you for your assistance." He hands you a million-credit chip.`
@@ -488,7 +490,8 @@ mission "FW Embassy 1"
 			`	"That's purely for you as a private captain, to compensate you for your assistance," he says. "I wouldn't want you to think that I am in any way giving financial support to the Free Worlds, since that would be illegal."`
 			`	"Of course not, sir," you say. "Thank you."`
 			label next
-			`	"Don't mention it," he says, with a wink. "And now, I think it's best that you head to Earth and pick up those ambassadors. From what I hear, now that Raven is not traveling with you, people are beginning to ask questions about what this Free Worlds captain is doing flying all around Republic space unescorted."`
+			`	"Don't mention it." Danforth then hands you a Navy and Cruiser license. "Oops, looks like I dropped these," he says, with a wink. You stash the licenses in your pocket to avoid anyone seeing them.`
+			`	"Now, I think it's best that you head to Earth and pick up those ambassadors. From what I hear, now that Raven is not traveling with you, people are beginning to ask questions about what this Free Worlds captain is doing flying all around Republic space unescorted."`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Katya and Mr. Eyes hasn't entered the system yet. Better depart and wait for it to arrive.`
@@ -2294,8 +2297,9 @@ mission "FW Syndicate Extremists 1A"
 			`	"Was that knowledge accurate?" asks Freya.`
 			label information
 			`	"Very accurate," he says. "Our business flourished like never before. But then a month came when instead, the Oracle's predictions were bleak. A massive recession was coming, an end to the golden days of the Republic. We tried altering the model in every way we could: changing our production, our wages. We even asked the Oracle if dissolving the Syndicate would avert the recession. But its predictions remained the same. Then we learned from our contacts in Parliament about the Southern Defense Pact, and the fear that they were about to declare independence. So we asked the Oracle what would happen if war broke out."`
-			`	"You started a war... to save the economy?" says Danforth. He sounds disgusted.`
-			`	Alastair nods. "The Alphas were only too glad to help. Especially with the nuclear research. Which, incidentally, is why I'm telling you all this, because if your fleet tries to take out the Alphas, they'll strike back with nukes."`
+			`	"You started a war... to save the economy?" says Danforth. He sounds disgusted. "Do you know how many lives have been lost for your sick greed?"`
+			`	Alastair snaps at Danforth. "Do you think we made this decision lightly? Do you know how many lives would have been lost had such a recession actually occurred? The last time the economy fell as hard as the Oracle predicted, humanity entered a dark age where millions died of starvation and billions more suffered from the resulting chaos.`
+			`	"But... the Alphas were only too glad to help. Especially with the nuclear research. Which, incidentally, is why I'm telling you all this, because if your fleet tries to take out the Alphas, they'll strike back with nukes."`
 			choice
 				`	"Do you have an alternative to attacking them?"`
 				`	"Is there any way we could disable the nukes?"`
