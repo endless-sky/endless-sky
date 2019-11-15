@@ -232,35 +232,6 @@ string Format::Replace(const string &source, const map<string, string> keys)
 
 
 
-string Format::Replace(const string &source, const function<string (const string&)> &subst)
-{
-	string result;
-	result.reserve(source.length());
-	
-	size_t start = 0;
-	while(start < source.length())
-	{
-		size_t left = source.find("${", start);
-		if(left == string::npos)
-			break;
-		
-		size_t right = source.find('}', left);
-		if(right == string::npos)
-			break;
-		
-		++right;
-		size_t length = right - left;
-		result.append(source, start, left - start);
-		result.append(subst(string(source, left + 2, length - 3)));
-		start = right;
-	}
-	
-	result.append(source, start, source.length() - start);
-	return result;
-}
-
-
-
 string Format::Capitalize(const string &str)
 {
 	string result = str;

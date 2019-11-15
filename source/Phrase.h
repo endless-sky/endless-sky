@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <functional>
 #include <string>
+#include <utility>
 #include <vector>
 
 class DataNode;
@@ -37,8 +38,7 @@ private:
 private:
 	class Part {
 	public:
-		std::vector<std::string> words;
-		std::vector<const Phrase *> phrases;
+		std::vector<std::vector<std::pair<std::string, const Phrase*>>> words;
 		std::vector<std::function<std::string(const std::string&)>> replaceRules;
 	};
 	
