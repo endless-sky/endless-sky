@@ -340,7 +340,7 @@ mission "FWC Nuke Supply 1"
 				`	"Okay, I'll get it done."`
 					goto end
 				`	"Has JJ been able to get in contact with the Syndicate yet?"`
-			`	"Yes, but they didn't send good news. They say the terrorist they took is dead. They were able to get some names out of him before that happened though, so there's still a chance they can prove our innocence."`
+			`	"Yes, but they didn't send good news. They say the terrorist they took is dead: suicide. They were able to get some names out of him before that happened though, so there's still a chance they can prove our innocence."`
 			choice
 				`	"Let's hope they do that soon."`
 					goto end
