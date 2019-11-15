@@ -2448,6 +2448,7 @@ mission "FW Syndicate Extremists 1C"
 	on complete
 		log "Received an official commendation from Parliament and a promise that the war with the Free Worlds is officially over. Humanity is at peace once more, but new challenges may await in the star systems out beyond human space that are accessible only by jump drive."
 		payment 5000000
+		event "stack core for sale"
 		set "main plot completed"
 		set "free worlds plot completed"
 		set "free worlds reconciliation"
