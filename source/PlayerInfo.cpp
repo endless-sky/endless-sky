@@ -730,6 +730,7 @@ Ship *PlayerInfo::Flagship()
 
 
 
+// Determine which ship is the flagship and return the shared pointer to it.
 const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 {
 	if(!flagship)
