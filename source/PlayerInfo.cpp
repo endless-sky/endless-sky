@@ -2343,11 +2343,11 @@ void PlayerInfo::StepMissions(UI *ui)
 	string visitText;
 	int extraVisitDialogs = 0;
 	int deadlineMissions = 0;
-	map<string, string> subs;
-	subs["<first>"] = firstName;
-	subs["<last>"] = lastName;
+	map<string, string> substitutions;
+	substitutions["<first>"] = firstName;
+	substitutions["<last>"] = lastName;
 	if(Flagship())
-		subs["<ship>"] = Flagship()->Name();
+		substitutions["<ship>"] = Flagship()->Name();
 	
 	auto mit = missions.begin();
 	while(mit != missions.end())
@@ -2371,11 +2371,11 @@ void PlayerInfo::StepMissions(UI *ui)
 			// On visit dialogs are handled separately as to avoid a player
 			// getting spammed by on visit dialogs if they are stacking jobs
 			// from the same destination.
-			auto ait = mission.GetAction(Mission::VISIT);
-			if(!ait.DialogText().empty())
+			auto action = mission.GetAction(Mission::VISIT);
+			if(!action.DialogText().empty())
 			{
 				if(visitText.empty())
-					visitText = Format::Replace(ait.DialogText(), subs);
+					visitText = Format::Replace(ait.DialogText(), substitutions);
 				else
 					++extraVisitDialogs;
 				if(mission.Deadline())
@@ -2387,10 +2387,12 @@ void PlayerInfo::StepMissions(UI *ui)
 	{
 		if(extraVisitDialogs)
 		{
-			visitText += "\n\tYou have " + Format::Number(extraVisitDialogs) + " other unfinished " + ((extraVisitDialogs > 1) ? "missions" : "mission") + " at this location.";
+			visitText += "\n\tYou have " + Format::Number(extraVisitDialogs) + " other unfinished " 
+				+ ((extraVisitDialogs > 1) ? "missions" : "mission") + " at this location.";
 			if(deadlineMissions)
 			{
-				visitText += "\n\t" + Format::Number(deadlineMissions) + " of your unfinished missions here " + ((deadlineMissions > 1) ? "have approaching deadlines." : "has an approaching deadline.");
+				visitText += "\n\tOf your unfinished missions here " + Format::Number(deadlineMissions) 
+					+ ((deadlineMissions > 1) ? " have approaching deadlines." : " has an approaching deadline.");
 			}
 		}
 		ui->Push(new Dialog(visitText));
