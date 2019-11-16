@@ -20,7 +20,7 @@ using namespace std;
 
 namespace {
 	// Parse a word and decompose it into a vector of texts and phrase names.
-	void ParseWord(const string &word, vector<pair<string, const Phrase*>> &out)
+	void ParseWord(const string &word, Phrase::Option &out)
 	{
 		size_t start = 0;
 		while(start < word.length())
@@ -68,28 +68,24 @@ namespace {
 
 
 
-void Phrase::Load(const DataNode &node)
+void Phrase::Sentense::Load(const DataNode &node, const Phrase* parent)
 {
-	// Set the name of this phrase, so we know it has been loaded.
-	name = node.Size() >= 2 ? node.Token(1) : "Unnamed Phrase";
-	
-	parts.emplace_back();
 	for(const DataNode &child : node)
 	{
-		parts.back().emplace_back();
-		Part &part = parts.back().back();
+		parts.emplace_back();
+		Part &part = parts.back();
 		
 		if(child.Token(0) == "word")
 		{
 			for(const DataNode &grand : child)
 			{
-				part.words.emplace_back();
-				ParseWord(grand.Token(0), part.words.back());
+				part.options.emplace_back();
+				ParseWord(grand.Token(0), part.options.back());
 			}
 		}
 		else if(child.Token(0) == "phrase")
 			for(const DataNode &grand : child)
-				part.words.push_back({make_pair("", GameData::Phrases().Get(grand.Token(0)))});
+				part.options.push_back({make_pair("", GameData::Phrases().Get(grand.Token(0)))});
 		else if(child.Token(0) == "replace")
 		{
 			for(const DataNode &grand : child)
@@ -107,24 +103,34 @@ void Phrase::Load(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 		
 		// Confirm the phrases have no recursive phrase reference.
-		for(auto &part : parts.back())
-			for(auto &word : part.words)
-				for(auto &textOrPhrase : word)
-					if(textOrPhrase.second)
+		for(auto &option : part.options)
+			for(auto &textOrPhrase : option)
+				if(textOrPhrase.second)
+				{
+					const string &phraseName = textOrPhrase.second->Name();
+					const Phrase *subphrase = GameData::Phrases().Get(phraseName);
+					if(subphrase->ReferencesPhrase(parent))
 					{
-						const string &phraseName = textOrPhrase.second->Name();
-						const Phrase *subphrase = GameData::Phrases().Get(phraseName);
-						if(subphrase->ReferencesPhrase(this))
-						{
-							child.PrintTrace("Found recursive phrase reference:");
-							textOrPhrase.second = nullptr;
-						}
+						child.PrintTrace("Found recursive phrase reference:");
+						textOrPhrase.second = nullptr;
 					}
+				}
 		
 		// If no words, phrases, or replaces were given, discard this part of the phrase.
-		if(part.words.empty() && part.replaceRules.empty())
-			parts.back().pop_back();
+		if(part.options.empty() && part.replaceRules.empty())
+			parts.pop_back();
 	}
+}
+
+
+
+void Phrase::Load(const DataNode &node)
+{
+	// Set the name of this phrase, so we know it has been loaded.
+	name = node.Size() >= 2 ? node.Token(1) : "Unnamed Phrase";
+	
+	sentenses.emplace_back();
+	sentenses.back().Load(node, this);
 }
 
 
@@ -139,15 +145,15 @@ const string &Phrase::Name() const
 string Phrase::Get() const
 {
 	string result;
-	if(parts.empty())
+	if(sentenses.empty())
 		return result;
 	
-	for(const Part &part : parts[Random::Int(parts.size())])
+	for(const Part &part : sentenses[Random::Int(sentenses.size())].parts)
 	{
-		if(!part.words.empty())
+		if(!part.options.empty())
 		{
-			const auto &sequenceOfTextsAndPhrases = part.words[Random::Int(part.words.size())];
-			for(const auto &textOrPhrase : sequenceOfTextsAndPhrases)
+			const Option &option = part.options[Random::Int(part.options.size())];
+			for(const auto &textOrPhrase : option)
 				if(textOrPhrase.second)
 					result += textOrPhrase.second->Get();
 				else
@@ -168,10 +174,10 @@ bool Phrase::ReferencesPhrase(const Phrase *phrase) const
 	if(phrase == this)
 		return true;
 	
-	for(const vector<Part> &alternative : parts)
-		for(const Part &part : alternative)
-			for(const auto &word : part.words)
-				for(const auto &subphrase : word)
+	for(const Sentense &alternative : sentenses)
+		for(const Part &part : alternative.parts)
+			for(const auto &option : part.options)
+				for(const auto &subphrase : option)
 					if(subphrase.second && subphrase.second->ReferencesPhrase(phrase))
 						return true;
 	
