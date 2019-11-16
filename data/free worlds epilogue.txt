@@ -164,7 +164,7 @@ mission "FW Epilogue: Danforth"
 			`	Danforth is quite excited to see you. "Captain <last>!" he says. "So good to see you back up here in my neck of the woods again. It's funny, you'd think that with the war over they'd just dissolve the Oathkeepers, since the whole Republic is at peace with the Free Worlds and there's no longer any oath left for us to keep. But, the Oathkeepers became so well known for our role against the Pug and the Syndicate that now everyone wants to join our division."`
 				goto choice
 			label checkmate1
-			`	Danforth is quite excited to see you. "Captain <last>!" he says. "So good to see you back up here in my neck of the woods again. It's funny, you'd think that with the war over they'd just dissolve the Oathkeepers, since the whole Republic is at peace with the Free Worlds and there's no longer any oath left for us to keep. But, the Oathkeepers became so well known for our role against the Pug and the terrorists that now everyone wants to join our division."`
+			`	Danforth is quite excited to see you. "Captain <last>!" he says. "So good to see you back up here in my neck of the woods again. It's funny, you'd think that with the war over they'd just dissolve the Oathkeepers, since the whole Republic is at peace with the Free Worlds and there's no longer any oath left for us to keep. But, the Oathkeepers became so well known for our role against the Pug that now everyone wants to join our division."`
 			label choice
 			choice
 				`	"Glad to see you're still in the thick of things, sir!"`
