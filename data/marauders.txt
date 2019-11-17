@@ -357,7 +357,7 @@ ship "Marauder Firebird"
 		category "Medium Warship"
 		"cost" 4100000
 		"shields" 7000
-		"hull" 3000
+		"hull" 3650
 		"required crew" 10
 		"bunks" 25
 		"mass" 350
