@@ -2473,7 +2473,16 @@ mission "FW Syndicate Extremists 1C"
 		set "free worlds reconciliation"
 		conversation
 			`On Earth, you return to something of a hero's welcome, far different from the first time you were here on a diplomatic mission. A crowd of locals gathers in the spaceport to watch your ship land. With the Free Worlds having been instrumental in defeating the aliens, and absolved of any guilt in the terrorist attacks, it seems that most people here are ready to see you as a hero rather than a criminal.`
+			
+			branch good
+				not "event: navy out of rastaban"
+			`	You discover that Parliament has made a treaty with the Free Worlds, agreeing that the Navy will begin pulling out of any occupied systems, and that the Free Worlds will be allowed autonomy in the region they currently control as long as they do not seek to expand their territory further. As of now, your war against the Republic is officially over.`
+				goto end
+			
+			label good
 			`	You discover that Parliament has made a treaty with the Free Worlds, agreeing that the Free Worlds will be allowed autonomy in the region they currently control as long as they do not seek to expand their territory further. As of now, your war against the Republic is officially over.`
+			
+			label end
 			`	Your meeting with Parliament is long and grueling, as they press you and Freya for every detail you can give them about the enigmatic Pug and their apparent motivation in invading human space. The questions about the Syndicate are equally hard to answer. But at the end of the session, one of the members of Parliament informs you that they have authorized an official commendation for you, along with a reward of five million credits "to cover any of your expenses from fighting the aliens, and to help you integrate back into civilian life."`
 			`	The war is over; your work for the Free Worlds is at an end. What you do next is up to you...`
 
