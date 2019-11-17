@@ -145,7 +145,7 @@
 		A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC526C1950C9F6004E4E22 /* Cocoa.framework */; };
 		A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
 		B5DDA6942001B7F600DBA76A /* News.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5DDA6922001B7F600DBA76A /* News.cpp */; };
-		C98072B6237C018800EFB809 /* CrewEconomics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C98072B5237C018700EFB809 /* CrewEconomics.cpp */; };
+		C962AF25238149B300777764 /* Crew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C962AF24238149B300777764 /* Crew.cpp */; };
 		DF8D57E11FC25842001525DA /* Dictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF8D57DF1FC25842001525DA /* Dictionary.cpp */; };
 		DF8D57E51FC25889001525DA /* Visual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF8D57E21FC25889001525DA /* Visual.cpp */; };
 		DFAAE2A61FD4A25C0072C0A8 /* BatchDrawList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFAAE2A21FD4A25C0072C0A8 /* BatchDrawList.cpp */; };
@@ -433,8 +433,8 @@
 		A9D40D19195DFAA60086EE52 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		B5DDA6922001B7F600DBA76A /* News.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = News.cpp; path = source/News.cpp; sourceTree = "<group>"; };
 		B5DDA6932001B7F600DBA76A /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = News.h; path = source/News.h; sourceTree = "<group>"; };
-		C98072B4237C018700EFB809 /* CrewEconomics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CrewEconomics.h; path = source/CrewEconomics.h; sourceTree = "<group>"; };
-		C98072B5237C018700EFB809 /* CrewEconomics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CrewEconomics.cpp; path = source/CrewEconomics.cpp; sourceTree = "<group>"; };
+		C962AF23238149A800777764 /* Crew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Crew.h; path = source/Crew.h; sourceTree = "<group>"; };
+		C962AF24238149B300777764 /* Crew.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Crew.cpp; path = source/Crew.cpp; sourceTree = "<group>"; };
 		DF8D57DF1FC25842001525DA /* Dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dictionary.cpp; path = source/Dictionary.cpp; sourceTree = "<group>"; };
 		DF8D57E01FC25842001525DA /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dictionary.h; path = source/Dictionary.h; sourceTree = "<group>"; };
 		DF8D57E21FC25889001525DA /* Visual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Visual.cpp; path = source/Visual.cpp; sourceTree = "<group>"; };
@@ -507,8 +507,8 @@
 				A96862ED1AE6FD0A004FE1FE /* Conversation.h */,
 				A96862EE1AE6FD0A004FE1FE /* ConversationPanel.cpp */,
 				A96862EF1AE6FD0A004FE1FE /* ConversationPanel.h */,
-				C98072B5237C018700EFB809 /* CrewEconomics.cpp */,
-				C98072B4237C018700EFB809 /* CrewEconomics.h */,
+				C962AF24238149B300777764 /* Crew.cpp */,
+				C962AF23238149A800777764 /* Crew.h */,
 				A96862F01AE6FD0A004FE1FE /* DataFile.cpp */,
 				A96862F11AE6FD0A004FE1FE /* DataFile.h */,
 				A96862F21AE6FD0A004FE1FE /* DataNode.cpp */,
@@ -887,7 +887,6 @@
 				62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */,
 				A96863B91AE6FD0E004FE1FE /* Effect.cpp in Sources */,
 				A96863AE1AE6FD0E004FE1FE /* ConditionSet.cpp in Sources */,
-				C98072B6237C018800EFB809 /* CrewEconomics.cpp in Sources */,
 				A96863DC1AE6FD0E004FE1FE /* Outfit.cpp in Sources */,
 				A96863BB1AE6FD0E004FE1FE /* EscortDisplay.cpp in Sources */,
 				A96863EB1AE6FD0E004FE1FE /* Projectile.cpp in Sources */,
@@ -928,6 +927,7 @@
 				A96863F41AE6FD0E004FE1FE /* ShipInfoDisplay.cpp in Sources */,
 				A96863C21AE6FD0E004FE1FE /* FrameTimer.cpp in Sources */,
 				A96863D81AE6FD0E004FE1FE /* MissionAction.cpp in Sources */,
+				C962AF25238149B300777764 /* Crew.cpp in Sources */,
 				A96863FA1AE6FD0E004FE1FE /* SpriteQueue.cpp in Sources */,
 				A96863E21AE6FD0E004FE1FE /* Phrase.cpp in Sources */,
 				628BDAEF1CC5DC950062BCD2 /* PlanetLabel.cpp in Sources */,
