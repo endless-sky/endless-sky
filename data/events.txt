@@ -1594,6 +1594,16 @@ event "fw tarazed joins"
 
 
 
+event "fw tarazed republic"
+	system "Tarazed"
+		government "Republic"
+	system "Dabih"
+		government "Republic"
+	system "Albireo"
+		government "Republic"
+
+
+
 event "deep sky tech available"
 	outfitter "Deep Sky Basics"
 		"Catalytic Ramscoop"
@@ -2291,12 +2301,6 @@ event "fwc capture kaus borealis"
 		fleet "Small Free Worlds" 400
 		fleet "Large Free Worlds" 400
 		fleet "Large Republic" 2000
-	system "Tarazed"
-		government "Republic"
-	system "Dabih"
-		government "Republic"
-	system "Albireo"
-		government "Republic"
 	planet "New Iceland"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
 

@@ -236,6 +236,7 @@ mission "FWC Cebalrai 1B"
 	
 	on offer
 		event "fwc attack cebalrai"
+		event "fw tarazed republic"
 		conversation
 			`You meet up with Tomek and Alondo and tell them that the defenses in the Cebalrai system did not seem particularly strong. "They must've seen the writing on the wall and pulled back the rest of their fleet," says Alondo.`
 			`	"Either that," says Tomek, "or they're wary of engaging us again now that they know we're willing to use nukes. Which I'm still not happy about, by the way. It's only a matter of time until they respond in kind. But in any case, our next move is clear: bring a fleet to Cebalrai and capture the system. <first>, you'll be in charge of that fleet. Alondo can travel with you to handle the diplomatic aftermath."`
