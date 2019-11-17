@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
+#include "Crew.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -67,6 +68,7 @@ using namespace std;
 namespace {
 	Set<Color> colors;
 	Set<Conversation> conversations;
+	Set<Crew> crews;
 	Set<Effect> effects;
 	Set<GameEvent> events;
 	Set<Fleet> fleets;
@@ -592,6 +594,13 @@ const Set<Conversation> &GameData::Conversations()
 
 
 
+const Set<Crew> &GameData::Crews()
+{
+	return crews;
+}
+
+
+
 const Set<Effect> &GameData::Effects()
 {
 	return effects;
@@ -923,6 +932,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 				node.Value(2), node.Value(3), node.Value(4), node.Value(5));
 		else if(key == "conversation" && node.Size() >= 2)
 			conversations.Get(node.Token(1))->Load(node);
+		else if(key == "crew" && node.Size() >= 2)
+			crews.Get(node.Token(1))->Load(node);
 		else if(key == "effect" && node.Size() >= 2)
 			effects.Get(node.Token(1))->Load(node);
 		else if(key == "event" && node.Size() >= 2)

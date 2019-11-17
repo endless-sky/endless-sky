@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Color;
 class Conversation;
+class Crew;
 class DataNode;
 class DataWriter;
 class Date;
@@ -93,6 +94,7 @@ public:
 	
 	static const Set<Color> &Colors();
 	static const Set<Conversation> &Conversations();
+	static const Set<Crew> &Crews();
 	static const Set<Effect> &Effects();
 	static const Set<GameEvent> &Events();
 	static const Set<Fleet> &Fleets();

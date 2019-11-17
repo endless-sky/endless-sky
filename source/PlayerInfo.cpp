@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "ConversationPanel.h"
-#include "CrewEconomics.h"
+#include "Crew.h"
 #include "DataFile.h"
 #include "DataWriter.h"
 #include "Dialog.h"
@@ -669,7 +669,7 @@ Account &PlayerInfo::Accounts()
 // Calculate how much the player pays in daily salaries.
 int64_t PlayerInfo::Salaries() const
 {
-	return CrewEconomics::CalculateSalaries(Flagship(), ships);
+	return Crew::CalculateSalaries(ships);
 }
 
 
