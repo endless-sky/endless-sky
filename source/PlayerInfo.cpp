@@ -743,15 +743,6 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 			}
 	}
 	
-	return FlagshipPtrReadOnly();
-}
-
-
-
-// Get the shared pointer to the flagship, but don't lookup which ship is
-// the flagship if it is unknown.
-const shared_ptr<Ship> &PlayerInfo::FlagshipPtrReadOnly() const
-{
 	static const shared_ptr<Ship> empty;
 	return (flagship && flagship->IsYours()) ? flagship : empty;
 }
