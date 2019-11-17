@@ -188,6 +188,23 @@ void ShopPanel::DrawSidebar()
 	Point mouse = GetUI()->GetMouse();
 	warningType.clear();
 	
+	// Check how many bays are available and used to carry ships
+	int baysAvailable[2] = {0, 0};
+	for(const shared_ptr<Ship> &ship : player.Ships())
+	{
+		// Skip any ships that are "absent" or "inactive" for whatever reason.
+		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled() || ship->IsParked())
+			continue;
+		
+		baysAvailable[0] += ship->BaysFree(false);
+		baysAvailable[1] += ship->BaysFree(true);
+		if(!ship->JumpFuel())
+		{
+			baysAvailable[0] -= (ship->Attributes().Category() == "Drone");
+			baysAvailable[1] -= (ship->Attributes().Category() == "Fighter");
+		}
+	}
+	
 	static const Color selected(.8f, 1.f);
 	static const Color unselected(.4f, 1.f);
 	for(const shared_ptr<Ship> &ship : player.Ships())
@@ -220,7 +237,7 @@ void ShopPanel::DrawSidebar()
 		
 		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
 		
-		string check = ship->FlightCheck();
+		string check = ship->FlightCheck(baysAvailable);
 		if(!check.empty())
 		{
 			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");

@@ -240,6 +240,11 @@ void PlanetPanel::TakeOffIfReady()
 		return;
 	}
 	
+	// No need to count and check at this point how many bays are available and
+	// used to carry ships. That check is done later in this function. Initialize
+	// at 0 just to avoid the warning.
+	int baysAvailable[2] = {0, 0};
+	
 	// Check if any of the player's ships are configured in such a way that they
 	// will be impossible to fly.
 	for(const shared_ptr<Ship> &ship : player.Ships())
@@ -247,7 +252,7 @@ void PlanetPanel::TakeOffIfReady()
 		if(ship->GetSystem() != &system || ship->IsDisabled() || ship->IsParked())
 			continue;
 		
-		string check = ship->FlightCheck();
+		string check = ship->FlightCheck(baysAvailable);
 		if(!check.empty() && check.back() == '!')
 		{
 			GetUI()->Push(new ConversationPanel(player,

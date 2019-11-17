@@ -757,7 +757,7 @@ int64_t Ship::ChassisCost() const
 
 // Check if this ship is configured in such a way that it would be difficult
 // or impossible to fly.
-string Ship::FlightCheck() const
+string Ship::FlightCheck(const int baysAvailable[]) const
 {
 	double generation = attributes.Get("energy generation") - attributes.Get("energy consumption");
 	double burning = attributes.Get("fuel energy");
@@ -775,6 +775,9 @@ string Ship::FlightCheck() const
 	double turnEnergy = attributes.Get("turning energy");
 	double hyperDrive = attributes.Get("hyperdrive");
 	double jumpDrive = attributes.Get("jump drive");
+	bool driveOk = hyperDrive || jumpDrive;
+	bool fuelOk = fuelCapacity >= JumpFuel();
+	bool baysOk = !canBeCarried || baysAvailable[attributes.Category() == "Fighter"] >= 0;
 	
 	// Error conditions:
 	if(IdleHeat() >= MaximumHeat())
@@ -803,11 +806,13 @@ string Ship::FlightCheck() const
 		return "solar power?";
 	if(fuel < 0.)
 		return "fuel?";
+	if(canBeCarried && !(baysOk || (driveOk && fuelOk)))
+		return "no bays?";
 	if(!canBeCarried)
 	{
-		if(!hyperDrive && !jumpDrive)
+		if(!driveOk)
 			return "no hyperdrive?";
-		if(fuelCapacity < JumpFuel())
+		if(!fuelOk)
 			return "no fuel?";
 	}
 	for(const auto &it : outfits)
