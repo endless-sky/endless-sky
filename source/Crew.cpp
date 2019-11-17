@@ -136,7 +136,7 @@ int64_t Crew::SalariesForShip(
 	int64_t specialCrewMembers = 0;
 
 	// Add up the salaries for all of the special crew members
-	for(const pair<const string, Crew> crewPair : crews)
+	for(const pair<const string, Crew>& crewPair : crews)
 	{
 		// Skip the default crew members.
 		if(crewPair.first == "default") continue;
