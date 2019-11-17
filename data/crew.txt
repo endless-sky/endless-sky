@@ -14,9 +14,9 @@ crew "default"
 
 # crew "pilot"
 #   name "Pilot"
+#   "avoids flagship"
 #   "daily salary" 250
 #   "minimum per ship" 1
-#   "on flagship?" 0
 # 
 # crew "junior officer"
 #   name "Junior Officers"

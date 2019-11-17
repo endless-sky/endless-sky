@@ -15,31 +15,31 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Ship.h"
 
-using namespace std;
-
 class Crew
 {
 public:
 	// Calculate one day's salaries for the Player's fleet
 	static int64_t CalculateSalaries(
-		const vector<shared_ptr<Ship>> ships,
+		const std::vector<std::shared_ptr<Ship>> ships,
 		const bool includeExtras = true
 	);
 
 	// Calculate the total cost of the flagship's extra crew
-	static int64_t CostOfExtraCrew(const vector<shared_ptr<Ship>> ships);
+	static int64_t CostOfExtraCrew(
+		const std::vector<std::shared_ptr<Ship>> ships
+	);
 
 	// Figure out how many of a given crew member are on a ship
 	static int64_t NumberOnShip(
 		const Crew crew,
-		const shared_ptr<Ship> ship,
+		const std::shared_ptr<Ship> ship,
 		const bool isFlagship,
 		const bool includeExtras = true
 	);
 
 	// Calculate one day's salaries for a ship
 	static int64_t SalariesForShip(
-		const shared_ptr<Ship> ship,
+		const std::shared_ptr<Ship> ship,
 		const bool isFlagship,
 		const bool includeExtras = true
 	);
@@ -47,8 +47,8 @@ public:
 	// Load a definition for a crew economics setting.
 	void Load(const DataNode &node);
 	
-	const bool &IsOnEscorts() const;
-	const bool &IsOnFlagship() const;
+	const bool &AvoidsEscorts() const;
+	const bool &AvoidsFlagship() const;
 	const bool &IsPaidSalaryWhileParked() const;
 	const int64_t &DailySalary() const;
 	const int64_t &MinimumPerShip() const;
@@ -56,8 +56,8 @@ public:
 	const std::string &Name() const;
 
 private:
-	bool isOnEscorts;
-	bool isOnFlagship;
+	bool avoidsEscorts;
+	bool avoidsFlagship;
 	bool isPaidSalaryWhileParked;
 	int64_t dailySalary;
 	int64_t minimumPerShip;
