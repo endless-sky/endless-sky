@@ -2653,11 +2653,11 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	else if(shieldDamage > shields)
 		shieldFraction = min(shieldFraction, shields / shieldDamage);
 	shields -= shieldDamage * shieldFraction;
-	if(shieldDamage)
-		shieldDelay = (shields <= 0.) ? attributes.Get("disabled shield delay") : attributes.Get("shield delay");
+	if(shieldDamage && !isDisabled)
+		shieldDelay = max(shieldDelay, (shields <= 0.) ? attributes.Get("disabled shield delay") : attributes.Get("shield delay"));
 	hull -= hullDamage * (1. - shieldFraction);
-	if(hullDamage)
-		hullDelay = attributes.Get("repair delay");
+	if(hullDamage && !isDisabled)
+		hullDelay = max(hullDelay, attributes.Get("repair delay"));
 	// For the following damage types, the total effect depends on how much is
 	// "leaking" through the shields.
 	double leakage = (1. - .5 * shieldFraction);
