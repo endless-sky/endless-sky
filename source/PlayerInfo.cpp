@@ -1198,6 +1198,9 @@ bool PlayerInfo::TakeOff(UI *ui)
 	// For each non-jump-capable fighter and drone you own, try to find a ship that has
 	// a bay to carry it in. Any excess ships will be launched outside carriers.
 	int shipsUnCarried = 0;
+	// Jump-capable ships can stay outside bays, but preference is to still load them in
+	// bays if there is space.
+	bool shipsOutsideBays = false;
 	for(auto it = ships.begin(); it != ships.end(); )
 	{
 		shared_ptr<Ship> &ship = *it;
@@ -1209,23 +1212,43 @@ bool PlayerInfo::TakeOff(UI *ui)
 		
 		bool fit = true;
 		const string &category = ship->Attributes().Category();
-		// Load only fighters and drones that cannot jump by themselves
-		if((ship->JumpsRemaining() < 1) && (category == "Fighter" || category == "Drone"))
+		if(category == "Fighter" || category == "Drone")
 		{
-			fit = false;
-			for(shared_ptr<Ship> &parent : ships)
-				if(parent->GetSystem() == ship->GetSystem() && !parent->IsParked()
-						&& !parent->IsDisabled() && parent->Carry(ship))
-				{
-					fit = true;
-					break;
-				}
+			// Load only fighters and drones that cannot jump by themselves
+			if(ship->JumpsRemaining() < 1)
+			{
+				fit = false;
+				for(shared_ptr<Ship> &parent : ships)
+					if(parent->GetSystem() == ship->GetSystem() && !parent->IsParked()
+							&& !parent->IsDisabled() && parent->Carry(ship))
+					{
+						fit = true;
+						break;
+					}
+			}
+			else
+				shipsOutsideBays = true;
 		}
 		if(!fit)
 			shipsUnCarried += 1;
 		
 		++it;
 	}
+	// Load jump-capable carryable ships into bays if any bays are left.
+	if(shipsOutsideBays)
+		for(auto it = ships.begin(); it != ships.end(); )
+		{
+			shared_ptr<Ship> &ship = *it;
+			const string &category = ship->Attributes().Category();
+			if(!ship->IsParked() && !ship->IsDisabled() && (category == "Fighter" || category == "Drone"))
+				for(shared_ptr<Ship> &parent : ships)
+					if(parent->GetSystem() == ship->GetSystem() && !parent->IsParked()
+							&& !parent->IsDisabled() && parent->Carry(ship))
+						break;
+			
+			++it;
+		}
+	
 	if(shipsUnCarried > 0)
 	{
 		// If your fleet contains more fighters or drones than you can carry,
