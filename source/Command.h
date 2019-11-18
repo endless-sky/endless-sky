@@ -130,13 +130,13 @@ private:
 private:
 	// 512 bits for weapons firing.
 	uint64_t firing_weps[8] = {};
-	// std::bitset<512> firing_weps;
-	// Turret turn rates, reduced to 8 bits to save space.
-	signed char aim[512] = {};
 	// The key commands are stored in a single bitmask, with 32 bits for key commands.
 	uint32_t state = 0;
 	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
+	// std::bitset<512> firing_weps;
+	// Turret turn rates, reduced to 8 bits to save space.
+	signed char aim[512] = {};
 };
 
 #endif
