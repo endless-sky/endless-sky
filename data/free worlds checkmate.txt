@@ -2417,6 +2417,12 @@ mission "FWC Terrorists 1A"
 					goto decoy
 				`	"How did you come across this device?"`
 			`	"The galaxy is a much bigger place than you may know, Captain <last>. The Syndicate has been attacked by alien raiders known as the Korath from the deep Core for over a century now, and in that time we found it in the cargo hold of one of the alien ships."`
+				goto end
+			
+			label decoy
+			`	"Yes. Being a skilled captain, I'm sure you'll be able to trick the terrorists into wasting the rest of their nukes before a fleet arrives to deal with them. We've contacted the Navy and told them where the terrorists are located, so they should be arriving shortly after you. Let's keep the existence of this device between us, though. And as a sign of gratitude, I'll let you keep it."`
+			
+			label end
 			`	Korban tells you that the device is being kept on Hephaestus, and the engineers there can install it in your ship. "The Alphas are holed up on Buccaneer Bay," says Korban, "an old pirate world. We've also made available to you some of our new technology, developed during the war. It may prove helpful to you during this final battle. Good luck, Captain."`
 				accept
 
