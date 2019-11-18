@@ -175,7 +175,7 @@ mission "FW Reconciliation 1C"
 			`	Sawyer directs you to the site where the secret development took place. Nothing is left but a wide and slightly overgrown clearing. After checking your radar and seeing no incoming ships, you risk landing. Sawyer says that there were buildings here a few years ago, but now not even their foundations remain, and a sensor sweep for metallic objects turns up nothing, not even as small as a single nail.`
 			`	However, Ijs points out a few subtle signs of human habitation. "A clearing like this would normally form in a fire," he says, "but notice, no fire scars on the trees on the edges of the clearing."`
 			`	Raven says, "And our geophysical radar is picking up structures underground. Several deep shafts, and rock that's been stressed and fractured by a large explosion. They did a good job of hiding everything else, but if you scar a planet that badly, it doesn't go away. The stones speak."`
-			`	As you continue inspecting the site, suddenly Raven's copilot shouts out the door of her gunboat at you. "Syndicate ships have entered the system! We need to get back to Earth with the evidence, quickly!"`
+			`	As you continue inspecting the site, suddenly Raven's copilot shouts out the door of her Gunboat at you. "Syndicate ships have entered the system! We need to get back to Earth with the evidence, quickly!"`
 				launch
 	
 	npc accompany save
@@ -275,6 +275,19 @@ mission "FW Navy Out Of Rastaban"
 
 
 
+mission "fw tarazed joins"
+	landing
+	invisible
+	to offer
+		has "FW Reconciliation 2: done"
+		not "FW Reconciliation 2A: done"
+		karma > 0
+	on offer
+		event "fw tarazed joins"
+		fail
+
+
+
 mission "FW Reconciliation 2A"
 	name "Oathkeepers on Farpoint"
 	description "Travel to <destination> to meet with the Navy Oathkeepers. Raven's ship will continue to travel with you."
@@ -291,7 +304,6 @@ mission "FW Reconciliation 2A"
 	
 	on offer
 		log `The governor of Valhalla, in the Deep, has proposed a "police action" to arrest one or more of the Syndicate leaders and bring them to justice. It will be a secret joint operation between the Free Worlds, the Deep, and the Oathkeepers.`
-		event "fw tarazed joins"
 		conversation
 			`When you land on Valhalla, a man shows up at your ship and introduces himself as Edrick Flint, the governor of Valhalla. He invites all of you to join him for dinner at his home, which turns out to be an apartment on the twenty-third floor of one of the downtown skyscrapers. There, he introduces you to several other regional governors and authorities.`
 			`	"You may be aware," Edrick says, "that the Deep was self-governing before the formation of the Republic. Indeed, during some of the darkest centuries of the space age, the Deep stood out as a beacon of civilization, a place where piracy was not tolerated and all travelers were safe. When we joined the Republic, we retained the authority to police our own territory, and that authority includes the right to track down fugitives who have fled beyond our usual jurisdiction."`
@@ -312,7 +324,14 @@ mission "FW Reconciliation 2A"
 			`	"That's why the fleet will be composed of ships from three different organizations," says Edrick. "You will find a reason to travel to Earth with perhaps one of your fancy new Dreadnoughts as an escort. When you arrive, there will just happen to be an Oathkeeper patrol passing through the same system. And a merchant convoy from the Deep. With its own set of escorts, of course."`
 			`	"We'd need to know exactly where and on what planet our target lives, prior to entering Syndicate space," says Katya. "And, if you want to have a court trial immediately prior to the arrest, it sounds like Sawyer will need to stay here."`
 			`	"Indeed," says Edrick, "but I assure you, he is safer from the Syndicate here than anywhere else in human space, your own territory included. As for locating a target, that's why the Oathkeepers have requested that you visit them on Farpoint."`
+			branch tarazed
+				karma > 0
+			`	The rest of the evening is a more casual time for conversation, with plenty of good food and wine.`
+				goto end
+			
+			label tarazed
 			`	The rest of the evening is a more casual time for conversation, with plenty of good food and wine. Alondo sends you a message to inform you that Tarazed has decided to officially join the Free Worlds after having received word of the Parliament hearing, news that brings joy to Katya and Ijs.`
+			label end
 			`	At one point, Edrick pulls you aside and says, "I've requested that you be granted access to some of the new technology that was developed here during the course of the war. In particular, please find space on your ship for a ramscoop; you will need it for your next mission. And also, here." He hands you a data card. "This is a copy of Sawyer's evidence, in case something happens here. Keep it very, very safe."`
 				accept
 	
@@ -678,7 +697,7 @@ mission "FW Syndicate Capture 1"
 	on offer
 		log "Preparing to invade Syndicate space with a joint strike force made up of Free Worlds, Deep security, and Oathkeeper ships. The plan is to capture one of the Syndicate executives and bring him to trial."
 		conversation
-			`You land on Earth and make a show of being very busy ensuring that the Free Worlds ambassadors are comfortable and well cared for, until finally you receive a secure message from Edrick. He tells you that the convoy from the Deep is landing on Mars right now, and an Oathkeeper cruiser is visiting the shipyard on Luna. As soon as you are ready, you can take off, and travel together into the heart of Syndicate space.`
+			`You land on Earth and make a show of being very busy ensuring that the Free Worlds ambassadors are comfortable and well cared for, until finally you receive a secure message from Edrick. He tells you that the convoy from the Deep is landing on Mars right now, and an Oathkeeper Cruiser is visiting the shipyard on Luna. As soon as you are ready, you can take off, and travel together into the heart of Syndicate space.`
 			`	You make an excuse to depart, and return to your ship. "Well," says Ijs, "this is it. If we're lucky, they won't see us coming, but no matter what, getting back out of Syndicate space will be a nightmare. Good luck, all."`
 				accept
 	on visit
@@ -937,6 +956,7 @@ mission "FW Pug 1"
 		event "pug invasion 2" 6
 		event "pug invasion 3" 10
 		event "pug invasion 4" 14
+		"reputation: Pug" >?= 1
 		conversation
 			`As soon as you land on <origin>, JJ comes running up to your ship. "<first>," he says, "we have serious trouble. A few minutes ago I received a distress call from Rand, then their transmission was cut off. I'm afraid the Syndicate may be expanding into our space."`
 			choice
@@ -2274,7 +2294,7 @@ mission "FW Syndicate Extremists 1A"
 	on offer
 		log "With the Pug defeated, it is finally time to deal with the Syndicate extremists and the Alphas that they allied with. The extremists are armed with nuclear missiles, but the Syndicate CEO has agreed to provide a cloaking device that will make it possible to dodge the missiles."
 		conversation
-			`The presence of a Navy cruiser in orbit seldom goes unnoticed, especially a cruiser captained by someone as famous as William Danforth. As soon as you land, a Syndicate employee meets you and escorts you, Freya, and Danforth to the office of Alastair Korban, the CEO. He does not seem very happy to see you. "I only just got word that the aliens were defeated a few days ago," he says. "I'm surprised you're back here already."`
+			`The presence of a Navy Cruiser in orbit seldom goes unnoticed, especially a Cruiser captained by someone as famous as William Danforth. As soon as you land, a Syndicate employee meets you and escorts you, Freya, and Danforth to the office of Alastair Korban, the CEO. He does not seem very happy to see you. "I only just got word that the aliens were defeated a few days ago," he says. "I'm surprised you're back here already."`
 			`	Danforth says, "I've got a whole Navy fleet just a few jumps away from here who are itching to destroy something. So here's the deal. You name me some targets: the men who were responsible for the terrorist attack. Then I will do you a favor and take them off your hands. Fair enough?"`
 			`	Korban sighs, and then opens his desk and pulls out a sheet of paper. "This is my resignation letter," he says. "I've been working on it since my first meeting with Captain <last>. I've failed in my leadership of this company. But you have no idea how deep that failure goes."`
 			choice
@@ -2429,7 +2449,7 @@ mission "FW Syndicate Extremists 1C"
 		event "navy occupies algenib"
 		event "navy done with algenib" 50
 		conversation
-			`Soon after you land, more Navy ships begin pouring into the system, including Admiral Danforth's own cruiser. Navy soldiers and ships are scouring the whole surface of the planet; there is very little chance that any of the Alphas who remain here will be able to escape their detection. Admiral Danforth meets with you and Freya and thanks you for providing the decoy that kept his own ships from bearing the brunt of the Alphas' nuclear arsenal.`
+			`Soon after you land, more Navy ships begin pouring into the system, including Admiral Danforth's own Cruiser. Navy soldiers and ships are scouring the whole surface of the planet; there is very little chance that any of the Alphas who remain here will be able to escape their detection. Admiral Danforth meets with you and Freya and thanks you for providing the decoy that kept his own ships from bearing the brunt of the Alphas' nuclear arsenal.`
 			`	"Do you need us to do anything more here?" asks Freya.`
 			`	"No," he says, "and I hear that Parliament wants to speak with you, Captain <last>. Something about an official commendation for your part in the battle against the Pug, I think. Meanwhile, this may not be the end of our trouble with the Syndicate, but at least it's a good start. It's been an honor to fight alongside you."`
 			choice
@@ -2447,10 +2467,33 @@ mission "FW Syndicate Extremists 1C"
 	on complete
 		log "Received an official commendation from Parliament and a promise that the war with the Free Worlds is officially over. Humanity is at peace once more, but new challenges may await in the star systems out beyond human space that are accessible only by jump drive."
 		payment 5000000
+		event "stack core for sale"
 		set "main plot completed"
 		set "free worlds plot completed"
+		set "free worlds reconciliation"
 		conversation
 			`On Earth, you return to something of a hero's welcome, far different from the first time you were here on a diplomatic mission. A crowd of locals gathers in the spaceport to watch your ship land. With the Free Worlds having been instrumental in defeating the aliens, and absolved of any guilt in the terrorist attacks, it seems that most people here are ready to see you as a hero rather than a criminal.`
+			
+			branch good
+				has "event: navy out of rastaban"
+			`	You discover that Parliament has made a treaty with the Free Worlds, agreeing that the Navy will begin pulling out of any occupied systems, and that the Free Worlds will be allowed autonomy in the region they currently control as long as they do not seek to expand their territory further. As of now, your war against the Republic is officially over.`
+				goto end
+			
+			label good
 			`	You discover that Parliament has made a treaty with the Free Worlds, agreeing that the Free Worlds will be allowed autonomy in the region they currently control as long as they do not seek to expand their territory further. As of now, your war against the Republic is officially over.`
+			
+			label end
 			`	Your meeting with Parliament is long and grueling, as they press you and Freya for every detail you can give them about the enigmatic Pug and their apparent motivation in invading human space. The questions about the Syndicate are equally hard to answer. But at the end of the session, one of the members of Parliament informs you that they have authorized an official commendation for you, along with a reward of five million credits "to cover any of your expenses from fighting the aliens, and to help you integrate back into civilian life."`
 			`	The war is over; your work for the Free Worlds is at an end. What you do next is up to you...`
+
+
+
+mission "FW Navy Out Of Rastaban (Bad Karma)"
+	landing
+	invisible
+	to offer
+		has "FW Syndicate Extremists 1C: done"
+		not "event: navy out of rastaban"
+	on offer
+		event "navy out of rastaban" 30
+		fail
