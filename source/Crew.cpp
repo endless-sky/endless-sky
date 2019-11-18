@@ -34,14 +34,20 @@ void Crew::Load(const DataNode &node)
 	{
 		if(child.Size() >= 2)
 		{
-			if(child.Token(0) == "daily salary")
-				dailySalary = child.Value(1);
-			else if(child.Token(0) == "minimum per ship")
-				minimumPerShip = child.Value(1);
-			else if(child.Token(0) == "population per occurrence")
-				populationPerOccurrence = child.Value(1);
-			else if(child.Token(0) == "name")
+			if(child.Token(0) == "name")
 				name = child.Token(1);
+			else if(child.Token(0) == "daily salary")
+				if(child.Value(1) >= 0)
+					dailySalary = child.Value(1);
+				else
+					child.PrintTrace("Skipping invalid negative attribute value:");
+			else if(child.Token(0) == "minimum per ship")
+				if(child.Value(1) >= 0)
+					minimumPerShip = child.Value(1);
+				else
+					child.PrintTrace("Skipping invalid negative attribute value:");
+			else if(child.Token(0) == "population per occurrence" && child.Value(1) >= 0)
+				populationPerOccurrence = child.Value(1);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
