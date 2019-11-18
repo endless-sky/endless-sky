@@ -225,7 +225,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		if(!scan || (scan & ShipEvent::SCAN_CARGO))
 		{
 			int64_t fine = ship->Cargo().IllegalCargoFine();
-			int failedMissions = -1;
+			int failedMissions = 0;
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
 				maxFine = fine;
@@ -248,7 +248,10 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 					}
 				}
 				if(failedMissions)
-					reason += "\n\tYou failed " + Format::Number(failedMissions) + " other " + ((failedMissions > 1) ? "missions." : "mission.");
+				{
+					reason += "\n\tYou failed " + Format::Number(failedMissions) + ((failedMissions > 1) ? " missions" : " mission") 
+						+ " after your illegal cargo was discovered.";
+				}
 			}
 		}
 		if(!scan || (scan & ShipEvent::SCAN_OUTFITS))
