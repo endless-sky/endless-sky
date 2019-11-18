@@ -585,21 +585,26 @@ ship "Petrel"
 			Remnant
 		"cost" 1141000
 		"shields" 1000
-		"hull" 2300
-		"cargo space" 19
+		"hull" 2500
+		"cargo space" 15
+		"fuel capacity" 100
+		"ramscoop" 0.5
 		"required crew" 2
 		"bunks" 3
 		"mass" 50
-		"drag" 1.8
+		"drag" 1.55
 		"heat dissipation" .8
 		"outfit space" 133
 		"weapon capacity" 33
-		"engine capacity" 26
+		"engine capacity" 34
 		"shield generation" 0.36
 		"shield energy" 0.24
 		"hull repair rate" 0.82
 		"hull energy" 0.54
 		"gaslining" 1
+		"outfit scan power" 10
+		"outfit scan speed" 1
+		"tactical scan power" 20
 		"asteroid scan power" 30
 		weapon
 			"blast radius" 15
@@ -607,24 +612,23 @@ ship "Petrel"
 			"hull damage" 200
 			"hit force" 350
 	outfits
-		"Thrasher Cannon" 2
+		"Inhibitor Cannon" 2
 		
 		"Millennium Cell" 2
 		"Crystal Capacitor"
 		"Thermoelectric Cooler"
-		"Fuel Pod"
-		"Emergency Ramscoop"
 		
 		"Anvil-Class Engine"
 		
 	gun 0 -38.5
-	gun -10.5 -24 "Thrasher Cannon"
-	gun 10.5 -24 "Thrasher Cannon"
+	gun -10.5 -24 "Inhibitor Cannon"
+	gun 10.5 -24 "Inhibitor Cannon"
 	turret 0 2.5
 	engine 0 41.5
 	explode "tiny explosion" 30
 	explode "small explosion" 20
-	description "The Petrel is a multi-role mining/wing leader fightercraft designed to provide support for flights of lighter Terns in high-risk environments. The ship's design originated as an an urban mobile gun platform that flitted around structures and natural terrain, but proved easy to adapt into a spacecraft."
+	description "The Petrel is a multi-role mining/wing leader fightercraft designed to provide support for flights of lighter Terns in high-risk environments. The ship's design originated as an urban mobile gun platform that flitted around structures and natural terrain, but proved easy to adapt into a spacecraft."
+	description "	The Remnant are loath to sacrifice pilots and crew from the comparatively small pool they are drawn from. As such, their fighters are equipped with medium-range weaponry designed to strike enemies from afar."
 
 
 
@@ -801,6 +805,9 @@ ship "Tern"
 		"hull repair rate" 0.55
 		"hull energy" 0.37
 		"gaslining" 1
+		"outfit scan power" 10
+		"outfit scan speed" 1
+		"tactical scan power" 20
 		"atmosphere scan" 100
 		"asteroid scan power" 30
 		weapon
