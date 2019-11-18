@@ -237,7 +237,12 @@ void ShopPanel::DrawSidebar()
 		
 		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
 		
-		string check = ship->FlightCheck(baysAvailable);
+		bool isDrone = ship->Attributes().Category() == "Drone";
+		bool isFighter = ship->Attributes().Category() == "Fighter";
+		
+		bool bayAvailable = (isDrone || isFighter) && (baysAvailable[isFighter] >= 0);
+		
+		string check = ship->FlightCheck(bayAvailable);
 		if(!check.empty())
 		{
 			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
