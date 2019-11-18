@@ -143,14 +143,11 @@ int64_t Crew::SalariesForShip(
 	if(ship->IsDestroyed())
 		return 0;
 	
-	const Set<Crew> crews = GameData::Crews();
-	const Crew *defaultCrew = crews.Find("default");
-	
 	int64_t salariesForShip = 0;
 	int64_t specialCrewMembers = 0;
 	
 	// Add up the salaries for all of the special crew members
-	for(const pair<const string, Crew>& crewPair : crews)
+	for(const pair<const string, Crew>& crewPair : GameData::Crews())
 	{
 		// Skip the default crew members.
 		if(crewPair.first == "default")
@@ -179,6 +176,8 @@ int64_t Crew::SalariesForShip(
 			? ship->Crew()
 			: ship->RequiredCrew()
 		) - specialCrewMembers - isFlagship;
+
+	const Crew *defaultCrew = GameData::Crews().Find("default");
 	
 	// Check if we pay salaries to parked default crew members
 	if(defaultCrew->IsPaidSalaryWhileParked() || !ship->IsParked())
