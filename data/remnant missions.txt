@@ -164,6 +164,7 @@ mission "Remnant: Lost in Ember Waste"
 		governmant "Remnant"
 	to offer
 		has "event: lost in ember waste"
+	on offer
 		outfit "Quantum Key Stone" 1
 		log `Became stuck in the Ember Waste, but was given a quantum key stone by an old woman who claims to have once been stuck in Republic space under similar circumstances.`
 		conversation
