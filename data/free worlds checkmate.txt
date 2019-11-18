@@ -2358,7 +2358,7 @@ mission "FWC Pug 6"
 
 mission "FWC Terrorists 1"
 	name "Deal with the terrorists"
-	description "Now that the Pug appear to have been driven off, the Syndicate have tracked down the rest of the terrorist. Travel to <destination> to meet with the CEO of the Syndicate."
+	description "Now that the Pug appear to have been driven off, the Syndicate have tracked down the rest of the terrorists. Travel to <destination> to meet with the CEO of the Syndicate."
 	source "Pugglemug"
 	destination "Foundry"
 	passengers 1
@@ -2553,10 +2553,10 @@ mission "FWC Terrorists 1C"
 		log "Parliament has agreed to a peace treaty, because the threat of alien invasion now seems much more pressing than the civil war with the Free Worlds. Whatever the true intention of the Pug was, the result of their interference is that humanity is at peace once more. There has been great loss of life, but nothing compared to what would have happened if the Free Worlds had tried to conquer Earth."
 		log "It may be a while before members of the Free Worlds manage to re-earn the trust of the rest of humanity, however."
 		event "deep sky tech available"
+		event "stack core for sale"
 		set "main plot completed"
 		set "free worlds plot completed"
 		set "free worlds checkmate"
-		event "stack core for sale"
 		conversation
 			`You arrive in the Parliament building just as Alondo, Katya, and Tomek have finished meeting with them. "Good news," says Katya. "We're all officially pardoned. And you, Captain <last>, have become something of a hero."`
 			`	"Better yet," says Alondo, "the war with the Republic is over. We agreed to limiting our territory to its current size, and to a very minor tax to cover the cost of Navy protection if the aliens attack again or some other major catastrophe strikes. In return, the Free Worlds have been granted autonomy from the Republic."`

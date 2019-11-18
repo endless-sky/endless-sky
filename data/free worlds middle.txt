@@ -2005,7 +2005,7 @@ mission "FW Question the Syndicate"
 				`	"What is the meaning of this?"`
 				`	"Is the Syndicate really behind the bombings?"`
 			`	"I'm sorry for the confusion," the man responds, "but please understand. We're hunting a terrorist. This man claiming that we are the ones that caused the bombings is in fact the leader of the extremist group that caused them. He developed the nukes with the help of a faction of pirates looking to profit from the instability, and now that we've discovered that, he's attempting to run and frame us for his crimes against humanity. Allow us to find him, and we'll--"`
-			`	The feed cuts off. "I've lost the signal. It looks like it's been jammed," the communications officer says.`
+			`	The feed cuts off. "I've lost the signal. It looks like it's been jammed by the Navy," the communications officer says.`
 			`	The room falls silent.`
 			`	JJ breaks the silence. "I still say we rescue this defector. The Syndicate could be lying to us. They don't exactly have a reputation for being moral."`
 			`	"This 'defector' could easily be the one lying as well," Freya says. "I say we let them have him while we focus on defending against the Navy. The Syndicate could be able to prove our innocence if they get their hands on the true terrorist."`
@@ -2082,7 +2082,7 @@ mission "FW Defector Escorts"
 
 
 
-mision "FW Defend New Tibet"
+mission "FW Defend New Tibet"
 	landing
 	name "Defend New Tibet"
 	description "Defend New Tibet from the attacking Syndicate fleet."
