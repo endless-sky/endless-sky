@@ -2063,8 +2063,8 @@ mision "FW Defend New Tibet"
 			
 			label approach
 			`	"Look," Freya says. "That must be them coming down the mountain slope toward us." Sure enough, you spot a group of people wearing Syndicated Security uniforms, as well as one man in ordinary attire who is restrainted.`
-			`	The defector spots you when he gets close enough and begins yelling. "Please, don't believe them! I have the evidence! Underground test data, manufactured bomb casings, fissile material!"`
-			`	"Gag him," Khalid interjects, prompting one of the men to stuff a cloth into the defector's mouth and tie it into place.`
+			`	The supposed defector spots you when he gets close enough and begins yelling. "Please, don't believe them! I have the evidence! Underground test data, manufactured bomb casings, fissile material!"`
+			`	"Gag him," Khalid interjects, prompting one of his men to stuff a cloth into the man's mouth and tie it into place.`
 			choice
 				`	"We'll be taking him now."`
 					goto take
@@ -2073,9 +2073,9 @@ mision "FW Defend New Tibet"
 			apply
 				set "fw did not rescue defector"
 			`	"Thank you, Councilmember," Khalid says with a slight bow and a smirk on his face. "We'll keep you posted on our progress, and attempt to persuade the Republic to cease fire while we uncover more."`
-			`	The Syndicate ships launch with the defector. "I thought we were here to take him!" JJ yells.`
+			`	The Syndicate ships launch with the terrorist. "I thought we were here to take him!" JJ yells.`
 			`	"Well I changed my mind," you say.`
-			`	"Calm down, JJ," Freya says. "If the rest of the terrorists responsible for this are in the Core then there's nothing we could have done about it, even with the defector in our hands."`
+			`	"Calm down, JJ," Freya says. "If the rest of the terrorists responsible for this are in the Core then there's nothing we could have done about it, even with that terrorist in our hands."`
 			`	"Very well," says JJ. "In that case, we'll need to meet with the fleet captains and figure out how to take on the Navy. Let's meet in the spaceport bar in an hour."`
 				decline
 			

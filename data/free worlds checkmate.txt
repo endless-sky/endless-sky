@@ -21,7 +21,7 @@ mission "FWC Scouting 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		log `Drove the Navy out of Delta Sagittarii with the help of the "Wolf Pack," a militia group in favor of more extreme measures who launched a preemptive strike before the main Free Worlds force arrived. The Free Worlds are now committed to fighting the Republic to a standstill rather than proving their innocence; the defector has been recaptured by the Syndicate and whatever information he had to share is now lost.`
+		log `Drove the Navy out of Delta Sagittarii with the help of the "Wolf Pack," a militia group in favor of more extreme measures who launched a preemptive strike before the main Free Worlds force arrived. The Syndicate has taken the terrorist into their own hands and will be using him to prove the Free Worlds' innocence, while the Free Worlds fight the Republic to a standstill in order to buy time.`
 		conversation
 			`It was a close battle, and could have gone very differently if it were not for the Wolf Pack strike that happened before you arrived and that disabled or destroyed the majority of the Navy fleet. You can't help but wonder how the Wolf Pack managed to assemble a large enough fleet to do that sort of damage.`
 			`	"Well," says JJ, "the die is cast. It's too late now to wonder what that business with the Syndicate was about; now we're in a fight to the finish with the Republic. And that means we must strike soon, before they have time to bring in more reinforcements. Captain <last>, I'd like you to perform a scouting mission while I'm working on gathering a new fleet. Our next target has to be the Navy base on New Iceland. If we can drive them out of that system, our position will be much better. So, I'd like you to fly through Kaus Borealis and return here to report on their fleet strength. Understood?"`
@@ -340,7 +340,7 @@ mission "FWC Nuke Supply 1"
 				`	"Okay, I'll get it done."`
 					goto end
 				`	"Has JJ been able to get in contact with the Syndicate yet?"`
-			`	"Yes, but they didn't send good news. They say the terrorist they took is dead: suicide. They were able to get some names out of him before that happened though, so there's still a chance they can prove our innocence."`
+			`	"Yes, but they didn't send good news. They say the terrorist they took is dead: suicide by hanging. I'm surprised they didn't have him on suicide watch. They were able to get some names out of him before that happened though, so there's still a chance they can prove our innocence."`
 			choice
 				`	"Let's hope they do that soon."`
 					goto end
