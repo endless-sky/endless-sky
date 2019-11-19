@@ -113,7 +113,6 @@ public:
 	// the player does not have any ships.
 	const Ship *Flagship() const;
 	Ship *Flagship();
-	const std::shared_ptr<Ship> &FlagshipPtr() const;
 	const std::shared_ptr<Ship> &FlagshipPtr();
 	// Get the full list of ships the player owns.
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;

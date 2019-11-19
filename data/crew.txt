@@ -23,7 +23,7 @@ crew "default"
 #   salary 500
 #   "population per member" 5
 # 
-# crew "senior officers"
+# crew "senior officer"
 #   name "Senior Officers"
 #   salary 2000
 #   "population per member" 20

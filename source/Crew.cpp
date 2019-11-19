@@ -18,17 +18,9 @@ using namespace std;
 // Load definition of a crew member
 void Crew::Load(const DataNode &node)
 {
-	// Set the name of this crew member so we know that we have loaded it.
+	// Set the id of this crew member so we know that we have loaded it.
 	if(node.Size() >= 2)
-		name = node.Token(1);
-	
-	// Set default values so that we don't have to specify every node.
-	avoidsEscorts = false;
-	avoidsFlagship = false;
-	isPaidSalaryWhileParked = false;
-	salary = 100;
-	minimumPerShip = 0;
-	populationPerMember = 0;
+		id = node.Token(1);
 	
 	for(const DataNode &child : node)
 	{
@@ -36,25 +28,25 @@ void Crew::Load(const DataNode &node)
 		{
 			if(child.Token(0) == "name")
 				name = child.Token(1);
+			// The number of credits paid daily (minimum 0)
 			else if(child.Token(0) == "salary")
-				if(child.Value(1) >= 0)
-					salary = child.Value(1);
-				else
-					child.PrintTrace("Skipping invalid negative attribute value:");
+				salary = max((int)child.Value(1), 0);
+			// Each valid ship has at least this many of the crew member
 			else if(child.Token(0) == "minimum per ship")
-				if(child.Value(1) >= 0)
-					minimumPerShip = child.Value(1);
-				else
-					child.PrintTrace("Skipping invalid negative attribute value:");
-			else if(child.Token(0) == "population per member" && child.Value(1) >= 0)
-				populationPerMember = child.Value(1);
+				minimumPerShip = max((int)child.Value(1), 0);
+			// Every nth crew member on the ship will be this crew member
+			else if(child.Token(0) == "population per member")
+				populationPerMember = max((int)child.Value(1), 0);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
+		// If true, the crew member will not appear on escorts
 		else if(child.Token(0) == "avoids escorts")
 			avoidsEscorts = true;
+		// If true, the crew member will not appear on the flagship
 		else if(child.Token(0) == "avoids flagship")
 			avoidsFlagship = true;
+		// If true, the crew member will receive salary even on a parked ship
 		else if(child.Token(0) == "pay salary while parked")
 			isPaidSalaryWhileParked = true;
 		else
@@ -65,8 +57,7 @@ void Crew::Load(const DataNode &node)
 
 
 int64_t Crew::CalculateSalaries(
-	const vector<shared_ptr<Ship>> ships,
-	const shared_ptr<Ship> flagship,
+	const vector<shared_ptr<Ship>> &ships,
 	const bool includeExtras
 )
 {
@@ -76,7 +67,6 @@ int64_t Crew::CalculateSalaries(
 	{
 		totalSalaries += Crew::SalariesForShip(
 			ship,
-			ship == flagship,
 			includeExtras
 		);
 	}
@@ -87,31 +77,29 @@ int64_t Crew::CalculateSalaries(
 
 
 int64_t Crew::CostOfExtraCrew(
-	const vector<shared_ptr<Ship>> ships,
-	const shared_ptr<Ship> flagship
+	const vector<shared_ptr<Ship>> &ships
 )
 {
 	// Calculate with and without extras and return the difference.
-	return Crew::CalculateSalaries(ships, flagship, true)
-		- Crew::CalculateSalaries(ships, flagship, false);
+	return Crew::CalculateSalaries(ships, true)
+		- Crew::CalculateSalaries(ships, false);
 }
 
 
 
 int64_t Crew::NumberOnShip(
-	const Crew crew,
-	const shared_ptr<Ship> ship,
-	const bool isFlagship,
+	const Crew &crew,
+	const shared_ptr<Ship> &ship,
 	const bool includeExtras
 )
 {
 	int64_t count = 0;
 	
 	// If this is the flagship, check if this crew avoids the flagship.
-	if(isFlagship && crew.AvoidsFlagship())
+	if(!ship->GetParent() && crew.AvoidsFlagship())
 		return count;
 	// If this is an escort, check if this crew avoids escorts.
-	if(!isFlagship && crew.AvoidsEscorts())
+	if(ship->GetParent() && crew.AvoidsEscorts())
 		return count;
 	
 	const int64_t countableCrewMembers = includeExtras
@@ -137,8 +125,7 @@ int64_t Crew::NumberOnShip(
 
 
 int64_t Crew::SalariesForShip(
-	const shared_ptr<Ship> ship,
-	const bool isFlagship,
+	const shared_ptr<Ship> &ship,
 	const bool includeExtras
 )
 {
@@ -161,7 +148,6 @@ int64_t Crew::SalariesForShip(
 		int numberOnShip = Crew::NumberOnShip(
 			crew,
 			ship,
-			isFlagship,
 			includeExtras
 		);
 		
@@ -178,7 +164,9 @@ int64_t Crew::SalariesForShip(
 		includeExtras 
 			? ship->Crew()
 			: ship->RequiredCrew()
-		) - specialCrewMembers - isFlagship;
+		) - specialCrewMembers
+		// Subtract 1 if this is the flagship 
+		- !ship->GetParent();
 
 	const Crew *defaultCrew = GameData::Crews().Find("default");
 	
@@ -234,7 +222,14 @@ int64_t Crew::Salary() const
 
 
 
-string Crew::Name() const
+const string &Crew::Id() const
+{
+	return id;
+}
+
+
+
+const string &Crew::Name() const
 {
 	return name;
 }
