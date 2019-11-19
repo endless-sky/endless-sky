@@ -11,6 +11,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
 #include "Crew.h"
+#include "Files.h" 
 #include "GameData.h"
 
 using namespace std;
@@ -160,6 +161,12 @@ int64_t Crew::SalariesForShip(const shared_ptr<Ship> &ship, const bool isFlagshi
 		- isFlagship;
 
 	const Crew *defaultCrew = GameData::Crews().Find("default");
+	
+	if(!defaultCrew)
+	{
+		defaultCrew = new Crew();
+		Files::LogError("\nWarning: No default crew member defined in data files");
+	}
 	
 	// Add default crew members' salaries to the result
 	salariesForShip += defaultCrewMembers * (ship->IsParked()
