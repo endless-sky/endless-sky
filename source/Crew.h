@@ -30,7 +30,7 @@ public:
 	// Calculate one day's salaries for a ship
 	static int64_t SalariesForShip(const std::shared_ptr<Ship> &ship, const bool isFlagship, const bool includeExtras = true);
 
-	// Load a definition for a crew economics setting.
+	// Load a definition for a crew member.
 	void Load(const DataNode &node);
 	
 	bool AvoidsEscorts() const;

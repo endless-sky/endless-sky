@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-// Load definition of a crew member
 void Crew::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
