@@ -81,9 +81,9 @@ void HiringPanel::Draw()
 	info.SetString("fleet unused", to_string(fleetUnused));
 	info.SetString("passengers", to_string(passengers));
 	
-	const System * system = player.GetSystem();
-	int64_t salary = Crew::CalculateSalaries(player.Ships(), system, false);
-	int64_t extraSalary = Crew::CostOfExtraCrew(player.Ships(), system);
+	const Ship * playerFlagship = player.Flagship();
+	int64_t salary = Crew::CalculateSalaries(player.Ships(), playerFlagship, false);
+	int64_t extraSalary = Crew::CostOfExtraCrew(player.Ships(), playerFlagship);
 	info.SetString("salary required", to_string(salary));
 	info.SetString("salary extra", to_string(extraSalary));
 	
