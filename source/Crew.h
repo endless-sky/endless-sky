@@ -47,13 +47,13 @@ public:
 	// Load a definition for a crew economics setting.
 	void Load(const DataNode &node);
 	
-	const bool &AvoidsEscorts() const;
-	const bool &AvoidsFlagship() const;
-	const bool &IsPaidSalaryWhileParked() const;
-	const int64_t &DailySalary() const;
-	const int64_t &MinimumPerShip() const;
-	const int64_t &PopulationPerOccurrence() const;
-	const std::string &Name() const;
+	bool AvoidsEscorts() const;
+	bool AvoidsFlagship() const;
+	bool IsPaidSalaryWhileParked() const;
+	int64_t DailySalary() const;
+	int64_t MinimumPerShip() const;
+	int64_t PopulationPerOccurrence() const;
+	std::string Name() const;
 
 private:
 	bool avoidsEscorts;

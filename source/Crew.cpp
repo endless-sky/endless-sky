@@ -189,49 +189,49 @@ int64_t Crew::SalariesForShip(
 
 
 
-const bool &Crew::AvoidsEscorts() const
+bool Crew::AvoidsEscorts() const
 {
 	return avoidsEscorts;
 }
 
 
 
-const bool &Crew::AvoidsFlagship() const
+bool Crew::AvoidsFlagship() const
 {
 	return avoidsFlagship;
 }
 
 
 
-const bool &Crew::IsPaidSalaryWhileParked() const
+bool Crew::IsPaidSalaryWhileParked() const
 {
 	return isPaidSalaryWhileParked;
 }
 
 
 
-const int64_t &Crew::DailySalary() const
+int64_t Crew::DailySalary() const
 {
 	return dailySalary;
 }
 
 
 
-const int64_t &Crew::MinimumPerShip() const
+int64_t Crew::MinimumPerShip() const
 {
 	return minimumPerShip;
 }
 
 
 
-const int64_t &Crew::PopulationPerOccurrence() const
+int64_t Crew::PopulationPerOccurrence() const
 {
 	return populationPerOccurrence;
 }
 
 
 
-const string &Crew::Name() const
+string Crew::Name() const
 {
 	return name;
 }
