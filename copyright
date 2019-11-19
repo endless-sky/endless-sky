@@ -297,11 +297,13 @@ Files:
  images/ship/hai?grasshopper*
  images/ship/gull*
  images/ship/pelican*
+ images/ship/riptide*
  images/thumbnail/hai?centipede*
  images/thumbnail/hai?geocoris*
  images/thumbnail/hai?grasshopper*
  images/thumbnail/gull*
  images/thumbnail/pelican*
+ images/thumbnail/riptide*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -325,12 +327,27 @@ Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), Fern
  images/outfit/small?quarg*
  images/outfit/medium?quarg*
  images/outfit/large?quarg*
+ images/outfit/enforcer?riot?staff*
+ images/outfit/laser?rifle*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 
 Files:
+ images/outfit/overcharged?shield?module*
+ images/outfit/overclocked?repair?module*
  images/outfit/remnant?capital?license*
  images/outfit/salvage?scanner*
+ images/outfit/tiny?remnant?engine*
+ images/outfit/void?rifle*
+ images/scene/penguinscene*
+ images/ship/ibis*
+ images/ship/penguin/penguin*
+ images/ship/petrel*
+ images/ship/tern*
+ images/thumbnail/ibis*
+ images/thumbnail/penguin*
+ images/thumbnail/petrel*
+ images/thumbnail/tern*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -520,7 +537,11 @@ Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser and Evan Fluharty (under the same license).
 
-Files: images/planet/station0
+Files:
+ images/planet/station0*
+ images/planet/station1c*
+ images/planet/station2c*
+ images/planet/station3c*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -564,6 +585,23 @@ Files:
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
+
+Files:
+ images/outfit/pug staff*
+Copyright: Evan Fluharty (Evanfluharty@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Frederick Goy IV (under the same license).
+
+Files:
+ images/planet/station1*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+
+Files:
+ images/outfit/enforcer?confrontation?gear*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Evan Fluharty (under the same license).
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

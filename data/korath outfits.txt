@@ -326,7 +326,7 @@ outfit "Steering (Stellar Class)"
 	
 outfit "Korath Repeater Rifle"
 	category "Hand to Hand"
-	cost 73000
+	cost 53000
 	thumbnail "outfit/korath rifle"
 	"capture attack" 1.6
 	"capture defense" 2.4
