@@ -47,8 +47,8 @@ public:
 	
 	bool AvoidsEscorts() const;
 	bool AvoidsFlagship() const;
-	bool IsPaidSalaryWhileParked() const;
 	int64_t MinimumPerShip() const;
+	int64_t ParkedSalary() const;
 	int64_t PopulationPerMember() const;
 	int64_t Salary() const;
 	const std::string &Id() const;
@@ -57,8 +57,8 @@ public:
 private:
 	bool avoidsEscorts = false;
 	bool avoidsFlagship = false;
-	bool isPaidSalaryWhileParked = false;
 	int64_t minimumPerShip = 0;
+	int64_t parkedSalary = 0;
 	int64_t populationPerMember = 0;
 	int64_t salary = 100;
 	std::string id;
