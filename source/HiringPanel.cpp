@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
+#include "System.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -80,8 +81,9 @@ void HiringPanel::Draw()
 	info.SetString("fleet unused", to_string(fleetUnused));
 	info.SetString("passengers", to_string(passengers));
 	
-	int salary = Crew::CalculateSalaries(player.Ships(), false);
-	int extraSalary = Crew::CostOfExtraCrew(player.Ships());
+	const System * system = player.GetSystem();
+	int64_t salary = Crew::CalculateSalaries(player.Ships(), system, false);
+	int64_t extraSalary = Crew::CostOfExtraCrew(player.Ships(), system);
 	info.SetString("salary required", to_string(salary));
 	info.SetString("salary extra", to_string(extraSalary));
 	

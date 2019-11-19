@@ -755,6 +755,14 @@ int64_t Ship::ChassisCost() const
 
 
 
+// Check if this ship is the flagship of its fleet in a given system
+bool Ship::IsSystemFlagship(const System * &flagshipSystem) const
+{
+	return !GetParent() && GetSystem() == flagshipSystem;
+}
+
+
+
 // Check if this ship is configured in such a way that it would be difficult
 // or impossible to fly.
 string Ship::FlightCheck() const
