@@ -66,6 +66,7 @@ void Crew::Load(const DataNode &node)
 
 int64_t Crew::CalculateSalaries(
 	const vector<shared_ptr<Ship>> ships,
+	const shared_ptr<Ship> flagship,
 	const bool includeExtras
 )
 {
@@ -75,8 +76,7 @@ int64_t Crew::CalculateSalaries(
 	{
 		totalSalaries += Crew::SalariesForShip(
 			ship,
-			// Determine whether if the current ship is the flagship
-			ship->Name() == ships.front()->Name(),
+			ship == flagship,
 			includeExtras
 		);
 	}
@@ -86,11 +86,14 @@ int64_t Crew::CalculateSalaries(
 
 
 
-int64_t Crew::CostOfExtraCrew(const vector<shared_ptr<Ship>> ships)
+int64_t Crew::CostOfExtraCrew(
+	const vector<shared_ptr<Ship>> ships,
+	const shared_ptr<Ship> flagship
+)
 {
 	// Calculate with and without extras and return the difference.
-	return Crew::CalculateSalaries(ships, true)
-		- Crew::CalculateSalaries(ships, false);
+	return Crew::CalculateSalaries(ships, flagship, true)
+		- Crew::CalculateSalaries(ships, flagship, false);
 }
 
 

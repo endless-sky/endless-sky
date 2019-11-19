@@ -669,7 +669,7 @@ Account &PlayerInfo::Accounts()
 // Calculate how much the player pays in daily salaries.
 int64_t PlayerInfo::Salaries() const
 {
-	return Crew::CalculateSalaries(ships);
+	return Crew::CalculateSalaries(ships, FlagshipPtr());
 }
 
 
@@ -703,7 +703,7 @@ int64_t PlayerInfo::Maintenance() const
 // ship in the list.
 const Ship *PlayerInfo::Flagship() const
 {
-	return const_cast<PlayerInfo *>(this)->FlagshipPtr().get();
+	return FlagshipPtr().get();
 }
 
 
@@ -716,6 +716,10 @@ Ship *PlayerInfo::Flagship()
 }
 
 
+const shared_ptr<Ship> &PlayerInfo::FlagshipPtr() const
+{
+	return const_cast<PlayerInfo *>(this)->FlagshipPtr();
+}
 
 const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 {

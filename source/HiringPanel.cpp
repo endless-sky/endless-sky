@@ -80,8 +80,8 @@ void HiringPanel::Draw()
 	info.SetString("fleet unused", to_string(fleetUnused));
 	info.SetString("passengers", to_string(passengers));
 	
-	int salary = Crew::CalculateSalaries(player.Ships(), false);
-	int extraSalary = Crew::CostOfExtraCrew(player.Ships());
+	int salary = Crew::CalculateSalaries(player.Ships(), player.FlagshipPtr(), false);
+	int extraSalary = Crew::CostOfExtraCrew(player.Ships(), player.FlagshipPtr());
 	info.SetString("salary required", to_string(salary));
 	info.SetString("salary extra", to_string(extraSalary));
 	
