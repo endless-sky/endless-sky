@@ -51,15 +51,23 @@ void Crew::Load(const DataNode &node)
 
 int64_t Crew::CalculateSalaries(const vector<shared_ptr<Ship>> &ships, const Ship * flagship, const bool includeExtras)
 {
+	bool isFlagship = false;
+	bool checkIfFlagship = true;
 	int64_t totalSalaries = 0;
 	
 	for(const shared_ptr<Ship> &ship : ships)
 	{
+		if(checkIfFlagship)
+			isFlagship = ship.get() == flagship;
+		
 		totalSalaries += Crew::SalariesForShip(
 			ship,
-			ship.get() == flagship,
+			isFlagship,
 			includeExtras
 		);
+		
+		if(isFlagship)
+			isFlagship = checkIfFlagship = false;
 	}
 	
 	return totalSalaries;
