@@ -19,7 +19,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
-#include "System.h"
 #include "UI.h"
 
 #include <algorithm>

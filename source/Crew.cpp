@@ -18,7 +18,6 @@ using namespace std;
 // Load definition of a crew member
 void Crew::Load(const DataNode &node)
 {
-	// Set the id of this crew member so we know that we have loaded it.
 	if(node.Size() >= 2)
 		id = node.Token(1);
 	
@@ -26,28 +25,21 @@ void Crew::Load(const DataNode &node)
 	{
 		if(child.Size() >= 2)
 		{
-			// The crew members' display name (plural, Title Case)
 			if(child.Token(0) == "name")
 				name = child.Token(1);
-			// Each valid ship has at least this many of the crew member
 			else if(child.Token(0) == "minimum per ship")
 				minimumPerShip = max((int)child.Value(1), 0);
-			// The number of credits paid daily while parked (minimum 0)
 			else if(child.Token(0) == "parked salary")
 				parkedSalary = max((int)child.Value(1), 0);
-			// Every nth crew member on the ship will be this crew member
 			else if(child.Token(0) == "population per member")
 				populationPerMember = max((int)child.Value(1), 0);
-			// The number of credits paid daily (minimum 0)
 			else if(child.Token(0) == "salary")
 				salary = max((int)child.Value(1), 0);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
-		// If true, the crew member will not appear on escorts
 		else if(child.Token(0) == "avoids escorts")
 			avoidsEscorts = true;
-		// If true, the crew member will not appear on the flagship
 		else if(child.Token(0) == "avoids flagship")
 			avoidsFlagship = true;
 		else
@@ -57,11 +49,7 @@ void Crew::Load(const DataNode &node)
 
 
 
-int64_t Crew::CalculateSalaries(
-	const vector<shared_ptr<Ship>> &ships,
-	const Ship * &flagship,
-	const bool includeExtras
-)
+int64_t Crew::CalculateSalaries(const vector<shared_ptr<Ship>> &ships, const Ship * flagship, const bool includeExtras)
 {
 	int64_t totalSalaries = 0;
 	
@@ -79,10 +67,7 @@ int64_t Crew::CalculateSalaries(
 
 
 
-int64_t Crew::CostOfExtraCrew(
-	const vector<shared_ptr<Ship>> &ships,
-	const Ship * &flagship
-)
+int64_t Crew::CostOfExtraCrew(const vector<shared_ptr<Ship>> &ships, const Ship * flagship)
 {
 	// Calculate with and without extras and return the difference.
 	return Crew::CalculateSalaries(ships, flagship, true)
@@ -91,12 +76,7 @@ int64_t Crew::CostOfExtraCrew(
 
 
 
-int64_t Crew::NumberOnShip(
-	const Crew &crew,
-	const shared_ptr<Ship> &ship,
-	const bool isFlagship,
-	const bool includeExtras
-)
+int64_t Crew::NumberOnShip(const Crew &crew, const shared_ptr<Ship> &ship, const bool isFlagship, const bool includeExtras)
 {
 	int64_t count = 0;
 	
@@ -129,11 +109,7 @@ int64_t Crew::NumberOnShip(
 
 
 
-int64_t Crew::SalariesForShip(
-	const shared_ptr<Ship> &ship,
-	const bool isFlagship,
-	const bool includeExtras
-)
+int64_t Crew::SalariesForShip(const shared_ptr<Ship> &ship, const bool isFlagship, const bool includeExtras)
 {
 	// We don't need to pay dead people.
 	if(ship->IsDestroyed())
@@ -143,7 +119,7 @@ int64_t Crew::SalariesForShip(
 	int64_t specialCrewMembers = 0;
 	
 	// Add up the salaries for all of the special crew members
-	for(const pair<const string, Crew>& crewPair : GameData::Crews())
+	for(const pair<const string, Crew> &crewPair : GameData::Crews())
 	{
 		// Skip the default crew members.
 		if(crewPair.first == "default")

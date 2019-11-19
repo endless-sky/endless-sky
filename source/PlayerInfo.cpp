@@ -669,8 +669,7 @@ Account &PlayerInfo::Accounts()
 // Calculate how much the player pays in daily salaries.
 int64_t PlayerInfo::Salaries() const
 {
-	const Ship * playerFlagship = Flagship(); 
-	return Crew::CalculateSalaries(ships, playerFlagship);
+	return Crew::CalculateSalaries(ships, Flagship());
 }
 
 

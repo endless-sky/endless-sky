@@ -13,7 +13,7 @@ crew "default"
   salary 100
 
 # crew "pilot"
-#   name "Pilot"
+#   name "Pilots"
 #   salary 250
 #   "avoids flagship"
 #   "minimum per ship" 1
