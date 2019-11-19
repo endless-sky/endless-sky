@@ -52,18 +52,18 @@ public:
 	bool AvoidsEscorts() const;
 	bool AvoidsFlagship() const;
 	bool IsPaidSalaryWhileParked() const;
-	int64_t DailySalary() const;
 	int64_t MinimumPerShip() const;
-	int64_t PopulationPerOccurrence() const;
+	int64_t PopulationPerMember() const;
+	int64_t Salary() const;
 	std::string Name() const;
 
 private:
 	bool avoidsEscorts;
 	bool avoidsFlagship;
 	bool isPaidSalaryWhileParked;
-	int64_t dailySalary;
 	int64_t minimumPerShip;
-	int64_t populationPerOccurrence;
+	int64_t populationPerMember;
+	int64_t salary;
 	std::string name;
 };
 

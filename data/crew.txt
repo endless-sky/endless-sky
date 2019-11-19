@@ -10,20 +10,20 @@
 
 crew "default"
   name "Regulars"
-  "daily salary" 100
+  salary 100
 
 # crew "pilot"
 #   name "Pilot"
+#   salary 250
 #   "avoids flagship"
-#   "daily salary" 250
 #   "minimum per ship" 1
 # 
 # crew "junior officer"
 #   name "Junior Officers"
-#   "daily salary" 500
-#   "population per occurrence" 5
+#   salary 500
+#   "population per member" 5
 # 
 # crew "senior officers"
 #   name "Senior Officers"
-#   "daily salary" 2000
-#   "population per occurrence" 20
+#   salary 2000
+#   "population per member" 20

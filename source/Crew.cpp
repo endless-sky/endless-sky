@@ -26,9 +26,9 @@ void Crew::Load(const DataNode &node)
 	avoidsEscorts = false;
 	avoidsFlagship = false;
 	isPaidSalaryWhileParked = false;
-	dailySalary = 100;
+	salary = 100;
 	minimumPerShip = 0;
-	populationPerOccurrence = 0;
+	populationPerMember = 0;
 	
 	for(const DataNode &child : node)
 	{
@@ -36,9 +36,9 @@ void Crew::Load(const DataNode &node)
 		{
 			if(child.Token(0) == "name")
 				name = child.Token(1);
-			else if(child.Token(0) == "daily salary")
+			else if(child.Token(0) == "salary")
 				if(child.Value(1) >= 0)
-					dailySalary = child.Value(1);
+					salary = child.Value(1);
 				else
 					child.PrintTrace("Skipping invalid negative attribute value:");
 			else if(child.Token(0) == "minimum per ship")
@@ -46,8 +46,8 @@ void Crew::Load(const DataNode &node)
 					minimumPerShip = child.Value(1);
 				else
 					child.PrintTrace("Skipping invalid negative attribute value:");
-			else if(child.Token(0) == "population per occurrence" && child.Value(1) >= 0)
-				populationPerOccurrence = child.Value(1);
+			else if(child.Token(0) == "population per member" && child.Value(1) >= 0)
+				populationPerMember = child.Value(1);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -122,12 +122,12 @@ int64_t Crew::NumberOnShip(
 	 count = min(crew.MinimumPerShip(), countableCrewMembers);
 	
 	// Prevent division by zero so that the universe doesn't implode.
-	if(crew.PopulationPerOccurrence())
+	if(crew.PopulationPerMember())
 	{
 		// Figure out how many of this kind of crew we have, by population.
 		count = max(
 			count,
-			countableCrewMembers / crew.PopulationPerOccurrence()
+			countableCrewMembers / crew.PopulationPerMember()
 		);
 	}
 	
@@ -170,7 +170,7 @@ int64_t Crew::SalariesForShip(
 		// Add their salary to the pool
 		// Unless the ship is parked and we don't pay them while parked
 		if(crew.IsPaidSalaryWhileParked() || !ship->IsParked())
-			salariesForShip += numberOnShip * crew.DailySalary();
+			salariesForShip += numberOnShip * crew.Salary();
 	}
 	
 	// Figure out how many regular crew members are left over
@@ -185,7 +185,7 @@ int64_t Crew::SalariesForShip(
 	// Check if we pay salaries to parked default crew members
 	if(defaultCrew->IsPaidSalaryWhileParked() || !ship->IsParked())
 		// Add the default crew member salaries to the result
-		salariesForShip += defaultCrewMembers * defaultCrew->DailySalary();
+		salariesForShip += defaultCrewMembers * defaultCrew->Salary();
 	
 	return salariesForShip;
 }
@@ -213,13 +213,6 @@ bool Crew::IsPaidSalaryWhileParked() const
 
 
 
-int64_t Crew::DailySalary() const
-{
-	return dailySalary;
-}
-
-
-
 int64_t Crew::MinimumPerShip() const
 {
 	return minimumPerShip;
@@ -227,9 +220,16 @@ int64_t Crew::MinimumPerShip() const
 
 
 
-int64_t Crew::PopulationPerOccurrence() const
+int64_t Crew::PopulationPerMember() const
 {
-	return populationPerOccurrence;
+	return populationPerMember;
+}
+
+
+
+int64_t Crew::Salary() const
+{
+	return salary;
 }
 
 
