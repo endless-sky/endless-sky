@@ -187,8 +187,8 @@ private:
 	Command keyDown;
 	// Commands that are active for this step.
 	Command keyHeld;
-	// Commands applied by the player's "autopilot."
-	Command keyStuck;
+	// Command applied by the player's "autopilot."
+	Command autoPilot;
 	
 	bool isLaunching = false;
 	bool isCloaking = false;
@@ -210,6 +210,7 @@ private:
 	std::map<std::weak_ptr<const Ship>, std::map<std::weak_ptr<const Ship>, int, Comp>, Comp> actions;
 	std::map<std::weak_ptr<const Ship>, std::map<const Government *, int>, Comp> notoriety;
 	std::map<const Government *, std::map<std::weak_ptr<const Ship>, int, Comp>> governmentActions;
+	std::map<const Government *, bool> scanPermissions;
 	std::map<std::weak_ptr<const Ship>, int, Comp> playerActions;
 	std::map<const Ship *, std::weak_ptr<Ship>> helperList;
 	std::map<const Ship *, int> swarmCount;
