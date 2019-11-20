@@ -2654,7 +2654,10 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		shieldFraction = min(shieldFraction, shields / shieldDamage);
 	shields -= shieldDamage * shieldFraction;
 	if(shieldDamage && !isDisabled)
-		shieldDelay = max(shieldDelay, (shields <= 0.) ? attributes.Get("disabled shield delay") : attributes.Get("shield delay"));
+	{
+		int disabledDelay = attributes.Get("disabled shield delay");
+		shieldDelay = max(shieldDelay, (shields <= 0. && disabledDelay) ? disabledDelay : attributes.Get("shield delay"));
+	}
 	hull -= hullDamage * (1. - shieldFraction);
 	if(hullDamage && !isDisabled)
 		hullDelay = max(hullDelay, attributes.Get("repair delay"));
@@ -2683,7 +2686,8 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	if(!wasDisabled && isDisabled)
 	{
 		type |= ShipEvent::DISABLE;
-		hullDelay = attributes.Get("disabled repair delay");
+		int disabledDelay = attributes.Get("disabled repair delay")
+		hullDelay = max(hullDelay, disabledDelay ? disabledDelay : attributes.Get("repair delay"));
 	}
 	if(!wasDestroyed && IsDestroyed())
 		type |= ShipEvent::DESTROY;
