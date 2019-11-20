@@ -60,6 +60,7 @@ namespace {
 		{"jump speed", 0},
 		{"reverse thrusting energy", 0},
 		{"reverse thrusting heat", 0},
+		{"scram drive", 0},
 		{"shield generation", 0},
 		{"shield energy", 0},
 		{"shield fuel", 0},
