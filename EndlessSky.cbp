@@ -116,8 +116,8 @@
 		<Unit filename="source/Conversation.h" />
 		<Unit filename="source/ConversationPanel.cpp" />
 		<Unit filename="source/ConversationPanel.h" />
-		<Unit filename="source/CrewEconomics.cpp" />
-		<Unit filename="source/CrewEconomics.h" />
+		<Unit filename="source/Crew.cpp" />
+		<Unit filename="source/Crew.h" />
 		<Unit filename="source/DataFile.cpp" />
 		<Unit filename="source/DataFile.h" />
 		<Unit filename="source/DataNode.cpp" />
