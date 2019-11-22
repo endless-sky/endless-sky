@@ -57,7 +57,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else if(key == "ammo")
 		{
 			int usage = (child.Size() >= 3) ? child.Value(2) : 1;
-			ammoPair = make_pair(GameData::Outfits().Get(child.Token(1)), max(0, usage));
+			ammo = make_pair(GameData::Outfits().Get(child.Token(1)), max(0, usage));
 		}
 		else if(key == "icon")
 			icon = SpriteSet::Get(child.Token(1));
@@ -242,14 +242,14 @@ const Sound *Weapon::WeaponSound() const
 
 const Outfit *Weapon::Ammo() const
 {
-	return ammoPair.first;
+	return ammo.first;
 }
 
 
 
 int Weapon::AmmoUsage() const
 {
-	return ammoPair.second;
+	return ammo.second;
 }
 
 

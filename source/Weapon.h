@@ -125,7 +125,9 @@ protected:
 	// default turnrate.
 	void SetTurretTurn(double rate);
 	
-	std::pair<const Outfit*, int> ammoPair;
+	// A pair representing the outfit that is consumed as ammo and the number
+	// of that outfit consumed upon fire.
+	std::pair<const Outfit*, int> ammo;
 	
 	
 private:
