@@ -100,18 +100,11 @@ void Outfit::Load(const DataNode &node)
 		}
 		else if(child.Size() >= 2)
 		{
-			// These attributes are not allowed to have values <= -1. Catch any
+			// Certain attributes are not allowed to have values <= -1. Catch any
 			// violations upon loading the game so that the corrections don't
 			// need to be repeatedly calculated later.
-			bool illegalAttribute = false;
-			if(PROTECTION_TYPES.count(child.Token(0)) != 0)
-				if(child.Value(1) <= -1.)
-				{
-					child.PrintTrace("Skipping illegal negative attribute:");
-					illegalAttribute = true;
-				}
-			if(!illegalAttribute)
-				attributes[child.Token(0)] = child.Value(1);
+			const string &key = child.Token(0);
+			attributes[key] = PROTECTION_TYPES.count(key) ? max(-.99, child.Value(1)) : child.Value(1);
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
