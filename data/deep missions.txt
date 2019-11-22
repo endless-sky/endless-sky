@@ -1422,7 +1422,7 @@ mission "Deep: Remnant 2A"
 		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
 	
 	on visit
-		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <stopovers>. Make sure you're using an outfit scanner as well."`
+		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <waypoints>. Make sure you're using an outfit scanner as well."`
 	on complete
 		event "deep: scan log research" 14
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
@@ -1457,7 +1457,7 @@ mission "Deep: Remnant 1B"
 		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
 	
 	on visit
-		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <stopovers>. Make sure you're using an outfit scanner as well."`
+		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <waypoints>. Make sure you're using an outfit scanner as well."`
 	on complete
 		event "deep: scan log research" 14
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
@@ -1494,7 +1494,7 @@ mission "Deep: Remnant 1C"
 		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
 	
 	on visit
-		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <stopovers>. Make sure you're using an outfit scanner as well."`
+		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <waypoints>. Make sure you're using an outfit scanner as well."`
 	on complete
 		event "deep: scan log research" 14
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
