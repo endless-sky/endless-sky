@@ -357,7 +357,10 @@ tip "Special:"
 
 # Weapon attributes:
 tip "ammo:"
-	`When this weapon fires it consumes one outfit of this type.`
+	`When this weapon fires it consumes outfits of this type.`
+
+tip "ammo usage:"
+	`The number of units of ammo that this weapon consumes when fired.`
 
 tip "range:"
 	`Total range of this weapon.`

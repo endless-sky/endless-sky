@@ -1127,10 +1127,10 @@ bool PlayerInfo::TakeOff(UI *ui)
 		ships.erase(it);
 		ships.insert(ships.begin(), flagship);
 	}
-	// Make sure your ships all know who the flagship is.
+	// Make sure your jump-capable ships all know who the flagship is.
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		bool shouldHaveParent = (ship != flagship && !ship->IsParked() && !ship->CanBeCarried());
+		bool shouldHaveParent = (ship != flagship && !ship->IsParked() && (!ship->CanBeCarried() || ship->JumpFuel()));
 		ship->SetParent(shouldHaveParent ? flagship : shared_ptr<Ship>());
 	}
 	// Make sure your flagship is not included in the escort selection.

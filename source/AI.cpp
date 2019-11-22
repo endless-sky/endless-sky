@@ -704,36 +704,27 @@ void AI::Step(const PlayerInfo &player)
 		if(it->CanBeCarried())
 		{
 			// A carried ship must belong to the same government as its parent to dock with it.
-			bool hasParent = parent && parent->GetGovernment() == gov;
-			bool hasSpace = hasParent && parent->BaysFree(it->Attributes().Category() == "Fighter");
+			bool hasParent = parent && !parent->IsDestroyed() && parent->GetGovernment() == gov;
 			bool inParentSystem = hasParent && parent->GetSystem() == it->GetSystem();
-			if(!hasParent || parent->IsDestroyed() || (!hasSpace && !Random::Int(1200))
-					// Any carried ship that cannot jump should reparent if not in its parent's system.
-					|| (!inParentSystem && !it->JumpFuel()))
+			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category() == "Fighter");
+			if(!hasParent || (!inParentSystem && !it->JumpFuel()) || (!parentHasSpace && !Random::Int(1800)))
 			{
-				// Find a parent for orphaned fighters and drones.
-				parent.reset();
-				it->SetParent(parent);
-				
+				// Find the possible parents for orphaned fighters and drones.
 				auto parentChoices = vector<shared_ptr<Ship>>{};
 				parentChoices.reserve(ships.size() * .1);
-				auto reparentWith = [&it, &gov, &parent, &parentChoices](const list<shared_ptr<Ship>> otherShips) -> bool
+				auto getParentFrom = [&it, &gov, &parentChoices](const list<shared_ptr<Ship>> otherShips) -> shared_ptr<Ship>
 				{
 					for(const auto &other : otherShips)
 						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
 						{
 							if(!other->IsDisabled() && other->CanCarry(*it.get()))
-							{
-								parent = other;
-								it->SetParent(other);
-								return true;
-							}
+								return other;
 							else
 								parentChoices.emplace_back(other);
 						}
-					return false;
+					return shared_ptr<Ship>();
 				};
-				// Mission ships should only pick ships from the same mission.
+				// Mission ships should only pick amongst ships from the same mission.
 				auto missionIt = it->IsSpecial() && !it->IsYours()
 					? find_if(player.Missions().begin(), player.Missions().end(),
 						[&it](const Mission &m) -> bool
@@ -741,25 +732,44 @@ void AI::Step(const PlayerInfo &player)
 							return m.HasShip(it);
 						})
 					: player.Missions().end();
+				
+				shared_ptr<Ship> newParent;
 				if(missionIt != player.Missions().end())
 				{
 					auto &npcs = missionIt->NPCs();
 					for(const auto &npc : npcs)
-						if(reparentWith(npc.Ships()))
+					{
+						newParent = getParentFrom(npc.Ships());
+						if(newParent)
 							break;
+					}
 				}
 				else
-					reparentWith(ships);
+					newParent = getParentFrom(ships);
 				
-				if(!parent && !parentChoices.empty())
-				{
-					// No suitable candidate can carry this ship, but this ship can still act as an escort.
+				// If a new parent was found, then this carried ship should always reparent
+				// as a ship of its own government is in-system and has space to carry it.
+				if(newParent)
+					parent = newParent;
+				// Otherwise, if one or more in-system ships of the same government were found,
+				// this carried ship should flock with one of them, even if they can't carry it.
+				else if(!parentChoices.empty())
 					parent = parentChoices[Random::Int(parentChoices.size())];
-					it->SetParent(parent);
+				// Player-owned carryables that can't be carried and have no ships to flock with
+				// should keep their current parent, or if it is destroyed, their parent's parent.
+				else if(it->IsYours())
+				{
+					if(parent && parent->IsDestroyed())
+						parent = parent->GetParent();
 				}
+				// All remaining non-player ships should forget their previous parent entirely.
+				else
+					parent.reset();
+				
+				it->SetParent(parent);
 			}
 			// Otherwise, check if this ship wants to return to its parent (e.g. to repair).
-			else if(hasSpace && inParentSystem && ShouldDock(*it, *parent, thisIsLaunching))
+			else if(parentHasSpace && ShouldDock(*it, *parent, thisIsLaunching))
 			{
 				it->SetTargetShip(parent);
 				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
