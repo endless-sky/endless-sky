@@ -437,6 +437,7 @@ void PreferencesPanel::DrawSettings()
 		"Render motion blur",
 		"Reduce large graphics",
 		"Draw background haze",
+		"Draw starfield",
 		"Show hyperspace flash",
 		"",
 		"Other",
