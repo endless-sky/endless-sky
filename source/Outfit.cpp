@@ -99,17 +99,19 @@ void Outfit::Load(const DataNode &node)
 				licenses.push_back(grand.Token(0));
 		}
 		else if(child.Size() >= 2)
-		{	
-			attributes[child.Token(0)] = child.Value(1);
-			// These outfits are not allowed to have values <= -1. Catch any
+		{
+			// These attributes are not allowed to have values <= -1. Catch any
 			// violations upon loading the game so that the corrections don't
 			// need to be repeatedly calculated later.
-			if(PROTECTION_TYPES.find(child.Token(0)) != PROTECTION_TYPES.end())
+			bool illegalAttribute = false;
+			if(PROTECTION_TYPES.count(child.Token(0)) != 0)
 				if(child.Value(1) <= -1.)
 				{
 					child.PrintTrace("Skipping illegal negative attribute:");
-					attributes[child.Token(0)] = 0.;
+					illegalAttribute = true;
 				}
+			if(!illegalAttribute)
+				attributes[child.Token(0)] = child.Value(1);
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
