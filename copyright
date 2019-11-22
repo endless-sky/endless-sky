@@ -532,7 +532,16 @@ Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Frederick Goy IV (under the same license).
 
-Files: images/planet/station0
+Files: images/outfit/security?station*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Evan Fluharty (under the same license).
+
+Files:
+ images/planet/station0*
+ images/planet/station1c*
+ images/planet/station2c*
+ images/planet/station3c*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -584,9 +593,15 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Frederick Goy IV (under the same license).
 
 Files:
+ images/planet/station1*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+
+Files:
  images/outfit/enforcer?confrontation?gear*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
+Comment: Derived from works by Evan Fluharty (under the same license).
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

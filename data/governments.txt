@@ -90,10 +90,9 @@ government "Hai"
 	
 	"player reputation" 0
 	"attitude toward"
-		"Hai (Unfettered)" -.5
+		"Hai (Unfettered)" -.1
 		"Merchant" .01
 	"bribe" .02
-	"fine" 0
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
 	"hostile hail" "hostile hai"
