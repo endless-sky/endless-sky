@@ -101,6 +101,9 @@ void Outfit::Load(const DataNode &node)
 		else if(child.Size() >= 2)
 		{	
 			attributes[child.Token(0)] = child.Value(1);
+			// These outfits are not allowed to have values <= -1. Catch any
+			// violations upon loading the game so that the corrections don't
+			// need to be repeatedly calculated later.
 			if(PROTECTION_TYPES.find(child.Token(0)) != PROTECTION_TYPES.end())
 				if(child.Value(1) <= -1.)
 				{
