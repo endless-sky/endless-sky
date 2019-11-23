@@ -1082,13 +1082,13 @@ mission "Nanachi 1"
 				`	(Approach the Hai.)`
 				`	(Leave them alone.)`
 					decline
-			`The Hai is a bit startled, but quickly calms down. "Sorry, you caught me by surprise. I've just bought my first ship and need to find some jobs to do, but nobody I've talked to wants to trust a beginner captain. I just don't know what to do anymore, I've been working for so long to qualify for this loan, but I'm running out of time and I'll never be able to pay it like this."`
+			`	The Hai is a bit startled, but quickly calms down. "Sorry, you caught me by surprise. I've just bought my first ship and need to find some jobs to do, but nobody I've talked to wants to trust a beginner captain. I just don't know what to do anymore, I've been working for so long to qualify for this loan, but I'm running out of time and I'll never be able to pay it like this."`
 			`	Turns out the documents she is holding are the bank papers for the loan, somewhat similar to the one you took when you bought your first ship. You've come a long way since your days as a beginner, and know how hard it is to be starting out as a starship captain, you could probably convince someone here to offer a simple cargo job to this young Hai.`
 			choice
 				`	(Offer to help her find some jobs.)`
 				`	(Wish her luck and leave.)`
 					decline
-			`Her ears twitch a bit, and her previously crestfallen eyes light up as she nearly jumps in joy at your offer. "Thank you so much captain! My name is Nanachi, I promise I won't cause any trouble at all, just a few quick jobs and I'm sure I'll be fine by myself!"`
+			`	Her ears twitch a bit, and her previously crestfallen eyes light up as she nearly jumps in joy at your offer. "Thank you so much captain! My name is Nanachi, I promise I won't cause any trouble at all, just a few quick jobs and I'm sure I'll be fine by myself!"`
 			`	You introduce yourself to Nanachi and shake her paw. "Can you show me your ship so I can look for jobs it's best suited for?" you ask.`
 			`	She hesitates a bit, but leads you to her ship. You were expecting a small Hai ship, but to your surprise she shows you a rather beat-up Heavy Shuttle docked near your own ship.`
 			`	"You took a loan to buy a human ship?" you ask.`
@@ -1096,7 +1096,7 @@ mission "Nanachi 1"
 			choice
 				`	"Let's see if anyone in the spaceport needs a lift off the planet."`
 				`	"Let's take another look at the job board, maybe a smaller job will pop up."`
-			`Turns out this isn't as easy as you thought it'd be. The spaceport is almost empty, save for the occasional worker or drunken crewmember, and the job board is filled with massive hauls of minerals, aside from a few small but dangerous jobs to human space. Eventually, as you two begin scouting the edge of the docking area, you spot a troubled human merchant near several crates. You approach him and he explains that his ship had some malfunctions and he cannot deliver his cargo of advanced surgical equipment to <destination>. "This is the worst! One jump away from the planet and the navigation system suddenly decides to go on strike! There's no way I can make it before the deadline!"`
+			`	Turns out this isn't as easy as you thought it'd be. The spaceport is almost empty, save for the occasional worker or drunken crewmember, and the job board is filled with massive hauls of minerals, aside from a few small but dangerous jobs to human space. Eventually, as you two begin scouting the edge of the docking area, you spot a troubled human merchant near several crates. You approach him and he explains that his ship had some malfunctions and he cannot deliver his cargo of advanced surgical equipment to <destination>. "This is the worst! One jump away from the planet and the navigation system suddenly decides to go on strike! There's no way I can make it before the deadline!"`
 			`	"My friend Nanachi here could deliver it for you. We were heading there anyway; a few extra crates won't make a difference," you say, trying to sound as convincing as possible.`
 			`	At first, he seems delighted that you two want to help him, but when Nanachi mentions that she's flying a Heavy Shuttle, he frowns, and looks back at the cargo. "Unfettered attacks make it so they need tons of medical supplies in <destination>, and quite frankly I'm not comfortable letting such a fragile ship go into dangerous territory carrying this equipment when it could be blasted to bits in an instant," he says. The captain glances around the deserted spaceport for a while, as if trying to find some other captain, before finally turning to Nanachi and saying, "but I guess beggars can't be choosers. Fine, I'll let you take the cargo there, but please be very careful."`
 				accept
@@ -1131,7 +1131,7 @@ mission "Nanachi 2"
 			choice
 				`	"Hey, what's going on?"`
 				`	"Can I be of assistance?"`
-			`You introduce yourself and the parents tell you that they've been on vacation here and need transport back to Hai-home. "Don't take this the wrong way, but captain Nanachi told us her ship is one of your human ships, a Heavy Shuttle was it? It has enough bunks for us but our sons already caused a ruckus on the way here in a Hai ship, we're worried that since they aren't used to the accommodations, they might end up giving her too much trouble."`
+			`	You introduce yourself and the parents tell you that they've been on vacation here and need transport back to Hai-home. "Don't take this the wrong way, but captain Nanachi told us her ship is one of your human ships, a Heavy Shuttle was it? It has enough bunks for us but our sons already caused a ruckus on the way here in a Hai ship, we're worried that since they aren't used to the accommodations, they might end up giving her too much trouble."`
 			`	You reassure them that the trip will be very quick, and that the ship's interior is somewhat similar to that of Hai ships, until they finally agree on going with her. They settle on the pay and you two help the Hai get their baggage to Nanachi's ship. When the family is focused on a conversation, you quietly ask Nanachi what was the issue she was having with the other people she encountered.`
 			`	"They all seemed willing to give me a job, but I ended up blowing it when I asked for more money. I just really need to get out of debt so I guess I went a bit overboard." She tries to play it cool, but it's clear that she is embarrassed about losing so many potential jobs. When you reach her ship, you take a look at the prices for commodities in Hai-home. You decide to tell Nanachi to stock up on heavy metals to sell there, to help her make a bit more profit.`
 				accept
@@ -1169,31 +1169,31 @@ mission "Nanachi 3"
 				`	(Tell her about how Earth actually is.)`
 					goto truth
 			label avoid
-			`You tell her that you haven't ever visited the human capital, and that you never had much interest in learning about it. "Oh, sorry about that, shouldn't have assumed you knew everything, you're a starship captain after all, not a historian, I'll just ask someone else when I get the chance.", says Nanachi.`
+			`	You tell her that you haven't ever visited the human capital, and that you never had much interest in learning about it. "Oh, sorry about that, shouldn't have assumed you knew everything, you're a starship captain after all, not a historian, I'll just ask someone else when I get the chance.", says Nanachi.`
 					goto board
 			label fake
-			`You start making up stories about how beautiful the skies of Earth are. You describe forests teeming with life, and do your best to remember ancient civilizations and their monuments. From the looks of it she believes you, and your lie seems to have sated her curiosity for now. If the day where the Hai are allowed to move around human space ever comes, though, she will no doubt be extremely disappointed.`
+			`	You start making up stories about how beautiful the skies of Earth are. You describe forests teeming with life, and do your best to remember ancient civilizations and their monuments. From the looks of it she believes you, and your lie seems to have sated her curiosity for now. If the day where the Hai are allowed to move around human space ever comes, though, she will no doubt be extremely disappointed.`
 					goto board
 			label truth
-			`She looks at you in confusion, as if trying to understand what you mean, so you explain it to her. "Centuries of widespread deforestation and pollution badly damaged the ecosystem. If you ever managed to visit, you'd be better off going to museums or monuments, but even then, there are many thieves roaming the streets, and it is very dangerous to be out at night. Lots of folks born there just think about how to get out."`
+			`	She looks at you in confusion, as if trying to understand what you mean, so you explain it to her. "Centuries of widespread deforestation and pollution badly damaged the ecosystem. If you ever managed to visit, you'd be better off going to museums or monuments, but even then, there are many thieves roaming the streets, and it is very dangerous to be out at night. Lots of folks born there just think about how to get out."`
 			`	You keep telling her about the issues facing humanity's birthplace, and her previous eagerness to learn about the planet fades. "How could your ancestors let their own home become like this?"`
 			choice
 				`	"It's rather complicated, and I'm not a historian, sociologist, or economist, but I can try and explain what I do know."`
 				`	"I can tell you what I do know from watching movies and what I can remember from school."`
-			`You recite what you read in school books or saw in documentaries, telling her about how many humans since millennia ago refused to take care of the planet, and how that piled up over hundreds of years.`
+			`	You recite what you read in school books or saw in documentaries, telling her about how many humans since millennia ago refused to take care of the planet, and how that piled up over hundreds of years.`
 			`	Your explanation seems to only torment Nanachi even more. "But why is your capital so full of criminals? Is human space going through a crisis that hit even your capital?"`
 			choice
 				`	"In some sense, the crisis has been going on since we were aware of it."`
-			`You do your best in telling her of the historical presence of crime on Earth, and of how little was done to address the root of the problem.`
+			`	You do your best in telling her of the historical presence of crime on Earth, and of how little was done to address the root of the problem.`
 			`	"I see..." She says. "I just thought it would be fun to hear about another large planet like Hai-home. Sorry for asking about it, Captain, I'm sure having to speak of it wasn't a pleasant feeling."`
 			`	Although you're sure that even in Hai space there is social inequality, she probably can't fathom that the home planet of a species could be in such bad shape, considering the Hai even go as far as to send aid to the Unfettered on a regular basis.`
 					goto board
 			label board
-			`You two reach the job board and decide to start looking for jobs suited for Nanachi's ship.`
+			`	You two reach the job board and decide to start looking for jobs suited for Nanachi's ship.`
 			choice
 				`	"So, do you mind if I help out?  I know the job board can be confusing the first few times you check it."`
 				`	"Would you like me to accompany you to the job board?"`
-			`"Thanks, but I have to do this on my own. I promise I won't mess this up by getting greedy again," She approaches the board on her own, and it becomes clear that it's much easier to get a job here: she's barely started talking to one of the desk workers before receiving a long list of jobs for smaller ships. She is certainly still very tired, but this seems to have cheered her up a bit, it is the first time she can get a job without your help after all.`
+			`	"Thanks, but I have to do this on my own. I promise I won't mess this up by getting greedy again," She approaches the board on her own, and it becomes clear that it's much easier to get a job here: she's barely started talking to one of the desk workers before receiving a long list of jobs for smaller ships. She is certainly still very tired, but this seems to have cheered her up a bit, it is the first time she can get a job without your help after all.`
 			`	While you thought she would've picked one or two jobs quickly and headed back to her ship, she keeps going through them and double checking the information for each one, as if something about them bothers her.`
 			`	"What's wrong? Are you struggling to pick between two different jobs?" you ask.`
 			`	"These all seem very easy and I could even accept many at a time, but the problem is their pay isn't very good." She grabs some worn papers from her pocket, and shows it to you: they're the documents for her loan. "The bank back home would only give me enough for the ship if I agreed on a short-term loan. I lost two days before you came along to help me, and if I don't get some better paying job soon, I won't even be able to pay the interest."`
@@ -1237,12 +1237,12 @@ mission "Nanachi 4"
 			`	Xavier collapses back to the table, holding his head in both hands. "Those paintings and sculptures were our main attraction! They're worth tens of millions! It'll take a month before the Navy ever notices the pirates there and makes it safe for the convoy to come here. The art exhibition is scheduled two weeks from now!"`
 			`	As they try to figure out what to do, Nanachi speaks up. "I'll go there. I pilot a human ship and if we just need to transfer cargo from one ship to the other, I could get out of there quickly. Nobody would notice that a Hai ever went there."`
 			`	"Are you insane?" Vanessa says, "If they managed to take down that Leviathan, you wouldn't last a second! Besides, our convoy was extremely fast. If even they were caught your chances of outrunning the pirates are next to nothing!"`
-			`"Captain <last>," Nanachi turns to you. "I know you already helped me way more than anyone would ever be willing to, and I'm really grateful for that, but would you be willing to help me one last time, to get to that planet, and travel back here?" While it's certain that for a pirate fleet to take down a Leviathan so easily they must be incredibly powerful, and this could be extremely dangerous, you're sure that if Nanachi tries to get to Prime by herself she'll just get herself killed.`
+			`	"Captain <last>," Nanachi turns to you. "I know you already helped me way more than anyone would ever be willing to, and I'm really grateful for that, but would you be willing to help me one last time, to get to that planet, and travel back here?" While it's certain that for a pirate fleet to take down a Leviathan so easily they must be incredibly powerful, and this could be extremely dangerous, you're sure that if Nanachi tries to get to Prime by herself she'll just get herself killed.`
 			choice
 				`	"Alright, I'll make sure we reach Prime and get back here safely."`
 				`	"No, I agreed to help you find and deal with some simple jobs, but I can't risk fighting such a fleet by myself."`
 					decline
-			`She thanks you profusely, and promises that she'll pay you for everything as soon as she can. The organizers are a bit hesitant, but seeing as no other captain here has decided to offer them help, they agree to let the two of you go to Prime and retrieve the cargo.`
+			`	She thanks you profusely, and promises that she'll pay you for everything as soon as she can. The organizers are a bit hesitant, but seeing as no other captain here has decided to offer them help, they agree to let the two of you go to Prime and retrieve the cargo.`
 			`	As you're leaving the bar, Xavier pulls you aside, speaking very quietly, "<last>, I know you're just trying to help this girl, but don't get killed over this. If you run into those pirates don't try to fight them, just rush to Prime."`
 				accept
 	npc
