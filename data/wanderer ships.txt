@@ -211,11 +211,14 @@ ship "Strong Wind"
 		"mass" 260
 		"drag" 4.7
 		"heat dissipation" .7
-		"fuel capacity" 400
+		"fuel capacity" 600
 		"cargo space" 68
 		"outfit space" 493
 		"weapon capacity" 198
 		"engine capacity" 114
+		"asteroid scan power" 100
+		"atmosphere scan" 100
+		"tactical scan power" 25
 		weapon
 			"blast radius" 200
 			"shield damage" 2000
@@ -224,12 +227,12 @@ ship "Strong Wind"
 	outfits
 		"Sunbeam" 4
 		"Thunderhead Launcher" 2
-		"Thunderhead Missile" 120
-		"Thunderhead Storage Array" 2
+		"Thunderhead Missile" 100
+		"Thunderhead Storage Array"
 		
 		"White Sun Reactor"
 		"Dark Storm Shielding"
-		"Wanderer Ramscoop"
+		"Wanderer Ramscoop" 2
 		
 		"Type 3 Radiant Thruster"
 		"Type 4 Radiant Steering"
@@ -859,3 +862,54 @@ ship "Deep River Transport"
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
 	description "This is a Deep River freighter that has been converted into a transport ship for refugees."
+
+
+
+ship "Riptide"
+	sprite "ship/riptide"
+	thumbnail "thumbnail/riptide"
+	attributes
+		category "Transport"
+		licenses
+			Wanderer
+		"cost" 21120000
+		"shields" 38600
+		"hull" 22350
+		"required crew" 47
+		"bunks" 233
+		"mass" 500
+		"drag" 7.3
+		"heat dissipation" .7
+		"fuel capacity" 800
+		"cargo space" 164
+		"outfit space" 488
+		"weapon capacity" 98
+		"engine capacity" 186
+		weapon
+			"blast radius" 260
+			"shield damage" 2600
+			"hull damage" 1300
+			"hit force" 3900
+	outfits
+		"Sunbeam Turret"
+		"Wanderer Anti-Missile" 2
+		
+		"White Sun Reactor"
+		"Bright Cloud Shielding"
+		"Wanderer Ramscoop"
+		
+		"Type 4 Radiant Thruster"
+		"Type 2 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Type 3 Radiant Steering"
+		"Hyperdrive"
+	engine 30 165
+	engine -30 165
+	turret 0 -28 "Sunbeam Turret"
+	turret 40 110 "Wanderer Anti-Missile"
+	turret -40 110 "Wanderer Anti-Missile"
+	explode "small explosion" 60
+	explode "medium explosion" 40
+	explode "large explosion" 20
+	"final explode" "final explosion medium"
+	description "The Riptide is a dedicated transport ship meant to replace the temporary Deep River freighters that were converted into transport ships for refugee evacuation. Although not as durable as the Deep River, the Riptide is far more nimble of a ship while at the same time being able to carry more passengers."

@@ -559,6 +559,7 @@ mission "FW Stack Core 1C"
 	source
 		near "Pherkad" 100
 	to offer
+		not "main plot completed"
 		has "event: stack core for sale"
 	
 	on offer

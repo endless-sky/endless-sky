@@ -28,11 +28,13 @@ class DataWriter;
 // values.
 class ConditionSet {
 public:
+	using Conditions = std::map<std::string, int64_t>;
 	ConditionSet() = default;
 	// Construct and Load() at the same time.
 	ConditionSet(const DataNode &node);
 	
-	// Load a set of conditions from the children of this node.
+	// Load a set of conditions from the children of this node. Prints a
+	// warning if an and/or node contains assignment expressions.
 	void Load(const DataNode &node);
 	// Save a set of conditions.
 	void Save(DataWriter &out) const;
@@ -43,38 +45,114 @@ public:
 	// Read a single condition from a data node.
 	void Add(const DataNode &node);
 	bool Add(const std::string &firstToken, const std::string &secondToken);
-	bool Add(const std::string &name, const std::string &op, int64_t value);
-	bool Add(const std::string &name, const std::string &op, const std::string &strValue);
+	// Add simple conditions having only a single operator.
+	bool Add(const std::string &name, const std::string &op, const std::string &value);
+	// Add complex conditions having multiple operators, including parentheses.
+	bool Add(const std::vector<std::string> &lhs, const std::string &op, const std::vector<std::string> &rhs);
 	
-	// Check if the given condition values satisfy this set of conditions.
-	bool Test(const std::map<std::string, int64_t> &conditions) const;
-	// Modify the given set of conditions.
-	void Apply(std::map<std::string, int64_t> &conditions) const;
+	// Check if the given condition values satisfy this set of expressions. First applies
+	// all assignment expressions to create any temporary conditions, then evaluates.
+	bool Test(const Conditions &conditions) const;
+	// Modify the given set of conditions with this ConditionSet.
+	// (Order of operations is like the order of specification: all sibling
+	// expressions are applied, then any and/or nodes are applied.)
+	void Apply(Conditions &conditions) const;
 	
 	
 private:
-	// Check if the passed token is numeric or a string which has to be replaced, and return its value
-	int64_t TokenValue(int64_t numValue, const std::string &strValue, const std::map<std::string, int64_t> &conditions) const;
+	// Compare this set's expressions and the union of created and supplied conditions.
+	bool TestSet(const Conditions &conditions, const Conditions &created) const;
+	// Evaluate this set's assignment expressions and store the result in "created" (for use by TestSet).
+	void TestApply(const Conditions &conditions, Conditions &created) const;
 	
 	
 private:
-	// This class represents a single expression involving a condition - either
-	// testing what value it has, or modifying it in some way.
+	// This class represents a single expression involving a condition,
+	// either testing what value it has, or modifying it in some way.
 	class Expression {
 	public:
-		Expression(const std::string &name, const std::string &op, int64_t value);
+		Expression(const std::vector<std::string> &left, const std::string &op, const std::vector<std::string> &right);
+		Expression(const std::string &left, const std::string &op, const std::string &right);
 		
-		// This is the name of the condition that this entry operates on.
-		std::string name;
-		// This needs to be saved for saving conditions.
+		void Save(DataWriter &out) const;
+		// Convert this expression into a string, for traces.
+		std::string ToString() const;
+		
+		// Determine if this Expression instantiated properly.
+		bool IsEmpty() const;
+		
+		// Returns the left side of this Expression.
+		std::string Name() const;
+		// True if this Expression performs a comparison and false if it performs an assignment.
+		bool IsTestable() const;
+		
+		// Functions to use this expression:
+		bool Test(const Conditions &conditions, const Conditions &created) const;
+		void Apply(Conditions &conditions, Conditions &created) const;
+		void TestApply(const Conditions &conditions, Conditions &created) const;
+		
+		
+	private:
+		// A SubExpression results from applying operator-precedence parsing to one side of
+		// an Expression. The operators and tokens needed to recreate the given side are
+		// stored, and can be interleaved to restore the original string. Based on them, a
+		// sequence of "Operations" is created for runtime evaluation.
+		class SubExpression {
+		public:
+			SubExpression(const std::vector<std::string> &side);
+			SubExpression(const std::string &side);
+			
+			// Interleave tokens and operators to reproduce the initial string.
+			const std::string ToString() const;
+			// Interleave tokens and operators, but do not combine.
+			const std::vector<std::string> ToStrings() const;
+			
+			bool IsEmpty() const;
+			
+			// Substitute numbers for any string values and then compute the result.
+			int64_t Evaluate(const Conditions &conditions, const Conditions &created) const;
+			
+			
+		private:
+			void ParseSide(const std::vector<std::string> &side);
+			void GenerateSequence();
+			bool AddOperation(std::vector<int> &data, size_t &index, const size_t &opIndex);
+			
+			
+		private:
+			// An Operation has a pointer to its binary function, and the data indices for
+			// its operands. The result is always placed on the back of the data vector.
+			class Operation {
+			public:
+				explicit Operation(const std::string &op, size_t &a, size_t &b);
+				
+				int64_t (*fun)(int64_t, int64_t);
+				size_t a;
+				size_t b;
+			};
+			
+			
+		private:
+			// Iteration of the sequence vector yields the result.
+			std::vector<Operation> sequence;
+			// The tokens vector converts into a data vector of numeric values during evaluation.
+			std::vector<std::string> tokens;
+			std::vector<std::string> operators;
+			// The number of true (non-parentheses) operators.
+			int operatorCount = 0;
+		};
+		
+		
+	private:
+		// String representation of the Expression's binary function.
 		std::string op;
-		// Pointer to a binary function that defines what operation should be
-		// performed on the condition and the constant value.
+		// Pointer to a binary function that defines the assignment or
+		// comparison operation to be performed between SubExpressions.
 		int64_t (*fun)(int64_t, int64_t);
-		// Constant value specified in the expression.
-		int64_t value;
-		// Allow for dynamic values.
-		std::string strValue;
+		
+		// SubExpressions contain one or more tokens and any number of simple operators.
+		SubExpression left;
+		SubExpression right;
 	};
 	
 	
@@ -83,6 +161,9 @@ private:
 	// either an "and" grouping (meaning every condition must be true to satisfy
 	// it) or an "or" grouping where only one condition needs to be true.
 	bool isOr = false;
+	// If this set contains assignment expressions. If true, the Test()
+	// method must first apply them before testing any conditions.
+	bool hasAssign = false;
 	// Conditions that this set tests or applies.
 	std::vector<Expression> expressions;
 	// Nested sets of conditions to be tested.
