@@ -83,11 +83,12 @@ namespace {
 		
 		{"disruption protection", 4},
 		{"force protection", 4},
-		{"shield protection", 4},
+		{"fuel protection", 4},
 		{"heat protection", 4},
 		{"hull protection", 4},
 		{"ion protection", 4},
 		{"piercing protection", 4},
+		{"shield protection", 4},
 		{"slowing protection", 4}
 	};
 	
