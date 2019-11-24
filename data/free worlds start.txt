@@ -25,7 +25,7 @@ mission "Liberate Kornephoros"
 			`	You find Tomek walking among the fleet, conversing with captains and assessing the damage they have suffered. When he sees you he says, "Captain <last>! How is your '<ship>' holding together?"`
 			choice
 				`	"She took a bit of a pounding, but I've patched her up."`
-				`	"Just fine. It'd take more than a few cruisers to destroy the <ship>."`
+				`	"Just fine. It'd take more than a few Cruisers to destroy the <ship>."`
 			
 			`	"Glad to hear it," he says. "Listen, we need to press our advantage before the Republic has time to call for reinforcements. If we strike quickly, we could be able to retake Kornephoros from them. It's important to break the blockade on that system just for the sake of trade with the rest of the galaxy, and on top of that, of course, Katya needs to be rescued."`
 			`	"Indeed," you say.`
@@ -578,9 +578,9 @@ mission "FW Hope Recon 1C"
 			
 			apply
 				set "fw caught navy planting sensors"
-			`	You approach the location, flying low to avoid detection, and come upon a Navy gunboat, landed on the planet. Some distance away from the ship, several figures in thick snowsuits are setting up some sort of equipment with lots of antennae. It seems that the Navy had the same idea as Freya, of using this world as a listening post. Your sensors show that the gunboat is powered down.`
-			`	The moment your ship comes over the horizon, they start running back toward the gunboat. You destroy their equipment with a few well-placed shots, then train your guns on the crew members, who are still some distance from their ship. When they realize they cannot get back to it before being shot, they raise their hands in surrender.`
-			`	You count seven crew members in the group, which is the typical crew complement of a gunboat. That may mean the gunboat is uncrewed, and you could kill the crew and steal it. On the other hand, if there are more crew aboard the ship it would be better to destroy it first, then finish off the landing crew.`
+			`	You approach the location, flying low to avoid detection, and come upon a Navy Gunboat, landed on the planet. Some distance away from the ship, several figures in thick snowsuits are setting up some sort of equipment with lots of antennae. It seems that the Navy had the same idea as Freya, of using this world as a listening post. Your sensors show that the Gunboat is powered down.`
+			`	The moment your ship comes over the horizon, they start running back toward the Gunboat. You destroy their equipment with a few well-placed shots, then train your guns on the crew members, who are still some distance from their ship. When they realize they cannot get back to it before being shot, they raise their hands in surrender.`
+			`	You count seven crew members in the group, which is the typical crew complement of a Gunboat. That may mean the Gunboat is uncrewed, and you could kill the crew and steal it. On the other hand, if there are more crew aboard the ship it would be better to destroy it first, then finish off the landing crew.`
 			choice
 				`	(Destroy the ship, then finish off the crew.)`
 					goto destroy
@@ -590,7 +590,7 @@ mission "FW Hope Recon 1C"
 					goto spare
 			
 			label destroy
-			`	It turns out you made the right choice: someone is indeed onboard the gunboat still, because the moment you open fire it raises shields and starts powering up its engines and weapons. But, your initial shots must have damaged some critical systems, because it only manages to fire a few shots at you and to lift off about thirty meters into the air before crashing back down onto the ice and exploding. You quickly pick off the landing crew as well; they have no place to hide on the broad, flat glacial expanse.`
+			`	It turns out you made the right choice: someone is indeed onboard the Gunboat still, because the moment you open fire it raises shields and starts powering up its engines and weapons. But, your initial shots must have damaged some critical systems, because it only manages to fire a few shots at you and to lift off about thirty meters into the air before crashing back down onto the ice and exploding. You quickly pick off the landing crew as well; they have no place to hide on the broad, flat glacial expanse.`
 			`	Your own mission is complete, so it's time to return to <planet> and report to Freya.`
 				decline
 			
@@ -790,7 +790,7 @@ mission "FW Plasma Testing 1B"
 				goto next
 			
 			label fighters
-			`	"I guess we'll need to test it to find out," he says, "but our main goal was to have a weapon that could do serious damage to a cruiser. Right now the Navy's heaviest ships have ours severely outgunned."`
+			`	"I guess we'll need to test it to find out," he says, "but our main goal was to have a weapon that could do serious damage to a Cruiser. Right now the Navy's heaviest ships have ours severely outgunned."`
 				goto next
 			
 			label next

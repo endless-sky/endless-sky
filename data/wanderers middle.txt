@@ -2795,7 +2795,7 @@ mission "Wanderers: Sestor Alt: Alnilam 1"
 mission "Wanderers: Sestor Alt: Alnilam 2"
 	landing
 	name "Attack Alpha base"
-	description "Travel to the <system> system with these Oathkeeper cruisers to eliminate the Alpha base on <planet>."
+	description "Travel to the <system> system with these Oathkeeper Cruisers to eliminate the Alpha base on <planet>."
 	source "Farpoint"
 	destination "Zenith"
 	clearance
@@ -2831,7 +2831,7 @@ mission "Wanderers: Sestor Alt: Alnilam 2"
 mission "Wanderers: Sestor Alt: Alnilam 3"
 	landing
 	name "Return to <planet>"
-	description "Escort the Oathkeeper cruisers back to <destination>."
+	description "Escort the Oathkeeper Cruisers back to <destination>."
 	source "Zenith"
 	destination "Farpoint"
 	to offer

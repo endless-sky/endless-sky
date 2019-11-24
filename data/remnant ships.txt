@@ -541,6 +541,7 @@ ship "Penguin"
 		"shield energy" 0.5
 		"hull repair rate" 2
 		"hull energy" 1.0
+		"gaslining" 1
 		"cloak" .03
 		"cloaking energy" 3
 		"cloaking fuel" .05
