@@ -92,7 +92,7 @@ int64_t Crew::NumberOnShip(const Crew &crew, const shared_ptr<Ship> &ship, const
 		: ship->RequiredCrew();
 	
 	// Apply the per-ship minimum.
-	 count = min(crew.MinimumPerShip(), countableCrewMembers);
+	count = min(crew.MinimumPerShip(), countableCrewMembers);
 	
 	// Prevent division by zero so that the universe doesn't implode.
 	if(crew.PopulationPerMember())
