@@ -115,9 +115,9 @@ int64_t Crew::SalariesForShip(const shared_ptr<Ship> &ship, const bool isFlagshi
 	if(ship->IsDestroyed())
 		return 0;
 	
-	pair<int64_t, const Crew *> cheapestCrew;
 	int64_t crewAccountedFor = 0;
 	int64_t salariesForShip = 0;
+	pair<string, int64_t> cheapestCrew;
 	
 	// Add up the salaries for all of the special crew members
 	for(const pair<const string, Crew> &crewPair : GameData::Crews())
@@ -140,11 +140,13 @@ int64_t Crew::SalariesForShip(const shared_ptr<Ship> &ship, const bool isFlagshi
 		salariesForShip += numberOnShip * crewSalary;
 		
 		// If this is the cheapest crew type so far, keep track of it
-		if(crewSalary < cheapestCrew.first)
-			cheapestCrew = make_pair(crewSalary, &crew);
+		// Use non-parked salaries so that crew are consistent
+		if(cheapestCrew.first.empty() || crew.Salary() < cheapestCrew.second)
+			cheapestCrew = make_pair(crew.Id(), crew.Salary());
 	}
 	
-	// Fill out any remaining positions with the cheapest crew members
+	// Fill out any remaining positions with crew members that have the lowest
+	// daily salaries. 
 	int64_t remainingCrewMembers = (
 		includeExtras
 			? ship->Crew()
@@ -154,9 +156,11 @@ int64_t Crew::SalariesForShip(const shared_ptr<Ship> &ship, const bool isFlagshi
 		- isFlagship;
 	
 	// Add the remaining crew members' salaries to the result
-	salariesForShip += remainingCrewMembers * (ship->IsParked()
-		? cheapestCrew.second->ParkedSalary()
-		: cheapestCrew.second->Salary());
+	if(!cheapestCrew.first.empty())
+		salariesForShip += remainingCrewMembers * (ship->IsParked()
+			? GameData::Crews().Get(cheapestCrew.first)->ParkedSalary()
+			: GameData::Crews().Get(cheapestCrew.first)->Salary()
+		);
 	
 	return salariesForShip;
 }

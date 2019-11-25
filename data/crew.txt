@@ -8,8 +8,8 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-crew "default"
-  name "Regulars"
+crew "regular"
+  name "Regular Crew"
   salary 100
 
 # crew "pilot"
