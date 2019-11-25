@@ -11,7 +11,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
 #include "Crew.h"
-#include "Files.h" 
+#include "Files.h"
 #include "GameData.h"
 
 using namespace std;
@@ -52,7 +52,7 @@ void Crew::Load(const DataNode &node)
 int64_t Crew::CalculateSalaries(const vector<shared_ptr<Ship>> &ships, const Ship * flagship, const bool includeExtras)
 {
 	int64_t totalSalaries = 0;
-	
+
 	for(const shared_ptr<Ship> &ship : ships)
 	{
 		totalSalaries += Crew::SalariesForShip(
@@ -115,16 +115,13 @@ int64_t Crew::SalariesForShip(const shared_ptr<Ship> &ship, const bool isFlagshi
 	if(ship->IsDestroyed())
 		return 0;
 	
+	pair<int64_t, const Crew *> cheapestCrew;
+	int64_t crewAccountedFor = 0;
 	int64_t salariesForShip = 0;
-	int64_t specialCrewMembers = 0;
 	
 	// Add up the salaries for all of the special crew members
 	for(const pair<const string, Crew> &crewPair : GameData::Crews())
 	{
-		// Skip the default crew members.
-		if(crewPair.first == "default")
-			continue;
-		
 		const Crew crew = crewPair.second;
 		// Figure out how many of this type of crew are on this ship
 		int numberOnShip = Crew::NumberOnShip(
@@ -134,35 +131,32 @@ int64_t Crew::SalariesForShip(const shared_ptr<Ship> &ship, const bool isFlagshi
 			includeExtras
 		);
 		
-		specialCrewMembers += numberOnShip;
+		crewAccountedFor += numberOnShip;
 		
-		// Add this type of crew member's salaries to the result
-		salariesForShip += numberOnShip * (ship->IsParked()
-			? crew.ParkedSalary()
-			: crew.Salary());
+		// Determine the crew type's current salary per day
+		int64_t crewSalary = ship->IsParked() ? crew.ParkedSalary() : crew.Salary();
+		
+		// Add the salaries to the result
+		salariesForShip += numberOnShip * crewSalary;
+		
+		// If this is the cheapest crew type so far, keep track of it
+		if(crewSalary < cheapestCrew.first)
+			cheapestCrew = make_pair(crewSalary, &crew);
 	}
 	
-	// Figure out how many regular crew members are left over
-	int64_t defaultCrewMembers = (
-		includeExtras 
+	// Fill out any remaining positions with the cheapest crew members
+	int64_t remainingCrewMembers = (
+		includeExtras
 			? ship->Crew()
 			: ship->RequiredCrew()
-		) - specialCrewMembers
-		// If this is the flagship, one of the crew members is the Captain
+		) - crewAccountedFor
+		// If this is the flagship, one of the crew members is the player
 		- isFlagship;
-
-	const Crew *defaultCrew = GameData::Crews().Find("default");
 	
-	if(!defaultCrew)
-	{
-		defaultCrew = new Crew();
-		Files::LogError("\nWarning: No default crew member defined in data files");
-	}
-	
-	// Add default crew members' salaries to the result
-	salariesForShip += defaultCrewMembers * (ship->IsParked()
-		? defaultCrew->ParkedSalary()
-		: defaultCrew->Salary());
+	// Add the remaining crew members' salaries to the result
+	salariesForShip += remainingCrewMembers * (ship->IsParked()
+		? cheapestCrew.second->ParkedSalary()
+		: cheapestCrew.second->Salary());
 	
 	return salariesForShip;
 }
