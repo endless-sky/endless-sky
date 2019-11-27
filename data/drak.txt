@@ -170,7 +170,7 @@ effect "antimatter dust"
 
 ship "Archon"
 	noun "entity"
-	sprite "ship/archon"
+	sprite "ship/archon0"
 		"frame rate" 0.87
 	thumbnail "thumbnail/archon"
 	"never disabled"
@@ -228,7 +228,17 @@ ship "Archon"
 	explode "nuke explosion" 3
 	"final explode" "final explosion large"
 
+ship "Archon" "Archon (Second)"
+	sprite "ship/archon1"
+		"frame rate" 0.87
+
+ship "Archon" "Archon (Third)"
+	sprite "ship/archon2"
+		"frame rate" 0.87
+
 ship "Archon" "Archon (Cloaked)"
+	sprite "ship/archon2"
+		"frame rate" 0.87
 	"never disabled"
 	add attributes
 		"cloak" .04
