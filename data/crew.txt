@@ -16,7 +16,7 @@ crew "regular"
 #   name "Pilots"
 #   salary 250
 #   "avoids flagship"
-#   "minimum per ship" 1
+#   "place at" 1
 # 
 # crew "junior officer"
 #   name "Junior Officers"

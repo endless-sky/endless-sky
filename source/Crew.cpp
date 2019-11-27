@@ -27,10 +27,11 @@ void Crew::Load(const DataNode &node)
 		{
 			if(child.Token(0) == "name")
 				name = child.Token(1);
-			else if(child.Token(0) == "minimum per ship")
-				minimumPerShip = max((int)child.Value(1), 0);
 			else if(child.Token(0) == "parked salary")
 				parkedSalary = max((int)child.Value(1), 0);
+			else if(child.Token(0) == "place at")
+				for(int crewNumber = 1; crewNumber < child.Size(); ++crewNumber)
+					placeAt.push_back(max((int)child.Value(crewNumber), 0));
 			else if(child.Token(0) == "population per member")
 				populationPerMember = max((int)child.Value(1), 0);
 			else if(child.Token(0) == "salary")
@@ -146,9 +147,11 @@ int64_t Crew::NumberOnShip(const Crew &crew, const shared_ptr<Ship> &ship, const
 		? ship->Crew()
 		: ship->RequiredCrew();
 	
-	// Apply the per-ship minimum.
-	count = min(crew.MinimumPerShip(), countableCrewMembers);
-	
+	// Total up the placed crew members within the ship's countable crew
+	for(int64_t crewNumber : crew.PlaceAt())
+		if(crewNumber <= countableCrewMembers)
+			++count;
+		
 	// Prevent division by zero so that the universe doesn't implode.
 	if(crew.PopulationPerMember())
 	{
@@ -202,13 +205,6 @@ bool Crew::AvoidsFlagship() const
 
 
 
-int64_t Crew::MinimumPerShip() const
-{
-	return minimumPerShip;
-}
-
-
-
 int64_t Crew::ParkedSalary() const
 {
 	return parkedSalary;
@@ -240,4 +236,11 @@ const string &Crew::Id() const
 const string &Crew::Name() const
 {
 	return name;
+}
+
+
+
+const vector<int64_t> &Crew::PlaceAt() const
+{
+	return placeAt;
 }

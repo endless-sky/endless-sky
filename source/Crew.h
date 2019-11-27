@@ -38,20 +38,18 @@ public:
 	
 	bool AvoidsEscorts() const;
 	bool AvoidsFlagship() const;
-	int64_t MinimumPerShip() const;
 	int64_t ParkedSalary() const;
 	int64_t PopulationPerMember() const;
 	int64_t Salary() const;
 	const std::string &Id() const;
 	const std::string &Name() const;
+	const std::vector<int64_t> &PlaceAt() const;
 
 private:
 	// If true, the crew member will not appear on escorts
 	bool avoidsEscorts = false;
 	// If true, the crew member will not appear on the flagship
 	bool avoidsFlagship = false;
-	// Each valid ship has at least this many of the crew member
-	int64_t minimumPerShip = 0;
 	// The number of credits paid daily while parked (minimum 0)
 	int64_t parkedSalary = 0;
 	// Every nth crew member on the ship will be this crew member
@@ -62,6 +60,12 @@ private:
 	std::string id;
 	// The display name for this kind of crew members (plural, Title Case)
 	std::string name;
+	// The crew member will be placed at these crew member numbers if possible
+	// Note: if multiple crew definitions claim the same crew positions,
+	// we can end up paying for more crew than we expect to.
+	// To avoid this, don't place different crew members in the same spots.
+	// Example usage: "place at" 1 3 5 7 13
+	std::vector<int64_t> placeAt;
 };
 
 #endif
