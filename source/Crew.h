@@ -39,8 +39,8 @@ public:
 	bool AvoidsEscorts() const;
 	bool AvoidsFlagship() const;
 	int64_t ParkedSalary() const;
-	int64_t PopulationPerMember() const;
 	int64_t Salary() const;
+	int64_t ShipPopulationPerMember() const;
 	const std::string &Id() const;
 	const std::string &Name() const;
 	const std::vector<int64_t> &PlaceAt() const;
@@ -52,10 +52,10 @@ private:
 	bool avoidsFlagship = false;
 	// The number of credits paid daily while parked (minimum 0)
 	int64_t parkedSalary = 0;
-	// Every nth crew member on the ship will be this crew member
-	int64_t populationPerMember = 0;
 	// The number of credits paid daily (minimum 0)
 	int64_t salary = 100;
+	// Every nth crew member on the ship will be this crew member
+	int64_t shipPopulationPerMember = 0;
 	// The id that the crew member is stored against in GameData::Crews()
 	std::string id;
 	// The display name for this kind of crew members (plural, Title Case)

@@ -21,9 +21,9 @@ crew "regular"
 # crew "junior officer"
 #   name "Junior Officers"
 #   salary 500
-#   "population per member" 5
+#   "ship population per member" 5
 # 
 # crew "senior officer"
 #   name "Senior Officers"
 #   salary 2000
-#   "population per member" 20
+#   "ship population per member" 20
