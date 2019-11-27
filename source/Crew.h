@@ -22,7 +22,7 @@ public:
 	static int64_t CalculateSalaries(const std::vector<std::shared_ptr<Ship>> &ships, const Ship * flagship, const bool includeExtras = true);
 	
 	// Build a list of all crew members and how many are on the ship
-	static const std::map<std::string, std::pair<const Crew *, int64_t>> CrewManifest(const std::shared_ptr<Ship> &ship, bool isFlagship, bool includeExtras = true);
+	static const std::map<const std::string, int64_t> CrewManifest(const std::shared_ptr<Ship> &ship, bool isFlagship, bool includeExtras = true);
 
 	// Calculate the total cost of the flagship's extra crew
 	static int64_t CostOfExtraCrew(const std::vector<std::shared_ptr<Ship>> &ships, const Ship * flagship);

@@ -67,13 +67,13 @@ int64_t Crew::CalculateSalaries(const vector<shared_ptr<Ship>> &ships, const Shi
 
 
 
-const map<string, pair<const Crew *, int64_t>> Crew::CrewManifest(const shared_ptr<Ship> &ship, bool isFlagship, bool includeExtras)
+const map<const string, int64_t> Crew::CrewManifest(const shared_ptr<Ship> &ship, bool isFlagship, bool includeExtras)
 {
 	int64_t crewAccountedFor = 0;
 	// A crew ID, the number on the ship, and their individual salary amount
 	tuple<string, int64_t, int64_t> cheapestCrew;
 	// Map of a crew ID to the crew type paired with the number on the ship
-	map<string, pair<const Crew *, int64_t>> crewManifest;
+	map<const string, int64_t> crewManifest;
 	
 	// Check that we have crew data before proceeding
 	if(GameData::Crews().size() < 1)
@@ -95,7 +95,7 @@ const map<string, pair<const Crew *, int64_t>> Crew::CrewManifest(const shared_p
 		);
 		
 		// Add the crew members to the manifest
-		crewManifest[crew.Id()] = make_pair(&crew, numberOnShip);
+		crewManifest[crew.Id()] = numberOnShip;
 		
 		// Add the crew members to the total so far
 		crewAccountedFor += numberOnShip;
@@ -115,10 +115,7 @@ const map<string, pair<const Crew *, int64_t>> Crew::CrewManifest(const shared_p
 		- isFlagship;
 	
 	// Fill out the ranks with the cheapest type of crew member
-	crewManifest[get<0>(cheapestCrew)] = make_pair(
-		GameData::Crews().Get(get<0>(cheapestCrew)),
-		get<1>(cheapestCrew) + remainingCrewMembers
-	);
+	crewManifest[get<0>(cheapestCrew)] = get<1>(cheapestCrew) + remainingCrewMembers;
 	
 	return crewManifest;
 }
@@ -174,18 +171,18 @@ int64_t Crew::SalariesForShip(const shared_ptr<Ship> &ship, const bool isFlagshi
 		return 0;
 	
 	// Build a manifest of all of the crew members on the ship
-	const map<string, pair<const Crew *, int64_t>> crewManifest = CrewManifest(ship, isFlagship, includeExtras);
+	const map<const string, int64_t> crewManifest = CrewManifest(ship, isFlagship, includeExtras);
 	
 	// Sum up all of the crew's salaries
 	// For performance, check if the ship is parked once, not every loop
 	int64_t salariesForShip = 0;
 	if(ship->IsParked())
-		for(pair<string, pair<const Crew *, int64_t>> entry : crewManifest)
-			salariesForShip += entry.second.first->Salary() * entry.second.second;
+		for(pair<const string, int64_t> entry : crewManifest)
+			salariesForShip += GameData::Crews().Get(entry.first)->ParkedSalary() * entry.second;
 	else
-		for(pair<string, pair<const Crew *, int64_t>> entry : crewManifest)
-			salariesForShip += entry.second.first->ParkedSalary() * entry.second.second;
-			
+		for(pair<const string, int64_t> entry : crewManifest)
+			salariesForShip += GameData::Crews().Get(entry.first)->Salary() * entry.second;
+		
 	return salariesForShip;
 }
 
