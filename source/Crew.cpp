@@ -19,7 +19,10 @@ using namespace std;
 void Crew::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
+	{
 		id = node.Token(1);
+		name = id;
+	}
 	
 	for(const DataNode &child : node)
 	{
