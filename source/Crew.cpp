@@ -82,35 +82,34 @@ int64_t Crew::CostOfExtraCrew(const vector<shared_ptr<Ship>> &ships, const Ship 
 
 int64_t Crew::NumberOnShip(const Crew &crew, const shared_ptr<Ship> &ship, const bool isFlagship, const bool includeExtras)
 {
-	int64_t count = 0;
-	
 	// If this is the flagship, check if this crew avoids the flagship.
 	if(isFlagship && crew.AvoidsFlagship())
-		return count;
+		return 0;
 	// If this is an escort, check if this crew avoids escorts.
 	if(!isFlagship && crew.AvoidsEscorts())
-		return count;
+		return 0;
 	
 	const int64_t countableCrewMembers = includeExtras
 		? ship->Crew()
 		: ship->RequiredCrew();
 	
+	int64_t numberOnShip = 0;
 	// Total up the placed crew members within the ship's countable crew
 	for(int64_t crewNumber : crew.PlaceAt())
 		if(crewNumber <= countableCrewMembers)
-			++count;
+			++numberOnShip;
 		
 	// Prevent division by zero so that the universe doesn't implode.
 	if(crew.ShipPopulationPerMember())
 	{
 		// Figure out how many of this kind of crew we have, by population.
-		count = max(
-			count,
+		numberOnShip = max(
+			numberOnShip,
 			countableCrewMembers / crew.ShipPopulationPerMember()
 		);
 	}
 	
-	return count;
+	return numberOnShip;
 }
 
 
