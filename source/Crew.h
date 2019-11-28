@@ -21,9 +21,6 @@ public:
 	// Calculate one day's salaries for the Player's fleet
 	static int64_t CalculateSalaries(const std::vector<std::shared_ptr<Ship>> &ships, const Ship * flagship, const bool includeExtras = true);
 	
-	// Build a list of all crew members and how many are on the ship
-	static const std::map<const std::string, int64_t> CrewManifest(const std::shared_ptr<Ship> &ship, bool isFlagship, bool includeExtras = true);
-
 	// Calculate the total cost of the flagship's extra crew
 	static int64_t CostOfExtraCrew(const std::vector<std::shared_ptr<Ship>> &ships, const Ship * flagship);
 
@@ -32,6 +29,9 @@ public:
 
 	// Calculate one day's salaries for a ship
 	static int64_t SalariesForShip(const std::shared_ptr<Ship> &ship, const bool isFlagship, const bool includeExtras = true);
+
+	// List the crew members on a ship, and how many there are of each type
+	static const std::map<const std::string, int64_t> ShipManifest(const std::shared_ptr<Ship> &ship, bool isFlagship, bool includeExtras = true);
 
 	// Load a definition for a crew member.
 	void Load(const DataNode &node);

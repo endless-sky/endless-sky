@@ -71,61 +71,6 @@ int64_t Crew::CalculateSalaries(const vector<shared_ptr<Ship>> &ships, const Shi
 
 
 
-const map<const string, int64_t> Crew::CrewManifest(const shared_ptr<Ship> &ship, bool isFlagship, bool includeExtras)
-{
-	int64_t crewAccountedFor = 0;
-	// A crew ID, the number on the ship, and their individual salary amount
-	tuple<string, int64_t, int64_t> cheapestCrew;
-	// Map of a crew ID to the crew type paired with the number on the ship
-	map<const string, int64_t> crewManifest;
-	
-	// Check that we have crew data before proceeding
-	if(GameData::Crews().size() < 1)
-	{
-		Files::LogError("Error: could not find any crew member definitions in the data files.");
-		return crewManifest;
-	}
-	
-	// Add up the salaries for all of the special crew members
-	for(const pair<const string, Crew> &crewPair : GameData::Crews())
-	{
-		const Crew crew = crewPair.second;
-		// Figure out how many of this type of crew are on this ship
-		int numberOnShip = Crew::NumberOnShip(
-			crew,
-			ship,
-			isFlagship,
-			includeExtras
-		);
-		
-		// Add the crew members to the manifest
-		crewManifest[crew.Id()] = numberOnShip;
-		
-		// Add the crew members to the total so far
-		crewAccountedFor += numberOnShip;
-		
-		// If this is the cheapest crew type so far, keep track of it
-		// Use non-parked salaries so that crew are consistent
-		if(get<0>(cheapestCrew).empty() || crew.Salary() < get<2>(cheapestCrew))
-			cheapestCrew = make_tuple(crew.Id(), numberOnShip, crew.Salary());
-	}
-	
-	// Figure out how many crew members we still need to account for
-	int64_t remainingCrewMembers = (includeExtras
-			? ship->Crew()
-			: ship->RequiredCrew()
-		) - crewAccountedFor
-		// If this is the flagship, one of the crew members is the player
-		- isFlagship;
-	
-	// Fill out the ranks with the cheapest type of crew member
-	crewManifest[get<0>(cheapestCrew)] = get<1>(cheapestCrew) + remainingCrewMembers;
-	
-	return crewManifest;
-}
-
-
-
 int64_t Crew::CostOfExtraCrew(const vector<shared_ptr<Ship>> &ships, const Ship * flagship)
 {
 	// Calculate with and without extras and return the difference.
@@ -177,19 +122,74 @@ int64_t Crew::SalariesForShip(const shared_ptr<Ship> &ship, const bool isFlagshi
 		return 0;
 	
 	// Build a manifest of all of the crew members on the ship
-	const map<const string, int64_t> crewManifest = CrewManifest(ship, isFlagship, includeExtras);
+	const map<const string, int64_t> manifest = ShipManifest(ship, isFlagship, includeExtras);
 	
 	// Sum up all of the crew's salaries
 	// For performance, check if the ship is parked once, not every loop
 	int64_t salariesForShip = 0;
 	if(ship->IsParked())
-		for(pair<const string, int64_t> entry : crewManifest)
+		for(pair<const string, int64_t> entry : manifest)
 			salariesForShip += GameData::Crews().Get(entry.first)->ParkedSalary() * entry.second;
 	else
-		for(pair<const string, int64_t> entry : crewManifest)
+		for(pair<const string, int64_t> entry : manifest)
 			salariesForShip += GameData::Crews().Get(entry.first)->Salary() * entry.second;
 		
 	return salariesForShip;
+}
+
+
+
+const map<const string, int64_t> Crew::ShipManifest(const shared_ptr<Ship> &ship, bool isFlagship, bool includeExtras)
+{
+	int64_t crewAccountedFor = 0;
+	// A crew ID, the number on the ship, and their individual salary amount
+	tuple<string, int64_t, int64_t> cheapestCrew;
+	// Map of a crew ID to the crew type paired with the number on the ship
+	map<const string, int64_t> manifest;
+	
+	// Check that we have crew data before proceeding
+	if(GameData::Crews().size() < 1)
+	{
+		Files::LogError("Error: could not find any crew member definitions in the data files.");
+		return manifest;
+	}
+	
+	// Add up the salaries for all of the special crew members
+	for(const pair<const string, Crew> &crewPair : GameData::Crews())
+	{
+		const Crew crew = crewPair.second;
+		// Figure out how many of this type of crew are on this ship
+		int numberOnShip = Crew::NumberOnShip(
+			crew,
+			ship,
+			isFlagship,
+			includeExtras
+		);
+		
+		// Add the crew members to the manifest
+		manifest[crew.Id()] = numberOnShip;
+		
+		// Add the crew members to the total so far
+		crewAccountedFor += numberOnShip;
+		
+		// If this is the cheapest crew type so far, keep track of it
+		// Use non-parked salaries so that crew are consistent
+		if(get<0>(cheapestCrew).empty() || crew.Salary() < get<2>(cheapestCrew))
+			cheapestCrew = make_tuple(crew.Id(), numberOnShip, crew.Salary());
+	}
+	
+	// Figure out how many crew members we still need to account for
+	int64_t remainingCrewMembers = (includeExtras
+			? ship->Crew()
+			: ship->RequiredCrew()
+		) - crewAccountedFor
+		// If this is the flagship, one of the crew members is the player
+		- isFlagship;
+	
+	// Fill out the ranks with the cheapest type of crew member
+	manifest[get<0>(cheapestCrew)] = get<1>(cheapestCrew) + remainingCrewMembers;
+	
+	return manifest;
 }
 
 
