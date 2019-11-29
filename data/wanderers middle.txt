@@ -1054,6 +1054,7 @@ mission "Wanderers: Mind 5"
 
 government " Kor Mereti "
 	swizzle 5
+	language "Korath"
 	"attitude toward"
 		"Wanderer" -.01
 		"Kor Mereti" -.01
@@ -1270,12 +1271,12 @@ mission "Wanderers: Mentors 2"
 		conversation
 			`A team of Wanderer terraforming experts has been assembled on <origin>. They have requisitioned a transport and filled it with an overwhelming variety of sensors, bioreactors, chemical filters, and other scientific devices. But, it's clear that none of them quite understand what is going on with the Kor Mereti. The team's manager says, "We are to meet with [sentient? awakened?] robots? They are interested in [foliage, plants]? There are worlds to be [repaired, healed]?"`
 			`	You do your best to answer their questions, but this is clearly not a situation that any of them had anticipated. Perhaps not even a situation that their species has ever had to deal with before, given that usually they are working in regions of space that have long since been abandoned by their former inhabitants.`
-			`	The freighter gets ready to follow you back to <planet>, where hopefully more of their questions will be answered.`
+			`	The transport gets ready to follow you back to <planet>, where hopefully more of their questions will be answered.`
 				accept
 	npc accompany save
 		government "Wanderer"
 		personality escort
-		ship "Deep River Transport" "Green Talon"
+		ship "Riptide" "Green Talon"
 
 
 
@@ -1874,7 +1875,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 			
 			label thanks
 			`	"No problem, kiddo," the captain says, although he looks awed that you are even attempting to fight such powerful ships. "Remember, northwest of Farpoint. If they're anarchists of any sort, they'll be hiding in one of those pirate systems up there. Take care of yourself out there; those are some dangerous ships that jumped us." With that, he bids you farewell.`
-					decline
+				decline
 					
 			label glad
 			`	"Yeah, those ships would have obliterated us if we hadn't jumped pronto." The pilot looks at you, then asks quizzically, "Say, do you know anything about those ships?"`
@@ -2794,7 +2795,7 @@ mission "Wanderers: Sestor Alt: Alnilam 1"
 mission "Wanderers: Sestor Alt: Alnilam 2"
 	landing
 	name "Attack Alpha base"
-	description "Travel to the <system> system with these Oathkeeper cruisers to eliminate the Alpha base on <planet>."
+	description "Travel to the <system> system with these Oathkeeper Cruisers to eliminate the Alpha base on <planet>."
 	source "Farpoint"
 	destination "Zenith"
 	clearance
@@ -2830,7 +2831,7 @@ mission "Wanderers: Sestor Alt: Alnilam 2"
 mission "Wanderers: Sestor Alt: Alnilam 3"
 	landing
 	name "Return to <planet>"
-	description "Escort the Oathkeeper cruisers back to <destination>."
+	description "Escort the Oathkeeper Cruisers back to <destination>."
 	source "Zenith"
 	destination "Farpoint"
 	to offer

@@ -134,7 +134,7 @@ private:
 	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
 	// Turret turn rates, reduced to 8 bits to save space.
-	char aim[32] = {};
+	signed char aim[32] = {};
 };
 
 
