@@ -709,7 +709,6 @@ ship "Ursa Polaris"
 		"mass" 1839
 		"drag" 12
 		"heat dissipation" .9
-		
 		"fuel capacity" 600
 		"solar collection" 15
 		"afterburner thrust" 200
