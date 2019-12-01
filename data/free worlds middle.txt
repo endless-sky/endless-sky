@@ -1403,7 +1403,7 @@ mission "FW Bloodsea 1.1"
 			`The local leaders are unwilling to meet aboard your ship, and Alondo is afraid you will be ambushed if you venture too far away from it, so eventually they agree to set up a tent on the landing pad next to yours and meet there. Outside, a storm is raging, the rain mixing with salt spray from the blood-red ocean nearby.`
 			branch peaceful
 				not "event: fw suppressed Bloodsea"
-			`	Most of the leaders grimace at the sight of you. "What is the invader doing here?" one of them asks to Alondo.
+			`	Most of the leaders grimace at the sight of you. "What is the invader doing here?" one of them asks to Alondo.`
 			`	"Captain <last> was only following orders, but the officer responsible for giving those orders has been justly punished," Alondo says. "We come in peace this time." The leaders don't seem convinced with that answer, but they agree to continue.`
 			label peaceful
 			`	As you talk, it becomes clear that the inhabitants of Bloodsea are ashamed of how destitute and undeveloped their world is. Several of them have visited the island spaceport on Deep, and after dancing around the issue for a while, they make a request: if the Free Worlds builds them a real, modern island spaceport, they will join the Free Worlds.`
