@@ -575,6 +575,7 @@ Files:
  images/ship/leviathan*
  images/ship/shuttle*
  images/ship/star?queen*
+ images/ship/localworldship*
  Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
@@ -594,6 +595,9 @@ Comment: Derived from works by Frederick Goy IV (under the same license).
 
 Files:
  images/planet/station1*
+ images/planet/station2*
+ images/planet/station3*
+ images/planet/station4*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 
