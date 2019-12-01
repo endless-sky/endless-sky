@@ -1564,8 +1564,9 @@ mission "FW Bloodsea 1.2A"
 			choice
 				`	"Alondo convinced me that the Bloodsea natives were just planning to betray us."`
 				`	"I don't think the pirates will understand any language except overwhelming force."`
+			`	"You're starting to sound a lot like Tomek," JJ remarks.`
 			`	"I also contacted the Senate on the way here," Alondo says, "and they approved the invasion. We're much more powerful now than before, making invasion a viable option."`
-			`	"Perhaps," says JJ. "I need to keep most of my fleet here, to defend against the Navy, but I'll select a few of the strongest ships to accompany you to Bloodsea. Make sure they make it home safe, though. We'll need every ship we can get for when the Navy attacks. Good luck, Captain."`
+			`	"Perhaps," says JJ. "I'll provide you with some ships, but I'm not happy about this. I need to keep most of my fleet here, to defend against the Navy, but I'll select a few of the strongest ships to accompany you to Bloodsea. Make sure they make it home safe, though. We'll need every ship we can get for when the Navy attacks. Good luck, Captain."`
 				accept
 	
 	npc
