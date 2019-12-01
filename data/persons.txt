@@ -617,7 +617,7 @@ person "Local God"
 	government "Author"
 	frequency 200
 	personality
-		mining harvests surveillance unconstrained forebearing
+		mining harvests surveillance unconstrained forbearing
 	phrase
 		phrase
 			"friendly author"
@@ -685,7 +685,7 @@ person "Local God"
 			"got a hold of "
 			"appropriated "
 			"procured "
- 		word
+		word
 			"this very old Korath World Ship and "
 		word
 			"made it my own"
