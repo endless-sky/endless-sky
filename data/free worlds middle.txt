@@ -1413,18 +1413,16 @@ mission "FW Bloodsea 1.1"
 				`	"Well, building a spaceport is probably cheaper than fighting a major battle."`
 					goto port
 				`	"They're asking a lot. Why don't we just invade them?"`
-					goto attack
+					goto invade
 			label port
 			`	"Yes," he says, "except that I can almost guarantee that when we show up on their doorstep with everything they asked for, some local warlord will attack our ships, steal our supplies, enslave our workers, and build himself a nice cozy island fortress."`
 			`	"So, we attack them?" you ask.`
-			label attack
+			label invade
 			branch hostile
 				not "event: fw suppressed Bloodsea"
 			`	"They didn't seem very happy about you doing that the first time. But..." Alondo pauses for a moment.`
 			label hostile
-			`	"That's certainly the simpler option," he says, "especially because I can almost guarantee that when we show up on their doorstep with everything they asked for, some local warlord will attack our ships, steal our supplies, enslave our workers, and build himself a nice cozy island fortress.`
-			label invade
-			`	"Tomek may have been punished for disobeying the Senate's orders, but we're in a different situation now. Our numbers have swelled because of our victories and new territory, and we now have the Dreadnoughts at our disposal, so occupying Bloodsea is now a viable option.`
+			`	"That's certainly the simpler option," he says. "Tomek may have been punished for disobeying the Senate's orders, but we're in a different situation now. Our numbers have swelled because of our victories and new territory, and we now have the Dreadnoughts at our disposal, so occupying Bloodsea is now a viable option.`
 			`	"You're on the Council now," he says. "I'll leave it up to you. Option one is, we bring them the supplies and workers, in merchant ships, but use very heavily armed merchant ships in case they double cross us. Option two is, we go to Dancer and see if JJ can lend us an invasion fleet while I convince the Senate that attacking Bloodsea is the better decision."`
 				accept
 	on visit
