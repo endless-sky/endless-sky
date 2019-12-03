@@ -1066,7 +1066,7 @@ mission "Hai Solifuge response"
 	landing
 	invisible
 	to offer
-		has "Wanderers Hai Assistance 3: done"
+		has "Wanderers Solifuge Recon 2: done"
 	on offer
 		event "Hai Pond Striders released" 10
 		fail
@@ -1092,21 +1092,19 @@ event "Hai Pond Striders released"
 			"Centipede"
 
 mission "Strider: View of the Pond"
-	description "Deliver a message from Ambassador Sayari to Hai Home."
+	description "Deliver a message regarding new Unfettered ships from Ambassador Sayari to Hai elders on <destination>."
 	name "Message Hai-home"
 	landing
 	source "Vara K'chrai"
 	destination "Hai-home"
 	to offer
-		has "Wanderers Solifuge Recon 1: done"
-	on offer
-		conversation
-			`"Ambassador Sayari has been informed of the Solifuge, has a message for the Hai Homeworld, and needs your help to deliver it to Hai-Home."`
-				accept
+		has "Wanderers Solifuge Recon 2: done"
 	on complete
 		conversation
-			`The Hai, as usual, mysteriously and efficiently deliver your message from Ambassador Sayari, and a local prefect appears within minutes to inquire if you've encountered a friendly race with hull repair technology.`
-			`The prefect continues to tell you how the Solifuge was not entirely a surprise to the Hai government, but that it posed a threat to the Hai public mindset that couldn't be ignored.`
+			`As you land the <ship>, you send word that you need to deliver your message from Ambassador Sayari to the Hai elders.  An appointment is arranged, and within hours, you find yourself before them once again.`
+			`The elders tell you how the Solifuge was not entirely a surprise to the Hai government, but that it posed a threat to the Hai public mindset that couldn't be ignored.`
+			`They continue ""A small, short range drone carrier and combat drone solution is being worked on, but initial simulations predict that actual escort casualties would go up unless significant hull repair technology could be implemented to fix docked drones that would otherwise weigh down the agile warship."`
+			`"You have traveled many systems, <first> <last>. Do you know of any friendly species who would be willing to share the technology that we need?"`
 
 mission "Strider: Have language, will travel"
 	description "Take Ambassador Yashili and her delegation to <destination>."
@@ -1119,13 +1117,15 @@ mission "Strider: Have language, will travel"
 	to offer
 		has "Strider: View of the Pond: done"
 	on offer
-		log `The Hai are working on a Medium Warship that carries drones, but need help contacting a species with hull repair technology to make it viable.`
+		log `The Hai are working on a medium warship that carries drones, but need help contacting a species with hull repair technology to make it viable.`
 		conversation
-			`"A small, short range drone carrier and combat drone solution is being worked on, but initial simulations predict that actual escort casualties would go up unless significant hull repair technology could be implemented to fix docked drones that would otherwise weigh down the agile warship" the prefect explains.`
+			`As you land the <ship>, you send word that you need to deliver your message from Ambassador Sayari to the Hai elders.  An appointment is arranged, and within hours, you find yourself before them once again.`
+			`The elders tell you how the Solifuge was not entirely a surprise to the Hai government, but that it posed a threat to the Hai public mindset that couldn't be ignored.`
+			`They continue ""A small, short range drone carrier and combat drone solution is being worked on, but initial simulations predict that actual escort casualties would go up unless significant hull repair technology could be implemented to fix docked drones that would otherwise weigh down the agile warship."`
+			`"You have traveled many systems, <first> <last>. Do you know of any friendly species who would be willing to share the technology that we need?"`
 			branch neither
 				not "remnant blood test pure"
 				not "Coalition: First Contact: offered"
-			`The delegation will need to stop at <destination> to pick up translation devices they can use to communicate with other species.`
 			branch coalition
 				has "Coalition: First Contact: offered"
 				not "remnant blood test pure"
@@ -1141,14 +1141,14 @@ mission "Strider: Have language, will travel"
 				`Mention the Coalition, and offer to take a delegation to the Ring of Friendship.`
 					goto ring
 				`The Hai are not ready to learn of the Coalition's existence yet.`
-					defer
+					goto neither
 			label remnants
 			`You consider your encounters with the Remnants and their self-repairing hulls.`
 			choice
 				`Mention the Remnants, and offer to take a delegation to Aventine.`
 					goto aventine
 				`The Hai are not ready to learn of the Remnants' existence yet.`
-					defer
+					goto neither
 			label both
 			`You consider that both the Remnants and the Coalition have technology that repairs hulls.`
 			choice
@@ -1157,16 +1157,16 @@ mission "Strider: Have language, will travel"
 				`Mention the Coalition, and offer to take a delegation to the Ring of Friendship.`
 					goto ring
 				`The Hai are not ready to learn of hull repair technology yet.`
-					defer
+					goto neither
 			label ring
 			apply
 				set "Strider: Coalition"
-			`The grateful Hai ambassadors request a stop at <destination> before proceeding to the Ring of Friendship.`
+			`The grateful Hai ambassadors request a stop at <destination> before proceeding to the Ring of Friendship, so that they can pick up the latest version of the translation device they are using to communicate with you.`
 				accept
 			label aventine
 			apply
 				set "Strider: Remnants"
-			`The grateful Hai ambassadors request a stop at <destination> before proceeding to Aventine.`
+			`The grateful Hai ambassadors request a stop at <destination> before proceeding to Aventine, so that they can pick up the latest version of the translation device they are using to communicate with you.`
 				accept
 			label neither
 			`You explain that you have not encountered a friendly civilization with hull repair technology, but that when you do, you might be able to introduce the Hai to them.`

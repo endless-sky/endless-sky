@@ -116,7 +116,7 @@ outfit "Railgun Slug"
 outfit "Railgun Slug Rack"
 	category "Ammunition"
 	cost 15000
-	thumbnail "outfit/railslug_rack"
+	thumbnail "outfit/railslug rack"
 	"mass" 1
 	"outfit space" -3
 	"railgun slug capacity" 1500
@@ -150,7 +150,7 @@ outfit "Railgun"
 		"firing force" 20
 		"stream"
 		"submunition" "rslug" 1
-	description "The Hai created this compact, reverse-thrusting weapon for their Flea drones.  Their drone pilots joke that they provide more thrust than engines of similar size, so Unfettered should be using them at the back of their ships.  There's probably a cultural component to the joke that many miss, because it's told quite often and the Hai laugh hysterically about it - every time."
+	description "The Hai created this compact weapon with tactical recoil for their Flea drones. Their drone pilots joke that they provide more thrust than engines of similar size, so Unfettered should be using them at the back of their ships. There's probably a cultural component to the joke that many miss, because it's told quite often and the Hai laugh hysterically about it - every time."
 
 outfit "rslug"
 	weapon

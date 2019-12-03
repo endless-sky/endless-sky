@@ -1911,7 +1911,7 @@ mission "Wanderers Solifuge Recon 2"
 	on complete
 		conversation
 			`Tele'ek listens carefully as you outline the strengths and weaknesses of the new Unfettered carriers. "I am not greatly [concerned, frightened] by tiny fighters," he says. "The weapon that has done us most harm is their ion cannons, which no ship so small can [wield, carry]. But thank you for your assistance. Alas, we have no other [fights, brawls] for you to take part in right now, but if you visit the spaceport, you will find another evacuation fleet that needs an [escort, protector]."`
-
+			`Ambassador Sayari has been informed of the Solifuge, has a message for the elders on the Hai Homeworld, and needs your help to deliver it to <destination>."`
 
 
 mission "Wanderers Evacuation 1"
