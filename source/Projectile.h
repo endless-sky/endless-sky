@@ -73,6 +73,11 @@ public:
 	// non-const shared pointer to the target.
 	std::shared_ptr<Ship> TargetPtr() const;
 	
+	// Set and get the point of the position from which this projectile was
+	// fired and the position at which it impacted the target.
+	void SetFirePosition(Point fire);
+	const Point &FirePosition() const;
+	const Point &ImpactPosition() const;
 	
 private:
 	void CheckLock(const Ship &target);
@@ -80,6 +85,8 @@ private:
 	
 private:
 	const Weapon *weapon = nullptr;
+	Point firePosition;
+	Point impactPosition;
 	
 	std::weak_ptr<Ship> targetShip;
 	const Ship *cachedTarget = nullptr;

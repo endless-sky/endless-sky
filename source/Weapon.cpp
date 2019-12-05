@@ -172,13 +172,23 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[HIT_FORCE] = value;
 			else if(key == "piercing")
 				piercing = max(0., min(1., value));
+			else if(key == "damage dropoff")
+			{
+				hasDamageDropoff = true;
+				double maxDropoff = (child.Size() >= 3) ? child.Value(2) : 0.;
+				damageDropoff = make_pair(max(0., value), maxDropoff);
+			}
+			else if(key == "damage decay")
+				damageDecay = max(0., value);
 			else
 				child.PrintTrace("Unrecognized weapon attribute: \"" + key + "\":");
 		}
 	}
-	// Sanity check:
+	// Sanity checks:
 	if(burstReload > reload)
 		burstReload = reload;
+	if(damageDropoff.first > damageDropoff.second)
+		damageDropoff.second = Range();
 	
 	// Weapons of the same type will alternate firing (streaming) rather than
 	// firing all at once (clustering) if the weapon is not an anti-missile and
@@ -314,6 +324,20 @@ double Weapon::TotalLifetime() const
 double Weapon::Range() const
 {
 	return Velocity() * TotalLifetime();
+}
+
+
+
+double Weapon::DamageDropoff(double distance) const
+{
+	double minDropoff = damageDropoff.first;
+	double maxDropoff = damageDropoff.second;
+	
+	if(distance <= minDropoff)
+		return 1.;
+	if(distance >= maxDropoff)
+		return damageDecay;
+	return (1 - damageDecay) / (minDropoff - maxDropoff) * (distance - minDropoff) + 1;
 }
 
 

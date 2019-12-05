@@ -227,10 +227,11 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hitVelocity)
 {
 	clip = intersection;
+	impactPosition = Point(position + velocity * intersection);
 	for(const auto &it : weapon->HitEffects())
 		for(int i = 0; i < it.second; ++i)
 		{
-			visuals.emplace_back(*it.first, position + velocity * intersection, velocity, angle, hitVelocity);
+			visuals.emplace_back(*it.first, impactPosition, velocity, angle, hitVelocity);
 		}
 	lifetime = -100;
 }
@@ -281,6 +282,27 @@ const Ship *Projectile::Target() const
 shared_ptr<Ship> Projectile::TargetPtr() const
 {
 	return targetShip.lock();
+}
+
+
+
+void Projectile::SetFirePosition(Point fire)
+{
+	firePosition = fire;
+}
+
+
+
+const Point &Projectile::FirePosition() const
+{
+	return firePosition;
+}
+
+
+
+const Point &Projectile::ImpactPosition() const
+{
+	return impactPosition;
 }
 
 

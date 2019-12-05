@@ -120,6 +120,9 @@ public:
 	double TotalLifetime() const;
 	double Range() const;
 	
+	double DamageDropoff(double distance) const;
+	bool HasDamageDropoff() const;
+	
 	
 protected:
 	// Legacy support: allow turret outfits with no turn rate to specify a
@@ -204,6 +207,10 @@ private:
 	
 	double piercing = 0.;
 	
+	bool hasDamageDropoff = false;
+	std::pair<double, double> damageDropoff;
+	double damageDecay;
+	
 	// Cache the calculation of these values, for faster access.
 	mutable bool calculatedDamage = true;
 	mutable bool doesDamage = false;
@@ -265,6 +272,7 @@ inline double Weapon::SlowingDamage() const { return TotalDamage(SLOWING_DAMAGE)
 
 inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); return doesDamage; }
 
+inline bool Weapon::HasDamageDropoff() const { return hasDamageDropoff; }
 
 
 #endif
