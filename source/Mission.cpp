@@ -666,9 +666,6 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 
 bool Mission::HasFailed(const PlayerInfo &player) const
 {
-	if(!player)
-		return hasFailed;
-	
 	if(!toFail.IsEmpty() && toFail.Test(player.Conditions()))
 		return true;
 	
@@ -676,6 +673,13 @@ bool Mission::HasFailed(const PlayerInfo &player) const
 		if(npc.HasFailed())
 			return true;
 	
+	return hasFailed;
+}
+
+
+
+bool Mission::HasFailed() const
+{
 	return hasFailed;
 }
 
