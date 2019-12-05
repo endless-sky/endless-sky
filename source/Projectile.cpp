@@ -39,6 +39,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
 	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
 {
+	firePosition = position;
 	government = parent.GetGovernment();
 	
 	// If you are boarding your target, do not fire on it.
@@ -65,6 +66,7 @@ Projectile::Projectile(const Projectile &parent, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), parent.position + parent.velocity, parent.velocity, parent.angle),
 	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
 {
+	firePosition = parent.position;
 	government = parent.government;
 	targetGovernment = parent.targetGovernment;
 	
@@ -94,6 +96,7 @@ Projectile::Projectile(Point position, const Weapon *weapon)
 	: weapon(weapon)
 {
 	this->position = position;
+	firePosition = position;
 }
 
 
@@ -113,10 +116,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 			
 			for(const auto &it : weapon->Submunitions())
 				for(int i = 0; i < it.second; ++i)
-				{
 					projectiles.emplace_back(*this, it.first);
-					projectiles.back().SetFirePosition(position); 
-				}
 		}
 		MarkForRemoval();
 		return;
@@ -285,13 +285,6 @@ const Ship *Projectile::Target() const
 shared_ptr<Ship> Projectile::TargetPtr() const
 {
 	return targetShip.lock();
-}
-
-
-
-void Projectile::SetFirePosition(Point fire)
-{
-	firePosition = fire;
 }
 
 

@@ -73,9 +73,8 @@ public:
 	// non-const shared pointer to the target.
 	std::shared_ptr<Ship> TargetPtr() const;
 	
-	// Set and get the point of the position from which this projectile was
+	// Get the point of the position from which this projectile was
 	// fired and the position at which it impacted the target.
-	void SetFirePosition(Point fire);
 	const Point &FirePosition() const;
 	const Point &ImpactPosition() const;
 	
