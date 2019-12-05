@@ -113,7 +113,10 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 			
 			for(const auto &it : weapon->Submunitions())
 				for(int i = 0; i < it.second; ++i)
+				{
 					projectiles.emplace_back(*this, it.first);
+					projectiles.back().SetFirePosition(position); 
+				}
 		}
 		MarkForRemoval();
 		return;
