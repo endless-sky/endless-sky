@@ -176,7 +176,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 			{
 				hasDamageDropoff = true;
 				double maxDropoff = (child.Size() >= 3) ? child.Value(2) : 0.;
-				damageDropoff = make_pair(max(0., value), maxDropoff);
+				damageDropoffRange = make_pair(max(0., value), maxDropoff);
 			}
 			else if(key == "damage decay")
 				damageDecay = max(0., value);
@@ -187,8 +187,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 	// Sanity checks:
 	if(burstReload > reload)
 		burstReload = reload;
-	if(damageDropoff.first > damageDropoff.second)
-		damageDropoff.second = Range();
+	if(damageDropoffRange.first > damageDropoffRange.second)
+		damageDropoffRange.second = Range();
 	
 	// Weapons of the same type will alternate firing (streaming) rather than
 	// firing all at once (clustering) if the weapon is not an anti-missile and
@@ -328,16 +328,20 @@ double Weapon::Range() const
 
 
 
+// Calculate the percent damage that this weapon deals given the distance
+// that the projectile traveled if it has a damage dropoff range.
 double Weapon::DamageDropoff(double distance) const
 {
-	double minDropoff = damageDropoff.first;
-	double maxDropoff = damageDropoff.second;
+	double minDropoff = damageDropoffRange.first;
+	double maxDropoff = damageDropoffRange.second;
 	
 	if(distance <= minDropoff)
 		return 1.;
 	if(distance >= maxDropoff)
 		return damageDecay;
-	return (1 - damageDecay) / (minDropoff - maxDropoff) * (distance - minDropoff) + 1;
+	// Damage decay is linear between the min and max dropoff points.
+	double slope = (1 - damageDecay) / (minDropoff - maxDropoff);
+	return slope * (distance - minDropoff) + 1;
 }
 
 

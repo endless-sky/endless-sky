@@ -96,7 +96,6 @@ Projectile::Projectile(Point position, const Weapon *weapon)
 	: weapon(weapon)
 {
 	this->position = position;
-	firePosition = position;
 }
 
 

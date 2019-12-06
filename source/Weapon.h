@@ -120,8 +120,11 @@ public:
 	double TotalLifetime() const;
 	double Range() const;
 	
-	double DamageDropoff(double distance) const;
+	// Check if this weapon has a damage dropoff range.
 	bool HasDamageDropoff() const;
+	// Calculate the percent damage that this weapon deals given the distance
+	// that the projectile traveled if it has a damage dropoff range.
+	double DamageDropoff(double distance) const;
 	
 	
 protected:
@@ -208,7 +211,7 @@ private:
 	double piercing = 0.;
 	
 	bool hasDamageDropoff = false;
-	std::pair<double, double> damageDropoff;
+	std::pair<double, double> damageDropoffRange;
 	double damageDecay;
 	
 	// Cache the calculation of these values, for faster access.
