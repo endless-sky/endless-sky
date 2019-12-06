@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "Variant.h"
 
 #include <algorithm>
 #include <cmath>
@@ -206,7 +207,7 @@ void Fleet::Load(const DataNode &node)
 				total = 0;
 			}
 			variants.emplace_back(child);
-			total += variants.back().weight;
+			total += variants.back().Weight();
 		}
 		else if(key == "variant")
 		{
@@ -214,10 +215,10 @@ void Fleet::Load(const DataNode &node)
 			bool didRemove = false;
 			Variant toRemove(child);
 			for(auto it = variants.begin(); it != variants.end(); ++it)
-				if(toRemove.ships.size() == it->ships.size() &&
-					is_permutation(it->ships.begin(), it->ships.end(), toRemove.ships.begin()))
+				if(toRemove.Ships().size() == it->Ships().size() &&
+					is_permutation(it->Ships().begin(), it->Ships().end(), toRemove.Ships().begin()))
 				{
-					total -= it->weight;
+					total -= it->Weight();
 					variants.erase(it);
 					didRemove = true;
 					break;
@@ -248,7 +249,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	
 	// Pick a fleet variant to instantiate.
 	const Variant &variant = ChooseVariant();
-	if(variant.ships.empty())
+	if(variant.Ships().empty())
 		return;
 	
 	// Figure out what system the fleet is starting in, where it is going, and
@@ -270,7 +271,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		// drives and hyperdrives.
 		bool hasJump = false;
 		bool hasHyper = false;
-		for(const Ship *ship : variant.ships)
+		for(const Ship *ship : variant.Ships())
 		{
 			if(ship->Attributes().Get("jump drive"))
 			{
@@ -415,7 +416,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 	
 	// Pick a fleet variant to instantiate.
 	const Variant &variant = ChooseVariant();
-	if(variant.ships.empty())
+	if(variant.Ships().empty())
 		return;
 	
 	// Determine where the fleet is going to or coming from.
@@ -499,40 +500,21 @@ int64_t Fleet::Strength() const
 	for(const Variant &variant : variants)
 	{
 		int64_t thisSum = 0;
-		for(const Ship *ship : variant.ships)
+		for(const Ship *ship : variant.Ships())
 			thisSum += ship->Cost();
-		sum += thisSum * variant.weight;
+		sum += thisSum * variant.Weight();
 	}
 	return sum / total;
 }
 
 
 
-Fleet::Variant::Variant(const DataNode &node)
-{
-	weight = 1;
-	if(node.Token(0) == "variant" && node.Size() >= 2)
-		weight = node.Value(1);
-	else if(node.Token(0) == "add" && node.Size() >= 3)
-		weight = node.Value(2);
-	
-	for(const DataNode &child : node)
-	{
-		int n = 1;
-		if(child.Size() >= 2 && child.Value(1) >= 1.)
-			n = child.Value(1);
-		ships.insert(ships.end(), n, GameData::Ships().Get(child.Token(0)));
-	}
-}
-
-
-
-const Fleet::Variant &Fleet::ChooseVariant() const
+const Variant &Fleet::ChooseVariant() const
 {
 	// Pick a random variant based on the weights.
 	unsigned index = 0;
-	for(int choice = Random::Int(total); choice >= variants[index].weight; ++index)
-		choice -= variants[index].weight;
+	for(int choice = Random::Int(total); choice >= variants[index].Weight(); ++index)
+		choice -= variants[index].Weight();
 	
 	return variants[index];
 }
@@ -558,7 +540,7 @@ pair<Point, double> Fleet::ChooseCenter(const System &system)
 vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 {
 	vector<shared_ptr<Ship>> placed;
-	for(const Ship *model : variant.ships)
+	for(const Ship *model : variant.Ships())
 	{
 		if(model->ModelName().empty())
 		{

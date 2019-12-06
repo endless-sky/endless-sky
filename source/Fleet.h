@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Personality.h"
 #include "Sale.h"
+#include "Variant.h"
 
 #include <list>
 #include <memory>
@@ -30,6 +31,7 @@ class Phrase;
 class Planet;
 class Ship;
 class System;
+class Variant;
 
 
 
@@ -62,17 +64,6 @@ public:
 	static void Place(const System &system, Ship &ship);
 	
 	int64_t Strength() const;
-	
-	
-private:
-	class Variant {
-	public:
-		explicit Variant(const DataNode &node);
-		
-		int weight;
-		std::vector<const Ship *> ships;
-	};
-	
 	
 private:
 	const Variant &ChooseVariant() const;
