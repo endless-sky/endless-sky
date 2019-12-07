@@ -204,6 +204,9 @@ public:
 	bool IsDisabled() const;
 	bool IsBoarding() const;
 	bool IsLanding() const;
+	bool IsDeploying() const;
+	// Set if this ship should be deploying
+	void DoDeploy(bool shouldDeploy);
 	// Check if this ship is currently able to begin landing on its target.
 	bool CanLand() const;
 	// Check if some condition is keeping this ship from acting. (That is, it is
@@ -415,6 +418,10 @@ private:
 	
 	int forget = 0;
 	bool isInSystem = true;
+	// Variable that indicates if this ship should deploy. Only relevant for
+	// carried ships. This variable is not combined with the Commands in AI
+	// since it is possible that a ship has both a deploy and orders.
+	bool doDeploy = false;
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
 	// continue to exist and refuel instead of being deleted.
 	bool isSpecial = false;

@@ -2063,6 +2063,21 @@ bool Ship::IsLanding() const
 
 
 
+
+bool Ship::IsDeploying() const
+{
+	return doDeploy;
+}
+
+
+
+void Ship::DoDeploy(bool shouldDeploy)
+{
+	doDeploy = shouldDeploy;
+}
+
+
+
 // Check if this ship is currently able to begin landing on its target.
 bool Ship::CanLand() const
 {
