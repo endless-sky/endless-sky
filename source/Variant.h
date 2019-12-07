@@ -41,6 +41,7 @@ public:
 	std::vector<const Ship *> NestedChooseShips() const;
 	
 	int64_t Strength() const;
+	int64_t NestedStrength() const;
 	
 private:
 	
