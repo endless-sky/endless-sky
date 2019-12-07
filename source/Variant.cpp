@@ -166,6 +166,6 @@ int64_t Variant::NestedStrength() const
 		sum += ship->Cost();
 	for(auto variant : variants)
 		sum += variant.first->NestedStrength();
-	sum /= ships.Size() + variants.Size();
+	sum /= ships.size() + variants.size();
 	return sum;
 }
