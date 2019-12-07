@@ -3686,17 +3686,27 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	// toggle is a move command; it always counts as a new command.
 	bool hasMismatch = isMoveOrder;
 	bool gaveOrder = false;
+	
+	// A target is valid if we have no target, or when the target is in the
+	// same system as the flagship.
+	bool isValidTarget = !newTarget || (newTarget && player.Flagship() &&
+		newTarget->GetSystem() == player.Flagship()->GetSystem());
+	
 	for(const Ship *ship : ships)
 	{
 		// Never issue orders to a ship to target itself.
 		if(ship == newTarget)
 			continue;
 		
-		// Never issue orders that target a ship in another system.
-		if(newTarget && ship->GetSystem() != newTarget->GetSystem())
-			continue;
-		
 		gaveOrder = true;
+		
+		// If we don't have a valid target, then we cancel the orders for
+		// all selected ships. The only reason we still got into this loop
+		// is to make sure that we selected at least 1 ship that can follow
+		// the order.
+		if(!isValidTarget)
+			break;
+		
 		hasMismatch |= !orders.count(ship);
 		
 		Orders &existing = orders[ship];
@@ -3729,7 +3739,11 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	else
 	{
 		// Clear all the orders for these ships.
-		Messages::Add(who + "no longer " + description);
+		if (!isValidTarget)
+			Messages::Add(who + "cannot and no longer " + description);
+		else
+			Messages::Add(who + "no longer " + description);
+		
 		for(const Ship *ship : ships)
 			orders.erase(ship);
 	}
