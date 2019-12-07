@@ -264,7 +264,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	
 	// Pick a fleet variant to instantiate.
 	const Variant &variant = ChooseVariant();
-	if(variant.Ships().empty())
+	vector<const Ship *> variantShips = variant.ChooseShips();
+	if(variantShips.empty())
 		return;
 	
 	// Figure out what system the fleet is starting in, where it is going, and
@@ -286,7 +287,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		// drives and hyperdrives.
 		bool hasJump = false;
 		bool hasHyper = false;
-		for(const Ship *ship : variant.Ships())
+		for(const Ship *ship : variantShips)
 		{
 			if(ship->Attributes().Get("jump drive"))
 			{
@@ -350,7 +351,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			source = linkVector[choice];
 	}
 	
-	auto placed = Instantiate(variant);
+	auto placed = Instantiate(variantShips);
 	// Carry all ships that can be carried, as they don't need to be positioned
 	// or checked to see if they can access a particular planet.
 	for(auto &ship : placed)
@@ -431,7 +432,8 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 	
 	// Pick a fleet variant to instantiate.
 	const Variant &variant = ChooseVariant();
-	if(variant.Ships().empty())
+	vector<const Ship *> variantShips = variant.ChooseShips();
+	if(variantShips.empty())
 		return;
 	
 	// Determine where the fleet is going to or coming from.
@@ -439,7 +441,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 	
 	// Place all the ships in the chosen fleet variant.
 	shared_ptr<Ship> flagship;
-	vector<shared_ptr<Ship>> placed = Instantiate(variant);
+	vector<shared_ptr<Ship>> placed = Instantiate(variantShips);
 	for(shared_ptr<Ship> &ship : placed)
 	{
 		// If this is a fighter and someone can carry it, no need to position it.
@@ -547,10 +549,10 @@ pair<Point, double> Fleet::ChooseCenter(const System &system)
 
 
 
-vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
+vector<shared_ptr<Ship>> Fleet::Instantiate(vector<const Ship *> &variantShips) const
 {
 	vector<shared_ptr<Ship>> placed;
-	for(const Ship *model : variant.Ships())
+	for(const Ship *model : variantShips)
 	{
 		if(model->ModelName().empty())
 		{

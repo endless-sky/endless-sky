@@ -13,8 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef VARIANT_H_
 #define VARIANT_H_
 
-#include "GameData.h"
-
 #include <list>
 #include <memory>
 #include <set>
@@ -38,6 +36,9 @@ public:
 	
 	const std::string &Name() const;
 	std::vector<const Ship *> Ships() const;
+	std::vector<std::pair<const Variant *, int>> Variants() const;
+	std::vector<const Ship *> ChooseShips() const;
+	std::vector<const Ship *> NestedChooseShips() const;
 	
 	int64_t Strength() const;
 	
@@ -45,7 +46,11 @@ private:
 	
 private:
 	std::string name;
+	int total = 0;
+	int variantTotal = 0;
+	int shipTotal = 0;
 	std::vector<const Ship *> ships;
+	std::vector<std::pair<const Variant *, int>> variants;
 
 };
 

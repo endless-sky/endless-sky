@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Fleet.h"
 
 #include "DataNode.h"
+#include "GameData.h"
+#include "Random.h"
 #include "Ship.h"
 
 #include <algorithm>
@@ -48,10 +50,42 @@ void Variant::Load(const DataNode &node, const bool global)
 	
 	for(const DataNode &child : node)
 	{
+		bool variant = (child.Token(0) == "variant");
 		int n = 1;
-		if(child.Size() >= 2 && child.Value(1) >= 1.)
-			n = child.Value(1);
-		ships.insert(ships.end(), n, GameData::Ships().Get(child.Token(0)));
+		
+		if(variant)
+		{
+			bool named = false;
+			string variantName;
+			if(child.Size() >= 2 && !child.IsNumber(1))
+			{
+				variantName = child.Token(1);
+				named = true;
+				if(variantName == name)
+				{
+					node.PrintTrace("A variant can not reference itself:");
+					return;
+				}
+			}
+			
+			if(child.Size() >= 2 + named)
+				n = child.Value(1 + named);
+			total += n;
+			variantTotal += n;
+			
+			if(named)
+				variants.emplace_back(make_pair(GameData::Variants().Get(variantName), n));
+			else
+				variants.emplace_back(make_pair(new Variant(child), n));
+		}
+		else
+		{
+			if(child.Size() >= 2 && child.Value(1) >= 1.)
+				n = child.Value(1);
+			total += n;
+			shipTotal += n;
+			ships.insert(ships.end(), n, GameData::Ships().Get(child.Token(0)));
+		}
 	}
 }
 
@@ -67,6 +101,48 @@ const string &Variant::Name() const
 vector<const Ship *> Variant::Ships() const
 {
 	return ships;
+}
+
+
+
+vector<pair<const Variant *, int>> Variant::Variants() const
+{
+	return variants;
+}
+
+
+
+vector<const Ship *> Variant::ChooseShips() const
+{
+	vector<const Ship *> chosenShips = ships;
+	for(auto &it : variants)
+	{
+		vector<const Ship *> variantShips = it.first->NestedChooseShips();
+		chosenShips.insert(chosenShips.end(), variantShips.begin(), variantShips.end());
+	}
+	return chosenShips;
+}
+
+
+
+vector<const Ship *> Variant::NestedChooseShips() const
+{
+	vector<const Ship *> chosenShips = ships;
+	
+	int chosen = Random::Int(total);
+	if(chosen >= variantTotal)
+	{
+		unsigned variantIndex = 0;
+		for(int choice = Random::Int(variantTotal); choice >= variants[variantIndex].second; ++variantIndex)
+			choice -= variants[variantIndex].second;
+		
+		vector<const Ship *> variantShips = variants[variantIndex].first->NestedChooseShips();
+		chosenShips.insert(chosenShips.end(), variantShips.begin(), variantShips.end());
+	}
+	else
+		chosenShips.push_back(ships[Random::Int(shipTotal)]);
+	
+	return chosenShips;
 }
 
 
