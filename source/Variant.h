@@ -36,15 +36,16 @@ public:
 	
 	void Load(const DataNode &node, bool global = false);
 	
-	int Weight() const;
+	const std::string &Name() const;
 	std::vector<const Ship *> Ships() const;
 	
+	int64_t Strength() const;
+	
 private:
 	
 private:
-	int weight;
+	std::string name;
 	std::vector<const Ship *> ships;
-	std::vector<const Variant *> variant;
 
 };
 

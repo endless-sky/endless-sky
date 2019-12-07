@@ -206,8 +206,13 @@ void Fleet::Load(const DataNode &node)
 				variants.clear();
 				total = 0;
 			}
-			variants.emplace_back(child);
-			total += variants.back().Weight();
+			int weight = 1;
+			if(node.Token(0) == "variant" && node.Size() >= 2)
+				weight = child.Value(1);
+			else if(node.Token(0) == "add" && node.Size() >= 3)
+				weight = child.Value(2);
+			variants.emplace_back(make_pair(Variant(child), weight));
+			total += weight;
 		}
 		else if(key == "variant")
 		{
@@ -215,10 +220,10 @@ void Fleet::Load(const DataNode &node)
 			bool didRemove = false;
 			Variant toRemove(child);
 			for(auto it = variants.begin(); it != variants.end(); ++it)
-				if(toRemove.Ships().size() == it->Ships().size() &&
-					is_permutation(it->Ships().begin(), it->Ships().end(), toRemove.Ships().begin()))
+				if(toRemove.Ships().size() == it->first.Ships().size() &&
+					is_permutation(it->first.Ships().begin(), it->first.Ships().end(), toRemove.Ships().begin()))
 				{
-					total -= it->Weight();
+					total -= it->second;
 					variants.erase(it);
 					didRemove = true;
 					break;
@@ -497,13 +502,8 @@ void Fleet::Place(const System &system, Ship &ship)
 int64_t Fleet::Strength() const
 {
 	int64_t sum = 0;
-	for(const Variant &variant : variants)
-	{
-		int64_t thisSum = 0;
-		for(const Ship *ship : variant.Ships())
-			thisSum += ship->Cost();
-		sum += thisSum * variant.Weight();
-	}
+	for(auto &variant : variants)
+		sum += variant.first.Strength() * variant.second;
 	return sum / total;
 }
 
@@ -513,10 +513,10 @@ const Variant &Fleet::ChooseVariant() const
 {
 	// Pick a random variant based on the weights.
 	unsigned index = 0;
-	for(int choice = Random::Int(total); choice >= variants[index].Weight(); ++index)
-		choice -= variants[index].Weight();
+	for(int choice = Random::Int(total); choice >= variants[index].second; ++index)
+		choice -= variants[index].second;
 	
-	return variants[index];
+	return variants[index].first;
 }
 
 

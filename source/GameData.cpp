@@ -81,6 +81,7 @@ namespace {
 	Set<Planet> planets;
 	Set<Ship> ships;
 	Set<System> systems;
+	Set<Variant> variants;
 	
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
@@ -706,6 +707,13 @@ const Set<System> &GameData::Systems()
 
 
 
+const Set<Variant> &GameData::Variants()
+{
+	return variants;
+}
+
+
+
 const Government *GameData::PlayerGovernment()
 {
 	return playerGovernment;
@@ -963,6 +971,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if(key == "trade")
 			trade.Load(node);
+		else if(key == "variant")
+			variants.Get(node.Token(1))->Load(node, true);
 		else if(key == "landing message" && node.Size() >= 2)
 		{
 			for(const DataNode &child : node)

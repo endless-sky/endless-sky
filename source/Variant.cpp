@@ -21,8 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-namespace
-{
+namespace {
 }
 
 
@@ -37,16 +36,14 @@ Variant::Variant(const DataNode &node)
 
 void Variant::Load(const DataNode &node, const bool global)
 {
-	if(!global)
+	if(global)
 	{
-		weight = 1;
-		if(node.Token(0) == "variant" && node.Size() >= 2)
-			weight = node.Value(1);
-		else if(node.Token(0) == "add" && node.Size() >= 3)
-			weight = node.Value(2);
-	}
-	else
-	{
+		if(node.Size() < 2)
+		{
+			node.PrintTrace("No name specified for variant:");
+			return;
+		}
+		name = node.Token(1);
 	}
 	
 	for(const DataNode &child : node)
@@ -60,9 +57,9 @@ void Variant::Load(const DataNode &node, const bool global)
 
 
 
-int Variant::Weight() const
+const string &Variant::Name() const
 {
-	return weight;
+	return name;
 }
 
 
@@ -70,4 +67,14 @@ int Variant::Weight() const
 vector<const Ship *> Variant::Ships() const
 {
 	return ships;
+}
+
+
+
+int64_t Variant::Strength() const
+{
+	int64_t sum = 0;
+	for(const Ship *ship : ships)
+		sum += ship->Cost();
+	return sum;
 }
