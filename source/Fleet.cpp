@@ -221,7 +221,7 @@ void Fleet::Load(const DataNode &node)
 			if(named)
 				variants.emplace_back(make_pair(GameData::Variants().Get(name), weight));
 			else
-				variants.emplace_back(make_pair(Variant(child), weight));
+				variants.emplace_back(make_pair(new Variant(child), weight));
 			total += weight;
 		}
 		else if(key == "variant")
@@ -526,7 +526,7 @@ const Variant &Fleet::ChooseVariant() const
 	for(int choice = Random::Int(total); choice >= variants[index].second; ++index)
 		choice -= variants[index].second;
 	
-	return variants[index].first;
+	return *variants[index].first;
 }
 
 
