@@ -230,8 +230,12 @@ void Fleet::Load(const DataNode &node)
 			bool didRemove = false;
 			Variant toRemove(child);
 			for(auto it = variants.begin(); it != variants.end(); ++it)
-				if(toRemove.Ships().size() == it->first->Ships().size() &&
-					is_permutation(it->first->Ships().begin(), it->first->Ships().end(), toRemove.Ships().begin()))
+				if(toRemove.Ships().size() == it->first->Ships().size()
+					&& is_permutation(it->first->Ships().begin(),
+					it->first->Ships().end(), toRemove.Ships().begin())
+					&& toRemove.Variants().size() == it->first->Variants().size()
+					&& is_permutation(it->first->Variants().begin(),
+					it->first->Variants().end(), toRemove.Variants().begin()))
 				{
 					total -= it->second;
 					variants.erase(it);

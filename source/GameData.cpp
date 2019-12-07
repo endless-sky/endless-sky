@@ -93,6 +93,7 @@ namespace {
 	Set<Galaxy> defaultGalaxies;
 	Set<Sale<Ship>> defaultShipSales;
 	Set<Sale<Outfit>> defaultOutfitSales;
+	Set<Variant> defaultVariants;
 	
 	Politics politics;
 	StartConditions startConditions;
@@ -198,6 +199,7 @@ bool GameData::BeginLoad(const char * const *argv)
 	defaultGalaxies = galaxies;
 	defaultShipSales = shipSales;
 	defaultOutfitSales = outfitSales;
+	defaultVariants = variants;
 	playerGovernment = governments.Get("Escort");
 	
 	politics.Reset();
@@ -224,7 +226,8 @@ void GameData::CheckReferences()
 		"news",
 		"planet",
 		"shipyard",
-		"system"
+		"system",
+		"variant"
 	};
 	for(const auto &it : events)
 	{
@@ -281,6 +284,9 @@ void GameData::CheckReferences()
 	for(const auto &it : systems)
 		if(it.second.Name().empty() && !deferred["system"].count(it.first))
 			Files::LogError("Warning: system \"" + it.first + "\" is referred to, but never defined.");
+	for(const auto &it : variants)
+		if(it.second.Name().empty() && !deferred["variant"].count(it.first))
+			Files::LogError("Warning: variant \"" + it.first + "\" is referred to, but never defined.");
 }
 
 
@@ -387,6 +393,7 @@ void GameData::Revert()
 	galaxies.Revert(defaultGalaxies);
 	shipSales.Revert(defaultShipSales);
 	outfitSales.Revert(defaultOutfitSales);
+	variants.Revert(defaultVariants);
 	for(auto &it : persons)
 		it.second.Restore();
 	
@@ -540,6 +547,8 @@ void GameData::Change(const DataNode &node)
 		systems.Get(node.Token(1))->Load(node, planets);
 	else if(node.Token(0) == "news" && node.Size() >= 2)
 		news.Get(node.Token(1))->Load(node);
+	else if(node.Token(0) == "variant" && node.Size() >= 2)
+		variants.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "link" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "unlink" && node.Size() >= 3)
