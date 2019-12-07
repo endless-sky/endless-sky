@@ -130,7 +130,7 @@ vector<const Ship *> Variant::NestedChooseShips() const
 	vector<const Ship *> chosenShips = ships;
 	
 	int chosen = Random::Int(total);
-	if(chosen >= variantTotal)
+	if(chosen < variantTotal)
 	{
 		unsigned variantIndex = 0;
 		for(int choice = Random::Int(variantTotal); choice >= variants[variantIndex].second; ++variantIndex)
