@@ -576,7 +576,7 @@ mission "Remnant: Technology Available"
 	on offer
 		payment 2000000
 		set "license: Remnant"
-		log "The prefects have reached a consensus that I should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."
+		log "The prefects have reached a consensus. Shall be considered a valuable friend of the Remnant, and given permission to purchase their ships and technology."
 		
 		log "The prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."
 		conversation
