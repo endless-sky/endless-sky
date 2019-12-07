@@ -78,7 +78,7 @@ private:
 	const Government *government = nullptr;
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
-	std::vector<std::pair<Variant, int>> variants;
+	std::vector<std::pair<const Variant *, int>> variants;
 	// The sum of all available variant weights.
 	int total = 0;
 	// The number of different items the ships in this fleet will carry in cargo.

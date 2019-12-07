@@ -206,12 +206,22 @@ void Fleet::Load(const DataNode &node)
 				variants.clear();
 				total = 0;
 			}
+
 			int weight = 1;
-			if(node.Token(0) == "variant" && node.Size() >= 2)
-				weight = child.Value(1);
-			else if(node.Token(0) == "add" && node.Size() >= 3)
-				weight = child.Value(2);
-			variants.emplace_back(make_pair(Variant(child), weight));
+			string name;
+			bool named = false;
+			if(node.Size() >= 2 + add && !node.IsNumber(1 + add))
+			{
+				name = node.Token(1 + add);
+				named = true;
+			}
+			if(node.Size() >= 2 + add + named)
+				weight = child.Value(1 + add + named);
+
+			if(named)
+				variants.emplace_back(make_pair(GameData::Variants().Get(name), weight));
+			else
+				variants.emplace_back(make_pair(Variant(child), weight));
 			total += weight;
 		}
 		else if(key == "variant")
@@ -220,8 +230,8 @@ void Fleet::Load(const DataNode &node)
 			bool didRemove = false;
 			Variant toRemove(child);
 			for(auto it = variants.begin(); it != variants.end(); ++it)
-				if(toRemove.Ships().size() == it->first.Ships().size() &&
-					is_permutation(it->first.Ships().begin(), it->first.Ships().end(), toRemove.Ships().begin()))
+				if(toRemove.Ships().size() == it->first->Ships().size() &&
+					is_permutation(it->first->Ships().begin(), it->first->Ships().end(), toRemove.Ships().begin()))
 				{
 					total -= it->second;
 					variants.erase(it);
@@ -503,7 +513,7 @@ int64_t Fleet::Strength() const
 {
 	int64_t sum = 0;
 	for(auto &variant : variants)
-		sum += variant.first.Strength() * variant.second;
+		sum += variant.first->Strength() * variant.second;
 	return sum / total;
 }
 
