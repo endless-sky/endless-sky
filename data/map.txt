@@ -7355,6 +7355,72 @@ system Debrugt
 			distance 324
 			period 23.3095
 
+system Delia
+	pos -41 757
+	government Uninhabited
+	habitable 486.68
+	link Dixere
+	link Giribea
+	asteroids "large metal" 10 9
+	asteroids "large rock" 11 5
+	asteroids "medium metal" 6 5
+	asteroids "medium rock" 31 6
+	asteroids "small metal" 7 8
+	asteroids "small rock" 76 6
+	minables copper 1 7
+	minables lead 3 12
+	minables tungsten 3 11
+	trade Clothing 279
+	trade Electronics 703
+	trade Equipment 615
+	trade Food 395
+	trade "Heavy Metals" 1014
+	trade Industrial 790
+	trade "Luxury Goods" 1135
+	trade Medical 698
+	trade Metal 397
+	trade Plastic 490
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/mars
+		distance 160.21
+		period 36.7682
+		offset 217.144
+	object
+		sprite planet/venus
+		distance 363.65
+		period 125.737
+		offset 214.842
+	object
+		sprite planet/cloud0
+		distance 589.01
+		period 259.192
+		offset 20.1203
+	object
+		sprite planet/desert4
+		distance 748.5
+		period 371.301
+		offset 34.9671
+	object
+		sprite planet/gas11
+		distance 2258.66
+		period 1946.32
+		offset 23.3162
+		object
+			sprite planet/ice7
+			distance 255
+			period 13.4304
+		object
+			sprite planet/luna
+			distance 367
+			period 23.1887
+		object
+			sprite planet/rock7
+			distance 519
+			period 38.9968
+
 system "Delta Capricorni"
 	pos -285 202
 	government Syndicate
@@ -7711,6 +7777,86 @@ system Diphda
 		sprite planet/rock0-b
 		distance 2262.04
 		period 1770.73
+
+system Dixere
+	pos 33 708
+	government Uninhabited
+	habitable 851.84
+	link Delia
+	link Feraticus
+	asteroids "large metal" 5 6
+	asteroids "large rock" 2 3
+	asteroids "medium metal" 7 5
+	asteroids "medium rock" 11 6
+	asteroids "small metal" 3 6
+	asteroids "small rock" 1 5
+	minables lead 2 6
+	minables silver 1 7
+	trade Clothing 321
+	trade Electronics 686
+	trade Equipment 636
+	trade Food 438
+	trade "Heavy Metals" 927
+	trade Industrial 803
+	trade "Luxury Goods" 1193
+	trade Medical 815
+	trade Metal 349
+	trade Plastic 479
+	object
+		sprite star/k5
+		distance 43
+		period 10.9302
+		offset 180
+	object
+		sprite star/k5
+		distance 43
+		period 10.9302
+	object
+		sprite planet/lava1
+		distance 169.69
+		period 30.2946
+		offset 260.355
+	object
+		sprite planet/gas10
+		distance 562.94
+		period 183.052
+		offset 232.741
+	object
+		sprite planet/lava4
+		distance 867.18
+		period 349.981
+		offset 344.167
+	object
+		sprite planet/desert2
+		distance 1104.67
+		period 503.187
+		offset 180.723
+	object
+		sprite planet/desert8
+		distance 1415.76
+		period 730.072
+		offset 333.491
+	object
+		sprite planet/gas8
+		distance 2132.25
+		period 1349.39
+		offset 141.543
+		object
+			sprite planet/luna
+			distance 186
+			period 13.5035
+		object
+			sprite planet/ice0
+			distance 275
+			period 24.2759
+		object
+			sprite planet/dust1
+			distance 430
+			period 47.4657
+		object
+			sprite planet/ice8
+			distance 555
+			period 69.6011
 
 system Dokdobaru
 	pos -21.5695 -241.812
@@ -9059,6 +9205,67 @@ system Eshkoshtar
 			distance 367
 			period 24.7968
 
+system Esix
+	pos 142 532
+	government Uninhabited
+	habitable 135
+	link Gerenus
+	link Nona
+	link Paeli
+	link Queri
+	asteroids "large metal" 1 1
+	asteroids "large rock" 1 2
+	asteroids "small metal" 1 2
+	minables lead 13 0
+	trade Clothing 315
+	trade Electronics 742
+	trade Equipment 492
+	trade Food 286
+	trade "Heavy Metals" 878
+	trade Industrial 745
+	trade "Luxury Goods" 1005
+	trade Medical 520
+	trade Metal 357
+	trade Plastic 358
+	object
+		sprite star/m8
+		period 10
+	object
+		sprite planet/desert5
+		distance 245.01
+		period 132.029
+	object
+		sprite planet/dust3
+		distance 593.57
+		period 497.853
+	object
+		sprite planet/gas5
+		distance 945.38
+		period 1000.7
+	object
+		sprite planet/dust4
+		distance 1331.74
+		period 1673.1
+		offset 12.5454
+	object "Graveyard Wormhole (Stable)"
+		sprite planet/wormhole-red
+		distance 1618.74
+		period 2242.12
+		offset 278.315
+	object
+		sprite planet/gas3
+		distance 2694.88
+		period 4816.17
+		offset 47.9894
+		object
+			sprite planet/ice8
+			distance 270
+			period 11.3321
+		object
+			sprite planet/rock14
+			distance 372
+			period 18.3265
+
 system Eteron
 	pos -330 33
 	government Republic
@@ -9665,6 +9872,64 @@ system Fasitopfar
 		distance 1927.7
 		period 1640.42
 
+system Fearis
+	pos -16 643
+	government Uninhabited
+	habitable 486.68
+	link Feraticus
+	link Lire
+	asteroids "large metal" 1 1
+	asteroids "large rock" 2 2
+	asteroids "medium rock" 7 1
+	asteroids "small rock" 1 4
+	trade Clothing 271
+	trade Electronics 824
+	trade Equipment 531
+	trade Food 519
+	trade "Heavy Metals" 903
+	trade Industrial 711
+	trade "Luxury Goods" 1332
+	trade Medical 874
+	trade Metal 224
+	trade Plastic 339
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/rock15
+		distance 179.41
+		period 43.5721
+	object
+		sprite planet/desert9
+		distance 351.57
+		period 119.524
+	object
+		sprite planet/ocean2
+		distance 651.93
+		period 301.814
+	object
+		sprite planet/desert8
+		distance 1046.89
+		period 614.172
+		object
+			sprite planet/luna
+			distance 137
+			period 20.5678
+	object "Graveyard Wormhole (Unstable)"
+		sprite planet/wormhole-red
+		distance 1606.64
+		period 1167.66
+		offset 195.653
+	object
+		sprite planet/jupiter
+		distance 3525.49
+		period 3795.49
+		offset 11.7572
+		object
+			sprite planet/desert4
+			distance 242
+			period 11.83
+
 system "Fell Omen"
 	pos -1156.59 475.051
 	government Coalition
@@ -9738,6 +10003,116 @@ system "Fell Omen"
 			sprite planet/luna
 			distance 361
 			period 27.9331
+
+system Feraticus
+	pos 58 630
+	government Uninhabited
+	habitable 320
+	link Dixere
+	link Fearis
+	link Giribea
+	link Relifer
+	asteroids "large metal" 1 3
+	asteroids "large rock" 5 6
+	asteroids "medium metal" 2 4
+	asteroids "medium rock" 4 5
+	asteroids "small metal" 1 4
+	asteroids "small rock" 2 6
+	minables iron 1 7
+	minables silver 2 8
+	trade Clothing 274
+	trade Electronics 743
+	trade Equipment 575
+	trade Food 497
+	trade "Heavy Metals" 865
+	trade Industrial 735
+	trade "Luxury Goods" 1264
+	trade Medical 875
+	trade Metal 241
+	trade Plastic 405
+	object
+		sprite star/m0
+		period 10
+	object
+		sprite planet/ganymede
+		distance 124.56
+		period 31.0851
+		offset 96.9733
+	object
+		sprite planet/rock0
+		distance 264.77
+		period 96.3359
+		offset 339.997
+	object
+		sprite planet/lava0
+		distance 422.81
+		period 194.403
+		offset 81.6258
+	object
+		sprite planet/gas9
+		distance 893.22
+		period 596.929
+		offset 271.075
+		object
+			sprite planet/dust7
+			distance 223
+			period 12.4867
+		object
+			sprite planet/rhea
+			distance 325
+			period 21.9693
+	object
+		sprite planet/gas15
+		distance 2487.73
+		period 2774.54
+		offset 276.106
+
+system Fereti
+	pos -39 600
+	government Uninhabited
+	habitable 486.68
+	link Lire
+	asteroids "large metal" 1 2
+	asteroids "large rock" 2 1
+	asteroids "medium rock" 3 1
+	asteroids "small rock" 2 2
+	trade Clothing 294
+	trade Electronics 821
+	trade Equipment 651
+	trade Food 519
+	trade "Heavy Metals" 782
+	trade Industrial 612
+	trade "Luxury Goods" 1251
+	trade Medical 759
+	trade Metal 354
+	trade Plastic 426
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/lava7
+		distance 152.36
+		period 34.0992
+	object
+		sprite planet/ice6
+		distance 521.2
+		period 215.747
+		object
+			sprite planet/dust3
+			distance 161
+			period 25.6804
+	object
+		sprite planet/desert9
+		distance 887.04
+		period 479.019
+	object
+		sprite planet/gas2
+		distance 2366.29
+		period 2087.09
+		object
+			sprite planet/luna
+			distance 203
+			period 17.525
 
 system Feroteri
 	pos 149.431 -205.812
@@ -10430,6 +10805,65 @@ system "Gamma Corvi"
 		distance 3454.86
 		period 2072.83
 
+system Gerenus
+	pos 197 514
+	government Uninhabited
+	habitable 9065.92
+	link Esix
+	link Nona
+	asteroids "large metal" 5 5
+	asteroids "large rock" 5 4
+	asteroids "medium metal" 33 8
+	asteroids "medium rock" 53 12
+	asteroids "small metal" 1 7
+	asteroids "small rock" 12 11
+	minables aluminum 6 11
+	minables copper 14 19
+	minables iron 14 20
+	trade Clothing 326
+	trade Electronics 657
+	trade Equipment 544
+	trade Food 298
+	trade "Heavy Metals" 882
+	trade Industrial 776
+	trade "Luxury Goods" 1069
+	trade Medical 561
+	trade Metal 356
+	trade Plastic 349
+	object
+		sprite star/b5
+		distance 7.46987
+		period 8.42267
+	object
+		sprite star/k5
+		distance 151.53
+		period 8.42267
+		offset 180
+	object
+		sprite planet/rock10
+		distance 329.94
+		period 25.1772
+	object
+		sprite planet/desert0
+		distance 757.43
+		period 87.5725
+	object
+		sprite planet/lava7
+		distance 1413.32
+		period 223.211
+	object
+		sprite planet/neptune
+		distance 1666.32
+		period 285.754
+	object
+		sprite planet/gas4
+		distance 2533.32
+		period 535.66
+		object
+			sprite planet/lava0
+			distance 269
+			period 15.5606
+
 system Gienah
 	pos -176 354
 	government Pirate
@@ -10492,6 +10926,73 @@ system Gienah
 		sprite planet/dust1-b
 		distance 2108.98
 		period 1675.89
+
+system Giribea
+	pos -6 674
+	government Uninhabited
+	habitable 1705
+	link Delia
+	link Feraticus
+	link Lire
+	asteroids "large metal" 29 4
+	asteroids "large rock" 2 1
+	asteroids "medium metal" 150 3
+	asteroids "medium rock" 10 2
+	asteroids "small metal" 17 3
+	asteroids "small rock" 1 2
+	minables lead 40 4
+	minables tungsten 11 5
+	trade Clothing 260
+	trade Electronics 759
+	trade Equipment 614
+	trade Food 489
+	trade "Heavy Metals" 925
+	trade Industrial 715
+	trade "Luxury Goods" 1155
+	trade Medical 804
+	trade Metal 325
+	trade Plastic 488
+	object
+		sprite star/g0
+		distance 46.9208
+		period 14.0285
+		offset 180
+	object
+		sprite star/g5
+		distance 81.0792
+		period 14.0285
+	object
+		sprite planet/lava0
+		distance 217.769
+		period 31.131
+	object
+		sprite planet/rock2
+		distance 562.609
+		period 129.273
+	object
+		sprite planet/gas8
+		distance 950.019
+		period 283.659
+		object
+			sprite planet/europa
+			distance 215
+			period 16.7816
+	object
+		sprite planet/gas9
+		distance 1952.66
+		period 835.868
+		object
+			sprite planet/dust4
+			distance 268
+			period 16.451
+		object
+			sprite planet/rhea
+			distance 395
+			period 29.4365
+		object
+			sprite planet/ice0
+			distance 553
+			period 48.7616
 
 system Girtab
 	pos -430 481
@@ -14165,6 +14666,62 @@ system Limen
 			distance 212
 			period 13.1879
 
+system Lire
+	pos -59 676
+	government Uninhabited
+	habitable 1080
+	link Fearis
+	link Fereti
+	link Giribea
+	asteroids "large metal" 1 2
+	minables iron 3 11
+	minables titanium 21 14
+	trade Clothing 270
+	trade Electronics 818
+	trade Equipment 605
+	trade Food 524
+	trade "Heavy Metals" 863
+	trade Industrial 662
+	trade "Luxury Goods" 1259
+	trade Medical 816
+	trade Metal 307
+	trade Plastic 411
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/desert9
+		distance 180.81
+		period 29.5925
+	object
+		sprite planet/rock9
+		distance 676.17
+		period 214.009
+		object
+			sprite planet/rock0
+			distance 135
+			period 20.119
+	object
+		sprite planet/titan
+		distance 1019.41
+		period 396.161
+	object
+		sprite planet/gas12
+		distance 1361.41
+		period 611.409
+	object
+		sprite planet/gas15
+		distance 2307.37
+		period 1349.04
+		object
+			sprite planet/miranda
+			distance 178
+			period 12.5005
+		object
+			sprite planet/rock3
+			distance 300
+			period 27.3514
+
 system Lolami
 	pos -628 -10
 	government Republic
@@ -16648,6 +17205,54 @@ system Nocte
 		distance 2260.97
 		period 3701.14
 
+system Nona
+	pos 166 558
+	government Uninhabited
+	habitable 1080
+	link Esix
+	link Gerenus
+	asteroids "large metal" 1 3
+	asteroids "medium metal" 3 7
+	asteroids "small metal" 5 8
+	minables lead 1 10
+	trade Clothing 338
+	trade Electronics 679
+	trade Equipment 497
+	trade Food 316
+	trade "Heavy Metals" 903
+	trade Industrial 779
+	trade "Luxury Goods" 1074
+	trade Medical 587
+	trade Metal 340
+	trade Plastic 379
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/rock1
+		distance 166.29
+		period 26.1004
+	object
+		sprite planet/rhea
+		distance 342.7
+		period 77.2181
+	object
+		sprite planet/rock12
+		distance 675.34
+		period 213.615
+		object
+			sprite planet/rock7
+			distance 174
+			period 23.9139
+	object
+		sprite planet/gas4
+		distance 2149.35
+		period 1212.85
+		object
+			sprite planet/dust1
+			distance 270
+			period 15.6474
+
 system Nunki
 	pos -393 537
 	government Pirate
@@ -16968,6 +17573,67 @@ system Ossipago
 			sprite planet/rock17
 			distance 221
 			period 17.2936
+
+system Paeli
+	pos 129 497
+	government Uninhabited
+	habitable 425.92
+	link Esix
+	link Polerius
+	asteroids "large metal" 1 4
+	asteroids "large rock" 1 2
+	asteroids "medium metal" 1 3
+	asteroids "medium rock" 3 3
+	asteroids "small rock" 9 2
+	minables aluminum 3 4
+	minables lead 3 5
+	minables titanium 2 4
+	trade Clothing 284
+	trade Electronics 807
+	trade Equipment 557
+	trade Food 422
+	trade "Heavy Metals" 775
+	trade Industrial 786
+	trade "Luxury Goods" 1246
+	trade Medical 328
+	trade Metal 466
+	trade Plastic 462
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/desert7
+		distance 220.64
+		period 63.5217
+	object
+		sprite planet/lava2
+		distance 746.89
+		period 395.622
+		offset 16.1975
+	object
+		sprite planet/gas15
+		distance 1213.03
+		period 818.848
+		offset 125.921
+		object
+			sprite planet/rock14
+			distance 201
+			period 15
+	object
+		sprite planet/gas2
+		distance 2010.84
+		period 1747.68
+		offset 270.243
+		object
+			sprite planet/rock3
+			distance 302.81
+			period 31.9279
+			offset 256.243
+		object
+			sprite planet/rhea
+			distance 457.81
+			period 59.353
+			offset 360
 
 system Pantica
 	pos 303.87 445.242
@@ -17897,6 +18563,67 @@ system Polaris
 			distance 227
 			period 16.8578
 
+system Polerius
+	pos 88 482
+	government Uninhabited
+	habitable 1505.92
+	link Paeli
+	asteroids "small rock" 2 4
+	asteroids "medium rock" 8 5
+	asteroids "large rock" 4 3
+	asteroids "small metal" 13 4
+	asteroids "medium metal" 22 2
+	asteroids "large metal" 6 4
+	minables gold 1 3
+	minables lead 2 3
+	trade Clothing 270
+	trade Electronics 836
+	trade Equipment 607
+	trade Food 483
+	trade "Heavy Metals" 722
+	trade Industrial 824
+	trade "Luxury Goods" 1282
+	trade Medical 361
+	trade Metal 463
+	trade Plastic 503
+	object
+		sprite star/g0
+		distance 33.9397
+		period 13.5497
+		offset 180
+	object
+		sprite star/k5
+		distance 86.0603
+		period 13.5497
+	object
+		sprite planet/dust6
+		distance 219.9
+		period 33.6123
+	object
+		sprite planet/uranus
+		distance 644.74
+		period 168.747
+	object
+		sprite planet/cloud0
+		distance 1091.15
+		period 371.523
+	object
+		sprite planet/tethys
+		distance 1774.15
+		period 770.273
+	object
+		sprite planet/gas7
+		distance 2398.24
+		period 1210.59
+		object
+			sprite planet/dust5
+			distance 253
+			period 14.3157
+		object
+			sprite planet/ice8
+			distance 403
+			period 28.7798
+
 system Pollux
 	pos -465 4
 	government Republic
@@ -18146,6 +18873,66 @@ system Procyon
 		sprite planet/dust3-b
 		distance 3148.97
 		period 3311.38
+
+system "Pug Aki'il"
+	pos -83 722
+	government Pug
+	habitable 1505.92
+	asteroids "large metal" 47 5
+	asteroids "large rock" 2 10
+	asteroids "medium metal" 100 8
+	asteroids "medium rock" 4 5
+	asteroids "small metal" 48 6
+	asteroids "small rock" 4 8
+	trade Clothing 247
+	trade Electronics 642
+	trade Equipment 469
+	trade Food 440
+	trade "Heavy Metals" 722
+	trade Industrial 811
+	trade "Luxury Goods" 1220
+	trade Medical 849
+	trade Metal 335
+	trade Plastic 286
+	object
+		sprite star/g0
+		distance 32.2427
+		period 12.5463
+	object
+		sprite star/k5
+		distance 81.7573
+		period 12.5463
+		offset 180
+	object
+		sprite planet/rock7
+		distance 1209.76
+		period 433.717
+		offset 29.5665
+	object
+		sprite planet/rock18
+		distance 252.757
+		period 41.4204
+		offset 61.3079
+	object
+		sprite planet/neptune
+		distance 2740.76
+		period 1478.99
+		offset 9.66291
+	object
+		sprite planet/desert7
+		distance 600.757
+		period 151.778
+		offset 57.1944
+	object "Pug Kaelin"
+		sprite planet/ocean3
+		distance 927.757
+		period 291.28
+		offset 4.23336
+	object
+		sprite star/k0
+		distance 103.757
+		period 10.894
+		offset 114.305
 
 system "Pug Iyik"
 	pos -361.149 -883.233
@@ -18492,6 +19279,70 @@ system Quaru
 		distance 830
 		period 360
 		offset 237
+
+ystem Queri
+	pos 69 518
+	government Uninhabited
+	habitable 135
+	link Esix
+	link Ritilas
+	asteroids "large metal" 6 2
+	asteroids "large rock" 4 3
+	asteroids "medium metal" 13 2
+	asteroids "medium rock" 4 3
+	asteroids "small metal" 12 3
+	asteroids "small rock" 7 4
+	minables lead 4 4
+	minables silicon 3 5
+	trade Clothing 292
+	trade Electronics 793
+	trade Equipment 421
+	trade Food 144
+	trade "Heavy Metals" 986
+	trade Industrial 684
+	trade "Luxury Goods" 576
+	trade Medical 678
+	trade Metal 175
+	trade Plastic 329
+	object
+		sprite star/m8
+		period 10
+	object
+		sprite planet/cloud4
+		distance 175.44
+		period 132.377
+		object
+			sprite planet/ice0
+			distance 142
+			period 15.9157
+	object
+		sprite planet/gas14
+		distance 558.69
+		period 719.432
+		object
+			sprite planet/rock17
+			distance 236
+			period 14.7648
+	object
+		sprite planet/lava2
+		distance 1252.65
+		period 1526.29
+	object
+		sprite planet/dust3
+		distance 1629.9
+		period 2265.35
+	object
+		sprite planet/gas2
+		distance 2417.94
+		period 4093.19
+		object
+			sprite planet/rock0
+			distance 205
+			period 17.7847
+		object
+			sprite planet/tethys
+			distance 281
+			period 28.5413
 
 system Rajak
 	pos -270 -236
@@ -18859,6 +19710,84 @@ system Regulus
 			distance 346
 			period 20.065
 
+system Relifer
+	pos 19 603
+	government Uninhabited
+	habitable 625
+	link Feraticus
+	asteroids "large metal" 2 3
+	asteroids "large rock" 1 2
+	asteroids "medium metal" 1 3
+	asteroids "medium rock" 11 1
+	asteroids "small metal" 20 3
+	asteroids "small rock" 1 2
+	minables lead 6 4
+	minables silver 13 4
+	trade Clothing 217
+	trade Electronics 704
+	trade Equipment 564
+	trade Food 515
+	trade "Heavy Metals" 811
+	trade Industrial 704
+	trade "Luxury Goods" 1345
+	trade Medical 883
+	trade Metal 219
+	trade Plastic 355
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/mercury
+		distance 167.69
+		period 34.7441
+		offset 339.439
+	object
+		sprite planet/ocean3
+		distance 467.7
+		period 161.834
+		offset 195.125
+		object
+			sprite planet/dust7
+			distance 134
+			period 17.3734
+	object
+		sprite planet/rock4
+		distance 781.79
+		period 349.748
+		offset 99.1324
+	object
+		sprite planet/cloud4
+		distance 1126.04
+		period 604.576
+		offset 252.049
+	object "Graveyard Wormhole (Stable)"
+		sprite planet/wormhole-red
+		distance 1462.04
+		period 894.456
+		offset 114.016
+	object
+		sprite planet/ice1
+		distance 1804.04
+		period 1226
+		offset 348.55
+	object
+		sprite planet/gas14
+		distance 2539.85
+		period 2048.01
+		offset 144.237
+		object
+			sprite planet/tethys
+			distance 221
+			period 13.3797
+		object
+			sprite planet/rock0
+			distance 349
+			period 26.552
+		object
+			sprite planet/callisto
+			distance 459
+			period 40.0477
+
 system Remembrance
 	pos -884.587 641.051
 	government Coalition
@@ -18989,6 +19918,75 @@ system Rigel
 			sprite planet/rhea-b
 			distance 380
 			period 22.2115
+
+system Ritilas
+	pos 11 523
+	government Uninhabited
+	habitable 135
+	link Queri
+	asteroids "large metal" 4 4
+	asteroids "large rock" 18 2
+	asteroids "medium rock" 125 2
+	asteroids "small rock" 4 3
+	minables aluminum 28 5
+	minables copper 4 5
+	minables iron 1 4
+	trade Clothing 266
+	trade Electronics 788
+	trade Equipment 396
+	trade Food 128
+	trade "Heavy Metals" 1048
+	trade Industrial 652
+	trade "Luxury Goods" 560
+	trade Medical 721
+	trade Metal 138
+	trade Plastic 363
+	object
+		sprite star/m8
+		period 10
+	object
+		sprite planet/rock14
+		distance 127
+		period 49.2718
+	object
+		sprite planet/gas0
+		distance 666
+		period 591.704
+		object
+			sprite planet/callisto
+			distance 301
+			period 15.304
+		object
+			sprite planet/rock17
+			distance 414
+			period 24.6864
+	object
+		sprite planet/rock7
+		distance 1205.21
+		period 1440.41
+	object "Graveyard Wormhole (Unstable)"
+		sprite planet/wormhole-red
+		distance 1641.32
+		period 2289.21
+		offset 109.88
+	object
+		sprite planet/gas6
+		distance 2296.1
+		period 3787.73
+		offset 73.9578
+	object
+		sprite planet/gas9
+		distance 4038.51
+		period 8835.37
+		offset 15.7954
+		object
+			sprite planet/lava0
+			distance 234
+			period 13.4219
+		object
+			sprite planet/oberon
+			distance 365
+			period 26.1475
 
 system Ruchbah
 	pos -174 69
@@ -25138,6 +26136,13 @@ planet Grakhord
 	bribe 0
 	security 0.9
 
+planet "Graveyard Wormhole (Unstable)"
+	attributes "requires: quantum keystone"
+	description ``
+
+planet "Graveyard Wormhole (Stable)"
+	description ``
+
 planet Greenbloom
 	attributes hai "hai tourism" "human tourism"
 	landscape land/water3
@@ -26259,6 +27264,13 @@ planet Prime
 	tribute 4400
 		threshold 8000
 		fleet "Large Republic" 17
+
+planet "Pug Kaelin"
+	attributes pug
+	landscape land/myrabella5
+	description `The world of Pug Kaelin, presumibly an ancient outpost, seems to be complately uninhabited. Large, empty cities with towers of indescribable design encompass a large portion of one single continent. The rest of the land remains almost untouched by anything not native to this planet, as if the buildings were simply lowered down onto the land rather than built up over time.`
+	spaceport `The only word you can think of to describe the spaceport is "impressive". It is on the top of the largest tower, placed in the exact centre of one gargantuan city. With a base almost looking big enough to pass as a sizable village, very quickly getting thinner as it raises into the cities airspace.`
+	spaceport `Tiny, four-legged robots walk on the walls of every room, cleaning them in a matter of seconds. You can see more on the road below, and you presume they are everywhere in this city; this makes impossible to extimate how long the planet has been abandoned, since everything here is perfect and clean.`
 
 planet Pugglemug
 	landscape land/myrabella5
