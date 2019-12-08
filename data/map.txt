@@ -19280,7 +19280,7 @@ system Quaru
 		period 360
 		offset 237
 
-System Queri
+system Queri
 	pos 69 518
 	government Uninhabited
 	habitable 135
