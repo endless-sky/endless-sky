@@ -210,12 +210,12 @@ void Fleet::Load(const DataNode &node)
 			int weight = 1;
 			string name;
 			bool named = false;
-			if(node.Size() >= 2 + add && !node.IsNumber(1 + add))
+			if(child.Size() >= 2 + add && !child.IsNumber(1 + add))
 			{
-				name = node.Token(1 + add);
+				name = child.Token(1 + add);
 				named = true;
 			}
-			if(node.Size() >= 2 + add + named)
+			if(child.Size() >= 2 + add + named)
 				weight = child.Value(1 + add + named);
 
 			if(named)
