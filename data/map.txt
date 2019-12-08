@@ -7784,6 +7784,7 @@ system Dixere
 	habitable 851.84
 	link Delia
 	link Feraticus
+	link Giribea
 	asteroids "large metal" 5 6
 	asteroids "large rock" 2 3
 	asteroids "medium metal" 7 5
@@ -10934,6 +10935,7 @@ system Giribea
 	link Delia
 	link Feraticus
 	link Lire
+	link Dixere
 	asteroids "large metal" 29 4
 	asteroids "large rock" 2 1
 	asteroids "medium metal" 150 3
@@ -19307,38 +19309,100 @@ system Queri
 	object
 		sprite star/m8
 		period 10
-	object
-		sprite planet/cloud4
-		distance 175.44
-		period 132.377
-		object
-			sprite planet/ice0
-			distance 142
-			period 15.9157
-	object
-		sprite planet/gas14
-		distance 558.69
-		period 719.432
-		object
-			sprite planet/rock17
-			distance 236
-			period 14.7648
-	object
-		sprite planet/lava2
-		distance 1252.65
-		period 1526.29
-	object
-		sprite planet/dust3
-		distance 1629.9
-		period 2265.35
+	object "Querii Ka"
+		sprite planet/ringworld
+		distance 812
+		period 360
+	object "Querii Ka"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 20
+	object "Querii Ka"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 40
+	object "Querii Ka"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 60
+	object "Querii Ka"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 80
+	object "Querii Ka"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 100
+	object "Querii Ka"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 120
+	object "Querii Ka"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 140
+	object "Querii Ka"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 160
+	object "Querii Ka"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 180
+	object "Querii Ka"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 200
+	object "Querii Ka"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 220
+	object "Querii Ka"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 240
+	object "Querii Ka"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 260
+	object "Querii Ka"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 280
+	object "Querii Ka"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 300
+	object "Querii Ka"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 320
+	object "Querii Ka"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 340
 	object
 		sprite planet/gas2
 		distance 2417.94
 		period 4093.19
 		object
-			sprite planet/rock0
-			distance 205
-			period 17.7847
 		object
 			sprite planet/tethys
 			distance 281
@@ -27285,6 +27349,11 @@ planet Pugglequat
 	spaceport `The spaceport here is a set of seven tall towers of varying heights, each with landing pads jutting out from its sides like leaves from the stalk of a plant. The towers are joined to each other at various levels by arches.`
 	"required reputation" 2
 	security 1
+
+planet "Querii Ka"
+	attributes quarg
+	landscape land/station2
+	description `This huge ringworld, built by the Quarg using most of the resources found near the Queri star, seems to be completely uninhabited. Occasional Ka'heta passing near its surface shoot at the station's cover, doing no damage at all and seldomly leaving tiny scars. Everything inside the station is empty and unpowered, from its large rooms to its long, silent corridors.`
 
 planet Quicksilver
 	attributes core volcanic mining
