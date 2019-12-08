@@ -65,6 +65,9 @@ galaxy "label arachi"
 galaxy "label waste"
 	pos 80 315
 
+galaxy "label graveyard"
+	pos 45 615
+
 system "1 Axis"
 	pos -1274.63 267.214
 	government Coalition

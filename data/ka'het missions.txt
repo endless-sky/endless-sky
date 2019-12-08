@@ -1,0 +1,11 @@
+mission "Graveyard Label"
+	landing
+	invisible
+	source "Querii Ka"
+	on offer
+		event "graveyard label"
+		fail
+
+event "graveyard label"
+	galaxy "label graveyard"
+		sprite label/graveyard
