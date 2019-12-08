@@ -3741,7 +3741,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	{
 		// Clear all the orders for these ships.
 		if (!isValidTarget)
-			Messages::Add(who + "cannot and no longer " + description);
+			Messages::Add(who + "unable to and no longer " + description);
 		else
 			Messages::Add(who + "no longer " + description);
 		
