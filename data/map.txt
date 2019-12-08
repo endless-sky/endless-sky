@@ -17567,9 +17567,13 @@ system Ossipago
 		sprite planet/ice4-b
 		distance 1274.65
 		period 412.4
+	object "Ember Graveyard"
+		sprite planet/wormhole-red
+		distance 3674.15
+		period 770.273
 	object
 		sprite planet/gas10-b
-		distance 3584.65
+		distance 2584.65
 		period 1944.93
 		object
 			sprite planet/rock17
@@ -18609,8 +18613,8 @@ system Polerius
 		sprite planet/cloud0
 		distance 1091.15
 		period 371.523
-	object
-		sprite planet/tethys
+	object "Ember Graveyard"
+		sprite planet/wormhole-red
 		distance 1774.15
 		period 770.273
 	object
@@ -25817,6 +25821,10 @@ planet "Elek Kartanu"
 	description `You have no idea what has happened to this planet, and you are not sure you want to know. The atmosphere is unusually hot and wet for a planet this distance from its sun, and the ocean levels seem to have dropped significantly in the recent past, leaving barnacles and bleached coral exposed to the air all around the shorelines. The wind is frenzied and full of wild energy, and the fog moves like a living creature.`
 	security 0
 
+planet "Ember Graveyard"
+	attributes "requires: quantum keystone"
+	description ""
+
 planet "Ember Reaches"
 	attributes "requires: quantum keystone"
 	description ""
@@ -27332,7 +27340,7 @@ planet Prime
 planet "Pug Kaelin"
 	attributes pug
 	landscape land/myrabella5
-	description `The world of Pug Kaelin, presumibly an ancient outpost, seems to be complately uninhabited. Large, empty cities with towers of indescribable design encompass a large portion of one single continent. The rest of the land remains almost untouched by anything not native to this planet, as if the buildings were simply lowered down onto the land rather than built up over time.`
+	description `The world of Pug Kaelin, presumibly an ancient outpost, seems to be complately uninhabited. Large, empty cities with towers of indescribable design encompass a portion of one single continent. The rest of the land remains almost untouched by anything not native to this planet, as if the buildings were simply lowered down onto the land rather than built up over time.`
 	spaceport `The only word you can think of to describe the spaceport is "impressive". It is on the top of the largest tower, placed in the exact centre of one gargantuan city. With a base almost looking big enough to pass as a sizable village, very quickly getting thinner as it raises into the cities airspace.`
 	spaceport `Tiny, four-legged robots walk on the walls of every room, cleaning them in a matter of seconds. You can see more on the road below, and you presume they are everywhere in this city; this makes impossible to extimate how long the planet has been abandoned, since everything here is perfect and clean.`
 
