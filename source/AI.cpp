@@ -358,7 +358,8 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 		if(it->second.type & Orders::REQUIRES_TARGET)
 		{
 			shared_ptr<Ship> ship = it->second.target.lock();
-			if(!ship || !ship->IsTargetable() || (it->first->GetSystem() && ship->GetSystem() != it->first->GetSystem())
+			if(!ship || !ship->IsTargetable() || (it->first->GetSystem() && ship->GetSystem() != it->first->GetSystem()
+					&& ship->GetSystem() != flagship->GetSystem())
 					|| (ship->IsDisabled() && it->second.type == Orders::ATTACK))
 			{
 				it = orders.erase(it);
