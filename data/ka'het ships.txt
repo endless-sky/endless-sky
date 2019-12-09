@@ -1,0 +1,118 @@
+ship "Maeri'het"
+	plural "Maeri'heta"
+	sprite "ship/maeri'het"
+	attributes
+		category "Light Warship"
+		"cost" 6300000
+		"shields" 6800
+		"hull" 1700
+		"required crew" 19
+		"bunks" 27
+		"mass" 410
+		"drag" 5.9
+		"heat dissipation" .7
+		"fuel capacity" 600
+		"cargo space" 40
+		"outfit space" 560
+		"weapon capacity" 384
+		"engine capacity" 106
+		"energy capacity" 2000
+		"energy generation" 22
+		"heat generation" 32
+		"shield generation" 8
+		"shield energy" 8
+		weapon
+			"blast radius" 180
+			"shield damage" 720
+			"hull damage" 360
+			"hit force" 1080
+	outfits
+		"Forge-Class Steering"
+		"Jump Drive"
+		"Geode Reactor" 2
+		"Crucible-Class Thruster" 2
+		"Large Heat Shunt"
+		"Korath Disruptor" 2
+		"Plasma Turret" 2
+		"Pug Zapper" 2
+		
+	engine -20 66 0.6
+	engine -26.5 66 0.8
+	engine 20 66 0.6
+	engine 26.5 66 0.8
+	gun -9 -74 "Pug Zapper"
+	gun 9 -74 "Pug Zapper"
+	turret -13.5 -29 "Korath Disruptor"
+	turret -14 -12.5 "Plasma Turret"
+	turret 13.5 -29 "Korath Disruptor"
+	turret 14 -12.5 "Plasma Turret"
+	explode "pug tiny explosion" 5
+	explode "pug small explosion" 20
+	explode "pug medium explosion" 25
+	explode "pug large explosion" 15
+	"final explode" "final explosion medium"
+	description "This is a medium-sized Ka'het vessel."
+
+ship "Telis'het"
+	plural "Telis'heta"
+	sprite "ship/telis'het"
+	attributes
+		category "Heavy Warship"
+		"cost" 9500000
+		"shields" 12600
+		"hull" 2700
+		"required crew" 54
+		"bunks" 87
+		"mass" 940
+		"drag" 9.8
+		"heat dissipation" .6
+		"fuel capacity" 600
+		"cargo space" 70
+		"outfit space" 560
+		"weapon capacity" 359
+		"engine capacity" 148
+		"energy capacity" 4000
+		"energy generation" 32
+		"heat generation" 48
+		"shield generation" 10
+		"shield energy" 10
+		weapon
+			"blast radius" 300
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
+	outfits
+		"Large Battery Module"
+		"Small Repair Module"
+		"Forge-Class Thruster"
+		"Jump Drive"
+		"Geode Reactor"
+		"Crucible-Class Thruster"
+		"Large Heat Shunt"
+		"Korath Disruptor" 2
+		"EMP Torpedo Bay" 2
+		"Plasma Turret" 2
+		"EMP Torpedo" 18
+		"Smelter-Class Steering"
+		"Pug Zapper" 2
+		"Moonbeam Turret"
+		
+	engine -27 75.5 0.6
+	engine -39.5 82.5 0.8
+	engine 27 75.5 0.6
+	engine 39.5 82.5 0.8
+	gun -11.5 -94 "EMP Torpedo Bay"
+	gun -23.5 -87.5 "Pug Zapper"
+	gun 11.5 -94 "EMP Torpedo Bay"
+	gun 23.5 -87.5 "Pug Zapper"
+	turret -27 -41 "Plasma Turret"
+	turret -41.5 -50.5 "Korath Disruptor"
+	turret 0 -53 "Moonbeam Turret"
+	turret 27 -41 "Plasma Turret"
+	turret 41.5 -50.5 "Korath Disruptor"
+	explode "pug small explosion" 25
+	explode "pug medium explosion" 30
+	explode "pug large explosion" 20
+	explode "pug huge explosion" 5
+	"final explode" "final explosion large"
+	description "This is the largest Ka'het vessel."

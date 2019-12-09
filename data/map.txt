@@ -9251,11 +9251,6 @@ system Esix
 		distance 1331.74
 		period 1673.1
 		offset 12.5454
-	object "Graveyard Wormhole (Stable)"
-		sprite planet/wormhole-red
-		distance 1618.74
-		period 2242.12
-		offset 278.315
 	object
 		sprite planet/gas3
 		distance 2694.88
@@ -9269,6 +9264,11 @@ system Esix
 			sprite planet/rock14
 			distance 372
 			period 18.3265
+	object "Graveyard Wormhole (Unstable)"
+		sprite planet/wormhole-red
+		distance 3618.74
+		period 2242.12
+		offset 278.315
 
 system Eteron
 	pos -330 33
@@ -9919,8 +9919,8 @@ system Fearis
 			sprite planet/luna
 			distance 137
 			period 20.5678
-	object "Graveyard Wormhole (Unstable)"
-		sprite planet/wormhole-red
+	object "Graveyard Wormhole (Stable)"
+		sprite planet/wormhole
 		distance 1606.64
 		period 1167.66
 		offset 195.653
@@ -19831,7 +19831,7 @@ system Relifer
 		distance 1126.04
 		period 604.576
 		offset 252.049
-	object "Graveyard Wormhole (Stable)"
+	object "Graveyard Wormhole (Unstable)"
 		sprite planet/wormhole-red
 		distance 1462.04
 		period 894.456
@@ -20035,8 +20035,8 @@ system Ritilas
 		sprite planet/rock7
 		distance 1205.21
 		period 1440.41
-	object "Graveyard Wormhole (Unstable)"
-		sprite planet/wormhole-red
+	object "Graveyard Wormhole (Stable)"
+		sprite planet/wormhole
 		distance 1641.32
 		period 2289.21
 		offset 109.88
