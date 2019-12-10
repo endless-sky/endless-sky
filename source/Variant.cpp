@@ -127,7 +127,7 @@ vector<const Ship *> Variant::ChooseShips() const
 
 vector<const Ship *> Variant::NestedChooseShips() const
 {
-	vector<const Ship *> chosenShips = ships;
+	vector<const Ship *> chosenShips;
 	
 	int chosen = Random::Int(total);
 	if(chosen < variantTotal)
