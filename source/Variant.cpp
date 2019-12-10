@@ -117,8 +117,11 @@ vector<const Ship *> Variant::ChooseShips() const
 	vector<const Ship *> chosenShips = ships;
 	for(auto &it : variants)
 	{
-		vector<const Ship *> variantShips = it.first->NestedChooseShips();
-		chosenShips.insert(chosenShips.end(), variantShips.begin(), variantShips.end());
+		for(int i = 0; i < it.second; i++)
+		{
+			vector<const Ship *> variantShips = it.first->NestedChooseShips();
+			chosenShips.insert(chosenShips.end(), variantShips.begin(), variantShips.end());
+		}
 	}
 	return chosenShips;
 }
