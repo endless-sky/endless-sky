@@ -7361,6 +7361,7 @@ system Debrugt
 system Delia
 	pos -41 757
 	government Uninhabited
+	haze _menu/haze-red
 	habitable 486.68
 	link Dixere
 	link Giribea
@@ -7784,6 +7785,7 @@ system Diphda
 system Dixere
 	pos 33 708
 	government Uninhabited
+	haze _menu/haze-red
 	habitable 851.84
 	link Delia
 	link Feraticus
@@ -7807,12 +7809,7 @@ system Dixere
 	trade Metal 349
 	trade Plastic 479
 	object
-		sprite star/k5
-		distance 43
-		period 10.9302
-		offset 180
-	object
-		sprite star/k5
+		sprite star/k0-old
 		distance 43
 		period 10.9302
 	object
@@ -9212,6 +9209,7 @@ system Eshkoshtar
 system Esix
 	pos 142 532
 	government Uninhabited
+	haze _menu/haze-red
 	habitable 135
 	link Gerenus
 	link Nona
@@ -9232,7 +9230,7 @@ system Esix
 	trade Metal 357
 	trade Plastic 358
 	object
-		sprite star/m8
+		sprite star/b5
 		period 10
 	object
 		sprite planet/desert5
@@ -9879,6 +9877,7 @@ system Fasitopfar
 system Fearis
 	pos -16 643
 	government Uninhabited
+	haze _menu/haze-red
 	habitable 486.68
 	link Feraticus
 	link Lire
@@ -9897,7 +9896,7 @@ system Fearis
 	trade Metal 224
 	trade Plastic 339
 	object
-		sprite star/k0
+		sprite star/k0-old
 		period 10
 	object
 		sprite planet/rock15
@@ -10011,6 +10010,7 @@ system "Fell Omen"
 system Feraticus
 	pos 58 630
 	government Uninhabited
+	haze _menu/haze-red
 	habitable 320
 	link Dixere
 	link Fearis
@@ -10035,7 +10035,7 @@ system Feraticus
 	trade Metal 241
 	trade Plastic 405
 	object
-		sprite star/m0
+		sprite star/b5
 		period 10
 	object
 		sprite planet/ganymede
@@ -10074,6 +10074,7 @@ system Feraticus
 system Fereti
 	pos -39 600
 	government Uninhabited
+	haze _menu/haze-red
 	habitable 486.68
 	link Lire
 	asteroids "large metal" 1 2
@@ -10091,7 +10092,7 @@ system Fereti
 	trade Metal 354
 	trade Plastic 426
 	object
-		sprite star/k0
+		sprite star/a0
 		period 10
 	object
 		sprite planet/lava7
@@ -10812,6 +10813,7 @@ system "Gamma Corvi"
 system Gerenus
 	pos 197 514
 	government Uninhabited
+	haze _menu/haze-red
 	habitable 9065.92
 	link Esix
 	link Nona
@@ -10835,14 +10837,8 @@ system Gerenus
 	trade Metal 356
 	trade Plastic 349
 	object
-		sprite star/b5
-		distance 7.46987
+		sprite star/giant
 		period 8.42267
-	object
-		sprite star/k5
-		distance 151.53
-		period 8.42267
-		offset 180
 	object
 		sprite planet/rock10
 		distance 329.94
@@ -10934,6 +10930,7 @@ system Gienah
 system Giribea
 	pos -6 674
 	government Uninhabited
+	haze _menu/haze-red
 	habitable 1705
 	link Delia
 	link Feraticus
@@ -10958,7 +10955,7 @@ system Giribea
 	trade Metal 325
 	trade Plastic 488
 	object
-		sprite star/g0
+		sprite star/g0-old
 		distance 46.9208
 		period 14.0285
 		offset 180
@@ -14674,6 +14671,7 @@ system Limen
 system Lire
 	pos -59 676
 	government Uninhabited
+	haze _menu/haze-red
 	habitable 1080
 	link Fearis
 	link Fereti
@@ -14692,7 +14690,7 @@ system Lire
 	trade Metal 307
 	trade Plastic 411
 	object
-		sprite star/g0
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/desert9
@@ -17213,6 +17211,7 @@ system Nocte
 system Nona
 	pos 166 558
 	government Uninhabited
+	haze _menu/haze-red
 	habitable 1080
 	link Esix
 	link Gerenus
@@ -17231,7 +17230,7 @@ system Nona
 	trade Metal 340
 	trade Plastic 379
 	object
-		sprite star/g0
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/rock1
@@ -17586,6 +17585,7 @@ system Ossipago
 system Paeli
 	pos 129 497
 	government Uninhabited
+	haze _menu/haze-red
 	habitable 425.92
 	link Esix
 	link Polerius
@@ -17608,7 +17608,7 @@ system Paeli
 	trade Metal 466
 	trade Plastic 462
 	object
-		sprite star/k5
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/desert7
@@ -18575,6 +18575,7 @@ system Polaris
 system Polerius
 	pos 88 482
 	government Uninhabited
+	haze _menu/haze-red
 	habitable 1505.92
 	link Paeli
 	asteroids "small rock" 2 4
@@ -18601,19 +18602,19 @@ system Polerius
 		period 13.5497
 		offset 180
 	object
-		sprite star/k5
+		sprite star/k5-old
 		distance 86.0603
 		period 13.5497
 	object
-		sprite planet/dust6
+		sprite planet/cloud0
 		distance 219.9
 		period 33.6123
 	object
 		sprite planet/uranus
 		distance 644.74
 		period 168.747
-	object
-		sprite planet/cloud0
+	object "Celeatis"
+		sprite planet/dust6
 		distance 1091.15
 		period 371.523
 	object "Ember Graveyard"
@@ -18904,7 +18905,7 @@ system "Pug Aki'il"
 	trade Metal 335
 	trade Plastic 286
 	object
-		sprite star/g0
+		sprite star/g0-old
 		distance 32.2427
 		period 12.5463
 	object
@@ -18937,11 +18938,6 @@ system "Pug Aki'il"
 		distance 927.757
 		period 291.28
 		offset 4.23336
-	object
-		sprite star/k0
-		distance 103.757
-		period 10.894
-		offset 114.305
 
 system "Pug Iyik"
 	pos -361.149 -883.233
@@ -19292,6 +19288,7 @@ system Quaru
 system Queri
 	pos 69 518
 	government Uninhabited
+	haze _menu/haze-red
 	habitable 135
 	link Esix
 	link Ritilas
@@ -19314,7 +19311,7 @@ system Queri
 	trade Metal 175
 	trade Plastic 329
 	object
-		sprite star/m8
+		sprite star/a5
 		period 10
 	object "Querii Ka"
 		sprite planet/ringworld
@@ -19784,6 +19781,7 @@ system Regulus
 system Relifer
 	pos 19 603
 	government Uninhabited
+	haze _menu/haze-red
 	habitable 625
 	link Feraticus
 	asteroids "large metal" 2 3
@@ -19805,7 +19803,7 @@ system Relifer
 	trade Metal 219
 	trade Plastic 355
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/mercury
@@ -19993,6 +19991,7 @@ system Rigel
 system Ritilas
 	pos 11 523
 	government Uninhabited
+	haze _menu/haze-red
 	habitable 135
 	link Queri
 	asteroids "large metal" 4 4
@@ -20013,7 +20012,7 @@ system Ritilas
 	trade Metal 138
 	trade Plastic 363
 	object
-		sprite star/m8
+		sprite star/k0-old
 		period 10
 	object
 		sprite planet/rock14
@@ -25451,6 +25450,11 @@ planet "Ceaseless Toil"
 	description `The Saryds prefer to build their largest factories on sun-drenched, uninhabitable worlds, in order to allow more hospitable planets to be used for residences and recreation. Where possible, their factories harness solar power: either using mirrors to concentrate sunlight for solar foundries, or collecting energy through large fields of solar panels. The factories are almost entirely maintained by robots, which are capable not only of repairing damage but also of constructing entire new factories according to predefined plans.`
 	description `	The solar collectors are mounted on frames about ten meters above the shifting sand dunes. In addition to turning to face the sun, they can be turned upside-down as necessary to dump off any sand that accumulates on them.`
 	"required reputation" 15
+
+planet Celeatis
+	attributes ka'het
+	landscape land/canyon4
+	description `Celeatis is a mountainous planet, once home to one of the largest research centers in the Graveyard. Back then popular, ancient tales among the Builders mentioned alien vessels travelling to distant places thanks to the anomaly in the system. If they could have replicated the effect to use it as a wormhole, perhaps their species would have survived, spreading in the rest of the galaxy; they couldn't, and the ruined, lifeless and half-buried buildings here are an evidence of their failure.`
 
 planet "Celestial Third"
 	attributes kimek farming factory urban
