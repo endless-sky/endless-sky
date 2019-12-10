@@ -93,6 +93,8 @@ public:
 	void Clear(Command command);
 	void Set(Command command);
 	bool Has(Command command) const;
+	// Get the commands that are set in this and in the given command.
+	Command And(Command command) const;
 	// Get the commands that are set in this and not in the given command.
 	Command AndNot(Command command) const;
 	
