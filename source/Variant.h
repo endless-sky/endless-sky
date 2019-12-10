@@ -52,7 +52,6 @@ private:
 	int shipTotal = 0;
 	std::vector<const Ship *> ships;
 	std::vector<std::pair<const Variant *, int>> variants;
-
 };
 
 
