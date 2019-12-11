@@ -9215,10 +9215,10 @@ system Esix
 	link Nona
 	link Paeli
 	link Queri
-	asteroids "large metal" 1 1
-	asteroids "large rock" 1 2
-	asteroids "small metal" 1 2
-	minables lead 13 0
+	asteroids "large metal" 3 1.4318
+	asteroids "large rock" 2 2.2565
+	asteroids "small metal" 3 2.2
+	minables lead 13 3.213
 	trade Clothing 315
 	trade Electronics 742
 	trade Equipment 492
@@ -9233,11 +9233,11 @@ system Esix
 		sprite star/b5
 		period 10
 	object
-		sprite planet/desert5
+		sprite planet/desert7-b
 		distance 245.01
 		period 132.029
 	object
-		sprite planet/dust3
+		sprite planet/dust5-b
 		distance 593.57
 		period 497.853
 	object
@@ -9245,21 +9245,16 @@ system Esix
 		distance 945.38
 		period 1000.7
 	object
-		sprite planet/dust4
-		distance 1331.74
-		period 1673.1
-		offset 12.5454
-	object
 		sprite planet/gas3
 		distance 2694.88
 		period 4816.17
 		offset 47.9894
 		object
-			sprite planet/ice8
+			sprite planet/ice0-b
 			distance 270
 			period 11.3321
 		object
-			sprite planet/rock14
+			sprite planet/rock3
 			distance 372
 			period 18.3265
 	object "Graveyard Wormhole (Unstable)"
@@ -17218,7 +17213,7 @@ system Nona
 	asteroids "large metal" 1 3
 	asteroids "medium metal" 3 7
 	asteroids "small metal" 5 8
-	minables lead 1 10
+	minables lead 4 10
 	trade Clothing 338
 	trade Electronics 679
 	trade Equipment 497
@@ -17233,15 +17228,15 @@ system Nona
 		sprite star/g0-old
 		period 10
 	object
-		sprite planet/rock1
+		sprite planet/desert7
 		distance 166.29
 		period 26.1004
 	object
-		sprite planet/rhea
+		sprite planet/desert5-b
 		distance 342.7
 		period 77.2181
-	object
-		sprite planet/rock12
+	object "Siteria"
+		sprite planet/ocean0-b
 		distance 675.34
 		period 213.615
 		object
@@ -17611,16 +17606,16 @@ system Paeli
 		sprite star/g0-old
 		period 10
 	object
-		sprite planet/desert7
+		sprite planet/desert4-b
 		distance 220.64
 		period 63.5217
 	object
-		sprite planet/lava2
+		sprite planet/cloud3
 		distance 746.89
 		period 395.622
 		offset 16.1975
 	object
-		sprite planet/gas15
+		sprite planet/desert6-b
 		distance 1213.03
 		period 818.848
 		offset 125.921
@@ -17629,17 +17624,17 @@ system Paeli
 			distance 201
 			period 15
 	object
-		sprite planet/gas2
+		sprite planet/gas2-b
 		distance 2010.84
 		period 1747.68
 		offset 270.243
-		object
-			sprite planet/rock3
+		object Eavine
+			sprite planet/ice8-b
 			distance 302.81
 			period 31.9279
 			offset 256.243
 		object
-			sprite planet/rhea
+			sprite planet/oberon-b
 			distance 457.81
 			period 59.353
 			offset 360
@@ -18606,15 +18601,15 @@ system Polerius
 		distance 86.0603
 		period 13.5497
 	object
-		sprite planet/cloud0
+		sprite planet/lava7
 		distance 219.9
 		period 33.6123
 	object
-		sprite planet/uranus
+		sprite planet/rock19-b
 		distance 644.74
 		period 168.747
 	object "Celeatis"
-		sprite planet/dust6
+		sprite planet/rock10-b
 		distance 1091.15
 		period 371.523
 	object "Ember Graveyard"
@@ -18622,15 +18617,15 @@ system Polerius
 		distance 1774.15
 		period 770.273
 	object
-		sprite planet/gas7
+		sprite planet/gas14-b
 		distance 2398.24
 		period 1210.59
 		object
-			sprite planet/dust5
+			sprite planet/dust5-b
 			distance 253
 			period 14.3157
 		object
-			sprite planet/ice8
+			sprite planet/ice0
 			distance 403
 			period 28.7798
 
@@ -19403,14 +19398,9 @@ system Queri
 		period 360
 		offset 340
 	object
-		sprite planet/gas2
+		sprite planet/gas11
 		distance 2417.94
 		period 4093.19
-		object
-		object
-			sprite planet/tethys
-			distance 281
-			period 28.5413
 
 system Rajak
 	pos -270 -236
@@ -25454,7 +25444,8 @@ planet "Ceaseless Toil"
 planet Celeatis
 	attributes ka'het
 	landscape land/canyon4
-	description `Celeatis is a mountainous planet, once home to one of the largest research centers in the Graveyard. Back then popular, ancient tales among the Builders mentioned alien vessels travelling to distant places thanks to the anomaly in the system. If they could have replicated the effect to use it as a wormhole, perhaps their species would have survived, spreading in the rest of the galaxy; they couldn't, and the ruined, lifeless and half-buried buildings here are an evidence of their failure.`
+	description `Celeatis is a mountainous planet, once home to one of the largest research centers in the Graveyard that was focused on studying the anomaly in the system. If they found out how to stabilize and use it as a wormhole, perhaps their species would have survived, spreading in the rest of the galaxy; the ruined, lifeless and half-buried buildings here are an evidence of their failure.`
+	description `	The planet's surface is too irregular and far from the system's stars to be suitable for farming, so its inhabitants used to rely on the food produced abroad. When the Ka'het came the supplies stopped arriving, so in less than a year the planetary reserves were over and the whole population had died of starvation.`
 
 planet "Celestial Third"
 	attributes kimek farming factory urban
@@ -25812,6 +25803,12 @@ planet Earth
 	tribute 10000
 		threshold 20000
 		fleet "Large Republic" 50
+
+planet Eavine
+	attributes ka'het
+	landscape land/snow8
+	description `The moon of Eavine played a crucial role in the demise of the Builders: here the second wave of Ka'het was built, making use of the large mineral resources in the planet. They soon found out that what was supposed to change the result of the invasion only accelerated it, overcoming the blockade imposed by the Quarg and allowing the Ka'het to reach their northern systems.`
+	description `	As an example of their instability, the Ka'het themselves inflicted superficial damage to most of the facilities here while departing from the planet, shooting at the same buildings that created them. Due to the moon's orbit, a few millennia ago the climate started becoming colder and colder, slowly incapacitating and then completely stopping the Ka'het production.`
 
 planet Echo
 	attributes quarg moon
@@ -27764,6 +27761,12 @@ planet Sinter
 	tribute 400
 		threshold 3000
 		fleet "Small Militia" 28
+
+planet Siteria
+	attributes ka'het
+	landscape land/water0
+	description `Siteria is the Builders homeworld, both the place where their journey began and where it ended. After a dozen millennia of underpopulation due to its closeness to the Quarg ring, the Ka'het invasion forced them to retreat. As one of the few remaining planets capable of sustaining farming and by far the one with the best climate, for a few centuries it had again the highest number of inhabitants of all the Builders planets.`
+	description `	When the second part of the invasion began, the many fields and farms around the planet allowed the Builders to survive for almost 200 years, until a lone Ka'het wrecked the last colony.`
 
 planet Skillet
 	attributes north mining farming frontier
