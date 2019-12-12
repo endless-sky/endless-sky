@@ -9896,39 +9896,39 @@ system Fearis
 		sprite star/k0-old
 		period 10
 	object
-		sprite planet/rock15
+		sprite planet/rock14-b
 		distance 179.41
 		period 43.5721
 	object
-		sprite planet/desert9
+		sprite planet/dust6
 		distance 351.57
 		period 119.524
 	object
-		sprite planet/ocean2
+		sprite planet/ocean9-b
 		distance 651.93
 		period 301.814
 	object
-		sprite planet/desert8
+		sprite planet/rock2
 		distance 1046.89
 		period 614.172
 		object
-			sprite planet/luna
+			sprite planet/luna-b
 			distance 137
 			period 20.5678
-	object "Graveyard Wormhole (Stable)"
-		sprite planet/wormhole
-		distance 1606.64
-		period 1167.66
-		offset 195.653
 	object
-		sprite planet/jupiter
-		distance 3525.49
+		sprite planet/jupiter-b
+		distance 2525.49
 		period 3795.49
 		offset 11.7572
 		object
 			sprite planet/desert4
 			distance 242
 			period 11.83
+	object "Graveyard Wormhole (Stable)"
+		sprite planet/wormhole
+		distance 3606.64
+		period 1167.66
+		offset 195.653
 
 system "Fell Omen"
 	pos -1156.59 475.051
@@ -19813,51 +19813,51 @@ system Relifer
 		period 34.7441
 		offset 339.439
 	object
-		sprite planet/ocean3
+		sprite planet/cloud0-b
 		distance 467.7
 		period 161.834
 		offset 195.125
 		object
-			sprite planet/dust7
+			sprite planet/dust7-b
 			distance 134
 			period 17.3734
 	object
-		sprite planet/rock4
+		sprite planet/ice3
 		distance 781.79
 		period 349.748
 		offset 99.1324
 	object
-		sprite planet/cloud4
+		sprite planet/water1
 		distance 1126.04
 		period 604.576
 		offset 252.049
-	object "Graveyard Wormhole (Unstable)"
-		sprite planet/wormhole-red
-		distance 1462.04
-		period 894.456
-		offset 114.016
 	object
 		sprite planet/ice1
 		distance 1804.04
 		period 1226
 		offset 348.55
 	object
-		sprite planet/gas14
+		sprite planet/gas11-b
 		distance 2539.85
 		period 2048.01
 		offset 144.237
 		object
-			sprite planet/tethys
+			sprite planet/tethys-b
 			distance 221
 			period 13.3797
 		object
-			sprite planet/rock0
+			sprite planet/europa
 			distance 349
 			period 26.552
 		object
 			sprite planet/callisto
 			distance 459
 			period 40.0477
+	object "Graveyard Wormhole (Unstable)"
+		sprite planet/wormhole-red
+		distance 3462.04
+		period 894.456
+		offset 114.016
 
 system Remembrance
 	pos -884.587 641.051
