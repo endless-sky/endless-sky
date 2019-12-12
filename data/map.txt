@@ -27235,7 +27235,7 @@ planet Palarei
 	attributes ka'het
 	landscape land/valley5
 	description `Thanks to their earlier exploration vessels, here the Builders encountered the first lifeforms evolved outside of their own planet under the form of some kinds of plants. Due to its hot climate the planet was only barely capable of supporting life, but the fruits the local flora produced were popular enough that Palarei became a mayor farming planet for almost one millennia.`
-	description `Less than a houndred people were present here at the time of the invasion, quickly killed by the first Ka'het attack. The robots must have kept the farms working for a dozen years, but now there is almost no sign left of the Builders facilities.`
+	description `	Less than a houndred people were present here at the time of the invasion, quickly killed by the first Ka'het attack. The robots must have kept the farms working for a dozen years, but now there is almost no sign left of the Builders facilities.`
 
 planet Pearl
 	attributes paradise tourism
