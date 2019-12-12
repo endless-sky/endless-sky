@@ -10835,27 +10835,27 @@ system Gerenus
 		sprite star/giant
 		period 8.42267
 	object
-		sprite planet/rock10
+		sprite planet/rock5-b
 		distance 329.94
 		period 25.1772
-	object
-		sprite planet/desert0
+	object "Palarei"
+		sprite planet/rock10-b
 		distance 757.43
 		period 87.5725
 	object
-		sprite planet/lava7
+		sprite planet/mars
 		distance 1413.32
 		period 223.211
 	object
-		sprite planet/neptune
+		sprite planet/ice5-b
 		distance 1666.32
 		period 285.754
 	object
-		sprite planet/gas4
+		sprite planet/gas9
 		distance 2533.32
 		period 535.66
 		object
-			sprite planet/lava0
+			sprite planet/io
 			distance 269
 			period 15.5606
 
@@ -27230,6 +27230,12 @@ planet Oblivion
 	tribute 500
 		threshold 3000
 		fleet "Large Militia" 8
+
+planet Palarei
+	attributes ka'het
+	landscape land/valley5
+	description `Thanks to their earlier exploration vessels, here the Builders encountered the first lifeforms evolved outside of their own planet under the form of some kinds of plants. Due to its hot climate the planet was only barely capable of supporting life, but the fruits the local flora produced were popular enough that Palarei became a mayor farming planet for almost one millennia.`
+	description `Less than a houndred people were present here at the time of the invasion, quickly killed by the first Ka'het attack. The robots must have kept the farms working for a dozen years, but now there is almost no sign left of the Builders facilities.`
 
 planet Pearl
 	attributes paradise tourism
