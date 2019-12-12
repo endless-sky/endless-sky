@@ -1,0 +1,64 @@
+# Copyright (c) 2019 by Tommaso Becca
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+# Ship names:
+phrase "ka'het"
+	word
+		"Pae"
+		"An"
+		"Kai"
+		"Rea"
+		"So"
+		"Axi"
+		"Rela"
+		"Mar"
+		"Ci"
+		"Tia"
+		"Gat"
+		"Geto"
+		"Roa"
+		"Aar"
+	word
+		"rii"
+		"ri"
+		"tal"
+		"lar"
+		"ha"
+		"rae"
+		"fir"
+		"oss"
+		"bea"
+		"ca"
+		"ori"
+		""
+	word
+		" het"
+
+fleet "Ka'het 1"
+	government "Ka'het"
+	names "ka'het"
+	cargo 0 20
+	personality
+		heroic plunders mining harvests
+	variant
+		"Maeri'het"
+	variant
+		"Telis'het"
+
+fleet "Ka'het 2"
+	government " Ka'het "
+	names "ka'het"
+	cargo 0 20
+	personality
+		heroic plunders mining harvests
+	variant
+		"Maeri'het"
+	variant
+		"Telis'het"

@@ -153,6 +153,32 @@ government "Indigenous Lifeform"
 		destroy 0
 		atrocity 0
 
+government "Ka'het"
+	swizzle 0
+
+	"attitude toward"
+		" Ka'het " -.01
+		"Remnant" -.01
+		"Quarg" -.01
+		"Pug" -.01
+		"Hai" -.01
+		"Navy (Oathkeeper)" -.01
+	
+	"player reputation" -1
+
+government " Ka'het "
+	swizzle 0
+
+	"attitude toward"
+		"Ka'het" -.01
+		"Remnant" -.01
+		"Quarg" -.01
+		"Pug" -.01
+		"Hai" -.01
+		"Navy (Oathkeeper)" -.01
+	
+	"player reputation" -1
+
 government "Korath"
 	swizzle 0
 	color .8 .5 .1

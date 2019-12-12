@@ -1,3 +1,13 @@
+# Copyright (c) 2019 by Tommaso Becca
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
 ship "Maeri'het"
 	plural "Maeri'heta"
 	sprite "ship/maeri'het"
@@ -28,7 +38,7 @@ ship "Maeri'het"
 			"hit force" 1080
 	outfits
 		"Forge-Class Steering"
-		"Jump Drive"
+		"Hyperdrive"
 		"Geode Reactor" 2
 		"Crucible-Class Thruster" 2
 		"Large Heat Shunt"
@@ -85,7 +95,7 @@ ship "Telis'het"
 		"Large Battery Module"
 		"Small Repair Module"
 		"Forge-Class Thruster"
-		"Jump Drive"
+		"Hyperdrive"
 		"Geode Reactor"
 		"Crucible-Class Thruster"
 		"Large Heat Shunt"
