@@ -39,7 +39,7 @@ phrase "ka'het"
 		"ori"
 		""
 	word
-		" het"
+		"'het"
 
 fleet "Ka'het 1"
 	government "Ka'het"
