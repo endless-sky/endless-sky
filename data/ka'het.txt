@@ -41,10 +41,10 @@ phrase "ka'het"
 	word
 		"'het"
 
-fleet "Ka'het 1"
+fleet "Ka'het"
 	government "Ka'het"
 	names "ka'het"
-	cargo 0 20
+	cargo 1
 	personality
 		heroic plunders mining harvests
 	variant
@@ -52,10 +52,10 @@ fleet "Ka'het 1"
 	variant
 		"Telis'het"
 
-fleet "Ka'het 2"
+fleet "Ka'het Aggressive"
 	government " Ka'het "
 	names "ka'het"
-	cargo 0 20
+	cargo 1
 	personality
 		heroic plunders mining harvests
 	variant
