@@ -7817,18 +7817,13 @@ system Dixere
 		distance 169.69
 		period 30.2946
 		offset 260.355
-	object
-		sprite planet/gas10
-		distance 562.94
-		period 183.052
-		offset 232.741
-	object
+	object Veliante
 		sprite planet/lava4
 		distance 867.18
 		period 349.981
 		offset 344.167
 	object
-		sprite planet/desert2
+		sprite planet/desert2-b
 		distance 1104.67
 		period 503.187
 		offset 180.723
@@ -9878,10 +9873,10 @@ system Fearis
 	habitable 486.68
 	link Feraticus
 	link Lire
-	asteroids "large metal" 1 1
-	asteroids "large rock" 2 2
-	asteroids "medium rock" 7 1
-	asteroids "small rock" 1 4
+	asteroids "large metal" 1.9865 1.34234
+	asteroids "large rock" 2.25464 2.242
+	asteroids "medium rock" 7.241 2.3423
+	asteroids "small rock" 1.2312 0.2312
 	trade Clothing 271
 	trade Electronics 824
 	trade Equipment 531
@@ -25469,6 +25464,11 @@ planet "Celestial Third"
 	landscape land/fields4
 	description `Celestial Third is the breadbasket of Kimek space. Most of its land mass is used for farming, augmented by seaweed farms and fisheries in the oceans and factories near the equator producing yeast and bacterial cultures as nutritional supplements. The first settlers came here more than thirteen thousand years ago, at a time when their home world had run out of arable land for farming and food was desperately needed.`
 	spaceport `The constant stream of freighters passing through this spaceport is a testament to how much food is needed to feed the densely populated Kimek worlds, in particular their homeworld in the neighboring star system. The city that hosts the spaceport has also become something of a tourist destination for those with adventurous culinary tastes; restaurants here serve recipes native to each of the Coalition species, along with some dishes that blend their three cuisines in unique and sometimes surprising ways.`
+
+planet Veliante
+	attributes ka'het
+	landscape land/fog5
+	description `The world that suffered the heaviest damages during the invasion was probably Veliante: here, one of the earliest attacks hit some sort of nuclear facility, starting a meltdown; the radiations quickly spread across most settlements in the planet. Now most place returned to safe levels, but the area around the ancient facility is still unlivable without protection masks.`
 
 planet "Charon Station"
 	attributes south station
