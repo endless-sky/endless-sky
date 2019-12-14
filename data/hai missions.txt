@@ -1126,7 +1126,7 @@ mission "Nanachi 2"
 		has "Nanachi 1: done"
 	on offer
 		conversation
-			`You meet up with Nanachi in the spaceport, give her some tips to try and persuade someone into hiring her, and tell her you'll be nearby if she still has trouble getting a job. You watch her go around the spaceport and approach some groups of humans and even other Hai to no avail, maybe since this is a military world, they aren't too keen on helping others as in the rest of their territory. She manages to grab the attention of a Hai family leaving a restaurant carrying way too much luggage, most likely tourists looking for a ride back home. Everything seems to be going well until the parents start to look worried. It seems as if they might go away if you don't step in.`
+			`You meet up with Nanachi in the spaceport, give her some tips to try and persuade someone into hiring her, and tell her you'll be nearby if she still has trouble getting a job. You watch her go around the spaceport and approach some groups of humans and even other Hai to no avail. Maybe since this is a military world, they aren't too keen on helping others as in the rest of their territory. She manages to grab the attention of a Hai family leaving a restaurant carrying way too much luggage, most likely tourists looking for a ride back home. Everything seems to be going well until the parents start to look worried. It seems as if they might go away if you don't step in.`
 			`	You walk over to the group to help her, and get a better look at the family: a Hai couple carrying a baby, and three older children who aren't doing much to help their father carry their ludicrous number of bags.`
 			choice
 				`	"Hey, what's going on?"`
