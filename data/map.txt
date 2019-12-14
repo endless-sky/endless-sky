@@ -10096,23 +10096,23 @@ system Fereti
 		distance 152.36
 		period 34.0992
 	object
-		sprite planet/ice6
+		sprite planet/desert5
 		distance 521.2
 		period 215.747
 		object
-			sprite planet/dust3
+			sprite planet/dust3-b
 			distance 161
 			period 25.6804
-	object
-		sprite planet/desert9
-		distance 887.04
+	object Parii'het
+		sprite planet/station2b
+		distance 1687.04
 		period 479.019
 	object
 		sprite planet/gas2
-		distance 2366.29
+		distance 2166.29
 		period 2087.09
-		object
-			sprite planet/luna
+		object "Alix"
+			sprite planet/luna-b
 			distance 203
 			period 17.525
 
@@ -14689,31 +14689,31 @@ system Lire
 		sprite star/g0-old
 		period 10
 	object
-		sprite planet/desert9
+		sprite planet/dust2
 		distance 180.81
 		period 29.5925
 	object
-		sprite planet/rock9
+		sprite planet/desert2-b
 		distance 676.17
 		period 214.009
 		object
-			sprite planet/rock0
+			sprite planet/rock0-b
 			distance 135
 			period 20.119
 	object
-		sprite planet/titan
+		sprite planet/ice1
 		distance 1019.41
 		period 396.161
-	object
-		sprite planet/gas12
+	object Retilie
+		sprite planet/water1
 		distance 1361.41
 		period 611.409
 	object
-		sprite planet/gas15
+		sprite planet/gas11
 		distance 2307.37
 		period 1349.04
 		object
-			sprite planet/miranda
+			sprite planet/miranda-b
 			distance 178
 			period 12.5005
 		object
@@ -25111,6 +25111,12 @@ planet Alfheim
 		threshold 5000
 		fleet "Small Deep Security" 27
 
+planet Alix
+	attributes ka'het
+	landscape land/canyon05
+	description `Alix is a small moon the Creators were stripping to build the Het station, and then also to produce the Ka'het hulls. Every settlement was completely destroyed, but some of the automatic mining drones that replenish the station's reserves seem to have survived and are still active today.
+	description `	This could mean they are developing some sort of basic intelligence, or perhaps they were just too small to be detected by the Ka'heti scanners.`
+
 planet Allhome
 	attributes hai farming "human tourism"
 	landscape land/dmottl0
@@ -27254,6 +27260,11 @@ planet Palarei
 	description `Thanks to their earlier exploration vessels, here the Builders encountered the first lifeforms evolved outside of their own planet under the form of some kinds of plants. Due to its hot climate the planet was only barely capable of supporting life, but the fruits the local flora produced were popular enough that Palarei became a mayor farming planet for almost one millennia.`
 	description `	Less than a houndred people were present here at the time of the invasion, quickly killed by the first Ka'het attack. The robots must have kept the farms working for a dozen years, but now there is almost no sign left of the Builders facilities.`
 
+planet Parii'het
+	attributes ka'het
+	landscape land/space6
+	description `Parii'het was almost finished when the invasion broke out, and already capable of (slowly) creating Ka'het. Thanks to the mining operated on Alix and the occasional harvest taken here by the youngest Ka'het most facilities are always fully operational. Differently from most of the Graveyard, the station doesn't seem to have ever suffered any damage from nor, from the Ka'her, nor from the Builders to try regaining control over it.`
+
 planet Pearl
 	attributes paradise tourism
 	landscape land/forest3
@@ -27388,7 +27399,7 @@ planet Pugglequat
 planet "Querii Ka"
 	attributes quarg
 	landscape land/station2
-	description `This huge ringworld, built by the Quarg using most of the resources found near the Queri star, seems to be completely uninhabited. Occasional Ka'heta passing near its surface shoot at the station's cover, doing no damage at all and seldomly leaving tiny scars. Everything inside the station is empty and unpowered, from its large rooms to its long, silent corridors.`
+	description `This huge ringworld, built by the Quarg using most of the resources found near the Queri star, seems to be completely uninhabited. Occasional Ka'het passing near its surface shoot at the station's cover, doing no damage at all and seldomly leaving tiny scars. Everything inside the station is empty and unpowered, from its large rooms to its long, silent corridors.`
 
 planet Quicksilver
 	attributes core volcanic mining
@@ -27451,6 +27462,12 @@ planet "Remote Blue"
 	shipyard Kimek
 	outfitter "Coalition Advanced"
 	"required reputation" 15
+
+planet Retilie
+	attributes ka'het
+	landscape land/sea1
+	description `Retilie is an oceanic world, where the water covers more than 95% of the planet. Once mainly used for fishing, it mustn't have taken long for the sea to make a clean sweep of the ancient buildings destroyed by the Ka'het. Only the ruins of few cities remained intact, well hidden inside the mainland.`
+	description `	In the oceans the many species of fishes keep prospering, unaware of the destruiction the planet has undergone.
 
 planet Reunion
 	attributes "near earth" urban factory
@@ -27641,8 +27658,8 @@ planet "Seleptra Nak"
 
 planet Seli'het
 	attributes ka'het
-	landscape land/station5
-	description `Seli'het was the only Het station the Builders completed, orbiting Giribea's star. When they are old enough, weird and tall machines start building the first parts of their exoskeletons around the young Ka'het. As they grow stronger their hull is expanded and different outfits are added, transforming them into real living weapons.`
+	landscape land/space7
+	description `Seli'het was the only Het station the Builders completed, orbiting Giribea's star. When they are old enough, weird and tall machines start building the first parts of their exoskeletons around the young Ka'heta. As they grow stronger their hull is expanded and different outfits are added, transforming them into real living weapons.`
 	description `	In this system the Ka'het seem to behave differently than anywhere else, not only because this station doesn't have any visible damage but also because they don't attack each other, and some even seem to be collaborating.`
 	government Ka'het
 
