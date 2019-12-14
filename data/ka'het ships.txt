@@ -11,6 +11,7 @@
 ship "Maeri'het"
 	plural "Maeri'heta"
 	sprite "ship/maeri'het"
+	"never disabled"
 	attributes
 		category "Light Warship"
 		"cost" 6300000
@@ -56,16 +57,17 @@ ship "Maeri'het"
 	turret -14 -12.5 "Plasma Turret"
 	turret 13.5 -29 "Korath Disruptor"
 	turret 14 -12.5 "Plasma Turret"
-	explode "pug tiny explosion" 5
-	explode "pug small explosion" 20
-	explode "pug medium explosion" 25
-	explode "pug large explosion" 15
+	explode "tiny explosion" 5
+	explode "small explosion" 20
+	explode "medium explosion" 25
+	explode "large explosion" 15
 	"final explode" "final explosion medium"
 	description "This is a medium-sized Ka'het vessel."
 
 ship "Telis'het"
 	plural "Telis'heta"
 	sprite "ship/telis'het"
+	"never disabled"
 	attributes
 		category "Heavy Warship"
 		"cost" 9500000
@@ -120,9 +122,9 @@ ship "Telis'het"
 	turret 0 -53 "Moonbeam Turret"
 	turret 27 -41 "Plasma Turret"
 	turret 41.5 -50.5 "Korath Disruptor"
-	explode "pug small explosion" 25
-	explode "pug medium explosion" 30
-	explode "pug large explosion" 20
-	explode "pug huge explosion" 5
+	explode "small explosion" 25
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	explode "huge explosion" 5
 	"final explode" "final explosion large"
 	description "This is the largest Ka'het vessel."

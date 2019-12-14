@@ -46,7 +46,7 @@ fleet "Ka'het"
 	names "ka'het"
 	cargo 1
 	personality
-		heroic plunders mining harvests
+		plunders mining harvests timid
 	variant
 		"Maeri'het"
 	variant
@@ -62,3 +62,21 @@ fleet "Ka'het Aggressive"
 		"Maeri'het"
 	variant
 		"Telis'het"
+
+fleet "Ka'het Core"
+	government "Ka'het"
+	names "ka'het"
+	cargo 2
+	personality
+		plunders mining harvests coward
+	variant 4
+		"Maeri'het"
+	variant 4
+		"Telis'het"
+	variant
+		"Telis'het"
+		"Maeri'het" 2
+	variant
+		"Telis'het"
+		"Maeri'het"
+	

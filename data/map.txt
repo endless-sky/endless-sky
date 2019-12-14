@@ -10943,6 +10943,7 @@ system Giribea
 	trade Medical 804
 	trade Metal 325
 	trade Plastic 488
+	fleet "Ka'het Core" 1350
 	object
 		sprite star/g0-old
 		distance 46.9208
@@ -25104,7 +25105,7 @@ planet Alfheim
 planet Alix
 	attributes ka'het
 	landscape land/canyon05
-	description `Alix is a small moon the Creators were stripping to build the Het station, and then also to produce the Ka'het hulls. Every settlement was completely destroyed, but some of the automatic mining drones that replenish the station's reserves seem to have survived and are still active today.
+	description `Alix is a small moon the Creators were stripping to build the Het station, and then also to produce the Ka'het hulls. Every settlement was completely destroyed, but some of the automatic mining drones that replenish the station's reserves seem to have survived and are still active today.`
 	description `	This could mean they are developing some sort of basic intelligence, or perhaps they were just too small to be detected by the Ka'heti scanners.`
 
 planet Allhome
@@ -27258,7 +27259,7 @@ planet Palarei
 planet Parii'het
 	attributes ka'het
 	landscape land/space6
-	description `Parii'het was almost finished when the invasion broke out, and already capable of (slowly) creating Ka'het. Thanks to the mining operated on Alix and the occasional harvest taken here by the youngest Ka'het most facilities are always fully operational.
+	description `Parii'het was almost finished when the invasion broke out, and already capable of (slowly) creating Ka'het. Thanks to the mining operated on Alix and the occasional harvest taken here by the youngest Ka'het most facilities are always fully operational.`
 	description `	Differently from most of the Graveyard, the station doesn't seem to have ever suffered any damage from nor, from the Ka'her, nor from the Builders to try regaining control over it.`
 
 planet Pearl
@@ -27463,7 +27464,7 @@ planet Retilie
 	attributes ka'het
 	landscape land/sea1
 	description `Retilie is an oceanic world, where the water covers more than 95% of the planet. Once mainly used for fishing, it mustn't have taken long for the sea to make a clean sweep of the ancient buildings destroyed by the Ka'het. Only the ruins of few cities remained intact, well hidden inside the mainland.`
-	description `	In the oceans the many species of fishes keep prospering, unaware of the destruiction the planet has undergone.
+	description `	In the oceans the many species of fishes keep prospering, unaware of the destruiction the planet has undergone.`
 
 planet Reunion
 	attributes "near earth" urban factory
