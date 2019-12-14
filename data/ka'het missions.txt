@@ -11,7 +11,8 @@
 mission "Graveyard Label"
 	landing
 	invisible
-	source "Querii Ka"
+	source
+		attributes ka'het
 	on offer
 		event "graveyard label"
 		fail

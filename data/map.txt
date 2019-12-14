@@ -7384,6 +7384,8 @@ system Delia
 	trade Medical 698
 	trade Metal 397
 	trade Plastic 490
+	fleet "Ka'het" 1300
+	fleet "Ka'het Aggressive" 6800
 	object
 		sprite star/k0
 		period 10
@@ -7808,6 +7810,8 @@ system Dixere
 	trade Medical 815
 	trade Metal 349
 	trade Plastic 479
+	fleet "Ka'het" 1360
+	fleet "Ka'het Aggressive" 6900
 	object
 		sprite star/k0-old
 		distance 43
@@ -9887,6 +9891,8 @@ system Fearis
 	trade Medical 874
 	trade Metal 224
 	trade Plastic 339
+	fleet "Ka'het" 1900
+	fleet "Ka'het Aggressive" 9000
 	object
 		sprite star/k0-old
 		period 10
@@ -10026,6 +10032,8 @@ system Feraticus
 	trade Medical 875
 	trade Metal 241
 	trade Plastic 405
+	fleet "Ka'het" 1450
+	fleet "Ka'het Aggressive" 8350
 	object
 		sprite star/b5
 		period 10
@@ -10078,6 +10086,7 @@ system Fereti
 	trade Medical 759
 	trade Metal 354
 	trade Plastic 426
+	fleet "Ka'het Core" 2000
 	object
 		sprite star/a0
 		period 10
@@ -10943,7 +10952,7 @@ system Giribea
 	trade Medical 804
 	trade Metal 325
 	trade Plastic 488
-	fleet "Ka'het Core" 1350
+	fleet "Ka'het Core" 1850
 	object
 		sprite star/g0-old
 		distance 46.9208
@@ -14676,6 +14685,8 @@ system Lire
 	trade Medical 816
 	trade Metal 307
 	trade Plastic 411
+	fleet "Ka'het" 1850
+	fleet "Ka'het Aggressive" 7800
 	object
 		sprite star/g0-old
 		period 10
@@ -19792,6 +19803,8 @@ system Relifer
 	trade Medical 883
 	trade Metal 219
 	trade Plastic 355
+	fleet "Ka'het" 1750
+	fleet "Ka'het Aggressive" 6700
 	object
 		sprite star/g0-old
 		period 10
@@ -27394,7 +27407,7 @@ planet Pugglequat
 	security 1
 
 planet "Querii Ka"
-	attributes quarg
+	attributes quarg ka'het
 	landscape land/station2
 	description `This huge ringworld, built by the Quarg using most of the resources found near the Queri star, seems to be completely uninhabited. Occasional Ka'het passing near its surface shoot at the station's cover, doing no damage at all and seldomly leaving tiny scars. Everything inside the station is empty and unpowered, from its large rooms to its long, silent corridors.`
 
