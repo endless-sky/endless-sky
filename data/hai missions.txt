@@ -1211,7 +1211,7 @@ mission "Nanachi 3"
 		dialog `You have reached <planet>, but you left Nanachi's ship behind! Better depart and wait for them to arrive in this star system.`
 	on complete
 		conversation
-			`Allhome's docking area shows much more traffic than usual, many captains here are helping workers open cargo containers full of food, clothes, books, movies and even some mounted animals from human space. You finally meet up with the festival's organizers, who seem very excited to have acquired the exotic condiments, and have invited you two to a bar in the spaceport for a drink.`
+			`Allhome's docking area shows much more traffic than usual. Many captains here are helping workers open cargo containers full of food, clothes, books, movies and even some mounted animals from human space. You finally meet up with the festival's organizers, who seem very excited to have acquired the exotic condiments, and have invited you two to a bar in the spaceport for a drink.`
 
 
 
