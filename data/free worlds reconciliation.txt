@@ -1710,17 +1710,11 @@ mission "FW Pug 4: Escorts (Extra)"
 	npc kill
 		personality escort heroic disables
 		government "Republic"
-		ship "Carrier (Jump)" "R.N.S. Matterhorn"
-		ship "Dagger" "Red Nine"
-		ship "Dagger" "Red Ten"
-		ship "Dagger" "Red Eleven"
-		ship "Dagger" "Red Twelve"
+		ship "Cruiser (Jump)" "R.N.S. Matterhorn"
 		ship "Combat Drone" "Yellow Thirteen"
 		ship "Combat Drone" "Yellow Fourteen"
 		ship "Combat Drone" "Yellow Fifteen"
 		ship "Combat Drone" "Yellow Sixteen"
-		ship "Combat Drone" "Yellow Seventeen"
-		ship "Combat Drone" "Yellow Eighteen"
 
 
 
