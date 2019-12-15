@@ -204,25 +204,30 @@ void Fleet::Load(const DataNode &node)
 			{
 				resetVariants = false;
 				variants.clear();
+				stockVariants.clear();
 				total = 0;
+				stockTotal = 0;
 			}
 
 			int weight = 1;
-			string name;
+			string variantName;
 			bool named = false;
 			if(child.Size() >= 2 + add && !child.IsNumber(1 + add))
 			{
-				name = child.Token(1 + add);
+				variantName = child.Token(1 + add);
 				named = true;
 			}
 			if(child.Size() >= 2 + add + named)
 				weight = child.Value(1 + add + named);
 
-			if(named)
-				variants.emplace_back(make_pair(GameData::Variants().Get(name), weight));
-			else
-				variants.emplace_back(make_pair(new Variant(child), weight));
 			total += weight;
+			if(named)
+			{
+				stockVariants.emplace_back(make_pair(GameData::Variants().Get(variantName), weight));
+				stockTotal += weight;
+			}
+			else
+				variants.emplace_back(make_pair(Variant(child), weight));
 		}
 		else if(key == "variant")
 		{
@@ -230,12 +235,9 @@ void Fleet::Load(const DataNode &node)
 			bool didRemove = false;
 			Variant toRemove(child);
 			for(auto it = variants.begin(); it != variants.end(); ++it)
-				if(toRemove.Ships().size() == it->first->Ships().size()
-					&& is_permutation(it->first->Ships().begin(),
-					it->first->Ships().end(), toRemove.Ships().begin())
-					&& toRemove.Variants().size() == it->first->Variants().size()
-					&& is_permutation(it->first->Variants().begin(),
-					it->first->Variants().end(), toRemove.Variants().begin()))
+				if(toRemove.Ships().size() == it->first.Ships().size()
+					&& is_permutation(it->first.Ships().begin(),
+					it->first.Ships().end(), toRemove.Ships().begin()))
 				{
 					total -= it->second;
 					variants.erase(it);
@@ -519,6 +521,8 @@ int64_t Fleet::Strength() const
 {
 	int64_t sum = 0;
 	for(auto &variant : variants)
+		sum += variant.first.Strength() * variant.second;
+	for(auto &variant : stockVariants)
 		sum += variant.first->Strength() * variant.second;
 	return sum / total;
 }
@@ -529,10 +533,20 @@ const Variant &Fleet::ChooseVariant() const
 {
 	// Pick a random variant based on the weights.
 	unsigned index = 0;
-	for(int choice = Random::Int(total); choice >= variants[index].second; ++index)
-		choice -= variants[index].second;
-	
-	return *variants[index].first;
+	// Choose between stockVariants and variants.
+	int chosen = Random::Int(total);
+	if(chosen < stockTotal)
+	{
+		for(int choice = Random::Int(stockTotal); choice >= stockVariants[index].second; ++index)
+			choice -= stockVariants[index].second;
+		return *stockVariants[index].first;
+	}
+	else
+	{
+		for(int choice = Random::Int(total - stockTotal); choice >= variants[index].second; ++index)
+			choice -= variants[index].second;
+		return variants[index].first;
+	}
 }
 
 

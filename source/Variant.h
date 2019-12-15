@@ -36,7 +36,8 @@ public:
 	
 	const std::string &Name() const;
 	std::vector<const Ship *> Ships() const;
-	std::vector<std::pair<const Variant *, int>> Variants() const;
+	std::vector<std::pair<const Variant *, int>> StockVariants() const;
+	std::vector<std::pair<Variant, int>> Variants() const;
 	std::vector<const Ship *> ChooseShips() const;
 	std::vector<const Ship *> NestedChooseShips() const;
 	
@@ -49,9 +50,10 @@ private:
 	std::string name;
 	int total = 0;
 	int variantTotal = 0;
-	int shipTotal = 0;
+	int stockTotal = 0;
 	std::vector<const Ship *> ships;
-	std::vector<std::pair<const Variant *, int>> variants;
+	std::vector<std::pair<const Variant *, int>> stockVariants;
+	std::vector<std::pair<Variant, int>> variants;
 };
 
 
