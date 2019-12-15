@@ -164,6 +164,8 @@ government "Ka'het"
 		"Hai" -.01
 		"Korath" -.01
 		"Navy (Oathkeeper)" -.01
+		"Republic" -.01
+		"Free Worlds" -.01
 	
 	"player reputation" -1
 
@@ -178,6 +180,8 @@ government " Ka'het "
 		"Hai" -.01
 		"Korath" -.01
 		"Navy (Oathkeeper)" -.01
+		"Republic" -.01
+		"Free Worlds" -.01
 	
 	"player reputation" -1
 
