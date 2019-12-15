@@ -229,10 +229,12 @@ ship "Archon"
 	"final explode" "final explosion large"
 
 ship "Archon" "Archon B"
+	"never disabled"
 	sprite "ship/archon b"
 		"frame rate" 0.87
 
 ship "Archon" "Archon C"
+	"never disabled"
 	sprite "ship/archon c"
 		"frame rate" 0.87
 
