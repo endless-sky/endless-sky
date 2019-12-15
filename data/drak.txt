@@ -168,7 +168,7 @@ effect "antimatter dust"
 
 
 
-ship "Archon A"
+ship "Archon"
 	noun "entity"
 	sprite "ship/archon"
 		"frame rate" 0.87
