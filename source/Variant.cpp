@@ -193,5 +193,5 @@ int64_t Variant::Strength() const
 
 int64_t Variant::NestedStrength() const
 {
-	return Strength() / (ships.size() + variants.size());
+	return Strength() / (ships.size() + variants.size() + stockVariants.size());
 }
