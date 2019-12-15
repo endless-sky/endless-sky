@@ -10072,10 +10072,12 @@ system Fereti
 	haze _menu/haze-red
 	habitable 486.68
 	link Lire
-	asteroids "large metal" 1 2
-	asteroids "large rock" 2 1
-	asteroids "medium rock" 3 1
-	asteroids "small rock" 2 2
+	asteroids "large metal" 5 2
+	asteroids "large rock" 4 1
+	asteroids "medium rock" 7 1
+	asteroids "small rock" 21 2
+	minables lead 8 2
+	minables iron 10 3
 	trade Clothing 294
 	trade Electronics 821
 	trade Equipment 651
@@ -14672,9 +14674,10 @@ system Lire
 	link Fearis
 	link Fereti
 	link Giribea
-	asteroids "large metal" 1 2
-	minables iron 3 11
-	minables titanium 21 14
+	asteroids "large metal" 9 3
+	asteroids "small metal" 14 6
+	minables iron 3 6
+	minables titanium 21 8
 	trade Clothing 270
 	trade Electronics 818
 	trade Equipment 605
