@@ -23,9 +23,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-namespace {
-}
-
 
 
 // Construct and Load() at the same time.
@@ -123,21 +120,17 @@ vector<const Ship *> Variant::ChooseShips() const
 {
 	vector<const Ship *> chosenShips = ships;
 	for(auto &it : variants)
-	{
 		for(int i = 0; i < it.second; i++)
 		{
 			vector<const Ship *> variantShips = it.first.NestedChooseShips();
 			chosenShips.insert(chosenShips.end(), variantShips.begin(), variantShips.end());
 		}
-	}
 	for(auto &it : stockVariants)
-	{
 		for(int i = 0; i < it.second; i++)
 		{
 			vector<const Ship *> variantShips = it.first->NestedChooseShips();
 			chosenShips.insert(chosenShips.end(), variantShips.begin(), variantShips.end());
 		}
-	}
 	return chosenShips;
 }
 
