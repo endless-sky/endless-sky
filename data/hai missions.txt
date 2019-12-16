@@ -1409,7 +1409,7 @@ mission "Pirate Troubles [4]"
 			has "accepted scar's legion tribute"
 	on offer
 		"reputation: Hai" += 20
-		payment 1000000
+		payment 2500000
 		conversation
 			`Upon landing on <origin>, the Hai authorities give you <payment> for your assistance in defending their systems and for helping to track down the culprits. You're sent to the council of elders to tell them about Scar's Legion. "Please, tell us what has occurred," one of the elders says.`
 			branch defeated
@@ -1447,6 +1447,9 @@ mission "Pirate Troubles [4]"
 			`	The elders thank you for your assistance in this situation and send you on your way.`
 				decline
 	
+	on decline
+		"reputation: Hai" += 40
+	
 	npc save accompany
 		government "Hai"
 		personality escort
@@ -1464,5 +1467,5 @@ mission "Pirate Troubles [4]"
 	
 	on complete
 		"reputation: Hai" += 40
-		payment 2000000
+		payment 500000
 		dialog `With the freighters safely returned, the Hai thank you for resolving the situation with Scar's Legion and hand you <payment> for your help.`
