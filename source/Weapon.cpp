@@ -178,8 +178,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				double maxDropoff = (child.Size() >= 3) ? child.Value(2) : 0.;
 				damageDropoffRange = make_pair(max(0., value), maxDropoff);
 			}
-			else if(key == "damage decay")
-				damageDecay = max(0., value);
+			else if(key == "dropoff modifier")
+				damageDropoffModifier = max(0., value);
 			else
 				child.PrintTrace("Unrecognized weapon attribute: \"" + key + "\":");
 		}
@@ -338,9 +338,9 @@ double Weapon::DamageDropoff(double distance) const
 	if(distance <= minDropoff)
 		return 1.;
 	if(distance >= maxDropoff)
-		return damageDecay;
-	// Damage decay is linear between the min and max dropoff points.
-	double slope = (1 - damageDecay) / (minDropoff - maxDropoff);
+		return damageDropoffModifier;
+	// Damage modification is linear between the min and max dropoff points.
+	double slope = (1 - damageDropoffModifier) / (minDropoff - maxDropoff);
 	return slope * (distance - minDropoff) + 1;
 }
 
