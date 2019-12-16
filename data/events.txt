@@ -2805,6 +2805,37 @@ event "syndicate tech available"
 
 
 
+event "fwc battle of alcyone"
+	system "Alcyone"
+		fleet "Small Syndicate" 5000
+
+
+
+event "fwc navy occupies alcyone"
+	system "Alcyone"
+		government "Republic"
+		fleet "Small Republic" 500
+		fleet "Large Republic" 800
+		fleet "Large Syndicate" 800
+
+
+
+event "fwc navy done with alcyone"
+	system "Alcyone"
+		government "Pirate"
+		fleet "Small Core Pirates" 400
+		fleet "Large Core Pirates" 600
+		fleet "Large Syndicate" 1200
+
+
+
+event "fwc solace has nuke loader"
+	outfitter "Nuke"
+		"Nuclear Warhead"
+		"Warhead Loading System"
+
+
+
 event "geminus rebuilt"
 	planet Geminus
 		description `Geminus, although not the most hospitable of worlds, is a young enough planet that large stores of iron, titanium, and other metals are easily accessible near the surface. The constant volcanic activity leaves the planet perpetually shrouded in a twilight haze of ash and fog.`

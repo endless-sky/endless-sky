@@ -197,3 +197,27 @@ mission "FW Epilogue: Danforth"
 			label end
 			`	After you talk for a while longer, Danforth wishes you luck and sends you on your way. "I'll be in touch if we ever need your assistance in the future," he says.`
 				decline
+
+mission "FWC Epilogue: Wolf Pack"
+	minor
+	landing
+	source "Solace"
+	to offer
+		has "fwc solace has nuke loader"
+	on offer
+		conversation
+			`You recall Tomek mentioning that the Syndicate left a gift with the Wolf Pack and decide to go to the outfitter to see what it is. There you find Odie, the Wolf Pack member who oversaw the assembly of the nuclear missiles during the war. "Captain <last>! I heard you're a hero now. I was told to expect you. I take it you're here about that gift the Syndicate gave us."`
+			choice
+				`	"Yes I am. What is it?"`
+				`	"I wouldn't call myself a hero, but if you insist. What did the Syndicate bring?"`
+			scene "outfit/warhead loader"
+			`	Odie brings you to a warehouse full of crates. One of the crates is open, revealing a weapon inside. "Remember how we didn't have a feed system for our nuclear missiles, so we could only fire one per gun port before needing to reload? Well someone at the Syndicate was kind enough to drop off the blueprints for a working feed system."`
+			choice
+				`	"Now that sounds like an exciting weapon to use."`
+					goto exciting
+				`	"Why do you think they gave it to us? Why did they even have this?"`
+			`	"I don't know why they have it or why they gave it to us. I didn't ask any questions, I just got right to work making it.`
+			label exciting
+			`	"It's able to load six missiles at a time. It takes ten seconds to get ready to fire another nuke, but it's far better than what we had before. It's a hefty weapon, though: 63 tons, so our old missiles still have some use on smaller ships."`
+			`	Odie pats you on the back and smiles. "And we're giving you access to it. For a price, of course." Odie walks off, leaving you to contemplate if you'll make use of such a weapon.`
+				decline

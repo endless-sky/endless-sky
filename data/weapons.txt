@@ -1046,6 +1046,56 @@ effect "nuke residue slow"
 	"velocity scale" 0.1
 
 
+outfit "Nuclear Warhead"
+	category "Ammunition"
+	cost 800000
+	thumbnail "outfit/nuke"
+	"mass" 8
+	"nuke capacity" -1
+	description "Nuclear warheads are ammunition for the Warhead Loading System. The mechanisms that allow nuclear missiles to be fired without a launcher have been removed, leading to a smaller missile that requires a launcher to be used."
+
+outfit "Warhead Loading System"
+	category "Secondary Weapons"
+	cost 2600000
+	thumbnail "outfit/warhead loader"
+	"mass" 15
+	"outfit space" -63
+	"weapon capacity" -63
+	"gun ports" -1
+	"nuke capacity" 6
+	weapon
+		sprite "projectile/missile"
+			"no repeat"
+			"frame rate" .25
+		sound "nuke"
+		ammo "Nuclear Warhead"
+		stream
+		icon "icon/nuke"
+		"hit effect" "nuke explosion"
+		"hit effect" "nuke residue fast" 10
+		"hit effect" "nuke residue slow" 10
+		"die effect" "missile death"
+		"inaccuracy" 1
+		"velocity" 6
+		"lifetime" 800
+		"reload" 600
+		"firing energy" 10
+		"firing heat" 400
+		"acceleration" .8
+		"drag" .1
+		"turn" 4
+		"homing" 4
+		"radar tracking" .5
+		"optical tracking" 1
+		"trigger radius" 30
+		"blast radius" 150
+		"shield damage" 9000
+		"hull damage" 7000
+		"hit force" 4000
+		"missile strength" 200
+	description "It has been centuries since the last nuclear war was fought, and until very recently, most people in the galaxy assumed that that era of chaos and destruction was forever behind us..."
+
+
 outfit "Gatling Gun Ammo"
 	plural "Gatling Gun Ammo"
 	category "Ammunition"

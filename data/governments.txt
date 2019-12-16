@@ -376,6 +376,7 @@ government "Syndicate (Extremist)"
 	"attitude toward"
 		"Syndicate" -.01
 		"Republic" -.01
+		"Navy (Oathkeeper)" -.01
 		"Free Worlds" -.01
 	"bribe" 0
 	"hostile hail" "hostile syndicate"
@@ -387,6 +388,7 @@ government "Terrorist"
 	"attitude toward"
 		"Syndicate" -.01
 		"Republic" -.01
+		"Navy (Oathkeeper)" -.01
 		"Free Worlds" -.01
 	"bribe" 0
 	"hostile hail" "hostile syndicate"
