@@ -1411,7 +1411,7 @@ mission "Pirate Troubles [4]"
 		"reputation: Hai" += 20
 		payment 2500000
 		conversation
-			`Upon landing on <origin>, the Hai authorities give you <payment> for your assistance in defending their systems and for helping to track down the culprits. You're sent to the council of elders to tell them about Scar's Legion. "Please, tell us what has occurred," one of the elders says.`
+			`Upon landing on <origin>, the Hai authorities give you <payment> for your assistance in defending their systems and for helping to track down the culprits. You're sent to the council of elders, the elected ruling body of the Hai, to tell them about Scar's Legion. "Please, tell us what has occurred," one of the elders says.`
 			branch defeated
 				has "defeated scar's legion"
 			
