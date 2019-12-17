@@ -1,0 +1,107 @@
+# Copyright (c) 2019 by Tommaso Becca
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+outfit "Ka'het Laser"
+	category "Guns"
+	cost 322000
+	thumbnail "outfit/ka'het laser"
+	"mass" 13
+	"outfit space" -18
+	"weapon capacity" -18
+	"gun ports" -1
+	weapon
+		sprite "projectile/disruptor"
+			"frame rate" 15
+		sound "disruptor"
+		"hit effect" "disruptor impact"
+		"inaccuracy" .2
+		"velocity" 480
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 3.7
+		"firing heat" 1.5
+		"shield damage" 1.8
+		"hull damage" 4.3
+	description "The Ka'het use this weapon against the hull of their enemies."
+
+outfit "Ka'het Laser Turret"
+	category "Turrets"
+	cost 417000
+	thumbnail "outfit/ka'het laser turret"
+	"mass" 16
+	"outfit space" -22
+	"weapon capacity" -22
+	"turret mounts" -1
+	weapon
+		sprite "projectile/disruptor"
+			"frame rate" 15
+		"hardpoint sprite" "hardpoint/disruptor"
+		"hardpoint offset" 15.
+		sound "disruptor"
+		"hit effect" "disruptor impact"
+		"inaccuracy" .2
+		"turret turn" 1.5
+		"velocity" 480
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 3.7
+		"firing heat" 1.5
+		"shield damage" 1.8
+		"hull damage" 4.3
+	description "The Ka'het use this turret against the hull of their enemies."
+
+outfit "Ka'het Blaster"
+	category "Guns"
+	cost 351000
+	thumbnail "outfit/ka'het blaster"
+	"mass" 10
+	"outfit space" -14
+	"weapon capacity" -14
+	"gun ports" -1
+	weapon
+		sprite "projectile/plasma"
+			"frame rate" 7
+		sound "plasma"
+		"hit effect" "plasma impact"
+		"inaccuracy" 2.5
+		"velocity" 18
+		"lifetime" 35
+		"reload" 10
+		"firing energy" 31
+		"firing heat" 8
+		"shield damage" 43
+		"hull damage" 12
+	description "The Ka'het use this weapon against the shields of their enemies."
+
+outfit "Ka'het Blaster Turret"
+	category "Turrets"
+	cost 529000
+	thumbnail "outfit/ka'het blaster turret"
+	"mass" 25
+	"outfit space" -32
+	"weapon capacity" -32
+	"turret mounts" -1
+	weapon
+		sprite "projectile/plasma"
+			"frame rate" 7
+		"hardpoint sprite" "hardpoint/disruptor"
+		"hardpoint offset" 15.
+		sound "plasma"
+		"hit effect" "plasma impact"
+		"inaccuracy" 3
+		"turret turn" 1.5
+		"velocity" 18
+		"lifetime" 35
+		"reload" 10
+		"firing energy" 62
+		"firing heat" 16
+		"shield damage" 86
+		"hull damage" 24
+	description "The Ka'het use this turret against the shields of their enemies."
