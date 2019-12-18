@@ -21,48 +21,56 @@ ship "Maeri'het"
 		"bunks" 27
 		"mass" 410
 		"drag" 5.9
-		"heat dissipation" .7
+		"heat dissipation" .4
 		"fuel capacity" 600
 		"cargo space" 40
 		"outfit space" 560
 		"weapon capacity" 384
-		"engine capacity" 106
-		"energy capacity" 2000
-		"energy generation" 22
+		"energy capacity" 10000
+		"energy generation" 28.3
 		"heat generation" 32
-		"shield generation" 8
-		"shield energy" 8
+		"hull repair" 0.3
+		"shield heat" 4.9
+		"thrust" 39.2
+		"thrusting energy" 6.17
+		"thrusting heat" 1.8
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sound" "plasma small"
+		"turn" 986.4
+		"turning energy" 3.14
+		"turning heat" 1.4
 		weapon
 			"blast radius" 180
 			"shield damage" 720
 			"hull damage" 360
 			"hit force" 1080
 	outfits
-		"Forge-Class Steering"
 		"Hyperdrive"
-		"Geode Reactor" 2
-		"Crucible-Class Thruster" 2
-		"Large Heat Shunt"
-		"Korath Disruptor" 2
-		"Plasma Turret" 2
-		"Pug Zapper" 2
-		
+		"Ka'het Small Cooling" 3
+		"Ka'het Blaster Turret" 2
+		"Ka'het Laser Turret" 2
+		"Ka'het Laser" 2
+		"Ka'het Shield" 2
+
 	engine -20 66 0.6
 	engine -26.5 66 0.8
 	engine 20 66 0.6
 	engine 26.5 66 0.8
-	gun -9 -74 "Pug Zapper"
-	gun 9 -74 "Pug Zapper"
-	turret -13.5 -29 "Korath Disruptor"
-	turret -14 -12.5 "Plasma Turret"
-	turret 13.5 -29 "Korath Disruptor"
-	turret 14 -12.5 "Plasma Turret"
+	gun -9 -74 "Ka'het Laser"
+	gun 9 -74 "Ka'het Laser"
+	turret -13.5 -29 "Ka'het Blaster Turret"
+	turret -14 -12.5 "Ka'het Laser Turret"
+	turret 13.5 -29 "Ka'het Blaster Turret"
+	turret 14 -12.5 "Ka'het Laser Turret"
 	explode "tiny explosion" 5
 	explode "small explosion" 20
 	explode "medium explosion" 25
 	explode "large explosion" 15
 	"final explode" "final explosion medium"
-	description "This is a medium-sized Ka'het vessel."
+	description "This is a small-sized Ka'het vessel."
 
 ship "Telis'het"
 	plural "Telis'heta"
@@ -77,51 +85,56 @@ ship "Telis'het"
 		"bunks" 87
 		"mass" 940
 		"drag" 9.8
-		"heat dissipation" .6
+		"heat dissipation" .25
 		"fuel capacity" 600
 		"cargo space" 70
 		"outfit space" 560
 		"weapon capacity" 359
-		"engine capacity" 148
-		"energy capacity" 4000
-		"energy generation" 32
-		"heat generation" 48
-		"shield generation" 10
-		"shield energy" 10
+		"energy capacity" 20000
+		"energy generation" 32.3
+		"heat generation" 40
+		"hull repair" 0.5
+		"shield energy" 0.3
+		"shield heat" 9.2
+		"thrust" 62.8
+		"thrusting energy" 11.4
+		"thrusting heat" 3.5
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sprite" "effect/remnant flare/medium"
+			"frame rate" 4
+		"flare sound" "plasma medium"
+		"turn" 2031.7
+		"turning energy" 6.38
+		"turning heat" 2.9
 		weapon
 			"blast radius" 300
 			"shield damage" 1200
 			"hull damage" 600
 			"hit force" 1800
 	outfits
-		"Large Battery Module"
-		"Small Repair Module"
-		"Forge-Class Thruster"
 		"Hyperdrive"
-		"Geode Reactor"
-		"Crucible-Class Thruster"
-		"Large Heat Shunt"
-		"Korath Disruptor" 2
-		"EMP Torpedo Bay" 2
-		"Plasma Turret" 2
-		"EMP Torpedo" 18
-		"Smelter-Class Steering"
-		"Pug Zapper" 2
-		"Moonbeam Turret"
+		"Ka'het Large Cooling" 2
+		"Ka'het Shields" 7
+		"Ka'het Blaster Turret" 2
+		"Ka'het EMP Launcher" 2
+		"Ka'het Laser Turret" 3
+		"EMP Torpedo" 32
+		"Ka'het Blaster" 2
 		
 	engine -27 75.5 0.6
 	engine -39.5 82.5 0.8
 	engine 27 75.5 0.6
 	engine 39.5 82.5 0.8
-	gun -11.5 -94 "EMP Torpedo Bay"
-	gun -23.5 -87.5 "Pug Zapper"
-	gun 11.5 -94 "EMP Torpedo Bay"
-	gun 23.5 -87.5 "Pug Zapper"
-	turret -27 -41 "Plasma Turret"
-	turret -41.5 -50.5 "Korath Disruptor"
-	turret 0 -53 "Moonbeam Turret"
-	turret 27 -41 "Plasma Turret"
-	turret 41.5 -50.5 "Korath Disruptor"
+	gun -11.5 -94 "Ka'het EMP Launcher"
+	gun -23.5 -87.5 "Ka'het Blaster"
+	gun 11.5 -94 "Ka'het EMP Launcher"
+	gun 23.5 -87.5 "Ka'het Blaster"
+	turret -27 -41 "Ka'het Blaster Turret"
+	turret -41.5 -50.5 "Ka'het Laser Turret"
+	turret 0 -53 "Ka'het Laser Turret"
+	turret 27 -41 "Ka'het Blaster Turret"
+	turret 41.5 -50.5 "Ka'het Laser Turret"
 	explode "small explosion" 25
 	explode "medium explosion" 30
 	explode "large explosion" 20
