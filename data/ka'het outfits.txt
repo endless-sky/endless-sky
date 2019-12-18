@@ -105,3 +105,46 @@ outfit "Ka'het Blaster Turret"
 		"shield damage" 86
 		"hull damage" 24
 	description "The Ka'het use this turret against the shields of their enemies."
+
+outfit "Ka'het EMP Launcher"
+	category "Secondary Weapons"
+	cost 583000
+	thumbnail "outfit/ka'het emp"
+	"mass" 18
+	"outfit space" -26
+	"weapon capacity" -26
+	"gun ports" -1
+	"emp torpedo capacity" 16
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 2
+			"no repeat"
+		sound "torpedo"
+		ammo "EMP Torpedo"
+		icon "icon/emp"
+		"fire effect" "emp torpedo fire" 5
+		"hit effect" "nuke explosion"
+		"hit effect" "emp ring" 30
+		"hit effect" "emp spark" 20
+		"die effect" "tiny explosion"
+		stream
+		"reload" 180
+		"firing energy" 540
+		"firing heat" 11
+		"inaccuracy" 4
+		"lifetime" 300
+		"velocity" 7
+		"acceleration" .7
+		"drag" .1
+		"turn" 2
+		"homing" 3
+		"infrared tracking" .7
+		"radar tracking" .8
+		"trigger radius" 50
+		"blast radius" 200
+		"shield damage" 700
+		"hull damage" 100
+		"ion damage" 48
+		"hit force" 90
+		"missile strength" 80
+	description "The Ka'het use the EMP missiles launched against their enemies' energy reserves."
