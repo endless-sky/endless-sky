@@ -8,6 +8,8 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+# Weapons:
+
 outfit "Ka'het Laser"
 	category "Guns"
 	cost 322000
@@ -108,7 +110,7 @@ outfit "Ka'het Blaster Turret"
 
 outfit "Ka'het EMP Launcher"
 	category "Secondary Weapons"
-	cost 583000
+	cost 715000
 	thumbnail "outfit/ka'het emp"
 	"mass" 18
 	"outfit space" -26
@@ -148,3 +150,26 @@ outfit "Ka'het EMP Launcher"
 		"hit force" 90
 		"missile strength" 80
 	description "The Ka'het use the EMP missiles launched against their enemies' energy reserves."
+
+# Cooling:
+
+outfit "Ka'het Small Cooling"
+	category "Systems"
+	cost 218000
+	thumbnail "outfit/ka'het small cooling"
+	"mass" 6
+	"outfit space" -8
+	"active cooling" 39
+	"cooling energy" 3.1
+	description "The Ka'het use these small coolings since they need to run very cool."
+
+
+outfit "Ka'het Large Cooling"
+	category "Systems"
+	cost 563000
+	thumbnail "outfit/ka'het large cooling"
+	"mass" 11
+	"outfit space" -14
+	"active cooling" 68
+	"cooling energy" 5.9
+	description "The Ka'het use these large coolings since they need to run very cool."
