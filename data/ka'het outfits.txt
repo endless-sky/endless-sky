@@ -173,3 +173,15 @@ outfit "Ka'het Large Cooling"
 	"active cooling" 68
 	"cooling energy" 5.9
 	description "The Ka'het use these large coolings since they need to run very cool."
+
+# Shield:
+
+outfit "Ka'het Shield"
+	category "Systems"
+	cost 138000
+	thumbnail "outfit/ka'het shield"
+	"mass" 15
+	"outfit space" -19
+	"shield generation" 1.02
+	"shield energy" 2.04
+	description "In order to regenerate their shield matrixes, the Ka'het use these outfits."
