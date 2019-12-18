@@ -1073,13 +1073,15 @@ mission "Hai Solifuge response"
 
 event "Hai Pond Striders released"
 	fleet "Large Hai"
-		add variant 3
+		add variant 1
 			"Hai Pond Strider" 2
-			"Flea" 16
+			"Flea (Pulse)" 8
+			"Flea" 8
 			"Lightning Bug" 2
-		add variant 2
+		add variant 1
 			"Hai Pond Strider" 3
-			"Flea" 24
+			"Flea (Pulse)" 12
+			"Flea" 12
 		add variant 1
 			"Hai Pond Strider"
 			"Flea" 8
@@ -1088,7 +1090,8 @@ event "Hai Pond Striders released"
 			"Grasshopper"
 		add variant 1
 			"Hai Pond Strider" 2
-			"Flea" 16
+			"Flea (Pulse)" 8
+			"Flea" 8
 			"Centipede"
 
 mission "Strider: View of the Pond"
@@ -1099,12 +1102,10 @@ mission "Strider: View of the Pond"
 	destination "Hai-home"
 	to offer
 		has "Wanderers Solifuge Recon 2: done"
-	on complete
+	on offer
 		conversation
-			`As you land the <ship>, you send word that you need to deliver your message from Ambassador Sayari to the Hai elders.  An appointment is arranged, and within hours, you find yourself before them once again.`
-			`The elders tell you how the Solifuge was not entirely a surprise to the Hai government, but that it posed a threat to the Hai public mindset that couldn't be ignored.`
-			`They continue ""A small, short range drone carrier and combat drone solution is being worked on, but initial simulations predict that actual escort casualties would go up unless significant hull repair technology could be implemented to fix docked drones that would otherwise weigh down the agile warship."`
-			`"You have traveled many systems, <first> <last>. Do you know of any friendly species who would be willing to share the technology that we need?"`
+			`"Ambassador Sayari has a message for the Hai elders about the Solifuge, and needs your help to deliver it to <destination>."`
+				accept
 
 mission "Strider: Have language, will travel"
 	description "Take Ambassador Yashili and her delegation to <destination>."
@@ -1117,7 +1118,7 @@ mission "Strider: Have language, will travel"
 	to offer
 		has "Strider: View of the Pond: done"
 	on offer
-		log `The Hai are working on a medium warship that carries drones, but need help contacting a species with hull repair technology to make it viable.`
+		log `The Hai are working on a medium warship that carries drones in response to the Unfettered, but need help contacting a species with hull repair technology to make it viable.`
 		conversation
 			`As you land the <ship>, you send word that you need to deliver your message from Ambassador Sayari to the Hai elders.  An appointment is arranged, and within hours, you find yourself before them once again.`
 			`The elders tell you how the Solifuge was not entirely a surprise to the Hai government, but that it posed a threat to the Hai public mindset that couldn't be ignored.`
@@ -1138,25 +1139,25 @@ mission "Strider: Have language, will travel"
 			label coalition
 			`You consider your encounters with the Coalition and their repair outfits.`
 			choice
-				`Mention the Coalition, and offer to take a delegation to the Ring of Friendship.`
+				`(Mention the Coalition, and offer to take a delegation to the Ring of Friendship.)`
 					goto ring
-				`The Hai are not ready to learn of the Coalition's existence yet.`
+				`(The Hai are not ready to learn of the Coalition's existence yet.)`
 					goto neither
 			label remnants
 			`You consider your encounters with the Remnants and their self-repairing hulls.`
 			choice
-				`Mention the Remnants, and offer to take a delegation to Aventine.`
+				`(Mention the Remnants, and offer to take a delegation to Aventine.)`
 					goto aventine
-				`The Hai are not ready to learn of the Remnants' existence yet.`
+				`(The Hai are not ready to learn of the Remnants' existence yet.)`
 					goto neither
 			label both
 			`You consider that both the Remnants and the Coalition have technology that repairs hulls.`
 			choice
-				`Mention the Remnants, and offer to take a delegation to Aventine.`
+				`(Mention the Remnants, and offer to take a delegation to Aventine.)`
 					goto aventine
-				`Mention the Coalition, and offer to take a delegation to the Ring of Friendship.`
+				`(Mention the Coalition, and offer to take a delegation to the Ring of Friendship.)`
 					goto ring
-				`The Hai are not ready to learn of hull repair technology yet.`
+				`(The Hai are not ready to learn of hull repair technology yet.)`
 					goto neither
 			label ring
 			apply
@@ -1171,9 +1172,6 @@ mission "Strider: Have language, will travel"
 			label neither
 			`You explain that you have not encountered a friendly civilization with hull repair technology, but that when you do, you might be able to introduce the Hai to them.`
 				defer
-	on complete
-		conversation
-			`One of the Hai ambassadors rushes out of the <ship> as soon as you touch down, and returns minutes later with a set of translation devices similar to the one you acquired to speak with the Wanderers.`
 	on visit
 		dialog `It appears that the delegation is bunked on escorts that have not arrived in this system yet.  Take off and wait for them.`
 
@@ -1190,12 +1188,10 @@ mission "Strider: A tale of two remnants"
 		has "Strider: Remnants"
 	on offer
 		conversation
-			`Ambassador Yashili urges "Now to <destination>, so we may meet the Remnants."`
+			`One of the Hai ambassadors rushes out of the <ship> as soon as you touch down, and returns minutes later with a set of translation devices similar to the one you acquired to speak with the Wanderers.  Ambassador Yashili urges "Now to <destination>, so we may meet the Remnants."`
 				accept
 	on complete
 		log `Helped establish a Hai embassy on Aventine.`
-		conversation
-			`The Remnants are pleased to meet the Hai delegation, and immediately begin an exchange of information.`
 	on visit
 		dialog `It appears that the delegation is bunked on escorts that have not arrived in this system yet.  Take off and wait for them.`
 
@@ -1212,12 +1208,10 @@ mission "Strider: Widen the new coalition"
 		has "Strider: Coalition"
 	on offer
 		conversation
-			`Ambassador Yashili urges "Now to <destination>, so we may meet the Heliarchs."`
+			`One of the Hai ambassadors rushes out of the <ship> as soon as you touch down, and returns minutes later with a set of translation devices similar to the one you acquired to speak with the Wanderers.  Ambassador Yashili urges "Now to <destination>, so we may meet the Heliarchs."`
 				accept
 	on complete
 		log `Helped establish a Hai embassy on the Ring of Friendship.`
-		conversation
-			`The Heliarchs are pleased to meet the Hai delegation, and immediately begin exchanging information about their respective cultures, history and technologies.  The Hai marvel at the Coalition translation devices, and the Heliarchs seem oddly tickled by the genetic variation Humans and Hai represent.`
 	on visit
 		dialog `It appears that the delegation is bunked on escorts that have not arrived in this system yet.  Take off and wait for them.`
 
@@ -1233,7 +1227,7 @@ mission "Strider: Of the Pond R"
 		has "Strider: A tale of two remnants: done"
 	on offer
 		conversation
-			`Three Remnants interested in immersing themselves in Hai culture request to return to Hai-Home with you.`
+			`A Remnant prefect immediately greets the Hai delegation, and ushers them away to the Spaceport. Three Remnants approach you and express that they are interested in immersing themselves in Hai culture: request to return to <destination> with you.`
 			choice
 				`"I'd be happy to take your entourage back to Hai space.  There are accommodations on the <ship> waiting for you, and I'm sure the Hai are prepared for your delegation."`
 					accept
@@ -1261,9 +1255,9 @@ mission "Strider: Of the Pond C"
 		has "Strider: Widen the new coalition: done"
 	on offer
 		conversation
-			`Three Heliarchs interested in immersing themselves in Hai culture request to return to Hai-Home with you.`
+			`The Heliarchs are pleased to meet the Hai delegation, and immediately begin exchanging information about their respective cultures, history and technologies. The Hai marvel at the Coalition translation devices, and the Heliarchs seem oddly tickled by the genetic variation Humans and Hai represent. Three Heliarchs interested in immersing themselves in Hai culture request to return to <destination> with you.`
 			choice
-				`"I'd be happy to take your entourage back to Hai space.  There are accommodations on the <ship> waiting for you, and I'm sure the Hai are prepared for your delegation."`
+				`"I'd be happy to take your entourage back to Hai space. There are accommodations on the <ship> waiting for you, and I'm sure the Hai are prepared for your delegation."`
 					accept
 				`"I'm busy right now, perhaps ask the Quarg."`
 			apply
@@ -1275,7 +1269,7 @@ mission "Strider: Of the Pond C"
 			`The three Heliarchs interested in immersing themselves in Hai culture thank you for the safe trip as they exit the <ship>. Immediately setting to work on learning to communicate with each other without electronic aid, the four species within minutes seem to be having a basic conversation.`
 		log `Transported Heliarch delegation to their reciprocal embassy on Hai-home.`
 	on visit
-		dialog `It appears that the delegation is bunked on escorts that have not arrived in this system yet.  Take off and wait for them.`
+		dialog `It appears that the delegation is bunked on escorts that have not arrived in this system yet. Take off and wait for them.`
 
 mission "Strider: Found their own way"
 	invisible
@@ -1289,13 +1283,15 @@ mission "Strider: Found their own way"
 mission "Strider: notification"
 	invisible
 	landing
+	source
+		government "Hai"
 	to offer
 		has "event: Pond Strider release"
 	on offer
 		log `For assisting the Hai establish an alien embassy, they've made newly developed warships and outfits available.`
 		conversation
 			scene `thumbnail/hai pond strider`
-			`The Hai thank you for your assistance with interspecies diplomacy.  They have begun production of some new military ships and outfits that they've granted you access to in their shipyards and outfitters.`
+			`The Hai thank you for your assistance with interspecies diplomacy. They have begun production of some new military ships and outfits that they've granted you access to in their shipyards and outfitters.`
 		fail
 
 event "Pond Strider release"
@@ -1329,19 +1325,19 @@ event "Pond Strider release"
 			"Pond Strider" 3
 			"Flea" 24
 		add variant 1
-			"Pond Strider" 3
-			"Flea" 24
+			"Pond Strider (Railgun)" 3
+			"Flea (Pulse)" 24
 			"Aphid" 10
-		add variant 2
-			"Pond Strider" 3
-			"Flea" 24
-			"Lightning Bug (Pulse)" 2
 		add variant 2
 			"Pond Strider (Pulse)" 3
 			"Flea" 24
+			"Lightning Bug (Pulse)" 2
+		add variant 2
+			"Pond Strider (Ion)" 3
+			"Flea" 24
 			"Lightning Bug" 2
 		add variant 1
-			"Pond Strider" 3
+			"Pond Strider (Ion)" 3
 			"Flea" 24
 			"Lightning Bug (Pulse)"
 			"Aphid" 4
@@ -1350,27 +1346,24 @@ event "Pond Strider release"
 			"Flea" 24
 			"Lightning Bug"
 			"Aphid (Anti-Missile)" 4
-		add variant 3
+		add variant 2
 			"Pond Strider" 3
-			"Flea" 24
+			"Flea (Pulse)" 24
 			"Lightning Bug (Pulse)"
 			"Water Bug"
 			"Water Bug (Pulse)"
 		add variant 3
 			"Pond Strider" 3
-			"Flea" 24
+			"Flea (Pulse)" 12
+			"Flea" 12
 			"Water Bug"
 			"Water Bug (Pulse)"
-		add variant 3
+		add variant 2
 			"Pond Strider" 3
 			"Flea" 24
 			"Lightning Bug" 2
 			"Water Bug"
 		add variant 3
-			"Pond Strider (Pulse)" 3
-			"Flea" 24
-			"Water Bug" 3
-		add variant 3
 			"Pond Strider" 3
 			"Flea" 24
 			"Lightning Bug (Pulse)" 2
@@ -1380,20 +1373,20 @@ event "Pond Strider release"
 			"Shield Beetle"
 		add variant 2
 			"Shield Beetle (Pulse)"
-			"Pond Strider" 3
+			"Pond Strider (Railgun)" 3
 			"Flea" 24
-		add variant
-			"Pond Strider (Pulse)" 3
+		add variant 1
+			"Pond Strider (Ion)" 3
 			"Flea" 24
 			"Shield Beetle"
 			"Lightning Bug (Pulse)" 2
-		add variant
+		add variant 1
 			"Shield Beetle (Pulse)"
-			"Pond Strider" 3
+			"Pond Strider (Tracker)" 3
 			"Flea" 24
 			"Lightning Bug" 2
-		add variant
-			"Pond Strider" 3
+		add variant 1
+			"Pond Strider (Tracker)" 3
 			"Flea" 24
 			"Centipede" 3
 		add variant 2
