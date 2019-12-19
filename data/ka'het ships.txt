@@ -14,18 +14,19 @@ ship "Maeri'het"
 	"never disabled"
 	attributes
 		category "Light Warship"
-		"cost" 6300000
-		"shields" 6800
-		"hull" 1700
-		"required crew" 19
-		"bunks" 27
-		"mass" 410
-		"drag" 5.9
+		"cost" 13800000
+		"shields" 17600
+		"hull" 23100
+		"required crew" 1
+		"bunks" 1
+		"mass" 390
+		"drag" 4.1
 		"heat dissipation" .4
-		"fuel capacity" 600
-		"cargo space" 40
-		"outfit space" 560
-		"weapon capacity" 384
+		"fuel capacity" 800
+		"ramscoop" 0.58
+		"cargo space" 43
+		"outfit space" 273
+		"weapon capacity" 184
 		"energy capacity" 10000
 		"energy generation" 28.3
 		"heat generation" 32
@@ -49,7 +50,8 @@ ship "Maeri'het"
 			"hit force" 1080
 	outfits
 		"Hyperdrive"
-		"Ka'het Small Cooling" 3
+		"Ka'het Small Cooling" 
+		"Ka'het Large Cooling"
 		"Ka'het Blaster Turret" 2
 		"Ka'het Laser Turret" 2
 		"Ka'het Laser" 2
@@ -78,18 +80,19 @@ ship "Telis'het"
 	"never disabled"
 	attributes
 		category "Heavy Warship"
-		"cost" 9500000
-		"shields" 12600
-		"hull" 2700
-		"required crew" 54
-		"bunks" 87
-		"mass" 940
-		"drag" 9.8
-		"heat dissipation" .25
-		"fuel capacity" 600
-		"cargo space" 70
-		"outfit space" 560
-		"weapon capacity" 359
+		"cost" 32600000
+		"shields" 47000
+		"hull" 26300
+		"required crew" 1
+		"bunks" 1
+		"mass" 620
+		"drag" 6.9
+		"heat dissipation" .35
+		"fuel capacity" 800
+		"ramscoop" 0.82
+		"cargo space" 71
+		"outfit space" 583
+		"weapon capacity" 264
 		"energy capacity" 20000
 		"energy generation" 32.3
 		"heat generation" 40
@@ -115,7 +118,7 @@ ship "Telis'het"
 	outfits
 		"Hyperdrive"
 		"Ka'het Large Cooling" 2
-		"Ka'het Shields" 7
+		"Ka'het Shield" 7
 		"Ka'het Blaster Turret" 2
 		"Ka'het EMP Launcher" 2
 		"Ka'het Laser Turret" 3
