@@ -32,6 +32,9 @@ ship "Maeri'het"
 		"heat generation" 32
 		"hull repair" 0.3
 		"shield heat" 4.9
+		"cloak" .03
+		"cloaking energy" 9.4
+		"cloaking fuel" .08
 		"thrust" 39.2
 		"thrusting energy" 6.17
 		"thrusting heat" 1.8
@@ -72,7 +75,7 @@ ship "Maeri'het"
 	explode "medium explosion" 25
 	explode "large explosion" 15
 	"final explode" "final explosion medium"
-	description "This is a small-sized Ka'het vessel."
+	description "The Maeri is the smallest Het still created by the Builders' stations, a prime example of the genetic technology they once possessed. Its small size is compensated by the fact that this specie of Het can effectively cloak, hiding its location from most types of sensors."
 
 ship "Telis'het"
 	plural "Telis'heta"
@@ -143,4 +146,4 @@ ship "Telis'het"
 	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion large"
-	description "This is the largest Ka'het vessel."
+	description "When the Builders were designing the exoskeleton of their Telis, they came to the conclusion that it would have been impossible to make it strong enough without compromising its agility and the Het's integrity. Instead they focused heavily on improving their shield tech, while also giving it many of their regenerators."
