@@ -8,6 +8,8 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+# Single ship variants
+
 variant "Argosy (Core)"
 	"Argosy" 2
 	"Argosy (Laser)"
@@ -66,6 +68,9 @@ variant "Bulk Freighter (Hai)"
 	variant "Bulk Freighter"
 	"Bulk Freighter (Hai)"
 
+variant "Carrier"
+	"Carrier"
+
 variant "Clipper"
 	"Clipper" 2
 	"Clipper (Heavy)"
@@ -79,6 +84,14 @@ variant "Corvette"
 variant "Corvette (Hai)"
 	variant "Corvette"
 	"Corvette (Hai)"
+
+variant "Cruiser"
+	"Cruiser"
+
+variant "Falcon"
+	"Falcon" 2
+	"Falcon (Heavy)"
+	"Falcon (Laser)"
 
 variant "Firebird"
 	"Firebird" 2
@@ -121,9 +134,40 @@ variant "Freighter (Southern)"
 	"Freighter" 3
 	"Freighter (Fancy)"
 
+variant "Frigate"
+	"Frigate"
+
 variant "Fury"
 	"Fury" 3
 	"Fury (Missile)"
+
+variant "Fury (Militia)"
+	"Fury" 2
+	"Fury (Missile)"
+	"Fury (Bomber)"
+	"Fury (Laser)"
+
+variant "Fury (Miner)"
+	"Fury"
+	"Fury (Miner)" 2
+
+variant "Fury (Pirate)"
+	"Fury" 2
+	"Fury (Missile)"
+	"Fury (Bomber)"
+	"Fury (Laser)"
+	"Fury (Gatling)"
+	"Fury (Heavy)"
+
+variant "Fury (Pirate North)"
+	"Fury" 2
+	"Fury (Missile)"
+	"Fury (Laser)"
+	"Fury (Bomber)"
+	"Fury (Heavy)"
+
+variant "Gunboat"
+	"Gunboat"
 
 variant "Hauler (Hai)"
 	"Hauler"
@@ -137,9 +181,40 @@ variant "Hauler III (Hai)"
 	"Hauler III"
 	"Hauler III (Hai)"
 
+variant "Hawk (Militia)"
+	"Hawk" 2
+	"Hawk (Rocket)"
+	"Hawk (Plasma)"
+	"Hawk (Speedy)"
+	"Hawk (Bomber)"
+
+variant "Hawk (Miner)"
+	"Hawk"
+	"Hawk (Miner)" 2
+
+variant "Hawk (Pirate)"
+	"Hawk"
+	"Hawk (Speedy)"
+	"Hawk (Rocket)"
+
+variant "Hawk (Pirate North)"
+	"Hawk"
+	"Hawk (Speedy)"
+	"Hawk (Rocket)"
+	"Hawk (Bomber)"
+
 variant "Headhunter"
 	"Headhunter" 2
 	"Headhunter (Particle)"
+
+variant "Headhunter (Deep)"
+	"Headhunter" 3
+	"Headhunter (Particle)"
+	"Headhunter (Strike)"
+
+variant "Headhunter (Miner)"
+	"Headhunter"
+	"Headhunter (Miner)" 2
 
 variant "Headhunter (Hai)"
 	variant "Headhunter"
@@ -148,10 +223,6 @@ variant "Headhunter (Hai)"
 variant "Heavy Shuttle"
 	"Heavy Shuttle" 2
 	"Heavy Shuttle (Armed)"
-
-variant "Human Fighters"
-	"Lance"
-	"Dagger"
 
 variant "Leviathan"
 	"Leviathan"
@@ -163,6 +234,16 @@ variant "Leviathan (Hai)"
 	"Leviathan (Hai Weapons)"
 	"Leviathan (Hai Engines)"
 
+variant "Manta"
+	"Manta"
+	"Manta (Proton)"
+
+variant "Modified Argosy"
+	"Modified Argosy"
+	"Modified Argosy (Heavy)"
+	"Modified Argosy (Blaster)"
+	"Modified Argosy (Missile)"
+
 variant "Mule"
 	"Mule"
 	"Mule (Heavy)"
@@ -172,10 +253,31 @@ variant "Mule (Hai)"
 	"Mule (Hai Engines)"
 	"Mule (Hai Weapons)"
 
+variant "Osprey"
+	"Osprey" 2
+	"Osprey (Missile)"
+	"Osprey (Laser)"
+
 variant "Protector"
-	"Protector" 5
+	"Protector"
 	"Protector (Laser)"
 	"Protector (Proton)"
+
+variant "Quicksilver"
+	"Quicksilver"
+	"Quicksilver (Proton)
+
+variant "Rainmaker"
+	"Rainmaker"
+
+variant "Raven"
+	"Raven" 2
+	"Raven (Heavy)"
+	"Raven (Afterburner)"
+
+variant "Sparrow (Pirate)"
+	"Sparrow" 2
+	"Sparrow (Gatling)"
 
 variant "Splinter"
 	"Splinter" 2
@@ -190,12 +292,8 @@ variant "Star Queen (Hai)"
 	"Star Queen"
 	"Star Queen (Hai)"
 
-variant "Headhunter (Hai)"
-	variant "Headhunter"
-	"Headhunter (Hai)"
-
 variant "Vanguard"
-	"Vanguard" 10
+	"Vanguard" 2
 	"Vanguard (Particle)"
 	"Vanguard (Missile)"
 
@@ -203,3 +301,21 @@ variant "Wasp"
 	"Wasp" 2
 	"Wasp (Proton)"
 	"Wasp (Meteor)"
+
+variant "Wasp (Pirate)"
+	"Wasp (Gatling)"
+	"Wasp (Javelin)"
+	"Wasp (Meteor)"
+	"Wasp (Plasma)"
+	"Wasp (Proton)"
+
+# Multi-ship variants
+
+variant "Core Pirate Interceptors"
+	variant "Wasp (Pirate)" 5
+	variant "Hawk (Pirate)"
+	variant "Sparrow (Pirate)"
+
+variant "Human Fighters"
+	"Lance"
+	"Dagger"
