@@ -34,6 +34,10 @@ variant "Bactrian (Hai)"
 	"Bactrian (Hai Weapons)"
 	"Bactrian (Hai Engines)"
 
+variant "Barb:
+	"Barb"
+	"Barb (Gatling)"
+
 variant "Bastion"
 	"Bastion"
 	"Bastion (Heavy)"
@@ -87,6 +91,9 @@ variant "Corvette (Hai)"
 
 variant "Cruiser"
 	"Cruiser"
+
+variant "Dreadnought"
+	"Dreadnought"
 
 variant "Falcon"
 	"Falcon" 2
@@ -224,6 +231,10 @@ variant "Heavy Shuttle"
 	"Heavy Shuttle" 2
 	"Heavy Shuttle (Armed)"
 
+variant "Lance"
+	"Lance"
+	"Lance (Gatling)"
+
 variant "Leviathan"
 	"Leviathan"
 	"Leviathan (Heavy)"
@@ -253,6 +264,10 @@ variant "Mule (Hai)"
 	"Mule (Hai Engines)"
 	"Mule (Hai Weapons)"
 
+variant "Nest"
+	"Nest"
+	"Nest (Sidewinder)"
+
 variant "Osprey"
 	"Osprey" 2
 	"Osprey (Missile)"
@@ -274,6 +289,10 @@ variant "Raven"
 	"Raven" 2
 	"Raven (Heavy)"
 	"Raven (Afterburner)"
+
+variant "Roost"
+	"Roost"
+	"Roost (Sidewinder)"
 
 variant "Sparrow (Pirate)"
 	"Sparrow" 2
