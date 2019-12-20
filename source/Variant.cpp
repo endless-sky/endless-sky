@@ -43,45 +43,112 @@ void Variant::Load(const DataNode &node, const bool global)
 	if(node.Size() >= 2 && !node.IsNumber(1))
 		name = node.Token(1);
 	
+	bool reset = !variants.empty() || !stockVariants.empty() || !ships.empty();
+	
 	for(const DataNode &child : node)
 	{
-		bool variant = (child.Token(0) == "variant");
-		int n = 1;
+		bool add = (child.Token(0) == "add");
+		bool remove = (child.Token(0) == "remove");
+		bool variant = (child.Token(add || remove) == "variant");
 		
-		if(variant)
+		if(remove)
 		{
-			bool named = false;
-			string variantName;
-			if(child.Size() >= 2 && !child.IsNumber(1))
+			bool didRemove = false;
+			if(variant)
 			{
-				variantName = child.Token(1);
-				named = true;
-				if(variantName == name)
-				{
-					node.PrintTrace("A variant can not reference itself:");
-					return;
-				}
-			}
-			
-			if(child.Size() >= 2 + named && child.Value(1 + named) >= 1.)
-				n = child.Value(1 + named);
-			total += n;
-			variantTotal += n;
-			
-			if(named)
-			{
-				stockVariants.emplace_back(make_pair(GameData::Variants().Get(variantName), n));
-				stockTotal += n;
+				// If given a full definition of one of this fleet's variant members, remove the variant.
+				Variant toRemove(child);
+				for(auto it = stockVariants.begin(); it != stockVariants.end(); ++it)
+					if(it->first->Name() == toRemove.Name())
+					{
+						total -= it->second;
+						variantTotal -= it->second;
+						stockTotal -= it->second;
+						stockVariants.erase(it);
+						didRemove = true;
+						break;
+					}
+				
+				if(!didRemove)
+					for(auto it = variants.begin(); it != variants.end(); ++it)
+						if(it->first.Equals(toRemove))
+						{
+							total -= it->second;
+							variantTotal -= it->second;
+							variants.erase(it);
+							didRemove = true;
+							break;
+						}
+				
+				if(!didRemove)
+					child.PrintTrace("Did not find matching variant for specified operation:");
 			}
 			else
-				variants.emplace_back(make_pair(Variant(child), n));
+			{
+				// If given the name of a ship, remove all ships by that name from this variant.
+				string shipName = child.Token(1);
+				for(auto it = ships.begin(); it != ships.end(); ++it)
+					if((*it)->ModelName() == shipName)
+					{
+						--total;
+						ships.erase(it);
+						didRemove = true;
+						--it;
+					}
+				
+				if(!didRemove)
+					child.PrintTrace("Did not find matching ship for specified operation:");
+			}
 		}
 		else
 		{
-			if(child.Size() >= 2 && child.Value(1) >= 1.)
-				n = child.Value(1);
-			total += n;
-			ships.insert(ships.end(), n, GameData::Ships().Get(child.Token(0)));
+			if(reset && !add)
+			{
+				reset = false;
+				variants.clear();
+				stockVariants.clear();
+				ships.clear();
+				total = 0;
+				variantTotal = 0;
+				stockTotal = 0;
+			}
+			
+			int n = 1;
+			if(variant)
+			{
+				bool named = false;
+				string variantName;
+				if(child.Size() >= 2 + add && !child.IsNumber(1 + add))
+				{
+					variantName = child.Token(1 + add);
+					named = true;
+					if(variantName == name)
+					{
+						node.PrintTrace("A variant cannot reference itself:");
+						return;
+					}
+				}
+				
+				if(child.Size() >= 2 + add + named && child.Value(1 + add + named) >= 1.)
+					n = child.Value(1 + add + named);
+				total += n;
+				variantTotal += n;
+				
+				if(named)
+				{
+					stockVariants.emplace_back(make_pair(GameData::Variants().Get(variantName), n));
+					stockTotal += n;
+				}
+				else
+					variants.emplace_back(make_pair(Variant(child), n));
+			}
+			else
+			{
+				if(child.Size() >= 2 + add && child.Value(1 + add) >= 1.)
+					n = child.Value(1 + add);
+				total += n;
+				ships.insert(ships.end(), n, GameData::Ships().Get(child.Token(0)));
+			}
 		}
 	}
 }
@@ -187,4 +254,42 @@ int64_t Variant::Strength() const
 int64_t Variant::NestedStrength() const
 {
 	return Strength() / total;
+}
+
+
+
+bool Variant::Equals(Variant toRemove) const
+{
+	// Are the ships of toRemove a permutation of this variant?
+	if(toRemove.Ships().size() != ships.size()
+		|| !is_permutation(ships.begin(), ships.end(), toRemove.Ships().begin()))
+		return false;
+	// Are the stockVariants of toRemove a permutation of this variant?
+	if(toRemove.StockVariants().size() != stockVariants.size()
+		|| !is_permutation(stockVariants.begin(), stockVariants.end(), toRemove.StockVariants().begin()))
+		return false;
+	// Does toRemove have the same number of nested variants as this variant?
+	if(toRemove.Variants().size() != variants.size())
+		return false;
+	// Are the variants of toRemove equal to the variants of this variant?
+	for(auto variant : variants)
+	{
+		// For each nested variant in this variant, look for a matching nested variant in toRemove.
+		bool sameVariants = false;
+		for(auto toRemoveVariant : toRemove.Variants())
+		{
+			// If a matching nested variant was found, break out of this loop.
+			if(variant.first.Equals(toRemoveVariant.first));
+			{
+				sameVariants = true;
+				break;
+			}
+		}
+		// If no matching variant in toRemove was found for this nested variant, then toRemove and this variant are not equal.
+		if(!sameVariants)
+			return false;
+	}
+	
+	// If all checks have passed, these variants are equal.
+	return true;
 }

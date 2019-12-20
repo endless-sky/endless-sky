@@ -40,6 +40,7 @@ public:
 	std::vector<std::pair<Variant, int>> Variants() const;
 	std::vector<const Ship *> ChooseShips() const;
 	std::vector<const Ship *> NestedChooseShips() const;
+	bool Equals(Variant toRemove) const;
 	
 	int64_t Strength() const;
 	int64_t NestedStrength() const;

@@ -158,7 +158,7 @@ void Fleet::Load(const DataNode &node)
 	
 	// If Load() has already been called once on this fleet, any subsequent
 	// calls will replace the variants instead of adding to them.
-	bool resetVariants = !variants.empty();
+	bool resetVariants = !variants.empty() || !stockVariants.empty();
 	
 	for(const DataNode &child : node)
 	{
@@ -231,19 +231,28 @@ void Fleet::Load(const DataNode &node)
 		}
 		else if(key == "variant")
 		{
-			// If given a full ship definition of one of this fleet's variant members, remove the variant.
+			// If given a full definition of one of this fleet's variant members, remove the variant.
 			bool didRemove = false;
 			Variant toRemove(child);
-			for(auto it = variants.begin(); it != variants.end(); ++it)
-				if(toRemove.Ships().size() == it->first.Ships().size()
-					&& is_permutation(it->first.Ships().begin(),
-					it->first.Ships().end(), toRemove.Ships().begin()))
+			for(auto it = stockVariants.begin(); it != stockVariants.end(); ++it)
+				if(it->first->Name() == toRemove.Name())
 				{
 					total -= it->second;
-					variants.erase(it);
+					stockTotal -= it->second;
+					stockVariants.erase(it);
 					didRemove = true;
 					break;
 				}
+			
+			if(!didRemove)
+				for(auto it = variants.begin(); it != variants.end(); ++it)
+					if(it->first.Equals(toRemove))
+					{
+						total -= it->second;
+						variants.erase(it);
+						didRemove = true;
+						break;
+					}
 			
 			if(!didRemove)
 				child.PrintTrace("Did not find matching variant for specified operation:");

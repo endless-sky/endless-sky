@@ -819,7 +819,7 @@ event "recapture of Kornephoros"
 
 	fleet "Small Republic"
 		add variant 10
-			"Protector"
+			variant "Protector"
 
 
 
@@ -1002,7 +1002,7 @@ event "flamethrower available"
 	outfitter "Kraz Advanced"
 		"Flamethrower"
 	variant "Fury (Militia)"
-		"Fury (Flamethrower)"
+		add "Fury (Flamethrower)"
 
 
 
@@ -1055,19 +1055,19 @@ event "fw safe passage ends"
 
 event "navy using mark ii ships"
 	variant "Rainmaker"
-		"Rainmaker (Mark II)" 3
+		add "Rainmaker (Mark II)" 3
 	variant "Gunboat"
-		"Gunboat (Mark II)" 3
+		add "Gunboat (Mark II)" 3
 	variant "Frigate"
-		"Frigate (Mark II)" 3
+		add "Frigate (Mark II)" 3
 	variant "Cruiser"
-		"Cruiser (Mark II)" 3
+		add "Cruiser (Mark II)" 3
 	variant "Carrier"
-		"Carrier (Mark II)" 3
+		add "Carrier (Mark II)" 3
 	
 	fleet "Small Republic"
 		remove variant
-			"Protector"
+			variant "Protector"
 
 fleet "gunboat only"
 	government "Republic"
@@ -1567,7 +1567,7 @@ event "stack core for sale"
 	planet Wayfarer
 		outfitter "Stack Core"
 	variant "Dreadnought"
-		"Dreadnought (Mark II)"
+		add "Dreadnought (Mark II)"
 
 
 
