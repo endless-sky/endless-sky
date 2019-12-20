@@ -153,35 +153,35 @@ outfit "Ka'het EMP Launcher"
 
 # Cooling:
 
-outfit "Ka'het Small Cooling"
+outfit "Ka'het Support Cooling"
 	category "Systems"
 	cost 218000
-	thumbnail "outfit/ka'het small cooling"
+	thumbnail "outfit/ka'het support cooling"
 	"mass" 6
 	"outfit space" -8
-	"active cooling" 39
+	"active cooling" 32
 	"cooling energy" 3.1
-	description "The Ka'het use these small coolings since they need to run very cool."
+	description "The Het ships need to run cooler than normal spaceships, due to the fact that they have to keep a real organism alive. While it isn't enough to fully sustain them, the Ka'het use this module in addiction to stronger coolings."
 
 
-outfit "Ka'het Large Cooling"
+outfit "Ka'het Primary Cooling"
 	category "Systems"
 	cost 563000
-	thumbnail "outfit/ka'het large cooling"
+	thumbnail "outfit/ka'het primary cooling"
 	"mass" 11
 	"outfit space" -14
-	"active cooling" 68
+	"active cooling" 65
 	"cooling energy" 5.9
-	description "The Ka'het use these large coolings since they need to run very cool."
+	description "This is the main cooler used by the Ka'het, very power-hungry but at the same time also very effective. It could be even capable of upholding some types of Het by itself."
 
 # Shield:
 
-outfit "Ka'het Shield"
+outfit "Ka'het Shield Restorer"
 	category "Systems"
 	cost 138000
-	thumbnail "outfit/ka'het shield"
+	thumbnail "outfit/ka'het shield restorer"
 	"mass" 15
 	"outfit space" -19
 	"shield generation" 1.02
 	"shield energy" 2.04
-	description "In order to regenerate their shield matrixes, the Ka'het use these outfits."
+	description "Builder technology never relied much on shield matrixes, so the Het vessels could only make use of this module, efficent enough to be used in large numbers when needed."
