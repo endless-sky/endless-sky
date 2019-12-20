@@ -108,10 +108,10 @@ outfit "Ka'het Blaster Turret"
 		"hull damage" 24
 	description "The Ka'het use this turret against the shields of their enemies."
 
-outfit "Ka'het EMP"
+outfit "Ka'het EMP Deployer"
 	category "Secondary Weapons"
 	cost 715000
-	thumbnail "outfit/ka'het emp"
+	thumbnail "outfit/ka'het emp deployer"
 	"mass" 18
 	"outfit space" -26
 	"weapon capacity" -26
@@ -149,7 +149,7 @@ outfit "Ka'het EMP"
 		"ion damage" 48
 		"hit force" 90
 		"missile strength" 80
-	description "."
+	description "Eons ago, the Builders were attacked by alien ships which used weapons that ignored their hull and damaged their reactors. Although they never did recover any of these weapons, after years of research they managed to replicate their effects."
 
 # Cooling:
 
@@ -161,7 +161,7 @@ outfit "Ka'het Support Cooling"
 	"outfit space" -8
 	"active cooling" 32
 	"cooling energy" 3.1
-	description "The Het ships need to run cooler than normal spaceships, due to the fact that they have to keep a real organism alive. While it isn't enough to fully sustain them, the Ka'het use this module in addition to stronger cooling."
+	description "Het ships need more cooling than normal ships, partly due to the requirement of keeping a living organism alive. While a single Support Cooling isn't enough to sustain a ship, the Ka'het use this module in addition to the stronger cooling Primary Cooling."
 
 
 outfit "Ka'het Primary Cooling"
@@ -172,7 +172,7 @@ outfit "Ka'het Primary Cooling"
 	"outfit space" -14
 	"active cooling" 65
 	"cooling energy" 5.9
-	description "This is the main cooler used by the Ka'het, very power-hungry but at the same time also very effective. It could be even capable of upholding some types of Het by itself."
+	description "description "This is the main cooler used by the Ka'het. Although power-hungry, it is very effective, capable of upholding some types of Het by itself."
 
 # Shield:
 
@@ -184,4 +184,4 @@ outfit "Ka'het Shield Restorer"
 	"outfit space" -19
 	"shield generation" 1.02
 	"shield energy" 2.04
-	description "Builder technology never relied much on shield matrices, so the Het vessels could only make use of this module, efficent enough to be used in large numbers when needed."
+	description "The Builders never relied much on shield matrices, preferring instead to strenght their hull. This, however, forced some Het vessels to make extensive use of this module."
