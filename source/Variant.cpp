@@ -148,7 +148,7 @@ vector<const Ship *> Variant::NestedChooseShips() const
 		vector<const Ship *> variantShips;
 		if(chosen < stockTotal)
 		{
-			for(int choice = Random::Int(stockTotal); choice >= variants[variantIndex].second; ++variantIndex)
+			for(int choice = Random::Int(stockTotal); choice >= stockVariants[variantIndex].second; ++variantIndex)
 				choice -= stockVariants[variantIndex].second;
 			
 			variantShips = stockVariants[variantIndex].first->NestedChooseShips();
