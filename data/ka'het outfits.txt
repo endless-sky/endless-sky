@@ -108,7 +108,7 @@ outfit "Ka'het Blaster Turret"
 		"hull damage" 24
 	description "The Ka'het use this turret against the shields of their enemies."
 
-outfit "Ka'het EMP Launcher"
+outfit "Ka'het EMP"
 	category "Secondary Weapons"
 	cost 715000
 	thumbnail "outfit/ka'het emp"
@@ -149,7 +149,7 @@ outfit "Ka'het EMP Launcher"
 		"ion damage" 48
 		"hit force" 90
 		"missile strength" 80
-	description "The Ka'het use the EMP missiles launched against their enemies' energy reserves."
+	description "."
 
 # Cooling:
 
@@ -161,7 +161,7 @@ outfit "Ka'het Support Cooling"
 	"outfit space" -8
 	"active cooling" 32
 	"cooling energy" 3.1
-	description "The Het ships need to run cooler than normal spaceships, due to the fact that they have to keep a real organism alive. While it isn't enough to fully sustain them, the Ka'het use this module in addiction to stronger coolings."
+	description "The Het ships need to run cooler than normal spaceships, due to the fact that they have to keep a real organism alive. While it isn't enough to fully sustain them, the Ka'het use this module in addition to stronger cooling."
 
 
 outfit "Ka'het Primary Cooling"
@@ -184,4 +184,4 @@ outfit "Ka'het Shield Restorer"
 	"outfit space" -19
 	"shield generation" 1.02
 	"shield energy" 2.04
-	description "Builder technology never relied much on shield matrixes, so the Het vessels could only make use of this module, efficent enough to be used in large numbers when needed."
+	description "Builder technology never relied much on shield matrices, so the Het vessels could only make use of this module, efficent enough to be used in large numbers when needed."
