@@ -7,8 +7,14 @@ HERE=$(cd `dirname $0` && pwd)
 
 RESOURCES="${HERE}/.."
 
-# Determine path to endless-sky executable
+# Determine paths to endless-sky executable and other relevant data
 ES_EXEC_PATH="${RESOURCES}/endless-sky"
+ES_CONFIG_PATH="${RESOURCES}/tests/config"
+ES_SAVES_PATH="${RESOURCES}/tests/config/saves"
+
+echo "***********************************************"
+echo "***         ES Autotest-runner              ***"
+echo "***********************************************"
 
 if [ ! -f "${ES_EXEC_PATH}" ] || [ ! -x "${ES_EXEC_PATH}" ]
 then
@@ -16,13 +22,14 @@ then
 	exit 1
 fi
 
+echo " Setting up environment and retrieving test-case list"
+mkdir -p "${ES_CONFIG_PATH}"
+mkdir -p "${ES_SAVES_PATH}"
 TESTS=$("${ES_EXEC_PATH}" --list-tests)
 TESTS_OK=$(echo "${TESTS}" | grep -e "ACTIVE$" | cut -d$'\t' -f1)
 TESTS_NOK=$(echo "${TESTS}" | grep -e "KNOWN FAILURE$" -e "MISSING FEATURE$" | cut -d$'\t' -f1)
+echo ""
 
-echo "***********************************************"
-echo "***         ES Autotest-runner              ***"
-echo "***********************************************"
 echo "Tests not to execute (known failure or missing feature):"
 echo "${TESTS_NOK}"
 echo ""
