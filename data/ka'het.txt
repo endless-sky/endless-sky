@@ -47,10 +47,14 @@ fleet "Ka'het"
 	cargo 1
 	personality
 		plunders mining harvests timid
-	variant
+	variant 8
 		"Maeri'het"
-	variant
+	variant 2
+		"Maeri'het (Disable-able)"
+	variant 4
 		"Telis'het"
+	variant
+		"Telis'het (Disable-able)"
 
 fleet "Ka'het Aggressive"
 	government " Ka'het "
@@ -58,10 +62,14 @@ fleet "Ka'het Aggressive"
 	cargo 1
 	personality
 		heroic plunders mining harvests
-	variant
+	variant 8
 		"Maeri'het"
-	variant
+	variant 2
+		"Maeri'het (Disable-able)"
+	variant 4
 		"Telis'het"
+	variant
+		"Telis'het (Disable-able)"
 
 fleet "Ka'het Core"
 	government "Ka'het"
@@ -69,14 +77,15 @@ fleet "Ka'het Core"
 	cargo 2
 	personality
 		plunders mining harvests coward
-	variant 4
+	variant 8
 		"Maeri'het"
 	variant 4
 		"Telis'het"
 	variant
 		"Telis'het"
 		"Maeri'het" 2
-	variant
+	variant 2
 		"Telis'het"
 		"Maeri'het"
-	
+	variant 2
+		"Maeri'het (Disable-able)"

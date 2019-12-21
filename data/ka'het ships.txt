@@ -53,29 +53,31 @@ ship "Maeri'het"
 			"hit force" 1080
 	outfits
 		"Hyperdrive"
-		"Ka'het Small Cooling" 
-		"Ka'het Large Cooling"
-		"Ka'het Blaster Turret" 2
-		"Ka'het Laser Turret" 2
-		"Ka'het Laser" 2
-		"Ka'het Shield" 2
+		"Ka'het Support Cooling" 
+		"Ka'het Primary Cooling"
+		"Ka'het Annihilator Turret" 2
+		"Ka'het Ravager Turret" 2
+		"Ka'het Ravager Beam" 2
+		"Ka'het Shield Restorer" 2
 
 	engine -20 66 0.6
 	engine -26.5 66 0.8
 	engine 20 66 0.6
 	engine 26.5 66 0.8
-	gun -9 -74 "Ka'het Laser"
-	gun 9 -74 "Ka'het Laser"
-	turret -13.5 -29 "Ka'het Blaster Turret"
-	turret -14 -12.5 "Ka'het Laser Turret"
-	turret 13.5 -29 "Ka'het Blaster Turret"
-	turret 14 -12.5 "Ka'het Laser Turret"
+	gun -9 -74 "Ka'het Ravager Beam"
+	gun 9 -74 "Ka'het Ravager Beam"
+	turret -13.5 -29 "Ka'het Annihilator Turret"
+	turret -14 -12.5 "Ka'het Ravager Turret"
+	turret 13.5 -29 "Ka'het Annihilator Turret"
+	turret 14 -12.5 "Ka'het Ravager Turret"
 	explode "tiny explosion" 5
 	explode "small explosion" 20
 	explode "medium explosion" 25
 	explode "large explosion" 15
 	"final explode" "final explosion medium"
 	description "The Maeri is the smallest Het ship created by the Builders' stations, a prime example of the genetic technology they once possessed. Its small size is compensated by the fact that it can hide its location from most types of sensors."
+
+ship "Maeri'het" "Maeri'het (Disable-able)"
 
 ship "Telis'het"
 	plural "Telis'heta"
@@ -120,30 +122,32 @@ ship "Telis'het"
 			"hit force" 1800
 	outfits
 		"Hyperdrive"
-		"Ka'het Large Cooling" 2
-		"Ka'het Shield" 7
-		"Ka'het Blaster Turret" 2
-		"Ka'het EMP Launcher" 2
-		"Ka'het Laser Turret" 3
+		"Ka'het Primary Cooling" 2
+		"Ka'het Shield Restorer" 7
+		"Ka'het Annihilator Turret" 2
+		"Ka'het EMP Deployer" 2
+		"Ka'het Ravager Turret" 3
 		"EMP Torpedo" 32
-		"Ka'het Blaster" 2
+		"Ka'het Annihilator" 2
 		
 	engine -27 75.5 0.6
 	engine -39.5 82.5 0.8
 	engine 27 75.5 0.6
 	engine 39.5 82.5 0.8
-	gun -11.5 -94 "Ka'het EMP Launcher"
-	gun -23.5 -87.5 "Ka'het Blaster"
-	gun 11.5 -94 "Ka'het EMP Launcher"
-	gun 23.5 -87.5 "Ka'het Blaster"
-	turret -27 -41 "Ka'het Blaster Turret"
-	turret -41.5 -50.5 "Ka'het Laser Turret"
-	turret 0 -53 "Ka'het Laser Turret"
-	turret 27 -41 "Ka'het Blaster Turret"
-	turret 41.5 -50.5 "Ka'het Laser Turret"
+	gun -11.5 -94 "Ka'het EMP Deployer"
+	gun -23.5 -87.5 "Ka'het Annihilator"
+	gun 11.5 -94 "Ka'het EMP Deployer"
+	gun 23.5 -87.5 "Ka'het Annihilator"
+	turret -27 -41 "Ka'het Annihilator Turret"
+	turret -41.5 -50.5 "Ka'het Ravager Turret"
+	turret 0 -53 "Ka'het Ravager Turret"
+	turret 27 -41 "Ka'het Annihilator Turret"
+	turret 41.5 -50.5 "Ka'het Ravager Turret"
 	explode "small explosion" 25
 	explode "medium explosion" 30
 	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion large"
 	description "When the Builders designed the exoskeleton of the Telis, they came to the conclusion that it would have been impossible to make it resilient enough without compromising its agility and integrity. Instead, they focused heavily on improving their shield technology, giving the Telis many of their regenerators."
+
+ship "Telis'het" "Telis'het (Disable-able)"
