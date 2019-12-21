@@ -10,10 +10,10 @@
 
 # Weapons:
 
-outfit "Ka'het Laser"
+outfit "Ka'het Ravager Beam"
 	category "Guns"
 	cost 322000
-	thumbnail "outfit/ka'het laser"
+	thumbnail "outfit/ka'het ravager beam"
 	"mass" 13
 	"outfit space" -18
 	"weapon capacity" -18
@@ -31,12 +31,12 @@ outfit "Ka'het Laser"
 		"firing heat" 1.5
 		"shield damage" 1.8
 		"hull damage" 4.3
-	description "The Ka'het use this weapon against the hull of their enemies."
+	description "This laser beam, once built by the Builders for use in asteroid mining, incidentally made the Ka'het very effective against a ship's armor."
 
-outfit "Ka'het Laser Turret"
+outfit "Ka'het Ravager Turret"
 	category "Turrets"
 	cost 417000
-	thumbnail "outfit/ka'het laser turret"
+	thumbnail "outfit/ka'het ravager turret"
 	"mass" 16
 	"outfit space" -22
 	"weapon capacity" -22
@@ -57,7 +57,7 @@ outfit "Ka'het Laser Turret"
 		"firing heat" 1.5
 		"shield damage" 1.8
 		"hull damage" 4.3
-	description "The Ka'het use this turret against the hull of their enemies."
+	description "This turret-mounted version of the Ravager Beam is one of the strongest weapons a Ka'het possesses."
 
 outfit "Ka'het Blaster"
 	category "Guns"
@@ -161,7 +161,7 @@ outfit "Ka'het Support Cooling"
 	"outfit space" -8
 	"active cooling" 32
 	"cooling energy" 3.1
-	description "Het ships need more cooling than normal ships, partly due to the requirement of keeping a living organism alive. While a single Support Cooling isn't enough to sustain a ship, the Ka'het use this module in addition to the stronger cooling Primary Cooling."
+	description "Het ships need more cooling than normal ships, partly due to the requirement of keeping a living organism alive. While a single Support Cooling isn't enough to sustain a ship, the Ka'het use this module in addition to the stronger Primary Cooling."
 
 
 outfit "Ka'het Primary Cooling"
@@ -172,7 +172,7 @@ outfit "Ka'het Primary Cooling"
 	"outfit space" -14
 	"active cooling" 65
 	"cooling energy" 5.9
-	description "description "This is the main cooler used by the Ka'het. Although power-hungry, it is very effective, capable of upholding some types of Het by itself."
+	description "This is the main cooler used by the Ka'het. Although power-hungry, it is very effective, capable of upholding some types of Het by itself."
 
 # Shield:
 
@@ -184,4 +184,4 @@ outfit "Ka'het Shield Restorer"
 	"outfit space" -19
 	"shield generation" 1.02
 	"shield energy" 2.04
-	description "The Builders never relied much on shield matrices, preferring instead to strenght their hull. This, however, forced some Het vessels to make extensive use of this module."
+	description "The Builders never relied much on shield matrices, preferring instead to strenghten their hull. This, however, forced some Het vessels to make extensive use of this module."
