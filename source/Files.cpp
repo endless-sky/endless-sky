@@ -100,7 +100,7 @@ void Files::Init(const char * const *argv)
 			resources = *it;
 		else if((arg == "-c" || arg == "--config") && *++it)
 			config = *it;
-		else if(arg == "-a" || arg == "--auto-test" || arg == "l" || arg == "list-tests")
+		else if(arg == "-a" || arg == "--auto-test" || arg == "-l" || arg == "--list-tests")
 			setTestingPath = true;
 	}
 	
