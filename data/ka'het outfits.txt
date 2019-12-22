@@ -19,10 +19,10 @@ outfit "Ka'het Ravager Beam"
 	"weapon capacity" -18
 	"gun ports" -1
 	weapon
-		sprite "projectile/disruptor"
+		sprite "projectile/ravager beam"
 			"frame rate" 15
 		sound "disruptor"
-		"hit effect" "disruptor impact"
+		"hit effect" "ravager impact"
 		"inaccuracy" .2
 		"velocity" 480
 		"lifetime" 1
@@ -42,12 +42,12 @@ outfit "Ka'het Ravager Turret"
 	"weapon capacity" -22
 	"turret mounts" -1
 	weapon
-		sprite "projectile/disruptor"
+		sprite "projectile/ravager beam"
 			"frame rate" 15
 		"hardpoint sprite" "hardpoint/disruptor"
 		"hardpoint offset" 15.
 		sound "disruptor"
-		"hit effect" "disruptor impact"
+		"hit effect" "ravager impact"
 		"inaccuracy" .2
 		"turret turn" 1.5
 		"velocity" 480
