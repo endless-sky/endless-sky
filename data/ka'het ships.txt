@@ -52,13 +52,15 @@ ship "Maeri'het"
 			"hull damage" 360
 			"hit force" 1080
 	outfits
-		"Hyperdrive"
-		"Ka'het Support Cooling" 
-		"Ka'het Primary Cooling"
 		"Ka'het Annihilator Turret" 2
 		"Ka'het Ravager Turret" 2
 		"Ka'het Ravager Beam" 2
+
+		"Ka'het Support Cooling" 
+		"Ka'het Primary Cooling"
 		"Ka'het Shield Restorer" 2
+
+		"Hyperdrive"
 
 	engine -20 66 0.6
 	engine -26.5 66 0.8
@@ -78,6 +80,35 @@ ship "Maeri'het"
 	description "The Maeri is the smallest Het ship created by the Builders' stations, a prime example of the genetic technology they once possessed. Its small size is compensated by the fact that it can hide its location from most types of sensors."
 
 ship "Maeri'het" "Maeri'het (Disable-able)"
+	"uncapturable"
+
+ship "Maeri'het" "Maeri'het (EMP)"
+	"never disabled"
+	outfits
+		"EMP Torpedo" 32
+		"Ka'het Ravager Turret"
+		"Ka'het EMP Deployer" 2
+		"Ka'het Annihilator Turret" 3
+
+		"Ka'het Support Cooling"
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer" 2
+
+		Hyperdrive
+
+ship "Maeri'het" "Maeri'het (EMP, Disable-able)"
+	"uncapturable"
+	outfits
+		"EMP Torpedo" 32
+		"Ka'het Ravager Turret"
+		"Ka'het EMP Deployer" 2
+		"Ka'het Annihilator Turret" 3
+
+		"Ka'het Support Cooling"
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer" 2
+
+		Hyperdrive
 
 ship "Telis'het"
 	plural "Telis'heta"
@@ -96,10 +127,10 @@ ship "Telis'het"
 		"fuel capacity" 800
 		"ramscoop" 0.82
 		"cargo space" 71
-		"outfit space" 583
-		"weapon capacity" 264
-		"energy capacity" 20000
-		"energy generation" 32.3
+		"outfit space" 513
+		"weapon capacity" 254
+		"energy capacity" 28000
+		"energy generation" 37.4
 		"heat generation" 40
 		"hull repair" 0.5
 		"shield energy" 0.3
@@ -121,15 +152,17 @@ ship "Telis'het"
 			"hull damage" 600
 			"hit force" 1800
 	outfits
-		"Hyperdrive"
-		"Ka'het Primary Cooling" 2
-		"Ka'het Shield Restorer" 7
 		"Ka'het Annihilator Turret" 2
 		"Ka'het EMP Deployer" 2
 		"Ka'het Ravager Turret" 3
 		"EMP Torpedo" 32
 		"Ka'het Annihilator" 2
-		
+
+		"Ka'het Shield Restorer" 7
+		"Ka'het Primary Cooling" 2
+
+		"Hyperdrive"
+
 	engine -27 75.5 0.6
 	engine -39.5 82.5 0.8
 	engine 27 75.5 0.6
@@ -151,3 +184,54 @@ ship "Telis'het"
 	description "When the Builders designed the exoskeleton of the Telis, they came to the conclusion that it would have been impossible to make it resilient enough without compromising its agility and integrity. Instead, they focused heavily on improving their shield technology, giving the Telis many of their regenerators."
 
 ship "Telis'het" "Telis'het (Disable-able)"
+	"uncapturable"
+
+ship "Telis'het" "Telis'het (EMP)"
+	"never disabled"
+	outfits
+		"Ka'het EMP Deployer" 4
+		"Ka'het Annihilator Turret"
+		"Ka'het Ravager Turret" 4
+		"EMP Torpedo" 64
+
+		"Ka'het Shield Restorer" 11
+		"Ka'het Primary Cooling" 2
+
+		Hyperdrive
+
+ship "Telis'het" "Telis'het (EMP, Disable-able)"
+	"uncapturable"
+	outfits
+		"Ka'het EMP Deployer" 4
+		"Ka'het Annihilator Turret"
+		"Ka'het Ravager Turret" 4
+		"EMP Torpedo" 64
+
+		"Ka'het Shield Restorer" 11
+		"Ka'het Primary Cooling" 2
+
+		Hyperdrive
+
+ship "Telis'het" "Telis'het (Guns)"
+	"never disabled"
+	outfits
+		"Ka'het Ravager Beam" 4
+		"Ka'het Annihilator Turret" 5
+
+		"Ka'het Shield Restorer" 10
+		"Ka'het Primary Cooling" 2
+		"Ka'het Support Cooling"
+
+		Hyperdrive
+
+ship "Telis'het" "Telis'het (Guns, Disable-able)"
+	"uncapturable"
+	outfits
+		"Ka'het Ravager Beam" 4
+		"Ka'het Annihilator Turret" 5
+
+		"Ka'het Shield Restorer" 10
+		"Ka'het Primary Cooling" 2
+		"Ka'het Support Cooling"
+
+		Hyperdrive

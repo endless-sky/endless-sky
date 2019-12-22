@@ -57,7 +57,7 @@ outfit "Ka'het Ravager Turret"
 		"firing heat" 1.5
 		"shield damage" 1.8
 		"hull damage" 4.3
-	description "This turret-mounted version of the Ravager Beam is one of the strongest weapons a Ka'het possesses."
+	description "This turret-mounted version of the Ravager Beam is one of the strongest weapons the Ka'het possess."
 
 outfit "Ka'het Annihilator"
 	category "Guns"
