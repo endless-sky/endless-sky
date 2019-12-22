@@ -1027,7 +1027,7 @@ fleet "Large Southern Pirates"
 		variant "Hawk (Pirate)"
 	variant 2
 		variant "Hawk (Pirate)"
-		variant "Sparrow" 3
+		variant "Sparrow (Pirate)" 3
 	variant 2
 		variant "Fury (Pirate)"
 		variant "Sparrow (Pirate)" 3
@@ -1103,7 +1103,7 @@ fleet "Large Independent"
 	personality
 		plunders
 	variant 3
-		"Sparrow (Pirate)" 4
+		variant "Sparrow (Pirate)" 4
 	variant 14
 		variant "Argosy (Southern)"
 	variant 4
@@ -1123,7 +1123,7 @@ fleet "Large Independent"
 		variant "Hawk (Pirate)"
 	variant 2
 		variant "Hawk (Pirate)"
-		variant "Sparrow" 3
+		variant "Sparrow (Pirate)" 3
 	variant 2
 		variant "Fury (Pirate)"
 		variant "Sparrow (Pirate)" 3

@@ -34,7 +34,7 @@ variant "Bactrian (Hai)"
 	"Bactrian (Hai Weapons)"
 	"Bactrian (Hai Engines)"
 
-variant "Barb:
+variant "Barb"
 	"Barb"
 	"Barb (Gatling)"
 
@@ -280,7 +280,7 @@ variant "Protector"
 
 variant "Quicksilver"
 	"Quicksilver"
-	"Quicksilver (Proton)
+	"Quicksilver (Proton)"
 
 variant "Rainmaker"
 	"Rainmaker"

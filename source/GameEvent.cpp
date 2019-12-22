@@ -54,7 +54,8 @@ void GameEvent::Load(const DataNode &node)
 		"planet",
 		"shipyard",
 		"system",
-		"unlink"
+		"unlink",
+		"variant"
 	};
 	
 	for(const DataNode &child : node)
