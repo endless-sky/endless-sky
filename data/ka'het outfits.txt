@@ -75,10 +75,10 @@ outfit "Ka'het Annihilator"
 	"weapon capacity" -14
 	"gun ports" -1
 	weapon
-		sprite "projectile/plasma"
+		sprite "projectile/annihilator"
 			"frame rate" 7
 		sound "plasma"
-		"hit effect" "plasma impact"
+		"hit effect" "bullet impact"
 		"inaccuracy" 2.5
 		"velocity" 18
 		"lifetime" 35
@@ -98,12 +98,12 @@ outfit "Ka'het Annihilator Turret"
 	"weapon capacity" -32
 	"turret mounts" -1
 	weapon
-		sprite "projectile/plasma"
+		sprite "projectile/annihilator"
 			"frame rate" 7
 		"hardpoint sprite" "hardpoint/disruptor"
 		"hardpoint offset" 15.
 		sound "plasma"
-		"hit effect" "plasma impact"
+		"hit effect" "bullet impact"
 		"inaccuracy" 3
 		"turret turn" 1.5
 		"velocity" 18
