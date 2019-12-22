@@ -59,6 +59,13 @@ outfit "Ka'het Ravager Turret"
 		"hull damage" 4.3
 	description "This turret-mounted version of the Ravager Beam is one of the strongest weapons the Ka'het possess."
 
+effect "ravager impact"
+	sprite "effect/ravager impact"
+		"no repeat"
+		"frame rate" 1
+	"lifetime" 1
+	"velocity scale" 0
+
 outfit "Ka'het Annihilator"
 	category "Guns"
 	cost 351000
