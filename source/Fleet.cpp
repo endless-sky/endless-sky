@@ -246,7 +246,7 @@ void Fleet::Load(const DataNode &node)
 			
 			if(!didRemove)
 				for(auto it = variants.begin(); it != variants.end(); ++it)
-					if(it->first.Equals(toRemove))
+					if(it->first == toRemove)
 					{
 						total -= it->second;
 						variants.erase(it);

@@ -38,14 +38,15 @@ public:
 	std::vector<const Ship *> Ships() const;
 	std::vector<std::pair<const Variant *, int>> StockVariants() const;
 	std::vector<std::pair<Variant, int>> Variants() const;
-	std::vector<const Ship *> ChooseShips() const;
-	std::vector<const Ship *> NestedChooseShips() const;
-	bool Equals(Variant toRemove) const;
 	
+	std::vector<const Ship *> ChooseShips() const;
 	int64_t Strength() const;
-	int64_t NestedStrength() const;
+	
+	bool operator==(const Variant &other) const;
 	
 private:
+	std::vector<const Ship *> NestedChooseShips() const;
+	int64_t NestedStrength() const;
 	
 private:
 	std::string name;

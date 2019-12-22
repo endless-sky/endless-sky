@@ -35,6 +35,8 @@ Variant::Variant(const DataNode &node)
 
 void Variant::Load(const DataNode &node, const bool global)
 {
+	// If this variant is global (i.e. a root node variant stored in GameData),
+	// it must be named.
 	if(global && node.Size() < 2)
 	{
 		node.PrintTrace("No name specified for variant:");
@@ -43,6 +45,8 @@ void Variant::Load(const DataNode &node, const bool global)
 	if(node.Size() >= 2 && !node.IsNumber(1))
 		name = node.Token(1);
 	
+	// If Load() has already been called once on this variant, any subsequent
+	// calls will replace the contents instead of adding to them.
 	bool reset = !variants.empty() || !stockVariants.empty() || !ships.empty();
 	
 	for(const DataNode &child : node)
@@ -58,20 +62,22 @@ void Variant::Load(const DataNode &node, const bool global)
 			{
 				// If given a full definition of one of this fleet's variant members, remove the variant.
 				Variant toRemove(child);
-				for(auto it = stockVariants.begin(); it != stockVariants.end(); ++it)
-					if(it->first->Name() == toRemove.Name())
-					{
-						total -= it->second;
-						variantTotal -= it->second;
-						stockTotal -= it->second;
-						stockVariants.erase(it);
-						didRemove = true;
-						break;
-					}
-				
-				if(!didRemove)
+				// If toRemove is named, check if a stockVariant shares that name.
+				// Else, check if toRemove is equal to any of the variants.
+				if(!toRemove.Name().empty())
+					for(auto it = stockVariants.begin(); it != stockVariants.end(); ++it)
+						if(it->first->Name() == toRemove.Name())
+						{
+							total -= it->second;
+							variantTotal -= it->second;
+							stockTotal -= it->second;
+							stockVariants.erase(it);
+							didRemove = true;
+							break;
+						}
+				else
 					for(auto it = variants.begin(); it != variants.end(); ++it)
-						if(it->first.Equals(toRemove))
+						if(it->first == toRemove)
 						{
 							total -= it->second;
 							variantTotal -= it->second;
@@ -102,6 +108,8 @@ void Variant::Load(const DataNode &node, const bool global)
 		}
 		else
 		{
+			// If this is a subsequent call of Load(), clear the variant
+			// if we aren't adding to it.
 			if(reset && !add)
 			{
 				reset = false;
@@ -134,6 +142,8 @@ void Variant::Load(const DataNode &node, const bool global)
 				total += n;
 				variantTotal += n;
 				
+				// If this variant is named, then look for it in GameData.
+				// Otherwise this is a new variant definition only for this variant.
 				if(named)
 				{
 					stockVariants.emplace_back(make_pair(GameData::Variants().Get(variantName), n));
@@ -183,6 +193,7 @@ vector<pair<Variant, int>> Variant::Variants() const
 
 
 
+// Choose all ships from this variant and choose a ship from each nested variant.
 vector<const Ship *> Variant::ChooseShips() const
 {
 	vector<const Ship *> chosenShips = ships;
@@ -203,21 +214,26 @@ vector<const Ship *> Variant::ChooseShips() const
 
 
 
+// Choose a ship from this variant according to the weight of all its contents. 
 vector<const Ship *> Variant::NestedChooseShips() const
 {
 	vector<const Ship *> chosenShips;
 	
+	// Randomly choose between the ships and the variants.
 	int chosen = Random::Int(total);
 	if(chosen < variantTotal)
 	{
 		chosen = Random::Int(variantTotal);
 		unsigned variantIndex = 0;
 		vector<const Ship *> variantShips;
+		// Randomly choose between the stock variants and the non-stock variants.
 		if(chosen < stockTotal)
 		{
+			// Choose a variant according to the weights of the variants.
 			for(int choice = Random::Int(stockTotal); choice >= stockVariants[variantIndex].second; ++variantIndex)
 				choice -= stockVariants[variantIndex].second;
 			
+			// Choose ships from the chosen variant.
 			variantShips = stockVariants[variantIndex].first->NestedChooseShips();
 		}
 		else
@@ -230,13 +246,18 @@ vector<const Ship *> Variant::NestedChooseShips() const
 		chosenShips.insert(chosenShips.end(), variantShips.begin(), variantShips.end());
 	}
 	else
+	{
+		// Randomly choose one of the ships from this variant.
 		chosenShips.push_back(ships[Random::Int(total - variantTotal)]);
+	}
 	
 	return chosenShips;
 }
 
 
 
+// The strength of a variant is the sum of the cost of its ships and
+// the strength of any nested variants.
 int64_t Variant::Strength() const
 {
 	int64_t sum = 0;
@@ -251,6 +272,9 @@ int64_t Variant::Strength() const
 
 
 
+
+// The strength of a nested variant is its normal strength divided by
+// the total weight of its contents.
 int64_t Variant::NestedStrength() const
 {
 	return Strength() / total;
@@ -258,37 +282,21 @@ int64_t Variant::NestedStrength() const
 
 
 
-bool Variant::Equals(Variant toRemove) const
+// An operator for checking the equality of two unnamed variants.
+bool Variant::operator==(const Variant &other) const
 {
-	// Are the ships of toRemove a permutation of this variant?
-	if(toRemove.Ships().size() != ships.size()
-		|| !is_permutation(ships.begin(), ships.end(), toRemove.Ships().begin()))
+	// Are the ships of other a permutation of this variant's?
+	if(other.Ships().size() != ships.size()
+		|| !is_permutation(ships.begin(), ships.end(), other.Ships().begin()))
 		return false;
-	// Are the stockVariants of toRemove a permutation of this variant?
-	if(toRemove.StockVariants().size() != stockVariants.size()
-		|| !is_permutation(stockVariants.begin(), stockVariants.end(), toRemove.StockVariants().begin()))
+	// Are the stockVariants of other a permutation of this variant's?
+	if(other.StockVariants().size() != stockVariants.size()
+		|| !is_permutation(stockVariants.begin(), stockVariants.end(), other.StockVariants().begin()))
 		return false;
-	// Does toRemove have the same number of nested variants as this variant?
-	if(toRemove.Variants().size() != variants.size())
+	// Are the nested variants of other a permutation of this variant's?
+	if(other.Variants().size() != variants.size()
+		|| !is_permutation(variants.begin(), variants.end(), other.Variants().begin()))
 		return false;
-	// Are the variants of toRemove equal to the variants of this variant?
-	for(auto variant : variants)
-	{
-		// For each nested variant in this variant, look for a matching nested variant in toRemove.
-		bool sameVariants = false;
-		for(auto toRemoveVariant : toRemove.Variants())
-		{
-			// If a matching nested variant was found, break out of this loop.
-			if(variant.first.Equals(toRemoveVariant.first));
-			{
-				sameVariants = true;
-				break;
-			}
-		}
-		// If no matching variant in toRemove was found for this nested variant, then toRemove and this variant are not equal.
-		if(!sameVariants)
-			return false;
-	}
 	
 	// If all checks have passed, these variants are equal.
 	return true;
