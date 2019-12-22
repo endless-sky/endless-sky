@@ -234,17 +234,19 @@ void Fleet::Load(const DataNode &node)
 			// If given a full definition of one of this fleet's variant members, remove the variant.
 			bool didRemove = false;
 			Variant toRemove(child);
-			for(auto it = stockVariants.begin(); it != stockVariants.end(); ++it)
-				if(it->first->Name() == toRemove.Name())
-				{
-					total -= it->second;
-					stockTotal -= it->second;
-					stockVariants.erase(it);
-					didRemove = true;
-					break;
-				}
-			
-			if(!didRemove)
+			// If toRemove is named, check if a stockVariant shares that name.
+			// Else, check if toRemove is equal to any of the variants.
+			if(!toRemove.Name().empty())
+				for(auto it = stockVariants.begin(); it != stockVariants.end(); ++it)
+					if(it->first->Name() == toRemove.Name())
+					{
+						total -= it->second;
+						stockTotal -= it->second;
+						stockVariants.erase(it);
+						didRemove = true;
+						break;
+					}
+			else
 				for(auto it = variants.begin(); it != variants.end(); ++it)
 					if(it->first == toRemove)
 					{
