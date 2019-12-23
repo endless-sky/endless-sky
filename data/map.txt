@@ -18893,7 +18893,7 @@ system Procyon
 
 system "Pug Aki'il"
 	pos -83 722
-	government Pug
+	government Uninhabited
 	habitable 1505.92
 	asteroids "large metal" 47 5
 	asteroids "large rock" 2 10
