@@ -542,6 +542,8 @@ Files:
  images/planet/station1c*
  images/planet/station2c*
  images/planet/station3c*
+ images/hardpoint/annihilator?turret*
+ images/hardpoint/ravager?turret*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -575,6 +577,7 @@ Files:
  images/ship/leviathan*
  images/ship/shuttle*
  images/ship/star?queen*
+ images/ship/localworldship*
  Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
@@ -594,7 +597,30 @@ Comment: Derived from works by Frederick Goy IV (under the same license).
 
 Files:
  images/planet/station1*
+ images/planet/station2*
+ images/planet/station3*
+ images/planet/station4*
+ images/ship/maeri'het*
+ images/ship/telis'het*
+ images/effect/ravager?impact*
+ images/outfit/ka'het?annihilator?turret*
+ images/outfit/ka'het?annihilator*
+ images/outfit/ka'het?emp?deployer*
+ images/outfit/ka'het?primary?cooling*
+ images/outfit/ka'het?ravager?turret*
+ images/outfit/ka'het?ravager?beam*
+ images/outfit/ka'het?shield?restorer*
+ images/outfit/ka'het?support?cooling*
+ images/planet/station1b*
+ images/planet/station2b*
+ images/projectile/annihilator*
+ images/projectile/ravager?beam*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+
+Files:
+ images/label/graveyard*
+Copyright: @RestingImmortal
 License: CC-BY-SA-4.0
 
 Files:
