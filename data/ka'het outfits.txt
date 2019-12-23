@@ -44,12 +44,12 @@ outfit "Ka'het Ravager Turret"
 	weapon
 		sprite "projectile/ravager beam"
 			"frame rate" 15
-		"hardpoint sprite" "hardpoint/disruptor"
-		"hardpoint offset" 15.
+		"hardpoint sprite" "hardpoint/ravager turret"
+		"hardpoint offset" 3.
 		sound "disruptor"
 		"hit effect" "ravager impact"
 		"inaccuracy" .2
-		"turret turn" 1.5
+		"turret turn" 1.8
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
@@ -100,12 +100,12 @@ outfit "Ka'het Annihilator Turret"
 	weapon
 		sprite "projectile/annihilator"
 			"frame rate" 7
-		"hardpoint sprite" "hardpoint/disruptor"
+		"hardpoint sprite" "hardpoint/annihilator turret"
 		"hardpoint offset" 15.
 		sound "plasma"
 		"hit effect" "bullet impact"
 		"inaccuracy" 3
-		"turret turn" 1.5
+		"turret turn" 2.3
 		"velocity" 18
 		"lifetime" 35
 		"reload" 10
