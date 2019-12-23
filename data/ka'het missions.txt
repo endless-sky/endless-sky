@@ -29,6 +29,7 @@ mission "Disabled Ka'het"
 	destination "Earth"
 	on offer
 		conversation
+			log "Successfully boarded a Ka'het, it appears to be possible by killing the organism without blowing up its artificial exoskeleton."
 			`Your ship slowly approaches the <origin>, now floating lifeless near you. As you move closer, you start noticing many holes in the weakest points of the hull and damages reaching what appears to be a large, slug-like being in the middle of the ship. While most of the ship's machinery doesn't seem to have received heavy damages, some shots must have hit the slug's vital organs, killing it.`
 			`	You have no troubles docking with what seems to be its "exoskeleton", trying to decide what to do next: while the Ka'het is too different from a ship for you to command it, it's safe to say that you can now loot its outfits.`
 				decline
