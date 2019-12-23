@@ -7384,8 +7384,8 @@ system Delia
 	trade Medical 698
 	trade Metal 397
 	trade Plastic 490
-	fleet "Ka'het" 4300
-	fleet "Ka'het Aggressive" 12300
+	fleet "Ka'het" 2800
+	fleet "Ka'het Aggressive" 10300
 	object
 		sprite star/k0
 		period 10
@@ -7810,8 +7810,8 @@ system Dixere
 	trade Medical 815
 	trade Metal 349
 	trade Plastic 479
-	fleet "Ka'het" 4360
-	fleet "Ka'het Aggressive" 14000
+	fleet "Ka'het" 2760
+	fleet "Ka'het Aggressive" 10400
 	object
 		sprite star/k0-old
 		distance 43
@@ -9228,8 +9228,8 @@ system Esix
 	trade Medical 520
 	trade Metal 357
 	trade Plastic 358
-	fleet "Ka'het" 4500
-	fleet "Ka'het Aggressive" 15000
+	fleet "Ka'het" 3600
+	fleet "Ka'het Aggressive" 10500
 	object
 		sprite star/b5
 		period 10
@@ -9891,8 +9891,8 @@ system Fearis
 	trade Medical 874
 	trade Metal 224
 	trade Plastic 339
-	fleet "Ka'het" 3900
-	fleet "Ka'het Aggressive" 13000
+	fleet "Ka'het" 2900
+	fleet "Ka'het Aggressive" 9100
 	object
 		sprite star/k0-old
 		period 10
@@ -10032,8 +10032,8 @@ system Feraticus
 	trade Medical 875
 	trade Metal 241
 	trade Plastic 405
-	fleet "Ka'het" 4450
-	fleet "Ka'het Aggressive" 12500
+	fleet "Ka'het" 3150
+	fleet "Ka'het Aggressive" 8500
 	object
 		sprite star/b5
 		period 10
@@ -10088,7 +10088,7 @@ system Fereti
 	trade Medical 759
 	trade Metal 354
 	trade Plastic 426
-	fleet "Ka'het Core" 6000
+	fleet "Ka'het Core" 2900
 	object
 		sprite star/a0
 		period 10
@@ -10954,7 +10954,7 @@ system Giribea
 	trade Medical 804
 	trade Metal 325
 	trade Plastic 488
-	fleet "Ka'het Core" 4850
+	fleet "Ka'het Core" 2850
 	object
 		sprite star/g0-old
 		distance 46.9208
@@ -14688,8 +14688,8 @@ system Lire
 	trade Medical 816
 	trade Metal 307
 	trade Plastic 411
-	fleet "Ka'het" 3850
-	fleet "Ka'het Aggressive" 13000
+	fleet "Ka'het" 2850
+	fleet "Ka'het Aggressive" 9300
 	object
 		sprite star/g0-old
 		period 10
@@ -17230,8 +17230,8 @@ system Nona
 	trade Medical 587
 	trade Metal 340
 	trade Plastic 379
-	fleet "Ka'het" 4100
-	fleet "Ka'het Aggressive" 13400
+	fleet "Ka'het" 3700
+	fleet "Ka'het Aggressive" 11400
 	object
 		sprite star/g0-old
 		period 10
@@ -17610,8 +17610,8 @@ system Paeli
 	trade Medical 328
 	trade Metal 466
 	trade Plastic 462
-	fleet "Ka'het" 3700
-	fleet "Ka'het Aggressive" 13200
+	fleet "Ka'het" 3500
+	fleet "Ka'het Aggressive" 9800
 	object
 		sprite star/g0-old
 		period 10
@@ -18601,8 +18601,8 @@ system Polerius
 	trade Medical 361
 	trade Metal 463
 	trade Plastic 503
-	fleet "Ka'het" 3800
-	fleet "Ka'het Aggressive" 11400
+	fleet "Ka'het" 2900
+	fleet "Ka'het Aggressive" 9400
 	object
 		sprite star/g0
 		distance 33.9397
@@ -19317,8 +19317,8 @@ system Queri
 	trade Medical 678
 	trade Metal 175
 	trade Plastic 329
-	fleet "Ka'het" 4500
-	fleet "Ka'het Aggressive" 15000
+	fleet "Ka'het" 4000
+	fleet "Ka'het Aggressive" 11000
 	object
 		sprite star/a5
 		period 10
@@ -19806,8 +19806,8 @@ system Relifer
 	trade Medical 883
 	trade Metal 219
 	trade Plastic 355
-	fleet "Ka'het" 3750
-	fleet "Ka'het Aggressive" 17000
+	fleet "Ka'het" 2750
+	fleet "Ka'het Aggressive" 8900
 	object
 		sprite star/g0-old
 		period 10
@@ -20018,7 +20018,7 @@ system Ritilas
 	trade Metal 138
 	trade Plastic 363
 	fleet "Ka'het" 2700
-	fleet "Ka'het Aggressive" 13600
+	fleet "Ka'het Aggressive" 9600
 	object
 		sprite star/k0-old
 		period 10
