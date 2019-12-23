@@ -31,3 +31,61 @@ mission "Disabled Ka'het"
 		conversation
 			`Your ship slowly approaches the <origin>, now floating lifeless near you. As you move closer, you start noticing many holes in the weakest points of the hull and damages reaching what appears to be a large, slug-like being in the middle of the ship. While most of the ship's machinery doesn't seem to have received heavy damages, some shots must have hit the slug's vital organs, killing it.`
 			`	You have no troubles docking with what seems to be its "exoskeleton", trying to decide what to do next: while the Ka'het is too different from a ship for you to command it, it's safe to say that you can now loot its outfits.`
+				decline
+
+mission "First Contact: Ka'het: Remnant 1A"
+	minor
+	invisible
+	source
+		government "Remnant"
+	to offer
+		has "Graveyard Label: offered"
+		"remnant met taely" == 0
+		not "Remnant: Technology Available: offered"
+	on offer
+		conversation
+			`Do you want to ask the Remnant about the section of space south of the Ember Wastes, the Graveyard, and its inhabitants?`
+			choice
+				`	(Yes.)`
+				`	(Not now.)`
+					defer
+			`	You ask around more than a dozen people, but none of them seems to be aware of what you're talking about. Either the information is too confidential to be given to a stranger like you, or you didn't ask the right people.`
+				decline
+
+mission "First Contact: Ka'het: Remnant 1B"
+	minor
+	invisible
+	source "Viminal"
+	to offer
+		has "Graveyard Label: offered"
+		"remnant met taely" >= 1
+	on offer
+		conversation
+			`Do you want to ask Taely about the section of space south of the Ember Wastes, the Graveyard, and its inhabitants?`
+			choice
+				`	(Yes.)`
+				`	(Not now.)`
+					defer
+			`	You find Taely inside one of the outern hangars of the shipyard, apparently teaching a small group of people how to operate the basic repairs over an Albatross. You sit on a bench waiting for her to finish her lesson, and in a few minutes you see her walking towards you. "Hello, <first>!" she says. "Sorry, but I have nothing for you to do today." "Actually," you reply, "I'm here because I need to make you a few questions."`
+			`	As she sits near you, you start explaining her about the area you reached, and the weird alien ships that attacked you with weapons similar to the ones the Remnant possess. It doesn't seem to be news for her. "We know of the existance of these Ka'het, the aliens you encountered, since we first reached the Ember Wastes. We found many of their 'shells' in our planets, crashed there thousands or even tens of thousands years before our arrival, but with some tech so advanced to still be conserved enough to be reverse engineered.`
+			`	"Then," she continues, "about a hundred years ago, a scout fleet arrived in a system where some Ka'het were still alive, which attacked the Remnant almost instantly and before they could activate the cloak some EMPs had already disabled two Starlings. They couldn't recover soon enough to survive, and the only remaining ship could do nothing but flee here as soon as possible."`
+			choice
+				`	"Which technology did you recover from the crashed Ka'het?"`
+					goto tech
+				`	"Wait, why did you call them 'shells' and not ships?"`
+					goto shells
+				`	"Have the Ka'het ever attacked the Remnant planets?"`
+			`	"Actually, we never met any Ka'het in the Ember Waste at all. The 'shells' we found had similar capabilities to the quantum keystone, meaning they could pass through the wormholes, so we don't know for sure why they remain there. Perhaps they aren't aware of their skills, or maybe they lost them over time."`
+			choice
+				`	"Wait, why did you call them 'shells' and not ships?"`
+					goto shells
+			label tech
+			`	"Back then we found large numbers of their EMP torpedoes, most of which in almost pristine conditions; their internal mechanisms were also simple enough we were able to reproduce them perfectly. We didn't find enough of the other systems in the 'shells' to do the same, but their tech still have been our main inspiration point for centuries."`
+			choice
+				`	"Wait, why did you call them 'shells' and not ships?"`
+			label shells
+			`	"You see, <first>," she says, "the Ka'het aren't normal spaceships. The debris we found were artificial exoskeletons, built around huge living beings; it's unlikely a species that big could have developed that sort of technology, so we presume someone must have created it for them. This could have happened in the Graveyard, since it's the only place where we know them to still live in, but we have such a limited data about that section of space that we can't say for sure." As she finishes talking, one of the people Taely's was talking with earlier comes closer and shows her something on a touchpad. "I have to go now, Captain," she tells you. "Good luck."`
+				decline
+	on decline
+		log "Asked Taely about the Graveyard and the Ka'het. She told me the previous contacts between them and the Remnant."
+		log "Factions" "Ka'het" `The Ka'het are aliens which live in an area south of the Ember Waste, called Graveyard, and attack everyone on sight. They are large lifeforms which can travel in space using artificial exoskeletons, likely created by an unknown species.`
