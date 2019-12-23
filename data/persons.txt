@@ -611,3 +611,160 @@ ship "Modified Osprey"
 	explode "small explosion" 40
 	explode "tiny explosion" 28
 	"final explode" "final explosion large" 1
+
+
+person "Local God"
+	government "Author"
+	frequency 200
+	personality
+		mining harvests surveillance unconstrained forbearing
+	phrase
+		phrase
+			"friendly author"
+	phrase
+		word
+			"Search for Ursa Polaris Station!"
+	phrase
+		word
+			"Someday"
+			"One day"
+			"Eventually"
+		word
+			", "
+		word
+			"maybe I should "
+			"I might "
+			"I will "
+			"I'm going to "
+		word
+			"park this heap"
+			"moor this beast"
+			"put down roots"
+			"find a cozy orbit"
+		word
+			" and "
+		word
+			"retire as an outfit dealer."
+			"open a univeral outfitter."
+			"start dealing exotic outfits."
+			"sell outfits from everywhere."
+			"stock outfits from all over the place."
+	phrase
+		word
+			"If only "
+			"I wish "
+			"Reputable Captains wish "
+		word
+			"someone "
+			"a rich Captain "
+			"an entrepreneurial spirited individual "
+			"a Captain with wealthy friends "
+		word
+			"would "
+		word
+			"build "
+			"construct "
+			"put together "
+			"cobble together "
+			"make "
+		word
+			"and stock "
+		word
+			"a universal outfitter space station."
+			"a place you could buy any outfit."
+			"somewhere you could optimize your ships, without cris-crossing the known galaxy."
+			"a space station out of asteroids - that carried all the outfits."
+	phrase
+		word
+			"I "
+		word
+			"stole "
+			"captured "
+			"restored "
+			"found "
+			"got a hold of "
+			"appropriated "
+			"procured "
+		word
+			"this very old Korath World Ship and "
+		word
+			"made it my own"
+			"customized it"
+			"made some modifications"
+			"made a few modifications"
+		word
+			", with a little help, of course."
+	ship "Ursa Polaris" "Local God"
+		"never disabled"
+
+ship "Ursa Polaris"
+	sprite "ship/localworldship"
+	attributes
+		category "Heavy Warship"
+		cost 142857
+		shields 39000
+		hull 27000
+		"required crew" 559
+		"bunks" 972
+		"mass" 1839
+		"drag" 12
+		"heat dissipation" .9
+		"fuel capacity" 600
+		"solar collection" 15
+		"afterburner thrust" 200
+		"turn" 4005.0
+		"ramscoop" 20
+		"hull repair rate" 7
+		"energy generation" 200
+		"outfit scan power" 186
+		"outfit scan speed" 1
+		"tactical scan power" 99
+		"asteroid scan power" 69
+		"cargo space" 1408
+		"outfit space" 1768	
+		"weapon capacity" 861
+		"engine capacity" 301
+		weapon
+			"blast radius" 1000
+			"shield damage" 4000
+			"hull damage" 2000
+			"hit force" 6000
+	outfits
+		"Quarg Skylance"
+		"Pug Gridfire Turret" 3
+		"Plasma Turret"
+		"Korath Disruptor" 5
+		"Quarg Anti-Missile" 5
+		Hyperdrive
+		"Korath Heat Shunt"
+		"Systems Core (Large)" 2
+		"Korath Repeater Rifle" 600
+		"Thruster (Stellar Class)"
+		"Smelter-Class Thruster"
+		`"Basrem" Atomic Thruster`
+	engine 26 219 0.9
+	engine 59.5 205.5 0.6
+	engine -7 205.5 0.6
+	engine -82 80.5 0.4
+	engine -106.5 80.5 0.4
+	turret 27 -162 "Quarg Anti-Missile"
+	turret 27 -162 "Quarg Skylance"
+	turret 27 -162 "Korath Disruptor"
+	turret 94.5 -52.5 "Quarg Anti-Missile"
+	turret 94.5 -52.5 "Pug Gridfire Turret"
+	turret 94.5 -52.5 "Korath Disruptor"
+	turret 80.5 53 "Quarg Anti-Missile"
+	turret 80.5 53 "Pug Gridfire Turret"
+	turret 80.5 53 "Korath Disruptor"
+	turret 21 25.5 "Quarg Anti-Missile"
+	turret 21 25.5 "Pug Gridfire Turret"
+	turret 21 25.5 "Korath Disruptor"
+	turret -69.5 -43 "Quarg Anti-Missile"
+	turret -69.5 -43 "Plasma Turret"
+	turret -69.5 -43 "Korath Disruptor"
+	explode "tiny explosion" 30
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "big explosion" 40
+	explode "huge explosion" 50
+
