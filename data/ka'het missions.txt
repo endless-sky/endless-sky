@@ -104,8 +104,6 @@ mission "First Contact: Ka'het: Quarg 1A"
 		has "First Contact: Quarg: offered"
 		not "First Contact: Hai: offered"
 		not "First Contact: Kuwaru Efreti: offered"
-	to fail
-		has "First Contact: Ka'het: Quarg 2: offered"
 	on offer
 		log "Discovered an uninhabited, complete Quarg ringworld in the middle of Ka'het space."
 		conversation
@@ -127,8 +125,6 @@ mission "First Contact: Ka'het: Quarg 1B"
 		has "First Contact: Quarg: offered"
 		has "First Contact: Hai: offered"
 		not "First Contact: Kuwaru Efreti: offered"
-	to fail
-		has "First Contact: Ka'het: Quarg 2: offered"
 	on offer
 		log "Discovered an uninhabited, complete Quarg ringworld in the middle of Ka'het space."
 		conversation
@@ -150,8 +146,6 @@ mission "First Contact: Ka'het: Quarg 1C"
 		has "First Contact: Quarg: offered"
 		not "First Contact: Hai: offered"
 		has "First Contact: Kuwaru Efreti: offered"
-	to fail
-		has "First Contact: Ka'het: Quarg 2: offered"
 	on offer
 		log "Discovered an uninhabited, complete Quarg ringworld in the middle of Ka'het space."
 		conversation
@@ -174,8 +168,6 @@ mission "First Contact: Ka'het: Quarg 1D"
 		has "First Contact: Quarg: offered"
 		has "First Contact: Hai: offered"
 		has "First Contact: Kuwaru Efreti: offered"
-	to fail
-		has "First Contact: Ka'het: Quarg 2: offered"
 	on offer
 		log "Discovered an uninhabited, complete Quarg ringworld in the middle of Ka'het space."
 		conversation
@@ -217,6 +209,7 @@ mission "First Contact: Ka'het: Quarg 2"
 		log "Asked the Quarg about the history of the Graveyard. Although I wasn't told the exact reason for the abandoned ringworld, I have learned about the previous inhabitants of the region, the Builders."
 		log "Factions" "Builders" `The Builders inhabited the Graveyard thousands of years ago, but have fallen extinct long ago. They developed some sort of weapon, called Ka'het, which stopped obeying their orders and insurged against them.`
 		log "Factions" "Ka'het"  `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then defied and led them to extinction. Even if millennia passed, they are still being produced in the Graveyard.`
-
-
-
+		fail "First Contact: Ka'het: Quarg 1A"
+		fail "First Contact: Ka'het: Quarg 1B"
+		fail "First Contact: Ka'het: Quarg 1C"
+		fail "First Contact: Ka'het: Quarg 1D"
