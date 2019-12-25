@@ -205,11 +205,11 @@ mission "First Contact: Ka'het: Quarg 2"
 			`	"Ah, you encountered the remainder of the Builders. Millennia ago, they were a flourish and thoughtful empire, but hostile contacts forced them to grow fearful and hawkish. Although they never did attack us, they always refrained from accepting our aid, and attempted to relocate at a greater distance from us, in worlds easier to maintain than the home they were reserved."`
 			choice
 				`	"Who were the hostile contacts with?"`
-				`	"What happened to these Builders?"`
+				`	"What happened to the Builders?"`
 					goto ka'het
 			`	"Few ships coming from a foreign species had reached that region of space, using some of the wormholes leading there. They belonged to a young and foolish race, and they foolishly decided to attack the Builders instead of learning from them. They were stronger any vessel the Builders possessed, but also few enough to be destroyed by the Builders' fleets."`
 			choice
-				`	"What happened to these Builders after that?"`
+				`	"What happened to the Builders then?"`
 			label ka'het
 			`	The Quarg stops for a few seconds before continuing, as if he was reflecting on something. "For many millennia they grew, developing brilliant pieces of technology. Then, compelled by their past experiences, they began creating weapons not only to defend themselves, but also to retaliate; these 'Ka'het', as they named them, defied shortly after they were complete.`
 			`"For few more centuries the Builders lasted, before falling under their very own hubris. Their space is still populated by the Ka'het their gave birth to through the immense facilities they assembled, who do not yet possess a vast intelligence." After saluting you, the Quarg quickly walks away, leaving you with more questions than answers.`
