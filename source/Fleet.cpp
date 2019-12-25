@@ -223,11 +223,11 @@ void Fleet::Load(const DataNode &node)
 			total += weight;
 			if(named)
 			{
-				stockVariants.emplace_back(make_pair(GameData::Variants().Get(variantName), weight));
+				stockVariants.emplace_back(GameData::Variants().Get(variantName), weight);
 				stockTotal += weight;
 			}
 			else
-				variants.emplace_back(make_pair(Variant(child), weight));
+				variants.emplace_back(child, weight);
 		}
 		else if(key == "variant")
 		{

@@ -146,11 +146,11 @@ void Variant::Load(const DataNode &node, const bool global)
 				// Otherwise this is a new variant definition only for this variant.
 				if(named)
 				{
-					stockVariants.emplace_back(make_pair(GameData::Variants().Get(variantName), n));
+					stockVariants.emplace_back(GameData::Variants().Get(variantName), n);
 					stockTotal += n;
 				}
 				else
-					variants.emplace_back(make_pair(Variant(child), n));
+					variants.emplace_back(child, n);
 			}
 			else
 			{
