@@ -108,7 +108,7 @@ mission "First Contact: Ka'het: Quarg 1A"
 		log "Discovered an uninhabited, complete Quarg ringworld in the middle of Ka'het space."
 		conversation
 			`Due to your past experience, you expect crowds of the tall and inexpressive Quarg walking near the landing pads of this ringworld; instead, the whole station seems uninhabited.`
-			`	More than the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to go ask the Quarg what happened here...`
+			`	Apart from the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to ask the Quarg what happened here...`
 				accept
 
 mission "First Contact: Ka'het: Quarg 1B"
@@ -129,7 +129,7 @@ mission "First Contact: Ka'het: Quarg 1B"
 		log "Discovered an uninhabited, complete Quarg ringworld in the middle of Ka'het space."
 		conversation
 			`Due to your past experience, you expect crowds of the tall and inexpressive Quarg walking near the landing pads of this ringworld; instead, the whole station seems uninhabited.`
-			`	More than the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to go ask the Quarg what happened here...`
+			`	Apart from the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to ask the Quarg what happened here...`
 				accept
 
 mission "First Contact: Ka'het: Quarg 1C"
@@ -150,7 +150,7 @@ mission "First Contact: Ka'het: Quarg 1C"
 		log "Discovered an uninhabited, complete Quarg ringworld in the middle of Ka'het space."
 		conversation
 			`Due to your past experience, you expect crowds of the tall and inexpressive Quarg walking near the landing pads of this ringworld; instead, the whole station seems uninhabited.`
-			`	More than the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to go ask the Quarg what happened here...`
+			`	Apart from the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to ask the Quarg what happened here...`
 				accept
 
 mission "First Contact: Ka'het: Quarg 1D"
@@ -172,7 +172,7 @@ mission "First Contact: Ka'het: Quarg 1D"
 		log "Discovered an uninhabited, complete Quarg ringworld in the middle of Ka'het space."
 		conversation
 			`Due to your past experience, you expect crowds of the tall and inexpressive Quarg walking near the landing pads of this ringworld; instead, the whole station seems uninhabited.`
-			`	More than the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to go ask the Quarg what happened here...`
+			`	Apart from the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to ask the Quarg what happened here...`
 				accept
 
 mission "First Contact: Ka'het: Quarg 2"
@@ -188,26 +188,26 @@ mission "First Contact: Ka'het: Quarg 2"
 			has "First Contact: Ka'het: Quarg 1D: active"
 	on offer
 		conversation
-			`Do you want to ask the Quarg about their abandoned ringworld in the Graveyard?`
+			`Do you want to ask the Quarg about the abandoned ringworld in the region of the Graveyard?`
 			choice
 				`	(Yes.)`
 				`	(Not now.)`
 					defer
-			`	Walking down the principal, alien-looking hall, you decide to stop one of the few Quarg you see there. "Hello, human. How may I be of service?" he says, and you reply asking him what happened in the Graveyard and to the ringworld they built there.`
-			`	"Ah, you encountered the remainder of the Builders. Millennia ago, they were a flourish and thoughtful empire, but hostile contacts forced them to grow fearful and hawkish. Although they never did attack us, they always refrained from accepting our aid, and attempted to relocate at a greater distance from us, in worlds easier to maintain than the home they were reserved."`
+			`	Walking down the principal, alien-looking hall, you decide to stop one of the few Quarg you see there. "Hello, human. How may I be of service?" the Quarg says. You reply by asking him about the Graveyard and the ringworld they built there.`
+			`	"Ah, you encountered the remainders of the Builders. Millennia ago, they were a flourish and thoughtful empire, but hostile contacts forced them to grow fearful and hawkish. Although they never did attack us, they always refrained from accepting our aid, and attempted to relocate at a greater distance from us, in worlds easier to maintain than the home they were reserved."`
 			choice
 				`	"Who were the hostile contacts with?"`
 				`	"What happened to the Builders?"`
 					goto ka'het
-			`	"Few ships coming from a foreign species had reached that region of space, using some of the wormholes leading there. They belonged to a young and foolish race, and they foolishly decided to attack the Builders instead of learning from them. They were stronger any vessel the Builders possessed, but also few enough to be destroyed by the Builders' fleets."`
+			`	"Long ago, few ships coming from a foreign species had reached that region of space, using some of the wormholes leading there. They belonged to a young and foolish race, and they foolishly decided to attack the Builders instead of learning from them. They were stronger any vessel the Builders possessed, but also few enough to be destroyed by the Builders' fleets."`
 			choice
-				`	"What happened to the Builders then?"`
+				`	"What happened to the Builders after that?"`
 			label ka'het
 			`	The Quarg stops for a few seconds before continuing, as if he was reflecting on something. "For many millennia they grew, developing brilliant pieces of technology. Then, compelled by their past experiences, they began creating weapons not only to defend themselves, but also to retaliate; these 'Ka'het', as they named them, defied shortly after they were complete.`
 			`"For few more centuries the Builders lasted, before falling under their very own hubris. Their space is still populated by the Ka'het their gave birth to through the immense facilities they assembled, who do not yet possess a vast intelligence." After saluting you, the Quarg quickly walks away, leaving you with more questions than answers.`
 	on decline
-		log "Asked the Quarg about the history of the Graveyard. Although I wasn't told the exact reason for the abandoned ringworld, I have learned about the previous inhabitants of the region, the Builders."
-		log "Factions" "Builders" `The Builders inhabited the Graveyard thousands of years ago, but have fallen extinct long ago. They developed some sort of weapon, called Ka'het, which stopped obeying their orders and insurged against them.`
+		log "Asked the Quarg about the history of the Graveyard. Although not being told the reason for the abandoned ringworld, have learned about the previous inhabitants of the region, the Builders."
+		log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have become extinct since. They developed some sort of weapon, called the Ka'het, which stopped obeying their orders and rebelled against them.`
 		log "Factions" "Ka'het"  `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then defied and led them to extinction. Even if millennia passed, they are still being produced in the Graveyard.`
 		fail "First Contact: Ka'het: Quarg 1A"
 		fail "First Contact: Ka'het: Quarg 1B"
