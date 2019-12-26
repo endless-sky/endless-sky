@@ -331,6 +331,8 @@ Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 
 Files:
+ images/hardpoint/annihilator?turret*
+ images/hardpoint/ravager?turret*
  images/outfit/overcharged?shield?module*
  images/outfit/overclocked?repair?module*
  images/outfit/remnant?capital?license*
@@ -540,13 +542,6 @@ Files: images/outfit/security?station*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser and Evan Fluharty (under the same license).
-
-Files:
- images/hardpoint/annihilator?turret*
- images/hardpoint/ravager?turret*
-Copyright: Becca Tommaso (tommasobecca03@gmail.com)
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/ship/nest*
