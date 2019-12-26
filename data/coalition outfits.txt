@@ -157,7 +157,7 @@ outfit "Overclocked Repair Module"
 	"hull energy" 1.3
 	"hull heat" 1.14
 	"heat generation" .6
-	description "These advanced repair modules are issued to Heliarch ships, providing unparalled hull repair in all of Coalition space. The legions of small repair drones come with the extensive pathways they use to quickly get around a ship, and as such the outfit can interfere with a ship's cooling and heat dissipation systems."
+	description "These advanced repair modules are issued to Heliarch ships, providing hull repair unparalleled in all of Coalition space. The legions of small repair drones come with the extensive pathways they use to quickly get around a ship, and as such the outfit can interfere with a ship's cooling and heat dissipation systems."
 
 outfit "Cooling Module"
 	category "Systems"
