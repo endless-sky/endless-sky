@@ -1225,7 +1225,7 @@ mission "Nanachi 4"
 		has "Nanachi 3: done"
 	on offer
 		conversation
-			`The bar is just as busy as the docks. Many captains here must have transported something for the festival. "Captain <last>, captain Nanachi!" shouts Narancia, beckoning the two of you to join her and the others at their table. You learn that they were inspired by the Hai's own March festival, and wanted to bring small parts of human culture to Hai space.`
+			`The bar is just as busy as the docks. Many captains here must have transported something for the festival. "Captain <last>, Captain Nanachi!" shouts Narancia, beckoning the two of you to join her and the others at their table. You learn that they were inspired by the Hai's own March festival, and wanted to bring small parts of human culture to Hai space.`
 			`	"They can't go to our planets and experience it for themselves yet, so we thought about bringing it to them!" Vanessa says.`
 			`	"It was very hard to get enough sponsors for this, but after years of hard work we even managed to have famous art pieces be brought here, some of which date back to the European renaissance!" Xavier adds.`
 			`	Afterwards the conversation topic shifts to you as a captain, as you describe your journey after buying your first ship, and how you met Nanachi. You're about to order another drink for the group when a grizzled old man barges into the bar, and starts shouting: "The art convoy has been attacked! The freighter managed to escape but they're stranded on Prime now, and the pirates are still out there, patrolling the route to the wormhole!"`
