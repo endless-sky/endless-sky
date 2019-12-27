@@ -1066,7 +1066,7 @@ mission "Hai Honeymoon"
 
 mission "Nanachi 1"
 	name "Escort Nanachi to <planet>"
-	description "Help Nanachi, a Hai who just bought her first ship, make a simple delivery to Cloudfire."
+	description "Help Nanachi, a Hai who just bought her first ship, make a simple delivery to <destination>."
 	minor
 	source "Giverstone"
 	destination "Cloudfire"
@@ -1105,7 +1105,7 @@ mission "Nanachi 1"
 				`	"Let's take another look at the job board, maybe a smaller job will pop up."`
 			`	Turns out this isn't as easy as you thought it'd be. The spaceport is almost empty, save for the occasional worker or drunken crewmember, and the job board is filled with massive hauls of minerals, aside from a few small but dangerous jobs to human space. Eventually, as you two begin scouting the edge of the docking area, you spot a troubled human merchant near several crates. You approach him and he explains that his ship had some malfunctions and he cannot deliver his cargo of advanced surgical equipment to <destination>. "This is the worst! One jump away from the planet and the navigation system suddenly decides to go on strike! There's no way I can make it before the deadline!"`
 			`	"My friend Nanachi here could deliver it for you. We were heading there anyway; a few extra crates won't make a difference," you say, trying to sound as convincing as possible.`
-			`	At first, he seems delighted that you two want to help him, but when Nanachi mentions that she's flying a Heavy Shuttle, he frowns, and looks back at the cargo. "Unfettered attacks make it so they need tons of medical supplies in <destination>, and quite frankly I'm not comfortable letting such a fragile ship go into dangerous territory carrying this equipment when it could be blasted to bits in an instant," he says. The captain glances around the deserted spaceport for a while, as if trying to find some other captain, before finally turning to Nanachi and saying, "but I guess beggars can't be choosers. Fine, I'll let you take the cargo there, but please be very careful."`
+			`	At first, he seems delighted that you two want to help him, but when Nanachi mentions that she's flying a Heavy Shuttle, he frowns, and looks back at the cargo. "Unfettered attacks make it so they need tons of medical supplies on <destination>, and quite frankly I'm not comfortable letting such a fragile ship go into dangerous territory carrying this equipment when it could be blasted to bits in an instant," he says. The captain glances around the deserted spaceport for a while, as if trying to find some other captain, before finally turning to Nanachi and saying, "but I guess beggars can't be choosers. Fine, I'll let you take the cargo there, but please be very careful."`
 				accept
 	npc accompany save
 		personality escort timid
@@ -1133,7 +1133,7 @@ mission "Nanachi 2"
 		has "Nanachi 1: done"
 	on offer
 		conversation
-			`You meet up with Nanachi in the spaceport, give her some tips to try and persuade someone into hiring her, and tell her you'll be nearby if she still has trouble getting a job. You watch her go around the spaceport and approach some groups of humans and even other Hai to no avail, maybe since this is a military world, they aren't too keen on helping others as in the rest of their territory. She manages to grab the attention of a Hai family leaving a restaurant carrying way too much luggage, most likely tourists looking for a ride back home. Everything seems to be going well until the parents start to look worried. It seems as if they might go away if you don't step in.`
+			`You meet up with Nanachi in the spaceport, give her some tips to try and persuade someone into hiring her, and tell her you'll be nearby if she still has trouble getting a job. You watch her go around the spaceport and approach some groups of humans and even other Hai to no avail. Maybe since this is a military world, they aren't too keen on helping others as in the rest of their territory. She manages to grab the attention of a Hai family leaving a restaurant carrying way too much luggage, most likely tourists looking for a ride back home. Everything seems to be going well until the parents start to look worried. It seems as if they might go away if you don't step in.`
 			`	You walk over to the group to help her, and get a better look at the family: a Hai couple carrying a baby, and three older children who aren't doing much to help their father carry their ludicrous number of bags.`
 			choice
 				`	"Hey, what's going on?"`
@@ -1220,13 +1220,13 @@ mission "Nanachi 3"
 		dialog `You have reached <planet>, but you left Nanachi's ship behind! Better depart and wait for them to arrive in this star system.`
 	on complete
 		conversation
-			`Allhome's docking area shows much more traffic than usual, many captains here are helping workers open cargo containers full of food, clothes, books, movies and even some mounted animals from human space. You finally meet up with the festival's organizers, who seem very excited to have acquired the exotic condiments, and have invited you two to a bar in the spaceport for a drink.`
+			`Allhome's docking area shows much more traffic than usual. Many captains here are helping workers open cargo containers full of food, clothes, books, movies and even some mounted animals from human space. You finally meet up with the festival's organizers, who seem very excited to have acquired the exotic condiments, and have invited you two to a bar in the spaceport for a drink.`
 
 
 
 mission "Nanachi 4"
 	name "Protect Nanachi"
-	description "Bring Nanachi's ship to Prime, keeping her safe from a pirate fleet that attacked a convoy heading to Hai space, then head back to <planet>."
+	description "Bring Nanachi's ship to <stopovers>, keeping her safe from a pirate fleet that attacked a convoy heading to Hai space, then head back to <destination>."
 	source "Allhome"
 	stopover "Prime"
 	deadline 17
@@ -1234,9 +1234,9 @@ mission "Nanachi 4"
 		has "Nanachi 3: done"
 	on offer
 		conversation
-			`The bar is just as busy as the docks. Many captains here must have transported something for the festival. "Captain <last>, captain Nanachi!" shouts Narancia, beckoning the two of you to join her and the others at their table. You learn that they were inspired by the Hai's own March festival, and wanted to bring small parts of human culture to Hai space.`
+			`The bar is just as busy as the docks. Many captains here must have transported something for the festival. "Captain <last>, Captain Nanachi!" shouts Narancia, beckoning the two of you to join her and the others at their table. You learn that they were inspired by the Hai's own March festival, and wanted to bring small parts of human culture to Hai space.`
 			`	"They can't go to our planets and experience it for themselves yet, so we thought about bringing it to them!" Vanessa says.`
-			`	"It was very hard to get enough sponsors for this, but after years of hard work we even managed to have famous art pieces be brought here, some of which date back to the European renaissance!" Xavier adds.`
+			`	"It was very hard to get enough sponsors for this, but after years of hard work we even managed to have famous art pieces be brought here, some of which date back to the European Renaissance!" Xavier adds.`
 			`	Afterwards the conversation topic shifts to you as a captain, as you describe your journey after buying your first ship, and how you met Nanachi. You're about to order another drink for the group when a grizzled old man barges into the bar, and starts shouting: "The art convoy has been attacked! The freighter managed to escape but they're stranded on Prime now, and the pirates are still out there, patrolling the route to the wormhole!"`
 			`	Xavier stands up with a shocked expression. "How? We had a Leviathan escorting them!"`
 			`	After catching his breath, the man at the door responds. "The pirates must have been stealing Hai tech from ships going back home. The freighter's captain said they shredded the escort!" Chaos spreads amongst the other captains, and the group sitting with you is in anguish.`
@@ -1246,7 +1246,7 @@ mission "Nanachi 4"
 			`	Xavier collapses back to the table, holding his head in both hands. "Those paintings and sculptures were our main attraction! They're worth tens of billions! It'll take months before the Navy ever notices the pirates there and makes it safe for the convoy to come here. The art exhibition is scheduled three weeks from now!"`
 			`	As they try to figure out what to do, Nanachi speaks up. "I'll go there. I pilot a human ship and if we just need to transfer cargo from one ship to the other, I could get out of there quickly. Nobody would notice that a Hai ever went there."`
 			`	"Are you insane?" Vanessa says, "If they managed to take down that Leviathan, you wouldn't last a second! Besides, our convoy was extremely fast. If even they were caught your chances of outrunning the pirates are next to nothing!"`
-			`	"Captain <last>," Nanachi turns to you. "I know you already helped me way more than anyone would ever be willing to, and I'm really grateful for that, but would you be willing to help me one last time, to get to that planet, and travel back here?" While it's certain that for a pirate fleet to take down a Leviathan so easily they must be incredibly powerful, and this could be extremely dangerous, you're sure that if Nanachi tries to get to Prime by herself she'll just get herself killed.`
+			`	"Captain <last>," Nanachi turns to you. "I know you already helped me way more than anyone would ever be willing to, and I'm really grateful for that, but would you be willing to help me one last time, to get to that planet, and travel back here?" While it's certain that for a pirate fleet to take down a Leviathan so easily they must be incredibly powerful, and this could be extremely dangerous. You're sure that if Nanachi tries to get to Prime by herself she'll just get herself killed.`
 			choice
 				`	"Alright, I'll make sure we reach Prime and get back here safely."`
 				`	"No, I agreed to help you find and deal with some simple jobs, but I can't risk fighting such a fleet by myself."`
@@ -1294,7 +1294,7 @@ mission "Nanachi: Payment"
 		payment 700000
 		event "Nanachi: Update" 720
 		conversation
-			`Shortly after you land, you get a message from Nanachi, the young hai pilot who you helped start out. "Dear captain <last>, I hope you're doing well! As I promised, ever since we parted ways, I've been working towards getting enough money to pay you for being so kind to help me. I've sent you <payment>. I'm deeply grateful to you for helping make my dream come true."`
+			`Shortly after you land, you get a message from Nanachi, the young Hai pilot who you helped start out. "Dear Captain <last>, I hope you're doing well! As I promised, ever since we parted ways, I've been working towards getting enough money to pay you for being so kind to help me. I've sent you <payment>. I'm deeply grateful to you for helping make my dream come true."`
 				decline
 
 
@@ -1316,6 +1316,5 @@ mission "Nanachi Meeting"
 			`After you leave your ship and start making your way through the docking area, you notice a Hai running towards you and waving. As they get closer, you realize that it's Nanachi, the Hai pilot who you helped out years ago.`
 			`	"I was just about to go back to my crew when I saw you coming out of your ship. I know a nice snack bar here, let's go there!" Before you can even say hello, she's dragged you to the bar, and ordered some drinks for the two of you. She tells you about her last few years as a captain. She has long since sold her old ship, and now pilots a Geocoris, transporting large amounts of cargo across Hai space. You also tell her about how your life has been ever since you last met, of your adventures and how far you've come. You keep swapping stories for hours, until the bar is ready to close.`
 			`	You thank her for the drinks, and get ready to say your goodbyes.`
-			`	"Oh wait, before you go captain, let me give you something," She says, right as you're about to head to your ship. She grabs a small pendant from her pocket. "Back home in Giverstone, when I had some free time from the mining works, I took a hobby of sculpting some small stones into ship miniatures. I thought it'd be nice to make this for you in case I saw you again." She gives you the pendant, which has been sculpted into a Hai Shield Beetle. It is extremely well made, with different surface textures representing the different parts of the Shield Beetle. "It's just a good-luck charm I thought you'd like. Thanks again captain!" You two part ways, and head back to your ships.`
+			`	"Oh wait, before you go Captain, let me give you something," she says, right as you're about to head to your ship. She grabs a small pendant from her pocket. "Back home in Giverstone, when I had some free time from the mining works, I took a hobby of sculpting some small stones into ship miniatures. I thought it'd be nice to make this for you in case I saw you again." She gives you the pendant, which has been sculpted into a Hai Shield Beetle. It is extremely well made, with different surface textures representing the different parts of the Shield Beetle. "It's just a good-luck charm I thought you'd like. Thanks again Captain!" You two part ways, and head back to your ships.`
 				decline
-
