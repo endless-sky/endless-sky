@@ -25480,7 +25480,7 @@ planet "Celestial Third"
 planet Veliante
 	attributes ka'het
 	landscape land/fog5
-	description `The world that suffered the heaviest damages during the invasion was probably Veliante: here, one of the earliest attacks hit some sort of nuclear facility, starting a meltdown; the radiations quickly spread across most settlements in the planet. Now most place returned to safe levels, but the area around the ancient facility is still unlivable without protection masks.`
+	description `The world that suffered the heaviest damages during the invasion was probably Veliante: here, one of the earliest attacks hit some sort of nuclear facility, starting a meltdown; the fallout quickly spread across most settlements in the planet. Now most places returned to safe levels, but the area around the ancient facility is still unlivable without a protection suit.`
 
 planet "Charon Station"
 	attributes south station
@@ -27276,7 +27276,7 @@ planet Parii'het
 	attributes ka'het
 	landscape land/space6
 	description `Parii'het was almost finished when the invasion broke out, and already capable of (slowly) creating Ka'het. Thanks to the mining operated on Alix and the occasional harvest taken here by the youngest Ka'het most facilities are always fully operational.`
-	description `	Differently from most of the Graveyard, the station doesn't seem to have ever suffered any damage from nor, from the Ka'her, nor from the Builders to try regaining control over it.`
+	description `	Differently from most of the Graveyard, the station doesn't seem to have ever suffered any damage from the Ka'her, nor from the Builders trying to regain control over it.`
 	government Ka'het
 
 planet Pearl
@@ -27481,7 +27481,7 @@ planet Retilie
 	attributes ka'het
 	landscape land/sea1
 	description `Retilie is an oceanic world, where the water covers more than 95% of the planet. Once mainly used for fishing, it mustn't have taken long for the sea to make a clean sweep of the ancient buildings destroyed by the Ka'het. Only the ruins of few cities remained intact, well hidden inside the mainland.`
-	description `	In the oceans the many species of fishes keep prospering, unaware of the destruiction the planet has undergone.`
+	description `	In the oceans the many species of fishes keep prospering, unaware of the destruction the planet has undergone.`
 
 planet Reunion
 	attributes "near earth" urban factory
