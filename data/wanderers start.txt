@@ -107,6 +107,7 @@ mission "Wanderers: Hai Diplomat"
 				accept
 	on accept
 		"reputation: Hai" >?= 20
+		"reputation: Hai" += 30
 
 
 
@@ -758,6 +759,7 @@ mission "Wanderers: Alpha Surveillance A"
 	autosave
 	source "Vara K'chrai"
 	destination "Hai-home"
+	clearance
 	to offer
 		has "Wanderers: Jump Drive Source: done"
 	
@@ -1022,7 +1024,7 @@ mission "Wanderers: Alpha Surveillance D"
 		conversation
 			`You are met in the spaceport by a bearded, middle-aged human man and a Quarg with exceptionally wrinkly skin. The Quarg says, "I hear that you need help against the Alphas. My friend Elias here has lived among us for a long time, and has told me much about the Alphas, their wars and their depredations."`
 			`	The human shakes hands with you and introduces himself as Elias Hanover. He says, "The Quarg are very hesitant to take sides in what they view as an internal human conflict. And they are equally hesitant to entrust their technology to a stranger like you. But if the Alphas are gathering strength and amassing alien technology, they must be stopped."`
-			`	The Quarg says, "Elias is a trusted friend of ours. We have given him a device for tracking a ship traveling by jump drive, and programmed it with the parameters of a human carrier ship. Do not try to take the device from him. He will lead you to find your quarry, and then you must return the device to us immediately."`
+			`	The Quarg says, "Elias is a trusted friend of ours. We have given him a device for tracking a ship traveling by jump drive, and programmed it with the parameters of a human Carrier. Do not try to take the device from him. He will lead you to find your quarry, and then you must return the device to us immediately."`
 			`	Elias asks, "If we find them, are you prepared to take on a Carrier by yourself?"`
 			choice
 				`	"Yes, my ship is stronger than anything in human space."`
@@ -1046,7 +1048,7 @@ mission "Wanderers: Alpha Surveillance D"
 	on enter "Makferuti"
 		dialog `Elias frowns as he looks at the tracker's readout. "I think we've taken a wrong turn. No sign of jump drives being used in this system," he says.`
 	on enter "Host"
-		dialog `When you enter this system, your sensors pick up a Navy Carrier in orbit around an Earth-like planet. It appears that you have found the Alpha base. "That's them," says Hanover. "I hope you're strong enough to destroy them." The carrier starts to launch fighters: Korath ones, not human ships. This might be a difficult fight...`
+		dialog `When you enter this system, your sensors pick up a Navy Carrier in orbit around an Earth-like planet. It appears that you have found the Alpha base. "That's them," says Hanover. "I hope you're strong enough to destroy them." The Carrier starts to launch fighters: Korath ones, not human ships. This might be a difficult fight...`
 	
 	npc
 		government "Kor Sestor"
@@ -1082,7 +1084,7 @@ mission "Wanderers: Alpha Surveillance D"
 	on visit
 		dialog `You've returned to <planet>, but you have a feeling that your job isn't done. Either find where the Alphas are hiding, or return to where they are hiding and finish what you started.`
 	on complete
-		log "Defeated a Navy Carrier, presumably being operated by the Alphas, that was equipped with Korath fighters and drones. Presumably there is an Alpha base hidden somewhere on the earth-like planet that the carrier was guarding."
+		log "Defeated a Navy Carrier, presumably being operated by the Alphas, that was equipped with Korath fighters and drones. Presumably there is an Alpha base hidden somewhere on the earth-like planet that the Carrier was guarding."
 		conversation
 			`When you land back on <planet>, Elias says that he should go and immediately return the tracking device to his Quarg friend. "After that," he says, "we'll need to figure out who can help us to locate and bust open the Alpha base. Meet me in the spaceport when you're ready."`
 
@@ -1142,7 +1144,7 @@ mission "Wanderers: Alpha Surveillance F"
 		has "Wanderers: Alpha Surveillance E: done"
 	
 	on offer
-		log "Admiral Danforth agreed to bring his cruiser to the planet in Korath space where the Alphas seem to be hiding, with enough troops and equipment to launch an assault on the base."
+		log "Admiral Danforth agreed to bring his Cruiser to the planet in Korath space where the Alphas seem to be hiding, with enough troops and equipment to launch an assault on the base."
 		log "Factions" "Oathkeepers" `However, the true reason that the powerful Oathkeeper fleet is positioned in the North is not just to keep the pirates at bay, but also to stand as a last defense in case the Hai decide to invade human space. Apparently the Navy has known about the Hai and the wormhole linking their space to human space for some time, but chooses not to make that knowledge public.`
 		conversation
 			`Danforth welcomes you into his private office and uses a device to sweep the room for bugs. "Please forgive my caution," he says when he is done. "Now, show me where this planet is."`
@@ -1185,7 +1187,7 @@ mission "Wanderers: Alpha Surveillance G"
 		log "The Alphas have fled from the base on Avalon. The Oathkeepers destroyed what is left of the base, which will hopefully set the Alphas back quite a bit."
 		conversation
 			`It does not take long for Danforth's team to locate the Alpha base, buried deep underground in a network of limestone caves. You and Danforth hover your ships above the site to catch anyone who tries to take off and escape. Danforth keeps you updated on the progress of the troops. "Breached the perimeter. Dealing with some booby traps. Explosives, poison gas. Nasty stuff. No sign of inhabitants, but they were here recently. Place looks cleaned out. Extensive base. Hangars, labs, supply rooms. Probably took them a century to build."`
-			`	His troops spend a while exploring the base and eventually conclude that the Alphas packed up and left soon after you destroyed the carrier. Once the place has been thoroughly explored and they are sure there are no more clues to be found, Danforth tells them, "Okay, blow the place. No sense in leaving them a base to return to."`
+			`	His troops spend a while exploring the base and eventually conclude that the Alphas packed up and left soon after you destroyed the Carrier. Once the place has been thoroughly explored and they are sure there are no more clues to be found, Danforth tells them, "Okay, blow the place. No sense in leaving them a base to return to."`
 			choice
 				`	"So this was all for nothing?"`
 				`	"I wish we had been able to catch them."`
@@ -1426,7 +1428,7 @@ mission "Wanderers Invaded 1"
 			choice
 				`	"Okay, I'll help you to evacuate."`
 			label end
-			`	"Thank you," he says. "We have assembled a fleet of freighters, refitted to carry [refugees, evacuees]. Please escort the fleet to <planet>. You will receive further [orders, directions] when you land."`
+			`	"Thank you," he says. "We have assembled a fleet of freighters, refitted to carry [refugees, evacuees]. These ships are not ideal, but they will suffice for now until we can produce dedicated [transportation, evacuation] ships. Please escort the fleet to <planet>. You will receive further [orders, directions] when you land."`
 				accept
 	npc accompany save
 		government "Wanderer"
@@ -1926,7 +1928,7 @@ mission "Wanderers Evacuation 1"
 			has "Wanderers Pond Strider Recon 2: done"
 	on offer
 		conversation
-			`Four Wanderer transports - perhaps, in fact, the same four you escorted before - are parked here. One of the captains approaches you and says, "We are evacuating the worlds that will be [isolated, trapped] if the Unfettered gain more territory. Will you escort us to <planet>, and from there to the capital?"`
+			`Four Wanderer ships that you've never seen before are parked here. These must be the dedicated transport ships that Iktat Rek mentioned. One of the captains approaches you and says, "We are evacuating the worlds that will be [isolated, trapped] if the Unfettered gain more territory. Will you escort us to <planet>, and from there to the capital?"`
 			choice
 				`	"I would be glad to."`
 					accept
@@ -1935,17 +1937,28 @@ mission "Wanderers Evacuation 1"
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
-		ship "Deep River Transport" "Espret Si'yakar"
-		ship "Deep River Transport" "Fel'tar Kor'meti'i"
-		ship "Deep River Transport" "Tok'tobar'tek La'a"
-		ship "Deep River Transport" "Eka'ta Turuk'ta"
+		ship "Riptide" "Vek'sek Kach'ik"
+		ship "Riptide" "Fel'tar Kri'esei"
+		ship "Riptide" "Vori'yek'tek La'a"
+		ship "Riptide" "Iyik'ta Rei'ta"
 	npc
 		government "Hai (Unfettered)"
 		personality heroic staying
 		fleet "Large Unfettered" 2
 	on visit
-		dialog
-			`You have reached <planet>, but the Wanderer transports have not all arrived yet. You should take off and wait for them to catch up with you.`
+		dialog `You've landed on <planet>, but not all of the Riptide transports carrying the refugees are in the system. Better depart and wait for them all to arrive.`
+
+
+
+# The Riptide was added after these missions, so it is triggered separately for backward compatibility.
+mission "Wanderers Riptide Patch"
+	invisible
+	landing
+	to offer
+		has "Wanderers Evacuation 1: offered"
+	on offer
+		event "wanderers: riptide mass production" 30
+		fail
 
 
 
@@ -1965,17 +1978,17 @@ mission "Wanderers Evacuation 1B"
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
-		ship "Deep River Transport" "Espret Si'yakar"
-		ship "Deep River Transport" "Fel'tar Kor'meti'i"
-		ship "Deep River Transport" "Tok'tobar'tek La'a"
-		ship "Deep River Transport" "Eka'ta Turuk'ta"
+		ship "Riptide" "Vek'sek Kach'ik"
+		ship "Riptide" "Fel'tar Kri'esei"
+		ship "Riptide" "Vori'yek'tek La'a"
+		ship "Riptide" "Iyik'ta Rei'ta"
 	npc
 		government "Hai (Unfettered)"
 		personality heroic staying
 		system "Sich'ka'ara"
 		fleet "Large Unfettered" 3
 	on visit
-		dialog `You've landed on <planet>, but not all of the Deep River transports carrying the refugees are in the system. Better depart and wait for them all to arrive.`
+		dialog `You've landed on <planet>, but not all of the Riptide transports carrying the refugees are in the system. Better depart and wait for them all to arrive.`
 
 
 
@@ -2003,17 +2016,17 @@ mission "Wanderers Evacuation 1C"
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
-		ship "Deep River Transport" "Espret Si'yakar"
-		ship "Deep River Transport" "Fel'tar Kor'meti'i"
-		ship "Deep River Transport" "Tok'tobar'tek La'a"
-		ship "Deep River Transport" "Eka'ta Turuk'ta"
+		ship "Riptide" "Vek'sek Kach'ik"
+		ship "Riptide" "Fel'tar Kri'esei"
+		ship "Riptide" "Vori'yek'tek La'a"
+		ship "Riptide" "Iyik'ta Rei'ta"
 	npc
 		government "Hai (Unfettered)"
 		personality heroic staying
 		system "Sich'ka'ara"
 		fleet "Large Unfettered" 4
 	on visit
-		dialog `You've landed on <planet>, but not all of the Deep River transports carrying the refugees are in the system. Better depart and wait for them all to arrive.`
+		dialog `You've landed on <planet>, but not all of the Riptide transports carrying the refugees are in the system. Better depart and wait for them all to arrive.`
 
 
 

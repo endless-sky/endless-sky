@@ -23,7 +23,14 @@ mission "FW Diplomacy 1"
 	on offer
 		conversation
 			`As you are landing, you receive a message from JJ, on behalf of the Council. The message reads:`
+			branch suspended
+				has "FW Pirates 4.1: offered"
 			`	Captain <last>, sorry that we have been out of contact. We need your help once again, to assist in a diplomatic mission. Please meet up with Alondo on <planet> as soon as possible. He will give you more information.`
+				goto end
+			
+			label suspended
+			`	Captain <last>. Your suspension from the Free Worlds has just ended. The Senate is still not happy with what you did, and has therefore not reinstated your pay, but they have allowed you to continue working for us. Don't cause any more issues and you'll regain your pay. Please meet up with Alondo on <planet> as soon as possible. He will give you more information.`
+			label end
 			`			Sincerely,`
 			`				Jean-Jacques and Freya`
 				accept
@@ -185,7 +192,7 @@ mission "FW Southern Recon 1"
 mission "FW Southern Recon 1B"
 	landing
 	name "Electron Beam"
-	description "Steal an Electron Beam from a Navy gunboat and return it to <planet> for Freya to look at. She thought your best bet for finding lone gunboats might be the Wei or Alnasl systems."
+	description "Steal an Electron Beam from a Navy Gunboat and return it to <planet> for Freya to look at. She thought your best bet for finding lone Gunboats might be the Wei or Alnasl systems."
 	autosave
 	source "Trinket"
 	destination "Trinket"
@@ -204,12 +211,19 @@ mission "FW Southern Recon 1B"
 			`	"Well," she says, "the plasma turrets weren't the only ace up our sleeve, but still, it's frustrating that the Navy still has such an advantage over us technologically."`
 			`	"What should we do?" you ask.`
 			label attack
-			`	"We're going to have to fight them eventually, but first we need as much information as we can get on their new weapon systems. I'd like you to find one of their gunboats that has the new electron beams installed, steal one of them, and bring it back here. I imagine one of them can't be much bigger than twenty or thirty tons, so you ought to be able to find space for it. Think you can do that?"`
+			`	"We're going to have to fight them eventually, but first we need as much information as we can get on their new weapon systems. I'd like you to find one of their Gunboats that has the new electron beams installed, steal one of them, and bring it back here. I imagine one of them can't be much bigger than twenty or thirty tons, so you ought to be able to find space for it. Think you can do that?"`
 			choice
-				`	"How can I find a gunboat that's all by itself? They're usually a part of a bigger fleet."`
+				`	"How can I find a Gunboat that's all by itself? They're usually a part of a bigger fleet."`
 			`	She thinks about that for a moment, then says, "The Navy has shifted most of their capital ships to the defecting systems in the south. That means that some of the systems up north will have lighter defenses. You might try Wei or Alnasl. Good luck, Captain."`
 				accept
-	
+	npc
+		government "Republic"
+		system "Alnasl"
+		personality heroic opportunistic staying
+		fleet
+			names "republic small"
+			variant
+				"Gunboat (Mark II)"
 	to complete
 		not "FW Southern Recon 1B (Turret): done"
 	to fail
@@ -292,10 +306,17 @@ mission "FW Southern Battle 1B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		event "flamethrower available" 10
 		conversation
 			`When you land on <origin>, a Southbound Shipyards executive leads you to a hangar. The hangar is huge, but it clearly was not meant to hold a ship as large as the one it now contains. There is barely enough space for the cranes and catwalks being used by the construction crews. He says, "The Dreadnought is a new design, the largest ship we've ever built. Only three of them have been completed so far." You can't help but be impressed at the size of the Dreadnought: as bulky as a Cruiser, it looks like a cross between a Bastion and an Argosy freighter.`
 			`	He then leads you out to a section of the spaceport where three Dreadnoughts are parked. Next to them, and looking tiny by comparison, are five Furies. You ask, "Are those Furies part of the battle fleet, too?"`
-			`	"Yes," he says, "equipped with some fancy new weapons from Barmy Edward up at Kraz Cybernetics. I haven't seen them in action yet, but he's convinced they'll be useful against the Navy."`
+			branch untested
+				not "FW Flamethrower 2: done"
+			`	"Yes," he says, "equipped with some fancy new weapons from Barmy Edward up at Kraz Cybernetics that he said you helped test. I haven't seen them in action yet, but he's convinced they'll be useful against the Navy."`
+				goto end
+			label untested
+			`	"Yes," he says, "equipped with some fancy new weapons from Barmy Edward up at Kraz Cybernetics that he recently finished working on. He said they should be entering mass production soon. Flamethrowers, the crazy bastard. I haven't seen them in action yet, but he's convinced they'll be useful against the Navy."`
+			label end
 			`	You thank him for his time, and meet up with the captains of the battle fleet, arranging for them to follow you back to Trinket.`
 				accept
 	
@@ -647,14 +668,23 @@ mission "FW Southern Break"
 	on offer
 		log "Once again there is no immediate work to be done for the Free Worlds. This would be a good time to earn some money for an upgraded ship, if possible."
 		event "fw occupying the north" 50
+		"salary: Free Worlds" >?= 800
 		conversation
 			`You land on Dancer and report to Alondo and Freya that the prisoner transfer is complete. "What do we do now?" you ask.`
 			`	Freya says, "Well, I hope we're done with fighting for a while, now. We'll stay here to hold this system against any Navy retaliation. And, we'll keep hoping that Parliament might come to their senses and agree to a diplomatic end to this conflict. In the meantime I suggest you spend some time doing whatever it is you do to earn money on the side - carrying passengers or freight or hunting pirates. We'll contact you when things begin to move forward again."`
 			choice
 				`	"Sounds good. I'll hope to hear from you soon."`
-					decline
+					goto salary
 				`	"You're sure there's nothing else I can do to help the Free Worlds right now?"`
-			`	Alondo says, "You might hear from some other folks who could use your assistance, but as for the Council, I think it's a waiting game for us right now. Please don't think we aren't grateful for your help, Captain. All we're saying is that hopefully, for a few months at least, we'll all be able to take a break from fighting and go back to actually living our lives. And don't worry, we'll contact you as soon as things get interesting again."`
+			`	Alondo says, "You might hear from some other folks who could use your assistance, but as for the Council, I think it's a waiting game for us right now. Please don't think we aren't grateful for your help, Captain. All we're saying is that hopefully, for a few months at least, we'll all be able to take a break from fighting and go back to actually living our lives."`
+			
+			label salary
+			branch end
+				not "FW Pirates 4.1: offered"
+			`	"Before you leave, Captain," Freya says. "The Senate has decided to reinstate your pay after these recent events. You should now have a salary of 800 credits, just like before."`
+			
+			label end
+			`	Alondo gives you a nod. "We'll contact you as soon as things get interesting again."`
 				decline
 
 
@@ -1097,11 +1127,11 @@ mission "FW Alphas 1.1"
 			choice
 				`	"It must be a trick. There can't still be Alphas around. Maybe the pirates dyed their skin green to make people fear them."`
 				`	"How is it possible that some of the Alphas are still alive?"`
-			`	Alondo says, "This may be a trick, but we can't afford to take that risk. The Alphas were the greatest threat humanity has ever faced. And before they contacted us for help, Poisonwood reached out to the Navy." As he is speaking, a shadow passes overhead. You look up and see the unmistakable silhouette of a Navy cruiser, coming in for a landing.`
+			`	Alondo says, "This may be a trick, but we can't afford to take that risk. The Alphas were the greatest threat humanity has ever faced. And before they contacted us for help, Poisonwood reached out to the Navy." As he is speaking, a shadow passes overhead. You look up and see the unmistakable silhouette of a Navy Cruiser, coming in for a landing.`
 			choice
 				`	"Are you insane? You're letting the Navy come here?"`
 				`	"We're going to work side by side with the Navy right after that awful battle?"`
-			`	Alondo explains, "It's only one cruiser, an 'Oathkeeper' ship, sworn to take no part in our war. The Free Worlds have almost no troops trained for ground combat, so without the Navy's help we would be unlikely to be able to eliminate the Alphas."`
+			`	Alondo explains, "It's only one Cruiser, an 'Oathkeeper' ship, sworn to take no part in our war. The Free Worlds have almost no troops trained for ground combat, so without the Navy's help we would be unlikely to be able to eliminate the Alphas."`
 			`	The Navy ship lands, and a man steps off who you recognize immediately: Admiral William Danforth, who is something of a folk hero throughout human space, and who you have heard is the commander of the entire Oathkeepers regiment. With him is a man who he introduces as Commander Aaron Nguyen of the Navy Humanitarian Corps. As Nguyen shakes your hand, you are struck by the fact that although he is your enemy, you see no trace of hostility in his eyes - in fact, his expression is surprisingly warm and affectionate.`
 			`	"We have no room for error," says Danforth. "These Alphas must be eliminated, and they must not be allowed to escape. On that, at least, we can all agree."`
 			`	Freya says, "Captain <last> will lead the attack." She beckons to two of the Free Worlds captains. "Marco, Emily, you will join them with your Falcons. Destroy any pirate ships in orbit, then land and secure the facility. Understood?" You nod, and prepare to take off for the <system> system.`
@@ -1371,6 +1401,11 @@ mission "FW Bloodsea 1.1"
 		log "The local leaders on the lawless world of Bloodsea have said that they will join the Free Worlds, and stop supporting piracy, in exchange for the equipment to build a more modern spaceport. However, they may just be trying to steal the construction materials; it might be simpler to just attack and conquer them."
 		conversation
 			`The local leaders are unwilling to meet aboard your ship, and Alondo is afraid you will be ambushed if you venture too far away from it, so eventually they agree to set up a tent on the landing pad next to yours and meet there. Outside, a storm is raging, the rain mixing with salt spray from the blood-red ocean nearby.`
+			branch peaceful
+				not "event: fw suppressed Bloodsea"
+			`	Most of the leaders grimace at the sight of you. "What is the invader doing here?" one of them asks to Alondo.`
+			`	"Captain <last> was only following orders, but the officer responsible for giving those orders has been justly punished," Alondo says. "We come in peace this time." The leaders don't seem convinced with that answer, but they agree to continue.`
+			label peaceful
 			`	As you talk, it becomes clear that the inhabitants of Bloodsea are ashamed of how destitute and undeveloped their world is. Several of them have visited the island spaceport on Deep, and after dancing around the issue for a while, they make a request: if the Free Worlds builds them a real, modern island spaceport, they will join the Free Worlds.`
 			`	One of them lays out a detailed list of amenities the port must have: concrete seawalls, raised landing pads, floating docks, sturdy hangars and warehouses, and various defense systems "for when the others learn that we've decided to join you." Also, the deal is off if you show up in orbit with a fleet that "looks like an invasion fleet rather than a construction fleet."`
 			`	You thank them and return to your ship. Alondo asks, "What do you think?"`
@@ -1381,13 +1416,14 @@ mission "FW Bloodsea 1.1"
 					goto invade
 			label port
 			`	"Yes," he says, "except that I can almost guarantee that when we show up on their doorstep with everything they asked for, some local warlord will attack our ships, steal our supplies, enslave our workers, and build himself a nice cozy island fortress."`
-				goto attack
-			label invade
-			`	"That's certainly the simpler option," he says, "especially because I can almost guarantee that when we show up on their doorstep with everything they asked for, some local warlord will attack our ships, steal our supplies, enslave our workers, and build himself a nice cozy island fortress."`
-				goto attack
-			label attack
 			`	"So, we attack them?" you ask.`
-			`	"You're on the Council now," he says. "I'll leave it up to you. Option one is, we bring them the supplies and workers, in merchant ships, but use very heavily armed merchant ships in case they double cross us. Option two is, we go to Dancer and see if JJ can lend us an invasion fleet."`
+			label invade
+			branch hostile
+				not "event: fw suppressed Bloodsea"
+			`	"They didn't seem very happy about you doing that the first time. But..." Alondo pauses for a moment.`
+			label hostile
+			`	"That's certainly the simpler option," he says. "Tomek may have been punished for disobeying the Senate's orders, but we're in a different situation now. Our numbers have swelled because of our victories and new territory, and we now have the Dreadnoughts at our disposal, so occupying Bloodsea is now a viable option.`
+			`	"You're on the Council now," he says. "I'll leave it up to you. Option one is, we bring them the supplies and workers, in merchant ships, but use very heavily armed merchant ships in case they double cross us. Option two is, we go to Dancer and see if JJ can lend us an invasion fleet while I convince the Senate that attacking Bloodsea is the better decision."`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
@@ -1524,11 +1560,13 @@ mission "FW Bloodsea 1.2A"
 		event "battle for bloodsea"
 		karma --
 		conversation
-			`When you meet up with JJ, he says, "So, it's going to be battle rather than diplomacy? I suppose that may be for the best; I'm sure the pirates were planning some sort of double-cross. But still, it's too bad we couldn't find a peaceful solution."`
+			`When you meet up with JJ, Alondo explains that you're in need of an invasion fleet for Bloodsea. JJ looks confused at the request. "What? Whatever happened to diplomacy? I only heard that the Senate approved a diplomatic mission. Didn't Tomek get punished for this exact stunt?"`
 			choice
 				`	"Alondo convinced me that the Bloodsea natives were just planning to betray us."`
 				`	"I don't think the pirates will understand any language except overwhelming force."`
-			`	"Perhaps," says JJ. "At any rate, we'll never know, now. I need to keep most of my fleet here, to defend against the Navy, but I've selected a few of the strongest ships to accompany you to Bloodsea. Good luck, Captain."`
+			`	"You're starting to sound a lot like Tomek," JJ remarks.`
+			`	"I also contacted the Senate on the way here," Alondo says, "and they approved the invasion. We're much more powerful now than before, making invasion a viable option."`
+			`	"Perhaps," says JJ. "I'll provide you with some ships, but I'm not happy about this. I need to keep most of my fleet here, to defend against the Navy, but I'll select a few of the strongest ships to accompany you to Bloodsea. Make sure they make it home safe, though. We'll need every ship we can get for when the Navy attacks. Good luck, Captain."`
 				accept
 	
 	npc
@@ -1590,8 +1628,8 @@ mission "FW Albatross 1"
 	name "Freya to <planet>"
 	description "Bring Freya to <planet> to meet up with JJ and make plans for convincing Albatross to give up piracy and join the Free Worlds."
 	autosave
-	source Zug
-	destination Dancer
+	source "Zug"
+	destination "Dancer"
 	to offer
 		has "FW Dreadnoughts Ready: done"
 	passengers 1
@@ -1628,7 +1666,9 @@ mission "FW Albatross 1"
 			`	"Yes," she says. "Yes, it does. Now, let's go meet up with JJ."`
 				accept
 			label metoo
-			`	Freya raises an eyebrow. "I hadn't heard. We don't have time to find someone else for this mission, so try not to say that so loudly when you're on Albatross."`
+			apply
+				set "gay"
+			`	Freya raises an eyebrow. "I hadn't heard. We don't have time to find someone else for this mission, so you'll need to be the one to transport JJ. Stay safe."`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Freya hasn't entered the system yet. Better depart and wait for it to arrive.`
@@ -1670,8 +1710,8 @@ mission "FW Albatross 2A"
 	name "Hunt Ryk Bartlett"
 	description "Hunt down the pirate warlord Ryk Bartlett, who has been plundering merchant convoys in the vicinity of Zeta Aquilae. (Only his personal ship, the Dread, must be destroyed.) Then, return to Albatross."
 	autosave
-	source Albatross
-	destination Albatross
+	source "Albatross"
+	destination "Albatross"
 	clearance
 	to offer
 		has "FW Albatross 2: done"
@@ -1681,6 +1721,16 @@ mission "FW Albatross 2A"
 	
 	on offer
 		conversation
+			branch meeting
+				not "gay"
+			apply
+				clear "gay"
+			`JJ puts a hand on your shoulder before leaving the ship. "Freya let me know. For safety reasons only, of course. You can stay here if you aren't comfortable."`
+			choice
+				`	"No, I'll come with you."`
+				`	"Thank you. I'll stay."`
+					goto alt
+			label meeting
 			`Your meeting with the elders of Albatross happens in secret, by night. They are afraid that if their current pirate overlord, Ryk Bartlett, finds out that they have met with you, they will face retribution. JJ begins by describing the Free Worlds' offer: all the benefits of the mutual defense pact, in exchange for an agreement to uphold human rights and the rule of law, plus offering financial support for the Free Worlds.`
 			`	"Begging your pardon," says one of the elders, "but what makes you different from any pirate organization that comes in here, demanding our money in return for 'protection'?"`
 			choice
@@ -1695,6 +1745,11 @@ mission "FW Albatross 2A"
 			`	The elder who spoke seems unconvinced. "Seems to me that you 'Council' folks are the real rulers, and your 'Senate' is a figurehead," he says. "So I don't call that true democracy."`
 			`	"Maybe," says another of the elders, "but they're still better than Bartlett. I say, if the Free Worlds can free us from him, we'll at least give their new government a try." A few of the others nod in agreement.`
 			`	They explain that to the best of their knowledge, Bartlett is spending most of his time near the Zeta Aquilae system, plundering merchant convoys of heavy metals coming out of Rand and Oblivion. If you can destroy Bartlett and his flagship, the Dread, his followers will probably disperse.`
+				accept
+			label alt
+			`	The meeting with the elders of Albatross happens in secret, by night. They are afraid that if their current pirate overlord, Ryk Bartlett, finds out that they have met with you, they will face retribution. You wait in your ship while JJ attempts to convince the elders that they should join the Free Worlds. After some hours, JJ returns.`
+			`	"They're interested," JJ says to you, "but they want the current warlord dead."`
+			`	They explained that to the best of their knowledge, Bartlett is spending most of his time near the Zeta Aquilae system, plundering merchant convoys of heavy metals coming out of Rand and Oblivion. If you can destroy Bartlett and his flagship, the Dread, his followers will probably disperse.`
 				accept
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -1770,7 +1825,7 @@ mission "FW Rand 1"
 				`	"Are you saying we shouldn't let them join, even though they want to?"`
 				`	"Well, I say, if they want to join us, we should let them. Who knows if they'll be this enthusiastic about the Free Worlds later if we let them down now."`
 			`	JJ thinks about that for a moment, then says, "Well, I guess we should let them join. It will mean we may need to launch an assault to drive the Navy off New Iceland. But if we do that, our tactical position shifts from one that's worse than what we have now, to something much better. Freya, did they say if there's any sign that the Navy has gotten word of this?"`
-			`	"A few carriers are in orbit around Rand," she says, "so they must suspect something. But the bulk of the Navy fleet is still to the north and east of here."`
+			`	"A few Carriers are in orbit around Rand," she says, "so they must suspect something. But the bulk of the Navy fleet is still to the north and east of here."`
 			`	JJ says, "Okay Captain, here's what I propose. We'll leave the bulk of our fleet here to defend Dancer and New Portland, but take a few of our best ships to Zeta Aquilae and drive out the Navy. Freya and I will travel with you so that if we need to make any decisions, we'll have most of the Council there in person. How does that sound?"`
 			choice
 				`	"It sounds like a good plan. Let's do it!"`
@@ -2025,6 +2080,7 @@ mission "FW Defend New Tibet"
 	on complete
 		"reputation: Republic" = 1
 		event "fw armistice"
+		event "fw tarazed republic"
 		event "end battle of alioth"
 		conversation
 			`It doesn't take long to find the monastery that contacted you earlier, but nothing is left of it but burnt-out shells of buildings. You land and look around for survivors. You find several corpses dressed in maroon robes, some of them badly burnt, but no sign of the defector or the monk you spoke with earlier.`

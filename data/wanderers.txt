@@ -760,6 +760,23 @@ event "wanderers: unfettered invasion starts"
 		shipyard clear
 		outfitter clear
 
+event "wanderers: riptide mass production"
+	fleet "Wanderer Freight"
+		add variant 3
+			"Riptide"
+		add variant
+			"Riptide"
+			"Tempest"
+		add variant
+			"Riptide"
+			"Strong Wind"
+			"Autumn Leaf"
+		add variant
+			"Riptide"
+			"Summer Leaf" 2
+	shipyard "Wanderer Advanced"
+		"Riptide"
+
 event "wanderers: tempest mass production"
 	fleet "Wanderer Defense"
 		add variant 6
