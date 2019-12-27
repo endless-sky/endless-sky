@@ -1285,7 +1285,7 @@ mission "Nanachi: Payment"
 		payment 700000
 		event "Nanachi: Update" 720
 		conversation
-			`Shortly after you land, you get a message from Nanachi, the young hai pilot who you helped start out. "Dear captain <last>, I hope you're doing well! As I promised, ever since we parted ways, I've been working towards getting enough money to pay you for being so kind to help me. I've sent you <payment>. I'm deeply grateful to you for helping make my dream come true."`
+			`Shortly after you land, you get a message from Nanachi, the young Hai pilot who you helped start out. "Dear Captain <last>, I hope you're doing well! As I promised, ever since we parted ways, I've been working towards getting enough money to pay you for being so kind to help me. I've sent you <payment>. I'm deeply grateful to you for helping make my dream come true."`
 				decline
 
 
