@@ -7219,6 +7219,10 @@ system Danoa
 			sprite planet/lava2-b
 			distance 607
 			period 33.895
+		object
+			sprite "planet/asteroid base"
+			distance 809
+			period 52.153
 
 system "Dark Hills"
 	pos -926.587 619.051
