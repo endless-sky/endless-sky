@@ -1217,7 +1217,7 @@ mission "Nanachi 3"
 
 mission "Nanachi 4"
 	name "Protect Nanachi"
-	description "Bring Nanachi's ship to Prime, keeping her safe from a pirate fleet that attacked a convoy heading to Hai space, then head back to <planet>."
+	description "Bring Nanachi's ship to <stopovers>, keeping her safe from a pirate fleet that attacked a convoy heading to Hai space, then head back to <destination>."
 	source "Allhome"
 	stopover "Prime"
 	deadline 14
