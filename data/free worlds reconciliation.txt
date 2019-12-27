@@ -1302,6 +1302,7 @@ mission "FW Pug 2C: Jump Drive"
 	on accept
 		outfit "Jump Drive" 1
 		set "fw given jump drive"
+		set "already had jump drive"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -1604,6 +1605,25 @@ mission "FW Pug 3B"
 
 
 
+conversation "fw pug"
+	`You land at the Republic Navy Yard on Geminus escorting the two Dreadnoughts that are the Free Worlds contribution to the war against the Pug. You are met by the shipyard supervisor and a team of engineers who are preparing the Navy ships to join you. "So, these are your Dreadnoughts," one of them says. "I'm glad to finally have the chance to see one up close. I don't suppose one of the captains would be willing to give me a tour."`
+	choice
+		`	"Um, we're right in the middle of resisting an alien invasion, here."`
+		`	"Sorry, we aren't authorized to share military secrets with you."`
+		`	"Sure, I'm sure we could arrange something."`
+			goto yes
+
+	`	Freya laughs. "Give him a break, <first>. He's just thinking like an engineer, rather than a tactician. I mean, I'd certainly jump at the chance to tour a Cruiser even at a time like this."`
+
+	label yes
+	`	The supervisor seems irked that his engineers are more interested in exploring nifty new ship technology than in the task at hand, but he grudgingly offers to give you a tour of the Navy Yard in exchange for letting his engineers take a closer look at the Dreadnoughts. Freya whispers to you, "Just think of this as another step toward peace and reconciliation."`
+	`	The new shipyard is some distance away from the old one, which is still in ruins, a radioactive crater a few kilometers away from the spaceport. "The attack happened at night," says the supervisor. "Three hundred and forty-seven people were killed. If the attack had been during working hours, that number would have been in the thousands. We're recovering some metal from the old shipyard, but other than that it's a total loss. The radiation is slowly dying down, though."`
+	`	There is deep anger in his voice as he speaks. You are glad that the Free Worlds have been proved innocent of involvement in the attack, but you suspect that on the worlds that were bombed, most people will not accept peace with the Syndicate on any terms except the full surrender of all the Syndicate personnel who were responsible.`
+	`	When they're done giving you the tour, you return to the spaceport. The supervisor and the team of engineers wish you the best of luck, and depart.`
+		accept
+
+
+
 mission "FW Pug 3C"
 	landing
 	name "Escort to Hephaestus"
@@ -1613,28 +1633,14 @@ mission "FW Pug 3C"
 	destination Hephaestus
 	to offer
 		has "FW Pug 3B: done"
+		not "already had jump drive"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		log "The Free Worlds and Republic Navy are sending a joint fleet into Syndicate space, where they will be fitted with jump drives to make an assault on Pug territory. The Syndicate only has six jump drives available, so this fleet will have to survive without reinforcements until a way is found to reopen the connection to the rest of human space."
-		conversation
-			`You land at the Republic Navy Yard on Geminus escorting the two Dreadnoughts that are the Free Worlds contribution to the war against the Pug. You are met by the shipyard supervisor and a team of engineers who are preparing the Navy ships to join you. "So, these are your Dreadnoughts," one of them says. "I'm glad to finally have the chance to see one up close. I don't suppose one of the captains would be willing to give me a tour."`
-			choice
-				`	"Um, we're right in the middle of resisting an alien invasion, here."`
-				`	"Sorry, we aren't authorized to share military secrets with you."`
-				`	"Sure, I'm sure we could arrange something."`
-					goto yes
-			
-			`	Freya laughs. "Give him a break, <first>. He's just thinking like an engineer, rather than a tactician. I mean, I'd certainly jump at the chance to tour a Cruiser even at a time like this."`
-			
-			label yes
-			`	The supervisor seems irked that his engineers are more interested in exploring nifty new ship technology than in the task at hand, but he grudgingly offers to give you a tour of the Navy Yard in exchange for letting his engineers take a closer look at the Dreadnoughts. Freya whispers to you, "Just think of this as another step toward peace and reconciliation."`
-			`	The new shipyard is some distance away from the old one, which is still in ruins, a radioactive crater a few kilometers away from the spaceport. "The attack happened at night," says the supervisor. "Three hundred and forty-seven people were killed. If the attack had been during working hours, that number would have been in the thousands. We're recovering some metal from the old shipyard, but other than that it's a total loss. The radiation is slowly dying down, though."`
-			`	There is deep anger in his voice as he speaks. You are glad that the Free Worlds have been proved innocent of involvement in the attack, but you suspect that on the worlds that were bombed, most people will not accept peace with the Syndicate on any terms except the full surrender of all the Syndicate personnel who were responsible.`
-			`	When they're done giving you the tour, you return to the spaceport. The supervisor and the team of engineers wish you the best of luck, and depart.`
-				accept
+		conversation "fw pug"
 	
 	npc accompany save
 		government "Free Worlds"
@@ -1654,13 +1660,51 @@ mission "FW Pug 3C"
 
 
 
+mission "FW Pug 3C (Extra)"
+	landing
+	name "Escort to Hephaestus"
+	description "Escort the combined Free Worlds and Navy fleet to <destination>, where the Syndicate will fit all the ships with jump drives."
+	autosave
+	source Geminus
+	destination Hephaestus
+	to offer
+		has "FW Pug 3B: done"
+		has "already had jump drive"
+	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	
+	on offer
+		log "The Free Worlds and Republic Navy are sending a joint fleet into Syndicate space, where they will be fitted with jump drives to make an assault on Pug territory. The Syndicate only has seven jump drives available, so this fleet will have to survive without reinforcements until a way is found to reopen the connection to the rest of human space."
+		conversation "fw pug"
+	
+	npc accompany save
+		government "Free Worlds"
+		personality escort
+		ship "Dreadnought" "F.S. Independence"
+		ship "Dreadnought" "F.S. Freedom"
+	npc accompany save
+		personality escort
+		government "Republic"
+		ship "Cruiser (Mark II)" "R.N.S. Everest"
+		ship "Cruiser (Mark II)" "R.N.S. Denali"
+		ship "Carrier (Mark II)" "R.N.S. Vesuvius"
+		ship "Carrier (Mark II)" "R.N.S. Haleakala"
+		ship "Cruiser (Mark II)" "R.N.S. Matterhorn"
+	
+	on visit
+		dialog "You have reached <planet>, but part of your fleet is not here yet. Better depart and wait for them to arrive in this star system."
+	on complete
+		set "FW Pug 3C: done"
+
+
+
 mission "FW Pug 4: Escorts"
 	landing
 	invisible
 	source Hephaestus
 	to offer
 		has "FW Pug 3C: done"
-	
 	to fail
 		has "FW Pug 6: done"
 	
@@ -1705,6 +1749,24 @@ mission "FW Pug 4: Escorts"
 		ship "Combat Drone" "Yellow Eleven"
 		ship "Combat Drone" "Yellow Twelve"
 
+mission "FW Pug 4: Escorts (Extra)"
+	landing
+	invisible
+	source Hephaestus
+	to offer
+		has "FW Pug 3C: done"
+		has "already had jump drive"
+	to fail
+		has "FW Pug 6: done"
+	npc kill
+		personality escort heroic disables
+		government "Republic"
+		ship "Cruiser (Jump)" "R.N.S. Matterhorn"
+		ship "Combat Drone" "Green One"
+		ship "Combat Drone" "Green Two"
+		ship "Combat Drone" "Green Three"
+		ship "Combat Drone" "Green Four"
+
 
 
 mission "FW Pug 4"
@@ -1725,7 +1787,13 @@ mission "FW Pug 4"
 		event "at war with the pug"
 		conversation
 			`The Syndicate directs you to land your ships in the private hangars for Syndicated Systems. Once you have landed, they quickly work to install jump drives in the Navy and Free Worlds ships. As they work, you hear one of the workers saying to another, "Golly, I'd forgotten how big those Navy ships are. Makes a Protector look puny by comparison, doesn't it?"`
+			branch extra
+				has "already had jump drive"
 			`	Once the work is done, you meet with a senior Syndicate executive named Marco Bugati. "I really hope this works," he says, "because these are the only jump drives we've been able to acquire. If your fleet is destroyed, we will have lost access to the occupied territory entirely."`
+				goto end
+			label extra
+			`	Once the work is done, you meet with a senior Syndicate executive named Marco Bugati. "I really hope this works," he says, "because these are the only jump drives we've been able to acquire, though you seem to have picked one up yourself; I'd like to have a chat with you and find out how, if we all survive this. I can tell you, that extra ship we've got thanks to the spare jump drive may be pivotal. But if your fleet is destroyed, we will have lost access to the occupied territory entirely."`
+			label end
 			`	You gather your fleet and prepare for an assault on Delta Capricorni, which is the occupied star system closest to Syndicate space.`
 			``
 			`[Take good care of this fleet: if ships are disabled, board them to "repair" them once the battle is over. And, when jumping into battle, remember that you can hold down the jump key to get all your ships ready to jump simultaneously, so no single ship enters the system first and bears the brunt of the enemy fire.]`
@@ -1947,7 +2015,13 @@ mission "FW Pug 5"
 		log "Freya succeeded in reopening the hyperspace link to one of the Syndicate systems. If the same can be done for the link to Sol, the entire Navy will be able to join the battle against the Pug."
 		event "battle for altair"
 		conversation
+			branch extra
+				has "already had jump drive"
 			`Freya is overjoyed that she has found a way to reverse the Pug technology and restore a hyperspace connection to human space. "Now we actually have a chance," she says. "Before, with just you and six other ships, victory seemed unlikely."`
+				goto choice
+			label extra
+			`Freya is overjoyed that she has found a way to reverse the Pug technology and restore a hyperspace connection to human space. "Now we actually have a chance," she says. "Before, with just you and seven other ships, victory seemed unlikely."`
+			label choice
 			choice
 				`	"What should we do next?"`
 					goto next
