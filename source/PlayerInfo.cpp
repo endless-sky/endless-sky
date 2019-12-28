@@ -570,7 +570,7 @@ void PlayerInfo::IncrementDate()
 	
 	// Have the player pay salaries, mortgages, etc. and print a message that
 	// summarizes the payments that were made.
-	string message = accounts.Step(assets, Salaries());
+	string message = accounts.Step(assets, Salaries(), Maintenance());
 	if(!message.empty())
 		Messages::Add(message);
 	
@@ -683,6 +683,31 @@ int64_t PlayerInfo::Salaries() const
 	
 	// Every crew member except the player receives 100 credits per day.
 	return 100 * (crew - 1);
+}
+
+
+
+// Calculate the daily maintenance cost for all ships and in cargo outfits.
+int64_t PlayerInfo::Maintenance() const
+{
+	int64_t maintenance = 0;
+	// If the player is landed, then cargo will be in the player's 
+	// pooled cargo. Check there so that the bank panel can display the
+	// correct total maintenance costs. When launched all cargo will be
+	// in the player's ships instead of in the pooled cargo, so no outfit 
+	// will be counted twice.
+	for(const auto &outfit : Cargo().Outfits())
+		maintenance += max<int64_t>(0, outfit.first->Get("maintenance costs")) * outfit.second;
+	for(const shared_ptr<Ship> &ship : ships)
+		if(!ship->IsDestroyed())
+		{
+			maintenance += max<int64_t>(0, ship->Attributes().Get("maintenance costs"));
+			for(const auto &outfit : ship->Cargo().Outfits())
+				maintenance += max<int64_t>(0, outfit.first->Get("maintenance costs")) * outfit.second;
+			if(!ship->IsParked())
+				maintenance += max<int64_t>(0, ship->Attributes().Get("operating costs"));
+		}
+	return maintenance;
 }
 
 
@@ -1102,10 +1127,10 @@ bool PlayerInfo::TakeOff(UI *ui)
 		ships.erase(it);
 		ships.insert(ships.begin(), flagship);
 	}
-	// Make sure your ships all know who the flagship is.
+	// Make sure your jump-capable ships all know who the flagship is.
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		bool shouldHaveParent = (ship != flagship && !ship->IsParked() && !ship->CanBeCarried());
+		bool shouldHaveParent = (ship != flagship && !ship->IsParked() && (!ship->CanBeCarried() || ship->JumpFuel()));
 		ship->SetParent(shouldHaveParent ? flagship : shared_ptr<Ship>());
 	}
 	// Make sure your flagship is not included in the escort selection.
@@ -1450,7 +1475,7 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 			? Mission::BOARDING : Mission::ASSISTING);
 	
 	// Check for available boarding or assisting missions.
-	for(const pair<const string, const Mission> &it : GameData::Missions())
+	for(const auto &it : GameData::Missions())
 		if(it.second.IsAtLocation(location) && it.second.CanOffer(*this, ship))
 		{
 			boardingMissions.push_back(it.second.Instantiate(*this, ship));
@@ -2229,6 +2254,7 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 	conditions["unpaid mortgages"] = min(limit, accounts.TotalDebt("Mortgage"));
 	conditions["unpaid fines"] = min(limit, accounts.TotalDebt("Fine"));
 	conditions["unpaid salaries"] = min(limit, accounts.SalariesOwed());
+	conditions["unpaid maintenance"] = min(limit, accounts.MaintenanceDue());
 	conditions["credit score"] = accounts.CreditScore();
 	// Serialize the current reputation with other governments.
 	SetReputationConditions();
@@ -2612,7 +2638,9 @@ void PlayerInfo::Fine(UI *ui)
 {
 	const Planet *planet = GetPlanet();
 	// Dominated planets should never fine you.
-	if(GameData::GetPolitics().HasDominated(planet))
+	// By default, uninhabited planets should not fine the player.
+	if(GameData::GetPolitics().HasDominated(planet)
+		|| !(planet->IsInhabited() || planet->HasCustomSecurity()))
 		return;
 	
 	// Planets should not fine you if you have mission clearance or are infiltrating.

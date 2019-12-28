@@ -25,7 +25,7 @@ mission "Liberate Kornephoros"
 			`	You find Tomek walking among the fleet, conversing with captains and assessing the damage they have suffered. When he sees you he says, "Captain <last>! How is your '<ship>' holding together?"`
 			choice
 				`	"She took a bit of a pounding, but I've patched her up."`
-				`	"Just fine. It'd take more than a few cruisers to destroy the <ship>."`
+				`	"Just fine. It'd take more than a few Cruisers to destroy the <ship>."`
 			
 			`	"Glad to hear it," he says. "Listen, we need to press our advantage before the Republic has time to call for reinforcements. If we strike quickly, we could be able to retake Kornephoros from them. It's important to break the blockade on that system just for the sake of trade with the rest of the galaxy, and on top of that, of course, Katya needs to be rescued."`
 			`	"Indeed," you say.`
@@ -578,9 +578,9 @@ mission "FW Hope Recon 1C"
 			
 			apply
 				set "fw caught navy planting sensors"
-			`	You approach the location, flying low to avoid detection, and come upon a Navy gunboat, landed on the planet. Some distance away from the ship, several figures in thick snowsuits are setting up some sort of equipment with lots of antennae. It seems that the Navy had the same idea as Freya, of using this world as a listening post. Your sensors show that the gunboat is powered down.`
-			`	The moment your ship comes over the horizon, they start running back toward the gunboat. You destroy their equipment with a few well-placed shots, then train your guns on the crew members, who are still some distance from their ship. When they realize they cannot get back to it before being shot, they raise their hands in surrender.`
-			`	You count seven crew members in the group, which is the typical crew complement of a gunboat. That may mean the gunboat is uncrewed, and you could kill the crew and steal it. On the other hand, if there are more crew aboard the ship it would be better to destroy it first, then finish off the landing crew.`
+			`	You approach the location, flying low to avoid detection, and come upon a Navy Gunboat, landed on the planet. Some distance away from the ship, several figures in thick snowsuits are setting up some sort of equipment with lots of antennae. It seems that the Navy had the same idea as Freya, of using this world as a listening post. Your sensors show that the Gunboat is powered down.`
+			`	The moment your ship comes over the horizon, they start running back toward the Gunboat. You destroy their equipment with a few well-placed shots, then train your guns on the crew members, who are still some distance from their ship. When they realize they cannot get back to it before being shot, they raise their hands in surrender.`
+			`	You count seven crew members in the group, which is the typical crew complement of a Gunboat. That may mean the Gunboat is uncrewed, and you could kill the crew and steal it. On the other hand, if there are more crew aboard the ship it would be better to destroy it first, then finish off the landing crew.`
 			choice
 				`	(Destroy the ship, then finish off the crew.)`
 					goto destroy
@@ -590,7 +590,7 @@ mission "FW Hope Recon 1C"
 					goto spare
 			
 			label destroy
-			`	It turns out you made the right choice: someone is indeed onboard the gunboat still, because the moment you open fire it raises shields and starts powering up its engines and weapons. But, your initial shots must have damaged some critical systems, because it only manages to fire a few shots at you and to lift off about thirty meters into the air before crashing back down onto the ice and exploding. You quickly pick off the landing crew as well; they have no place to hide on the broad, flat glacial expanse.`
+			`	It turns out you made the right choice: someone is indeed onboard the Gunboat still, because the moment you open fire it raises shields and starts powering up its engines and weapons. But, your initial shots must have damaged some critical systems, because it only manages to fire a few shots at you and to lift off about thirty meters into the air before crashing back down onto the ice and exploding. You quickly pick off the landing crew as well; they have no place to hide on the broad, flat glacial expanse.`
 			`	Your own mission is complete, so it's time to return to <planet> and report to Freya.`
 				decline
 			
@@ -790,7 +790,7 @@ mission "FW Plasma Testing 1B"
 				goto next
 			
 			label fighters
-			`	"I guess we'll need to test it to find out," he says, "but our main goal was to have a weapon that could do serious damage to a cruiser. Right now the Navy's heaviest ships have ours severely outgunned."`
+			`	"I guess we'll need to test it to find out," he says, "but our main goal was to have a weapon that could do serious damage to a Cruiser. Right now the Navy's heaviest ships have ours severely outgunned."`
 				goto next
 			
 			label next
@@ -1049,101 +1049,6 @@ mission "FW Senate 1B"
 				`	"So you're here to talk to the senators?"`
 				`	"Sounds like that could be a great public relations move for convincing more worlds to join us."`
 			`	"Indeed," he says. "Anyway, I'm off to a meeting, but meet me later in the spaceport if you've got room for some passengers."`
-
-
-
-mission "FW Flamethrower 1"
-	landing
-	name "Weapon Testing"
-	description "When you have time, report to <destination>, where Barmy Edward has another weapon he would like you to test."
-	source
-		near Kraz 1 100
-	destination Rust
-	to offer
-		has "event: plasma turret available"
-		random < 15
-	
-	on offer
-		conversation
-			`A message arrives for you soon after you land. It's from Barmy Edward, the weapons engineer at Kraz Cybernetics. He writes: "Hello again, Captain! I've been working on a new weapon, and for some reason no one else wants to help out with the testing. If you're interested in getting your hands on some hot new technology, drop by Rust and come visit our factory."`
-				accept
-
-
-
-mission "FW Flamethrower 2"
-	landing
-	name "Weapon Testing"
-	description "A test ship with new weaponry is in orbit around <planet>. Fight and disable it (but do not board or destroy it!) and then land to give Barmy Edward feedback on its performance."
-	source Rust
-	to offer
-		has "FW Flamethrower 1: done"
-	
-	on offer
-		conversation
-			`You received a message recently from Barmy Edward, asking you to stop by the Kraz Cybernetics facility to help test a new weapon. Do you want to visit them now?`
-			choice
-				`	(Yes.)`
-				`	(No.)`
-					defer
-			scene scene/loc5
-			`	You give your name to the receptionist, and she directs you to the hangar where the weapons group does their design and prototyping. Barmy Edward shakes your hand warmly and says, "Here's the deal. We've got a new weapon, something a little out of the ordinary. We're hoping it will be useful against the pirates, in particular. Interested in helping us?"`
-			`	"Of course," you say.`
-			`	"Great," he says. "I won't share the details, because I want you to get the full effect of the surprise. But, there's a ship in orbit, the Doombat, that has been fitted with a few of these new weapons. Your job will be to fight it and disable it, then tell us what you think of its weapons."`
-			`	He shakes a finger in your face and says, "Now mind you, we just want you to disable the Doombat, not destroy it. We bought it from a scrapyard, so it's barely spaceworthy, but all the same I want to be able to keep using it for future tests. Understood?"`
-			choice
-				`	"Okay, I promise not to destroy it or steal it."`
-				`	"Sorry, this sounds a bit too risky. I'd rather not be involved in this sort of testing."`
-					decline
-			`	"Great," he says, rubbing his hands together with a gleeful expression on his face. He's clearly looking forward to hearing what you think of his latest invention.`
-				accept
-	
-	npc save disable
-		personality disables staying heroic
-		government "Test Dummy"
-		ship "Doombat" "Doombat"
-	
-	on visit
-		dialog `You've landed on <planet>, but you have not disabled the <npc> yet. Disable it and before returning.`
-	on complete
-		event "flamethrower available" 30
-		log "Assisted Barmy Edward with another weapon test: this time, a flamethrower weapon that works by overheating and disabling its target rather than dealing lots of damage to it. It may or may not be useful in actual combat."
-		conversation
-			scene outfit/flamethrower
-			`You head to the hangar to meet up with Barmy Edward, and find him tinkering with a large gun you don't recognize. Presumably, this is the flamethrower that you were just attacked with in orbit. "It runs on hyperspace fuel, you see," he says. "So, what did you think?"`
-			choice
-				`	"It's a terrifying weapon."`
-					goto terrifying
-				`	"It looks impressive, but it didn't do very much damage."`
-					goto damage
-				`	"Your flamethrower doesn't seem to work very well."`
-					goto bad
-			label terrifying
-			`	"Isn't it?" he says. "Mostly useful against small ships, of course, or ships that are running way too close to their thermal thresholds. But the ability to temporarily disable a ship without even dropping its shields first could be quite useful in certain tactical situations."`
-			`	"When will it be available for sale?" you ask.`
-				goto available
-			label damage
-			`	"No, doing damage isn't the point," he says. "The idea is to heat up the target to the point where it goes into emergency thermal shutdown. Basically a way to temporarily disable even a ship with full shields. Of course, big ships can absorb an awful lot of heat without changing temperature much, so I suspect it will be most useful against smaller targets."`
-			`	"That is an interesting idea," you say. "Are they available for sale yet?"`
-				goto available
-			label bad
-			`	"Oh." He seems somewhat dejected. "Well, if you were flying a smaller ship, you might think differently. Or if your ship didn't have adequate cooling. My idea was to target pirate ships with those illegal modified blasters that run hotter than usual."`
-			`	"I guess that makes sense," you say, "although I wouldn't want to run out of jump fuel by accident. Are you going to be making them available for sale?"`
-				goto available
-			label available
-			`	"Well, I should have an initial model for sale in a month or so," he says. "I'll be interested to see what uses you or anyone else might find for them. Anyway, thanks for your help." You say goodbye and head back to your ship.`
-
-ship "Fury" "Doombat"
-	add attributes
-		"self destruct" 1
-	outfits
-		"Flamethrower" 4
-		"nGVF-BB Fuel Cell"
-		"Supercapacitor"
-		"D14-RN Shield Generator"
-		"Ramscoop"
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
-		"Hyperdrive"
 
 
 
