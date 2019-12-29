@@ -1350,6 +1350,7 @@ mission "Pirate Troubles [3]"
 			choice
 				`	"Oh, so does that make you Scab?"`
 				`	"The Hai ask that you stop attacking their systems."`
+					goto negotiations
 			`	The leader grimaces. "I'll cut your tongue out if you don't watch your mouth."`
 			`	You take a step back. "The Hai ask that you stop attacking their systems," you say, attempting not to get shanked.`
 			
