@@ -211,11 +211,14 @@ ship "Strong Wind"
 		"mass" 260
 		"drag" 4.7
 		"heat dissipation" .7
-		"fuel capacity" 400
+		"fuel capacity" 600
 		"cargo space" 68
 		"outfit space" 493
 		"weapon capacity" 198
 		"engine capacity" 114
+		"asteroid scan power" 100
+		"atmosphere scan" 100
+		"tactical scan power" 25
 		weapon
 			"blast radius" 200
 			"shield damage" 2000
@@ -224,12 +227,12 @@ ship "Strong Wind"
 	outfits
 		"Sunbeam" 4
 		"Thunderhead Launcher" 2
-		"Thunderhead Missile" 120
-		"Thunderhead Storage Array" 2
+		"Thunderhead Missile" 100
+		"Thunderhead Storage Array"
 		
 		"White Sun Reactor"
 		"Dark Storm Shielding"
-		"Wanderer Ramscoop"
+		"Wanderer Ramscoop" 2
 		
 		"Type 3 Radiant Thruster"
 		"Type 4 Radiant Steering"
