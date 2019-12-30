@@ -276,6 +276,329 @@ phrase "remnant"
 		"Soaring"
 		"Enduring"
 
+phrase "remnant uncontacted"
+	word
+		"(They sent you a hail consisting of a sign language you don't understand.)"
+
+phrase "remnant uncontacted"
+	word
+		"Please"
+		"If you don't mind,"
+		"Captain,"
+	word
+		" "
+	word
+		"don't hesitate to"
+		"land on one of our planets and"
+	word
+		" "
+	word
+		"identify yourself"
+		"take a blood test"
+		"prove you are not an Alpha"
+		"chant with us"
+	word
+		"."
+
+phrase "remnant uncontacted"
+	word
+		"I am"
+		"We are"
+		"The Remnant is"
+	word
+		" "
+	word
+		"watching"
+		"observing"
+		"analyzing"
+		"overseeing"
+	word
+		" "
+	word
+		"you"
+		"your actions"
+		"your behavior"
+	word
+		"."
+
+phrase "remnant uncontacted"
+	word
+		"Alphas"
+		"Hostiles"
+		"Raiders"
+		"Korath ships"
+		"Unfriendly ships"
+	word
+		","
+	word
+		" "
+	word
+		"beware"
+		"please leave"
+		"just leave already"
+		"you won't survive for long"
+		"sing your final words"
+		"prepare to be plundered"
+		"prepare to be boarded"
+		"prepare for death"
+	word
+		"."
+		"!"
+
+phrase "remnant uncontacted"
+	word
+		"Are you"
+		"Do you identify yourself as"
+		"Have you affiliated with"
+	word
+		" "
+	word
+		"an"
+	word
+		" "
+	word
+		"Alpha"
+	word
+		"?"
+	word
+		" "
+	word
+		"Because"
+		"Since"
+		"The reason is,"
+		"For the reason that"
+	word
+		" "
+	word
+		"if you"
+	word
+		" "
+	word
+		"answer"
+		"respond"
+		"reply"
+	word
+		" "
+	word
+		"yes"
+		"with a positive"
+		"affirmatively"
+	word
+		","
+	word
+		" "
+	word
+		"that would be bad"
+		"that would be horrible"
+		"it would be a duty to kill you"
+		"you're going to have a bad time"
+		"I will report you"
+	word
+		"."
+		"!"
+
+phrase "remnant uncontacted hostile"
+	word
+		"Eat space dust"
+		"Kill yourself"
+		"Sing your last prayers"
+		"Leave this space"
+	word
+		","
+		"!"
+	word
+		" "
+	word
+		"Alpha scum"
+		"hostile ship"
+		"pirate"
+		"genetically modified biological weapon"
+	word
+		"."
+		"!"
+
+phrase "remnant uncontacted hostile"
+	word
+		"I"
+		"My friend"
+		"My suspicion"
+		"My comrade"
+		"My gut"
+	word
+		" "
+	word
+		"was right"
+		"was correct"
+		"knew it"
+	word
+		"."
+		"!"
+	word
+		" "
+	word
+		"You are"
+	word
+		" "
+	word
+		"an Alpha"
+		"hostile"
+		"entering this space with a malicious mind"
+		"genetically modified"
+	word
+		"!"
+
+phrase "remnant uncontacted hostile"
+	word
+		"(They sent you hail consisting of a sign language you don't understand, and it doesn't seem friendly.)"
+		"(They are sending you a lot of signs too fast, that your hail receiver can't even handle it.)"
+		"(It seems you are not welcome here.)"
+
+phrase "friendly remnant"
+	word
+		"Greetings"
+		"Howdy"
+		"Hello there"
+		"Salutations"
+	word
+		", "
+		" "
+	word
+		"human"
+		"friend"
+		"comrade"
+		"brethen"
+	word
+		"."
+		"!"
+
+phrase "friendly remnant"
+	word
+		"I almost died"
+		"A lot of hostiles were firing at me"
+		"It was a very difficult mission"
+		"We had an emergency"
+		"The crew were panicking while we face a life-threatening situation"
+	word
+		" "
+	word
+		"last time"
+		"last week"
+		"last month"
+	word
+		"."
+		"!"
+	word
+		"Luckily"
+		"Fortunately"
+		"Like a miracle"
+		"And oh my"
+	word
+		","
+	word
+		" "
+	word
+		"I"
+		"My captain"
+		"We"
+	word
+		"actually had"
+		"remembered"
+	word
+		"a cloaking device"
+		"a secret weapon we had all the time"
+		"God"
+		"a last resort"
+	word
+		"."
+		"!"
+
+phrase "hostile remnant"
+	word
+		"(It only consists of signs so deep that a regular human can't even understand. Seems like they don't like you.)"
+
+phrase "hostile remnant"
+	word
+		"Apparently"
+		"It seems"
+		"I think"
+	word
+		" "
+	word
+		"you are"
+	word
+		"not different to"
+		"very similar to"
+		"like"
+	word
+		"them"
+		"an Alpha"
+		"a genetically modified weapon"
+		"a Korath"
+	word
+		"."
+	word
+		" "
+	word
+		"Too bad"
+		"Too sad"
+		"I hope you think about your actions"
+		"You backstabbed us"
+		"You lied to us"
+		"You violated our trust"
+	word
+		"."
+
+phrase "hostile remnant (we're)"
+	word
+		"we're"
+	word
+		" "
+	word
+		"friends"
+		"comrades"
+		"brethens"
+		"good"
+		"awesome"
+		"cool"
+
+phrase "hostile remnant (you're)"
+	word
+		"you're"
+	word
+		" "
+	word
+		"not an Alpha"
+		"not hostile
+		"friendly"
+		"good"
+		"human"
+		
+
+phrase "hostile remnant"
+	word
+		"I"
+		"we"
+	word
+		" "
+	word
+		"thought"
+	word
+		" "
+	phrase
+		"hostile remnant (we're)"
+		"hostile remnant (you're)
+	word
+		"."
+	word
+		" "
+	word
+		"Why do you have to do this"
+		"Are you insane"
+		"Did I hurt you"
+		"Perhaps we intimidated you"
+	word
+		"?"
+
 
 
 shipyard "Remnant"

@@ -334,6 +334,8 @@ government "Remnant"
 	"bribe" 0
 	"attitude toward"
 		"Korath" -.01
+	"friendly hail" "remnant uncontacted"
+	"hostile hail" "remnant uncontacted hostile"
 
 government "Republic"
 	swizzle 0
