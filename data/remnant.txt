@@ -367,6 +367,7 @@ phrase "remnant uncontacted"
 		"Since"
 		"The reason is,"
 		"For the reason that"
+		"Reason being,"
 	word
 		" "
 	word
@@ -511,6 +512,195 @@ phrase "friendly remnant"
 	word
 		"."
 		"!"
+
+phrase "friendly remnant"
+	word
+		"If"
+	word
+		" "
+	word
+		"you have a"
+		"the prefects gave you a"
+		"our elders handed you a"
+		"our government granted you a"
+	word
+		" "
+	word
+		"license"
+		"permit"
+		"permission to buy our outfits"
+	word
+		","
+	word
+		" "
+	word
+		"I"
+		"our experts"
+		"our veterans"
+		"my friends"
+	word
+		" "
+	word
+		"suggest"
+		"recommend"
+		"would like you"
+	word
+		" "
+	word
+		"to buy"
+		"to get"
+	word
+		" "
+	phrase
+		"remnant inhibitor cannon"
+		"remnant thrasher cannon"
+		"remnant emp torpedo bay"
+		"remnant salvage scanner"
+	word
+		"."
+		"!"
+
+phrase "remnant inhibitor cannon"
+	word
+		"some"
+		"those"
+		"our"
+	word
+		" "
+	word
+		"inhibitor cannons."
+	word
+		" "
+	word
+		"They"
+		"Those weapons"
+	word
+		"can"
+		"will"
+	word
+		" "
+	word
+		"disrupt"
+		"disable"
+		"slow"
+	word
+		" "
+	word
+		"the enemy's thrusters"
+		"your target's steering"
+		"any engine"
+	word
+		" "
+	word
+		"and prevent them from escaping"
+		"that anyone will surely beg you to stop"
+
+phrase "remnant thrasher cannon"
+	word
+		"a dozen of"
+		"several"
+		"some"
+	word
+		" "
+	word
+		"thrasher cannons"
+		"thrasher guns"
+		"thrasher turrets"
+	word
+		"."
+	word
+		" "
+	word
+		"Compared to"
+		"When placed beside"
+	word
+		" "
+	word
+		"your energy blasters,"
+	word
+		" "
+	word
+		"they are more efficient in terms of heat"
+		"you can deal more damage with our cannons"
+		"they may be consuming more energy, but they have better heat and damage"
+		"our cannons may be more expensive, but they have better damage"
+		"they are larger, but they can deal more damage and release less heat"
+		"they can be a force to reckoned with"
+
+phrase "remnant emp torpedo bay"
+	word
+		"an EMP Torpedo Bay."
+	word
+		" "
+	word
+		"With a single shot, it"
+		"Firing one"
+		"One torpedo"
+	word
+		" "
+	word
+		"will"
+		"can"
+	word
+		" "
+	word
+		"disrupt"
+		"disable"
+		"deplete"
+	word
+		" "
+	word
+		"the enemy's systems"
+		"your target's batteries"
+		"your enemy's shields"
+		"the target's engines"
+
+phrase "remnant salvage scanner"
+	word
+		"one or two"
+		"a dozen"
+		"some"
+	word
+		" "
+	word
+		"salvage scanners."
+	word
+		" "
+	word
+		"They are a combination of an outfit scanner and a tactical one"
+		"Compared to your separated versions, our special scanner is more powerful"
+		"They have a longer range than your outfit scanner"
+		"Those babies scan fast"
+		"They are a must for your plundering needs"
+
+phrase "friendly remnant"
+	word
+		"Have you heard"
+		"Do you know"
+		"Are you familiar"
+	word
+		" "
+	word
+		"about"
+		"regarding"
+	word
+		" "
+	word
+		"the Quarg"
+		"the Pug"
+		"the Hai"
+	word
+		"?"
+	word
+		" "
+	word
+		"They look strong"
+		"Maybe we should contact them"
+		"I think they are dangerous"
+		"I want to plunder their tech"
+	word
+		"."
+
 
 phrase "hostile remnant"
 	word
