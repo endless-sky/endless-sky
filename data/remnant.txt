@@ -505,10 +505,9 @@ phrase "friendly remnant"
 		"actually had"
 		"remembered"
 	word
-		"a cloaking device"
+		"a cloaking device all along"
 		"a secret weapon we had all the time"
-		"God"
-		"a last resort"
+		"a last resort every Remnant should have"
 	word
 		"."
 		"!"
