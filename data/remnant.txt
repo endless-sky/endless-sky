@@ -282,29 +282,8 @@ phrase "remnant uncontacted"
 
 phrase "remnant uncontacted"
 	word
-		"Please"
-		"If you don't mind,"
-		"Captain,"
-	word
-		" "
-	word
-		"don't hesitate to"
-		"land on one of our planets and"
-	word
-		" "
-	word
-		"identify yourself"
-		"take a blood test"
-		"prove you are not an Alpha"
-		"chant with us"
-	word
-		"."
-
-phrase "remnant uncontacted"
-	word
 		"I am"
 		"We are"
-		"The Remnant is"
 	word
 		" "
 	word
@@ -321,83 +300,6 @@ phrase "remnant uncontacted"
 	word
 		"."
 
-phrase "remnant uncontacted"
-	word
-		"Alphas"
-		"Hostiles"
-		"Raiders"
-		"Korath ships"
-		"Unfriendly ships"
-	word
-		","
-	word
-		" "
-	word
-		"beware"
-		"please leave"
-		"just leave already"
-		"you won't survive for long"
-		"sing your final words"
-		"prepare to be plundered"
-		"prepare to be boarded"
-		"prepare for death"
-	word
-		"."
-		"!"
-
-phrase "remnant uncontacted"
-	word
-		"Are you"
-		"Do you identify yourself as"
-		"Have you affiliated with"
-	word
-		" "
-	word
-		"an"
-	word
-		" "
-	word
-		"Alpha"
-	word
-		"?"
-	word
-		" "
-	word
-		"Because"
-		"Since"
-		"The reason is,"
-		"For the reason that"
-		"Reason being,"
-	word
-		" "
-	word
-		"if you"
-	word
-		" "
-	word
-		"answer"
-		"respond"
-		"reply"
-	word
-		" "
-	word
-		"yes"
-		"with a positive"
-		"affirmatively"
-	word
-		","
-	word
-		" "
-	word
-		"that would be bad"
-		"that would be horrible"
-		"it would be a duty to kill you"
-		"you're going to have a bad time"
-		"I will report you"
-	word
-		"."
-		"!"
-
 phrase "remnant uncontacted hostile"
 	word
 		"Eat space dust"
@@ -406,16 +308,13 @@ phrase "remnant uncontacted hostile"
 		"Leave this space"
 	word
 		","
-		"!"
 	word
 		" "
 	word
-		"Alpha scum"
 		"hostile ship"
 		"pirate"
 		"genetically modified biological weapon"
 	word
-		"."
 		"!"
 
 phrase "remnant uncontacted hostile"
@@ -441,7 +340,6 @@ phrase "remnant uncontacted hostile"
 	word
 		" "
 	word
-		"an Alpha"
 		"hostile"
 		"entering this space with a malicious mind"
 		"genetically modified"
@@ -478,6 +376,7 @@ phrase "friendly remnant"
 		"A lot of hostiles were firing at me"
 		"It was a very difficult mission"
 		"We had an emergency"
+		"There was a swarm of Korath raiders here"
 		"The crew were panicking while we face a life-threatening situation"
 	word
 		" "
@@ -556,8 +455,9 @@ phrase "friendly remnant"
 		"remnant emp torpedo bay"
 		"remnant salvage scanner"
 	word
-		"."
-		"!"
+		"They are the best!"
+		"You should definitely try it!"
+		"Definitely better than those outfits in your space."
 
 phrase "remnant inhibitor cannon"
 	word
@@ -593,6 +493,9 @@ phrase "remnant inhibitor cannon"
 	word
 		"and prevent them from escaping"
 		"that anyone will surely beg you to stop"
+	word
+		"."
+		"!"
 
 phrase "remnant thrasher cannon"
 	word
@@ -625,6 +528,9 @@ phrase "remnant thrasher cannon"
 		"our cannons may be more expensive, but they have better damage"
 		"they are larger, but they can deal more damage and release less heat"
 		"they can be a force to reckoned with"
+	word
+		"."
+		"!"
 
 phrase "remnant emp torpedo bay"
 	word
@@ -653,6 +559,9 @@ phrase "remnant emp torpedo bay"
 		"your target's batteries"
 		"your enemy's shields"
 		"the target's engines"
+	word
+		"."
+		"!"
 
 phrase "remnant salvage scanner"
 	word
@@ -671,6 +580,9 @@ phrase "remnant salvage scanner"
 		"They have a longer range than your outfit scanner"
 		"Those babies scan fast"
 		"They are a must for your plundering needs"
+	word
+		"."
+		"!"
 
 phrase "friendly remnant"
 	word
@@ -685,21 +597,89 @@ phrase "friendly remnant"
 	word
 		" "
 	word
-		"the Quarg"
-		"the Pug"
-		"the Hai"
+		"the"
+		"those"
+	word
+		" "
+	word
+		"Quarg"
+		"Pug"
+		"Hai"
+		"Drak"
+		"Archons"
+		"insects west of our space"
 	word
 		"?"
 	word
 		" "
+	phrase
+		"friendly remnant (aliens.!)"
+		"friendly remnant (aliens?)"
+
+phrase "friendly remnant (aliens.!)"
 	word
 		"They look strong"
+		"They look weak"
 		"Maybe we should contact them"
 		"I think they are dangerous"
+		"I think they are good"
+		"I think we can trust them"
 		"I want to plunder their tech"
+		"I want their ships"
+		"I have seen them"
+		"I haven't seen them yet"
+		"I wonder if the prefects already knew about them"
 	word
 		"."
+		"!"
 
+phrase "friendly remnant (aliens?)"
+	word
+		"Are they strong"
+		"Are they weak"
+		"Are they friendly"
+		"Are they hostile"
+		"How strong are they"
+		"What are the odds of capturing their ships"
+		"Did your government met them"
+		"Is it worth plundering them"
+	word
+		"?"
+
+phrase "friendly remnant"
+	word
+		"Be careful"
+		"Stay alert"
+		"Be vigilant"
+	word
+		" "
+	word
+		"about"
+		"aboot"
+	word
+		" "
+	word
+		"those"
+		"the"
+	word
+		"Alphas in this galaxy"
+		"pirates in your system"
+		"Korath raiders"
+		"Korath"
+		"Archon in Nenia
+	word
+		"."
+		"!"
+	word
+		" "
+	word
+		"You don't want to kill yourself"
+		"It is dangerous to encounter them"
+		"Always have the best possible weapons with you"
+		"We have ships that can cloak just in case"
+	word
+		"."
+		"!"
 
 phrase "hostile remnant"
 	word
