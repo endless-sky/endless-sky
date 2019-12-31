@@ -2098,6 +2098,61 @@ system Aescolanus
 		distance 2279.29
 		period 2849.84
 
+system "Aki'il"
+	pos -83 722
+	government Uninhabited
+	habitable 1505.92
+	asteroids "large metal" 47 5
+	asteroids "large rock" 2 10
+	asteroids "medium metal" 100 8
+	asteroids "medium rock" 4 5
+	asteroids "small metal" 48 6
+	asteroids "small rock" 4 8
+	trade Clothing 247
+	trade Electronics 642
+	trade Equipment 469
+	trade Food 440
+	trade "Heavy Metals" 722
+	trade Industrial 811
+	trade "Luxury Goods" 1220
+	trade Medical 849
+	trade Metal 335
+	trade Plastic 286
+	object
+		sprite star/g0-old
+		distance 32.2427
+		period 12.5463
+	object
+		sprite star/k5
+		distance 81.7573
+		period 12.5463
+		offset 180
+	object
+		sprite planet/rock7
+		distance 1209.76
+		period 433.717
+		offset 29.5665
+	object
+		sprite planet/rock18
+		distance 252.757
+		period 41.4204
+		offset 61.3079
+	object
+		sprite planet/neptune
+		distance 2740.76
+		period 1478.99
+		offset 9.66291
+	object
+		sprite planet/desert7
+		distance 600.757
+		period 151.778
+		offset 57.1944
+	object "Kaeyin"
+		sprite planet/ocean3
+		distance 927.757
+		period 291.28
+		offset 4.23336
+
 system "Al Dhanab"
 	pos -177 207
 	government Syndicate
@@ -18896,61 +18951,6 @@ system Procyon
 		distance 3148.97
 		period 3311.38
 
-system "Pug Aki'il"
-	pos -83 722
-	government Uninhabited
-	habitable 1505.92
-	asteroids "large metal" 47 5
-	asteroids "large rock" 2 10
-	asteroids "medium metal" 100 8
-	asteroids "medium rock" 4 5
-	asteroids "small metal" 48 6
-	asteroids "small rock" 4 8
-	trade Clothing 247
-	trade Electronics 642
-	trade Equipment 469
-	trade Food 440
-	trade "Heavy Metals" 722
-	trade Industrial 811
-	trade "Luxury Goods" 1220
-	trade Medical 849
-	trade Metal 335
-	trade Plastic 286
-	object
-		sprite star/g0-old
-		distance 32.2427
-		period 12.5463
-	object
-		sprite star/k5
-		distance 81.7573
-		period 12.5463
-		offset 180
-	object
-		sprite planet/rock7
-		distance 1209.76
-		period 433.717
-		offset 29.5665
-	object
-		sprite planet/rock18
-		distance 252.757
-		period 41.4204
-		offset 61.3079
-	object
-		sprite planet/neptune
-		distance 2740.76
-		period 1478.99
-		offset 9.66291
-	object
-		sprite planet/desert7
-		distance 600.757
-		period 151.778
-		offset 57.1944
-	object "Pug Kaelin"
-		sprite planet/ocean3
-		distance 927.757
-		period 291.28
-		offset 4.23336
-
 system "Pug Iyik"
 	pos -361.149 -883.233
 	government Pug
@@ -25485,7 +25485,7 @@ planet "Celestial Third"
 planet Veliante
 	attributes ka'het
 	landscape land/fog5
-	description `The world that suffered the heaviest damages during the invasion was probably Veliante: here, one of the earliest attacks hit some sort of nuclear facility, starting a meltdown; the fallout quickly spread across most settlements in the planet. Now most places returned to safe levels, but the area around the ancient facility is still unlivable without a protection suit.`
+	description `The world that suffered the heaviest damages during the invasion was probably Veliante: here, one of the earliest attacks hit some sort of nuclear facility, starting a meltdown; the fallout quickly spread across most settlements in the planet. Now, most places returned to safe levels, but the area around the ancient facility is still unlivable without a protection suit.`
 
 planet "Charon Station"
 	attributes south station
@@ -25841,7 +25841,7 @@ planet Earth
 planet Eavine
 	attributes ka'het
 	landscape land/snow8
-	description `The moon of Eavine played a crucial role in the demise of the Builders: here the second wave of Ka'het was built, making use of the large mineral resources in the planet. They soon found out that what was supposed to change the result of the invasion only accelerated it, overcoming the blockade imposed by the Quarg and allowing the Ka'het to reach their northern systems.`
+	description `The moon of Eavine played a crucial role in the demise of the Builders: here, the second wave of Ka'het was built, making use of the large mineral resources in the planet. They soon found out that what was supposed to change the result of the invasion only accelerated it, overcoming the blockade imposed by the Quarg and allowing the Ka'het to reach their northern systems.`
 	description `	As an example of their instability, the Ka'het themselves inflicted superficial damage to most of the facilities here while departing from the planet, shooting at the same buildings that created them. Due to the moon's orbit, a few millennia ago the climate started becoming colder and colder, slowly incapacitating and then completely stopping the Ka'het production.`
 
 planet Echo
@@ -26548,6 +26548,13 @@ planet "Into White"
 	spaceport `The spaceport city was once the largest on the planet, but now more than half of it is uninhabited, buried in snowdrifts. Within the next century, the Kimek will probably need to build a new spaceport closer to the equator, unless they choose to abandon this world altogether.`
 	spaceport `	The Kimek who live here are dressed in puffy winter coats that entirely cover their bodies and heads; only their spindly legs protrude out.`
 	"required reputation" 15
+
+planet "Kaeyin"
+	attributes pug
+	landscape land/myrabella5
+	description `The world of Kaeyin now seems to be complately uninhabited, but it hasn't always been like that. Large, empty cities with towers of indescribable design encompass a portion of one single continent. The rest of the land remains almost untouched by anything not native to this planet, as if the buildings were simply lowered down onto the land rather than built up over time.`
+	spaceport `The only word you can think of to describe the spaceport is "impressive". It is on the top of the largest tower, placed in the exact centre of one gargantuan city. With a base almost looking big enough to pass as a sizable village, very quickly getting thinner as it raises into the cities airspace.`
+	spaceport `Tiny, four-legged robots walk on the walls of every room, cleaning them in a matter of seconds. You can see more on the road below, and you presume they are everywhere in this city; this makes impossible to extimate how long the planet has been abandoned, since everything here is perfect and clean.`
 
 planet "Karek Fornati"
 	attributes korath efret
@@ -27394,13 +27401,6 @@ planet Prime
 		threshold 8000
 		fleet "Large Republic" 17
 
-planet "Pug Kaelin"
-	attributes pug
-	landscape land/myrabella5
-	description `The world of Pug Kaelin, presumibly an ancient outpost, seems to be complately uninhabited. Large, empty cities with towers of indescribable design encompass a portion of one single continent. The rest of the land remains almost untouched by anything not native to this planet, as if the buildings were simply lowered down onto the land rather than built up over time.`
-	spaceport `The only word you can think of to describe the spaceport is "impressive". It is on the top of the largest tower, placed in the exact centre of one gargantuan city. With a base almost looking big enough to pass as a sizable village, very quickly getting thinner as it raises into the cities airspace.`
-	spaceport `Tiny, four-legged robots walk on the walls of every room, cleaning them in a matter of seconds. You can see more on the road below, and you presume they are everywhere in this city; this makes impossible to extimate how long the planet has been abandoned, since everything here is perfect and clean.`
-
 planet Pugglemug
 	landscape land/myrabella5
 	description `This planet appears to be the Pug capital. Cities with impossibly high towers, connected by arches and bridges, are sprinkled across the landscape, and surrounding the cities are shorter, uglier buildings used as factories. However, a surprising amount of the land area is unsettled, its natural beauty untouched. Given how much damage humans did to Earth before discovering the hyperdrive, you find it hard to fathom how a species isolated in a single star system could have enough restraint to leave their home so pristine.`
@@ -27486,7 +27486,7 @@ planet Retilie
 	attributes ka'het
 	landscape land/sea1
 	description `Retilie is an oceanic world, where the water covers more than 95% of the planet. Once mainly used for fishing, it mustn't have taken long for the sea to make a clean sweep of the ancient buildings destroyed by the Ka'het. Only the ruins of few cities remained intact, well hidden inside the mainland.`
-	description `	In the oceans the many species of fishes keep prospering, unaware of the destruction the planet has undergone.`
+	description `	In the oceans, the many species of fishes keep prospering, unaware of the destruction the planet has undergone.`
 
 planet Reunion
 	attributes "near earth" urban factory

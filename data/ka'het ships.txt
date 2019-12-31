@@ -33,7 +33,7 @@ ship "Maeri'het"
 		"hull repair" 0.3
 		"shield heat" 4.9
 		"cloak" .023
-		"cloaking energy" 9.4
+		"cloaking energy" 11.8
 		"cloaking fuel" .08
 		"thrust" 39.2
 		"thrusting energy" 6.17
