@@ -35,6 +35,7 @@ mission "Disabled Ka'het"
 				decline
 
 mission "First Contact: Ka'het: Remnant 1A"
+	landing
 	minor
 	invisible
 	source
@@ -54,6 +55,7 @@ mission "First Contact: Ka'het: Remnant 1A"
 				decline
 
 mission "First Contact: Ka'het: Remnant 1B"
+	landing
 	minor
 	invisible
 	source "Viminal"
@@ -199,12 +201,13 @@ mission "First Contact: Ka'het: Quarg 2"
 				`	"Who were the hostile contacts with?"`
 				`	"What happened to the Builders?"`
 					goto ka'het
-			`	"Long ago, few ships coming from a foreign species had reached that region of space, using some of the wormholes leading there. They belonged to a young and foolish race, and they foolishly decided to attack the Builders instead of learning from them. They were stronger any vessel the Builders possessed, but also few enough to be destroyed by the Builders' fleets."`
+			`	"Long ago, few ships coming from a foreign species had reached that region of space, using some of the wormholes leading there. They belonged to a young and foolish race, and they foolishly decided to attack the Builders instead of learning from them. They were stronger any vessel the Builders possessed, but also few enough to be destroyed by the fleets patrolling the area."`
 			choice
-				`	"What happened to the Builders after that?"`
+				`	"What happened after that?"`
 			label ka'het
 			`	The Quarg stops for a few seconds before continuing, as if he was reflecting on something. "For many millennia they grew, developing brilliant pieces of technology. Then, compelled by their past experiences, they began creating weapons not only to defend themselves, but also to retaliate; these 'Ka'het', as they named them, defied shortly after they were complete.`
 			`"For few more centuries the Builders lasted, before falling under their very own hubris. Their space is still populated by the Ka'het their gave birth to through the immense facilities they assembled, who do not yet possess a vast intelligence." After saluting you, the Quarg quickly walks away, leaving you with more questions than answers.`
+				decline
 	on decline
 		log "Asked the Quarg about the history of the Graveyard. Although not being told the reason for the abandoned ringworld, have learned about the previous inhabitants of the region, the Builders."
 		log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have become extinct since. They developed some sort of weapon, called the Ka'het, which stopped obeying their orders and rebelled against them.`
