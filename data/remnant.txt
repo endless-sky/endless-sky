@@ -663,7 +663,7 @@ phrase "friendly remnant"
 		"the"
 	word
 		"Alphas in this galaxy"
-		"pirates in your system"
+		"pirates in your space"
 		"Korath raiders"
 		"Korath"
 		"Archon in Nenia
