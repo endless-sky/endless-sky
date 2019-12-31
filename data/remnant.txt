@@ -607,7 +607,7 @@ phrase "friendly remnant"
 		"Hai"
 		"Drak"
 		"Archons"
-		"insects west of our space"
+		"insects far west of our space"
 	word
 		"?"
 	word
