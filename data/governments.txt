@@ -22,6 +22,7 @@ government "Author"
 government "Builder"
 	# While when you attack the drones they will try to defend themselves, when you come back 
 	# as long as you don't attack them again they will focus on their usual activities
+	color .91 .13 .82
 	language "Builder"
 	"penalty for"
 		assist 0
@@ -167,7 +168,6 @@ government "Indigenous Lifeform"
 
 government "Ka'het"
 	swizzle 0
-	color .91 .13 .82
 	language "Ka'het"
 
 	"attitude toward"

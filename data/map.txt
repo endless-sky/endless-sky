@@ -10076,9 +10076,9 @@ system Fereti
 	asteroids "large rock" 4 3
 	asteroids "medium rock" 7 4
 	asteroids "small rock" 21 2
-	minables lead 8 2
-	minables iron 10 3
-	minables titanium 12 4
+	minables lead 8 1
+	minables iron 10 1
+	minables titanium 12 1
 	trade Clothing 294
 	trade Electronics 821
 	trade Equipment 651
@@ -10944,10 +10944,10 @@ system Giribea
 	asteroids "medium rock" 10 2
 	asteroids "small metal" 17 3
 	asteroids "small rock" 1 2
-	minables lead 40 4
-	minables tungsten 11 3
+	minables lead 40 1
+	minables tungsten 11 1
 	minables titanium 9 2
-	minables uranium 24 2
+	minables uranium 24 1
 	trade Clothing 260
 	trade Electronics 759
 	trade Equipment 614
@@ -27282,7 +27282,7 @@ planet Parii'het
 	landscape land/space6
 	description `Parii'het was almost finished when the invasion broke out, and already capable of (slowly) creating Ka'het. Thanks to the mining operated on Alix and the occasional harvest taken here by the youngest Ka'het most facilities are always fully operational.`
 	description `	Differently from most of the Graveyard, the station doesn't seem to have ever suffered any damage from the Ka'her, nor from the Builders trying to regain control over it.`
-	government Ka'het
+	government Builder
 
 planet Pearl
 	attributes paradise tourism
@@ -27680,8 +27680,7 @@ planet Seli'het
 	landscape land/space7
 	description `Seli'het was the only Het station the Builders ever completed, orbiting Giribea's star. When they are old enough, weird and tall machines start building the first parts of their exoskeletons around the young Ka'heta. As they grow stronger their hull is expanded and different outfits are added, transforming them into real living weapons.`
 	description `	In this system the Ka'het behave differently than anywhere else, not only because this station doesn't have any visible damage but also because they don't attack each other, and some even seem to have started collaborating.`
-	government Ka'het
-	"required reputation" -100000
+	government Builder
 
 
 planet "Separa Tiklar"

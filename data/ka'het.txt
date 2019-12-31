@@ -185,7 +185,21 @@ fleet "Builders Drone"
 		plunders mining harvests
 	variant 6
 		"Selii'mar"
+		"Faes'mar"
+	variant 4
+		"Selii'mar"
+		"Faes'mar (Strong)"
 	variant 3
 		"Selii'mar" 2
-	variant
+		"Faes'mar" 2
+	variant 2
+		"Selii'mar" 2
+		"Faes'mar"
+		"Faes'mar (Strong)"
+	variant 2
 		"Selii'mar" 3
+		"Faes'mar" 3
+	variant 2
+		"Selii'mar" 3
+		"Faes'mar" 2
+		"Faes'mar (Strong)"
