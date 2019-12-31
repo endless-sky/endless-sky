@@ -235,3 +235,43 @@ ship "Telis'het" "Telis'het (Guns, Disable-able)"
 		"Ka'het Support Cooling"
 
 		Hyperdrive
+
+ship "Selii'mar"
+	sprite "ship/selii'mar"
+	thumbnail "thumbnail/selii'mar"
+	attributes
+		category "Drone"
+		"cost" 965000
+		"hull" 2800
+		"mass" 65
+		"drag" .8
+		"heat dissipation" 1.1
+		"cargo space" 7
+		"outfit space" 18
+		"weapon capacity" 18
+		"energy capacity" 1200
+		"energy generation" 6.5
+		"heat generation" 4
+		"thrust" 10.2
+		"thrusting energy" 2.03
+		"thrusting heat" 1.43
+		"turn" 189.4
+		"turning energy" 0.79
+		"turning heat" 0.5
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sound" "plasma tiny"
+		weapon
+			"blast radius" 48
+			"shield damage" 320
+			"hull damage" 160
+			"hit force" 480
+	outfits
+		"Ka'het Ravager Beam"
+	
+	gun 0 -32.5
+	engine 0 28 1.5
+	explode "tiny explosion" 16
+	description "The Selii'mar was a common Builder mining drone, one of the few automated ships they ever produced. The Het stations still produce them, in order to harvest the materials they need to keep working."

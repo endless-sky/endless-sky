@@ -41,6 +41,38 @@ phrase "ka'het"
 	word
 		"'het"
 
+phrase "ka'mar"
+	word
+		"Pae"
+		"An"
+		"Kai"
+		"Rea"
+		"So"
+		"Axi"
+		"Rela"
+		"Mar"
+		"Ci"
+		"Tia"
+		"Gat"
+		"Geto"
+		"Roa"
+		"Aar"
+	word
+		"rii"
+		"ri"
+		"tal"
+		"lar"
+		"ha"
+		"rae"
+		"fir"
+		"oss"
+		"bea"
+		"ca"
+		"ori"
+		""
+	word
+		"'mar"
+
 fleet "Ka'het"
 	government "Ka'het"
 	names "ka'het"
@@ -144,3 +176,16 @@ fleet "Ka'het Core"
 	variant 2
 		"Telis'het (EMP)"
 		"Maeri'het (EMP, Disable-able)"
+
+fleet "Builders Drone"
+	government "Builder"
+	names "ka'mar"
+	cargo 0
+	personality
+		plunders mining harvests
+	variant 6
+		"Selii'mar"
+	variant 3
+		"Selii'mar" 2
+	variant
+		"Selii'mar" 3

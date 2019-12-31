@@ -10073,11 +10073,12 @@ system Fereti
 	habitable 486.68
 	link Lire
 	asteroids "large metal" 5 2
-	asteroids "large rock" 4 1
-	asteroids "medium rock" 7 1
+	asteroids "large rock" 4 3
+	asteroids "medium rock" 7 4
 	asteroids "small rock" 21 2
 	minables lead 8 2
 	minables iron 10 3
+	minables titanium 12 4
 	trade Clothing 294
 	trade Electronics 821
 	trade Equipment 651
@@ -10089,6 +10090,7 @@ system Fereti
 	trade Metal 354
 	trade Plastic 426
 	fleet "Ka'het Core" 2900
+	fleet "Builders Drone" 2050
 	object
 		sprite star/a0
 		period 10
@@ -10938,12 +10940,14 @@ system Giribea
 	link Dixere
 	asteroids "large metal" 29 4
 	asteroids "large rock" 2 1
-	asteroids "medium metal" 150 3
+	asteroids "medium metal" 50 3
 	asteroids "medium rock" 10 2
 	asteroids "small metal" 17 3
 	asteroids "small rock" 1 2
 	minables lead 40 4
-	minables tungsten 11 5
+	minables tungsten 11 3
+	minables titanium 9 2
+	minables uranium 24 2
 	trade Clothing 260
 	trade Electronics 759
 	trade Equipment 614
@@ -10955,6 +10959,7 @@ system Giribea
 	trade Metal 325
 	trade Plastic 488
 	fleet "Ka'het Core" 2850
+	fleet "Builders Drone" 2100
 	object
 		sprite star/g0-old
 		distance 46.9208
@@ -25121,8 +25126,8 @@ planet Alfheim
 planet Alix
 	attributes ka'het
 	landscape land/canyon05
-	description `Alix is a small moon the Creators were stripping to build the Het station, and then also to produce the Ka'het hulls. Every settlement was completely destroyed, but some of the automatic mining drones that replenish the station's reserves seem to have survived and are still active today.`
-	description `	This could mean they are developing some sort of basic intelligence, or perhaps they were just too small to be detected by the Ka'heti scanners.`
+	description `Alix is a small moon the Creators were stripping to build the Het station, as well as to produce the Ka'het hulls. Every inhabited settlement was completely destroyed, but some of the automatic mining facilities and drones that replenish the station's reserves seem to have survived and are still active today.`
+	description `	This could mean the Ka'het developed some sort of basic intelligence, or simply that their scanners weren't good enough to detect them.`
 
 planet Allhome
 	attributes hai farming "human tourism"
@@ -27673,9 +27678,11 @@ planet "Seleptra Nak"
 planet Seli'het
 	attributes ka'het
 	landscape land/space7
-	description `Seli'het was the only Het station the Builders completed, orbiting Giribea's star. When they are old enough, weird and tall machines start building the first parts of their exoskeletons around the young Ka'heta. As they grow stronger their hull is expanded and different outfits are added, transforming them into real living weapons.`
-	description `	In this system the Ka'het seem to behave differently than anywhere else, not only because this station doesn't have any visible damage but also because they don't attack each other, and some even seem to be collaborating.`
+	description `Seli'het was the only Het station the Builders ever completed, orbiting Giribea's star. When they are old enough, weird and tall machines start building the first parts of their exoskeletons around the young Ka'heta. As they grow stronger their hull is expanded and different outfits are added, transforming them into real living weapons.`
+	description `	In this system the Ka'het behave differently than anywhere else, not only because this station doesn't have any visible damage but also because they don't attack each other, and some even seem to have started collaborating.`
 	government Ka'het
+	"required reputation" -100000
+
 
 planet "Separa Tiklar"
 	attributes korath station
