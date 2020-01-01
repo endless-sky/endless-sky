@@ -3475,7 +3475,8 @@ mission "Inheritance Redirection"
 mission "Hauler VI cargo prototype 1"
 	name "Escort Hauler prototype to formal dinner"
 	description "Escort the Testament to <destination> to deliver sushi for a formal dinner."
-	source "Deep"
+	source
+		planet "Deep"
 	destination "Skymoot"
 	npc accompany
 		government "Merchant"
@@ -3489,7 +3490,7 @@ mission "Hauler VI cargo prototype 1"
 				`	"Hello, nice to meet you too."`
 				`	"Sorry, I don't have time to talk. I'm really busy."`
 					defer
-			`She says, "My name is Vanessa Oxygenpocket and I'm the lead for a team that's designing the new Hauler VI transport ship series here at Southbound Shipyards."`
+			`She says, "My name is Vanessa Oxygenpocket, and I'm the lead for a team that's designing the new Hauler VI transport ship series here at Southbound Shipyards."`
 			choice
 				`	"'Oxygenpocket' is an uncommon name."`
 				`	"And what help do you need from me?"`
@@ -3528,7 +3529,7 @@ mission "Hauler VI cargo prototype 1"
 			`There is no response to your hails. You need to take off and investigate.`
 
 mission "Hauler VI cargo prototype 2"
-	name "Escort Hauler prototype to a streetfood festival."
+	name "Escort Hauler prototype to a streetfood festival"
 	description "Escort the Testament to <destination> to deliver cooked fish dishes to a streetfood festival."
 	source "Skymoot"
 	destination "Zug"
@@ -3567,6 +3568,6 @@ mission "Hauler VI cargo prototype 3"
 	on complete
 		payment 140000
 		dialog
-			`The Testament enters the planets atmosphere at high speed and lands somewhat uncontrolled near a waste processing plant. The cargo hold is glowing red hot and some areas in the cargo hold appear to be on fire.`
+			`The Testament enters the planet's atmosphere at high speed and lands somewhat uncontrolled near a waste processing plant. The cargo hold is glowing red hot and some areas in the cargo hold appear to be on fire.`
 			`Vanessa disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi calamity you experienced during the multiple legs of your journey.`
 			`You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is coming from Vanessa and her ship.`
