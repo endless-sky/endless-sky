@@ -35,21 +35,17 @@ namespace {
 	bool hasSwizzle;
 		
 	// Logs SDL errors and returns 1 if found
-	int checkSDLerror()
+	bool checkSDLerror(const string &context)
 	{
-		const char *sdlMessage = SDL_GetError();
-		if(sdlMessage && sdlMessage[0])
+		string message = SDL_GetError();
+		if(!message.empty())
 		{
-			string message;
-			message = " (SDL message: \"";
-			message += sdlMessage;
-			message += "\")";			
-			Files::LogError(message);
-			
-			return 1;
+			Files::LogError("(SDL message: \"" + message + "\")");
+			SDL_ClearError
+			return true;
 		}
 		
-		return 0;
+		return false;
 	}
 }
 
@@ -97,27 +93,30 @@ bool GameWindow::HasSwizzle()
 
 
 
-int GameWindow::Init()
+bool GameWindow::Init()
 {
 	// This needs to be called before any other SDL commands.
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) 
-		return 1;
-	
-	// Start with a clear error state
-	SDL_GetError();
+	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+		checkSDLerror;
+		return false;
+	}
 	
 	// Get details about the current display.
 	SDL_DisplayMode mode;
-	if(SDL_GetCurrentDisplayMode(0, &mode))
-		return DoError("Unable to query monitor resolution!");
+	if(SDL_GetCurrentDisplayMode(0, &mode))	{	
+		DoError("Unable to query monitor resolution!");
+		return false;
+	}
 		
 	// Make the window just slightly smaller than the monitor resolution.
 	int minWidth = 640;
 	int minHeight = 480;
 	int maxWidth = mode.w;
 	int maxHeight = mode.h;
-	if(maxWidth < minWidth || maxHeight < minHeight)
-		return DoError("Monitor resolution is too small!");
+	if(maxWidth < minWidth || maxHeight < minHeight){
+		DoError("Monitor resolution is too small!");
+		return false;
+	}
 	
 	int windowWidth = maxWidth - 100;
 	int windowHeight = maxHeight - 100;
@@ -144,8 +143,10 @@ int GameWindow::Init()
 	mainWindow = SDL_CreateWindow("Endless Sky", SDL_WINDOWPOS_UNDEFINED, 
 		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, flags);
 		
-	if(!mainWindow)
-		return DoError("Unable to create window!");
+	if(!mainWindow){
+		DoError("Unable to create window!");
+		return false;
+	}
 	
 	// Settings that must be declared before the context creation.
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -161,30 +162,39 @@ int GameWindow::Init()
 	//SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 2);
 		
 	context = SDL_GL_CreateContext(mainWindow);
-	if(!context)
-		return DoError("Unable to create OpenGL context! Check if your system supports OpenGL 3.0.");
+	if(!context){
+		DoError("Unable to create OpenGL context! Check if your system supports OpenGL 3.0.");
+		return false;
+	}
 	
-	if(SDL_GL_MakeCurrent(mainWindow, context))
-		return DoError("Unable to set the current OpenGL context!");
+	if(SDL_GL_MakeCurrent(mainWindow, context)){
+		DoError("Unable to set the current OpenGL context!");
+		return false;
+	}
 			
 	// Initialize GLEW.
 #ifndef __APPLE__
 	glewExperimental = GL_TRUE;
-	if(glewInit() != GLEW_OK)
-		return DoError("Unable to initialize GLEW!");
+	if(glewInit() != GLEW_OK){
+		DoError("Unable to initialize GLEW!");
+		return false;
+	}
 #endif
 	
 	// Check that the OpenGL version is high enough.
 	const char *glVersion = reinterpret_cast<const char *>(glGetString(GL_VERSION));
-	if(!glVersion || !*glVersion)
-		return DoError("Unable to query the OpenGL version!");
+	if(!glVersion || !*glVersion){
+		DoError("Unable to query the OpenGL version!");
+		return false;
+	}
 	
 	const char *glslVersion = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
 	if(!glslVersion || !*glslVersion)
 	{
 		ostringstream out;
 		out << "Unable to query the GLSL version. OpenGL version is " << glVersion << ".";
-		return DoError(out.str());
+		DoError(out.str());
+		return false;
 	}
 	
 	if(*glVersion < '3')
@@ -193,7 +203,8 @@ int GameWindow::Init()
 		out << "Endless Sky requires OpenGL version 3.0 or higher." << endl;
 		out << "Your OpenGL version is " << glVersion << ", GLSL version " << glslVersion << "." << endl;
 		out << "Please update your graphics drivers.";
-		return DoError(out.str());
+		DoError(out.str());
+		return false;
 	}
 	
 	// OpenGL settings
@@ -234,7 +245,7 @@ int GameWindow::Init()
 	hasSwizzle = swizzled;
 #endif
 
-	return 0;
+	return true;
 }
 
 
@@ -334,7 +345,7 @@ void GameWindow::Quit()
 
 
 
-int GameWindow::DoError(const string& message)
+void GameWindow::DoError(const string& message)
 {
 	// Print the error message in the terminal and the error file.
 	Files::LogError(message);		
@@ -359,5 +370,6 @@ int GameWindow::DoError(const string& message)
 	SDL_ShowMessageBox(&box, &result);
 	
 	GameWindow::Quit();	
-	return 1;
 }
+
+

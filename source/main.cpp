@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
 	
 	Preferences::Load();
 	
-	if(GameWindow::Init() != 0)
+	if(!GameWindow::Init())
 		return 1;
 	
 	GameData::LoadShaders();
@@ -123,7 +123,8 @@ int main(int argc, char *argv[])
 	}
 	catch(const runtime_error &error)
 	{
-		return GameWindow::DoError(error.what());
+		GameWindow::DoError(error.what());
+		return 1;
 	}
 		
 	// Remember the window state.
