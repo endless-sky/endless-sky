@@ -73,7 +73,7 @@ mission "Asteroid Course A"
 	destination "Earth"
 	on offer
 		conversation
-			`As you are approaching the <origin>, your radar sensors detect that the ship you are assisting is in the middle of a large asteroid's course! While in a normal flight this wouldn't cause much trouble, a ship without active shields and that already suffered heavy damages could be completely destroyed.`
+			`As you are approaching the <origin>, your radar sensors detect that the ship you are assisting is in the middle of a large asteroid's course! While in a normal flight this wouldn't cause much trouble, a ship without active shields and that has already suffered heavy damages could be completely destroyed.`
 			branch unarmed
 				has "armament deterrence" == 0
 			choice
@@ -119,7 +119,7 @@ mission "Asteroid Course B"
 	destination "Earth"
 	on offer
 		conversation
-			`As you are approaching the <origin>, your radar sensors detect that the ship you are assisting is in the middle of a large asteroid's course! While in a normal flight this wouldn't cause much trouble, a ship without active shields and that already suffered heavy damages could be completely destroyed.`
+			`As you are approaching the <origin>, your radar sensors detect that the ship you are assisting is in the middle of a large asteroid's course! While in a normal flight this wouldn't cause much trouble, a ship without active shields and that has already suffered heavy damages could be completely destroyed.`
 			branch unarmed
 				has "armament deterrence" == 0
 			choice
@@ -170,7 +170,7 @@ mission "Asteroid Course C"
 		not government "Pirate"
 	on offer
 		conversation
-			`As you are approaching the <origin>, your radar sensors detect that the ship you are assisting is in the middle of a large asteroid's course! While in a normal flight this wouldn't cause much trouble, a ship without active shields and that already suffered heavy damages could be completely destroyed.`
+			`As you are approaching the <origin>, your radar sensors detect that the ship you are assisting is in the middle of a large asteroid's course! While in a normal flight this wouldn't cause much trouble, a ship without active shields and that has already suffered heavy damages could be completely destroyed.`
 			branch unarmed
 				has "armament deterrence" == 0
 			choice
