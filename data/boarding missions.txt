@@ -142,8 +142,8 @@ mission "Asteroid Course B"
 			`	You turn your ship around and activate your thrusters, trying to get as far as you can from the disabled ship. A few seconds later, the asteroid tears the <origin> apart, killing all of its crew members.`
 				launch
 			label fire
-			`	The shots you fire quickly break the asteroid into pieces, which seem to have changed course enough to completely miss the <origin>. After repairing it, you hail its captain, which thanks you with a payment of 100,000 credits`
-				launch
+			`	The shots you fire quickly break the asteroid into pieces, which seem to have changed course enough to completely miss the <origin>. After repairing it, you hail its captain, which thanks you with a payment of 30,000 credits`
+				decline
 			label repair
 			`	You dock with the <origin>, hoping to get out of this alive: but, as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. You are able to reach the cockpit and undock, but the crew on the other ship couldn't reach yours in time...`
 				launch
