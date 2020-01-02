@@ -61,6 +61,160 @@ mission "Assisting Merchant (Large)"
 
 
 
+mission "Asteroid Course A"
+	assisting
+	minor
+	to offer
+		random < 10
+	source
+		government "Merchant" "Syndicate"
+		category "Light Freighter" "Interceptor"
+		not attributes "automaton"
+	destination "Earth"
+	on offer
+		conversation
+			`As you are approaching the <origin>, your radar sensors detect that the ship you are assisting is in the middle of a large asteroid's course! While in a normal flight this wouldn't cause much trouble, a ship without active shields and that already suffered heavy damages could be completely destroyed.`
+			branch unarmed
+				has "armament deterrence" == 0
+			choice
+				`	(Shoot towards the asteroid to destroy it.)`
+					goto fire
+				`	(Move your ship between the asteroid and the <origin>, then use your shields to protect it.)`
+					goto move
+				`	(Try to quickly repair the <origin>, so that it can move away from the asteroid's course.)`
+					goto repair
+				`	(Interrupt the docking maneuvers and fly away.)`
+					goto escape
+			label unarmed
+			choice
+				`	(Move your ship between the asteroid and the <origin>, then use your shields to protect it.)`
+					goto move
+				`	(Try to quickly repair the <origin>, so that it can move away from the asteroid's course.)`
+					goto repair
+				`	(Interrupt the docking maneuvers and fly away.)`
+			label escape
+			`	You turn your ship around and activate your thrusters, trying to get as far as you can from the disabled ship. A few seconds later, the asteroid tears the <origin> apart, killing all of its crew members.`
+				launch
+			label fire
+			`	The shots you fire quickly break the asteroid into pieces, which keep following the same course: before you can even try to destroy them, most have already hit the <origin>, which is now quickly depressurizing and losing the hull's integrity. There's not much you can do anymore, except to try moving to safe distance from it...`
+				launch
+			label repair
+			`	You fastly dock with the <origin>, hoping to get out of this alive: but, as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. You are able to reach the cockpit and undock, but the crew on the other ship couldn't reach yours in time...`
+				launch
+			label move
+			`	The asteroid, after hitting your shield, breaks into a million fragments which fly away from the <origin>. After repairing it, you hail its captain, which thanks you with a payment of 30,000 credits.`
+				decline
+	on decline
+		payment 30000
+
+mission "Asteroid Course B"
+	assisting
+	minor
+	to offer
+		random < 10
+	source
+		government "Merchant" "Syndicate"
+		category "Light Freighter" "Interceptor"
+		not attributes "automaton"
+	destination "Earth"
+	on offer
+		conversation
+			`As you are approaching the <origin>, your radar sensors detect that the ship you are assisting is in the middle of a large asteroid's course! While in a normal flight this wouldn't cause much trouble, a ship without active shields and that already suffered heavy damages could be completely destroyed.`
+			branch unarmed
+				has "armament deterrence" == 0
+			choice
+				`	(Shoot towards the asteroid to destroy it.)`
+					goto fire
+				`	(Move your ship between the asteroid and the <origin>, then use your shields to protect it.)`
+					goto move
+				`	(Try to quickly repair the <origin>, so that it can move away from the asteroid's course.)`
+					goto repair
+				`	(Interrupt the docking maneuvers and fly away.)`
+					goto escape
+			label unarmed
+			choice
+				`	(Move your ship between the asteroid and the <origin>, then use your shields to protect it.)`
+					goto move
+				`	(Try to quickly repair the <origin>, so that it can move away from the asteroid's course.)`
+					goto repair
+				`	(Interrupt the docking maneuvers and fly away.)`
+			label escape
+			`	You turn your ship around and activate your thrusters, trying to get as far as you can from the disabled ship. A few seconds later, the asteroid tears the <origin> apart, killing all of its crew members.`
+				launch
+			label fire
+			`	The shots you fire quickly break the asteroid into pieces, which seem to have changed course enough to completely miss the <origin>. After repairing it, you hail its captain, which thanks you with a payment of 100,000 credits`
+				launch
+			label repair
+			`	You fastly dock with the <origin>, hoping to get out of this alive: but, as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. You are able to reach the cockpit and undock, but the crew on the other ship couldn't reach yours in time...`
+				launch
+			label move
+			`	The asteroid, after hitting your shield, breaks into a million fragments which fly away from the <origin>. After repairing it, you hail its captain, which thanks you with a payment of 30,000 credits.`
+				decline
+	on decline
+		payment 30000
+
+mission "Asteroid Course C"
+	assisting
+	minor
+	name "Passengers to <planet>"
+	description "Transport the remaining crew of a destroyed ship, <bunks> people that were working on the <origin>, to <destination>."
+	to offer
+		random < 10
+	source
+		government "Merchant" "Syndicate"
+		category "Light Freighter" "Interceptor"
+		not attributes "automaton"
+	passengers 3 7
+	destination 
+		distance 1
+		not government "Pirate"
+	on offer
+		conversation
+			`As you are approaching the <origin>, your radar sensors detect that the ship you are assisting is in the middle of a large asteroid's course! While in a normal flight this wouldn't cause much trouble, a ship without active shields and that already suffered heavy damages could be completely destroyed.`
+			branch unarmed
+				has "armament deterrence" == 0
+			choice
+				`	(Shoot towards the asteroid to destroy it.)`
+					goto fire
+				`	(Move your ship between the asteroid and the <origin>, then use your shields to protect it.)`
+					goto move
+				`	(Try to quickly repair the <origin>, so that it can move away from the asteroid's course.)`
+					goto repair
+				`	(Interrupt the docking maneuvers and fly away.)`
+					goto escape
+			label unarmed
+			choice
+				`	(Move your ship between the asteroid and the <origin>, then use your shields to protect it.)`
+					goto move
+				`	(Try to quickly repair the <origin>, so that it can move away from the asteroid's course.)`
+					goto repair
+				`	(Interrupt the docking maneuvers and fly away.)`
+			label escape
+			`	You turn your ship around and activate your thrusters, trying to get as far as you can from the disabled ship. A few seconds later, the asteroid tears the <origin> apart, killing all of its crew members.`
+				launch
+			label fire
+			`	The shots you fire quickly break the asteroid into pieces, which keep following the same course: before you can even try to destroy them, most have already hit the <origin>, which is now quickly depressurizing and losing the hull's integrity. There's not much you can do anymore, except to try moving to safe distance from it...`
+				launch
+			label repair
+			`	You fastly dock with the <origin>, hoping to get out of this alive: but, as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. Most of the other ship's crew has been able to reach your ship by the time you undock from it, and they ask you to take them to <destination>.`
+			choice
+				`	"Okay, it's not far."`
+					accept
+				`	"How much can you pay me?"`
+			`	"I have a few hundred thousand credits," one of them says, presumibly the captain. "I need to save enough to buy a new starship, but you will still recive a decent pay. And it's just a jump away from here anyways."`
+				accept
+			label move
+			`	The asteroid, after hitting your shield, breaks into a million fragments which fly away from the <origin>. After repairing it, you hail its captain, which thanks you with a payment of 30,000 credits.`
+				decline
+	on decline
+		payment 30000
+	on complete
+		payment
+		payment 35000
+		dialog "The captain you talked with before thanks you again for saving him and his crew, and hands you <payment>."
+
+
+
 mission "Dangerous Journey"
 	assisting
 	minor
