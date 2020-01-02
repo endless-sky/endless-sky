@@ -99,7 +99,7 @@ mission "Asteroid Course A"
 			`	The shots you fire quickly break the asteroid into pieces, which keep following the same course: before you can even try to destroy them, most have already hit the <origin>, which is now quickly depressurizing and losing the hull's integrity. There's not much you can do anymore, except to try moving to safe distance from it...`
 				launch
 			label repair
-			`	You fastly dock with the <origin>, hoping to get out of this alive: but, as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. You are able to reach the cockpit and undock, but the crew on the other ship couldn't reach yours in time...`
+			`	You fast dock with the <origin>, hoping to get out of this alive: but, as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. You are able to reach the cockpit and undock, but the crew on the other ship couldn't reach yours in time...`
 				launch
 			label move
 			`	The asteroid, after hitting your shield, breaks into a million fragments which fly away from the <origin>. After repairing it, you hail its captain, which thanks you with a payment of 30,000 credits.`
@@ -145,7 +145,7 @@ mission "Asteroid Course B"
 			`	The shots you fire quickly break the asteroid into pieces, which seem to have changed course enough to completely miss the <origin>. After repairing it, you hail its captain, which thanks you with a payment of 100,000 credits`
 				launch
 			label repair
-			`	You fastly dock with the <origin>, hoping to get out of this alive: but, as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. You are able to reach the cockpit and undock, but the crew on the other ship couldn't reach yours in time...`
+			`	You fast dock with the <origin>, hoping to get out of this alive: but, as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. You are able to reach the cockpit and undock, but the crew on the other ship couldn't reach yours in time...`
 				launch
 			label move
 			`	The asteroid, after hitting your shield, breaks into a million fragments which fly away from the <origin>. After repairing it, you hail its captain, which thanks you with a payment of 30,000 credits.`
@@ -196,7 +196,7 @@ mission "Asteroid Course C"
 			`	The shots you fire quickly break the asteroid into pieces, which keep following the same course: before you can even try to destroy them, most have already hit the <origin>, which is now quickly depressurizing and losing the hull's integrity. There's not much you can do anymore, except to try moving to safe distance from it...`
 				launch
 			label repair
-			`	You fastly dock with the <origin>, hoping to get out of this alive: but, as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. Most of the other ship's crew has been able to reach your ship by the time you undock from it, and they ask you to take them to <destination>.`
+			`	You fast dock with the <origin>, hoping to get out of this alive: but, as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. Most of the other ship's crew has been able to reach your ship by the time you undock from it, and they ask you to take them to <destination>.`
 			choice
 				`	"Okay, it's not far."`
 					accept
