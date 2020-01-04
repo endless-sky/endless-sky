@@ -24,8 +24,26 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 #include <string>
 
-
 using namespace std;
+
+namespace {
+	bool SendFlightCommand(const Command &command, UI &gamePanels)
+	{
+		// We need to send the command to the top gamepanel. And it needs to be active.
+		if(gamePanels.IsEmpty() || gamePanels.Root() != gamePanels.Top())
+			return false;
+		
+		// Both get as well as the cast can result in a nullpointer. In both cases we
+		// return false.
+		MainPanel* mainPanel = dynamic_cast<MainPanel*> (gamePanels.Root().get());
+		if(!mainPanel)
+			return false;
+		
+		mainPanel->GiveCommand(command);
+		return true;
+	}
+}
+
 
 
 TestStep::TestStep()
@@ -63,6 +81,10 @@ bool TestStep::PlayerIsFlyingAround(UI &menuPanels, UI &gamePanels, PlayerInfo &
 	bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
 	return inFlight;
 }
+
+
+
+
 
 
 
@@ -185,7 +207,7 @@ int TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo 
 					// TODO: Landing should also have a stellar target (just to reduce ambiguity)
 					Command command;
 					command.Set(Command::LAND);
-					playerFlagShip->SetCommands(command);
+					SendFlightCommand(command, gamePanels);
 					stepAction++;
 				}
 				return RESULT_NEXTACTION;
