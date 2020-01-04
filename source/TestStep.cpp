@@ -207,7 +207,8 @@ int TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo 
 					// TODO: Landing should also have a stellar target (just to reduce ambiguity)
 					Command command;
 					command.Set(Command::LAND);
-					SendFlightCommand(command, gamePanels);
+					if(!SendFlightCommand(command, gamePanels))
+						return RESULT_FAIL;
 					stepAction++;
 				}
 				return RESULT_NEXTACTION;
