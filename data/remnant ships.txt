@@ -198,6 +198,30 @@ ship "Albatross" "Albatross (Shield)"
 	turret "Point Defense Turret"
 	turret "Point Defense Turret"
 
+ship "Albatross" "Albatross (Ember Shield)"
+	outfits
+		"Thrasher Turret" 2
+
+		"Aeon Cell"
+		"Millennium Cell"
+		"Crystal Capacitor" 2
+		"Quantum Key Stone"
+		"Emergency Ramscoop"
+		"Outfits Expansion" 6
+		"Systems Core (Large)" 4
+		"Large Heat Shunt"
+		
+		"Tuning Rifle" 47
+
+		"Crucible-Class Thruster"
+		"Crucible-Class Steering"
+		"Hyperdrive"
+
+	turret "Thrasher Turret"
+	turret "Thrasher Turret"
+	turret
+	turret
+	turret
 
 
 ship "Gascraft"
