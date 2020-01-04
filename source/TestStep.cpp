@@ -181,9 +181,8 @@ int TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo 
 				if (stepAction == 0)
 				{
 					// Send the land command here
-					// TODO: Player commands are handled in AI.cpp (at the moment this code was written), not handled on flagship. Change this code or change handling in AI.
+					// Player commands are handled in Engine.cpp (at the moment this code was updated)
 					// TODO: Landing should also have a stellar target (just to reduce ambiguity)
-					// TODO: Different command to start hovering over planet?
 					Command command;
 					command.Set(Command::LAND);
 					playerFlagShip->SetCommands(command);

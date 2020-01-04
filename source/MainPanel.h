@@ -39,6 +39,8 @@ public:
 	// The planet panel calls this when it closes.
 	void OnCallback();
 	
+	void GiveCommand(const Command &command);
+	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.

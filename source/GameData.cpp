@@ -1071,7 +1071,6 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 void GameData::PrintTestsTable()
 {
 	cout << "name" << '\t' << "status" << '\n';
-	// TODO: further implement this function
 	for(auto &it : tests)
 	{
 		const Test &test = it.second;
