@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
 		// Begin loading the game data. Exit early if we are not using the UI.
 		if(!GameData::BeginLoad(argv))
 			return 0;
-
+		
 		if (! testToRun.empty())
 		{
 			testRunner = new TestRunner((GameData::Tests()).Get(testToRun));
@@ -114,14 +114,13 @@ int main(int argc, char *argv[])
 				return 1;
 			}
 		}
-
+		
 		// Load player data, including reference-checking.
 		if (!testRunner)
 			player.LoadRecent();
 		else
-		{
 			player.New();
-		}
+		
 		if(loadOnly)
 		{
 			cout << "Parse completed." << endl;

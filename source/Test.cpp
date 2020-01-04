@@ -61,13 +61,11 @@ void Test::Load(const DataNode &node)
 				status = STATUS_MISSING_FEATURE;
 		}
 		else if (child.Token(0) == "sequence")
-		{
 			for (const DataNode &seqChild : child)
 			{
 				testSteps.push_back(new TestStep());
 				(testSteps.back())->Load(seqChild);
 			}
-		}
 	}
 }
 

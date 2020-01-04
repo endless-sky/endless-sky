@@ -60,13 +60,13 @@ void TestData::Load(const DataNode &node, const string sourceDataFilePath)
 	dataSetName = node.Token(1);
 	
 	for(const DataNode &child : node)
-	{
 		// Only need to parse the category for now. The contents will be
 		// scanned for at write-out of the test-data.
 		if (child.Size() > 1 && child.Token(0) == "category" && child.Token(1) == "savegame")
 			dataSetType = TestData::SAVEGAME;
-	}
 }
+
+
 
 // Inject the test-data to the proper location
 bool TestData::Inject() const
@@ -80,13 +80,11 @@ bool TestData::Inject() const
 	// Then write out the complete contents to the target file
 	DataFile sourceData(sourceDataFile);
 	for(const DataNode &rootNode : sourceData)
-	{
 		// Check if we have found our dataset
 		if (rootNode.Size() > 1 && rootNode.Token(0) == "test-data" && rootNode.Token(1) == dataSetName)
 		{
 			// Scan for the contents tag
 			for(const DataNode &dataNode : rootNode)
-			{
 				if (dataNode.Size() > 0 && dataNode.Token(0) == "contents")
 				{
 					// Savegame data gets written to the saves directory
@@ -102,11 +100,11 @@ bool TestData::Inject() const
 					// Data was found and written. We are done succesfully.
 					return true;
 				}
-			}
+
 			// Content section was not found. (Should we just create an empty file here?)
 			return false;
 		}
-	}
+	
 	// Data-section was no longer found.
 	return false;
 }

@@ -51,6 +51,7 @@ class Test;
 class TestData;
 
 
+
 // Class storing all the data used in the game: sprites, data files, etc. This
 // data is globally accessible, but can only be modified in certain ways.
 // Events that occur over the course of the game may change the state of the
@@ -152,7 +153,6 @@ private:
 	static void PrintShipTable();
 	static void PrintTestsTable();
 	static void PrintWeaponTable();
-
 };
 
 
