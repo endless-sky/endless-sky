@@ -1,5 +1,13 @@
 Welcome to Endless Sky!
-version 0.9.9
+version 0.9.10
+
+This game is open source.
+To report bugs, give feedback,
+or contribute to story writing,
+artwork, or programming, visit:
+https://endless-sky.github.io
+The game's Steam forums
+Discord (invite: ZeuASSx)
 
 Programming
   Michael Zahniser
@@ -53,8 +61,3 @@ Beta Testers
   Sean Fahey
   Mauricio Gomes
   Iaz Poolar
-
-This game is open source.
-To contribute to story writing,
-artwork, or programming, visit:
-https://endless-sky.github.io

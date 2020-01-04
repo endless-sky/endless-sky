@@ -240,7 +240,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 			zoom += ZOOM_FACTOR_INCREMENT;
 		
 		Screen::SetZoom(zoom);
-		if (Screen::Zoom() != zoom)
+		if(Screen::Zoom() != zoom)
 			Screen::SetZoom(Screen::Zoom());
 		
 		// Convert to raw window coordinates, at the new zoom level.
@@ -437,6 +437,7 @@ void PreferencesPanel::DrawSettings()
 		"Render motion blur",
 		"Reduce large graphics",
 		"Draw background haze",
+		"Draw starfield",
 		"Show hyperspace flash",
 		"",
 		"Other",
@@ -566,7 +567,7 @@ void PreferencesPanel::DrawPlugins()
 	
 	const int MAX_TEXT_WIDTH = 230;
 	const Font &font = FontSet::Get(14);
-	for(const pair<string, string> &plugin : GameData::PluginAboutText())
+	for(const auto &plugin : GameData::PluginAboutText())
 	{
 		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin.first);
 		
