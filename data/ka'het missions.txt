@@ -106,6 +106,8 @@ mission "First Contact: Ka'het: Quarg 1A"
 		has "First Contact: Quarg: offered"
 		not "First Contact: Hai: offered"
 		not "First Contact: Kuwaru Efreti: offered"
+	to complete
+		never
 	on offer
 		log "Discovered an uninhabited, complete Quarg ringworld in the middle of Ka'het space."
 		conversation
