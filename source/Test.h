@@ -36,6 +36,7 @@ public:
 
 	virtual void Load(const DataNode &node);
 	
+	
 private:
 	std::vector<TestStep *> testSteps;
 	std::string name = "";

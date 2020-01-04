@@ -242,7 +242,8 @@ public:
 	std::set<std::string> &Collapsed(const std::string &name);
 	// Enable test-mode which prevents automatic creation of savegames.
 	void SetTestMode();
-
+	
+	
 private:
 	// Don't anyone else to copy this class, because pointers won't get
 	// transferred properly.
@@ -340,7 +341,7 @@ private:
 	// Set to true when running in test-mode. Setting this to true will
 	// prevent things like automatic saving of progress/games.
 	bool testMode = false;
-
+	
 	bool freshlyLoaded = true;
 	int desiredCrew = 0;
 };
