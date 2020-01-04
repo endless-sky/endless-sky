@@ -1527,7 +1527,7 @@ ship "Marauder Splinter" "Marauder Splinter (Hai)"
 		"Security Station" 4
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
-		"Outfits Expansion"
+		"Hyperdrive"
 
 
 
