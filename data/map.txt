@@ -24767,7 +24767,6 @@ planet "Ember Reaches"
 planet "Ember Threshold"
 	attributes "requires: quantum keystone"
 	description ""
-	spaceport ""
 
 planet "Ember Wormhole"
 	attributes "requires: quantum keystone"
