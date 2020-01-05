@@ -1494,9 +1494,9 @@ mission "Nanachi 1"
 			`	The Hai is a bit startled, but quickly calms down. "Sorry, you caught me by surprise. I've just bought my first ship and need to find some jobs to do, but nobody I've talked to wants to trust a beginner captain. I just don't know what to do anymore, I've been working for so long to qualify for this loan, but I'm running out of time and I'll never be able to pay it like this."`
 			`	Turns out the documents she is holding are the bank papers for the loan, somewhat similar to the one you took when you bought your first ship. You've come a long way since your days as a beginner, and know how hard it is to be starting out as a starship captain; you could probably convince someone here to offer a simple cargo job to this young Hai.`
 			choice
-				`	(Offer to help her find some jobs.)`
+				`	"If you're interested, I could try to help you find a job."`
 					goto "positive1"
-				`	(Wish her luck and leave.)`
+				`	"I've been there before; trust me, it gets better. I wish you the best of luck on finding a job."`
 			`	She nods in sad understanding, and continues to swap focus from the job board to the papers in her hand.`
 			choice
 				`	(Help her out anyway.)
@@ -1504,7 +1504,7 @@ mission "Nanachi 1"
 				`	(Leave her alone and continue on.)
 					decline
 			label "positive1"
-			`	Her ears twitch a bit, and her previously crestfallen eyes light up as she nearly jumps in joy at your offer. "Thank you so much captain! My name is Nanachi, I promise I won't cause any trouble at all, just a few quick jobs and I'm sure I'll be fine by myself!"`
+			`	Her ears twitch a bit, and her previously crestfallen eyes light up as she nearly jumps in joy at your offer. "Thank you so much Captain! My name is Nanachi, I promise I won't cause any trouble at all, just a few quick jobs and I'm sure I'll be fine by myself!"`
 			`	You introduce yourself to Nanachi and shake her paw. "Can you show me your ship so I can look for jobs it's best suited for?" you ask.`
 			`	She hesitates a bit, but leads you to her ship. You were expecting a small Hai ship, but to your surprise she shows you a rather beat-up Heavy Shuttle docked near your own ship.`
 			`	"You took a loan to buy a human ship?" you ask.`
@@ -1545,7 +1545,7 @@ mission "Nanachi 2"
 			choice
 				`	"Hey, what's going on?"`
 				`	"Can I be of assistance?"`
-			`	You introduce yourself and the parents tell you that they've been on vacation here and need transport back to <destination>. "Don't take this the wrong way, but captain Nanachi told us her ship is one of your human ships, a Heavy Shuttle was it? It has enough bunks for us but our sons already caused a ruckus on the way here in a Hai ship, we're worried that since they aren't used to the accommodations, they might end up giving her too much trouble."`
+			`	You introduce yourself and the parents tell you that they've been on vacation here and need transport back to <destination>. "Don't take this the wrong way, but Captain Nanachi told us her ship is one of your human ships, a Heavy Shuttle was it? It has enough bunks for us but our sons already caused a ruckus on the way here in a Hai ship, we're worried that since they aren't used to the accommodations, they might end up giving her too much trouble."`
 			`	You reassure them that the trip will be very quick, and that the ship's interior is somewhat similar to that of Hai ships, until they finally agree on traveling with her. They settle on the pay and the two of you help the Hai get their baggage to Nanachi's ship. When the family is focused on a conversation, you quietly ask Nanachi what was the issue she was having with the other people she encountered.`
 			`	"They all seemed willing to give me a job, but I ended up blowing it when I asked for more money. I just really need to get out of debt so I guess I went a bit overboard." She tries to play it cool, but it's clear that she is embarrassed about losing so many potential jobs. When you reach her ship, you take a look at the prices for commodities in <destination>. You decide to tell Nanachi to stock up on heavy metals to sell there, to help her make a bit more profit.`
 				accept
@@ -1629,7 +1629,7 @@ mission "Nanachi 3"
 
 mission "Nanachi 4"
 	name "Protect Nanachi"
-	description "Bring Nanachi's ship to <stopovers>, keeping her safe from a pirate fleet that attacked a convoy heading to Hai space, then head back to <destination>."
+	description "Bring Nanachi's ship to <stopovers>, keeping her safe from a pirate fleet that attacked a convoy heading to Hai space, then head back to <destination> by <date>."
 	source "Allhome"
 	stopover "Prime"
 	deadline 17
@@ -1655,6 +1655,7 @@ mission "Nanachi 4"
 				`	"No, I agreed to help you find and deal with some simple jobs, but I can't risk fighting such a fleet by myself."`
 					decline
 			`	She thanks you profusely, and promises that she'll pay you for everything as soon as she can. The organizers are a bit hesitant, but seeing as no other captain here has decided to offer them help, they agree to let the two of you go to Prime and retrieve the cargo.`
+			`	Vanessa grabs ahold of Nanachi's arm before she can run off to the spaceport. "Just remember, if you can't get back here by <day>, don't worry about it; we'll understand. I'm sure we can come up with some alternative to have the festival without our main attractions."
 			`	As you're leaving the bar, Xavier pulls you aside, speaking very quietly, "<last>, I know you're just trying to help this girl, but don't get killed over this. If you run into those pirates don't try to fight them, just rush to Prime."`
 				accept
 	npc
