@@ -27343,6 +27343,7 @@ planet Winter
 
 planet "Wormhole Alpha"
 	description ""
+	spaceport ""
 
 planet "Wyvern Station"
 	attributes rim station
