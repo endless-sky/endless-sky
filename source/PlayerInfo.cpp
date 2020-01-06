@@ -2341,7 +2341,7 @@ void PlayerInfo::StepMissions(UI *ui)
 					mission.Do(ShipEvent(nullptr, ship, ShipEvent::DESTROY), *this, ui);
 	
 	string visitText;
-	int extraVisitDialogs = 0;
+	int missionVisits = 0;
 	int deadlineMissions = 0;
 	auto substitutions = map<string, string>{
 		{"<first>", firstName},
@@ -2373,23 +2373,19 @@ void PlayerInfo::StepMissions(UI *ui)
 			// getting spammed by on visit dialogs if they are stacking jobs
 			// from the same destination.
 			auto action = mission.GetAction(Mission::VISIT);
-			if(!action.DialogText().empty())
-			{
-				if(visitText.empty())
-					visitText = Format::Replace(action.DialogText(), substitutions);
-				else
-					++extraVisitDialogs;
-				if(mission.Deadline())
-					++deadlineMissions;
-			}
+			if(!action.DialogText().empty() && visitText.empty())
+				visitText = Format::Replace(action.DialogText(), substitutions);
+			++missionVisits;
+			if(mission.Deadline())
+				++deadlineMissions;
 		}
 	}
 	if(!visitText.empty())
 	{
-		if(extraVisitDialogs)
+		if(missionVisits)
 		{
-			visitText += "\n\tYou have " + Format::Number(extraVisitDialogs) + " other unfinished " 
-				+ ((extraVisitDialogs > 1) ? "missions" : "mission") + " at this location";
+			visitText += "\n\tYou have " + Format::Number(missionVisits) + " other unfinished " 
+				+ ((missionVisits > 1) ? "missions" : "mission") + " at this location";
 			if(deadlineMissions)
 			{
 				visitText += "(" + Format::Number(deadlineMissions) + " of which "
