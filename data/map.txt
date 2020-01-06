@@ -7470,7 +7470,7 @@ system Delia
 		period 1946.32
 		offset 23.3162
 		object
-			sprite planet/ice7-b
+			sprite planet/station3bd
 			distance 255
 			period 13.4304
 		object
@@ -17308,7 +17308,7 @@ system Nona
 		distance 675.34
 		period 213.615
 		object
-			sprite planet/rock7
+			sprite planet/station3bd
 			distance 174
 			period 23.9139
 	object
@@ -18692,12 +18692,12 @@ system Polerius
 		sprite planet/gas14-b
 		distance 2398.24
 		period 1210.59
-		object
-			sprite planet/dust5-b
+		object Ceilia'sei
+			sprite planet/station3b
 			distance 253
 			period 14.3157
 		object
-			sprite planet/ice0
+			sprite planet/station3bd
 			distance 403
 			period 28.7798
 
@@ -19327,91 +19327,91 @@ system Queri
 	object
 		sprite star/a5
 		period 10
-	object "Querii Ka"
+	object "Querii'ka"
 		sprite planet/ringworld
 		distance 812
 		period 360
-	object "Querii Ka"
+	object "Querii'ka"
 		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 20
-	object "Querii Ka"
+	object "Querii'ka"
 		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 40
-	object "Querii Ka"
+	object "Querii'ka"
 		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 60
-	object "Querii Ka"
+	object "Querii'ka"
 		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 80
-	object "Querii Ka"
+	object "Querii'ka"
 		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 100
-	object "Querii Ka"
+	object "Querii'ka"
 		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 120
-	object "Querii Ka"
+	object "Querii'ka"
 		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 140
-	object "Querii Ka"
+	object "Querii'ka"
 		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 160
-	object "Querii Ka"
+	object "Querii'ka"
 		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 180
-	object "Querii Ka"
+	object "Querii'ka"
 		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 200
-	object "Querii Ka"
+	object "Querii'ka"
 		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 220
-	object "Querii Ka"
+	object "Querii'ka"
 		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 240
-	object "Querii Ka"
+	object "Querii'ka"
 		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 260
-	object "Querii Ka"
+	object "Querii'ka"
 		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 280
-	object "Querii Ka"
+	object "Querii'ka"
 		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 300
-	object "Querii Ka"
+	object "Querii'ka"
 		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 320
-	object "Querii Ka"
+	object "Querii'ka"
 		sprite planet/ringworld
 		distance 812
 		period 360
@@ -25482,6 +25482,12 @@ planet "Celestial Third"
 	description `Celestial Third is the breadbasket of Kimek space. Most of its land mass is used for farming, augmented by seaweed farms and fisheries in the oceans and factories near the equator producing yeast and bacterial cultures as nutritional supplements. The first settlers came here more than thirteen thousand years ago, at a time when their home world had run out of arable land for farming and food was desperately needed.`
 	spaceport `The constant stream of freighters passing through this spaceport is a testament to how much food is needed to feed the densely populated Kimek worlds, in particular their homeworld in the neighboring star system. The city that hosts the spaceport has also become something of a tourist destination for those with adventurous culinary tastes; restaurants here serve recipes native to each of the Coalition species, along with some dishes that blend their three cuisines in unique and sometimes surprising ways.`
 
+planet Ceilia'sei
+	attributes ka'het
+	landscape land/loc2
+	description `This station used to be some sort of anti-missile system, thanks to a large number of defensive turrets and tiny rocket launchers, enough to shoot down even the strongest of the torpedoes. During the Ka'het invasion it must have been able to stop the incoming EMPs, but it had no way to defend itself from the Ravager Beams: the crew quarters have been completely destroyed, and everything based on the Builders direct input stopped working soon after.`
+	description `	Given the location of the system, it's likely that it was originally built to stop everything coming out of the wormhole rather than the Ka'het themselves.`
+
 planet Veliante
 	attributes ka'het
 	landscape land/fog5
@@ -27415,7 +27421,7 @@ planet Pugglequat
 	"required reputation" 2
 	security 1
 
-planet "Querii Ka"
+planet Querii'ka
 	attributes quarg ka'het
 	landscape land/station2
 	description `This huge ringworld, built by the Quarg using most of the resources found near the Queri star, seems to be completely uninhabited. Occasional Ka'het passing near its surface shoot at the station's cover, doing no damage at all and seldomly leaving tiny scars. Everything inside the station is empty and unpowered, from its large rooms to its long, silent corridors.`
