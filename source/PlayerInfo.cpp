@@ -2382,17 +2382,15 @@ void PlayerInfo::StepMissions(UI *ui)
 	}
 	if(!visitText.empty())
 	{
-		if(missionVisits)
+		visitText += "\n\tYou have " + Format::Number(missionVisits) + " unfinished " 
+			+ ((missionVisits > 1) ? "missions" : "mission") + " at this location";
+		if(deadlineMissions)
 		{
-			visitText += "\n\tYou have " + Format::Number(missionVisits) + " other unfinished " 
-				+ ((missionVisits > 1) ? "missions" : "mission") + " at this location";
-			if(deadlineMissions)
-			{
-				visitText += "(" + Format::Number(deadlineMissions) + " of which "
+			visitText += "(" + Format::Number(deadlineMissions) + " of which "
 					+ ((deadlineMissions > 1) ? "have approaching deadlines" : "has an approaching deadline)");
-			}
-			visitText += ".";
 		}
+		visitText += ".";
+		
 		ui->Push(new Dialog(visitText));
 	}
 	// One mission's actions may influence another mission, so loop through one
