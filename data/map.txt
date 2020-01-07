@@ -27684,7 +27684,7 @@ planet "Seleptra Nak"
 planet Seli'het
 	attributes ka'het
 	landscape land/space7
-	description `Seli'het was the only Het station the Builders ever completed, orbiting Giribea. When they are old enough, weird and tall machines start building the first parts of their exoskeletons around the young Ka'heta. As they grow stronger their hull is expanded and different outfits are added, transforming them into real living weapons.`
+	description `Seli'het was the only Het station the Builders ever completed, orbiting Giribea. Ka'Heta are brought here once they reach the "Age of Assembly"; strange, lanky machines start molding an exoskeleton onto their bodies right away. As the Ka'Het grow, their exoskeleton is expanded and various outfits are added, transforming them into living weapons.`
 	description `	In this system the Ka'het behave differently than anywhere else, not only because this station doesn't have any visible damage but also because they don't attack each other, and some even seem to have started collaborating.`
 	government Builder
 
