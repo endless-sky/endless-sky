@@ -25127,7 +25127,7 @@ planet Alix
 	attributes ka'het
 	landscape land/canyon05
 	description `Alix is a small moon the Creators were stripping to build the Het station, as well as to produce the Ka'het hulls. Every inhabited settlement was completely destroyed, but some of the automatic mining facilities and drones that replenish the station's reserves seem to have survived and are still active today.`
-	description `	This could mean the Ka'het developed some sort of basic intelligence, or simply that their scanners weren't good enough to detect them.`
+	description `	This could mean the Ka'het developed some sort of basic intelligence, or simply that their scanners weren't good enough to detect the drones.`
 
 planet Allhome
 	attributes hai farming "human tourism"
@@ -28553,4 +28553,3 @@ planet Zug
 	tribute 1200
 		threshold 3000
 		fleet "Large Militia" 18
-
