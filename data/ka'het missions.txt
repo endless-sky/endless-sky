@@ -122,7 +122,7 @@ mission "First Contact: Ka'het: Quarg 2"
 			`	Walking down the principal, alien-looking hall, you decide to stop one of the few Quarg you see there. "Hello, human. How may I be of service?" the Quarg says. You reply by asking him about the Graveyard and the ringworld they built there.`
 			`	"Ah, you encountered the remainders of the Builders. Millennia ago, they were a flourish and thoughtful empire, but hostile contacts forced them to grow fearful and hawkish. Although they never did attack us, they always refrained from accepting our aid, and attempted to relocate at a greater distance from us, in worlds easier to maintain than the home they were reserved."`
 			choice
-				`	"Who were the hostile contacts with?"`
+				`	"Who were these hostile contacts?"`
 				`	"What happened to the Builders?"`
 					goto ka'het
 			`	"Long ago, few ships coming from a foreign species had reached that region of space, using some of the wormholes leading there. They belonged to a young race who foolishly decided to attack the Builders instead of learning from them. Their ships were stronger than any vessel the Builders possessed at the time, but were also few enough in number to be destroyed by the Builders."`
