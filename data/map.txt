@@ -25474,7 +25474,7 @@ planet Celeatis
 	attributes ka'het
 	landscape land/canyon4
 	description `Celeatis is a mountainous planet, once home to one of the largest Builder research centers. They were focused on studying the anomaly in the system. If they found out how to stabilize and use it as a wormhole, perhaps their species would have survived, spreading in the rest of the galaxy; the ruined, lifeless and half-buried buildings here are evidence of their failure.`
-	description `	The planet's surface is too irregular and far from the system's stars to be suitable for farming, so its inhabitants used to rely on the food produced abroad. When the Ka'het came the supplies stopped arriving, so in less than a year the planetary reserves were over and the whole population had died of starvation.`
+	description `	The planet's surface is too irregular and far from the system's stars to be suitable for farming, so its inhabitants had to rely on the food produced abroad. When the Ka'het came the supplies stopped arriving, so in less than a year the planetary food reserves were depleted and the whole population had died of starvation.`
 
 planet "Celestial Third"
 	attributes kimek farming factory urban
