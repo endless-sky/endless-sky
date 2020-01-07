@@ -168,7 +168,7 @@ outfit "Ka'het Support Cooling"
 	"outfit space" -8
 	"active cooling" 32
 	"cooling energy" 3.1
-	description "Het ships need more cooling than normal ships, partly due to the requirement of keeping a living organism alive. While a single Support Cooling isn't enough to sustain a ship, the Ka'het use this module in addition to the stronger Primary Cooling."
+	description "Het ships need a much better cooling than normal ships, partly due to the requirement of keeping the Het alive. While a single Support Cooling isn't enough to sustain a ship, the Ka'het use this module in addition to the stronger Primary Cooling."
 
 
 outfit "Ka'het Primary Cooling"
