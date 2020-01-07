@@ -25847,8 +25847,8 @@ planet Earth
 planet Eavine
 	attributes ka'het
 	landscape land/snow8
-	description `The moon of Eavine played a crucial role in the demise of the Builders: here, the second wave of Ka'het was built, making use of the large mineral resources in the planet. They soon found out that what was supposed to change the result of the invasion only accelerated it, overcoming the blockade imposed by the Quarg and allowing the Ka'het to reach their northern systems.`
-	description `	As an example of their instability, the Ka'het themselves inflicted superficial damage to most of the facilities here while departing from the planet, shooting at the same buildings that created them. Due to the moon's orbit, a few millennia ago the climate started becoming colder and colder, slowly incapacitating and then completely stopping the Ka'het production.`
+	description `The moon of Eavine played a crucial role in the demise of the Builders: here, the second wave of Ka'het was built, making use of the large mineral resources in the planet. They soon found out that what was supposed to change the result of the invasion only accelerated it, overcoming the blockade imposed by the Quarg and allowing the Ka'het to reach their northern systems. The terraformation the Builders were doing on Eavine stopped, and a few thousand years ago the moon became so cold that the Ka'het production came to an end.`
+	description `	As an example of their instability, the Ka'het themselves inflicted superficial damage to most of the facilities here while departing from the planet, shooting at the same buildings that created them.`
 
 planet Echo
 	attributes quarg moon
