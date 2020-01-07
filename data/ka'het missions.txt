@@ -91,87 +91,15 @@ mission "First Contact: Ka'het: Remnant 1B"
 		log "Asked Taely about the Graveyard and the Ka'het. She spoke of the previous contacts between them and the Remnant."
 		log "Factions" "Ka'het" `The Ka'het are aliens which live in an area south of the Ember Waste, called the Graveyard. They are large lifeforms which can travel in space using artificial exoskeletons and will attack anyone on sight, even sometimes other Ka'het.`
 
-mission "First Contact: Ka'het: Quarg 1A"
+mission "First Contact: Ka'het: Quarg 1"
 	name "Abandoned Ringworld"
 	description "Visit a Quarg station to ask them about the abandoned ring in the middle of Ka'het space."
 	landing
 	source "Querii Ka"
 	destination "Lagrange"
-	to offer
-		not "First Contact: Ka'het: Quarg 1B: offered"
-		not "First Contact: Ka'het: Quarg 1C: offered"
-		not "First Contact: Ka'het: Quarg 1D: offered"
 		has "First Contact: Quarg: offered"
-		not "First Contact: Hai: offered"
-		not "First Contact: Kuwaru Efreti: offered"
-	to complete
-		never
-	on offer
-		log "Discovered a complete but uninhabited Quarg ringworld in the middle of the Graveyard."
-		conversation
-			`Due to your past experience, you expect crowds of the tall and inexpressive Quarg walking near the landing pads of this ringworld; instead, the whole station seems uninhabited.`
-			`	Apart from the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to ask the Quarg what happened here...`
-				accept
-
-mission "First Contact: Ka'het: Quarg 1B"
-	name "Abandoned Ringworld"
-	description "Visit a Quarg station to ask them about the abandoned ring in the middle of Ka'het space."
-	landing
-	source "Querii Ka"
-	destination "Lagrange"
-	stopover "Alta Hai"
-	to offer
-		not "First Contact: Ka'het: Quarg 1A: offered"
-		not "First Contact: Ka'het: Quarg 1C: offered"
-		not "First Contact: Ka'het: Quarg 1D: offered"
-		has "First Contact: Quarg: offered"
-		has "First Contact: Hai: offered"
-		not "First Contact: Kuwaru Efreti: offered"
 	on offer
 		log "Discovered an uninhabited, complete Quarg ring in the middle of the Graveyard. It seems weird that they would abandon a ringworld, given how important they are to them."
-		conversation
-			`Due to your past experience, you expect crowds of the tall and inexpressive Quarg walking near the landing pads of this ringworld; instead, the whole station seems uninhabited.`
-			`	Apart from the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to ask the Quarg what happened here...`
-				accept
-
-mission "First Contact: Ka'het: Quarg 1C"
-	name "Abandoned Ringworld"
-	description "Visit a Quarg station to ask them about the abandoned ring in the middle of Ka'het space."
-	landing
-	source "Querii Ka"
-	destination "Lagrange"
-	stopover "Kuwaru Efreti"
-	to offer
-		not "First Contact: Ka'het: Quarg 1A: offered"
-		not "First Contact: Ka'het: Quarg 1B: offered"
-		not "First Contact: Ka'het: Quarg 1D: offered"
-		has "First Contact: Quarg: offered"
-		not "First Contact: Hai: offered"
-		has "First Contact: Kuwaru Efreti: offered"
-	on offer
-		log "Discovered an uninhabited, complete Quarg ringworld in the middle of Ka'het space."
-		conversation
-			`Due to your past experience, you expect crowds of the tall and inexpressive Quarg walking near the landing pads of this ringworld; instead, the whole station seems uninhabited.`
-			`	Apart from the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to ask the Quarg what happened here...`
-				accept
-
-mission "First Contact: Ka'het: Quarg 1D"
-	name "Abandoned Ringworld"
-	description "Visit a Quarg station to ask them about the abandoned ring in the middle of Ka'het space."
-	landing
-	source "Querii Ka"
-	destination "Lagrange"
-	stopover "Kuwaru Efreti"
-	stopover "Alta Hai"
-	to offer
-		not "First Contact: Ka'het: Quarg 1A: offered"
-		not "First Contact: Ka'het: Quarg 1B: offered"
-		not "First Contact: Ka'het: Quarg 1C: offered"
-		has "First Contact: Quarg: offered"
-		has "First Contact: Hai: offered"
-		has "First Contact: Kuwaru Efreti: offered"
-	on offer
-		log "Discovered an uninhabited, complete Quarg ringworld in the middle of Ka'het space."
 		conversation
 			`Due to your past experience, you expect crowds of the tall and inexpressive Quarg walking near the landing pads of this ringworld; instead, the whole station seems uninhabited.`
 			`	Apart from the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to ask the Quarg what happened here...`
@@ -181,13 +109,9 @@ mission "First Contact: Ka'het: Quarg 2"
 	landing
 	invisible
 	source
-		planet "Alta Hai" "Lagrange" "Kuwaru Efreti"
+		planet "Lagrange"
 	to offer
-		or
-			has "First Contact: Ka'het: Quarg 1A: active"
-			has "First Contact: Ka'het: Quarg 1B: active"
-			has "First Contact: Ka'het: Quarg 1C: active"
-			has "First Contact: Ka'het: Quarg 1D: active"
+		has "First Contact: Ka'het: Quarg 1A: done"
 	on offer
 		conversation
 			`Do you want to ask the Quarg about the abandoned ringworld in the region of the Graveyard?`
@@ -212,7 +136,3 @@ mission "First Contact: Ka'het: Quarg 2"
 		log "Asked the Quarg about the history of the Graveyard. Although not being told the reason for the abandoned ringworld, have learned about the previous inhabitants of the region, the Builders."
 		log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have since become extinct. They developed some sort of weapon, called the Ka'het, which stopped obeying their orders and rebelled against them.`
 		log "Factions" "Ka'het"  `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then defied and led them to extinction. Even if millennia passed, they are still being produced in the Graveyard.`
-		fail "First Contact: Ka'het: Quarg 1A"
-		fail "First Contact: Ka'het: Quarg 1B"
-		fail "First Contact: Ka'het: Quarg 1C"
-		fail "First Contact: Ka'het: Quarg 1D"
