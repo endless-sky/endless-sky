@@ -315,7 +315,7 @@ ship "Faes'mar"
 	engine -7.5 34.5
 	engine 7.5 34.5
 	explode "tiny explosion" 19
-	description "The Mar ships were the last and most successful of the Builders at creating automatic drones. Today only the Het stations are still aware of their blueprints, and keep producing the Faes'mar to transport the resources mined to the station's cargo bay."
+	description "The Mar were the last and most successful ships of the Builders in their attempts at creating automatic drones. Today only the Het stations are still aware of their blueprints, and keep producing the Faes'mar to transport the resources mined to the station's cargo bay."
 
 ship "Faes'mar" "Faes'mar (Strong)"
 	outfits
