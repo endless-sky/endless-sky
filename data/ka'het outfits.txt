@@ -191,4 +191,4 @@ outfit "Ka'het Shield Restorer"
 	"outfit space" -19
 	"shield generation" 1.02
 	"shield energy" 2.04
-	description "The Builders never relied much on shield matrices, preferring instead to strenghten their hull. This, however, forced some Het vessels to make extensive use of this module."
+	description "The Builders never relied much on shield matrices, preferring instead to strengthen their hull. This, however, forced some Het vessels to make extensive use of this module."
