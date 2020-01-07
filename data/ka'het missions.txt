@@ -91,7 +91,7 @@ mission "First Contact: Ka'het: Remnant 1B"
 			`	"You see, <first>," she says, "the Ka'het aren't normal spaceships. The debris we found were artificial exoskeletons, built around huge living beings; it's unlikely a species that big could have developed that sort of technology, so we presume someone must have created it for them. This could have happened in the Graveyard, since it's the only place where we know them to still live in, but we have such a limited data about that section of space that we can't say for sure." As she finishes talking, one of the people Taely's was talking with earlier comes closer and shows her something on a touchpad. "I have to go now, Captain," she tells you. "Good luck."`
 				decline
 	on decline
-		log "Asked Taely about the Graveyard and the Ka'het. She told me the previous contacts between them and the Remnant."
+		log "Asked Taely about the Graveyard and the Ka'het. She spoke of the previous contacts between them and the Remnant."
 		log "Factions" "Ka'het" `The Ka'het are aliens which live in an area south of the Ember Waste, called Graveyard, and attack everyone on sight. They are large lifeforms which can travel in space using artificial exoskeletons.`
 
 mission "First Contact: Ka'het: Quarg 1A"
