@@ -25491,7 +25491,7 @@ planet Ceilia'sei
 planet Veliante
 	attributes ka'het
 	landscape land/fog5
-	description `The world that suffered the heaviest damages during the invasion was probably Veliante: here, one of the earliest attacks hit some sort of nuclear facility, starting a meltdown; the fallout quickly spread across most settlements in the planet. Now, most places returned to safe levels, but the area around the ancient facility is still unlivable without a protection suit.`
+	description `The world that suffered the heaviest damage during the invasion was probably Veliante. Here, one of the earliest attacks hit some sort of nuclear facility, starting a meltdown; the fallout quickly spread across most of the planet, leaving all Builder settlements uninhabitable. While most of the planet has returned to safe level of radiation, the areas around the ancient facility are still too irradiated to survive for long without some form of protective equipment.`
 
 planet "Charon Station"
 	attributes south station
