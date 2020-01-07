@@ -110,7 +110,7 @@ mission "First Contact: Ka'het: Quarg 1A"
 	to complete
 		never
 	on offer
-		log "Discovered an uninhabited, complete Quarg ringworld in the middle of Ka'het space."
+		log "Discovered a complete but uninhabited Quarg ringworld in the middle of the Graveyard."
 		conversation
 			`Due to your past experience, you expect crowds of the tall and inexpressive Quarg walking near the landing pads of this ringworld; instead, the whole station seems uninhabited.`
 			`	Apart from the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to ask the Quarg what happened here...`
