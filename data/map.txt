@@ -27281,7 +27281,7 @@ planet Oblivion
 planet Osaeli
 	attributes ka'het
 	landscape land/forest4
-	description `This is an Earth-like planet, a pristine and idyllic world with a large biodiversity. For millennia this was the de facto capital of the Builders, having both the largest population and being the most developed planet in the Graveyard.`
+	description `This is an Earth-like planet, a pristine and idyllic world with a large biodiversity. For millennia this was the de facto capital of the Builders, having both the largest population and being the most developed planet in this region of space.`
 	description `	When the invasion broke out, Osaeli kept being devastated by the largest part of the Ka'het fleet until there was no safe place anymore and almost every Builder had been killed. But, soon after the attacks stopped, vegetation started growing around the ruins and slowly replaced the buildings there.`
 
 planet Palarei
