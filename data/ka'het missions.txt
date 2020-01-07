@@ -61,7 +61,7 @@ mission "First Contact: Ka'het: Remnant 1B"
 	source "Viminal"
 	to offer
 		has "Graveyard Label: offered"
-		"remnant met taely" >= 1
+		has "remnant met taely"
 	on offer
 		conversation
 			`Do you want to ask Taely about the section of space south of the Ember Wastes, the Graveyard, and its inhabitants?`
