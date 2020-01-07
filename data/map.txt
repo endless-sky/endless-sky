@@ -27839,7 +27839,7 @@ planet Siteria
 	attributes ka'het
 	landscape land/water0
 	description `Siteria is the Builders homeworld, both the place where their journey began and where it ended. After a dozen millennia of underpopulation due to its closeness to the Quarg ring, the Ka'het invasion forced them to retreat. As one of the few remaining planets capable of sustaining farming and by far the one with the best climate, for a few centuries it had again the highest number of inhabitants of all the Builders planets.`
-	description `	When the second invasion began, the many fields and farms around the planet allowed the Builders to survive for almost 200 years, until a lone Ka'het wrecked the last colony.`
+	description `	When the second invasion began, the large number of fields and farms around the planet allowed the Builders to survive for centuries, hiding in sparse strongholds. Almost three hundred years passed before the Ka'het were able to destroy the last colony.`
 
 planet Skillet
 	attributes north mining farming frontier
