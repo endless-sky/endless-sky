@@ -111,7 +111,7 @@ mission "First Contact: Ka'het: Quarg 2"
 	source
 		planet "Lagrange"
 	to offer
-		has "First Contact: Ka'het: Quarg 1A: done"
+		has "First Contact: Ka'het: Quarg 1: done"
 	on offer
 		conversation
 			`Do you want to ask the Quarg about the abandoned ringworld in the region of the Graveyard?`
