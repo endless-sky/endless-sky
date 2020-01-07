@@ -25486,7 +25486,7 @@ planet Ceilia'sei
 	attributes ka'het
 	landscape land/loc2
 	description `This station used to act as some sort of anti-missile platform. It is covered in a large number of defensive turrets capable of shooting down even the strongest of torpedoes. During the Ka'het invasion it must have been able to stop the incoming EMPs, but it had no way to defend itself against the Ravager Beams; the crew quarters were completely destroyed by the Ka'het, and the Builders soon lost control of all the station's defense systems.`
-	description `	Given the location of the system, it's likely that it was originally built to stop everything coming out of the wormhole rather than the Ka'het themselves.`
+	description `	Given the location of the station, it's likely that it was originally built to stop everything coming out of the wormhole rather than the Ka'het themselves.`
 
 planet Veliante
 	attributes ka'het
