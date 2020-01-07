@@ -27293,7 +27293,7 @@ planet Palarei
 planet Parii'het
 	attributes ka'het
 	landscape land/space6
-	description `Parii'het was almost finished when the invasion broke out, and already capable of (slowly) creating Ka'het. Thanks to the mining operated on Alix and the occasional harvest taken here by the youngest Ka'het most facilities are always fully operational.`
+	description `Parii'het was almost finished when the invasion broke out, and already capable of (slowly) creating Ka'het. Thanks to the mining operations on Alix and the occasional harvest taken here by the youngest Ka'het, most of the facilities are still fully operational even to this day.`
 	description `	Differently from most of the Graveyard, the station doesn't seem to have ever suffered any damage from the Ka'het, nor from the Builders trying to regain control over it.`
 	government Builder
 
