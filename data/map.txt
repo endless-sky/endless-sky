@@ -27492,7 +27492,7 @@ planet Retilie
 	attributes ka'het
 	landscape land/sea1
 	description `Retilie is an oceanic world, where the water covers more than 95% of the planet. Once mainly used for fishing, it mustn't have taken long for the sea to make a clean sweep of the ancient buildings destroyed by the Ka'het. Only the ruins of few cities remained intact, well hidden inside the mainland.`
-	description `	In the oceans, the many species of fishes keep prospering, unaware of the destruction the planet has undergone.`
+	description `	In the oceans, the many species of fish continue to prosper, unaware of the destruction the planet has undergone.`
 
 planet Reunion
 	attributes "near earth" urban factory
