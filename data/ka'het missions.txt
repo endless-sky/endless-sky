@@ -42,7 +42,7 @@ mission "First Contact: Ka'het: Remnant 1A"
 		government "Remnant"
 	to offer
 		has "Graveyard Label: offered"
-		"remnant met taely" == 0
+		not "remnant met taely"
 		not "Remnant: Technology Available: offered"
 	on offer
 		conversation
