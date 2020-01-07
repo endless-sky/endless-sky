@@ -31,7 +31,7 @@ outfit "Ka'het Ravager Beam"
 		"firing heat" 1.5
 		"shield damage" 1.8
 		"hull damage" 4.3
-	description "This laser beam, once built by the Builders for use in asteroid mining, incidentally made the Ka'het very effective against a ship's armor."
+	description "This laser beam was created by the Builders for use in asteroid mining. Unfortunately, they understood its effectiveness in combat only after it turned against them."
 
 outfit "Ka'het Ravager Turret"
 	category "Turrets"
