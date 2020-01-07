@@ -36,14 +36,12 @@ mission "Disabled Ka'het"
 
 mission "First Contact: Ka'het: Remnant 1A"
 	landing
-	minor
 	invisible
 	source
 		government "Remnant"
 	to offer
 		has "Graveyard Label: offered"
 		not "remnant met taely"
-		not "Remnant: Technology Available: offered"
 	on offer
 		conversation
 			`Do you want to ask the Remnant about the section of space south of the Ember Wastes, the Graveyard, and its inhabitants?`
@@ -56,7 +54,6 @@ mission "First Contact: Ka'het: Remnant 1A"
 
 mission "First Contact: Ka'het: Remnant 1B"
 	landing
-	minor
 	invisible
 	source "Viminal"
 	to offer
@@ -131,7 +128,7 @@ mission "First Contact: Ka'het: Quarg 1B"
 		has "First Contact: Hai: offered"
 		not "First Contact: Kuwaru Efreti: offered"
 	on offer
-		log "Discovered an uninhabited, complete Quarg ringworld in the middle of Ka'het space."
+		log "Discovered an uninhabited, complete Quarg ring in the middle of the Graveyard. It seems weird that they would abandon a ringworld, given how important they are to them."
 		conversation
 			`Due to your past experience, you expect crowds of the tall and inexpressive Quarg walking near the landing pads of this ringworld; instead, the whole station seems uninhabited.`
 			`	Apart from the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to ask the Quarg what happened here...`
