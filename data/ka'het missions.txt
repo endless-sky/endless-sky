@@ -204,7 +204,7 @@ mission "First Contact: Ka'het: Quarg 2"
 				`	"Who were the hostile contacts with?"`
 				`	"What happened to the Builders?"`
 					goto ka'het
-			`	"Long ago, few ships coming from a foreign species had reached that region of space, using some of the wormholes leading there. They belonged to a young and foolish race, and they foolishly decided to attack the Builders instead of learning from them. They were stronger any vessel the Builders possessed, but also few enough to be destroyed by the fleets patrolling the area."`
+			`	"Long ago, few ships coming from a foreign species had reached that region of space, using some of the wormholes leading there. They belonged to a young race who foolishly decided to attack the Builders instead of learning from them. Their ships were stronger than any vessel the Builders possessed at the time, but were also few enough in number to be destroyed by the Builders."`
 			choice
 				`	"What happened after that?"`
 			label ka'het
