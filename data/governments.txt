@@ -180,6 +180,8 @@ government "Ka'het"
 		"Navy (Oathkeeper)" -.01
 		"Republic" -.01
 		"Free Worlds" -.01
+		"Hai (Unfettered)" -.01
+		"Wanderer" -.01
 	
 	"player reputation" -1
 
@@ -197,6 +199,8 @@ government " Ka'het "
 		"Navy (Oathkeeper)" -.01
 		"Republic" -.01
 		"Free Worlds" -.01
+		"Hai (Unfettered)" -.01
+		"Wanderer" -.01
 	
 	"player reputation" -1
 
