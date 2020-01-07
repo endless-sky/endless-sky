@@ -9264,7 +9264,7 @@ system Esix
 	pos 142 532
 	government Uninhabited
 	haze _menu/haze-red
-	habitable 135
+	habitable 8640
 	link Gerenus
 	link Nona
 	link Paeli
