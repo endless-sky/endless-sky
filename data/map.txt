@@ -27341,6 +27341,7 @@ planet Winter
 		fleet "Large Militia" 5
 
 planet "Wormhole Alpha"
+	government "Wormhole Alpha"
 	description ""
 	spaceport ""
 

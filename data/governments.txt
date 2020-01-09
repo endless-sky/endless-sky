@@ -398,3 +398,9 @@ government "Wanderer"
 	"friendly disabled hail" "wanderer untranslated"
 	"hostile hail" "wanderer untranslated"
 	"hostile disabled hail" "wanderer untranslated"
+
+government "Wormhole Alpha"
+	color .4 .4 .4
+	"attitude toward"
+		"Hai" -.3
+		"Hai (Unfettered" -.3
