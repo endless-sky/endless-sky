@@ -590,14 +590,6 @@ void PlayerInfo::SetSystem(const System *system)
 
 
 
-// Set test-mode (which prevents creation of automatic savegames
-void PlayerInfo::SetTestMode()
-{
-	testMode = true;
-}
-
-
-
 // Get the player's current star system.
 const System *PlayerInfo::GetSystem() const
 {
@@ -2716,5 +2708,5 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 // Check that this player's current state can be saved.
 bool PlayerInfo::CanBeSaved() const
 {
-	return (!testMode && !isDead && planet && system && !firstName.empty() && !lastName.empty());
+	return (!isDead && planet && system && !firstName.empty() && !lastName.empty());
 }

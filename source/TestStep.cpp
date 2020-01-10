@@ -228,8 +228,6 @@ int TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo 
 				player.Load(Files::Saves() + FilePathOrName());
 				if (!player.IsLoaded())
 					return RESULT_FAIL;
-				// Enable testmode to prevent automatic saving.
-				player.SetTestMode();
 				// Actual load succeeded. Allow game to adopt to new
 				// situation and then continue with enter/pilot step.
 				return RESULT_NEXTACTION;
