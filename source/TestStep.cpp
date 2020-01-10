@@ -211,6 +211,7 @@ int TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo 
 			else if (stepAction == 1)
 			{
 				// Clear the menu entries and go to main game screen
+				// TODO: We should send keystrokes / commands that perform the player actions instead of modifying game structures directly.
 				if (! menuPanels.IsEmpty())
 					menuPanels.Pop(menuPanels.Top().get());
 				// Transfer control to game before final check to allow
