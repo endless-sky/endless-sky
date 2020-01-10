@@ -190,7 +190,7 @@ int TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo 
 					command.Set(Command::LAND);
 					if(!SendFlightCommand(command, gamePanels))
 						return RESULT_FAIL;
-					stepAction++;
+					++stepAction;
 				}
 				return RESULT_NEXTACTION;
 			}

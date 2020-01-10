@@ -65,11 +65,11 @@ void TestRunner::Step(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
 		case TestStep::RESULT_DONE:
 			// Test-step is done. Start with the first action of the next
 			// step next time this function gets called.
-			stepToRun++;
+			++stepToRun;
 			stepAction = 0;
 			break;
 		case TestStep::RESULT_NEXTACTION:
-			stepAction++;
+			++stepAction;
 			break;
 		case TestStep::RESULT_RETRY:
 			break;
