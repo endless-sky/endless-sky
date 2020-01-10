@@ -168,7 +168,7 @@ outfit "Ka'het Support Cooling"
 	"outfit space" -8
 	"active cooling" 32
 	"cooling energy" 3.1
-	description "Het ships need a much better cooling than normal ships, partly due to the requirement of keeping the Het alive. While a single Support Cooling isn't enough to sustain a ship, the Ka'het use this module in addition to the stronger Primary Cooling."
+	description While the cooling on a typical ship only needs to worry about keeping the crew comfortable in certain areas, the entirety of a Ka'het ship needs to maintain a suitable temperature for the Het inside to survive."
 
 
 outfit "Ka'het Primary Cooling"
@@ -191,4 +191,4 @@ outfit "Ka'het Shield Restorer"
 	"outfit space" -19
 	"shield generation" 1.02
 	"shield energy" 2.04
-	description "The Builders never relied much on shield matrices, preferring instead to strengthen their hull. This, however, forced some Het vessels to make extensive use of this module."
+	description "The Builders never relied much on shield matrices, preferring instead to strengthen their hull. The reality of war, however, required that the Builders to develop strong shield technology, leading to some Het vessels making extensive use of this module."

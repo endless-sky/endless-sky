@@ -108,8 +108,7 @@ mission "First Contact: Ka'het: Quarg 1"
 mission "First Contact: Ka'het: Quarg 2"
 	landing
 	invisible
-	source
-		planet "Lagrange"
+	source "Lagrange"
 	to offer
 		has "First Contact: Ka'het: Quarg 1: done"
 	on offer
@@ -134,5 +133,5 @@ mission "First Contact: Ka'het: Quarg 2"
 				decline
 	on decline
 		log "Asked the Quarg about the history of the Graveyard. Although not being told the reason for the abandoned ringworld, have learned about the previous inhabitants of the region, the Builders."
-		log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have since become extinct. They developed some sort of weapon, called the Ka'het, which stopped obeying their orders and rebelled against them.`
-		log "Factions" "Ka'het"  `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then defied and led them to extinction. Even if millennia passed, they are still being produced in the Graveyard.`
+		log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have since become extinct. They developed some sort of weapon, called Ka'het, which stopped obeying their orders and rebelled against them.`
+		log "Factions" "Ka'het"  `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then rebelled and led them to extinction. Even if millennia passed, they are still being produced in the Graveyard.`
