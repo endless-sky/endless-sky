@@ -23,7 +23,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class TestRunner {
 public:
 	TestRunner(const Test *testToRun);
-	virtual ~TestRunner();
 	
 	// Helper function to print conditions to text.
 	std::string ConditionsText(PlayerInfo &player);
@@ -32,7 +31,7 @@ public:
 	// the game. We just provide them as parameter here, because they are not
 	// available when the test got created (and they can change due to loading
 	// and saving of games).
-	virtual void Step(UI &menuPanels, UI &gamePanels, PlayerInfo &player);
+	void Step(UI &menuPanels, UI &gamePanels, PlayerInfo &player);
 	
 private:
 	const Test* testToRun;

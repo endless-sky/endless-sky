@@ -23,9 +23,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // Class representing a single step in a test
 class TestStep {
 public:
-	TestStep();
-	virtual ~TestStep();
-
 	// TODO: rename to LOAD_GAME_INLINE (and allow other loaders later?)
 	// Switch to game loading from inline in the test (from a child datanode)
 	static const int LOAD_GAME = 1;
@@ -44,10 +41,10 @@ public:
 	static const int RESULT_RETRY = 2;
 	static const int RESULT_NEXTACTION = 3;
 
-	virtual void Load(const DataNode &node);
-	virtual const std::string FilePathOrName();
-	virtual int StepType();
-	virtual int DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player);
+	void Load(const DataNode &node);
+	const std::string FilePathOrName();
+	int StepType();
+	int DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player);
 
 	
 private:

@@ -21,21 +21,6 @@ using namespace std;
 
 
 
-TestData::TestData()
-{
-	dataSetName = "";
-	dataSetType = 0;
-	sourceDataFile = "";
-}	
-
-
-
-TestData::~TestData()
-{
-}
-
-
-
 string TestData::Name()
 {
 	return dataSetName;

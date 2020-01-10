@@ -29,12 +29,6 @@ TestRunner::TestRunner(const Test *testToRun): testToRun(testToRun)
 
 
 
-TestRunner::~TestRunner()
-{
-}
-
-
-
 string TestRunner::ConditionsText(PlayerInfo &player)
 {
 	string conditions = "";

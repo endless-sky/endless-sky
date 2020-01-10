@@ -18,15 +18,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // Class representing a dataset for automated testing
 class TestData {
 public:
-	TestData();
-	virtual std::string Name();
-	virtual void Load(const DataNode &node, const std::string sourceDataFilePath);
+	std::string Name();
+	void Load(const DataNode &node, const std::string sourceDataFilePath);
 	// Function to inject the test-data into the game or into the games
 	// environment. Savegames would be written as file.
-	virtual bool Inject() const;
-	
-	virtual ~TestData();
-	
+	bool Inject() const;
+
 	// Types of datafiles that can be stored.
 	static const int SAVEGAME = 1;
 	

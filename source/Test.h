@@ -22,19 +22,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // Class representing a single test.
 class Test {
 public:
-	Test();
-	virtual ~Test();
-	
 	// Status indicators for the test that we selected (if any).
 	static const int STATUS_ACTIVE = 0;
 	static const int STATUS_KNOWN_FAILURE = 1;
 	static const int STATUS_MISSING_FEATURE = 2;
 	
-	virtual std::string Name() const;
-	virtual std::string StatusText() const;
-	virtual std::vector<TestStep *> TestSteps() const;
+	std::string Name() const;
+	std::string StatusText() const;
+	std::vector<TestStep *> TestSteps() const;
 
-	virtual void Load(const DataNode &node);
+	void Load(const DataNode &node);
 	
 	
 private:

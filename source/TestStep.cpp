@@ -46,21 +46,6 @@ namespace {
 
 
 
-TestStep::TestStep()
-{
-	// Initialize with some sensible default values.
-	stepType = 0;
-	filePathOrName = "";
-}
-
-
-
-TestStep::~TestStep()
-{
-}
-
-
-
 int TestStep::StepType()
 {
 	return stepType;
@@ -81,10 +66,6 @@ bool TestStep::PlayerIsFlyingAround(UI &menuPanels, UI &gamePanels, PlayerInfo &
 	bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
 	return inFlight;
 }
-
-
-
-
 
 
 

@@ -22,19 +22,6 @@ using namespace std;
 
 
 
-Test::Test()
-{
-	name = "";
-}
-
-
-
-Test::~Test()
-{
-}
-
-
-
 void Test::Load(const DataNode &node)
 {
 	if(node.Size() < 2)
