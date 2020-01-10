@@ -141,7 +141,7 @@ bool GameData::BeginLoad(const char * const *argv)
 				printShips = true;
 			if(arg == "-w" || arg == "--weapons")
 				printWeapons = true;
-			if(arg == "-l" || arg == "--list-tests")
+			if(arg == "--tests")
 				printTests = true;
 			if(arg == "-d" || arg == "--debug")
 				debugMode = true;

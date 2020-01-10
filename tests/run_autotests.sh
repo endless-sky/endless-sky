@@ -25,7 +25,7 @@ fi
 echo " Setting up environment and retrieving test-case list"
 mkdir -p "${ES_CONFIG_PATH}"
 mkdir -p "${ES_SAVES_PATH}"
-TESTS=$("${ES_EXEC_PATH}" --list-tests --resources "${RESOURCES}" --config "${ES_CONFIG_PATH}")
+TESTS=$("${ES_EXEC_PATH}" --tests --resources "${RESOURCES}" --config "${ES_CONFIG_PATH}")
 TESTS_OK=$(echo "${TESTS}" | grep -e "ACTIVE$" | cut -d$'\t' -f1)
 TESTS_NOK=$(echo "${TESTS}" | grep -e "KNOWN FAILURE$" -e "MISSING FEATURE$" | cut -d$'\t' -f1)
 echo ""
@@ -47,7 +47,7 @@ for TEST in ${TESTS_OK}
 do
 	TEST_RESULT="PASS"
 	echo "Running test ${TEST}"
-	"$ES_EXEC_PATH" --resources "${RESOURCES}" --auto-test "${TEST}" --config "${ES_CONFIG_PATH}"
+	"$ES_EXEC_PATH" --resources "${RESOURCES}" --test "${TEST}" --config "${ES_CONFIG_PATH}"
 	if [ $? -ne 0 ]
 	then
 		TEST_RESULT="FAIL"
