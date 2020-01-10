@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlanetPanel.h"
 #include "PlayerInfo.h"
 #include "UI.h"
+
 #include <string>
 
 // Class representing a single step in a test

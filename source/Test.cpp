@@ -10,13 +10,10 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-
-#include "DataNode.h"
-#include "PlayerInfo.h"
 #include "Test.h"
-#include "TestStep.h"
+
+#include "PlayerInfo.h"
 #include "UI.h"
-#include <string>
 
 using namespace std;
 

@@ -10,18 +10,15 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#include "ConditionSet.h"
-#include "DataNode.h"
+#include "TestStep.h"
+
 #include "Files.h"
 #include "GameData.h"
 #include "MainPanel.h"
 #include "Panel.h"
-#include "PlanetPanel.h"
-#include "PlayerInfo.h"
 #include "Ship.h"
 #include "TestData.h"
-#include "TestStep.h"
-#include "UI.h"
+
 #include <string>
 
 using namespace std;

@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Test.h"
 #include "TestStep.h"
 #include "UI.h"
+
 #include <string>
 
 // Class representing the controller for automatic testing.
