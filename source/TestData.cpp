@@ -62,7 +62,7 @@ bool TestData::Inject() const
 	// Open the source-file and scan until we find the test-data
 	// Then scan for the contents keyword
 	// Then write out the complete contents to the target file
-	DataFile sourceData(sourceDataFile);
+	DataFile sourceData{sourceDataFile};
 	for(const DataNode &rootNode : sourceData)
 		// Check if we have found our dataset
 		if(rootNode.Size() > 1 && rootNode.Token(0) == "test-data" && rootNode.Token(1) == dataSetName)
