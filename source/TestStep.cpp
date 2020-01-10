@@ -101,33 +101,31 @@ PlanetPanel * TestStep::GetPlanetPanelIfAvailable(UI &gamePanels)
 
 void TestStep::Load(const DataNode &node)
 {
-	if (node.Token(0) == "load" && node.Size() > 1)
-	{
-		stepType = LOAD_GAME;
-		filePathOrName = node.Token(1);
-	}
-	else if (node.Token(0) == "assert")
+	if(node.Token(0) == "assert")
 	{
 		stepType = ASSERT;
 		checkedCondition.Load(node);
 	}
-	else if (node.Size() > 1 && node.Token(0) == "wait" && node.Token(1) == "for")
-	{
-		stepType = WAITFOR;
-		checkedCondition.Load(node);
-	}
-	else if (node.Token(0) == "land")
-	{
+	else if(node.Token(0) == "land")
 		stepType = LAND;
-	}
-	else if (node.Token(0) == "launch")
-	{
+	else if(node.Token(0) == "launch")
 		stepType = LAUNCH;
+	else if(node.Size() < 2)
+		node.PrintTrace("Skipping unrecognized or incomplete test-step: " + node.Token(0));
+	else if(node.Token(0) == "load")
+	{
+		stepType = LOAD_GAME;
+		filePathOrName = node.Token(1);
 	}
-	else if (node.Size() > 1 && node.Token(0) == "inject")
+	else if (node.Token(0) == "inject")
 	{
 		stepType = INJECT;
 		filePathOrName = node.Token(1);
+	}
+	else if(node.Token(0) == "wait" && node.Token(1) == "for")
+	{
+		stepType = WAITFOR;
+		checkedCondition.Load(node);
 	}
 	else
 		node.PrintTrace("Skipping unrecognized test-step: " + node.Token(0));
