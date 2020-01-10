@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
 	if(argc > 1)
 		InitConsole();
 #endif
-	TestRunner* testRunner = NULL;
+	TestRunner* testRunner = nullptr;
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;

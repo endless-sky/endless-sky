@@ -179,7 +179,7 @@ int TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo 
 			if (PlayerIsFlyingAround(menuPanels, gamePanels, player))
 			{
 				Ship * playerFlagShip = player.Flagship();
-				if (playerFlagShip == nullptr)
+				if (!playerFlagShip)
 					return RESULT_FAIL;
 				if (stepAction == 0)
 				{
