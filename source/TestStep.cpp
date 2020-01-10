@@ -104,7 +104,7 @@ PlanetPanel * TestStep::GetPlanetPanelIfAvailable(UI &gamePanels)
 
 void TestStep::Load(const DataNode &node)
 {
-	if (node.Token(0) == "load" and node.Size() > 1)
+	if (node.Token(0) == "load" && node.Size() > 1)
 	{
 		stepType = LOAD_GAME;
 		filePathOrName = node.Token(1);
@@ -114,7 +114,7 @@ void TestStep::Load(const DataNode &node)
 		stepType = ASSERT;
 		checkedCondition.Load(node);
 	}
-	else if (node.Size() > 1 and node.Token(0) == "wait" and node.Token(1) == "for")
+	else if (node.Size() > 1 && node.Token(0) == "wait" && node.Token(1) == "for")
 	{
 		stepType = WAITFOR;
 		checkedCondition.Load(node);
@@ -127,7 +127,7 @@ void TestStep::Load(const DataNode &node)
 	{
 		stepType = LAUNCH;
 	}
-	else if (node.Size() > 1 and node.Token(0) == "inject")
+	else if (node.Size() > 1 && node.Token(0) == "inject")
 	{
 		stepType = INJECT;
 		filePathOrName = node.Token(1);
