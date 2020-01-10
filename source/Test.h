@@ -24,9 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Test {
 public:
 	// Status indicators for the test that we selected (if any).
-	static const int STATUS_ACTIVE = 0;
-	static const int STATUS_KNOWN_FAILURE = 1;
-	static const int STATUS_MISSING_FEATURE = 2;
+	enum TestStatus {STATUS_ACTIVE, STATUS_KNOWN_FAILURE, STATUS_MISSING_FEATURE};
 	
 	const std::string &Name() const;
 	std::string StatusText() const;
@@ -38,7 +36,7 @@ public:
 private:
 	std::vector<TestStep> testSteps;
 	std::string name = "";
-	int status = STATUS_ACTIVE;
+	TestStatus status = STATUS_ACTIVE;
 };
 
 #endif

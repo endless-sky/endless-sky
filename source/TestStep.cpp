@@ -50,13 +50,6 @@ TestStep::TestStep(const DataNode &node)
 
 
 
-int TestStep::StepType()
-{
-	return stepType;
-}
-
-
-
 const string TestStep::FilePathOrName()
 {
 	return filePathOrName;

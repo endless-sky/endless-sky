@@ -26,27 +26,18 @@ class TestStep {
 public:
 	// TODO: rename to LOAD_GAME_INLINE (and allow other loaders later?)
 	// Switch to game loading from inline in the test (from a child datanode)
-	static const int LOAD_GAME = 1;
-	static const int ASSERT = 2;
-	static const int WAITFOR = 3;
-	static const int LAUNCH = 4;
-	static const int LAND = 5;
-	static const int INJECT = 6;
+	enum StepType {INVALID, LOAD_GAME, ASSERT, WAITFOR, LAUNCH, LAND, INJECT};
 
 	// Result-Done:  Teststep succesfull. Remove step and proceed with next.
 	// Result-Fail:  Teststep failed. Fail test. Exit program with non-zero exitcode
 	// Result-Retry: Teststep incomplete (waiting for a condition). Retry teststep in next update.
 	// Result-NextAction: Action in teststep succesfull. Retry, but with action counter one higher.
-	static const int RESULT_DONE = 0;
-	static const int RESULT_FAIL = 1;
-	static const int RESULT_RETRY = 2;
-	static const int RESULT_NEXTACTION = 3;
+	enum TestResult {RESULT_DONE, RESULT_FAIL, RESULT_RETRY, RESULT_NEXTACTION};
 
 	TestStep(const DataNode &node);
 
 	void Load(const DataNode &node);
 	const std::string FilePathOrName();
-	int StepType();
 	int DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player);
 
 	
@@ -58,7 +49,7 @@ private:
 	PlanetPanel *GetPlanetPanelIfAvailable(UI &gamePanels);
 
 	// The type of this step
-	int stepType;
+	StepType stepType = INVALID;
 	// Checked condition, for teststeps of types ASSERT and WAITFOR
 	ConditionSet checkedCondition;
 	// Savegame pilot and name to load or save to. For teststep of type LOAD_GAME (and SAVE_GAME)
