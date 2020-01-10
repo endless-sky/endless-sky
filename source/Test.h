@@ -15,9 +15,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Test.h"
 
+#include "ConditionSet.h"
 #include "DataNode.h"
+#include "PlanetPanel.h"
 #include "PlayerInfo.h"
-#include "TestStep.h"
 #include "UI.h"
 
 #include <string>
@@ -31,6 +32,34 @@ public:
 	enum TestStatus {STATUS_ACTIVE, STATUS_KNOWN_FAILURE, STATUS_MISSING_FEATURE};
 	
 public:
+	// Class representing a single step in a test
+	class TestStep {
+	public:
+		// TODO: rename to LOAD_GAME_INLINE (and allow other loaders later?)
+		// Switch to game loading from inline in the test (from a child datanode)
+		enum StepType {INVALID, LOAD_GAME, ASSERT, WAITFOR, LAUNCH, LAND, INJECT};
+
+		// Result-Done:  Teststep succesfull. Remove step and proceed with next.
+		// Result-Fail:  Teststep failed. Fail test. Exit program with non-zero exitcode
+		// Result-Retry: Teststep incomplete (waiting for a condition). Retry teststep in next update.
+		// Result-NextAction: Action in teststep succesfull. Retry, but with action counter one higher.
+		enum TestResult {RESULT_DONE, RESULT_FAIL, RESULT_RETRY, RESULT_NEXTACTION};
+
+		TestStep(const DataNode &node);
+
+		void Load(const DataNode &node);
+		int DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const;
+		
+	private:
+		// The type of this step
+		StepType stepType = INVALID;
+		// Checked condition, for teststeps of types ASSERT and WAITFOR
+		ConditionSet checkedCondition;
+		// Savegame pilot and name to load or save to. For teststep of type LOAD_GAME (and SAVE_GAME)
+		std::string filePathOrName;
+	};
+	
+	
 	class Context {
 	friend class Test;
 	
@@ -43,7 +72,6 @@ public:
 public:
 	const std::string &Name() const;
 	std::string StatusText() const;
-	const std::vector<TestStep> &TestSteps() const;
 
 	// PlayerInfo, the gamePanels and the MenuPanels together give the state of
 	// the game. We just provide them as parameter here, because they are not
@@ -55,7 +83,7 @@ public:
 	
 	
 private:
-	std::vector<TestStep> testSteps;
+	std::vector<Test::TestStep> testSteps;
 	std::string name = "";
 	TestStatus status = STATUS_ACTIVE;
 };
