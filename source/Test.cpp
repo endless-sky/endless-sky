@@ -42,15 +42,15 @@ void Test::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "status" && child.Size() >= 2)
 		{
-			if (child.Token(1) == "Active")
+			if(child.Token(1) == "Active")
 				status = STATUS_ACTIVE;
-			else if (child.Token(1) == "Known Failure")
+			else if(child.Token(1) == "Known Failure")
 				status = STATUS_KNOWN_FAILURE;
-			else if (child.Token(1) == "Missing Feature")
+			else if(child.Token(1) == "Missing Feature")
 				status = STATUS_MISSING_FEATURE;
 		}
-		else if (child.Token(0) == "sequence")
-			for (const DataNode &seqChild : child)
+		else if(child.Token(0) == "sequence")
+			for(const DataNode &seqChild : child)
 			{
 				testSteps.emplace_back(TestStep(seqChild));
 			}

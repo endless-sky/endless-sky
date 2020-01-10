@@ -36,7 +36,7 @@ void TestData::Load(const DataNode &node, const string sourceDataFilePath)
 		node.PrintTrace("No name specified for test-data dataset");
 		return;
 	}
-	if (node.Token(0) != "test-data")
+	if(node.Token(0) != "test-data")
 	{
 		node.PrintTrace("Non-test found in test-data dataset parsing");
 		return;
@@ -46,7 +46,7 @@ void TestData::Load(const DataNode &node, const string sourceDataFilePath)
 	for(const DataNode &child : node)
 		// Only need to parse the category for now. The contents will be
 		// scanned for at write-out of the test-data.
-		if (child.Size() > 1 && child.Token(0) == "category" && child.Token(1) == "savegame")
+		if(child.Size() > 1 && child.Token(0) == "category" && child.Token(1) == "savegame")
 			dataSetType = TestData::SAVEGAME;
 }
 
@@ -56,7 +56,7 @@ void TestData::Load(const DataNode &node, const string sourceDataFilePath)
 bool TestData::Inject() const
 {
 	// We only know how to inject savegame data for now.
-	if ((dataSetType != TestData::SAVEGAME) || (dataSetName.empty()) || (sourceDataFile.empty()))
+	if((dataSetType != TestData::SAVEGAME) || (dataSetName.empty()) || (sourceDataFile.empty()))
 		return false;
 
 	// Open the source-file and scan until we find the test-data
@@ -65,11 +65,11 @@ bool TestData::Inject() const
 	DataFile sourceData(sourceDataFile);
 	for(const DataNode &rootNode : sourceData)
 		// Check if we have found our dataset
-		if (rootNode.Size() > 1 && rootNode.Token(0) == "test-data" && rootNode.Token(1) == dataSetName)
+		if(rootNode.Size() > 1 && rootNode.Token(0) == "test-data" && rootNode.Token(1) == dataSetName)
 		{
 			// Scan for the contents tag
 			for(const DataNode &dataNode : rootNode)
-				if (dataNode.Size() > 0 && dataNode.Token(0) == "contents")
+				if(dataNode.Size() > 0 && dataNode.Token(0) == "contents")
 				{
 					// Savegame data gets written to the saves directory
 					// in a file with dataSetName as filename and with a .txt

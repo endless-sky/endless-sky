@@ -132,22 +132,22 @@ int TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo 
 		case TestStep::ASSERT:
 		case TestStep::WAITFOR:
 			// If we reached the condition, then done
-			if (checkedCondition.Test(player.Conditions()))
+			if(checkedCondition.Test(player.Conditions()))
 				return RESULT_DONE;
-			if (stepType == TestStep::ASSERT)
+			if(stepType == TestStep::ASSERT)
 				return RESULT_FAIL;
 			// In this case, we are waiting for the condition
 			return RESULT_RETRY;
 			break;
 		case TestStep::LAUNCH:
 			// If flying around, then launching the ship succesfully happened
-			if (PlayerIsFlyingAround(menuPanels, gamePanels, player))
+			if(PlayerIsFlyingAround(menuPanels, gamePanels, player))
 				return RESULT_DONE;
 			// Should implement some function to close this menu. But
 			// fail for now if the player/game menu is active.
-			if (PlayerMenuIsActive(menuPanels))
+			if(PlayerMenuIsActive(menuPanels))
 				return RESULT_FAIL;
-			if (PlayerOnPlanetMainScreen(menuPanels, gamePanels, player)){
+			if(PlayerOnPlanetMainScreen(menuPanels, gamePanels, player)){
 				// Launch using the conversation mechanism. Not the most
 				// appropriate way to launch, but works for now.
 				player.BasicCallback(Conversation::LAUNCH);
@@ -160,15 +160,15 @@ int TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo 
 		case TestStep::LAND:
 			// If the player/game menu is active, then we are not in a state
 			// where land makes sense.
-			if (PlayerMenuIsActive(menuPanels))
+			if(PlayerMenuIsActive(menuPanels))
 				return RESULT_FAIL;
 			// If we are still flying around, then we are not on a planet.
-			if (PlayerIsFlyingAround(menuPanels, gamePanels, player))
+			if(PlayerIsFlyingAround(menuPanels, gamePanels, player))
 			{
 				Ship * playerFlagShip = player.Flagship();
-				if (!playerFlagShip)
+				if(!playerFlagShip)
 					return RESULT_FAIL;
-				if (stepAction == 0)
+				if(stepAction == 0)
 				{
 					// Send the land command here
 					// Player commands are handled in Engine.cpp (at the moment this code was updated)
@@ -181,52 +181,52 @@ int TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo 
 				}
 				return RESULT_NEXTACTION;
 			}
-			if (PlayerOnPlanetMainScreen(menuPanels, gamePanels, player))
+			if(PlayerOnPlanetMainScreen(menuPanels, gamePanels, player))
 				return RESULT_DONE;
 
 			// Unknown state/screen. Landing fails.
 			return RESULT_FAIL;
 			break;
 		case TestStep::LOAD_GAME:
-			if (stepAction == 0){
+			if(stepAction == 0){
 				// Check if the savegame actually exists
-				if (! Files::Exists(Files::Saves() + FilePathOrName()))
+				if(! Files::Exists(Files::Saves() + FilePathOrName()))
 					return RESULT_FAIL;
 				// Perform the load and verify that player is loaded.
 				player.Load(Files::Saves() + FilePathOrName());
-				if (!player.IsLoaded())
+				if(!player.IsLoaded())
 					return RESULT_FAIL;
 				// Actual load succeeded. Allow game to adopt to new
 				// situation and then continue with enter/pilot step.
 				return RESULT_NEXTACTION;
 			}
-			else if (stepAction == 1)
+			else if(stepAction == 1)
 			{
 				// Clear the menu entries and go to main game screen
 				// TODO: We should send keystrokes / commands that perform the player actions instead of modifying game structures directly.
-				if (! menuPanels.IsEmpty())
+				if(! menuPanels.IsEmpty())
 					menuPanels.Pop(menuPanels.Top().get());
 				// Transfer control to game before final check to allow
 				// closing of menuPanel.
 				return RESULT_NEXTACTION;
 			}
-			else if (stepAction == 2)
+			else if(stepAction == 2)
 			{
-				if (! menuPanels.IsEmpty())
+				if(! menuPanels.IsEmpty())
 					return RESULT_FAIL;
 				// TODO: this should be called/loaded from LoadPanel
 				gamePanels.Reset();
 				return RESULT_NEXTACTION;
 			}
-			else if (stepAction == 3)
+			else if(stepAction == 3)
 			{
 				// TODO: this should be called/loaded from LoadPanel
 				gamePanels.Push(new MainPanel(player));
 				return RESULT_NEXTACTION;
 			}
-			else if (stepAction == 4)
+			else if(stepAction == 4)
 			{
-				if (gamePanels.IsEmpty())
+				if(gamePanels.IsEmpty())
 					return RESULT_FAIL;
 				return RESULT_DONE;
 			}
@@ -238,7 +238,7 @@ int TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo 
 			{
 				// Lookup the data and inject it in the game or the games environment
 				const TestData* testData = (GameData::TestDataSets()).Get(filePathOrName);
-				if (testData->Inject())
+				if(testData->Inject())
 					return RESULT_DONE;
 				return RESULT_FAIL;
 			}
