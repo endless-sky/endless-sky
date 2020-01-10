@@ -403,4 +403,4 @@ government "Wormhole Alpha"
 	color .4 .4 .4
 	"attitude toward"
 		"Hai" -.3
-		"Hai (Unfettered" -.3
+		"Hai (Unfettered)" -.3
