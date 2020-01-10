@@ -95,7 +95,7 @@ void Files::Init(const char * const *argv)
 			resources = *it;
 		else if((arg == "-c" || arg == "--config") && *++it)
 			config = *it;
-		
+			
 	}
 	
 	if(resources.empty())
