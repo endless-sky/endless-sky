@@ -43,6 +43,13 @@ namespace {
 
 
 
+TestStep::TestStep(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 int TestStep::StepType()
 {
 	return stepType;

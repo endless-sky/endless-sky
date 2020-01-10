@@ -53,9 +53,9 @@ void TestRunner::Step(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
 		return;
 	}
 
-	TestStep* testStep = testSteps[stepToRun];
+	TestStep &testStep = testSteps[stepToRun];
 
-	int testResult = testStep->DoStep(stepAction, menuPanels, gamePanels, player);
+	int testResult = testStep.DoStep(stepAction, menuPanels, gamePanels, player);
 	switch (testResult)
 	{
 		case TestStep::RESULT_DONE:

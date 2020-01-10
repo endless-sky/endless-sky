@@ -42,6 +42,8 @@ public:
 	static const int RESULT_RETRY = 2;
 	static const int RESULT_NEXTACTION = 3;
 
+	TestStep(const DataNode &node);
+
 	void Load(const DataNode &node);
 	const std::string FilePathOrName();
 	int StepType();

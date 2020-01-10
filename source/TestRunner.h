@@ -36,8 +36,8 @@ public:
 	
 private:
 	const Test* testToRun;
-	std::vector<TestStep *> testSteps;
-	std::vector<TestStep*>::size_type stepToRun = 0;
+	std::vector<TestStep> testSteps;
+	std::vector<TestStep>::size_type stepToRun = 0;
 	int stepAction = 0;
 };
 

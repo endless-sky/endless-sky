@@ -26,9 +26,12 @@ void Test::Load(const DataNode &node)
 		node.PrintTrace("No name specified for test");
 		return;
 	}
-	if (node.Token(0) != "test")
+	// If a test object is "loaded" twice, that is most likely an error (e.g.
+	// due to a plugin containing a test with the same name as the base game
+	// or another plugin). Tests should be globally unique.
+	if(!name.empty())
 	{
-		node.PrintTrace("Non-test found in test parsing");
+		node.PrintTrace("Duplicate definition of test");
 		return;
 	}
 	name = node.Token(1);
@@ -47,8 +50,7 @@ void Test::Load(const DataNode &node)
 		else if (child.Token(0) == "sequence")
 			for (const DataNode &seqChild : child)
 			{
-				testSteps.push_back(new TestStep());
-				(testSteps.back())->Load(seqChild);
+				testSteps.emplace_back(TestStep(seqChild));
 			}
 	}
 }
@@ -78,7 +80,7 @@ string Test::StatusText() const
 
 
 
-const vector<TestStep *> &Test::TestSteps() const
+const vector<TestStep> &Test::TestSteps() const
 {
 	return testSteps;
 }

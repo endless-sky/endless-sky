@@ -30,13 +30,13 @@ public:
 	
 	const std::string &Name() const;
 	std::string StatusText() const;
-	const std::vector<TestStep *> &TestSteps() const;
+	const std::vector<TestStep> &TestSteps() const;
 
 	void Load(const DataNode &node);
 	
 	
 private:
-	std::vector<TestStep *> testSteps;
+	std::vector<TestStep> testSteps;
 	std::string name = "";
 	int status = STATUS_ACTIVE;
 };
