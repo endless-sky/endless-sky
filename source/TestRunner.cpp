@@ -32,7 +32,7 @@ TestRunner::TestRunner(const Test *testToRun): testToRun(testToRun)
 string TestRunner::ConditionsText(PlayerInfo &player)
 {
 	string conditions = "";
-	for (auto condition : player.Conditions())
+	for (const auto condition : player.Conditions())
 		conditions += "\n" + condition.first + "=" + to_string(condition.second);
 	return conditions;
 }
