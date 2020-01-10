@@ -39,6 +39,40 @@ namespace {
 		mainPanel->GiveCommand(command);
 		return true;
 	}
+	
+	bool PlayerIsFlyingAround(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
+	{
+		// Code borrowed from main.cpp
+		bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
+		return inFlight;
+	}
+
+	bool PlayerMenuIsActive(UI &menuPanels)
+	{
+		return !menuPanels.IsEmpty();
+	}
+
+	PlanetPanel* GetPlanetPanelIfAvailable(UI &gamePanels)
+	{
+		if(gamePanels.IsEmpty()){
+			return nullptr;
+		}
+		Panel *topPanel = gamePanels.Top().get();
+		// If we can cast the topPanel from the gamePanels to planetpanel,
+		// then we have landed and are on a planet.
+		return dynamic_cast<PlanetPanel*>(topPanel);
+	}
+
+	bool PlayerOnPlanetMainScreen(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
+	{
+		if(!menuPanels.IsEmpty())
+			return false;
+		if(gamePanels.Root() == gamePanels.Top())
+			return false;
+
+		PlanetPanel *topPlanetPanel = GetPlanetPanelIfAvailable(gamePanels);
+		return topPlanetPanel != nullptr;
+	}
 }
 
 
@@ -50,51 +84,9 @@ TestStep::TestStep(const DataNode &node)
 
 
 
-const string TestStep::FilePathOrName()
+const string TestStep::FilePathOrName() const
 {
 	return filePathOrName;
-}
-
-
-
-bool TestStep::PlayerIsFlyingAround(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
-{
-	// Code borrowed from main.cpp
-	bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
-	return inFlight;
-}
-
-
-
-bool TestStep::PlayerMenuIsActive(UI &menuPanels)
-{
-	return !menuPanels.IsEmpty();
-}
-
-
-
-bool TestStep::PlayerOnPlanetMainScreen(UI &menuPanels, UI &gamePanels, PlayerInfo &player)
-{
-	if (! menuPanels.IsEmpty())
-		return false;
-	if (gamePanels.Root() == gamePanels.Top())
-		return false;
-
-	PlanetPanel *topPlanetPanel = GetPlanetPanelIfAvailable(gamePanels);
-	return topPlanetPanel != nullptr;
-}
-
-
-
-PlanetPanel * TestStep::GetPlanetPanelIfAvailable(UI &gamePanels)
-{
-	if (gamePanels.IsEmpty()){
-		return nullptr;
-	}
-	Panel *topPanel = gamePanels.Top().get();
-	// If we can cast the topPanel from the gamePanels to planetpanel,
-	// then we have landed and are on a planet.
-	return dynamic_cast<PlanetPanel*>(topPanel);
 }
 
 
@@ -117,7 +109,7 @@ void TestStep::Load(const DataNode &node)
 		stepType = LOAD_GAME;
 		filePathOrName = node.Token(1);
 	}
-	else if (node.Token(0) == "inject")
+	else if(node.Token(0) == "inject")
 	{
 		stepType = INJECT;
 		filePathOrName = node.Token(1);
@@ -133,7 +125,7 @@ void TestStep::Load(const DataNode &node)
 
 
 
-int TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player)
+int TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const
 {
 	switch (stepType)
 	{

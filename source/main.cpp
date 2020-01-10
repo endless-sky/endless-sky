@@ -32,7 +32,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "Test.h"
-#include "TestRunner.h"
 #include "UI.h"
 
 #include "gl_header.h"
@@ -70,7 +69,7 @@ int main(int argc, char *argv[])
 	if(argc > 1)
 		InitConsole();
 #endif
-	TestRunner* testRunner = nullptr;
+	Test::Context testContext;
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
@@ -105,18 +104,14 @@ int main(int argc, char *argv[])
 		if(!GameData::BeginLoad(argv))
 			return 0;
 		
-		if (! testToRun.empty())
+		if(!testToRun.empty() && !GameData::Tests().Has(testToRun))
 		{
-			testRunner = new TestRunner((GameData::Tests()).Get(testToRun));
-			if (!testRunner)
-			{
-				cout << "Test not found." << endl;
-				return 1;
-			}
+			cout << "Test not found." << endl;
+			return 1;
 		}
 		
 		// Load player data, including reference-checking.
-		if (!testRunner)
+		if(testToRun.empty())
 			player.LoadRecent();
 		else
 			player.New();
@@ -341,8 +336,8 @@ int main(int argc, char *argv[])
 			}
 
 			// All manual events done. Handle any test inputs/events if we have any.
-			if (testRunner)
-				testRunner->Step(menuPanels, gamePanels, player);
+			if(!testToRun.empty())
+				(GameData::Tests().Get(testToRun))->Step(testContext, menuPanels, gamePanels, player);
 
 			SDL_Keymod mod = SDL_GetModState();
 			Font::ShowUnderlines(mod & KMOD_ALT);
@@ -410,8 +405,7 @@ int main(int argc, char *argv[])
 		// The Preferences class reads the screen dimensions, so update them to
 		// match the actual window size.
 		Screen::SetRaw(windowWidth, windowHeight);
-		if (!testRunner)
-			Preferences::Save();
+		Preferences::Save();
 		
 		Cleanup(window, context);
 	}

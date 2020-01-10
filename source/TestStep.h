@@ -37,17 +37,11 @@ public:
 	TestStep(const DataNode &node);
 
 	void Load(const DataNode &node);
-	const std::string FilePathOrName();
-	int DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player);
+	const std::string FilePathOrName() const;
+	int DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const;
 
 	
 private:
-	// Functions to test for a game state
-	bool PlayerOnPlanetMainScreen(UI &menuPanels, UI &gamePanels, PlayerInfo &player);
-	bool PlayerIsFlyingAround(UI &menuPanels, UI &gamePanels, PlayerInfo &player);
-	bool PlayerMenuIsActive(UI &menuPanels);
-	PlanetPanel *GetPlanetPanelIfAvailable(UI &gamePanels);
-
 	// The type of this step
 	StepType stepType = INVALID;
 	// Checked condition, for teststeps of types ASSERT and WAITFOR

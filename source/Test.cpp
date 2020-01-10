@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "UI.h"
 
+#include <stdexcept>
+
 using namespace std;
 
 
@@ -60,6 +62,53 @@ void Test::Load(const DataNode &node)
 const string &Test::Name() const
 {
 	return name;
+}
+
+
+
+// The panel-stacks determine both what the player sees and the state of the
+// game.
+// If the menuPanels stack is not empty, then we are in a menu for something
+// like preferences, creating a new pilot or loading or saving a game.
+// The menuPanels stack takes precedence over the gamePanels stack.
+// If the gamePanels stack contains more than one panel, then we are either
+// on a planet (if the PlanetPanel is in the stack) or we are busy with
+// something like a mission-dialog, hailing or boarding.
+// If the gamePanels stack contains only a single panel, then we are flying
+// around in our flagship.
+void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const
+{
+	if(context.stepToRun >= testSteps.size())
+	{
+		//Done, no failures, exit the game with exitcode success.
+		menuPanels.Quit();
+		return;
+	}
+
+	const TestStep &testStep = testSteps[context.stepToRun];
+
+	int testResult = testStep.DoStep(context.stepAction, menuPanels, gamePanels, player);
+	switch(testResult)
+	{
+		case TestStep::RESULT_DONE:
+			// Test-step is done. Start with the first action of the next
+			// step next time this function gets called.
+			++context.stepToRun;
+			context.stepAction = 0;
+			break;
+		case TestStep::RESULT_NEXTACTION:
+			++context.stepAction;
+			break;
+		case TestStep::RESULT_RETRY:
+			break;
+		case TestStep::RESULT_FAIL:
+		default:
+			// Exit with error on a failing testStep.
+			// Throwing a runtime_error is kinda rude, but works for this version of
+			// the tester. Might want to add a menuPanels.QuitError() function in
+			// a later version (which can set a non-zero exitcode and exit properly).
+			throw runtime_error("Teststep " + to_string(context.stepToRun) + " action " + to_string(context.stepAction) + " failed");
+	}
 }
 
 

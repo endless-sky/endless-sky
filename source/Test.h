@@ -13,8 +13,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef TEST_H_
 #define TEST_H_
 
+#include "Test.h"
+
 #include "DataNode.h"
+#include "PlayerInfo.h"
 #include "TestStep.h"
+#include "UI.h"
 
 #include <string>
 
@@ -26,9 +30,26 @@ public:
 	// Status indicators for the test that we selected (if any).
 	enum TestStatus {STATUS_ACTIVE, STATUS_KNOWN_FAILURE, STATUS_MISSING_FEATURE};
 	
+public:
+	class Context {
+	friend class Test;
+	
+	protected:
+		std::vector<TestStep>::size_type stepToRun = 0;
+		int stepAction = 0;
+	};
+	
+	
+public:
 	const std::string &Name() const;
 	std::string StatusText() const;
 	const std::vector<TestStep> &TestSteps() const;
+
+	// PlayerInfo, the gamePanels and the MenuPanels together give the state of
+	// the game. We just provide them as parameter here, because they are not
+	// available when the test got created (and they can change due to loading
+	// and saving of games).
+	void Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const;
 
 	void Load(const DataNode &node);
 	
