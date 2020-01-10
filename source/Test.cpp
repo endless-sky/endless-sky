@@ -58,7 +58,7 @@ void Test::Load(const DataNode &node)
 
 
 
-string Test::Name() const
+const string &Test::Name() const
 {
 	return name;
 }
@@ -81,7 +81,7 @@ string Test::StatusText() const
 
 
 
-vector<TestStep *> Test::TestSteps() const
+const vector<TestStep *> &Test::TestSteps() const
 {
 	return testSteps;
 }

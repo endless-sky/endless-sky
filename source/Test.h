@@ -27,9 +27,9 @@ public:
 	static const int STATUS_KNOWN_FAILURE = 1;
 	static const int STATUS_MISSING_FEATURE = 2;
 	
-	std::string Name() const;
+	const std::string &Name() const;
 	std::string StatusText() const;
-	std::vector<TestStep *> TestSteps() const;
+	const std::vector<TestStep *> &TestSteps() const;
 
 	void Load(const DataNode &node);
 	
