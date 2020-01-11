@@ -66,7 +66,7 @@ galaxy "label waste"
 	pos 80 315
 
 galaxy "label graveyard"
-	pos 185 640
+	pos 45 590
 
 system "1 Axis"
 	pos -1274.63 267.214
