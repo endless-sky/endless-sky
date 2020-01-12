@@ -243,9 +243,9 @@ int Test::TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, Playe
 			return RESULT_RETRY;
 			break;
 		case TestStep::LAUNCH:
-			// If flying around, then launching the ship succesfully happened
-			if(PlayerIsFlyingAround(menuPanels, gamePanels, player))
-				return RESULT_DONE;
+			// If we have no flagship, then we cannot launch
+			if(!player.Flagship())
+				return RESULT_FAIL;
 			// Should implement some function to close this menu. But
 			// fail for now if the player/game menu is active.
 			if(PlayerMenuIsActive(menuPanels))
@@ -256,6 +256,13 @@ int Test::TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, Playe
 				player.BasicCallback(Conversation::LAUNCH);
 				return RESULT_RETRY;
 			}
+			// Wait for launch sequence to complete (zoom go to one)
+			// We already checked earlier if we have a flagship
+			if(player.Flagship()->Zoom() < 1.)
+				return RESULT_RETRY;
+			// If flying around, then launching the ship succesfully happened
+			if(PlayerIsFlyingAround(menuPanels, gamePanels, player))
+				return RESULT_DONE;
 			// No idea where we are and what we are doing. But we are not
 			// in a position to launch, so fail this teststep.
 			return RESULT_FAIL;
