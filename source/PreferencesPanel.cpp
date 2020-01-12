@@ -327,6 +327,7 @@ void PreferencesPanel::DrawControls()
 		Command::MAP,
 		Command::INFO,
 		Command::FULLSCREEN,
+		Command::FASTFORWARD,
 		Command::NONE,
 		Command::DEPLOY,
 		Command::FIGHT,
