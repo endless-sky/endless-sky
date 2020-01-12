@@ -3408,7 +3408,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
 	}
 	
-	if(autoPilot.Has(Command::JUMP) && !player.HasTravelPlan())
+	if(autoPilot.Has(Command::JUMP) && !(player.HasTravelPlan() || ship.GetTargetSystem()))
 	{
 		// The player completed their travel plan, which may have indicated a destination within the final system.
 		autoPilot.Clear(Command::JUMP);
