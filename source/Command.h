@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef COMMAND_H_
 #define COMMAND_H_
 
+#include "DataNode.h"
+
 #include <cstdint>
 #include <string>
 
@@ -86,6 +88,9 @@ public:
 	const std::string &Description() const;
 	const std::string &KeyName() const;
 	bool HasConflict() const;
+	
+	// Load this command from an input file (for testing or scripted missions)
+	void Load(const DataNode &node);
 	
 	// Reset this to an empty command.
 	void Clear();

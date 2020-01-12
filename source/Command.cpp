@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 
 #include "DataFile.h"
-#include "DataNode.h"
 #include "DataWriter.h"
 #include "Format.h"
 
@@ -211,6 +210,71 @@ bool Command::HasConflict() const
 	
 	auto cit = keycodeCount.find(it->second);
 	return (cit != keycodeCount.end() && cit->second > 1);
+}
+
+
+
+// Load this command from an input file (for testing or scripted missions)
+void Command::Load(const DataNode &node)
+{
+	int i = 1;
+	while(node.Size() > i)
+	{
+		const string &input = node.Token(i);
+		
+		if(input == "menu")
+			Set(Command::MENU);
+		else if(input == "forward")
+			Set(Command::FORWARD);
+		else if(input == "left")
+			Set(Command::LEFT);
+		else if(input == "right")
+			Set(Command::RIGHT);
+		else if(input == "back")
+			Set(Command::BACK);
+		else if(input == "primary")
+			Set(Command::PRIMARY);
+		else if(input == "secondary")
+			Set(Command::SECONDARY);
+		else if(input == "select")
+			Set(Command::SELECT);
+		else if(input == "land")
+			Set(Command::LAND);
+		else if(input == "board")
+			Set(Command::BOARD);
+		else if(input == "hail")
+			Set(Command::HAIL);
+		else if(input == "scan")
+			Set(Command::SCAN);
+		else if(input == "jump")
+			Set(Command::JUMP);
+		else if(input == "target")
+			Set(Command::TARGET);
+		else if(input == "nearest")
+			Set(Command::NEAREST);
+		else if(input == "deploy")
+			Set(Command::DEPLOY);
+		else if(input == "afterburner")
+			Set(Command::AFTERBURNER);
+		else if(input == "cloak")
+			Set(Command::CLOAK);
+		else if(input == "map")
+			Set(Command::MAP);
+		else if(input == "info")
+			Set(Command::INFO);
+		else if(input == "fight")
+			Set(Command::FIGHT);
+		else if(input == "gather")
+			Set(Command::GATHER);
+		else if(input == "hold")
+			Set(Command::HOLD);
+		else if(input == "ammo")
+			Set(Command::AMMO);
+		else
+			node.PrintTrace("Skipping unrecognized command:");
+
+		++i;
+	}
 }
 
 
