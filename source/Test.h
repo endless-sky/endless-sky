@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Test.h"
 
+#include "Command.h"
 #include "ConditionSet.h"
 #include "DataNode.h"
 #include "PlanetPanel.h"
@@ -37,7 +38,7 @@ public:
 	public:
 		// TODO: rename to LOAD_GAME_INLINE (and allow other loaders later?)
 		// Switch to game loading from inline in the test (from a child datanode)
-		enum StepType {INVALID, LOAD_GAME, ASSERT, WAITFOR, LAUNCH, LAND, INJECT};
+		enum StepType {INVALID, LOAD_GAME, ASSERT, WAITFOR, LAUNCH, LAND, INJECT, COMMAND};
 
 		// Result-Done:  Teststep succesfull. Remove step and proceed with next.
 		// Result-Fail:  Teststep failed. Fail test. Exit program with non-zero exitcode
@@ -56,7 +57,9 @@ public:
 		// Checked condition, for teststeps of types ASSERT and WAITFOR
 		ConditionSet checkedCondition;
 		// Savegame pilot and name to load or save to. For teststep of type LOAD_GAME (and SAVE_GAME)
-		std::string filePathOrName;
+		std::string filePathOrName = "";
+		// Command to send if this test-step sends a command
+		Command command {};
 	};
 	
 	

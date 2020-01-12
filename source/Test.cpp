@@ -222,6 +222,11 @@ void Test::TestStep::Load(const DataNode &node)
 		stepType = WAITFOR;
 		checkedCondition.Load(node);
 	}
+	else if(node.Token(0) == "command")
+	{
+		stepType = COMMAND;
+		command.Load(node);
+	}
 	else
 		node.PrintTrace("Skipping unrecognized test-step: " + node.Token(0));
 }
@@ -352,6 +357,10 @@ int Test::TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, Playe
 				return RESULT_FAIL;
 			}
 			break;
+		case TestStep::COMMAND:
+			if(!SendFlightCommand(command, gamePanels))
+				return RESULT_FAIL;
+			return RESULT_DONE;
 		default:
 			// ERROR, unknown test-step-type
 			// TODO: report error and exit with non-zero return-code
