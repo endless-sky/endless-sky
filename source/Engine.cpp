@@ -1592,7 +1592,7 @@ void Engine::HandleKeyboardInputs()
 	if(!flagship || flagship->IsDestroyed())
 		return;
 	
-	// Determine which new keys we press
+	// Determine which new keys were pressed by the player.
 	Command oldHeld = keyHeld;
 	keyHeld.ReadKeyboard();
 	Command keyDown = keyHeld.AndNot(oldHeld);
@@ -1601,18 +1601,18 @@ void Engine::HandleKeyboardInputs()
 	if(oldHeld.Has(Command::LAND))
 		landKeyInterval = 0;
 	
-	// Wait with actual jumping until the jump command is released
-	// Or if pressing land quicky in succession, then use WAIT to switch landing targets
+	// Wait with actual jumping until the jump command is released.
+	// Or if pressing land quicky in succession, then use WAIT to switch landing targets.
 	if(keyHeld.Has(Command::JUMP) || (keyHeld.Has(Command::LAND) && landKeyInterval < 60))
 		activeCommands.Set(Command::WAIT);
 	else
 		activeCommands.Clear(Command::WAIT);
 	
-	// Transfer all commands that need to be active as long as the corresponding key is pressed
+	// Transfer all commands that need to be active as long as the corresponding key is pressed.
 	activeCommands |= (keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
 		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::BACK | Command::AFTERBURNER));
 	
-	// Transfer all newly pressed unhandled keys to active commands
+	// Transfer all newly pressed unhandled keys to active commands.
 	activeCommands |= keyDown;
 }
 
