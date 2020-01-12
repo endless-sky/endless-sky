@@ -314,7 +314,7 @@ int main(int argc, char *argv[])
 					else
 						SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
 				}
-				else if(event.type == SDL_KEYDOWN
+				else if(event.type == SDL_KEYDOWN && !event.key.repeat
 					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
 				{
 					isFastForward = !isFastForward;
