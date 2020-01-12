@@ -3432,7 +3432,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	if(autoPilot.Has(Command::LAND) || (autoPilot.Has(Command::JUMP) && isWormhole))
 	{
 		if(ship.GetPlanet())
-			activeCommands.Clear(Command::LAND | Command::JUMP);
+			autoPilot.Clear(Command::LAND | Command::JUMP);
 		else
 		{
 			MoveToPlanet(ship, command);
