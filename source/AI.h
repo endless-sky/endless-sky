@@ -188,7 +188,6 @@ private:
 	
 	bool isLaunching = false;
 	bool isCloaking = false;
-	bool isRequestingJump = false;
 	// Whether the `Shift` modifier key was pressed for this step.
 	bool shift = false;
 	
