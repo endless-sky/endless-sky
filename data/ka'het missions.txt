@@ -97,11 +97,15 @@ mission "First Contact: Ka'het: Quarg 1"
 	landing
 	source "Querii Ka"
 	destination "Lagrange"
-	to offer
-		has "First Contact: Quarg: offered"
 	on offer
 		log "Discovered an uninhabited, complete Quarg ring in the middle of the Graveyard. It seems weird that they would abandon a ringworld, given how important they are to them."
 		conversation
+			branch met
+				has "First Contact: Quarg: offered"
+			`This massive creation must be a complete Quarg ringworld, similar to the one you heard they are building near Tarazed, but it seems strange they would put one in such a hostile part of space.`
+			`	Even weirder, it seems to be completely uninhabited, with every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to ask the Quarg what happened here...`
+				accept
+			label met
 			`Due to your past experience, you expect crowds of the tall and inexpressive Quarg walking near the landing pads of this ringworld; instead, the whole station seems uninhabited.`
 			`	Apart from the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to ask the Quarg what happened here...`
 				accept
