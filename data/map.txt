@@ -26332,7 +26332,6 @@ planet Relic
 planet "Remnant Wormhole"
 	attributes "requires: quantum keystone"
 	description ""
-	spaceport ""
 
 planet "Remote Blue"
 	attributes kimek urban
