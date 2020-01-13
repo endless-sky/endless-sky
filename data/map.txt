@@ -7439,21 +7439,26 @@ system Delia
 	trade Medical 698
 	trade Metal 397
 	trade Plastic 490
-	fleet "Ka'het" 2800
+	fleet "Ka'het" 3400
 	fleet "Ka'het Aggressive" 10300
 	object
 		sprite star/k0
 		period 10
 	object
-		sprite planet/myranda-b
+		sprite planet/dyson1
 		distance 160.21
 		period 36.7682
 		offset 217.144
 	object
-		sprite planet/venus-b
-		distance 363.65
-		period 125.737
-		offset 214.842
+		sprite planet/dyson2
+		distance 160.21
+		period 36.7682
+		offset 181.163
+	object
+		sprite planet/dyson3
+		distance 160.21
+		period 36.7682
+		offset 294.239
 	object
 		sprite planet/cloud3
 		distance 589.01
