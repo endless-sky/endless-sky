@@ -97,6 +97,7 @@ mission "First Contact: Ka'het: Quarg 1"
 	landing
 	source "Querii Ka"
 	destination "Lagrange"
+	to offer
 		has "First Contact: Quarg: offered"
 	on offer
 		log "Discovered an uninhabited, complete Quarg ring in the middle of the Graveyard. It seems weird that they would abandon a ringworld, given how important they are to them."
