@@ -24761,6 +24761,7 @@ planet "Elek Kartanu"
 planet "Ember Reaches"
 	attributes "requires: quantum keystone"
 	description ""
+	spaceport ""
 
 planet "Ember Threshold"
 	attributes "requires: quantum keystone"
@@ -24769,6 +24770,7 @@ planet "Ember Threshold"
 planet "Ember Wormhole"
 	attributes "requires: quantum keystone"
 	description ""
+	spaceport ""
 
 planet "Esayaku Fen"
 	attributes korath
@@ -26329,6 +26331,7 @@ planet Relic
 planet "Remnant Wormhole"
 	attributes "requires: quantum keystone"
 	description ""
+	spaceport ""
 
 planet "Remote Blue"
 	attributes kimek urban
