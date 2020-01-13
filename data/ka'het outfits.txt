@@ -168,7 +168,7 @@ outfit "Ka'het Support Cooling"
 	"outfit space" -8
 	"active cooling" 32
 	"cooling energy" 3.1
-	description While the cooling on a typical ship only needs to worry about keeping the crew comfortable in certain areas, the entirety of a Ka'het ship needs to maintain a suitable temperature for the Het inside to survive."
+	description "While the cooling on a typical ship only needs to worry about keeping the crew comfortable in certain areas, the entirety of a Ka'het ship needs to maintain a suitable temperature for the Het inside to survive."
 
 
 outfit "Ka'het Primary Cooling"
