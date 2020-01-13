@@ -7220,6 +7220,10 @@ system Danoa
 			sprite planet/lava2-b
 			distance 607
 			period 33.895
+		object
+			sprite "planet/asteroid base"
+			distance 809
+			period 52.153
 
 system "Dark Hills"
 	pos -926.587 619.051
@@ -24769,6 +24773,7 @@ planet "Elek Kartanu"
 planet "Ember Reaches"
 	attributes "requires: quantum keystone"
 	description ""
+	spaceport ""
 
 planet "Ember Threshold"
 	attributes "requires: quantum keystone"
@@ -24777,6 +24782,7 @@ planet "Ember Threshold"
 planet "Ember Wormhole"
 	attributes "requires: quantum keystone"
 	description ""
+	spaceport ""
 
 planet "Esayaku Fen"
 	attributes korath
@@ -26337,6 +26343,7 @@ planet Relic
 planet "Remnant Wormhole"
 	attributes "requires: quantum keystone"
 	description ""
+	spaceport ""
 
 planet "Remote Blue"
 	attributes kimek urban
