@@ -25852,8 +25852,8 @@ planet Earth
 planet Eavine
 	attributes ka'het
 	landscape land/snow8
-	description `The moon of Eavine played a crucial role in the demise of the Builders: here, the second wave of Ka'het was built, making use of the large mineral resources in the planet. They soon found out that what was supposed to change the result of the invasion only accelerated it, overcoming the blockade imposed by the Quarg and allowing the Ka'het to reach their northern systems. The Builders had terraformed Eavine to make it a more suitable place to live, but after their civilization collapsed the moon began to return to its natural state, and a few thousand years ago the moon became so cold that the Ka'het production came to an end.`
-	description `	As an example of their instability, the Ka'het themselves inflicted superficial damage to most of the facilities here while departing from the planet, shooting at the same buildings that created them.`
+	description `The moon of Eavine played a crucial role in the demise of the Builders: here, the second wave of Ka'het was built, making use of the large mineral resources in the planet. They soon found out that what was supposed to change the result of the invasion only accelerated it, overcoming the blockade imposed by the Quarg and allowing the Ka'het to reach their northern systems.`
+	description `	The Builders had terraformed Eavine to make it a more suitable place to live, but after their civilization collapsed the moon began to return to its natural state, and a few thousand years ago the moon became so cold that the Ka'het production came to an end. As an example of their instability, the Ka'het themselves inflicted superficial damage to most facilities.`
 
 planet Echo
 	attributes quarg moon
@@ -26561,7 +26561,7 @@ planet "Into White"
 	"required reputation" 15
 
 planet "Kaeyin"
-	attributes pug
+	attributes pug uninhabited
 	landscape land/myrabella5
 	description `The world of Kaeyin now seems to be complately uninhabited, but it hasn't always been like that. Large, empty cities with towers of indescribable design encompass a portion of one single continent. The rest of the land remains almost untouched by anything not native to this planet, as if the buildings were simply lowered down onto the land rather than built up over time.`
 	spaceport `The only word you can think of to describe the spaceport is "impressive." It is on the top of the largest tower, placed in the exact center of a gargantuan city. With a base almost as big as a sizable village, very quickly getting thinner as it raises into the city's skyline.`
@@ -27689,7 +27689,7 @@ planet "Seleptra Nak"
 planet Seli'het
 	attributes ka'het
 	landscape land/space7
-	description `Seli'het was the only Het station the Builders ever completed, orbiting Giribea. Ka'heta are brought here once they reach the "Age of Assembly;"" strange, lanky machines start molding an exoskeleton onto their bodies right away. As the Ka'Het grow, their exoskeleton is expanded and various outfits are added, transforming them into living weapons.`
+	description `Seli'het was the only Het station the Builders ever completed, orbiting Giribea. Ka'heta are brought here once they reach the "Age of Assembly;" strange, lanky machines start molding an exoskeleton onto their bodies right away. As the Ka'Het grow, their exoskeleton is expanded and various outfits are added, transforming them into living weapons.`
 	description `	In this system the Ka'het behave differently than anywhere else, not only because this station doesn't have any visible damage but also because they don't attack each other, and some even seem to have started collaborating.`
 	government Builder
 
