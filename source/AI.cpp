@@ -286,22 +286,18 @@ void AI::IssueMoveTarget(const PlayerInfo &player, const Point &target, const Sy
 
 
 // Commands issued via the keyboard (mostly, to the flagship).
-void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
+void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands, bool isActive)
 {
 	shift = (SDL_GetModState() & KMOD_SHIFT);
 	escortsUseAmmo = Preferences::Has("Escorts expend ammo");
 	escortsAreFrugal = Preferences::Has("Escorts use ammo frugally");
 	
-	Command oldHeld = keyHeld;
-	keyHeld.ReadKeyboard();
-	autoPilot |= clickCommands;
-	clickCommands.Clear();
-	keyDown = keyHeld.AndNot(oldHeld);
-	if(keyHeld.Has(AutopilotCancelCommands()))
+	autoPilot |= activeCommands;
+	if(activeCommands.Has(AutopilotCancelCommands()))
 	{
-		bool canceled = (autoPilot.Has(Command::JUMP) && !keyHeld.Has(Command::JUMP));
-		canceled |= (autoPilot.Has(Command::LAND) && !keyHeld.Has(Command::LAND));
-		canceled |= (autoPilot.Has(Command::BOARD) && !keyHeld.Has(Command::BOARD));
+		bool canceled = (autoPilot.Has(Command::JUMP) && !activeCommands.Has(Command::JUMP));
+		canceled |= (autoPilot.Has(Command::LAND) && !activeCommands.Has(Command::LAND));
+		canceled |= (autoPilot.Has(Command::BOARD) && !activeCommands.Has(Command::BOARD));
 		if(canceled)
 			Messages::Add("Disengaging autopilot.");
 		autoPilot.Clear();
@@ -311,12 +307,8 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 	if(!isActive || !flagship || flagship->IsDestroyed())
 		return;
 	
-	++landKeyInterval;
-	if(oldHeld.Has(Command::LAND))
-		landKeyInterval = 0;
-	
 	// Only toggle the "cloak" command if one of your ships has a cloaking device.
-	if(keyDown.Has(Command::CLOAK))
+	if(activeCommands.Has(Command::CLOAK))
 		for(const auto &it : player.Ships())
 			if(!it->IsParked() && it->Attributes().Get("cloak"))
 			{
@@ -326,7 +318,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 			}
 	
 	// Toggle your secondary weapon.
-	if(keyDown.Has(Command::SELECT))
+	if(activeCommands.Has(Command::SELECT))
 		player.SelectNext();
 	
 	// The commands below here only apply if you have escorts or fighters.
@@ -334,28 +326,29 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 		return;
 	
 	// Toggle the "deploy" command for the fleet or selected ships.
-	if(keyDown.Has(Command::DEPLOY))
+	if(activeCommands.Has(Command::DEPLOY))
 		IssueDeploy(player);
 	
 	shared_ptr<Ship> target = flagship->GetTargetShip();
 	Orders newOrders;
-	if(keyDown.Has(Command::FIGHT) && target && !target->IsYours())
+	if(activeCommands.Has(Command::FIGHT) && target && !target->IsYours())
 	{
 		newOrders.type = target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK;
 		newOrders.target = target;
 		IssueOrders(player, newOrders, "focusing fire on \"" + target->Name() + "\".");
 	}
-	if(keyDown.Has(Command::HOLD))
+	if(activeCommands.Has(Command::HOLD))
 	{
 		newOrders.type = Orders::HOLD_POSITION;
 		IssueOrders(player, newOrders, "holding position.");
 	}
-	if(keyDown.Has(Command::GATHER))
+	if(activeCommands.Has(Command::GATHER))
 	{
 		newOrders.type = Orders::GATHER;
 		newOrders.target = player.FlagshipPtr();
 		IssueOrders(player, newOrders, "gathering around your flagship.");
 	}
+
 	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
 	for(auto it = orders.begin(); it != orders.end(); )
 	{
@@ -432,7 +425,7 @@ void AI::ClearOrders()
 
 
 
-void AI::Step(const PlayerInfo &player)
+void AI::Step(const PlayerInfo &player, Command &activeCommands)
 {
 	// First, figure out the comparative strengths of the present governments.
 	const System *playerSystem = player.GetSystem();
@@ -473,7 +466,7 @@ void AI::Step(const PlayerInfo &player)
 		
 		if(it.get() == flagship)
 		{
-			MovePlayer(*it, player);
+			MovePlayer(*it, player, activeCommands);
 			continue;
 		}
 		
@@ -3009,7 +3002,7 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 
 
 
-void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
+void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands)
 {
 	Command command;
 	
@@ -3098,7 +3091,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			ship.SetTargetStellar(system->FindStellar(bestDestination));
 	}
 	
-	if(keyDown.Has(Command::NEAREST))
+	if(activeCommands.Has(Command::NEAREST))
 	{
 		// Find the nearest ship to the flagship. If `Shift` is held, consider friendly ships too.
 		double closest = numeric_limits<double>::infinity();
@@ -3144,7 +3137,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			}
 		}
 	}
-	else if(keyDown.Has(Command::TARGET))
+	else if(activeCommands.Has(Command::TARGET))
 	{
 		// Find the "next" ship to target. Holding `Shift` will cycle through escorts.
 		shared_ptr<const Ship> target = ship.GetTargetShip();
@@ -3170,7 +3163,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		if(selectNext)
 			ship.SetTargetShip(shared_ptr<Ship>());
 	}
-	else if(keyDown.Has(Command::BOARD))
+	else if(activeCommands.Has(Command::BOARD))
 	{
 		// Board the nearest disabled ship, focusing on hostiles before allies. Holding
 		// `Shift` results in boarding only player-owned escorts in need of assistance.
@@ -3200,10 +3193,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 					}
 				}
 			if(!foundAnything)
-				keyDown.Clear(Command::BOARD);
+				activeCommands.Clear(Command::BOARD);
 		}
 	}
-	else if(keyDown.Has(Command::LAND) && !ship.IsEnteringHyperspace())
+	else if(activeCommands.Has(Command::LAND) && !ship.IsEnteringHyperspace())
 	{
 		// Track all possible landable objects in the current system.
 		auto landables = vector<const StellarObject *>{};
@@ -3237,7 +3230,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			// selected, then press "land" again, do not toggle to the other if
 			// you are within landing range of the one you have selected.
 		}
-		else if(message.empty() && target && landKeyInterval < 60)
+		else if(message.empty() && target && activeCommands.Has(Command::WAIT))
 		{
 			// Select the next landable in the list after the currently selected object.
 			if(++landIt == landables.cend())
@@ -3317,7 +3310,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 		if(!message.empty())
 			Messages::Add(message);
 	}
-	else if(keyDown.Has(Command::JUMP))
+	else if(activeCommands.Has(Command::JUMP))
 	{
 		if(!ship.GetTargetSystem() && !isWormhole)
 		{
@@ -3350,30 +3343,30 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			Messages::Add("Engaging autopilot to jump to the " + name + " system.");
 		}
 	}
-	else if(keyHeld.Has(Command::SCAN))
+	else if(activeCommands.Has(Command::SCAN))
 		command |= Command::SCAN;
 	
 	const shared_ptr<const Ship> target = ship.GetTargetShip();
 	AimTurrets(ship, command, !Preferences::Has("Turrets focus fire"));
 	if(Preferences::Has("Automatic firing") && !ship.IsBoarding()
-			&& !(autoPilot | keyHeld).Has(Command::LAND | Command::JUMP | Command::BOARD)
+			&& !(autoPilot | activeCommands).Has(Command::LAND | Command::JUMP | Command::BOARD)
 			&& (!target || target->GetGovernment()->IsEnemy()))
 		AutoFire(ship, command, false);
-	if(keyHeld)
+	if(activeCommands)
 	{
-		if(keyHeld.Has(Command::FORWARD))
+		if(activeCommands.Has(Command::FORWARD))
 			command |= Command::FORWARD;
-		if(keyHeld.Has(Command::RIGHT | Command::LEFT))
-			command.SetTurn(keyHeld.Has(Command::RIGHT) - keyHeld.Has(Command::LEFT));
-		if(keyHeld.Has(Command::BACK))
+		if(activeCommands.Has(Command::RIGHT | Command::LEFT))
+			command.SetTurn(activeCommands.Has(Command::RIGHT) - activeCommands.Has(Command::LEFT));
+		if(activeCommands.Has(Command::BACK))
 		{
-			if(!keyHeld.Has(Command::FORWARD) && ship.Attributes().Get("reverse thrust"))
+			if(!activeCommands.Has(Command::FORWARD) && ship.Attributes().Get("reverse thrust"))
 				command |= Command::BACK;
-			else if(!keyHeld.Has(Command::RIGHT | Command::LEFT))
+			else if(!activeCommands.Has(Command::RIGHT | Command::LEFT))
 				command.SetTurn(TurnBackward(ship));
 		}
 		
-		if(keyHeld.Has(Command::PRIMARY))
+		if(activeCommands.Has(Command::PRIMARY))
 		{
 			int index = 0;
 			for(const Hardpoint &hardpoint : ship.Weapons())
@@ -3383,7 +3376,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 				++index;
 			}
 		}
-		if(keyHeld.Has(Command::SECONDARY))
+		if(activeCommands.Has(Command::SECONDARY))
 		{
 			int index = 0;
 			for(const Hardpoint &hardpoint : ship.Weapons())
@@ -3393,15 +3386,15 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 				++index;
 			}
 		}
-		if(keyHeld.Has(Command::AFTERBURNER))
+		if(activeCommands.Has(Command::AFTERBURNER))
 			command |= Command::AFTERBURNER;
 		
-		if(keyHeld.Has(AutopilotCancelCommands()))
-			autoPilot = keyHeld;
+		if(activeCommands.Has(AutopilotCancelCommands()))
+			autoPilot = activeCommands;
 	}
 	bool shouldAutoAim = false;
 	if(Preferences::Has("Automatic aiming") && !command.Turn() && !ship.IsBoarding()
-			&& (Preferences::Has("Automatic firing") || keyHeld.Has(Command::PRIMARY))
+			&& (Preferences::Has("Automatic firing") || activeCommands.Has(Command::PRIMARY))
 			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable())
 				|| ship.GetTargetAsteroid())
 			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::BOARD))
@@ -3421,7 +3414,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
 	}
 	
-	if(autoPilot.Has(Command::JUMP) && !player.HasTravelPlan())
+	if(autoPilot.Has(Command::JUMP) && !(player.HasTravelPlan() || ship.GetTargetSystem()))
 	{
 		// The player completed their travel plan, which may have indicated a destination within the final system.
 		autoPilot.Clear(Command::JUMP);
@@ -3445,7 +3438,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	if(autoPilot.Has(Command::LAND) || (autoPilot.Has(Command::JUMP) && isWormhole))
 	{
 		if(ship.GetPlanet())
-			autoPilot.Clear();
+			autoPilot.Clear(Command::LAND | Command::JUMP);
 		else
 		{
 			MoveToPlanet(ship, command);
@@ -3454,33 +3447,29 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player)
 	}
 	else if(autoPilot.Has(Command::JUMP))
 	{
-		bool isNewPress = keyDown.Has(Command::JUMP) || !keyHeld.Has(Command::JUMP);
 		if(!ship.Attributes().Get("hyperdrive") && !ship.Attributes().Get("jump drive"))
 		{
 			Messages::Add("You do not have a hyperdrive installed.");
 			autoPilot.Clear();
-			if(isNewPress)
-				Audio::Play(Audio::Get("fail"));
+			Audio::Play(Audio::Get("fail"));
 		}
 		else if(!ship.JumpFuel(ship.GetTargetSystem()))
 		{
 			Messages::Add("You cannot jump to the selected system.");
 			autoPilot.Clear();
-			if(isNewPress)
-				Audio::Play(Audio::Get("fail"));
+			Audio::Play(Audio::Get("fail"));
 		}
 		else if(!ship.JumpsRemaining() && !ship.IsEnteringHyperspace())
 		{
 			Messages::Add("You do not have enough fuel to make a hyperspace jump.");
 			autoPilot.Clear();
-			if(isNewPress)
-				Audio::Play(Audio::Get("fail"));
+			Audio::Play(Audio::Get("fail"));
 		}
 		else
 		{
 			PrepareForHyperspace(ship, command);
 			command |= Command::JUMP;
-			if(keyHeld.Has(Command::JUMP))
+			if(activeCommands.Has(Command::WAIT))
 				command |= Command::WAIT;
 		}
 	}
