@@ -597,6 +597,8 @@ Files:
  images/planet/station4*
  images/ship/maeri'het*
  images/ship/telis'het*
+ images/ship/faes'mar*
+ images/ship/selii'mar*
  images/effect/ravager?impact*
  images/outfit/ka'het?annihilator?turret*
  images/outfit/ka'het?annihilator*
@@ -608,6 +610,8 @@ Files:
  images/outfit/ka'het?support?cooling*
  images/planet/station1b*
  images/planet/station2b*
+ images/planet/station3b*
+ images/planet/station3bd*
  images/projectile/annihilator*
  images/projectile/ravager?beam*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
