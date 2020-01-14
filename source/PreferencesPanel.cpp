@@ -298,7 +298,7 @@ void PreferencesPanel::DrawControls()
 		"Navigation",
 		"Weapons",
 		"Targeting",
-		"Menus",
+		"Interface",
 		"Fleet"
 	};
 	const string *category = CATEGORIES;
@@ -361,7 +361,7 @@ void PreferencesPanel::DrawControls()
 			bool isEditing = (index == editing);
 			if(isConflicted || isEditing)
 			{
-				table.SetHighlight(66, 120);
+				table.SetHighlight(56, 120);
 				table.DrawHighlight(isEditing ? dim: red);
 			}
 			
@@ -369,7 +369,7 @@ void PreferencesPanel::DrawControls()
 			bool isHovering = (index == hover && !isEditing);
 			if(!isHovering && index == selected)
 			{
-				table.SetHighlight(-120, 64);
+				table.SetHighlight(-120, 54);
 				table.DrawHighlight(back);
 			}
 			
