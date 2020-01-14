@@ -34,14 +34,14 @@ namespace {
 	//int monitorHz;
 	bool hasSwizzle;
 		
-	// Logs SDL errors and returns 1 if found
-	bool checkSDLerror(const string &context)
+	// Logs SDL errors and returns true if found
+	bool checkSDLerror()
 	{
 		string message = SDL_GetError();
 		if(!message.empty())
 		{
 			Files::LogError("(SDL message: \"" + message + "\")");
-			SDL_ClearError
+			SDL_ClearError();
 			return true;
 		}
 		
@@ -97,7 +97,7 @@ bool GameWindow::Init()
 {
 	// This needs to be called before any other SDL commands.
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-		checkSDLerror;
+		checkSDLerror();
 		return false;
 	}
 	

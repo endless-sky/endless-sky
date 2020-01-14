@@ -40,7 +40,7 @@ public:
 	static bool HasSwizzle();
 
 	// Initialize the main window
-	static int Init();
+	static bool Init();
 	
 	// Paint the next frame in the main window
 	static void Step();
@@ -59,7 +59,7 @@ public:
 	
 	// Print the error message in the terminal, error file, and message box.
 	// Checks for video system errors and records those as well.
-	static int DoError(const std::string& message);
+	static void DoError(const std::string& message);
 };
 
 #endif
