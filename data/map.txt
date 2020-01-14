@@ -26322,7 +26322,7 @@ planet Relic
 	attributes "near earth"
 	landscape land/valley4
 	description `Relic was colonized over seven hundred years ago, back when the construction of the first hyperdrive was still in living memory. At this point, most starships had a very limited range, so the stars adjacent to earth where the only viable opinion for any colonization attempts. Because of this, Relic seemed like it was going to become a major colony, despite it's low gravity, harsh environment, and limited resources.`
-	description `However, this would not last. In less than fifty years, the colonies had spread to much more favourable planets, and Relic was left behind by most human development.`
+	description `	However, this would not last. In less than fifty years, the colonies had spread to much more favorable planets, and Relic was left behind by most human development.`
 	spaceport `The spaceport here is located in the only recognized city on Relic, and it's mostly designed to handle the occasional merchant or navy ship. Almost all the ships that do arrive are here to refuel, since the industry here is made up of a few factories and a trading post. This leads to a running joke among the locals that the chief industry here is the gas station.`
 	outfitter "Ammo North"
 	security 0.2
