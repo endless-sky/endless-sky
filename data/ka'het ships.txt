@@ -11,6 +11,7 @@
 ship "Maeri'het"
 	plural "Maeri'heta"
 	sprite "ship/maeri'het"
+	thumbnail "thumbnail/maeri'het"
 	"never disabled"
 	attributes
 		category "Light Warship"
@@ -113,6 +114,7 @@ ship "Maeri'het" "Maeri'het (EMP, Disable-able)"
 ship "Telis'het"
 	plural "Telis'heta"
 	sprite "ship/telis'het"
+	thumbnail "thumbnail/telis'het"
 	"never disabled"
 	attributes
 		category "Heavy Warship"
