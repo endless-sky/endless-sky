@@ -1401,6 +1401,11 @@ mission "FW Bloodsea 1.1"
 		log "The local leaders on the lawless world of Bloodsea have said that they will join the Free Worlds, and stop supporting piracy, in exchange for the equipment to build a more modern spaceport. However, they may just be trying to steal the construction materials; it might be simpler to just attack and conquer them."
 		conversation
 			`The local leaders are unwilling to meet aboard your ship, and Alondo is afraid you will be ambushed if you venture too far away from it, so eventually they agree to set up a tent on the landing pad next to yours and meet there. Outside, a storm is raging, the rain mixing with salt spray from the blood-red ocean nearby.`
+			branch peaceful
+				not "event: fw suppressed Bloodsea"
+			`	Most of the leaders grimace at the sight of you. "What is the invader doing here?" one of them asks to Alondo.`
+			`	"Captain <last> was only following orders, but the officer responsible for giving those orders has been justly punished," Alondo says. "We come in peace this time." The leaders don't seem convinced with that answer, but they agree to continue.`
+			label peaceful
 			`	As you talk, it becomes clear that the inhabitants of Bloodsea are ashamed of how destitute and undeveloped their world is. Several of them have visited the island spaceport on Deep, and after dancing around the issue for a while, they make a request: if the Free Worlds builds them a real, modern island spaceport, they will join the Free Worlds.`
 			`	One of them lays out a detailed list of amenities the port must have: concrete seawalls, raised landing pads, floating docks, sturdy hangars and warehouses, and various defense systems "for when the others learn that we've decided to join you." Also, the deal is off if you show up in orbit with a fleet that "looks like an invasion fleet rather than a construction fleet."`
 			`	You thank them and return to your ship. Alondo asks, "What do you think?"`
@@ -1411,13 +1416,14 @@ mission "FW Bloodsea 1.1"
 					goto invade
 			label port
 			`	"Yes," he says, "except that I can almost guarantee that when we show up on their doorstep with everything they asked for, some local warlord will attack our ships, steal our supplies, enslave our workers, and build himself a nice cozy island fortress."`
-				goto attack
-			label invade
-			`	"That's certainly the simpler option," he says, "especially because I can almost guarantee that when we show up on their doorstep with everything they asked for, some local warlord will attack our ships, steal our supplies, enslave our workers, and build himself a nice cozy island fortress."`
-				goto attack
-			label attack
 			`	"So, we attack them?" you ask.`
-			`	"You're on the Council now," he says. "I'll leave it up to you. Option one is, we bring them the supplies and workers, in merchant ships, but use very heavily armed merchant ships in case they double cross us. Option two is, we go to Dancer and see if JJ can lend us an invasion fleet."`
+			label invade
+			branch hostile
+				not "event: fw suppressed Bloodsea"
+			`	"They didn't seem very happy about you doing that the first time. But..." Alondo pauses for a moment.`
+			label hostile
+			`	"That's certainly the simpler option," he says. "Tomek may have been punished for disobeying the Senate's orders, but we're in a different situation now. Our numbers have swelled because of our victories and new territory, and we now have the Dreadnoughts at our disposal, so occupying Bloodsea is now a viable option.`
+			`	"You're on the Council now," he says. "I'll leave it up to you. Option one is, we bring them the supplies and workers, in merchant ships, but use very heavily armed merchant ships in case they double cross us. Option two is, we go to Dancer and see if JJ can lend us an invasion fleet while I convince the Senate that attacking Bloodsea is the better decision."`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
@@ -1554,11 +1560,13 @@ mission "FW Bloodsea 1.2A"
 		event "battle for bloodsea"
 		karma --
 		conversation
-			`When you meet up with JJ, he says, "So, it's going to be battle rather than diplomacy? I suppose that may be for the best; I'm sure the pirates were planning some sort of double-cross. But still, it's too bad we couldn't find a peaceful solution."`
+			`When you meet up with JJ, Alondo explains that you're in need of an invasion fleet for Bloodsea. JJ looks confused at the request. "What? Whatever happened to diplomacy? I only heard that the Senate approved a diplomatic mission. Didn't Tomek get punished for this exact stunt?"`
 			choice
 				`	"Alondo convinced me that the Bloodsea natives were just planning to betray us."`
 				`	"I don't think the pirates will understand any language except overwhelming force."`
-			`	"Perhaps," says JJ. "At any rate, we'll never know, now. I need to keep most of my fleet here, to defend against the Navy, but I've selected a few of the strongest ships to accompany you to Bloodsea. Good luck, Captain."`
+			`	"You're starting to sound a lot like Tomek," JJ remarks.`
+			`	"I also contacted the Senate on the way here," Alondo says, "and they approved the invasion. We're much more powerful now than before, making invasion a viable option."`
+			`	"Perhaps," says JJ. "I'll provide you with some ships, but I'm not happy about this. I need to keep most of my fleet here, to defend against the Navy, but I'll select a few of the strongest ships to accompany you to Bloodsea. Make sure they make it home safe, though. We'll need every ship we can get for when the Navy attacks. Good luck, Captain."`
 				accept
 	
 	npc
