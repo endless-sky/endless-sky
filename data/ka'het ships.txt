@@ -121,7 +121,7 @@ ship "Telis'het"
 		"hull" 26300
 		"required crew" 1
 		"bunks" 1
-		"mass" 620
+		"mass" 820
 		"drag" 6.9
 		"heat dissipation" .35
 		"fuel capacity" 800
@@ -143,7 +143,7 @@ ship "Telis'het"
 		"flare sprite" "effect/remnant flare/medium"
 			"frame rate" 4
 		"flare sound" "plasma medium"
-		"turn" 2031.7
+		"turn" 1931.7
 		"turning energy" 6.38
 		"turning heat" 2.9
 		weapon
