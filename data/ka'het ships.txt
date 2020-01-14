@@ -21,7 +21,7 @@ ship "Maeri'het"
 		"required crew" 1
 		"bunks" 1
 		"mass" 390
-		"drag" 4.1
+		"drag" 3.8
 		"heat dissipation" .4
 		"fuel capacity" 800
 		"ramscoop" 0.58
@@ -44,9 +44,9 @@ ship "Maeri'het"
 		"flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"flare sound" "plasma small"
-		"turn" 986.4
-		"turning energy" 3.14
-		"turning heat" 1.4
+		"turn" 1286.4
+		"turning energy" 3.44
+		"turning heat" 1.7
 		weapon
 			"blast radius" 180
 			"shield damage" 720
