@@ -243,11 +243,11 @@ test "Cargo Commodoties Transport"
 		inject "commodity barges"
 		load "commodity barges.txt"
 		assert
-			"cargo space" = 0
+			"cargo space" == 0
 		launch
 		land
 		assert
-			"cargo space" = 0
+			"cargo space" == 0
 
 
 
@@ -258,8 +258,8 @@ test "Cargo oversized outfit"
 		inject "outfits cargo overload"
 		load "outfits cargo overload.txt"
 		assert
-			"cargo space" = 10
+			"cargo space" == 10
 		launch
 		land
 		assert
-			"cargo space" = 10
+			"cargo space" == 10
