@@ -217,8 +217,7 @@ bool Command::HasConflict() const
 // Load this command from an input file (for testing or scripted missions)
 void Command::Load(const DataNode &node)
 {
-	int i = 1;
-	while(node.Size() > i)
+	for(int i = 1; i < node.Size(); ++i)
 	{
 		const string &input = node.Token(i);
 		

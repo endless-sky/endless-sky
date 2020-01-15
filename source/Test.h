@@ -49,7 +49,7 @@ public:
 		TestStep(const DataNode &node);
 
 		void Load(const DataNode &node);
-		int DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const;
+		TestResult DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const;
 		
 	private:
 		// The type of this step

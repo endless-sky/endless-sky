@@ -69,7 +69,6 @@ int main(int argc, char *argv[])
 	if(argc > 1)
 		InitConsole();
 #endif
-	Test::Context testContext;
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
@@ -274,6 +273,8 @@ int main(int argc, char *argv[])
 		int skipFrame = 0;
 		// Limit how quickly fullscreen mode can be toggled.
 		int toggleTimeout = 0;
+		// Data to track progress of testing if/when a test is running.
+		Test::Context testContext;
 		while(!menuPanels.IsDone())
 		{
 			if(toggleTimeout)

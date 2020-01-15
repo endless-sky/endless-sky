@@ -22,14 +22,14 @@ class DataNode;
 // Class representing a dataset for automated testing
 class TestData {
 public:
-	std::string Name();
-	void Load(const DataNode &node, const std::string sourceDataFilePath);
+	const std::string &Name() const;
+	void Load(const DataNode &node, const std::string &sourceDataFilePath);
 	// Function to inject the test-data into the game or into the games
 	// environment. Savegames would be written as file.
 	bool Inject() const;
 
 	// Types of datafiles that can be stored.
-	static const int SAVEGAME = 1;
+	enum DataType {SAVEGAME};
 	
 private:
 	// Name of the dataset

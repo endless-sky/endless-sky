@@ -235,7 +235,7 @@ void Test::TestStep::Load(const DataNode &node)
 
 
 
-int Test::TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const
+Test::TestStep::TestResult Test::TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const
 {
 	switch (stepType)
 	{

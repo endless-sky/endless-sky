@@ -21,7 +21,7 @@ using namespace std;
 
 
 
-string TestData::Name()
+const string &TestData::Name() const
 {
 	return dataSetName;
 }
@@ -29,7 +29,7 @@ string TestData::Name()
 
 
 // Loader to load the generic test-data entry
-void TestData::Load(const DataNode &node, const string sourceDataFilePath)
+void TestData::Load(const DataNode &node, const string &sourceDataFilePath)
 {
 	sourceDataFile = sourceDataFilePath;
 	if(node.Size() < 2)
