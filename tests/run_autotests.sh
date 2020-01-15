@@ -30,6 +30,7 @@ TESTS_OK=$(echo "${TESTS}" | grep -e "ACTIVE$" | cut -d$'\t' -f1)
 TESTS_NOK=$(echo "${TESTS}" | grep -e "KNOWN FAILURE$" -e "MISSING FEATURE$" | cut -d$'\t' -f1)
 echo ""
 
+#TODO: Allow running known-failures by default as well (to check if they accidentally got solved)
 echo "Tests not to execute (known failure or missing feature):"
 echo "${TESTS_NOK}"
 echo ""
