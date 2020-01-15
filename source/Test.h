@@ -17,12 +17,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Command.h"
 #include "ConditionSet.h"
-#include "DataNode.h"
-#include "PlanetPanel.h"
-#include "PlayerInfo.h"
-#include "UI.h"
 
 #include <string>
+
+class DataNode;
+class PlayerInfo;
+class UI;
 
 
 

@@ -13,9 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef TESTDATA_H_
 #define TESTDATA_H_
 
-#include "DataNode.h"
-
 #include <string>
+
+class DataNode;
+
+
 
 // Class representing a dataset for automated testing
 class TestData {

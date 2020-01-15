@@ -12,10 +12,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Test.h"
 
+#include "DataNode.h"
 #include "Files.h"
 #include "GameData.h"
 #include "MainPanel.h"
 #include "Panel.h"
+#include "PlanetPanel.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
 #include "TestData.h"
