@@ -8,17 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-phrase "passenger"
-	word
-		"rich kid"
-		"spoiled brat"
-		"salesman"
-		"fancy lady"
-		"old man"
-		"retired cop"
-		"college student"
-		"ex-military"
-
 phrase "band"
 	word
 		"There Might Be Riots"
@@ -1050,8 +1039,14 @@ phrase "friendly civilian"
 		"this"
 	word
 		" "
-	phrase
-		"passenger"
+	word
+		"rich kid"
+		"spoiled brat"
+		"salesman"
+		"fancy lady"
+		"old man"
+		"retired cop"
+		"college student"
 	word
 		". "
 	word
@@ -1069,22 +1064,19 @@ phrase "friendly civilian"
 	word
 		". "
 	word
-		"I just don't get it and"
-		"I'm not that into music and"
-		"I prefer classical works and"
-		"I don't hate them but"
-		"I don't hate music but"
+		"I just don't get it"
+		"I'm not that into music"
+		"I prefer classical works"
+		"I don't hate them"
 	word
-		" "
+		", but "
 	word
-		"I hadn't even heard of their latest work"
-		"I haven't even listened to their last song"
-	word
-		", "
-	phrase
-		"song"
+		"their latest song wasn't too bad"
+		"I kind of liked their latest song"
+		"the songs that my passenger played weren't too bad"
 	word
 		"."
+		"!"
 
 phrase "friendly navy"
 	word
