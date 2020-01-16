@@ -348,9 +348,6 @@ Files:
  images/thumbnail/penguin*
  images/thumbnail/petrel*
  images/thumbnail/tern*
- images/planet/dyson1*
- images/planet/dyson2*
- images/planet/dyson3*
  images/planet/station0*
  images/planet/station1c*
  images/planet/station2c*
@@ -615,6 +612,9 @@ Files:
  images/outfit/ka'het?ravager?beam*
  images/outfit/ka'het?shield?restorer*
  images/outfit/ka'het?support?cooling*
+ images/planet/dyson1*
+ images/planet/dyson2*
+ images/planet/dyson3*
  images/planet/station1b*
  images/planet/station2b*
  images/planet/station3b*
