@@ -26321,8 +26321,9 @@ planet "Rekat Moraski"
 planet Relic
 	attributes "near earth"
 	landscape land/valley4
-	description `As a borderline-habitable planet in one of the systems neighboring Sol, Relic was colonized hundreds of years ago in the early years of the space race. Because of its low gravity and limited natural resources, only a few minor settlements are left.`
-	spaceport `The spaceport on Relic consists of one low building surrounded by open-air concrete slabs for ships to land on. If rain were more common here, you would worry about your ship rusting, but in this environment the only threat to it is the infrequent sand storms.`
+	description `Relic was colonized over seven hundred years ago, back when the construction of the first hyperdrive was still in living memory. At this point, most starships had a very limited range, so the stars adjacent to earth where the only viable opinion for any colonization attempts. Because of this, Relic seemed like it was going to become a major colony, despite it's low gravity, harsh environment, and limited resources.`
+	description `	However, this would not last. In less than fifty years, the colonies had spread to much more favorable planets, and Relic was left behind by most human development.`
+	spaceport `The spaceport here is located in the only recognized city on Relic, and it's only designed to handle the occasional merchant or Navy ship on it's way to or from earth. It doesn't even use standard landing pads used on most other planets. Instead, the natives seem to have set up some concrete slabs next to some gas pumps and gone back to their lives. Despite this, the small portion of Earth's traffic means a few ships land at the spaceport every day. This results in a running joke among the locals that the cheif industry of Relic is the gas station.`
 	outfitter "Ammo North"
 	security 0.2
 	tribute 700
@@ -27388,4 +27389,3 @@ planet Zug
 	tribute 1200
 		threshold 3000
 		fleet "Large Militia" 18
-
