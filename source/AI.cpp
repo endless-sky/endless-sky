@@ -278,7 +278,6 @@ void AI::IssueMoveTarget(const PlayerInfo &player, const Point &target, const Sy
 // Commands issued via the keyboard (mostly, to the flagship).
 void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands, bool isActive)
 {
-	shift = (SDL_GetModState() & KMOD_SHIFT);
 	escortsUseAmmo = Preferences::Has("Escorts expend ammo");
 	escortsAreFrugal = Preferences::Has("Escorts use ammo frugally");
 	
@@ -3101,7 +3100,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				// if the player is repeatedly targeting nearest to, say, target
 				// a bunch of fighters, they won't start firing on friendly
 				// ships as soon as the last one is gone.
-				if((!state && !shift) || other->IsYours())
+				if((!state && !activeCommands.Has(Command::SHIFT)) || other->IsYours())
 					continue;
 				
 				state += state * !other->IsDisabled();
@@ -3147,7 +3146,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					&& !other->GetGovernment()->IsEnemy());
 			if(other == target)
 				selectNext = true;
-			else if(selectNext && isPlayer == shift && other->IsTargetable())
+			else if(selectNext && isPlayer == activeCommands.Has(Command::SHIFT) && other->IsTargetable())
 			{
 				ship.SetTargetShip(other);
 				selectNext = false;
@@ -3162,9 +3161,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		// Board the nearest disabled ship, focusing on hostiles before allies. Holding
 		// `Shift` results in boarding only player-owned escorts in need of assistance.
 		shared_ptr<const Ship> target = ship.GetTargetShip();
-		if(!target || !CanBoard(ship, *target) || (shift && !target->IsYours()))
+		if(!target || !CanBoard(ship, *target) || (activeCommands.Has(Command::SHIFT) && !target->IsYours()))
 		{
-			if(shift)
+			if(activeCommands.Has(Command::SHIFT))
 				ship.SetTargetShip(shared_ptr<Ship>());
 			
 			double closest = numeric_limits<double>::infinity();
@@ -3173,7 +3172,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			for(const shared_ptr<Ship> &other : ships)
 				if(CanBoard(ship, *other))
 				{
-					if(shift && !other->IsYours())
+					if(activeCommands.Has(Command::SHIFT) && !other->IsYours())
 						continue;
 					
 					bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());

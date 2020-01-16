@@ -1610,7 +1610,8 @@ void Engine::HandleKeyboardInputs()
 	
 	// Transfer all commands that need to be active as long as the corresponding key is pressed.
 	activeCommands |= (keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
-		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::BACK | Command::AFTERBURNER));
+		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::BACK | Command::AFTERBURNER |
+		Command::SHIFT));
 	
 	// Transfer all newly pressed unhandled keys to active commands.
 	activeCommands |= keyDown;

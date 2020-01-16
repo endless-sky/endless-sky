@@ -67,6 +67,7 @@ const Command Command::HOLD(1uL << 23, "Fleet: Hold position");
 const Command Command::AMMO(1uL << 24, "Fleet: Toggle ammo usage");
 const Command Command::WAIT(1uL << 25, "");
 const Command Command::STOP(1ul << 26, "");
+const Command Command::SHIFT(1uL << 27, "");
 
 
 
@@ -105,6 +106,10 @@ void Command::ReadKeyboard()
 	for(const auto &it : keycodeForCommand)
 		if(keyDown[SDL_GetScancodeFromKey(it.second)])
 			*this |= it.first;
+	
+	// Check whether the `Shift` modifier key was pressed for this step.
+	if(SDL_GetModState() & KMOD_SHIFT)
+		*this |= SHIFT;
 }
 
 
