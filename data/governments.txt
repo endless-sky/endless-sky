@@ -19,6 +19,19 @@ government "Author"
 	"player reputation" 1
 	"bribe" 0
 
+government "Builder"
+	# While when you attack the drones they will try to defend themselves, when you come back 
+	# as long as you don't attack them again they will focus on their usual activities
+	color .91 .13 .82
+	language "Builder"
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+		destroy 0
+		atrocity 0
+
 government "Bounty"
 	swizzle 6
 	"player reputation" -1000
@@ -152,6 +165,44 @@ government "Indigenous Lifeform"
 		capture 0
 		destroy 0
 		atrocity 0
+
+government "Ka'het"
+	swizzle 0
+	language "Ka'het"
+
+	"attitude toward"
+		" Ka'het " -.01
+		"Remnant" -.01
+		"Quarg" -.01
+		"Pug" -.01
+		"Hai" -.01
+		"Korath" -.01
+		"Navy (Oathkeeper)" -.01
+		"Republic" -.01
+		"Free Worlds" -.01
+		"Hai (Unfettered)" -.01
+		"Wanderer" -.01
+	
+	"player reputation" -1
+
+government " Ka'het "
+	swizzle 0
+	language "Ka'het"
+
+	"attitude toward"
+		"Ka'het" -.01
+		"Remnant" -.01
+		"Quarg" -.01
+		"Pug" -.01
+		"Hai" -.01
+		"Korath" -.01
+		"Navy (Oathkeeper)" -.01
+		"Republic" -.01
+		"Free Worlds" -.01
+		"Hai (Unfettered)" -.01
+		"Wanderer" -.01
+	
+	"player reputation" -1
 
 government "Korath"
 	swizzle 0
