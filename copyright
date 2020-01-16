@@ -334,6 +334,8 @@ Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 
 Files:
+ images/hardpoint/annihilator?turret*
+ images/hardpoint/ravager?turret*
  images/outfit/overcharged?shield?module*
  images/outfit/overclocked?repair?module*
  images/outfit/remnant?capital?license*
@@ -596,7 +598,38 @@ Files:
  images/planet/station2*
  images/planet/station3*
  images/planet/station4*
+ images/ship/maeri'het*
+ images/ship/telis'het*
+ images/ship/faes'mar*
+ images/ship/selii'mar*
+ images/thumbnail/maeri'het*
+ images/thumbnail/telis'het*
+ images/thumbnail/faes'mar*
+ images/thumbnail/selii'mar*
+ images/effect/ravager?impact*
+ images/outfit/ka'het?annihilator?turret*
+ images/outfit/ka'het?annihilator*
+ images/outfit/ka'het?emp?deployer*
+ images/outfit/ka'het?primary?cooling*
+ images/outfit/ka'het?ravager?turret*
+ images/outfit/ka'het?ravager?beam*
+ images/outfit/ka'het?shield?restorer*
+ images/outfit/ka'het?support?cooling*
+ images/planet/dyson1*
+ images/planet/dyson2*
+ images/planet/dyson3*
+ images/planet/station1b*
+ images/planet/station2b*
+ images/planet/station3b*
+ images/planet/station3bd*
+ images/projectile/annihilator*
+ images/projectile/ravager?beam*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+
+Files:
+ images/label/graveyard*
+Copyright: @RestingImmortal
 License: CC-BY-SA-4.0
 
 Files:
