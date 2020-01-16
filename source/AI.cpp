@@ -47,7 +47,7 @@ namespace {
 	const Command &AutopilotCancelCommands()
 	{
 		static const Command cancelers(Command::LAND | Command::JUMP | Command::BOARD | Command::AFTERBURNER
-			| Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT);
+			| Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT | Command::STOP);
 		
 		return cancelers;
 	}
@@ -285,6 +285,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands, bool isActive)
 	if(activeCommands.Has(AutopilotCancelCommands()))
 	{
 		bool canceled = (autoPilot.Has(Command::JUMP) && !activeCommands.Has(Command::JUMP));
+		canceled |= (autoPilot.Has(Command::STOP) && !activeCommands.Has(Command::STOP));
 		canceled |= (autoPilot.Has(Command::LAND) && !activeCommands.Has(Command::LAND));
 		canceled |= (autoPilot.Has(Command::BOARD) && !activeCommands.Has(Command::BOARD));
 		if(canceled)
@@ -3437,6 +3438,12 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			MoveToPlanet(ship, command);
 			command |= Command::LAND;
 		}
+	}
+	else if(autoPilot.Has(Command::STOP))
+	{
+		// STOP is automatically cleared once the ship has stopped.
+		if(Stop(ship, command))
+			autoPilot.Clear(Command::STOP);
 	}
 	else if(autoPilot.Has(Command::JUMP))
 	{
