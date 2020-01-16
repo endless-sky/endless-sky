@@ -433,7 +433,8 @@ void Engine::Step(bool isActive)
 			--jumpCount;
 	}
 	ai.UpdateEvents(events);
-	ai.UpdateKeys(player, clickCommands, isActive && wasActive);
+	HandleKeyboardInputs();
+	ai.UpdateKeys(player, activeCommands, isActive && wasActive);
 	wasActive = isActive;
 	Audio::Update(center);
 	
@@ -1212,7 +1213,10 @@ void Engine::CalculateStep()
 		return;
 	
 	// Now, all the ships must decide what they are doing next.
-	ai.Step(player);
+	ai.Step(player, activeCommands);
+	
+	// Clear the active players commands, they are all processed at this point.
+	activeCommands.Clear();
 	
 	// Perform actions for all the game objects. In general this is ordered from
 	// bottom to top of the draw stack, but in some cases one object type must
@@ -1578,6 +1582,42 @@ void Engine::SendHails()
 
 
 
+// Handle any keyboard inputs for the engine. This is done in the main thread
+// after all calculation threads are paused to avoid race conditions.
+void Engine::HandleKeyboardInputs()
+{
+	Ship *flagship = player.Flagship();
+	
+	// Commands can't be issued if your flagship is dead.
+	if(!flagship || flagship->IsDestroyed())
+		return;
+	
+	// Determine which new keys were pressed by the player.
+	Command oldHeld = keyHeld;
+	keyHeld.ReadKeyboard();
+	Command keyDown = keyHeld.AndNot(oldHeld);
+	
+	++landKeyInterval;
+	if(oldHeld.Has(Command::LAND))
+		landKeyInterval = 0;
+	
+	// Wait with actual jumping until the jump command is released.
+	// Or if pressing land quicky in succession, then use WAIT to switch landing targets.
+	if(keyHeld.Has(Command::JUMP) || (keyHeld.Has(Command::LAND) && landKeyInterval < 60))
+		activeCommands.Set(Command::WAIT);
+	else
+		activeCommands.Clear(Command::WAIT);
+	
+	// Transfer all commands that need to be active as long as the corresponding key is pressed.
+	activeCommands |= (keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
+		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::BACK | Command::AFTERBURNER));
+	
+	// Transfer all newly pressed unhandled keys to active commands.
+	activeCommands |= keyDown;
+}
+
+
+
 // Handle any mouse clicks. This is done in the calculation thread rather than
 // in the main UI thread to avoid race conditions.
 void Engine::HandleMouseClicks()
@@ -1607,7 +1647,7 @@ void Engine::HandleMouseClicks()
 									+ " refuse to let you land.");
 						else
 						{
-							clickCommands |= Command::LAND;
+							activeCommands |= Command::LAND;
 							Messages::Add("Landing on " + planet->Name() + ".");
 						}
 					}
@@ -1644,7 +1684,7 @@ void Engine::HandleMouseClicks()
 		{
 			// Left click: has your flagship select or board the target.
 			if(clickTarget == flagship->GetTargetShip())
-				clickCommands |= Command::BOARD;
+				activeCommands |= Command::BOARD;
 			else
 			{
 				flagship->SetTargetShip(clickTarget);
