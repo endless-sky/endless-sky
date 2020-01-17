@@ -96,7 +96,7 @@ mission "Asteroid Course A"
 			`	You turn your ship around and activate your thrusters, trying to get as far as you can from the disabled ship. A few seconds later, the asteroid tears the <origin> apart, killing all of its crew members.`
 				launch
 			label fire
-			`	The shots you fire quickly break the asteroid into pieces, which keep following the same course. Before you can even try to destroy them, most have already hit the <origin>, which is now quickly depressurizing and losing the hull's integrity. There's not much you can do anymore, except to try to move a safe distance from the exploding ship...`
+			`	You fire at the asteroid in an attempt to destroy it, but it looks like you've only made things worse. The asteroid has now broken up into dozens of smaller chunks still flying directly for the <origin>. Before you can even react to fix your mistake, most of the chunks have already hit the <origin>, which is now quickly depressurizing. There's nothing more you can do except move a safe distance away from the exploding ship...`
 				launch
 			label repair
 			`	You dock with the <origin>, hoping to get out of this alive, but as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. You are able to reach your cockpit and undock, but the crew on the other ship couldn't reach yours in time...`
