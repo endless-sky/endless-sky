@@ -3484,21 +3484,20 @@ mission "Hauler VI cargo prototype 1"
 		ship "Hauler III" "SB-Labs Testament"
 	on offer
 		conversation
-			`A lady in a formal business suit walks gracefully over to you.`
-			`	"Captain <last>, Captain <last>! It is so nice to meet you here!"`
+			`A lady in a formal business suit walks gracefully over to you. "Captain <last>, Captain <last>! It is so nice to meet you here!"`
 			choice
 				`	"Hello, nice to meet you too."`
 				`	"Sorry, I don't have time to talk. I'm really busy."`
 					defer
-			`	She says, "My name is Vanessa Oxygenpocket, and I'm the lead for a team that's designing the new Hauler VI transport ship series at Southbound Shipyards."`
+			`	She says, "My name is Veronica Oxygenpocket, and I'm the lead for a team that's designing the new Hauler VI transport ship series at Southbound Shipyards."`
 			choice
 				`	"'Oxygenpocket' is an uncommon name."`
 				`	"And what help do you need from me?"`
 					goto "help request"
-			`	Vanessa responds, "Well, it might sound uncommon to people from a planet with a breathable atmosphere, but it is actually similar to Vanderberg, which means 'from the mountain,' or Langley, which means 'woodland.'`
+			`	Veronica responds, "Well, it might sound uncommon to people from a planet with a breathable atmosphere, but it is actually similar to Vanderberg, which means 'from the mountain,' or Langley, which means 'woodland.'`
 			`	"Oxygenpockets were as much a feature on my home-planet as mountains and woodlands are on more habitable planets."`
 			label "help request"
-			`	Vanessa pauses for a moment and then continues, "We're testing the VI's cargo refrigeration system using the Testament, a modified Hauler III. This system is one of our biggest achievements. To show how well it works, we plan to throw a formal dinner on <destination> with fresh sushi transported from here. I'm sure everyone at the dinner will be amazed by how well the food has been preserved despite the travel time. I'd like you to escort the ship and its cargo to <planet>."`
+			`	Veronica pauses for a moment and then continues, "We're testing the VI's cargo refrigeration system using the Testament, a modified Hauler III. This system is one of our biggest achievements. To show how well it works, we plan to throw a formal dinner on <destination> with fresh sushi transported from here. I'm sure everyone at the dinner will be amazed by how well the food has been preserved despite the travel time. I'd like you to escort the ship and its cargo to <planet>."`
 			choice
 				`	"Isn't it a bit risky to transport food using a refrigeration system that hasn't been tested yet?"`
 				`	"Am I also invited for the dinner?"`
@@ -3541,7 +3540,7 @@ mission "Hauler VI cargo prototype 2"
 		ship "Hauler III" "SB-Labs Testament"
 	on enter
 		dialog
-			`You take off and try to contact Vanessa, but you receive an angry message from Vanessa: "Why were you trying to contact me? Does everyone need to know that we're here?"`
+			`You take off and try to contact Veronica, but you receive an angry message from Veronica: "Why were you trying to contact me? Does everyone need to know that we're here?"`
 			`	She adds, "The cooling failed and the sushi nearly cooked. Let's go to the Southbound Shipyards on <destination> instead, then we can save face by claiming that we were in time for the dinner, but on the wrong planet due to some miscommunication. We might even be able to hide all evidence of the overheating by giving away the sushi as fish dishes on a streetfood festival."`
 	on visit
 		dialog `You land on <planet>, but the Testament didn't catch up with you yet.`
@@ -3566,5 +3565,5 @@ mission "Hauler VI cargo prototype 3"
 		payment 140000
 		dialog
 			`The Testament enters the planet's atmosphere at high speed and lands somewhat uncontrolled near a waste processing plant. The cargo hold is glowing red hot and some areas in the cargo hold appear to be on fire.`
-			`	Vanessa disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi calamity you experienced during the multiple legs of your journey.`
-			`	You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is coming from Vanessa and her ship.`
+			`	Veronica disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi calamity you experienced during the multiple legs of your journey.`
+			`	You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is coming from Veronica and her ship.`
