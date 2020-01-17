@@ -3525,8 +3525,7 @@ mission "Hauler VI cargo prototype 1"
 		dialog `You land on <planet>, but the Testament hasn't caught up with you yet. Better take off and wait for it to appear in this system.`
 	on complete
 		dialog
-			`You wait for the Testament to land, but it remains in orbit.`
-			`	There is no response to your hails. You need to take off and investigate.`
+			`You wait for the Testament to land, but it remains in orbit. There is no response to your hails. Maybe you should take off and investigate.`
 
 mission "Hauler VI cargo prototype 2"
 	name "Escort Hauler prototype to <planet>"
