@@ -3547,9 +3547,7 @@ mission "Hauler VI cargo prototype 2"
 		dialog `You land on <planet>, but the Testament didn't catch up with you yet.`
 	on complete
 		dialog
-			`This time the Testament appears to be landing right behind you, but the ship flies away at full thrust just before touching the landing pad.`
-			`	You receive another message: "The Sushi completely burned. We cannot be seen near the festival or near the shipyard with this burned sushi!`
-			`	"Our new destination is the waste processing plant at Longjump."`
+			`This time the Testament appears to be landing right behind you, but the ship flies away at full thrust just before touching the landing pad. You receive another message: "The Sushi completely burned. We cannot be seen near the festival or near the shipyard with this burned sushi! Our new destination is the waste processing plant at Longjump."`
 
 mission "Hauler VI cargo prototype 3"
 	name "Escort Hauler prototype to waste plant"
