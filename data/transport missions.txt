@@ -3513,7 +3513,7 @@ mission "Hauler VI cargo prototype 1"
 				`	"Why do you need me to escort the ship?"`
 					goto internal
 			label "invited"
-			`	"I'm sorry, but you are not invited. This dinner is only for Southbound Shipyards top-level management and representatives of the <destination> government.`
+			`	"I'm sorry, but you are not invited. This dinner is only for Southbound Shipyards top-level management and representatives of the <planet> government.`
 			label "internal"
 			`	"Normally we'd look internally to satisfy any escort needs, that's true. But we suspect there is a mole in our organization spying for Syndicated Shipyards. Going externally is safer in this case, and you came recommended when we searched through the list of captains available on short notice. You will be paid well for your time. Will you help us?"`
 			choice
@@ -3522,7 +3522,7 @@ mission "Hauler VI cargo prototype 1"
 				`	"Sorry, I don't have time to help you."`
 					decline
 	on visit
-		dialog `You land on <destination>, but the Testament hasn't caught up with you yet. Better take off and wait for it to appear in this system.`
+		dialog `You land on <planet>, but the Testament hasn't caught up with you yet. Better take off and wait for it to appear in this system.`
 	on complete
 		dialog
 			`You wait for the Testament to land, but it remains in orbit.`
@@ -3545,7 +3545,7 @@ mission "Hauler VI cargo prototype 2"
 			`You take off and try to contact Vanessa, but you receive an angry message from Vanessa: "Why were you trying to contact me? Does everyone need to know that we're here?"`
 			`	She adds, "The cooling failed and the sushi nearly cooked. Let's go to the Southbound Shipyards on <destination> instead, then we can save face by claiming that we were in time for the dinner, but on the wrong planet due to some miscommunication. We might even be able to hide all evidence of the overheating by giving away the sushi as fish dishes on a streetfood festival."`
 	on visit
-		dialog `You land on <destination>, but the Testament didn't catch up with you yet.`
+		dialog `You land on <planet>, but the Testament didn't catch up with you yet.`
 	on complete
 		dialog
 			`This time the Testament appears to be landing right behind you, but the ship flies away at full thrust just before touching the landing pad.`
@@ -3564,7 +3564,7 @@ mission "Hauler VI cargo prototype 3"
 		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
 	on visit
-		dialog `You land on <destination>, but the Testament didn't catch up with you yet.`
+		dialog `You land on <planet>, but the Testament didn't catch up with you yet.`
 	on complete
 		payment 140000
 		dialog
