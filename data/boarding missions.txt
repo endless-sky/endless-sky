@@ -66,7 +66,7 @@ mission "Asteroid Course"
 	name "Passengers to <planet>"
 	description "Transport the remaining crew of a destroyed ship, <bunks> people that were working on the <origin>, to <destination>."
 	to offer
-		random < 10
+		random < 15
 	source
 		government "Merchant" "Syndicate"
 		category "Light Freighter" "Interceptor"
@@ -77,13 +77,13 @@ mission "Asteroid Course"
 		not government "Pirate"
 	on offer
 		conversation
-			`As you are approaching the <origin>, your radar sensors detect that the ship you are assisting is in the middle of a large asteroid's course! While in a normal flight this wouldn't cause much trouble, a ship without active shields and that has already suffered heavy damages could be completely destroyed.`
+			`As you are approaching the <origin>, your radar sensors detect that the ship you are assisting is about to be slammed by a huge asteroid! While in a normal flight this wouldn't cause much trouble, a ship that has already suffered heavy damages and cannot dodge could be completely destroyed.`
 			branch unarmed
 				not "armament deterrence"
 			choice
 				`	(Shoot the asteroid.)`
 					goto fire
-				`	(Move your ship between the asteroid and the <origin>, then use your shields to protect it.)`
+				`	(Maneuver my ship to shield the <origin>.)`
 					goto move
 				`	(Attempt to repair the <origin> so that it can dodge the asteroid.)`
 					goto repair
@@ -91,7 +91,7 @@ mission "Asteroid Course"
 					goto escape
 			label unarmed
 			choice
-				`	(Move your ship between the asteroid and the <origin>, then use your shields to protect it.)`
+				`	(Maneuver my ship to shield the <origin>.)`
 					goto move
 				`	(Try to quickly repair the <origin>, so that it can move away from the asteroid's course.)`
 					goto repair
