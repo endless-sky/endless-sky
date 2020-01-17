@@ -75,7 +75,7 @@ mission "Asteroid Course A"
 		conversation
 			`As you are approaching the <origin>, your radar sensors detect that the ship you are assisting is in the middle of a large asteroid's course! While in a normal flight this wouldn't cause much trouble, a ship without active shields and that has already suffered heavy damages could be completely destroyed.`
 			branch unarmed
-				"armament deterrence" == 0
+				not "armament deterrence"
 			choice
 				`	(Shoot towards the asteroid to destroy it.)`
 					goto fire
