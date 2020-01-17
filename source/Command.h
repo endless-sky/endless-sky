@@ -55,8 +55,12 @@ public:
 	static const Command GATHER;
 	static const Command HOLD;
 	static const Command AMMO;
-	// This command from the AI tells a ship not to jump or land yet even if it
-	// is in position to do so. (There is no key mapped to this command.)
+	// This command is given in combination with JUMP or LAND and tells a ship
+	// not to jump or land yet even if it is in position to do so. It can be
+	// given from the AI when a ship is waiting for its parent. It can also be
+	// given from the player/input engine when the player is preparing his/her
+	// fleet for jumping or to indicate that the player is switching landing
+	// targets. (There is no explicit key mapped to this command.)
 	static const Command WAIT;
 	// This command from the AI tells a ship that if possible, it should apply
 	// less than its full thrust in order to come to a complete stop.
@@ -93,6 +97,8 @@ public:
 	void Clear(Command command);
 	void Set(Command command);
 	bool Has(Command command) const;
+	// Get the commands that are set in this and in the given command.
+	Command And(Command command) const;
 	// Get the commands that are set in this and not in the given command.
 	Command AndNot(Command command) const;
 	
