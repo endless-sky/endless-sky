@@ -98,6 +98,20 @@ government "Hai"
 	"hostile hail" "hostile hai"
 	"hostile disabled hail" "hostile disabled hai"
 
+government " Hai "
+	swizzle 0
+	color .84 .42 .81
+	
+	"player reputation" 0
+	"attitude toward"
+		"Hai (Unfettered)" -.1
+		"Merchant" .01
+	"bribe" .02
+	"friendly hail" "friendly hai"
+	"friendly disabled hail" "friendly disabled hai"
+	"hostile hail" "hostile hai"
+	"hostile disabled hail" "hostile disabled hai"
+
 government "Hai (Unfettered)"
 	swizzle 4
 	color .69 .33 .82
