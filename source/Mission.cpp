@@ -788,20 +788,14 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 	
-	if(trigger == OFFER)
+	if(trigger == ACCEPT)
 	{
 		++player.Conditions()[name + ": offered"]; 
-	}
-	else if(trigger == DEFER)
-	{
-		--player.Conditions()[name + ": offered"]; 
-	}
-	else if(trigger == ACCEPT)
-	{
 		++player.Conditions()[name + ": active"];
 	}
 	else if(trigger == DECLINE)
 	{
+		++player.Conditions()[name + ": offered"]; 
 		++player.Conditions()[name + ": declined"];
 	}
 	else if(trigger == FAIL)
