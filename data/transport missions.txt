@@ -3474,7 +3474,7 @@ mission "Inheritance Redirection"
 
 mission "Hauler VI cargo prototype 1"
 	name "Escort Hauler prototype to formal dinner"
-	description "Escort the Testament to <destination> to deliver sushi for a formal dinner."
+	description "Escort the <npc> to <destination> to deliver sushi for a formal dinner."
 	source
 		planet "Deep"
 	destination "Skymoot"
@@ -3490,7 +3490,7 @@ mission "Hauler VI cargo prototype 1"
 				`	"Hello, nice to meet you too."`
 				`	"Sorry, I don't have time to talk. I'm really busy."`
 					defer
-			`	She says, "My name is Vanessa Oxygenpocket, and I'm the lead for a team that's designing the new Hauler VI transport ship series here at Southbound Shipyards."`
+			`	She says, "My name is Vanessa Oxygenpocket, and I'm the lead for a team that's designing the new Hauler VI transport ship series at Southbound Shipyards."`
 			choice
 				`	"'Oxygenpocket' is an uncommon name."`
 				`	"And what help do you need from me?"`
@@ -3498,7 +3498,7 @@ mission "Hauler VI cargo prototype 1"
 			`	Vanessa responds, "Well, it might sound uncommon to people from a planet with a breathable atmosphere, but it is actually similar to Vanderberg, which means 'from the mountain,' or Langley, which means 'woodland.'`
 			`	"Oxygenpockets were as much a feature on my home-planet as mountains and woodlands are on more habitable planets."`
 			label "help request"
-			`	Vanessa pauses for a moment and then continues, "We're testing the VI's cargo refrigeration system using the Testament, a modified Hauler III. This system is one of our biggest achievements. To show how well it works, we plan to throw a formal dinner on <destination> with fresh sushi transported from here. I'm sure everyone at the dinner will be amazed by how well the food has been preserved despite the travel time. I'd like you to escort the ship and its cargo to <destination>."`
+			`	Vanessa pauses for a moment and then continues, "We're testing the VI's cargo refrigeration system using the Testament, a modified Hauler III. This system is one of our biggest achievements. To show how well it works, we plan to throw a formal dinner on <destination> with fresh sushi transported from here. I'm sure everyone at the dinner will be amazed by how well the food has been preserved despite the travel time. I'd like you to escort the ship and its cargo to <planet>."`
 			choice
 				`	"Isn't it a bit risky to transport food using a refrigeration system that hasn't been tested yet?"`
 				`	"Am I also invited for the dinner?"`
@@ -3515,7 +3515,7 @@ mission "Hauler VI cargo prototype 1"
 			label "invited"
 			`	"I'm sorry, but you are not invited. This dinner is only for Southbound Shipyards top-level management and representatives of the <destination> government.`
 			label "internal"
-			`	"Normally we'd look internally to satisfy any escort needs, that's true. But we've discovered a mole in our organization and there's very strong competition from Syndicated Shipyards. Going externally is safer in this case, and you came recommended when we searched through the list of captains available on short notice. You will be paid well for your time. Will you help us?"`
+			`	"Normally we'd look internally to satisfy any escort needs, that's true. But we suspect there is a mole in our organization spying for Syndicated Shipyards. Going externally is safer in this case, and you came recommended when we searched through the list of captains available on short notice. You will be paid well for your time. Will you help us?"`
 			choice
 				`	"Sure, I'll help you."`
 					accept
@@ -3529,8 +3529,8 @@ mission "Hauler VI cargo prototype 1"
 			`	There is no response to your hails. You need to take off and investigate.`
 
 mission "Hauler VI cargo prototype 2"
-	name "Escort Hauler prototype to a streetfood festival"
-	description "Escort the Testament to <destination> to deliver cooked fish dishes to a streetfood festival."
+	name "Escort Hauler prototype to <planet>"
+	description "Escort the <npc> to <destination> to deliver cooked fish dishes to a streetfood festival."
 	source "Skymoot"
 	destination "Zug"
 	landing
@@ -3542,19 +3542,19 @@ mission "Hauler VI cargo prototype 2"
 		ship "Hauler III" "SB-Labs Testament"
 	on enter
 		dialog
-			`As soon as you take off, you receive an angry voice message from Vanessa over a short-range inter-ship communications channel: "Why were you trying to contact me? Does everyone need to know that we're here?"`
+			`You take off and try to contact Vanessa, but you receive an angry message from Vanessa: "Why were you trying to contact me? Does everyone need to know that we're here?"`
 			`	She adds, "The cooling failed and the sushi nearly cooked. Let's go to the Southbound Shipyards on <destination> instead, then we can save face by claiming that we were in time for the dinner, but on the wrong planet due to some miscommunication. We might even be able to hide all evidence of the overheating by giving away the sushi as fish dishes on a streetfood festival."`
 	on visit
 		dialog `You land on <destination>, but the Testament didn't catch up with you yet.`
 	on complete
 		dialog
 			`This time the Testament appears to be landing right behind you, but the ship flies away at full thrust just before touching the landing pad.`
-			`	You receive a message over the short-range inter-ship communication channel: "The Sushi completely burned. We cannot be seen near the festival or near the shipyard with this burned sushi!`
+			`	You receive another message: "The Sushi completely burned. We cannot be seen near the festival or near the shipyard with this burned sushi!`
 			`	"Our new destination is the waste processing plant at Longjump."`
 
 mission "Hauler VI cargo prototype 3"
 	name "Escort Hauler prototype to waste plant"
-	description "Escort the Testament to <destination> to deliver charred food waste to a waste-processing plant."
+	description "Escort the <npc> to <destination> to deliver charred food waste to a waste-processing plant."
 	destination "Longjump"
 	landing
 	to offer
