@@ -790,12 +790,12 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	
 	if(trigger == ACCEPT)
 	{
-		++player.Conditions()[name + ": offered"]; 
+		++player.Conditions()[name + ": offered"];
 		++player.Conditions()[name + ": active"];
 	}
 	else if(trigger == DECLINE)
 	{
-		++player.Conditions()[name + ": offered"]; 
+		++player.Conditions()[name + ": offered"];
 		++player.Conditions()[name + ": declined"];
 	}
 	else if(trigger == FAIL)
