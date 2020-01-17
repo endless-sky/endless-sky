@@ -419,6 +419,7 @@ mission "Remnant: Found Keystones"
 	to offer
 		has "First Contact: Hai: offered"
 	on offer
+		"Remnant: Found Keystones: offered" ++
 		conversation
 			`While exploring the Hai spaceport, you notice something interesting about some of the Hai ships. Many of them appear to be decorated with a stone that looks very similar to the Quantum Key Stones found in the Ember Waste. You ask a nearby Hai what they are, and she tells you that the stones are good luck charms that many Hai use on their ships that can be purchased from any Hai outfitter.`
 			`	You should return to the Remnant outfitter manager to tell him about the stones in Hai space.`
@@ -480,6 +481,7 @@ mission "Remnant: Key Stones"
 		not "Remnant: Key Stones (Hai): offered"
 	on offer
 		require "Quantum Keystone"
+		"Remnant: Key Stones: offered" ++
 		conversation "remnant key stones"
 	
 	on visit
