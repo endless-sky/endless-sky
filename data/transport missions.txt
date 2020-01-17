@@ -3490,12 +3490,12 @@ mission "Hauler VI cargo prototype 1"
 				`	"Hello, nice to meet you too."`
 				`	"Sorry, I don't have time to talk. I'm really busy."`
 					defer
-			`She says, "My name is Vanessa Oxygenpocket, and I'm the lead for a team that's designing the new Hauler VI transport ship series here at Southbound Shipyards."`
+			`	She says, "My name is Vanessa Oxygenpocket, and I'm the lead for a team that's designing the new Hauler VI transport ship series here at Southbound Shipyards."`
 			choice
 				`	"'Oxygenpocket' is an uncommon name."`
 				`	"And what help do you need from me?"`
 					goto "help request"
-			`	Vanessa responds, "Well, it might sound uncommon to people from a planet with a breathable atmosphere, but it is actually similar to Vanderberg, which means 'from the mountain', or Langley, which means 'woodland'.`
+			`	Vanessa responds, "Well, it might sound uncommon to people from a planet with a breathable atmosphere, but it is actually similar to Vanderberg, which means 'from the mountain,' or Langley, which means 'woodland.'`
 			`	"Oxygenpockets were as much a feature on my home-planet as mountains and woodlands are on more habitable planets."`
 			label "help request"
 			`	Vanessa pauses for a moment and then continues, "We're testing the VI's cargo refrigeration system using the Testament, a modified Hauler III. This system is one of our biggest achievements. To show how well it works, we plan to throw a formal dinner on <destination> with fresh sushi transported from here. I'm sure everyone at the dinner will be amazed by how well the food has been preserved despite the travel time. I'd like you to escort the ship and its cargo to <destination>."`
@@ -3510,10 +3510,10 @@ mission "Hauler VI cargo prototype 1"
 			`	"Risky, why? I don't see what can go wrong. The system is quite well designed. I'm so proud of my team."`
 			choice
 				`	"Am I also invited for the dinner?"`
-				`	"Why do you need me to escort the ship?`
+				`	"Why do you need me to escort the ship?"`
 					goto internal
 			label "invited"
-			`	"I'm sorry, but you are not invited. This dinner is only for Southbound Shipyards top-level management and representatives of the <destination> government."`
+			`	"I'm sorry, but you are not invited. This dinner is only for Southbound Shipyards top-level management and representatives of the <destination> government.`
 			label "internal"
 			`	"Normally we'd look internally to satisfy any escort needs, that's true. But we've discovered a mole in our organization and there's very strong competition from Syndicated Shipyards. Going externally is safer in this case, and you came recommended when we searched through the list of captains available on short notice. You will be paid well for your time. Will you help us?"`
 			choice
@@ -3526,7 +3526,7 @@ mission "Hauler VI cargo prototype 1"
 	on complete
 		dialog
 			`You wait for the Testament to land, but it remains in orbit.`
-			`There is no response to your hails. You need to take off and investigate.`
+			`	There is no response to your hails. You need to take off and investigate.`
 
 mission "Hauler VI cargo prototype 2"
 	name "Escort Hauler prototype to a streetfood festival"
@@ -3543,14 +3543,14 @@ mission "Hauler VI cargo prototype 2"
 	on enter
 		dialog
 			`As soon as you take off, you receive an angry voice message from Vanessa over a short-range inter-ship communications channel: "Why were you trying to contact me? Does everyone need to know that we're here?"`
-			`She adds, "The cooling failed and the sushi nearly cooked. Let's go to the Southbound Shipyards on <destination> instead, then we can save face by claiming that we were in time for the dinner, but on the wrong planet due to some miscommunication. We might even be able to hide all evidence of the overheating by giving away the sushi as fish dishes on a streetfood festival."`
+			`	She adds, "The cooling failed and the sushi nearly cooked. Let's go to the Southbound Shipyards on <destination> instead, then we can save face by claiming that we were in time for the dinner, but on the wrong planet due to some miscommunication. We might even be able to hide all evidence of the overheating by giving away the sushi as fish dishes on a streetfood festival."`
 	on visit
 		dialog `You land on <destination>, but the Testament didn't catch up with you yet.`
 	on complete
 		dialog
 			`This time the Testament appears to be landing right behind you, but the ship flies away at full thrust just before touching the landing pad.`
-			`You receive a text message over the short-range inter-ship communication channel: "The Sushi completely burned. We cannot be seen near the festival or near the shipyard with this burned sushi!"`
-			`Our new destination is the waste processing plant at Longjump."`
+			`	You receive a message over the short-range inter-ship communication channel: "The Sushi completely burned. We cannot be seen near the festival or near the shipyard with this burned sushi!`
+			`	"Our new destination is the waste processing plant at Longjump."`
 
 mission "Hauler VI cargo prototype 3"
 	name "Escort Hauler prototype to waste plant"
@@ -3569,5 +3569,5 @@ mission "Hauler VI cargo prototype 3"
 		payment 140000
 		dialog
 			`The Testament enters the planet's atmosphere at high speed and lands somewhat uncontrolled near a waste processing plant. The cargo hold is glowing red hot and some areas in the cargo hold appear to be on fire.`
-			`Vanessa disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi calamity you experienced during the multiple legs of your journey.`
-			`You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is coming from Vanessa and her ship.`
+			`	Vanessa disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi calamity you experienced during the multiple legs of your journey.`
+			`	You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is coming from Vanessa and her ship.`
