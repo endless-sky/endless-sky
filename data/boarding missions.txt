@@ -77,7 +77,7 @@ mission "Asteroid Course A"
 			branch unarmed
 				not "armament deterrence"
 			choice
-				`	(Shoot towards the asteroid to destroy it.)`
+				`	(Shoot the asteroid.)`
 					goto fire
 				`	(Move your ship between the asteroid and the <origin>, then use your shields to protect it.)`
 					goto move
