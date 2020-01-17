@@ -81,7 +81,7 @@ mission "Asteroid Course A"
 					goto fire
 				`	(Move your ship between the asteroid and the <origin>, then use your shields to protect it.)`
 					goto move
-				`	(Try to quickly repair the <origin>, so that it can move away from the asteroid's course.)`
+				`	(Attempt to repair the <origin> so that it can dodge the asteroid.)`
 					goto repair
 				`	(Interrupt the docking maneuvers and fly away.)`
 					goto escape
