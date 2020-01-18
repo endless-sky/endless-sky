@@ -147,7 +147,7 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 
 	const TestStep &testStep = testSteps[context.stepToRun];
 
-	int testResult = testStep.DoStep(context.stepAction, menuPanels, gamePanels, player);
+	Test::TestStep::TestResult testResult = testStep.Step(context.stepAction, menuPanels, gamePanels, player);
 	switch(testResult)
 	{
 		case TestStep::RESULT_DONE:
@@ -235,7 +235,7 @@ void Test::TestStep::Load(const DataNode &node)
 
 
 
-Test::TestStep::TestResult Test::TestStep::DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const
+Test::TestStep::TestResult Test::TestStep::Step(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const
 {
 	switch (stepType)
 	{
@@ -306,7 +306,7 @@ Test::TestStep::TestResult Test::TestStep::DoStep(int stepAction, UI &menuPanels
 		case TestStep::LOAD_GAME:
 			if(stepAction == 0){
 				// Check if the savegame actually exists
-				if(! Files::Exists(Files::Saves() + filePathOrName))
+				if(!Files::Exists(Files::Saves() + filePathOrName))
 					return RESULT_FAIL;
 				// Perform the load and verify that player is loaded.
 				player.Load(Files::Saves() + filePathOrName);
@@ -320,7 +320,7 @@ Test::TestStep::TestResult Test::TestStep::DoStep(int stepAction, UI &menuPanels
 			{
 				// Clear the menu entries and go to main game screen
 				// TODO: We should send keystrokes / commands that perform the player actions instead of modifying game structures directly.
-				if(! menuPanels.IsEmpty())
+				if(!menuPanels.IsEmpty())
 					menuPanels.Pop(menuPanels.Top().get());
 				// Transfer control to game before final check to allow
 				// closing of menuPanel.
@@ -328,7 +328,7 @@ Test::TestStep::TestResult Test::TestStep::DoStep(int stepAction, UI &menuPanels
 			}
 			else if(stepAction == 2)
 			{
-				if(! menuPanels.IsEmpty())
+				if(!menuPanels.IsEmpty())
 					return RESULT_FAIL;
 				// TODO: this should be called/loaded from LoadPanel
 				gamePanels.Reset();
@@ -364,8 +364,7 @@ Test::TestStep::TestResult Test::TestStep::DoStep(int stepAction, UI &menuPanels
 				return RESULT_FAIL;
 			return RESULT_DONE;
 		default:
-			// ERROR, unknown test-step-type
-			// TODO: report error and exit with non-zero return-code
+			// ERROR, unknown test-step-type. Just return failure.
 			return RESULT_FAIL;
 			break;
 	}

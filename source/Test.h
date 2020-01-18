@@ -36,8 +36,7 @@ public:
 	// Class representing a single step in a test
 	class TestStep {
 	public:
-		// TODO: rename to LOAD_GAME_INLINE (and allow other loaders later?)
-		// Switch to game loading from inline in the test (from a child datanode)
+		// The different types of teststeps
 		enum StepType {INVALID, LOAD_GAME, ASSERT, WAITFOR, LAUNCH, LAND, INJECT, COMMAND};
 
 		// Result-Done:  Teststep succesfull. Remove step and proceed with next.
@@ -49,7 +48,7 @@ public:
 		TestStep(const DataNode &node);
 
 		void Load(const DataNode &node);
-		TestResult DoStep(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const;
+		TestResult Step(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const;
 		
 	private:
 		// The type of this step
