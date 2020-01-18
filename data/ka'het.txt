@@ -1,0 +1,205 @@
+# Copyright (c) 2019 by Tommaso Becca
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+# Ship names:
+phrase "ka'het"
+	word
+		"Pae"
+		"An"
+		"Kai"
+		"Rea"
+		"So"
+		"Axi"
+		"Rela"
+		"Mar"
+		"Ci"
+		"Tia"
+		"Gat"
+		"Geto"
+		"Roa"
+		"Aar"
+	word
+		"rii"
+		"ri"
+		"tal"
+		"lar"
+		"ha"
+		"rae"
+		"fir"
+		"oss"
+		"bea"
+		"ca"
+		"ori"
+		""
+	word
+		"'het"
+
+phrase "ka'mar"
+	word
+		"Pae"
+		"An"
+		"Kai"
+		"Rea"
+		"So"
+		"Axi"
+		"Rela"
+		"Mar"
+		"Ci"
+		"Tia"
+		"Gat"
+		"Geto"
+		"Roa"
+		"Aar"
+	word
+		"rii"
+		"ri"
+		"tal"
+		"lar"
+		"ha"
+		"rae"
+		"fir"
+		"oss"
+		"bea"
+		"ca"
+		"ori"
+		""
+	word
+		"'mar"
+
+fleet "Ka'het"
+	government "Ka'het"
+	names "ka'het"
+	cargo 1
+	personality
+		plunders mining harvests timid
+	variant 8
+		"Maeri'het"
+	variant 6
+		"Maeri'het (EMP)"
+	variant 2
+		"Maeri'het (Disable-able)"
+	variant
+		"Maeri'het (EMP, Disable-able)"
+	variant 4
+		"Telis'het"
+	variant 4
+		"Telis'het (Guns)"
+	variant 3
+		"Telis'het (EMP)"
+	variant
+		"Telis'het (Disable-able)"
+	variant
+		"Telis'het (Guns, Disable-able)"
+	variant
+		"Telis'het (EMP, Disable-able)"
+
+fleet "Ka'het Aggressive"
+	government " Ka'het "
+	names "ka'het"
+	cargo 1
+	personality
+		heroic plunders mining harvests
+	variant 8
+		"Maeri'het"
+	variant 6
+		"Maeri'het (EMP)"
+	variant 2
+		"Maeri'het (Disable-able)"
+	variant
+		"Maeri'het (EMP, Disable-able)"
+	variant 4
+		"Telis'het"
+	variant 4
+		"Telis'het (Guns)"
+	variant 3
+		"Telis'het (EMP)"
+	variant
+		"Telis'het (Disable-able)"
+	variant
+		"Telis'het (Guns, Disable-able)"
+	variant
+		"Telis'het (EMP, Disable-able)"
+
+fleet "Ka'het Core"
+	government "Ka'het"
+	names "ka'het"
+	cargo 2
+	personality
+		plunders mining harvests coward
+	variant 8
+		"Maeri'het"
+	variant 6
+		"Maeri'het (EMP)"
+	variant 2
+		"Maeri'het (Disable-able)"
+	variant
+		"Maeri'het (EMP, Disable-able)"
+	variant 4
+		"Telis'het"
+	variant 4
+		"Telis'het (Guns)"
+	variant 3
+		"Telis'het (EMP)"
+	variant
+		"Telis'het (Disable-able)"
+	variant
+		"Telis'het (Guns, Disable-able)"
+	variant
+		"Telis'het (EMP, Disable-able)"
+	variant 3
+		"Telis'het"
+		"Maeri'het" 2
+	variant 2
+		"Telis'het (Guns)"
+		"Maeri'het (EMP)" 2
+	variant 2
+		"Telis'het (Disable-able)"
+		"Maeri'het (EMP)"
+		"Maeri'het"
+	variant
+		"Telis'het (EMP)"
+		"Maeri'het (EMP)"
+		"Maeri'het (EMP, Disable-able)"
+	variant 5
+		"Telis'het"
+		"Maeri'het"
+	variant 4
+		"Telis'het (Guns, Disable-able)"
+		"Maeri'het (EMP)"
+	variant 2
+		"Telis'het (EMP)"
+		"Maeri'het (EMP, Disable-able)"
+
+fleet "Builders Drone"
+	government "Builder"
+	names "ka'mar"
+	cargo 0
+	personality
+		plunders mining harvests
+	variant 6
+		"Selii'mar"
+		"Faes'mar"
+	variant 4
+		"Selii'mar"
+		"Faes'mar (Strong)"
+	variant 3
+		"Selii'mar" 2
+		"Faes'mar" 2
+	variant 2
+		"Selii'mar" 2
+		"Faes'mar"
+		"Faes'mar (Strong)"
+	variant 2
+		"Selii'mar" 3
+		"Faes'mar" 3
+	variant 2
+		"Selii'mar" 3
+		"Faes'mar" 2
+		"Faes'mar (Strong)"

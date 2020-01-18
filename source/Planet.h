@@ -68,6 +68,10 @@ public:
 	// have the "uninhabited" attribute).
 	bool IsInhabited() const;
 	
+	// Check if the security of this planet has been changed from the default so
+	// that we can check if an uninhabited world should fine the player.
+	bool HasCustomSecurity() const;
+	
 	// Check if this planet has a shipyard.
 	bool HasShipyard() const;
 	// Get the list of ships in the shipyard.
@@ -146,6 +150,7 @@ private:
 	double bribe = 0.01;
 	double security = .25;
 	bool inhabited = false;
+	bool customSecurity = false;
 	// Any required attributes needed to land on this planet.
 	std::set<std::string> requiredAttributes;
 	
