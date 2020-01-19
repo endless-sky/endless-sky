@@ -1,0 +1,61 @@
+name: Build & Parse
+# TODO:
+# 1. export artifact (via actions/cache).
+# 2. Move tests to own job that depends on the build task (do we test all binaries, or just one?)
+# 3. Construct more intelligent workflows
+#    e.g.
+#      data/* -> use "latest" build for triggering branch, only run parse and/or acceptance tests
+#      source/* -> build new binary, run all tests, cache binary
+#      PR opened -> upload artifact ZIPs to PR as comment, and edit/replace as new commits come in
+on:
+  push:
+    paths:
+    - 'source/**'
+    - 'data/**'
+    - 'tests/**'
+    - 'EndlessSky.xcodeproj/**'
+    - 'XCode/**'
+  pull_request:
+    paths:
+    - 'source/**'
+    - 'data/**'
+    - 'tests/**'
+    - 'EndlessSky.xcodeproj/**'
+    - 'XCode/**'
+
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-16.04, macos-latest]
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Linux dependencies
+      if: contains(matrix.os, 'ubuntu')
+      run: |
+        sudo apt-get update
+        sudo apt-get install libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons
+    - name: Install MacOS dependencies
+      if: matrix.os == 'macos-latest'
+      run: |
+        brew update
+        brew install libmad libpng jpeg-turbo sdl2
+    - name: compile
+      run: |
+        if [[ ${{ runner.os }} == 'Linux' ]]; then
+          scons -j2;
+          echo "::set-env name=ES_PATH::./endless-sky"
+        elif [[ ${{ runner.os }} == 'macOS' ]]; then
+          xcodebuild -configuration "Release" install -quiet;
+          echo "::set-env name=ES_PATH::/tmp/EndlessSky.dst/Applications/Endless Sky.app/Contents/MacOS/Endless Sky"
+          echo "Completed macOS build";
+        fi
+    - name: Execute parse test
+      run: |
+        ./tests/test_parse.sh "${ES_PATH}"
+      env:
+        ES_PATH: ${{ env.ES_PATH }}
