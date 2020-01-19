@@ -70,11 +70,8 @@ public:
 		static const uint8_t OVER = 1;
 		static const uint8_t UNDER = 2;
 		
-		uint8_t facing = 0;
-		static const uint8_t FORWARD = 0;
-		static const uint8_t LEFT = 1;
-		static const uint8_t RIGHT = 2;
-		static const uint8_t BACK = 3;
+		// The angle this bay is facing relative to the carrying ship.
+		Angle facing = 0;
 		
 		// The launch effect(s) to be simultaneously played when the bay's ship launches.
 		std::vector<const Effect *> launchEffects;
