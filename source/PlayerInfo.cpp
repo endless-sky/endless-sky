@@ -2371,7 +2371,7 @@ void PlayerInfo::StepMissions(UI *ui)
 			// On visit dialogs are handled separately as to avoid a player
 			// getting spammed by on visit dialogs if they are stacking jobs
 			// from the same destination.
-			if(visitText.empty()
+			if(visitText.empty())
 				visitText = Format::Replace(mission.GetAction(Mission::VISIT).DialogText(), substitutions);
 			++missionVisits;
 		}
