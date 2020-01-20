@@ -3486,9 +3486,13 @@ mission "Hauler VI cargo prototype 1"
 		conversation
 			`A lady in a formal business suit walks gracefully over to you. "Captain <last>, Captain <last>! It is so nice to meet you here!"`
 			choice
+				`	"Hello, did we meet before? How do you know my name?"`
 				`	"Hello, nice to meet you too."`
+					goto "hello too"
 				`	"Sorry, I don't have time to talk. I'm really busy."`
 					defer
+			`	She smiles and replies, "Well, I actually don't know you, but I just read your name on one of the cargo manifests. And my experience is that this greeting works best if you need something from a spaceship captain."`
+			label "hello too"
 			`	She says, "My name is Veronica Oxygenpocket, and I'm the lead for a team that's designing the new Hauler VI transport ship series at Southbound Shipyards."`
 			choice
 				`	"'Oxygenpocket' is an uncommon name."`
