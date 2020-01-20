@@ -2380,10 +2380,11 @@ void PlayerInfo::StepMissions(UI *ui)
 			++missionVisits;
 		}
 	}
-	if(!visitText.empty() && missionVisits > 1)
+	if(!visitText.empty())
 	{
-		visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished " 
-			+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
+		if(missionVisits > 1)
+			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished " 
+				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
 		ui->Push(new Dialog(visitText));
 	}
 	// One mission's actions may influence another mission, so loop through one
