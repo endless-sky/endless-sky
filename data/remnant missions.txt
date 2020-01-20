@@ -143,7 +143,7 @@ mission "lost in ember waste"
 	landing
 	invisible
 	source
-		governmant "Remnant"
+		government "Remnant"
 	to offer
 		has "remnant blood test pure"
 		not "license: Remnant"
@@ -162,7 +162,7 @@ mission "Remnant: Lost in Ember Waste"
 	landing
 	invisible
 	source
-		governmant "Remnant"
+		government "Remnant"
 	to offer
 		has "event: lost in ember waste"
 	on offer
@@ -173,7 +173,7 @@ mission "Remnant: Lost in Ember Waste"
 			`	You sit down on a bench and think about how you're going to get out of this situation. While you think, an old woman approaches you and signs something.`
 			choice
 				`	"Sorry, I don't understand."`
-			`	The old woman chuckles to herself. "You seem lost," she says. You nod. To your surprise, she doesn't sing everything she says like the other Remnant.
+			`	The old woman chuckles to herself. "You seem lost," she says. You nod. To your surprise, she doesn't sing everything she says like the other Remnant.`
 			`	"I'm guessing you don't know about the wormholes."`
 			choice
 				`	"The what?"`
