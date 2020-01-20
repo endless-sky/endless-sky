@@ -3540,7 +3540,7 @@ mission "Hauler VI cargo prototype 2"
 		ship "Hauler III" "SB-Labs Testament"
 	on enter
 		dialog
-			`You take off and try to contact Veronica, but you receive an angry message from Veronica: "Why were you trying to contact me? Does everyone need to know that we're here?"`
+			`You take off and try to contact Veronica, but you receive an angry message: "Why were you trying to contact me? Does everyone need to know that we're here?"`
 			`	She adds, "The cooling failed and the sushi nearly cooked. Let's go to the Southbound Shipyards on <destination> instead, then we can save face by claiming that we were in time for the dinner, but on the wrong planet due to some miscommunication. We might even be able to hide all evidence of the overheating by giving away the sushi as fish dishes on a streetfood festival."`
 	on visit
 		dialog `You land on <planet>, but the Testament didn't catch up with you yet.`
