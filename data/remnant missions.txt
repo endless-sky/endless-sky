@@ -148,7 +148,8 @@ mission "lost in ember waste"
 		has "remnant blood test pure"
 		not "license: Remnant"
 	on offer
-		attribute "quantum keystone" 0
+		require "Quantum Keystone" 0
+		require "Quantum Key Stone" 0
 		require "Jump Drive" 0
 		event "lost in ember waste" 14
 		fail
