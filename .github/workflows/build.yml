@@ -15,6 +15,9 @@ on:
     - 'tests/**'
     - 'EndlessSky.xcodeproj/**'
     - 'XCode/**'
+    - '.github/workflows/**'
+    - keys.txt
+    - SConstruct
   pull_request:
     paths:
     - 'source/**'
@@ -22,6 +25,9 @@ on:
     - 'tests/**'
     - 'EndlessSky.xcodeproj/**'
     - 'XCode/**'
+    - '.github/workflows/**'
+    - keys.txt
+    - SConstruct
 
 
 jobs:
