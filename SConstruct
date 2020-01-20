@@ -2,6 +2,8 @@ import os
 
 # Load environment variables, including some that should be renamed.
 env = Environment(ENV = os.environ)
+if 'CXX' in os.environ:
+	env['CXX'] = os.environ['CXX']
 if 'CXXFLAGS' in os.environ:
 	env.Append(CCFLAGS = os.environ['CXXFLAGS'])
 if 'LDFLAGS' in os.environ:

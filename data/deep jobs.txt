@@ -33,7 +33,7 @@ phrase "deep mystery cube dropoff payment"
 	word
 		` `
 	word
-		`leave the mystery cube by the side of the road a few miles away from the spaceport.`
+		`leave the mystery cube by the side of the road a few kilometers away from the spaceport.`
 		`leave the mystery cube behind a rickety-looking wooden tower.`
 		`bury the cube out in the middle of nowhere before landing in the spaceport.`
 		`hand the cube to the first beggar woman you see planetside. She accepts it without a word, and leaves.`

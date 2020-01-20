@@ -433,7 +433,8 @@ void Engine::Step(bool isActive)
 			--jumpCount;
 	}
 	ai.UpdateEvents(events);
-	ai.UpdateKeys(player, clickCommands, isActive && wasActive);
+	HandleKeyboardInputs();
+	ai.UpdateKeys(player, activeCommands, isActive && wasActive);
 	wasActive = isActive;
 	Audio::Update(center);
 	
@@ -552,7 +553,7 @@ void Engine::Step(bool isActive)
 			{
 				double width = min(it->Width(), it->Height());
 				statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
-					max(20., width * .5), isEnemy);
+					min(it->Hull(), it->DisabledHull()), max(20., width * .5), isEnemy);
 			}
 		}
 	
@@ -737,7 +738,7 @@ void Engine::Step(bool isActive)
 		double width = max(target->Width(), target->Height());
 		Point pos = target->Position() - center;
 		statuses.emplace_back(pos, flagship->OutfitScanFraction(), flagship->CargoScanFraction(),
-			10. + max(20., width * .5), 2, Angle(pos).Degrees() + 180.);
+			0, 10. + max(20., width * .5), 2, Angle(pos).Degrees() + 180.);
 	}
 	// Handle any events that change the selected ships.
 	if(groupSelect >= 0)
@@ -847,13 +848,15 @@ void Engine::Draw() const
 	
 	for(const auto &it : statuses)
 	{
-		static const Color color[6] = {
+		static const Color color[8] = {
 			*colors.Get("overlay friendly shields"),
 			*colors.Get("overlay hostile shields"),
 			*colors.Get("overlay outfit scan"),
 			*colors.Get("overlay friendly hull"),
 			*colors.Get("overlay hostile hull"),
-			*colors.Get("overlay cargo scan")
+			*colors.Get("overlay cargo scan"),
+			*colors.Get("overlay friendly disabled"),
+			*colors.Get("overlay hostile disabled")
 		};
 		Point pos = it.position * zoom;
 		double radius = it.radius * zoom;
@@ -862,6 +865,8 @@ void Engine::Draw() const
 		double dashes = (it.type >= 2) ? 0. : 20. * min(1., zoom);
 		if(it.inner > 0.)
 			RingShader::Draw(pos, radius, 1.5f, it.inner, color[3 + it.type], dashes, it.angle);
+		if(it.disabled > 0.)
+			RingShader::Draw(pos, radius, 1.5f, it.disabled, color[6 + it.type], dashes, it.angle);
 	}
 	
 	// Draw the flagship highlight, if any.
@@ -1208,7 +1213,10 @@ void Engine::CalculateStep()
 		return;
 	
 	// Now, all the ships must decide what they are doing next.
-	ai.Step(player);
+	ai.Step(player, activeCommands);
+	
+	// Clear the active players commands, they are all processed at this point.
+	activeCommands.Clear();
 	
 	// Perform actions for all the game objects. In general this is ordered from
 	// bottom to top of the draw stack, but in some cases one object type must
@@ -1574,6 +1582,42 @@ void Engine::SendHails()
 
 
 
+// Handle any keyboard inputs for the engine. This is done in the main thread
+// after all calculation threads are paused to avoid race conditions.
+void Engine::HandleKeyboardInputs()
+{
+	Ship *flagship = player.Flagship();
+	
+	// Commands can't be issued if your flagship is dead.
+	if(!flagship || flagship->IsDestroyed())
+		return;
+	
+	// Determine which new keys were pressed by the player.
+	Command oldHeld = keyHeld;
+	keyHeld.ReadKeyboard();
+	Command keyDown = keyHeld.AndNot(oldHeld);
+	
+	++landKeyInterval;
+	if(oldHeld.Has(Command::LAND))
+		landKeyInterval = 0;
+	
+	// Wait with actual jumping until the jump command is released.
+	// Or if pressing land quicky in succession, then use WAIT to switch landing targets.
+	if(keyHeld.Has(Command::JUMP) || (keyHeld.Has(Command::LAND) && landKeyInterval < 60))
+		activeCommands.Set(Command::WAIT);
+	else
+		activeCommands.Clear(Command::WAIT);
+	
+	// Transfer all commands that need to be active as long as the corresponding key is pressed.
+	activeCommands |= (keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
+		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::BACK | Command::AFTERBURNER));
+	
+	// Transfer all newly pressed unhandled keys to active commands.
+	activeCommands |= keyDown;
+}
+
+
+
 // Handle any mouse clicks. This is done in the calculation thread rather than
 // in the main UI thread to avoid race conditions.
 void Engine::HandleMouseClicks()
@@ -1603,7 +1647,7 @@ void Engine::HandleMouseClicks()
 									+ " refuse to let you land.");
 						else
 						{
-							clickCommands |= Command::LAND;
+							activeCommands |= Command::LAND;
 							Messages::Add("Landing on " + planet->Name() + ".");
 						}
 					}
@@ -1640,7 +1684,7 @@ void Engine::HandleMouseClicks()
 		{
 			// Left click: has your flagship select or board the target.
 			if(clickTarget == flagship->GetTargetShip())
-				clickCommands |= Command::BOARD;
+				activeCommands |= Command::BOARD;
 			else
 			{
 				flagship->SetTargetShip(clickTarget);
@@ -2106,7 +2150,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 
 
 // Constructor for the ship status display rings.
-Engine::Status::Status(const Point &position, double outer, double inner, double radius, int type, double angle)
-	: position(position), outer(outer), inner(inner), radius(radius), type(type), angle(angle)
+Engine::Status::Status(const Point &position, double outer, double inner, double disabled, double radius, int type, double angle)
+	: position(position), outer(outer), inner(inner), disabled(disabled), radius(radius), type(type), angle(angle)
 {
 }

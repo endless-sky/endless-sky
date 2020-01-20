@@ -576,7 +576,8 @@ mission "Remnant: Technology Available"
 	on offer
 		payment 2000000
 		set "license: Remnant"
-		log "The prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."
+		log "The prefects have reached a consensus: now considered a valuable friend of the Remnant, and given permission to purchase their ships and technology."
+		
 		conversation
 			`An elderly man approaches your ship and introduces himself as a local "prefect," presumably some sort of government position. In a song so elaborate that he must have composed and practiced it ahead of time, he informs you that a scientific study on the void sprites has just been published, and as the co-author you are entitled to a payment of two million credits, which he presents to you.`
 			`	"When your name came up in the study," he says, "I asked around and discovered that you have helped us in other ways as well. The other prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall henceforth be given permission to purchase our ships and technology."`
@@ -1767,7 +1768,7 @@ mission "Remnant: Face to Maw 1B"
 	description "Plume would be very interested in a report on what happened with the void sprites."
 	landing
 	to offer
-		has "remnant: return the samples timer"
+		has "event: remnant: return the samples timer"
 	to fail
 		or
 			has "Remnant: Face to Maw 1: done"
@@ -1803,7 +1804,7 @@ mission "Remnant: Face to Maw 2"
 					accept
 				`	"I would rather not."`
 			`	Plume stoically accepts that with a nod. "That is your choice. I will arrange for another ship to transport it."`
-			decline
+				decline
 	on accept
 		event "remnant: penguin"
 	on complete
@@ -1861,7 +1862,7 @@ mission "Remnant: Face to Maw 2B"
 					accept
 				`	"I would rather not."`
 			`	The technician looks disappointed. "Oh well, enjoy your trophy."`
-			decline
+				decline
 	on complete
 		log "People" "Chilia" `As a military prefect, Chilia is responsible for the defense of Remnant space. He can usually be found on the front lines of combat unless required to work on tactics for the Remnant as a whole.`
 		payment 250000
