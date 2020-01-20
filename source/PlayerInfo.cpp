@@ -2342,7 +2342,6 @@ void PlayerInfo::StepMissions(UI *ui)
 	
 	string visitText;
 	int missionVisits = 0;
-	int deadlineMissions = 0;
 	auto substitutions = map<string, string>{
 		{"<first>", firstName},
 		{"<last>", lastName}
@@ -2366,31 +2365,21 @@ void PlayerInfo::StepMissions(UI *ui)
 		else if(mission.Destination() == GetPlanet() && !freshlyLoaded)
 		{
 			mission.Do(Mission::VISIT, *this, ui);
-			if(mission.IsUnique())
+			if(mission.IsUnique() || !mission.IsVisible())
 				continue;
 			
 			// On visit dialogs are handled separately as to avoid a player
 			// getting spammed by on visit dialogs if they are stacking jobs
 			// from the same destination.
-			auto action = mission.GetAction(Mission::VISIT);
-			if(!action.DialogText().empty() && visitText.empty())
-				visitText = Format::Replace(action.DialogText(), substitutions);
+			if(visitText.empty()
+				visitText = Format::Replace(mission.GetAction(Mission::VISIT).DialogText(), substitutions);
 			++missionVisits;
-			if(mission.Deadline())
-				++deadlineMissions;
 		}
 	}
-	if(!visitText.empty())
+	if(!visitText.empty() && missionVisits > 1)
 	{
-		visitText += "\n\tYou have " + Format::Number(missionVisits) + " unfinished " 
-			+ ((missionVisits > 1) ? "missions" : "mission") + " at this location";
-		if(deadlineMissions)
-		{
-			visitText += "(" + Format::Number(deadlineMissions) + " of which "
-					+ ((deadlineMissions > 1) ? "have approaching deadlines" : "has an approaching deadline)");
-		}
-		visitText += ".";
-		
+		visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished " 
+			+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
 		ui->Push(new Dialog(visitText));
 	}
 	// One mission's actions may influence another mission, so loop through one
