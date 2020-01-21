@@ -215,8 +215,11 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 	for(const auto &at : other.attributes)
 	{
 		double value = Get(at.first);
+		// Protection attributes are allowed to be >= -.99 instead of >= 0.
+		// All other attributes must be >= 0.
+		double minimum = (PROTECTION_TYPES.count(at.first)) ? -.99 : 0.;
 		// Allow for rounding errors:
-		if(value + at.second * count < -EPS)
+		if(value + at.second * count < minimum - EPS)
 			count = value / -at.second + EPS;
 	}
 	

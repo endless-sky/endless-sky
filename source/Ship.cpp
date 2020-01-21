@@ -2625,18 +2625,18 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		double rSquared = d * d / (blastRadius * blastRadius);
 		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
 	}
-	double shieldDamage = (weapon.ShieldDamage() / (1 + attributes.Get("shield protection"))) * damageScaling;
-	double hullDamage = (weapon.HullDamage() / (1 + attributes.Get("hull protection"))) * damageScaling;
-	double hitForce = (weapon.HitForce() / (1 + attributes.Get("force protection"))) * damageScaling;
-	double fuelDamage = (weapon.FuelDamage() / (1 + attributes.Get("fuel protection"))) * damageScaling;
-	double heatDamage = (weapon.HeatDamage() / (1 + attributes.Get("heat protection"))) * damageScaling;
-	double ionDamage = (weapon.IonDamage() / (1 + attributes.Get("ion protection"))) * damageScaling;
-	double disruptionDamage = (weapon.DisruptionDamage() / (1 + attributes.Get("disruption protection"))) * damageScaling;
-	double slowingDamage = (weapon.SlowingDamage() / (1 + attributes.Get("slowing protection"))) * damageScaling;
+	double shieldDamage = weapon.ShieldDamage() * damageScaling / (1. + attributes.Get("shield protection"));
+	double hullDamage = weapon.HullDamage() * damageScaling / (1. + attributes.Get("hull protection"));
+	double hitForce = weapon.HitForce() * damageScaling / (1. + attributes.Get("force protection"));
+	double fuelDamage = weapon.FuelDamage() * damageScaling / (1. + attributes.Get("fuel protection"));
+	double heatDamage = weapon.HeatDamage() * damageScaling / (1. + attributes.Get("heat protection"));
+	double ionDamage = weapon.IonDamage() * damageScaling / (1. + attributes.Get("ion protection"));
+	double disruptionDamage = weapon.DisruptionDamage() * damageScaling / (1. + attributes.Get("disruption protection"));
+	double slowingDamage = weapon.SlowingDamage() * damageScaling / (1. + attributes.Get("slowing protection"));
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
-	double shieldFraction = 1. - (weapon.Piercing() / (1 + attributes.Get("piercing protection")));
+	double shieldFraction = 1. - (weapon.Piercing() / (1. + attributes.Get("piercing protection")));
 	shieldFraction *= 1. / (1. + disruption * .01);
 	if(shields <= 0.)
 		shieldFraction = 0.;
