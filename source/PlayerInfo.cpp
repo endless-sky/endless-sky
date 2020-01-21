@@ -2283,14 +2283,17 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 	}
 	
 	// Store conditions for flagship current crew, required crew, and bunks.
-	if(flagship) {
-	  conditions["flagship crew"] = flagship->Crew();
-	  conditions["flagship required crew"] = flagship->RequiredCrew();
-	  conditions["flagship bunks"] = flagship->Attributes().Get("bunks");
-	} else {
-	  conditions["flagship crew"] = 0;
-	  conditions["flagship required crew"] = 0;
-	  conditions["flagship bunks"] = 0;
+	if(flagship)
+	{
+		conditions["flagship crew"] = flagship->Crew();
+		conditions["flagship required crew"] = flagship->RequiredCrew();
+		conditions["flagship bunks"] = flagship->Attributes().Get("bunks");
+	}
+	else
+	{
+		conditions["flagship crew"] = 0;
+		conditions["flagship required crew"] = 0;
+		conditions["flagship bunks"] = 0;
 	}
 	
 	// Conditions for your fleet's attractiveness to pirates:
