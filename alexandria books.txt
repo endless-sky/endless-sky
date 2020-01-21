@@ -1,0 +1,201 @@
+conversation "visit the library"
+	label top
+	`Librarians have collected some books that may be of interest to you.  Do you want to read any?`
+	choice
+		`	I'm done reading books for now.`
+			defer
+		`	Parliamentary Proceedings labeled, "Discussions of Dissent in the South and the Rim."`
+			goto "southern dissent"
+		`	A surreal master's thesis titled, "The SquirrelNet Hypothesis"`
+			goto squirrelnet
+		`	A video titled, "The Flat Universe and Other Facts"`
+			goto "flat universe"
+		`	A Navy training simulator called, "Methods of Interstellar Travel"`
+			goto "interstellar travel"
+		`	A widely-banned book called, "Alphas or Not?"`
+			goto "alphas or not"
+	label "southern dissent"
+	`The proceedings are hard-copies printed with 9-point font on thin paper.  The stack of paper is about 30 cm thick.  Fortunately, there is a 591 page summary.  The bulk of it is infantile political banter between politicians, but they do occasionally discuss real issues.`
+	choice
+		`	Keep reading...`
+		`	Read a different book.`
+			goto top
+		`	I'm done reading books for now.`
+			defer
+	`	About two dozen planets in the South and Rim are disgruntled about unfairness in Republic laws and treatment of their region of space.  The origin of the problem seems to be that parliamentary representation is dependent on population.  South and Rim planets have few residents, so they have only a few votes in parliament between them.  This wasn't always the case; a few centuries ago, planets were guaranteed a certain minimum representation regardless of population.`
+	choice
+		`	Finish reading...`
+		`	Read a different book.`
+			goto top
+		`	I'm done reading books for now.`
+			defer
+	`	This political structure has produced vast income disparities, unfair trade laws, total lack of southern Navy patrols, and a massive increase in piracy galaxy-wide.  Southern and Rim planets are demanding changes, and some Dirt Belt planets are joining in the complaints.  The rest of the Republic doesn't care about the issues.  They don't want to spend money to solve problems that only affect people on the edge of Republic space.`
+	choice
+		`	Read a different book.`
+			goto top
+		`	I'm done reading books for now.`
+			defer
+	label squirrelnet
+	`The author wrote this as their thesis for a Masters Degree in Surrealist Writing.  As you read the first few pages of this thesis, what stands out the most is the unconventional spelling and bizarre grammar.  Once you get past your discomfort with the writing style, the thesis starts to seem... strange.`
+	choice
+		`	Keep reading...`
+		`	Read a different book.`
+			goto top
+		`	I'm done reading for now.`
+			defer
+	`The thesis discusses a diary of Tanya Halter and some evidence throughout history suggesting a vast conspiracy of squirrels.  Tanya wrote her diary from age 7 to age 53, back in the 1900s, documenting the rantings of her schizophrenic uncle, Aaron Halter.`
+	`	Aaron believed that Earth's squirrels had implants allowing them to telepathically link into a collective entity capable of intelligent thought.  This collective entity was known as SquirrelNet.  The squirrels used their network to monitor humans and transmit surveillance information to a distant part of the galaxy where hyper-intelligent squirrels planned conquest of our species.  Aaron would use water guns to hunt squirrels, claiming that the water would disrupt the telepathic connections.`
+	choice
+		`	Keep reading.`
+		`	Read a different book.`
+			goto top
+		`	I'm done reading books for now.`
+			defer
+	`In the centuries since Aaron Halter's passing, there has been evidence of human-sized anthropomorphic squirrels.  Most importantly, there are multiple reports of sightings of human-sized squirrels, especially in the Pleasure Planets and the Far North.  The reports have been getting more frequent in the past few decades.  The writer admits that all evidence is circumstantial, hence "SquirrelNet Hypothesis" rather than "SquirrelNet Theory."`
+	choice
+		`	Finish reading.`
+		`	Read a different book.`
+			goto top
+		`	I'm done reading for now.`
+			defer
+	`The appendices to the thesis discuss other bizarre stories about intelligent aliens.  Appendix A shows old crackpot theories about the existence of the Quarg, before they made formal contact with humans.  Later appendices discuss giant spiders, pacifistic owls, centaurs, violent lizard-people, angry robot ships, and even a race of "omnibenevolent space cockroaches that love the Quarg."`
+	choice
+		`	Read another book.`
+			goto top
+		`	I'm done reading books for now.`
+			defer
+	label "flat universe"
+	`This is a two-hour-long educational documentary for children, presenting pseudoscience theories as if they were fact.  The lead character is a talking platypus in a lab coat who sings during colorful animated sequences.  You're not sure how much of this you can handle.`
+	choice
+		`	Watch the psuedoscience video.`
+		`	Read another book.`
+			goto top
+		`	I'm done reading books for now.`
+			defer
+	`The first animated sequence accuses the universe of being two-dimensional.  That is clearly nonsense; you can look up, down, left, right, forward, and back while watching the video.  Regardless, the video does provide some evidence.`
+	`	Mostly, the claim relies on how ships move in space.  You can never turn downward or upward; just turn left, turn right, accelerate, and decelerate.`
+	`	Obviously this is nonsense.  If space was 2D, you could not fly under or over other ships.  Pilots only fight in 2D because 3D combat is needlessly complicated.`
+	`	Next, the platypus explains that ships shrink or grow when landing or departing a planet.  If planets were spherical, the ship would take a parabolic course.  The video says that is consistent with a ship landing on a flat world rather than a spherical one.`
+	`	This, again, is obvious nonsense.  Planets could not have downward-facing gravity unless they were spherical.`
+	choice
+		`	Continue watching the psuedoscience video.`
+		`	Read another book.`
+			goto top
+		`	I'm done reading books for now.`
+			defer
+	`The platypus breaks out into an epic song about space not being a vacuum.`
+	`	In our universe, a spaceship has a maximum velocity that depends on the shape of the ship and its acceleration.  In a vacuum, neither factor would matter since there is no fluid for the ship to push against.  Ships do have a maximum speed, so space must not be a vacuum.  We're flying through some fluid, and our maximum speed is dependent on how aerodynamic the ship is in that fluid.`
+	`	While there seems to be a glimmer of sense in his words, it feels intuitive that a ship's maximum speed should depend on its shape.`
+	choice
+		`	Continue watching the psuedoscience video.`
+		`	Read another book.`
+			goto top
+		`	I'm done reading books for now.`
+			defer
+	`Next is a song and dance about diffraction patterns and radar.  As waves propagate, they expand.  If you send a radio wave across long distances, only a small fraction will reflect back to you.  Eventually the reflection will be below the cosmic radio wave background and the object will be undetectable.  Somehow, in our universe, this does not happen.  No matter how far away you are, missile radars know your exact location.`
+	`	This is just getting silly now.  Your patience is running out.`
+	choice
+		`	Finish watching the psuedoscience video.`
+		`	Read another book.`
+			goto top
+		`	I'm done reading books for now.`
+			defer
+	`You've come to the end of the video and you see the platypus typing on a boxy computer from the mid-1900s.  He's singing an accusation that the universe is a big computer simulation.  It's just some text and image files, and a few hundred megabytes of computer code.  Physics in our universe is simplified to make things more fun.`
+	`	His final message is, "forget physics and just enjoy your life in our endless sky."`
+	choice
+		`	Read another book.`
+			goto top
+		`	I'm done reading books for now.`
+			defer
+	label "interstellar travel"
+	`This training is similar to the hyperdrive training from your pilot classes.  It is only 15 minutes long, and it promises to go into more advanced interstellar travel concepts.`
+	`	The beginning is the familiar story of autopilot operation for Hyperdrive launches, and a cost of 100 fuel for each jump.  The video mentions Scram Drive, which allows a ship to jump without coming to a complete stop.  The fuel cost is higher due to, "the difficulty of forming a hyperspace window from a non-stationary reference frame."`
+	choice
+		`	Finish the training.`
+		`	Read another book.`
+			goto top
+		`	I'm done reading books for now.`
+			defer
+	`	The video mentions travel without starlane, but provides few details.  It mentions wormholes that allow instant travel between two systems.  Apparently they're purple because of, "the extreme blue-shifting of light emanating from the other side of the wormhole."  There are also red objects that have the appearance of wormholes, but cannot be penetrated.  The video ends with a theory that one can jump to nearby systems without using a wormhole or starlane.  Such travel, the video says, "would require astronomical amounts of fuel for the same reason as the inefficiency of Scram Drives."`
+	choice
+		`	Read another book.`
+			goto top
+		`	I'm done reading books for now.`
+			defer
+	label "alphas or not"
+	`The librarian warns you that this book is legally classified as pro-Alpha propaganda.  You can read it here because the Alexandria Library has a mandate to archive all knowledge, even forbidden knowledge.  "Alphas or Not?" is banned elsewhere in the Republic with an 85,000 credit fine.  Books like this are one of the reasons why Alexandria Library has restricted access.`
+	`	Anise Ozran, author of this book, was punished severely for her work.  She was sentenced to seventeen sequential lifetimes in jail, followed by six executions, and then 397 hours of community service.  That's one sentence from the Republic and twenty-three from other jurisdictions.  Unfortunately, she wasn't able to serve any of her sentences.  She was murdered in her sleep by a prison guard during her first night in jail.  The guard was acquitted on the grounds that Anise would have been executed eventually anyway.`
+	`	Are you sure you want to read this book?`
+	choice
+		`	Yes.  I will read this book.`
+		`	No.  I'll read another book.`
+			goto top
+		`	I'm done reading books for now.`
+			defer
+	`The book's introduction has a brief history of the official account of the Alpha Wars and gene resequencing technology.  Then it picks apart the evidence: Inconsistencies in historical records, widely-accepted facts that contradict widely-held assumptions, secret documents that conflict with official word.`
+	choice
+		`	Continue to part 3 of 9...`
+		`	Read another book.`
+			goto top
+		`	I'm done reading books for now.`
+			defer
+	`Much of the first few chapters deal with inconsistent death counts during the extermination of Alphas after the Alpha Wars.  Military forces went planet-by-planet hunting and killing Alphas, and destroying facilities designed to create such creatures.  Supposedly, that effort continues to the present day.  The official death count throughout Human space was 13,719 Alphas and about seven times that number of unmodified Humans helping them.  However, if you tally execution reports regiment-by-regiment among the hunters, the extermination death count should be well over 400,000.`
+	`	Looking deeper, the author shows evidence that the actual number may be far higher.  Archaeological records have found funerary pyres and mass graves created near some Alpha hide-outs during extermination efforts.  There are also rumors of a "bio-weapon of last resort" designed centuries ago by the Navy to kill genetically-modified humans.  If such tactics were common, the actual death toll may have been in the millions or beyond.`
+	choice
+		`	Continue to part 4 of 9...`
+		`	This is getting too morbid.  I'll read a different book.`
+			goto top
+		`	I'm done reading for now.`
+			defer
+	`The first part of the book left us with a mystery: fewer than 20,000 Alphas were created.  Yet there is evidence that many more people were executed after the war.  Who were they?`
+	`	It was once common to use gene resequencing to slightly improved children.  The improvements were minor such as: stronger immune systems, slight boost to coordination, a few dozen IQ points, or ten centimeters of height.  Such techniques were ubiquitous in the years leading up to the Alpha Wars.  Several hundred million people had minor genetic modifications.  They were able to interbreed, so one should expect that their traits would dilute as generations progress.`
+	`	Oddly, there was an unusual strain of influenza during the Alpha Wars that wiped out about 3% of the Human race in 19 months, including about 70% of genetically-modified humans.  It was most deadly to people with strong immune systems.  Alphas, of course, have the strongest immune systems of all and were most susceptible to the disease.  Government documents accuse the Alphas of creating this plague, but it doesn't make sense for Alphas to create a plague to wipe themselves out.  Super-intelligent humans are smarter than that.`
+	choice
+		`	Continue to part 5 of 9...`
+		`	This is getting too morbid.  I'll read a different book.`
+			goto top
+		`	I'm done reading for now.`
+			defer
+	`There is evidence that the Alphas were not the only artificially-created Human subspecies to be created and exterminated.`
+	`	Partially-destroyed government documents describe several other types.  Genetic laborers were capable of surviving radiation and extreme heat.  Genetically-modified colonists were to create "seeder colonies" on harsh worlds, in preparation for large-scale colonization by ordinary humans.  Genetically-modified household servants were designed to be servile.  There is no evidence of the existence of any of these subspecies after the Alpha Wars.`
+	`	It is certain that one race of genetically-modified humans did exist and was slaughtered by the Navy.  They were ape-like creatures designed to survive in high-gravity environments.  Their genetics allowed them to propagate their species, producing later generations with similar traits.  During the Alpha war, a colony of tens of thousands such people died in one day from space-borne bombardment.  Patrol logs from that day show a Navy group was overhead and no Alpha ships were present.  This event has been covered up by the Republic, but documents in the Alexandria Library prove it to be true.`
+	choice
+		`	Continue to part 7 of 9...`
+		`	This is getting too morbid.  I'll read a different book.`
+			goto top
+		`	I'm done reading for now.`
+			defer
+	`The author insists that genetically-modified Human subspecies and lightly-modified humans were wiped-out en masse during and after the Alpha Wars out of abject fear of genetically-superior beings.  Further, the author accuses the Republic of continuing to exterminate all genetically-modified humans it finds, even to the present day.`
+	`	If the author's accusations are true, then this was the largest genocide in the history of the human race.`
+	choice
+		`	Continue to part 8 of 9...`
+		`	This is getting too morbid.  I'll read a different book.`
+			goto top
+		`	I'm done reading for now.`
+			defer
+	`	The book closes with these words, "Who are the true monsters?  The master race that tried to conquer its creators?  Or the genetically pure who killed millions out of abject fear?  These words will be the death of me, but they must be heard.  Do not let future generations be blinded by hatred."`
+	choice
+		`	Finish reading...`
+		`	This is getting too morbid.  I'll read a different book.`
+			goto top
+		`	I'm done reading for now.`
+			defer
+	`After finishing the book, you ponder its words for a few minutes...`
+	`	The book was filled with circumstantial evidence and questionable logic, so some of its conclusions may be dubious.  It is clear though that the government's official account of the Alpha Wars was not entirely correct.  Some of the author's other claims may have merit too.`
+	`	You're left with more questions than answers.  What really happened during the Alpha Wars?  Have the genetically-modified humans all been wiped out?  What is happening in the dark corners of the Republic today?`
+	choice
+		`	Read another book.`
+			goto top
+		`	I'm done reading for now.`
+			defer
+
+
+mission "Read some books at Alexandria Library"
+	invisible
+	repeat
+	landing
+	source Alexandria
+	to offer
+		has "library card"
+	on offer
+		conversation "visit the library"
