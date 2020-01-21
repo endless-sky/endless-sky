@@ -172,8 +172,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		&& (1. + attributes.Get("hull repair multiplier")) > 0.
 		// Negative hull energy or fuel will prevent shields from repairing.
 		&& hullEnergy >= 0. && hullFuel >= 0.;
-	hullHeat *= hasHullRepair;
 	hullEnergy *= hasHullRepair;
+	hullHeat *= hasHullRepair;
 	if(hasHullRepair)
 	{
 		attributeLabels.push_back("hull repair / max:");

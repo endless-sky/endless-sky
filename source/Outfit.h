@@ -63,7 +63,9 @@ public:
 	
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
-	// not, return the maximum number that can be added.
+	// not, return the maximum number that can be added. Outfits cannot be
+	// added if they cause an attribute to become negative, unless that
+	// attribute is in the whitelist.
 	int CanAdd(const Outfit &other, int count = 1) const;
 	// For tracking a combination of outfits in a ship: add the given number of
 	// instances of the given outfit to this outfit.

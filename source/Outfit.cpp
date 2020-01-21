@@ -25,6 +25,18 @@ using namespace std;
 
 namespace {
 	const double EPS = 0.0000000001;
+	
+	// Attributes whitelisted as being able to become negative.
+	const set<string> WHITELIST = {
+		"hull repair multiplier",
+		"hull energy multiplier",
+		"hull fuel multiplier",
+		"hull heat multiplier",
+		"shield generation multiplier",
+		"shield energy multiplier",
+		"shield fuel multiplier",
+		"shield heat multiplier"
+	};
 }
 
 const vector<string> Outfit::CATEGORIES = {
@@ -191,11 +203,16 @@ const Dictionary &Outfit::Attributes() const
 
 // Determine whether the given number of instances of the given outfit can
 // be added to a ship with the attributes represented by this instance. If
-// not, return the maximum number that can be added.
+// not, return the maximum number that can be added. Outfits cannot be
+// added if they cause an attribute to become negative, unless that
+// attribute is in the whitelist.
 int Outfit::CanAdd(const Outfit &other, int count) const
 {
 	for(const auto &at : other.attributes)
 	{
+		// Skip attributes that are a part of the whitelist.
+		if(WHITELIST.count(at.first))
+			continue;
 		double value = Get(at.first);
 		// Allow for rounding errors:
 		if(value + at.second * count < -EPS)
