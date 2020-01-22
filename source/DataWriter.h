@@ -13,8 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef DATA_WRITER_H_
 #define DATA_WRITER_H_
 
-#include <string>
 #include <sstream>
+#include <string>
 
 class DataNode;
 
@@ -46,7 +46,7 @@ public:
 	
 	// Begin a new line that is a "child" of the previous line.
 	void BeginChild();
-	// Finish writing a block of child nodes and decrese the indentation.
+	// Finish writing a block of child nodes and decrease the indentation.
 	void EndChild();
 	
 	// Write a comment. It will be at the current indentation level, and will

@@ -27,8 +27,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "Person.h"
 #include "Planet.h"
-#include "Preferences.h"
 #include "Politics.h"
+#include "Preferences.h"
 #include "Random.h"
 #include "SavedGame.h"
 #include "Ship.h"
@@ -570,7 +570,7 @@ void PlayerInfo::IncrementDate()
 	
 	// Have the player pay salaries, mortgages, etc. and print a message that
 	// summarizes the payments that were made.
-	string message = accounts.Step(assets, Salaries());
+	string message = accounts.Step(assets, Salaries(), Maintenance());
 	if(!message.empty())
 		Messages::Add(message);
 	
@@ -683,6 +683,31 @@ int64_t PlayerInfo::Salaries() const
 	
 	// Every crew member except the player receives 100 credits per day.
 	return 100 * (crew - 1);
+}
+
+
+
+// Calculate the daily maintenance cost for all ships and in cargo outfits.
+int64_t PlayerInfo::Maintenance() const
+{
+	int64_t maintenance = 0;
+	// If the player is landed, then cargo will be in the player's 
+	// pooled cargo. Check there so that the bank panel can display the
+	// correct total maintenance costs. When launched all cargo will be
+	// in the player's ships instead of in the pooled cargo, so no outfit 
+	// will be counted twice.
+	for(const auto &outfit : Cargo().Outfits())
+		maintenance += max<int64_t>(0, outfit.first->Get("maintenance costs")) * outfit.second;
+	for(const shared_ptr<Ship> &ship : ships)
+		if(!ship->IsDestroyed())
+		{
+			maintenance += max<int64_t>(0, ship->Attributes().Get("maintenance costs"));
+			for(const auto &outfit : ship->Cargo().Outfits())
+				maintenance += max<int64_t>(0, outfit.first->Get("maintenance costs")) * outfit.second;
+			if(!ship->IsParked())
+				maintenance += max<int64_t>(0, ship->Attributes().Get("operating costs"));
+		}
+	return maintenance;
 }
 
 
@@ -1102,10 +1127,10 @@ bool PlayerInfo::TakeOff(UI *ui)
 		ships.erase(it);
 		ships.insert(ships.begin(), flagship);
 	}
-	// Make sure your ships all know who the flagship is.
+	// Make sure your jump-capable ships all know who the flagship is.
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		bool shouldHaveParent = (ship != flagship && !ship->IsParked() && !ship->CanBeCarried());
+		bool shouldHaveParent = (ship != flagship && !ship->IsParked() && (!ship->CanBeCarried() || ship->JumpFuel()));
 		ship->SetParent(shouldHaveParent ? flagship : shared_ptr<Ship>());
 	}
 	// Make sure your flagship is not included in the escort selection.
@@ -1450,7 +1475,7 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 			? Mission::BOARDING : Mission::ASSISTING);
 	
 	// Check for available boarding or assisting missions.
-	for(const pair<const string, const Mission> &it : GameData::Missions())
+	for(const auto &it : GameData::Missions())
 		if(it.second.IsAtLocation(location) && it.second.CanOffer(*this, ship))
 		{
 			boardingMissions.push_back(it.second.Instantiate(*this, ship));
@@ -2229,6 +2254,7 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 	conditions["unpaid mortgages"] = min(limit, accounts.TotalDebt("Mortgage"));
 	conditions["unpaid fines"] = min(limit, accounts.TotalDebt("Fine"));
 	conditions["unpaid salaries"] = min(limit, accounts.SalariesOwed());
+	conditions["unpaid maintenance"] = min(limit, accounts.MaintenanceDue());
 	conditions["credit score"] = accounts.CreditScore();
 	// Serialize the current reputation with other governments.
 	SetReputationConditions();
@@ -2254,6 +2280,20 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 	{
 		conditions["cargo space"] = flagship->Cargo().Free();
 		conditions["passenger space"] = flagship->Cargo().BunksFree();
+	}
+	
+	// Store conditions for flagship current crew, required crew, and bunks.
+	if(flagship)
+	{
+		conditions["flagship crew"] = flagship->Crew();
+		conditions["flagship required crew"] = flagship->RequiredCrew();
+		conditions["flagship bunks"] = flagship->Attributes().Get("bunks");
+	}
+	else
+	{
+		conditions["flagship crew"] = 0;
+		conditions["flagship required crew"] = 0;
+		conditions["flagship bunks"] = 0;
 	}
 	
 	// Conditions for your fleet's attractiveness to pirates:
@@ -2340,6 +2380,15 @@ void PlayerInfo::StepMissions(UI *ui)
 				if(ship->IsDestroyed())
 					mission.Do(ShipEvent(nullptr, ship, ShipEvent::DESTROY), *this, ui);
 	
+	string visitText;
+	int missionVisits = 0;
+	auto substitutions = map<string, string>{
+		{"<first>", firstName},
+		{"<last>", lastName}
+	};
+	if(Flagship())
+		substitutions["<ship>"] = Flagship()->Name();
+	
 	auto mit = missions.begin();
 	while(mit != missions.end())
 	{
@@ -2354,7 +2403,29 @@ void PlayerInfo::StepMissions(UI *ui)
 		else if(mission.CanComplete(*this))
 			RemoveMission(Mission::COMPLETE, mission, ui);
 		else if(mission.Destination() == GetPlanet() && !freshlyLoaded)
+		{
 			mission.Do(Mission::VISIT, *this, ui);
+			if(mission.IsUnique() || !mission.IsVisible())
+				continue;
+			
+			// On visit dialogs are handled separately as to avoid a player
+			// getting spammed by on visit dialogs if they are stacking jobs
+			// from the same destination.
+			if(visitText.empty())
+			{
+				const auto &text = mission.GetAction(Mission::VISIT).DialogText();
+				if(!text.empty())
+					visitText = Format::Replace(text, substitutions);
+			}
+			++missionVisits;
+		}
+	}
+	if(!visitText.empty())
+	{
+		if(missionVisits > 1)
+			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished " 
+				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
+		ui->Push(new Dialog(visitText));
 	}
 	// One mission's actions may influence another mission, so loop through one
 	// more time to see if any mission is now completed or failed due to a change
@@ -2612,7 +2683,9 @@ void PlayerInfo::Fine(UI *ui)
 {
 	const Planet *planet = GetPlanet();
 	// Dominated planets should never fine you.
-	if(GameData::GetPolitics().HasDominated(planet))
+	// By default, uninhabited planets should not fine the player.
+	if(GameData::GetPolitics().HasDominated(planet)
+		|| !(planet->IsInhabited() || planet->HasCustomSecurity()))
 		return;
 	
 	// Planets should not fine you if you have mission clearance or are infiltrating.
@@ -2621,7 +2694,11 @@ void PlayerInfo::Fine(UI *ui)
 					(mission.Destination() == planet || mission.Stopovers().count(planet))))
 			return;
 	
+	// The planet's government must have the authority to enforce laws.
 	const Government *gov = planet->GetGovernment();
+	if(!gov->CanEnforce(planet))
+		return;
+	
 	string message = gov->Fine(*this, 0, nullptr, planet->Security());
 	if(!message.empty())
 	{
