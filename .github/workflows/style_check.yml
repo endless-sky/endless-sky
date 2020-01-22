@@ -1,0 +1,24 @@
+name: Check coding style
+
+on:
+  push:
+    paths:
+    - 'source/**'
+    - 'tests/**'
+  pull_request:
+    paths:
+    - 'source/**'
+    - 'tests/**'
+
+jobs:
+  check-style:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Execute parse test
+      run: |
+        ./tests/check_coding_style.sh
+
