@@ -144,7 +144,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	double shieldFuel = attributes.Get("shield fuel")
 		* (1. + attributes.Get("shield fuel multiplier"));
 	double shieldRegen = attributes.Get("shield generation")
-		* (1. + attributes.Get("shield generation multiplier");
+		* (1. + attributes.Get("shield generation multiplier"));
 	// Negative shield energy or fuel will prevent shields from repairing.
 	bool hasShieldRegen = shieldRegen > 0. && shieldEnergy >= 0. && shieldFuel >= 0.;
 	shieldEnergy *= hasShieldRegen;
@@ -152,7 +152,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	if(hasShieldRegen)
 	{
 		attributeLabels.push_back("shields charge / max:");
-		attributeValues.push_back(Format::Number(60. * shieldRegen))
+		attributeValues.push_back(Format::Number(60. * shieldRegen)
 			+ " / " + Format::Number(attributes.Get("shields")));
 	}
 	else
@@ -168,7 +168,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	double hullFuel = attributes.Get("hull fuel")
 		* (1. + attributes.Get("hull fuel multiplier"));
 	double hullRepair = attributes.Get("hull repair rate")
-		* (1. + attributes.Get("hull repair multiplier");
+		* (1. + attributes.Get("hull repair multiplier"));
 	// Negative hull energy or fuel will prevent hull from repairing.
 	bool hasHullRepair = hullRepair > 0. && hullEnergy >= 0. && hullFuel >= 0.;
 	hullEnergy *= hasHullRepair;
@@ -176,7 +176,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	if(hasHullRepair)
 	{
 		attributeLabels.push_back("hull repair / max:");
-		attributeValues.push_back(Format::Number(60. * hullRepair))
+		attributeValues.push_back(Format::Number(60. * hullRepair)
 			+ " / " + Format::Number(attributes.Get("hull")));
 	}
 	else
