@@ -31,12 +31,13 @@ on:
 
 
 jobs:
+
   build:
 
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, ubuntu-16.04, macos-latest]
+        os: [ubuntu-latest, ubuntu-16.04, macos-latest, windows-latest, windows-2016]
     
     steps:
     - uses: actions/checkout@v2
@@ -46,22 +47,57 @@ jobs:
         sudo apt-get update
         sudo apt-get install libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons
     - name: Install MacOS dependencies
-      if: matrix.os == 'macos-latest'
+      if: contains(matrix.os, 'macos')
       run: |
         brew update
         brew install libmad libpng jpeg-turbo sdl2
-    - name: compile
+    - name: Debugging with tmate
+      if: contains(matrix.os, 'windows')
       run: |
-        if [[ ${{ runner.os }} == 'Linux' ]]; then
-          scons -j2;
-          echo "::set-env name=ES_PATH::./endless-sky"
-        elif [[ ${{ runner.os }} == 'macOS' ]]; then
-          xcodebuild -configuration "Release" install -quiet;
-          echo "::set-env name=ES_PATH::/tmp/EndlessSky.dst/Applications/Endless Sky.app/Contents/MacOS/Endless Sky"
-          echo "Completed macOS build";
-        fi
-    - name: Execute parse test
+        where.exe gcc
+        where.exe make
+        where.exe mingw32-make
+        where.exe g++
+      shell: powershell
+    - name: Fetch development libraries (Windows)
+      if: contains(matrix.os, 'windows')
+      run: | 
+        Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
+        Expand-Archive win64-dev.zip -DestinationPath . -Force
+        Remove-Item win64-dev.zip
+      shell: powershell
+    - name: adjust .winmake (Windows)
+      if: contains(matrix.os, 'windows')
       run: |
-        ./tests/test_parse.sh "${ES_PATH}"
-      env:
-        ES_PATH: ${{ env.ES_PATH }}
+        (Get-Content .winmake) -replace '^DIR_ESLIB \?=.*$', 'DIR_ESLIB ?= .\dev64' |  Out-File .winmake
+        (Get-Content .winmake) -replace '^DIR_MINGW64 \?=.*$', 'DIR_MINGW64 ?= C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32' | Out-File -Encoding UTF8 .winmake
+        type .winmake
+      shell: powershell
+    - name: Compile (Linux)
+      if: contains(matrix.os, 'ubuntu')
+      run: |
+        scons -j $(nproc);
+        echo "::set-env name=ES_PATH::./endless-sky"
+    - name: Compile (OSX)
+      if: contains(matrix.os, 'macos')
+      run: |
+        xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) install;
+        echo "::set-env name=ES_PATH::/tmp/EndlessSky.dst/Applications/Endless Sky.app/Contents/MacOS/Endless Sky"
+        echo "Completed macOS build";
+    - name: Compile (Windows)
+      if: contains(matrix.os, 'windows')
+      run: |
+        make -f .winmake -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors)
+        COPY .\bin\pkgd\EndlessSky.exe EndlessSky.exe
+        COPY ".\dev64\bin\*.dll" .
+        COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libgcc_s_seh-1.dll .
+        COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libstdc++-6.dll .
+        COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libwinpthread-1.dll .
+      shell: powershell
+    - name: Execute test_parse (Linux/OSX)
+      if: contains(matrix.os, 'ubuntu') || contains(matrix.os, 'macos')
+      run: ./tests/test_parse.sh "${ES_PATH}"
+    - name: Execute test_parse (Windows)
+      if: contains(matrix.os, 'windows')
+      run: .\tests\test_parse.ps1 'EndlessSky.exe'
+      shell: powershell
