@@ -143,6 +143,105 @@ mission "Remnant Blood Test Patch"
 
 
 
+mission "lost in ember waste"
+	landing
+	invisible
+	source
+		government "Remnant"
+	to offer
+		has "remnant blood test pure"
+		not "license: Remnant"
+	on offer
+		require "Quantum Keystone" 0
+		require "Quantum Key Stone" 0
+		require "Jump Drive" 0
+		event "lost in ember waste" 14
+		fail
+
+event "lost in ember waste"
+
+
+
+mission "Remnant: Lost in Ember Waste"
+	landing
+	invisible
+	source
+		government "Remnant"
+	to offer
+		has "event: lost in ember waste"
+	on offer
+		outfit "Quantum Key Stone" 1
+		log `Became stuck in the Ember Waste, but was given a quantum key stone by an old woman who claims to have once been stuck in Republic space under similar circumstances.`
+		conversation
+			`You wander the <origin> spaceport feeling very lost in this strange region of space. Having flown around for a few weeks with no idea of how to get out, you wonder if you'll be stuck here forever.`
+			`	You sit down on a bench and think about how you're going to get out of this situation. While you think, an old woman approaches you and signs something.`
+			choice
+				`	"Sorry, I don't understand."`
+			`	The old woman chuckles to herself. "You seem lost," she says. You nod. To your surprise, she doesn't sing everything she says like the other Remnant.`
+			`	"I'm guessing you don't know about the wormholes."`
+			choice
+				`	"The what?"`
+				`	"I do, I just can't get through them."`
+					goto know
+			
+			`	"There are red wormholes scattered around this region of space. You can only access them if you have a key stone on your ship, though. Don't ask me how it works, but that's how it is."`
+				goto keystone
+			
+			label know
+			`	"Get scammed out of your key stone?" she asks with another chuckle. "Or maybe your jump drive, and now you're stuck here? No problem."`
+			
+			label keystone
+			`	The woman reaches into a bag that she has with her and hands you a quantum key stone. "Just put this on your ship and you can be on your way out of here."`
+			choice
+				`	"You're just giving this to me?"`
+					goto thanks
+				`	"What's the catch?"`
+			`	She chuckles again. "No catch."`
+			
+			label thanks
+			`	The woman sits down on the bench next to you. "I was once lost in Republic space for many years after losing my key stone. I know what it can be like to be away from your people for that long, so I'd rather not see you share the same fate."`
+			choice
+				`	"Thanks for the help. I'll go fit this on my ship."`
+				`	"How'd you get to Republic space?"`
+					goto republic
+			
+			`	You say goodbye to the woman and begin walking to your ship. "Safe travels, Captain," she sings with a big grin on her face as you walk away.`
+				decline
+			
+			label republic
+			`	"I was an adventurous spirit in my youth," she says. "One day I found my way out of the Ember Waste and back to what I learned was the rest of humanity. For years my people had hidden here believing the Alphas had killed everyone else, but I discovered that we had little to fear.`
+			`	"I explored the Republic for many months, learning what had happened since the Alpha Wars, but when I attempted to return to the Ember Waste to tell my people, I found that my key stone had been stolen at some point during my journey. I had no way to return."`
+			`	She lets out a long sigh. "I don't want to bore you with all the details, but I resigned myself to my new life. I met a man, had two daughters, but never lost hope of returning to my true home. One day, after my daughters had grown and my husband had passed in an accident, I decided to go on another adventure. I dusted off my old ship, and soon discovered the Hai."`
+			branch hai
+				has "First Contact: Hai"
+			choice
+				`	"The who?"`
+			`	"How you've become lost here without having discovered the Hai first is beyond me." She chuckles. "The Hai are a peaceful alien people north of humanity. Go looking for a purple wormhole in the uninhabited systems of the Far North. You may find your way there.`
+				goto next
+			
+			label hai
+			choice
+				`	"You've met the Hai?"`
+			`	"Well of course. How else would I have been able to return home?`
+			
+			label next
+			`	"To my surprise, the Hai had a large number of quantum key stones." She pauses for a moment. "Might be a good idea for you to bring some of those Hai key stones here. Anyway, I was so thrilled that I didn't even ask any questions about how they had them. I bought one and flew as fast as I could back to the Ember Waste, and I've been here ever since."`
+			choice
+				`	"How long ago was that?"`
+				`	"What about your daughters?"`
+					goto daughters
+			
+			`	"Well I got lost when I was 17 and returned when I was 64, so perhaps some 130 years ago now that I returned." She chuckles at the surprised look on your face as you realize that she is nearly 200 years old. "Uncovering ancient alien technology is quite the blessing.`
+				goto end
+			
+			label daughters
+			`	"Oh, I only told them about deciding to travel the galaxy. Never told them about returning home. I made trips to see them every so often, but they both passed many decades ago now. It seems like the Republic can't quite get anyone to live past 130 years.`
+			
+			label end
+			`	"I really must get going, now," she says. The woman gets up to leave, but before walking away she turns to you and sings, "Safe travels, Captain," with a big grin on her face. You say goodbye to her in return and part ways.`
+				decline
+
+
 
 mission "Remnant: Defense 1"
 	name "Defend <planet>"
@@ -1562,7 +1661,7 @@ mission "Remnant: Broken Jump Drive 2"
 				`	"Great! I will find more."`
 					goto end
 				`	"What are you studying?"`
-			`	"Our previous research into jump drives determined that these drives are unsurprisingly multi-part systems. We know the outer part that we can see and handle is mostly the machinery for generating some kind of containment field or pocket. As to how it works or why it is needed..." his chant trails off and he makes a gesture you suspect may be the equivalent of a shrug. "Anyways, our team is focused on the nature of this outer system. It is our hope that, damaged as it is, its continued existence might allow us to look a little farther inside its inner workings to figure out exactly what that field does and how it is used.`
+			`	"Our previous research into jump drives determined that these drives are unsurprisingly multi-part systems. We know the outer part that we can see and handle is mostly the machinery for generating some kind of containment field or pocket. As to how it works or why it is needed..." his chant trails off and he makes a gesture you suspect may be the equivalent of a shrug. "Anyway, our team is focused on the nature of this outer system. It is our hope that, damaged as it is, its continued existence might allow us to look a little farther inside its inner workings to figure out exactly what that field does and how it is used.`
 			label end
 			`	"Well, my compatriots finished unloading rather quickly, so I should be off. For all our sakes, I hope you find more of these for us."`
 
