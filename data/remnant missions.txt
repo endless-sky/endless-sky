@@ -317,6 +317,9 @@ event "remnant: surveillance end"
 
 
 conversation "remnant key stones"
+	branch found
+		has "Remnant: Found Keystones: offered"
+	
 	`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. "Greetings, outsider," he says. "I have heard many good things about you and your assistance to our people. Would you be interested in going on a quest for me?"`
 	choice
 		`	"What kind of quest?"`
@@ -342,9 +345,15 @@ conversation "remnant key stones"
 	`	The outfitter manager thanks you. "We'll discuss payment once you return," he says.`
 		accept
 	
+	label found
+	`You find the outfitter manager and tell him that you have good news. "You found another world where the stones can be mined?" he asks.`
+		goto exchange
+	
 	label hai1
 	`	"I've seen that before," you say.`
 	`	He looks at you with surprise. "You found another world where these stones can be mined?"`
+	
+	label exchange
 	choice
 		`	"Yes, in the territory of some aliens far to the north of here."`
 			goto hai2
@@ -418,30 +427,8 @@ mission "Remnant: Key Stones (Pre-Hai) 2"
 	to offer
 		has "Remnant: Key Stones (Pre-Hai) 1: done"
 	on offer
-		conversation
-			`You find the outfitter manager and tell him that you have good news. "You found another world where the stones can be mined?" he asks.`
-			choice
-				`	"Yes, in the territory of some aliens far to the north of here."`
-					goto hai
-				`	"Yes, but I would prefer not to tell you where."`
-			
-			`	"That is understandable," he says. "I am a businessman and I understand how valuable certain trade secrets can be. But perhaps I can interest you in a mutually profitable endeavor?"`
-				goto more
-			
-			label hai
-			`	"Intriguing," he sings. "Are they aware of how valuable these stones are?" You tell him about the Hai, that they are an old species and that to them the Key Stones are just good luck charms. "Perhaps they have forgotten the true use of the Stones," says the man. "This may give us an opportunity for a mutually profitable endeavor."`
-			
-			label more
-			`	"Tell me more," you say.`
-			`	He says, "If you could fetch me a large supply of these stones, say fifty of them, I would purchase them from you for a high enough price that you would earn a tidy profit. What do you say?"`
-			choice
-				`	"Sure, I would be glad to accept that deal."`
-				`	"Sorry, I'm really not interested in doing business with you Remnant folks."`
-					decline
-			
-			`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
-				accept
-			
+		conversation "remnant key stones"
+		
 	on visit
 		dialog `You have returned to <planet>, but you don't have 50 "Quantum Keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
 	on complete
