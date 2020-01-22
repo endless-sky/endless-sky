@@ -244,11 +244,11 @@ mission "Library Card: Second Volume: Step 2"
 			choice
 				`	Open the door...`
 			`When the door opens, Daemos rushes forward in a panic, before you can even survey the room.  It seems the man you came to see is dead, and quite recently too.`
-			`	Daemos searches the room and finds the culprit.  The author was working on the second edition of his book, "A Thousand Poisons of Amazon and How to Conceal Their Taste."  They mixed up one of the poison recipes with lunch.  A poetic end to someone whose work has lead to many deaths in the Syndicate aristocracy.`
+			`	Daemos searches the room and finds the culprit.  The author was working on the second edition of his book, "A Thousand Poisons of Amazon and How to Conceal Their Taste."  Somehow, one of the poison recipes was swapped with the lunch recipe.  A poetic end to someone whose work has lead to many deaths in the Syndicate.`
 			`	This seems to be the end of the quest, so you ferry Daemos back to the main Amazon spaceport.`
 			choice
 				`	Fly back to the main spaceport...`
-			`"This will just delay us," says Daemos, "I know a man on Deadman's Cove who can forge this signature."`
+			`"This will just delay us," says Daemos, "I know a group of businessmen on Deadman's Cove who can forge this signature."`
 			`	He adds, "meet me in the spaceport when you're finished with your business here."`
 	npc
 		government "Pirate"
@@ -472,7 +472,7 @@ mission "Library Card: Second Volume: Step 3 Escort"
 		conversation
 			branch "can offer"
 				has "Library Card: Second Volume: Step 3: active"
-			`Ahead, you see a woman wearing bloodstained leather clothes holding a huge gun.  Her face is emotionless and her gaze is like the point of a sword.  "Where is Daemos?  We were hired to escort him?"`
+			`Ahead, you see a woman wearing bloodstained leather clothes, holding a huge gun.  Her face is emotionless and her gaze is like the point of a sword.  "Where is Daemos?  We were hired to escort him?"`
 			`	"He's looking for a different courier for his suicide mission."`
 				defer
 			label "can offer"
@@ -1097,7 +1097,7 @@ mission "Library Card: Return"
 	on complete
 		conversation
 			`A Deep Security officer runs towards you and Daemos in a hurry yelling, "it's been disabled!  We have to leave!"`
-			`	When the officer reaches you, he explains the Alexandria Seeker who was supposed to meet you is in grave trouble.  The Seeker's ship is disabled in an uninhabited system called Mora.'  The Seeker, Gonza Doorin, refuses to let anyone onto his ship except another Seeker.  There is a pirate fleet attacking Gonza's ship now."`
+			`	When the officer reaches you, he explains the Alexandria Seeker who was supposed to meet you is in grave trouble.  The Seeker's ship is disabled in an uninhabited system called Mora.'  The Seeker, Gonza Doorin, refuses to let anyone onto his ship except another Seeker.  There is a pirate fleet in the system, attacking anyone who gets near the ship."`
 			`	Daemos interjects, "can Deep Security escort us?"`
 			`	"Of course," the officer responds.  "We must leave at once."`
 			`	"You'll need to refuel at Tania Australis before heading to Mora," warns Daemos.  "Meet us in the spaceport as soon as you're ready to go."`
@@ -1117,7 +1117,7 @@ government "Librarian"
 mission "Library Card: Rescue"
 	name "Alexandria Library Card"
 	waypoint Mora
-	description `Repair the "Gonza Book Cruise" in the Mora system and take it to Ingot before <date>.`
+	description `Repair the "Gonza Book Cruise" in the Mora system and take it to <destination> before <date>.`
 	blocked `Daemos informs you, "I don't fit in a glove compartment.  I need a bunk and space for 1 ton of cargo."`
 	source Valhalla
 	destination Ingot
@@ -1211,8 +1211,9 @@ mission "Library Card: Completion"
 	on complete
 		set "library card"
 		payment 200000
+		outfit "Alexandria Library Card"
 		conversation
-			`When you land at the station, a gathering of librarians meet you at your ship.  Daemos ceremoniously pins a gold icon of a book onto you and hands you a book-shaped key card allowing access to the station and its library.`
+			`When you land at the station, a gathering of librarians meet you at your ship.  Daemos ceremoniously pins a gold icon of a book onto you and hands you a key card allowing access to the station and its library.`
 			`	"You will always be welcome here," says Daemos.  "Make use of our facilities as needed."`
 			choice
 				`	"I have some questions before I go."`
@@ -1268,7 +1269,7 @@ mission "Library Card: Completion"
 			`"Are you daft?  We don't provide juggling lessons here.  Find such silliness on the Paradise Planets."`
 				goto "library services"
 			label "library books"
-			`"Any time you're here, visit the spaceport and we'll arrange a selection of books that may interest you.`
+			`"Yes.  We have the largest archive in all of Human space.  If you need a book, you'll find it here.`
 				goto "library services"
 			label jobs
 			`"Yes.`
@@ -1282,8 +1283,6 @@ mission "Library Card: Completion"
 		fail "Access to Alexandria"
 	on fail
 		fail "Access to Alexandria"
-
-
 
 
 mission "Access to Alexandria"
