@@ -220,7 +220,7 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 		double minimum = (PROTECTION_TYPES.count(at.first)) ? -.99 : 0.;
 		// Allow for rounding errors:
 		if(value + at.second * count < minimum - EPS)
-			count = value / -at.second + EPS;
+			count = (value - minimum) / -at.second + EPS;
 	}
 	
 	return count;
