@@ -327,6 +327,13 @@ int MissionAction::Payment() const
 
 
 
+const string &MissionAction::DialogText() const
+{
+	return dialogText;
+}
+
+
+
 // Check if this action can be completed right now. It cannot be completed
 // if it takes away money or outfits that the player does not have.
 bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
@@ -394,7 +401,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 
 
 
-void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, const shared_ptr<Ship> &ship) const
+void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, const shared_ptr<Ship> &ship, const bool isUnique) const
 {
 	bool isOffer = (trigger == "offer");
 	if(!conversation.IsEmpty() && ui)
@@ -419,9 +426,14 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 			subs["<ship>"] = player.Flagship()->Name();
 		string text = Format::Replace(dialogText, subs);
 		
+		// Don't push the dialog text if this is a visit action on a nonunique
+		// mission; on visit, nonunique dialogs are handled by PlayerInfo as to
+		// avoid the player being spammed by dialogs if they have multiple
+		// missions active with the same destination (e.g. in the case of
+		// stacking bounty jobs).
 		if(isOffer)
 			ui->Push(new Dialog(text, player, destination));
-		else
+		else if(isUnique || trigger != "visit")
 			ui->Push(new Dialog(text));
 	}
 	else if(isOffer && ui)
