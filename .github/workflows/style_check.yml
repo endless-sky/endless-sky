@@ -18,7 +18,7 @@ jobs:
         os: [ubuntu-latest]
     steps:
     - uses: actions/checkout@v2
-    - name: Execute parse test
+    - name: Execute style checker
       run: |
         ./tests/check_coding_style.sh
 
