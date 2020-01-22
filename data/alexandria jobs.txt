@@ -21,7 +21,7 @@ mission "Small Interlibrary Loan [0]"
 		has "library card"
 		random < 70
 	destination
-		range 3 18
+		near Markeb 3 18
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich
 		not
@@ -47,7 +47,7 @@ mission "Small Interlibrary Loan [1]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -69,7 +69,7 @@ mission "Small Interlibrary Loan [2]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -93,7 +93,7 @@ mission "Small Interlibrary Loan [3]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -115,7 +115,7 @@ mission "Small Interlibrary Loan [4]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -137,7 +137,7 @@ mission "Small Interlibrary Loan [5]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -161,7 +161,7 @@ mission "Small Library Media Delivery [0]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -183,7 +183,7 @@ mission "Small Library Media Delivery [1]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -205,7 +205,7 @@ mission "Small Library Media Delivery [2]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -231,7 +231,7 @@ mission "Bulk Interlibrary Loan [0]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -254,7 +254,7 @@ mission "Bulk Interlibrary Loan [1]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -279,7 +279,7 @@ mission "Bulk Library Media Delivery [0]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -302,7 +302,7 @@ mission "Bulk Library Media Delivery [1]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -328,7 +328,7 @@ mission "Large Bulk Interlibrary Loan [0]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -351,7 +351,7 @@ mission "Large Bulk Interlibrary Loan [1]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -609,7 +609,7 @@ mission "Librarian Transport"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -632,7 +632,7 @@ mission "Library Assistant Transport"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -657,7 +657,7 @@ mission "Library Staff Transport [0]"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -680,7 +680,7 @@ mission "Library Staff Transport [1]"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -706,7 +706,7 @@ mission "Library Team Transport"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
 			attributes uninhabited
-		range 3 18
+		near Markeb 3 18
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
