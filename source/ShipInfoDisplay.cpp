@@ -143,17 +143,16 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		* (1. + attributes.Get("shield heat multiplier"));
 	double shieldFuel = attributes.Get("shield fuel")
 		* (1. + attributes.Get("shield fuel multiplier"));
-	bool hasShieldRegen = attributes.Get("shield generation")
-		&& (1. + attributes.Get("shield generation multiplier")) > 0.
-		// Negative shield energy or fuel will prevent shields from repairing.
-		&& shieldEnergy >= 0. && shieldFuel >= 0.;
+	double shieldRegen = attributes.Get("shield generation")
+		* (1. + attributes.Get("shield generation multiplier");
+	// Negative shield energy or fuel will prevent shields from repairing.
+	bool hasShieldRegen = shieldRegen > 0. && shieldEnergy >= 0. && shieldFuel >= 0.;
 	shieldEnergy *= hasShieldRegen;
 	shieldHeat *= hasShieldRegen;
 	if(hasShieldRegen)
 	{
 		attributeLabels.push_back("shields charge / max:");
-		attributeValues.push_back(Format::Number(60. * attributes.Get("shield generation")
-			* (1. + attributes.Get("shield generation multiplier")))
+		attributeValues.push_back(Format::Number(60. * shieldRegen))
 			+ " / " + Format::Number(attributes.Get("shields")));
 	}
 	else
@@ -168,17 +167,16 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		* (1. + attributes.Get("hull heat multiplier"));
 	double hullFuel = attributes.Get("hull fuel")
 		* (1. + attributes.Get("hull fuel multiplier"));
-	bool hasHullRepair = attributes.Get("hull repair rate")
-		&& (1. + attributes.Get("hull repair multiplier")) > 0.
-		// Negative hull energy or fuel will prevent shields from repairing.
-		&& hullEnergy >= 0. && hullFuel >= 0.;
+	double hullRepair = attributes.Get("hull repair rate")
+		* (1. + attributes.Get("hull repair multiplier");
+	// Negative hull energy or fuel will prevent hull from repairing.
+	bool hasHullRepair = hullRepair > 0. && hullEnergy >= 0. && hullFuel >= 0.;
 	hullEnergy *= hasHullRepair;
 	hullHeat *= hasHullRepair;
 	if(hasHullRepair)
 	{
 		attributeLabels.push_back("hull repair / max:");
-		attributeValues.push_back(Format::Number(60. * attributes.Get("hull repair rate")
-			* (1. + attributes.Get("hull repair multiplier")))
+		attributeValues.push_back(Format::Number(60. * hullRepair))
 			+ " / " + Format::Number(attributes.Get("hull")));
 	}
 	else
