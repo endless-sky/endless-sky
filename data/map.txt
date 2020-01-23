@@ -24241,8 +24241,7 @@ system Waypoint
 	trade Medical 745
 	trade Metal 478
 	trade Plastic 452
-	fleet "Small Hai" 1200
-	fleet "Large Hai" 2500
+	fleet "Small Hai" 1000
 	fleet "Small Human Merchants (Hai)" 18000
 	fleet "Large Human Merchants (Hai)" 28000
 	object
@@ -28522,7 +28521,9 @@ planet Winter
 		fleet "Large Militia" 5
 
 planet "Wormhole Alpha"
+	government "Wormhole Alpha"
 	description ""
+	spaceport ""
 
 planet "Wyvern Station"
 	attributes rim station

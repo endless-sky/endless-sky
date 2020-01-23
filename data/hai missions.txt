@@ -1452,7 +1452,7 @@ mission "Pirate Troubles [4]"
 		"reputation: Hai" += 40
 	
 	npc save accompany
-		government "Hai"
+		government " Hai "
 		personality escort
 		fleet
 			names "hai"
