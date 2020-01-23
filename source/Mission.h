@@ -142,6 +142,10 @@ public:
 	// never modified by string substitution, so it can be used in condition
 	// variables, etc.
 	const std::string &Identifier() const;
+	// Get a specific mission action from this mission.
+	// If the mission action is not found for the given trigger, returns an empty 
+	// mission action.
+	const MissionAction &GetAction(Trigger trigger) const; 
 	
 	// "Instantiate" a mission by replacing randomly selected values and places
 	// with a single choice, and then replacing any wildcard text as well.
