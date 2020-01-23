@@ -2282,6 +2282,20 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 		conditions["passenger space"] = flagship->Cargo().BunksFree();
 	}
 	
+	// Store conditions for flagship current crew, required crew, and bunks.
+	if(flagship)
+	{
+		conditions["flagship crew"] = flagship->Crew();
+		conditions["flagship required crew"] = flagship->RequiredCrew();
+		conditions["flagship bunks"] = flagship->Attributes().Get("bunks");
+	}
+	else
+	{
+		conditions["flagship crew"] = 0;
+		conditions["flagship required crew"] = 0;
+		conditions["flagship bunks"] = 0;
+	}
+	
 	// Conditions for your fleet's attractiveness to pirates:
 	pair<double, double> factors = RaidFleetFactors();
 	conditions["cargo attractiveness"] = factors.first;
@@ -2366,6 +2380,15 @@ void PlayerInfo::StepMissions(UI *ui)
 				if(ship->IsDestroyed())
 					mission.Do(ShipEvent(nullptr, ship, ShipEvent::DESTROY), *this, ui);
 	
+	string visitText;
+	int missionVisits = 0;
+	auto substitutions = map<string, string>{
+		{"<first>", firstName},
+		{"<last>", lastName}
+	};
+	if(Flagship())
+		substitutions["<ship>"] = Flagship()->Name();
+	
 	auto mit = missions.begin();
 	while(mit != missions.end())
 	{
@@ -2380,7 +2403,29 @@ void PlayerInfo::StepMissions(UI *ui)
 		else if(mission.CanComplete(*this))
 			RemoveMission(Mission::COMPLETE, mission, ui);
 		else if(mission.Destination() == GetPlanet() && !freshlyLoaded)
+		{
 			mission.Do(Mission::VISIT, *this, ui);
+			if(mission.IsUnique() || !mission.IsVisible())
+				continue;
+			
+			// On visit dialogs are handled separately as to avoid a player
+			// getting spammed by on visit dialogs if they are stacking jobs
+			// from the same destination.
+			if(visitText.empty())
+			{
+				const auto &text = mission.GetAction(Mission::VISIT).DialogText();
+				if(!text.empty())
+					visitText = Format::Replace(text, substitutions);
+			}
+			++missionVisits;
+		}
+	}
+	if(!visitText.empty())
+	{
+		if(missionVisits > 1)
+			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished " 
+				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
+		ui->Push(new Dialog(visitText));
 	}
 	// One mission's actions may influence another mission, so loop through one
 	// more time to see if any mission is now completed or failed due to a change
