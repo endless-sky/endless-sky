@@ -28,7 +28,7 @@ SOURCES="${HERE}/../source"
 
 # Desired header, adapted for automatic parsing
 DESIRED_HEADER="/* FILENAME
-Copyright (c) 2xxx by Michael Zahniser
+Copyright (c) 2xxx by NAME
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -52,36 +52,14 @@ function die()
 function filter_exceptions()
 {
 	grep -v \
-		-e "WinApp.rc" \
 		-e "Files.cpp:		struct stat buf;" \
 		-e "Files.cpp:	struct _stat buf;" \
 		-e "Files.cpp:	struct stat buf;" \
 		-e "ImageBuffer.cpp:		struct jpeg_error_mgr jerr;" \
 		-e "Point.h:		struct {" \
-		-e "#include <OpenGL/GL3.h>" \
-		-e "#include <GL/glew.h>" \
-		-e "#include <OpenAL/al.h>" \
-		-e "#include <OpenAL/alc.h>" \
-		-e "#include <SDL2/SDL.h>" \
-		-e "#include <SDL2/SDL_events.h>" \
-		-e "#include \"gl_header.h\"" \
-		-e "#include \"Information.h\"" \
-		-e "#include \"Rectangle.h\"" \
-		-e "#include \"Body.h\"" \
-		-e "#include <windows.h>" \
-		-e "#include <sys/stat.h>" \
-		-e "#include <dirent.h>" \
-		-e "#include <unistd.h>" \
-		-e "#include <mutex>" \
-		-e "#include <jpeglib.h>" \
-		-e "#include <png.h>" \
-		-e "#include <mad.h>" \
-		-e "#include \"Files.h\"" \
-		-e "main.cpp: mismatch in header" \
-		-e "Color.cpp:#include \"Color.h\"" \
-		-e "Rectangle.cpp:#include \"Rectangle.h\"" \
-		-e "DataWriter.h:  template <class A, class ...B>" \
-		-e "DataWriter.h:  template <class A>"
+		-e "gl_header.h: #include <OpenGL/GL3.h>" \
+		-e "gl_header.h: #include <GL/glew.h>" \
+		-e "main.cpp: mismatch in header"
 }
 
 
@@ -128,16 +106,16 @@ cd "${SOURCES}" || die "Sources directory not found"
 grep -P -n "[^\x00-\x7F]" * |\
 	report_issue "Files: All files should be plain ASCII."
 
-find -type f | grep -v -e ".h$" -e ".cpp$" | sed "s,^./,," |\
+find -type f | grep -v -e ".h$" -e ".cpp$" -e "WinApp.rc" | sed "s,^./,," |\
 	report_issue "Files: All C++ files should use \".h\" and \".cpp\" for their extensions."
 
 grep "^class" *.h | tr -d '\r' | grep -v -e ";$" | cut -d\: -f1,2 | sed "s,[{].*$,," | sed "s, *$,," | filter_non_matched_class |\
 	report_issue "Files: Each class \"MyClass\" should have its own .h and .cpp files, and they should be named \"MyClass.h\" and \"MyClass.cpp\""
 
-for FILE in *; do
+for FILE in *.{h,cpp}; do
 	HEADER=$(head -n 11 ${FILE})
 	HEADER_CHECK=$(echo "${HEADER}" | sed "s,^/\* ${FILE}$,/* FILENAME," |\
-		sed "s,^Copyright (c) 2[0-9]* by [A-Za-z0-9 ]*,Copyright (c) 2xxx by Michael Zahniser,")
+		sed "s,^Copyright (c) 2[0-9]* by [A-Za-z0-9 ]*,Copyright (c) 2xxx by NAME,")
 	if [ "${HEADER_CHECK}" != "${DESIRED_HEADER}" ]; then
 		echo "${FILE}: mismatch in header"
 	fi
@@ -160,11 +138,11 @@ for FILE in *.h; do
 done |\
 	report_issue "All header files should have #define guards, and they should be in the format \"#ifndef MY_CLASS_H_\"."
 
+# Check if "using namespace std;" is after the includes
 for FILE in *.cpp; do
-	grep --with-filename -e "#include " -e "using namespace std;" "${FILE}" | tail -n 1 | sed "/${FILE}:using namespace std;/d"
+	grep --with-filename -e "#include " -e "using namespace std;" "${FILE}" | head -n -1 | grep "using namespace std;"
 done |\
 	report_issue "Each .cpp file should put \"using namespace std;\" immediately after the #includes."
-
 
 
 # Formatting section
@@ -189,4 +167,3 @@ grep -e "[[:space:]]struct[[:space:]]" * |\
 #C++11 section
 grep "NULL" * |\
 	report_issue "Use \"nullptr\" for pointers rather than \"NULL\" or \"0\"."
-
