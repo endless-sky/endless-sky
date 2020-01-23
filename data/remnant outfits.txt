@@ -178,7 +178,7 @@ outfit "EMP Torpedo"
 	thumbnail "outfit/emp torpedo"
 	"mass" 1
 	"emp torpedo capacity" -1
-	description "This is ammunition for the EMP Torpedo Bay, a weapon that is manufactured by the Remnant."
+	description "This torpedo can emit electromagnetic pulses, interfering with a ship's generators."
 
 outfit "EMP Torpedo Bay"
 	category "Secondary Weapons"
@@ -334,6 +334,8 @@ outfit "Emergency Ramscoop"
 
 outfit "Quantum Key Stone"
 	category "Systems"
+	licenses
+		Remnant
 	cost 240000
 	thumbnail "outfit/keystone"
 	"mass" 1
