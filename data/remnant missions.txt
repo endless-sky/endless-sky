@@ -513,6 +513,7 @@ mission "Remnant: Found Keystones"
 	source
 		government "Hai"
 	to offer
+		has "Remnant: Key Stones (Pre-Hai) 1: active"
 		has "First Contact: Hai: offered"
 	on offer
 		conversation
