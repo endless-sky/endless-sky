@@ -93,7 +93,7 @@ mission "Asteroid Course"
 			choice
 				`	(Maneuver my ship to shield the <origin>.)`
 					goto move
-				`	(Try to quickly repair the <origin>, so that it can move away from the asteroid's course.)`
+				`	(Attempt to repair the <origin> so that it can dodge the asteroid.)`
 					goto repair
 				`	(Interrupt the docking maneuvers and fly away.)`
 			label escape
