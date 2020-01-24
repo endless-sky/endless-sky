@@ -1180,6 +1180,59 @@ phrase "friendly civilian"
 		"."
 		"!"
 
+phrase "friendly civilian"
+	word
+		"I just gave a lift to"
+		"I transported"
+		"My last passenger was"
+		"Got stuck with"
+	word
+		" "
+	word
+		"a"
+		"some"
+		"this"
+	word
+		" "
+	word
+		"rich kid"
+		"spoiled brat"
+		"salesman"
+		"fancy lady"
+		"old man"
+		"retired cop"
+		"college student"
+	word
+		". "
+	word
+		"They just wouldn't shut up about"
+		"They couldn't stop talking about"
+		"They yammered on about"
+		"All they would talk about was"
+	word
+		" this band"
+		""
+	word
+		" "
+	phrase
+		"band"
+	word
+		". "
+	word
+		"I just don't get it"
+		"I'm not that into music"
+		"I prefer classical works"
+		"I don't hate them"
+	word
+		", but "
+	word
+		"their latest song wasn't too bad"
+		"I kind of liked their latest song"
+		"the songs that my passenger played weren't too bad"
+	word
+		"."
+		"!"
+
 phrase "friendly navy"
 	word
 		"The Navy"
