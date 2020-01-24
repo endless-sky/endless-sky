@@ -3,14 +3,14 @@ name: Build & Parse
 # TODO:
 # - export artifact (via actions/cache).
 # - Cache Binaries so data-only changes test immediately
-# - Use sccache on all platform, cache its cache to speed up builds
-# - Cache libraries on windows
+# - Cache build files on all systems (Looking at you OSX)
+# - Cache development libraries on windows
 # - Construct more intelligent workflows
 #    e.g.
 #      data/* -> use "latest" build for triggering branch, only run parse and/or acceptance tests
 #      source/* -> build new binary, run all tests, cache binary
 #      PR opened -> upload artifact ZIPs to PR as comment, and edit/replace as new commits come in
-# - Windows: Allow programmers to use their own copy of development libs easily
+# - Windows: Allow programmers to use their own copy of development libs without hacking a temporary URL in the windows step
 
 on:
   push:
@@ -51,12 +51,14 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons ccache
-    - name: ccache cache files
+    - name: Cache ccache
       uses: actions/cache@v1.1.0
       with:
         path: ${{ env.CCACHE_DIR }}
-        key: ${{ matrix.os }}-ccache-${{ github.sha }}
+        key: ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
         restore-keys: | 
+          ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-
+          ${{ matrix.os }}-ccache-${{ github.repository }}-
           ${{ matrix.os }}-ccache-
     - name: Compile
       run: scons -j $(nproc);
@@ -83,13 +85,15 @@ jobs:
         Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
         Expand-Archive win64-dev.zip -DestinationPath . -Force
         Remove-Item win64-dev.zip
-    - name: sccache cache files
+    - name: Cache sccache
       uses: actions/cache@v1.1.0
       with:
         path: ${{ env.SCCACHE_DIR }}
-        key: ${{ matrix.os }}-sccache-${{ github.sha }}
+        key: ${{ matrix.os }}-sccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
         restore-keys: |
-          ${{ matrix.os }}-sccache-
+          ${{ matrix.os }}-sccache-${{ github.repository }}-${{ github.ref }}-
+          ${{ matrix.os }}-sccache-${{ github.repository }}-
+          ${{ matrix.os }}-sccache
     - name: Compile
       run: |
         make -e -f .winmake -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors)
