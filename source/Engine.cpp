@@ -1588,6 +1588,10 @@ void Engine::HandleKeyboardInputs()
 {
 	Ship *flagship = player.Flagship();
 	
+	static const int landingWaitTime = 60;
+	static const Command manueveringCommands = Command::AFTERBURNER | Command::BACK |
+		Command::FORWARD | Command::LEFT | Command::RIGHT;
+	
 	// Commands can't be issued if your flagship is dead.
 	if(!flagship || flagship->IsDestroyed())
 		return;
@@ -1602,37 +1606,36 @@ void Engine::HandleKeyboardInputs()
 	// These commands must always be sent:
 	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
 		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::BACK | Command::AFTERBURNER);
-
+	
 	// Are any movement keys held?
-	bool movementKeys=keyHeld.Has(Command::AFTERBURNER | Command::BACK | Command::FORWARD |
-			Command::LEFT | Command::RIGHT);
-
+	bool isManuevering = keyHeld.Has(manueveringCommands);
+	
 	// Were any movement keys held in the previous step?
-	bool oldMovementKeys=oldHeld.Has(Command::AFTERBURNER | Command::BACK | Command::FORWARD |
-			Command::LEFT | Command::RIGHT);
-
-	if(!movementKeys && oldMovementKeys)
+	bool wasManuevering = oldHeld.Has(manueveringCommands);
+	
+	// If maneuvering keys were released, reinstate autopilot
+	// commands if any are requested in keyDown:
+	if(!isManuevering && wasManuevering)
 	{
-		// Player has released all movement keys since the last step, so
-		// reinstate autopilot commands.
+		// Reinstate autopilot commands:
 		activeCommands |= keyHeld.And(Command::JUMP | Command::BOARD | Command::LAND);
-
+		
 		// Make sure we do not switch landing targets:
-		landKeyInterval = 9999;
+		landKeyInterval = landingWaitTime;
 	}
+	
+	// If holding JUMP or rapidly pressing LAND, also send WAIT, to prevent
+	// the autopilot from initiating the jump or settling on the landing target.
 	else if(oldHeld.Has(Command::LAND))
-		// We're not reinstating commands, and the LAND command was given in the prior
-		// step.  Reset our counter of the number of 1/60ths of a second since the land
-		// key was released.
 		landKeyInterval = 0;
-
+	
 	// Wait with actual jumping until the jump command is released.
 	// Or if pressing land quickly in succession, then use WAIT to switch landing targets.
-	if(keyHeld.Has(Command::JUMP) || (keyHeld.Has(Command::LAND) && landKeyInterval < 60))
+	if(keyHeld.Has(Command::JUMP) || (keyHeld.Has(Command::LAND) && landKeyInterval < landingWaitTime))
 		activeCommands.Set(Command::WAIT);
 	else
 		activeCommands.Clear(Command::WAIT);
-
+	
 	// Transfer all newly pressed unhandled keys to active commands.
 	activeCommands |= keyDown;
 }
