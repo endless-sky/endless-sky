@@ -1604,20 +1604,20 @@ void Engine::HandleKeyboardInputs()
 		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::BACK | Command::AFTERBURNER);
 
 	// Are any movement keys held?
-	bool movementCommands=keyHeld.Has(Command::AFTERBURNER | Command::BACK | Command::FORWARD |
+	bool movementKeys=keyHeld.Has(Command::AFTERBURNER | Command::BACK | Command::FORWARD |
 			Command::LEFT | Command::RIGHT);
 
 	// Were any movement keys held in the previous step?
-	bool oldMovementCommands=oldHeld.Has(Command::AFTERBURNER | Command::BACK | Command::FORWARD |
+	bool oldMovementKeys=oldHeld.Has(Command::AFTERBURNER | Command::BACK | Command::FORWARD |
 			Command::LEFT | Command::RIGHT);
 
-	if(!movementCommands && oldMovementCommands)
+	if(!movementKeys && oldMovementKeys)
 	{
 		// Player has released all movement keys since the last step, so
 		// reinstate autopilot commands.
 		activeCommands |= keyHeld.And(Command::JUMP | Command::BOARD | Command::LAND);
 
-		// Make sure we do not switching landing targets:
+		// Make sure we do not switch landing targets:
 		landKeyInterval = 9999;
 	}
 	else if(oldHeld.Has(Command::LAND))
