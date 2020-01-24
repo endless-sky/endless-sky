@@ -5,6 +5,7 @@ name: Build & Parse
 # - Cache Binaries so data-only changes test immediately
 # - Cache build files on all systems (Looking at you OSX)
 # - Cache development libraries on windows
+# - Run windows builds as matrix with different mingw versions
 # - Construct more intelligent workflows
 #    e.g.
 #      data/* -> use "latest" build for triggering branch, only run parse and/or acceptance tests
