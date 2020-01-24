@@ -540,7 +540,7 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"band"
+		"song"
 	word
 		" "
 	phrase
