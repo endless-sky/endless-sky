@@ -1598,20 +1598,41 @@ void Engine::HandleKeyboardInputs()
 	Command keyDown = keyHeld.AndNot(oldHeld);
 	
 	++landKeyInterval;
-	if(oldHeld.Has(Command::LAND))
-		landKeyInterval = 0;
 	
+	// These commands must always be sent:
+	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
+		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::BACK | Command::AFTERBURNER);
+
+	// Are any movement keys held?
+	bool movementCommands=keyHeld.Has(Command::AFTERBURNER | Command::BACK | Command::FORWARD |
+			Command::LEFT | Command::RIGHT);
+
+	// Were any movement keys held in the previous step?
+	bool oldMovementCommands=oldHeld.Has(Command::AFTERBURNER | Command::BACK | Command::FORWARD |
+			Command::LEFT | Command::RIGHT);
+
+	if(!movementCommands && oldMovementCommands)
+	{
+		// Player has released all movement keys since the last step, so
+		// reinstate autopilot commands.
+		activeCommands |= keyHeld.And(Command::JUMP | Command::BOARD | Command::LAND);
+
+		// Make sure we do not switching landing targets:
+		landKeyInterval = 9999;
+	}
+	else if(oldHeld.Has(Command::LAND))
+		// We're not reinstating commands, and the LAND command was given in the prior
+		// step.  Reset our counter of the number of 1/60ths of a second since the land
+		// key was released.
+		landKeyInterval = 0;
+
 	// Wait with actual jumping until the jump command is released.
-	// Or if pressing land quicky in succession, then use WAIT to switch landing targets.
+	// Or if pressing land quickly in succession, then use WAIT to switch landing targets.
 	if(keyHeld.Has(Command::JUMP) || (keyHeld.Has(Command::LAND) && landKeyInterval < 60))
 		activeCommands.Set(Command::WAIT);
 	else
 		activeCommands.Clear(Command::WAIT);
-	
-	// Transfer all commands that need to be active as long as the corresponding key is pressed.
-	activeCommands |= (keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
-		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::BACK | Command::AFTERBURNER));
-	
+
 	// Transfer all newly pressed unhandled keys to active commands.
 	activeCommands |= keyDown;
 }
