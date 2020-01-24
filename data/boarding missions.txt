@@ -113,7 +113,7 @@ mission "Asteroid Course"
 			`	You dock with the <origin>, hoping to get out of this alive, but as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. You are able to reach your cockpit and undock, but the crew on the other ship couldn't reach yours in time...`
 				depart
 			label crew
-			`	You dock with the <origin>, hoping to get out of this alive: but, as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. Most of the other ship's crew has been able to reach your ship by the time you undock from it, and they ask you to take them to <destination>.`
+			`	You dock with the <origin>, hoping to get out of this alive, but, as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. Most of the other ship's crew has been able to reach your ship by the time you undock from it, and they ask you to take them to <destination>.`
 			choice
 				`	"Okay, it's not far."`
 					launch
