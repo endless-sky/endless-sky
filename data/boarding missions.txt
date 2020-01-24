@@ -97,7 +97,7 @@ mission "Asteroid Course"
 					goto repair
 				`	(Interrupt the docking maneuvers and fly away.)`
 			label escape
-			`	You turn your ship around and activate your thrusters, trying to get as far as you can from the disabled ship. A few seconds later, the asteroid tears the <origin> apart, killing all of its crew members.`
+			`	You turn your ship around and activate your thrusters, trying to get as far as you can from the disabled ship. A few seconds later, the asteroid collides with the <origin>, tearing it to shreds and killing all of its crew members while leaving little more than a scratch on the asteroid's surface.`
 				depart
 			label fire
 			branch success
