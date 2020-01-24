@@ -103,6 +103,22 @@ government "Hai"
 	
 	"player reputation" 0
 	"attitude toward"
+		" Hai " 1
+		"Hai (Unfettered)" -.1
+		"Merchant" .01
+	"bribe" .02
+	"friendly hail" "friendly hai"
+	"friendly disabled hail" "friendly disabled hai"
+	"hostile hail" "hostile hai"
+	"hostile disabled hail" "hostile disabled hai"
+
+government " Hai "
+	swizzle 0
+	color .84 .42 .81
+	
+	"player reputation" 0
+	"attitude toward"
+		"Hai" 1
 		"Hai (Unfettered)" -.1
 		"Merchant" .01
 	"bribe" .02
@@ -449,3 +465,9 @@ government "Wanderer"
 	"friendly disabled hail" "wanderer untranslated"
 	"hostile hail" "wanderer untranslated"
 	"hostile disabled hail" "wanderer untranslated"
+
+# A dummy government used to prevent Hai from entering the wormhole in Waypoint/Ultima Thule, but allowing human merchants and other governments to enter.
+government "Wormhole Alpha"
+	"attitude toward"
+		"Hai" -.01
+		"Hai (Unfettered)" -.01
