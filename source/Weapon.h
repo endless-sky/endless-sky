@@ -200,8 +200,8 @@ private:
 	
 	double piercing = 0.;
 	
-	double optimalRange = 0.;
-	double optimalVelocity = 0.;
+	double rangeOverride = 0.;
+	double velocityOverride = 0.;
 	
 	// Cache the calculation of these values, for faster access.
 	mutable bool calculatedDamage = true;
@@ -225,7 +225,7 @@ inline bool Weapon::IsStreamed() const { return isStreamed; }
 
 inline double Weapon::Velocity() const { return velocity; }
 inline double Weapon::RandomVelocity() const { return randomVelocity; }
-inline double Weapon::WeightedVelocity() const { return (optimalVelocity > 0.) ? optimalVelocity : velocity; }
+inline double Weapon::WeightedVelocity() const { return (velocityOverride > 0.) ? velocityOverride : velocity; }
 inline double Weapon::Acceleration() const { return acceleration; }
 inline double Weapon::Drag() const { return drag; }
 inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
