@@ -73,8 +73,9 @@ mission "Asteroid Course"
 		not attributes "automaton"
 	passengers 3 7
 	destination 
-		distance 1
+		distance 1 3
 		not government "Pirate"
+		attributes shipyard
 	on offer
 		conversation
 			`As you are approaching the <origin>, your radar sensors detect that the ship you are assisting is about to be slammed by a huge asteroid! While in a normal flight this wouldn't cause much trouble, a ship that has already suffered heavy damages and cannot dodge could be completely destroyed.`
