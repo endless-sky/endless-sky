@@ -66,7 +66,7 @@ mission "Asteroid Course"
 	name "Passengers to <planet>"
 	description "Transport the remaining crew of a destroyed ship, <bunks> people that were working on the <origin>, to <destination>."
 	to offer
-		random < 15
+		random < 6
 	source
 		government "Merchant" "Syndicate"
 		category "Light Freighter" "Interceptor"
