@@ -116,7 +116,7 @@ mission "Asteroid Course"
 			`	You dock with the <origin>, hoping to get out of this alive: but, as soon as you reach the hatch, the asteroid hits and a series of explosions start coming from the disabled ship. Most of the other ship's crew has been able to reach your ship by the time you undock from it, and they ask you to take them to <destination>.`
 			choice
 				`	"Okay, it's not far."`
-					accept
+					launch
 				`	"How much can you pay me?"`
 			`	"I have a few hundred thousand credits," one of them says, presumably the captain. "I need to save enough to buy a new starship, but you will still receive a decent pay. And it's just a jump away from here anyways."`
 				launch
