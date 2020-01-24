@@ -1608,22 +1608,22 @@ void Engine::HandleKeyboardInputs()
 	else
 		activeCommands.Clear(Command::WAIT);
 	
-	// Translate shift+Hold to a command to a STOP command to stop all movement of the flagship.
+	// Translate shift+BACK to a command to a STOP command to stop all movement of the flagship.
 	// Translation is done here to allow the autoPilot (which will execute the STOP-command) to
-	// act on a single STOP command instead of the HOLD+SHIFT modifier).
-	if(keyHeld.Has(Command::HOLD) && keyHeld.Has(Command::SHIFT))
+	// act on a single STOP command instead of the BACK+SHIFT modifier).
+	if(keyHeld.Has(Command::BACK) && keyHeld.Has(Command::SHIFT))
 		activeCommands |= Command::STOP;
-	else if(keyHeld.Has(Command::HOLD))
-		activeCommands |= Command::HOLD;
+	else if(keyHeld.Has(Command::BACK))
+		activeCommands |= Command::BACK;
 	
 	// Transfer all commands that need to be active as long as the corresponding key is pressed.
 	activeCommands |= (keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
-		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::BACK | Command::AFTERBURNER |
+		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::AFTERBURNER |
 		Command::SHIFT));
 	
-	// Transfer all newly pressed unhandled keys to active commands, except for HOLD, since
-	// HOLD has a different meaning depending on if shift was pressed (and is handled earlier).
-	activeCommands |= keyDown.AndNot(Command::HOLD);
+	// Transfer all newly pressed unhandled keys to active commands, except for BACK, since
+	// BACK has a different meaning depending on if shift was pressed (and is handled earlier).
+	activeCommands |= keyDown.AndNot(Command::BACK);
 }
 
 
