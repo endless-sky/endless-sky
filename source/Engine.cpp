@@ -1621,9 +1621,9 @@ void Engine::HandleKeyboardInputs()
 		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::AFTERBURNER |
 		Command::SHIFT));
 	
-	// Transfer all newly pressed unhandled keys to active commands, except for HOLD, since
-	// HOLD has a different meaning depending on if shift was pressed (and is handled earlier).
-	activeCommands |= keyDown;
+	// Transfer all newly pressed unhandled keys to active commands, except for BACK, since
+	// BACK has a different meaning depending on if shift was pressed (and is handled earlier).
+	activeCommands |= keyDown.AndNot(Command::BACK);
 }
 
 
