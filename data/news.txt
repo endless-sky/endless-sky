@@ -1112,7 +1112,7 @@ news "human syndicate soldier"
 			"You're living the dream, captain! Someday I'm going to retire from the Syndicate military and buy my own ship."
 			"After 20 years, you're eligible for a lifetime pension. I've only got 8 years left, and then I'm home free!"
 			"It's a scandal how many pirates are out here. We do our best, but upper management ties our hands with ridiculous rules of engagement."
-			"Everybody knows where the pirate planets are, so why don't ever go on a mission to wipe 'em out? I don't understand it."
+			"Everybody knows where the pirate planets are, so why don't we ever go on a mission to wipe 'em out? I don't understand it."
 
 
 
