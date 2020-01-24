@@ -1,0 +1,162 @@
+# There are six levels of difficulty of Alexandria Seeks depending on
+# what you have done and what you have discovered.  Level 0 is for
+# players that are still in their original ship, and level 5 is for
+# late-game missions.
+
+# Level 5 means you are capable of combat against fleets of tier 2
+# enemies or small numbers of tier 3 enemies, you've met everyone, and
+# you have progressed at least a little bit in all of the alien
+# stories.
+
+mission "Alexandria Seek: Level Calculation: 5"
+	landing
+	repeat
+	invisible
+	source
+		not
+			attributes uninhabited
+	to offer
+		has "library card"
+		or
+			"armament deterrence" > 50000
+			"combat rating" > 10000
+		has "license: Wanderer Military"
+		has "license: Coalition"
+		has "license: Remnant Capital"
+		has "Discovered Korath Space: fail"
+		has "First Contact: Quarg: declined"
+		or
+			has "Disabled Ka'het: declined"
+			has "First Contact: Ka'het: Remnant 1B: offered"
+			has "First Contact: Ka'het: Remnant 1B: active"
+			has "First Contact: Ka'het: Quarg 2: offered"
+			has "First Contact: Ka'het: Quarg 2: active"
+	on offer
+		set "alexandria seeker level" >?= 5
+		fail
+
+# Level 4 means you are capable of combat against fleets of tier 1.5
+# enemies or small numbers of tier 2 enemies, and you can land on most
+# alien planets.
+
+mission "Alexandria Seek: Level Calculation: 4"
+	landing
+	repeat
+	invisible
+	source
+		not
+			attributes uninhabited
+	to offer
+		has "library card"
+		or
+			"armament deterrence" > 20000
+			"combat rating" > 5000
+		has "license: Wanderer Outfits"
+		has "license: Coalition"
+		has "license: Remnant"
+		has "Discovered Korath Space: fail"
+		has "Graveyard Label: fail"
+		has "First Contact: Quarg: declined"
+	on offer
+		set "alexandria seeker level" >?= 4
+		fail
+
+# Level 3 means you can land on planets in Wanderer, Remnant, and
+# Coalition space.  You should also have firepower equivalent to two
+# large Human heavy warships (Dreadnought, Carrier, Bactrian)
+
+mission "Alexandria Seek: Level Calculation: 3"
+	landing
+	repeat
+	invisible
+	source
+		not
+			attributes uninhabited
+	to offer
+		has "library card"
+		or
+			"armament deterrence" > 8000
+			"combat rating" > 2500
+		has "license: Wanderer Outfits"
+		has "license: Coalition"
+		has "license: Remnant"
+		has "First Contact: Quarg: declined"
+	on offer
+		set "alexandria seeker level" >?= 3
+		fail
+
+# Level 2 means you have a decent-sized fleet of medium and light
+# warships, you've fought some battles, you've met the Quarg, and
+# you've met the Hai.
+
+mission "Alexandria Seek: Level Calculation: 2"
+	landing
+	repeat
+	invisible
+	source
+		not
+			attributes uninhabited
+	to offer
+		has "library card"
+		or
+			"armament deterrence" > 5000
+			"combat rating" > 100
+		has "First Contact: Quarg: declined"
+		has "Discovered Hai Space: failed"
+		"net worth" > 3000000
+		has "event: war begins"
+	on offer
+		set "alexandria seeker level" >?= 2
+		fail
+
+# Level 1 is intended to time around getting a new ship.  Someone who
+# has used their first ship extensively may trigger this too.  The
+# initial Library Card mission is a level 1 mission with free escorts.
+
+mission "Alexandria Seek: Level Calculation: 1"
+	landing
+	repeat
+	invisible
+	source
+		not
+			attributes uninhabited
+	to offer
+		has "library card"
+		or
+			"armament deterrence" > 800
+			"combat rating" > 30
+			"net worth" > 2000000
+			"flagship bunks" > 20
+			"flagship required crew" > 10
+	on offer
+		set "alexandria seeker level" >?= 1
+		fail
+
+# Level 0 is available to anyone who has a library card
+
+########################################################################
+
+mission "Alexandria Seek: Level 0"
+	job
+	repeat
+	name "Alexandria Seek near <planet>"
+	description "A Seeker is searching for a book near the Paradise Planets.  The search begins at <destination>.  Payment is 100,000 credits."
+	cargo "library supplies" 3
+	passengers 1
+	source Alexandria
+	destination
+		near Talita 0 4
+	to offer
+		has "library card"
+		not
+			"alexandria seek active"
+		or
+			not
+				"alexandria seeker level" > 0
+			and
+				"alexandria seeker level" == 1
+				random<50
+			and
+				"alexandria seeker level" == 2
+				random<30
+	
