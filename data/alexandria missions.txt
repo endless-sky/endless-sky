@@ -1211,7 +1211,7 @@ mission "Library Card: Completion"
 	on complete
 		set "library card"
 		payment 200000
-		outfit "Alexandria Library Card"
+		set "license: Alexandria Seeker"
 		conversation
 			`When you land at the station, a gathering of librarians meet you at your ship.  Daemos ceremoniously pins a gold icon of a book onto you and hands you a key card allowing access to the station and its library.`
 			`	"You will always be welcome here," says Daemos.  "Make use of our facilities as needed."`
