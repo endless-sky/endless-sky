@@ -67,7 +67,7 @@ mission "Library Card: First Volume"
 			choice
 				`	Read the paper...`
 			`The paper is of organic origin, not a modern synthetic, and is stamped with the Alexandria Library Seal using actual wax.  The text is badly smudged, but you can make out some details.`
-			`	Your job is to ferry Daemos around the galaxy looking for the five Chal Jub Paqmey.  You'll receive a payment of 100,000 credits each time he finds one.  When you return Daemos and all five Chal Jub Paqmey to Alexandria Station in the Markeb system, you'll receive another 200,000 credits and an Alexandria Library Card.`
+			`	Your job is to ferry Daemos around the galaxy looking for the five Chal Jub Paqmey.  You'll receive a payment of 60,000 credits each time he finds one.  When you return Daemos and all five Chal Jub Paqmey to Alexandria Station in the Markeb system, you'll receive another 100,000 credits and an Alexandria Library Card.`
 			`	The library card will allow permanent access to the Alexandria Station and its library, no matter your legal status, nor the political situation.  The library also offers Job Board jobs to card holders, and possibly a daily salary.`
 			`	This sounds like a good deal.  Possibly too good.  Why are they offering this?  More to the point, why are they offering it to you?`
 			choice
@@ -92,16 +92,16 @@ mission "Library Card: First Volume"
 	on visit
 		dialog `It seems you left the insane librarian or some of his thousand pencils behind.  Perhaps they're in one of your escorts?`
 	on complete
-		payment 100000
+		payment 60000
 		conversation
 			`Shroud is a planet of anachronisms.  In the high mountains, vast castles of medieval design house the pampered ultra-rich, living as if in a Victorian era.  Hidden behind expensive paintings can be found all the comforts of the modern era: virtual reality booths, food-synthesizing devices, massive panel screens for tracking stocks, and the like.  Down below, the poor live in cramped conditions no better than medieval serfs, using modern technology when required by their by employers.`
 			`	Daemos wasn't interested in any of that though.  He took you below the cloud cities of the rich, beyond the factory towns, past the countryside, through a marsh, into a hidden temple, beneath a fake support column, and down to a subterranean room.  In the center of the room, an impossibly old monk was meditating with his eyes closed.  He hovered a half meter above the ground humming in an almost guttural tone.  Within his hands was a book.`
 			choice
 				`	Approach the monk...`
 			`When Daemos approached, the monk's eyes opened, and he uttered, "for the Seeker I do seek."  He handed Dameos the book and then vanished.`
-			`	Daemos didn't look surprised at all; he calmly put the book in his satchel and handed you 100,000 credits.`
+			`	Daemos didn't look surprised at all; he calmly put the book in his satchel and handed you 60,000 credits.`
 			`	"We have the Paq wa'DIch.  Next we seek the Paq cha'DIch.  Meet me in the spaceport when you're ready."`
-			`	This was strangest mission you've had yet, and a pretty easy 100,000 credits.  You suspect the next four books will be harder to get.`
+			`	This was strangest mission you've had yet, and a pretty easy 60,000 credits.  You suspect the next four books will be harder to get.`
 
 
 
@@ -519,10 +519,10 @@ mission "Library Card: Second Volume: Step 4"
 	on fail
 		fail "Library Card: Second Volume: Step 4 Escort"
 	on complete
-		payment 167500
+		payment 77500
 		conversation
 			`At long last, you make it back to the Syndicate executive.  She has the Paq cha'DIch ready, and gleefully accepts her new book on concealing poisons.  She doesn't seem to notice the skillful forgery.  Perhaps those Deadman's Cove businessmen really were legitimate.`
-			`	"Here's your payment," Daemos says, handing you 100,000 credits.  Handing you another 67,500 credits, he adds, "this is from the 'legitimate businessmen' for our assistance getting them landing clearance on Tinker.  Only three more books to go!"`
+			`	"Here's your payment," Daemos says, handing you 60,000 credits.  Handing you another 17,500 credits, he adds, "this is from the 'legitimate businessmen' for our assistance getting them landing clearance on Tinker.  Only three more books to go!"`
 			`	"Meet me at the spaceport when you're ready."`
 	npc
 		government "Pirate"
@@ -727,7 +727,7 @@ mission "Library Card: Third Volume: Step 3"
 	to offer
 		has "Library Card: Third Volume: Step 2: done"
 	on offer
-		payment 100000
+		payment 60000
 		conversation
 			`Daemos takes you to a lecture about xenolinguistics, jointly presented by a young woman and a Quarg.  It is a comparative study of seven different alien languages and five Human languages.  The research suggests that there may be similar origins of some words.  If an alien race once existed, with a specific and bizarre anatomy, they may have touched all twelve languages.`
 			`	After the lecture, the woman, Dr. Sophia Nance, runs over and hugs Daemos.  "I haven't seen you since your thesis defense," he says to her.  "What way is that to treat your advisor?"`
@@ -747,7 +747,7 @@ mission "Library Card: Third Volume: Step 3"
 			choice
 				`	Continue...`
 			`You meet Daemos afterwards, and he's in a hurry to continue.`
-			`	"Another 100,000 credits, as promised.  Are you ready to see a secret Navy base?"`
+			`	"Another 60,000 credits, as promised.  Are you ready to see a secret Navy base?"`
 			choice
 				`	"Let's go"`
 					goto accept
@@ -878,7 +878,7 @@ mission "Library Card: Key"
 		fail "Library Card: Key: New Iceland"
 	on complete
 		fail "Library Card: Key: Escort"
-		payment 100000
+		payment 60000
 		conversation
 			`Daemos assembles all five segments into one sphere and places it in the ground.  A massive red light comes down from the sky and the sphere is replaced by a book.`
 			`	He raises his fists in the air and exclaims, "ha HA!  Almost done!"`
@@ -1135,10 +1135,10 @@ mission "Library Card: Rescue"
 	to offer
 		has "Library Card: Return: done"
 	on complete
-		payment 100000
+		payment 60000
 		conversation
 			`When you arrive at Ingot, you see some Seekers and Deep Security agents conversing with Daemos.`
-			`	Daemos greets you with 100,000 credits and some kind words.  "You're almost a Journeyman Seeker, Captain <last> <first>.  Just get these five books and I back to Alexandria and our Seek will be complete.  Meet me in the spaceport when you're ready."`
+			`	Daemos greets you with 60,000 credits and some kind words.  "You're almost a Journeyman Seeker, Captain <last> <first>.  Just get these five books and I back to Alexandria and our Seek will be complete.  Meet me in the spaceport when you're ready."`
 	on visit
 		dialog `You need to bring Daemos, his cargo, and the Gonza Book Cruise here to complete this mission.`
 	on decline
@@ -1200,17 +1200,17 @@ mission "Library Card: Completion"
 		has "Library Card: Rescue: done"
 	on offer
 		conversation
-			`"Just fly me home to Alexandria, and you'll be a Journeyman Seeker with all the associated rights and privileges... and 200,000 more credits."`
+			`"Just fly me home to Alexandria, and you'll be a Journeyman Seeker with all the associated rights and privileges... and 100,000 more credits."`
 			choice
 				`	"Great!  Let's leave."`
 					accept
-				`	"I'm done with your quest, old man.  I don't want rights or privileges, and I certainly don't want 200,000 credits."`
+				`	"I'm done with your quest, old man.  I don't want rights or privileges, and I certainly don't want 100,000 credits."`
 					decline
 	on visit
 		dialog `You've forgotten your senile friend or his pencils.  Perhaps they're in one of your escorts?`
 	on complete
 		set "library card"
-		payment 200000
+		payment 100000
 		set "license: Alexandria Seeker"
 		conversation
 			`When you land at the station, a gathering of librarians meet you at your ship.  Daemos ceremoniously pins a gold icon of a book onto you and hands you a key card allowing access to the station and its library.`
@@ -1249,7 +1249,7 @@ mission "Library Card: Completion"
 				goto questions
 			label services
 			`"It's a library, fool.  What do you think we do?  Serve bacon?  Teach juggling lessons?`
-			`	"We have books.  Lots of books.  If you want to read books, come here to the library."`
+			`	"We have books.  Lots of books.  If you want to read books, come here to our library."`
 			label "library services"
 			choice
 				`	"Bacon?"`
@@ -1269,13 +1269,14 @@ mission "Library Card: Completion"
 			`"Are you daft?  We don't provide juggling lessons here.  Find such silliness on the Paradise Planets."`
 				goto "library services"
 			label "library books"
-			`"Yes.  We have the largest archive in all of Human space.  If you need a book, you'll find it here.`
+			`"Yes.  We have the largest archive in all of Human space.  You're looking for a book you will find it here."`
 				goto "library services"
 			label jobs
 			`"Yes.`
-			`	"The library will pay you Seek for rare books or artwork, and bring them here for archival.  Find Seeks on the Job Board when you're at the station.`
+			`	"The library will pay you to Seek for rare books or artwork, and bring them here for archival.  Find Seeks on the Job Board when you're at the station.`
 			`	"We'll also pay you to ferry librarians or library materials between Alexandria Station and other libraries across the Republic.  Find those jobs in Job Boards here or elsewhere.`
-			`	"As an Alexandria Seeker, you can hire escorts throughout human space."`
+			`	"Once you've proven yourself, we may give you more difficult jobs: a book cruise, long-range escort missions, or hunting book thieves.'
+			`	"The library has a mandate to preserve forbidden knowledge.  If you can reach pirate planets, you can find jobs to smuggle illegal literature to Alexandria."`
 				goto questions
 			label end
 			`"Excellent.  Welcome to your new life as an Alexandria Seeker."`
@@ -1283,7 +1284,6 @@ mission "Library Card: Completion"
 		fail "Access to Alexandria"
 	on fail
 		fail "Access to Alexandria"
-
 
 mission "Access to Alexandria"
 	name "Access to Alexandria"
