@@ -3448,7 +3448,7 @@ phrase "pirate"
 		"Fate"
 		"Boys"
 
-#Historical male pirates
+# Historical male pirates
 phrase "pirate"
 	word
 		"Blackbeard"
@@ -3472,7 +3472,7 @@ phrase "pirate"
 		"Philip Lyne"
 		"Kanhoji Angre"
 
-#Historical female pirates
+# Historical female pirates
 phrase "pirate"
 	word
 		"Lady Killigrew"
@@ -3493,7 +3493,7 @@ phrase "pirate"
 		"Christina Anna Skytte"
 		"Anne Dieu-le-Veut"
 
-#Historical pirate ships
+# Historical pirate ships
 phrase "pirate"
 	word
 		"Queen Anne's Revenge"
@@ -3523,7 +3523,7 @@ phrase "pirate"
 		"Pembroke"
 		"Margaret"
 
-#Historical ghost ships
+# Historical ghost ships
 phrase "pirate"
 	word
 		"Flying Dutchman"
@@ -3548,7 +3548,7 @@ phrase "pirate"
 		"Joyita"
 		"Teignmouth Electron"
 
-#Fictional male pirates
+# Fictional male pirates
 phrase "pirate"
 	word
 		"Black Corsair"
@@ -3569,7 +3569,7 @@ phrase "pirate"
 		"The Pirate King"
 		"Jack Shandy"
 
-#Fictional female pirates
+# Fictional female pirates
 phrase "pirate"
 	word
 		"Helen Tavrel"
@@ -3584,7 +3584,7 @@ phrase "pirate"
 		"Elizabeth Swann"
 		"Elaine Marley"
 
-#Fictional pirate ships
+# Fictional pirate ships
 phrase "pirate"
 	word
 		"Jolly Roger"
@@ -3595,7 +3595,7 @@ phrase "pirate"
 		"Tigress"
 		"Wild Cat"
 
-#Fictional ghost ships
+# Fictional ghost ships
 phrase "pirate"
 	word
 		"Three Skeleton Key"
