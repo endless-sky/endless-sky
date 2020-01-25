@@ -65,6 +65,8 @@ jobs:
       run: scons -j $(nproc);
     - name: Execute test_parse
       run: ./tests/test_parse.sh ./endless-sky
+    - name: Execute available testcases
+      run: ./tests/run_autotests.sh
 
 
   windows:
