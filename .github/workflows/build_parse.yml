@@ -50,6 +50,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install dependencies
       run: |
+        # Microsoft Repos (for dotnet, azure-cli etc.) frequently cause issues (https://github.com/dotnet/core-setup/issues/7778#issuecomment-523518122), and we don't need them anyways
+        for apt_file in `grep -lr packages.microsoft.com /etc/apt/sources.list.d/`; do sudo rm $apt_file; done
         sudo apt-get update
         sudo apt-get install libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons ccache
     - name: Cache ccache
