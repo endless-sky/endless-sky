@@ -334,52 +334,48 @@ Test::TestStep::TestResult Test::TestStep::Step(int stepAction, UI &menuPanels, 
 			return RESULT_FAIL;
 			break;
 		case TestStep::LOAD_GAME:
-			if(stepAction == 0){
+			{
 				// Check if the savegame actually exists
 				if(!Files::Exists(Files::Saves() + stepInputString))
 					return RESULT_FAIL;
+				
+				// Inspired by LoadPanel.LoadCallback() to stop parallel threads.
+				// TODO: Check if we can get to a single shared function with  LoadPanel.
+				gamePanels.Reset();
+				gamePanels.CanSave(true);
+				
 				// Perform the load and verify that player is loaded.
 				player.Load(Files::Saves() + stepInputString);
 				if(!player.IsLoaded())
 					return RESULT_FAIL;
-				// Actual load succeeded. Allow game to adopt to new
-				// situation and then continue with enter/pilot step.
-				return RESULT_NEXTACTION;
-			}
-			else if(stepAction == 1)
-			{
-				// Clear the menu entries and go to main game screen
+				
+				// Remove all menus to start from freshly loaded state
 				// TODO: We should send keystrokes / commands that perform the player actions instead of modifying game structures directly.
-				if(!menuPanels.IsEmpty())
+				int maxPops = 100;
+				while(!menuPanels.IsEmpty() && maxPops>0)
+				{
 					menuPanels.Pop(menuPanels.Top().get());
-				// Transfer control to game before final check to allow
-				// closing of menuPanel.
-				return RESULT_NEXTACTION;
-			}
-			else if(stepAction == 2)
-			{
+					// Perform StepAll to execute the PushOrPop() for the
+					// actual removal of the panel.
+					menuPanels.StepAll();
+					menuPanels.StepAll();
+					maxPops--;
+				}
 				if(!menuPanels.IsEmpty())
 					return RESULT_FAIL;
-				// TODO: this should be called/loaded from LoadPanel
-				gamePanels.Reset();
-				return RESULT_NEXTACTION;
-			}
-			else if(stepAction == 3)
-			{
-				// TODO: this should be called/loaded from LoadPanel
+				
+				// Start from new gamePanel
 				gamePanels.Push(new MainPanel(player));
-				return RESULT_NEXTACTION;
+				
+				// From LoadPanel.LoadCallback():
+				// It takes one step to figure out the planet panel should be created, and
+				// another step to actually place it. So, take two steps to avoid a flicker.
+				gamePanels.StepAll();
+				gamePanels.StepAll();
+					
 			}
-			else if(stepAction == 4)
-			{
-				if(gamePanels.IsEmpty())
-					return RESULT_FAIL;
-				return RESULT_DONE;
-			}
-			else
-				return RESULT_FAIL;
-
-			break;
+			// Load succeeded, finish teststep.
+			return RESULT_DONE;
 		case TestStep::INJECT:
 			{
 				// Lookup the data and inject it in the game or the games environment
