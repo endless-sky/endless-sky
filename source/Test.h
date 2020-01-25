@@ -36,14 +36,53 @@ public:
 	// Class representing a single step in a test
 	class TestStep {
 	public:
-		// The different types of teststeps
-		enum StepType {INVALID, LOAD_GAME, ASSERT, WAITFOR, LAUNCH, LAND, INJECT, COMMAND};
+		// The different types of teststeps.
+		enum StepType {
+			// Invalid test-step type, should not be used in tests. Used to detect issues in test-framework.
+			INVALID,
+			// Sets the watchdog timer. No value or zero disables the watchdog. Non-zero gives
+			// a watchdog in number of frames/steps.
+			WATCHDOG,
+			// Step that adds game-data, either in the config-directories or in the game directly.
+			INJECT,
+			// Step to perform loading of a savegame
+			LOAD_GAME,
+			// Step that verifies if a certain condition is true
+			ASSERT,
+			// Step that waits for a certain condition to become true
+			WAITFOR,
+			// Step that contains a set of test-steps below it. Repeats the
+			// steps inside it a number of times or until a break is given within
+			// the step.
+			REPEAT,
+			// Step that breaks execution of a REPEAT loop (or stops the execution
+			// of the test itself if at toplevel) when a certain condition is
+			// true.
+			BREAK_IF,
+			// Instructs the game to set navigation / travel plan to a target system
+			NAVIGATE,
+			// Step that launches the players flagship.
+			LAUNCH,
+			// Step that performs land of the players flagship.
+			LAND,
+			// Step that performs the given command.
+			COMMAND
+		};
 
-		// Result-Done:  Teststep succesfull. Remove step and proceed with next.
-		// Result-Fail:  Teststep failed. Fail test. Exit program with non-zero exitcode
-		// Result-Retry: Teststep incomplete (waiting for a condition). Retry teststep in next update.
-		// Result-NextAction: Action in teststep succesfull. Retry, but with action counter one higher.
-		enum TestResult {RESULT_DONE, RESULT_FAIL, RESULT_RETRY, RESULT_NEXTACTION};
+		// Result returned from a TestStep.
+		enum TestResult {
+			// Teststep succesfull. Proceed with next teststep.
+			RESULT_DONE,
+			// Teststep failed. Fail test. Exit program with non-zero exitcode
+			RESULT_FAIL,
+			// Teststep incomplete (waiting for a condition). Retry teststep in next frame-step.
+			RESULT_RETRY,
+			// Teststep incomplete (but some action was done). Retry, but with action counter one higher.
+			RESULT_NEXTACTION,
+			// Teststep indicates to break of an outer loop or break off a test (succesfully)
+			// Teststep should use RESULT_FAIL for breaking off a test with a failure.
+			RESULT_BREAK
+		};
 
 		TestStep(const DataNode &node);
 
