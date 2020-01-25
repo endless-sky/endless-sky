@@ -327,7 +327,7 @@ tip "max:"
 
 # Outfit categories:
 tip "Guns:"
-	`Weapons that are fixed in place (firing in the direction your ship is pointed) and that require no ammunition).`
+	`Weapons that are fixed in place (firing in the direction your ship is pointed) and that require no ammunition.`
 
 tip "Turrets:"
 	`Weapons that can fire in any direction and will track your currently selected target.`
