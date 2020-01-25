@@ -31,7 +31,7 @@ mission "FWC Scouting 1"
 				`	"Sure, but first, can you tell me how the Wolf Pack was able to do so much damage to the Navy?"`
 			`	"As I said," says JJ, "they've gathered a surprising number of bounty hunters and others who operate on the fringes of society, and who are sympathetic to our cause."`
 			label freya
-			`	"One more thing," says Freya, "while you're traveling up North, I wonder if you could help to escort a convoy from the Rand system. There's no huge rush, but they're carrying supplies we need for a new reactor core for the Dreadnoughts, so the sooner you can meet up with them, the sooner the new reactors will be available."`
+			`	"One more thing," says Freya, "while you're traveling up North, I wonder if you could help to escort a convoy from the Zeta Aquilae system. There's no huge rush, but they're carrying supplies we need for a new reactor core for the Dreadnoughts, so the sooner you can meet up with them, the sooner the new reactors will be available."`
 				accept
 	
 	npc
