@@ -1608,7 +1608,7 @@ void Engine::HandleKeyboardInputs()
 	++landKeyInterval;
 	if(oldHeld.Has(Command::LAND))
 		landKeyInterval = 0;
-
+	
 	// If maneuvering keys were released, and none are still held, reinstate autopilot
 	// commands if any are still requested:
 	if(!keyHeld.Has(manueveringCommands) && oldHeld.Has(manueveringCommands))
