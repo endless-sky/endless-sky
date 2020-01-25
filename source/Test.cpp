@@ -23,6 +23,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "TestData.h"
 #include "UI.h"
 
+#include <SDL2/SDL.h>
+
 #include <stdexcept>
 
 using namespace std;
@@ -76,6 +78,29 @@ namespace {
 
 		PlanetPanel *topPlanetPanel = GetPlanetPanelIfAvailable(gamePanels);
 		return topPlanetPanel != nullptr;
+	}
+	
+	// Send an SDL_event to on of the UIs.
+	bool EventToUI(UI &menuOrGamePanels, const SDL_Event &event)
+	{
+		return menuOrGamePanels.Handle(event);
+	}
+	
+	// Send an keyboard input to one of the UIs.
+	bool KeyInputToUI(UI &menuOrGamePanels, const char* keyName, bool shift=false, bool ctrl=false, bool alt=false)
+	{
+		// Construct the event to send (from keyboard code and modifiers)
+		SDL_Event event;
+		event.key.keysym.sym = SDL_GetKeyFromName(keyName);
+		event.key.keysym.mod = KMOD_NONE;
+		if(shift)
+			event.key.keysym.mod |= KMOD_SHIFT;
+		if(ctrl)
+			event.key.keysym.mod |= KMOD_CTRL;
+		if(alt)
+			event.key.keysym.mod |= KMOD_ALT;
+		
+		return EventToUI(menuOrGamePanels, event);
 	}
 }
 
@@ -212,12 +237,12 @@ void Test::TestStep::Load(const DataNode &node)
 	else if(node.Token(0) == "load")
 	{
 		stepType = LOAD_GAME;
-		filePathOrName = node.Token(1);
+		stepInputString = node.Token(1);
 	}
 	else if(node.Token(0) == "inject")
 	{
 		stepType = INJECT;
-		filePathOrName = node.Token(1);
+		stepInputString = node.Token(1);
 	}
 	else if(node.Token(0) == "wait" && node.Token(1) == "for")
 	{
@@ -228,6 +253,11 @@ void Test::TestStep::Load(const DataNode &node)
 	{
 		stepType = COMMAND;
 		command.Load(node);
+	}
+	else if(node.Token(0) == "ui key")
+	{
+		stepType = UI_KEY;
+		stepInputString = node.Token(1);
 	}
 	else
 		node.PrintTrace("Skipping unrecognized test-step: " + node.Token(0));
@@ -306,10 +336,10 @@ Test::TestStep::TestResult Test::TestStep::Step(int stepAction, UI &menuPanels, 
 		case TestStep::LOAD_GAME:
 			if(stepAction == 0){
 				// Check if the savegame actually exists
-				if(!Files::Exists(Files::Saves() + filePathOrName))
+				if(!Files::Exists(Files::Saves() + stepInputString))
 					return RESULT_FAIL;
 				// Perform the load and verify that player is loaded.
-				player.Load(Files::Saves() + filePathOrName);
+				player.Load(Files::Saves() + stepInputString);
 				if(!player.IsLoaded())
 					return RESULT_FAIL;
 				// Actual load succeeded. Allow game to adopt to new
@@ -353,7 +383,7 @@ Test::TestStep::TestResult Test::TestStep::Step(int stepAction, UI &menuPanels, 
 		case TestStep::INJECT:
 			{
 				// Lookup the data and inject it in the game or the games environment
-				const TestData* testData = (GameData::TestDataSets()).Get(filePathOrName);
+				const TestData* testData = (GameData::TestDataSets()).Get(stepInputString);
 				if(testData->Inject())
 					return RESULT_DONE;
 				return RESULT_FAIL;
@@ -363,6 +393,16 @@ Test::TestStep::TestResult Test::TestStep::Step(int stepAction, UI &menuPanels, 
 			if(!SendFlightCommand(command, gamePanels))
 				return RESULT_FAIL;
 			return RESULT_DONE;
+		case TestStep::UI_KEY:
+			{
+				if(stepInputString.empty())
+					return RESULT_FAIL;
+
+				char inputChar = stepInputString[0];
+				if(KeyInputToUI(gamePanels, &inputChar))
+					return RESULT_DONE;
+				return RESULT_FAIL;
+			}
 		default:
 			// ERROR, unknown test-step-type. Just return failure.
 			return RESULT_FAIL;

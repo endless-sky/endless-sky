@@ -66,7 +66,9 @@ public:
 			// Step that performs land of the players flagship.
 			LAND,
 			// Step that performs the given command.
-			COMMAND
+			COMMAND,
+			// Send a key-input towards a panel
+			UI_KEY,
 		};
 
 		// Result returned from a TestStep.
@@ -95,7 +97,7 @@ public:
 		// Checked condition, for teststeps of types ASSERT and WAITFOR
 		ConditionSet checkedCondition;
 		// Savegame pilot and name to load or save to. For teststep of type LOAD_GAME (and SAVE_GAME)
-		std::string filePathOrName = "";
+		std::string stepInputString = "";
 		// Command to send if this test-step sends a command
 		Command command {};
 	};
