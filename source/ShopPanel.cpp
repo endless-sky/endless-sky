@@ -234,9 +234,10 @@ void ShopPanel::DrawSidebar()
 		Screen::Right() - SIDE_WIDTH / 2 - 93,
 		Screen::Top() + SIDE_WIDTH / 2 - sideScroll + 40 - 93);
 	
+	const System *here = player.GetSystem();
 	int shipsHere = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
-		shipsHere += !(ship->GetSystem() != player.GetSystem() || ship->IsDisabled());
+		shipsHere += CanShowInSidebar(*ship, here);
 	if(shipsHere < 4)
 		point.X() += .5 * ICON_TILE * (4 - shipsHere);
 	
@@ -249,7 +250,7 @@ void ShopPanel::DrawSidebar()
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		// Skip any ships that are "absent" for whatever reason.
-		if(!CanShowInSidebar(*ship, player.GetSystem()))
+		if(!CanShowInSidebar(*ship, here))
 			continue;
 	
 		if(point.X() > Screen::Right())
@@ -670,7 +671,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			
 			const System *here = player.GetSystem();
 			for(Ship *ship : added)
-				if(!ship->IsDisabled() && ship->GetSystem() == here)
+				if(CanShowInSidebar(*ship, here))
 					playerShips.insert(ship);
 			
 			if(!playerShips.count(playerShip))
@@ -684,7 +685,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			
 			const System *here = player.GetSystem();
 			for(Ship *ship : wanted)
-				if(!ship->IsDisabled() && ship->GetSystem() == here)
+				if(CanShowInSidebar(*ship, here))
 					playerShips.insert(ship);
 			
 			if(!playerShips.count(playerShip))
@@ -965,7 +966,7 @@ void ShopPanel::SideSelect(int count)
 				it = player.Ships().end();
 			--it;
 			
-			if((*it)->GetSystem() == here && !(*it)->IsDisabled())
+			if(CanShowInSidebar(**it, here))
 				++count;
 		}
 	}
@@ -977,7 +978,7 @@ void ShopPanel::SideSelect(int count)
 			if(it == player.Ships().end())
 				it = player.Ships().begin();
 			
-			if((*it)->GetSystem() == here && !(*it)->IsDisabled())
+			if(CanShowInSidebar(**it, here))
 				--count;
 		}
 	}
@@ -998,7 +999,7 @@ void ShopPanel::SideSelect(Ship *ship)
 		for(const shared_ptr<Ship> &other : player.Ships())
 		{
 			// Skip any ships that are "absent" for whatever reason.
-			if(other->GetSystem() != here || other->IsDisabled())
+			if(!CanShowInSidebar(*ship, here))
 				continue;
 			
 			if(other.get() == ship || other.get() == playerShip)
