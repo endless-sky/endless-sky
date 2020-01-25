@@ -1588,10 +1588,6 @@ void Engine::HandleKeyboardInputs()
 {
 	Ship *flagship = player.Flagship();
 	
-	static const int landingWaitTime = 60;
-	static const Command manueveringCommands = Command::AFTERBURNER | Command::BACK |
-		Command::FORWARD | Command::LEFT | Command::RIGHT;
-	
 	// Commands can't be issued if your flagship is dead.
 	if(!flagship || flagship->IsDestroyed())
 		return;
@@ -1601,33 +1597,27 @@ void Engine::HandleKeyboardInputs()
 	keyHeld.ReadKeyboard();
 	Command keyDown = keyHeld.AndNot(oldHeld);
 	
+	// Certain commands must always be sent:
+	static const Command manueveringCommands = Command::AFTERBURNER | Command::BACK |
+		Command::FORWARD | Command::LEFT | Command::RIGHT;
+	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN | manueveringCommands);
+	
+	// Duration to wait between two presses of the LAND button to indicate we
+	// want to switch landing targets:
+	static const int landingWaitTime = 60;
 	++landKeyInterval;
-	
-	// These commands must always be sent:
-	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
-		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::BACK | Command::AFTERBURNER);
-	
-	// Are any movement keys held?
-	bool isManuevering = keyHeld.Has(manueveringCommands);
-	
-	// Were any movement keys held in the previous step?
-	bool wasManuevering = oldHeld.Has(manueveringCommands);
-	
-	// If maneuvering keys were released, reinstate autopilot
-	// commands if any are requested in keyDown:
-	if(!isManuevering && wasManuevering)
+	if(oldHeld.Has(Command::LAND))
+		landKeyInterval = 0;
+
+	// If maneuvering keys were released, and none are still held, reinstate autopilot
+	// commands if any are still requested:
+	if(!keyHeld.Has(manueveringCommands) && oldHeld.Has(manueveringCommands))
 	{
-		// Reinstate autopilot commands:
 		activeCommands |= keyHeld.And(Command::JUMP | Command::BOARD | Command::LAND);
 		
 		// Make sure we do not switch landing targets:
 		landKeyInterval = landingWaitTime;
 	}
-	
-	// If holding JUMP or rapidly pressing LAND, also send WAIT, to prevent
-	// the autopilot from initiating the jump or settling on the landing target.
-	else if(oldHeld.Has(Command::LAND))
-		landKeyInterval = 0;
 	
 	// Wait with actual jumping until the jump command is released.
 	// Or if pressing land quickly in succession, then use WAIT to switch landing targets.
