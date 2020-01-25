@@ -1597,36 +1597,35 @@ void Engine::HandleKeyboardInputs()
 	keyHeld.ReadKeyboard();
 	Command keyDown = keyHeld.AndNot(oldHeld);
 	
-	// Certain commands must always be sent:
+	// Certain commands are always sent when the corresponding key is depressed.
 	static const Command manueveringCommands = Command::AFTERBURNER | Command::BACK |
 		Command::FORWARD | Command::LEFT | Command::RIGHT;
 	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN | manueveringCommands);
 	
-	// Duration to wait between two presses of the LAND button to indicate we
-	// want to switch landing targets:
-	static const int landingWaitTime = 60;
+	// Issuing LAND again within the cooldown period signals a change of landing target.
+	constexpr int landCooldown = 60;
 	++landKeyInterval;
 	if(oldHeld.Has(Command::LAND))
 		landKeyInterval = 0;
 	
-	// If maneuvering keys were released, and none are still held, reinstate autopilot
-	// commands if any are still requested:
+	// If all previously-held maneuvering keys have been released,
+	// restore any autopilot commands still being requested.
 	if(!keyHeld.Has(manueveringCommands) && oldHeld.Has(manueveringCommands))
 	{
 		activeCommands |= keyHeld.And(Command::JUMP | Command::BOARD | Command::LAND);
 		
-		// Make sure we do not switch landing targets:
-		landKeyInterval = landingWaitTime;
+		// Do not switch landing targets when restoring autopilot.
+		landKeyInterval = landCooldown;
 	}
 	
-	// Wait with actual jumping until the jump command is released.
-	// Or if pressing land quickly in succession, then use WAIT to switch landing targets.
-	if(keyHeld.Has(Command::JUMP) || (keyHeld.Has(Command::LAND) && landKeyInterval < landingWaitTime))
+	// If holding JUMP or toggling LAND, also send WAIT. This prevents the jump from
+	// starting (e.g. while escorts are aligning), or switches the landing target.
+	if(keyHeld.Has(Command::JUMP) || (keyHeld.Has(Command::LAND) && landKeyInterval < landCooldown))
 		activeCommands.Set(Command::WAIT);
 	else
 		activeCommands.Clear(Command::WAIT);
 	
-	// Transfer all newly pressed unhandled keys to active commands.
+	// Transfer all newly pressed, unhandled keys to active commands.
 	activeCommands |= keyDown;
 }
 
