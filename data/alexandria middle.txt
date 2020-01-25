@@ -1,9 +1,18 @@
-# Alexandria Seeks are automatically-generated mission sequences which
-# take you all over some area of the galaxy searching for a
-# book. There are six levels of difficulty of Alexandria Seeks
-# depending on what you have done and what you have discovered.  Level
-# 0 is for players that are still in their original ship, and level 5
-# is for late-game missions.
+# Alexandria Seeks
+# ================
+
+# In the middle of this story, you have to do many Alexandria Seeks.
+# Those are automatically-generated mission sequences where you must
+# search for some book or artifact.  They send you all over some area
+# of the galaxy doing smaller missions.  Eventually you find your book
+# or artifact, bring it back to the library, and get paid.  There are
+# 6 levels of difficulty of Seeks: 0 for the youngest pilots, through 5
+# for pilots that have explored the galaxy with tier 2 fleets.
+
+
+
+# Level calculations
+# ------------------
 
 # Level 5 Calculation: nominally, you can fight fleets of tier 2
 # ships, you've met everyone, and you have progressed at least a
@@ -129,13 +138,17 @@ mission "Alexandria Seek: Level 1 Calculation"
 		"alexandria seeker level" >?= 1
 		fail
 
-# Level 0 is available to anyone who has a library card
+# Level 0 only requires a library card, so it does not need a
+# detection mission
 
-########################################################################
 
-# Get a random number with a binomial distribution every time we land.
+
+# Binomial-Distributed Random Number
+# ----------------------------------
+
 # This provides a consistent random number across all missions for
-# deciding which Seek to use (if any)
+# deciding which Seek to use (if any) and which mission to use for the
+# next step of the Seek.
 
 mission "Alexandria Random Chance"
 	landing
@@ -257,17 +270,23 @@ mission "Alexandria Random Chance [9]"
 	
 
 
-########################################################################
+# Level 0 Seek: Paradise Planets
+# ------------------------------
+
+# This is the only safe region of space for an unmodified Shuttle or
+# Star Barge.  We confine ourselves to simple transport missions in
+# well-patrolled systems.
 
 mission "Alexandria Seek Near Paradise Planets: Start"
 	job
 	repeat
 	name "Alexandria Seek: <planet>"
-	description "Meet a Seeker at <destination> to seek a book near the Paradise Planets.  Return it to Alexandria for 80,000 credits."
+	description "Meet a Seeker at <destination> to seek a book near the Paradise Planets.  Return it to Alexandria for 110,000 credits."
 	passengers 1
 	source Alexandria
 	destination
-		near Talita 0 4
+		near Castor 0 4
+		not planet Ingot
 	to offer
 		has "library card"
 		not "alexandria seek active"
@@ -289,21 +308,23 @@ mission "Alexandria Seek Near Paradise Planets: Start"
 		clear "alexandria seek active"
 		clear "seek near paradise"
 
-
 mission "Alexandria Seek Near Paradise Planets: Search"
 	name "Alexandria Seek: <planet>"
-	description "Continue to <destination> to seek a book near the Paradise Planets.  Return it to Alexandria for 80,000 credits."
+	description "Continue to <destination> to seek a book near the Paradise Planets.  Return it to Alexandria for 110,000 credits."
 	landing
 	repeat
 	name "Alexandria Seek: <planet>"
 	source
-		near Talita 0 7
+		near Castor 0 4
+		not planet Ingot
 	destination
-		near Talita 0 7
-		distance 1
+		near Castor 0 4
+		not planet Ingot
+		distance 3 20
 		not
 			attributes uninhabited
 	to offer
+		has "Alexandria Seek Near Paradise Planets: Start: done"
 		has "seek near paradise"
 		"seek near paradise" < 5
 	on offer
@@ -317,7 +338,7 @@ mission "Alexandria Seek Near Paradise Planets: Search"
 				goto choice
 			label found
 			apply
-				"seek near paradise" = 5
+				"seek near paradise" = 4
 			`It isn't here, but I think it may be on <destination>.`
 				goto choice
 			label first
@@ -339,13 +360,16 @@ mission "Alexandria Seek Near Paradise Planets: Search"
 
 mission "Alexandria Seek Near Paradise Planets: Return"
 	name "Alexandria Seek: <planet>"
-	description "Return the book to Alexandria for 80,000 credits."
+	description "Return the book to Alexandria for 110,000 credits."
 	landing
 	repeat
 	destination Alexandria
 	source
-		near Talita 0 7
+		near Castor 0 4
+		not planet Ingot
 	to offer
+		has "Alexandria Seek Near Paradise Planets: Start: done"
+		has "Alexandria Seek Near Paradise Planets: Search: done"
 		has "alexandria seek active"
 		"seek near paradise" == 5
 	on offer
@@ -354,7 +378,9 @@ mission "Alexandria Seek Near Paradise Planets: Return"
 			`I have the book.  Let's take it back to the library at <destination> and get paid.`
 			choice
 				`"I'll take you to <destination>."`
+					accept
 				`"I'm sorry, but I don't have time to finish this Seek.  You will have to find another captain."`
+					decline
 	on fail
 		clear "alexandria seek active"
 		clear "seek near paradise"
@@ -362,7 +388,7 @@ mission "Alexandria Seek Near Paradise Planets: Return"
 		clear "alexandria seek active"
 		clear "seek near paradise"
 	on complete
-		payment 80000
+		payment 110000
 		clear "alexandria seek active"
 		clear "seek near paradise"
 

@@ -1,8 +1,8 @@
-mission "Library Card: Offer"
+mission "Alexandria Library Card: Offer"
 	name "Alexandria Library Card"
 	minor
 	job
-	description "Alexandria Library is looking for an Apprentice Seeker.  Meet Daemos Titan at the Al-Qarawiyyin Library on Earth to assist in his search for the Chal Jub Paqmey.  Earn an Alexandria Library Card and a large stipend.  Escorts will be provided through dangerous areas."
+	description "Alexandria Library is looking for an Apprentice Seeker.  Meet Daemos Titan at the Al-Qarawiyyin Library on Earth to help him seek the Chal Jub Paqmey.  Payments will total 400,000 credits.  Escorts will be provided through dangerous areas."
 	to offer
 		not "library card"
 		"net worth" > 300000
@@ -48,7 +48,7 @@ mission "Library Card: Offer"
 
 
 
-mission "Library Card: First Volume"
+mission "Alexandria Library Card: First Volume"
 	name "Alexandria Library Card"
 	description "Take Daemos Titan to <destination> to search for the first of the five Chal Jub Paqmey."
 	blocked `Daemos exclaims, "I can't sleep in a gun port!  Come back when you have a spare bunk and space for 1 ton of cargo."`
@@ -57,7 +57,7 @@ mission "Library Card: First Volume"
 	passengers 1
 	cargo "old books and a thousand pencils" 1
 	to offer
-		has "Library Card: Offer: done"
+		has "Alexandria Library Card: Offer: done"
 	on offer
 		conversation
 			`When you arrive, you see Daemos Titan eager to depart.  He walks at a brisk pace towards your ship without even telling you his destination.  Porters behind push a cart with an impressive number of books and at least a thousand pencils.  You notice there is no modern equipment; not even a data pad.`
@@ -106,7 +106,7 @@ mission "Library Card: First Volume"
 
 
 
-mission "Library Card: Second Volume: Step 1"
+mission "Alexandria Library Card: Second Volume: Step 1"
 	name "Alexandria Library Card"
 	description "Take Dameos Titan to <destination> to search for the second of the five Chal Jub Paqmey."
 	blocked `Daemos complains, "What do you think I am, an Anti-Missile Turret?  I need a bunk and space for 1 ton of cargo."`
@@ -115,7 +115,7 @@ mission "Library Card: Second Volume: Step 1"
 	passengers 1
 	cargo "old books and a thousand pencils" 1
 	to offer
-		has "Library Card: First Volume: done"
+		has "Alexandria Library Card: First Volume: done"
 	on offer
 		conversation
 			`	You meet Daemos at the spaceport with the book on his lap.  It's hard to see beneath his beard, but you think he's smiling.`
@@ -171,7 +171,7 @@ mission "Library Card: Second Volume: Step 1"
 
 
 
-mission "Library Card: Second Volume: Step 2"
+mission "Alexandria Library Card: Second Volume: Step 2"
 	name "Alexandria Library Card"
 	description "Take Dameos Titan to <destination> to search for the second of the five Chal Jub Paqmey."
 	blocked `Daemos complains, "I can't sleep in cooling ducts.  I need a bunk and space for 1 ton of cargo."`
@@ -180,7 +180,7 @@ mission "Library Card: Second Volume: Step 2"
 	passengers 1
 	cargo "old books and a thousand pencils" 1
 	to offer
-		has "Library Card: Second Volume: Step 1: done"
+		has "Alexandria Library Card: Second Volume: Step 1: done"
 	on offer
 		conversation
 			`Daemos meets you at your ship and says, "our destination is in a dangerous area of Syndicate space.  I've arranged some escorts so you don't get me killed."`
@@ -231,11 +231,11 @@ mission "Library Card: Second Volume: Step 2"
 			`"Excellent!  That's the spirit."`
 				accept
 	on decline
-		fail "Library Card: Second Volume: Step 2 Escort"
-		fail "Library Card: Second Volume: Step 2 Jump Instructions"
+		fail "Alexandria Library Card: Second Volume: Step 2 Escort"
+		fail "Alexandria Library Card: Second Volume: Step 2 Jump Instructions"
 	on fail
-		fail "Library Card: Second Volume: Step 2 Escort"
-		fail "Library Card: Second Volume: Step 2 Jump Instructions"
+		fail "Alexandria Library Card: Second Volume: Step 2 Escort"
+		fail "Alexandria Library Card: Second Volume: Step 2 Jump Instructions"
 	on visit
 		dialog `It seems you left the insane librarian or some of his thousand pencils behind.  Perhaps they're in one of your escorts?`
 	on complete
@@ -263,36 +263,36 @@ mission "Library Card: Second Volume: Step 2"
 	
 
 
-mission "Library Card: Second Volume: Step 2 Jump Instructions"
+mission "Alexandria Library Card: Second Volume: Step 2 Jump Instructions"
 	name "Jump Instructions"
 	description "A fleet is paid to escort you to <destination>.  It will abandon you if you don't arrive by <date>."
 	source Tinker
 	destination Amazon
 	invisible
 	to offer
-		has "Library Card: Second Volume: Step 1: done"
-		not "Library Card: Second Volume: Step 2: declined"
-		not "Library Card: Second Volume: Step 2: failed"
+		has "Alexandria Library Card: Second Volume: Step 1: done"
+		not "Alexandria Library Card: Second Volume: Step 2: declined"
+		not "Alexandria Library Card: Second Volume: Step 2: failed"
 	on enter
-		dialog `Make sure you jump with your escorts.  Hold down "j" until all of your escorts' icons turn white or blue.  Yellow means they're not ready to jump.  White means they're ready to jump.  Blue means they're either in a different system, or they are disabled.  (Fighters docked in fighter bays will also be blue.)`
+		dialog `Make sure you jump with your escorts.  Hold down the JUMP button (default is "j") until all of your escorts' icons turn white or blue.  Yellow means they're not ready to jump.  White means they're ready to jump.  Blue means they're either in a different system, or they are disabled.  (Fighters docked in fighter bays will also be blue.)`
 
 
 
 
-mission "Library Card: Second Volume: Step 2 Escort"
+mission "Alexandria Library Card: Second Volume: Step 2 Escort"
 	name "Escort Fleet: Deep Security"
 	description "A fleet is paid to escort you to <destination>.  It will abandon you if you don't arrive by <date>."
 	source Tinker
 	destination Amazon
 	deadline 15
 	to offer
-		has "Library Card: Second Volume: Step 1: done"
-		not "Library Card: Second Volume: Step 2: declined"
-		not "Library Card: Second Volume: Step 2: failed"
+		has "Alexandria Library Card: Second Volume: Step 1: done"
+		not "Alexandria Library Card: Second Volume: Step 2: declined"
+		not "Alexandria Library Card: Second Volume: Step 2: failed"
 	on offer
 		conversation
 			branch "can offer"
-				has "Library Card: Second Volume: Step 2: active"
+				has "Alexandria Library Card: Second Volume: Step 2: active"
 			`A man from Deep Security approaches you.  "Where is Daemos?  We were hired to escort him?"`
 			`"Sorry," you say, "but he's looking for another captain."`
 				defer
@@ -360,7 +360,7 @@ ship "Sparrow" "Sparrow (Hai Tracker Atomic)"
 
 
 
-mission "Library Card: Second Volume: Step 3"
+mission "Alexandria Library Card: Second Volume: Step 3"
 	name "Alexandria Library Card"
 	description "Take Dameos Titan to <destination> to search for the second of the five Chal Jub Paqmey."
 	blocked `Daemos reminds you, "I won't fit in a torpedo.  I need a bunk and space for 1 ton of cargo."`
@@ -370,7 +370,7 @@ mission "Library Card: Second Volume: Step 3"
 	clearance "Daemos sends a message to his friend on Deadman's Cove.  You receive coded landing coordinates."
 	cargo "old books and a thousand pencils" 1
 	to offer
-		has "Library Card: Second Volume: Step 2: done"
+		has "Alexandria Library Card: Second Volume: Step 2: done"
 	on offer
 		conversation
 			`Daemos looks dead serious when you approach him.  He says, "we're going to a pirate planet.  That's an insanely dangerous thing to do in a ship like yours.  I've arranged for us to travel with a large group of bounty hunters.  You'll need to speak to the planet's authorities before they'll let you land."`
@@ -387,8 +387,8 @@ mission "Library Card: Second Volume: Step 3"
 					decline
 			label how
 			`(Game information)  To talk to a planet:`
-			`	1. Select the planet.  Pressing the "L" button will select the first planet you can land on, which is Deadman's cove.`
-			`	2. Hold down "shift" and press the "T" button.  That will open a dialog to talk to the planet.`
+			`	1. Select the planet.  Pressing the LAND button (default is "L") will select the first planet you can land on, which is Deadman's cove.`
+			`	2. Hold down "shift" and press the TALK button (default is "T").  That will open a dialog to talk to the planet.`
 			`	Daemos will then send a code, and you can land.`
 				goto questions
 			label who
@@ -428,9 +428,9 @@ mission "Library Card: Second Volume: Step 3"
 	on enter Almach
 		dialog `Press "L" to land and then "shift-T" to talk to the planet.`
 	on decline
-		fail "Library Card: Second Volume: Step 3 Escort"
+		fail "Alexandria Library Card: Second Volume: Step 3 Escort"
 	on fail
-		fail "Library Card: Second Volume: Step 3 Escort"
+		fail "Alexandria Library Card: Second Volume: Step 3 Escort"
 	on visit
 		dialog `It seems you left the insane librarian or some of his thousand pencils behind.  Perhaps they're in one of your escorts?`
 	on complete
@@ -458,20 +458,20 @@ mission "Library Card: Second Volume: Step 3"
 
 
 
-mission "Library Card: Second Volume: Step 3 Escort"
+mission "Alexandria Library Card: Second Volume: Step 3 Escort"
 	name "Escort Fleet: Crimson Slayer"
 	description "Some bounty hunters are paid to escort you to <destination>.  They will abandon you if you don't arrive by <date>."
 	source Amazon
 	destination "Deadman's Cove"
 	deadline 4
 	to offer
-		has "Library Card: Second Volume: Step 2: done"
-		not "Library Card: Second Volume: Step 3: declined"
-		not "Library Card: Second Volume: Step 3: failed"
+		has "Alexandria Library Card: Second Volume: Step 2: done"
+		not "Alexandria Library Card: Second Volume: Step 3: declined"
+		not "Alexandria Library Card: Second Volume: Step 3: failed"
 	on offer
 		conversation
 			branch "can offer"
-				has "Library Card: Second Volume: Step 3: active"
+				has "Alexandria Library Card: Second Volume: Step 3: active"
 			`Ahead, you see a woman wearing bloodstained leather clothes, holding a huge gun.  Her face is emotionless and her gaze is like the point of a sword.  "Where is Daemos?  We were hired to escort him?"`
 			`	"He's looking for a different courier for his suicide mission."`
 				defer
@@ -494,7 +494,7 @@ mission "Library Card: Second Volume: Step 3 Escort"
 
 
 
-mission "Library Card: Second Volume: Step 4"
+mission "Alexandria Library Card: Second Volume: Step 4"
 	name "Alexandria Library Card"
 	description "Take Dameos Titan to <destination> to search for the second of the five Chal Jub Paqmey."
 	blocked `Daemos complains, "Where do you expect to put me?  A gun holster?  I need a bunk and space for 1 ton of cargo."`
@@ -503,7 +503,7 @@ mission "Library Card: Second Volume: Step 4"
 	passengers 1
 	cargo "old books and a thousand pencils" 1
 	to offer
-		has "Library Card: Second Volume: Step 3: done"
+		has "Alexandria Library Card: Second Volume: Step 3: done"
 	on offer
 		conversation
 			`Several extremely large men in masks meet you and Daemos at the spaceport.`
@@ -515,9 +515,9 @@ mission "Library Card: Second Volume: Step 4"
 	on visit
 		dialog `You've forgotten your senile friend or his pencils.  Perhaps they're in one of your escorts?`
 	on decline
-		fail "Library Card: Second Volume: Step 4 Escort"
+		fail "Alexandria Library Card: Second Volume: Step 4 Escort"
 	on fail
-		fail "Library Card: Second Volume: Step 4 Escort"
+		fail "Alexandria Library Card: Second Volume: Step 4 Escort"
 	on complete
 		payment 77500
 		conversation
@@ -539,16 +539,16 @@ mission "Library Card: Second Volume: Step 4"
 
 
 
-mission "Library Card: Second Volume: Step 4 Escort"
+mission "Alexandria Library Card: Second Volume: Step 4 Escort"
 	name `Escort Fleet: "Legitimate Businessmen"`
 	description `"Legitimate businessmen" agree to escort you to <destination>.  They say if you don't arrive by <date>, then "your fate is in your own hands."`
 	source "Deadman's Cove"
 	destination Tinker
 	deadline 16
 	to offer
-		has "Library Card: Second Volume: Step 3: done"
-		not "Library Card: Second Volume: Step 4: declined"
-		not "Library Card: Second Volume: Step 4: failed"
+		has "Alexandria Library Card: Second Volume: Step 3: done"
+		not "Alexandria Library Card: Second Volume: Step 4: declined"
+		not "Alexandria Library Card: Second Volume: Step 4: failed"
 	on offer
 		conversation
 			`The largest of the men speaks.  "We'll follow you to <destination>, as agreed.  If you don't arrive by <date>, your fate is in your own hands.  I suggest you leave now."`
@@ -567,7 +567,7 @@ mission "Library Card: Second Volume: Step 4 Escort"
 
 
 
-mission "Library Card: Third Volume: Step 1"
+mission "Alexandria Library Card: Third Volume: Step 1"
 	name "Alexandria Library Card"
 	description "Take Dameos Titan to <destination> to search for the third of the five Chal Jub Paqmey."
 	blocked `Daemos explains, "You can't put me in an engine mount.  I need a bunk and space for 1 ton of cargo."`
@@ -576,7 +576,7 @@ mission "Library Card: Third Volume: Step 1"
 	passengers 1
 	cargo "old books and a thousand pencils" 1
 	to offer
-		has "Library Card: Second Volume: Step 4: done"
+		has "Alexandria Library Card: Second Volume: Step 4: done"
 	on offer
 		conversation
 			`Daemos's giant book of scribbles you first saw him with now blocks your view of his hairy face.  The two Chal Jub Paqmey you found are on either side of him.  He's scribbling in his book and you can see he already lost seven pencils.`
@@ -632,7 +632,7 @@ mission "Library Card: Third Volume: Step 1"
 
 
 
-mission "Library Card: Third Volume: Step 2"
+mission "Alexandria Library Card: Third Volume: Step 2"
 	name "Alexandria Library Card"
 	description "Take Dameos Titan to <destination> to see an xenolinguist."
 	blocked `Daemos complains, "I can't sleep in your reactor core.  I need a bunk and space for 1 ton of cargo."`
@@ -641,7 +641,7 @@ mission "Library Card: Third Volume: Step 2"
 	passengers 1
 	cargo "old books and a thousand pencils" 1
 	to offer
-		has "Library Card: Third Volume: Step 1: done"
+		has "Alexandria Library Card: Third Volume: Step 1: done"
 	on offer
 		conversation
 			`"We're going to Grakhord in the Sadalmelik system.  As we go south from here, the pirate activity increases.  A Navy patrol fleet flies through here twice a month, and I've asked them to see us to Grakhord.`
@@ -656,9 +656,9 @@ mission "Library Card: Third Volume: Step 2"
 	on visit
 		dialog `You've forgotten your senile friend or his pencils.  Perhaps they're in one of your escorts?`
 	on decline
-		fail "Library Card: Third Volume: Step 2 Escort"
+		fail "Alexandria Library Card: Third Volume: Step 2 Escort"
 	on fail
-		fail "Library Card: Third Volume: Step 2 Escort"
+		fail "Alexandria Library Card: Third Volume: Step 2 Escort"
 	on complete
 		conversation
 			`"Explore, Seeker," says Daemos.  "Meet me at the spaceport when you're ready to translate these symbols."`
@@ -686,16 +686,16 @@ mission "Library Card: Third Volume: Step 2"
 
 
 
-mission "Library Card: Third Volume: Step 2 Escort"
+mission "Alexandria Library Card: Third Volume: Step 2 Escort"
 	name `Escort Fleet: Navy Patrol`
 	description `A Republic Navy patrol group will escort you to <destination>.  After <date>, they'll have to return to their patrol.`
 	source Rand
 	destination Grakhord
 	deadline 16
 	to offer
-		has "Library Card: Third Volume: Step 1: done"
-		not "Library Card: Third Volume: Step 2: declined"
-		not "Library Card: Third Volume: Step 2: failed"
+		has "Alexandria Library Card: Third Volume: Step 1: done"
+		not "Alexandria Library Card: Third Volume: Step 2: declined"
+		not "Alexandria Library Card: Third Volume: Step 2: failed"
 	on offer
 		conversation
 			`"Greetings, Daemos Titan and Captain <first> <last>!  I'm Admiral Tamarak, commander of the Navy Seventh Patrol Group.  I've never been asked to escort a Grandmaster Seeker before.  It's quite an honor."`
@@ -716,7 +716,7 @@ mission "Library Card: Third Volume: Step 2 Escort"
 
 
 
-mission "Library Card: Third Volume: Step 3"
+mission "Alexandria Library Card: Third Volume: Step 3"
 	name "Alexandria Library Card"
 	description "Take Dameos Titan to <destination> to visit a Republic Navy base."
 	blocked `Daemos complains, "I can't fit in a broom cupboard.  I need a bunk and space for 1 ton of cargo."`
@@ -725,12 +725,13 @@ mission "Library Card: Third Volume: Step 3"
 	passengers 1
 	cargo "old books and a thousand pencils" 1
 	to offer
-		has "Library Card: Third Volume: Step 2: done"
+		has "Alexandria Library Card: Third Volume: Step 2: done"
 	on offer
 		payment 60000
 		conversation
 			`Daemos takes you to a lecture about xenolinguistics, jointly presented by a young woman and a Quarg.  It is a comparative study of seven different alien languages and five Human languages.  The research suggests that there may be similar origins of some words.  If an alien race once existed, with a specific and bizarre anatomy, they may have touched all twelve languages.`
-			`	After the lecture, the woman, Dr. Sophia Nance, runs over and hugs Daemos.  "I haven't seen you since your thesis defense," he says to her.  "What way is that to treat your advisor?"`
+			`	After the lecture, the woman, Dr. Sophia Nance, runs over and hugs Daemos.  "Dr. Demon!  I've missed you."`
+			`	"I haven't seen you since your thesis defense," he says to her.  "What way is that to treat your advisor?"`
 			`	"Sorry, Dr. Demon.  The Quarg pulled me into this project, and I was too excited to refuse.  I've been out of Human space in a Quarg Wardragon for a while."`
 			choice
 				`	Continue...`
@@ -759,9 +760,9 @@ mission "Library Card: Third Volume: Step 3"
 	on visit
 		dialog `You've forgotten your senile friend or his pencils.  Perhaps they're in one of your escorts?`
 	on decline
-		fail "Library Card: Third Volume: Step 3 Escort"
+		fail "Alexandria Library Card: Third Volume: Step 3 Escort"
 	on fail
-		fail "Library Card: Third Volume: Step 3 Escort"
+		fail "Alexandria Library Card: Third Volume: Step 3 Escort"
 	on complete
 		conversation
 			`You land and walk towards the Navy base.  A collection of concerned-looking, and well-armed, guards approach you.  Seeing Daemos, they wave you on, and you meet with a sensor data analyst.`
@@ -786,16 +787,16 @@ mission "Library Card: Third Volume: Step 3"
 
 
 
-mission "Library Card: Third Volume: Step 3 Escort"
+mission "Alexandria Library Card: Third Volume: Step 3 Escort"
 	name `Escort Fleet: Tarazed Shipyards`
 	description `Tarazed Shipyards corporate ships will escort you to <destination>.  After <date>, they'll have to return to their patrol.`
 	source Grakhord
 	destination "New Austria"
 	deadline 19
 	to offer
-		has "Library Card: Third Volume: Step 2: done"
-		not "Library Card: Third Volume: Step 3: declined"
-		not "Library Card: Third Volume: Step 3: failed"
+		has "Alexandria Library Card: Third Volume: Step 2: done"
+		not "Alexandria Library Card: Third Volume: Step 3: declined"
+		not "Alexandria Library Card: Third Volume: Step 3: failed"
 	on offer
 		conversation
 			`A saleswoman in a Tarazed Shipyards uniform approaches you.  "We have business near the Navy base so we'll escort you to <destination>.  If you don't arrive by <date>, we'll have to part ways.`
@@ -814,7 +815,7 @@ mission "Library Card: Third Volume: Step 3 Escort"
 
 
 
-mission "Library Card: Key"
+mission "Alexandria Library Card: Key"
 	name "Alexandria Library Card"
 	description "Gather key segments from <stopovers> and bring all five to <destination>."
 	blocked `Daemos complains, "I won't fit in your missile launcher.  I need a bunk and space for 1 ton of cargo."`
@@ -828,7 +829,7 @@ mission "Library Card: Key"
 	passengers 1
 	cargo "old books and a thousand pencils" 1
 	to offer
-		has "Library Card: Third Volume: Step 3: done"
+		has "Alexandria Library Card: Third Volume: Step 3: done"
 	on offer
 		conversation
 			`You see Daemos Titan at the entrance to the spaceport eager to move on.  "Well, Captain <first>, we know where to go.  Are you ready?  Or will you pester me with questions again?"`
@@ -863,27 +864,27 @@ mission "Library Card: Key"
 			`"Excellent.  The Navy put the locations in your ship's map and mission list."`
 				accept
 	on decline
-		fail "Library Card: Key: Escort"
-		fail "Library Card: Key: New Boston"
-		fail "Library Card: Key: New Holland"
-		fail "Library Card: Key: Deep"
-		fail "Library Card: Key: Trinket"
-		fail "Library Card: Key: New Iceland"
+		fail "Alexandria Library Card: Key: Escort"
+		fail "Alexandria Library Card: Key: New Boston"
+		fail "Alexandria Library Card: Key: New Holland"
+		fail "Alexandria Library Card: Key: Deep"
+		fail "Alexandria Library Card: Key: Trinket"
+		fail "Alexandria Library Card: Key: New Iceland"
 	on fail
-		fail "Library Card: Key: Escort"
-		fail "Library Card: Key: New Boston"
-		fail "Library Card: Key: New Holland"
-		fail "Library Card: Key: Deep"
-		fail "Library Card: Key: Trinket"
-		fail "Library Card: Key: New Iceland"
+		fail "Alexandria Library Card: Key: Escort"
+		fail "Alexandria Library Card: Key: New Boston"
+		fail "Alexandria Library Card: Key: New Holland"
+		fail "Alexandria Library Card: Key: Deep"
+		fail "Alexandria Library Card: Key: Trinket"
+		fail "Alexandria Library Card: Key: New Iceland"
 	on complete
-		fail "Library Card: Key: Escort"
+		fail "Alexandria Library Card: Key: Escort"
 		payment 60000
 		conversation
 			`Daemos assembles all five segments into one sphere and places it in the ground.  A massive red light comes down from the sky and the sphere is replaced by a book.`
 			`	He raises his fists in the air and exclaims, "ha HA!  Almost done!"`
 			`	"Where to next?"`
-			`	He tosses you a 100,000 credit chip.`
+			`	He tosses you 60,000 credits.  They miss their mark, ricochet off of a wall, and hit you in the back.`
 			`	"The Rim!  Meet me in the spaceport when you're ready."`
 	npc
 		government "Pirate"
@@ -907,7 +908,7 @@ mission "Library Card: Key"
 		
 
 
-mission "Library Card: Key: Missing a Segment"
+mission "Alexandria Library Card: Key: Missing a Segment"
 	invisible
 	repeat
 	destination Rand
@@ -919,57 +920,57 @@ mission "Library Card: Key: Missing a Segment"
 	stopover "Trinket"
 	stopover "New Iceland"
 	to offer
-		has "Library Card: Third Volume: Step 3: done"
-		not "Library Card: Third Volume: Key: declined"
-		not "Library Card: Third Volume: Key: failed"
+		has "Alexandria Library Card: Third Volume: Step 3: done"
+		not "Alexandria Library Card: Third Volume: Key: declined"
+		not "Alexandria Library Card: Third Volume: Key: failed"
 	on visit
 		dialog `You need all five segments before Daemos Titan can obtain the third of the Chal Jub Paqmey.`
 
 
 
-mission "Library Card: Key: Missing Person or Pencils"
+mission "Alexandria Library Card: Key: Missing Person or Pencils"
 	invisible
 	repeat
 	passengers 1
 	cargo "old books and a thousand pencils" 1
 	destination Rand
 	to offer
-		has "Library Card: Third Volume: Step 3: done"
-		not "Library Card: Third Volume: Key: declined"
-		not "Library Card: Third Volume: Key: failed"
+		has "Alexandria Library Card: Third Volume: Step 3: done"
+		not "Alexandria Library Card: Third Volume: Key: declined"
+		not "Alexandria Library Card: Third Volume: Key: failed"
 		or
-			not "Library Card: Key: New Boston: done"
-			not "Library Card: Key: New Holland: done"
-			not "Library Card: Key: Deep: done"
-			not "Library Card: Key: Trinket: done"
-			not "Library Card: Key: New Iceland: done"
+			not "Alexandria Library Card: Key: New Boston: done"
+			not "Alexandria Library Card: Key: New Holland: done"
+			not "Alexandria Library Card: Key: Deep: done"
+			not "Alexandria Library Card: Key: Trinket: done"
+			not "Alexandria Library Card: Key: New Iceland: done"
 	on visit
 		dialog `It seems you left the insane librarian or some of his thousand pencils behind.  Perhaps they're in one of your escorts?`
 
 
 
 
-mission "Library Card: Key: New Boston"
+mission "Alexandria Library Card: Key: New Boston"
 	invisible
 	destination "New Boston"
 	to offer 
-		has "Library Card: Third Volume: Step 3: done"
-		not "Library Card: Third Volume: Key: declined"
-		not "Library Card: Third Volume: Key: failed"
+		has "Alexandria Library Card: Third Volume: Step 3: done"
+		not "Alexandria Library Card: Third Volume: Key: declined"
+		not "Alexandria Library Card: Third Volume: Key: failed"
 	on complete
 		conversation
-			`You and Daemos find an old pawn shop near your first apartment.  He trades one of his old books for one of the five key segments.`
+			`You and Daemos find a pawn shop near your first apartment.  He trades one of his old books for one of the five key segments.`
 
 
 
 
-mission "Library Card: Key: New Holland"
+mission "Alexandria Library Card: Key: New Holland"
 	invisible
 	destination "New Holland"
 	to offer 
-		has "Library Card: Third Volume: Step 3: done"
-		not "Library Card: Third Volume: Key: declined"
-		not "Library Card: Third Volume: Key: failed"
+		has "Alexandria Library Card: Third Volume: Step 3: done"
+		not "Alexandria Library Card: Third Volume: Key: declined"
+		not "Alexandria Library Card: Third Volume: Key: failed"
 	on complete
 		conversation
 			`A famous spelunker on New Holland retrieves one of the five key segments from an underwater cave.`
@@ -977,13 +978,13 @@ mission "Library Card: Key: New Holland"
 
 
 
-mission "Library Card: Key: Deep"
+mission "Alexandria Library Card: Key: Deep"
 	invisible
 	destination "Deep"
 	to offer 
-		has "Library Card: Third Volume: Step 3: done"
-		not "Library Card: Third Volume: Key: declined"
-		not "Library Card: Third Volume: Key: failed"
+		has "Alexandria Library Card: Third Volume: Step 3: done"
+		not "Alexandria Library Card: Third Volume: Key: declined"
+		not "Alexandria Library Card: Third Volume: Key: failed"
 	on complete
 		conversation
 			`You find one of the five key segments propping open a door to a fishmonger's shop.`
@@ -991,13 +992,13 @@ mission "Library Card: Key: Deep"
 
 
 
-mission "Library Card: Key: Trinket"
+mission "Alexandria Library Card: Key: Trinket"
 	invisible
 	destination "Trinket"
 	to offer 
-		has "Library Card: Third Volume: Step 3: done"
-		not "Library Card: Third Volume: Key: declined"
-		not "Library Card: Third Volume: Key: failed"
+		has "Alexandria Library Card: Third Volume: Step 3: done"
+		not "Alexandria Library Card: Third Volume: Key: declined"
+		not "Alexandria Library Card: Third Volume: Key: failed"
 	on complete
 		outfit "Fragmentation Grenades"
 		outfit "Laser Rifle"
@@ -1008,13 +1009,13 @@ mission "Library Card: Key: Trinket"
 
 
 
-mission "Library Card: Key: New Iceland"
+mission "Alexandria Library Card: Key: New Iceland"
 	invisible
 	destination "New Iceland"
 	to offer 
-		has "Library Card: Third Volume: Step 3: done"
-		not "Library Card: Third Volume: Key: declined"
-		not "Library Card: Third Volume: Key: failed"
+		has "Alexandria Library Card: Third Volume: Step 3: done"
+		not "Alexandria Library Card: Third Volume: Key: declined"
+		not "Alexandria Library Card: Third Volume: Key: failed"
 	on complete
 		conversation
 			`After searching through many broken hailstones and rocks, you finally find one fifth of the key segment in a quarry.`
@@ -1022,18 +1023,18 @@ mission "Library Card: Key: New Iceland"
 
 
 
-mission "Library Card: Key: Escort"
+mission "Alexandria Library Card: Key: Escort"
 	name `Escort Fleet: New Boston Militia`
 	description `The New Boston Militia will escort you until <date>.`
 	source "New Austria"
 	destination Rand
 	deadline 30
 	to offer
-		has "Library Card: Third Volume: Step 3: done"
-		not "Library Card: Third Volume: Key: declined"
-		not "Library Card: Third Volume: Key: failed"
+		has "Alexandria Library Card: Third Volume: Step 3: done"
+		not "Alexandria Library Card: Third Volume: Key: declined"
+		not "Alexandria Library Card: Third Volume: Key: failed"
 	to complete
-		has "Library Card: Key: done"
+		has "Alexandria Library Card: Key: done"
 	on offer
 		conversation
 			`Some men in green uniforms approach.  One of them addresses you, "Captain <last>.  I'm Commodore Garret of the New Boston Militia.  The Alexandria Library is paying for us to escort you until <date>."`
@@ -1051,7 +1052,7 @@ mission "Library Card: Key: Escort"
 		
 
 
-mission "Library Card: Return"
+mission "Alexandria Library Card: Return"
 	name "Alexandria Library Card"
 	description "Take Dameos Titan to <destination> to pick up the last book of the Chal Jub Paqmey."
 	blocked `Daemos complains, "I'm not generator fuel.  I need a bunk and room for 1 ton of cargo."`
@@ -1060,7 +1061,7 @@ mission "Library Card: Return"
 	passengers 1
 	cargo "old books and a thousand pencils" 1
 	to offer
-		has "Library Card: Key: done"
+		has "Alexandria Library Card: Key: done"
 	on offer
 		conversation
 			`You find Daemos in a restaurant reading a letter written on actual paper.  He looks up at you and says, "good news!  Another Seeker stumbled upon the Paq VaghDIch, the fifth of the Chal Jub Paqmey.  We just have to pick it up."`
@@ -1085,12 +1086,12 @@ mission "Library Card: Return"
 				goto questions
 			label book
 			`"As you recall from the first two books, the Chal Jub Paqmey is an opera about a merchant, Hod Qav (of unspecified gender) destined to be the greatest warrior of the era.  The first book, the Paq wa'DIch, describes Hod Qav leaving their clan Botolphstone and wandering a continent that seems vast.  The second book, the Paq cha'DIch, describes the continent's politics descending into chaos and civil war.  Meanwhile, the merchant wanders distracted, fighting bandits, gathering weapons, and hoarding money.`
-			`"In the third book, the Paq WejDIch, the merchant joins the war, fighting for the side they view as right.  Eventually, the merchant re-unites their continent and brings peace.`
-			`"In the fourth book, the Paq LoSDIch, tells of Hod Qav finding the ship Supghor, so large it can cross oceans.  Hod Qav wanders the world discovering new civilizations that nobody from Botolphstone had even heard of.`
-			`"Oddly, instructins in the Chal Jub Paqmey say the third and fourth books can be reversed when the opera is performed.  HoD Qav can explore the world and gather power, and then return to their continent to bring peace.  Or, the merchant can bring peace to their continent and then explore the world."`
+			`	"In the third book, the Paq WejDIch, the merchant joins the war, fighting for the side they view as right.  Eventually, the merchant re-unites their continent and brings peace.`
+			`	"In the fourth book, the Paq LoSDIch, tells of Hod Qav finding the ship Supghor, so large it can cross oceans.  Hod Qav wanders the world discovering new civilizations that nobody from Botolphstone had even heard of.`
+			`	"Oddly, instructins in the Chal Jub Paqmey say the third and fourth books can be reversed when the opera is performed.  HoD Qav can explore the world and gather power, and then return to their continent to bring peace.  Or, the merchant can bring peace to their continent and then explore the world."`
 				goto questions
 			label accept
-			`"Excellent.  Let's go."`
+			`"Finally."`
 				accept
 	on visit
 		dialog `You've forgotten your senile friend or his pencils.  Perhaps they're in one of your escorts?`
@@ -1114,7 +1115,7 @@ government "Librarian"
 	"hostile hail" "hostile civilian"
 
 
-mission "Library Card: Rescue"
+mission "Alexandria Library Card: Rescue"
 	name "Alexandria Library Card"
 	waypoint Mora
 	description `Repair the "Gonza Book Cruise" in the Mora system and take it to <destination> before <date>.`
@@ -1133,7 +1134,7 @@ mission "Library Card: Rescue"
 				`	"Rescue your own ship.  I have better things to do than save self-important librarians."`
 					decline
 	to offer
-		has "Library Card: Return: done"
+		has "Alexandria Library Card: Return: done"
 	on complete
 		payment 60000
 		conversation
@@ -1142,9 +1143,9 @@ mission "Library Card: Rescue"
 	on visit
 		dialog `You need to bring Daemos, his cargo, and the Gonza Book Cruise here to complete this mission.`
 	on decline
-		fail "Library Card: Rescue: Escort"
+		fail "Alexandria Library Card: Rescue: Escort"
 	on fail
-		fail "Library Card: Rescue: Escort"
+		fail "Alexandria Library Card: Rescue: Escort"
 	npc accompany save
 		personality escort derelict timid target
 		government "Librarian"
@@ -1160,18 +1161,18 @@ mission "Library Card: Rescue"
 
 
 
-mission "Library Card: Rescue: Escort"
+mission "Alexandria Library Card: Rescue: Escort"
 	name `Escort Fleet: Deep Security`
 	description `A Deep Security rescue fleet will escort you to Mora so you can repair the Gonza Book Cruise before <date>.`
 	source Valhalla
 	destination Ingot
 	deadline 9
 	to offer
-		has "Library Card: Return: done"
-		not "Library Card: Rescue: declined"
-		not "Library Card: Rescue: failed"
+		has "Alexandria Library Card: Return: done"
+		not "Alexandria Library Card: Rescue: declined"
+		not "Alexandria Library Card: Rescue: failed"
 	to complete
-		has "Library Card: Rescue: done"
+		has "Alexandria Library Card: Rescue: done"
 	npc
 		government "Deep Security"
 		personality heroic escort disables
@@ -1187,7 +1188,7 @@ mission "Library Card: Rescue: Escort"
 
 	
 
-mission "Library Card: Completion"
+mission "Alexandria Library Card: Completion"
 	name "Alexandria Library Card"
 	description "Take Dameos Titan to <destination> to archive the Chal Jub Paqmey."
 	blocked `Daemos complains, "I can't sleep on a bookshelf.  I need a bunk and space for 1 ton of cargo."`
@@ -1197,7 +1198,7 @@ mission "Library Card: Completion"
 	clearance
 	cargo "old books and a thousand pencils" 1
 	to offer
-		has "Library Card: Rescue: done"
+		has "Alexandria Library Card: Rescue: done"
 	on offer
 		conversation
 			`"Just fly me home to Alexandria, and you'll be a Journeyman Seeker with all the associated rights and privileges... and 100,000 more credits."`
@@ -1232,7 +1233,7 @@ mission "Library Card: Completion"
 					goto end
 			label book
 			`"The Chal Jub Paqmey are the first five of an unfinished eight-book series describing an opera.  They chronicle the life of a lowly merchant, HoD Qav, who becomes the greatest warrior of the era.  Or... they would if all eight had been written.`
-			`	"The first two books merely introduce the world.  The first book describes the merchant exploring the vast continent surrounding their clan Botolphstone.  The second describes the beginning of a civil war as the continent degrades into chaos.  Meanwhile, the merchant ignores the problem while fighting bandits, getting rich, and buying weapons."`
+			`	"The first two books merely introduce the world.  The first book describes the merchant exploring the vast continent surrounding their clan Botolphstone.  The second describes the beginning of a civil war as the continent degrades into chaos.  Meanwhile, the merchant ignores the problem while fighting bandits, getting rich, and buying weapons.  After all, how is a lowly merchant to save the world?"`
 			choice
 				`	Continue...`
 				`	Change the subject.`
@@ -1293,7 +1294,7 @@ mission "Access to Alexandria"
 	destination Alexandria
 	clearance
 	to offer
-		has "Library Card: Rescue: done"
+		has "Alexandria Library Card: Rescue: done"
 	to complete
 		never
 	to fail
