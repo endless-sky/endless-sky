@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShopPanel.h"
 
 #include "Color.h"
+#include "Files.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -44,6 +45,55 @@ namespace {
 	const int ICON_TILE = 62;
 	const int ICON_COLS = 4;
 	const float ICON_SIZE = ICON_TILE - 8;
+	// Assess the flightworthiness of the entire set of ships as a unit. Pointers to ships that would
+	// be stranded in the given system are returned.
+	vector<Ship *> FleetCheck(const vector<shared_ptr<Ship>> &ships, const System *here)
+	{
+		// Count of all bay types in the present fleet.
+		auto bayCount = map<string, unsigned>{
+			{"Fighter", 0},
+			{"Drone", 0},
+		};
+		// Classification of the present ships by category.
+		auto categoryCount = map<string, vector<Ship *>>{};
+		for(auto &ship : ships)
+			if(ship->GetSystem() == here && !ship->IsDisabled())
+			{
+				categoryCount[ship->Attributes().Category()].emplace_back(ship.get());
+				for(auto &bay : ship->Bays())
+				{
+					++(bay.isFighter ? bayCount["Fighter"] : bayCount["Drone"]);
+					// The bays should always be empty. But if not, count that ship too.
+					if (bay.ship)
+					{
+						Files::LogError("Expected bay to be empty for " + ship->ModelName() + ": " + ship->Name());
+						categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship.get());
+					}
+				}
+			}
+		
+		// Identify carried ships that have no hyperdrive and no bay to be carried in.
+		auto strandedShips = vector<Ship *>{};
+		for(auto &bayType : bayCount)
+		{
+			const auto &shipsOfType = categoryCount[bayType.first];
+			if(shipsOfType.empty())
+				continue;
+			for(const auto &carryable : shipsOfType)
+			{
+				if(carryable->JumpFuel() != 0)
+				{
+					// This ship can travel between systems and does not require a bay.
+				}
+				// This ship requires a bay to travel between systems.
+				else if(bayType.second > 0)
+					--bayType.second;
+				else
+					strandedShips.emplace_back(carryable);
+			}
+		}
+		return strandedShips;
+	}
 }
 
 
