@@ -4,23 +4,17 @@ NUM_FAILED=0
 
 # Determine path of the current script
 HERE=$(cd `dirname $0` && pwd)
-
-RESOURCES="${HERE}/.."
+RESOURCES=$(echo "${HERE}/.." | sed "s,/tests/..,,")
 
 # Determine paths to endless-sky executable and other relevant data
 ES_EXEC_PATH="${RESOURCES}/endless-sky"
 ES_CONFIG_TEMPLATE_PATH="${RESOURCES}/tests/config"
-
-ES_CONFIG_PATH=$(mktemp --directory)
-ES_SAVES_PATH="${ES_CONFIG_PATH}/saves"
 
 if [ ! $? ]
 then
 	echo "Error: couldn't create temporary directory"
 	exit 1
 fi
-cp "${ES_CONFIG_TEMPLATE_PATH}/*" "${ES_CONFIG_PATH}"
-
 
 echo "***********************************************"
 echo "***         ES Autotest-runner              ***"
@@ -32,10 +26,7 @@ then
 	exit 1
 fi
 
-echo " Setting up environment and retrieving test-case list"
-mkdir -p "${ES_CONFIG_PATH}"
-mkdir -p "${ES_SAVES_PATH}"
-TESTS=$("${ES_EXEC_PATH}" --tests --resources "${RESOURCES}" --config "${ES_CONFIG_PATH}")
+TESTS=$("${ES_EXEC_PATH}" --tests --resources "${RESOURCES}")
 TESTS_OK=$(echo "${TESTS}" | grep -e "ACTIVE$" | cut -d$'\t' -f1)
 TESTS_NOK=$(echo "${TESTS}" | grep -e "KNOWN FAILURE$" -e "MISSING FEATURE$" | cut -d$'\t' -f1)
 echo ""
@@ -56,15 +47,22 @@ IFS="
 # Run all the tests
 for TEST in ${TESTS_OK}
 do
+	# Setup environment for the test
+	ES_CONFIG_PATH=$(mktemp --directory)
+	ES_SAVES_PATH="${ES_CONFIG_PATH}/saves"
+	mkdir -p "${ES_CONFIG_PATH}"
+	mkdir -p "${ES_SAVES_PATH}"
+	cp ${ES_CONFIG_TEMPLATE_PATH}/* ${ES_CONFIG_PATH}
+
 	TEST_RESULT="PASS"
-	echo "Running test ${TEST}"
+	echo "Running test \"${TEST}\" with ${ES_CONFIG_PATH}"
 	"$ES_EXEC_PATH" --resources "${RESOURCES}" --test "${TEST}" --config "${ES_CONFIG_PATH}"
 	if [ $? -ne 0 ]
 	then
 		TEST_RESULT="FAIL"
 		NUM_FAILED=$((NUM_FAILED + 1))
 	fi
-	echo "Test ${TEST}: ${TEST_RESULT}"
+	echo "Test \"${TEST}\": ${TEST_RESULT}"
 	echo ""
 done
 
