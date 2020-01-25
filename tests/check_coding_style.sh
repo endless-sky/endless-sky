@@ -28,7 +28,7 @@ SOURCES="${HERE}/../source"
 
 # Desired header, adapted for automatic parsing
 DESIRED_HEADER="/* FILENAME
-Copyright (c) 2xxx by NAME
+Copyright 2xxx by NAME
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -115,7 +115,7 @@ grep "^class" *.h | tr -d '\r' | grep -v -e ";$" | cut -d\: -f1,2 | sed "s,[{].*
 for FILE in *.{h,cpp}; do
 	HEADER=$(head -n 11 ${FILE})
 	HEADER_CHECK=$(echo "${HEADER}" | sed "s,^/\* ${FILE}$,/* FILENAME," |\
-		sed "s,^Copyright (c) 2[0-9]* by [^\n\r]*,Copyright (c) 2xxx by NAME,")
+		sed "s/[ ]*(c)[ ]*/ /" | sed "s,^[Cc]opyright 2[0-9]* by [^\n\r]*,Copyright 2xxx by NAME,")
 	if [ "${HEADER_CHECK}" != "${DESIRED_HEADER}" ]; then
 		echo "${FILE}: mismatch in header"
 	fi
