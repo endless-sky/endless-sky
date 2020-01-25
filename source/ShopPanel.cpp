@@ -42,9 +42,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	const int ICON_TILE = 62;
-	const int ICON_COLS = 4;
-	const float ICON_SIZE = ICON_TILE - 8;
+	constexpr int ICON_TILE = 62;
+	constexpr int ICON_COLS = 4;
+	constexpr float ICON_SIZE = ICON_TILE - 8;
+	
+	bool CanShowInSidebar(const Ship &ship, const System *here)
+	{
+		return ship.GetSystem() == here && !ship.IsDisabled();
+	}
+	
 	// Assess the flightworthiness of the entire set of ships as a unit. Pointers to ships that would
 	// be stranded in the given system are returned.
 	vector<Ship *> FleetCheck(const vector<shared_ptr<Ship>> &ships, const System *here)
@@ -57,7 +63,7 @@ namespace {
 		// Classification of the present ships by category.
 		auto categoryCount = map<string, vector<Ship *>>{};
 		for(auto &ship : ships)
-			if(ship->GetSystem() == here && !ship->IsDisabled())
+			if(CanShowInSidebar(*ship, here))
 			{
 				categoryCount[ship->Attributes().Category()].emplace_back(ship.get());
 				for(auto &bay : ship->Bays())
@@ -158,8 +164,8 @@ void ShopPanel::Draw()
 	
 	if(!warningType.empty())
 	{
-		static const int WIDTH = 250;
-		static const int PAD = 10;
+		constexpr int WIDTH = 250;
+		constexpr int PAD = 10;
 		const string &text = GameData::Tooltip(warningType);
 		WrappedText wrap(FontSet::Get(14));
 		wrap.SetWrapWidth(WIDTH - 2 * PAD);
@@ -243,7 +249,7 @@ void ShopPanel::DrawSidebar()
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		// Skip any ships that are "absent" for whatever reason.
-		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
+		if(!CanShowInSidebar(*ship, player.GetSystem()))
 			continue;
 	
 		if(point.X() > Screen::Right())
