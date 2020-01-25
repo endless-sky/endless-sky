@@ -6,6 +6,11 @@ test-data "commodity barges"
 		system Sol
 		planet Earth
 		clearance
+		# Set some reputations to positive to avoid combat
+		"reputation with"
+			Bounty 1
+			"Bounty Hunter" 1
+			Pirate 1
 		# What you own:
 		ship "Star Barge"
 			name "Buggy Barge"
@@ -145,6 +150,11 @@ test-data "outfits cargo overload"
 		system Sol
 		planet Earth
 		clearance
+		# Set some reputations to positive to avoid combat
+		"reputation with"
+			Bounty 1
+			"Bounty Hunter" 1
+			Pirate 1
 		ship "Star Barge"
 			name "Buggy Barge"
 			sprite "ship/star barge"
