@@ -53,7 +53,7 @@ namespace {
 	
 	// Assess the flightworthiness of the entire set of ships as a unit. Pointers to ships that would
 	// be stranded in the given system are returned.
-	vector<Ship *> FleetCheck(const vector<shared_ptr<Ship>> &ships, const System *here)
+	set<Ship *> FleetCheck(const vector<shared_ptr<Ship>> &ships, const System *here)
 	{
 		// Count of all bay types in the present fleet.
 		auto bayCount = map<string, unsigned>{
@@ -79,7 +79,7 @@ namespace {
 			}
 		
 		// Identify carried ships that have no hyperdrive and no bay to be carried in.
-		auto strandedShips = vector<Ship *>{};
+		auto strandedShips = set<Ship *>{};
 		for(auto &bayType : bayCount)
 		{
 			const auto &shipsOfType = categoryCount[bayType.first];
@@ -95,7 +95,7 @@ namespace {
 				else if(bayType.second > 0)
 					--bayType.second;
 				else
-					strandedShips.emplace_back(carryable);
+					strandedShips.emplace(carryable);
 			}
 		}
 		return strandedShips;
@@ -247,6 +247,7 @@ void ShopPanel::DrawSidebar()
 	
 	static const Color selected(.8f, 1.f);
 	static const Color unselected(.4f, 1.f);
+	const auto strandedShips = FleetCheck(player.Ships(), here);
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		// Skip any ships that are "absent" for whatever reason.
@@ -278,8 +279,10 @@ void ShopPanel::DrawSidebar()
 		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
 		
 		string check = ship->FlightCheck();
-		if(!check.empty())
+		if(!check.empty() || strandedShips.count(ship.get()))
 		{
+			if(check.empty())
+				check = "no bays?";
 			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
 			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
 			if(zones.back().Contains(mouse))
