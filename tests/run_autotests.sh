@@ -9,8 +9,18 @@ RESOURCES="${HERE}/.."
 
 # Determine paths to endless-sky executable and other relevant data
 ES_EXEC_PATH="${RESOURCES}/endless-sky"
-ES_CONFIG_PATH="${RESOURCES}/tests/config"
-ES_SAVES_PATH="${RESOURCES}/tests/config/saves"
+ES_CONFIG_TEMPLATE_PATH="${RESOURCES}/tests/config"
+
+ES_CONFIG_PATH=$(mktemp --directory)
+ES_SAVES_PATH="${ES_CONFIG_PATH}/saves"
+
+if [ ! $? ]
+then
+	echo "Error: couldn't create temporary directory"
+	exit 1
+fi
+cp "${ES_CONFIG_TEMPLATE_PATH}/*" "${ES_CONFIG_PATH}"
+
 
 echo "***********************************************"
 echo "***         ES Autotest-runner              ***"
