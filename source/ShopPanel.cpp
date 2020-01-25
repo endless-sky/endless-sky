@@ -87,7 +87,7 @@ namespace {
 				continue;
 			for(const auto &carryable : shipsOfType)
 			{
-				if(carryable->JumpFuel() != 0)
+				if(carryable->JumpsRemaining() != 0)
 				{
 					// This ship can travel between systems and does not require a bay.
 				}
