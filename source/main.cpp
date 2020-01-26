@@ -110,10 +110,7 @@ int main(int argc, char *argv[])
 		}
 		
 		// Load player data, including reference-checking.
-		if(testToRun.empty())
-			player.LoadRecent();
-		else
-			player.New();
+		player.LoadRecent();
 		
 		if(loadOnly)
 		{
