@@ -227,7 +227,7 @@ void ShopPanel::DrawSidebar()
 		
 		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
 		
-		const auto checkIt = flightChecks.find(ship.get());
+		const auto checkIt = flightChecks.find(ship);
 		if(checkIt != flightChecks.end())
 		{
 			const string &check = (*checkIt).second;

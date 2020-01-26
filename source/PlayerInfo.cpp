@@ -760,7 +760,7 @@ const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 // Inspect the flightworthiness of the player's active fleet, individually and
 // as a whole, to determine which ships cannot travel with the group.
 // Returns a mapping of ships to the reason their flight check failed.
-std::map<Ship *, const string> PlayerInfo::FlightCheck() const
+std::map<const shared_ptr<Ship>, const string> PlayerInfo::FlightCheck() const
 {
 	// Count of all bay types in the active fleet.
 	auto bayCount = map<string, unsigned>{
@@ -768,17 +768,17 @@ std::map<Ship *, const string> PlayerInfo::FlightCheck() const
 		{"Drone", 0},
 	};
 	// Classification of the present ships by category. Parked ships are ignored.
-	auto categoryCount = map<string, vector<Ship *>>{};
+	auto categoryCount = map<string, vector<shared_ptr<Ship>>>{};
 	
-	auto flightChecks = map<Ship *, const string>{};
-	for(auto &ship : ships)
+	auto flightChecks = map<const shared_ptr<Ship>, const string>{};
+	for(const auto &ship : ships)
 		if(ship->GetSystem() == system && !ship->IsDisabled() && !ship->IsParked())
 		{
 			string check = ship->FlightCheck();
 			if(!check.empty())
-				flightChecks.emplace(ship.get(), check);
+				flightChecks.emplace(ship, check);
 			
-			categoryCount[ship->Attributes().Category()].emplace_back(ship.get());
+			categoryCount[ship->Attributes().Category()].emplace_back(ship);
 			if(ship->CanBeCarried() || ship->Bays().empty())
 				continue;
 			
@@ -789,7 +789,7 @@ std::map<Ship *, const string> PlayerInfo::FlightCheck() const
 				if(bay.ship)
 				{
 					Files::LogError("Expected bay to be empty for " + ship->ModelName() + ": " + ship->Name());
-					categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship.get());
+					categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship);
 				}
 			}
 		}
