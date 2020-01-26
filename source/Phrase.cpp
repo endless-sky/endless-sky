@@ -68,10 +68,84 @@ namespace {
 
 
 
-void Phrase::Sentense::Load(const DataNode &node, const Phrase* parent)
+void Phrase::Load(const DataNode &node)
+{
+	// Set the name of this phrase, so we know it has been loaded.
+	name = node.Size() >= 2 ? node.Token(1) : "Unnamed Phrase";
+	
+	sentences.emplace_back();
+	sentences.back().Load(node, this);
+}
+
+
+
+// Get the name associated with the node this phrase was instantiated
+// from, or "Unnamed Phrase" if it was anonymously defined.
+const string &Phrase::Name() const
+{
+	return name;
+}
+
+
+
+// Get a random sentence's text.
+string Phrase::Get() const
+{
+	string result;
+	if(sentences.empty())
+		return result;
+	
+	for(const Part &part : sentences[Random::Int(sentences.size())].parts)
+	{
+		if(!part.options.empty())
+		{
+			const Option &option = part.options[Random::Int(part.options.size())];
+			for(const auto &textOrPhrase : option)
+				if(textOrPhrase.second)
+					result += textOrPhrase.second->Get();
+				else
+					result += textOrPhrase.first;
+		}
+		else if(!part.replaceRules.empty())
+			for(const auto &f : part.replaceRules)
+				result = f(result);
+	}
+	
+	return result;
+}
+
+
+
+// Inspect this phrase and all its subphrases to determine if a cyclic
+// reference exists between this phrase and the other.
+bool Phrase::ReferencesPhrase(const Phrase *other) const
+{
+	if(other == this)
+		return true;
+	
+	for(const Sentence &alternative : sentences)
+		for(const Part &part : alternative.parts)
+			for(const auto &option : part.options)
+				for(const auto &subphrase : option)
+					if(subphrase.second && subphrase.second->ReferencesPhrase(other))
+						return true;
+	
+	return false;
+}
+
+
+
+// Parse the children of the given node to populate the sentence's structure.
+void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 {
 	for(const DataNode &child : node)
 	{
+		if(!child.HasChildren())
+		{
+			child.PrintTrace("Skipping node with no children:");
+			continue;
+		}
+		
 		parts.emplace_back();
 		Part &part = parts.back();
 		
@@ -120,66 +194,4 @@ void Phrase::Sentense::Load(const DataNode &node, const Phrase* parent)
 		if(part.options.empty() && part.replaceRules.empty())
 			parts.pop_back();
 	}
-}
-
-
-
-void Phrase::Load(const DataNode &node)
-{
-	// Set the name of this phrase, so we know it has been loaded.
-	name = node.Size() >= 2 ? node.Token(1) : "Unnamed Phrase";
-	
-	sentenses.emplace_back();
-	sentenses.back().Load(node, this);
-}
-
-
-
-const string &Phrase::Name() const
-{
-	return name;
-}
-
-
-
-string Phrase::Get() const
-{
-	string result;
-	if(sentenses.empty())
-		return result;
-	
-	for(const Part &part : sentenses[Random::Int(sentenses.size())].parts)
-	{
-		if(!part.options.empty())
-		{
-			const Option &option = part.options[Random::Int(part.options.size())];
-			for(const auto &textOrPhrase : option)
-				if(textOrPhrase.second)
-					result += textOrPhrase.second->Get();
-				else
-					result += textOrPhrase.first;
-		}
-		else if(!part.replaceRules.empty())
-			for(const auto &f : part.replaceRules)
-				result = f(result);
-	}
-	
-	return result;
-}
-
-
-
-bool Phrase::ReferencesPhrase(const Phrase *phrase) const
-{
-	if(phrase == this)
-		return true;
-	
-	for(const Sentense &alternative : sentenses)
-		for(const Part &part : alternative.parts)
-			for(const auto &option : part.options)
-				for(const auto &subphrase : option)
-					if(subphrase.second && subphrase.second->ReferencesPhrase(phrase))
-						return true;
-	
-	return false;
 }
