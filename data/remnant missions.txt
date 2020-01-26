@@ -802,6 +802,7 @@ event "remnant: gascraft"
 		add shipyard "Remnant Gascraft"
 
 government " Drak "
+	"display name" "Drak"
 	swizzle 5
 	"player reputation" -1000
 	"attitude toward"

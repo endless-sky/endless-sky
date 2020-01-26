@@ -1288,6 +1288,7 @@ government "Scar's Legion"
 	"hostile hail" "hostile pirate"
 
 government " Scar's Legion "
+	"display name" "Scar's Legion"
 	swizzle 6
 	color .78 0 0
 	"player reputation" -1000
