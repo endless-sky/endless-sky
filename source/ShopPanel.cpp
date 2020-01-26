@@ -338,18 +338,21 @@ void ShopPanel::DrawMain()
 	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 	const Sprite *expandedArrow = SpriteSet::Get("ui/expanded");
 	
-	// Draw all the available ships.
+	// Draw all the available items.
 	// First, figure out how many columns we can draw.
 	const int TILE_SIZE = TileSize();
-	int mainWidth = (Screen::Width() - SIDE_WIDTH - 1);
-	int columns = mainWidth / TILE_SIZE;
-	int columnWidth = mainWidth / columns;
+	const int mainWidth = (Screen::Width() - SIDE_WIDTH - 1);
+	// If the user horizontally compresses the window too far, draw nothing.
+	if(mainWidth < TILE_SIZE)
+		return;
+	const int columns = mainWidth / TILE_SIZE;
+	const int columnWidth = mainWidth / columns;
 	
-	Point begin(
+	const Point begin(
 		(Screen::Width() - columnWidth) / -2,
 		(Screen::Height() - TILE_SIZE) / -2 - mainScroll);
 	Point point = begin;
-	float endX = Screen::Right() - (SIDE_WIDTH + 1);
+	const float endX = Screen::Right() - (SIDE_WIDTH + 1);
 	double nextY = begin.Y() + TILE_SIZE;
 	int scrollY = 0;
 	for(const string &category : categories)
@@ -359,7 +362,7 @@ void ShopPanel::DrawMain()
 			continue;
 		
 		// This should never happen, but bail out if we don't know what planet
-		// we are on (meaning there's no way to know what ships are for sale).
+		// we are on (meaning there's no way to know what items are for sale).
 		if(!planet)
 			break;
 		
