@@ -45,15 +45,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-namespace {
-	// Determine if the given ship is with the player (and is thus shown in ShopPanel sidebars).
-	// Note: Ships in the same system, but on different planets, are considered as "with the player."
-	bool IsWithPlayer(const Ship &ship, const System *here)
-	{
-		return ship.GetSystem() == here && !ship.IsDisabled();
-	}
-}
-
 
 
 // Completely clear all loaded information, to prepare for loading a file or
@@ -779,7 +770,7 @@ std::set<Ship *> PlayerInfo::FlightCheck() const
 	// Classification of the present ships by category.
 	auto categoryCount = map<string, vector<Ship *>>{};
 	for(auto &ship : ships)
-		if(IsWithPlayer(*ship, system))
+		if(ship->GetSystem() == system && !ship->IsDisabled())
 		{
 			categoryCount[ship->Attributes().Category()].emplace_back(ship.get());
 			for(auto &bay : ship->Bays())
