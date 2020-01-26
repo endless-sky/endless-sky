@@ -757,21 +757,27 @@ const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 
 
 
-// Inspect the flightworthiness of the player's active fleet as a whole to
-// determine which ships cannot travel with the group.
-// Returns pointers to the ships that would be stranded in the given system.
-std::set<Ship *> PlayerInfo::FlightCheck() const
+// Inspect the flightworthiness of the player's active fleet, individually and
+// as a whole, to determine which ships cannot travel with the group.
+// Returns a mapping of ships to the reason their flight check failed.
+std::map<Ship *, const string> PlayerInfo::FlightCheck() const
 {
 	// Count of all bay types in the active fleet.
 	auto bayCount = map<string, unsigned>{
 		{"Fighter", 0},
 		{"Drone", 0},
 	};
-	// Classification of the present ships by category.
+	// Classification of the present ships by category. Parked ships are ignored.
 	auto categoryCount = map<string, vector<Ship *>>{};
+	
+	auto flightChecks = map<Ship *, const string>{};
 	for(auto &ship : ships)
-		if(ship->GetSystem() == system && !ship->IsDisabled())
+		if(ship->GetSystem() == system && !ship->IsDisabled() && !ship->IsParked())
 		{
+			string check = ship->FlightCheck();
+			if(!check.empty())
+				flightChecks.emplace(ship.get(), check);
+			
 			categoryCount[ship->Attributes().Category()].emplace_back(ship.get());
 			if(ship->CanBeCarried() || ship->Bays().empty())
 				continue;
@@ -780,7 +786,7 @@ std::set<Ship *> PlayerInfo::FlightCheck() const
 			{
 				++(bay.isFighter ? bayCount["Fighter"] : bayCount["Drone"]);
 				// The bays should always be empty. But if not, count that ship too.
-				if (bay.ship)
+				if(bay.ship)
 				{
 					Files::LogError("Expected bay to be empty for " + ship->ModelName() + ": " + ship->Name());
 					categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship.get());
@@ -789,7 +795,6 @@ std::set<Ship *> PlayerInfo::FlightCheck() const
 		}
 	
 	// Identify transportable ships that cannot jump and have no bay to be carried in.
-	auto strandedShips = set<Ship *>{};
 	for(auto &bayType : bayCount)
 	{
 		const auto &shipsOfType = categoryCount[bayType.first];
@@ -805,10 +810,10 @@ std::set<Ship *> PlayerInfo::FlightCheck() const
 			else if(bayType.second > 0)
 				--bayType.second;
 			else
-				strandedShips.emplace(carriable);
+				flightChecks.emplace(carriable, "no bays?");
 		}
 	}
-	return strandedShips;
+	return flightChecks;
 }
 
 

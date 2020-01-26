@@ -196,7 +196,7 @@ void ShopPanel::DrawSidebar()
 	
 	static const Color selected(.8f, 1.f);
 	static const Color unselected(.4f, 1.f);
-	const auto strandedShips = player.FlightCheck();
+	const auto flightChecks = player.FlightCheck();
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		// Skip any ships that are "absent" for whatever reason.
@@ -227,11 +227,10 @@ void ShopPanel::DrawSidebar()
 		
 		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
 		
-		string check = ship->FlightCheck();
-		if(!check.empty() || strandedShips.count(ship.get()))
+		const auto checkIt = flightChecks.find(ship.get());
+		if(checkIt != flightChecks.end())
 		{
-			if(check.empty())
-				check = "no bays?";
+			const string &check = (*checkIt).second;
 			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
 			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
 			if(zones.back().Contains(mouse))
