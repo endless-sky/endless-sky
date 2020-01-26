@@ -85,7 +85,7 @@ void SpaceportPanel::Step()
 			mission = player.MissionToOffer(Mission::LANDING);
 		if(mission)
 			mission->Do(Mission::OFFER, player, GetUI());
-		else
+		else if(!player.RecheckMissions(GetUI()))
 			player.HandleBlockedMissions(Mission::SPACEPORT, GetUI());
 	}
 }
