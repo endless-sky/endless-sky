@@ -1251,22 +1251,40 @@ bool PlayerInfo::TakeOff(UI *ui)
 		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 	}
 	
-	// For each carriable ship you own, try to find a ship that has a bay for it.
-	int uncarried = 0;
+	// For each active, carriable ship you own, try to find an active ship that has a bay for it.
+	auto carriers = vector<Ship *>{};
+	auto toLoad = vector<shared_ptr<Ship>>{};
 	for(auto &ship : ships)
-		if(ship->CanBeCarried() && !ship->IsParked() && !ship->IsDisabled())
+		if(!ship->IsParked() && !ship->IsDisabled())
 		{
-			bool fit = false;
-			for(auto &parent : ships)
-				if(parent != ship && !parent->IsParked() && !parent->IsDisabled()
-						&& parent->GetSystem() == ship->GetSystem() && parent->Carry(ship))
-				{
-					fit = true;
-					break;
-				}
-			if(!fit)
-				++uncarried;
+			if(ship->CanBeCarried())
+				toLoad.emplace_back(ship);
+			else if(ship->HasBays())
+				carriers.emplace_back(ship.get());
 		}
+	// Order carried ships such that those requiring bays are loaded first.
+	// For jump-capable carried ships, prefer loading those with a shorter range.
+	sort(toLoad.begin(), toLoad.end(),
+		[](const shared_ptr<Ship> &a, const shared_ptr<Ship> &b)
+		{
+			return a->JumpsRemaining() < b->JumpsRemaining();
+		});
+	
+	int uncarried = 0;
+	for(auto &ship : toLoad)
+	{
+		// We are guaranteed that `ship` is not parked and not disabled, and that
+		// all possible parents are also not parked, not disabled, and not `ship`.
+		bool fit = false;
+		for(auto &parent : carriers)
+			if(parent->GetSystem() == ship->GetSystem() && parent->Carry(ship))
+			{
+				fit = true;
+				break;
+			}
+		if(!fit)
+			++uncarried;
+	}
 	if(uncarried)
 	{
 		// The remaining uncarried ships are launched alongside the player.
