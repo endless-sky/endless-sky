@@ -45,6 +45,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	// Determine if the given ship is with the player (and is thus shown in ShopPanel sidebars).
+	// Note: Ships in the same system, but on different planets, are considered as "with the player."
+	bool IsWithPlayer(const Ship &ship, const System *here)
+	{
+		return ship.GetSystem() == here && !ship.IsDisabled();
+	}
+}
+
 
 
 // Completely clear all loaded information, to prepare for loading a file or
@@ -753,6 +762,59 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 {
 	return ships;
+}
+
+
+
+// Inspect the flightworthiness of the player's active fleet as a whole to
+// determine which ships cannot travel with the group.
+// Returns pointers to the ships that would be stranded in the given system.
+std::set<Ship *> PlayerInfo::FlightCheck() const
+{
+	// Count of all bay types in the active fleet.
+	auto bayCount = map<string, unsigned>{
+		{"Fighter", 0},
+		{"Drone", 0},
+	};
+	// Classification of the present ships by category.
+	auto categoryCount = map<string, vector<Ship *>>{};
+	for(auto &ship : ships)
+		if(IsWithPlayer(*ship, system))
+		{
+			categoryCount[ship->Attributes().Category()].emplace_back(ship.get());
+			for(auto &bay : ship->Bays())
+			{
+				++(bay.isFighter ? bayCount["Fighter"] : bayCount["Drone"]);
+				// The bays should always be empty. But if not, count that ship too.
+				if (bay.ship)
+				{
+					Files::LogError("Expected bay to be empty for " + ship->ModelName() + ": " + ship->Name());
+					categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship.get());
+				}
+			}
+		}
+	
+	// Identify transportable ships that cannot jump and have no bay to be carried in.
+	auto strandedShips = set<Ship *>{};
+	for(auto &bayType : bayCount)
+	{
+		const auto &shipsOfType = categoryCount[bayType.first];
+		if(shipsOfType.empty())
+			continue;
+		for(const auto &carriable : shipsOfType)
+		{
+			if(carriable->JumpsRemaining() != 0)
+			{
+				// This ship can travel between systems and does not require a bay.
+			}
+			// This ship requires a bay to travel between systems.
+			else if(bayType.second > 0)
+				--bayType.second;
+			else
+				strandedShips.emplace(carriable);
+		}
+	}
+	return strandedShips;
 }
 
 
