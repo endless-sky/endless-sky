@@ -636,10 +636,11 @@ bool Mission::CanComplete(const PlayerInfo &player) const
 // bright or dim text colors.
 bool Mission::IsSatisfied(const PlayerInfo &player) const
 {
-	if(!toComplete.Test(player.Conditions()))
+	if(!waypoints.empty() || !stopovers.empty())
 		return false;
 	
-	if(!waypoints.empty() || !stopovers.empty())
+	// Test the completion conditions for this mission.
+	if(!toComplete.Test(player.Conditions()))
 		return false;
 	
 	// Determine if any fines or outfits that must be transferred, can.
