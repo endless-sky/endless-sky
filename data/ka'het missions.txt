@@ -98,7 +98,7 @@ mission "First Contact: Ka'het: Quarg 1"
 	source "Querii'ka"
 	destination "Querii'ka"
 	to complete
-		has "First Contact: Ka'het: Quarg 2: done"
+		never
 	on offer
 		log "Discovered an uninhabited, complete Quarg ring in the middle of the Graveyard. It seems weird that they would abandon a ringworld, given how important they are to them."
 		conversation
@@ -111,11 +111,6 @@ mission "First Contact: Ka'het: Quarg 1"
 			`Due to your past experience, you expect crowds of the tall and inexpressive Quarg walking near the landing pads of this ringworld; instead, the whole station seems uninhabited.`
 			`	Apart from the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to ask the Quarg what happened here...`
 				accept
-	npc kill
-		government "Pirate"
-		personality nemesis staying
-		system "0 Sharp"
-		fleet "Large Northern Pirates"
 	on fail
 		dialog "this mission failed"
 
