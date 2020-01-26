@@ -1267,34 +1267,35 @@ bool PlayerInfo::TakeOff(UI *ui)
 			else if(ship->HasBays())
 				carriers.emplace_back(ship.get());
 		}
-	// Order carried ships such that those requiring bays are loaded first.
-	// For jump-capable carried ships, prefer loading those with a shorter range.
-	sort(toLoad.begin(), toLoad.end(),
-		[](const shared_ptr<Ship> &a, const shared_ptr<Ship> &b)
+	if(!toLoad.empty())
+	{
+		size_t uncarried = toLoad.size();
+		if(!carriers.empty())
 		{
-			return a->JumpsRemaining() < b->JumpsRemaining();
-		});
-	
-	int uncarried = 0;
-	for(auto &ship : toLoad)
-	{
-		// We are guaranteed that `ship` is not parked and not disabled, and that
-		// all possible parents are also not parked, not disabled, and not `ship`.
-		bool fit = false;
-		for(auto &parent : carriers)
-			if(parent->GetSystem() == ship->GetSystem() && parent->Carry(ship))
-			{
-				fit = true;
-				break;
-			}
-		if(!fit)
-			++uncarried;
-	}
-	if(uncarried)
-	{
-		// The remaining uncarried ships are launched alongside the player.
-		string message = (uncarried > 1) ? "Some escorts were" : "One escort was";
-		Messages::Add(message + " unable to dock with a carrier.");
+			// Order carried ships such that those requiring bays are loaded first. For
+			// jump-capable carried ships, prefer loading those with a shorter range.
+			stable_sort(toLoad.begin(), toLoad.end(),
+				[](const shared_ptr<Ship> &a, const shared_ptr<Ship> &b)
+				{
+					return a->JumpsRemaining() < b->JumpsRemaining();
+				});
+			// We are guaranteed that each carried `ship` is not parked and not disabled, and that
+			// all possible parents are also not parked, not disabled, and not `ship`.
+			for(auto &ship : toLoad)
+				for(auto &parent : carriers)
+					if(parent->GetSystem() == ship->GetSystem() && parent->Carry(ship))
+					{
+						--uncarried;
+						break;
+					}
+		}
+		
+		if(uncarried)
+		{
+			// The remaining uncarried ships are launched alongside the player.
+			string message = (uncarried > 1) ? "Some escorts were" : "One escort was";
+			Messages::Add(message + " unable to dock with a carrier.");
+		}
 	}
 	
 	// By now, all cargo should have been divvied up among your ships. So, any
