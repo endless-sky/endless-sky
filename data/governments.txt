@@ -113,6 +113,7 @@ government "Hai"
 	"hostile disabled hail" "hostile disabled hai"
 
 government " Hai "
+	"display name" "Hai"
 	swizzle 0
 	color .84 .42 .81
 	
@@ -202,6 +203,7 @@ government "Ka'het"
 	"player reputation" -1
 
 government " Ka'het "
+	"display name" "Ka'het"
 	swizzle 0
 	language "Ka'het"
 
