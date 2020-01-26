@@ -242,19 +242,18 @@ void PlanetPanel::TakeOffIfReady()
 	
 	// Check if any of the player's ships are configured in such a way that they
 	// will be impossible to fly.
-	for(const shared_ptr<Ship> &ship : player.Ships())
-	{
-		if(ship->GetSystem() != &system || ship->IsDisabled() || ship->IsParked())
-			continue;
-		
-		string check = ship->FlightCheck();
-		if(!check.empty() && check.back() == '!')
+	const auto flightChecks = player.FlightCheck();
+	if(!flightChecks.empty())
+		for(const auto &result : flightChecks)
 		{
-			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: " + check), nullptr, ship));
-			return;
+			const string &check = result.second;
+			if(check.back() == '!')
+			{
+				GetUI()->Push(new ConversationPanel(player,
+					*GameData::Conversations().Get("flight check: " + check), nullptr, result.first));
+				return;
+			}
 		}
-	}
 	
 	// The checks that follow are typically caused by parking or selling
 	// ships or changing outfits.
