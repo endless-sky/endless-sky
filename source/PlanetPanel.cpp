@@ -268,25 +268,15 @@ void PlanetPanel::TakeOffIfReady()
 	// Will you have to sell something other than regular cargo?
 	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
 	
-	// Count how many ships we have that cannot make the jump (e.g. due to lack of fuel, drive, or carrier).
-	int nonJumpCount = 0;
-	int droneCount = 0;
-	int fighterCount = 0;
-	for(const auto &it : player.Ships())
-		if(!it->IsParked() && !it->IsDisabled() && it->GetSystem() == &system)
-		{
-			const string &category = it->Attributes().Category();
-			droneCount -= it->BaysFree(false);
-			fighterCount -= it->BaysFree(true);
-			if(category == "Drone")
-				++droneCount;
-			else if(category == "Fighter")
-				++fighterCount;
-			else if(it->JumpsRemaining() < 1)
+	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
+	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
+	size_t nonJumpCount = 0;
+	if(!flightChecks.empty())
+	{
+		for(const auto &result : flightChecks)
+			if(result.second == "no hyperdrive?" || result.second == "no fuel?" || result.second == "no bays?")
 				++nonJumpCount;
-		}
-	nonJumpCount += max(fighterCount, 0);
-	nonJumpCount += max(droneCount, 0);
+	}
 	
 	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0)
 	{
