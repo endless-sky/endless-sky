@@ -773,6 +773,9 @@ std::set<Ship *> PlayerInfo::FlightCheck() const
 		if(ship->GetSystem() == system && !ship->IsDisabled())
 		{
 			categoryCount[ship->Attributes().Category()].emplace_back(ship.get());
+			if(ship->CanBeCarried() || ship->Bays().empty())
+				continue;
+			
 			for(auto &bay : ship->Bays())
 			{
 				++(bay.isFighter ? bayCount["Fighter"] : bayCount["Drone"]);
