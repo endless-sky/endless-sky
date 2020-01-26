@@ -38,9 +38,7 @@ mission "Alexandria Seek: Level 5 Calculation"
 		or
 			has "Disabled Ka'het: declined"
 			has "First Contact: Ka'het: Remnant 1B: offered"
-			has "First Contact: Ka'het: Remnant 1B: active"
-			has "First Contact: Ka'het: Quarg 2: offered"
-			has "First Contact: Ka'het: Quarg 2: active"
+			has "First Contact: Ka'het: Quarg 1: offered"
 	on offer
 		"alexandria seeker level" >?= 5
 		fail
