@@ -191,12 +191,12 @@ void ShopPanel::DrawSidebar()
 		point.X() += .5 * ICON_TILE * (4 - shipsHere);
 	
 	// Check whether flight check tooltips should be shown.
+	const auto flightChecks = player.FlightCheck();
 	Point mouse = GetUI()->GetMouse();
 	warningType.clear();
 	
 	static const Color selected(.8f, 1.f);
 	static const Color unselected(.4f, 1.f);
-	const auto flightChecks = player.FlightCheck();
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		// Skip any ships that are "absent" for whatever reason.
