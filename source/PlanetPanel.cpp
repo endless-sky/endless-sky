@@ -242,21 +242,18 @@ void PlanetPanel::TakeOffIfReady()
 	
 	// Check if any of the player's ships are configured in such a way that they
 	// will be impossible to fly.
-	for(const shared_ptr<Ship> &ship : player.Ships())
-	{
-		if(ship->GetSystem() != &system || ship->IsDisabled() || ship->IsParked())
-			continue;
-		
-		// No need to tell the flightcheck if we have a bay available; only errors will
-		// prevent launching at this point. The warning for bays would be ignored anyway.
-		string check = ship->FlightCheck(false);
-		if(!check.empty() && check.back() == '!')
+	const auto flightChecks = player.FlightCheck();
+	if(!flightChecks.empty())
+		for(const auto &result : flightChecks)
 		{
-			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: " + check), nullptr, ship));
-			return;
+			const string &check = result.second;
+			if(check.back() == '!')
+			{
+				GetUI()->Push(new ConversationPanel(player,
+					*GameData::Conversations().Get("flight check: " + check), nullptr, result.first));
+				return;
+			}
 		}
-	}
 	
 	// The checks that follow are typically caused by parking or selling
 	// ships or changing outfits.
@@ -271,30 +268,15 @@ void PlanetPanel::TakeOffIfReady()
 	// Will you have to sell something other than regular cargo?
 	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
 	
-	// Check how many ships we have that cannot jump. Drones and fighters
-	// are counted separately, since we need to match them with the correct
-	// type of bays for carrying them.
-	int nonJumpCount = 0;
-	int droneCount = 0;
-	int fighterCount = 0;
-	for(const auto &it : player.Ships())
-		if(!it->IsParked() && !it->IsDisabled() && it->GetSystem() == &system)
-		{
-			const string &category = it->Attributes().Category();
-			droneCount -= it->BaysFree(false);
-			fighterCount -= it->BaysFree(true);
-			if(it->JumpsRemaining() < 1)
-			{
-				if(category == "Drone")
-					droneCount += 1;
-				else if(category == "Fighter")
-					fighterCount += 1;
-				else
-					nonJumpCount += 1;
-			}
-		}
-	nonJumpCount += fighterCount > 0 ? fighterCount : 0;
-	nonJumpCount += droneCount > 0 ? droneCount : 0;
+	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
+	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
+	size_t nonJumpCount = 0;
+	if(!flightChecks.empty())
+	{
+		for(const auto &result : flightChecks)
+			if(result.second == "no hyperdrive?" || result.second == "no fuel?" || result.second == "no bays?")
+				++nonJumpCount;
+	}
 	
 	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0)
 	{

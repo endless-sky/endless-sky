@@ -691,10 +691,10 @@ int64_t PlayerInfo::Salaries() const
 int64_t PlayerInfo::Maintenance() const
 {
 	int64_t maintenance = 0;
-	// If the player is landed, then cargo will be in the player's 
+	// If the player is landed, then cargo will be in the player's
 	// pooled cargo. Check there so that the bank panel can display the
 	// correct total maintenance costs. When launched all cargo will be
-	// in the player's ships instead of in the pooled cargo, so no outfit 
+	// in the player's ships instead of in the pooled cargo, so no outfit
 	// will be counted twice.
 	for(const auto &outfit : Cargo().Outfits())
 		maintenance += max<int64_t>(0, outfit.first->Get("maintenance costs")) * outfit.second;
@@ -753,6 +753,67 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 {
 	return ships;
+}
+
+
+
+// Inspect the flightworthiness of the player's active fleet, individually and
+// as a whole, to determine which ships cannot travel with the group.
+// Returns a mapping of ships to the reason their flight check failed.
+std::map<const shared_ptr<Ship>, const string> PlayerInfo::FlightCheck() const
+{
+	// Count of all bay types in the active fleet.
+	auto bayCount = map<string, size_t>{
+		{"Fighter", 0},
+		{"Drone", 0},
+	};
+	// Classification of the present ships by category. Parked ships are ignored.
+	auto categoryCount = map<string, vector<shared_ptr<Ship>>>{};
+	
+	auto flightChecks = map<const shared_ptr<Ship>, const string>{};
+	for(const auto &ship : ships)
+		if(ship->GetSystem() == system && !ship->IsDisabled() && !ship->IsParked())
+		{
+			string check = ship->FlightCheck();
+			if(!check.empty())
+				flightChecks.emplace(ship, check);
+			
+			categoryCount[ship->Attributes().Category()].emplace_back(ship);
+			if(ship->CanBeCarried() || ship->Bays().empty())
+				continue;
+			
+			for(auto &bay : ship->Bays())
+			{
+				++(bay.isFighter ? bayCount["Fighter"] : bayCount["Drone"]);
+				// The bays should always be empty. But if not, count that ship too.
+				if(bay.ship)
+				{
+					Files::LogError("Expected bay to be empty for " + ship->ModelName() + ": " + ship->Name());
+					categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship);
+				}
+			}
+		}
+	
+	// Identify transportable ships that cannot jump and have no bay to be carried in.
+	for(auto &bayType : bayCount)
+	{
+		const auto &shipsOfType = categoryCount[bayType.first];
+		if(shipsOfType.empty())
+			continue;
+		for(const auto &carriable : shipsOfType)
+		{
+			if(carriable->JumpsRemaining() != 0)
+			{
+				// This ship can travel between systems and does not require a bay.
+			}
+			// This ship requires a bay to travel between systems.
+			else if(bayType.second > 0)
+				--bayType.second;
+			else
+				flightChecks.emplace(carriable, "no bays?");
+		}
+	}
+	return flightChecks;
 }
 
 
@@ -834,7 +895,7 @@ void PlayerInfo::DisownShip(const Ship *selected)
 
 
 // Park or unpark the given ship. A parked ship remains on a planet instead of
-// flying with the player, and requires no daily upkeep.
+// flying with the player, and requires no daily crew payments.
 void PlayerInfo::ParkShip(const Ship *selected, bool isParked)
 {
 	for(auto it = ships.begin(); it != ships.end(); ++it)
@@ -1195,69 +1256,45 @@ bool PlayerInfo::TakeOff(UI *ui)
 		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 	}
 	
-	// For each non-jump-capable fighter and drone you own, try to find a ship that has
-	// a bay to carry it in. Any excess ships will be launched outside carriers.
-	int shipsUnCarried = 0;
-	// Jump-capable ships can stay outside bays, but preference is to still load them in
-	// bays if there is space.
-	bool shipsOutsideBays = false;
-	for(auto it = ships.begin(); it != ships.end(); )
-	{
-		shared_ptr<Ship> &ship = *it;
-		if(ship->IsParked() || ship->IsDisabled())
+	// For each active, carriable ship you own, try to find an active ship that has a bay for it.
+	auto carriers = vector<Ship *>{};
+	auto toLoad = vector<shared_ptr<Ship>>{};
+	for(auto &ship : ships)
+		if(!ship->IsParked() && !ship->IsDisabled())
 		{
-			++it;
-			continue;
+			if(ship->CanBeCarried())
+				toLoad.emplace_back(ship);
+			else if(ship->HasBays())
+				carriers.emplace_back(ship.get());
 		}
-		
-		bool fit = true;
-		const string &category = ship->Attributes().Category();
-		if(category == "Fighter" || category == "Drone")
+	// Order carried ships such that those requiring bays are loaded first.
+	// For jump-capable carried ships, prefer loading those with a shorter range.
+	sort(toLoad.begin(), toLoad.end(),
+		[](const shared_ptr<Ship> &a, const shared_ptr<Ship> &b)
 		{
-			// Load only fighters and drones that cannot jump by themselves
-			if(ship->JumpsRemaining() < 1)
-			{
-				fit = false;
-				for(shared_ptr<Ship> &parent : ships)
-					if(parent->GetSystem() == ship->GetSystem() && !parent->IsParked()
-							&& !parent->IsDisabled() && parent->Carry(ship))
-					{
-						fit = true;
-						break;
-					}
-			}
-			else
-				shipsOutsideBays = true;
-		}
-		if(!fit)
-			shipsUnCarried += 1;
-		
-		++it;
-	}
-	// Load jump-capable carryable ships into bays if any bays are left.
-	if(shipsOutsideBays)
-		for(auto it = ships.begin(); it != ships.end(); )
-		{
-			shared_ptr<Ship> &ship = *it;
-			const string &category = ship->Attributes().Category();
-			if(!ship->IsParked() && !ship->IsDisabled() && (category == "Fighter" || category == "Drone"))
-				for(shared_ptr<Ship> &parent : ships)
-					if(parent->GetSystem() == ship->GetSystem() && !parent->IsParked()
-							&& !parent->IsDisabled() && parent->Carry(ship))
-						break;
-			
-			++it;
-		}
+			return a->JumpsRemaining() < b->JumpsRemaining();
+		});
 	
-	if(shipsUnCarried > 0)
+	int uncarried = 0;
+	for(auto &ship : toLoad)
 	{
-		// If your fleet contains more fighters or drones than you can carry,
-		// some of them are launched without a carrier.
-		ostringstream out;
-		out << "Because none of your ships can carry them, you launched ";
-		out << shipsUnCarried;
-		out << " non-jump capable ships outside carriers.";
-		Messages::Add(out.str());
+		// We are guaranteed that `ship` is not parked and not disabled, and that
+		// all possible parents are also not parked, not disabled, and not `ship`.
+		bool fit = false;
+		for(auto &parent : carriers)
+			if(parent->GetSystem() == ship->GetSystem() && parent->Carry(ship))
+			{
+				fit = true;
+				break;
+			}
+		if(!fit)
+			++uncarried;
+	}
+	if(uncarried)
+	{
+		// The remaining uncarried ships are launched alongside the player.
+		string message = (uncarried > 1) ? "Some escorts were" : "One escort was";
+		Messages::Add(message + " unable to dock with a carrier.");
 	}
 	
 	// By now, all cargo should have been divvied up among your ships. So, any
