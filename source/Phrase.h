@@ -51,12 +51,17 @@ private:
 		std::vector<std::function<std::string(const std::string&)>> replaceRules;
 	};
 	
-	// Sentence represents a phrase node.
-	class Sentence {
+	
+	// An individual definition associated with a Phrase name.
+	class Sentence : private std::vector<Part> {
 	public:
+		Sentence(const DataNode &node, const Phrase *parent);
 		void Load(const DataNode &node, const Phrase *parent);
 		
-		std::vector<Part> parts;
+		// Expose certain functions from the underlying vector:
+		using std::vector<Part>::empty;
+		using std::vector<Part>::begin;
+		using std::vector<Part>::end;
 	};
 	
 	

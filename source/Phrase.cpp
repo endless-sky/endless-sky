@@ -80,8 +80,12 @@ void Phrase::Load(const DataNode &node)
 		return;
 	}
 	
-	sentences.emplace_back();
-	sentences.back().Load(node, this);
+	sentences.emplace_back(node, this);
+	if(sentences.back().empty())
+	{
+		sentences.pop_back();
+		node.PrintTrace("Skipping unparseable node:");
+	}
 }
 
 
@@ -102,7 +106,7 @@ string Phrase::Get() const
 	if(sentences.empty())
 		return result;
 	
-	for(const Part &part : sentences[Random::Int(sentences.size())].parts)
+	for(const auto &part : sentences[Random::Int(sentences.size())])
 	{
 		if(!part.options.empty())
 		{
@@ -131,13 +135,20 @@ bool Phrase::ReferencesPhrase(const Phrase *other) const
 		return true;
 	
 	for(const Sentence &alternative : sentences)
-		for(const Part &part : alternative.parts)
+		for(const auto &part : alternative)
 			for(const auto &option : part.options)
 				for(const auto &subphrase : option)
 					if(subphrase.second && subphrase.second->ReferencesPhrase(other))
 						return true;
 	
 	return false;
+}
+
+
+
+Phrase::Sentence::Sentence(const DataNode &node, const Phrase *parent)
+{
+	Load(node, parent);
 }
 
 
@@ -153,8 +164,8 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 			continue;
 		}
 		
-		parts.emplace_back();
-		Part &part = parts.back();
+		emplace_back();
+		auto &part = back();
 		
 		if(child.Token(0) == "word")
 		{
@@ -199,6 +210,6 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 		
 		// If no words, phrases, or replaces were given, discard this part of the phrase.
 		if(part.options.empty() && part.replaceRules.empty())
-			parts.pop_back();
+			pop_back();
 	}
 }
