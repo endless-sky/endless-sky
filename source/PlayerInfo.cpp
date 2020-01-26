@@ -1501,11 +1501,11 @@ void PlayerInfo::ClearActiveBoardingMission()
 // If one of your missions cannot be offered because you do not have enough
 // space for it, and it specifies a message to be shown in that situation,
 // show that message.
-void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
+bool PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 {
 	list<Mission> &missionList = availableMissions.empty() ? boardingMissions : availableMissions;
 	if(ships.empty() || missionList.empty())
-		return;
+		return false;
 	
 	for(auto it = missionList.begin(); it != missionList.end(); ++it)
 		if(it->IsAtLocation(location) && it->CanOffer(*this) && !it->HasSpace(*this))
@@ -1514,9 +1514,34 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 			if(!message.empty())
 			{
 				ui->Push(new Dialog(message));
-				return;
+				return true;
 			}
 		}
+	return false;
+}
+
+
+
+
+// Check if any missions have failed or completed.  Fail or complete
+// the first such mission found.  Return value is true iff such a
+// mission was found.
+bool PlayerInfo::RecheckMissions(UI *ui)
+{
+	for(auto it = missions.begin(); it != missions.end(); ++it)
+	{
+		if(it->HasFailed(*this))
+		{
+			RemoveMission(Mission::FAIL, *it, ui);
+			return true;
+		}
+		if(it->CanComplete(*this))
+		{
+			RemoveMission(Mission::COMPLETE, *it, ui);
+			return true;
+		}
+	}
+	return false;
 }
 
 
@@ -2427,19 +2452,30 @@ void PlayerInfo::StepMissions(UI *ui)
 				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
 		ui->Push(new Dialog(visitText));
 	}
-	// One mission's actions may influence another mission, so loop through one
-	// more time to see if any mission is now completed or failed due to a change
-	// that happened in another mission the first time through.
-	mit = missions.begin();
-	while(mit != missions.end())
+	// One mission's actions may influence another mission, so loop through
+	// to see if any mission is now completed or failed due to a change
+	// that happened in earlier passes.  For safety's sake, we limit the
+	// number of passes to 30.
+	bool modifiedMissions=true;
+	for(int i=0;i<30 && modifiedMissions;i++)
 	{
-		Mission &mission = *mit;
-		++mit;
-		
-		if(mission.HasFailed(*this))
-			RemoveMission(Mission::FAIL, mission, ui);
-		else if(mission.CanComplete(*this))
-			RemoveMission(Mission::COMPLETE, mission, ui);
+		modifiedMissions=false;
+		mit = missions.begin();
+		while(mit != missions.end())
+		{
+			Mission &mission = *mit;
+			++mit;
+			
+			if(mission.HasFailed(*this)) {
+				RemoveMission(Mission::FAIL, mission, ui);
+				modifiedMissions=true;
+			}
+			else if(mission.CanComplete(*this))
+			{
+				RemoveMission(Mission::COMPLETE, mission, ui);
+				modifiedMissions=true;
+			}
+		}
 	}
 	
 	// Search for any missions that have failed but for which we are still
