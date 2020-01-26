@@ -93,10 +93,12 @@ mission "First Contact: Ka'het: Remnant 1B"
 
 mission "First Contact: Ka'het: Quarg 1"
 	name "Abandoned Ringworld"
-	description "Visit a Quarg station to ask them about the abandoned ring in the middle of Ka'het space."
+	description "Visit the Quarg and ask them about the abandoned ring in the middle of Ka'het space."
 	landing
 	source "Querii'ka"
-	destination "Lagrange"
+	destination "Querii'ka"
+	to complete
+		has "First Contact: Ka'het: Quarg 2: done"
 	on offer
 		log "Discovered an uninhabited, complete Quarg ring in the middle of the Graveyard. It seems weird that they would abandon a ringworld, given how important they are to them."
 		conversation
@@ -109,14 +111,27 @@ mission "First Contact: Ka'het: Quarg 1"
 			`Due to your past experience, you expect crowds of the tall and inexpressive Quarg walking near the landing pads of this ringworld; instead, the whole station seems uninhabited.`
 			`	Apart from the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to ask the Quarg what happened here...`
 				accept
+	npc kill
+		government "Pirate"
+		personality nemesis staying
+		system "0 Sharp"
+		fleet "Large Northern Pirates"
+	on fail
+		dialog "this mission failed"
 
-mission "First Contact: Ka'het: Quarg 2"
+# The missing space between the ":" and "K" ensures the landing
+# message occurs the "First Contact: Quarg" landing mission.  That is
+# because std::set iterates in order and "Q" is after " " in ASCII
+# encoding.
+mission "First Contact:Ka'het: Quarg 2"
 	landing
 	invisible
-	source "Lagrange"
+	source
+		attributes "quarg"
 	to offer
-		has "First Contact: Ka'het: Quarg 1: done"
+		has "First Contact: Ka'het: Quarg 1: active"
 	on offer
+		fail "First Contact: Ka'het: Quarg 1"
 		conversation
 			`Do you want to ask the Quarg about the abandoned ringworld in the region of the Graveyard?`
 			choice
