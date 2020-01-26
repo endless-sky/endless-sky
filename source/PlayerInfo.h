@@ -246,7 +246,7 @@ public:
 	
 	
 private:
-	// Don't anyone else to copy this class, because pointers won't get
+	// Don't allow anyone else to copy this class, because pointers won't get
 	// transferred properly.
 	PlayerInfo(const PlayerInfo &) = default;
 	PlayerInfo &operator=(const PlayerInfo &) = default;

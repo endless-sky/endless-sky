@@ -896,7 +896,7 @@ void PlayerInfo::DisownShip(const Ship *selected)
 
 
 // Park or unpark the given ship. A parked ship remains on a planet instead of
-// flying with the player, and requires no daily upkeep.
+// flying with the player, and requires no daily crew payments.
 void PlayerInfo::ParkShip(const Ship *selected, bool isParked)
 {
 	for(auto it = ships.begin(); it != ships.end(); ++it)
@@ -1257,7 +1257,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 	}
 	
-	// For each carryable ship you own, try to find a ship that has a bay for it.
+	// For each carriable ship you own, try to find a ship that has a bay for it.
 	int uncarried = 0;
 	for(auto &ship : ships)
 		if(ship->CanBeCarried() && !ship->IsParked() && !ship->IsDisabled())
