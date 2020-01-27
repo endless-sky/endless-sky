@@ -1,10 +1,3 @@
-phrase "generic library transport payment"
-	word
-		`Your library <passengers> thank you for the trip to <planet>.`
-		`The library <passengers> run to the <planet> library.`
-
-
-
 mission "Small Interlibrary Loan [0]"
 	name "Interlibrary loan to <planet>"
 	job
@@ -25,7 +18,7 @@ mission "Small Interlibrary Loan [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1000 170
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Small Interlibrary Loan [1]"
 	name "Interlibrary loan to <planet>"
@@ -47,7 +40,7 @@ mission "Small Interlibrary Loan [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 800 160
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Small Interlibrary Loan [2]"
 	name "Interlibrary loan to <planet>"
@@ -69,7 +62,7 @@ mission "Small Interlibrary Loan [2]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 0 170
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 
 
@@ -93,7 +86,7 @@ mission "Small Interlibrary Loan [3]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1500 150
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Small Interlibrary Loan [4]"
 	name "Interlibrary loan to <planet>"
@@ -115,7 +108,7 @@ mission "Small Interlibrary Loan [4]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1000 160
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Small Interlibrary Loan [5]"
 	name "Interlibrary loan to <planet>"
@@ -137,7 +130,7 @@ mission "Small Interlibrary Loan [5]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1000 180
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 
 
@@ -161,7 +154,7 @@ mission "Small Library Media Delivery [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1000 160
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Small Library Media Delivery [1]"
 	name "Library media delivery to <planet>"
@@ -183,7 +176,7 @@ mission "Small Library Media Delivery [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 500 170
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Small Library Media Delivery [2]"
 	name "Library media delivery to <planet>"
@@ -205,7 +198,7 @@ mission "Small Library Media Delivery [2]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1500 150
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 
 
@@ -231,7 +224,7 @@ mission "Bulk Interlibrary Loan [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2000 170
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Bulk Interlibrary Loan [1]"
 	name "Bulk interlibrary loan to <planet>"
@@ -254,7 +247,7 @@ mission "Bulk Interlibrary Loan [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1000 160
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 
 
@@ -279,7 +272,7 @@ mission "Bulk Library Media Delivery [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2000 170
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Bulk Library Media Delivery [1]"
 	name "Bulk library media delivery to <planet>"
@@ -302,7 +295,7 @@ mission "Bulk Library Media Delivery [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 3500 160
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Large Bulk Interlibrary Loan [0]"
 	name "Large bulk interlibrary loan to <planet>"
@@ -325,7 +318,7 @@ mission "Large Bulk Interlibrary Loan [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 4000 170
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Large Bulk Interlibrary Loan [1]"
 	name "Large bulk interlibrary loan to <planet>"
@@ -348,7 +341,7 @@ mission "Large Bulk Interlibrary Loan [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 6000 150
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Librarian Transport [0]"
 	name "Alexandria Librarian to <planet>"
@@ -371,7 +364,7 @@ mission "Librarian Transport [0]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 1000 170
-		dialog phrase "generic library transport payment"
+		dialog phrase "generic passenger dropoff payment"
 
 mission "Librarian Transport [1]"
 	name "Alexandria Librarian to <planet>"
@@ -394,7 +387,7 @@ mission "Librarian Transport [1]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 500 160
-		dialog phrase "generic library transport payment"
+		dialog phrase "generic passenger dropoff payment"
 
 mission "Librarian Transport [2]"
 	name "Alexandria Librarian to <planet>"
@@ -417,7 +410,7 @@ mission "Librarian Transport [2]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 1500 150
-		dialog phrase "generic library transport payment"
+		dialog phrase "generic passenger dropoff payment"
 
 mission "Library Assistant Transport [0]"
 	name "Alexandria Library Assistant to <planet>"
@@ -440,7 +433,7 @@ mission "Library Assistant Transport [0]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 500 170
-		dialog phrase "generic library transport payment"
+		dialog phrase "generic passenger dropoff payment"
 
 mission "Library Assistant Transport [1]"
 	name "Alexandria Library Assistant to <planet>"
@@ -463,7 +456,7 @@ mission "Library Assistant Transport [1]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 0 160
-		dialog phrase "generic library transport payment"
+		dialog phrase "generic passenger dropoff payment"
 
 mission "Library Assistant Transport [2]"
 	name "Alexandria Library Assistant to <planet>"
@@ -486,7 +479,7 @@ mission "Library Assistant Transport [2]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 800 170
-		dialog phrase "generic library transport payment"
+		dialog phrase "generic passenger dropoff payment"
 
 
 
@@ -511,7 +504,7 @@ mission "Library Staff Transport [0]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 2000 170
-		dialog phrase "generic library transport payment"
+		dialog phrase "generic passenger dropoff payment"
 
 mission "Library Staff Transport [1]"
 	name "Alexandria Library staff to <planet>"
@@ -534,7 +527,7 @@ mission "Library Staff Transport [1]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 2000 170
-		dialog phrase "generic library transport payment"
+		dialog phrase "generic passenger dropoff payment"
 
 
 
@@ -560,7 +553,7 @@ mission "Library Team Transport"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 4000 170
-		dialog phrase "generic library transport payment"
+		dialog phrase "generic passenger dropoff payment"
 
 
 
@@ -589,7 +582,7 @@ mission "Small Interlibrary Return [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2000 140
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Small Interlibrary Return [1]"
 	name "Interlibrary return to <planet>"
@@ -611,7 +604,7 @@ mission "Small Interlibrary Return [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 3000 130
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Small Interlibrary Return [2]"
 	name "Interlibrary return to <planet>"
@@ -633,7 +626,7 @@ mission "Small Interlibrary Return [2]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 0 150
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Small Interlibrary Return [3]"
 	name "Interlibrary return to <planet>"
@@ -655,7 +648,7 @@ mission "Small Interlibrary Return [3]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1000 150
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Small Interlibrary Return [4]"
 	name "Interlibrary return to <planet>"
@@ -677,7 +670,7 @@ mission "Small Interlibrary Return [4]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 0 130
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Small Interlibrary Return [5]"
 	name "Interlibrary return to <planet>"
@@ -699,7 +692,7 @@ mission "Small Interlibrary Return [5]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 4000 160
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 
 
@@ -724,7 +717,7 @@ mission "Bulk Interlibrary Return [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 140
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Bulk Interlibrary Return [1]"
 	name "Bulk interlibrary return to <planet>"
@@ -747,7 +740,7 @@ mission "Bulk Interlibrary Return [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 9000 130
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Bulk Interlibrary Return [2]"
 	name "Bulk interlibrary return to <planet>"
@@ -770,7 +763,7 @@ mission "Bulk Interlibrary Return [2]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2000 150
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 
 
@@ -795,7 +788,7 @@ mission "Large Bulk Interlibrary Return [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2500 130
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Large Bulk Interlibrary Return [1]"
 	name "Large bulk interlibrary return to <planet>"
@@ -818,7 +811,7 @@ mission "Large Bulk Interlibrary Return [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2500 130
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 
 
@@ -847,7 +840,7 @@ mission "Librarian Return [0]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 500 130
-		dialog phrase "generic library transport payment"
+		dialog phrase "generic passenger dropoff payment"
 
 mission "Librarian Return [1]"
 	name "Return a Librarian to Alexandria"
@@ -870,7 +863,7 @@ mission "Librarian Return [1]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 500 130
-		dialog phrase "generic library transport payment"
+		dialog phrase "generic passenger dropoff payment"
 
 
 
@@ -895,7 +888,7 @@ mission "Library Assistant Return [0]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 0 130
-		dialog phrase "generic library transport payment"
+		dialog phrase "generic passenger dropoff payment"
 
 mission "Library Assistant Return [1]"
 	name "Return a Library Assistant to Alexandria"
@@ -918,7 +911,7 @@ mission "Library Assistant Return [1]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 0 130
-		dialog phrase "generic library transport payment"
+		dialog phrase "generic passenger dropoff payment"
 
 
 
@@ -943,7 +936,7 @@ mission "Library Staff Return [0]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 1000 130
-		dialog phrase "generic library transport payment"
+		dialog phrase "generic passenger dropoff payment"
 
 mission "Library Staff Return [1]"
 	name "Alexandria Library staff to <planet>"
@@ -966,7 +959,7 @@ mission "Library Staff Return [1]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 1000 130
-		dialog phrase "generic library transport payment"
+		dialog phrase "generic passenger dropoff payment"
 
 
 
@@ -992,7 +985,7 @@ mission "Library Team Return [0]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 2000 130
-		dialog phrase "generic library transport payment"
+		dialog phrase "generic passenger dropoff payment"
 
 mission "Library Team Return [1]"
 	name "Alexandria Library team to <planet>"
@@ -1016,7 +1009,7 @@ mission "Library Team Return [1]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 2000 130
-		dialog phrase "generic library transport payment"
+		dialog phrase "generic passenger dropoff payment"
 
 
 
@@ -1040,7 +1033,7 @@ mission "Library Supplies [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2000 130
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Library Supplies [1]"
 	name "Supplies to Alexandria Library"
@@ -1060,7 +1053,7 @@ mission "Library Supplies [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1500 130
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Library Supplies [2]"
 	name "Supplies to Alexandria Library"
@@ -1080,7 +1073,7 @@ mission "Library Supplies [2]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 800 150
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 
 
@@ -1102,7 +1095,7 @@ mission "Bulk Library Supplies [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 120
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Bulk Library Supplies [1]"
 	name "Bulk supplies to Alexandria Library"
@@ -1122,7 +1115,7 @@ mission "Bulk Library Supplies [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 4000 130
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Bulk Library Supplies [2]"
 	name "Bulk supplies to Alexandria Library"
@@ -1142,7 +1135,7 @@ mission "Bulk Library Supplies [2]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 1500 150
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 
 
@@ -1165,7 +1158,7 @@ mission "Large Bulk Library Supplies [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 8000 130
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Large Bulk Library Supplies [1]"
 	name "Large bulk delivery to Alexandria Library"
@@ -1186,7 +1179,7 @@ mission "Large Bulk Library Supplies [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 140
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Large Bulk Library Supplies [2]"
 	name "Large bulk delivery to Alexandria Library"
@@ -1207,7 +1200,7 @@ mission "Large Bulk Library Supplies [2]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 3000 150
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 
 
@@ -1236,7 +1229,7 @@ mission "Library Smuggling [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 15000 200
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Library Smuggling [1]"
 	name "Smuggling to Alexandria Library"
@@ -1257,7 +1250,7 @@ mission "Library Smuggling [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 15000 200
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Library Smuggling [2]"
 	name "Smuggling to Alexandria Library"
@@ -1278,7 +1271,7 @@ mission "Library Smuggling [2]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 15000 200
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 
 
@@ -1301,7 +1294,7 @@ mission "Bulk Library Smuggling [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 27000 200
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 
 mission "Bulk Library Smuggling [1]"
 	name "Bulk smuggling to Alexandria Library"
@@ -1322,5 +1315,5 @@ mission "Bulk Library Smuggling [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 27000 200
-		dialog phrase "AL generic library delivery payment"
+		dialog phrase "generic cargo delivery payment"
 		
