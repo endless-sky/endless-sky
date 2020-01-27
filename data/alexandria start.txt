@@ -146,7 +146,7 @@ mission "Alexandria Library Card: Second Volume: Step 1"
 			`	Daemos looks at you as if you were a child.  "To know what happens next, we'll have to find the second book: the Paq cha'DIch."`
 				goto questions
 			label seek
-			`"My research suggests that the next book deals with war, unfairness, and greed.  It is filled with mystery and amorality.  That is also the very definition of the Syndicate.  Their Director of Manufacturing is famous for her vast library."`
+			`"My research suggests that the next book deals with war, unfairness, and greed.  It is filled with mystery and amorality.  That is also the very definition of the Syndicate.  Their Director of Manufacturing is famous for his vast library."`
 				goto questions
 			label monk
 			`"The monk?  What monk?  Haven't you ever seen a hologram before?"`
@@ -158,10 +158,10 @@ mission "Alexandria Library Card: Second Volume: Step 1"
 		dialog `You've forgotten your senile friend or his pencils.  Perhaps they're in one of your escorts?`
 	on complete
 		conversation
-			`You are lead to a vast skyscraper overlooking a mountain range.  From the glass-wall elevator, you take in the breathtaking view.  The elevator stops on the top floor and you see a well-dressed woman surrounded by bookshelves.  She's sitting on a gold-lined leather chair, pulled up to a marble desk.  The bookshelves also appear to be hand-carved marble.  Whoever this is, she is exceptionally rich.`
+			`You are lead to a vast skyscraper overlooking a mountain range.  From the glass-walled elevator, you take in the breathtaking view.  The elevator stops on the top floor and you see a well-dressed man surrounded by bookshelves.  He sitting on a gold-lined leather chair, pulled up to a marble desk.  The bookshelves also appear to be hand-carved marble.  Whoever this is, he is exceptionally rich.`
 			choice
-				`	Interrupt the woman...`
-			`	The woman turns to you and says, "it is always an honor to meet Alexandria Seekers.  How can I help you?"`
+				`	Interrupt him...`
+			`The man turns to you and says, "it is always an honor to meet Alexandria Seekers.  How can I help you?"`
 			`	Daemos responds, "I seek the Paq cha'DIch, second volume of the Chal Jub Paqmey.  I've heard its your kind of literature.  Do you have it?"`
 			`	"I don't have it now, but I can get it for you.  Do you have the book, 'A Thousand Poisons of Amazon and How to Conceal Their Taste?'  I've been looking for a signed first edition."`
 			`	"Ekhh.  A trade.  Okay, I'll get you a copy."`
@@ -374,7 +374,7 @@ mission "Alexandria Library Card: Second Volume: Step 3"
 	on offer
 		conversation
 			`Daemos looks dead serious when you approach him.  He says, "we're going to a pirate planet.  That's an insanely dangerous thing to do in a ship like yours.  I've arranged for us to travel with a large group of bounty hunters.  You'll need to speak to the planet's authorities before they'll let you land."`
-			`	This sounds like a quick but interesting death.  You ponder your options.
+			`	This sounds like a quick but interesting death.  You ponder your options.`
 			label questions
 			`"Do you want to know anything before we go?"`
 			choice
@@ -522,7 +522,7 @@ mission "Alexandria Library Card: Second Volume: Step 4"
 	on complete
 		payment 77500
 		conversation
-			`At long last, you make it back to the Syndicate executive.  She has the Paq cha'DIch ready, and gleefully accepts her new book on concealing poisons.  She doesn't seem to notice the skillful forgery.  Perhaps those Deadman's Cove businessmen really were legitimate.`
+			`At long last, you make it back to the Syndicate executive.  He has the Paq cha'DIch ready, and gleefully accepts his new book on concealing poisons.  He doesn't seem to notice the skillful forgery.  Perhaps those Deadman's Cove businessmen really were legitimate.`
 			`	"Here's your payment," Daemos says, handing you 60,000 credits.  Handing you another 17,500 credits, he adds, "this is from the 'legitimate businessmen' for our assistance getting them landing clearance on Tinker.  Only three more books to go!`
 			`	"Meet me at the spaceport when you're ready."`
 	npc
@@ -1239,7 +1239,7 @@ mission "Alexandria Library Card: Completion"
 				`	Continue...`
 				`	Change the subject.`
 					goto questions
-			`	"In the third book, HoD Qav awakens to the problems of his continent.  The merchant leads heroes against villains and re-unites the continent, restoring peace.  Meanwhile, as any good merchant would, HoD Qav gets fabulously wealthy.`
+			`"In the third book, HoD Qav awakens to the problems of his continent.  The merchant leads heroes against villains and re-unites the continent, restoring peace.  Meanwhile, as any good merchant would, HoD Qav gets fabulously wealthy.`
 			`	"The fourth book tells of HoD Qav's travel across the world aboard a giant ship that can cross oceans.  The merchant gathers vast resources and builds an armada while seeing sights nobody in Botolphstone had ever dreamed of.`
 			`	"More struggles across the world begin fifth book as the chaos escalates and expands.  HoD Qav helps resolve disputes, defend the weak, and steal from the rich.  The world descends into chaos with only one merchant holding back the inevitable."`
 			choice
@@ -1275,7 +1275,7 @@ mission "Alexandria Library Card: Completion"
 				goto "library services"
 			label jobs
 			`"Yes.`
-			`	"The library will pay you to Seek for rare books or artwork, and bring them here for archival.  Find Seeks on the Job Board when you're at the station.`
+			`	"The library will pay you to Seek for rare books or artwork, and bring them here for archival.`
 			`	"We'll also pay you to ferry librarians or library materials between Alexandria Station and other libraries across the Republic.  Find those jobs in Job Boards here or elsewhere.`
 			`	"Once you've proven yourself, we may give you more difficult jobs: a book cruise, long-range escort missions, or hunting book thieves.'`
 			`	"The library has a mandate to preserve forbidden knowledge.  If you can reach pirate planets, you can find jobs to smuggle illegal literature to Alexandria."`

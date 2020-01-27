@@ -338,7 +338,7 @@ outfit "Hai Diamond Regenerator"
 outfit "Hai Williwaw Cooling"
 	category "Systems"
 	cost 15000
-	thumbnail "outfit/cooling ducts hai"
+	thumbnail "outfit/hai williwaw"
 	"mass" 8
 	"outfit space" -8
 	"cooling" 9.5

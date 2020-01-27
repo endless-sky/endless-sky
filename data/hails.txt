@@ -67,7 +67,7 @@ phrase "band"
 		"Violent Surprise"
 		"Nine Meter Shanks"
 
-phrase "song"
+phrase "media name"
 	word
 		`"`
 	word
@@ -288,6 +288,16 @@ phrase "contraband"
 		"weaponized pigs"
 		"weaponized cows"
 
+phrase "visual media"
+	word
+		"holovid"
+		"holofilm"
+		"franchise"
+		"film series"
+		"show"
+		"series"
+		"soap opera"
+
 phrase "friendly civilian"
 	word
 		"You should watch the video of"
@@ -318,21 +328,120 @@ phrase "friendly civilian"
 		"playing a gig"
 		"live in concert"
 	word
+		" at Tarazed Stadium"
+		" at the amphitheater"
+		" at a concert hall"
+		" in a nightclub"
+		" at Betelgeuse Stadium"
+		" at Lionheart Arena"
+		" at the Grange"
+		" at a resort"
+		" at Canyonland Park"
+		" in a stylin' party-hall"
+		""
+	word
+		" on Skymoot!"
+		" on New Sydney!"
+		" on Splashdown!"
+		" on Hestia!"
+		" on Earth!"
+		" on Heartland!"
+		" on Vail!"
+		" on New China!"
+		"!"
+
+phrase "friendly civilian"
+	word
+		"You should check out the latest installment of "
+		"I gotta admit, I'm hooked on "
+		"Once I finish my trip, I'm catching up on "
+		"I'm off to a fan convention for "
+		"Gotta say, I enjoy watching "
+	phrase
+		"media name"
+	word
+		". It's "
+		", "
+	word
+		""
+		"definitely "
+		"easily "
+		"maybe "
+		"perhaps "
+	word
+		"the "
+	word
+		"best "
+		"coolest "
+		"weirdest "
+		"funniest "
+		"most shocking "
+		"most fascinating "
+		"most surreal "
+		"most surprising "
+		"most enjoyable "
+		"most original "
+		"most engrossing "
+	phrase
+		"visual media"
+	word
 		" "
 	word
-		"at Tarazed Stadium!"
-		"at the amphitheater on Skymoot!"
-		"at a concert hall in New Sydney!"
-		"in a nightclub on Splashdown!"
-		"at the Syndicated Systems Velodrome!"
-		"at Betelgeuse Stadium!"
-		"on Hestia!"
-		"on Earth!"
-		"at Lionheart Arena!"
-		"at the Grange on Heartland!"
-		"at a resort on Vail!"
-		"at Canyonland Park!"
-		"in a stylin' party-hall on New China!"
+		"out there!"
+		"I've seen in ages!"
+		"this year!"
+		"yet!"
+		"and deserves an award!"
+		"and you should watch it!"
+		"that nobody's heard of."
+		"of all time!"
+
+phrase "friendly civilian"
+	word
+		"On boring trips, I waste time watching"
+		"Sometimes, I can't help but watch"
+		"I can't believe that people enjoy"
+		"I can't believe I'm hooked on"
+		"Can you believe it? An award went to"
+		"Last trip, I saw"
+		"A week ago, my crew watched"
+		"I wasted lots of time viewing"
+		"I'm never getting back the time I lost to"
+	word
+		" "
+	phrase
+		"media name"
+	word
+		", definitely"
+		", easily"
+		", without a doubt"
+		". It's"
+		". It has to be"
+		", which everyone knows is"
+		", which is obviously"
+	word
+		" the "
+	word
+		"worst"
+		"cheesiest"
+		"stupidest"
+		"most boring"
+		"most predictable"
+		"most ridiculous"
+		"most pretentious"
+		"most poorly acted"
+		"most overrated"
+	word
+		" "
+	phrase
+		"visual media"
+	word
+		" "
+	word
+		"I've ever seen!"
+		"to date."
+		"in the last decade."
+		"ever made!"
 
 phrase "friendly civilian"
 	word
@@ -435,7 +544,7 @@ phrase "friendly civilian"
 	word
 		" "
 	phrase
-		"song"
+		"media name"
 	word
 		" "
 	word
@@ -1067,6 +1176,59 @@ phrase "friendly civilian"
 		"to anybody else"
 		"to another trader"
 		"to my competition"
+	word
+		"."
+		"!"
+
+phrase "friendly civilian"
+	word
+		"I just gave a lift to"
+		"I transported"
+		"My last passenger was"
+		"Got stuck with"
+	word
+		" "
+	word
+		"a"
+		"some"
+		"this"
+	word
+		" "
+	word
+		"rich kid"
+		"spoiled brat"
+		"salesman"
+		"fancy lady"
+		"old man"
+		"retired cop"
+		"college student"
+	word
+		". "
+	word
+		"They just wouldn't shut up about"
+		"They couldn't stop talking about"
+		"They yammered on about"
+		"All they would talk about was"
+	word
+		" this band"
+		""
+	word
+		" "
+	phrase
+		"band"
+	word
+		". "
+	word
+		"I just don't get it"
+		"I'm not that into music"
+		"I prefer classical works"
+		"I don't hate them"
+	word
+		", but "
+	word
+		"their latest song wasn't too bad"
+		"I kind of liked their latest song"
+		"the songs that my passenger played weren't too bad"
 	word
 		"."
 		"!"

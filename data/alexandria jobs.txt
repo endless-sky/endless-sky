@@ -9,7 +9,7 @@ mission "Small Interlibrary Loan [0]"
 		has "library card"
 		random < 70
 	destination
-		distance 3 25
+		distance 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich
 		not
@@ -35,7 +35,7 @@ mission "Small Interlibrary Loan [1]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -57,7 +57,7 @@ mission "Small Interlibrary Loan [2]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -81,7 +81,7 @@ mission "Small Interlibrary Loan [3]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -103,7 +103,7 @@ mission "Small Interlibrary Loan [4]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -125,7 +125,7 @@ mission "Small Interlibrary Loan [5]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -149,7 +149,7 @@ mission "Small Library Media Delivery [0]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -171,7 +171,7 @@ mission "Small Library Media Delivery [1]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -193,7 +193,7 @@ mission "Small Library Media Delivery [2]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -219,7 +219,7 @@ mission "Bulk Interlibrary Loan [0]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -242,7 +242,7 @@ mission "Bulk Interlibrary Loan [1]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -267,7 +267,7 @@ mission "Bulk Library Media Delivery [0]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -290,7 +290,7 @@ mission "Bulk Library Media Delivery [1]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -313,7 +313,7 @@ mission "Large Bulk Interlibrary Loan [0]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -336,7 +336,7 @@ mission "Large Bulk Interlibrary Loan [1]"
 		attributes tourism shopping urban wealthy rich
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -359,7 +359,7 @@ mission "Librarian Transport [0]"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -382,7 +382,7 @@ mission "Librarian Transport [1]"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -405,7 +405,7 @@ mission "Librarian Transport [2]"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -428,7 +428,7 @@ mission "Library Assistant Transport [0]"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -451,7 +451,7 @@ mission "Library Assistant Transport [1]"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -474,7 +474,7 @@ mission "Library Assistant Transport [2]"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -499,7 +499,7 @@ mission "Library Staff Transport [0]"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -522,7 +522,7 @@ mission "Library Staff Transport [1]"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -548,7 +548,7 @@ mission "Library Team Transport"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
 			attributes uninhabited
-		distance 3 25
+		distance 6 25
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -573,7 +573,7 @@ mission "Small Interlibrary Return [0]"
 		has "library card"
 		random < 70
 	source
-		near Markeb 3 25
+		near Markeb 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich
 		not
@@ -595,7 +595,7 @@ mission "Small Interlibrary Return [1]"
 		has "library card"
 		random < 70
 	source
-		near Markeb 3 25
+		near Markeb 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich
 		not
@@ -617,7 +617,7 @@ mission "Small Interlibrary Return [2]"
 		has "library card"
 		random < 70
 	source
-		near Markeb 3 25
+		near Markeb 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich
 		not
@@ -639,7 +639,7 @@ mission "Small Interlibrary Return [3]"
 		has "library card"
 		random < 70
 	source
-		near Markeb 3 25
+		near Markeb 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich
 		not
@@ -661,7 +661,7 @@ mission "Small Interlibrary Return [4]"
 		has "library card"
 		random < 70
 	source
-		near Markeb 3 25
+		near Markeb 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich
 		not
@@ -683,7 +683,7 @@ mission "Small Interlibrary Return [5]"
 		has "library card"
 		random < 70
 	source
-		near Markeb 3 25
+		near Markeb 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich
 		not
@@ -708,7 +708,7 @@ mission "Bulk Interlibrary Return [0]"
 		has "library card"
 		random < 40
 	source
-		near Markeb 3 25
+		near Markeb 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich
 		not
@@ -731,7 +731,7 @@ mission "Bulk Interlibrary Return [1]"
 		has "library card"
 		random < 40
 	source
-		near Markeb 3 25
+		near Markeb 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich
 		not
@@ -754,7 +754,7 @@ mission "Bulk Interlibrary Return [2]"
 		has "library card"
 		random < 40
 	source
-		near Markeb 3 25
+		near Markeb 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich
 		not
@@ -779,7 +779,7 @@ mission "Large Bulk Interlibrary Return [0]"
 		has "library card"
 		random < 25
 	source
-		near Markeb 3 25
+		near Markeb 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich
 		not
@@ -802,7 +802,7 @@ mission "Large Bulk Interlibrary Return [1]"
 		has "library card"
 		random < 25
 	source
-		near Markeb 3 25
+		near Markeb 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich
 		not
@@ -831,7 +831,7 @@ mission "Librarian Return [0]"
 		random < 35
 		has "library card"
 	source
-		near Markeb 3 25
+		near Markeb 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
@@ -854,7 +854,7 @@ mission "Librarian Return [1]"
 		random < 35
 		has "library card"
 	source
-		near Markeb 3 25
+		near Markeb 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
@@ -879,7 +879,7 @@ mission "Library Assistant Return [0]"
 		has "library card"
 		random < 35
 	source
-		near Markeb 3 25
+		near Markeb 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
@@ -902,7 +902,7 @@ mission "Library Assistant Return [1]"
 		has "library card"
 		random < 35
 	source
-		near Markeb 3 25
+		near Markeb 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
@@ -927,7 +927,7 @@ mission "Library Staff Return [0]"
 		has "library card"
 		random < 20
 	source
-		near Markeb 3 25
+		near Markeb 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
@@ -950,7 +950,7 @@ mission "Library Staff Return [1]"
 		has "library card"
 		random < 20
 	source
-		near Markeb 3 25
+		near Markeb 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich factory manufacturing
 		not
@@ -978,7 +978,7 @@ mission "Library Team Return [0]"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich factory manufacturing
-		near Markeb 3 25
+		near Markeb 6 25
 		not
 			attributes uninhabited
 	on visit
@@ -1002,7 +1002,7 @@ mission "Library Team Return [1]"
 	destination
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes tourism shopping urban wealthy rich factory manufacturing
-		near Markeb 3 25
+		near Markeb 6 25
 		not
 			attributes uninhabited
 	on visit
@@ -1026,7 +1026,7 @@ mission "Library Supplies [0]"
 		has "library card"
 		random < 25
 	source
-		near Markeb 3 25
+		near Markeb 6 25
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes factory urban manufacturing
 	on visit
