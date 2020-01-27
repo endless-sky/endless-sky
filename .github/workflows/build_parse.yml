@@ -54,7 +54,7 @@ jobs:
         sudo apt-get install libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons ccache
     - name: Install test dependencies
       run: |
-        sudo apt-get install mesa-utils libmad0 libegl1-mesa libgles2-mesa
+        sudo apt-get install mesa-utils libmad0 libegl1-mesa libgles2-mesa libgl1-mesa-dri libgl1-mesa-glx libglx-mesa0 libosmesa6
     - name: Cache ccache
       uses: actions/cache@v1.1.0
       with:
