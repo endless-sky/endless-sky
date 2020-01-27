@@ -3,10 +3,9 @@
 HERE=$(cd `dirname $0` && pwd)
 
 cd "${HERE}"
-
-Xvfb :99 -screen 0 1280x1024x24 &
-XVFB_PID=$!
-echo "XVFB PID: ${XVFB_PID}"
+Xorg -noreset +extension GLX +extension RANDR +extension RENDER -logfile ./Xserver.log -config ./xorg_dummy.conf :99 &
+XSERVER_PID=$!
+echo "XServer PID: ${XSERVER_PID}"
 export DISPLAY=:99
 # Force openGL software mode
 export LIBGL_ALWAYS_SOFTWARE=1
@@ -25,7 +24,7 @@ RETURN_VALUE=$?
 
 
 
-kill -s SIGTERM ${XVFB_PID}
+kill -s SIGTERM ${XSERVER_PID}
 
 # Enable for debugging:
 # kill -s SIGTERM ${X11VNC_PID}
