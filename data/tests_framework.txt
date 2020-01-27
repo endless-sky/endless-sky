@@ -1,9 +1,19 @@
+# Copyright 2020 by Peter van der Meer
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
 test "Test-Framework - Empty Testcase"
 	status "Active"
 	description "Test with an empty sequence. Only starts and exits the game"
 
 test "Test-Framework - Load only"
-	status "Active"
+	status "Known Failure"
 	description "Tests only loading of a game and then exits the game"
 	sequence
 		inject "commodity barges"
@@ -12,7 +22,7 @@ test "Test-Framework - Load only"
 			"ships: Light Freighter" = 3
 
 test "Test-Framework - Load and depart"
-	status "Active"
+	status "Known Failure"
 	description "Test with only a departure. Mostly tests the testframework itself."
 	sequence
 		inject "commodity barges"
@@ -25,7 +35,7 @@ test "Test-Framework - Load and depart"
 
 
 test "Test-Framework - Simple depart land"
-	status "Active"
+	status "Known Failure"
 	description "Test with only a departure and landing. Mostly tests the testframework itself."
 	sequence
 		inject "commodity barges"
