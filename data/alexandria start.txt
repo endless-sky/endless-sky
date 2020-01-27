@@ -20,7 +20,7 @@ mission "Alexandria Library Card: Offer"
 			`	You turn a corner and see something you never thought you would see on the infamously-gray planet of Earth: a large, green, field of grass with a beautiful mosque.  It looks like something out of Earth's ancient history, perfectly preserved in present day.`
 			choice
 				`	Enter the library...`
-			`On your way to the library, a scruffy-looking man approaches you.  He has a rather large gun in his holster and a massive book strapped to his back.  He starts staring intently at you, or possibly through you.  His dark red sunglasses and porcupine beard make it difficult to read his face (or even see it).  When the man abruptly stops walking you consider yelling for help, fearing you're about to be mugged.`
+			`On your way to the library, a scruffy-looking man approaches you.  He has a rather large gun in his holster and a massive book strapped to his back.  He starts staring intently at you, or possibly through you.  His dark red sunglasses and porcupine beard make it difficult to read his face (or even see it).  When the man abruptly stops walking you consider yelling for help, fearing you're about to be mugged or shot.`
 			`	Suddenly he seems startled as if from some terrible gastrointestinal distress.  He dives to the nearest bench, pulls the gigantic book off of his back, and starts jotting notes.  You're not sure he even noticed you.  His mind had wandered to whatever metaphysical world scholars occupy when reality has no bearing on their lives.`
 			choice
 				`	Interrupt him.`
@@ -63,7 +63,7 @@ mission "Alexandria Library Card: First Volume"
 			`When you arrive, you see Daemos Titan eager to depart.  He walks at a brisk pace towards your ship without even telling you his destination.  Porters behind push a cart with an impressive number of books and at least a thousand pencils.  You notice there is no modern equipment; not even a data pad.`
 			`	"Let's go already," he says.  "The five Chal Jub Paqmey are not getting any younger."`
 			`	"Go where?"`
-			`	"Yes, yes, yes.  Details." He fumbles about his person and eventually finds a folded piece of paper in his beard.  He shoves it at you so fast that his hand almost hits your nose.  You're fairly certain it wasn't meant as a hostile gesture.  This man simply hasn't talked to anyone other than himself for so long that he's forgotten basic social graces.`
+			`	"Yes, yes, yes.  Details." He fumbles about his person and eventually finds a folded piece of paper in his beard.  He shoves it at you so fast that his hand almost hits you.  You're fairly certain it wasn't meant as a hostile gesture.  This man simply hasn't talked to anyone other than himself for so long that he's forgotten basic social graces.`
 			choice
 				`	Read the paper...`
 			`The paper is of organic origin, not a modern synthetic, and is stamped with the Alexandria Library Seal using actual wax.  The text is badly smudged, but you can make out some details.`
@@ -218,7 +218,7 @@ mission "Alexandria Library Card: Second Volume: Step 2"
 				`	"I don't have time to help you any more."`
 					decline
 			label seeker
-			`"An Alexandria Seeker is an adventurer who scours the galaxy for works of literature or art and brings them back to the library for archival.  It's a dangerous job, but it is worth the risk to ensure knowledge is preserved."`
+			`"An Alexandria Seeker is an adventurer who scours the galaxy for works of literature or art and brings them back to the library for archival.  It's a dangerous job, but it is worth the risk to ensure knowledge is preserved.`
 			`	"When you get a pilot license, the paperwork goes to many organizations in the Republic.  Alexandria Library is one of them.  If your personality fits and you've show determination and resourcefulness, they consider you for an apprenticeship.  Finish your first mission, and you'll be a Journeyman Seeker.  Prove your skill, and you'll be a Master Seeker with a sizable salary.  We always Seek in pairs, so you'll still have to ferry someone even as a Master Seeker."`
 				goto "seeker questions"
 			label "why me"
@@ -374,6 +374,7 @@ mission "Alexandria Library Card: Second Volume: Step 3"
 	on offer
 		conversation
 			`Daemos looks dead serious when you approach him.  He says, "we're going to a pirate planet.  That's an insanely dangerous thing to do in a ship like yours.  I've arranged for us to travel with a large group of bounty hunters.  You'll need to speak to the planet's authorities before they'll let you land."`
+			`	This sounds like a quick but interesting death.  You ponder your options.
 			label questions
 			`"Do you want to know anything before we go?"`
 			choice
@@ -415,10 +416,10 @@ mission "Alexandria Library Card: Second Volume: Step 3"
 				goto "slayer questions"
 			label back
 			`"Ah.... no.  Crimson Slayer has other places to be"`
-			`"So you're saying we won't need help getting back?"`
-			`"Uh... well...  Departing a planet is far more dangerous than landing.  Pirates will wait just outside of a planet and destroy you before you can even react.  A fast ship with good shields can dodge if it curves away from the planet as soon as it leaves orbit.  A ship with decent shields, good steering, and a Scram Drive can jump immediately.  Not your ship though.  Certainly not there."`
-			`You ask, almost sarcastically, "do you plan on us living on Deadman's Cove or just dying there?"`
-			`"I'm sure something will come up.  Don't worry about it."`
+			`	"So you're saying we won't need help getting back?"`
+			`	"Uh... well...  Departing a planet is far more dangerous than landing.  Pirates will wait just outside of a planet and destroy you before you can even react.  A fast ship with good shields can dodge if it curves away from the planet as soon as it leaves orbit.  A ship with decent shields, good steering, and a Scram Drive can jump immediately.  Not your ship though.  Certainly not there."`
+			`	You ask, almost sarcastically, "do you plan on us living on Deadman's Cove or just dying there?"`
+			`	"I'm sure something will come up.  Don't worry about it."`
 				goto "slayer questions"
 			label go
 			`"That's the spirit, Captain <last> <first>!  As they say, 'Heghlu’meH QaQ jajvam!'"`
@@ -522,7 +523,7 @@ mission "Alexandria Library Card: Second Volume: Step 4"
 		payment 77500
 		conversation
 			`At long last, you make it back to the Syndicate executive.  She has the Paq cha'DIch ready, and gleefully accepts her new book on concealing poisons.  She doesn't seem to notice the skillful forgery.  Perhaps those Deadman's Cove businessmen really were legitimate.`
-			`	"Here's your payment," Daemos says, handing you 60,000 credits.  Handing you another 17,500 credits, he adds, "this is from the 'legitimate businessmen' for our assistance getting them landing clearance on Tinker.  Only three more books to go!"`
+			`	"Here's your payment," Daemos says, handing you 60,000 credits.  Handing you another 17,500 credits, he adds, "this is from the 'legitimate businessmen' for our assistance getting them landing clearance on Tinker.  Only three more books to go!`
 			`	"Meet me at the spaceport when you're ready."`
 	npc
 		government "Pirate"
@@ -626,7 +627,7 @@ mission "Alexandria Library Card: Third Volume: Step 1"
 			`After landing on Rand, Daemos takes you to a circle of stones on a mesa near one of the largest mining towns.  There are odd markings on the stones which Daemos insists must be words, even though he's never seen writing like that before.`
 			`	Two hours and thirty books later, Daemos tells you, "It's no good.  I'm going to have to talk to some xenolinguistics experts.  We need to go to Grakhord in the Sadalmelik system.  There's a navy group that patrols along here regularly.  I'm sure they wouldn't mind going two systems past the end of Human space."`
 			`	Your interest piques when you hear, "the end of Human space."`
-			`	"Oh, no, Captain <last> <first>.  I'm not spoiling that surprise."`
+			`	"Oh, no, Captain <last> <first>.  I'm not spoiling that surprise.`
 			`	"Meet me in the spaceport when you're ready to go."`
 
 
@@ -698,7 +699,7 @@ mission "Alexandria Library Card: Third Volume: Step 2 Escort"
 		not "Alexandria Library Card: Third Volume: Step 2: failed"
 	on offer
 		conversation
-			`"Greetings, Daemos Titan and Captain <first> <last>!  I'm Admiral Tamarak, commander of the Navy Seventh Patrol Group.  I've never been asked to escort a Grandmaster Seeker before.  It's quite an honor."`
+			`"Greetings, Daemos Titan and Captain <first> <last>!  I'm Admiral Tamarak, commander of the Navy Seventh Patrol Group.  I've never been asked to escort a Grandmaster Seeker before.  It's quite an honor.`
 			`	"I'll take you to <destination> as long as you let me go by <date>.  The patrol route can't be left alone for long."`
 				accept
 	npc
@@ -731,7 +732,7 @@ mission "Alexandria Library Card: Third Volume: Step 3"
 		conversation
 			`Daemos takes you to a lecture about xenolinguistics, jointly presented by a young woman and a Quarg.  It is a comparative study of seven different alien languages and five Human languages.  The research suggests that there may be similar origins of some words.  If an alien race once existed, with a specific and bizarre anatomy, they may have touched all twelve languages.`
 			`	After the lecture, the woman, Dr. Sophia Nance, runs over and hugs Daemos.  "Dr. Demon!  I've missed you."`
-			`	"I haven't seen you since your thesis defense," he says to her.  "What way is that to treat your advisor?"`
+			`	"I haven't seen you since your defense," he says to her.  "What way is that to treat your thesis advisor?"`
 			`	"Sorry, Dr. Demon.  The Quarg pulled me into this project, and I was too excited to refuse.  I've been out of Human space in a Quarg Wardragon for a while."`
 			choice
 				`	Continue...`
