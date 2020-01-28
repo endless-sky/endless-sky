@@ -38,7 +38,7 @@ on:
 
 jobs:
 
-  ubuntu:
+  build_ubuntu:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -50,10 +50,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install dependencies
       run: |
-        # Microsoft Repos (for dotnet, azure-cli etc.) frequently cause issues (https://github.com/dotnet/core-setup/issues/7778#issuecomment-523518122), and we don't need them anyways
-        for apt_file in `grep -lr packages.microsoft.com /etc/apt/sources.list.d/`; do sudo rm $apt_file; done
+        sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons ccache
+        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons ccache
     - name: Cache ccache
       uses: actions/cache@v1.1.0
       with:
@@ -65,8 +64,11 @@ jobs:
           ${{ matrix.os }}-ccache-
     - name: Compile
       run: scons -j $(nproc);
-    - name: Execute test_parse
-      run: ./tests/test_parse.sh ./endless-sky
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: binary-${{ matrix.os }}
+        path: endless-sky
 
 
   windows:
@@ -124,3 +126,27 @@ jobs:
       run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) install
     - name: Execute test_parse
       run: ./tests/test_parse.sh "/tmp/EndlessSky.dst/Applications/Endless Sky.app/Contents/MacOS/Endless Sky"
+
+
+  test_ubuntu:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-16.04]
+    needs: build_ubuntu
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons ccache
+    - name: Download artifact
+      uses: actions/download-artifact@v1.0.0
+      with:
+        name: binary-${{ matrix.os }}
+        path: .
+    - name: Execute test_parse
+      run: |
+        chmod +x endless-sky
+        ./tests/test_parse.sh ./endless-sky
