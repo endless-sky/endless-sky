@@ -46,19 +46,6 @@ mission "Alexandria Library Card: Offer"
 			`	"Yes, yes, yes. I'll get ready to leave. Meet me in the spaceport this evening."`
 
 
-
-mission "Alexandria Library Card: First Volume: Forgot Daemos"
-	source Earth
-	destination Shroud
-	landing
-	to offer
-		has "Alexandria Library Card: Offer: done"
-	on enter
-		fail
-		dialog "You forgot Daemos!  You should go back to Earth and visit the spaceport."
-
-
-
 mission "Alexandria Library Card: First Volume"
 	name "Alexandria Library Card"
 	description "Take Daemos Titan to <destination> to search for the first of the five Chal Jub Paqmey."
@@ -70,7 +57,6 @@ mission "Alexandria Library Card: First Volume"
 	to offer
 		has "Alexandria Library Card: Offer: done"
 	on offer
-		fail "Alexandria Library Card: First Volume: Forgot Daemos"
 		conversation
 			`When you arrive, you see Daemos Titan eager to depart. He walks at a brisk pace towards your ship without even telling you his destination. Porters behind push a cart with an impressive number of books and at least a thousand pencils. You notice there is no modern equipment; not even a data pad.`
 			`	"Let's go already," he says. "The five Chal Jub Paqmey are not getting any younger."`
@@ -252,11 +238,9 @@ mission "Alexandria Library Card: Second Volume: Step 2"
 				accept
 	on decline
 		fail "Alexandria Library Card: Second Volume: Step 2 Escort"
-		fail "Alexandria Library Card: Second Volume: Step 2 Forgot Escorts"
 		fail "Alexandria Library Card: Second Volume: Step 2 Jump Instructions"
 	on fail
 		fail "Alexandria Library Card: Second Volume: Step 2 Escort"
-		fail "Alexandria Library Card: Second Volume: Step 2 Forgot Escorts"
 		fail "Alexandria Library Card: Second Volume: Step 2 Jump Instructions"
 	on visit
 		dialog `It seems you left the insane librarian or some of his thousand pencils behind. Perhaps they're in one of your escorts?`
@@ -289,22 +273,6 @@ mission "Alexandria Library Card: Second Volume: Step 2 Jump Instructions"
 
 
 
-mission "Alexandria Library Card: Second Volume: Step 2 Forgot Escorts"
-	source Tinker
-	destination Amazon
-	landing
-	invisible
-	to offer
-		not "Alexandria Library Card: Second Volume: Step 2 Escort: accepted"
-		has "Alexandria Library Card: Second Volume: Step 1: done"
-		not "Alexandria Library Card: Second Volume: Step 2: declined"
-		not "Alexandria Library Card: Second Volume: Step 2: failed"
-	on enter
-		dialog `You forgot the escorts Daemos hired!  You should land and visit the spaceport.`
-		fail
-
-
-
 mission "Alexandria Library Card: Second Volume: Step 2 Escort"
 	name "Escort Fleet: Deep Security"
 	description "A fleet is paid to escort you to <destination>. It will abandon you if you don't arrive by <date>."
@@ -316,7 +284,6 @@ mission "Alexandria Library Card: Second Volume: Step 2 Escort"
 		not "Alexandria Library Card: Second Volume: Step 2: declined"
 		not "Alexandria Library Card: Second Volume: Step 2: failed"
 	on offer
-		fail "Alexandria Library Card: Second Volume: Step 2 Forgot Escorts"
 		conversation
 			`Daemos takes you to the military section of the spaceport and introduces you to your escort captain. His uniform bears the insignia of Deep Security, the security force that guards Alexandria and the rest of the Deep.`
 			`	The man speaks, "We've been asked to escort you two Seekers to <destination>. If you don't arrive before <date>, then we'll have to depart for our duties elsewhere."`
@@ -397,10 +364,8 @@ mission "Alexandria Library Card: Second Volume: Step 3"
 		dialog `Press "L" to land and then "shift-T" to talk to the planet.`
 	on decline
 		fail "Alexandria Library Card: Second Volume: Step 3 Escort"
-		fail "Alexandria Library Card: Second Volume: Step 3 Forgot Escorts"
 	on fail
 		fail "Alexandria Library Card: Second Volume: Step 3 Escort"
-		fail "Alexandria Library Card: Second Volume: Step 3 Forgot Escorts"
 	on visit
 		dialog `It seems you left the insane librarian or some of his thousand pencils behind. Perhaps they're in one of your escorts?`
 	on offer
@@ -482,22 +447,6 @@ mission "Alexandria Library Card: Second Volume: Step 3"
 
 
 
-mission "Alexandria Library Card: Second Volume: Step 3 Forgot Escorts"
-	source Amazon
-	destination "Deadman's Cove"
-	landing
-	invisible
-	to offer
-		not "Alexandria Library Card: Second Volume: Step 3 Escort: active"
-		has "Alexandria Library Card: Second Volume: Step 2: done"
-		not "Alexandria Library Card: Second Volume: Step 3: declined"
-		not "Alexandria Library Card: Second Volume: Step 3: failed"
-	on enter
-		dialog `You forgot the escorts Daemos hired!  You should land and visit the spaceport.`
-		fail
-
-
-
 mission "Alexandria Library Card: Second Volume: Step 3 Escort"
 	name "Escort Fleet: Crimson Slayer"
 	description "Some bounty hunters are paid to escort you to <destination>. They will abandon you if you don't arrive by <date>."
@@ -509,7 +458,6 @@ mission "Alexandria Library Card: Second Volume: Step 3 Escort"
 		not "Alexandria Library Card: Second Volume: Step 3: declined"
 		not "Alexandria Library Card: Second Volume: Step 3: failed"
 	on offer
-		fail "Alexandria Library Card: Second Volume: Step 3 Forgot Escorts"
 		conversation
 
 			branch "can offer"
@@ -550,10 +498,8 @@ mission "Alexandria Library Card: Second Volume: Step 4"
 		dialog `You've forgotten your senile friend or his pencils. Perhaps they're in one of your escorts?`
 	on decline
 		fail "Alexandria Library Card: Second Volume: Step 4 Escort"
-		fail "Alexandria Library Card: Second Volume: Step 4 Forgot Escorts"
 	on fail
 		fail "Alexandria Library Card: Second Volume: Step 4 Escort"
-		fail "Alexandria Library Card: Second Volume: Step 4 Forgot Escorts"
 	on offer
 		conversation
 			`Daemos has you land on a remote island near the southern pole. The buildings here are well-concealed, durable, structures. You enter one and go down an elevator for at least two minutes into some kind of hidden shipyard. A large number of men in masks seem to be modifying a Bounder, adding space for a gun.`
@@ -584,22 +530,6 @@ mission "Alexandria Library Card: Second Volume: Step 4"
 
 
 
-mission "Alexandria Library Card: Second Volume: Step 4 Forgot Escorts"
-	source "Deadman's Cove"
-	clearance "Daemos sends a message to his friend on Deadman's Cove. You receive coded landing coordinates."
-	landing
-	invisible
-	to offer
-		not "Alexandria Library Card: Second Volume: Step 4 Escort: active"
-		has "Alexandria Library Card: Second Volume: Step 3: done"
-		not "Alexandria Library Card: Second Volume: Step 4: declined"
-		not "Alexandria Library Card: Second Volume: Step 4: failed"
-	on enter
-		dialog `You forgot the escorts Daemos hired!  You should land and visit the spaceport.`
-		fail
-
-
-
 mission "Alexandria Library Card: Second Volume: Step 4 Escort"
 	name `Escort Fleet: "Legitimate Businessmen"`
 	description `"Legitimate businessmen" agree to escort you to <destination>. They say if you don't arrive by <date>, then "your fate is in your own hands."`
@@ -611,7 +541,6 @@ mission "Alexandria Library Card: Second Volume: Step 4 Escort"
 		not "Alexandria Library Card: Second Volume: Step 4: declined"
 		not "Alexandria Library Card: Second Volume: Step 4: failed"
 	on offer
-		fail "Alexandria Library Card: Second Volume: Step 4 Forgot Escorts"
 		conversation
 			`Several extremely large men in masks meet you and Daemos at the spaceport.`
 			`	Daemos informs you, "These legitimate businessmen will accompany us back to Tinker."`
@@ -729,10 +658,8 @@ mission "Alexandria Library Card: Third Volume: Step 2"
 		dialog `You've forgotten your senile friend or his pencils. Perhaps they're in one of your escorts?`
 	on decline
 		fail "Alexandria Library Card: Third Volume: Step 2 Escort"
-		fail "Alexandria Library Card: Third Volume: Step 2 Forgot Escorts"
 	on fail
 		fail "Alexandria Library Card: Third Volume: Step 2 Escort"
-		fail "Alexandria Library Card: Third Volume: Step 2 Forgot Escorts"
 	npc
 		government "Pirate"
 		personality disables appeasing staying
@@ -756,23 +683,6 @@ mission "Alexandria Library Card: Third Volume: Step 2"
 
 
 
-
-
-mission "Alexandria Library Card: Third Volume: Step 2 Forgot Escorts"
-	landing
-	invisible
-	source Rand
-	destination Grakhord
-	to offer
-		not "Alexandria Library Card: Third Volume: Step 2 Escort: active"
-		has "Alexandria Library Card: Third Volume: Step 1: done"
-		not "Alexandria Library Card: Third Volume: Step 2: declined"
-		not "Alexandria Library Card: Third Volume: Step 2: failed"
-	on enter
-		dialog `You forgot the escorts Daemos hired!  You should land and visit the spaceport.`
-		fail
-
-
 mission "Alexandria Library Card: Third Volume: Step 2 Escort"
 	name `Escort Fleet: Navy Patrol`
 	description `A Republic Navy patrol group will escort you to <destination>. After <date>, they'll have to return to their patrol.`
@@ -784,7 +694,6 @@ mission "Alexandria Library Card: Third Volume: Step 2 Escort"
 		not "Alexandria Library Card: Third Volume: Step 2: declined"
 		not "Alexandria Library Card: Third Volume: Step 2: failed"
 	on offer
-		fail "Alexandria Library Card: Second Volume: Step 2 Forgot Escorts"
 		conversation
 			`"Greetings, Daemos Titan and Captain <first> <last>!  I'm Admiral Tamarak, commander of the Navy Seventh Patrol Group. I've never been asked to escort a Grandmaster Seeker before. It's quite an honor.`
 			`	"I'll take you to <destination> as long as you arrive by <date>. The patrol route can't be left alone for long."`
@@ -852,10 +761,8 @@ mission "ZZ Alexandria Library Card: Third Volume: Step 3"
 		dialog `You've forgotten your senile friend or his pencils. Perhaps they're in one of your escorts?`
 	on decline
 		fail "ZZ Alexandria Library Card: Third Volume: Step 3 Escort"
-		fail "ZZ Alexandria Library Card: Third Volume: Step 3 Forgot Escorts"
 	on fail
 		fail "ZZ Alexandria Library Card: Third Volume: Step 3 Escort"
-		fail "ZZ Alexandria Library Card: Third Volume: Step 3 Forgot Escorts"
 	npc
 		government "Pirate"
 		personality vindictive plunders staying
@@ -866,22 +773,6 @@ mission "ZZ Alexandria Library Card: Third Volume: Step 3"
 				"Marauder Leviathan (Engines)" 1
 				"Aerie" 2
 				"Dagger" 4
-
-
-
-mission "ZZ Alexandria Library Card: Third Volume: Step 3 Forgot Escorts"
-	landing
-	invisible
-	source Grakhord
-	destination "New Austria"
-	to offer
-		not "ZZ Alexandria Library Card: Third Volume: Step 3 Escort: active"
-		has "Alexandria Library Card: Third Volume: Step 2: done"
-		not "ZZ Alexandria Library Card: Third Volume: Step 3: declined"
-		not "ZZ Alexandria Library Card: Third Volume: Step 3: failed"
-	on enter
-		dialog `You forgot the escorts Daemos hired!  You should land and visit the spaceport.`
-		fail
 
 
 
@@ -897,7 +788,6 @@ mission "ZZ Alexandria Library Card: Third Volume: Step 3 Escort"
 		not "ZZ Alexandria Library Card: Third Volume: Step 3: declined"
 		not "ZZ Alexandria Library Card: Third Volume: Step 3: failed"
 	on offer
-		fail "ZZ Alexandria Library Card: Third Volume: Step 3 Forgot Escorts"
 		conversation
 			`A saleswoman in a Tarazed Shipyards uniform approaches you. "We have business near the Navy research center so we'll escort you to <destination>. If you don't arrive by <date>, we'll have to part ways.`
 			`	"By the way, I noticed you may be in need of a new ship. You'll pass by the Tarazed system when you exit Quarg space. Our corporate capital there, on Wayfarer, has the most well-stocked shipyard and outfitters in Human space. Stop by if you have a chance."`
@@ -976,7 +866,6 @@ mission "Alexandria Library Card: Key"
 				accept
 	on decline
 		fail "Alexandria Library Card: Key: Escort"
-		fail "Alexandria Library Card: Key: Forgot Escorts"
 		fail "Alexandria Library Card: Key: New Boston"
 		fail "Alexandria Library Card: Key: New Holland"
 		fail "Alexandria Library Card: Key: Deep"
@@ -984,7 +873,6 @@ mission "Alexandria Library Card: Key"
 		fail "Alexandria Library Card: Key: New Iceland"
 	on fail
 		fail "Alexandria Library Card: Key: Escort"
-		fail "Alexandria Library Card: Key: Forgot Escorts"
 		fail "Alexandria Library Card: Key: New Boston"
 		fail "Alexandria Library Card: Key: New Holland"
 		fail "Alexandria Library Card: Key: Deep"
@@ -992,7 +880,6 @@ mission "Alexandria Library Card: Key"
 		fail "Alexandria Library Card: Key: New Iceland"
 	on complete
 		fail "Alexandria Library Card: Key: Escort"
-		fail "Alexandria Library Card: Key: Forgot Escorts"
 		payment 60000
 	npc
 		government "Pirate"
@@ -1130,25 +1017,6 @@ mission "Alexandria Library Card: Key: New Iceland"
 
 
 
-mission "Alexandria Library Card: Key: Forgot Escorts"
-	name "Jump Instructions"
-	description "A fleet is paid to escort you to <destination>. It will abandon you if you don't arrive by <date>."
-	source "New Austria"
-	destination Rand
-	landing
-	invisible
-	to offer
-		not "Alexandria Library Card: Key: Escort: active"
-		has "ZZ Alexandria Library Card: Third Volume: Step 3: done"
-		not "Alexandria Library Card: Third Volume: Key: declined"
-		not "Alexandria Library Card: Third Volume: Key: failed"
-	on enter
-		dialog `You forgot the escorts Daemos hired!  You should land and visit the spaceport.`
-		fail
-
-
-
-
 mission "Alexandria Library Card: Key: Escort"
 	name `Escort Fleet: New Boston Militia`
 	description `The New Boston Militia will escort you until <date>.`
@@ -1162,7 +1030,6 @@ mission "Alexandria Library Card: Key: Escort"
 	to complete
 		has "Alexandria Library Card: Key: done"
 	on offer
-		fail "Alexandria Library Card: Key: Forgot Escorts"
 		conversation
 			`Some men in green uniforms approach. One of them addresses you, "Captain <last>. I'm Commodore Garret of the New Boston Militia. The Alexandria Library is paying for us to escort you until <date>."`
 				accept
@@ -1264,10 +1131,8 @@ mission "Alexandria Library Card: Rescue"
 		dialog `You need to bring Daemos, his cargo, and the Gonza Book Cruise here to complete this mission.`
 	on decline
 		fail "Alexandria Library Card: Rescue: Escort"
-		fail "Alexandria Library Card: Rescue: Forgot Escorts"
 	on fail
 		fail "Alexandria Library Card: Rescue: Escort"
-		fail "Alexandria Library Card: Rescue: Forgot Escorts"
 	npc accompany save
 		personality escort derelict timid target
 		government "Librarian"
@@ -1283,22 +1148,6 @@ mission "Alexandria Library Card: Rescue"
 
 
 
-mission "Alexandria Library Card: Rescue: Forgot Escorts"
-	landing
-	invisible
-	source Valhalla
-	destination Ingot
-	to offer
-		has "Alexandria Library Card: Return: done"
-		not "Alexandria Library Card: Rescue: declined"
-		not "Alexandria Library Card: Rescue: failed"
-	on enter
-		dialog `You forgot the escorts Daemos hired!  You should land and visit the spaceport.`
-		fail
-
-
-
-
 mission "Alexandria Library Card: Rescue: Escort"
 	name `Escort Fleet: Deep Security`
 	description `A Deep Security rescue fleet will escort you to Mora so you can repair the Gonza Book Cruise before <date>.`
@@ -1310,7 +1159,6 @@ mission "Alexandria Library Card: Rescue: Escort"
 		not "Alexandria Library Card: Rescue: declined"
 		not "Alexandria Library Card: Rescue: failed"
 	on offer
-		fail "Alexandria Library Card: Rescue: Forgot Escorts"
 		conversation
 			`Deep Security meets you and Daemos.  "A fleet is prepared, but only your ship can board the Gonza Book Cruise.  We must bring it back to <destination> before <date>."`
 				accept
