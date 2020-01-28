@@ -27298,7 +27298,7 @@ planet Palarei
 	attributes ka'het
 	landscape land/valley5
 	description `Thanks to their earlier exploration vessels, here the Builders encountered the first lifeforms evolved outside of their own planet under the form of some kinds of plants. Due to its hot climate the planet was only barely capable of supporting life, but the fruits the local flora produced were popular enough that Palarei became a major farming planet for many millennium.`
-	description `	The farms on Palarei were one of the few successful Builder attemps at creating fully automatic facilities. Due to that, less than a hundred people were present here at the time of the invasion, who were quickly killed by one of the initial Ka'het attacks. Even now a few farms keep working, but only partially: there is no one to pick the fruits harvested, and the reserves now only attract wildlife.`
+	description `	The farms on Palarei were one of the few successful Builder attempts at creating fully automatic facilities. Due to that, less than a hundred people were present here at the time of the invasion, who were quickly killed by one of the initial Ka'het attacks. Even now a few farms keep working, but only partially: there is no one to pick the fruits harvested, and the reserves now only attract wildlife.`
 
 planet Parii'het
 	attributes ka'het
