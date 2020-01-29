@@ -274,6 +274,15 @@ government "Kor Sestor"
 	
 	"player reputation" -1000
 
+government "Librarian"
+	swizzle 4
+	
+	"player reputation" 10
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
+
 government "Marauder"
 	swizzle 6
 	"player reputation" 1
