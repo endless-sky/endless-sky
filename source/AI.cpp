@@ -2997,6 +2997,7 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands)
 {
 	Command command;
+	bool shift = activeCommands.Has(Command::SHIFT);
 	
 	bool isWormhole = false;
 	if(player.HasTravelPlan())
@@ -3099,7 +3100,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				// if the player is repeatedly targeting nearest to, say, target
 				// a bunch of fighters, they won't start firing on friendly
 				// ships as soon as the last one is gone.
-				if((!state && !activeCommands.Has(Command::SHIFT)) || other->IsYours())
+				if((!state && !shift) || other->IsYours())
 					continue;
 				
 				state += state * !other->IsDisabled();
@@ -3145,7 +3146,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					&& !other->GetGovernment()->IsEnemy());
 			if(other == target)
 				selectNext = true;
-			else if(selectNext && isPlayer == activeCommands.Has(Command::SHIFT) && other->IsTargetable())
+			else if(selectNext && isPlayer == shift && other->IsTargetable())
 			{
 				ship.SetTargetShip(other);
 				selectNext = false;
@@ -3160,9 +3161,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		// Board the nearest disabled ship, focusing on hostiles before allies. Holding
 		// `Shift` results in boarding only player-owned escorts in need of assistance.
 		shared_ptr<const Ship> target = ship.GetTargetShip();
-		if(!target || !CanBoard(ship, *target) || (activeCommands.Has(Command::SHIFT) && !target->IsYours()))
+		if(!target || !CanBoard(ship, *target) || (shift && !target->IsYours()))
 		{
-			if(activeCommands.Has(Command::SHIFT))
+			if(shift)
 				ship.SetTargetShip(shared_ptr<Ship>());
 			
 			double closest = numeric_limits<double>::infinity();
@@ -3171,7 +3172,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			for(const shared_ptr<Ship> &other : ships)
 				if(CanBoard(ship, *other))
 				{
-					if(activeCommands.Has(Command::SHIFT) && !other->IsYours())
+					if(shift && !other->IsYours())
 						continue;
 					
 					bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
