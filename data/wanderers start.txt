@@ -417,7 +417,7 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 			choice
 				`	"I guess I could be considered a hero."`
 					goto proposal
-				`	"Calling me a great hero would be an understatement."`
+				`	"Calling me a 'great' hero would be an understatement."`
 					goto proposal
 				`	"That's me, but I would prefer some payment as well."`
 					goto jerk
