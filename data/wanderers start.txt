@@ -443,11 +443,10 @@ mission "Wanderers: Defend Vara Ke'sok"
 	source "Vara Ke'sok"
 	to offer
 		has "Wanderers Conversation: offered"
+		not "Wanderers: Defend Vara Ke'sok Hint: active"
 		or
 			random < 50
 			has "Wanderers: Defend Vara Ke'sok Hint: done"
-			and
-				not "Wanderers: Defend Vara Ke'sok Hint: active"
 	on offer
 		conversation
 			branch hint
