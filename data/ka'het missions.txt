@@ -117,11 +117,8 @@ mission "First Contact: Ka'het: Quarg 1"
 		system "0 Sharp"
 		fleet "Large Northern Pirates"
 
-# The missing space between the ":" and "K" ensures the landing
-# message occurs the "First Contact: Quarg" landing mission.  That is
-# because std::set iterates in order and "Q" is after " " in ASCII
-# encoding.
-mission "First Contact:Ka'het: Quarg 2"
+# The Z ensures this happens after meeting the Quarg.
+mission "First Contact: Z Ka'het: Quarg 2"
 	landing
 	invisible
 	source
