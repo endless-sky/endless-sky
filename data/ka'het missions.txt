@@ -97,7 +97,7 @@ mission "First Contact: Ka'het: Quarg 1"
 	landing
 	source "Querii'ka"
 	to complete
-		has "First Contact: Z Ka'het: Quarg 2: done"
+		never
 	on offer
 		log "Discovered an uninhabited, complete Quarg ring in the middle of the Graveyard. It seems weird that they would abandon a ringworld, given how important they are to them."
 		conversation
@@ -111,7 +111,6 @@ mission "First Contact: Ka'het: Quarg 1"
 			`	Apart from the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to ask the Quarg what happened here...`
 				accept
 
-# The Z ensures this happens after meeting the Quarg.
 mission "First Contact: Z Ka'het: Quarg 2"
 	landing
 	invisible
