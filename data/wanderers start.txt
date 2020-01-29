@@ -435,7 +435,6 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 10000 20
-		conversation
 
 
 mission "Wanderers: Defend Vara Ke'sok"
