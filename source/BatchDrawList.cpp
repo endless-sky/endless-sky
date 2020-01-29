@@ -1,4 +1,4 @@
-/* BatchDrawList.h
+/* BatchDrawList.cpp
 Copyright (c) 2017 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -99,7 +99,7 @@ void BatchDrawList::Draw() const
 {
 	BatchShader::Bind();
 	
-	for(const pair<const Sprite *, vector<float>> &it : data)
+	for(const pair<const Sprite * const, vector<float>> &it : data)
 		BatchShader::Add(it.first, isHighDPI, it.second);
 	
 	BatchShader::Unbind();

@@ -618,7 +618,7 @@ outfit "Meteor Missile"
 	thumbnail "outfit/meteor"
 	"mass" .2
 	"meteor capacity" -1
-	description "A Meteor Missile serves as ammunition for the Meteor Missile Launcher. Each missile launcher has the capacity for 35 missiles; you cannot install missiles if you have not first purchased a launcher to store them in."
+	description "A Meteor Missile serves as ammunition for the Meteor Missile Launcher. Each missile launcher has the capacity for 30 missiles; you cannot install missiles if you have not first purchased a launcher to store them in."
 
 outfit "Meteor Missile Box"
 	plural "Meteor Missile Boxes"
@@ -681,7 +681,7 @@ outfit "Sidewinder Missile"
 	thumbnail "outfit/sidewinder"
 	"mass" .2
 	"sidewinder capacity" -1
-	description "The Sidewinder Missile is ammunition for the Sidewinder Missile Launcher; each launcher that you have installed can be armed with up to 50 of them. You cannot install a missile without a launcher to fire it from."
+	description "The Sidewinder Missile is ammunition for the Sidewinder Missile Launcher; each launcher that you have installed can be armed with up to 45 of them. You cannot install a missile without a launcher to fire it from."
 
 outfit "Sidewinder Missile Rack"
 	category "Ammunition"

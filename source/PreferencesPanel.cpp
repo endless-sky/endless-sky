@@ -240,7 +240,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 			zoom += ZOOM_FACTOR_INCREMENT;
 		
 		Screen::SetZoom(zoom);
-		if (Screen::Zoom() != zoom)
+		if(Screen::Zoom() != zoom)
 			Screen::SetZoom(Screen::Zoom());
 		
 		// Convert to raw window coordinates, at the new zoom level.
@@ -298,7 +298,7 @@ void PreferencesPanel::DrawControls()
 		"Navigation",
 		"Weapons",
 		"Targeting",
-		"Menus",
+		"Interface",
 		"Fleet"
 	};
 	const string *category = CATEGORIES;
@@ -327,6 +327,7 @@ void PreferencesPanel::DrawControls()
 		Command::MAP,
 		Command::INFO,
 		Command::FULLSCREEN,
+		Command::FASTFORWARD,
 		Command::NONE,
 		Command::DEPLOY,
 		Command::FIGHT,
@@ -360,7 +361,7 @@ void PreferencesPanel::DrawControls()
 			bool isEditing = (index == editing);
 			if(isConflicted || isEditing)
 			{
-				table.SetHighlight(66, 120);
+				table.SetHighlight(56, 120);
 				table.DrawHighlight(isEditing ? dim: red);
 			}
 			
@@ -368,7 +369,7 @@ void PreferencesPanel::DrawControls()
 			bool isHovering = (index == hover && !isEditing);
 			if(!isHovering && index == selected)
 			{
-				table.SetHighlight(-120, 64);
+				table.SetHighlight(-120, 54);
 				table.DrawHighlight(back);
 			}
 			
@@ -437,6 +438,7 @@ void PreferencesPanel::DrawSettings()
 		"Render motion blur",
 		"Reduce large graphics",
 		"Draw background haze",
+		"Draw starfield",
 		"Show hyperspace flash",
 		"",
 		"Other",
@@ -566,7 +568,7 @@ void PreferencesPanel::DrawPlugins()
 	
 	const int MAX_TEXT_WIDTH = 230;
 	const Font &font = FontSet::Get(14);
-	for(const pair<string, string> &plugin : GameData::PluginAboutText())
+	for(const auto &plugin : GameData::PluginAboutText())
 	{
 		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin.first);
 		

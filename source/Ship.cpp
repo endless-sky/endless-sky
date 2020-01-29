@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipEvent.h"
 #include "Sound.h"
 #include "SpriteSet.h"
+#include "Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Visual.h"
@@ -583,6 +584,8 @@ void Ship::Save(DataWriter &out) const
 		if(!noun.empty())
 			out.Write("noun", noun);
 		SaveSprite(out);
+		if(thumbnail)
+			out.Write("thumbnail", thumbnail->Name());
 		
 		if(neverDisabled)
 			out.Write("never disabled");
@@ -2963,7 +2966,7 @@ bool Ship::CanFire(const Weapon *weapon) const
 	if(weapon->Ammo())
 	{
 		auto it = outfits.find(weapon->Ammo());
-		if(it == outfits.end() || it->second <= 0)
+		if(it == outfits.end() || it->second < weapon->AmmoUsage())
 			return false;
 	}
 	
@@ -2988,7 +2991,7 @@ void Ship::ExpendAmmo(const Weapon *weapon)
 	if(!weapon)
 		return;
 	if(weapon->Ammo())
-		AddOutfit(weapon->Ammo(), -1);
+		AddOutfit(weapon->Ammo(), -weapon->AmmoUsage());
 	
 	energy -= weapon->FiringEnergy();
 	fuel -= weapon->FiringFuel();

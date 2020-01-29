@@ -204,7 +204,7 @@ void NPC::Save(DataWriter &out) const
 			out.Write("accompany");
 		
 		if(government)
-			out.Write("government", government->GetName());
+			out.Write("government", government->GetTrueName());
 		personality.Save(out);
 		
 		if(!dialogText.empty())
@@ -345,7 +345,7 @@ bool NPC::HasSucceeded(const System *playerSystem) const
 			}
 			bool isHere = false;
 			// If this ship is being carried, check the parent's system.
-			if(!ship->GetSystem() && ship->CanBeCarried())
+			if(!ship->GetSystem() && ship->CanBeCarried() && ship->GetParent())
 				isHere = ship->GetParent()->GetSystem() == playerSystem;
 			else
 				isHere = (!ship->GetSystem() || ship->GetSystem() == playerSystem);
