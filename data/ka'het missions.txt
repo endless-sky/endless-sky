@@ -96,7 +96,6 @@ mission "First Contact: Ka'het: Quarg 1"
 	description "Visit the Quarg and ask them about the abandoned ring in the middle of Ka'het space."
 	landing
 	source "Querii'ka"
-	destination "Querii'ka"
 	to complete
 		has "First Contact: Ka'het: Quarg 2: done"
 	on offer
