@@ -1,3 +1,13 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
 mission "Alexandria Library Card: Offer"
 	name "Alexandria Library Card"
 	minor
@@ -875,7 +885,7 @@ mission "Alexandria Library Card: Key"
 			`"I'm running out of escort funding so I hired some local militias to escort us. They're not superbly powerful, but they don't charge much."`
 				goto top
 			label accept
-			`"Excellent. The Navy already added the locations in your ship's map and mission list.  Visit the spaceport before we go to pick up our escorts."`
+			`"Excellent. The Navy already added the locations in your ship's map and mission list. Visit the spaceport before we go to pick up our escorts."`
 				accept
 	on decline
 		fail "Alexandria Library Card: Key: Escort"
