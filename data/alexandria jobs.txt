@@ -347,7 +347,7 @@ mission "Librarian Transport [0]"
 	name "Alexandria Librarian to <planet>"
 	job
 	repeat
-	description "Transport an Alexandria Librarian and <cargo> to <destination>.  Payment is <payment>."
+	description "Transport an Alexandria Librarian and <cargo> to <destination>. Payment is <payment>."
 	cargo "Library Supplies" 3 2 .5
 	passengers 1
 	source Alexandria
@@ -370,7 +370,7 @@ mission "Librarian Transport [1]"
 	name "Alexandria Librarian to <planet>"
 	job
 	repeat
-	description "Transport an Alexandria Librarian and <cargo> to <destination>.  Payment is <payment>."
+	description "Transport an Alexandria Librarian and <cargo> to <destination>. Payment is <payment>."
 	cargo "Library Supplies" 3 2 .5
 	passengers 1
 	source Alexandria
@@ -393,7 +393,7 @@ mission "Librarian Transport [2]"
 	name "Alexandria Librarian to <planet>"
 	job
 	repeat
-	description "Transport an Alexandria Librarian and <cargo> to <destination>.  Payment is <payment>."
+	description "Transport an Alexandria Librarian and <cargo> to <destination>. Payment is <payment>."
 	cargo "Library Supplies" 3 2 .5
 	passengers 1
 	source Alexandria
@@ -416,7 +416,7 @@ mission "Library Assistant Transport [0]"
 	name "Alexandria Library Assistant to <planet>"
 	job
 	repeat
-	description "Transport an Alexandria Library Assistant and <cargo> to <destination>.  Payment is <payment>."
+	description "Transport an Alexandria Library Assistant and <cargo> to <destination>. Payment is <payment>."
 	cargo "Library Supplies" 3 2 .5
 	passengers 1
 	source Alexandria
@@ -439,7 +439,7 @@ mission "Library Assistant Transport [1]"
 	name "Alexandria Library Assistant to <planet>"
 	job
 	repeat
-	description "Transport an Alexandria Library Assistant and <cargo> to <destination>.  Payment is <payment>."
+	description "Transport an Alexandria Library Assistant and <cargo> to <destination>. Payment is <payment>."
 	cargo "Library Supplies" 3 2 .5
 	passengers 1
 	source Alexandria
@@ -462,7 +462,7 @@ mission "Library Assistant Transport [2]"
 	name "Alexandria Library Assistant to <planet>"
 	job
 	repeat
-	description "Transport an Alexandria Library Assistant and <cargo> to <destination>.  Payment is <payment>."
+	description "Transport an Alexandria Library Assistant and <cargo> to <destination>. Payment is <payment>."
 	cargo "Library Supplies" 3 2 .5
 	passengers 1
 	source Alexandria
@@ -487,7 +487,7 @@ mission "Library Staff Transport [0]"
 	name "Alexandria Library staff to <planet>"
 	job
 	repeat
-	description "Transport <bunks> Alexandria Library staff members and <cargo> to <destination>.  Payment is <payment>."
+	description "Transport <bunks> Alexandria Library staff members and <cargo> to <destination>. Payment is <payment>."
 	cargo "Library Supplies" 3 2 .5
 	passengers 3 10 .7
 	source Alexandria
@@ -510,7 +510,7 @@ mission "Library Staff Transport [1]"
 	name "Alexandria Library staff to <planet>"
 	job
 	repeat
-	description "Transport <bunks> Alexandria Library staff members and <cargo> to <destination>.  Payment is <payment>."
+	description "Transport <bunks> Alexandria Library staff members and <cargo> to <destination>. Payment is <payment>."
 	cargo "Library Supplies" 3 2 .5
 	source Alexandria
 	passengers 3 10 .7
@@ -535,7 +535,7 @@ mission "Library Team Transport"
 	name "Alexandria Library team to <planet>"
 	job
 	repeat
-	description "Transport a team of <bunks> Alexandria Library staff and <cargo> to <destination>.  Payment is <payment>."
+	description "Transport a team of <bunks> Alexandria Library staff and <cargo> to <destination>. Payment is <payment>."
 	cargo "Library Supplies" 3 2 .5
 	source Alexandria
 	passengers 10 4 .2
@@ -823,7 +823,7 @@ mission "Librarian Return [0]"
 	name "Return a Librarian to Alexandria"
 	job
 	repeat
-	description "Return an Alexandria Librarian and <cargo> to <destination>.  Payment is <payment>."
+	description "Return an Alexandria Librarian and <cargo> to <destination>. Payment is <payment>."
 	cargo "Library Supplies" 3 2 .5
 	passengers 1
 	destination Alexandria
@@ -846,7 +846,7 @@ mission "Librarian Return [1]"
 	name "Return a Librarian to Alexandria"
 	job
 	repeat
-	description "Return an Alexandria Librarian and <cargo> to <destination>.  Payment is <payment>."
+	description "Return an Alexandria Librarian and <cargo> to <destination>. Payment is <payment>."
 	cargo "Library Supplies" 3 2 .5
 	passengers 1
 	destination Alexandria
@@ -871,7 +871,7 @@ mission "Library Assistant Return [0]"
 	name "Return a Library Assistant to Alexandria"
 	job
 	repeat
-	description "Return an Alexandria Library Assistant and <cargo> to <destination>.  Payment is <payment>."
+	description "Return an Alexandria Library Assistant and <cargo> to <destination>. Payment is <payment>."
 	cargo "Library Supplies" 3 2 .5
 	passengers 1
 	destination Alexandria
@@ -894,7 +894,7 @@ mission "Library Assistant Return [1]"
 	name "Return a Library Assistant to Alexandria"
 	job
 	repeat
-	description "Return an Alexandria Library Assistant and <cargo> to <destination>.  Payment is <payment>."
+	description "Return an Alexandria Library Assistant and <cargo> to <destination>. Payment is <payment>."
 	cargo "Library Supplies" 3 2 .5
 	passengers 1
 	destination Alexandria
@@ -919,7 +919,7 @@ mission "Library Staff Return [0]"
 	name "Alexandria Library staff to <planet>"
 	job
 	repeat
-	description "Return <bunks> Alexandria Library staff members and <cargo> to <destination>.  Payment is <payment>."
+	description "Return <bunks> Alexandria Library staff members and <cargo> to <destination>. Payment is <payment>."
 	cargo "Library Supplies" 3 2 .5
 	passengers 3 10 .7
 	destination Alexandria
@@ -942,7 +942,7 @@ mission "Library Staff Return [1]"
 	name "Alexandria Library staff to <planet>"
 	job
 	repeat
-	description "Return <bunks> Alexandria Library staff members and <cargo> to <destination>.  Payment is <payment>."
+	description "Return <bunks> Alexandria Library staff members and <cargo> to <destination>. Payment is <payment>."
 	cargo "Library Supplies" 3 2 .5
 	destination Alexandria
 	passengers 3 10 .7
@@ -967,7 +967,7 @@ mission "Library Team Return [0]"
 	name "Alexandria Library team to <planet>"
 	job
 	repeat
-	description "Return a team of <bunks> Alexandria Library staff and <cargo> to <destination>.  Payment is <payment>."
+	description "Return a team of <bunks> Alexandria Library staff and <cargo> to <destination>. Payment is <payment>."
 	cargo "Library Supplies" 3 2 .5
 	destination Alexandria
 	passengers 10 4 .2
@@ -991,7 +991,7 @@ mission "Library Team Return [1]"
 	name "Alexandria Library team to <planet>"
 	job
 	repeat
-	description "Return a team of <bunks> Alexandria Library staff and <cargo> to <destination>.  Payment is <payment>."
+	description "Return a team of <bunks> Alexandria Library staff and <cargo> to <destination>. Payment is <payment>."
 	cargo "Library Supplies" 3 2 .5
 	source Alexandria
 	passengers 10 4 .2
@@ -1206,7 +1206,7 @@ mission "Large Bulk Library Supplies [2]"
 
 ########################################################################
 
-# Smuggling to Alexandria.  Payments are high because you are going
+# Smuggling to Alexandria. Payments are high because you are going
 # deep into Republic space.
 
 
@@ -1214,7 +1214,7 @@ mission "Library Smuggling [0]"
 	name "Smuggling to Alexandria Library"
 	job
 	repeat
-	description "Smuggle <cargo> to the Alexandria Library.  Payment is <payment>.  If law enforcement catches you, you will be fined 37,000 credits."
+	description "Smuggle <cargo> to the Alexandria Library. Payment is <payment>. If law enforcement catches you, you will be fined 37,000 credits."
 	cargo "Illegal Library Cargo" 5 2 .1
 	destination Alexandria
 	illegal 37000
@@ -1235,7 +1235,7 @@ mission "Library Smuggling [1]"
 	name "Smuggling to Alexandria Library"
 	job
 	repeat
-	description "Smuggle <cargo> to the Alexandria Library.  Payment is <payment>.  If law enforcement catches you, you will be fined 45,000 credits."
+	description "Smuggle <cargo> to the Alexandria Library. Payment is <payment>. If law enforcement catches you, you will be fined 45,000 credits."
 	cargo "Illegal Library Cargo" 5 2 .1
 	destination Alexandria
 	illegal 45000
@@ -1256,7 +1256,7 @@ mission "Library Smuggling [2]"
 	name "Smuggling to Alexandria Library"
 	job
 	repeat
-	description "Smuggle <cargo> to the Alexandria Library.  Payment is <payment>.  If law enforcement catches you, you will be fined 56,000 credits."
+	description "Smuggle <cargo> to the Alexandria Library. Payment is <payment>. If law enforcement catches you, you will be fined 56,000 credits."
 	cargo "Illegal Library Cargo" 5 2 .1
 	destination Alexandria
 	illegal 56000
@@ -1279,7 +1279,7 @@ mission "Bulk Library Smuggling [0]"
 	name "Bulk smuggling to Alexandria Library"
 	job
 	repeat
-	description "Smuggle <cargo> to the Alexandria Library.  Payment is <payment>.  If law enforcement catches you, you will be fined 75,000 credits."
+	description "Smuggle <cargo> to the Alexandria Library. Payment is <payment>. If law enforcement catches you, you will be fined 75,000 credits."
 	cargo "Illegal Library Cargo" 25 2 .1
 	destination Alexandria
 	illegal 75000
@@ -1300,7 +1300,7 @@ mission "Bulk Library Smuggling [1]"
 	name "Bulk smuggling to Alexandria Library"
 	job
 	repeat
-	description "Smuggle <cargo> to the Alexandria Library.  Payment is <payment>.  If law enforcement catches you, you will be fined 93,000 credits."
+	description "Smuggle <cargo> to the Alexandria Library. Payment is <payment>. If law enforcement catches you, you will be fined 93,000 credits."
 	cargo "Illegal Library Cargo" 25 2 .1
 	destination Alexandria
 	illegal 93000
