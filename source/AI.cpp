@@ -748,7 +748,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				// this carried ship should flock with one of them, even if they can't carry it.
 				else if(!parentChoices.empty())
 					parent = parentChoices[Random::Int(parentChoices.size())];
-				// Player-owned carryables that can't be carried and have no ships to flock with
+				// Player-owned carriables that can't be carried and have no ships to flock with
 				// should keep their current parent, or if it is destroyed, their parent's parent.
 				else if(it->IsYours())
 				{
