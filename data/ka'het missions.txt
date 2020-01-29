@@ -93,7 +93,7 @@ mission "First Contact: Ka'het: Remnant 1B"
 
 mission "First Contact: Ka'het: Quarg 1"
 	name "Abandoned Ringworld"
-	description "Visit the Quarg and ask them about the abandoned ring in the middle of Ka'het space."
+	description "Visit a Quarg station to ask them about the abandoned ring in the middle of Ka'het space."
 	landing
 	source "Querii'ka"
 	to complete
