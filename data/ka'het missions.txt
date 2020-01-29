@@ -97,7 +97,7 @@ mission "First Contact: Ka'het: Quarg 1"
 	landing
 	source "Querii'ka"
 	to complete
-		has "First Contact: Ka'het: Quarg 2: done"
+		has "First Contact: Ka'het: Z Quarg 2: done"
 	on offer
 		log "Discovered an uninhabited, complete Quarg ring in the middle of the Graveyard. It seems weird that they would abandon a ringworld, given how important they are to them."
 		conversation
