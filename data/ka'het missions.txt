@@ -116,8 +116,6 @@ mission "First Contact: Ka'het: Quarg 1"
 		personality nemesis staying
 		system "0 Sharp"
 		fleet "Large Northern Pirates"
-	on fail
-		dialog "this mission failed"
 
 # The missing space between the ":" and "K" ensures the landing
 # message occurs the "First Contact: Quarg" landing mission.  That is
