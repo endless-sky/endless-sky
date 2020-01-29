@@ -415,7 +415,7 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 				goto choice2
 			label choice2
 			choice
-				`	"I guess I could be considered a hero."
+				`	"I guess I could be considered a hero."`
 					goto proposal
 				`	"Calling me a great hero would be an understatement."`
 					goto proposal
