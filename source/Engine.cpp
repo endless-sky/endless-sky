@@ -1602,10 +1602,8 @@ void Engine::HandleKeyboardInputs()
 		Command::FORWARD | Command::LEFT | Command::RIGHT;
 	
 	// Transfer all commands that need to be active as long as the corresponding key is pressed.
-	// BACK has a different meaning depending on if shift was pressed (and is handled separately).
-	activeCommands |= (keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
-		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::AFTERBURNER |
-		Command::SHIFT));
+	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
+		manueveringCommands | Command::SHIFT);
 	
 	// Issuing LAND again within the cooldown period signals a change of landing target.
 	constexpr int landCooldown = 60;
@@ -1626,21 +1624,19 @@ void Engine::HandleKeyboardInputs()
 	// If holding JUMP or toggling LAND, also send WAIT. This prevents the jump from
 	// starting (e.g. while escorts are aligning), or switches the landing target.
 	if(keyHeld.Has(Command::JUMP) || (keyHeld.Has(Command::LAND) && landKeyInterval < landCooldown))
-		activeCommands.Set(Command::WAIT);
-	else
-		activeCommands.Clear(Command::WAIT);
+		activeCommands |= Command::WAIT;
 	
+	// Transfer all newly pressed unhandled keys to active commands, except for BACK, since
+	activeCommands |= keyDown;
+
 	// Translate shift+BACK to a command to a STOP command to stop all movement of the flagship.
 	// Translation is done here to allow the autoPilot (which will execute the STOP-command) to
 	// act on a single STOP command instead of the shift+BACK modifier).
 	if(keyHeld.Has(Command::BACK) && keyHeld.Has(Command::SHIFT))
+	{
 		activeCommands |= Command::STOP;
-	else if(keyHeld.Has(Command::BACK))
-		activeCommands |= Command::BACK;
-	
-	// Transfer all newly pressed unhandled keys to active commands, except for BACK, since
-	// BACK has a different meaning depending on if shift was pressed (and is handled earlier).
-	activeCommands |= keyDown.AndNot(Command::BACK);
+		activeCommands.Clear(Command::BACK);
+	}
 }
 
 
