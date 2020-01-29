@@ -221,7 +221,7 @@ mission "Alexandria Library Card: Second Volume: Step 2"
 					goto questions
 				`	"Sounds good. Let's go."`
 					goto go
-				`	"I don't have time for this.  I'm out."`
+				`	"I don't have time for this. I'm out."`
 					decline
 			label seeker
 			`"An Alexandria Seeker is an adventurer who scours the galaxy for works of literature or art and brings them back to the library for archival. It's a dangerous job, but it is worth the risk to ensure knowledge is preserved.`
@@ -374,11 +374,10 @@ mission "Alexandria Library Card: Second Volume: Step 3"
 			choice
 				`	(Open the door.)`
 			`When the door opens, Daemos rushes forward in a panic, before you can even survey the room. It seems the man you came to see is dead, and quite recently too.`
-			`	Daemos searches the room and finds the culprit. The author was working on the second edition of his book, "A Thousand Poisons of Amazon and How to Conceal Their Taste."  Somehow, one of the poison recipes was swapped with the lunch recipe. A poetic end to someone whose work has lead to many deaths in the Syndicate.`
-			`	"This will just delay us," says Daemos, "I know a group of businessmen on Deadman's Cove who can forge his signature."`
+			`	"This will just delay us," says Daemos, "I know a group of businessmen on Deadman's Cove who can forge his signature.  Let's get out of here before we're implicated in the crime."`
 			choice
-				`	(Continue.)`
-			`You fly back to the city and Daemos disappears into a crowd of dastardly-looking men.  It takes you a while to find him again.`
+				`	(Leave.)`
+			`You fly back to the city and Daemos disappears into a crowd of dastardly-looking men. It takes you a while to find him again.`
 			`	Daemos looks dead serious when you approach him. He says, "we're going to a pirate planet. That's an insanely dangerous thing to do in a ship like yours. I've arranged for us to travel with a large group of bounty hunters. You'll need to speak to the planet's authorities before they'll let you land."`
 			label questions
 			`	"Do you want to know anything before we go?"`
@@ -579,7 +578,7 @@ mission "Alexandria Library Card: Third Volume: Step 1"
 			`	"Here's your payment," Daemos says, handing you 60,000 credits. Handing you another 17,500 credits, he adds, "This is from the 'legitimate businessmen' for our assistance getting them landing clearance on Tinker. Only three more books to go!`
 			choice
 				`	(Continue.)`
-			`Daemos wanders off to read.  Eventually you find him again, behind his giant book of scribbles he had the day you met him.  The book is blocking his face and you can see the two Chal Jub Paqmey you found are on either side of him. He's scribbling in his book and you can see he already lost seven pencils.`
+			`Daemos wanders off to read. Eventually you find him again, behind his giant book of scribbles he had the day you met him. The book is blocking his face and you can see the two Chal Jub Paqmey you found are on either side of him. He's scribbling in his book and you can see he already lost seven pencils.`
 			`	He hears you approach and greets you, "ready for the third book, <last>?"`
 			choice
 				`	"I have some questions first."`
@@ -652,7 +651,7 @@ mission "Alexandria Library Card: Third Volume: Step 2"
 				`	"Okay. Let's go"`
 				`	"I don't do mystery trips. Find another pilot."`
 					decline
-			`"Excellent.  Remember to go to the spaceport to pick up our escorts."`
+			`"Excellent. Remember to go to the spaceport to pick up our escorts."`
 				accept
 	on visit
 		dialog `You've forgotten your senile friend or his pencils. Perhaps they're in one of your escorts?`
@@ -939,7 +938,7 @@ mission "Alexandria Library Card: Key: Missing Person or Pencils"
 			not "Alexandria Library Card: Key: Trinket: done"
 			not "Alexandria Library Card: Key: New Iceland: done"
 	on visit
-		dialog `You need to bring all five keys, Daemos, and his thousand pencils before you can finish this mission.  Perhaps they're in one of your escorts?`
+		dialog `You need to bring all five keys, Daemos, and his thousand pencils before you can finish this mission. Perhaps they're in one of your escorts?`
 
 
 
@@ -1110,14 +1109,15 @@ mission "Alexandria Library Card: Rescue"
 	destination Ingot
 	passengers 1
 	landing
-	deadline 9
+	deadline 11
 	cargo "old books and a thousand pencils" 1
 	on offer
 		conversation
 			`A Deep Security officer runs towards you and Daemos in a hurry yelling, "it's been disabled!  We have to leave!"`
 			`	When the officer reaches you, he explains the Alexandria Seeker who was supposed to meet you is in grave trouble. The Seeker's ship is disabled in an uninhabited system called Mora.'  The Seeker, Gonza Doorin, refuses to let anyone onto his ship except another Seeker. There is a pirate fleet in the system, attacking anyone who gets near the ship."`
 			`	Daemos interjects, "Can Deep Security escort us?"`
-			`	"Of course," the officer responds. "We must leave at once."`
+			`	"Of course," the officer responds. "We must leave at once.`
+			`	"Hurry up and finish your business here.  Meet my fleet in the spaceport."`
 			choice
 				`	"Agreed."`
 					accept
@@ -1160,7 +1160,7 @@ mission "Alexandria Library Card: Rescue: Escort"
 		not "Alexandria Library Card: Rescue: failed"
 	on offer
 		conversation
-			`Deep Security meets you and Daemos.  "A fleet is prepared, but only your ship can board the Gonza Book Cruise.  We must bring it back to <destination> before <date>."`
+			`Deep Security meets you and Daemos. "A fleet is prepared, but only your ship can board the Gonza Book Cruise. We must bring it back to <destination> before <date>."`
 				accept
 	to complete
 		has "Alexandria Library Card: Rescue: done"
@@ -1195,7 +1195,7 @@ mission "Alexandria Library Card: Completion"
 	on offer
 		conversation
 			`When you arrive at Ingot, you see some Seekers and Deep Security agents conversing with Daemos.`
-			`	Daemos greets you with 60,000 credits and some kind words. "Just get these five books and I back to Alexandria and our Seek will be complete.  You'll be a Journeyman Seeker with all the associated rights and privileges... and 100,000 more credits."`
+			`	Daemos greets you with 60,000 credits and some kind words. "Just get these five books and I back to Alexandria and our Seek will be complete. You'll be a Journeyman Seeker with all the associated rights and privileges... and 100,000 more credits."`
 			choice
 				`	"Great!  Let's leave."`
 					accept
@@ -1283,12 +1283,18 @@ mission "Alexandria Library Card: Completion"
 mission "Access to Alexandria"
 	name "Access to Alexandria"
 	description "Access to Alexandria"
-	source Ingot
+	repeat
+	landing
+	source
+		not attributes uninhabited
 	invisible
 	destination Alexandria
 	clearance
 	to offer
 		has "Alexandria Library Card: Rescue: done"
+		or
+			has "Alexandria Library Card: Completion: done"
+			has "Alexandria Library Card: Completion: accepted"
 	to complete
 		never
 	to fail
