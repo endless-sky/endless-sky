@@ -1626,11 +1626,11 @@ void Engine::HandleKeyboardInputs()
 	if(keyHeld.Has(Command::JUMP) || (keyHeld.Has(Command::LAND) && landKeyInterval < landCooldown))
 		activeCommands |= Command::WAIT;
 	
-	// Transfer all newly pressed unhandled keys to active commands, except for BACK, since
+	// Transfer all newly pressed, unhandled keys to active commands.
 	activeCommands |= keyDown;
 
 	// Translate shift+BACK to a command to a STOP command to stop all movement of the flagship.
-	// Translation is done here to allow the autoPilot (which will execute the STOP-command) to
+	// Translation is done here to allow the autopilot (which will execute the STOP-command) to
 	// act on a single STOP command instead of the shift+BACK modifier).
 	if(keyHeld.Has(Command::BACK) && keyHeld.Has(Command::SHIFT))
 	{
