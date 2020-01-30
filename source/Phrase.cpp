@@ -19,21 +19,32 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	// Replace oldStr with newStr in target.
-	string Replace(const string &target, const string &oldStr, const string &newStr)
+	// Replaces all occurrences of the target string with the given string in-place.
+	void ReplaceAll(string &text, const string &target, const string &replacement)
 	{
-		const size_t oldSize = oldStr.size();
-		const size_t newSize = newStr.size();
-		string result = target;
-		for(size_t pos = 0;;)
+		// If the searched string is an empty string, do nothing.
+		if(target.empty())
+			return;
+		
+		string newString;
+		newString.reserve(text.size());
+		
+		// Index at which to begin searching for the target string.
+		size_t start = 0;
+		size_t matchLength = target.size(); 
+		// Index at which the target string was found.
+		size_t findPos = string::npos;
+		while((findPos = text.find(target, start)) != string::npos)
 		{
-			pos = result.find(oldStr, pos);
-			if(pos == string::npos)
-				break;
-			result.replace(pos, oldSize, newStr);
-			pos += newSize;
+			newString.append(text, start, findPos - start);
+			newString += replacement;
+			start = findPos + matchLength;
 		}
-		return result;
+		
+		// Add the remaining text.
+		newString += text.substr(start);
+		
+		text.swap(newString);
 	}
 }
 
@@ -87,7 +98,7 @@ string Phrase::Get() const
 		}
 		else if(!part.replaceRules.empty())
 			for(const auto &f : part.replaceRules)
-				result = f(result);
+				f(result);
 	}
 	
 	return result;
@@ -194,13 +205,12 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 		{
 			for(const DataNode &grand : child)
 			{
-				const string oldStr(grand.Token(0));
-				const string newStr(grand.Size() >= 2 ? grand.Token(1) : "");
-				auto f = [oldStr, newStr](const string &s) -> string
-					{
-						return Replace(s, oldStr, newStr);
-					};
-				part.replaceRules.emplace_back(f);
+				const string oldStr = grand.Token(0);
+				const string newStr = grand.Size() >= 2 ? grand.Token(1) : "";
+				part.replaceRules.emplace_back([oldStr, newStr](string &s) -> void
+				{
+					ReplaceAll(s, oldStr, newStr);
+				});
 			}
 		}
 		else

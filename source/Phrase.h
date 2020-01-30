@@ -58,7 +58,7 @@ private:
 		// Sources of text, either literal or via phrase invocation.
 		std::vector<Choice> choices;
 		// Rules for updating the generated text.
-		std::vector<std::function<std::string(const std::string&)>> replaceRules;
+		std::vector<std::function<void(std::string&)>> replaceRules;
 	};
 	
 	
