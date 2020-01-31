@@ -1510,8 +1510,8 @@ event "fw at war with Syndicate"
 	government Syndicate
 		"attitude toward"
 			"Free Worlds" -.3
-			"Pirate" -.4
-			"Korath" -.5
+			"Pirate" -.01
+			"Korath" -.01
 		bribe 0
 	system Rutilicus
 		fleet "Small Southern Merchants" 600
@@ -1591,6 +1591,16 @@ event "fw tarazed joins"
 		government "Free Worlds"
 	system "Albireo"
 		government "Free Worlds"
+
+
+
+event "fw tarazed republic"
+	system "Tarazed"
+		government "Republic"
+	system "Dabih"
+		government "Republic"
+	system "Albireo"
+		government "Republic"
 
 
 
@@ -1888,6 +1898,8 @@ event "fw syndicate welcoming"
 			"Free Worlds" 0
 			"Republic" 0
 			"Navy (Oathkeeper)" 0
+			"Pirate" -.4
+			"Korath" -.5
 		bribe .08
 	system "Algenib"
 		government "Syndicate (Extremist)"
@@ -2289,12 +2301,6 @@ event "fwc capture kaus borealis"
 		fleet "Small Free Worlds" 400
 		fleet "Large Free Worlds" 400
 		fleet "Large Republic" 2000
-	system "Tarazed"
-		government "Republic"
-	system "Dabih"
-		government "Republic"
-	system "Albireo"
-		government "Republic"
 	planet "New Iceland"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
 

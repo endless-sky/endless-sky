@@ -327,7 +327,7 @@ tip "max:"
 
 # Outfit categories:
 tip "Guns:"
-	`Weapons that are fixed in place (firing in the direction your ship is pointed) and that require no ammunition).`
+	`Weapons that are fixed in place (firing in the direction your ship is pointed) and that require no ammunition.`
 
 tip "Turrets:"
 	`Weapons that can fire in any direction and will track your currently selected target.`
@@ -357,7 +357,10 @@ tip "Special:"
 
 # Weapon attributes:
 tip "ammo:"
-	`When this weapon fires it consumes one outfit of this type.`
+	`When this weapon fires it consumes outfits of this type.`
+
+tip "ammo usage:"
+	`The number of units of ammo that this weapon consumes when fired.`
 
 tip "range:"
 	`Total range of this weapon.`
@@ -502,6 +505,9 @@ tip "no hyperdrive?"
 
 tip "no fuel?"
 	`This ship has insufficient fuel capacity to make a hyperspace jump. If it took off, it would be unable to leave this star system.`
+
+tip "no bays?"
+	`There are insufficient bays available to carry this ship. If you take off, it would be unable to leave this star system.`
 
 tip "insufficient energy to fire?"
 	`This ship has insufficient energy storage to fire an installed weapon.`

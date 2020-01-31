@@ -1053,6 +1053,7 @@ mission "Wanderers: Mind 5"
 
 
 government " Kor Mereti "
+	"display name" "Kor Mereti"
 	swizzle 5
 	language "Korath"
 	"attitude toward"
@@ -2795,7 +2796,7 @@ mission "Wanderers: Sestor Alt: Alnilam 1"
 mission "Wanderers: Sestor Alt: Alnilam 2"
 	landing
 	name "Attack Alpha base"
-	description "Travel to the <system> system with these Oathkeeper cruisers to eliminate the Alpha base on <planet>."
+	description "Travel to the <system> system with these Oathkeeper Cruisers to eliminate the Alpha base on <planet>."
 	source "Farpoint"
 	destination "Zenith"
 	clearance
@@ -2831,7 +2832,7 @@ mission "Wanderers: Sestor Alt: Alnilam 2"
 mission "Wanderers: Sestor Alt: Alnilam 3"
 	landing
 	name "Return to <planet>"
-	description "Escort the Oathkeeper cruisers back to <destination>."
+	description "Escort the Oathkeeper Cruisers back to <destination>."
 	source "Zenith"
 	destination "Farpoint"
 	to offer
@@ -2988,7 +2989,7 @@ mission "Wanderers: Sestor: Exiles 2"
 			`	Rek makes herself comfortable in one of your bunk rooms, and you prepare for a visit to the territory of the Korath exiles. "We must somehow earn their trust," she says, "so do not fire on any of their ships. Instead we must find a way to communicate with them or a place where they will meet with us peacefully."`
 				accept
 	on visit
-		dialog `You land on <planet>, but realize that your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
+		dialog `You've returned to <planet>, but you haven't yet made contact with the Korath exiles. Travel to the core of the galaxy and look for a way to make contact with them.`
 	npc save
 		government "Korath"
 		system "Kor Fel'tar"

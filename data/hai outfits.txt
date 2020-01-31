@@ -338,7 +338,7 @@ outfit "Hai Diamond Regenerator"
 outfit "Hai Williwaw Cooling"
 	category "Systems"
 	cost 15000
-	thumbnail "outfit/cooling ducts hai"
+	thumbnail "outfit/hai williwaw"
 	"mass" 8
 	"outfit space" -8
 	"cooling" 9.5
@@ -409,7 +409,7 @@ outfit "Hai Valley Batteries"
 outfit "Boulder Reactor"
 	category "Power"
 	cost 5750000
-	thumbnail "outfit/fusion hai"
+	thumbnail "outfit/hai boulder"
 	"mass" 90
 	"outfit space" -90
 	"energy generation" 17.3
@@ -419,7 +419,7 @@ outfit "Boulder Reactor"
 outfit "Geode Reactor"
 	category "Power"
 	cost 1750000
-	thumbnail "outfit/fission hai"
+	thumbnail "outfit/hai geode"
 	"mass" 58
 	"outfit space" -58
 	"energy generation" 8.9
@@ -429,7 +429,7 @@ outfit "Geode Reactor"
 outfit "Pebble Core"
 	category "Power"
 	cost 1050000
-	thumbnail "outfit/dwarf core hai"
+	thumbnail "outfit/hai pebble core"
 	"mass" 32
 	"outfit space" -32
 	"energy generation" 4.5
