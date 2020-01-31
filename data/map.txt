@@ -8620,46 +8620,46 @@ system Ekuarik
 		sprite star/g5
 		period 10
 	object
-		sprite planet/lava4-b
+		sprite planet/lava6-b
 		distance 812
 		period 360
 	object
 		sprite "planet/ringworld right"
 		distance 812
 		period 360
-		offset 65
+		offset 30
 	object
 		sprite "planet/ringworld left"
 		distance 812
 		period 360
-		offset 85
+		offset 50
 	object
 		sprite "planet/ringworld right"
 		distance 812
 		period 360
-		offset 100
+		offset 75
+	object "Ring of Wisdom"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 95
 	object
-		sprite planet/ringworld
+		sprite "planet/ringworld left"
 		distance 812
 		period 360
-		offset 120
+		offset 115
 	object
-		sprite planet/ringworld
+		sprite "planet/ringworld right"
 		distance 812
 		period 360
-		offset 140
-	object "Ring of Wisdom"
-		sprite planet/ringworld
+		offset 150
+	object
+		sprite "planet/ringworld left"
 		distance 812
 		period 360
-		offset 160
-	object "Ring of Wisdom"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 180
-	object "Ring of Wisdom"
-		sprite planet/ringworld
+		offset 170
+	object
+		sprite "planet/ringworld right"
 		distance 812
 		period 360
 		offset 200
@@ -8674,130 +8674,95 @@ system Ekuarik
 		period 360
 		offset 240
 	object
-		sprite planet/ringworld
+		sprite "planet/ringworld left"
 		distance 812
 		period 360
 		offset 260
 	object
-		sprite planet/ringworld
+		sprite "planet/ringworld right"
 		distance 812
 		period 360
 		offset 280
-	object
-		sprite "planet/ringworld left"
+	object "Ring of Wisdom"
+		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 300
 	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 320
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 82
+	object
+		sprite planet/panels2
+		distance 830
+		period 360
+		offset 90
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 99
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 112
+	object
 		sprite planet/panels1
 		distance 800
 		period 360
-		offset 122
+		offset 207
 	object
 		sprite planet/panels2
 		distance 800
 		period 360
-		offset 138
+		offset 216
 	object
 		sprite planet/panels1
 		distance 800
 		period 360
-		offset 148
-	object
-		sprite planet/panels3
-		distance 800
-		period 360
-		offset 157
-	object
-		sprite planet/panels1
-		distance 800
-		period 360
-		offset 164
-	object
-		sprite planet/panels2
-		distance 800
-		period 360
-		offset 171
-	object
-		sprite planet/panels5
-		distance 800
-		period 360
-		offset 189
+		offset 225
 	object
 		sprite planet/panels4
 		distance 800
 		period 360
-		offset 204
-	object
-		sprite planet/panels2
-		distance 800
-		period 360
-		offset 214
-	object
-		sprite planet/panels2
-		distance 800
-		period 360
-		offset 226
-	object
-		sprite planet/panels2
-		distance 800
-		period 360
-		offset 240
-	object
-		sprite planet/panels2
-		distance 800
-		period 360
-		offset 258
+		offset 234
 	object
 		sprite planet/panels3
 		distance 830
 		period 360
-		offset 145
+		offset 221
 	object
 		sprite planet/panels5
 		distance 830
 		period 360
-		offset 163
-	object
-		sprite planet/panels3
-		distance 830
-		period 360
-		offset 178
-	object
-		sprite planet/panels1
-		distance 830
-		period 360
-		offset 185
+		offset 239
 	object
 		sprite planet/panels2
 		distance 830
 		period 360
-		offset 191
+		offset 253
+	object
+		sprite planet/panels1
+		distance 800
+		period 360
+		offset 281
 	object
 		sprite planet/panels4
-		distance 830
+		distance 800
 		period 360
-		offset 200
-	object
-		sprite planet/panels5
-		distance 830
-		period 360
-		offset 218
+		offset 298
 	object
 		sprite planet/panels2
-		distance 830
+		distance 800
 		period 360
-		offset 228
-	object
-		sprite planet/panels1
-		distance 830
-		period 360
-		offset 245
-	object
-		sprite planet/panels1
-		distance 830
-		period 360
-		offset 250
+		offset 312
 
 system Elnath
 	pos -288 -77
@@ -13444,46 +13409,46 @@ system "Ki War Ek"
 		sprite star/g5
 		period 10
 	object
-		sprite planet/lava6-b
+		sprite planet/lava4-b
 		distance 812
 		period 360
 	object
 		sprite "planet/ringworld right"
 		distance 812
 		period 360
-		offset 30
+		offset 65
 	object
 		sprite "planet/ringworld left"
 		distance 812
 		period 360
-		offset 50
+		offset 85
 	object
 		sprite "planet/ringworld right"
 		distance 812
 		period 360
-		offset 75
+		offset 100
+	object
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 120
+	object
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 140
 	object "Ring of Power"
 		sprite planet/ringworld
 		distance 812
 		period 360
-		offset 95
-	object
-		sprite "planet/ringworld left"
+		offset 160
+	object "Ring of Power"
+		sprite planet/ringworld
 		distance 812
 		period 360
-		offset 115
-	object
-		sprite "planet/ringworld right"
-		distance 812
-		period 360
-		offset 150
-	object
-		sprite "planet/ringworld left"
-		distance 812
-		period 360
-		offset 170
-	object
-		sprite "planet/ringworld right"
+		offset 180
+	object "Ring of Power"
+		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 200
@@ -13498,95 +13463,130 @@ system "Ki War Ek"
 		period 360
 		offset 240
 	object
-		sprite "planet/ringworld left"
+		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 260
 	object
-		sprite "planet/ringworld right"
-		distance 812
-		period 360
-		offset 280
-	object "Ring of Power"
 		sprite planet/ringworld
 		distance 812
 		period 360
-		offset 300
+		offset 280
 	object
 		sprite "planet/ringworld left"
 		distance 812
 		period 360
-		offset 320
-	object
-		sprite planet/panels1
-		distance 830
-		period 360
-		offset 82
-	object
-		sprite planet/panels2
-		distance 830
-		period 360
-		offset 90
-	object
-		sprite planet/panels1
-		distance 830
-		period 360
-		offset 99
-	object
-		sprite planet/panels1
-		distance 830
-		period 360
-		offset 112
+		offset 300
 	object
 		sprite planet/panels1
 		distance 800
 		period 360
-		offset 207
+		offset 122
 	object
 		sprite planet/panels2
 		distance 800
 		period 360
-		offset 216
+		offset 138
 	object
 		sprite planet/panels1
 		distance 800
 		period 360
-		offset 225
+		offset 148
+	object
+		sprite planet/panels3
+		distance 800
+		period 360
+		offset 157
+	object
+		sprite planet/panels1
+		distance 800
+		period 360
+		offset 164
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 171
+	object
+		sprite planet/panels5
+		distance 800
+		period 360
+		offset 189
 	object
 		sprite planet/panels4
 		distance 800
 		period 360
-		offset 234
+		offset 204
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 214
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 226
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 240
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 258
 	object
 		sprite planet/panels3
 		distance 830
 		period 360
-		offset 221
+		offset 145
 	object
 		sprite planet/panels5
 		distance 830
 		period 360
-		offset 239
+		offset 163
+	object
+		sprite planet/panels3
+		distance 830
+		period 360
+		offset 178
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 185
 	object
 		sprite planet/panels2
 		distance 830
 		period 360
-		offset 253
-	object
-		sprite planet/panels1
-		distance 800
-		period 360
-		offset 281
+		offset 191
 	object
 		sprite planet/panels4
-		distance 800
+		distance 830
 		period 360
-		offset 298
+		offset 200
+	object
+		sprite planet/panels5
+		distance 830
+		period 360
+		offset 218
 	object
 		sprite planet/panels2
-		distance 800
+		distance 830
 		period 360
-		offset 312
+		offset 228
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 245
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 250
 
 system Kiro'ku
 	pos -131.923 -884.46
