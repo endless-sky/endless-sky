@@ -40,7 +40,6 @@ public:
 	
 	// Font settings.
 	void SetFontDescription(const std::string &desc);
-	void SetLayoutReference(const std::string &desc);
 	void SetPixelSize(int size);
 	void SetLanguage(const std::string &langCode);
 	
@@ -171,7 +170,6 @@ private:
 	
 	mutable cairo_t *cr;
 	std::string fontDescName;
-	std::string refDescName;
 	mutable PangoContext *context;
 	mutable PangoLayout *layout;
 	PangoLanguage *lang;

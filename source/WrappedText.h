@@ -66,10 +66,22 @@ public:
 	// Bottom margin.
 	int BottomMargin() const;
 	
+	
+	
+	// Set the default scale for the line height.
+	// The line height is the font height multiplied by this scale.
+	static void SetDefaultLineHeightScale(double scale);
+	// Set the default scale for the paragraph break.
+	// The paragraph break is the font height multiplied by this scale.
+	static void SetDefaultParagraphBreakScale(double scale);
+	
 private:
 	const Font *font;
 	std::string text;
 	Font::Layout layout;
+	
+	static int lineHeightScale;
+	static int paragraphBreakScale;
 };
 
 

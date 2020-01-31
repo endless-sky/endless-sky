@@ -46,7 +46,7 @@ namespace {
 Font::Font()
 	: shader(), vao(0), vbo(0), scaleI(0), centerI(0), sizeI(0), colorI(0),
 	screenWidth(1), screenHeight(1), viewWidth(1), viewHeight(1), cr(nullptr),
-	fontDescName(), refDescName(), context(nullptr), layout(nullptr), lang(nullptr),
+	fontDescName(), context(nullptr), layout(nullptr), lang(nullptr),
 	pixelSize(0), fontViewHeight(0), surfaceWidth(256), surfaceHeight(64), cache()
 {
 	lang = pango_language_from_string("en");
@@ -74,14 +74,6 @@ void Font::SetFontDescription(const string &desc)
 	UpdateFontDesc();
 }
 
-
-
-
-void Font::SetLayoutReference(const string &desc)
-{
-	refDescName = desc;
-	UpdateFontDesc();
-}
 
 
 
@@ -201,12 +193,10 @@ void Font::UpdateFontDesc() const
 	
 	// Get font descriptions.
 	PangoFontDescription *fontDesc = pango_font_description_from_string(fontDescName.c_str());
-	PangoFontDescription *refDesc = refDescName.empty() ? fontDesc : pango_font_description_from_string(refDescName.c_str());
 	
 	// Set the pixel size.
 	const int fontSize = ViewFromTextFloorY(pixelSize) * PANGO_SCALE;
 	pango_font_description_set_absolute_size(fontDesc, fontSize);
-	pango_font_description_set_absolute_size(refDesc, fontSize);
 	
 	// Update the context.
 	pango_context_set_language(context, lang);
@@ -215,7 +205,7 @@ void Font::UpdateFontDesc() const
 	pango_layout_set_font_description(layout, fontDesc);
 	
 	// Update layout parameters.
-	PangoFontMetrics *metrics = pango_context_get_metrics(context, refDesc, lang);
+	PangoFontMetrics *metrics = pango_context_get_metrics(context, fontDesc, lang);
 	const int ascent = pango_font_metrics_get_ascent(metrics);
 	const int descent = pango_font_metrics_get_descent(metrics);
 	fontViewHeight = PixelFromPangoCeil(ascent + descent);
@@ -223,8 +213,6 @@ void Font::UpdateFontDesc() const
 	// Clean up.
 	pango_font_metrics_unref(metrics);
 	pango_font_description_free(fontDesc);
-	if(fontDesc != refDesc)
-		pango_font_description_free(refDesc);
 	cache.Clear();
 	
 	// Tab Stop
@@ -530,7 +518,7 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 				sumExtraY -= diffY;
 				break;
 			}
-			int add = isDefaultLineHeight ? diffY : viewParams.lineHeight;
+			int add = isDefaultLineHeight ? diffY : max(diffY, static_cast<int>(viewParams.lineHeight));
 			if(layoutText[index-1] == '\n')
 				add += viewParams.paragraphBreak;
 			baselineY += add;
