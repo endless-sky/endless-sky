@@ -99,7 +99,6 @@ namespace {
 	vector<unsigned> pausedSources;
 	bool isPaused = false;
 	unsigned uiSource = 1;
-	vector<Source> uiSoundFX;
 	
 	// Queue and thread for loading sound files in the background.
 	map<string, string> loadQueue;
@@ -217,7 +216,10 @@ void Audio::SetVolume(double level)
 {
 	volume = min(1., max(0., level));
 	if(isInitialized)
-		alListenerf(AL_GAIN, volume);
+	{
+ 		alListenerf(AL_GAIN, volume);
+		alSourcef(musicSource, AL_GAIN, volume);
+	}
 }
 
 
@@ -267,9 +269,8 @@ void Audio::Play(const Sound *sound, const Point &position)
 	// Play sounds from the main thread directly on dedicated UI Source
 	if(this_thread::get_id() == mainThreadID)
 	{
-		uiSoundFX.emplace_back(sound, uiSource);
+		Source{sound, uiSource};
 		alSourcePlay(uiSource);
-		uiSoundFX.pop_back(); 
 	}
 	else
 	{
@@ -295,15 +296,33 @@ void Audio::Pause()
 	// Pause all sources
 	for(const Source &source : sources)
 	{
-		Pause(source.ID());
+		ALint state;
+		alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
+		if(state == AL_PLAYING)
+		{
+			Pause(source.ID());
+			pausedSources.emplace_back(source.ID());
+		}
 	}
 	
 	// Pause all fading sources
 	for(unsigned id : endingSources)
 	{
+		ALint state;
+		alGetSourcei(id, AL_SOURCE_STATE, &state);
+		if(state == AL_PLAYING)
+		{
+			Pause(id);
+			pausedSources.emplace_back(id);
+		}
+	}
+	
+	// Pause all recycled sources
+	for(unsigned id : recycledSources)
+	{
 		Pause(id);
 	}
-
+	
 	isPaused = true;
 }
 
@@ -316,14 +335,8 @@ void Audio::Pause(unsigned int id)
 		return;
 	
 	unique_lock<mutex> lock(audioMutex);
-	
-	ALint state;
-	alGetSourcei(id, AL_SOURCE_STATE, &state);
-	if(state == AL_PLAYING)
-	{
-		alSourcePause(id);
-		pausedSources.emplace_back(id);
-	}
+
+	alSourcePause(id);
 }
 
 
@@ -549,7 +562,6 @@ void Audio::Quit()
 		alDeleteBuffers(1, &id);
 	}
 	sounds.clear();
-	uiSoundFX.clear();
 	
 	// Clean up the music source and UI source.
 	if(isInitialized)

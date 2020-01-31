@@ -51,6 +51,38 @@ using namespace std;
 
 
 
+bool MainPanel::isActive()
+{
+	return paused;
+} 
+
+
+
+void MainPanel::Pause()
+{
+	Audio::Pause();
+	paused = true;
+}
+
+
+
+void MainPanel::Resume()
+{
+	Audio::Resume();
+	paused = false;
+}
+
+
+
+void MainPanel::TogglePaused()
+{
+	if (paused)
+		MainPanel::Resume();
+	else
+		MainPanel::Pause();
+}
+
+
 MainPanel::MainPanel(PlayerInfo &player)
 	: player(player), engine(player)
 {
@@ -65,30 +97,36 @@ void MainPanel::Step()
 	
 	// Depending on what UI element is on top, the game is "paused." This
 	// checks only already-drawn panels.
-	bool isActive = GetUI()->IsTop(this);
+	if (GetUI()->IsTop(this) != isActive())
+		MainPanel::TogglePaused();
+		
 	
 	// Display any requested panels.
 	if(show.Has(Command::MAP))
 	{
 		GetUI()->Push(new MapDetailPanel(player));
-		isActive = false;
+		MainPanel::Pause();
 	}
 	else if(show.Has(Command::INFO))
 	{
 		GetUI()->Push(new PlayerInfoPanel(player));
-		isActive = false;
+		MainPanel::Pause();
 	}
 	else if(show.Has(Command::HAIL))
-		isActive = !ShowHailPanel();
+	{
+		if (ShowHailPanel() == isActive())
+			MainPanel::TogglePaused();
+	}
+		
 	show = Command::NONE;
 	
 	// If the player just landed, pop up the planet panel. When it closes, it
 	// will call this object's OnCallback() function;
-	if(isActive && player.GetPlanet() && !player.GetPlanet()->IsWormhole())
+	if(isActive() && player.GetPlanet() && !player.GetPlanet()->IsWormhole())
 	{
 		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
 		player.Land(GetUI());
-		isActive = false;
+		MainPanel::Pause();
 	}
 	
 	// Display any relevant help/tutorial messages.
@@ -96,19 +134,38 @@ void MainPanel::Step()
 	if(flagship)
 	{
 		// Check if any help messages should be shown.
-		if(isActive && flagship->IsTargetable())
-			isActive = !DoHelp("navigation");
-		if(isActive && flagship->IsDestroyed())
-			isActive = !DoHelp("dead");
-		if(isActive && flagship->IsDisabled() && !flagship->IsDestroyed())
-			isActive = !DoHelp("disabled");
+		if(isActive() && flagship->IsTargetable())
+		{
+			if (DoHelp("navigation"))
+				MainPanel::Pause();
+		}
+
+		if(isActive() && flagship->IsDestroyed())
+		{
+			if (DoHelp("dead"))
+				MainPanel::Pause();
+		}
+		else if(isActive() && flagship->IsDisabled())
+		{
+			if (DoHelp("disabled"))
+				MainPanel::Pause();
+		}
+			
 		bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
-		if(isActive && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
-			isActive = !DoHelp("stranded");
+		if(isActive() && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
+		{
+			if (DoHelp("stranded"))
+				MainPanel::Pause();
+		}
+
 		shared_ptr<Ship> target = flagship->GetTargetShip();
-		if(isActive && target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
-			isActive = !DoHelp("friendly disabled");
-		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
+		if(isActive() && target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
+		{
+			if (DoHelp("friendly disabled"))
+				MainPanel::Pause();
+		}
+
+		if(isActive() && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
 				&& player.GetDate() <= GameData::Start().GetDate() + 4)
 		{
 			++lostness;
@@ -124,28 +181,25 @@ void MainPanel::Step()
 		}
 	}
 	
-	engine.Step(isActive);
+	engine.Step(isActive());
 	
 	// Splice new events onto the eventQueue for (eventual) handling. No
 	// other classes use Engine::Events() after Engine::Step() completes.
 	eventQueue.splice(eventQueue.end(), engine.Events());
-	// Handle as many ShipEvents as possible (stopping if no longer active
-	// and updating the isActive flag).
-	StepEvents(isActive);
+	// Handle as many ShipEvents as possible (stopping if no longer active)
+	StepEvents();
 	
 	// Run the game, or pause the game
-	if(isActive)
-	{	 
-		Audio::Resume();
+	if(isActive())
+	{	 		
 		engine.Go(); 
 	}
 	else
-	{
-		Audio::Pause();
+	{		
 		canDrag = false; 
 	}
 	
-	canClick = isActive;
+	canClick = isActive();
 }
 
 
@@ -441,9 +495,9 @@ bool MainPanel::ShowHailPanel()
 
 // Handle ShipEvents from this and previous Engine::Step calls. Start with the
 // oldest and then process events until any create a new UI element.
-void MainPanel::StepEvents(bool &isActive)
+void MainPanel::StepEvents()
 {
-	while(isActive && !eventQueue.empty())
+	while(isActive() && !eventQueue.empty())
 	{
 		const ShipEvent &event = eventQueue.front();
 		const Government *actor = event.ActorGovernment();
@@ -453,15 +507,17 @@ void MainPanel::StepEvents(bool &isActive)
 		// active missions.
 		if(!handledFront)
 			player.HandleEvent(event, GetUI());
+			
 		handledFront = true;
-		isActive = (GetUI()->Top().get() == this);
+		if ((GetUI()->Top().get() == this) != isActive())
+			MainPanel::TogglePaused();
 		
 		// If we can't safely display a new UI element (i.e. an active
 		// mission created a UI element), then stop processing events
 		// until the current Conversation or Dialog is resolved. This
 		// will keep the current event in the queue, so we can still
 		// check it for various special cases involving the player.
-		if(!isActive)
+		if(!isActive())
 			break;
 		
 		// Handle boarding events.
@@ -486,22 +542,22 @@ void MainPanel::StepEvents(bool &isActive)
 				player.HandleBlockedMissions((event.Type() & ShipEvent::BOARD)
 						? Mission::BOARDING : Mission::ASSISTING, GetUI());
 			// Determine if a Dialog or ConversationPanel is being drawn next frame.
-			isActive = (GetUI()->Top().get() == this);
+			if ((GetUI()->Top().get() == this) != isActive())
+				MainPanel::TogglePaused();
 			
 			// Confirm that this event's target is not destroyed and still an
-			// enemy before showing the BoardingPanel (as a mission NPC's
-			// completion conversation may have allowed it to be destroyed or
-			// captured).
+			// enemy before showing the BoardingPanel as a mission NPC's
+			// completion conversation may have allowed it to be destroyed or captured.
 			// TODO: This BoardingPanel should not be displayed if a mission NPC
 			// completion conversation creates a BoardingPanel for it, or if the
 			// NPC completion conversation ends via `accept,` even if the ship is
 			// still hostile.
-			if(isActive && (event.Type() == ShipEvent::BOARD) && !boardedShip->IsDestroyed()
+			if(isActive() && (event.Type() == ShipEvent::BOARD) && !boardedShip->IsDestroyed()
 					&& boardedShip->GetGovernment()->IsEnemy())
 			{
 				// Either no mission activated, or the one that did was "silent."
 				GetUI()->Push(new BoardingPanel(player, boardedShip));
-				isActive = false;
+				MainPanel::Pause();
 			}
 		}
 		
@@ -511,7 +567,7 @@ void MainPanel::StepEvents(bool &isActive)
 			if(actor->IsPlayer())
 			{
 				ShowScanDialog(event);
-				isActive = false;
+				MainPanel::Pause();
 			}
 			else if(event.TargetGovernment()->IsPlayer())
 			{
@@ -519,7 +575,7 @@ void MainPanel::StepEvents(bool &isActive)
 				if(!message.empty())
 				{
 					GetUI()->Push(new Dialog(message));
-					isActive = false;
+					MainPanel::Pause();
 				}
 			}
 		}

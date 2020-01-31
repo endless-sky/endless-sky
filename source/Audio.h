@@ -60,9 +60,6 @@ public:
 	// Pause playing of all sources of audio.
 	static void Pause();
 	
-	// Pause one source by ALuint ID
-	static void Pause(unsigned int id);
-	
 	// Resume playing of all sources of audio.
 	static void Resume();
 		
@@ -75,6 +72,10 @@ public:
 	
 	// Shut down the audio system (because we're about to quit).
 	static void Quit();
+	
+private:
+	// Pause one source by ALuint ID
+	static void Pause(unsigned int id);
 };
 
 

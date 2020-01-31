@@ -53,7 +53,11 @@ protected:
 private:
 	void ShowScanDialog(const ShipEvent &event);
 	bool ShowHailPanel();
-	void StepEvents(bool &isActive);
+	void StepEvents();
+	bool isActive();
+	void Pause();
+	void Resume();
+	void TogglePaused();
 	
 	
 private:
@@ -82,6 +86,7 @@ private:
 	bool hasShift = false;
 	bool canClick = false;
 	bool canDrag = false;
+	bool paused = false;
 };
 
 
