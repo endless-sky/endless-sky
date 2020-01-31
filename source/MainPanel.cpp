@@ -83,6 +83,7 @@ void MainPanel::TogglePaused()
 }
 
 
+
 MainPanel::MainPanel(PlayerInfo &player)
 	: player(player), engine(player)
 {
