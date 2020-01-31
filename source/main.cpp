@@ -168,6 +168,7 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 	int frameRate = 60; 
 	FrameTimer timer(frameRate);
 	bool isPaused = false;
+	bool isFastForward = false;
 	
 	// If fast forwarding, keep track of whether the current frame should be drawn.
 	int skipFrame = 0;
@@ -220,6 +221,11 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 				toggleTimeout = 30;
 				GameWindow::ToggleFullscreen();
 			}
+			else if(event.type == SDL_KEYDOWN && !event.key.repeat
+					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
+			{
+					isFastForward = !isFastForward;
+			}
 			else if(activeUI.Handle(event))
 			{
 				// The UI handled the event.
@@ -242,31 +248,30 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 		// Tell all the panels to step forward, then draw them.
 		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
 		
-		// Caps lock slows the frame rate in debug mode, but raises it in
-		// normal mode. Slowing eases in and out over a couple of frames.
-		bool fastForward = false;
-		if((mod & KMOD_CAPS) && inFlight)
+		// Caps lock slows the frame rate in debug mode.
+		// Slowing eases in and out over a couple of frames.
+		if((mod & KMOD_CAPS) && inFlight && debugMode)
 		{
-			if(debugMode)
+			if(frameRate > 10)
 			{
-				if(frameRate > 10)
-				{
-					frameRate = max(frameRate - 5, 10);
-					timer.SetFrameRate(frameRate);
-				}
+				frameRate = max(frameRate - 5, 10);
+				timer.SetFrameRate(frameRate);
 			}
-			else
+		}
+		else
+		{
+			if(frameRate < 60)
 			{
-				fastForward = true;
+				frameRate = min(frameRate + 5, 60);
+				timer.SetFrameRate(frameRate);
+			}
+			
+			if(isFastForward && inFlight)
+			{
 				skipFrame = (skipFrame + 1) % 3;
 				if(skipFrame)
 					continue;
 			}
-		}
-		else if(frameRate < 60)
-		{
-			frameRate = min(frameRate + 5, 60);
-			timer.SetFrameRate(frameRate);
 		}
 		
 		Audio::Step();
@@ -274,7 +279,7 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 		// Events in this frame may have cleared out the menu, in which case
 		// we should draw the game panels instead:
 		(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
-		if(fastForward)
+		if(isFastForward)
 			SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 		
 		GameWindow::Step();
