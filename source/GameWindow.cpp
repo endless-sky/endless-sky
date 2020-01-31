@@ -279,25 +279,33 @@ void GameWindow::AdjustViewport()
 	if(!mainWindow)
 		return;
 		
-	// Keep track of the actual size of the window when it is resized.
-	SDL_GetWindowSize(mainWindow, &width, &height);
+	// Get the window's size in screen coordinates.
+	int windowWidth, windowHeight;
+	SDL_GetWindowSize(mainWindow, &windowWidth, &windowHeight);
+	
+	// Only save the window size when not in fullscreen mode.
+	if(!GameWindow::IsFullscreen())
+	{
+		width = windowWidth;
+		height = windowHeight;
+	}
 	
 	// Round the window size up to a multiple of 2, even if this
 	// means one pixel of the display will be clipped.
-	int roundWidth = (width + 1) & ~1;
-	int roundHeight = (height + 1) & ~1;
+	int roundWidth = (windowWidth + 1) & ~1;
+	int roundHeight = (windowHeight + 1) & ~1;
 	Screen::SetRaw(roundWidth, roundHeight);
 	
 	// Find out the drawable dimensions. If this is a high- DPI display, this
 	// may be larger than the window.
 	int drawWidth, drawHeight;
 	SDL_GL_GetDrawableSize(mainWindow, &drawWidth, &drawHeight);
-	Screen::SetHighDPI(drawWidth > width || drawHeight > height);	
+	Screen::SetHighDPI(drawWidth > windowWidth || drawHeight > windowHeight);	
 	
 	// Set the viewport to go off the edge of the window, if necessary, to get
 	// everything pixel-aligned.
-	drawWidth = (drawWidth * roundWidth) / width;
-	drawHeight = (drawHeight * roundHeight) / height;
+	drawWidth = (drawWidth * roundWidth) / windowWidth;
+	drawHeight = (drawHeight * roundHeight) / windowHeight;
 	glViewport(0, 0, drawWidth, drawHeight);
 }
 

@@ -191,8 +191,6 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 			if(event.type == SDL_MOUSEMOTION)
 				cursorTime = 0;
 			
-			// The caps lock key slows the game down (to make it easier to
-			// see and debug things that are happening quickly).
 			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 			{
 				isPaused = !isPaused;
@@ -200,7 +198,8 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 			else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
 					&& Command(event.key.keysym.sym).Has(Command::MENU)
 					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
-			{   // User pressed the Menu key
+			{   
+				// User pressed the Menu key.
 				menuPanels.Push(shared_ptr<Panel>(
 					new MenuPanel(player, gamePanels)));
 			}
@@ -287,6 +286,7 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 	if(player.GetPlanet() && gamePanels.CanSave())
 		player.Save();
 }
+
 
 
 void PrintHelp()
