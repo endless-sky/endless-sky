@@ -31,7 +31,6 @@ namespace {
 	SDL_GLContext context;
 	int width = 0;
 	int height = 0;
-	//int monitorHz;
 	bool hasSwizzle;
 		
 	// Logs SDL errors and returns true if found
@@ -62,13 +61,6 @@ int GameWindow::Height()
 {
 	return height;
 }
-
-
-
-//int GameWindow::MonitorHz()
-//{
-//	return monitorHz;
-//}
 
 
 
@@ -129,8 +121,6 @@ bool GameWindow::Init()
 		windowHeight = min(windowHeight, Screen::RawHeight());
 	}
 	
-	//monitorHz = mode.refresh_rate;
-	
 	// Settings that must be declared before the window creation.
 	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
 
@@ -156,10 +146,6 @@ bool GameWindow::Init()
 #endif
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);	
 	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
-	
-	// FSAA?
-	//SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
-	//SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 2);
 		
 	context = SDL_GL_CreateContext(mainWindow);
 	if(!context){

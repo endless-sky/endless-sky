@@ -27,9 +27,6 @@ public:
 	// Last known height width from windowed mode
 	static int Height();
 	
-	// The refresh rate of the current display
-	//static int MonitorHz();
-
 	// Returns true if the main window is in full screen mode
 	static bool IsFullscreen();
 	
