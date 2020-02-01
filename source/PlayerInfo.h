@@ -110,12 +110,15 @@ public:
 	int64_t Maintenance() const;
 	
 	// Access the flagship (the first ship in the list). This returns null if
-	// the player does not have any ships.
+	// the player does not have any ships that can be a flagship.
 	const Ship *Flagship() const;
 	Ship *Flagship();
 	const std::shared_ptr<Ship> &FlagshipPtr();
 	// Get the full list of ships the player owns.
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;
+	// Inspect the flightworthiness of the player's active fleet as a whole to
+	// determine which ships cannot travel with the group.
+	std::map<const std::shared_ptr<Ship>, const std::string> FlightCheck() const;
 	// Add a captured ship to your fleet.
 	void AddShip(const std::shared_ptr<Ship> &ship);
 	// Buy or sell a ship.
@@ -243,7 +246,7 @@ public:
 	
 	
 private:
-	// Don't anyone else to copy this class, because pointers won't get
+	// Don't allow anyone else to copy this class, because pointers won't get
 	// transferred properly.
 	PlayerInfo(const PlayerInfo &) = default;
 	PlayerInfo &operator=(const PlayerInfo &) = default;
