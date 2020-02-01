@@ -2074,7 +2074,7 @@ system Aescolanus
 	trade Medical 715
 	trade Metal 410
 	trade Plastic 289
-	fleet "Subsidurial" 60000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/m4
 		period 10
@@ -4446,6 +4446,7 @@ system Arculus
 	fleet "Remnant Transport" 2200
 	fleet "Remnant Home Guard" 2000
 	fleet "Korath Ember Waste Raid" 40000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/g5-old
 		period 10
@@ -5922,7 +5923,7 @@ system Caeculus
 	fleet "Korath Ember Waste Raid" 20000
 	fleet "Small Remnant" 30000
 	fleet "Large Remnant" 30000
-	fleet "Subsidurial" 60000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/wr
 		period 10
@@ -6227,7 +6228,7 @@ system Cardea
 	trade Medical 758
 	trade Metal 339
 	trade Plastic 385
-	fleet "Subsidurial" 60000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/k5-old
 		distance 47.5
@@ -6789,6 +6790,7 @@ system Cinxia
 	fleet "Remnant Transport" 1800
 	fleet "Remnant Home Guard" 1600
 	fleet "Korath Ember Waste Raid" 30000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/k5-old
 		period 10
@@ -6843,7 +6845,7 @@ system Coluber
 	trade Metal 475
 	trade Plastic 362
 	fleet "Korath Ember Waste Raid" 10000
-	fleet "Subsidurial" 60000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/k5-old
 		distance 40.6966
@@ -6957,7 +6959,7 @@ system Convector
 	trade Medical 691
 	trade Metal 367
 	trade Plastic 485
-	fleet "Subsidurial" 60000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/giant
 		distance 13.0749
@@ -8444,7 +8446,7 @@ system Edusa
 	fleet "Small Remnant" 2400
 	fleet "Remnant Transport" 2400
 	fleet "Korath Ember Waste Raid" 40000
-	fleet "Subsidurial" 60000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/giant
 		period 10
@@ -9793,7 +9795,7 @@ system Farinus
 	fleet "Small Remnant" 10000
 	fleet "Remnant Transport" 10000
 	fleet "Korath Ember Waste Raid" 40000
-	fleet "Subsidurial" 60000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/k5-old
 		distance 36.894
@@ -12612,7 +12614,7 @@ system Insitor
 	trade Medical 717
 	trade Metal 383
 	trade Plastic 385
-	fleet "Subsidurial" 60000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/m0
 		distance 43.8496
@@ -14672,7 +14674,7 @@ system Levana
 	trade Metal 407
 	trade Plastic 222
 	fleet "Korath Ember Waste Raid" 10000
-	fleet "Subsidurial" 60000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/giant
 		distance 17.197
@@ -15041,7 +15043,7 @@ system Lucina
 	trade Metal 524
 	trade Plastic 410
 	fleet "Korath Ember Waste Raid" 20000
-	fleet "Subsidurial" 60000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/m0
 		period 10
@@ -17129,7 +17131,7 @@ system Nenia
 	trade Metal 265
 	trade Plastic 465
 	fleet "Void Sprites" 500
-	fleet "Subsidurial" 10000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/f5-old
 		distance 31.5171
@@ -17653,7 +17655,7 @@ system Ossipago
 	trade Medical 768
 	trade Metal 263
 	trade Plastic 505
-	fleet "Subsidurial" 60000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/f5-old
 		distance 11.9736
@@ -17837,7 +17839,7 @@ system Parca
 	trade Metal 531
 	trade Plastic 445
 	fleet "Korath Ember Waste Raid" 10000
-	fleet "Subsidurial" 60000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/g5-old
 		distance 18.2961
@@ -18061,7 +18063,7 @@ system Peragenor
 	fleet "Small Remnant" 7000
 	fleet "Remnant Transport" 7000
 	fleet "Korath Ember Waste Raid" 40000
-	fleet "Subsidurial" 60000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/g0-old
 		period 10
@@ -18166,7 +18168,7 @@ system Perfica
 	fleet "Small Remnant" 7500
 	fleet "Remnant Transport" 7500
 	fleet "Korath Ember Waste Raid" 30000
-	fleet "Subsidurial" 60000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/g0-old
 		period 10
@@ -20983,7 +20985,7 @@ system Segesta
 	fleet "Small Remnant" 40000
 	fleet "Large Remnant" 40000
 	fleet "Korath Ember Waste Raid" 40000
-	fleet "Subsidurial" 60000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/k5-old
 		period 10
@@ -22666,7 +22668,7 @@ system Stercutus
 	fleet "Small Remnant" 20000
 	fleet "Large Remnant" 20000
 	fleet "Remnant Transport" 40000
-	fleet "Subsidurial" 60000
+	fleet "Subsidurial" 50000
 	object
 		sprite star/g5-old
 		distance 31.1534
