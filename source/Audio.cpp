@@ -266,15 +266,16 @@ void Audio::Play(const Sound *sound, const Point &position)
 	if(!isInitialized || !sound || !sound->Buffer() || !volume)
 		return;
 	
+	unique_lock<mutex> lock(audioMutex);
+	
 	// Play sounds from the main thread directly on dedicated UI Source
 	if(this_thread::get_id() == mainThreadID)
 	{
-		Source{sound, uiSource};
-		alSourcePlay(uiSource);
+		Source toPlay = Source{sound, uiSource};
+		alSourcePlay(toPlay.ID());
 	}
 	else
 	{
-		unique_lock<mutex> lock(audioMutex);
 		deferred[sound].Add(position - listener);
 	}
 }
