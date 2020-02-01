@@ -1697,7 +1697,7 @@ mission "Remnant: Expanded Horizons Quarg 3"
 			`	"Okay, I think we are ready to go. Can you take us to <planet>?"`
 				accept
 	on visit
-		dialog `You land on <planet>, but realize that you left Dawn and her colleagues on one of you escorts that hasn't entered the system. Better depart and wait for it to arrive.`
+		dialog `You land on <planet>, but realize that you left Dawn and her colleagues on one of your escorts that hasn't entered the system. Better depart and wait for it to arrive.`
 	on complete
 		payment 150000
 		conversation
