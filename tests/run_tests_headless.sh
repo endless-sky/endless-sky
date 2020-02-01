@@ -13,8 +13,25 @@ export DISPLAY=:99
 # Force openGL software mode
 export LIBGL_ALWAYS_SOFTWARE=1
 
+MAX_RETRY=15
+false
+RETURN_VALUE=$?
+while [ "${RETURN_VALUE}" -ne "0" ] && [ "${MAX_RETRY}" -ge "0" ]
+do
+	echo "Waiting for start of xserver (max-retry=${MAX_RETRY})"
+	MAX_RETRY=$(( MAX_RETRY - 1 ))
+	# Use the query for OpenGL settings to check if the XServer runs
+	GLXINFO=$(glxinfo)
+	RETURN_VALUE=$?
+done
+if [ "${RETURN_VALUE}" -ne "0" ]
+then
+	echo "Error: Xserver did not start within waiting time"
+	exit ${RETURN_VALUE}
+fi
+
 echo "OpenGL settings"
-glxinfo | grep OpenGL
+echo "${GLXINFO}" | grep OpenGL
 
 # Enable for debugging (and add some secret password file to make it more secure):
 #
@@ -24,8 +41,6 @@ glxinfo | grep OpenGL
 
 ./run_tests.sh
 RETURN_VALUE=$?
-
-
 
 kill -s SIGTERM ${XSERVER_PID}
 
