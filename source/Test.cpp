@@ -163,15 +163,19 @@ const string &Test::Name() const
 // around in our flagship.
 void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const
 {
+	// Wait with testing until the game is fully loaded.
+	if(GameData::Progress() < 1.)
+		return;
+	
 	if(context.stepToRun >= testSteps.size())
 	{
-		//Done, no failures, exit the game with exitcode success.
+		// Done, no failures, exit the game with exitcode success.
 		menuPanels.Quit();
 		return;
 	}
-
+	
 	const TestStep &testStep = testSteps[context.stepToRun];
-
+	
 	Test::TestStep::TestResult testResult = testStep.Step(context.stepAction, menuPanels, gamePanels, player);
 	switch(testResult)
 	{

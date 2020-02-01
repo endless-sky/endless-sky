@@ -3,7 +3,10 @@
 HERE=$(cd `dirname $0` && pwd)
 
 cd "${HERE}"
-Xorg -noreset +extension GLX +extension RANDR +extension RENDER -logfile ./Xserver.log -config ./xorg_dummy.conf :99 &
+# Running headless using Xorg or Xvfb (only choose one)
+# Xorg -noreset +extension GLX +extension RANDR +extension RENDER -logfile ./Xserver.log -config ./xorg_dummy.conf :99 &
+Xvfb :99 -screen 0 1280x1024x24 &
+
 XSERVER_PID=$!
 echo "XServer PID: ${XSERVER_PID}"
 export DISPLAY=:99

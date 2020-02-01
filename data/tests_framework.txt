@@ -13,7 +13,7 @@ test "Test-Framework - Empty Testcase"
 	description "Test with an empty sequence. Only starts and exits the game"
 
 test "Test-Framework - Load only"
-	status "Known Failure"
+	status "Active"
 	description "Tests only loading of a game and then exits the game"
 	sequence
 		inject "commodity barges"
@@ -22,7 +22,7 @@ test "Test-Framework - Load only"
 			"ships: Light Freighter" = 3
 
 test "Test-Framework - Load and depart"
-	status "Known Failure"
+	status "Active"
 	description "Test with only a departure. Mostly tests the testframework itself."
 	sequence
 		inject "commodity barges"
@@ -35,7 +35,7 @@ test "Test-Framework - Load and depart"
 
 
 test "Test-Framework - Simple depart land"
-	status "Known Failure"
+	status "Active"
 	description "Test with only a departure and landing. Mostly tests the testframework itself."
 	sequence
 		inject "commodity barges"
