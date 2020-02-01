@@ -17129,7 +17129,7 @@ system Nenia
 	trade Metal 265
 	trade Plastic 465
 	fleet "Void Sprites" 500
-	fleet "Subsidurial" 5000
+	fleet "Subsidurial" 10000
 	object
 		sprite star/f5-old
 		distance 31.5171
