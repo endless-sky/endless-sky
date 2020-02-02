@@ -59,7 +59,7 @@ outfit "Sheragi Cooling Unit"
 	"cooling energy" 16.2
 	description `Sheragi cooling systems are primitive at best, but it is active instead of passive, allowing it to dissipate even more heat than a simple radiator would. It drains a lot of power when the subject to the heat of battle, though.`
 
-outfit "Broken Ship Systems"
+outfit "Damaged Sheragi Systems"
 	category "Special"
 	cost 0
 	thumbnail "outfit/unknown"

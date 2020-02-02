@@ -37,7 +37,7 @@ ship "Emerald Sword"
 		"Particle Waveform Turret" 6
 		"Electromagnetic Battery"
 		"Sheragi Cooling Unit"
-		"Broken Ship Systems"
+		"Damaged Sheragi Systems"
 		"Fusion Drive"
 		"Jump Drive"
 		"Outfits Expansion"
