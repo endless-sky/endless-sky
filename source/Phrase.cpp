@@ -72,6 +72,13 @@ void Phrase::Load(const DataNode &node)
 {
 	// Set the name of this phrase, so we know it has been loaded.
 	name = node.Size() >= 2 ? node.Token(1) : "Unnamed Phrase";
+	// To avoid a possible parsing ambiguity, the interpolation delimiters
+	// may not be used in a Phrase's name.
+	if(name.find("${") != string::npos || name.find('}') != string::npos)
+	{
+		node.PrintTrace("Phrase names may not contain '${' or '}':");
+		return;
+	}
 	
 	sentences.emplace_back();
 	sentences.back().Load(node, this);
