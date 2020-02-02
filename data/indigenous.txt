@@ -38,8 +38,17 @@ ship "Subsidurial"
 	turret 28 0
 	leak "blood" 30 50
 	explode "blood" 45
-	"final explode" "void sprite adult death"
-	description "It is unclear what these creatures are, where they come from, or how they evolved. Scientists have dissected several, but so far the results have simply been that these creatures contain no materials or resources of value; are not even slightly edible, and are only barely sentient. To date, non have demonstrated any sign of sapience."
+	"final explode" "subsidurial death"
+	description "It is unclear what these creatures are, where they come from, or how they evolved. Scientists have dissected several, but so far the results have simply been that these creatures contain no materials or resources of value; are not even slightly edible, and are only barely sentient."
+	description "	To date, none have demonstrated any sign of sapience, and the few captains who have seen them basically consider them to be the cows of space."
+
+effect "subsidurial death"
+	sprite "effect/subsidurial death/subsidurial death"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 16
+	"velocity scale" .01
+
 
 ship "Void Sprite"
 	noun "creature"
