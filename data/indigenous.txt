@@ -39,7 +39,7 @@ ship "Subsidurial"
 	leak "blood" 30 50
 	explode "blood" 45
 	"final explode" "void sprite adult death"
-	description "It is unclear what these creatures are, where they come from, or how they evolved. Scientists have dissected several, but so far the results have simply been that these creatures contain no materials or resources of value; are not even slightly edible, and are only barely sentient. To date, non have demonstrated any sign of sapience."
+	description "It is unclear what these creatures are, where they come from, or how they evolved. Scientists have dissected several, but so far the results have simply been that these creatures contain no materials or resources of value, are not even slightly edible, and are only barely sentient. To date, none have demonstrated any sign of sapience."
 
 ship "Void Sprite"
 	noun "creature"
