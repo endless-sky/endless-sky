@@ -22,7 +22,7 @@ ship "Subsidurial"
 		"drag" 8.2
 		"heat dissipation" .8
 		"cargo space" 70
-		"thrust" 15
+		"thrust" 10
 		"turn" 800
 		"hull repair rate" 3
 		"energy capacity" 1
