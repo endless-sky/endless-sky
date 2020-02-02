@@ -14,7 +14,8 @@ export DISPLAY=:99
 export LIBGL_ALWAYS_SOFTWARE=1
 
 MAX_RETRY=15
-GLXINFO=$(glxinfo)
+# Use the query for OpenGL settings to check if the XServer runs
+GLXINFO=$(glxinfo 2>/dev/null)
 RETURN_VALUE=$?
 while [ "${RETURN_VALUE}" -ne "0" ] && [ "${MAX_RETRY}" -ge "0" ]
 do
@@ -22,7 +23,7 @@ do
 	echo "Waiting for start of xserver (max-retry=${MAX_RETRY})"
 	MAX_RETRY=$(( MAX_RETRY - 1 ))
 	# Use the query for OpenGL settings to check if the XServer runs
-	GLXINFO=$(glxinfo)
+	GLXINFO=$(glxinfo 2>/dev/null)
 	RETURN_VALUE=$?
 done
 if [ "${RETURN_VALUE}" -ne "0" ]

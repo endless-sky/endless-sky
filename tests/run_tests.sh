@@ -59,6 +59,8 @@ do
 	"$ES_EXEC_PATH" --resources "${RESOURCES}" --test "${TEST}" --config "${ES_CONFIG_PATH}"
 	if [ $? -ne 0 ]
 	then
+		echo "errors.txt:"
+		cat "${ES_CONFIG_PATH}/errors.txt"
 		TEST_RESULT="FAIL"
 		NUM_FAILED=$((NUM_FAILED + 1))
 	fi
