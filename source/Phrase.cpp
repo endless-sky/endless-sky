@@ -128,6 +128,13 @@ Phrase::Choice::Choice(const DataNode &node, bool isPhraseName)
 	
 	// This node is a text string that may contain an interpolation request.
 	const string &entry = node.Token(0);
+	if(entry.empty())
+	{
+		// A blank choice was desired.
+		emplace_back();
+		return;
+	}
+	
 	size_t start = 0;
 	while(start < entry.size())
 	{
