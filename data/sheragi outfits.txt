@@ -20,7 +20,7 @@ outfit "Electromagnetic Battery"
 	"shield energy" 0.8
 	"shield heat" 0.8
 	"energy capacity" 20000
-	description `A massive superconductive coil, capable of storing large amounts of energy in a magnetic field, and capable of discharging all of it in a fraction of a second. The magnetic field also provides a small boost to the shield system of the ship. Sheragi shield systems seems very underdeveloped otherwise.`
+	description `This is massive superconductive coil, capable of storing large amounts of energy in a magnetic field, and capable of discharging all of it in a fraction of a second. The magnetic field also provides a small boost to the shield regeneration of the ship, which is otherwise very underdeveloped.`
 
 outfit "Fusion Drive"
 	category "Engines"
@@ -48,7 +48,7 @@ outfit "Fusion Drive"
 		"rewind"
 	"flare sound" "atomic huge"
 	unplunderable 1
-	description `The Sheragi engines are much more than simple tubes spitting fire; They are a collection of interdependent devices, with increased efficiency at the cost of modularity. This includes a hyperdrive, a huge fusion reactor and the most powerful plasma engines you've ever seen. Simple technology, but enhanced to the extreme. The engines are fundamentally connected to the fusion reactor, increasing their thrust even further, and allowing the Emerald Sword to fly at impressive speeds. This piece of engineering is what allowed it to travel interstellar space with relative ease.` 
+	description `The Sheragi engines are much more than simple tubes spitting fire; they are a collection of interdependent devices, with increased efficiency at the cost of modularity. This includes a hyperdrive, a huge fusion reactor, and the most powerful plasma engines you've ever seen. All simple technology, but enhanced to their extremes. The engines are fundamentally connected to the fusion reactor, increasing their thrust even further, and allowing the Emerald Sword to fly at impressive speeds and travel interstellar space with relative ease.`
 
 outfit "Sheragi Cooling Unit"
 	category "Systems"
@@ -58,7 +58,7 @@ outfit "Sheragi Cooling Unit"
 	"outfit space" -40
 	"active cooling" 142
 	"cooling energy" 16.2
-	description `Sheragi cooling systems are primitive at best, but it's active, allowing it to dissipate even more heat than a simple radiator would. It drains a lot of power when the subject to the heat of battle, though.`
+	description `Sheragi cooling systems are primitive at best, but it is active instead of passive, allowing it to dissipate even more heat than a simple radiator would. It drains a lot of power when the subject to the heat of battle, though.`
 
 outfit "Broken Ship Systems"
 	category "Special"
@@ -73,7 +73,7 @@ outfit "Broken Ship Systems"
 	#"required crew" 60
 	"jump drive" -1
 	unplunderable 1
-	description "There is a lot of broken sheragi hardware in here. You need to fix that before you can take the ship back into Human space."
+	description "There is a lot of broken Sheragi hardware in here. You need to fix that before you can take the ship back into Human space."
 
 
 # Weapons
@@ -154,7 +154,7 @@ outfit "Particle Waveform Turret"
 		"hull damage" 270
 		"heat damage" 1344
 		"turret turn" 1.8
-	description "This ancient Sheragi turret accelerates a dense packet of electrons that, while very ineffective against any kind of shielding, has a very long range and easily melts through matter. By the nature of these weapons, one can deduce their tactic was to hit with the Dragonflame Cannon at long range to break the enemy shields and finish them off in relatively close range with the Particle Waveform Cannon"
+	description "This ancient Sheragi turret accelerates a dense packet of electrons that, while very ineffective against any kind of shielding, has a very long range and easily melts through matter. By the nature of these weapons, one can deduce their tactic was to hit with the Dragonflame Cannon at long range to break the enemy shields and finish them off in relatively closer range with the Particle Waveform Cannon."
 
 	
 # Effects

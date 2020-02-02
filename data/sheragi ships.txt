@@ -70,5 +70,5 @@ ship "Emerald Sword"
 	"final explode" "nuke explosion" 2
 	"final explode" "nuke residue fast" 25
 	"final explode" "nuke residue fast" 25
-	description "An ancient sheragi warship that defected from their infighting to escape into interstellar space. Found orbiting a disconnected star, this is an impressively large ship, fit for the equally large draconic Sheragi. it's main weapon is a fusion-pumped GRASER, likely the reason for their extinction. Despite the relatively low tech outfits, it's still a very brutal war machine. Everything is supersized."
-	description "For the original sheragi masters, this warship was home to around 100 individuals. For humans, however, that number more than doubles, bringing it on par with the biggest city ships."
+	description "An ancient Sheragi warship that defected from their infighting to escape into interstellar space. Found orbiting a disconnected star, this is an impressively large ship, fit for the equally large Sheragi. The ship's main weapon is a fusion-pumped GRASER, its power likely the reason for their extinction. Despite the relatively low tech outfits, it's still a very brutal war machine due to its size."
+	description "For the original Sheragi masters, this warship was home to around 100 individuals. For humans, however, that number more than doubles, bringing it on par with the biggest city ships."
