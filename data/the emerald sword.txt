@@ -129,7 +129,7 @@ mission "The Box 3"
 			`	"And the bad news?"`
 			`	"The bad news is, this is a lot more complicated than I thought. I found out that the data in the box has survived, and can still be recovered after all this time, but it will need some specialized hardware and knowledge, and we don't have that yet."`
 			label whatnow
-			`	"What do we do now? Do you have any idea where to find the box? Did you contact law enforcement?"
+			`	"What do we do now? Do you have any idea where to find the box? Did you contact law enforcement?"`
 			`	"I did what I could, but if this was mandated as I expect, the police isn't going to help, and the box is probably off-world by now. However... if you have some cash at hand, and you're willing to go the extra mile to recover the box, there is a way."`
 			choice
 				`	"What do you mean?"`
@@ -436,7 +436,7 @@ mission "The box 7b"
 			`	"Anyway. It's rare to see a Human face here, even more intriguing for it to be staring at Sheragi artifacts."`
 			`	You explain about the ruins recently discovered on Zug.`
 			`	"Oh, right. They used to inhabit the part of Human space that is now called The Rim. Are you looking for anything in particular?"`
-			`	"I would like to know more about Sheragi computers."
+			`	"I would like to know more about Sheragi computers."`
 			`	"Hmmm, computers. The Sheragi built their hardware to last. Very sturdy electronics with redundancies, that could take a shot and survive. But still, I doubt they would have survived so many thousand years. If you want to identify how their hardware used to work, there are a few documents and manuals the ancient Hai stole from them."`
 			`	"Are they for sale?" You inquire.`
 			`	"You want to buy a copy of the documents? Right now? I'm intrigued. Did you actually find something that still works?"`
