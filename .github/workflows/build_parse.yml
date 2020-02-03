@@ -71,7 +71,7 @@ jobs:
         path: endless-sky
 
 
-  windows:
+  build_windows:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -107,15 +107,21 @@ jobs:
         COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libgcc_s_seh-1.dll .
         COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libstdc++-6.dll .
         COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libwinpthread-1.dll .
-    - name: Execute test_parse
-      run: .\tests\test_parse.ps1 'EndlessSky.exe'
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: binary-${{ matrix.os }}
+        path: EndlessSky.exe
 
 
-  macos:
+  build_macos:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest]    
+        os: [macos-latest]  
+    env:
+      DERIVED_DATA_DIR: ./derived-data/
+      IgnoreFileSystemDeviceInodeChanges: 1
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
@@ -126,6 +132,15 @@ jobs:
       run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) install
     - name: Execute test_parse
       run: ./tests/test_parse.sh "/tmp/EndlessSky.dst/Applications/Endless Sky.app/Contents/MacOS/Endless Sky"
+    - name: Archive artifact
+      run: |
+        cd /tmp/EndlessSky.dst/Applications/
+        tar -cf $GITHUB_WORKSPACE/EndlessSky.app.tar "Endless Sky.app"
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: app-${{ matrix.os }}
+        path: EndlessSky.app.tar
 
 
   test_ubuntu:
@@ -150,3 +165,53 @@ jobs:
       run: |
         chmod +x endless-sky
         ./tests/test_parse.sh ./endless-sky
+
+  test_windows:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
+    needs: build_windows
+    steps:
+    - uses: actions/checkout@v2
+    - name: Fetch development libraries
+      run: |
+        Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
+        Expand-Archive win64-dev.zip -DestinationPath . -Force
+        Remove-Item win64-dev.zip
+        COPY ".\dev64\bin\*.dll" .
+        COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libgcc_s_seh-1.dll .
+        COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libstdc++-6.dll .
+        COPY C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32\lib\libwinpthread-1.dll .
+    - name: Download artifact
+      uses: actions/download-artifact@v1.0.0
+      with:
+        name: binary-${{ matrix.os }}
+        path: .
+    - name: Execute test_parse
+      run: .\tests\test_parse.ps1 EndlessSky.exe
+
+
+  test_macos:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest]
+    needs: build_macos
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        brew update
+        brew install libmad libpng jpeg-turbo sdl2
+    - name: Download artifact
+      uses: actions/download-artifact@v1.0.0
+      with:
+        name: app-${{ matrix.os }}
+        path: .
+    - name: Extract artifact
+      run: tar -xf EndlessSky.app.tar
+    - name: Execute test_parse
+      run: |
+        chmod +x "./Endless Sky.app/Contents/MacOS/Endless Sky"
+        ./tests/test_parse.sh "./Endless Sky.app/Contents/MacOS/Endless Sky"
