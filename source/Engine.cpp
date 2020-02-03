@@ -1597,22 +1597,35 @@ void Engine::HandleKeyboardInputs()
 	keyHeld.ReadKeyboard();
 	Command keyDown = keyHeld.AndNot(oldHeld);
 	
+	// Certain commands are always sent when the corresponding key is depressed.
+	static const Command manueveringCommands = Command::AFTERBURNER | Command::BACK |
+		Command::FORWARD | Command::LEFT | Command::RIGHT;
+	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN | manueveringCommands);
+	
+	// Issuing LAND again within the cooldown period signals a change of landing target.
+	constexpr int landCooldown = 60;
 	++landKeyInterval;
 	if(oldHeld.Has(Command::LAND))
 		landKeyInterval = 0;
 	
-	// Wait with actual jumping until the jump command is released.
-	// Or if pressing land quicky in succession, then use WAIT to switch landing targets.
-	if(keyHeld.Has(Command::JUMP) || (keyHeld.Has(Command::LAND) && landKeyInterval < 60))
+	// If all previously-held maneuvering keys have been released,
+	// restore any autopilot commands still being requested.
+	if(!keyHeld.Has(manueveringCommands) && oldHeld.Has(manueveringCommands))
+	{
+		activeCommands |= keyHeld.And(Command::JUMP | Command::BOARD | Command::LAND);
+		
+		// Do not switch landing targets when restoring autopilot.
+		landKeyInterval = landCooldown;
+	}
+	
+	// If holding JUMP or toggling LAND, also send WAIT. This prevents the jump from
+	// starting (e.g. while escorts are aligning), or switches the landing target.
+	if(keyHeld.Has(Command::JUMP) || (keyHeld.Has(Command::LAND) && landKeyInterval < landCooldown))
 		activeCommands.Set(Command::WAIT);
 	else
 		activeCommands.Clear(Command::WAIT);
 	
-	// Transfer all commands that need to be active as long as the corresponding key is pressed.
-	activeCommands |= (keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
-		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::BACK | Command::AFTERBURNER));
-	
-	// Transfer all newly pressed unhandled keys to active commands.
+	// Transfer all newly pressed, unhandled keys to active commands.
 	activeCommands |= keyDown;
 }
 
