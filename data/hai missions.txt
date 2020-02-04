@@ -1484,7 +1484,7 @@ mission "Nanachi 1"
 		"net worth" > 20000000
 		"combat rating" > 1200
 		year > 3018
-		"First Contact: Hai: done"
+		has "First Contact: Hai: done"
 	on offer
 		conversation
 			`As you are making your way through the spaceport you notice a worried-looking Hai staring at the local job board and back at some sort of document they are holding.`
@@ -1500,9 +1500,9 @@ mission "Nanachi 1"
 				`	"I've been there before; trust me, it gets better. I wish you the best of luck on finding a job."`
 			`	She nods in sad understanding, and continues to swap focus from the job board to the papers in her hand.`
 			choice
-				`	(Help her out anyway.)
+				`	(Help her out anyway.)`
 					goto "positive1"
-				`	(Leave her alone and continue on.)
+				`	(Leave her alone and continue on.)`
 					decline
 			label "positive1"
 			`	Her ears twitch a bit, and her previously crestfallen eyes light up as she nearly jumps in joy at your offer. "Thank you so much Captain! My name is Nanachi, I promise I won't cause any trouble at all, just a few quick jobs and I'm sure I'll be fine by myself!"`
@@ -1657,7 +1657,7 @@ mission "Nanachi 4"
 				`	"No, I agreed to help you find and deal with some simple jobs, but I can't risk fighting such a fleet by myself."`
 					decline
 			`	She thanks you profusely, and promises that she'll pay you for everything as soon as she can. The organizers are a bit hesitant, but seeing as no other captain here has decided to offer them help, they agree to let the two of you go to Prime and retrieve the cargo.`
-			`	Vanessa grabs ahold of Nanachi's arm before she can run off to the spaceport. "Just remember, if you can't get back here by <day>, don't worry about it; we'll understand. I'm sure we can come up with some alternative to have the festival without our main attractions."
+			`	Vanessa grabs ahold of Nanachi's arm before she can run off to the spaceport. "Just remember, if you can't get back here by <day>, don't worry about it; we'll understand. I'm sure we can come up with some alternative to have the festival without our main attractions."`
 			`	As you're leaving the bar, Xavier pulls you aside, speaking very quietly, "<last>, I know you're just trying to help this girl, but don't get killed over this. If you run into those pirates don't try to fight them, just rush to Prime."`
 				accept
 	npc
