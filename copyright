@@ -351,7 +351,6 @@ Files:
  images/thumbnail/penguin*
  images/thumbnail/petrel*
  images/thumbnail/tern*
- images/planet/station0*
  images/planet/station1c*
  images/planet/station2c*
  images/planet/station3c*
@@ -628,6 +627,7 @@ Files:
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
+ images/planet/station0*
  images/planet/station1b*
  images/planet/station2b*
  images/planet/station3b*
