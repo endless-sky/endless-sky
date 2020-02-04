@@ -408,7 +408,7 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 				`	"We only do those jobs to get paid."`
 					goto jerk
 			label war
-			`	"Ambassador Sayari mentioned you are great [hero, explorer] in Human space, and solved many [issues, disasters]. Or are we mistaken?"`
+			`	"Ambassador Sayari mentioned you are great [hero, explorer] in human space, and solved many [issues, disasters]. Or are we mistaken?"`
 				goto choice2
 			label hai
 			`	"Ambassador Sayari mentioned you are great [hero, explorer], even in Hai space, and solved many [issues, disasters]. Or are we mistaken?"`
