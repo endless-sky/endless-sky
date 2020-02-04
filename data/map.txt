@@ -2578,7 +2578,7 @@ system Aldhibain
 		distance 2197.61
 		period 1930.55
 		object "Charon Station"
-			sprite planet/station2
+			sprite planet/station14
 			distance 211
 			period 13.622
 
@@ -2826,7 +2826,7 @@ system Algorel
 		distance 1859.58
 		period 1793.11
 		object "Hydra Station"
-			sprite planet/station4
+			sprite planet/station13
 			distance 277
 			period 12.3693
 
@@ -2882,7 +2882,7 @@ system Alheka
 		distance 2035.77
 		period 1118
 		object "Triton Station"
-			sprite planet/station4
+			sprite planet/station2
 			distance 261
 			period 11.3132
 
@@ -6127,7 +6127,7 @@ system Caph
 		distance 1666.37
 		period 827.952
 		object "Kraken Station"
-			sprite planet/station1
+			sprite planet/station10
 			distance 278
 			period 10.5056
 	object
@@ -8824,7 +8824,7 @@ system Elnath
 		distance 4745.58
 		period 3157.63
 		object "Carbuncle Station"
-			sprite planet/station2
+			sprite planet/station9
 			distance 253
 			period 12.546
 
@@ -12892,7 +12892,7 @@ system Izar
 		distance 2239.39
 		period 1178.21
 		object "Wyvern Station"
-			sprite planet/station1
+			sprite planet/station8
 			distance 201
 			period 12.6652
 
@@ -15812,7 +15812,7 @@ system Men
 		distance 2504.61
 		period 2802.82
 		object "Smuggler's Den"
-			sprite planet/station6
+			sprite planet/station15
 			distance 302
 			period 14.0811
 
@@ -20834,7 +20834,7 @@ system Scheat
 		distance 2229.12
 		period 1683.91
 		object "Charybdis Station"
-			sprite planet/station6
+			sprite planet/station17
 			distance 281
 			period 13.1034
 
@@ -23081,7 +23081,7 @@ system Tarazed
 		distance 1880.55
 		period 935.835
 		object "Arachne Station"
-			sprite planet/station3
+			sprite planet/station11
 			distance 228
 			period 16.9693
 
@@ -24837,7 +24837,7 @@ system Zosma
 		distance 1637.56
 		period 1241.8
 		object "Huginn Station"
-			sprite planet/station5
+			sprite planet/station16
 			distance 286
 			period 13.4547
 	object
@@ -24845,7 +24845,7 @@ system Zosma
 		distance 3585.81
 		period 4023.81
 		object "Muninn Station"
-			sprite planet/station3
+			sprite planet/station12
 			distance 272
 			period 12.9498
 
