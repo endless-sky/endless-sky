@@ -1584,7 +1584,7 @@ mission "Nanachi 3"
 				`	(Tell her about how Earth actually is.)`
 					goto truth
 			label avoid
-			`	You tell her that you haven't ever visited the human capital, and that you never had much interest in learning about it. "Oh, sorry about that, shouldn't have assumed you knew everything, you're a starship captain after all, not a historian, I'll just ask someone else when I get the chance.", says Nanachi.`
+			`	You tell her that you haven't ever visited the human capital, and that you never had much interest in learning about it. "Oh, sorry about that, shouldn't have assumed you knew everything, you're a starship captain after all, not a historian, I'll just ask someone else when I get the chance," says Nanachi.`
 					goto board
 			label fake
 			`	You start making up stories about how beautiful the skies of Earth are. You describe forests teeming with life, and do your best to remember ancient civilizations and their monuments. From the looks of it she believes you, and your lie seems to have sated her curiosity for now. If the day where the Hai are allowed to move around human space ever comes, though, she will no doubt be extremely disappointed.`
