@@ -1522,7 +1522,7 @@ ship "Marauder Splinter" "Marauder Splinter (Hai)"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 3
 		"Fuel Pod" 3
-		"Outfits Expansion" 3
+		"Outfits Expansion" 2
 		"Laser Rifle" 22
 		"Security Station" 4
 		`"Biroo" Atomic Thruster`
