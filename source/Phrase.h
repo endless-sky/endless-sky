@@ -57,8 +57,9 @@ private:
 	public:
 		// Sources of text, either literal or via phrase invocation.
 		std::vector<Choice> choices;
-		// Rules for updating the generated text.
-		std::vector<std::function<void(std::string&)>> replaceRules;
+		// Character sequences that should be replaced, e.g. "llo"->"y"
+		// would transfrom "Hello hello" into "Hey hey"
+		std::vector<std::pair<std::string, std::string>> replacements;
 	};
 	
 	

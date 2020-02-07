@@ -13,40 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Phrase.h"
 
 #include "DataNode.h"
+#include "Format.h"
 #include "GameData.h"
 #include "Random.h"
 
 using namespace std;
-
-namespace {
-	// Replaces all occurrences of the target string with the given string in-place.
-	void ReplaceAll(string &text, const string &target, const string &replacement)
-	{
-		// If the searched string is an empty string, do nothing.
-		if(target.empty())
-			return;
-		
-		string newString;
-		newString.reserve(text.size());
-		
-		// Index at which to begin searching for the target string.
-		size_t start = 0;
-		size_t matchLength = target.size(); 
-		// Index at which the target string was found.
-		size_t findPos = string::npos;
-		while((findPos = text.find(target, start)) != string::npos)
-		{
-			newString.append(text, start, findPos - start);
-			newString += replacement;
-			start = findPos + matchLength;
-		}
-		
-		// Add the remaining text.
-		newString += text.substr(start);
-		
-		text.swap(newString);
-	}
-}
 
 
 
@@ -96,9 +67,9 @@ string Phrase::Get() const
 			for(const auto &element : choice)
 				result += element.second ? element.second->Get() : element.first;
 		}
-		else if(!part.replaceRules.empty())
-			for(const auto &f : part.replaceRules)
-				f(result);
+		else if(!part.replacements.empty())
+			for(const auto &pair : part.replacements)
+				Format::ReplaceAll(result, pair.first, pair.second);
 	}
 	
 	return result;
@@ -147,7 +118,7 @@ Phrase::Choice::Choice(const DataNode &node, bool isPhraseName)
 	}
 	
 	size_t start = 0;
-	while(start < entry.size())
+	while(start < entry.length())
 	{
 		// Determine if there is an interpolation request in this string.
 		size_t left = entry.find("${", start);
@@ -202,17 +173,8 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 			for(const DataNode &grand : child)
 				part.choices.emplace_back(grand, true);
 		else if(child.Token(0) == "replace")
-		{
 			for(const DataNode &grand : child)
-			{
-				const string oldStr = grand.Token(0);
-				const string newStr = grand.Size() >= 2 ? grand.Token(1) : "";
-				part.replaceRules.emplace_back([oldStr, newStr](string &s) -> void
-				{
-					ReplaceAll(s, oldStr, newStr);
-				});
-			}
-		}
+				part.replacements.emplace_back(grand.Token(0), grand.Size() >= 2 ? grand.Token(1) : string{});
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 		
@@ -227,7 +189,7 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 				}
 		
 		// If no words, phrases, or replaces were given, discard this part of the phrase.
-		if(part.choices.empty() && part.replaceRules.empty())
+		if(part.choices.empty() && part.replacements.empty())
 			pop_back();
 	}
 }
