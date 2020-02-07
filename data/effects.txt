@@ -80,7 +80,7 @@ effect "remnant leak"
 	"random spin" 2
 	"random velocity" 12
 
-effect "remnant sparkle leak"
+effect "remnant leak sparkle"
 	sprite "effect/remnant leak sparkle"
 		"no repeat"
 		"frame rate" 30
