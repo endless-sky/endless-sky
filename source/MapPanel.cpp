@@ -923,8 +923,21 @@ void MapPanel::DrawEscorts()
 		if(player.HasSeen(squad.first) || squad.first == specialSystem)
 		{
 			Point pos = zoom * (squad.first->Position() + center);
-			// Stored outfits are also drawn with the color for parked escorts
-			RingShader::Draw(pos, INNER - 1.f, 0.f, squad.second.first.first ? active : parked);
+			
+			// Active and parked ships are drawn/indicated by a ring in the center.
+			if(squad.second.first.first || squad.second.first.second)
+				RingShader::Draw(pos, INNER - 1.f, 0.f, squad.second.first.first ? active : parked);
+			
+			if(squad.second.second)
+				// Stored outfits are drawn/indicated by 8 short rays out of the system center.
+				for(int i=0; i < 8; ++i)
+				{
+					// Starting at 7.5 degrees to intentionally mis-align with mission pointers.
+					Angle angle = Angle(7.5f + 45.f * i);
+					Point from = pos + angle.Unit() * OUTER;
+					Point to = from + angle.Unit() * 4.f;
+					LineShader::Draw(from, to, 2.f, active);
+				}
 		}
 }
 
