@@ -46,7 +46,7 @@ do
 		if [ $? -ne 0 ]
 		then
 			echo "Error: file ${FILE} not added to XCode project"
-			exit 1
+			#exit 1
 		fi
 		NUM_ADDED=$(( NUM_ADDED + 1 ))
 	fi
