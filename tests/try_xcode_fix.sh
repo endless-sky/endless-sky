@@ -21,7 +21,7 @@ for FILE in $(ls -1 source)
 do
 	echo "Checking ${FILE}"
 	# Check if the file is already in the XCode project
-	cat EndlessSky.xcodeproj/project.pbxproj | grep --silent "$FILE"
+	cat EndlessSky.xcodeproj/project.pbxproj | grep "$FILE"
 	if [ $? -ne 0 ] && [ "$FILE" != "WinApp.rc" ]
 	then
 		echo "File $FILE is missing from XCode-project"
