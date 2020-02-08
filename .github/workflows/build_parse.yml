@@ -120,6 +120,9 @@ jobs:
       run: |
         brew update
         brew install libmad libpng jpeg-turbo sdl2
+    - name: Try fixing XCode entries if required
+      run: |
+        ./tests/try_xcode_fix.sh
     - name: Compile
       run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) install
     - name: Execute test_parse
