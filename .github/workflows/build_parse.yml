@@ -121,6 +121,6 @@ jobs:
         brew update
         brew install libmad libpng jpeg-turbo sdl2
     - name: Compile
-      run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) install
+      run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) install -quiet
     - name: Execute test_parse
       run: ./tests/test_parse.sh "/tmp/EndlessSky.dst/Applications/Endless Sky.app/Contents/MacOS/Endless Sky"
