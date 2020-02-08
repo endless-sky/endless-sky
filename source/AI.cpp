@@ -1355,7 +1355,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	const System *origin = ship.GetSystem();
 	if(!ship.GetTargetSystem() && !ship.GetTargetStellar() && !shouldStay)
 	{
-		int jumps = ship.JumpsRemaining();
+		int jumps = ship.JumpsRemaining(false);
 		// Each destination system has an average priority of 10.
 		// If you only have one jump left, landing should be high priority.
 		int planetWeight = jumps ? (1 + 40 / jumps) : 1;
@@ -2238,7 +2238,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		
 		// If this ship can jump away, consider traveling to a nearby system.
 		vector<const System *> targetSystems;
-		if(ship.JumpsRemaining())
+		if(ship.JumpsRemaining(false))
 		{
 			const auto &links  = ship.Attributes().Get("jump drive") ? system->Neighbors() : system->Links();
 			targetSystems.insert(targetSystems.end(), links.begin(), links.end());
