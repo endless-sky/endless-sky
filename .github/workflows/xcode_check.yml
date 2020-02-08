@@ -1,0 +1,24 @@
+name: Check xcode completeness
+
+on:
+  push:
+    paths:
+    - 'source/**'
+    - 'tests/**'
+  pull_request:
+    paths:
+    - 'source/**'
+    - 'tests/**'
+
+jobs:
+  check-xcode-completeness:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        sudo apt-get install python3-setuptools
+        pip3 install pbxproj
+    - name: Execute xcode completeness check
+      run: |
+        ./tests/check_xcode.sh
