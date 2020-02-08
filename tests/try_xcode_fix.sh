@@ -12,10 +12,6 @@ ESTOP=$(pwd)
 echo "script-dir: ${HERE}"
 echo "es-top-dir: ${ESTOP}"
 
-
-# Checkout helper script for adding Xcode/project files if they are missing
-#git clone https://github.com/zackslash/Xcode-Proj-Adder.git
-
 NUM_ADDED=0
 for FILE in $(ls -1 source)
 do
@@ -25,6 +21,21 @@ do
 	if [ $? -ne 0 ] && [ "$FILE" != "WinApp.rc" ]
 	then
 		echo "File $FILE is missing from XCode-project"
+		if [ ! -d Xcode-Proj-Adder ]
+		then
+			echo "Cloning Xcode-Proj-Adder project"
+			git clone https://github.com/zackslash/Xcode-Proj-Adder.git
+			if [ $? -ne 0 ]
+			then
+				echo "Error: Cloning failed"
+				exit 1
+			fi
+			if [ ! -f ./Xcode-Proj-Adder/bin/XcodeProjAdder ]
+			then
+				echo "Error: Xcode-adder missing"
+				exit 1
+			fi
+		fi
 		NUM_ADDED=$(( NUM_ADDED + 1 ))
 		#./Xcode-Proj-Adder/bin/XcodeProjAdder \
 		#	-XCP ${ESTOP}/EndlessSky.xcodeproj/project.pbxproj \
@@ -35,7 +46,7 @@ done
 if [ ${NUM_ADDED} -gt 0 ]
 then
 	echo "You should add ${NUM_ADDED} files"
-	echo "The Xcode project file now contains:"
+	echo "An example of the project file after adding the missing files:"
 	echo ""
 	cat EndlessSky.xcodeproj/project.pbxproj
 	echo ""
