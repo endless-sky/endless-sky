@@ -9,12 +9,17 @@ cd ..
 
 ESTOP=$(pwd)
 
+echo "script-dir: ${HERE}"
+echo "es-top-dir: ${ESTOP}"
+
+
 # Checkout helper script for adding Xcode/project files if they are missing
 #git clone https://github.com/zackslash/Xcode-Proj-Adder.git
 
 NUM_ADDED=0
 for FILE in $(ls -1 source)
 do
+	echo "Checking ${FILE}"
 	# Check if the file is already in the XCode project
 	cat EndlessSky.xcodeproj/project.pbxproj | grep --silent "$FILE"
 	if [ $? -ne 0 ] && [ "$FILE" != "WinApp.rc" ]
