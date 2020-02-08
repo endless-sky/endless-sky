@@ -816,7 +816,7 @@ mission "ZZ Alexandria Library Card: Third Volume: Step 3 Escort"
 			`	"By the way, I noticed you may be in need of a new ship. You'll pass by the Tarazed system when you exit Quarg space. Our corporate capital there, on Wayfarer, has the most well-stocked shipyard and outfitters in Human space. Stop by if you have a chance."`
 				accept
 	npc
-		government "Independent"
+		government "Neutral"
 		personality heroic escort disables
 		fleet
 			names "civilian"
@@ -923,120 +923,83 @@ mission "Alexandria Library Card: Key"
 				"Aerie" 1
 				"Dagger" 2
 				"Headhunter" 3
-		
-
-
-mission "Alexandria Library Card: Key: Missing a Segment"
-	invisible
-	repeat
-	destination Rand
-	source "New Austria"
-	stopover "New Boston"
-	stopover "New Holland"
-	stopover "Deep"
-	stopover "Trinket"
-	stopover "New Iceland"
-	to offer
-		has "ZZ Alexandria Library Card: Third Volume: Step 3: done"
-		not "Alexandria Library Card: Third Volume: Key: declined"
-		not "Alexandria Library Card: Third Volume: Key: failed"
 	on visit
-		dialog `You need all five segments before Daemos Titan can obtain the third of the Chal Jub Paqmey.`
-
-
-
-mission "Alexandria Library Card: Key: Missing Person or Pencils"
-	invisible
-	repeat
-	passengers 1
-	cargo "old books and a thousand pencils" 1
-	destination Rand
-	to offer
-		has "ZZ Alexandria Library Card: Third Volume: Step 3: done"
-		not "Alexandria Library Card: Third Volume: Key: declined"
-		not "Alexandria Library Card: Third Volume: Key: failed"
-		or
-			not "Alexandria Library Card: Key: New Boston: done"
-			not "Alexandria Library Card: Key: New Holland: done"
-			not "Alexandria Library Card: Key: Deep: done"
-			not "Alexandria Library Card: Key: Trinket: done"
-			not "Alexandria Library Card: Key: New Iceland: done"
-	on visit
-		dialog `You need to bring all five keys, Daemos, and his thousand pencils before you can finish this mission. Perhaps they're in one of your escorts?`
+		dialog `You need to bring all five keys, Daemos, and his thousand pencils before you can finish this mission.`
 
 
 
 
 mission "Alexandria Library Card: Key: New Boston"
-	invisible
-	destination "New Boston"
+	landing
+	source "New Boston"
 	to offer 
 		has "ZZ Alexandria Library Card: Third Volume: Step 3: done"
 		not "Alexandria Library Card: Third Volume: Key: declined"
 		not "Alexandria Library Card: Third Volume: Key: failed"
-	on complete
+	on offer
 		conversation
 			`You and Daemos find a pawn shop near your first apartment. He trades one of his old books for one of the five key segments.`
-
+				decline
 
 
 
 mission "Alexandria Library Card: Key: New Holland"
-	invisible
-	destination "New Holland"
+	landing
+	source "New Holland"
 	to offer 
 		has "ZZ Alexandria Library Card: Third Volume: Step 3: done"
 		not "Alexandria Library Card: Third Volume: Key: declined"
 		not "Alexandria Library Card: Third Volume: Key: failed"
-	on complete
+	on offer
 		conversation
 			`A famous spelunker on New Holland retrieves one of the five key segments from an underwater cave.`
+				decline
 
 
 
 
 mission "Alexandria Library Card: Key: Deep"
-	invisible
-	destination "Deep"
+	landing
+	source "Deep"
 	to offer 
 		has "ZZ Alexandria Library Card: Third Volume: Step 3: done"
 		not "Alexandria Library Card: Third Volume: Key: declined"
 		not "Alexandria Library Card: Third Volume: Key: failed"
-	on complete
+	on offer
 		conversation
 			`You find one of the five key segments propping open a door to a fishmonger's shop.`
-
+				decline
 
 
 
 mission "Alexandria Library Card: Key: Trinket"
-	invisible
-	destination "Trinket"
+	landing
+	source "Trinket"
 	to offer 
 		has "ZZ Alexandria Library Card: Third Volume: Step 3: done"
 		not "Alexandria Library Card: Third Volume: Key: declined"
 		not "Alexandria Library Card: Third Volume: Key: failed"
-	on complete
+	on offer
 		outfit "Fragmentation Grenades"
 		outfit "Laser Rifle"
 		conversation
 			`You wander to a storage area behind a grocery store, where you find a seedy man selling every manner of illegal merchandise. Daemos pays a hefty sum for one of the five key segments.`
 			`The merchant hands you some free grenades and a rifle. "Come back to buy more if you find a more interesting occupation."`
-
+				decline
 
 
 
 mission "Alexandria Library Card: Key: New Iceland"
-	invisible
-	destination "New Iceland"
+	landing
+	source "New Iceland"
 	to offer 
 		has "ZZ Alexandria Library Card: Third Volume: Step 3: done"
 		not "Alexandria Library Card: Third Volume: Key: declined"
 		not "Alexandria Library Card: Third Volume: Key: failed"
-	on complete
+	on offer
 		conversation
 			`After searching through many broken hailstones and rocks, you finally find one fifth of the key segment in a quarry.`
-
+				decline
 
 
 
@@ -1307,7 +1270,7 @@ mission "Alexandria Library Card: Completion"
 mission "Access to Alexandria"
 	name "Access to Alexandria"
 	description "Access to Alexandria"
-	repeat
+	repeat 2
 	landing
 	source
 		not attributes uninhabited
