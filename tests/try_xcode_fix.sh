@@ -38,12 +38,12 @@ do
 		fi
 		# Run XcodeProjAdder and print exit-code.
 		./Xcode-Proj-Adder/bin/XcodeProjAdder \
-			-XCP ${ESTOP}/EndlessSky.xcodeproj/project.pbxproj \
+			-XCP ${ESTOP}/EndlessSky.xcodeproj \
 			-SCSV "../source/${FILE}"
-		echo "XcodeProjAdder ran with result $0"
+		echo "XcodeProjAdder ran with result $?"
 		# Check if the requested file was added
 		cat EndlessSky.xcodeproj/project.pbxproj | grep "$FILE" > /dev/null
-		if [ $? -eq 0 ]
+		if [ $? -ne 0 ]
 		then
 			echo "Error: file ${FILE} not added to XCode project"
 			exit 1
