@@ -276,7 +276,7 @@ void AI::IssueMoveTarget(const PlayerInfo &player, const Point &target, const Sy
 
 
 // Commands issued via the keyboard (mostly, to the flagship).
-void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands, bool isActive)
+void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 {
 	shift = (SDL_GetModState() & KMOD_SHIFT);
 	escortsUseAmmo = Preferences::Has("Escorts expend ammo");
@@ -294,7 +294,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands, bool isActive)
 	}
 	const Ship *flagship = player.Flagship();
 	
-	if(!isActive || !flagship || flagship->IsDestroyed())
+	if(!flagship || flagship->IsDestroyed())
 		return;
 	
 	// Only toggle the "cloak" command if one of your ships has a cloaking device.
