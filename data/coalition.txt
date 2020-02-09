@@ -754,7 +754,7 @@ phrase "friendly heliarch"
 	word
 		"."
 
-phrase "friendly disabled heliarch"
+phrase "friendly disabled coalition"
 	word
 		"Repairs, we do need"
 		"Disabled, our ship has become"
@@ -978,6 +978,122 @@ phrase "hostile disabled heliarch"
 		" "
 	word
 		"Their translation device must be broken"
+		"You can only wonder what they're saying"
+	word
+		".)"
+
+phrase "friendly coalition"
+	word
+		"The Coalition Games, "
+		"A longcow ranch, "
+		"Gentle Rain's rainforests, "
+		"Saros' moons, "
+		"Refuge of Belugt, "
+		"Cold Horizon, "
+		"Second Cerulean, "
+		"Deep Treasure's coral reefs, "
+		"Celestial Third's farms, "
+		"Second Viridian's arcologies, "
+	word
+		"last year I did "
+		"I'd like to "
+		"one day I will "
+		"I enjoyed to "
+	word
+		"visit"
+		"travel to"
+		"see"
+		"spectate"
+		"watch"
+		"observe"
+	word
+		"."
+
+phrase "friendly coalition"
+	word
+		"Sponsored by "
+		"Courtesy of "
+		"A gift from "
+		"Funded by "
+		"Patronized by "
+	word
+		"House Mallob, "
+		"House Ablomab, "
+		"House Debdo, "
+		"House Idriss, "
+		"House Garbarag, "
+		"House Chamgar, "
+		"House Bebliss, "
+	word
+		"my ship is"
+		"my fleet is"
+		"this vessel is"
+		"my last ship was"
+		"my first ship was"
+		"my brother's ship is"
+		"my sister's ship is"
+	word
+		"."
+
+phrase "friendly coalition"
+	word
+		"In longcow ranch, "
+		"On ringworld construction, "
+		"On station maintenance, "
+		"In a Kimek farm, "
+		"In an Arach mine, "
+		"In a Saryd laboratory, "
+		"In a Kimek hunger tower, "
+		"In a Saryd retirement home, "
+		"In an Arach resort, "
+	word
+		"I used to work"
+		"my family works"
+		"my parents worked"
+		"my co-pilot worked"
+	word
+		"."
+
+phrase "hostile coalition"
+	word
+		"Regret this, "
+		"Pay for this, "
+		"Be chastised for this, "
+		"Wish you'd never done that, "
+	word
+		"you will, "
+	word
+		""
+		"you "
+	word
+		"pitiful "
+		"foolish "
+		"detestable "
+		"despicable "
+		"lousy "
+		"deplorable "
+	word
+		"human"
+		"outsider"
+		"raider"
+		"pirate"
+		"criminal"
+		"lowlife"
+		"bully"
+	word
+		"."
+		"!"
+
+phrase "hostile disabled coalition"
+	word
+		"("
+	word
+		"The Coalition ship hails you, speaking in a language you do not understand."
+		"The ship's captain yells at you in an alien language."
+	word
+		" "
+	word
+		"Your translation device must be programmed to not translate profanity"
 		"You can only wonder what they're saying"
 	word
 		".)"
