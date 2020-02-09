@@ -294,6 +294,9 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands, bool isActive)
 	
 	if(!isActive || !flagship || flagship->IsDestroyed())
 		return;
+
+	if(activeCommands.Has(Command::STOP))
+		Messages::Add("Flagship holding position.");
 	
 	// Only toggle the "cloak" command if one of your ships has a cloaking device.
 	if(activeCommands.Has(Command::CLOAK))
