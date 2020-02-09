@@ -195,10 +195,20 @@ void Ship::Load(const DataNode &node)
 				if(child.Size() >= 2)
 					outfit = GameData::Outfits().Get(child.Token(1));
 			}
+			Angle angle = Angle(0.);
+			bool parallel = false;
+			if(child.HasChildren())
+			{
+				for(const DataNode &grand : child)
+					if(grand.Token(0) == "angle" && grand.Size() >= 2)
+						angle = grand.Value(1);
+					else if(grand.Token(0) == "parallel")
+						parallel = true;
+			}
 			if(outfit)
 				++equipped[outfit];
 			if(key == "gun")
-				armament.AddGunPort(hardpoint, outfit);
+				armament.AddGunPort(hardpoint, angle, parallel, outfit);
 			else
 				armament.AddTurret(hardpoint, outfit);
 			// Print a warning for the first hardpoint after 32, i.e. only 1 warning per ship.
@@ -403,7 +413,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextGun != end && nextGun->IsTurret())
 						++nextGun;
 					const Outfit *outfit = (nextGun == end) ? nullptr : nextGun->GetOutfit();
-					merged.AddGunPort(bit->GetPoint() * 2., outfit);
+					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAngle(), bit->IsParallel(), outfit);
 					if(nextGun != end)
 					{
 						if(outfit)
@@ -641,6 +651,16 @@ void Ship::Save(DataWriter &out) const
 					hardpoint.GetOutfit()->Name());
 			else
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y());
+			double hardpointAngle = hardpoint.GetBaseAngle().Degrees();
+			if(hardpoint.IsParallel() || hardpointAngle)
+			{
+				out.BeginChild();
+				if(hardpointAngle)
+					out.Write("angle", hardpointAngle);
+				if(hardpoint.IsParallel())
+					out.Write("parallel");
+				out.EndChild();
+			}
 		}
 		for(const Bay &bay : bays)
 		{
