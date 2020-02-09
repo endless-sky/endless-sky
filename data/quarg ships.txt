@@ -114,3 +114,8 @@ ship "Quarg Wardragon"
 	explode "huge explosion" 20
 	"final explode" "final explosion medium"
 	description "The Wardragon is used by the Quarg as a light warship."
+
+ship "Quarg Wardragon" "Quarg Wardragon (Never Disabled)"
+	"never disabled"
+	add attributes
+		"hull" -7500
