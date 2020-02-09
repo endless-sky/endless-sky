@@ -146,11 +146,11 @@ void BoardingPanel::Draw()
 		Point pos(-320., y + fontOff);
 		font.Draw(item.Name(), pos, color);
 		
-		Point valuePos(pos.X() + 260. - font.Width(item.Value()), pos.Y());
-		font.Draw(item.Value(), valuePos, color);
+		const Font::Layout layoutValue(Font::TRUNC_NONE, 260, Font::RIGHT);
+		font.Draw(item.Value(), pos, color, &layoutValue);
 		
-		Point sizePos(pos.X() + 330. - font.Width(item.Size()), pos.Y());
-		font.Draw(item.Size(), sizePos, color);
+		const Font::Layout layoutItem(Font::TRUNC_NONE, 330, Font::RIGHT);
+		font.Draw(item.Size(), pos, color, &layoutItem);
 	}
 	
 	// Set which buttons are active.

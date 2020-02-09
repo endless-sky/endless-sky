@@ -440,7 +440,7 @@ void MapDetailPanel::DrawInfo()
 				
 				SpriteShader::Draw(planetSprite, uiPoint);
 				planetY[planet] = uiPoint.Y() - 60;
-			
+				
 				font.Draw(object.Name(),
 					uiPoint + Point(-70., -52.),
 					planet == selectedPlanet ? medium : dim);
@@ -528,8 +528,8 @@ void MapDetailPanel::DrawInfo()
 		else
 			price = (hasVisited ? "n/a" : "?");
 		
-		Point pos = uiPoint + Point(140. - font.Width(price), 0.);
-		font.Draw(price, pos, color);
+		Font::Layout layout(Font::TRUNC_BACK, 140, Font::RIGHT);
+		font.Draw(price, uiPoint, color, &layout);
 		
 		if(isSelected)
 			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, color);

@@ -285,15 +285,15 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 	
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, Table::LEFT);
-	table.AddColumn(WIDTH - 20, Table::RIGHT);
+	table.AddColumn(0, Font::Layout(Font::TRUNC_NONE, WIDTH - 20, Font::LEFT));
+	table.AddColumn(WIDTH - 20, Font::Layout(Font::TRUNC_MIDDLE, WIDTH - 20, Font::RIGHT));
 	table.SetUnderline(0, WIDTH - 20);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	
 	// Draw the ship information.
 	table.Draw("ship:", dim);
-	const Font::Layout layout(Font::TRUNC_MIDDLE, WIDTH - 50);
-	table.Draw(ship.Name(), bright, &layout);
+	const Font::Layout shipNameLayout(Font::TRUNC_MIDDLE, WIDTH - 50, Font::RIGHT);
+	table.Draw(ship.Name(), bright, &shipNameLayout);
 	
 	table.Draw("model:", dim);
 	table.Draw(ship.ModelName(), bright);
@@ -316,8 +316,8 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, Table::LEFT);
-	table.AddColumn(WIDTH - 20, Table::RIGHT);
+	table.AddColumn(0, Font::Layout(Font::TRUNC_NONE, WIDTH - 20, Font::LEFT));
+	table.AddColumn(WIDTH - 20, Font::Layout(Font::TRUNC_NONE, WIDTH - 20, Font::RIGHT));
 	table.SetUnderline(0, WIDTH - 20);
 	Point start = bounds.TopLeft() + Point(10., 8.);
 	table.DrawAt(start);
@@ -436,7 +436,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	Point topTo;
 	Color topColor;
 	bool hasTop = false;
-	const Font::Layout layout(Font::TRUNC_BACK, 150);
+	Font::Layout layout(Font::TRUNC_BACK, LABEL_WIDTH);
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		string name = "[empty]";
@@ -447,8 +447,9 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		bool isTurret = hardpoint.IsTurret();
 		
 		double &y = nextY[isRight][isTurret];
-		double x = centerX + (isRight ? LABEL_DX : (-LABEL_DX - font.Width(name, &layout)));
+		double x = centerX + (isRight ? LABEL_DX : -LABEL_DX - LABEL_WIDTH);
 		bool isHover = (index == hoverIndex);
+		layout.align = isRight ? Font::LEFT : Font::RIGHT;
 		font.Draw(name, Point(x, y + TEXT_OFF), isHover ? bright : dim, &layout);
 		Point zoneCenter(labelCenter[isRight], y + .5 * LINE_HEIGHT);
 		zones.emplace_back(zoneCenter, LINE_SIZE, index);
@@ -501,8 +502,8 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	// Cargo list.
 	const CargoHold &cargo = (player.Cargo().Used() ? player.Cargo() : ship.Cargo());
 	Table table;
-	table.AddColumn(0, Table::LEFT);
-	table.AddColumn(WIDTH - 20, Table::RIGHT);
+	table.AddColumn(0, Font::Layout(Font::TRUNC_NONE, WIDTH - 20, Font::LEFT));
+	table.AddColumn(WIDTH - 20, Font::Layout(Font::TRUNC_NONE, WIDTH - 20, Font::RIGHT));
 	table.SetUnderline(-5, WIDTH - 15);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	
