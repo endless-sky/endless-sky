@@ -139,7 +139,7 @@ Phrase::Choice::Choice(const DataNode &node, bool isPhraseName)
 	}
 	// Add the remaining text to the sequence.
 	if(entry.length() - start > 0)
-		emplace_back(string(entry, start, entry.length() - start), nullptr);
+		emplace_back(string{entry, start, entry.length() - start}, nullptr);
 }
 
 
