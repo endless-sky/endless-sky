@@ -1322,3 +1322,432 @@ mission "Coalition: From Games 3"
 		payment
 		payment 25000
 		dialog phrase "coalition games dialog"
+
+
+mission "Hely Contain True"
+	job
+	repeat
+	name `Contain Resistance`
+	description `Fly to <destination>, so that you and <bunks> other Heliarch agents can contain a Resistance outbreak.`
+	deadline
+	passengers 8 23
+	to offer
+		random < 15
+		has "license: Heliarch"
+	source
+		government "Heliarch"
+	stopover
+		distance 6 10
+	on offer
+		require "Enforcer Confrontation Gear"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 21000 300
+		dialog `You and the other agents head to the marked area, and trade a few shots with the Resistance members. After your group has pushed them enough, they surrender, and you call for a Heliarch ship to pick them up. You bid your Heliarch colleagues farewell, and shortly after receive <payment>.`
+
+mission "Hely Contain Fake"
+	job
+	repeat
+	name `Contain Resistance`
+	description `Fly to <destination>,so that you and <bunks> other Heliarch agents can contain a Resistance outbreak.`
+	deadline
+	passengers 8 23
+	to offer
+		random < 15
+		has "license: Heliarch"
+	source
+		government "Heliarch"
+	stopover
+		distance 6 10
+	on offer
+		require "Enforcer Confrontation Gear"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog `You and the other agents head to the marked area, but the more you search the place, the clearer it becomes that whoever was there managed to escape before you arrived. You bring the other agents to the spaceport city, as they lament the failed job.`
+
+
+mission "Hely Prisoner Transport"
+	job
+	repeat
+	name `Transport Resistance Prisoners`
+	description `Bring these <bunks> Resistance members, who were arrested on <origin>, to <destination>.`
+	passengers 3 11
+	to offer
+		random < 10
+		has "license: Heliarch"
+	source
+		government "Coalition"
+	destination
+		government "Heliarch"
+	on offer
+		require "Enforcer Riot Staff"
+		require "Brig"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 20000 200
+		dialog `Heliarch agents help you get the prisoners out of your ship. After the last one leaves, you're handed <payment>.`
+
+
+mission "Hely Investigate"
+	job
+	repeat
+	name `Investigate signs of Resistance activity`
+	description `Land on <stopovers>, where you and <bunks> other Heliarch agents will investigate an area where suspicious activity was reportedly seen. Payment is <payment>`
+	passengers 2 5
+	to offer
+		random < 20
+		has "license: Heliarch"
+	source
+		government "Heliarch"
+	stopover
+		distance 5 10
+	on visit
+		dialog phrase"generic passenger on visit"
+	on stopover
+		dialog `You and the others head to the reported area, and start looking for anything odd. You don't find anything big, but there are clear signs that the place was evacuated quickly. You spend a few hours collecting evidence, then head back to your ship.`
+	on complete
+		payment
+		payment 90000
+		dialog `The <bunks> agents thank you for welcoming them in your ship, and wish you safe travels, as they head to deliver your findings to superiors. You're transferred <payment> a few moments later.`
+
+
+mission "Evacuate Resistance True"
+	name "Rescue Resistance Members"
+	description "Pick up the <bunks> Resistance members on <stopovers>, then bring them to <destination>."
+	deadline
+	repeat
+	minor
+	to offer
+		random < 3
+		has "Heliarch Interrogation 2: declined"
+		has "pledged to resistance"
+		not "Evacuate Resistance True: active"
+		not "Evacuate Resistance Fake: active"
+		not "assisted heliarch"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch Containment 4-A: offered"
+	to fail
+		has "Heliarch Investigation 2: active"
+	passengers 24 65
+	source
+		government "Coalition"
+	stopover
+		government "Coalition"
+		distance 2 6
+	destination
+		government "Coalition"
+		distance 3 5
+	on offer
+		dialog `You wander around the spaceport for a bit, without finding anything of interest. Once you get back to your ship, you receive a message from the Resistance: <bunks> members need someone to rescue them from <stopovers>, where the Heliarchs are investigating, and bring them to <destination>.`
+	on stopover
+		dialog `The Resistance members hurry inside your ship, and urge for you to take off soon.`
+	on visit
+		dialog phrase "generic missing stopover or passengers"
+	on complete
+		dialog `The Resistance members thank you for rescuing them, and hand you <payment>.`
+		payment 23861 8
+
+mission "Evacuate Resistance Fake"
+	name "Rescue Resistance Members"
+	description "Pick up the <bunks> Resistance members on <stopovers>, then bring them to <destination>."
+	deadline
+	repeat
+	minor
+	to offer
+		random < 3
+		has "Heliarch Interrogation 2: declined"
+		has "pledged to resistance"
+		not "Evacuate Resistance True: active"
+		not "Evacuate Resistance Fake: active"
+		not "assisted heliarch"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch Containment 4-A: offered"
+	to fail
+		has "Heliarch Investigation 2: active"
+	passengers 24 65
+	source
+		government "Coalition"
+	stopover
+		government "Coalition"
+		distance 2 6
+	destination
+		government "Coalition"
+		distance 3 5
+	on offer
+		dialog `You wander around the spaceport for a bit, without finding anything of interest. Once you get back to your ship, you receive a message from the Resistance: <bunks> members need someone to rescue them from <stopovers>, where the Heliarchs are investigating, and bring them to <destination>.`
+	on stopover
+		dialog `You land on the meeting spot, but as the hours pass, and noone shows up, it's clear the the Heliarchs captured them before you could arrive.`
+		fail
+
+
+mission "Resistance: Armageddon Core Delivery"
+	name "Armageddon Core Delivery"
+	description "Resistance members are offering <payment> for you to deliver an Armageddon Core to <destination>"
+	repeat
+	minor
+	to offer
+		random < 4
+		has "pledged to resistance"
+		has "Resistance: Reactors: done"
+		not "Resistance: Armageddon Core Delivery: active"
+		not "assisted heliarch"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch Containment 4-A: offered"
+	to fail
+		has "Heliarch Investigation 2: active"
+	source
+		government "Coalition"
+	destination
+		distance 5 12
+		not government "Heliarch"
+	on offer
+		dialog `As you enter the spaceport, you're pulled aside to an isolated part, by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades in <destination> have requested an Armageddon Core."`
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"supplied resistance" ++
+		outfit "Armageddon Core" -1
+		payment 9000000
+		dialog `You land on an isolated part of <planet>, as instructed, and some Resistance members unload the Armageddon Core, handing you <payment>.`
+
+
+mission "Resistance: Fusion Reactor Delivery"
+	name "Fusion Reactor Delivery"
+	description "Resistance members are offering <payment> for you to deliver a Fusion Reactor to <destination>"
+	repeat
+	minor
+	to offer
+		random < 7
+		has "pledged to resistance"
+		has "Resistance: Reactors: done"
+		not "Resistance: Fusion Reactor Delivery: active"
+		not "assisted heliarch"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch Containment 4-A: offered"
+	to fail
+		has "Heliarch Investigation 2: active"
+	source
+		government "Coalition"
+	destination
+		distance 3 8
+		not government "Heliarch"
+	on offer
+		dialog `As you enter the spaceport, you're pulled aside to an isolated part, by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades in <destination> have requested a Fusion Reactor."`
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"supplied resistance" ++
+		outfit "Fusion Reactor" -1
+		payment 5000000
+		dialog `You land on an isolated part of <planet>, as instructed, and some Resistance members unload the Fusion Reactor, handing you <payment>.`
+
+
+mission "Resistance: Breeder Reactor Delivery"
+	name "Breeder Reactor Delivery"
+	description "Resistance members are offering <payment> for you to deliver a Breeder Reactor to <destination>"
+	repeat
+	minor
+	to offer
+		random < 10
+		has "pledged to resistance"
+		has "Resistance: Reactors: done"
+		not "Resistance: Breeder Reactor Delivery: active"
+		not "assisted heliarch"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch Containment 4-A: offered"
+	to fail
+		has "Heliarch Investigation 2: active"
+	source
+		government "Coalition"
+	destination
+		distance 3 6
+		not government "Heliarch"
+	on offer
+		dialog `As you enter the spaceport, you're pulled aside to an isolated part, by someone who claims to be a Resistance member. They speak briefly, saying,"Comrades in <destination> have requested a Breeder Reactor."`
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"supplied resistance" ++
+		outfit "Breeder Reactor" -1
+		payment 2500000
+		dialog `You land on an isolated part of <planet>, as instructed, and some Resistance members unload the Breeder Reactor, handing you <payment>.`
+
+
+mission "Resistance: Torpedo Delivery"
+	name "Torpedo Delivery"
+	description "Resistance members are offering <payment> for you to deliver a Torpedo Launcher, complete with ammunition, to <destination>."
+	repeat
+	minor
+	to offer
+		random < 12
+		has "pledged to resistance"
+		has "Resistance: Torpedoes: done"
+		not "Resistance: Torpedo Delivery: active"
+		not "assisted heliarch"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch Containment 4-A: offered"
+	to fail
+		has "Heliarch Investigation 2: active"
+	source
+		government "Coalition"
+	destination
+		distance 6 12
+		not government "Heliarch"
+	on offer
+		dialog `As you enter the spaceport, you're pulled aside to an isolated part, by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades in <destination> have requested a Torpedo Launcher, filled with ammunition."`
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"supplied resistance" ++
+		outfit "Torpedo Launcher" -1
+		outfit "Torpedo" -30
+		payment 122000
+		dialog `You land on an isolated part of <planet>, as instructed, and some Resistance members unload the Torpedo Launcher and it's ammunition, handing you <payment>.`
+
+
+mission "Resistance: Typhoon Delivery"
+	name "Typhoon Delivery"
+	description "Resistance members are offering <payment> for you to deliver a Typhoon Launcher, complete with ammunition, to <destination>."
+	repeat
+	minor
+	to offer
+		random < 7
+		has "pledged to resistance"
+		has "Resistance: Torpedoes: done"
+		not "Resistance: Typhoon Delivery: active"
+		not "assisted heliarch"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch Containment 4-A: offered"
+	to fail
+		has "Heliarch Investigation 2: active"
+	source
+		government "Coalition"
+	destination
+		distance 6 12
+		not government "Heliarch"
+	on offer
+		dialog `As you enter the spaceport, you're pulled aside to an isolated part, by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades in <destination> have requested a Typhoon Launcher, filled with ammunition."`
+	on complete
+		"supplied resistance" ++
+		outfit "Typhoon Launcher" -1
+		outfit "Typhoon Torpedo" -30
+		payment 341000
+		dialog `You land on an isolated part of <planet>, as instructed, and some Resistance members unload the Typhoon Launcher and it's ammunition, handing you <payment>.`
+
+
+mission "Resistance: Plasma Delivery"
+	name "Plasma Turret Delivery"
+	description "Resistance members are offering <payment> for you to deliver a Plasma Turret to <destination>."
+	repeat
+	minor
+	to offer
+		random < 6
+		has "pledged to resistance"
+		has "Resistance: Plasma: done"
+		not "Resistance: Plasma Delivery: active"
+		not "assisted heliarch"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch Containment 4-A: offered"
+	to fail
+		has "Heliarch Investigation 2: active"
+	source
+		government "Coalition"
+	destination
+		distance 4 9
+		not government "Heliarch"
+	on offer
+		dialog `As you enter the spaceport, you're pulled aside to an isolated part, by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades in <destination> have requested a Plasma Turret."`
+	on complete
+		"supplied resistance" ++
+		outfit "Plasma Turret" -1
+		payment 520000
+		dialog `You land on an isolated part of <planet>, as instructed, and some Resistance members unload the Plasma Turret, handing you <payment>.`
+
+
+mission "Resistance: Flamethrower Delivery"
+	name "Flamethrower Delivery"
+	description "Resistance members are offering <payment> for you to deliver a pair of Flamethrowers to <destination>."
+	repeat
+	minor
+	to offer
+		random < 8
+		has "pledged to resistance"
+		has "Resistance: Flamethrowers: done"
+		not "Resistance: Flamethrower Delivery: active"
+		not "assisted heliarch"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch Containment 4-A: offered"
+	to fail
+		has "Heliarch Investigation 2: active"
+	source
+		government "Coalition"
+	destination
+		distance 2 6
+		not government "Heliarch"
+	on offer
+		dialog `As you enter the spaceport, you're pulled aside to an isolated part, by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades in <destination> have requested a pair of Flamethrowers."`
+	on complete
+		"supplied resistance" ++
+		outfit "Flamethrower" -2
+		payment 456000
+		dialog `You land on an isolated part of <planet>, as instructed, and some Resistance members unload the Flamethrowers, handing you <payment>.`
+
+
+mission "Resistance: Grenade Delivery"
+	name "Fragmentation Grenade Delivery"
+	description "Resistance Members are offering <payment> for you to deliver six Fragmentation Grenades to <destination>."
+	repeat
+	minor
+	to offer
+		random < 11
+		has "pledged to resistance"
+		not "Resistance: Grenade Delivery: active"
+		not "assisted heliarch"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch Containment 4-A: offered"
+	to fail
+		has "Heliarch Investigation 2: active"
+	source
+		government "Coalition"
+	destination
+		distance 7 13
+		not government "Heliarch"
+	on offer
+		dialog `As you enter the spaceport, you're pulled aside to an isolated part, by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades in <destination> have requested half a dozen Fragmentation Grenades."`
+	on complete
+		"supplied resistance" ++
+		outfit "Fragmentation Grenades" -6
+		payment 102000
+		dialog `You land on an isolated part of <planet>, as instructed, and some Resistance members unload the Fragmentation Grenades, handing you <payment>.`
+
+
+mission "Resistance: Anti-Missile Delivery"
+	name "Anti-Missile Turret Delivery"
+	description "Resistance Members are offering <payment> for you to deliver a Heavy Anti-Missile Turret to <destination>."
+	repeat
+	minor
+	to offer
+		random < 10
+		has "pledged to resistance"
+		has "Resistance: AM: done"
+		not "Resistance: Anti-Missile Delivery: active"
+		not "assisted heliarch"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch Containment 4-A: offered"
+	to fail
+		has "Heliarch Investigation 2: active"
+	source
+		government "Coalition"
+	destination
+		distance 9 14
+		not government "Heliarch"
+	on offer
+		dialog `As you enter the spaceport, you're pulled aside to an isolated part, by someone who claims to be a Resistance member. They speak briefly, saying, "Comrades in <destination> have requested a Heavy Anti-Missile Turret."`
+	on complete
+		"supplied resistance" ++
+		outfit "Heavy Anti-Missile Turret" -1
+		payment 150000
+		dialog `You land on an isolated part of <planet>, as instructed, and some Resistance members unload the Heavy Anti-Missile Turret, handing you <payment>.`
