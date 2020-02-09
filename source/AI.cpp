@@ -468,7 +468,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		
 		const Government *gov = it->GetGovernment();
 		const Personality &personality = it->GetPersonality();
-		double health = .5 * it->Shields() + it->Hull();
+		double healthRemaining = it->Health();
 		bool isPresent = (it->GetSystem() == playerSystem);
 		bool isStranded = IsStranded(*it);
 		bool thisIsLaunching = (isLaunching && isPresent);
@@ -492,6 +492,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				// Avoid jettisoning cargo as soon as this ship is repaired.
 				if(personality.IsAppeasing())
 				{
+					double health = .5 * it->Shields() + it->Hull();
 					double &threshold = appeasmentThreshold[it.get()];
 					threshold = max((1. - health) + .1, threshold);
 				}
@@ -564,8 +565,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			continue;
 		}
 		
-		// Special actions when a ship is near death:
-		if(health < 1.)
+		// Special actions when a ship is heavily damaged:
+		if(healthRemaining < RETREAT_HEALTH + .1)
 		{
 			// Cowards abandon their fleets.
 			if(parent && personality.IsCoward())
@@ -576,10 +577,10 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// Appeasing ships jettison cargo to distract their pursuers.
 			if(personality.IsAppeasing() && it->Cargo().Used())
 			{
+				double health = .5 * it->Shields() + it->Hull();
 				double &threshold = appeasmentThreshold[it.get()];
 				if(1. - health > threshold)
 				{
-					// "Appeasing" ships will dump some fraction of their cargo.
 					int toDump = 11 + (1. - health) * .5 * it->Cargo().Size();
 					for(const auto &commodity : it->Cargo().Commodities())
 						if(commodity.second && toDump > 0)
@@ -851,8 +852,10 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		// jump, always follow.
 		else if(parent->Commands().Has(Command::JUMP) && it->JumpsRemaining())
 			MoveEscort(*it, command);
-		// Timid ships always stay near their parent.
-		else if(personality.IsTimid() && parent->Position().Distance(it->Position()) > 500.)
+		// Timid ships always stay near their parent. Injured player
+		// escorts will stay nearby until they have repaired a bit.
+		else if((personality.IsTimid() || (it->IsYours() && healthRemaining < RETREAT_HEALTH))
+				&& parent->Position().Distance(it->Position()) > 500.)
 			MoveEscort(*it, command);
 		// Otherwise, attack targets depending on how heroic you are.
 		else if(target && (targetDistance < 2000. || personality.IsHeroic()))
