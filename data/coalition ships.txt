@@ -209,6 +209,41 @@ ship "Arach Spindle"
 	"final explode" "final explosion large"
 	description `The Arach Hulk is an ungainly, lumbering behemoth of a ship, but with its side pods removed it becomes the much more maneuverable Spindle. Because of its much lower cargo space, usually the only reason a fleet would include a Spindle is if they are planning on picking up new cargo pods at their destination.`
 
+ship "Arach Spindle" "Arach Spindle (Jump Drive)"
+	outfits
+		"Small Thrust Module" 3
+		"Large Thrust Module" 2
+		"Small Steering Module"
+		"Large Steering Module" 2
+		"Outfits Expansion" 6
+		"Small Shield Module" 2
+		"Large Collector Module" 3
+		"Small Battery Module"
+		"Large Battery Module"
+		"Large Repair Module"
+		"Cooling Module" 3
+		"Jump Drive"
+		"Fuel Pod" 13
+		"Decoy Plating" 10
+		"Refuelling Module" 2
+
+ship "Arach Spindle" "Arach Spindle (Plasma)"
+	outfits
+		"Hyperdrive"
+		 "Outfits Expansion" 3
+		"Small Shield Module"
+		"Small Repair Module" 2
+		"Large Repair Module"
+		"Cooling Module" 5
+		"Small Thrust Module" 3
+		"Large Thrust Module" 2
+		"Small Steering Module"
+		"Small Battery Module"
+		"Large Battery Module"
+		"Large Steering Module" 2
+		"Fusion Reactor"
+		"Plasma Turret" 2
+
 ship "Arach Transport"
 	sprite "ship/arach transport"
 	thumbnail "thumbnail/arach transport"
@@ -525,6 +560,26 @@ ship "Heliarch Punisher"
 	"final explode" "final explosion large" 1
 	description `Although not quite as strong or powerful as the Quarg ships that they are designed to oppose, Heliarch Punishers are versatile and durable ships. Rumors say that the Heliarchs have a small stash of stolen Quarg Skylances that they can outfit the Punishers with in times of war.`
 
+ship "Heliarch Punisher" "Heliarch Punisher (Fuel)"
+	outfits
+		"Large Reactor Module" 2
+		"Large Thrust Module" 2
+		"Finisher Pod" 2
+		"Small Steering Module" 2
+		"Enforcer Confrontation Gear" 44
+		"Large Steering Module" 2
+		"Enforcer Riot Staff" 78
+		"Bombardment Turret" 4
+		"Ion Rain Gun" 2
+		"Finisher Torpedo" 80
+		"Large Battery Module"
+		"Overcharged Shield Module"
+		"Overclocked Repair Module" 2
+		"Cooling Module" 4
+		"Small Thrust Module" 2
+		"Jump Drive"
+		"Fuel Pod" 12
+
 ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 	outfits
 		"Bombardment Cannon" 4
@@ -758,6 +813,22 @@ ship "Kimek Thistle"
 	"final explode" "final explosion medium"
 	description `The Kimek love traveling so much that some of them will happily spend months at a time in a transport this size, and the passengers often grow into a tight-knit community by the end of their journeys together.`
 
+ship "Kimek Thistle" "Kimek Thistle (Torpedoes)"
+	outfits
+		"Hyperdrive"
+		"Small Shield Module" 2
+		"Small Repair Module" 2
+		"Cooling Module" 2
+		"Small Thrust Module" 2
+		"Large Thrust Module"
+		"Small Battery Module"
+		"Large Steering Module"
+		"Heavy Anti-Missile Turret"
+		"Torpedo Launcher" 2
+		Torpedo 90
+		"Torpedo Storage Rack" 2
+		"Breeder Reactor"
+
 ship "Kimek Thorn"
 	sprite "ship/kimek thorn"
 	thumbnail "thumbnail/kimek thorn"
@@ -900,6 +971,22 @@ ship "Saryd Sojourner"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description `When the first wars were fought against the Quarg, the Saryds had been spacefaring for more than ten thousand Earth years, and their starship technology was considerably more advanced than the Kimek or the Arachi. At that time, ships similar to the modern Sojourner were the most powerful capital ships in the Coalition fleet.`
+
+ship "Saryd Sojourner" "Saryd Sojourner (Bombardments)"
+	outfits
+		"Hyperdrive"
+		"Bombardment Turret" 3
+		"Ion Rain Gun" 2
+		"Large Reactor Module"
+		"Small Battery Module"
+		"Large Battery Module" 2
+		"Cooling Module" 3
+		"Small Thrust Module" 3
+		"Large Thrust Module" 2
+		"Small Steering Module" 2
+		"Large Steering Module" 2
+		"Overclocked Repair Module"
+		"Overcharged Shield Module"
 
 ship "Saryd Traveler"
 	sprite "ship/saryd traveler"
