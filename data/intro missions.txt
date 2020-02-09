@@ -449,7 +449,7 @@ conversation "end of intro missions"
 		goto next
 	
 	label next
-	`	There's an awkward pause. You're unsure of how to respond. Then he says, "Thing is, this here planet is one of the most exclusive retirement communities in the galaxy. Plenty of the locals are probably worth more than a billion credits. But they're mostly financial or business types, or old money. I'm rich enough to be here, but I just hope they're willing to socialize with someone who made his fortune flying a ship.`
+	`	There's an awkward pause. You're unsure of how to respond. Then he says, "Thing is, this planet here is one of the most exclusive retirement communities in the galaxy. Plenty of the locals are probably worth more than a billion credits. But they're mostly financial or business types, or old money. I'm rich enough to be here, but I just hope they're willing to socialize with someone who made his fortune flying a ship.`
 	`	"Before you go, is there anything else you'd like to ask me about being a new pilot?"`
 	label choices
 	choice
