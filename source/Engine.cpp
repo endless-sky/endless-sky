@@ -433,10 +433,10 @@ void Engine::Step(bool isActive)
 			--jumpCount;
 	}
 	ai.UpdateEvents(events);
-	if(isActive)
+	if(isActive && wasActive)
 	{
 		HandleKeyboardInputs();
-		ai.UpdateKeys(player, activeCommands, isActive && wasActive);
+		ai.UpdateKeys(player, activeCommands);
 	}
 	wasActive = isActive;
 	Audio::Update(center);
