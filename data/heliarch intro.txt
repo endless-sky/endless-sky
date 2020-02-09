@@ -1544,7 +1544,7 @@ mission "Heliarch Basic License"
 
 
 event "first heliarch unlock"
-  planet "Ring of Friendship"
+	planet "Ring of Friendship"
 		outfitter "Heliarch Basics"
 	planet "Ring of Power"
 		outfitter "Heliarch Basics"
