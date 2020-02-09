@@ -54,6 +54,10 @@ government "Coalition"
 	"crew defense" 3
 	language "Coalition"
 	"player reputation" 1
+	"friendly hail" "friendly coalition"
+	"friendly disabled hail" "friendly disabled coalition"
+	"hostile hail" "hostile coalition"
+	"hostile disabled hail" "hostile disabled coalition"
 	"attitude toward"
 		"Heliarch" 1
 
@@ -153,7 +157,7 @@ government "Heliarch"
 	"crew defense" 2.8
 	"player reputation" 1
 	"friendly hail" "friendly heliarch"
-	"friendly disabled hail" "friendly disabled heliarch"
+	"friendly disabled hail" "friendly disabled coalition"
 	"hostile hail" "hostile heliarch"
 	"hostile disabled hail" "hostile disabled heliarch"
 	"attitude toward"
@@ -433,6 +437,16 @@ government "Republic"
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 	raid "pirate raid"
+
+government "Resistance"
+	swizzle 2
+	"crew attack" 1.2
+	"crew defense" 2.7
+	language "Coalition"
+	"player reputation" 1
+	"attitude toward"
+		"Heliarch" -1
+		"Quarg" 1
 
 government "Syndicate"
 	swizzle 4
