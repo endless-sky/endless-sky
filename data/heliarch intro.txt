@@ -107,37 +107,82 @@ mission "Heliarch Investigation 2"
 			`	They thank you once again for helping, and then walk to the Heliarch-only parts of the ringworld.`
 				accept
 			label evidence1
-			apply
-				payment 300000
-						`The Heliarch elder, Iekie, greets you and the agents when you return, and gives you your payment of 900000 credits.`
+			`The Heliarch elder, Iekie, greets you and the agents when you return, and gives you your payment of 900000 credits.`
 			`	"Unearthed some useful information, we have," Iplora tells her. "Essential to the mission's success, Captain <last>'s cooperativeness was."`
 			`	"No doubt of that, I have. To the report, looking forward I am."`
 			`	They then get closer to her, and Iplora whispers something, handing her a separate report card, written differently than the Coalition languages that you've seen, it must be some type of code.`
 			`	Iekie turns to you once more, saying, "Quite a find, this is. Done well, you have, Captain."`
-			`	She hands you an extra 300000 credits.`
 				goto finalthanks
 			label evidence2
-			apply
-				payment 600000
 			`The Heliarch elder, Iekie, greets you and the agents when you return, and gives you your payment of 900000 credits.`
 			`	"Unearthed some useful information, we have," Iplora tells her. "Essential to the mission's success, Captain <last>'s cooperativeness was."`
 			`	"No doubt of that, I have. To the report, looking forward I am."`
 			`	They then get closer to her, and Iplora whispers something, handing her two separate report cards, written differently than the Coalition languages that you've seen, it must be some type of code.`
 			`	Iekie turns to you once more, saying, "Most useful to our investigation, these findings will prove. Excellent work, Captain."`
-			`	She hands you an extra 600000 credits.`
 				goto finalthanks
 			label evidence3
-			apply
-				payment 900000
 			`The Heliarch elder, Iekie, greets you and the agents when you return, and gives you your payment of 900000 credits.`
 			`	"Unearthed some useful information, we have," Iplora tells her. "Essential to the mission's success, Captain <last>'s cooperativeness was."`
 			`	"No doubt of that, I have. To the report, looking forward I am."`
 			`	They then get closer to her, and Iplora whispers something, handing her three separate report cards, written differently than the Coalition languages that you've seen, it must be some type of code.`
 			`	Iekie turns to you once more, saying, "Enviable, your prowess at investigation is, <last>. Outstanding work, Captain."`
-			`	She hands you an extra 900000`
 				goto finalthanks
 			label finalthanks
 			`	They thank you once again for helping, and then walk to the Heliarch-only parts of the ringworld.`
+
+
+
+mission "HI2-Bonus 1"
+	invisible
+	landing
+	to offer
+		has "Heliarch Investigation 2: done"
+		"resistance evidence" == 1
+	source
+		government "Coalition" "Heliarch"
+	on offer
+		payment 300000
+		conversation
+			`Coming in for a landing, you receive a message from the the Heliarch elder Iekie.`
+			`	"Captain <last>! Analyzed your findings, we have. A monetary bonus, sending, we are, as thanks."`
+			`	<payment> are transferred to your account.`
+				decline
+
+
+
+mission "HI2-Bonus 2"
+	invisible
+	landing
+	to offer
+		has "Heliarch Investigation 2: done"
+		"resistance evidence" == 2
+	source
+		government "Coalition" "Heliarch"
+	on offer
+		payment 600000
+		conversation
+			`Coming in for a landing, you receive a message from the the Heliarch elder Iekie.`
+			`	"Captain <last>! Analyzed your findings, we have. A monetary bonus, sending, we are, as thanks."`
+			`	<payment> are transferred to your account.`
+				decline
+
+
+
+mission "HI2-Bonus 3"
+	invisible
+	landing
+	to offer
+		has "Heliarch Investigation 2: done"
+		"resistance evidence" == 3
+	source
+		government "Coalition" "Heliarch"
+	on offer
+		payment 900000
+		conversation
+			`Coming in for a landing, you receive a message from the the Heliarch elder Iekie.`
+			`	"Captain <last>! Analyzed your findings, we have. A monetary bonus, sending, we are, as thanks."`
+			`	<payment> are transferred to your account.`
+				decline
 
 
 
@@ -1152,7 +1197,7 @@ mission "Heliarch Expedition 5"
 			`You've been waiting around for hours in the "spaceport" here, when the Punisher finally comes back.`
 			`	The captain, a young Arach, comes to meet you.`
 			`	"To do some shopping, ready, are you, Captain?"`
-			choices
+			choice
 				`	"Wasn't I gonna get some supplies for you? Figured you meant I just had to pick them up from Coalition space."`
 				`	"Why do you even need supplies? Wasn't your cargo full with those crates?"`
 			`	"A most exquisite opportunity, this is. Excited, our researchers are. To keep them and the operation secure, I was tasked," he says. "Filled to the brim with laboratory utensils and advanced equiment, our cargo was, sadly."`
@@ -1292,7 +1337,7 @@ mission "Heliarch Containment 3"
 		has "Heliarch Containment 1: done"
 		not "Resistance: Questions: offered"
 	source
-		govenrment "Heliarch"
+		government "Heliarch"
 	stopover "Secret Sky"
 	destination "Ring of Power"
 	on offer
@@ -1300,11 +1345,11 @@ mission "Heliarch Containment 3"
 			`Three Heliarch officers approache you as you're walking around the spaceport.`
 			`	"Greetings, Captain <last>. Interested, would you be, in accompanying us? A proposition, we have," the Saryd says.`
 			choice
-			`	"What's it about?"`
-				goto inquire
-			`	"Sure, lead the way."`
-			`	"Sorry, not up for taking a stroll right now."`
-				decline
+				`	"What's it about?"`
+					goto inquire
+				`	"Sure, lead the way."`
+				`	"Sorry, not up for taking a stroll right now."`
+					decline
 			label inquire
 			`	"Inform you of that, we cannot," the Kimek says. "Not until accepted our offer, you have."`
 			choice
