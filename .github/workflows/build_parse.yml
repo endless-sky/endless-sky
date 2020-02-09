@@ -180,7 +180,7 @@ jobs:
         brew install libmad libpng jpeg-turbo sdl2
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) install
+      run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet install
     - name: Archive artifact
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: |
