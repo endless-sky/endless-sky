@@ -245,6 +245,18 @@ outfitter "Coalition Advanced"
 	"Hyperdrive"
 	"Local Map"
 
+outfitter "Resistance Basics"
+	"Refuelling Module"
+	"Decoy Plating"
+	"Local Map"
+
+outfitter "Heliarch Basics"
+	"Ion Rain Gun"
+	"Scanning Module"
+	"Enforcer Confrontation Gear"
+	"Enforcer Riot Staff"
+	"Local Map"
+
 outfitter "Heliarch"
 	"Small Reactor Module"
 	"Large Reactor Module"
