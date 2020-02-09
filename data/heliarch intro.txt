@@ -1514,13 +1514,13 @@ mission "Heliarch Basic License"
 		government "Coalition"
 	destination "Ring of Friendship"
 	to offer
-		"assisted heliarch" = 3
-		"coalition jobs" >= 90
-		not "Resistance: Questions: offered"
 		or
-			"coalition jobs" >= 240
-			"assisted heliarch" = 2
-			not "Resistance: Questions: offered"
+			"assisted heliarch" = 3
+			"coalition jobs" >= 90
+			and
+				"coalition jobs" >= 240
+				"assisted heliarch" = 2
+		not "Resistance: Questions: offered"
 	on offer
 		conversation
 			`When you land on <origin>, you find a Heliarch delegation waiting for you outside.`
