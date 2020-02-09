@@ -260,7 +260,7 @@ void ShopPanel::DrawSidebar()
 		font.Draw("cargo space:", point, medium);
 		
 		string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
-		const Font::Layout layout(Font::TRUNC_NONE, SIDE_WIDTH - 20, Font::RIGHT);
+		const Font::Layout layout{Font::TRUNC_NONE, SIDE_WIDTH - 20, Font::RIGHT};
 		font.Draw(space, point, bright, &layout);
 		point.Y() += 20.;
 	}
@@ -477,7 +477,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	
 	// Draw the ship name.
 	const Font &font = FontSet::Get(14);
-	const Font::Layout layout(Font::TRUNC_MIDDLE, SIDE_WIDTH - 61);
+	const Font::Layout layout{Font::TRUNC_MIDDLE, SIDE_WIDTH - 61};
 	const string &name = ship.Name().empty() ? ship.ModelName() : ship.Name();
 	Point offset(-.5f * font.Width(name, &layout), -.5f * SHIP_SIZE + 10.f);
 	font.Draw(name, center + offset, *GameData::Colors().Get("bright"), &layout);

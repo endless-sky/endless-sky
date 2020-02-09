@@ -528,7 +528,7 @@ void MapDetailPanel::DrawInfo()
 		else
 			price = (hasVisited ? "n/a" : "?");
 		
-		Font::Layout layout(Font::TRUNC_BACK, 140, Font::RIGHT);
+		Font::Layout layout{Font::TRUNC_BACK, 140, Font::RIGHT};
 		font.Draw(price, uiPoint, color, &layout);
 		
 		if(isSelected)

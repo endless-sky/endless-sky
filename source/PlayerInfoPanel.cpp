@@ -473,8 +473,8 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, Font::Layout(Font::TRUNC_NONE, 230, Font::LEFT));
-	table.AddColumn(230, Font::Layout(Font::TRUNC_NONE, 230, Font::RIGHT));
+	table.AddColumn(0, Font::Layout{Font::TRUNC_NONE, 230, Font::LEFT});
+	table.AddColumn(230, Font::Layout{Font::TRUNC_NONE, 230, Font::RIGHT});
 	table.SetUnderline(0, 230);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	
@@ -555,13 +555,13 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, Font::Layout(Font::TRUNC_MIDDLE, 217, Font::LEFT));
-	table.AddColumn(220, Font::Layout(Font::TRUNC_BACK, 127, Font::LEFT));
-	table.AddColumn(350, Font::Layout(Font::TRUNC_BACK, 137, Font::LEFT));
-	table.AddColumn(550, Font::Layout(Font::TRUNC_BACK, 57, Font::RIGHT));
-	table.AddColumn(610, Font::Layout(Font::TRUNC_BACK, 57, Font::RIGHT));
-	table.AddColumn(670, Font::Layout(Font::TRUNC_BACK, 57, Font::RIGHT));
-	table.AddColumn(730, Font::Layout(Font::TRUNC_BACK, 57, Font::RIGHT));
+	table.AddColumn(0, Font::Layout{Font::TRUNC_MIDDLE, 217, Font::LEFT});
+	table.AddColumn(220, Font::Layout{Font::TRUNC_BACK, 127, Font::LEFT});
+	table.AddColumn(350, Font::Layout{Font::TRUNC_BACK, 137, Font::LEFT});
+	table.AddColumn(550, Font::Layout{Font::TRUNC_BACK, 57, Font::RIGHT});
+	table.AddColumn(610, Font::Layout{Font::TRUNC_BACK, 57, Font::RIGHT});
+	table.AddColumn(670, Font::Layout{Font::TRUNC_BACK, 57, Font::RIGHT});
+	table.AddColumn(730, Font::Layout{Font::TRUNC_BACK, 57, Font::RIGHT});
 	table.SetUnderline(0, 730);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	

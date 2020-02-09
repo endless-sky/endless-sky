@@ -285,8 +285,8 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 	
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, Font::Layout(Font::TRUNC_NONE, WIDTH - 20, Font::LEFT));
-	table.AddColumn(WIDTH - 20, Font::Layout(Font::TRUNC_MIDDLE, WIDTH - 20, Font::RIGHT));
+	table.AddColumn(0, Font::Layout{Font::TRUNC_NONE, static_cast<int>(WIDTH - 20), Font::LEFT});
+	table.AddColumn(WIDTH - 20, Font::Layout{Font::TRUNC_MIDDLE, static_cast<int>(WIDTH - 20), Font::RIGHT});
 	table.SetUnderline(0, WIDTH - 20);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	
@@ -316,8 +316,8 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, Font::Layout(Font::TRUNC_NONE, WIDTH - 20, Font::LEFT));
-	table.AddColumn(WIDTH - 20, Font::Layout(Font::TRUNC_NONE, WIDTH - 20, Font::RIGHT));
+	table.AddColumn(0, Font::Layout{Font::TRUNC_NONE, static_cast<int>(WIDTH - 20), Font::LEFT});
+	table.AddColumn(WIDTH - 20, Font::Layout{Font::TRUNC_NONE, static_cast<int>(WIDTH - 20), Font::RIGHT});
 	table.SetUnderline(0, WIDTH - 20);
 	Point start = bounds.TopLeft() + Point(10., 8.);
 	table.DrawAt(start);
@@ -436,7 +436,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	Point topTo;
 	Color topColor;
 	bool hasTop = false;
-	Font::Layout layout(Font::TRUNC_BACK, LABEL_WIDTH);
+	Font::Layout layout{Font::TRUNC_BACK, static_cast<int>(LABEL_WIDTH)};
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		string name = "[empty]";
@@ -502,8 +502,8 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	// Cargo list.
 	const CargoHold &cargo = (player.Cargo().Used() ? player.Cargo() : ship.Cargo());
 	Table table;
-	table.AddColumn(0, Font::Layout(Font::TRUNC_NONE, WIDTH - 20, Font::LEFT));
-	table.AddColumn(WIDTH - 20, Font::Layout(Font::TRUNC_NONE, WIDTH - 20, Font::RIGHT));
+	table.AddColumn(0, Font::Layout{Font::TRUNC_NONE, static_cast<int>(WIDTH - 20), Font::LEFT});
+	table.AddColumn(WIDTH - 20, Font::Layout{Font::TRUNC_NONE, static_cast<int>(WIDTH - 20), Font::RIGHT});
 	table.SetUnderline(-5, WIDTH - 15);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 	

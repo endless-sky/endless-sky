@@ -678,7 +678,7 @@ void Engine::Step(bool isActive)
 		if(target->GetSystem() == player.GetSystem() && target->Cloaking() < 1.)
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
-		const Font::Layout layout(Font::TRUNC_MIDDLE, 150);
+		const Font::Layout layout{Font::TRUNC_MIDDLE, 150};
 		info.SetString("target name", target->Name(), layout);
 		info.SetString("target type", target->ModelName());
 		if(!target->GetGovernment())

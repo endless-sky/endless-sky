@@ -287,8 +287,8 @@ void PreferencesPanel::DrawControls()
 	Color red(.3f, 0.f, 0.f, .3f);
 	
 	Table table;
-	table.AddColumn(-115, Font::Layout(Font::TRUNC_NONE, 230, Font::LEFT));
-	table.AddColumn(115, Font::Layout(Font::TRUNC_NONE, 230, Font::RIGHT));
+	table.AddColumn(-115, Font::Layout{Font::TRUNC_NONE, 230, Font::LEFT});
+	table.AddColumn(115, Font::Layout{Font::TRUNC_NONE, 230, Font::RIGHT});
 	table.SetUnderline(-120, 120);
 	
 	int firstY = -248;
@@ -386,7 +386,7 @@ void PreferencesPanel::DrawControls()
 	}
 	
 	Table shiftTable;
-	shiftTable.AddColumn(125, Font::Layout(Font::TRUNC_NONE, 150, Font::RIGHT));
+	shiftTable.AddColumn(125, Font::Layout{Font::TRUNC_NONE, 150, Font::RIGHT});
 	shiftTable.SetUnderline(0, 130);
 	shiftTable.DrawAt(Point(-400, 52));
 	
@@ -409,8 +409,8 @@ void PreferencesPanel::DrawSettings()
 	const Color &bright = *GameData::Colors().Get("bright");
 	
 	Table table;
-	table.AddColumn(-115, Font::Layout(Font::TRUNC_NONE, 230, Font::LEFT));
-	table.AddColumn(115, Font::Layout(Font::TRUNC_NONE, 230, Font::RIGHT));
+	table.AddColumn(-115, Font::Layout{Font::TRUNC_NONE, 230, Font::LEFT});
+	table.AddColumn(115, Font::Layout{Font::TRUNC_NONE, 230, Font::RIGHT});
 	table.SetUnderline(-120, 120);
 	
 	int firstY = -248;
@@ -558,7 +558,7 @@ void PreferencesPanel::DrawPlugins()
 	
 	const int MAX_TEXT_WIDTH = 230;
 	Table table;
-	table.AddColumn(-115, Font::Layout(Font::TRUNC_MIDDLE, MAX_TEXT_WIDTH, Font::LEFT));
+	table.AddColumn(-115, Font::Layout{Font::TRUNC_MIDDLE, MAX_TEXT_WIDTH, Font::LEFT});
 	table.SetUnderline(-120, 120);
 	
 	int firstY = -238;

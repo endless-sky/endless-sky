@@ -136,7 +136,7 @@ void ConversationPanel::Draw()
 	{
 		// This conversation node is prompting the player to enter their name.
 		Point fieldSize(150, 20);
-		const Font::Layout layout(Font::TRUNC_FRONT, fieldSize.X() - 10);
+		const Font::Layout layout{Font::TRUNC_FRONT, static_cast<int>(fieldSize.X() - 10)};
 		for(int side = 0; side < 2; ++side)
 		{
 			Point center = point + Point(side ? 420 : 190, 7);

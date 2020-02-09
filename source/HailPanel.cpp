@@ -161,7 +161,7 @@ void HailPanel::Draw()
 	DrawBackdrop();
 	
 	Information info;
-	const Font::Layout layout(Font::TRUNC_BACK, 330);
+	const Font::Layout layout{Font::TRUNC_BACK, 330};
 	info.SetString("header", header, layout);
 	if(ship)
 	{

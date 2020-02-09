@@ -383,7 +383,7 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 		return *cached.first;
 	
 	// Convert to viewport coodinates.
-	Layout viewParams(*params);
+	Layout viewParams = *params;
 	if(params->width > 0)
 		viewParams.width = ViewFromTextX(params->width);
 	if(params->lineHeight != DEFAULT_LINE_HEIGHT)
