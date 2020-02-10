@@ -380,9 +380,6 @@ bool MapPanel::Click(int x, int y, int clicks)
 // If the mouse has moved near a known system that contains escorts, track the dwell time.
 bool MapPanel::Hover(int x, int y)
 {
-	if(escortSystems.empty())
-		return true;
-	
 	// Map from screen coordinates into game coordinates.
 	Point pos = Point(x, y) / Zoom() - center;
 	double maxDistance = 2 * OUTER / Zoom();
@@ -398,6 +395,21 @@ bool MapPanel::Hover(int x, int y)
 		tooltip.clear();
 	}
 	
+	for(const auto &it : GameData::Missions())
+	{
+		const Planet *source = it.second.GetShadowSource(player);
+		if(source)
+		{
+			if(pos.Distance(source->GetSystem()->Position()) < maxDistance
+					&& (player.HasSeen(source->GetSystem()) || source->GetSystem() == specialSystem))
+			{
+				// Start tracking this system.
+				hoverSystem = source->GetSystem();
+				return true;
+			}
+		}
+	}
+	
 	// Check if the new position supports a tooltip.
 	for(const auto &squad : escortSystems)
 	{
@@ -407,7 +419,7 @@ bool MapPanel::Hover(int x, int y)
 		{
 			// Start tracking this system.
 			hoverSystem = system;
-			break;
+			return true;
 		}
 	}
 	return true;
@@ -1057,6 +1069,7 @@ void MapPanel::DrawMissions()
 	const Color &currentColor = *colors.Get("active mission");
 	const Color &blockedColor = *colors.Get("blocked mission");
 	const Color &specialColor = *colors.Get("special mission");
+	const Color &shadowColor = *colors.Get("shadow mission");
 	const Color &waypointColor = *colors.Get("waypoint");
 	for(const Mission &mission : player.AvailableJobs())
 	{
@@ -1084,6 +1097,15 @@ void MapPanel::DrawMissions()
 		for(const Planet *stopover : mission.Stopovers())
 			DrawPointer(stopover->GetSystem(), angle[stopover->GetSystem()], waypointColor);
 	}
+	for(const auto &it : GameData::Missions())
+	{
+		const Planet *source = it.second.GetShadowSource(player);
+		
+		if(source)
+		{
+			DrawPointer(source->GetSystem(), angle[source->GetSystem()], shadowColor);
+		}
+	}
 	if(specialSystem)
 	{
 		// The special system pointer is larger than the others.
@@ -1104,24 +1126,40 @@ void MapPanel::DrawTooltips()
 	// Create the tooltip text.
 	if(tooltip.empty())
 	{
-		pair<int, int> t = escortSystems.at(hoverSystem);
-		if(hoverSystem == playerSystem)
+		if (escortSystems.find(hoverSystem) != escortSystems.end())
 		{
-			--t.first;
-			if(t.first || t.second)
-				tooltip = "You are here, with:\n";
-			else
-				tooltip = "You are here.";
+			pair<int, int> t = escortSystems.at(hoverSystem);
+			if(hoverSystem == playerSystem)
+			{
+				--t.first;
+				if(t.first || t.second)
+					tooltip = "You are here, with:\n";
+				else
+					tooltip = "You are here.";
+			}
+			// If you have both active and parked escorts, call the active ones
+			// "active escorts." Otherwise, just call them "escorts."
+			if(t.first && t.second)
+				tooltip += to_string(t.first) + (t.first == 1 ? " active escort\n" : " active escorts\n");
+			else if(t.first)
+				tooltip += to_string(t.first) + (t.first == 1 ? " escort" : " escorts");
+			if(t.second)
+				tooltip += to_string(t.second) + (t.second == 1 ? " parked escort" : " parked escorts");
 		}
-		// If you have both active and parked escorts, call the active ones
-		// "active escorts." Otherwise, just call them "escorts."
-		if(t.first && t.second)
-			tooltip += to_string(t.first) + (t.first == 1 ? " active escort\n" : " active escorts\n");
-		else if(t.first)
-			tooltip += to_string(t.first) + (t.first == 1 ? " escort" : " escorts");
-		if(t.second)
-			tooltip += to_string(t.second) + (t.second == 1 ? " parked escort" : " parked escorts");
 		
+		for(const auto &it : GameData::Missions())
+		{
+			const Planet *source = it.second.GetShadowSource(player);
+			if(source && source->GetSystem() == hoverSystem)
+			{
+				if(!tooltip.empty())
+				{
+					tooltip += "\n";
+				}
+				tooltip += "Spaceport mission available.";
+				break;
+			}
+		}
 		hoverText.Wrap(tooltip);
 	}
 	if(!tooltip.empty())
@@ -1130,6 +1168,7 @@ void MapPanel::DrawTooltips()
 		Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
 		size += Point(20., 20.);
 		Point topLeft = (hoverSystem->Position() + center) * Zoom();
+		topLeft += Point(OUTER, OUTER) * Zoom();
 		// Do not overflow the screen dimensions.
 		if(topLeft.X() + size.X() > Screen::Right())
 			topLeft.X() -= size.X();

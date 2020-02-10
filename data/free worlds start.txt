@@ -11,6 +11,7 @@
 mission "Liberate Kornephoros"
 	description "Travel with the Free Worlds militia to the <system> system and drive off the Navy fleet that is occupying the system."
 	autosave
+	shadow
 	source Longjump
 	destination Deep
 	clearance
@@ -168,6 +169,7 @@ event "prepare for battle of Kornephoros"
 mission "FW Prisoner Parole"
 	name "Prisoner Parole"
 	description "Escort a fleet of transports carrying prisoners of war to <planet>. The temporary ceasefire will end on <date>."
+	shadow
 	deadline 7
 	source "Deep"
 	destination "New Tibet"
@@ -269,6 +271,7 @@ mission "FW Syndicate Diplomacy 1"
 	name "Syndicate Diplomacy"
 	description "Transport Alondo Gruyere to the Syndicate headquarters on <planet>."
 	autosave
+	shadow
 	source "Deep"
 	destination "Hephaestus"
 	to offer
@@ -518,6 +521,7 @@ mission "FW Hope Recon 1"
 	name "Early Warning Systems"
 	description "Land on the abandoned planet <destination> and place sensor there to monitor Navy fleet activity in the system."
 	autosave
+	shadow
 	source Longjump
 	destination Hope
 	to offer
@@ -825,6 +829,7 @@ mission "FW Supply Convoy 1"
 	name "Escort Supply Convoy"
 	description "Escort this convoy carrying equipment from Kraz Cybernetics to the militia base on <destination>."
 	autosave
+	shadow
 	source Rust
 	destination Longjump
 	to offer
@@ -882,6 +887,7 @@ mission "FW Supply Convoy 1"
 mission "FW Pirates 1"
 	name "Pirate Reconnaissance"
 	description "Scout out all the pirate systems on the southern fringe of human space, then report back to Tomek on <planet>."
+	shadow
 	source Longjump
 	waypoint "Men"
 	waypoint "Antares"
@@ -977,6 +983,7 @@ mission "FW Pirates 1A"
 mission "FW Senate 1"
 	name "Senator Huygens"
 	description "Meet Senator Arianna Huygens on <planet>, and transport her to the new Free Worlds Senate building on Bourne."
+	shadow
 	source "Longjump"
 	destination "Mere"
 	to offer
@@ -1161,6 +1168,7 @@ mission "FW Pirates 3"
 mission "FW Pirates 3.1"
 	name "Attack Antares"
 	description "Instead of following the Senate's orders, launch a Free Worlds attack on <system> and suppress any Pirate opposition, then land on <planet>."
+	shadow
 	source Longjump
 	destination Bloodsea
 	clearance
@@ -1232,6 +1240,7 @@ mission "FW Pirates 3.1"
 mission "FW Pirates 3.2"
 	name "Attack Greenrock"
 	description "Disobeying the Senate's orders, head to <destination> and gather a Free Worlds fleet for an all-out attack on the pirate world of Greenrock."
+	shadow
 	source Longjump
 	destination Trinket
 	to offer

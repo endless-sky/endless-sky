@@ -56,6 +56,7 @@ color "active back" 0. .4 .5 .5
 color "blocked mission" 0. .4 .6 1.
 color "blocked back" 0. .15 .2 .5
 color "special mission" 1. 1. 1. 1.
+color "shadow mission" .4 .2 .8 1.
 color "waypoint" .1 .2 .9 1.
 color "waypoint back" 0. .3 .7 .5
 
@@ -545,6 +546,14 @@ interface "planet"
 		size 18
 		align left
 		pad 10 0
+	
+	visible if "has spaceport mission"
+	label "(*)"
+		center -400 270
+		dimensions 140 40
+		size 14
+		align right
+		pad 8 0
 	
 	visible if "has ship"
 	sprite "ui/planet dialog button"

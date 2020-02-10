@@ -984,6 +984,7 @@ mission "Remnant: Tech Retrieval"
 mission "Remnant: Heavy Laser"
 	name "Retrieve Heavy Lasers"
 	description "A Remnant engineer has offered to pay you <payment> in return for delivering two heavy lasers to <planet> for them to study."
+	shadow
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -1023,6 +1024,7 @@ mission "Remnant: Heavy Laser"
 mission "Remnant: Plasma Cannon"
 	name "Retrieve Plasma Cannons"
 	description "A Remnant engineer has offered to pay you <payment> in exchange for delivering two plasma cannons to a team on <planet>."
+	shadow
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -1070,6 +1072,7 @@ mission "Remnant: Plasma Cannon"
 mission "Remnant: Catalytic Ramscoop"
 	name "Retrieve Catalytic Ramscoops"
 	description "A Remnant engineer has offered you <payment> for delivering two catalytic ramscoops to a lab on <planet>."
+	shadow
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -1108,6 +1111,7 @@ mission "Remnant: Catalytic Ramscoop"
 mission "Remnant: Electron Beam"
 	name "Retrieve Electron Beams for the Remnant"
 	description "A Remnant engineer has offered you <payment> for delivering two electron beams to a testing range on <planet>."
+	shadow
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -1146,6 +1150,7 @@ mission "Remnant: Electron Beam"
 mission "Remnant: D94-YV Shield Generator"
 	name "Retrieve D94-YV Shield Generators"
 	description "A Remnant engineer has offered you <payment> for delivering two D94-YV Shield Generators to a research facility on <planet>."
+	shadow
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -1184,6 +1189,7 @@ mission "Remnant: D94-YV Shield Generator"
 mission "Remnant: S-970 Regenerator"
 	name "Retrieve S-970 Regenerators"
 	description "A Remnant engineer has offered you <payment> for delivering two S-970 Regenerators to an impact testing facility on <planet>."
+	shadow
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -1276,6 +1282,7 @@ mission "Remnant: Return the Samples"
 mission "Remnant: Return the Samples 2"
 	name "Return the Samples"
 	description "Plume has asked you to return more stolen eggs, this time to Slylandro. Then return to <planet> with footage of the void sprites."
+	shadow
 	source "Aventine"
 	stopover "Slylandro"
 	to offer
@@ -1419,6 +1426,7 @@ mission "Remnant: Salvage 2"
 mission "Remnant: Salvage 3"
 	name "Transport injured Remnant"
 	description `Some injured Remnant need to be transported away from the front lines to Aventine.`
+	shadow
 	source "Viminal"
 	passengers 8
 	cargo "medical gear" 5
@@ -1454,6 +1462,7 @@ mission "Remnant: Salvage 3"
 mission "Remnant: Salvage 4"
 	name "Track down the <npc>"
 	description "Track down and disable a Korath ship that escaped the raid on Viminal so that the Remnant may salvage it for technology."
+	shadow
 	source "Viminal"
 	to offer
 		has "Remnant: Salvage 3: done"
@@ -1501,6 +1510,7 @@ mission "Remnant: Salvage 4"
 mission "Remnant: Salvage 5"
 	name "Salvage Delivery"
 	description `Deliver <cargo> to Caelian.`
+	shadow
 	source "Viminal"
 	cargo "Korath salvage" 20
 	blocked `Taely would like you to deliver some valuable Korath equipment to Caelian, but you will need 20 tons of space to carry it.`
@@ -1531,6 +1541,7 @@ mission "Remnant: Salvage 5"
 mission "Remnant: Salvage 6"
 	name "Transport outfits to Taely"
 	description `Deliver <cargo> to Viminal.`
+	shadow
 	source "Caelian"
 	cargo "ship parts" 20
 	blocked `The technician you delivered Taely's salvaged parts to would like you to take some finished parts back to Taely, but you will need 20 tons of space to do so.`
@@ -1654,6 +1665,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 mission "Remnant: Expanded Horizons Quarg 2"
 	name "Quarg Scanning"
 	description "Perform an outfit scan on the Quarg ship <npc>, then land again on <destination>."
+	shadow
 	source "Wayfarer"
 	to offer
 		has "Remnant: Expanded Horizons Quarg 1: done"	
@@ -1684,6 +1696,7 @@ mission "Remnant: Expanded Horizons Quarg 2"
 mission "Remnant: Expanded Horizons Quarg 3"
 	name "Expanded Horizons Return"
 	description "Return the Remnant researchers to <planet>."
+	shadow
 	source "Wayfarer"
 	passengers 3
 	blocked `This mission requires bunks for three passengers.`
@@ -2040,6 +2053,7 @@ mission "Remnant: Face to Maw 1B"
 mission "Remnant: Face to Maw 2"
 	name "Take the slime sample to Viminal"
 	description "The void sprite slime has properties of interest to a team of engineers on <planet>."
+	shadow
 	to offer
 		has "Remnant: Face to Maw 1: done"
 	source "Aventine"
@@ -2098,6 +2112,7 @@ event "remnant: penguin"
 mission "Remnant: Face to Maw 2B"
 	name "Take the tentacle to Chilia's engineers on Caelian"
 	description "The tentacle has properties that may be put to use by the engineers on <planet>."
+	shadow
 	to offer
 		has "Remnant: Face to Maw 1B: done"
 	source "Aventine"

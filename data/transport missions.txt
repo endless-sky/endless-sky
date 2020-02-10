@@ -596,6 +596,7 @@ mission "Deep Archaeology 3"
 mission "Deep Archaeology 4"
 	name "Deep Archaeology"
 	description "Return to <destination> with some specialized equipment for subterranean mapping."
+	shadow
 	source Vinci
 	destination Midgard
 	to offer
@@ -1074,6 +1075,7 @@ mission "Rim Archaeology 1"
 mission "Rim Archaeology 2A"
 	name "Archaeological Equipment"
 	description "Fetch some excavation equipment from <destination>, and return with it to the dig site on Zug."
+	shadow
 	source "Zug"
 	destination "Crossroads"
 	to offer
@@ -2170,6 +2172,7 @@ ship "Asteroid"
 mission "Terraforming 3"
 	name "Terraforming Rand"
 	description "Plant a thruster on an asteroid to guide it into a collision with the northern pole of Rand."
+	shadow
 	blocked "You'll need more cargo space in order to take the next mission from Eric and Alaric. Return here when you have <capacity>."
 	cargo "thruster equipment" 10
 	source "Rand"
@@ -2222,6 +2225,7 @@ mission "Terraforming 3"
 mission "Terraforming 4"
 	name "Terraforming Rand"
 	description "Collect some hardy plants that can grow in a low-light environment from <destination>."
+	shadow
 	source "Rand"
 	destination "New Portland"
 	to offer
@@ -2249,6 +2253,7 @@ mission "Terraforming 4"
 mission "Terraforming 5"
 	name "Terraforming Rand"
 	description "Bring some hardy plants that can grow in a low-light environment back to <destination>."
+	shadow
 	source "New Portland"
 	destination "Rand"
 	to offer
@@ -2361,6 +2366,7 @@ mission "Terraforming 6"
 mission "Terraforming 7"
 	name "Terraforming Research"
 	description "Bring Amy and Nolan to <destination>, where they will research and publish Amy's terraforming methods."
+	shadow
 	source "Earth"
 	destination "Valhalla"
 	passengers 2
@@ -2448,6 +2454,7 @@ mission "Terraforming 9"
 mission "Terraforming 10"
 	name "Terraforming Tundra"
 	description "Bring the Republic representative overseeing the terraforming project to <destination>, where he will attempt to find an alternative solution to terraforming Tundra that does not involve an asteroid."
+	shadow
 	source "Tundra"
 	destination "Earth"
 	passengers 1

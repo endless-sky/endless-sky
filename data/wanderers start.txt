@@ -828,6 +828,7 @@ mission "Wanderers: Alpha Surveillance A"
 	name "Alpha Surveillance"
 	description "Drop off surveillance micro-satellites in the three Unfettered home systems, then stop by <destination> to see if the Hai government knows anything about an Alpha enclave nearby."
 	autosave
+	shadow
 	source "Vara K'chrai"
 	destination "Hai-home"
 	clearance
@@ -924,6 +925,7 @@ mission "Wanderers: Alpha Surveillance B"
 mission "Wanderers: Alpha Surveillance C"
 	name "Alpha Surveillance"
 	description "The Wanderers have no technology for tracking a ship that is using a jump drive, but Iktat Rek thinks the Quarg might be able to and suggested visiting them on <destination>."
+	shadow
 	source "Vara K'chrai"
 	destination "Alta Hai"
 	to offer
@@ -957,6 +959,7 @@ mission "Wanderers: Alpha Surveillance C"
 mission "Wanderers: Alpha Surveillance C (Naughty)"
 	name "Alpha Surveillance"
 	description "The Wanderers have no technology for tracking a ship that is using a jump drive, but Iktat Rek thinks the Quarg might be able to and suggested visiting them on <destination>."
+	shadow
 	source "Vara K'chrai"
 	destination "Alta Hai"
 	to offer
@@ -1080,6 +1083,7 @@ mission "Wanderers: Alpha Surveillance D"
 	name "Find the Alphas"
 	description "With the help of Elias Hanover and his tracker device, locate the Alpha Base and then return to the Quarg ringworld of <planet>."
 	autosave
+	shadow
 	source "Alta Hai"
 	to offer
 		or
@@ -1176,6 +1180,7 @@ mission "Wanderers: Alpha Surveillance D (Avalon)"
 mission "Wanderers: Alpha Surveillance E"
 	name "Visit Danforth"
 	description "Visit Admiral Danforth on <planet> and see if he is able to supply you with an attack force to locate and destroy the Alpha base."
+	shadow
 	source "Alta Hai"
 	destination "Farpoint"
 	passengers 1
@@ -1208,6 +1213,7 @@ mission "Wanderers: Alpha Surveillance F"
 	name "Invade Avalon"
 	description "Escort Admiral Danforth's Navy Cruiser to <destination> and land on the planet with them. They will attempt to locate and eliminate the Alpha base."
 	autosave
+	shadow
 	source "Farpoint"
 	destination "Avalon"
 	passengers 1
@@ -1382,6 +1388,7 @@ mission "Wanderers: Alpha Surveillance I"
 	name "Return Elias to <planet>"
 	description "Bring Elias Hanover back to <destination>, where he will hopefully be safe from Alpha retaliation for driving them out of their base on Avalon."
 	autosave
+	shadow
 	source "Farpoint"
 	destination "Alta Hai"
 	to offer
@@ -1572,6 +1579,7 @@ mission "Wanderers Invaded 2"
 	name "Defend <planet>"
 	description `Drive off the Unfettered fleet attacking <system> to buy the Wanderers more time, then land on <planet>.`
 	autosave
+	shadow
 	source "Var' Kar'i'i"
 	destination "Varu Mer'ek"
 	to offer
@@ -1820,6 +1828,7 @@ mission "Wanderers Hai Assistance 1"
 	name "Hai Assistance"
 	description `Travel to <planet> with Ambassador Sayari and see if she can convince the Hai to help restrain the Unfettered from attacking the Wanderers.`
 	autosave
+	shadow
 	source "Vara K'chrai"
 	destination "Hai-home"
 	clearance
@@ -1991,6 +2000,7 @@ mission "Wanderers Evacuation 1"
 	name "Evacuate <planet>"
 	description `Escort another fleet of Wanderer refugee transports to <destination>.`
 	autosave
+	shadow
 	source "Vara Ke'sok"
 	destination "Vara Ke'stai"
 	to offer
@@ -2219,6 +2229,7 @@ mission "Wanderers Rescue 1"
 	name "Wanderer Rescue"
 	description "Some Wanderer warriors were left behind on <planet> when the Unfettered captured the planet. Land on the planet with two Wanderer warships, and rescue them."
 	autosave
+	shadow
 	source "Vara Ke'sok"
 	destination "Kort Vek'kri"
 	clearance

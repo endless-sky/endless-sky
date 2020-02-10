@@ -156,6 +156,8 @@ void Mission::Load(const DataNode &node)
 			isVisible = false;
 		else if(child.Token(0) == "priority")
 			hasPriority = true;
+		else if(child.Token(0) == "shadow")
+			showShadow = true;
 		else if(child.Token(0) == "minor")
 			isMinor = true;
 		else if(child.Token(0) == "autosave")
@@ -290,6 +292,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("invisible");
 		if(hasPriority)
 			out.Write("priority");
+		if(showShadow)
+			out.Write("shadow");
 		if(isMinor)
 			out.Write("minor");
 		if(autosave)
@@ -601,6 +605,40 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 	return true;
 }
 
+
+// Get a planet for which this mission can be advertised to the player
+const Planet *Mission::GetShadowSource(const PlayerInfo &player) const
+{
+	if(!showShadow || location == BOARDING || location == ASSISTING)
+		return nullptr;
+	
+	if(!toOffer.Test(player.Conditions()))
+		return nullptr;
+	
+	if(!toFail.IsEmpty() && toFail.Test(player.Conditions()))
+		return nullptr;
+	
+	if(repeat)
+	{
+		auto cit = player.Conditions().find(name + ": offered");
+		if(cit != player.Conditions().end() && cit->second >= repeat)
+			return nullptr;
+	}
+	
+	auto it = actions.find(OFFER);
+	if(it != actions.end() && !it->second.CanBeDone(player, nullptr))
+		return nullptr;
+	
+	it = actions.find(ACCEPT);
+	if(it != actions.end() && !it->second.CanBeDone(player, nullptr))
+		return nullptr;
+	
+	it = actions.find(DECLINE);
+	if(it != actions.end() && !it->second.CanBeDone(player, nullptr))
+		return nullptr;
+	
+	return source; // sourceFilter
+}
 
 
 bool Mission::HasSpace(const PlayerInfo &player) const

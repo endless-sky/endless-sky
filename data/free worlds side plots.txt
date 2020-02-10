@@ -13,6 +13,7 @@
 mission "FW Conservatory 1"
 	name "Take Ijs to Winter"
 	description "Transport Mr. Eyes and the Andersons to <destination>, where he will be helping to set up a public university."
+	shadow
 	source Bourne
 	destination Winter
 	passengers 3
@@ -60,6 +61,7 @@ mission "FW Conservatory 1"
 mission "FW Conservatory 2"
 	name "Escort to Wayfarer"
 	description "Escort this Free Worlds convoy to Wayfarer, to trade for terraforming equipment provided by Tarazed and the Syndicate."
+	shadow
 	source Winter
 	destination Wayfarer
 	to offer

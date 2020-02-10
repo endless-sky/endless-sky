@@ -710,6 +710,7 @@ mission "FW Katya Alt 2"
 mission "FW Katya 2"
 	name "Transport Mr. Eyes"
 	description "Katya Reynolds asked you to travel to <destination>, where her friend Mr. Eyes is waiting for you."
+	shadow
 	source "Skymoot"
 	destination "Foundry"
 	passengers 1
@@ -835,6 +836,7 @@ mission "FW Katya 2C"
 mission "FW Katya 3"
 	name "Drone Hunting"
 	description `Disable a surveillance drone (ideally when no Cruisers are watching), board it, "salvage" its surveillance equipment, and return to <destination>. (Until you leave the system where you disabled the drone, other Republic ships may attack you.)`
+	shadow
 	source Rand
 	to offer
 		has "FW Katya 2C: done"
@@ -897,6 +899,7 @@ mission "FW Katya 3"
 mission "FW Katya 4"
 	name "Katya and Mr. Eyes"
 	description "Stop on <destination> and check the planet for signs of nuclear testing."
+	shadow
 	source "Rand"
 	destination "Oblivion"
 	blocked "You need bunks for both Katya and Eyes in order to continue this mission."
@@ -1087,6 +1090,7 @@ mission "FW Katya 5C"
 mission "FW Katya 6"
 	name "The Hunt Continues"
 	description "Take Katya and Eyes to <destination>."
+	shadow
 	source "Harmony"
 	destination "Sinter"
 	passengers 2
@@ -1408,6 +1412,7 @@ mission "FW Escort 1B"
 mission "FW Escort 2"
 	name "Free Worlds Escort"
 	description "Escort a Free Worlds supply convoy safely to <destination>."
+	shadow
 	autosave
 	source "Longjump"
 	destination "Wayfarer"
@@ -1537,6 +1542,7 @@ mission "FW Escort 2B"
 mission "FW Escort 3"
 	name "Stranded Freighter"
 	description "Repair the <npc>, which is stranded in the <waypoints> system, and escort it safely back to <destination>."
+	shadow
 	autosave
 	source "Longjump"
 	waypoint "Lesath"

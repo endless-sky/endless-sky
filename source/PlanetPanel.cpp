@@ -115,7 +115,18 @@ void PlanetPanel::Draw()
 		}
 		
 		if(flagship && planet.HasSpaceport())
+		{
 			info.SetCondition("has spaceport");
+			for(const auto &it : GameData::Missions())
+			{
+				const Planet *source = it.second.GetShadowSource(player);
+				if(source == &planet && it.second.IsAtLocation(Mission::SPACEPORT))
+				{
+					info.SetCondition("has spaceport mission");
+					break;
+				}
+			}
+		}
 		
 		if(planet.HasShipyard())
 			info.SetCondition("has shipyard");

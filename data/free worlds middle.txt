@@ -45,6 +45,7 @@ mission "FW Diplomacy 1B"
 	name "Free Worlds Diplomacy"
 	description "Bring Alondo to <planet> to meet with Parliament. Your guarantee of safe passage will expire on <day>."
 	autosave
+	shadow
 	source "Longjump"
 	destination "Earth"
 	deadline 24
@@ -168,6 +169,7 @@ mission "FW Southern Recon 1"
 	name "Reconnaissance"
 	description "Fly through <waypoints> to get a sense of the Navy's strength in those systems, then report to <destination>."
 	autosave
+	shadow
 	source "Longjump"
 	waypoint "Rastaban"
 	waypoint "Delta Sagittarii"
@@ -293,6 +295,7 @@ mission "FW Southern Recon 1B: Alnasl Hint 2"
 mission "FW Southern Battle 1"
 	name "Escort Battle Fleet"
 	description "Travel to <planet> to gather a fleet of experimental new warships, and escort them back to Trinket."
+	shadow
 	source Trinket
 	destination Zug
 	to offer
@@ -393,6 +396,7 @@ event "battle for Rastaban"
 mission "FW Southern Battle 2"
 	name "Attack Rastaban"
 	description "Travel directly to the <system> system, so that you will arrive on <day> and join the battle against the Navy. Disable or destroy all Navy ships in system."
+	shadow
 	source Trinket
 	destination Dancer
 	clearance
@@ -564,6 +568,7 @@ mission "FW Southern Prisoners - Release"
 	description "As a goodwill gesture, return the Navy prisoners to <destination> rather than imprisoning them on Clink. Your safe passage ends on <day>."
 	source Dancer
 	clearance
+	shadow
 	destination "New Iceland"
 	to offer
 		has "FW Southern Battle 3: done"
@@ -801,6 +806,7 @@ mission "FW Northern 2"
 	description "Now that the northern star systems are secured, go back to <planet> to meet with Freya and work with her to remove any surveillance equipment the Navy installed in the Wei system or elsewhere."
 	source "New Tibet"
 	destination "Dancer"
+	shadow
 	to offer
 		has "FW Northern 1: done"
 	on fail
@@ -981,6 +987,7 @@ mission "FW Northern 3B"
 	name "Dreadnoughts to <planet>"
 	description "Escort two more Dreadnoughts to <destination> to help defend the front against any Navy incursions."
 	autosave
+	shadow
 	source "Zug"
 	destination "Clark"
 	to offer
@@ -1291,6 +1298,7 @@ mission "FW Alphas 1.1A"
 	name "Danforth to <planet>"
 	description "Escort Admiral Danforth's ship to <destination> so that he can leave Free space without being accidentally attacked."
 	autosave
+	shadow
 	source Poisonwood
 	destination "New Tibet"
 	to offer
@@ -2171,6 +2179,7 @@ mission "FW Defend New Tibet"
 mission "FW Liberate Delta Sagittarii"
 	name "Liberate Delta Sagittarii"
 	description "Lead a Free Worlds fleet to drive the Navy out of Delta Sagittarii. Another fleet ought to be arriving from the Rim at about the same time."
+	shadow
 	source Wayfarer
 	destination "New Portland"
 	clearance
