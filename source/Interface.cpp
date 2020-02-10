@@ -572,7 +572,7 @@ void Interface::TextElement::Place(const Rectangle &bounds, Panel *panel) const
 
 pair<string, Font::Layout> Interface::TextElement::GetString(const Information &info) const
 {
-	return (isDynamic ? info.GetString(str) : make_pair(str, Font::Layout()));
+	return (isDynamic ? info.GetString(str) : make_pair(str, Font::Layout{}));
 }
 
 

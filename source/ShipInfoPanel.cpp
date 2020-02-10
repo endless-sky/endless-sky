@@ -292,7 +292,7 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 	
 	// Draw the ship information.
 	table.Draw("ship:", dim);
-	const Font::Layout shipNameLayout(Font::TRUNC_MIDDLE, WIDTH - 50, Font::RIGHT);
+	const Font::Layout shipNameLayout{Font::TRUNC_MIDDLE, static_cast<int>(WIDTH - 50), Font::RIGHT};
 	table.Draw(ship.Name(), bright, &shipNameLayout);
 	
 	table.Draw("model:", dim);
