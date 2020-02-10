@@ -296,7 +296,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands, bool isActive)
 		return;
 
 	if(activeCommands.Has(Command::STOP))
-		Messages::Add("Flagship holding position.");
+		Messages::Add("Bringing flagship to standstill.");
 	
 	// Only toggle the "cloak" command if one of your ships has a cloaking device.
 	if(activeCommands.Has(Command::CLOAK))
