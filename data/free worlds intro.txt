@@ -1900,6 +1900,7 @@ mission "Defend Sabik"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		set "license: Militia"
 		conversation
 			`When you land on <planet>, you discover that Tomek has already found transportation here; he meets you almost as soon as your ship lands. When you step out of the hatch alone, without Katya, he turns away in grief. "I'm sorry," you say, "I couldn't locate her. The whole place is under guard."`
 			`	"Very well," he says, "we'll have to hope that she's still hidden there somewhere. In the meantime, we need to make your allegiance official so that you can fight alongside us if it comes to that."`
@@ -2019,15 +2020,6 @@ mission "Defend Sabik"
 		dialog `You've landed on <planet>, but there are still Navy ships circling overhead. You should take off and help finish them off.`
 	on complete
 		dialog `The Navy has been driven off, but at a great cost. You should probably visit the spaceport and see if Tomek is there, or someone else who can tell you what to do next.`
-
-mission "FW License"
-	invisible
-	landing
-	to offer
-		has "event: joined the free worlds"
-	on offer
-		set "license: Militia"
-		fail
 
 mission "FW License Fix"
 	invisible
