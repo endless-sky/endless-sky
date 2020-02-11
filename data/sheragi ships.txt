@@ -14,13 +14,13 @@ ship "Emerald Sword"
 	attributes
 		category "Heavy Warship"
 		cost 100000000
-		shields 6000
-		hull 38000
+		shields 9500
+		hull 45000
 		mass 1520
-		drag 19
+		drag 20
 		"heat dissipation" 0.45
 		"required crew" 86
-		bunks 272
+		bunks 198
 		"cargo space" 169
 		"outfit space" 1185
 		"weapon capacity" 512
@@ -70,4 +70,4 @@ ship "Emerald Sword"
 	"final explode" "nuke residue fast" 25
 	"final explode" "nuke residue fast" 25
 	description "An ancient Sheragi warship that defected from their infighting to escape into interstellar space. Found orbiting a disconnected star, this is an impressively large ship, fit for the equally large Sheragi. The ship's main weapon is a fusion-pumped gamma ray laser. Despite the relatively low tech outfits, it's still a very brutal war machine due to its size."
-	description "For the original Sheragi masters, this warship was home to around 100 individuals. For humans, however, that number more than doubles, bringing it on par with the biggest city ships."
+	description "For the original Sheragi masters, this warship was home to around 100 individuals. For humans, however, that number nearly doubles, bringing it on par with the biggest city ships."
