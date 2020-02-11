@@ -2020,11 +2020,21 @@ mission "Defend Sabik"
 	on complete
 		dialog `The Navy has been driven off, but at a great cost. You should probably visit the spaceport and see if Tomek is there, or someone else who can tell you what to do next.`
 
-mission "FWCarrier License"
+mission "FW License"
 	invisible
 	landing
 	to offer
 		has "event: joined the free worlds"
 	on offer
-		set "license: Militia Carrier"
+		set "license: Militia"
+		fail
+
+mission "FW License Fix"
+	invisible
+	landing
+	to offer
+		has "license: Militia Carrier"
+	on offer
+		set "license: Militia"
+		clear "license: Militia Carrier"
 		fail
