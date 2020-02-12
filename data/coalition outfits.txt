@@ -258,8 +258,8 @@ outfit "Refuelling Module"
 	"fuel capacity" -100
 	"fuel generation" .05
 	"energy consumption" .025
-	description `To avoid the risk of being inspected by the Heliarch as they refuel on planets, Resistance ships employ this outfit when carrying supplies or stolen outfits.`
-	description `	The outfit's mechanisms need a set amount of fuel to be put aside for it's inner workings, so a ship can only install so many of these before becoming incapable of jumping to another system.`
+	description "To avoid the risk of being inspected by the Heliarch as they refuel on planets, Resistance ships employ this outfit when carrying supplies or stolen outfits."
+	description "	The outfit's mechanisms need a set amount of fuel to be put aside for it's inner workings, so a ship can only install so many of these before becoming incapable of jumping to another system."
 
 outfit "Decoy Plating"
 	category "Systems"
@@ -269,8 +269,8 @@ outfit "Decoy Plating"
 	"outfit space" -7
 	"scan interference" 1.2
 	"radar jamming" 4
-	description `This plating takes advantage of a ship's scan logs, and reproduces the data of other ships it nearby, effectively deflecting attempts to scan a ship's true cargo and equipment.`
-	description `	Out of a need to protect themselves against the destructive Heliarch torpedoes, the Resistance made sure to also incorporate a radar jamming system in it, if only to act as a last line of defense.`
+	description "This plating takes advantage of a ship's scan logs, and reproduces the data of other ships close by, effectively deflecting attempts to scan a ship's true cargo and equipment."
+	description "	Out of a need to protect themselves against the destructive Heliarch torpedoes, the Resistance made sure to also incorporate a radar jamming system in it, if only to act as a last line of defense."
 
 outfit "Enforcer Confrontation Gear"
 	category "Hand to Hand"
