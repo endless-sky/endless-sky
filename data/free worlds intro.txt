@@ -173,7 +173,7 @@ mission "Pact Questioning"
 		government "Republic"
 	to offer
 		not "chosen sides"
-		random < 7.5 * ( "Pact Recon 1: done" + "Pact Recon 2: done" + "Pact Recon 3: done" )
+		random < 7 * ( "Pact Recon 1: done" + "Pact Recon 2: done" + "Pact Recon 3: done" )
 	
 	on offer
 		log "Apparently the Navy is suspicious of anyone who worked with the Southern Mutual Defense Pact; got questioned about it by an officer. It was unclear what his rank or position in the Navy was."
@@ -471,7 +471,7 @@ mission "FW Katya 1"
 	description "Stop by <destination>, pick up two passengers and some cargo, and distract the Republic from a more important cargo exchange going on simultaneously."
 	minor
 	to offer
-		random < 10 + 7.25 * "assisted free worlds" * "assisted free worlds"
+		random < 10 + 7 * "assisted free worlds" * "assisted free worlds"
 	to fail
 		has "chosen sides"
 	source
