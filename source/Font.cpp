@@ -31,8 +31,7 @@ namespace {
 	const int TOTAL_TAB_STOPS = 8;
 	const Font::Layout defaultParams;
 	
-	// 95 and x5f means "_".
-	const vector<string> acceptableCharacterReferences{ "gt;", "lt;", "amp;", "#95;", "#x5f;", "#x5F;" };
+	const vector<string> acceptableCharacterReferences{ "gt;", "lt;", "amp;" };
 	
 	// Convert from PANGO to pixel scale.
 	int PixelFromPangoCeil(int pangoSize)
@@ -235,7 +234,6 @@ string Font::ReplaceCharacters(const string &str)
 	string buf;
 	buf.reserve(str.length());
 	bool isAfterWhitespace = true;
-	bool isAfterAccel = false;
 	bool isTag = false;
 	const size_t len = str.length();
 	for(size_t pos = 0; pos < len; ++pos)
@@ -256,9 +254,6 @@ string Font::ReplaceCharacters(const string &str)
 				buf.append(isAfterWhitespace ? "\xE2\x80\x98" : "\xE2\x80\x99");
 			else if(str[pos] == '"')
 				buf.append(isAfterWhitespace ? "\xE2\x80\x9C" : "\xE2\x80\x9D");
-			else if(isAfterAccel && str[pos] == '_')
-				// Remove an extra underbar.
-				;
 			else if(str[pos] == '&')
 			{
 				buf.append(1, '&');
@@ -278,7 +273,6 @@ string Font::ReplaceCharacters(const string &str)
 			else
 				buf.append(1, str[pos]);
 			isAfterWhitespace = (str[pos] == ' ');
-			isAfterAccel = (str[pos] == '_');
 			isTag = (str[pos] == '<');
 		}
 	}
@@ -291,8 +285,11 @@ string Font::RemoveAccelerator(const string &str)
 {
 	string dest;
 	bool isTag = false;
+	bool isAccel = false;
 	for(char c : str)
 	{
+		const bool isAfterAccel = isAccel;
+		isAccel = false;
 		if(isTag)
 		{
 			dest += c;
@@ -303,8 +300,10 @@ string Font::RemoveAccelerator(const string &str)
 			dest += c;
 			isTag = true;
 		}
-		else if(c != '_')
+		else if(c != '_' || isAfterAccel)
 			dest += c;
+		else
+			isAccel = true;
 	}
 	return dest;
 }
@@ -446,24 +445,24 @@ const Font::RenderedText &Font::Render(const string &str, const Layout *params) 
 	const string text = ReplaceCharacters(str);
 	
 	// Keyboard Accelerator
-	char *removeMarkupText;
-	const char *rawText;
+	char *TextRemovedMarkup;
+	const char *drawingText;
 	PangoAttrList *al = nullptr;
 	GError *error = nullptr;
 	const char accel = showUnderlines ? '_' : '\0';
 	const string &nonAccelText = RemoveAccelerator(text);
 	const string &parseText = showUnderlines ? text : nonAccelText;
-	if(pango_parse_markup(parseText.c_str(), -1, accel, &al, &removeMarkupText, 0, &error))
-		rawText = removeMarkupText;
+	if(pango_parse_markup(parseText.c_str(), -1, accel, &al, &TextRemovedMarkup, 0, &error))
+		drawingText = TextRemovedMarkup;
 	else
 	{
 		if(error->message)
 			Files::LogError(error->message);
-		rawText = nonAccelText.c_str();
+		drawingText = nonAccelText.c_str();
 	}
 	
 	// Set the text and attributes to layout.
-	pango_layout_set_text(layout, rawText, -1);
+	pango_layout_set_text(layout, drawingText, -1);
 	pango_layout_set_attributes(layout, al);
 	pango_attr_list_unref(al);
 	
