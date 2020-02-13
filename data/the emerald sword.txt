@@ -20,7 +20,7 @@ mission "The Box 1"
 		has "event: rim archaeology results"
 		has "First Contact: Unfettered: declined"
 		has "main plot completed"
-		random < 3
+		random < 4
 	
 	on offer
 		conversation
@@ -78,7 +78,7 @@ mission "The Box 2"
 	
 	on complete
 		payment 500000
-		event "cube stolen" 32 40
+		event "cube stolen" 20 30
 		log `Took a mysterious Sheragi data cube that Albert Foster dug up on Zug to a trusted friend on Vinci. John will take some time to see how exactly it works, and tell you when it's done.`
 		conversation
 			`You arrive on Vinci, and carry the cube to the address Foster gave you. John has been waiting for you.`
@@ -110,7 +110,7 @@ mission "The Box 3"
 	
 	on offer
 		conversation
-			`You receive a call from John, who has been working on the mysterious Sheragi black box for little over a month now.`
+			`You receive a call from John, who has been working on the mysterious Sheragi black box for about a month now.`
 			`	"Captain <last>! I have some bad news and some worse news. Which one do you want to hear first?"`
 			choice
 				`	"The bad news."`
@@ -502,7 +502,7 @@ mission "The box 8"
 			`	"The catch is that this is a collaboration now. We'll help you, if you share your findings with us," Rakei continues.`
 			`	"Sounds like a win-win to me. We'll arrange the details later. <first>, thank you so much for your help. We'll continue studying this artifact, and we'll send you a message when we're done."`
 			`	You say goodbye to Albert, Rakei, Eyama, and Desyo, and make your way back to your ship.` 
-		event "cube decoded" 60
+		event "cube decoded" 40 50
 		
 mission "The Emerald Sword 1"
 	description "Visit Albert Foster on Zug."
@@ -548,7 +548,7 @@ mission "The Emerald Sword 2"
 			`	"This is perfect! Do you have a spare jump drive? If we're going there, we're going to need one to install on the Emerald Sword and bring it back home."`
 			`	"What do I get in return?" you ask.`
 			`	"The ship, of course," Albert responds. "You've helped me so much, and you went to hell and back to get this black box decoded. We're going to spend a day or so studying the ship after we get it, making a blueprint and all that, but afterwards, it's all yours to keep! Anyway, I just can't wait to see what that ship even looks like. Give us some time to assemble a crew to help refurbish the ship, and in the meantime, get us a jump drive. Come back to us once you have it."`
-			accept
+				accept
 	
 	to complete
 		never
