@@ -171,6 +171,17 @@ government "Independent"
 	"hostile hail" "hostile civilian"
 	raid "Large Southern Pirates"
 
+government " Independent "
+	"display name" "Independent"
+	swizzle 6
+	color .78 .36 .36
+	
+	"player reputation" 10
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
+
 government "Indigenous Lifeform"
 	# Nothing you do permanently angers indigenous creatures, because they are
 	# not sentient and do not remember you as an individual.
