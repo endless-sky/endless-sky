@@ -114,7 +114,7 @@ outfit "Sheragi Anti-Missile"
 	"turret mounts" -1
 	weapon
 		"hardpoint sprite" "hardpoint/sheragiam"
-		"hardpoint offset" 10.
+		"hardpoint offset" 1.5
 		"hit effect" "sheragiam"
 		"anti-missile" 200
 		"velocity" 450
@@ -138,7 +138,7 @@ outfit "Particle Waveform Turret"
 			"frame rate" 20
 		sound "pwave"
 		"hardpoint sprite" "hardpoint/pwavehp"
-		"hardpoint offset" 9.
+		"hardpoint offset" 11
 		"hit effect" "pwave impact"
 		"inaccuracy" 1.5
 		"velocity" 50
