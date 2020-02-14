@@ -203,14 +203,8 @@ effect "sheragiam"
 effect "pwave impact"
 	sprite "effect/pwave impact"
 		"no repeat"
-		"frame rate" 8
-	"lifetime" 30
-	"random spin" 0
+		"frame rate" 10
+	"lifetime" 19
+	"random angle" 10
+	"random spin" 1
 	"velocity scale" -.001
-	
-effect "pwave shot"
-	sprite "effect/pwave shot"
-		"no repeat"
-		"frame rate" 8
-	"lifetime" 10
-	"velocity scale" 1
