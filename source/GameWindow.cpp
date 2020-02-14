@@ -1,8 +1,6 @@
 /* GameWindow.cpp
 Copyright (c) 2014 by Michael Zahniser
 
-Provides the ability to create window objects. Like the main game window.
-
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option) any later version.
@@ -12,26 +10,28 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#include "Files.h"
 #include "GameWindow.h"
-#include "gl_header.h"
+
+#include "Files.h"
 #include "ImageBuffer.h"
 #include "Preferences.h"
 #include "Screen.h"
 
-#include <cstring>
+#include "gl_header.h"
 #include <SDL2/SDL.h>
+
+#include <cstring>
 #include <string>
 #include <sstream>
 
 using namespace std;
 
 namespace {
-	SDL_Window *mainWindow;
+	SDL_Window *mainWindow = nullptr;
 	SDL_GLContext context;
 	int width = 0;
 	int height = 0;
-	bool hasSwizzle;
+	bool hasSwizzle = false;
 		
 	// Logs SDL errors and returns true if found
 	bool checkSDLerror()
@@ -50,41 +50,6 @@ namespace {
 
 
 
-int GameWindow::Width()
-{
-	return width;
-}
-
-
-
-int GameWindow::Height()
-{
-	return height;
-}
-
-
-
-bool GameWindow::IsFullscreen()
-{
-	return (SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_FULLSCREEN_DESKTOP);
-}
-
-
-
-bool GameWindow::IsMaximized()
-{
-	return (SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_MAXIMIZED);
-}
-
-
-
-bool GameWindow::HasSwizzle()
-{
-	return hasSwizzle;
-}
-
-
-
 bool GameWindow::Init()
 {
 	// This needs to be called before any other SDL commands.
@@ -96,7 +61,7 @@ bool GameWindow::Init()
 	// Get details about the current display.
 	SDL_DisplayMode mode;
 	if(SDL_GetCurrentDisplayMode(0, &mode))	{	
-		DoError("Unable to query monitor resolution!");
+		ExitWithError("Unable to query monitor resolution!");
 		return false;
 	}
 		
@@ -106,7 +71,7 @@ bool GameWindow::Init()
 	int maxWidth = mode.w;
 	int maxHeight = mode.h;
 	if(maxWidth < minWidth || maxHeight < minHeight){
-		DoError("Monitor resolution is too small!");
+		ExitWithError("Monitor resolution is too small!");
 		return false;
 	}
 	
@@ -134,7 +99,7 @@ bool GameWindow::Init()
 		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, flags);
 		
 	if(!mainWindow){
-		DoError("Unable to create window!");
+		ExitWithError("Unable to create window!");
 		return false;
 	}
 	
@@ -149,12 +114,12 @@ bool GameWindow::Init()
 		
 	context = SDL_GL_CreateContext(mainWindow);
 	if(!context){
-		DoError("Unable to create OpenGL context! Check if your system supports OpenGL 3.0.");
+		ExitWithError("Unable to create OpenGL context! Check if your system supports OpenGL 3.0.");
 		return false;
 	}
 	
 	if(SDL_GL_MakeCurrent(mainWindow, context)){
-		DoError("Unable to set the current OpenGL context!");
+		ExitWithError("Unable to set the current OpenGL context!");
 		return false;
 	}
 			
@@ -162,7 +127,7 @@ bool GameWindow::Init()
 #ifndef __APPLE__
 	glewExperimental = GL_TRUE;
 	if(glewInit() != GLEW_OK){
-		DoError("Unable to initialize GLEW!");
+		ExitWithError("Unable to initialize GLEW!");
 		return false;
 	}
 #endif
@@ -170,7 +135,7 @@ bool GameWindow::Init()
 	// Check that the OpenGL version is high enough.
 	const char *glVersion = reinterpret_cast<const char *>(glGetString(GL_VERSION));
 	if(!glVersion || !*glVersion){
-		DoError("Unable to query the OpenGL version!");
+		ExitWithError("Unable to query the OpenGL version!");
 		return false;
 	}
 	
@@ -179,7 +144,7 @@ bool GameWindow::Init()
 	{
 		ostringstream out;
 		out << "Unable to query the GLSL version. OpenGL version is " << glVersion << ".";
-		DoError(out.str());
+		ExitWithError(out.str());
 		return false;
 	}
 	
@@ -189,7 +154,7 @@ bool GameWindow::Init()
 		out << "Endless Sky requires OpenGL version 3.0 or higher." << endl;
 		out << "Your OpenGL version is " << glVersion << ", GLSL version " << glslVersion << "." << endl;
 		out << "Please update your graphics drivers.";
-		DoError(out.str());
+		ExitWithError(out.str());
 		return false;
 	}
 	
@@ -232,6 +197,34 @@ bool GameWindow::Init()
 #endif
 
 	return true;
+}
+
+
+
+// Clean up the SDL context, window, and shut down SDL.
+void GameWindow::Quit()
+{
+	// Make sure the cursor is visible.
+	SDL_ShowCursor(true);
+	
+	// Clean up in the reverse order that everything is launched.
+//#ifndef _WIN32
+	// Under windows, this cleanup code causes intermittent crashes.
+	if(context)
+		SDL_GL_DeleteContext(context);
+//#endif
+
+	if(mainWindow)
+		SDL_DestroyWindow(mainWindow);
+		
+	SDL_Quit();
+}	
+
+
+
+void GameWindow::Step()
+{
+	SDL_GL_SwapWindow(mainWindow);
 }
 
 
@@ -297,6 +290,36 @@ void GameWindow::AdjustViewport()
 
 
 
+// Last window width, in windowed mode.
+int GameWindow::Width()
+{
+	return width;
+}
+
+
+
+// Last window height, in windowed mode.
+int GameWindow::Height()
+{
+	return height;
+}
+
+
+
+bool GameWindow::IsMaximized()
+{
+	return (SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_MAXIMIZED);
+}
+
+
+
+bool GameWindow::IsFullscreen()
+{
+	return (SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_FULLSCREEN_DESKTOP);
+}
+
+
+
 void GameWindow::ToggleFullscreen()
 {
 	// This will generate a window size change event, 
@@ -312,34 +335,14 @@ void GameWindow::ToggleFullscreen()
 
 
 
-void GameWindow::Step()
+bool GameWindow::HasSwizzle()
 {
-	SDL_GL_SwapWindow(mainWindow);
+	return hasSwizzle;
 }
 
-	
-
-void GameWindow::Quit()
-{
-	// Make sure the cursor is visible.
-	SDL_ShowCursor(true);
-	
-	// Clean up in the reverse order that everything is launched.
-//#ifndef _WIN32
-	// Under windows, this cleanup code causes intermittent crashes.
-	if(context)
-		SDL_GL_DeleteContext(context);
-//#endif
-
-	if(mainWindow)
-		SDL_DestroyWindow(mainWindow);
-		
-	SDL_Quit();
-}	
 
 
-
-void GameWindow::DoError(const string& message)
+void GameWindow::ExitWithError(const string& message)
 {
 	// Print the error message in the terminal and the error file.
 	Files::LogError(message);		

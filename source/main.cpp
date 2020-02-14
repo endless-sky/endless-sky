@@ -123,7 +123,7 @@ int main(int argc, char *argv[])
 	}
 	catch(const runtime_error &error)
 	{
-		GameWindow::DoError(error.what());
+		GameWindow::ExitWithError(error.what());
 		return 1;
 	}
 		
