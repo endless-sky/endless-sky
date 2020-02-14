@@ -77,6 +77,10 @@ Angle Hardpoint::HarmonizedAngle() const
 	if(!outfit)
 		return Angle();
 	
+	// Weapons that fire in parallel beams don't get a harmonized angle.
+	if(outfit->IsParallel())
+		return Angle();
+	
 	// Find the point of convergence of shots fired from this gun. That is,
 	// find the angle where the projectile's X offset will be zero when it
 	// reaches the very end of its range.

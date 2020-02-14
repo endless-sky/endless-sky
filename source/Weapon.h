@@ -37,6 +37,7 @@ public:
 	// Load from a "weapon" node, either in an outfit or in a ship (explosion).
 	void LoadWeapon(const DataNode &node);
 	bool IsWeapon() const;
+	bool IsParallel() const;
 	
 	// Get assets used by this weapon.
 	const Body &WeaponSprite() const;
@@ -155,6 +156,7 @@ private:
 	bool isSafe = false;
 	bool isPhasing = false;
 	bool isDamageScaled = true;
+	bool isParallel = false;
 	
 	// Attributes.
 	int lifetime = 0;
