@@ -2,7 +2,7 @@ Version 0.9.11:
   * Big changes:
     * Added a new area, the Graveyard, a region of the Ember Waste inhabited by a new hostile alien faction. (@beccabunny)
   * Bug fixes:
-    * Typo fixes. (@alextd, @Amazinite, @Arachi-lover, @Darcman99, @Gods-Righthand, @Mageking17, @MCOfficer, @oo13, @perey, @petervdmeer, @tehhowch, @Waffleship, @wjp, @Zitchas)
+    * Typo fixes. (@alextd, @Amazinite, @Anarchist2, @Arachi-lover, @Darcman99, @Gods-Righthand, @Mageking17, @MCOfficer, @oo13, @perey, @petervdmeer, @tehhowch, @Waffleship, @wjp, @Zitchas)
     * The Quicksilver (Mark II) variant no longer has the exact same outfits as the base variant. (@Amazinite)
     * The Shuttle and Behemoth no longer contact the image border. (@beccabunny) 
     * Terraforming 7 will no longer offer on any planet. (@Bladewood)
@@ -22,7 +22,7 @@ Version 0.9.11:
       * Various new spaceport missions in human space. (@petervdmeer)
       * Added new hails to alien governments where they were missing some under certain conditions. (@Amazinite)
       * Added new Pug and Heliarch hand to hand weapons. (@Brick63)
-      * Added new, larger Coalition shield and hull repair modules used only by the Heliarchs. (@Arachi-Lover, @beccabunny)
+      * Added new, larger Coalition shield and hull repair modules used only by the Heliarchs. (@Arachi-Lover, images from @beccabunny)
       * Tribute can now be demanded from the Remnant. (@Zitchas)
       * Added a new Wanderer transport ship that has been retroactively added to the Wanderer campaign. (@Brick63)
       * Added hints to the Free Worlds campaign as to where to go to steal an electron beam, and removed large Navy fleets from Wei as to make it less punishing on average to fly through the system. (@Amazinite)
@@ -40,13 +40,14 @@ Version 0.9.11:
       * Made various minor changes to the Free Worlds campaign, such as the Stack Core and Flamethrower now becoming available to the player regardless of if they helped transport or test them. (@Amazinite)
       * If the player has a jump drive and a hyperdrive installed when going to the Syndicate for a jump drive, they will no longer give you an extra jump drive. (@Amazinite)
       * Should the player have their own jump drive during Free Worlds Reconciliation, the Navy will now provide an extra escort for the unused jump drive. (@AlbertNewton)
+      * Removed the Hunted by State missions, as they made playing as a pirate too punishing. (@Amazinite)
     * Balance:
+      * Heliarch and Coalition crew now have altered base crew attack and defense stats. (@Tadrix)
       * Gave the Pelican more engine space to better fit its description of being a fast ship. (@Zitchas)
       * Increased the fuel capacity, engine capacity, and speed of the Arrow and Star Queen so that they better compete with other transport ships. (@Zitchas)
       * The Frigate (Mark II) now has atomic engines just like all other Mark II Navy ships. (@Hyugat)
       * Tweak the stats of the Bastion, Mule, and Osprey to better differeniate the roles that each ship plays and make the Mule less powerful. (@Amazinite)
     * Other:
-      * Heliarch and Coalition crew now have altered base crew attack and defense stats. (@Tadrix)
       * Added more variety for hails and pirate ship names. (@Thunderforge)
       * Increased the variety of ships in pirate fleets. (@ZBok)
       * Increased the variety of ships sold on pirate worlds. (@Zitchas)
@@ -54,7 +55,6 @@ Version 0.9.11:
       * Improved the descriptions of the Marauder ships. (@MageKing17)
       * Gave the laser rifle and security station improved graphics. (@Brick63 and @beccabunny respectively)
       * Efreti outfitters now sell Hyperdrives. (@Arachi-Lover)
-      * Removed the Hunted by State missions, as they made playing as a pirate too punishing. (@Amazinite)
       * Demanding tribute from human worlds occupied by the Pug will now send Pug fleets. (@Zitchas)
       * Hai-home will no longer accept bribes, and now requires more reputation to land on. (@Amazinite)
       * Reduced the transparency of the background haze to make it more noticeable. (@Pointedstick)
