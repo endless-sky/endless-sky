@@ -438,9 +438,6 @@ ship "Ibis"
 	turret 0 -62
 	turret 0 -20.5 "Point Defense Turret"
 	turret 0 58.5 "Thrasher Turret"
-	leak "leak" 50 50
-	leak "flame" 50 80
-	leak "big leak" 90 30
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -541,6 +538,7 @@ ship "Penguin"
 		"shield energy" 0.5
 		"hull repair rate" 2
 		"hull energy" 1.0
+		"gaslining" 1
 		"cloak" .03
 		"cloaking energy" 3
 		"cloaking fuel" .05

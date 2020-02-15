@@ -1135,6 +1135,8 @@ ship "Dreadnought"
 	thumbnail "thumbnail/dreadnought"
 	attributes
 		category "Heavy Warship"
+		licenses
+			"Militia"
 		"cost" 11900000
 		"shields" 18100
 		"hull" 7300
@@ -2743,7 +2745,7 @@ ship "Skein"
 	attributes
 		category "Medium Warship"
 		licenses
-			"Militia Carrier"
+			"Militia"
 		"cost" 3500000
 		"shields" 3300
 		"hull" 6700

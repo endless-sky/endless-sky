@@ -143,6 +143,105 @@ mission "Remnant Blood Test Patch"
 
 
 
+mission "lost in ember waste"
+	landing
+	invisible
+	source
+		government "Remnant"
+	to offer
+		has "remnant blood test pure"
+		not "license: Remnant"
+	on offer
+		require "Quantum Keystone" 0
+		require "Quantum Key Stone" 0
+		require "Jump Drive" 0
+		event "lost in ember waste" 14
+		fail
+
+event "lost in ember waste"
+
+
+
+mission "Remnant: Lost in Ember Waste"
+	landing
+	invisible
+	source
+		government "Remnant"
+	to offer
+		has "event: lost in ember waste"
+	on offer
+		outfit "Quantum Key Stone" 1
+		log `Became stuck in the Ember Waste, but was given a quantum key stone by an old woman who claims to have once been stuck in Republic space under similar circumstances.`
+		conversation
+			`You wander the <origin> spaceport feeling very lost in this strange region of space. Having flown around for a few weeks with no idea of how to get out, you wonder if you'll be stuck here forever.`
+			`	You sit down on a bench and think about how you're going to get out of this situation. While you think, an old woman approaches you and signs something.`
+			choice
+				`	"Sorry, I don't understand."`
+			`	The old woman chuckles to herself. "You seem lost," she says. You nod. To your surprise, she doesn't sing everything she says like the other Remnant.`
+			`	"I'm guessing you don't know about the wormholes."`
+			choice
+				`	"The what?"`
+				`	"I do, I just can't get through them."`
+					goto know
+			
+			`	"There are red wormholes scattered around this region of space. You can only access them if you have a key stone on your ship, though. Don't ask me how it works, but that's how it is."`
+				goto keystone
+			
+			label know
+			`	"Get scammed out of your key stone?" she asks with another chuckle. "Or maybe your jump drive, and now you're stuck here? No problem."`
+			
+			label keystone
+			`	The woman reaches into a bag that she has with her and hands you a quantum key stone. "Just put this on your ship and you can be on your way out of here."`
+			choice
+				`	"You're just giving this to me?"`
+					goto thanks
+				`	"What's the catch?"`
+			`	She chuckles again. "No catch."`
+			
+			label thanks
+			`	The woman sits down on the bench next to you. "I was once lost in Republic space for many years after losing my key stone. I know what it can be like to be away from your people for that long, so I'd rather not see you share the same fate."`
+			choice
+				`	"Thanks for the help. I'll go fit this on my ship."`
+				`	"How'd you get to Republic space?"`
+					goto republic
+			
+			`	You say goodbye to the woman and begin walking to your ship. "Safe travels, Captain," she sings with a big grin on her face as you walk away.`
+				decline
+			
+			label republic
+			`	"I was an adventurous spirit in my youth," she says. "One day I found my way out of the Ember Waste and back to what I learned was the rest of humanity. For years my people had hidden here believing the Alphas had killed everyone else, but I discovered that we had little to fear.`
+			`	"I explored the Republic for many months, learning what had happened since the Alpha Wars, but when I attempted to return to the Ember Waste to tell my people, I found that my key stone had been stolen at some point during my journey. I had no way to return."`
+			`	She lets out a long sigh. "I don't want to bore you with all the details, but I resigned myself to my new life. I met a man, had two daughters, but never lost hope of returning to my true home. One day, after my daughters had grown and my husband had passed in an accident, I decided to go on another adventure. I dusted off my old ship, and soon discovered the Hai."`
+			branch hai
+				has "First Contact: Hai"
+			choice
+				`	"The who?"`
+			`	"How you've become lost here without having discovered the Hai first is beyond me." She chuckles. "The Hai are a peaceful alien people north of humanity. Go looking for a purple wormhole in the uninhabited systems of the Far North. You may find your way there.`
+				goto next
+			
+			label hai
+			choice
+				`	"You've met the Hai?"`
+			`	"Well of course. How else would I have been able to return home?`
+			
+			label next
+			`	"To my surprise, the Hai had a large number of quantum key stones." She pauses for a moment. "Might be a good idea for you to bring some of those Hai key stones here. Anyway, I was so thrilled that I didn't even ask any questions about how they had them. I bought one and flew as fast as I could back to the Ember Waste, and I've been here ever since."`
+			choice
+				`	"How long ago was that?"`
+				`	"What about your daughters?"`
+					goto daughters
+			
+			`	"Well I got lost when I was 17 and returned when I was 64, so perhaps some 130 years ago now that I returned." She chuckles at the surprised look on your face as you realize that she is nearly 200 years old. "Uncovering ancient alien technology is quite the blessing.`
+				goto end
+			
+			label daughters
+			`	"Oh, I only told them about deciding to travel the galaxy. Never told them about returning home. I made trips to see them every so often, but they both passed many decades ago now. It seems like the Republic can't quite get anyone to live past 130 years.`
+			
+			label end
+			`	"I really must get going, now," she says. The woman gets up to leave, but before walking away she turns to you and sings, "Safe travels, Captain," with a big grin on her face. You say goodbye to her in return and part ways.`
+				decline
+
+
 
 mission "Remnant: Defense 1"
 	name "Defend <planet>"
@@ -320,27 +419,177 @@ event "remnant: surveillance end"
 
 
 
+conversation "remnant key stones"
+	branch found
+		has "Remnant: Found Keystones: offered"
+	
+	`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. "Greetings, outsider," he says. "I have heard many good things about you and your assistance to our people. Would you be interested in going on a quest for me?"`
+	choice
+		`	"What kind of quest?"`
+			goto quest
+		`	"Sorry, I'm not interested."`
+
+	`	"Please, I assure you, this quest will be very lucrative for you.`
+
+	label quest
+	`	"You may have noticed the red anomalies scattered within this region of space. What you may not have known is that these are wormholes, accessible only with the possession of a Quantum Key Stone. My people highly value these Key Stones because of this, but our mines produce very few of them." The manager shows you a Key Stone that he has with him.`
+	scene "outfit/keystone"
+	
+	branch hai1
+		has "First Contact: Hai: offered"
+	
+	`	"We have explored all of the Ember Waste, but have been unable to find any large concentrations of these stones."`
+	`	"You seem to be able to easily explore outside of this region. If you manage to discover a source of Key Stones outside of the Ember Waste, would you please inform me of them?"`
+	choice
+		`	"If I find anything, I'll let you know."`
+		`	"No thanks. This seems like a wild goose chase to me."`
+			decline
+	
+	`	The outfitter manager thanks you. "We'll discuss payment once you return," he says.`
+		accept
+	
+	label found
+	`You find the outfitter manager and tell him that you have good news. "You found another world where the stones can be mined?" he asks.`
+		goto exchange
+	
+	label hai1
+	`	"I've seen that before," you say.`
+	`	He looks at you with surprise. "You found another world where these stones can be mined?"`
+	
+	label exchange
+	choice
+		`	"Yes, in the territory of some aliens far to the north of here."`
+			goto hai2
+		`	"Yes, but I would prefer not to tell you where."`
+	
+	`	"That is understandable," he says. "I am a businessman and I understand how valuable certain trade secrets can be. But perhaps I can interest you in a mutually profitable endeavor?"`
+		goto more
+	
+	label hai2
+	`	"Intriguing," he sings. "Are they aware of how valuable these stones are?" You tell him about the Hai, that they are an old species and that to them the Key Stones are just good luck charms. "Perhaps they have forgotten the true use of the Stones," says the man. "This may give us an opportunity for a mutually profitable endeavor."`
+	
+	label more
+	`	"Tell me more," you say.`
+	`	He says, "If you could fetch me a large supply of these stones, say fifty of them, I would purchase them from you for a high enough price that you would earn a tidy profit. What do you say?"`
+	choice
+		`	"Sure, I would be glad to accept that deal."`
+		`	"Sorry, I'm really not interested in doing business with you Remnant folks."`
+			decline
+	
+	`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
+		accept
+
+
+
+conversation "remnant key stones done"
+	`You visit the local outfitter and tell the manager that you have brought a shipment of "Quantum Keystones" to sell to him. He is overjoyed, and gladly pays you six million credits for them. You can't help noticing that based on how much the Key Stones sell for here, he will be earning even more profit than you did, even though you did nearly all the work.`
+	`	"You have made a valuable contribution to our people by doing this," he says. "These stones will allow more of our ships to explore the Ember Waste and discover the secrets that it holds."`
+
+
+
+mission "Remnant: Key Stones (Pre-Hai) 1"
+	name "Key Stones"
+	description "The manager of the outfitter on <planet> is interested in finding alternative sources of Key Stones. The Remnant have explored the entire Ember Waste, so you will need to search elsewhere for these stones."
+	source "Viminal"
+	to offer
+		not "Remnant: Key Stones (Hai): offered"
+		not "Remnant: Key Stones: offered"
+		not "First Contact: Hai: offered"
+		or
+			has "event: remnant: void sprite research"
+			has "Remnant: Defense 3: done"
+	on offer
+		require "Quantum Keystone" 0
+		conversation "remnant key stones"
+		
+	to complete
+		has "Remnant: Found Keystones: offered"
+
+
+
+mission "Remnant: Found Keystones"
+	landing
+	invisible
+	source
+		government "Hai"
+	to offer
+		has "Remnant: Key Stones (Pre-Hai) 1: active"
+		has "First Contact: Hai: offered"
+	on offer
+		conversation
+			`While exploring the Hai spaceport, you notice something interesting about some of the Hai ships. Many of them appear to be decorated with a stone that looks very similar to the Quantum Key Stones found in the Ember Waste. You ask a nearby Hai what they are, and she tells you that the stones are good luck charms that many Hai use on their ships that can be purchased from any Hai outfitter.`
+			`	You should return to the Remnant outfitter manager to tell him about the stones in Hai space.`
+				decline
+
+
+
+mission "Remnant: Key Stones (Pre-Hai) 2"
+	landing
+	name "Key Stones"
+	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty Quantum Keystones (which you will have to purchase from the Hai)."
+	source "Viminal"
+	to offer
+		has "Remnant: Key Stones (Pre-Hai) 1: done"
+	on offer
+		conversation "remnant key stones"
+		
+	on visit
+		dialog `You have returned to <planet>, but you don't have 50 "Quantum Keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
+	on complete
+		outfit "Quantum Keystone" -50
+		payment 6000000
+		conversation "remnant key stones done"
+	
+	
+	
+	
+mission "Remnant: Key Stones (Hai)"
+	name "Keystones"
+	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty Quantum Keystones (which you will have to purchase from the Hai)."
+	source "Viminal"
+	to offer
+		not "Remnant: Key Stones (Pre-Hai) 1: offered"
+		not "Remnant: Key Stones: offered"
+		has "First Contact: Hai: offered"
+		or
+			has "event: remnant: void sprite research"
+			has "Remnant: Defense 3: done"
+	on offer
+		require "Quantum Keystone" 0
+		conversation "remnant key stones"
+			
+	on visit
+		dialog `You have returned to <planet>, but you don't have 50 "Quantum Keystones" to give to the outfitter. Buy the Keystones from the Hai before returning here.`
+	on complete
+		outfit "Quantum Keystone" -50
+		payment 6000000
+		conversation "remnant key stones done"
+		
+
+
 mission "Remnant: Key Stones"
 	name "Keystones"
 	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty Quantum Keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
 	to offer
 		has "remnant blood test pure"
+		not "Remnant: Key Stones (Pre-Hai) 1: offered"
+		not "Remnant: Key Stones (Hai): offered"
 	on offer
 		require "Quantum Keystone"
 		conversation
-			`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. He says, "I could not help but notice that you have a Key Stone that looks different from the ones from our mines. Have you found another world where these stones can be mined?"`
+			`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. He says, "I could not help but notice that you have a Key Stone that looks different from the ones from our mines. You may have noticed the red anomalies scattered within this region of space. What you may not have known is that these are wormholes, accessible only with the possession of a Quantum Key Stone. My people highly value these Key Stones because of this, but our mines produce very few of them. Have you found another world where these stones can be mined?"`
 			choice
 				`	"Yes, in the territory of some aliens far to the north of here."`
 					goto hai
 				`	"Yes, but I would prefer not to tell you where."`
-
+			
 			`	"That is understandable," he says. "I am a businessman and I understand how valuable certain trade secrets can be. But perhaps I can interest you in a mutually profitable endeavor?"`
 				goto more
-
+			
 			label hai
 			`	"Intriguing," he sings. "Are they aware of how valuable these stones are?" You tell him about the Hai, that they are an old species and that to them the Key Stones are just good luck charms. "Perhaps they have forgotten the true use of the Stones," says the man. "This may give us an opportunity for a mutually profitable endeavor."`
-
+			
 			label more
 			`	"Tell me more," you say.`
 			`	He says, "If you could fetch me a large supply of these stones, say fifty of them, I would purchase them from you for a high enough price that you would earn a tidy profit. What do you say?"`
@@ -348,7 +597,7 @@ mission "Remnant: Key Stones"
 				`	"Sure, I would be glad to accept that deal."`
 				`	"Sorry, I'm really not interested in doing business with you Remnant folks."`
 					decline
-
+			
 			`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "Keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
 				accept
 	
@@ -357,9 +606,7 @@ mission "Remnant: Key Stones"
 	on complete
 		outfit "Quantum Keystone" -50
 		payment 6000000
-		conversation
-			`You visit the local outfitter and tell the manager that you have brought a shipment of "Quantum Keystones" to sell to him. He is overjoyed, and gladly pays you six million credits for them. You can't help noticing that based on how much the Key Stones sell for here, he will be earning even more profit than you did, even though you did nearly all the work.`
-			`	"You have made a valuable contribution to our people by doing this," he says. "These stones will allow more of our ships to explore the Ember Waste and discover the secrets that it holds."`
+		conversation "remnant key stones done"
 
 
 
@@ -555,6 +802,7 @@ event "remnant: gascraft"
 		add shipyard "Remnant Gascraft"
 
 government " Drak "
+	"display name" "Drak"
 	swizzle 5
 	"player reputation" -1000
 	"attitude toward"
@@ -571,12 +819,15 @@ mission "Remnant: Technology Available"
 		government "Remnant"
 	to offer
 		has "event: remnant: void sprite research"
-		has "Remnant: Key Stones: done"
 		has "Remnant: Defense 3: done"
+		or
+			has "Remnant: Key Stones: done"
+			has "Remnant: Key Stones (Hai): done"
+			has "Remnant: Key Stones (Pre-Hai) 2: done"
 	on offer
 		payment 2000000
 		set "license: Remnant"
-		log "The prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."
+		log "The prefects have reached a consensus: now considered a valuable friend of the Remnant, and given permission to purchase their ships and technology."
 		conversation
 			`An elderly man approaches your ship and introduces himself as a local "prefect," presumably some sort of government position. In a song so elaborate that he must have composed and practiced it ahead of time, he informs you that a scientific study on the void sprites has just been published, and as the co-author you are entitled to a payment of two million credits, which he presents to you.`
 			`	"When your name came up in the study," he says, "I asked around and discovered that you have helped us in other ways as well. The other prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall henceforth be given permission to purchase our ships and technology."`
@@ -1031,8 +1282,8 @@ mission "Remnant: Return the Samples 2"
 		has "Remnant: Return the Samples: done"
 	on offer
 		conversation
-			`Following Plume's directions, you find a lab tucked behind the main area of the spaceport, where a short walkway leads into an underground structure. Stepping inside the door you note a rack of camouflage netting positioned easily at hand. Given what you have learned of their history, it is probably a last ditch preparation in case they need to hide the entrance from a raid.`
-			`	The lab itself is a microcosm of Remnant development, the structure appears to be some strange semi-organic material, and you can see an eclectic mix of familiar and unfamiliar shapes cluttering the tables. If you had to guess, you would think that this lab was the result of several different families of technology, only one of which was human.`
+			`Following Plume's directions, you find a lab tucked behind the main area of the spaceport, where a short walkway leads into an underground structure. Stepping inside the door you note a rack of camouflage netting positioned easily at hand. Given what you have learned of their history, it is probably a last-ditch preparation in case they need to hide the entrance from a raid.`
+			`	The lab itself is a microcosm of Remnant development. The structure appears to be some strange semi-organic material, and you can see an eclectic mix of familiar and unfamiliar shapes cluttering the tables. If you had to guess, you would say that this lab was the result of several different families of technology, only one of which was human.`
 			`	Plume and several other Remnant are at the back of the room inspecting a bunch of cocoon-like containers, similar to the ones that carried the last batch of eggs back to Nasqueron. After checking a screen he looks up and seems momentarily startled to see you.`
 			`	"Ah, <first>! You are just in time," Plume chants quickly, his hands unconsciously dancing in a quick series of gestures. "These eggs are ready to be delivered, this time to Slylandro. Could you drop them off like you did before?"`
 			choice
@@ -1051,7 +1302,7 @@ mission "Remnant: Return the Samples 2"
 		conversation
 			`As you approach Slylandro you watch the Archon like a hawk, but this time it doesn't attempt to drive you off with tridents of white energy. Cautiously you make your way to Slylandro and begin your descent.`
 			`	As the <ship> sinks through the cloud layers, you notice the void sprites seem to be tailing you. A few drop past you with startling speed, only to reappear from below as you approach the designated altitude. At the last minute you remember Plume's request to record them, and hit the switch to activate the recorder for the exterior cameras.`
-			`	Setting the ship on auto-pilot, you head back and suit-up in the bulky pressure suit once again. Readying the eggs in the cargo hold, you equalize pressure and open the bay doors. As before, the eggs are already floating as you open the cocoons and gently carry them to the door.`
+			`	Setting the ship on auto-pilot, you head back and suit up in the bulky pressure suit once again. Readying the eggs in the cargo hold, you equalize pressure and open the bay doors. As before, the eggs are already floating as you open the cocoons and gently carry them to the door.`
 			`	Almost as soon as you release the first egg, a void sprite is there, brushing against the ship to scoop the egg away into the swirling mists. By the time you return with the next one, another sprite is already waiting at the door, undulating in the eerie light. By the time the last egg is released you can see dozens of the strange creatures swarming around the collection of eggs. It occurs to you that very few humans would ever have the chance to see anything like this.`
 			`	After taking a moment to enjoy the view, you shut the door as gently as you can, purge the ship with fresh air, and begin the journey back to Aventine.`
 	on visit
@@ -1302,7 +1553,7 @@ mission "Remnant: Salvage 6"
 			`Taely meets you at the dock with a flatbed ready to offload the shipment. As you run through your shutdown routine you hit the switch for the cargo bay doors, and by the time you have gone down to the hold, Taely has half the shipment already unloaded.`
 			`	Her signs flick at you with a gentleness that you are slowly deciding equates to a cheerful tone. "Thank you for all the help you've provided in recovering this salvage," she says as she hands you <payment>. "I have discussed it with the other engineers, and we have decided to give you access to our salvage."`
 			`	She leads you over to the warehouse, scans her ID on the console, and taps a few commands. Then she scans your ID card. "There you go, I have updated your access codes," she signs cheerfully. She hands you your ID and pulls you to a door on the far side of the outfitting shop. Beyond the door is a vast room filled with outfits and weapons that clearly don't fit the same style as the other Remnant technology. You have seen most of the things here on scans and when salvaging equipment from other ships, but never up close.`
-			`	"This section of our warehouse is the salvage area. Everything in here we have we collected in sufficient quantities that it is available for general use." She nods at a rack of Korath Heat Shunts while she explains, then turns back to you.`
+			`	"This section of our warehouse is the salvage area. Everything in here, we have collected in sufficient quantities that it is available for general use." She nods at a rack of Korath Heat Shunts while she explains, then turns back to you.`
 			`	"Of course the really advanced and rare stuff is still going to the labs first, and won't be available until we have learned all we can from it." She looks around proudly. "We don't have the industrial capacity or the number of researchers to keep up with the Alphas, the Korath, or whoever else might be out there. But we are very good at figuring out what others have built and learning from it.`
 			`	"Any salvage or unrecognized technology gets scanned in our quarantine area for threats, then looked over to figure out if there is anything new in it. If there is, it is shipped to a lab for our researchers to dissect. Anything we have already figured out ends up in here, where a select few captains are welcome to use it as they see fit."`
 			choice
@@ -1381,7 +1632,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 			`	 You offer to take her and a couple of her colleagues to see the Quarg. She eagerly accepts, although she expresses a preference for landing on the human world, so they can observe the Quarg ships from a distance, as they would rather not draw any attention to themselves. She runs out of the cafeteria after telling you they will meet you at your ship in half an hour.`
 				accept
 	on visit
-		dialog `You land on <planet>, but realize that you left Dawn and her colleagues on one of you escorts that hasn't entered the system. Better depart and wait for it to arrive.`
+		dialog `You land on <planet>, but realize that you left Dawn and her colleagues on one of your escorts that hasn't entered the system. Better depart and wait for it to arrive.`
 	on complete
 		log "People" "Dawn" `Dawn is a young Remnant researcher with a strong interest in engineering. She has yet to pick a specialty, but appears to have a talent for exo-engineering.`
 		conversation
@@ -1446,7 +1697,7 @@ mission "Remnant: Expanded Horizons Quarg 3"
 			`	"Okay, I think we are ready to go. Can you take us to <planet>?"`
 				accept
 	on visit
-		dialog `You land on <planet>, but realize that you left Dawn and her colleagues on one of you escorts that hasn't entered the system. Better depart and wait for it to arrive.`
+		dialog `You land on <planet>, but realize that you left Dawn and her colleagues on one of your escorts that hasn't entered the system. Better depart and wait for it to arrive.`
 	on complete
 		payment 150000
 		conversation
@@ -1561,7 +1812,7 @@ mission "Remnant: Broken Jump Drive 2"
 				`	"Great! I will find more."`
 					goto end
 				`	"What are you studying?"`
-			`	"Our previous research into jump drives determined that these drives are unsurprisingly multi-part systems. We know the outer part that we can see and handle is mostly the machinery for generating some kind of containment field or pocket. As to how it works or why it is needed..." his chant trails off and he makes a gesture you suspect may be the equivalent of a shrug. "Anyways, our team is focused on the nature of this outer system. It is our hope that, damaged as it is, its continued existence might allow us to look a little farther inside its inner workings to figure out exactly what that field does and how it is used.`
+			`	"Our previous research into jump drives determined that these drives are unsurprisingly multi-part systems. We know the outer part that we can see and handle is mostly the machinery for generating some kind of containment field or pocket. As to how it works or why it is needed..." his chant trails off and he makes a gesture you suspect may be the equivalent of a shrug. "Anyway, our team is focused on the nature of this outer system. It is our hope that, damaged as it is, its continued existence might allow us to look a little farther inside its inner workings to figure out exactly what that field does and how it is used.`
 			label end
 			`	"Well, my compatriots finished unloading rather quickly, so I should be off. For all our sakes, I hope you find more of these for us."`
 
