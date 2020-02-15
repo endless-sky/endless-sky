@@ -1900,6 +1900,10 @@ mission "Defend Sabik"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		set "license: Militia"
+		"salary: Free Worlds" = 300
+		event "start of hostilities"
+		event "joined the free worlds"
 		conversation
 			`When you land on <planet>, you discover that Tomek has already found transportation here; he meets you almost as soon as your ship lands. When you step out of the hatch alone, without Katya, he turns away in grief. "I'm sorry," you say, "I couldn't locate her. The whole place is under guard."`
 			`	"Very well," he says, "we'll have to hope that she's still hidden there somewhere. In the meantime, we need to make your allegiance official so that you can fight alongside us if it comes to that."`
@@ -1917,11 +1921,6 @@ mission "Defend Sabik"
 			`	An hour later you are in the bar celebrating your new employment when emergency sirens start blaring. Someone runs into the bar and says, "The Navy has entered the system. What do we do?"`
 			`	Tomek says, "We can't let them take this system, or they'll have us completely bottled up. This is where it begins. We need to fight. Get to your ships, quickly! But if you can, disable their ships instead of destroying them. These are Navy ships after all, and most of them don't want war any more than we do." You hurry to join all the other ships taking off to defend the system.`
 				launch
-		
-		"salary: Free Worlds" = 300
-		event "start of hostilities"
-		event "joined the free worlds"
-	
 	on accept
 		log "Officially joined the Free Worlds. Helping to defend Sabik, which is now under attack by the Navy. This Free Worlds work may mean getting involved in a lot more battles like this one."
 	
@@ -2020,11 +2019,12 @@ mission "Defend Sabik"
 	on complete
 		dialog `The Navy has been driven off, but at a great cost. You should probably visit the spaceport and see if Tomek is there, or someone else who can tell you what to do next.`
 
-mission "FWCarrier License"
+mission "FW License Fix"
 	invisible
 	landing
 	to offer
-		has "event: joined the free worlds"
+		has "license: Militia Carrier"
 	on offer
-		set "license: Militia Carrier"
+		set "license: Militia"
+		clear "license: Militia Carrier"
 		fail
