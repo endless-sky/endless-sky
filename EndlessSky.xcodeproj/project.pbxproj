@@ -158,6 +158,7 @@
 		B590160D21ED43EF00799178 /* libgobject-2.0.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B590160B21ED43EB00799178 /* libgobject-2.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B590161021ED49F300799178 /* Cache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B590160F21ED49F200799178 /* Cache.cpp */; };
 		B590161321ED4A0F00799178 /* Utf8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B590161121ED4A0E00799178 /* Utf8.cpp */; };
+		B55C239D2303CE8B005C1A14 /* GameWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B55C239B2303CE8A005C1A14 /* GameWindow.cpp */; };
 		B5DDA6942001B7F600DBA76A /* News.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5DDA6922001B7F600DBA76A /* News.cpp */; };
 		DF8D57E11FC25842001525DA /* Dictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF8D57DF1FC25842001525DA /* Dictionary.cpp */; };
 		DF8D57E51FC25889001525DA /* Visual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF8D57E21FC25889001525DA /* Visual.cpp */; };
@@ -460,6 +461,8 @@
 		B590160F21ED49F200799178 /* Cache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cache.cpp; path = source/Cache.cpp; sourceTree = "<group>"; };
 		B590161121ED4A0E00799178 /* Utf8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utf8.cpp; path = source/Utf8.cpp; sourceTree = "<group>"; };
 		B590161221ED4A0F00799178 /* Utf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utf8.h; path = source/Utf8.h; sourceTree = "<group>"; };
+		B55C239B2303CE8A005C1A14 /* GameWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameWindow.cpp; path = source/GameWindow.cpp; sourceTree = "<group>"; };
+		B55C239C2303CE8A005C1A14 /* GameWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameWindow.h; path = source/GameWindow.h; sourceTree = "<group>"; };
 		B5DDA6922001B7F600DBA76A /* News.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = News.cpp; path = source/News.cpp; sourceTree = "<group>"; };
 		B5DDA6932001B7F600DBA76A /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = News.h; path = source/News.h; sourceTree = "<group>"; };
 		DF8D57DF1FC25842001525DA /* Dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dictionary.cpp; path = source/Dictionary.cpp; sourceTree = "<group>"; };
@@ -592,6 +595,8 @@
 				A96863171AE6FD0B004FE1FE /* GameData.h */,
 				A96863181AE6FD0B004FE1FE /* GameEvent.cpp */,
 				A96863191AE6FD0B004FE1FE /* GameEvent.h */,
+				B55C239B2303CE8A005C1A14 /* GameWindow.cpp */,
+				B55C239C2303CE8A005C1A14 /* GameWindow.h */,
 				A968631A1AE6FD0B004FE1FE /* gl_header.h */,
 				A968631B1AE6FD0B004FE1FE /* Government.cpp */,
 				A968631C1AE6FD0B004FE1FE /* Government.h */,
@@ -927,6 +932,7 @@
 				A96863E61AE6FD0E004FE1FE /* Point.cpp in Sources */,
 				A96863DE1AE6FD0E004FE1FE /* OutfitterPanel.cpp in Sources */,
 				62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */,
+				B55C239D2303CE8B005C1A14 /* GameWindow.cpp in Sources */,
 				A96863B91AE6FD0E004FE1FE /* Effect.cpp in Sources */,
 				A96863AE1AE6FD0E004FE1FE /* ConditionSet.cpp in Sources */,
 				A96863DC1AE6FD0E004FE1FE /* Outfit.cpp in Sources */,
