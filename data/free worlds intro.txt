@@ -1565,7 +1565,7 @@ mission "FW Escort 3"
 	on complete
 		payment 200000
 		dialog
-			`	Voigt is immensely relieved to see the <npc> returned safely home. "You have done us a great service today, Captain," he says, as he hands you credit chips for <payment>. "I'll be sure to let the Council know how helpful you have been."`
+			`Voigt is immensely relieved to see the <npc> returned safely home. "You have done us a great service today, Captain," he says, as he hands you credit chips for <payment>. "I'll be sure to let the Council know how helpful you have been."`
 		"assisted free worlds" ++
 		log "Helped rescue a Free Worlds freighter that had been disabled by pirates. Earned the gratitude of Tomek Voigt, the Council member in charge of the supply convoys."
 	
