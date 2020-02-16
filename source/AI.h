@@ -188,8 +188,6 @@ private:
 	
 	bool isLaunching = false;
 	bool isCloaking = false;
-	// Whether the `Shift` modifier key was pressed for this step.
-	bool shift = false;
 	
 	bool escortsAreFrugal = true;
 	bool escortsUseAmmo = true;
