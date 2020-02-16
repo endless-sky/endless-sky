@@ -34,6 +34,11 @@ fi
 
 
 TESTS=$("${ES_EXEC_PATH}" --tests --resources "${RESOURCES}")
+if [ $? -ne 0 ]
+then
+	echo "Error could not retrieve testcases"
+	exit 1
+fi
 TESTS_OK=$(echo "${TESTS}" | grep -e "ACTIVE$" | cut -d$'\t' -f1)
 TESTS_NOK=$(echo "${TESTS}" | grep -e "KNOWN FAILURE$" -e "MISSING FEATURE$" | cut -d$'\t' -f1)
 echo ""
