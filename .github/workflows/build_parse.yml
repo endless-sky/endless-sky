@@ -240,7 +240,9 @@ jobs:
         name: binary-ubuntu-16.04
         path: .
     - name: Execute available testcases
-      run: ./tests/run_tests_headless.sh
+      run: |
+        chmod +x endless-sky
+        ./tests/run_tests_headless.sh
 
 
   test_windows:

@@ -20,11 +20,18 @@ echo "***********************************************"
 echo "***         ES Autotest-runner              ***"
 echo "***********************************************"
 
-if [ ! -f "${ES_EXEC_PATH}" ] || [ ! -x "${ES_EXEC_PATH}" ]
+if [ ! -f "${ES_EXEC_PATH}" ]
 then
 	echo "Endless sky executable not found. Returning failure."
 	exit 1
 fi
+
+if [ ! -x "${ES_EXEC_PATH}" ]
+then
+	echo "Warning: Endless sky executable not executable. (did you use artifact downloading?)"
+	exit 1
+fi
+
 
 TESTS=$("${ES_EXEC_PATH}" --tests --resources "${RESOURCES}")
 TESTS_OK=$(echo "${TESTS}" | grep -e "ACTIVE$" | cut -d$'\t' -f1)
