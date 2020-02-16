@@ -80,6 +80,7 @@ Version 0.9.11:
     * Injured escorts will now stick near the player's flagship in an attempt to survive. (@tehhowch)
     * Added support for nested phrase interpolation to lay the groundwork for future translations. (@oo13)
     * Added support for add/remove syntax for News. (@tehhowch)
+    * The player's flagship can be ordered to stop by combining the Shift key and the "BACK" command. (@petervdmeer)
   * User interface:
     * Added a new preference that allows the starfield to be toggled. (@Disiuze)
     * The fast-forward key can now be configured in preferences. (@bjidar-bg)
