@@ -3,18 +3,18 @@
 HERE=$(cd `dirname $0` && pwd)
 
 cd "${HERE}"
-# Running headless using Xorg or Xvfb (only choose one)
-# Xorg -noreset +extension GLX +extension RANDR +extension RENDER -logfile ./Xserver.log -config ./xorg_dummy.conf :99 &
-Xvfb :99 -screen 0 1280x1024x24 &
 
+# Running headless using Xvfb
+Xvfb :99 -screen 0 1280x1024x24 &
 XSERVER_PID=$!
 echo "XServer PID: ${XSERVER_PID}"
 export DISPLAY=:99
+
 # Force openGL software mode
 export LIBGL_ALWAYS_SOFTWARE=1
 
-MAX_RETRY=15
 # Use the query for OpenGL settings to check if the XServer runs
+MAX_RETRY=15
 GLXINFO=$(glxinfo 2>/dev/null)
 RETURN_VALUE=$?
 while [ "${RETURN_VALUE}" -ne "0" ] && [ "${MAX_RETRY}" -ge "0" ]
