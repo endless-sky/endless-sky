@@ -234,7 +234,7 @@ jobs:
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
         sudo apt-get install -y --no-install-recommends mesa-utils libmad0 libegl1-mesa libgles2-mesa libgl1-mesa-dri libgl1-mesa-glx libosmesa6 xvfb
-   - name: Download artifact
+    - name: Download artifact
       uses: actions/download-artifact@v1.0.0
       with:
         name: binary-ubuntu-16.04
