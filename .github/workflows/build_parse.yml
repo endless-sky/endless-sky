@@ -222,6 +222,8 @@ jobs:
         ./tests/test_parse.sh ./endless-sky
 
 
+  # This section is for tests on ubuntu 16 (and on ubuntu 20).
+  # The tests with Xvfb in this section work fine on ubuntu 16 and on Ubuntu 20, but they don't work on Ubuntu 18.
   test_ubuntu16:
     runs-on: ubuntu-16.04
     needs: build_ubuntu
