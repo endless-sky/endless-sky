@@ -1153,7 +1153,7 @@ mission "Rim Archaeology 3B"
 				accept
 	
 	npc evade
-		government Independent
+		government " Independent "
 		personality waiting
 		ship "Marauder Falcon (Engines)" "Oxyrhynchus"
 	

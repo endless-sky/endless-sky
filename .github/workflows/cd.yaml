@@ -1,0 +1,43 @@
+name: CD
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  appimage_amd64:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      ARCH: x86_64
+      OUTPUT: endless-sky-x86_64.AppImage
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons
+      - name: Build Application
+        run: |
+          cp icons/icon_512x512.png endless-sky.png # We need an icon file with this name
+          scons -j $(nproc) install DESTDIR=AppDir 
+          # Inside an AppImage, the executable is a link called "AppRun" at the root of AppDir/.
+          # Keeping the data files next to the executable is perfectly valid, so we just move them to AppDir/ to avoid errors.
+          mv AppDir/usr/local/share/games/endless-sky/* AppDir/
+      - name: Build AppImage
+        run: |
+          curl -L https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage -o linuxdeploy && chmod +x linuxdeploy
+          ./linuxdeploy --appdir AppDir -e endless-sky -d endless-sky.desktop -i endless-sky.png --output appimage
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
+      - name: Upload AppImage
+        uses: actions/upload-release-asset@v1.0.2
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ${{ env.OUTPUT }}
+          asset_name: ${{ env.OUTPUT }}
+          asset_content_type: application/octet-stream

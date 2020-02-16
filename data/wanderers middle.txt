@@ -1053,6 +1053,7 @@ mission "Wanderers: Mind 5"
 
 
 government " Kor Mereti "
+	"display name" "Kor Mereti"
 	swizzle 5
 	language "Korath"
 	"attitude toward"
