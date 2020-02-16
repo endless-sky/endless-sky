@@ -85,14 +85,15 @@ outfit "Dragonflame Cannon"
 	"gun ports" -1
 	weapon
 		sound "dragonflame" 
-		icon "icon/nuke"
+		icon "icon/dragonflame"
 		"fire effect" "dragonflame"
 		"hit effect" "bright hit"
-		"hit effect" "dragonflame debris" 20
-		"hit effect" "dragonflame spark" 50
-		"velocity" 3000
+		"hit effect" "dragonflame plasma" 30
+		"hit effect" "dragonflame debris" 50
+		"velocity" 2000
 		"lifetime" 1
 		"reload" 180
+		cluster
 		"firing energy" 16000
 		"firing heat" 40000
 		"firing force" 1000
@@ -102,7 +103,7 @@ outfit "Dragonflame Cannon"
 		"piercing" 0.3
 		"heat damage" 40000
 		"hit force" 2000
-	description "This ancient Sheragi superweapon is simple in concept, but the cost involved in developing something like it is prohibitive. It uses nearly all the energy of the power core to create an extremely powerful fusion reaction, and directs all the energy of the explosion forwards in a devastintigly powerful beam of gamma radiation."
+	description "This ancient Sheragi superweapon is simple in concept, but the cost involved in developing something like it is prohibitive, and it's hard to imagine what could motivate the creation of such a thing. It uses an obscene amount of energy to create an extremely powerful fusion reaction, and directs most of the energy of the explosion forwards in a devastintigly powerful beam of gamma radiation."
 
 outfit "Sheragi Anti-Missile"
 	category "Turrets"
@@ -165,25 +166,27 @@ effect "bright hit"
 	"random spin" 30
 	"velocity scale" 0.005
 
-effect "dragonflame debris"
-	sprite "effect/explosion/huge"
+effect "dragonflame plasma"
+	sprite "effect/explosion/large"
 		"no repeat"
 		"frame rate" 20
 	"lifetime" 25
 	"random frame rate" 20
 	"random spin" 5
-	"random angle" 10
-	"random velocity" 30
-	"velocity scale" 0.005
+	"random angle" 15
+	"random velocity" 40
+	"velocity scale" 0.002
 
-effect "dragonflame spark"
-	sprite "effect/finisher trail"
+effect "dragonflame debris"
+	sprite "effect/bolide"
 		"no repeat"
-		"frame rate" 4
-	"lifetime" 46
-	"random angle" 20
+		"frame rate" 6
+	"lifetime" 60
+	"random frame rate" 6
+	"random angle" 25
+	"random spin" 60
 	"random velocity" 30
-	"velocity scale" 0.005
+	"velocity scale" 0.001
 
 effect "dragonflame"
 	sprite "effect/dragonflame"
