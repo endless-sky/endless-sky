@@ -71,7 +71,7 @@ do
 	# Use pipefail and use sed to remove ALSA messages that appear due to missing soundcards in the CI environment
 	set -o pipefail
 	"$ES_EXEC_PATH" --resources "${RESOURCES}" --test "${TEST}" --config "${ES_CONFIG_PATH}" |\
-		sed -e "/^(ALSA).*$/d" -e "/^(AL lib).*$/d"
+		sed -e "/^ALSA lib.*$/d" -e "/^AL lib.*$/d"
 	if [ $? -ne 0 ]
 	then
 		echo "errors.txt:"
