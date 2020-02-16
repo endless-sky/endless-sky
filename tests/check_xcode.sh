@@ -30,7 +30,14 @@ do
 	if [ $? -ne 0 ] && [ "$FILE" != "WinApp.rc" ]
 	then
 		echo "File $FILE is missing from XCode-project, trying to add the file."
-		python3 -m pbxproj file ${XPROJECT} "../source/${FILE}" --tree="<group>"
+		NO_BUILD=""
+		if [ "${FILE: -2}" == ".h" ]
+		then
+			# ES Xcode projects don't use build sections for header files.
+			echo "Not adding build section for header file"
+			NO_BUILD="--no-create-build-files"
+		fi
+		python3 -m pbxproj file ${XPROJECT} "source/${FILE}" --tree "<group>" --parent "source" --target "EndlessSky" ${NO_BUILD}
 		echo "Project to add file to XCode project ran with result $?"
 		# Check if the requested file was added
 		cat ${XPROJECT}/project.pbxproj | grep "$FILE" > /dev/null
