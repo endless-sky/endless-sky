@@ -134,7 +134,8 @@ int main(int argc, char *argv[])
 	}
 	catch(const runtime_error &error)
 	{
-		GameWindow::ExitWithError(error.what());
+		bool doPopUp = testToRun.empty();
+		GameWindow::ExitWithError(error.what(), doPopUp);
 		return 1;
 	}
 		

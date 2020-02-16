@@ -342,7 +342,7 @@ bool GameWindow::HasSwizzle()
 
 
 
-void GameWindow::ExitWithError(const string& message)
+void GameWindow::ExitWithError(const string& message, bool doPopUp)
 {
 	// Print the error message in the terminal and the error file.
 	Files::LogError(message);		
@@ -364,7 +364,8 @@ void GameWindow::ExitWithError(const string& message)
 	box.buttons = &button;
 	
 	int result = 0;
-	SDL_ShowMessageBox(&box, &result);
+	if(doPopUp)
+		SDL_ShowMessageBox(&box, &result);
 	
 	GameWindow::Quit();	
 }
