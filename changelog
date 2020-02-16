@@ -2,7 +2,7 @@ Version 0.9.11:
   * Big changes:
     * Added the Graveyard, a region near the Ember Waste, and its inhabitants. (@beccabunny)
   * Bug fixes:
-    * Typo fixes. (@alextd, @Amazinite, @Anarchist2, @Arachi-lover, @Darcman99, @Gods-Righthand, @Mageking17, @MCOfficer, @oo13, @otsohelos, @perey, @petervdmeer, @tehhowch, @Waffleship, @wjp, @Zitchas)
+    * Typo fixes. (@alextd, @Amazinite, @Anarchist2, @Arachi-lover, @Darcman99, @Gods-Righthand, @Jozephi-Krakowskije, @Mageking17, @MCOfficer, @oo13, @otsohelos, @perey, @petervdmeer, @tehhowch, @Waffleship, @wjp, @Zitchas)
     * The Quicksilver (Mark II) variant no longer has the exact same outfits as the base variant. (@Amazinite)
     * The Shuttle and Behemoth no longer contact the image border. (@beccabunny) 
     * Terraforming 7 will no longer offer on any planet. (@Bladewood)
@@ -93,6 +93,8 @@ Version 0.9.11:
     * Allow passing CXX flags from the build environment. (@pkubaj)
     * Extracted SDL window setup and interaction into a new class to promote single-responsibility. (@AdamKauffman)
     * The error log file is always closed when the game exits. (@tehhowch)
+    * Added sanity checks to the GitHub contribution pipeline (@tehhowch, @MCOfficer)
+    * Created an AppImage build pipeline for releases (@MCOfficer)
 
 Version 0.9.10:
   * Bug fixes:
