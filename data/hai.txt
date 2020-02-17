@@ -202,7 +202,7 @@ fleet "Hai Surveillance (Slow)"
 	names "hai"
 	cargo 0
 	personality
-		surveillance coward
+		surveillance
 	variant 3
 		"Lightning Bug (Surveillance)" 3
 	variant 3
@@ -213,7 +213,7 @@ fleet "Hai Surveillance (Unconstrained)"
 	names "hai"
 	cargo 0
 	personality
-		surveillance coward unconstrained
+		surveillance unconstrained
 	variant 3
 		"Grasshopper (Surveillance)" 5
 	variant 3
