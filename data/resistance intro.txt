@@ -806,7 +806,7 @@ mission "Heliarch Interrogation 2"
 			`	You agree to tell her all you know about the Resistance, as you go about telling how you first got contacted by them, and naming the planets where you were told to deliver the outfits.`
 			`	She continuously asks for you to describe the Resistance members that you came in contact with, and you try your best to not sound vague as you describe members of three different alien species.`
 			`	After repeating questions many times and confirming everything time and again, she says, "The right choice, you have made, Captain. Free to go, you are, and free to work more with us, too."`
-			`	The door opens, and you're escorted back to your ship. When you spot it in the docking area, you notice that several the crews of several Heliarch ships are rushing for their vessels, as dozens of ships depart.`
+			`	The door opens, and you're escorted back to your ship. When you spot it in the docking area, you notice that the crew of several Heliarch ships are rushing for their vessels, as dozens of ships depart.`
 				decline
 	on accept
 		"reputation: Heliarch" = -1000
