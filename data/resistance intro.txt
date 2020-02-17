@@ -529,7 +529,7 @@ mission "Resistance: Proposition A"
 			`	The door opens once again, and you leave to find the same Quarg that guided you here waiting. It escorts you through the hallways once again, returning you to your ship.`
 				accept
 			label rebelgroup
-			`	"I see. And what do you'Resistance' want from us?"`
+			`	"I see. And what does your 'Resistance' want from us?"`
 			choice
 				`	"It's all in this data chip. They asked me to bring it here to you to see if you could offer any help."`
 					goto messenger
