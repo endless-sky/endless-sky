@@ -238,7 +238,7 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 		// but only if the player is flying around in the main view.
 		bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
 		++cursorTime;
-		bool shouldShowCursor = (GameWindow::IsFullscreen() || cursorTime < 600 || !inFlight);
+		bool shouldShowCursor = (!GameWindow::IsFullscreen() || cursorTime < 600 || !inFlight);
 		if(shouldShowCursor != showCursor)
 		{
 			showCursor = shouldShowCursor;
