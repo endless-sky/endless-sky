@@ -1135,6 +1135,8 @@ ship "Dreadnought"
 	thumbnail "thumbnail/dreadnought"
 	attributes
 		category "Heavy Warship"
+		licenses
+			"Militia"
 		"cost" 11900000
 		"shields" 18100
 		"hull" 7300
@@ -1629,7 +1631,7 @@ ship "Gunboat"
 	explode "small explosion" 20
 	explode "medium explosion" 15
 	"final explode" "final explosion small"
-	description "The Navy gunboat is designed for engaging targets at short range, and also serves as the Navy's mobile sensor platform, scanning ships for illegal equipment or cargo."
+	description "The Navy Gunboat is designed for engaging targets at short range, and also serves as the Navy's mobile sensor platform, scanning ships for illegal equipment or cargo."
 
 
 
@@ -2743,7 +2745,7 @@ ship "Skein"
 	attributes
 		category "Medium Warship"
 		licenses
-			"Militia Carrier"
+			"Militia"
 		"cost" 3500000
 		"shields" 3300
 		"hull" 6700

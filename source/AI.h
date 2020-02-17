@@ -54,7 +54,7 @@ template <class Type>
 	void IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target);
 	void IssueMoveTarget(const PlayerInfo &player, const Point &target, const System *moveToSystem);
 	// Commands issued via the keyboard (mostly, to the flagship).
-	void UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive);
+	void UpdateKeys(PlayerInfo &player, Command &clickCommands);
 	
 	// Allow the AI to track any events it is interested in.
 	void UpdateEvents(const std::list<ShipEvent> &events);
@@ -64,7 +64,7 @@ template <class Type>
 	// but not when they jump from one system to another.
 	void ClearOrders();
 	// Issue AI commands to all ships for one game step.
-	void Step(const PlayerInfo &player);
+	void Step(const PlayerInfo &player, Command &activeCommands);
 	
 	// Get the in-system strength of each government's allies and enemies.
 	int64_t AllyStrength(const Government *government);
@@ -133,7 +133,7 @@ private:
 	// projectile. If it cannot hit the target, this returns NaN.
 	static double RendezvousTime(const Point &p, const Point &v, double vp);
 	
-	void MovePlayer(Ship &ship, const PlayerInfo &player);
+	void MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands);
 	
 	// True if the ship performed the indicated event to the other ship.
 	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;
@@ -183,22 +183,14 @@ private:
 	// helps limit how often certain actions occur (such as changing targets).
 	int step = 0;
 	
-	// Commands that are newly active for this step.
-	Command keyDown;
-	// Commands that are active for this step.
-	Command keyHeld;
-	// Commands applied by the player's "autopilot."
-	Command keyStuck;
+	// Command applied by the player's "autopilot."
+	Command autoPilot;
 	
 	bool isLaunching = false;
 	bool isCloaking = false;
-	// Whether the `Shift` modifier key was pressed for this step.
-	bool shift = false;
 	
 	bool escortsAreFrugal = true;
 	bool escortsUseAmmo = true;
-	// Pressing "land" rapidly toggles targets; pressing it once re-engages landing.
-	int landKeyInterval = 0;
 	
 	// Current orders for the player's ships. Because this map only applies to
 	// player ships, which are never deleted except when landed, it can use

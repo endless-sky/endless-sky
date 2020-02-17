@@ -173,7 +173,7 @@ mission "Pact Questioning"
 		government "Republic"
 	to offer
 		not "chosen sides"
-		random < 7.5 * ( "Pact Recon 1: done" + "Pact Recon 2: done" + "Pact Recon 3: done" )
+		random < 7 * ( "Pact Recon 1: done" + "Pact Recon 2: done" + "Pact Recon 3: done" )
 	
 	on offer
 		log "Apparently the Navy is suspicious of anyone who worked with the Southern Mutual Defense Pact; got questioned about it by an officer. It was unclear what his rank or position in the Navy was."
@@ -284,7 +284,7 @@ mission "FW Recon 0"
 
 mission "FW Recon 1"
 	name "Free Worlds Reconnaissance"
-	description "Perform an outfit scan on the cruiser <npc>, then report to a Free Worlds officer on <destination>."
+	description "Perform an outfit scan on the Cruiser <npc>, then report to a Free Worlds officer on <destination>."
 	source
 		planet "Glaze"
 	to offer
@@ -344,7 +344,7 @@ mission "FW Recon 1"
 
 mission "FW Recon 2"
 	name "Free Worlds Reconnaissance"
-	description "Scan any ships in the <waypoints> system that are equipped like the combat-ready cruiser you scanned previously, then return to <destination>."
+	description "Scan any ships in the <waypoints> system that are equipped like the combat-ready Cruiser you scanned previously, then return to <destination>."
 	source
 		planet "Glaze"
 	to offer
@@ -356,7 +356,7 @@ mission "FW Recon 2"
 	on offer
 		conversation
 			`You meet up with the militia officer in the spaceport bar. "Glad you showed up," he says, "I'm Jean-Jacques, by the way, but you can call me JJ."`
-			`	You introduce yourself in return, and he continues. "Here's the deal. I'm the commander of the militia on Glaze. So far, we and the Navy are not shooting at each other, because no one wants to fire the first shot. But if they're getting ready to change that, they'll start refitting their cruisers with heavy weaponry instead of surveillance equipment. So, I need to know how many more of their ships are equipped like the one you just scanned."`
+			`	You introduce yourself in return, and he continues. "Here's the deal. I'm the commander of the militia on Glaze. So far, we and the Navy are not shooting at each other, because no one wants to fire the first shot. But if they're getting ready to change that, they'll start refitting their Cruisers with heavy weaponry instead of surveillance equipment. So, I need to know how many more of their ships are equipped like the one you just scanned."`
 			`	He continues, "I'd like you to go to <waypoints>, where they're building some sort of secret base. Scan any ships you think match the one we just saw, then bring your scanner logs back here for me to look at."`
 			choice
 				`	"Sure, I'd be glad to do that."`
@@ -429,7 +429,7 @@ mission "FW Recon 3B"
 	
 	on offer
 		conversation
-			`You walk through the new section of the spaceport that the Navy is building, trying to look inconspicuous. When it seems that no one is watching, you snap a few photographs. You count seven hangars large enough to house a carrier, and workers are clearing and blasting level surfaces for many more. An entire new village of identical prefabricated houses has sprung up nearby. And every few minutes, a warship flies overhead with a roar that shakes the entire mountain. It is an intimidating sight.`
+			`You walk through the new section of the spaceport that the Navy is building, trying to look inconspicuous. When it seems that no one is watching, you snap a few photographs. You count seven hangars large enough to house a Carrier, and workers are clearing and blasting level surfaces for many more. An entire new village of identical prefabricated houses has sprung up nearby. And every few minutes, a warship flies overhead with a roar that shakes the entire mountain. It is an intimidating sight.`
 			`	As you are heading back to your ship after taking note of everything you think JJ would be interested in, two officers walk past you and you overhear one saying to the other, "Secret message from fleet command."`
 			`	You stop to tie your shoe and try to listen in. "What's the message?" asks the other.`
 			`	"I can't tell you here," says the first, and they duck behind one of the storage sheds.`
@@ -456,7 +456,7 @@ mission "FW Recon 3B"
 				"Gunboat"
 	
 	on visit
-		dialog `A minute after you land, a Republic gunboat, the <npc>, lands directly next to you. JJ does not approach you. You notice from your ship's logs that this gunboat has been following you ever since you left <origin>; before you can hand over the information, you will need to escape its pursuit.`
+		dialog `A minute after you land, a Republic Gunboat, the <npc>, lands directly next to you. JJ does not approach you. You notice from your ship's logs that this Gunboat has been following you ever since you left <origin>; before you can hand over the information, you will need to escape its pursuit.`
 	
 	on complete
 		"assisted free worlds" ++
@@ -471,7 +471,7 @@ mission "FW Katya 1"
 	description "Stop by <destination>, pick up two passengers and some cargo, and distract the Republic from a more important cargo exchange going on simultaneously."
 	minor
 	to offer
-		random < 10 + 7.25 * "assisted free worlds" * "assisted free worlds"
+		random < 10 + 7 * "assisted free worlds" * "assisted free worlds"
 	to fail
 		has "chosen sides"
 	source
@@ -834,7 +834,7 @@ mission "FW Katya 2C"
 
 mission "FW Katya 3"
 	name "Drone Hunting"
-	description `Disable a surveillance drone (ideally when no cruisers are watching), board it, "salvage" its surveillance equipment, and return to <destination>. (Until you leave the system where you disabled the drone, other Republic ships may attack you.)`
+	description `Disable a surveillance drone (ideally when no Cruisers are watching), board it, "salvage" its surveillance equipment, and return to <destination>. (Until you leave the system where you disabled the drone, other Republic ships may attack you.)`
 	source Rand
 	to offer
 		has "FW Katya 2C: done"
@@ -842,7 +842,7 @@ mission "FW Katya 3"
 		has "chosen sides"
 	on offer
 		conversation
-			`You find Eyes and Katya sitting in the shade of one of the few trees in the port, drinking some sort of frozen milkshakes while they stare out at the desert and talk in hushed voices. When you join them, Katya says, "I was just filling Eyes in on the Navy's recent fleet mobilization. Half the Dirt Belt is swarming with cruisers and surveillance drones right now. It's hard to believe that we can find the attackers before they do, unless they're somewhere the Navy hasn't thought to look."`
+			`You find Eyes and Katya sitting in the shade of one of the few trees in the port, drinking some sort of frozen milkshakes while they stare out at the desert and talk in hushed voices. When you join them, Katya says, "I was just filling Eyes in on the Navy's recent fleet mobilization. Half the Dirt Belt is swarming with Cruisers and surveillance drones right now. It's hard to believe that we can find the attackers before they do, unless they're somewhere the Navy hasn't thought to look."`
 			`	"Agreed," says Eyes, "and to make matters worse, their sensors are probably much better than mine."`
 			`	Katya appears to be struck by a sudden idea. "The sensors on their drones," she says, "their unmanned drones..."`
 			`	Eyes glances at her, sees her expression, and says, "No, Councilor, don't even think of it. That's a horrible idea."`
@@ -1565,7 +1565,7 @@ mission "FW Escort 3"
 	on complete
 		payment 200000
 		dialog
-			`	Voigt is immensely relieved to see the <npc> returned safely home. "You have done us a great service today, Captain," he says, as he hands you credit chips for <payment>. "I'll be sure to let the Council know how helpful you have been."`
+			`Voigt is immensely relieved to see the <npc> returned safely home. "You have done us a great service today, Captain," he says, as he hands you credit chips for <payment>. "I'll be sure to let the Council know how helpful you have been."`
 		"assisted free worlds" ++
 		log "Helped rescue a Free Worlds freighter that had been disabled by pirates. Earned the gratitude of Tomek Voigt, the Council member in charge of the supply convoys."
 	
@@ -1900,6 +1900,10 @@ mission "Defend Sabik"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		set "license: Militia"
+		"salary: Free Worlds" = 300
+		event "start of hostilities"
+		event "joined the free worlds"
 		conversation
 			`When you land on <planet>, you discover that Tomek has already found transportation here; he meets you almost as soon as your ship lands. When you step out of the hatch alone, without Katya, he turns away in grief. "I'm sorry," you say, "I couldn't locate her. The whole place is under guard."`
 			`	"Very well," he says, "we'll have to hope that she's still hidden there somewhere. In the meantime, we need to make your allegiance official so that you can fight alongside us if it comes to that."`
@@ -1917,11 +1921,6 @@ mission "Defend Sabik"
 			`	An hour later you are in the bar celebrating your new employment when emergency sirens start blaring. Someone runs into the bar and says, "The Navy has entered the system. What do we do?"`
 			`	Tomek says, "We can't let them take this system, or they'll have us completely bottled up. This is where it begins. We need to fight. Get to your ships, quickly! But if you can, disable their ships instead of destroying them. These are Navy ships after all, and most of them don't want war any more than we do." You hurry to join all the other ships taking off to defend the system.`
 				launch
-		
-		"salary: Free Worlds" = 300
-		event "start of hostilities"
-		event "joined the free worlds"
-	
 	on accept
 		log "Officially joined the Free Worlds. Helping to defend Sabik, which is now under attack by the Navy. This Free Worlds work may mean getting involved in a lot more battles like this one."
 	
@@ -2020,11 +2019,12 @@ mission "Defend Sabik"
 	on complete
 		dialog `The Navy has been driven off, but at a great cost. You should probably visit the spaceport and see if Tomek is there, or someone else who can tell you what to do next.`
 
-mission "FWCarrier License"
+mission "FW License Fix"
 	invisible
 	landing
 	to offer
-		has "event: joined the free worlds"
+		has "license: Militia Carrier"
 	on offer
-		set "license: Militia Carrier"
+		set "license: Militia"
+		clear "license: Militia Carrier"
 		fail

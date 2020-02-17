@@ -242,19 +242,18 @@ void PlanetPanel::TakeOffIfReady()
 	
 	// Check if any of the player's ships are configured in such a way that they
 	// will be impossible to fly.
-	for(const shared_ptr<Ship> &ship : player.Ships())
-	{
-		if(ship->GetSystem() != &system || ship->IsDisabled() || ship->IsParked())
-			continue;
-		
-		string check = ship->FlightCheck();
-		if(!check.empty() && check.back() == '!')
+	const auto flightChecks = player.FlightCheck();
+	if(!flightChecks.empty())
+		for(const auto &result : flightChecks)
 		{
-			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: " + check), nullptr, ship));
-			return;
+			const string &check = result.second;
+			if(check.back() == '!')
+			{
+				GetUI()->Push(new ConversationPanel(player,
+					*GameData::Conversations().Get("flight check: " + check), nullptr, result.first));
+				return;
+			}
 		}
-	}
 	
 	// Outfit changes or flagship reassignment may void a travel plan. Notify the player of this change.
 	string message;
@@ -290,17 +289,17 @@ void PlanetPanel::PreflightChecks()
 	int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
 	// Will you have to sell something other than regular cargo?
 	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
-	int droneCount = 0;
-	int fighterCount = 0;
-	for(const auto &it : player.Ships())
-		if(!it->IsParked() && !it->IsDisabled() && it->GetSystem() == &system)
-		{
-			const string &category = it->Attributes().Category();
-			droneCount += (category == "Drone") - it->BaysFree(false);
-			fighterCount += (category == "Fighter") - it->BaysFree(true);
-		}
+	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
+	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
+	size_t nonJumpCount = 0;
+	if(!flightChecks.empty())
+	{
+		for(const auto &result : flightChecks)
+			if(result.second == "no hyperdrive?" || result.second == "no fuel?" || result.second == "no bays?")
+				++nonJumpCount;
+	}
 	
-	if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0 || overbooked > 0)
+	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0)
 	{
 		ostringstream out;
 		// Warn about missions that will fail on takeoff.
@@ -308,14 +307,14 @@ void PlanetPanel::PreflightChecks()
 		{
 			bool both = ((cargoToSell > 0 && cargo.MissionCargoSize()) && overbooked > 0);
 			out << "If you take off now, you will fail a mission due to not having enough ";
-
+			
 			if(overbooked > 0)
 			{
 				out << "bunks available for " << overbooked;
 				out << (overbooked > 1 ? " of the passengers" : " passenger");
 				out << (both ? " and not having enough " : ".");
 			}
-
+			
 			if(missionCargoToSell > 0)
 			{
 				out << "cargo space to hold " << missionCargoToSell;
@@ -323,30 +322,19 @@ void PlanetPanel::PreflightChecks()
 				out << " of your mission cargo.";
 			}
 		}
-		
-		// Warn about fighters, drones, or non-commodity cargo you would sell on takeoff.
-		if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0)
+		else if(nonJumpCount > 0)
 		{
-			if(missionCargoToSell > 0 || overbooked > 0)
-				out << "\nYou will also have to sell ";
+			out << "If you take off now you will launch with ";
+			if(nonJumpCount == 1)
+				out << "a ship";
 			else
-				out << "If you take off now, you will have to sell ";
-			bool triple = (fighterCount > 0 && droneCount > 0 && cargoToSell > 0);
-
-			if(fighterCount == 1)
-				out << "a fighter";
-			else if(fighterCount > 0)
-				out << fighterCount << " fighters";
-			if(fighterCount > 0 && (droneCount > 0 || cargoToSell > 0))
-				out << (triple ? ", " : " and ");
-		
-			if(droneCount == 1)
-				out << "a drone";
-			else if(droneCount > 0)
-				out << droneCount << " drones";
-			if(droneCount > 0 && cargoToSell > 0)
-				out << (triple ? ", and " : " and ");
-
+				out << nonJumpCount << " ships";
+			out << " that will not be able to leave the system.";
+		}
+		else
+		{
+			out << "If you take off now you will have to sell ";
+			
 			if(cargoToSell == 1)
 				out << "a ton of cargo";
 			else if(cargoToSell > 0)

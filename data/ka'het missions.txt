@@ -1,0 +1,145 @@
+# Copyright (c) 2019 by Tommaso Becca
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Graveyard Label"
+	landing
+	invisible
+	source
+		attributes ka'het
+	on offer
+		event "graveyard label"
+		fail
+
+event "graveyard label"
+	galaxy "label graveyard"
+		sprite label/graveyard
+
+mission "Disabled Ka'het"
+	boarding
+	invisible
+	source
+		government "Ka'het" " Ka'het "
+	destination "Earth"
+	on offer
+		log "Successfully boarded a Ka'het. It appears to be a single, ship-sized organism that can travel in space using a special exoskeleton."
+		conversation
+			`Your ship slowly approaches the <origin>, now floating lifeless near you. As you move closer, you spot a massive hole in the hull of the ship, revealing what appears to be a large, slug-like being. While most of the ship's machinery doesn't seem to have received heavy damage, weapons fire must have hit the slug's vital organs, killing it, after which point the ship seems to have stopped working.`
+			`	You have no troubles docking with what seems to be its "exoskeleton", trying to decide what to do next: while the Ka'het is too different from a ship for you to command it, it's safe to say that you can now loot its outfits.`
+				decline
+
+mission "First Contact: Ka'het: Remnant 1A"
+	landing
+	invisible
+	source
+		government "Remnant"
+	to offer
+		has "Graveyard Label: offered"
+		not "remnant met taely"
+	on offer
+		conversation
+			`Do you want to ask the Remnant about the section of space south of the Ember Wastes, the Graveyard, and its inhabitants?`
+			choice
+				`	(Yes.)`
+				`	(Not now.)`
+					defer
+			`	You ask around more than a dozen people, but none of them seems to be aware of what you're talking about. Either the information is too confidential to be given to a stranger like you, or you didn't ask the right people.`
+				decline
+
+mission "First Contact: Ka'het: Remnant 1B"
+	landing
+	invisible
+	source "Viminal"
+	to offer
+		has "Graveyard Label: offered"
+		has "remnant met taely"
+	on offer
+		conversation
+			`Do you want to ask Taely about the section of space south of the Ember Wastes, the Graveyard, and its inhabitants?`
+			choice
+				`	(Yes.)`
+				`	(Not now.)`
+					defer
+			`	You find Taely inside one of the outer hangars of the shipyard, apparently teaching a small group of people how to make basic repairs on an Albatross. You sit on a bench waiting for her to finish her lesson, after which she walks over to you. "Hello, <first>!" she says. "Is there something I can help you with?" `
+			`	"I'm here because I need to ask you a few questions," you reply.`
+			`	As she sits near you, you start explaining to her the area you reached, including the weird alien ships that attacked you with weapons similar to the ones the Remnant possess. It doesn't seem to be news for her. "We know of the existence of these Ka'het, the aliens you encountered, since we first reached the Ember Wastes. We found many of their 'shells' in our planets, crashed there thousands or even tens of thousands of years before our arrival, but with some tech so advanced to still be conserved enough to be reverse engineered.`
+			`	"Then," she continues, "a few hundred years ago, a scout fleet arrived in a system where some Ka'het were still alive, which attacked the Remnant almost instantly and before they could activate the cloak some EMPs had already disabled two Starlings. They couldn't recover soon enough to survive, and the only remaining ship could do nothing but flee here as soon as possible."`
+			choice
+				`	"Which technology did you recover from the crashed Ka'het?"`
+					goto tech
+				`	"Wait, why did you call them 'shells' and not ships?"`
+					goto shells
+				`	"Have the Ka'het ever attacked the Remnant planets?"`
+			`	"Actually, we never met any Ka'het in the Ember Waste at all. The 'shells' we found had similar capabilities to the quantum keystone, meaning they could pass through the wormholes, so we don't know for sure why they remain there. Perhaps they aren't aware of their skills, or maybe they lost them over time."`
+			choice
+				`	"Wait, why did you call them 'shells' and not ships?"`
+					goto shells
+			label tech
+			`	"Back then we found large numbers of their EMP torpedoes, most of which in almost pristine conditions; their internal mechanisms were also simple enough we were able to reproduce them perfectly. We didn't find enough of the other systems in the 'shells' to do the same, but their tech still have been our main inspiration point for centuries."`
+			choice
+				`	"Wait, why did you call them 'shells' and not ships?"`
+			label shells
+			`	"You see, <first>," she says, "the Ka'het aren't normal spaceships. The debris we found were artificial exoskeletons, built around huge living beings; it's unlikely a species that big could have developed that sort of technology, so we presume someone must have created it for them. This could have happened in the Graveyard, since it's the only place where we know them to still live in, but we have such a limited data about that section of space that we can't say for sure." As she finishes talking, one of the people Taely's was talking with earlier comes closer and shows her something on a touchpad. "I have to go now, Captain," she tells you. "Good luck."`
+				decline
+	on decline
+		log "Asked Taely about the Graveyard and the Ka'het. She spoke of the previous contacts between them and the Remnant."
+		log "Factions" "Ka'het" `The Ka'het are aliens which live in an area south of the Ember Waste, called the Graveyard. They are large lifeforms which can travel in space using artificial exoskeletons and will attack anyone on sight, even sometimes other Ka'het.`
+
+mission "First Contact: Ka'het: Quarg 1"
+	name "Abandoned Ringworld"
+	description "Visit the Quarg and ask them about the abandoned ring in the middle of Ka'het space."
+	landing
+	source "Querii'ka"
+	to complete
+		never
+	on offer
+		log "Discovered an uninhabited, complete Quarg ring in the middle of the Graveyard. It seems weird that they would abandon a ringworld, given how important they are to them."
+		conversation
+			branch met
+				has "First Contact: Quarg: offered"
+			`This massive creation must be a complete Quarg ringworld, similar to the one you heard they are building near Tarazed, but it seems strange they would put one in such a hostile part of space.`
+			`	Even weirder, it seems to be completely uninhabited, with every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to ask the Quarg what happened here...`
+				accept
+			label met
+			`Due to your past experience, you expect crowds of the tall and inexpressive Quarg walking near the landing pads of this ringworld; instead, the whole station seems uninhabited.`
+			`	Apart from the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to ask the Quarg what happened here...`
+				accept
+
+mission "First Contact: Z Ka'het: Quarg 2"
+	landing
+	invisible
+	source
+		attributes "quarg"
+	to offer
+		has "First Contact: Ka'het: Quarg 1: active"
+	on offer
+		conversation
+			`Do you want to ask the Quarg about the abandoned ringworld in the region of the Graveyard?`
+			choice
+				`	(Yes.)`
+				`	(Not now.)`
+					defer
+			`	Walking down the principal, alien-looking hall, you decide to stop one of the few Quarg you see there. "Hello, human. How may I be of service?" the Quarg says. You reply by asking him about the Graveyard and the ringworld they built there.`
+			`	"Ah, you encountered the remainders of the Builders. Millennia ago, they were a flourish and thoughtful empire, but hostile contacts forced them to grow fearful and hawkish. Although they never did attack us, they always refrained from accepting our aid, and attempted to relocate at a greater distance from us, in worlds easier to maintain than ones they were closer to."`
+			choice
+				`	"Who were these hostile contacts?"`
+				`	"What happened to the Builders?"`
+					goto ka'het
+			`	"Long ago, few ships coming from a foreign species had reached that region of space, using some of the wormholes leading there. They belonged to a young race who foolishly decided to attack the Builders instead of learning from them. Their ships were stronger than any vessel the Builders possessed at the time, but were also few enough in number to be destroyed by the Builders."`
+			choice
+				`	"What happened after that?"`
+			label ka'het
+			`	The Quarg stops for a few seconds before continuing, as if he was reflecting on something. "For many millennia they grew, developing brilliant pieces of technology. Then, compelled by their past experiences, they began creating weapons not only to defend themselves, but also to retaliate; these 'Ka'het', as they named them, turned on their creators shortly after they were complete.`
+			`	"For few more centuries the Builders lasted, before falling under their very own hubris. Their space is still populated by the Ka'het they gave birth to through the immense facilities they assembled, who do not yet possess a vast intelligence." After bowing, the Quarg quickly walks away, leaving you with more questions than answers.`
+				decline
+	on decline
+		fail "First Contact: Ka'het: Quarg 1"
+		log "Asked the Quarg about the history of the Graveyard. Although not being told the reason for the abandoned ringworld, have learned about the previous inhabitants of the region, the Builders."
+		log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have since become extinct. They developed some sort of weapon, called Ka'het, which stopped obeying their orders and rebelled against them.`
+		log "Factions" "Ka'het"  `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then rebelled and led them to extinction. Even if millennia passed, they are still being produced in the Graveyard.`

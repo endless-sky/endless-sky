@@ -1061,3 +1061,413 @@ mission "Hai Honeymoon"
 	on complete
 		payment 100000
 		dialog `Instead of landing in the spaceport where they can be seen, you drop Anaya and Touhar off as close as you can to where they will be staying. The house is a few kilometers away, but they assure you that they can make it on their own. They pay you <payment> and thank you for bringing them this far.`
+
+
+
+mission "Pirate Troubles [0]"
+	name "Defend <system>"
+	description "A sizable group of pirates has found their way into Hai space and is terrorizing the system. Help the Hai fight back against them."
+	source
+		near "Waypoint" 2
+		government "Hai"
+	to offer
+		has "First Contact: Unfettered: offered"
+		"combat rating" > 1100
+		random < 10
+	on offer
+		conversation
+			`The peaceful spaceport is suddenly filled with the harsh sound of sirens. You spot some Hai and a small number of humans running to their ships and speeding quickly into orbit. It appears that the system is under attack, but the Unfettered Hai never reach this far south. A loud speaker begins blaring throughout the spaceport: "Unfettered humans have entered the system in a large fleet and have begun attacking! Requesting all combat-worthy pilots to assist in the defense of our space. These enemies of harmony are not welcome here."`
+			branch unfettered
+				has "Unfettered: Jump Drive Source: offered"
+			`	You find the phrase "unfettered humans" odd, but guess that they may be referring to pirates. The Hai will probably be very gracious if you help, but this could also be an easy way to get yourself killed, especially if a group of pirates is bold enough to attack the Hai.`
+				goto choice
+			
+			label unfettered
+			`	Your heart drops at the phrase "unfettered humans," as the last time you heard that was when the Unfettered Hai used that phrase to refer to the Alphas. If it is really the Alphas attacking the Hai, then it is probably a good idea to help.`
+			label choice
+			choice
+				`	(Join the defense fleet.)`
+					launch
+				`	(Stay here until the fight is over.)`
+					decline
+	npc
+		government "Hai"
+		personality staying
+		fleet "Large Hai"
+	npc
+		government "Merchant"
+		personality staying
+		fleet "Large Human Merchants (Hai)"
+	npc evade
+		government "Pirate"
+		personality staying
+		fleet
+			names "pirate"
+			variant
+				"Leviathan" 2
+				"Mule" 2
+				"Firebird"
+				"Headhunter" 3
+				"Raven" 3
+
+mission "Pirate Troubles [1]"
+	landing
+	name "Unfettered Humans"
+	description `Track down the leaders of the pirate gang "Scar's Legion" and "persuade" them to stop attacking Hai space, then return to <destination> to tell the Hai.`
+	source
+		government "Hai"
+	destination "Hai-home"
+	clearance
+	to offer
+		has "Pirate Troubles [0]: done"
+	on offer
+		"reputation: Hai" += 20
+		conversation
+			`The battle has ended, but the spaceport still seems more hectic than usual. Ships are jumping in from the surrounding systems to help any injured and to repair any damage that may have occurred. After some hours pass and the commotion has died down, a Hai elder approaches you. "We have heard from the humans here that you are considered a seasoned fighter among your people. May you lend your combat prowess to us to resolve this issue?"`
+			choice
+				`	"I'd be glad to help. What can I do?"`
+					goto explain
+				`	"What issue?"`
+			`	"I understand that you just defended this system from human pirates. That is the issue that needs resolved.`
+			label explain
+			`	"Human attacks on our systems are very rare, but recently we have experienced an increased number of raids. Not all have been as unsuccessful as this one. We captured a crew member of this most recent attack who was attempting to flee in an escape pod, and he gave us information that a gang that calls themselves 'Scar's Legion' has discovered our territory and is responsible for the recent raids.`
+			`	"Unfortunately, he would not tell us where this gang is, or who the leader is, so there is nothing we are able to do about it. Many humans who live peacefully among us told us that you might be capable of assistance, though."`
+			choice
+				`	"I'll see what I can do."`
+					goto yes
+				`	"You want me to hunt down Scar's Legion to stop them from attacking you?"`
+				`	"Sorry, I'm not interested."`
+					decline
+			`	"We understand that these humans are likely misguided. We ask that you resolve this peacefully if possible, but the loss of life from these continued attacks is unacceptable."`
+			choice
+				`	"I'll see what I can do."`
+					goto yes
+				`	"Sorry, but I'm not interested."`
+					decline
+			label yes
+			`	"Thank you. Please return to <destination> after you have sought to resolve this situation."`
+				accept
+	on visit
+		dialog "You've returned to <planet>, but you haven't yet tracked down Scar's Legion. Perhaps you should ask around the spaceport of pirate planets near the wormhole into Hai space for information."
+	to complete
+		or
+			has "accepted scar's legion tribute"
+			has "defeated scar's legion"
+
+mission "Pirate Troubles [1]: Farpoint"
+	landing
+	invisible
+	source "Farpoint"
+	to offer
+		has "Pirate Troubles [1]: active"
+	on offer
+		conversation
+			`You visit the Navy outpost on <origin> and ask the officers there if they have any information on Scar's Legion. After running a background check on you to make sure you're not up to no good, an officer hands you a copy of a folder containing all the information that the Navy has on the gang. "Nothing in here is classified, so you're free to keep it," the officer says.`
+			`	You return to your ships and sift through the files. The leader of the gang is named Scar (to no one's surprise), who use to be an important member of another pirate gang before forming his own. The Navy estimates their numbers to be in the low thousands, mostly responsible for petty crime in the Far North and not a cause of too much trouble, but the files all date back to a number of years ago. Clearly something has changed in the time since these files were last updated if Scar's Legion is now powerful enough to even attempt to attack the Hai.`
+				decline
+
+mission "Pirate Troubles [1]: Freedom or Zenith"
+	landing
+	invisible
+	source 
+		planet "Freedom" "Zenith"
+	to offer
+		has "Pirate Troubles [1]: active"
+	on offer
+		payment -5000
+		conversation
+			`You wander the <origin> spaceport on the lookout for anyone who might have any information on the whereabouts of Scar's Legion. A self-described fixer promises you information in exchange for payment, but after handing her the few credits that she's asking for, she runs off with her gun in her hands to discourage you from following. Perhaps someone on another nearby pirate planet will have actual information for you.`
+				decline
+
+mission "Pirate Troubles [1]: Haven"
+	landing
+	invisible
+	source "Haven"
+	to offer
+		has "Pirate Troubles [1]: active"
+	on offer
+		payment -100
+		"scar's legion information" ++
+		conversation
+			`You order a drink from a small rundown bar in the <origin> spaceport and try to make small talk with the bartender to get him open to giving information about Scar's Legion. He seems reluctant at first, but eventually warms up to you. A few other patrons of the bar join in on the conversation. Luckily no one seems mad about you asking about Scar's Legion. One of the patrons makes it clear that Scar's Legion has no friends on this world, "at least not anymore."`
+			`	You leave the bar after an hour or two. Once you return to your ship, you write down all the information you can remember. The gang use to operate exclusively out of the Far North until they crossed one of the larger gangs, causing them to flee the region a few years ago. One of the pirates guesses that they fled for the Core.`
+			`	Another person mentioned that the leader of the gang use to always talk about making their own base in an uninhabited system where no one would find it. "He always talked about hollowing out an asteroid to use as a hideout. My guess is he was just always high on the ringworld shavings his gang was dealing."`
+				decline
+
+mission "Pirate Troubles [1]: Stormhold"
+	landing
+	invisible
+	source "Stormhold"
+	to offer
+		has "Pirate Troubles [1]: active"
+	on offer
+		"scar's legion information" ++
+		conversation
+			`It doesn't take long for you to find someone who knows something about Scar's Legion. You meet someone who says he'll give you information "free of charge."`
+			`	"Scar's Legion have been a thorn in my side for months now. Wrecked my ship a while back, and have been causing me trouble ever since. If you're planning on taking them out, then I'll tell you everything you need to know."`
+			`	The pirate tells you that he doesn't know where the base of Scar's Legion is, but he mentions that they spend a lot of time in the uninhabited systems of the Far North. "Nothing out there but cold rocks and gas giants, but if they're spending so much time out there then they must have set up a base of some sort on one of those frozen planets."`
+				decline
+
+event "scar's hideout"
+	system "Danoa"
+		object
+			sprite star/m4
+			period 10
+		object
+			sprite planet/desert7-b
+			distance 168.64
+			period 75.3935
+		object
+			sprite planet/fog0-b
+			distance 693.93
+			period 629.313
+			object
+				sprite planet/mercury
+				distance 174
+				period 15.1961
+		object
+			sprite planet/gas6
+			distance 2069.42
+			period 3240.9
+			object
+				sprite planet/lava1-b
+				distance 293
+				period 11.3672
+			object
+				sprite planet/rock0-b
+				distance 440
+				period 20.9186
+			object
+				sprite planet/lava2-b
+				distance 607
+				period 33.895
+			object "Scar's Hideout"
+				sprite "planet/asteroid base"
+				distance 809
+				period 52.153
+
+planet "Scar's Hideout"
+	attributes uninhabited
+	landscape land/loc1
+	description "Scar's Hideout is a hollowed out asteroids used by Scar's Legion as their main base of operations. From here they harrass anyone making the journey through the uninhabited systems of the Far North. Recently the gang has discovered the wormhole to Hai space, leading them to start causing trouble for more than just unlucky merchants."
+	spaceport "The spaceport of Scar's Hideout is a massive hangar dug into the core of the asteroid, accessible only by a single blast door on the ceiling. Judging by the size of the hangar, you'd guess that about a third of the entire asteroid was hollowed out for the spaceport alone."
+	security 0
+	government "Scar's Legion"
+
+mission "Pirate Troubles [2]"
+	landing
+	name "Scar's Legion"
+	description "You've pieced together enough information to find out that the Scar's Legion hideout is in one of four systems in the Far North. Search those systems for the gang's hideout and confront them."
+	waypoint "Danoa"
+	waypoint "Rajak"
+	waypoint "Sumar"
+	waypoint "Hassaleh"
+	to offer
+		"scar's legion information" >= 2
+	on offer
+		event "scar's hideout"
+		conversation
+			`After having visited various pirate worlds asking about Scar's Legion, you believe that you know where their hideout is.`
+			`	You know that the leader of Scar's Legion use to talk about wanting a hollowed out asteroid as a base. You also know that Scar's Legion has recently been very active in the uninhabited systems of the Far North. You conclude that the gang's hideout could is likely an asteroid located in one of a few systems that are in proximity to the wormhole that leads to the Hai. You mark <waypoints> on your map and get ready to confront them.`
+				accept
+	to complete
+		never
+	to fail
+		has "Pirate Troubles [3]: offered"
+
+government "Scar's Legion"
+	swizzle 6
+	color .78 0 0
+	"player reputation" 10
+	"attitude toward"
+		"Merchant" -0.01
+		"Republic" -0.01
+		"Hai" -0.01
+	bribe 0
+	fine 0
+	"hostile hail" "hostile pirate"
+
+government " Scar's Legion "
+	"display name" "Scar's Legion"
+	swizzle 6
+	color .78 0 0
+	"player reputation" -1000
+	bribe 0
+	fine 0
+	"hostile hail" "hostile pirate"
+
+event "battle against scar's legion"
+	system "Danoa"
+		fleet "Human Miners" 1600
+
+event "battle against scar's legion over"
+	system "Danoa"
+		fleet "Small Northern Merchants" 15000
+		fleet "Small Northern Pirates" 5000
+		fleet "Large Northern Pirates" 16000
+		fleet "Large Republic" 30000
+		fleet "Human Miners" 1600
+
+mission "Pirate Troubles [3]"
+	landing
+	name "Scar's Legion"
+	description "Having declined the tribute, the leader of Scar's Legion has challenged you to a fight to the death. Defeat the <npc>, then return to <destination>."
+	source "Scar's Hideout"
+	destination "Hai-home"
+	to offer
+		has "event: scar's hideout"
+	on offer
+		conversation
+			`You've located the Scar's Hideout, a massive asteroid in orbit around a gas giant. As you fly over the asteroid's surface, you spot an open blast door. They must be inviting you inside. It surprises you that a gang of pirates would be capable of creating such a base, as the materials and time needed to make something like this are immense.`
+			`	Upon entering the blast door, it closes behind you, leaving you in complete dark. Suddenly, floodlights flash on all around your ship. The brightness of the lights prevents you from seeing anyone beyond them, but you suspect that there are a number of weapons pointed at your ship right now.`
+			`	"Who are you and what do you want?" a voice booms from a loud speaker. You press a button to activate your ship's external speakers.`
+			choice
+				`	"I'm <first> <last>, here to negotiate on behalf of the Hai."`
+					goto negotiate
+				`	"I'm <first> <last>, here to take this gang down."`
+			`	The voice laughs. "Well too bad, because you're right in the middle of a hornet's nest. Fire, boys!"`
+				goto die
+			
+			label negotiate
+			`	The voice laughs. "Ah, yes. Those squirrels. I take it they've had enough of us plundering their systems. Boys!"`
+			`	The floodlights turn off, revealing a large room with what must be hundreds of pirates with guns of various sizes trained on your ship. One wrong move and you're toast. "Please, Captain. Step out of your ship."`
+			choice
+				`	(Comply with the orders.)`
+					goto comply
+				`	(Attempt to escape.)`
+			`	You activate your ship's engines to escape. The floodlights suddenly reactivate.`
+			
+			label die
+			`	Before you can even react, several dozen lasers and streams of bullets come flying out from behind the floodlights. You attempt to pull your ship up and fly straight through the ceiling before your ship is too damaged to move, but then you spot a number of rockets flying straight at your cockpit. You die instantly as the rockets impact the glass in front of you.`
+				die
+			
+			label comply
+			`	You step out of your ship, and a tall man with a scar across his cheek steps forward from the crowd of pirates, presumably the leader of the gang.`
+			choice
+				`	"The Hai ask that you stop attacking their systems."`
+					goto negotiations
+				`	"You must be Scar."`
+			`	"No. Scar is long dead," the leader says.`
+			choice
+				`	"Oh, so does that make you Scab?"`
+				`	"The Hai ask that you stop attacking their systems."`
+					goto negotiations
+			`	The leader grimaces. "I'll cut your tongue out if you don't watch your mouth."`
+			`	You take a step back. "The Hai ask that you stop attacking their systems," you say, attempting not to get shanked.`
+			
+			label negotiations
+			`	"Perhaps we will stop," the leader says with a smile. "Under one condition. We'd like a one time shipment of various Hai weapons and technology. The shipment should be as big as possible. I've seen the freighters those aliens have. They're massive. Load two or three up with the goods and we'll consider focusing our attention elsewhere."`
+			choice
+				`	"Okay. I'll meet with the Hai and see what they can provide."`
+					goto tribute
+				`	"I'm afraid that I can't allow that."`
+			`	The crowd of pirates response with a cacophony of jeers and boos. The leader raises his fist in the air, and the crowd falls silent. "Well I'm afraid that just won't do."`
+			`	The leader paces back and forth in silence for a moment. "Well if we don't get what we want, then we're just going to need to keep on attacking. Which means that your presence here is pretty useless."`
+			`	The leader turns to the crowd. "How about a fight? To the death!" The crowd erupts in cheers. The leader turns back to you. "We fight in this system only. Just you and me. You attempt to run, my men hunt you down. How's that sound?" You attempt to respond, but before you can, the leader pulls his gun and aims it at you. "Run."`
+					launch
+			
+			label tribute
+			`	"Excellent!" the pirate says, which is met with cheers from the rest of the pirates in the room. "But make it quick. Wouldn't want to keep us waiting." The blast doors reopen, and you return to your ship to leave immediately.`
+				flee
+	
+	on decline
+		set "accepted scar's legion tribute"
+	on accept
+		event "battle against scar's legion"
+	
+	npc kill
+		government " Scar's Legion "
+		personality nemesis
+		ship "Leviathan (Hai Weapons)" "Keloid"
+		dialog "You've defeated the leader of Scar's Legion. The various spectators to the fight aren't attacking you, but it may only be a matter of time before they decide to turn their guns on you for killing their leader. Better head to <destination> before that happens."
+	
+	npc
+		government "Scar's Legion"
+		personality nemesis
+		fleet "Small Northern Pirates"
+		fleet "Large Northern Pirates" 4
+	
+	on enter
+	on enter
+		"reputation: Scar's Legion" = -1000
+	
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+		
+	on complete
+		set "defeated scar's legion"
+		event "battle against scar's legion over"
+
+mission "Pirate Troubles [4]"
+	landing
+	name "Pirate Tribute"
+	description "Escort the three Hai freighters carrying Hai weapons and technology to <stopovers>, then escort the freighters back to <destination>."
+	source "Hai-home"
+	stopover "Scar's Hideout"
+	clearance
+	to offer
+		or
+			has "defeated scar's legion"
+			has "accepted scar's legion tribute"
+	on offer
+		"reputation: Hai" += 20
+		payment 2500000
+		conversation
+			`Upon landing on <origin>, the Hai authorities give you <payment> for your assistance in defending their systems and for helping to track down the culprits. You're sent to the council of elders, the elected ruling body of the Hai, to tell them about Scar's Legion. "Please, tell us what has occurred," one of the elders says.`
+			branch defeated
+				has "defeated scar's legion"
+			
+			`	"They asked that you load three large freighters with various weapons and technology to give to them. Only then will they stop attacking you."`
+			`	"A simple request," the elders says. "Little more than what the Unfettered ask of us. We shall load three Geocoris immediately."`
+			`	"Who is to say that they will not use our own weapons against us?" another elder chimes in. "This deal could only hurt us."`
+			choice
+				`	"There's no guarantee that they will not attack again, but they promised that they would focus elsewhere."`
+					goto guarantee
+				`	"I could return to them and defeat them if you desire."`
+			`	"No," says the elder. "We are not interested in condeming these humans to death if all they ask is for technology."`
+			
+			label guarantee
+			`	"I believe a bigger issue here is how this will impact our human friends beyond the wormhole," an elder says. "If these pirates are not attacking us, then who will they be attacking? Will we not simply become weapons dealers for a far off war?"`
+			`	"We will inform the Republic Navy that we are providing these pirates with our technology for our own sake. They have been capable of combating our technology in the past. I am sure that they will be able to handle it now. Please, <first>, escort the freighters to these pirates so that they may leave us alone."`
+				accept
+			
+			label defeated
+			`	"I defeated the leader of Scar's Legion. They shouldn't cause any more trouble for you now."`
+			`	One of the elders frowns. "Did you kill their leader in cold blood, or was it self defense?"`
+			choice
+				`	"They asked for a tribute of your weapons and technology, but I refused the offer, so they attacked me."`
+					goto refused
+				`	"They were not willing to negotiate, and I was forced to defend myself."`
+			`	"This is most unfortunate," another elder says. "But I am happy to hear that they will not cause any more loss of life among our people."`
+				goto end
+			
+			label refused
+			`	"This is most unfortunate," another elder says. "We would have been willing to provide them the technology they sought if only they had asked nicely in the first place."`
+			`	"Better that we eliminate a threat instead of make them stronger through becoming their weapons dealer," the first elder says. "These pirates might have attacked us with out own technology, or worse still, attacked other humans with them, making us complicit in this slaughter."`
+			
+			label end
+			`	The elders thank you for your assistance in this situation and send you on your way.`
+				decline
+	
+	on decline
+		"reputation: Hai" += 40
+	
+	npc save accompany
+		government " Hai "
+		personality escort
+		fleet
+			names "hai"
+			cargo 10
+			variant
+				"Geocoris" 3
+	
+	on stopover
+		dialog `You lead the Hai freighters into the blast doors. Despite the massive size of the freighters, they all manage to fit into the asteroid's spaceport with some room to spare, a testament to how much work was put into this base. The pirates of Scar's Legion unload all the Hai technology from the freighters. After the last crate is gone, the freighters quickly launch from the asteroid.`
+	
+	on visit
+		dialog phrase "generic arrived-without-npc dialog"
+	
+	on complete
+		"reputation: Hai" += 40
+		payment 500000
+		dialog `With the freighters safely returned, the Hai thank you for resolving the situation with Scar's Legion and hand you <payment> for your help.`

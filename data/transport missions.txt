@@ -1153,7 +1153,7 @@ mission "Rim Archaeology 3B"
 				accept
 	
 	npc evade
-		government Independent
+		government " Independent "
 		personality waiting
 		ship "Marauder Falcon (Engines)" "Oxyrhynchus"
 	
@@ -3307,7 +3307,7 @@ mission "Pirate Blockade"
 			
 			label need
 			`	"It isn't what I want, it's what I need," she whispers, putting heavy emphasis on the word "need."`
-			`	"You undoubtedly know about the horrendous slave trade that still exists on pirate worlds today. A slave trade that the Republic doesn't care to abolish, leaving innocent people to waste away like rats in a cage, working for their lives. As if the politicians of the Republic aren't vermin themselves..." Her face twists into a hate filled scorn as she speaks of the Republic. It then returns to normal as she continues. "I'm part of a group of people who have decided to take matters into our own hands. We're mostly people who grew up on pirate worlds, but some of us were born elsewhere."`
+			`	"You undoubtedly know about the horrendous slave trade that still exists on pirate worlds today. A slave trade that the Republic doesn't care to abolish, leaving innocent people to waste away like rats in a cage, working for their lives. As if the politicians of the Republic aren't vermin themselves..." Her face twists into a hate filled scorn as she speaks of the Republic. It then returns to normal as she continues. "I'm part of a group of people who have decided to take matters into our own hands. We're mostly people who grew up on pirate worlds, but some of us were born elsewhere.`
 			`	"I assassinated a pirate warlord a couple of days ago, and I have been sheltering his slaves ever since. What I need from you is to transport the <bunks> people in my care to <destination>. Another member of my group should be there to pay you <payment> and take the people somewhere far away from here." She cocks her head to the right. "Will you fight for justice and transport these people, Captain?" The look in her eyes suggests that she won't take no for an answer.`
 			choice
 				`	"Anything for the freedom of the innocent."`
@@ -3469,3 +3469,105 @@ mission "Inheritance Redirection"
 				decline
 	on complete
 		dialog "There is no inheritance for Mr. Pappa waiting for you at the bank, but there are many other victims that paid some credits while expecting to earn a larger amount of credits in return. Some make a big fuss about it, until the alerted authorities start fining them for attempted inheritance fraud. You leave the bank in silence."
+
+
+
+mission "Hauler VI cargo prototype 1"
+	name "Escort Hauler prototype to formal dinner"
+	description "Escort the <npc> to <destination> to deliver sushi for a formal dinner."
+	source
+		planet "Deep"
+	destination "Skymoot"
+	npc accompany
+		government "Merchant"
+		personality escort timid
+		ship "Hauler III" "SB-Labs Testament"
+	on offer
+		conversation
+			`A lady in a formal business suit walks gracefully over to you. "Captain <last>, Captain <last>! It is so nice to meet you here!"`
+			choice
+				`	"Hello, did we meet before? How do you know my name?"`
+				`	"Hello, nice to meet you too."`
+					goto "hello too"
+				`	"Sorry, I don't have time to talk. I'm really busy."`
+					defer
+			`	She smiles and replies, "Well, I actually don't know you, but I just read your name on one of the cargo manifests. And my experience is that this greeting works best if you need something from a spaceship captain."`
+			label "hello too"
+			`	She says, "My name is Veronica Oxygenpocket, and I'm the lead for a team that's designing the new Hauler VI transport ship series at Southbound Shipyards."`
+			choice
+				`	"'Oxygenpocket' is an uncommon name."`
+				`	"And what help do you need from me?"`
+					goto "help request"
+			`	Veronica responds, "Well, it might sound uncommon to people from a planet with a breathable atmosphere, but it is actually similar to Vanderberg, which means 'from the mountain,' or Langley, which means 'woodland.'`
+			`	"Oxygenpockets were as much a feature on my home-planet as mountains and woodlands are on more habitable planets."`
+			label "help request"
+			`	Veronica pauses for a moment and then continues, "We're testing the VI's cargo refrigeration system using the Testament, a modified Hauler III. This system is one of our biggest achievements. To show how well it works, we plan to throw a formal dinner on <destination> with fresh sushi transported from here. I'm sure everyone at the dinner will be amazed by how well the food has been preserved despite the travel time. I'd like you to escort the ship and its cargo to <planet>."`
+			choice
+				`	"Isn't it a bit risky to transport food using a refrigeration system that hasn't been tested yet?"`
+				`	"Am I also invited for the dinner?"`
+					goto invited
+				`	"Why do you need me to escort the ship?"`
+					goto internal
+				`	"Sure, I'll help you."`
+					accept
+			`	"Risky, why? I don't see what can go wrong. The system is quite well designed. I'm so proud of my team."`
+			choice
+				`	"Am I also invited for the dinner?"`
+				`	"Why do you need me to escort the ship?"`
+					goto internal
+			label "invited"
+			`	"I'm sorry, but you are not invited. This dinner is only for Southbound Shipyards top-level management and representatives of the <planet> government.`
+			label "internal"
+			`	"Normally we'd look internally to satisfy any escort needs, that's true. But we suspect there is a mole in our organization spying for Syndicated Shipyards. Going externally is safer in this case, and you came recommended when we searched through the list of captains available on short notice. You will be paid well for your time. Will you help us?"`
+			choice
+				`	"Sure, I'll help you."`
+					accept
+				`	"Sorry, I don't have time to help you."`
+					decline
+	on visit
+		dialog `You land on <planet>, but the Testament hasn't caught up with you yet. Better take off and wait for it to appear in this system.`
+	on complete
+		dialog
+			`You wait for the Testament to land, but it remains in orbit. There is no response to your hails. Maybe you should take off and investigate.`
+
+mission "Hauler VI cargo prototype 2"
+	name "Escort Hauler prototype to <planet>"
+	description "Escort the <npc> to <destination> to deliver cooked fish dishes to a streetfood festival."
+	source "Skymoot"
+	destination "Zug"
+	landing
+	to offer
+		has "Hauler VI cargo prototype 1: done"	
+	npc accompany
+		government "Merchant"
+		personality escort timid
+		ship "Hauler III" "SB-Labs Testament"
+	on enter
+		dialog
+			`You take off and try to contact Veronica, but you receive an angry message: "Why were you trying to contact me? Does everyone need to know that we're here?"`
+			`	She adds, "The cooling failed and the sushi nearly cooked. Let's go to the Southbound Shipyards on <destination> instead, then we can save face by claiming that we were in time for the dinner, but on the wrong planet due to some miscommunication. We might even be able to hide all evidence of the overheating by giving away the sushi as fish dishes on a streetfood festival."`
+	on visit
+		dialog `You land on <planet>, but the Testament didn't catch up with you yet.`
+	on complete
+		dialog
+			`This time the Testament appears to be landing right behind you, but the ship flies away at full thrust just before touching the landing pad. You receive another message: "The Sushi completely burned. We cannot be seen near the festival or near the shipyard with this burned sushi! Our new destination is the waste processing plant at Longjump."`
+
+mission "Hauler VI cargo prototype 3"
+	name "Escort Hauler prototype to waste plant"
+	description "Escort the <npc> to <destination> to deliver charred food waste to a waste-processing plant."
+	destination "Longjump"
+	landing
+	to offer
+		has "Hauler VI cargo prototype 2: done"
+	npc accompany
+		government "Merchant"
+		personality escort timid
+		ship "Hauler III" "SB-Labs Testament"
+	on visit
+		dialog `You land on <planet>, but the Testament didn't catch up with you yet.`
+	on complete
+		payment 140000
+		dialog
+			`The Testament enters the planet's atmosphere at high speed and lands somewhat uncontrolled near a waste processing plant. The cargo hold is glowing red hot and some areas in the cargo hold appear to be on fire.`
+			`	Veronica disembarks, walks over to you, and apologizes for the difficult trip. She explains that the cooling systems failed, causing the sushi calamity you experienced during the multiple legs of your journey.`
+			`	You are paid <payment> and she asks you not to talk about this escort job to anybody. You leave the docks quickly in order to escape the horrible smell of overheated fish that is coming from Veronica and her ship.`
