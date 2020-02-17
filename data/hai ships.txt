@@ -307,6 +307,21 @@ ship "Grasshopper" "Grasshopper (Tracker)"
 		`"Basrem" Atomic Steering`
 		Hyperdrive
 
+ship "Grasshopper" "Grasshopper (Surveillance)"
+	outfits
+		"Pulse Cannon" 2
+		"Pebble Core"
+		"Hai Chasm Batteries"
+		"Supercapacitor"
+		"Outfit Scanner"
+		"Cargo Scanner"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Quantum Keystone"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		Hyperdrive
+
 
 
 ship "Lightning Bug"
@@ -367,6 +382,23 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 		"Hai Corundum Regenerator"
 		"Pulse Rifle" 2
 		`"Biroo" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+
+ship "Lightning Bug" "Lightning Bug (Surveillance)"
+	outfits
+		"Hai Tracker Pod"
+		"Hai Tracker" 56
+		"Pulse Turret"
+		"Bullfrog Anti-Missile"
+		"Geode Reactor"
+		"Outfit Scanner" 2
+		"Cargo Scanner" 2
+		"Hai Williwaw Cooling"
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Pulse Rifle" 2
+		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 

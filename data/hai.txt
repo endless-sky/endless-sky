@@ -197,6 +197,29 @@ fleet "Large Hai"
 		"Water Bug"
 		"Grasshopper (Tracker)"
 
+fleet "Hai Surveillance (Slow)"
+	government Hai
+	names "hai"
+	cargo 0
+	personality
+		surveillance coward
+	variant 3
+		"Lightning Bug (Surveillance)" 3
+	variant 3
+		"Lightning Bug (Surveillance)" 2
+
+fleet "Hai Surveillance (Unconstrained)"
+	government Hai
+	names "hai"
+	cargo 0
+	personality
+		surveillance coward unconstrained
+	variant 3
+		"Grasshopper (Surveillance)" 5
+	variant 3
+		"Grasshopper (Surveillance)" 7
+
+
 fleet "Small Unfettered"
 	government "Hai (Unfettered)"
 	names "hai"
