@@ -513,46 +513,6 @@ mission "Resistance: Proposition A"
 			`	After it all, the Kimek beside you reactivates the translation box, saying, "Dangerous, it would be, if found by the Heliarchs, this chip was. When ready to leave Coalition space, you are, return here, you must, to pick it up."`
 			`	They say they'll be waiting there, and bid you farewell for now.`
 				decline
-	on complete
-		conversation
-			`Stepping off your ship on <origin>, you walk up to the first Quarg you see, and ask who you should talk to in order to deliver a diplomatic message.`
-			`	It doesn't hold you up for long, gesturing for you to follow, and leading you through the station's hallways, until you're brought to what you judge to be an office of sorts.`
-			`	You wait there for some time, alone, until another Quarg walks in via another door.`
-			`	"I was informed that you have brought us a message, human," it says.`
-			choice
-				`	"That's right, it's all in this data chip right here."`
-					goto simpledelivery
-				`	"Correct. I'm with the Resistance, a rebel group in Coalition space that's fighting the Heliarchs."`
-					goto rebelgroup
-			label simpledelivery
-			`	You hand over the chip, and the Quarg says, "Very well, we shall analyze this message. Thank you for your efforts in bringing this to us."`
-			`	The door opens once again, and you leave to find the same Quarg that guided you here waiting. It escorts you through the hallways once again, returning you to your ship.`
-				accept
-			label rebelgroup
-			`	"I see. And what does your 'Resistance' want from us?"`
-			choice
-				`	"It's all in this data chip. They asked me to bring it here to you to see if you could offer any help."`
-					goto messenger
-				`	"They're gonna overthrow the Heliarchs. They have no qualms with the Quarg, and so decided to ask for your help."`
-					goto overthrow
-			label messenger
-			`	"I understand. Very well, we shall analyze this message. Thank you for your efforts in bringing this to us," it says, as you hand it the data chip.`
-			`	The door opens once again, and you leave to find the same Quarg that guided you here waiting. It escorts you through the hallways once again, returning you to your ship.`
-				accept
-			label overthrow
-			apply
-				set "quarg said they want rings"
-			`	You hand it the chip, and slowly some thin stripes in it's face start to turn from the usual grey to a deep blue.`
-			`	"No qualms with us, they so claim?"`
-			`	You nod.`
-			`	"As such, were this "Resistance" to succeed, they would, naturally, deem it most appropriate to return us our long lost rings. yes?"`
-			choice
-				`	"I don't know, they never talked about that, and I'm not their leader to confirm it either."`
-				`	"I don't see why not. Your ringworlds are pretty meaningful to you after all, right?"`
-				`	"Would that be really necessary? A lot of people live there now, not just the Heliarch."`
-			`	The Quarg is nearly completely still for a moment, and you think you can see some lines on it's face briefly turn blue, before it says, "This "Resistance" is running out of time. Know this: soon the dreaded Heliarch will unearth the secrets behind a technology they should not."`
-			`	It seems to calm down, though you can't be sure if it really was stressed in the first place, and then says, "We shall analyze this message. Thank you for your efforts in bringing this to us."`
-			`	The door opens once again, and you leave to find the same Quarg that guided you here waiting. It escorts you through the hallways once again, returning you to your ship.`
 
 
 
@@ -578,46 +538,6 @@ mission "Resistance: Proposition B"
 			`	You make your way to the restaurant where the Resistance contacted you before, and soon after the familiar Kimek shows up. They hand you the data chip, urging you to get out of Coalition space as fast as possible, to avoid any contact with the Heliarch.`
 			`	"Risk being found, we do not want to. Good luck, <first>," they say the last part on their own, having turned off the translation box.`
 				accept
-	on complete
-		conversation
-			`Stepping off your ship on <origin>, you walk up to the first Quarg you see, and ask who you should talk to in order to deliver a diplomatic message.`
-			`	It doesn't hold you up for long, gesturing for you to follow, and leading you through the station's hallways, until you're brought to what you judge to be an office of sorts.`
-			`	You wait there for some time, alone, until another Quarg walks in via another door.`
-			`	"I was informed that you have brought us a message, human," it says.`
-			choice
-				`	"That's right, it's all in this data chip right here."`
-					goto simpledelivery
-				`	"Correct. I'm with the Resistance, a rebel group in Coalition space that's fighting the Heliarchs."`
-					goto rebelgroup
-			label simpledelivery
-			`	You hand over the chip, and the Quarg says, "Very well, we shall analyze this message. Thank you for your efforts in bringing this to us."`
-			`	The door opens once again, and you leave to find the same Quarg that guided you here waiting. It escorts you through the hallways once again, returning you to your ship.`
-				accept
-			label rebelgroup
-			`	"I see. And what do you'Resistance' want from us?"`
-			choice
-				`	"It's all in this data chip. They asked me to bring it here to you to see if you could offer any help."`
-					goto messenger
-				`	"They're gonna overthrow the Heliarchs. They have no qualms with the Quarg, and so decided to ask for your help."`
-					goto overthrow
-			label messenger
-			`	"I understand. Very well, we shall analyze this message. Thank you for your efforts in bringing this to us," it says, as you hand it the data chip.`
-			`	The door opens once again, and you leave to find the same Quarg that guided you here waiting. It escorts you through the hallways once again, returning you to your ship.`
-				accept
-			label overthrow
-			apply
-				set "quarg said they want rings"
-			`	You hand it the chip, and slowly some thin stripes in it's face start to turn from the usual grey to a deep blue.`
-			`	"No qualms with us, they so claim?"`
-			`	You nod.`
-			`	"As such, were this "Resistance" to succeed, they would, naturally, deem it most appropriate to return us our long lost rings. yes?"`
-			choice
-				`	"I don't know, they never talked about that, and I'm not their leader to confirm it either."`
-				`	"I don't see why not. Your ringworlds are pretty meaningful to you after all, right?"`
-				`	"Would that be really necessary? A lot of people live there now, not just the Heliarch."`
-			`	The Quarg is nearly completely still for a moment, and you think you can see some lines on it's face briefly turn blue, before it says, "This "Resistance" is running out of time. Know this: soon the dreaded Heliarch will unearth the secrets behind a technology they should not."`
-			`	It seems to calm down, though you can't be sure if it really was stressed in the first place, and then says, "We shall analyze this message. Thank you for your efforts in bringing this to us."`
-			`	The door opens once again, and you leave to find the same Quarg that guided you here waiting. It escorts you through the hallways once again, returning you to your ship.`
 
 
 
@@ -637,6 +557,46 @@ mission "Resistance: Proposition Return"
 		has "Heliarch Investigation 2: active"
 	to fail
 		"assisted heliarch" > 0
+	on offer
+		conversation
+			`Stepping off your ship on <origin>, you walk up to the first Quarg you see, and ask who you should talk to in order to deliver a diplomatic message.`
+			`	It doesn't hold you up for long, gesturing for you to follow, and leading you through the station's hallways, until you're brought to what you judge to be an office of sorts.`
+			`	You wait there for some time, alone, until another Quarg walks in via another door.`
+			`	"I was informed that you have brought us a message, human," it says.`
+			choice
+				`	"That's right, it's all in this data chip right here."`
+					goto simpledelivery
+				`	"Correct. I'm with the Resistance, a rebel group in Coalition space that's fighting the Heliarchs."`
+					goto rebelgroup
+			label simpledelivery
+			`	You hand over the chip, and the Quarg says, "Very well, we shall analyze this message. Thank you for your efforts in bringing this to us."`
+				goto end
+			label rebelgroup
+			`	"I see. And what do you'Resistance' want from us?"`
+			choice
+				`	"It's all in this data chip. They asked me to bring it here to you to see if you could offer any help."`
+					goto messenger
+				`	"They're gonna overthrow the Heliarchs. They have no qualms with the Quarg, and so decided to ask for your help."`
+					goto overthrow
+			label messenger
+			`	"I understand. Very well, we shall analyze this message. Thank you for your efforts in bringing this to us," it says, as you hand it the data chip.`
+				goto end
+			label overthrow
+			apply
+				set "quarg said they want rings"
+			`	You hand it the chip, and slowly some thin stripes in it's face start to turn from the usual grey to a deep blue.`
+			`	"No qualms with us, they so claim?"`
+			`	You nod.`
+			`	"As such, were this "Resistance" to succeed, they would, naturally, deem it most appropriate to return us our long lost rings. yes?"`
+			choice
+				`	"I don't know, they never talked about that, and I'm not their leader to confirm it either."`
+				`	"I don't see why not. Your ringworlds are pretty meaningful to you after all, right?"`
+				`	"Would that be really necessary? A lot of people live there now, not just the Heliarch."`
+			`	The Quarg is nearly completely still for a moment, and you think you can see some lines on it's face briefly turn blue, before it says, "This "Resistance" is running out of time. Know this: soon the dreaded Heliarch will unearth the secrets behind a technology they should not."`
+			`	It seems to calm down, though you can't be sure if it really was stressed in the first place, and then says, "We shall analyze this message. Thank you for your efforts in bringing this to us."`
+			label end
+			`	The door opens once again, and you leave to find the same Quarg that guided you here waiting. It escorts you through the hallways once again, returning you to your ship.`
+				accept
 	on complete
 		log "Brought the Resistance's message to the Quarg, who they hope will assist them somehow. Upon returning to them, was given a translation box to freely speak with members of the Coalition."
 		set "language: Coalition"
