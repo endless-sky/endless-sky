@@ -309,12 +309,12 @@ ship "Grasshopper" "Grasshopper (Tracker)"
 
 ship "Grasshopper" "Grasshopper (Surveillance)"
 	outfits
-		"Pulse Cannon" 2
+		"Pulse Cannon" 1
 		"Pebble Core"
 		"Hai Chasm Batteries"
 		"Supercapacitor"
-		"Outfit Scanner"
-		"Cargo Scanner"
+		"Outfit Scanner" 5
+		"Cargo Scanner" 5
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling" 2
 		"Quantum Keystone"
@@ -392,8 +392,8 @@ ship "Lightning Bug" "Lightning Bug (Surveillance)"
 		"Pulse Turret"
 		"Bullfrog Anti-Missile"
 		"Geode Reactor"
-		"Outfit Scanner" 2
-		"Cargo Scanner" 2
+		"Outfit Scanner" 5
+		"Cargo Scanner" 5
 		"Hai Williwaw Cooling"
 		"Hai Gorge Batteries"
 		"Hai Corundum Regenerator"
