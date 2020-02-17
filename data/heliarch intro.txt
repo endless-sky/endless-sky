@@ -410,7 +410,7 @@ mission "HI2-SS"
 			`	After finding a hole that both of you can go through, you two head on inside, Tugroob lighting up the path below with a flashlight. A couple larger rocks occasionaly fall, and Tugroob has to prevent some from hitting you, quickly crawling around the walls to try and slow them down to give you time to move away.`
 			`	Eventually you two come to find some reinforced wooden beams, in what looks like a mineshaft, a few lights on the walls turn on as you two approach them.`
 			`	You're about to go forward, when you're stopped by Tugroob. They crawl around the entrance, looping it several times, without ever going further in, only sometimes stopping, and slowling reaching one leg inside, then back after apparently touching something.`
-			`	They come back down, and say, "Request support equipment, to get through safelt, we must."`
+			`	They come back down, and say, "Request support equipment, to get through safely, we must."`
 			`	Using their communication device, they call for support from Heliarch agents, warning them about the rockfall. Though you're well protected from the rockfall there, you hear several rocks fall rapidly, as Tugroob says the Heliarch are coming.`
 			`	Shortly after, several dozen Heliarch agents are there, some of them with certain cutting tools you can't quite identify, that they use to surgically cut down what Tugroob was slowly examining before, several extremely thin wires, connected to some type of machinery hidden within the wooden beams.`
 			`	After all is done, the agents storm the place, but find noone there. What they do find are dozens upon dozens of crates, filled to the brim with Heliarch staves and their blaster guns.`
