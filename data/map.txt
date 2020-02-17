@@ -5699,6 +5699,8 @@ system "Bote Asu"
 	fleet "Large Hai" 600
 	fleet "Small Human Merchants (Hai)" 8000
 	fleet "Large Human Merchants (Hai)" 12000
+	fleet "Hai Surveillance (Slow)" 1500
+	fleet "Hai Surveillance (Unconstrained)" 7500
 	object
 		sprite star/f0
 		distance 17.3605
@@ -9394,6 +9396,8 @@ system "Fah Root"
 	fleet "Large Hai" 4000
 	fleet "Small Human Merchants (Hai)" 15000
 	fleet "Large Human Merchants (Hai)" 25000
+	fleet "Hai Surveillance (Slow)" 1500
+	fleet "Hai Surveillance (Unconstrained)" 7500
 	fleet Quarg 2000
 	object
 		sprite star/k0
