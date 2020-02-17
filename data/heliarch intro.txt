@@ -477,7 +477,7 @@ mission "HI2-IW"
 		conversation
 			`Kirrie, already donning his winter coat, instructs you to land near the equator, where he and Tugroob will conduct some subtle interrogation, citing that it's 'all they can do' in a climate like this.`
 			`	You drop them in one of the larger settlements there, and right as they leave your ship, Iplora asks that you bring her to a polar region.`
-			`	"Suspiciously similar, repeated reports about that are have been. Tasked with investigating it, I was."`
+			`	"Suspiciously similar, repeated reports about that area have been. Tasked with investigating it, I was."`
 			`	As you land on an isolated icy patch, in the middle of a snowstorm, she's ready to leave the ship, wearing what is, compared to her colleagues', fairly light clothing. Although she is a Saryd, you still worry that she might be frostbitten in this extreme weather, but she reassures you that she will be fine.`
 			`	You open your ship's hatch, and she prepares to leave.`
 			choice
