@@ -911,8 +911,6 @@ mission "House Bebliss 2"
 				`	"I see. Well, yes, we were invaded by aliens known as the Pug."`
 					goto pug
 				`	"And how did the Heliarch know?"`
-					goto howhely
-			label howhely
 			`	"In "their" space, are you not? Scanned by their ships, you were. Subtly amassed, your flight records, your charted map of the galaxy, were."`
 				goto pug
 			label pug
