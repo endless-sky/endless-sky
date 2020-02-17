@@ -607,13 +607,7 @@ mission "Resistance: Proposition Return"
 			`You head to the restaurant, to find only the lone Kimek you first met there. They tell you to wait, as more members will arrive shortly.`
 			`	When they do, you tell them about how things went with the Quarg, and the reception is mixed, with some theorizing they should expect some type of signal soon, while others claim their response should be interpreted as them no longer having much interest in fighting the Heliarch.`
 			`	"Expected this, we should have," the Kimek says.`
-			`	They discuss things a while longer, but as soon as the first member leaves, everyone else also gets up. Before you yourself leave, the Kimek asks that you follow them to the back of the shop.`
-			`	Getting there, after going down a ramp in an uncomfortably short corridor, the Kimek picks up a small box, handing it to you, and asks that you try speaking into it.`
-			`	You say a couple words, and the box emits some ghastly sounds.`
-			`	"A small gift, it is," the box says, after the Kimek removes the device usually kept around it's neck. "Question you about it's origin, the Heliarch should not. Long enough, been here you have, that friends, you're expected to have made."`
-			`	They demonstrate a bit more on how the box works, with simple sentences like introductions, in which you learn their name is Chiree. They say it will automatically recognize any language of the three Coalition species, so you don't need to worry about manually changing it's settings.`
-			`	They wish you safe travels, telling you to keep looking for more opportunities to supply them with outfits, and to keep an eye out for outfitters where the Resistance secretly operates, claiming they have improved upon some technology you brought here.`
-				accept
+				goto finish
 			label rings
 			`You head to the restaurant, to find only the lone Kimek you first met there. They tell you to wait, as more members will arrive shortly.`
 			`	When they do, you tell them about how things went with the Quarg, and the reception is mixed, with some theorizing they should expect some type of signal soon, while others claim their response should be interpreted as them no longer having much interest in fighting the Heliarch.`
@@ -625,6 +619,7 @@ mission "Resistance: Proposition Return"
 				`	"Any clue where they might be doing this research?"`
 			`	"Ring of Wisdom, the heart of the Heliarch laboratories is... For espionage, too well guarded it is," the Arach says.`
 			`	"Even to lower ranked Heliarchs, closed off, entire sections are," the elderly Saryd explains. "For many decades, it has been so."`
+			label finish
 			`	They discuss things a while longer, but as soon as the first member leaves, everyone else also gets up. Before you yourself leave, the Kimek asks that you follow them to the back of the shop.`
 			`	Getting there, after going down a ramp in an uncomfortably short corridor, the Kimek picks up a small box, handing it to you, and asks that you try speaking into it.`
 			`	You say a couple words, and the box emits some ghastly sounds.`
