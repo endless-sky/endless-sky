@@ -23,10 +23,10 @@ echo "script-dir: ${HERE}"
 echo "es-top-dir: ${ESTOP}"
 
 NUM_ADDED=0
-for FILE in $(ls -1 source)
+for FILE in $(find source -type f | sed s,^source/,, | sort)
 do
 	# Check if the file is already in the XCode project
-	cat EndlessSky.xcodeproj/project.pbxproj | grep "$FILE" > /dev/null
+	grep "$FILE" ${XPROJECT}/project.pbxproj > /dev/null
 	if [ $? -ne 0 ] && [ "$FILE" != "WinApp.rc" ]
 	then
 		echo "File $FILE is missing from XCode-project, trying to add the file."
@@ -40,7 +40,7 @@ do
 		python3 -m pbxproj file ${XPROJECT} "source/${FILE}" --tree "<group>" --parent "source" --target "EndlessSky" ${NO_BUILD}
 		echo "Project to add file to XCode project ran with result $?"
 		# Check if the requested file was added
-		cat ${XPROJECT}/project.pbxproj | grep "$FILE" > /dev/null
+		grep "$FILE" ${XPROJECT}/project.pbxproj > /dev/null
 		if [ $? -ne 0 ]
 		then
 			echo "Error: file ${FILE} not added to XCode project"
