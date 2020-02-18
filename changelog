@@ -5,7 +5,7 @@ Version 0.9.11:
     * Typo fixes. (@alextd, @Amazinite, @Anarchist2, @Arachi-lover, @Darcman99, @Gods-Righthand, @Jozephi-Krakowskije, @Mageking17, @MCOfficer, @oo13, @otsohelos, @perey, @petervdmeer, @tehhowch, @Waffleship, @wjp, @Zitchas)
     * The Quicksilver (Mark II) variant no longer has the exact same outfits as the base variant. (@Amazinite)
     * The Shuttle and Behemoth no longer contact the image border. (@beccabunny) 
-    * Terraforming 7 will no longer offer on any planet. (@Bladewood)
+    * Terraforming 7 will no longer offer on every planet. (@Bladewood)
     * Explicitly stated the source of various missions so that they don't accidentally offer where they shouldn't. (@Amazinite)
     * Pact Recon missions no longer offer on pirate planets. (@Amazinite)
     * The " Drak " government now has the correct swizzle. (@Zitchas)
