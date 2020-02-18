@@ -42,7 +42,7 @@ namespace {
 	string saves;
 	
 	mutex errorMutex;
-	FILE *errorLog = nullptr;
+	File errorLog;
 	
 	// Convert windows-style directory separators ('\\') to standard '/'.
 #if defined _WIN32
@@ -544,7 +544,7 @@ void Files::LogError(const string &message)
 	lock_guard<mutex> lock(errorMutex);
 	cerr << message << endl;
 	if(!errorLog)
-		errorLog = Open(config + "errors.txt", true);
+		errorLog = File(config + "errors.txt", true);
 	
 	Write(errorLog, message);
 	fwrite("\n", 1, 1, errorLog);

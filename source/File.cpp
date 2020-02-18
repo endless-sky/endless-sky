@@ -41,6 +41,15 @@ File::~File()
 
 
 
+File &File::operator=(File &&other)
+{
+	this->file = std::move(other.file);
+	other.file = nullptr;
+	return *this;
+}
+
+
+
 File::operator bool() const
 {
 	return file;

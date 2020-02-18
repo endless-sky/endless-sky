@@ -93,10 +93,11 @@ mission "First Contact: Ka'het: Remnant 1B"
 
 mission "First Contact: Ka'het: Quarg 1"
 	name "Abandoned Ringworld"
-	description "Visit a Quarg station to ask them about the abandoned ring in the middle of Ka'het space."
+	description "Visit the Quarg and ask them about the abandoned ring in the middle of Ka'het space."
 	landing
 	source "Querii'ka"
-	destination "Lagrange"
+	to complete
+		never
 	on offer
 		log "Discovered an uninhabited, complete Quarg ring in the middle of the Graveyard. It seems weird that they would abandon a ringworld, given how important they are to them."
 		conversation
@@ -110,12 +111,13 @@ mission "First Contact: Ka'het: Quarg 1"
 			`	Apart from the utter silence, which is pretty common in most rings, you are convinced by the fact that every room, apartment and cabin has been carefully emptied, leaving nothing behind. Perhaps it would be wise to ask the Quarg what happened here...`
 				accept
 
-mission "First Contact: Ka'het: Quarg 2"
+mission "First Contact: Z Ka'het: Quarg 2"
 	landing
 	invisible
-	source "Lagrange"
+	source
+		attributes "quarg"
 	to offer
-		has "First Contact: Ka'het: Quarg 1: done"
+		has "First Contact: Ka'het: Quarg 1: active"
 	on offer
 		conversation
 			`Do you want to ask the Quarg about the abandoned ringworld in the region of the Graveyard?`
@@ -137,6 +139,7 @@ mission "First Contact: Ka'het: Quarg 2"
 			`	"For few more centuries the Builders lasted, before falling under their very own hubris. Their space is still populated by the Ka'het they gave birth to through the immense facilities they assembled, who do not yet possess a vast intelligence." After bowing, the Quarg quickly walks away, leaving you with more questions than answers.`
 				decline
 	on decline
+		fail "First Contact: Ka'het: Quarg 1"
 		log "Asked the Quarg about the history of the Graveyard. Although not being told the reason for the abandoned ringworld, have learned about the previous inhabitants of the region, the Builders."
 		log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have since become extinct. They developed some sort of weapon, called Ka'het, which stopped obeying their orders and rebelled against them.`
 		log "Factions" "Ka'het"  `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then rebelled and led them to extinction. Even if millennia passed, they are still being produced in the Graveyard.`
