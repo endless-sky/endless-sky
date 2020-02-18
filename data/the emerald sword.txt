@@ -31,7 +31,7 @@ mission "The Box 1"
 mission "The Box 2"
 	landing
 	name "The mysterious box"
-	description "Take the mysterious box to a trusted scientist on the Deep."
+	description "Take the mysterious box to a trusted scientist on <destination>."
 	source "Zug"
 	destination "Vinci"
 	
@@ -181,7 +181,7 @@ mission "The Box 4"
 			`	You arrive at the proposed location in the middle of nowhere, under stormy conditions. Initially, you question whether you received the right coordinates or not, until a submarine emerges from the waves. It is a huge vessel, and lights guide you to land on it's deck, which your spaceship comfortably fits in. Armed men in business suits surround your ship, and when you unboard, two of them guide you inside. You're led into a dimly lit room with a holographic map of the galaxy on the ceiling and a desk, behind which a hooded figure sits.`
 			`	"Please, take a seat," they say. Their voice has a strange tone with no distinguishable gender, with a sybilating, guttural accent, and it's not until you take a seat that you notice a reptilian snout poking out of the hood. You don't know whether this is natural or an extreme body modification.`
 			choice
-				`(say nothing)`
+				`(Say nothing.)`
 					goto middle
 				`"Are you a..."`
 			`	They cut you off. "Who or what I am doesn't matter to you."`
@@ -202,8 +202,8 @@ mission "The Box 4"
 			label visited
 			`You come back to Stormhold and receive new coordinates to meet with Mammon. Would you like to visit them?`
 			choice
-				`	(Yes)`
-				`	(No)`
+				`	(Yes.)`
+				`	(No.)`
 					defer
 			`	You follow the new coordinates, arriving again in a random place in the sea, again under stormy conditions, which seems to be the norm in this planet. The submarine emerges, you land, and follow the men to Mammon's room.`
 			`	"Welcome back," they say.`
@@ -317,14 +317,14 @@ mission "The Box 6a"
 	
 	on offer
 		conversation
-			`You come in for a landing, and the few mercenaries that stayed on the ground march to your ship carrying a makeshift white flag. Dozens of men and women, tough looking and in uniform, carrying weapons but remaining peaceful and organized. These weren't ordinary criminals, it seems.`
+			`You come in for a landing, and the few mercenaries that stayed on the ground march to your ship carrying a makeshift white flag. Dozens of men and women, tough looking and in uniform, unarmed, remaining peaceful and organized. These weren't ordinary criminals, it seems.`
 			`	"We know when we've lost," one of them yells to your ship on a megaphone. "What is it that you want?"`
 			choice
 				`(Shoot them.)`
 					goto shoot
 				`(Talk to them.)`
 			
-			`	You land and come out with your crew, forming your own defensive line.`
+			`	You land and cautiously open the hatch to talk with them.`
 			`	"Who do you work for? Where is the cube you stole?" You ask.`
 			`	"So that cube was yours?" One woman up front says. "I knew that mission was sketchy... We're mercenaries. We were employed by some unknown men in suits who paid us really well to steal it, yet when we returned with it, they just scanned it and told us to dispose of it. Said that a digital copy should be enough, and the trouble should be enough retribution."`
 			`	"We'll give you the cube on good terms if you spare us."`
@@ -335,11 +335,12 @@ mission "The Box 6a"
 					goto fire
 			
 			label shoot
-			`	Without saying a word, you turn your ship towards them and open fire on the small army. Using ship-mounted guns against personnel is extremely overkill, and they don't stand a chance to survive. There is a smoldering clearing around the place where they once stood, and a forest fire begins to spread.`
+			`	Disregarding their surrender, you turn your ship towards them and open fire on the small army. Using ship-mounted guns against personnel is extremely overkill, and they don't stand a chance to survive. There is a smoldering clearing around the place where they once stood, and a forest fire begins to spread.`
 				goto next
 			
 			label fire
-			`	You order your crew to open fire, and in seconds a small battle is raging. They weren't expecting you to attack, and that proves to be their demise. Many are dead before they can even react, and with the advantage of using your ships for cover, the rest are easily dealt with.`
+			`	Distrustful, you immediately close the hatch and get back into your ship while they scatter.`
+				goto shoot
 			
 			label next
 			`	You get into the camp, shooting any mercenaries that remained hidden, and pillaging their tents. You find hundreds of thousands of credits worth of valuables, and eventually, you find the cube as well. With that in hand, you go back to your ship, ready to take it back to John.`
@@ -487,7 +488,7 @@ mission "The box 8"
 	
 	on complete
 		conversation
-			`It was a long trip, almost halfway across the galaxy. The Hai archaeologists were been friendly to you, giving you updates every time they make a new breakthrough. During this time, the cube, previously thought to be impenetrable, had been disassembled and cleaned. Components that decayed into a mess of oxidized wires and goopy paste over the eons were been identified and removed to substitute for equivalent ones, and a blueprint of the box and it's circuits has started to take shape.`
+			`It was a long trip, almost halfway across the galaxy. The Hai archaeologists have been friendly to you, giving you updates every time they make a new breakthrough. During this time, the cube, previously thought to be impenetrable, had been disassembled and cleaned. Components that decayed into a mess of oxidized wires and goopy paste over the eons were been identified and removed to substitute for equivalent ones, and a blueprint of the box and it's circuits has started to take shape.`
 			`	You land, and make a quick call to Albert Foster, who doesn't believe you when you say you got alien archaeologists to help. You then look for the three Hai to figure out how they're going to go unnoticed in a Human world. You're surprised to find Eyama wearing long, dark but colorful baggy Human clothing with an equally oversized hoodie and a bandanna. You recognize this outfit, very popular with the youth these days, whom are generally regarded as delinquents by the previous generation. Additionally she's carrying two more sets, for her Hai partners as well. It hides her body really well at the cost of making her look like a young boy, and the Hai's relatively short stature doesn't help.`
 			`	"Call me Miss Deus ex Machina, because I thought ahead and bought these from a merchant back home. Perfect disguise. The humans will never notice. How do I look?"`
 			`	You can't disagree that it makes a good disguise, but refrain from telling them exactly how silly they would look in that clothing. Meanwhile, the other two go back to their rooms to get dressed.`
@@ -495,7 +496,7 @@ mission "The box 8"
 			`	You agree, and after they're all ready, you make your way out to the dig site. Surprisingly, the three Hai don't get many weird looks if they walk a bit further behind you. You arrive at the museum and they immediately break character by being very obviously excited to see the exhibits. This probably comes as a relief to onlookers, however, who would normally expect that type of kid to vandalize priceless artifacts.`
 			`	Finally, you arrive at Albert's workshop. He stops brushing what looks like what was once a television and looks startled at you and the three "kids". The Hai take off their hood and bandanna, causing his jaw to nearly drop to the floor.`
 			`	"I'll be damned. The Hai really exist!" He exclaims.`
-			`	"Of course we do" Eyama laughs. "Haven't you noticed all the stories?"`
+			`	"Of course we do" Eyama laughs. "Haven't you heard all the stories?"`
 			`	"I had my doubts. Merchants are well known for telling tall tales." He smiles. "Anyway, I'm Albert Foster, archaeologist, pleased to meet you all."`
 			`	They introduce themselves, and very soon the conversation evolves to a kind of jargon even Albert has trouble following. They talk about the box, and their findings, while Albert talks about the history uncovered in the dig site, and insights on the Sheragi daily life and culture. You close the door to make sure nobody else is startled.`
 			`	"We've managed to open the box and we're making a blueprint of it," says Desyo. "Once that's done, we might be able to rebuild the broken pieces and recover the data. We already have documentation on how their hardware worked."`
@@ -533,6 +534,7 @@ mission "The Emerald Sword 2"
 		has "The Emerald Sword 1: done"
 	
 	on offer
+		require "Jump Drive"
 		conversation
 			`You arrive on Zug, and after contacting them and following their instructions, you find Albert and the three Hai archaeologists in an ice cream shop. They're still wearing the youngster clothes, but not even bothering to hide their faces with the bandanna anymore. Surprisingly, nobody seems too distressed at the sight. Rakei waves for you and stands up, coming to you with ice creams in paw.`
 			`	"Hello <first>! It seems our disguise worked better than intended. The Humans around here think we're wearing a costume," she says quietly.`
@@ -601,7 +603,7 @@ mission "The Emerald Sword 3"
 			`	"You can call it Dread. Regret. Loss. You're standing in the graveyard of a lost civilization."`
 			label who
 			`	"I am the guardian of this site. I am also the one who guided you towards the buried city, so your species would bear witness and take heed of the lessons of ones who have long succumbed to their own folly. I did not intend for you to reach this far."`
-			`	"Here is where the Sheragi came to an end. The tools that drove them to extinction are long gone. We witnessed... as they cast those tools into the heat of this star.`
+			`	"Here is where the Sheragi came to an end. The tools that drove them to extinction are long gone. We witnessed, as they cast those tools into the heat of this star.`
 			choice
 				`	"You mean this ship? Its weapons systems seem to be intact."`
 					goto cannon
@@ -611,8 +613,8 @@ mission "The Emerald Sword 3"
 			label cannon
 			`	"That ship is just a relic. The weapon that perished the Sheragi was indiscriminate. An irrational decision they made themselves."`
 			label next
-			`	"The feeling in your chest becomes overpowering and you hold on to the command seat, gasping for air, light-headed. It seems evident those feelings are not your own, but are washing through you like a tidal wave. As you struggle to regain composure, the thoughts continue to form in your mind.`
-			`	"I know what you seek here. The trinket you covet is of little relevance, even for your own, human standards. But if you will it, then take it. Perhaps the sight of that vessel will remind the living races of those who have come and gone... and how, despite their great accomplishments, as they turn to war they are reduced to graveyards, relics, and memories."`
+			`	As that is said, you're overcome by glimpses of memories that are not yours, not clear enough for you to identify what exactly is happening, but you can feel the sadness in them.`
+			`	The voice continues: "I know what you seek here. The trinket you covet is of little relevance, even for your own, human standards. But if you will it, then take it. Perhaps the sight of that vessel will remind the living races of those who have come and gone... and how, despite their great accomplishments, as they turn to war they are reduced to graveyards, relics, and memories."`
 			`	"The voice, and the overwhelming emotions that came alongside it, disappear as mysteriously as they came. Desyo, who witnessed you speaking into thin air, asks whether you feel okay. It seems like no one else heard it."`
 
 	npc board
@@ -621,12 +623,12 @@ mission "The Emerald Sword 3"
 		system Zubenelhakrabi
 		ship "Emerald Sword" "Emerald Sword"
 		conversation
-			`You dock with the Emerald Sword, and the crew starts working to carefully find a way in, directed by the Hai archaeologists. There is no atmosphere inside it, as the life support has long since ceased to work, and it takes a long time to restore it through your ship's life support and patch tiny micrometeorite holes. Once it's in breathable conditions, it still smells like a tomb. You find many Sheragi skeletons and mummified remains. A few of them have prosthetics that survived better than their host. Your crew gets to work relocating the remains to the cargo bay, and cleaning up the thick layer of dust and grime that covers every surface, while the more specialized crew tries to bring the power core back to life, and take advantage of the zero-G environment to move the jump drive into the ship more easily. You'll need to land to properly install it, however.`
+			`You dock with the Emerald Sword, and the crew starts working to carefully find a way in, directed by the Hai archaeologists. There is no atmosphere inside it, as the life support has long since ceased to work, and it takes a long time to restore it through your ship's own life support and patch tiny micrometeorite holes. Once it's in breathable conditions, it still smells like a tomb. You find many Sheragi skeletons and mummified remains. A few of them have prosthetics that survived better than their host. Your crew gets to work cleaning up the thick layer of dust and grime that covers every surface, while the more specialized crew tries to bring the power core back to life, and take advantage of the zero-G environment to move the jump drive into the ship more easily. You'll need to land to properly install it, however. All that is left for you to do is relocate the many corpses littering the living spaces with your crew.`
 	
 	on complete
 		conversation
 			`It takes some time to find a suitable landing spot, high enough to escape the highest concentrations of chlorine gas in the atmosphere, but flat enough to land on. You eventually park your ships over a mesa. The environmental suits brought in "just in case" turn out to be very useful here. The atmosphere would be otherwise unbreathable for long periods of time.`
-			`	Over the course of the next day, the workers unload some outfitting and repairing equipment, while scientists slowly work out the functions of the ship, and brief you and your crew on how to operate it. One of the workers invite you to visit the temporary outfitter and oversee the proper installation of the Jump Drive and the Outfits Expansion in the Emerald Sword.`
+			`	Over the course of the next day, the workers unload some outfitting and repairing equipment, while scientists slowly work out the functions of the ship, and brief you and your crew on how to operate it. One of the workers invite you to visit the temporary outfitter and oversee the proper installation of the Outfits Expansion and the Jump Drive in the Emerald Sword.`
 			`[You need to remove the Damaged Sheragi Systems to repair it.]`
 
 mission "Emerald Sword Epilogue"
@@ -646,7 +648,7 @@ mission "Emerald Sword Epilogue"
 	on complete
 		event "temporary outfitter removed"
 		conversation
-			`Your new exotic ship draws a lot of attention from the dock workers, probably even more so due to the unprecedentedly large cannon. Albert and the Hai Archaeologists spend most of the day examining your ship in more detail, now that it's in a proper spaceport, and they can access more complex equipment. All is done in an afternoon, and as night falls, the immense scale of the inside of the ship allows more floors to be installed, and gives you even more living space.`
+			`Your new exotic ship draws a lot of attention from the dock workers, probably even more so due to the unprecedentedly large cannon. Albert and the Hai Archaeologists spend most of the day examining your ship in more detail and recovering the corpses, now that it's in a proper spaceport, and they can access more complex equipment. All is done in an afternoon, and as night falls, the immense scale of the inside of the ship allows more floors to be installed, and gives you even more living space.`
 			`	By then, you go back to the same park as before with Albert and the three Hai in partial disguise, ice creams in hand and paws to commemorate the new acquisition.`
 			`	"That is one impressive ship," you mention.`
 			`	"True," Desyo says. "I had never seen a cannon that big before."`
@@ -669,10 +671,10 @@ mission "Emerald Sword Epilogue"
 			`	"I don't think you will, as long as you don't fire it into a planet. It doesn't cause unnecessary suffering like nerve gas, and it isn't as indiscriminate as a nuclear bomb. This is a focused beam. It's going to poke holes straight through any ship subject to it's wrath."`
 			label catch
 			`	"Then what is the catch?" you ask.`
-			`	"It eats a lot of power. I mean a lot. And it does that every shot. No single reactor will be capable of making it shoot as fast as it can. Expect to invest a lot in batteries and reactors if you want to reoutfit that warship and still use the cannon.`
+			`	"It eats a lot of power. I mean a lot. And it does that every shot. No single reactor will be capable of making it shoot as fast as it possibly could. Expect to invest a lot in batteries and reactors if you want to reoutfit that warship and still use the cannon.`
 			`	Desyo adds. "Also, don't go thinking you're invincible now. The Shield matrix in that ship is incredibly primitive. Almost nonexistent. The hull is strong, but don't rely on it too much. Human technology could probably do better if they tried."`
 			`	"So what are you going to do now?" You ask them.`
-			`	Eyama responds. "We'll continue working with Albert. These two nerds like technology and ships, but I'm more interested in the treasure trove of cultural artifacts the buried city holds. Not to mention the humans here are very interesting!"`
+			`	Eyama responds. "We'll continue working with Albert. These two nerds like technology and ships, but I'm far more interested in the treasure trove of cultural artifacts the buried city holds. Not to mention the humans here are very interesting!"`
 			`	You all finish your ice creams, and continue chatting for a while longer, before you say goodbye and return to your ship. By tomorrow, it will be in full working condition, ready to take to the endless void.`
 
 # Events
