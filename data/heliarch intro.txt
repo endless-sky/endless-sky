@@ -1063,7 +1063,7 @@ mission "Heliarch Expedition 1"
 			`	"Our invaluable human guest, we greet," he says. "An honor, it is, for I, elder Aulori, to such a visit, host."`
 			`	Some other members salute you as well, and then the elder ask what is it that you wanted to tell them.`
 			choice
-				`	"I know of a system broken Quarg ringworld, thought it would be worth telling you all."`
+				`	"I know of a system where a broken Quarg ringworld is, I figured I should tell you."`
 				`	"Would I be paid if I told you about a place where you can find a broken Quarg ringworld?"`
 			`	He squints his eyes, then speaks, "Forgive me, you must, Captain, but repeat that, would you?"`
 			`	You say it again, and he once again looks puzzled. He speaks a bit to his colleagues in their own language, then takes off the translation box from around his neck.`
@@ -1202,7 +1202,6 @@ mission "Heliarch Expedition 5"
 					goto needs
 			label nosupply
 			`	"Decide it, I did not. Determined it to be the best course of action, the elders have," he explains. "Completely overhaul our understanding of the ringworlds, this project could."`
-				goto needs
 			label needs
 			`	He says that the group will need a way to generate energy, and a sizeable battery too, to power up the facilities that will be mounted on the planet. He also mentions that they will need something to make sure the water they get from the nearby river is in a drinkable state.`
 			`	"Compensated for your expenses, you would be, of course," he says after finishing the list.`
@@ -1335,12 +1334,13 @@ mission "Heliarch Containment 3"
 	destination "Ring of Power"
 	on offer
 		conversation
-			`Three Heliarch officers approache you as you're walking around the spaceport.`
+			`Three Heliarch officers approach you as you're walking around the spaceport.`
 			`	"Greetings, Captain <last>. Interested, would you be, in accompanying us? A proposition, we have," the Saryd says.`
 			choice
 				`	"What's it about?"`
 					goto inquire
 				`	"Sure, lead the way."`
+					goto way
 				`	"Sorry, not up for taking a stroll right now."`
 					decline
 			label inquire
@@ -1349,6 +1349,7 @@ mission "Heliarch Containment 3"
 				`	"Fine, bring me to somewhere you can tell me."`
 				`	"That seems a bit sketchy, I'll pass."`
 					decline
+			label way
 			`	They show you to a room in the restricted sections of the spaceport, where an Arach is waiting.`
 			`	"Agreed to work with us, have you, Captain?" He asks. "The one who asked for you, I am. Call me elder Plortup, you may."`
 			choice
@@ -1449,7 +1450,7 @@ mission "Heliarch Containment 5"
 		conversation
 			`After the transmission with Plortup ends, the station is awfully quiet for a few hours.`
 			`	You head outside your ship to see if you can find something interesting to do, but can't find anything in particular. You also notice that the job board is completely empty, that the market's trade values are not updating, and any news system is awfully destabilized.`
-			`	Suddenly a few Heliarch rush beside you, heading for an office. They rush back outside, scoutin the place, until they spot you, and rush for you.`
+			`	Suddenly a few Heliarch rush beside you, heading for an office. They rush back outside, scouting the place, until they spot you, and rush for you.`
 			`	"Captain! Helped us, you have, trustworthy, you are. In need of a combat-ready ship, we are."`
 			choice
 				`	"What's going on?"`
