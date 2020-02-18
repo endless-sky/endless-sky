@@ -1401,7 +1401,7 @@ mission "Pirate Troubles [3]"
 mission "Pirate Troubles [4]"
 	landing
 	name "Pirate Tribute"
-	description "Escort the three Hai freighters carrying Hai weapons and technology to <soptovers>, then escort the freighters back to <destination>."
+	description "Escort the three Hai freighters carrying Hai weapons and technology to <stopovers>, then escort the freighters back to <destination>."
 	source "Hai-home"
 	stopover "Scar's Hideout"
 	clearance
