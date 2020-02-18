@@ -195,7 +195,7 @@ mission "Deep Mystery Cube Station"
 	description "Deliver a package to <destination>. Payment is <payment>."
 	cargo "mystery package" 1
 	to offer
-		random < 5
+		random < 7
 		"combat rating" > 35
 	source
 		attributes "deep"
