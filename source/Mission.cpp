@@ -627,9 +627,6 @@ bool Mission::CanComplete(const PlayerInfo &player) const
 	if(player.GetPlanet() != destination)
 		return false;
 	
-	if(!toComplete.Test(player.Conditions()))
-		return false;
-	
 	return IsSatisfied(player);
 }
 
@@ -640,6 +637,10 @@ bool Mission::CanComplete(const PlayerInfo &player) const
 bool Mission::IsSatisfied(const PlayerInfo &player) const
 {
 	if(!waypoints.empty() || !stopovers.empty())
+		return false;
+	
+	// Test the completion conditions for this mission.
+	if(!toComplete.Test(player.Conditions()))
 		return false;
 	
 	// Determine if any fines or outfits that must be transferred, can.
@@ -818,7 +819,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// if this is a non-job mission that just got offered and if so,
 	// automatically accept it.
 	if(it != actions.end())
-		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr, boardingShip);
+		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr, boardingShip, IsUnique());
 	else if(trigger == OFFER && location != JOB)
 		player.MissionCallback(Conversation::ACCEPT);
 	
@@ -909,6 +910,21 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 const string &Mission::Identifier() const
 {
 	return name;
+}
+
+
+
+// Get a specific mission action from this mission.
+// If a mission action is not found for the given trigger, returns an empty 
+// mission action.
+const MissionAction &Mission::GetAction(Trigger trigger) const
+{
+	auto ait = actions.find(trigger);
+	static const MissionAction EMPTY;
+	if(ait != actions.end())
+		return ait->second;
+	else
+		return EMPTY;
 }
 
 

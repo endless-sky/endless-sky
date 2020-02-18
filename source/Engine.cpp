@@ -433,8 +433,11 @@ void Engine::Step(bool isActive)
 			--jumpCount;
 	}
 	ai.UpdateEvents(events);
-	HandleKeyboardInputs();
-	ai.UpdateKeys(player, activeCommands, isActive && wasActive);
+	if(isActive && wasActive)
+	{
+		HandleKeyboardInputs();
+		ai.UpdateKeys(player, activeCommands);
+	}
 	wasActive = isActive;
 	Audio::Update(center);
 	
@@ -1597,23 +1600,46 @@ void Engine::HandleKeyboardInputs()
 	keyHeld.ReadKeyboard();
 	Command keyDown = keyHeld.AndNot(oldHeld);
 	
+	// Certain commands are always sent when the corresponding key is depressed.
+	static const Command manueveringCommands = Command::AFTERBURNER | Command::BACK |
+		Command::FORWARD | Command::LEFT | Command::RIGHT;
+	
+	// Transfer all commands that need to be active as long as the corresponding key is pressed.
+	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
+		manueveringCommands | Command::SHIFT);
+	
+	// Issuing LAND again within the cooldown period signals a change of landing target.
+	constexpr int landCooldown = 60;
 	++landKeyInterval;
 	if(oldHeld.Has(Command::LAND))
 		landKeyInterval = 0;
 	
-	// Wait with actual jumping until the jump command is released.
-	// Or if pressing land quicky in succession, then use WAIT to switch landing targets.
-	if(keyHeld.Has(Command::JUMP) || (keyHeld.Has(Command::LAND) && landKeyInterval < 60))
-		activeCommands.Set(Command::WAIT);
-	else
-		activeCommands.Clear(Command::WAIT);
+	// If all previously-held maneuvering keys have been released,
+	// restore any autopilot commands still being requested.
+	if(!keyHeld.Has(manueveringCommands) && oldHeld.Has(manueveringCommands))
+	{
+		activeCommands |= keyHeld.And(Command::JUMP | Command::BOARD | Command::LAND);
+		
+		// Do not switch landing targets when restoring autopilot.
+		landKeyInterval = landCooldown;
+	}
 	
-	// Transfer all commands that need to be active as long as the corresponding key is pressed.
-	activeCommands |= (keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
-		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::BACK | Command::AFTERBURNER));
+	// If holding JUMP or toggling LAND, also send WAIT. This prevents the jump from
+	// starting (e.g. while escorts are aligning), or switches the landing target.
+	if(keyHeld.Has(Command::JUMP) || (keyHeld.Has(Command::LAND) && landKeyInterval < landCooldown))
+		activeCommands |= Command::WAIT;
 	
-	// Transfer all newly pressed unhandled keys to active commands.
+	// Transfer all newly pressed, unhandled keys to active commands.
 	activeCommands |= keyDown;
+
+	// Translate shift+BACK to a command to a STOP command to stop all movement of the flagship.
+	// Translation is done here to allow the autopilot (which will execute the STOP-command) to
+	// act on a single STOP command instead of the shift+BACK modifier).
+	if(keyHeld.Has(Command::BACK) && keyHeld.Has(Command::SHIFT))
+	{
+		activeCommands |= Command::STOP;
+		activeCommands.Clear(Command::BACK);
+	}
 }
 
 

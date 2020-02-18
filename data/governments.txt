@@ -103,6 +103,23 @@ government "Hai"
 	
 	"player reputation" 0
 	"attitude toward"
+		" Hai " 1
+		"Hai (Unfettered)" -.1
+		"Merchant" .01
+	"bribe" .02
+	"friendly hail" "friendly hai"
+	"friendly disabled hail" "friendly disabled hai"
+	"hostile hail" "hostile hai"
+	"hostile disabled hail" "hostile disabled hai"
+
+government " Hai "
+	"display name" "Hai"
+	swizzle 0
+	color .84 .42 .81
+	
+	"player reputation" 0
+	"attitude toward"
+		"Hai" 1
 		"Hai (Unfettered)" -.1
 		"Merchant" .01
 	"bribe" .02
@@ -154,6 +171,17 @@ government "Independent"
 	"hostile hail" "hostile civilian"
 	raid "Large Southern Pirates"
 
+government " Independent "
+	"display name" "Independent"
+	swizzle 6
+	color .78 .36 .36
+	
+	"player reputation" 10
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
+
 government "Indigenous Lifeform"
 	# Nothing you do permanently angers indigenous creatures, because they are
 	# not sentient and do not remember you as an individual.
@@ -186,6 +214,7 @@ government "Ka'het"
 	"player reputation" -1
 
 government " Ka'het "
+	"display name" "Ka'het"
 	swizzle 0
 	language "Ka'het"
 
@@ -449,3 +478,9 @@ government "Wanderer"
 	"friendly disabled hail" "wanderer untranslated"
 	"hostile hail" "wanderer untranslated"
 	"hostile disabled hail" "wanderer untranslated"
+
+# A dummy government used to prevent Hai from entering the wormhole in Waypoint/Ultima Thule, but allowing human merchants and other governments to enter.
+government "Wormhole Alpha"
+	"attitude toward"
+		"Hai" -.01
+		"Hai (Unfettered)" -.01

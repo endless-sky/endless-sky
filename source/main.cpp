@@ -19,11 +19,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Dialog.h"
-#include "Files.h"
 #include "Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
-#include "ImageBuffer.h"
+#include "GameWindow.h"
 #include "MenuPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
@@ -33,13 +32,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteShader.h"
 #include "UI.h"
 
-#include "gl_header.h"
-#include <SDL2/SDL.h>
-
-#include <cstring>
 #include <iostream>
 #include <map>
-#include <sstream>
+
 #include <stdexcept>
 #include <string>
 
@@ -51,10 +46,7 @@ using namespace std;
 
 void PrintHelp();
 void PrintVersion();
-void SetIcon(SDL_Window *window);
-void AdjustViewport(SDL_Window *window);
-int DoError(string message, SDL_Window *window = nullptr, SDL_GLContext context = nullptr);
-void Cleanup(SDL_Window *window, SDL_GLContext context);
+void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode);
 Conversation LoadConversation();
 #ifdef _WIN32
 void InitConsole();
@@ -62,8 +54,10 @@ void InitConsole();
 
 
 
+// Entry point for the EndlessSky executable 
 int main(int argc, char *argv[])
 {
+	// Handle command-line arguments
 #ifdef _WIN32
 	if(argc > 1)
 		InitConsole();
@@ -91,309 +85,211 @@ int main(int argc, char *argv[])
 		else if(arg == "-p" || arg == "--parse-save")
 			loadOnly = true;
 	}
-	PlayerInfo player;
 	
-	try {
-		// Begin loading the game data. Exit early if we are not using the UI.
-		if(!GameData::BeginLoad(argv))
-			return 0;
-		
-		// Load player data, including reference-checking.
-		player.LoadRecent();
-		if(loadOnly)
-		{
-			cout << "Parse completed." << endl;
-			return 0;
-		}
-		
-		SDL_Init(SDL_INIT_VIDEO);
-		
-		Audio::Init(GameData::Sources());
-		
-		// On Windows, make sure that the sleep timer has at least 1 ms resolution
-		// to avoid irregular frame rates.
+	// Begin loading the game data. Exit early if we are not using the UI.
+	if(!GameData::BeginLoad(argv))
+		return 0;
+	
+	// Load player data, including reference-checking.
+	PlayerInfo player;
+	player.LoadRecent();
+	if(loadOnly)
+	{
+		cout << "Parse completed." << endl;
+		return 0;
+	}
+	
+	// On Windows, make sure that the sleep timer has at least 1 ms resolution
+	// to avoid irregular frame rates.
 #ifdef _WIN32
-		timeBeginPeriod(1);
+	timeBeginPeriod(1);
 #endif
+	
+	Preferences::Load();
+	
+	if(!GameWindow::Init())
+		return 1;
+	
+	GameData::LoadShaders();
+	
+	// Show something other than a blank window.
+	GameWindow::Step();
+	
+	Audio::Init(GameData::Sources());
+	
+	// This is the main loop where all the action begins.
+	try { 
+		GameLoop(player, conversation, debugMode);
+	}
+	catch(const runtime_error &error)
+	{
+		GameWindow::ExitWithError(error.what());
+		return 1;
+	}
 		
-		// Check how big the window can be.
-		SDL_DisplayMode mode;
-		if(SDL_GetCurrentDisplayMode(0, &mode))
-			return DoError("Unable to query monitor resolution!");
-		
-		Preferences::Load();
-		Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI;
-		bool isFullscreen = Preferences::Has("fullscreen");
-		if(isFullscreen)
-			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
-		else if(Preferences::Has("maximized"))
-			flags |= SDL_WINDOW_MAXIMIZED;
-		
-		// Make the window just slightly smaller than the monitor resolution.
-		int maxWidth = mode.w;
-		int maxHeight = mode.h;
-		if(maxWidth < 640 || maxHeight < 480)
-			return DoError("Monitor resolution is too small!");
-		
-		// Decide how big the window should be.
-		int windowWidth = (maxWidth - 100);
-		int windowHeight = (maxHeight - 100);
-		if(Screen::RawWidth() && Screen::RawHeight())
-		{
-			// Load the previously saved window dimensions.
-			windowWidth = min(windowWidth, Screen::RawWidth());
-			windowHeight = min(windowHeight, Screen::RawHeight());
-		}
-		
-		// Create the window.
-		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-#ifdef _WIN32
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
-#endif
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-		
-		SDL_Window *window = SDL_CreateWindow("Endless Sky",
-			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-			windowWidth, windowHeight, flags);
-		if(!window)
-			return DoError("Unable to create window!");
-		
-		SDL_GLContext context = SDL_GL_CreateContext(window);
-		if(!context)
-			return DoError("Unable to create OpenGL context! Check if your system supports OpenGL 3.0.", window);
-		
-		if(SDL_GL_MakeCurrent(window, context))
-			return DoError("Unable to set the current OpenGL context!", window, context);
-		
-		SDL_GL_SetSwapInterval(1);
-		
-		// Initialize GLEW.
-#ifndef __APPLE__
-		glewExperimental = GL_TRUE;
-		if(glewInit() != GLEW_OK)
-			return DoError("Unable to initialize GLEW!", window, context);
-#endif
-		
-		// Check that the OpenGL version is high enough.
-		const char *glVersion = reinterpret_cast<const char *>(glGetString(GL_VERSION));
-		if(!glVersion || !*glVersion)
-			return DoError("Unable to query the OpenGL version!", window, context);
-		
-		const char *glslVersion = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
-		if(!glslVersion || !*glslVersion)
-		{
-			ostringstream out;
-			out << "Unable to query the GLSL version. OpenGL version is " << glVersion << ".";
-			return DoError(out.str(), window, context);
-		}
-		
-		if(*glVersion < '3')
-		{
-			ostringstream out;
-			out << "Endless Sky requires OpenGL version 3.0 or higher." << endl;
-			out << "Your OpenGL version is " << glVersion << ", GLSL version " << glslVersion << "." << endl;
-			out << "Please update your graphics drivers.";
-			return DoError(out.str(), window, context);
-		}
-		
-		glClearColor(0.f, 0.f, 0.0f, 1.f);
-		glEnable(GL_BLEND);
-		glDisable(GL_DEPTH_TEST);
-		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-		
-		GameData::LoadShaders();
-		// Make sure the screen size and viewport are set correctly.
-		AdjustViewport(window);
-#ifndef __APPLE__
-		// On OS X, setting the window icon will cause that same icon to be used
-		// in the dock and the application switcher. That's not something we
-		// want, because the .icns icon that is used automatically is prettier.
-		SetIcon(window);
-#endif
-		if(!isFullscreen)
-			SDL_GetWindowSize(window, &windowWidth, &windowHeight);
-		
-		// GamePanels is used for the main-panel (flying your spaceship). The planet
-		// dialog and all other game-content related dialogs are placed on top of the
-		// main-panel.
-		// If there are both menuPanels and gamePanels, then the menuPanels take
-		// priority over the gamePanels. The gamePanels will then not be shown until
-		// the stack of menuPanels is empty.
-		UI gamePanels;
-		// MenuPanels is used for the panels related to pilot creation, preferences,
-		// game loading and game saving.
-		UI menuPanels;
-		menuPanels.Push(new MenuPanel(player, gamePanels));
-		if(!conversation.IsEmpty())
-			menuPanels.Push(new ConversationPanel(player, conversation));
-		
-		string swizzleName = "_texture_swizzle";
-#ifndef __APPLE__
-		const char *extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
-		if(!strstr(extensions, swizzleName.c_str()))
-#else
-		bool hasSwizzle = false;
-		GLint extensionCount;
-		glGetIntegerv(GL_NUM_EXTENSIONS, &extensionCount);
-		for(GLint i = 0; i < extensionCount && !hasSwizzle; ++i)
-		{
-			const char *extension = reinterpret_cast<const char *>(glGetStringi(GL_EXTENSIONS, i));
-			hasSwizzle = (extension && strstr(extension, swizzleName.c_str()));
-		}
-		if(!hasSwizzle)
-#endif
-			menuPanels.Push(new Dialog(
-				"Note: your computer does not support the \"texture swizzling\" OpenGL feature, "
-				"which Endless Sky uses to draw ships in different colors depending on which "
-				"government they belong to. So, all human ships will be the same color, which "
-				"may be confusing. Consider upgrading your graphics driver (or your OS)."));
-		
-		bool showCursor = true;
-		int cursorTime = 0;
-		int frameRate = 60;
-		FrameTimer timer(frameRate);
-		bool isPaused = false;
-		// If fast forwarding, keep track of whether the current frame should be drawn.
-		int skipFrame = 0;
-		// Limit how quickly fullscreen mode can be toggled.
-		int toggleTimeout = 0;
-		while(!menuPanels.IsDone())
-		{
-			if(toggleTimeout)
-				--toggleTimeout;
-			// Handle any events that occurred in this frame.
-			SDL_Event event;
-			while(SDL_PollEvent(&event))
-			{
-				UI &activeUI = (menuPanels.IsEmpty() ? gamePanels : menuPanels);
-				
-				// If the mouse moves, reset the cursor movement timeout.
-				if(event.type == SDL_MOUSEMOTION)
-					cursorTime = 0;
-				
-				// The caps lock key slows the game down (to make it easier to
-				// see and debug things that are happening quickly).
-				if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
-				{
-					isPaused = !isPaused;
-				}
-				else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
-						&& Command(event.key.keysym.sym).Has(Command::MENU)
-						&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
-				{
-					menuPanels.Push(shared_ptr<Panel>(
-						new MenuPanel(player, gamePanels)));
-				}
-				else if(event.type == SDL_QUIT)
-				{
-					menuPanels.Quit();
-				}
-				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
-				{
-					// The window has been resized. Adjust the raw screen size
-					// and the OpenGL viewport to match.
-					AdjustViewport(window);
-					if(!isFullscreen)
-						SDL_GetWindowSize(window, &windowWidth, &windowHeight);
-				}
-				else if(event.type == SDL_KEYDOWN && !toggleTimeout
-						&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
-						|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
-				{
-					// Toggle full-screen mode. This will generate a window size
-					// change event, so no need to adjust the viewport here.
-					isFullscreen = !isFullscreen;
-					toggleTimeout = 30;
-					if(!isFullscreen)
-					{
-						SDL_SetWindowFullscreen(window, 0);
-						SDL_SetWindowSize(window, windowWidth, windowHeight);
-					}
-					else
-						SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
-				}
-				else if(activeUI.Handle(event))
-				{
-					// No need to do anything more!
-				}
-			}
-			SDL_Keymod mod = SDL_GetModState();
-			Font::ShowUnderlines(mod & KMOD_ALT);
+	// Remember the window state.
+	Preferences::Set("maximized", GameWindow::IsMaximized());		
+	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
+	Screen::SetRaw(GameWindow::Width(), GameWindow::Height());
+	Preferences::Save();
+
+	GameWindow::Quit();
+	Audio::Quit();
+	
+	return 0;
+}
+
+void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
+{
+	// gamePanels is used for the main panel where you fly your spaceship. 
+	// All other game content related dialogs are placed on top of the gamePanels.
+	// If there are both menuPanels and gamePanels, then the menuPanels take
+	// priority over the gamePanels. The gamePanels will not be shown until
+	// the stack of menuPanels is empty.
+	UI gamePanels;
+	
+	// menuPanels is used for the panels related to pilot creation, preferences,
+	// game loading and game saving.
+	UI menuPanels;
+	
+	menuPanels.Push(new MenuPanel(player, gamePanels));
+	if(!conversation.IsEmpty())
+		menuPanels.Push(new ConversationPanel(player, conversation));
+
+	if(!GameWindow::HasSwizzle())
+		menuPanels.Push(new Dialog(
+			"Note: your computer does not support the \"texture swizzling\" OpenGL feature, "
+			"which Endless Sky uses to draw ships in different colors depending on which "
+			"government they belong to. So, all human ships will be the same color, which "
+			"may be confusing. Consider upgrading your graphics driver (or your OS)."));
 			
-			// In fullscreen mode, hide the cursor if inactive for ten seconds,
-			// but only if the player is flying around in the main view.
-			bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
-			++cursorTime;
-			bool shouldShowCursor = (!isFullscreen || cursorTime < 600 || !inFlight);
-			if(shouldShowCursor != showCursor)
-			{
-				showCursor = shouldShowCursor;
-				SDL_ShowCursor(showCursor);
-			}
+	bool showCursor = true;
+	int cursorTime = 0;
+	int frameRate = 60; 
+	FrameTimer timer(frameRate);
+	bool isPaused = false;
+	bool isFastForward = false;
+	
+	// If fast forwarding, keep track of whether the current frame should be drawn.
+	int skipFrame = 0;
+	
+	// Limit how quickly full-screen mode can be toggled.
+	int toggleTimeout = 0;
+	
+	// IsDone becomes true when the game is quit.
+	while(!menuPanels.IsDone())
+	{
+		if(toggleTimeout)
+			--toggleTimeout;
 			
-			// Tell all the panels to step forward, then draw them.
-			((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
+		// Handle any events that occurred in this frame.
+		SDL_Event event;
+		while(SDL_PollEvent(&event))
+		{
+			UI &activeUI = (menuPanels.IsEmpty() ? gamePanels : menuPanels);
 			
-			// Caps lock slows the frame rate in debug mode, but raises it in
-			// normal mode. Slowing eases in and out over a couple of frames.
-			bool fastForward = false;
-			if((mod & KMOD_CAPS) && inFlight)
+			// If the mouse moves, reset the cursor movement timeout.
+			if(event.type == SDL_MOUSEMOTION)
+				cursorTime = 0;
+			
+			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 			{
-				if(debugMode)
-				{
-					if(frameRate > 10)
-					{
-						frameRate = max(frameRate - 5, 10);
-						timer.SetFrameRate(frameRate);
-					}
-				}
-				else
-				{
-					fastForward = true;
-					skipFrame = (skipFrame + 1) % 3;
-					if(skipFrame)
-						continue;
-				}
+				isPaused = !isPaused;
 			}
-			else if(frameRate < 60)
+			else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
+					&& Command(event.key.keysym.sym).Has(Command::MENU)
+					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
+			{   
+				// User pressed the Menu key.
+				menuPanels.Push(shared_ptr<Panel>(
+					new MenuPanel(player, gamePanels)));
+			}
+			else if(event.type == SDL_QUIT)
+			{
+				menuPanels.Quit();
+			}
+			else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
+			{
+				// The window has been resized. Adjust the raw screen size
+				// and the OpenGL viewport to match.
+				GameWindow::AdjustViewport();
+			}
+			else if(event.type == SDL_KEYDOWN && !toggleTimeout
+					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
+					|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
+			{
+				toggleTimeout = 30;
+				GameWindow::ToggleFullscreen();
+			}
+			else if(event.type == SDL_KEYDOWN && !event.key.repeat
+					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
+			{
+					isFastForward = !isFastForward;
+			}
+			else if(activeUI.Handle(event))
+			{
+				// The UI handled the event.
+			}
+		}
+		SDL_Keymod mod = SDL_GetModState();
+		Font::ShowUnderlines(mod & KMOD_ALT);
+		
+		// In full-screen mode, hide the cursor if inactive for ten seconds,
+		// but only if the player is flying around in the main view.
+		bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
+		++cursorTime;
+		bool shouldShowCursor = (!GameWindow::IsFullscreen() || cursorTime < 600 || !inFlight);
+		if(shouldShowCursor != showCursor)
+		{
+			showCursor = shouldShowCursor;
+			SDL_ShowCursor(showCursor);
+		}
+		
+		// Tell all the panels to step forward, then draw them.
+		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
+		
+		// Caps lock slows the frame rate in debug mode.
+		// Slowing eases in and out over a couple of frames.
+		if((mod & KMOD_CAPS) && inFlight && debugMode)
+		{
+			if(frameRate > 10)
+			{
+				frameRate = max(frameRate - 5, 10);
+				timer.SetFrameRate(frameRate);
+			}
+		}
+		else
+		{
+			if(frameRate < 60)
 			{
 				frameRate = min(frameRate + 5, 60);
 				timer.SetFrameRate(frameRate);
 			}
 			
-			Audio::Step();
-			// Events in this frame may have cleared out the menu, in which case
-			// we should draw the game panels instead:
-			(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
-			if(fastForward)
-				SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
-			
-			SDL_GL_SwapWindow(window);
-			timer.Wait();
+			if(isFastForward && inFlight)
+			{
+				skipFrame = (skipFrame + 1) % 3;
+				if(skipFrame)
+					continue;
+			}
 		}
 		
-		// If you quit while landed on a planet, save the game - if you did anything.
-		if(player.GetPlanet() && gamePanels.CanSave())
-			player.Save();
+		Audio::Step();
 		
-		// Remember the window state.
-		bool isMaximized = (SDL_GetWindowFlags(window) & SDL_WINDOW_MAXIMIZED);
-		Preferences::Set("maximized", isMaximized);		
-		Preferences::Set("fullscreen", isFullscreen);
-		// The Preferences class reads the screen dimensions, so update them to
-		// match the actual window size.
-		Screen::SetRaw(windowWidth, windowHeight);
-		Preferences::Save();
+		// Events in this frame may have cleared out the menu, in which case
+		// we should draw the game panels instead:
+		(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
+		if(isFastForward)
+			SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 		
-		Cleanup(window, context);
-	}
-	catch(const runtime_error &error)
-	{
-		DoError(error.what());
+		GameWindow::Step();
+
+		timer.Wait();
 	}
 	
-	return 0;
+	// If player quit while landed on a planet, save the game if there are changes.
+	if(player.GetPlanet() && gamePanels.CanSave())
+		player.Save();
 }
 
 
@@ -427,112 +323,6 @@ void PrintVersion()
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
 	cerr << endl;
-}
-
-
-
-void SetIcon(SDL_Window *window)
-{
-	// Load the icon file.
-	ImageBuffer buffer;
-	if(!buffer.Read(Files::Resources() + "icon.png"))
-		return;
-	if(!buffer.Pixels() || !buffer.Width() || !buffer.Height())
-		return;
-	
-	// Convert the icon to an SDL surface.
-	SDL_Surface *surface = SDL_CreateRGBSurfaceFrom(buffer.Pixels(), buffer.Width(), buffer.Height(),
-		32, 4 * buffer.Width(), 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
-	if(surface)
-	{
-		SDL_SetWindowIcon(window, surface);
-		SDL_FreeSurface(surface);
-	}
-}
-
-
-
-void AdjustViewport(SDL_Window *window)
-{
-	// Get the window's size in screen coordinates.
-	int width, height;
-	SDL_GetWindowSize(window, &width, &height);
-	
-	// Round the window size up to a multiple of 2, even if this
-	// means one pixel of the display will be clipped.
-	int roundWidth = (width + 1) & ~1;
-	int roundHeight = (height + 1) & ~1;
-	Screen::SetRaw(roundWidth, roundHeight);
-	
-	// Find out the drawable dimensions. If this is a high- DPI display, this
-	// may be larger than the window.
-	int drawWidth, drawHeight;
-	SDL_GL_GetDrawableSize(window, &drawWidth, &drawHeight);
-	Screen::SetHighDPI(drawWidth > width || drawHeight > height);	
-	
-	// Set the viewport to go off the edge of the window, if necessary, to get
-	// everything pixel-aligned.
-	drawWidth = (drawWidth * roundWidth) / width;
-	drawHeight = (drawHeight * roundHeight) / height;
-	glViewport(0, 0, drawWidth, drawHeight);
-}
-
-
-
-int DoError(string message, SDL_Window *window, SDL_GLContext context)
-{
-	Cleanup(window, context);
-	
-	// Check if SDL has more details.
-	const char *sdlMessage = SDL_GetError();
-	if(sdlMessage && sdlMessage[0])
-	{
-		message += " (SDL message: \"";
-		message += sdlMessage;
-		message += "\")";
-	}
-	
-	// Print the error message in the terminal and the error file.
-	Files::LogError(message);
-	
-	// Show the error message both in a message box and in the terminal.
-	SDL_MessageBoxData box;
-	box.flags = SDL_MESSAGEBOX_ERROR;
-	box.window = nullptr;
-	box.title = "Endless Sky: Error";
-	box.message = message.c_str();
-	box.colorScheme = nullptr;
-	
-	SDL_MessageBoxButtonData button;
-	button.flags = SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT;
-	button.buttonid = 0;
-	button.text = "OK";
-	box.numbuttons = 1;
-	box.buttons = &button;
-	
-	int result = 0;
-	SDL_ShowMessageBox(&box, &result);
-	
-	return 1;
-}
-
-
-
-void Cleanup(SDL_Window *window, SDL_GLContext context)
-{
-	// Make sure the cursor is visible.
-	SDL_ShowCursor(true);
-	
-	// Clean up in the reverse order that everything is launched.
-#ifndef _WIN32
-	// Under windows, this cleanup code causes intermittent crashes.
-	if(context)
-		SDL_GL_DeleteContext(context);
-#endif
-	if(window)
-		SDL_DestroyWindow(window);
-	Audio::Quit();
-	SDL_Quit();
 }
 
 
@@ -573,18 +363,20 @@ Conversation LoadConversation()
 #ifdef _WIN32
 void InitConsole()
 {
-	// If both stdout and stderr are already initialized (e.g. writing to a file), do nothing.
 	const int UNINITIALIZED = -2;
 	bool redirectStdout = _fileno(stdout) == UNINITIALIZED;
 	bool redirectStderr = _fileno(stderr) == UNINITIALIZED;
 	bool redirectStdin = _fileno(stdin) == UNINITIALIZED;
-
+	
+	// Bail if stdin, stdout, and stderr are already initialized (e.g. writing to a file)
 	if(!redirectStdout && !redirectStderr && !redirectStdin)
 		return;
 	
+	// Bail if we fail to attach to the console
 	if(!AttachConsole(ATTACH_PARENT_PROCESS) && !AllocConsole())
 		return;
-
+	
+	// Perform console redirection.
 	if(redirectStdout && freopen("CONOUT$", "w", stdout))
 		setvbuf(stdout, nullptr, _IOFBF, 4096);
 	if(redirectStderr && freopen("CONOUT$", "w", stderr))
