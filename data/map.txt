@@ -2578,7 +2578,7 @@ system Aldhibain
 		distance 2197.61
 		period 1930.55
 		object "Charon Station"
-			sprite planet/station2
+			sprite planet/station14
 			distance 211
 			period 13.622
 
@@ -2826,7 +2826,7 @@ system Algorel
 		distance 1859.58
 		period 1793.11
 		object "Hydra Station"
-			sprite planet/station4
+			sprite planet/station13
 			distance 277
 			period 12.3693
 
@@ -2882,7 +2882,7 @@ system Alheka
 		distance 2035.77
 		period 1118
 		object "Triton Station"
-			sprite planet/station4
+			sprite planet/station2
 			distance 261
 			period 11.3132
 
@@ -6127,7 +6127,7 @@ system Caph
 		distance 1666.37
 		period 827.952
 		object "Kraken Station"
-			sprite planet/station1
+			sprite planet/station10
 			distance 278
 			period 10.5056
 	object
@@ -8620,46 +8620,46 @@ system Ekuarik
 		sprite star/g5
 		period 10
 	object
-		sprite planet/lava4-b
+		sprite planet/lava6-b
 		distance 812
 		period 360
 	object
 		sprite "planet/ringworld right"
 		distance 812
 		period 360
-		offset 65
+		offset 30
 	object
 		sprite "planet/ringworld left"
 		distance 812
 		period 360
-		offset 85
+		offset 50
 	object
 		sprite "planet/ringworld right"
 		distance 812
 		period 360
-		offset 100
+		offset 75
+	object "Ring of Wisdom"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 95
 	object
-		sprite planet/ringworld
+		sprite "planet/ringworld left"
 		distance 812
 		period 360
-		offset 120
+		offset 115
 	object
-		sprite planet/ringworld
+		sprite "planet/ringworld right"
 		distance 812
 		period 360
-		offset 140
-	object "Ring of Wisdom"
-		sprite planet/ringworld
+		offset 150
+	object
+		sprite "planet/ringworld left"
 		distance 812
 		period 360
-		offset 160
-	object "Ring of Wisdom"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 180
-	object "Ring of Wisdom"
-		sprite planet/ringworld
+		offset 170
+	object
+		sprite "planet/ringworld right"
 		distance 812
 		period 360
 		offset 200
@@ -8674,130 +8674,95 @@ system Ekuarik
 		period 360
 		offset 240
 	object
-		sprite planet/ringworld
+		sprite "planet/ringworld left"
 		distance 812
 		period 360
 		offset 260
 	object
-		sprite planet/ringworld
+		sprite "planet/ringworld right"
 		distance 812
 		period 360
 		offset 280
-	object
-		sprite "planet/ringworld left"
+	object "Ring of Wisdom"
+		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 300
 	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 320
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 82
+	object
+		sprite planet/panels2
+		distance 830
+		period 360
+		offset 90
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 99
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 112
+	object
 		sprite planet/panels1
 		distance 800
 		period 360
-		offset 122
+		offset 207
 	object
 		sprite planet/panels2
 		distance 800
 		period 360
-		offset 138
+		offset 216
 	object
 		sprite planet/panels1
 		distance 800
 		period 360
-		offset 148
-	object
-		sprite planet/panels3
-		distance 800
-		period 360
-		offset 157
-	object
-		sprite planet/panels1
-		distance 800
-		period 360
-		offset 164
-	object
-		sprite planet/panels2
-		distance 800
-		period 360
-		offset 171
-	object
-		sprite planet/panels5
-		distance 800
-		period 360
-		offset 189
+		offset 225
 	object
 		sprite planet/panels4
 		distance 800
 		period 360
-		offset 204
-	object
-		sprite planet/panels2
-		distance 800
-		period 360
-		offset 214
-	object
-		sprite planet/panels2
-		distance 800
-		period 360
-		offset 226
-	object
-		sprite planet/panels2
-		distance 800
-		period 360
-		offset 240
-	object
-		sprite planet/panels2
-		distance 800
-		period 360
-		offset 258
+		offset 234
 	object
 		sprite planet/panels3
 		distance 830
 		period 360
-		offset 145
+		offset 221
 	object
 		sprite planet/panels5
 		distance 830
 		period 360
-		offset 163
-	object
-		sprite planet/panels3
-		distance 830
-		period 360
-		offset 178
-	object
-		sprite planet/panels1
-		distance 830
-		period 360
-		offset 185
+		offset 239
 	object
 		sprite planet/panels2
 		distance 830
 		period 360
-		offset 191
+		offset 253
+	object
+		sprite planet/panels1
+		distance 800
+		period 360
+		offset 281
 	object
 		sprite planet/panels4
-		distance 830
+		distance 800
 		period 360
-		offset 200
-	object
-		sprite planet/panels5
-		distance 830
-		period 360
-		offset 218
+		offset 298
 	object
 		sprite planet/panels2
-		distance 830
+		distance 800
 		period 360
-		offset 228
-	object
-		sprite planet/panels1
-		distance 830
-		period 360
-		offset 245
-	object
-		sprite planet/panels1
-		distance 830
-		period 360
-		offset 250
+		offset 312
 
 system Elnath
 	pos -288 -77
@@ -8859,7 +8824,7 @@ system Elnath
 		distance 4745.58
 		period 3157.63
 		object "Carbuncle Station"
-			sprite planet/station2
+			sprite planet/station9
 			distance 253
 			period 12.546
 
@@ -12927,7 +12892,7 @@ system Izar
 		distance 2239.39
 		period 1178.21
 		object "Wyvern Station"
-			sprite planet/station1
+			sprite planet/station8
 			distance 201
 			period 12.6652
 
@@ -13444,46 +13409,46 @@ system "Ki War Ek"
 		sprite star/g5
 		period 10
 	object
-		sprite planet/lava6-b
+		sprite planet/lava4-b
 		distance 812
 		period 360
 	object
 		sprite "planet/ringworld right"
 		distance 812
 		period 360
-		offset 30
+		offset 65
 	object
 		sprite "planet/ringworld left"
 		distance 812
 		period 360
-		offset 50
+		offset 85
 	object
 		sprite "planet/ringworld right"
 		distance 812
 		period 360
-		offset 75
+		offset 100
+	object
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 120
+	object
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 140
 	object "Ring of Power"
 		sprite planet/ringworld
 		distance 812
 		period 360
-		offset 95
-	object
-		sprite "planet/ringworld left"
+		offset 160
+	object "Ring of Power"
+		sprite planet/ringworld
 		distance 812
 		period 360
-		offset 115
-	object
-		sprite "planet/ringworld right"
-		distance 812
-		period 360
-		offset 150
-	object
-		sprite "planet/ringworld left"
-		distance 812
-		period 360
-		offset 170
-	object
-		sprite "planet/ringworld right"
+		offset 180
+	object "Ring of Power"
+		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 200
@@ -13498,95 +13463,130 @@ system "Ki War Ek"
 		period 360
 		offset 240
 	object
-		sprite "planet/ringworld left"
+		sprite planet/ringworld
 		distance 812
 		period 360
 		offset 260
 	object
-		sprite "planet/ringworld right"
-		distance 812
-		period 360
-		offset 280
-	object "Ring of Power"
 		sprite planet/ringworld
 		distance 812
 		period 360
-		offset 300
+		offset 280
 	object
 		sprite "planet/ringworld left"
 		distance 812
 		period 360
-		offset 320
-	object
-		sprite planet/panels1
-		distance 830
-		period 360
-		offset 82
-	object
-		sprite planet/panels2
-		distance 830
-		period 360
-		offset 90
-	object
-		sprite planet/panels1
-		distance 830
-		period 360
-		offset 99
-	object
-		sprite planet/panels1
-		distance 830
-		period 360
-		offset 112
+		offset 300
 	object
 		sprite planet/panels1
 		distance 800
 		period 360
-		offset 207
+		offset 122
 	object
 		sprite planet/panels2
 		distance 800
 		period 360
-		offset 216
+		offset 138
 	object
 		sprite planet/panels1
 		distance 800
 		period 360
-		offset 225
+		offset 148
+	object
+		sprite planet/panels3
+		distance 800
+		period 360
+		offset 157
+	object
+		sprite planet/panels1
+		distance 800
+		period 360
+		offset 164
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 171
+	object
+		sprite planet/panels5
+		distance 800
+		period 360
+		offset 189
 	object
 		sprite planet/panels4
 		distance 800
 		period 360
-		offset 234
+		offset 204
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 214
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 226
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 240
+	object
+		sprite planet/panels2
+		distance 800
+		period 360
+		offset 258
 	object
 		sprite planet/panels3
 		distance 830
 		period 360
-		offset 221
+		offset 145
 	object
 		sprite planet/panels5
 		distance 830
 		period 360
-		offset 239
+		offset 163
+	object
+		sprite planet/panels3
+		distance 830
+		period 360
+		offset 178
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 185
 	object
 		sprite planet/panels2
 		distance 830
 		period 360
-		offset 253
-	object
-		sprite planet/panels1
-		distance 800
-		period 360
-		offset 281
+		offset 191
 	object
 		sprite planet/panels4
-		distance 800
+		distance 830
 		period 360
-		offset 298
+		offset 200
+	object
+		sprite planet/panels5
+		distance 830
+		period 360
+		offset 218
 	object
 		sprite planet/panels2
-		distance 800
+		distance 830
 		period 360
-		offset 312
+		offset 228
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 245
+	object
+		sprite planet/panels1
+		distance 830
+		period 360
+		offset 250
 
 system Kiro'ku
 	pos -131.923 -884.46
@@ -15812,7 +15812,7 @@ system Men
 		distance 2504.61
 		period 2802.82
 		object "Smuggler's Den"
-			sprite planet/station6
+			sprite planet/station15
 			distance 302
 			period 14.0811
 
@@ -20834,7 +20834,7 @@ system Scheat
 		distance 2229.12
 		period 1683.91
 		object "Charybdis Station"
-			sprite planet/station6
+			sprite planet/station17
 			distance 281
 			period 13.1034
 
@@ -23081,7 +23081,7 @@ system Tarazed
 		distance 1880.55
 		period 935.835
 		object "Arachne Station"
-			sprite planet/station3
+			sprite planet/station11
 			distance 228
 			period 16.9693
 
@@ -24837,7 +24837,7 @@ system Zosma
 		distance 1637.56
 		period 1241.8
 		object "Huginn Station"
-			sprite planet/station5
+			sprite planet/station16
 			distance 286
 			period 13.4547
 	object
@@ -24845,7 +24845,7 @@ system Zosma
 		distance 3585.81
 		period 4023.81
 		object "Muninn Station"
-			sprite planet/station3
+			sprite planet/station12
 			distance 272
 			period 12.9498
 
@@ -25439,9 +25439,9 @@ planet Calda
 	attributes paradise tourism rich
 	landscape land/lava4
 	description `Calda is a tropical resort world, a pleasant place to unwind after a few days skiing on its sister planet, Vail. The most popular tourist destination is the hot springs, and the spa complexes that have been built up around them. Constant pesticide use has nearly eliminated insect pests. Because of the uncomfortably warm and humid summer months, the very rich view Calda more as a tourist destination than as a place to live.`
-	description `	In Calda's early days as a spa planet, a nearly silent eruption of carbon dioxide filled a resort valley and suffocated the whole population in moments. This incident has had hardly any effect on the tourism industry. Many of the regulars believe they are rich enough that no volcano would dare provoke them in such a way.`
+	description `	In Calda's early days as a spa planet, a nearly silent eruption of carbon dioxide filled a resort valley and suffocated the whole population. This incident shocked the Paradise Worlds and led to a very large drop in tourism here. Fortunately for Calda's economy, this effect ceased within six months, which was about how long it took for most potential tourists to forget about the incident.`
 	spaceport `This is one of the few planets in this sector whose spaceport does not include private hangars, or at least gangway tunnels connecting to ships that land. The reason, of course, is so that visitors can experience the warm and pleasant air the moment they disembark. There is, however, a network of canvas-covered awnings branching out from the main buildings, offering shade and protection from the weather.`
-	spaceport `	Inside, the counters for hotel shuttles and rental vehicles (including hovercraft and helicopters!) are far more prominent than the amenities that interest a captain like yourself.`
+	spaceport `	Inside, the counters for hotel shuttles and rental vehicles (including hovercraft and helicopters) are far more prominent than the amenities that would interest a merchant captain.`
 	bribe 0.05
 	security 0.5
 	tribute 3300
@@ -27298,7 +27298,7 @@ planet Palarei
 	attributes ka'het
 	landscape land/valley5
 	description `Thanks to their earlier exploration vessels, here the Builders encountered the first lifeforms evolved outside of their own planet under the form of some kinds of plants. Due to its hot climate the planet was only barely capable of supporting life, but the fruits the local flora produced were popular enough that Palarei became a major farming planet for many millennium.`
-	description `	The farms on Palarei were one of the few successful Builder attemps at creating fully automatic facilities. Due to that, less than a hundred people were present here at the time of the invasion, who were quickly killed by one of the initial Ka'het attacks. Even now a few farms keep working, but only partially: there is no one to pick the fruits harvested, and the reserves now only attract wildlife.`
+	description `	The farms on Palarei were one of the few successful Builder attempts at creating fully automatic facilities. Due to that, less than a hundred people were present here at the time of the invasion, who were quickly killed by one of the initial Ka'het attacks. Even now a few farms keep working, but only partially: there is no one to pick the fruits harvested, and the reserves now only attract wildlife.`
 
 planet Parii'het
 	attributes ka'het
