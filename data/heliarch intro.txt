@@ -492,7 +492,6 @@ mission "HI2-IW"
 				`	"Don't worry, I can carry my weight through some snow."`
 					goto snowy
 				`	"On second thought, you're right. Good luck out there."`
-					goto warmandcosy
 			label warmandcosy
 			`	You slouch around your ship for a few hours, waiting for any signal from the Heliarch agents, but nothing comes up on your commlinks.`
 			`	Iplora comes back, saying she couldn't find anything, and you head back to pick up Kirrie and Tugroob, who also return empty handed.`
@@ -600,11 +599,7 @@ mission "HI2-IW"
 			`	You get inside the hole, hoping you'll have enough protection from the blasts, and hear Iplora move around, shooting and taking cover, running as if to dodge incoming blasts.`
 			`	The shots stop, and you see her come over, telling you to get out.`
 			`	"Fled, our attacker has," she claims. From the looks of it she wasn't injured. You two get back to the crate.`
-			`	Finally open, the content is shown to be a Heliarch Finisher Torpedo. You two go around the fields, and find that many other mounds are identical crates. She uses a communication device, and calls for Heliarch support. A couple ships arrive some time after the blizzard subsides, and you're directed to one of them, to dry your clothes and make sure you're not frostbitten.`
-			`	When you leave, you see several Heliarch agents using proper equipment to dig out the crates, and opening them dozens at a time, revealing several more torpedoes. A group has also made their way up the hills, looking for any sign of whoever attacked you.`
-			`	Iplora speaks with some of the Heliarchs there, and then tells you that they will handle everything from now. One of the ships takes you two to where your own ship landed, and leaves as you prepare to take off.`
-			`	You head back to pick up Kirrie and Tugroob, who are excited to hear about what happened. They themselves didn't find anything, but seem content with listening to Iplora, as she tells the story.`
-				accept
+				goto opencrate
 			label helphorse
 			apply
 				"resistance evidence" ++
@@ -612,6 +607,7 @@ mission "HI2-IW"
 			`	The shots alternate targets, some heading to Iplora, then some to you, back at her. The blizzard is bad enough that you can't even see the attacker, but it seems that goes bothways, as you and Iplora manage to avoid getting hit without too much trouble.`
 			`	You've barely gotten past the last cave you visitted when the shots stop altogether. Iplora still takes aim for a bit, but ultimately lowers her weapon, coming toward you.`
 			`	"Fled, our attacker has," she claims. You two walk back to the crate.`
+			label opencrate
 			`	Finally open, the content is shown to be a Heliarch Finisher Torpedo. You two go around the fields, and find that many other mounds are identical crates. She uses a communication device, and calls for Heliarch support. Several Heliarch Neutralizers arrive some time after the blizzard subsides, and you're directed to one of them, to dry your clothes and make sure you're not frostbitten.`
 			`	When you leave, you see several Heliarch agents using proper equipment to dig out the crates, and opening them dozens at a time, revealing several more torpedoes. A group has also made their way up the hills, looking for any sign of whoever attacked you.`
 			`	Iplora speaks with some of the Heliarchs there, and then tells you that they will handle everything from now. One of the ships takes you two to where your own ship landed, and leaves as you prepare to take off.`
@@ -914,7 +910,6 @@ mission "Quarg Interrogation"
 				goto end
 			label hinder
 			`	"And you believe that? Have we restricted your movement? Chastised you for interacting with the Hai, or Korath? Even after you agreed to help those foolish, tyrannical Heliarchs, are you not here, in one of our worlds, peacefully conversing with a Quarg?"`
-				goto end
 			label end
 			`	It blinks a few more times, as a few small stripes on it's face rapidly alternate between shades of deep blue and bright red, then ends with, "It would be most wise to cut off all your ties with these 'Heliarchs,' human."`
 			`	It walks away, headed to the Wardragon it looked at before.`
@@ -952,10 +947,8 @@ mission "Heliarch Recon 3-A"
 				`	"Sorry, but I don't wanna risk upsetting the Quarg any more than I've already risked."`
 					decline
 				`	"Why didn't you just give me one last time?"`
-					goto restricted
-			label restricted
 			`	"Restricted technology, it is. For Heliarch use only."`
-			`	"Dangerous for you, it would also be. Irritated, the Quarg would be, if you using our technology, they noticed. Attacked you, they might have."`
+			`	"Dangerous for you, it could also be. Irritated, the Quarg might have been, if our technology, on your ship they noticed. Attacked you, they might have."`
 			choice
 				`	"And why would that be any different this time?"`
 				`	"Well, I don't want to risk any of that. Sorry, but I can't help you."`
