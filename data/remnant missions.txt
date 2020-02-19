@@ -824,6 +824,7 @@ mission "Remnant: Technology Available"
 			has "Remnant: Key Stones: done"
 			has "Remnant: Key Stones (Hai): done"
 			has "Remnant: Key Stones (Pre-Hai) 2: done"
+			has "Remnant: Broken Jump Drive 2: done"
 	on offer
 		payment 2000000
 		set "license: Remnant"
