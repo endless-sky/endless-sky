@@ -4,11 +4,11 @@ on:
   push:
     paths:
     - 'source/**'
-    - 'tests/**'
+    - 'tests/check_xcode.sh'
   pull_request:
     paths:
     - 'source/**'
-    - 'tests/**'
+    - 'tests/check_xcode.sh'
 
 jobs:
   check-xcode-completeness:

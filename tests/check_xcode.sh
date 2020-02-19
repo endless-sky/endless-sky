@@ -48,7 +48,7 @@ do
 			git status
 			echo ""
 			echo "Diff (between project and checked-in version)"
-			git diff EndlessSky.xcodeproj/project.pbxproj
+			git diff ${XPROJECT}/project.pbxproj
 			exit 1
 		fi
 		NUM_ADDED=$(( NUM_ADDED + 1 ))
@@ -60,7 +60,7 @@ then
 	echo "You should add ${NUM_ADDED} files"
 	echo "Example of the diff to apply:"
 	echo ""
-	git diff EndlessSky.xcodeproj/project.pbxproj
+	git diff ${XPROJECT}/project.pbxproj
 	echo ""
 	exit 1
 fi
