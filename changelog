@@ -44,6 +44,7 @@ Version 0.9.11:
       * If the player has a jump drive and a hyperdrive installed when going to the Syndicate for a jump drive, they will no longer give you an extra jump drive. (@Amazinite)
       * Should the player have their own jump drive during Free Worlds Reconciliation, the Navy will now provide an extra escort for the unused jump drive. (@AlbertNewton)
       * Removed the Hunted by State missions, as they made playing as a pirate too punishing. (@Amazinite)
+      * The "Remnant: Broken Jump Drive" missions can be done in lieu of the "Remnant: Key Stones" missions in order to obtain a Remnant license. (@Zitchas)
     * Balance:
       * Heliarch and Coalition crew now have altered base crew attack and defense stats. (@Tadrix)
       * Gave the Pelican more engine space to better fit its description of being a fast ship. (@Zitchas)
