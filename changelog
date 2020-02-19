@@ -18,6 +18,7 @@ Version 0.9.11:
     * Fixed a crash that occurred if a mission's carried ship was picked up by a regular NPC. (@tehhowch)
     * Missions will now properly indicate on the map if they have been completed. (@NomadicVolcano)
     * "Mystery Cube" jobs no longer have stations as destinations. (@Anarchist2)
+    * "FW Southern Break" now offers after "FW Southern Prisoners - Released" is done, not after "FW Southern Prisoners - Release". (@Amazinite)
   * Game content:
     * New content:
       * Various new Remnant missions, ships, and outfits. (@Zitchas, @Amazinite, images from @beccabunny)
