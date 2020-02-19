@@ -17,6 +17,7 @@ Version 0.9.11:
     * Fixed a potential divide by zero error in the shipyard/outfitter. (@tehhowch)
     * Fixed a crash that occurred if a mission's carried ship was picked up by a regular NPC. (@tehhowch)
     * Missions will now properly indicate on the map if they have been completed. (@NomadicVolcano)
+    * "Mystery Cube" jobs no longer have stations as destinations. (@Anarchist2)
   * Game content:
     * New content:
       * Various new Remnant missions, ships, and outfits. (@Zitchas, @Amazinite, images from @beccabunny)
