@@ -1320,7 +1320,7 @@ event "remnant: return the samples timer"
 
 
 
-# Compatibility patch for those who made completed Void Sprite 2 before 0.9.11, where it did not have the timer.
+# Compatibility patch for those who made completed Return the Samples 2 before 0.9.11, where it did not have the timer.
 mission "Remnant Return the Samples Compatability Patch"
 	landing
 	invisible
