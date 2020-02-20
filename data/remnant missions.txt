@@ -1319,13 +1319,12 @@ mission "Remnant: Return the Samples 2"
 event "remnant: return the samples timer"
 
 
-
 # Compatibility patch for those who completed Return the Samples 2 before 0.9.11, where it did not have the timer.
 mission "Remnant Return the Samples Compatibility Patch"
 	landing
 	invisible
 	to offer
-		has "Remnant: Return the Samples 2: Done"
+		has "Remnant: Return the Samples 2: done"
 		not "event: remnant: return the samples timer"
 	on offer
 		event "remnant: return the samples timer" 2
