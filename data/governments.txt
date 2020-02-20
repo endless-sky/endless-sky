@@ -417,8 +417,8 @@ government "Remnant"
 		"Korath" -.05
 	"penalty for"
 		assist -0.25
-		capture 5
-		destroy 5
+		capture 10
+		destroy 10
 
 government "Republic"
 	swizzle 0
