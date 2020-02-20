@@ -413,7 +413,12 @@ government "Remnant"
 	"player reputation" 1
 	"bribe" 0
 	"attitude toward"
-		"Korath" -.01
+		"Indigenous Lifeform" 0.01
+		"Korath" -.05
+	"penalty for"
+		assist -0.25
+		capture 5
+		destroy 5
 
 government "Republic"
 	swizzle 0
