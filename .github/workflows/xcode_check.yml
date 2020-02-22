@@ -20,7 +20,8 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get install python3-setuptools
-        sudo pip3 install pbxproj
+        sudo pip3 install docopt openstep_parser
+        pip3 install pbxproj --user
     - name: Execute xcode completeness check
       run: |
         ./tests/check_xcode.sh
