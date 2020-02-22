@@ -3,10 +3,12 @@ name: Check xcode completeness
 on:
   push:
     paths:
+    - '.github/xcode_check.yml'
     - 'source/**'
     - 'tests/check_xcode.sh'
   pull_request:
     paths:
+    - '.github/xcode_check.yml'
     - 'source/**'
     - 'tests/check_xcode.sh'
 
