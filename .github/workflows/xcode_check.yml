@@ -19,7 +19,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install dependencies
       run: |
-        sudo apt-get install python3-setuptools
+        sudo apt-get install python3-setuptools python3-wheel
         sudo pip3 install docopt openstep_parser
         pip3 install pbxproj --user
     - name: Execute xcode completeness check
