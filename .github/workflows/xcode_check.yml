@@ -18,7 +18,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get install python3-setuptools
-        pip3 install pbxproj
+        sudo pip3 install pbxproj
     - name: Execute xcode completeness check
       run: |
         ./tests/check_xcode.sh
