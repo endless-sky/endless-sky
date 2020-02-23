@@ -46,9 +46,6 @@ do
 		echo "Help (file):"
 		python3 -m pbxproj file --help
 		echo ""
-		echo "Direct:"
-		pbxproj --help
-		echo ""
 		python3 -m pbxproj file ${XPROJECT} "source/${FILE}" --tree "<group>" --parent "source" --target "EndlessSky" ${NO_BUILD}
 		echo "Project to add file to XCode project ran with result $?"
 		# Check if the requested file was added

@@ -24,6 +24,12 @@ jobs:
         sudo apt-get update
         sudo apt-get upgrade
         pip3 install docopt openstep_parser --user
+    - name: Clone and test pbxproj
+      run: |
+        git clone https://github.com/kronenthaler/mod-pbxproj.git
+        cd mod-pbxproj && python3 setup.py test
+    - name: Install mod-pbxproj
+      run: |
         pip3 install pbxproj --user
     - name: Execute xcode completeness check
       run: |
