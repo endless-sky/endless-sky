@@ -23,6 +23,7 @@ echo "script-dir: ${HERE}"
 echo "es-top-dir: ${ESTOP}"
 
 NUM_ADDED=0
+RESULT=0
 for FILE in $(find source -type f | sed s,^source/,, | sort)
 do
 	# Check if the file is already in the XCode project
@@ -59,7 +60,7 @@ do
 				echo "Diff (between project and checked-in version)"
 				git diff ${XPROJECT}/project.pbxproj
 			fi
-			exit 1
+			RESULT=1
 		fi
 		NUM_ADDED=$(( NUM_ADDED + 1 ))
 	fi
@@ -72,6 +73,7 @@ then
 	echo ""
 	git diff ${XPROJECT}/project.pbxproj
 	echo ""
-	exit 1
+	# Also set the result to non-zero here (since the project is incomplete)
+	RESULT=1
 fi
-exit 0
+exit ${RESULT}
