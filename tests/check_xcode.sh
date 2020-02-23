@@ -43,12 +43,22 @@ do
 		grep "$FILE" ${XPROJECT}/project.pbxproj > /dev/null
 		if [ $? -ne 0 ]
 		then
-			echo "Error: file ${FILE} not added to XCode project"
-			echo "Git status:"
-			git status
-			echo ""
-			echo "Diff (between project and checked-in version)"
-			git diff ${XPROJECT}/project.pbxproj
+			BASENAME=$(basename "${FILE}")
+			OTHERNAME=$(grep "${BASENAME}" ${XPROJECT}/project.pbxproj)
+			if [ $? -eq 0 ]
+			then
+				echo "Error: file ${FILE} not added to XCode project"
+				echo "The file does appear to be present under a different name/path:"
+				echo "${OTHERNAME}"
+				echo "Are you trying to move files? (There is no support to give suggestions for moved files.)"
+			else
+				echo "Error: file ${FILE} not added to XCode project"
+				echo "Git status:"
+				git status
+				echo ""
+				echo "Diff (between project and checked-in version)"
+				git diff ${XPROJECT}/project.pbxproj
+			fi
 			exit 1
 		fi
 		NUM_ADDED=$(( NUM_ADDED + 1 ))
