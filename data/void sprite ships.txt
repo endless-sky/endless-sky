@@ -17,11 +17,12 @@ ship "Void Sprite"
 	attributes
 		category "Medium Warship"
 		"hull" 9600
-		"automaton" 1
+		"required crew" 4
+		"bunks" 4
 		"mass" 480
 		"drag" 8.2
 		"heat dissipation" .8
-		"cargo space" 39
+		"cargo space" 40
 		"thrust" 20
 		"turn" 900
 		"hull repair rate" 3
@@ -65,11 +66,12 @@ ship "Void Sprite" "Void Sprite (Infant)"
 	attributes
 		category "Light Warship"
 		"hull" 2800
-		"automaton" 1
+		"required crew" 2
+		"bunks" 2
 		"mass" 200
 		"drag" 5.4
 		"heat dissipation" .9
-		"cargo space" 19
+		"cargo space" 20
 		"thrust" 18
 		"turn" 450
 		"hull repair rate" 1
@@ -105,7 +107,8 @@ ship "Void Sprite Elder"
 		category "Heavy Warship"
 		"hull" 19600
 		"shields" 5000
-		"automaton" 1
+		"required crew" 5
+		"bunks" 5
 		"mass" 1000
 		"drag" 8.2
 		"heat dissipation" 1
@@ -184,39 +187,19 @@ fleet "Void Sprites"
 	variant
 		"Void Sprite"
 		"Void Sprite (Infant)" 2
-		"Void Sprite Elder"
 	variant
 		"Void Sprite"
 		"Void Sprite (Infant)" 3
-		"Void Sprite Elder"
 	variant
 		"Void Sprite" 2
 		"Void Sprite (Infant)" 4
-		"Void Sprite Elder"
-	variant
-		"Void Sprite Elder"
 
 
 
-fleet "Void Sprites Expanded"
+fleet "Void Sprites Elder"
 	government "Void Sprite"
 	cargo 0
 	personality
 		timid mining harvests mute
-	variant
-		"Void Sprite"
-	variant
-		"Void Sprite"
-		"Void Sprite (Infant)"
-	variant
-		"Void Sprite"
-		"Void Sprite (Infant)" 2
-	variant
-		"Void Sprite"
-		"Void Sprite (Infant)" 3
-		"Void Sprite Elder"
-	variant
-		"Void Sprite" 2
-		"Void Sprite (Infant)" 4
 	variant
 		"Void Sprite Elder"

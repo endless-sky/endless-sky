@@ -7792,6 +7792,41 @@ system Denebola
 		distance 2927.23
 		period 2740.45
 
+system Diespiter
+	asteroids "large metal" 76 3
+	asteroids "large rock" 3 1
+	asteroids "medium metal" 26 4
+	asteroids "medium rock" 14 1
+	asteroids "small metal" 74 2
+	asteroids "small rock" 65 3
+	government Uninhabited
+	haze _menu/haze-red
+	link Postverta
+	link Statina
+	minables iron 22 3
+	minables silicon 46 3
+	minables tungsten 17 3
+	object
+		distance 1600
+		period 398
+		sprite planet/gas11
+		object
+			distance 270
+			period 14
+			sprite planet/rock3
+	object
+		distance 745
+		period 394
+		sprite planet/ice6
+	object
+		distance 922
+		period 543
+		sprite planet/lava0
+	object
+		period 10
+		sprite star/k5-old
+	pos 332 210
+
 system Diphda
 	pos -262 61
 	government Syndicate
@@ -8456,6 +8491,45 @@ system Edusa
 		sprite planet/wormhole-red
 		distance 3465.15
 		period 1675.01
+
+system Egeria
+	asteroids "large metal" 5 4
+	asteroids "large rock" 9 7
+	asteroids "medium metal" 86 3
+	asteroids "medium rock" 20 5
+	asteroids "small rock" 1 8
+	government Uninhabited
+	haze _menu/haze-red
+	link Vaticanus
+	link Statina
+	minables iron 20 4
+	minables lead 28 5
+	object
+		distance 1326
+		period 2174
+		sprite planet/gas9
+		object
+			distance 270
+			period 16
+			sprite planet/rhea
+	object
+		distance 40
+		offset 180
+		period 19
+		sprite star/k5-old
+	object
+		distance 248
+		period 61
+		sprite planet/ice4
+	object
+		distance 74
+		period 19
+		sprite star/g0
+	object wormhole_barren
+		distance 2313
+		period 389
+		sprite planet/wormhole-red
+	pos 288 146
 
 system "Ehma Ti"
 	pos 39.1085 -749.244
@@ -18827,7 +18901,7 @@ system Porrima
 			sprite planet/dust0
 			distance 294
 			period 11.4255
-
+	
 system Prakacha'a
 	pos -35.1114 -802.607
 	government Wanderer
@@ -18959,6 +19033,51 @@ system Procyon
 		sprite planet/dust3-b
 		distance 3148.97
 		period 3311.38
+
+system Prosa
+	asteroids "large metal" 2 2
+	asteroids "large rock" 16 1
+	asteroids "medium metal" 11 2
+	asteroids "medium rock" 16 1
+	asteroids "small rock" 4 1
+	government Uninhabited
+	haze _menu/haze-red
+	link Postverta
+	link Vaticanus
+	minables copper 5 2
+	object
+		distance 311
+		period 34
+		sprite planet/cloud1
+	object
+		distance 749
+		period 127
+		sprite planet/desert9
+	object
+		distance 941
+		period 179
+		sprite planet/rock6
+	object
+		offset 180
+		period 7
+		sprite star/giant
+	object
+		distance 1311
+		period 695
+		sprite planet/gas17
+		object
+			distance 227
+			period 14
+			sprite planet/callisto
+		object
+			distance 351
+			period 28
+			sprite planet/dust5
+	object wormhole_barren2
+		distance 2313
+		period 389
+		sprite planet/wormhole-red
+	pos 303 194
 
 system "Pug Iyik"
 	pos -361.149 -883.233
@@ -22516,6 +22635,48 @@ system Spica
 			distance 402
 			period 26.1539
 
+system Statina
+	asteroids "large metal" 3 5
+	asteroids "large rock" 1 4
+	asteroids "medium metal" 72 3
+	asteroids "small metal" 39 3
+	government Uninhabited
+	haze _menu/haze-red
+	link Diespiter
+	link Egeria
+	link Postverta
+	minables iron 5 6
+	minables silicon 11 5
+	minables titanium 10 4
+	object
+		distance 111
+		period 30
+		sprite planet/desert4
+	object
+		distance 308
+		period 142
+		sprite planet/dust3
+	object
+		distance 636
+		period 420
+		sprite planet/gas8
+	object
+		period 10
+		sprite star/m4
+	object
+		distance 1364
+		period 84
+		sprite planet/ice5
+		object
+			distance 158
+			period 17
+			sprite planet/dust4
+	object wormhole_link
+		distance 2754
+		period 389
+		sprite planet/wormhole-red
+	pos 385 198
+
 system "Steep Roof"
 	pos -1113.59 570.051
 	government Coalition
@@ -23841,6 +24002,52 @@ system "Uwa Fahn"
 		distance 3713.55
 		period 5060.21
 
+system Vaticanus
+	asteroids "large metal" 11 7
+	asteroids "large rock" 5 8
+	asteroids "medium metal" 47 11
+	asteroids "medium rock" 11 9
+	asteroids "small metal" 14 8
+	asteroids "small rock" 3 6
+	government Uninhabited
+	haze _menu/haze-red
+	link Egeria
+	link Prosa
+	minables lead 16 13
+	minables tungsten 10 13
+	object
+		distance 1670
+		period 1181
+		sprite planet/gas16
+		object
+			distance 204
+			period 14
+			sprite planet/lava1
+	object
+		distance 2105
+		period 3438
+		sprite planet/uranus
+		object
+			distance 235
+			period 14
+			sprite planet/luna
+	object
+		distance 261
+		period 73
+		sprite planet/ice6
+	object
+		distance 768
+		period 368
+		sprite planet/tethys
+	object
+		period 19
+		sprite star/m0
+	object wormhole_link
+		distance 2754
+		period 389
+		sprite planet/wormhole-red
+	pos 324 112
+
 system Vega
 	pos -402 182
 	government Republic
@@ -25086,6 +25293,13 @@ planet Ahr
 	shipyard Arach
 	outfitter "Coalition Advanced"
 
+planet Aksaray
+	attributes "requires: gaslining" "gas giant" uninhabited
+	landscape land/nasa8
+	description `The swirling atmosphere of Aksaray are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
+	description `At present, Aksaray is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Viminal.`
+	security 0
+	
 planet Albatross
 	attributes pirate "south pirate" south frontier
 	landscape land/snow6
@@ -25251,6 +25465,13 @@ planet Aventine
 		fleet "Remnant Decoy Defense" 3
 		fleet "Light Remnant Defense" 10
 		fleet "Heavy Remnant Defense" 30
+
+planet Babiali
+	attributes "requires: gaslining" "gas giant" uninhabited
+	landscape land/nasa8
+	description `The swirling atmosphere of Babiali are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
+	description `At present, Babiali is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Viminal.`
+	security 0
 
 planet "Bank of Blugtad"
 	attributes arach wealthy urban
@@ -25458,6 +25679,13 @@ planet Canyon
 	tribute 400
 		threshold 3000
 		fleet "Small Syndicate" 5
+
+planet Capitoline
+	attributes "requires: gaslining" "gas giant" uninhabited
+	landscape land/nasa8
+	description `The swirling atmosphere of Capitoline are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
+	description `At present, Capitoline is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Aventine.`
+	security 0
 
 planet "Carbuncle Station"
 	attributes north station research
@@ -25890,6 +26118,13 @@ planet "Ember Wormhole"
 	attributes "requires: quantum keystone"
 	description ""
 	spaceport ""
+
+planet Eminonu
+	attributes "requires: gaslining" "gas giant" uninhabited
+	landscape land/nasa8
+	description `The swirling atmosphere of Eminonu are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
+	description `At present, Eminonu is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Viminal.`
+	security 0
 
 planet "Esayaku Fen"
 	attributes korath
@@ -26571,6 +26806,13 @@ planet "Into White"
 	spaceport `	The Kimek who live here are dressed in puffy winter coats that entirely cover their bodies and heads; only their spindly legs protrude out.`
 	"required reputation" 15
 
+planet Janiculum
+	attributes "requires: gaslining" "gas giant" uninhabited
+	landscape land/nasa8
+	description `The swirling atmosphere of Janiculum are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
+	description `At present, Janiculum is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Caelian.`
+	security 0
+
 planet "Kaeyin"
 	attributes uninhabited
 	landscape land/myrabella5
@@ -26657,6 +26899,13 @@ planet "Kraken Station"
 	tribute 500
 		threshold 3500
 		fleet "Small Syndicate" 7
+
+planet Kumkapi
+	attributes "requires: gaslining" "gas giant" uninhabited
+	landscape land/nasa8
+	description `The swirling atmosphere of Kumkapi are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
+	description `At present, Kumkapi is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Viminal.`
+	security 0
 
 planet "Kuwaru Efreti"
 	attributes quarg station
@@ -27306,6 +27555,13 @@ planet Palarei
 	description `Thanks to their earlier exploration vessels, here the Builders encountered the first lifeforms evolved outside of their own planet under the form of some kinds of plants. Due to its hot climate the planet was only barely capable of supporting life, but the fruits the local flora produced were popular enough that Palarei became a major farming planet for many millennium.`
 	description `	The farms on Palarei were one of the few successful Builder attempts at creating fully automatic facilities. Due to that, less than a hundred people were present here at the time of the invasion, who were quickly killed by one of the initial Ka'het attacks. Even now a few farms keep working, but only partially: there is no one to pick the fruits harvested, and the reserves now only attract wildlife.`
 
+planet Palatine
+	attributes "requires: gaslining" "gas giant" uninhabited
+	landscape land/nasa8
+	description `The swirling atmosphere of Palatine are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
+	description `At present, Palatine is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Caelian.`
+	security 0
+
 planet Parii'het
 	attributes ka'het
 	landscape land/space6
@@ -27357,6 +27613,13 @@ planet Pilot
 	tribute 600
 		threshold 2000
 		fleet "Small Republic" 21
+
+planet Pincian
+	attributes "requires: gaslining" "gas giant" uninhabited
+	landscape land/nasa8
+	description `The swirling atmosphere of Pincian are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
+	description `At present, Pincian is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Caelian.`
+	security 0
 
 planet Placer
 	attributes core mining frontier
@@ -27453,6 +27716,13 @@ planet Quicksilver
 	tribute 400
 		threshold 2500
 		fleet "Small Syndicate" 5
+
+planet Quirinal
+	attributes "requires: gaslining" "gas giant" uninhabited
+	landscape land/nasa8
+	description `The swirling atmosphere of Quirinal are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
+	description `At present, Quirinal is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Aventine.`
+	security 0
 
 planet Rand
 	attributes "dirt belt" mining
@@ -27721,6 +27991,13 @@ planet "Septar Lorku"
 	spaceport `Despite your lack of knowledge of Korath health and anatomy, it is clear that the inhabitants of this station are under-fed and overworked. Also, an alarming number of them are missing fingers, hands, or entire limbs. It is quite possible that the work in the refineries is even more dangerous than the job of the raiders attacking human space.`
 	security 0
 
+planet Seraglio
+	attributes "requires: gaslining" "gas giant" uninhabited
+	landscape land/nasa8
+	description `The swirling atmosphere of Seraglio are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
+	description `At present, Seraglio is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Viminal.`
+	security 0
+
 planet Serpens
 	attributes north medical research
 	landscape land/desert5
@@ -27735,7 +28012,7 @@ planet Servian
 	attributes "requires: gaslining" "gas giant" uninhabited
 	landscape land/nasa8
 	description `The clouds of Servian swirl in deceptive calmness around the outer limits of the system. Underneath the peaceful exterior, violent storms and extreme turbulence are the norm. While the Remnant initially sought to discover what was below the storms, they finally ceased their attempts after a lengthy exploration program involving twenty successive probes and three early gascrafts. While every ship was destroyed before reaching the depths of the planet, it nontheless proved a valuable testing ground for testing their early hulls and helped refine their ship technology.`
-	description `At present, Servian is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Aventine.
+	description `At present, Servian is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Aventine.`
 	security 0
 
 planet "Sessiliki Far"
@@ -27974,6 +28251,12 @@ planet Splashdown
 		threshold 3000
 		fleet "Large Republic" 3
 
+planet "Ssil Vida"
+	attributes sheragi uninhabited emitter
+	landscape land/station0
+	description `The silence of this station rings in your ears, and as you explore you are increasingly surprised that it even has an atmosphere anymore. It is obviously ancient, and there are patches of green and purple stuff that resembles fungus growing through the walls. Whoever built this station, it was obviously for people much bigger than you. Either that, or they liked spacious environments. Even the shortest doorway that you see is easily double your height.`
+	spaceport `Exploring beyond the docks reveals that most of this facility appears to be centered around a massive emitter. It is not clear exactly what it is supposed to be emitting, but it might have something to do with how this system appeared in the first place.`
+
 planet Starcross
 	attributes rim farming
 	landscape land/sky1
@@ -28141,6 +28424,13 @@ planet Thunder
 		threshold 2500
 		fleet "Small Militia" 20
 
+planet Tibernia
+	attributes "requires: gaslining" "gas giant" uninhabited
+	landscape land/nasa8
+	description `The swirling atmosphere of Tibernia are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
+	description `At present, Tibernia is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Caelian.`
+	security 0
+
 planet "Tik Klai"
 	attributes wanderer research
 	landscape land/badlands2
@@ -28168,6 +28458,13 @@ planet Tinker
 	tribute 1100
 		threshold 4000
 		fleet "Large Syndicate" 7
+
+planet Topkapi
+	attributes "requires: gaslining" "gas giant" uninhabited
+	landscape land/nasa8
+	description `The swirling atmosphere of Topkapi are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
+	description `At present, Topkapi is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Viminal.`
+	security 0
 
 planet Trinket
 	attributes south tourism
@@ -28421,6 +28718,13 @@ planet "Varu Tev'kei"
 	"required reputation" 15
 	bribe 0
 
+planet Vatican
+	attributes "requires: gaslining" "gas giant" uninhabited
+	landscape land/nasa8
+	description `The swirling atmosphere of Vatican are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
+	description `At present, Vatican is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Caelian.`
+	security 0
+
 planet "Vibrant Water"
 	attributes saryd farming
 	landscape land/beach8-sfiera
@@ -28549,6 +28853,20 @@ planet "Wyvern Station"
 		threshold 3500
 		fleet "Large Militia" 6
 
+planet Xerolophos
+	attributes "requires: gaslining" "gas giant" uninhabited
+	landscape land/nasa8
+	description `The swirling atmosphere of Xerolophos are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
+	description `At present, Xerolophos is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Viminal.`
+	security 0
+
+planet Yedikule
+	attributes "requires: gaslining" "gas giant" uninhabited
+	landscape land/nasa8
+	description `The swirling atmosphere of Yedikule are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
+	description `At present, Yedikule is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Viminal.`
+	security 0
+
 planet Zenith
 	attributes pirate "north pirate" north frontier
 	landscape land/water4
@@ -28580,3 +28898,10 @@ planet Zug
 	tribute 1200
 		threshold 3000
 		fleet "Large Militia" 18
+
+planet wormhole_barren
+	description ``
+planet wormhole_barren2
+	description ``
+planet wormhole_link
+	description ``
