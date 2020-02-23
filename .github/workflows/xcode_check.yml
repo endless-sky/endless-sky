@@ -30,7 +30,7 @@ jobs:
         cd mod-pbxproj && python3 setup.py test
     - name: Install mod-pbxproj
       run: |
-        pip3 install pbxproj --user
+        cd mod-pbxproj && python3 setup.py install --user
     - name: Execute xcode completeness check
       run: |
         ./tests/check_xcode.sh
