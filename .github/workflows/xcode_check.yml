@@ -20,17 +20,10 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get install python3-setuptools python3-wheel
-        sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
-        sudo apt-get update
-        sudo apt-get upgrade
         pip3 install docopt openstep_parser --user
-    - name: Clone and test pbxproj
-      run: |
-        git clone https://github.com/kronenthaler/mod-pbxproj.git
-        cd mod-pbxproj && python3 setup.py test
     - name: Install mod-pbxproj
       run: |
-        cd mod-pbxproj && python3 setup.py install --user
+        pip3 install pbxproj --user
     - name: Execute xcode completeness check
       run: |
         ./tests/check_xcode.sh

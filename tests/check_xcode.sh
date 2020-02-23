@@ -37,15 +37,6 @@ do
 			echo "Not adding build section for header file"
 			NO_BUILD="--no-create-build-files"
 		fi
-		echo "Version:"
-		python3 -m pbxproj --version
-		echo ""
-		echo "Help:"
-		python3 -m pbxproj --help
-		echo ""
-		echo "Help (file):"
-		python3 -m pbxproj file --help
-		echo ""
 		python3 -m pbxproj file ${XPROJECT} "source/${FILE}" --tree "<group>" --parent "source" --target "EndlessSky" ${NO_BUILD}
 		echo "Project to add file to XCode project ran with result $?"
 		# Check if the requested file was added
