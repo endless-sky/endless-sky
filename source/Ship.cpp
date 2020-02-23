@@ -2614,8 +2614,10 @@ double Ship::MaxReverseVelocity() const
 
 // This ship just got hit by the given projectile. Take damage according to
 // what sort of weapon the projectile it.
-int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
+int Ship::TakeDamage(const Projectile &projectile, bool isBlast, Ship *playerFlagship)
 {
+	// assert(!isBlast || playerFlagship);
+
 	int type = 0;
 	
 	double damageScaling = 1.;
@@ -2682,7 +2684,8 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		type |= ShipEvent::DESTROY;
 	// If this ship was hit directly and did not consider itself an enemy of the
 	// ship that hit it, it is now "provoked" against that government.
-	if(!isBlast && projectile.GetGovernment() && !projectile.GetGovernment()->IsEnemy(government)
+	bool directHit = !isBlast || (this == &*playerFlagship->GetTargetShip());
+	if(directHit && projectile.GetGovernment() && !projectile.GetGovernment()->IsEnemy(government)
 			&& (Shields() < .9 || Hull() < .9 || !personality.IsForbearing())
 			&& !personality.IsPacifist() && weapon.DoesDamage())
 		type |= ShipEvent::PROVOKE;

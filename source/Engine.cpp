@@ -1833,7 +1833,7 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 				
-				int eventType = ship->TakeDamage(projectile, ship != hit.get());
+				int eventType = ship->TakeDamage(projectile, ship != hit.get(), player.Flagship());
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
