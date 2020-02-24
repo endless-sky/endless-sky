@@ -371,6 +371,8 @@ outfitter "Hai Intermediate"
 	"Local Map"
 	"Quantum Keystone"
 	"Pulse Rifle"
+	"Outfit Scanner"
+	"Cargo Scanner"
 
 outfitter "Hai Advanced"
 	"Pulse Cannon"
@@ -413,6 +415,8 @@ outfitter "Hai Advanced"
 	"Local Map"
 	"Quantum Keystone"
 	"Pulse Rifle"
+	"Outfit Scanner"
+	"Cargo Scanner"
 
 phrase "hai"
 	word
