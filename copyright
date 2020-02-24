@@ -575,6 +575,27 @@ Files:
  images/ship/leviathan*
  images/ship/shuttle*
  images/ship/star?queen*
+ images/thumbnail/argosy*
+ images/thumbnail/clipper*
+ images/thumbnail/dreadnought*
+ images/thumbnail/fury*
+ images/thumbnail/hauler?i*
+ images/thumbnail/hauler?ii*
+ images/thumbnail/hauler?iii*
+ images/thumbnail/modified argosy*
+ images/thumbnail/bastion*
+ images/thumbnail/behemoth*
+ images/thumbnail/heavy?shuttle*
+ images/thumbnail/firebird*
+ images/thumbnail/leviathan*
+ images/thumbnail/shuttle*
+ images/thumbnail/star?queen*
+ images/thumbnail/boxwing*
+ images/thumbnail/nest*
+ images/thumbnail/roost*
+ images/thumbnail/skein*
+ images/thumbnail/mfirebird*
+ images/thumbnail/mleviathan*
  images/ship/localworldship*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
