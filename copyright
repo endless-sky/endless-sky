@@ -549,11 +549,16 @@ Files:
  images/ship/nest*
  images/ship/roost*
  images/ship/skein*
+ images/thumbnail/nest*
+ images/thumbnail/roost*
+ images/thumbnail/skein*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
-Files: images/ship/boxwing*
+Files:
+ images/ship/boxwing*
+ images/thumbnail/boxwing*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
@@ -574,6 +579,21 @@ Files:
  images/ship/leviathan*
  images/ship/shuttle*
  images/ship/star?queen*
+ images/thumbnail/argosy*
+ images/thumbnail/clipper*
+ images/thumbnail/dreadnought*
+ images/thumbnail/fury*
+ images/thumbnail/hauler?i*
+ images/thumbnail/hauler?ii*
+ images/thumbnail/hauler?iii*
+ images/thumbnail/modified argosy*
+ images/thumbnail/bastion*
+ images/thumbnail/behemoth*
+ images/thumbnail/heavy?shuttle*
+ images/thumbnail/firebird*
+ images/thumbnail/leviathan*
+ images/thumbnail/shuttle*
+ images/thumbnail/star?queen*
  images/ship/localworldship*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
@@ -582,6 +602,8 @@ Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 Files:
  images/ship/mfirebird*
  images/ship/mleviathan*
+ images/thumbnail/mfirebird*
+ images/thumbnail/mleviathan*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
