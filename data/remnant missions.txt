@@ -824,6 +824,7 @@ mission "Remnant: Technology Available"
 			has "Remnant: Key Stones: done"
 			has "Remnant: Key Stones (Hai): done"
 			has "Remnant: Key Stones (Pre-Hai) 2: done"
+			has "Remnant: Broken Jump Drive 2: done"
 	on offer
 		payment 2000000
 		set "license: Remnant"
@@ -1316,6 +1317,18 @@ mission "Remnant: Return the Samples 2"
 
 
 event "remnant: return the samples timer"
+
+
+# Compatibility patch for those who completed Return the Samples 2 before 0.9.11, where it did not have the timer.
+mission "Remnant Return the Samples Compatibility Patch"
+	landing
+	invisible
+	to offer
+		has "Remnant: Return the Samples 2: done"
+		not "event: remnant: return the samples timer"
+	on offer
+		event "remnant: return the samples timer" 2
+		fail
 
 
 
