@@ -415,6 +415,7 @@ government "Remnant"
 	"attitude toward"
 		"Indigenous Lifeform" 0.05
 		"Korath" -.05
+		"Alpha" -.05
 	"penalty for"
 		assist -0.25
 		capture 10
