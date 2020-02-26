@@ -519,6 +519,8 @@ ship "Penguin"
 	thumbnail "thumbnail/penguin"
 	attributes
 		category "Transport"
+		licenses
+			Remnant
 		cost 2530000
 		"shields" 3000
 		"hull" 1500
