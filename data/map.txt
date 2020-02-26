@@ -27986,7 +27986,7 @@ planet "Station Cian"
 	attributes kimek "coalition station" shipping
 	landscape land/space6
 	description `Cian Station orbits a large gas giant, which simultaneously has compounds usable in hyperspace fuel and enough mass to pull an abnormally large numbers of asteroids near it. The local industry mostly centers around the metals harvested here, but part of it is still focused on refining deuterium. Its remote location prevents it from becoming a major port, but most traders that travel into this region stop here, even if just to refuel and to watch its impressive facilities. This is also the most recent Coalition station, although it's much older than any in human space.`
-	spaceport `Station Cian seems to acts as base for the military operations in this area; it even has a small Heliarch shipyard in a restricted section. Considering the isolationist planet Remote Blue is only one jump away, it's likely the station is also being used as an observational outpost, keeping an eye on the ships that travel that far.`
+	spaceport `Station Cian seems to act as a base for the military operations in this area; it even has a small Heliarch shipyard in a restricted section. Considering the isolationist planet Remote Blue is only one jump away, it's likely the station is also being used as an observational outpost, keeping an eye on the ships that travel that far.`
 	outfitter "Coalition Basics"
 	"required reputation" 15
 
