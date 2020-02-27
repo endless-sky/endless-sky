@@ -2197,7 +2197,8 @@ mission "Colonists [1]"
 		payment 10000
 		dialog "The colonists depart your ship after paying you <payment>."
 
-mission "Stranded field trip to <planet>"
+mission "Stranded Field Trip [0]"
+	name "Stranded field trip to <planet>"
 	job
 	repeat
 	description `These <bunks> school students have been stranded on an educational field trip due to the unexpected bankruptcy of their booked transport. They have the supplies to continue their studies but need to be safely returned home at some point. The school & parents have put up a reward of <payment>.`
