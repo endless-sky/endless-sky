@@ -2215,7 +2215,7 @@ mission "Stranded field trip to <planet>"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 200
-		dialog `The students excitedly rush off your ship into the arms of waiting parents, the adventure was fun but they're very pleased to be safely home after so long. The school deposits <payment> into your account.`
+		dialog `The students excitedly rush off your ship into the arms of their waiting parents, the adventure was fun but they're very pleased to be safely home after so long. The school deposits <payment> into your account.`
 
 mission "Prisoners [0]"
 	name "Prisoner transport to <planet>"
