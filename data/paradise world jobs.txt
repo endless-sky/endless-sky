@@ -404,8 +404,8 @@ mission "Pleasure cruise security"
 		payment
 		payment 50000
 
+
 # Brig bulk missions
-	
 mission "Non-violent parolees to <planet>"
 	job
 	repeat
@@ -424,6 +424,7 @@ mission "Non-violent parolees to <planet>"
 	on complete
 		payment 10000
 		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of a local security force as they prepare to repay their debts to society. A clerk on <origin> checks their condition as they're led off. He seems mostly pleased and hands you your payment of <payment>."
+
 
 mission "Debtors to <planet>"
 	job
@@ -444,8 +445,8 @@ mission "Debtors to <planet>"
 		payment 10000
 		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of immigration officials. A grinning job service provider is on hand to pay you the <payment> you are owed."
 
-# Luxury Accomodation bulk missions
 
+# Luxury Accomodation bulk missions
 mission "Wealthy Retirees to <planet>"
 	job
 	repeat
@@ -469,6 +470,7 @@ mission "Wealthy Retirees to <planet>"
 		payment 10000 200
 		dialog "You bid goodbye to the retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite and full of highly amusing, though often morally questionable, anecdotes. Once the last of their things have been safely unloaded your accounts receive the payment of <payment> from their travel broker."
 
+
 mission "Wilderness Retreat Cohort to <planet>"
 	job
 	repeat
@@ -488,4 +490,5 @@ mission "Wilderness Retreat Cohort to <planet>"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 25000 250
-		dialog "Your passengers are met by an overly enthusiastic greeting service of comically overdressed 'wilderness guides'. You can't help but think these people are either about to end up on a popular relaity show, or be safely fleeced of their money, but they're not the sort of characters who engender much sympathy for such fates. One of the greeters quietly transfers you your payment of <payment>."
+		dialog "Your passengers are met by an overly enthusiastic greeting service of comically overdressed 'wilderness guides'. You can't help but think these people are either about to end up on a popular reality show, or be safely fleeced of their money, but they're not the sort of characters who engender much sympathy for such fates. One of the greeters quietly transfers you your payment of <payment>."
+
