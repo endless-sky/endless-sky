@@ -239,7 +239,6 @@ outfit "Uranium"
 minable "yottrite"
 	sprite "asteroid/yottrite/spin"
 	hull 20000
-	"hull repair rate" 6
 	payload "Yottrite" 7
 	explode "smoke" 30
 	explode "bolide" 30
