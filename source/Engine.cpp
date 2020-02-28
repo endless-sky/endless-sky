@@ -433,10 +433,15 @@ void Engine::Step(bool isActive)
 			--jumpCount;
 	}
 	ai.UpdateEvents(events);
-	if(isActive && wasActive)
+	if(isActive)
 	{
 		HandleKeyboardInputs();
-		ai.UpdateKeys(player, activeCommands);
+		// If the engine wasn't active the last frame, then clear any commands that were
+		// picked up as ghost commands from the previous non-engine screen.
+		if(wasActive)
+			ai.UpdateKeys(player, activeCommands);
+		else
+			activeCommands.Clear();
 	}
 	wasActive = isActive;
 	Audio::Update(center);
