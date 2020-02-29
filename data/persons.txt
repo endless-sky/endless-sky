@@ -777,5 +777,5 @@ person "Subsidurial"
 	ship "Subsidurial"
 		"never disabled"
 	system
-		neighbor government "uninhabited" "Wanderer" "Remnant"
+		neighbor government "Uninhabited" "Wanderer" "Remnant"
 
