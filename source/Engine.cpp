@@ -436,12 +436,12 @@ void Engine::Step(bool isActive)
 	if(isActive)
 	{
 		HandleKeyboardInputs();
-		// If the engine wasn't active the last frame, then clear any commands that were
-		// picked up as ghost commands from the previous non-engine screen.
-		if(wasActive)
-			ai.UpdateKeys(player, activeCommands);
-		else
+		// Ignore any inputs given when first becoming active, since those inputs
+		// were issued when some other panel (e.g. planet, hail) was displayed.
+		if(!wasActive)
 			activeCommands.Clear();
+		else
+			ai.UpdateKeys(player, activeCommands);
 	}
 	wasActive = isActive;
 	Audio::Update(center);
