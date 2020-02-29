@@ -92,9 +92,11 @@ int main(int argc, char *argv[])
 	
 	// Load player data, including reference-checking.
 	PlayerInfo player;
-	player.LoadRecent();
+	bool checkedReferences = player.LoadRecent();
 	if(loadOnly)
 	{
+		if (!checkedReferences)
+			GameData::CheckReferences();
 		cout << "Parse completed." << endl;
 		return 0;
 	}
