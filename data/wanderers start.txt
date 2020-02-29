@@ -1750,7 +1750,7 @@ mission "Wanderers Invaded 3C"
 			`	In the meantime, the entire Wanderer strategy depends on where and when the mythical Eye will open, the portal that will carry them to their next home. As the only Wanderer ally with access to a jump drive, perhaps you will be able to answer that question.`
 				accept
 	on accept
-		"reputation: Pug" >?= 1
+		"reputation: Pug (Wanderer)" >?= 1
 	on visit
 		dialog `You return to <planet> without any more information on who or what controls the Eye. Perhaps the answer is closer than you think.`
 	on complete
@@ -2573,7 +2573,7 @@ mission "Wanderers Ap'arak 3: Pug"
 		has "Wanderers Ap'arak 2: done"
 	npc kill
 		personality staying unconstrained uninterested
-		government "Pug"
+		government "Pug (Wanderer)"
 		ship "Pug Arfecta" "Hork Ekekek Ptui"
 		ship "Pug Arfecta" "Graak Sput Kchoo"
 	on complete

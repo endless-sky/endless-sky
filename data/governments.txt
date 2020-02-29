@@ -390,6 +390,20 @@ government "Pug"
 	"hostile hail" "hostile pug"
 	"hostile disabled hail" "hostile pug"
 
+government "Pug (Wanderer)"
+	"display name" "Pug"
+	swizzle 0
+	color .99 .89 .70
+	
+	"player reputation" 1
+	"attitude toward"
+		"Drak" -.01
+		"Quarg" -.01
+	"friendly hail" "friendly pug"
+	"friendly disabled hail" "friendly disabled pug"
+	"hostile hail" "hostile pug"
+	"hostile disabled hail" "hostile pug"
+
 government "Quarg"
 	swizzle 0
 	color .88 .77 0

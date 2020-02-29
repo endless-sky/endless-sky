@@ -18966,7 +18966,7 @@ system Procyon
 
 system "Pug Iyik"
 	pos -361.149 -883.233
-	government Pug
+	government "Pug (Wanderer)"
 	habitable 625
 	belt 1286
 	asteroids "small rock" 35 7.6356
