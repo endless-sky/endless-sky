@@ -4,11 +4,13 @@ on:
   push:
     paths:
     - '.github/workflows/xcode_check.yml'
+    - 'EndlessSky.xcodeproj/**'
     - 'source/**'
     - 'tests/check_xcode.sh'
   pull_request:
     paths:
     - '.github/workflows/xcode_check.yml'
+    - 'EndlessSky.xcodeproj/**'
     - 'source/**'
     - 'tests/check_xcode.sh'
 
