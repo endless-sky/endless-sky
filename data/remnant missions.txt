@@ -1336,7 +1336,7 @@ mission "Remnant: Return the Samples 3 Exploration Hint"
 	name "Return the Samples Timer Elapsed"
 	description "According to your commlink, Plume has reached a milestone in his research."
 	landing
-	source Aventine
+	source "Aventine"
 	to offer
 		has "event: remnant: return the samples timer"
 	on offer
@@ -2168,4 +2168,3 @@ mission "Remnant: Face to Maw 2B"
 			label end
 			`	"All right, enough history." He turns to the technicians who are finishing the assembly. "The tentacle has been treated to resist decay and the stock mechanisms will provide basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
 			scene "outfit/void rifle"
-
