@@ -1,16 +1,17 @@
-name: CD
+name: Release CD
 
 on:
   release:
-    types: [published]
+    types:
+      - published
 
 jobs:
   appimage_amd64:
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       ARCH: x86_64
       OUTPUT: endless-sky-x86_64.AppImage
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
@@ -30,7 +31,7 @@ jobs:
           curl -L https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage -o linuxdeploy && chmod +x linuxdeploy
           ./linuxdeploy --appdir AppDir -e endless-sky -d endless-sky.desktop -i endless-sky.png --output appimage
       - name: Upload artifact
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v1
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
