@@ -16,9 +16,7 @@ ship "Subsidurial"
 	attributes
 		category "Light Freighter"
 		"hull" 11600
-		"automaton"
-		"required crew" 0
-		"bunks" 0
+		"automaton" 1
 		"mass" 700
 		"drag" 8.2
 		"heat dissipation" .8
