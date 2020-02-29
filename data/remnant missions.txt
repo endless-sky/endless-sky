@@ -1551,7 +1551,7 @@ mission "Remnant: Salvage 6"
 	to offer
 		has "Remnant: Salvage 5: done"
 	on offer
-		event "Remnant Salvage Available"
+		event "remnant salvage available"
 		conversation
 			`You spot the laboratory technician entering the cafeteria, and she approaches you.`
 			`	"Thank you for waiting. I have a shipment of parts ready for Taely, and with the recent increase in attacks she needs them sooner rather than later. Please take them to her."`
@@ -1580,7 +1580,7 @@ mission "Remnant: Salvage 6"
 			label end
 			`	"Well, I need to get back to work. That last battle put us behind schedule on our repairs. Have a good day!" With a final flourish that you think is the equivalent of an exclamation mark, Taely strides out of the outfitters, heading towards another landing bay.`
 
-event "Remnant Salvage Available"
+event "remnant salvage available"
 	planet "Aventine"
 		outfitter "Remnant Salvage"
 	planet "Caelian"

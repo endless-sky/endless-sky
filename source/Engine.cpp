@@ -433,10 +433,15 @@ void Engine::Step(bool isActive)
 			--jumpCount;
 	}
 	ai.UpdateEvents(events);
-	if(isActive && wasActive)
+	if(isActive)
 	{
 		HandleKeyboardInputs();
-		ai.UpdateKeys(player, activeCommands);
+		// Ignore any inputs given when first becoming active, since those inputs
+		// were issued when some other panel (e.g. planet, hail) was displayed.
+		if(!wasActive)
+			activeCommands.Clear();
+		else
+			ai.UpdateKeys(player, activeCommands);
 	}
 	wasActive = isActive;
 	Audio::Update(center);
