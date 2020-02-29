@@ -250,6 +250,6 @@ outfit "Yottrite"
 	cost 200000
 	thumbnail "outfit/harvested yottrite"
 	"flotsam sprite" "effect/flotsam yottrite"
-	"mass" 1
+	"mass" 3.14
 	"installable" -1
 	description "An extraordinarily rare crystalline formation, forged over tens of thousands of years in the molecular clouds around supernova remnants. Although less advanced species can potentially harvest it, very few civilizations other than the Quarg have developed the technology needed to incorporate Yottrite in an alloy."
