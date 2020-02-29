@@ -19,8 +19,8 @@ jobs:
           sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons
       - name: Adjust version strings
         run: |
-          perl -p -i -e 's/(Endless Sky )[\d.]+/$1Nightly at ${{ github.sha }}/ig' source/main.cpp
-          perl -p -i -e 's/version [\d.]+/Nightly at ${{ github.sha }}/ig' credits.txt
+          perl -p -i -e 's/(Endless Sky )[\d.]+/$1${{ github.sha }}/ig' source/main.cpp
+          perl -p -i -e 's/version [\d.]+/Continuous Build at ${{ github.sha }}/ig' credits.txt
         shell: bash
       - name: Build Application
         run: scons -j $(nproc)
@@ -47,8 +47,8 @@ jobs:
           Remove-Item win64-dev.zip
       - name: Adjust version strings
         run: |
-          perl -p -i -e 's/(Endless Sky )[\d.]+/$1Nightly at ${{ github.sha }}/ig' source/main.cpp
-          perl -p -i -e 's/version [\d.]+/Nightly at ${{ github.sha }}/ig' credits.txt
+          perl -p -i -e 's/(Endless Sky )[\d.]+/$1${{ github.sha }}/ig' source/main.cpp
+          perl -p -i -e 's/version [\d.]+/Continuous Build at ${{ github.sha }}/ig' credits.txt
         shell: bash
       - name: Build Application
         run: |
@@ -82,8 +82,9 @@ jobs:
           install_name_tool -id "@rpath/libSDL2-2.0.0.dylib" /usr/local/lib/libSDL2-2.0.0.dylib
       - name: Adjust version strings
         run: |
-          perl -p -i -e 's/(Endless Sky )[\d.]+/$1Nightly at ${{ github.sha }}/ig' source/main.cpp
-          perl -p -i -e 's/version [\d.]+/Nightly at ${{ github.sha }}/ig' credits.txt
+          perl -p -i -e 's/(Endless Sky )[\d.]+/$1${{ github.sha }}/ig' source/main.cpp
+          perl -p -i -e 's/version [\d.]+/Continuous Build at ${{ github.sha }}/ig' credits.txt
+          perl -0777 -p -i -e 's/(CFBundleShortVersionString.*?)[\d.]+/$1sha256.${{ github.sha }}/igs' XCode/EndlessSky-Info.plist
         shell: bash
       - name: Build Application
         run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet
