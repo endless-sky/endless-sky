@@ -1577,31 +1577,35 @@ mission "Nanachi 3"
 			`You send a message to Nanachi and you two meet up in the spaceport. You're still walking toward the job board, when she asks: "Back home I heard stories about how humans have a much larger population than the Hai, and that their home planet has even more people than Hai-home. Is it true that there are many other human worlds with spaceports this large?" You name her a few human planets that are extremely populous, and how even some planets with fewer people than this world have incredibly large spaceports.`
 			`	While you tell her stories of many different planets you've visited, she seems to be particularly interested in Earth. "I've seen a bit of human architecture in videos of planets like Allhome, but I can't even imagine what your capital must look like. Tens of thousands of years of another species' history, it sounds even more exciting than what I heard about our landmarks on Hai-home. Captain, do you think that someday, when we no longer need to be kept hidden from humanity, that I'll be able to visit Earth, and see the beauty of your capital?" Seeing how little she knows about humanity, it's not surprising that she is unaware of the state that Earth is in.`
 			choice
-				`	(Avoid talking about Earth.)`
+				`	"I've never actually been to Earth before, so I couldn't tell you what it's like."`
 					goto avoid
-				`	(Lie about Earth.)`
+				`	"Earth is a beautiful place, so it would be nice if you could see it."`
 					goto fake
-				`	(Tell her about how Earth actually is.)`
+				`	"Earth isn't actually that great a place to visit. Most of its inhabitants would take any chance they're given to leave it."`
 					goto truth
 			label avoid
-			`	You tell her that you haven't ever visited the human capital, and that you never had much interest in learning about it. "Oh, sorry about that, shouldn't have assumed you knew everything, you're a starship captain after all, not a historian, I'll just ask someone else when I get the chance," says Nanachi.`
+			`	"Oh, sorry about that, shouldn't have assumed you knew everything, you're a starship captain after all, not a historian, I'll just ask someone else when I get the chance," says Nanachi.`
 					goto board
 			label fake
 			`	You start making up stories about how beautiful the skies of Earth are. You describe forests teeming with life, and do your best to remember ancient civilizations and their monuments. From the looks of it she believes you, and your lie seems to have sated her curiosity for now. If the day where the Hai are allowed to move around human space ever comes, though, she will no doubt be extremely disappointed.`
 					goto board
 			label truth
-			`	She looks at you in confusion, as if trying to understand what you mean, so you explain it to her. "Centuries of widespread deforestation and pollution badly damaged the ecosystem. If you ever managed to visit, you'd be better off going to museums or monuments, but even then, there are many thieves roaming the streets, and it is very dangerous to be out at night. Lots of folks born there just think about how to get out."`
+			`	She looks at you in confusion, as if trying to understand what you mean, so you explain it to her. "Despite how much humanity has advanced in the past centuries, Earth has been largely neglected. Most of the land has been turned into cities, which have over the years decayed into slums. If you ever managed to visit you'd be better off going to museums or monuments, but even then there are many thieves roaming the streets and it is very dangerous to be out at night. Lots of folks born there just think about how to get out."`
 			`	You keep telling her about the issues facing humanity's birthplace, and her previous eagerness to learn about the planet fades. "How could your ancestors let their own home become like this?"`
+			branch unfettered
+				has "Ask the Hai about the Unfettered: offered"
 			choice
-				`	"It's rather complicated, and I'm not a historian, sociologist, or economist, but I can try and explain what I do know."`
-				`	"I can tell you what I do know from watching movies and what I can remember from school."`
-			`	You recite what you read in school books or saw in documentaries, telling her about how many humans since millennia ago took the planet for granted, and how long-term planning was never a strong trait of humanity.`
-			`	Your explanation seems to only torment Nanachi even more. "But why is your capital so full of criminals? Is human space going through a crisis that hit even your capital?"`
+				`	"Long-term planning has never been a strong trait of humanity as a whole."`
+					goto end
+			
+			label unfettered
 			choice
-				`	"In some sense, the crisis has been going on since we were aware of it."`
-			`	You do your best in telling her of the historical presence of crime on Earth, and of how little was done to address the root of the problem.`
-			`	"I see..." She says. "I just thought it would be fun to hear about another large planet like Hai-home. Sorry for asking about it, Captain, I'm sure having to speak of it wasn't a pleasant feeling."`
-			`	Although you're sure that even in Hai space there is social inequality, she probably can't fathom that the home planet of a species could be in such bad shape, considering the Hai even go as far as to send aid to the Unfettered on a regular basis.`
+				`	"I guess it isn't too unlike how the Unfettered have treated their worlds."`
+			`	Nanachi looks confused, so you continue to elaborate on that idea. "They're expecting to be able to have new worlds soon, so they consider the decay of their current ones as acceptable losses. Humans have also had issues with long-term planing and preparing for adverse events."`
+					goto end
+			label end
+			`	"I see..." She says.  "I just thought it would be fun to hear about another large planet like Hai-Home. Sorry for asking about it, Captain, I'm sure having to speak of it wasn't a pleasant feeling."`
+			`	Although you're sure that even in Hai space there is social inequality, she probably can't fathom that the home planet of a species chould be in such bad shape, considering the Hai even go as far as to send aid to the Unfettered on a regular basis.`
 					goto board
 			label board
 			`	You two reach the job board and decide to start looking for jobs suited for Nanachi's ship.`
