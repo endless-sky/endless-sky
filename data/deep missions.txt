@@ -20,18 +20,11 @@ mission "Deep: Syndicate Convoy"
 	to offer
 		"combat rating" > 65
 		not "Deep: Mystery Cubes 4: done"
-		or
-			random < 20
-			and
-				"deep convoy" == 1
-				random < 30
-			and
-				"deep convoy" == 2
-				random < 40
+		random < 20 + "deep convoy" * 15
 		or
 			not "chosen sides"
 			has "main plot completed"
-				
+		
 	on offer
 		conversation
 			`You are approached by a man in a Deep Security uniform who asks if you would be willing to escort a few freighters to <stopovers> and back by <day>. "We would normally have our own fleet do it," he says, "but we're short on available ships given certain circumstances."`
@@ -116,14 +109,7 @@ mission "Deep: Tarazed Convoy"
 	to offer
 		"combat rating" > 65
 		not "Deep: Mystery Cubes 4: done"
-		or
-			random < 20
-			and
-				"deep convoy" == 1
-				random < 30
-			and
-				"deep convoy" == 2
-				random < 40
+		random < 20 + "deep convoy" * 15
 		or
 			not "chosen sides"
 			has "main plot completed"
@@ -215,14 +201,7 @@ mission "Deep: Kraz Convoy"
 	to offer
 		"combat rating" > 80
 		not "Deep: Mystery Cubes 4: done"
-		or
-			random < 20
-			and
-				"deep convoy" == 1
-				random < 30
-			and
-				"deep convoy" == 2
-				random < 40
+		random < 20 + "deep convoy" * 15
 		or
 			not "chosen sides"
 			has "main plot completed"
@@ -313,16 +292,7 @@ mission "Deep: Mystery Cubes 0"
 	to offer
 		"mystery cube" >= 3
 		"combat rating" > 100
-		or
-			and
-				"deep convoy" == 1
-				random < 30
-			and
-				"deep convoy" == 2
-				random < 60
-			and
-				"deep convoy" == 3
-				random < 90
+		random < "deep convoy" * 30
 		or
 			not "chosen sides"
 			has "main plot completed"
@@ -424,6 +394,7 @@ mission "Deep: Mystery Cubes 2"
 	landing
 	name `Blockading the Devil`
 	description `Travel to <destination> to set up a blockade in hopes of capturing the warlord Beelzebub.`
+	source "Luna"
 	destination "Maelstrom"
 	deadline
 	to offer
@@ -527,6 +498,7 @@ mission "Deep: Mystery Cubes 3"
 	landing
 	name `Defend <planet>`
 	description `Destroy the pirates attacking <planet>.`
+	source "Maelstrom"
 	to offer
 		has "Deep: Mystery Cubes 2: done"
 	
@@ -569,6 +541,7 @@ mission "Deep: Mystery Cubes 4"
 	landing
 	name `Rendezvous on <planet>`
 	description `Travel to <destination> with reinforcements for its blockade.`
+	source "Maelstrom"
 	destination "Farpoint"
 	to offer
 		has "Deep: Mystery Cubes 3: done"
@@ -1079,7 +1052,7 @@ mission "Deep: Project Hawking"
 			`	"Thank you, Captain. The planets that we need to go to are..." Garrison turns to the other three scientists. "<stopovers>," Hannah says.`
 			`	"... Thanks. After we've gathered all the supplies, we'll need to be dropped off on <destination>."`
 			`	You bring the scientists to your ship where they quickly make themselves comfy in the bunk rooms. As you walk to the bridge, you overhear Pierre quietly communicating with what you assume to be the spaceport authorities, "...<last> agreed. I expect 'Project Hawking' to proceed on schedule. We will arrive before <day>." As you prepare for launch, you wonder what you've just signed up for.`
-				launch
+				accept
 	
 	on visit
 		dialog `You have arrived on <planet>, but you do not have all the supplies needed for "Project Hawking". Return to <stopovers> to collect all of the required cargo.`
@@ -1449,7 +1422,7 @@ mission "Deep: Remnant 2A"
 		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
 	
 	on visit
-		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <stopovers>. Make sure you're using an outfit scanner as well."`
+		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <waypoints>. Make sure you're using an outfit scanner as well."`
 	on complete
 		event "deep: scan log research" 14
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
@@ -1484,7 +1457,7 @@ mission "Deep: Remnant 1B"
 		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
 	
 	on visit
-		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <stopovers>. Make sure you're using an outfit scanner as well."`
+		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <waypoints>. Make sure you're using an outfit scanner as well."`
 	on complete
 		event "deep: scan log research" 14
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
@@ -1521,7 +1494,7 @@ mission "Deep: Remnant 1C"
 		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
 	
 	on visit
-		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <stopovers>. Make sure you're using an outfit scanner as well."`
+		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <waypoints>. Make sure you're using an outfit scanner as well."`
 	on complete
 		event "deep: scan log research" 14
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
@@ -2005,6 +1978,7 @@ mission "Deep: Scientist Rescue 1"
 	landing
 	name "Secure the Scientists"
 	description "Escort the <npc> to <destination> to retrieve the Star Queen. Escorts will be waiting for you on Memory in the Zosma system and Farpoint in the Alnitak system."
+	source "Valhalla"
 	destination "Haven"
 	clearance
 	to offer
@@ -2177,6 +2151,7 @@ mission "Deep: Scientist Rescue 2"
 	landing
 	name "Return to <planet>"
 	description "Now that you have secured the Star Queen, escort it safely to <destination>."
+	source "Haven"
 	destination "Valhalla"
 	to offer
 		has "Deep: Scientist Rescue 1: done"
@@ -2207,7 +2182,6 @@ mission "Deep: Scientist Rescue 2"
 
 
 ship "Bactrian" "Bactrian (Cosmic Devil)"
-	"never disabled"
 	outfits
 		"Inhibitor Cannon" 2
 		"Thrasher Turret" 4
@@ -2240,7 +2214,7 @@ mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 		personality staying nemesis
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
 		dialog
-			`After the Bactrian explodes, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
+			`After the Bactrian is eliminated, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
 			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
 			`The transmission cuts out as abruptly as it had started.`
 
@@ -2267,7 +2241,7 @@ mission "Deep: Scientist Rescue 3A"
 	landing
 	name "Take down the Devil"
 	description "You have returned the scientists, but the pirates still have a Bactrian. Eliminate it and return to <destination>."
-	destination "Valhalla"
+	source "Valhalla"
 	waypoint "Arneb"
 	to offer
 		has "Deep: Scientist Rescue 2: done"
@@ -2301,7 +2275,7 @@ mission "Deep: Scientist Rescue 3A"
 		system "Arneb"
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
 		dialog
-			`After the Bactrian explodes, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
+			`After the Bactrian is eliminated, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
 			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
 			`The transmission cuts out as abruptly as it had started.`
 	on decline

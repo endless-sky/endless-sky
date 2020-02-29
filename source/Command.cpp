@@ -61,12 +61,14 @@ const Command Command::CLOAK(1uL << 17, "Toggle cloaking device");
 const Command Command::MAP(1uL << 18, "View star map");
 const Command Command::INFO(1uL << 19, "View player info");
 const Command Command::FULLSCREEN(1uL << 20, "Toggle fullscreen");
-const Command Command::FIGHT(1uL << 21, "Fleet: Fight my target");
-const Command Command::GATHER(1uL << 22, "Fleet: Gather around me");
-const Command Command::HOLD(1uL << 23, "Fleet: Hold position");
-const Command Command::AMMO(1uL << 24, "Fleet: Toggle ammo usage");
-const Command Command::WAIT(1uL << 25, "");
-const Command Command::STOP(1ul << 26, "");
+const Command Command::FASTFORWARD(1uL << 21, "Toggle fast-forward");
+const Command Command::FIGHT(1uL << 22, "Fleet: Fight my target");
+const Command Command::GATHER(1uL << 23, "Fleet: Gather around me");
+const Command Command::HOLD(1uL << 24, "Fleet: Hold position");
+const Command Command::AMMO(1uL << 25, "Fleet: Toggle ammo usage");
+const Command Command::WAIT(1uL << 26, "");
+const Command Command::STOP(1ul << 27, "");
+const Command Command::SHIFT(1uL << 28, "");
 
 
 
@@ -105,6 +107,10 @@ void Command::ReadKeyboard()
 	for(const auto &it : keycodeForCommand)
 		if(keyDown[SDL_GetScancodeFromKey(it.second)])
 			*this |= it.first;
+	
+	// Check whether the `Shift` modifier key was pressed for this step.
+	if(SDL_GetModState() & KMOD_SHIFT)
+		*this |= SHIFT;
 }
 
 
@@ -243,6 +249,14 @@ void Command::Set(Command command)
 bool Command::Has(Command command) const
 {
 	return (state & command.state);
+}
+
+
+
+// Get the commands that are set in this and in the given command.
+Command Command::And(Command command) const
+{
+	return Command(state & command.state);
 }
 
 
