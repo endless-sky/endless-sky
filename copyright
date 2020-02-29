@@ -356,9 +356,22 @@ Files:
  images/planet/station3c*
  images/ship/archon?b*
  images/ship/archon?c*
+ images/asteroid/yottrite*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/outfit/harvested?yottrite*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-3.0
+Comment: Derived from works by Michael Zahniser and Rob Lavinsky (under the same license).
+
+Files:
+ images/effect/flotsam?yottrite*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-3.0
+Comment: Derived from works by Rob Lavinsky (under the same license).
 
 Files:
  images/land/badlands0*

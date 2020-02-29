@@ -9869,6 +9869,7 @@ system Fasitopfar
 	asteroids "large metal" 83 4.968
 	minables silver 44 10.8343
 	minables tungsten 113 12.1378
+	minables yottrite 1 4.3241
 	trade Clothing 283
 	trade Electronics 624
 	trade Equipment 394
@@ -13234,6 +13235,7 @@ system Kasikfar
 	asteroids "medium metal" 47 4.1354
 	asteroids "large metal" 3 5.0025
 	minables aluminum 1 4.40452
+	minables yottrite 3 4.7768
 	trade Clothing 256
 	trade Electronics 593
 	trade Equipment 526
@@ -18070,6 +18072,7 @@ system Peresedersi
 	asteroids "large metal" 5 3.22
 	minables aluminum 5 2.45602
 	minables iron 2 2.26908
+	minables yottrite 2 4.5863
 	trade Clothing 407
 	trade Electronics 682
 	trade Equipment 659
@@ -18225,6 +18228,7 @@ system Persitar
 	asteroids "large metal" 2 7.344
 	minables silicon 2 5.34947
 	minables titanium 4 3.97343
+	minables yottrite 7 4.9647
 	trade Clothing 231
 	trade Electronics 801
 	trade Equipment 385
