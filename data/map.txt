@@ -9869,6 +9869,7 @@ system Fasitopfar
 	asteroids "large metal" 83 4.968
 	minables silver 44 10.8343
 	minables tungsten 113 12.1378
+	minables yottrite 1 4.3241
 	trade Clothing 283
 	trade Electronics 624
 	trade Equipment 394
@@ -13234,6 +13235,7 @@ system Kasikfar
 	asteroids "medium metal" 47 4.1354
 	asteroids "large metal" 3 5.0025
 	minables aluminum 1 4.40452
+	minables yottrite 3 4.7768
 	trade Clothing 256
 	trade Electronics 593
 	trade Equipment 526
@@ -18070,6 +18072,7 @@ system Peresedersi
 	asteroids "large metal" 5 3.22
 	minables aluminum 5 2.45602
 	minables iron 2 2.26908
+	minables yottrite 2 4.5863
 	trade Clothing 407
 	trade Electronics 682
 	trade Equipment 659
@@ -18225,6 +18228,7 @@ system Persitar
 	asteroids "large metal" 2 7.344
 	minables silicon 2 5.34947
 	minables titanium 4 3.97343
+	minables yottrite 7 4.9647
 	trade Clothing 231
 	trade Electronics 801
 	trade Equipment 385
@@ -25481,8 +25485,8 @@ planet "Ceaseless Toil"
 planet Celeatis
 	attributes ka'het
 	landscape land/canyon4
-	description `Celeatis is a mountainous planet, once home to one of the largest Builder research centers. They were focused on studying the anomaly in the system. If they found out how to stabilize and use it as a wormhole, perhaps their species would have survived, spreading in the rest of the galaxy; the ruined, lifeless and half-buried buildings here are evidence of their failure.`
-	description `	The planet's surface is too irregular and far from the system's stars to be suitable for farming, so its inhabitants had to rely on the food produced abroad. When the Ka'het came the supplies stopped arriving, so in less than a year the planetary food reserves were depleted and the whole population had died of starvation.`
+	description `Celeatis is a mountainous planet, once home to one of the largest Builder research centers. They were focused on studying the anomaly in the system. If they found out how to stabilize and use it as a wormhole, perhaps their species would have survived, spreading to the rest of the galaxy; the ruined, lifeless and half-buried buildings here are evidence of their failure.`
+	description `	The planet's surface is too irregular and far from the system's stars to be suitable for farming, so its inhabitants had to rely on the food produced abroad. When the Ka'het came, the supplies stopped arriving. In less than a year the planetary food reserves were depleted and the whole population had died of starvation.`
 
 planet "Celestial Third"
 	attributes kimek farming factory urban
@@ -27696,7 +27700,7 @@ planet "Seleptra Nak"
 planet Seli'het
 	attributes ka'het
 	landscape land/space7
-	description `Seli'het was the only Het station the Builders ever completed, orbiting Giribea. Ka'heta are brought here once they reach the "Age of Assembly;" strange, lanky machines start molding an exoskeleton onto their bodies right away. As the Ka'Het grow, their exoskeleton is expanded and various outfits are added, transforming them into living weapons.`
+	description `Seli'het was the only Het station the Builders ever completed, orbiting Giribea. Ka'heta are brought here once they reach the "Age of Assembly;" strange, lanky machines start molding an exoskeleton onto their bodies right away. As the Ka'het grow, their exoskeleton is expanded and various outfits are added, transforming them into living weapons.`
 	description `	In this system the Ka'het behave differently than anywhere else, not only because this station doesn't have any visible damage but also because they don't attack each other, and some even seem to have started collaborating.`
 	government Builder
 

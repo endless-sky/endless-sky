@@ -915,7 +915,7 @@ const string &Mission::Identifier() const
 
 
 // Get a specific mission action from this mission.
-// If a mission action is not found for the given trigger, returns an empty 
+// If a mission action is not found for the given trigger, returns an empty
 // mission action.
 const MissionAction &Mission::GetAction(Trigger trigger) const
 {
