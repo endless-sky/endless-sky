@@ -16,6 +16,7 @@ ship "Subsidurial"
 	attributes
 		category "Light Freighter"
 		"hull" 11600
+		"automaton"
 		"required crew" 0
 		"bunks" 0
 		"mass" 700
