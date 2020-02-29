@@ -20,14 +20,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-FormationPattern::FormationPattern()
-{
-}
+
 
 const string FormationPattern::Name() const
 {
 	return name;
 }
+
+
 
 FormationPattern::Line::Line(double X, double Y, int slots, double directionAngle)
 {
@@ -35,6 +35,8 @@ FormationPattern::Line::Line(double X, double Y, int slots, double directionAngl
 	initialSlots = slots;
 	direction = Angle(directionAngle);
 };
+
+
 
 void FormationPattern::Load(const DataNode &node)
 {
@@ -64,6 +66,8 @@ void FormationPattern::Load(const DataNode &node)
 	}
 }
 
+
+
 // Get the next line that has space for placement of ships. Returns -1
 // if none found/available.
 int FormationPattern::NextLine(unsigned int iteration, unsigned int lineNr) const
@@ -86,6 +90,8 @@ int FormationPattern::NextLine(unsigned int iteration, unsigned int lineNr) cons
 	return -1;
 }
 
+
+
 // Get the number of positions on a line for the given iteration
 int FormationPattern::PositionsOnLine(unsigned int iteration, unsigned int lineNr) const
 {
@@ -105,6 +111,8 @@ int FormationPattern::PositionsOnLine(unsigned int iteration, unsigned int lineN
 	
 	return line.initialSlots + line.slotsIncrease * iteration;
 }
+
+
 
 // Get a formation position based on iteration, line-number and position on the line.
 Point FormationPattern::Position(unsigned int iteration, unsigned int lineNr, unsigned int posOnLine) const

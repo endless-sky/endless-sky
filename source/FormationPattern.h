@@ -20,13 +20,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+
+
 // Class representing a definition of a spaceship flying formation as loaded
 // from datafiles or savegame when used in GameData.
 class FormationPattern {
 public:
-	// Empty initializer
-	FormationPattern();
-	
 	const std::string Name() const;
 	
 	// Load formation from datafile
@@ -38,7 +37,8 @@ public:
 	
 	// Calculate a position based on an iteration number, line number and position-on-line number
 	Point Position(unsigned int iteration, unsigned int lineNr, unsigned int posOnLine) const;
-
+	
+	
 protected:
 	class Line {
 	public:
@@ -61,12 +61,16 @@ protected:
 		int slotsIncrease = -1;
 	};
 	
+	
 protected:
 	// The line definitions that define the formation.
 	std::vector<Line> lines;
 	
+	
 private:
 	std::string name;
 };
+
+
 
 #endif

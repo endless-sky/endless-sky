@@ -21,9 +21,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <vector>
 
+
+
 // Represents an active formation for a set of spaceships. Assigns each ship
 // to a position (Point) in the formation.
-
 class FormationPositioner{
 public:
 	// Initializer based on the formation pattern to follow
@@ -38,7 +39,8 @@ public:
 	// Ship pointer is used to get the scaling factor (in the next round of
 	// position calculations).
 	Point NextPosition(Ship &ship);
-
+	
+	
 private:
 	class Iter {
 	public:
@@ -61,6 +63,7 @@ private:
 		int positionsOnLine = 0;
 	};
 	
+	
 private:
 	// Anchor position and direction of the formation(s) being positioned.
 	Point anchor;
@@ -69,5 +72,7 @@ private:
 	// Formation patterns that this positioner should assign ships to.
 	std::map<const FormationPattern *, Iter> patterns;
 };
+
+
 
 #endif
