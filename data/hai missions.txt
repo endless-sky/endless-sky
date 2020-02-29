@@ -1670,7 +1670,7 @@ mission "Nanachi 4"
 		ship "Marauder Bounder (Hai)" "Rodent Hunter"
 	npc accompany save
 		personality escort timid
-		government "Hai"
+		government " Hai "
 		ship "Heavy Shuttle" "Acorn Chaser"
 	on visit
 		dialog `You have reached <planet>, but you left Nanachi's ship behind! Better depart and wait for them to arrive in this star system.`
