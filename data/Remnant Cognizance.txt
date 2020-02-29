@@ -70,14 +70,14 @@ mission "Remnant: Cognizance 2"
 		conversation
 			`You arrive in the spaceport to find Plume pacing quickly along a walkway. He gestures a quick greeting and jumps straight to the point. "We have never seen marks like these naturally appear on void sprites, but they match the weapon scoring patterns we have seen delivered by Korath ships. As such, we believe the Korath are hunting the void sprites."`
 			`	He looks at you with a surprising amount of fire. "I will not have our work ruined by reptilian warmongers. Destroy the <target>, then we can continue the research."`
-			accept
+				accept
 	npc kill
 		government "Korath"
 		system "Nenia"
-		personality staying forbearing uninterested surveillance target
-		ship "Korath Raider (Ember)"
-			cargo "void sprite" 20 40
-		dialog "You have destroyed the <target>. You can now return to <planet> to collect your payment."
+		personality forbearing timid uninterested surveillance staying
+		ship "Korath Raider" "Korath Raider (Ember)"
+			cargo "void sprite" 5 20
+		dialog "You have destroyed the Korath Vessel. You can now return to <planet> to collect your payment."
 	npc
 		government "Drak"
 		system "Nenia"
