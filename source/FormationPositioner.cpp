@@ -30,16 +30,19 @@ FormationPositioner::FormationPositioner()
 
 
 
-void FormationPositioner::Start(Ship &ship)
+void FormationPositioner::Start(Body &formationLead)
 {
 	patterns.clear();
 	
-	anchor = ship.Position();
+	anchor = formationLead.Position();
 	
-	// Calculate new direction, but only if the ship is moving so that we can calculate it.
-	Point velocity = ship.Velocity();
+	// Calculate new direction, if the formationLead is moving, then we use the movement vector.
+	// Otherwise we use the facing vector.
+	Point velocity = formationLead.Velocity();
 	if(velocity.Length() > 0.1)
 		direction = Angle(velocity);
+	else
+		direction = formationLead.Facing();
 }
 
 

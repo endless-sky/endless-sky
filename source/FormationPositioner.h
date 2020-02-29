@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define FORMATION_POSITIONER_H_
 
 #include "Angle.h"
+#include "Body.h"
 #include "FormationPattern.h"
 #include "Point.h"
 #include "Ship.h"
@@ -32,7 +33,7 @@ public:
 	
 	// Start/reset/initialize for a (new) round of formation position calculations
 	// for a formation around the ship given as parameter.
-	void Start(Ship &ship);
+	void Start(Body &formationLead);
 	
 	// Get the point for the next ship in the formation. Caller should ensure
 	// that the ships are offered in the right order to the calculator.
