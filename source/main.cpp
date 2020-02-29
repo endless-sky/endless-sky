@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
 	bool checkedReferences = player.LoadRecent();
 	if(loadOnly)
 	{
-		if (!checkedReferences)
+		if(!checkedReferences)
 			GameData::CheckReferences();
 		cout << "Parse completed." << endl;
 		return 0;
