@@ -252,6 +252,7 @@ outfitter "Resistance Basics"
 
 outfitter "Heliarch Basics"
 	"Ion Rain Gun"
+	"Brig"
 	"Scanning Module"
 	"Enforcer Confrontation Gear"
 	"Enforcer Riot Staff"
