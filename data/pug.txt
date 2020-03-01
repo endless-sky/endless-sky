@@ -755,7 +755,6 @@ mission "Pug Angry at Being Farmed"
 	landing
 	invisible
 	to offer
-		has "main plot completed"
 		"reputation: Pug (Wanderer)" < -100
 	npc kill
 		government "Pug (Wanderer)"
