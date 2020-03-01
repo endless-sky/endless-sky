@@ -29,7 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class FormationPositioner{
 public:
 	// Initializer based on the formation pattern to follow
-	FormationPositioner();
+	FormationPositioner(const Body * formationLead, const FormationPattern * pattern);
 	
 	// Start/reset/initialize for a (new) round of formation position calculations
 	// for a formation around the ship given as parameter.

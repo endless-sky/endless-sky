@@ -215,7 +215,7 @@ private:
 	std::map<const Ship *, double> appeasmentThreshold;
 	
 	// Records for formations flying around leadships and other formation leading objects.
-	std::map<const Body *, FormationPositioner> formations;
+	std::map<const Body *, std::map<const FormationPattern *, FormationPositioner>> formations;
 	
 	std::map<const Ship *, int64_t> shipStrength;
 	

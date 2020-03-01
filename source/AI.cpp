@@ -1297,12 +1297,27 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	if(!parent)
 		return;
 	
-	// Add a formation-positioner for the parent if none exists yet
-	auto it = formations.find(parent.get());
-	if(it == formations.end())
-		(formations[parent.get()]).Start(*(parent.get()));
+	const Body * formationLead = parent.get();
+	const FormationPattern * pattern = ship.GetFormationPattern();
 	
-	MoveTo(ship, command, (formations[parent.get()]).NextPosition(ship), parent->Velocity(), 50, .1);
+	// First we retrieve the patterns available for the parent.
+	std::map<const FormationPattern *, FormationPositioner> patterns = formations[formationLead];
+	
+	// Add a formation-positioner for the pattern if none exists yet
+	auto it = patterns.find(pattern);
+	if(it == patterns.end())
+	{
+		patterns.emplace(piecewise_construct,
+			forward_as_tuple(pattern),
+			forward_as_tuple(formationLead, pattern));
+
+		// Find the emplaced value. It should exist now.
+		it = patterns.find(pattern);
+		if(it == patterns.end())
+			return;
+	}
+	
+	MoveTo(ship, command, it->second.NextPosition(ship), parent->Velocity(), 50, .1);
 }
 
 

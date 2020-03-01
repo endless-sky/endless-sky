@@ -23,7 +23,7 @@ using namespace std;
 
 
 
-FormationPositioner::FormationPositioner()
+FormationPositioner::FormationPositioner(const Body * formationLead, const FormationPattern * pattern)
 {
 	direction = Angle::Random();
 }
