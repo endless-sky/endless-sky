@@ -527,7 +527,7 @@ mission "Remnant: Cognizance 13"
 	on enter Convector
 		dialog `It seems the analysis of the location was right. The creature quickly approaches you and repeats its previous dance, ending up with a slightly different frozen position. From this vantage, you suspect that it is probably Nenia. This time, as you watch it more closely, it looks like it is following in your wake somehow.`
 	on enter Nenia
-		dialog `You have never seen such activity from the Void Sprites. Many quickly congregate around the strange ship, and seem to escort it to Nasqueron. It seems like that is where it wanted to be. In the distance, you can see the methodically pulverizing a korath ship, presumably another raider.`
+		dialog `You have never seen such activity from the Void Sprites. Many quickly congregate around the strange ship, and seem to escort it to Nasqueron. It seems like that is where it wanted to be. In the distance, you can see the archon methodically pulverizing a korath ship, presumably another raider.`
 	on stopover
 		conversation
 			`You follow the creature down through the clouds of Nasqueron and emerge into what can only be described as an amphitheater in the clouds. Thousands of void sprites fill the area and the creature you have been following floats near the center of it. Your external sensors pick up myriad pulses of energy and eerie whistling noises that seem to resonate in the clouds. As the <ship> moves forward there is a sudden silence and the flickers of energy synchronize.`
