@@ -459,7 +459,7 @@ mission "Returning Home"
 					goto outsider
 				`	"What do you mean 'the outside?'"`
 			
-			`	"Outside of Hai space. You don't look quite like most humans who live here, unless there's some new fashion trend going on that I don't about."`
+			`	"Outside of Hai space. You don't look quite like most humans who live here, unless there's some new fashion trend going on that I don't know about."`
 			choice
 				`	"Oh, yes. I do come from outside."`
 			
