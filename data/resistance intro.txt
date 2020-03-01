@@ -60,7 +60,7 @@ mission "Resistance: Platings"
 	on offer
 		conversation
 			`You drop off the crates full of charity goods, and the spaceport workers start getting them up on vehicles to transport them to the poor.`
-			`	While you're helping them get the crates out of your cargo hold, you go in there one last time for the final crate, but find it's gone, and a small, thin transceiver, is on the floor, near where the crate was.`
+			`	While you're helping them get the crates out of your cargo hold, you go in there one last time for the final crate, but find it's gone, and a small, thin transceiver is on the floor, near where the crate was.`
 			`	You manage to connect it to your ship's control panel, and after a second, a message pops up in your screen.`
 			`	"Greetings. Thank you for helping us with this operation. It is customary for us to transport 'gifts' like this, but this method takes an awful ammount of time. We are aware that humans developed a type of plating that can interfere with scanners. Bring twenty of those to <destination>, if you wish to help our Resistance."`
 			`	The message clears shortly after you finish reading it, and a bit of smoke starts leaving the device. As if it wasn't obvious enough before, the last word of the message blatantly spells out that whoever sent it is member of the Resistance movement against the Heliarchs.`
@@ -77,7 +77,7 @@ mission "Resistance: Platings"
 		outfit "Interference Plating" -20
 		payment 1000000
 		conversation
-			`You're about to dock as usual, but get a message pop up again, telling you to go to the edge of the spaceport city. You follow the instructions, and find yourself in the middle of several dozen warehouses. Another message asks that you unload the crates and bring them to one specific warehouse, as you see that a cargo loader the spaceport workers use has been prepared for you.`
+			`You're about to dock as usual, but get a message pop up again, telling you to go to the edge of the city. You follow the instructions, and find yourself in the middle of several dozen warehouses. Another message asks that you unload the crates and bring them to one specific warehouse, as you see that a cargo loader the spaceport workers use has been prepared for you.`
 			`	As you're doing so, you remember that you didn't get paid for this Resistance's 'charity' job, and you weren't told if you would even get paid for this one, so after the seventh crate you consider dropping this job entirely.`
 			`	Disregarding that, you finally get the last of the Interference Platings, and as you fly your ship back to the more convenient landing pads, you see that <payment> have been added to your account. Exactly the price for twenty Interference Platings.`
 
@@ -134,7 +134,7 @@ mission "Resistance: Introductions"
 				`	"It's fine, I'm sure me speaking Kimek would be even worse."`
 				`	"How did you even learn that?"`
 			`	Once again they make a sound worryingly similar to when one is about to regurgitate, then say, "To mask our conversations, we try. Achieve that goal, a foreign language would."`
-			`	They look out to the closed door, then get up, and heads to the bar, picking up something from the lower shelves, then coming back. Up close, you can finally see the object in question is a Fragmentation Grenade.`
+			`	They look out to the closed door, then get up, and head to the bar, picking up something from the lower shelves, then coming back. Up close, you can finally see the object in question is a Fragmentation Grenade.`
 			`	"Already much, you have risked, to bring these to us," they say. "But, if a fighting chance, we are to have, a show of trust, is needed. To pledge to help us, and denounce the Heliarchs, we ask of you."`
 			choice
 				`	"Can you tell me more about your group first?"`
@@ -510,7 +510,7 @@ mission "Resistance: Proposition A"
 					goto deferchip
 			label deferchip
 			`	The group isn't terribly excited about your lack of enthusiasm, as the Kimek discuss among themselves for a bit.`
-			`	After it all, the Kimek beside you reactivates the translation box, saying, "Dangerous, it would be, if found by the Heliarchs, this chip was. When ready to leave Coalition space, you are, return here, you must, to pick it up."`
+			`	Afterwards, the Kimek beside you reactivates the translation box, saying, "Dangerous, it would be, if found by the Heliarchs, this chip was. When ready to leave Coalition space, you are, return here, you must, to pick it up."`
 			`	They say they'll be waiting there, and bid you farewell for now.`
 				decline
 
