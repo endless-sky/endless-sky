@@ -70,6 +70,8 @@ government "Deep Security"
 	"friendly hail" "friendly deep"
 	"hostile hail" "hostile deep"
 
+government "Derelict"
+
 government "Drak"
 	swizzle 5
 	color 1 1 1
