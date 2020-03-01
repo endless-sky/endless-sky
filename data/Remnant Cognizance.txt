@@ -551,8 +551,7 @@ mission "Remnant: Cognizance 14"
 	source
 		government "Remnant"
 	landing
-	destination 
-		system "Arculus"
+	destination Viminal
 	waypoint "Nenia"
 	to offer
 		has "Remnant: Cognizance 13: done"
@@ -599,7 +598,9 @@ mission "Remnant: Cognizance 14"
 				"Korath World-Ship B (Ember)"
 				"Korath Raider (Ember)" 3
 	on enter "Nenia"
-		dialog `As the alert sirens blare the Pelicans set to work picking up void sprites, trusting that you will deal with the threat!`
+		dialog `The pelicans immediatley set to work collecting void sprites, and are soon ready to go.`
+	on enter "Arculus"
+		dialog `You watch vigilantly as the pelicans with the void sprites dip low into Esquilion's atmosphere and open their bay doors. The void sprites emerge tentatively, then confidently launch themselves into the clouds. A few minutes later you receive a message from Esquiline station informing you that the first void sprite just swooped through the bay, grabbed one of the asteroid supplmements, and vanished into the clouds again.`
 	on complete
 		log "Succesfully introduced a flock of void sprites to Esquiline. Time will tell how they fare."
 		"salary: Remnant" = 2500
@@ -607,14 +608,14 @@ mission "Remnant: Cognizance 14"
 		event "remnant: arculus void sprites"
 		event "remnant: cognizance timer" 30
 		conversation
-			`You watch vigilantly as the pelicans with the void sprites dip low into Esquilion's atmosphere and open their bay doors. The void sprites emerge tentatively, then confidently launch themselves into the clouds. A few minutes later you receive a message from Esquiline station informing you that the first void sprite just swooped through the bay, grabbed one of the asteroid supplmements, and vanished into the clouds again.`
-			`	Moments later a ping comes in on the comlink, and Prefect Chilia and Plume appear onscreen. "Thank you for your work, Captain. It is unclear what the results of this effort will be, but for now, we wait and see. In the meantime, we are allocating you a daily stipend from our resources to cover ongoing crew, maintnance, and upgrading costs. A larger allotment has already been credited to your account with the shipyard facilities to help cover costs incurred in this mission.`
+			`	Moments later a ping comes in on the comlink, and Prefect Chilia and Plume appear onscreen. "Thank you for your work, Captain. It is unclear what the results of this effort will be, but for now, we wait and see. Hopefully the void sprites settle in" concludes Plume.
+			`	"In the meantime," continues Chilia. "We are allocating you a daily stipend from our resources to cover ongoing crew, maintnance, and upgrading costs. A larger one time allotment has already been credited to your account with the shipyard facilities to help cover costs incurred in this mission.`
 
 
 
 event "remnant: arculus void sprites"
 	system "Arculus"
-		fleet "Void Sprites" 2000
+		fleet "Void Sprites" 4000
 
 
 

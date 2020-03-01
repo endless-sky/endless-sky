@@ -30,6 +30,7 @@ ship "Subsidurial"
 		"gaslining" 1
 	outfits
 		Mouthparts? 3
+		"Quantum Key Stone"
 	gun 0 -97 Mouthparts?
 	gun -23 -95 Mouthparts?
 	gun 23 -95 Mouthparts?
