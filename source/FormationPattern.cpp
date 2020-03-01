@@ -29,15 +29,6 @@ const string FormationPattern::Name() const
 
 
 
-FormationPattern::Line::Line(double X, double Y, int slots, double directionAngle)
-{
-	anchor = Point(X, Y);
-	initialSlots = slots;
-	direction = Angle(directionAngle);
-};
-
-
-
 void FormationPattern::Load(const DataNode &node)
 {
 	if(node.Size() >=2)
@@ -47,7 +38,7 @@ void FormationPattern::Load(const DataNode &node)
 	{
 		if(child.Size() >= 5 && child.Token(0) == "line")
 		{
-			lines.emplace_back(child.Value(1), child.Value(2), static_cast<int>(child.Value(3) + 0.5), child.Value(4));
+			lines.emplace_back(Point(child.Value(1), child.Value(2)), static_cast<int>(child.Value(3) + 0.5), Angle(child.Value(4)));
 			Line &line = lines[lines.size()-1];
 			for(const DataNode &grand : child)
 			{

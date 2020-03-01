@@ -42,7 +42,7 @@ public:
 protected:
 	class Line {
 	public:
-		Line(double X, double Y, int nrPositions, double directionAngle);
+		Line(Point anchor, int slots, Angle direction) : anchor(anchor), initialSlots(slots), direction(direction) {}
 		
 	public:
 		// The initial anchor point for this line
@@ -50,15 +50,15 @@ protected:
 		// Vector to apply to get to the next anchor point for the next iteration
 		Point repeatVector;
 		
+		// The number of initial positions for this line and the amount of additional
+		// positions each iteration. slotsIncrease -1 is for lines that don't repeat.
+		int initialSlots;
+		int slotsIncrease = -1;
+
 		// The direction angle in which this line extends and space between any
 		// 2 ship slots on the line. (Defaults to 2)
 		Angle direction;
 		double spacing = 2;
-		
-		// The number of initial positions for this line and the amount of additional
-		// positions each iteration. slotsIncrease -1 is for lines that don't repeat.
-		int initialSlots = 1;
-		int slotsIncrease = -1;
 	};
 	
 	
