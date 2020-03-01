@@ -110,21 +110,21 @@ mission "Heliarch Investigation 2"
 			`The Heliarch elder, Iekie, greets you and the agents when you return, and gives you your payment of 900000 credits.`
 			`	"Unearthed some useful information, we have," Iplora tells her. "Essential to the mission's success, Captain <last>'s cooperativeness was."`
 			`	"No doubt of that, I have. To the report, looking forward I am."`
-			`	They then get closer to her, and Iplora whispers something, handing her a separate report card, written differently than the Coalition languages that you've seen, it must be some type of code.`
+			`	They then get closer to her, and Iplora whispers something, handing her a separate report card, written differently than the Coalition languages that you've seen. It must be some type of code.`
 			`	Iekie turns to you once more, saying, "Quite a find, this is. Done well, you have, Captain."`
 				goto finalthanks
 			label evidence2
 			`The Heliarch elder, Iekie, greets you and the agents when you return, and gives you your payment of 900000 credits.`
 			`	"Unearthed some useful information, we have," Iplora tells her. "Essential to the mission's success, Captain <last>'s cooperativeness was."`
 			`	"No doubt of that, I have. To the report, looking forward I am."`
-			`	They then get closer to her, and Iplora whispers something, handing her two separate report cards, written differently than the Coalition languages that you've seen, it must be some type of code.`
+			`	They then get closer to her, and Iplora whispers something, handing her two separate report cards, written differently than the Coalition languages that you've seen. It must be some type of code.`
 			`	Iekie turns to you once more, saying, "Most useful to our investigation, these findings will prove. Excellent work, Captain."`
 				goto finalthanks
 			label evidence3
 			`The Heliarch elder, Iekie, greets you and the agents when you return, and gives you your payment of 900000 credits.`
 			`	"Unearthed some useful information, we have," Iplora tells her. "Essential to the mission's success, Captain <last>'s cooperativeness was."`
 			`	"No doubt of that, I have. To the report, looking forward I am."`
-			`	They then get closer to her, and Iplora whispers something, handing her three separate report cards, written differently than the Coalition languages that you've seen, it must be some type of code.`
+			`	They then get closer to her, and Iplora whispers something, handing her three separate report cards, written differently than the Coalition languages that you've seen. It must be some type of code.`
 			`	Iekie turns to you once more, saying, "Enviable, your prowess at investigation is, <last>. Outstanding work, Captain."`
 				goto finalthanks
 			label finalthanks
@@ -215,8 +215,8 @@ mission "HI2-MP"
 				`	"I'd rather not go out there with that rain."`
 					goto lonebeetle
 			label wetbeetle
-			`	You walk in a straight line for about an hour, many times without any building providing cover from the rain. Kirrie takes you to the very edge of the town, you would be able to see the hills and mountains in the distance, were it not for the colossal rain clouds and the nonstop precipitation blocking your view. One or two warehouses have a bit of rust on their doors, and rarely you spot one with a damaged roof, some rain creeping inside. You can also make out the figures of small trees and bushes though, not too far out.`
-			`	"Now, Captain, to start looking for something suspicious, where would you?" He asks, showing you some sort of identification card, and explaining that it can open the doors here, but you really make out any differences between any of the many warehouses here. One or two have a bit of rust on the doors, and some of them appear to have some rain dripping it's way inside, but aside from small details you can't make out any striking characteristic of the Arachi warehouses.`
+			`	You walk in a straight line for about an hour, many times without any building providing cover from the rain. Kirrie takes you to the very edge of the town; you would be able to see the hills and mountains in the distance, were it not for the colossal rain clouds and the nonstop precipitation blocking your view. One or two warehouses have a bit of rust on their doors, and rarely you spot one with a damaged roof, some rain creeping inside. You can also make out the figures of small trees and bushes though, not too far out.`
+			`	"Now, Captain, to start looking for something suspicious, where would you?" He asks, showing you some sort of identification card, and explaining that it can open the doors here, but you really can't make out any differences between any of the many warehouses here. One or two have a bit of rust on the doors, and some of them appear to have some rain dripping it's way inside, but aside from small details you can't make out any striking characteristic of the Arachi warehouses.`
 			choice
 				`	(Check the warehouses with the rusty doors.)`
 					goto rustybeetle
@@ -246,12 +246,12 @@ mission "HI2-MP"
 			`	Kirrie tries to open the door, but can't get his card to work.`
 			`	"All the doors to these warehouses, my card should open. Damaged, the reader doesn't seem to be," he says. He decides that he must get in, and grabs a small sidearm, busting the door open after some shots.`
 			`	There is nothing inside, at first glance, but as he crawls all over the place with furious speed, he puts his head to a large metal panel on the opposite end of the room, and shoots it open too, revealing a hidden staircase leading down.`
-			`	As you start heading down, you notice that many pipes make their way down too, and you can hear the water from the rain flowing inside. On your way down, suddenly Kirrie yells for you to take cover, and dozens of shots start coming your way. One of the shots hit one of Kirrie's legs before he could take cover.`
+			`	As you start heading down, you notice that many pipes make their way down too, and you can hear the water from the rain flowing inside. On your way down, suddenly Kirrie yells for you to take cover, and dozens of shots start coming your way. One of the shots hits one of Kirrie's legs before he can take cover.`
 			`	You two attempt to retaliate, spotting several small automatic turrets on the ceiling and walls, but their fire proves too much, so you two rush back outside, where Kirrie uses a small radio-like device to call for support. A pair of Heliarch Punishers land nearby shortly after, and you two head back in with dozens of armed agents following.`
 			`	They storm the place, shooting down the turrets until eventually the group reaches the bottom, where you're told to wait while a small group checks the area.`
 			`	They come back, saying the place is deserted, but as you follow them and see that there are many other staircases, probably from other warehouses, you cannot help but wonder if the turrets protecting those staircases can't reach you here.`
 			`	The group reaches a massive room with a colossal reactor inside, and Kirrie speaks up, saying, "A Small Reactor Module, it is! Stolen, somehow it was."`
-			`	The water pipes continue even to this room, and there reveal their purpose, to serve as a makeshift cooling system for the reactor. The reactor itself generates power to supply several automated production lines, that are replicating many outfits, you even recognize some parts as being awfully similar to that of a few human outfits.`
+			`	The water pipes continue even to this room, and there reveal their purpose, to serve as a makeshift cooling system for the reactor. The reactor itself generates power to supply several automated production lines, that are replicating many outfits; you even recognize some parts as being awfully similar to that of a few human outfits.`
 			`	With the local Heliarchs taking care of the place, you two head back to your ship, to find Iplora and Tugroob waiting. The three agents get back in their bunks, and say you may depart now.`
 				accept
 			label trees
@@ -345,7 +345,7 @@ mission "HI2-SS"
 			label desertspider
 			`	"Reports of suspicious transactions, we have received. An outdated, abandoned warehouse, the place is. For storage of the few crops that can grow here, used, it was," they say, as you put in the coordinates they give you, and land nearby.`
 			`	You follow Tugroob to the storage area, spotting a desert storm brewing in the distance as you walk there. Around the area where they say the crops were originally planted and tested, a large crack has formed.`
-			`	The barn itself is quite large, probably could hold more stockpile than one of the medium-sized Arach freighters in it's earlier days, but now many of the planks making up the walls have been torn down in several spots.`
+			`	The barn itself is quite large, and probably could hold more stockpile than one of the medium-sized Arach freighters in it's earlier days, but now many of the planks making up the walls have been torn down in several spots.`
 			choice
 				`	"Let's check out the barn."`
 					goto barn
@@ -381,7 +381,7 @@ mission "HI2-SS"
 				accept
 			label holeintheground
 			`	You two carefully make your way down the hole, down to the bottom, around ten meters below the flat area with the barn.`
-			`	As you were coming down, Tugroob pointed to the cracked, rocky walls, saying that most of them were unstable, and you should watch out for rockfall.`
+			`	As you were coming down, Tugroob pointed to the cracked, rocky walls, saying that most of them were unstable, and you should watch out for rockslides.`
 			`	Looking around, you two spot several smaller holes on the walls, many being just the right size for a human or Saryd arm to squeeze in, and a few larger cracks, that you two shouldn't have much trouble going through.`
 			choice
 				`	(Reach your arms inside the smaller holes to look for anything there.)`
@@ -390,7 +390,7 @@ mission "HI2-SS"
 					goto rockraider
 			label rockyarm
 			`	You carefully go about putting your arm inside a few of the holes, with Tugroob helping you up for the ones you couldn't reach, but ultimately you find nothing.`
-			`	A few small rocks did fall as you went about the whole thing, but none hit neither of you, thankfully. Up above, the storm has already started to bring in heavy amounts of sand inside.`
+			`	A few small rocks fell as you went about the whole thing, but none hit neither of you, thankfully. Up above, the storm has already started to bring in heavy amounts of sand inside.`
 			`	"To remain here for long, dangerous, will be, Captain," Tugroob says.`
 			choice
 				`	(Head for the larger cracks in the wall now.)`
@@ -428,7 +428,7 @@ mission "HI2-SS"
 					goto rockraider
 			label sandyarm
 			`	You carefully go about putting your arm inside a few of the holes, with Tugroob helping you up for the ones you couldn't reach, but ultimately you find nothing.`
-			`	Many small rocks did fall as you went about the whole thing, but none hit neither of you, miraculously. Unfortunately, the storm above is bringing in too much sand now for you to even look around for more holes, or the exact location of the larger cracks you saw before.`
+			`	Many small rocks fell as you went about the whole thing, but none hit neither of you, miraculously. Unfortunately, the storm above is bringing in too much sand now for you to even look around for more holes, or the exact location of the larger cracks you saw before.`
 			`	"To remain here for long, dangerous, will be, Captain," Tugroob says, as they urge you to cling to them. They carefully crawl back up, and you two take refuge inside the barn.`
 			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you both should head back to the ship and pick her and Kirrie back up, so you do that, meeting up with the rest of the group.`
 				accept
@@ -498,7 +498,7 @@ mission "HI2-IW"
 				accept
 			label snowy
 			`	She remains silent, and walks back inside. You close the hatch and prepare yourself for what's to come with the warmest clothing you could find. You open the hatch once more, and the both of you head out into the white fields.`
-			`	Not long after leaving your ship, you can make out small, dark lines nearby, some pine trees. It seems you landed close to a forest. Unfortunately they don't do much to protect you from the snowfall.`
+			`	Not long after leaving your ship, you can make out small, dark lines nearby, some pine trees. It seems you landed close to a forest. Unfortunately, they don't do much to protect you from the snowfall.`
 			`	You two continue going deeper into the lifeless forest for what feels like hours, your feet starting to go numb from the cold. After yet another turn, Iplora guides you out of the forest, to snowy hills. The storm is not so terrible here, so you can faintly see some cave entrances in some of the more distant hills. Looking back at the woods, you see that there's a small shack in the outskirts, not too far from where you are now.`
 			`	"Check the caverns, we must. More relentless, the storm will soon become," Iplora says.`
 			choice
@@ -509,8 +509,8 @@ mission "HI2-IW"
 			label shack
 			`	She nods, and starts making her way uphill. You start walking to the shack, but just a couple steps into it you trip on something hard on the ground, unlike the soft, deep snow you've been in up until now.`
 			`	Iplora noticed it, and walks over to you, "Many boulders, this area has. Buried by the snow, they have been, so great care you must take, when walking here," she says, before getting on with her own path to the caverns.`
-			`	You reach the shack, and knock to see if anyone is inside, but even your subtle hits were enough to start creaking the door open, the place is abanadoned. You see some boxes laying around, bedrooms, and what must be a Kimek-styled fireplace. A large carpet covers the center of the living room.`
-			`	You remove it, but find nothing hidden underneath. You leave the shack, and walk around it, there's only a few tools on the ground, by the back. You take yet another look around, and even start checking some of the nearby trees, but as the snowfall starts to get stronger again, you decide to head to the caverns and catch up with Iplora.`
+			`	You reach the shack, and knock to see if anyone is inside, but even your subtle hits were enough to start creaking the door open. The place is abanadoned. You see some boxes laying around, bedrooms, and what must be a Kimek-styled fireplace. A large carpet covers the center of the living room.`
+			`	You remove it, but find nothing hidden underneath. You leave the shack, and walk around it; there's only a few tools on the ground, by the back. You take yet another look around, and even start checking some of the nearby trees, but as the snowfall starts to get stronger again, you decide to head to the caverns and catch up with Iplora.`
 			`	You trip over a few more of the small mounds, and right in the middle of the snowfield, you start wondering in which cavern Iplora is now. Though you can't be sure if you'll find her by entering the nearest one, it would certainly be a better option to wait inside one.`
 			choice
 				`	(Enter the nearest cavern.)`
@@ -540,7 +540,7 @@ mission "HI2-IW"
 			label snowfield
 			`	You tell her you'll look around the snow for a while, and go inside if the storm gets rough again.`
 			`	You walk around, this time minding the bumpy ground below, and try to spot anything unusual in the snow. The task is boring and you find nothing, even after walking far away from the hills. The snow starts falling much faster once more, so you start making your way back to the caverns.`
-			`	With all the snow blocking your vision, you end up tripping over some of the mounds on your way, and realize you don't remember which cave exactly Iplora entered. Considering the weather, though, taking shelter in any of them would be a good choice.`
+			`	With all the snow blocking your vision, you end up tripping over some of the mounds on your way, and realize you don't exactly remember which cave Iplora entered. Considering the weather, though, taking shelter in any of them would be a good choice.`
 			choice
 				`	(Enter the nearest cavern.)`
 					goto takeshelter
@@ -550,7 +550,7 @@ mission "HI2-IW"
 			`	Iplora reveals a small device, akin to a flashlight, only oval shaped, and lights up the way as you two explore the cavern. After some twists and turns, she notices that part of the cave's walls seems odd, and upon inspecting it, sees that it's some type of canvas, flapping around as she touches it.`
 			`	You help her pull it down, and a small campsite is revealed, some makeshift beds, small wooden crates, a worn down campfire in the middle.`
 			`	You search through the crates as she examines around the room, looking for some other hidden area, but neither of you find anything. She checks the campfire, and concludes that noone had been there for a few months.`
-			`	You two continue exploring the cave, and eventually loop back outside, leaving via another cave entrance, this time much further from the forest, according to her, but you can't even see the trees anymore, the blizzard has gotten much stronger.`
+			`	You two continue exploring the cave, and eventually loop back outside, leaving via another cave entrance, this time much further from the forest, according to her. You can't even see the trees anymore, the blizzard has gotten much stronger.`
 			choice
 				`	(Suggest returning to the ship.)`
 					goto bumpyblizzard
@@ -681,7 +681,7 @@ mission "Heliarch Recon 1"
 				`	"Sorry, I don't want to get involved in your conflict with the Quarg."`
 					decline
 			label accepted
-			`	They themselves were apparently unsure about this, actually, as they ask you to show your own map of the galaxy, and all the Quarg planets and stations you have found. They're a bit startled at first when first seeing the whole map, but quickly focus again, and after a while they ask you check all of them.`
+			`	They themselves were apparently unsure about this, as they ask you to show your own map of the galaxy, and all the Quarg planets and stations you have found. They're a bit startled at first when first seeing the whole map, but quickly focus again, and after a while they ask you check all of them.`
 			`	The list of places you need to land is: <stopovers>.`
 			`	After the engineers they called over are done doing the modifications needed, they thank you for your cooperation, and walk away.`
 				accept
