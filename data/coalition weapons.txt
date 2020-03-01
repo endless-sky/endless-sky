@@ -291,7 +291,7 @@ outfit "Ion Rain Gun"
 		"random lifetime" 5
 		"reload" 4
 		"firing energy" 12
-		"firing heat" 4.4
+		"firing heat" 4
 		"shield damage" 12
 		"hull damage" 5
 		"ion damage" .32
