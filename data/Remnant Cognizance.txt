@@ -367,7 +367,7 @@ mission "Remnant: Cognizance 11"
 	destination "Esquiline"
 	npc accompany
 		government "Remnant"
-		personality timid launching fleeing escort
+		personality timid launching escort
 		fleet
 			names "remnant"
 			cargo 8 equipment
@@ -426,6 +426,10 @@ event "remnant: postverta reveal"
 			period 19
 			sprite star/m4
 		pos 297 269
+	unvisit Levana
+	unvisit Caeculus
+	unvisit Prosa
+	unvisit Egeria
 	system Levana
 		add object wormhole_barren
 			distance 2313
@@ -488,9 +492,11 @@ mission "Remnant: Cognizance 12b"
 	destination "Viminal"
 	to offer
 		has "Remnant: Cognizance 12: active"
+	to complete
+		has "Remnant: Cognizance 12: done"
 	npc accompany
 		government "Indigenous Lifeform"
-		personality waiting swarming mute
+		personality waiting mute
 		ship "Void Sprite Elder" "Unknown Entity"
 	
 
@@ -514,7 +520,7 @@ mission "Remnant: Cognizance 13"
 				accept
 	npc accompany
 		government "Indigenous Lifeform"
-		personality waiting swarming mute
+		personality mute
 		ship "Void Sprite Elder" "Unknown Entity"
 	on enter Peragenor
 		dialog `The creature comes to a stop in front of you, spins around briefly, then spreads out its tentacles in another pattern. Following the Remnant's intuition, you match it to your star charts as probably being Convector. After holding the position for a minute, the creature realigns itself and starts to shimmer with the tell-tale signs of starting to make a jump, but it holds it, as if waiting for you.`
@@ -552,7 +558,7 @@ mission "Remnant: Cognizance 14"
 		has "Remnant: Cognizance 13: done"
 	on offer
 		conversation
-			`It is almost starting to feel commonplace to have remnant pouncing on your ship and using your cockpit as a meeting room. This time, it was Prefect Chilia and Plume who seemed to appear out of nowhere requesting permision to board. The two gather around your console to watch the recording of your trip. They nod at your narration of what transpired, and focus intently when you describe the strange presence in your mind. When you finish recounting your experience, they lean back in thought.`
+			`It is almost starting to feel commonplace to have remnant pouncing on your ship and using your cockpit as a meeting room. This time, it is Prefect Chilia and Plume who seem to appear out of nowhere requesting permision to board. The two gather around your console to watch the recording of your trip. They nod at your narration of what transpired, and focus intently when you describe the strange presence in your mind. When you finish recounting your experience, they lean back in thought.`
 			`	"Captain <first>, the exact meaning is unclear, but it seems to be the voice of something not acustomed to speaking to us or creatures like us. Regardless, I think we should move forward with our plan" signs Prefect Chilia. "Best case scenario, we can deprive the Korath of easy access to the void sprites. Worst case scenario, we can move enough that - should the Korath hunt them to the extinction in Nenia, they will continue to exist in our territory."`
 			`	Plume signals his cautious agreement. "This message is intriguing, but I do not think it should be our first priority. That being said, perhaps we should send along some additional remnant who can focus on the possibilities of more such messages."`
 			`	The two look at you, and Chilia signs authoratively, "We are evacuating a large group of void sprites from Nenia to Esquiline. The atmospheres are largely a match, and we have reconfigured the station to provide the nutrients that aren't otherwise present. We have a fleet of Pelicans that have basically been hollowed out so we can lure as many void sprites into it as we can."`
@@ -568,7 +574,7 @@ mission "Remnant: Cognizance 14"
 				`	"OK, let's go."`
 					goto letsgo
 			label goodidea
-			`	Chilia signs with a resolute tone. "Is it a good idea? Maybe, maybe not. Is it the best idea we have so far? Yes." He sighs "I fully expect the Archon to interfere: As best we can tell, they have long memories. As best we can tell, they can pick out who is leading a fleet, so you should expect to have them talking to you. That is, if they do not simply start shooting, anyway."`
+			`	Chilia signs with a resolute tone. "Is it a good idea? Maybe, maybe not. Is it the best idea we have so far? Yes." He sighs "I fully expect the Archon to interfere: they do have long memories. As best we can tell, they can pick out who is leading a fleet, so you should expect to have them talking to you. That is, if they do not simply start shooting, anyway."`
 			label letsgo
 			`	Chilia continues "You don't need to actually land anywhere in Nenia this time, Captain. Just make sure the Pelicans get there, loadup, and return safely." The two stand up and get ready to leave. "May the Embers burn bright for you, Captain." With that, they disembark and quickly clear the blast area around the landing pad. Around you a large group of pelicans are warming up, each one connecting in to your IFF and confirming their status."`
 				accept
@@ -578,12 +584,12 @@ mission "Remnant: Cognizance 14"
 		fleet
 			names "remnant"
 			variant
-				"Pelican (Heavy Lift)" 5
+				"Pelican (Heavy Lift)" 6
 	npc
 		government "Remnant"
 		personality launching escort disables plunders
 		fleet "Large Remnant" 3
-	npc
+	npc evade
 		government "Korath"
 		personality heroic disables plunders entering
 		system "Nenia"
@@ -592,6 +598,8 @@ mission "Remnant: Cognizance 14"
 			variant
 				"Korath World-Ship B (Ember)"
 				"Korath Raider (Ember)" 3
+	on enter "Nenia"
+		dialog `As the alert sirens blare the Pelicans set to work picking up void sprites, trusting that you will deal with the threat!`
 	on complete
 		log "Succesfully introduced a flock of void sprites to Esquiline. Time will tell how they fare."
 		"salary: Remnant" = 2500
