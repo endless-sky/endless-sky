@@ -86,7 +86,7 @@ mission "Remnant: Cognizance 2"
 
 
 event "korath hunting"
-	government "korath"
+	government "Korath"
 		"attitude toward"
 			"Indigenous Lifeform" -.01
 			"Void Sprite" -.01
@@ -132,7 +132,7 @@ mission "Remnant: Cognizance 3"
 			names "korath"
 			variant
 				"Korath World-Ship B (Ember)"
-				"Korath Raider (Ember)" 3
+				"Korath Raider (Ember)" 4
 	on enter "Aescolanus"
 		dialog `You have located the Korath fleet. They do not seem to be going anywhere at the moment.`
 	on complete
@@ -146,10 +146,9 @@ mission "Remnant: Cognizance 3"
 mission "Remnant: Cognizance 4"
 	name "Destroy Korath"
 	description "Prefect Chilia has asked you to eliminate the Korath fleet"
-	deadline 10
+	deadline 20
 	source "Caelian"
-	stopover
-		system "Aescolanus"
+	waypoint "Aescolanus"
 	to offer
 		has "Remnant: Cognizance 3: done"
 	on offer
@@ -182,7 +181,7 @@ mission "Remnant: Cognizance 4"
 				"Starling (Heavy)" 6
 				"Petrel" 4
 				"Tern" 8
-	on stopover
+	on enter "Aescolanus"
 		dialog `The Korath fleet is gone. Given the urgency Prefect Chilia put on this mission, the onus is on you to find it... Quickly.`
 	on complete
 		conversation
@@ -238,7 +237,7 @@ mission "Remnant: Cognizance 6"
 			`	"Recordings and sensor readings are useful data, but they don't really compare to actually seeing what is going on and experiencing the data first-hand." says Plume. "There aren't too many opportunities to do it in my line of work - especially when my expertise is needed by others who would rather not spend their time watching wildlife. But I digress."`
 			label action
 			`	With a respectful bow to Chilia (who returns it respectfully), Plume heads for your ship. "I will be waiting onboard for you, Captain."`
-			accept
+				accept
 	npc
 		government "Korath"
 		personality staying
@@ -258,6 +257,7 @@ mission "Remnant: Cognizance 6"
 mission "Remnant: Cognizance 7"
 	name "Return Plume to Caelian"
 	description "Plume wants to check his records of the research on void sprites to verify some information."
+	landing
 	source "Nasqueron"
 	destination "Aventine"
 	to offer
@@ -266,7 +266,7 @@ mission "Remnant: Cognizance 7"
 		conversation
 			`After several hours Plume returns to the ship, spurred by the alarms in the suit warning him about the air levels. As you help him out of the suit he looks like he is having trouble deciding if he should be thrilled or worried.`
 			`	"It is wonderful to be here, watching them from a distance. And a few did venture close, too. But I'm worried about them. Most of the void sprites out there have scorch marks similar to the scoring left by Korath weapons. And we already noticed that they are basically hiding much deeper in the atmosphere than normal." He glances down at his datapad then back up at you. "It looks like I will need to double check my records and samples back on Aventine. Once we are back into the chaos of the Ember Waste I will send Plume a signal."`
-			accept
+				accept
 	npc
 		government "Korath"
 		personality staying
@@ -296,18 +296,20 @@ mission "Remnant: Cognizance 8"
 		conversation
 			`You walk into Plume's lab to be greeted by a large stack of crates and equipment. Plume and another remnant are gathered around the stack checking items off a list. "Ah, <first>! Good timing. We were just finishing the inventory of supplies that need to go on this delivery. He gestures to the engineer, "this is Gavriil, one of our best technologists and a skilled astrobiologist in his own right. He will be going with you."`
 			`	"It will be a pleasure to work with you" sings Gavrill, making a short bow. "We will be traveling to a research station on Esquiline. Yes, it is a gas-world." He smiles at that. "I have to get some equipment setup and get the core systems online. There will be a few more loads of materials afterwards." He looks askance at you. "Shall we get started?"`
-			accept
+				accept
 	on complete
 		payment 100000
 		conversation
-			`Gavriil gives you precise directions to a co-ordinate that your sensors tell you is an empty area, and when you reach the designated spot, you see a small station shimmering out of the clouds. "We never managed to actually cloak the station," grins the engineer. "But we managed to make it hide very effectively against every form of scanning we knew of. We even managed to give it a cloak-like field that renders it mostly transparent." He nods approvingly. "Rather impressive what my predecessors managed to do with what they had back then."`
+			`Gavriil gives you precise directions to a co-ordinate that your sensors tell you is an empty area, and when you reach the designated spot, you see a small station shimmering out of the clouds. "We never managed to actually cloak the station," grins the engineer. "But we managed to make it hide very effectively against every form of scanning we knew of. We even managed to give it a cloak-like field that renders it mostly transparent."`
+			`	He nods approvingly. "Rather impressive what my predecessors managed to do with what they had back then."`
 			choice
 				`	"What do you mean?"`
 				`	"Let's get on with it."`
 					goto skipinfo
 			`	"Well, this place is fairly old. It was built shortly after we learned how to build Starlings, and we had trouble extending the cloaking field beyond small ships. I don't know the mechanics of it, but it has taken close to two centuries of study and development for them to get cloaks to the point where they are feasible on large ships." We had plenty of gascraft back then, and the techniques for building high-pressure systems was well understood. The Alphas hadn't shown any interest in gas giants or 'gaslined ships' as we call them, so having somewhere like this to hide in makes sense. Best place to hide is somewhere no-one will look, right?." With that he nods to himself, climbs to his feet, and heads towards the suit locker.`
 			label skipinfo
-			`	The station should be pressurized to normla atmosphere, but it has been running on standby for ages with just yearly maintnance. It is time to get this place up and running again." With two of you running the equipment, everything is unloaded in short order. You notice that the last crate includes a substantial amount of field rations and survival gear. As he heads off to start work you receive a notification that 'Remnant Logistics' has made a deposit of <payment> to your account.`
+			`	The station should be pressurized to normal atmosphere, but it has been running on standby for ages with just yearly maintnance. It is time to get this place up and running again." With two of you running the equipment, everything is unloaded in short order. You notice that the last crate includes a substantial amount of field rations and survival gear. It looks like he is planning on living rough for a while.`
+			`	As he heads off deeper into the station, you receive a notification that 'Remnant Logistics' has made a deposit of <payment> to your account.`
 
 
 
@@ -325,14 +327,14 @@ mission "Remnant: Cognizance 9"
 	on offer
 		dialog
 			`As you look around this earily silent station you get a message on your comlink: Plume requests that you pick up another technician and 8 tons of equipment from Caelian and bring it back to Esquiline. `
-			accept
+				accept
 	on stopover
 		dialog
 			`Flight control gives you directions to a landing pad that already has a large pile of crates stacked next to it. As you land, workers swarm out to help load the equipment. Once everything is stowed, a young technician climbs aboard, stows their gear, and lets you know that everything is ready for departure. You shake your head, impressed at how quickly the Remnant make things happen when projects start to move.`
 	on complete
 		payment 100000
 		conversation
-			`On the flight over the technician joins you on the control deck to chat. She's a biotech specialist, adept at managing life-support systems in alien atmospheres, and a recent graduate from a Remnant educational program that sounds kind of like university. Apparently she studied astrobiology, and is part of a project aimed at supporting mutually exclusive environments in close proximity. She is eager to be taking part in this current operation as working on the systems for a covert station are a good test for her skills.`
+			`On the flight over the technician joins you on the control deck to chat. She's a biotech specialist, adept at managing life-support systems in alien atmospheres, and a recent graduate from a Remnant educational program that sounds kind of like university. Apparently she studied astrobiology, and is part of a project aimed at supporting mutually exclusive environments in close proximity. She is eager to be taking part in this current operation, as working on the systems for a covert station are a good test for her skills.`
 			`	As you approach Esquiline, it occurs to you that the Remnant might appreciate you taking steps to maintain the secrecy of the station. Altering the <ship>'s path slightly, you swing down into Esquiline in an oblique path, then meander around the planet under the cloud layer until arriving at the station. Your passenger nods approvingly as she notices the flight path. "Secrecy is always good with projects like this. We appreciate the extra effort, and if anyone were to follow you, a path like that through the clouds would leave many signs to spot."`
 			`	The <ship> settles into the landing bay, and the technician quickly disembarks. Apparently there must have been other shipments while you were gone, as there are now a handful of people visible and quite a bit more equipment stacked everywhere. The station itself feels more alive, the air fresher. As before, you promptly receive notification of another payment of <payment> to your account.`
 
@@ -348,8 +350,8 @@ mission "Remnant: Cognizance 10"
 		has "Remnant: Cognizance 9: done"
 	on offer
 		conversation
-			`As you finish unloading you spot Gavriil approaching. He gestures in greeting as he approaches. "Thanks for the delivery. We've got standard logistics routes set up now for the rest."  He pauses and fishes a datacube out of a pouch. "Could you take this to Prefect Taely on Viminal? She is overseeing some retrofits and will need this data?`
-			accept
+			`As you finish unloading you spot Gavriil approaching. He gestures in greeting as he approaches. "Thanks for the delivery. We've got standard logistics routes set up now for the rest."  He pauses and fishes a datacube out of a pouch. "Could you take this to Prefect Taely on Viminal? She is overseeing some retrofits and will need this data.`
+				accept
 	on complete
 		conversation
 			`On viminal you easily locate the maintenance yards and eventually find Taely burried in a Pelican. She spots you approaching and frees herself from the machinery. "Greetings <first>. How is our station faring?" You reply that it is improving rapidly, and hand her the datacube. "Ah, good. The detailed chemical analysis and profiles." She slots it into her console and taps a few commands. "OK, I just need to incorporate these profiles into the system and make a few more adjustments. Meet me in the cafeteria in a couple hours."`
@@ -370,14 +372,14 @@ mission "Remnant: Cognizance 11"
 			names "remnant"
 			cargo 8 equipment
 			variant
-				Gascraft 3
 				Pelican
+				Gascraft 4
 	to offer
 		has "Remnant: Cognizance 10: done"
 	on offer
 		conversation
 			`In the cafeteria you are met by the Taely and several other captains. "Thank you for joining us," she signs. "The goal of this mission is to travel to Nasqueron together with a cargo of equipment designed to harvest some atmosphere from the void sprite's worlds, and bring it back to Esquiline. The equipment on the gascrafts will collect, compress, and store the gas, and them you can offload it to specialy prepared tanks on the pelican. Then proceed to Esquiline and offload what you have collected to the station.`
-			accept
+				accept
 	on stopover
 		dialog
 			`You cruise through the atmosphere at a relaxed pace, waiting while the equipment does its work. You see fewer Void Spritest than usual, many have scars. Once the equipment indicates that it has reached capacity you climb up to where the pelican is waiting in the high atmosphere, hook up the connections to offload the gas, then head back down into the depths of the planet. After several hours the captain of the pelican informs you that the tanks are full, and it is time to head to Esquiline.`
@@ -424,6 +426,27 @@ event "remnant: postverta reveal"
 			period 19
 			sprite star/m4
 		pos 297 269
+	system Levana
+		add object wormhole_barren
+			distance 2313
+			period 389
+			sprite planet/wormhole-red
+	system Caeculus
+		add object wormhole_barren2
+			distance 2400
+			period 391
+			sprite planet/wormhole-red
+	system Prosa
+		add object wormhole_barren2
+			distance 2313
+			period 389
+			sprite planet/wormhole-red
+	system Egeria
+		add object wormhole_barren
+			distance 2313
+			period 389
+			sprite planet/wormhole-red
+		
 
 
 mission "Remnant: Cognizance 12"
@@ -445,10 +468,13 @@ mission "Remnant: Cognizance 12"
 				`	"I could see if I can reach it with a Jump Drive."`
 				`	"I will see if I can find another way."`
 			`	"Thank you, Captain <first>. We have some ships that can follow, but you have more experience with things like this, so we would like you to lead the way."`
-			accept
-	on stopover
+				accept
+	on enter "Postverta"
 		dialog
 			`As the sensors re-establish their depiction of the system around you, an alien station immiediately becomes apparent. It appears to be old and mostly inactive, but your sensors do pick up ocasional bursts of energy. Oddly, your sensors are reporting faint signs of life almost everywhere.`
+	on stopover
+		dialog
+			`The station is surprisingly still active, despite its apparent age. You poke around a bit, but its mysteries remain just that.`
 	on complete
 		conversation
 			`As you arrive back at Viminal you broadcast a warning to the port authorities that you have something following you. You inform them that it isn't hostile, but it is an unknown that originated in the new system.`
@@ -457,10 +483,11 @@ mission "Remnant: Cognizance 12"
 
 mission "Remnant: Cognizance 12b"
 	landing
+	invisible
 	source "Ssil Vida"
 	destination "Viminal"
 	to offer
-		has "Remnant: Cognizance 11: active"
+		has "Remnant: Cognizance 12: active"
 	npc accompany
 		government "Indigenous Lifeform"
 		personality waiting swarming mute
@@ -484,7 +511,7 @@ mission "Remnant: Cognizance 13"
 			`Quite a few Remnant have gathered around the Starport, watching the movements of the strange creature. It gestures wildly in various ways, then freezes in several different positions with the tips of certain tentacles glowing with energy. You note that several anti-air batteries are in position around the area in case the creature becomes violent.`
 			`	After several hours of watching the creature, one captain pushes his way forward to where you, Chilia, and Plume are talking. "I think I have an idea about this thing, Prefect!" the man signs excitedly. "Look at the positions of the glowing tips when it freezes. That pattern there matches the star positions of the main Ember Waste systems when viewed from Peragenor, and that second matches Convector." He pulls out a datapad and pulls up a projection of the starmap. "It is hard to tell due to the imprecision, but it looks like the third freeze is probably Antevorta or Nenia."`
 			`	Plume chimes in "If those freezes indicate star positions, then the flying and landing behavior in between them may be indicating it wants you to go. Will you give it a try?"`
-			accept
+				accept
 	npc accompany
 		government "Indigenous Lifeform"
 		personality waiting swarming mute

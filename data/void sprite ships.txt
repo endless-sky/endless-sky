@@ -154,6 +154,7 @@ ship "Void Sprite Elder"
 		"mass" 1000
 		"drag" 8.2
 		"heat dissipation" 1
+		"fuel capacity" 250
 		"cargo space" 39
 		"thrust" 80
 		"turn" 3500
@@ -171,7 +172,7 @@ ship "Void Sprite Elder"
 		"inscrutable" 1
 		"gaslining" 1
 		"jump speed" .3
-		"jump fuel" 50
+		"jump fuel" 10
 		"jump drive" 1
 	outfits
 		Mouthparts? 5

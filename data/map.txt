@@ -8525,10 +8525,6 @@ system Egeria
 		distance 74
 		period 19
 		sprite star/g0
-	object wormhole_barren
-		distance 2313
-		period 389
-		sprite planet/wormhole-red
 	pos 288 146
 
 system "Ehma Ti"
@@ -19077,10 +19073,6 @@ system Prosa
 			distance 351
 			period 28
 			sprite planet/dust5
-	object wormhole_barren2
-		distance 2313
-		period 389
-		sprite planet/wormhole-red
 	pos 303 194
 
 system "Pug Iyik"
@@ -28904,8 +28896,10 @@ planet Zug
 		fleet "Large Militia" 18
 
 planet wormhole_barren
+	attributes "requires: quantum keystone"
 	description ``
 planet wormhole_barren2
+	attributes "requires: quantum keystone"
 	description ``
 planet wormhole_link
 	description ``

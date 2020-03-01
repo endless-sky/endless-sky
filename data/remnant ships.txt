@@ -152,6 +152,7 @@ ship "Albatross" "Albatross (Heavy)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor" 2
+		"Quantum Key Stone"
 		"Thermoelectric Cooler" 2
 		"Outfits Expansion" 4
 		"Tuning Rifle" 65
@@ -182,6 +183,7 @@ ship "Albatross" "Albatross (Shield)"
 
 		"Aeon Cell"
 		"Millennium Cell"
+		"Quantum Key Stone"
 		"Thermoelectric Cooler" 1
 		"Outfits Expansion" 6
 		"Systems Core (Large)" 3
@@ -347,6 +349,7 @@ ship "Gull" "Gull (Sniper)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
+		"Quantum Key Stone"
 		"Salvage Scanner" 2
 		"Outfits Expansion"
 		"Tuning Rifle" 4
@@ -365,6 +368,7 @@ ship "Gull" "Gull (Support)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
+		"Quantum Key Stone"
 		"Salvage Scanner" 2
 		"Outfits Expansion"
 		"Tuning Rifle" 3
@@ -379,6 +383,7 @@ ship "Gull" "Gull (Cargo)"
 
 		"Epoch Cell"
 		"Crystal Capacitor"
+		"Quantum Key Stone"
 		"Salvage Scanner"
 		"Tuning Rifle" 3
 
@@ -392,6 +397,7 @@ ship "Gull" "Gull (Bunks)"
 
 		"Epoch Cell"
 		"Crystal Capacitor"
+		"Quantum Key Stone"
 		"Salvage Scanner"
 		"Tuning Rifle" 3
 
@@ -551,9 +557,9 @@ ship "Pelican" "Pelican (Heavy Lift)"
 		"Scram Drive"
 		"Smelter-Class Thruster"
 		"Crystal Capacitor" 2
+		"Quantum Key Stone"
 		"Smelter-Class Steering"
 		"Tuning Rifle" 15
-		"Quantum Key Stone"
 		"Emergency Ramscoop" 5
 		"Aeon Cell"
 
@@ -663,6 +669,7 @@ ship "Petrel"
 		
 		"Millennium Cell" 2
 		"Crystal Capacitor"
+		"Quantum Key Stone"
 		"Thermoelectric Cooler"
 		
 		"Anvil-Class Engine"
@@ -757,6 +764,7 @@ ship "Starling" "Starling (Heavy)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
+		"Quantum Key Stone"
 		"Tuning Rifle" 10
 
 		"Forge-Class Thruster"
@@ -793,6 +801,7 @@ ship "Starling" "Starling (Hunter)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
+		"Quantum Key Stone"
 		"Emergency Ramscoop"
 		"Tuning Rifle" 11
 
@@ -847,7 +856,7 @@ ship "Tern"
 		"fuel capacity" 50
 		"energy capacity" 500
 		"ramscoop" 0.5
-		"outfit space" 75
+		"outfit space" 76
 		"weapon capacity" 16
 		"engine capacity" 26
 		"shield generation" 0.25
@@ -869,6 +878,7 @@ ship "Tern"
 		"Inhibitor Cannon"
 		
 		"Millennium Cell"
+		"Quantum Key Stone"
 		"Thermoelectric Cooler"
 		
 		"Anvil-Class Engine"
