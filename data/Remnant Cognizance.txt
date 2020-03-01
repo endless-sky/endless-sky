@@ -62,14 +62,14 @@ mission "Remnant: Cognizance 2"
 	name "Eliminate Korath Ship"
 	description "Plume would like you to eliminate the Korath ship in the Nenia system."
 	source "Aventine"
-	stopover
+	waypoint
 		system "Nenia"
 	to offer
 		has "Remnant: Cognizance 1: done"
 	on offer
 		conversation
 			`You arrive in the spaceport to find Plume pacing quickly along a walkway. He gestures a quick greeting and jumps straight to the point. "We have never seen marks like these naturally appear on void sprites, but they match the weapon scoring patterns we have seen delivered by Korath ships. As such, we believe the Korath are hunting the void sprites."`
-			`	He looks at you with a surprising amount of fire. "I will not have our work ruined by reptilian warmongers. Destroy the <target>, then we can continue the research."`
+			`	He looks at you with a surprising amount of fire. "I will not have our work ruined by reptilian warmongers. Destroy the Korath ship, then we can continue the research."`
 				accept
 	npc kill
 		government "Korath"
@@ -78,11 +78,6 @@ mission "Remnant: Cognizance 2"
 		ship "Korath Raider" "Korath Raider (Ember)"
 			cargo "void sprite" 5 20
 		dialog "You have destroyed the Korath Vessel. You can now return to <planet> to collect your payment."
-	npc
-		government "Drak"
-		system "Nenia"
-		personality staying heroic disables uninterested
-		ship "Archon (Cloaked)" "Lifted Lorax"
 	on complete
 		event "korath hunting"
 		conversation
@@ -103,7 +98,7 @@ mission "Remnant: Cognizance 3"
 	description "Prefect Chilia has asked you to track down a Korath fleet"
 	source "Caelian"
 	landing
-	stopover
+	waypoint
 		system "Aescolanus"
 	to offer
 		has "Remnant: Cognizance 2: done"
@@ -113,19 +108,19 @@ mission "Remnant: Cognizance 3"
 		conversation
 			branch chilia
 				"remnant chilia" > 1
-			`The <ship> has barely come to a rest on its designated pad when your panel is blinking with a request for permission to come aboard. A quick glance at the viewscreen shows a fit young man with a military bearing standing at your airlock. You quickly check with the starport control and confirm that you do indeed have the prefect in charge of Remnant military activities waiting at your airlock. You hit the unlock button and watch as prefect Chilia strides onboard.`
+			`The <ship> has barely come to a rest on its designated pad when your panel is blinking with a request for permission to come aboard. A quick glance at the viewscreen shows a fit young man with a military bearing standing at your airlock. You quickly check with the starport control and confirm that you do indeed have the prefect in charge of Remnant military activities waiting at your airlock. You hit the unlock button and watch as Prefect Chilia strides onboard.`
 			`	"Greetings, Captain <first>," he sings. "I am Prefect Chilia. I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles depreciatingly. "I say 'nominal' as virtually all our activities are militaristic in some way, but usually fall under the purview of those who better understand them.`
 				goto main
 			label chilia
-			`The <ship> has barely come to a rest on its designated pad when your panel is blinking with a request for permission to come aboard. A quick glance at the viewscreen shows prefect Chilia standing at your airlock. You quickly hit the accept button and watch as he strides onboard.`
+			`The <ship> has barely come to a rest on its designated pad when your panel is blinking with a request for permission to come aboard. A quick glance at the viewscreen shows Prefect Chilia standing at your airlock. You quickly hit the accept button and watch as he strides onboard.`
 			`	"Greetings, Captain <first>," he sings. "You seem to have a knack for finding things of importance to us. I am glad, however, that you and Plume discovered this."`
 			label main
 			branch voidrifle
 				has "Remnant: Face to Maw 2B: done"
-			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are acustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites, and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. You are aware of the potential military implications of the Korath harvesting the void sprites, and must realize the importance of stopping such discovery.`
+			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are acustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites, and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. There are military implications of the Korath harvesting the void sprites, and we must take steps to prevent this from happening.`
 				goto next
 			label voidrifle
-			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are acustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites, and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. There are military implications of the Korath harvesting the void sprites, and we must take steps to prevent this from happening.`
+			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are acustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites, and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. You are aware of the potential military implications of the Korath harvesting the void sprites, and must realize the importance of stopping such discovery.`
 			label next
 			`	 "It is an imperative that all the Korath involved in this exploration be located immediately. According to our surveillance, that ship was part of a fleet that recently passed through Parca. Locate the fleet, and report back."`
 				accept
@@ -138,9 +133,8 @@ mission "Remnant: Cognizance 3"
 			variant
 				"Korath World-Ship B (Ember)"
 				"Korath Raider (Ember)" 3
-	on stopover
-		conversation
-			`You have located the Korath fleet. They do not seem to be going anywhere at the moment.`
+	on enter "Aescolanus"
+		dialog `You have located the Korath fleet. They do not seem to be going anywhere at the moment.`
 	on complete
 		payment 500000
 		conversation
