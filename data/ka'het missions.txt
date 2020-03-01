@@ -126,7 +126,7 @@ mission "First Contact: Z Ka'het: Quarg 2"
 				`	(Not now.)`
 					defer
 			`	Walking down the principal, alien-looking hall, you decide to stop one of the few Quarg you see there. "Hello, human. How may I be of service?" the Quarg says. You reply by asking him about the Graveyard and the ringworld they built there.`
-			`	"Ah, you encountered the remainders of the Builders. Millennia ago, they were a flourish and thoughtful empire, but hostile contacts forced them to grow fearful and hawkish. Although they never did attack us, they always refrained from accepting our aid, and attempted to relocate at a greater distance from us, in worlds easier to maintain than ones they were closer to."`
+			`	"Ah, you encountered the remainders of the Builders. Millennia ago, they were a flourishing and thoughtful empire, but hostile contacts forced them to grow fearful and hawkish. Although they never did attack us, they always refrained from accepting our aid, and attempted to relocate at a greater distance from us, in worlds easier to maintain than ones they were closer to."`
 			choice
 				`	"Who were these hostile contacts?"`
 				`	"What happened to the Builders?"`

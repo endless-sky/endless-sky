@@ -70,6 +70,8 @@ government "Deep Security"
 	"friendly hail" "friendly deep"
 	"hostile hail" "hostile deep"
 
+government "Derelict"
+
 government "Drak"
 	swizzle 5
 	color 1 1 1
@@ -378,6 +380,20 @@ government "Pirate"
 	raid "pirate raid"
 
 government "Pug"
+	swizzle 0
+	color .99 .89 .70
+	
+	"player reputation" 1
+	"attitude toward"
+		"Drak" -.01
+		"Quarg" -.01
+	"friendly hail" "friendly pug"
+	"friendly disabled hail" "friendly disabled pug"
+	"hostile hail" "hostile pug"
+	"hostile disabled hail" "hostile pug"
+
+government "Pug (Wanderer)"
+	"display name" "Pug"
 	swizzle 0
 	color .99 .89 .70
 	
