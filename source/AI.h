@@ -214,8 +214,8 @@ private:
 	std::map<const Ship *, int> miningTime;
 	std::map<const Ship *, double> appeasmentThreshold;
 	
-	// Records for formations flying around leadships
-	std::map<const Ship *, FormationPositioner> formations;
+	// Records for formations flying around leadships and other formation leading objects.
+	std::map<const Body *, FormationPositioner> formations;
 	
 	std::map<const Ship *, int64_t> shipStrength;
 	
