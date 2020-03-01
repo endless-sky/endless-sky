@@ -30,7 +30,6 @@ ship "Subsidurial"
 		"gaslining" 1
 	outfits
 		Mouthparts? 3
-		"Quantum Key Stone"
 	gun 0 -97 Mouthparts?
 	gun -23 -95 Mouthparts?
 	gun 23 -95 Mouthparts?
@@ -157,6 +156,7 @@ ship "Void Sprite Elder"
 		"heat dissipation" 1
 		"fuel capacity" 250
 		"cargo space" 39
+		"outfit space" 1
 		"thrust" 80
 		"turn" 3500
 		"hull repair rate" 3
@@ -177,6 +177,7 @@ ship "Void Sprite Elder"
 		"jump drive" 1
 	outfits
 		Mouthparts? 5
+		"Quantum Key Stone"
 	gun 3 -83.5 Mouthparts?
 	gun -3 -83.5 Mouthparts?
 	gun 9 -104 Mouthparts?
