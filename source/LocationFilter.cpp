@@ -381,7 +381,7 @@ const System *LocationFilter::PickSystem(const System *origin) const
 
 
 // Pick a random planet that matches this filter, based on the given origin.
-const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance) const
+const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance, bool requireSpaceport) const
 {
 	// Find a planet that satisfies the filter.
 	vector<const Planet *> options;
@@ -391,9 +391,10 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 		// Skip entries with incomplete data.
 		if(planet.Name().empty() || !planet.GetSystem())
 			continue;
-		// Skip planets that do not offer jobs or missions.
-		if(planet.IsWormhole() || !planet.HasSpaceport() || (!hasClearance && !planet.CanLand()))
-			continue;
+		// Skip planets that do not offer special jobs or missions, unless they were explicitly listed as options.
+		if(planet.IsWormhole() || (requireSpaceport && !planet.HasSpaceport()) || (!hasClearance && !planet.CanLand()))
+			if(planets.empty() || !planets.count(&planet))
+				continue;
 		if(Matches(&planet, origin))
 			options.push_back(&planet);
 	}
