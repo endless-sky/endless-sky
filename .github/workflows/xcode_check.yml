@@ -1,19 +1,21 @@
-name: Check xcode completeness
+name: Validate XCode Project
 
 on:
   push:
     paths:
     - '.github/workflows/xcode_check.yml'
+    - 'EndlessSky.xcodeproj/**'
     - 'source/**'
     - 'tests/check_xcode.sh'
   pull_request:
     paths:
     - '.github/workflows/xcode_check.yml'
+    - 'EndlessSky.xcodeproj/**'
     - 'source/**'
     - 'tests/check_xcode.sh'
 
 jobs:
-  check-xcode-completeness:
+  update-xcode-project:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -24,6 +26,12 @@ jobs:
     - name: Install mod-pbxproj
       run: |
         pip3 install pbxproj --user
-    - name: Execute xcode completeness check
+    - name: Validate XCode .pbxproj file
       run: |
         ./tests/check_xcode.sh
+    - name: Upload XCode patch
+      if: failure()
+      uses: actions/upload-artifact@v1
+      with:
+        name: xcode-project.patch
+        path: xcode-project.patch
