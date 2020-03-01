@@ -755,12 +755,9 @@ mission "Pug Angry at Being Farmed"
 	landing
 	invisible
 	to offer
-		or
-			has "Pug Cease Hostilities: offered"
-			not "chosen sides"
-		"reputation: Pug" < -100
+		"reputation: Pug (Wanderer)" < -100
 	npc kill
-		government "Pug"
+		government "Pug (Wanderer)"
 		personality nemesis unconstrained staying
 		system "Pug Iyik"
 		ship "Pug Arfecta" "Ayee Eee Eek"
