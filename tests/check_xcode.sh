@@ -95,7 +95,7 @@ if [ ${#ADDED[@]} -gt 0 ]; then
 	fi
 	# If some files needed an update, but could not be automatically updated, let the user know.
 	if [ ${RESULT} -ne 0 ]; then
-		echo "\033[0;31m(Some files require manual manipulation.)\033[0m"
+		echo -e "\033[0;31m(Some files require manual manipulation.)\033[0m"
 	fi
 	# Also set the result to non-zero here (since the project is incomplete)
 	RESULT=1
