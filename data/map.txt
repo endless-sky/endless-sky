@@ -27507,7 +27507,7 @@ planet "Remote Blue"
 planet Retilie
 	attributes ka'het
 	landscape land/sea1
-	description `Retilie is an oceanic world, where more than 95% of the planet's surfaces is covered by deep oceans that go down for many kilometers. The planet was mainly used for fishing, leading to a lack of infrastructural development. The few buildings that had been build on the coast lines were swiftly destroyed by the Ka'het and have since been washed away by the ocean waves. The ruins that remain are of a small city, well inside the mainland, far from where the oceans could erase it.`
+	description `Retilie is an oceanic world, where more than 95% of the planet's surfaces is covered by deep oceans that go down for many kilometers. The planet was mainly used for fishing, leading to a lack of infrastructural development. The few buildings that had been built on the coast lines were swiftly destroyed by the Ka'het and have since been washed away by the ocean waves. The ruins that remain are of a small city, well inside the mainland, far from where the oceans could erase it.`
 	description `	In the oceans, the many species of fish continue to prosper, unaware of the destruction the planet has undergone.`
 
 planet Reunion
