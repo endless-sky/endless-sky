@@ -555,7 +555,7 @@ mission "Alexandria Library Card: Second Volume: Step 4 Escort"
 			`	Daemos informs you, "These legitimate businessmen will accompany us back to Tinker."`
 			`	You open your mouth to speak, and are abruptly interrupted.`
 			`	"No discussions," warns Daemos.`
-			`	One of the man looks suspiciously over his shoulder, and you think you see a hint of green skin under his mask. Your survival instincts quickly overpower your curiosity when you realize the wisdom of Daemos's advice.`
+			`	One of the men looks suspiciously over his shoulder, and you think you see a hint of green skin under his mask. Your survival instincts quickly overpower your curiosity when you realize the wisdom of Daemos's advice.`
 			`	The largest of the men speaks. "We'll follow you to <destination>, as agreed. If you don't arrive by <date>, your fate is in your own hands. I suggest you leave now."`
 				accept
 	npc
