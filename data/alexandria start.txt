@@ -772,7 +772,7 @@ mission "ZZ Alexandria Library Card: Third Volume: Step 3"
 			`You meet Daemos afterwards, and he's in a hurry to continue.`
 			`	"Another 60,000 credits, as promised. Are you ready to see a Navy research center?"`
 			choice
-				`	"Let's go"`
+				`	"Let's go."`
 					goto accept
 				`	"I'm tired of being research equipment. Find another captain."`
 					decline
