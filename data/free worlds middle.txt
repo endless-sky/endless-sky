@@ -611,7 +611,6 @@ mission "FW Southern Prisoners - Release"
 	
 	on complete
 		karma ++
-		set "fw delivered prisoners"
 		log "Was given the choice of what to do with the Navy prisoners from the battle for Rastaban, and decided to parole and release them rather than imprisoning them. Hopefully that will earn some goodwill from the Navy in the future."
 
 
@@ -628,7 +627,6 @@ mission "FW Southern Prisoners - Keep"
 	
 	on complete
 		karma --
-		set "fw delivered prisoners"
 		event "fw prison on Clink"
 		log "Was given the choice of what to do with the Navy prisoners from the battle for Rastaban, and decided to imprison them on Clink. Hopefully that will weaken the Navy, a little bit."
 
@@ -672,6 +670,8 @@ mission "FW Southern Prisoners - Released"
 	
 	on visit
 		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
+	on complete
+		set "fw delivered prisoners"
 
 
 
@@ -690,6 +690,8 @@ mission "FW Southern Prisoners - Kept"
 		conversation
 			`You drop off the prisoners at the mines of Clink, to be held until the Navy returns Katya to you. Now, it's time to meet with Freya and Alondo and decide what should be done next.`
 				accept
+	on complete
+		set "fw delivered prisoners"
 
 
 

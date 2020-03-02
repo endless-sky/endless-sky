@@ -70,6 +70,8 @@ government "Deep Security"
 	"friendly hail" "friendly deep"
 	"hostile hail" "hostile deep"
 
+government "Derelict"
+
 government "Drak"
 	swizzle 5
 	color 1 1 1
@@ -390,6 +392,20 @@ government "Pug"
 	"hostile hail" "hostile pug"
 	"hostile disabled hail" "hostile pug"
 
+government "Pug (Wanderer)"
+	"display name" "Pug"
+	swizzle 0
+	color .99 .89 .70
+	
+	"player reputation" 1
+	"attitude toward"
+		"Drak" -.01
+		"Quarg" -.01
+	"friendly hail" "friendly pug"
+	"friendly disabled hail" "friendly disabled pug"
+	"hostile hail" "hostile pug"
+	"hostile disabled hail" "hostile pug"
+
 government "Quarg"
 	swizzle 0
 	color .88 .77 0
@@ -413,7 +429,13 @@ government "Remnant"
 	"player reputation" 1
 	"bribe" 0
 	"attitude toward"
-		"Korath" -.01
+		"Indigenous Lifeform" 0.05
+		"Korath" -.05
+		"Alpha" -.05
+	"penalty for"
+		assist -0.25
+		capture 10
+		destroy 10
 
 government "Republic"
 	swizzle 0

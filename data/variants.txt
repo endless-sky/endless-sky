@@ -1474,6 +1474,80 @@ ship "Manta" "Manta (Proton)"
 
 
 
+ship "Marauder Bounder" "Marauder Bounder (Hai)"
+	outfits
+		"Pulse Cannon"
+		"Pulse Turret"
+		"Chameleon Anti-Missile"
+		"Pebble Core"
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Outfits Expansion"
+		"Laser Rifle" 18
+		"Security Station"
+		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
+
+
+ship "Marauder Firebird" "Marauder Firebird (Hai)"
+	outfits
+		"Pulse Cannon" 4
+		"Pulse Turret" 2
+		"Boulder Reactor"
+		"Hai Chasm Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 4
+		"Fuel Pod" 5
+		"Outfits Expansion"
+		"Laser Rifle" 25
+		`"Biroo" Atomic Thruster`
+		`"Basrem" Atomic Steering`
+		`"Bondir" Atomic Steering`
+		"Hyperdrive"
+
+
+
+ship "Marauder Splinter" "Marauder Splinter (Hai)"
+	outfits
+		"Pulse Turret" 2
+		"Ion Cannon"
+		"Hai Tracker Pod"
+		"Hai Tracker" 84
+		"Tracker Storage Pod"
+		"Chameleon Anti-Missile"
+		"Boulder Reactor"
+		"Hai Chasm Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 3
+		"Fuel Pod" 3
+		"Outfits Expansion" 2
+		"Laser Rifle" 22
+		"Security Station" 4
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Hyperdrive"
+
+
+
+ship "Marauder Quicksilver" "Marauder Quicksilver (Hai)"
+	outfits
+		"Pulse Cannon" 2
+		"Chameleon Anti-Missile"
+		"Geode Reactor"
+		"Supercapacitor"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Fuel Pod" 5
+		"Laser Rifle" 4
+		"Security Station" 2
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
+
+
+
 ship "Modified Argosy" "Modified Argosy (Blaster)"
 	outfits
 		"Modified Blaster" 4
