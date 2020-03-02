@@ -255,6 +255,41 @@ mission "FW Southern Recon 1B (Turret)"
 
 
 
+mission "FW Southern Recon 1B: Alnasl Hint 1"
+	landing
+	source
+		government "Free Worlds"
+		near "Wei" 2
+	to offer
+		has "FW Southern Recon 1B: active"
+	on offer
+		conversation
+			`While refueling on <planet>, a Free Worlds captain approaches you. "Captain <last>, I hear you're on the search for one of those new lasers the Navy is using."`
+			choice
+				`	"Yes I am."`
+				`	"Do you have any information on them?"`
+					goto information
+			`	"Good, because we have some information that could help you.`
+			label information
+			`	"We've had to stop all scouting parties into Republic space because of the strength of these new weapons, so we're flying in the dark on where the Navy is, but luckily we have received word from sympathizers in the Dirt Belt. The Navy has gathered forces with these new weapons in Alioth and Seginus, frequently entering the Wei system.`
+			`	"They haven't been coming into Kornephoros, so they're likely just patrolling the area to dissuade us from making any sudden moves. This means that Wei likely isn't your best bet for stealing a weapon given the traffic, but I hear that things aren't much better beyond Lesath. I wish we had some ships to spare to help you, but we just don't have that kind of freedom right now."`
+			`	You thank the Captain for the information and he wishes you good luck.`
+				decline
+
+
+
+mission "FW Southern Recon 1B: Alnasl Hint 2"
+	landing
+	source "Hope"
+	to offer
+		has "FW Southern Recon 1B: active"
+	on offer
+		conversation
+			`You decide to scan the Navy ships entering and exiting the system by tapping into the surveillance rigs that you helped Freya set up so long ago. Many of the Navy ships are armed with these new Electron Beams, but they are appearing in fleets too big to take on alone. You notice though that almost all Navy traffic is to and from Alioth and Seginus, while only lone Gunboats are traveling to and from Alnasl. Perhaps you may be able to ambush one of these smaller ships on its own in Alnasl.`
+				decline
+
+
+
 mission "FW Southern Battle 1"
 	name "Escort Battle Fleet"
 	description "Travel to <planet> to gather a fleet of experimental new warships, and escort them back to Trinket."
@@ -576,7 +611,6 @@ mission "FW Southern Prisoners - Release"
 	
 	on complete
 		karma ++
-		set "fw delivered prisoners"
 		log "Was given the choice of what to do with the Navy prisoners from the battle for Rastaban, and decided to parole and release them rather than imprisoning them. Hopefully that will earn some goodwill from the Navy in the future."
 
 
@@ -593,7 +627,6 @@ mission "FW Southern Prisoners - Keep"
 	
 	on complete
 		karma --
-		set "fw delivered prisoners"
 		event "fw prison on Clink"
 		log "Was given the choice of what to do with the Navy prisoners from the battle for Rastaban, and decided to imprison them on Clink. Hopefully that will weaken the Navy, a little bit."
 
@@ -637,6 +670,8 @@ mission "FW Southern Prisoners - Released"
 	
 	on visit
 		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
+	on complete
+		set "fw delivered prisoners"
 
 
 
@@ -655,6 +690,8 @@ mission "FW Southern Prisoners - Kept"
 		conversation
 			`You drop off the prisoners at the mines of Clink, to be held until the Navy returns Katya to you. Now, it's time to meet with Freya and Alondo and decide what should be done next.`
 				accept
+	on complete
+		set "fw delivered prisoners"
 
 
 
