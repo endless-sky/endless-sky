@@ -1257,7 +1257,7 @@ mission "Alexandria Library Card: Completion"
 			`"Yes.`
 			`	"The library will pay you to Seek for rare books or artwork and bring them here for archival."`
 			`	"We'll also pay you to ferry librarians or library materials between Alexandria Station and other libraries. Find those jobs in Job Boards here or elsewhere.`
-			`	"Once you've proven yourself, we may give you more difficult jobs: a book cruise, long-range escort missions, or hunting book thieves.'`
+			`	"Once you've proven yourself, we may give you more difficult jobs: a book cruise, long-range escort missions, or hunting book thieves."`
 			`	"The library has a mandate to preserve forbidden knowledge. If you can reach pirate planets, you can find jobs to smuggle illegal literature to Alexandria."`
 				goto questions
 			label end
