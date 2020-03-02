@@ -559,7 +559,7 @@ mission "Alexandria Library Card: Second Volume: Step 4 Escort"
 			`	The largest of the men speaks. "We'll follow you to <destination>, as agreed. If you don't arrive by <date>, your fate is in your own hands. I suggest you leave now."`
 				accept
 	npc
-		government `"Legitimate Businessmen"`
+		government `Legitimate Businessmen`
 		personality heroic escort disables
 		fleet
 			names "pirate"
@@ -813,7 +813,7 @@ mission "ZZ Alexandria Library Card: Third Volume: Step 3 Escort"
 	on offer
 		conversation
 			`A saleswoman in a Tarazed Shipyards uniform approaches you. "We have business near the Navy research center so we'll escort you to <destination>. If you don't arrive by <date>, we'll have to part ways.`
-			`	"By the way, I noticed you may be in need of a new ship. You'll pass by the Tarazed system when you exit Quarg space. Our corporate capital there, on Wayfarer, has the most well-stocked shipyard and outfitters in Human space. Stop by if you have a chance."`
+			`	"By the way, I noticed you may be in need of a new ship. You'll pass by the Tarazed system when you exit Quarg space. Our corporate capital there, on Wayfarer, has some of the most advanced and well-stocked stores in Human space. Whether you want a new ship or an upgrade, there is nowhere better to shop. Stop by if you have a chance."`
 				accept
 	npc
 		government "Neutral"
