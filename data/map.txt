@@ -11803,7 +11803,7 @@ system "Heia Due"
 	fleet "Large Hai" 2000
 	fleet "Small Human Merchants (Hai)" 2000
 	fleet "Large Human Merchants (Hai)" 5000
-	fleet "Hai Surveillance" 3000
+	fleet "Hai Surveillance" 2000
 	object
 		sprite star/g0
 		distance 13.2222
@@ -24265,7 +24265,7 @@ system Waypoint
 	fleet "Small Hai" 1000
 	fleet "Small Human Merchants (Hai)" 18000
 	fleet "Large Human Merchants (Hai)" 28000
-	fleet "Hai Surveillance" 5000
+	fleet "Hai Surveillance" 1000
 	object
 		sprite star/m8
 		period 10
