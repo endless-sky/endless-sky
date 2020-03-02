@@ -511,7 +511,7 @@ mission "Alexandria Library Card: Second Volume: Step 4"
 		fail "Alexandria Library Card: Second Volume: Step 4 Escort"
 	on offer
 		conversation
-			`Daemos has you land on a remote island near the southern pole. The buildings here are well-concealed, durable, structures. You enter one and go down an elevator for at least two minutes into some kind of hidden shipyard. A large number of men in masks seem to be modifying a Bounder, adding space for a gun.`
+			`Daemos has you land on a remote island near the southern pole. The buildings here are well-concealed, durable structures. You enter one and go down an elevator for at least two minutes into some kind of hidden shipyard. A large number of men in masks seem to be modifying a Bounder, adding space for a gun.`
 			`	One of the men comes towards Daemos, growling. It's clear that he wishes he could kill you both.`
 			`	"I'm here for a signature," says Daemos. He seems completely unphased by the man.`
 			`	You're brought to a room with a much taller man in a mask. You've never seen someone this large or this muscular before.`
