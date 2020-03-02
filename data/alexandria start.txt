@@ -123,7 +123,7 @@ mission "Alexandria Library Card: Second Volume: Step 1"
 			`Daemos isn't interested in any of that though; he rushes you on before you can fully take in the environment. You race through the cloud cities of the rich, beyond the factory towns, past the countryside, deep in a marsh, into a hidden temple, beneath a fake support column, and down to a subterranean room. In the center of the room, an impossibly old monk is meditating with his eyes closed. He hovers a half meter above the ground humming in an almost guttural tone. Within his hands is a book.`
 			choice
 				`	(Approach the monk.)`
-			`When Daemos approaches, the monk's eyes open, and he utters, "For the Seeker I do seek." He hands Dameos the book and then vanishes.`
+			`When Daemos approaches, the monk's eyes open, and he utters, "For the Seeker I do seek." He hands Daemos the book and then vanishes.`
 			`	Daemos doesn't surprised at all; he calmly puts the book in his satchel and handed you 60,000 credits.`
 			`	"We have the Paq wa'DIch. Next we seek the Paq cha'DIch."`
 			`	This seemed too easy for a 60,000 credit mission. You suspect the next four books will be harder to get.`
