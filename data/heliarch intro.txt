@@ -1363,7 +1363,7 @@ mission "Heliarch Containment 3"
 			`	He wishes you good luck, and the trio from earlier escorts you back to your ship.`
 				accept
 	on stopover
-		dialog `As instructed, you release the drones as you come in for a landing. Noone seems to have noticed anything, judging by the normal conditions of the spaceport, as you pick up the cargo.`
+		dialog `As instructed, you release the drones as you come in for a landing. Judging by the normal conditions of the spaceport, no one seems to have noticed anything as you pick up the cargo.`
 	on complete
 		payment 330000
 		conversation
