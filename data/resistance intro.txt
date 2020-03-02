@@ -151,7 +151,7 @@ mission "Resistance: Introductions"
 				`	"Now? Can't you give me some time to think?"`
 					goto time
 			label time
-			`	"Enough time, not given were you, when, with these weapons, filling your cargo you were? Enough time not given were you, when, all the way here, transporting them you were?" They say as they repeatedly tap the grenade with one leg.`
+			`	"Enough time, not given were you, when, with these weapons, filling your cargo you were? Enough time not given were you, when, all the way here, transporting them you were?" they say as they repeatedly tap the grenade with one leg.`
 			`	"To fight the Heliarchs now, asking you, we are not. Merely a promise to support only us, is what of you, we ask."`
 			choice
 				`	"Alright, I swear I won't offer the Heliarchs any help."`
