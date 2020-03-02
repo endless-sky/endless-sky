@@ -44,7 +44,7 @@ mission "Alexandria Library Card: Offer"
 			`	Before you can finish your sentence, he waves a hand at you frantically, and shouts, "No! No! The southern support column! They always associated South with intellectualism and mystery!"`
 				goto question
 			label watch
-			`Between bouts of mumbling, reading, ranting, and writing, the man strokes his beard as if petting a cat. Eventually his frantic scribbling on the giant book runs off the bottom of a page and his pencil breaks. He looks sad for a moment, and then notices you.`
+			`Between bouts of mumbling, reading, ranting, and writing, the man strokes his beard as if petting a cat. Eventually, his frantic scribbling on the giant book runs off the bottom of a page and his pencil breaks. He looks sad for a moment, and then notices you.`
 			`	His beard ruffles as he asks, "yes?"`
 				goto question
 			label question
