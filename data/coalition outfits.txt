@@ -259,7 +259,7 @@ outfit "Refuelling Module"
 	"fuel generation" .05
 	"energy consumption" .025
 	description "To avoid the risk of being inspected by the Heliarch as they refuel on planets, Resistance ships employ this outfit when carrying supplies or stolen outfits."
-	description "	The outfit's mechanisms need a set amount of fuel to be put aside for it's inner workings, so a ship can only install so many of these before becoming incapable of jumping to another system."
+	description "	The outfit's mechanisms require a set amount of fuel to be put aside for its inner workings, so a ship can only install so many of these before becoming incapable of jumping to another system."
 
 outfit "Decoy Plating"
 	category "Systems"
@@ -269,8 +269,8 @@ outfit "Decoy Plating"
 	"outfit space" -7
 	"scan interference" 1.2
 	"radar jamming" 4
-	description "This plating takes advantage of a ship's scan logs, and reproduces the data of other ships close by, effectively deflecting attempts to scan a ship's true cargo and equipment."
-	description "	Out of a need to protect themselves against the destructive Heliarch torpedoes, the Resistance made sure to also incorporate a radar jamming system in it, if only to act as a last line of defense."
+	description "This plating takes advantage of a ship's scan logs, reproducing the data of other ships close by, effectively deflecting attempts to scan a ship's true cargo and equipment."
+	description "	Out of a necessity to protect themselves against the destructive Heliarch torpedoes, the Resistance made sure to also incorporate a radar jamming system in it, if only to provide the ship with a final line of defense."
 
 outfit "Enforcer Confrontation Gear"
 	category "Hand to Hand"
@@ -302,5 +302,5 @@ outfit "Coalition License"
 outfit "Heliarch License"
 	category "Special"
 	thumbnail "outfit/heliarch license"
-	description "Helped the Heliarch in several instances, and as such was awarded with the rank of Heliarch. This circlet was originally designed for a Saryd, but was modified to better fit a human head."
+	description "Assisted the Heliarch in several instances, and as such was awarded the rank of Heliarch. This circlet was originally designed for a Saryd, but was modified to better fit a human head."
 
