@@ -142,4 +142,4 @@ mission "First Contact: Z Ka'het: Quarg 2"
 		fail "First Contact: Ka'het: Quarg 1"
 		log "Asked the Quarg about the history of the Graveyard. Although not being told the reason for the abandoned ringworld, have learned about the previous inhabitants of the region, the Builders."
 		log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have since become extinct. They developed some sort of weapon, called the "Ka'het," which stopped obeying their orders and rebelled against them.`
-		log "Factions" "Ka'het"  `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then rebelled and led them to extinction. Even in the millennias that passed, they are still being produced in the Graveyard.`
+		log "Factions" "Ka'het"  `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then rebelled and led them to extinction. Even in the millennia that passed, they are still being produced in the Graveyard.`
