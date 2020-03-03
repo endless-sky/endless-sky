@@ -309,7 +309,7 @@ ship "Grasshopper" "Grasshopper (Tracker)"
 
 ship "Grasshopper" "Grasshopper (Surveillance)"
 	outfits
-		"Pulse Cannon" 1
+		"Pulse Cannon"
 		"Pebble Core"
 		"Hai Chasm Batteries"
 		"Supercapacitor"
@@ -549,7 +549,7 @@ ship "Shield Beetle" "Shield Beetle (Police)"
 		"Hai Diamond Regenerator" 2
 		"Outfit Scanner" 7
 		"Cargo Scanner" 7
-		Brig
+		"Brig"
 		"Hai Williwaw Cooling" 4
 		"Pulse Rifle" 55
 		`"Bondir" Atomic Thruster`

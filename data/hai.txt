@@ -198,19 +198,19 @@ fleet "Large Hai"
 		"Grasshopper (Tracker)"
 
 fleet "Hai Surveillance"
-	government Hai
+	government "Hai"
 	names "hai"
 	cargo 0
 	personality
 		surveillance unconstrained
 	variant 10
-		"Shield Beetle (Police)" 1
+		"Shield Beetle (Police)"
 	variant 5
-		"Lightning Bug (Surveillance)" 1
-	variant 5
-		"Lightning Bug (Surveillance)" 3
+		"Lightning Bug (Surveillance)"
 	variant 5
 		"Lightning Bug (Surveillance)" 2
+	variant 5
+		"Lightning Bug (Surveillance)" 3
 	variant 3
 		"Grasshopper (Surveillance)" 3
 	variant 3
