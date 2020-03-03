@@ -20,12 +20,12 @@ mission "Drak guarding Korath space"
 		government Drak
 		personality heroic vindictive staying
 		system Kasikfar
-		ship "Archon" "Sword of Eden"
+		ship "Archon B" "Sword of Eden"
 	npc kill
 		government Drak
 		personality heroic vindictive staying
 		system Peresedersi
-		ship "Archon" "Snows of Far Door Nai"
+		ship "Archon C" "Snows of Far Door Nai"
 
 mission "Drak guarding Sayaiban"
 	invisible

@@ -1053,7 +1053,9 @@ mission "Wanderers: Mind 5"
 
 
 government " Kor Mereti "
+	"display name" "Kor Mereti"
 	swizzle 5
+	language "Korath"
 	"attitude toward"
 		"Wanderer" -.01
 		"Kor Mereti" -.01
@@ -1073,6 +1075,24 @@ event "wanderers: kor mereti friendly"
 	"reputation:  Kor Mereti " = -1000
 	planet "Rekat Moraski"
 		"required reputation" 1000
+
+# A backwards compatibility event and mission for being able to speak with Kor Mereti ships.
+event "wanderers: kor mereti language"
+	government "Kor Mereti"
+		language "Wanderer"
+		"friendly hail" "friendly wanderer"
+		"friendly disabled hail" "friendly disabled wanderer"
+		"hostile hail" "hostile wanderer"
+		"hostile disabled hail" "hostile disabled wanderer"
+
+mission "Wanderers: Kor Mereti Language"
+	landing
+	invisible
+	to offer
+		has "Wanderers: Mind 5: done"
+	on offer
+		event "wanderers: kor mereti language"
+		fail
 
 mission "Wanderers: Mind 6"
 	landing
@@ -1270,12 +1290,12 @@ mission "Wanderers: Mentors 2"
 		conversation
 			`A team of Wanderer terraforming experts has been assembled on <origin>. They have requisitioned a transport and filled it with an overwhelming variety of sensors, bioreactors, chemical filters, and other scientific devices. But, it's clear that none of them quite understand what is going on with the Kor Mereti. The team's manager says, "We are to meet with [sentient? awakened?] robots? They are interested in [foliage, plants]? There are worlds to be [repaired, healed]?"`
 			`	You do your best to answer their questions, but this is clearly not a situation that any of them had anticipated. Perhaps not even a situation that their species has ever had to deal with before, given that usually they are working in regions of space that have long since been abandoned by their former inhabitants.`
-			`	The freighter gets ready to follow you back to <planet>, where hopefully more of their questions will be answered.`
+			`	The transport gets ready to follow you back to <planet>, where hopefully more of their questions will be answered.`
 				accept
 	npc accompany save
 		government "Wanderer"
 		personality escort
-		ship "Deep River Transport" "Green Talon"
+		ship "Riptide" "Green Talon"
 
 
 
@@ -1292,7 +1312,7 @@ mission "Wanderers: Mentors 3"
 		log "Brought a group of Wanderer mentors and teachers to one of the Kor Mereti worlds, where they will seek to build a relationship with the drones and to help them learn to care for living things and to join in the Wanderer work of healing devastated planets."
 		conversation
 			`When you last left <origin>, there were less than a dozen buildings in the greenhouse facility. It has now grown to the size of a major spaceport, including some towers that are dozens of stories high. Some plants now grow on open-air terraces; others are in domed enclosures tall enough to house fully-grown trees. The larger domes also have birds flying about inside them, and some larger land animals as well. Everything is built of gleaming steel and glass and filled with lush vegetation; from high above the facility looks like a scattered handful of diamonds and emeralds.`
-			`	The freighter you were escorting was full of professors and researchers, who are clearly not used to any sort of military discipline or to living in a dangerous region of space: the moment the freighter lands they fly off toward the greenhouse without bothering to wait for instructions from their supposed manager. Several of them are already engaged in conversation with the drones, while others are exploring the different rooms of the facility, examining plants and probing soil with their talons.`
+			`	The transport you were escorting was full of professors and researchers, who are clearly not used to any sort of military discipline or to living in a dangerous region of space: the moment the transport lands they fly off toward the greenhouse without bothering to wait for instructions from their supposed manager. Several of them are already engaged in conversation with the drones, while others are exploring the different rooms of the facility, examining plants and probing soil with their talons.`
 			`	The team's manager, already looking a bit overwhelmed, flies over to talk with you. "What are we [expected, requested] to do next?" he asks.`
 			choice
 				`	"Help the drones to learn to take care of the planets in this region."`
@@ -1771,13 +1791,8 @@ mission "Wanderers: Sestor: Alnilam Fleet 1"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349"
-				"Kar Ik Vot 349 (Trapper)"
-				"Tek Far 109"
-				"Far Lek 14" 9
-				"Far Osk 27" 7
-				"Met Par Tek 53" 2
-				"Met Par Tek 53 (Sniper)" 2
+				"Kar Ik Vot 349 (Defense)"
+				"Met Par Tek 53" 3
 
 
 
@@ -2106,11 +2121,9 @@ mission "Wanderers: Sestor: Alnilam Fleet 2"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Trapper)"
+				"Kar Ik Vot 349 (Defense)"
 				"Tek Far 71 - Lek (Close Quarters)"
 				"Far Lek 14" 10
-				"Tek Far 78 - Osk (Close Quarters)"
-				"Far Osk 27" 9
 
 
 
@@ -2794,7 +2807,7 @@ mission "Wanderers: Sestor Alt: Alnilam 1"
 mission "Wanderers: Sestor Alt: Alnilam 2"
 	landing
 	name "Attack Alpha base"
-	description "Travel to the <system> system with these Oathkeeper cruisers to eliminate the Alpha base on <planet>."
+	description "Travel to the <system> system with these Oathkeeper Cruisers to eliminate the Alpha base on <planet>."
 	source "Farpoint"
 	destination "Zenith"
 	clearance
@@ -2830,7 +2843,7 @@ mission "Wanderers: Sestor Alt: Alnilam 2"
 mission "Wanderers: Sestor Alt: Alnilam 3"
 	landing
 	name "Return to <planet>"
-	description "Escort the Oathkeeper cruisers back to <destination>."
+	description "Escort the Oathkeeper Cruisers back to <destination>."
 	source "Zenith"
 	destination "Farpoint"
 	to offer
@@ -2987,7 +3000,7 @@ mission "Wanderers: Sestor: Exiles 2"
 			`	Rek makes herself comfortable in one of your bunk rooms, and you prepare for a visit to the territory of the Korath exiles. "We must somehow earn their trust," she says, "so do not fire on any of their ships. Instead we must find a way to communicate with them or a place where they will meet with us peacefully."`
 				accept
 	on visit
-		dialog `You land on <planet>, but realize that your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
+		dialog `You've returned to <planet>, but you haven't yet made contact with the Korath exiles. Travel to the core of the galaxy and look for a way to make contact with them.`
 	npc save
 		government "Korath"
 		system "Kor Fel'tar"
