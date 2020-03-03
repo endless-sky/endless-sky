@@ -565,7 +565,7 @@ mission "Remnant: Cognizance 14"
 				`	"How are we supposed to lure them inside?"`
 				`	"Are we sure this is a good idea?"`
 					goto goodidea
-				`	"OK, let's go do this."`
+				`	"Okay, let's go do this."`
 					goto letsgo
 			`	Plume looks a bit embarassed. "Centuries ago when we first studied the void sprites, we learned how to harvest them. As part of that, we discovered that they were particularly interested in certain types of radiation. Likewise, if they discovered a certain kind of element common in some asteroids, they would ignore almost everything while they chewed on it. So, we have emitters inside the cargo holds, along with asteroids to keep them busy for a short while."`
 			choice
