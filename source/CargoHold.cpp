@@ -551,10 +551,11 @@ int64_t CargoHold::Value(const System *system) const
 }
 
 
-	
+
 // If anything you are carrying is illegal, return the maximum fine you can
-// be charged. If the returned value is negative, you are carrying something
-// so bad that it warrants a death sentence.
+// be charged for any illegal outfits plus the sum of the fines for all
+// missions. If the returned value is negative, you are carrying something so
+// bad that it warrants a death sentence.
 int CargoHold::IllegalCargoFine() const
 {
 	int worst = 0;
@@ -567,9 +568,9 @@ int CargoHold::IllegalCargoFine() const
 		worst = max(worst, fine / 2);
 	}
 	
-	// Fines for illegal mission cargo and passengers are summed up to avoid the
-	// player being able to stack multiple illegal jobs at once and avoid the 
-	// bulk of the penalties when fined.
+	// Fines for illegal mission cargo and passengers are added together to
+	// avoid the player being able to stack multiple illegal jobs at once
+	// and avoid the bulk of the penalties when fined.
 	for(const auto &it : missionCargo)
 	{
 		int fine = it.first->IllegalCargoFine();
