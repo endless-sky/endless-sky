@@ -600,7 +600,7 @@ mission "Remnant: Cognizance 14"
 	on enter "Nenia"
 		dialog `The pelicans immediatley set to work collecting void sprites, and are soon ready to go.`
 	on enter "Arculus"
-		dialog `You watch vigilantly as the pelicans with the void sprites dip low into Esquilion's atmosphere and open their bay doors. The void sprites emerge tentatively, then confidently launch themselves into the clouds. A few minutes later you receive a message from Esquiline station informing you that the first void sprite just swooped through the bay, grabbed one of the asteroid supplmements, and vanished into the clouds again.`
+		dialog `You watch vigilantly as the Pelicans with the void sprites dip low into Esquilion's atmosphere and open their bay doors. The void sprites emerge tentatively, then confidently launch themselves into the clouds. A few minutes later you receive a message from Esquiline station informing you that the first void sprite just swooped through the bay, grabbed one of the asteroid supplements, and vanished into the clouds again.`
 	on complete
 		log "Succesfully introduced a flock of void sprites to Esquiline. Time will tell how they fare."
 		"salary: Remnant" = 2500
