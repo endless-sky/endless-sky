@@ -69,5 +69,5 @@ ship "Emerald Sword"
 	"final explode" "nuke explosion" 2
 	"final explode" "nuke residue fast" 25
 	"final explode" "nuke residue fast" 25
-	description "An ancient Sheragi warship that defected from their infighting to escape into interstellar space. Found orbiting a disconnected star, this is an impressively large ship, fit for the equally large Sheragi. The ship's main weapon is a fusion-pumped gamma ray laser. Despite the relatively low tech outfits, it's still a very brutal war machine due to its size."
+	description "An ancient Sheragi warship that fled from their civil war and escaped into interstellar space. Found orbiting a disconnected star, this is an impressively large ship, fit for the equally large Sheragi. The ship's main weapon is a fusion-pumped gamma ray laser. Despite the relatively low tech outfits, it's still a very brutal war machine due to its size."
 	description "For the original Sheragi masters, this warship was home to around 100 individuals. For humans, however, that number nearly doubles, bringing it on par with the biggest city ships."
