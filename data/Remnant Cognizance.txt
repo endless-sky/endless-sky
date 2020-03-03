@@ -354,7 +354,7 @@ mission "Remnant: Cognizance 10"
 				accept
 	on complete
 		conversation
-			`On viminal you easily locate the maintenance yards and eventually find Taely burried in a Pelican. She spots you approaching and frees herself from the machinery. "Greetings <first>. How is our station faring?" You reply that it is improving rapidly, and hand her the datacube. "Ah, good. The detailed chemical analysis and profiles." She slots it into her console and taps a few commands. "OK, I just need to incorporate these profiles into the system and make a few more adjustments. Meet me in the cafeteria in a couple hours."`
+			`On Viminal you easily locate the maintenance yards and eventually find Taely buried in a Pelican. She spots you approaching and frees herself from the machinery. "Greetings <first>. How is our station faring?" You reply that it is improving rapidly, and hand her the datacube. "Ah, good. The detailed chemical analysis and profiles." She slots it into her console and taps a few commands. "Okay, I just need to incorporate these profiles into the system and make a few more adjustments. Meet me in the cafeteria in a couple hours."`
 
 
 
