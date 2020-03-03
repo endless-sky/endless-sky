@@ -570,7 +570,7 @@ mission "Remnant: Cognizance 14"
 			`	Plume looks a bit embarassed. "Centuries ago when we first studied the void sprites, we learned how to harvest them. As part of that, we discovered that they were particularly interested in certain types of radiation. Likewise, if they discovered a certain kind of element common in some asteroids, they would ignore almost everything while they chewed on it. So, we have emitters inside the cargo holds, along with asteroids to keep them busy for a short while."`
 			choice
 				`	"Are we sure this is a good idea?"`
-				`	"OK, let's go."`
+				`	"Okay, let's go."`
 					goto letsgo
 			label goodidea
 			`	Chilia signs with a resolute tone. "Is it a good idea? Maybe, maybe not. Is it the best idea we have so far? Yes." He sighs "I fully expect the Archon to interfere: they do have long memories. As best we can tell, they can pick out who is leading a fleet, so you should expect to have them talking to you. That is, if they do not simply start shooting, anyway."`
