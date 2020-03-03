@@ -1791,13 +1791,8 @@ mission "Wanderers: Sestor: Alnilam Fleet 1"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349"
-				"Kar Ik Vot 349 (Trapper)"
-				"Tek Far 109"
-				"Far Lek 14" 9
-				"Far Osk 27" 7
-				"Met Par Tek 53" 2
-				"Met Par Tek 53 (Sniper)" 2
+				"Kar Ik Vot 349 (Defense)"
+				"Met Par Tek 53" 3
 
 
 
@@ -2126,11 +2121,9 @@ mission "Wanderers: Sestor: Alnilam Fleet 2"
 			names "kor sestor"
 			fighters "kor sestor fighter"
 			variant
-				"Kar Ik Vot 349 (Trapper)"
+				"Kar Ik Vot 349 (Defense)"
 				"Tek Far 71 - Lek (Close Quarters)"
 				"Far Lek 14" 10
-				"Tek Far 78 - Osk (Close Quarters)"
-				"Far Osk 27" 9
 
 
 
