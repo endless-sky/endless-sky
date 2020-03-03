@@ -30,7 +30,7 @@ mission "Alexandria Library Card: Offer"
 			`	You turn a corner and see something you never thought you would see on the infamously-gray planet of Earth: a large, green, field of grass with a beautiful mosque. It looks like something out of Earth's ancient history, perfectly preserved in present day.`
 			choice
 				`	(Enter the library.)`
-			`On your way to the library, a scruffy-looking man approaches you. He has a rather large gun in his holster and a massive book strapped to his back. He starts staring intently at you, or possibly through you. His dark red sunglasses and porcupine beard make it difficult to read his face (or even see it). When the man abruptly stops walking you consider yelling for help, fearing you're about to be mugged or shot.`
+			`	On your way to the library, a scruffy-looking man approaches you. He has a rather large gun in his holster and a massive book strapped to his back. He starts staring intently at you, or possibly through you. His dark red sunglasses and porcupine beard make it difficult to read his face (or even see it). When the man abruptly stops walking you consider yelling for help, fearing you're about to be mugged or shot.`
 			`	Suddenly he seems startled as if from some terrible gastrointestinal distress. He dives to the nearest bench, pulls the gigantic book off of his back, and starts jotting notes. You're not sure he even noticed you. His mind had wandered to whatever metaphysical world scholars occupy when reality has no bearing on their lives.`
 			choice
 				`	(Interrupt him.)`
@@ -44,7 +44,7 @@ mission "Alexandria Library Card: Offer"
 			`	Before you can finish your sentence, he waves a hand at you frantically, and shouts, "No! No! The southern support column! They always associated South with intellectualism and mystery!"`
 				goto question
 			label watch
-			`Between bouts of mumbling, reading, ranting, and writing, the man strokes his beard as if petting a cat. Eventually, his frantic scribbling on the giant book runs off the bottom of a page and his pencil breaks. He looks sad for a moment, and then notices you.`
+			`	Between bouts of mumbling, reading, ranting, and writing, the man strokes his beard as if petting a cat. Eventually, his frantic scribbling on the giant book runs off the bottom of a page and his pencil breaks. He looks sad for a moment, and then notices you.`
 			`	His beard ruffles as he asks, "Yes?"`
 				goto question
 			label question
@@ -74,7 +74,7 @@ mission "Alexandria Library Card: First Volume"
 			`	"Yes, yes, yes. Details." He fumbles about his person and eventually finds a folded piece of paper in his beard. He shoves it at you so fast that his hand almost hits you. You're fairly certain it wasn't meant as a hostile gesture. This man simply hasn't talked to anyone other than himself for so long that he's forgotten basic social graces.`
 			choice
 				`	(Read the paper.)`
-			`The paper is of organic origin, not a modern synthetic, and is stamped with the Alexandria Library Seal using actual wax. The text is badly smudged, but you can make out some details.`
+			`	The paper is of organic origin, not a modern synthetic, and is stamped with the Alexandria Library Seal using actual wax. The text is badly smudged, but you can make out some details.`
 			`	Your job is to ferry Daemos around the galaxy looking for the five Chal Jub Paqmey. You'll receive a payment of 60,000 credits each time he finds one. When you return Daemos and all five Chal Jub Paqmey to Alexandria Station in the Markeb system, you'll receive another 100,000 credits and an Alexandria Library Card.`
 			`	The library card will allow permanent access to the Alexandria Station and its library, no matter your legal status, nor the political situation. The library also offers Job Board jobs to card holders, and possibly a daily salary.`
 			choice
@@ -120,17 +120,17 @@ mission "Alexandria Library Card: Second Volume: Step 1"
 			`As Dameos guides you from the spaceport and you see a planet of anachronisms. In the high mountains, vast castles of medieval design house the pampered ultra-rich, living as if in a Victorian era. As you pass through the streets you notice all the comforts of the modern era concealed behind curtains: virtual reality booths, food-synthesizing devices, massive panel screens for tracking stocks, and the like. When you leave the wealthy areas, you see the poor living in cramped conditions no better than medieval serfs, using modern technology only in their workplaces.`
 			choice
 				`	(Continue.)`
-			`Daemos isn't interested in any of that though; he rushes you on before you can fully take in the environment. You race through the cloud cities of the rich, beyond the factory towns, past the countryside, deep in a marsh, into a hidden temple, beneath a fake support column, and down to a subterranean room. In the center of the room, an impossibly old monk is meditating with his eyes closed. He hovers a half meter above the ground humming in an almost guttural tone. Within his hands is a book.`
+			`	Daemos isn't interested in any of that though; he rushes you on before you can fully take in the environment. You race through the cloud cities of the rich, beyond the factory towns, past the countryside, deep in a marsh, into a hidden temple, beneath a fake support column, and down to a subterranean room. In the center of the room, an impossibly old monk is meditating with his eyes closed. He hovers a half meter above the ground humming in an almost guttural tone. Within his hands is a book.`
 			choice
 				`	(Approach the monk.)`
-			`When Daemos approaches, the monk's eyes open, and he utters, "For the Seeker I do seek." He hands Daemos the book and then vanishes.`
+			`	When Daemos approaches, the monk's eyes open, and he utters, "For the Seeker I do seek." He hands Daemos the book and then vanishes.`
 			`	Daemos doesn't surprised at all; he calmly puts the book in his satchel and handed you 60,000 credits.`
 			`	"We have the Paq wa'DIch. Next we seek the Paq cha'DIch."`
 			`	This seemed too easy for a 60,000 credit mission. You suspect the next four books will be harder to get.`
 			`	Daemos wanders off, and you see him reading the book. He probably won't listen to you for a few hours.`
 			choice
 				`	(Wait a few hours.)`
-			`You find Daemos later on, sitting in a tree the book on his lap. It's hard to see beneath his beard, but you think he's smiling.`
+			`	You find Daemos later on, sitting in a tree the book on his lap. It's hard to see beneath his beard, but you think he's smiling.`
 			`	"Are you ready to go, Captain <last> <first>?"`
 			choice
 				`	"I have some questions first."`
@@ -151,20 +151,20 @@ mission "Alexandria Library Card: Second Volume: Step 1"
 				`	"I'm done with your quest. Enjoy the book."`
 					decline
 			label contents
-			`"The book begins a story about a merchant, HoD Qav of Clan Botolphstone, destined to be the greatest warrior of the era. Through hard work, HoD Qav left the lands of Botolphstone, surviving on dangerous roads through wit alone. HoD Qav became an explorer, experiencing the vast continent on which their clan resides."`
+			`	"The book begins a story about a merchant, HoD Qav of Clan Botolphstone, destined to be the greatest warrior of the era. Through hard work, HoD Qav left the lands of Botolphstone, surviving on dangerous roads through wit alone. HoD Qav became an explorer, experiencing the vast continent on which their clan resides."`
 			`	"Why do you say 'their' clan instead of his or her?"`
 			`	"The opera doesn't specify the gender of the merchant. The way it's written, the merchant could be male or female... or both. Or neither, I suppose."`
 			`	"What happens next in the story?"`
 			`	Daemos looks at you as if you were a child. "To know what happens next, we'll have to find the second book: the Paq cha'DIch."`
 				goto questions
 			label seek
-			`"My research suggests that the next book deals with war, unfairness, and greed. It is filled with mystery and amorality. That is also the very definition of the Syndicate. Their Director of Manufacturing is famous for his vast library."`
+			`	"My research suggests that the next book deals with war, unfairness, and greed. It is filled with mystery and amorality. That is also the very definition of the Syndicate. Their Director of Manufacturing is famous for his vast library."`
 				goto questions
 			label monk
-			`"The monk? What monk? Haven't you ever seen a hologram before?"`
+			`	"The monk? What monk? Haven't you ever seen a hologram before?"`
 				goto questions
 			label leave
-			`"Excellent. We're going to Tinker in the Diphda system. It's at the edge of Syndicate space. Some stars around here are haunted by pirates. Take a route through the Paradise Planets and then Sol."`
+			`	"Excellent. We're going to Tinker in the Diphda system. It's at the edge of Syndicate space. Some stars around here are haunted by pirates. Take a route through the Paradise Planets and then Sol."`
 				accept
 	on visit
 		dialog `You've forgotten your senile friend or his pencils. Perhaps they're in one of your escorts?`
@@ -188,18 +188,18 @@ mission "Alexandria Library Card: Second Volume: Step 2"
 			`You are led to a vast skyscraper overlooking a mountain range. From the glass-walled elevator, you take in the breathtaking view. The elevator stops on the top floor and you see a well-dressed man surrounded by bookshelves. He sitting on a gold-lined leather chair, pulled up to a marble desk. The bookshelves also appear to be hand-carved marble. Whoever this is, he is exceptionally rich.`
 			choice
 				`	(Interrupt him.)`
-			`The man turns to you and says, "It is always an honor to meet Alexandria Seekers. How can I help you?"`
+			`	The man turns to you and says, "It is always an honor to meet Alexandria Seekers. How can I help you?"`
 			`	Daemos responds, "I seek the Paq cha'DIch, second volume of the Chal Jub Paqmey. I've heard it's your kind of literature. Do you have it?"`
 			`	"I don't have it now, but I can get it for you. Do you have the book, 'A Thousand Poisons of Amazon and How to Conceal Their Taste?' I've been looking for a signed first edition."`
 			`	"Ekhh. A trade. Okay, I'll get you a copy."`
 			`	Daemos whispers to you, "We have to fly to planet Amazon in the Schedar system next. I have the book, but we need to get it signed. I have someone to contact... I'll see you at your ship."`
 			choice
 				`	(Continue.)`
-			`Daemos meets you at your ship and says, "Our destination is in a dangerous area of Syndicate space. I've arranged some escorts so you don't get me killed."`
-			`With a disgruntled expression, he asks, "Are you going to pester me with questions again?"`
+			`	Daemos meets you at your ship and says, "Our destination is in a dangerous area of Syndicate space. I've arranged some escorts so you don't get me killed."`
+			`	With a disgruntled expression, he asks, "Are you going to pester me with questions again?"`
 				goto "actual questions"
 			label questions
-			`"Are you going to pester me with questions again?"`
+			`	"Are you going to pester me with questions again?"`
 			label "actual questions"
 			choice
 				`	"What will we do on Amazon?"`
@@ -211,10 +211,10 @@ mission "Alexandria Library Card: Second Volume: Step 2"
 				`	"I don't have time to help you any more."`
 					decline
 			label what
-			`"I have a first edition of the book that the executive wanted, but we need to get it signed. It's a popular book among the Syndicate, so I always keep a copy or two when I visit their aristocracy. I'm a personal friend of the author, and I know the location of his remote hermitage."`
+			`	"I have a first edition of the book that the executive wanted, but we need to get it signed. It's a popular book among the Syndicate, so I always keep a copy or two when I visit their aristocracy. I'm a personal friend of the author, and I know the location of his remote hermitage."`
 				goto questions
 			label why
-			`Daemos responds, "That area is crawling with pirates and I doubt your ship will survive alone. The Chal Jub Paqmey are critical, so the Library is willing to expend significant resources to obtain it."`
+			`	Daemos responds, "That area is crawling with pirates and I doubt your ship will survive alone. The Chal Jub Paqmey are critical, so the Library is willing to expend significant resources to obtain it."`
 			`	"Why am I your courier if you fear I'll get you killed?"`
 			`	"Courier? You're not a courier. I don't understand."`
 			`	"You're paying me to ferry you around the galaxy looking for books."`
@@ -234,17 +234,17 @@ mission "Alexandria Library Card: Second Volume: Step 2"
 				`	"I don't have time for this. I'm out."`
 					decline
 			label seeker
-			`"An Alexandria Seeker is an adventurer who scours the galaxy for works of literature or art and brings them back to the library for archival. It's a dangerous job, but it is worth the risk to ensure knowledge is preserved.`
+			`	"An Alexandria Seeker is an adventurer who scours the galaxy for works of literature or art and brings them back to the library for archival. It's a dangerous job, but it is worth the risk to ensure knowledge is preserved.`
 			`	"When you get a pilot license, the paperwork goes to many organizations in the Republic. Alexandria Library is one of them. If your personality fits and you've show determination and resourcefulness, they consider you for an apprenticeship. Finish your first mission, and you'll be a Journeyman Seeker. Prove your skill, and you'll be a Master Seeker with a sizable salary. We always Seek in pairs, so you'll still have to ferry someone even as a Master Seeker."`
 				goto "seeker questions"
 			label "why me"
-			`"I haven't read your file, but the reason is usually a mix of determination and resourcefulness based on your past five years of work. There are basic educational requirements too, and a few other minor things."`
+			`	"I haven't read your file, but the reason is usually a mix of determination and resourcefulness based on your past five years of work. There are basic educational requirements too, and a few other minor things."`
 				goto "seeker questions"
 			label faults
-			`"You must know yourself if you are to be a successful Seeker. You are never truly strong until you turn your very weaknesses into strengths."`
+			`	"You must know yourself if you are to be a successful Seeker. You are never truly strong until you turn your very weaknesses into strengths."`
 				goto "seeker questions"
 			label go
-			`"Excellent! Now go to the spaceport to meet our escorts."`
+			`	"Excellent! Now go to the spaceport to meet our escorts."`
 				accept
 	on decline
 		fail "Alexandria Library Card: Second Volume: Step 2 Escort"
@@ -383,11 +383,11 @@ mission "Alexandria Library Card: Second Volume: Step 3"
 			`Instead of landing on the main Amazon spaceport, Daemos has you land deep inside one of the densest forests on the planet. You climb through some aggressive vegetation, up a mountain, to a hut. Daemos looks at you and says, "This is the place."`
 			choice
 				`	(Open the door.)`
-			`When the door opens, Daemos rushes forward in a panic, before you can even survey the room. It seems the man you came to see is dead, and quite recently too.`
+			`	When the door opens, Daemos rushes forward in a panic, before you can even survey the room. It seems the man you came to see is dead, and quite recently too.`
 			`	"This will just delay us," says Daemos, "I know a group of businessmen on Deadman's Cove who can forge his signature. Let's get out of here before we're implicated in the crime."`
 			choice
 				`	(Leave.)`
-			`You fly back to the city and Daemos disappears into a crowd of dastardly-looking men. It takes you a while to find him again.`
+			`	You fly back to the city and Daemos disappears into a crowd of dastardly-looking men. It takes you a while to find him again.`
 			`	Daemos looks dead serious when you approach him. He says, "We're going to a pirate planet. That's an insanely dangerous thing to do in a ship like yours. I've arranged for us to travel with a large group of bounty hunters. You'll need to speak to the planet's authorities before they'll let you land."`
 			label questions
 			`	"Do you want to know anything before we go?"`
@@ -403,16 +403,16 @@ mission "Alexandria Library Card: Second Volume: Step 3"
 				`	"I don't want to die. Find another captain."`
 					decline
 			label signature
-			`"No. The author's signature is elaborate and precise. We need a master forger to do this properly, and there's only one person I know of who can do it.`
+			`	"No. The author's signature is elaborate and precise. We need a master forger to do this properly, and there's only one person I know of who can do it.`
 				goto questions
 			label "death wish"
-			`"I don't want to die of old age, if that's what you're wondering. Dying for a cause is the best way to go, and there is no cause greater than preservation of knowledge.`
+			`	"I don't want to die of old age, if that's what you're wondering. Dying for a cause is the best way to go, and there is no cause greater than preservation of knowledge.`
 			`	"I think we have a good chance of making it through this though. Our survival depends on you using your escorts properly."`
 				goto questions
 			label who
-			`Daemos responds, "A group of about thirty Sparrows. Having such a large group will screen your approach. They're lead by a woman named Crimson Slayer, a highly disturbed but well-meaning bounty hunter. She'll keep you alive... if you don't annoy her too much."`
+			`	Daemos responds, "A group of about thirty Sparrows. Having such a large group will screen your approach. They're lead by a woman named Crimson Slayer, a highly disturbed but well-meaning bounty hunter. She'll keep you alive... if you don't annoy her too much."`
 			label "slayer questions"
-			`"Do you want to know anything before we go?"`
+			`	"Do you want to know anything before we go?"`
 			choice
 				`	"What kind of name is 'Crimson Slayer?'"`
 					goto name
@@ -427,19 +427,19 @@ mission "Alexandria Library Card: Second Volume: Step 3"
 				`	"I don't want to die. Find another captain."`
 					decline
 			label name
-			`"That's exactly the kind of question you should not ask her if you want to stay alive."`
+			`	"That's exactly the kind of question you should not ask her if you want to stay alive."`
 				goto "slayer questions"
 			label sparrows
-			`"With missiles and upgraded thrusters, a fleet of Sparrows can use highly-effective swarm tactics. Besides, with that many escorts, the bounty hunters will have enough targets that they'll have trouble hitting us."`
+			`	"With missiles and upgraded thrusters, a fleet of Sparrows can use highly-effective swarm tactics. Besides, with that many escorts, the bounty hunters will have enough targets that they'll have trouble hitting us."`
 				goto "slayer questions"
 			label back
-			`"Ah.... no. Crimson Slayer has other places to be"`
+			`	"Ah.... no. Crimson Slayer has other places to be"`
 			`	"So you're saying we won't need help getting back?"`
 			`	"Uh... well... Departing a planet is far more dangerous than landing. Pirates will wait just outside of a planet and destroy you before you can even react. A fast ship with good shields can dodge if it curves away from the planet as soon as it leaves orbit. A ship with decent shields, good steering, and a Scram Drive can jump immediately. Not your ship though. Certainly not there.`
 			`	"I'm sure something will come up. Don't worry about it."`
 				goto "slayer questions"
 			label go
-			`"That's the spirit, Captain <last> <first>! As they say, 'Heghlu’meH QaQ jajvam!'"`
+			`	"That's the spirit, Captain <last> <first>! As they say, 'Heghlu’meH QaQ jajvam!'"`
 			`	"What does that mean?"`
 			`	"The rough translation is, 'You worry too much.'`
 			`	"Now head to the spaceport to meet our escorts."`
@@ -517,7 +517,7 @@ mission "Alexandria Library Card: Second Volume: Step 4"
 			`	You're brought to a room with a much taller man in a mask. You've never seen someone this large or this muscular before.`
 			choice
 				`	(Enter the room.)`
-			`The large man speaks, "We need a legitimate reason to enter Syndicate space. Can you arrange that?"`
+			`	The large man speaks, "We need a legitimate reason to enter Syndicate space. Can you arrange that?"`
 			`	"Certainly," says Daemos.`
 			`	"Then I can arrange a signature."`
 			`	Daemos turns to you and says, "Meet me at the spaceport when you are ready to return to <planet>. Don't take long, and don't fall asleep in the hotels."`
@@ -588,7 +588,7 @@ mission "Alexandria Library Card: Third Volume: Step 1"
 			`	"Here's your payment," Daemos says, handing you 60,000 credits. Handing you another 17,500 credits, he adds, "This is from the 'legitimate businessmen' for our assistance getting them landing clearance on Tinker. Only three more books to go!`
 			choice
 				`	(Continue.)`
-			`Daemos wanders off to read. Eventually you find him again, behind his giant book of scribbles he had the day you met him. The book is blocking his face and you can see the two Chal Jub Paqmey you found are on either side of him. He's scribbling in his book and you can see he already lost seven pencils.`
+			`	Daemos wanders off to read. Eventually you find him again, behind his giant book of scribbles he had the day you met him. The book is blocking his face and you can see the two Chal Jub Paqmey you found are on either side of him. He's scribbling in his book and you can see he already lost seven pencils.`
 			`	He hears you approach and greets you, "Ready for the third book, <last>?"`
 			choice
 				`	"I have some questions first."`
@@ -611,17 +611,17 @@ mission "Alexandria Library Card: Third Volume: Step 1"
 				`	"I'm done with your quest. Enjoy the books."`
 					decline
 			label escorts
-			`"No. We're going back near your home. Pirates are infrequent as long as you stay outside uninhabited systems. Just don't get unlucky."`
+			`	"No. We're going back near your home. Pirates are infrequent as long as you stay outside uninhabited systems. Just don't get unlucky."`
 				goto questions
 			label "what have you read"
-			`"As you know, the first book told of a merchant, HoD Qav, of unspecified gender that left their home in Botolphstone to make their fortune on the road. It was said that the merchant was destined to be the greatest warrior of the era."`
+			`	"As you know, the first book told of a merchant, HoD Qav, of unspecified gender that left their home in Botolphstone to make their fortune on the road. It was said that the merchant was destined to be the greatest warrior of the era."`
 			`	"The second book tells of HoD Qav's discoveries and distractions. The merchant saw many clans, much unfairness and struggle, whispers of monsters, and rising strife. Instead of fixing the problems, HoD Qav got distracted hunting bandits, buying new weapons, and trading. After all, how could one lowly merchant solve the world's problems?"`
 				goto questions
 			label "next book's name"
-			`"The third book of the Chal Jub Paqmey is called, Paq WejDIch. It is said to be the book where the main story really starts."`
+			`	"The third book of the Chal Jub Paqmey is called, Paq WejDIch. It is said to be the book where the main story really starts."`
 				goto questions
 			label "leads on next book"
-			`"Actually, I know the precise location of the Paq WejDIch: the center of a circle of stones on the planet Rand. What I don't know is the location of the key segments."`
+			`	"Actually, I know the precise location of the Paq WejDIch: the center of a circle of stones on the planet Rand. What I don't know is the location of the key segments."`
 			`	"Key segments?"`
 			`	"Yes. The book is behind a secure locking mechanism that has a spherical key. The key is split into five segments. If I can see the writing on the circle of stones, I'll have clues to the locations of the segments."`
 				goto questions
@@ -653,7 +653,7 @@ mission "Alexandria Library Card: Third Volume: Step 2"
 			`	"Oh, no, Captain <last> <first>. I'm not spoiling that surprise.`
 			choice
 				`	(Continue.)`
-			`"As we go south from here towards Sadalmelik the pirate activity increases. A Navy patrol fleet flies through here twice a month, and I've asked them to see us to Grakhord.`
+			`	"As we go south from here towards Sadalmelik the pirate activity increases. A Navy patrol fleet flies through here twice a month, and I've asked them to see us to Grakhord.`
 			`	Daemos eyes widen as he says, "I have some good news though! The Paq LoSDIch, fourth of the Chal Jub Paqmey, is on Grakhord. That means we'll soon have the Paq wa'DIch, the Paq cha'DIch, the Paq LoSDIch, and the location of the keys to the Paq WejDIch."`
 			`	"I have some questions before we go."`
 			`	"Nope," says Daemos. "Nice try. I won't spoil the surprise."`
@@ -661,7 +661,7 @@ mission "Alexandria Library Card: Third Volume: Step 2"
 				`	"Okay. Let's go"`
 				`	"I don't do mystery trips. Find another pilot."`
 					decline
-			`"Excellent. Remember to go to the spaceport to pick up our escorts."`
+			`	"Excellent. Remember to go to the spaceport to pick up our escorts."`
 				accept
 	on visit
 		dialog `You've forgotten your senile friend or his pencils. Perhaps they're in one of your escorts?`
@@ -743,18 +743,18 @@ mission "ZZ Alexandria Library Card: Third Volume: Step 3"
 			`	"Sorry, Dr. Demon. The Quarg pulled me into this project, and I was too excited to refuse. I've been out of Human space in a Quarg Wardragon for a while."`
 			choice
 				`	(Continue.)`
-			`She pulls an ancient book out of her backpack, and hands it to Daemos. "Will this make up for my absence? We found it on an uninhabited world to the north-east of here."`
+			`	She pulls an ancient book out of her backpack, and hands it to Daemos. "Will this make up for my absence? We found it on an uninhabited world to the north-east of here."`
 			`	Daemos exclaims, "The Paq LoSDIch! You are an angel, Sophia. What about the symbols from Rand?"`
 			`	"Bad news there, I'm afraid. Neither I nor the Quarg could translate them. We suspect they're not linguistic, but rather a map of sorts. The Quarg rotated them, and some looked almost like constellations. They say it may be a map, but if it is, it's for a younger era in this galaxy. Stars shift around pretty far after a few hundred millennia."`
 			`	Sophia hands the map to Daemos. You look over his shoulder.`
 			choice
 				`	(Look at the map.)`
-			`It's instantly clear what you are looking at. This is an old astronavigational system that uses constellations as seen from galactic center. It's reassuring that your pilot training taught you something Quarg and Human linguists couldn't figure out.`
+			`	It's instantly clear what you are looking at. This is an old astronavigational system that uses constellations as seen from galactic center. It's reassuring that your pilot training taught you something Quarg and Human linguists couldn't figure out.`
 			choice
 				`	(Explain the symbols to them.)`
 					goto explain
 				`	(Let them suffer for a while.)`
-			`"Yes, these symbols do look almost like constellations," Daemos says. "Without knowing the era of the galaxy, we can't know where they should be."`
+			`	"Yes, these symbols do look almost like constellations," Daemos says. "Without knowing the era of the galaxy, we can't know where they should be."`
 			`	Sophia adds, "I had some friends run this through stellar drift simulations, and predict what the constellations would look like everywhere in this region of space. Nothing came up."`
 			`	"Well, Captain <last> <first>, if we can't figure this out, I guess we'll have to give up. I'll get the library to research this. I'm sure we'll come up with an answer in a year or two."`
 			choice
@@ -762,14 +762,14 @@ mission "ZZ Alexandria Library Card: Third Volume: Step 3"
 				`	"Oh well. I'll get back to my life as a merchant."`
 					decline
 			label explain
-			`You say, "It's an old navigational system taught to all pilots. The constellations are seen from the center of the galaxy. The crosses and ovals show the planet or moon."`
+			`	You say, "It's an old navigational system taught to all pilots. The constellations are seen from the center of the galaxy. The crosses and ovals show the planet or moon."`
 			`	"Of course!" says Sophia. "The constellations would change slower there due the distance to the stars. It's obvious which ones we go to."`
 			`	"That doesn't tell us where the keys are on the planets though," warns Daemos.`
 			`	Sophia smiles, "On that matter, I can help you. My Quarg collaborators say the keys should appear on the Navy's gamma ray sensors as glitches, filtered out by quality control code. They already have the locations in their sensor logs' raw data stream. You just have to tell them the frequencies to look for."`
 			`	She hands you a data pad and says, "Take this to the Navy research center on New Austria. They'll know what to do."`
 			choice
 				`	(Continue.)`
-			`You meet Daemos afterwards, and he's in a hurry to continue.`
+			`	You meet Daemos afterwards, and he's in a hurry to continue.`
 			`	"Another 60,000 credits, as promised. Are you ready to see a Navy research center?"`
 			choice
 				`	"Let's go."`
@@ -777,7 +777,7 @@ mission "ZZ Alexandria Library Card: Third Volume: Step 3"
 				`	"I'm tired of being research equipment. Find another captain."`
 					decline
 			label accept
-			`"Great! I've arranged for some salesmen to escort us this time. They're trying to sell the Navy some advanced technology for the next generation of Cruisers.`
+			`	"Great! I've arranged for some salesmen to escort us this time. They're trying to sell the Navy some advanced technology for the next generation of Cruisers.`
 			`	"Make sure you visit the spaceport to meet the escorts."`
 				accept
 	on visit
@@ -849,13 +849,13 @@ mission "Alexandria Library Card: Key"
 			`You land and walk towards the Navy research center. A collection of concerned-looking, and well-armed, guards approach you. Seeing Daemos, they wave you on, and you meet with a sensor data analyst.`
 			choice
 				`	(Talk to the analyst.)`
-			`He glances at your data pad and immediately knows what happened. "Coherent dichromatic gamma ray emissions from a planet are quite rare. We assumed they were glitches in the detector. Sometimes we'll get a frequency-shifted ghost image if the luminosity in one sensor cell is too high. We have to discard 2.3 microseconds of data every time that happens. You see, you get a double emission because it excites neu... uh... I shouldn't tell you that..."`
+			`	He glances at your data pad and immediately knows what happened. "Coherent dichromatic gamma ray emissions from a planet are quite rare. We assumed they were glitches in the detector. Sometimes we'll get a frequency-shifted ghost image if the luminosity in one sensor cell is too high. We have to discard 2.3 microseconds of data every time that happens. You see, you get a double emission because it excites neu... uh... I shouldn't tell you that..."`
 			`	"I've forgotten it already," says Daemos.`
 			`	"The search algorithm has combed the data on the planets you listed for a 2,710,000 second interval. Assuming these keys don't move often, we can tell you where they are to a precision of 3.0994 millimeters. It would be finer except for the feedback we get from the... right... I shouldn't mention that either..."`
 			`	The analyst adds geographical locations to your data pad and scurries away, hoping to avoid giving out any more Navy secrets.`
 			choice
 				`	(Continue.)`
-			`Daemos seems eager to move on. "Well, Captain <first>, we know where to go. Are you ready? Or will you pester me with questions again?"`
+			`	Daemos seems eager to move on. "Well, Captain <first>, we know where to go. Are you ready? Or will you pester me with questions again?"`
 				goto choice
 			label top
 			`	"Are you ready? Or will you pester me with questions again?"`
@@ -872,20 +872,20 @@ mission "Alexandria Library Card: Key"
 				`	"Find another captain to pester. I have better things to do."`
 					decline
 			label going
-			`"Why are you asking me? You told me which planets to go to. It's all in the data pad.`
+			`	"Why are you asking me? You told me which planets to go to. It's all in the data pad.`
 			`	"Gordon Bennett! It's like I'm talking to a wall."`
 				goto top
 			label book
-			`"As you remember from the first two books, the Chal Jub Paqmey is an opera about HoD Qav, a merchant of ambiguous gender who is destined to be a great warrior. In the first book, HoD Qav leaves their clan Botolphstone and was surprised by the vastness of the continent. In the second book, HoD Qav explores their continent and gets distracted hunting bandits, buying weapons, and trading. Meanwhile, the continent falls into chaos and civil war.`
+			`	"As you remember from the first two books, the Chal Jub Paqmey is an opera about HoD Qav, a merchant of ambiguous gender who is destined to be a great warrior. In the first book, HoD Qav leaves their clan Botolphstone and was surprised by the vastness of the continent. In the second book, HoD Qav explores their continent and gets distracted hunting bandits, buying weapons, and trading. Meanwhile, the continent falls into chaos and civil war.`
 			`	"Supposedly, the third book, which we don't have, tells the main story of the merchant's continent.`
 			`	"In the fourth book, HoD Qav finds a ship, Supghor, that can sail across the oceans. Supghor takes HoD Qav to all the continents of the world. They discover the world is filled with wonder and many races. The merchant gathers knowledge, ships, technology, and great power.`
 			`	"Oddly, the fourth book notes that, when the opera is performed, the fourth book can be performed before the third. In other words, the merchant could explore the world before returning to save their people. Or, the merchant could save their people and then explore the world. It's unusual for an opera to give such broad freedoms in how it can be performed."`
 				goto top
 			label escorts
-			`"I'm running out of escort funding so I hired some local militias to escort us. They're not superbly powerful, but they don't charge much."`
+			`	"I'm running out of escort funding so I hired some local militias to escort us. They're not superbly powerful, but they don't charge much."`
 				goto top
 			label accept
-			`"Excellent. The Navy already added the locations in your ship's map and mission list. Visit the spaceport before we go to pick up our escorts."`
+			`	"Excellent. The Navy already added the locations in your ship's map and mission list. Visit the spaceport before we go to pick up our escorts."`
 				accept
 	on decline
 		fail "Alexandria Library Card: Key: Escort"
@@ -984,7 +984,7 @@ mission "Alexandria Library Card: Key: Trinket"
 		outfit "Laser Rifle"
 		conversation
 			`You wander to a storage area behind a grocery store, where you find a seedy man selling every manner of illegal merchandise. Daemos pays a hefty sum for one of the five key segments.`
-			`The merchant hands you some free grenades and a rifle. "Come back to buy more if you find a more interesting occupation."`
+			`	The merchant hands you some free grenades and a rifle. "Come back to buy more if you find a more interesting occupation."`
 				decline
 
 
@@ -1052,7 +1052,7 @@ mission "Alexandria Library Card: Return"
 			`	"The Rim!" He wanders off and starts reading again.`
 			choice
 				`	(Continue.)`
-			`You find Daemos in a restaurant reading a letter written on actual paper. He looks up at you and says, "Good news! Another Seeker stumbled upon the Paq VaghDIch, the fifth of the Chal Jub Paqmey. We just have to pick it up."`
+			`	You find Daemos in a restaurant reading a letter written on actual paper. He looks up at you and says, "Good news! Another Seeker stumbled upon the Paq VaghDIch, the fifth of the Chal Jub Paqmey. We just have to pick it up."`
 			label questions
 			`	"Can we leave, or will you ask more of your fekkik questions?"`
 			choice
@@ -1067,19 +1067,19 @@ mission "Alexandria Library Card: Return"
 				`	"Your insane quest is a waste of my time. Go find another captain."`
 					decline
 			label escorts
-			`"No, my escort funding has run out. If you take a safe route, we are unlikely to die by pirates. Fly to Earth, then the Paradise Planets, and then west to the Deep."`
+			`	"No, my escort funding has run out. If you take a safe route, we are unlikely to die by pirates. Fly to Earth, then the Paradise Planets, and then west to the Deep."`
 				goto questions
 			label pay
-			`"As long as you pick up the book, you'll get paid."`
+			`	"As long as you pick up the book, you'll get paid."`
 				goto questions
 			label book
-			`"As you recall from the first two books, the Chal Jub Paqmey is an opera about a merchant, Hod Qav (of unspecified gender) destined to be the greatest warrior of the era. The first book, the Paq wa'DIch, describes Hod Qav leaving their clan Botolphstone and wandering a continent that seems vast. The second book, the Paq cha'DIch, describes the continent's politics descending into chaos and civil war. Meanwhile, the merchant wanders distracted, fighting bandits, gathering weapons, and hoarding money.`
+			`	"As you recall from the first two books, the Chal Jub Paqmey is an opera about a merchant, Hod Qav (of unspecified gender) destined to be the greatest warrior of the era. The first book, the Paq wa'DIch, describes Hod Qav leaving their clan Botolphstone and wandering a continent that seems vast. The second book, the Paq cha'DIch, describes the continent's politics descending into chaos and civil war. Meanwhile, the merchant wanders distracted, fighting bandits, gathering weapons, and hoarding money.`
 			`	"In the third book, the Paq WejDIch, the merchant joins the war, fighting for the side they view as right. Eventually, the merchant re-unites their continent and brings peace.`
 			`	"In the fourth book, the Paq LoSDIch, tells of Hod Qav finding the ship Supghor, so large it can cross oceans. Hod Qav wanders the world discovering new civilizations that nobody from Botolphstone had even heard of.`
 			`	"Oddly, instructins in the Chal Jub Paqmey say the third and fourth books can be reversed when the opera is performed. HoD Qav can explore the world and gather power, and then return to their continent to bring peace. Or, the merchant can bring peace to their continent and then explore the world."`
 				goto questions
 			label accept
-			`"Finally."`
+			`	"Finally."`
 				accept
 	on visit
 		dialog `You've forgotten your senile friend or his pencils. Perhaps they're in one of your escorts?`
@@ -1202,7 +1202,7 @@ mission "Alexandria Library Card: Completion"
 				`	"Thank you. I'm glad to have served the library."`
 					goto end
 			label questions
-			`"What do you want to know?"`
+			`	"What do you want to know?"`
 			choice
 				`	"What did you read in the fifth book?"`
 					goto book
@@ -1213,24 +1213,24 @@ mission "Alexandria Library Card: Completion"
 				`	"Nothing."`
 					goto end
 			label book
-			`"The Chal Jub Paqmey are the first five of an unfinished eight-book series describing an opera. They chronicle the life of a lowly merchant, HoD Qav, who becomes the greatest warrior of the era. Or... they would if all eight had been written.`
+			`	"The Chal Jub Paqmey are the first five of an unfinished eight-book series describing an opera. They chronicle the life of a lowly merchant, HoD Qav, who becomes the greatest warrior of the era. Or... they would if all eight had been written.`
 			`	"The first two books merely introduce the world. The first book describes the merchant exploring the vast continent surrounding their clan Botolphstone. The second describes the beginning of a civil war as the continent degrades into chaos. Meanwhile, the merchant ignores the problem while fighting bandits, getting rich, and buying weapons. After all, how is a lowly merchant to save the world?"`
 			choice
 				`	(Continue.)`
 				`	Change the subject.`
 					goto questions
-			`"In the third book, HoD Qav awakens to the problems of his continent. The merchant leads heroes against villains and re-unites the continent, restoring peace. Meanwhile, as any good merchant would, HoD Qav gets fabulously wealthy.`
+			`	"In the third book, HoD Qav awakens to the problems of his continent. The merchant leads heroes against villains and re-unites the continent, restoring peace. Meanwhile, as any good merchant would, HoD Qav gets fabulously wealthy.`
 			`	"The fourth book tells of HoD Qav's travel across the world aboard a giant ship that can cross oceans. The merchant gathers vast resources and builds an armada while seeing sights nobody in Botolphstone had ever dreamed of.`
 			`	"More struggles across the world begin fifth book as the chaos escalates and expands. HoD Qav helps resolve disputes, defend the weak, and steal from the rich. The world descends into chaos with only one merchant holding back the inevitable."`
 			choice
 				`	"What happens next?"`
 				`	(Change the subject.)`
 					goto questions
-			`"Next? How can I know what happens next? Only five of the eight books were ever written."`
+			`	"Next? How can I know what happens next? Only five of the eight books were ever written."`
 			`	"There are rumors that the writer of these books is an ancient being of great power over many worlds. He may still be alive, and writing the later books. Nobody has seen or heard from him in centuries though. He may even be a myth."`
 				goto questions
 			label services
-			`"It's a library, fool. What do you think we do? Serve bacon? Teach juggling lessons?`
+			`	"It's a library, fool. What do you think we do? Serve bacon? Teach juggling lessons?`
 			`	"We have books. Lots of books. If you want to read books, come here to our library."`
 			label "library services"
 			choice
@@ -1245,20 +1245,20 @@ mission "Alexandria Library Card: Completion"
 				`	"End the conversation."`
 					goto end
 			label bacon
-			`"It was a joke. If you want bacon, go look in the Dirt Belt. There's plenty of food out there."`
+			`	"It was a joke. If you want bacon, go look in the Dirt Belt. There's plenty of food out there."`
 				goto "library services"
 			label juggling
-			`"Are you daft? We don't provide juggling lessons here. Find such silliness on the Paradise Planets."`
+			`	"Are you daft? We don't provide juggling lessons here. Find such silliness on the Paradise Planets."`
 				goto "library services"
 			label "library books"
-			`"Yes. We have the largest archive in all of Human space. If you're looking for a book you will find it here."`
+			`	"Yes. We have the largest archive in all of Human space. If you're looking for a book you will find it here."`
 				goto "library services"
 			label jobs
-			`"Yes.`
+			`	"Yes.`
 			`	"The library will pay you to Seek for rare books or artwork and bring them here for archival.`
 			`	"We'll also pay you to ferry librarians or library materials between Alexandria Station and other libraries. Find those jobs in Job Boards here or elsewhere.`
-			`	"Once you've proven yourself, we may give you more difficult jobs: a book cruise, long-range escort missions, or hunting book thieves.`
-			`	"The library has a mandate to preserve forbidden knowledge. If you can reach pirate planets, you can find jobs to smuggle illegal literature to Alexandria."`
+			`	"The library has a mandate to preserve forbidden knowledge. If you can reach pirate planets, you can find jobs to smuggle illegal literature to Alexandria.`
+			`	"Once you've proven yourself, we may give you more difficult jobs: a book cruise, long-range escort missions, or hunting book thieves."`
 				goto questions
 			label end
 			`"Excellent. Welcome to your new life as an Alexandria Seeker."`
