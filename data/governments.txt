@@ -79,7 +79,7 @@ government "Deep Security"
 	"attitude toward"
 		"Merchant" .5
 		"Bounty Hunter Escort" .5
-		`Legitimate Businessmen` .5
+		"Legitimate Businessmen" .5
 		"Pirate" -.2
 	"friendly hail" "friendly deep"
 	"hostile hail" "hostile deep"
@@ -106,7 +106,7 @@ government "Free Worlds"
 	"attitude toward"
 		"Merchant" .3
 		"Bounty Hunter Escort" .3
-		`Legitimate Businessmen` .3
+		"Legitimate Businessmen" .3
 		"Militia" .3
 		"Pirate" -.4
 		"Neutral" .1
@@ -125,7 +125,7 @@ government "Hai"
 		"Hai (Unfettered)" -.1
 		"Merchant" .01
 		"Bounty Hunter Escort" .01
-		`Legitimate Businessmen` .01
+		"Legitimate Businessmen" .01
 	"bribe" .02
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -143,7 +143,7 @@ government " Hai "
 		"Hai (Unfettered)" -.1
 		"Merchant" .01
 		"Bounty Hunter Escort" .01
-		`Legitimate Businessmen` .01
+		"Legitimate Businessmen" .01
 	"bribe" .02
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -161,7 +161,7 @@ government "Hai (Unfettered)"
 		"Pug" -.01
 		"Merchant" -.01
 		"Bounty Hunter Escort" -.01
-		`Legitimate Businessmen` -.01
+		"Legitimate Businessmen" -.01
 		"Kor Efret" -.01
 	"bribe" .02
 	"fine" 0
@@ -305,13 +305,13 @@ government "Kor Sestor"
 		"Republic" -.01
 		"Merchant" -.01
 		"Bounty Hunter Escort" -.01
-		`Legitimate Businessmen` -.01
+		"Legitimate Businessmen" -.01
 		"Navy (Oathkeeper)" -.01
 		"Syndicate" -.01
 	
 	"player reputation" -1000
 
-government `Legitimate Businessmen`
+government "Legitimate Businessmen"
 	swizzle 1
 	
 	"player reputation" 10
@@ -357,7 +357,7 @@ government "Militia"
 	"attitude toward"
 		"Merchant" .3
 		"Bounty Hunter Escort" .3
-		`Legitimate Businessmen` .3
+		"Legitimate Businessmen" .3
 		"Pirate" -.4
 	"bribe" .1
 	"friendly hail" "friendly militia"
@@ -381,7 +381,7 @@ government "Navy (Oathkeeper)"
 	"attitude toward"
 		"Alpha" -.3
 		"Bounty Hunter Escort" .25
-		`Legitimate Businessmen` .25
+		"Legitimate Businessmen" .25
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
@@ -398,7 +398,7 @@ government "Neutral"
 	"player reputation" 1
 	"attitude toward"
 		"Bounty Hunter Escort" .3
-		`Legitimate Businessmen` .3
+		"Legitimate Businessmen" .3
 		"Merchant" .3
 		"Pirate" -.2
 	"bribe" .05
@@ -421,8 +421,8 @@ government "Pirate"
 		"Hai" -.01
 		"Korath" -.01
 		"Merchant" -.1
-		`Legitimate Businessmen` -.1
-		`Bounty Hunter Escort` -.1
+		"Legitimate Businessmen" -.1
+		"Bounty Hunter Escort" -.1
 		"Syndicate" -.01
 	"bribe" .05
 	"fine" 0
@@ -465,7 +465,7 @@ government "Quarg"
 	"attitude toward"
 		"Merchant" .01
 		"Bounty Hunter Escort" .01
-		`Legitimate Businessmen` .01
+		"Legitimate Businessmen" .01
 		"Kor Efret" .01
 		"Kor Mereti" -.01
 		"Kor Sestor" -.01
@@ -500,7 +500,7 @@ government "Republic"
 	"attitude toward"
 		"Alpha" -.3
 		"Bounty Hunter Escort" .25
-		`Legitimate Businessmen` .25
+		"Legitimate Businessmen" .25
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
@@ -518,7 +518,7 @@ government "Syndicate"
 	"player reputation" 2
 	"attitude toward"
 		"Bounty Hunter Escort" .3
-		`Legitimate Businessmen` .3
+		"Legitimate Businessmen" .3
 		"Merchant" .3
 		"Pirate" -.4
 		"Korath" -.5
