@@ -1341,7 +1341,7 @@ mission "Remnant: Return the Samples 3 Exploration Hint"
 		event "remnant: wait for plume" 7 14
 		conversation
 			`As you disembark from <ship> you almost run into Plume as he strides across the landing area. "Captain <first>, I didn't see you there!" You glance back at the bulk of your ship that you just stepped out of and look at him curiously, wondering how he could have missed seeing a spaceship land in front of him. His chant takes on a slightly apologetic tone. "I've been lost in thought thinking about everything we have discovered lately, especially the most recent recordings you made. I still have a lot to analyze, though." He pauses, looking thoughtful. "That being said, I will probably have more work for you in a week or two."`
-			`	Plume asks a few more questions about what you have been doing, then politely excuses himself to continue his research. "Please let me know if you visit Nenia again and find anything!" he trills to you as he departs.`
+			`	Plume asks a few more questions about what you have been doing, then politely excuses himself to continue his research. "Please let me know if you uncover anything else about Nenia!" he trills to you as he departs.`
 				decline
 
 
