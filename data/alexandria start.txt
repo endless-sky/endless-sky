@@ -124,7 +124,7 @@ mission "Alexandria Library Card: Second Volume: Step 1"
 			choice
 				`	(Approach the monk.)`
 			`	When Daemos approaches, the monk's eyes open, and he utters, "For the Seeker I do seek." He hands Daemos the book and then vanishes.`
-			`	Daemos doesn't surprised at all; he calmly puts the book in his satchel and handed you 60,000 credits.`
+			`	Daemos isn't surprised at all; he calmly puts the book in his satchel and hands you 60,000 credits.`
 			`	"We have the Paq wa'DIch. Next we seek the Paq cha'DIch."`
 			`	This seemed too easy for a 60,000 credit mission. You suspect the next four books will be harder to get.`
 			`	Daemos wanders off, and you see him reading the book. He probably won't listen to you for a few hours.`
