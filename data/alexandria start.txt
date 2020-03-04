@@ -235,7 +235,7 @@ mission "Alexandria Library Card: Second Volume: Step 2"
 					decline
 			label seeker
 			`	"An Alexandria Seeker is an adventurer who scours the galaxy for works of literature or art and brings them back to the library for archival. It's a dangerous job, but it is worth the risk to ensure knowledge is preserved.`
-			`	"When you get a pilot license, the paperwork goes to many organizations in the Republic. Alexandria Library is one of them. If your personality fits and you've show determination and resourcefulness, they consider you for an apprenticeship. Finish your first mission, and you'll be a Journeyman Seeker. Prove your skill, and you'll be a Master Seeker with a sizable salary. We always Seek in pairs, so you'll still have to ferry someone even as a Master Seeker."`
+			`	"When you get a pilot license, the paperwork goes to many organizations in the Republic. Alexandria Library is one of them. If your personality fits and you've shown determination and resourcefulness, they consider you for an apprenticeship. Finish your first mission, and you'll be a Journeyman Seeker. Prove your skill, and you'll be a Master Seeker with a sizable salary. We always Seek in pairs, so you'll still have to ferry someone even as a Master Seeker."`
 				goto "seeker questions"
 			label "why me"
 			`	"I haven't read your file, but the reason is usually a mix of determination and resourcefulness based on your past five years of work. There are basic educational requirements too, and a few other minor things."`
