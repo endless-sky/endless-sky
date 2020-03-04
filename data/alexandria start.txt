@@ -124,7 +124,7 @@ mission "Alexandria Library Card: Second Volume: Step 1"
 			choice
 				`	(Approach the monk.)`
 			`	When Daemos approaches, the monk's eyes open, and he utters, "For the Seeker I do seek." He hands Daemos the book and then vanishes.`
-			`	Daemos doesn't surprised at all; he calmly puts the book in his satchel and handed you 60,000 credits.`
+			`	Daemos isn't surprised at all; he calmly puts the book in his satchel and hands you 60,000 credits.`
 			`	"We have the Paq wa'DIch. Next we seek the Paq cha'DIch."`
 			`	This seemed too easy for a 60,000 credit mission. You suspect the next four books will be harder to get.`
 			`	Daemos wanders off, and you see him reading the book. He probably won't listen to you for a few hours.`
@@ -235,7 +235,7 @@ mission "Alexandria Library Card: Second Volume: Step 2"
 					decline
 			label seeker
 			`	"An Alexandria Seeker is an adventurer who scours the galaxy for works of literature or art and brings them back to the library for archival. It's a dangerous job, but it is worth the risk to ensure knowledge is preserved.`
-			`	"When you get a pilot license, the paperwork goes to many organizations in the Republic. Alexandria Library is one of them. If your personality fits and you've show determination and resourcefulness, they consider you for an apprenticeship. Finish your first mission, and you'll be a Journeyman Seeker. Prove your skill, and you'll be a Master Seeker with a sizable salary. We always Seek in pairs, so you'll still have to ferry someone even as a Master Seeker."`
+			`	"When you get a pilot license, the paperwork goes to many organizations in the Republic. Alexandria Library is one of them. If your personality fits and you've shown determination and resourcefulness, they consider you for an apprenticeship. Finish your first mission, and you'll be a Journeyman Seeker. Prove your skill, and you'll be a Master Seeker with a sizable salary. We always Seek in pairs, so you'll still have to ferry someone even as a Master Seeker."`
 				goto "seeker questions"
 			label "why me"
 			`	"I haven't read your file, but the reason is usually a mix of determination and resourcefulness based on your past five years of work. There are basic educational requirements too, and a few other minor things."`
