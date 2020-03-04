@@ -1310,7 +1310,7 @@ mission "Remnant: Return the Samples 2"
 		dialog phrase "generic stopover on visit"
 	on complete
 		"reputation: Drak" += 1
-		event "remnant: return the samples timer" 14
+		event "remnant: return the samples timer" 2 4
 		conversation
 			`Back on Aventine, you share the recording of the void sprite's behavior with Plume. "These Sprites demonstrate considerably more communication than we originally thought. And obviously they must have communicated what you did on Nasqueron. Interesting..." Plume's excited staccato exclamations trail off as he begins to make notes on a data pad he has on hand. "Thank you for your help, we will let you know what we find out."`
 
@@ -1329,6 +1329,24 @@ mission "Remnant Return the Samples Compatibility Patch"
 	on offer
 		event "remnant: return the samples timer" 2
 		fail
+
+
+# "This mission is intended to serve as a notification that one timer has elapsed and how long to wait until the missions start again."
+mission "Remnant: Return the Samples 3 Exploration Hint"
+	landing
+	source "Aventine"
+	to offer
+		has "event: remnant: return the samples timer"
+	on offer
+		event "remnant: wait for plume" 7 14
+		conversation
+			`As you disembark from <ship> you almost run into Plume as he strides across the landing area. "Captain <first>, I didn't see you there!" You glance back at the bulk of your ship that you just stepped out of and look at him curiously, wondering how he could have missed seeing a spaceship land in front of him. His chant takes on a slightly apologetic tone. "I've been lost in thought thinking about everything we have discovered lately, especially the most recent recordings you made. I still have a lot to analyze, though." He pauses, looking thoughtful. "That being said, I will probably have more work for you in a week or two."`
+			`	Plume asks a few more questions about what you have been doing, then politely excuses himself to continue his research. "Please let me know if you uncover anything else about Nenia!" he trills to you as he departs.`
+				decline
+
+
+
+event "remnant: wait for plume"
 
 
 
@@ -2148,5 +2166,3 @@ mission "Remnant: Face to Maw 2B"
 			label end
 			`	"All right, enough history." He turns to the technicians who are finishing the assembly. "The tentacle has been treated to resist decay and the stock mechanisms will provide basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
 			scene "outfit/void rifle"
-
-
