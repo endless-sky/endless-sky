@@ -85,7 +85,7 @@ mission "Alexandria Library Card: First Volume"
 				`	"Go find another captain who will cater to your madness."`
 					decline
 			label what
-			`	"They're a series of books that record an opera of a merchant-explorer named HoD Qav, wandering a world that seems much bigger than herself. Or was it himself? Anyway, nobody knows the ending since there were supposed to be eight books, but only five were made. All five were lost over the centuries and now I'm going to find them."`
+			`	"'Chal Jub Paqmey' is plural. They're a series of books that record an opera of a merchant-explorer named HoD Qav, wandering a world that seems much bigger than herself. Or was it himself? Anyway, nobody knows the ending since there were supposed to be eight books, but only five were made. All five were lost over the centuries and now I'm going to find them."`
 			`	"Where are they?"`
 			`	"If I knew, I wouldn't be searching for them! I just worked out where the first one is, but we'll have to scour space for the other four."`
 			choice
@@ -106,7 +106,7 @@ mission "Alexandria Library Card: First Volume"
 
 mission "Alexandria Library Card: Second Volume: Step 1"
 	name "Alexandria Library Card"
-	description "Take Dameos Titan to <destination> to search for the second of the five Chal Jub Paqmey."
+	description "Take Daemos Titan to <destination> to search for the second of the five Chal Jub Paqmey."
 	blocked `Daemos complains, "What do you think I am, an Anti-Missile Turret? I need a bunk and space for 1 ton of cargo."`
 	source Shroud
 	destination Tinker
@@ -117,7 +117,7 @@ mission "Alexandria Library Card: Second Volume: Step 1"
 		has "Alexandria Library Card: First Volume: done"
 	on offer
 		conversation
-			`As Dameos guides you from the spaceport and you see a planet of anachronisms. In the high mountains, vast castles of medieval design house the pampered ultra-rich, living as if in a Victorian era. As you pass through the streets you notice all the comforts of the modern era concealed behind curtains: virtual reality booths, food-synthesizing devices, massive panel screens for tracking stocks, and the like. When you leave the wealthy areas, you see the poor living in cramped conditions no better than medieval serfs, using modern technology only in their workplaces.`
+			`As Daemos guides you from the spaceport and you see a planet of anachronisms. In the high mountains, vast castles of medieval design house the pampered ultra-rich, living as if in a Victorian era. As you pass through the streets you notice all the comforts of the modern era concealed behind curtains: virtual reality booths, food-synthesizing devices, massive panel screens for tracking stocks, and the like. When you leave the wealthy areas, you see the poor living in cramped conditions no better than medieval serfs, using modern technology only in their workplaces.`
 			choice
 				`	(Continue.)`
 			`	Daemos isn't interested in any of that though; he rushes you on before you can fully take in the environment. You race through the cloud cities of the rich, beyond the factory towns, past the countryside, deep in a marsh, into a hidden temple, beneath a fake support column, and down to a subterranean room. In the center of the room, an impossibly old monk is meditating with his eyes closed. He hovers a half meter above the ground humming in an almost guttural tone. Within his hands is a book.`
@@ -174,7 +174,7 @@ mission "Alexandria Library Card: Second Volume: Step 1"
 
 mission "Alexandria Library Card: Second Volume: Step 2"
 	name "Alexandria Library Card"
-	description "Take Dameos Titan to <destination> to search for the second of the five Chal Jub Paqmey."
+	description "Take Daemos Titan to <destination> to search for the second of the five Chal Jub Paqmey."
 	blocked `Daemos complains, "I can't sleep in cooling ducts. I need a bunk and space for 1 ton of cargo."`
 	source Tinker
 	destination Amazon
@@ -360,7 +360,7 @@ ship "Sparrow" "Sparrow (Heavy Laser Atomic)"
 
 mission "Alexandria Library Card: Second Volume: Step 3"
 	name "Alexandria Library Card"
-	description "Take Dameos Titan to <destination> to search for the second of the five Chal Jub Paqmey."
+	description "Take Daemos Titan to <destination> to search for the second of the five Chal Jub Paqmey."
 	blocked `Daemos reminds you, "I won't fit in a torpedo. I need a bunk and space for 1 ton of cargo."`
 	source Amazon
 	destination "Deadman's Cove"
@@ -494,7 +494,7 @@ mission "Alexandria Library Card: Second Volume: Step 3 Escort"
 
 mission "Alexandria Library Card: Second Volume: Step 4"
 	name "Alexandria Library Card"
-	description "Take Dameos Titan to <destination> to search for the second of the five Chal Jub Paqmey."
+	description "Take Daemos Titan to <destination> to search for the second of the five Chal Jub Paqmey."
 	blocked `Daemos complains, "Where do you expect to put me? A gun holster? I need a bunk and space for 1 ton of cargo."`
 	source "Deadman's Cove"
 	destination Tinker
@@ -573,7 +573,7 @@ mission "Alexandria Library Card: Second Volume: Step 4 Escort"
 
 mission "Alexandria Library Card: Third Volume: Step 1"
 	name "Alexandria Library Card"
-	description "Take Dameos Titan to <destination> to search for the third of the five Chal Jub Paqmey."
+	description "Take Daemos Titan to <destination> to search for the third of the five Chal Jub Paqmey."
 	blocked `Daemos explains, "You can't put me in an engine mount. I need a bunk and space for 1 ton of cargo."`
 	source Tinker
 	destination Rand
@@ -636,7 +636,7 @@ mission "Alexandria Library Card: Third Volume: Step 1"
 
 mission "Alexandria Library Card: Third Volume: Step 2"
 	name "Alexandria Library Card"
-	description "Take Dameos Titan to <destination> to see an xenolinguist."
+	description "Take Daemos Titan to <destination> to see an xenolinguist."
 	blocked `Daemos complains, "I can't sleep in your reactor core. I need a bunk and space for 1 ton of cargo."`
 	source Rand
 	landing
@@ -725,7 +725,7 @@ mission "Alexandria Library Card: Third Volume: Step 2 Escort"
 # The preceding ZZ ensures this happens after meeting the Quarg
 mission "ZZ Alexandria Library Card: Third Volume: Step 3"
 	name "Alexandria Library Card"
-	description "Take Dameos Titan to <destination> to visit a Navy research center."
+	description "Take Daemos Titan to <destination> to visit a Navy research center."
 	blocked `Daemos complains, "I can't fit in a broom cupboard. I need a bunk and space for 1 ton of cargo."`
 	source Grakhord
 	destination "New Austria"
@@ -762,7 +762,7 @@ mission "ZZ Alexandria Library Card: Third Volume: Step 3"
 				`	"Oh well. I'll get back to my life as a merchant."`
 					decline
 			label explain
-			`	You say, "It's an old navigational system taught to all pilots. The constellations are seen from the center of the galaxy. The crosses and ovals show the planet or moon."`
+			`	You say, "It's an old navigational system taught to all pilots. The constellations are drawn as they look from the center of the galaxy. The crosses and ovals show the planet or moon."`
 			`	"Of course!" says Sophia. "The constellations would change slower there due the distance to the stars. It's obvious which ones we go to."`
 			`	"That doesn't tell us where the keys are on the planets though," warns Daemos.`
 			`	Sophia smiles, "On that matter, I can help you. My Quarg collaborators say the keys should appear on the Navy's gamma ray sensors as glitches, filtered out by quality control code. They already have the locations in their sensor logs' raw data stream. You just have to tell them the frequencies to look for."`
@@ -863,7 +863,7 @@ mission "Alexandria Library Card: Key"
 			choice
 				`	"Will we have escorts?"`
 					goto escorts
-				`	"What did read in the book we just recovered?"`
+				`	"What did you read in the book Sophia gave us?"`
 					goto book
 				`	"Where are we going?"`
 					goto going
@@ -876,7 +876,7 @@ mission "Alexandria Library Card: Key"
 			`	"Gordon Bennett! It's like I'm talking to a wall."`
 				goto top
 			label book
-			`	"As you remember from the first two books, the Chal Jub Paqmey is an opera about HoD Qav, a merchant of ambiguous gender who is destined to be a great warrior. In the first book, HoD Qav leaves their clan Botolphstone and was surprised by the vastness of the continent. In the second book, HoD Qav explores their continent and gets distracted hunting bandits, buying weapons, and trading. Meanwhile, the continent falls into chaos and civil war.`
+			`	"As you remember from the first two books, the Chal Jub Paqmey contain an opera about HoD Qav, a merchant of ambiguous gender who is destined to be a great warrior. In the first book, HoD Qav leaves their clan Botolphstone and was surprised by the vastness of the continent. In the second book, HoD Qav explores their continent and gets distracted hunting bandits, buying weapons, and trading. Meanwhile, the continent falls into chaos and civil war.`
 			`	"Supposedly, the third book, which we don't have, tells the main story of the merchant's continent.`
 			`	"In the fourth book, HoD Qav finds a ship, Supghor, that can sail across the oceans. Supghor takes HoD Qav to all the continents of the world. They discover the world is filled with wonder and many races. The merchant gathers knowledge, ships, technology, and great power.`
 			`	"Oddly, the fourth book notes that, when the opera is performed, the fourth book can be performed before the third. In other words, the merchant could explore the world before returning to save their people. Or, the merchant could save their people and then explore the world. It's unusual for an opera to give such broad freedoms in how it can be performed."`
@@ -1034,7 +1034,7 @@ mission "Alexandria Library Card: Key: Escort"
 
 mission "Alexandria Library Card: Return"
 	name "Alexandria Library Card"
-	description "Take Dameos Titan to <destination> to pick up the last book of the Chal Jub Paqmey."
+	description "Take Daemos Titan to <destination> to pick up the last book of the Chal Jub Paqmey."
 	blocked `Daemos complains, "I'm not generator fuel. I need a bunk and room for 1 ton of cargo."`
 	source Rand
 	destination Valhalla
@@ -1073,7 +1073,7 @@ mission "Alexandria Library Card: Return"
 			`	"As long as you pick up the book, you'll get paid."`
 				goto questions
 			label book
-			`	"As you recall from the first two books, the Chal Jub Paqmey is an opera about a merchant, Hod Qav (of unspecified gender) destined to be the greatest warrior of the era. The first book, the Paq wa'DIch, describes Hod Qav leaving their clan Botolphstone and wandering a continent that seems vast. The second book, the Paq cha'DIch, describes the continent's politics descending into chaos and civil war. Meanwhile, the merchant wanders distracted, fighting bandits, gathering weapons, and hoarding money.`
+			`	"As you recall from the first two books, the Chal Jub Paqmey contain an opera about a merchant, Hod Qav (of unspecified gender) destined to be the greatest warrior of the era. The first book, the Paq wa'DIch, describes Hod Qav leaving their clan Botolphstone and wandering a continent that seems vast. The second book, the Paq cha'DIch, describes the continent's politics descending into chaos and civil war. Meanwhile, the merchant wanders distracted, fighting bandits, gathering weapons, and hoarding money.`
 			`	"In the third book, the Paq WejDIch, the merchant joins the war, fighting for the side they view as right. Eventually, the merchant re-unites their continent and brings peace.`
 			`	"In the fourth book, the Paq LoSDIch, tells of Hod Qav finding the ship Supghor, so large it can cross oceans. Hod Qav wanders the world discovering new civilizations that nobody from Botolphstone had even heard of.`
 			`	"Oddly, instructins in the Chal Jub Paqmey say the third and fourth books can be reversed when the opera is performed. HoD Qav can explore the world and gather power, and then return to their continent to bring peace. Or, the merchant can bring peace to their continent and then explore the world."`
@@ -1147,7 +1147,7 @@ mission "Alexandria Library Card: Rescue: Escort"
 		not "Alexandria Library Card: Rescue: failed"
 	on offer
 		conversation
-			`Deep Security meets you and Daemos. "A fleet is prepared, but only your ship can board the Gonza Book Cruise. We must bring it back to <destination> before <date>."`
+			`Deep Security meets you and Daemos. "A fleet is prepared, but only your ship can board the Gonza Book Cruise. We must escort it to <destination> before <date>."`
 				accept
 	to complete
 		has "Alexandria Library Card: Rescue: done"
@@ -1169,7 +1169,7 @@ mission "Alexandria Library Card: Rescue: Escort"
 
 mission "Alexandria Library Card: Completion"
 	name "Alexandria Library Card"
-	description "Take Dameos Titan to <destination> to archive the Chal Jub Paqmey."
+	description "Take Daemos Titan to <destination> to archive the Chal Jub Paqmey."
 	blocked `Daemos complains, "I can't sleep on a bookshelf. I need a bunk and space for 1 ton of cargo."`
 	source Ingot
 	destination Alexandria
