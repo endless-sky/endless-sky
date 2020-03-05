@@ -12,7 +12,7 @@ mission "Alexandria Library Card: Offer"
 	name "Alexandria Library Card"
 	minor
 	job
-	description "Alexandria Library is looking for an Apprentice Seeker. Meet Daemos Titan at the Al-Qarawiyyin Library on Earth to help him seek the Chal Jub Paqmey. Payments will total 400,000 credits. Escorts will be provided through dangerous areas."
+	description `Alexandria Library is looking for an Apprentice Seeker. Meet Daemos Titan at the Al-Qarawiyyin Library on Earth to help him seek the Chal Jub Paqmey. Payments will total 400,000 credits. Escorts will be provided through dangerous areas.`
 	to offer
 		not "library card"
 		"net worth" > 300000
@@ -58,7 +58,7 @@ mission "Alexandria Library Card: Offer"
 
 mission "Alexandria Library Card: First Volume"
 	name "Alexandria Library Card"
-	description "Take Daemos Titan to <destination> to search for the first of the five Chal Jub Paqmey."
+	description `Take Daemos Titan to <destination> to search for the first of the five Chal Jub Paqmey.`
 	blocked `Daemos exclaims, "I can't sleep in a gun port! Come back when you have a spare bunk and space for 1 ton of cargo."`
 	source Earth
 	destination Shroud
@@ -106,7 +106,7 @@ mission "Alexandria Library Card: First Volume"
 
 mission "Alexandria Library Card: Second Volume: Step 1"
 	name "Alexandria Library Card"
-	description "Take Daemos Titan to <destination> to search for the second of the five Chal Jub Paqmey."
+	description `Take Daemos Titan to <destination> to search for the second of the five Chal Jub Paqmey.`
 	blocked `Daemos complains, "What do you think I am, an Anti-Missile Turret? I need a bunk and space for 1 ton of cargo."`
 	source Shroud
 	destination Tinker
@@ -174,7 +174,7 @@ mission "Alexandria Library Card: Second Volume: Step 1"
 
 mission "Alexandria Library Card: Second Volume: Step 2"
 	name "Alexandria Library Card"
-	description "Take Daemos Titan to <destination> to search for the second of the five Chal Jub Paqmey."
+	description `Take Daemos Titan to <destination> to search for the second of the five Chal Jub Paqmey.`
 	blocked `Daemos complains, "I can't sleep in cooling ducts. I need a bunk and space for 1 ton of cargo."`
 	source Tinker
 	destination Amazon
@@ -285,7 +285,7 @@ mission "Alexandria Library Card: Second Volume: Step 2 Jump Instructions"
 
 mission "Alexandria Library Card: Second Volume: Step 2 Escort"
 	name "Escort Fleet: Deep Security"
-	description "A fleet is paid to escort you to <destination>. It will abandon you if you don't arrive by <date>."
+	description `A fleet is paid to escort you to <destination>. It will abandon you if you don't arrive by <date>.`
 	source Tinker
 	destination Amazon
 	deadline 15
@@ -360,7 +360,7 @@ ship "Sparrow" "Sparrow (Heavy Laser Atomic)"
 
 mission "Alexandria Library Card: Second Volume: Step 3"
 	name "Alexandria Library Card"
-	description "Take Daemos Titan to <destination> to search for the second of the five Chal Jub Paqmey."
+	description `Take Daemos Titan to <destination> to search for the second of the five Chal Jub Paqmey.`
 	blocked `Daemos reminds you, "I won't fit in a torpedo. I need a bunk and space for 1 ton of cargo."`
 	source Amazon
 	destination "Deadman's Cove"
@@ -458,7 +458,7 @@ mission "Alexandria Library Card: Second Volume: Step 3"
 
 mission "Alexandria Library Card: Second Volume: Step 3 Escort"
 	name "Escort Fleet: Crimson Slayer"
-	description "Some bounty hunters are paid to escort you to <destination>. They will abandon you if you don't arrive by <date>."
+	description `Some bounty hunters are paid to escort you to <destination>. They will abandon you if you don't arrive by <date>.`
 	source Amazon
 	destination "Deadman's Cove"
 	deadline 5
@@ -494,7 +494,7 @@ mission "Alexandria Library Card: Second Volume: Step 3 Escort"
 
 mission "Alexandria Library Card: Second Volume: Step 4"
 	name "Alexandria Library Card"
-	description "Take Daemos Titan to <destination> to search for the second of the five Chal Jub Paqmey."
+	description `Take Daemos Titan to <destination> to search for the second of the five Chal Jub Paqmey.`
 	blocked `Daemos complains, "Where do you expect to put me? A gun holster? I need a bunk and space for 1 ton of cargo."`
 	source "Deadman's Cove"
 	destination Tinker
@@ -573,7 +573,7 @@ mission "Alexandria Library Card: Second Volume: Step 4 Escort"
 
 mission "Alexandria Library Card: Third Volume: Step 1"
 	name "Alexandria Library Card"
-	description "Take Daemos Titan to <destination> to search for the third of the five Chal Jub Paqmey."
+	description `Take Daemos Titan to <destination> to search for the third of the five Chal Jub Paqmey.`
 	blocked `Daemos explains, "You can't put me in an engine mount. I need a bunk and space for 1 ton of cargo."`
 	source Tinker
 	destination Rand
@@ -636,7 +636,7 @@ mission "Alexandria Library Card: Third Volume: Step 1"
 
 mission "Alexandria Library Card: Third Volume: Step 2"
 	name "Alexandria Library Card"
-	description "Take Daemos Titan to <destination> to see an xenolinguist."
+	description `Take Daemos Titan to <destination> to see an xenolinguist.`
 	blocked `Daemos complains, "I can't sleep in your reactor core. I need a bunk and space for 1 ton of cargo."`
 	source Rand
 	landing
@@ -725,7 +725,7 @@ mission "Alexandria Library Card: Third Volume: Step 2 Escort"
 # The preceding ZZ ensures this happens after meeting the Quarg
 mission "ZZ Alexandria Library Card: Third Volume: Step 3"
 	name "Alexandria Library Card"
-	description "Take Daemos Titan to <destination> to visit a Navy research center."
+	description `Take Daemos Titan to <destination> to visit a Navy research center.`
 	blocked `Daemos complains, "I can't fit in a broom cupboard. I need a bunk and space for 1 ton of cargo."`
 	source Grakhord
 	destination "New Austria"
@@ -830,7 +830,7 @@ mission "ZZ Alexandria Library Card: Third Volume: Step 3 Escort"
 
 mission "Alexandria Library Card: Key"
 	name "Alexandria Library Card"
-	description "Gather key segments from <stopovers> and bring all five to <destination>."
+	description `Gather key segments from <stopovers> and bring all five to <destination>.`
 	blocked `Daemos complains, "I won't fit in your missile launcher. I need a bunk and space for 1 ton of cargo."`
 	source "New Austria"
 	destination Rand
@@ -1034,7 +1034,7 @@ mission "Alexandria Library Card: Key: Escort"
 
 mission "Alexandria Library Card: Return"
 	name "Alexandria Library Card"
-	description "Take Daemos Titan to <destination> to pick up the last book of the Chal Jub Paqmey."
+	description `Take Daemos Titan to <destination> to pick up the last book of the Chal Jub Paqmey.`
 	blocked `Daemos complains, "I'm not generator fuel. I need a bunk and room for 1 ton of cargo."`
 	source Rand
 	destination Valhalla
@@ -1169,7 +1169,7 @@ mission "Alexandria Library Card: Rescue: Escort"
 
 mission "Alexandria Library Card: Completion"
 	name "Alexandria Library Card"
-	description "Take Daemos Titan to <destination> to archive the Chal Jub Paqmey."
+	description `Take Daemos Titan to <destination> to archive the Chal Jub Paqmey.`
 	blocked `Daemos complains, "I can't sleep on a bookshelf. I need a bunk and space for 1 ton of cargo."`
 	source Ingot
 	destination Alexandria
@@ -1269,7 +1269,7 @@ mission "Alexandria Library Card: Completion"
 
 mission "Access to Alexandria"
 	name "Access to Alexandria"
-	description "Access to Alexandria"
+	description `Access to Alexandria`
 	repeat 2
 	landing
 	source

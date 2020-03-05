@@ -715,7 +715,7 @@ trade
 		"softcover books"
 		"science fiction novels"
 		"cheesy romance novels"
-		`deathcore masterpieces`
+		"deathcore masterpieces"
 		"bluegrass song recordings"
 		"bagpipe music recordings"
 		"Quarg reinterpretations of Hamlet"
