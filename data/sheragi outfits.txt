@@ -47,7 +47,7 @@ outfit "Fusion Drive"
 		"rewind"
 	"flare sound" "atomic huge"
 	unplunderable 1
-	description `The Sheragi engines are much more than simple tubes spitting fire; they are a collection of interdependent devices, providing increased efficiency at the cost of modularity. This includes a hyperdrive, a huge fusion reactor, and the most powerful plasma engines you've ever seen. All simple technology, but enhanced to their extremes. The engines are fundamentally connected to the fusion reactor, increasing their thrust even further and thereby allowing the Emerald Sword to fly at impressive speeds and travel interstellar space with relative ease.`
+	description `The Sheragi engines are much more than simple tubes spewing fire; they are a collection of interdependent devices, providing increased efficiency at the cost of modularity. These include a hyperdrive, an enormous fusion reactor, and the most powerful plasma engines you've ever seen. All simple technology, but honed to their extremes. The engines are fundamentally connected to the fusion reactor, increasing their thrust even further and thereby allowing the Emerald Sword to fly at impressive speeds, travelling through interstellar space with relative ease.`
 
 outfit "Sheragi Cooling Unit"
 	category "Systems"
@@ -57,10 +57,11 @@ outfit "Sheragi Cooling Unit"
 	"outfit space" -40
 	"active cooling" 142
 	"cooling energy" 16.2
-	description `This Sheragi cooling system is primitive at best, but it is active rather than passive, allowing it to dissipate much more heat than a simple radiator would. It drains a lot of power when subjected to the heat of battle, though.`
+	"fuel capacity" 200
+	description `This Sheragi cooling system is primitive at best, but it works actively rather than passively, allowing it to dissipate much more heat than a simple radiator would. It does, however, drain a lot of power when subjected to the heat of battle. It also includes some cryogenic tanks to hold some additional fuel.`
 
 outfit "Damaged Sheragi Systems"
-	category "Special"
+	category "Systems"
 	cost 0
 	thumbnail "outfit/unknown"
 	"shields" -2000
@@ -69,7 +70,7 @@ outfit "Damaged Sheragi Systems"
 	"heat generation" 4
 	"jump drive" -1
 	unplunderable 1
-	description "There is a lot of broken Sheragi hardware in here. You need to fix that before you can take the ship back into Human space."
+	description "There is a lot of broken Sheragi hardware in here. You need to fix those before you can take the ship back to Human space."
 
 
 # Weapons
@@ -83,6 +84,7 @@ outfit "Dragonflame Cannon"
 	"weapon capacity" -156
 	"required crew" 10
 	"gun ports" -1
+	"spinal mount" -1
 	weapon
 		sound "dragonflame" 
 		icon "icon/dragonflame"
@@ -92,18 +94,17 @@ outfit "Dragonflame Cannon"
 		"hit effect" "dragonflame debris" 50
 		"velocity" 2000
 		"lifetime" 1
-		"reload" 180
-		cluster
+		"reload" 150
 		"firing energy" 16000
 		"firing heat" 40000
 		"firing force" 1000
 		"shield damage" 17000
-		"firing fuel" 300
+		"firing fuel" 200
 		"hull damage" 9000
 		"piercing" 0.3
 		"heat damage" 40000
 		"hit force" 2000
-	description "This ancient Sheragi superweapon is simple in concept, but the cost involved in developing something like it is prohibitive, and it's hard to imagine what could motivate the creation of such a thing. It uses an obscene amount of energy to create an extremely powerful fusion reaction, and directs most of the energy of the explosion forwards in a devastatingly powerful beam of gamma radiation."
+	description "The ancient Sheragi superweapon is simple in concept, but the cost involved in developing something like it is exorbitant. It's hard to envision what could have motivated the creation of such a thing. It uses an obscene amount of energy to create an extremely powerful fusion reaction, directing most of the energy of the resulting explosion forwards in a devastatingly powerful beam of gamma radiation."
 
 outfit "Sheragi Anti-Missile"
 	category "Turrets"
@@ -123,7 +124,7 @@ outfit "Sheragi Anti-Missile"
 		"reload" 60
 		"firing energy" 220
 		"firing heat" 440
-	description "The Sheragi anti-missile system fires an extremely powerful laser pulse capable of obliterating any missile in a single shot, but takes a long time to recharge. It was probably made to counter nuclear missiles."
+	description "This Sheragi anti-missile system fires an extremely powerful laser pulse capable of obliterating any missile in a single shot at the expense of a long recharge time."
 
 outfit "Particle Waveform Turret"
 	category "Turrets"
@@ -151,7 +152,7 @@ outfit "Particle Waveform Turret"
 		"hull damage" 270
 		"heat damage" 1344
 		"turret turn" 1.8
-	description "This ancient Sheragi turret accelerates a dense packet of electrons that, while very ineffective against any kind of shielding, has a very long range and easily melts through matter. By the nature of these weapons, one can deduce their tactic was to hit with the Dragonflame Cannon at long range to break the enemy shields and finish them off in relatively closer range with the Particle Waveform Cannon."
+	description "This ancient Sheragi turret accelerates a dense packet of electrons that, while very ineffective against any kind of shielding, has a very long range and easily melts through matter. By the nature of these weapons, one can deduce that the tactic used was to use the Dragonflame Cannon at long range to break the enemy shields and finish the ship off at relatively close range with the Particle Waveform Turrets."
 
 	
 # Effects
