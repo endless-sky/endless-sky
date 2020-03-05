@@ -164,7 +164,7 @@ mission "Alexandria Library Card: Second Volume: Step 1"
 			`	"The monk? What monk? Haven't you ever seen a hologram before?"`
 				goto questions
 			label leave
-			`	"Excellent. We're going to Tinker in the Diphda system. It's at the edge of Syndicate space. Some stars around here are haunted by pirates. Take a route through the Paradise Planets and then Sol."`
+			`	"Excellent. We're going to planet Tinker in the Diphda system. It's at the edge of Syndicate space. Some stars around here are haunted by pirates. Take a route through the Paradise Planets and then Sol."`
 				accept
 	on visit
 		dialog `You've forgotten your senile friend or his pencils. Perhaps they're in one of your escorts?`
@@ -626,7 +626,7 @@ mission "Alexandria Library Card: Third Volume: Step 1"
 			`	"Yes. The book is behind a secure locking mechanism that has a spherical key. The key is split into five segments. If I can see the writing on the circle of stones, I'll have clues to the locations of the segments."`
 				goto questions
 			label leave
-			`	"Wonderful. Take us to Rand in the Zeta Aquilae system."`
+			`	"Wonderful. Take us to planet Rand in the Zeta Aquilae system."`
 				accept
 	on visit
 		dialog `You've forgotten your senile friend or his pencils. Perhaps they're in one of your escorts?`
@@ -648,7 +648,7 @@ mission "Alexandria Library Card: Third Volume: Step 2"
 	on offer
 		conversation
 			`After landing on Rand, Daemos takes you to a circle of stones on a mesa near one of the largest mining towns. There are odd markings on the stones which Daemos insists must be words, even though he's never seen writing like that before.`
-			`	Two hours and thirty books later, Daemos tells you, "It's no good. I'm going to have to talk to some xenolinguistics experts. We need to go to Grakhord in the Sadalmelik system. There's a Navy group that patrols along here regularly. I'm sure they wouldn't mind going two systems past the end of Human space."`
+			`	Two hours and thirty books later, Daemos tells you, "It's no good. I'm going to have to talk to some xenolinguistics experts. We need to go to planet Grakhord in the Sadalmelik system. There's a Navy group that patrols along here regularly. I'm sure they wouldn't mind going two systems past the end of Human space."`
 			`	Your interest piques when you hear, "the end of Human space."`
 			`	"Oh, no, Captain <last> <first>. I'm not spoiling that surprise.`
 			choice
