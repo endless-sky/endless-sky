@@ -67,7 +67,7 @@ mission "Sheragi Archaeology: The Box 2"
 			`	"This appears to be a data storage device of some sort. It was connected to what we think were once computers, but nothing else is salvageable after spending thousands of years under wet dirt. Based on how sturdy this thing is, it's plausible that some of the data could have survived, like a time capsule.`
 			`	"I have a contact back on Vinci who could probably figure this out, and this is where you come in. You remember John, right? I can't leave the dig site, but I also don't have anyone else I could trust to carry such a valuable artifact. Will you take it there for me?"`
 			choice
-				`	"who's john again?"`
+				`	"Who's John again?"`
 				`	"I'm sorry, but that sounds sketchier than all the other jobs I did for you. The Quarg were clear in saying that some things are not meant to be found."`
 					goto sketchy
 				`	"Sure, I'll take the cube to him."`
