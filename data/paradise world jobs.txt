@@ -409,38 +409,42 @@ mission "Pleasure cruise security"
 mission "Non-violent parolees to <planet>"
 	job
 	repeat
-	description `These <bunks> non-violent repeat offenders have accepted longer community service sentences that better use their skills in return for serving their time on a paradise world. Transport them to their new home to carry out their service. The payment is <payment>.`
+	description `These <bunks> non-violent repeat offenders have accepted longer community service sentences that better use their skills in return for serving their time on the paradise world of <destination>. Transport them to their new home to carry out their service. The payment is <payment>.`
 	passengers 20 100 .6
 	to offer
 		random < 15
 		"passenger space" > 50
+	on offer
+		require "Brig"
 	source
 		attributes "mining" "fishing" "textiles" "factory" "farming" "oil"
 	destination
 		distance 2 18
 		attributes "paradise"
 	on visit
-		dialog phrase "generic missing stopover or passengers"
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000
-		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of a local security force as they prepare to repay their debts to society. A clerk on <origin> checks their condition as they're led off. He seems mostly pleased and hands you your payment of <payment>."
+		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of a local security force as they prepare to repay their debts to society. A clerk on <planet> checks their condition as they're led off. He seems mostly pleased and hands you your payment of <payment>."
 
 
 mission "Debtors to <planet>"
 	job
 	repeat
-	description `These <bunks> poor souls have bankrupted themselves attempting to live beyond their means on <origin>. Due to their general incompetence, and media scrutiny on the issue, the government will pay you <payment> to assist in deporting them to somewhere they can make something useful of themselves.`
+	description `These <bunks> poor souls have bankrupted themselves attempting to live beyond their means on <origin>. Due to their general incompetence, and media scrutiny on the issue, the government will pay you <payment> to assist in deporting them to <destination> which has been identified as somewhere that they can make something useful of themselves.`
 	passengers 20 100 .6
 	to offer
 		random < 15
 		"passenger space" > 50
+	on offer
+		require "Brig"
 	source
 		attributes "paradise"
 	destination
 		distance 2 30
 		attributes "mining" "fishing" "forest" "textiles" "factory" "farming" "oil" "frontier" "dirt belt" "south" "rim"
 	on visit
-		dialog phrase "generic missing stopover or passengers"
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000
 		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of immigration officials. A grinning job service provider is on hand to pay you the <payment> you are owed."
@@ -468,7 +472,7 @@ mission "Wealthy Retirees to <planet>"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 200
-		dialog "You bid goodbye to the retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite and full of highly amusing, though often morally questionable, anecdotes. Once the last of their things have been safely unloaded your accounts receive the payment of <payment> from their travel broker."
+		dialog "You bid goodbye to the retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite and full of highly amusing, though often morally questionable, anecdotes. Once the last of their belongings have been safely unloaded your accounts receive the payment of <payment> from their travel broker."
 
 
 mission "Wilderness Retreat Cohort to <planet>"
@@ -490,5 +494,5 @@ mission "Wilderness Retreat Cohort to <planet>"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 25000 250
-		dialog "Your passengers are met by an overly enthusiastic greeting service of comically overdressed 'wilderness guides'. You can't help but think these people are either about to end up on a popular reality show, or be safely fleeced of their money, but they're not the sort of characters who engender much sympathy for such fates. One of the greeters quietly transfers you your payment of <payment>."
+		dialog `Your passengers are met by an overly enthusiastic greeting service of comically overdressed "wilderness guides." You can't help but think these people are either about to end up on a popular reality show, or be safely fleeced of their money, but they're not the sort of characters who engender much sympathy for such fates. One of the greeters quietly transfers to you your payment of <payment>.`
 
