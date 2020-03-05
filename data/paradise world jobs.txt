@@ -478,7 +478,7 @@ mission "Wealthy Retirees to <planet>"
 mission "Wilderness Retreat Cohort to <planet>"
 	job
 	repeat
-	description "Bring <bunks> pseudo-celebrities and wealthy tourists to the wild and untamed world of <destination> for a 'Wilderness Retreat'. Payment is <payment>."
+	description `Bring <bunks> pseudo-celebrities and wealthy tourists to the wild and untamed world of <destination> for a "Wilderness Retreat." Payment is <payment>.`
 	passengers 10 4 .1
 	to offer
 		random < 15
@@ -495,4 +495,3 @@ mission "Wilderness Retreat Cohort to <planet>"
 	on complete
 		payment 25000 250
 		dialog `Your passengers are met by an overly enthusiastic greeting service of comically overdressed "wilderness guides." You can't help but think these people are either about to end up on a popular reality show, or be safely fleeced of their money, but they're not the sort of characters who engender much sympathy for such fates. One of the greeters quietly transfers to you your payment of <payment>.`
-
