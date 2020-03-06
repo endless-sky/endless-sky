@@ -160,7 +160,7 @@ ship "Flea"
 			"hit force" 80
 	outfits
 		"Railgun"
-		"Railgun Slug" 160
+		"Railgun Slug" 150
 		"Sand Cell"
 		"Hai Chasm Batteries"
 		`"Baellie" Atomic Engines`
@@ -397,7 +397,7 @@ ship "Pond Strider"
 			"hit force" 1750
 	outfits
 		"Railgun" 2
-		"Railgun Slug" 320
+		"Railgun Slug" 300
 		"Pulse Cannon"
 		"Pulse Turret" 2
 		"Bullfrog Anti-Missile" 
