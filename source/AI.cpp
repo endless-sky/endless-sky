@@ -1301,19 +1301,19 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	const FormationPattern * pattern = ship.GetFormationPattern();
 	
 	// First we retrieve the patterns available for the parent.
-	std::map<const FormationPattern *, FormationPositioner> patterns = formations[formationLead];
+	std::map<const FormationPattern *, FormationPositioner> * patterns = &formations[formationLead];
 	
 	// Add a formation-positioner for the pattern if none exists yet
-	auto it = patterns.find(pattern);
-	if(it == patterns.end())
+	auto it = patterns->find(pattern);
+	if(it == patterns->end())
 	{
-		patterns.emplace(piecewise_construct,
+		patterns->emplace(piecewise_construct,
 			forward_as_tuple(pattern),
 			forward_as_tuple(formationLead, pattern));
 
 		// Find the emplaced value. It should exist now.
-		it = patterns.find(pattern);
-		if(it == patterns.end())
+		it = patterns->find(pattern);
+		if(it == patterns->end())
 			return;
 	}
 	
