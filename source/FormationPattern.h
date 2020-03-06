@@ -32,11 +32,11 @@ public:
 	void Load(const DataNode &node);
 	
 	// Calculate next line and amount of positions on a line
-	int NextLine(unsigned int iteration, unsigned int lineNr) const;
-	int PositionsOnLine(unsigned int iteration, unsigned int lineNr) const;
+	int NextLine(unsigned int ring, unsigned int lineNr) const;
+	int LineSlots(unsigned int ring, unsigned int lineNr) const;
 	
 	// Calculate a position based on an iteration number, line number and position-on-line number
-	Point Position(unsigned int iteration, unsigned int lineNr, unsigned int posOnLine) const;
+	Point Position(unsigned int ring, unsigned int lineNr, unsigned int lineSlot) const;
 	
 	
 protected:

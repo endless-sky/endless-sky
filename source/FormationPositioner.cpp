@@ -25,10 +25,10 @@ using namespace std;
 
 void FormationPositioner::Start()
 {
-	iteration = 0;
+	ring = 0;
 	activeLine = 0;
-	posOnLine = 0;
-	positionsOnLine = -1;
+	lineSlot = 0;
+	lineSlots = -1;
 }
 
 
@@ -39,30 +39,31 @@ Point FormationPositioner::NextPosition()
 	if(activeLine < 0)
 		return Point();
 	
-	if(positionsOnLine < 0)
-		positionsOnLine = pattern->PositionsOnLine(iteration, activeLine);
+	if(lineSlots < 0)
+		lineSlots = pattern->LineSlots(ring, activeLine);
 	
 	// Iterate to next line if the current line is full.
-	if(posOnLine >= positionsOnLine)
+	if(lineSlot >= lineSlots)
 	{
-		int nextLine = pattern->NextLine(iteration, activeLine);
+		int nextLine = pattern->NextLine(ring, activeLine);
 		// If no new active line, just return center point.
 		if(nextLine < 0)
 		{
 			activeLine = -1;
 			return Point();
 		}
+		// If we get back to an earlier line, then we moved a ring up.
 		if(nextLine <= activeLine)
-			iteration++;
+			ring++;
 		
-		posOnLine = 0;
+		lineSlot = 0;
 		activeLine = nextLine;
-		positionsOnLine = pattern->PositionsOnLine(iteration, activeLine);
+		lineSlots = pattern->LineSlots(ring, activeLine);
 	}
 	
-	Point relPos = pattern->Position(iteration, activeLine, posOnLine) * activeScalingFactor;
-	// Set values for next iteration.
-	posOnLine++;
+	Point relPos = pattern->Position(ring, activeLine, lineSlot) * activeScalingFactor;
+	// Set values for next ring.
+	lineSlot++;
 
 	// Calculate new direction, if the formationLead is moving, then we use the movement vector.
 	// Otherwise we use the facing vector.

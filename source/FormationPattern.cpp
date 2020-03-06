@@ -61,13 +61,13 @@ void FormationPattern::Load(const DataNode &node)
 
 // Get the next line that has space for placement of ships. Returns -1
 // if none found/available.
-int FormationPattern::NextLine(unsigned int iteration, unsigned int lineNr) const
+int FormationPattern::NextLine(unsigned int ring, unsigned int lineNr) const
 {
-	// All lines participate in the first iteration
-	if(iteration == 0 && lineNr < (lines.size()-1))
+	// All lines participate in the first ring
+	if(ring == 0 && lineNr < (lines.size()-1))
 		return lineNr + 1;
 	
-	// For later iterations only lines that repeat will participate
+	// For later rings only lines that repeat will participate
 	unsigned int linesScanned = 0;
 	while(linesScanned <= lines.size())
 	{
@@ -83,8 +83,8 @@ int FormationPattern::NextLine(unsigned int iteration, unsigned int lineNr) cons
 
 
 
-// Get the number of positions on a line for the given iteration
-int FormationPattern::PositionsOnLine(unsigned int iteration, unsigned int lineNr) const
+// Get the number of positions on a line for the given ring.
+int FormationPattern::LineSlots(unsigned int ring, unsigned int lineNr) const
 {
 	if(lineNr >= lines.size())
 		return 0;
@@ -92,21 +92,21 @@ int FormationPattern::PositionsOnLine(unsigned int iteration, unsigned int lineN
 	// Retrieve the relevant line
 	Line line = lines[lineNr];
 	
-	// For the first iteration, only the initial positions are relevant
-	if(iteration == 0)
+	// For the first ring, only the initial positions are relevant
+	if(ring == 0)
 		return line.initialSlots;
 	
-	// If we are in a later iteration, then skip lines that don't repeat
+	// If we are in a later ring, then skip lines that don't repeat
 	if(line.slotsIncrease < 0)
 		return 0;
 	
-	return line.initialSlots + line.slotsIncrease * iteration;
+	return line.initialSlots + line.slotsIncrease * ring;
 }
 
 
 
-// Get a formation position based on iteration, line-number and position on the line.
-Point FormationPattern::Position(unsigned int iteration, unsigned int lineNr, unsigned int posOnLine) const
+// Get a formation position based on ring, line-number and position on the line.
+Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigned int lineSlot) const
 {
 	if(lineNr >= lines.size())
 		return Point();
@@ -115,6 +115,6 @@ Point FormationPattern::Position(unsigned int iteration, unsigned int lineNr, un
 	
 	// Calculate position based
 	return line.anchor +
-		line.repeatVector * iteration +
-		line.direction.Rotate(Point(0, -line.spacing * posOnLine));
+		line.repeatVector * ring +
+		line.direction.Rotate(Point(0, -line.spacing * lineSlot));
 }

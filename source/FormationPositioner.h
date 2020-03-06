@@ -49,10 +49,10 @@ private:
 	double nextScalingFactor = 0.;
 	
 	// Values used during ship position calculation iterations.
-	int iteration = 0;
+	int ring = 0;
 	int activeLine = 0;
-	int posOnLine = 0;
-	int positionsOnLine = -1;
+	int lineSlot = 0;
+	int lineSlots = -1;
 	
 	// The body around which the formation will be formed and the pattern to follow.
 	const Body * formationLead;
