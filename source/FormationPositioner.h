@@ -29,7 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class FormationPositioner{
 public:
 	// Initializer based on the formation pattern to follow
-	FormationPositioner(const Body * formationLead, const FormationPattern * pattern);
+	FormationPositioner(const Body * formationLead, const FormationPattern * pattern): formationLead(formationLead), pattern(pattern) {}
 	
 	// Start/reset/initialize for a (new) round of formation position calculations
 	// for a formation around the ship given as parameter.
@@ -68,7 +68,10 @@ private:
 private:
 	// Anchor position and direction of the formation(s) being positioned.
 	Point anchor;
-	Angle direction;
+	Angle direction = Angle::Random();
+	
+	const Body * formationLead;
+	const FormationPattern  * pattern;
 	
 	// Formation patterns that this positioner should assign ships to.
 	std::map<const FormationPattern *, Iter> patterns;

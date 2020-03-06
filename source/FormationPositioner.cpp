@@ -23,13 +23,6 @@ using namespace std;
 
 
 
-FormationPositioner::FormationPositioner(const Body * formationLead, const FormationPattern * pattern)
-{
-	direction = Angle::Random();
-}
-
-
-
 void FormationPositioner::Start(Body &formationLead)
 {
 	patterns.clear();
