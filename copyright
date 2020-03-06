@@ -647,7 +647,6 @@ Comment: Made in cooperation with Becca Tommaso (tommasobecca03@gmail.com) and d
 Files:
  images/effect/dragonflame*
  images/effect/fdrive*
- images/effect/pwave?impact*
  images/effect/pwave?shot*
  images/effect/sheragiam*
  images/effect/pwavehp*
@@ -662,6 +661,12 @@ Files:
  images/thumbnail/emeraldsword*
 Copyright: Fernando S. Sáez (crim@live.no)
 License: CC-BY-SA-4.0
+
+Files:
+ images/effect/pwave?impact*
+Copyright: Fernando S. Sáez (crim@live.no)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files: sounds/dragonflame*
 Copyright: TheHadnot
