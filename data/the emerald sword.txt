@@ -583,7 +583,6 @@ mission "Sheragi Archaeology: The Emerald Sword 2"
 		has "Sheragi Archaeology: The Emerald Sword 1: done"
 	
 	on offer
-		require "Jump Drive"
 		conversation
 			`You arrive on Zug, and after contacting Albert and the three Hai archaeologists and following their direction, you find them in an ice cream shop. They're still wearing the youngster clothes, but not even bothering to hide their faces with the bandanna anymore. Surprisingly, nobody seems too distressed at the sight. Rakei waves for you and stands up, coming to you with ice creams in paw.`
 			`	"Hello <first>! It seems our disguise worked better than intended. The humans around here think we're wearing a costume. Apparently young humans like to dress up as aliens?" she says confusedly.`
@@ -627,7 +626,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 	blocked `You arrive to make the preparations to capture the Emerald Sword, but Albert stops you. "Captain, we're going to need 50 tons of cargo to take our materials and the jump drive, and 20 additional crew to help, including us. I'd also advise that you save enough bunks to hire some additional crew. The Emerald Sword is an alien ship, so we have no idea how many people we will need to man it. I would recommend erring on the side of caution by bringing along 100 or so extra crew members."`
 	
 	on offer
-		require "Jump Drive"
+		require "Jump Drive" 2
 		conversation
 			`You have a jump drive in your possession. Would you like to give it to Albert's crew?`
 			choice
