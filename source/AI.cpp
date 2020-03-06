@@ -1317,7 +1317,7 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 			return;
 	}
 	
-	MoveTo(ship, command, it->second.NextPosition(ship), parent->Velocity(), 50, .1);
+	MoveTo(ship, command, it->second.NextPosition(), parent->Velocity(), 50, .1);
 }
 
 

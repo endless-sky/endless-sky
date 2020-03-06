@@ -33,48 +33,30 @@ public:
 	
 	// Start/reset/initialize for a (new) round of formation position calculations
 	// for a formation around the ship given as parameter.
-	void Start(Body &formationLead);
+	void Start();
 	
 	// Get the point for the next ship in the formation. Caller should ensure
 	// that the ships are offered in the right order to the calculator.
 	// Ship pointer is used to get the scaling factor (in the next round of
 	// position calculations).
-	Point NextPosition(Ship &ship);
+	Point NextPosition();
 	
 	
 private:
-	class Iter {
-	public:
-		Iter(const FormationPattern &pattern);
-
-		Point NextPosition(Ship &ship);
-
-	public:
-		const FormationPattern &pattern;
-		
-		// The scaling factor currently being used.
-		double activeScalingFactor = 80.;
-		// The scaling factor that is to be used for the next round.
-		double nextScalingFactor = 0.;
-		
-		// Values used during ship position calculation iterations.
-		int iteration = 0;
-		int activeLine = 0;
-		int posOnLine = 0;
-		int positionsOnLine = 0;
-	};
+	// The scaling factor currently being used.
+	double activeScalingFactor = 80.;
+	// The scaling factor that is to be used for the next round of position calculations.
+	double nextScalingFactor = 0.;
 	
+	// Values used during ship position calculation iterations.
+	int iteration = 0;
+	int activeLine = 0;
+	int posOnLine = 0;
+	int positionsOnLine = -1;
 	
-private:
-	// Anchor position and direction of the formation(s) being positioned.
-	Point anchor;
-	Angle direction = Angle::Random();
-	
+	// The body around which the formation will be formed and the pattern to follow.
 	const Body * formationLead;
 	const FormationPattern  * pattern;
-	
-	// Formation patterns that this positioner should assign ships to.
-	std::map<const FormationPattern *, Iter> patterns;
 };
 
 
