@@ -72,7 +72,7 @@ jobs:
           path: ${{ env.OUTPUT }}
       - name: Upload to continuous release
         run: |
-          gothub release upload \
+          gothub upload \
             --user "$(echo ${{ github.repository }} | cut -d/ -f1)" \
             --repo "$(echo ${{ github.repository }} | cut -d/ -f2)" \
             --tag continuous \
@@ -121,7 +121,7 @@ jobs:
           path: ${{ env.OUTPUT }}
       - name: Upload to continuous release
         run: |
-          gothub release upload \
+          gothub upload \
             --user "$(echo ${{ github.repository }} | cut -d/ -f1)" \
             --repo "$(echo ${{ github.repository }} | cut -d/ -f2)" \
             --tag continuous \
@@ -169,7 +169,7 @@ jobs:
           path: ${{ env.OUTPUT }}
       - name: Upload to continuous release
         run: |
-          gothub release upload \
+          gothub upload \
             --user "$(echo ${{ github.repository }} | cut -d/ -f1)" \
             --repo "$(echo ${{ github.repository }} | cut -d/ -f2)" \
             --tag continuous \
