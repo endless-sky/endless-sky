@@ -2209,7 +2209,7 @@ mission "Stranded Field Trip [0]"
 		"passenger space" > 50
 	source
 		attributes "near earth" "deep" "paradise" "tourism"
-
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 4 16
 		attributes "near earth" "deep" "paradise" "urban"
