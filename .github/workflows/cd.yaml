@@ -70,16 +70,14 @@ jobs:
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v1
       - name: Upload to continuous release
         run: |
           gothub release upload \
             --user "$(echo ${{ github.repository }} | cut -d/ -f1)" \
             --repo "$(echo ${{ github.repository }} | cut -d/ -f2)" \
             --tag continuous \
-            --name "${{ env.OUTPUT }}" \
-            --file "${{ env.OUTPUT }}"
+            --name ${{ env.OUTPUT }} \
+            --file ${{ env.OUTPUT }}
 
   windows_win64:
     runs-on: windows-latest
@@ -127,8 +125,9 @@ jobs:
             --user "$(echo ${{ github.repository }} | cut -d/ -f1)" \
             --repo "$(echo ${{ github.repository }} | cut -d/ -f2)" \
             --tag continuous \
-            --name "${{ env.OUTPUT }}" \
-            --file "${{ env.OUTPUT }}"
+            --name ${{ env.OUTPUT }} \
+            --file ${{ env.OUTPUT }}
+        shell: bash
 
   macos_x86_64:
     runs-on: macos-latest
@@ -168,13 +167,11 @@ jobs:
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v1
       - name: Upload to continuous release
         run: |
           gothub release upload \
             --user "$(echo ${{ github.repository }} | cut -d/ -f1)" \
             --repo "$(echo ${{ github.repository }} | cut -d/ -f2)" \
             --tag continuous \
-            --name "${{ env.OUTPUT }}" \
-            --file "${{ env.OUTPUT }}"
+            --name ${{ env.OUTPUT }} \
+            --file ${{ env.OUTPUT }}
