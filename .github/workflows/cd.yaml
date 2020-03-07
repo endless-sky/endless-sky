@@ -22,10 +22,12 @@ jobs:
           echo ::set-env name=GITHUB_USER::$( echo ${{ github.repository }} | cut -d/ -f1 )
           echo ::set-env name=GITHUB_REPO::$( echo ${{ github.repository }} | cut -d/ -f2 )
       - name: Remove continuous release
-        run: gothub delete --tag nightly
+        run: gothub delete --tag continuous
       - name: Moving continuous tag
         run: |
-          git push --delete origin continuous
+          if git rev-parse "continuous" >/dev/null 2>&1; then
+            git push --delete origin continuous
+          fi
           git tag --force continuous ${{ github.sha }}
           git push --tags --force
       - name: Create continuous release
