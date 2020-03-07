@@ -70,6 +70,8 @@ jobs:
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v1
       - name: Upload to continuous release
         run: |
           gothub release upload \
@@ -166,6 +168,8 @@ jobs:
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v1
       - name: Upload to continuous release
         run: |
           gothub release upload \
