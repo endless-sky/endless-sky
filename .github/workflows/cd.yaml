@@ -42,6 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup
     env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       OUTPUT: endless-sky-amd64-${{ github.sha }}.tar.gz
     steps:
       - uses: actions/checkout@v2
@@ -82,6 +83,7 @@ jobs:
     runs-on: windows-latest
     needs: setup
     env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
       DIR_ESLIB: .\dev64
       OUTPUT: EndlessSky-win64-${{ github.sha }}.zip
@@ -130,6 +132,7 @@ jobs:
     runs-on: macos-latest
     needs: setup
     env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       OUTPUT: EndlessSky-macOS-${{ github.sha }}.zip
     steps:
       - uses: actions/checkout@v2
