@@ -736,7 +736,7 @@ news "technical writer"
 			"Do you have a few minutes to listen to my thoughts on the importance of the serial comma?"
 			"People who over-use the passive voice should be lined up and shot. It doesn't make your writing more formal, it just makes it harder to read."
 			"Documents are written once, and read many times. So every minute I spend polishing someone's writing will pay off many times over in the long run."
-			"Communication skills are essential no matter what you job is. If you can't write well, people will think you're an idiot. Or at least, people like me will think that."
+			"Communication skills are essential no matter what your job is. If you can't write well, people will think you're an idiot. Or at least, people like me will think that."
 
 
 

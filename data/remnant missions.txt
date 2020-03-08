@@ -213,7 +213,7 @@ mission "Remnant: Lost in Ember Waste"
 			`	"I explored the Republic for many months, learning what had happened since the Alpha Wars, but when I attempted to return to the Ember Waste to tell my people, I found that my key stone had been stolen at some point during my journey. I had no way to return."`
 			`	She lets out a long sigh. "I don't want to bore you with all the details, but I resigned myself to my new life. I met a man, had two daughters, but never lost hope of returning to my true home. One day, after my daughters had grown and my husband had passed in an accident, I decided to go on another adventure. I dusted off my old ship, and soon discovered the Hai."`
 			branch hai
-				has "First Contact: Hai"
+				has "First Contact: Hai: offered"
 			choice
 				`	"The who?"`
 			`	"How you've become lost here without having discovered the Hai first is beyond me." She chuckles. "The Hai are a peaceful alien people north of humanity. Go looking for a purple wormhole in the uninhabited systems of the Far North. You may find your way there.`
@@ -1310,7 +1310,7 @@ mission "Remnant: Return the Samples 2"
 		dialog phrase "generic stopover on visit"
 	on complete
 		"reputation: Drak" += 1
-		event "remnant: return the samples timer" 14
+		event "remnant: return the samples timer" 2 4
 		conversation
 			`Back on Aventine, you share the recording of the void sprite's behavior with Plume. "These Sprites demonstrate considerably more communication than we originally thought. And obviously they must have communicated what you did on Nasqueron. Interesting..." Plume's excited staccato exclamations trail off as he begins to make notes on a data pad he has on hand. "Thank you for your help, we will let you know what we find out."`
 
@@ -1329,6 +1329,24 @@ mission "Remnant Return the Samples Compatibility Patch"
 	on offer
 		event "remnant: return the samples timer" 2
 		fail
+
+
+# "This mission is intended to serve as a notification that one timer has elapsed and how long to wait until the missions start again."
+mission "Remnant: Return the Samples 3 Exploration Hint"
+	landing
+	source "Aventine"
+	to offer
+		has "event: remnant: return the samples timer"
+	on offer
+		event "remnant: wait for plume" 7 14
+		conversation
+			`As you disembark from <ship> you almost run into Plume as he strides across the landing area. "Captain <first>, I didn't see you there!" You glance back at the bulk of your ship that you just stepped out of and look at him curiously, wondering how he could have missed seeing a spaceship land in front of him. His chant takes on a slightly apologetic tone. "I've been lost in thought thinking about everything we have discovered lately, especially the most recent recordings you made. I still have a lot to analyze, though." He pauses, looking thoughtful. "That being said, I will probably have more work for you in a week or two."`
+			`	Plume asks a few more questions about what you have been doing, then politely excuses himself to continue his research. "Please let me know if you uncover anything else about Nenia!" he trills to you as he departs.`
+				decline
+
+
+
+event "remnant: wait for plume"
 
 
 
@@ -1551,7 +1569,7 @@ mission "Remnant: Salvage 6"
 	to offer
 		has "Remnant: Salvage 5: done"
 	on offer
-		event "Remnant Salvage Available"
+		event "remnant salvage available"
 		conversation
 			`You spot the laboratory technician entering the cafeteria, and she approaches you.`
 			`	"Thank you for waiting. I have a shipment of parts ready for Taely, and with the recent increase in attacks she needs them sooner rather than later. Please take them to her."`
@@ -1580,7 +1598,7 @@ mission "Remnant: Salvage 6"
 			label end
 			`	"Well, I need to get back to work. That last battle put us behind schedule on our repairs. Have a good day!" With a final flourish that you think is the equivalent of an exclamation mark, Taely strides out of the outfitters, heading towards another landing bay.`
 
-event "Remnant Salvage Available"
+event "remnant salvage available"
 	planet "Aventine"
 		outfitter "Remnant Salvage"
 	planet "Caelian"
@@ -2148,5 +2166,3 @@ mission "Remnant: Face to Maw 2B"
 			label end
 			`	"All right, enough history." He turns to the technicians who are finishing the assembly. "The tentacle has been treated to resist decay and the stock mechanisms will provide basic maintenance routines for as long as you charge it regularly." He strides over, picks up the completed void rifle, and then hands it to you. "You are holding a piece of our history, Captain. Use it well!"`
 			scene "outfit/void rifle"
-
-
