@@ -70,7 +70,7 @@ private:
 	
 private:
 	int64_t credits;
-	// If back salaries and maintenance cannot be paid, they pile up rather 
+	// If back salaries and maintenance cannot be paid, they pile up rather
 	// than being ignored.
 	int64_t salariesOwed;
 	int64_t maintenanceDue;
