@@ -5638,6 +5638,7 @@ system "Bore Fah"
 	fleet "Large Hai" 1000
 	fleet "Small Human Merchants (Hai)" 12000
 	fleet "Large Human Merchants (Hai)" 18000
+	fleet "Hai Surveillance" 5000
 	object
 		sprite star/g5
 		period 10
@@ -5697,6 +5698,7 @@ system "Bote Asu"
 	fleet "Large Hai" 600
 	fleet "Small Human Merchants (Hai)" 8000
 	fleet "Large Human Merchants (Hai)" 12000
+	fleet "Hai Surveillance" 3000
 	object
 		sprite star/f0
 		distance 17.3605
@@ -7073,6 +7075,7 @@ system "Da Ent"
 	fleet "Large Hai" 1200
 	fleet "Small Human Merchants (Hai)" 9000
 	fleet "Large Human Merchants (Hai)" 10000
+	fleet "Hai Surveillance" 3000
 	object
 		sprite star/m4
 		period 10
@@ -7134,6 +7137,7 @@ system "Da Lest"
 	fleet "Large Hai" 1400
 	fleet "Small Human Merchants (Hai)" 7000
 	fleet "Large Human Merchants (Hai)" 8000
+	fleet "Hai Surveillance" 5000
 	object
 		sprite star/m0
 		period 10
@@ -8185,6 +8189,7 @@ system "Due Yoot"
 	fleet "Large Hai" 2000
 	fleet "Small Human Merchants (Hai)" 3000
 	fleet "Large Human Merchants (Hai)" 6000
+	fleet "Hai Surveillance" 5000
 	fleet Quarg 2000
 	object
 		sprite star/m4
@@ -9387,6 +9392,7 @@ system "Fah Root"
 	fleet "Large Hai" 4000
 	fleet "Small Human Merchants (Hai)" 15000
 	fleet "Large Human Merchants (Hai)" 25000
+	fleet "Hai Surveillance" 3000
 	fleet Quarg 2000
 	object
 		sprite star/k0
@@ -9453,6 +9459,7 @@ system "Fah Soom"
 	fleet "Large Hai" 1600
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
+	fleet "Hai Surveillance" 4000
 	fleet Quarg 1000
 	object
 		sprite star/k5
@@ -9870,6 +9877,7 @@ system Fasitopfar
 	asteroids "large metal" 83 4.968
 	minables silver 44 10.8343
 	minables tungsten 113 12.1378
+	minables yottrite 1 4.3241
 	trade Clothing 283
 	trade Electronics 624
 	trade Equipment 394
@@ -11796,6 +11804,7 @@ system "Heia Due"
 	fleet "Large Hai" 2000
 	fleet "Small Human Merchants (Hai)" 2000
 	fleet "Large Human Merchants (Hai)" 5000
+	fleet "Hai Surveillance" 2000
 	object
 		sprite star/g0
 		distance 13.2222
@@ -12494,6 +12503,7 @@ system "Imo Dep"
 	fleet "Large Hai" 2000
 	fleet "Small Human Merchants (Hai)" 10000
 	fleet "Large Human Merchants (Hai)" 14000
+	fleet "Hai Surveillance" 3000
 	object
 		sprite star/f5
 		period 10
@@ -12617,6 +12627,7 @@ system "Io Lowe"
 	fleet "Large Hai" 1200
 	fleet "Small Human Merchants (Hai)" 4000
 	fleet "Large Human Merchants (Hai)" 7000
+	fleet "Hai Surveillance" 5000
 	object
 		sprite star/m8
 		period 10
@@ -12674,6 +12685,7 @@ system "Io Mann"
 	fleet "Large Hai" 1800
 	fleet "Small Human Merchants (Hai)" 3000
 	fleet "Large Human Merchants (Hai)" 6000
+	fleet "Hai Surveillance" 3000
 	object
 		sprite star/k0
 		distance 54
@@ -13235,6 +13247,7 @@ system Kasikfar
 	asteroids "medium metal" 47 4.1354
 	asteroids "large metal" 3 5.0025
 	minables aluminum 1 4.40452
+	minables yottrite 3 4.7768
 	trade Clothing 256
 	trade Electronics 593
 	trade Equipment 526
@@ -14891,6 +14904,7 @@ system "Lom Tahr"
 	fleet "Large Hai" 1600
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
+	fleet "Hai Surveillance" 3000
 	fleet Quarg 4000
 	object
 		sprite star/f0
@@ -15591,6 +15605,7 @@ system "Mei Yohn"
 	fleet "Large Hai" 1000
 	fleet "Small Human Merchants (Hai)" 7000
 	fleet "Large Human Merchants (Hai)" 10000
+	fleet "Hai Surveillance" 5000
 	object
 		sprite star/k5
 		period 10
@@ -18081,6 +18096,7 @@ system Peresedersi
 	asteroids "large metal" 5 3.22
 	minables aluminum 5 2.45602
 	minables iron 2 2.26908
+	minables yottrite 2 4.5863
 	trade Clothing 407
 	trade Electronics 682
 	trade Equipment 659
@@ -18236,6 +18252,7 @@ system Persitar
 	asteroids "large metal" 2 7.344
 	minables silicon 2 5.34947
 	minables titanium 4 3.97343
+	minables yottrite 7 4.9647
 	trade Clothing 231
 	trade Electronics 801
 	trade Equipment 385
@@ -18973,7 +18990,7 @@ system Procyon
 
 system "Pug Iyik"
 	pos -361.149 -883.233
-	government Pug
+	government "Pug (Wanderer)"
 	habitable 625
 	belt 1286
 	asteroids "small rock" 35 7.6356
@@ -19653,6 +19670,7 @@ system "Rati Cal"
 	fleet "Large Hai" 1700
 	fleet "Small Human Merchants (Hai)" 8000
 	fleet "Large Human Merchants (Hai)" 11000
+	fleet "Hai Surveillance" 5000
 	object
 		sprite star/k5
 		period 10
@@ -23513,6 +23531,7 @@ system "Ula Mon"
 	fleet "Large Hai" 900
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
+	fleet "Hai Surveillance" 3000
 	object
 		sprite star/m0
 		distance 56.5
@@ -23824,6 +23843,7 @@ system "Uwa Fahn"
 	fleet "Large Hai" 700
 	fleet "Small Human Merchants (Hai)" 11000
 	fleet "Large Human Merchants (Hai)" 16000
+	fleet "Hai Surveillance" 3000
 	object
 		sprite star/m0
 		period 10
@@ -24120,6 +24140,7 @@ system "Wah Oh"
 	fleet "Large Hai" 1500
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
+	fleet "Hai Surveillance" 5000
 	object
 		sprite star/a0
 		period 10
@@ -24252,9 +24273,9 @@ system Waypoint
 	trade Medical 745
 	trade Metal 478
 	trade Plastic 452
-	fleet "Small Hai" 1000
 	fleet "Small Human Merchants (Hai)" 18000
 	fleet "Large Human Merchants (Hai)" 28000
+	fleet "Hai Surveillance" 1000
 	object
 		sprite star/m8
 		period 10
@@ -24516,6 +24537,7 @@ system "Ya Hai"
 	fleet "Large Hai" 500
 	fleet "Small Human Merchants (Hai)" 12000
 	fleet "Large Human Merchants (Hai)" 17000
+	fleet "Hai Surveillance" 3000
 	fleet Quarg 6000
 	object
 		sprite star/k5
@@ -24887,6 +24909,7 @@ system "Zuba Zub"
 	fleet "Large Hai" 800
 	fleet "Small Human Merchants (Hai)" 10000
 	fleet "Large Human Merchants (Hai)" 18000
+	fleet "Hai Surveillance" 5000
 	object
 		sprite star/k5
 		period 10
@@ -25154,6 +25177,7 @@ planet Allhome
 	description `This Earth-like planet has been settled both by human beings and by the Hai, the species that controls this region of space. The human settlements are relatively small, mostly farming communities founded by people who came here to escape the chaos and uncertainty of human space.`
 	spaceport `In the spaceport, a handful of human merchants and colonists wander about amid throngs of Hai - vaguely squirrel-like aliens who are somewhat shorter than the average human being, but make up for it with an abundance of energy. You feel a little bit like an adult wading through a sea of hyperactive children as you try to locate the commodity exchange and the other services offered here.`
 	outfitter "Hai Basics"
+	security 0.6
 
 planet "Alta Hai"
 	attributes quarg station
@@ -25492,8 +25516,8 @@ planet "Ceaseless Toil"
 planet Celeatis
 	attributes ka'het
 	landscape land/canyon4
-	description `Celeatis is a mountainous planet, once home to one of the largest Builder research centers. They were focused on studying the anomaly in the system. If they found out how to stabilize and use it as a wormhole, perhaps their species would have survived, spreading in the rest of the galaxy; the ruined, lifeless and half-buried buildings here are evidence of their failure.`
-	description `	The planet's surface is too irregular and far from the system's stars to be suitable for farming, so its inhabitants had to rely on the food produced abroad. When the Ka'het came the supplies stopped arriving, so in less than a year the planetary food reserves were depleted and the whole population had died of starvation.`
+	description `Celeatis is a mountainous planet, once home to one of the largest Builder research centers. They were focused on studying the anomaly in the system. If they found out how to stabilize and use it as a wormhole, perhaps their species would have survived, spreading to the rest of the galaxy; the ruined, lifeless and half-buried buildings here are evidence of their failure.`
+	description `	The planet's surface is too irregular and far from the system's stars to be suitable for farming, so its inhabitants had to rely on the food produced abroad. When the Ka'het came, the supplies stopped arriving. In less than a year the planetary food reserves were depleted and the whole population had died of starvation.`
 
 planet "Celestial Third"
 	attributes kimek farming factory urban
@@ -25599,6 +25623,7 @@ planet Cloudfire
 	spaceport `The spaceport has massive hangars and advanced repair facilities designed to accommodate the largest Hai warships. Where a fleet has just returned from a recent battle, the hangars are lit with flashes from robotic welders as damaged hull plates are swapped out for fresh ones and weakened joints are reinforced. The actual process of building these warships, however, takes place on the Hai homeworld, where the facilities will not be vulnerable to attack.`
 	shipyard "Hai Basics"
 	outfitter "Hai Intermediate"
+	security 0.9
 
 planet "Cold Horizon"
 	attributes saryd tourism
@@ -25691,6 +25716,7 @@ planet Darkmetal
 	landscape land/canyon02
 	description `Darkmetal is a cold, dry mining world, the source of much of the heavy metals that are used in Hai space. A haze of slightly radioactive dust hangs in the sky whenever it has been more than a week since the last rainstorm. Most of the mining is carried out by slow-moving vehicles the size of a small city, which ingest layers of dirt and bedrock, crush it to extract any valuable elements, then mix the remaining material with water to form a cement-like slurry that can be extruded in solid blocks, to reduce the amount of additional dust that is added to the atmosphere.`
 	spaceport `The spaceport is hermetically sealed, with gantry tubes that can adapt to fit the hatches of human ships as well as Hai. The seal is to keep radioactive dust out of the living spaces, but its purpose is primarily to reduce the long-term exposure of the station's permanent inhabitants; for visitors, the risks are minimal.`
+	security 0.2
 
 planet Darkstone
 	attributes south farming frontier
@@ -25836,6 +25862,7 @@ planet Dustmaker
 	landscape land/badlands0
 	description `The surface of this planet, when it is not obscured by dust storms, receives enough sunlight to power not only large solar farms, but solar furnaces as well, which the Hai use for manufacturing a large variety of goods. Some of the solar farms are so large that from orbit, the light reflecting off them could almost be mistaken for lakes and small oceans. However, there is almost no water on the planet's surface except near the poles.`
 	spaceport `Like most Hai architecture, the spaceport is made of bare, unpainted metal, so weathered that you would not be surprised to learn that it is tens of thousands of years old. Tall, curved walls around the outskirts of the port create a sort of labyrinth with the port building itself at the center; they are probably intended to block sandstorms while allowing gentler breezes to pass through.`
+	security 0.2
 
 planet "Dwelling of Speloog"
 	attributes arach shipping urban
@@ -26012,6 +26039,7 @@ planet Farwater
 	landscape land/beach6
 	description `In human space, this system would probably have been left unsettled, because its sun produces too much ultraviolet radiation for animals to survive for long on its surface. But the Hai have instead turned this warm ocean world into a massive incubator for photosynthetic algae and bacteria. Each species is genetically engineered to produce one or more medical or nutritional compounds that they can make use of. Barges travel slowly through the oceans harvesting these microorganisms out of the water and separating out the chemical compounds they provide.`
 	spaceport `The spaceport appears to have been built by expanding a natural set of caves in a cliff facing the ocean. At high tide the lower caves flood, allowing barges to dock and unload the compounds they have harvested. Tunnels lead deep into the rock to rooms that have been carved out as warehouse space and living quarters. The rock remains somewhat cool, even at midday, but the air is still oppressively humid.`
+	security 0.2
 
 planet Featherweight
 	attributes north research frontier
@@ -26148,6 +26176,7 @@ planet Frostmark
 	landscape land/dmottl5
 	description `There are several large Hai cities near the equator on Frostmark, but much of the planet's surface is cold and uninhabited except by herds of extremely large, six-legged herbivores, and other equally large and frightening animals that prey on them.`
 	spaceport `Every Hai city has an appearance of great age and permanence, but this one, even more so. In Hai cities, transport vehicles carry freight and passengers along underground passages or elevated railways, while the pathways at ground level are reserved for foot traffic. Here, millennia of foot traffic have rounded off the corners of every metal staircase, and polished the railings as smooth as glass. The Hai locals do not seem to have trouble keeping their footing, but you wish your shoes gave you more traction.`
+	security 0.2
 
 planet Furnace
 	attributes core military moon
@@ -26226,6 +26255,7 @@ planet Giverstone
 	spaceport `The spaceport is in the center of one of the large cities that are built high up in the mountains where the air is cooler. It consists mostly of open-air landing pads: enormous slabs of metal embedded into the mountainside at different levels, with winding roads connecting them to the main marketplace and warehouse district. Several old mine entrances, well reinforced with metal struts, have been converted into hangar bays or warehouse space.`
 	shipyard "Hai Intermediate"
 	outfitter "Hai Intermediate"
+	security 0.2
 
 planet Glaze
 	attributes south tourism
@@ -26285,6 +26315,7 @@ planet Greenbloom
 	landscape land/water3
 	description `The islands and continents on this planet are almost entirely covered in marshes, rainforests, and (near the poles) dense coniferous forests, and the oceans appear green from above due to thick algae blooms and floating kelp mats. The overabundance of flora is caused by Greenbloom's major volcanoes, which constantly spew carbon dioxide into the atmosphere.`
 	spaceport `The spaceport is a massive floating island built by the Hai - a network of hexagonal platforms, each roughly half a kilometer in diameter, linked by bridges that can bend to accommodate the platforms rising and falling in rough weather. You are not sure what sort of alloy the platforms are built from, but judging by the fact that some of them have coral colonies growing on their edges, they can probably last for centuries without requiring any maintenance.`
+	security 0.1
 
 planet Greenrock
 	attributes pirate "south pirate" south frontier
@@ -26316,6 +26347,7 @@ planet Greenwater
 	spaceport `In this bustling spaceport, deeply tanned human merchants are busy haggling with the Hai natives over the price of loads of fish and produce. The atmosphere is quite friendly and relaxed - even here, well into the planet's temperate zone, it is warm enough that everyone, Hai and human alike, moves at a languid pace.`
 	shipyard "Hai Basics"
 	outfitter "Hai Basics"
+	security 0.4
 
 planet "Gresku Fodar"
 	attributes korath station
@@ -26333,6 +26365,7 @@ planet Hai-home
 	outfitter "Hai Advanced"
 	"required reputation" 100
 	bribe 0
+	security 0.4
 
 planet "Hammer of Debrugt"
 	attributes arach mining shipping urban
@@ -26406,6 +26439,7 @@ planet Heartvalley
 	spaceport `The spaceport is built halfway up the slope of one of the most heavily settled valleys. Farther down the valley, the tallest buildings of the city seem tiny compared to the mountains that surround them. On the outskirts of the city sit strange engines the size of a spacecraft, with pipes snaking out from them in all directions and sinking deep into the ground.`
 	shipyard "Hai Basics"
 	outfitter "Hai Basics"
+	security 0.1
 
 planet Helheim
 	attributes deep mining volcanic
@@ -26549,6 +26583,7 @@ planet Icelake
 	spaceport `The largest hangars in the spaceport are built of metal beams more than a meter wide, with thick glass panels between them to let in the sunlight. Even the smaller and newer warehouses on the outskirts of the port seem as solid and permanent as the mountains themselves. Thousands of Hai are walking back and forth between the buildings, and many of them regard you with curiosity; there are very few human visitors here.`
 	shipyard "Hai Intermediate"
 	outfitter "Hai Advanced"
+	security 0.3
 
 planet Ingot
 	attributes "dirt belt" volcanic mining moon
@@ -26810,6 +26845,7 @@ planet Makerplace
 	spaceport `A fair number of the Hai walking through this spaceport are wearing no clothing at all, perhaps as a response to the warm temperatures. Given that they seem to attract no notice or disapproval by doing so, it appears that this is perfectly normal behavior. Others appear to have trimmed their fur shorter than normal as an alternative way to deal with the heat.`
 	shipyard "Hai Intermediate"
 	outfitter "Hai Advanced"
+	security 0.2
 
 planet Mani
 	attributes deep moon
@@ -26952,6 +26988,7 @@ planet Mirrorlake
 	landscape land/bwerner1
 	description `The Hai homeworld is orbited by a moon that is large and dense enough to have been able to hold on to its own supply of surface water, and although the atmosphere is cold, much of that water is in liquid form due to the strong tides. In a few places, granite and basalt cliffs rise out of the water, and the Hai have built a few small settlements on the moon, as well.`
 	spaceport `This spaceport appears to be a tourist destination. The architecture is different than on other Hai worlds, and much more primitive: stone and mortar instead of polished metal. However, all the buildings are in good repair: despite their ancient appearance, they must be maintained and rebuilt on a regular basis.`
+	security 0.2
 
 planet Moonshake
 	attributes core urban factory
@@ -27220,6 +27257,7 @@ planet Newhome
 	spaceport `The roads in the spaceport are very wide, so that Hai ranchers can lead their massive, sheep-like beasts along them. The animals seem docile enough, but their size is alarming.`
 	spaceport `	Most of the shops only sell clothing made for the Hai, but a few enterprising artisans have begun making clothing for humans as well: larger dimensions, and no tail holes in the pants.`
 	outfitter "Hai Basics"
+	security 0.2
 
 planet Nifel
 	attributes deep research medical
@@ -27514,7 +27552,7 @@ planet "Remote Blue"
 planet Retilie
 	attributes ka'het
 	landscape land/sea1
-	description `Retilie is an oceanic world, where more than 95% of the planet's surfaces is covered by deep oceans that go down for many kilometers. The planet was mainly used for fishing, leading to a lack of infrastructural development. The few buildings that had been build on the coast lines were swiftly destroyed by the Ka'het and have since been washed away by the ocean waves. The ruins that remain are of a small city, well inside the mainland, far from where the oceans could erase it.`
+	description `Retilie is an oceanic world, where more than 95% of the planet's surfaces is covered by deep oceans that go down for many kilometers. The planet was mainly used for fishing, leading to a lack of infrastructural development. The few buildings that had been built on the coast lines were swiftly destroyed by the Ka'het and have since been washed away by the ocean waves. The ruins that remain are of a small city, well inside the mainland, far from where the oceans could erase it.`
 	description `	In the oceans, the many species of fish continue to prosper, unaware of the destruction the planet has undergone.`
 
 planet Reunion
@@ -27707,7 +27745,7 @@ planet "Seleptra Nak"
 planet Seli'het
 	attributes ka'het
 	landscape land/space7
-	description `Seli'het was the only Het station the Builders ever completed, orbiting Giribea. Ka'heta are brought here once they reach the "Age of Assembly;" strange, lanky machines start molding an exoskeleton onto their bodies right away. As the Ka'Het grow, their exoskeleton is expanded and various outfits are added, transforming them into living weapons.`
+	description `Seli'het was the only Het station the Builders ever completed, orbiting Giribea. Ka'heta are brought here once they reach the "Age of Assembly;" strange, lanky machines start molding an exoskeleton onto their bodies right away. As the Ka'het grow, their exoskeleton is expanded and various outfits are added, transforming them into living weapons.`
 	description `	In this system the Ka'het behave differently than anywhere else, not only because this station doesn't have any visible damage but also because they don't attack each other, and some even seem to have started collaborating.`
 	government Builder
 
@@ -27879,6 +27917,7 @@ planet Skyfarm
 	landscape land/myrabella6
 	description `Due to the low gravity here, some of the alien crops planted by the Hai grow to heights of five meters or more. The air is too thin for humans or Hai to breathe without carrying supplemental oxygen tanks, so the population is very small. The fields are tended by enormous spider-like robots which are equipped not only for irrigation and harvesting, but also for pollination, since the thin atmosphere has made it impossible for native insects to evolve here.`
 	spaceport `The spaceport is a small city built under a pressurized glass dome, with a ring of hangars and landing pads around its periphery. As with most Hai architecture, the dome and the buildings within it are simple and sparsely decorated, but as you walk through the city everything feels very solid, and ancient. Everything is metal, even the roads and walkways, and the center of many of the roads dips down slightly due to millennia of foot traffic slowly wearing down the metal.`
+	security 0.2
 
 planet Skymoot
 	attributes rim tourism
@@ -27925,6 +27964,7 @@ planet Snowfeather
 	description `Snowfeather is a world with unusually chaotic weather patterns, where snow can fall even in the middle of summer but will melt away within days when the temperature shifts and becomes warmer again. Surprisingly, it is a popular vacation spot for the Hai, who find the unpredictability and occasional violence of the weather here to be invigorating.`
 	spaceport `The core of the spaceport is two rows of hangars, back to back. Their thick metal roofs slope backwards, away from the entrance to each hangar, so that any snow or ice that slides off the roofs will not fall across the opening while ships or people are passing through. The hangars are also elevated about six meters above the ground, to protect against flash floods.`
 	outfitter "Hai Basics"
+	security 0.2
 
 planet Solace
 	attributes south urban factory frontier
@@ -28009,6 +28049,7 @@ planet Stonebreak
 	spaceport `	Even the spaceport is symmetrical: a ring of hangars, facing outwards, at evenly spaced intervals, with warehouses and living quarters inside the ring.`
 	shipyard "Hai Intermediate"
 	outfitter "Hai Intermediate"
+	security 0.3
 
 planet Stormhold
 	attributes pirate "core pirate" core frontier

@@ -74,6 +74,8 @@ ship "Albatross"
 	turret -74 62
 	turret 74 62
 	turret 0 77 "Point Defense Turret"
+	leak "remnant leak" 30 10
+	leak "remnant leak sparkle" 30 10
 	explode "small explosion" 30
 	explode "medium explosion" 60
 	explode "large explosion" 40
@@ -238,6 +240,7 @@ ship "Gascraft"
 		"Hyperdrive"
 
 	engine 0 30
+	leak "remnant leak sparkle" 20 2
 	explode "tiny explosion" 8
 	explode "small explosion" 7
 	description "Centuries ago, the Remnant built these ships in order to explore the upper atmosphere of nearby gas giants. The Archons took issue with the Remnant's research methods, and the studies were unable to be completed. The remaining gascraft have been gathering dust in storage for centuries while the Remnant wait to see if the anger of the Archons will subside."
@@ -302,6 +305,8 @@ ship "Gull"
 	gun -7 -94
 	gun 7 -94
 	turret 0 26 "Point Defense Turret"
+	leak "remnant leak" 30 7
+	leak "remnant leak sparkle" 30 7
 	explode "tiny explosion" 40
 	explode "small explosion" 20
 	explode "medium explosion" 10
@@ -438,6 +443,8 @@ ship "Ibis"
 	turret 0 -62
 	turret 0 -20.5 "Point Defense Turret"
 	turret 0 58.5 "Thrasher Turret"
+	leak "remnant leak" 20 7
+	leak "remnant leak sparkle" 30 10
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -504,6 +511,8 @@ ship "Pelican"
 	turret 0 -67 "Thrasher Turret"
 	turret 56 35 "Point Defense Turret"
 	turret -56 35 "Point Defense Turret"
+	leak "remnant leak" 20 8
+	leak "remnant leak sparkle" 30 12
 	explode "small explosion" 15
 	explode "medium explosion" 30
 	explode "large explosion" 20
@@ -569,6 +578,7 @@ ship "Penguin"
 	engine 0 30
 	gun 0 -33
 	turret 0 5.5
+	leak "remnant leak sparkle" 30 2
 	explode "tiny explosion" 8
 	explode "small explosion" 7
 	description "Inspired by close contact with void sprites and the reinvigoration of xenobiology, the Penguin is a prototype designed to serve the dual roles of testing new starship technology while exploring hostile planets throughout the Ember Waste. One of this ship's distinguishing features is that it is truly alive and has a mind that approaches self-awareness."
@@ -625,6 +635,7 @@ ship "Petrel"
 	gun 10.5 -24 "Inhibitor Cannon"
 	turret 0 2.5
 	engine 0 41.5
+	leak "remnant leak sparkle" 20 3
 	explode "tiny explosion" 30
 	explode "small explosion" 20
 	description "The Petrel is a multi-role mining/wing leader fightercraft designed to provide support for flights of lighter Terns in high-risk environments. The ship's design originated as an urban mobile gun platform that flitted around structures and natural terrain, but proved easy to adapt into a spacecraft."
@@ -692,6 +703,8 @@ ship "Starling"
 	gun -18 -49
 	gun 18 -49
 	turret 0 2 "Point Defense Turret"
+	leak "remnant leak" 30 4
+	leak "remnant leak sparkle" 30 10
 	explode "tiny explosion" 40
 	explode "small explosion" 20
 	explode "medium explosion" 10
@@ -826,6 +839,7 @@ ship "Tern"
 	gun 0 -22 "Inhibitor Cannon"
 	engine -5 20.5
 	engine 5 20.5
+	leak "remnant leak sparkle" 30 2
 	explode "tiny explosion" 30
 	explode "small explosion" 20
 	description "The Tern is a small, hardy drone developed to plunge into the atmosphere of nearby gas giants for collecting valuable resources. These thick-shelled craft are also surprisingly effective when pressed into service as screening ships when enemies intrude into Remnant space."

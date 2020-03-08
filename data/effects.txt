@@ -71,6 +71,24 @@ effect "big leak"
 	"random spin" 2
 	"random velocity" 12
 
+effect "remnant leak"
+	sprite "effect/remnant leak"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 7
+	"random angle" 20
+	"random spin" 2
+	"random velocity" 12
+
+effect "remnant leak sparkle"
+	sprite "effect/remnant leak sparkle"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 7
+	"random angle" 20
+	"random spin" 2
+	"random velocity" 12
+
 
 effect "tiny explosion"
 	sprite "effect/explosion/tiny"
