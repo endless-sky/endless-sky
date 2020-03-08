@@ -264,6 +264,7 @@ outfit "Quantum Tear"
 	"outfit space" -10
 	"weapon capacity" -10
 	"gun ports" -1
+	"unplunderable"
 	weapon
 		sprite "projectile/superweapon"
 		sound "final explosion small"
@@ -280,7 +281,6 @@ outfit "Quantum Tear"
 		"inaccuracy" 0
 		"safe"
 		"lifetime" 20
-		"unplunderable" 1
 		"reload" 2
 		"firing force" 100
 		"trigger radius" 150
@@ -770,7 +770,7 @@ outfit "Flak Turret"
 		"shield damage" 40
 		"hull damage" 20
 	description `These flak turrets date back to the era when the most serious thing planets needed to protect against was the ocassional pirate raid. Desperate for weaponry to fend of the Alphas, the Remnants salvaged many of these for their ships.`
-	description `	While these weapons are poor in terms of their direct damage potential, the Remnant keep them in service because of their utility at disrupting incoming fighter formations.
+	description `	While these weapons are poor in terms of their direct damage potential, the Remnant keep them in service because of their utility at disrupting incoming fighter formations.`
 
 
 

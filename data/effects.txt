@@ -374,7 +374,7 @@ effect "superweapon residue"
 	"random angle" 360
 	"random velocity" 15
 	"random spin" 5
-	"velocity scale" .2.5
+	"velocity scale" 2.5
 
 
 effect "large glow"
