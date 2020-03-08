@@ -405,7 +405,7 @@ event "remnant: postverta reveal"
 		object "Ssil Vida"
 			distance 1408
 			period 554
-			sprite planet/station_emitter1
+			sprite planet/sheragi_postverta
 		object
 			distance 1208
 			period 654
