@@ -264,7 +264,7 @@ outfit "Quantum Tear"
 	"outfit space" -10
 	"weapon capacity" -10
 	"gun ports" -1
-	"unplunderable"
+	unplunderable 1
 	weapon
 		sprite "projectile/superweapon"
 		sound "final explosion small"
