@@ -197,6 +197,28 @@ fleet "Large Hai"
 		"Water Bug"
 		"Grasshopper (Tracker)"
 
+fleet "Hai Surveillance"
+	government "Hai"
+	names "hai"
+	cargo 0
+	personality
+		surveillance unconstrained
+	variant 10
+		"Shield Beetle (Police)"
+	variant 5
+		"Lightning Bug (Surveillance)"
+	variant 5
+		"Lightning Bug (Surveillance)" 2
+	variant 5
+		"Lightning Bug (Surveillance)" 3
+	variant 3
+		"Grasshopper (Surveillance)" 3
+	variant 3
+		"Grasshopper (Surveillance)" 4
+	variant 3
+		"Grasshopper (Surveillance)" 5
+
+
 fleet "Small Unfettered"
 	government "Hai (Unfettered)"
 	names "hai"
@@ -348,6 +370,8 @@ outfitter "Hai Intermediate"
 	"Local Map"
 	"Quantum Keystone"
 	"Pulse Rifle"
+	"Outfit Scanner"
+	"Cargo Scanner"
 
 outfitter "Hai Advanced"
 	"Pulse Cannon"
@@ -390,6 +414,8 @@ outfitter "Hai Advanced"
 	"Local Map"
 	"Quantum Keystone"
 	"Pulse Rifle"
+	"Outfit Scanner"
+	"Cargo Scanner"
 
 phrase "hai"
 	word
