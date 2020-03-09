@@ -8,6 +8,163 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+phrase "pug"
+	word
+		"Pak"
+		"Mug"
+		"Prot"
+		"Dor"
+		"Mek"
+		"Cam"
+		"Yot"
+		"Quim"
+		"Tsoop"
+		"Froid"
+		"Groip"
+		"Ploort"
+		"Schmar"
+		"Klar"
+		"Brek"
+	word
+		" "
+		" Kim "
+		" Wor "
+		" Moof "
+		" Plat "
+		" Del "
+		" Ben "
+		" Gred "
+		" Klort "
+		" Rep "
+		" For "
+		" a "
+		" io "
+		" el "
+		" "
+		" "
+	word
+		"Glorf"
+		"Florp"
+		"Marg"
+		"Graw"
+		"Ged"
+		"Peg"
+		"Plog"
+		"Hort"
+		"Noor"
+		"Joop"
+		"Drap"
+		"Loit"
+		"Sol"
+		"Wan"
+
+phrase "friendly pug"
+	word
+		"We"
+		"The Pug"
+		"Our mission is to"
+		"Our calling is to"
+		"Our species will"
+		"We intend to"
+		"We only desire to"
+	word
+		" "
+	word
+		"bring"
+		"promote"
+		"advance"
+		"ensure"
+		"create"
+		"develop"
+		"stimulate"
+		"support"
+		"uphold"
+		"assist in bringing"
+		"aid the cause of"
+		"work for"
+		"bring about"
+	word
+		" "
+	word
+		"peace"
+		"healing"
+		"justice"
+		"freedom"
+		"an end of conflict"
+		"an end to violence"
+		"an end to warfare"
+		"prosperity"
+		"reconciliation"
+		"friendship"
+		"unity"
+		"the end of violence"
+	word
+		"."
+		" in the galaxy."
+		" through-out the universe."
+		" among all sentient beings."
+
+phrase "friendly disabled pug"
+	word
+		"We are only a part of a larger whole"
+		"Our time has come"
+		"We are defeated, but the cause continues"
+	word
+		"; "
+	word
+		"leave us be to perish"
+		"continue fighting without us"
+		"worry not about us"
+	word
+		"."
+
+phrase "hostile pug"
+	word
+		"You"
+	word
+		" "
+	word
+		"have made"
+		"are making"
+		"have committed"
+		"are guilty of"
+		"are perpetrating"
+		"have chosen"
+		"are acting out"
+		"are perpetuating"
+	word
+		" "
+	word
+		"a regrettable"
+		"an understandable"
+		"an unfortunate"
+		"a serious"
+		"a grave"
+		"an extreme"
+		"an ill-advised"
+		"an absurd"
+		"a foolish"
+		"a stupid"
+		"a crazy"
+		"a preposterous"
+		"an unwise"
+		"a bad"
+	word
+		" "
+	word
+		"mistake"
+		"error"
+		"lapse in judgement"
+		"choice"
+		"decision"
+		"blunder"
+		"miscalculation"
+		"misstep"
+		"fault"
+		"misdeed"
+	word
+		"."
+
 outfit "Pug Zapper"
 	category "Guns"
 	cost 290000
@@ -550,6 +707,52 @@ ship "Pug Arfecta"
 	explode "pug large explosion" 10
 	"final explode" "final explosion large"
 	description `This is a Pug "tier 3" warship, intended for use in combat against either a species on par with the Quarg, or a lesser species that has decided to be particularly meddlesome.`
+
+
+
+fleet "Small Pug"
+	government "Pug"
+	names "pug"
+	cargo 1
+	personality
+		heroic
+	variant 1
+		"Pug Zibruka"
+	variant 2
+		"Pug Zibruka" 2
+	variant 2
+		"Pug Enfolta"
+	variant 1
+		"Pug Enfolta"
+		"Pug Zibruka"
+
+fleet "Large Pug"
+	government "Pug"
+	names "pug"
+	cargo 1
+	personality
+		heroic
+	variant 1
+		"Pug Enfolta"
+		"Pug Zibruka" 2
+	variant 1
+		"Pug Enfolta" 2
+	variant 1
+		"Pug Zibruka" 5
+	variant 2
+		"Pug Maboro"
+		"Pug Zibruka" 2
+	variant 3
+		"Pug Maboro"
+		"Pug Enfolta"
+		"Pug Zibruka"
+	variant 2
+		"Pug Maboro"
+		"Pug Enfolta" 2
+	variant 1
+		"Pug Maboro"
+		"Pug Enfolta"
+		"Pug Zibruka" 2
 
 
 
