@@ -792,7 +792,7 @@ mission "Heliarch Recon G"
 		has "Heliarch Recon 1: active"
 	on offer
 		conversation
-			`As instructed, you land on Grakhord, and let your ship work normally while the Heliarch sensor does it's thing. Though they are very advanced, you're unsure if scanners would be able of fully detecting and identifying the Quarg's mining operations here.`
+			`As instructed, you land on Grakhord and let your ship work normally while the Heliarch sensor does its thing. Though they are very advanced, you doubt whether the modified scanner could penetrate the layers of rock to fully reveal the Quarg mining operation.`
 				decline
 
 
@@ -1461,8 +1461,8 @@ mission "Heliarch Containment 5"
 				launch
 	npc board
 		personality timid plunders entering target
-		government "Resistance" "Hodoviah"
-		ship "Saryd Sojourner (Bombardments)"
+		government "Resistance"
+		ship "Saryd Sojourner (Bombardments)" "Hodoviah"
 		conversation
 			`Unlike the other two Resistance vessels, the <ship> is equipped with Heliarch weaponry. Sadly, you cannot verify the equipment it is using, nor check for hostages, as a self destruction sequence starts when you're about to enter it.`
 				launch
