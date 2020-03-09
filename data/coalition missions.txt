@@ -209,7 +209,7 @@ mission "Coalition Yottrite 2"
 				`	"What are you hoping to achieve?"`
 					goto achieve
 			label progress
-			`	"Incredibly tough, Yottrite is. Unlike other minerals, more durable than the whole, the sum of fragments one asteroid yields is. Difficult to mix it into a compound" he explains. "If how to overcome this obstacle, we learn, many applications, the element could have."`
+			`	"Non-standard thermodynamic properties, Yottrite has. Absorb heat around them, the crystals do. Difficult to mix it into a compound, it is," he explains. "If how to overcome this obstacle, we learn, many applications, the element could have."`
 				goto end
 			label achieve
 			`	"Run several tests on the Quarg equipment, for centuries, our Coalition has. React similarly to Yottrite, some of their equipment does. A material involved in the making of their outfits, it is," he explains. "If how to do such a thing ourselves, we learn, maybe replicate their technology, or resume construction of the ringworlds, we could."`
