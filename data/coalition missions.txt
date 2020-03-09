@@ -332,7 +332,7 @@ mission "Coalition Yottrite 6"
 			`	He points them to a hotel, where he had a room prepared for them, and asks you to follow him to his office again.`
 			`	"Filled to the brim with cutting edge equipment, our facilities here and on the neighbor planet are. Alas, venture much into the theoretical field needed to study such rare elements, our personnel here does not."`
 			`	He shows you to his map again, this time pointing to a nearby Arachi world. "Once cracked down some aspects of Yottrite, the twins have, an expert in ship making, we will need," he says. "On <destination>, prepared one of their representatives, House Mallob has. Bring them here, you must."`
-			`	You're about to head back to your ship, when he hands you <payment>. "Nearly forget to pay you for this last service, I did."`
+			`	You're about to head back to your ship, when he hands you 200,000 credits. "Nearly forget to pay you for this last service, I did."`
 				accept
 	on accept
 		payment 200000
