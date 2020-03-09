@@ -468,7 +468,7 @@ mission "Paradise Job: Debtors"
 
 
 mission "Paradise Job: Retirees"
-	name "Wealthy retirees to <planet>
+	name "Wealthy retirees to <planet>"
 	job
 	repeat
 	description "This coterie of <bunks> wealthy retirees is willing to pay <payment> to be transported in style to <destination>, along with <tons> of their most treasured possessions."
