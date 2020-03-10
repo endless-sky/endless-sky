@@ -43,7 +43,7 @@ mission "Warfeed Terraforming [H00] Intro (Hai at Makerplace)"
 		conversation "warfeed hai intro"
 
 conversation "warfeed hai intro"
-	`As you peruse the spaceport establishments, an Hai beckons you from a dark stairwell.`
+	`As you peruse the spaceport establishments, a Hai beckons you from a dark stairwell.`
 	choice
 		`	(See what he wants.)`
 		`	(Walk away.)`
