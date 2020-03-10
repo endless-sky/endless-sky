@@ -1,0 +1,669 @@
+# Copyright (c) 2015 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Hai Slave Rescue [00]"
+	name "Hai Slave Rescue: <planet>"
+	description "Take Teeneep to <destination> to seek the missing Hai. Payment is <payment>."
+	destination Freedom
+	passengers 1
+	clearance `Teeneep tells the authorities she wants to purchase slaves from Hathor. They allow you to land.`
+	source
+		government "Hai"
+	to offer
+		or
+			has "Pirate Troubles [4]: declined"
+			has "Pirate Troubles [4]: done"
+		has "main plot completed"
+		random < 50
+		"combat rating" > 2400
+	on visit
+		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
+	on offer
+		conversation
+			`You see a large crowd of scared Hai gathered around a Hai woman. You can barely understand her words over the cacophony, but you hear "slavery," "pirates," and "cowardly pilots."`
+			choice
+				`	(Investigate.)`
+				`	(Ignore them.)`
+					decline
+			`	As you approach, the crowd recognizes you immediately, "It's Captain <last>! That hero beat the pirates before!"`
+			`	The woman quiets the crowd and explains, "Over the past three weeks, hundreds of Hai vacationers and explorers have been kidnapped in Ultima Thule while visiting Humans. We recently heard they were captured by pirates, but no pilot has the bravery to help us investigate.`
+			`	"Surely the fearless hero <first> <last> will help?"`
+			choice
+				`	"Of course!"`
+				`	"No, I'm late for a pedicure."`
+					decline
+			`	After the crowd dissipates, their leader introduces herself, "I'm Teeneep. My husband, sister, and all three of my children were captured during their vacation. I would be enslaved with them, but I was called back to Allhome for urgent work`.
+			`	"Our first destination is Freedom, where we found a slaver named Hathor who deals in 'exotic slaves.' She may know the fate of our families."`
+				accept
+	on complete
+		payment 75000
+	on accept
+		log `Agreed to help a Hai woman, Teeneep, rescue her family and about 900 other Hai from slavery.`
+	npc
+		government "Pirate"
+		personality staying nemesis plunders harvests
+		system "Ultima Thule"
+		fleet "Large Northern Pirates" 1
+		fleet "Small Northern Pirates" 4
+	npc
+		government "Bounty Hunter"
+		personality nemesis unconstrained
+		system Almaaz
+		fleet
+			names "bounty hunter"
+			variant
+				"Leviathan (Particle Chaser)"
+				"Corvette (Particle Chaser)" 2
+
+
+mission "Hai Slave Rescue [01]"
+	name "Hai Slave Rescue: <planet>"
+	description "Take Teeneep to <destination> to seek the missing Hai. Payment is <payment>."
+	landing
+	clearance `You send the clearance code and the pirates give you landing coordinates.`
+	source Freedom
+	passengers 1
+	destination Stormhold
+	to offer
+		has "Hai Slave Rescue [00]: done"
+	on visit
+		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
+	on offer
+		log `The Hai slaves are on Stormhold, and will not be sold for several months. They're being held for study before sale.`
+		conversation
+			`You reach a building labeled, "Hathor's Exotic Slaves." You were expecting a woman, but Hathor turns out to be a large, fat, hairy, man. He bears no resemblance to his namesake, a famously-beautiful Egyptian goddess.`
+			`	"You must be Teeneep. Are you here to sell this?" Apparently he's referring to you. "I don't usually deal in dirt belt urchins, but I'll buy this one for 80,000 credits."`
+			`	Teeneep responds, "Actually, I'm looking to buy, not sell. Where can I get Hai slaves? I'll need a lot of them."`
+			`	"I've never been fool enough to enslave a Hai. I know some less cautious dealers, and I can inquire for you."`
+			`	Teeneep nods.`
+			`	Hathor vanishes into a nearby office, activates a holo-communicator, and shuts the door.`
+			choice
+				`	(Spy on Hathor's conversation.)`
+			`	It is difficult to make out Hathor's words through the thick door, but you can gather the gist of his conversations. He talks to a few slavers throughout Human space and finds a group near Syndicate space that have hundreds of Hai. They agree to meet you, and Hathor asks for 100,000 credits payment if the two of you are taken as slaves.`
+			choice
+				`	(Continue.)`
+			`	Hathor emerges from his office. "I've scoured the galaxy, and only one slaver has Hai, but they have plenty. I'll want 50,000 credits before I give you details and a clearance code."`
+			`	Teeneep quickly pays and the man continues, "Some Syndicate executives run a side-business on Stormhold selling exotic slaves. They have about 900 Hai, and they're keeping them for study before they sell. You'll have to wait a few months before they'll let you buy, but you can visit to discuss payment."`
+			`	He hands you a soiled piece of paper with a clearance code on it.`
+			choice
+				`	(Continue.)`
+			`	You take Teeneep back to the ship, and she hands you <payment>. "Let's go to Stormhold, Captain <last>. I'll pay you again when we get there."`
+			`	You warn her of Hathor's mention of 100,000 credits payment if you're enslaved, but she is unconcerned. "As long as we're potential buyers, our business is worth more than our bodies."`
+				accept
+	on complete
+		payment 75000
+	npc
+		government "Bounty Hunter"
+		personality nemesis unconstrained
+		system Arneb
+		fleet
+			names "bounty hunter"
+			variant
+				"Leviathan (Particle Chaser)"
+				"Falcon (Laser Chaser)"
+				"Corvette (Particle Chaser)" 4
+	npc
+		government "Pirate"
+		personality staying nemesis plunders harvests
+		system Alcyone
+		fleet "Large Northern Pirates" 1
+		fleet "Small Northern Pirates" 4
+
+
+mission "Hai Slave Rescue [02]"
+	name "Hai Slave Rescue: <planet>"
+	description "Take Teeneep to <destination> to seek the missing Hai. Payment is <payment>."
+	landing
+	clearance
+	passengers 1
+	source Stormhold
+	destination Hai-home
+	to offer
+		has "Hai Slave Rescue [01]: done"
+	on visit
+		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
+	on offer
+		log `Teeneep was unable to convince the slavers to sell of the 900 Hai slaves, but she did negotiate for 138 of them. We're returning to Hai-Home for help.`
+		conversation
+			`You land in the middle of what appears to be a factory farm, until you notice that every building contains slaves. There are training centers, gyms, and medical facilities. This is not a small operation.`
+			`	A sales representative addresses Teeneep, "You're here to buy bulk Hai slaves, right?"`
+			`	"Yes. I want your entire stock."`
+			`	"We can't do that. Half of the stock will stay here for breeding. The rest will be distributed throughout Human space. We're trying to set up a market for alien slaves.`
+			`	"However... I think we can still make a deal. I'll sell you 85 slaves, all top quality, of a variety of traits and both genders. Excellent breeding stock. In return, you also buy 53 slaves that are unsuitable for sale. We'll want 19 million credits for that; no haggling."`
+			`	Teeneep ponders for a few seconds and responds, "I will have to consult with my associates, but I think we can arrange that. I would like to sample the merchandise before I leave."`
+			choice
+				`	(Continue.)`
+			`	You and Teeneep are taken to a room with eleven other Hai of a variety of colors, ages, and sizes. They all seem tired, but well-groomed, and in excellent health.`
+			`	One of them speaks, "They're experimenting on us, trying to judge our uses and gauge prices. We've been through physical and mental tests, run by doctors and scientists."`
+			`	Another, a pregnant woman, continues, "I've been poked, prodded, and sampled almost daily. I think they're following my pregnancy to plan how to 'breed' us."`
+			`	A teenage girl asks, "are you going to get us out?"`
+			`	Teeneep responds with confidence, "Of course. It may take a few weeks though."`
+			choice
+				`	(Continue.)`
+			`	After a few hours, the slavers return you to your ship. Teeneep hands you <payment> and says, "I need to go to Hai-Home next."`
+				accept
+	on complete
+		payment 75000
+
+mission "Hai Slave Rescue [03]"
+	name "Hai Slave Rescue: <planet>"
+	description "Take Teeneep to <destination> to arrange a rescue of the enslaved Hai. Payment is <payment>."
+	landing
+	clearance
+	source Hai-home
+	passengers 1
+	destination Farpoint
+	to offer
+		has "Hai Slave Rescue [02]: done"
+	on visit
+		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
+	on offer
+		log `Elders of Hai-Home refused to send military to free the enslaved Hai, in fear that it may cause a war with the Humans. The Hai Elders want the Humans to fix the problem.`
+		conversation
+			`Soon after landing, you're brought to a council of three Hai: an elder from the ruling government, a powerful diplomat, and a high-ranking admiral. Teeneep explains the situation, but it seems the three are already aware of some details.`
+			`	After patiently listening, the elder responds, "We will happily pay whatever the slavers demand for our people, but it sounds like money won't return all the Hai."`
+			`	The admiral adds, "Sending a military force into Human space would violate our agreements and may lead to war. The loss of life on both sides would be far more than the nine hundred Hai enslaved. We aren't certain to win the war either, as we would be fighting on two fronts: the Unfettered to the north and the Humans to the west.`
+			`	Teeneep bares her teeth and yells furiously, "How can that be your response? Have we become such cowards that we would do nothing to free our people from slavery?"`
+			choice
+				`	(Continue.)`
+			`	The admiral seems appalled by Teeneep's behavior and the elder rises to dismiss the two of you. As guards walk towards you, the diplomat interrupts.`
+			`	"I can grant you official diplomatic standing in the Human Republic, Teeneep. Let the Humans solve the problem they have created. Visit the Navy base at <planet>; they'll be eager to free slaves of any species."`
+			`	When you return to your ship, Teeneep hands you <payment> and seems eager to get to <planet>.`
+				accept
+	on complete
+		payment 75000
+	npc
+		government "Pirate"
+		personality staying nemesis plunders harvests
+		system "Ultima Thule"
+		fleet "Large Northern Pirates" 2
+		fleet "Small Northern Pirates" 4
+		
+mission "Hai Slave Rescue [04]"
+	name "Hai Slave Rescue: <planet>"
+	description "Take Teeneep to <destination> to arrange a rescue of the enslaved Hai. Payment is <payment>."
+	landing
+	passengers 1
+	source Farpoint
+	destination Sunracer
+	to offer
+		has "Hai Slave Rescue [03]: done"
+	on visit
+		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
+	on offer
+		conversation
+			`Teeneep is quickly led to a gathering of admirals, with you walking at her side. They're all horrified by her story and want to help.`
+			`	"Republic laws forbid us from law enforcement operations in Syndicate space without permission from the Parliament. We'll talk to them immediately. In the meantime, I suggest you fly to <destination> where the Syndicate Security has a major military base. They may help you long before we do, for a price."`
+			`	When you return to your ship, Teeneep pays you <payment> again. "Thank you, <first>. I think we're closing in on a way to free my people."`
+				accept
+	on complete
+		payment 75000
+	npc
+		government "Bounty Hunter"
+		personality nemesis unconstrained
+		system Alheka
+		fleet
+			names "bounty hunter"
+			variant
+				"Leviathan (Particle Chaser)"
+				"Falcon (Laser Chaser)"
+				"Corvette (Particle Chaser)" 3
+
+mission "Hai Slave Rescue [05]"
+	name "Hai Slave Rescue: <planet>"
+	description "Take Teeneep to <destination> to arrange a rescue of the enslaved Hai. Payment is <payment>."
+	passengers 1
+	landing
+	source Sunracer
+	clearance
+	destination Hai-home
+	to offer
+		has "Hai Slave Rescue [04]: done"
+	on visit
+		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
+	on offer
+		log `The Syndicate and Navy will not help rescue the Hai slaves. I cannot do this myself since it requires a large, ground, combat, operation. We're returning to Hai-Home in hope that the Hai Elders will have changed their minds.`
+		conversation
+			`Teeneep pays a large "fee" to see the local Syndicate Security head within an hour of landing. She offers a large sum of money for the Syndicate to rescue the enslaved Hai.`
+			`	The executive explains the Syndicate's position, "I don't think you understand the problem, lady. The place you want us to attack is heavily guarded by hundreds, maybe thousands, of troops. Some may not be entirely human, and they've an impressive ground combat arsenal. The Syndicate will take heavy casualties which will make security recruitment too expensive.`
+			`	"You will have to get help from the Navy. They have the manpower for ground invasions of a planet. I can't promise Parliament will allow it though."`
+			choice
+				`	(Continue.)`
+			`	When you return to your ship, you receive a recorded message from the Navy. "We couldn't get Parliament's permission to send a strike force into Syndicate space. After the recent war, they're afraid to spark a new conflict. I hope your Syndicate negotiations go well."`
+			`	Teeneep turns to you and says, "Let's return to Hai-home and report my failure. Maybe they'll help now that they know the Humans have abandoned us.`
+				accept
+	on complete
+		payment 75000
+	npc
+		government "Pirate"
+		personality staying nemesis plunders harvests
+		system "Ultima Thule"
+		fleet "Large Northern Pirates" 2
+		fleet "Small Northern Pirates" 4
+
+mission "Hai Slave Rescue [06]"
+	name "Hai Slave Rescue: <planet>"
+	description "Take Teeneep to <destination> to report her failure to the elders. Payment is <payment>."
+	landing
+	source Hai-home
+	passengers 1
+	clearance `Teeneep tells her story and the Unfettered let you land.`
+	destination Darkcloak
+	to offer
+		has "Hai Slave Rescue [05]: done"
+	on visit
+		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
+	on offer
+		log `Hai Elders still refused to help free their enslaved people. Having nowhere else to turn for help, Teeneep wants to visit the Unfettered Hai.`
+		conversation
+			`This time, Teeneep is met by the full council of elders that rule the Hai.`
+			`	"Honored elders, I stand before you the final survivor of a broken household, broken by Hai cowardice and Human aggression. I ask you one last time to do what is right: save the nine hundred enslaved-"`
+			`	She's abruptly stopped by the high elder who says, "The matter has already been decided. We cannot risk millions of lives for the sake of nine hundred. We will post rewards throughout the Pirate planets for the return of Hai slaves. That is the most we can do."`
+			`	"Then I'll go to the families of the victims and tell them how you've abandoned your fellow Hai to a life of torture. Everyone will hear of your failure."`
+			`	Teeneep angrily storms out of the chamber.`
+			choice
+				`	(Follow her.)`
+			`	Teeneep hands you <payment> and says, "There is only one other group that can save my people. I need you to take me to the Unfettered on Darkcloak. I'll pay double my usual fare."`
+			choice
+				`	"Let's go!"`
+					accept
+				`	"Are you sure you can trust the Unfettered to release your people after rescuing them?"`
+				`	"You'll have to find another captain for that trip."`
+					decline
+			`	"I don't even know if they'll let me leave. At least among the Unfettered, they'll have some measure of freedom. As "exotic slaves," they'll live a torturous life. It is a risk I'll have to take."`
+			choice
+				`	"Let's go!"`
+					accept
+				`	"You'll have to find another captain for that trip."`
+					decline
+	on complete
+		payment 75000
+
+mission "Hai Slave Rescue [07]"
+	name "Hai Slave Rescue: <planet>"
+	description "Take Teeneep to meet the Unfettered Hai at <destination>. Payment is <payment>."
+	landing
+	clearance `The Unfettered Hai are surprised to hear Teeneep's reason for visiting. They immediately grant landing clearance.`
+	source Darkcloak
+	passengers 1
+	to offer
+		has "Hai Slave Rescue [06]: done"
+	on visit
+		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
+	on offer
+		log `The Unfettered Hai agree to help rescue the Hai slaves, but they need ramscoops so they can bypass hostile systems. I'll trade some of their goods for critical ramscoop components.`
+		conversation
+			`You are led to a war room cluttered with Hai wearing military uniforms. Each one has different numbers of decorations on their shirts, presumably indicating rank.`
+			`	The meeting begins with a dozen Unfettered Hai heckling Teeneep, which is abruptly stopped by the more well-decorated Unfettered officers. "Tell us why you are here, Teeneep."`
+			`	"Humans have captured and brutally enslaved nine hundred Hai. The cowards at Hai-Home are so afraid of Humans that they refuse to help.`
+			`	"You've been the protectors of the Hai once before. Can't you be so again, just this one time?"`
+			`	One of the officers responds, "After how your people treat us, why should we help them?"`
+			choice
+				`	(Continue.)`
+			`	Teeneep bares her teeth and shouts a tirade, "My people? MY people? The elders at Hai-home are not MY people. They're corrupt imbeciles and cowards who should be thrown on the street and replaced with people who have backbone."`
+			`	The largest, scariest, and most well-decorated Unfettered walks to Teeneep. "You would come to the war room of the True Hai, demand our help, and yell at us?"`
+			`	"Kill me for that if you must; with my family enslaved, I have nothing to live for."`
+			`	"You have courage, and strength of character, Teeneep. You are a True Hai, and we protect our own. I swear to you, I will bring your family home or die trying."`
+			choice
+				`	(Continue.)`
+			`	The Hai leader turns to you and says, "We cannot pass through Hai, Human, or Wanderer space. Only the chaos to the south will grant us passage. Your people have a technology to help.`
+			`	"We can build most of a ramscoop, but we lack the knowledge and materials to complete it. We'll put goods in your ship to trade for critical ramscoop components.`
+			`	"Meet us in the spaceport when you're ready."`
+				decline
+	on complete
+		payment 150000
+
+mission "Hai Slave Rescue [07a] Access"
+	invisible
+	repeat
+	landing
+	clearance `The Unfettered Hai are getting tired of waiting for you to have 23 tons of cargo space free, but they allow access anyway.`
+	source Darkcloak
+	to offer
+		has "Hai Slave Rescue [06]: done"
+		not "Hai Slave Rescue [07]: failed"
+		not "Hai Slave Rescue [08]: accepted"
+		not "Hai Slave Rescue [08]: failed"
+		not "Hai Slave Rescue [08]: declined"
+
+mission "Hai Slave Rescue [08]"
+	name "Hai Slave Rescue: <planet>"
+	description "Trade <cargo> at <destination> for critical ramscoop components. Payment is <payment>."
+	cargo "valuable trade goods" 23
+	source Darkcloak
+	destination Follower
+	to offer
+		has "Hai Slave Rescue [06]: done"
+		not "Hai Slave Rescue [07]: failed"
+	on visit
+		dialog `You forgot some of the <cargo>. Wait for your escorts to arrive and land here again.`
+	on offer
+		conversation
+			`Unfettered prepare to load <cargo> onto your ship. Their leader from the war room meets you, "The components we need are in your manifest. Make sure the trader understands, 'no questions asked.' You will be paid well after your success."`
+			choice
+				`	"You can trust me."`
+					accept
+				`	"No, you'll have to find another pilot."`
+					decline
+	on visit
+		dialog `You forgot some of the <cargo>. Wait for your escorts to arrive in the system and land here again.`
+	on complete
+		payment 150000
+	on accept
+		"reputation: Hai (Unfettered)" >?= 10
+	on fail
+		"reputation: Hai (Unfettered)" <?= -100
+		dialog `You receive a message from the Unfettered Hai, "You failed and betrayed us. You are no longer welcome on our worlds."`
+	npc
+		government "Bounty Hunter"
+		personality nemesis unconstrained
+		system Alphard
+		fleet "Hired Guns" 2
+		fleet "Bounty Hunters" 3
+
+
+mission "Hai Slave Rescue [09]"
+	name "Hai Slave Rescue: <planet>"
+	description "Return <cargo> to <destination>. Payment is <payment>."
+	landing
+	source Follower
+	cargo "critical ramscoop components" 23
+	clearance `When you announce your success, the Unfettered eagerly allow you to land.`
+	destination Darkcloak
+	to offer
+		has "Hai Slave Rescue [08]: done"
+	on visit
+		dialog `You forgot some of the <cargo>. Wait for your escorts to arrive and land here again.`
+	on offer
+		conversation
+			`Company representatives are suspicious of your request of many copies of specific ramscoop parts, "with no questions asked." When they see your payment is materials of alien origin, they readily agree.`
+			`	Now you need to return the <cargo> to <destination>`
+				accept
+	on complete
+		log `The Unfettered now have what they need to build several ramscoops.`
+		payment 850000
+	npc
+		government "Bounty Hunter"
+		personality nemesis unconstrained
+		system Castor
+		fleet "Hired Guns" 2
+		fleet "Bounty Hunters" 3
+	npc
+		government "Pirate"
+		personality staying nemesis plunders harvests
+		system "Ultima Thule"
+		fleet "Large Northern Pirates" 2
+		fleet "Small Northern Pirates" 4
+
+mission "Hai Slave Rescue [10]"
+	name "Hai Slave Rescue: <planet>"
+	description "Fly Teeneep to <destination> to hire Centipedes. Payment is <payment>."
+	landing
+	source Darkcloak
+	destination Allhome
+	to offer
+		has "Hai Slave Rescue [09]: done"
+	on visit
+		dialog `You forgot Teeneep. Wait for your escorts to arrive before landing.`
+	on offer
+		conversation
+			`Teeneep and some dockworkers meet you at the Darkcloak docks. As the workers take away the ramscoop components, Teeneep explains your next task.`
+			`	"The Unfettered cannot provide ships to transport the victims home; the Hai would fire on sight on any Unfettered ships without asking the reason for their entry. We're going to hire some Hai Centipedes at <destination>, and you will escort them safely to <destination>. Once Stormhold is conquered, the Centipedes will transport our people home."`
+			`	Before you leave, an Unfettered Hai dock superintendent hands you 850,000 credits for the ramscoop parts. "Thank you, <first> <last>. You have saved the lives of many True Hai, and advanced our war efforts. You are a true friend. Now please go free the enslaved Hai."`
+				accept
+	on complete
+		payment 75000
+
+
+mission "Hai Slave Rescue [11]"
+	name "Hai Slave Rescue: <planet>"
+	description "Escort Centipedes to <destination>. Payment is <payment>."
+	landing
+	source Allhome
+	passengers 1
+	destination Canyon
+	to offer
+		has "Hai Slave Rescue [10]: done"
+	on visit
+		dialog `You need Teeneep and the Centipedes here before you can complete the mission.`
+	on offer
+		conversation
+			`Teeneep speaks to a representative of the Hai government to pick up the 19 million credits purchase price she arranged for 138 of the Hai slaves. Immediately after that, she trades about a third of the money to Centipede pilots for enough room to transport almost 900 passengers.`
+				accept
+	on complete
+		log `Escorted nine Hai Centipedes to Canyon to transport the enslaved Hai home.`
+		payment 250000
+	npc accompany save
+		government " Hai "
+		personality timid escort
+		fleet
+			names "hai"
+			variant
+				"Centipede (Durable)" 9
+	npc
+		government "Pirate"
+		personality staying plunders harvests
+		system "Ultima Thule"
+		fleet "Large Northern Pirates" 3
+		fleet "Small Northern Pirates" 5
+	npc
+		government " Bounty Hunter "
+		personality plunders harvests unconstrained
+		system "Zaurak"
+		fleet
+			variant
+				"Leviathan (Particle Chaser)"
+				"Corvette (Particle Chaser)" 3
+
+# Advanced unfettered ships. Wanderer outfits were pillaged. Human
+# outfits were smuggled (like the ramscoops). Korath outfits were left
+# over from the Hai-Korath war.
+
+ship "Shield Beetle" "Unfettered Flagship"
+	outfits
+		Sunbeam 6
+		"Korath Warder"
+		"Outfits Expansion" 3
+		"Jump Drive"
+		"Quantum Keystone"
+		"Fuel Pod"
+		"Catalytic Ramscoop"
+		"Small Heat Shunt"
+		"Large Heat Shunt" 3
+		"Systems Core (Large)"
+		`"Bufaer" Atomic Steering`
+		"Thruster (Planetary Class)"
+		"Triple Plasma Core"
+		"Yellow Sun Reactor"
+
+ship "Shield Beetle" "Flagship Escort"
+	outfits
+		"Pulse Cannon" 8
+		"Chameleon Anti-Missile" 2
+		"Korath Grab-Strike" 2
+		"Outfits Expansion" 3
+		"Jump Drive"
+		"Quantum Keystone"
+		"Hai Diamond Regenerator" 2
+		"Liquid Helium Cooler"
+		"Hai Williwaw Cooling" 3
+		"Fuel Pod"
+		"Catalytic Ramscoop"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Boulder Reactor" 2
+		"Pebble Core"
+		"Hai Gorge Batteries"
+		Supercapacitor
+
+
+mission "Hai Slave Rescue [12]"
+	name "Hai Slave Rescue: <planet>"
+	description "Destroy all hostile vessels at <system> and land on <planet>. Unfettered will assist. Payment is <payment>."
+	landing
+	source Canyon
+	passengers 1
+	destination Stormhold
+	to offer
+		has "Hai Slave Rescue [11]: done"
+	on visit
+		dialog `To complete this mission, you must destroy all vessels marked, "mission target," and land with Teeneep and Admiral Choot'k.`
+	on offer
+		conversation
+			`Teeneep pays large bribes to the Syndicate dock workers and traffic controllers to keep the Centipedes secret. "We'll leave them here for now. After we conquer the planet of Stormhold, you'll return to escort them back."`
+			`	The large Hai that spoke to you on Darkcloak stalks into the room behind you and puts a paw on your shoulder. You turn around startled, and he introduces himself as, "Admiral Choot'k." "I only brought three Shield Beetles for the fight; the other Catalytic Ramscoops are on our troop transports. All three ships have top crews and advanced weapons, especially my flagship. Once we've destroyed the defense fleets, tell me to land my ship and I'll call in the ground troops."`
+			choice
+				`	"Will three Shield Beetles be enough?"`
+					goto enough
+				`	"Let's attack!"`
+					accept
+				`	"I think this is too risky for me."`
+					goto suicide
+			label enough
+			`	"These beetles are equipped with outfits we've pillaged from Wanderers, smuggled from Humans, or hoarded from the Hai-Korath war. Only elite strike forces are allowed access to this stash, and only for critical missions.`
+			`	"Our ships are not invincible though, so don't count on us for all the fighting."`
+			choice
+				`	"Let's attack!"`
+					accept
+				`	"I think this is too risky for me."`
+					goto suicide
+			`	Teeneep looks hurt and says, "You agreed to help us. Now you leave us in Human space where we may be found at any moment. Why are you betraying us?"`
+			`	The Admiral begins staring at you intensely, but you can't quite read the emotion.`
+			choice
+				`	"Of course I'll help you. That was just a bad joke."`
+					accept
+				`	"No, you'll have to find another pilot."`
+					goto suicide
+			label suicide
+			`	You see a look of psychotic rage on the Admiral's face for a fraction of a second before he snaps your neck.`
+				die
+	on complete
+		payment 150000
+	on enter Zaurak
+		dialog `Teeneep reminds you that Admiral Choot'k's ship must survive, but the other Shield Beetles are expendable. His ship has red engine flares; others have blue.`
+	on enter Alcyone
+		dialog `Chaos unfolds above Stormhold as Korath Raiders join the fray. You only need to kill the mission targets and keep Admiral Choot'k alive. Good luck.`
+	npc accompany save
+		government "Heroic Unfettered"
+		personality heroic escort disables plunders
+		ship "Unfettered Flagship" "Admiral Choot'k"
+	npc
+		government "Heroic Unfettered"
+		personality heroic escort disables plunders
+		ship "Flagship Escort" "Captain Oooopeep"
+		ship "Flagship Escort" "Captain Nerpi~i"
+	npc
+		government "Korath"
+		system Alcyone
+		personality disables plunders opportunistic harvests staying
+		fleet "Korath Raid" 3
+	npc kill
+		government "Pirate"
+		system Alcyone
+		personality disables plunders opportunistic harvests staying target
+		fleet "Hired Guns" 1
+		fleet "Large Core Pirates" 3
+		fleet "Small Core Pirates" 8
+
+
+mission "Hai Slave Rescue [13]"
+	name "Hai Slave Rescue: <planet>"
+	description "Meet the Centipedes at <destination>. Payment is <payment>."
+	landing
+	source Stormhold
+	destination Canyon
+	clearance
+	passengers 1
+	to offer
+		has "Hai Slave Rescue [12]: done"
+	on offer
+		log `Conquered Stormhold. The Unfettered Hai are pillaging it for, "reparations," while I retrieve the nine Centipedes.`
+		conversation
+			`As you land on Stormhold, you see a disturbing sight: twenty-five Unfettered Hai Geocoris ships jump into the system and land next to you. They've been modified as troop transports; hundreds of Unfettered troops step out alongside massive battle tanks. The troops quickly overcome defenders, leveling buildings and destroying underground bunkers.`
+			`	Of the 913 Hai slaves, 871 were rescued. The others had died in their own escape attempt a week earlier. They managed to detonate a generator and destroy half the facility before their deaths though, which made the Unfettered rescue a little easier.`
+			`	Teeneep approaches you, "We've found all the surviving Hai, including my family. Now you need to take me to <planet>, so we can retrieve the Hai Centipedes. The True Hai will stay here collecting restitution from Stormhold while we're away. You'll receive a share once all Hai are safely home. It will be a large payment."`
+				accept
+	on complete
+		payment 75000
+
+
+mission "Hai Slave Rescue [14]"
+	name "Hai Slave Rescue: <planet>"
+	description "Escort the Centipedes to <destination>. Payment is <payment>."
+	landing
+	destination Stormhold
+	source Canyon
+	clearance
+	passengers 1
+	to offer
+		has "Hai Slave Rescue [13]: done"
+	on offer
+		conversation
+			`The Hai prepare their nine centipedes for the trip to <planet>. Hopefully there won't be a pirate ambush waiting; you have no Unfettered helping you this time.`
+				accept
+	on complete
+		payment 75000
+	npc accompany save
+		government " Hai "
+		personality timid escort
+		fleet
+			names "hai"
+			variant
+				"Centipede" 9
+	npc
+		government "Pirate"
+		system Alcyone
+		personality disables plunders opportunistic harvests staying target
+		fleet "Large Core Pirates" 2
+		fleet "Small Core Pirates" 5
+
+
+
+mission "Hai Slave Rescue [15]"
+	name "Hai Slave Rescue: <planet>"
+	description `Escort Centipede transports to <stopovers> and then <destination>. Payment will be, "large."`
+	landing
+	source Stormhold
+	stopover Allhome
+	clearance
+	destination Hai-home
+	passengers 1
+	to offer
+		has "Hai Slave Rescue [14]: done"
+	on offer
+		conversation
+			`When you land on <planet>, you see vast piles of riches being loaded into the Unfettered Geocoris ships. Oddly, there are also numerous piles of non-perishable food. The Unfettered treat those with equal care.`
+			`	The freed Hai slaves are scattered among the Unfettered, speaking to them as friends and equals. You wonder what lasting impact this rescue will have on their society.`
+			`	After a few hours of fraternizing, the freed Hai load onto the Centipedes, and prepare for their journey home.`
+			`	Teeneep approaches you, "We must travel to Allhome first, to warn the elders that friendly ships of the True Hai will visit. After that, we'll take my people to <planet>. There, you will be paid handsomely"`
+				accept
+	on stopover
+		dialog `You send a message to Hai-Home warning that friendly Unfettered Hai ships will deliver pirate restitution payments in a few days. Hai authorities agree to let them land.`
+	on visit
+		dialog `To finish the mission, you must bring Teeneep and her Centipedes to <stopovers> and then <destination>.`
+	on complete
+		payment 3713908
+		"reputation: Hai (Unfettered)" >?= 10
+		log `Brought the enslaved Hai home. The Unfettered Hai were greeted as national heroes. Numerous Hai chose to return with the Unfettered, but were promised they would never fight their own kind. Many of these were professionals such as doctors, engineers, farmers, and scientists. Teeneep has stayed behind to try to convince the Hai to join the Unfettered Hai. It seems this small event may have lasting repercussions for Hai society. It is clear the Hai will eventually be one, though whether by violence or peace fate has not yet written.`
+		conversation
+			`The Unfettered Hai were greeted with a victory parade honoring them as heroes. Teeneep explained, "During the Korath war, there were traditions of parades in honor of those that returned and banquets in memory of those that fell. Those are viewed as barbaric celebrations of violence by some Hai today, the same Hai that abandoned my family to slavery. I used the last of the craven Elders' ransom payment to fund large parades and banquets. You're invited, of course."`
+			`	At the end of the celebrations, the Unfettered Hai took with them whoever would come. They had to purchase three new ships and rent the nine Centipedes to fit thousands of volunteers. Two thirds of the freed slaves joined, along with family members throughout Hai space. Numerous doctors, engineers, scientists, farmers, and soldiers joined too. The Unfettered promised none of them would be forced to fight other Hai. They would work to build the True Hai nation, or fight aliens.`
+			choice
+				`	(Continue.)`
+			`	Before leaving for Darkcloak, Admiral Choot'k hands you 3,713,908 credits. "The ancient Hai tradition is that three quarters of the restitution goes to the victims and one quarter goes to the warriors. This is your share of the warrior's quarter."`
+			`	He turns to Teeneep and puts a paw on her shoulder, "Join the True Hai and return with us to Darkcloak. You are destined to be a great leader. Surely you see that?"`
+			`	She smiles at him, "I have already joined the True Hai, but my fight is here on Hai-Home. I fight for the hearts and minds of our unenlightened brethren. One day they will welcome you as I have and our people will be one."`
+	npc accompany save
+		government " Hai "
+		personality timid escort
+		fleet
+			names "hai"
+			variant
+				"Centipede (Refugees)" 9

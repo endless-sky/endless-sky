@@ -620,6 +620,23 @@ ship "Corvette" "Corvette (Speedy)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 
+ship "Corvette" "Corvette (Particle Chaser)"
+	outfits
+		"Particle Cannon" 4
+		"Heavy Anti-Missile Turret"
+		"Fusion Reactor"
+		"Supercapacitor"
+		"D41-HY Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Water Coolant System"
+		"Laser Rifle" 2
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+		"Fuel Pod"
+		"Outfits Expansion" 2
+		"Catalytic Ramscoop"
+
 
 
 ship "Cruiser" "Cruiser (Heavy)"
@@ -800,6 +817,22 @@ ship "Falcon" "Falcon (Plasma)"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+
+ship "Falcon" "Falcon (Laser Chaser)"
+	outfits
+		"Outfits Expansion" 2
+		Hyperdrive
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Liquid Helium Cooler"
+		"D94-YV Shield Generator"
+		"Catalytic Ramscoop"
+		"Heavy Anti-Missile Turret"
+		"Quad Blaster Turret" 3
+		"Laser Rifle" 30
+		"LP036a Battery Pack"
+		"Heavy Laser" 4
+		"Armageddon Core"
 
 
 
@@ -1407,6 +1440,24 @@ ship "Leviathan" "Leviathan (Laser)"
 	turret "Heavy Laser Turret"
 	turret "Heavy Anti-Missile Turret"
 	turret "Heavy Laser Turret"
+
+ship "Leviathan" "Leviathan (Particle Chaser)"
+	outfits
+		"Scram Drive"
+		"Outfits Expansion" 3
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		"D94-YV Shield Generator"
+		"Heavy Anti-Missile Turret"
+		"Liquid Helium Cooler"
+		"Liquid Nitrogen Cooler"
+		"Catalytic Ramscoop"
+		"Fuel Pod" 4
+		"LP072a Battery Pack"
+		"Particle Cannon" 4
+		"Laser Rifle" 32
+		"Quad Blaster Turret" 2
+		"Armageddon Core"
 
 
 
