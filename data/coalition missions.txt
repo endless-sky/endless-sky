@@ -564,6 +564,18 @@ mission "SBCA: Gamer Moment"
 					goto constantinople
 				`	"Wait, why are you up here with the viewers?"`
 					goto kahoot
+			label nwp
+			`	Up close, this train is a bit larger than the other ones, and the design appears to mimic that of the Heliarch warships, a mesh of all Coalition styles. It takes you to an area very similar to a spaceport, where you are directed to boarding one of the tens of dozens of ring-shaped flying rafts. Seating down, you notice that the seats, which face the inside of the 'ring', are mobile, as the entire thing can spin around. You can't help but feel uneasy being on a gigantic alien roundabout that doesn't seem to match safety regulations.`
+			`	As you're looking up and down to look at the windshields as they are being tested, moving around and folding in different modes, you hear what you by now recognise as Kimek speech, from the seat to your right.`
+			`	"Enjoyed the games, have you, Captain?" The small box translates just as you turn around, seeing that Pairri has taken her own seat besides yours.`
+			choice
+				`	"Yeah, though I didn't have time to stop by your own match, sorry."`
+					goto notime
+				`	"Wait, why are you up here with the viewers?"`
+					goto kahoot
+			label notime
+			`	She mumbles something that the box doesn't bother translating, then says, "Cost me the match, impatience did," she says. "Still, much younger than most Kimek there, I am. Glad to have gotten so far, I feel."`
+				goto boot
 			label constantinople
 			`	"Cost me the match, impatience did," she says. "Still, much younger than most Kimek there, I am. Glad to have gotten so far, I feel."`
 				goto boot
