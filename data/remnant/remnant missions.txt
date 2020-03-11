@@ -213,7 +213,7 @@ mission "Remnant: Lost in Ember Waste"
 			`	"I explored the Republic for many months, learning what had happened since the Alpha Wars, but when I attempted to return to the Ember Waste to tell my people, I found that my key stone had been stolen at some point during my journey. I had no way to return."`
 			`	She lets out a long sigh. "I don't want to bore you with all the details, but I resigned myself to my new life. I met a man, had two daughters, but never lost hope of returning to my true home. One day, after my daughters had grown and my husband had passed in an accident, I decided to go on another adventure. I dusted off my old ship, and soon discovered the Hai."`
 			branch hai
-				has "First Contact: Hai"
+				has "First Contact: Hai: offered"
 			choice
 				`	"The who?"`
 			`	"How you've become lost here without having discovered the Hai first is beyond me." She chuckles. "The Hai are a peaceful alien people north of humanity. Go looking for a purple wormhole in the uninhabited systems of the Far North. You may find your way there.`
