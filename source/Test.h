@@ -50,10 +50,10 @@ public:
 			INJECT,
 			// Invalid test-step type, should not be used in tests. Used to detect issues in test-framework.
 			INVALID,
-			// Step that launches the players flagship.
-			LAUNCH,
 			// Step that performs land of the players flagship.
 			LAND,
+			// Step that launches the players flagship.
+			LAUNCH,
 			// Step to perform loading of a savegame
 			LOAD_GAME,
 			// Instructs the game to set navigation / travel plan to a target system

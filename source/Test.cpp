@@ -238,6 +238,11 @@ void Test::TestStep::Load(const DataNode &node)
 		stepType = LAUNCH;
 	else if(node.Size() < 2)
 		node.PrintTrace("Skipping unrecognized or incomplete test-step: " + node.Token(0));
+	else if(node.Token(0) == "command")
+	{
+		stepType = COMMAND;
+		command.Load(node);
+	}
 	else if(node.Token(0) == "load")
 	{
 		stepType = LOAD_GAME;
@@ -252,11 +257,6 @@ void Test::TestStep::Load(const DataNode &node)
 	{
 		stepType = WAITFOR;
 		checkedCondition.Load(node);
-	}
-	else if(node.Token(0) == "command")
-	{
-		stepType = COMMAND;
-		command.Load(node);
 	}
 	else if(node.Token(0) == "ui key")
 	{
