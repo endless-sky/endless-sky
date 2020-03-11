@@ -1,4 +1,4 @@
-/* Format.h
+/* Format.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -228,6 +228,35 @@ string Format::Replace(const string &source, const map<string, string> keys)
 	
 	result.append(source, start, source.length() - start);
 	return result;
+}
+
+
+
+void Format::ReplaceAll(string &text, const string &target, const string &replacement)
+{
+	// If the searched string is an empty string, do nothing.
+	if(target.empty())
+		return;
+	
+	string newString;
+	newString.reserve(text.length());
+	
+	// Index at which to begin searching for the target string.
+	size_t start = 0;
+	size_t matchLength = target.length();
+	// Index at which the target string was found.
+	size_t findPos = string::npos;
+	while((findPos = text.find(target, start)) != string::npos)
+	{
+		newString.append(text, start, findPos - start);
+		newString += replacement;
+		start = findPos + matchLength;
+	}
+	
+	// Add the remaining text.
+	newString += text.substr(start);
+	
+	text.swap(newString);
 }
 
 

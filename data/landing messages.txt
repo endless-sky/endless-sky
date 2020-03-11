@@ -84,3 +84,12 @@
 	"planet/wisp"
 	"planet/wormhole"
 	"planet/wormhole-red"
+
+"landing message" "You cannot land on a black hole."
+	"star/black-hole"
+	"star/black-hole-core"
+
+"landing message" "You cannot land on this part of the Dyson sphere."
+	"planet/dyson1"
+	"planet/dyson2"
+	"planet/dyson3"

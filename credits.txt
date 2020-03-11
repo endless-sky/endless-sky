@@ -1,5 +1,13 @@
 Welcome to Endless Sky!
-version 0.9.8
+version 0.9.11
+
+This game is open source.
+To report bugs, give feedback,
+or contribute to story writing,
+artwork, or programming, visit:
+https://endless-sky.github.io
+The game's Steam forums
+Discord (invite: ZeuASSx)
 
 Programming
   Michael Zahniser
@@ -33,6 +41,10 @@ Other Artwork
   Evan Fluharty (CC-BY-SA 4.0)
   Nick Barry (CC-BY-SA 3.0)
   ESO / L. Calcada (CC-BY-4.0)
+  Becca Tommaso (CC-BY-SA 4.0)
+  Frederick Goy IV (CC-BY-SA 4.0)
+  Zachary Siple (CC-BY-SA 4.0)
+  Darcy Manoel (CC-BY-SA 4.0)
 
 Sounds from public domain sources
   freesound.org
@@ -49,8 +61,3 @@ Beta Testers
   Sean Fahey
   Mauricio Gomes
   Iaz Poolar
-
-This game is open source.
-To contribute to story writing,
-artwork, or programming, visit:
-https://endless-sky.github.io

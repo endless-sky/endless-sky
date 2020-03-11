@@ -166,6 +166,8 @@
 		<Unit filename="source/GameData.h" />
 		<Unit filename="source/GameEvent.cpp" />
 		<Unit filename="source/GameEvent.h" />
+		<Unit filename="source/GameWindow.cpp" />
+		<Unit filename="source/GameWindow.h" />
 		<Unit filename="source/Government.cpp" />
 		<Unit filename="source/Government.h" />
 		<Unit filename="source/HailPanel.cpp" />
