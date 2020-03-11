@@ -1081,7 +1081,7 @@ mission "Warfeed Terraforming [ZZ] Snuggles Rescue Message"
 	on offer
 		fail
 	on fail
-		log `The little girl who I paid to hunt me, "Sparkle Snuggles," turned out to be a six-year-old girl named Rosa. She is now reunited with her mother and receiving medical attention. She appears to be in good health, physically and mentally, and is grateful for the rescue. I should visiter her one day.`
+		log `The little girl who I paid to hunt me, "Sparkle Snuggles," turned out to be a six-year-old girl named Rosa. She is now reunited with her mother and receiving medical attention. She appears to be in good health, physically and mentally, and is grateful for the rescue. I should visit her one day.`
 		conversation
 			`You receive a message from Sparkle Snuggles. She's in a room with six other children, playing with blocks. She looks at the camera, and says, "I'm Rosa and yer ma hero!" A few friendly-looking adults are nearby, including a nurse. A young woman, perhaps 20 years old, is crying so hard that she's almost unable to say the words, "thank you for freeing my daughter."`
 				
@@ -1280,7 +1280,7 @@ mission "Warfeed Terraforming [P02s] Smeg Bounty"
 	on complete
 		payment 35000
 	on accept
-		log `Contracted a bounty hunter of dubious intelligence, Deviled Smegs to hunt me. I need to kill him to attract the attention of pirates in Greenrock. He has a well-outfitted Marauder Firebird.`
+		log `Contracted a bounty hunter of dubious intelligence, Deviled Smegs, to hunt me. I need to kill him to attract the attention of pirates in Greenrock. He has a well-outfitted Marauder Firebird.`
 	npc kill
 		government "Bounty Hunter"
 		personality nemesis plunders waiting target unconstrained
