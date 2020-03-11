@@ -38,35 +38,35 @@ public:
 	public:
 		// The different types of teststeps.
 		enum StepType {
-			// Invalid test-step type, should not be used in tests. Used to detect issues in test-framework.
-			INVALID,
-			// Sets the watchdog timer. No value or zero disables the watchdog. Non-zero gives
-			// a watchdog in number of frames/steps.
-			WATCHDOG,
-			// Step that adds game-data, either in the config-directories or in the game directly.
-			INJECT,
-			// Step to perform loading of a savegame
-			LOAD_GAME,
 			// Step that verifies if a certain condition is true
 			ASSERT,
-			// Step that waits for a certain condition to become true
-			WAITFOR,
-			// Step that contains a set of test-steps below it. Repeats the
-			// steps inside it a number of times or until a break is given within
-			// the step.
-			REPEAT,
 			// Step that breaks execution of a REPEAT loop (or stops the execution
 			// of the test itself if at toplevel) when a certain condition is
 			// true.
 			BREAK_IF,
-			// Instructs the game to set navigation / travel plan to a target system
-			NAVIGATE,
+			// Step that performs the given command.
+			COMMAND,
+			// Step that adds game-data, either in the config-directories or in the game directly.
+			INJECT,
+			// Invalid test-step type, should not be used in tests. Used to detect issues in test-framework.
+			INVALID,
 			// Step that launches the players flagship.
 			LAUNCH,
 			// Step that performs land of the players flagship.
 			LAND,
-			// Step that performs the given command.
-			COMMAND,
+			// Step to perform loading of a savegame
+			LOAD_GAME,
+			// Instructs the game to set navigation / travel plan to a target system
+			NAVIGATE,
+			// Step that contains a set of test-steps below it. Repeats the
+			// steps inside it a number of times or until a break is given within
+			// the step.
+			REPEAT,
+			// Step that waits for a certain condition to become true
+			WAITFOR,
+			// Sets the watchdog timer. No value or zero disables the watchdog. Non-zero gives
+			// a watchdog in number of frames/steps.
+			WATCHDOG,
 			// Send a key-input towards a panel
 			UI_KEY,
 		};

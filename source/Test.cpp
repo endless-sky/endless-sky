@@ -274,40 +274,30 @@ Test::TestStep::TestResult Test::TestStep::Step(int stepAction, UI &menuPanels, 
 	switch (stepType)
 	{
 		case TestStep::ASSERT:
-		case TestStep::WAITFOR:
-			// If we reached the condition, then done
 			if(checkedCondition.Test(player.Conditions()))
 				return RESULT_DONE;
-			if(stepType == TestStep::ASSERT)
-				return RESULT_FAIL;
-			// In this case, we are waiting for the condition
-			return RESULT_RETRY;
-			break;
-		case TestStep::LAUNCH:
-			// If we have no flagship, then we cannot launch
-			if(!player.Flagship())
-				return RESULT_FAIL;
-			// Should implement some function to close this menu. But
-			// fail for now if the player/game menu is active.
-			if(PlayerMenuIsActive(menuPanels))
-				return RESULT_FAIL;
-			if(PlayerOnPlanetMainScreen(menuPanels, gamePanels, player)){
-				// Launch using the conversation mechanism. Not the most
-				// appropriate way to launch, but works for now.
-				player.BasicCallback(Conversation::LAUNCH);
-				return RESULT_RETRY;
-			}
-			// Wait for launch sequence to complete (zoom go to one)
-			// We already checked earlier if we have a flagship
-			if(player.Flagship()->Zoom() < 1.)
-				return RESULT_RETRY;
-			// If flying around, then launching the ship succesfully happened
-			if(PlayerIsFlyingAround(menuPanels, gamePanels, player))
-				return RESULT_DONE;
-			// No idea where we are and what we are doing. But we are not
-			// in a position to launch, so fail this teststep.
 			return RESULT_FAIL;
-			break;
+			
+		case TestStep::BREAK_IF:
+			if(checkedCondition.Test(player.Conditions()))
+				return RESULT_BREAK;
+			// We only break if the condition is true.
+			return RESULT_DONE;
+			
+		case TestStep::COMMAND:
+			if(!SendFlightCommand(command, gamePanels))
+				return RESULT_FAIL;
+			return RESULT_DONE;
+			
+		case TestStep::INJECT:
+			{
+				// Lookup the data and inject it in the game or the games environment
+				const TestData* testData = (GameData::TestDataSets()).Get(stepInputString);
+				if(testData->Inject())
+					return RESULT_DONE;
+				return RESULT_FAIL;
+			}
+			
 		case TestStep::LAND:
 			// If the player/game menu is active, then we are not in a state
 			// where land makes sense.
@@ -336,7 +326,32 @@ Test::TestStep::TestResult Test::TestStep::Step(int stepAction, UI &menuPanels, 
 
 			// Unknown state/screen. Landing fails.
 			return RESULT_FAIL;
-			break;
+			
+		case TestStep::LAUNCH:
+			// If we have no flagship, then we cannot launch
+			if(!player.Flagship())
+				return RESULT_FAIL;
+			// Should implement some function to close this menu. But
+			// fail for now if the player/game menu is active.
+			if(PlayerMenuIsActive(menuPanels))
+				return RESULT_FAIL;
+			if(PlayerOnPlanetMainScreen(menuPanels, gamePanels, player)){
+				// Launch using the conversation mechanism. Not the most
+				// appropriate way to launch, but works for now.
+				player.BasicCallback(Conversation::LAUNCH);
+				return RESULT_RETRY;
+			}
+			// Wait for launch sequence to complete (zoom go to one)
+			// We already checked earlier if we have a flagship
+			if(player.Flagship()->Zoom() < 1.)
+				return RESULT_RETRY;
+			// If flying around, then launching the ship succesfully happened
+			if(PlayerIsFlyingAround(menuPanels, gamePanels, player))
+				return RESULT_DONE;
+			// No idea where we are and what we are doing. But we are not
+			// in a position to launch, so fail this teststep.
+			return RESULT_FAIL;
+			
 		case TestStep::LOAD_GAME:
 			{
 				// Check if the savegame actually exists
@@ -376,23 +391,16 @@ Test::TestStep::TestResult Test::TestStep::Step(int stepAction, UI &menuPanels, 
 				// another step to actually place it. So, take two steps to avoid a flicker.
 				gamePanels.StepAll();
 				gamePanels.StepAll();
-					
 			}
 			// Load succeeded, finish teststep.
 			return RESULT_DONE;
-		case TestStep::INJECT:
-			{
-				// Lookup the data and inject it in the game or the games environment
-				const TestData* testData = (GameData::TestDataSets()).Get(stepInputString);
-				if(testData->Inject())
-					return RESULT_DONE;
-				return RESULT_FAIL;
-			}
-			break;
-		case TestStep::COMMAND:
-			if(!SendFlightCommand(command, gamePanels))
-				return RESULT_FAIL;
-			return RESULT_DONE;
+			
+		case TestStep::WAITFOR:
+			// If we reached the condition, then we are done.
+			if(checkedCondition.Test(player.Conditions()))
+				return RESULT_DONE;
+			return RESULT_RETRY;
+			
 		case TestStep::UI_KEY:
 			{
 				if(stepInputString.empty())
@@ -403,6 +411,7 @@ Test::TestStep::TestResult Test::TestStep::Step(int stepAction, UI &menuPanels, 
 					return RESULT_DONE;
 				return RESULT_FAIL;
 			}
+			
 		default:
 			// ERROR, unknown test-step-type. Just return failure.
 			return RESULT_FAIL;
