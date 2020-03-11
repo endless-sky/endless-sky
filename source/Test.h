@@ -91,15 +91,20 @@ public:
 		void Load(const DataNode &node);
 		TestResult Step(int stepAction, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const;
 		
+		// Get TestSteps embedded in the current teststep (in case of loop/REPEAT type).
+		const std::vector<TestStep> SubSteps() const;
+		
 	private:
 		// The type of this step
 		StepType stepType = INVALID;
-		// Checked condition, for teststeps of types ASSERT and WAITFOR
+		// Checked condition, for teststeps of types ASSERT, WAITFOR and BREAK_IF.
 		ConditionSet checkedCondition;
-		// Savegame pilot and name to load or save to. For teststep of type LOAD_GAME (and SAVE_GAME)
+		// Savegame pilot and name to load or save to, for teststeps of type LOAD_GAME (and SAVE_GAME).
 		std::string stepInputString = "";
-		// Command to send if this test-step sends a command
+		// Command to send if this test-step sends a command.
 		Command command {};
+		// Set of teststeps under the current teststep, used for REPEAT type.
+		std::vector<Test::TestStep> testSteps;
 	};
 	
 	
@@ -107,7 +112,11 @@ public:
 	friend class Test;
 	
 	protected:
-		std::vector<TestStep>::size_type stepToRun = 0;
+		// Vector with the step to run. This array typically has only one element,
+		// but when a loop (REPEAT) is active, then it will have another element
+		// where the highest element gives the step within the loop and the lowest
+		// element gives the test-step on toplevel that has the loop.
+		std::vector<unsigned int> stepToRun = { 0 };
 		int stepAction = 0;
 	};
 	

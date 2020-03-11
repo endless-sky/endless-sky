@@ -102,6 +102,20 @@ namespace {
 		
 		return EventToUI(menuOrGamePanels, event);
 	}
+
+	// Retrieve a set of teststeps based on the stepToRun from context. This is usually directly from the test-sequence, but
+	// can be from an inner loop when a REPEAT-loop or other loop is used.
+	const vector<Test::TestStep> GetTestSteps(const vector<unsigned int> stepToRun, const vector<Test::TestStep> topLevel)
+	{
+		if(stepToRun.empty())
+			return vector<Test::TestStep>();
+		if(stepToRun.size()==1)
+			return topLevel;
+		// Construct temporary array for accessing one level lower.
+		vector<unsigned int> tmpSteps(stepToRun.begin() + 1, stepToRun.end());
+		// Perform recursive call to get the vector from one level lower.
+		return GetTestSteps(tmpSteps, topLevel[stepToRun[0]].SubSteps());
+	}
 }
 
 
@@ -136,9 +150,7 @@ void Test::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "sequence")
 			for(const DataNode &seqChild : child)
-			{
 				testSteps.emplace_back(TestStep(seqChild));
-			}
 	}
 }
 
@@ -167,22 +179,25 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 	if(GameData::Progress() < 1.)
 		return;
 	
-	if(context.stepToRun >= testSteps.size())
+	if(context.stepToRun.empty() || context.stepToRun[0] >= testSteps.size())
 	{
 		// Done, no failures, exit the game with exitcode success.
 		menuPanels.Quit();
 		return;
 	}
 	
-	const TestStep &testStep = testSteps[context.stepToRun];
-	
+	// Get the container of the inner loop and the currently running teststep within the loop.
+	// Needed to use a helper function to ensure const qualifiers remained working.
+	const vector<TestStep> &testStepsContainer = GetTestSteps(context.stepToRun, testSteps);
+	const TestStep &testStep = testStepsContainer[context.stepToRun[context.stepToRun.size() - 1]];
+
 	Test::TestStep::TestResult testResult = testStep.Step(context.stepAction, menuPanels, gamePanels, player);
 	switch(testResult)
 	{
 		case TestStep::RESULT_DONE:
 			// Test-step is done. Start with the first action of the next
 			// step next time this function gets called.
-			++context.stepToRun;
+			++context.stepToRun[context.stepToRun.size()-1];
 			context.stepAction = 0;
 			break;
 		case TestStep::RESULT_NEXTACTION:
@@ -190,14 +205,34 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 			break;
 		case TestStep::RESULT_RETRY:
 			break;
+		case TestStep::RESULT_BREAK:
+			// First pop-off the top-level item
+			if(context.stepToRun.size() > 0)
+				context.stepToRun.pop_back();
+			// Then advance the command above it
+			if(context.stepToRun.size() > 0)
+				++context.stepToRun[context.stepToRun.size()-1];
+			context.stepAction = 0;
+			break;
 		case TestStep::RESULT_FAIL:
 		default:
 			// Exit with error on a failing testStep.
 			// Throwing a runtime_error is kinda rude, but works for this version of
 			// the tester. Might want to add a menuPanels.QuitError() function in
 			// a later version (which can set a non-zero exitcode and exit properly).
-			throw runtime_error("Teststep " + to_string(context.stepToRun) + " action " + to_string(context.stepAction) + " failed");
+			throw runtime_error("Teststep " + to_string(context.stepToRun[0]) + " action " + to_string(context.stepAction) + " failed");
 	}
+	
+	// Special case: if we are in a loop, then stepping beyond the last entry should return us to the first.
+	if(context.stepToRun.size() > 1 && context.stepToRun[context.stepToRun.size()-1] >= testStepsContainer.size())
+		context.stepToRun[context.stepToRun.size()-1] = 0;
+}
+
+
+
+const vector<Test::TestStep> Test::TestStep::SubSteps() const
+{
+	return testSteps;
 }
 
 
@@ -236,6 +271,12 @@ void Test::TestStep::Load(const DataNode &node)
 		stepType = LAND;
 	else if(node.Token(0) == "launch")
 		stepType = LAUNCH;
+	else if(node.Token(0) == "repeat")
+	{
+		stepType = REPEAT;
+		for(const DataNode &seqChild : node)
+			testSteps.emplace_back(TestStep(seqChild));
+	}
 	else if(node.Size() < 2)
 		node.PrintTrace("Skipping unrecognized or incomplete test-step: " + node.Token(0));
 	else if(node.Token(0) == "command")
