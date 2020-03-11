@@ -1832,7 +1832,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 
 
 	
-void AI::CircleAround(Ship &ship, Command &command, const Ship &target)
+void AI::CircleAround(Ship &ship, Command &command, const Body &target)
 {
 	Point direction = target.Position() - ship.Position();
 	command.SetTurn(TurnToward(ship, direction));
@@ -1842,7 +1842,7 @@ void AI::CircleAround(Ship &ship, Command &command, const Ship &target)
 
 
 
-void AI::Swarm(Ship &ship, Command &command, const Ship &target)
+void AI::Swarm(Ship &ship, Command &command, const Body &target)
 {
 	Point direction = target.Position() - ship.Position();
 	double maxSpeed = ship.MaxVelocity();
@@ -1855,7 +1855,7 @@ void AI::Swarm(Ship &ship, Command &command, const Ship &target)
 
 
 
-void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
+void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 {
 	// Constants:
 	static const double MAX_TIME = 600.;

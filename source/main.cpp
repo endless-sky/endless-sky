@@ -55,7 +55,7 @@ void InitConsole();
 
 
 
-// Entry point for the EndlessSky executable 
+// Entry point for the EndlessSky executable
 int main(int argc, char *argv[])
 {
 	// Handle command-line arguments
@@ -103,9 +103,11 @@ int main(int argc, char *argv[])
 	
 	// Load player data, including reference-checking.
 	PlayerInfo player;
-	player.LoadRecent();
+	bool checkedReferences = player.LoadRecent();
 	if(loadOnly)
 	{
+		if(!checkedReferences)
+			GameData::CheckReferences();
 		cout << "Parse completed." << endl;
 		return 0;
 	}
@@ -138,9 +140,9 @@ int main(int argc, char *argv[])
 		GameWindow::ExitWithError(error.what(), doPopUp);
 		return 1;
 	}
-		
+	
 	// Remember the window state.
-	Preferences::Set("maximized", GameWindow::IsMaximized());		
+	Preferences::Set("maximized", GameWindow::IsMaximized());
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height());
 	Preferences::Save();
@@ -153,7 +155,7 @@ int main(int argc, char *argv[])
 
 void GameLoop(PlayerInfo &player, Conversation &conversation, string &testToRun, bool &debugMode)
 {
-	// gamePanels is used for the main panel where you fly your spaceship. 
+	// gamePanels is used for the main panel where you fly your spaceship.
 	// All other game content related dialogs are placed on top of the gamePanels.
 	// If there are both menuPanels and gamePanels, then the menuPanels take
 	// priority over the gamePanels. The gamePanels will not be shown until
@@ -177,7 +179,7 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, string &testToRun,
 			
 	bool showCursor = true;
 	int cursorTime = 0;
-	int frameRate = 60; 
+	int frameRate = 60;
 	FrameTimer timer(frameRate);
 	bool isPaused = false;
 	bool isFastForward = false;
@@ -214,7 +216,7 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, string &testToRun,
 			else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
 					&& Command(event.key.keysym.sym).Has(Command::MENU)
 					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
-			{   
+			{
 				// User pressed the Menu key.
 				menuPanels.Push(shared_ptr<Panel>(
 					new MenuPanel(player, gamePanels)));
@@ -229,6 +231,10 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, string &testToRun,
 				// and the OpenGL viewport to match.
 				GameWindow::AdjustViewport();
 			}
+			else if(activeUI.Handle(event))
+			{
+				// The UI handled the event.
+			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
 					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
 					|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
@@ -239,11 +245,7 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, string &testToRun,
 			else if(event.type == SDL_KEYDOWN && !event.key.repeat
 					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
 			{
-					isFastForward = !isFastForward;
-			}
-			else if(activeUI.Handle(event))
-			{
-				// The UI handled the event.
+				isFastForward = !isFastForward;
 			}
 		}
 		SDL_Keymod mod = SDL_GetModState();
@@ -253,7 +255,7 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, string &testToRun,
 		// but only if the player is flying around in the main view.
 		bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
 		++cursorTime;
-		bool shouldShowCursor = (GameWindow::IsFullscreen() || cursorTime < 600 || !inFlight);
+		bool shouldShowCursor = (!GameWindow::IsFullscreen() || cursorTime < 600 || !inFlight);
 		if(shouldShowCursor != showCursor)
 		{
 			showCursor = shouldShowCursor;
@@ -339,7 +341,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky 0.9.10" << endl;
+	cerr << "Endless Sky 0.9.11" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
