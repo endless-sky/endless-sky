@@ -137,6 +137,7 @@ government "Hai (Unfettered)"
 	"player reputation" -1000
 	"attitude toward"
 		"Hai" -.01
+		" Hai " -.01
 		"Wanderer" -.01
 		"Pug" -.01
 		"Merchant" -.01
@@ -206,6 +207,7 @@ government "Ka'het"
 		"Quarg" -.01
 		"Pug" -.01
 		"Hai" -.01
+		" Hai " -.01
 		"Korath" -.01
 		"Navy (Oathkeeper)" -.01
 		"Republic" -.01
@@ -226,6 +228,7 @@ government " Ka'het "
 		"Quarg" -.01
 		"Pug" -.01
 		"Hai" -.01
+		" Hai " -.01
 		"Korath" -.01
 		"Navy (Oathkeeper)" -.01
 		"Republic" -.01
@@ -370,6 +373,7 @@ government "Pirate"
 	"attitude toward"
 		"Author" -.01
 		"Hai" -.01
+		" Hai " -.01
 		"Korath" -.01
 		"Merchant" -.1
 		"Syndicate" -.01
@@ -417,6 +421,7 @@ government "Quarg"
 		"Kor Mereti" -.01
 		"Kor Sestor" -.01
 		"Hai" .01
+		" Hai " .01
 		"Pirate" -.01
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
