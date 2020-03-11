@@ -60,8 +60,8 @@ public:
 	void New();
 	// Load an existing player.
 	void Load(const std::string &path);
-	// Load the most recently saved player.
-	void LoadRecent();
+	// Load the most recently saved player. If no save could be loaded, returns false.
+	bool LoadRecent();
 	// Save this player (using the Identifier() as the file name).
 	void Save() const;
 	

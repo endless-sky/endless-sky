@@ -304,8 +304,8 @@ void PlayerInfo::Load(const string &path)
 
 
 
-// Load the most recently saved player (if any).
-void PlayerInfo::LoadRecent()
+// Load the most recently saved player (if any). Returns false when no save was loaded.
+bool PlayerInfo::LoadRecent()
 {
 	string recentPath = Files::Read(Files::Config() + "recent.txt");
 	// Trim trailing whitespace (including newlines) from the path.
@@ -313,9 +313,13 @@ void PlayerInfo::LoadRecent()
 		recentPath.pop_back();
 	
 	if(recentPath.empty() || !Files::Exists(recentPath))
+	{
 		Clear();
-	else
-		Load(recentPath);
+		return false;
+	}
+	
+	Load(recentPath);
+	return true;
 }
 
 
