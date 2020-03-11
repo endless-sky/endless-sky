@@ -373,11 +373,11 @@ mission "HI2-SS"
 			`	At this point Tugroob starts using all their body weight and gripping the crates with all legs at the same time, crushing each crate and barrel open.`
 			`	Once everything is broken up and it turns out there was nothing inside any of them after all, they rush outside, in the storm, and you follow after them.`
 			`	You two find the hole, but as you try to go down constantly trip and nearly fall down, were it not for Tugroob holding you and setting you back on your feet. The storm making it too dificult to see any feasible path for you to get down there, so you two head back inside to wait for better visibility.`
-			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you both should head back to the ship and pick her and Kirrie back up, so you do that, meeting up with the rest of the group.`
+			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you both should head back to the ship and pick her and Kirrie back up. You two meet up with the rest of the group.`
 				accept
 			label aslipperyholeintheground
 			`	You two find the hole, but as you try to go down constantly trip and nearly fall down, were it not for Tugroob holding you and setting you back on your feet. The storm making it too dificult to see any feasible path for you to get down there, so you two head back inside to wait for better visibility.`
-			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you both should head back to the ship and pick her and Kirrie back up, so you do that, meeting up with the rest of the group.`
+			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you both should head back to the ship and pick her and Kirrie back up. You two meet up with the rest of the group.`
 				accept
 			label holeintheground
 			`	You two carefully make your way down the hole, down to the bottom, around ten meters below the flat area with the barn.`
@@ -402,7 +402,7 @@ mission "HI2-SS"
 			`	You two head inside the barn, to find the place nearly entirely empty, save for a few sets of crates and barrels around the corners.`
 			`	You follow Tugroob to the upper levels, but once again find nothing but dusty containers. A small gap between the planks here allows some sand to come inside, the storm is getting closer.`
 			`	"Much too obvious a hiding spot, this would be," they say, but seeing as the storm doesn't go down, you two agree to break open the crates, just in case. Regrettably, you find nothing.`
-			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you both should head back to the ship and pick her and Kirrie back up, so you do that, meeting up with the rest of the group.`
+			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you both should head back to the ship and pick her and Kirrie back up. You two meet up with the rest of the group.`
 				accept
 			label rockraider
 			apply
@@ -430,7 +430,7 @@ mission "HI2-SS"
 			`	You carefully go about putting your arm inside a few of the holes, with Tugroob helping you up for the ones you couldn't reach, but ultimately you find nothing.`
 			`	Many small rocks fell as you went about the whole thing, but none hit neither of you, miraculously. Unfortunately, the storm above is bringing in too much sand now for you to even look around for more holes, or the exact location of the larger cracks you saw before.`
 			`	"To remain here for long, dangerous, will be, Captain," Tugroob says, as they urge you to cling to them. They carefully crawl back up, and you two take refuge inside the barn.`
-			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you both should head back to the ship and pick her and Kirrie back up, so you do that, meeting up with the rest of the group.`
+			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you both should head back to the ship and pick her and Kirrie back up. You two meet up with the rest of the group.`
 				accept
 			label lonespider
 			`	"I see," they say, before handing you some coordinates where they will go to. You drop them off, and return to where you dropped off the other two.`
@@ -547,7 +547,7 @@ mission "HI2-IW"
 				`	(Try and dig through the snowy mounds to find something.)`
 					goto diggysnow
 			label cave
-			`	Iplora reveals a small device, akin to a flashlight, only oval shaped, and lights up the way as you two explore the cavern. After some twists and turns, she notices that part of the cave's walls seems odd, and upon inspecting it, sees that it's some type of canvas, flapping around as she touches it.`
+			`	Iplora reveals a small device - akin to a flashlight, only oval shaped - and lights up the way as you two explore the cavern. After some twists and turns, she notices that part of the cave's walls seems odd, and upon inspecting it, sees that it's some type of canvas, flapping around as she touches it.`
 			`	You help her pull it down, and a small campsite is revealed, some makeshift beds, small wooden crates, a worn down campfire in the middle.`
 			`	You search through the crates as she examines around the room, looking for some other hidden area, but neither of you find anything. She checks the campfire, and concludes that noone had been there for a few months.`
 			`	You two continue exploring the cave, and eventually loop back outside, leaving via another cave entrance, this time much further from the forest, according to her. You can't even see the trees anymore, the blizzard has gotten much stronger.`
