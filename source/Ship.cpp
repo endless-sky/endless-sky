@@ -1674,9 +1674,10 @@ void Ship::DoGeneration()
 		{
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
 			fuel += currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
-		
-			energy += currentSystem->SolarPower() * scale * attributes.Get("solar collection");
-			heat += currentSystem->SolarPower() * scale * attributes.Get("solar heat");
+			
+			double solarScaling = currentSystem->SolarPower() * scale;
+			energy += solarScaling * attributes.Get("solar collection");
+			heat += solarScaling * attributes.Get("solar heat");
 		}
 		
 		double coolingEfficiency = CoolingEfficiency();
@@ -2505,8 +2506,7 @@ double Ship::IdleHeat() const
 	// heat = heat * diss + heatGen - cool - activeCool * heat / (100 * mass)
 	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool)
 	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
-	double production = max(0., attributes.Get("heat generation") 
-		+ attributes.Get("solar heat") - cooling);
+	double production = max(0., attributes.Get("heat generation") - cooling);
 	double dissipation = HeatDissipation() + activeCooling / MaximumHeat();
 	return production / dissipation;
 }
