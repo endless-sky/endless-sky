@@ -94,31 +94,48 @@ mission "event: hai secret leaks B"
 			`	You suspect it might be time to go visit your Hai friends again and see what's going on.`
 			fail
 
+#Both of these accept automatically with either secret leaks scenarios above - the non-relevant mission then fails based on whether you get the text for knowing about the Hai or not.
+
 mission "leaks 1A: visit the hai"
-	invisible
+	name "Visit the Hai on Allhome"
+	description "It seems like events may be taking away the hai's valued secrecy, best see if things are ok."
 	landing
 	destination "Allhome"
 	to offer
-		or
-			has "event: hai secret leaks A: failed"
-			has "event: hai secret leaks B: failed"
+		has "event: hai secret leaks"
 	to fail
 		or
-			has "leaks 1A: visit the hai: done"
-			has "leaks 1B: investigate the hai: done"
+			has "event: hai secret leaks A: declined"
+			has "event: hai secret leaks B: declined"
+	to complete
+		has "leaks 1B: investigate the hai: failed"
 	
 mission "leaks 1B: investigate the hai"
-	invisible
+	name "Investigate the Hai"
+	description "A secret and violent alien race that Traders have known about for ages? Preposterous; go find out what's really going on."
 	landing
 	waypoint "Ultima Thule"
 	destination "Allhome"
 	to offer
-		or
-			has "event: hai secret leaks A: declined"
-			has "event: hai secret leaks B: declined"
+		has "event: hai secret leaks"
 	to fail
 		or
-			has "leaks 1A: visit the hai: done"
-			has "leaks 1B: investigate the hai: done"
+			has "event: hai secret leaks A: failed"
+			has "event: hai secret leaks B: failed"
+	to complete
+		has "leaks 1A: visit the hai: failed"
+	
+#Branch A is if you already have Hai first contact - sends you directly to Hai Home (detour if you haven't visited Wah Ki yet).
+	
+	
+	
+	
+#Branch B is if you haven't met the Hai before, fires after First contact happens, sends you on a short guided tour of Hai space.
+	
+	
+	
+	
+	
+#Branches merge here.
 	
 	
