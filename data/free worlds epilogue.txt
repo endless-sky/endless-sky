@@ -159,7 +159,15 @@ mission "FW Epilogue: Danforth"
 				`	(Not right now.)`
 					defer
 			
+			branch checkmate1
+				has "free worlds checkmate"
 			`	Danforth is quite excited to see you. "Captain <last>!" he says. "So good to see you back up here in my neck of the woods again. It's funny, you'd think that with the war over they'd just dissolve the Oathkeepers, since the whole Republic is at peace with the Free Worlds and there's no longer any oath left for us to keep. But, the Oathkeepers became so well known for our role against the Pug and the Syndicate that now everyone wants to join our division."`
+				goto choice
+			
+			label checkmate1
+			`	Danforth is quite excited to see you. "Captain <last>!" he says. "So good to see you back up here in my neck of the woods again. It's funny, you'd think that with the war over they'd just dissolve the Oathkeepers, since the whole Republic is at peace with the Free Worlds and there's no longer any oath left for us to keep. But, the Oathkeepers became so well known for our role against the Pug that now everyone wants to join our division."`
+			
+			label choice
 			choice
 				`	"Glad to see you're still in the thick of things, sir!"`
 					goto thick
@@ -168,15 +176,24 @@ mission "FW Epilogue: Danforth"
 			
 			label thick
 			`	"Oh, you bet I am," he says. "I'll never retire from the Navy, you know. I plan to still be serving on the day I die."`
-				goto end
+				goto next
 			
 			label work
 			`	"Just the sort of work we all signed up for in the first place," he says. "Defending the defenseless, keeping the peace, helping silly novice pilots who run out of fuel."`
-				goto end
+				goto next
 			
-			label end
+			label next
 			`	"Are the pirates giving you any trouble?" you ask.`
 			`	"A bit," he says. "We still have far too many pirates in this sector, in part due to the Free Worlds driving them out of the south. The pirates grew stronger and more bold as the war dragged on, when all our fleets were busy elsewhere, but now we're beginning to get them under control again."`
+			
+			branch checkmate2
+				has "free worlds checkmate"
 			`	Then he leans forward and says, more quietly, "Of course, you and I both know the pirates aren't the main threat. Raven is off infiltrating Syndicate worlds even as we speak, and several of my other best intelligence officers, too. The Syndicate wants us to believe that they've weeded out all the rotten apples from their ranks, but we're keeping an eye on them, all the same."`
+				goto end
+			
+			label checkmate2
+			`	Then he leans forward and says, more quietly, "Just a heads up that the Navy has their eye on the Free Worlds still. Just because a peace treaty was made doesn't mean you can keep your nukes forever."`
+			
+			label end
 			`	After you talk for a while longer, Danforth wishes you luck and sends you on your way. "I'll be in touch if we ever need your assistance in the future," he says.`
 				decline

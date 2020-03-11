@@ -39,6 +39,7 @@ ship "Aerie"
 		"Heavy Anti-Missile Turret"
 		
 		"NT-200 Nucleovoltaic"
+		"KP-6 Photovoltaic Panel" 2
 		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
@@ -645,6 +646,7 @@ ship "Blackbird"
 		"Heavy Anti-Missile Turret"
 		
 		"S3 Thermionic"
+		"KP-6 Photovoltaic Array" 3
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		"Small Radar Jammer"
@@ -696,6 +698,7 @@ ship "Bounder"
 		"Anti-Missile Turret" 2
 		
 		"nGVF-CC Fuel Cell"
+		"KP-6 Photovoltaic Array"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		
@@ -1085,6 +1088,8 @@ ship "Corvette"
 		"Anti-Missile Turret"
 		
 		"NT-200 Nucleovoltaic"
+		"KP-6 Photovoltaic Array"
+		"KP-6 Photovoltaic Panel" 2
 		"LP072a Battery Pack"
 		"D94-YV Shield Generator"
 		"Large Radar Jammer"
@@ -1240,6 +1245,8 @@ ship "Dreadnought"
 	thumbnail "thumbnail/dreadnought"
 	attributes
 		category "Heavy Warship"
+		licenses
+			"Militia"
 		"cost" 11900000
 		"shields" 18100
 		"hull" 7300
@@ -1377,6 +1384,8 @@ ship "Falcon"
 		"Heavy Anti-Missile Turret"
 		
 		"Breeder Reactor"
+		"KP-6 Photovoltaic Array"
+		"KP-6 Photovoltaic Panel" 2
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
@@ -1779,7 +1788,7 @@ ship "Gunboat"
 	explode "small explosion" 20
 	explode "medium explosion" 15
 	"final explode" "final explosion small"
-	description "The Navy gunboat is designed for engaging targets at short range, and also serves as the Navy's mobile sensor platform, scanning ships for illegal equipment or cargo."
+	description "The Navy Gunboat is designed for engaging targets at short range, and also serves as the Navy's mobile sensor platform, scanning ships for illegal equipment or cargo."
 
 
 
@@ -1986,6 +1995,7 @@ ship "Hawk"
 		"Heavy Laser" 2
 		
 		"nGVF-CC Fuel Cell"
+		"KP-6 Photovoltaic Panel" 2
 		"LP036a Battery Pack"
 		"D23-QP Shield Generator"
 		"Small Radar Jammer"
@@ -2034,6 +2044,7 @@ ship "Headhunter"
 		"Heavy Anti-Missile Turret"
 		
 		"RT-I Radiothermal"
+		"KP-6 Photovoltaic Array"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		
@@ -2355,6 +2366,7 @@ ship "Mule"
 		"Heavy Anti-Missile Turret" 2
 		
 		"NT-200 Nucleovoltaic"
+		"KP-6 Photovoltaic Array"
 		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
 		"Small Radar Jammer" 2
@@ -2700,6 +2712,7 @@ ship "Raven"
 		"Torpedo" 60
 		
 		"RT-I Radiothermal"
+		"KP-6 Photovoltaic Panel" 2
 		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
 		"Laser Rifle" 2
@@ -2893,7 +2906,7 @@ ship "Skein"
 	attributes
 		category "Medium Warship"
 		licenses
-			"Militia Carrier"
+			"Militia"
 		"cost" 3500000
 		"shields" 3300
 		"hull" 6700
@@ -3132,7 +3145,7 @@ ship "Star Queen"
 		"Sidewinder Missile" 135
 		"Heavy Anti-Missile Turret" 2
 		
-		"NT-200 Nucleovoltaic"
+		"KP-6 Photovoltaic Array" 4
 		"LP036a Battery Pack"
 		"D94-YV Shield Generator"
 		"Small Radar Jammer" 3
@@ -3157,6 +3170,7 @@ ship "Star Queen"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 	description "The Star Queen is a relic of a more peaceful period of galactic history: a luxury liner for high-end tourists. Every cabin has its own mini-bar, and the bathrooms have marble tile and showers that use actual hot water instead of chemicals or sonic vibrations."
+	description "	In support of environmental movements across the galaxy, all Star Queens come standard with an array of solar panels as their only source of energy as opposed to more popular power generators such as fuel cells or nuclear reactors that produce some amount of waste. Although some argue that this is a pointless move given the prevalence of clean fusion reactors, others have applauded it and cited the prohibitive costs of fusion reactors as a reason for using solar panels."
 
 
 

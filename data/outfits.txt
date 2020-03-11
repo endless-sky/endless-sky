@@ -419,10 +419,10 @@ outfit "Carrier License"
 	thumbnail "outfit/carrier license"
 	description "Only a handful of people in the past century have been given permission to purchase a Navy Carrier, even a decommissioned one, for private use."
 
-outfit "Militia Carrier License"
+outfit "Militia License"
 	category "Special"
 	thumbnail "outfit/militia license"
-	description "Officially joined the Free Worlds. Received permission to purchase their Militia-only carriers."
+	description "Officially joined the Free Worlds. Received permission to purchase their Militia-only ships."
 
 outfit "City-Ship License"
 	category "Special"

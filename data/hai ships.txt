@@ -307,6 +307,21 @@ ship "Grasshopper" "Grasshopper (Tracker)"
 		`"Basrem" Atomic Steering`
 		Hyperdrive
 
+ship "Grasshopper" "Grasshopper (Surveillance)"
+	outfits
+		"Pulse Cannon"
+		"Pebble Core"
+		"Hai Chasm Batteries"
+		"Supercapacitor"
+		"Outfit Scanner" 5
+		"Cargo Scanner" 5
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Quantum Keystone"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		Hyperdrive
+
 
 
 ship "Lightning Bug"
@@ -367,6 +382,23 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 		"Hai Corundum Regenerator"
 		"Pulse Rifle" 2
 		`"Biroo" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+
+ship "Lightning Bug" "Lightning Bug (Surveillance)"
+	outfits
+		"Hai Tracker Pod"
+		"Hai Tracker" 56
+		"Pulse Turret"
+		"Bullfrog Anti-Missile"
+		"Geode Reactor"
+		"Outfit Scanner" 5
+		"Cargo Scanner" 5
+		"Hai Williwaw Cooling"
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Pulse Rifle" 2
+		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 
@@ -502,6 +534,39 @@ ship "Shield Beetle"
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
 	description "This ship was first built millennia ago, near the end of a more violent time in Hai history. Since then, it has served as the only heavy warship at the disposal of the Hai. The Shield Beetle is a versatile warship used by the Hai to guard their merchant convoys, or by the Unfettered to attack those very same convoys."
+
+ship "Shield Beetle" "Shield Beetle (Police)"
+	outfits
+		"Ion Cannon" 4
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 224
+		"Chameleon Anti-Missile" 2
+		"Boulder Reactor" 2
+		"Hai Chasm Batteries" 2
+		"Hai Fissure Batteries"
+		"Hai Gorge Batteries"
+		"Outfits Expansion" 4
+		"Hai Diamond Regenerator" 2
+		"Outfit Scanner" 7
+		"Cargo Scanner" 7
+		"Brig"
+		"Hai Williwaw Cooling" 4
+		"Pulse Rifle" 55
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	turret
+	turret
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
 
 ship "Shield Beetle" "Shield Beetle (Jump)"
 	outfits
