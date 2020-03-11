@@ -73,6 +73,209 @@ phrase "ka'mar"
 	word
 		"'mar"
 
+# Hails:
+phrase "friendly ka'het"
+	word
+		"Current objective: "
+	word
+		"aluminum"
+		"copper"
+		"gold"
+		"iron"
+		"lead"
+		"neodymium"
+		"platinum"
+		"silicon"
+		"silver"
+		"titanium"
+		"tungsten"
+		"uranium"
+	word
+		" "
+	phrase
+		"ka'het mining"
+		"ka'het hauling"
+
+phrase "ka'het mining"
+	word
+		"gathering"
+		"mining"
+		"acquisition"
+		"obtainment"
+		"attainment"
+		"recovery"
+	word
+		". "
+	word
+		"Research state: seeking for suitable asteroids."
+
+phrase "ka'het hauling"
+	word
+		"hauling"
+		"freighting"
+		"transfer"
+		"relocation"
+		"allocation"
+	word
+		". Resource destination: station "
+	word
+		"Seli"
+		"Parii"
+	word
+		", area "
+	phrase
+		"digit"
+	phrase
+		"digit"
+	word
+		"."
+
+phrase "friendly ka'het"
+	word
+		"Primary systems check: "
+	word
+		"shield matrices"
+		"hyperdrive"
+		"life support systems"
+		"energy generator"
+		"weapon systems"
+		"main thrusters"
+		"main steering"
+		"main coolers"
+	word
+		": online. Secondary systems check: "
+	word
+		"solar wind harvester: online and active"
+		"energy storage: available"
+		"support coolers: online and active"
+		"shield restorers: online and active"
+		"long range antennae: available"
+	word
+		"."
+
+phrase "friendly ka'het"
+	word
+		"Current objective: systems "
+	word
+		"patrol"
+		"garrison"
+		"vigilance"
+	word
+		". Threats identified: none. Estimated progress: "
+	phrase
+		"digit"
+	phrase
+		"digit"
+	word
+		"%."
+
+phrase "friendly disabled ka'het"
+	word
+		"Primary systems check: "
+	word
+		"shield matrices: unavailable"
+		"hyperdrive: unavailable"
+		"life support systems: partially online"
+		"energy generator: partially online"
+		"weapon systems: offline"
+		"main thrusters: offline"
+		"main steering: offline"
+		"main coolers: unavailable"
+	word
+		". Secondary systems check: "
+	word
+		"solar wind harvester: offline"
+		"energy storage: unavailable"
+		"support coolers: unavailable"
+		"shield restorers: offline"
+		"long range antennae: unavailable"
+	word
+		". Requesting assistance."
+
+phrase "hostile ka'het"
+	word
+		"Current objective: threat "
+	word
+		"identification"
+		"recognition"
+		"elimination"
+		"eradication"
+		"destruction"
+	word
+		". Secondary objective: "
+	word
+		"aluminum"
+		"copper"
+		"gold"
+		"iron"
+		"lead"
+		"neodymium"
+		"platinum"
+		"silicon"
+		"silver"
+		"titanium"
+		"tungsten"
+		"uranium"
+	word
+		" "
+	word
+		"salvage"
+		"recovery"
+		"plundering"
+	word
+		"."
+
+phrase "hostile ka'het"
+	word
+		"Threat: "
+	word
+		"identified"
+		"discovered"
+		"recognised"
+		"analyzed"
+		"determinated"
+		"spotted"
+	word
+		". Threat level: "
+	word
+		"very low"
+		"low"
+		"average"
+		"high"
+		"very high"
+	word
+		". Adopting countermeasures."
+
+phrase "hostile disabled ka'het"
+	word
+		"Threat: "
+	word
+		"identified"
+		"discovered"
+		"recognised"
+		"analyzed"
+		"determinated"
+		"spotted"
+	word
+		". Countermeasures: "
+	word
+		"unavailable"
+		"offline"
+	word
+		". Assistance request: "
+	word
+		"denied"
+		"refused"
+		"rejected"
+		"unanswered"
+	word
+		". Demanding reinforcements from station "
+	word
+		"Parii"
+		"Seli"
+	word
+		"."
+
 fleet "Ka'het"
 	government "Ka'het"
 	names "ka'het"
