@@ -1784,7 +1784,6 @@ mission "Rescue Miners 2"
 	landing
 	description "Participate in the medical evacuation of some miners injured in a recent accident on <origin>."
 	name "Rescue Miners"
-	minor
 	destination
 		attributes "core"
 		attributes "urban"
