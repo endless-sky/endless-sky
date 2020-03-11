@@ -834,7 +834,7 @@ mission "Heliarch Recon 2-A"
 
 mission "Heliarch Recon 2-B"
 	name "Silent Scan"
-	description "Now that the Heliarchs have altered your Outfit Scanner, head to and scan some Quarg ships there, then report back to <destination>."
+	description "Now that the Heliarchs have altered your Outfit Scanner, head to <waypoint> and scan some Quarg ships there, then report back to <destination>."
 	landing
 	source "Ring of Wisdom"
 	destination "Ring of Wisdom"
