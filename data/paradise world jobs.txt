@@ -9,7 +9,8 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
-mission "Care package to <planet>"
+mission "Paradise Job: Care Package"
+	name "Care package to <planet>"
 	job
 	repeat
 	deadline
@@ -31,7 +32,8 @@ mission "Care package to <planet>"
 		dialog "Still wondering why one university student would possibly need such a large quantity of <commodity>, you deliver the interstellar care package and collect your payment of <payment>."
 
 
-mission "Birthday supplies to <planet>"
+mission "Paradise Job: Birthday Supplies"
+	name "Birthday supplies to <planet>"
 	job
 	repeat
 	deadline
@@ -53,7 +55,8 @@ mission "Birthday supplies to <planet>"
 		dialog "You deliver the cargo to the garden of an imposing mansion in the countryside, wherein some pouty young sprout is throwing a very conspicuous fit at the center of a swarm of guests. The parents sheepishly hand you your payment of <payment>."
 
 
-mission "Art delivery to <planet>"
+mission "Paradise Job: Art Delivery"
+	name "Art delivery to <planet>"
 	job
 	repeat
 	deadline
@@ -75,7 +78,8 @@ mission "Art delivery to <planet>"
 		dialog "Your ship is directed to the rear loading dock of a palatial complex where your cargo of <commodity> is unloaded. You collect your payment of <payment>."
 
 
-mission "Newlyweds to <planet>"
+mission "Paradise Job: Newlyweds"
+	name "Newlyweds to <planet>"
 	job
 	repeat
 	deadline
@@ -99,7 +103,8 @@ mission "Newlyweds to <planet>"
 		dialog "You bid the two lovebirds goodbye on <planet> and collect your payment of <payment>."
 
 
-mission "Theater props to <planet>"
+mission "Paradise Job: Theater Props"
+	name "Theater props to <planet>"
 	job
 	repeat
 	deadline
@@ -121,7 +126,8 @@ mission "Theater props to <planet>"
 		dialog "Your ship is directed to the rear loading dock of a sprawling entertainment complex where your cargo of <commodity> is unloaded. You collect your payment of <payment>."
 
 
-mission "Fine food to <planet>"
+mission "Paradise Job: Fine Food"
+	name "Fine food to <planet>"
 	job
 	repeat
 	deadline
@@ -190,7 +196,8 @@ mission "Transport partiers [2]"
 		payment 5000 190
 		dialog "You bid goodbye to the students, who behaved surprisingly well during the journey - yielding many fascinating conversations on subjects as diverse as philosophy, microfluidics, and intergalactic economics. Their proud parents send you your payment of <payment>."
 
-mission "Food donations to <planet>"
+mission "Paradise Job: Food Donations"
+	name "Food donations to <planet>"
 	job
 	repeat
 	description "The fine citizens of <origin> seek a compassionate captain for a mission of mercy to donate <cargo> to the undernourished souls of <destination>. Payment is <payment>."
@@ -209,7 +216,8 @@ mission "Food donations to <planet>"
 		dialog "You collect your payment of <payment>, but not before noticing the general robustness and ample bellies of the dockworkers unloading the donation of <commodity>."
 
 
-mission "Clothing donations to <planet>"
+mission "Paradise Job: Clothing Donations"
+	name "Clothing donations to <planet>"
 	job
 	repeat
 	description "The fine citizens of <origin> seek a compassionate captain for a mission of mercy to donate <cargo> to the under-dressed and fashion-deprived souls of <destination>. Payment is <payment>."
@@ -228,7 +236,8 @@ mission "Clothing donations to <planet>"
 		dialog "You collect your payment of <payment>, but not before noticing the fine quality of the clothes worn by the dockworkers unloading the donation of <commodity>."
 
 
-mission "Medical aid to <planet>"
+mission "Paradise Job: Medical Aid"
+	name "Medical aid to <planet>"
 	job
 	repeat
 	description "The fine citizens of <origin> seek a compassionate captain for a mission of mercy to donate <cargo> to the suffering souls of <destination>. Payment is <payment>."
@@ -247,7 +256,8 @@ mission "Medical aid to <planet>"
 		dialog "You collect your payment of <payment>, but not before noticing the general health and vigor of the dockworkers unloading the donation of <commodity>."
 
 
-mission "Charity goods to <planet>"
+mission "Paradise Job: Charity"
+	name "Charity goods to <planet>"
 	job
 	repeat
 	description "The fine citizens of <origin> seek a compassionate captain for a mission of mercy to donate <cargo> to the naive and culturally-underexposed souls of <destination>. Payment is <payment>."
@@ -266,7 +276,8 @@ mission "Charity goods to <planet>"
 		dialog "You collect your payment of <payment>, but not before noticing the quality of the clothes, jewelry, and personal electronics carried by the dockworkers unloading the donation of <commodity>."
 
 
-mission "Party goods to <planet>"
+mission "Paradise Job: Party Goods"
+	name "Party goods to <planet>"
 	job
 	repeat
 	deadline
@@ -290,7 +301,8 @@ mission "Party goods to <planet>"
 		dialog "Your ship is directed to land on a makeshift tarmac near a sprawling greenfield where novelty castles are being constructed. Sharply-dressed stewards unload the <commodity> and you collect your payment of <payment>."
 
 
-mission "Estate assets to <planet>"
+mission "Paradise Job: Estate Assets"
+	name "Estate assets to <planet>"
 	job
 	repeat
 	description "Trustees are seeking starship captains willing to deliver individual portions of a recently deceased upstanding citizen's estate - <cargo> - to the upcoming estate sale on <destination>. Payment is <payment>."
@@ -310,7 +322,8 @@ mission "Estate assets to <planet>"
 		dialog "As you watch the dockworkers unload crate after crate, you can't help but wonder what would drive someone to collect such a huge quantity of <commodity>. You collect your payment of <payment>."
 
 
-mission "Contract laborers to <planet>"
+mission "Paradise Jobs: Contract Laborers"
+	name "Contract laborers to <planet>"
 	job
 	repeat
 	description "Return to <destination> after picking up <bunks> contract laborers located on <stopovers> who are eager to experience the luxury of the paradise worlds. Payment is <payment>."
@@ -332,7 +345,8 @@ mission "Contract laborers to <planet>"
 		dialog "The bedraggled contract laborers kept to themselves and didn't say a word to you throughout the entire trip. The scruffy foreman who receives you on <origin> seems pleased, however. He hands you your payment of <payment>."
 
 
-mission "Waste disposal on <planet>"
+mission "Paradise Job: Waste Disposal"
+	name "Waste disposal on <planet>"
 	job
 	repeat
 	description "Urgent waste disposal is needed. Transport <cargo> to <destination> to keep property values from falling. Payment is <payment>."
@@ -403,3 +417,99 @@ mission "Pleasure cruise security"
 		dialog "You bid goodbye to the captain of the <npc> and accept your payment of <payment>."
 		payment
 		payment 50000
+
+
+mission "Paradise Job: Parolees"
+	name "Parolees to <planet>"
+	job
+	repeat
+	description `These <bunks> non-violent repeat offenders have accepted longer community service sentences that better use their skills in return for serving their time on the paradise world of <destination>. Transport them to their new home to carry out their service. The payment is <payment>.`
+	passengers 20 4 .1
+	to offer
+		random < 15
+		"passenger space" > 50
+	on offer
+		require "Brig"
+	source
+		attributes "mining" "fishing" "textiles" "factory" "farming" "oil"
+	destination
+		distance 2 18
+		attributes "paradise"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 10000
+		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of a local security force as they prepare to repay their debts to society. A clerk on <planet> checks their condition as they're led off. He seems mostly pleased and hands you your payment of <payment>."
+
+
+mission "Paradise Job: Debtors"
+	name "Debtors to <planet>"
+	job
+	repeat
+	description `These <bunks> poor souls have bankrupted themselves attempting to live beyond their means. Due to media scrutiny on the issue, the local government will pay you <payment> to transport them to <destination> where they can "make something useful of themselves."`
+	passengers 20 4 .1
+	to offer
+		random < 15
+		"passenger space" > 50
+	on offer
+		require "Brig"
+	source
+		attributes "paradise"
+	destination
+		distance 2 30
+		attributes "mining" "fishing" "forest" "textiles" "factory" "farming" "oil" "frontier" "dirt belt" "south" "rim"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 10000
+		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of immigration officials. A grinning job service provider is on hand to pay you the <payment> you are owed."
+
+
+mission "Paradise Job: Retirees"
+	name "Wealthy retirees to <planet>"
+	job
+	repeat
+	description "This coterie of <bunks> wealthy retirees is willing to pay <payment> to be transported in style to <destination>, along with <tons> of their most treasured possessions."
+	passengers 7 12 .6
+	cargo "treasured possessions" 7 12 .2
+	to offer
+		random < 10
+		"passenger space" > 30
+		"cargo space" > 120
+	on offer
+		require "Luxury Accommodations"
+	source
+		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest" "urban"
+	destination
+		distance 3 16
+		attributes "paradise"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 200
+		dialog "You bid goodbye to the retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite and full of highly amusing, though often morally questionable, anecdotes. Once the last of their belongings have been safely unloaded your accounts receive the payment of <payment> from their travel broker."
+
+
+mission "Paradise Job: Wilderness Retreat"
+	name "Wilderness Retreat to <planet>"
+	job
+	repeat
+	description `Bring <bunks> pseudo-celebrities and wealthy tourists to the wild and untamed world of <destination> for a "Wilderness Retreat." Payment is <payment>.`
+	passengers 10 4 .1
+	to offer
+		random < 10
+		"passenger space" > 30
+	on offer
+		require "Luxury Accommodations"
+	source
+		attributes "urban" "near earth" "core" "paradise"
+	destination
+		distance 6 20
+		attributes "frontier" "rim" "forest" "fishing"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 25000 250
+		dialog `Your passengers are met by an overly enthusiastic greeting service of comically overdressed "wilderness guides." You can't help but think these people are either about to end up on a popular reality show, or be safely fleeced of their money, but they're not the sort of characters who engender much sympathy for such fates. One of the greeters quietly transfers to you your payment of <payment>.`
