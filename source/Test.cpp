@@ -17,9 +17,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "MainPanel.h"
 #include "Panel.h"
+#include "Planet.h"
 #include "PlanetPanel.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
+#include "System.h"
 #include "TestData.h"
 #include "UI.h"
 
@@ -277,6 +279,21 @@ void Test::TestStep::Load(const DataNode &node)
 		for(const DataNode &seqChild : node)
 			testSteps.emplace_back(TestStep(seqChild));
 	}
+	else if(node.Token(0) == "navigate")
+	{
+		stepType = NAVIGATE;
+		for(const DataNode &child : node)
+		{
+			if(child.Token(0) == "travel" && child.Size() >= 2)
+			{
+				const System *next = GameData::Systems().Find(child.Token(1));
+				if(next)
+					travelPlan.push_back(next);
+			}
+			else if(child.Token(0) == "travel destination" && child.Size() >= 2)
+				travelDestination = GameData::Planets().Find(child.Token(1));
+		}
+	}
 	else if(node.Size() < 2)
 		node.PrintTrace("Skipping unrecognized or incomplete test-step: " + node.Token(0));
 	else if(node.Token(0) == "command")
@@ -436,6 +453,14 @@ Test::TestStep::TestResult Test::TestStep::Step(int stepAction, UI &menuPanels, 
 			// Load succeeded, finish teststep.
 			return RESULT_DONE;
 			
+		case TestStep::NAVIGATE:
+			player.TravelPlan().clear();
+			player.TravelPlan() = travelPlan;
+			if(travelDestination)
+				player.SetTravelDestination(travelDestination);
+			else
+				player.SetTravelDestination(nullptr);
+			return RESULT_DONE;
 		case TestStep::WAITFOR:
 			// If we reached the condition, then we are done.
 			if(checkedCondition.Test(player.Conditions()))

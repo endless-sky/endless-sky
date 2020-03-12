@@ -21,8 +21,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 class DataNode;
+class Planet;
 class PlayerInfo;
 class UI;
+class System;
 
 
 
@@ -105,6 +107,9 @@ public:
 		Command command {};
 		// Set of teststeps under the current teststep, used for REPEAT type.
 		std::vector<Test::TestStep> testSteps;
+		// Variables for travelpan/NAVIGATE steps.
+		std::vector<const System *> travelPlan;
+		const Planet *travelDestination;
 	};
 	
 	
