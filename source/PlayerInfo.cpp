@@ -2332,12 +2332,26 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 		conditions["passenger space"] = flagship->Cargo().BunksFree();
 	}
 	
+	// Clear any existing flagship system: and planet: conditions. (Note: '!' = ' ' + 1.)
+	auto firstS = conditions.lower_bound("flagship system: ");
+	auto lastS = conditions.lower_bound("flagship system:!");
+	if(firstS != lastS)
+		conditions.erase(firstS, lastS);
+	auto firstP = conditions.lower_bound("flagship planet: ");
+	auto lastP = conditions.lower_bound("flagship planet:!");
+	if(firstP != lastP)
+		conditions.erase(firstP, lastP);
+	
 	// Store conditions for flagship current crew, required crew, and bunks.
 	if(flagship)
 	{
 		conditions["flagship crew"] = flagship->Crew();
 		conditions["flagship required crew"] = flagship->RequiredCrew();
 		conditions["flagship bunks"] = flagship->Attributes().Get("bunks");
+		if(flagship->GetSystem())
+			conditions["flagship system: " + flagship->GetSystem()->Name()] = 1;
+		if(flagship->GetPlanet())
+			conditions["flagship planet: " + flagship->GetPlanet()->Name()] = 1;
 	}
 	else
 	{
