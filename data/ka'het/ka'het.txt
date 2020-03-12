@@ -284,6 +284,64 @@ phrase "friendly ka'het"
 	word
 		"."
 
+phrase "friendly ka'het"
+	word
+		"Established connection with station "
+	word
+		"Parii"
+		"Seli"
+	word
+		". Signal strength: "
+	word
+		"3"
+		"4"
+		"5"
+		"6"
+		"7"
+		"8"
+		"9"
+	phrase
+		"digit"
+	word
+		"%. No new data received. Last data received "
+	word
+		""
+		"1"
+		"2"
+	phrase
+		"digit"
+	phrase
+		"digit"
+	word
+		" years, "
+	word
+		""
+		"1 month"
+		"2 months"
+		"3 months"
+		"4 months"
+		"5 months"
+		"6 months"
+		"7 months"
+		"8 months"
+		"9 months"
+		"10 months"
+		"11 months"
+	word
+		", "
+	word
+		"1"
+		"2"
+	phrase
+		"digit"
+	word
+		" days ago. "
+	word
+		"Continuing"
+		"Returning to"
+	word
+		" primary task."
+
 phrase "friendly disabled ka'het"
 	word
 		"Primary systems check: "
