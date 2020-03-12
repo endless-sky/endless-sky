@@ -175,7 +175,7 @@ phrase "friendly disabled ka'het"
 	word
 		"shield matrices: unavailable"
 		"hyperdrive: unavailable"
-		"life support systems: partially online"
+		"life support systems: unavailable"
 		"energy generator: partially online"
 		"weapon systems: offline"
 		"main thrusters: offline"
