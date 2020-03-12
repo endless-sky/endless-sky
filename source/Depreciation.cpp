@@ -338,7 +338,7 @@ double Depreciation::Depreciate(int age) const
 		return FULL_DEPRECIATION;
 	
 	double daily = pow(DAILY_DEPRECIATION, age - GRACE_PERIOD);
-	double linear = static_cast<double>(MAX_AGE - age) / MAX_AGE;
+	double linear = static_cast<double>(MAX_AGE - age) / (MAX_AGE - GRACE_PERIOD);
 	return FULL_DEPRECIATION + (1. - FULL_DEPRECIATION) * daily * linear;
 }
 
