@@ -194,13 +194,13 @@ mission "Coalition Yottrite 2"
 	on offer
 		fail "Coalition Yottrite 1"
 		conversation
-			`Coming down the atmosphere of <origin>, you're contacted by the Arachi you sold some Yottrite to. He asks if you've got any more samples to sell him now.`
+			`Coming down the atmosphere of <origin>, you're contacted by the Arachi you sold some Yottrite to. He asks if you've got any more samples to sell him.`
 			choice
 				`	"Not right now, sorry."`
 					defer
 				`	"I have some, yeah. Where should I bring them to?"`
 			`	He tells you to land as usual. Once your ship is brought to the underground area, some workers help unload the Yottrite, and you follow them along some areas that were restricted to you other times you came here.`
-			`	You walk along extremely wide industrial catwalks, overlooking endless smelters and forges, of various sizes. Though the heat of the place might have been influencing your perception, you're almost certain the largest smelters must be around the size of a light warship.`
+			`	You walk along extremely wide industrial catwalks, overlooking endless smelters and forges of various sizes. Though the heat of the place might have been influencing your perception, you're almost certain the largest smelters must be around the size of a light warship.`
 			`	After walking for too long in the uncomfortably hot and stuffy interiors of the underground compound, you and the several tons of Yottrite are finally brought to a large area, similar to a warehouse, but with several workers operating machinery and making sure ore pieces are brought to specific conveyor belts.`
 			`	As the workers leave you to bring the Yottrite to a separate section of the place, you're greeted by the Arach who contacted you. "In your debt, we are, Captain <last>," he says, handing you 660,000 credits. "Achieved, much will be, if significant progress with the samples we make."`
 			choice
@@ -226,7 +226,7 @@ mission "Coalition Yottrite 2"
 
 mission "Coalition Yottrite 3"
 	name "Neighbor's Mailbox"
-	description "Deliver the <cargo> to the sister world of<origin>, <destination>."
+	description "Deliver the <cargo> to the sister world of <origin>, <destination>."
 	landing
 	cargo "Experimental Yottrite Samples" 5
 	to offer
@@ -236,14 +236,14 @@ mission "Coalition Yottrite 3"
 	on offer
 		fail "Coalition Yottrite 2"
 		conversation
-			`Once again, you come to <origin> with a supply of Yottrite, and are contacted by the Arachi here. They ask if you're ready to sell what samples you've brought them now.`
+			`Once again, you come to <origin> with a supply of Yottrite, and are contacted by the Arachi here. They ask if you're ready to sell what samples you've brought them.`
 			choice
 				`	"Maybe some other time."`
 					defer
 				`	"Sure am. Have some people wait by the docking area to help me unload the samples."`
 			`	As the workers get the ore samples out of your ships, you realize that this time the Arach that asked for your help wasn't the one to contact you, nor was he waiting for you on the ground.`
 			`	The workers say they will bring the Yottrite to the warehouse on their own, and you're told to wait. When one of them comes back, followed by other workers with different crates, they hand you 1,540,000 credits, and ask for permission to load the crates onto your ship.`
-			`	"Roughly 5 tons, they weight. To <destination>, this planet's neighboring world, you must bring them. Requested it so, the boss has," they say.`
+			`	"Roughly 5 tons, they weigh. To <destination>, this planet's neighboring world, you must bring them. Requested it so, the boss has," they say.`
 			choice
 				`	"What's in the crates?"`
 					goto insidecrate
@@ -308,11 +308,11 @@ mission "Coalition Yottrite 5"
 	destination "Delve of Bloptab"
 	on offer
 		conversation
-			`A Saryd wearing their versions of a lab coat is waiting for you when you enter the spaceport.`
+			`A Saryd wearing their version of a lab coat is waiting for you when you enter the spaceport.`
 			`	"Working with Lugglop, you are?" He asks, and you nod. "Nasilor, my name is. Packing up our belongings, my sister is. Bring you to our laboratory, I shall."`
-			`	You follow him deep into the underground spaceport, to the "residential" section, which to you is indistinguishable from a research compound. Still on the way, the endless doors to your left and right occasionaly give space for massive glass panels, giving you a nice view of the massive crystal formations here.`
+			`	You follow him deep into the underground spaceport, to the "residential" section, which to you is indistinguishable from a research compound. Still on the way, the endless doors to your left and right occasionally give space for massive glass panels, giving you a nice view of the massive crystal formations here.`
 			`	Nasilor stops by a door immediately after one of these "viewing sites", and opens it. He introduces you to his sister, and you two start helping her pack what remains. Most of what they're bringing are several research papers, though you can't know what's written on them.`
-			`	Finally, you start heading back to your ship. Noticing your interest in taking in the beauty of the gypsum caves, the two Saryd researchers slow down their pace, and start to tell you more about themselves. They are twins, both born on Saros, but have been working here for decades. Though you don't understand much of the technical jargon, you figure out that Nasilor has specialized in cryptocrystalline compounds, while Alituri focused her studies on planetary and cosmic conditions that lead to the formation of the gymsum caves here.`
+			`	Finally, you start heading back to your ship. Noticing your interest in taking in the beauty of the gypsum caves, the two Saryd researchers slow down their pace and start to tell you more about themselves. They are twins, both born on Saros, but have been working here for decades. Though you don't understand much of the technical jargon, you figure out that Nasilor has specialized in cryptocrystalline compounds, while Alituri focused her studies on planetary and cosmic conditions that lead to the formation of the gymsum caves here.`
 			`	With the little "tour" over, when you three reach your ship, you show them to their bunks, and prepare to head back to <planet>.`
 				accept
 
@@ -351,7 +351,7 @@ mission "Coalition Yottrite 7"
 	on offer
 		conversation
 			`You're immediately hailed by House Mallob when your ship is descending the atmosphere of <origin>. They guide you through the planet, bringing you to what looks like a massive castle-like structure, which appears to be made out of a similar material to that of Arach ships, at the base of a mountain.`
-			`	Other buildings are around as well, and you can see other ships landing close to your own. A dedicated docking area was built here, and you're almost certain the building closest to it is something of an outfitter. The atmosphere feels that of a small village turned into an outdoors shopping mall.`
+			`	Other buildings are around as well, and you can see other ships landing close to your own. A dedicated docking area was built here, and you're almost certain the building closest to it is something of an outfitter. The atmosphere feels like that of a small village turned into an outdoor shopping mall.`
 			`	You're greeted by an Arach, who came in what you believe to be their version of a car, though you gave up on trying to guess the exact purpose of each pipe and plating, why some wheels weren't touching the ground, and pondering if you would comfortably fit inside one.`
 			`	The Arach takes a translation device out of his pocket, and formally greets you, "Honored to have you as a guest, the great House Mallob is, Captain <first> <last>."`
 			choice
@@ -366,15 +366,15 @@ mission "Coalition Yottrite 7"
 			`	"No mere mansion, the private property of House Mallob is," he says, as he starts pointing to different areas. "A museum, there we have, detailing the history of Arachi ships. To the left, a shopping center is. To the right, House Mallob's private university is, where study the advanced methods of ship making, honor students from all over the Coalition do."`
 			label mistress
 			`	He asks that you go inside the vehicle, saying, "Assist Lugglop in his research, my mistress will. Meet her in the mansion, you must."`
-			`	The short trip is uneventful, you managing to have a seat without much discomfort in the Arachi vessel, though you still don't know what the extra wheels are for.`
+			`	The short trip is uneventful, with you managing to have a seat without much discomfort in the Arachi vessel, though you still don't know what the extra wheels are for.`
 			`	The entrance to the mansion isn't as castle-like as the walls, though it all still looks strangely pompous. Up close it almost looks like all the several parts and pods of an Arach Hulk or two were crumpled together into one single building.`
 			`	He guides you through the mansion, as you pass through several other servants, some rooms where he mentions that members of House Mallob are having meetings, and even meet a group of Saryd and Kimek students on the way, here to study with the shipwrights of House Mallob.`
-			`	Finally, he brings you to a room on the third floor, claiming that your passenger is waiting inside You enter, only to see a Kimek glancing out the window.`
+			`	Finally, he brings you to a room on the third floor, claiming that your passenger is waiting inside. You enter, only to see a Kimek glancing out the window.`
 			choice
 				`	"So, is my passenger crawling around somewhere? In some corner hidden in a web?"`
 				`	"A Kimek? I thought this was an Arach House."`
 			`	The butler ignores what you said, and introduces you to the Kimek in question. "Marry into House Mallob at a young age, miss Pichiie did. A former student on the university here, she was."`
-			`	Finally the reason to why you had to come all the way here to this part of <origin> becomes clear, as Pichiie mentions she would like to hear your stories about where you first got the Yottrite in the first place, before boarding your ship to head to <planet>. You do your best to keep it as brief as possible, but as she constantly keeps asking more and more questions, ranging from how you acquired a Jump Drive to trying to recall places you've been to by memory.`
+			`	Finally, the reason to why you had to come all the way here to this part of <origin> becomes clear, as Pichiie mentions she would like to hear your stories about where you first got the Yottrite in the first place, before boarding your ship to head to <planet>. You do your best to keep it as brief as possible, but as she constantly keeps asking more and more questions, ranging from how you acquired a Jump Drive to trying to recall places you've been to by memory.`
 			`	About an hour after the sun sets, she's finally satisfied, and after saying her goodbyes to other members of the House, you're both brought to your ship.`
 				accept
 	on complete
