@@ -249,16 +249,27 @@ phrase "friendly ka'het"
 
 phrase "friendly ka'het"
 	word
-		"Failed connection with planet "
+		"Failed connection with "
 	word
-		"Osaeli"
-		"Alix"
-		"Retilie"
-		"Veliante"
-		"Eavine"
-		"Celeatis"
-		"Nona"
-		"Palarei"
+		"planet Osaeli"
+		"planet Alix"
+		"planet Retilie"
+		"planet Veliante"
+		"planet Eavine"
+		"planet Celeatis"
+		"planet Nona"
+		"planet Palarei"
+
+		# Most of the stations mentioned here don't exist anymore at the time of the player, they were destroyed by the Ka'het during the last 200,000 years
+		"station Ceilia"
+		"station Aerite"
+		"station Letis"
+		"station Maiar"
+		"station Lateria"
+		"station Gertima"
+		"station Santari"
+		"station Antamesa"
+		"construction site Delia"
 	word
 		". Reason: "
 	word
