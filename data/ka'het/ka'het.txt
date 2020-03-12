@@ -169,6 +169,61 @@ phrase "friendly ka'het"
 	word
 		"%."
 
+phrase "friendly ka'het"
+	word
+		"Het status: "
+	word
+		"operational"
+		"active"
+		"alive"
+		"functioning"
+		"awake"
+	word
+		". Expected lifetime: "
+	word
+		""
+		"1"
+		"2"
+		"3"
+		"3"
+		"3"
+		"4"
+		"4"
+	phrase
+		"digit"
+	phrase
+		"digit"
+	word
+		" years."
+
+phrase "friendly ka'het"
+	word
+		"Current"
+		"Selected"
+		"Chosen"
+		"Main"
+		"Primary"
+	word
+		" target: <ship>. Government: "
+	word
+		"unknown"
+		"unrecognised"
+		"no data"
+		"unidentified"
+	word
+		". Attitude: "
+	word
+		"friendly"
+		"neutral"
+		"peaceful"
+		"positive"
+		"acceptable"
+		"safe"
+		"tolerable"
+		"adequate"
+	word
+		". No necessary action."
+
 phrase "friendly disabled ka'het"
 	word
 		"Primary systems check: "
@@ -245,6 +300,37 @@ phrase "hostile ka'het"
 		"very high"
 	word
 		". Adopting countermeasures."
+
+phrase "hostile ka'het"
+	word
+		"Current"
+		"Selected"
+		"Chosen"
+		"Main"
+		"Primary"
+	word
+		" target: <ship>. Government: "
+	word
+		"unknown"
+		"unrecognised"
+		"no data"
+		"unidentified"
+	word
+		". Attitude: "
+	word
+		"rival"
+		"hostile"
+		"unfriendly"
+		"negative"
+		"inacceptable"
+		"dangerous"
+	word
+		". "
+	word
+		"Evaluating necessary actions"
+		"Executing necessary actions"
+	word
+		"."
 
 phrase "hostile disabled ka'het"
 	word
