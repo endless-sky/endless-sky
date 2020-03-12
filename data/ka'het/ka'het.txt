@@ -142,6 +142,9 @@ phrase "friendly ka'het"
 		"main thrusters"
 		"main steering"
 		"main coolers"
+		"Ravager emitters"
+		"Annihilator loading systems"
+		"tracking systems"
 	word
 		": online. Secondary systems check: "
 	word
@@ -224,6 +227,52 @@ phrase "friendly ka'het"
 	word
 		". No necessary action."
 
+phrase "friendly ka'het"
+	word
+		"Connection with the vessel <ship>: "
+	word
+		"established"
+		"stable"
+		"reliable"
+		"strong"
+	word
+		". Estimated signal strength: "
+	word
+		"8"
+		"9"
+		"9"
+		"9"
+	phrase
+		"digit"
+	word
+		"%."
+
+phrase "friendly ka'het"
+	word
+		"Failed connection with planet "
+	word
+		"Osaeli"
+		"Alix"
+		"Retilie"
+		"Veliante"
+		"Eavine"
+		"Celeatis"
+		"Nona"
+		"Palarei"
+	word
+		". Reason: "
+	word
+		"no response"
+		"unknown"
+		"missing response"
+	word
+		". Sending report to station "
+	word
+		"Parii"
+		"Seli"
+	word
+		"."
+
 phrase "friendly disabled ka'het"
 	word
 		"Primary systems check: "
@@ -236,6 +285,9 @@ phrase "friendly disabled ka'het"
 		"main thrusters: offline"
 		"main steering: offline"
 		"main coolers: unavailable"
+		"Ravager emitters: offline"
+		"Annihilator loading systems: offline"
+		"tracking systems: partially online"
 	word
 		". Secondary systems check: "
 	word
