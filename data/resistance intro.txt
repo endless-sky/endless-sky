@@ -1101,7 +1101,7 @@ mission "House Bebliss 7"
 	on visit
 		dialog `You've reached <planet>, but left House Bebliss' ship behind! Best depart and wait for them to get here.`
 	on complete
-		event "freya arachi research" 690
+		event "freya arachi research" 140
 		payment 930000
 		conversation
 			`As both your ships come in for a landing, you contact Freya, and tell her the Arachi are with you this time. She tells you to land on the outskirts of the city, and that she will meet you and her guests after she "mentally prepares."`
