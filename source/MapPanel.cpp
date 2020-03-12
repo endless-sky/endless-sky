@@ -397,7 +397,7 @@ bool MapPanel::Hover(int x, int y)
 	
 	for(const auto &it : GameData::Missions())
 	{
-		const Planet *source = it.second.GetShadowSource(player);
+		const Planet *source = it.second.GetReminderSource(player);
 		if(source)
 		{
 			if(pos.Distance(source->GetSystem()->Position()) < maxDistance
@@ -1099,7 +1099,7 @@ void MapPanel::DrawMissions()
 	}
 	for(const auto &it : GameData::Missions())
 	{
-		const Planet *source = it.second.GetShadowSource(player);
+		const Planet *source = it.second.GetReminderSource(player);
 		
 		if(source)
 		{
@@ -1149,7 +1149,7 @@ void MapPanel::DrawTooltips()
 		
 		for(const auto &it : GameData::Missions())
 		{
-			const Planet *source = it.second.GetShadowSource(player);
+			const Planet *source = it.second.GetReminderSource(player);
 			if(source && source->GetSystem() == hoverSystem)
 			{
 				if(!tooltip.empty())

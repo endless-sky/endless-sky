@@ -119,7 +119,7 @@ void PlanetPanel::Draw()
 			info.SetCondition("has spaceport");
 			for(const auto &it : GameData::Missions())
 			{
-				const Planet *source = it.second.GetShadowSource(player);
+				const Planet *source = it.second.GetReminderSource(player);
 				if(source == &planet && it.second.IsAtLocation(Mission::SPACEPORT))
 				{
 					info.SetCondition("has spaceport mission");

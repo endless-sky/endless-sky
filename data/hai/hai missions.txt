@@ -1539,6 +1539,7 @@ mission "Nanachi 2"
 	source "Cloudfire"
 	destination "Hai-home"
 	clearance
+	reminder
 	to offer
 		has "Nanachi 1: done"
 	on offer
@@ -1570,6 +1571,7 @@ mission "Nanachi 3"
 	source "Hai-home"
 	stopover "Alta Hai"
 	destination "Allhome"
+	reminder
 	deadline 14
 	to offer
 		has "Nanachi 2: done"
@@ -1638,6 +1640,7 @@ mission "Nanachi 4"
 	name "Protect Nanachi"
 	description "Bring Nanachi's ship to <stopovers>, keeping her safe from a pirate fleet that attacked a convoy heading to Hai space, then head back to <destination> by <date>."
 	source "Allhome"
+	reminder
 	stopover "Prime"
 	deadline 17
 	to offer

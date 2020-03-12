@@ -11,7 +11,7 @@
 mission "FW Reconciliation 1"
 	name "Pick up Ijs from <planet>"
 	description "Bring Katya and Sawyer to <destination>, along with Raven's ship (the Eye of Horus), and pick up Ijs and his equipment for detecting atomic testing."
-	shadow
+	reminder
 	autosave
 	source "New Tibet"
 	destination "Winter"
@@ -2321,7 +2321,7 @@ mission "FW Syndicate Extremists 1"
 	name "Deal with the Syndicate"
 	description "Now that the Pug appear to have been driven off, it's time to get some answers from the Syndicate. Travel with Admiral Danforth back to <destination> for another meeting with the CEO of the Syndicate."
 	autosave
-	shadow
+	reminder
 	source Pugglemug
 	destination Foundry
 	to offer

@@ -812,7 +812,7 @@ mission "FWC Checkmate 1B"
 	name "Attack Menkent"
 	description "The Wolf Pack has launched an initial attack on the Menkent system. Follow up with your fleet and finish off the Navy defenses. Katya will ride with you."
 	autosave
-	shadow
+	reminder
 	source Tundra
 	destination "New Austria"
 	clearance
@@ -991,7 +991,7 @@ mission "FWC Checkmate Escorts"
 mission "FWC Pug 1"
 	name "Defend <planet>"
 	description "<planet> is under attack by ships of an unknown type. Drive them off, and then return to the planet to figure out what to do next."
-	shadow
+	reminder
 	source "Silver"
 	to offer
 		has "FWC Checkmate 1C: done"
@@ -2021,7 +2021,7 @@ mission "FWC Pug 5"
 	name "Liberate <system>"
 	description "Some of the Navy ships have been outfitted with jump drives. Travel with them to the <system> system, avoiding the main Pug fleet in their home system, and reclaim control of the planet."
 	autosave
-	shadow
+	reminder
 	source Rand
 	destination Silver
 	clearance
@@ -2340,7 +2340,7 @@ mission "FWC End"
 	name "Talk to Parliament"
 	description "Travel to Earth for another meeting with Parliament. Alondo and Katya will meet you there. (Hopefully it will go better than your last visit.)"
 	autosave
-	shadow
+	reminder
 	source Pugglemug
 	destination Earth
 	to offer

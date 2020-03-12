@@ -156,8 +156,8 @@ void Mission::Load(const DataNode &node)
 			isVisible = false;
 		else if(child.Token(0) == "priority")
 			hasPriority = true;
-		else if(child.Token(0) == "shadow")
-			showShadow = true;
+		else if(child.Token(0) == "reminder")
+			showReminder = true;
 		else if(child.Token(0) == "minor")
 			isMinor = true;
 		else if(child.Token(0) == "autosave")
@@ -292,7 +292,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("invisible");
 		if(hasPriority)
 			out.Write("priority");
-		if(showShadow)
+		if(showReminder)
 			out.Write("shadow");
 		if(isMinor)
 			out.Write("minor");
@@ -607,9 +607,9 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 
 
 // Get a planet for which this mission can be advertised to the player
-const Planet *Mission::GetShadowSource(const PlayerInfo &player) const
+const Planet *Mission::GetReminderSource(const PlayerInfo &player) const
 {
-	if(!showShadow || location == BOARDING || location == ASSISTING)
+	if(!showReminder || location == BOARDING || location == ASSISTING)
 		return nullptr;
 	
 	if(!toOffer.Test(player.Conditions()))

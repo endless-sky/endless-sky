@@ -82,7 +82,7 @@ mission "Intro [0]"
 
 mission "Intro [1 Transport]"
 	priority
-	shadow
+	reminder
 	name "Transport family to <planet>"
 	description "Bring your new friend James, along with this large family, to <destination>. Payment will be <payment>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
@@ -120,7 +120,7 @@ mission "Intro [1 Transport]"
 
 mission "Intro [2 Transport]"
 	priority
-	shadow
+	reminder
 	name "Tourists to <planet>"
 	description "These tourists will pay you <payment> to take them to <destination>. Your new friend James will also be tagging along for the ride."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
@@ -151,7 +151,7 @@ mission "Intro [2 Transport]"
 
 mission "Intro [3 Transport]"
 	priority
-	shadow
+	reminder
 	name "Bring James to <planet>"
 	description "Bring James to <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
@@ -182,7 +182,7 @@ mission "Intro [3 Transport]"
 
 mission "Intro [1 Freighter]"
 	priority
-	shadow
+	reminder
 	name "Delivery to <planet>"
 	description "Travel with your new friend James to <destination>, and deliver <cargo>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
@@ -230,7 +230,7 @@ mission "Intro [1 Freighter]"
 
 mission "Intro [2 Freighter]"
 	priority
-	shadow
+	reminder
 	name "Rush delivery to <planet>"
 	description "This shipment of <commodity> needs to get to <destination>, by <date>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
@@ -281,7 +281,7 @@ mission "Intro [2 Freighter]"
 
 mission "Intro [3 Freighter]"
 	priority
-	shadow
+	reminder
 	name "Bring James to <planet>"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
@@ -314,7 +314,7 @@ mission "Intro [3 Freighter]"
 
 mission "Intro [1 Interceptor]"
 	priority
-	shadow
+	reminder
 	name "Escort convoy to <planet>"
 	description "Escort a merchant convoy to <destination>, along with your new friend James."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
@@ -359,7 +359,7 @@ mission "Intro [1 Interceptor]"
 
 mission "Intro [2 Interceptor]"
 	priority
-	shadow
+	reminder
 	name "Delivery to <planet>"
 	description "Deliver <commodity> to <destination>, while avoiding pirate attacks."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
@@ -407,7 +407,7 @@ mission "Intro [2 Interceptor]"
 
 mission "Intro [3 Interceptor]"
 	priority
-	shadow
+	reminder
 	name "Bring James to <planet>"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
