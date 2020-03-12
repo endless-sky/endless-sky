@@ -59,12 +59,12 @@ mission "event: hai secret leaks A"
 			`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, you've seen things, but not this.`
 			`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existance of the aliens known as 'Hai'.`
 			`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
-			decline	
+				decline	
 			label "hai knowledge"
 			`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognise shield beetles hammering away at each other.`
 			`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existance of the aliens known as 'Hai'.`
 			`	You suspect it might be time to go visit your Hai friends again and see what's going on.`
-			fail
+				fail
 	
 mission "event: hai secret leaks B"
 	landing
@@ -87,12 +87,12 @@ mission "event: hai secret leaks B"
 			`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, you've seen things, but not this.`
 			`	When it's finished the young man, who is very well presented, but clearly has a bit of the paranoid about him that is plain to see even through a screen is encouraged to talk about where he got the footage. he talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war. A war waged by an alien species known as the 'Hai'.`
 			`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
-			decline	
+				decline	
 			label "hai knowledge"
 			`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognise shield beetles hammering away at each other.`
 			`	When it's finished the young man, who is very well presented, but clearly has a bit of the paranoid about him that is plain to see even through a screen is encouraged to talk about where he got the footage. he talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war. A war waged by an alien species known as the 'Hai'.`
 			`	You suspect it might be time to go visit your Hai friends again and see what's going on.`
-			fail
+				fail
 
 #Both of these accept automatically with either secret leaks scenarios above - the non-relevant mission then fails based on whether you get the text for knowing about the Hai or not.
 
@@ -168,7 +168,8 @@ mission "leaks response 1"
 				`	"It certainly seems rather practical."`
 			`	"Fantastic," she says, though her tone is much more business like than the wording would imply, "In that case, if you could please take this to Earth and communicate with your various governments we can begin a dialogue on how best to deal with this current scenario."`
 			`	Your take the boxed item with you and an escort awaits to return you to your ship. As the door behind you closes you are sure you hear Sayari mutter to someone, "It was really much easier when they just had one government, what a mess."`
-			accept
+				accept
+	
 	
 mission "leaks response 2"
 	landing
@@ -180,8 +181,9 @@ mission "leaks response 2"
 		has "leaks response 1: offered"
 	passengers 3
 	on offer
+		event "pirates respond to leaks"
 		conversation
-			`On approach to the spaceport on Earth you communicate your need to speak to an official of significant standing on diplomatic business. Since you are not a diplomat this does cause some minor kerfuffle in the process, but thanks to your reknown from the Pug war you are able to blow past such petty objections sufficiently so as to shortcut the process.`
+			`On approach to the spaceport on Earth you communicate your need to speak to an official of significant standing on diplomatic business. Since you are not a diplomat this does cause some minor kerfuffle in the process, but thanks to your renown from the Pug war you are able to blow past such petty objections sufficiently so as to shortcut the process. The diplomatic ID from the box Sayari gave you doesn't hurt either.`
 			`	The Republic Deputy Minister for Foreign Affairs meets you in a hired, private room at the spaceport.`
 			`	"Captain <Last>," he steps around the table to grasp your hand in a firm handshake, "Xilin Yang, it's an honour to meet a war hero like yourself."`
 			choice
@@ -202,21 +204,48 @@ mission "leaks response 2"
 			`	Once you nod your assent he continues, "Well, obviously the Republic knows about the Hai, but for the moment our official line is that the government does not trade in rumours. However, clearly an appropriate response is needed. I have been informed that Republic Intelligence has gone through official channels to brief the Free Worlds Council just yesterday. They have demanded that they have a trained diplomatic representative along for any decisions. This is already standard practice for the Syndicate. If you are willing, I will come with you, and we shall meet two individuals known as Katya and Alastair on Deep and Foundry respectively. I believe you already know them?`
 			`	You indicate as such.`
 			`	"Excellent, in that case we should go to Deep first for speed, shall we be off?"`
-			accept
+				accept
 	on stopover
 		conversation
 			`Landing on Foundry you are communicated to on a private encrypted channel and directed to a private hangar where you are greeted personally by CEO Alastair Korban.`
 			`	He smiles warmly, "Apologies Captain <Last>, do excuse the cloak and dagger, but in the current media climate you and I are both too well known to be seen meeting without causing the rumour mill to grind out a new story."`
-			`	"Now, allow me to introduce you to my protege Terry Adrianapolous, he will be accompanying you as the Syndicate representative."`
-			`	The young woman goes from calculating to gregarious in the blink of an eye as your attention shifts to her. She's pleasant and approachable, and very articulate, but from your brief glimpse beforehand you have no doubt she's cut from the sort of cloth that makes her future CEO material. You resolve not to get on her bad side if at all possible.
+			`	"Now, allow me to introduce you to my protege Terry Adrianopolous, he will be accompanying you as the Syndicate representative."`
+			`	The young woman goes from calculating to gregarious in the blink of an eye as your attention shifts to her. She's pleasant and approachable, and very articulate, but from your brief glimpse beforehand you have no doubt she's cut from the sort of cloth that makes her future CEO material. You resolve not to get on her bad side if at all possible.`
+			`"Oh by the way," says Alastair, pausing briefly as he turns to depart, "The navy and my security forces are working jointly to get some of our message relays up in the far north to link through Ultima Thule. The pirates are wont to destroy them whenever they find them but we should be able to rely on at least basic communication to get through if you need it. Rather than flying back and forth for literally every question. That's all."
+			`After which he finally, actually, departs for good.`
 	on visit
 		dialog phrase "generic stopover on visit"
 	on complete
 		conversation
-			`You are directed to an official landing pad on your return to Hai-Home and it is not long before you are introducing your entourage to Sayari.`
-		#Complete this.
-			
-	#If a republic/syndicate campaign gets added this text will need variants.
+			`You are directed to an official landing pad on your return to Hai-Home and it is not long before you are introducing your entourage to Sayari. Alondo in particular seems quite stoked to be here and seems to have a knack for charming Sayari with polite and insightful, if rather simple, questions throughout the diplomatic niceties.`
+			`	You get down to business at the moment Sayeri inquires how your journey went.`
+			choice
+				`I don't recall there being nearly so many pirates.'
+			`	Sayari frowns and exhales a long breath through her nose, "Yes. Well it seems that the rumours of us, and the information making its way through your media has attracted every opportunist this side of the Deep."`
+			`	"Of course," she says, "some of the pirates were aware of us, and we were aware of them being aware of us. We had a quiet arrangement with a select few where we rewarded them for keeping the secret well contained within their own circles."`
+			`	Alondo looks surprised, but Mr Yang and Ms Adrianopolous both merely nod sagely.`
+			`	"Extra security forces are being called in, but we've been busier in Wah Ki than usual lately."`
+			`	Mr Yang pulls out a datapad, "Well then I'm afraid I may have some bad news. May I?"`
+			`	He gestures to a display and then takes control when indicated.`
+			`	"One of the things I brought with me was Republic Intelligence's estimate of the effectiveness of various information containment measures."`
+			`	A series of charts are thrown up on the screen. You're not an expert at reading this sort of data but highlighted percentages ranging from as low as 4% to only as high as 39% do not look promising. The final graphic is a map of stages of what is labelled as 'artifact penetration'.`
+			`	"Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is other than the truth, at least not while still holding to the claim of being a representative government," explains Mr Yang.`
+			`	He checks the date, "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months or lose so much credibility as to compromise elctoral stability, the actual time limit is probably sooner."
+			choice
+				`Would that be so bad?`
+			`"It is always bad to be forced into acknowledging a secret, if we act sooner we may control the manner of that secret's release.`
+			`Sayari looks at you, "We will have to come up with a plan, and quickly, but for the moment may I ask a favour of the war hero in the room? Please meet up with the security forces converging on Allhome, help them route the pirates back to the other side of the wormhole it will buy us some breathing space and some options."`
+			`It is so hard to ay no to a Hai and their cute squirrelly features.`
+			choice
+				`"I'll do what I can."
+#If a republic/syndicate campaign gets added this on complete text will need variants.
+	
+	
+event "pirates respond to leaks"
+	#Add pirate spawns to Waypoint and Heia Due
+	
+	
+#If a republic/syndicate campaign gets added this text will need variants.
 mission "leaks response 2A"
 	landing
 	invisible
@@ -233,6 +262,15 @@ mission "leaks response 2A"
 			`	"I think we can spare a short while, and you really should meet Mr Yang."`
 			`	Mr Yang had been studiously pretending he wasn't eavesdropping from a distance of a few metres, but before you can call him over Alondo's slightly suggestive comment of 'Oh I should definitely meet Mr Yang' had evidently been overheard.`
 			`	Fortunately, after an hour and a couple of drinks, all embarrassment has been forgotten on both sides by the time you're returning to your ship.`
-			fail
+				decline
 	
-	
+mission "leaks response 2B"
+	landing
+	source
+		government "Republic" "Syndicate" "Free Worlds"
+	to offer
+		has "leaks response 2: active"
+	on offer
+		conversation
+			`While refuelling on <origin> you see that the media circus is continuing uabated. Apparently pirates have started making renewed attacks on trade lanes in the north, utilising some of the strange weapons observed in the recorded clip of Hai ships fighting each other. Goodness knows how they got their hands on them, but it can't be good news.`
+				decline
