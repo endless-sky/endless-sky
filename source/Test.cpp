@@ -269,6 +269,11 @@ void Test::TestStep::Load(const DataNode &node)
 		stepType = ASSERT;
 		checkedCondition.Load(node);
 	}
+	else if(node.Token(0) == "break if")
+	{
+		stepType = BREAK_IF;
+		checkedCondition.Load(node);
+	}
 	else if(node.Token(0) == "land")
 		stepType = LAND;
 	else if(node.Token(0) == "launch")
