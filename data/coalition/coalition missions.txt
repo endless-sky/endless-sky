@@ -435,7 +435,7 @@ mission "Coalition Yottrite 9"
 			`	"If with us, you come, Captain, perhaps a better detailed  description of the systems where the Yottrite was found, you could provide," Nasilor says.`
 			`	"<payment>, I would pay you," Lugglop says.`
 			choice
-				`	"Of course I'll take you there. Have that container loaded into my ship."`
+				`	"Of course I'll take you there. Have the containers loaded into my ship."`
 					goto accept
 				`	"What discoveries have you made about it?"`
 					goto findings
