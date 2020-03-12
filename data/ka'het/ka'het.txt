@@ -453,6 +453,27 @@ phrase "hostile ka'het"
 	word
 		"."
 
+phrase "hostile ka'het"
+	word
+		"Established connection with station "
+	word
+		"Parii"
+		"Seli"
+	word
+		". Signal strength: "
+	word
+		"3"
+		"4"
+		"5"
+		"6"
+		"7"
+		"8"
+		"9"
+	phrase
+		"digit"
+	word
+		"%. Reporting hostilities in system <system>."
+
 phrase "hostile disabled ka'het"
 	word
 		"Threat: "
