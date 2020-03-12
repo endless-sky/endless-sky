@@ -46,7 +46,7 @@ outfit "Fusion Drive"
 		"frame rate" 30
 		"rewind"
 	"flare sound" "atomic huge"
-	unplunderable 1
+	"unplunderable" 1
 	description `The Sheragi engines are much more than simple tubes spewing fire; they are a collection of interdependent devices, providing increased efficiency at the cost of modularity. These include a hyperdrive, an enormous fusion reactor, and the most powerful plasma engines you've ever seen. All simple technology, but honed to their extremes. The engines are fundamentally connected to the fusion reactor, increasing their thrust even further and thereby allowing the Emerald Sword to fly at impressive speeds, travelling through interstellar space with relative ease.`
 
 outfit "Sheragi Cooling Unit"
@@ -69,7 +69,7 @@ outfit "Damaged Sheragi Systems"
 	"energy consumption" 3
 	"heat generation" 4
 	"jump drive" -1
-	unplunderable 1
+	"unplunderable" 1
 	description "There is a lot of broken Sheragi hardware in here. You need to fix those before you can take the ship back to Human space."
 
 

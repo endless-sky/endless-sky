@@ -435,9 +435,9 @@ mission "Sheragi Archaeology: The Box 7a"
 				accept
 
 mission "Sheragi Archaeology: The Box 7b"
-	description "Land on <destination> to speak with the ministry of culture."
 	landing
 	name "The Hai Ministry of Culture"
+	description "Land on <destination> to speak with the ministry of culture."
 	source "Mirrorlake"
 	destination "Hai-home"
 	clearance
@@ -503,17 +503,16 @@ mission "Sheragi Archaeology: The Box 7b"
 			`	You thank them for their help, and leave the building, ready to meet your new team.`
 
 mission "Sheragi Archaeology: The Box 8"
-	description "Take the Hai archaeologists to meet Albert Foster on <destination>."
 	name "Assembling the Team"
+	description "Take the Hai archaeologists to meet Albert Foster on <destination>."
 	source "Hai-home"
 	destination "Zug"
 	passengers 3
 	cargo "Archaeological Equipment" 1
+	blocked `You arrive at the spaceport, but then you realize your ships don't have enough free bunks or cargo space required to bring the archaeologist team with you. You manage to contact them, and in an embarrassing conversation ask them to wait for you while you make sure you're ready.`
 	
 	to offer
 		has "Sheragi Archaeology: The Box 7b: done"
-	
-	blocked `You arrive at the spaceport, but then you realize your ships don't have enough free bunks or cargo space required to bring the archaeologist team with you. You manage to contact them, and in an embarrassing conversation ask them to wait for you while you make sure you're ready.`
 	
 	on offer
 		conversation
@@ -526,6 +525,7 @@ mission "Sheragi Archaeology: The Box 8"
 				accept
 	
 	on complete
+		event "cube decoded" 40 50
 		conversation
 			`It was a long trip, almost halfway across the galaxy. The Hai archaeologists have been friendly to you, giving you updates every time they make a new breakthrough. During this time, the cube, previously thought to be impenetrable, had been disassembled and cleaned. Components that decayed into a mess of oxidized wires and goopy paste over the eons were been identified and removed to substitute for equivalent ones, and a blueprint of the box and its circuits has started to take shape.`
 			`	As soon as you land, you call Albert Foster, who doesn't believe you when you say you got alien archaeologists to help. You then look for the three Hai to figure out how they're going to go unnoticed on a human world. You're surprised to find Eyama wearing long, dark but colorful baggy human clothing with an equally oversized hoodie and a bandanna. You recognize this outfit, very popular with the youth these days, who are generally regarded as delinquents by the previous generation. Additionally, she's carrying two more sets, for her Hai partners as well. It hides her body really well at the cost of making her look like a young boy, and the Hai's relatively short stature doesn't help.`
@@ -555,13 +555,11 @@ mission "Sheragi Archaeology: The Box 8"
 				`	"Can i help you?"`
 			`	"It came to my attention that your friends found a Sheragi black box, and kept it a secret. I am well aware your species view us with distrust, but we only work to prevent extinction. I've been told to not interfere. I'm just here to advise you to be careful with it's contents. While it is nothing inherently dangerous, we feel like it would be safer on the hands of a skilled captain like you than anywhere else. You've been doing well so far, Captain."`
 			`	He turns around, and leaves you to think about it.`
-			
-		event "cube decoded" 40 50
-		
+
 mission "Sheragi Archaeology: The Emerald Sword 1"
-	description "Visit Albert Foster on Zug."
 	landing
 	name "Black Box Decoded"
+	description "Visit Albert Foster on Zug."
 	source
 		near "Zubeneschamali" 1 100
 	destination "Zug"
@@ -576,8 +574,8 @@ mission "Sheragi Archaeology: The Emerald Sword 1"
 
 mission "Sheragi Archaeology: The Emerald Sword 2"
 	landing
-	description "Bring an additional Jump Drive to Zug."
 	name "The Emerald Sword"
+	description "Bring an additional Jump Drive to Zug."
 	source "Zug"
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 1: done"
@@ -612,18 +610,17 @@ mission "Sheragi Archaeology: The Emerald Sword 2"
 		never
 
 mission "Sheragi Archaeology: The Emerald Sword 3"
+	landing
 	name "The Emerald Sword"
 	description "Capture the Emerald Sword."
-	landing
 	source "Zug"
 	destination "Echoes of Tragedy"
 	cargo "Outfitting Equipment" 50
 	passengers 20
+	blocked `You arrive to make the preparations to capture the Emerald Sword, but Albert stops you. "Captain, we're going to need 50 tons of cargo to take our materials and the jump drive, and 20 additional crew to help, including us. I'd also advise that you save enough bunks to hire some additional crew. The Emerald Sword is an alien ship, so we have no idea how many people we will need to man it. I would recommend erring on the side of caution by bringing along 100 or so extra crew members."`
 	
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 2: active"
-	
-	blocked `You arrive to make the preparations to capture the Emerald Sword, but Albert stops you. "Captain, we're going to need 50 tons of cargo to take our materials and the jump drive, and 20 additional crew to help, including us. I'd also advise that you save enough bunks to hire some additional crew. The Emerald Sword is an alien ship, so we have no idea how many people we will need to man it. I would recommend erring on the side of caution by bringing along 100 or so extra crew members."`
 	
 	on offer
 		require "Jump Drive" 2
@@ -676,7 +673,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 	npc board
 		government "Sheragi"
 		personality derelict mute
-		system Zubenelhakrabi
+		system "Zubenelhakrabi"
 		ship "Emerald Sword" "Emerald Sword"
 		conversation
 			`You dock with the Emerald Sword, and the crew starts working to carefully find a way in, directed by the Hai archaeologists. There is no atmosphere inside it as the life support has long since ceased to work, and it takes a long time to restore it through your ship's own life support and patch tiny micrometeorite holes. Once it's in breathable conditions, it still smells like a tomb. You find many Sheragi skeletons and mummified remains. A few of them have prosthetics that survived better than their host. Your crew gets to work cleaning up the thick layer of dust and grime that covers every surface, while the more specialized crew tries to bring the power core back to life and take advantage of the zero-G environment to move the jump drive into the ship more easily. You'll need to land to properly install it, however. All that is left for you to do is relocate the many corpses littering the living spaces with your crew.`
@@ -688,9 +685,9 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			`[You need to remove the Damaged Sheragi Systems to repair it.]`
 
 mission "Sheragi Archaeology: Emerald Sword Epilogue"
+	landing
 	name "The Emerald Sword"
 	description "Return to Zug."
-	landing
 	source "Echoes of Tragedy"
 	destination "Zug"
 	passengers 20
@@ -738,7 +735,7 @@ event "cube stolen"
 event "cube decoded"
 
 event "zubenelhakrabi discovered"
-	system Zubenelhakrabi
+	system "Zubenelhakrabi"
 		pos -755.265 364.932
 
 event "temporary outfitter removed"
@@ -843,7 +840,7 @@ system Zubenelhakrabi
 			offset 128.448
 
 planet "Echoes of Tragedy"
-	attributes Uninhabited
+	attributes uninhabited
 	landscape land/fog4
 	description `From afar, this looks like a habitable planet, comfortably located on the near end of the goldilocks zone of its star. It has high concentration of water vapor in it's atmosphere, and hosts primitive life, with mosses covering nearly all moist surfaces, and small crustacean-like animals roaming the land.`
 	description `However, there is an unusually high concentration of toxic chlorine in the lower atmosphere. Without special equipment, one can only stay on the mountains to avoid the dense gas, and even then, only for a few hours before problems arise. Any trace of colonization by the Sheragi has long since eroded away.`
