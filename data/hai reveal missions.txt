@@ -134,8 +134,105 @@ mission "leaks 1B: investigate the hai"
 	
 	
 	
-	
+	#Make reference to them finding out your status from the war, and your visitation of Hai space
 	
 #Branches merge here.
+	
+mission "leaks response 1"
+	landing
+	source
+		"Hai-Home"
+	destination 
+		"Earth"
+	to offer
+		has "leaks 2A: envoy accepted: done"
+		has "leaks 2B: envoy accepted: done"
+	on offer
+		conversation
+			`As you come into land on Hai-Home you find that a reasonable security detachment has been assigned to your designated landing berth. The Hai aren't usually ones to be concerned about such things, but you suspect that as an apparent "war hero" that this may be more for the benefit of appearances on your part than anything else.`
+			`	Word of your status in human space seems to have spread ahead of you, especially with you beng known on many Hai worlds as one of the view significant human visitors. A small crowd of Hai have gathered to peek at you on the short walk from the Spaceport to the government building you are led to.`
+			branch karma
+			karma > 1
+			`	As you are making the walk you hear questions posed and rumours stated. Occasionally you hear words like "survivor" and "dangerous" thrown in amongst the babble.`
+			goto main
+			label karma
+			`	As you are making the walk you hear questions posed and rumours stated. Occasionally you hear words like "honourable" and "reasonable" thrown in amongst the babble.`
+			label main
+			`	You are eventually led into a very comfortable office where you are received by a mature looking Hai with the apropriate regalia of a diplomat. She holds out a paw to greet you, and says, "My name is Sayari. I was the envoy to the human government, a century ago."`
+			`	The present media storm is all the evidence you need to know the Republic has never mentioned the Hai, nor publicly acknowledged receiving an envoy from them. If they're in on the secret, then it makes sense that they're probably still trying to work out a suspression strategy and too busy to have sent an envoy quicker than yourself.`
+			`	After a moment to let you ponder, she continues, "Our reports tell us that you are a well-known individual, respected both by your own government and abroad in the other human governments. Our reports also tell us that 'Hai' is quickly becoming a buzzword in your space. A few traders brought the news ahead of you."`
+			`	She pauses and looks at you seriously.`
+			`	"We think it would be prudent for you to represent your people as our point of contact. Would you accept such a role?"`
+			`You give it a moment of thought.`
+			choice
+				`	"It certainly seems rather practical."`
+			`	"Fantastic," she says, though her tone is much more business like than the wording would imply, "In that case, if you could please take this to Earth and communicate with your various governments we can begin a dialogue on how best to deal with this current scenario."`
+			`	Your take the boxed item with you and an escort awaits to return you to your ship. As the door behind you closes you are sure you hear Sayari mutter to someone, "It was really much easier when they just had one government, what a mess."`
+			accept
+	
+mission "leaks response 2"
+	landing
+	source "Earth"
+	stopover "Deep"
+	stopover "Foundry"
+	destination "Hai-Home"
+	to offer
+		has "leaks response 1: offered"
+	passengers 3
+	on offer
+		conversation
+			`On approach to the spaceport on Earth you communicate your need to speak to an official of significant standing on diplomatic business. Since you are not a diplomat this does cause some minor kerfuffle in the process, but thanks to your reknown from the Pug war you are able to blow past such petty objections sufficiently so as to shortcut the process.`
+			`	The Republic Deputy Minister for Foreign Affairs meets you in a hired, private room at the spaceport.`
+			`	"Captain <Last>," he steps around the table to grasp your hand in a firm handshake, "Xilin Yang, it's an honour to meet a war hero like yourself."`
+			choice
+				`	"It was a brutal business, but someone had to do it. For the people."`
+				`	"Please, it was far less dramatic than it's made out to be."`
+				goto humble
+			`	You play the part and do your best attempt at looking noble. Mr Yang seems more than happy to embody respect for the hero of his preferred narrative.`
+			`	"You're every inch what I expected," he assures you before moving to take his seat.`
+			goto sit
+			label humble
+			`	You spread your hands in an appeasing gesture and explain, "You should listen to the xenoanthropologists, the Pug really were just here to test us, to make us really consider what mattered to our species."`
+			`	For a moment his expression falters and then he seems almost relieved, "You may be a better man than I expected to meet."`
+			`	He offers you a genuine smile as he takes his seat.`
+			label sit
+			`	You take your seat opposite him and you get down to business. You explain how the Hai have proposed you be their official contact point for humanity on account of your fame from the war.`
+			`	He asks a few questions for clarity and when you're done he requests if you'd kindly wait for a moment while he makes a call. It is a lengthy wait, and at one point an aide comes in and offers you refreshments while deliberations continue elsewhere. Much to your surprise the fruity beverage is actually quite light and not too sweet, reminding you briefly that this is actually the world where your major foods originally evolved. 
+			`	Eventually Mr Yang returns, "So sorry for that, I hope you were looked after suitably while you waited."`
+			`	Once you nod your assent he continues, "Well, obviously the Republic knows about the Hai, but for the moment our official line is that the government does not trade in rumours. However, clearly an appropriate response is needed. I have been informed that Republic Intelligence has gone through official channels to brief the Free Worlds Council just yesterday. They have demanded that they have a trained diplomatic representative along for any decisions. This is already standard practice for the Syndicate. If you are willing, I will come with you, and we shall meet two individuals known as Katya and Alastair on Deep and Foundry respectively. I believe you already know them?`
+			`	You indicate as such.`
+			`	"Excellent, in that case we should go to Deep first for speed, shall we be off?"`
+			accept
+	on stopover
+		conversation
+			`Landing on Foundry you are communicated to on a private encrypted channel and directed to a private hangar where you are greeted personally by CEO Alastair Korban.`
+			`	He smiles warmly, "Apologies Captain <Last>, do excuse the cloak and dagger, but in the current media climate you and I are both too well known to be seen meeting without causing the rumour mill to grind out a new story."`
+			`	"Now, allow me to introduce you to my protege Terry Adrianapolous, he will be accompanying you as the Syndicate representative."`
+			`	The young woman goes from calculating to gregarious in the blink of an eye as your attention shifts to her. She's pleasant and approachable, and very articulate, but from your brief glimpse beforehand you have no doubt she's cut from the sort of cloth that makes her future CEO material. You resolve not to get on her bad side if at all possible.
+	on visit
+		dialog phrase "generic stopover on visit"
+	on complete
+		conversation
+			`You are directed to an official landing pad on your return to Hai-Home and it is not long before you are introducing your entourage to Sayari.`
+		#Complete this.
+			
+	#If a republic/syndicate campaign gets added this text will need variants.
+mission "leaks response 2A"
+	landing
+	invisible
+	source Deep
+	to offer
+		has "leaks response 2: active"
+	on offer
+		conversation
+			`When you land on Deep Katya is there waiting for you along with Alondo, "<First> it's so good to see you again! When the Republic briefed the council we were very concerned by the lack of ability to reach you, but of course you would somehow manage to be in the thick of it before we even knew what was going on."`
+			`	You hug them both in turn and return the greeting as you look from one to the other, "I thought it seemed odd when they said I was meeting you for this Katya, but it makes much more sense if you were just easier to get a hold of than ALondo here."`
+			`	"Oh it was always going to be Alondo," she says, "but there's never a bad excuse for travelling with an old friend, especially when you're meeting other friends too."`
+			`	"Do we have time for a drink before we must rush off?" asks Alondo.`
+			`	You look around at the busy spaceport, no one has even begun looking at your ship for refueling.`
+			`	"I think we can spare a short while, and you really should meet Mr Yang."`
+			`	Mr Yang had been studiously pretending he wasn't eavesdropping from a distance of a few metres, but before you can call him over Alondo's slightly suggestive comment of 'Oh I should definitely meet Mr Yang' had evidently been overheard.`
+			`	Fortunately, after an hour and a couple of drinks, all embarrassment has been forgotten on both sides by the time you're returning to your ship.`
+			fail
 	
 	
