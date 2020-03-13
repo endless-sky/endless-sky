@@ -9,7 +9,7 @@ jobs:
   appimage_amd64:
     runs-on: ubuntu-latest
     env:
-      OUTPUT: endless-sky-amd64-${{ github.event.tag_name }}.AppImage
+      OUTPUT: endless-sky-amd64-${{ github.event.release.tag_name }}.AppImage
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2

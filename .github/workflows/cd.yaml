@@ -36,7 +36,7 @@ jobs:
   appimage_x86_64:
     runs-on: ubuntu-latest
     env:
-      OUTPUT: endless-sky-x86_64-${{ github.event.tag_name }}.AppImage
+      OUTPUT: endless-sky-x86_64-${{ github.sha }}.AppImage
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
