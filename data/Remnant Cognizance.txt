@@ -53,7 +53,7 @@ mission "Remnant: Cognizance 1"
 			`	Despite the new challenge, you manage to record a variety of different void sprites before deciding to head back to <destination>.`
 	on complete
 		conversation
-			`Dissapointed in the void sprites behaviour, you deliver the recordings to Plume's lab without fanfare. He quickly takes them and reviews the footage. He makes a gesture that you think means 'curious dejection,' but then seems to notice something and resumes his usual intent bearing.`
+			`Disappointed in the void sprites' behavior, you deliver the recordings to Plume's lab without fanfare. He quickly takes them and reviews the footage. He makes a gesture that you think means 'curious dejection,' but then seems to notice something and resumes his usual intent bearing.`
 			`	"Here, look!" He rewinds the recording and gestures curtly at the projection in front of you. "There. That one is injured. Some kind of burn in a long, straight line." He zips through the footage farther "and here, a scattering of scorch marks." He looks up at you and snaps out a curt series of gestures: "This is outside my experience, I need to consult an expert. Meet me in the spaceport in an hour."`
 
 
