@@ -489,7 +489,7 @@ ship "Pelican"
 			"hull damage" 800
 			"hit force" 2400
 	outfits
-		"Thrasher Turret"
+		"Inhibitor Turret"
 		"Point Defense Turret" 2
 
 		"Aeon Cell"
@@ -508,7 +508,7 @@ ship "Pelican"
 	engine 0 114 1.1
 	gun 8 -135
 	gun -8 -135
-	turret 0 -67 "Thrasher Turret"
+	turret 0 -67 "Inhibitor Turret"
 	turret 56 35 "Point Defense Turret"
 	turret -56 35 "Point Defense Turret"
 	leak "remnant leak" 20 8
