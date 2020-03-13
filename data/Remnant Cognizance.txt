@@ -138,7 +138,7 @@ mission "Remnant: Cognizance 3"
 	on complete
 		payment 500000
 		conversation
-			`This time as you complete your post-flight checks you spot Prefect Chilia exiting the starling next to you and watch as he stride across the pad to your airlock. You hit the open button as he clambers up the ladder. Without a word you pull up the sensor logs from Aescolanus, highlighting the position of the various ships. His eyes flit over the display for a moment, then he nods.`
+			`This time as you complete your post-flight checks you spot Prefect Chilia exiting the starling next to you and watch as he strides across the pad to your airlock. You hit the open button as he clambers up the ladder. Without a word you pull up the sensor logs from Aescolanus, highlighting the position of the various ships. His eyes flit over the display for a moment, then he nods.`
 			`	"I will notify a task force. Meet me in the spaceport, and make sure your ship is ready to fight." As he departs from your ship, your commlink beeps with a message that an organization by the name of 'Remnant Logistics' has allocated you an additional <payment>.`
 
 
