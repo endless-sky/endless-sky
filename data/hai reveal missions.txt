@@ -75,6 +75,7 @@ mission "event: hai secret leaks B"
 		has "event: hai secret leaks"
 		not "event: hai secret leaks A: offered"
 	on offer
+	event "pirates investigate leaks"
 		conversation
 			`You are relaxing at the spaceport while your ship refuels after conducting a spot of business. On the viewscreen is some talk show or other, not something you specifically paid attention to but apparently a quite popular one out of Tarazed.`
 			`	A young and fresh-faced man who looks incredibly ill at ease has just been brought out as a surprise guest by the host Jonathon Camembert.`
@@ -93,6 +94,9 @@ mission "event: hai secret leaks B"
 			`	When it's finished the young man, who is very well presented, but clearly has a bit of the paranoid about him that is plain to see even through a screen is encouraged to talk about where he got the footage. he talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war. A war waged by an alien species known as the 'Hai'.`
 			`	You suspect it might be time to go visit your Hai friends again and see what's going on.`
 				fail
+
+event "pirates investigate leaks"
+#Spawn a small marauder fleet in Ultima Thule
 
 #Both of these accept automatically with either secret leaks scenarios above - the non-relevant mission then fails based on whether you get the text for knowing about the Hai or not.
 
@@ -125,13 +129,109 @@ mission "leaks 1B: investigate the hai"
 	to complete
 		has "leaks 1A: visit the hai: failed"
 	
+	
 #Branch A is if you already have Hai first contact - sends you directly to Hai Home (detour if you haven't visited Wah Ki yet).
+
+mission "leaks 1A unfettered A"
+	name "Witness the Unfettered"
+	description "Turns out this endless conflict has some truth to it, go see where it's happening."
+	landing
+	source
+		government "Hai"
+		not planet "Cloudfire"
+		not planet "Hai-Home"
+	destination "Cloudfire"
+	to offer
+		has "leaks 1A: visit the hai: offered"
+	on offer
+		conversation
+			`Landing in Hai space draws a much different type of attention than expected. Only recently you've begun to acclimate yourself to getting positive attention. As a war hero you're something of a minor celebrity now back in human space, but here suddenly mothers are keeping tight grips on their children and passers-by look upon you with a hint of wariness.`
+			`	You realise that the few humans who have settled here among the Hai are all wearing pink at the moment, and when you catch the eye of one lady who looks friendly you greet them to ask a few questions.`
+			choice
+				`	"Why does everyone seem so afraid?"`
+				`	"Why are you all wearing pink?"`
+					goto pink
+			`	She shakes her head and wrinkles her nose with a look of distaste, "Some marauder came here just yesterday, posing as a trader to investigate the rumours. We thought the Hai had means of keeping them out but this one snuck in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
+			`	She sighs deeply, "Everyone is just a bit shaken and distrustful at the moment."`
+			`	"Oh that's awful!"
+			`	She nods, "This is why we're all wearing pink, just a little show of local solidarity."
+			goto main
+			label pink
+			`	A sad smile crosses her face and her expression goes sombre as she explains, "A pirate marauder snuck down onto the planet recently, stole a Geocoris and kidnapped a number of Hai, probably into slavery. Everyone is a bit shaken up so the locals are wearing pink in solidarity, and so we're not mistaken for a security risk."
+			label main
+			`	"Unfortunately it's taking a while for them to redistribute an appropriately resourced security force thanks to the Unfettered."
+			choice
+				`	"That is a serious problem." (If you already know about them.)`
+				`	"Who are the Unfettered?" (Go and find out.)`
+					goto rebels
+			`	Your conversation is interrupted suddenly by a small group of somewhat official-looking Hai.`
+			`	"Are you Captain <Last>?" one of them asks you, "Don't worry you're not in trouble or anything."`
+			`	You nod your affirmation.`
+			`	"Your reputation precedes you Captain, if you have any stake in the current information crisis please head directly to Hai-Home. Someone would very much like to talk to you. As a person of note, you are presently being treated as an Envoy."
+			`	They leave without waiting for your agreement, but then, you did come here to see what was going on.`
+				decline
+			label rebels
+			`	She seems surprised you asked, "Oh, they're a sort of rebel Hai group. If you don't know you should go visit Cloudfire in the Wah Ki system up north. A short visit will explain it far better than I ever could."`
+				accept
+	on accept
+		fail "leaks 2A: envoy accepted"
+	on complete
+		conversation
+			`You dodge the conflict in space and come in to land. Cloudfire's atmosphere is unusually hazy, with almost constant cloud cover, making agriculture unproductive here even though it is a warm and damp environment. There are several major cities here that were abandoned centuries ago, due to conflict with the Unfettered. The one major city that remains is the closest thing the Hai have to a military base, with new supplies of weapons and ammunition constantly pouring in from the rest of Hai space.`
+			`The spaceport has massive hangars and advanced repair facilities designed to accommodate the largest Hai warships. Where a fleet has just returned from a recent battle, the hangars are lit with flashes from robotic welders as damaged hull plates are swapped out for fresh ones and weakened joints are reinforced. The actual process of building these warships, however, takes place on the Hai homeworld, where the facilities will not be vulnerable to attack.`
+			`It does not take long to realise that this conflict really is constant, even if the friendlier Hai on this side seem to be maintaining their defence without apparently taxing their civilisation to any great extent.`
 	
 	
+#This fires at the same time as leaks "1A unfettered A" and takes you to Hai-Home if you don't need to visit Cloudfire.
+mission "leaks 2A: envoy accepted"
+	name "Head directly to Hai-Home"
+	description "Go to Hai-Home, go directly to Hai-Home, do not pass Go or collect $200."
+	landing
+	source
+		government "Hai"
+		not planet "Cloudfire"
+		not planet "Hai-Home"
+	destination "Hai-Home"
+	to offer
+		has "leaks 1A: visit the hai: offered"
+	to fail
+		or
+			has "leaks 1A unfettered A: done"
+			has "leaks 1A unfettered A: active"
+	to complete
+		has "leaks 1A unfettered A: declined"
+	on complete
+		conversation
+			`(What happens when you get to Hai Home?)`
+	
+#This fires after you've visited Cloudfire to learn about the Unfettered
+mission "leaks 2B: envoy accepted"
+	name "Head directly to Hai-Home"
+	description "Go to Hai-Home, go directly to Hai-Home, do not pass Go or collect $200."
+	landing
+	source
+		planet "Cloudfire"
+	destination "Hai-Home"
+	to offer
+		has "leaks 1A: visit the hai: offered"
+	to fail
+		or
+			has "leaks 1A unfettered A: done"
+			has "leaks 1A unfettered A: active"
+	to complete
+		has "leaks 1A unfettered A: declined"
+	on complete
+		conversation
+			`(What happens when you get to Hai Home?)`
 	
 	
 #Branch B is if you haven't met the Hai before, fires after First contact happens, sends you on a short guided tour of Hai space.
 	
+	#Stop 1 Imo Dep (Stonebreak)
+	
+	#Stop 2 Alta Hai (ringworld)
+	
+	#Stop 3 Wah Ki (Cloudfire)
 	
 	
 	#Make reference to them finding out your status from the war, and your visitation of Hai space
@@ -145,8 +245,9 @@ mission "leaks response 1"
 	destination 
 		"Earth"
 	to offer
-		has "leaks 2A: envoy accepted: done"
-		has "leaks 2B: envoy accepted: done"
+		or
+			has "leaks 2A: envoy accepted: accepted"
+			has "leaks 2B: envoy accepted: accepted"
 	on offer
 		conversation
 			`As you come into land on Hai-Home you find that a reasonable security detachment has been assigned to your designated landing berth. The Hai aren't usually ones to be concerned about such things, but you suspect that as an apparent "war hero" that this may be more for the benefit of appearances on your part than anything else.`
@@ -235,7 +336,7 @@ mission "leaks response 2"
 				`Would that be so bad?`
 			`"It is always bad to be forced into acknowledging a secret, if we act sooner we may control the manner of that secret's release.`
 			`Sayari looks at you, "We will have to come up with a plan, and quickly, but for the moment may I ask a favour of the war hero in the room? Please meet up with the security forces converging on Allhome, help them route the pirates back to the other side of the wormhole it will buy us some breathing space and some options."`
-			`It is so hard to ay no to a Hai and their cute squirrelly features.`
+			`It is so hard to say no to a Hai and their cute squirrelly features.`
 			choice
 				`"I'll do what I can."
 #If a republic/syndicate campaign gets added this on complete text will need variants.
@@ -274,3 +375,17 @@ mission "leaks response 2B"
 		conversation
 			`While refuelling on <origin> you see that the media circus is continuing uabated. Apparently pirates have started making renewed attacks on trade lanes in the north, utilising some of the strange weapons observed in the recorded clip of Hai ships fighting each other. Goodness knows how they got their hands on them, but it can't be good news.`
 				decline
+
+
+mission "leaks response 3"
+#This gets picked up silently on Hai-Home when landing for response 2 - go kill pirates, stopover chat on Allhome.
+
+
+			`	She looks surprised, "Didn't you see the pirates on your way in? They've been appearing en masse and overhwelming security forces to raid technology and goods from the Hai traders and their security. Some of them have even been sneaking down onto the planet and capturing Hai, taking them away to goodness only knows where."`
+			`	"Oh I didn't realise it was so bad!"
+			`	She nods, "This is why we're all wearing pink, just a little show of local solidarity."
+			goto main
+			label pink
+			`	A sad smile crosses her face and her expression goes sombre as she explains, "The pirate marauders that have recently come have been sneaking down onto the planet and kidnapping Hai, probably into slavery. The locals are wearing pink in solidarity, and so we're not mistaken for a security risk."
+			label main
+			`	"Unfortunately it's taking a while for them to redistribute an appropriately resourced defence force thanks to the Unfettered."
