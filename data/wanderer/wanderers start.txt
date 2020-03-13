@@ -1184,7 +1184,7 @@ mission "Wanderers: Alpha Surveillance E"
 	
 	on offer
 		conversation
-			`When you meet up with Elias Hanover in the spaceport, he says, "I can't think of any way to go about it: we need to involve the Navy in this. No one else has the capability to launch a ground attack."`
+			`When you meet up with Elias Hanover in the spaceport, he says, "I can't think of any other way to go about it: we need to involve the Navy in this. No one else has the capability to launch a ground attack."`
 			choice
 				`	"Are you sure we can trust them? The Alphas were in a Navy ship, after all."`
 				`	"We could go to Admiral Danforth. He's a Navy officer who I trust to be on the right side."`
