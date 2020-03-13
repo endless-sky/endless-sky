@@ -122,7 +122,7 @@ mission "Remnant: Cognizance 3"
 			label voidrifle
 			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are acustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites, and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. You are aware of the potential military implications of the Korath harvesting the void sprites, and must realize the importance of stopping such discovery.`
 			label next
-			`	 "It is an imperative that all the Korath involved in this exploration be located immediately. According to our surveillance, that ship was part of a fleet that recently passed through Parca. Locate the fleet, and report back."`
+			`	 "It is imperative that all the Korath involved in this exploration be located immediately. According to our surveillance, that ship was part of a fleet that recently passed through Parca. Locate the fleet, and report back."`
 				accept
 	npc
 		government "Korath"
