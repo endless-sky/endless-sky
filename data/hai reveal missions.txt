@@ -200,9 +200,6 @@ mission "leaks 2A: envoy accepted"
 			has "leaks 1A unfettered A: active"
 	to complete
 		has "leaks 1A unfettered A: declined"
-	on complete
-		conversation
-			`(What happens when you get to Hai Home?)`
 	
 #This fires after you've visited Cloudfire to learn about the Unfettered
 mission "leaks 2B: envoy accepted"
@@ -220,9 +217,6 @@ mission "leaks 2B: envoy accepted"
 			has "leaks 1A unfettered A: active"
 	to complete
 		has "leaks 1A unfettered A: declined"
-	on complete
-		conversation
-			`(What happens when you get to Hai Home?)`
 	
 	
 #Branch B is if you haven't met the Hai before, fires after First contact happens, sends you on a short guided tour of Hai space.
