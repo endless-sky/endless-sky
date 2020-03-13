@@ -2308,11 +2308,16 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 	conditions["credit score"] = accounts.CreditScore();
 	// Serialize the current reputation with other governments.
 	SetReputationConditions();
+	// Helper lambda function to clear a range
+	auto clearRange = [](map<string, int64_t> &conditionsMap, string firstStr, string lastStr)
+	{
+		auto first = conditionsMap.lower_bound(firstStr);
+		auto last = conditionsMap.lower_bound(lastStr);
+		if(first != last)
+			conditionsMap.erase(first, last);
+	};
 	// Clear any existing ships: conditions. (Note: '!' = ' ' + 1.)
-	auto first = conditions.lower_bound("ships: ");
-	auto last = conditions.lower_bound("ships:!");
-	if(first != last)
-		conditions.erase(first, last);
+	clearRange(conditions, "ships: ", "ships:!");
 	// Store special conditions for cargo and passenger space.
 	conditions["cargo space"] = 0;
 	conditions["passenger space"] = 0;
@@ -2333,14 +2338,8 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 	}
 	
 	// Clear any existing flagship system: and planet: conditions. (Note: '!' = ' ' + 1.)
-	auto firstS = conditions.lower_bound("flagship system: ");
-	auto lastS = conditions.lower_bound("flagship system:!");
-	if(firstS != lastS)
-		conditions.erase(firstS, lastS);
-	auto firstP = conditions.lower_bound("flagship planet: ");
-	auto lastP = conditions.lower_bound("flagship planet:!");
-	if(firstP != lastP)
-		conditions.erase(firstP, lastP);
+	clearRange(conditions, "flagship system: ", "flagship system:!");
+	clearRange(conditions, "flagship planet: ", "flagship planet:!");
 	
 	// Store conditions for flagship current crew, required crew, and bunks.
 	if(flagship)
@@ -2351,7 +2350,7 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 		if(flagship->GetSystem())
 			conditions["flagship system: " + flagship->GetSystem()->Name()] = 1;
 		if(flagship->GetPlanet())
-			conditions["flagship planet: " + flagship->GetPlanet()->Name()] = 1;
+			conditions["flagship planet: " + flagship->GetPlanet()->TrueName()] = 1;
 	}
 	else
 	{
