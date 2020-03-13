@@ -1,5 +1,8 @@
+#!/bin/bash
+
 # Builds Endless Sky and packages it as AppImage
 # Control the output filename with the OUTPUT environment variable
+# You may have to set the ARCH environment variable to e.g. x86_64.
 
 # We need an icon file with a name matching the executable
 cp icons/icon_512x512.png endless-sky.png
