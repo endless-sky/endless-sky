@@ -2,8 +2,8 @@ name: CD
 
 on:
   push:
-    branches:
-      - master
+#    branches:
+#      - master
 
 jobs:
   ubuntu_x86_64:
