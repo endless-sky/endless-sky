@@ -342,6 +342,24 @@ phrase "friendly ka'het"
 	word
 		" primary task."
 
+phrase "friendly ka'het"
+	word
+		"Current objective: systems "
+	word
+		"patrol"
+		"garrison"
+		"vigilance"
+	word
+		". Analyzing system <system>. "
+	word
+		"Searching"
+		"Looking for"
+		"Studying"
+		"Neutralizing"
+		"Identifying"
+	word
+		" possible threats."
+
 phrase "friendly disabled ka'het"
 	word
 		"Primary systems check: "
