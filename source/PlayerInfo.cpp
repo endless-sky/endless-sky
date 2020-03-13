@@ -581,6 +581,9 @@ void PlayerInfo::IncrementDate()
 	// Reset the reload counters for all your ships.
 	for(const shared_ptr<Ship> &ship : ships)
 		ship->GetArmament().ReloadAll();
+	
+	// Re-calculate all automatic conditions
+	UpdateAutoConditions();
 }
 
 
