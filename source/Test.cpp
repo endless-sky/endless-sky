@@ -296,12 +296,16 @@ void Test::TestStep::Load(const DataNode &node)
 		{
 			if(child.Token(0) == "travel" && child.Size() >= 2)
 			{
-				const System *next = GameData::Systems().Find(child.Token(1));
+				// Using get instead of find since the test might be loaded
+				// before the actual system is loaded.
+				const System *next = GameData::Systems().Get(child.Token(1));
 				if(next)
 					travelPlan.push_back(next);
 			}
+			// Using get instead of find since the test might be loaded before
+			// the actual planet is loaded.
 			else if(child.Token(0) == "travel destination" && child.Size() >= 2)
-				travelDestination = GameData::Planets().Find(child.Token(1));
+				travelDestination = GameData::Planets().Get(child.Token(1));
 		}
 	}
 	else if(node.Token(0) == "wait for")
@@ -471,6 +475,7 @@ Test::TestStep::TestResult Test::TestStep::Step(int stepAction, UI &menuPanels, 
 			else
 				player.SetTravelDestination(nullptr);
 			return RESULT_DONE;
+			
 		case TestStep::WAITFOR:
 			// If we reached the condition, then we are done.
 			if(checkedCondition.Test(player.Conditions()))

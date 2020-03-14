@@ -109,7 +109,7 @@ public:
 		std::vector<Test::TestStep> testSteps;
 		// Variables for travelpan/NAVIGATE steps.
 		std::vector<const System *> travelPlan;
-		const Planet *travelDestination;
+		const Planet *travelDestination = nullptr;
 	};
 	
 	
