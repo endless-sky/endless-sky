@@ -55,7 +55,7 @@ outfit "Inhibitor Turret"
 	category "Turrets"
 	licenses
 		Remnant
-	cost 471000
+	cost 1371000
 	thumbnail "outfit/inhibitor turret"
 	"mass" 32
 	"outfit space" -25
