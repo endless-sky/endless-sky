@@ -183,76 +183,67 @@ ship "Korath Chaser"
 
 
 
-ship "Korath Hospital"
-	sprite "ship/korath hospital"
-	thumbnail "thumbnail/korath hospital"
+ship "Korath Refuge"
+	sprite "ship/korath refuge"
+	thumbnail "thumbnail/korath refuge"
 	attributes
 		category "Transport"
-		cost 27690000
-		shields 47000
-		hull 34000
-		"required crew" 25000
-		"bunks" 31000
+		cost 31970000
+		shields 89000
+		hull 57000
+		"required crew" 9800
+		"bunks" 14000
 		"mass" 2100
 		"drag" 17.5
-		"heat dissipation" .5
-		"fuel capacity" 1000
-		"cargo space" 375
-		"outfit space" 1170
+		"heat dissipation" .55
+		"fuel capacity" 1400
+		"cargo space" 451
+		"outfit space" 1190
 		"weapon capacity" 418
 		"engine capacity" 259
 		weapon
-			"blast radius" 400
-			"shield damage" 8000
-			"hull damage" 4000
-			"hit force" 12000
+			"blast radius" 600
+			"shield damage" 9000
+			"hull damage" 4800
+			"hit force" 20000
 	outfits
-		"Korath Grab-Strike" 2
-		"Korath Banisher" 3
-		"Korath Warder" 3
+		"Korath Grab-Strike" 4
+		"Korath Warder" 4
+		"Korath Banisher" 2
 		
 		"Triple Plasma Core"
+		"Double Plasma Core"
 		"Systems Core (Large)" 2
-		"Large Heat Shunt" 2
+		"Large Heat Shunt" 3
 		"Fuel Processor"
 		"Korath Repeater Rifle" 8500
 		
 		"Thruster (Stellar Class)"
 		"Steering (Stellar Class)"
+		"Steering (Lunar Class)"
 		"Hyperdrive"
 	
-	turret   52 -221
-	turret   34 -221
-	turret   15 -221
-	turret  -15 -221
-	turret  -34 -221
-	turret  -52 -221
-	turret  117   38
-	turret  117   65
-	turret -117   38
-	turret -117   65
-	turret   18  185
-	turret  -18  185
-	engine  108  270
-	engine   90  270
-	engine   72  270
-	engine   54  270
-	engine   36  270
-	engine   18  270
-	engine    0  270
-	engine  -18  270
-	engine  -36  270
-	engine  -54  270
-	engine  -72  270
-	engine  -90  270
-	engine -108  270
+	turret 134 -198 "Korath Warder"
+	turret 158 -187 "Korath Grab-Strike"
+	turret -134 -198 "Korath Warder"
+	turret -158 -187 "Korath Grab-Strike"
+	turret 104 30 "Korath Warder"
+	turret 104 60 "Korath Banisher"
+	turret -104 30 "Korath Warder"
+	turret -104 60 "Korath Banisher"
+	turret -17 181 "Korath Grab-Strike"
+	turret 17 181 "Korath Grab-Strike"
+	engine 43 244
+	engine -43 244
+	engine 171 235
+	engine -171 235
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "Korath World-Ships are massive nomadic habitats that hold all that is left of their people."
+	description "Korath Refuges hold the must vulnerable of the Korath, those that would not survive a battle, even in a ship with armor and shields. Onboard, there are incubators, nurseries, hospitals, and vast stores of medicine. When Korath are attacked, these ships immediately flee; they're among the fastest ships the Korath have built."
 
 ship "Korath World-Ship"
 	sprite "ship/world-ship a"
