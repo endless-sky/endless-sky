@@ -174,6 +174,14 @@ namespace {
 		return result;
 	}
 	
+	bool ContainsRandom(const vector<string> &side)
+	{
+		for(const string &str : side)
+			if(str == "random")
+				return true;
+		return false;
+	}
+	
 	bool UsedAll(const vector<bool> &status)
 	{
 		for(auto v : status)
@@ -267,6 +275,22 @@ void ConditionSet::Save(DataWriter &out) const
 bool ConditionSet::IsEmpty() const
 {
 	return expressions.empty() && children.empty();
+}
+
+
+
+// Check if there are any random conditions in this set.
+bool ConditionSet::HasRandom() const
+{
+	for(const Expression &expression : expressions)
+		if(expression.HasRandom())
+			return true;
+	
+	for(const ConditionSet &child : children)
+		if(child.HasRandom())
+			return true;
+	
+	return false;
 }
 
 
@@ -535,6 +559,14 @@ bool ConditionSet::Expression::IsTestable() const
 
 
 
+// Check if there are any random conditions in this expression.
+bool ConditionSet::Expression::HasRandom() const
+{
+	return left.HasRandom() || right.HasRandom();
+}
+
+
+
 // Evaluate both the left- and right-hand sides of the expression, then compare the evaluated numeric values.
 bool ConditionSet::Expression::Test(const Conditions &conditions, const Conditions &created) const
 {
@@ -637,6 +669,14 @@ const vector<string> ConditionSet::Expression::SubExpression::ToStrings() const
 bool ConditionSet::Expression::SubExpression::IsEmpty() const
 {
 	return tokens.empty();
+}
+
+
+
+// Check if there are any random conditions in this expression.
+bool ConditionSet::Expression::SubExpression::HasRandom() const
+{
+	return ContainsRandom(tokens);
 }
 
 

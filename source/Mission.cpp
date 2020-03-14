@@ -262,6 +262,12 @@ void Mission::Load(const DataNode &node)
 	
 	if(displayName.empty())
 		displayName = name;
+	
+	if(showReminder && (toOffer.HasRandom() || toFail.HasRandom()))
+	{
+		showReminder = false;
+		node.PrintTrace("Cannot use reminder in missions with random in \"to offer\" or \"to fail\".");
+	}
 }
 
 
