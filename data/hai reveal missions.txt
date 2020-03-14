@@ -142,7 +142,7 @@ mission "leaks 1A unfettered A"
 		not planet "Hai-Home"
 	destination "Cloudfire"
 	to offer
-		has "leaks 1A: visit the hai: offered"
+		has "leaks 1A: visit the hai: done"
 	on offer
 		conversation
 			`Landing in Hai space draws a much different type of attention than expected. Only recently you've begun to acclimate yourself to getting positive attention. As a war hero you're something of a minor celebrity now back in human space, but here suddenly mothers are keeping tight grips on their children and passers-by look upon you with a hint of wariness.`
@@ -167,7 +167,7 @@ mission "leaks 1A unfettered A"
 			`	Your conversation is interrupted suddenly by a small group of somewhat official-looking Hai.`
 			`	"Are you Captain <Last>?" one of them asks you, "Don't worry you're not in trouble or anything."`
 			`	You nod your affirmation.`
-			`	"Your reputation precedes you Captain, if you have any stake in the current information crisis please head directly to Hai-Home. Someone would very much like to talk to you. As a person of note, you are presently being treated as an Envoy."
+			`	"Your reputation precedes you Captain, if you have any stake in the current information crisis please head directly to Hai-Home. Someone would very much like to talk to you. As a person of note, you are presently being treated as an Envoy."`
 			`	They leave without waiting for your agreement, but then, you did come here to see what was going on.`
 				decline
 			label rebels
@@ -178,8 +178,8 @@ mission "leaks 1A unfettered A"
 	on complete
 		conversation
 			`You dodge the conflict in space and come in to land. Cloudfire's atmosphere is unusually hazy, with almost constant cloud cover, making agriculture unproductive here even though it is a warm and damp environment. There are several major cities here that were abandoned centuries ago, due to conflict with the Unfettered. The one major city that remains is the closest thing the Hai have to a military base, with new supplies of weapons and ammunition constantly pouring in from the rest of Hai space.`
-			`The spaceport has massive hangars and advanced repair facilities designed to accommodate the largest Hai warships. Where a fleet has just returned from a recent battle, the hangars are lit with flashes from robotic welders as damaged hull plates are swapped out for fresh ones and weakened joints are reinforced. The actual process of building these warships, however, takes place on the Hai homeworld, where the facilities will not be vulnerable to attack.`
-			`It does not take long to realise that this conflict really is constant, even if the friendlier Hai on this side seem to be maintaining their defence without apparently taxing their civilisation to any great extent.`
+			`	The spaceport has massive hangars and advanced repair facilities designed to accommodate the largest Hai warships. Where a fleet has just returned from a recent battle, the hangars are lit with flashes from robotic welders as damaged hull plates are swapped out for fresh ones and weakened joints are reinforced. The actual process of building these warships, however, takes place on the Hai homeworld, where the facilities will not be vulnerable to attack.`
+			`	It does not take long to realise that this conflict really is constant, even if the friendlier Hai on this side seem to be maintaining their defence without apparently taxing their civilisation to any great extent.`
 	
 	
 #This fires at the same time as leaks "1A unfettered A" and takes you to Hai-Home if you don't need to visit Cloudfire.
@@ -192,12 +192,14 @@ mission "leaks 2A: envoy accepted"
 		not planet "Cloudfire"
 		not planet "Hai-Home"
 	destination "Hai-Home"
+	clearance
 	to offer
-		has "leaks 1A: visit the hai: offered"
+		has "leaks 1A: visit the hai: done"
 	to fail
 		or
 			has "leaks 1A unfettered A: done"
 			has "leaks 1A unfettered A: active"
+			has "leaks response 1: offered"
 	to complete
 		has "leaks 1A unfettered A: declined"
 	
@@ -209,26 +211,118 @@ mission "leaks 2B: envoy accepted"
 	source
 		planet "Cloudfire"
 	destination "Hai-Home"
+	clearance
 	to offer
-		has "leaks 1A: visit the hai: offered"
+		has "leaks 1A: visit the hai: done"
+		has "leaks 1A unfettered A: done"
 	to fail
-		or
-			has "leaks 1A unfettered A: done"
-			has "leaks 1A unfettered A: active"
-	to complete
-		has "leaks 1A unfettered A: declined"
+		has "leaks response 1: offered"
 	
 	
 #Branch B is if you haven't met the Hai before, fires after First contact happens, sends you on a short guided tour of Hai space.
 	
+#This mission may not fire immediately after first contact as intended (subject to testing) unless PR #4764 is resolved.
 	#Stop 1 Imo Dep (Stonebreak)
-	
-	#Stop 2 Alta Hai (ringworld)
-	
+mission "leaks tour 1"
+	name "Check out Stonebreak in Imo Dep"
+	description "Go to Stonebreak and learn more about the Hai's worlds."
+	landing
+	source
+		government "Hai"
+		not planet "Cloudfire"
+		not planet "Hai-Home" 
+	destination "Stonebreak"
+	to offer
+		has "First Contact: Hai: declined"
+		has "leaks 1B: investigate the hai: done"
+	on offer
+		conversation
+			`As you are leaving the Merchant and the Hai, the Hai calls out as an afterthought, "Oh Captain, if you really want to see what the Hai are like, you should go viit Stonebreak."`
+			choice
+				`	"Thanks, I'll do that!"`
+				accept
+	on complete
+		conversation
+			`Stonebreak is home to some of the largest cities in Hai space aside from their homeworld: massive planned communities built in concentric rings, where housing space and community buildings alternate with zones of factories and shipyards. This star system has an unusual number of metallic asteroids, which the Hai harvest for the raw materials for Stonebreak's industries.`
+			`	From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is made from the same metal alloy, a dull and slightly irregular grey color. The corners of each building are slightly beveled instead of meeting at right angles.`
+			`	Even the spaceport is symmetrical: a ring of hangars, facing outwards, at evenly spaced intervals, with warehouses and living quarters inside the ring.`
+			`	While the layout is utilitarian, it is an incredibly comfortable place to live, and the Hai have given their individual community spaces quite a lot of character and life. It is, overall, an excellent example of an idealised Hai world, built in the presence of abundant resources.`
+			`	As you are wandering around and getting a feel for the place you overhear someone talking about an apparently complete ringworld in Alta Hai. It definitely sounds like something you should check out.`
+		
+	#Stop 2 Alta Hai (Alta Hai Ringworld)
+mission "leaks tour 2"
+	name "Check out the ringworld Alta Hai"
+	description "Go to Stonebreak and learn more about the Hai's worlds."
+	landing
+	source
+		planet "Stonebreak"
+	destination "Alta Hai"
+	to offer
+		has "leaks tour 1: done"
+	on complete
+		conversation
+			`This is a complete Quarg ringworld, the product of millennia of construction effort which has consumed every other stellar object in this system in order to provide the raw materials. The inner edge of the ring is filled with solar panels, hydroponic gardens, living quarters, and sunlit common spaces. The outer edge contains hangars and docks for ships, and storage facilities for cargo.`
+			`	Massive station-keeping thrusters on the ring's exterior keep its orbit from becoming unstable.`
+			`	If this section of the ring is any indication, there must be trillions of Quarg here. Since the construction work on the ring has long since ended, many of them seem to spend their time with creative or scientific endeavors instead. The spaceport is decorated with artwork of every imaginable kind: sculptures, mobiles, paintings, music, and even one hallway that cycles through various artificial odors, some of them intensely unpleasant to your human senses.`
+			`	As you're looking around you find a Quarg to query, "Isn't this area Hai space."`
+			`	The Quarg explains, "This is the boundary where the Quarg interact with the Hai. From here we help their civilisation if it needs it."`
+			`	This explanation seems cryptic but it's the best one you're able to get.`
+			`	Before you go you ask, "If you help the Hai why don't you help with the rebels I've been hearing about?"`
+			`	The Quarg responds, "The Hai and their rebels are the same. You should travel to CLoudfire in Wah Ki to understand."`
+			`	It seems like there's nothing else for it but to see for yourself.`
+
 	#Stop 3 Wah Ki (Cloudfire)
+mission "leaks tour 3"
+	name "Find out about the Rebels on Cloudfire"
+	description "Go to Cloudfire and learn more about the Hai's conflict."
+	landing
+	source
+		planet "Alta Hai" 
+	destination "Cloudfire"
+	to offer
+		has "leaks tour 2: done"
+	on complete
+		conversation
+			`You dodge the conflict in space and come in to land. Cloudfire's atmosphere is unusually hazy, with almost constant cloud cover, making agriculture unproductive here even though it is a warm and damp environment. There are several major cities here that were abandoned centuries ago, due to conflict with the Unfettered. The one major city that remains is the closest thing the Hai have to a military base, with new supplies of weapons and ammunition constantly pouring in from the rest of Hai space.`
+			`	The spaceport has massive hangars and advanced repair facilities designed to accommodate the largest Hai warships. Where a fleet has just returned from a recent battle, the hangars are lit with flashes from robotic welders as damaged hull plates are swapped out for fresh ones and weakened joints are reinforced. The actual process of building these warships, however, takes place on the Hai homeworld, where the facilities will not be vulnerable to attack.`
+			`	It does not take long to realise that this conflict really is constant, even if the friendlier Hai on this side seem to be maintaining their defence without apparently taxing their civilisation to any great extent.`
+			`	The "Unfettered", as they're called appear to have some kind of ideological disagreement with the rest of the Hai, but that will bear further investigation in the future.`
 	
+#Time to rejoin the main story.
+mission "leaks tour 4"
+	name "Head directly to Hai-Home"
+	description "Go to Hai-Home, go directly to Hai-Home, do not pass Go or collect $200."
+	landing
+	source
+		planet "Cloudfire"
+	destination "Hai-Home"
+	clearance
+	to offer
+		has "leaks tour 3: done"
+	on offer
+		conversation
+			`After looking around Cloudfire for some time you stop in the spaceport for a moment to absorb everything you've seen. A screen is playing through news on the wall nearby and your ears suddenly perk up at the word "marauder".`
+			`	"Yesterday a marauder has terrorised the inhabitants of Allhome. They arrived by posing as a trader to investigate the rumours. Hai security failed to identify the danger and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
+			`	At a table nearby you hear a Hai staffmember exclaim, "Oh that's awful!"
+			`	The rumours must be spreading further by the day you think, no doubt something will soon have to be done.`
+			`	This thought has no sooner crossed your mind when your solitude is interrupted by a small group of somewhat official-looking Hai.`
+			`	"Are you Captain <Last>?" one of them asks you, "Don't worry you're not in trouble or anything."`
+			`	You nod your affirmation.`
+			`	"Your reputation precedes you Captain. As a person of note at home who we hear has now been travelling all over Hai space, you are presently being treated as an Envoy."`
+			`	For a second you wonder if it's a joke but they look as serious as Hai can look.`
+			choice
+				`	"Oh I really don't think that's necessary."`
+				goto nevertheless
+				`	"Oh, I'm honoured, thankyou."`
+			 `	"If you have any stake in the current information crisis please head directly to Hai-Home. Someone would very much like to talk to you."`
+			 goto main
+			 label nevertheless
+			 `	"You may not think it's necessary, but sometimes that is the price of fame."`
+			 `	The officious looking Hai shrugs, "In any event please head directly to Hai-Home. Someone would very much like to talk to you."`
+			 label main
+			`	They leave without waiting for your agreement, but then, you did come here to see what was going on.`
+				accept
 	
-	#Make reference to them finding out your status from the war, and your visitation of Hai space
 	
 #Branches merge here.
 	
@@ -240,8 +334,9 @@ mission "leaks response 1"
 		"Earth"
 	to offer
 		or
-			has "leaks 2A: envoy accepted: accepted"
-			has "leaks 2B: envoy accepted: accepted"
+			has "leaks 2A: envoy accepted: done"
+			has "leaks 2B: envoy accepted: done"
+			has "leaks tour 4: done"
 	on offer
 		conversation
 			`As you come into land on Hai-Home you find that a reasonable security detachment has been assigned to your designated landing berth. The Hai aren't usually ones to be concerned about such things, but you suspect that as an apparent "war hero" that this may be more for the benefit of appearances on your part than anything else.`
@@ -272,8 +367,9 @@ mission "leaks response 2"
 	stopover "Deep"
 	stopover "Foundry"
 	destination "Hai-Home"
+	clearance
 	to offer
-		has "leaks response 1: offered"
+		has "leaks response 1: done"
 	passengers 3
 	on offer
 		event "pirates respond to leaks"
