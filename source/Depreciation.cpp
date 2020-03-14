@@ -27,10 +27,10 @@ namespace {
 	// Names for the two kinds of depreciation records.
 	string NAME[2] = {"fleet depreciation", "stock depreciation"};
 	// Depreciation parameters.
-	double FULL_DEPRECIATION = 0.25;
-	double DAILY_DEPRECIATION = 0.997;
-	int GRACE_PERIOD = 7;
-	int MAX_AGE = 1000 + GRACE_PERIOD;
+	constexpr double FULL_DEPRECIATION = 0.25;
+	constexpr double DAILY_DEPRECIATION = 0.997;
+	constexpr int GRACE_PERIOD = 7;
+	constexpr int MAX_AGE = 1000 + GRACE_PERIOD;
 }
 
 
