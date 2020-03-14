@@ -19313,14 +19313,6 @@ system Queri
 	habitable 135
 	link Esix
 	link Ritilas
-	asteroids "large metal" 6 2
-	asteroids "large rock" 4 3
-	asteroids "medium metal" 13 2
-	asteroids "medium rock" 4 3
-	asteroids "small metal" 12 3
-	asteroids "small rock" 7 4
-	minables lead 4 4
-	minables silicon 3 5
 	trade Clothing 292
 	trade Electronics 793
 	trade Equipment 421
@@ -19334,101 +19326,8 @@ system Queri
 	fleet "Ka'het" 4000
 	fleet "Ka'het Aggressive" 11000
 	object
-		sprite star/a5
+		sprite star/g5
 		period 10
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 20
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 40
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 60
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 80
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 100
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 120
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 140
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 160
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 180
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 200
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 220
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 240
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 260
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 280
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 300
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 320
-	object "Querii'ka"
-		sprite planet/ringworld
-		distance 812
-		period 360
-		offset 340
-	object
-		sprite planet/gas11
-		distance 2417.94
-		period 4093.19
 
 system Rajak
 	pos -270 -236
