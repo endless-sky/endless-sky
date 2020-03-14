@@ -56,6 +56,16 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	text.SetWrapWidth(480);
 	text.Wrap(planet.Description());
 	
+	for(const auto &it : GameData::Missions())
+	{
+		const Planet *source = it.second.GetReminderSource(player);
+		if(source == &planet && it.second.IsAtLocation(Mission::SPACEPORT))
+		{
+			hasSpaceportReminder = true;
+			break;
+		}
+	}
+	
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
 	GameData::Preload(planet.Landscape());
@@ -117,14 +127,9 @@ void PlanetPanel::Draw()
 		if(flagship && planet.HasSpaceport())
 		{
 			info.SetCondition("has spaceport");
-			for(const auto &it : GameData::Missions())
+			if(hasSpaceportReminder)
 			{
-				const Planet *source = it.second.GetReminderSource(player);
-				if(source == &planet && it.second.IsAtLocation(Mission::SPACEPORT))
-				{
-					info.SetCondition("has spaceport mission");
-					break;
-				}
+				info.SetCondition("has spaceport reminder");
 			}
 		}
 		

@@ -1136,7 +1136,7 @@ void MapPanel::DrawTooltips()
 	// Create the tooltip text.
 	if(tooltip.empty())
 	{
-		if (escortSystems.find(hoverSystem) != escortSystems.end())
+		if(escortSystems.find(hoverSystem) != escortSystems.end())
 		{
 			pair<int, int> t = escortSystems.at(hoverSystem);
 			if(hoverSystem == playerSystem)

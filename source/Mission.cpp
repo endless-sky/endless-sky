@@ -262,11 +262,6 @@ void Mission::Load(const DataNode &node)
 	
 	if(displayName.empty())
 		displayName = name;
-	
-	if(showReminder && (toOffer.HasRandom() || toFail.HasRandom()))
-	{
-		node.PrintTrace("Warning: \"reminder\" used with random in \"to offer\" or \"to fail\".");
-	}
 }
 
 
@@ -298,7 +293,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		if(hasPriority)
 			out.Write("priority");
 		if(showReminder)
-			out.Write("shadow");
+			out.Write("reminder");
 		if(isMinor)
 			out.Write("minor");
 		if(autosave)
@@ -614,7 +609,7 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 // Get a planet for which this mission can be advertised to the player
 const Planet *Mission::GetReminderSource(const PlayerInfo &player) const
 {
-	if(!showReminder || location == BOARDING || location == ASSISTING)
+	if(!showReminder || location != SPACEPORT)
 		return nullptr;
 	
 	if(!toOffer.Test(player.Conditions()))
@@ -642,7 +637,10 @@ const Planet *Mission::GetReminderSource(const PlayerInfo &player) const
 	if(it != actions.end() && !it->second.CanBeDone(player, nullptr))
 		return nullptr;
 	
-	return source; // sourceFilter
+	if (!source)
+		return sourceFilter.PickPlanet(nullptr);
+	
+	return source;
 }
 
 

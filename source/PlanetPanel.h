@@ -53,6 +53,7 @@ private:
 	PlayerInfo &player;
 	std::function<void()> callback = nullptr;
 	bool requestedLaunch = false;
+	bool hasSpaceportReminder = false;
 	
 	const Planet &planet;
 	const System &system;

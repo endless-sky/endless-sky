@@ -508,8 +508,8 @@ void MissionPanel::DrawKey() const
 	const Font &font = FontSet::Get(14);
 	Point angle = Point(1., 1.).Unit();
 	
-	const int ROWS = 5;
-	Point pos(Screen::Left() + 10., Screen::Bottom() - ROWS * 20. + 5.);
+	const int ROWS = 6;
+	Point pos(Screen::Left() + 10., Screen::Bottom() - ROWS * 16. + 5.);
 	Point pointerOff(5., 5.);
 	Point textOff(8., -.5 * font.Height());
 
@@ -521,14 +521,16 @@ void MissionPanel::DrawKey() const
 		*colors.Get("unavailable job"),
 		*colors.Get("active mission"),
 		*colors.Get("blocked mission"),
-		*colors.Get("waypoint")
+		*colors.Get("waypoint"),
+		*colors.Get("reminder")
 	};
 	static const string LABEL[ROWS] = {
 		"Available job; can accept",
 		"Too little space to accept",
 		"Active job; go here to complete",
 		"Has unfinished requirements",
-		"Waypoint you must visit"
+		"Waypoint you must visit",
+		"Reminder; go to spaceport here"
 	};
 	int selected = -1;
 	if(availableIt != available.end())
@@ -540,7 +542,7 @@ void MissionPanel::DrawKey() const
 	{
 		PointerShader::Draw(pos + pointerOff, angle, 10.f, 18.f, 0.f, COLOR[i]);
 		font.Draw(LABEL[i], pos + textOff, i == selected ? bright : dim);
-		pos.Y() += 20.;
+		pos.Y() += 16.;
 	}
 }
 

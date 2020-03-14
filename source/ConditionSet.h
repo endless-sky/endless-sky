@@ -42,9 +42,6 @@ public:
 	// Check if there are any entries in this set.
 	bool IsEmpty() const;
 	
-	// Check if there are any random conditions in this set.
-	bool HasRandom() const;
-	
 	// Read a single condition from a data node.
 	void Add(const DataNode &node);
 	bool Add(const std::string &firstToken, const std::string &secondToken);
@@ -89,9 +86,6 @@ private:
 		// True if this Expression performs a comparison and false if it performs an assignment.
 		bool IsTestable() const;
 		
-		// True if this Expression contains random.
-		bool HasRandom() const;
-		
 		// Functions to use this expression:
 		bool Test(const Conditions &conditions, const Conditions &created) const;
 		void Apply(Conditions &conditions, Conditions &created) const;
@@ -114,8 +108,6 @@ private:
 			const std::vector<std::string> ToStrings() const;
 			
 			bool IsEmpty() const;
-			
-			bool HasRandom() const;
 			
 			// Substitute numbers for any string values and then compute the result.
 			int64_t Evaluate(const Conditions &conditions, const Conditions &created) const;

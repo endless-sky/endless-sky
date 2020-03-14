@@ -547,7 +547,7 @@ interface "planet"
 		align left
 		pad 10 0
 	
-	visible if "has spaceport mission"
+	visible if "has spaceport reminder"
 	label "(*)"
 		center -400 270
 		dimensions 140 40
