@@ -151,6 +151,9 @@ test-data "commodity barges"
 				Food 150
 		visited Sol
 		"visited planet" Earth
+		visited "Alpha Centauri"
+		visited "Vega"
+		visited "Menkent"
 
 test-data "outfits cargo overload"
 	category "savegame"

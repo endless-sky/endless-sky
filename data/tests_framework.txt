@@ -42,3 +42,39 @@ test "Test-Framework - Simple depart land"
 		load "commodity barges.txt"
 		launch
 		land
+
+test "Test-Framework - Depart and commanded landing"
+	status "Active"
+	description "Test with depart and land, uses command and conditions for executing the landing."
+	sequence
+		inject "commodity barges"
+		load "commodity barges.txt"
+		launch
+		navigate
+			travel "Menkent"
+			travel "Vega"
+		command jump
+		"wait for"
+			has "flagship system: Menkent"
+		command	land
+		"wait for"
+			has "flagship planet: New Austria"
+
+test "Test-Framework - Navigate"
+	status "Active"
+	description "Test Navigation to other star system"
+	sequence
+		inject "commodity barges"
+		load "commodity barges.txt"
+		navigate
+			travel "Alpha Centauri"
+			travel "Sol"
+			travel "Alpha Centauri"
+		launch
+		command	jump
+		"wait for"
+			has "flagship system: Alpha Centauri"
+		"wait for"
+			has "flagship system: Sol"
+		"wait for"
+			has "flagship system: Alpha Centauri"
