@@ -96,9 +96,9 @@ mission "event: hai secret leaks B"
 				fail
 
 event "pirates investigate leaks"
-#Spawn a small marauder fleet in Ultima Thule
-"Small Northern Pirates"
- "Marauder fleet IX"
+    system "Waypoint"
+        government "Pirate"
+		add fleet "Marauder fleet IX" 600
 
 #Both of these accept automatically with either secret leaks scenarios above - the non-relevant mission then fails based on whether you get the text for knowing about the Hai or not.
 
@@ -439,6 +439,18 @@ mission "leaks response 2"
 event "pirates respond to leaks"
 	#Add pirate spawns to Waypoint and Heia Due
 	"Large Northern Pirates"
+    system "Waypoint"
+        government "Pirate"
+		add fleet "Marauder fleet IX" 900
+		add fleet "Large Northern Pirates" 600
+		add fleet "Small Northern Pirates" 420
+		add fleet "Large Core Pirates" 600
+		add fleet "Small Core Pirates" 420
+    system "Heia Due"
+        government "Pirate"
+		add fleet "Marauder fleet IX" 900
+		add fleet "Large Northern Pirates" 600
+		add fleet "Large Core Pirates" 600
 	
 #If a republic/syndicate campaign gets added this text will need variants.
 mission "leaks response 2A"
