@@ -637,7 +637,7 @@ const Planet *Mission::GetReminderSource(const PlayerInfo &player) const
 	if(it != actions.end() && !it->second.CanBeDone(player, nullptr))
 		return nullptr;
 	
-	if (!source)
+	if(!source)
 		return sourceFilter.PickPlanet(nullptr);
 	
 	return source;
