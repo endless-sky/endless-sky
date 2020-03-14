@@ -274,6 +274,11 @@ void Test::TestStep::Load(const DataNode &node)
 		stepType = BREAK_IF;
 		checkedCondition.Load(node);
 	}
+	else if(node.Token(0) == "command")
+	{
+		stepType = COMMAND;
+		command.Load(node);
+	}
 	else if(node.Token(0) == "land")
 		stepType = LAND;
 	else if(node.Token(0) == "launch")
@@ -299,6 +304,11 @@ void Test::TestStep::Load(const DataNode &node)
 				travelDestination = GameData::Planets().Find(child.Token(1));
 		}
 	}
+	else if(node.Token(0) == "wait for")
+	{
+		stepType = WAITFOR;
+		checkedCondition.Load(node);
+	}
 	else if(node.Size() < 2)
 		node.PrintTrace("Skipping unrecognized or incomplete test-step: " + node.Token(0));
 	else if(node.Token(0) == "command")
@@ -315,11 +325,6 @@ void Test::TestStep::Load(const DataNode &node)
 	{
 		stepType = INJECT;
 		stepInputString = node.Token(1);
-	}
-	else if(node.Token(0) == "wait" && node.Token(1) == "for")
-	{
-		stepType = WAITFOR;
-		checkedCondition.Load(node);
 	}
 	else if(node.Token(0) == "ui key")
 	{
