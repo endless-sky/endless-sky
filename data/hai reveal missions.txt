@@ -446,11 +446,17 @@ event "pirates respond to leaks"
 		add fleet "Small Northern Pirates" 420
 		add fleet "Large Core Pirates" 600
 		add fleet "Small Core Pirates" 420
+		remove fleet "Small Hai"
+		remove fleet "Large Hai"
     system "Heia Due"
         government "Pirate"
 		add fleet "Marauder fleet IX" 900
 		add fleet "Large Northern Pirates" 600
 		add fleet "Large Core Pirates" 600
+		
+#	Waypoint restoration information
+#		add fleet "Small Hai" 1200
+#		add fleet "Large Hai" 2500
 	
 #If a republic/syndicate campaign gets added this text will need variants.
 mission "leaks response 2A"
@@ -496,6 +502,7 @@ mission "leaks response 3"
 mission "leaks response 4"
 	name "Defeat the Black Lich and board the Geocoris"
 	description "Defeat the marauder capatain and rescue the captured Hai from his stolen Geocoris."
+	autosave
 	landing
 	source "Allhome"
 	destination "Allhome"
@@ -524,43 +531,64 @@ mission "leaks response 4"
 		personality escort disables heroic
 		fleet 9
 			names "hai"
-#			#fighters "deep fighter" help on this?
 			variant
 				"Lightning Bug" 4
 				"Pond Strider" 3
 				"Shield Beetle (Police)" 2
+				# help on this? not sure if this is right at all.
 	npc kill
 		government "Pirate"
 		personality staying nemesis
 		system "Waypoint"
 		ship "Marauder Leviathan (Weapons)" "Black Lich"
-	npc board
+		
+mission "leaks response 4a"
+	landing
+	invisible
+	source "Allhome"
+	destination "Allhome"
+	to offer
+		has "leaks response 3: done"
+	npc board save
 		government "Pirate"
 		personality staying nemesis
 		system "Waypoint"
 		ship "Geodesic Geocoris (Phylactery)" "Phylactery"
 		dialog
 			`After successfully boarding the Geocoris and defeating its pirate crews you are greeted by the relieved captive Hai. You promise them that they will be safely on Allhome before long.`
+	on fail
+		dialog `You have failed to recover the Geocoris. This is not critical, but does have long-term consequences. If you want the heroic ending, revert to the autosave or another earlier snapshot of the game.`
+	on complete
+		event "returned geocoris" 365
+		#The Geodesic Geocoris may become available to purchase specially later on.
 		
 ship "Geodesic Geocoris"
 	sprite "ship/hai geocoris"
 	thumbnail "thumbnail/hai geocoris"
 	attributes
 		category "Heavy Freighter"
-		"cost" 12540000
-		"shields" 13300
-		"hull" 6200
+		"cost" 23540000
+		"shields" 26600
+		"hull" 7100
 		"required crew" 15
-		"bunks" 56
-		"mass" 810
+		"bunks" 48
+		"mass" 955
 		"drag" 17.1
 		"heat dissipation" 0.45
 		"fuel capacity" 800
 		"cargo space" 761
-		"outfit space" 582
-		"weapon capacity" 172
-		"engine capacity" 94
+		"outfit space" 542
+		"weapon capacity" 210
+		"engine capacity" 104
 		"reverse thrust" 32
+		"reverse thrusting energy" 3.2
+		"reverse thrusting heat" 6
+		"energy capacity" 5200
+		"shield generation" 6.0
+		"shield energy" 8.8
+		"hull repair rate" 0.8
+		"hull energy" 0.8
+		"hull heat" 1.2
 		weapon
 			"blast radius" 300
 			"shield damage" 3000
@@ -573,8 +601,8 @@ ship "Geodesic Geocoris"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 5
-		`"Biroo" Atomic Thruster`
-		`"Bondir" Atomic Steering`
+		`"Benga" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
 		Hyperdrive
 
 	engine 100 39
@@ -593,21 +621,24 @@ ship "Geodesic Geocoris"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description "After large human freighters began to out-compete traditionally smaller Hai ships, the Hai responded by developing the Geocoris: a heavy freighter that surpassed anything humanity had to offer at the time."
+	description "This modified Geocoris has identical cargo capacity but is modelled off one that was the result of an alien technology being merged with a hybrid Human-Hai operating system. It has additional shield emitters in a geodesic pattern over its main cargo wings and a crucial element of the ship's system core is not manufactured, but grown from inital samples taken from the first occurrence. This means that some systems are built-in and unable to be removed, and also that it is sustantially more expensive than its regular version. It is; however, significantly more survivable."
 	
 ship "Geodesic Geocoris" "Geodesic Geocoris (Phylactery)"
 	outfits
-		"Electron Turret" 4
-		"Heavy Anti-Missile"
+		"Electron Turret" 3
+		"Chameleon Anti-Missile" 2
 		"Boulder Reactor"
 		"Pebble Core"
 		"Hai Ravine Batteries"
 		"Hai Corundum Regenerator" 2
 		"Hai Williwaw Cooling" 7
-		"Tracker Storage Pod" 3
 		"Quantum Keystone"
 		"Pulse Rifle" 14
-		`"Biroo" Atomic Thruster`
-		`"Bondir" Atomic Steering`
+		`"Benga" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
 		Hyperdrive
-
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
+	turret "Electron Turret"
