@@ -118,6 +118,8 @@ protected:
 	std::map<const Government *, double> closeGovernments;
 	// Systems in which your escorts are located.
 	std::map<const System *, std::pair<int, int>> escortSystems;
+	// Systems in which there are reminders for missions.
+	std::set<const System *> reminderSystems;
 	// Center the view on the given system (may actually be slightly offset
 	// to account for panels on the screen).
 	void CenterOnSystem(const System *system, bool immediate = false);

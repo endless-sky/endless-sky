@@ -265,8 +265,7 @@ void Mission::Load(const DataNode &node)
 	
 	if(showReminder && (toOffer.HasRandom() || toFail.HasRandom()))
 	{
-		showReminder = false;
-		node.PrintTrace("Cannot use reminder in missions with random in \"to offer\" or \"to fail\".");
+		node.PrintTrace("Warning: \"reminder\" used with random in \"to offer\" or \"to fail\".");
 	}
 }
 

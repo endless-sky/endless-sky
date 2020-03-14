@@ -74,6 +74,21 @@ namespace {
 				++locations[ship->GetParent()->GetSystem()].first;
 		}
 	}
+
+	// Log which systems have reminders available.
+	void TallyReminders(const PlayerInfo& player, set<const System *> &locations)
+	{
+		locations.clear();
+		
+		for(const auto &it : GameData::Missions())
+		{
+			const Planet *source = it.second.GetReminderSource(player);
+			if(source)
+			{
+				locations.insert(source->GetSystem());
+			}
+		}
+	}
 	
 	const Color black(0.f, 1.f);
 	const Color red(1.f, 0.f, 0.f, 1.f);
@@ -110,6 +125,8 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	// The player cannot toggle any preferences without closing the map panel.
 	if(Preferences::Has("Show escort systems on map"))
 		TallyEscorts(player.Ships(), escortSystems);
+	
+	TallyReminders(player, reminderSystems);
 	
 	// Initialize a centered tooltip.
 	hoverText.SetFont(FontSet::Get(14));
@@ -395,22 +412,18 @@ bool MapPanel::Hover(int x, int y)
 		tooltip.clear();
 	}
 	
-	for(const auto &it : GameData::Missions())
+	// Check if the new position supports a tooltip.
+	for(const auto &system : reminderSystems)
 	{
-		const Planet *source = it.second.GetReminderSource(player);
-		if(source)
+		if(pos.Distance(system->Position()) < maxDistance
+				&& (player.HasSeen(system) || system == specialSystem))
 		{
-			if(pos.Distance(source->GetSystem()->Position()) < maxDistance
-					&& (player.HasSeen(source->GetSystem()) || source->GetSystem() == specialSystem))
-			{
-				// Start tracking this system.
-				hoverSystem = source->GetSystem();
-				return true;
-			}
+			// Start tracking this system.
+			hoverSystem = system;
+			return true;
 		}
 	}
 	
-	// Check if the new position supports a tooltip.
 	for(const auto &squad : escortSystems)
 	{
 		const System *system = squad.first;
@@ -1069,7 +1082,7 @@ void MapPanel::DrawMissions()
 	const Color &currentColor = *colors.Get("active mission");
 	const Color &blockedColor = *colors.Get("blocked mission");
 	const Color &specialColor = *colors.Get("special mission");
-	const Color &shadowColor = *colors.Get("shadow mission");
+	const Color &reminderColor = *colors.Get("reminder");
 	const Color &waypointColor = *colors.Get("waypoint");
 	for(const Mission &mission : player.AvailableJobs())
 	{
@@ -1097,15 +1110,12 @@ void MapPanel::DrawMissions()
 		for(const Planet *stopover : mission.Stopovers())
 			DrawPointer(stopover->GetSystem(), angle[stopover->GetSystem()], waypointColor);
 	}
-	for(const auto &it : GameData::Missions())
+	
+	for(const auto &system : reminderSystems)
 	{
-		const Planet *source = it.second.GetReminderSource(player);
-		
-		if(source)
-		{
-			DrawPointer(source->GetSystem(), angle[source->GetSystem()], shadowColor);
-		}
+		DrawPointer(system, angle[system], reminderColor);
 	}
+	
 	if(specialSystem)
 	{
 		// The special system pointer is larger than the others.
@@ -1147,10 +1157,9 @@ void MapPanel::DrawTooltips()
 				tooltip += to_string(t.second) + (t.second == 1 ? " parked escort" : " parked escorts");
 		}
 		
-		for(const auto &it : GameData::Missions())
+		for(const auto &system : reminderSystems)
 		{
-			const Planet *source = it.second.GetReminderSource(player);
-			if(source && source->GetSystem() == hoverSystem)
+			if(system == hoverSystem)
 			{
 				if(!tooltip.empty())
 				{
