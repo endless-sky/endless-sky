@@ -97,6 +97,8 @@ mission "event: hai secret leaks B"
 
 event "pirates investigate leaks"
 #Spawn a small marauder fleet in Ultima Thule
+"Small Northern Pirates"
+ "Marauder fleet IX"
 
 #Both of these accept automatically with either secret leaks scenarios above - the non-relevant mission then fails based on whether you get the text for knowing about the Hai or not.
 
@@ -362,6 +364,8 @@ mission "leaks response 1"
 	
 	
 mission "leaks response 2"
+	name "Collect Representatives"
+	description "Go collect representatives from the 3 main Human governments."
 	landing
 	source "Earth"
 	stopover "Deep"
@@ -424,17 +428,17 @@ mission "leaks response 2"
 			`	He checks the date, "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months or lose so much credibility as to compromise elctoral stability, the actual time limit is probably sooner."
 			choice
 				`Would that be so bad?`
-			`"It is always bad to be forced into acknowledging a secret, if we act sooner we may control the manner of that secret's release.`
+			`"It is always bad to be forced into acknowledging a secret, if we act sooner we may control the manner of that secret's release."`
 			`Sayari looks at you, "We will have to come up with a plan, and quickly, but for the moment may I ask a favour of the war hero in the room? Please meet up with the security forces converging on Allhome, help them route the pirates back to the other side of the wormhole it will buy us some breathing space and some options."`
-			`It is so hard to say no to a Hai and their cute squirrelly features.`
+			`It is so hard to say "no" to a Hai and their cute squirrelly features.`
 			choice
-				`"I'll do what I can."
+				`"I'll do what I can."`
 #If a republic/syndicate campaign gets added this on complete text will need variants.
 	
 	
 event "pirates respond to leaks"
 	#Add pirate spawns to Waypoint and Heia Due
-	
+	"Large Northern Pirates"
 	
 #If a republic/syndicate campaign gets added this text will need variants.
 mission "leaks response 2A"
@@ -466,16 +470,132 @@ mission "leaks response 2B"
 			`While refuelling on <origin> you see that the media circus is continuing uabated. Apparently pirates have started making renewed attacks on trade lanes in the north, utilising some of the strange weapons observed in the recorded clip of Hai ships fighting each other. Goodness knows how they got their hands on them, but it can't be good news.`
 				decline
 
-
+#This gets picked up silently on Hai-Home when landing for response 2 - leads to go kill pirates mission with chat on Allhome.
 mission "leaks response 3"
-#This gets picked up silently on Hai-Home when landing for response 2 - go kill pirates, stopover chat on Allhome.
+	name "Meet with Security Forces on Allhome"
+	description "Meet with the Security Forces on Allhome before fightin the pirates."
+	landing
+	source "Hai-Home"
+	destination "Allhome"
+	to offer
+		has "leaks response 2: done"
 
+#Go kill pirates mission with chat on Allhome.
+mission "leaks response 4"
+	name "Defeat the Black Lich and board the Geocoris"
+	description "Defeat the marauder capatain and rescue the captured Hai from his stolen Geocoris."
+	landing
+	source "Allhome"
+	destination "Allhome"
+	to offer
+		has "leaks response 3: done"
+	on offer
+		conversation
+			`When you land on Allhome you are met by the Hai Captain of the local forces. You're not an expert at judging Hai ages but he appears to be a little younger than expected.`
+			`	"Captain <Last>! I heard you were coming to assist."`
+			choice
+				`	"Time to route some pirates baby!"`
+				`	"I'm here to reinforce you, what can we do?"`
+			`	"Uh well, yes. I presume you saw the pirates on your way in? They've been appearing en masse and overhwelming security forces to raid technology and goods from the Hai traders and their security. Some of them have even been sneaking down onto the planet and capturing Hai, taking them away to goodness only knows where."`
+			choice
+				`	"I had heard about the kidnapping."
+			`	He nods, "Unfortunately it's taking a while for them to redistribute an appropriately resourced defence force thanks to the Unfettered."`
+			`	"Even more unfortunately," he continues, "it seems that the overabundance of these pirates is a result of one particular individual's success. His ship, called the Black Lich, is hanging out in Waypoint with the stolen Geocoris that we hear might have been converted into some kind of semi-stable weapons platform and now be being used as a temporary base."`
+			`	"Fortunately this gives us an opportunity though. If the kidnapped hai are still on board we might be able to rescue them, and if we can defeat the Black Lich we may stem the tide of opportunists that are swarming through the wormhole."`
+			`	"What do you say?"`
+			`	The poor Captain seems desperate.`
+			choice
+				`	We shall bring them safely home.`
+			accept
+	npc accompany
+		government "Hai"
+		personality escort disables heroic
+		fleet 9
+			names "hai"
+#			#fighters "deep fighter" help on this?
+			variant
+				"Lightning Bug" 4
+				"Pond Strider" 3
+				"Shield Beetle (Police)" 2
+	npc kill
+		government "Pirate"
+		personality staying nemesis
+		system "Waypoint"
+		ship "Marauder Leviathan (Weapons)" "Black Lich"
+	npc board
+		government "Pirate"
+		personality staying nemesis
+		system "Waypoint"
+		ship "Geodesic Geocoris (Phylactery)" "Phylactery"
+		dialog
+			`After successfully boarding the Geocoris and defeating its pirate crews you are greeted by the relieved captive Hai. You promise them that they will be safely on Allhome before long.`
+		
+ship "Geodesic Geocoris"
+	sprite "ship/hai geocoris"
+	thumbnail "thumbnail/hai geocoris"
+	attributes
+		category "Heavy Freighter"
+		"cost" 12540000
+		"shields" 13300
+		"hull" 6200
+		"required crew" 15
+		"bunks" 56
+		"mass" 810
+		"drag" 17.1
+		"heat dissipation" 0.45
+		"fuel capacity" 800
+		"cargo space" 761
+		"outfit space" 582
+		"weapon capacity" 172
+		"engine capacity" 94
+		"reverse thrust" 32
+		weapon
+			"blast radius" 300
+			"shield damage" 3000
+			"hull damage" 1500
+			"hit force" 4500
+	outfits
+		"Pulse Turret" 4
+		"Chameleon Anti-Missile" 1
+		"Geode Reactor" 2
+		"Hai Valley Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 5
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		Hyperdrive
 
-			`	She looks surprised, "Didn't you see the pirates on your way in? They've been appearing en masse and overhwelming security forces to raid technology and goods from the Hai traders and their security. Some of them have even been sneaking down onto the planet and capturing Hai, taking them away to goodness only knows where."`
-			`	"Oh I didn't realise it was so bad!"
-			`	She nods, "This is why we're all wearing pink, just a little show of local solidarity."
-			goto main
-			label pink
-			`	A sad smile crosses her face and her expression goes sombre as she explains, "The pirate marauders that have recently come have been sneaking down onto the planet and kidnapping Hai, probably into slavery. The locals are wearing pink in solidarity, and so we're not mistaken for a security risk."
-			label main
-			`	"Unfortunately it's taking a while for them to redistribute an appropriately resourced defence force thanks to the Unfettered."
+	engine 100 39
+	engine -100 39
+	turret 110 -23 "Pulse Turret"
+	turret -110 -23 "Pulse Turret"
+	turret 35 94 "Pulse Turret"
+	turret -35 94 "Pulse Turret"
+	turret 0 -89 "Chameleon Anti-Missile"
+	leak "leak" 40 50
+	leak "flame" 40 80
+	leak "big leak" 70 30
+	explode "tiny explosion" 50
+	explode "small explosion" 50
+	explode "medium explosion" 50
+	explode "large explosion" 50
+	explode "huge explosion" 20
+	"final explode" "final explosion large"
+	description "After large human freighters began to out-compete traditionally smaller Hai ships, the Hai responded by developing the Geocoris: a heavy freighter that surpassed anything humanity had to offer at the time."
+	
+ship "Geodesic Geocoris" "Geodesic Geocoris (Phylactery)"
+	outfits
+		"Electron Turret" 4
+		"Heavy Anti-Missile"
+		"Boulder Reactor"
+		"Pebble Core"
+		"Hai Ravine Batteries"
+		"Hai Corundum Regenerator" 2
+		"Hai Williwaw Cooling" 7
+		"Tracker Storage Pod" 3
+		"Quantum Keystone"
+		"Pulse Rifle" 14
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		Hyperdrive
+
