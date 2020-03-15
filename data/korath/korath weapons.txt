@@ -584,7 +584,7 @@ outfit "Nova Device"
 	thumbnail "outfit/nova device"
 	"mass" 2
 	"nova device capacity" -1
-	description "This torpedo contains a Korath Plasma Core reactor element, with its protective casing removed. When it activates, there is a tremendous explosion that heats up all ships in the vicinity, interferes with their generators, and imparts a large hit force."
+	description "This torpedo contains a modified Korath Plasma Core reactor element, with no protective casing. When it activates, there is a tremendous explosion that heats up all ships in the vicinity, interferes with their generators, and imparts a large hit force."
 	description "Though the warhead is a simple Korath design, the torpedo casing and drive systems are distinctly not Korath in style. This may be a device the Korath discovered or pillaged, and have learned to reproduce."
 
 outfit "Nova Device Rack"
@@ -625,8 +625,8 @@ outfit "Nova Turret"
 		"firing energy" 55
 		"firing heat" 72
 		"inaccuracy" 3
-		"lifetime" 2700
-		"velocity" 5
+		"lifetime" 1900
+		"velocity" 6.5
 		"acceleration" .6
 		"drag" .12
 		"turn" 1.6
