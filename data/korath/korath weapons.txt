@@ -619,13 +619,13 @@ outfit "Nova Turret"
 		ammo "Nova Device"
 		"turret turn" 2.7
 		icon "icon/nova device"
-		"hit effect" "nuke explosion"
+#		"hit effect" "nuke explosion"
 		"hit effect" "nova ring" 40
 		"die effect" "small explosion"
 		stream
 		"reload" 360
-		"firing energy" 55
-		"firing heat" 72
+		"firing energy" 235
+		"firing heat" 408
 		"inaccuracy" 3
 		"lifetime" 1900
 		"velocity" 6.5
@@ -643,7 +643,7 @@ outfit "Nova Turret"
 		"heat damage" 4400
 		"hit force" 4000
 		"missile strength" 120
-	description "This turret fires the slow-moving Nova Device in any direction. Though you may dodge it for a while, the Nova Device's extremely long range and large blast radius will eventually catch up with you. The damage dealt is small, but is accompanied by devastating side-effects. It heats ships, drains their generators, and pushes with a considerable force."
+	description "This turret fires a Nova Device in any direction. Though you may dodge it for a while, the Nova Device's extremely long range and large blast radius will eventually catch up with you (or an innocent asteroid). The damage dealt is small, but is accompanied by devastating side-effects. It heats ships, drains their generators, and pushes with a considerable force."
 	description "Though the warhead is a simple Korath design, the torpedo casing, launcher, and drive systems are distinctly not Korath in style. This may be a device the Korath discovered or pillaged, and have learned to reproduce."
 
 effect "nova ring"
@@ -651,6 +651,7 @@ effect "nova ring"
 		"no repeat"
 		"frame rate" 12
 	"lifetime" 90
+	sound "nova hit"
 	"random angle" 360
 	"random frame rate" 6
 	"random velocity" 4
@@ -661,11 +662,9 @@ outfit "Korath Heaver"
 	category "Secondary Weapons"
 	cost 3450000
 	thumbnail "outfit/korath heaver"
-	# Small size is compensated by the need to install numerous
-	# Fuel Processors to support this weapon.
-	"mass" 36
-	"outfit space" -36
-	"weapon capacity" -36
+	"mass" 46
+	"outfit space" -46
+	"weapon capacity" -46
 	# Built-in fuel storage is a reservoir used during firing.
 	"fuel capacity" 100
 	# Fuel storage is a dismantled Fuel Processor, hence ramscoop:
@@ -675,49 +674,51 @@ outfit "Korath Heaver"
 	weapon
 		sprite "projectile/heaver hyperspace"
 			"frame rate" 12
+			rewind
 		"hardpoint sprite" "hardpoint/korath heaver"
 		icon "icon/korath heaver"
 		velocity 30
 		lifetime 12
 		"hit force" 1900
-		"hit effect" "heaver hyperspace hit" 10
+		"hit effect" "heaver hyperspace hit"
 		sound "heaver"
-		submunition "Heaver Shard (Projectile)" 6
+		submunition "Heaver Shard" 20
 		"turret turn" 2.2
 		"reload" 60
 		"burst reload" 12
-		"burst count" 5
+		"burst count" 6
 		"firing energy" 231
 		"firing heat" 190
-		"firing fuel" 12
-		"inaccuracy" 2
+		"firing fuel" 20
+		"inaccuracy" 0.5
 	description `Korath Heavers raise to a fine art the age-old warfare method of, "Throw rocks at your enemy until they die." Small asteroids or other debris are thrown into an unstable hyperspace window. Within a range of 360, the weapon does no damage, but pushes with a force that makes a Banisher look like a light breeze. Beyond that, small chunks of matter exit hyperspace and travel a long distance at extreme velocity.`
 	description `This is a canonical example of modern Korath Exile engineering: jury-rigged, inefficient even by Korath standards, but cheap to produce. There are parts from a Fuel Processor, Banisher, Comet-Class Thruster, and Hyperdrive, all welded together and mounted on the lower half of a Nova Turret. Despite the slap-shod design, the device is extremely effective.`
 
 effect "heaver hyperspace hit"
 	sprite "effect/heaver hyperspace hit"
 		"no repeat"
-		"frame rate" 12
-	lifetime 45
-	"velocity scale" .05
+		rewind
+		"frame rate" 60
+	lifetime 36
+	"velocity scale" .1
 	sound "heaver hyperspace hit"
-	"random angle" 10
 
-outfit "Heaver Shard (Projectile)"
+outfit "Heaver Shard"
 	weapon
 		sprite "projectile/heaver shard"
 			"frame rate" 12
 			"rewind"
-		"random velocity" 10
-		"velocity" 25
-		"lifetime" 300
-		"random lifetime" 70
-		"shield damage" 90
-		"hull damage" 105
-		"inaccuracy" 5
-		"hit force" 100
-		"hit effect" "heaver shard hit" 10
-		"missile strength" 55
+		"random velocity" 5
+		"velocity" 20
+		"lifetime" 120
+		"random lifetime" 30
+		"shield damage" 32
+		"hull damage" 36
+		"inaccuracy" 7
+		"hit force" 3
+		"heat damage" 20
+		"hit effect" "heaver shard hit" 5
+		"missile strength" 12
 
 effect "heaver shard hit"
 	sprite "effect/heaver shard hit"
