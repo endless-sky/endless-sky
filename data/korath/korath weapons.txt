@@ -660,74 +660,70 @@ effect "nova ring"
 outfit "Korath Heaver"
 	category "Secondary Weapons"
 	cost 3450000
-	thumbnail "outfit/nova turret"
+	thumbnail "outfit/korath heaver"
 	# Small size is compensated by the need to install numerous
 	# Fuel Processors to support this weapon.
 	"mass" 36
 	"outfit space" -36
 	"weapon capacity" -36
 	# Built-in fuel storage is a reservoir used during firing.
-	"fuel capacity" 50
+	"fuel capacity" 100
 	# Fuel storage is a dismantled Fuel Processor, hence ramscoop:
-	"ramscoop" 0.5
+	"ramscoop" 1
 	"turret mounts" -1
 	"required crew" 1
 	weapon
-		"hardpoint sprite" "hardpoint/korath heaver"
-		sound "heaver"
-		submunition "Heaver Shard (Hyperspace)" 3
-		"turret turn" 2.2
-		icon "icon/korath heaver"
-		"reload" 240
-		"firing energy" 541
-		"firing heat" 370
-		"firing fuel" 50
-		"inaccuracy" 1
-		"lifetime" 1
-		"velocity" 1
-	description `Korath Hurlers raise to a fine art the age-old warfare method of, "Throw rocks at your enemy until they die." Small asteroids or other debris are thrown into an unstable hyperspace window. Within a range of 240, the weapon does no damage, but pushes with a force that makes a Banisher look like a light breeze. Beyond that, small chunks of matter exit hyperspace and travel a long distance at extreme velocity.`
-	description `This is a canonical example of modern Korath Exile engineering: jury-rigged, inefficient even by Korath standards, but cheap to produce. There are parts from a Fuel Processor, Banisher, Comet-Class Thruster, and Hyperdrive, all welded together and mounted on the lower half of a Nova Turret. Despite the slap-shod design, the device is extremely effective.`
-
-outfit "Heaver Shard (Hyperspace)"
-	weapon
 		sprite "projectile/heaver hyperspace"
 			"frame rate" 12
-		sound "heaver hyperspace"
-		velocity 12
-		lifetime 20
-		"random angle" 10
-		"hit force" 1200
-		"hit effect" "heaver hyperspace hit"
-		submunition "Heaver Shard (Projectile)" 4
+		"hardpoint sprite" "hardpoint/korath heaver"
+		icon "icon/korath heaver"
+		velocity 30
+		lifetime 12
+		"hit force" 1900
+		"hit effect" "heaver hyperspace hit" 10
+		sound "heaver"
+		submunition "Heaver Shard (Projectile)" 6
+		"turret turn" 2.2
+		"reload" 60
+		"burst reload" 12
+		"burst count" 5
+		"firing energy" 231
+		"firing heat" 190
+		"firing fuel" 12
+		"inaccuracy" 2
+	description `Korath Heavers raise to a fine art the age-old warfare method of, "Throw rocks at your enemy until they die." Small asteroids or other debris are thrown into an unstable hyperspace window. Within a range of 360, the weapon does no damage, but pushes with a force that makes a Banisher look like a light breeze. Beyond that, small chunks of matter exit hyperspace and travel a long distance at extreme velocity.`
+	description `This is a canonical example of modern Korath Exile engineering: jury-rigged, inefficient even by Korath standards, but cheap to produce. There are parts from a Fuel Processor, Banisher, Comet-Class Thruster, and Hyperdrive, all welded together and mounted on the lower half of a Nova Turret. Despite the slap-shod design, the device is extremely effective.`
 
 effect "heaver hyperspace hit"
-	sprite "heaver hyperspace hit"
+	sprite "effect/heaver hyperspace hit"
 		"no repeat"
-		"frame rate 12
+		"frame rate" 12
 	lifetime 45
-	velocity 1
+	"velocity scale" .05
+	sound "heaver hyperspace hit"
+	"random angle" 10
 
 outfit "Heaver Shard (Projectile)"
 	weapon
 		sprite "projectile/heaver shard"
 			"frame rate" 12
 			"rewind"
-		"random velocity" 14
-		sound "heaver shard"
-		"random velocity" 12
-		"random angle" 10
-		"lifetime" 400
-		"random lifetime" 200
-		"shield damage" 177
-		"hull damage" 235
-		"hit force" -1000
-		# hit force is additive, so 1200 - 1000 = 200 for this projectile
-		"hit effect" "heaver shard hit"
+		"random velocity" 10
+		"velocity" 25
+		"lifetime" 300
+		"random lifetime" 70
+		"shield damage" 90
+		"hull damage" 105
+		"inaccuracy" 5
+		"hit force" 100
+		"hit effect" "heaver shard hit" 10
 		"missile strength" 55
 
 effect "heaver shard hit"
-	sprite "heaver shard hit"
+	sprite "effect/heaver shard hit"
 		"no repeat"
-		"frame rate 12
+		"frame rate" 12
 	lifetime 60
-	velocity 1
+	sound "heaver shard hit"
+	"velocity scale" .05
+	"random angle" 10
