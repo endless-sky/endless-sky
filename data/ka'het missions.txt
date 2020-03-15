@@ -165,7 +165,7 @@ mission "Ringworld Debris: Coalition"
 					defer
 			`	After asking around, you're directed to a Heliarch building, an outpost. "Of assistance, how may we be, kind visitor?" An agent asks.`
 			`	You show them the dark debris piece, and explain where you've found it. They are clearly surprised by it, but don't hold you up for long, and don't attempt to perform any tests on it.`
-			`	"A piece of Quarg technology, this !" They say, asking again for you to explain where exactly you found it, as they make sure to write it all down this time.`
+			`	"A piece of Quarg technology, this is!" They say, asking again for you to explain where exactly you found it, as they make sure to write it all down this time.`
 			`	They then say that they have experienced with technology they managed to steal from the Quarg during their war, and that the debris is probably a somewhat common component in Quarg equipment.`
 			`	You wonder for a bit if they will ask to buy the piece, judging by how excited they seem, but they finish saying that they have enough technology to study as is, and also that the piece you found has deteriorated much compared to what they have acquired for themselves.`
 			`	You thank them for their time and the explanation, and head back to your ship.`
