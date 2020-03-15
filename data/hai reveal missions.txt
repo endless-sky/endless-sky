@@ -559,6 +559,9 @@ mission "leaks response 4a"
 	on fail
 		dialog `You have failed to recover the Geocoris. This is not critical, but does have long-term consequences. If you want the heroic ending, revert to the autosave or another earlier snapshot of the game.`
 	on complete
+		payment 1000000
+		conversation
+			`When you return the Hai Captain thanks you profusely, "Please, the Allhome government has authorised a reward of <payment> for routing the problem. Let us hope a more permanent solution can be devised soon. In the meantime, I'm sure they'll be waiting for you back on Hai-Home before too long."
 		event "returned geocoris" 365
 		#The Geodesic Geocoris may become available to purchase specially later on.
 		
