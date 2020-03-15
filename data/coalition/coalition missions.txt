@@ -332,7 +332,7 @@ mission "Coalition Yottrite 6"
 			`	He points them to a hotel, where he had a room prepared for them, and asks you to follow him to his office again.`
 			`	"Filled to the brim with cutting edge equipment, our facilities here and on the neighbor planet are. Alas, venture much into the theoretical field needed to study such rare elements, our personnel here does not."`
 			`	He shows you to his map again, this time pointing to a nearby Arachi world. "Once cracked down some aspects of Yottrite, the twins have, an expert in ship making, we will need," he says. "On <destination>, prepared one of their representatives, House Mallob has. Bring them here, you must."`
-			`	You're about to head back to your ship, when he hands you 200,000 credits. "Nearly forget to pay you for this last service, I did."`
+			`	You're about to head back to your ship, when he hands you 200,000 credits. "Nearly forgot to pay you for this last service, I did."`
 				accept
 	on accept
 		payment 200000
@@ -352,7 +352,7 @@ mission "Coalition Yottrite 7"
 		conversation
 			`You're immediately hailed by House Mallob when your ship is descending the atmosphere of <origin>. They guide you through the planet, bringing you to what looks like a massive castle-like structure, which appears to be made out of a similar material to that of Arach ships, at the base of a mountain.`
 			`	Other buildings are around as well, and you can see other ships landing close to your own. A dedicated docking area was built here, and you're almost certain the building closest to it is something of an outfitter. The atmosphere feels like that of a small village turned into an outdoor shopping mall.`
-			`	You're greeted by an Arach, who came in what you believe to be their version of a car, though you gave up on trying to guess the exact purpose of each pipe and plating, why some wheels weren't touching the ground, and pondering if you would comfortably fit inside one.`
+			`	You're greeted by an Arach, who came in what you believe to be their version of a car, though you gave up on trying to guess the exact purpose of each pipe and plating, why some wheels weren't touching the ground, while pondering if you would comfortably fit inside one.`
 			`	The Arach takes a translation device out of his pocket, and formally greets you, "Honored to have you as a guest, the great House Mallob is, Captain <first> <last>."`
 			choice
 				`	"Are you the shipwright I'll be taking to Lugglop?"`
@@ -374,7 +374,7 @@ mission "Coalition Yottrite 7"
 				`	"So, is my passenger crawling around somewhere? In some corner hidden in a web?"`
 				`	"A Kimek? I thought this was an Arach House."`
 			`	The butler ignores what you said, and introduces you to the Kimek in question. "Marry into House Mallob at a young age, miss Pichiie did. A former student on the university here, she was."`
-			`	Finally, the reason to why you had to come all the way here to this part of <origin> becomes clear, as Pichiie mentions she would like to hear your stories about where you first got the Yottrite in the first place, before boarding your ship to head to <planet>. You do your best to keep it as brief as possible, but as she constantly keeps asking more and more questions, ranging from how you acquired a Jump Drive to trying to recall places you've been to by memory.`
+			`	Finally, the reason to why you had to come all the way here to this part of <origin> becomes clear, as Pichiie mentions she would like to hear your stories about where you first got the Yottrite in the first place, before boarding your ship to head to <planet>. You do your best to keep it as brief as possible, but she constantly keeps asking more and more questions, ranging from how you acquired a Jump Drive to trying to recall places you've been to by memory.`
 			`	About an hour after the sun sets, she's finally satisfied, and after saying her goodbyes to other members of the House, you're both brought to your ship.`
 				accept
 	on complete
@@ -432,7 +432,7 @@ mission "Coalition Yottrite 9"
 		conversation
 			`You meet Lugglop in the spaceport, and follow him to where his team is. You meet again with Nasilor, Alituri and Pichiie, as the three of them oversee some workers place a few sealed metal crates inside a container, and the Yottrite sample you just brought here into another.`
 			`	They detail how they have prepared all the material they needed, and now just need a transport to <destination>.`
-			`	"If with us, you come, Captain, perhaps a better detailed  description of the systems where the Yottrite was found, you could provide," Nasilor says.`
+			`	"If with us, you come, Captain, perhaps a better detailed description of the systems where the Yottrite was found, you could provide," Nasilor says.`
 			`	"<payment>, I would pay you," Lugglop says.`
 			choice
 				`	"Of course I'll take you there. Have the containers loaded into my ship."`
