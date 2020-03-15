@@ -576,3 +576,82 @@ effect "slicer impact"
 	"random spin" 2
 	"random velocity" .1
 	"velocity scale" -.002
+
+outfit "Nova Device"
+	plural "Nova Devices"
+	category "Ammunition"
+	cost 9800
+	thumbnail "outfit/nova device"
+	"mass" 2
+	"nova device capacity" -1
+	description "This torpedo contains a Korath Plasma Core reactor element, with its protective casing removed. When it activates, there is a tremendous explosion that heats up all ships in the vicinity, interferes with their generators, and imparts a large hit force."
+	description "Though the warhead is a simple Korath design, the torpedo casing and drive systems are distinctly not Korath in style. This may be a device the Korath discovered or pillaged, and have learned to reproduce."
+
+outfit "Nova Device Rack"
+	plural "Nova Device Racks"
+	category "Ammunition"
+	cost "135000"
+	thumbnail "outfit/nova rack"
+	"mass" 4
+	"outfit space" -20
+	"nova device capacity" 8
+	ammo "Nova Device"
+	description "This appears to be a modified Korath Mine Rack, designed to carry Nova Devices."
+
+outfit "Nova Turret"
+	category "Secondary Weapons"
+	cost 1983000
+	thumbnail "outfit/nova turret"
+	"mass" 17
+	"outfit space" -49
+	"weapon capacity" -49
+	"turret mounts" -1
+	"required crew" 1
+	"nova device capacity" 16
+	weapon
+		sprite "projectile/nova device"
+			"frame rate" 2
+			"no repeat"
+		"hardpoint sprite" "hardpoint/nova turret"
+		sound "nova"
+		ammo "Nova Device"
+		"turret turn" 2.7
+		icon "icon/nova device"
+		"hit effect" "nuke explosion"
+		"hit effect" "nova ring" 40
+		"die effect" "small explosion"
+		stream
+		"reload" 360
+		"firing energy" 55
+		"firing heat" 72
+		"inaccuracy" 3
+		"lifetime" 2700
+		"velocity" 5
+		"acceleration" .6
+		"drag" .12
+		"turn" 1.6
+		"homing" 4
+		"infrared tracking" .7
+		"optical tracking" .9
+		"trigger radius" 70
+		"blast radius" 300
+		"shield damage" 2200
+		"hull damage" 1700
+		"ion damage" 28
+		"heat damage" 4400
+		"hit force" 4000
+		"missile strength" 120
+	description "This turret fires the slow-moving Nova Device in any direction. Though you may dodge it for a while, the Nova Device's extremely long range and large blast radius will eventually catch up with you. The damage dealt is small, but is accompanied by devastating side-effects. It heats ships, and drains their generators, and pushes with a considerable force."
+	description "Though the warhead is a simple Korath design, the torpedo casing, launcher, and drive systems are distinctly not Korath in style. This may be a device the Korath discovered or pillaged, and have learned to reproduce."
+
+effect "nova ring"
+	sprite "effect/nova ring"
+		"no repeat"
+		"frame rate" 12
+	"lifetime" 90
+	"random angle" 360
+	"random frame rate" 6
+	"random velocity" 4
+	"velocity scale" 0.1
+
+	
