@@ -177,6 +177,7 @@ mission "Ringworld Debris: Quarg"
 	deadline 1
 	source
 		government "Quarg"
+		not planet "Humanika"
 	to offer
 		has "ringworld debris"
 		has "Graveyard Label: offered"
