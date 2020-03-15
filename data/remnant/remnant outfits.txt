@@ -336,18 +336,19 @@ outfit "Research Laboratory"
 	category "Systems"
 	cost 500000
 	thumbnail "outfit/remnant laboratory"
-	"mass" 11
-	"outfit space" -11
-	"asteroid scan power" 20
+	"mass" 13
+	"outfit space" -9
+	"asteroid scan power" 40
 	"cargo scan power" 10
 	"cargo scan speed" 1
 	"outfit scan power" 10
 	"outfit scan speed" 1
 	"tactical scan power" 10
+	"atmosphere scan" 100
 	"required crew" 1
 	"unplunderable" 1
-	description "From the very beginning Remnant have relied on their ability to study everything they encounter. This knowledge has enabled them to survive and even prosper in the harsh environment of the Ember Waste. To enable this pursuit of knowledge, the Remnant designed this compact laboratory that is built onto the side of a cargo bay, mess hall, or other larger room. When the room isn't in use, it can thus be converted into a full fledged laboratory."
-	description "	While planetbound scientists might consider it little more than a closet packed with scanners and equipment, to the Remnant it is a forward base of operations used to investigate countless alien phenomena on-site. For captains, the ability of this equipment to support other ship sensors is also useful."
+	description "From the very beginning Remnant have relied on their ability to study everything they encounter. This knowledge has enabled them to survive and even prosper in the harsh environment of the Ember Waste. To enable this pursuit of knowledge, the Remnant designed this compact laboratory that is built onto the side of a cargo bay, mess hall, or other larger room. When the room isn't otherwise occupied, this module expands out to convert it into a full fledged laboratory."
+	description "	While planetbound scientists might consider it little more than a closet packed with scanners and equipment, to the Remnant it is a forward base of operations used to investigate countless alien phenomena on-site. For captains, having advanced equipment to support their sensor suites as well as a trained scientist to serve as science officer is a strong benefit."
 
 outfit "Quantum Key Stone"
 	category "Systems"
