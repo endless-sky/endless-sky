@@ -3357,9 +3357,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			command |= Command::FORWARD;
 		if(activeCommands.Has(Command::RIGHT | Command::LEFT))
 			command.SetTurn(activeCommands.Has(Command::RIGHT) - activeCommands.Has(Command::LEFT));
-		if(activeCommands.Has(Command::BACK))
+		if(activeCommands.Has(Command::BACK) && !activeCommands.Has(Command::FORWARD))
 		{
-			if(!activeCommands.Has(Command::FORWARD) && ship.Attributes().Get("reverse thrust"))
+			if(ship.Attributes().Get("reverse thrust"))
 				command |= Command::BACK;
 			else if(!activeCommands.Has(Command::RIGHT | Command::LEFT))
 				command.SetTurn(TurnBackward(ship));
