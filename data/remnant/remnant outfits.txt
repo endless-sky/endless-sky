@@ -57,7 +57,7 @@ outfit "Inhibitor Turret"
 		Remnant
 	cost 1371000
 	thumbnail "outfit/inhibitor turret"
-	"mass" 32
+	"mass" 36
 	"outfit space" -25
 	"weapon capacity" -25
 	"required crew" 1
