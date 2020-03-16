@@ -89,7 +89,7 @@ mission "Acorn Delights: Part 2"
 		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
 	on offer
 		conversation
-			`You spend several hours flying Eeeya between the massive communities of Stonebreak. She checked every homeless shelter, volunteer ward, woman's shelter, and low-income hospital. None had seen of Anoo in years, though some remembered the energetic little girl she was in her youth.`
+			`You spend several hours flying Eeeya between the massive communities of Stonebreak. She checks every homeless shelter, volunteer ward, woman's shelter, and low-income hospital. The story is always the same: Anoo hasn't been seen in years, though some remembered the energetic little girl she was in her youth.`
 			`	After a few moments of crushing despair, Eeeya's ears perk up, and she says, "sometimes very gifted students are allowed to study with the Quarg for a year after they graduate. There are trillions of Quarg on Alta Hai, so it wouldn't be surprising if she got lost. Let's go there next."`
 				accept
 
@@ -167,7 +167,7 @@ mission "Acorn Delights: Part 5"
 		payment 30000
 		log `Helped the famous Hai chef Eeeya find her granddaughter, a trauma surgeon named Anoo. Both joined the Unfettered hoping they can, "set them on a more productive path." Received shares of Acorn Delights stock which pay 500 credits a day in dividends.`
 		conversation
-			`You're ushered quickly from the landing platform to a nearby hospital. Unfettered Hai nearby are muttering in their language, but you keep hearing the Hai word for, "cookies," as they eye Eeeya. Along the way, you notice an odd contrast of squalor and advanced machinery. It seems the Unfettered value function and progress, rather than aesthetics and comfort like their southern brethren.`
+			`You're ushered quickly from the landing platform to a nearby hospital. Unfettered Hai nearby are muttering in their language, but you keep hearing the Hai word for, "cookies" as they eye Eeeya. Along the way, you notice an odd contrast of squalor and advanced machinery. It seems the Unfettered value function and progress, rather than aesthetics and comfort like their southern brethren.`
 			`	As you rise through the main tower of the hospital, you're surprised at how advanced it is. Despite their willingness to die in battle, the Unfettered seem to value the lives of the survivors. Perhaps this is to heal them quickly to fight again?`
 			`	You reach a high floor, filled with personal offices. Eeeya takes you to a door at the end of a long hallway.`
 			choice
