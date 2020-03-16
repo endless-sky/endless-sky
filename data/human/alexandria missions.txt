@@ -94,7 +94,7 @@ mission "Alexandria Library Card: First Volume"
 				`	"Sorry, I don't have time for this."`
 					decline
 			label accept
-			`	"Excellent. Our first destination is planet Shroud in the Alheka system. I suggest you take a route through the western Paradise Planets. We should be pretty safe there."`
+			`	"Excellent. Our first destination is <destination> system. I suggest you take a route through the western Paradise Planets. We should be pretty safe there."`
 				accept
 	on visit
 		dialog `It seems you left the insane librarian or some of his thousand pencils behind. Perhaps they're in one of your escorts?`
@@ -164,7 +164,7 @@ mission "Alexandria Library Card: Second Volume: Step 1"
 			`	"The monk? What monk? Haven't you ever seen a hologram before?"`
 				goto questions
 			label leave
-			`	"Excellent. We're going to planet Tinker in the Diphda system. It's at the edge of Syndicate space. Some stars around here are haunted by pirates. Take a route through the Paradise Planets and then Sol."`
+			`	"Excellent. We're going to <destination>. It's at the edge of Syndicate space. Some stars around here are haunted by pirates. Take a route through the Paradise Planets and then Sol."`
 				accept
 	on visit
 		dialog `You've forgotten your senile friend or his pencils. Perhaps they're in one of your escorts?`
@@ -192,7 +192,7 @@ mission "Alexandria Library Card: Second Volume: Step 2"
 			`	Daemos responds, "I seek the Paq cha'DIch, second volume of the Chal Jub Paqmey. I've heard it's your kind of literature. Do you have it?"`
 			`	"I don't have it now, but I can get it for you. Do you have the book, 'A Thousand Poisons of Amazon and How to Conceal Their Taste?' I've been looking for a signed first edition."`
 			`	"Ekhh. A trade. Okay, I'll get you a copy."`
-			`	Daemos whispers to you, "We have to fly to planet Amazon in the Schedar system next. I have the book, but we need to get it signed. I have someone to contact... I'll see you at your ship."`
+			`	Daemos whispers to you, "We have to fly to <destination> next. I have the book, but we need to get it signed. I have someone to contact... I'll see you at your ship."`
 			choice
 				`	(Continue.)`
 			`	Daemos meets you at your ship and says, "Our destination is in a dangerous area of Syndicate space. I've arranged some escorts so you don't get me killed."`
@@ -621,12 +621,12 @@ mission "Alexandria Library Card: Third Volume: Step 1"
 			`	"The third book of the Chal Jub Paqmey is called, Paq WejDIch. It is said to be the book where the main story really starts."`
 				goto questions
 			label "leads on next book"
-			`	"Actually, I know the precise location of the Paq WejDIch: the center of a circle of stones on the planet Rand. What I don't know is the location of the key segments."`
+			`	"Actually, I know the precise location of the Paq WejDIch: the center of a circle of stones on <destination>. What I don't know is the location of the key segments."`
 			`	"Key segments?"`
 			`	"Yes. The book is behind a secure locking mechanism that has a spherical key. The key is split into five segments. If I can see the writing on the circle of stones, I'll have clues to the locations of the segments."`
 				goto questions
 			label leave
-			`	"Wonderful. Take us to planet Rand in the Zeta Aquilae system."`
+			`	"Wonderful. Take us to <destination> system."`
 				accept
 	on visit
 		dialog `You've forgotten your senile friend or his pencils. Perhaps they're in one of your escorts?`
@@ -648,7 +648,7 @@ mission "Alexandria Library Card: Third Volume: Step 2"
 	on offer
 		conversation
 			`After landing on Rand, Daemos takes you to a circle of stones on a mesa near one of the largest mining towns. There are odd markings on the stones which Daemos insists must be words, even though he's never seen writing like that before.`
-			`	Two hours and thirty books later, Daemos tells you, "It's no good. I'm going to have to talk to some xenolinguistics experts. We need to go to planet Grakhord in the Sadalmelik system. There's a Navy group that patrols along here regularly. I'm sure they wouldn't mind going two systems past the end of Human space."`
+			`	Two hours and thirty books later, Daemos tells you, "It's no good. I'm going to have to talk to some xenolinguistics experts. We need to go to <destination> system. There's a Navy group that patrols along here regularly. I'm sure they wouldn't mind going two systems past the end of Human space."`
 			`	Your interest piques when you hear, "the end of Human space."`
 			`	"Oh, no, Captain <last> <first>. I'm not spoiling that surprise.`
 			choice
