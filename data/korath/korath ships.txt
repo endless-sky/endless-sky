@@ -226,15 +226,15 @@ ship "Korath Refuge"
 		"Hyperdrive"
 	
 	turret 134 -198 "Korath Warder"
-	turret 158 -187 "Korath Grab-Strike"
+	turret 158 -187 "Korath Heaver"
 	turret -134 -198 "Korath Warder"
-	turret -158 -187 "Korath Grab-Strike"
+	turret -158 -187 "Korath Heaver"
 	turret 104 30 "Korath Warder"
-	turret 104 60 "Korath Banisher"
+	turret 104 60 "Nova Device"
 	turret -104 30 "Korath Warder"
-	turret -104 60 "Korath Banisher"
-	turret -17 181 "Korath Grab-Strike"
-	turret 17 181 "Korath Grab-Strike"
+	turret -104 60 "Nova Device"
+	turret -17 181 "Korath Heaver"
+	turret 17 181 "Korath Heaver"
 	engine 43 244
 	engine -43 244
 	engine 171 235
