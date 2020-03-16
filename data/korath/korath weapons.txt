@@ -679,20 +679,20 @@ outfit "Korath Heaver"
 		icon "icon/korath heaver"
 		velocity 30
 		lifetime 12
-		"hit force" 1900
+		"hit force" 2500
 		"hit effect" "heaver hyperspace hit"
 		sound "heaver"
 		submunition "Heaver Shard" 20
 		"turret turn" 2.2
-		"reload" 60
+		"reload" 40
 		"burst reload" 12
 		"burst count" 6
 		"firing energy" 231
 		"firing heat" 190
 		"firing fuel" 20
 		"inaccuracy" 0.5
-	description `Korath Heavers raise to a fine art the age-old warfare method of, "Throw rocks at your enemy until they die." Small asteroids or other debris are thrown into an unstable hyperspace window. Within a range of 360, the weapon does no damage, but pushes with a force that makes a Banisher look like a light breeze. Beyond that, small chunks of matter exit hyperspace and travel a long distance at extreme velocity.`
-	description `This is a canonical example of modern Korath Exile engineering: jury-rigged, inefficient even by Korath standards, but cheap to produce. There are parts from a Fuel Processor, Banisher, Comet-Class Thruster, and Hyperdrive, all welded together and mounted on the lower half of a Nova Turret. Despite the slap-shod design, the device is extremely effective.`
+	description `Korath Heavers raise to a fine art the age-old warfare method of, "Throw rocks at your enemy until they die." Small asteroids or other debris fly into an unstable hyperspace window, exiting a few seconds later. Within a range of 360, the weapon does no damage, but pushes with a force that makes a Banisher look like a light breeze. Beyond that, small chunks of matter exit hyperspace and travel a long distance at extreme velocity.`
+	description `This is a canonical example of modern Korath Exile engineering: jury-rigged, inefficient even by Korath standards, but cheap to produce. There are parts from a Fuel Processor, Banisher, Comet-Class Thruster, and Hyperdrive, wrapped in steel, and mounted on the lower half of a Nova Turret. Despite the slap-shod design, the device is extremely effective.`
 
 effect "heaver hyperspace hit"
 	sprite "effect/heaver hyperspace hit"
@@ -712,11 +712,11 @@ outfit "Heaver Shard"
 		"velocity" 20
 		"lifetime" 120
 		"random lifetime" 30
-		"shield damage" 32
-		"hull damage" 36
+		"shield damage" 22
+		"hull damage" 24
 		"inaccuracy" 7
 		"hit force" 3
-		"heat damage" 20
+		"heat damage" 30
 		"hit effect" "heaver shard hit" 5
 		"missile strength" 12
 
