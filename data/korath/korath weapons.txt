@@ -728,3 +728,41 @@ effect "heaver shard hit"
 	sound "heaver shard hit"
 	"velocity scale" .05
 	"random angle" 10
+
+outfit "Korath Inferno"
+	category "Turrets"
+	cost 3200000
+	thumbnail "outfit/korath inferno"
+	"mass" 40
+	"outfit space" -71
+	"weapon capacity" -71
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/korath inferno"
+			"frame rate" 20
+		"hardpoint sprite" "hardpoint/korath inferno"
+		sound "korath inferno"
+		"hit effect" "korath inferno hit"
+		"inaccuracy" .3
+		"turret turn" 2
+		"velocity" 720
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 6
+		"firing heat" 6
+		"shield damage" 9
+		"hull damage" 7
+		"heat damage" 51
+		"piercing" 0.1
+	description "The Korath Inferno was one of the crowning achievements of the Kor Sestor before they were driven out of their territory. The Korath Exiles cannot build the original Kor Sestor design, but even this lesser version is devastatingly powerful."
+
+effect "korath inferno hit"
+	sprite "effect/korath inferno hit"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 360
+	"random spin" 1
+	"random velocity" 5
+	"velocity scale" .005

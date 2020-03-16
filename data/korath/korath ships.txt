@@ -198,8 +198,8 @@ ship "Korath Refuge"
 		"heat dissipation" .55
 		"fuel capacity" 1400
 		"cargo space" 451
-		"outfit space" 1190
-		"weapon capacity" 418
+		"outfit space" 1209
+		"weapon capacity" 423
 		"engine capacity" 259
 		weapon
 			"blast radius" 600
