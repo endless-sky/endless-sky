@@ -642,7 +642,7 @@ outfit "Nova Turret"
 		"ion damage" 28
 		"heat damage" 4400
 		"hit force" 4000
-		"missile strength" 120
+		"missile strength" 170
 	description "This turret fires a Nova Device in any direction. Though you may dodge it for a while, the Nova Device's extremely long range and large blast radius will eventually catch up with you (or an innocent asteroid). The damage dealt is small, but is accompanied by devastating side-effects. It heats ships, drains their generators, and pushes with a considerable force."
 	description "Though the warhead is a simple Korath design, the torpedo casing, launcher, and drive systems are distinctly not Korath in style. This may be a device the Korath discovered or pillaged, and have learned to reproduce."
 

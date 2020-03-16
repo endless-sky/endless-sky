@@ -198,7 +198,7 @@ ship "Korath Refuge"
 		"heat dissipation" .55
 		"fuel capacity" 1400
 		"cargo space" 451
-		"outfit space" 1209
+		"outfit space" 1190
 		"weapon capacity" 423
 		"engine capacity" 259
 		weapon
@@ -207,15 +207,17 @@ ship "Korath Refuge"
 			"hull damage" 4800
 			"hit force" 20000
 	outfits
-		"Korath Grab-Strike" 4
+		"Korath Heaver" 4
 		"Korath Warder" 4
-		"Korath Banisher" 2
+		"Nova Turret" 2
+		"Nova Device Rack" 3
+		"Nova Device" 56
 		
 		"Triple Plasma Core"
-		"Double Plasma Core"
 		"Systems Core (Large)" 2
-		"Large Heat Shunt" 3
-		"Fuel Processor"
+		"Large Heat Shunt"
+		"Small Heat Shunt" 2
+		"Fuel Processor" 6
 		"Korath Repeater Rifle" 8500
 		
 		"Thruster (Stellar Class)"
