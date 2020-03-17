@@ -242,6 +242,9 @@ tip "slowing resistance:"
 tip "solar collection:"
 	`Produces a variable amount of energy depending on how far this ship is from the star at the center of the system.`
 
+tip "solar heat:"
+	`Produces a variable amount of heat depending on how far this ship is from the star at the center of the system.`
+
 tip "tactical scan power:"
 	`Tactical scanners allow you to view your current target's crew complement, fuel, heat, and energy levels when it is within range. The range is proportional to the square root of this value.`
 

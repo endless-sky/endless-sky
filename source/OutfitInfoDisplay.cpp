@@ -66,6 +66,7 @@ namespace {
 		{"shield fuel", 0},
 		{"shield heat", 0},
 		{"solar collection", 0},
+		{"solar heat", 0},
 		{"thrusting energy", 0},
 		{"thrusting heat", 0},
 		{"turn", 0},
