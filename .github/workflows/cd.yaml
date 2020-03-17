@@ -9,7 +9,7 @@ jobs:
   ubuntu_x86_64:
     runs-on: ubuntu-latest
     env:
-      OUTPUT: endless-sky-amd64-${{ github.sha }}.tar.gz
+      OUTPUT: endless-sky-x86_64-${{ github.sha }}.tar.gz
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
@@ -27,6 +27,26 @@ jobs:
         run: scons -j $(nproc)
       - name: Package Application
         run: tar -czf ${{ env.OUTPUT }} sounds images/ data/ license.txt keys.txt icon.png endless-sky credits.txt copyright changelog
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
+
+  appimage_x86_64:
+    runs-on: ubuntu-latest
+    env:
+      ARCH: x86_64
+      OUTPUT: endless-sky-x86_64-${{ github.sha }}.AppImage
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons
+      - name: Build AppImage
+        run: ./utils/build_appimage.sh
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
