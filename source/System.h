@@ -29,6 +29,7 @@ class Minable;
 class Planet;
 class Ship;
 class Sprite;
+class Weapon;
 
 
 
@@ -68,6 +69,21 @@ public:
 	private:
 		const Fleet *fleet;
 		int period;
+	};
+	
+	class Hazard {
+	public:
+	Hazard(const Weapon *weapon, int period = 0, int minStrength = 1, int maxStrength = 1);
+	
+	const Weapon *Get() const;
+	int Period() const;
+	int Strength() const;
+	
+	private:
+		const Weapon *weapon = nullptr;
+		int period;
+		int minStrength;
+		int maxStrength;
 	};
 	
 	
@@ -126,6 +142,8 @@ public:
 	const std::vector<Asteroid> &Asteroids() const;
 	// Get the background haze sprite for this system.
 	const Sprite *Haze() const;
+	// Get the hazards of this system.
+	const std::vector<Hazard> &Hazards() const;
 	
 	// Get the price of the given commodity in this system.
 	int Trade(const std::string &commodity) const;
@@ -179,6 +197,7 @@ private:
 	std::vector<Asteroid> asteroids;
 	const Sprite *haze = nullptr;
 	std::vector<FleetProbability> fleets;
+	std::vector<Hazard> hazards;
 	double habitable = 1000.;
 	double asteroidBelt = 1500.;
 	double solarPower = 0.;

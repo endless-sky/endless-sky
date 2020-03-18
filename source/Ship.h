@@ -172,6 +172,8 @@ public:
 	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	// Generate energy, heat, etc. (This is called by Move().)
 	void DoGeneration();
+	// Take environmental hazard damage from the current system.
+	void DoHazard();
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships, std::vector<Visual> &visuals);
 	// Check if this ship is boarding another ship. If it is, it either plunders
@@ -297,6 +299,7 @@ public:
 	// not necessarily its primary target.
 	// Blast damage is dependent on the distance to the damage source.
 	int TakeDamage(const Projectile &projectile, bool isBlast = false);
+	int TakeDamage(const Weapon &weapon, double damageScaling = 1.);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force);

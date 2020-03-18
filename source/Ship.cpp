@@ -1014,6 +1014,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	
 	// Generate energy, heat, etc.
 	DoGeneration();
+	DoHazard();
 
 	// Handle ionization effects, etc.
 	if(ionization)
@@ -1718,6 +1719,17 @@ void Ship::DoGeneration()
 	fuel = max(0., fuel);
 	energy = max(0., energy);
 	heat = max(0., heat);
+}
+
+
+
+// Take environmental hazard damage from the current system.
+void Ship::DoHazard()
+{
+	if(currentSystem)
+		for(auto hazard : currentSystem->Hazards())
+			if(!Random::Int(hazard.Period()))
+				TakeDamage(*hazard.Get(), hazard.Strength());
 }
 
 
@@ -2637,9 +2649,37 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		double rSquared = d * d / (blastRadius * blastRadius);
 		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
 	}
+	
+	double hitForce = weapon.HitForce() * damageScaling;
+	
+	if(hitForce)
+	{
+		Point d = position - projectile.Position();
+		double distance = d.Length();
+		if(distance)
+			ApplyForce((hitForce * damageScaling / distance) * d);
+	}
+	
+	type |= TakeDamage(weapon, damageScaling);
+	
+	// If this ship was hit directly and did not consider itself an enemy of the
+	// ship that hit it, it is now "provoked" against that government.
+	if(!isBlast && projectile.GetGovernment() && !projectile.GetGovernment()->IsEnemy(government)
+			&& (Shields() < .9 || Hull() < .9 || !personality.IsForbearing())
+			&& !personality.IsPacifist() && weapon.DoesDamage())
+		type |= ShipEvent::PROVOKE;
+	
+	return type;
+}
+
+
+
+int Ship::TakeDamage(const Weapon &weapon, double damageScaling)
+{
+	int type = 0;
+	
 	double shieldDamage = weapon.ShieldDamage() * damageScaling;
 	double hullDamage = weapon.HullDamage() * damageScaling;
-	double hitForce = weapon.HitForce() * damageScaling;
 	double fuelDamage = weapon.FuelDamage() * damageScaling;
 	double heatDamage = weapon.HeatDamage() * damageScaling;
 	double ionDamage = weapon.IonDamage() * damageScaling;
@@ -2667,14 +2707,6 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	disruption += disruptionDamage * leakage;
 	slowness += slowingDamage * leakage;
 	
-	if(hitForce)
-	{
-		Point d = position - projectile.Position();
-		double distance = d.Length();
-		if(distance)
-			ApplyForce((hitForce * damageScaling / distance) * d);
-	}
-	
 	// Recalculate the disabled ship check.
 	isDisabled = true;
 	isDisabled = IsDisabled();
@@ -2682,12 +2714,6 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		type |= ShipEvent::DISABLE;
 	if(!wasDestroyed && IsDestroyed())
 		type |= ShipEvent::DESTROY;
-	// If this ship was hit directly and did not consider itself an enemy of the
-	// ship that hit it, it is now "provoked" against that government.
-	if(!isBlast && projectile.GetGovernment() && !projectile.GetGovernment()->IsEnemy(government)
-			&& (Shields() < .9 || Hull() < .9 || !personality.IsForbearing())
-			&& !personality.IsPacifist() && weapon.DoesDamage())
-		type |= ShipEvent::PROVOKE;
 	
 	return type;
 }

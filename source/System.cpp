@@ -19,9 +19,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Minable.h"
+#include "Outfit.h"
 #include "Planet.h"
 #include "Random.h"
 #include "SpriteSet.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <cmath>
@@ -106,6 +108,34 @@ int System::FleetProbability::Period() const
 
 
 
+System::Hazard::Hazard(const Weapon *weapon, int period, int minStrength, int maxStrength)
+	: weapon(weapon), period(period), minStrength(minStrength), maxStrength(maxStrength)
+{
+}
+
+
+
+const Weapon *System::Hazard::Get() const
+{
+	return weapon;
+}
+
+
+
+int System::Hazard::Period() const
+{
+	return period;
+}
+
+
+
+int System::Hazard::Strength() const
+{
+	return minStrength + Random::Int(maxStrength - minStrength);
+}
+
+
+
 // Load a system's description.
 void System::Load(const DataNode &node, Set<Planet> &planets)
 {
@@ -115,7 +145,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
-	set<string> shouldOverwrite = {"asteroids", "attributes", "fleet", "link", "object"};
+	set<string> shouldOverwrite = {"asteroids", "attributes", "fleet", "link", "object", "hazard"};
 	
 	for(const DataNode &child : node)
 	{
@@ -162,6 +192,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				trade.clear();
 			else if(key == "fleet")
 				fleets.clear();
+			else if(key == "hazard")
+				hazards.clear();
 			else if(key == "object")
 			{
 				// Make sure any planets that were linked to this system know
@@ -245,6 +277,29 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			}
 			else
 				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
+		}
+		else if(key == "hazard")
+		{
+			const Weapon *weapon = GameData::Outfits().Get(value);
+			if(remove)
+			{
+				for(auto it = hazards.begin(); it != hazards.end(); ++it)
+					if(it->Get() == weapon)
+					{
+						hazards.erase(it);
+						break;
+					}
+			}
+			else
+			{
+				int period = max(1, 
+					child.Size() > valueIndex ? static_cast<int>(child.Value(valueIndex + 1)) : 60);
+				int minStrength = max(1, 
+					child.Size() > valueIndex + 1 ? static_cast<int>(child.Value(valueIndex + 2)) : 1);
+				int maxStrength = max(minStrength, 
+					child.Size() > valueIndex + 2 ? static_cast<int>(child.Value(valueIndex + 3)) : 1);
+				hazards.emplace_back(weapon, period, minStrength, maxStrength);
+			}
 		}
 		// Handle the attributes which cannot be "removed."
 		else if(remove)
@@ -586,6 +641,14 @@ const vector<System::Asteroid> &System::Asteroids() const
 const Sprite *System::Haze() const
 {
 	return haze;
+}
+
+
+
+// Get the hazards of this system.
+const vector<System::Hazard> &System::Hazards() const
+{
+	return hazards;
 }
 
 
