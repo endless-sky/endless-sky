@@ -268,10 +268,9 @@ mission "Visit Wanderers Again"
 	
 	on accept
 		set "language: Wanderer"
-		set "license: Wanderer Outfits"
 		event "wanderer technology available"
 
-event "wanderer technology available" #Name unchanged for compatibility
+event "wanderer technology available" # Name unchanged for compatibility
 	government "Wanderer"
 		"friendly hail" "friendly wanderer"
 		"friendly disabled hail" "friendly disabled wanderer"
@@ -287,7 +286,6 @@ mission "Wanderer Hail Patch"
 	to offer
 		has "event: wanderer technology available"
 	on offer
-		set "license: Wanderer Outfits"
 		event "wanderer technology available"
 		fail
 
@@ -299,6 +297,7 @@ mission "Wanderers Conversation"
 	to offer
 		has "Visit Wanderers Again: done"
 	on offer
+		set "license: Wanderer Outfits"
 		log "Spoke with a Wanderer ambassador named Iktat Rek, using the translation device. Received permission to purchase some of their technology, but not their ships."
 		log "Factions" "Wanderers" `The Wanderers believe that their purpose in the universe is to "repair" planets whose biospheres have been ravaged by other species either through mismanagement or as a result of war. They came to their current territory through a wormhole that they call "the Eye," and they say that once their work here is done the Eye will open and lead them to a new territory and new worlds for them to care for.`
 			`It is possible that the worlds they currently inhabit were formerly part of Hai territory. That might explain why the Unfettered believe they have a right to take that territory back.`
