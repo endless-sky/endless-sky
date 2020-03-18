@@ -406,20 +406,3 @@ mission "Pirate Mutiny"
 	on complete
 		payment 25000
 		dialog `The pirate crew members thank you for bringing them to <planet>. One of them hands you a small payment of <payment>. You wish them all the best of luck with their new lives and part ways.`
-
-
-
-mission "Assisting Hai"
-	assisting
-	repeat
-	to offer
-		random < 27
-	source
-		government "Hai"
-		not attributes "automaton"
-	on offer
-		payment 30000
-		conversation
-			`Knowing you risked your life to save the <origin>, the captain gives you <payment>.`
-				decline
-	destination "Hai-home"
