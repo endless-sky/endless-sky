@@ -3146,3 +3146,42 @@ mission "Republic Assassination [4]"
 		"reputation: Republic" -= 25
 		"reputation: Navy (Oathkeeper)" -= 25
 		"reputation: Pirate" += 10
+
+mission "Mercenary Extraction [0]"
+	name "Mercenary extraction on <stopovers>"
+	job
+	repeat
+	description "Carry a group of mercenaries and their gear to <stopovers> to capture a high value target, then hand them off at <destination>. Being scanned will result in a 70,000 credit fine and both passengers and cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	passengers 4 15 .6
+	cargo "mercenary gear" 3 12 .6
+	illegal 70000 "The authorities burst through the airlock. After a brief and pointless struggle, all the mercs are subdued and taken into custody, their gear confiscated. You would be, too, but they deicide to simply give you a hefty fine for transporting known criminals and illegal weaponry instead."
+	stealth
+	clearance
+	infiltrating
+	to offer
+		random < 20
+		"combat rating" > 1200
+	source
+		government "Pirate"
+	stopover
+		distance 4 14
+		attributes research rich oil
+		not attributes station
+	destination
+		distance 2 7
+		attributes uninhabited farming mining oil
+		not attributes "near earth"
+	npc
+		government "Bounty Hunter"
+		personality nemesis waiting plunders
+		system
+			distance 3 6
+		fleet "Bounty Hunters"
+	on stopover
+		dialog phrase "merc infiltration"
+	on visit
+		dialog "You reached <planet>, but still haven't extracted the target from <stopovers>! Make sure you go there first."
+	on complete
+		payment 60000 300
+		reputation: Pirate" += 5
+		dialog phrase "extracted target"
