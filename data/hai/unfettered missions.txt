@@ -252,7 +252,7 @@ mission "Hai Slave Rescue [04]"
 			# the Navy, or themselves.
 			
 			`	The Admiral continues, "The Navy has a strict policy on slaves in pirate custody: do not rescue. If we see a disabled pirate ship, we don't offer surrender. We shoot the ship, killing every teenage slave soldier onboard. If we detect a ship smuggling slaves, even women and children, we don't attempt an arrest. We destroy the ship. If they free themselves, and come to us for sanctuary, we'll accept them. That's the only condition in which we rescue.`
-			`	"This is harsh, perhaps inhumane, but it is the only effective way we've found to reduce slavery. Captains are afraid to become slavers because it is a death sentence, no matter the cost. Slave owners know they'll lose their investment as soon as it is discovered. Captured Humans are willing to fight to the death to avoid slavery since they know they'll probably die when the pirates are caught.`
+			`	"The Navy's policy is harsh, even inhumane, but it is the only effective way we've found to reduce slavery. Captains are afraid to become slavers because it is a death sentence, no matter the cost. Slave owners know they'll lose their investment as soon as it is discovered. Captured Humans are willing to fight to the death to avoid slavery since they know they'll probably die when the pirates are caught.`
 			`	"I wish there was another way, but there isn't." You can see by his expression that his words are sincere.`
 			choice
 				`	(Continue.)`
