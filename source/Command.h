@@ -13,10 +13,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef COMMAND_H_
 #define COMMAND_H_
 
-#include "DataNode.h"
-
 #include <cstdint>
 #include <string>
+
+class DataNode;
 
 
 
