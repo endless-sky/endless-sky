@@ -1661,26 +1661,32 @@ void Ship::DoGeneration()
 	
 	// Handle ionization effects, etc.
 	// TODO: Mothership gives status resistance to carried ships?
-	const double ionResistance = attributes.Get("ion resistance");
-	const double ionEnergy = attributes.Get("ion resistance energy") / ionResistance;
-	const double ionFuel = attributes.Get("ion resistance fuel") / ionResistance;
-	const double ionHeat = attributes.Get("ion resistance heat") / ionResistance;
 	if(ionization)
+	{
+		const double ionResistance = attributes.Get("ion resistance");
+		const double ionEnergy = attributes.Get("ion resistance energy") / ionResistance;
+		const double ionFuel = attributes.Get("ion resistance fuel") / ionResistance;
+		const double ionHeat = attributes.Get("ion resistance heat") / ionResistance;
 		DoStatusEffect(isDisabled, ionization, ionResistance, energy, ionEnergy, fuel, ionFuel, heat, ionHeat);
+	}
 	
-	const double disruptionResistance = attributes.Get("disruption resistance");
-	const double disruptionEnergy = attributes.Get("disruption resistance energy") / disruptionResistance;
-	const double disruptionFuel = attributes.Get("disruption resistance fuel") / disruptionResistance;
-	const double disruptionHeat = attributes.Get("disruption resistance heat") / disruptionResistance;
 	if(disruption)
+	{
+		const double disruptionResistance = attributes.Get("disruption resistance");
+		const double disruptionEnergy = attributes.Get("disruption resistance energy") / disruptionResistance;
+		const double disruptionFuel = attributes.Get("disruption resistance fuel") / disruptionResistance;
+		const double disruptionHeat = attributes.Get("disruption resistance heat") / disruptionResistance;
 		DoStatusEffect(isDisabled, disruption, disruptionResistance, energy, disruptionEnergy, fuel, disruptionFuel, heat, disruptionHeat);
+	}
 	
-	const double slowingResistance = attributes.Get("slowing resistance");
-	const double slowingEnergy = attributes.Get("slowing resistance energy") / slowingResistance;
-	const double slowingFuel = attributes.Get("slowing resistance fuel") / slowingResistance;
-	const double slowingHeat = attributes.Get("slowing resistance heat") / slowingResistance;
 	if(slowness)
+	{
+		const double slowingResistance = attributes.Get("slowing resistance");
+		const double slowingEnergy = attributes.Get("slowing resistance energy") / slowingResistance;
+		const double slowingFuel = attributes.Get("slowing resistance fuel") / slowingResistance;
+		const double slowingHeat = attributes.Get("slowing resistance heat") / slowingResistance;
 		DoStatusEffect(isDisabled, slowness, slowingResistance, energy, slowingEnergy, fuel, slowingFuel, heat, slowingHeat);
+	}
 	
 	// When ships recharge, what actually happens is that they can exceed their
 	// maximum capacity for the rest of the turn, but must be clamped to the
