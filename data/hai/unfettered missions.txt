@@ -416,7 +416,7 @@ mission "Hai Slave Rescue [04]"
 			# The captain sarcastically returns to his script.
 			
 			`	Agent Kopkow rolls his eyes, "As the captain knows full well, tens of thousands of your people sneak into Human space every year, in violation of our countries' agreement. An estimated 17% of them die within a year and 33% within five years. About 9% join the pirates willingly, not as slaves. These are all risk-takers who suffer from their shortsightedness. Parliament won't accept a large sacrifice of Navy lives to save a group of alien criminals."`
-			# Read: "Stop wandering into Hai territory and this will stop happening."
+			# Read: "Stop wandering out of Hai territory and this will stop happening."
 			# A stern warning to bring back to the Hai populace.
 			
 			`	Teeneep ears perk up as she hears her family's vacation referred to as, "shortsighted risk-taking by alien criminals."`
