@@ -73,7 +73,7 @@ public:
 	
 	class Hazard {
 	public:
-	Hazard(const Weapon *weapon, int period = 0, int minStrength = 1, int maxStrength = 1);
+	Hazard(const Weapon *weapon, int period, int minStrength, int maxStrength);
 	
 	const Weapon *Get() const;
 	int Period() const;

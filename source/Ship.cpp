@@ -1014,6 +1014,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	
 	// Generate energy, heat, etc.
 	DoGeneration();
+	// Apply environmental damage from the current system.
 	DoHazard();
 
 	// Handle ionization effects, etc.

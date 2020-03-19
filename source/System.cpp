@@ -131,7 +131,7 @@ int System::Hazard::Period() const
 
 int System::Hazard::Strength() const
 {
-	return minStrength + Random::Int(maxStrength - minStrength);
+	return minStrength + (maxStrength == minStrength ? 0 : Random::Int(maxStrength - minStrength));
 }
 
 
@@ -293,11 +293,11 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			else
 			{
 				int period = max(1, 
-					child.Size() > valueIndex ? static_cast<int>(child.Value(valueIndex + 1)) : 60);
+					child.Size() >= valueIndex + 1 ? static_cast<int>(child.Value(valueIndex + 1)) : 60);
 				int minStrength = max(1, 
-					child.Size() > valueIndex + 1 ? static_cast<int>(child.Value(valueIndex + 2)) : 1);
+					child.Size() >= valueIndex + 2 ? static_cast<int>(child.Value(valueIndex + 2)) : 1);
 				int maxStrength = max(minStrength, 
-					child.Size() > valueIndex + 2 ? static_cast<int>(child.Value(valueIndex + 3)) : 1);
+					child.Size() >= valueIndex + 3 ? static_cast<int>(child.Value(valueIndex + 3)) : 1);
 				hazards.emplace_back(weapon, period, minStrength, maxStrength);
 			}
 		}
