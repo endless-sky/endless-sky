@@ -179,7 +179,7 @@ outfit "Ka'het Primary Cooling"
 	"outfit space" -14
 	"active cooling" 65
 	"cooling energy" 5.9
-	description "This is the main cooler used by the Ka'het. Although power-hungry, it is very effective, capable of upholding some Het by itself."
+	description "This is the main cooler used by the Ka'het. Although energy intensive, it is very effective, capable of single-handedly cooling some Het."
 
 # Shield:
 
