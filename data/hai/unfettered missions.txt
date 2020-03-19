@@ -1070,7 +1070,7 @@ mission "Hai Slave Rescue [14]"
 	on offer
 		log `Conquered Stormhold. The Unfettered Hai are pillaging it for, "reparations," while I retrieve the nine Centipedes.`
 		conversation
-			`As you land on Stormhold, you see a disturbing sight: twenty-five Unfettered Hai Geocoris ships jump into the system and land next to you. They've been modified as troop transports; hundreds of Unfettered troops step out alongside massive battle tanks. The troops quickly overcome defenders, leveling buildings and destroying underground bunkers. The Unfettered shoot with extreme precision, destroying some rooms of buildings and leaving others untouched. These are terrifyingly effective troops.`
+			`As you land on Stormhold, you see a disturbing sight: twenty-five Unfettered Hai Geocoris ships jump into the system and land next to you. They've been modified as troop transports; hundreds of Unfettered troops step out alongside massive battle tanks. The troops quickly overcome defenders, leveling buildings and destroying underground bunkers. The Unfettered shoot with extreme precision, destroying some rooms of buildings and leaving nearby rooms untouched. These are terrifyingly effective troops.`
 			# You see now what millions of Wanderers have seen on their own planets.
 			
 			`	Of the 913 Hai slaves, 871 were rescued. The others had died in their own escape attempt a week earlier. They managed to detonate a generator and destroy half the facility before their deaths though, which made the Unfettered rescue a little easier.`
@@ -1164,7 +1164,7 @@ mission "Hai Slave Rescue [16]"
 			`	Before leaving for Darkcloak, Admiral Choot'k hands you 3,713,908 credits. "The ancient Hai tradition is that three quarters of the restitution goes to the victims and one quarter goes to the warriors. This is your share of the warrior's quarter."`
 			`	He turns to Teeneep and puts a paw on her shoulder, "Join the True Hai and return with us to Darkcloak. You are destined to be a great leader. Surely you see that?"`
 			# Admiral Choot'k fully realizes that he needs Teeneep to
-			# stay on Darkcloak. He's slipping a bit because he's
+			# stay on Hai-Home. He's slipping a bit because he's
 			# falling in love with her.
 			
 			`	She smiles at him, "I have already joined the True Hai, but my fight is here on Hai-Home. I fight for the hearts and minds of our unenlightened brethren. One day they will welcome you as I have and our people will be one."`
