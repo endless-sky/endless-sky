@@ -66,16 +66,18 @@ namespace {
 	// Helper function to repair a given stat up to its maximum, limited by
 	// how much repair is available and how much energy and fuel are available.
 	// Updates the stat, the available amount, and the energy and fuel amounts.
-	void DoRepair(double &stat, double &available, double maximum, double &energy, double energyCost, double &fuel, double fuelCost)
+	void DoRepair(double &stat, double &available, double maximum, double &energy, double energyCost, double &fuel, double fuelCost, double &heat, double heatCost)
 	{
 		if(available <= 0. || stat >= maximum)
 			return;
 		
-		// Energy and fuel costs are the energy or fuel required per unit repaired.
+		// Energy, fuel, and heat costs are the energy, fuel, or heat required per unit repaired.
 		if(energyCost)
 			available = min(available, energy / energyCost);
 		if(fuelCost)
 			available = min(available, fuel / fuelCost);
+		if(heatCost < 0)
+			available = min(available, heat / -heatCost);
 		
 		double transfer = min(available, maximum - stat);
 		if(transfer > 0.)
@@ -84,6 +86,7 @@ namespace {
 			available -= transfer;
 			energy -= transfer * energyCost;
 			fuel -= transfer * fuelCost;
+			heat += transfer * heatCost;
 		}
 	}
 	
@@ -103,11 +106,13 @@ namespace {
 		double after = max(0., .99 * stat - resistance);
 		resistance = .99 * stat - after;
 		
-		// Limit the resistance by the available energy and fuel
+		// Limit the resistance by the available energy, fuel, and heat.
 		if(energyCost)
 			resistance = min(resistance, energy / energyCost);
 		if(fuelCost)
 			resistance = min(resistance, fuel / fuelCost);
+		if(heatCost < 0)
+			resistance = min(resistance, heat / -heatCost);
 		
 		// Update the energy, fuel, and heat given how much resistance is being used,
 		// then update the stat.
@@ -1600,14 +1605,14 @@ void Ship::DoGeneration()
 		const double hullFuel = attributes.Get("hull fuel") / hullAvailable;
 		const double hullHeat = attributes.Get("hull heat") / hullAvailable;
 		double hullRemaining = hullAvailable;
-		DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel);
+		DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
 		
 		const double shieldsAvailable = attributes.Get("shield generation");
 		const double shieldsEnergy = attributes.Get("shield energy") / shieldsAvailable;
 		const double shieldsFuel = attributes.Get("shield fuel") / shieldsAvailable;
 		const double shieldsHeat = attributes.Get("shield heat") / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
-		DoRepair(shields, shieldsRemaining, attributes.Get("shields"), energy, shieldsEnergy, fuel, shieldsFuel);
+		DoRepair(shields, shieldsRemaining, attributes.Get("shields"), energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
 		
 		if(!bays.empty())
 		{
@@ -1634,8 +1639,8 @@ void Ship::DoGeneration()
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
-				DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel);
-				DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"), energy, shieldsEnergy, fuel, shieldsFuel);
+				DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
+				DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"), energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
 			}
 			
 			// Now that there is no more need to use energy for hull and shield
@@ -1649,42 +1654,34 @@ void Ship::DoGeneration()
 				DoRepair(ship.fuel, fuelRemaining, ship.attributes.Get("fuel capacity"));
 			}
 		}
-		
-		// Add to this ship's heat based on how much repair was actually done.
-		// This can be done at the end of everything else because unlike energy,
-		// heat does not limit how much repair can actually be done.
-		if(hullAvailable)
-			heat += (hullAvailable - hullRemaining) * hullHeat;
-		if(shieldsAvailable)
-			heat += (shieldsAvailable - shieldsRemaining) * shieldsHeat;
 	}
 	
 	// Handle ionization effects, etc.
 	// TODO: Mothership gives status resistance to carried ships?
 	if(ionization)
 	{
-		const double ionResistance = attributes.Get("ion resistance");
-		const double ionEnergy = attributes.Get("ion resistance energy") / ionResistance;
-		const double ionFuel = attributes.Get("ion resistance fuel") / ionResistance;
-		const double ionHeat = attributes.Get("ion resistance heat") / ionResistance;
+		double ionResistance = attributes.Get("ion resistance");
+		double ionEnergy = attributes.Get("ion resistance energy") / ionResistance;
+		double ionFuel = attributes.Get("ion resistance fuel") / ionResistance;
+		double ionHeat = attributes.Get("ion resistance heat") / ionResistance;
 		DoStatusEffect(isDisabled, ionization, ionResistance, energy, ionEnergy, fuel, ionFuel, heat, ionHeat);
 	}
 	
 	if(disruption)
 	{
-		const double disruptionResistance = attributes.Get("disruption resistance");
-		const double disruptionEnergy = attributes.Get("disruption resistance energy") / disruptionResistance;
-		const double disruptionFuel = attributes.Get("disruption resistance fuel") / disruptionResistance;
-		const double disruptionHeat = attributes.Get("disruption resistance heat") / disruptionResistance;
+		double disruptionResistance = attributes.Get("disruption resistance");
+		double disruptionEnergy = attributes.Get("disruption resistance energy") / disruptionResistance;
+		double disruptionFuel = attributes.Get("disruption resistance fuel") / disruptionResistance;
+		double disruptionHeat = attributes.Get("disruption resistance heat") / disruptionResistance;
 		DoStatusEffect(isDisabled, disruption, disruptionResistance, energy, disruptionEnergy, fuel, disruptionFuel, heat, disruptionHeat);
 	}
 	
 	if(slowness)
 	{
-		const double slowingResistance = attributes.Get("slowing resistance");
-		const double slowingEnergy = attributes.Get("slowing resistance energy") / slowingResistance;
-		const double slowingFuel = attributes.Get("slowing resistance fuel") / slowingResistance;
-		const double slowingHeat = attributes.Get("slowing resistance heat") / slowingResistance;
+		double slowingResistance = attributes.Get("slowing resistance");
+		double slowingEnergy = attributes.Get("slowing resistance energy") / slowingResistance;
+		double slowingFuel = attributes.Get("slowing resistance fuel") / slowingResistance;
+		double slowingHeat = attributes.Get("slowing resistance heat") / slowingResistance;
 		DoStatusEffect(isDisabled, slowness, slowingResistance, energy, slowingEnergy, fuel, slowingFuel, heat, slowingHeat);
 	}
 	
