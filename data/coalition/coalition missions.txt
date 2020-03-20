@@ -165,7 +165,7 @@ mission "Kimek Student 1"
 				`	"Sorry, should I have paid first before eating?"`
 			branch translator
 				has "language: Coalition"
-			`	The Kimek doesn't have a translation box, so your words don't reach him, and while he insists in remaining by the table, you also notice he has been constantly glancing at the entrance, as if waiting for someone to come in.`
+			`	The Kimek doesn't have a translation box, so your words don't reach him, and while he insists on remaining by the table, you also notice he has been constantly glancing at the entrance, as if waiting for someone to come in.`
 			`	When a Heliarch agent passes by the entrance, the Kimek says something in his language, heading to meet the Heliarch, and speaking with them briefly. The Heliarch agent then accompanies the Kimek waiter to your table.`
 			choice
 				`	"Is there an officer problem?"`
@@ -340,9 +340,9 @@ mission "Kimek Student 4"
 		conversation
 			`Chikee hands you <payment> before leaving your ship. Heliarch agents are waiting for him, and receive him in a bit of a ceremony.`
 			`	You spend a few hours browsing some shops here, and have some food once you find an establishment that serves something appetizing to humans.`
-			`	Rinworlds have no day or night, but looking at the conventioned time used here, it is almost night time when Chikee returns to your ship, in a hurry.`
-			`	"Accepted I was! Grant me the rannk, they did!" he says, showing you a circlet, a Heliarch circlet, as he puts it on his head. "Infinitely grateful for your help in all of this I am, Captain."`
-			`	You congratulate him on the achievement, and wish him best of luck in his new line of work, as he leaves your ship one last time.`
+			`	Ringworlds have no day or night, but looking at the conventioned time used here, it is almost night time when Chikee returns to your ship, in a hurry.`
+			`	"Accepted I was! Grant me the rank, they did!" he says, showing you a circlet, a Heliarch circlet, as he puts it on his head. "Infinitely grateful for your help in all of this I am, Captain."`
+			`	You congratulate him on the achievement, and wish him the best of luck in his new line of work, as he leaves your ship one last time.`
 
 
 
@@ -411,7 +411,7 @@ mission "Coalition Outbreak 2"
 			label vaccines
 			`	He shows you to a detailed map of Kimek space, explaining that most of the confirmed and suspected cases have been there, as one would expect given that the Kimek population is more than double that of the Arachi and the Saryds combined.`
 			`	"To <destination>, this initial batch must be brought. From there, distributing more batches of the vaccines to other worlds, you will be tasked with."`
-			`	As the line of volunteering merchant captains continues to grow behind you, he is switft to inform you that payment will be <payment>, and asks that the next person come forward.`
+			`	As the line of volunteering merchant captains continues to grow behind you, he is swift to inform you that payment will be <payment>, and asks that the next person come forward.`
 				accept
 	on stopover "Secret Sky"
 		dialog `A group of Saryd workers is waiting for you and they load the <cargo> onto your ship. A laboratory worker babbles about how you must care for them.`
@@ -422,7 +422,7 @@ mission "Coalition Outbreak 2"
 		"coalition jobs" ++
 		conversation
 			`An incessant stream of freighters has the landing pads of the spaceport here overcrowded, and from the looks of it you only got a quick clearance due to carrying the vaccines.`
-			`	The people here who are surprisingly managing to keep the place organized despite the overwhelming traffic pay you <payment>, as they unload the vaccines off your cargo hold.`
+			`	The people here, who are surprisingly managing to keep the place organized despite the overwhelming traffic, pay you <payment> as they unload the vaccines off your cargo hold.`
 			`	"Waiting in the spaceport with more tasks for you, our colleagues will be, Captain <last>," they say, before running off to tend to other ships carrying doctors or supplies.`
 
 
@@ -499,7 +499,7 @@ mission "Saryd Students 1"
 			label work
 			`	They tell you that they are students at Starlit University, and will be graduating soon. They intend on throwing a party to celebrate, and had the idea of buying some traditional Arachi Rum for that.`
 			`	"Stopped shipping it here, the Arachi have," another Saryd says, pulling on the translation box on his friend's neck, nearly yanking it off. "Happened with many other drinks, this also has."`
-			`	They explain that the rum is produced on <destination>, and that you'll probably have an easier time finding it there. Though you can't know for sure how many people they intend on inviting to this party, and although you don't know how much of a drink a Saryd can have, you still worry a bit when they say that "two tons should do."`
+			`	They explain that the rum is produced on <destination>, and that you'll probably have an easier time finding it there. Though you can't know for sure how many people they intend on inviting to this party, and although you don't know how much a Saryd can drink, you still worry a bit when they say that "two tons should do."`
 			choice
 				`	"Sounds good, I'll go get it and bring it to you."`
 					accept
