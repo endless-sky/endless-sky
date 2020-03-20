@@ -428,6 +428,7 @@ mission "Hai Slave Rescue [07]"
 	name "Hai Slave Rescue: <planet>"
 	description "Take Teeneep to <destination> to report her failure to the elders. Payment is <payment>."
 	landing
+	deadline 50
 	source Cloudfire
 	clearance `Teeneep tells her story and the Unfettered let you land.`
 	passengers 1
@@ -604,6 +605,7 @@ mission "Hai Slave Rescue [08a] Access"
 mission "Hai Slave Rescue [09]"
 	name "Hai Slave Rescue: <planet>"
 	description "Trade <cargo> at <destination> for critical ramscoop components. Payment is <payment>."
+	deadline 48
 	cargo "valuable trade goods" 23
 	source Darkcloak
 	destination Follower
@@ -642,6 +644,7 @@ mission "Hai Slave Rescue [10]"
 	name "Hai Slave Rescue: <planet>"
 	description "Return <cargo> to <destination>. Payment is <payment>."
 	landing
+	deadline 38
 	source Follower
 	cargo "critical ramscoop components" 23
 	blocked `You don't have space for the Unfettered Hai's <cargo>.`
@@ -702,6 +705,7 @@ mission "Hai Slave Rescue [11]"
 	name "Hai Slave Rescue: <planet>"
 	description "Fly Teeneep to <destination> to hire Centipedes. Payment is <payment>."
 	landing
+	deadline 28
 	source Darkcloak
 	destination Allhome
 	passengers 1
@@ -729,6 +733,7 @@ mission "Hai Slave Rescue [12]"
 	name "Hai Slave Rescue: <planet>"
 	description "Escort Centipedes to <destination>. Payment is <payment>."
 	landing
+	deadline 23
 	source Allhome
 	passengers 1
 	destination Canyon
