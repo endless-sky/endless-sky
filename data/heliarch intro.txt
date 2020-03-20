@@ -1058,7 +1058,7 @@ mission "Heliarch Expedition 1"
 			choice
 				`	"Can you bring me to a higher-up? I think I've found some useful information."`
 				`	"Is there anyone I can talk to about a broken ringworld?"`
-			`	The group discuses among themselves for a bit, then abide, bringing you to a restricted section of the ringworld, reserved for the Heliarch.`
+			`	The group discusses among themselves for a bit, then abide, bringing you to a restricted section of the ringworld, reserved for the Heliarch.`
 			`	Many Heliarch members enter the room over time, standing up as one final, elderly Saryd slowly makes his way to the table, stopping opposite to you.`
 			`	"Our invaluable human guest, we greet," he says. "An honor, it is, for I, elder Aulori, to such a visit, host."`
 			`	Some other members salute you as well, and then the elder ask what is it that you wanted to tell them.`
@@ -1076,7 +1076,7 @@ mission "Heliarch Expedition 1"
 			`	You were too focused on this elder Aulori to notice before, but all over the table the other Heliarchs are engaged in a rather heated, though mostly quiet, discussion, as they gesticulate and tilt the table with their body weight amidst whispers.`
 			`	Aulori stands up, and the others stop talking, looking at him.`
 			`	"Broken?" He stares right at you. "Impossible, such a thing should be... Absolutely sure, are you, Captain?"`
-			`	You nod, and after talking among themselves, you're asked to wait outside the room for a while. The whispering discussion from early now becomes a fully fledged debate, as you can hear shouting coming from inside, in multiple Coalition languages. After half an hour, you also hear what must have been the table being knocked over, and louder yelling.`
+			`	You nod, and after talking among themselves, you're asked to wait outside the room for a while. The whispering discussion from earlier now becomes a fully fledged debate, as you can hear shouting coming from inside, in multiple Coalition languages. After half an hour, you also hear what must have been the table being knocked over, and louder yelling.`
 			`	It all grows quiet for a while, and then the door opens again, the table and everything else is in order. Everyone leaves, and Aulori comes over to you.`
 			`	"Adjusted, your ship's sensors will be. Better programmed, we will make them, for more detailed tridimensional projections," he says, and you're brought back to the ship.`
 			`	Some engineers indeed go inside your ship, and spend some time tinkering with it. After they're done, Aulori tells you to land on the planet you mentioned, Ruin, and to travel to World's End, to scan the ringworld. He then leaves, going back to the restricted section.`
@@ -1194,7 +1194,7 @@ mission "Heliarch Expedition 5"
 				`	"Wasn't I gonna get some supplies for you? Figured you meant I just had to pick them up from Coalition space."`
 				`	"Why do you even need supplies? Wasn't your cargo full with those crates?"`
 			`	"A most exquisite opportunity, this is. Excited, our researchers are. To keep them and the operation secure, I was tasked," he says. "Filled to the brim with laboratory utensils and advanced equiment, our cargo was, sadly."`
-			`	He goes over how they lack basic equipment to set up a proper camp, and further details on how all the Punisher's cargo hold was carrying was the technology that will be used to study the ringworld, so they have no means of sustaining the camp here in the long run.`
+			`	He goes over how they lack basic equipment to set up a proper camp, and further details on how all the Punisher was carrying was the technology that will be used to study the ringworld, so they have no means of sustaining the camp here in the long run.`
 			choice
 				`	"You came here without supply or equipment? What the hell were you thinking?"`
 					goto nosupply
