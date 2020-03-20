@@ -493,6 +493,7 @@ mission "Hai Slave Rescue [05]"
 	description "Take Teeneep to <destination> to arrange a rescue of the enslaved Hai. Payment is <payment>."
 	passengers 1
 	landing
+	deadline 60
 	source Sunracer
 	clearance
 	destination Hai-home
