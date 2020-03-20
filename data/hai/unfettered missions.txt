@@ -948,6 +948,7 @@ mission "Hai Slave Rescue [12]"
 	name "Hai Slave Rescue: <planet>"
 	description "Escort Centipedes to <destination>. Payment is <payment>."
 	landing
+	deadline 23
 	source Allhome
 	passengers 1
 	destination Canyon
