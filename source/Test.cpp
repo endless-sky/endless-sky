@@ -165,6 +165,17 @@ const string &Test::Name() const
 
 
 
+string Test::DebugMessage(Context &context) const
+{
+	// Generate a message that tells which part of the test is running
+	string testStatus = "";
+	for(unsigned int i = 0; i < context.stepToRun.size(); ++i)
+		testStatus += "stack: " + to_string(i) + ", step: " + to_string(context.stepToRun[i]) + "; ";
+	return testStatus;
+}
+
+
+
 // The panel-stacks determine both what the player sees and the state of the
 // game.
 // If the menuPanels stack is not empty, then we are in a menu for something
@@ -216,17 +227,20 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 				++context.stepToRun[context.stepToRun.size()-1];
 			context.stepAction = 0;
 			break;
+		case TestStep::RESULT_LOOP:
+			context.stepToRun.push_back(0);
+			break;
 		case TestStep::RESULT_FAIL:
 		default:
 			// Exit with error on a failing testStep.
 			// Throwing a runtime_error is kinda rude, but works for this version of
 			// the tester. Might want to add a menuPanels.QuitError() function in
 			// a later version (which can set a non-zero exitcode and exit properly).
-			throw runtime_error("Teststep " + to_string(context.stepToRun[0]) + " action " + to_string(context.stepAction) + " failed");
+			throw runtime_error("Teststep " + DebugMessage(context) + " failed");
 	}
 	
 	// Special case: if we are in a loop, then stepping beyond the last entry should return us to the first.
-	if(context.stepToRun.size() > 1 && context.stepToRun[context.stepToRun.size()-1] >= testStepsContainer.size())
+	if(context.stepToRun.size() > 1 && context.stepToRun[context.stepToRun.size()-1] >= GetTestSteps(context.stepToRun, testSteps).size())
 		context.stepToRun[context.stepToRun.size()-1] = 0;
 }
 
@@ -264,7 +278,12 @@ Test::TestStep::TestStep(const DataNode &node)
 
 void Test::TestStep::Load(const DataNode &node)
 {
-	if(node.Token(0) == "assert")
+	if(node.Token(0) == "assign")
+	{
+		stepType = ASSIGN;
+		checkedCondition.Load(node);
+	}
+	else if(node.Token(0) == "assert")
 	{
 		stepType = ASSERT;
 		checkedCondition.Load(node);
@@ -345,6 +364,10 @@ Test::TestStep::TestResult Test::TestStep::Step(int stepAction, UI &menuPanels, 
 {
 	switch (stepType)
 	{
+		case TestStep::ASSIGN:
+			checkedCondition.Apply(player.Conditions());
+			return RESULT_DONE;
+			
 		case TestStep::ASSERT:
 			if(checkedCondition.Test(player.Conditions()))
 				return RESULT_DONE;
@@ -475,6 +498,9 @@ Test::TestStep::TestResult Test::TestStep::Step(int stepAction, UI &menuPanels, 
 			else
 				player.SetTravelDestination(nullptr);
 			return RESULT_DONE;
+			
+		case TestStep::REPEAT:
+			return RESULT_LOOP;
 			
 		case TestStep::WAITFOR:
 			// If we reached the condition, then we are done.

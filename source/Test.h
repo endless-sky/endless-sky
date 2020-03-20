@@ -40,6 +40,8 @@ public:
 	public:
 		// The different types of teststeps.
 		enum StepType {
+			// Step that assigns a value to a condition.
+			ASSIGN,
 			// Step that verifies if a certain condition is true
 			ASSERT,
 			// Step that breaks execution of a REPEAT loop (or stops the execution
@@ -85,7 +87,9 @@ public:
 			RESULT_NEXTACTION,
 			// Teststep indicates to break of an outer loop or break off a test (succesfully)
 			// Teststep should use RESULT_FAIL for breaking off a test with a failure.
-			RESULT_BREAK
+			RESULT_BREAK,
+			// Teststep indicated to start a loop under the current step (in case of REPEAT).
+			RESULT_LOOP
 		};
 
 		TestStep(const DataNode &node);
@@ -128,6 +132,7 @@ public:
 	
 public:
 	const std::string &Name() const;
+	std::string DebugMessage(Context &context) const;
 	std::string StatusText() const;
 
 	// PlayerInfo, the gamePanels and the MenuPanels together give the state of
