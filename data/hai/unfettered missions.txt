@@ -1025,6 +1025,7 @@ mission "Hai Slave Rescue [13]"
 	name "Hai Slave Rescue: <planet>"
 	description "Destroy all hostile vessels at <system> and land on <planet>. Unfettered will assist. Don't let Admiral Choot'k's flagship be destroyed. Payment is <payment>."
 	landing
+	deadline 16
 	source Canyon
 	passengers 1
 	destination Stormhold
