@@ -451,6 +451,7 @@ mission "Hai Slave Rescue [04]"
 				accept
 	on complete
 		payment 75000
+		event "navy searching for hai slaves"
 	on enter Mirfak
 		dialog `As you enter the system, authorities on <planet> ask you to meet a Syndicate representative on <planet> immediately.`
 	npc
