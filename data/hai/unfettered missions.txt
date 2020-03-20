@@ -567,6 +567,7 @@ mission "Hai Slave Rescue [06]"
 	name "Hai Slave Rescue: <planet>"
 	description "Take Teeneep to <destination> to report her failure to the elders. Payment is <payment>."
 	landing
+	deadline 53
 	source Hai-home
 	passengers 1
 	destination Cloudfire
