@@ -859,6 +859,7 @@ mission "Hai Slave Rescue [10]"
 	name "Hai Slave Rescue: <planet>"
 	description "Return <cargo> to <destination>. Payment is <payment>."
 	landing
+	deadline 38
 	source Follower
 	cargo "critical ramscoop components" 23
 	blocked `You don't have space for the Unfettered Hai's <cargo>.`
