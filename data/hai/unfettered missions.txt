@@ -891,7 +891,9 @@ mission "Hai Slave Rescue [11]"
 	passengers 1
 	blocked `You cannot save the Hai Slaves unless you have one bunk for Teeneep.`
 	to offer
-		has "Hai Slave Rescue [10]: done"
+		or
+			has "Hai Slave Rescue [10a]: done"
+			has "Hai Slave Rescue [10]: done"
 	on visit
 		dialog `You forgot Teeneep. Wait for your escorts to arrive before landing.`
 	on offer
