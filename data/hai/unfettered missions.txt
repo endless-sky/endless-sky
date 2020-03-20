@@ -1190,6 +1190,7 @@ mission "Hai Slave Rescue [16]"
 		dialog `To finish the mission, you must bring Teeneep and her Centipedes to <stopovers> and then <destination>.`
 	on complete
 		payment 3713908
+		event "navy stops searching for hai slaves"
 		"reputation: Hai (Unfettered)" >?= 10
 		log `Brought the enslaved Hai home. The Unfettered Hai were greeted as national heroes. Numerous Hai chose to return with the Unfettered, but were promised they would never fight their own kind. Many of these were professionals such as doctors, engineers, farmers, and scientists. Teeneep has stayed behind to try to convince the Hai to join the Unfettered Hai. It seems this small event may have lasting repercussions for Hai society. It is clear the Hai will eventually be one, though whether by violence or peace, fate has not yet written.`
 		conversation
