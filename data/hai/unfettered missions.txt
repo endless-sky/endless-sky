@@ -24,7 +24,7 @@ mission "Hai Slave Rescue [00]"
 		random < 50
 		"combat rating" > 2400
 	on visit
-		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
+		dialog `Oops! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
 	on offer
 		conversation
 			`You see a large crowd of scared Hai gathered around a Hai woman. You can barely understand her words over the cacophony, but you hear "slavery," "pirates," and "cowardly pilots."`
@@ -76,7 +76,7 @@ mission "Hai Slave Rescue [01]"
 	to offer
 		has "Hai Slave Rescue [00]: done"
 	on visit
-		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
+		dialog `Oops! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
 	on offer
 		log `The Hai slaves are on Stormhold, and will not be sold for several months. They're being held for study before sale.`
 		conversation
@@ -137,7 +137,7 @@ mission "Hai Slave Rescue [02]"
 	to offer
 		has "Hai Slave Rescue [01]: done"
 	on visit
-		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
+		dialog `Oops! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
 	on offer
 		log `Teeneep was unable to convince the slavers to sell of the 900 Hai slaves, but she did negotiate for 138 of them. We're returning to Hai-Home for help.`
 		conversation
@@ -176,7 +176,7 @@ mission "Hai Slave Rescue [03]"
 	to offer
 		has "Hai Slave Rescue [02]: done"
 	on visit
-		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
+		dialog `Oops! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
 	on offer
 		log `Elders of Hai-Home refused to make any decision. They want to meet with the full Elder Council first. Teeneep wants to seek help in human space instead.`
 		conversation
@@ -232,7 +232,7 @@ mission "Hai Slave Rescue [04]"
 	to offer
 		has "Hai Slave Rescue [03]: done"
 	on visit
-		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
+		dialog `Oops! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
 	on offer
 		log `Due to the possible Syndicate involvement, the Navy and Republic Intelligence have agreed to investigate the Hai enslavement. They expect results, "in a month or two," after which they'll attack the facility. That may be too late; the slaves may be sold by then.`
 		conversation
@@ -333,7 +333,7 @@ mission "Hai Slave Rescue [05]"
 	to offer
 		has "Hai Slave Rescue [04]: done"
 	on visit
-		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
+		dialog `Oops! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
 	on offer
 		log `Teeneep has concluded that the humans cannot free her people in time. We're returning to Hai-Home in hope that the Hai Elders will have made a decision.`
 		conversation
@@ -384,7 +384,7 @@ mission "Hai Slave Rescue [06]"
 	to offer
 		has "Hai Slave Rescue [05]: done"
 	on visit
-		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
+		dialog `Oops! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
 	on offer
 		log `Hai Elders still have made no decision. Having nowhere else to turn for help, Teeneep wants to visit the Unfettered Hai.`
 		conversation
@@ -428,7 +428,7 @@ mission "Hai Slave Rescue [07]"
 	to offer
 		has "Hai Slave Rescue [06]: done"
 	on visit
-		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
+		dialog `Oops! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
 	on offer
 		log `The Hai military refuses to disobey the Hai Elders' orders. Having nowhere else to turn for help, Teeneep wants to visit the Unfettered Hai.`
 		conversation
@@ -519,7 +519,7 @@ mission "Hai Slave Rescue [08]"
 	to offer
 		has "Hai Slave Rescue [07]: done"
 	on visit
-		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
+		dialog `Oops! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
 	on offer
 		log `The Unfettered Hai agree to help rescue the Hai slaves, but they need ramscoops so they can bypass hostile systems. I'll trade some of their goods for critical ramscoop components.`
 		conversation
