@@ -186,6 +186,7 @@ mission "Hai Slave Rescue [02]"
 	name "Hai Slave Rescue: <planet>"
 	description "Take Teeneep to <destination> to seek the missing Hai. Payment is <payment>."
 	landing
+	deadline 81
 	clearance
 	passengers 1
 	source Stormhold
