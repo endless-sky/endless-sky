@@ -240,6 +240,7 @@ mission "Hai Slave Rescue [03]"
 	description "Take Teeneep to <destination> to arrange a rescue of the enslaved Hai. Payment is <payment>."
 	landing
 	deadline 73
+	deadline 73
 	clearance
 	source Hai-home
 	passengers 1
