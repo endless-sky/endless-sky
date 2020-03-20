@@ -382,6 +382,10 @@ mission "Coalition Outbreak 1"
 
 
 
+event "coalition virus contained"
+
+
+
 mission "Coalition Outbreak 2"
 	name "Collect Vaccines"
 	description "Head to <stopovers>, where Saryd researchers have been working on a vaccine for the new virus, and deliver it to <destination> by <date>."
