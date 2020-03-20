@@ -668,7 +668,7 @@ mission "Hai Slave Rescue [10]"
 		payment 850000
 	on fail
 		"reputation: Hai (Unfettered)" <?= -100
-		dialog `You receive a message from the Unfettered Hai, "You failed and betrayed us. You are no longer welcome on our worlds."````
+		dialog `You receive a message from the Unfettered Hai, "You failed and betrayed us. You are no longer welcome on our worlds."`
 	npc
 		government "Bounty Hunter"
 		personality nemesis unconstrained
@@ -685,8 +685,8 @@ mission "Hai Slave Rescue [10]"
 
 mission "Hai Slave Rescue [10a]"
 	name "Hai Slave Rescue: Reconciliation"
-	description "Bring 38 Catalytic Ramscoops to the Unfettered Hai to make up for your lost shipment of ramscoop parts."
-	deadline 38
+	description "Bring 28 Catalytic Ramscoops to the Unfettered Hai to make up for your lost shipment of ramscoop parts."
+	deadline 28
 	destination "Darkcloak"
 	to offer
 		or
@@ -695,9 +695,9 @@ mission "Hai Slave Rescue [10a]"
 	on offer
 		dialog `Uh-oh.  Maybe you can make amends for this by bringing them some complete Catalytic Ramscoops.  Judging by the manifest for your lost cargo, you'll need more than three dozen, plus you'll have to bribe the spaceport on Darkcloak in order to land, but there may be hope for the slaves yet.`
 	on visit
-		dialog `You failed to bring back the ramscoop components, but the mission can still proceed if you bring them back some complete ramscoops.  An Unfettered officer informs you they will need 38 Catalytic Ramscoops - you think that's a lot more than necessary, but you are in no position to argue.`
+		dialog `You failed to bring back the ramscoop components, but the mission can still proceed if you bring them back some complete ramscoops.  An Unfettered officer informs you they will need 28 Catalytic Ramscoops - you think that's a lot more than necessary, but you are in no position to argue.`
 	on complete
-		outfit "Catalytic Ramscoop" -38
+		outfit "Catalytic Ramscoop" -28
 		"reputation: Hai (Unfettered)" <?= 10
 
 
