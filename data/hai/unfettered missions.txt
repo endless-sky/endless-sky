@@ -464,6 +464,26 @@ mission "Hai Slave Rescue [04]"
 				"Falcon (Laser Chaser)"
 				"Corvette (Particle Chaser)" 3
 
+event "navy searching for hai slaves"
+	system "Volax"
+		add fleet "Navy Surveillance" 3000
+	system "Rigel"
+		add fleet "Navy Surveillance" 3000
+	system "Cardax"
+		add fleet "Navy Surveillance" 4000
+	system "Moktar"
+		add fleet "Navy Surveillance" 5000
+	system "Sumar"
+		add fleet "Navy Surveillance" 5000
+	system "Hassaleh"
+		add fleet "Navy Surveillance" 5000
+	system "Rajak"
+		add fleet "Navy Surveillance" 6000
+	system "Oblate"
+		add fleet "Navy Surveillance" 6000
+	system "Alcyone"
+		add fleet "Navy Surveillance" 7000
+
 mission "Hai Slave Rescue [05]"
 	name "Hai Slave Rescue: <planet>"
 	description "Take Teeneep to <destination> to arrange a rescue of the enslaved Hai. Payment is <payment>."
