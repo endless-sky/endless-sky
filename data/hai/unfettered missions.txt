@@ -924,6 +924,7 @@ mission "Hai Slave Rescue [12]"
 	on offer
 		conversation
 			`Teeneep speaks to a representative of the Hai government to pick up the 19 million credits purchase price she arranged for 138 of the Hai slaves. Immediately after that, she trades about a third of the money to Centipede pilots for enough room to transport almost 900 passengers.`
+			`Back on your ship, Teeneep says, "We can park them on Canyon for the duration of the battle.  It's not too heavily populated, and the terrain will hide the ships from sight on the surface."`
 				accept
 	on complete
 		log `Escorted nine Hai Centipedes to Canyon to transport the enslaved Hai home.`
