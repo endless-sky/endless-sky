@@ -319,6 +319,7 @@ mission "Hai Slave Rescue [04]"
 	name "Hai Slave Rescue: <planet>"
 	description "Take Teeneep to <destination> to arrange a rescue of the enslaved Hai. Payment is <payment>."
 	landing
+	deadline 67
 	passengers 1
 	source Farpoint
 	destination Sunracer
