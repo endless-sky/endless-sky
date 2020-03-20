@@ -643,6 +643,7 @@ mission "Hai Slave Rescue [07]"
 	name "Hai Slave Rescue: <planet>"
 	description "Take Teeneep to <destination> to report her failure to the elders. Payment is <payment>."
 	landing
+	deadline 50
 	source Cloudfire
 	clearance `Teeneep tells her story and the Unfettered let you land.`
 	passengers 1
