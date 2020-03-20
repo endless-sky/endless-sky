@@ -1098,7 +1098,7 @@ mission "Hai Slave Rescue [15]"
 		has "Hai Slave Rescue [14]: done"
 	on offer
 		conversation
-			`The Hai prepare their nine centipedes for the trip to <planet>. Hopefully there won't be a pirate ambush waiting; you have no Unfettered helping you this time.`
+			`The Hai prepare their nine centipedes for the trip to <planet>. Hopefully the pirates won't mount a counterattack.`
 				accept
 			# Well don't jinx it!
 	on complete
