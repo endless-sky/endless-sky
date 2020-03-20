@@ -47,13 +47,13 @@ government "Bounty Hunter"
 	"fine" 0
 	"hostile hail" "hostile bounty hunter"
 
-# Bounty hunters that the player's escorts will attack and vice-versa
-government " Bounty Hunter "
+government "Bounty Hunter that Attacks Hai"
+	"display name" "Bounty Hunter"
 	swizzle 6
 	color .78 0 0
 	
 	"attitude toward"
-		"Heroic Unfettered" -.3
+		"Hai (Friendly Unfettered)" -.3
 		"Hai" -.3
 		" Hai " -.3
 
@@ -164,9 +164,10 @@ government "Hai (Unfettered)"
 	"hostile hail" "hostile unfettered"
 	"hostile disabled hail" "hostile disabled unfettered"
 
-government "Heroic Unfettered"
+government "Hai (Friendly Unfettered)"
 	swizzle 4
 	color .69 .33 .82
+	"display name" "Hai (Unfettered)"
 	
 	"player reputation" 100
 	"attitude toward"
@@ -279,7 +280,7 @@ government "Korath"
 	
 	"attitude toward"
 		"Kor Sestor" -.01
-		"Heroic Unfettered" -.01
+		"Hai (Friendly Unfettered)" -.01
 	
 	"player reputation" -10
 
@@ -410,7 +411,7 @@ government "Pirate"
 		"Korath" -.01
 		"Merchant" -.1
 		"Syndicate" -.01
-		"Heroic Unfettered" -.01
+		"Hai (Friendly Unfettered)" -.01
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly pirate"
