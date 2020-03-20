@@ -56,6 +56,7 @@ government "Bounty Hunter that Attacks Hai"
 		"Hai (Friendly Unfettered)" -.3
 		"Hai" -.3
 		" Hai " -.3
+		"Hai (Unfettered)" -.3
 
 	"player reputation" -1000
 	"bribe" .2
@@ -123,6 +124,7 @@ government "Hai"
 		" Hai " 1
 		"Hai (Unfettered)" -.1
 		"Merchant" .01
+		"Bounty Hunter that Attacks Hai" -.01
 	"bribe" .02
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -139,6 +141,7 @@ government " Hai "
 		"Hai" 1
 		"Hai (Unfettered)" -.1
 		"Merchant" .01
+		"Bounty Hunter that Attacks Hai" -.01
 	"bribe" .02
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -157,6 +160,7 @@ government "Hai (Unfettered)"
 		"Pug" -.01
 		"Merchant" -.01
 		"Kor Efret" -.01
+		"Bounty Hunter that Attacks Hai" -.01
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
@@ -174,7 +178,7 @@ government "Hai (Friendly Unfettered)"
 		"Pirate" -.01
 		"Korath" -.01
 		"Hai" .01
-		" Bounty Hunter " -.01
+		"Bounty Hunter that Attacks Hai" -.01
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
