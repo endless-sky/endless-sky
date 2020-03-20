@@ -112,6 +112,7 @@ mission "Hai Slave Rescue [01]"
 	name "Hai Slave Rescue: <planet>"
 	description "Take Teeneep to <destination> to seek the missing Hai. Payment is <payment>."
 	landing
+	deadline 90
 	clearance `You send the clearance code and the pirates give you landing coordinates.`
 	source Freedom
 	passengers 1
