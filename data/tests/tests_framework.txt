@@ -78,3 +78,32 @@ test "Test-Framework - Navigate"
 			has "flagship system: Sol"
 		"wait for"
 			has "flagship system: Alpha Centauri"
+
+test "Test-Framework - Loops and counts"
+	status "Active"
+	description "Test Loops and condition assignments and reading"
+	sequence
+		inject "commodity barges"
+		load "commodity barges.txt"
+		launch
+		assign
+			"Test loop" = 0
+		repeat
+			"break if"
+				"Test loop" > 3
+			assign
+				"Test inner loop" = 50
+			repeat
+				"break if"
+					"Test inner loop" <= 25
+				command left
+				assign
+					"Test inner loop" --
+			repeat
+				"break if"
+					"Test inner loop" <= 0
+				command forward
+				assign
+					"Test inner loop" --
+			assign
+				"Test loop" ++
