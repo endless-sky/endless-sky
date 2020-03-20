@@ -871,6 +871,9 @@ mission "Hai Slave Rescue [10]"
 	on complete
 		log `The Unfettered now have what they need to build several ramscoops.`
 		payment 850000
+	on fail
+		"reputation: Hai (Unfettered)" <?= -100
+		dialog `You receive a message from the Unfettered Hai, "You failed and betrayed us. You are no longer welcome on our worlds."````
 	npc
 		government "Bounty Hunter"
 		personality nemesis unconstrained
