@@ -863,6 +863,25 @@ mission "Hai Slave Rescue [10]"
 		fleet "Large Northern Pirates" 2
 		fleet "Small Northern Pirates" 4
 
+
+mission "Hai Slave Rescue [10a]"
+	name "Hai Slave Rescue: Reconciliation"
+	description "Bring 38 Catalytic Ramscoops to the Unfettered Hai to make up for your lost shipment of ramscoop parts."
+	deadline 38
+	destination "Darkcloak"
+	to offer
+		or
+			has "Hai Slave Rescue [10]: failed"
+			has "Hai Slave Rescue [09]: failed"
+	on offer
+		dialog `Uh-oh.  Maybe you can make amends for this by bringing them some complete Catalytic Ramscoops.  Judging by the manifest for your lost cargo, you'll need more than three dozen, plus you'll have to bribe the spaceport on Darkcloak in order to land, but there may be hope for the slaves yet.`
+	on visit
+		dialog `You failed to bring back the ramscoop components, but the mission can still proceed if you bring them back some complete ramscoops.  An Unfettered officer informs you they will need 38 Catalytic Ramscoops - you think that's a lot more than necessary, but you are in no position to argue.`
+	on complete
+		outfit "Catalytic Ramscoop" -38
+		"reputation: Hai (Unfettered)" <?= 10
+
+
 mission "Hai Slave Rescue [11]"
 	name "Hai Slave Rescue: <planet>"
 	description "Fly Teeneep to <destination> to hire Centipedes. Payment is <payment>."
