@@ -34,7 +34,7 @@ mission "Hai Slave Rescue [00]"
 				`	(Ignore them.)`
 					decline
 			`	As you approach, the crowd recognizes you immediately, "It's Captain <last>! That hero beat the pirates before!"`
-			`	The woman quiets the crowd and explains, "Over the past three weeks, hundreds of Hai vacationers and explorers have been kidnapped in Ultima Thule while visiting Humans. We recently heard they were captured by pirates, but no pilot has the bravery to help us investigate.`
+			`	The woman quiets the crowd and explains, "Over the past three weeks, hundreds of Hai vacationers and explorers have been kidnapped in Ultima Thule while visiting humans. We recently heard they were captured by pirates, but no pilot has the bravery to help us investigate.`
 			
 			`	"Surely the fearless hero <first> <last> will help?"`
 			choice
@@ -94,7 +94,7 @@ mission "Hai Slave Rescue [01]"
 			`	Hathor vanishes into a nearby office, activates a holo-communicator, and shuts the door.`
 			choice
 				`	(Spy on Hathor's conversation.)`
-			`	It is difficult to make out Hathor's words through the thick door, but you can gather the gist of his conversations. He talks to a few slavers throughout Human space and finds a group near Syndicate space that have hundreds of Hai. They agree to meet you, and Hathor asks for 100,000 credits payment if the two of you are taken as slaves.`
+			`	It is difficult to make out Hathor's words through the thick door, but you can gather the gist of his conversations. He talks to a few slavers throughout human space and finds a group near Syndicate space that have hundreds of Hai. They agree to meet you, and Hathor asks for 100,000 credits payment if the two of you are taken as slaves.`
 			choice
 				`	(Continue.)`
 			`	Hathor emerges from his office. "I've scoured the galaxy, and only one slaver has Hai, but they have plenty. I'll want 50,000 credits before I give you details and a clearance code."`
@@ -148,7 +148,7 @@ mission "Hai Slave Rescue [02]"
 			
 			`	A sales representative addresses Teeneep, "You're here to buy bulk Hai slaves, right?"`
 			`	"Yes. I want your entire stock."`
-			`	"We can't do that. Half of the stock will stay here for breeding. The rest will be distributed throughout Human space. We're trying to set up a market for alien slaves.`
+			`	"We can't do that. Half of the stock will stay here for breeding. The rest will be distributed throughout human space. We're trying to set up a market for alien slaves.`
 			`	"However... I think we can still make a deal. I'll sell you 85 slaves, all top quality, of a variety of traits and both genders. Excellent breeding stock. In return, you also buy 53 slaves that are unsuitable for sale. We'll want 19 million credits for that; no haggling."`
 			
 			`	Teeneep ponders for a few seconds and responds, "I will have to consult with my associates, but I think we can arrange that. I would like to sample the merchandise before I leave."`
@@ -183,7 +183,7 @@ mission "Hai Slave Rescue [03]"
 	on visit
 		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
 	on offer
-		log `Elders of Hai-Home refused to make any decision. They want to meet with the full Elder Council first. Teeneep wants to seek help in Human space instead.`
+		log `Elders of Hai-Home refused to make any decision. They want to meet with the full Elder Council first. Teeneep wants to seek help in human space instead.`
 		conversation
 			`Teeneep had radioed during your flight to arrange a meeting with the Elders. She was vexed by their insistence that she meet with only three of them. When you pressed her for answers she said, "It'll be obvious soon. We Hai choose our elders for their indecisiveness and slothfulness." Hopefully now you'll learn the meaning of those words.`
 			
@@ -200,12 +200,12 @@ mission "Hai Slave Rescue [03]"
 			
 			
 			`	The first Elder speaks, "We will happily pay whatever the slavers demand for our people, but it sounds like money won't return all the Hai. Please tell them we agree to the 19 million, and try to negotiate for more slaves."`
-			`	The second Elder adds, "Our agreement with the Human Republic is very clear: Hai do not enter Human space without permission from the topmost levels of both governments. The risk of instability to both countries is too great if we are discovered prematurely.`
-			`	"We know the locations of all Hai in Human space with permission to be there, and none are on Stormhold. The 900 enslaved Hai must have entered Human space without permission, against the laws of both countries. We realize this is a common occurrence, and there are consequences for disobedience."`
+			`	The second Elder adds, "Our agreement with the human Republic is very clear: Hai do not enter human space without permission from the topmost levels of both governments. The risk of instability to both countries is too great if we are discovered prematurely.`
+			`	"We know the locations of all Hai in human space with permission to be there, and none are on Stormhold. The 900 enslaved Hai must have entered human space without permission, against the laws of both countries. We realize this is a common occurrence, and there are consequences for disobedience."`
 			choice
 				`	(Continue.)`
 			`	The third Elder says, "Regardless of what laws were broken, slavery is too terrible a punishment. If they cannot be rescued through peace, then a military strike may be the only way."`
-			`	The first Elder responds, "Sending military ships through the wormhole is strictly forbidden both by ancient laws, and by our agreement with the Humans. There may be serious consequences to that course of action. This decision cannot be made lightly."`
+			`	The first Elder responds, "Sending military ships through the wormhole is strictly forbidden both by ancient laws, and by our agreement with the humans. There may be serious consequences to that course of action. This decision cannot be made lightly."`
 			
 			
 			`	The second Elder concludes the discussion, "We three cannot give such drastic orders. The full Elder Council must decide. They will meet in a few weeks and this will be the first item on the agenda."`
@@ -248,7 +248,7 @@ mission "Hai Slave Rescue [04]"
 			
 			choice
 				`	(Continue.)`
-			`	After Teeneep's lengthily explanation, Admiral Cain is the first to respond, "Enslavement through kidnapping is common occurrence on the edge of Human space. Most of the crew on a pirate ship are slaves; teenagers or young adults forced into service. Many slaves are smuggled past the Navy to the Paradise Worlds or Syndicate to act as personal slaves or laborers in dangerous environments. Unfortunately, rescue is nearly impossible.`
+			`	After Teeneep's lengthily explanation, Admiral Cain is the first to respond, "Enslavement through kidnapping is common occurrence on the edge of human space. Most of the crew on a pirate ship are slaves; teenagers or young adults forced into service. Many slaves are smuggled past the Navy to the Paradise Worlds or Syndicate to act as personal slaves or laborers in dangerous environments. Unfortunately, rescue is nearly impossible.`
 			
 			`	"Human pirates will do anything to avoid capture, including using their own slaves as shields. During any capture attempt, 50-80% of the slaves die. The Navy loses three soldiers for every one slave freed. Against a well-defended facility like you describe, it may be five to one or more. Long-term, even WE cannot sustain those losses.`
 			`	"The Republic has a far more effective way of combating slavery."`
@@ -257,7 +257,7 @@ mission "Hai Slave Rescue [04]"
 			`	Captain Wallace is visibly angry and almost growling. A stern look from Admiral Cain quickly calms him down.`
 			
 			`	The Admiral continues, "The Navy has a strict policy on slaves in pirate custody: do not rescue. If we see a disabled pirate ship, we don't offer surrender. We shoot the ship, killing every teenage slave soldier onboard. If we detect a ship smuggling slaves, even women and children, we don't attempt an arrest. We destroy the ship. If they free themselves, and come to us for sanctuary, we'll accept them. That's the only condition in which we rescue.`
-			`	"The Navy's policy is harsh, even inhumane, but it is the only effective way we've found to reduce slavery. Captains are afraid to become slavers because it is a death sentence, no matter the cost. Slave owners know they'll lose their investment as soon as it is discovered. Captured Humans are willing to fight to the death to avoid slavery since they know they'll probably die when the pirates are caught.`
+			`	"The Navy's policy is harsh, even inhumane, but it is the only effective way we've found to reduce slavery. Captains are afraid to become slavers because it is a death sentence, no matter the cost. Slave owners know they'll lose their investment as soon as it is discovered. Captured humans are willing to fight to the death to avoid slavery since they know they'll probably die when the pirates are caught.`
 			
 			`	"I wish there was another way, but there isn't." You can see by his expression that his words are sincere.`
 			
@@ -266,13 +266,13 @@ mission "Hai Slave Rescue [04]"
 			`	Teeneep's face is filled with confusion that quickly changes to utter horror. "They're your own people. Vulnerable, tortured, victims. You kill them by the thousands?"`
 			`	"Millions," Captain Wallace corrects her, getting visibly angry again. "Estimates are between 900,000 and 1,300,000 per year. Of those, at least 40,000 are younger than the age of seven and at least 20,000 are pregnant women."`
 			
-			`	Agent Kopkow interjects, "Yes, but those numbers have steadily decreased. Fifty years ago, there were twenty times as many slaves in Human space. Our methods may be brutal, but they are effective. Later generations will look at us as villains, but they will be grateful for the freedom we won them."`
+			`	Agent Kopkow interjects, "Yes, but those numbers have steadily decreased. Fifty years ago, there were twenty times as many slaves in human space. Our methods may be brutal, but they are effective. Later generations will look at us as villains, but they will be grateful for the freedom we won them."`
 			
 			choice
 				`	(Continue.)`
 			`	Captain Wallace asks, "These are enslaved Hai. Surely we can make an exception, in the name of galactic peace?" From his voice, it sounds like that was a rhetorical question.`
 			
-			`	Agent Kopkow rolls his eyes, "As the captain knows full well, tens of thousands of your people sneak into Human space every year, in violation of our countries' agreement. An estimated 17% of them die within a year and 33% within five years. About 9% join the pirates willingly, not as slaves. These are all risk-takers who suffer from their shortsightedness. Parliament won't accept a large sacrifice of Navy lives to save a group of alien criminals."`
+			`	Agent Kopkow rolls his eyes, "As the captain knows full well, tens of thousands of your people sneak into human space every year, in violation of our countries' agreement. An estimated 17% of them die within a year and 33% within five years. About 9% join the pirates willingly, not as slaves. These are all risk-takers who suffer from their shortsightedness. Parliament won't accept a large sacrifice of Navy lives to save a group of alien criminals."`
 			
 			`	Teeneep ears perk up as she hears her family's vacation referred to as, "shortsighted risk-taking by alien criminals."`
 			`	Before she can correct the agent, Captain Wallace interrupts, "What about the possible Syndicate involvement?"`
@@ -342,7 +342,7 @@ mission "Hai Slave Rescue [05]"
 	on visit
 		dialog `Oopes! You left Teeneep in one of your escorts. Depart and wait for the escorts to arrive.`
 	on offer
-		log `Teeneep has concluded that the Humans cannot free her people in time. We're returning to Hai-Home in hope that the Hai Elders will have made a decision.`
+		log `Teeneep has concluded that the humans cannot free her people in time. We're returning to Hai-Home in hope that the Hai Elders will have made a decision.`
 		conversation
 		
 			
@@ -365,9 +365,9 @@ mission "Hai Slave Rescue [05]"
 
 			choice
 				`	(Continue.)`
-			`	After some more discussion, Teeneep concludes that she won't receive help any time soon in Human space. The Republic will wait months, and the slaves may be sold by then. The Syndicate is powerless to help.`
+			`	After some more discussion, Teeneep concludes that she won't receive help any time soon in human space. The Republic will wait months, and the slaves may be sold by then. The Syndicate is powerless to help.`
 			
-			`	Teeneep turns to you and says, "Let's return to Hai-home and report my failure. Maybe they'll help now that they know the Humans have abandoned us."`
+			`	Teeneep turns to you and says, "Let's return to Hai-home and report my failure. Maybe they'll help now that they know the humans have abandoned us."`
 			
 			`	She pays the <payment> you were promised and asks for passage to <destination>.`
 				accept
@@ -398,15 +398,15 @@ mission "Hai Slave Rescue [06]"
 		conversation
 			
 			`You pass through hallways and shuttles to the same meeting room as before. This time, Teeneep is met by the full council of elders that rule the Hai.`
-			`	"Honored elders, I stand before you the final survivor of a broken household, one of many victims of Human oppression. The Humans will not free our people before they are sold. Who else can I turn to but you?`
+			`	"Honored elders, I stand before you the final survivor of a broken household, one of many victims of human oppression. The humans will not free our people before they are sold. Who else can I turn to but you?`
 			`	"It is times like these when people of the Hai look to you for help. Lead us, as leaders should. Lead us to freedom, not slavery. Success, not cowardice. Sanctuary, not stability."`
 			
 			`	The Hierarch, leader of the Hai Elders, walks slowly down the stairs to face Teeneep.`
 			choice
 				`	(Continue.)`
-			`	He speaks slowly and deliberately, "You ask us to go against ancient tradition and send a military force through the wormhole. If we do that, where will it end? What will happen next time Hai are in trouble? Must we attack the Humans a second time? A third?`
+			`	He speaks slowly and deliberately, "You ask us to go against ancient tradition and send a military force through the wormhole. If we do that, where will it end? What will happen next time Hai are in trouble? Must we attack the humans a second time? A third?`
 			
-			`	"What if they retaliate? We cannot survive a war against both the Unfettered Hai and the Human Republic. If we close our borders, then we can no longer help Human refugees that may seek sanctuary here.`
+			`	"What if they retaliate? We cannot survive a war against both the Unfettered Hai and the human Republic. If we close our borders, then we can no longer help human refugees that may seek sanctuary here.`
 			
 			`	"The matter is not as simple as it may seem. We will come to a decision, Teeneep. As with all things, it will take time."`
 			
@@ -474,7 +474,7 @@ mission "Hai Slave Rescue [07]"
 			
 			`	"Slavery," she says.`
 			`	"Yes, I know about that. Our leaders, as always, delay decisions."`
-			`	"The victims may have only a few more weeks before they're sold all throughout Human space. They'll be exotic slaves. Fetish slaves. Laborers in dangerous environments. They'll die in the worst of conditions. Surely this bothers you."`
+			`	"The victims may have only a few more weeks before they're sold all throughout human space. They'll be exotic slaves. Fetish slaves. Laborers in dangerous environments. They'll die in the worst of conditions. Surely this bothers you."`
 			# So obviously a rhetorical question that she didn't even
 			# put a question mark at the end.
 			
@@ -546,7 +546,7 @@ mission "Hai Slave Rescue [08]"
 			
 			`You are led to a war room cluttered with Hai wearing military uniforms. Each one has different numbers of decorations on their shirts, presumably indicating rank.`
 			`	The meeting begins with a dozen Unfettered Hai heckling Teeneep, which is abruptly stopped by the more well-decorated Unfettered officers. "Tell us why you are here, Teeneep."`
-			`	"Humans have captured and brutally enslaved nine hundred Hai. The cowards at Hai-Home are so afraid of Humans that they refuse to help.`
+			`	"Humans have captured and brutally enslaved nine hundred Hai. The cowards at Hai-Home are so afraid of humans that they refuse to help.`
 			# Staging the discussion as, "are you as cowardly as
 			# the Hai Elders?"
 			
@@ -576,7 +576,7 @@ mission "Hai Slave Rescue [08]"
 			
 			choice
 				`	(Continue.)`
-			`	The Hai leader turns to you and says, "We cannot pass through Hai, Human, or Wanderer space. Only the chaos to the south will grant us passage. Your people have a technology to help.`
+			`	The Hai leader turns to you and says, "We cannot pass through Hai, human, or Wanderer space. Only the chaos to the south will grant us passage. Your people have a technology to help.`
 			`	"We can build most of a ramscoop, but we lack the knowledge and materials to complete it. We'll put goods in your ship to trade for critical ramscoop components.`
 			`	"Meet us in the spaceport when you're ready."`
 			# Now you can see the first "payment" from Teeneep to
@@ -844,7 +844,7 @@ mission "Hai Slave Rescue [13]"
 				`	"I think this is too risky for me."`
 					goto suicide
 			label enough
-			`	"These beetles are equipped with outfits we've pillaged from Wanderers, smuggled from Humans, or hoarded from the Hai-Korath war. Only elite strike forces are allowed access to this stash, and only for critical missions.`
+			`	"These beetles are equipped with outfits we've pillaged from Wanderers, smuggled from humans, or hoarded from the Hai-Korath war. Only elite strike forces are allowed access to this stash, and only for critical missions.`
 			# This limitation ensures we don't have future stories
 			# with hundreds of shield beetles packed with
 			# systems cores and sunbeams.
@@ -855,7 +855,7 @@ mission "Hai Slave Rescue [13]"
 					accept
 				`	"I think this is too risky for me."`
 					goto suicide
-			`	Teeneep looks hurt and says, "You agreed to help us. Now you leave us in Human space where we may be found at any moment. Why are you betraying us?"`
+			`	Teeneep looks hurt and says, "You agreed to help us. Now you leave us in human space where we may be found at any moment. Why are you betraying us?"`
 			`	The Admiral begins staring at you intensely, but you can't quite read the emotion.`
 			choice
 				`	"Of course I'll help you. That was just a bad joke."`
