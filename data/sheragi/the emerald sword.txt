@@ -47,9 +47,9 @@ mission "Sheragi Archaeology: The Box 2"
 					goto eager
 				`	"Just tell me what's so important."`
 					goto hurry
-			`	"Didn't you know? There is a museum open in the dig site now, full of interesting artifacts. Turned into quite a tourist trap. Here, follow me and i'll show you."`
+			`	"Didn't you know? There is a museum open in the dig site now, full of interesting artifacts. Turned into quite a tourist trap. Here, follow me and I'll show you."`
 			label eager
-			`	You two catch up as he leads you into the ruins, talking about the "minor" discoveries he has made so far, though he insists to keep the reason he brought you here a surprise. Skipping a long queue, You enter one of the Sheragi buildings that have been uncovered to find that a museum has been set up inside it with various artifacts on display.`
+			`	You two catch up as he leads you into the ruins, talking about the "minor" discoveries he has made so far, though he insists on keeping the reason he brought you here a surprise. Skipping a long queue, you enter one of the Sheragi buildings that have been uncovered to find that a museum has been set up inside it with various artifacts on display.`
 			`	It's strange seeing so many technological devices as old as some of the prehistoric tools from ancient Earth, most of them so deteriorated you wouldn't even be able to imagine what they were used for if it wasn't for the descriptions in each of the displays. One of the most intact relics is a small metal statue of an individual Sheragi in flight, possibly a trophy for some event, or merely a sculpture of a popular character. It's impossible to know, but it shows exactly what they looked like. As you look at how tall the doors of this house are, and back at the statue, you realize how big they must have been. It's hard to imagine the size that a spaceship must have been to even hope to fit a creature this large.`
 			choice
 				`	"This is an impressive collection."`
@@ -62,8 +62,8 @@ mission "Sheragi Archaeology: The Box 2"
 			label offlimit
 			`	"Here it is!"`
 			`	There is a tunnel going deep underground in the room, but Albert sets his attention on a large safe. He elaborates the situation as he opens it up.`
-			`	"So, the Sheragi apparently died off in a war of catastrophic proportions. One of our interns suggested we take a closer look underground, to check for military facilities or bunkers, even though our previous scans didn't show anything interesting, so we left her to play with the ground penetrating radar. And wouldn't you believe it, there were some angled pieces of metal under the earth. Clearly man-made. Or Sheragi-made, in this case. It was a bunker that apparently got hit by a powerful kinetic weapon, but we could still salvage some artifacts from the debris. Particularly, this thing."`
-			`	Albert opens the safe, and shows you a weathered metal cube, around half a metre on each side. He struggles with the weight, but manages to set it down on the floor.`
+			`	"So, the Sheragi apparently died off in a war of catastrophic proportions. One of our interns suggested we take a closer look underground, to check for military facilities or bunkers, even though our previous scans didn't show anything interesting, so we left her to play with the ground-penetrating radar. And wouldn't you believe it, there were some angled pieces of metal under the earth. Clearly man-made. Or Sheragi-made, in this case. It was a bunker that apparently got hit by a powerful kinetic weapon, but we could still salvage some artifacts from the debris. Particularly, this thing."`
+			`	Albert opens the safe and shows you a weathered metal cube, around half a meter on each side. He struggles with the weight, but manages to set it down on the floor.`
 			`	"This appears to be a data storage device of some sort. It was connected to what we think were once computers, but nothing else is salvageable after spending thousands of years under wet dirt. Based on how sturdy this thing is, it's plausible that some of the data could have survived, like a time capsule.`
 			`	"I have a contact back on Vinci who could probably figure this out, and this is where you come in. You remember John, right? I can't leave the dig site, but I also don't have anyone else I could trust to carry such a valuable artifact. Will you take it there for me?"`
 			choice
@@ -98,7 +98,7 @@ mission "Sheragi Archaeology: The Box 2"
 				`	"I'm slightly concerned myself, but I'm sure he knows what he's doing."`
 			`	You set the backpack with the cube down on a table and open it up.`
 			`	"Well, he's paying me to help with this, so no problem with me. It's not like everyone gets to see the exotic things he finds first hand."`
-			`	John proceeds to examine the cube, picking it up without much effort, and looking at it from different angles, trying to find some port to connect to. He finds one, but it's so deteriorated that any attempts to use it would be fruitless. He places the cube inside a machine to take a deeper scan of the object, and watches it silently working, staring patiently at the screen.`
+			`	John proceeds to examine the cube, strong enough to pick it up with no problems, and looking at it from different angles, trying to find some port to connect to. He finds one, but it's so deteriorated that any attempts to use it would be fruitless. He places the cube inside a machine to take a deeper scan of the object, and watches it silently working, staring patiently at the screen.`
 			`	"Yes, this seems to be a data storage device of some sort... it's made to be sturdy, like a black box, so it's plausible that we could recover some data from it. This is going to take a very long time, though."`
 			`	"How long?" you ask.`
 			`	"A couple months, probably. It depends on how alien this thing is, and if it's encrypted or not, but I should at least figure out if there is any recoverable data in here."`
@@ -199,7 +199,7 @@ mission "Sheragi Archaeology: The Box 4"
 			`	"Ten million credits," they say. "Non-negotiable. And don't try anything funny."`
 			
 			branch cash
-				credits >= 12000000
+				credits >= 10000000
 			choice
 				`	"What? I don't have that much money!"`
 					goto nomoney
@@ -218,7 +218,7 @@ mission "Sheragi Archaeology: The Box 4"
 			
 			label question
 			branch cash
-				credits >= 12000000
+				credits >= 10000000
 			branch haggled
 				has haggled
 			choice
@@ -279,12 +279,13 @@ mission "Sheragi Archaeology: The Box 4"
 				die
 			
 			label pay
-			`	Mammon takes the credit chips, examining them.`
-			`	"Very good. The artifact you're looking for has been taken by some mercenaries. It seems to me that your friend messed with the wrong people, but I digress. That is not the information you paid for."`
+			`	You slide the credit ships to Mammon, but they decline it, grinning with their sharp teeth.`
+			`	"Don't worry about paying right now. I only needed you to agree to the deal. I will withdraw the money in the future, when I desire.`
+			`	"Now that we're done with that, the artifact you're looking for has been taken by some mercenaries. It seems to me that your friend messed with the wrong people, but I digress. That is not the information you paid for."`
 			`	Mammon lifts their hands to the holographic map of the galaxy in the ceiling. It zooms in, filling up the entire room with stars. In front of you, you recognize the border betwen the Deep and the Dirt Belt.`
 			`	"They have kept the artifact for themselves to sell on the black market, and their base of operations is right here in Algieba."`
 			`	The hologram zooms further in on the moon Watcher and continues until it finally stops on a large forest.`
-			`	"You will find them on this uninhabited moon. They are hiding out in this forest, and the artifact is with them. Expect hostilities."`
+			`	"You will find them on this uninhabited moon. They are hiding out in this forest, and the artifact is with them. The exact coordinates will be forwarded to your ship. Expect hostilities."`
 			`	You thank Mammon for the service and get up to leave.`
 			`	"Farewell, Captain <last>. Remember: I am always watching."`
 				accept
@@ -301,13 +302,15 @@ mission "Mammon Payment"
 	invisible
 
 	to offer
+		random < 10
+		has "Sheragi Archaeology: Emerald Sword Epilogue: done"
 		has "paid mammon"
-		credits >= 10000000
+		credits >= 12000000
 
 	on offer
 		payment -10000000
 		conversation     
-			`You receive a message informing you of a very large transaction: 10 million credits. Mammon's crew have withdrawn the money you paid for the information about the box.`
+			`You receive a message informing you of a very large transaction: 10 million credits. With it, a message containing only a single image of a reptilian eye logo. It seems Mammon's crew have withdrawn the money you agreed to pay for the information about the Sheragi black box.`
 				decline
 
 mission "Sheragi Archaeology: The Box 5"
@@ -349,7 +352,7 @@ mission "Sheragi Archaeology: The Box 6a"
 	
 	on offer
 		conversation
-			`You come in for a landing, and the few mercenaries that stayed on the ground march to your ship carrying a makeshift white flag. Dozens of men and women, tough looking and in uniform, unarmed, remaining peaceful and organized. These weren't ordinary criminals, it seems.`
+			`You come in for a landing, and the few mercenaries that stayed on the ground march to your ship carrying a makeshift white flag. Dozens of men and women, tough-looking and in uniform, unarmed, remaining peaceful and organized. These weren't ordinary criminals, it seems.`
 			`	"We know when we've lost," one of them yells to your ship on a megaphone. "What is it that you want?"`
 			choice
 				`	(Shoot them.)`
@@ -371,7 +374,7 @@ mission "Sheragi Archaeology: The Box 6a"
 			
 			label shoot
 			`	Disregarding their surrender, you turn your ship towards them and open fire on the small army. Using ship-mounted guns against personnel is extremely overkill, and they don't stand a chance to survive. There is a smoldering clearing around the place where they once stood, and a forest fire begins to spread.`
-			`	You get into the camp, shooting any mercenaries that remained hidden, and pillaging their tents. You find hundreds of thousands of credits worth of valuables, and eventually, you find the cube as well. With that in hand, you go back to your ship, ready to take it back to John.`
+			`	You get into the camp, shooting any mercenaries that remained hidden, and pillaging their tents. You find hundreds of thousands of credits, in chips and valuables, and eventually, you find the cube as well. With that in hand, you go back to your ship, ready to take it back to John.`
 				decline
 			
 			label spare
@@ -382,7 +385,7 @@ mission "Sheragi Archaeology: The Box 6a"
 				accept
 	
 	on decline
-		payment 853621
+		payment 926621
 
 mission "Sheragi Archaeology: The Box 6b"
 	landing
@@ -488,14 +491,14 @@ mission "Sheragi Archaeology: The Box 7b"
 	on complete
 		conversation
 			`Arriving on Hai-home, you manage to contact the Ministry of Culture, expressing your interests in obtaining Sheragi documents and manuals. After some time on hold, you're scheduled to meet them in person.`
-			`	You get ready and make your way to the city hall, where the Ministry is, to meet with the Hai officials, accompanied by a few diplomats. You all sit down on a round table, you explain the situation, and they begin inquiring about the dig site on Zug, curious on the details of preservation and what artifacts were found. They seem excited about it, and you learn that despite having encountered the Sheragi millenia ago, the Hai never had the opportunity to study their cities up close. All they know are from hostile encounters or diplomatic meetings. They refuse to sell you documents, as this is the kind of knowledge money can't buy, but they suggest a cooperation between species. Given this opportunity, you tell them about the Sheragi black box found in the dig site, and the possibility of decrypting it and uncovering it's secrets.`
+			`	You get ready and make your way to the city hall, where the Ministry is, to meet with the Hai officials, accompanied by a few diplomats. You all sit down on a round table, you explain the situation, and they begin inquiring about the dig site on Zug, curious on the details of preservation and what artifacts were found. They seem excited about it, and you learn that despite having encountered the Sheragi millennia ago, the Hai never had the opportunity to study their cities up close. All they know are from hostile encounters or diplomatic meetings. They refuse to sell you documents, as this is the kind of knowledge money can't buy, but they suggest a cooperation between species. Given this opportunity, you tell them about the Sheragi black box found in the dig site, and the possibility of decrypting it and uncovering its secrets.`
 			`	"With the proper tools, we could decode it. But in return, we'd like to have a copy of the contents as well, and to learn more about your findings."`
 			choice
-				`	"Wait, can't i just pay for some help?"`
+				`	"Wait, can't I just pay for some help?"`
 				`	"Sounds fair to me"`
 					goto accept
 			`	"This is an excellent opportunity for us to learn as well, <last>. We're not going to take anything from you, but rather, it's a mutual benefit."`
-			`	You ponder your choices for a moment. There is no way you could solve this puzzle without their help. You've went this far, so you agree.`
+			`	You ponder your choices for a moment. There is no way you could solve this puzzle without their help. You've gone this far, so you agree.`
 			label accept
 			`	"Excellent!"`
 			`	They chat with you a bit more, and the leader excuses himself for a moment to make a call. A moment later he returns.`
@@ -520,14 +523,14 @@ mission "Sheragi Archaeology: The Box 8"
 			`	Eyama is a linguist specializing in the Sheragi language. She playfully greets you in their rather guttural tongue, with strange tones.`
 			`	Rakei is an archaeological engineer, who immediately takes a liking to the cube as soon as she sees it, examining it's structure.`
 			`	Finally, Desyo is a xenoprogramming expert who studies alien software, and seemingly has a lot of experience with Sheragi code. Apparently, the displays of the Sheragi room of the museum all run in this exotic language, unseen by the usual public.`
-			`	After the brief introduction, they each take their equipment and load them on the cargo bay of your ship. Rakei approaches you after everything is in place.`
+			`	After the brief introduction, they each take their equipment and load it on the cargo bay of your ship. Rakei approaches you after everything is in place.`
 			`	"We want to meet the human archaeologist who uncovered the ruins in the Rim. Can you take us there? We will start examining the cube along the way. I think by the time we get there, we'll have something to work with."`
 				accept
 	
 	on complete
 		event "cube decoded" 40 50
 		conversation
-			`It was a long trip, almost halfway across the galaxy. The Hai archaeologists have been friendly to you, giving you updates every time they make a new breakthrough. During this time, the cube, previously thought to be impenetrable, had been disassembled and cleaned. Components that decayed into a mess of oxidized wires and goopy paste over the eons were been identified and removed to substitute for equivalent ones, and a blueprint of the box and its circuits has started to take shape.`
+			`It was a long trip, almost halfway across the galaxy. The Hai archaeologists have been friendly to you, giving you updates every time they make a new breakthrough. During this time, the cube, previously thought to be impenetrable, had been disassembled and cleaned. Components that decayed into a mess of oxidized wires and goopy paste over the eons have been identified and removed to substitute for equivalent ones, and a blueprint of the box and its circuits has started to take shape.`
 			`	As soon as you land, you call Albert Foster, who doesn't believe you when you say you got alien archaeologists to help. You then look for the three Hai to figure out how they're going to go unnoticed on a human world. You're surprised to find Eyama wearing long, dark but colorful baggy human clothing with an equally oversized hoodie and a bandanna. You recognize this outfit, very popular with the youth these days, who are generally regarded as delinquents by the previous generation. Additionally, she's carrying two more sets, for her Hai partners as well. It hides her body really well at the cost of making her look like a young boy, and the Hai's relatively short stature doesn't help.`
 			`	"Call me Miss Deus ex Machina, because I thought ahead and bought these from a merchant back home. Perfect disguise. The humans will never notice. How do I look?"`
 			choice
@@ -537,11 +540,11 @@ mission "Sheragi Archaeology: The Box 8"
 			`	"Right? I can even hide my tail in the back of the hoodie!" She spins around happily.`
 				goto anyway
 			label child
-			`	"That's not that bad, is it? I always considered myself young at heart anyway!" she giggles a little`
+			`	"That's not that bad, is it? I always considered myself young at heart anyway!" she giggles a little.`
 			label anyway
 			`	"Anyway, can you take us to Mr. Foster's museum? We'll take the cube and fill him in on the details."`
 			`	You agree, and after they're all ready, you make your way out to the dig site. Surprisingly, the three Hai don't get many weird looks if they walk a bit further behind you. You arrive at the museum and they immediately break character by being very obviously excited to see the exhibits. This probably comes as a relief to onlookers, however, who would normally expect that type of kid to vandalize priceless artifacts.`
-			`	Finally, you arrive at Albert's workshop. He stops brushing what looks like what was once a television and looks startled at you and the three "kids." The Hai take off their hood and bandanna, causing his jaw to nearly drop to the floor.`
+			`	Finally, you arrive at Albert's workshop. He stops brushing what looks like what was once a television and looks startled at you and the three "kids." The Hai take off their hoods and bandannas, causing his jaw to nearly drop to the floor.`
 			`	"I'll be damned. The Hai really exist!" He exclaims.`
 			`	"Of course we do," Eyama laughs. "Haven't you heard all the stories?"`
 			`	"I had my doubts. Merchants are well known for telling tall tales." He smiles. "Anyway, I'm Albert Foster, archaeologist, pleased to meet you all."`
@@ -552,9 +555,12 @@ mission "Sheragi Archaeology: The Box 8"
 			`	You say goodbye to Albert, Rakei, Eyama, and Desyo, and make your way back to your ship. However, as you're walking back to the ship, you feel a hand on your shoulder. You look back, and you're startled to see a Quarg. Yarthis, who you brought here, to be more specific.`
 			choice
 				`	"I wasn't expecting to see you here."`
-				`	"Can i help you?"`
-			`	"It came to my attention that your friends found a Sheragi black box, and kept it a secret. I am well aware your species view us with distrust, but we only work to prevent extinction. I've been told to not interfere. I'm just here to advise you to be careful with it's contents. While it is nothing inherently dangerous, we feel like it would be safer on the hands of a skilled captain like you than anywhere else. You've been doing well so far, Captain."`
+				`	"Can I help you?"`
+			`	"It has come to my attention that your friends found a Sheragi black box, and kept it a secret. I am well aware your species view us with distrust, but we only work to prevent extinction. I've been told to not interfere. I'm just here to advise you to be careful with its contents. While it is nothing inherently dangerous, we feel like it would be safer on the hands of a skilled captain like you than anywhere else. You've been doing well so far, Captain."`
 			`	He turns around, and leaves you to think about it.`
+		log "People" "Desyo" `A brilliant Hai xenoprogramming expert, Desyo specializes in Sheragi code and software. She's more interested in technology and electronics than people, and often coordinates the work in the Hai archeologist team despite her introversion, and lack of hierarchy. Her dedication is the grease that keeps that machine running.`
+		log "People" "Rakei" `Rakei is an engineering expert specializing in archaeological artifacts, but also very interested in new and unusual technology, often nerding out with Desyo over scientific papers. She's part of the Hai archaeologist team tasked to uncover the mystery of the Sheragi black box.`
+		log "People" "Eyama" `Uncaring about formalities and seriousness, you wouldn't guess Eyama is a very accomplished linguist specialized in Sheragi language. She also has an interest in culture and sociology in general, and has a lot more knowledge about human culture than you'd expect from a Hai. Her work with the Hai archaeologist team is invaluable to deciphering Sheragi mysteries and maintaining their relationship with human partners.`
 
 mission "Sheragi Archaeology: The Emerald Sword 1"
 	landing
@@ -582,25 +588,25 @@ mission "Sheragi Archaeology: The Emerald Sword 2"
 	
 	on offer
 		conversation
-			`You arrive on Zug, and after contacting Albert and the three Hai archaeologists and following their direction, you find them in an ice cream shop. They're still wearing the youngster clothes, but not even bothering to hide their faces with the bandanna anymore. Surprisingly, nobody seems too distressed at the sight. Rakei waves for you and stands up, coming to you with ice creams in paw.`
+			`You arrive on Zug, and after contacting Albert and the three Hai archaeologists and following their direction, you find them in an ice cream shop. They're still wearing the youngster clothes, but not even bothering to hide their faces with bandannas anymore. Surprisingly, nobody seems too distressed at the sight. Rakei waves for you and stands up, coming to you with ice creams in paw.`
 			`	"Hello <first>! It seems our disguise worked better than intended. The humans around here think we're wearing a costume. Apparently young humans like to dress up as aliens?" she says confusedly.`
 			`	"I had a feeling we'd fit right in with the furry crowd." Eyama responds proudly.`
 			`	"It has been an interesting cultural exchange. Human space might be a great vacation spot for us. But we're not on vacation yet. We have a mystery to solve," she continues.`
 			`	You sit down with your group on a bench in a nearby park, mostly empty, and Desyo picks up the conversation.`
-			`	"So, the files in the black box were thankfully standard for Sheragi. Not very difficult to decode, once we managed to read them.`
+			`	"So, the files in the black box were thankfully standard for Sheragi. Not very difficult to decode, once we managed to read them."`
 			choice
 				`	"What did it contain?"`
-			`	"It was all fleet movement data and military strategy details. This system was apparently on the border of one of the faction's territories. On the final moments of the recording, a large transport fleet had entered the system, unarmed ships. They were followed by military vessels in pursuit. There's no telling what they thought at the time, but a military fleet was immediately dispatched to eliminate both fleets. One particular ship, which Eyama has translated the name as 'Emerald Sword,' started behaving erratically when given orders. It fired and missed a few shots until it eventually stopped and fled. Clear signs of a mutiny. However, that ship fled to a specific direction, away from any hyperlanes."`
+			`	Desyo responds, "It was all fleet movement data and military strategy details. This system was apparently on the border of one of the faction's territories. On the final moments of the recording, a large transport fleet had entered the system, unarmed ships. They were followed by military vessels in pursuit. There's no telling what they thought at the time, but a military fleet was immediately dispatched to eliminate both fleets. One particular ship, which Eyama has translated the name as 'Emerald Sword,' started behaving erratically when given orders. It fired and missed a few shots until it eventually stopped and fled. Clear signs of a mutiny. However, what is perhaps most interesting is that when it fled, it fled in an unexpected direction, away from any hyperlanes."`
 			`	Albert continues, "We think they wanted to flee from the fighting. These were soldiers scarred by the horrors of the war, and they just got ordered to attack what we assume to be refugees. The Emerald Sword was a big ship, likely with an equally large crew, and from the movement data, it's engines were very powerful too, possibly capable of crossing interstellar distances within a Sheragi lifetime. This has some interesting implications. The ship was moving precisely towards a star named Zubenelhakrabi. Not significant enough to show up in the star maps, but we did our survey, and there is a potentially habitable planet there, but zero signs of intelligent life. We think they failed in colonizing it, but the ship might still be there. It's a priceless artifact. Thing is, there is no way to get there."`
 			`	"Unless you have a jump drive," Rakei adds. "And you do have one, don't you?"`
 			choice
 				`	"I used to, but not anymore"`
 					goto notanymore
 				`	"I do."`
-			label notanymore
-			`	"You sold it?" she replies incredulously. "How can you sell such a priceless piece of technology? Well, i hope there is a way to get more of them without having one, because we're going to need two for the next stage. One for your ship, and another one for the Emerald Sword."`
-				goto return
 			`	"This is perfect! Do you think you can get another one? If we're going there, we're going to need one to install on the Emerald Sword and bring it back home."`
+				goto return
+			label notanymore
+			`	"You sold it?" she replies incredulously. "How can you sell such a priceless piece of technology? Well, I hope there is a way to get more of them without having one, because we're going to need two for the next stage. One for your ship, and another one for the Emerald Sword."`
 			label return
 			`	"What do I get in return?" you ask.`
 			`	"The ship, of course," Albert responds. "You've helped me so much, and you went to hell and back to get this black box decoded. We're going to spend a day or so studying the ship after we get it, making a blueprint and all that, but afterwards, it's all yours to keep! Anyway, I just can't wait to see what that ship even looks like. Give us some time to assemble a crew to help refurbish the ship, and in the meantime, get us a jump drive. Come back to us once you have it."`
@@ -630,7 +636,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				`    (Yes.)`
 				`    (No.)`
 					defer
-			`	You give Albert a call, and arrange to meet with him to plan the next step. He shows up at your ship, greets you, and starts loading in some equipment along with the jump drive you got. He has assembled a crew of around 20 people, including him and the three Hai archaeologists, now comfortable to let go of their disguise once they're back in your ship.`
+			`	You give Albert a call, and arrange to meet with him to plan the next step. He shows up at your ship, greets you, and starts loading in some equipment along with the jump drive you brought. He has assembled a crew of around 20 people, including him and the three Hai archaeologists, now comfortable to let go of their disguise once they're back in your ship.`
 			`	"<first>, meet the people who will help us recover the Emerald Sword. I've just briefed them on the situation and what we plan to do. We're going to take some specialized tools with us, along with the jump drive, that will allow us to repair and outfit the ship in any world we can land on. I suggest you also hire some additional crew to man the ship once we capture it since it's not going to pilot itself. Remember, this is an alien warship, so I would recommend erring on the side of caution by bringing along around 100 extra crew members to deal with any potential problems in piloting the ship. If you're ready to go, here are the coordinates to Zubenelhakrabi."`
 			`	You thank Albert, and make your preparations for the voyage into the unknown.`
 				accept
@@ -697,6 +703,7 @@ mission "Sheragi Archaeology: Emerald Sword Epilogue"
 		has "Sheragi Archaeology: The Emerald Sword 3: done"
 	
 	on complete
+		log `Obtained an ancient Sheragi warship. Nicknamed the Emerald Sword, it was crewed by mutineers that fled from their civil war and escaped into interstellar space. Found orbiting a disconnected star, it is an impressively large ship, fit for the equally large Sheragi. The ship's main weapon is a fusion-pumped gamma-ray laser called the 'Dragonflame Cannon.' Despite the relatively primitive outfits, it's still a very capable war machine due to its size.`
 		event "temporary outfitter removed"
 		conversation
 			`Your exotic new ship draws a lot of attention from the dockworkers, probably even more so due to the unprecedentedly large cannon. Albert and the Hai archaeologists spend most of the day examining your ship in more detail and recovering the corpses now that it's in a proper spaceport and they can access more complex equipment. Everything is completed in one particularly busy afternoon, and as night falls, the immense scale of the inside of the ship allows more floors to be installed, giving you even more living space.`
@@ -842,6 +849,6 @@ system Zubenelhakrabi
 planet "Echoes of Tragedy"
 	attributes uninhabited
 	landscape land/fog4
-	description `From afar, this looks like a habitable planet, comfortably located on the near end of the goldilocks zone of its star. It has high concentration of water vapor in it's atmosphere, and hosts primitive life, with mosses covering nearly all moist surfaces, and small crustacean-like animals roaming the land.`
+	description `From afar, this looks like a habitable planet, comfortably located on the near end of the goldilocks zone of its star. It has a high concentration of water vapor in its atmosphere, and hosts primitive life, with mosses covering nearly all moist surfaces, and exotic crustacean-like animals roaming the land, their carapaces made of what would be considered synthetic plastic elsewhere.`
 	description `However, there is an unusually high concentration of toxic chlorine in the lower atmosphere. Without special equipment, one can only stay on the mountains to avoid the dense gas, and even then, only for a few hours before problems arise. Any trace of colonization by the Sheragi has long since eroded away.`
 	outfitter "empty"
