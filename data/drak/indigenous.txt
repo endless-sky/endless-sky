@@ -79,7 +79,7 @@ ship "Void Sprite"
 	leak "blood" 40 40
 	explode "blood" 40
 	"final explode" "void sprite adult death"
-	description "The void sprites are an enigmatic species originally discovered in the Nenia system under the watchful gaze of the Archons. It is unknown what the connection between the two is, but the archons seems particularly protective of them."
+	description "The void sprites are an enigmatic species originally discovered in the Nenia system under the watchful gaze of the Archon. It is unknown what the connection between the two is, but the Archon seem particularly protective of them."
 
 effect "blood"
 	sprite "effect/blood"
