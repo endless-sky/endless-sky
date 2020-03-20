@@ -752,7 +752,7 @@ mission "Hai Slave Rescue [12]"
 		fleet "Large Northern Pirates" 3
 		fleet "Small Northern Pirates" 5
 	npc
-		government "Bounty Hunter that Attacks Friendly Hai"
+		government "Bounty Hunter that Attacks Hai"
 		personality plunders harvests unconstrained
 		system "Zaurak"
 		fleet
