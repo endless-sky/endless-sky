@@ -12,6 +12,8 @@ test "Test-Framework - Empty Testcase"
 	status "Active"
 	description "Test with an empty sequence. Only starts and exits the game"
 
+
+
 test "Test-Framework - Load only"
 	status "Active"
 	description "Tests only loading of a game and then exits the game"
@@ -20,6 +22,8 @@ test "Test-Framework - Load only"
 		load "commodity barges.txt"
 		assert
 			"ships: Light Freighter" = 3
+
+
 
 test "Test-Framework - Load and depart"
 	status "Active"
@@ -34,6 +38,7 @@ test "Test-Framework - Load and depart"
 			"ships: Light Freighter" = 3
 
 
+
 test "Test-Framework - Simple depart land"
 	status "Active"
 	description "Test with only a departure and landing. Mostly tests the testframework itself."
@@ -42,6 +47,8 @@ test "Test-Framework - Simple depart land"
 		load "commodity barges.txt"
 		launch
 		land
+
+
 
 test "Test-Framework - Depart and commanded landing"
 	status "Active"
@@ -59,6 +66,8 @@ test "Test-Framework - Depart and commanded landing"
 		command	land
 		"wait for"
 			has "flagship planet: New Austria"
+
+
 
 test "Test-Framework - Navigate"
 	status "Active"
@@ -78,6 +87,8 @@ test "Test-Framework - Navigate"
 			has "flagship system: Sol"
 		"wait for"
 			has "flagship system: Alpha Centauri"
+
+
 
 test "Test-Framework - Loops and counts"
 	status "Active"
