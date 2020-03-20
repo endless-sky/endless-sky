@@ -11,12 +11,11 @@
 mission "Hai Slave Rescue [00]"
 	name "Hai Slave Rescue"
 	description "Take Teeneep to <destination> to seek the missing Hai. Payment is <payment>."
-	destination "Freedom"
-	passengers 1
-	clearance `Teeneep tells the authorities she wants to purchase slaves from Hathor. They allow you to land.`
-	blocked `You cannot save the Hai Slaves unless you have one bunk for Teeneep.`
 	source
 		government "Hai"
+	destination "Freedom"
+	clearance `Teeneep tells the authorities she wants to purchase slaves from Hathor. They allow you to land.`
+	passengers 1
 	to offer
 		or
 			has "Pirate Troubles [4]: declined"
@@ -66,15 +65,14 @@ mission "Hai Slave Rescue [00]"
 
 
 mission "Hai Slave Rescue [01]"
+	landing
 	name "Hai Slave Rescue"
 	description "Take Teeneep to <destination> to seek the missing Hai. Payment is <payment>."
-	landing
-	deadline 90
-	clearance `You send the clearance code and the pirates give you landing coordinates.`
 	source "Freedom"
-	passengers 1
 	destination "Stormhold"
-	blocked `You cannot save the Hai Slaves unless you have one bunk for Teeneep.`
+	clearance `You send the clearance code and the pirates give you landing coordinates.`
+	passengers 1
+	deadline 90
 	to offer
 		has "Hai Slave Rescue [00]: done"
 	on visit
@@ -128,15 +126,14 @@ mission "Hai Slave Rescue [01]"
 
 
 mission "Hai Slave Rescue [02]"
+	landing
 	name "Hai Slave Rescue"
 	description "Take Teeneep to <destination> to seek the missing Hai. Payment is <payment>."
-	landing
-	deadline 81
-	clearance
-	passengers 1
 	source "Stormhold"
 	destination "Hai-home"
-	blocked `You cannot save the Hai Slaves unless you have one bunk for Teeneep.`
+	clearance
+	deadline 81
+	passengers 1
 	to offer
 		has "Hai Slave Rescue [01]: done"
 	on visit
@@ -168,16 +165,14 @@ mission "Hai Slave Rescue [02]"
 		payment 75000
 
 mission "Hai Slave Rescue [03]"
+	landing
 	name "Hai Slave Rescue"
 	description "Take Teeneep to <destination> to arrange a rescue of the enslaved Hai. Payment is <payment>."
-	landing
-	deadline 73
-	deadline 73
-	clearance
 	source "Hai-home"
-	passengers 1
 	destination "Farpoint"
-	blocked `You cannot save the Hai Slaves unless you have one bunk for Teeneep.`
+	clearance
+	deadline 73
+	passengers 1
 	to offer
 		has "Hai Slave Rescue [02]: done"
 	on visit
@@ -226,15 +221,14 @@ mission "Hai Slave Rescue [03]"
 		fleet "Small Northern Pirates" 4
 		
 mission "Hai Slave Rescue [04]"
+	landing
 	name "Hai Slave Rescue"
 	description "Take Teeneep to <destination> to arrange a rescue of the enslaved Hai. Payment is <payment>."
-	landing
-	deadline 67
-	passengers 1
 	source "Farpoint"
 	destination "Sunracer"
 	clearance
-	blocked `You cannot save the Hai Slaves unless you have one bunk for Teeneep.`
+	deadline 67
+	passengers 1
 	to offer
 		has "Hai Slave Rescue [03]: done"
 	on visit
@@ -328,15 +322,14 @@ event "navy searching for hai slaves"
 		add fleet "Navy Surveillance" 7000
 
 mission "Hai Slave Rescue [05]"
+	landing
 	name "Hai Slave Rescue"
 	description "Take Teeneep to <destination> to arrange a rescue of the enslaved Hai. Payment is <payment>."
-	passengers 1
-	landing
-	deadline 60
 	source "Sunracer"
-	clearance
 	destination "Hai-home"
-	blocked `You cannot save the Hai Slaves unless you have one bunk for Teeneep.`
+	clearance
+	passengers 1
+	deadline 60
 	to offer
 		has "Hai Slave Rescue [04]: done"
 	on visit
@@ -381,14 +374,13 @@ mission "Hai Slave Rescue [05]"
 		fleet "Small Northern Pirates" 4
 
 mission "Hai Slave Rescue [06]"
+	landing
 	name "Hai Slave Rescue"
 	description "Take Teeneep to <destination> to report her failure to the elders. Payment is <payment>."
-	landing
-	deadline 53
 	source "Hai-home"
-	passengers 1
 	destination "Cloudfire"
-	blocked `You cannot save the Hai Slaves unless you have one bunk for Teeneep.`
+	deadline 53
+	passengers 1
 	to offer
 		has "Hai Slave Rescue [05]: done"
 	on visit
@@ -425,15 +417,14 @@ mission "Hai Slave Rescue [06]"
 
 
 mission "Hai Slave Rescue [07]"
+	landing
 	name "Hai Slave Rescue"
 	description "Take Teeneep to <destination> to report her failure to the elders. Payment is <payment>."
-	landing
-	deadline 50
 	source "Cloudfire"
-	clearance `Teeneep tells her story and the Unfettered let you land.`
-	passengers 1
 	destination "Darkcloak"
-	blocked `You cannot save the Hai Slaves unless you have one bunk for Teeneep.`
+	clearance `Teeneep tells her story and the Unfettered let you land.`
+	deadline 50
+	passengers 1
 	to offer
 		has "Hai Slave Rescue [06]: done"
 	on visit
@@ -519,12 +510,11 @@ mission "Hai Slave Rescue [07]"
 					decline
 
 mission "Hai Slave Rescue [08]"
+	landing
 	name "Hai Slave Rescue"
 	description "Take Teeneep to meet the Unfettered Hai at <destination>. Payment is <payment>."
-	landing
-	clearance `The Unfettered Hai are surprised to hear Teeneep's reason for visiting. They immediately grant landing clearance.`
 	source "Darkcloak"
-	blocked `You cannot save the Hai Slaves unless you have one bunk for Teeneep.`
+	clearance `The Unfettered Hai are surprised to hear Teeneep's reason for visiting. They immediately grant landing clearance.`
 	passengers 1
 	to offer
 		has "Hai Slave Rescue [07]: done"
@@ -593,8 +583,8 @@ mission "Hai Slave Rescue [08a] Access"
 	invisible
 	repeat
 	landing
-	clearance `The Unfettered Hai are getting tired of waiting for you to have 23 tons of cargo space free, but they allow access anyway.`
 	source "Darkcloak"
+	clearance `The Unfettered Hai are getting tired of waiting for you to have 23 tons of cargo space free, but they allow access anyway.`
 	to offer
 		has "Hai Slave Rescue [07]: done"
 		not "Hai Slave Rescue [08]: failed"
@@ -605,10 +595,10 @@ mission "Hai Slave Rescue [08a] Access"
 mission "Hai Slave Rescue [09]"
 	name "Hai Slave Rescue"
 	description "Trade <cargo> at <destination> for critical ramscoop components. Payment is <payment>."
-	deadline 48
-	cargo "valuable trade goods" 23
 	source "Darkcloak"
 	destination "Follower"
+	deadline 48
+	cargo "valuable trade goods" 23
 	blocked `You don't have space for the Unfettered Hai's <cargo>.`
 	to offer
 		has "Hai Slave Rescue [07]: done"
@@ -641,15 +631,15 @@ mission "Hai Slave Rescue [09]"
 
 
 mission "Hai Slave Rescue [10]"
+	landing
 	name "Hai Slave Rescue"
 	description "Return <cargo> to <destination>. Payment is <payment>."
-	landing
-	deadline 38
 	source "Follower"
+	destination "Darkcloak"
+	clearance `When you announce your success, the Unfettered eagerly allow you to land.`
+	deadline 38
 	cargo "critical ramscoop components" 23
 	blocked `You don't have space for the Unfettered Hai's <cargo>.`
-	clearance `When you announce your success, the Unfettered eagerly allow you to land.`
-	destination "Darkcloak"
 	to offer
 		has "Hai Slave Rescue [09]: done"
 	on visit
@@ -686,8 +676,8 @@ mission "Hai Slave Rescue [10]"
 mission "Hai Slave Rescue [10a]"
 	name "Hai Slave Rescue: Reconciliation"
 	description "Bring 28 Catalytic Ramscoops to the Unfettered Hai to make up for your lost shipment of ramscoop parts."
-	deadline 28
 	destination "Darkcloak"
+	deadline 28
 	to offer
 		or
 			has "Hai Slave Rescue [10]: failed"
@@ -702,14 +692,13 @@ mission "Hai Slave Rescue [10a]"
 
 
 mission "Hai Slave Rescue [11]"
+	landing
 	name "Hai Slave Rescue"
 	description "Fly Teeneep to <destination> to hire Centipedes. Payment is <payment>."
-	landing
-	deadline 28
 	source "Darkcloak"
 	destination "Allhome"
 	passengers 1
-	blocked `You cannot save the Hai Slaves unless you have one bunk for Teeneep.`
+	deadline 28
 	to offer
 		or
 			has "Hai Slave Rescue [10a]: done"
@@ -730,14 +719,13 @@ mission "Hai Slave Rescue [11]"
 
 
 mission "Hai Slave Rescue [12]"
+	landing
 	name "Hai Slave Rescue"
 	description "Escort Centipedes to <destination>. Payment is <payment>."
-	landing
-	deadline 23
 	source "Allhome"
-	passengers 1
 	destination "Canyon"
-	blocked `You cannot save the Hai Slaves unless you have one bunk for Teeneep.`
+	deadline 23
+	passengers 1
 	to offer
 		has "Hai Slave Rescue [11]: done"
 	on visit
@@ -819,14 +807,13 @@ ship "Shield Beetle" "Flagship Escort"
 
 
 mission "Hai Slave Rescue [13]"
+	landing
 	name "Hai Slave Rescue"
 	description "Destroy all hostile vessels at <system> and land on <planet>. Unfettered will assist. Don't let Admiral Choot'k's flagship be destroyed. Payment is <payment>."
-	landing
-	deadline 16
 	source "Canyon"
-	passengers 1
 	destination "Stormhold"
-	blocked `You cannot save the Hai Slaves unless you have one bunk for Teeneep.`
+	deadline 16
+	passengers 1
 	to offer
 		has "Hai Slave Rescue [12]: done"
 	on visit
@@ -901,14 +888,13 @@ mission "Hai Slave Rescue [13]"
 
 
 mission "Hai Slave Rescue [14]"
+	landing
 	name "Hai Slave Rescue"
 	description "Meet the Centipedes at <destination>. Payment is <payment>."
-	landing
 	source "Stormhold"
 	destination "Canyon"
 	clearance
 	passengers 1
-	blocked `You cannot save the Hai Slaves unless you have one bunk for Teeneep.`
 	to offer
 		has "Hai Slave Rescue [13]: done"
 	on offer
@@ -931,11 +917,11 @@ mission "Hai Slave Rescue [14]"
 
 
 mission "Hai Slave Rescue [15]"
+	landing
 	name "Hai Slave Rescue"
 	description "Escort the Centipedes to <destination>. Payment is <payment>."
-	landing
-	destination "Stormhold"
 	source "Canyon"
+	destination "Stormhold"
 	clearance
 	passengers 1
 	to offer
@@ -987,15 +973,14 @@ event "navy stops searching for hai slaves"
 
 
 mission "Hai Slave Rescue [16]"
+	landing
 	name "Hai Slave Rescue"
 	description `Escort Centipede transports to <stopovers> and then <destination>. Payment will be, "large."`
-	landing
 	source "Stormhold"
+	destination "Hai-home"
 	stopover Allhome
 	clearance
-	destination "Hai-home"
 	passengers 1
-	blocked `You cannot save the Hai Slaves unless you have one bunk for Teeneep.`
 	to offer
 		has "Hai Slave Rescue [15]: done"
 	on offer
