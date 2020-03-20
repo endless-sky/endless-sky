@@ -435,7 +435,7 @@ tip "heat damage / shot:"
 	`Each shot increases the target ship's heat by this amount, or half this amount if its shields are up.`
 
 tip "ion damage / shot:"
-	`Each shot increases the target's ionization by this amount. Total energy lost is 100 times this amount.`
+	`Each shot increases the target's ionization by this amount. Ionization reduces the target's energy and slowly wears off over time.`
 
 tip "slowing damage / shot:"
 	`Reduces the target's turn rate, acceleration, and top speed. Slowing wears off over time.`
