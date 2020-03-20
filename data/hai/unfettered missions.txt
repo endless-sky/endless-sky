@@ -1161,6 +1161,29 @@ mission "Hai Slave Rescue [15]"
 		fleet "Small Core Pirates" 5
 
 
+event "navy stops searching for hai slaves"
+	system "Volax"
+		remove fleet "Navy Surveillance"
+		add fleet "Navy Surveillance" 6000
+	system "Rigel"
+		remove fleet "Navy Surveillance"
+		add fleet "Navy Surveillance" 6000
+	system "Cardax"
+		remove fleet "Navy Surveillance"
+		add fleet "Navy Surveillance" 8000
+	system "Moktar"
+		remove fleet "Navy Surveillance"
+	system "Sumar"
+		remove fleet "Navy Surveillance"
+	system "Hassaleh"
+		remove fleet "Navy Surveillance"
+	system "Rajak"
+		remove fleet "Navy Surveillance"
+	system "Oblate"
+		remove fleet "Navy Surveillance"
+	system "Alcyone"
+		remove fleet "Navy Surveillance"
+
 
 mission "Hai Slave Rescue [16]"
 	name "Hai Slave Rescue: <planet>"
