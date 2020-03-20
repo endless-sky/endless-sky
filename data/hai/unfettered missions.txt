@@ -820,6 +820,7 @@ mission "Hai Slave Rescue [08a] Access"
 mission "Hai Slave Rescue [09]"
 	name "Hai Slave Rescue: <planet>"
 	description "Trade <cargo> at <destination> for critical ramscoop components. Payment is <payment>."
+	deadline 48
 	cargo "valuable trade goods" 23
 	source Darkcloak
 	destination Follower
