@@ -920,6 +920,7 @@ mission "Hai Slave Rescue [11]"
 	name "Hai Slave Rescue: <planet>"
 	description "Fly Teeneep to <destination> to hire Centipedes. Payment is <payment>."
 	landing
+	deadline 28
 	source Darkcloak
 	destination Allhome
 	passengers 1
