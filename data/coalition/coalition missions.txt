@@ -340,7 +340,7 @@ mission "Kimek Student 4"
 		conversation
 			`Chikee hands you <payment> before leaving your ship. Heliarch agents are waiting for him, and receive him in a bit of a ceremony.`
 			`	You spend a few hours browsing some shops here, and have some food once you find an establishment that serves something appetizing to humans.`
-			`	Ringworlds have no day or night, but looking at the conventioned time used here, it is almost night time when Chikee returns to your ship, in a hurry.`
+			`	Ringworlds have no day or night, but looking at your ship's internal clock, it is almost night time when Chikee returns to your ship, in a hurry.`
 			`	"Accepted I was! Grant me the rank, they did!" he says, showing you a circlet, a Heliarch circlet, as he puts it on his head. "Infinitely grateful for your help in all of this I am, Captain."`
 			`	You congratulate him on the achievement, and wish him the best of luck in his new line of work, as he leaves your ship one last time.`
 
