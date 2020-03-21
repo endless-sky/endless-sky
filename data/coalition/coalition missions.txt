@@ -611,7 +611,7 @@ mission "Saryd Census 2"
 			label shops
 			`	You try and entertain yourself by looking at the shops here, but pretty much all of them are just filled with the produce of the farms here.`
 			`	One of them has a few toys made out of straw, you take a look at the Saryd designs for them, though they're nothing particularly special, nor as stereotypical as one might have expected from a species that resembles centaurs. Most of them appear to be replicating creatures of the local fauna, or buildings like small houses.`
-			`	You notice two other census workers have come back, so you decide to return to the group and wait for the final member. Some Coalition captains from early have gathered together in a bar to lament the long wait.`
+			`	You notice two other census workers have come back, so you decide to return to the group and wait for the final member. Some Coalition captains from earlier have gathered together in a bar to lament the long wait.`
 			label end
 			`	After the final Saryd arrives, you all head back to your ship, and you're told that the next destination is <destination>.`
 				accept
