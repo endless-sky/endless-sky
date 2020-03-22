@@ -411,12 +411,12 @@ outfit "Navy License"
 
 outfit "Navy Cruiser License"
 	category "Special"
-	thumbnail "outfit/cruiser license"
+	thumbnail "outfit/navy cruiser license"
 	description "It is a very rare privilege to be permitted to purchase a Navy capital ship for private use - not just because of a Cruiser's firepower, but because it is a potent symbol of the Republic's strength."
 
 outfit "Navy Carrier License"
 	category "Special"
-	thumbnail "outfit/carrier license"
+	thumbnail "outfit/navy carrier license"
 	description "Only a handful of people in the past century have been given permission to purchase a Navy Carrier, even a decommissioned one, for private use."
 
 outfit "Militia License"
