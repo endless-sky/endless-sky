@@ -27368,11 +27368,6 @@ planet Pugglequat
 	"required reputation" 2
 	security 1
 
-planet Querii'ka
-	attributes ka'het
-	landscape land/station2
-	description `This huge ringworld, built by the Quarg using most of the resources found near the Queri star, seems to be completely uninhabited. Occasional Ka'het passing near its surface shoot at the station's cover, doing no damage at all and seldomly leaving tiny scars. Everything inside the station is empty and unpowered, from its large rooms to its long, silent corridors.`
-
 planet Quicksilver
 	attributes core volcanic mining
 	landscape land/snow0
