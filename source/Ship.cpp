@@ -76,7 +76,7 @@ namespace {
 			available = min(available, energy / energyCost);
 		if(fuelCost)
 			available = min(available, fuel / fuelCost);
-		if(heatCost < 0)
+		if(heatCost < 0.)
 			available = min(available, heat / -heatCost);
 		
 		double transfer = min(available, maximum - stat);
@@ -95,7 +95,7 @@ namespace {
 	// Updates the stat and the energy, fuel, and heat amounts.
 	void DoStatusEffect(bool isDisabled, double &stat, double resistance, double &energy, double energyCost, double &fuel, double fuelCost, double &heat, double heatCost)
 	{
-		if(isDisabled || resistance <= 0)
+		if(isDisabled || resistance <= 0.)
 		{
 			stat = .99 * stat;
 			return;
@@ -111,7 +111,7 @@ namespace {
 			resistance = min(resistance, energy / energyCost);
 		if(fuelCost)
 			resistance = min(resistance, fuel / fuelCost);
-		if(heatCost < 0)
+		if(heatCost < 0.)
 			resistance = min(resistance, heat / -heatCost);
 		
 		// Update the energy, fuel, and heat given how much resistance is being used,
