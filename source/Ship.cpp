@@ -72,9 +72,9 @@ namespace {
 			return;
 		
 		// Energy and fuel costs are the energy or fuel required per unit repaired.
-		if(energyCost > 0)
+		if(energyCost > 0.)
 			available = min(available, energy / energyCost);
-		if(fuelCost > 0)
+		if(fuelCost > 0.)
 			available = min(available, fuel / fuelCost);
 		
 		double transfer = min(available, maximum - stat);
