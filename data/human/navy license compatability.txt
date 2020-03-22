@@ -1,0 +1,34 @@
+# Copyright (c) 2017 by Michael Zahniser
+# Copyright (c) 2018 by Zitchas
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+# Compatibility patch for those who use plug-ins that give all the licenses.
+# Each one checks for the presence of one of the two licenses, then replaces it.
+mission "Navy Cruiser License Compatibility"
+	landing
+	invisible
+	to offer
+		has "license: Cruiser"
+	on offer
+		set "license: Navy Cruiser"
+		clear "license: Cruiser"
+		fail
+
+
+
+mission "Navy Carrier License Compatibility"
+	landing
+	invisible
+	to offer
+		has "license: Carrier"
+	on offer
+		set "license: Navy Carrier"
+		clear "license: Carrier"
+		fail
