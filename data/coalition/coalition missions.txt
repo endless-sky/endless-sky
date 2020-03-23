@@ -361,7 +361,7 @@ mission "Coalition Outbreak 1"
 	on offer
 		event "coalition virus contained" 72
 		conversation
-			`As you enter the spaceport, you notice several batallions of Coalition doctors roaming about, talking with merchant captains and usually then following them to their ships.`
+			`As you enter the spaceport, you notice several battalions of Coalition doctors roaming about, talking with merchant captains and usually then following them to their ships.`
 			`	One such crowd approaches you, and one of them says, "Broken out on <destination>, a deadly virus has. Captains willing to transport us and <cargo>, we seek." She shows you to the group of doctors, <bunks> of them.`
 			choice
 				`	"I'd be glad to help with something serious like that. Let's go to my ship."`
@@ -484,7 +484,7 @@ mission "Saryd Students 1"
 	on offer
 		conversation
 			`A young Saryd bumps into you as you're passing by a nearby shop, knocking you to the ground.`
-			`	They help you up, apologizing. A couple that were with him entered the shop without even noticing you, but almost immediately come back out.`
+			`	They help you up, apologizing. A couple others that were with him entered the shop without even noticing you, but almost immediately come back out.`
 			`	"No luck?" the translation machine used by the one who bumped into you translates, still active.`
 			`	His colleagues shake their heads, "Shipping here, the Arachi no longer are."`
 			`	Noticing you're still there, the Saryd decides to ask, "Human, a merchant Captain you are, correct? Looking for work, you are?"`
@@ -506,14 +506,14 @@ mission "Saryd Students 1"
 				`	"How much would I need to pay for two tons?"`
 				`	"Sorry, but I'm against smuggling alcohol to students."`
 					decline
-			`	"One of the more pricier drinks, this rum is," the Saryd explains. "Some thousands of credits per ton, you should expect to pay. But well compensated, you will be."`
+			`	"One of the pricier drinks, this rum is," the Saryd explains. "Some thousands of credits per ton, you should expect to pay. But well compensated, you will be."`
 			choice
 				`	"Sounds good, I'll go get it and bring it to you."`
 					accept
 				`	"Sorry, but I'm against smuggling alcohol to students."`
 					decline
 	on visit
-		dialog `You ask around and are directed to a large refinery on one of the more populated cities here. The beer's price is impressive indeed, 5,642 credits per ton, but what is more impressive is how you worried about the students' irrespossibility when they asked you to buy this, when you yourself aren't responsible enough to have a bit over ten thousand credits to spend. Go earn some money, then return here.`
+		dialog `You ask around and are directed to a large refinery on one of the more populated cities here. The beer's price is impressive indeed, 5,642 credits per ton, but what is more impressive is how you worried about the students' irresposibility when they asked you to buy this, when you yourself aren't responsible enough to have a bit over ten thousand credits to spend. Go earn some money, then return here.`
 	on complete
 		payment -11284
 
@@ -540,7 +540,7 @@ mission "Saryd Students 2"
 		conversation
 			`Besides the students who tasked you with buying the rum, about a dozen others are waiting for your ship when you land, and help you unload the beverages.`
 			`	"Saved our party you have, Captain," the Saryd with the translation device says, handing you <payment>.`
-			`	They head off, excitedly dragging along the cargo carts with the many kegs on top. Some of them already took liberty of opening a keg and started drinking.`
+			`	They head off, excitedly dragging along the cargo carts with the many kegs on top. Some of them already took the liberty of opening a keg and started drinking.`
 
 
 
