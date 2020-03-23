@@ -57,6 +57,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <iostream>
 #include <map>
+#include <set>
 #include <utility>
 #include <vector>
 
@@ -110,6 +111,8 @@ namespace {
 	map<string, string> tooltips;
 	map<string, string> helpMessages;
 	map<string, string> plugins;
+	
+	set<string> whitelist;
 	
 	SpriteQueue spriteQueue;
 	
@@ -856,6 +859,13 @@ const map<string, string> &GameData::PluginAboutText()
 
 
 
+const set<string> &GameData::Whitelist()
+{
+	return whitelist;
+}
+
+
+
 void GameData::LoadSources()
 {
 	sources.clear();
@@ -1004,6 +1014,11 @@ void GameData::LoadFile(const string &path, bool debugMode)
 				}
 				text += child.Token(0);
 			}
+		}
+		else if(key == "whitelist")
+		{
+			for(const DataNode &child : node)
+				whitelist.insert(child.Token(0));
 		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");

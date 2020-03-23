@@ -201,6 +201,9 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 {
 	for(const auto &at : other.attributes)
 	{
+		// Skip attributes that are a part of the whitelist.
+		if(GameData::Whitelist().count(at.first))
+			continue;
 		double value = Get(at.first);
 		// Allow for rounding errors:
 		if(value + at.second * count < -EPS)
