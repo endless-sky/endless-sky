@@ -209,7 +209,6 @@ mission "Navy Cruiser License Compatibility"
 	landing
 	invisible
 	to offer
-		has "license: Navy"
 		has "license: Cruiser"
 	on offer
 		set "license: Navy Cruiser"
@@ -221,7 +220,6 @@ mission "Navy Carrier License Compatibility"
 	landing
 	invisible
 	to offer
-		has "license: Navy"
 		has "license: Carrier"
 	on offer
 		set "license: Navy Carrier"
