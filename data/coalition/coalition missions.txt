@@ -342,7 +342,7 @@ mission "Kimek Student 4"
 			`	You spend a few hours browsing some shops here, and have some food once you find an establishment that serves something appetizing to humans.`
 			`	Ringworlds have no day or night, but looking at your ship's internal clock, it is almost night time when Chikee returns to your ship, in a hurry.`
 			`	"Accepted I was! Grant me the rank, they did!" he says, showing you a circlet, a Heliarch circlet, as he puts it on his head. "Infinitely grateful for your help in all of this I am, Captain."`
-			`	You congratulate him on the achievement, and he starts to tell you how what he calls the "trial" went, mentioning how aside from explaining his work on places that got him a recommendation letter, he was told to do a presentation on his own work to what he explains to be some type of jury, as well as pass an interview. "Wait in a line with other candidates, I had to. To be selected, only a few were, so nervous I was," he says. After thanking you again and trying to shake hands with you, he leaves your ship one last time, and wish him the best of luck in his new line of work.`
+			`	You congratulate him on the achievement, and he starts to tell you how what he calls the "trial" went, mentioning how aside from explaining his work on places that got him a recommendation letter, he was told to do a presentation on his own work to what he explains to be some type of jury, as well as pass an interview. "Wait in a line with other candidates, I had to. To be selected, only a few were, so nervous I was," he says. After thanking you again and trying to shake hands with you, he leaves your ship one last time, and you wish him the best of luck in his new line of work.`
 
 
 
