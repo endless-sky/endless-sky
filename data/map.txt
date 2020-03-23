@@ -25309,10 +25309,10 @@ planet Ahr
 	outfitter "Coalition Advanced"
 
 planet Aksaray
-	attributes "requires: gaslining" "gas giant" uninhabited
+	attributes "moon" uninhabited
 	landscape land/nasa12
-	description `The swirling atmosphere of Yedikule is heavily dominated by the presence of xenon and certain other chemicals, lending the gas giant its blue coloration. It is a useful source of gases for the Remnant.`
-	description `At present, Yedikule is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in to collect xenon for use in research projects on Viminal.`
+	description `At first glance, Aksaray appears to be a fairly generic moon formed from eons of dust and debris compacted into a tight ball by continuous gravitational pressure. What is not so unique is the presence of almost perfectly pyramidical piles of regolith scattered across the world. A query to an orbiting Remnant satelite states that these are remote mining sites collecting regolith for mineral processing. `
+	description `	A quick glance at your navigational computer's economic database indicates that all the minerals present in this sort of regolith are extremely common across the galaxy, and are of very low value.`
 	security 0
 	government Uninhabited
 	
@@ -25486,7 +25486,7 @@ planet Aventine
 planet Babiali
 	attributes "ice giant" uninhabited
 	landscape land/enceladus_2
-	description `The giant mass of ice and rock that is Babiali is a snapshot of cataclysm. Ice and rock extends from horizon to horizon, with vast networks of cracks and fissures that suggest it was subject to some kind of massive force fairly recently in its geological history.`
+	description `The giant mass of ice and rock that is Babiali is a snapshot of cataclysm. Ice and rock extends from horizon to horizon, with vast networks of cracks and fissures that suggest it was subject to some kind of sudden force fairly recently in its geological history.`
 	description `	At present, Babiali has a regular stream of mining and research craft systematically going over the crust looking for rare metals or anything else of value. Despite the activity, no one has bothered setting up anything remotely resembling a spaceport anywhere.`
 	security 0
 	government Uninhabited
@@ -26141,11 +26141,11 @@ planet "Ember Wormhole"
 	spaceport ""
 
 planet Eminonu
-	attributes "requires: gaslining" "gas giant" uninhabited
-	landscape land/nasa9
-	description `The swirling atmosphere of Eminonu are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, the presense of which is on ongoing matter of interest to theorists.`
-	description `Currently, the main activity around Eminonu is the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Viminal.`
+	attributes uninhabited
+	landscape land/canyon4
+	description `The notably green rocks of Eminonu demonstrate their remarkably high copper content and the historic presence of atmospheric water. Scattered vegetal debris suggests that this world was until recently some variety of garden world, albeit likely a cold one. Now, however, the vast majority of moisture has vanished and the ambient temperatures are far too cold for even these lychens to persist.`
 	security 0
+	government Uninhabited
 
 planet "Esayaku Fen"
 	attributes korath
@@ -26932,10 +26932,11 @@ planet "Kraken Station"
 
 planet Kumkapi
 	attributes "requires: gaslining" "gas giant" uninhabited
-	landscape land/nasa8
-	description `The swirling atmosphere of Kumkapi are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
-	description `At present, Kumkapi is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Viminal.`
+	landscape land/nasa13
+	description `The whipping winds of Kumkapi are a prime example of how the inner mechanics of gas giants are poorly understood: When it was initially discovered by the Remnant, its winds spun around the globe at speeds far in excess of what they should have, as if they had recently been subject to a massive acceleration.`
+	description `Over the subsequent centuries the winds have been steadily slowing towads normally predicted velocities, but at their current rate it will be millenia before they reach them.`
 	security 0
+	government Uninhabited
 
 planet "Kuwaru Efreti"
 	attributes quarg station
@@ -28027,8 +28028,8 @@ planet "Septar Lorku"
 planet Seraglio
 	attributes "ice giant" uninhabited
 	landscape land/enceladus_1
-	description `The vast icefields of Seraglio hint at a variety of mysteries, most notably the chasms that suggest that the planet was somehow compressed at some point in its fairly recent geologic history.`
-	description `At present, Seraglio is mostly ignored except by the researchers searching for hints as to the planet's history.`
+	description `The vast icefields of Seraglio hint at a variety of mysteries, most notably the chasms that suggest that the planet was somehow subject to massive compressive forces at some point in its fairly recent geologic history.`
+	description `At present, Seraglio is the focus of considerable attention from researchers searching for hints as to the planet's history.`
 	security 0
 	government Uninhabited
 
@@ -28901,8 +28902,9 @@ planet Xerolophos
 planet Yedikule
 	attributes "moon" uninhabited
 	landscape land/enceladus_4
-	description `Much like Aksaray, Topkapi is an old moon formed from the smashed remains of countless eons worth of stellar debris. The surface appears to be regularly bombarded by asteroids, although some of the craters show signs of being the site of rather large explosions. Your sensors pick up traces of materials most commonly found in Korath ships.`
-	description `	Topkapi does not appear to have any routine activity, although satelites in orbit indicate that the Remnant monitor it for activity and send ships to investigate asteroid or other impacts on a regular basis.`
+	landscape land/nasa12
+	description `The swirling atmosphere of Yedikule is heavily dominated by the presence of xenon and certain other chemicals, lending the gas giant its blue coloration. It is a useful source of gases for the Remnant.`
+	description `At present, Yedikule is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in to collect xenon for use in research projects on Viminal.`
 	security 0
 	government Uninhabited
 
