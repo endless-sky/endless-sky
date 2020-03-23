@@ -1275,7 +1275,7 @@ mission "Hai Rescue [B04] Diplomacy: Treaty Negotiation"
 	on offer
 		log `The Republic Prime Minister and Free Worlds President met Teeneep, who claims to speak with the authority of the entire Hai government. They came to a tentative agreement about carefully tracking Hai movements in human space, but Teeneep won't agree until her people are returned. The human leaders asked us to talk to Stephen Moray again.`
 		conversation
-			`Earth authorities ask you to land in the Republic Capital Building, a vast skyscraper over a kilometer high which has its own spaceport. You land in one of several hangers built for ships significantly larger than a Carrier. In the distance, you spy an unfamiliar ship design which looks like a massive gunship. You've heard rumors that the Navy is working on advanced ships built to fight alien races. They may have left one here for Teeneep to see, as a warning to the Hai Elders.`
+			`Earth authorities ask you to land in the Republic Capital Building, a vast skyscraper over a kilometer high which has its own spaceport. You land in one of several hangars built for ships significantly larger than a Carrier. In the distance, you spy an unfamiliar ship design which looks like a massive gunship. You've heard rumors that the Navy is working on advanced ships built to fight alien races. They may have left one here for Teeneep to see, as a warning to the Hai Elders.`
 			`	A formal delegation meets Teeneep at her ship, but she awaits you before continuing into the building. It takes about a ten minutes of elevators and walkways to get to the top of the building: the Parliament Chamber. The chamber is empty; your delegation is walking through it to a room on the far end of the chamber.`
 			choice
 				`	(Enter the room.)`
@@ -1457,7 +1457,7 @@ mission "Hai Rescue [B08] Re-Plan"
 		dialog `You forgot Teeneep's Centipede. Depart and wait for it to arrive in the system before landing again.`
 	on offer
 		conversation
-			`You approach the coordinates the authorities provided and a hidden hanger opens. It was covered by a hologram of trees. Once within, Teeneep and Stephen Moray meet you at your ship.`
+			`You approach the coordinates the authorities provided and a hidden hangar opens. It was covered by a hologram of trees. Once within, Teeneep and Stephen Moray meet you at your ship.`
 			`	Teeneep tells you, "We've made progress. A Dreadnought and a Carrier have been outfitted with the best in Hai technology and top troops. We've destroyed the three staging facilities and we're ready to attack Philosopher's Paradise. Humans and Hai are close to a peaceful solution, thanks to you!"`
 			`	You tell her about Tutitot's findings on Philosopher's Paradise and Stephen Moray speaks, "There aren't enough Jump Drives in all of human space for a fleet that could defeat that many pirates. If the Quarg, Korath, and Drak won't help us, I don't know what we'll do."`
 			`	Teeneep sighs. "Captain <last>, I need you to escort me to <destination>." Stephen looks worried at that suggestion. "The Unfettered Hai have plenty of Jump Drives and troops. They could liberate our people. I know their ways, and I can convince them to help, if my ship survives the journey. I'll pay you double this time: <payment>.`
@@ -1618,7 +1618,7 @@ mission "Hai Rescue [C04] Foundry"
 			`	Marshal Kaine responds, "We are preparing a group of 200 elite operatives, trained in fighting pirates. I will leave it to Captain <last> to see them safely to the surface. We have no transport ships that can survive such a battle. If they reach Philosopher's Paradise, they will free your people."`
 			`	General Choot'k says, "I look forward to joining your people in combat. We haven't had a chance to fight with - or against - your species. I hope we won't be disappointed."`
 			`	Marshal Kaine smiles, "I can vouch for the skill of my operatives, but not the pirates. Good hunting, general."`
-			`	The general turns to you and says, "Here is our plan, Captain <last>." You notice the respect in his voice. He speaks to you as an equal, quite a compliment from a man like him. "Your ships and ours will shield the operatives. The designs of the facility show a weak point in one of the hangers. My flagship has weapons pillaged from the Wanderers, which are strong enough to cut open the hanger doors, and precise enough not to destroy the hanger.`
+			`	The general turns to you and says, "Here is our plan, Captain <last>." You notice the respect in his voice. He speaks to you as an equal, quite a compliment from a man like him. "Your ships and ours will shield the operatives. The designs of the facility show a weak point in one of the hangars. My flagship has weapons pillaged from the Wanderers, which are strong enough to cut open the hangar doors, and precise enough not to destroy the hangar.`
 			`	"First though, we must regroup at <destination>. The sixty ships that escort our fleet cannot follow us to Devil-Run."`
 			`	As you prepare to leave, you notice <payment> has been added to your account. Hopefully you'll get the same when you reach <destination>.`
 				accept
@@ -1742,7 +1742,7 @@ mission "Hai Rescue [C06] Freedom"
 		# people of a planet specifically promising assistance to the player.
 		log `Liberated Philosopher's Paradise, which now pays me daily tribute and is extremely grateful for my help. They said they have inventions that may be of use to me, but their facilities are damaged. As they repair the facilities, they'll make new technologies available.`
 		conversation
-			`General Choot'k cuts open the doors of a large hanger and your ships land. Two hundred operatives pour out. They're wearing some kind of exoskeleton with a built-in shield. As they storm through the complex, you follow some of them.`
+			`General Choot'k cuts open the doors of a large hangar and your ships land. Two hundred operatives pour out. They're wearing some kind of exoskeleton with a built-in shield. As they storm through the complex, you follow some of them.`
 			`	Their guns are able to literally melt away meter-thick walls in seconds. They have a gas bombs that release an extremely powerful stun gas that knocks people out for hours. Had the pirates known to prepare for such a foe, they may have stood a chance. The operatives quickly overrun all opposition.`
 			`	After the fighting stops, some unarmed humans, Hai, and Korath emerge from safe-rooms deeper in the facility. They were terrified that they may have been conquered by another pirate gang until they saw the Unfettered Hai and Republic insignia.`
 			`	It took a few hours to round up all the pirates, but the peaceful denizens of Philosopher's Paradise gladly helped. They were placed in prison facilities the pirates had built to keep recent kidnapping victims and misbehaving civilians.`
