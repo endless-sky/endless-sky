@@ -77,3 +77,8 @@ star "star/nova"
 star "star/wr"
 	power 0.4
 	wind 4
+
+# Rogue planet with unusual properties
+star "planet/rogue-radiating"
+	power .2
+	wind .6

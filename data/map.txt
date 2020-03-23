@@ -7796,6 +7796,42 @@ system Denebola
 		distance 2927.23
 		period 2740.45
 
+system Devil-Run
+	pos -19 179
+	government Uninhabited
+	habitable 1071.204
+	asteroids "small rock" 121 1.9558
+	asteroids "medium rock" 14 1.9096
+	asteroids "large rock" 28 1.4784
+	asteroids "small metal" 8 1.8326
+	asteroids "medium metal" 77 2.2946
+	asteroids "large metal" 19 1.7094
+	minables uranium 46 2.98163
+	minables tungsten 18 3.78094
+	minables titanium 4 2.67322
+	trade Clothing 271
+	trade Electronics 722
+	trade Equipment 623
+	trade Food 236
+	trade "Heavy Metals" 755
+	trade Industrial 689
+	trade "Luxury Goods" 951
+	trade Medical 801
+	trade Metal 273
+	trade Plastic 394
+	fleet "Korath Raid" 30000
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/dust3-b
+		distance 351.97
+		period 180.59
+	object "Devil-Run Wormhole"
+		sprite planet/wormhole-red
+		distance 1805.33
+		period 1671.05
+
 system Diphda
 	pos -262 61
 	government Syndicate
@@ -25792,6 +25828,11 @@ planet "Desi Seledrak"
 	landscape land/hills3
 	description `Plumes of soot and ash rise from a cluster of several dozen volcanoes on this planet's main continent, shrouding the planet in a thick layer of clouds and choking out the sunlight. The ruins of several Korath cities and the geometric grids of cleared land surrounding them show that this was once a farming world, but now few plants are able to survive and kilometer-high glaciers have begun creeping down from the poles. It may be centuries before the skies clear and this world begins to thaw.`
 	security 0
+
+planet "Devil-Run Wormhole"
+	attributes "requires: quantum keystone"
+	description ""
+	spaceport ""
 
 planet "Devru Kaska"
 	attributes korath station
