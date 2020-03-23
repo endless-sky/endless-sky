@@ -165,6 +165,32 @@ ship "Bactrian" "Bactrian (Hired Gun)"
 		"Hyperdrive"
 
 
+# Troop transport Bactrians
+ship "Bactrian" "Bactrian (Troop Jump)"
+	outfits
+		"Liquid Helium Cooler"
+		"Catalytic Ramscoop"
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 224
+		`"Bufaer" Atomic Thruster`
+		"Jump Drive"
+		"Outfits Expansion"
+		"Boulder Reactor" 2
+		`"Bufaer" Atomic Steering`
+		"Pulse Rifle" 247
+		"Bullfrog Anti-Missile" 4
+		"Hai Diamond Regenerator" 2
+		"Hai Chasm Batteries"
+		Brig
+		Supercapacitor 2
+		"Small Bunk Room"
+		"Fuel Pod"
+		"Liquid Nitrogen Cooler"
+		"Security Station"
+		"Fragmentation Grenades" 247
+		"Quad Blaster Turret" 2
+		"Quantum Key Stone"
+
 
 ship "Barb" "Barb (Gatling)"
 	outfits
@@ -351,6 +377,25 @@ ship "Berserker" "Berserker (Strike)"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
 
+
+
+ship "Blackbird" "Blackbird (Hai Trafficker)"
+	outfits
+		`"Bondir" Atomic Thruster`
+		"Pulse Rifle" 12
+		Brig
+		Supercapacitor
+		"Fuel Pod" 2
+		`"Benga" Atomic Steering`
+		"Scram Drive"
+		"Chameleon Anti-Missile"
+		Ramscoop
+		"Pulse Turret"
+		"Hai Diamond Regenerator"
+		"Boulder Reactor"
+		"Outfits Expansion"
+		"Liquid Nitrogen Cooler"
+		"Security Station" 3
 
 
 ship "Bounder" "Bounder (Hai)"
@@ -636,6 +681,46 @@ ship "Corvette" "Corvette (Particle Chaser)"
 		"Fuel Pod"
 		"Outfits Expansion" 2
 		"Catalytic Ramscoop"
+
+
+ship "Corvette" "Corvette (Hai Trafficker)"
+	outfits
+		`"Bondir" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Pulse Rifle" 16
+		Brig
+		Supercapacitor
+		"Fuel Pod" 4
+		"Hai Tracker" 224
+		"Scram Drive"
+		"Bullfrog Anti-Missile" 2
+		"Hai Tracker Pod" 4
+		Ramscoop
+		"Hai Diamond Regenerator"
+		"Hai Fissure Batteries"
+		"Boulder Reactor"
+		"Outfits Expansion" 2
+		"Liquid Nitrogen Cooler"
+		"Security Station" 4
+
+
+ship "Clipper" "Clipper (Hai Trafficker)"
+	outfits
+		"Pulse Rifle" 3
+		Brig
+		Supercapacitor 2
+		"Fuel Pod"
+		"A370 Atomic Thruster"
+		"A255 Atomic Steering"
+		Hyperdrive
+		"Hai Tracker Pod" 3
+		Ramscoop
+		"Hai Corundum Regenerator"
+		"Hai Chasm Batteries"
+		"Outfits Expansion" 3
+		"Liquid Nitrogen Cooler"
+		"Breeder Reactor"
+		"Security Station" 2
 
 
 
