@@ -107,9 +107,9 @@ namespace {
 		resistance = .99 * stat - after;
 		
 		// Limit the resistance by the available energy, fuel, and heat.
-		if(energyCost)
+		if(energyCost > 0.)
 			resistance = min(resistance, energy / energyCost);
-		if(fuelCost)
+		if(fuelCost > 0.)
 			resistance = min(resistance, fuel / fuelCost);
 		if(heatCost < 0.)
 			resistance = min(resistance, heat / -heatCost);
