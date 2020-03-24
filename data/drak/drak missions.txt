@@ -95,6 +95,7 @@ mission "Drak guarding Void Sprites"
 # Koor'alei Skin story
 
 mission "Ancient Skin [0] Installation"
+	landing
 	name "Ancient Skin: Quarg"
 	description "Ask the Quarg about the ancient skin. Visit a Quarg world or station with the skin outfitted on your ship."
 	source "Buccaneer Bay"
@@ -277,6 +278,6 @@ mission "Ancient Skin [4] Archon Reawakening Permission"
 			`You travel through the Quarg station using the same gray spherical elevator as before, and find yourself in the Quarg laboratory. Its entire contents have been rearranged, and there are far more Quarg than before. A collection of scientists stands before you, with a wide assortment of devices.`
 			`	The ancient skin is hovering in midair between two devices that don't look at all like Quarg construction. They're a pair of curved black columns with white spikes pointing in the direction of the skin. The columns look almost alive with pulsating veins and what looks like a heart. Are you witnessing Drak technology?`
 			`	The skin begins to glow brighter and brighter until it is bright as the sun; far too bright to look at. Before you can cover your eyes, a powerful shockwave emanates from the skin. You're thrown onto the floor and you can feel the room heating up. At rising volume, you hear loud humming and deep bass vibration so powerful you can feel them in your bones.`
-			`	The spectacle ends after a few seconds when the room turns almost pitch black. It seems that even the Quarg were surprised by the intensity of the effect. They look up in wonder at a device they scarcely understand, and a relic of the ancient past, from an era of knowledge long forgotten.`
+			`	The spectacle ends after a few seconds when the room turns almost pitch black. The lights slowly turn back on and you see thunderstruck Quarg. They look up in wonder at a device they scarcely understand: a relic of the ancient past, from an era of knowledge long forgotten.`
 			`	You can feel a presence in your head, sent by a powerful telepathic entity. It feels different than the touch of an Archon's mind. It is warm and welcoming, rather than the Archon's cold and demanding nature. It sends you a mix of hope, gratitude, and longing. Is this the last vestige of the mind of a Koor'alei; what little remains in this tiny scrap of skin?`
 				decline
