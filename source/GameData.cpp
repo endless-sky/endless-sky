@@ -1017,7 +1017,7 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		else if(key == "whitelist")
 		{
 			for(const DataNode &child : node)
-				whitelist[child.Token(0)] = child.Size() > 2 ? child.Value(1) : 0.;
+				whitelist[child.Token(0)] = child.Size() >= 2 ? child.Value(1) : 0.;
 		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
