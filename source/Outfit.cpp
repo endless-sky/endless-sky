@@ -199,15 +199,24 @@ const Dictionary &Outfit::Attributes() const
 // not, return the maximum number that can be added.
 int Outfit::CanAdd(const Outfit &other, int count) const
 {
+	const auto &whitelist = GameData::Whitelist();
 	for(const auto &at : other.attributes)
 	{
-		// Skip attributes that are a part of the whitelist.
-		if(GameData::Whitelist().count(at.first))
-			continue;
+		double minimum = 0.;
+		// Check if this attribute is on the whitelist of attributes with
+		// a non-zero minimum.
+		if(whitelist.count(at.first))
+		{
+			minimum = whitelist.find(at.first)->second;
+			// Attributes on the whitelist without a listed minimum or a
+			// listed minimum of 0. can have any value.
+			if(!minimum)
+				continue;
+		}
 		double value = Get(at.first);
 		// Allow for rounding errors:
-		if(value + at.second * count < -EPS)
-			count = value / -at.second + EPS;
+		if(value + at.second * count < minimum - EPS)
+			count = (value - minimum) / -at.second + EPS;
 	}
 	
 	return count;

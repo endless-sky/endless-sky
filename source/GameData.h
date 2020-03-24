@@ -19,7 +19,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 #include <memory>
-#include <set>
 #include <string>
 #include <vector>
 
@@ -141,7 +140,7 @@ public:
 	
 	static const std::map<std::string, std::string> &PluginAboutText();
 	
-	static const std::set<std::string> &Whitelist();
+	static const std::map<std::string, double> &Whitelist();
 	
 	
 private:
