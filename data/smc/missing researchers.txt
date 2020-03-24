@@ -280,7 +280,6 @@ mission "Hai Rescue: Gipeep"
 	source Skillet
 	destination Greenbloom
 	passengers 1
-	repeat 3
 	to offer
 		"combat rating" > 50
 		has "Unwanted Cargo: done"
