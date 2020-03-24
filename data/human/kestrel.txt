@@ -344,18 +344,12 @@ ship "Kestrel" "Kestrel (More Weapons)"
 	gun 31 66 "Particle Cannon"
 	gun -31 66
 	gun 31 66
-	gun -31 66
-	gun 31 66
 	gun -53 61 "Particle Cannon"
 	gun 53 61 "Particle Cannon"
 	gun -53 61
 	gun 53 61
-	gun -53 61
-	gun 53 61
 	gun -75 57 "Torpedo Launcher"
 	gun 75 57 "Torpedo Launcher"
-	gun -75 57
-	gun 75 57
 	gun -75 57
 	gun 75 57
 	turret -7 -4 "Heavy Laser Turret"
