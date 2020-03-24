@@ -1552,8 +1552,6 @@ mission "Slave Transport [0]"
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	illegal -1
-	clearance
-	infiltrating
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
