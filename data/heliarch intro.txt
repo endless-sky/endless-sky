@@ -15,6 +15,7 @@ mission "Heliarch Investigation 1"
 	to offer
 		"coalition jobs" >= 70
 		has "Coalition: Contributor: done"
+		has "main plot completed"
 		not "Resistance: Questions: offered"
 	source
 		near "Quaru" 4 10
@@ -1230,6 +1231,7 @@ mission "Heliarch Containment 1"
 	cargo "Military Supplies" 25
 	to offer
 		has "Coalition: Contributor: done"
+		has "main plot completed"
 		"coalition jobs" >= 60
 		random > 25
 	source
