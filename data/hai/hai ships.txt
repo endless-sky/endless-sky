@@ -655,6 +655,35 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
+ship "Shield Beetle" "Shield Beetle (Refueler)"
+	outfits
+		"Ion Cannon" 4
+		"Pulse Cannon" 4
+		"Bullfrog Anti-Missile" 4
+		"Hai Diamond Regenerator" 2
+		"Hai Williwaw Cooling" 6
+		"Fuel Pod" 2
+		Hyperdrive
+		"Outfits Expansion" 3
+		"Quantum Keystone"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hai Ravine Batteries"
+		"Boulder Reactor" 2
+		"Pulse Rifle" 55
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	turret -39 48 "Bullfrog Anti-Missile"
+	turret 39 48 "Bullfrog Anti-Missile"
+	turret -57 75 "Bullfrog Anti-Missile"
+	turret 57 75 "Bullfrog Anti-Missile"
+
 
 
 ship "Solifuge"
