@@ -171,7 +171,7 @@ news "science in Hai space"
 			"A while back, my Hai research partner was nearing a breakthrough, and then she vanished. I haven't seen her since. She probably joined the Unfettered."
 			"Can you believe these Hai? They're light-years ahead of us, right under our noses."
 			"Have you visited the Quarg ringworld here in Hai space? It's a humbling sight. There's probably more Quarg in there than there are humans anywhere. Makes you feel pretty insignificant."
-			"It's amazing how efficient Hai fertilizer has become. If we had that technology, hunger would be a thing of the past."
+			"It's amazing how effective Hai fertilizer has become. If we had that technology, hunger would be a thing of the past."
 			"Hai can terraform planets a hundred times faster than we can. I wonder why they didn't do that at Darkwaste?"
 			"Hai have the most amazing holographic technology. One of them put on a backpack holoprojector. When he turned it on, he looked like an elephant. The legs and tail even tracked his movements! I wonder if they can mimic humans too?"
 			"The Hai have an amazing grasp of quantum chromodynamics. It's why their shield generators are so effective."
@@ -205,7 +205,7 @@ news "cute story in Hai space"
 			"Do you see that Hai woman carrying her baby? Doesn't it look like a long-tailed teddy-bear? The Hai are so cute."
 
 # Visual suggestion: a bit quirky or weird; expression is content, confident, or stoic
-news "scary story in Hai space"
+news "concerned merchant in Hai space"
 	location
 		government "Hai"
 	name
@@ -238,9 +238,10 @@ news "scary story in Hai space"
 			"The Hai don't like my ship's armory of laser rifles, but I was once boarded by a pirate crew and I'm never letting that happen again! If some overgrown squirrel is going to take away my rifle, it'll have to be from my cold dead hands!"
 			"I met some young Hai pilots. It sounds like they start out as poor as we do."
 			"I hope nobody is smuggling Hai technology out of here. I don't want to think about what would happen if the pirates got their hands on this stuff."
+			"The Hai will pay you to rush cargo to human space and back. Don't die trying."
 
 # Visual suggestion: a bit quirky or weird; expression is content, confident, or stoic
-news "scary story in Hai space"
+news "human citizen in Hai space"
 	location
 		government "Hai"
 	name
@@ -299,7 +300,6 @@ news "reformed pirate in Hai space"
 			"I lived on Freedom before I came here, and I could get space weed, death sticks, stardust, and toad juice any time of day or night. Here, the best I can find is spicy acorns."
 			"I used to be a slave on a pirate ship. My fool of a captain decided to attack Hai space. The Hai freed me, and now I work in one of their factories."
 			"I tried smuggling some bad blue to Hai space, but they caught me right away. I don't know what scanners they use in those Hai ships, but it's a lot more effective than the Navy's toys."
-			"The Hai will pay you to rush cargo to human space and back. Don't die trying."
 			"If you think the Hai are weak-willed fur-balls, try watching one of their fencing matches. I've never seen a human move that fast."
 			"I always said I'd get out of piracy one day, but I know the navy would lock me up for sure. Here in Hai space, I've made a new start."
 			"Being in Hai space has taught me to be a better person."
@@ -310,12 +310,13 @@ news "reformed pirate in Hai space"
 			"Hai are so forgiving here. I got into a fight with one and instead of pressing charges, he had a long talk with me about my choices in life."
 			"I always said I'd rethink my life, and now I have. I'm a farmer, not a killer."
 			"I used to hate myself for all the terrible crimes I did in human space. Here, the Hai have given me a fresh start."
-			"You have to re-invent yourself sometimes. I used to be a killer on a pirate ship, now I'm a canner for in Hai factory."
+			"You have to re-invent yourself sometimes. I used to be a killer on a pirate ship, now I'm a canner in Hai factory."
 			# Duplicated intentionally so pirates say it too:
 			"I hope nobody is smuggling Hai technology out of here. I don't want to think about what would happen if the pirates got their hands on that stuff."
 			"A Hai that lives near me went to sleep one night and woke up in a box on Prime. Isn't that weird?"
 			"Hai scientists that live near me chartered a flight to Allhome, but it got lost and ended up all the way on Canyon. Some people have the worst sense of direction."
 			"These Hai are so fluffy I want to hug one every time I see them!"
+			"The Hai will pay you to rush cargo to human space and back. Don't die trying."
 
 # Visual suggestion: hard-bitten, tough, often dark-skinned and/or wearing a hat
 news "human farming"
