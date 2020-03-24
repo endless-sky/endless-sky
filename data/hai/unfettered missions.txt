@@ -221,7 +221,7 @@ mission "Warfeed Terraforming [H01] Whispering Rose"
 	on fail
 		set "warfeed epic fail"
 	on accept
-		log "The Unfettered Hai asked me to help them terraform the planet of Warfeed. They say the Hai refused to assist out of fear that it would make the Unfettered too strong. I am to set up a smuggling operation sending supplies from Follower to Warfeed, and terraforming equipment back to Follower, benefiting both planets."
+		log "The Unfettered Hai asked me to help them terraform the planet of Warfeed. They say the Hai refused to assist out of fear that it would make the Unfettered too strong. I am to set up a smuggling operation sending supplies from Follower to Warfeed, and terraforming equipment back to Follower, benefiting both planets. They promise to pay 35,000 credits at every step of my journey."
 	on complete
 		payment 35000
 
@@ -500,7 +500,7 @@ mission "Warfeed Terraforming [S03] Syndicate Capture"
 				`	"How do I shut down White River's corporate espionage operations?"`
 				`	"I don't think I should betray White River."`
 					goto die
-			`	"For this to work, we have to avoid taking out White River entirely. You said the Unfettered Hai aren't fond of this man. Perhaps they can give us a list of his agents? Give us names, we will deal handle the rest."`
+			`	"For this to work, we have to avoid taking out White River entirely. You said the Unfettered Hai aren't fond of this man. Perhaps they can give us a list of his agents? Give us names, we will handle the rest."`
 			`	The tone of the man's voice was that of a stated fact, not a request for help. Perhaps you should agree to help?`
 			choice
 				`	"We have a deal."`
@@ -1660,7 +1660,7 @@ mission "Warfeed Terraforming [C05] Kraken Prep"
 				`	"Stop being immature and let me talk to Lilith."`
 				`	(Look angrily at Lilith.)`
 					goto talk
-			`	The girl looks a lot more guilty than before and stops talking.`
+			`	The girl looks much more guilty and stops talking.`
 			label talk
 			`	Lilith pulls herself away from her friends and talks in a more serious tone. "We have what we need to make the insulation for the pods. You need to take these papers to Kraken Station so they can prepare for our shipment. Then come back here.`
 			`	"Also, when you return, be ready to transport 133 tons in a single shipment. There will be no risk of detection though. The shipment will show up on Navy scanners as a bulk shipment of Limburger cheese."`
@@ -1777,9 +1777,9 @@ mission "Warfeed Terraforming [R02] Snowfeather"
 			`	"I'm not a normal Hai. I'm stronger and smarter. I know the difference between strength and brutality. Between pacifism and cowardice."`
 			choice
 				`	"What do you mean by that?"`
-				`	(Say nothing).`
+				`	(Say nothing.)`
 					goto continue
-			`	"Do not concern yourself with these matters." She smiles and shakes her head reassuringly.
+			`	"Do not concern yourself with these matters." She smiles and shakes her head reassuringly.`
 			label continue
 			`	"You are a hero to the Unfettered Hai. In the future, we may be friends or enemies, but you will always be remembered as our savior. Many thousands will survive because of you, and we will become independent. No longer will we subsist on insulting deliveries from the False Hai. In a year, we will feed ourselves.`
 			`	"From now on, Warfeed will be a safe haven for you. Dock there and hide whenever you need to. Even if you are at war with the True Hai, Warfeed will welcome you.`
@@ -1867,7 +1867,7 @@ conversation "Lilith Meeting"
 	`You find Lilith near the equator of Buccaneer Bay at what looks like a desert resort. Her two usual companions are sunbathing next to her as she fiddles with gadgets and notebooks. She is so absorbed that she doesn't notice your approach until you're a few paces away.`
 	`	"Hi, <first>! I have... a bit of an apology, and a present. Let's talk in private."`
 	choice
-		`	"Why can't we talk here?"
+		`	"Why can't we talk here?"`
 		`	(Follow Lilith.)`
 			goto follow
 	`	"It's a matter of some delicacy and I'd rather not be heard. Plus, my girls think I'm a guardian angel, and I'd like to keep it that way." She winks at you.`
