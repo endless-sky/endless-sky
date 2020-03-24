@@ -47,7 +47,8 @@ government "Bounty Hunter"
 	"fine" 0
 	"hostile hail" "hostile bounty hunter"
 
-government "Bounty Hunter Escort"
+government "Friendly Bounty Hunter"
+	"display name" "Bounty Hunter"
 	swizzle 6
 	color .78 0 0
 
@@ -57,7 +58,8 @@ government "Bounty Hunter Escort"
 		"Korath" -.2
 	"bribe" .05
 	"fine" 0
-	"hostile hail" "friendly bounty hunter"
+	"hostile hail" "hostile bounty hunter"
+	"friendly hail" "friendly bounty hunter"
 
 government "Coalition"
 	swizzle 5
@@ -314,7 +316,8 @@ government "Kor Sestor"
 	
 	"player reputation" -1000
 
-government "Legitimate Businessmen"
+government "Alphas posing as businessmen"
+	"display name" "Legitimate Businessmen"
 	swizzle 1
 	
 	"player reputation" 10

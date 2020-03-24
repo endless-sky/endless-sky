@@ -1,34 +1,22 @@
-# The below notice applies only to this file.
+# Copyright (c) 2020 by Nomadic Volcano
 #
-# No Copyright: CC0 1.0 Public Domain
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
 #
-# The person who associated a work with this deed has dedicated the
-# work to the public domain by waiving all of his or her rights to the
-# work worldwide under copyright law, including all related and
-# neighboring rights, to the extent allowed by law.
-#
-# You can copy, modify, distribute and perform the work, even for
-# commercial purposes, all without asking permission.
-#
-# In no way are the patent or trademark rights of any person affected
-# by CC0, nor are the rights that other persons may have in the work
-# or in how the work is used, such as publicity or privacy rights.
-#
-# Unless expressly stated otherwise, the person who associated a work
-# with this deed makes no warranties about the work, and disclaims
-# liability for all uses of the work, to the fullest extent permitted
-# by applicable law.
-#
-# When using or citing the work, you should not imply endorsement by
-# the author or the affirmer.
-#
-# For full details, see: https://creativecommons.org/publicdomain/zero/1.0/legalcode
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 mission "Alexandria Library Card: Offer"
-	name "Alexandria Library Card"
 	minor
 	job
+	name "Alexandria Library Card"
 	description `Alexandria Library is looking for an Apprentice Seeker. Meet Daemos Titan at the Al-Qarawiyyin Library on Earth to help him seek the Chal Jub Paqmey. Payments will total 400,000 credits. Escorts will be provided through dangerous areas.`
+	source
+		not planet Earth
+		near Sol 7
+	destination Earth
 	to offer
 		not "library card"
 		"net worth" > 300000
@@ -36,10 +24,6 @@ mission "Alexandria Library Card: Offer"
 		or
 			not "chosen sides"
 			has "main plot completed"
-	source
-		not planet Earth
-		near Sol 7
-	destination Earth
 	on complete
 		conversation
 			`You arrive on Earth and take a series of shuttles to get to Fez, Morocco where you expect to meet Daemos Titan. As with all old cities, the outer regions are monstrous mega-buildings built in the last few centuries. As you move inward, you see skyscrapers of the 20th to 22nd centuries.`
@@ -75,11 +59,11 @@ mission "Alexandria Library Card: Offer"
 mission "Alexandria Library Card: First Volume"
 	name "Alexandria Library Card"
 	description `Take Daemos Titan to <destination> to search for the first of the five Chal Jub Paqmey.`
-	blocked `Daemos exclaims, "I can't sleep in a gun port! Come back when you have a spare bunk and space for 1 ton of cargo."`
 	source Earth
 	destination Shroud
 	passengers 1
 	cargo "old books and a thousand pencils" 1
+	blocked `Daemos exclaims, "I can't sleep in a gun port! Come back when you have a spare bunk and space for 1 ton of cargo."`
 	to offer
 		has "Alexandria Library Card: Offer: done"
 	on offer
@@ -121,12 +105,12 @@ mission "Alexandria Library Card: First Volume"
 
 
 mission "Alexandria Library Card: Second Volume: Step 1"
+	landing
 	name "Alexandria Library Card"
 	description `Take Daemos Titan to <destination> to search for the second of the five Chal Jub Paqmey.`
 	blocked `Daemos complains, "What do you think I am, an Anti-Missile Turret? I need a bunk and space for 1 ton of cargo."`
 	source Shroud
 	destination Tinker
-	landing
 	passengers 1
 	cargo "old books and a thousand pencils" 1
 	to offer
@@ -134,8 +118,6 @@ mission "Alexandria Library Card: Second Volume: Step 1"
 	on offer
 		conversation
 			`As Daemos guides you from the spaceport and you see a planet of anachronisms. In the high mountains, vast castles of medieval design house the pampered ultra-rich, living as if in a Victorian era. As you pass through the streets you notice all the comforts of the modern era concealed behind curtains: virtual reality booths, food-synthesizing devices, massive panel screens for tracking stocks, and the like. When you leave the wealthy areas, you see the poor living in cramped conditions no better than medieval serfs, using modern technology only in their workplaces.`
-			choice
-				`	(Continue.)`
 			`	Daemos isn't interested in any of that though; he rushes you on before you can fully take in the environment. You race through the cloud cities of the rich, beyond the factory towns, past the countryside, deep in a marsh, into a hidden temple, beneath a fake support column, and down to a subterranean room. In the center of the room, an impossibly old monk is meditating with his eyes closed. He hovers a half meter above the ground humming in an almost guttural tone. Within his hands is a book.`
 			choice
 				`	(Approach the monk.)`
@@ -189,14 +171,14 @@ mission "Alexandria Library Card: Second Volume: Step 1"
 
 
 mission "Alexandria Library Card: Second Volume: Step 2"
+	landing
 	name "Alexandria Library Card"
 	description `Take Daemos Titan to <destination> to search for the second of the five Chal Jub Paqmey.`
-	blocked `Daemos complains, "I can't sleep in cooling ducts. I need a bunk and space for 1 ton of cargo."`
 	source Tinker
 	destination Amazon
-	landing
 	passengers 1
 	cargo "old books and a thousand pencils" 1
+	blocked `Daemos complains, "I can't sleep in cooling ducts. I need a bunk and space for 1 ton of cargo."`
 	to offer
 		has "Alexandria Library Card: Second Volume: Step 1: done"
 	on offer
@@ -210,7 +192,7 @@ mission "Alexandria Library Card: Second Volume: Step 2"
 			`	"Ekhh. A trade. Okay, I'll get you a copy."`
 			`	Daemos whispers to you, "We have to fly to <destination> next. I have the book, but we need to get it signed. I have someone to contact... I'll see you at your ship."`
 			choice
-				`	(Continue.)`
+				`	(Return to your ship.)`
 			`	Daemos meets you at your ship and says, "Our destination is in a dangerous area of Syndicate space. I've arranged some escorts so you don't get me killed."`
 			`	With a disgruntled expression, he asks, "Are you going to pester me with questions again?"`
 				goto "actual questions"
@@ -284,9 +266,9 @@ mission "Alexandria Library Card: Second Volume: Step 2"
 
 
 mission "Alexandria Library Card: Second Volume: Step 2 Jump Instructions"
+	invisible
 	source Tinker
 	destination Amazon
-	invisible
 	to offer
 		has "Alexandria Library Card: Second Volume: Step 1: done"
 		has "Alexandria Library Card: Second Volume: Step 2 Escort: accepted"
@@ -375,14 +357,14 @@ ship "Sparrow" "Sparrow (Heavy Laser Atomic)"
 
 
 mission "Alexandria Library Card: Second Volume: Step 3"
+	landing
 	name "Alexandria Library Card"
 	description `Take Daemos Titan to <destination> to search for the second of the five Chal Jub Paqmey.`
-	blocked `Daemos reminds you, "I won't fit in a torpedo. I need a bunk and space for 1 ton of cargo."`
 	source Amazon
 	destination "Deadman's Cove"
-	passengers 1
 	clearance "Daemos sends a message to his friend on Deadman's Cove. You receive coded landing coordinates."
-	landing
+	passengers 1
+	blocked `Daemos reminds you, "I won't fit in a torpedo. I need a bunk and space for 1 ton of cargo."`
 	cargo "old books and a thousand pencils" 1
 	to offer
 		has "Alexandria Library Card: Second Volume: Step 2: done"
@@ -402,7 +384,7 @@ mission "Alexandria Library Card: Second Volume: Step 3"
 			`	When the door opens, Daemos rushes forward in a panic, before you can even survey the room. It seems the man you came to see is dead, and quite recently too.`
 			`	"This will just delay us," says Daemos, "I know a group of businessmen on Deadman's Cove who can forge his signature. Let's get out of here before we're implicated in the crime."`
 			choice
-				`	(Leave.)`
+				`	(Hurry back to your ship.)`
 			`	You fly back to the city and Daemos disappears into a crowd of dastardly-looking men. It takes you a while to find him again.`
 			`	Daemos looks dead serious when you approach him. He says, "We're going to a pirate planet. That's an insanely dangerous thing to do in a ship like yours. I've arranged for us to travel with a large group of bounty hunters. You'll need to speak to the planet's authorities before they'll let you land."`
 			label questions
@@ -495,7 +477,7 @@ mission "Alexandria Library Card: Second Volume: Step 3 Escort"
 			`	You only have four days with these escorts, so you should not wander.`
 				accept
 	npc
-		government "Bounty Hunter Escort"
+		government "Friendly Bounty Hunter"
 		personality heroic escort disables
 		fleet
 			names "bounty hunter"
@@ -509,14 +491,14 @@ mission "Alexandria Library Card: Second Volume: Step 3 Escort"
 
 
 mission "Alexandria Library Card: Second Volume: Step 4"
+	landing
 	name "Alexandria Library Card"
 	description `Take Daemos Titan to <destination> to search for the second of the five Chal Jub Paqmey.`
-	blocked `Daemos complains, "Where do you expect to put me? A gun holster? I need a bunk and space for 1 ton of cargo."`
 	source "Deadman's Cove"
 	destination Tinker
 	passengers 1
-	landing
 	cargo "old books and a thousand pencils" 1
+	blocked `Daemos complains, "Where do you expect to put me? A gun holster? I need a bunk and space for 1 ton of cargo."`
 	to offer
 		has "Alexandria Library Card: Second Volume: Step 3: done"
 	on visit
@@ -575,7 +557,7 @@ mission "Alexandria Library Card: Second Volume: Step 4 Escort"
 			`	The largest of the men speaks. "We'll follow you to <destination>, as agreed. If you don't arrive by <date>, your fate is in your own hands. I suggest you leave now."`
 				accept
 	npc
-		government `Legitimate Businessmen`
+		government `Alphas posing as businessmen`
 		personality heroic escort disables
 		fleet
 			names "pirate"
@@ -588,22 +570,20 @@ mission "Alexandria Library Card: Second Volume: Step 4 Escort"
 
 
 mission "Alexandria Library Card: Third Volume: Step 1"
+	landing
 	name "Alexandria Library Card"
 	description `Take Daemos Titan to <destination> to search for the third of the five Chal Jub Paqmey.`
-	blocked `Daemos explains, "You can't put me in an engine mount. I need a bunk and space for 1 ton of cargo."`
 	source Tinker
 	destination Rand
 	passengers 1
-	landing
 	cargo "old books and a thousand pencils" 1
+	blocked `Daemos explains, "You can't put me in an engine mount. I need a bunk and space for 1 ton of cargo."`
 	to offer
 		has "Alexandria Library Card: Second Volume: Step 4: done"
 	on offer
 		conversation
 			`At long last, you make it back to the Syndicate executive. He has the Paq cha'DIch ready, and gleefully accepts his new book on concealing poisons. He doesn't seem to notice the skillful forgery. Perhaps those Deadman's Cove businessmen really were legitimate.`
 			`	"Here's your payment," Daemos says, handing you 60,000 credits. Handing you another 17,500 credits, he adds, "This is from the 'legitimate businessmen' for our assistance getting them landing clearance on Tinker. Only three more books to go!`
-			choice
-				`	(Continue.)`
 			`	Daemos wanders off to read. Eventually you find him again, behind his giant book of scribbles he had the day you met him. The book is blocking his face and you can see the two Chal Jub Paqmey you found are on either side of him. He's scribbling in his book and you can see he already lost seven pencils.`
 			`	He hears you approach and greets you, "Ready for the third book, <last>?"`
 			choice
@@ -651,24 +631,28 @@ mission "Alexandria Library Card: Third Volume: Step 1"
 
 
 mission "Alexandria Library Card: Third Volume: Step 2"
+	landing
 	name "Alexandria Library Card"
 	description `Take Daemos Titan to <destination> to see an xenolinguist.`
-	blocked `Daemos complains, "I can't sleep in your reactor core. I need a bunk and space for 1 ton of cargo."`
 	source Rand
-	landing
 	destination Grakhord
 	passengers 1
 	cargo "old books and a thousand pencils" 1
+	blocked `Daemos complains, "I can't sleep in your reactor core. I need a bunk and space for 1 ton of cargo."`
 	to offer
 		has "Alexandria Library Card: Third Volume: Step 1: done"
 	on offer
 		conversation
 			`After landing on Rand, Daemos takes you to a circle of stones on a mesa near one of the largest mining towns. There are odd markings on the stones which Daemos insists must be words, even though he's never seen writing like that before.`
-			`	Two hours and thirty books later, Daemos tells you, "It's no good. I'm going to have to talk to some xenolinguistics experts. We need to go to <destination> system. There's a Navy group that patrols along here regularly. I'm sure they wouldn't mind going two systems past the end of Human space."`
-			`	Your interest piques when you hear, "the end of Human space."`
+			`	Two hours and thirty books later, Daemos tells you, "It's no good. I'm going to have to talk to some xenolinguistics experts. We need to go to <destination> system. There's a Navy group that patrols along here regularly. I'm sure they wouldn't mind going two systems past the end of human space."`
+			`	Your interest piques when you hear, "the end of human space."`
 			`	"Oh, no, Captain <last> <first>. I'm not spoiling that surprise.`
 			choice
-				`	(Continue.)`
+				`	"Just tell me."`
+				`	(Say nothing.)`
+					goto nothing
+			`	He laughs at you, "Much of exploration is waiting, <last>. Consider this one more lesson."`
+			label nothing
 			`	"As we go south from here towards Sadalmelik the pirate activity increases. A Navy patrol fleet flies through here twice a month, and I've asked them to see us to Grakhord.`
 			`	Daemos eyes widen as he says, "I have some good news though! The Paq LoSDIch, fourth of the Chal Jub Paqmey, is on Grakhord. That means we'll soon have the Paq wa'DIch, the Paq cha'DIch, the Paq LoSDIch, and the location of the keys to the Paq WejDIch."`
 			`	"I have some questions before we go."`
@@ -740,32 +724,30 @@ mission "Alexandria Library Card: Third Volume: Step 2 Escort"
 
 # The preceding ZZ ensures this happens after meeting the Quarg
 mission "ZZ Alexandria Library Card: Third Volume: Step 3"
+	landing
 	name "Alexandria Library Card"
 	description `Take Daemos Titan to <destination> to visit a Navy research center.`
-	blocked `Daemos complains, "I can't fit in a broom cupboard. I need a bunk and space for 1 ton of cargo."`
 	source Grakhord
 	destination "New Austria"
 	passengers 1
-	landing
 	cargo "old books and a thousand pencils" 1
+	blocked `Daemos complains, "I can't fit in a broom cupboard. I need a bunk and space for 1 ton of cargo."`
 	to offer
 		has "Alexandria Library Card: Third Volume: Step 2: done"
 	on offer
 		payment 60000
 		conversation
-			`Daemos takes you to a lecture about xenolinguistics, jointly presented by a young woman and a Quarg. It is a comparative study of seven different alien languages and five Human languages. The research suggests that there may be similar origins of some words. If an alien race once existed, with a specific and bizarre anatomy, they may have touched all twelve languages.`
+			`Daemos takes you to a lecture about xenolinguistics, jointly presented by a young woman and a Quarg. It is a comparative study of seven different alien languages and five human languages. The research suggests that there may be similar origins of some words. If an alien race once existed, with a specific and bizarre anatomy, they may have touched all twelve languages.`
 			`	After the lecture, the woman, Dr. Sophia Nance, runs over and hugs Daemos. "Dr. Demon! I've missed you."`
 			`	"I haven't seen you since your defense," he says to her. "What way is that to treat your thesis advisor?"`
-			`	"Sorry, Dr. Demon. The Quarg pulled me into this project, and I was too excited to refuse. I've been out of Human space in a Quarg Wardragon for a while."`
-			choice
-				`	(Continue.)`
+			`	"Sorry, Dr. Demon. The Quarg pulled me into this project, and I was too excited to refuse. I've been out of human space in a Quarg Wardragon for a while."`
 			`	She pulls an ancient book out of her backpack, and hands it to Daemos. "Will this make up for my absence? We found it on an uninhabited world to the north-east of here."`
 			`	Daemos exclaims, "The Paq LoSDIch! You are an angel, Sophia. What about the symbols from Rand?"`
 			`	"Bad news there, I'm afraid. Neither I nor the Quarg could translate them. We suspect they're not linguistic, but rather a map of sorts. The Quarg rotated them, and some looked almost like constellations. They say it may be a map, but if it is, it's for a younger era in this galaxy. Stars shift around pretty far after a few hundred millennia."`
 			`	Sophia hands the map to Daemos. You look over his shoulder.`
 			choice
 				`	(Look at the map.)`
-			`	It's instantly clear what you are looking at. This is an old astronavigational system that uses constellations as seen from galactic center. It's reassuring that your pilot training taught you something Quarg and Human linguists couldn't figure out.`
+			`	It's instantly clear what you are looking at. This is an obsolete astronavigational system that uses constellations as they would be seen from galactic center. It's reassuring that your pilot training taught you something Quarg and human linguists couldn't figure out.`
 			choice
 				`	(Explain the symbols to them.)`
 					goto explain
@@ -778,8 +760,10 @@ mission "ZZ Alexandria Library Card: Third Volume: Step 3"
 				`	"Oh well. I'll get back to my life as a merchant."`
 					decline
 			label explain
-			`	You say, "It's an old navigational system taught to all pilots. The constellations are drawn as they look from the center of the galaxy. The crosses and ovals show the planet or moon."`
+			`	You say, "It's an obsolete navigational system taught to all pilots. The constellations are drawn as they would look from the center of the galaxy. The crosses and ovals show the planet or moon."`
 			`	"Of course!" says Sophia. "The constellations would change slower there due the distance to the stars. It's obvious which ones we go to."`
+			# (It isn't obvious to her. She's saying, "Of course!" to seem intelligent
+			# again after a mere pilot outsmarted her.)
 			`	"That doesn't tell us where the keys are on the planets though," warns Daemos.`
 			`	Sophia smiles, "On that matter, I can help you. My Quarg collaborators say the keys should appear on the Navy's gamma ray sensors as glitches, filtered out by quality control code. They already have the locations in their sensor logs' raw data stream. You just have to tell them the frequencies to look for."`
 			`	She hands you a data pad and says, "Take this to the Navy research center on New Austria. They'll know what to do."`
@@ -829,7 +813,7 @@ mission "ZZ Alexandria Library Card: Third Volume: Step 3 Escort"
 	on offer
 		conversation
 			`A saleswoman in a Tarazed Shipyards uniform approaches you. "We have business near the Navy research center so we'll escort you to <destination>. If you don't arrive by <date>, we'll have to part ways.`
-			`	"By the way, I noticed you may be in need of a new ship. You'll pass by the Tarazed system when you exit Quarg space. Our corporate capital there, on Wayfarer, has some of the most advanced and well-stocked stores in Human space. Whether you want a new ship or an upgrade, there is nowhere better to shop. Stop by if you have a chance."`
+			`	"By the way, I noticed you may be in need of a new ship. You'll pass by the Tarazed system when you exit Quarg space. Our corporate capital there, on Wayfarer, has some of the most advanced and well-stocked stores in human space. Whether you want a new ship or an upgrade, there is nowhere better to shop. Stop by if you have a chance."`
 				accept
 	npc
 		government "Neutral"
@@ -845,17 +829,17 @@ mission "ZZ Alexandria Library Card: Third Volume: Step 3 Escort"
 
 
 mission "Alexandria Library Card: Key"
+	landing
 	name "Alexandria Library Card"
 	description `Gather key segments from <stopovers> and bring all five to <destination>.`
 	blocked `Daemos complains, "I won't fit in your missile launcher. I need a bunk and space for 1 ton of cargo."`
 	source "New Austria"
-	destination Rand
-	landing
 	stopover "New Boston"
 	stopover "New Holland"
 	stopover "Deep"
 	stopover "Trinket"
 	stopover "New Iceland"
+	destination Rand
 	passengers 1
 	cargo "old books and a thousand pencils" 1
 	to offer
@@ -869,8 +853,6 @@ mission "Alexandria Library Card: Key"
 			`	"I've forgotten it already," says Daemos.`
 			`	"The search algorithm has combed the data on the planets you listed for a 2,710,000 second interval. Assuming these keys don't move often, we can tell you where they are to a precision of 3.0994 millimeters. It would be finer except for the feedback we get from the... right... I shouldn't mention that either..."`
 			`	The analyst adds geographical locations to your data pad and scurries away, hoping to avoid giving out any more Navy secrets.`
-			choice
-				`	(Continue.)`
 			`	Daemos seems eager to move on. "Well, Captain <first>, we know where to go. Are you ready? Or will you pester me with questions again?"`
 				goto choice
 			label top
@@ -1049,14 +1031,14 @@ mission "Alexandria Library Card: Key: Escort"
 
 
 mission "Alexandria Library Card: Return"
+	landing
 	name "Alexandria Library Card"
 	description `Take Daemos Titan to <destination> to pick up the last book of the Chal Jub Paqmey.`
-	blocked `Daemos complains, "I'm not generator fuel. I need a bunk and room for 1 ton of cargo."`
 	source Rand
 	destination Valhalla
 	passengers 1
-	landing
 	cargo "old books and a thousand pencils" 1
+	blocked `Daemos complains, "I'm not generator fuel. I need a bunk and room for 1 ton of cargo."`
 	to offer
 		has "Alexandria Library Card: Key: done"
 	on offer
@@ -1066,9 +1048,7 @@ mission "Alexandria Library Card: Return"
 			`	"Where to next?"`
 			`	He tosses you 60,000 credits. They miss their mark, ricochet off of a wall, and hit you in the back.`
 			`	"The Rim!" He wanders off and starts reading again.`
-			choice
-				`	(Continue.)`
-			`	You find Daemos in a restaurant reading a letter written on actual paper. He looks up at you and says, "Good news! Another Seeker stumbled upon the Paq VaghDIch, the fifth of the Chal Jub Paqmey. We just have to pick it up."`
+			`	Later on, you find Daemos in a restaurant reading a letter written on actual paper. He looks up at you and says, "Good news! Another Seeker stumbled upon the Paq VaghDIch, the fifth of the Chal Jub Paqmey. We just have to pick it up."`
 			label questions
 			`	"Can we leave, or will you ask more of your fekkik questions?"`
 			choice
@@ -1104,16 +1084,16 @@ mission "Alexandria Library Card: Return"
 
 
 mission "Alexandria Library Card: Rescue"
+	landing
 	name "Alexandria Library Card"
-	waypoint Mora
 	description `Repair the "Gonza Book Cruise" in the Mora system and take it to <destination> before <date>.`
-	blocked `Daemos informs you, "I don't fit in a glove compartment. I need a bunk and space for 1 ton of cargo."`
 	source Valhalla
+	waypoint Mora
 	destination Ingot
 	passengers 1
-	landing
-	deadline 11
 	cargo "old books and a thousand pencils" 1
+	deadline 11
+	blocked `Daemos informs you, "I don't fit in a glove compartment. I need a bunk and space for 1 ton of cargo."`
 	on offer
 		conversation
 			`A Deep Security officer runs towards you and Daemos in a hurry yelling, "It's been disabled! We have to leave!"`
@@ -1184,15 +1164,15 @@ mission "Alexandria Library Card: Rescue: Escort"
 	
 
 mission "Alexandria Library Card: Completion"
+	landing
 	name "Alexandria Library Card"
 	description `Take Daemos Titan to <destination> to archive the Chal Jub Paqmey.`
-	blocked `Daemos complains, "I can't sleep on a bookshelf. I need a bunk and space for 1 ton of cargo."`
 	source Ingot
 	destination Alexandria
 	passengers 1
-	landing
 	clearance
 	cargo "old books and a thousand pencils" 1
+	blocked `Daemos complains, "I can't sleep on a bookshelf. I need a bunk and space for 1 ton of cargo."`
 	to offer
 		has "Alexandria Library Card: Rescue: done"
 	on offer
@@ -1267,7 +1247,7 @@ mission "Alexandria Library Card: Completion"
 			`	"Are you daft? We don't provide juggling lessons here. Find such silliness on the Paradise Planets."`
 				goto "library services"
 			label "library books"
-			`	"Yes. We have the largest archive in all of Human space. If you're looking for a book you will find it here."`
+			`	"Yes. We have the largest archive in all of human space. If you're looking for a book you will find it here."`
 				goto "library services"
 			label jobs
 			`	"Yes.`
@@ -1284,13 +1264,15 @@ mission "Alexandria Library Card: Completion"
 		fail "Access to Alexandria"
 
 mission "Access to Alexandria"
+	landing
+	invisible
 	name "Access to Alexandria"
 	description `Access to Alexandria`
+	# I have seen this mission mysteriously disappear unless I
+	# have a "repeat 2" here:
 	repeat 2
-	landing
 	source
 		not attributes uninhabited
-	invisible
 	destination Alexandria
 	clearance
 	to offer
