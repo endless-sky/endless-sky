@@ -1,0 +1,971 @@
+# Copyright (c) 2014-2016 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+ship "Aphid"
+	sprite "ship/hai aphid"
+	thumbnail "thumbnail/hai aphid"
+	attributes
+		category "Light Freighter"
+		"cost" 570000
+		"shields" 1700
+		"hull" 1400
+		"required crew" 1
+		"bunks" 5
+		"mass" 100
+		"drag" 1.9
+		"heat dissipation" .90
+		"fuel capacity" 400
+		"cargo space" 51
+		"outfit space" 185
+		"weapon capacity" 37
+		"engine capacity" 48
+		weapon
+			"blast radius" 30
+			"shield damage" 300
+			"hull damage" 150
+			"hit force" 450
+	outfits
+		"Pulse Turret"
+		"Pebble Core"
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		`"Basrem" Atomic Thruster`
+		`"Basrem" Atomic Steering`
+		"Hyperdrive"
+	engine -8 40
+	engine 8 40
+	turret 0 24 "Pulse Turret"
+	leak "leak" 60 50
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 15
+	description "The Aphid is the lightest freighter used by the Hai and was for many millennia the backbone of the Hai inter-planetary economy. Because of how peaceful Hai space has been for much of its history, Aphids are only lightly armed and mainly rely on larger Hai ships for protection."
+
+ship "Aphid" "Aphid (Anti-Missile)"
+	outfits
+		"Chameleon Anti-Missile"
+		"Pebble Core"
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		"Pulse Rifle"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+
+
+
+ship "Centipede"
+	sprite "ship/hai centipede"
+	thumbnail "thumbnail/hai centipede"
+	attributes
+		category "Transport"
+		"cost" 6300000
+		"shields" 6600
+		"hull" 2400
+		"required crew" 35
+		"bunks" 131
+		"mass" 187
+		"drag" 3.9
+		"heat dissipation" .75
+		"fuel capacity" 600
+		"cargo space" 38
+		"outfit space" 375
+		"weapon capacity" 78
+		"engine capacity" 88
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Bullfrog Anti-Missile" 3
+		"Geode Reactor"
+		"Hai Corundum Regenerator"
+		"Hai Ravine Batteries"
+		"Hai Williwaw Cooling" 3
+		"Luxury Accommodations"
+		"Quantum Keystone"
+		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		`"Basrem" Atomic Steering`
+		Hyperdrive
+		
+	engine -15 113
+	engine 15 113
+	gun -11 -113 "Hai Tracker Pod"
+	gun 11 -113 "Hai Tracker Pod"
+	turret 0 -19 "Bullfrog Anti-Missile"
+	turret -41 67 "Bullfrog Anti-Missile"
+	turret 41 67 "Bullfrog Anti-Missile"
+	leak "leak" 60 50
+	leak "flame" 40 40
+	leak "big leak" 10 10
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description `The introduction of humans to the Hai civilization has led to a substantial amount of cultural exchange. While some may argue that pickled acorns have been the greatest product of this relationship, many more will point to this luxury transport ship. The product of human-Hai cooperation from the project's inception, the Centipede was released around the turn of the 31st century, but has already become quite popular among Hai fleets.`
+
+ship "Centipede" "Centipede (Pulse)"
+	outfits
+		"Pulse Cannon" 2
+		"Bullfrog Anti-Missile" 3
+		"Boulder Reactor"
+		"Hai Fissure Batteries"
+		"Hai Chasm Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 5
+		"Luxury Accommodations"
+		"Quantum Keystone"
+		"Pulse Rifle" 24
+		`"Biroo" Atomic Thruster`
+		`"Basrem" Atomic Steering`
+		`"Biroo" Atomic Steering`
+		Hyperdrive
+
+
+
+ship "Flea"
+	sprite "ship/hai flea"
+	thumbnail "thumbnail/hai flea"
+	attributes
+		category "Drone"
+		"cost" 122400
+		"shields" 200
+		"hull" 700
+		"mass" 21
+		"drag" .55
+		"heat dissipation" .75
+		"outfit space" 60
+		"weapon capacity" 9
+		"engine capacity" 29
+		"automaton" 1
+		weapon
+			"blast radius" 6
+			"shield damage" 55
+			"hull damage" 30
+			"hit force" 80
+	outfits
+		"Railgun"
+		"Railgun Slug" 160
+		"Sand Cell"
+		"Hai Chasm Batteries"
+		`"Baellie" Atomic Engines`
+
+	engine 0 27
+	gun 0 -27 "Railgun"
+	leak "leak" 60 50
+	explode "tiny explosion" 15
+	description `This is a combat drone designed to help contain Unfettered aggression with a minimum risk to Hai life.`
+
+
+
+ship "Geocoris"
+	sprite "ship/hai geocoris"
+	thumbnail "thumbnail/hai geocoris"
+	attributes
+		category "Heavy Freighter"
+		"cost" 12540000
+		"shields" 13300
+		"hull" 6200
+		"required crew" 15
+		"bunks" 56
+		"mass" 810
+		"drag" 17.1
+		"heat dissipation" 0.45
+		"fuel capacity" 800
+		"cargo space" 761
+		"outfit space" 582
+		"weapon capacity" 172
+		"engine capacity" 94
+		weapon
+			"blast radius" 300
+			"shield damage" 3000
+			"hull damage" 1500
+			"hit force" 4500
+	outfits
+		"Pulse Cannon" 2
+		"Pulse Turret" 2
+		"Bullfrog Anti-Missile" 3
+		"Geode Reactor" 2
+		"Hai Valley Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 5
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		Hyperdrive
+
+	engine 100 39
+	engine -100 39
+	gun 24 -118 "Pulse Cannon"
+	gun -24 -118 "Pulse Cannon"
+	turret 110 -23 "Pulse Turret"
+	turret -110 -23 "Pulse Turret"
+	turret 35 94 "Bullfrog Anti-Missile"
+	turret -35 94 "Bullfrog Anti-Missile"
+	turret 0 -89 "Bullfrog Anti-Missile"
+	leak "leak" 40 50
+	leak "flame" 40 80
+	leak "big leak" 70 30
+	explode "tiny explosion" 50
+	explode "small explosion" 50
+	explode "medium explosion" 50
+	explode "large explosion" 50
+	explode "huge explosion" 20
+	"final explode" "final explosion large"
+	description "After large human freighters began to out-compete traditionally smaller Hai ships, the Hai responded by developing the Geocoris: a heavy freighter that surpassed anything humanity had to offer at the time."
+
+ship "Geocoris" "Geocoris (Tracker)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 196
+		"Pulse Turret" 2
+		"Bullfrog Anti-Missile" 2
+		"Chameleon Anti-Missile"
+		"Boulder Reactor"
+		"Pebble Core"
+		"Hai Ravine Batteries"
+		"Hai Corundum Regenerator" 2
+		"Hai Williwaw Cooling" 7
+		"Tracker Storage Pod" 3
+		"Quantum Keystone"
+		"Pulse Rifle" 14
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		Hyperdrive
+
+
+
+ship "Grasshopper"
+	sprite "ship/hai grasshopper"
+	thumbnail "thumbnail/hai grasshopper"
+	attributes
+		category "Interceptor"
+		"cost" 684000
+		"shields" 3300
+		"hull" 600
+		"required crew" 1
+		"bunks" 5
+		"mass" 95
+		"drag" 1.5
+		"heat dissipation" .85
+		"fuel capacity" 300
+		"cargo space"  29
+		"outfit space" 169
+		"weapon capacity" 38
+		"engine capacity" 61
+		weapon
+			"blast radius" 36
+			"shield damage" 180
+			"hull damage" 360
+			"hit force" 540
+	outfits
+		"Pulse Cannon" 2
+		"Pebble Core"
+		"Hai Chasm Batteries" 2
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Quantum Keystone"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		Hyperdrive
+
+	engine 0 36
+	gun -6 -34 "Pulse Cannon"
+	gun 6 -34 "Pulse Cannon"
+	leak "leak" 60 50
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 5
+	"final explode" "final explosion small"
+	description "Designed by the Hai to serve as a fast reconnaissance craft, the Grasshopper has been adopted by thrill-seekers and miners alike. At the same time, it is often used by Hai captains who are looking for effective protection at a low cost."
+
+ship "Grasshopper" "Grasshopper (Tracker)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Pebble Core"
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Quantum Keystone"
+		"Pulse Rifle"
+		`"Basrem" Atomic Thruster`
+		`"Basrem" Atomic Steering`
+		Hyperdrive
+
+ship "Grasshopper" "Grasshopper (Surveillance)"
+	outfits
+		"Pulse Cannon"
+		"Pebble Core"
+		"Hai Chasm Batteries"
+		"Supercapacitor"
+		"Outfit Scanner" 5
+		"Cargo Scanner" 5
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Quantum Keystone"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		Hyperdrive
+
+
+
+ship "Lightning Bug"
+	sprite "ship/hai lightning bug"
+	thumbnail "thumbnail/hai lightning bug"
+	attributes
+		category "Light Warship"
+		"cost" 3200000
+		"shields" 6700
+		"hull" 1700
+		"required crew" 4
+		"bunks" 10
+		"mass" 220
+		"drag" 3.8
+		"heat dissipation" .85
+		"fuel capacity" 600
+		"cargo space" 73
+		"outfit space" 278
+		"weapon capacity" 87
+		"engine capacity" 93
+		weapon
+			"blast radius" 84
+			"shield damage" 840
+			"hull damage" 420
+			"hit force" 1260
+	outfits
+		"Ion Cannon"
+		"Bullfrog Anti-Missile" 2
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
+	engine -40 22
+	engine 40 22
+	gun 0 -40 "Ion Cannon"
+	turret -47 18 "Bullfrog Anti-Missile"
+	turret 47 18 "Bullfrog Anti-Missile"
+	leak "leak" 40 50
+	leak "flame" 40 30
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion small"
+	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. The Lightning Bug, as with many insects, works best in a swarm: even a small number of Lightning Bugs can manage to leave the largest of ships helpless with their stock-fitted ion cannons."
+
+ship "Lightning Bug" "Lightning Bug (Pulse)"
+	outfits
+		"Hai Tracker Pod"
+		"Hai Tracker" 56
+		"Pulse Turret" 2
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Pulse Rifle" 2
+		`"Biroo" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+
+ship "Lightning Bug" "Lightning Bug (Surveillance)"
+	outfits
+		"Hai Tracker Pod"
+		"Hai Tracker" 56
+		"Pulse Turret"
+		"Bullfrog Anti-Missile"
+		"Geode Reactor"
+		"Outfit Scanner" 5
+		"Cargo Scanner" 5
+		"Hai Williwaw Cooling"
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Pulse Rifle" 2
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+
+
+
+ship "Pond Strider"
+	sprite "ship/hai pond strider"
+	thumbnail "thumbnail/hai pond strider"
+	attributes
+		category "Medium Warship"
+		"cost" 5250000
+		"shields" 10000
+		"hull" 3000
+		"required crew" 9
+		"bunks" 18
+		"mass" 132
+		"drag" 3.6
+		"heat dissipation" .65
+		"fuel capacity" 300
+		"cargo space" 71
+		"outfit space" 354
+		"weapon capacity" 129
+		"engine capacity" 76
+		weapon
+			"blast radius" 200
+			"shield damage" 1500
+			"hull damage" 750
+			"hit force" 1750
+	outfits
+		"Railgun" 2
+		"Railgun Slug" 320
+		"Pulse Cannon"
+		"Pulse Turret" 2
+		"Bullfrog Anti-Missile" 
+		"Hai Diamond Regenerator"
+		"Hai Chasm Batteries"
+		"Hai Gorge Batteries"
+		"Geode Reactor"
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hai Williwaw Cooling" 3
+		"Hyperdrive"
+		
+	engine -23 80
+	engine 23 80
+	gun 0 -76 "Pulse Cannon"
+	gun -15 -72 "Railgun"
+	gun 15 -72 "Railgun"
+	turret -18 -65 "Pulse Turret"
+	turret 18 -65 "Pulse Turret"
+	turret 0 26 "Bullfrog Anti-Missile"
+	drone -70 -45 left under
+	drone 70 -45 right under
+	drone -70 28 left under
+	drone 70 28 right under
+	drone -70 -45 over
+	drone 70 -45 over
+	drone -70 28 over
+	drone 70 28 over
+	leak "leak" 40 50
+	leak "flame" 40 70
+	leak "big leak" 70 30
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "This short-range drone carrier was built by the Hai to contain the increasingly aggressive Unfettered with their new Solifuge and Violin Spider ships. The Hai's greater value for life is evident in the remotely-piloted robotic fighter craft, preferring to keep valuable pilots out of harm's way."
+
+
+
+ship "Shield Beetle"
+	sprite "ship/hai shield beetle"
+	thumbnail "thumbnail/hai shield beetle"
+	attributes
+		category "Heavy Warship"
+		"cost" 17900000
+		"shields" 32000
+		"hull" 9800
+		"required crew" 47
+		"bunks" 95
+		"mass" 650
+		"drag" 8.8
+		"heat dissipation" .60
+		"fuel capacity" 500
+		"cargo space" 142
+		"outfit space" 798
+		"weapon capacity" 333
+		"engine capacity" 150
+		weapon
+			"blast radius" 400
+			"shield damage" 4000
+			"hull damage" 2000
+			"hit force" 3000
+	outfits
+		"Ion Cannon" 4
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 280
+		"Tracker Storage Pod" 2
+		"Chameleon Anti-Missile" 2
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Quantum Keystone"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+	engine -44 133
+	engine 44 133
+	gun -22 -102 "Ion Cannon"
+	gun 22 -102 "Ion Cannon"
+	gun -34 -68 "Hai Tracker Pod"
+	gun 34 -68 "Hai Tracker Pod"
+	gun -49 -38 "Ion Cannon"
+	gun 49 -38 "Ion Cannon"
+	gun -61 -14 "Hai Tracker Pod"
+	gun 61 -14 "Hai Tracker Pod"
+	turret -39 48
+	turret 39 48
+	turret -57 75 "Chameleon Anti-Missile"
+	turret 57 75 "Chameleon Anti-Missile"
+	leak "leak" 40 50
+	leak "flame" 50 80
+	leak "big leak" 60 50
+	explode "tiny explosion" 50
+	explode "small explosion" 50
+	explode "medium explosion" 50
+	explode "large explosion" 50
+	explode "huge explosion" 20
+	"final explode" "final explosion large"
+	description "This ship was first built millennia ago, near the end of a more violent time in Hai history. Since then, it has served as the only heavy warship at the disposal of the Hai. The Shield Beetle is a versatile warship used by the Hai to guard their merchant convoys, or by the Unfettered to attack those very same convoys."
+
+ship "Shield Beetle" "Shield Beetle (Police)"
+	outfits
+		"Ion Cannon" 4
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 224
+		"Chameleon Anti-Missile" 2
+		"Boulder Reactor" 2
+		"Hai Chasm Batteries" 2
+		"Hai Fissure Batteries"
+		"Hai Gorge Batteries"
+		"Outfits Expansion" 4
+		"Hai Diamond Regenerator" 2
+		"Outfit Scanner" 7
+		"Cargo Scanner" 7
+		"Brig"
+		"Hai Williwaw Cooling" 4
+		"Pulse Rifle" 55
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	turret
+	turret
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
+
+ship "Shield Beetle" "Shield Beetle (Jump)"
+	outfits
+		"Ion Cannon" 4
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 224
+		"Chameleon Anti-Missile" 2
+		"Boulder Reactor" 2
+		"Hai Chasm Batteries" 2
+		"Hai Fissure Batteries"
+		"Hai Gorge Batteries"
+		"Outfits Expansion" 4
+		"Hai Diamond Regenerator" 2
+		"Fuel Pod" 3
+		"Hai Williwaw Cooling" 4
+		"Pulse Rifle" 55
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Jump Drive"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	turret
+	turret
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
+
+ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
+	outfits
+		"Hai Tracker Pod" 8
+		"Hai Tracker" 448
+		"Pulse Turret" 4
+		"Boulder Reactor" 2
+		"Hai Ravine Batteries"
+		"Outfits Expansion" 4
+		"Hai Diamond Regenerator" 2
+		"Fuel Pod" 3
+		"Hai Williwaw Cooling" 6
+		"Pulse Rifle" 47
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Jump Drive"
+
+ship "Shield Beetle" "Shield Beetle (Pulse)"
+	outfits
+		"Ion Cannon" 2
+		"Pulse Cannon" 6
+		"Pulse Turret" 4
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator" 2
+		"Hai Williwaw Cooling" 3
+		"Pulse Rifle" 27
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+
+ship "Shield Beetle" "Shield Beetle (Tracker)"
+	outfits
+		"Hai Tracker Pod" 8
+		"Hai Tracker" 476
+		"Tracker Storage Pod"
+		"Pulse Turret" 4
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Valley Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Quantum Keystone"
+		"Pulse Rifle" 32
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+
+
+
+ship "Solifuge"
+	sprite "ship/hai solifuge"
+	thumbnail "thumbnail/hai solifuge"
+	attributes
+		category "Heavy Warship"
+		licenses
+			"Unfettered Militia"
+		"cost" 22800000
+		"shields" 37800
+		"hull" 11000
+		"required crew" 62
+		"bunks" 118
+		"mass" 925
+		"drag" 15.4
+		"heat dissipation" .42
+		"fuel capacity" 600
+		"cargo space" 142
+		"outfit space" 828
+		"weapon capacity" 342
+		"engine capacity" 166
+		weapon
+			"blast radius" 450
+			"shield damage" 4500
+			"hull damage" 2250
+			"hit force" 3500
+	outfits
+		"Hai Tracker Pod"
+		"Hai Tracker" 56
+		"Ion Cannon" 4
+		"Pulse Turret" 2
+		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile" 4
+		"Boulder Reactor" 2
+		"Hai Gorge Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 6
+		"Quantum Keystone"
+		`"Benga" Atomic Steering`
+		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		"Hyperdrive"
+			
+	engine -28 135.5
+	engine 28 135.5
+	gun 0 -140 "Hai Tracker Pod"
+	gun -11.5 -138.5 "Ion Cannon"
+	gun 11.5 -138.5 "Ion Cannon"
+	gun -9.5 -101 "Ion Cannon"
+	gun 9.5 -101 "Ion Cannon"
+	turret 0 -109.5 "Chameleon Anti-Missile"
+	turret 54.5 -48.5 "Bullfrog Anti-Missile"
+	turret -54.5 -48.5 "Bullfrog Anti-Missile"
+	turret 55 1 "Pulse Turret"
+	turret -55 1 "Pulse Turret"
+	turret 54.5 50.5 "Bullfrog Anti-Missile"
+	turret -54.5 50.5 "Bullfrog Anti-Missile"
+	fighter -51.5 -71 under
+	fighter 51.5 -71 under
+	fighter -58.5 2 under
+	fighter 58.5 2 under
+	fighter -51.5 76 under
+	fighter 51.5 76 under
+	leak "leak" 40 50
+	leak "flame" 60 70
+	leak "big leak" 70 50
+	explode "tiny explosion" 50
+	explode "small explosion" 50
+	explode "medium explosion" 50
+	explode "large explosion" 50
+	explode "huge explosion" 20
+	"final explode" "final explosion large"
+	description `Impressed by the Alpha's "Giftbringer", the Unfettered endeavored to build their own fighter carrier to take more advantage of their supply of jump drives.`
+
+ship "Solifuge" "Solifuge (Jump)"
+	outfits
+		"Hai Tracker Pod"
+		"Hai Tracker" 56
+		"Ion Cannon" 4
+		"Pulse Turret" 2
+		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile" 4
+		"Boulder Reactor" 2
+		"Hai Gorge Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 6
+		"Pulse Rifle" 86
+		`"Benga" Atomic Steering`
+		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		"Jump Drive"
+
+ship "Solifuge" "Solifuge (Jump, Pulse)"
+	outfits
+		"Ion Cannon" 2
+		"Pulse Cannon" 3
+		"Pulse Turret" 5
+		"Bullfrog Anti-Missile" 2
+		"Boulder Reactor" 2
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 8
+		"Pulse Rifle" 71
+		`"Benga" Atomic Steering`
+		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		"Jump Drive"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+
+ship "Solifuge" "Solifuge (Jump, Tracker)"
+	outfits
+		"Hai Tracker Pod" 5
+		"Hai Tracker" 280
+		"Pulse Turret" 4
+		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile" 2
+		"Boulder Reactor" 2
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator" 2
+		"Hai Williwaw Cooling" 6
+		"Pulse Rifle" 68
+		`"Benga" Atomic Steering`
+		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		"Jump Drive"
+
+ship "Solifuge" "Solifuge (Pulse)"
+	outfits
+		"Ion Cannon" 2
+		"Pulse Cannon" 3
+		"Pulse Turret" 5
+		"Bullfrog Anti-Missile" 2
+		"Boulder Reactor" 2
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 8
+		"Pulse Rifle" 62
+		`"Benga" Atomic Steering`
+		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		"Hyperdrive"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+
+ship "Solifuge" "Solifuge (Tracker)"
+	outfits
+		"Hai Tracker Pod" 5
+		"Hai Tracker" 280
+		"Pulse Turret" 4
+		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile" 2
+		"Boulder Reactor" 2
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator" 2
+		"Hai Williwaw Cooling" 6
+		"Pulse Rifle" 59
+		`"Benga" Atomic Steering`
+		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		"Hyperdrive"
+
+
+
+ship "Violin Spider"
+	sprite "ship/hai violin spider"
+	thumbnail "thumbnail/hai violin spider"
+	attributes
+		category "Fighter"
+		"cost" 139000
+		"shields" 1400
+		"hull" 600
+		"required crew" 1
+		"bunks" 1
+		"mass" 31
+		"drag" 0.9
+		"heat dissipation" .7
+		"outfit space" 92
+		"weapon capacity" 19
+		"engine capacity" 30
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"Hai Tracker Pod"
+		"Hai Tracker" 56
+		"Pebble Core"
+		Supercapacitor
+		"Hai Williwaw Cooling"
+		"Pulse Rifle"
+		`"Basrem" Atomic Steering`
+		`"Basrem" Atomic Thruster`
+
+	engine -15 30
+	engine 15 30
+	gun 0 -31 "Hai Tracker Pod"
+	turret 0 5
+	leak "leak" 60 50
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description `The Hai fighter is equipped with what most humans would consider the greatest technology available, but all of that high tech comes at a cost.`
+
+ship "Violin Spider" "Violin Spider (Pulse)"
+	outfits
+		"Pulse Cannon"
+		"Pebble Core"
+		"Hai Chasm Batteries"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		"Pulse Rifle"
+		`"Basrem" Atomic Steering`
+		`"Basrem" Atomic Thruster`
+
+
+
+ship "Water Bug"
+	sprite "ship/hai water bug"
+	thumbnail "thumbnail/hai water bug"
+	attributes
+		category "Heavy Freighter"
+		"cost" 6500000
+		"shields" 7900
+		"hull" 4500
+		"required crew" 5
+		"bunks" 29
+		"mass" 270
+		"drag" 5.9
+		"heat dissipation" .75
+		"fuel capacity" 600
+		"cargo space" 197
+		"outfit space" 368
+		"weapon capacity" 145
+		"engine capacity" 64
+		weapon
+			"blast radius" 124
+			"shield damage" 1240
+			"hull damage" 620
+			"hit force" 1860
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 168
+		"Tracker Storage Pod" 2
+		"Pulse Turret"
+		"Chameleon Anti-Missile" 2
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Chasm Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+	engine -50 33
+	engine 50 33
+	gun -24 -53 "Hai Tracker Pod"
+	gun 24 -53 "Hai Tracker Pod"
+	turret 0 -10 "Pulse Turret"
+	turret -17 17 "Chameleon Anti-Missile"
+	turret 17 17 "Chameleon Anti-Missile"
+	leak "leak" 60 50
+	leak "flame" 40 50
+	leak "big leak" 40 30
+	explode "small explosion" 15
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	explode "huge explosion" 5
+	"final explode" "final explosion medium"
+	description "The design of the Water Bug is almost as old as the Aphid, but until recently it never saw much use. A spike in aggression from the Unfettered Hai has led the tougher and more well-defended Water Bug to see an increase in popularity over its little brother, the Aphid. The Water Bug is now the most widely used Hai freighter, comprising the bulk of all Hai merchant fleets."
+
+ship "Water Bug" "Water Bug (Jump)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Pulse Turret"
+		"Chameleon Anti-Missile" 2
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Chasm Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		"Pulse Rifle" 8
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Jump Drive"
+
+ship "Water Bug" "Water Bug (Pulse)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Pulse Turret" 3
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Chasm Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling"
+		"Pulse Rifle" 3
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"

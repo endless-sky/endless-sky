@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipEvent.h"
 #include "Sound.h"
 #include "SpriteSet.h"
+#include "Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Visual.h"
@@ -71,9 +72,9 @@ namespace {
 			return;
 		
 		// Energy and fuel costs are the energy or fuel required per unit repaired.
-		if(energyCost)
+		if(energyCost > 0.)
 			available = min(available, energy / energyCost);
-		if(fuelCost)
+		if(fuelCost > 0.)
 			available = min(available, fuel / fuelCost);
 		
 		double transfer = min(available, maximum - stat);
@@ -578,6 +579,8 @@ void Ship::Save(DataWriter &out) const
 		if(!noun.empty())
 			out.Write("noun", noun);
 		SaveSprite(out);
+		if(thumbnail)
+			out.Write("thumbnail", thumbnail->Name());
 		
 		if(neverDisabled)
 			out.Write("never disabled");
@@ -1671,8 +1674,10 @@ void Ship::DoGeneration()
 		{
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
 			fuel += currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
-		
-			energy += currentSystem->SolarPower() * scale * attributes.Get("solar collection");
+			
+			double solarScaling = currentSystem->SolarPower() * scale;
+			energy += solarScaling * attributes.Get("solar collection");
+			heat += solarScaling * attributes.Get("solar heat");
 		}
 		
 		double coolingEfficiency = CoolingEfficiency();
@@ -2407,11 +2412,21 @@ double Ship::DisabledHull() const
 
 
 
-int Ship::JumpsRemaining() const
+int Ship::JumpsRemaining(bool followParent) const
 {
 	// Make sure this ship has some sort of hyperdrive, and if so return how
 	// many jumps it can make.
-	double jumpFuel = JumpFuel(targetSystem);
+	double jumpFuel = 0.;
+	if(!targetSystem && followParent)
+	{
+		// If this ship has no destination, the parent's substitutes for it,
+		// but only if the location is reachable.
+		auto p = GetParent();
+		if(p)
+			jumpFuel = JumpFuel(p->GetTargetSystem());
+	}
+	if(!jumpFuel)
+		jumpFuel = JumpFuel(targetSystem);
 	return jumpFuel ? fuel / jumpFuel : 0.;
 }
 
@@ -2951,7 +2966,7 @@ bool Ship::CanFire(const Weapon *weapon) const
 	if(weapon->Ammo())
 	{
 		auto it = outfits.find(weapon->Ammo());
-		if(it == outfits.end() || it->second <= 0)
+		if(it == outfits.end() || it->second < weapon->AmmoUsage())
 			return false;
 	}
 	
@@ -2976,7 +2991,7 @@ void Ship::ExpendAmmo(const Weapon *weapon)
 	if(!weapon)
 		return;
 	if(weapon->Ammo())
-		AddOutfit(weapon->Ammo(), -1);
+		AddOutfit(weapon->Ammo(), -weapon->AmmoUsage());
 	
 	energy -= weapon->FiringEnergy();
 	fuel -= weapon->FiringFuel();
