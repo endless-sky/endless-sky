@@ -41,6 +41,7 @@ mission "First Contact: Ka'het: Remnant 1A"
 		government "Remnant"
 	to offer
 		has "Graveyard Label: offered"
+		has "remnant blood test pure"
 		not "remnant met taely"
 	on offer
 		conversation
