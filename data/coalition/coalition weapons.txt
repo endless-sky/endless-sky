@@ -288,7 +288,7 @@ outfit "Ion Hail Turret"
 		sound "ion rain"
 		"hit effect" "ion rain impact"
 		"inaccuracy" 3
-		"turret turn" 3.3
+		"turret turn" 4.2
 		"velocity" 12
 		"random velocity" 3
 		"lifetime" 40
