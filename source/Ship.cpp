@@ -72,9 +72,9 @@ namespace {
 			return;
 		
 		// Energy, fuel, and heat costs are the energy, fuel, or heat required per unit repaired.
-		if(energyCost)
+		if(energyCost > 0.)
 			available = min(available, energy / energyCost);
-		if(fuelCost)
+		if(fuelCost > 0.)
 			available = min(available, fuel / fuelCost);
 		if(heatCost < 0.)
 			available = min(available, heat / -heatCost);
