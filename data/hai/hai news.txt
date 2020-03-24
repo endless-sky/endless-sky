@@ -196,7 +196,7 @@ news "human citizen in Hai space"
 			"Hai scientists that live near me chartered a flight to Allhome, but it got lost and ended up all the way on Canyon. Some people have the worst sense of direction."
 
 
-# Visual suggestion: dangerous mofos, lunatics, reavers
+# Visual suggestion: tough-looking former criminal, trying to do what is right
 news "reformed pirate in Hai space"
 	location
 		government "Hai"
@@ -204,15 +204,16 @@ news "reformed pirate in Hai space"
 		word
 			"Reformed pirate"
 	portrait
-		portrait/human19
-		portrait/human24
-		portrait/human25
-		portrait/human27
-		portrait/human34
-		portrait/human44
+		portrait/human126
+		portrait/human115
+		portrait/human92
+		portrait/human95
+		portrait/human77
 		portrait/human51
-		portrait/human59
-		portrait/human62
+		portrait/human45
+		portrait/human34
+		portrait/human67
+		portrait/human01
 	message
 		word
 			"I used to rob people for a living, and I'd be in jail now if I stayed in human space. Here, they've given me a job, and I've been sober for six weeks. This has really turned my life around."
