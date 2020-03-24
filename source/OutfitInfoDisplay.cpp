@@ -96,9 +96,9 @@ namespace {
 		{"installable", "This is not an installable item."},
 		{"hyperdrive", "Allows you to make hyperjumps."},
 		{"jump drive", "Lets you jump to any nearby system."},
-		{"passive ion resistance", "This outfit reduces ionization even when disabled."},
-		{"passive disruption resistance", "This outfit reduces disruption even when disabled."},
-		{"passive slowing resistance", "This outfit reduces slowing even when disabled."}
+		{"passive ion resistance", "Resist ionization even when disabled."},
+		{"passive disruption resistance", "Resist disruption even when disabled."},
+		{"passive slowing resistance", "Resist slowing even when disabled."}
 	};
 }
 
