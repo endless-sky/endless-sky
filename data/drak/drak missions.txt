@@ -113,12 +113,10 @@ mission "Ancient Skin [0] Installation"
 			`You see Lilith waiting for you at the entrance to the spaceport.`
 			`	"Move your ship and I'll demonstrate how the skin works. You should visit the outfitter before you leave to decide whether to install it or put it in your cargo hold."`
 			choice
-				`	(Continue.)`
+				`	(Move your ship to the cargo bay.)`
 			`Lilith has you move your ship to a bay where the alien skin is attached to a crane. It is slowly lowered to the middle of the top of your ship. The skin is clearly too small to cover a useful area of the ship, so you wonder whether it will help at all.`
 			`	"Watch this," says Lilith smugly.`
 			`	When the crane releases the skin onto your ship, the skin quivers and shakes, as if it is pondering the same question that you were. Then it flattens and spreads out in tentacles along the ship's surface. It closes up holes in vulnerable areas, and you can see it repairing gashes from recent battle damage. In a few minutes, your hull is fully repaired and even the paint seems new. The alien skin is only visible as thin strands wrapping around your ship's hull.`
-			choice
-				`	(Continue.)`
 			`	"Let me show you your ship on a scanner," says Lilith. The scanner shows the outline of your ship, details of the landing bay, and the spaceport beyond, but nothing within your ship. It takes almost a minute for telltale signs of the ship's interior to emerge.`
 			`	"Now do you see why I don't want this to fall into the wrong hands?"`
 			`	You think to yourself how you could destroy this, and the first word that comes to mind is, "Quarg."`
@@ -136,13 +134,13 @@ outfit "Ancient Skin"
 	"radar jamming" 200
 	"ramscoop" 0.5
 	description `These dense flakes of shape-shifting skin stretch and maneuver around the hull of your ship, sealing vulnerable parts and repairing flaws. Their strange physical properties confuse scanners and radars, rendering you nearly invulnerable to both. They also suck matter slowly from space, turning it into usable fuel. Unfortunately, the scales are quite dense and feed off your reactor's power.`
-	description `	From what you've learned, these are the last remains of a living ship that crashed millions of years ago on Stormhold. When it was fully active, the skin was nearly invincible and rendered the ship invisible. Even in its dormant state, it is more advanced than Human technology. Your friend Lilith asked you to destroy it, lest this advanced technology fall into the wrong hands.`
+	description `	From what you've learned, these are the last remains of a living ship that crashed millions of years ago on Stormhold. When it was fully active, the skin was nearly invincible and rendered the ship invisible. Even in its dormant state, it is more advanced than human technology. Your friend Lilith asked you to destroy it, lest this advanced technology fall into the wrong hands.`
 
 # Has "ZZ" so it is after the Quarg first contact:
 mission "ZZ Ancient Skin [1] Quarg Poetry Teacher and Quarg Scientist"
+	landing
 	name `Ancient Skin: <planet>`
 	description `Go to <destination> to ask about the ancient skin.`
-	landing
 	source
 		attributes quarg
 	destination "Kuwaru Efreti"
@@ -155,8 +153,8 @@ mission "ZZ Ancient Skin [1] Quarg Poetry Teacher and Quarg Scientist"
 		conversation
 			`There are Quarg here who might be able to help you find a way to destroy the ancient skin, or at least understand what it is. Do you want to ask them?`
 			choice
-				`	(Yes.)`
-				`	(No.)`
+				`	(Find a Quarg and ask about the skin.)`
+				`	(Come back later.)`
 					defer
 			`	You seek the nearest Quarg who has time to talk to you and bring them to your ship to show them the skin.`
 			`	After a minute of contemplation, the Quarg responds, "I am merely a teacher of poetry and unwise in ways of science. I have heard of such a skin in legends of the Quarg. Great creatures in the sky taught the old races long before Quarg were born. The teachers were wise and ancient, old beyond recokning even by the measure of a Quarg. Destroying this skin would be a terrible tragedy.`
@@ -167,10 +165,10 @@ mission "ZZ Ancient Skin [1] Quarg Poetry Teacher and Quarg Scientist"
 		fail "Ancient Skin [0] Installation"
 
 mission "Ancient Skin [2] Quarg Scientist and Archon"
+	landing
 	name `Ancient Skin: Archon`
 	description `Speak to the Drak Archon in the Fasitopfar system and return to <destination>.`
 	source "Kuwaru Efreti"
-	landing
 	waypoint Fasitopfar
 	to complete
 		has "identified skin"
@@ -185,19 +183,25 @@ mission "Ancient Skin [2] Quarg Scientist and Archon"
 		require "Ancient Skin"
 		fail "ZZ Ancient Skin [1] Quarg Poetry Teacher and Quarg Scientist"
 		conversation
-			`You head to what looks like a transit hub and show a Quarg the address you were provided. You are ushered to a green sphere, about four meters in diameter. The surface of the sphere is transparent and you have no trouble stepping through. Once through, gravity vanishes, the surface solidifies, and is nearly opaque.`
+			`You head to what looks like a transit hub and show a Quarg the address you were provided. You are ushered to a gray sphere, about four meters in diameter. The surface of the sphere is transparent and you have no trouble stepping through. Once through, gravity vanishes, the surface solidifies, and is nearly opaque.`
 			`	You can see vast swaths of ringworld rush by as you hover weightless in the middle of the sphere. After a few minutes, it stops at the opposite side of the solar system and you exit into a room with vaulted ceilings.`
-			`	Ahead, you can see machinery that is quite alien to your eyes. It looks like a cross between abstract art sculptures, biological specimens, and optical circuits. Some are pulsating within a wide range of colors you suspect go beyond your eyes' sensitivity. There are wild variations in temperature and pressure, yet somehow the air remains stable.`
 			choice
-				`	(Continue.)`
+				`	(Admire the view.)`
+				`	(Ask someone what is going on.)`
+					goto ask
+			`	Ahead, you can see machinery that is quite alien to your eyes. It looks like a cross between abstract art sculptures, biological specimens, and optical circuits. Some are pulsating within a wide range of colors you suspect go beyond your eyes' sensitivity. There are wild variations in temperature and pressure, yet somehow the air remains stable.`
 			`	A Quarg notices your confusion and walks to you. "My name is Kalee-sen, a scientist of the Quarg. We know of your discovery and are analyzing it." You notice the skin has been removed from your ship and is on what looks like a hexagonal altar, seven meters wide.`
+				goto skin
+			label ask
+			`	You walk into the room and look around. Immediately you see the a hexagonal platform, seven meters wide, with the skin sitting on top. A gaggle of Quarg are standing around it with instruments. One of them walks towards you, "My name is Kalee-sen, a scientist of the Quarg. We know of your discovery and are analyzing it."`
+			label skin
 			`	"None of our weapons can pierce the skin, nor can our instruments look within. We have means to destroy it, but we wish to avoid using such devastating devices.`
 			`	"The Drak are aware of the skin's presence. You are to bring it to the Archon in the Fasitopfar system. There, its fate will be decided.`
 			`	"Return to your ship, and the skin will be there."`
 				accept
 	on complete
 		conversation
-			`You return to <planet> expecting to enter the Quarg's green transport orb, but you find Kalee-sen at the entrance to the station.`
+			`You return to <planet> expecting to enter the Quarg's gray transport orb, but you find Kalee-sen at the entrance to the station.`
 			`	"Welcome <first> <last>, what did you learn?" From the tone of voice, you suspect he already knows, but it can be hard to read a person so alien as a Quarg.`
 			`	You explain your experience with the Archon and Kalee-sen responds, "We will be ready when you are ready. Walk towards peace, <first> <last>."`
 
@@ -207,8 +211,6 @@ mission "Ancient Skin [2] Quarg Scientist and Archon"
 			apply
 				set "identified skin"
 			`You feel an intense rush of sensation in your mind, and a white light surrounds you. After a moment, the light and sensation vanish and you hear the voice of a Drak Archon.`
-			choice
-				`	(Continue.)`
 			`	"The skin you found is that of a Koor'alei, ancient sages and teachers of the Drak. Their species is long dead, protecting the Drak and many others from a great threat. We thought no vestige remained, until now.`
 			`	"The skin has found you, so you will protect it. Should you prove yourself a worthy peacemaker, we will bestow a gift upon you. We will reawaken the Koor'alei skin, and its new-found strength will be yours as well. When the time is right, you will know, and you will return to Kuwaru Efreti with the skin."`
 			`	The voice vanishes, and the Archon appears to lose interest in speaking with you.`
@@ -252,9 +254,9 @@ mission "Ancient Skin [3] Archon Reawaken Trigger"
 event "archon reawaken allowed"
 
 mission "Ancient Skin [4] Archon Reawakening Permission"
+	landing
 	name `Ancient Skin: <planet>`
 	description `Visit the spaceport at <destination> to reawaken the ancient skin.`
-	landing
 	source
 		not planet "Kuwaru Efreti"
 	destination "Kuwaru Efreti"
@@ -272,13 +274,9 @@ mission "Ancient Skin [4] Archon Reawakening Permission"
 		outfit "Ancient Skin" -1
 		outfit "Koor'alei Skin" 1
 		conversation
-			`You travel through the Quarg station using the same green orb elevator as before, and find yourself in the Quarg laboratory. Its entire contents have been rearranged, and there are far more Quarg than before. A collection of scientists stands before you, with a wide assortment of devices.`
-			choice
-				`	(Continue.)`
+			`You travel through the Quarg station using the same gray spherical elevator as before, and find yourself in the Quarg laboratory. Its entire contents have been rearranged, and there are far more Quarg than before. A collection of scientists stands before you, with a wide assortment of devices.`
 			`	The ancient skin is hovering in midair between two devices that don't look at all like Quarg construction. They're a pair of curved black columns with white spikes pointing in the direction of the skin. The columns look almost alive with pulsating veins and what looks like a heart. Are you witnessing Drak technology?`
 			`	The skin begins to glow brighter and brighter until it is bright as the sun; far too bright to look at. Before you can cover your eyes, a powerful shockwave emanates from the skin. You're thrown onto the floor and you can feel the room heating up. At rising volume, you hear loud humming and deep bass vibration so powerful you can feel them in your bones.`
-			choice
-				`	(Continue.)`
 			`	The spectacle ends after a few seconds when the room turns almost pitch black. It seems that even the Quarg were surprised by the intensity of the effect. They look up in wonder at a device they scarcely understand, and a relic of the ancient past, from an era of knowledge long forgotten.`
 			`	You can feel a presence in your head, sent by a powerful telepathic entity. It feels different than the touch of an Archon's mind. It is warm and welcoming, rather than the Archon's cold and demanding nature. It sends you a mix of hope, gratitude, and longing. Is this the last vestige of the mind of a Koor'alei; what little remains in this tiny scrap of skin?`
 				decline
