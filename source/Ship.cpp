@@ -93,9 +93,9 @@ namespace {
 	// Helper function to reduce a given status effect according 
 	// to its resistance, limited by how much energy and fuel are available.
 	// Updates the stat and the energy, fuel, and heat amounts.
-	void DoStatusEffect(bool isDisabled, double &stat, double resistance, double &energy, double energyCost, double &fuel, double fuelCost, double &heat, double heatCost)
+	void DoStatusEffect(bool isDisabled, bool isPassive, double &stat, double resistance, double &energy, double energyCost, double &fuel, double fuelCost, double &heat, double heatCost)
 	{
-		if(isDisabled || resistance <= 0.)
+		if((isDisabled && !isPassive) || resistance <= 0.)
 		{
 			stat = .99 * stat;
 			return;
@@ -1664,7 +1664,8 @@ void Ship::DoGeneration()
 		double ionEnergy = attributes.Get("ion resistance energy") / ionResistance;
 		double ionFuel = attributes.Get("ion resistance fuel") / ionResistance;
 		double ionHeat = attributes.Get("ion resistance heat") / ionResistance;
-		DoStatusEffect(isDisabled, ionization, ionResistance, energy, ionEnergy, fuel, ionFuel, heat, ionHeat);
+		bool isPassive = attributes.Get("passive ion resistance") > 0.;
+		DoStatusEffect(isDisabled, isPassive, ionization, ionResistance, energy, ionEnergy, fuel, ionFuel, heat, ionHeat);
 	}
 	
 	if(disruption)
@@ -1673,7 +1674,8 @@ void Ship::DoGeneration()
 		double disruptionEnergy = attributes.Get("disruption resistance energy") / disruptionResistance;
 		double disruptionFuel = attributes.Get("disruption resistance fuel") / disruptionResistance;
 		double disruptionHeat = attributes.Get("disruption resistance heat") / disruptionResistance;
-		DoStatusEffect(isDisabled, disruption, disruptionResistance, energy, disruptionEnergy, fuel, disruptionFuel, heat, disruptionHeat);
+		bool isPassive = attributes.Get("passive disruption resistance") > 0.;
+		DoStatusEffect(isDisabled, isPassive, disruption, disruptionResistance, energy, disruptionEnergy, fuel, disruptionFuel, heat, disruptionHeat);
 	}
 	
 	if(slowness)
@@ -1682,7 +1684,8 @@ void Ship::DoGeneration()
 		double slowingEnergy = attributes.Get("slowing resistance energy") / slowingResistance;
 		double slowingFuel = attributes.Get("slowing resistance fuel") / slowingResistance;
 		double slowingHeat = attributes.Get("slowing resistance heat") / slowingResistance;
-		DoStatusEffect(isDisabled, slowness, slowingResistance, energy, slowingEnergy, fuel, slowingFuel, heat, slowingHeat);
+		bool isPassive = attributes.Get("passive slowing resistance") > 0.;
+		DoStatusEffect(isDisabled, isPassive, slowness, slowingResistance, energy, slowingEnergy, fuel, slowingFuel, heat, slowingHeat);
 	}
 	
 	// When ships recharge, what actually happens is that they can exceed their
