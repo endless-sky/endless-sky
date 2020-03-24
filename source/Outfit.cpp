@@ -25,18 +25,6 @@ using namespace std;
 
 namespace {
 	const double EPS = 0.0000000001;
-	
-	const set<string> PROTECTION_TYPES = {
-		"shield protection",
-		"hull protection",
-		"force protection",
-		"fuel protection",
-		"heat protection",
-		"ion protection",
-		"disruption protection",
-		"slowing protection",
-		"piercing protection"
-	};
 }
 
 const vector<string> Outfit::CATEGORIES = {
@@ -99,13 +87,7 @@ void Outfit::Load(const DataNode &node)
 				licenses.push_back(grand.Token(0));
 		}
 		else if(child.Size() >= 2)
-		{
-			// Certain attributes are not allowed to have values <= -1. Catch any
-			// violations upon loading the game so that the corrections don't
-			// need to be repeatedly calculated later.
-			const string &key = child.Token(0);
-			attributes[key] = PROTECTION_TYPES.count(key) ? max(-.99, child.Value(1)) : child.Value(1);
-		}
+			attributes[child.Token(0)] = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -215,12 +197,9 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 	for(const auto &at : other.attributes)
 	{
 		double value = Get(at.first);
-		// Protection attributes are allowed to be >= -.99 instead of >= 0.
-		// All other attributes must be >= 0.
-		double minimum = (PROTECTION_TYPES.count(at.first)) ? -.99 : 0.;
 		// Allow for rounding errors:
-		if(value + at.second * count < minimum - EPS)
-			count = (value - minimum) / -at.second + EPS;
+		if(value + at.second * count < -EPS)
+			count = value / -at.second + EPS;
 	}
 	
 	return count;
