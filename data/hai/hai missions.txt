@@ -8,15 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-mission "Hai Greeter"
-	invisible
-	landing
-	npc kill
-		government Hai
-		personality heroic staying
-		system Waypoint
-		ship "Shield Beetle (Refueler)" "Greeter"
-
 mission "First Contact: Hai"
 	landing
 	source

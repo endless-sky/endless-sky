@@ -23587,6 +23587,8 @@ system "Ultima Thule"
 	trade Medical 732
 	trade Metal 417
 	trade Plastic 360
+	fleet "Small Human Merchants (Hai)" 30000
+	fleet "Large Human Merchants (Hai)" 40000
 	object
 		sprite star/f0
 		period 10
@@ -24262,9 +24264,10 @@ system Waypoint
 	trade Medical 745
 	trade Metal 478
 	trade Plastic 452
-	fleet "Small Human Merchants (Hai)" 18000
-	fleet "Large Human Merchants (Hai)" 28000
-	fleet "Hai Surveillance" 1000
+	fleet "Small Human Merchants (Hai)" 12000
+	fleet "Large Human Merchants (Hai)" 14000
+	fleet "Hai Surveillance" 2000
+	fleet "Small Hai" 5000
 	object
 		sprite star/m8
 		period 10
