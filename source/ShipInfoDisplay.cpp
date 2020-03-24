@@ -145,8 +145,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		* (1. + attributes.Get("shield fuel multiplier"));
 	double shieldRegen = attributes.Get("shield generation")
 		* (1. + attributes.Get("shield generation multiplier"));
-	// Negative shield energy or fuel will prevent shields from repairing.
-	bool hasShieldRegen = shieldRegen > 0. && shieldEnergy >= 0. && shieldFuel >= 0.;
+	bool hasShieldRegen = shieldRegen > 0.;
 	shieldEnergy *= hasShieldRegen;
 	shieldHeat *= hasShieldRegen;
 	if(hasShieldRegen)
@@ -169,8 +168,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		* (1. + attributes.Get("hull fuel multiplier"));
 	double hullRepair = attributes.Get("hull repair rate")
 		* (1. + attributes.Get("hull repair multiplier"));
-	// Negative hull energy or fuel will prevent hull from repairing.
-	bool hasHullRepair = hullRepair > 0. && hullEnergy >= 0. && hullFuel >= 0.;
+	bool hasHullRepair = hullRepair > 0.;
 	hullEnergy *= hasHullRepair;
 	hullHeat *= hasHullRepair;
 	if(hasHullRepair)
