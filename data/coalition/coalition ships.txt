@@ -581,6 +581,29 @@ ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 	turret "Heliarch Repulsor"
 	turret "Bombardment Turret"
 
+ship "Heliarch Punisher" "Heliarch Punisher (Ions)"
+	outfits
+		"Ion Hail Turret" 4
+		"Ion Rain Gun" 6
+
+		"Large Reactor Module" 2
+		"Small Reactor Module"
+		"Large Battery Module" 2
+		"Small Battery Module"
+		"Overcharged Shield Module" 3
+		"Overclocked Repair Module" 3
+		"Cooling Module" 5
+		"Scanning Module" 4
+		"Outfits Expansion" 2
+		"Enforcer Riot Staff" 96
+		"Enforcer Confrontation Gear" 48
+
+		"Large Thrust Module" 2
+		"Small Thrust Module" 2
+		"Large Steering Module" 2
+		"Small Steering Module" 2
+		"Hyperdrive"
+
 ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 	outfits
 		"Finisher Pod" 6
@@ -626,29 +649,6 @@ ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
 		"Large Thrust Module" 2
 		"Small Thrust Module"
 		"Large Steering Module" 4
-		"Small Steering Module" 2
-		"Hyperdrive"
-
-ship "Heliarch Punisher" "Heliarch Punisher (Ions)"
-	outfits
-		"Ion Hail Turret" 4
-		"Ion Rain Gun" 6
-
-		"Large Reactor Module" 2
-		"Small Reactor Module"
-		"Large Battery Module" 2
-		"Small Battery Module"
-		"Overcharged Shield Module" 3
-		"Overclocked Repair Module" 3
-		"Cooling Module" 5
-		"Scanning Module" 4
-		"Outfits Expansion" 2
-		"Enforcer Riot Staff" 96
-		"Enforcer Confrotation Gear" 48
-
-		"Large Thrust Module" 2
-		"Small Thrust Module" 2
-		"Large Steering Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
 
