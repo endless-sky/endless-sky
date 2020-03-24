@@ -1487,7 +1487,7 @@ mission "Hai Rescue [C01] Bloody Love Blooms"
 		"reputation: Hai (Unfettered)" >?= 10
 		log `Teeneep has convinced the Unfettered Hai leader to send fifteen Shield Beetles with Jump Drives to human space for upgrades. They'll pass through the wormhole at Devil-Run and help you conquer the Philosopher's Paradise.`
 		conversation
-			`You meet Teeneep outside her Centipede and you're surprised to see her with no bodyguards. Instead of her Hai Elder robes, she's wearing what looks like a fencing outfit. There are two swords on her back and several balanced knives on her belt. She's wearing a bandanna with a medallion on it that looks like an athletic gold medal.`
+			`You meet Teeneep outside her Centipede and you're surprised to see her with no bodyguards. Instead of her Hai Elder robes, she's wearing what looks like a fencing outfit. There are two swords on her back and several balanced knives on her belt. She's wearing a bandanna with a medallion on it that looks like an athletic medal.`
 			`	She pays you for the trip and says, "These blades are not ceremonial. Leave your gun behind or the Unfettered may think you're an assassin. I'll protect you."`
 			`	You hand your gun to a nearby Unfettered, and hope Teeneep is as capable as she claims.`
 			`	Now that you see her in this guise, you remember a fencing match advertisement. She looks exactly like the fencing champion a few years ago. Is Teeneep a champion fencer as well as a civil rights leader and Hai Elder? From appearances, she hasn't been in adulthood for long. Though with such celebrity power, it's no surprise she rose in society quickly.`
@@ -1496,7 +1496,8 @@ mission "Hai Rescue [C01] Bloody Love Blooms"
 				`	"What is your plan?"`
 				`	(Follow her.)`
 					goto follow
-			`	"My plan? I don't have a plan. I know how the Unfettered think, and I'll adapt to the situation as it changes. Now stop stalling and follow me. The Unfettered despise cowardice."`
+			`	"To Unfettered Hai leadership, this meeting is all a political ploy. They know it's in their best interest to help us. It will raise public opinion towards them among the Fettered and likely lure more recruits to their side. They cannot be seen as helping a weak coward though. I have to prove myself in front of the troops.`
+			`	"Why else do you think the Hai Elders would pick the one fencing champion among their number for this visit?"`
 			label follow
 			`	You pass through a hallway filled with battle trophies and enter a large room filled with uniformed Hai. You notice many of them have swords similar to Teeneep's. Their swords look more ceremonial than functional though.`
 			`	As Teeneep walks in, an Unfettered moves to block her path. From the extensive decorations on his uniform, it appears he's a high-ranking officer. "You're not welcome here, False Hai." He starts to push her away with his hand, and you notice it's on a very personal part of her body.`
@@ -1505,7 +1506,7 @@ mission "Hai Rescue [C01] Bloody Love Blooms"
 				`	(Walk in and join Teeneep.)`
 				`	(Stand in the room's entrance and watch.)`
 					goto watch
-			`	As you enter the room, a pair of Unfettered grab you and pin you to the wall. Teeneep looks back and smiles kindly. It seems she doesn't fear for your safety. The Unfettered have simply made it clear you're not part of this conversation.`
+			`	As you enter the room, a pair of Unfettered grab you and pin you to the wall. Teeneep pulls out a throwing knife and says, "Let him go now." The Unfettered let go immediately and she puts her knife away. As you walk towards her, she signals for you to stay where you are.`
 			label watch
 			`	Teeneep explains to the leader, "Twenty thousand Hai have been kidnapped and enslaved by human pirates. They're concealed in a subterranean base that can only be reached with a Jump Drive and a Quantum Keystone. Dozens of human capital ships and thousands of human pirates guard the Hai. We haven't enough Jump Drives to rescue them.`
 			`	"You were once the protectors of all Hai. I ask you be so again. Free our people from slavery, and kill their human slavers."`
@@ -1513,17 +1514,14 @@ mission "Hai Rescue [C01] Bloody Love Blooms"
 			`	Teeneep dives beneath the man's legs and jumps on a nearby table in front of him. You had forgotten how quick Hai are; few humans could do what she did. She unsheathes both swords and says, "I challenge you for rule of the Unfettered military!"`
 			`	"You haven't the authority to do that," he responds, laughing.`
 			`	She jumps down and puts both swords at his throat. "Fight me! Are you afraid to fight a woman half your size? Fight me, coward!" From her expression, you're sure if she genuinely has that much faith in her abilities, or if this is a bluff.`
-			`	"There is no need," he smiles. "Even on our planets, I've never met a woman half as brave as you. You are a True Hai and we protect our own. You have vouched for the value of the lives of these Hai, so we will send a fleet to rescue them."`
-			`	She re-sheaths her swords, tilts her head back, and says, "Bring the hairless ape over here." Apparently she means you.`
+			`	"There is no need," he smiles. "Even on our planets, I've never met a woman half as brave as you. You are a True Hai and we protect our own. You have vouched for the value of the lives of these Hai, so we will send a fleet to rescue them. I will lead the attack myself."`
+			`	She re-sheaths her swords and calls you over, "I have brought with me one of the greatest war heroes of the humans."`
 			choice
-				`	"I'm a human, not an ape."`
 				`	(Walk to her.)`
-					goto walk
-			`	Three Unfettered punch you at the same time, dazing you slightly. Two more grab your arms and drag you over to Teeneep.`
-			label walk
-			`	Teeneep smiles at you, perhaps as a silent apology for your treatment so far. "Return to Hai-home and inform the Elders that an Unfettered fleet will arrive. Then go to Prime and tell them to prepare to outfit fifteen Shield Beetles. Hai-home will give you specifications. When you have finished, land at Allhome and we will rejoin you."`
-			`	The Unfettered leader tells his troops, "Bring the ape back to its ship." The last sight you see in the room is the two leaders smiling at each other without speaking.`
-			`	The Unfettered are extremely rough as the rush you back to your ship. With few a more bruises than yesterday, you prepare to leave.`
+			`	"Captain <first> <last> led great fleets during a civil war of the humans. I have seen his valor in battle as he's escorted my ship through pirate space. We will have the honor of fighting along side him."`
+			`	"I look forward to seeing you fight," says the Unfettered leader. "We cannot spare a large fleet though, so I will need your people to upgrade fourteen Shield Beetles to our specifications. We'll return your outfits after the battle." He motions to another officer who hands him a data card, "These are the instructions."`
+			`	Teeneep smiles at you, "Return to Hai-home and inform the Elders that an Unfettered fleet will arrive. Then go to Prime and tell them to prepare to outfit our ships. When you have finished, land at Allhome and we will rejoin you."`
+			`	You return to your ship and prepare to leave.`
 				accept
 	on complete
 		# This payment is a surprise and is discussed in the next mission.
@@ -1540,7 +1538,7 @@ mission "Hai Rescue [C02] Arms Purchase"
 		has "Hai Rescue [C01] Bloody Love Blooms: done"
 	on offer
 		conversation
-			`You contact the local Republic officials and tell them the plan. They say they'll arrange shipment of all parts, free of charge. Outfitters will empty fifteen large bays so nobody notices the Hai on the ships. There are few planets with such a large excess capacity for capital ship outfitter bays; no wonder the Hai picked Prime.`
+			`You contact the local Republic officials and tell them the plan. They say they'll arrange shipment of all parts, free of charge. Outfitters will empty fourteen large bays so nobody notices the Hai on the ships. There are few planets with such a large excess capacity for capital ship outfitter bays; no wonder the Hai picked Prime.`
 			`	The Republic authorities pay you 600,000 credits for your assistance thus far; you'll receive the same payment when you return with the Shield Beetles.`
 				accept
 
@@ -1556,7 +1554,7 @@ mission "Hai Rescue [C03] Unfettered Escort"
 		dialog `Even during the Free Worlds war, you never saw a fleet this large. The human authorities must be concerned about well-equipped Unfettered Hai Shield Beetles wandering through human space.`
 	on offer
 		conversation
-			`Teeneep comes to you wearing her fencing outfit, still stained with blood, though you notice there's more blood now, in other places than before.`
+			`Teeneep comes to you wearing her fencing outfit, still stained with blood, though you notice there's more blood now, in other places than before. She departs from a fifteenth Shield Beetle; you can see sticking out weapons that are not of Hai or human origin. It's thrusters are so hot they're still glowing red.`
 			`	She says, "I've had a good time with the Unfettered," probably referring to her blood stains, "but now we must advance our plans. We need to reach <destination> immediately. Neither the Fettered Hai nor the Republic want this fleet in their space for long. You'll be paid <payment> when we arrive."`
 				accept
 	on complete
@@ -1609,7 +1607,7 @@ mission "Hai Rescue [C04] Foundry"
 		dialog `To finish this mission, all fifteen Unfettered Hai Shield Beetles must land with you.`
 	on offer
 		log `Fifteen Unfettered Hai Shield Beetles are equipped for the battle at Philosopher's Paradise. A fleet of sixty human capital ships escort them, making sure they don't stray from their intended purpose. Two hundred Republic special operatives, trained in anti-pirate combat, await you at the spaceport at Foundry. Teeneep and General Choot'k plan on leading the Unfettered Fleet personally, from the Unfettered flagship.`
-		log `People` `General Choot'k` `Supreme commander of the Unfettered Hai military. It is unclear whether he also leads the Unfettered Hai government. Compared to his brethren, he is a man of great restraint and intelligence. He's also unusually large for a Hai, taller than most humans.`
+		log `People` `General Choot'k` `Supreme commander of the Unfettered Hai military. It is unclear whether he also leads the Unfettered Hai government. Compared to his troops, he is a man of great restraint and intelligence. He's also unusually large for a Hai, taller than most humans.`
 		conversation
 			`Teeneep and the Unfettered leader leave a Shield Beetle together. Teeneep is still wearing her fencing outfit and swords, but she now wears a sash that indicates she's a Hai Elder. She's cleaned off most of the blood stains, but left just enough to remind people she can fight. Marshal Kaine approaches from the opposite direction.`
 			`	The Unfettered leader opens his mouth to speak, but Teeneep raises her hand to silence him. You're surprised to see that he stops talking without complaint. Teeneep must have some hold over him.`
