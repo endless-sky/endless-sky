@@ -374,7 +374,7 @@ outfit "Bellows-Class Afterburner"
 	"afterburner heat" 8.0
 	"afterburner effect" "remnant afterburner"
 	description "The Remnant live in an environment where the raw materials for fuel are relatively common on the winds of the nebula. As such, their ships incorporate significant built-in ramscoop technology, and while they are reluctant to waste fuel, they aren't afraid of using it when needed. Far more important is the ability for their ships to quickly and efficiently enter or exit combat as needed. At the end of the day, it is continued life that is paramount."
-	description "	The Bellows-class afterburner embodies this philosophy by providing captains with a tool that allows them to make great leaps of acceleration, typically during evasive maneuvers or to catch up with a fleeing target. Due to their enormous fuel usage, none but the most specialized of ships have enough fuel to use these for more than a few seconds at a time before completely running out of fuel."
+	description "	The Bellows-class afterburner embodies this philosophy by providing captains with a tool that allows them to make great leaps of acceleration, typically during evasive maneuvers or to catch up with a fleeing target. Due to their enormous fuel usage, only the most specialized of ships have enough fuel to use these for more than a few seconds at a time before completely running out of fuel."
 
 effect "remnant afterburner"
 	sprite "effect/remnant afterburner/remnant afterburner"
