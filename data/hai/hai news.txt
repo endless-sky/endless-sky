@@ -97,6 +97,7 @@ news "science in Hai space"
 			"The alloys Hai use in their ships are way beyond our technology."
 
 # Visual suggestion: young, normal-looking, more female than male
+# or people with animals
 news "cute story in Hai space"
 	location
 		government "Hai"
@@ -112,6 +113,7 @@ news "cute story in Hai space"
 		portrait/human55
 		portrait/human66
 		portrait/human69
+		portrait/human107
 		portrait/human114
 		portrait/human123
 		portrait/human128
@@ -196,7 +198,7 @@ news "human citizen in Hai space"
 			"Hai scientists that live near me chartered a flight to Allhome, but it got lost and ended up all the way on Canyon. Some people have the worst sense of direction."
 
 
-# Visual suggestion: tough-looking former criminal, trying to do what is right
+# Visual suggestions: scruffy and disgruntled; religious and relaxed; sharply-dressed and clean-shaven
 news "reformed pirate in Hai space"
 	location
 		government "Hai"
@@ -204,16 +206,26 @@ news "reformed pirate in Hai space"
 		word
 			"Reformed pirate"
 	portrait
-		portrait/human126
-		portrait/human115
+		portrait/human01
+		portrait/human09
+		portrait/human23
+		portrait/human24
+		portrait/human32
+		portrait/human34
+		portrait/human41
+		portrait/human45
+		portrait/human51
+		portrait/human54
+		portrait/human57
+		portrait/human67
+		portrait/human77
+		portrait/human80
 		portrait/human92
 		portrait/human95
-		portrait/human77
-		portrait/human51
-		portrait/human45
-		portrait/human34
-		portrait/human67
-		portrait/human01
+		portrait/human115
+		portrait/human121
+		portrait/human124
+		portrait/human126
 	message
 		word
 			"I used to rob people for a living, and I'd be in jail now if I stayed in human space. Here, they've given me a job, and I've been sober for six weeks. This has really turned my life around."
