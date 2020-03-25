@@ -1,33 +1,17 @@
-# The below notice applies only to this file.
+# Copyright (c) 2020 by NomadicVolcano
 #
-# No Copyright: CC0 1.0 Public Domain
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
 #
-# The person who associated a work with this deed has dedicated the
-# work to the public domain by waiving all of his or her rights to the
-# work worldwide under copyright law, including all related and
-# neighboring rights, to the extent allowed by law.
-#
-# You can copy, modify, distribute and perform the work, even for
-# commercial purposes, all without asking permission.
-#
-# In no way are the patent or trademark rights of any person affected
-# by CC0, nor are the rights that other persons may have in the work
-# or in how the work is used, such as publicity or privacy rights.
-#
-# Unless expressly stated otherwise, the person who associated a work
-# with this deed makes no warranties about the work, and disclaims
-# liability for all uses of the work, to the fullest extent permitted
-# by applicable law.
-#
-# When using or citing the work, you should not imply endorsement by
-# the author or the affirmer.
-#
-# For full details, see: https://creativecommons.org/publicdomain/zero/1.0/legalcode
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 mission "Acorn Delights: Part 1"
+	minor
 	name "Acorns for Anoo"
 	description "Bring Eeeya to <destination> to deliver <cargo> to her missing granddaughter."
-	minor
 	source
 		attributes hai
 		not planet Stonebreak
@@ -79,11 +63,11 @@ mission "Acorn Delights: Part 1"
 				accept
 
 mission "Acorn Delights: Part 2"
+	landing
 	name "Acorns for Anoo"
 	description "Bring Eeeya to <destination> to deliver <cargo> to her missing granddaughter."
 	source Stonebreak
 	destination "Alta Hai"
-	landing
 	passengers 1
 	cargo "acorn cookies" 3
 	to offer
@@ -97,11 +81,11 @@ mission "Acorn Delights: Part 2"
 				accept
 
 mission "Acorn Delights: Part 3"
+	landing
 	name "Acorns for Anoo"
 	description "Bring Eeeya to <destination> to deliver <cargo> to her missing granddaughter."
 	source "Alta Hai"
 	destination Cloudfire
-	landing
 	passengers 1
 	cargo "acorn cookies" 3
 	to offer
@@ -155,9 +139,9 @@ mission "Acorn Delights: Part 4"
 				accept
 			
 mission "Acorn Delights: Part 5"
+	landing
 	name "Acorns for Anoo"
 	description "Bring Eeeya to <destination> to deliver <cargo> to her missing granddaughter."
-	landing
 	source Darkcloak
 	passengers 1
 	cargo "acorn cookies" 3
@@ -174,7 +158,7 @@ mission "Acorn Delights: Part 5"
 			`	As you rise through the main tower of the hospital, you're surprised at how advanced it is. Despite their willingness to die in battle, the Unfettered seem to value the lives of the survivors. Perhaps this is to heal them quickly to fight again?`
 			`	You reach a high floor, filled with personal offices. Eeeya takes you to a door at the end of a long hallway.`
 			choice
-				`	(Continue.)`
+				`	(Open the door.)`
 			`	 After the door opens, Eeeya and Anoo run to each other's arms. A few minutes later, they begin to speak. Eventually the conversation turns to Anoo's new occupation.`
 			`	"Why did you come here, Anoo? The Unfettered hate us."`
 			`	"They don't hate US, grandma. They hate what we've become: frivolous, uninventive, and self-important. Our race is fading into history through a slow death of mediocrity. Most Unfettered see warfare as our only salvation.`
@@ -182,7 +166,8 @@ mission "Acorn Delights: Part 5"
 			`	"If enough good people join the Unfettered, we can change their minds; set them on a more productive path. They'll need good doctors."`
 			`	Eeeya smiles at her granddaughter, "They'll need a good cook too."`
 			choice
-				`	(Continue.)`
+				`	"I'm glad to have reunited you."`
+				`	"I'd like to be paid now."`
 			`	Eeeya turns to you and says, "I've found my new home, Captain <last>. I suppose payment is in order. I'm the owner of Eeeya's Acorn Delights, a luxury baked goods company based on Allhome.`
 			`	"I only have 30,000 credits with me, but I'll transfer some Acorn Delights stocks to your name. Your quarterly dividends will be divided into daily payments of 500 credits."`
 			`	Before you leave, Eeeya unpacks a feast of cookies for Anoo and her patients. Their aromatic fragrance quickly overpowers the wounds and suffering from war. Every cookie has perfect imperfections of crackled texture over the chewy center which melts into your mouth. If food could win wars, this would be the Unfettered's secret weapon.`
