@@ -280,29 +280,34 @@ outfit "Ion Hail Turret"
 	"required crew" 1
 	"turret mounts" -1
 	weapon
-		sprite "projectile/ion rain"
-			"frame rate" 7
-			"random start frame"
 		"hardpoint sprite" "hardpoint/ion hail turret"
 		"hardpoint offset" 10.
 		sound "ion rain"
-		"hit effect" "ion rain impact"
 		"inaccuracy" 3
 		"turret turn" 4.2
 		"velocity" 12
-		"random velocity" 3
-		"lifetime" 40
-		"random lifetime" 4
 		"reload" 13
 		"burst reload" 3
 		"burst count" 5
 		"firing energy" 48
 		"firing heat" 24
-		"hit force" 1
-		"shield damage" 46
-		"hull damage" 17
-		"ion damage" 1.1
+		"submunition" "ion hail" 4
 	description "Instead of just placing an Ion Rain Gun on a turret mount, the Heliarch tweaked the cycles of shots, having each shot be significantly more effective and seeing an overall increase to the weapon's range, but at the cost of a reload period."
+
+outfit "ion hail"
+	weapon
+		sprite "projectile/ion rain"
+			"frame rate" 7
+			"random start frame"
+		"hit effect" "ion rain impact"
+		"inaccuracy" 1
+		"random velocity" 3
+		"lifetime" 40
+		"random lifetime" 4
+		"hit force" 1
+		"shield damage" 12
+		"hull damage" 4.5
+		"ion damage" .275
 
 
 outfit "Ion Rain Gun"
