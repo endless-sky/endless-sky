@@ -58,7 +58,7 @@ outfit "Inhibitor Turret"
 	cost 1371000
 	thumbnail "outfit/inhibitor turret"
 	"mass" 42
-	"outfit space" -22
+	"outfit space" -28
 	"weapon capacity" -22
 	"required crew" 1
 	"turret mounts" -1
