@@ -1294,4 +1294,75 @@ ship "Phoenix"
 	description "The Phoenix is a test platform version of the Vulture. It is not a ship meant to be purchased in its current form. It is basically a vulture with an extra several hundreds of tons of outfit and engine space for testing purposes."
 
 
+ship "Palpebrata"
+    plural "Palpebratas"
+    sprite "ship/palpebrata"
+    thumbnail "thumbnail/palpebrata"
+    attributes
+        category "Heavy Warship"
+        licenses
+            "Remnant Capital"
+        cost 45000000
+        "shields" 45200
+        "hull" 26500
+        "required crew" 51
+        "bunks" 85
+        "cargo space" 134
+        "mass" 680
+        "drag" 7.4
+        "heat dissipation" 0.5
+        "fuel capacity" 600
+        "ramscoop" 2
+        "outfit space" 674
+        "weapon capacity" 260
+        "engine capacity" 150
+        "shield generation" 5.2
+        "shield energy" 4.6
+        "hull repair rate" 1.5
+        "hull energy" 1.2
+        "outfit scan power" 25
+        "outfit scan speed" 2
+        "tactical scan power" 45
+		weapon
+			"blast radius" 360
+			"shield damage" 3600
+			"hull damage" 1800
+			"hit force" 5400
+	outfits
+		"Inhibitor Cannon" 6
+		"Thrasher Turret" 2
+		"Point Defense Turret"
 
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 2
+		"Quantum Key Stone"
+
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
+		"Scram Drive"
+
+	engine -28 155 .8
+	engine 28 155 .8
+	engine 0 184 .9
+	gun 0 -190
+	gun -9 -177 "Inhibitor Cannon"
+	gun 9 -177 "Inhibitor Cannon"
+	gun -14 -162 "Inhibitor Cannon"
+	gun 14 -162 "Inhibitor Cannon"
+	gun -18 -144 "Inhibitor Cannon"
+	gun 18 -144 "Inhibitor Cannon"
+	turret -23 -34 "Thrasher Turret"
+	turret 23 -34 "Thrasher Turret"
+	turret -74 62
+	turret 74 62
+	turret 0 77 "Point Defense Turret"
+	leak "remnant leak" 30 10
+	leak "remnant leak sparkle" 30 10
+	explode "small explosion" 30
+	explode "medium explosion" 60
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large" 1
+	description "Once they left human space, it became apparent to the Remnant that they would need to build their own shipyards in order to defend themselves if they were discovered by the Alphas or any other unfriendly faction. Using new composite materials that they discovered, they built ships very different from anything seen in human space."

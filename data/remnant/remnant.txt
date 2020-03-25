@@ -321,6 +321,7 @@ shipyard "Remnant"
 	"Diomedea"
 	"Harrier"
 	"Phoenix"
+	"Palpebrata"
 
 shipyard "Remnant Gascraft"
 	"Gascraft"
