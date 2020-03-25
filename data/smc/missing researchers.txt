@@ -1,3 +1,13 @@
+# Copyright (c) 2020 Nomadic Volcano
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
 ########################################################################
 
 # Prologue: Rescue Hai. You have to do at least three of these missions.
@@ -826,25 +836,10 @@ mission "Hai Rescue [B01A] Permanent Fleets"
 	to complete
 		never
 	npc
-		government "Republic that won't enter wormhole"
+		government "Human Alliance"
 		system "Ultima Thule"
 		personality heroic opportunistic staying
-		fleet "Navy Wormhole Guards" 10
-	npc
-		government "Syndicate that won't enter wormhole"
-		system "Ultima Thule"
-		personality heroic opportunistic staying
-		fleet "Syndicate Wormhole Guards" 7
-	npc
-		government "Free Worlds that won't enter wormhole"
-		system "Ultima Thule"
-		personality heroic opportunistic staying
-		fleet "Free Worlds Wormhole Guards" 4
-	npc
-		government "Deep Security that won't enter wormhole"
-		system "Ultima Thule"
-		personality heroic opportunistic staying
-		fleet "Deep Security Wormhole Guards" 4
+		fleet "Human Wormhole Guards" 20
 	npc
 		government "Hai"
 		system "Waypoint"
@@ -889,216 +884,150 @@ ship "Centipede" "Centipede (Teeneep)"
 		"A370 Atomic Thruster"
 		"Pulse Rifle" 131
 
-fleet "Navy Wormhole Guards"
-	government "Republic that won't enter wormhole"
-	names "republic capital"
-	fighters "republic fighter"
+# These ship designs are chosen to reduce CPU load while still keeping
+# them visibly usable as anti-pirate and anti-Hai vessels. They won't
+# be used in real fights; they're just scenery to make a point about
+# human cooperation The mix of faction outfits is because all human
+# factions (except remnant) are working together.
+
+ship "Corvette" "Corvette (Flamethrower Electron Anti-Missile)"
+	outfits
+		"Heavy Anti-Missile Turret" 2
+		"LP036a Battery Pack"
+		"S-970 Regenerator"
+		"Catalytic Ramscoop"
+		Hyperdrive
+		Supercapacitor
+		"Fuel Pod" 3
+		"Outfits Expansion" 2
+		"Liquid Nitrogen Cooler"
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		Flamethrower 2
+		"Electron Beam" 2
+		"Laser Rifle" 3
+		"Water Coolant System"
+		"Fusion Reactor"
+
+ship "Bactrian" "Bactrian (Plasma Blaster Anti-Missile)"
+	outfits
+		"Heavy Anti-Missile Turret" 3
+		"Armageddon Core"
+		"LP036a Battery Pack"
+		"S-970 Regenerator"
+		"Liquid Helium Cooler" 2
+		Hyperdrive
+		"LP072a Battery Pack"
+		"Outfits Expansion" 5
+		"Liquid Nitrogen Cooler"
+		"Plasma Cannon" 4
+		"A520 Atomic Thruster"
+		"A255 Atomic Steering"
+		"A525 Atomic Steering"
+		"Fission Reactor"
+		"Quad Blaster Turret" 3
+		"Laser Rifle" 15
+
+ship "Splinter" "Splinter (Flamethrower Blaster)"
+	outfits
+		"Heavy Anti-Missile Turret"
+		"Catalytic Ramscoop"
+		Hyperdrive
+		"LP072a Battery Pack"
+		"Fuel Pod" 5
+		"Outfits Expansion" 3
+		"Liquid Nitrogen Cooler"
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		Flamethrower 2
+		"Quad Blaster Turret" 2
+		"Cooling Ducts"
+		"Laser Rifle"
+		"Water Coolant System"
+		"S-270 Regenerator" 2
+		"Fusion Reactor"
+
+ship "Osprey" "Osprey (Particle Anti-Missile)"
+	outfits
+		"Heavy Anti-Missile Turret"
+		"LP036a Battery Pack"
+		"S-970 Regenerator"
+		Hyperdrive
+		"LP072a Battery Pack"
+		Afterburner
+		"Outfits Expansion" 2
+		"Liquid Nitrogen Cooler"
+		"Particle Cannon" 4
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Laser Rifle" 3
+		"Water Coolant System"
+		"Fusion Reactor"
+
+ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
+	outfits
+		"Heavy Anti-Missile Turret" 3
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"Liquid Helium Cooler" 2
+		"Catalytic Ramscoop"
+		Hyperdrive
+		Afterburner
+		"Outfits Expansion" 2
+		"Plasma Cannon" 6
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Fragmentation Grenades" 20
+		"Fission Reactor"
+		"Laser Rifle" 20
+		"LP144a Battery Pack"
+
+ship "Dreadnought" "Dreadnought (Plasma Blaster Anti-Missile)"
+	outfits
+		"Heavy Anti-Missile Turret" 3
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"Liquid Helium Cooler" 2
+		Hyperdrive
+		Afterburner
+		Supercapacitor
+		"Outfits Expansion" 2
+		"Plasma Cannon" 4
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Breeder Reactor"
+		"Quad Blaster Turret" 2
+		"Laser Rifle" 25
+		"Water Coolant System"
+		"S-270 Regenerator" 2
+		"LP144a Battery Pack"
+
+fleet "Human Wormhole Guards"
+	government "Human Alliance that won't enter wormhole"
+	names civilian
 	cargo 0
 	personality
 		heroic opportunistic
-	variant 5
-		"Frigate" 2
-		"Rainmaker"
-		"Gunboat"
 	variant 3
-		"Cruiser"
-		"Combat Drone" 4
-	variant 3
-		"Cruiser"
-		"Combat Drone" 4
-		"Frigate"
-		"Rainmaker"
+		"Bactrian (Plasma Blaster Anti-Missile)"
 	variant 2
-		"Carrier"
-		"Lance" 4
-		"Combat Drone" 6
-	variant 1
-		"Carrier"
-		"Lance" 4
-		"Combat Drone" 6
-		"Cruiser"
-		"Combat Drone" 4
-		"Frigate" 2
-		"Rainmaker" 2
-		"Gunboat" 2
-	variant 1
-		"Cruiser"
-		"Combat Drone" 4
-		"Frigate" 2
-	variant 1
-		"Frigate"
-		"Rainmaker" 2
-		"Gunboat"
-
-fleet "Syndicate Wormhole Guards"
-	government "Syndicate that won't enter wormhole"
-	names "syndicate capital"
-	fighters "syndicate fighter"
-	cargo 0
-	personality
-		heroic
-	variant 3
-		"Splinter"
-		"Quicksilver" 3
+		"Corvette (Flamethrower Electron Anti-Missile)" 2
 	variant 2
-		"Splinter (Laser)"
-	variant 2
-		"Splinter (Proton)"
-		"Quicksilver" 3
-	variant 1
-		"Splinter" 2
-	variant 1
-		"Splinter"
-		"Splinter (Laser)"
-	variant 1
-		"Splinter"
-		"Splinter (Proton)"
-	variant 1
-		"Splinter" 3
-	variant 1
-		"Splinter"
-		"Splinter (Laser)" 2
-	variant 1
-		"Splinter"
-		"Splinter (Proton)" 2
-	variant 2
-		"Manta" 2
-	variant 1
-		"Manta (Proton)" 2
-	variant 3
-		"Manta"
-		"Quicksilver" 2
-	variant 1
-		"Manta (Proton)"
-		"Quicksilver" 2
-	variant 2
-		"Quicksilver" 5
-	variant 1
-		"Quicksilver (Proton)" 5
-	variant 1
-		"Protector"
-	variant 1
-		"Vanguard"
-	variant 1
-		"Vanguard (Missile)"
-	variant 1
-		"Protector (Laser)"
-	variant 1
-		"Protector (Proton)"
-	variant 1
-		"Protector"
-		"Quicksilver" 2
-	variant 1
-		"Protector (Laser)"
-		"Quicksilver (Proton)" 2
-	variant 1
-		"Protector (Proton)"
-		"Quicksilver (Proton)" 2
-	variant 1
-		"Vanguard (Particle)"
-		"Quicksilver" 2
-	variant 1
-		"Vanguard"
-		"Quicksilver (Proton)" 2
-	variant 1
-		"Vanguard (Missile)"
-		"Quicksilver (Proton)" 2
-
-fleet "Deep Security Wormhole Guards"
-	government "Deep Security that won't enter wormhole"
-	names "deep"
-	fighters "deep fighter"
-	cargo 0
-	personality
-		heroic
-	variant 1
-		"Bactrian"
-		"Dagger" 2
-	variant 7
-		"Aerie"
-		"Dagger" 2
-		"Corvette"
-	variant 7
-		"Aerie"
-		"Dagger" 2
-		"Corvette (Missile)"
-	variant 7
-		"Aerie"
-		"Dagger" 2
-		"Corvette (Speedy)"
-	variant 7
-		"Aerie"
-		"Dagger" 2
-		"Raven"
-	variant 10
-		"Aerie"
-		"Dagger" 2
-		"Raven (Heavy)"
-	variant 10
-		"Aerie"
-		"Dagger" 2
-		"Raven (Afterburner)"
-	variant 7
-		"Aerie" 2
-		"Dagger" 4
-	variant 5
-		"Corvette" 2
-	variant 5
 		"Corvette (Speedy)" 2
 	variant 5
-		"Corvette (Speedy)"
-		"Corvette (Missile)"
-
-fleet "Free Worlds Wormhole Guards"
-	government "Free Worlds that won't enter wormhole"
-	names "free worlds capital"
-	cargo 1
-	personality
-		heroic disables frugal opportunistic
-	variant 3
-		"Dreadnought"
-	variant 3
-		"Skein"
-		"Finch" 6
-	variant 3
-		"Skein"
-		"Finch" 6
-	variant 3
-		"Roost"
-		"Finch" 4
-	variant 10
-		"Bastion"
+		"Dreadnought (Plasma Blaster Anti-Missile)"
 	variant 5
-		"Bastion (Heavy)"
-	variant 5
-		"Bastion (Laser)"
-	variant 8
-		"Osprey"
-	variant 4
-		"Osprey (Missile)"
-	variant 4
-		"Osprey (Laser)"
-	variant 6
-		"Bastion"
-		"Osprey"
-	variant 3
-		"Bastion (Heavy)"
-		"Osprey (Missile)"
-	variant 3
-		"Bastion (Laser)"
-		"Osprey (Laser)"
+		"Cruiser (Plasma Anti-Missile)"
 	variant 2
-		"Falcon"
-	variant 1
-		"Falcon (Heavy)"
-	variant 1
-		"Falcon (Laser)"
-	variant 4
-		"Falcon"
-		"Bastion"
+		"Osprey (Particle Anti-Missile)" 2
 	variant 2
-		"Falcon (Heavy)"
-		"Bastion (Heavy)"
+		"Osprey" 2
+	variant 4
+		"Splinter (Flamethrower Blaster)" 2
+	variant 3
+		"Falcon (Plasma)"
+	variant 3
+		"Vanguard (Particle)"
 
 fleet "Hai Wormhole Guards"
 	government "Hai"
@@ -1113,14 +1042,10 @@ fleet "Hai Wormhole Guards"
 		"Shield Beetle (Pulse)"
 	variant 7
 		"Shield Beetle"
-	variant 4
-		"Lightning Bug" 3
-	variant 4
-		"Lightning Bug (Pulse)" 3
-	variant
-		"Grasshopper" 5
-	variant
-		"Grasshopper (Tracker)" 5
+	variant 10
+		"Lightning Bug" 2
+	variant 10
+		"Lightning Bug (Pulse)" 2
 
 event "hai and human ships at wormhole"
 	system "Waypoint"
@@ -1128,20 +1053,14 @@ event "hai and human ships at wormhole"
 	system "Heia Due"
 		add fleet "Hai Wormhole Guards" 1000
 	system "Ultima Thule"
-		add fleet "Navy Wormhole Guards" 600
-		add fleet "Syndicate Wormhole Guards" 1000
-		add fleet "Free Worlds Wormhole Guards" 4500
-		add fleet "Deep Security Wormhole Guards" 1500
+		add fleet "Human Wormhole Guards" 400
 		# Occasional pirates to show the fleet in action
 		add fleet "Small Northern Pirates" 5000
 		add fleet "Small Core Pirates" 5000
 		# Smugglers would be bright enough not to try this route
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Rajak"
-		add fleet "Navy Wormhole Guards" 1500
-		add fleet "Syndicate Wormhole Guards" 2500
-		add fleet "Free Worlds Wormhole Guards" 7500
-		add fleet "Deep Security Wormhole Guards" 3500
+		add fleet "Human Wormhole Guards" 1000
 		# Smugglers would be bright enough not to try this route
 		remove fleet "Smuggler (Hai Traffickers)"
 
@@ -1436,7 +1355,7 @@ mission "Hai Rescue [B07] Return"
 			`	"If you attack here, you are not attacking a base, you are attacking a well-defended colony.`
 				goto questions
 			label back
-			`	"Please send her this information." You notice a transmission to your computer; it appears to have video and audio recordings. "I must go back to my tasks lest I be discovered.`
+			`	"Please send her this information." You notice a transmission to your computer; it appears to have video and audio recordings. "I must go back to my tasks lest I be discovered."`
 			`	The Drak orb vanishes again. You should report back to Teeneep.`
 				accept
 	on complete
@@ -1551,7 +1470,7 @@ mission "Hai Rescue [C03] Unfettered Escort"
 	to offer
 		has "Hai Rescue [C02] Arms Purchase: done"
 	on enter Betelgeuse
-		dialog `Even during the Free Worlds war, you never saw a fleet this large. The human authorities must be concerned about well-equipped Unfettered Hai Shield Beetles wandering through human space.`
+		dialog `The large fleet of human ships in this system fly the same flag, "Human Alliance," and appear to have outfits from all factions. The human authorities must be concerned about well-equipped Unfettered Hai Shield Beetles wandering through human space. Hopefully this human camaraderie will outlive the current crisis.`
 	on offer
 		conversation
 			`Teeneep comes to you wearing her fencing outfit, still stained with blood, though you notice there's more blood now, in other places than before. She departs from a fifteenth Shield Beetle; you can see sticking out weapons that are not of Hai or human origin. It's thrusters are so hot they're still glowing red.`
@@ -1567,30 +1486,10 @@ mission "Hai Rescue [C03] Unfettered Escort"
 			variant
 				"Shield Beetle (Fuel Jump)"
 	npc
-		government "Republic"
-		personality heroic staying
+		government "Human Alliance"
+		personality escort heroic staying opportunistic
 		system Betelgeuse
-		fleet 20
-			variant
-				"Cruiser"
-	npc
-		government "Free Worlds"
-		personality heroic staying
-		system Betelgeuse
-		fleet 20
-			variant 2
-				"Dreadnought"
-			variant 1
-				"Falcon"
-	npc
-		government "Syndicate"
-		personality heroic staying
-		system Betelgeuse
-		fleet 20
-			variant 2
-				"Vanguard"
-			variant 1
-				"Protector"
+		fleet "Human Wormhole Guards" 30
 
 # Special outfitting for the Philsopher's Paradise battle.
 
@@ -1606,7 +1505,7 @@ mission "Hai Rescue [C04] Foundry"
 	on visit
 		dialog `To finish this mission, all fifteen Unfettered Hai Shield Beetles must land with you.`
 	on offer
-		log `Fifteen Unfettered Hai Shield Beetles are equipped for the battle at Philosopher's Paradise. A fleet of sixty human capital ships escort them, making sure they don't stray from their intended purpose. Two hundred Republic special operatives, trained in anti-pirate combat, await you at the spaceport at Foundry. Teeneep and General Choot'k plan on leading the Unfettered Fleet personally, from the Unfettered flagship.`
+		log `Fifteen Unfettered Hai Shield Beetles are equipped for the battle at Philosopher's Paradise. A fleet of human capital ships escort them, making sure they don't stray from their intended purpose. Two hundred Republic special operatives, trained in anti-pirate combat, await you at the spaceport at Foundry. Teeneep and General Choot'k plan on leading the Unfettered Fleet personally, from the Unfettered flagship.`
 		log `People` `General Choot'k` `Supreme commander of the Unfettered Hai military. It is unclear whether he also leads the Unfettered Hai government. Compared to his troops, he is a man of great restraint and intelligence. He's also unusually large for a Hai, taller than most humans.`
 		conversation
 			`Teeneep and the Unfettered leader leave a Shield Beetle together. Teeneep is still wearing her fencing outfit and swords, but she now wears a sash that indicates she's a Hai Elder. She's cleaned off most of the blood stains, but left just enough to remind people she can fight. Marshal Kaine approaches from the opposite direction.`
@@ -1616,7 +1515,7 @@ mission "Hai Rescue [C04] Foundry"
 			`	General Choot'k says, "I look forward to joining your people in combat. We haven't had a chance to fight with - or against - your species. I hope we won't be disappointed."`
 			`	Marshal Kaine smiles, "I can vouch for the skill of my operatives, but not the pirates. Good hunting, general."`
 			`	The general turns to you and says, "Here is our plan, Captain <last>." You notice the respect in his voice. He speaks to you as an equal, quite a compliment from a man like him. "Your ships and ours will shield the operatives. The designs of the facility show a weak point in one of the hangars. My flagship has weapons pillaged from the Wanderers, which are strong enough to cut open the hangar doors, and precise enough not to destroy the hangar.`
-			`	"First though, we must regroup at <destination>. The sixty ships that escort our fleet cannot follow us to Devil-Run."`
+			`	"First though, we must regroup at <destination>. The human escorts that shadow us cannot follow to Devil-Run."`
 			`	As you prepare to leave, you notice <payment> has been added to your account. Hopefully you'll get the same when you reach <destination>.`
 				accept
 	npc save accompany
@@ -1630,30 +1529,12 @@ mission "Hai Rescue [C04] Foundry"
 			variant
 				"Shield Beetle (Plasma Blaster Jump)"
 	npc
-		government "Republic"
+		government "Human Alliance"
 		personality escort heroic waiting opportunistic
-		fleet 20
-			variant
-				"Cruiser"
-	npc
-		government "Free Worlds"
-		personality escort heroic waiting opportunistic
-		fleet 20
-			variant 1
-				"Dreadnought"
-			variant 2
-				"Falcon"
-	npc
-		government "Syndicate"
-		personality escort heroic waiting opportunistic
-		fleet 20
-			variant 1
-				"Vanguard"
-			variant 2
-				"Protector"
+		fleet "Human Wormhole Guards" 30
 	on complete
 		payment 600000
-		log `Agent Kopkow of Republic Intelligence complained that they're running out of cover stories to hide the Hai. He needs the Hai-human conflict resolved without an more public displays.`
+		log `Agent Kopkow of Republic Intelligence complained that they're running out of cover stories to hide the Hai. He needs the Hai-human conflict resolved without an more public displays. Once I have space for his 200 operatives, I need to pick them up at the Foundry spaceport.`
 		conversation
 			`You land on Foundry and are met by Agent Kopkow, the Republic Intelligence agent you met on Earth. He seems extremely concerned about something.`
 			`	"It is becoming increasingly difficult to cover up the existence of the Hai. The captains at Ultima Thule already know about the Hai, but we had to tell the crews we were dealing with a major pirate threat. We hired a few pirate gangs, tricking them into flying through the area to make our story believable. The Shield Beetles at Prime were explained away as experimental ship designs. I hope you can finish this without too many more public displays, otherwise we won't be able to hide the Hai anymore.`
@@ -1710,19 +1591,6 @@ event "Philosopher's Paradise can be dominated"
 			threshold 3000
 			fleet "Devil-Run Warships" 30
 
-event "Liberated Philosopher's Paradise"
-	system "Devil-Hide"
-		government "Neutral"
-		remove fleet "Devil-Run Warships"
-		remove fleet "Devil-Run Miners"
-		add fleet "Unfettered Hai Guards" 2000
-		add fleet "Philosopher's Paradise Miners" 3000
-	planet "Philosopher's Paradise"
-		description `Over the past century, a cubic kilometer of this moon has been hollowed out and filled with corridors and cavernous rooms. There is a city of over a thousand people whose lives have been focused on science since their ancestors were first brought here a hundred twenty years ago. Now Korath, Hai, and humans live here working side-by-side. Once they were slaves to a criminal organization, and their story brought the Hai and humans to the brink of war. Fortunately, a resourceful pilot from New Boston averted catastrophe and freed Philosopher's Paradise.`
-		tribute 7000
-			threshold 6000
-			fleet "Unfettered Hai Guards" 30
-
 mission "Hai Rescue [C06] Freedom"
 	landing
 	name "Missing Researchers"
@@ -1739,8 +1607,8 @@ mission "Hai Rescue [C06] Freedom"
 		# people of a planet specifically promising assistance to the player.
 		log `Liberated Philosopher's Paradise, which now pays me daily tribute and is extremely grateful for my help. They said they have inventions that may be of use to me, but their facilities are damaged. As they repair the facilities, they'll make new technologies available.`
 		conversation
-			`General Choot'k cuts open the doors of a large hangar and your ships land. Two hundred operatives pour out. They're wearing some kind of exoskeleton with a built-in shield. As they storm through the complex, you follow some of them.`
-			`	Their guns are able to literally melt away meter-thick walls in seconds. They have a gas bombs that release an extremely powerful stun gas that knocks people out for hours. Had the pirates known to prepare for such a foe, they may have stood a chance. The operatives quickly overrun all opposition.`
+			`General Choot'k cuts open the doors of a large hangar and your ships land. Two hundred operatives pour out. They're wearing exoskeletons with built-in shields. As they storm through the complex, you follow some of them.`
+			`	Their guns are able to literally melt away meter-thick walls in seconds. They have a gas bombs that release an extremely powerful stun gas which knocks people out for hours. Had the pirates known to prepare for such a foe, they may have stood a chance. The operatives quickly overrun all opposition.`
 			`	After the fighting stops, some unarmed humans, Hai, and Korath emerge from safe-rooms deeper in the facility. They were terrified that they may have been conquered by another pirate gang until they saw the Unfettered Hai and Republic insignia.`
 			`	It took a few hours to round up all the pirates, but the peaceful denizens of Philosopher's Paradise gladly helped. They were placed in prison facilities the pirates had built to keep recent kidnapping victims and misbehaving civilians.`
 			`	Do you want to talk to the Philosopher's Paradise citizens before you go?`
@@ -1781,6 +1649,7 @@ mission "Hai Rescue [C06] Freedom"
 			`	"The city changed hands about fifty years ago when exiles of the Syndicate came here. We don't know the details of the deal, but we think they bought the city. Since then, it has changed hands two more times to different pirate gangs, but the Syndicate exiles have been a constant presence... until now.`
 			`	"Now that our city is free, we will rule ourselves. We have asked the True Hai to stay behind and protect our city until we build our own fleet. We will pay the Hai handsomely for their assistance.`
 			`	"Our research and manufacturing facilities are damaged now, but as repair them we will make them available to you.`
+			# (That refers to advanced ships and outfits available after quests.)
 				goto questions
 			label do
 			`	"We're scientists, engineers, philosophers, people of learning. There are laboratories throughout this city where people from all three races work together. We seek knowledge. Now that we're free, we hope to share what we learn.`
@@ -1948,22 +1817,16 @@ event "hai-human treaty signed"
 	system "Heia Due"
 		remove fleet "Hai Wormhole Guards"
 	system "Ultima Thule"
-		remove fleet "Navy Wormhole Guards"
-		remove fleet "Syndicate Wormhole Guards"
-		remove fleet "Free Worlds Wormhole Guards"
-		remove fleet "Deep Security Wormhole Guards"
+		remove fleet "Human Wormhole Guards"
 		remove fleet "Smuggler (Hai Traffickers)"
-		add fleet "Navy Friendly Wormhole Guards" 3000
-		add fleet "Free Worlds Friendly Wormhole Guards" 3000
+		add fleet "Navy Friendly Wormhole Guards" 2000
+		add fleet "Free Worlds Friendly Wormhole Guards" 5000
 		add fleet "Navy Surveillance that won't enter the wormhole" 2000
 	system "Rajak"
-		remove fleet "Navy Wormhole Guards"
-		remove fleet "Syndicate Wormhole Guards"
-		remove fleet "Free Worlds Wormhole Guards"
-		remove fleet "Deep Security Wormhole Guards"
+		remove fleet "Human Wormhole Guards"
 		remove fleet "Smuggler (Hai Traffickers)"
-		add fleet "Navy Friendly Wormhole Guards" 5000
-		add fleet "Free Worlds Friendly Wormhole Guards" 5000
+		add fleet "Navy Friendly Wormhole Guards" 4000
+		add fleet "Free Worlds Friendly Wormhole Guards" 9000
 		add fleet "Navy Surveillance that won't enter the wormhole" 2000
 	system "Hassaleh"
 		remove fleet "Smuggler (Hai Traffickers)"
