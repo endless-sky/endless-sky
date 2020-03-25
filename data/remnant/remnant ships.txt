@@ -596,8 +596,8 @@ ship "Peregrine"
 		licenses
 			"Remnant Capital"
 		"cost" 41627000
-		"shields" 27500
-		"hull" 15500
+		"shields" 20500
+		"hull" 10500
 		"required crew" 9
 		"bunks" 25
 		"mass" 350
@@ -606,7 +606,7 @@ ship "Peregrine"
 		"fuel capacity" 900
 		"ramscoop" 2.5
 		"cargo space" 49
-		"outfit space" 592
+		"outfit space" 552
 		"weapon capacity" 220
 		"engine capacity" 171
 		"shield generation" 3.9
@@ -619,6 +619,7 @@ ship "Peregrine"
 		"outfit scan power" 18
 		"outfit scan speed" 1
 		"tactical scan power" 39
+		"remnant node" 3
 		weapon
 			"blast radius" 240
 			"shield damage" 2400
@@ -628,7 +629,7 @@ ship "Peregrine"
 		"Thrasher Cannon" 4
 		"EMP Torpedo Bay" 1
 		"Point Defense Turret"
-		"Thrasher Turret" 2
+		"Thrasher Turret"
 		"EMP Torpedo" 9
 		
 		"Aeon Cell"
@@ -651,8 +652,7 @@ ship "Peregrine"
 	gun -17.5 -83 "Thrasher Cannon"
 	gun 17.5 -83 "Thrasher Cannon"
 	turret 0 -44 "Point Defense Turret"
-	turret -27.5 21 "Thrasher Turret"
-	turret 27.5 21 "Thrasher Turret"
+	turret 0 21 "Thrasher Turret"
 	engine 0 120.5 1.5
 	engine -26 126 1.1
 	engine 25 123.5 1.1
