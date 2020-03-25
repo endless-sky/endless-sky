@@ -72,9 +72,9 @@ namespace {
 			return;
 		
 		// Energy and fuel costs are the energy or fuel required per unit repaired.
-		if(energyCost)
+		if(energyCost > 0.)
 			available = min(available, energy / energyCost);
-		if(fuelCost)
+		if(fuelCost > 0.)
 			available = min(available, fuel / fuelCost);
 		
 		double transfer = min(available, maximum - stat);
@@ -1674,8 +1674,10 @@ void Ship::DoGeneration()
 		{
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
 			fuel += currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
-		
-			energy += currentSystem->SolarPower() * scale * attributes.Get("solar collection");
+			
+			double solarScaling = currentSystem->SolarPower() * scale;
+			energy += solarScaling * attributes.Get("solar collection");
+			heat += solarScaling * attributes.Get("solar heat");
 		}
 		
 		double coolingEfficiency = CoolingEfficiency();
@@ -2410,11 +2412,21 @@ double Ship::DisabledHull() const
 
 
 
-int Ship::JumpsRemaining() const
+int Ship::JumpsRemaining(bool followParent) const
 {
 	// Make sure this ship has some sort of hyperdrive, and if so return how
 	// many jumps it can make.
-	double jumpFuel = JumpFuel(targetSystem);
+	double jumpFuel = 0.;
+	if(!targetSystem && followParent)
+	{
+		// If this ship has no destination, the parent's substitutes for it,
+		// but only if the location is reachable.
+		auto p = GetParent();
+		if(p)
+			jumpFuel = JumpFuel(p->GetTargetSystem());
+	}
+	if(!jumpFuel)
+		jumpFuel = JumpFuel(targetSystem);
 	return jumpFuel ? fuel / jumpFuel : 0.;
 }
 

@@ -768,3 +768,14 @@ ship "Ursa Polaris"
 	explode "big explosion" 40
 	explode "huge explosion" 50
 
+
+person "Subsidurial"
+	government "Indigenous Lifeform"
+	frequency 100
+	personality
+		timid unconstrained coward appeasing uninterested mining harvests mute
+	ship "Subsidurial"
+		"never disabled"
+	system
+		neighbor government "Uninhabited" "Wanderer" "Remnant"
+

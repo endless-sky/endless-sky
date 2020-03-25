@@ -627,9 +627,6 @@ bool Mission::CanComplete(const PlayerInfo &player) const
 	if(player.GetPlanet() != destination)
 		return false;
 	
-	if(!toComplete.Test(player.Conditions()))
-		return false;
-	
 	return IsSatisfied(player);
 }
 
@@ -640,6 +637,10 @@ bool Mission::CanComplete(const PlayerInfo &player) const
 bool Mission::IsSatisfied(const PlayerInfo &player) const
 {
 	if(!waypoints.empty() || !stopovers.empty())
+		return false;
+	
+	// Test the completion conditions for this mission.
+	if(!toComplete.Test(player.Conditions()))
 		return false;
 	
 	// Determine if any fines or outfits that must be transferred, can.
@@ -914,7 +915,7 @@ const string &Mission::Identifier() const
 
 
 // Get a specific mission action from this mission.
-// If a mission action is not found for the given trigger, returns an empty 
+// If a mission action is not found for the given trigger, returns an empty
 // mission action.
 const MissionAction &Mission::GetAction(Trigger trigger) const
 {

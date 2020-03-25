@@ -227,7 +227,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		chassis[NAMES[i]] = attributes.Get(NAMES[i]);
 	for(const auto &it : ship.Outfits())
 		for(auto &cit : chassis)
-			cit.second -= it.second * it.first->Get(cit.first);
+			cit.second -= min(0., it.second * it.first->Get(cit.first));
 	
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
@@ -269,6 +269,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	double efficiency = ship.CoolingEfficiency();
 	heatTable.push_back(Format::Number(
 		60. * (attributes.Get("heat generation") 
+			+ attributes.Get("solar heat")
 			+ attributes.Get("fuel heat")
 			- efficiency * (attributes.Get("cooling") + attributes.Get("active cooling")))));
 	attributesHeight += 20;
