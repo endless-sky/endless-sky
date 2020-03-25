@@ -51,6 +51,42 @@ effect "inhibitor impact"
 	"random velocity" 6
 	"velocity scale" -.05
 
+outfit "Inhibitor Turret"
+	category "Turrets"
+	licenses
+		Remnant
+	cost 1371000
+	thumbnail "outfit/inhibitor turret"
+	"mass" 42
+	"outfit space" -28
+	"weapon capacity" -22
+	"required crew" 1
+	"turret mounts" -1
+	weapon
+		sprite "projectile/inhibitor"
+			"frame rate" 10
+			"no repeat"
+		"hardpoint sprite" "hardpoint/inhibitor turret"
+		"hardpoint offset" 6.
+		sound "inhibitor"
+		"hit effect" "inhibitor impact" 3
+		"inaccuracy" .5
+		"turret turn" 3.5
+		"velocity" 36
+		"random velocity" .5
+		"lifetime" 24
+		"reload" 6.5
+		"cluster"
+		"firing energy" 26
+		"firing heat" 45.5
+		"firing force" 13
+		"shield damage" 26
+		"hull damage" 19.5
+		"hit force" 39
+		"slowing damage" .5
+	description `While cannons that can interfere with a ship's engines are useful in any situation, the Remnant quickly decided that it would be even more useful as a turret that their ships could use to impede those chasing after them. These small Inhibitor Turrets are typically found primarily on Pelicans trying to outrun opponents rather than defeat them.`
+	description `Although these turrets are unremarkable in terms of performance, the comparatively recent perfection of a technique of installing the bulk of the weapon itself externally on the turret mount instead of under the base has resulted in a weapon that takes comparatively little outfit space. It does, however, still add quite a bit more to the mass of the ship.`
+
 
 outfit "Thrasher Cannon"
 	category "Guns"
@@ -380,6 +416,34 @@ outfit "Salvage Scanner"
 
 
 # Engines:
+
+outfit "Bellows-Class Afterburner"
+	category "Engines"
+	"cost" 640000
+	thumbnail "outfit/remnant afterburner"
+	"mass" 13
+	"outfit space" -11
+	"engine capacity" -11
+	"afterburner thrust" 153.0
+	"afterburner fuel" 2.0
+	"afterburner energy" 6.0
+	"afterburner heat" 8.0
+	"afterburner effect" "remnant afterburner"
+	description "The Remnant live in an environment where the raw materials for fuel are relatively common on the winds of the nebula. As such, their ships incorporate significant built-in ramscoop technology, and while they are reluctant to waste fuel, they aren't afraid of using it when needed. Far more important is the ability for their ships to quickly and efficiently enter or exit combat as needed. At the end of the day, it is continued life that is paramount."
+	description "	The Bellows-class afterburner embodies this philosophy by providing captains with a tool that allows them to make great leaps of acceleration, typically during evasive maneuvers or to catch up with a fleeing target. Due to their enormous fuel usage, only the most specialized of ships have enough fuel to use these for more than a few seconds at a time before completely running out of fuel."
+
+effect "remnant afterburner"
+	sprite "effect/remnant afterburner/remnant afterburner"
+		"no repeat"
+		"frame rate" 30
+	sound "afterburner"
+	"lifetime" 0.1
+	"random angle" 0
+	"random spin" 0
+	"random velocity" 1.
+	"velocity scale" 0.1
+
+
 
 outfit "Anvil-Class Engine"
 	category "Engines"
