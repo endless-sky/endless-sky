@@ -1494,56 +1494,6 @@ mission "Highly Wanted Passenger (South)"
 		dialog "You land outside of the main city to avoid any chances of your passenger being seen. They grab their things and make their way off of your ship after paying you <payment>."
 
 
-mission "Hai Kidnapping: Prisoner Roleplay"
-	name `Enslave Hai: "prison" cruise`
-	job
-	repeat
-	description "A group of <bunks> Hai want to roleplay as human criminals. Lock them in a brig and give them to the Devil-Run gang on <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
-	passengers 2 7
-	illegal -1
-	to offer
-		random < 25
-		"reputation: Pirate" > 0
-		"combat rating" > 1100
-		"hai slave prereq" < 1
-	source
-		attributes hai
-	destination
-		planet Freedom Stormhold "Deadman's Cove"
-	on offer
-		require "Brig"
-	on visit
-		dialog phrase "generic passenger on visit"
-	on complete
-		payment 135000 800
-		dialog "The Hai get a true prison experience as slavers drag them away to the Devil-Run gang for processing."
-
-mission "Hai Kidnapping: Transport"
-	name `Enslave Hai: fake transport`
-	job
-	repeat
-	description "A group of <bunks> Hai want a trip in Hai space. Lock them in a brig and give them to the Devil-Run gang on <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
-	passengers 2 7
-	illegal -1
-	source
-		attributes hai
-	destination
-		planet Freedom Stormhold "Deadman's Cove"
-	to offer
-		random < 25
-		"reputation: Pirate" > 0
-		"combat rating" > 1100
-		"hai slave prereq" < 1
-	on offer
-		require "Brig"
-	on visit
-		dialog phrase "generic passenger on visit"
-	on stopover
-		dialog "The Hai are not pleased when you force them into your brig at gunpoint."
-	on complete
-		payment 135000 800
-		dialog "The Hai shout obscenities in their own language as they're dragged in chains to the Devil-Run gang for processing."
-
 
 mission "Slave Transport [0]"
 	name "Transfer slaves to <planet>"
