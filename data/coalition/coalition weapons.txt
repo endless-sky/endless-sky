@@ -286,7 +286,7 @@ outfit "Ion Hail Turret"
 		"inaccuracy" 3
 		"turret turn" 4.2
 		"velocity" 12
-		"reload" 13
+		"reload" 15
 		"burst reload" 3
 		"burst count" 5
 		"firing energy" 48
@@ -306,8 +306,8 @@ outfit "ion hail"
 		"random lifetime" 4
 		"hit force" 1
 		"shield damage" 12
-		"hull damage" 4.5
-		"ion damage" .275
+		"hull damage" 5
+		"ion damage" .32
 
 
 outfit "Ion Rain Gun"
