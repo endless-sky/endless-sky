@@ -392,6 +392,20 @@ License: CC-BY-SA-3.0
 Comment: Derived from works by Rob Lavinsky (under the same license).
 
 Files:
+ images/star/m-brown-dwarf*
+Copyright: NASA
+License: public-domain
+ From NASA, and therefore in the public domain because they were created by
+ government employees while doing work for the government.
+
+Files:
+ images/star/neutron-star-purple*
+Copyright: None; CC0 (Public Domain)
+License: None; CC0 (Public Domain)
+Comment: Gimping by NomadicVolcano based on Photoshopping by Daniel Molybdenum (https://www.flickr.com/photos/165445115@N07/48756086492) based on NASA simulations.
+
+
+Files:
  images/land/badlands0*
  images/land/badlands1*
  images/land/badlands2*
