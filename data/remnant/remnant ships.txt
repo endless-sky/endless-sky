@@ -1294,6 +1294,7 @@ ship "Phoenix"
 	description "The Phoenix is a test platform version of the Vulture. It is not a ship meant to be purchased in its current form. It is basically a vulture with an extra several hundreds of tons of outfit and engine space for testing purposes."
 
 
+
 ship "Palpebrata"
     plural "Palpebratas"
     sprite "ship/palpebrata"
@@ -1302,7 +1303,7 @@ ship "Palpebrata"
         category "Heavy Warship"
         licenses
             "Remnant Capital"
-        cost 45000000
+        "cost" 45000000
         "shields" 45200
         "hull" 26500
         "required crew" 51
