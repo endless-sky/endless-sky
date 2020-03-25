@@ -551,12 +551,69 @@ system "Deep Space 19M2"
 			distance 577
 			period 68.3166
 
+system "Deep Space 19M5"
+	pos -1861 -273
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 851
+	belt 1977
+	link "Devil-Hide"
+	asteroids "small rock" 52 1.974
+	asteroids "medium rock" 55 1.484
+	asteroids "large rock" 40 1.75
+	asteroids "small metal" 68 1.75
+	asteroids "medium metal" 186 1.638
+	asteroids "large metal" 124 1.092
+	minables iron 104 2.79327
+	minables platinum 64 2.79327
+	minables silicon 50 1.77981
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	object
+		sprite star/neutron-star-purple
+		distance 49.335
+		period 18.0618
+		offset 180
+	object
+		sprite planet/rock10-b
+		distance 1169.47
+		period 616.78
+	object
+		sprite planet/gas1-b
+		distance 3139.51
+		period 2141.12
+		object
+			sprite planet/lava0
+			distance 241
+			period 18.4411
+		object
+			sprite planet/dust1-b
+			distance 366
+			period 34.5131
+		object
+			sprite planet/titan-b
+			distance 471
+			period 50.3841
+		object
+			sprite planet/dust5-b
+			distance 577
+			period 68.3166
+
 system "Devil-Hide"
 	pos -1775 -220
 	government "Pirate (Devil-Run Gang)"
 	haze _menu/haze-black
 	habitable 999
 	belt 5000
+	link "Deep Space 19M5"
 	asteroids "small rock" 2 4.4226
 	asteroids "medium rock" 16 2.7594
 	asteroids "large rock" 19 4.4604

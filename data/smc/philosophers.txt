@@ -52,6 +52,10 @@ event "Liberated Philosopher's Paradise"
 		
 		add fleet "Philosopher's Paradise Miners" 3000
 		add fleet "Large Friendly Unfettered" 2000
+	system "Deep Space 19M5"
+		government "Philosophers"
+		add fleet "Philosopher's Paradise Miners" 2000
+		add fleet "Large Friendly Unfettered" 4000
 	planet "Philosopher's Paradise"
 		description `Over the past century, a cubic kilometer of this moon has been hollowed out and filled with corridors and cavernous rooms. There is a city of over a hundred thousand people whose lives have been focused on science since their ancestors were first brought here a hundred twenty years ago. Now Korath, Hai, and humans live here working side-by-side. Once they were slaves to a criminal organization, and their story brought the Hai and humans to the brink of war. Fortunately, a resourceful pilot from New Boston averted catastrophe and freed Philosopher's Paradise.`
 		spaceport `A cavernous room connects several large hanger bays; this served as a communal area for pirates. You can see a fighting ring, empty mounts for battle trophies, and bloody spikes that once held pirate victims. There is still extensive damage from the invasion, but the denizens are slowly cleaning it up. Corridors lead downward from the spaceport to living areas, and you can see shops being built. It seems the Philosophers are preparing to greet regular visitors.`
