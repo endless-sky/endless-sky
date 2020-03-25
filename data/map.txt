@@ -23587,8 +23587,6 @@ system "Ultima Thule"
 	trade Medical 732
 	trade Metal 417
 	trade Plastic 360
-	fleet "Small Human Merchants (Hai)" 15000
-	fleet "Large Human Merchants (Hai)" 20000
 	object
 		sprite star/f0
 		period 10
