@@ -19,7 +19,6 @@ Version 0.9.12:
       * There are now more large passenger jobs in human space to balance out with the abundance of large cargo jobs. (@MasterOfGrey)
       * Added new Remnant outfits, an afterburner and a turret, to be used in future missions. (@Zitchas, images from @beccabunny)
       * Added a new Heliarch turret, the Ion Hail Turret. (@Arachi, images from @beccabunny)
-    * Missions:
     * Balance:
       * Slightly increased the hull and ion damage of the Ion Rain Gun. (@Arachi)
       * Reduced the outfit space requirement of solar panels to make them more attractive to use. (@Zitchas, @Amazinite)
@@ -37,7 +36,6 @@ Version 0.9.12:
     * Automatic conditions are now updated daily instead of only on landing. (@petervdmeer)
     * The flagship system and planet are now automatic condition variables. (@petervdmeer)
     * Negative shield/hull energy and shield/hull fuel will no longer block the ability to repair. (@Amazinite)
-  * User interface:
   * Under the hood:
     * Organized the game data into subfolders based off of factions and species. (@Amazinite)
 
