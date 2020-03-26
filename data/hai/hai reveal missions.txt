@@ -156,12 +156,12 @@ mission "leaks 1A unfettered A"
 			`	She shakes her head and wrinkles her nose with a look of distaste, "Some marauder came here just yesterday, posing as a trader to investigate the rumours. We thought the Hai had means of keeping them out but this one snuck in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
 			`	She sighs deeply, "Everyone is just a bit shaken and distrustful at the moment."`
 			`	"Oh that's awful!"
-			`	She nods, "This is why we're all wearing pink, just a little show of local solidarity."
+			`	She nods, "This is why we're all wearing pink, just a little show of local solidarity."`
 			goto main
 			label pink
-			`	A sad smile crosses her face and her expression goes sombre as she explains, "A pirate marauder snuck down onto the planet recently, stole a Geocoris and kidnapped a number of Hai, probably into slavery. Everyone is a bit shaken up so the locals are wearing pink in solidarity, and so we're not mistaken for a security risk."
+			`	A sad smile crosses her face and her expression goes sombre as she explains, "A pirate marauder snuck down onto the planet recently, stole a Geocoris and kidnapped a number of Hai, probably into slavery. Everyone is a bit shaken up so the locals are wearing pink in solidarity, and so we're not mistaken for a security risk."`
 			label main
-			`	"Unfortunately it's taking a while for them to redistribute an appropriately resourced security force thanks to the Unfettered."
+			`	"Unfortunately it's taking a while for them to redistribute an appropriately resourced security force thanks to the Unfettered."`
 			choice
 				`	"That is a serious problem." (If you already know about them.)`
 				`	"Who are the Unfettered?" (Go and find out.)`
@@ -305,7 +305,7 @@ mission "leaks tour 4"
 		conversation
 			`After looking around Cloudfire for some time you stop in the spaceport for a moment to absorb everything you've seen. A screen is playing through news on the wall nearby and your ears suddenly perk up at the word "marauder".`
 			`	"Yesterday a marauder has terrorised the inhabitants of Allhome. They arrived by posing as a trader to investigate the rumours. Hai security failed to identify the danger and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
-			`	At a table nearby you hear a Hai staffmember exclaim, "Oh that's awful!"
+			`	At a table nearby you hear a Hai staffmember exclaim, "Oh that's awful!"`
 			`	The rumours must be spreading further by the day you think, no doubt something will soon have to be done.`
 			`	This thought has no sooner crossed your mind when your solitude is interrupted by a small group of somewhat official-looking Hai.`
 			`	"Are you Captain <Last>?" one of them asks you, "Don't worry you're not in trouble or anything."`
@@ -394,9 +394,9 @@ mission "leaks response 2"
 			`	He offers you a genuine smile as he takes his seat.`
 			label sit
 			`	You take your seat opposite him and you get down to business. You explain how the Hai have proposed you be their official contact point for humanity on account of your fame from the war.`
-			`	He asks a few questions for clarity and when you're done he requests if you'd kindly wait for a moment while he makes a call. It is a lengthy wait, and at one point an aide comes in and offers you refreshments while deliberations continue elsewhere. Much to your surprise the fruity beverage is actually quite light and not too sweet, reminding you briefly that this is actually the world where your major foods originally evolved. 
+			`	He asks a few questions for clarity and when you're done he requests if you'd kindly wait for a moment while he makes a call. It is a lengthy wait, and at one point an aide comes in and offers you refreshments while deliberations continue elsewhere. Much to your surprise the fruity beverage is actually quite light and not too sweet, reminding you briefly that this is actually the world where your major foods originally evolved.`
 			`	Eventually Mr Yang returns, "So sorry for that, I hope you were looked after suitably while you waited."`
-			`	Once you nod your assent he continues, "Well, obviously the Republic knows about the Hai, but for the moment our official line is that the government does not trade in rumours. However, clearly an appropriate response is needed. I have been informed that Republic Intelligence has gone through official channels to brief the Free Worlds Council just yesterday. They have demanded that they have a trained diplomatic representative along for any decisions. This is already standard practice for the Syndicate. If you are willing, I will come with you, and we shall meet two individuals known as Katya and Alastair on Deep and Foundry respectively. I believe you already know them?`
+			`	Once you nod your assent he continues, "Well, obviously the Republic knows about the Hai, but for the moment our official line is that the government does not trade in rumours. However, clearly an appropriate response is needed. I have been informed that Republic Intelligence has gone through official channels to brief the Free Worlds Council just yesterday. They have demanded that they have a trained diplomatic representative along for any decisions. This is already standard practice for the Syndicate. If you are willing, I will come with you, and we shall meet two individuals known as Katya and Alastair on Deep and Foundry respectively. I believe you already know them?"`
 			`	You indicate as such.`
 			`	"Excellent, in that case we should go to Deep first for speed, shall we be off?"`
 				accept
@@ -406,7 +406,7 @@ mission "leaks response 2"
 			`	He smiles warmly, "Apologies Captain <Last>, do excuse the cloak and dagger, but in the current media climate you and I are both too well known to be seen meeting without causing the rumour mill to grind out a new story."`
 			`	"Now, allow me to introduce you to my protege Terry Adrianopolous, he will be accompanying you as the Syndicate representative."`
 			`	The young woman goes from calculating to gregarious in the blink of an eye as your attention shifts to her. She's pleasant and approachable, and very articulate, but from your brief glimpse beforehand you have no doubt she's cut from the sort of cloth that makes her future CEO material. You resolve not to get on her bad side if at all possible.`
-			`"Oh by the way," says Alastair, pausing briefly as he turns to depart, "The navy and my security forces are working jointly to get some of our message relays up in the far north to link through Ultima Thule. The pirates are wont to destroy them whenever they find them but we should be able to rely on at least basic communication to get through if you need it. Rather than flying back and forth for literally every question. That's all."
+			`"Oh by the way," says Alastair, pausing briefly as he turns to depart, "The navy and my security forces are working jointly to get some of our message relays up in the far north to link through Ultima Thule. The pirates are wont to destroy them whenever they find them but we should be able to rely on at least basic communication to get through if you need it. Rather than flying back and forth for literally every question. That's all."`
 			`After which he finally, actually, departs for good.`
 	on visit
 		dialog phrase "generic stopover on visit"
@@ -427,7 +427,7 @@ mission "leaks response 2"
 			`	"Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is other than the truth, at least not while still holding to the claim of being a representative government," explains Mr Yang.`
 			`	He checks the date, "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months or lose so much credibility as to compromise elctoral stability, the actual time limit is probably sooner."
 			choice
-				`Would that be so bad?`
+				`"Would that be so bad?"`
 			`"It is always bad to be forced into acknowledging a secret, if we act sooner we may control the manner of that secret's release."`
 			`Sayari looks at you, "We will have to come up with a plan, and quickly, but for the moment may I ask a favour of the war hero in the room? Please meet up with the security forces converging on Allhome, help them route the pirates back to the other side of the wormhole it will buy us some breathing space and some options."`
 			`It is so hard to say "no" to a Hai and their cute squirrelly features.`
