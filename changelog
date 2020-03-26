@@ -1,3 +1,46 @@
+Version 0.9.12:
+  * Bug fixes:
+    * Typo fixes. (@Amazinite, @Arachi, @petervdmeer, @oo13, @Proont, @tehhowch, @TheMarksman-ES, @waterhouse, @Zitchas)
+    * The Penguin now requires a Remnant license to purchase. (@Zitchas)
+    * Out of system ships can no longer be selected in the outfitter and shipyard. (@tehhowch)
+    * Pressing D to depart will no longer also immediately deploy fighters on launch. (@petervdmeer)
+    * Rescue Miners 2 will no longer be blocked if another mission offers. (@Amazinite)
+    * Governments now have the same attitude toward the " Hai " government as they do the "Hai" government. (@NomadicVolcano)
+    * No longer able to ask the Remnant about the Ka'het before having passed the blood test. (@beccabunny)
+    * Max depreciation age now accounts for the 7 day grace period. (@Amazinite)
+    * The Wanderer outfit license is now granted when you return to Wanderer space instead of while in Hai space. (@Amazinite)
+  * Game content:
+    * New content:
+      * New variant of the mystery deliver jobs that has unique dialog for station destinations. (@Anarchist2)
+      * Remnant ships now have unique leak effects. (@Zitchas)
+      * Missions in Hai space where the player helps a new Hai captain. (@Arachi, @Janaszar)
+      * Added a new person ship. (@Zitchas)
+      * Added a new, extremely rare and valuable minable asteroid. (@Arachi)
+      * There are now more large passenger jobs in human space to balance out with the abundance of large cargo jobs. (@MasterOfGrey)
+      * Added new Remnant outfits, an afterburner and a turret, to be used in future missions. (@Zitchas, images from @beccabunny)
+      * Added a new Heliarch turret, the Ion Hail Turret. (@Arachi, images from @beccabunny)
+    * Missions:
+    * Balance:
+      * Slightly increased the hull and ion damage of the Ion Rain Gun. (@Arachi)
+      * Reduced the outfit space requirement of solar panels to make them more attractive to use. (@Zitchas, @Amazinite)
+      * Reduced the number of gun ports on the Kestrel (More Weapons) from 18 to 12. (@Naminson)
+    * Other:
+      * Kor Mereti will now use Wanderer hails after becoming friendly. (@Amazinite)
+      * The Pug in Pug Iyik are now a separate government from the Pug in Deneb. (@Amazinite)
+      * Hai space is now patrolled by Hai ships with scanners. (@NomadicVolcano)
+      * Added a blue flame to the base of the Fire-Lance projectile sprite to give it a blow-torch effect. (@Amazinite)
+      * Solar panels are now used by various human ships. (@Amazinite)
+      * Tweaked the description of the Ka'het Primary Cooling. (@beccabunny)
+      * Renamed the Carrier and Cruiser licenses to the Navy Carrier and Navy Cruiser licenses. (@Zitchas)
+  * Game mechanics:
+    * Added a "solar heat" attribute that generates heat based on the type of and distance to the system star(s). (@Amazinite)
+    * Automatic conditions are now updated daily instead of only on landing. (@petervdmeer)
+    * The flagship system and planet are now automatic condition variables. (@petervdmeer)
+    * Negative shield/hull energy and shield/hull fuel will no longer block the ability to repair. (@Amazinite)
+  * User interface:
+  * Under the hood:
+    * Organized the game data into subfolders based off of factions and species. (@Amazinite)
+
 Version 0.9.11:
   * Big changes:
     * Added the Graveyard, a region near the Ember Waste, and its inhabitants. (@beccabunny)
