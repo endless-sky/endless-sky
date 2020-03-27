@@ -58,6 +58,23 @@ event "label hai space"
 
 
 
+mission "Assisting Hai"
+	assisting
+	repeat
+	to offer
+		random < 27
+	source
+		government "Hai"
+		not attributes "automaton"
+	on offer
+		payment 30000
+		conversation
+			`Knowing you risked your life to save the <origin>, the captain gives you <payment>.`
+				decline
+	destination "Hai-home"
+
+
+
 mission "First Contact: Unfettered"
 	landing
 	source
