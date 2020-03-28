@@ -25311,9 +25311,9 @@ planet Ahr
 
 planet Aksaray
 	attributes "moon" uninhabited
-	landscape land/nasa12
-	description `At first glance, Aksaray appears to be a fairly generic moon formed from eons of dust and debris compacted into a tight ball by continuous gravitational pressure. What is not so unique is the presence of almost perfectly pyramidical piles of regolith scattered across the world. A query to an orbiting Remnant satelite states that these are remote mining sites collecting regolith for mineral processing. `
-	description `	A quick glance at your navigational computer's economic database indicates that all the minerals present in this sort of regolith are extremely common across the galaxy, and are of very low value.`
+	landscape land/enceladus_3
+	description `At first glance, Aksaray appears to be a fairly generic moon formed from eons of dust and debris compacted into a tight ball by continuous gravitational pressure. What is not so commonplace is the presence of almost perfectly pyramidical piles of regolith scattered across the world. A query to an orbiting Remnant satelite states that these are remote mining sites collecting regolith for mineral processing. `
+	description `	A brief consultation of your navigational computer's economic database, however, indicates that all the minerals present in this sort of regolith are extremely common across the galaxy, and are of very low value.`
 	security 0
 	government Uninhabited
 	
@@ -25700,11 +25700,12 @@ planet Canyon
 		fleet "Small Syndicate" 5
 
 planet Capitoline
-	attributes "requires: gaslining" "gas giant" uninhabited
-	landscape land/nasa8
-	description `The swirling atmosphere of Capitoline are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
-	description `At present, Capitoline is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Aventine.`
+	attributes "lava" uninhabited
+	landscape land/pia21553_2
+	description `The harsh landscape of Capitoline is a demonstration of the reshaping forces of nature at work. Lava flows and eruptions are commonplace; and seismic activity is daily occurance. As a result, the surface is of comparatively recent origin. Despite this, you can spot a small survey station in the middle of an old lava field. In response to your landing computer's query, the transponder issues a terse statement about being an automated scientific station, and that defense systems are active.`
+	description `	Standing on the surface over the horizon from the station, feeling planet rumble beneath you, it seems also as if you can pick up a subtle pulse in the vibrations. The impression never eally goes away, but neither you nor yoru sensors can determine an actual pattern.`
 	security 0
+	government Uninhabited
 
 planet "Carbuncle Station"
 	attributes north station research
@@ -26144,7 +26145,7 @@ planet "Ember Wormhole"
 planet Eminonu
 	attributes uninhabited
 	landscape land/canyon4
-	description `The notably green rocks of Eminonu demonstrate their remarkably high copper content and the historic presence of atmospheric water. Scattered vegetal debris suggests that this world was until recently some variety of garden world, albeit likely a cold one. Now, however, the vast majority of moisture has vanished and the ambient temperatures are far too cold for even these lychens to persist.`
+	description `The notably green rocks of Eminonu demonstrate their remarkably high copper content and the historic presence of atmospheric water. Scattered vegetal debris suggests that this world was until recently some variety of garden world, albeit likely a cold one. Now, however, the vast majority of moisture is locked in icefields and the ambient temperatures are far too cold for even these hardy lychens to persist.`
 	security 0
 	government Uninhabited
 
@@ -26179,9 +26180,10 @@ planet "Esperaktu Station"
 
 planet "Esquiline"
 	attributes "requires: gaslining" "gas giant" uninhabited
-	landscape land/nasa8
+	landscape land/clouds_00
 	description `Esquiline's wispy skies billow with raging winds and continuous storms. Although few craft can penetrate its depths, the Remnant have discovered that its upper atmosphere can be a useful source of certain chemicals. As such, aeroscoop drones dipping into its atmosphere for shipments to Aventine are a regular occurance.`
 	security 0
+	government Uninhabited
 
 planet "Factory of Eblumab"
 	attributes arach factory mining
@@ -26934,8 +26936,8 @@ planet "Kraken Station"
 planet Kumkapi
 	attributes "requires: gaslining" "gas giant" uninhabited
 	landscape land/nasa13
-	description `The whipping winds of Kumkapi are a prime example of how the inner mechanics of gas giants are poorly understood: When it was initially discovered by the Remnant, its winds spun around the globe at speeds far in excess of what they should have, as if they had recently been subject to a massive acceleration.`
-	description `Over the subsequent centuries the winds have been steadily slowing towads normally predicted velocities, but at their current rate it will be millenia before they reach them.`
+	description `The whipping winds of Kumkapi are a prime example of how the inner mechanics of gas giants are poorly understood: When it was initially discovered by the Remnant, its winds spun around the globe at speeds far in excess of what astrophysical models predicted, as if they had recently been subject to a massive acceleration.`
+	description `Over the subsequent centuries the winds have been imperceptably slowing towads normally predicted velocities, but at their current rate it will be many millenia before they reach them.`
 	security 0
 	government Uninhabited
 
@@ -27753,11 +27755,12 @@ planet Quicksilver
 		fleet "Small Syndicate" 5
 
 planet Quirinal
-	attributes "requires: gaslining" "gas giant" uninhabited
-	landscape land/nasa8
-	description `The swirling atmosphere of Quirinal are filled with strange compounds and colourful gases. It provides a variety of useful elements for the remnant, but is otherwise unremarkable.`
-	description `At present, Quirinal is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Aventine.`
+	attributes "lava" uninhabited
+	landscape land/pia21553_1
+	description `While otherwise resembling a fairly typical moon, Quirinal is distinctive for the large lava rifts that seem to be an inexplicably constant feature on the surface. For lack of a better description, it looks like the moon was struck a glancing blow by some sort of massive force, and the resulting chasm has been oozing lava ever since.`
+	description `Despite the astrophysical anomalies, there appears to be no current activity on the surface.`
 	security 0
+	government Uninhabited
 
 planet Rand
 	attributes "dirt belt" mining
@@ -28046,10 +28049,11 @@ planet Serpens
 
 planet Servian
 	attributes "requires: gaslining" "gas giant" uninhabited
-	landscape land/nasa8
-	description `The clouds of Servian swirl in deceptive calmness around the outer limits of the system. Underneath the peaceful exterior, violent storms and extreme turbulence are the norm. While the Remnant initially sought to discover what was below the storms, they finally ceased their attempts after a lengthy exploration program involving twenty successive probes and three early gascrafts. While every ship was destroyed before reaching the depths of the planet, it nontheless proved a valuable testing ground for testing their early hulls and helped refine their ship technology.`
+	landscape land/nasa18
+	description `The clouds of Servian swirl in deceptive calmness around the outer limits of the system. Underneath the peaceful exterior, violent storms and extreme turbulence are the norm. While the Remnant initially sought to discover what was below the storms, they finally ceased their attempts after a lengthy exploration program involving twenty successive probes and three early gascrafts. While every ship was destroyed before reaching the depths of the planet, it nontheless proved a valuable testing ground for their early hulls, and helped refine their ship technology.`
 	description `At present, Servian is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in search of trace gasses and elements for use in the shipyards of Aventine.`
 	security 0
+	government Uninhabited
 
 planet "Sessiliki Far"
 	attributes korath station
@@ -28902,8 +28906,7 @@ planet Xerolophos
 
 planet Yedikule
 	attributes "moon" uninhabited
-	landscape land/enceladus_4
-	landscape land/nasa12
+	landscape land/nasa16
 	description `The swirling atmosphere of Yedikule is heavily dominated by the presence of xenon and certain other chemicals, lending the gas giant its blue coloration. It is a useful source of gases for the Remnant.`
 	description `At present, Yedikule is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in to collect xenon for use in research projects on Viminal.`
 	security 0
