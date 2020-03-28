@@ -37,7 +37,7 @@ phrase "ka'het"
 	word
 		" "
 	phrase
-		"builder syllabe"
+		"ka'het syllabe"
 	word
 		"rii"
 		"ri"
