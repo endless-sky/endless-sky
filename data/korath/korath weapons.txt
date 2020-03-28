@@ -636,7 +636,7 @@ outfit "Nova Turret"
 	"nova device capacity" 16
 	# Massive energy per shot; Korath don't have batteries and
 	# compensate using batteries in outfits.
-	"energy capacity" 1600
+	"energy capacity" 1900
 	weapon
 		sprite "projectile/nova device"
 			"frame rate" 2
