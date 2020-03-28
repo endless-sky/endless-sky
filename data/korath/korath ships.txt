@@ -1637,3 +1637,70 @@ ship "Korath Ravager" "Korath Ravager (Grab-Strike Banisher)"
 	turret "Korath Grab-Strike"
 	turret "Korath Banisher"
 	turret "Korath Grab-Strike"
+
+ship "Korath Dredger"
+	sprite "ship/dredger"
+	thumbnail "thumbnail/dredger"
+	attributes
+		category "Heavy Warship"
+		"cost" 19370000
+		"shields" 35000
+		"hull" 37000
+		"required crew" 239
+		"bunks" 353
+		"mass" 1353
+		"drag" 16
+		"heat dissipation" .55
+		"fuel capacity" 1000
+		"cargo space" 410
+		"outfit space" 826
+		"weapon capacity" 248
+		"engine capacity" 185
+		
+		# Capabilities of built-in factory and ore processor:
+		"ramscoop" 2
+		"hull repair rate" 0.5
+		"hull energy" 0.5
+		"hull heat" 1.5
+		
+		weapon
+			"blast radius" 300
+			"shield damage" 5600
+			"hull damage" 2800
+			"hit force" 9000
+	outfits
+		"Korath Grab-Strike" 2
+		"Korath Warder" 2
+		"Korath Digger" 2
+		"Korath Heaver"
+		
+		"Systems Core (Large)"
+		"Systems Core (Small)"
+		"Triple Plasma Core"
+		"Generator (Furnace Class)"
+		"Small Heat Shunt" 2
+		"Large Heat Shunt" 2
+		"Fuel Processor" 3
+		"Korath Repeater Rifle" 190
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+
+	turret -37 -155 "Korath Digger"
+	turret 0 -155 "Korath Warder"
+	turret 37 -155 "Korath Digger"
+	turret -96 0 "Korath Grab-Strike"
+	turret 96 0 "Korath Grab-Strike"
+	turret -80 130 "Korath Warder"
+	turret 80 130 "Korath Heaver"
+	engine -31 171 .5
+	engine 0 182 .7
+	engine 31 171 .5
+	fighter 0 89
+	fighter 51 59
+	fighter -51 59
+	fighter 0 -42
+	fighter 0 16
+	"final explode" "final explosion large"
+	description "The Korath Dredger is a mining and ore processing ship the Korath Exiles send deep into enemy territory to gather resources and return to home systems for manufacturing. In planetary-scale raids, these ships are used as fighter-carriers and as cargo ships to haul loot."
