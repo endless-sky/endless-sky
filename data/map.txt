@@ -28469,8 +28469,8 @@ planet Thunder
 
 planet Tibernia
 	attributes "ice moon" uninhabited
-	landscape land/nasa8
-	description `Tibernia is notable for being a perfect example of a classic ice planet. Unlike most planets, it is actually a sphere; and its surface is remarkably smooth. Many have speculated that it is artificial, but no-one has managed to confirm it as of yet.`
+	landscape land/enceladus_3
+	description `Tibernia is notable for being a perfect example of a classic ice planet. Unlike most planets, it is actually a sphere; and its surface is remarkably smooth with little more than minor surface craters. Many have speculated that it is artificial, but so far no one has found conclusive evidence of this.`
 	security 0
 	government Uninhabited
 
@@ -28905,7 +28905,7 @@ planet Xerolophos
 	government Uninhabited
 
 planet Yedikule
-	attributes "moon" uninhabited
+	attributes  "requires: gaslining" "gas" "moon" uninhabited
 	landscape land/nasa16
 	description `The swirling atmosphere of Yedikule is heavily dominated by the presence of xenon and certain other chemicals, lending the gas giant its blue coloration. It is a useful source of gases for the Remnant.`
 	description `At present, Yedikule is mostly ignored except by the atmospheric scoop drones that dip into its upper reaches in to collect xenon for use in research projects on Viminal.`
