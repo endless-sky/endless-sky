@@ -81,6 +81,30 @@ outfit "Korath Banisher"
 		"hit force" 40
 	description "The Korath like to keep their enemies close... but not too close."
 
+outfit "Korath Expeller"
+	category "Guns"
+	cost 819000
+	thumbnail "outfit/expeller"
+	"mass" 25
+	"outfit space" -25
+	"weapon capacity" -25
+	"gun ports" -1
+	weapon
+		sprite "projectile/expeller"
+			"frame rate" 60
+		sound "banisher"
+		"hit effect" "banisher impact"
+		"inaccuracy" .4
+		"velocity" 472
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 2.9
+		"firing heat" 3.6
+		"shield damage" 2.6
+		"hull damage" .85
+		"hit force" 25
+	description "This smaller version of the Banisher is designed for fighters to push vessels away from Korath carriers."
+
 effect "banisher impact"
 	sprite "effect/banisher impact"
 		"random start frame"
@@ -768,11 +792,11 @@ effect "korath inferno hit"
 	"random velocity" 5
 	"velocity scale" .005
 
-outfit "Korath Digger"
+outfit "Korath Digger Turret"
 	category "Turrets"
 	cost 509000
-	thumbnail "outfit/korath digger"
-	"mass" 19
+	thumbnail "outfit/korath digger turret"
+	"mass" 21
 	"outfit space" -21
 	"weapon capacity" -21
 	"turret mounts" -1
@@ -794,6 +818,31 @@ outfit "Korath Digger"
 		"hull damage" 5.1
 		"disruption damage" .045
 	description `When the Korath Exiles needed a cheap mining laser for their large vessels, they turned to an ancient but robust design. Updated with modern engineering, the mild shield disruption lets it damage ships as well, when multiple Diggers are used at once. Despite this, the weapon is horrendously inefficient compared to modern alternatives.`
+
+outfit "Korath Digger"
+	category "Guns"
+	cost 419000
+	thumbnail "outfit/korath digger"
+	"mass" 22
+	"outfit space" -22
+	"weapon capacity" -22
+	"energy capacity" 216
+	"gun ports" -1
+	weapon
+		sprite "projectile/korath digger"
+			"frame rate" 20
+		sound "korath digger"
+		"hit effect" "korath digger hit"
+		"inaccuracy" .5
+		"velocity" 400
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 3.6
+		"firing heat" 5.2
+		"shield damage" 1.1
+		"hull damage" 5.1
+		"disruption damage" .045
+	description `The basis for the design of a Korath Digger was an old turret. This one has been removed from its turret and supplemented with small batteries.`
 
 effect "korath digger hit"
 	sprite "effect/korath digger hit"

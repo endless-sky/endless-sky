@@ -181,7 +181,26 @@ ship "Korath Chaser"
 	explode "tiny explosion" 20
 	description "The Korath Chaser is a fighter carried by most of their capital ships."
 
+ship "Korath Chaser" "Korath Chaser (Expeller)"
+	outfits
+		"Korath Expeller"
+		
+		"Generator (Furnace Class)"
+		"Small Heat Shunt"
+		"Korath Repeater Rifle" 
+		
+		"Engines (Meteor Class)"
 
+ship "Korath Chaser" "Korath Chaser (Digger)"
+	outfits
+		"Korath Digger"
+		
+		"Generator (Furnace Class)"
+		"Small Heat Shunt"
+		"Korath Repeater Rifle" 
+		
+		"Thruster (Asteroid Class)"
+		"Steering (Asteroid Class)"
 
 ship "Korath Refuge"
 	sprite "ship/korath refuge"
@@ -1456,7 +1475,7 @@ ship "Korath Ravager"
 		"Nova Device Rack"
 		"Nova Device" 24
 		"Korath Inferno"
-		"Korath Digger" 4
+		"Korath Digger Turret" 4
 		
 		"Outfits Expansion"
 		"Systems Core (Large)"
@@ -1471,16 +1490,16 @@ ship "Korath Ravager"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 
-	turret -81 -116 "Korath Digger"
-	turret 81 -116 "Korath Digger"
+	turret -81 -116 "Korath Digger Turret"
+	turret 81 -116 "Korath Digger Turret"
 	turret 0 -109 "Nova Turret"
 	turret 0 -88 "Korath Warder"
 	turret -113 88 "Korath Grab-Strike"
 	turret 0 81 "Korath Inferno"
 	turret 113 88 "Korath Grab-Strike"
-	turret -113 113 "Korath Digger"
+	turret -113 113 "Korath Digger Turret"
 	turret 0 115 "Korath Warder"
-	turret 113 113 "Korath Digger"
+	turret 113 113 "Korath Digger Turret"
 	engine -114 146 .9
 	engine -52 149 .6
 	engine 52 149 .6
@@ -1495,7 +1514,7 @@ ship "Korath Ravager" "Korath Ravager (Heaver)"
 		"Nova Turret"
 		"Nova Device Rack" 2
 		"Nova Device" 32
-		"Korath Digger" 5
+		"Korath Digger Turret" 5
 		
 		"Systems Core (Large)"
 		"Triple Plasma Core"
@@ -1508,23 +1527,23 @@ ship "Korath Ravager" "Korath Ravager (Heaver)"
 		"Thruster (Comet Class)"
 		"Thruster (Stellar Class)"
 		"Jump Drive"
-	turret "Korath Digger"
-	turret "Korath Digger"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
 	turret "Nova Turret"
 	turret "Korath Warder"
 	turret "Korath Heaver"
-	turret "Korath Digger"
+	turret "Korath Digger Turret"
 	turret "Korath Heaver"
-	turret "Korath Digger"
+	turret "Korath Digger Turret"
 	turret "Korath Warder"
-	turret "Korath Digger"
+	turret "Korath Digger Turret"
 
 
 ship "Korath Ravager" "Korath Ravager (Double Inferno)"
 	outfits
 		"Korath Inferno" 2
 		"Korath Warder" 2
-		"Korath Digger" 6
+		"Korath Digger Turret" 6
 
 		"Outfits Expansion"
 		"Systems Core (Large)"
@@ -1538,23 +1557,23 @@ ship "Korath Ravager" "Korath Ravager (Double Inferno)"
 		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
-	turret "Korath Digger"
-	turret "Korath Digger"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
 	turret "Korath Inferno"
 	turret "Korath Warder"
-	turret "Korath Digger"
+	turret "Korath Digger Turret"
 	turret "Korath Warder"
-	turret "Korath Digger"
-	turret "Korath Digger"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
 	turret "Korath Inferno"
-	turret "Korath Digger"
+	turret "Korath Digger Turret"
 
 
 ship "Korath Ravager" "Korath Ravager (Grab-Strike Digger)"
 	outfits
 		"Korath Grab-Strike" 4
 		"Korath Warder" 2
-		"Korath Digger" 4
+		"Korath Digger Turret" 4
 
 		"Fuel Processor"
 		"Large Heat Shunt" 4
@@ -1568,20 +1587,20 @@ ship "Korath Ravager" "Korath Ravager (Grab-Strike Digger)"
 		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
-	turret "Korath Digger"
-	turret "Korath Digger"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
 	turret "Korath Grab-Strike"
 	turret "Korath Warder"
 	turret "Korath Grab-Strike"
 	turret "Korath Warder"
 	turret "Korath Grab-Strike"
-	turret "Korath Digger"
+	turret "Korath Digger Turret"
 	turret "Korath Grab-Strike"
-	turret "Korath Digger"
+	turret "Korath Digger Turret"
 
 ship "Korath Ravager" "Korath Ravager (Double Nova)"
 	outfits
-		"Korath Digger" 6
+		"Korath Digger Turret" 6
 		"Korath Warder" 2
 		"Nova Turret" 2
 		"Nova Device Rack" 6
@@ -1599,16 +1618,16 @@ ship "Korath Ravager" "Korath Ravager (Double Nova)"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
-	turret "Korath Digger"
-	turret "Korath Digger"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
 	turret "Korath Warder"
 	turret "Nova Turret"
-	turret "Korath Digger"
+	turret "Korath Digger Turret"
 	turret "Nova Turret"
-	turret "Korath Digger"
-	turret "Korath Digger"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
 	turret "Korath Warder"
-	turret "Korath Digger"
+	turret "Korath Digger Turret"
 
 # Low-tech Ravager
 ship "Korath Ravager" "Korath Ravager (Grab-Strike Banisher)"
@@ -1671,7 +1690,7 @@ ship "Korath Dredger"
 	outfits
 		"Korath Grab-Strike" 2
 		"Korath Warder" 2
-		"Korath Digger" 2
+		"Korath Digger Turret" 2
 		"Korath Heaver"
 		
 		"Systems Core (Large)"
@@ -1687,9 +1706,9 @@ ship "Korath Dredger"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 
-	turret -37 -155 "Korath Digger"
+	turret -37 -155 "Korath Digger Turret"
 	turret 0 -155 "Korath Warder"
-	turret 37 -155 "Korath Digger"
+	turret 37 -155 "Korath Digger Turret"
 	turret -96 0 "Korath Grab-Strike"
 	turret 96 0 "Korath Grab-Strike"
 	turret -80 130 "Korath Warder"
