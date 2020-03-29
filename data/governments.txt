@@ -140,7 +140,7 @@ government "Hai (Unfettered)"
 		"Hai" -.01
 		" Hai " -.01
 		"Wanderer" -.01
-		"Pug" -.01
+		"Pug (Wanderer)" -.01
 		"Merchant" -.01
 		"Kor Efret" -.01
 	"bribe" .02
