@@ -9,7 +9,7 @@ https://endless-sky.github.io
 The game's Steam forums
 Discord (invite: ZeuASSx)
 
-Programming
+Creator
   Michael Zahniser
   
 Developers
@@ -77,12 +77,25 @@ Proof Readers & Editors
 
 Mission & Story Creators
   Amazinite
+  Anarchist2
+  Arachi-Lover
+  beccaBunny
+  czartrak
+  Fzzr
+  Janaszar
+  LocalGod
+  MasterOfGrey
+  MessyMix
+  Petervdmeer
+  Pointedstick
+  UnfetteredOne
   Zitchas
 
 Thank you to all the following
 people on GitHub who have
 contributed to improving Endless
 Sky:
+  7even
   abenkovskii
   AdamKauffman
   akien-mga
@@ -91,9 +104,13 @@ Sky:
   alextd
   Alkallid
   AMDmi3
+  anarcat
   Anarchist2
   Arachi-Lover
-  BeccaBunny
+  Aurelite
+  barthalion
+  beccabunny
+  BlackVegetable
   Bladewood
   bojidar-bg
   Brick63
@@ -103,31 +120,41 @@ Sky:
   CyberShadow
   czartrak
   Darcman99
+  davidarcher
   davidwhitman
   db47h
+  DingusShingleton
   Disiuze
   dplepage
   DrBlight
   dreness
+  dufferzafar
   dzhu
   eflyon
-  Elysaen
+  elgeonmb
+  Elyssaen
   EndrosG
+  fcfort
+  Ferociousfeind
   flaviojs
   Fzzr
+  gecko-locator
   Gods-Righthand
   guillochon
   gunqqer
   Hacklin
   Hadron1776
+  har9862
   Hyugat
   ItsNickBarry
   jafdy
   Janaszar
-  jmhorsjus
+  jjhankins
+  jmhorjus
   jostephd
   jozef-mitro
   Jugosloven1612
+  KevinKorzekwa
   kilobyte
   kkuchta
   kozbot
@@ -136,46 +163,82 @@ Sky:
   Lineth
   LocalGod79
   Lorantine
+  LordInsane
+  Luckz
   luiges90
+  macfreek
   MageKing17
+  Mailaender
   MarcelineVQ
   MasterOfGrey
+  mattsoulanille
+  maxrd2
   MCOfficer
   MessyMix
+  MillerNerd
+  mimirzero
   mootootwo
+  mybuddymichael
   naehc
   Naminson
   Nescio0
+  nobodywasishere
   NomadicVolcano
   oo13
+  OverYrPaygrade
   PaulBlay
   perey
   petervdmeer
   ph2000
   ph2000bis
+  PhaedrusES
   pkubaj
+  plague006
+  pscamman
+  Rakete1111
+  realityforge
   redschalken
+  reizbar
   RestingImmortal
   retrue
   rlane
+  Rob59er
+  rugk
   rzahniser
   schrauger
+  sdennie
   seanfahey
   sfiera
   solardawning
   SolraBizna
+  starscollide5
+  StrawberryDelite
+  strollcata
   Tadrix
+  tboby
   temtemy
   TheMarksman-ES
+  thenerdfreak
+  TheUnfetteredOne
   thomasballinger
   Thunderforge
+  tiennou
+  timbennett
+  TJesionowski
+  tmbutterworth
   toilethinges
   TurkeyMcMac
+  Turtleroku
+  Vilhelm16
   Waffleship
+  Waladil
   warp-core
   waterhouse
+  whismerhill
+  willbeason
   wjp
   Wrzlprnft
+  YellowApple
   ZBok
   Zitchas
   zwparchman
