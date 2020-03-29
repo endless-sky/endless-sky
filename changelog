@@ -1,6 +1,6 @@
 Version 0.9.12:
   * Bug fixes:
-    * Typo fixes. (@Amazinite, @Arachi, @petervdmeer, @oo13, @Proont, @tehhowch, @TheMarksman-ES, @waterhouse, @Zitchas)
+    * Typo fixes. (@Amazinite, @Arachi, @Naminson, @petervdmeer, @oo13, @Proont, @tehhowch, @TheMarksman-ES, @waterhouse, @Zitchas)
     * The Penguin now requires a Remnant license to purchase. (@Zitchas)
     * Out of system ships can no longer be selected in the outfitter and shipyard. (@tehhowch)
     * Pressing D to depart will no longer also immediately deploy fighters on launch. (@petervdmeer)
@@ -15,7 +15,7 @@ Version 0.9.12:
       * Remnant ships now have unique leak effects. (@Zitchas)
       * New missions in Hai space where the player helps a Hai captain who has just bought her first ship. (@Arachi, @Janaszar)
       * Added a new person ship. (@Zitchas, @beccabunny)
-      * Added a new, extremely rare and valuable minable asteroid. (@Arachi)
+      * Added a new, extremely rare and valuable minable asteroid. (@Arachi, @beccabunny)
       * There are now more large passenger jobs in human space to balance out with the abundance of large cargo jobs. (@MasterOfGrey)
       * Added new Remnant outfits, an afterburner and a turret, to be used in future missions. (@Zitchas, @beccabunny)
       * Added a new Heliarch turret, the Ion Hail Turret. (@Arachi, @beccabunny)
