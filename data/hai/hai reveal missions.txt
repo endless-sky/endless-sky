@@ -98,7 +98,7 @@ mission "event: hai secret leaks B"
 			`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognise shield beetles hammering away at each other.`
 			`	When it's finished the young man, who is very well presented, but clearly has a bit of the paranoid about him that is plain to see even through a screen is encouraged to talk about where he got the footage. he talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war. A war waged by an alien species known as the 'Hai'.`
 			`	You suspect it might be time to go visit your Hai friends again and see what's going on.`
-				fail
+			fail
 
 #Both of these accept automatically with either secret leaks scenarios above - the non-relevant mission then fails based on whether you get the text for knowing about the Hai or not.
 
@@ -141,7 +141,7 @@ mission "leaks 1A unfettered A"
 	source
 		government "Hai"
 		not planet "Cloudfire"
-		not planet "Hai-Home"
+		not planet "Hai-home"
 	destination "Cloudfire"
 	to offer
 		has "leaks 1A: visit the hai: done"
@@ -169,7 +169,7 @@ mission "leaks 1A unfettered A"
 			`	Your conversation is interrupted suddenly by a small group of somewhat official-looking Hai.`
 			`	"Are you Captain <Last>?" one of them asks you, "Don't worry you're not in trouble or anything."`
 			`	You nod your affirmation.`
-			`	"Your reputation precedes you Captain, if you have any stake in the current information crisis please head directly to Hai-Home. Someone would very much like to talk to you. As a person of note, you are presently being treated as an Envoy."`
+			`	"Your reputation precedes you Captain, if you have any stake in the current information crisis please head directly to Hai-home. Someone would very much like to talk to you. As a person of note, you are presently being treated as an Envoy."`
 			`	They leave without waiting for your agreement, but then, you did come here to see what was going on.`
 				decline
 			label rebels
@@ -184,16 +184,16 @@ mission "leaks 1A unfettered A"
 			`	It does not take long to realise that this conflict really is constant, even if the friendlier Hai on this side seem to be maintaining their defence without apparently taxing their civilisation to any great extent.`
 	
 	
-#This fires at the same time as leaks "1A unfettered A" and takes you to Hai-Home if you don't need to visit Cloudfire.
+#This fires at the same time as leaks "1A unfettered A" and takes you to Hai-home if you don't need to visit Cloudfire.
 mission "leaks 2A: envoy accepted"
-	name "Head directly to Hai-Home"
-	description "Go to Hai-Home, go directly to Hai-Home, do not pass Go or collect $200."
+	name "Head directly to Hai-home"
+	description "Go to Hai-home, go directly to Hai-home, do not pass Go or collect $200."
 	landing
 	source
 		government "Hai"
 		not planet "Cloudfire"
-		not planet "Hai-Home"
-	destination "Hai-Home"
+		not planet "Hai-home"
+	destination "Hai-home"
 	clearance
 	to offer
 		has "leaks 1A: visit the hai: done"
@@ -207,12 +207,12 @@ mission "leaks 2A: envoy accepted"
 	
 #This fires after you've visited Cloudfire to learn about the Unfettered
 mission "leaks 2B: envoy accepted"
-	name "Head directly to Hai-Home"
-	description "Go to Hai-Home, go directly to Hai-Home, do not pass Go or collect $200."
+	name "Head directly to Hai-home"
+	description "Go to Hai-home, go directly to Hai-home, do not pass Go or collect $200."
 	landing
 	source
 		planet "Cloudfire"
-	destination "Hai-Home"
+	destination "Hai-home"
 	clearance
 	to offer
 		has "leaks 1A: visit the hai: done"
@@ -232,7 +232,7 @@ mission "leaks tour 1"
 	source
 		government "Hai"
 		not planet "Cloudfire"
-		not planet "Hai-Home" 
+		not planet "Hai-home" 
 	destination "Stonebreak"
 	to offer
 		has "First Contact: Hai: declined"
@@ -292,12 +292,12 @@ mission "leaks tour 3"
 	
 #Time to rejoin the main story.
 mission "leaks tour 4"
-	name "Head directly to Hai-Home"
-	description "Go to Hai-Home, go directly to Hai-Home, do not pass Go or collect $200."
+	name "Head directly to Hai-home"
+	description "Go to Hai-home, go directly to Hai-home, do not pass Go or collect $200."
 	landing
 	source
 		planet "Cloudfire"
-	destination "Hai-Home"
+	destination "Hai-home"
 	clearance
 	to offer
 		has "leaks tour 3: done"
@@ -316,11 +316,11 @@ mission "leaks tour 4"
 				`	"Oh I really don't think that's necessary."`
 				goto nevertheless
 				`	"Oh, I'm honoured, thankyou."`
-			`	"If you have any stake in the current information crisis please head directly to Hai-Home. Someone would very much like to talk to you."`
+			`	"If you have any stake in the current information crisis please head directly to Hai-home. Someone would very much like to talk to you."`
 			goto main
 			label nevertheless
 			`	"You may not think it's necessary, but sometimes that is the price of fame."`
-			`	The officious looking Hai shrugs, "In any event please head directly to Hai-Home. Someone would very much like to talk to you."`
+			`	The officious looking Hai shrugs, "In any event please head directly to Hai-home. Someone would very much like to talk to you."`
 			label main
 			`	They leave without waiting for your agreement, but then, you did come here to see what was going on.`
 				accept
@@ -330,7 +330,7 @@ mission "leaks tour 4"
 	
 mission "leaks response 1"
 	landing
-	source "Hai-Home"
+	source "Hai-home"
 	destination "Earth"
 	to offer
 		or
@@ -339,7 +339,7 @@ mission "leaks response 1"
 			has "leaks tour 4: done"
 	on offer
 		conversation
-			`As you come into land on Hai-Home you find that a reasonable security detachment has been assigned to your designated landing berth. The Hai aren't usually ones to be concerned about such things, but you suspect that as an apparent "war hero" that this may be more for the benefit of appearances on your part than anything else.`
+			`As you come into land on Hai-home you find that a reasonable security detachment has been assigned to your designated landing berth. The Hai aren't usually ones to be concerned about such things, but you suspect that as an apparent "war hero" that this may be more for the benefit of appearances on your part than anything else.`
 			`	Word of your status in human space seems to have spread ahead of you, especially with you beng known on many Hai worlds as one of the view significant human visitors. A small crowd of Hai have gathered to peek at you on the short walk from the Spaceport to the government building you are led to.`
 			branch karma
 			karma > 1
@@ -368,7 +368,7 @@ mission "leaks response 2"
 	source "Earth"
 	stopover "Deep"
 	stopover "Foundry"
-	destination "Hai-Home"
+	destination "Hai-home"
 	clearance
 	to offer
 		has "leaks response 1: done"
@@ -410,7 +410,7 @@ mission "leaks response 2"
 		dialog phrase "generic stopover on visit"
 	on complete
 		conversation
-			`You are directed to an official landing pad on your return to Hai-Home and it is not long before you are introducing your entourage to Sayari. Alondo in particular seems quite stoked to be here and seems to have a knack for charming Sayari with polite and insightful, if rather simple, questions throughout the diplomatic niceties.`
+			`You are directed to an official landing pad on your return to Hai-home and it is not long before you are introducing your entourage to Sayari. Alondo in particular seems quite stoked to be here and seems to have a knack for charming Sayari with polite and insightful, if rather simple, questions throughout the diplomatic niceties.`
 			`	You get down to business at the moment Sayeri inquires how your journey went.`
 			choice
 				`I don't recall there being nearly so many pirates.`
@@ -436,8 +436,8 @@ mission "leaks response 2"
 	
 event "pirates respond to leaks"
 	#Add pirate spawns to Waypoint and Heia Due
-    system "Waypoint"
-        government "Pirate"
+	system "Waypoint"
+		government "Pirate"
 		add fleet "Marauder fleet IX" 900
 		add fleet "Large Northern Pirates" 600
 		add fleet "Small Northern Pirates" 420
@@ -445,8 +445,8 @@ event "pirates respond to leaks"
 		add fleet "Small Core Pirates" 420
 		remove fleet "Small Hai"
 		remove fleet "Large Hai"
-    system "Heia Due"
-        government "Pirate"
+	system "Heia Due"
+		government "Pirate"
 		add fleet "Marauder fleet IX" 900
 		add fleet "Large Northern Pirates" 600
 		add fleet "Large Core Pirates" 600
@@ -485,12 +485,12 @@ mission "leaks response 2B"
 			`While refuelling on <origin> you see that the media circus is continuing uabated. Apparently pirates have started making renewed attacks on trade lanes in the north, utilising some of the strange weapons observed in the recorded clip of Hai ships fighting each other. Goodness knows how they got their hands on them, but it can't be good news.`
 				decline
 
-#This gets picked up silently on Hai-Home when landing for response 2 - leads to go kill pirates mission with chat on Allhome.
+#This gets picked up silently on Hai-home when landing for response 2 - leads to go kill pirates mission with chat on Allhome.
 mission "leaks response 3"
 	name "Meet with Security Forces on Allhome"
 	description "Meet with the Security Forces on Allhome before fightin the pirates."
 	landing
-	source "Hai-Home"
+	source "Hai-home"
 	destination "Allhome"
 	to offer
 		has "leaks response 2: done"
@@ -539,6 +539,8 @@ mission "leaks response 4"
 		system "Waypoint"
 		ship "Marauder Leviathan (Weapons)" "Black Lich"
 		
+event "returned geocoris"
+		
 mission "leaks response 4a"
 	landing
 	invisible
@@ -558,7 +560,7 @@ mission "leaks response 4a"
 	on complete
 		payment 1000000
 		conversation
-			`When you return the Hai Captain thanks you profusely, "Please, the Allhome government has authorised a reward of <payment> for routing the problem. Let us hope a more permanent solution can be devised soon. In the meantime, I'm sure they'll be waiting for you back on Hai-Home before too long."`
+			`When you return the Hai Captain thanks you profusely, "Please, the Allhome government has authorised a reward of <payment> for routing the problem. Let us hope a more permanent solution can be devised soon. In the meantime, I'm sure they'll be waiting for you back on Hai-home before too long."`
 		event "returned geocoris" 365
 		#The Geodesic Geocoris may become available to purchase specially later on.
 		
