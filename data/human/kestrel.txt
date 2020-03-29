@@ -336,6 +336,7 @@ ship "Kestrel" "Kestrel (More Shields)"
 	add attributes
 		"shields" 3000
 		"hull" 1500
+		"heat dissipation" .06
 
 ship "Kestrel" "Kestrel (More Weapons)"
 	add attributes
