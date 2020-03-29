@@ -14,7 +14,7 @@ Programming
   
 Developers
   Amazinite
-  PointedStick
+  Pointedstick
   Tehhowch
 
 Photos from Wikimedia Commons
@@ -179,4 +179,3 @@ Sky:
   ZBok
   Zitchas
   zwparchman
-
