@@ -64,12 +64,7 @@ mission "event: hai secret leaks A"
 			`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognise shield beetles hammering away at each other.`
 			`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existance of the aliens known as 'Hai'.`
 			`	You suspect it might be time to go visit your Hai friends again and see what's going on.`
-				fail
-	
-event "pirates investigate leaks"
-	system "Waypoint"
-		government "Pirate"
-		add fleet "Marauder fleet IX" 600
+		fail
 	
 mission "event: hai secret leaks B"
 	landing
@@ -80,7 +75,7 @@ mission "event: hai secret leaks B"
 		has "event: hai secret leaks"
 		not "event: hai secret leaks A: offered"
 	on offer
-	event "pirates investigate leaks"
+		event "pirates investigate leaks"
 		conversation
 			`You are relaxing at the spaceport while your ship refuels after conducting a spot of business. On the viewscreen is some talk show or other, not something you specifically paid attention to but apparently a quite popular one out of Tarazed.`
 			`	A young and fresh-faced man who looks incredibly ill at ease has just been brought out as a surprise guest by the host Jonathon Camembert.`
@@ -93,13 +88,18 @@ mission "event: hai secret leaks B"
 			`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, you've seen things, but not this.`
 			`	When it's finished the young man, who is very well presented, but clearly has a bit of the paranoid about him that is plain to see even through a screen is encouraged to talk about where he got the footage. he talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war. A war waged by an alien species known as the 'Hai'.`
 			`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
-				decline	
+				decline
 			label "hai knowledge"
 			`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognise shield beetles hammering away at each other.`
 			`	When it's finished the young man, who is very well presented, but clearly has a bit of the paranoid about him that is plain to see even through a screen is encouraged to talk about where he got the footage. he talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war. A war waged by an alien species known as the 'Hai'.`
 			`	You suspect it might be time to go visit your Hai friends again and see what's going on.`
-			fail
-
+		fail
+		
+event "pirates investigate leaks"
+	system "Waypoint"
+		government "Pirate"
+		add fleet "Marauder fleet IX" 600
+		
 #Both of these accept automatically with either secret leaks scenarios above - the non-relevant mission then fails based on whether you get the text for knowing about the Hai or not.
 
 mission "leaks 1A: visit the hai"
