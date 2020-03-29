@@ -25312,8 +25312,8 @@ planet Ahr
 planet Aksaray
 	attributes "moon" uninhabited
 	landscape land/enceladus_3
-	description `At first glance, Aksaray appears to be a fairly generic moon formed from eons of dust and debris compacted into a tight ball by continuous gravitational pressure. What is not so commonplace is the presence of almost perfectly pyramidical piles of regolith scattered across the world. A query to an orbiting Remnant satelite states that these are remote mining sites collecting regolith for mineral processing. `
-	description `	A brief consultation of your navigational computer's economic database, however, indicates that all the minerals present in this sort of regolith are extremely common across the galaxy, and are of very low value.`
+	description `At first glance, Aksaray appears to be a fairly generic moon formed from eons of dust and debris compressed into a tight ball by constant gravitational pressure. What is not commonplace is the presence of almost perfectly pyramidical piles of regolith scattered across the world. A query to an orbiting Remnant satellite suggests that these are remote mining sites collecting regolith for mineral processing.`
+	description `	A brief consultation of your navigational computer's economic database, however, indicates that all the minerals present in this variant of regolith are extremely common across the galaxy and are of extremely low value.`
 	security 0
 	government Uninhabited
 	
@@ -25487,8 +25487,8 @@ planet Aventine
 planet Babiali
 	attributes "ice giant" uninhabited
 	landscape land/enceladus_2
-	description `The giant mass of ice and rock that is Babiali is a snapshot of cataclysm. Ice and rock extends from horizon to horizon, with vast networks of cracks and fissures that suggest it was subject to some kind of sudden force fairly recently in its geological history.`
-	description `	At present, Babiali has a regular stream of mining and research craft systematically going over the crust looking for rare metals or anything else of value. Despite the activity, no one has bothered setting up anything remotely resembling a spaceport anywhere.`
+	description `The giant mass of ice and rock that is Babiali is the bona fide example of cataclysm. Ice and rock extends from horizon to horizon, with vast networks of cracks and fissures suggesting it was subject to some kind of sudden force fairly recently in its geological history.`
+	description `	At present, Babiali has a regular stream of mining and research craft systematically flying over the crust looking for rare metals or anything else of value. Despite the activity, no one has bothered setting up anything remotely resembling a spaceport anywhere.`
 	security 0
 	government Uninhabited
 
@@ -25702,8 +25702,8 @@ planet Canyon
 planet Capitoline
 	attributes "lava" uninhabited
 	landscape land/pia21553_2
-	description `The harsh landscape of Capitoline is a demonstration of the reshaping forces of nature at work. Lava flows and eruptions are commonplace; and seismic activity is daily occurance. As a result, the surface is of comparatively recent origin. Despite this, you can spot a small survey station in the middle of an old lava field. In response to your landing computer's query, the transponder issues a terse statement about being an automated scientific station, and that defense systems are active.`
-	description `	Standing on the surface over the horizon from the station, feeling planet rumble beneath you, it seems also as if you can pick up a subtle pulse in the vibrations. The impression never eally goes away, but neither you nor yoru sensors can determine an actual pattern.`
+	description `The harsh landscape of Capitoline is a demonstration of the forces of nature at work. Lava flows and eruptions are regularly seen and seismic activity is a daily occurance. As a result, the surface is of comparatively recent origin. Despite this, you can spot a small survey station in the middle of an old lava field. In response to your landing computer's query, the transponder issues a terse statement about the automated scientific station, and a warning that its defense systems are active.`
+	description `	Heeding the warning, you land over the horizon from the station. Stepping out onto the surface, you can feel the rumble of the planet beneath you. Despite the ever-present seismic rumbling, it feels like you can pick up a subtle pulse in the vibrations. The impression never goes away, but neither you nor your sensors can determine an actual pattern.`
 	security 0
 	government Uninhabited
 
@@ -26145,7 +26145,7 @@ planet "Ember Wormhole"
 planet Eminonu
 	attributes uninhabited
 	landscape land/canyon4
-	description `The notably green rocks of Eminonu demonstrate their remarkably high copper content and the historic presence of atmospheric water. Scattered vegetal debris suggests that this world was until recently some variety of garden world, albeit likely a cold one. Now, however, the vast majority of moisture is locked in icefields and the ambient temperatures are far too cold for even these hardy lychens to persist.`
+	description `The notably green rocks of Eminonu shows off their remarkably high copper content and the historic presence of atmospheric water. Scattered vegetal debris suggests that this world was, until recently, some variety of garden world, albeit likely a cold one. Now, however, the vast majority of moisture is locked in icefields and the ambient temperatures are far too cold for even these hardy lichens to persist.`
 	security 0
 	government Uninhabited
 
@@ -26181,7 +26181,7 @@ planet "Esperaktu Station"
 planet "Esquiline"
 	attributes "requires: gaslining" "gas giant" uninhabited
 	landscape land/clouds_00
-	description `Esquiline's wispy skies billow with raging winds and continuous storms. Although few craft can penetrate its depths, the Remnant have discovered that its upper atmosphere can be a useful source of certain chemicals. As such, aeroscoop drones dipping into its atmosphere for shipments to Aventine are a regular occurance.`
+	description `Esquiline's wispy skies billow with raging winds and continuous storms. Although few crafts can penetrate its depths, the Remnant have discovered that its upper atmosphere contains a useful source of certain chemicals. As such, aero scoop drones dipping into its atmosphere for shipments to Aventine are a regular occurrence.`
 	security 0
 	government Uninhabited
 
@@ -26841,7 +26841,7 @@ planet "Into White"
 planet Janiculum
 	attributes uninhabited
 	landscape land/enceladus_3
-	description `As you pass low over Janiculum you see the surface is little more than a gravitational graveyard for asteroids and debris. Impact craters liter the surface, and some even seem to be fairly recent.`
+	description `As you pass low over Janiculum, you see the surface is little more than a gravitational graveyard for asteroids and debris. Impact craters liter the surface, and some even seem to be fairly recent.`
 	description `	Janiculum is the subject of regular surveillance by the Remnant, who track impacts and investigate them whenever they occur. While it is not clear what the Remnant are recovering from these investigations, they continue to do them with meticulous regularity.`
 	security 0
 	government Uninhabited
@@ -27757,7 +27757,7 @@ planet Quicksilver
 planet Quirinal
 	attributes "lava" uninhabited
 	landscape land/pia21553_1
-	description `While otherwise resembling a fairly typical moon, Quirinal is distinctive for the large lava rifts that seem to be an inexplicably constant feature on the surface. For lack of a better description, it looks like the moon was struck a glancing blow by some sort of massive force, and the resulting chasm has been oozing lava ever since.`
+	description `While otherwise resembling a fairly typical moon, Quirinal is distinctive for the large lava rifts that seem to be an inexplicably constant feature on its surface. For lack of a better description, it looks like the moon was struck a glancing blow by some sort of massive force, and the resulting chasm has been oozing lava ever since.`
 	description `Despite the astrophysical anomalies, there appears to be no current activity on the surface.`
 	security 0
 	government Uninhabited
@@ -28032,8 +28032,8 @@ planet "Septar Lorku"
 planet Seraglio
 	attributes "ice giant" uninhabited
 	landscape land/enceladus_1
-	description `The vast icefields of Seraglio hint at a variety of mysteries, most notably the chasms that suggest that the planet was somehow subject to massive compressive forces at some point in its fairly recent geologic history.`
-	description `At present, Seraglio is the focus of considerable attention from researchers searching for hints as to the planet's history.`
+	description `The vast icefields of Seraglio hints at a variety of mysteries, most notably the chasms that suggest that the planet was somehow subjected to massive compressive forces at some point in its fairly recent geological history.`
+	description `At present, Seraglio is the focus of considerable attention from researchers searching for clues as to the planet's history.`
 	security 0
 	government Uninhabited
 
@@ -28296,7 +28296,7 @@ planet Splashdown
 planet "Ssil Vida"
 	attributes sheragi uninhabited emitter
 	landscape land/station0
-	description `The silence of this station rings in your ears, and as you explore you are increasingly surprised that it even has an atmosphere anymore. It is obviously ancient, and there are patches of green and purple stuff that resembles fungus growing through the walls. Whoever built this station, it was obviously for people much bigger than you. Either that, or they liked spacious environments. Even the shortest doorway that you see is easily double your height.`
+	description `The silence of this station rings in your ears, and as you explore you are increasingly surprised that it even has an atmosphere. It is obviously ancient, and there are patches of green and purple stuff that resembles fungus growing through the walls. Whoever built this station originally meant it for people much larger than you. Either that, or they liked spacious environments. Even the shortest doorway that you see is easily double your height.`
 	spaceport `Exploring beyond the docks reveals that most of this facility appears to be centered around a massive emitter. It is not clear exactly what it is supposed to be emitting, but it might have something to do with how this system appeared in the first place.`
 
 planet Starcross
@@ -28470,7 +28470,7 @@ planet Thunder
 planet Tibernia
 	attributes "ice moon" uninhabited
 	landscape land/enceladus_3
-	description `Tibernia is notable for being a perfect example of a classic ice planet. Unlike most planets, it is actually a sphere; and its surface is remarkably smooth with little more than minor surface craters. Many have speculated that it is artificial, but so far no one has found conclusive evidence of this.`
+	description `Tibernia is notable for being a perfect example of a classic ice planet. Unlike most planets, it is nearly a perfect sphere; and its surface is remarkably smooth with little more than minor surface craters. Many have speculated that it is artificial, but so far no one has found conclusive evidence of this.`
 	security 0
 	government Uninhabited
 
@@ -28900,7 +28900,7 @@ planet "Wyvern Station"
 planet Xerolophos
 	attributes "requires: gaslining" "gas giant" uninhabited
 	landscape land/nasa10
-	description `Accordingo to astrophysists, Xerolophos appears to be a former dwarf star whose internal reaction was snuffed out at the same time as it lost a significant amount of mass. No known stellar event could have caused this, so it is a subject of much discussion.`
+	description `According to astrophysicists, Xerolophos appears to be a former dwarf star. Its internal reaction was snuffed out at the same time as it lost a significant amount of mass. No known stellar event could have caused this, causing it to be a constant subject of much discussion.`
 	security 0
 	government Uninhabited
 
