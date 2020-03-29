@@ -11,6 +11,11 @@ Discord (invite: ZeuASSx)
 
 Programming
   Michael Zahniser
+  
+Developers
+  Amazinite
+  PointedStick
+  Tehhowch
 
 Photos from Wikimedia Commons
   Berthold Werner (CC-BY-SA 3.0)
@@ -61,3 +66,117 @@ Beta Testers
   Sean Fahey
   Mauricio Gomes
   Iaz Poolar
+
+Special thanks to MCOfficer for
+creating, managing, and hosting
+the nightly builds that makes
+so much of this work possible.
+
+Proof Readers & Editors
+  TheMarksman
+
+Mission & Story Creators
+  Amazinite
+  Zitchas
+
+Thank you to all the following
+people on GitHub who have
+contributed to improving Endless
+Sky:
+  abenkovskii
+  AdamKauffman
+  akien-mga
+  AlbertNewton
+  AlexBassett
+  alextd
+  Alkallid
+  AMDmi3
+  Anarchist2
+  Arachi-Lover
+  BeccaBunny
+  Bladewood
+  bojidar-bg
+  Brick63
+  ChamEV
+  colbygallup
+  comnom
+  CyberShadow
+  czartrak
+  Darcman99
+  davidwhitman
+  db47h
+  Disiuze
+  dplepage
+  DrBlight
+  dreness
+  dzhu
+  eflyon
+  Elysaen
+  EndrosG
+  flaviojs
+  Fzzr
+  Gods-Righthand
+  guillochon
+  gunqqer
+  Hacklin
+  Hadron1776
+  Hyugat
+  ItsNickBarry
+  jafdy
+  Janaszar
+  jmhorsjus
+  jostephd
+  jozef-mitro
+  Jugosloven1612
+  kilobyte
+  kkuchta
+  kozbot
+  Kryes-Omega
+  lheckemann
+  Lineth
+  LocalGod79
+  Lorantine
+  luiges90
+  MageKing17
+  MarcelineVQ
+  MasterOfGrey
+  MCOfficer
+  MessyMix
+  mootootwo
+  naehc
+  Naminson
+  Nescio0
+  NomadicVolcano
+  oo13
+  PaulBlay
+  perey
+  petervdmeer
+  ph2000
+  ph2000bis
+  pkubaj
+  redschalken
+  RestingImmortal
+  retrue
+  rlane
+  rzahniser
+  schrauger
+  seanfahey
+  sfiera
+  solardawning
+  SolraBizna
+  Tadrix
+  temtemy
+  TheMarksman-ES
+  thomasballinger
+  Thunderforge
+  toilethinges
+  TurkeyMcMac
+  Waffleship
+  warp-core
+  waterhouse
+  wjp
+  Wrzlprnft
+  ZBok
+  Zitchas
+  zwparchman
+
