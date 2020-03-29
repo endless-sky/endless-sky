@@ -7,7 +7,7 @@ on:
 
 jobs:
   appimage_amd64:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
     env:
       ARCH: x86_64
       OUTPUT: endless-sky-amd64-${{ github.event.release.tag_name }}.AppImage
