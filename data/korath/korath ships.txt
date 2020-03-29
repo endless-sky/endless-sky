@@ -1713,9 +1713,9 @@ ship "Korath Dredger"
 	turret 96 0 "Korath Grab-Strike"
 	turret -80 130 "Korath Warder"
 	turret 80 130 "Korath Heaver"
-	engine -31 171 .5
-	engine 0 182 .7
-	engine 31 171 .5
+	engine -33 171 .4
+	engine -2 182 .6
+	engine 31 171 .4
 	fighter 0 89
 	fighter 51 59
 	fighter -51 59
