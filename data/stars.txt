@@ -77,3 +77,23 @@ star "star/nova"
 star "star/wr"
 	power 0.4
 	wind 4
+
+# Brown Dwarves
+star "planet/browndwarf-l"
+	power 0.4
+	wind 1.6
+star "planet/browndwarf-l-rouge"
+	power 0.4
+	wind 1.6
+star "planet/browndwarf-t"
+	power 0.3
+	wind 1.7
+star "planet/browndwarf-t-rouge"
+	power 0.3
+	wind 1.7
+star "planet/browndwarf-y"
+	power 0.1
+	wind 1.8
+star "planet/browndwarf-y-rouge"
+	power 0.1
+	wind 1.8
