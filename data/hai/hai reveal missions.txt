@@ -55,7 +55,7 @@ mission "event: hai secret leaks A"
 			`	That such news should come out so soon after the Pug smacks of a hoax. A quick glance at the clock shows you only have ten minutes to wait so you stick around for the full segment out of curiosity.`
 			`	Right on schedule the news returns with the severe anchorwoman. It turns out that the crewman in question had been picked up by a minor media outlet on Tarazed. He had apparently travelled many weeks before deciding to seek the media in order to avoid being shut down by republic intelligence if he contacted media elsewhere. The man is fairly young, and very well presented, though he has a bit of the paranoid about him that is plain to see even through a screen.`
 			branch "hai knowledge"
-			has "First Contact: Hai: offered"
+				has "First Contact: Hai: offered"
 			`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, you've seen things, but not this.`
 			`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existance of the aliens known as 'Hai'.`
 			`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
@@ -65,6 +65,11 @@ mission "event: hai secret leaks A"
 			`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existance of the aliens known as 'Hai'.`
 			`	You suspect it might be time to go visit your Hai friends again and see what's going on.`
 				fail
+	
+event "pirates investigate leaks"
+	system "Waypoint"
+		government "Pirate"
+		add fleet "Marauder fleet IX" 600
 	
 mission "event: hai secret leaks B"
 	landing
@@ -84,7 +89,7 @@ mission "event: hai secret leaks B"
 			`	"But first, lets take a look at a clip."`
 			`	You raise your eyebrows with surprise.`
 			branch "hai knowledge"
-			has "First Contact: Hai: offered"
+				has "First Contact: Hai: offered"
 			`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, you've seen things, but not this.`
 			`	When it's finished the young man, who is very well presented, but clearly has a bit of the paranoid about him that is plain to see even through a screen is encouraged to talk about where he got the footage. he talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war. A war waged by an alien species known as the 'Hai'.`
 			`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
@@ -94,11 +99,6 @@ mission "event: hai secret leaks B"
 			`	When it's finished the young man, who is very well presented, but clearly has a bit of the paranoid about him that is plain to see even through a screen is encouraged to talk about where he got the footage. he talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war. A war waged by an alien species known as the 'Hai'.`
 			`	You suspect it might be time to go visit your Hai friends again and see what's going on.`
 				fail
-
-event "pirates investigate leaks"
-    system "Waypoint"
-        government "Pirate"
-		add fleet "Marauder fleet IX" 600
 
 #Both of these accept automatically with either secret leaks scenarios above - the non-relevant mission then fails based on whether you get the text for knowing about the Hai or not.
 
@@ -155,7 +155,7 @@ mission "leaks 1A unfettered A"
 					goto pink
 			`	She shakes her head and wrinkles her nose with a look of distaste, "Some marauder came here just yesterday, posing as a trader to investigate the rumours. We thought the Hai had means of keeping them out but this one snuck in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
 			`	She sighs deeply, "Everyone is just a bit shaken and distrustful at the moment."`
-			`	"Oh that's awful!"
+			`	"Oh that's awful!" you say.`
 			`	She nods, "This is why we're all wearing pink, just a little show of local solidarity."`
 			goto main
 			label pink
@@ -316,12 +316,12 @@ mission "leaks tour 4"
 				`	"Oh I really don't think that's necessary."`
 				goto nevertheless
 				`	"Oh, I'm honoured, thankyou."`
-			 `	"If you have any stake in the current information crisis please head directly to Hai-Home. Someone would very much like to talk to you."`
-			 goto main
-			 label nevertheless
-			 `	"You may not think it's necessary, but sometimes that is the price of fame."`
-			 `	The officious looking Hai shrugs, "In any event please head directly to Hai-Home. Someone would very much like to talk to you."`
-			 label main
+			`	"If you have any stake in the current information crisis please head directly to Hai-Home. Someone would very much like to talk to you."`
+			goto main
+			label nevertheless
+			`	"You may not think it's necessary, but sometimes that is the price of fame."`
+			`	The officious looking Hai shrugs, "In any event please head directly to Hai-Home. Someone would very much like to talk to you."`
+			label main
 			`	They leave without waiting for your agreement, but then, you did come here to see what was going on.`
 				accept
 	
@@ -330,10 +330,8 @@ mission "leaks tour 4"
 	
 mission "leaks response 1"
 	landing
-	source
-		"Hai-Home"
-	destination 
-		"Earth"
+	source "Hai-Home"
+	destination "Earth"
 	to offer
 		or
 			has "leaks 2A: envoy accepted: done"
@@ -415,7 +413,7 @@ mission "leaks response 2"
 			`You are directed to an official landing pad on your return to Hai-Home and it is not long before you are introducing your entourage to Sayari. Alondo in particular seems quite stoked to be here and seems to have a knack for charming Sayari with polite and insightful, if rather simple, questions throughout the diplomatic niceties.`
 			`	You get down to business at the moment Sayeri inquires how your journey went.`
 			choice
-				`I don't recall there being nearly so many pirates.'
+				`I don't recall there being nearly so many pirates.`
 			`	Sayari frowns and exhales a long breath through her nose, "Yes. Well it seems that the rumours of us, and the information making its way through your media has attracted every opportunist this side of the Deep."`
 			`	"Of course," she says, "some of the pirates were aware of us, and we were aware of them being aware of us. We had a quiet arrangement with a select few where we rewarded them for keeping the secret well contained within their own circles."`
 			`	Alondo looks surprised, but Mr Yang and Ms Adrianopolous both merely nod sagely.`
@@ -425,7 +423,7 @@ mission "leaks response 2"
 			`	"One of the things I brought with me was Republic Intelligence's estimate of the effectiveness of various information containment measures."`
 			`	A series of charts are thrown up on the screen. You're not an expert at reading this sort of data but highlighted percentages ranging from as low as 4% to only as high as 39% do not look promising. The final graphic is a map of stages of what is labelled as 'artifact penetration'.`
 			`	"Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is other than the truth, at least not while still holding to the claim of being a representative government," explains Mr Yang.`
-			`	He checks the date, "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months or lose so much credibility as to compromise elctoral stability, the actual time limit is probably sooner."
+			`	He checks the date, "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months or lose so much credibility as to compromise elctoral stability, the actual time limit is probably sooner."`
 			choice
 				`"Would that be so bad?"`
 			`"It is always bad to be forced into acknowledging a secret, if we act sooner we may control the manner of that secret's release."`
@@ -438,7 +436,6 @@ mission "leaks response 2"
 	
 event "pirates respond to leaks"
 	#Add pirate spawns to Waypoint and Heia Due
-	"Large Northern Pirates"
     system "Waypoint"
         government "Pirate"
 		add fleet "Marauder fleet IX" 900
@@ -517,7 +514,7 @@ mission "leaks response 4"
 				`	"I'm here to reinforce you, what can we do?"`
 			`	"Uh well, yes. I presume you saw the pirates on your way in? They've been appearing en masse and overhwelming security forces to raid technology and goods from the Hai traders and their security. Some of them have even been sneaking down onto the planet and capturing Hai, taking them away to goodness only knows where."`
 			choice
-				`	"I had heard about the kidnapping."
+				`	"I had heard about the kidnapping."`
 			`	He nods, "Unfortunately it's taking a while for them to redistribute an appropriately resourced defence force thanks to the Unfettered."`
 			`	"Even more unfortunately," he continues, "it seems that the overabundance of these pirates is a result of one particular individual's success. His ship, called the Black Lich, is hanging out in Waypoint with the stolen Geocoris that we hear might have been converted into some kind of semi-stable weapons platform and now be being used as a temporary base."`
 			`	"Fortunately this gives us an opportunity though. If the kidnapped hai are still on board we might be able to rescue them, and if we can defeat the Black Lich we may stem the tide of opportunists that are swarming through the wormhole."`
@@ -561,7 +558,7 @@ mission "leaks response 4a"
 	on complete
 		payment 1000000
 		conversation
-			`When you return the Hai Captain thanks you profusely, "Please, the Allhome government has authorised a reward of <payment> for routing the problem. Let us hope a more permanent solution can be devised soon. In the meantime, I'm sure they'll be waiting for you back on Hai-Home before too long."
+			`When you return the Hai Captain thanks you profusely, "Please, the Allhome government has authorised a reward of <payment> for routing the problem. Let us hope a more permanent solution can be devised soon. In the meantime, I'm sure they'll be waiting for you back on Hai-Home before too long."`
 		event "returned geocoris" 365
 		#The Geodesic Geocoris may become available to purchase specially later on.
 		
@@ -580,7 +577,7 @@ ship "Geodesic Geocoris"
 		"heat dissipation" 0.45
 		"fuel capacity" 800
 		"cargo space" 761
-		"outfit space" 542
+		"outfit space" 607
 		"weapon capacity" 210
 		"engine capacity" 104
 		"reverse thrust" 32
