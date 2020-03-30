@@ -2472,6 +2472,23 @@ event "battle for ap'arak ends"
 		add fleet "Wanderer Defense" 600
 		add fleet "Large Unfettered" 700
 
+mission "pug defend wanderers"
+	invisible
+	landing
+	to offer
+		has "Wanderers Ap'arak 2: done"
+	on offer
+		event "pug defend wanderers"
+		fail
+
+event "pug defend wanderers"
+	government "Pug (Wanderer)"
+		"attitude toward"
+			"Wanderer" .01
+	government "Pug"
+		"attitude toward"
+			"Wanderer" .01
+
 mission "Wanderers Ap'arak 2"
 	landing
 	name "Help defend <planet>"
