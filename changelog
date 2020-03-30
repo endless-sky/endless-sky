@@ -1,6 +1,6 @@
 Version 0.9.12:
   * Bug fixes:
-    * Typo fixes. (@Amazinite, @Arachi, @Naminson, @petervdmeer, @oo13, @Proont, @tehhowch, @TheMarksman-ES, @waterhouse, @Zitchas)
+    * Typo fixes. (@Amazinite, @Arachi-Lover, @Naminson, @petervdmeer, @oo13, @Proont, @tehhowch, @TheMarksman-ES, @waterhouse, @Zitchas)
     * The Penguin now requires a Remnant license to purchase. (@Zitchas)
     * Out of system ships can no longer be selected in the outfitter and shipyard. (@tehhowch)
     * Pressing D to depart will no longer also immediately deploy fighters on launch. (@petervdmeer)
@@ -13,14 +13,14 @@ Version 0.9.12:
     * New content:
       * New variant of the mystery deliver jobs that has unique dialog for station destinations. (@Anarchist2)
       * Remnant ships now have unique leak effects. (@Zitchas)
-      * New missions in Hai space where the player helps a Hai captain who has just bought her first ship. (@Arachi, @Janaszar)
+      * New missions in Hai space where the player helps a Hai captain who has just bought her first ship. (@Arachi-Lover, @Janaszar)
       * Added a new person ship. (@Zitchas, @beccabunny)
-      * Added a new, extremely rare and valuable minable asteroid. (@Arachi, @beccabunny)
+      * Added a new, extremely rare and valuable minable asteroid. (@Arachi-Lover, @beccabunny)
       * There are now more large passenger jobs in human space to balance out with the abundance of large cargo jobs. (@MasterOfGrey)
       * Added new Remnant outfits, an afterburner and a turret, to be used in future missions. (@Zitchas, @beccabunny)
-      * Added a new Heliarch turret, the Ion Hail Turret. (@Arachi, @beccabunny)
+      * Added a new Heliarch turret, the Ion Hail Turret. (@Arachi-Lover, @beccabunny)
     * Balance:
-      * Slightly increased the hull and ion damage of the Ion Rain Gun. (@Arachi)
+      * Slightly increased the hull and ion damage of the Ion Rain Gun. (@Arachi-Lover)
       * Reduced the outfit space requirement of solar panels to make them more attractive to use. (@Zitchas, @Amazinite)
       * Reduced the number of gun ports on the Kestrel (More Weapons) from 18 to 12. (@Naminson)
     * Other:
@@ -31,6 +31,7 @@ Version 0.9.12:
       * Solar panels are now used by various human ships. (@Amazinite)
       * Tweaked the description of the Ka'het Primary Cooling. (@beccabunny)
       * Renamed the Carrier and Cruiser licenses to the Navy Carrier and Navy Cruiser licenses. (@Zitchas)
+      * The Pug Arfecta will now defend the Wanderers if the player attacks them. (@Amazinite)
   * Game mechanics:
     * Added a "solar heat" attribute that generates heat based on the type of and distance to the system star(s). (@Amazinite)
     * Automatic conditions are now updated daily instead of only on landing. (@petervdmeer)
