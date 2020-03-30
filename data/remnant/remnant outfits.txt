@@ -303,6 +303,7 @@ outfit "Quantum Tear"
 	unplunderable 1
 	weapon
 		sprite "projectile/superweapon"
+		icon "icon/flamethrower"
 		sound "final explosion small"
 		"die effect" "superweapon fadeout"
 		"hit effect" "superweapon residue" 7
@@ -313,10 +314,10 @@ outfit "Quantum Tear"
 		"fire effect" "large glow"
 		"burst count" 60
 		"burst reload" 1
-		"velocity" 80
+		"velocity" 100
 		"inaccuracy" 0
 		"safe"
-		"lifetime" 20
+		"lifetime" 25
 		"reload" 2
 		"firing force" 100
 		"trigger radius" 150
