@@ -17,6 +17,19 @@ Developers
   Pointedstick
   tehhowch
 
+Programming
+  Amazinite
+  bojidar-bg
+  ChamEV
+  comnom
+  flaviojs
+  Fzzr
+  Hadron1776
+  Marceline-VQ
+  Petervdmeer
+  Pointedstick
+  tehhowch
+
 Photos from Wikimedia Commons
   Berthold Werner (CC-BY-SA 3.0)
   Dmitry A. Mottl (CC-BY-SA 3.0)
@@ -103,8 +116,7 @@ Mission & Story Creators
 
 Thank you to all the following
 people on GitHub who have
-contributed to improving Endless
-Sky:
+contributed to Endless-Sky:
   7even
   abenkovskii
   AdamKauffman
