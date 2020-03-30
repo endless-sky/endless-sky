@@ -326,7 +326,6 @@ outfit "Quantum Tear"
 		"shield damage" 5000
 		"hull damage" 5000
 		"hit force" 1000
-		"missile strength" 0
 	description "The person who dreamed up creating a weapon of this power and magnitude was either the smartest man who ever lived, or the dumbest. Whether that credit is an honor or a disgrace, you'll want to make sure this weapon's power regulator is firmly locked in the off position before sending out any craft you care about to service the barrel."
 
 
