@@ -603,13 +603,13 @@ mission "Hai Rescue [A04] Tarazed Analysis"
 				`	(Return to your ship.)`
 			`	You plug the data card into your computer, and a new "government" shows up: Smuggler. The ships will be colored differently than pirates.`
 			`	It may be risky, but you should disable one and board it.`
-			`	Teeneep gave you the name of a contact within a historical archive on <destination>. She wants you to speak to a woman named, "Saraya Tyson" if you find one of the smuggling ships. Saraya specializes in history of ship designs and space-faring groups, including the Hai.`
+			`	Teeneep gave you the name of a contact within a historical archive on <destination>. She wants you to speak to a woman named, "Giti Tyson" if you find one of the smuggling ships. Giti specializes in history of ship designs and space-faring groups, including the Hai.`
 				accept
 
 
 mission "Hai Rescue [A05] Boarded Smuggler"
 	name "Missing Researchers"
-	description "You have the information Saraya Tyson will need. It is time to visit her on <destination>."
+	description "You have the information Giti Tyson will need. It is time to visit her on <destination>."
 	boarding
 	destination Earth
 	to offer
@@ -673,7 +673,7 @@ mission "Hai Rescue [A06B] Smuggler Ambush"
 mission "Hai Rescue [A07] Logo Identification"
 	landing
 	name "Missing Researchers"
-	description "Fly through the wormhole in the middle of Syndicate space and return to Saraya at <destination>."
+	description "Fly through the wormhole in the middle of Syndicate space and return to Giti at <destination>."
 	source Earth
 	waypoint "Devil-Run"
 	waypoint "Deep Space 7C"
@@ -686,37 +686,37 @@ mission "Hai Rescue [A07] Logo Identification"
 		dialog `There is, indeed, a red wormhole here, in the middle of the most pirate-infested region of Syndicate space.`
 	on enter "Deep Space 7C"
 		log `Passed through the wormhole in Syndicate space to a region just outside the Milky Way galaxy. It looks like a good place to hide.`
-		dialog `It takes your computer a few seconds to triangulate, but it says you've left the Milky Way galaxy and are now in intergalactic space. Your computer is identifying the system name as, "Deep Space 7C" from old astronomical surveys done in the late 21st century. This is definitely a good place to hide. You should return to Saraya now and see what more she's found out.`
+		dialog `It takes your computer a few seconds to triangulate, but it says you've left the Milky Way galaxy and are now in intergalactic space. Your computer is identifying the system name as, "Deep Space 7C" from old astronomical surveys done in the late 21st century. This is definitely a good place to hide. You should return to Giti now and see what more she's found out.`
 	on offer
-		log "People" "Saraya Tyson" `Saraya is a research librarian on Earth that specializes in archaic space flight knowledge.`
+		log "People" "Giti Tyson" `Giti is a research librarian on Earth that specializes in archaic space flight knowledge.`
 		log "Factions" "Aggressive Research Division" `A defunct division of the Syndicate that stole alien technology and kidnapped human researchers about a half century ago. Syndicate Internal Affairs hunted and killed all of them except the leader.`
 		log "Factions" "Syndicate Internal Affairs" `An internal police force within the Syndicate that enforces the Syndicate's laws.`
-		log "Saraya identified the Syndicate-like symbol. It is from a long-defunct division of the Syndicate, Aggressive Research Division. Somehow they obtained alien technology, and then started kidnapping researchers from other companies. A half-century ago, Syndicate Internal Affairs hunted and killed all of that division except their leader."
+		log "Giti identified the Syndicate-like symbol. It is from a long-defunct division of the Syndicate, Aggressive Research Division. Somehow they obtained alien technology, and then started kidnapping researchers from other companies. A half-century ago, Syndicate Internal Affairs hunted and killed all of that division except their leader."
 		conversation
-			`After landing, you search for the "Republic Historical Space-Flight Museum," and find there are seventeen museums by that name on Earth.  Only one has a research library, so you contact the library. Saraya Tyson no longer works there; she's moved to a library in the Navy Intelligence Observatory in Moscow.`
-			`	The Navy observatory was easier to find; when they hear your name, they put you in contact with Saraya immediately. She is excited to see the two symbols you found and asks you to visit her. It takes three shuttle journeys and one high-speed rail trip, but you reach the building in under three hours.`
+			`After landing, you search for the "Republic Historical Space-Flight Museum," and find there are seventeen museums by that name on Earth.  Only one has a research library, so you contact the library. Giti Tyson no longer works there; she's moved to a library in the Navy Intelligence Observatory in Moscow.`
+			`	The Navy observatory was easier to find; when they hear your name, they put you in contact with Giti immediately. She is excited to see the two symbols you found and asks you to visit her. It takes three shuttle journeys and one high-speed rail trip, but you reach the building in under three hours.`
 			choice
 				`	(Enter the building.)`
 			`	You're ushered to an elevator and given a room number: 3017A19, the 301st floor, section 7A, room 19. It's amazing how large Earth's megabuildings have become. Some planets have lower population than one of these buildings.`
-			`	Saraya is even more excited in-person than she was by holocommunicator. She's already researched the Syndicate-like symbol, but needed more detail about the demonic one. You also show her the information about the nanotransceivers.`
+			`	Giti is even more excited in-person than she was by holocommunicator. She's already researched the Syndicate-like symbol, but needed more detail about the demonic one. You also show her the information about the nanotransceivers.`
 			`	"This Syndicate symbol was used by an illicit organization that worked within the Syndicate over a half-century ago. They called themselves the 'Aggressive Research Division.' Supposedly they flew into deep space and captured alien equipment, but nobody knows where they got it. Eventually they went too far; they kidnapped researchers from other institutes and enslaved them in the Syndicate.`
 			`	"Syndicate Internal Affairs put a stop to the organization, but it was a bloody battle. Most of the leaders were killed in battle or executed after capture. The most ruthless, their leader, managed to escape, but nobody knows where.`
 			`	"For the demonic symbol, we'll have to go to another library in room 4196A21."`
 			choice
 				`	(Take the elevator to the 419th floor.)`
-			`	When you arrive, Saraya tells you, "This is a religious materials archive. Give me a minute here..." Her voice trails off as she starts typing on a terminal. She walks back and forth between several bookshelves skimming books for a few minutes.`
+			`	When you arrive, Giti tells you, "This is a religious materials archive. Give me a minute here..." Her voice trails off as she starts typing on a terminal. She walks back and forth between several bookshelves skimming books for a few minutes.`
 			`	"I found it," she says. "You found a modified version of the Symbol of Baphomet, the official symbol of an older incarnation of the Church of Satan. The letters around the pentagram have been replaced with galactic coordinates using an archaic notation." She smiles at you, "I wrote my Ph.D. thesis about that notation! Now I finally need that information for something other than getting a degree!`
 			`	"The circle around the symbol looks almost like a wormhole. A red wormhole. I heard about one in Termanus near The Deep. Apparently nobody is able to enter one without their ship being torn to pieces. This symbol suggests there's another one in the middle of Syndicate space.`
 			`	"Fly through the wormhole at the coordinates on that card, come back and tell me what you see. In the meantime, I'll ask other researchers about the nanotransceivers."`
 			choice
 				`	(Thank her and return to your ship.)`
-			`	Upon returning to your ship, you ponder Saraya's findings. The coordinates are for a system in Syndicate space that is not reachable by starlane, so you'll need a Jump Drive. The red wormhole requires another key.`
-			`	Once you've passed through that wormhole, hopefully Saraya will have more information for you.`
+			`	Upon returning to your ship, you ponder Giti's findings. The coordinates are for a system in Syndicate space that is not reachable by starlane, so you'll need a Jump Drive. The red wormhole requires another key.`
+			`	Once you've passed through that wormhole, hopefully Giti will have more information for you.`
 				accept
 	on complete
-		log `Saraya asked to go to the unexplored region beyond the Syndicate wormhole to seek a base. She's waiting at the Earth spaceport with 7 tons of cargo.`
+		log `Giti asked to go to the unexplored region beyond the Syndicate wormhole to seek a base. She's waiting at the Earth spaceport with 7 tons of cargo.`
 		conversation
-			`After a long series of shuttles, high-speed rails, and a several-minute-long elevator ride, you reach Saraya's office.`
+			`After a long series of shuttles, high-speed rails, and a several-minute-long elevator ride, you reach Giti's office.`
 			`	As soon as she sees you she asks, "What did you find out?" You explain your journey to her.`
 			`	She responds, "Wait... I... lemme check..." followed by some typing on a nearby terminal. "Yes, you're right. In the late 21st century, there was an effort to map stars in that intergalactic region. They should not have been so visible, but they were due to some strange anomalies. The strangest of all was not a star; it was an object with unknown properties that confuse our scanners even today.`
 			`	"If the Syndicate criminals and kidnappers are through the wormhole, that's the system they'll be in.`
@@ -738,19 +738,19 @@ mission "Hai Rescue [A08] Scanner"
 	waypoint "Devil-Hide"
 	passengers 1
 	cargo "advanced scanning equipment" 7
-	blocked `You need room for Saraya and her <cargo>.`
+	blocked `You need room for Giti and her <cargo>.`
 	on visit
-		dialog `Saraya or her equipment are in one of your escorts. You need to wait for your escorts to arrive before landing again.`
+		dialog `Giti or her equipment are in one of your escorts. You need to wait for your escorts to arrive before landing again.`
 	to offer
 		has "Hai Rescue [A07] Logo Identification: done"
 	on offer
 		conversation
-			`Saraya enters your ship after some navy workers load scanning equipment. She's eager to see first-hand the intergalactic space she's only theorized about in the past.`
+			`Giti enters your ship after some navy workers load scanning equipment. She's eager to see first-hand the intergalactic space she's only theorized about in the past.`
 				accept
 	on enter "Devil-Hide"
 		log `Found a bizarre planet with a subterranean colony in its moon. The planet defies analysis and seems to violate the known laws of physics. There are Hai, humans, and reptiles (probably Korath) in the colony, but no evidence of Alphas. However, the scanners could only see the upper three floors due to interference from the planet.`
 		conversation
-			`Saraya turns on the scanning equipment.`
+			`Giti turns on the scanning equipment.`
 			`	"Okay, let's do the planet first..." Her voice trails off. "Wow! That's odd. We'll need a scanner about ten thousand times more powerful to scan that planet.`
 			`	 "I can see a bit of the surface though. The planet is odd in every way. It is completely inhospitable to all known forms of life. There's a huge network of caves and caverns coated with a crystal that is radiating... something the computer can't identify... and deuterium. The denizens of this system siphon the deuterium to make hyperspace fuel. Also, the planet has about a thousand times the mass it should, but somehow the gravity is around Earth normal.`
 			`	"Now the moon... hmmm... okay. It's just an ordinary chunk of rock, but the planet's radiation is disturbing the sensors. I can only see a few dozen meters below ground.`
@@ -776,7 +776,7 @@ mission "Hai Rescue [A09] Slaver Ships"
 	on offer
 		conversation
 			`The Earth authorities give you an unusual landing vector that leads to a secret docking bay below ground in Argentina. You land and a Navy cadet meets you at your ship with an urgent message, "Republic Intelligence and a Navy Marshal want to see you as soon as possible. They have news about your nanotransceiver transmissions. Please follow me."`
-			`	Saraya adds, "I'll take the scanners and data to some researchers and let you know when I have more information. Please go with the cadet. It sounds like you'll finally get some answers."`
+			`	Giti adds, "I'll take the scanners and data to some researchers and let you know when I have more information. Please go with the cadet. It sounds like you'll finally get some answers."`
 			`	The cadet takes you to an elevator just outside your ship, down more than three hundred floors to a large meeting room. Within, you see two men and a woman in formal dress. One man has a Republic Intelligence uniform with the name, Agent Kopkow. Another wears a navy full dress uniform that you don't immediately recognize. After a moment of thought, you realize he is Marshal, the second-highest rank in the Navy. His uniform is is labeled, Adurath Kaine. The woman is a Navy captain wearing the prominent Parliamentary Medal of Valor. Her name label says, "Captain Anna Wallace."`
 			choice
 				`	(Speak to the agent and marshal.)`
