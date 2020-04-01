@@ -1,10 +1,10 @@
 Version 0.9.12:
   * Bug fixes:
-    * Typo fixes. (@Amazinite, @Arachi-Lover, @Naminson, @petervdmeer, @oo13, @Proont, @tehhowch, @TheMarksman-ES, @waterhouse, @Zitchas)
+    * Typo fixes. (@Amazinite, @Arachi-Lover, @MCOfficer, Mr. Doom, @Naminson, @petervdmeer, @oo13, @Proont, @tehhowch, @TheMarksman-ES, @waterhouse, @Zitchas)
     * The Penguin now requires a Remnant license to purchase. (@Zitchas)
     * Out of system ships can no longer be selected in the outfitter and shipyard. (@tehhowch)
     * Pressing D to depart will no longer also immediately deploy fighters on launch. (@petervdmeer)
-    * Rescue Miners 2 will no longer be blocked if another mission offers. (@Amazinite)
+    * Fixed various instances of missing or unnecessary minor tags on missions. (@Amazinite, @Anarchist2)
     * Governments now have the same attitude toward the " Hai " government as they do the "Hai" government. (@NomadicVolcano)
     * No longer able to ask the Remnant about the Ka'het before having passed the blood test. (@beccabunny)
     * Max depreciation age now accounts for the 7 day grace period. (@Amazinite)
