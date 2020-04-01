@@ -579,7 +579,7 @@ system "Deep Space 19M5"
 	trade Metal 284
 	trade Plastic 350
 	object
-		sprite star/neutron-star-purple
+		sprite star/protostar-orange
 		distance 49.335
 		period 18.0618
 		offset 180
@@ -630,7 +630,7 @@ system "Deep Space 19K12"
 	trade Metal 284
 	trade Plastic 350
 	object
-		sprite star/m-brown-dwarf
+		sprite star/protostar-yellow
 		distance 49.335
 		period 18.0618
 		offset 180

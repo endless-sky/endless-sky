@@ -613,7 +613,6 @@ government "Pirate (Devil-Run Gang)"
 	"fine" 0
 	"friendly hail" "friendly pirate"
 	"hostile hail" "hostile pirate"
-	raid "pirate raid"
 
 government "Pug"
 	swizzle 0

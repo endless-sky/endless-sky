@@ -16,13 +16,14 @@ mission "Hai Rescue: Yeertle Family"
 	landing
 	name "Return the Yeertle family"
 	description "Transport the Yeertle family to <destination>. Payment is <payment>."
-	source Moonshake
+	source Prime
 	destination Icelake
 	passengers 5
 	repeat 3
 	to offer
 		"combat rating" > 50
 		has "First Contact: Hai: offered"
+		not "event: hai-human treaty signed"
 		"Hai Rescue: Yeertle Family (offer count)" < 3
 		not "Hai Rescue: Yeertle Family: offered"
 	on offer
@@ -44,7 +45,7 @@ mission "Hai Rescue: Yeertle Family"
 					goto "ride offer"
 			label far
 			`	He pauses for a second, perhaps pondering if he can trust you with the answer.`
-			`	"I'm a holographer from Icelake. I chartered a flight to Allhome with my family. They would have gone on vacation while I would have been at a conference. Instead, the human merchants locked us in a cell and took us here.`
+			`	"I'm a holographer from Icelake. I chartered a flight from Icelake to Allhome with my family. They would have gone on vacation while I would have been at a conference. Instead, the human merchants locked us in a cell and took us here.`
 			`	"My daughter is very small for her age, and was able to sneak through a vent to unlock our cell. The ship was undercrewed, so we overpowered them, but they had already landed. The ship was locked down; we could not take off. Since then, we've been hiding near here.`
 			`	"Can you take us back to <destination>? I have considerable savings back there, and can pay you well. Say, <payment>?"`
 			choice
@@ -83,13 +84,14 @@ mission "Hai Rescue: Prison Role-Players"
 	landing
 	name "Return the Prison Role-Players"
 	description "Return Hai prison role-players to <destination>. Payment is <payment>."
-	source "Shangri-La"
+	source "Sunracer"
 	destination "Allhome"
 	passengers 5
 	repeat 3
 	to offer
 		has "First Contact: Hai: declined"
 		"Hai Rescue: Prison Role-Players (offer count)" < 3
+		not "event: hai-human treaty signed"
 		not "Hai Rescue: Prison Role-Players: offered"
 		# No combat rating requirement since there are no NPCs.
 	on offer
@@ -150,6 +152,7 @@ mission "Hai Rescue: Ooonem"
 	to offer
 		"combat rating" > 50
 		"Hai Rescue: Ooonem (offer count)" < 3
+		not "event: hai-human treaty signed"
 		not "Hai Rescue: Ooonem: offered"
 		has "First Contact: Hai: offered"
 	on offer
@@ -226,6 +229,7 @@ mission "Hai Rescue: Meroot and Lucy"
 	to offer
 		"combat rating" > 50
 		has "Unwanted Cargo: done"
+		not "event: hai-human treaty signed"
 		not "Hai Rescue: Meroot and Lucy: offered"
 		"Hai Rescue: Meroot and Lucy (offer count)" < 3
 	on offer
@@ -287,11 +291,12 @@ mission "Hai Rescue: Gipeep"
 	landing
 	name "Return Gipeep"
 	description "Transport the Hai you rescued to <destination>. Payment is <payment>."
-	source Skillet
-	destination Greenbloom
+	source "Maelstrom"
+	destination "Greenbloom"
 	passengers 1
 	to offer
 		"combat rating" > 50
+		not "event: hai-human treaty signed"
 		has "Unwanted Cargo: done"
 	on offer
 		conversation
@@ -429,7 +434,7 @@ mission "Hai Rescue [A02] Nanotransceiver Identification"
 			`	Teeneep looks at you as if you were daft, "The kidnappings happen on Hai and human worlds. The kidnappers have no reason to search an uninhabited planet for kidnapping victims. This gives us a safe place to hide any critical people or information."`
 				goto questions
 			label nanotransceivers
-			`	A Hai in a medical uniform explains, "The victims each have have thousands of nanoscale transmitter/receivers in their body, each the size of a single blood cell. We call them nanotransceivers. They act together as one big transmitter and receiver, sending and receiving directional messages over great distances.`
+			`	A Hai in a medical uniform explains, "The victims each have have thousands of nanoscale transmitter-receivers in their body, each the size of a single blood cell. We call them nanotransceivers. They act together as one big transmitter and receiver, sending and receiving directional messages over great distances.`
 			`	"This technology is clearly not of human or Hai origin. Its construction is well beyond our science and some materials involved have properties unlike anything we've ever seen. This technology comes from another race. A race that has mastered nanotechnology.`
 			`	"What is most troubling is that we don't know how to detect the signals beyond about thirty meters. We can tell they send messages over much longer distances through hyperspace, but they use a method we don't understand.`
 				goto questions
@@ -442,7 +447,7 @@ mission "Hai Rescue [A02] Nanotransceiver Identification"
 				goto questions
 			label kidnappings
 			`	Teeneep answers, "In human space, we don't know, but in Hai space, it dates back to about a year after we made contact with the humans.`
-			`	"From the rate at which the kidnappings have happened, at least a few thousand Hai have vanished this way. Maybe five times that number of humans.`
+			`	"From the rate at which the disappearances have happened, possibly as many as five thousand Hai have vanished this way. The number may be less; some of those cases may be undiscovered murders, secret changes of identity, or defections to the Unfettered. Maybe five times that number of humans.`
 				goto questions
 			label know
 			`	Teeneep explains, "My civil rights organization has contacts with sympathetic individuals and organizations throughout Hai space. We have enough funding to hire a few hundred full-time employees of our own. Most of them are lawyers, social workers, or administrative employees. A few are investigative journalists or various types of researchers.`
@@ -454,8 +459,8 @@ mission "Hai Rescue [A02] Nanotransceiver Identification"
 			`	"Since this problem is tiny compared to the total crime in Hai space, the Hai Elders haven't made it a large priority. They tell me that, if we can prove the kidnappings are from a coordinated effort, they'll put significant resources into solving the problem. So far, they say, their investigators have been unable to prove that.`
 			`	"What we need is a skilled pilot with a jump drive to visit some locations we cannot easily access.`
 				goto questions
-			label help
-			`	"We have some leads in human and Korath space we need you to follow. We also need you to take a sample of the nanotransceivers to the Quarg on <destination> for analysis.`
+			label help precious opinions  
+			`	"We have some leads in human and Korath space we need you to follow. The Quarg at Alta Hai had me talk to scientists on <destination>. They say they can help, but they need a sample of the nanotransceivers. I know the humans gave you a Jump Drive; I need you to use it to deliver the nanotransceivers.`
 			`	"The Quarg in Korath space might eliminate some leads, and add new ones. Follow the leads. Once you have proof the kidnappings are an organized effort, return here, and we will pay you 2,000,000 credits."`
 			choice
 				`	"I'll start right away."`
@@ -705,7 +710,7 @@ mission "Hai Rescue [A07] Logo Identification"
 			choice
 				`	(Take the elevator to the 419th floor.)`
 			`	When you arrive, Giti tells you, "This is a religious materials archive. Give me a minute here..." Her voice trails off as she starts typing on a terminal. She walks back and forth between several bookshelves skimming books for a few minutes.`
-			`	"I found it," she says. "You found a modified version of the Symbol of Baphomet, the official symbol of an older incarnation of the Church of Satan. The letters around the pentagram have been replaced with galactic coordinates using an archaic notation." She smiles at you, "I wrote my Ph.D. thesis about that notation! Now I finally need that information for something other than getting a degree!`
+			`	"I found it," she says. "You found a modified version of the Symbol of Baphomet, the official symbol of an older incarnation of the Church of Satan. They were one of the first organizations to fund large-scale settlements on Freedom. The letters around the pentagram have been replaced with galactic coordinates using an archaic notation." She smiles at you, "I wrote my Ph.D. thesis about that notation! Now I finally need that information for something other than getting a degree!`
 			`	"The circle around the symbol looks almost like a wormhole. A red wormhole. I heard about one in Termanus near The Deep. Apparently nobody is able to enter one without their ship being torn to pieces. This symbol suggests there's another one in the middle of Syndicate space.`
 			`	"Fly through the wormhole at the coordinates on that card, come back and tell me what you see. In the meantime, I'll ask other researchers about the nanotransceivers."`
 			choice
@@ -758,7 +763,7 @@ mission "Hai Rescue [A08] Scanner"
 			`	"This isn't a base; it's a colony."`
 			`	You notice capital ships heading your way and about two dozen more preparing to leave the planet. It's time to go.`
 	on complete
-		payment 1375000
+		payment 775000
 	npc
 		government "Pirate (Devil-Run Gang)"
 		system "Devil-Hide"
@@ -1135,8 +1140,6 @@ mission "Hai Rescue [B02B] Diplomacy: Syndicate (Retry)"
 	on complete
 		# Lower payment because she's annoyed at the delay.
 		payment 350000
-	on visit
-		dialog `You left Teeneep's ship behind. Depart and wait for it to arrive before landing again.`
 	npc save accompany
 		government " Hai "
 		personality timid escort
@@ -1190,6 +1193,8 @@ mission "Hai Rescue [B04] Diplomacy: Treaty Negotiation"
 		dialog `As you enter the system, authorities on <planet> ask you to land with Teeneep and meet a Syndicate representative immediately. They give you unusual landing coordinates, next to a warehouse.`
 	to offer
 		has "Hai Rescue [B03] Diplomacy: Syndicate Internal Affairs: done"
+	on visit
+		dialog `You left Teeneep's ship behind. Depart and wait for it to arrive before landing again.`
 	on offer
 		log `The Republic Prime Minister and Free Worlds President met Teeneep, who claims to speak with the authority of the entire Hai government. They came to a tentative agreement about carefully tracking Hai movements in human space, but Teeneep won't agree until her people are returned. The human leaders asked us to talk to Stephen Moray again.`
 		conversation
@@ -1251,7 +1256,7 @@ mission "Hai Rescue [B04] Diplomacy: Treaty Negotiation"
 			label accept
 			`	The Quarg rises, "I wish you success, wise humans and Hai. Your people are led well under your guidance." With a bow, Quarg leaves the warehouse.`
 			`	Stephen Moray tells you, "When you're ready, come to the spaceport." He hands you an access card with a room number. "You will need room for one passenger and one ton of cargo."`
-			`	Teeneep thanks you with <payment>. "Your help has been immeasurable. On behalf of the Hai, thank you."`
+			`	Teeneep thanks you with <payment>. "I cannot understate how much you've helped us. On behalf of the Hai, thank you."`
 				decline
 	npc save accompany
 		government " Hai "
@@ -1376,7 +1381,8 @@ mission "Hai Rescue [B08] Re-Plan"
 	on offer
 		conversation
 			`You approach the coordinates the authorities provided and a hidden hangar opens. It was covered by a hologram of trees. Once within, Teeneep and Stephen Moray meet you at your ship.`
-			`	Teeneep tells you, "We've made progress. A Dreadnought and a Carrier have been outfitted with the best in Hai technology and top troops. We've destroyed the three staging facilities and we're ready to attack Philosopher's Paradise. Humans and Hai are close to a peaceful solution, thanks to you!"`
+			`	Teeneep tells you, "We've made progress. I have been working with the Free Worlds, Syndicate, Republic, and the Deep. They are all eager to help the Hai rescue our people. You've sparked a long-needed discussion between diplomats in our governments. This will go a long way towards establishing peace."`
+			`	She continues, "We've outfitted a Dreadnought and a Carrier with the best technology in Hai and human space. We've destroyed the three staging facilities and we're ready to attack Philosopher's Paradise."`
 			`	You tell her about Tutitot's findings on Philosopher's Paradise and Stephen Moray speaks, "There aren't enough Jump Drives in all of human space for a fleet that could defeat that many pirates. If the Quarg, Korath, and Drak won't help us, I don't know what we'll do."`
 			`	Teeneep sighs. "Captain <last>, I need you to escort me to <destination>." Stephen looks worried at that suggestion. "The Unfettered Hai have plenty of Jump Drives and troops. They could liberate our people. I know their ways, and I can convince them to help, if my ship survives the journey. I'll pay you double this time: <payment>.`
 				accept
@@ -1428,6 +1434,8 @@ mission "Hai Rescue [C01] Bloody Love Blooms"
 			`	As you enter the room, a pair of Unfettered grab you and pin you to the wall. Teeneep pulls out a throwing knife and says, "Let him go now." The Unfettered let go immediately and she puts her knife away. As you walk towards her, she signals for you to stay where you are.`
 			label watch
 			`	Teeneep explains to the leader, "Twenty thousand Hai have been kidnapped and enslaved by human pirates. They're concealed in a subterranean base that can only be reached with a Jump Drive and a Quantum Keystone. Dozens of human capital ships and thousands of human pirates guard the Hai. We haven't enough Jump Drives to rescue them.`
+			# Note: Teeneep is using hyperbole; she knows most of the 20,000
+			# Hai at Philosopher's Paradise were probably born there.
 			`	"You were once the protectors of all Hai. I ask you be so again. Free our people from slavery, and kill their human slavers."`
 			`	The Hai leader responds, "Your people have outlawed and abandoned us. You give us insulting food donations with propaganda on them. You block our ships from returning to Hai-home. Why should we help you? A race of slothful cowards? Your people are an insult to all Hai." He turns and walks away.`
 			`	Teeneep dives beneath the man's legs and jumps on a nearby table in front of him. You had forgotten how quick Hai are; few humans could do what she did. She unsheathes both swords and says, "I challenge you for rule of the Unfettered military!"`
@@ -1438,7 +1446,7 @@ mission "Hai Rescue [C01] Bloody Love Blooms"
 			choice
 				`	(Walk to her.)`
 			`	"Captain <first> <last> led great fleets during a civil war of the humans. I have seen his valor in battle as he's escorted my ship through pirate space. We will have the honor of fighting along side him."`
-			`	"I look forward to seeing you fight," says the Unfettered leader. "We cannot spare a large fleet though, so I will need your people to upgrade fourteen Shield Beetles to our specifications. We'll return your outfits after the battle." He motions to another officer who hands him a data card, "These are the instructions."`
+			`	The Unfettered leader turns to you and says, "I look forward to seeing you fight. We cannot spare a large fleet though, so I will need your people to upgrade fourteen Shield Beetles to our specifications. We'll return your outfits after the battle." He motions to another officer who hands him a data card, "These are the instructions."`
 			`	Teeneep smiles at you, "Return to Hai-home and inform the Elders that an Unfettered fleet will arrive. Then go to Prime and tell them to prepare to outfit our ships. When you have finished, land at Allhome and we will rejoin you."`
 			`	You return to your ship and prepare to leave.`
 				accept
@@ -1469,6 +1477,8 @@ mission "Hai Rescue [C03] Unfettered Escort"
 	destination "Prime"
 	to offer
 		has "Hai Rescue [C02] Arms Purchase: done"
+	on visit
+		dialog `To finish this mission, all fifteen Unfettered Hai Shield Beetles must land with you.`
 	on enter Betelgeuse
 		dialog `The large fleet of human ships in this system fly the same flag, "Human Alliance," and appear to have outfits from all factions. The human authorities must be concerned about well-equipped Unfettered Hai Shield Beetles wandering through human space. Hopefully this human camaraderie will outlive the current crisis.`
 	on offer
@@ -1537,7 +1547,7 @@ mission "Hai Rescue [C04] Foundry"
 		log `Agent Kopkow of Republic Intelligence complained that they're running out of cover stories to hide the Hai. He needs the Hai-human conflict resolved without an more public displays. Once I have space for his 200 operatives, I need to pick them up at the Foundry spaceport.`
 		conversation
 			`You land on Foundry and are met by Agent Kopkow, the Republic Intelligence agent you met on Earth. He seems extremely concerned about something.`
-			`	"It is becoming increasingly difficult to cover up the existence of the Hai. The captains at Ultima Thule already know about the Hai, but we had to tell the crews we were dealing with a major pirate threat. We hired a few pirate gangs, tricking them into flying through the area to make our story believable. The Shield Beetles at Prime were explained away as experimental ship designs. I hope you can finish this without too many more public displays, otherwise we won't be able to hide the Hai anymore.`
+			`	"It is becoming increasingly difficult to cover up the existence of the Hai. The captains at Ultima Thule already know about the Hai, but we had to tell the crews we were dealing with a major pirate threat. We hired a few pirate gangs, tricking them into flying through the area to back our story. The Shield Beetles at Prime were explained away as experimental ship designs. Our cover stories have past the point of plausibility into the realm of barefaced lying. I hope you can finish this without too many more public displays, otherwise we won't be able to hide the Hai anymore.`
 			`	"I've brought 200 intelligence operatives, specially trained for attacking pirate strongholds, and equipped with advanced weapons that... are on a need-to-know basis. Unfortunately, we possess no ships that can transport that many people safely to the surface. Even a Bactrian would be torn to pieces. You will have to transport the operatives.`
 			`	"Once you're ready for the battle at Philosopher's Paradise, meet our operatives in the spaceport. You will need 200 bunks to fit all the operatives. Please don't take long. We're running out of cover stories."`
 			`	He walks off dismayed.`
@@ -1556,8 +1566,9 @@ mission "Hai Rescue [C05] Devil-Hide Battle"
 		conversation
 			`Teeneep reminds you that the operatives and General Choot'k's Shield Beetle must survive. His Shield Beetle has red engine flares; the others have blue.`
 			`	(NOTE: You need to Dominate this planet to finish the battle. To do that, talk to the planet and demand tribute. The planet will send defense fleets over and over until they run out. Demand tribute again, and they'll agree. Then land to finish the mission.)`
+			`	(WARNING: The Unfettered will not help you fight the defense fleets sent in response to your tribute demands. The Unfettered will fight the other pirate ships though. The defense fleets will show up as blinking lights in the mini-map.)`
 	on visit
-		dialog `To finish this mission, you must land with the Unfettered Flagship and all 200 operatives.`
+		dialog `To finish this mission, you must defeat all defending pirate vessels, and land with the Unfettered Flagship and all 200 operatives.`
 	on accept
 		event "Philosopher's Paradise can be dominated"
 	on offer
@@ -1584,12 +1595,17 @@ mission "Hai Rescue [C05] Devil-Hide Battle"
 				"Shield Beetle (Plasma Blaster Jump)"
 	on complete
 		event "Liberated Philosopher's Paradise"
+	npc
+		government "Pirate (Devil-Run Gang)"
+		personality heroic staying
+		system "Devil-Hide"
+		fleet "Devil-Run Warships" 20
 
 event "Philosopher's Paradise can be dominated"
 	planet "Philosopher's Paradise"
 		tribute 7000
 			threshold 3000
-			fleet "Devil-Run Warships" 30
+			fleet "Devil-Run Warships" 10
 
 mission "Hai Rescue [C06] Freedom"
 	landing
@@ -1632,12 +1648,18 @@ mission "Hai Rescue [C06] Freedom"
 					goto space
 				`	"How did the Korath get here?"`
 					goto korath
+				`	"Can you speak to other Korath for me?"`
+					goto "translation services"
 				`	"I have no more questions."`
 			`	"It was a pleasure meeting you," says the human leader.`
 				goto leave
 			label korath
 			`	The Korath leader tells you, "A few years ago, three of our ships jumped into the Alcyone system to raid. Numerous pirate vessels left Stormhold and disabled all of our ships. A large human ship boarded our flagship. All we heard was screaming; the pirates used deadly gas to kill the entire crew.`
 			`	"You call it, 'nerve gas.' The death is excruciatingly painful to Korath. Not wanting that fate, the crews of the second and third Korath vessels surrendered. Now we're here, safe, and free. We are not scientists like the others here, but we help as we can." The other two leaders smile at him gratefully.`
+			`	The Korath leader continues, "I must ask you hold secret the presence of Korath here. If the other Exiles hear of this place, they may attack to retrieve us, or simply to pillage. We will remain here in hiding until Korath space is safe."`
+				goto questions
+			label "translation services"
+			`	The Korath leader looks worried, "No, we cannot. Few among us Korath know your language and we must remain here in secret. Perhaps in time there will be a way, but not yet."`
 				goto questions
 			label home
 			`	The three leaders laugh. The Hai answers, "We are home. This is a place of learning where three races join as one to seek knowledge. Some recent kidnapping victims wish to leave. We will help you find them and send them home."`
@@ -1658,7 +1680,11 @@ mission "Hai Rescue [C06] Freedom"
 			label space
 			`	"Very little. The pirates wouldn't let us leave the planet, and jump drives are precious to them. They cannot risk drives on science expeditions. Still, we have managed a few trips.`
 			`	"There is no evidence that any civilization has ever reached this region of space until us. There are many space-faring indigenous creatures that live in gas giants, and sometimes venture beyond. We suspect there is a north route from here to another galaxy, though we cannot find the starlanes yet.`
-			`	"The planet below is a mystery to us. It has a thousand times the mass it should. Its tremendous gravitational field sustains the large asteroid belt. Somehow though, within a few thousand kilometers of the planet, the gravity is similar to Earth. There are many forms of radiation and strange materials inside the planet's caves. Perhaps with help from the Republic we may discover more.`
+			# The starlanes are not concealed. "We cannot find the starlanes" is a
+			# fourth wall breaking joke that refers to that part of the game still
+			# being under construction. That last sentence will be changed once the
+			# SMC is created.
+			`	"The planet below is a mystery to us. It has a thousand times the mass it should. Its tremendous gravitational field sustains the large asteroid belt. Somehow though, within a few thousand kilometers of the planet, the gravity is similar to Earth. There are many forms of radiation and strange materials inside the planet's caves. Perhaps with help from scientists in human space we may discover more.`
 				goto questions
 			label leave
 			`	As you return to your ship, Teeneep interrupts you. "I need you to escort me one last time, Captain <last>. General Choot'k and I must return to <destination>. The other True Hai vessels will remain here to guard the planet until suitable reinforcements arrive. You'll be paid well, of course."`
