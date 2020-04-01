@@ -18999,8 +18999,8 @@ system "Pug Iyik"
 	trade Medical 552
 	trade Metal 414
 	trade Plastic 409
-	fleet "Small Pug" 600
-	fleet "Large Pug" 1200
+	fleet "Small Pug (Wanderer)" 600
+	fleet "Large Pug (Wanderer)" 1200
 	object
 		sprite star/g5
 		period 10
