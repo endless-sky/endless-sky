@@ -121,25 +121,33 @@ mission "Wanderers: Diplomacy"
 	to offer
 		has "First Contact: Wanderer: offered"
 	on offer
-		log "People" "Sayari" `Ambassador Sayari, a Hai, served as their envoy to the human government a century ago (although no public records of this exist in human space). She has now been assigned by the Hai to be their diplomat to the Wanderers, and to serve as a translator as well.`
+		log "People" "Sayari" `Now that the crisis with humanity is over she has volunteered to serve as a translator and be the Hai diplomat to the Wanderers as a capstone for her career.`
 		conversation
-			`As you are approaching Hai-home, you contact the Hai government and ask if they would be willing to provide an ambassador to help you communicate with the aliens to the north, who seem to speak the Hai language. They immediately direct you to a private government hangar, where a diplomat meets you. She holds out a paw to greet you, and says, "My name is Sayari. I was the envoy to the human government, a century ago." To the best of your knowledge, the Republic has never mentioned the Hai or publicly acknowledged receiving an envoy from them.`
+			`As you are approaching Hai-home, you contact the Hai government and inform them that you have found new aliens to the north. You submit a request for ambassadorial assistance to help you communicate with the aliens to the north, who seem to speak the Hai language. They immediately direct you to a now familiar private government hangar, where a familiar diplomat meets you.`
+			`	"Good to see you again Captain <Last>, I have arranged for some refreshments so please, come and tell me all about these new aliens you have discovered!"`
+			`	Her exuberance is catching and after recent stressful events you see a new side to her as you relay your experience with the bird-like aliens. You realise that opportunities like this are why she became a diplomat in the first place and that this is, to some degree, a dream come true.`
+			`	"So in conclusion, it seems you need a translator," she says with a wry smile.`
 			choice
-				`	"Wait, the human Republic knows that the Hai exist? I had heard nothing but vague rumors of your existence before I found the wormhole."`
-				`	"I'm pleased to meet you. Are you willing to travel with me?"`
-					goto travel
-			
-			`	She laughs, in the Hai manner: a rapid chittering sound. "Yes, the humans and the Hai both worried that too many humans would emigrate all at once if they knew of our peaceful lands. So we agreed that the Hai would be a secret, always here for the adventurous to discover, but difficult to find, so that the human immigration would be slow enough for us to gradually adjust to it."`
-			`	"Are you the translator who will travel with me?" you ask.`
-			label travel
+				`	"Indeed, I'm hoping you have someone in mind."`
+				`	"It would be great to work with you again if you're willing."`
+			`	You open your mouth to respond but the effort is pointless.`
+			`	"I accept!" she cries, leaning forward on the desk with a gleeful look in her eyes.`
+			`	"A first contact is a dream opportunity, and there are so very few of them. So of course I will come with you."
+			choice
+				`	"Let's go visit these aliens immediately!"`
+					accept
+				`	"Can a distinguished ambassador such as yourself just leave like that?"`
+				`	"What if the humans want our own envoy to these aliens?"`
+					goto envoy
 			`	"Yes," she says. "If these aliens will provide a place for me, I mean to live with them permanently, an ambassador between their people and ours. I am old, and in need of a great novelty like this to make my life interesting once more." You note that the fur on her face, especially on the snout, has turned from brown to silvery grey - a sign of age in terrestrial creatures, and perhaps in the Hai as well.`
+			`	"Besides," she says, "after recent events they can hardly say no to me."`
 			choice
-				`	"I'm glad to have the company of such a distinguished ambassador. Let's go visit these aliens immediately!"`
+				`	"Let's go visit these aliens immediately!"`
 					accept
 				`	"What if the humans want our own envoy to these aliens?"`
+			label envoy
 			`	She says, "If they prove to be friendly, I will help you to find a way to communicate with them directly, so you need not use me as an intermediary. But our first step must be to speak with them." You help her aboard your ship, and get ready to return to the alien homeworld.`
-				accept
-	
+				accept			
 	on accept
 		fail "First Contact: Wanderer"
 	on visit
@@ -268,10 +276,9 @@ mission "Visit Wanderers Again"
 	
 	on accept
 		set "language: Wanderer"
-		set "license: Wanderer Outfits"
 		event "wanderer technology available"
 
-event "wanderer technology available" #Name unchanged for compatibility
+event "wanderer technology available" # Name unchanged for compatibility
 	government "Wanderer"
 		"friendly hail" "friendly wanderer"
 		"friendly disabled hail" "friendly disabled wanderer"
@@ -287,7 +294,6 @@ mission "Wanderer Hail Patch"
 	to offer
 		has "event: wanderer technology available"
 	on offer
-		set "license: Wanderer Outfits"
 		event "wanderer technology available"
 		fail
 
@@ -299,6 +305,7 @@ mission "Wanderers Conversation"
 	to offer
 		has "Visit Wanderers Again: done"
 	on offer
+		set "license: Wanderer Outfits"
 		log "Spoke with a Wanderer ambassador named Iktat Rek, using the translation device. Received permission to purchase some of their technology, but not their ships."
 		log "Factions" "Wanderers" `The Wanderers believe that their purpose in the universe is to "repair" planets whose biospheres have been ravaged by other species either through mismanagement or as a result of war. They came to their current territory through a wormhole that they call "the Eye," and they say that once their work here is done the Eye will open and lead them to a new territory and new worlds for them to care for.`
 			`It is possible that the worlds they currently inhabit were formerly part of Hai territory. That might explain why the Unfettered believe they have a right to take that territory back.`
