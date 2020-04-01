@@ -3472,7 +3472,7 @@ mission "Inheritance Redirection"
 
 
 
-mission "Hauler VI cargo prototype 1"
+mission "Hauler IV cargo prototype 1"
 	name "Escort Hauler prototype to formal dinner"
 	description "Escort the <npc> to <destination> to deliver sushi for a formal dinner."
 	minor
@@ -3494,7 +3494,7 @@ mission "Hauler VI cargo prototype 1"
 					defer
 			`	She smiles and replies, "Well, I actually don't know you, but I just read your name on one of the cargo manifests. And my experience is that this greeting works best if you need something from a spaceship captain."`
 			label "hello too"
-			`	She says, "My name is Veronica Oxygenpocket, and I'm the lead for a team that's designing the new Hauler VI transport ship series at Southbound Shipyards."`
+			`	She says, "My name is Veronica Oxygenpocket, and I'm the lead for a team that's designing the new Hauler IV transport ship series at Southbound Shipyards."`
 			choice
 				`	"'Oxygenpocket' is an uncommon name."`
 				`	"And what help do you need from me?"`
@@ -3502,7 +3502,7 @@ mission "Hauler VI cargo prototype 1"
 			`	Veronica responds, "Well, it might sound uncommon to people from a planet with a breathable atmosphere, but it is actually similar to Vanderberg, which means 'from the mountain,' or Langley, which means 'woodland.'`
 			`	"Oxygenpockets were as much a feature on my home-planet as mountains and woodlands are on more habitable planets."`
 			label "help request"
-			`	Veronica pauses for a moment and then continues, "We're testing the VI's cargo refrigeration system using the Testament, a modified Hauler III. This system is one of our biggest achievements. To show how well it works, we plan to throw a formal dinner on <destination> with fresh sushi transported from here. I'm sure everyone at the dinner will be amazed by how well the food has been preserved despite the travel time. I'd like you to escort the ship and its cargo to <planet>."`
+			`	Veronica pauses for a moment and then continues, "We're testing the IV's cargo refrigeration system using the Testament, a modified Hauler III. This system is one of our biggest achievements. To show how well it works, we plan to throw a formal dinner on <destination> with fresh sushi transported from here. I'm sure everyone at the dinner will be amazed by how well the food has been preserved despite the travel time. I'd like you to escort the ship and its cargo to <planet>."`
 			choice
 				`	"Isn't it a bit risky to transport food using a refrigeration system that hasn't been tested yet?"`
 				`	"Am I also invited for the dinner?"`
@@ -3531,14 +3531,14 @@ mission "Hauler VI cargo prototype 1"
 		dialog
 			`You wait for the Testament to land, but it remains in orbit. There is no response to your hails. Maybe you should take off and investigate.`
 
-mission "Hauler VI cargo prototype 2"
+mission "Hauler IV cargo prototype 2"
 	name "Escort Hauler prototype to <planet>"
 	description "Escort the <npc> to <destination> to deliver cooked fish dishes to a streetfood festival."
 	source "Skymoot"
 	destination "Zug"
 	landing
 	to offer
-		has "Hauler VI cargo prototype 1: done"	
+		has "Hauler IV cargo prototype 1: done"	
 	npc accompany
 		government "Merchant"
 		personality escort timid
@@ -3553,13 +3553,13 @@ mission "Hauler VI cargo prototype 2"
 		dialog
 			`This time the Testament appears to be landing right behind you, but the ship flies away at full thrust just before touching the landing pad. You receive another message: "The Sushi completely burned. We cannot be seen near the festival or near the shipyard with this burned sushi! Our new destination is the waste processing plant at Longjump."`
 
-mission "Hauler VI cargo prototype 3"
+mission "Hauler IV cargo prototype 3"
 	name "Escort Hauler prototype to waste plant"
 	description "Escort the <npc> to <destination> to deliver charred food waste to a waste-processing plant."
 	destination "Longjump"
 	landing
 	to offer
-		has "Hauler VI cargo prototype 2: done"
+		has "Hauler IV cargo prototype 2: done"
 	npc accompany
 		government "Merchant"
 		personality escort timid
