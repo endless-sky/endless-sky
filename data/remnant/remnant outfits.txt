@@ -314,20 +314,23 @@ outfit "Quantum Tear"
 		"fire effect" "large glow"
 		"burst count" 60
 		"burst reload" 1
-		"velocity" 100
+		"velocity" 125
 		"inaccuracy" 0
 		"safe"
 		"lifetime" 25
 		"reload" 2
-		"firing force" 100
+		"firing force" 50
 		"trigger radius" 150
 		"blast radius" 400
 		"firing energy" 500
 		"firing heat" 450
+		"firing fuel" 25
 		"shield damage" 5000
 		"hull damage" 5000
-		"hit force" 1000
-	description "The person who dreamed up creating a weapon of this power and magnitude was either the smartest man who ever lived, or the dumbest. Whether that credit is an honor or a disgrace, you'll want to make sure this weapon's power regulator is firmly locked in the off position before sending out any craft you care about to service the barrel."
+		"slowing damage" 10
+		"hit force" 500
+	description "While their pursuit of the secrets of Jump Drives has yet to result in the successful manufacture of such a drive, it has led to many other advances. One such is the Quantum Tear. The Remnant look at you dubiously when you ask for an explanation as to how these work. When your eyes glaze over after the first sentence, they abbreviate the explantion to 'These weapons utilize a variant hyperspace manifold to create microtears in target particles causing the rupture of their quantum state, resulting in the disruption of both internal and applied forces.'"
+	description "	These massive weapons require special hardpoints, and are built in such few number that the Remnant distribute them directly to the captains they trust with them. Due to the prodigious energy and fuel requirements, only the most massive of Remnant ships can support regular use of these weapons."
 
 
 
