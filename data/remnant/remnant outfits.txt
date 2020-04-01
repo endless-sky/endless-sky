@@ -306,7 +306,7 @@ outfit "Quantum Tear"
 		icon "icon/flamethrower"
 		sound "final explosion small"
 		"die effect" "superweapon fadeout"
-		"hit effect" "superweapon residue" 7
+		# "hit effect" "superweapon residue" 7
 		"hit effect" "superweapon residue blue" 10
 		"fire effect" "blue sparks" 2
 		"hit effect" "superweapon hit"
@@ -755,7 +755,7 @@ outfit "Remnant Plasma Torch Cannon"
 		sound "electron beam"
 		"hit effect" "electron impact"
 		"inaccuracy" .2
-		"velocity" 550
+		"velocity" 450
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 2.8
