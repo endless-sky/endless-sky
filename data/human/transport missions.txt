@@ -3519,7 +3519,7 @@ mission "Hauler VI cargo prototype 1"
 				`	"Am I also invited for the dinner?"`
 					goto invited
 				`	"Why do you need me to escort the ship?"`
-					goto internal`
+					goto internal
 			label "refrigerate"
 			`	"Risky, why? I don't see what can go wrong. The system is quite well designed. I'm so proud of my team."`
 			choice
