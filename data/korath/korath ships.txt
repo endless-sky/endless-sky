@@ -1860,3 +1860,30 @@ ship "Korath Refabricator" "Korath Refabricator (Grab-Strike)"
 	turret 0 180 "Korath Inferno"
 	turret -173 248 "Korath Grab-Strike"
 	turret 173 248 "Korath Grab-Strike"
+
+
+ship "Korath Refabricator" "Korath Refabricator (Six Infernos)"
+	outfits
+		"Korath Warder" 5
+		"Korath Inferno" 6
+
+		"Large Heat Shunt" 10
+		"Triple Plasma Core" 3
+		"Korath Repeater Rifle"  2600
+
+		"Steering (Stellar Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+	turret -82 -202 "Korath Inferno"
+	turret 82 -202 "Korath Inferno"
+	turret -154 -122 "Korath Warder"
+	turret 154 -122 "Korath Warder"
+	turret 0 -114
+	turret -140 -23 "Korath Inferno"
+	turret 140 -23 "Korath Inferno"
+	turret 0 18.5
+	turret -189 119 "Korath Warder"
+	turret 189 119 "Korath Warder"
+	turret 0 180 "Korath Warder"
+	turret -173 248 "Korath Inferno"
+	turret 173 248 "Korath Inferno"
