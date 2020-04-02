@@ -649,7 +649,7 @@ outfit "Nova Turret"
 		"hit effect" "nova ring" 40
 		"die effect" "small explosion"
 		stream
-		"reload" 480
+		"reload" 300
 		"firing energy" 1735
 		"firing heat" 851
 		"inaccuracy" 3
@@ -780,7 +780,7 @@ outfit "Korath Inferno"
 		"shield damage" 9
 		"hull damage" 6
 		"heat damage" 71
-	description "The Korath Inferno was one of the crowning achievements of the Kor Sestor before they were driven out of their territory. The Korath Exiles cannot build the original Kor Sestor design, but even this lesser version is devastatingly powerful."
+	description "The Korath Inferno was the crowning achievement of Kor Sestor weapon design before they were driven out of their territory. The Korath Exiles cannot build the original Kor Sestor design, but even this lesser version is devastatingly powerful."
 
 effect "korath inferno hit"
 	sprite "effect/korath inferno hit"
@@ -808,7 +808,7 @@ outfit "Korath Digger Turret"
 		sound "korath digger"
 		"hit effect" "korath digger hit"
 		"inaccuracy" .5
-		"turret turn" 2.9
+		"turret turn" 3
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1

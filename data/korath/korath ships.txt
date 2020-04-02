@@ -1661,7 +1661,7 @@ ship "Korath Dredger"
 	sprite "ship/dredger"
 	thumbnail "thumbnail/dredger"
 	attributes
-		category "Heavy Warship"
+		category "Heavy Freighter"
 		"cost" 19370000
 		"shields" 35000
 		"hull" 37000
@@ -1676,11 +1676,14 @@ ship "Korath Dredger"
 		"weapon capacity" 261
 		"engine capacity" 185
 		
-		# Capabilities of built-in factory and ore processor:
+		# Capabilities of built-in nanite factory:
 		"ramscoop" 2
-		"hull repair rate" 0.5
-		"hull energy" 0.5
-		"hull heat" 1.5
+		"shield generation" 2.5
+		"shield energy" 3.4
+		"hull repair rate" 3.1
+		"hull energy" 3.1
+		"hull heat" 4.5
+		"energy capacity" 1800
 		
 		weapon
 			"blast radius" 300
@@ -1758,26 +1761,29 @@ ship "Korath Refabricator"
 	sprite "ship/korath refabricator"
 	thumbnail "thumbnail/korath refabricator"
 	attributes
-		category "Heavy Warship"
+		category "Heavy Freighter"
 		"cost" 39370000
-		"shields" 83000
-		"hull" 67000
-		"required crew" 4100
-		"bunks" 8700
+		"shields" 93000
+		"hull" 107000
+		"required crew" 2150
+		"bunks" 4785
 		"mass" 2280
 		"drag" 18.1
-		"heat dissipation" .6
-		"fuel capacity" 1800
-		"cargo space" 1650
-		"outfit space" 1310
-		"weapon capacity" 481
-		"engine capacity" 207
+		"heat dissipation" .65
+		"fuel capacity" 2200
+		"cargo space" 2845
+		"outfit space" 1495
+		"weapon capacity" 576
+		"engine capacity" 208
 		
-		# Capabilities of built-in factory and ore processor:
-		"ramscoop" 6
-		"hull repair rate" 4
-		"hull energy" 3.5
-		"hull heat" 9
+		# Capabilities of huge built-in nanite factory:
+		"ramscoop" 12
+		"shield generation" 21
+		"shield energy" 30.8
+		"hull repair rate" 27
+		"hull energy" 27
+		"hull heat" 36
+		"energy capacity" 9800
 		
 		weapon
 			"blast radius" 600
@@ -1786,40 +1792,70 @@ ship "Korath Refabricator"
 			"hit force" 20000
 	outfits
 		"Korath Warder" 4
-		"Korath Digger Turret" 3
-		"Korath Heaver" 2
-		"Korath Inferno" 3
+		"Korath Digger Turret" 2
+		"Korath Heaver" 3
+		"Korath Inferno" 4
 
-		"Large Heat Shunt" 5
-		"Systems Core (Large)"
-		"Systems Core (Medium)"
-		"Triple Plasma Core" 2
-		"Korath Repeater Rifle"  4400
+		"Large Heat Shunt" 8
+		"Small Heat Shunt"
+		"Triple Plasma Core" 3
+		"Korath Repeater Rifle"  2600
 
 		"Steering (Lunar Class)"
 		"Steering (Stellar Class)"
-		"Thruster (Asteroid Class)"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
 
-	turret -129 -236 "Korath Warder"
-	turret 0 -245 "Korath Heaver"
-	turret 129 -236 "Korath Warder"
-	turret -135 -178 "Korath Inferno"
-	turret 135 -178 "Korath Inferno"
-	turret -109 -4.5 "Korath Digger Turret"
-	turret 109 -4.5 "Korath Digger Turret"
-	turret -1 52 "Korath Heaver"
-	turret -1 84 "Korath Inferno"
-	turret -147 192 "Korath Warder"
-	turret 0 194 "Korath Digger Turret"
-	turret 147 192 "Korath Warder"
-	engine -149 245 .8
-	engine 0 239
-	engine 149 245 .8
-	fighter 149 -127 under
-	fighter 151 -63 under
-	fighter 143 -1 under
-	fighter -149 -127 under
-	fighter -151 -63 under
-	fighter -143 -1 under
+	turret -82 -202 "Korath Digger Turret"
+	turret 82 -202 "Korath Digger Turret"
+	turret -154 -122 "Korath Warder"
+	turret 154 -122 "Korath Warder"
+	turret 0 -114 "Korath Heaver"
+	turret -140 -23 "Korath Inferno"
+	turret 140 -23 "Korath Inferno"
+	turret 0 18.5 "Korath Heaver"
+	turret -189 119 "Korath Warder"
+	turret 189 119 "Korath Warder"
+	turret 0 180 "Korath Heaver"
+	turret -173 248 "Korath Inferno"
+	turret 173 248 "Korath Inferno"
+	fighter -190.5 105 under
+	fighter 190.5 105 under
+	fighter -183.5 182.5 under
+	fighter 183.5 182.5 under
+	fighter -175.5 238.5 under
+	fighter 175.5 238.5 under
+	engine -105 281 0.7
+	engine -45 279
+	engine 45 279
+	engine 105 281 0.7
+
+ship "Korath Refabricator" "Korath Refabricator (Grab-Strike)"
+	outfits
+		"Korath Warder" 4
+		"Korath Digger Turret" 2
+		"Korath Grab-Strike" 4
+		"Korath Inferno" 3
+
+		"Large Heat Shunt" 7
+		"Small Heat Shunt" 2
+		"Triple Plasma Core" 3
+		"Korath Repeater Rifle"  2600
+
+		"Engine (Meteor Class)" 2
+		"Steering (Stellar Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+	turret -82 -202 "Korath Grab-Strike"
+	turret 82 -202 "Korath Grab-Strike"
+	turret -154 -122 "Korath Warder"
+	turret 154 -122 "Korath Warder"
+	turret 0 -114 "Korath Inferno"
+	turret -140 -23 "Korath Digger Turret"
+	turret 140 -23 "Korath Digger Turret"
+	turret 0 18.5 "Korath Inferno"
+	turret -189 119 "Korath Warder"
+	turret 189 119 "Korath Warder"
+	turret 0 180 "Korath Inferno"
+	turret -173 248 "Korath Grab-Strike"
+	turret 173 248 "Korath Grab-Strike"
