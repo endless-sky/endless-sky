@@ -1671,8 +1671,8 @@ ship "Korath Dredger"
 		"drag" 16
 		"heat dissipation" .55
 		"fuel capacity" 1000
-		"cargo space" 410
-		"outfit space" 826
+		"cargo space" 480
+		"outfit space" 796
 		"weapon capacity" 261
 		"engine capacity" 185
 		
@@ -1696,8 +1696,7 @@ ship "Korath Dredger"
 		"Korath Digger Turret" 2
 		"Korath Heaver"
 		
-		"Systems Core (Large)"
-		"Systems Core (Small)"
+		"Systems Core (Medium)"
 		"Triple Plasma Core"
 		"Generator (Furnace Class)"
 		"Small Heat Shunt" 2
@@ -1727,6 +1726,7 @@ ship "Korath Dredger"
 	"final explode" "final explosion large"
 	description "The Korath Dredger is a mining and ore processing ship the Korath Exiles send deep into enemy territory to gather resources and return to home systems for manufacturing. In planetary-scale raids, these ships are used as fighter-carriers and as cargo ships to haul loot."
 
+# Dredger equipped for solo travel as a miner:
 ship "Korath Dredger" "Korath Dredger (Fast Inferno)"
 	outfits
 		"Korath Warder" 2
@@ -1734,11 +1734,12 @@ ship "Korath Dredger" "Korath Dredger (Fast Inferno)"
 		"Korath Digger Turret" 3
 		
 		"Large Heat Shunt" 3
-		"Systems Core (Large)"
+		"Systems Core (Medium)"
 		"Plasma Core"
 		"Triple Plasma Core"
 		"Korath Repeater Rifle" 190
 
+		"Engines (Meteor Class)" 2
 		"Steering (Stellar Class)"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
