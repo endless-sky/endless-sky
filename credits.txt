@@ -82,7 +82,7 @@ Beta Testers
 
 Special thanks to MCOfficer for
 creating, managing, and hosting
-the nightly builds that makes
+the nightly builds that make
 so much of this work possible.
 
 Proof Readers & Editors
