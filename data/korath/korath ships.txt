@@ -1842,7 +1842,7 @@ ship "Korath Refabricator" "Korath Refabricator (Grab-Strike)"
 		"Triple Plasma Core" 3
 		"Korath Repeater Rifle"  2600
 
-		"Engine (Meteor Class)" 2
+		"Engines (Meteor Class)" 2
 		"Steering (Stellar Class)"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
