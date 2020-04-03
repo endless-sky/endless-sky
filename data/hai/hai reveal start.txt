@@ -10,7 +10,7 @@
 
 ########################################################################
 
-Investigate a theorised smuggling route and rescue Hai. You have to do at least three of these missions.
+#Investigate a theorised smuggling route and rescue Hai. You have to do at least three of these missions.
 
 mission "Hai Rescue: Yeertle Family"
 	landing
