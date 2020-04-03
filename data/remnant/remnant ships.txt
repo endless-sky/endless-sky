@@ -1103,9 +1103,9 @@ ship "Diomedea"
 		"shield energy" 1.8
 		"hull repair rate" 4
 		"hull energy" 0.75
-		"outfit scan power" 12
+		"outfit scan power" 15
 		"outfit scan speed" 1
-		"tactical scan power" 71
+		"tactical scan power" 81
 		weapon
 			"blast radius" 540
 			"shield damage" 4400
@@ -1137,6 +1137,14 @@ ship "Diomedea"
 	gun 0 -310
 	gun 13 -287
 	gun 22 -258
+	drone -85 -36 over 
+	drone 85 -36 over 
+	drone -109 -14 over 
+	drone 109 -14 over 
+	drone -138 22 over 
+	drone 138 22 over 
+	fighter -42 133 over 
+	fighter 42 133 over 
 	turret -9.5 57	"Remnant Flak Turret"
 	turret 9.5 57	"Remnant Flak Turret"
 	turret -0 281.5	"Point Defense Turret"
