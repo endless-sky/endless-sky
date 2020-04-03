@@ -649,7 +649,7 @@ ship "Geodesic Geocoris"
 		"fuel capacity" 800
 		"cargo space" 761
 		"outfit space" 555
-		"weapon capacity" 210
+		"weapon capacity" 250
 		"engine capacity" 104
 		"reverse thrust" 32
 		"reverse thrusting energy" 3.2
