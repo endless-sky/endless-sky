@@ -136,6 +136,43 @@ ship "Centipede" "Centipede (Pulse)"
 		`"Biroo" Atomic Steering`
 		Hyperdrive
 
+ship "Centipede" "Centipede (Durable)"
+	outfits
+		Hyperdrive
+		"Outfits Expansion"
+		"Quantum Keystone"
+		`"Basrem" Atomic Steering`
+		"Bullfrog Anti-Missile" 3
+		"Tracker Storage Pod" 2
+		"Hai Tracker Pod" 2
+		`"Biroo" Atomic Steering`
+		"Hai Gorge Batteries"
+		"Hai Williwaw Cooling" 3
+		"Hai Tracker" 168
+		`"Biroo" Atomic Thruster`
+		"Boulder Reactor"
+		"Hai Diamond Regenerator"
+
+ship "Centipede" "Centipede (Refugees)"
+	add attributes
+		"required crew" 91
+	outfits
+		Hyperdrive
+		"Outfits Expansion"
+		"Quantum Keystone"
+		`"Basrem" Atomic Steering`
+		"Bullfrog Anti-Missile" 3
+		"Tracker Storage Pod" 2
+		"Hai Tracker Pod" 2
+		`"Biroo" Atomic Steering`
+		"Hai Gorge Batteries"
+		"Hai Williwaw Cooling" 3
+		"Hai Tracker" 168
+		`"Biroo" Atomic Thruster`
+		"Boulder Reactor"
+		"Hai Diamond Regenerator"
+		"Pulse Rifle" 35
+
 
 
 ship "Flea"
@@ -598,6 +635,75 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 	turret
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
+
+# Shield beetle with extra fuel they don't get stuck between systems.
+# They don't get their ramscoops until after the mission.
+ship "Shield Beetle" "Shield Beetle (Fuel Jump)"
+	outfits
+		"Ion Cannon" 4
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 280
+		"Jump Drive"
+		"Quantum Keystone"
+		"Outfits Expansion" 4
+		"Hai Ravine Batteries"
+		"Boulder Reactor"
+		"Geode Reactor"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Tracker Storage Pod" 2
+		"Chameleon Anti-Missile" 2
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 4
+		"Hai Chasm Batteries"
+		Supercapacitor 2
+		"Fuel Pod" 9
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	turret
+	turret
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
+
+ship "Shield Beetle" "Shield Beetle (Particle Jump)"
+	outfits
+		"LP036a Battery Pack"
+		"Liquid Helium Cooler"
+		"Catalytic Ramscoop"
+		"Jump Drive"
+		"Quantum Keystone"
+		"Outfits Expansion" 2
+		"Boulder Reactor" 2
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Bullfrog Anti-Missile" 4
+		"Hai Diamond Regenerator" 2
+		"Fuel Pod" 3
+		"Liquid Nitrogen Cooler"
+		"Particle Cannon" 8
+
+ship "Shield Beetle" "Shield Beetle (Plasma Blaster Jump)"
+	outfits
+		"Liquid Helium Cooler" 2
+		"Catalytic Ramscoop"
+		"Jump Drive"
+		"Quantum Keystone"
+		"Outfits Expansion" 3
+		"Boulder Reactor" 2
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Chameleon Anti-Missile" 2
+		"Hai Diamond Regenerator" 2
+		"Hai Chasm Batteries"
+		"Fuel Pod" 3
+		"Plasma Cannon" 8
+		"Modified Blaster Turret" 2
 
 ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 	outfits

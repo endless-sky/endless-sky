@@ -1695,6 +1695,17 @@ mission "Wanderers: Sestor Attack"
 				"Hurricane (Tough)"
 				"Derecho"
 				"Tempest (Missile)" 2
+	npc
+		government "Kor Mereti"
+		personality heroic
+		system "Faronektu"
+		fleet
+			names "kor mereti"
+			variant
+				"Model 512"
+				"Model 256"
+				"Model 64"
+				
 
 
 

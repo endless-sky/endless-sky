@@ -47,6 +47,32 @@ government "Bounty Hunter"
 	"fine" 0
 	"hostile hail" "hostile bounty hunter"
 
+government "Bounty Hunter that Won't Enter Hai Space"
+	"display name" "Bounty Hunter"
+	swizzle 6
+	color .78 0 0
+
+	"player reputation" -1000
+	"bribe" .2
+	"fine" 0
+	"hostile hail" "hostile bounty hunter"
+
+government "Bounty Hunter that Attacks Hai"
+	"display name" "Bounty Hunter"
+	swizzle 6
+	color .78 0 0
+	
+	"attitude toward"
+		"Hai (Friendly Unfettered)" -.3
+		"Hai" -.3
+		" Hai " -.3
+		"Hai (Unfettered)" -.3
+
+	"player reputation" -1000
+	"bribe" .2
+	"fine" 0
+	"hostile hail" "hostile bounty hunter"
+
 government "Coalition"
 	swizzle 5
 	color 1 .6 .7
@@ -65,8 +91,24 @@ government "Deep Security"
 	swizzle 0
 	"player reputation" 1
 	"attitude toward"
+		"Deep Security that won't enter wormhole" 1
 		"Merchant" .5
 		"Pirate" -.2
+		"Pirate (Devil-Run Gang)" -.2
+		"Smuggler (Hai Trafficker)" -.2
+	"friendly hail" "friendly deep"
+	"hostile hail" "hostile deep"
+
+government "Deep Security that won't enter wormhole"
+	"display name" "Deep Security"
+	swizzle 0
+	"player reputation" 1
+	"attitude toward"
+		"Deep Security" 1
+		"Merchant" .5
+		"Pirate" -.2
+		"Pirate (Devil-Run Gang)" -.2
+		"Smuggler (Hai Trafficker)" -.2
 	"friendly hail" "friendly deep"
 	"hostile hail" "hostile deep"
 
@@ -84,15 +126,84 @@ government "Escort"
 	swizzle 5
 	"fine" 0
 
+government "Forest (Prey)"
+	# Indigenous creatures in large forest zones outside the Milky Way.
+	# Drak don't look after these since they're beyond Drak territory.
+
+	"display name" "Forest"
+
+	# Nothing you do permanently angers indigenous creatures, because they are
+	# not sentient and do not remember you as an individual.
+	"player reputation" 1
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+		destroy 0
+		atrocity 0
+
+government "Forest (Predator)"
+	# Indigenous creatures in large forest zones outside the Milky Way.
+	# These attack the "Forest (Prey)" creatures and the player.
+	# Drak don't look after these since they're beyond Drak territory.
+
+	"display name" "Forest"
+
+	# These indigenous creatures think you look tasty:
+	"player reputation" -1000
+	"attitude toward"
+		"Forest (Prey)" -.01
+		"Author" -.01
+		"Hai" -.01
+		" Hai " -.01
+		"Korath" -.01
+		"Merchant" -.01
+		"Syndicate" -.01
+		"Hai (Friendly Unfettered)" -.01
+		"Hai (Unfettered)" -.01
+		"Pirate" -.01
+		"Pirate (Devil-Run Gang)" -.01
+
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+		destroy 0
+		atrocity 0
+
 government "Free Worlds"
 	swizzle 2
 	color .06 .68 0
 	
 	"player reputation" 1
 	"attitude toward"
+		"Free Worlds that won't enter wormhole" 1
 		"Merchant" .3
 		"Militia" .3
 		"Pirate" -.4
+		"Pirate (Devil-Run Gang)" -.4
+		"Smuggler (Hai Trafficker)" -.4
+		"Neutral" .1
+	"bribe" .1
+	"friendly hail" "friendly free worlds"
+	"hostile hail" "hostile free worlds"
+	raid "pirate raid"
+
+government "Free Worlds that won't enter wormhole"
+	"display name" "Free Worlds"
+	swizzle 2
+	color .06 .68 0
+	
+	"player reputation" 1
+	"attitude toward"
+		"Free Worlds" 1
+		"Merchant" .3
+		"Militia" .3
+		"Pirate" -.4
+		"Pirate (Devil-Run Gang)" -.4
+		"Smuggler (Hai Trafficker)" -.4
 		"Neutral" .1
 	"bribe" .1
 	"friendly hail" "friendly free worlds"
@@ -108,6 +219,8 @@ government "Hai"
 		" Hai " 1
 		"Hai (Unfettered)" -.1
 		"Merchant" .01
+		"Bounty Hunter that Attacks Hai" -.01
+		"Philosophers" .1
 	"bribe" .02
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -124,6 +237,8 @@ government " Hai "
 		"Hai" 1
 		"Hai (Unfettered)" -.1
 		"Merchant" .01
+		"Bounty Hunter that Attacks Hai" -.01
+		"Philosophers" .1
 	"bribe" .02
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -142,6 +257,28 @@ government "Hai (Unfettered)"
 		"Pug" -.01
 		"Merchant" -.01
 		"Kor Efret" -.01
+		"Bounty Hunter that Attacks Hai" -.01
+		"Philosophers" .1
+	"bribe" .02
+	"fine" 0
+	"friendly hail" "friendly unfettered"
+	"friendly disabled hail" "friendly disabled unfettered"
+	"hostile hail" "hostile unfettered"
+	"hostile disabled hail" "hostile disabled unfettered"
+
+government "Hai (Friendly Unfettered)"
+	swizzle 4
+	color .69 .33 .82
+	"display name" "Hai (Unfettered)"
+	
+	"player reputation" 100
+	"attitude toward"
+		"Pirate" -.01
+		"Pirate (Devil-Run Gang)" -.01
+		"Korath" -.01
+		"Hai" .01
+		"Bounty Hunter that Attacks Hai" -.01
+		"Philosophers" .1
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
@@ -163,10 +300,59 @@ government "Heliarch"
 		"Quarg" -.01
 		"Coalition" 1
 
+government "Human Alliance"
+	# Temporary group that forms during Hai threat.
+	swizzle 0
+	color 1 .8 .5
+	"player reputation" 10
+	
+	"attitude toward"
+		"Alpha" -.3
+		"Merchant" .25
+		"Militia" .1
+		"Pirate" -.3
+		"Pirate (Devil-Run Gang)" -.3
+		"Republic" .1
+		"Syndicate" .1
+		"Smuggler (Hai Trafficker)" -.3
+		"Navy Intelligence" .1
+		"Navy (Oathkeeper)" .1
+		"Neutral" .1
+		"Free Worlds" .1
+		"Human Alliance that won't enter wormhole" 1
+	# These ships exist purely as scenery and only for a short
+	# time; if they persist longer in future versions, we should
+	# add hails.
+
+government "Human Alliance that won't enter wormhole"
+	# Temporary group that forms during Hai threat.
+	"display name" "Human Alliance"
+	swizzle 0
+	color 1 .8 .5
+	"player reputation" 10
+	
+	"attitude toward"
+		"Alpha" -.3
+		"Merchant" .25
+		"Militia" .1
+		"Pirate" -.3
+		"Pirate (Devil-Run Gang)" -.3
+		"Republic" .1
+		"Syndicate" .1
+		"Smuggler (Hai Trafficker)" -.3
+		"Navy Intelligence" .1
+		"Navy (Oathkeeper)" .1
+		"Neutral" .1
+		"Free Worlds" .1
+		"Human Alliance" 1
+	# These ships exist purely as scenery and only for a short
+	# time; if they persist longer in future versions, we should
+	# add hails.
+
 government "Independent"
 	swizzle 6
 	color .78 .36 .36
-	
+
 	"player reputation" 10
 	"bribe" .05
 	"fine" 0
@@ -247,6 +433,7 @@ government "Korath"
 	
 	"attitude toward"
 		"Kor Sestor" -.01
+		"Hai (Friendly Unfettered)" -.01
 	
 	"player reputation" -10
 
@@ -303,6 +490,7 @@ government "Merchant"
 	"player reputation" 10
 	"attitude toward"
 		"Pirate" -.2
+		"Pirate (Devil-Run Gang)" -.2
 		"Korath" -.2
 	"bribe" .05
 	"fine" 0
@@ -317,6 +505,8 @@ government "Militia"
 	"attitude toward"
 		"Merchant" .3
 		"Pirate" -.4
+		"Pirate (Devil-Run Gang)" -.4
+		"Smuggler (Hai Trafficker)" -.4
 	"bribe" .1
 	"friendly hail" "friendly militia"
 	"hostile hail" "hostile militia"
@@ -328,6 +518,8 @@ government "Navy Intelligence"
 	"attitude toward"
 		"Syndicate" -.1
 		"Pirate" -.3
+		"Pirate (Devil-Run Gang)" -.3
+		"Smuggler (Hai Trafficker)" -.3
 
 government "Navy (Oathkeeper)"
 	swizzle 0
@@ -341,6 +533,8 @@ government "Navy (Oathkeeper)"
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
+		"Pirate (Devil-Run Gang)" -.3
+		"Smuggler (Hai Trafficker)" -.3
 		"Kor Sestor" -.1
 		"Kor Mereti" -.1
 		"Navy Intelligence" 1
@@ -355,6 +549,8 @@ government "Neutral"
 	"attitude toward"
 		"Merchant" .3
 		"Pirate" -.2
+		"Pirate (Devil-Run Gang)" -.2
+		"Smuggler (Hai Trafficker)" -.2
 	"bribe" .05
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
@@ -364,6 +560,19 @@ government "Parrot"
 	swizzle 2
 	"player reputation" 1
 	"bribe" 0
+
+government "Philosophers"
+	swizzle 0
+	color .84 .61 .37
+	
+	"player reputation" 1000
+	"attitude toward"
+		"Hai" .1
+		"Hai (Friendly Unfettered)" .1
+		"Pirate" -.2
+		"Pirate (Devil-Run Gang)" -.2
+		"Smuggler (Hai Trafficker)" -.2
+	"bribe" .05
 
 government "Pirate"
 	swizzle 6
@@ -377,11 +586,33 @@ government "Pirate"
 		"Korath" -.01
 		"Merchant" -.1
 		"Syndicate" -.01
+		"Hai (Friendly Unfettered)" -.01
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly pirate"
 	"hostile hail" "hostile pirate"
 	raid "pirate raid"
+
+government "Pirate (Devil-Run Gang)"
+	swizzle 6
+	color .78 0 0
+	"display name" "Pirate"
+	
+	"player reputation" -1000
+	"attitude toward"
+		"Author" -.001
+		"Hai" -.001
+		" Hai " -.001
+		"Korath" -.001
+		"Merchant" -.001
+		"Syndicate" -.001
+		"Hai (Friendly Unfettered)" -.001
+		"Forest (Prey)" -.001
+		"Forest (Predator)" -.001
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly pirate"
+	"hostile hail" "hostile pirate"
 
 government "Pug"
 	swizzle 0
@@ -423,6 +654,7 @@ government "Quarg"
 		"Hai" .01
 		" Hai " .01
 		"Pirate" -.01
+		"Pirate (Devil-Run Gang)" -.01
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
 
@@ -454,12 +686,59 @@ government "Republic"
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
+		"Pirate (Devil-Run Gang)" -.3
+		"Republic that won't enter wormhole" 1
+		"Smuggler (Hai Trafficker)" -.3
 		"Navy Intelligence" 1
 		"Navy (Oathkeeper)" 1
 		"Neutral" .1
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 	raid "pirate raid"
+
+government "Republic that won't enter wormhole"
+	"display name" Republic
+	swizzle 0
+	color .91 .42 .09
+	"crew attack" 1.2
+	"crew defense" 2.2
+	
+	"player reputation" 2
+	"attitude toward"
+		"Alpha" -.3
+		"Merchant" .25
+		"Militia" .1
+		"Pirate" -.3
+		"Pirate (Devil-Run Gang)" -.3
+		"Republic" 1
+		"Smuggler (Hai Trafficker)" -.3
+		"Navy Intelligence" 1
+		"Navy (Oathkeeper)" 1
+		"Neutral" .1
+	"friendly hail" "friendly navy"
+	"hostile hail" "hostile navy"
+	raid "pirate raid"
+
+government "Smuggler (Hai Trafficker)"
+	swizzle 0
+	color 1 .6 .7
+	"display name" "Smuggler"
+	
+	"bribe" .1
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile pirate"
+
+	# They just want to pass through the system alive, so they
+	# won't attack anyone unless they have to.
+	"player reputation" 1
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+		destroy 0
+		atrocity 0
 
 government "Syndicate"
 	swizzle 4
@@ -469,6 +748,27 @@ government "Syndicate"
 	"attitude toward"
 		"Merchant" .3
 		"Pirate" -.4
+		"Pirate (Devil-Run Gang)" -.4
+		"Smuggler (Hai Trafficker)" -.4
+		"Syndicate that won't enter wormhole" 1
+		"Korath" -.5
+	"bribe" .08
+	"friendly hail" "friendly syndicate"
+	"hostile hail" "hostile syndicate"
+	raid "pirate raid"
+
+government "Syndicate that won't enter wormhole"
+	"display name" "Syndicate"
+	swizzle 4
+	color 0 .41 .71
+	
+	"player reputation" 2
+	"attitude toward"
+		"Merchant" .3
+		"Pirate" -.4
+		"Pirate (Devil-Run Gang)" -.4
+		"Smuggler (Hai Trafficker)" -.4
+		"Syndicate" 1
 		"Korath" -.5
 	"bribe" .08
 	"friendly hail" "friendly syndicate"
@@ -511,3 +811,8 @@ government "Wormhole Alpha"
 	"attitude toward"
 		"Hai" -.01
 		"Hai (Unfettered)" -.01
+		"Bounty Hunter that Won't Enter Hai Space" -.01
+		"Deep Security that won't enter wormhole" -.01
+		"Free Worlds that won't enter wormhole" -.01
+		"Republic that won't enter wormhole" -.01
+		"Human Alliance that won't enter wormhole" -.01

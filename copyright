@@ -361,6 +361,24 @@ Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
+Files
+ sounds/pincer*
+Copyright: Nomadic Volcano (nomadicvolcano@gmail.com)
+License: GPL 2.0
+Comment: Nomadic Volcano modified these from Battle for Wesnoth (https://www.wesnoth.org) sounds, which are copyright David White <dave@whitevine.net> under GPL 2.0
+
+Files:
+ images/*/pincer*
+Copyright: None; CC0 (Public Domain)
+License: None; CC0 (Public Domain)
+Comment: Textures by https://texture.ninja, other art by NomadicVolcano (nomadicvolcano@gmail.com).
+
+Files:
+ images/planet/rogue-radiating.png
+Copyright: None; CC0 (Public Domain)
+License: None; CC0 (Public Domain)
+Comment: Created by NomadicVolcano (nomadicvolcano@gmail.com)
+
 Files:
  images/outfit/harvested?yottrite*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
@@ -372,6 +390,20 @@ Files:
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-3.0
 Comment: Derived from works by Rob Lavinsky (under the same license).
+
+Files:
+ images/star/m-brown-dwarf*
+Copyright: NASA
+License: public-domain
+ From NASA, and therefore in the public domain because they were created by
+ government employees while doing work for the government.
+
+Files:
+ images/star/neutron-star-purple*
+Copyright: None; CC0 (Public Domain)
+License: None; CC0 (Public Domain)
+Comment: Gimping by NomadicVolcano based on Photoshopping by Daniel Molybdenum (https://www.flickr.com/photos/165445115@N07/48756086492) based on NASA simulations.
+
 
 Files:
  images/land/badlands0*

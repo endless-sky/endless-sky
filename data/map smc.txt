@@ -1,0 +1,691 @@
+# Copyright (c) 2020 by Righthand and Nomadic Volcano
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+
+
+# This file will contain the map of the Small Magellanic Cloud (SMC)
+# and the intergalactic space leading from the vicinity of the
+# Coalition to the SMC. Presently only the beginning of the
+# intergalactic space is here.
+
+# Amazinite requested that each galaxy have its own map, and that we
+# could choose which galaxy map will have the intergalactic route that
+# connects them. In the stories we have planned, the intergalactic
+# route will primarily exist as your first entrance to the SMC, so it
+# makes more sense to have it here.
+
+# The "planet" definition of wormholes between the Milky Way and this
+# region of space will be in map.txt since that is the first galaxy
+# where they're relevant
+
+
+
+# Art and design notes:
+
+# - Lone systems with no purple around them in the map have no haze
+#   (_menu/haze-black) to emphasize how dark it is. I'll dim the star
+#   field too if there is a way to do that.
+
+# - The high frequency of asteroids keeps the critters busy.  Some
+#   critters have naturally-occurring Hyperdrives, so there is a
+#   steady supply of them.
+
+# - In a later update, the player will be able to land on nearly every
+#   gas giant in a ship with Gaslining. These will be habitats for the
+#   critters.
+
+# - There are no locals to name systems, so their names sound like
+#   they're from an astronomical survey. We'll add a later mission to
+#   Earth to visit the astronomical institute that surveyed this space.
+#   (The obvious exception is the Pirate system.)
+
+# - Pirates are only inside their system since their supply of jump
+#   drives is extremely limited.  They used pairs of jump drives to
+#   ferry one ship at a time. You'll find them elsewhere only when
+#   needed for stories.
+
+system "Deep Space 7C"
+	pos -1502 105
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 1297
+	belt 2309
+	link "Deep Space 7F"
+	asteroids "small rock" 121 1.9558
+	asteroids "medium rock" 14 1.9096
+	asteroids "large rock" 28 1.4784
+	asteroids "small metal" 8 1.8326
+	asteroids "medium metal" 77 2.2946
+	asteroids "large metal" 19 1.7094
+	minables copper 46 2.98163
+	minables iron 82 3.78094
+	minables titanium 31 2.67322
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Pincer Beast" 5000
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/gas11-b
+		distance 1449.31
+		period 717.934
+		object
+			sprite planet/rock7-b
+			distance 235
+			period 11.8817
+		object
+			sprite planet/ice0-b
+			distance 332
+			period 19.9519
+		object
+			sprite planet/rock3-b
+			distance 438
+			period 30.2335
+	object
+		sprite planet/gas14
+		distance 2557.67
+		period 1683.1
+	object "Devil-Run Wormhole"
+		sprite planet/wormhole-red
+		distance 4106.27
+		period 2904.81
+	
+system "Deep Space 7F"
+	pos -1542 83
+	government Uninhabited
+	habitable 864
+	belt 1319
+	link "Deep Space 7C"
+	link "Deep Space 5J"
+	asteroids "small rock" 22 3.99
+	asteroids "medium rock" 34 3.57
+	asteroids "large rock" 2 4.08
+	asteroids "small metal" 26 4.26
+	asteroids "medium metal" 45 1.92
+	asteroids "large metal" 4 4.35
+	minables platinum 19 4.40315
+	minables tungsten 36 5.42935
+	minables gold 28 4.7943
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Pincer Beast" 5000
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/gas16
+		distance 1649.46
+		period 1214.65
+	object
+		sprite planet/gas17-b
+		distance 2828.56
+		period 1831.03
+		object
+			sprite planet/callisto
+			distance 232
+			period 15.0975
+		object
+			sprite planet/tethys
+			distance 350
+			period 27.9753
+		object
+			sprite planet/dust1-b
+			distance 498
+			period 47.4807
+
+system "Deep Space 5J"
+	pos -1618 23
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 906
+	belt 1869
+	link "Deep Space 7F"
+	link "Deep Space 5N"
+	asteroids "small rock" 27 1.44
+	asteroids "medium rock" 2 2.6304
+	asteroids "large rock" 146 1.7088
+	asteroids "small metal" 139 1.44
+	asteroids "large metal" 27 0.9792
+	minables copper 41 2.00322
+	minables lead 63 1.96636
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Pincer Beast" 5000
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/gas11-b
+		distance 1449.31
+		period 717.934
+		object
+			sprite planet/rock7-b
+			distance 235
+			period 11.8817
+		object
+			sprite planet/ice0-b
+			distance 332
+			period 19.9519
+		object
+			sprite planet/rock3-b
+			distance 438
+			period 30.2335
+	object
+		sprite planet/gas8-b
+		distance 3382.55
+		period 3108.63
+		object
+			sprite planet/rhea
+			distance 230
+			period 18.5682
+		object
+			sprite planet/dust3
+			distance 335
+			period 32.6395
+		object
+			sprite planet/ice0
+			distance 490
+			period 57.7392
+
+system "Deep Space 5N"
+	pos -1623 -29
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 490
+	belt 1236
+	link "Deep Space 5J"
+	link "Deep Space 5T"
+	link "Deep Space 1Q"
+	asteroids "small rock" 23 4.48
+	asteroids "medium rock" 1 6.496
+	asteroids "large rock" 74 2.5088
+	asteroids "small metal" 7 3.136
+	asteroids "medium metal" 29 5.6
+	asteroids "large metal" 3 4.48
+	minables iron 27 6.81922
+	minables lead 11 3.63334
+	minables uranium 39 4.87538
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Pincer Beast" 5000
+	object
+		sprite star/k0-old
+		distance 49.335
+		period 18.0618
+		offset 180
+	object
+		sprite planet/gas1-b
+		distance 536.616
+		period 125.622
+		object
+			sprite planet/ice8
+			distance 223
+			period 13.3098
+		object
+			sprite planet/dust0-b
+			distance 310
+			period 21.8151
+	object
+		sprite planet/gas14
+		distance 2557.67
+		period 1683.1
+
+system "Deep Space 5T"
+	pos -1591 -60
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 397
+	belt 1302
+	link "Deep Space 5N"
+	link "Deep Space 1Q"
+	asteroids "small rock" 99 1.403
+	asteroids "medium rock" 15 2.185
+	asteroids "large rock" 21 1.541
+	asteroids "small metal" 49 2.438
+	asteroids "medium metal" 14 3.197
+	asteroids "large metal" 15 3.22
+	minables aluminum 15 2.45602
+	minables iron 22 2.26908
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Pincer Beast" 5000
+	object
+		sprite star/m0
+		distance 49.335
+		period 18.0618
+		offset 180
+	object
+		sprite planet/gas14-b
+		distance 1034.31
+		period 321.295
+	object
+		sprite planet/gas12
+		distance 2339.35
+		period 1143.44
+		object
+			sprite planet/europa-b
+			distance 276
+			period 12.0434
+		object
+			sprite planet/rock14
+			distance 419
+			period 22.5271
+		object
+			sprite planet/dust7
+			distance 536
+			period 32.5936
+
+system "Deep Space 1Q"
+	pos -1648 -113
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 1009
+	belt 2577
+	link "Deep Space 5T"
+	link "Deep Space 1X"
+	link "Deep Space 19M1"
+	asteroids "small rock" 182 3.2
+	asteroids "medium rock" 57 6.95
+	asteroids "large rock" 40 3.75
+	asteroids "small metal" 17 6.85
+	asteroids "medium metal" 40 2.7
+	asteroids "large metal" 5 5.55
+	minables lead 41 5.68365
+	minables silicon 72 4.34737
+	minables titanium 39 5.28035
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Pincer Beast" 5000
+	object
+		sprite star/a0
+		distance 49.335
+		period 18.0618
+		offset 180
+	object
+		sprite planet/gas15
+		distance 1673.12
+		period 541.042
+		object
+			sprite planet/rock14-b
+			distance 231
+			period 17.3053
+		object
+			sprite planet/desert4-b
+			distance 367
+			period 34.6546
+		object
+			sprite planet/ice8-b
+			distance 467
+			period 49.7436
+		object
+			sprite planet/dust2
+			distance 575
+			period 67.9617
+	object
+		sprite planet/gas3-b
+		distance 3916.97
+		period 3086.01
+		object
+			sprite planet/rhea
+			distance 274
+			period 11.5849
+		object
+			sprite planet/dust3
+			distance 429
+			period 22.6961
+		object
+			sprite planet/dust5-b
+			distance 540
+			period 32.052
+
+system "Deep Space 1X"
+	pos -1663 -140
+	government Uninhabited
+	habitable 100
+	belt 1751
+	link "Deep Space 1Q"
+	link "Deep Space 19M1"
+	asteroids "medium rock" 1 9.801
+	asteroids "small metal" 2 9.234
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Pincer Beast" 20000
+	object
+		sprite star/nova
+		distance 49.335
+		period 18.0618
+		offset 180
+
+system "Deep Space 19M1"
+	pos -1623 -190
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 697
+	belt 2115
+	link "Deep Space 1Q"
+	link "Deep Space 1X"
+	link "Deep Space 19M2"
+	asteroids "small rock" 7 7.3606
+	asteroids "medium rock" 40 4.5942
+	asteroids "large rock" 17 4.199
+	asteroids "small metal" 19 5.3352
+	asteroids "medium metal" 81 5.0388
+	asteroids "large metal" 2 5.2858
+	minables aluminum 62 6.16545
+	minables uranium 3 5.36309
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Pincer Beast" 5000
+	object
+		sprite star/giant
+		distance 49.335
+		period 18.0618
+		offset 180
+	object
+		sprite planet/gas16
+		distance 2193.3
+		period 995.051
+	object
+		sprite planet/gas0-b
+		distance 1549.84
+		period 334.57
+		object
+			sprite planet/dust1-b
+			distance 253
+			period 11.7934
+		object
+			sprite planet/miranda
+			distance 340
+			period 18.3728
+		object
+			sprite planet/rock14
+			distance 464
+			period 29.291
+	object
+		sprite planet/gas13-b
+		distance 3145.85
+		period 1226.52
+		offset 159.403
+	object
+		sprite planet/gas3-b
+		distance 8021.02
+		period 8863.78
+		object
+			sprite planet/rock7-b
+			distance 294
+			period 12.8761
+		object
+			sprite planet/ice7
+			distance 390
+			period 19.6726
+		object
+			sprite planet/rock17-b
+			distance 492
+			period 27.8748
+
+system "Deep Space 19M2"
+	pos -1688 -222
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 851
+	belt 1977
+	link "Deep Space 19M1"
+	asteroids "small rock" 32 1.974
+	asteroids "medium rock" 45 1.484
+	asteroids "large rock" 20 1.75
+	asteroids "small metal" 18 1.75
+	asteroids "medium metal" 186 1.638
+	asteroids "large metal" 24 1.092
+	minables iron 104 2.79327
+	minables silicon 50 1.77981
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Pincer Beast" 5000
+	object
+		sprite star/f5-old
+		distance 49.335
+		period 18.0618
+		offset 180
+	object
+		sprite planet/gas1
+		distance 1169.47
+		period 616.78
+	object
+		sprite planet/gas15-b
+		distance 3139.51
+		period 2141.12
+		object
+			sprite planet/lava2-b
+			distance 241
+			period 18.4411
+		object
+			sprite planet/dust0-b
+			distance 366
+			period 34.5131
+		object
+			sprite planet/ganymede-b
+			distance 471
+			period 50.3841
+		object
+			sprite planet/dust5-b
+			distance 577
+			period 68.3166
+
+system "Deep Space 19M5"
+	pos -1861 -273
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 851
+	belt 1977
+	link "Devil-Hide"
+	link "Deep Space 19K12"
+	asteroids "small rock" 52 1.974
+	asteroids "medium rock" 55 1.484
+	asteroids "large rock" 40 1.75
+	asteroids "small metal" 68 1.75
+	asteroids "medium metal" 186 1.638
+	asteroids "large metal" 124 1.092
+	minables iron 104 2.79327
+	minables platinum 64 2.79327
+	minables silicon 50 1.77981
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	object
+		sprite star/protostar-orange
+		distance 49.335
+		period 18.0618
+		offset 180
+	object
+		sprite planet/rock10-b
+		distance 1169.47
+		period 616.78
+	object
+		sprite planet/gas1-b
+		distance 3139.51
+		period 2141.12
+		object
+			sprite planet/lava0
+			distance 241
+			period 18.4411
+		object
+			sprite planet/dust1-b
+			distance 366
+			period 34.5131
+		object
+			sprite planet/titan-b
+			distance 471
+			period 50.3841
+		object
+			sprite planet/dust5-b
+			distance 577
+			period 68.3166
+
+system "Deep Space 19K12"
+	pos -1841 -187
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 851
+	belt 1977
+	link "Devil-Hide"
+	link "Deep Space 19M5"
+	asteroids "small rock" 15 1.974
+	asteroids "medium rock" 9 1.484
+	minables copper 13 2.79327
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	object
+		sprite star/protostar-yellow
+		distance 49.335
+		period 18.0618
+		offset 180
+	object
+		sprite planet/ice8-b
+		distance 285.47
+		period 114.78
+
+system "Devil-Hide"
+	pos -1775 -220
+	government "Pirate (Devil-Run Gang)"
+	haze _menu/haze-black
+	habitable 999
+	belt 5000
+	link "Deep Space 19M5"
+	link "Deep Space 19K12"
+	asteroids "small rock" 2 4.4226
+	asteroids "medium rock" 16 2.7594
+	asteroids "large rock" 19 4.4604
+	asteroids "small metal" 11 2.9862
+	asteroids "medium metal" 12 2.6838
+	asteroids "large metal" 5 4.347
+	minables iron 71 5.11549
+	minables silicon 57 4.13794
+	trade Clothing 316
+	trade Electronics 685
+	trade Equipment 566
+	trade Food 475
+	trade "Heavy Metals" 904
+	trade Industrial 670
+	trade "Luxury Goods" 1319
+	trade Medical 784
+	trade Metal 345
+	trade Plastic 481
+	fleet "Devil-Run Warships" 400
+	fleet "Devil-Run Miners" 5000
+	object "Devil-Eye"
+		sprite "planet/rogue-radiating"
+		period 10
+		object "Philosopher's Paradise"
+			sprite "planet/asteroid base"
+			distance 251
+			period 18.5791
+
+# NOTE: "Devil-Run Wormhole" is in map.txt
+
+planet Devil-Eye
+	attributes "whispering void"
+	landscape land/badlands6
+	description `There are a few sturdy mesas on which to land, but most of this planet is rough rock and dirt. Despite the lack of sunlight, the surface is warm. There must be internal processes in the planet generating heat. The scanners on your computer show a network of caves reaching deep below ground. There's high radiation in the caves, too much to support human life. Crystaline formations that coat the cave walls block detailed scans. Advanced geological scanners might enlighten you further.`
+	description `There are automated deuterium refineries on this planet, siphoning deuterium from cave walls. The refinery equipment looks Hai in origin. Some mesas have fuel pumps, filling containers with fuel for later transport to the planet's moon.`
+
+planet "Philosopher's Paradise"
+	attributes "whispering void"
+	landscape land/space2
+	description `Beneath the surface of this small moon, there is a network of corridors and large rooms. The architecture looks mostly Human, but with a hint of Hai. Most are blocked off by sturdy doors with keycard access and plentiful security cameras. Frequently, you see a symbol similar to the Syndicate logo. Everywhere you walk, a security camera turns to track your movement. You get the feeling that you're not welcome here.`
+	bribe 0
+	"required reputation" 10

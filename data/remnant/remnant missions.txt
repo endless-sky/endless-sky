@@ -2090,11 +2090,11 @@ mission "Remnant: Face to Maw 2"
 		event "remnant: penguin"
 	on complete
 		log "People" "Taely" `One of Taely's main priorities is improving the maneuverability characteristics of Remnant Ships. To this end she has been working on building a new prototype ship based on the void sprites.`
-		"remnant taely" ++
+		"remnant met taely" ++
 		payment 1000000
 		conversation
 			branch taely
-				"remnant taely" > 1
+				"remnant met taely" > 1
 			`When you land on Viminal a solidly built female Remnant in coveralls is waiting for you. "Greetings, Captain <first>. My name is Taely, and I am a Prefect among the Remnant. Above all else, I study motion, and in particular how our starships move."`
 				goto main
 			label taely

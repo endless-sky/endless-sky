@@ -1,0 +1,143 @@
+# Copyright (c) 2020 NomadicVolcano
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+shipyard "Philosophers Basic"
+	# Simple, old, designs from Hai and humans
+	"Aphid"
+	"Grasshopper"
+	"Shuttle"
+	"Scout"
+	"Sparrow"
+
+outfitter "Philosophers Basic"
+	"Fuel Pod"
+	"Ramscoop"
+	"Asteroid Scanner"
+	"Outfit Scanner"
+	"Cargo Scanner"
+	"Outfits Expansion"
+	"Cargo Expansion"
+	"Hyperdrive"
+	"Scram Drive"
+	"Small Bunk Room"
+	"Bunk Room"
+	"Sand Cell"
+	"Hai Tracker"
+	"Liquid Nitrogen Cooler"
+	"Hai Williwaw Cooling"
+	"Hai Chasm Batteries"
+	"Hai Fissure Batteries"
+	"Hai Corundum Regenerator"
+	"Laser Rifle"
+	"Fragmentation Grenades"
+	"Meteor Missile"
+	"Javelin"
+	"Torpedo"
+	"Heavy Rocket"
+	"Interference Plating"
+	"Local Map"
+
+event "Liberated Philosopher's Paradise"
+	system "Devil-Hide"
+		government "Philosophers"
+		remove fleet "Devil-Run Warships"
+		remove fleet "Devil-Run Miners"
+		
+		add fleet "Philosopher's Paradise Miners" 3000
+		add fleet "Large Friendly Unfettered" 2000
+	system "Deep Space 19M5"
+		government "Philosophers"
+		add fleet "Philosopher's Paradise Miners" 2000
+		add fleet "Large Friendly Unfettered" 4000
+	system "Deep Space 19K12"
+		government "Philosophers"
+		add fleet "Philosopher's Paradise Miners" 5000
+		add fleet "Large Friendly Unfettered" 6000
+	planet "Philosopher's Paradise"
+		description `Over the past century, a cubic kilometer of this moon has been hollowed out and filled with corridors and cavernous rooms. There is a city of over a hundred thousand people whose lives have been focused on science since their ancestors were first brought here a hundred twenty years ago. Now Korath, Hai, and humans live here working side-by-side. Once they were slaves to a criminal organization, and their story brought the Hai and humans to the brink of war. Fortunately, a resourceful pilot from New Boston averted catastrophe and freed Philosopher's Paradise.`
+		spaceport `A cavernous room connects several large hanger bays; this served as a communal area for pirates. You can see a fighting ring, empty mounts for battle trophies, and bloody spikes that once held pirate victims. There is still extensive damage from the invasion, but the denizens are slowly cleaning it up. Corridors lead downward from the spaceport to living areas, and you can see shops being built. It seems the Philosophers are preparing to greet regular visitors.`
+		outfitter "Philosophers Basic"
+		shipyard "Philosophers Basic"
+		tribute 7000
+			threshold 6000
+			fleet "Unfettered Hai Guards" 30
+
+# Due to the extremely limited number of jump drives, the Devil-Run
+# pirate gang only has the largest of ships. They used jump drives in
+# pairs to transport one ship at a time.
+
+fleet "Devil-Run Miners"
+	government "Pirate (Devil-Run Gang)"
+	names "pirate"
+	cargo 0
+	personality
+		timid frugal mining harvests
+	variant 1
+		"Falcon"
+	variant 2
+		"Falcon (Laser)"
+
+fleet "Devil-Run Warships"
+	government "Pirate (Devil-Run Gang)"
+	names "pirate"
+	cargo 0
+	personality
+		heroic plunders harvests
+	variant 1
+		"Leviathan"
+	variant 1
+		"Leviathan (Laser)"
+	variant 1
+		"Leviathan (Heavy)"
+	variant 5
+		"Bactrian"
+		"Dagger" 3
+	variant 1
+		"Vanguard (Particle)"
+	variant 1
+		"Vanguard (Missile)"
+	variant 1
+		"Vanguard"
+	variant 1
+		"Protector (Laser)"
+	variant 1
+		"Protector (Proton)"
+	variant 1
+		"Protector"
+	variant 2
+		"Falcon"
+	variant 3
+		"Falcon (Laser)"
+
+# After the Devil-Run pirates are defeated, the Unfettered Hai take
+# over as guardians and the Philosopher's Paradise civilians mine.
+
+fleet "Unfettered Hai Guards"
+	government "Hai (Friendly Unfettered)"
+	personality
+		heroic plunders harvests disables
+	cargo 0
+	variant 1
+		"Shield Beetle (Police)"
+
+fleet "Philosopher's Paradise Miners"
+	government "Philosophers"
+	names "civilian"
+	cargo 0
+	personality
+		confusion 20
+		timid frugal mining harvests
+	variant 5
+		"Sparrow"
+	variant 5
+		"Aphid"
+	variant 5
+		"Grasshopper"
+	

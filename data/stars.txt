@@ -77,3 +77,14 @@ star "star/nova"
 star "star/wr"
 	power 0.4
 	wind 4
+star "star/protostar-orange"
+	power 0.5
+	wind 3
+star "star/protostar-yellow"
+	power 0.4
+	wind 5
+
+# Rogue planet with unusual properties
+star "planet/rogue-radiating"
+	power .2
+	wind .6
