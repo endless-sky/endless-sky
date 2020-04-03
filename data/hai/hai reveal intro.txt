@@ -648,7 +648,7 @@ ship "Geodesic Geocoris"
 		"heat dissipation" 0.45
 		"fuel capacity" 800
 		"cargo space" 761
-		"outfit space" 551
+		"outfit space" 555
 		"weapon capacity" 210
 		"engine capacity" 104
 		"reverse thrust" 32
@@ -669,10 +669,10 @@ ship "Geodesic Geocoris"
 		"AR120 Reverse Thruster" 2
 		"Pulse Turret" 4
 		"Chameleon Anti-Missile" 1
-		"Geode Reactor" 2
+		"Boulder Reactor"
 		"Hai Valley Batteries"
 		"Outfits Expansion"
-		"Hai Williwaw Cooling" 5
+		"Hai Williwaw Cooling" 2
 		`"Benga" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		Hyperdrive
@@ -742,7 +742,7 @@ mission "leaks response 5"
 			`	"Sssshhhh!" says the voice at your elbow, "do not react, and do not be alarmed, it is merely I."`
 			`	You look at the figure out of the corner of your eye and connect the whispered voice to the squirrelly muzzle poking out. To your surprise it is Sayuri.`
 			`	"I should not be coming to you with this, so you must promise to say nothing of this to anyone just yet."`
-				choice
+			choice
 				`	"Of course."`
 			`	"A very sweet friend of mine, who is much too enthusiastic and perhaps led by the vagaries of youth but nonetheless quite astute, keeps hapring on to me about this theory of hers that a smuggling ring is kidnapping Hai and transporting them into human space."`
 			`	She pauses a moment for you to absorb this, "Of course, a thorough investigation has occurred on our side and no evidence of such things has turned up, but..."`
@@ -751,15 +751,15 @@ mission "leaks response 5"
 				`	"But what may I do about it?"`
 			`	"You are well-known, and must be canny to have got where you are. A Hai in trouble might recognise you, or you might perceive them when others would not. It would be in the interests of both our people to be sure that there is no such issue. Would you look for me? For both our sakes?"`
 			branch "about that"
-				"hai slave prereq" >= 1
-				choice
-					`	"Sure, I can have a look around."`
+			"hai slave prereq" >= 1
+			choice
+				`	"Sure, I can have a look around."`
 				accept	
 			label "about that"
-				`	"Well, about that," you say, "I think I might have already come across some evidence of this before."`
-				`	Sayuri's hood nearly slips off as she looks up at you with a horrified expression, "Surely not?!"`
-				`	You rush to reassure her, "Nothing concrete, of course I shall go and have a look to be sure."`
-				accept
+			`	"Well, about that," you say, "I think I might have already come across some evidence of this before."`
+			`	Sayuri's hood nearly slips off as she looks up at you with a horrified expression, "Surely not?!"`
+			`	You rush to reassure her, "Nothing concrete, of course I shall go and have a look to be sure."`
+			accept
 	to complete
 		"hai slave prereq" >= 3
 	on complete
