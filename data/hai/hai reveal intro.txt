@@ -14,7 +14,7 @@ mission "hai secret leaker begins"
 	landing
 	invisible
 	to offer
-		has "free worlds plot completed"
+		has "main plot completed"
 	on offer
 		event "pug media coverage" 20 30
 		fail
@@ -502,14 +502,10 @@ event "pirates respond to leaks"
 		remove fleet "Small Hai"
 		remove fleet "Large Hai"
 	system "Heia Due"
-		government "Pirate"
 		add fleet "Marauder fleet IX" 900
 		add fleet "Large Northern Pirates" 600
 		add fleet "Large Core Pirates" 600
 		
-#	Waypoint restoration information
-#		add fleet "Small Hai" 1200
-#		add fleet "Large Hai" 2500
 	
 #If a republic/syndicate campaign gets added this text will need variants.
 mission "leaks response 2A"
@@ -594,8 +590,26 @@ mission "leaks response 4"
 		personality staying nemesis
 		system "Waypoint"
 		ship "Marauder Leviathan (Weapons)" "Black Lich"
-		
-event "returned geocoris"
+	on complete
+		payment 1000000
+		event "waypoint pirates vanquished"
+		conversation
+			`When you return the Hai Captain thanks you profusely, "Please, the Allhome government has authorised a reward of <payment> for routing the problem. Let us hope a more permanent solution can be devised soon. In the meantime, I'm sure they'll be waiting for you back on Hai-home before too long."`
+			
+event "waypoint pirates vanquished"
+	#Add pirate spawns to Waypoint and Heia Due
+	system "Waypoint"
+		government "Hai"
+		add fleet "Small Hai" 1200
+		add fleet "Large Hai" 2500
+		remove fleet "Marauder fleet IX" 900
+		remove fleet "Large Northern Pirates" 600
+		remove fleet "Large Core Pirates" 600
+	system "Heia Due"
+		remove fleet "Marauder fleet IX" 900
+		remove fleet "Large Northern Pirates" 600
+		remove fleet "Large Core Pirates" 600
+
 		
 mission "leaks response 4a"
 	landing
@@ -614,11 +628,10 @@ mission "leaks response 4a"
 	on fail
 		dialog `You have failed to recover the Geocoris. This is not critical, but does have long-term consequences. If you want the heroic ending, revert to the autosave or another earlier snapshot of the game.`
 	on complete
-		payment 1000000
-		conversation
-			`When you return the Hai Captain thanks you profusely, "Please, the Allhome government has authorised a reward of <payment> for routing the problem. Let us hope a more permanent solution can be devised soon. In the meantime, I'm sure they'll be waiting for you back on Hai-home before too long."`
 		event "returned geocoris" 365
 		#The Geodesic Geocoris may become available to purchase specially later on.
+		
+event "returned geocoris"
 		
 ship "Geodesic Geocoris"
 	sprite "ship/hai geocoris"
@@ -635,7 +648,7 @@ ship "Geodesic Geocoris"
 		"heat dissipation" 0.45
 		"fuel capacity" 800
 		"cargo space" 761
-		"outfit space" 607
+		"outfit space" 551
 		"weapon capacity" 210
 		"engine capacity" 104
 		"reverse thrust" 32
@@ -653,11 +666,12 @@ ship "Geodesic Geocoris"
 			"hull damage" 1500
 			"hit force" 4500
 	outfits
+		"AR120 Reverse Thruster" 2
 		"Pulse Turret" 4
 		"Chameleon Anti-Missile" 1
 		"Geode Reactor" 2
 		"Hai Valley Batteries"
-		"Hai Diamond Regenerator"
+		"Outfits Expansion"
 		"Hai Williwaw Cooling" 5
 		`"Benga" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
@@ -679,24 +693,83 @@ ship "Geodesic Geocoris"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description "This modified Geocoris has identical cargo capacity but is modelled off one that was the result of an alien technology being merged with a hybrid Human-Hai operating system. It has additional shield emitters in a geodesic pattern over its main cargo wings and a crucial element of the ship's system core is not manufactured, but grown from inital samples taken from the first occurrence. This means that some systems are built-in and unable to be removed, and also that it is sustantially more expensive than its regular version. It is; however, significantly more survivable."
+	description "This modified Geocoris has identical cargo capacity but is modelled off one that was the result of an alien technology being merged with a hybrid Human-Hai operating system. It has additional shield emitters in a geodesic pattern over its main cargo wings and a crucial element of the ship's system core is not manufactured, but grown from inital samples taken from the first occurrence. This means that some systems are built-in and unable to be removed, and also that it is substantially more expensive than its regular version. It is; however, significantly more survivable."
 	
 ship "Geodesic Geocoris" "Geodesic Geocoris (Phylactery)"
 	outfits
 		"Electron Turret" 3
 		"Chameleon Anti-Missile" 2
+		"AR120 Reverse Thruster" 2
 		"Boulder Reactor"
-		"Pebble Core"
 		"Hai Ravine Batteries"
-		"Hai Corundum Regenerator" 2
-		"Hai Williwaw Cooling" 7
+		"Outfits Expansion"
+		"Large Heat Shunt"
 		"Quantum Keystone"
 		"Pulse Rifle" 14
 		`"Benga" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
+		"Jump Drive"
 		Hyperdrive
 	turret "Electron Turret"
 	turret "Electron Turret"
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
 	turret "Electron Turret"
+
+mission "leaks response 5"
+	name "Investigate rumours of kidnapped Hai."
+	description "It's a statistical oddity, but Sayuri's friend thinks someone is kidnapping Hai and wants you to check out a possible smuggling operation across the nearby parts of human space to disprove it."
+	autosave
+	landing
+	source "Hai-home"
+	to offer
+		has "leaks response 4: done"
+	on offer
+		event "role-play fleet deception"
+		conversation
+			`When you return to Hai-home you are met by a group of relieved diplomats.`
+			`	Of all of them Alondo seems to be the least tired and takes the time to let you know what's been going on, "Captain <Last>! You've missed quite the palava. Still, I doubt you lost much by missing out on trying to explain to Sayuri what a 'furry' is."`
+			choice
+				`	"Oh I don't know, could've been entertaining."`
+				`	"IHmm, yes, no probably not."`
+			`	He chuckles, "Anyway, I have a hunch that we're going to be needing you before too long, but for now they're putting some Hai patrols out on the other side of the wormhole with a couple of navy observers on board to 'play the part' as it were of a closed in role-play community, just chilling out here and having fun."`
+			`	"Come though," he says, "I hear you've been instrumental in driving off some opportunistic pirates and helping stem the information leak, I'll buy you a drink on the other's behalf."`
+			`	Some hours later you leave the fancy cocktail bar Alondo took you to and begin making your way back to your ship to sleep, your cabin by far seems to be the best place to not be bothered.`
+			`	Part way there though a hooded figure suddenly falls in step beside you.`
+			choice
+				`	Keep walking.`
+				`	Ask them who they are.`
+			`	"Sssshhhh!" says the voice at your elbow, "do not react, and do not be alarmed, it is merely I."`
+			`	You look at the figure out of the corner of your eye and connect the whispered voice to the squirrelly muzzle poking out. To your surprise it is Sayuri.`
+			`	"I should not be coming to you with this, so you must promise to say nothing of this to anyone just yet."`
+				choice
+				`	"Of course."`
+			`	"A very sweet friend of mine, who is much too enthusiastic and perhaps led by the vagaries of youth but nonetheless quite astute, keeps hapring on to me about this theory of hers that a smuggling ring is kidnapping Hai and transporting them into human space."`
+			`	She pauses a moment for you to absorb this, "Of course, a thorough investigation has occurred on our side and no evidence of such things has turned up, but..."`
+			`	"Well, you see we cannot investigate your space openly or easily. I have paid it little mind, written it off as one of her eccentricities, but things are very tense right now. The Council of Elders wants to maintain our secrecy, the human diplomats are willing to accomodate us, but we sense their governments grow tired of maintaining the fiction. We are well aware that human intelligence services are highly competent, and motivated by many different factors. It worries me that one of your factions may not be wholly honest, and may have knowledge they intend to use as ammunition if things don't work out well for them."`
+			choice
+				`	"But what may I do about it?"`
+			`	"You are well-known, and must be canny to have got where you are. A Hai in trouble might recognise you, or you might perceive them when others would not. It would be in the interests of both our people to be sure that there is no such issue. Would you look for me? For both our sakes?"`
+			branch "about that"
+				"hai slave prereq" >= 1
+				choice
+					`	"Sure, I can have a look around."`
+				accept	
+			label "about that"
+				`	"Well, about that," you say, "I think I might have already come across some evidence of this before."`
+				`	Sayuri's hood nearly slips off as she looks up at you with a horrified expression, "Surely not?!"`
+				`	You rush to reassure her, "Nothing concrete, of course I shall go and have a look to be sure."`
+				accept
+	to complete
+		"hai slave prereq" >= 3
+	on complete
+		dialog `You think you have enough evidence of kidnapped Hai to be sure of the bad news you bring. There may be other Hai you could still save, but you have enough information for Sayuri.`
+
+event "role-play fleet deception"
+	system "Ultima Thule"
+		add fleet "Small Hai" 1200
+		add fleet "Large Hai" 2500
+	system "Rajak"
+		add fleet "Small Hai" 1200
+		add fleet "Large Hai" 2500
+		
