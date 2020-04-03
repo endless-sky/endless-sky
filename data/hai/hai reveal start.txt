@@ -1,0 +1,366 @@
+# Copyright (c) 2020 Nomadic Volcano
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+########################################################################
+
+Investigate a theorised smuggling route and rescue Hai. You have to do at least three of these missions.
+
+mission "Hai Rescue: Yeertle Family"
+	landing
+	name "Return the Yeertle family"
+	description "Transport the Yeertle family to <destination>. Payment is <payment>."
+	source Prime
+	destination Icelake
+	passengers 5
+	repeat 3
+	to offer
+		"combat rating" > 50
+		has "First Contact: Hai: offered"
+		not "event: hai-human treaty signed"
+		"Hai Rescue: Yeertle Family (offer count)" < 3
+		not "Hai Rescue: Yeertle Family: offered"
+	on offer
+		"Hai Rescue: Yeertle Family (offer count)" ++
+		conversation
+			`You look ahead a few dozen meters and you see a short man with a strange necklace. As he walks past a power transfer unit, the man shimmers and you see faintly-visible, squirrel-like, features. It seems the necklace is a projector of a human hologram conceiling a Hai. He is sticking to the shadows, trying to avoid being seen.`
+			`	Do you want to talk to him?`
+			choice
+				`	(Talk to him.)`
+				`	(Come back later.)`
+					defer
+			`	The man's expression doesn't change much as you approach. His holoprojector may not be sophisticated enough to translate Hai facial expressions. You can see exposed wires on the device; this is probably a makeshift projector he produced with limited resources. A well-made version might keep Hai hidden in human space for a long time.`
+			`	From the shaking voice, you can tell he's frightened.`
+			`	"C-can I help you?"`
+			choice
+				`	"You're a Hai. Why are you this far into human space?"`
+					goto far
+				`	"Do you need a ride home to Hai space?"`
+					goto "ride offer"
+			label far
+			`	He pauses for a second, perhaps pondering if he can trust you with the answer.`
+			`	"I'm a holographer from Icelake. I chartered a flight from Icelake to Allhome with my family. They would have gone on vacation while I would have been at a conference. Instead, the human merchants locked us in a cell and took us here.`
+			`	"My daughter is very small for her age, and was able to sneak through a vent to unlock our cell. The ship was undercrewed, so we overpowered them, but they had already landed. The ship was locked down; we could not take off. Since then, we've been hiding near here.`
+			`	"Can you take us back to <destination>? I have considerable savings back there, and can pay you well. Say, <payment>?"`
+			choice
+				`	"Sure!"`
+				`	"No, I can't."`
+					decline
+			`	"My name is Duniip Yeertle, by the way. My wife and three children are nearby. They have holoprojectors as well.`
+				goto leave
+			label "ride offer"
+			`	"Yes! Some crooked human merchants locked us in a cell and took us here. I've been unable to find anyone who has even heard of Hai space, and I'm afraid to approach the Syndicate. You're the first lead I have!`
+			`	"I promise I'll pay you well when we return. I can afford <payment>... when I'm back at <destination>.`
+			`	"My name is Duniip Yeertle, by the way. My wife and three children are nearby. They have holoprojectors as well.`
+			label leave
+			`	"Follow me back to my house, and we will make our preparations."`
+			choice
+				`	(Follow him.)`
+			`	You walk down a corridor to a stairway that leads to a brick wall. Duniip walks through the wall; apparently this is another of his holograms. You pass through and see a triad of energetic Hai children eating dinner with their mother.`
+			`	Duniip turns off his hologram and addresses his family, "I found us a pilot! He's going to take us all the way home." This was followed by four cheering family members and one baby's gurgle.`
+			`	The family was already packed to leave. Duniip explains they move regularly so they're not found. It takes them under two minutes to finish preparations and don their holoprojectors.`
+			`	Your walk back to the ship is largely uneventful until some men with strange scanners detect the Yeertle family. One man throws a small grenade with a green light on top. You recognize it as a low-level EMP device. All five holograms turn off, along with all of the computers within 20 meters. Fortunately, your ship is outside that range.`
+			`	The six of you run to your ship as quickly as possible. You look back and see the men were not following you; they were running to their own ships.`
+				launch
+	on complete
+		payment 350000
+		"hai slave prereq" ++
+		dialog `The Yeertle family is ecstatic to be home after their long ordeal and gladly give you <payment>. They promise to look at the background checks of human pilots before hiring next time.`
+	npc
+		government "Bounty Hunter that Won't Enter Hai Space"
+		personality plunders disables unconstrained
+		fleet "Large Core Pirates" 1
+		fleet "Small Core Pirates" 1
+
+
+mission "Hai Rescue: Prison Role-Players"
+	# You get to rescue the Hai from "First Contact: Hai"
+	landing
+	name "Return the Prison Role-Players"
+	description "Return Hai prison role-players to <destination>. Payment is <payment>."
+	source "Sunracer"
+	destination "Allhome"
+	passengers 5
+	repeat 3
+	to offer
+		has "First Contact: Hai: declined"
+		"Hai Rescue: Prison Role-Players (offer count)" < 3
+		not "event: hai-human treaty signed"
+		not "Hai Rescue: Prison Role-Players: offered"
+		# No combat rating requirement since there are no NPCs.
+	on offer
+		"Hai Rescue: Prison Role-Players (offer count)" ++
+		conversation
+			`As you set your landing vector, you detect a distress call directed at your ship. Your scanners show it comes from a remote island. Do you want to check it out?`
+			choice
+				`	(Follow the distress signal.)`
+				`	(Ignore it and come back later.)`
+					defer
+			`	You put your ship down in a forest clearing and step out to see some Hai with a directional transmitter and a very broken pirate ship.`
+			`	"Captain <last>! Please help us. We need to get home to <destination>."`
+				goto "actual questions"
+			label questions
+			`	"Do you want to know anything else, or can we leave now?"`
+			label "actual questions"
+			choice
+				`	"Of course. Let's go."`
+					goto go
+				`	"How do you know who I am?"`
+					goto who
+				`	"How did you get here?"`
+					goto how
+				`	"How much will you pay me?"`
+					goto pay
+				`	"Sorry, maybe another time."`
+					defer
+			label who
+			`	"You don't remember me? I'm the first Hai you met. You were so confused back then and didn't know who or what we were. It was very cute.`
+				goto questions
+			label how
+			`	"There are prison role-play cruises in Hai space where we can ride in a brig with human security guards. My research group thought it would be a fun experience, so we all chartered one.`
+			`	"It was a trick! They were pirates and took us into human space instead.`
+			`	"They didn't feed us much, so we all pretended to be too weak to stand. When one of the pirates came in to check on us, we overpowered him. The other pirate crashed the ship and used an escape pod. Now we're stuck here.`
+				goto questions
+			label pay
+			`	"Ah, well, we can give you what is left of our travel budget: <payment>. The money is at <destination> so you'll have to fly us there first.`
+				goto questions
+			label go
+			`	"Excellent! Everyone pile onboard. Let's go back to <destination>!"`
+				accept
+	on complete
+		log `Found some gullible Hai that pirates tricked into a "prison role-play cruise," complete with security guards and a brig. They overpowered the pirate crew who crashed the ship and used escape pods. I returned the Hai to <destination>.`
+		payment 565000
+		"hai slave prereq" ++
+		dialog `The Hai researchers thank you for rescuing them from their ill-fated "prison role-play cruise" and promise to stick to safer pastimes in the future. They happily give you <payment>.`
+	# No NPCs for this one since the Hai are presumed dead.
+
+
+mission "Hai Rescue: Ooonem"
+	landing
+	name "Return Ooonem"
+	description "Transport the Hai you rescued to <destination>. Payment is <payment>."
+	source "Stormhold"
+	destination "Makerplace"
+	passengers 1
+	repeat 3
+	to offer
+		"combat rating" > 50
+		"Hai Rescue: Ooonem (offer count)" < 3
+		not "event: hai-human treaty signed"
+		not "Hai Rescue: Ooonem: offered"
+		has "First Contact: Hai: offered"
+	on offer
+		"Hai Rescue: Ooonem (offer count)" ++
+		conversation
+			`In the shadows, you see a short, hooded, woman. There is a lot of hair sticking out from her hood. She might be a Hai. Do you want to talk to her?`
+			choice
+				`	(Talk to her.)`
+				`	(Come back later.)`
+					defer
+			`	As you approach, she pulls a laser rifle out of her cloak, points it at you, and says, "No! I'm not going back to them!"`
+			`	She sees your confusion and calms down, "You're not one of them. What do you want with me?"`
+			choice
+				`	"I was wondering why a Hai is on a pirate planet."`
+					goto hai
+				`	"Not one of who?"`
+					goto who
+				`	"Sorry to bother you. I'll leave you to your business."`
+					goto decline
+			label hai
+			`	"I was going to meet a businessman on Shroud to arrange a large-scale import deal for my research project. I asked a human merchant to take me there, but I was tricked. The businessman doesn't really exist; the deal was faked. The merchant locked me in a cell and brought me here instead. When he opened the cell, I managed to grab his rifle, shoot him, and hide. It's amazing how slowly humans move.`
+				goto "more questions"
+			label who
+			`	"There are some men looking for me. I've managed to escape them so far; they're not as quick as a Hai. I think they're friends of the merchant who locked me up.`
+				goto "more questions"
+			label pay
+			`	"I don't know. I have no money but my family on <planet> can pay."`
+				goto "more questions"
+			label "more questions"
+			`	Can you take me back to <destination>? My family can pay for my return.`
+			choice
+				`	"Yes, I'll take you there."`
+				`	"How much will you pay me?"`
+					goto pay
+				`	"Why are you on a pirate planet?"`
+					goto hai
+				`	"I'm not one of who?"`
+					goto who
+				`	"Sorry, but you'll have to find another ride."`
+					goto decline
+			`	Are you sure? Pirates will chase you. I'd rather not die on your ship.`
+			choice
+				`	"Don't worry. I know how to dodge pirates."`
+				`	"You should find a different ride then."`
+					decline
+			`	"Okay. I guess I should have introduced myself... it's easy to forget social niceties in a place like this. My name is Ooonem, and I'm a researcher from <planet>. Thank you for agreeing to take me home."`
+			`	You notice several men nearby looking intently at Ooonem. The two of you run towards your ship and make it to cover before the men start shooting. Ooonem pulls a grenade out of her cloak and throws it at the men. Gas explodes outward and the men drop dead in seconds.`
+			`	"I had better leave these behind," she says, dropping a few gas grenades on the ground. "I took them off of the pirates a few days ago. They're quite illegal." You notice a label on the grenades "tabun gas: 20 meter radius." This was a nerve gas grenade, using one of the older varieties of the gas. Cheap and plentiful in pirate space.`
+			`	You run into your ship and immediately take off.`
+				launch
+			label decline
+			`	The woman runs off into the shadows. You doubt you'll ever see her again.`
+				decline
+	on complete
+		log `Rescued a kidnapped Hai researcher, Ooonem, from Stormhold and returned her to Makerplace. She was tricked into leaving Hai space for a fake business deal, and the merchant who agreed to take her there kidnapped her instead. Men have been hunting her since she escaped. She doesn't know the real identities of the kidnappers.`
+		payment 225000
+		"hai slave prereq" ++
+		dialog `Ooonem is relieved to return to <planet>. She leads you to her family's home where you're treated to a bountiful dinner. The cuisine is entirely human-Hai fusion dishes. The dessert is accompanied by most delicious spice of all: <payment>.`
+	npc
+		government "Bounty Hunter that Won't Enter Hai Space"
+		personality plunders disables unconstrained
+		fleet "Large Core Pirates" 1
+		fleet "Small Core Pirates" 1
+
+
+mission "Hai Rescue: Meroot and Lucy"
+	landing
+	name "Return Meroot and Lucy"
+	description "Transport the scientists you rescued to <destination>. Payment is <payment>."
+	source Canyon
+	destination Newhome
+	passengers 2
+	repeat 3
+	to offer
+		"combat rating" > 50
+		has "Unwanted Cargo: done"
+		not "event: hai-human treaty signed"
+		not "Hai Rescue: Meroot and Lucy: offered"
+		"Hai Rescue: Meroot and Lucy (offer count)" < 3
+	on offer
+		"Hai Rescue: Meroot and Lucy (offer count)" ++
+		conversation
+			`As you walk through a major street, you notice a small alcove in the side of one building. Your sharp pilot eyes spot a woman within, with tufts of hair across her body. It's probably a Hai. Another woman, clearly human, is walking nearby carrying some food. She looks around to see if she's being followed before entering the alcove and covering it with a sheet of steel.`
+			`	Do you want to investigate?`
+			choice
+				`	(Investigate.)`
+				`	(Come back later.)`
+					defer
+			`	You knock on the steel sheet and a woman within the alcove slides it to the side. As she emerges, she carefully moves her body to block your view of the alcove.`
+			`	She asks nervously, "Yes, can I help you?"`
+			choice
+				`	"Why are you hiding a Hai in there?"`
+					goto hiding
+				`	"Can I help you?"`
+					goto help
+				`	"No, I was just walking by. Sorry to bother you."`
+					decline
+			label hiding
+			`	"Please don't tell anyone! We were both kidnapped, but we managed to escape. Now we're hiding here, hoping the men don't find us again.`
+			`	"Actually, if you can give us a ride to <planet>, we can pay when we get there. You'll be followed though, so I hope you have a fast ship.`
+				goto "come in"
+			label help
+			`	"Yes! Some men kidnapped my friend and I, but we managed to escape. We've been hiding here, hoping they don't find us again. If you can fly us to <planet>, we can pay you when we arrive. I hope you have a fast ship; they'll probably chase us.`
+				goto "come in"
+			label "come in"
+			`	"Come in, and we'll talk about it."`
+			choice
+				`	(Enter their alcove.)`
+				`	"No, I can't help you get home."`
+					decline
+			`	The alcove is a dead air space between two utility rooms in the basement of a warehouse. The hole in the wall looks like it was recently dug out by a laser cutter. There's a small refrigerator, a two-person cot, an air processor, and a shelf with typical household items. Books are strewn everywhere; the women must be avid readers. It seems they've set up this tiny space as a decent, albeit small, apartment.`
+			`	"I'm Lucy," says the human woman.`
+			`	"And I'm Meroot," adds the Hai woman. "I was on Newhome walking to my research lab when some men pulled me into an alley and zapped me with a tazer. I woke up in the brig of a space ship."`
+			`	"My experience was similar. I was walking from my biolab to my house on Serpens. Some men jumped out from behind a dune and zapped me."`
+			`	Meroot continues, "They took us both here. I was able to struggle out of my handcuffs and sneak the keys from the guard. We escaped together, and we've been hiding for weeks.`
+			`	"Please take us to <destination>"`
+			choice
+				`	"Sure. Let's go."`
+				`	"No, you'll have to find another pilot."`
+					decline
+			`	The two women put on clothing that thoroughly covers their person. They lead you through a series of ducts and alleys back to the building where your ship is parked. When you have fifty meters left to go, someone shoots Meroot with a stun gun. You and Lucy manage to carry her to your ship and lift off. It appears you're being followed into orbit.`
+				launch
+	on complete
+		log `Rescued a pair of researchers: a Hai woman named Meroot and a human woman named Lucy. They were kidnapped by men who brought them to Canyon. Returned them to <destination> where they now live together. They don't know the identities of the kidnappers.`
+		payment 315000
+		"hai slave prereq" ++
+		dialog `Meroot and Lucy thank you for your help and give you <payment>. Lucy decides to live in Hai space with Meroot, "It's safer here." The two don't know who the men were that kidnapped them.`
+	npc
+		government "Bounty Hunter that Won't Enter Hai Space"
+		personality plunders disables unconstrained
+		fleet "Large Core Pirates" 1
+		fleet "Small Core Pirates" 1
+			
+
+mission "Hai Rescue: Gipeep"
+	landing
+	name "Return Gipeep"
+	description "Transport the Hai you rescued to <destination>. Payment is <payment>."
+	source "Maelstrom"
+	destination "Greenbloom"
+	passengers 1
+	to offer
+		"combat rating" > 50
+		not "event: hai-human treaty signed"
+		has "Unwanted Cargo: done"
+	on offer
+		conversation
+			`You walk by some cargo and hear loud thumping coming from a locked crate. You notice a key nearby. Do you want to check it out?`
+			choice
+				`	(Examine the crate.)`
+				`	(Leave.)`
+					decline
+			`	The key has a symbol you don't recognize, but it looks similar to the Syndicate logo. As you get closer, the ordinary-looking crate starts seeming a little strange. It appears to be well-insulated against sound and temperature, but has concealed breathing holes. You can still hear loud thumping.`
+			`	Do you want to try opening the crate?`
+			choice
+				`	(Open the crate.)`
+				`	(Leave.)`
+					decline
+			`	You put the key in the lock, turn, and the next thump you hear pushes the crate open so hard it falls over. An angry-looking Hai jumps out and starts yelling at you in its own language.`
+			`	After a few seconds, the Hai calms down and speaks in your own tongue, "They locked me in a box! I was walking home from a store on <destination> and some humans pulled me into an alley. They shoved me in a box and now I'm...", the Hai looks around, "not in Hai space?`
+			`	"Please take me home. I'm a ship architect from <destination>. We should hurry before they come back."`
+			choice
+				`	"Of course. Just hop in my ship."`
+					goto accept
+				`	"No, I'm not going that way any time soon."`
+			`	"I have nowhere else to go! I'm not exactly conspicuous. I'll be caught soon. Please, I can pay you well."`
+			choice
+				`	"In that case, I'll take you."`
+				`	"No. You'll have to find another pilot."`
+					decline
+			label accept
+			`	You can hear men walking down the hall towards you. You and Gipeep run quickly in the other direction. Soon you hear shots fired, and see them hit a nearby wall. They passed quite close to your head.`
+			`	Through luck and skill, the two of you make it to your ship and quickly launch. The escape seemed a little too easy though; they may have been avoiding hitting Gipeep.`
+			`	It appears ships are following you into orbit.`
+				launch
+	on complete
+		log `Rescued a Hai ship architect named Gipeep who was kidnapped near his home on <destination> and transported in a locked cargo crate. The crate's key had a marking on it similar to the Syndicate logo.`
+		payment 285000
+		"hai slave prereq" ++
+		dialog `Gipeep thanks you for helping him finally finish his long walk home from the store. His grateful family give you <payment>. None of them know who kidnapped him or why.`
+	npc
+		government "Bounty Hunter that Won't Enter Hai Space"
+		personality plunders disables unconstrained
+		fleet "Large Northern Pirates" 1
+		fleet "Small Northern Pirates" 1
+
+
+mission "Hai Rescue [A00] Darkwaste Timer"
+	landing
+	invisible
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
+		not attributes "uninhabited"
+		not planet Darkwaste
+	destination Darkwaste
+	to offer
+		has "main plot completed"
+		"hai slave prereq" >= 3
+		"combat rating" > 3000
+		
+		# These two stories wouldn't make sense after the Hai-human treaty
+		# so the player must do them first:
+		has "Nanachi 4: done"
+		or
+			has "Pirate Troubles [4]: done"
+			has "Pirate Troubles [4]: declined"
+	on offer
+		fail
+		event "hai rescue: teeneep message" 30
+
+event "hai rescue: teeneep message"

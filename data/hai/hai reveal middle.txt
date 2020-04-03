@@ -1,0 +1,452 @@
+# Copyright (c) 2020 Nomadic Volcano
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+########################################################################
+
+# Part 1: Search Korath and human space for the missing researchers
+
+mission "Hai Rescue [A01] Visit Darkwaste"
+	landing
+	name "Missing Researchers"
+	description "Fly to <destination> to visit the Hai you rescued."
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
+		not attributes "uninhabited"
+		not planet "Darkwaste"
+	destination Darkwaste
+	to offer
+		has "event: hai rescue: teeneep message"
+	on offer
+		conversation
+			`You receive an emergency communication from a Hai woman named Teeneep. The message is brief and cryptic, but you deduce that it refers to the Hai you've rescued from human space in the past. They need to talk to you again as soon as possible. There is a set of landing coordinates on the uninhabited Hai planet, <destination>`
+				accept
+
+mission "Hai Rescue [A02] Nanotransceiver Identification"
+	landing
+	name "Missing Researchers"
+	description "Fly to <destination> to ask the Quarg about the nanotransceivers."
+	source Darkwaste
+	destination "Kuwaru Efreti"
+	to offer
+		has "Hai Rescue [A01] Visit Darkwaste: done"
+	on offer
+		log "People" "Teeneep Goot'r" `Teeneep is a civil rights leader among the Hai who heads an organization with hundreds of employees and many sponsors. She's used her extensive resources to search for answers about kidnapped scientists.`
+		log `Hai you have rescued are among many that have gone missing over the past few decades, along with humans as well. They all have nanotransceivers that are not of human or Hai origin. Teeneep, a Hai civil rights leader, used her network of information-gatherers to find contacts to help you research the problem in human space and beyond. Your search begins with the Quarg south of Hai space.`
+		conversation
+			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; you notice it has non-standard outfits. You can see the emission components of a Scram drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The ship is outfitted to fly rapidly through unfriendly territory without stopping.`
+			choice
+				`	(Walk into the cave.)`
+				`	(Come back later.)`
+					defer
+			`	You walk twenty meters into the cave and pass through an open doorway. There's a variety of medical machinery and some computers in a makeshift base. Some people you've rescued are present, with some more humans and Hai you haven't met. A few of them have pulse rifles. A woman walks towards you.`
+			`	"My name is Teeneep Goot'r. I'm a civil rights advocate among the Hai, and I'm trying to help your friends with a problem. As you know, they were kidnapped by humans. A few other Hai and humans victims are here; they were rescued by other kind merchants in human space.`
+			`	"My organization researched their problem and discovered some patterns to the disappearances. We've found these kidnappings have been going on for several years. What is strangest is the nanotransceivers in most of the kidnapped victims."`
+			choice
+				`	"What patterns have you noticed in the kidnappings?"`
+					goto patterns
+				`	"Tell me about the nanotransceivers."`
+					goto nanotransceivers
+				`	"How long have the kidnappings been happening?"`
+					goto kidnappings
+			label questions
+			`	"Do you have any other questions?"`
+			choice
+				`	"How do you know all of this?"`
+					goto know
+				`	"Why are you on an uninhabited planet?"`
+					goto uninhabited
+				`	"Is anyone helping you?"`
+					goto anyone
+				`	"What patterns have you noticed in the kidnappings?"`
+					goto patterns
+				`	"Tell me about the nanotransceivers."`
+					goto nanotransceivers
+				`	"How long have the kidnappings been happening?"`
+					goto kidnappings
+				`	"How can I help you?"`
+					goto help
+			label uninhabited
+			`	Teeneep looks at you as if you were daft, "The kidnappings happen on Hai and human worlds. The kidnappers have no reason to search an uninhabited planet for kidnapping victims. This gives us a safe place to hide any critical people or information."`
+				goto questions
+			label nanotransceivers
+			`	A Hai in a medical uniform explains, "The victims each have have thousands of nanoscale transmitter-receivers in their body, each the size of a single blood cell. We call them nanotransceivers. They act together as one big transmitter and receiver, sending and receiving directional messages over great distances.`
+			`	"This technology is clearly not of human or Hai origin. Its construction is well beyond our science and some materials involved have properties unlike anything we've ever seen. This technology comes from another race. A race that has mastered nanotechnology.`
+			`	"What is most troubling is that we don't know how to detect the signals beyond about thirty meters. We can tell they send messages over much longer distances through hyperspace, but they use a method we don't understand.`
+				goto questions
+			label patterns
+			`	Teeneep explains, "I head a large civil rights activist organization; we have some resources of our own. We've combed police records for the past few decades and noticed patterns in disappearances.`
+			`	"There are violent crimes and kidnappings in Hai space, though not nearly as frequently as in human space. Murder, assault, estranged parents kidnapping their children, all of that happens here. Many of those crimes are solved: the victim is found dead or alive. Some of them are not solved.`
+			`	"A disproportionate number are from the intelligentsia: doctors, scientists, engineers, architects. In particular, they are gifted researchers in their field, but not prominent enough for the field to be crippled by their absence.`
+			`	"The same is happening in human space. In research institutions, people are occasionally disappearing. The patterns are exactly the same.`
+			`	"We believe someone is collecting researchers.`
+				goto questions
+			label kidnappings
+			`	Teeneep answers, "In human space, we don't know, but in Hai space, it dates back to about a year after we made contact with the humans.`
+			`	"From the rate at which the disappearances have happened, possibly as many as five thousand Hai have vanished this way. The number may be less; some of those cases may be undiscovered murders, secret changes of identity, or defections to the Unfettered. Maybe five times that number of humans.`
+				goto questions
+			label know
+			`	Teeneep explains, "My civil rights organization has contacts with sympathetic individuals and organizations throughout Hai space. We have enough funding to hire a few hundred full-time employees of our own. Most of them are lawyers, social workers, or administrative employees. A few are investigative journalists or various types of researchers.`
+			`	"We've spent the last two years researching this problem, but it helped a lot to meet the people who have been rescued.`
+				goto questions
+			label anyone
+			`	A Hai near Teeneep responds. "Yes... and no. Apart from our own people, we're regularly in contact with police. They investigate the disappearances, but eventually they have to give up and work on other crimes.`
+			`	"Our biggest problem is the lack of help in human space. Local police are generally overwhelmed with crime in the regions where the kidnapping victims are found. There, kidnappings are commonplace. In the areas where the victims were taken, there's virtually no evidence. Your navies and intelligence agencies haven't the time to help us; they're busy cleaning up after the war. There is a lot of unfinished business in Syndicate space they don't want to talk about.`
+			`	"Since this problem is tiny compared to the total crime in Hai space, the Hai Elders haven't made it a large priority. They tell me that, if we can prove the kidnappings are from a coordinated effort, they'll put significant resources into solving the problem. So far, they say, their investigators have been unable to prove that.`
+			`	"What we need is a skilled pilot with a jump drive to visit some locations we cannot easily access.`
+				goto questions
+			label help precious opinions  
+			`	"We have some leads in human and Korath space we need you to follow. The Quarg at Alta Hai had me talk to scientists on <destination>. They say they can help, but they need a sample of the nanotransceivers. I know the humans gave you a Jump Drive; I need you to use it to deliver the nanotransceivers.`
+			`	"The Quarg in Korath space might eliminate some leads, and add new ones. Follow the leads. Once you have proof the kidnappings are an organized effort, return here, and we will pay you 2,000,000 credits."`
+			choice
+				`	"I'll start right away."`
+					accept
+				`	"No, I'm not interested."`
+					decline
+
+# Must be after the Quarg and Korath intro missions:
+mission "ZZ Hai Rescue [A03] Nanotransceiver Identification"
+	landing
+	name "Missing Researchers"
+	description "Fly to <destination> to talk to Tarazed Shipyards about the nanotransceivers."
+	source "Kuwaru Efreti"
+	destination "Wayfarer"
+	to offer
+		has "Hai Rescue [A02] Nanotransceiver Identification: done"
+	on offer
+		log `The Korath identified the nanotransceivers as their race's design, but extremely primitive and poorly-made. The Quarg provided a data card that Tarazed Shipyards may be able to use.`
+		conversation
+			`After you land, a hovering gray platform lowers to the entrance of your ship. You step on, and it raises you to a higher level of the ringworld where many Quarg and a few Korath are present. You find the first Quarg who will talk to you and show it the vial of nanotransceivers.`
+			`	The Quarg makes a series of wheezing sounds which approximate a laugh. "I am merely a pilot. I know nothing of nanotransceivers. That is the technology of the Korath, and I will take you to one who is knowledgeable."`
+			`	You pass through another two grey platform transports and reach a warm cave-like structure with a group of Korath and Quarg. From the holograms and equipment, it appears they're discussing science, in what appears to be a classroom with Quarg as the teachers.`
+			`	The Quarg and Korath discuss your nanotransceivers for a few minutes, placing them in various instruments.`
+			`	Finally you have your answer. A Quarg scientist tells you, "These are Korath in origin, but makeshift and primitive. Even the Korath Exiles are more advanced. Those who made these have little resources and simple machinery. This will tell you how to detect these nanotransceivers," it hands you a standard data card compatible with human computers.`
+			`	"Take this to Tarazed Shipyards."`
+			`	You recall Teeneep gave you a contact at Tarazed Shipyards.`
+				accept
+
+fleet "Smuggler (Hai Traffickers)"
+	government "Smuggler (Hai Trafficker)"
+	names "civilian"
+	cargo 0
+	personality timid
+	variant 3
+		"Blackbird (Hai Trafficker)"
+	variant 2
+		"Clipper (Hai Trafficker)"
+	variant 1
+		# The Corvettes are infrequent because they're nearly impossible to catch and
+		# serve mostly to show that the smugglers are desperate to avoid capture.
+		"Corvette (Hai Trafficker)"
+
+event "devil-run smugglers visible"
+	# Uninhabited systems near Hai space
+	system "Ultima Thule"
+		add fleet "Smuggler (Hai Traffickers)" 1000
+	system "Rajak"
+		add fleet "Smuggler (Hai Traffickers)" 2000
+	system "Hassaleh"
+		add fleet "Smuggler (Hai Traffickers)" 3000
+	system "Sumar"
+		add fleet "Smuggler (Hai Traffickers)" 3000
+	system "Danoa"
+		add fleet "Smuggler (Hai Traffickers)" 3000
+	system "Cardax"
+		add fleet "Smuggler (Hai Traffickers)" 3000
+	system "Hassaleh"
+		add fleet "Smuggler (Hai Traffickers)" 3000
+	system "Volax"
+		add fleet "Smuggler (Hai Traffickers)" 3000
+	system "Moktar"
+		add fleet "Smuggler (Hai Traffickers)" 3000
+
+	# Route to Almaaz (and nearby systems)
+	system "Rigel"
+		add fleet "Smuggler (Hai Traffickers)" 5000
+	system "Alnitak"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Saiph"
+		add fleet "Smuggler (Hai Traffickers)" 10000
+	system "Betelgeuse"
+		add fleet "Smuggler (Hai Traffickers)" 10000
+	system "Mintaka"
+		add fleet "Smuggler (Hai Traffickers)" 5000
+	system "Gorvi"
+		add fleet "Smuggler (Hai Traffickers)" 5000
+	system "Tortor"
+		add fleet "Smuggler (Hai Traffickers)" 5000
+	system "Unagi"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Hatyasa"
+		add fleet "Smuggler (Hai Traffickers)" 5000
+	
+	# Route to Almach
+	system "Zaurak"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Sheratan"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Ruchbah"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Alpheratz"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Achernar"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Al Dhanab"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Mirach"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	
+	# Staging areas for transfers
+	system "Alcyone"
+		add fleet "Smuggler (Hai Traffickers)" 2500
+	system "Almaaz"
+		add fleet "Smuggler (Hai Traffickers)" 2500
+	system "Arneb"
+		add fleet "Smuggler (Hai Traffickers)" 2500
+	system "Alnilam"
+		add fleet "Smuggler (Hai Traffickers)" 2500
+
+	# Final holding area before Devil-Run
+	system "Almach"
+		add fleet "Smuggler (Hai Traffickers)" 1000
+	
+
+mission "Hai Rescue [A04] Tarazed Analysis"
+	landing
+	name "Missing Researchers"
+	description `Find and board a ship that has nanotransceivers. Your display will identify such ships as government "Smuggler." Try the uninhabited systems and pirate systems near Ultima Thule. Head to <destination> afterwards.`
+	source Wayfarer
+	destination Earth
+	clearance `Curious about your story, the authorities let you land.`
+	to offer
+		has "ZZ Hai Rescue [A03] Nanotransceiver Identification: done"
+	to complete
+		has "Hai Rescue [A05] Boarded Smuggler: offered"
+	on offer
+		event "devil-run smugglers visible"
+		log "People" "Goraz Zoltof" `Goraz is a communications researcher from Tarazed Shipyards. His wife went missing some time ago and he hopes his research will help you find her.`
+		log "Factions" "Smugglers" `Some pirate or merchant ships (identified by the computer as "Smuggler") carry slaves with special nanotransceivers. They are probably carrying human or Hai researchers.`
+		log `Goraz Zoltof used the galactic network of television transmitters to scan for evidence of smuggling ships carrying kidnapping victims with nanotransceivers. He detected hints of transmissions in the uninhabited space between the Far North and the Syndicate, and also near pirate systems.`
+		conversation
+			`You read Teeneep's contact information for Tarazed Shipyards, and it talks about a man named, "Goraz Zoltof," a widower in their communications research laboratory. There's an address and detailed information about the man.`
+			`	After a series of shuttles and trains, you reach his house and knock on the door.`
+			`	He's a little groggy, but manages to ask, "Yes?"`
+			`	You explain about the nanotransceivers, the Quarg, and the kidnappings. You avoid mentioning that some of the people are Hai, just in case he's never heard of them.`
+			`	He seems to awaken immediately, "You found a lead on my wife's disappearance? Yes, I can help you modify your ship's communicator to detect these signals. Let's go to my laboratory at once."`
+			choice
+				`	(Head to the laboratory.)`
+			`	After another series of shuttles and trains, you reach what looks like a spaceport. From the extra equipment and unusual ship designs, you realize it is a research shipyard. Goraz's laboratory is an entire docking bay with a modified Blackbird. He takes you onboard and walks you to the communications room.`
+			`	"This is a non-standard communicator, but it should be easy to reprogram yours." He takes the data card you got from the Quarg and plugs it into the communicator. After several minutes of typing, he speaks again.`
+			`	"There is nothing in this vicinity, but I was able to patch into our planet-scale receivers. They are extremely sensitive, and connected to the communication relay networks throughout human space. Those communicators aren't designed for precise tasks like this, but I can tell you where to look.`
+			`	He gives you back your data card, and second one. "This new card will reprogram your communicator to find the ships. They'll show up as, 'Smuggler' on your display. Search the uninhabited areas between the Far North and Syndicate space, plus any nearby pirate systems.`
+			`	"Please, return to your ship and find the victims!"`
+			choice
+				`	(Return to your ship.)`
+			`	You plug the data card into your computer, and a new "government" shows up: Smuggler. The ships will be colored differently than pirates.`
+			`	It may be risky, but you should disable one and board it.`
+			`	Teeneep gave you the name of a contact within a historical archive on <destination>. She wants you to speak to a woman named, "Giti Gilani" if you find one of the smuggling ships. Giti specializes in history of ship designs and space-faring groups, including the Hai.`
+				accept
+
+
+mission "Hai Rescue [A05] Boarded Smuggler"
+	name "Missing Researchers"
+	description "You have the information Giti Gilani will need. It is time to visit her on <destination>."
+	boarding
+	destination Earth
+	to offer
+		has "Hai Rescue [A04] Tarazed Analysis: active"
+	source
+		government "Smuggler (Hai Trafficker)"
+	on offer
+		conversation
+			`As you approach the airlock of the smuggler ship <origin>, the door opens and a Hai rushes through pointing a gun back towards a human in the ship. The human and Hai shoot at the same time, killing each other. In his death throes, the Hai manages to toss a keycard in your direction. It is damaged beyond usefulness, but you can see a pair of logos on it. One looks similar to the Syndicate logo and the other looks demonic.`
+			`	Soon after, you hear explosions in the ship and see an escape pod float away. It seems the smugglers set the self-destruct and signaled for help. The pod has no nanotransceiver transmissions, so it must be one of the smugglers. Apparently the smugglers care more about not being caught than about finishing their mission.`
+			`	Now it's time to set a course for <destination> where you can finally get some answers.`
+			`	Multiple hyperspace windows begin to form. You prepare for battle.`
+				launch
+	npc
+		government "Pirate"
+		personality nemesis harvests plunders entering
+		fleet "pirate raid" 3
+
+mission "Hai Rescue [A06A] Smuggler Ambush"
+	# The second smuggler serves to show they don't always carry slaves
+	invisible
+	boarding
+	destination Earth
+	deadline 1
+	to offer
+		has "Hai Rescue [A05] Boarded Smuggler: offered"
+	source
+		government "Smuggler (Hai Trafficker)"
+	on offer
+		conversation
+			`You scan this smuggling ship and notice none of the nanotransceiver transmissions come from a lifeform. Instead, they all seem to come from a containment cell just behind the airlock. It seems these smugglers don't always carry slaves, but they do have a supply of nanotransceivers on hand anyway (perhaps for future catches).`
+			`	The ship begins to self-destruct and escape pods float away, just like before.`
+			`	Multiple hyperspace windows begin to form. You prepare for battle.`
+				launch
+	npc kill
+		government "Pirate"
+		personality nemesis harvests plunders entering
+		fleet "pirate raid" 2
+
+mission "Hai Rescue [A06B] Smuggler Ambush"
+	# After the second smuggler, you get no more information, but the
+	# smugglers always blow up and call pirates.
+	invisible
+	repeat
+	boarding
+	destination Earth
+	deadline 1
+	to offer
+		has "Hai Rescue [A06A] Smuggler Ambush: offered"
+	source
+		government "Smuggler (Hai Trafficker)"
+	on offer
+		conversation
+			`As before, the smugglers set the self-destruct mechanism and escape without their prey. Multiple hyperspace windows begin to form. You prepare for battle.`
+				launch
+	npc kill
+		government "Pirate"
+		personality nemesis harvests plunders entering
+		fleet "pirate raid" 2
+
+mission "Hai Rescue [A07] Logo Identification"
+	landing
+	name "Missing Researchers"
+	description "Fly through the wormhole in the middle of Syndicate space and return to Giti at <destination>."
+	source Earth
+	waypoint "Devil-Run"
+	waypoint "Deep Space 7C"
+	to offer
+		has "Hai Rescue [A05] Boarded Smuggler: offered"
+	on visit
+		dialog `You need to pass through the wormhole at Devil-Run before returning here.`
+	on enter "Devil-Run"
+		log `Found a red wormhole in the most pirate-infested region of Syndicate space.`
+		dialog `There is, indeed, a red wormhole here, in the middle of the most pirate-infested region of Syndicate space.`
+	on enter "Deep Space 7C"
+		log `Passed through the wormhole in Syndicate space to a region just outside the Milky Way galaxy. It looks like a good place to hide.`
+		dialog `It takes your computer a few seconds to triangulate, but it says you've left the Milky Way galaxy and are now in intergalactic space. Your computer is identifying the system name as, "Deep Space 7C" from old astronomical surveys done in the late 21st century. This is definitely a good place to hide. You should return to Giti now and see what more she's found out.`
+	on offer
+		log "People" "Giti Gilani" `Giti is a research librarian on Earth that specializes in archaic space flight knowledge.`
+		log "Factions" "Aggressive Research Division" `A defunct division of the Syndicate that stole alien technology and kidnapped human researchers about a half century ago. Syndicate Internal Affairs hunted and killed all of them except the leader.`
+		log "Factions" "Syndicate Internal Affairs" `An internal police force within the Syndicate that enforces the Syndicate's laws.`
+		log "Giti identified the Syndicate-like symbol. It is from a long-defunct division of the Syndicate, Aggressive Research Division. Somehow they obtained alien technology, and then started kidnapping researchers from other companies. A half-century ago, Syndicate Internal Affairs hunted and killed all of that division except their leader."
+		conversation
+			`After landing, you search for the "Republic Historical Space-Flight Museum," and find there are seventeen museums by that name on Earth.  Only one has a research library, so you contact the library. Giti Gilani no longer works there; she's moved to a library in the Navy Intelligence Observatory in Moscow.`
+			`	The Navy observatory was easier to find; when they hear your name, they put you in contact with Giti immediately. She is excited to see the two symbols you found and asks you to visit her. It takes three shuttle journeys and one high-speed rail trip, but you reach the building in under three hours.`
+			choice
+				`	(Enter the building.)`
+			`	You're ushered to an elevator and given a room number: 3017A19, the 301st floor, section 7A, room 19. It's amazing how large Earth's megabuildings have become. Some planets have lower population than one of these buildings.`
+			`	Giti is even more excited in-person than she was by holocommunicator. She's already researched the Syndicate-like symbol, but needed more detail about the demonic one. You also show her the information about the nanotransceivers.`
+			`	"This Syndicate symbol was used by an illicit organization that worked within the Syndicate over a half-century ago. They called themselves the 'Aggressive Research Division.' Supposedly they flew into deep space and captured alien equipment, but nobody knows where they got it. Eventually they went too far; they kidnapped researchers from other institutes and enslaved them in the Syndicate.`
+			`	"Syndicate Internal Affairs put a stop to the organization, but it was a bloody battle. Most of the leaders were killed in battle or executed after capture. The most ruthless, their leader, managed to escape, but nobody knows where.`
+			`	"For the demonic symbol, we'll have to go to another library in room 4196A21."`
+			choice
+				`	(Take the elevator to the 419th floor.)`
+			`	When you arrive, Giti tells you, "This is a religious materials archive. Give me a minute here..." Her voice trails off as she starts typing on a terminal. She walks back and forth between several bookshelves skimming books for a few minutes.`
+			`	"I found it," she says. "You found a modified version of the Symbol of Baphomet, the official symbol of an older incarnation of the Church of Satan. They were one of the first organizations to fund large-scale settlements on Freedom. The letters around the pentagram have been replaced with galactic coordinates using an archaic notation." She smiles at you, "I wrote my Ph.D. thesis about that notation! Now I finally need that information for something other than getting a degree!`
+			`	"The circle around the symbol looks almost like a wormhole. A red wormhole. I heard about one in Termanus near The Deep. Apparently nobody is able to enter one without their ship being torn to pieces. This symbol suggests there's another one in the middle of Syndicate space.`
+			`	"Fly through the wormhole at the coordinates on that card, come back and tell me what you see. In the meantime, I'll ask other researchers about the nanotransceivers."`
+			choice
+				`	(Thank her and return to your ship.)`
+			`	Upon returning to your ship, you ponder Giti's findings. The coordinates are for a system in Syndicate space that is not reachable by starlane, so you'll need a Jump Drive. The red wormhole requires another key.`
+			`	Once you've passed through that wormhole, hopefully Giti will have more information for you.`
+				accept
+	on complete
+		log `Giti asked to go to the unexplored region beyond the Syndicate wormhole to seek a base. She's waiting at the Earth spaceport with 7 tons of cargo.`
+		conversation
+			`After a long series of shuttles, high-speed rails, and a several-minute-long elevator ride, you reach Giti's office.`
+			`	As soon as she sees you she asks, "What did you find out?" You explain your journey to her.`
+			`	She responds, "Wait... I... lemme check..." followed by some typing on a nearby terminal. "Yes, you're right. In the late 21st century, there was an effort to map stars in that intergalactic region. They should not have been so visible, but they were due to some strange anomalies. The strangest of all was not a star; it was an object with unknown properties that confuse our scanners even today.`
+			`	"If the Syndicate criminals and kidnappers are through the wormhole, that's the system they'll be in.`
+			`	"Let me contact some people. Hold on..." Her voice trails off as she begins typing on a nearby terminal.`
+			choice
+				`	(Wait.)`
+					goto wait
+				`	(Interrupt her.)`
+			`	"What? I... Aaa! Don't startle me like that. I just need a minute. Hold on..."`
+			label wait
+			`	"Okay. I've arranged for some advanced scanning equipment that can see past most types of radiation and a few hundred meters of solid rock. I'll have to come with you on this trip.`
+			`	"Oh! I almost forgot to tell you the good news. I found some people who know about the nanotransceiver transmissions. Navy carriers have sensitive communication arrays that can pick up the transmissions. The Navy is combing their communication logs and will have some answers when we return.`
+			`	"Meet me in the spaceport when you have a bunk and 7 tons of cargo space free. Oh, and make sure you have a ramscoop. The navy will pay for this trip."`
+
+mission "Hai Rescue [A08] Scanner"
+	name "Missing Researchers"
+	description "Return to <destination> after scanning the Devil-Hide system. Payment is <payment>."
+	source "Earth"
+	waypoint "Devil-Hide"
+	passengers 1
+	cargo "advanced scanning equipment" 7
+	blocked `You need room for Giti and her <cargo>.`
+	on visit
+		dialog `Giti or her equipment are in one of your escorts. You need to wait for your escorts to arrive before landing again.`
+	to offer
+		has "Hai Rescue [A07] Logo Identification: done"
+	on offer
+		conversation
+			`Giti enters your ship after some navy workers load scanning equipment. She's eager to see first-hand the intergalactic space she's only theorized about in the past.`
+				accept
+	on enter "Devil-Hide"
+		log `Found a bizarre planet with a subterranean colony in its moon. The planet defies analysis and seems to violate the known laws of physics. There are Hai, humans, and reptiles (probably Korath) in the colony, but no evidence of Alphas. However, the scanners could only see the upper three floors due to interference from the planet.`
+		conversation
+			`Giti turns on the scanning equipment.`
+			`	"Okay, let's do the planet first..." Her voice trails off. "Wow! That's odd. We'll need a scanner about ten thousand times more powerful to scan that planet.`
+			`	 "I can see a bit of the surface though. The planet is odd in every way. It is completely inhospitable to all known forms of life. There's a huge network of caves and caverns coated with a crystal that is radiating... something the computer can't identify... and deuterium. The denizens of this system siphon the deuterium to make hyperspace fuel. Also, the planet has about a thousand times the mass it should, but somehow the gravity is around Earth normal.`
+			`	"Now the moon... hmmm... okay. It's just an ordinary chunk of rock, but the planet's radiation is disturbing the sensors. I can only see a few dozen meters below ground.`
+			`	"I found your missing researchers. They're in a facility beneath the moon's surface. There are three different species there: Hai, human, and some kind of reptile." You realize she probably means a Korath. "No Alphas though. I can only see the uppermost part of the facility. They have hydroponics, big cargo bays, docking bays for ships, and some spacious living areas. I detect 1,387 life signs spanning all age ranges, and that's just in the upper three floors of the facility.`
+			`	"This isn't a base; it's a colony."`
+			`	You notice capital ships heading your way and about two dozen more preparing to leave the planet. It's time to go.`
+	on complete
+		payment 775000
+	npc
+		government "Pirate (Devil-Run Gang)"
+		system "Devil-Hide"
+		fleet "Devil-Run Warships" 2
+		personality nemesis harvests plunders disables
+
+mission "Hai Rescue [A09] Slaver Ships"
+	landing
+	name "Missing Researchers"
+	description "Report back to Teeneep on <destination>. Payment is <payment>."
+	source "Earth"
+	destination "Darkwaste"
+	to offer
+		has "Hai Rescue [A08] Scanner: done"
+	on offer
+		conversation
+			`The Earth authorities give you an unusual landing vector that leads to a secret docking bay below ground in Argentina. You land and a Navy cadet meets you at your ship with an urgent message, "Republic Intelligence and a Navy Marshal want to see you as soon as possible. They have news about your nanotransceiver transmissions. Please follow me."`
+			`	Giti adds, "I'll take the scanners and data to some researchers and let you know when I have more information. Please go with the cadet. It sounds like you'll finally get some answers."`
+			`	The cadet takes you to an elevator just outside your ship, down more than three hundred floors to a large meeting room. Within, you see two men and a woman in formal dress. One man has a Republic Intelligence uniform with the name, Agent Kopkow. Another wears a navy full dress uniform that you don't immediately recognize. After a moment of thought, you realize he is Marshal, the second-highest rank in the Navy. His uniform is is labeled, Adurath Kaine. The woman is a Navy captain wearing the prominent Parliamentary Medal of Valor. Her name label says, "Captain Anna Wallace."`
+			choice
+				`	(Speak to the agent and marshal.)`
+					goto join
+				`	(Ruminate first.)`
+			`	You've had few dealings with Republic Intelligence, but you know what everyone knows. They're the top police force of the Republic, dealing with high-profile civilian crimes that local authorities can't handle. Murder investigations, interplanetary kidnappings, and the like. They also gather intelligence throughout human space, and possibly beyond, reporting directly to the Republic Parliament.`
+			`	There are only five Navy Marshals, and one Grand Marshal; this man's high rank means he reports parliament regularly. People this high in the navy tend to deal more with political issues, rather than combat or strategy, so you wonder why they picked him to talk to you.`
+			`	The Parliamentary Medal of Valor is only given to one person per year; this captain must have done something especially heroic. She must also have supporters in Parliament to receive the award in the first place. That will give her some freedom to act independently, like Danforth does.`
+			`	The three of them are looking at you confused, wondering why you've stopped and stared at them for a half minute.`
+			choice
+				`	(Stop staring blankly and speak to them.)`
+			label join
+			`	Marshal Kaine introduces himself, "I'm the Marshal of the Third Armada, the guards of the Far North and the uninhabited regions near it. I know you've met one of my admirals, a good man albeit one who flouts the rules a bit too much." He gives a stern look at Captain Wallace. "Some of my carriers have detected the signals you've found. Actually, we seem them quite regularly in the ships of known slave runners. The runners don't always carry slaves; they do other smuggling missions as well."`
+			`	Agent Kopkow speaks his piece next, "Sometimes the runners do carry slaves, and we have found humans or Hai in crashed slaver ships. We returned the Hai to their homes, as you did, but they didn't know Republic Intelligence helped them. Several merchants have done the same. About one in seven we rescued were researchers, an extremely disproportionate amount when you consider the number of researchers in human and Hai space. Clearly they're being targeted."`
+			`	Kaine continues, "That, unfortunately, is where we have some bad news. Parliament has a strict policy on pirates and slaver ships: destroy on sight. This is a tradition that goes back long before the era of space travel. Raiding pirate ships is a deadly affair; numerous navy or police will be killed. While it may seem heroic, the casualty rate is unsustainable. The only effective way to discourage piracy is to destroy the ships. If you don't believe me, try catching some yourself and count your dead."`
+			`	Captain Wallace concludes, "That means many slaves are killed, including some Hai researchers."`
+			`	Kaine says, "We informed the Hai government while you were away and they've responded by moving fleets towards the wormhole; we're doing the same. By the time you arrive, there will be large fleets on both sides of the wormhole. This could quickly lead to war. Please take the message back to Teeneep and the Hai victims with our condolences. Captain, please see <first> <last> back to the <ship>."`
+			choice
+				`	(Return to your ship.)`
+			`	Along the way, Captain Wallace tells you stories of Navy heroism and brutality towards slaver vessels. Apparently many officers like her disagree with the Navy's policy. They want to rescue slaves whenever possible, regardless of risk or orders.`
+			`	She was awarded for personally leading a charge deep into pirate space to rescue a group of over a hundred high-school students that were captured on a field trip to Shroud. That led to her court marshal and conviction for disobeying a direct order. She was pardoned by the Prime Minister upon receiving the Parliamentary Award for Valor.`
+			`	When you reach your ship, she hands you a business card, "Please have the Hai victims talk to this man. He's part of Syndicate Internal Affairs and may be able to help. He and I... share common goals."`
+				accept
+	on complete
+		payment 2000000
+

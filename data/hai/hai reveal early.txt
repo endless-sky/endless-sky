@@ -1,0 +1,19 @@
+# Copyright (c) 2020 MasterOfGrey
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+########################################################################
+
+mission <cover up station> (a few)
+This will be a chain of missions to help the Hai build a station in Ultima Thule, initially this is for an elaborate and exclusive ‘role-playing community’ as part of the cover-up for the hai leak. They’re purportedly using holographic weaponry that simulates ‘alien’ tech – also acts as a way for the Hai to prevent further pirate incursion through the wormhole. Finish up with putting some human volunteers on it to complete the act. The “Wormhole” is a “powerful holographic projection”
+Yes. Reinforcing the idea of Hai as masters of holography is important. It gives the Hai a way of hiding in human space. Instead of Hai being a rare presence, there may be many of them in hiding. That’s an important lore change with major ramifications to later stories. It provides more routes for the Hai to leave their comically black-and-white kid’s story morality.
+Includes a Karma choice about the way forward beyond that.
+
+
+
