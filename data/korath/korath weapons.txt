@@ -704,8 +704,8 @@ outfit "Korath Heaver"
 		"hardpoint sprite" "hardpoint/korath heaver"
 		icon "icon/korath heaver"
 		velocity 30
-		lifetime 12
-		"hit force" 2500
+		lifetime 8
+		"hit force" 3600
 		"hit effect" "heaver hyperspace hit"
 		sound "heaver"
 		submunition "Heaver Shard" 20
@@ -717,7 +717,7 @@ outfit "Korath Heaver"
 		"firing heat" 190
 		"firing fuel" 12.5
 		"inaccuracy" 0.5
-	description `Korath Heavers raise to a fine art the age-old warfare method of, "Throw rocks at your enemy until they die." Small asteroids or other debris fly into an unstable hyperspace window, exiting a few seconds later. Within a range of 360, the weapon does no damage, but pushes with a force that makes a Banisher look like a light breeze. Beyond that, small chunks of matter exit hyperspace and travel a long distance at extreme velocity.`
+	description `Korath Heavers raise to a fine art the age-old warfare method of, "Throw rocks at your enemy until they die." Small asteroids or other debris fly into an unstable hyperspace window, exiting a few seconds later. Within a range of 240, the weapon does no damage, but pushes with a force that makes a Banisher look like a light breeze. Beyond that, small chunks of matter exit hyperspace and travel a long distance at extreme velocity.`
 	description `This is a canonical example of modern Korath Exile engineering: jury-rigged, inefficient even by Korath standards, but cheap to produce. There are parts from a Fuel Processor, Banisher, Comet-Class Thruster, and Hyperdrive, wrapped in steel, and mounted on the lower half of a Nova Turret. Despite the slap-shod design, the device is extremely effective.`
 
 effect "heaver hyperspace hit"
@@ -740,7 +740,7 @@ outfit "Heaver Shard"
 		"random lifetime" 10
 		"shield damage" 22
 		"hull damage" 24
-		"inaccuracy" 5
+		"inaccuracy" 3.5
 		"hit force" 3
 		"heat damage" 30
 		"hit effect" "heaver shard hit" 5
