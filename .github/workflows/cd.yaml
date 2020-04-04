@@ -22,21 +22,19 @@ jobs:
         run: |
           echo ::set-env name=GITHUB_USER::$( echo ${{ github.repository }} | cut -d/ -f1 )
           echo ::set-env name=GITHUB_REPO::$( echo ${{ github.repository }} | cut -d/ -f2 )
-      - name: Remove continuous release
+      - name: Move/Create continuous tag
         run: |
-          gothub delete --tag continuous || true
-      - name: Moving continuous tag
-        run: |
-          git push --delete origin continuous || true
           git tag --force continuous ${{ github.sha }}
           git push --tags --force
-      - name: Create continuous release
+      - name: If necessary, create continuous release
         run: |
-          gothub release \
-            --tag continuous \
-            --name "Continuous Build" \
-            --description "This is an automated build of the latest source. It may be unstable or even crash, corrupt your save or eat your kitten. Use with caution!" \
-            --pre-release
+          if ! gothub info -t continuous > /dev/null 2>&1; then
+            gothub release \
+              --tag continuous \
+              --name "Continuous Build" \
+              --description "This is an automated build of the latest source. It may be unstable or even crash, corrupt your save or eat your kitten. Use with caution!" \
+              --pre-release
+          fi
 
   ubuntu_x86_64:
     runs-on: ubuntu-latest
