@@ -1153,28 +1153,3 @@ outfit "Crystal Cell"
 	description "Building on new developments, Remnant engineers have developed ways to pull energy out of the fabric of space-time. The resulting generator does not produce much more than the Aeon cell, but it takes up much less space."
 
 
-outfit "Remnant Afterburner"
-	category "Engines"
-	"cost" 640000
-	thumbnail "outfit/remnant afterburner"
-	"mass" 13
-	"outfit space" -13
-	"engine capacity" -13
-	"afterburner thrust" 38.0
-	"afterburner fuel" .5
-	"afterburner energy" 3.0
-	"afterburner heat" 8.0
-	"afterburner effect" "remnant afterburner"
-	description "The Remnant live in an environment where the raw materials for fuel are relatively common on the winds of the nebula, and with ships that incorporate significant built-in ramscoop technology. As such, while they are reluctant to waste fuel, neither are they afraid of using it when needed. Far more important is the ability for their ships to quickly and efficiently enter or exit combat as needed. At the end of the day, it is continued life that is paramount."
-
-effect "remnant afterburner"
-	sprite "effect/remnant afterburner/remnant afterburner"
-		"no repeat"
-		"frame rate" 30
-	sound "afterburner"
-	"lifetime" 0.1
-	"random angle" 0
-	"random spin" 0
-	"random velocity" 1.
-	"velocity scale" 0.1
-
