@@ -81,6 +81,7 @@ jobs:
 
   appimage_x86_64:
     runs-on: ubuntu-16.04
+    needs: setup
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       ARCH: x86_64
