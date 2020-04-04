@@ -55,10 +55,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons
       - name: Adjust version strings
-        run: |
-          perl -p -i -e 's/(Endless Sky) [\d.]+/$1 ${{ github.sha }}/ig' source/main.cpp
-          CREDIT_STRING=$(git log --pretty="format:%nBuilt: $(date -u '+%Y-%m-%d %H:%M') UTC%nLast change by %an: %n %s" -1 | fmt -w 33 -c -s | tr \|\$ _ | tr \" \')
-          perl -p -i -e "s|version [\d.]+|$CREDIT_STRING|" credits.txt
+        run: ./utils/cd_version_strings.sh
         shell: bash
       - name: Build Application
         run: scons -j $(nproc)
@@ -99,10 +96,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons
       - name: Adjust version strings
-        run: |
-          perl -p -i -e 's/(Endless Sky) [\d.]+/$1 ${{ github.sha }}/ig' source/main.cpp
-          CREDIT_STRING=$(git log --pretty="format:%nBuilt: $(date -u '+%Y-%m-%d %H:%M') UTC%nLast change by %an: %n %s" -1 | fmt -w 33 -c -s | tr \|\$ _ | tr \" \')
-          perl -p -i -e "s|version [\d.]+|$CREDIT_STRING|" credits.txt
+        run: ./utils/cd_version_strings.sh
       - name: Build AppImage
         run: ./utils/build_appimage.sh
       - name: Upload artifact
@@ -141,10 +135,7 @@ jobs:
           Expand-Archive win64-dev.zip -DestinationPath . -Force
           Remove-Item win64-dev.zip
       - name: Adjust version strings
-        run: |
-          perl -p -i -e 's/(Endless Sky) [\d.]+/$1 ${{ github.sha }}/ig' source/main.cpp
-          CREDIT_STRING=$(git log --pretty="format:%nBuilt: $(date -u '+%Y-%m-%d %H:%M') UTC%nLast change by %an: %n %s" -1 | fmt -w 33 -c -s | tr \|\$ _ | tr \" \')
-          perl -p -i -e "s|version [\d.]+|$CREDIT_STRING|" credits.txt
+        run: ./utils/cd_version_strings.sh
         shell: bash
       - name: Build Application
         run: |
@@ -194,11 +185,7 @@ jobs:
           install_name_tool -id "@rpath/libturbojpeg.0.dylib" /usr/local/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib
           install_name_tool -id "@rpath/libSDL2-2.0.0.dylib" /usr/local/lib/libSDL2-2.0.0.dylib
       - name: Adjust version strings
-        run: |
-          perl -p -i -e 's/(Endless Sky) [\d.]+/$1 ${{ github.sha }}/ig' source/main.cpp
-          CREDIT_STRING=$(git log --pretty="format:%nBuilt: $(date -u '+%Y-%m-%d %H:%M') UTC%nLast change by %an: %n %s" -1 | fmt -w 33 -c -s | tr \|\$ _ | tr \" \')
-          perl -p -i -e "s|version [\d.]+|$CREDIT_STRING|" credits.txt
-          perl -0777 -p -i -e 's/(CFBundleShortVersionString.*?)[\d.]+/$1sha256.${{ github.sha }}/igs' XCode/EndlessSky-Info.plist
+        run: ./utils/cd_version_strings.sh
         shell: bash
       - name: Build Application
         run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet
