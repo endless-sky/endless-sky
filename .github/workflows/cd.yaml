@@ -98,6 +98,11 @@ jobs:
           sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons
+      - name: Adjust version strings
+        run: |
+          perl -p -i -e 's/(Endless Sky) [\d.]+/$1 ${{ github.sha }}/ig' source/main.cpp
+          CREDIT_STRING=$(git log --pretty="format:%nBuilt: $(date -u '+%Y-%m-%d %H:%M') UTC%nLast change by %an: %n %s" -1 | fmt -w 33 -c -s | tr \|\$ _ | tr \" \')
+          perl -p -i -e "s|version [\d.]+|$CREDIT_STRING|" credits.txt
       - name: Build AppImage
         run: ./utils/build_appimage.sh
       - name: Upload artifact
