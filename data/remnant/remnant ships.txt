@@ -1137,14 +1137,18 @@ ship "Diomedea"
 	gun 0 -310
 	gun 13 -287
 	gun 22 -258
-	drone -85 -36 over 
-	drone 85 -36 over 
-	drone -109 -14 over 
-	drone 109 -14 over 
-	drone -138 22 over 
-	drone 138 22 over 
-	fighter -42 133 over 
-	fighter 42 133 over 
+	drone -22 -32
+	drone 22 -32
+	drone -42.5 -18.5
+	drone 42.5 -18.5
+	drone -56 -6.5
+	drone 56 -6.5
+	drone -67 11
+	drone 67 11
+	fighter -19 7
+	fighter 19 7
+	fighter -14 70
+	fighter 14 70
 	turret -9.5 57	"Remnant Flak Turret"
 	turret 9.5 57	"Remnant Flak Turret"
 	turret -0 281.5	"Point Defense Turret"
@@ -1322,7 +1326,7 @@ ship "Palpebrata"
         "heat dissipation" 0.5
         "fuel capacity" 600
         "ramscoop" 2
-        "outfit space" 674
+        "outfit space" 774
         "weapon capacity" 260
         "engine capacity" 150
         "shield generation" 5.2
@@ -1338,8 +1342,8 @@ ship "Palpebrata"
 			"hull damage" 1800
 			"hit force" 5400
 	outfits
-		"Inhibitor Cannon" 6
-		"Thrasher Turret" 2
+		"Flamethrower" 7
+		"Remnant Flak Turret" 5
 		"Point Defense Turret"
 
 		"Aeon Cell"
@@ -1355,18 +1359,18 @@ ship "Palpebrata"
 	engine -28 155 .8
 	engine 28 155 .8
 	engine 0 184 .9
-	gun 0 -190
-	gun -9 -177 "Inhibitor Cannon"
-	gun 9 -177 "Inhibitor Cannon"
-	gun -14 -162 "Inhibitor Cannon"
-	gun 14 -162 "Inhibitor Cannon"
-	gun -18 -144 "Inhibitor Cannon"
-	gun 18 -144 "Inhibitor Cannon"
-	turret -23 -34 "Thrasher Turret"
-	turret 23 -34 "Thrasher Turret"
-	turret -74 62
-	turret 74 62
-	turret 0 77 "Point Defense Turret"
+	gun 0 -185.5 "Flamethrower"
+	gun -61 37 "Flamethrower"
+	gun 61 37 "Flamethrower"
+	gun -83.5 44.5 "Flamethrower"
+	gun 83.5 44.5 "Flamethrower"
+	gun -109.5 52.5 "Flamethrower"
+	gun 109.5 52.5 "Flamethrower"
+	turret 0 -134 "Point Defense Turret"
+	turret -16 -18 "Remnant Flak Turret"
+	turret 16 -18 "Remnant Flak Turret"
+	turret -29 73 "Remnant Flak Turret"
+	turret 29 73 "Remnant Flak Turret"
 	leak "remnant leak" 30 10
 	leak "remnant leak sparkle" 30 10
 	explode "small explosion" 30
