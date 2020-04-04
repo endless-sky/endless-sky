@@ -2465,12 +2465,29 @@ event "battle for ap'arak"
 event "battle for ap'arak ends"
 	government "Wanderer"
 		"attitude toward"
-			"Pug" .01
+			"Pug (Wanderer)" .01
 	system "Ap'arak"
 		add fleet "Wanderer Freight" 2000
 		add fleet "Wanderer Drones" 4000
 		add fleet "Wanderer Defense" 600
 		add fleet "Large Unfettered" 700
+
+mission "pug defend wanderers"
+	invisible
+	landing
+	to offer
+		has "Wanderers Ap'arak 2: done"
+	on offer
+		event "pug defend wanderers"
+		fail
+
+event "pug defend wanderers"
+	government "Pug (Wanderer)"
+		"attitude toward"
+			"Wanderer" .01
+	government "Pug"
+		"attitude toward"
+			"Wanderer" .01
 
 mission "Wanderers Ap'arak 2"
 	landing
