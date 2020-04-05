@@ -3408,6 +3408,7 @@ mission "Capture Smuggler"
 
 mission "Inheritance Redirection"
 	description "Travel to <destination> to act as heir for the late warlord Limping Pappa."
+	minor
 	source
 		attributes "frontier"
 	destination
@@ -3474,6 +3475,7 @@ mission "Inheritance Redirection"
 mission "Hauler VI cargo prototype 1"
 	name "Escort Hauler prototype to formal dinner"
 	description "Escort the <npc> to <destination> to deliver sushi for a formal dinner."
+	minor
 	source
 		planet "Deep"
 	destination "Skymoot"
