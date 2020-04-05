@@ -371,7 +371,6 @@ event "deep: warlord detected"
 
 
 mission "Deep: Mystery Cubes 1"
-	minor
 	landing
 	name `Travel to <planet>`
 	description `Travel to <destination> to learn more about the situation with the warlord Beelzebub.`
@@ -1823,7 +1822,6 @@ mission "Deep: Remnant Surveillance - Aventine"
 
 
 mission "Deep: Scientist Rescue Timer"
-	minor
 	landing
 	invisible
 	to offer
