@@ -121,7 +121,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
       DIR_ESLIB: .\dev64
-      OUTPUT: EndlessSky-win64-continuos.zip
+      OUTPUT: EndlessSky-win64-continuous.zip
     steps:
       - uses: actions/checkout@v2
       - name: Install gothub
