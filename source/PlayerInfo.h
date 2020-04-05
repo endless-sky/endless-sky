@@ -118,7 +118,7 @@ public:
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;
 	// Inspect the flightworthiness of the player's active fleet as a whole to
 	// determine which ships cannot travel with the group.
-	std::map<const std::shared_ptr<Ship>, const std::string> FlightCheck() const;
+	std::map<const std::shared_ptr<Ship>, std::vector<std::string>> FlightCheck() const;
 	// Add a captured ship to your fleet.
 	void AddShip(const std::shared_ptr<Ship> &ship);
 	// Buy or sell a ship.
