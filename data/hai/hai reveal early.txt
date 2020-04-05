@@ -10,10 +10,241 @@
 
 ########################################################################
 
-#mission <cover up station> (a few)
-#This will be a chain of missions to help the Hai build a station in Ultima Thule, initially this is for an elaborate and exclusive ‘role-playing community’ as part of the cover-up for the hai leak. They’re purportedly using holographic weaponry that simulates ‘alien’ tech – also acts as a way for the Hai to prevent further pirate incursion through the wormhole. Finish up with putting some human volunteers on it to complete the act. The “Wormhole” is a “powerful holographic projection”
-#Yes. Reinforcing the idea of Hai as masters of holography is important. It gives the Hai a way of hiding in human space. Instead of Hai being a rare presence, there may be many of them in hiding. That’s an important lore change with major ramifications to later stories. It provides more routes for the Hai to leave their comically black-and-white kid’s story morality.
-#Includes a Karma choice about the way forward beyond that.
+event "secret mountaintop"
+	system "Ultima Thule"
+	object "Wormhole Alpha"
+		sprite planet/wormhole
+		distance 4208.63
+		period 2158.5
+		add object Mountaintop
+			distance 115
+			period 11.1964
+	planet Mountaintop
+		description `How did you even get here? There's nothing here, go away.`
+
+mission "building mountaintop 1"
+	name "Escort construction fleet to Ultima Thule"
+	description "Escort the construction fleet to the Ultima Thule construction site to prevent a confrontation."
+	autosave
+	landing
+	source "Hai-home"
+	stopover "Makerplace"
+	destination "Mountaintop"
+	on visit
+		dialog `You have arrived at the Mountaintop construction site but the Geocoris haven't arrived yet.`
+	to offer
+		has "leaks response 5: done"
+	on offer
+		event "role-play fleet deception"
+		conversation
+			`When you return to Hai-home you are directed now to a government hangar where you are met by Xilin and Sayuri, both looking very relieved.`
+			`	"I am very glad to see you returned Captain <last>, Sayuri said you were away on an important errand but I've been hoping for a day now you would appear, as I think you might be the solution to the current impasse."`
+			`	"You see," says Sayuri, "in the light of the recent civil war your species has had, some of the Elder's are less than keen with allowing a partisan observer to see the inner workings of a station in its earliest phases, especially when we haven't built one in so, so long."`
+			`	Now that she mentions it, you don't think you've seen a Hai station at all.`
+			`	"However, therein lies a problem," says Xilin.`
+			`	"The Republic will not allow the Hai to build a station this side of the wormhole without some oversight by someone we trust. This has now been a point of contention for some days, and multiple suggestions have been rejected."`
+			`	Sayuri chitters, "Honestly it's all very silly. Lots of old men who are meant to be friends concerned that the other might have been lying to them."`
+			`	In an oddly comical gesture they both shrug at the same time.`
+			`	"Anyway, thanks to a little Freedom of Information request to the Republic, I have been looking at things and I think I have the solution."`
+			choice
+				`	"Is it me?"`
+			`Sayuri winks at you, "Catch on quick don't you."`
+			`	"The actions you're recorded as having taken show a certain conscience for the good of your species as a whole, despite your affiliations. I have convinced the other diplomats and the Elders that you might be a viable solution to this impasse. The human diplomats have already agreed, but the Elders wish to speak with you first."`
+			choice
+				`	"Who are these Elders?"`
+				`	"Of course, that's natural."`
+				goto main
+			`	Sayuri explains, "The Hai are ruled by an elected 'Council of Elders', they are not responsible for every administrative decision that occurs but they are the highest authority of our government. Their decisions are final, at least for the term of an election."`
+			label main
+			'	"If you're willing, there will be a council meeting in an hour, I can put you first on the agenda. Will you do this?" asks Sayuri.`
+			choice
+				`	"I suppose I must."`
+				`	"Someone better be paying me for this."`
+				`	"Of course, let's do it."`
+			accept
+	on accept
+		event "role-play station"
+		conversation
+			`Following Sayuri you pass beyond a security checkpoint where Xilin is prevented from following you. Sayuri speaks with another hai doing administrative work for a moment before gesturing you to a private antechamber.`
+			`	"We shouldn't have to wait very long, but while we're alone," she glances at the door as if faintly nervous for a second, "did you find anything on your investigation?"`
+			choice
+				`	"Yes, actually I found proof."`
+				`	"Unfortunately, I did find something."`
+			`	You hand Sayuri a data stick, "I have saved everything from my logs on there."`
+			`	Sayuri looks crestfallen and takes the data stick gingerly, looking at it as if it were some snake that might bite her at any moment.`
+			`	"I will have a look," is all she says.`
+			`	No sooner has she pocketed it than there is a knock at the door and an aide looks in, "The Council will see you now."`
+			`	The next twenty minutes prove to be an exercise in tedium as various members of the council interrogate you over apparently mundane details of your recent actions as recordsed in the FOI report. You're not really sure what most of it has to do with anything, but eventually one of the elders stands up.`
+			`	"I think we've generally had enough of this here, answer me two questions and we shall make our decision," he says.`
+			`	"Do you think that a diplomatic post should be able to defend itself? Or should it trust to the strength of those who meet there to ensure its protection?"`
+			`	This seems like a very strange question...`
+			choice
+				`	"It should be strong enough to defend itself. You cannot trust your enemy."`
+					event haicaution
+				`	"Both sides must be trusted to protect a diplomatic post, or there is no point to having one."`
+					event haitrust
+			`	"What is the gravest threat, in your opinion, facing humanity?"`
+			choice
+				`	"The Pug"`
+				`	"The Alphas"`
+				`	"Unknown Jump-Capable Aliens"`
+				`	"Experimental Technologies"`
+				`	"Hubris"`
+					goto wise
+			`	There is a collection of chittering laughs from the various council members. You're not sure if there was something wrong with what you said but you aren't left long to ponder.`
+			`	"It seems the human agent is an honest fool, but an honest fool can at least be trusted to be foolish honestly on all fronts."`
+			`	You're pretty sure you should be offended by that, but the councilmembers are smiling and don't look like they're about to evict you.`
+			goto end
+			label wise
+			`	"It seems you learnt the correct lesson from the crisis of your species," he says.`
+			`	You see several appreciative nods happening around the room out of the corner of your eyes.`
+			label end
+			`	"You may act as the oversight for the human governments in this project. Proposal D-86513-7P4 is approved. Council adjourned."`
+			`	When you meet Sayuri afterwards a touch of her usual enthusiasm has returned.`
+			`	"This is fantastic news, now all that remains to be done is for you to escort the construction fleet from Makerplace to Ultima Thule and observe the initial stages. They'll be waiting for your arrival on Makerplace."`
+	on stopover
+		npc accompany save
+			personality escort timid
+			government "Hai"
+			ship Geocoris "Du Cor Hey"
+			ship Geocoris "Mon Yo Sen"
+			ship Geocoris "Vai e Lur"
+			ship Geocoris "Du Woa Ow"
+			ship Geocoris "Luf Sook Hey"
+			ship Geocoris "Du Eh"
+			ship Geocoris "Mon e Ow"
+	on complete
+		conversation
+			`	The Geocoris leave you and get to their work, you hang around for a while until the initial 'unfolding' has completed. Time to return to Hai-home.`
+
+event haicaution
+
+event haitrust
+
+event "role-play station"
+	unvisit "Ultima Thule"
+	system "Ultima Thule"
+	object Mountaintop
+		sprite planet/station2
+	planet Mountaintop
+		attributes hai 
+		landscape land/station0
+		description `This is little more than a point in space with a framework now being built around a Geocoris. It will be a station soon, and be powered by the reactors on the Geocoris at its core as the ship hull is gradually cannibalised and added to in stages. It has atmosphere, but no amenities outside of the original ship just yet.`
+		security 0.2
+
+
+mission "building mountaintop 2"
+	name "Encourage recruits for Mountaintop"
+	description "Now that the station is going ahead, the Hai need to recruit some people to play the part. Someone needs to sell it to them though."
+	landing
+	source "Hai-home"
+	stopover "Makerplace"
+	stopover "Darkmetal"
+	stopover "Giverstone"
+	stopover "Stonebreak"
+	stopover "Cloudfire"
+	stopover "Stonefeather"
+	stopover "Icelake"
+	stopover "Newhome"
+	stopover "Frostmark"
+	stopover "Heartvalley"
+	stopover "Allhome"
+	stopover "Dustmaker"
+	stopover "Greenbloom"
+	stopover "Skyfarm"
+	stopover "Greenwater"
+	destination "Mountaintop"
+	on visit
+		dialog `You have arrived at the Mountaintop construction site but it isn't finished or staffed yet.`
+	to offer
+		has "building mountaintop 1: done"
+	passengers 1
+	blocked `Terry contacts you and says, "Captain, you're going to need a bunk free for me. Do you have space?" You do not, so you should complete or abort another mission to make room for her, then return here.`
+	on offer
+		conversation
+			`At Hai-home you are directed to a now familiar government hangar.`
+			`	Sayuri, Xilin, and Alondo all send you greeting pings, but are busy at the time of your landing. To your surprise though, Terry is banging on your airlock before too long.`
+			`	"Captain <last>, or should I call you <first>? Anyway, doesn't matter. How would you like to make some money?"`
+			`	The smile she gives you is something like you imagine a large cat giving the tasty morsel it just identified as its food.`
+			`	"Of course you do, everyone likes to make money," she says.`
+			`	"The Hai have put out the call for volunteers to staff the new Mountaintop station when it's finished. While you've been off watching early construction works, we've been gauging public interest and well... it's not going to work. In order to sell this they're going to need at least four thousand volunteers by the end of the week to get a good handle on what they can expect to need in terms of facilities, amenities, supplies, and various livability requirements. Nearly twelve thousand by the time the station is actually built. Our current estimates suggest they'll reach a quarter of that."`
+			`	As she's talking Terry has been laying out charts and graphs, and using a handheld Hai holographic device that she seems to have picked up somewhere to show animated diagrams.`
+			choice
+				`	"How do you know all this?"`
+			`	Terry raises an eyebrow at you, "You remember we have a supercomputer that could predict the economic situation across the whole of human habited space up to fifty years in the future to within 1% accuracy right?"`
+			`	When she puts it that way, it does suddenly feel like a bit of a stupid question.`
+			`	"As it turns out, that same computer is predicting that the Syndicate stands to lose billions of credits, per day, for the duration of any crisis evolving from this which involves the uncontrolled release of the Hai secret; however, we have a plan."`
+			choice
+				`	"Oh yes?"`
+				`	"What's the deal then?"`
+			`	Terry crosses her arms and leans back against the bulkhead, "We need a recruitment campaign, and if you haven't guessed, you're the man to do it."`
+			`	"The Syndicate will offer you a sum of 10,000,000 credits to visit every planet in Hai space and do glossies. I will stage manage, and have promotional material ready inside of 3 hours."`
+			choice
+				`	"I don't really have a choice in this matter do I?"`
+			`	Terry's answering grin was... predatory.`
+			accept
+	on stopover
+		dialog `You have finally visited every world in Hai space and sold the pitch to the people. With any luck enough people will sign up to make it work.`
+
+mission "building mountaintop 2a"
+	landing
+	invisible
+	repeat
+	source 
+		not planet "Hai-home"
+		not planet "Mountaintop"
+		not planet "Darkwaste"
+		government "Hai"
+	to offer
+		has "building mountaintop 2: active"
+	on offer
+		dialog `You land on the world of <origin> and do your part to sell the opportunity on Mountaintop.`
 
 
 
+mission "building mountaintop 3"
+	name "Retrieve human furnishings."
+	description "The volunteers are so numerous, that they've worked out that the Hai aren't going to be able to coordinate a realistic access"
+	autosave
+	landing
+	source "Mountaintop"
+	stopover "Prime"
+	destination "Mountaintop"
+	on visit
+		dialog `You have arrived at the Mountaintop construction site but it isn't finished or staffed yet.`
+	to offer
+		has "building mountaintop 2: done"
+	cargo "human furnishings" 600
+	blocked `Sayuri contacts you and says, "<first>, you're going to need six hundred tons of cargo space for this." You should return here after freeing up <capacity>.`
+	on offer
+		conversation
+			`As you and Terry offload her remaining supplies on Mountaintop where she intends to manage the arrivals and setup personally, you get a communication from Sayuri come to your personal device.`
+			`	"Captain <last>! Glad I could get a hold of you on the other side of the wormhole there, I see the new relays are working."`
+			`	"We've just discovered a problem, interest has soared in sign-ups for Mountaintop, but we've realised that most of our 'human' furnishings produced in Hai space aren't going to pass as having been manufactured with your technology. Mr Yang has pulled some strings, but now we urgently need someone to go pick them up from Prime in Betelgeuse."`
+			`	"Everything else should be ready on our end soon enough, if you can just handle that pick-up and delivery we'll be ok."`
+			`	You assure her you can handle a simple pick-up.`
+			accept
+	on complete
+		event "role-play station active" 12
+		conversation
+			`By the time you return you are shocked to notice that the station seems to be rapidly approaching a completed state. Some four thousand people have already arrived, though some are still on board ships docked at the station. Once you register your delivery amidst the station chaos it's only a few minutes later that you get a thankyou message from Sayuri, with a cryptic "P.S. you may get a message from a friend of mine soon."`
+
+event "role-play station active"
+	unvisit "Ultima Thule"
+	system "Ultima Thule"
+	object "Wormhole Alpha"
+		sprite planet/wormhole-red
+	object Mountaintop
+		sprite planet/station7
+	add object
+		sprite planet/wisp
+		distance 4208.63
+		period 2158.5
+	planet Mountaintop
+		attributes hai "hai tourism"
+		landscape land/station0
+		description `This brand new station is built with wide spacious interiors, though that is largely because it was built for having expansion room inside it to accomodate the Hai's preferred geometric development pattern and long-term perspectives. At the moment there is a number of hai pretending to be humans in costume, and a number of volunteer humans from Hai space helping to make up the act. A powerful holoprojection system is projecting an 'anomaly' into space nearby as a novelty. Some 'investigators' following rumours of the Hai are being entertained at most any time.`
+		spaceport `The spaceport is a spacious docking assembly sheltered under broad carapace-like structures which are arrayed around the lower decks like petals. It is designed to look impressive and still has that shiny look and freshly oiled smell of a newly minted construction, though it has only basic facilities and services.`
+		security 0.4
+	
+	

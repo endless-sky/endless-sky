@@ -23,6 +23,7 @@ mission "Hai Rescue [A01] Visit Darkwaste"
 	destination Darkwaste
 	to offer
 		has "event: hai rescue: teeneep message"
+		has ""building mountaintop 3: done"
 	on offer
 		conversation
 			`You receive an emergency communication from a Hai woman named Teeneep. The message is brief and cryptic, but you deduce that it refers to the Hai you've rescued from human space in the past. They need to talk to you again as soon as possible. There is a set of landing coordinates on the uninhabited Hai planet, <destination>`

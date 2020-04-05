@@ -358,16 +358,10 @@ mission "Hai Rescue [A00] Darkwaste Timer"
 		"hai slave prereq" >= 3
 		"combat rating" > 3000
 		has "leaks response 5: done"
-		
-		# These two stories wouldn't make sense after the Hai-human treaty
-		# so the player must do them first:
-		has "Nanachi 4: done"
-		or
-			has "Pirate Troubles [4]: done"
-			has "Pirate Troubles [4]: declined"
 	on offer
+		event "hai rescue: teeneep message" 50
 		fail
-		event "hai rescue: teeneep message" 30
+
 
 event "hai rescue: teeneep message"
 	
