@@ -143,6 +143,8 @@ outfit "Drak Antimatter Fragment"
 		"inaccuracy" 1
 		"lifetime" 499
 		"hit force" 1000
+		"disruption damage" 50
+		"heat damage" 250
 		"shield damage" 5610
 		"hull damage" 5610
 		"blast radius" 100
