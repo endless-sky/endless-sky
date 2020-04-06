@@ -1888,3 +1888,98 @@ ship "Korath Refabricator" "Korath Refabricator (Six Infernos)"
 	turret 0 180 "Korath Warder"
 	turret -173 248 "Korath Inferno"
 	turret 173 248 "Korath Inferno"
+
+
+
+
+ship "Korath Haven"
+	sprite "ship/korath haven"
+	thumbnail "thumbnail/korath haven"
+	attributes
+		category "Transport"
+		"cost" 131580000
+		"shields" 217000
+		"hull" 187000
+		"required crew" 29500
+		"bunks" 35800
+		"mass" 3880
+		"drag" 25.1
+		"heat dissipation" .65
+		"fuel capacity" 3000
+		"cargo space" 3910
+		"outfit space" 2165
+		"weapon capacity" 840
+		"engine capacity" 380
+
+		"afterburner fuel" 0.5
+		"afterburner heat" 60
+		"afterburner thrust" 90
+		
+		# Capabilities of huge built-in nanite factory:
+		"ramscoop" 30
+		"shield generation" 38
+		"shield energy" 50
+		"hull repair rate" 46
+		"hull energy" 46
+		"hull heat" 61
+		"energy capacity" 18300
+		
+		weapon
+			"blast radius" 900
+			"shield damage" 13000
+			"hull damage" 9000
+			"hit force" 30000
+	outfits
+		"Korath Digger Turret" 7
+		"Korath Inferno" 7
+		"Korath Warder" 6
+		
+		"Large Heat Shunt" 11
+		"Triple Plasma Core" 4
+
+		"Thruster (Stellar Class)" 2
+		"Steering (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+#	turret -50 -459
+#	turret 50 -459
+	turret -120.5 -416 "Korath Inferno"
+	turret 120.5 -416 "Korath Inferno"
+	turret -136 -408 "Korath Inferno"
+	turret 136 -408 "Korath Inferno"
+	turret -216 -353 "Korath Inferno"
+	turret 216 -353 "Korath Inferno"
+	turret -226 -340.5 "Korath Warder"
+	turret 226 -340.5 "Korath Warder"
+	turret -282 -202 "Korath Inferno"
+	turret 285 -202 "Korath Digger Turret"
+	turret -279 -108 "Korath Warder"
+	turret 279 -108 "Korath Warder"
+	turret -231 23.5 "Korath Digger Turret"
+	turret 231 23.5 "Korath Digger Turret"
+	turret -223 38.5 "Korath Digger Turret"
+	turret 223 38.5 "Korath Digger Turret"
+	turret -155.5 139 "Korath Warder"
+	turret 155.5 139 "Korath Warder"
+	turret -145 153 "Korath Digger Turret"
+	turret 145 153 "Korath Digger Turret"
+#	turret -42 337
+#	turret 42 337
+	engine -135 459 0.7
+	engine -110 459
+	engine -85 459 0.7
+	engine 85 459 0.7
+	engine 110 459
+	engine 135 459 0.7
+	fighter 0 -462 under
+	fighter -156 -318 under
+	fighter 156 -318 under
+	fighter -161 -164 under
+	fighter 161 -164 under
+	fighter -143 -13 under
+	fighter 143 -13 under
+	fighter -86 141 under
+	fighter 86 141 under
+	fighter 0 202.5 under
+	fighter 0 291 under
+	fighter 0 334	under

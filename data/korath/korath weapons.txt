@@ -777,8 +777,8 @@ outfit "Korath Inferno"
 		"reload" 1
 		"firing energy" 7.5
 		"firing heat" 25
-		"shield damage" 9
-		"hull damage" 6
+		"shield damage" 8.2
+		"hull damage" 7.1
 		"heat damage" 71
 	description "The Korath Inferno was the crowning achievement of Kor Sestor weapon design before they were driven out of their territory. The Korath Exiles cannot build the original Kor Sestor design, but even this lesser version is devastatingly powerful."
 
