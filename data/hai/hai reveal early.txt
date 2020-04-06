@@ -12,13 +12,13 @@
 
 event "secret mountaintop"
 	system "Ultima Thule"
-	object "Wormhole Alpha"
-		sprite planet/wormhole
-		distance 4208.63
-		period 2158.5
-		add object Mountaintop
-			distance 115
-			period 11.1964
+		object "Wormhole Alpha"
+			sprite planet/wormhole
+			distance 4208.63
+			period 2158.5
+			add object Mountaintop
+				distance 115
+				period 11.1964
 	planet Mountaintop
 		description `How did you even get here? There's nothing here, go away.`
 
@@ -80,9 +80,9 @@ mission "building mountaintop 1"
 			`	This seems like a very strange question...`
 			choice
 				`	"It should be strong enough to defend itself. You cannot trust your enemy."`
-					event haicaution
+					set haicaution
 				`	"Both sides must be trusted to protect a diplomatic post, or there is no point to having one."`
-					event haitrust
+					set haitrust
 			`	"What is the gravest threat, in your opinion, facing humanity?"`
 			choice
 				`	"The Pug"`
@@ -103,29 +103,38 @@ mission "building mountaintop 1"
 			`	When you meet Sayuri afterwards a touch of her usual enthusiasm has returned.`
 			`	"This is fantastic news, now all that remains to be done is for you to escort the construction fleet from Makerplace to Ultima Thule and observe the initial stages. They'll be waiting for your arrival on Makerplace."`
 	on stopover
-		npc accompany save
-			personality escort timid
-			government "Hai"
-			ship Geocoris "Du Cor Hey"
-			ship Geocoris "Mon Yo Sen"
-			ship Geocoris "Vai e Lur"
-			ship Geocoris "Du Woa Ow"
-			ship Geocoris "Luf Sook Hey"
-			ship Geocoris "Du Eh"
-			ship Geocoris "Mon e Ow"
+		conversation
+			`	A fleet of seven Geocoris are waiting to accompany you when you arrive, with just the final items being loaded as you come into land. They will follow you to the site where the new station will be built.`
 	on complete
 		conversation
 			`	The Geocoris leave you and get to their work, you hang around for a while until the initial 'unfolding' has completed. Time to return to Hai-home.`
 
-event haicaution
 
-event haitrust
+mission "building mountaintop 1a"
+	landing
+	invisible
+	repeat
+	source "Makerplace"
+	destination "Mountaintop"
+	to offer
+		has "building mountaintop 1: active"
+	npc accompany save
+		personality escort timid
+		government "Hai"
+		ship Geocoris "Du Cor Hey"
+		ship Geocoris "Mon Yo Sen"
+		ship Geocoris "Vai e Lur"
+		ship Geocoris "Du Woa Ow"
+		ship Geocoris "Luf Sook Hey"
+		ship Geocoris "Du Eh"
+		ship Geocoris "Mon e Ow"
+
 
 event "role-play station"
 	unvisit "Ultima Thule"
 	system "Ultima Thule"
-	object Mountaintop
-		sprite planet/station2
+		object Mountaintop
+			sprite planet/station2
 	planet Mountaintop
 		attributes hai 
 		landscape land/station0
@@ -143,7 +152,7 @@ mission "building mountaintop 2"
 	stopover "Giverstone"
 	stopover "Stonebreak"
 	stopover "Cloudfire"
-	stopover "Stonefeather"
+	stopover "Snowfeather"
 	stopover "Icelake"
 	stopover "Newhome"
 	stopover "Frostmark"
@@ -232,14 +241,14 @@ mission "building mountaintop 3"
 event "role-play station active"
 	unvisit "Ultima Thule"
 	system "Ultima Thule"
-	object "Wormhole Alpha"
-		sprite planet/wormhole-red
-	object Mountaintop
-		sprite planet/station7
-	add object
-		sprite planet/wisp
-		distance 4208.63
-		period 2158.5
+		object "Wormhole Alpha"
+			sprite planet/wormhole-red
+		object Mountaintop
+			sprite planet/station7
+		add object
+			sprite planet/wisp
+			distance 4208.63
+			period 2158.5
 	planet Mountaintop
 		attributes hai "hai tourism"
 		landscape land/station0
