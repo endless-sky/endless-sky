@@ -80,9 +80,11 @@ mission "building mountaintop 1"
 			`	This seems like a very strange question...`
 			choice
 				`	"It should be strong enough to defend itself. You cannot trust your enemy."`
-					set haicaution
+					apply
+						set haicaution
 				`	"Both sides must be trusted to protect a diplomatic post, or there is no point to having one."`
-					set haitrust
+					apply
+						set haitrust
 			`	"What is the gravest threat, in your opinion, facing humanity?"`
 			choice
 				`	"The Pug"`
