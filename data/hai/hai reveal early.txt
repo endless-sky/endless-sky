@@ -80,12 +80,18 @@ mission "building mountaintop 1"
 			`	This seems like a very strange question...`
 			choice
 				`	"It should be strong enough to defend itself. You cannot trust your enemy."`
-					apply
-						set haicaution
+					goto trust
 				`	"Both sides must be trusted to protect a diplomatic post, or there is no point to having one."`
-					apply
-						set haitrust
-			`	"What is the gravest threat, in your opinion, facing humanity?"`
+					goto caution
+			label trust
+			apply
+				set haitrust
+			label caution
+			goto return
+			apply
+				set haicaution
+			label return
+			`	You seem to get no reaction and the Elder follows up with, "What is the gravest threat, in your opinion, facing humanity?"`
 			choice
 				`	"The Pug"`
 				`	"The Alphas"`
