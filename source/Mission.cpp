@@ -663,6 +663,8 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 				&& ship->GetParent() && ship->GetParent()->GetSystem() == player.GetSystem()))
 			continue;
 		
+		if(ship->Cargo().GetPassengers(this))
+			return false;
 		// Check for all mission cargo, including that which has 0 mass.
 		auto &cargo = ship->Cargo().MissionCargo();
 		if(cargo.find(this) != cargo.end())
