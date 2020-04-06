@@ -96,7 +96,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons
       - name: Adjust version strings
-        run: ./utils/cd_version_strings.sh
+        run: ./utils/cd_update_versions.sh
       - name: Build AppImage
         run: ./utils/build_appimage.sh
       - name: Upload artifact
@@ -135,7 +135,7 @@ jobs:
           Expand-Archive win64-dev.zip -DestinationPath . -Force
           Remove-Item win64-dev.zip
       - name: Adjust version strings
-        run: ./utils/cd_version_strings.sh
+        run: ./utils/cd_update_versions.sh
         shell: bash
       - name: Build Application
         run: |
@@ -185,7 +185,7 @@ jobs:
           install_name_tool -id "@rpath/libturbojpeg.0.dylib" /usr/local/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib
           install_name_tool -id "@rpath/libSDL2-2.0.0.dylib" /usr/local/lib/libSDL2-2.0.0.dylib
       - name: Adjust version strings
-        run: ./utils/cd_version_strings.sh
+        run: ./utils/cd_update_versions.sh
         shell: bash
       - name: Build Application
         run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet
