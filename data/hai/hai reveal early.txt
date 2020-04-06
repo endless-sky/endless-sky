@@ -201,7 +201,10 @@ mission "building mountaintop 2"
 			`	Terry's answering grin was... predatory.`
 			accept
 	on stopover
-		dialog `You have finally visited every world in Hai space and sold the pitch to the people. With any luck enough people will sign up to make it work.`
+		dialog `You have finally visited every world in Hai space and sold the pitch to the people. With any luck enough people will sign up to make it work. Take Terry to Mountaintop now.`
+	on complete
+		dialog `Upon landing you receive a ping informing you that <payment> has been deposited into your account. Terry must've set it up to happen automatically.`
+		payment 10000000
 
 mission "building mountaintop 2a"
 	landing

@@ -26,8 +26,8 @@ mission "Hai Rescue [B01] Election"
 		conversation
 			`You land outside the hidden base and you notice the strangely-outfitted Centipede is gone. It has been replaced with a pair of Lightning Bugs that have standard outfits. You walk into the base and see some researchers you saw before, but Teeneep is absent.`
 			`	You explain your discoveries and the Hai look increasingly concerned with each sentence you speak.`
-			`	After paying you, they explain, "Not long after you left, we went public with our story. We told everyone who would listen. Then the government received your findings through Earth authorities. There's been a big outpouring of support, and a lot of anger at the Elders for letting this go on for so long.`
-			`	"Two days ago, there was an election. A third of the Elders have been replaced, which is the fastest change we've had since the Korath invasion began. Teeneep is being inaugurated today, as the youngest 'elder' since the Elder Council was formed. I fear a time of chaos has begun.`
+			`	After paying you, they explain, "Not long after you left, we went public with our story. We told everyone who would listen. Then the government received your findings through Earth authorities. There's been a big outpouring of support, and a lot of anger at the Elders for letting this go on for so long."`
+			`	"Two days ago, there was an election. A third of the Elders have been replaced, which is the fastest change we've had since the Korath invasion began. Teeneep is being inaugurated today, as the youngest 'elder' since the Elder Council was formed. I fear a time of chaos has begun."`
 			`	 "We'll contact her by hyperwave and tell her everything you told us. Please fly immediately to <destination>. The Elders will no doubt meet as soon as you arrive."`
 				accept
 
@@ -291,9 +291,9 @@ mission "Hai Rescue [B02] Diplomacy: Syndicate"
 		log `The Hai and humans have huge fleets on either side of the wormhole with more ships pouring in all the time. Teeneep wants to visit the human authorities to prevent a war.`
 		conversation
 			`When you arrive at <origin>, Teeneep meets you at your ship as soon as you touch down. She's wearing the robes of a Hai Elder and has four bodyguards. They're wearing full body armor with personal energy shields. Their pulse rifles are the lethal variety built during the Korath war, rather than the non-lethal ones made today. You notice Teeneep is wearing a backpack with a personal shield.`
-			`	She greets you, "Times are changing quickly, <first>. The Navy sent a message ahead of you. Your information is considerably more detailed, but theirs was enough to anger the entire Elder Council. I advised against rash action, but my words went unheeded.`
-			`	"The Hai Elders are so angered at the killing of our people that we have officially closed our borders. A large armada guards the wormhole at Waypoint. The human authorities have responded by putting a fleet at Ultima Thule. This situation is explosive and may soon lead to war.`
-			`	"Hai are all banned from entering human space now, and humans are not allowed in and out except for critical travel. My new position as an Elder grants me special privileges.`
+			`	She greets you, "Times are changing quickly, <first>. The Navy sent a message ahead of you. Your information is considerably more detailed, but theirs was enough to anger the entire Elder Council. I advised against rash action, but my words went unheeded."`
+			`	"The Hai Elders are so angered at the killing of our people that we have officially closed our borders. A large armada guards the wormhole at Waypoint. The human authorities have responded by putting a fleet at Ultima Thule. This situation is explosive and may soon lead to war."`
+			`	"Hai are all banned from entering human space now, and humans are not allowed in and out except for critical travel. My new position as an Elder grants me special privileges."`
 			`	"Please, in the name of peace, escort my ship to meet your authorities. I must also see Waypoint and Ultima Thule for myself. I dare not try this without your escort. You will be well-paid."`
 			choice
 				`	"Of course. Let's go."`
@@ -331,7 +331,7 @@ mission "Hai Rescue [B02B] Diplomacy: Syndicate (Retry)"
 		dialog `As you enter the system, authorities ask you to land as soon as possible with Teeneep and meet a Syndicate representative.`
 	on offer
 		conversation
-			`Teeneep meets you at your ship again, "Are you ready to escort me to <destination>?`
+			`Teeneep meets you at your ship again, "Are you ready to escort me to <destination>?"`
 			choice
 				`	"Of course. Let's go."`
 					accept
@@ -359,17 +359,17 @@ mission "Hai Rescue [B03] Diplomacy: Syndicate Internal Affairs"
 	on offer
 		log `People` `Stephen Moray` `Deputy Director Moray works for Syndicate Internal Affairs dealing with pirate-related matters. In addition to enforcing the law, he also smuggles slaves from pirate worlds into freedom in Syndicate space. He has promised to find out who is responsible for the kidnappings.`
 		conversation
-			`Deputy Director Stephen Moray meets you at the entrance of your ship. "I work for Syndicate Internal Affairs. We're the internal police of the Syndicate; when an employee of any rank does misdeeds, we track them down. Janitor or executive; it doesn't matter. My part of Internal Affairs works on piracy-related matters.`
-			`	"I know what your people are going through," he says. "When I was a teenager, pirates kidnapped my brother and father, and forced them to serve on pirate vessels. My father watched helplessly as my brother's disabled ship was destroyed by a Navy Frigate just as it exited hyperspace. My father eventually escaped. He is serving his seventeenth year of a twenty-five-year sentence for piracy, even though his deeds were against his will. Sadly, the laws are written that way.`
-			`	"You see the hails of the Navy: loyalty, honor, bravery. Half-truths at best. We see the Navy as heroes because they are the only large organization capable of self-sacrifice. Yes, they do many good deeds. Those deeds blind us to their brutality and immorality.`
+			`Deputy Director Stephen Moray meets you at the entrance of your ship. "I work for Syndicate Internal Affairs. We're the internal police of the Syndicate; when an employee of any rank does misdeeds, we track them down. Janitor or executive; it doesn't matter. My part of Internal Affairs works on piracy-related matters."`
+			`	"I know what your people are going through," he says. "When I was a teenager, pirates kidnapped my brother and father, and forced them to serve on pirate vessels. My father watched helplessly as my brother's disabled ship was destroyed by a Navy Frigate just as it exited hyperspace. My father eventually escaped. He is serving his seventeenth year of a twenty-five-year sentence for piracy, even though his deeds were against his will. Sadly, the laws are written that way."`
+			`	"You see the hails of the Navy: loyalty, honor, bravery. Half-truths at best. We see the Navy as heroes because they are the only large organization capable of self-sacrifice. Yes, they do many good deeds. Those deeds blind us to their brutality and immorality."`
 			`	"Not all humans are like that - many members of the Navy disagree with the barbaric rules about slavery. Some of us in the Syndicate, Free Worlds, and elsewhere, are trying to solve this problem."`
 			`	You reach the meeting room, and he says, "Please come in."`
 			choice
 				`	(Find a seat in the meeting room.)`
 			`	After everyone sits, Stephen Moray turns on a device, "Communications jammer," he says, "so we're not heard."`
-			`	"In my time as a Syndicate executive, I have smuggled over 80,000 slaves from pirate planets to freedom in Syndicate space. I have extensive contacts within the slaver community. If I smuggle any of your people back here, I will tell you immediately.`
-			`	"I have some leads on the organization behind this. There is a pirate gang working with high-level executives at the Syndicate. They're doing this without the Syndicate's permission. I swear to you, I will track down those in my company that are responsible for this reprehensible act. They will be brought to justice.`
-			`	"I know there are three holding facilities in human space where the kidnapped researchers are brought for processing before passing through the wormhole at Devil-Run. They're on the pirate planets of Freedom, Stormhold, and Deadman's Cove. I don't know the exact locations yet.`
+			`	"In my time as a Syndicate executive, I have smuggled over 80,000 slaves from pirate planets to freedom in Syndicate space. I have extensive contacts within the slaver community. If I smuggle any of your people back here, I will tell you immediately."`
+			`	"I have some leads on the organization behind this. There is a pirate gang working with high-level executives at the Syndicate. They're doing this without the Syndicate's permission. I swear to you, I will track down those in my company that are responsible for this reprehensible act. They will be brought to justice."`
+			`	"I know there are three holding facilities in human space where the kidnapped researchers are brought for processing before passing through the wormhole at Devil-Run. They're on the pirate planets of Freedom, Stormhold, and Deadman's Cove. I don't know the exact locations yet."`
 			`	"Please, leave at once to talk to our government. Perhaps you can stall this conflict long enough for us to get some answers."`
 			`	Teeneep bids him farewell and the two of you approach your ships. Teeneep hands you <payment> and is eager to go to <destination>.`
 				accept
@@ -414,7 +414,7 @@ mission "Hai Rescue [B04] Diplomacy: Treaty Negotiation"
 			`	Teeneep begins, "I speak as the voice of the Hai and with the full authority of the Elder Council. Many of our people have been kidnapped over the past few decades, and some still reside beyond the wormhole at Devil-Run. Worst of all, your authorities have killed numerous Hai on slaver ships, without attempting rescue or even offering surrender. We demand the return of our people and the immediate cease of the killing of slaves."`
 			`	The Prime Minister is the first to respond, "The problem of piracy in human space is a difficult one and cannot be solved overnight. The pirates are well-entrenched in their planets, and fighting them is a long and brutal struggle. The war left them stronger than ever with our navies distracted fighting one another."`
 			`	The President continues, "The Free Worlds has made great strides reducing piracy by befriending the peoples of the anarchist worlds. We're discussing similar approaches with the Republic. Perhaps in another few years, piracy will be entirely eliminated."`
-			`	The Prime Minister says, "We have a counter-proposal. The Free Worlds and Republic will establish a customs service on Allhome. Hai visiting human space will check in with us. Our intelligence agencies will track their movements and see to their safety as best we can; they'll be given contacts on every planet to go to for help. In the meantime, we will place extensive surveillance fleets at Ultima Thule to detect any unapproved Hai travel. We will do our best to disable and capture ships with kidnapped Hai, no matter the risk of Navy lives."`
+			`	The Prime Minister says, "We have a counter-proposal. The Free Worlds and Republic will establish a customs service on Mountaintop. Hai visiting human space will check in with us. Our intelligence agencies will track their movements and see to their safety as best we can; they'll be given contacts on every planet to go to for help. In the meantime, we will place extensive surveillance fleets at Ultima Thule to detect any unapproved Hai travel. We will do our best to disable and capture ships with kidnapped Hai, no matter the risk of Navy lives."`
 			`	The President says, "The Free Worlds will also extend our protection of course."`
 			`	Teeneep responds, "I cannot sign that treaty yet. My people won't be satisfied until the kidnapped Hai are returned."`
 			`	The President responds, "We heard back from Syndicate Internal Affairs that they know the exact location of three staging facilities for a group called the 'Devil-Run Gang.' That group is behind the kidnappings."`
@@ -429,11 +429,11 @@ mission "Hai Rescue [B04] Diplomacy: Treaty Negotiation"
 		payment 400000
 		log `You need to visit the Sunracer spaceport to pick up a man, Tutitot, a worm, and an orb. Tutitot and the worm will act as spies, getting caught by the kidnappers. The orb, placed at Devil-Run, will detect his presence. A week or two after you deposit the orb, the Drak will contact you to let you know Tutitot is ready to report.`
 		conversation
-			`You arrive, but you're brought a warehouse instead of a proper meeting room. You're baffled as to why until you see a new participant: one of the Quarg scientists you talked to before. They're extremely tall, and would not have fit in the office buildings. This must be the "other group" Teeneep said would help. You and Teeneep join the Quarg and Stephen Moray at a tall table.`
+			`You arrive, but you're brought to a warehouse instead of a proper meeting room. You're baffled as to why until you see a new participant: one of the Quarg scientists you talked to before. They're extremely tall, and would not have fit in the office buildings. This must be the "other group" Teeneep said would help. You and Teeneep join the Quarg and Stephen Moray at a tall table.`
 			`	Teeneep explains about her plan for a spy and it seems Stephen Moray already came to the same conclusion. He says, "Yes, we found a Hai recently that was kidnapped just before the Hai border was closed. His name is, Tutitot Eeegin, and he agreed to be a spy for us."`
 			`	The Quarg speaks, "Teeneep is a clever Hai, she asked us to change the nanotransceivers. They would let Tutitot send telepathic signals millions of your kilometers. Alas, the Quarg have not such technology, nor do the Korath." He smiles, "But the Quarg speak to the Drak." He pulls out a glass orb and it floats to the table; there is a black worm with purple hairs inside. The orb has a blinking blue light on top.`
 			`	"Drak see farther than young races like ours. If the humans and the Fettered Hai war now, they will be weakened. The Unfettered will quickly overrun the Fettered, and soon the humans. You will discover the secret of Jump Drives for them, and they will be a threat far beyond their borders. One day the humans will be strong enough to weather that storm, or the Fettered will temper their Unfettered brethren. That day has not come; your war must be stopped."`
-			`	"This worm will let Tutitot talk to the holder of this orb, millions of kilometers away. Return Tutitot to the kidnappers. Go then to Devil-Eye to place the orb. When Tutitot has reached the Philosopher's Paradise, the Drak will send you a... feeling. You will know it is time.`
+			`	"This worm will let Tutitot talk to the holder of this orb, millions of kilometers away. Return Tutitot to the kidnappers. Go then to Devil-Eye to place the orb. When Tutitot has reached the Philosopher's Paradise, the Drak will send you a... feeling. You will know it is time."`
 				goto "actual questions"
 			label questions
 			`	"Have you more questions?"`

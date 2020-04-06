@@ -45,19 +45,19 @@ mission "Hai Rescue: Yeertle Family"
 					goto "ride offer"
 			label far
 			`	He pauses for a second, perhaps pondering if he can trust you with the answer.`
-			`	"I'm a holographer from Icelake. I chartered a flight from Icelake to Allhome with my family. They would have gone on vacation while I would have been at a conference. Instead, the human merchants locked us in a cell and took us here.`
-			`	"My daughter is very small for her age, and was able to sneak through a vent to unlock our cell. The ship was undercrewed, so we overpowered them, but they had already landed. The ship was locked down; we could not take off. Since then, we've been hiding near here.`
+			`	"I'm a holographer from Icelake. I chartered a flight from Icelake to Allhome with my family. They would have gone on vacation while I would have been at a conference. Instead, the human merchants locked us in a cell and took us here."`
+			`	"My daughter is very small for her age, and was able to sneak through a vent to unlock our cell. The ship was undercrewed, so we overpowered them, but they had already landed. The ship was locked down; we could not take off. Since then, we've been hiding near here."`
 			`	"Can you take us back to <destination>? I have considerable savings back there, and can pay you well. Say, <payment>?"`
 			choice
 				`	"Sure!"`
 				`	"No, I can't."`
 					decline
-			`	"My name is Duniip Yeertle, by the way. My wife and three children are nearby. They have holoprojectors as well.`
+			`	"My name is Duniip Yeertle, by the way. My wife and three children are nearby. They have holoprojectors as well."`
 				goto leave
 			label "ride offer"
-			`	"Yes! Some crooked human merchants locked us in a cell and took us here. I've been unable to find anyone who has even heard of Hai space, and I'm afraid to approach the Syndicate. You're the first lead I have!`
-			`	"I promise I'll pay you well when we return. I can afford <payment>... when I'm back at <destination>.`
-			`	"My name is Duniip Yeertle, by the way. My wife and three children are nearby. They have holoprojectors as well.`
+			`	"Yes! Some crooked human merchants locked us in a cell and took us here. I've been unable to find anyone who has even heard of Hai space, and I'm afraid to approach the Syndicate. You're the first lead I have!"`
+			`	"I promise I'll pay you well when we return. I can afford <payment>... when I'm back at <destination>."`
+			`	"My name is Duniip Yeertle, by the way. My wife and three children are nearby. They have holoprojectors as well."`
 			label leave
 			`	"Follow me back to my house, and we will make our preparations."`
 			choice
@@ -122,15 +122,15 @@ mission "Hai Rescue: Prison Role-Players"
 				`	"Sorry, maybe another time."`
 					defer
 			label who
-			`	"You don't remember me? I'm the first Hai you met. You were so confused back then and didn't know who or what we were. It was very cute.`
+			`	"You don't remember me? I'm the first Hai you met. You were so confused back then and didn't know who or what we were. It was very cute."`
 				goto questions
 			label how
-			`	"There are prison role-play cruises in Hai space where we can ride in a brig with human security guards. My research group thought it would be a fun experience, so we all chartered one.`
-			`	"It was a trick! They were pirates and took us into human space instead.`
-			`	"They didn't feed us much, so we all pretended to be too weak to stand. When one of the pirates came in to check on us, we overpowered him. The other pirate crashed the ship and used an escape pod. Now we're stuck here.`
+			`	"There are prison role-play cruises in Hai space where we can ride in a brig with human security guards. My research group thought it would be a fun experience, so we all chartered one."`
+			`	"It was a trick! They were pirates and took us into human space instead."`
+			`	"They didn't feed us much, so we all pretended to be too weak to stand. When one of the pirates came in to check on us, we overpowered him. The other pirate crashed the ship and used an escape pod. Now we're stuck here."`
 				goto questions
 			label pay
-			`	"Ah, well, we can give you what is left of our travel budget: <payment>. The money is at <destination> so you'll have to fly us there first.`
+			`	"Ah, well, we can give you what is left of our travel budget: <payment>. The money is at <destination> so you'll have to fly us there first."`
 				goto questions
 			label go
 			`	"Excellent! Everyone pile onboard. Let's go back to <destination>!"`
@@ -177,10 +177,10 @@ mission "Hai Rescue: Ooonem"
 				`	"Sorry to bother you. I'll leave you to your business."`
 					goto decline
 			label hai
-			`	"I was going to meet a businessman on Shroud to arrange a large-scale import deal for my research project. I asked a human merchant to take me there, but I was tricked. The businessman doesn't really exist; the deal was faked. The merchant locked me in a cell and brought me here instead. When he opened the cell, I managed to grab his rifle, shoot him, and hide. It's amazing how slowly humans move.`
+			`	"I was going to meet a businessman on Shroud to arrange a large-scale import deal for my research project. I asked a human merchant to take me there, but I was tricked. The businessman doesn't really exist; the deal was faked. The merchant locked me in a cell and brought me here instead. When he opened the cell, I managed to grab his rifle, shoot him, and hide. It's amazing how slowly humans move."`
 				goto "more questions"
 			label who
-			`	"There are some men looking for me. I've managed to escape them so far; they're not as quick as a Hai. I think they're friends of the merchant who locked me up.`
+			`	"There are some men looking for me. I've managed to escape them so far; they're not as quick as a Hai. I think they're friends of the merchant who locked me up."`
 				goto "more questions"
 			label pay
 			`	"I don't know. I have no money but my family on <planet> can pay."`
@@ -255,11 +255,11 @@ mission "Hai Rescue: Meroot and Lucy"
 				`	"No, I was just walking by. Sorry to bother you."`
 					decline
 			label hiding
-			`	"Please don't tell anyone! We were both kidnapped, but we managed to escape. Now we're hiding here, hoping the men don't find us again.`
-			`	"Actually, if you can give us a ride to <planet>, we can pay when we get there. You'll be followed though, so I hope you have a fast ship.`
+			`	"Please don't tell anyone! We were both kidnapped, but we managed to escape. Now we're hiding here, hoping the men don't find us again."`
+			`	"Actually, if you can give us a ride to <planet>, we can pay when we get there. You'll be followed though, so I hope you have a fast ship."`
 				goto "come in"
 			label help
-			`	"Yes! Some men kidnapped my friend and I, but we managed to escape. We've been hiding here, hoping they don't find us again. If you can fly us to <planet>, we can pay you when we arrive. I hope you have a fast ship; they'll probably chase us.`
+			`	"Yes! Some men kidnapped my friend and I, but we managed to escape. We've been hiding here, hoping they don't find us again. If you can fly us to <planet>, we can pay you when we arrive. I hope you have a fast ship; they'll probably chase us."`
 				goto "come in"
 			label "come in"
 			`	"Come in, and we'll talk about it."`
@@ -271,7 +271,7 @@ mission "Hai Rescue: Meroot and Lucy"
 			`	"I'm Lucy," says the human woman.`
 			`	"And I'm Meroot," adds the Hai woman. "I was on Newhome walking to my research lab when some men pulled me into an alley and zapped me with a tazer. I woke up in the brig of a space ship."`
 			`	"My experience was similar. I was walking from my biolab to my house on Serpens. Some men jumped out from behind a dune and zapped me."`
-			`	Meroot continues, "They took us both here. I was able to struggle out of my handcuffs and sneak the keys from the guard. We escaped together, and we've been hiding for weeks.`
+			`	Meroot continues, "They took us both here. I was able to struggle out of my handcuffs and sneak the keys from the guard. We escaped together, and we've been hiding for weeks."`
 			`	"Please take us to <destination>"`
 			choice
 				`	"Sure. Let's go."`
@@ -318,7 +318,7 @@ mission "Hai Rescue: Gipeep"
 				`	(Leave.)`
 					decline
 			`	You put the key in the lock, turn, and the next thump you hear pushes the crate open so hard it falls over. An angry-looking Hai jumps out and starts yelling at you in its own language.`
-			`	After a few seconds, the Hai calms down and speaks in your own tongue, "They locked me in a box! I was walking home from a store on <destination> and some humans pulled me into an alley. They shoved me in a box and now I'm...", the Hai looks around, "not in Hai space?`
+			`	After a few seconds, the Hai calms down and speaks in your own tongue, "They locked me in a box! I was walking home from a store on <destination> and some humans pulled me into an alley. They shoved me in a box and now I'm...", the Hai looks around, "not in Hai space?"`
 			`	"Please take me home. I'm a ship architect from <destination>. We should hurry before they come back."`
 			choice
 				`	"Of course. Just hop in my ship."`
