@@ -3513,7 +3513,7 @@ mission "Hauler VI cargo prototype 1"
 				`	"Shouldn't you be making the Hauler IV first?"`
 				`	"Sure, I'll help you."`
 					accept
-			`	Veronica softly chuckles. "That would be the obvious choice, wouldn't it be? But this isn't just a case of slapping another cargo pod between the cockpit and engines, we've modified the design to have the optimal amount of cargo pods without comprimising the integrity of the vessel. And besides, our marketing department says that the people who are willing to by a Hauler IV are just as willing to buy larger Haulers."`
+			`	Veronica softly chuckles. "That would be the obvious choice, wouldn't it be? But this isn't just a case of slapping another cargo pod between the cockpit and engines. We've modified the design to have the optimal amount of cargo pods without compromising the integrity of the vessel, or making it difficult to build in our existing shipyards. And besides, our marketing department has found that captains willing to buy a Hauler IV are just as willing to buy larger Haulers."`
 			choice
 				`	"Isn't it a bit risky to transport food using a refrigeration system that hasn't been tested yet?"`
 				`	"Am I also invited for the dinner?"`
