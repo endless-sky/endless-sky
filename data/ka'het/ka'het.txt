@@ -35,7 +35,7 @@ phrase "ka'het"
 		"Antamesa"
 		"Delia"
 	word
-		" "
+		"-"
 	phrase
 		"ka'het syllable"
 	word
@@ -105,7 +105,7 @@ phrase "builder beginning"
 		"Gar"
 		"Fasi"
 	word
-		" "
+		"-"
 	phrase
 		"ka'het syllable"
 
