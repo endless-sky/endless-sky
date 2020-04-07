@@ -143,13 +143,23 @@ jobs:
         run: |
           git tag --force continuous ${{ github.sha }}
           git push --tags --force
-      - name: If necessary, create continuous release
+      - name: Setup continuous release
         run: |
+          DESCRIPTION=$'This is an automated build of the latest source. It may be unstable or even crash, corrupt your save or eat your kitten. Use with caution!
+          \n
+          \nTriggered on commit ${{ github.sha }} by ${{ github.actor }}
+          \nRun No. ${{ github.run_numer }}: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'
           if ! gothub info -t continuous > /dev/null 2>&1; then
             gothub release \
               --tag continuous \
               --name "Continuous Build" \
-              --description "This is an automated build of the latest source. It may be unstable or even crash, corrupt your save or eat your kitten. Use with caution!" \
+              --description "$DESCRIPTION" \
+              --pre-release
+          else
+            gothub edit \
+              --tag continuous \
+              --name "Continuous Build" \
+              --description "$DESCRIPTION" \
               --pre-release
           fi
       - name: Download ${{ env.OUTPUT_UBUNTU }}
