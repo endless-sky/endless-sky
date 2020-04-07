@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Sets the version display in main.cpp to the first argument.
+# Sets the application version in endless-sky.6 to the first argument.
 # Example: 
 # $ ./utils/set_manpage_version.sh "my cool version"
 

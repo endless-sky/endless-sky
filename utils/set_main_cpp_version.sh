@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Sets the version display in main.cpp to the first argument.
+# Sets the application version in main.cpp to the first argument.
 # Example: 
 # $ ./utils/set_main_cpp_version.sh "my cool version"
 
