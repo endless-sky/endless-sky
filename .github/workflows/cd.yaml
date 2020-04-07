@@ -152,44 +152,44 @@ jobs:
               --description "This is an automated build of the latest source. It may be unstable or even crash, corrupt your save or eat your kitten. Use with caution!" \
               --pre-release
           fi
-      - name: Download ${{ env.OUTPUT_UBUNTU }}
+      - name: Download Ubuntu Artifact
         uses: actions/download-artifact@v1
         with:
           name: ${{ env.OUTPUT_UBUNTU }}
-      - name: Upload ${{ env.OUTPUT_UBUNTU }}
+      - name: Upload Ubuntu Artifact
         run: |
           gothub upload \
             --tag continuous \
             --replace \
             --name ${{ env.OUTPUT_UBUNTU }} \
             --file ${{ env.OUTPUT_UBUNTU }}
-      - name: Download ${{ env.OUTPUT_APPIMAGE }}
+      - name: Download AppImage
         uses: actions/download-artifact@v1
         with:
           name: ${{ env.OUTPUT_APPIMAGE }}
-      - name: Upload ${{ env.OUTPUT_APPIMAGE }}
+      - name: Upload AppImage
         run: |
           gothub upload \
             --tag continuous \
             --replace \
             --name ${{ env.OUTPUT_APPIMAGE }} \
             --file ${{ env.OUTPUT_APPIMAGE }}
-      - name: Download ${{ env.OUTPUT_WINDOWS }}
+      - name: Download Windows Artifact
         uses: actions/download-artifact@v1
         with:
           name: ${{ env.OUTPUT_WINDOWS }}
-      - name: Upload ${{ env.OUTPUT_WINDOWS }}
+      - name: Upload Windows Artifact
         run: |
           gothub upload \
             --tag continuous \
             --replace \
             --name ${{ env.OUTPUT_WINDOWS }} \
             --file ${{ env.OUTPUT_WINDOWS }}
-      - name: Download ${{ env.OUTPUT_MACOS }}
+      - name: Download MacOS Artifact
         uses: actions/download-artifact@v1
         with:
           name: ${{ env.OUTPUT_MACOS }}
-      - name: Upload ${{ env.OUTPUT_MACOS }}
+      - name: Upload MacOS Artifact
         run: |
           gothub upload \
             --tag continuous \
