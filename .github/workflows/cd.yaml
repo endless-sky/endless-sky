@@ -152,44 +152,48 @@ jobs:
               --description "This is an automated build of the latest source. It may be unstable or even crash, corrupt your save or eat your kitten. Use with caution!" \
               --pre-release
           fi
-      - name: Download Ubuntu Artifact
+      - name: Download ${{ env.OUTPUT_UBUNTU }}
         uses: actions/download-artifact@v1
         with:
           name: ${{ env.OUTPUT_UBUNTU }}
-      - name: Upload Ubuntu Artifact
+          path: ${{ github.workspace }}
+      - name: Upload ${{ env.OUTPUT_UBUNTU }}
         run: |
           gothub upload \
             --tag continuous \
             --replace \
             --name ${{ env.OUTPUT_UBUNTU }} \
             --file ${{ env.OUTPUT_UBUNTU }}
-      - name: Download AppImage
+      - name: Download ${{ env.OUTPUT_APPIMAGE }}
         uses: actions/download-artifact@v1
         with:
           name: ${{ env.OUTPUT_APPIMAGE }}
-      - name: Upload AppImage
+          path: ${{ github.workspace }}
+      - name: Upload ${{ env.OUTPUT_APPIMAGE }}
         run: |
           gothub upload \
             --tag continuous \
             --replace \
             --name ${{ env.OUTPUT_APPIMAGE }} \
             --file ${{ env.OUTPUT_APPIMAGE }}
-      - name: Download Windows Artifact
+      - name: Download ${{ env.OUTPUT_WINDOWS }}
         uses: actions/download-artifact@v1
         with:
           name: ${{ env.OUTPUT_WINDOWS }}
-      - name: Upload Windows Artifact
+          path: ${{ github.workspace }}
+      - name: Upload ${{ env.OUTPUT_WINDOWS }}
         run: |
           gothub upload \
             --tag continuous \
             --replace \
             --name ${{ env.OUTPUT_WINDOWS }} \
             --file ${{ env.OUTPUT_WINDOWS }}
-      - name: Download MacOS Artifact
+      - name: Download ${{ env.OUTPUT_MACOS }}
         uses: actions/download-artifact@v1
         with:
           name: ${{ env.OUTPUT_MACOS }}
-      - name: Upload MacOS Artifact
+          path: ${{ github.workspace }}
+      - name: Upload ${{ env.OUTPUT_MACOS }}
         run: |
           gothub upload \
             --tag continuous \
