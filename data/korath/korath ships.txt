@@ -1453,16 +1453,17 @@ ship "Korath Ravager"
 		"cost" 21910000
 		"shields" 43000
 		"hull" 28000
-		"required crew" 261
-		"bunks" 310
-		"mass" 1281
-		"drag" 15
-		"heat dissipation" .55
+		"required crew" 291
+		"bunks" 338
+		"mass" 1202
+		"drag" 13.5
+		# Ravager has massive surface area per volume plus heat sinks:
+		"heat dissipation" .75
 		"fuel capacity" 900
-		"cargo space" 213
+		"cargo space" 110
 		"outfit space" 921
 		"weapon capacity" 415
-		"engine capacity" 207
+		"engine capacity" 208
 		weapon
 			"blast radius" 350
 			"shield damage" 6000
@@ -1471,73 +1472,39 @@ ship "Korath Ravager"
 	outfits
 		"Korath Grab-Strike" 2
 		"Korath Warder" 2
-		"Nova Turret"
-		"Nova Device Rack"
-		"Nova Device" 24
 		"Korath Inferno"
+		"Nova Turret"
+		"Nova Device" 16
 		"Korath Digger Turret" 4
 		
-		"Outfits Expansion"
 		"Systems Core (Large)"
+		"Triple Plasma Core"
 		"Plasma Core"
-		"Triple Plasma Core"
-		"Small Heat Shunt"
-		"Large Heat Shunt" 3
-		"Fuel Processor"
-		"Korath Repeater Rifle" 230
-		
-		"Thruster (Planetary Class)"
-		"Steering (Planetary Class)"
-		"Jump Drive"
-
-	turret -81 -116 "Korath Digger Turret"
-	turret 81 -116 "Korath Digger Turret"
-	turret 0 -109 "Nova Turret"
-	turret 0 -88 "Korath Warder"
-	turret -113 88 "Korath Grab-Strike"
-	turret 0 81 "Korath Inferno"
-	turret 113 88 "Korath Grab-Strike"
-	turret -113 113 "Korath Digger Turret"
-	turret 0 115 "Korath Warder"
-	turret 113 113 "Korath Digger Turret"
-	engine -114 146 .9
-	engine -52 149 .6
-	engine 52 149 .6
-	engine 114 146 .9
-	"final explode" "final explosion large"
-	description "The Korath Ravager is a larger raiding vessel designed to attack planets or fleets. Unlike its smaller cousin, the Ravager is equipped with battleship-class weapons."
-
-ship "Korath Ravager" "Korath Ravager (Heaver)"
-	outfits
-		"Korath Heaver" 2
-		"Korath Warder" 2
-		"Nova Turret"
-		"Nova Device Rack" 2
-		"Nova Device" 32
-		"Korath Digger Turret" 5
-		
-		"Systems Core (Large)"
-		"Triple Plasma Core"
-		"Small Heat Shunt" 2
 		"Large Heat Shunt" 2
-		"Fuel Processor" 3
-		"Korath Repeater Rifle" 230
+		"Small Heat Shunt" 3
+		"Fuel Processor"
+		"Korath Repeater Rifle" 338
 		
 		"Steering (Planetary Class)"
-		"Thruster (Comet Class)"
-		"Thruster (Stellar Class)"
+		"Steering (Comet Class)"
+		"Thruster (Planetary Class)"
 		"Jump Drive"
-	turret "Korath Digger Turret"
-	turret "Korath Digger Turret"
-	turret "Nova Turret"
-	turret "Korath Warder"
-	turret "Korath Heaver"
-	turret "Korath Digger Turret"
-	turret "Korath Heaver"
-	turret "Korath Digger Turret"
-	turret "Korath Warder"
-	turret "Korath Digger Turret"
 
+	turret -56.5 -103 "Korath Grab-Strike"
+	turret 56.5 -103 "Korath Grab-Strike"
+	turret -13 -60 "Korath Digger Turret"
+	turret 13 -60 "Korath Digger Turret"
+	turret -26 6 "Korath Digger Turret"
+	turret 26 6 "Korath Digger Turret"
+	turret -184 26 "Korath Warder"
+	turret 184 26 "Korath Warder"
+	turret -125 98 "Korath Inferno"
+	turret 125 98 "Nova Turret"
+	engine -37 90 0.7
+	engine 0 90 0.9
+	engine 37 90 0.7
+	"final explode" "final explosion large"
+	description "Unlike other Korath Exile vessels, the Korath Ravager is designed for one purpose, and one alone: destruction. It flies into hostile territory to eliminate all opposition so the Raiders and Dredgers can feast on the remains."
 
 ship "Korath Ravager" "Korath Ravager (Double Inferno)"
 	outfits
@@ -1545,14 +1512,13 @@ ship "Korath Ravager" "Korath Ravager (Double Inferno)"
 		"Korath Warder" 2
 		"Korath Digger Turret" 6
 
-		"Outfits Expansion"
 		"Systems Core (Large)"
 		"Triple Plasma Core"
 		"Double Plasma Core"
-		"Small Heat Shunt"
-		"Large Heat Shunt" 4
+		"Small Heat Shunt" 2
+		"Large Heat Shunt" 3
 		"Fuel Processor"
-		"Korath Repeater Rifle" 230
+		"Korath Repeater Rifle" 338
 		
 		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
@@ -1560,12 +1526,12 @@ ship "Korath Ravager" "Korath Ravager (Double Inferno)"
 	turret "Korath Digger Turret"
 	turret "Korath Digger Turret"
 	turret "Korath Inferno"
-	turret "Korath Warder"
-	turret "Korath Digger Turret"
-	turret "Korath Warder"
-	turret "Korath Digger Turret"
-	turret "Korath Digger Turret"
 	turret "Korath Inferno"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Digger Turret"
 	turret "Korath Digger Turret"
 
 
@@ -1576,26 +1542,54 @@ ship "Korath Ravager" "Korath Ravager (Grab-Strike Digger)"
 		"Korath Digger Turret" 4
 
 		"Fuel Processor"
-		"Large Heat Shunt" 4
-		"Outfits Expansion"
+		"Large Heat Shunt" 3
 		"Systems Core (Large)"
 		"Triple Plasma Core"
 		"Plasma Core"
-		"Generator (Candle Class)"
-		"Korath Repeater Rifle" 230
+		"Korath Repeater Rifle" 338
 		
+		"Steering (Lunar Class)"
 		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
-	turret "Korath Digger Turret"
-	turret "Korath Digger Turret"
 	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Warder"
 	turret "Korath Warder"
 	turret "Korath Grab-Strike"
-	turret "Korath Warder"
 	turret "Korath Grab-Strike"
+	
+ship "Korath Ravager" "Korath Ravager (Nova Heaver)"
+	outfits
+		"Korath Heaver" 2
+		"Korath Warder" 2
+		"Nova Turret"
+		"Nova Device Rack" 2
+		"Nova Device" 32
+		"Korath Digger Turret" 5
+		
+		"Systems Core (Large)"
+		"Triple Plasma Core"
+		"Large Heat Shunt" 2
+		"Fuel Processor" 3
+		"Korath Repeater Rifle" 338
+		
+		"Steering (Stellar Class)"
+		"Thruster (Stellar Class)"
+		"Jump Drive"
 	turret "Korath Digger Turret"
-	turret "Korath Grab-Strike"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Nova Turret"
+	turret "Korath Heaver"
+	turret "Korath Heaver"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Digger Turret"
 	turret "Korath Digger Turret"
 
 ship "Korath Ravager" "Korath Ravager (Double Nova)"
@@ -1603,30 +1597,58 @@ ship "Korath Ravager" "Korath Ravager (Double Nova)"
 		"Korath Digger Turret" 6
 		"Korath Warder" 2
 		"Nova Turret" 2
-		"Nova Device Rack" 6
-		"Nova Device" 80
+		"Nova Device Rack" 5
+		"Nova Device" 72
 		
-		"Outfits Expansion" 2
-		"Plasma Core"
+		"Outfits Expansion"
 		"Systems Core (Large)"
-		"Korath Repeater Rifle" 230
+		"Plasma Core"
 		"Triple Plasma Core"
-		"Small Heat Shunt"
-		"Large Heat Shunt" 3
+		"Small Heat Shunt" 3
+		"Large Heat Shunt" 2
 		"Fuel Processor"
+		"Korath Repeater Rifle" 338
 		
 		"Thruster (Planetary Class)"
+		"Steering (Comet Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 	turret "Korath Digger Turret"
 	turret "Korath Digger Turret"
-	turret "Korath Warder"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
 	turret "Nova Turret"
-	turret "Korath Digger Turret"
 	turret "Nova Turret"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+
+ship "Korath Ravager" "Korath Ravager (Eight Diggers)"
+	outfits
+		"Korath Digger Turret" 8
+		"Korath Warder" 2
+		
+		"Systems Core (Large)"
+		"Systems Core (Small)"
+		"Double Plasma Core"
+		"Triple Plasma Core"
+		"Large Heat Shunt" 3
+		"Fuel Processor"
+		"Korath Repeater Rifle" 338
+		
+		"Thruster (Stellar Class)"
+		"Steering (Stellar Class)"
+		"Jump Drive"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
 	turret "Korath Digger Turret"
 	turret "Korath Digger Turret"
 	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Digger Turret"
 	turret "Korath Digger Turret"
 
 # Low-tech Ravager
@@ -1637,25 +1659,86 @@ ship "Korath Ravager" "Korath Ravager (Grab-Strike Banisher)"
 		"Korath Banisher" 3
 
 		"Fuel Processor"
-		"Large Heat Shunt" 3
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
 		"Systems Core (Medium)"
 		"Triple Plasma Core"
 		"Plasma Core"
-		"Korath Repeater Rifle" 230
+		"Korath Repeater Rifle" 338
 		
 		"Steering (Planetary Class)"
+		"Steering (Comet Class)"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Warder"
 	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
 	turret "Korath Warder"
+	turret "Korath Warder"
+
+# Low-tech Ravager with no shields nor ramscoop. Very fast.
+ship "Korath Ravager" "Korath Ravager (Crippled Fast)"
+	outfits
+		"Korath Grab-Strike" 4
+		"Korath Warder" 3
+		"Korath Banisher" 3
+
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
+		"Triple Plasma Core"
+		"Generator (Furnace Class)"
+		"Korath Repeater Rifle" 338
+		
+		"Engines (Meteor Class)"
+		"Steering (Asteroid Class)"
+		"Steering (Planetary Class)"
+		"Thruster (Stellar Class)"
+		"Jump Drive (Broken)"
+		"Hyperdrive"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Warder"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Warder"
+	turret "Korath Warder"
+
+# Low-tech Ravager with no shields nor ramscoop, extra banisher
+ship "Korath Ravager" "Korath Ravager (Crippled Banishing)"
+	outfits
+		"Korath Grab-Strike" 3
+		"Korath Warder" 3
+		"Korath Banisher" 4
+
+		"Cargo Expansion" 3
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
+		"Triple Plasma Core"
+		"Generator (Inferno Class)"
+		"Korath Repeater Rifle" 338
+		
+		"Steering (Planetary Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive (Broken)"
+		"Hyperdrive"
+	turret "Korath Banisher"
 	turret "Korath Banisher"
 	turret "Korath Warder"
 	turret "Korath Grab-Strike"
-	turret "Korath Banisher"
 	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
 
 ship "Korath Dredger"
 	sprite "ship/dredger"
@@ -1665,7 +1748,7 @@ ship "Korath Dredger"
 		"cost" 19370000
 		"shields" 35000
 		"hull" 37000
-		"required crew" 239
+		"required crew" 191
 		"bunks" 353
 		"mass" 1353
 		"drag" 16
