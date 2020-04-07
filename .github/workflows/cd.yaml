@@ -5,19 +5,13 @@ on:
     branches:
       - cd-publish-release
 
-env:
-  OUTPUT_UBUNTU: endless-sky-x86_64-continuous.tar.gz
-  OUTPUT_APPIMAGE: endless-sky-x86_64-continuous.AppImage
-  OUTPUT_WINDOWS: EndlessSky-win64-continuous.zip
-  OUTPUT_MACOS: EndlessSky-macOS-continuous.zip
-
 
 jobs:
 
   ubuntu_x86_64:
     runs-on: ubuntu-latest
     env:
-      OUTPUT: ${{ env.OUTPUT_UBUNTU }}
+      OUTPUT: endless-sky-x86_64-continuous.tar.gz
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
@@ -42,7 +36,7 @@ jobs:
     runs-on: ubuntu-16.04
     env:
       ARCH: x86_64
-      OUTPUT: ${{ env.OUTPUT_APPIMAGE }}
+      OUTPUT: endless-sky-x86_64-continuous.AppImage
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
@@ -65,7 +59,7 @@ jobs:
     env:
       DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
       DIR_ESLIB: .\dev64
-      OUTPUT: ${{ env.OUTPUT_WINDOWS }}
+      OUTPUT: EndlessSky-win64-continuous.zip
     steps:
       - uses: actions/checkout@v2
       - name: Fetch development libraries
@@ -95,7 +89,7 @@ jobs:
   macos_x86_64:
     runs-on: macos-latest
     env:
-      OUTPUT: ${{ env.OUTPUT_MACOS }}
+      OUTPUT: EndlessSky-macOS-continuous.zip
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
@@ -130,6 +124,10 @@ jobs:
       - macos_x86_64
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      OUTPUT_UBUNTU: endless-sky-x86_64-continuous.tar.gz
+      OUTPUT_APPIMAGE: endless-sky-x86_64-continuous.AppImage
+      OUTPUT_WINDOWS: EndlessSky-win64-continuous.zip
+      OUTPUT_MACOS: EndlessSky-macOS-continuous.zip
     steps:
       - uses: actions/checkout@v2
       - name: Install gothub
