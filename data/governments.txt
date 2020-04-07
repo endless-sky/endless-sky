@@ -255,6 +255,7 @@ government "Hai (Unfettered)"
 		" Hai " -.01
 		"Wanderer" -.01
 		"Pug" -.01
+		"Pug (Wanderer)" -.01
 		"Merchant" -.01
 		"Kor Efret" -.01
 		"Bounty Hunter that Attacks Hai" -.01

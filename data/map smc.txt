@@ -680,7 +680,7 @@ system "Devil-Hide"
 planet Devil-Eye
 	attributes "whispering void"
 	landscape land/badlands6
-	description `There are a few sturdy mesas on which to land, but most of this planet is rough rock and dirt. Despite the lack of sunlight, the surface is warm. There must be internal processes in the planet generating heat. The scanners on your computer show a network of caves reaching deep below ground. There's high radiation in the caves, too much to support human life. Crystaline formations that coat the cave walls block detailed scans. Advanced geological scanners might enlighten you further.`
+	description `There are a few sturdy mesas on which to land, but most of this planet is rough rock and dirt. Despite the lack of sunlight, the surface is warm. There must be internal processes in the planet generating heat. The scanners on your computer show a network of caves reaching deep below ground. There's high radiation in the caves, too much to support human life. Crystalline formations that coat the cave walls block detailed scans. Advanced geological scanners might enlighten you further.`
 	description `There are automated deuterium refineries on this planet, siphoning deuterium from cave walls. The refinery equipment looks Hai in origin. Some mesas have fuel pumps, filling containers with fuel for later transport to the planet's moon.`
 
 planet "Philosopher's Paradise"
