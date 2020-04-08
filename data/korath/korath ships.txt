@@ -1990,15 +1990,15 @@ ship "Korath Haven"
 		"heat dissipation" .65
 		"fuel capacity" 3000
 		"cargo space" 3910
-		"outfit space" 2165
-		"weapon capacity" 840
+		"outfit space" 2265
+		"weapon capacity" 940
 		"engine capacity" 380
 
 		"afterburner fuel" 0.5
 		"afterburner heat" 60
 		"afterburner thrust" 90
 		
-		# Capabilities of huge built-in nanite factory:
+		# Capabilities of the two huge built-in nanite factories:
 		"ramscoop" 30
 		"shield generation" 38
 		"shield energy" 50
@@ -2013,9 +2013,73 @@ ship "Korath Haven"
 			"hull damage" 9000
 			"hit force" 30000
 	outfits
-		"Korath Digger Turret" 7
-		"Korath Inferno" 7
+		"Korath Digger Turret" 6
+		"Korath Inferno" 6
 		"Korath Warder" 6
+		"Korath Heaver" 4
+		
+		"Large Heat Shunt" 12
+		"Triple Plasma Core" 4
+
+		"Thruster (Stellar Class)" 2
+		"Steering (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+
+
+	turret -127.5 -400 "Korath Digger Turret"
+	turret 127.5 -400 "Korath Digger Turret"
+	turret -143 -393 "Korath Inferno"
+	turret 143 -393 "Korath Inferno"
+	turret -229 -332 "Korath Heaver"
+	turret 229 -332 "Korath Heaver"
+	turret -240 -320 "Korath Warder"
+	turret 240 -320 "Korath Warder"
+	turret -301 -170 "Korath Inferno"
+	turret 301 -170 "Korath Inferno"
+	turret -297 -70 "Korath Warder"
+	turret 297 -70 "Korath Warder"
+	turret -246 70 "Korath Digger Turret"
+	turret 246 70 "Korath Digger Turret"
+	turret -236 88 "Korath Inferno"
+	turret 236 88 "Korath Inferno"
+	turret -165 195 "Korath Heaver"
+	turret 165 195 "Korath Heaver"
+	turret -154 210 "Korath Digger Turret"
+	turret 154 210 "Korath Digger Turret"
+	turret -244 322 "Korath Warder"
+	turret 244 322 "Korath Warder"
+	engine -270 356 0.6
+	engine -246 356 0.8
+	engine -215 356 0.6
+	engine -159 403 0.4
+	engine -140.5 403 0.6
+	engine -119 403 0.4
+	engine 159 403 0.4
+	engine 140.5 403 0.6
+	engine 119 403 0.4
+	engine 270 356 0.6
+	engine 246 356 0.8
+	engine 215 356 0.6
+	fighter -160 -300 under
+	fighter 160 -300 under
+	fighter -171 -208 under
+	fighter 171 -208 under
+	fighter -172 -72 under
+	fighter 172 -72 under
+	fighter -154 53 under
+	fighter 154 53 under
+	fighter -118 141 under
+	fighter 118 141 under
+	fighter -89 303 under
+	fighter 89 303 under
+
+ship "Korath Haven" "Korath Haven (Kingslayer)"
+	outfits
+		"Korath Digger Turret" 6
+		"Korath Inferno" 6
+		"Korath Warder" 6
+		"Korath Grab-Strike" 4
 		
 		"Large Heat Shunt" 11
 		"Triple Plasma Core" 4
@@ -2024,45 +2088,64 @@ ship "Korath Haven"
 		"Steering (Stellar Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
-#	turret -50 -459
-#	turret 50 -459
-	turret -120.5 -416 "Korath Inferno"
-	turret 120.5 -416 "Korath Inferno"
-	turret -136 -408 "Korath Inferno"
-	turret 136 -408 "Korath Inferno"
-	turret -216 -353 "Korath Inferno"
-	turret 216 -353 "Korath Inferno"
-	turret -226 -340.5 "Korath Warder"
-	turret 226 -340.5 "Korath Warder"
-	turret -282 -202 "Korath Inferno"
-	turret 285 -202 "Korath Digger Turret"
-	turret -279 -108 "Korath Warder"
-	turret 279 -108 "Korath Warder"
-	turret -231 23.5 "Korath Digger Turret"
-	turret 231 23.5 "Korath Digger Turret"
-	turret -223 38.5 "Korath Digger Turret"
-	turret 223 38.5 "Korath Digger Turret"
-	turret -155.5 139 "Korath Warder"
-	turret 155.5 139 "Korath Warder"
-	turret -145 153 "Korath Digger Turret"
-	turret 145 153 "Korath Digger Turret"
-#	turret -42 337
-#	turret 42 337
-	engine -135 459 0.7
-	engine -110 459
-	engine -85 459 0.7
-	engine 85 459 0.7
-	engine 110 459
-	engine 135 459 0.7
-	fighter 0 -462 under
-	fighter -156 -318 under
-	fighter 156 -318 under
-	fighter -161 -164 under
-	fighter 161 -164 under
-	fighter -143 -13 under
-	fighter 143 -13 under
-	fighter -86 141 under
-	fighter 86 141 under
-	fighter 0 202.5 under
-	fighter 0 291 under
-	fighter 0 334	under
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Inferno"
+	turret "Korath Inferno"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Inferno"
+	turret "Korath Inferno"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Inferno"
+	turret "Korath Inferno"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Warder"
+	turret "Korath Warder"
+
+
+ship "Korath Haven" "Korath Haven (Thrower)"
+	outfits
+		"Korath Banisher" 6
+		"Korath Warder" 6
+		"Korath Grab-Strike" 8
+		"Korath Heaver" 2
+		
+		"Large Heat Shunt" 10
+		"Fuel Processor" 2
+		"Triple Plasma Core" 4
+
+		"Thruster (Stellar Class)" 2
+		"Steering (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Heaver"
+	turret "Korath Heaver"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Warder"
+	turret "Korath Warder"

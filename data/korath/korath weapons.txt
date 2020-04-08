@@ -609,7 +609,7 @@ outfit "Nova Device"
 	"mass" 2
 	"nova device capacity" -1
 	description "This torpedo contains an augmented Korath Plasma Core reactor element, with no protective casing. When it activates, there is a tremendous explosion that heats up all ships in the vicinity, interferes with their generators, and imparts a large hit force."
-	description "Though the warhead is a simple Korath design, the torpedo casing and drive systems are distinctly not Korath in style. This may be a device the Korath discovered or pillaged, and have learned to reproduce."
+	description "Though the warhead is a Korath design, the torpedo casing and drive systems are distinctly not Korath in style. This may be a device the Korath discovered or pillaged, and have learned to reproduce."
 
 outfit "Nova Device Rack"
 	plural "Nova Device Racks"
