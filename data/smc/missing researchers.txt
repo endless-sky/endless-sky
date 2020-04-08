@@ -1724,8 +1724,7 @@ mission "Hai Rescue [C06] Freedom"
 				goto questions
 			label place
 			`	"We understand you have heard most of the story from your spy. This place was founded over a hundred twenty years ago by anarchists from the colony of Freedom. They began kidnapping researchers and engineers, forcing them to devise new weapons or medicines. Our city also has manufacturing facilities where we created goods the pirates could not easily build in human space where their facilities are destroyed regularly.`
-			`	"There have been many attempts to take the city by force or by money. Several Alpha groups, the Syndicate, and various illegal organizations, have all tried. Some used chemical or biological weapons. Others sent ships. Many offered money or favors. Philosopher's Paradise has always been an independent country, and always will be.`
-			`	"Now that the pirates are gone, the civilians will rule without fear. As you have already destroyed the upper region of the city, we have little to fear from attack by space creatures. Soon we'll have our shipyards at full capacity, so we may defend ourselves.`
+			`	"Now that the pirates are gone, us civilians will rule ourselves without fear. As you have already destroyed the upper region of the city, we little to lose from attacks by space creatures. They may even ignore us. Soon we'll have our shipyards at full capacity, so we may defend ourselves.`
 			`	"Our research and manufacturing facilities are damaged now, but as repair them we will make them available to you.`
 			# (That refers to advanced ships and outfits available after quests.)
 				goto questions
