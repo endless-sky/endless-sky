@@ -1,0 +1,865 @@
+# Copyright (c) 2014-2016 by Michael Zahniser
+# Copyright (c) 2020 by Nomadic Volcano
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+
+ship "Korath Raider" "Korath Raider (Ember)"
+	sprite "ship/raider"
+	outfits
+		"Korath Grab-Strike" 4
+		"Korath Banisher"
+		"Korath Warder"
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
+		"Fuel Processor"
+		"Korath Repeater Rifle" 196
+		"Outfits Expansion"
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+		"Hyperdrive"
+
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Banisher"
+	turret "Korath Warder"
+
+ship "Korath Raider" "Korath Raider (Hyperdrive)"
+	sprite "ship/raider"
+	outfits
+		"Korath Grab-Strike" 4
+		"Korath Banisher"
+		"Korath Warder"
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
+		"Fuel Processor"
+		"Korath Repeater Rifle" 196
+		"Outfits Expansion"
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive (Broken)"
+		"Hyperdrive"
+
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Banisher"
+	turret "Korath Warder"
+
+ship "Korath Raider" "Korath Raider (Crippled)"
+	sprite "ship/raider"
+	outfits
+		"Korath Grab-Strike" 2
+		"Korath Banisher"
+		"Korath Warder"
+		
+		"Triple Plasma Core"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
+		"Korath Repeater Rifle" 196
+		"Outfits Expansion"
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive (Broken)"
+		"Hyperdrive"
+
+	turret
+	turret
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Banisher"
+	turret "Korath Warder"
+
+ship "Korath Chaser" "Korath Chaser (Expeller)"
+	outfits
+		"Korath Expeller"
+		
+		"Generator (Furnace Class)"
+		"Small Heat Shunt"
+		"Korath Repeater Rifle" 
+		
+		"Engines (Meteor Class)"
+
+ship "Korath Chaser" "Korath Chaser (Digger)"
+	outfits
+		"Korath Digger"
+		
+		"Generator (Furnace Class)"
+		"Small Heat Shunt"
+		"Korath Repeater Rifle" 
+		
+		"Thruster (Asteroid Class)"
+		"Steering (Asteroid Class)"
+ship "Korath World-Ship" "Korath World-Ship B"
+	sprite "ship/world-ship b"
+	thumbnail "thumbnail/world-ship b"
+	turret -76 -219 "Korath Grab-Strike"
+	turret 76 -219 "Korath Grab-Strike"
+	turret -75 -112 "Korath Banisher"
+	turret 75 -112 "Korath Banisher"
+	turret 0 -92 "Korath Warder"
+	turret -83 165 "Korath Warder"
+	turret 83 165 "Korath Warder"
+	turret 0 277 "Korath Banisher"
+
+ship "Korath World-Ship" "Korath World-Ship C"
+	sprite "ship/world-ship c"
+	thumbnail "thumbnail/world-ship c"
+	turret -45 -243 "Korath Warder"
+	turret 45 -243 "Korath Grab-Strike"
+	turret -47 -136 "Korath Grab-Strike"
+	turret 47 -136 "Korath Banisher"
+	turret -70 57 "Korath Warder"
+	turret 70 57 "Korath Banisher"
+	turret -91 290 "Korath Banisher"
+	turret 91 290 "Korath Warder"
+
+ship "Korath World-Ship" "Korath World-Ship A (Jump)"
+	outfits
+		"Korath Grab-Strike" 2
+		"Korath Banisher" 3
+		"Korath Warder" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Fuel Processor"
+		"Korath Repeater Rifle" 150
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+	
+	turret -76 -157 "Korath Grab-Strike"
+	turret 76 -157 "Korath Banisher"
+	turret -59 -135 "Korath Warder"
+	turret 59 -135 "Korath Grab-Strike"
+	turret -61 -6 "Korath Banisher"
+	turret 61 -6 "Korath Warder"
+	turret -66 210 "Korath Warder"
+	turret 66 210 "Korath Banisher"
+
+ship "Korath World-Ship" "Korath World-Ship B (Jump)"
+	sprite "ship/world-ship b"
+	outfits
+		"Korath Grab-Strike" 2
+		"Korath Banisher" 3
+		"Korath Warder" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Fuel Processor"
+		"Korath Repeater Rifle" 150
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+	
+	turret -76 -219 "Korath Grab-Strike"
+	turret 76 -219 "Korath Grab-Strike"
+	turret -75 -112 "Korath Banisher"
+	turret 75 -112 "Korath Banisher"
+	turret 0 -92 "Korath Warder"
+	turret -83 165 "Korath Warder"
+	turret 83 165 "Korath Warder"
+	turret 0 277 "Korath Banisher"
+
+ship "Korath World-Ship" "Korath World-Ship C (Jump)"
+	sprite "ship/world-ship c"
+	outfits
+		"Korath Grab-Strike" 2
+		"Korath Banisher" 3
+		"Korath Warder" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Fuel Processor"
+		"Korath Repeater Rifle" 150
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+	
+	turret -45 -247 "Korath Warder"
+	turret 45 -247 "Korath Grab-Strike"
+	turret -47 -140 "Korath Grab-Strike"
+	turret 47 -140 "Korath Banisher"
+	turret -70 53 "Korath Warder"
+	turret 70 53 "Korath Banisher"
+	turret -91 286 "Korath Banisher"
+	turret 91 286 "Korath Warder"
+
+ship "Korath World-Ship" "Korath World-Ship B (Ember)"
+	sprite "ship/world-ship b"
+	outfits
+		"Korath Grab-Strike" 2
+		"Korath Banisher" 3
+		"Korath Warder" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Fuel Processor"
+		"Korath Repeater Rifle" 150
+		"Outfits Expansion"
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+		"Hyperdrive"
+		
+	turret -76 -219 "Korath Grab-Strike"
+	turret 76 -219 "Korath Grab-Strike"
+	turret -75 -112 "Korath Banisher"
+	turret 75 -112 "Korath Banisher"
+	turret 0 -92 "Korath Warder"
+	turret -83 165 "Korath Warder"
+	turret 83 165 "Korath Warder"
+	turret 0 277 "Korath Banisher"
+
+ship "Korath World-Ship" "Korath World-Ship B (Crippled)"
+	sprite "ship/world-ship b"
+	outfits
+		"Korath Banisher" 3
+		"Korath Warder" 1
+		
+		"Triple Plasma Core"
+		"Large Heat Shunt" 2
+		"Korath Repeater Rifle" 150
+		"Outfits Expansion"
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive (Broken)"
+		"Hyperdrive"
+	
+	turret -76 -219
+	turret 76 -219
+	turret -75 -112 "Korath Banisher"
+	turret 75 -112 "Korath Banisher"
+	turret 0 -92 "Korath Warder"
+	turret -83 165
+	turret 83 165
+	turret 0 277 "Korath Banisher"
+
+ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
+	outfits
+		"Korath Piercer Launcher" 4
+		"Korath Piercer" 124
+		"Korath Repeater Turret" 6
+		"Korath Grab-Strike" 2
+		
+		"Triple Plasma Core"
+		"Plasma Core"
+		"Systems Core (Large)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 5
+		"Outfits Expansion"
+		"Control Transceiver"
+		
+		"Thruster (Planetary Class)"
+		"Thruster (Asteroid Class)"
+		"Steering (Stellar Class)"
+		Hyperdrive
+	
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+
+ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
+	outfits
+		"Korath Piercer Launcher" 4
+		"Korath Piercer" 140
+		"Korath Piercer Rack"
+		"Korath Warder" 3
+		"Korath Grab-Strike" 3
+		"Korath Banisher" 2
+		
+		"Triple Plasma Core"
+		"Plasma Core"
+		"Systems Core (Large)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 3
+		"Outfits Expansion"
+		"Control Transceiver"
+		
+		"Thruster (Stellar Class)"
+		"Steering (Planetary Class)"
+		Hyperdrive
+	
+	turret "Korath Warder"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Warder"
+	turret "Korath Warder"
+
+ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
+	outfits
+		"Korath Detainer" 2
+		"Korath Grab-Strike" 4
+		"Korath Banisher" 2
+		
+		"Triple Plasma Core"
+		"Double Plasma Core"
+		"Systems Core (Large)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 3
+		"Small Heat Shunt"
+		"Outfits Expansion" 4
+		"Control Transceiver"
+		
+		"Thruster (Planetary Class)"
+		"Steering (Stellar Class)"
+		Hyperdrive
+	
+	gun "Korath Detainer"
+	gun "Korath Detainer"
+	gun
+	gun
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret
+	turret
+
+ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
+	outfits
+		"Korath Detainer"
+		"Korath Repeater" 2
+		"Korath Repeater Turret" 3
+		"Korath Warder"
+		
+		"Double Plasma Core"
+		"Generator (Furnace Class)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
+		"Outfits Expansion"
+		"Control Transceiver"
+		
+		"Thruster (Lunar Class)"
+		"Steering (Lunar Class)"
+		"Hyperdrive"
+	
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Warder"
+	turret "Korath Repeater Turret"
+
+
+ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
+	outfits
+		"Korath Detainer"
+		"Korath Warder" 2
+		"Korath Repeater Turret" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 3
+		"Outfits Expansion"
+		"Control Transceiver"
+		
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		Hyperdrive
+	
+	turret "Korath Warder"
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Warder"
+
+ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
+	outfits
+		"Korath Detainer"
+		"Korath Piercer Launcher" 2
+		"Korath Piercer" 62
+		"Korath Grab-Strike"
+		"Korath Warder"
+		
+		"Double Plasma Core"
+		"Generator (Inferno Class)"
+		"Generator (Candle Class)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt"
+		"Control Transceiver"
+		
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		"Steering (Comet Class)"
+		"Hyperdrive"
+	
+	gun "Korath Detainer"
+	gun "Korath Piercer Launcher"
+	gun "Korath Piercer Launcher"
+	turret "Korath Grab-Strike"
+	turret "Korath Warder"
+	turret
+	turret
+	turret
+	turret
+
+ship "Korath Ravager" "Korath Ravager (Double Inferno)"
+	outfits
+		"Korath Inferno" 2
+		"Korath Warder" 2
+		"Korath Digger Turret" 6
+
+		"Systems Core (Large)"
+		"Triple Plasma Core"
+		"Double Plasma Core"
+		"Small Heat Shunt" 2
+		"Large Heat Shunt" 3
+		"Fuel Processor"
+		"Korath Repeater Rifle" 338
+		
+		"Steering (Planetary Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Inferno"
+	turret "Korath Inferno"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+
+
+ship "Korath Ravager" "Korath Ravager (Grab-Strike Digger)"
+	outfits
+		"Korath Grab-Strike" 4
+		"Korath Warder" 2
+		"Korath Digger Turret" 4
+
+		"Fuel Processor"
+		"Large Heat Shunt" 3
+		"Systems Core (Large)"
+		"Triple Plasma Core"
+		"Plasma Core"
+		"Korath Repeater Rifle" 338
+		
+		"Steering (Lunar Class)"
+		"Steering (Planetary Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	
+ship "Korath Ravager" "Korath Ravager (Nova Heaver)"
+	outfits
+		"Korath Heaver" 2
+		"Korath Warder" 2
+		"Nova Turret"
+		"Nova Device Rack" 2
+		"Nova Device" 32
+		"Korath Digger Turret" 5
+		
+		"Systems Core (Large)"
+		"Triple Plasma Core"
+		"Large Heat Shunt" 2
+		"Fuel Processor" 3
+		"Korath Repeater Rifle" 338
+		
+		"Steering (Stellar Class)"
+		"Thruster (Stellar Class)"
+		"Jump Drive"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Nova Turret"
+	turret "Korath Heaver"
+	turret "Korath Heaver"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+
+ship "Korath Ravager" "Korath Ravager (Double Nova)"
+	outfits
+		"Korath Digger Turret" 6
+		"Korath Warder" 2
+		"Nova Turret" 2
+		"Nova Device Rack" 5
+		"Nova Device" 72
+		
+		"Outfits Expansion"
+		"Systems Core (Large)"
+		"Plasma Core"
+		"Triple Plasma Core"
+		"Small Heat Shunt" 3
+		"Large Heat Shunt" 2
+		"Fuel Processor"
+		"Korath Repeater Rifle" 338
+		
+		"Thruster (Planetary Class)"
+		"Steering (Comet Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Nova Turret"
+	turret "Nova Turret"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+
+ship "Korath Ravager" "Korath Ravager (Eight Diggers)"
+	outfits
+		"Korath Digger Turret" 8
+		"Korath Warder" 2
+		
+		"Systems Core (Large)"
+		"Systems Core (Small)"
+		"Double Plasma Core"
+		"Triple Plasma Core"
+		"Large Heat Shunt" 3
+		"Fuel Processor"
+		"Korath Repeater Rifle" 338
+		
+		"Thruster (Stellar Class)"
+		"Steering (Stellar Class)"
+		"Jump Drive"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+
+# Low-tech Ravager
+ship "Korath Ravager" "Korath Ravager (Grab-Strike Banisher)"
+	outfits
+		"Korath Grab-Strike" 4
+		"Korath Warder" 3
+		"Korath Banisher" 3
+
+		"Fuel Processor"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
+		"Systems Core (Medium)"
+		"Triple Plasma Core"
+		"Plasma Core"
+		"Korath Repeater Rifle" 338
+		
+		"Steering (Planetary Class)"
+		"Steering (Comet Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Warder"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Warder"
+	turret "Korath Warder"
+
+# Low-tech Ravager with no shields nor ramscoop. Very fast.
+ship "Korath Ravager" "Korath Ravager (Crippled Fast)"
+	outfits
+		"Korath Grab-Strike" 4
+		"Korath Warder" 3
+		"Korath Banisher" 3
+
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
+		"Triple Plasma Core"
+		"Generator (Furnace Class)"
+		"Korath Repeater Rifle" 338
+		
+		"Engines (Meteor Class)"
+		"Steering (Asteroid Class)"
+		"Steering (Planetary Class)"
+		"Thruster (Stellar Class)"
+		"Jump Drive (Broken)"
+		"Hyperdrive"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Warder"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Warder"
+	turret "Korath Warder"
+
+# Low-tech Ravager with no shields nor ramscoop, extra banisher
+ship "Korath Ravager" "Korath Ravager (Crippled Banishing)"
+	outfits
+		"Korath Grab-Strike" 3
+		"Korath Warder" 3
+		"Korath Banisher" 4
+
+		"Cargo Expansion" 3
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
+		"Triple Plasma Core"
+		"Generator (Inferno Class)"
+		"Korath Repeater Rifle" 338
+		
+		"Steering (Planetary Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive (Broken)"
+		"Hyperdrive"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Warder"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+
+# Dredger equipped for solo travel as a miner:
+ship "Korath Dredger" "Korath Dredger (Fast Inferno)"
+	outfits
+		"Korath Warder" 2
+		"Korath Inferno" 2
+		"Korath Digger Turret" 3
+		
+		"Large Heat Shunt" 3
+		"Systems Core (Medium)"
+		"Plasma Core"
+		"Triple Plasma Core"
+		"Korath Repeater Rifle" 190
+
+		"Engines (Meteor Class)" 2
+		"Steering (Planetary Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+
+	turret -37 -155 "Korath Digger Turret"
+	turret 0 -155 "Korath Digger Turret"
+	turret 37 -155 "Korath Digger Turret"
+	turret -96 0 "Korath Warder"
+	turret 96 0 "Korath Warder"
+	turret -80 130 "Korath Inferno"
+	turret 80 130 "Korath Inferno"
+
+ship "Korath Refabricator" "Korath Refabricator (Grab-Strike)"
+	outfits
+		"Korath Warder" 4
+		"Korath Digger Turret" 2
+		"Korath Grab-Strike" 4
+		"Korath Inferno" 3
+
+		"Large Heat Shunt" 7
+		"Small Heat Shunt" 2
+		"Triple Plasma Core" 3
+		"Korath Repeater Rifle"  2600
+
+		"Engines (Meteor Class)" 2
+		"Steering (Stellar Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+	turret -82 -202 "Korath Grab-Strike"
+	turret 82 -202 "Korath Grab-Strike"
+	turret -154 -122 "Korath Warder"
+	turret 154 -122 "Korath Warder"
+	turret 0 -114 "Korath Inferno"
+	turret -140 -23 "Korath Digger Turret"
+	turret 140 -23 "Korath Digger Turret"
+	turret 0 18.5 "Korath Inferno"
+	turret -189 119 "Korath Warder"
+	turret 189 119 "Korath Warder"
+	turret 0 180 "Korath Inferno"
+	turret -173 248 "Korath Grab-Strike"
+	turret 173 248 "Korath Grab-Strike"
+
+
+ship "Korath Refabricator" "Korath Refabricator (Six Infernos)"
+	outfits
+		"Korath Warder" 5
+		"Korath Inferno" 6
+
+		"Large Heat Shunt" 10
+		"Triple Plasma Core" 3
+		"Korath Repeater Rifle"  2600
+
+		"Steering (Stellar Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+	turret -82 -202 "Korath Inferno"
+	turret 82 -202 "Korath Inferno"
+	turret -154 -122 "Korath Warder"
+	turret 154 -122 "Korath Warder"
+	turret 0 -114
+	turret -140 -23 "Korath Inferno"
+	turret 140 -23 "Korath Inferno"
+	turret 0 18.5
+	turret -189 119 "Korath Warder"
+	turret 189 119 "Korath Warder"
+	turret 0 180 "Korath Warder"
+	turret -173 248 "Korath Inferno"
+	turret 173 248 "Korath Inferno"
+
+ship "Korath Haven" "Korath Haven (Kingslayer)"
+	outfits
+		"Korath Digger Turret" 6
+		"Korath Inferno" 6
+		"Korath Warder" 6
+		"Korath Grab-Strike" 4
+		
+		"Large Heat Shunt" 11
+		"Triple Plasma Core" 4
+
+		"Thruster (Stellar Class)" 2
+		"Steering (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Inferno"
+	turret "Korath Inferno"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Inferno"
+	turret "Korath Inferno"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Inferno"
+	turret "Korath Inferno"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Warder"
+	turret "Korath Warder"
+
+
+ship "Korath Haven" "Korath Haven (Thrower)"
+	outfits
+		"Korath Banisher" 6
+		"Korath Warder" 6
+		"Korath Grab-Strike" 8
+		"Korath Heaver" 2
+		
+		"Large Heat Shunt" 10
+		"Fuel Processor" 2
+		"Triple Plasma Core" 4
+
+		"Thruster (Stellar Class)" 2
+		"Steering (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Heaver"
+	turret "Korath Heaver"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Warder"
+	turret "Korath Warder"
+
+
+ship "Korath Haven" "Korath Haven (Sciuridaeavore)"
+	outfits
+		"Korath Banisher" 6
+		"Korath Warder" 8
+		"Korath Heaver" 4
+		"Korath Inferno" 4
+		
+		"Large Heat Shunt" 10
+		"Fuel Processor" 3
+		"Triple Plasma Core" 4
+
+		"Thruster (Stellar Class)"
+		"Thruster (Lunar Class)"
+		"Steering (Stellar Class)" 2
+		"Steering (Asteroid Class)"
+		"Jump Drive"
+	turret "Korath Inferno"
+	turret "Korath Inferno"
+	turret "Korath Inferno"
+	turret "Korath Inferno"
+	turret "Korath Heaver"
+	turret "Korath Heaver"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Heaver"
+	turret "Korath Heaver"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Warder"
+	turret "Korath Warder"
