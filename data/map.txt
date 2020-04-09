@@ -14809,12 +14809,12 @@ system Lire
 		period 1349.04
 		object
 			sprite planet/miranda-b
-			distance 178
-			period 12.5005
+			distance 300
+			period 27
 		object
 			sprite planet/rock3
-			distance 300
-			period 27.3514
+			distance 425
+			period 36
 
 system Lolami
 	pos -628 -10
@@ -17709,8 +17709,8 @@ system Paeli
 		period 10
 	object
 		sprite planet/desert4-b
-		distance 220.64
-		period 63.5217
+		distance 275
+		period 64
 	object
 		sprite planet/cloud3
 		distance 746.89
@@ -18153,16 +18153,16 @@ system Perfica
 		period 10
 	object
 		sprite planet/ice5
-		distance 227.29
-		period 41.7079
+		distance 351
+		period 94
 	object
 		sprite planet/dust6-b
-		distance 446.3
-		period 114.759
+		distance 652
+		period 174
 	object
 		sprite planet/cloud6-b
-		distance 826.99
-		period 289.467
+		distance 962
+		period 348
 	object
 		sprite planet/desert4-b
 		distance 1757.75
@@ -20984,8 +20984,8 @@ system Segesta
 		period 1024.27
 		object
 			sprite planet/tethys-b
-			distance 194
-			period 16.3726
+			distance 300
+			period 27
 	object "Ember Wormhole"
 		sprite planet/wormhole-red
 		distance 2749.5
