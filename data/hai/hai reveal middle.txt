@@ -41,7 +41,7 @@ mission "Hai Rescue [A02] Nanotransceiver Identification"
 		log "People" "Teeneep Goot'r" `Teeneep is a civil rights leader among the Hai who heads an organization with hundreds of employees and many sponsors. She's used her extensive resources to search for answers about kidnapped scientists.`
 		log `Hai you have rescued are among many that have gone missing over the past few decades, along with humans as well. They all have nanotransceivers that are not of human or Hai origin. Teeneep, a Hai civil rights leader, used her network of information-gatherers to find contacts to help you research the problem in human space and beyond. Your search begins with the Quarg south of Hai space.`
 		conversation
-			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; you notice it has non-standard outfits. You can see the emission components of a Scram drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The ship is outfitted to fly rapidly through unfriendly territory without stopping.`
+			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; you notice it has non-standard outfits. You can see the emission components of a Scram drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The steering is Hai, but the thrusters are human. The ship is outfitted to fly rapidly through unfriendly territory without stopping.`
 			choice
 				`	(Walk into the cave.)`
 				`	(Come back later.)`
@@ -89,7 +89,7 @@ mission "Hai Rescue [A02] Nanotransceiver Identification"
 				goto questions
 			label patterns
 			`	Teeneep explains, "I head a large civil rights activist organization; we have some resources of our own. We've combed police records for the past few decades and noticed patterns in disappearances."`
-			`	"There are violent crimes and kidnappings in Hai space, though not nearly as frequently as in human space. Murder, assault, estranged parents kidnapping their children, all of that happens here. Many of those crimes are solved: the victim is found dead or alive. Some of them are not solved."`
+			`	"There are violent crimes and kidnappings in Hai space, though much less frequently than in human space. Murder, assault, estranged parents kidnapping their children, all of that happens here. Many of those crimes are solved: the victim is found dead or alive. Some of them are not solved."`
 			`	"A disproportionate number are from the intelligentsia: doctors, scientists, engineers, architects. In particular, they are gifted researchers in their field, but not prominent enough for the field to be crippled by their absence."`
 			`	"The same is happening in human space. In research institutions, people are occasionally disappearing. The patterns are exactly the same."`
 			`	"We believe someone is collecting researchers."`
@@ -99,13 +99,13 @@ mission "Hai Rescue [A02] Nanotransceiver Identification"
 			`	"From the rate at which the disappearances have happened, possibly as many as five thousand Hai have vanished this way. The number may be less; some of those cases may be undiscovered murders, secret changes of identity, or defections to the Unfettered. Maybe five times that number of humans."`
 				goto questions
 			label know
-			`	Teeneep explains, "My civil rights organization has contacts with sympathetic individuals and organizations throughout Hai space. We have enough funding to hire a few hundred full-time employees of our own. Most of them are lawyers, social workers, or administrative employees. A few are investigative journalists or various types of researchers."`
+			`	Teeneep explains, "The civil rights organization I lead has contacts with sympathetic individuals and organizations throughout Hai space. We have enough funding to hire a few hundred full-time employees of our own. Most of them are lawyers, social workers, or administrative employees. A few are investigative journalists or various types of researchers."`
 			`	"We've spent the last two years researching this problem, but it helped a lot to meet the people who have been rescued."`
 				goto questions
 			label anyone
-			`	A Hai near Teeneep responds. "Yes... and no. Apart from our own people, we're regularly in contact with police. They investigate the disappearances, but eventually they have to give up and work on other crimes."`
+			`	A Hai near Teeneep responds. "Yes... and no. Apart from our own people, we're regularly in contact with police. They investigate the disappearances, and sometimes find the missing person. Other times, they eventually have to give up and work on other crimes."`
 			`	"Our biggest problem is the lack of help in human space. Local police are generally overwhelmed with crime in the regions where the kidnapping victims are found. There, kidnappings are commonplace. In the areas where the victims were taken, there's virtually no evidence. Your navies and intelligence agencies haven't the time to help us; they're busy cleaning up after the war. There is a lot of unfinished business in Syndicate space they don't want to talk about."`
-			`	"Since this problem is tiny compared to the total crime in Hai space, the Hai Elders haven't made it a large priority. They tell me that, if we can prove the kidnappings are from a coordinated effort, they'll put significant resources into solving the problem. So far, they say, their investigators have been unable to prove that."`
+			`	"Since this problem is tiny compared to the total crime in Hai space, the Hai Elders haven't made it a large priority. They tell me that, if we can prove the kidnappings are from a coordinated effort, they'll put all the resources they can spare into stopping the crime. So far, they say, their investigators have been unable to discover anything."`
 			`	"What we need is a skilled pilot with a jump drive to visit some locations we cannot easily access."`
 				goto questions
 			label help precious opinions  
@@ -131,7 +131,7 @@ mission "ZZ Hai Rescue [A03] Nanotransceiver Identification"
 		conversation
 			`After you land, a hovering gray platform lowers to the entrance of your ship. You step on, and it raises you to a higher level of the ringworld where many Quarg and a few Korath are present. You find the first Quarg who will talk to you and show it the vial of nanotransceivers.`
 			`	The Quarg makes a series of wheezing sounds which approximate a laugh. "I am merely a pilot. I know nothing of nanotransceivers. That is the technology of the Korath, and I will take you to one who is knowledgeable."`
-			`	You pass through another two grey platform transports and reach a warm cave-like structure with a group of Korath and Quarg. From the holograms and equipment, it appears they're discussing science, in what appears to be a classroom with Quarg as the teachers.`
+			`	You pass through another two grey platform transports and reach a warm cave-like structure with a group of Korath and Quarg. From the holograms and equipment, it appears they're discussing science. One hologram looks like a blood cells attached to a tiny machine; this may be a nanoscale medicine laboratory.`
 			`	The Quarg and Korath discuss your nanotransceivers for a few minutes, placing them in various instruments.`
 			`	Finally you have your answer. A Quarg scientist tells you, "These are Korath in origin, but makeshift and primitive. Even the Korath Exiles are more advanced. Those who made these have little resources and simple machinery. This will tell you how to detect these nanotransceivers," it hands you a standard data card compatible with human computers.`
 			`	"Take this to Tarazed Shipyards."`
@@ -272,7 +272,7 @@ mission "Hai Rescue [A05] Boarded Smuggler"
 		government "Smuggler (Hai Trafficker)"
 	on offer
 		conversation
-			`As you approach the airlock of the smuggler ship <origin>, the door opens and a Hai rushes through pointing a gun back towards a human in the ship. The human and Hai shoot at the same time, killing each other. In his death throes, the Hai manages to toss a keycard in your direction. It is damaged beyond usefulness, but you can see a pair of logos on it. One looks similar to the Syndicate logo and the other looks demonic.`
+			`As you approach the airlock of the smuggler ship <origin>, the door opens and a Hai rushes through pointing a gun back towards a human in the ship. The human and Hai shoot at the same time, killing each other. In his death throes, the Hai manages to toss a keycard in your direction. It is damaged beyond usefulness, but you can see a pair of logos on it. One looks like an angry cat in a circle and the other looks demonic.`
 			`	Soon after, you hear explosions in the ship and see an escape pod float away. It seems the smugglers set the self-destruct and signaled for help. The pod has no nanotransceiver transmissions, so it must be one of the smugglers. Apparently the smugglers care more about not being caught than about finishing their mission.`
 			`	Now it's time to set a course for <destination> where you can finally get some answers.`
 			`	Multiple hyperspace windows begin to form. You prepare for battle.`
@@ -343,9 +343,9 @@ mission "Hai Rescue [A07] Logo Identification"
 		dialog `It takes your computer a few seconds to triangulate, but it says you've left the Milky Way galaxy and are now in intergalactic space. Your computer is identifying the system name as, "Deep Space 7C" from old astronomical surveys done in the late 21st century. This is definitely a good place to hide. You should return to Giti now and see what more she's found out.`
 	on offer
 		log "People" "Giti Gilani" `Giti is a research librarian on Earth that specializes in archaic space flight knowledge.`
-		log "Factions" "Aggressive Research Division" `A defunct division of the Syndicate that stole alien technology and kidnapped human researchers about a half century ago. Syndicate Internal Affairs hunted and killed all of them except the leader.`
+		log "Factions" "Base Principles" `A clandestine organisation that existed within the Syndicate that was founded upon anarcho-syndicalist ideals. Its ranks eventually became bloated by enthusiastic recruits from Freedom that were keen to get rich on top of their freedeom, and that were more anarchist than anarcho-syndicalist. The resulting tensions undermined the group and Syndicate Internal Affairs scoured them from the organisation.`
 		log "Factions" "Syndicate Internal Affairs" `An internal police force within the Syndicate that enforces the Syndicate's laws.`
-		log "Giti identified the Syndicate-like symbol. It is from a long-defunct division of the Syndicate, Aggressive Research Division. Somehow they obtained alien technology, and then started kidnapping researchers from other companies. A half-century ago, Syndicate Internal Affairs hunted and killed all of that division except their leader."
+		log "Giti identified the angry cat symbol. It is from a long-defunct subversive group within the Syndicate called Base Principles. Somehow they obtained alien technology, and used the knowledge gained from it to advance their influence within the organisation. A half-century ago, Syndicate Internal Affairs scoured them from the Syndicate's ranks in an extremely thorough and prejudiced inquisition."
 		conversation
 			`After landing, you search for the "Republic Historical Space-Flight Museum," and find there are seventeen museums by that name on Earth.  Only one has a research library, so you contact the library. Giti Gilani no longer works there; she's moved to a library in the Navy Intelligence Observatory in Moscow.`
 			`	The Navy observatory was easier to find; when they hear your name, they put you in contact with Giti immediately. She is excited to see the two symbols you found and asks you to visit her. It takes three shuttle journeys and one high-speed rail trip, but you reach the building in under three hours.`
@@ -353,14 +353,15 @@ mission "Hai Rescue [A07] Logo Identification"
 				`	(Enter the building.)`
 			`	You're ushered to an elevator and given a room number: 3017A19, the 301st floor, section 7A, room 19. It's amazing how large Earth's megabuildings have become. Some planets have lower population than one of these buildings.`
 			`	Giti is even more excited in-person than she was by holocommunicator. She's already researched the Syndicate-like symbol, but needed more detail about the demonic one. You also show her the information about the nanotransceivers.`
-			`	"This Syndicate symbol was used by an illicit organization that worked within the Syndicate over a half-century ago. They called themselves the 'Aggressive Research Division.' Supposedly they flew into deep space and captured alien equipment, but nobody knows where they got it. Eventually they went too far; they kidnapped researchers from other institutes and enslaved them in the Syndicate."`
-			`	"Syndicate Internal Affairs put a stop to the organization, but it was a bloody battle. Most of the leaders were killed in battle or executed after capture. The most ruthless, their leader, managed to escape, but nobody knows where."`
+			`	"This cat symbol was used by a clandestine organization that worked within the Syndicate over a half-century ago. They called themselves 'Base Principles.' They were anarcho-syndicalists infiltrating the Syndicate from within, supposedly advancing their positions through research findings gleaned from captured alien equipment, but nobody knows where they got it. The organisation was eventually torn in two by a collection of regular anarchists and other unsavoury characters looking to profit off the backdoor access to the Syndicate; this group kidnapped researchers from other institutes to expand their capabilities."`
+			`	"These others didn't cover their tracks well enough, the trail led back to the syndicalists that started it all in the first place, and Syndicate Internal Affairs put a stop to the organization with extreme prejudice. Most of the anarchist leaders were killed in battle or executed after capture, the internal players simply... disappeared."`
+			`	"Officially the Sydnicate maintains that they wiped Base Principles out to the last individual, but evidence never did prove it had been conclusively terminated."`
 			`	"For the demonic symbol, we'll have to go to another library in room 4196A21."`
 			choice
 				`	(Take the elevator to the 419th floor.)`
 			`	When you arrive, Giti tells you, "This is a religious materials archive. Give me a minute here..." Her voice trails off as she starts typing on a terminal. She walks back and forth between several bookshelves skimming books for a few minutes.`
-			`	"I found it," she says. "You found a modified version of the Symbol of Baphomet, the official symbol of an older incarnation of the Church of Satan. They were one of the first organizations to fund large-scale settlements on Freedom. The letters around the pentagram have been replaced with galactic coordinates using an archaic notation." She smiles at you, "I wrote my Ph.D. thesis about that notation! Now I finally need that information for something other than getting a degree!"`
-			`	"The circle around the symbol looks almost like a wormhole. A red wormhole. I heard about one in Termanus near The Deep. Apparently nobody is able to enter one without their ship being torn to pieces. This symbol suggests there's another one in the middle of Syndicate space."`
+			`	"I found it," she says. "You found a modified version of the Symbol of Baphomet, the official symbol of an older incarnation of the Church of Satan. They were one of the first organizations to fund large-scale settlements on Freedom, though the symbol was ultimately co-opted by miscreants. The letters around the pentagram have been replaced with galactic coordinates using an archaic notation." She smiles at you, "I wrote my Ph.D. thesis about that notation! Now I finally need that information for something other than getting a degree!"`
+			`	"The circle around the symbol looks almost like a wormhole. A red wormhole. I heard about one in Terminus near The Deep. Apparently nobody is able to enter one without their ship being torn to pieces. This symbol suggests there's another one in the middle of Syndicate space."`
 			`	"Fly through the wormhole at the coordinates on that card, if you can, come back and tell me what you see. In the meantime, I'll ask other researchers about the nanotransceivers."`
 			choice
 				`	(Thank her and return to your ship.)`
@@ -431,7 +432,7 @@ mission "Hai Rescue [A09] Slaver Ships"
 		conversation
 			`The Earth authorities give you an unusual landing vector that leads to a secret docking bay below ground in Argentina. You land and a Navy cadet meets you at your ship with an urgent message, "Republic Intelligence and a Navy Marshal want to see you as soon as possible. They have news about your nanotransceiver transmissions. Please follow me."`
 			`	Giti adds, "I'll take the scanners and data to some researchers and let you know when I have more information. Please go with the cadet. It sounds like you'll finally get some answers."`
-			`	The cadet takes you to an elevator just outside your ship, down more than three hundred floors to a large meeting room. Within, you see two men and a woman in formal dress. One man has a Republic Intelligence uniform with the name, Agent Kopkow. Another wears a navy full dress uniform that you don't immediately recognize. After a moment of thought, you realize he is Marshal, the second-highest rank in the Navy. His uniform is is labeled, Adurath Kaine. The woman is a Navy captain wearing the prominent Parliamentary Medal of Valor. Her name label says, "Captain Anna Wallace."`
+			`	The cadet takes you to an elevator just outside your ship, down more than three hundred floors to a large meeting room. Within, you see two men and a woman in formal dress. One man has a Republic Intelligence uniform with the name, Agent Kopkow. Another wears a navy full dress uniform that you don't immediately recognize. After a moment of thought, you realize he is Marshal, the second-highest rank in the Navy, answering only to the Grand Marshal. His uniform is is labeled, Adurath Kaine. The woman is a Navy captain wearing the prominent Parliamentary Medal of Valor. Her name label says, "Captain Anna Wallace."`
 			choice
 				`	(Speak to the agent and marshal.)`
 					goto join
@@ -451,7 +452,7 @@ mission "Hai Rescue [A09] Slaver Ships"
 			choice
 				`	(Return to your ship.)`
 			`	Along the way, Captain Wallace tells you stories of Navy heroism and brutality towards slaver vessels. Apparently many officers like her disagree with the Navy's policy. They want to rescue slaves whenever possible, regardless of risk or orders.`
-			`	She was awarded for personally leading a charge deep into pirate space to rescue a group of over a hundred high-school students that were captured on a field trip to Shroud. That led to her court marshal and conviction for disobeying a direct order. She was pardoned by the Prime Minister upon receiving the Parliamentary Award for Valor.`
+			`	She was awarded for personally leading a charge deep into pirate space to rescue a group of over a hundred high-school students that were captured on a field trip to Shroud. That led to her court-martial and conviction for disobeying a direct order. She was pardoned by the Prime Minister upon receiving the Parliamentary Award for Valor.`
 			`	When you reach your ship, she hands you a business card, "Please have the Hai victims talk to this man. He's part of Syndicate Internal Affairs and may be able to help. He and I... share common goals."`
 				accept
 	on complete

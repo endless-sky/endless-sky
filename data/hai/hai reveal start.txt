@@ -29,7 +29,7 @@ mission "Hai Rescue: Yeertle Family"
 	on offer
 		"Hai Rescue: Yeertle Family (offer count)" ++
 		conversation
-			`You look ahead a few dozen meters and you see a short man with a strange necklace. As he walks past a power transfer unit, the man shimmers and you see faintly-visible, squirrel-like, features. It seems the necklace is a projector of a human hologram conceiling a Hai. He is sticking to the shadows, trying to avoid being seen.`
+			`You look ahead a few dozen meters and you see a short man with a strange necklace. As he walks past a power transfer unit, the man shimmers and you see faintly-visible, squirrel-like, features. It seems the necklace is a projector of a human hologram concealing a Hai. He is sticking to the shadows, trying to avoid being seen.`
 			`	Do you want to talk to him?`
 			choice
 				`	(Talk to him.)`
@@ -65,7 +65,7 @@ mission "Hai Rescue: Yeertle Family"
 			`	You walk down a corridor to a stairway that leads to a brick wall. Duniip walks through the wall; apparently this is another of his holograms. You pass through and see a triad of energetic Hai children eating dinner with their mother.`
 			`	Duniip turns off his hologram and addresses his family, "I found us a pilot! He's going to take us all the way home." This was followed by four cheering family members and one baby's gurgle.`
 			`	The family was already packed to leave. Duniip explains they move regularly so they're not found. It takes them under two minutes to finish preparations and don their holoprojectors.`
-			`	Your walk back to the ship is largely uneventful until some men with strange scanners detect the Yeertle family. One man throws a small grenade with a green light on top. You recognize it as a low-level EMP device. All five holograms turn off, along with all of the computers within 20 meters. Fortunately, your ship is outside that range.`
+			`	Your walk back to the ship is largely uneventful until some men with strange scanners detect the Yeertle family. One man throws a small grenade with a green light on top. You recognize it as a low-level EMP device. All five holograms turn off, along with all computers within twenty meters. Fortunately, your ship is outside that range.`
 			`	The six of you run to your ship as quickly as possible. You look back and see the men were not following you; they were running to their own ships.`
 				launch
 	on complete
@@ -172,7 +172,7 @@ mission "Hai Rescue: Ooonem"
 			choice
 				`	"I was wondering why a Hai is on a pirate planet."`
 					goto hai
-				`	"Not one of who?"`
+				`	"Not one of whom?"`
 					goto who
 				`	"Sorry to bother you. I'll leave you to your business."`
 					goto decline
@@ -183,7 +183,7 @@ mission "Hai Rescue: Ooonem"
 			`	"There are some men looking for me. I've managed to escape them so far; they're not as quick as a Hai. I think they're friends of the merchant who locked me up."`
 				goto "more questions"
 			label pay
-			`	"I don't know. I have no money but my family on <planet> can pay."`
+			`	"I have no money but my family on <planet> can pay."`
 				goto "more questions"
 			label "more questions"
 			`	Can you take me back to <destination>? My family can pay for my return.`
@@ -204,7 +204,7 @@ mission "Hai Rescue: Ooonem"
 					decline
 			`	"Okay. I guess I should have introduced myself... it's easy to forget social niceties in a place like this. My name is Ooonem, and I'm a researcher from <planet>. Thank you for agreeing to take me home."`
 			`	You notice several men nearby looking intently at Ooonem. The two of you run towards your ship and make it to cover before the men start shooting. Ooonem pulls a grenade out of her cloak and throws it at the men. Gas explodes outward and the men drop dead in seconds.`
-			`	"I had better leave these behind," she says, dropping a few gas grenades on the ground. "I took them off of the pirates a few days ago. They're quite illegal." You notice a label on the grenades "tabun gas: 20 meter radius." This was a nerve gas grenade, using one of the older varieties of the gas. Cheap and plentiful in pirate space.`
+			`	"I had better leave these behind," she says, dropping a few gas grenades on the ground. "I took them off of the pirates a few days ago. They're quite illegal." You notice a label on the grenades "tabun gas: twenty-meter radius." This was a nerve gas grenade, using one of the older varieties of the gas. Cheap and plentiful in pirate space.`
 			`	You run into your ship and immediately take off.`
 				launch
 			label decline
@@ -311,7 +311,7 @@ mission "Hai Rescue: Gipeep"
 				`	(Examine the crate.)`
 				`	(Leave.)`
 					decline
-			`	The key has a symbol you don't recognize, but it looks similar to the Syndicate logo. As you get closer, the ordinary-looking crate starts seeming a little strange. It appears to be well-insulated against sound and temperature, but has concealed breathing holes. You can still hear loud thumping.`
+			`	The key has a symbol you don't recognize, but it looks like an angry cat in a circle. As you get closer, the ordinary-looking crate starts seeming a little strange. It appears to be well-insulated against sound and temperature, but has concealed breathing holes. You can still hear loud thumping.`
 			`	Do you want to try opening the crate?`
 			choice
 				`	(Open the crate.)`
