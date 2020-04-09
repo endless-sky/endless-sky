@@ -218,6 +218,10 @@ government "Ka'het"
 		"Wanderer" -.01
 	
 	"player reputation" -1
+	"friendly hail" "friendly ka'het"
+	"friendly disabled hail" "friendly disabled ka'het"
+	"hostile hail" "hostile ka'het"
+	"hostile disabled hail" "hostile disabled ka'het"
 
 government " Ka'het "
 	"display name" "Ka'het"
@@ -239,6 +243,10 @@ government " Ka'het "
 		"Wanderer" -.01
 	
 	"player reputation" -1
+	"friendly hail" "friendly ka'het"
+	"friendly disabled hail" "friendly disabled ka'het"
+	"hostile hail" "hostile ka'het"
+	"hostile disabled hail" "hostile disabled ka'het"
 
 government "Korath"
 	swizzle 0
