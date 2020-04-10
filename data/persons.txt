@@ -779,3 +779,84 @@ person "Subsidurial"
 	system
 		neighbor government "Uninhabited" "Wanderer" "Remnant"
 
+
+person "Zitchas"
+	government "Remnant"
+	frequency 100
+	personality
+		unconstrained
+	ship "Condor"
+		sprite "ship/condor"
+		thumbnail "thumbnail/condor"
+		attributes
+			category "Transport"
+			licenses
+				"Remnant Capital"
+			"cost" 15375000
+			"shields" 50000
+			"hull" 75500
+			"required crew" 25
+			"bunks" 250
+			"mass" 590
+			"drag" 7
+			"heat dissipation" .80
+			"fuel capacity" 1500
+			"ramscoop" 3
+			"cargo space" 83
+			"outfit space" 701
+			"weapon capacity" 256
+			"engine capacity" 200
+			"shield generation" 3.1
+			"shield energy" 1.8
+			"hull repair rate" 2
+			"hull energy" 0.75
+			"outfit scan power" 12
+			"outfit scan speed" 1
+			"tactical scan power" 26
+			weapon
+				"blast radius" 140
+				"shield damage" 1400
+				"hull damage" 700
+				"hit force" 2100
+		outfits
+			"Remnant Flak Turret" 3
+			"Point Defense Turret" 1
+
+			"Aeon Cell"
+			"Epoch Cell"
+			"Crystal Capacitor"
+			"Thermoelectric Cooler" 2
+			"Small Heat Shunt" 2
+			"Boarding Claws" 9
+			"Quantum Key Stone"
+
+			"Smelter-Class Thruster"
+			"Smelter-Class Steering"
+			"Jump Drive"
+			
+		engine -43.5 156
+		engine -24 149
+		engine 0 175
+		engine 24 149
+		engine 43.5 156
+		gun -13.5 -173
+		gun 0 -150.5
+		gun 13.5 -173
+		turret 0 -35
+		turret -5.5 29
+		turret 5.5 29
+		turret 0 120
+		drone -17 5
+		drone 17 5
+		drone -44.5 -16.5
+		drone 44.5 -16.5
+		drone -67 7.5
+		drone 67 7.5
+		drone -22.5 65
+		drone 22.5 65
+		explode "small explosion" 10
+		explode "medium explosion" 30
+		explode "large explosion" 20
+		explode "huge explosion" 5
+		"final explode" "final explosion large"
+		description `The Condor is the Remnant's combat transport, and was  built to serve two purposes. The first is to carry soldiers and salage crew for boarding operations against the Korath. The second is to carry as many people as possible during evacuations under fire from Alphas, Korath, or other unknown threats. As a result of these mandates, the Condor is built to be tough, fast, and fit as many people as possible. Given its importance in keeping the Remnant safe during evactuations, it often carries a small squad of terns to cover its retreat and distract enemies from that which the Remnant value far more than material wealth.`

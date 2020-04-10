@@ -1015,8 +1015,8 @@ ship "Condor"
 		"mass" 590
 		"drag" 7
 		"heat dissipation" .80
-		"fuel capacity" 900
-		"ramscoop" 2
+		"fuel capacity" 1500
+		"ramscoop" 3
 		"cargo space" 83
 		"outfit space" 701
 		"weapon capacity" 256
@@ -1061,14 +1061,14 @@ ship "Condor"
 	turret -5.5 29
 	turret 5.5 29
 	turret 0 120
-	drone -17 5
-	drone 17 5
-	drone -44.5 -16.5
-	drone 44.5 -16.5
-	drone -67 7.5
-	drone 67 7.5
-	drone -22.5 65
-	drone 22.5 65
+	drone -17 5 over
+	drone 17 5 over
+	drone -44.5 -16.5 over
+	drone 44.5 -16.5 over
+	drone -67 7.5 over
+	drone 67 7.5 over
+	drone -22.5 65 over
+	drone 22.5 65 over
 	explode "small explosion" 10
 	explode "medium explosion" 30
 	explode "large explosion" 20
@@ -1091,9 +1091,9 @@ ship "Diomedea"
 		"required crew" 250
 		"bunks" 1500
 		"mass" 1590
-		"drag" 7
+		"drag" 6.5
 		"heat dissipation" .80
-		"fuel capacity" 1100
+		"fuel capacity" 1800
 		"ramscoop" 3
 		"cargo space" 253
 		"outfit space" 1101
@@ -1103,66 +1103,71 @@ ship "Diomedea"
 		"shield energy" 1.8
 		"hull repair rate" 4
 		"hull energy" 0.75
-		"outfit scan power" 15
+		"atmosphere scan"
+		"outfit scan power" 25
 		"outfit scan speed" 1
-		"tactical scan power" 81
+		"tactical scan power" 101
 		weapon
 			"blast radius" 540
-			"shield damage" 4400
-			"hull damage" 1700
+			"shield damage" 8400
+			"hull damage" 9700
 			"hit force" 3100
 	outfits
-		"Remnant Flak Turret" 6
-		"Point Defense Turret" 2
+		"Quantum Tear"
+		"Inhibitor Cannon" 4
+		"Inhibitor Turret" 6
+		"Point Defense Turret" 3
 
-		"Aeon Cell"
-		"Epoch Cell"
-		"Crystal Capacitor"
-		"Thermoelectric Cooler" 2
-		"Small Heat Shunt" 2
-		"Quantum Key Stone"
-		"Ember Waste Ramscoop" 2
-
+		"Aeon Cell" 2
+		"Crystal Capacitor" 4
+		"Large Heat Shunt" 2
+		"Quantum Key Stone" 1
+		"Salvage Scanner" 1
+		"Emergency Ramscoop" 6
+		
+		"Bellows-Class Afterburner" 2
 		"Smelter-Class Thruster"
-		"Smelter-Class Steering"
+		"Smelter-Class Steering" 2
 		"Jump Drive"
+		"Scram Drive"
 		
 	engine -85 305
 	engine 85 305
 	engine -49 290
 	engine 49 290
 	engine 0 341
-	gun -22 -258
-	gun -13 -287
-	gun 0 -310
-	gun 13 -287
-	gun 22 -258
-	drone -22 -32
-	drone 22 -32
-	drone -42.5 -18.5
-	drone 42.5 -18.5
-	drone -56 -6.5
-	drone 56 -6.5
-	drone -67 11
-	drone 67 11
-	fighter -19 7
-	fighter 19 7
-	fighter -14 70
-	fighter 14 70
-	turret -9.5 57	"Remnant Flak Turret"
-	turret 9.5 57	"Remnant Flak Turret"
-	turret -0 281.5	"Point Defense Turret"
-	turret -0 -158.5	"Point Defense Turret"
-	turret -60 222.5	"Remnant Flak Turret"
-	turret 60 222.5	"Remnant Flak Turret"
-	turret -40.5 -246.5	"Remnant Flak Turret"
-	turret 40.5 -246.5	"Remnant Flak Turret"
+	gun 0 -310 "Quantum Tear"
+	gun -22 -258 "Inhibitor Cannon"
+	gun -13 -287 "Inhibitor Cannon"
+	gun 13 -287 "Inhibitor Cannon"
+	gun 22 -258 "Inhibitor Cannon"
+	drone -20 -33.5
+	drone 20 -33.5
+	drone -41.5 -21.5
+	drone 41.5 -21.5
+	drone -55 -6
+	drone 55 -6
+	drone -68.5 12.5
+	drone 68.5 12.5
+	fighter -18 9.5
+	fighter 18 9.5
+	fighter -11.5 72
+	fighter 11.5 72
+	turret -12 -108 "Inhibitor Turret"
+	turret 12 -108 "Inhibitor Turret"
+	turret 0 -72 "Point Defense Turret"
+	turret -31 -42.5 "Inhibitor Turret"
+	turret 31 -42.5 "Inhibitor Turret"
+	turret 0 25 "Point Defense Turret"
+	turret -52.5 102 "Inhibitor Turret"
+	turret 52.5 102 "Inhibitor Turret"
+	turret 0 155 "Point Defense Turret"
 	explode "small explosion" 10
 	explode "medium explosion" 30
 	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion large"
-	description `The Diomedea is the remnant's final hope - A generation ship capable of carrying over a thousand survivors in a desperate flight to establish a new life somewhere else. These massive ships incorporate the latest of all remnant technology and are fully alive with a degree of sapience that puts them on equal terms with their crew. They are not servants of the remnant, they are one of them."`
+	description `The Diomedea is the remnant's final hope - A generation ship capable of carrying thousands of survivors in a desperate flight to establish a new life somewhere else. Most of necessity will be in suspended animation, but it can support over a thousand active cew. These massive ships incorporate the latest of all remnant technology and are fully alive with a degree of sapience that puts them on equal terms with their crew. They are not servants of the remnant, they are one of them."`
 
 
 
