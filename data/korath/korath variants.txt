@@ -97,7 +97,7 @@ ship "Korath Chaser" "Korath Chaser (Expeller)"
 		"Small Heat Shunt"
 		"Korath Repeater Rifle" 
 		
-		"Engines (Meteor Class)"
+		"Engine (Meteor Class)"
 
 ship "Korath Chaser" "Korath Chaser (Digger)"
 	outfits
@@ -619,7 +619,7 @@ ship "Korath Ravager" "Korath Ravager (Crippled Fast)"
 		"Generator (Furnace Class)"
 		"Korath Repeater Rifle" 338
 		
-		"Engines (Meteor Class)"
+		"Engine (Meteor Class)"
 		"Steering (Asteroid Class)"
 		"Steering (Planetary Class)"
 		"Thruster (Stellar Class)"
@@ -678,7 +678,7 @@ ship "Korath Dredger" "Korath Dredger (Fast Inferno)"
 		"Triple Plasma Core"
 		"Korath Repeater Rifle" 190
 
-		"Engines (Meteor Class)" 2
+		"Engine (Meteor Class)" 2
 		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
@@ -703,7 +703,7 @@ ship "Korath Refabricator" "Korath Refabricator (Grab-Strike)"
 		"Triple Plasma Core" 3
 		"Korath Repeater Rifle"  2600
 
-		"Engines (Meteor Class)" 2
+		"Engine (Meteor Class)" 2
 		"Steering (Stellar Class)"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
