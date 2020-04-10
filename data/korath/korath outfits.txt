@@ -179,8 +179,8 @@ outfit "Control Transceiver"
 
 
 
-outfit "Engines (Meteor Class)"
-	plural "Engines (Meteor Class)"
+outfit "Engine (Meteor Class)"
+	plural "Engine (Meteor Class)"
 	category "Engines"
 	"cost" 187000
 	thumbnail "outfit/tiny korath engine"

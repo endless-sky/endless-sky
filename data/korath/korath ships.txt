@@ -1134,7 +1134,7 @@ ship "Korath Dredger"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
-		"Engines (Meteor Class)" 2
+		"Engine (Meteor Class)" 2
 		"Jump Drive"
 
 	turret -37 -155 "Korath Digger Turret"
