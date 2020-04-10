@@ -9,7 +9,6 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 person "Michael Zahniser"
-	frequency 5000 
 	government "Author"
 	personality
 		plunders
