@@ -278,6 +278,25 @@ outfit "Thruster (Stellar Class)"
 	"flare sound" "plasma huge"
 	description "A legend among the Korath claims that when they were first testing out their latest generation of plasma thrusters, a concerned Quarg fleet approached and volunteered to help evacuate the Korath crew from what they assumed was a dying ship. The Quarg were surprised to learn that the flames shooting out the back of the ship were in fact its intended mode of propulsion."
 
+outfit "Grav-Thruster (Nebula Class)"
+	# In terms of stats, these are two banishers and a stellar-class thruster, minus the
+	# turret mounts (assumed to be 8 space each and 10% of the cost)
+	plural "Thrusters (Nebula Class)"
+	category "Engines"
+	"cost" 4430000
+	thumbnail "outfit/hybrid korath thruster"
+	"mass" 184
+	"outfit space" -184
+	"engine capacity" -184
+	"thrust" 233.4
+	"thrusting energy" 22.4
+	"thrusting heat" 52.4
+	"flare sprite" "effect/korath flare/huge"
+		"frame rate" 6
+	"flare sound" "plasma huge"
+	description "When the Kor Sestor designed their vast, unfinished, Tek Ot Rah 681 capital ship, they needed larger thrusters so it could catch up to prey held by its four Detainers. Any thrusters beyond Stellar Class simply melted themselves; the Korath could not manufacture a material to handle such high temperatures. Instead, they combined an anti-gravity field generator with massive plasma thrusters. This technology became the basis for the Korath Banisher."
+	description "Although the Kor Sestor never completed their masterpiece capital ship, these thrusters still see use in Korath Exile world-ships."
+
 outfit "Steering (Asteroid Class)"
 	plural "Steerings (Asteroid Class)"
 	category "Engines"
