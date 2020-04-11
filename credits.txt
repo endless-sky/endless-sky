@@ -35,6 +35,30 @@ Major Programming
   petervdmeer
   tehhowch
 
+Storyline & Faction Authors
+  Amazinite
+  Arachi-Lover
+  beccabunny
+  LocalGod79
+  Petervdmeer
+  Pointedstick
+  TheUnfetteredOne
+  Zitchas
+
+Editors & Proofreaders
+  Arrow2thekn33
+  Bladewood
+  Fzzr
+  jafdy
+  Janaszar
+  LocalGod79
+  MCOfficer
+  Moonbeam
+  RecursiveParadox
+  Tadrix
+  temtemy
+  Zearth Goh aka TheMarksman
+
 Photos from Wikimedia Commons
   Berthold Werner (CC-BY-SA 3.0)
   Dmitry A. Mottl (CC-BY-SA 3.0)
@@ -85,39 +109,9 @@ Beta Testers
   Mauricio Gomes
   Iaz Poolar
 
-Special thanks to MCOfficer for
-creating, managing, and hosting
-the nightly & continuous builds 
-that make so much of this work 
-possible.
-
-Editors & Proofreaders
-  Arrow2thekn33
-  Bladewood
-  Fzzr
-  jafdy
-  Janaszar
-  LocalGod79
-  MCOfficer
-  Moonbeam
-  RecursiveParadox
-  Tadrix
-  temtemy
-  Zearth Goh aka TheMarksman
-
-Storyline & Faction Authors
-  Amazinite
-  Arachi-Lover
-  beccaBunny
-  LocalGod
-  Petervdmeer
-  Pointedstick
-  UnfetteredOne
-  Zitchas
-
 Thank you to all the following
 people on GitHub who have
-contributed to Endless-Sky:
+contributed to Endless Sky:
   7even
   abenkovskii
   AdamKauffman
@@ -270,3 +264,8 @@ contributed to Endless-Sky:
   Zitchas
   zwparchman
 
+Special thanks to MCOfficer for
+creating, managing, and hosting
+the nightly & continuous builds 
+that make so much of this work 
+possible.
