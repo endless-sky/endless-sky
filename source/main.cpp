@@ -216,6 +216,10 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 				// and the OpenGL viewport to match.
 				GameWindow::AdjustViewport();
 			}
+			else if(activeUI.Handle(event))
+			{
+				// The UI handled the event.
+			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
 					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
 					|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
@@ -226,11 +230,7 @@ void GameLoop(PlayerInfo &player, Conversation &conversation, bool &debugMode)
 			else if(event.type == SDL_KEYDOWN && !event.key.repeat
 					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
 			{
-					isFastForward = !isFastForward;
-			}
-			else if(activeUI.Handle(event))
-			{
-				// The UI handled the event.
+				isFastForward = !isFastForward;
 			}
 		}
 		SDL_Keymod mod = SDL_GetModState();
