@@ -200,17 +200,21 @@ fleet "Korath Raid"
 	cargo 1
 	personality
 		disables plunders opportunistic harvests
-	variant 15
+	variant 9
 		"Korath Raider"
 		"Korath Chaser" 2
+	variant 3
+		"Korath Raider"
+		"Korath Chaser (Expeller)" 2
+	variant 3
+		"Korath Raider"
+		"Korath Chaser (Digger)" 2
 	variant 1
 		"Korath Dredger"
-		"Korath Chaser (Digger)" 2
-		"Korath Chaser" 3
+		"Korath Chaser (Digger)" 5
 	variant 1
 		"Korath Dredger (Fast Inferno)"
-		"Korath Chaser (Expeller)" 2
-		"Korath Chaser" 3
+		"Korath Chaser (Expeller)" 5
 	variant 1
 		"Korath Ravager"
 	variant 1
@@ -238,6 +242,10 @@ fleet "Korath Planetary Raid"
 	variant 5
 		"Korath Raider" 2
 		"Korath Chaser (Digger)" 2
+		"Korath Chaser" 2
+	variant 5
+		"Korath Raider" 2
+		"Korath Chaser (Expeller)" 2
 		"Korath Chaser" 2
 	variant 2
 		"Korath Raider"
@@ -275,9 +283,6 @@ fleet "Korath Planetary Raid"
 		
 
 fleet "Korath Ember Waste Raid"
-	# These are intended as solo fleets. The nova devices
-	# on some of them will result in too much collateral
-	# damage. Use Korath Planetary Raid for groups.
 	government "Korath"
 	names "korath"
 	fighters "korath"
@@ -287,20 +292,12 @@ fleet "Korath Ember Waste Raid"
 	variant 12
 		"Korath Raider (Ember)"
 		"Korath Chaser" 2
-	variant 2
-		"Korath Dredger"
-		"Korath Chaser (Expeller)" 5
-	variant 2
-		"Korath Dredger (Fast Inferno)"
-		"Korath Chaser (Digger)" 5
-	variant 1
-		"Korath Ravager (Double Inferno)"
-	variant 1
-		"Korath Ravager (Nova Heaver)"
-	variant 1
-		"Korath Ravager (Eight Diggers)"
-	variant 1
-		"Korath Ravager (Fast 2-Heaver)"
+	variant 12
+		"Korath Raider (Ember)"
+		"Korath Chaser (Expeller)" 2
+	variant 12
+		"Korath Raider (Ember)"
+		"Korath Chaser (Digger)" 2
 
 fleet "Korath Home"
 	# This should never be used. It is present just to avoid breaking plug-ins.
@@ -367,11 +364,11 @@ fleet "Kor Efret Home"
 	personality
 		timid
 	variant
-		"Korath World-Ship"
+		"Efret fi Zujaja"
 	variant
-		"Korath World-Ship B"
+		"Efret fi Jara"
 	variant
-		"Korath World-Ship C"
+		"Efret fi Iibriq"
 
 
 fleet "Small Kor Sestor"

@@ -248,18 +248,17 @@ government "Korath"
 	
 	"attitude toward"
 		"Kor Sestor" -.01
-		"Korath (Civilian)" 1.0
 	
 	"player reputation" -10
 
 government "Korath (Civilian)"
 	swizzle 5
 	color .8 .5 .1
-	"crew attack" 1.2
+	"crew attack" 1.1
 	"crew defense" 2.1
 	language "Korath"
 	
-	"player reputation" 10
+	"player reputation" 1
 
 government "Korath Nanobots"
 	"player reputation" -1000

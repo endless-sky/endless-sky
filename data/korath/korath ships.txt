@@ -1102,7 +1102,7 @@ ship "Korath Dredger"
 		"fuel capacity" 1000
 		"cargo space" 480
 		"outfit space" 796
-		"weapon capacity" 261
+		"weapon capacity" 294
 		"engine capacity" 185
 		
 		# Capabilities of built-in nanite factory:
@@ -1202,7 +1202,7 @@ ship "Korath Refabricator"
 
 		"Grav-Steering (Nebula Class)"
 		"Thruster (Stellar Class)"
-		"Jump Drive"
+		"Hyperdrive"
 
 	turret -78 -220 "Korath Digger Turret"
 	turret 78 -220 "Korath Digger Turret"
@@ -1277,7 +1277,7 @@ ship "Korath Haven"
 		"Grav-Thruster (Nebula Class)"
 		"Thruster (Planetary Class)"
 		"Grav-Steering (Nebula Class)"
-		"Jump Drive"
+		"Hyperdrive"
 
 
 	turret -127.5 -400 "Korath Digger Turret"
