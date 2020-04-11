@@ -788,7 +788,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 			
 			for(auto &bay : ship->Bays())
 			{
-				++bayCount[bay.forCategory];
+				++bayCount[bay.category];
 				// The bays should always be empty. But if not, count that ship too.
 				if(bay.ship)
 				{

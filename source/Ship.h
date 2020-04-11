@@ -60,13 +60,13 @@ public:
 	
 	class Bay {
 	public:
-		Bay(double x, double y, std::string forCategory) : point(x * .5, y * .5), forCategory(forCategory) {}
+		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(category) {}
 		// Copying a bay does not copy the ship inside it.
-		Bay(const Bay &b) : point(b.point), forCategory(b.forCategory), side(b.side), facing(b.facing), launchEffects(b.launchEffects) {}
+		Bay(const Bay &b) : point(b.point), category(b.category), side(b.side), facing(b.facing), launchEffects(b.launchEffects) {}
 		
 		Point point;
 		std::shared_ptr<Ship> ship;
-		std::string forCategory;
+		std::string category;
 		
 		uint8_t side = 0;
 		static const uint8_t INSIDE = 0;
@@ -309,6 +309,8 @@ public:
 	// Check how many bays are not occupied at present. This does not check
 	// whether one of your escorts plans to use that bay.
 	int BaysFree(const std::string &category) const;
+	// Check how many bays this ship has of a given category.
+	int BaysTotal(const std::string &category) const;
 	// Check if this ship has a bay free for the given other ship, and the
 	// bay is not reserved for one of its existing escorts.
 	bool CanCarry(const Ship &ship) const;

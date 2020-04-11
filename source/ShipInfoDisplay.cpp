@@ -242,16 +242,19 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	
 	// Print the number of bays for each bay-type we have
 	for(auto bayType : Ship::BAY_TYPES)
-		if(ship.BaysFree(bayType))
+	{
+		int totalBays = ship.BaysTotal(bayType);
+		if(totalBays)
 		{
 			// make sure the label is printed in lower case
 			string bayLabel = bayType;
 			transform(bayLabel.begin(), bayLabel.end(), bayLabel.begin(), ::tolower);
 			
 			attributeLabels.emplace_back(bayLabel + " bays:");
-			attributeValues.emplace_back(to_string(ship.BaysFree(bayType)));
+			attributeValues.emplace_back(to_string(totalBays));
 			attributesHeight += 20;
 		}
+	}
 	
 	tableLabels.clear();
 	energyTable.clear();

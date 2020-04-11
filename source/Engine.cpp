@@ -319,7 +319,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 {
 	for(const NPC &npc : npcs)
 	{
-		set<Ship *> carriers;
+		map<string, map<Ship *, int>> carriers;
 		for(const shared_ptr<Ship> &ship : npc.Ships())
 		{
 			// Skip ships that have been destroyed.
@@ -330,7 +330,12 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			if(ship->HasBays())
 			{
 				ship->UnloadBays();
-				carriers.insert(&*ship);
+				for(string bayType : Ship::BAY_TYPES)
+				{
+					int baysTotal=ship->BaysTotal(bayType);
+					if(baysTotal)
+						carriers[bayType][&*ship] = baysTotal;
+				}
 			}
 		}
 		
@@ -350,9 +355,11 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			if(ship->CanBeCarried())
 			{
 				bool docked = false;
-				for(auto &it : carriers)
-					if(it->Carry(ship))
+				string bayType = ship->Attributes().Category();
+				for(auto &it : carriers[bayType])
+					if(it.second && it.first->Carry(ship))
 					{
+						--it.second;
 						docked = true;
 						break;
 					}

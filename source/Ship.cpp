@@ -236,36 +236,40 @@ void Ship::Load(const DataNode &node)
 				// other childs move 1 position.
 				childOffset += 1;
 			}
-
-			if(!hasBays)
+			if(BAY_TYPES.count(category) < 1)
+				child.PrintTrace("Warning: Invalid category defined for bay.");
+			else
 			{
-				bays.clear();
-				hasBays = true;
-			}
-			bays.emplace_back(child.Value(1 + childOffset), child.Value(2 + childOffset), category);
-			Bay &bay = bays.back();
-			for(int i = 3 + childOffset; i < child.Size(); ++i)
-			{
-				for(unsigned j = 1; j < BAY_SIDE.size(); ++j)
-					if(child.Token(i) == BAY_SIDE[j])
-						bay.side = j;
-				for(unsigned j = 1; j < BAY_FACING.size(); ++j)
-					if(child.Token(i) == BAY_FACING[j])
-						bay.facing = j;
-			}
-			if(child.HasChildren())
-				for(const DataNode &grand : child)
+				if(!hasBays)
 				{
-					// Load in the effect(s) to be displayed when the ship launches.
-					if(grand.Token(0) == "launch effect" && grand.Size() >= 2)
-					{
-						int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
-						const Effect *e = GameData::Effects().Get(grand.Token(1));
-						bay.launchEffects.insert(bay.launchEffects.end(), count, e);
-					}
-					else
-						grand.PrintTrace("Child nodes of \"bay\" tokens can only be \"launch effect\":");
+					bays.clear();
+					hasBays = true;
 				}
+				bays.emplace_back(child.Value(1 + childOffset), child.Value(2 + childOffset), category);
+				Bay &bay = bays.back();
+				for(int i = 3 + childOffset; i < child.Size(); ++i)
+				{
+					for(unsigned j = 1; j < BAY_SIDE.size(); ++j)
+						if(child.Token(i) == BAY_SIDE[j])
+							bay.side = j;
+					for(unsigned j = 1; j < BAY_FACING.size(); ++j)
+						if(child.Token(i) == BAY_FACING[j])
+							bay.facing = j;
+				}
+				if(child.HasChildren())
+					for(const DataNode &grand : child)
+					{
+						// Load in the effect(s) to be displayed when the ship launches.
+						if(grand.Token(0) == "launch effect" && grand.Size() >= 2)
+						{
+							int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
+							const Effect *e = GameData::Effects().Get(grand.Token(1));
+							bay.launchEffects.insert(bay.launchEffects.end(), count, e);
+						}
+						else
+							grand.PrintTrace("Child nodes of \"bay\" tokens can only be \"launch effect\":");
+					}
+			}
 		}
 		else if(key == "leak" && child.Size() >= 2)
 		{
@@ -671,13 +675,13 @@ void Ship::Save(DataWriter &out) const
 			double x = 2. * bay.point.X();
 			double y = 2. * bay.point.Y();
 			if(bay.side && bay.facing)
-				out.Write("bay", bay.forCategory, x, y, BAY_SIDE[bay.side], BAY_FACING[bay.facing]);
+				out.Write("bay", bay.category, x, y, BAY_SIDE[bay.side], BAY_FACING[bay.facing]);
 			else if(bay.side)
-				out.Write("bay", bay.forCategory, x, y, BAY_SIDE[bay.side]);
+				out.Write("bay", bay.category, x, y, BAY_SIDE[bay.side]);
 			else if(bay.facing)
-				out.Write("bay", bay.forCategory, x, y, BAY_FACING[bay.facing]);
+				out.Write("bay", bay.category, x, y, BAY_FACING[bay.facing]);
 			else
-				out.Write("bay", bay.forCategory, x, y);
+				out.Write("bay", bay.category, x, y);
 			if(!bay.launchEffects.empty())
 			{
 				out.BeginChild();
@@ -1765,7 +1769,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 		return;
 	
 	for(Bay &bay : bays)
-		if(bay.ship && ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * (crew > 0)))
+		if(bay.ship && ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * bay.ship->attributes.Get("automaton")))
 				|| (ejecting && !Random::Int(6))))
 		{
 			// Resupply any ships launching of their own accord.
@@ -2749,11 +2753,24 @@ bool Ship::HasBays() const
 
 
 
+// Check how many bays are not occupied at present. This does not check whether
+// one of your escorts plans to use that bay.
 int Ship::BaysFree(const string &category) const
 {
 	int count = 0;
 	for(const Bay &bay : bays)
-		count += (bay.forCategory == category) && !bay.ship;
+		count += (bay.category == category) && !bay.ship;
+	return count;
+}
+
+
+
+// Check how many bays this ship has of a given category.
+int Ship::BaysTotal(const string &category) const
+{
+	int count = 0;
+	for(const Bay &bay : bays)
+		count += (bay.category == category);
 	return count;
 }
 
@@ -2799,7 +2816,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 	const string &category = ship->attributes.Category();
 	
 	for(Bay &bay : bays)
-		if((bay.forCategory == category) && !bay.ship)
+		if((bay.category == category) && !bay.ship)
 		{
 			bay.ship = ship;
 			ship->SetSystem(nullptr);
