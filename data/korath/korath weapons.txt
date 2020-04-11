@@ -662,21 +662,21 @@ outfit "Nova Turret"
 		"infrared tracking" .7
 		"optical tracking" .9
 		"trigger radius" 30
-		"blast radius" 180
+		"blast radius" 120
 		"shield damage" 2600
 		"hull damage" 2300
 		"ion damage" 28
 		"heat damage" 6000
 		"hit force" 3600
 		"missile strength" 245
-	description "This turret fires a Nova Device in any direction. Though you may dodge it for a while, the Nova Device's extremely long range and large blast radius will eventually catch up with you (or an innocent asteroid). The damage dealt is small for a weapon with such hefty requirements, but is accompanied by devastating side-effects. It heats ships, drains their generators, and pushes with a considerable force."
+	description "This turret fires a Nova Device in any direction. Though you may dodge it for a while, the Nova Device's extremely long range and large blast radius will eventually catch up with you (or an innocent asteroid). The weapon's damage is small for its hefty requirements, but it has devastating side-effects. It heats ships, drains their generators, and pushes with a considerable force."
 	description "Though the warhead is a simple Korath design, the torpedo casing, launcher, and drive systems are distinctly not Korath in style. This may be a device the Korath discovered or pillaged, and have learned to reproduce."
 
 effect "nova ring"
 	sprite "effect/nova ring"
 		"no repeat"
 		"frame rate" 12
-	"lifetime" 90
+	"lifetime" 70
 	sound "nova hit"
 	"random angle" 360
 	"random frame rate" 6
@@ -809,14 +809,14 @@ outfit "Korath Digger Turret"
 		"hit effect" "korath digger hit"
 		"inaccuracy" .5
 		"turret turn" 3
-		"velocity" 400
+		"velocity" 480
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 3.6
 		"firing heat" 5.2
 		"shield damage" 1.1
 		"hull damage" 5.1
-		"disruption damage" .045
+		"disruption damage" .055
 	description `When the Korath Exiles needed a cheap mining laser for their large vessels, they turned to an ancient but robust design. Updated with modern engineering, the mild shield disruption lets it damage ships as well, when multiple Diggers are used at once. Despite this, the weapon is horrendously inefficient compared to modern alternatives.`
 
 outfit "Korath Digger"
@@ -834,14 +834,14 @@ outfit "Korath Digger"
 		sound "korath digger"
 		"hit effect" "korath digger hit"
 		"inaccuracy" .5
-		"velocity" 400
+		"velocity" 480
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 3.6
 		"firing heat" 5.2
 		"shield damage" 1.1
 		"hull damage" 5.1
-		"disruption damage" .045
+		"disruption damage" .055
 	description `The basis for the design of a Korath Digger was an old turret. This one has been removed from its turret and supplemented with small batteries.`
 
 effect "korath digger hit"

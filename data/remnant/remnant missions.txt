@@ -1435,8 +1435,8 @@ mission "Remnant: Salvage 2"
 			names "korath"
 			cargo 3
 			variant
-				# Boss is a strong ship with simple weapons:
-				"Korath Ravager (Grab-Strike Banisher)"
+				# Ravager flagship is equipped like a sturdy slow Raider:
+				"Korath Ravager (Big Raider)"
 	on visit
 		dialog "There are still Korath raiders circling overhead. You should take off and help the Remnant ships to fight them."
 	on complete
