@@ -5,9 +5,9 @@ This game is open source.
 To report bugs, give feedback,
 or contribute to story writing,
 artwork, or programming, visit:
-https://endless-sky.github.io
-The game's Steam forums
-Discord (invite: ZeuASSx)
+- https://endless-sky.github.io
+- The game's Steam forums
+- Discord (invite: ZeuASSx)
 
 Creator
   Michael Zahniser
@@ -17,17 +17,22 @@ Developers
   Pointedstick
   tehhowch
 
-Programming
+Major Programming
+  AdamKauffman
   Amazinite
-  bojidar-bg
-  ChamEV
   comnom
+  CyberShadow
+  db47h
+  Elyssaen
+  EndrosG
   flaviojs
-  Fzzr
+  guillochon
   Hadron1776
-  Marceline-VQ
-  Petervdmeer
-  Pointedstick
+  kozbot
+  MarcelineVQ
+  NomadicVolcano
+  oo13
+  petervdmeer
   tehhowch
 
 Photos from Wikimedia Commons
@@ -99,7 +104,7 @@ Proof Readers & Editors
   temtemy
   Zearth Goh aka TheMarksman
 
-Mission & Story Creators
+Story Creators
   Amazinite
   Arachi-Lover
   beccaBunny
