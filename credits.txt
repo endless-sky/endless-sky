@@ -9,7 +9,7 @@ artwork, or programming, visit:
 - The game's Steam forums
 - Discord (invite: ZeuASSx)
 
-Creator
+Creator and Lead Programmer
   Michael Zahniser
   
 Developers
@@ -90,7 +90,7 @@ creating, managing, and hosting
 the nightly builds that make
 so much of this work possible.
 
-Proof Readers & Editors
+Editors & Proofreaders
   Arrow2thekn33
   Bladewood
   Fzzr
@@ -104,7 +104,7 @@ Proof Readers & Editors
   temtemy
   Zearth Goh aka TheMarksman
 
-Story Creators
+Storyline & Faction Authors
   Amazinite
   Arachi-Lover
   beccaBunny
