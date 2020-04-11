@@ -90,6 +90,7 @@ Proof Readers & Editors
   Bladewood
   Fzzr
   jafdy
+  Janaszar
   LocalGod79
   MCOfficer
   Moonbeam
@@ -100,15 +101,9 @@ Proof Readers & Editors
 
 Mission & Story Creators
   Amazinite
-  Anarchist2
   Arachi-Lover
   beccaBunny
-  czartrak
-  Fzzr
-  Janaszar
   LocalGod
-  MasterOfGrey
-  MessyMix
   Petervdmeer
   Pointedstick
   UnfetteredOne
@@ -125,6 +120,7 @@ contributed to Endless-Sky:
   AlexBassett
   alextd
   Alkallid
+  Amazinite
   AMDmi3
   anarcat
   Anarchist2
@@ -155,6 +151,7 @@ contributed to Endless-Sky:
   eflyon
   elgeonmb
   Elyssaen
+  endless-sky
   EndrosG
   fcfort
   Ferociousfeind
@@ -200,7 +197,6 @@ contributed to Endless-Sky:
   MillerNerd
   mimirzero
   mootootwo
-  mybuddymichael
   naehc
   Naminson
   Nescio0
@@ -216,6 +212,7 @@ contributed to Endless-Sky:
   PhaedrusES
   pkubaj
   plague006
+  Pointedstick
   pscamman
   Rakete1111
   realityforge
@@ -238,6 +235,7 @@ contributed to Endless-Sky:
   strollcata
   Tadrix
   tboby
+  tehhowch
   temtemy
   TheMarksman-ES
   thenerdfreak
@@ -264,3 +262,4 @@ contributed to Endless-Sky:
   ZBok
   Zitchas
   zwparchman
+
