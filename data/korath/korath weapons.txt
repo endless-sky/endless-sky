@@ -669,7 +669,7 @@ outfit "Nova Turret"
 		"heat damage" 6000
 		"hit force" 3600
 		"missile strength" 245
-	description "This turret fires a Nova Device in any direction. Though you may dodge it for a while, the Nova Device's extremely long range and large blast radius will eventually catch up with you (or an innocent asteroid). The damage dealt is small for a weapon of this size, but is accompanied by devastating side-effects. It heats ships, drains their generators, and pushes with a considerable force."
+	description "This turret fires a Nova Device in any direction. Though you may dodge it for a while, the Nova Device's extremely long range and large blast radius will eventually catch up with you (or an innocent asteroid). The damage dealt is small for a weapon with such hefty requirements, but is accompanied by devastating side-effects. It heats ships, drains their generators, and pushes with a considerable force."
 	description "Though the warhead is a simple Korath design, the torpedo casing, launcher, and drive systems are distinctly not Korath in style. This may be a device the Korath discovered or pillaged, and have learned to reproduce."
 
 effect "nova ring"
@@ -718,7 +718,7 @@ outfit "Korath Heaver"
 		"firing fuel" 12.5
 		"inaccuracy" 0.5
 	description `Korath Heavers raise to a fine art the age-old warfare method of, "Throw rocks at your enemy until they die." Small asteroids or other debris fly into an unstable hyperspace window, exiting a few seconds later. Within a range of 240, the weapon does no damage, but pushes with a force that makes a Banisher look like a light breeze. Beyond that, small chunks of matter exit hyperspace and travel a long distance at extreme velocity.`
-	description `This is a canonical example of modern Korath Exile engineering: jury-rigged, inefficient even by Korath standards, but cheap to produce. There are parts from a Fuel Processor, Banisher, Comet-Class Thruster, and Hyperdrive, wrapped in steel, and mounted on the lower half of a Nova Turret. Despite the slap-shod design, the device is extremely effective.`
+	description `This is a canonical example of modern Korath Exile engineering: jury-rigged, inefficient even by Korath standards, but cheap to produce. There are parts from a Hyperdrive, Fuel Processor, Banisher, and thruster, wrapped in steel, and mounted on the lower half of a Nova Turret. Despite the slap-shod design, the device is extremely effective.`
 
 effect "heaver hyperspace hit"
 	sprite "effect/heaver hyperspace hit"

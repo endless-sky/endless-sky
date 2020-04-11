@@ -280,7 +280,7 @@ outfit "Thruster (Stellar Class)"
 
 outfit "Grav-Thruster (Nebula Class)"
 	# In terms of stats, these are two banishers and a stellar-class thruster, minus the
-	# turret mounts (assumed to be 8 space each and 10% of the cost)
+	# turret mounts (assumed to be 8 space each and 10% of the cost), and then tweaked
 	plural "Thrusters (Nebula Class)"
 	category "Engines"
 	"cost" 5430000
@@ -288,9 +288,9 @@ outfit "Grav-Thruster (Nebula Class)"
 	"mass" 184
 	"outfit space" -184
 	"engine capacity" -184
-	"thrust" 233.4
-	"thrusting energy" 22.4
-	"thrusting heat" 52.4
+	"thrust" 248.4
+	"thrusting energy" 20.4
+	"thrusting heat" 49.4
 	"flare sprite" "effect/korath flare/huge"
 		"frame rate" 6
 	"flare sound" "plasma huge"

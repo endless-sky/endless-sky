@@ -2377,6 +2377,7 @@ system Alcyone
 	fleet "Small Core Pirates" 400
 	fleet "Large Core Pirates" 600
 	fleet "Large Syndicate" 1200
+	fleet "Korath Planetary Raid" 50000
 	object
 		sprite star/m4
 		distance 45.5
@@ -3144,7 +3145,8 @@ system Almach
 	fleet "Small Core Pirates" 500
 	fleet "Large Core Pirates" 1400
 	fleet "Large Syndicate" 6000
-	fleet "Korath Raid" 20000
+	fleet "Korath Planetary Raid" 50000
+	fleet "Korath Miners" 30000
 	object
 		sprite star/k5
 		period 10
@@ -3663,7 +3665,7 @@ system "Alpha Hydri"
 	fleet "Large Core Pirates" 6000
 	fleet "Small Syndicate" 4000
 	fleet "Large Syndicate" 9000
-	fleet "Korath Raid" 40000
+	fleet "Korath Planetary Raid" 40000
 	object
 		sprite star/g0
 		distance 24.6857
@@ -8228,13 +8230,15 @@ system Durax
 	habitable 1080
 	belt 1287
 	link Alcyone
-	asteroids "small rock" 16 8.1744
+	asteroids "small rock" 7 8.1744
 	asteroids "medium rock" 4 5.304
 	asteroids "large rock" 6 6.6768
 	asteroids "small metal" 1 9.1728
-	asteroids "medium metal" 11 7.8624
+	asteroids "medium metal" 6 7.8624
 	asteroids "large metal" 1 8.6736
-	minables lead 9 12.9774
+	minables platinum 13 12.9774
+	minables uranium 11 8.907
+	minables tungsten 8 7.105
 	trade Clothing 381
 	trade Electronics 747
 	trade Equipment 714
@@ -8248,7 +8252,8 @@ system Durax
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 900
 	fleet "Large Syndicate" 2500
-	fleet "Korath Raid" 5000
+	fleet "Korath Raid" 6000
+	fleet "Korath Miners" 10000
 	object
 		sprite star/g0-old
 		period 10
@@ -13797,6 +13802,7 @@ system "Kor Ak'Mari"
 	trade Metal 217
 	trade Plastic 524
 	fleet "Korath Raid" 2800
+	fleet "Korath Miners" 7000
 	object
 		sprite star/wr
 		period 100
@@ -13852,7 +13858,8 @@ system "Kor En'lakfar"
 	trade Metal 236
 	trade Plastic 488
 	fleet "Korath Raid" 600
-	fleet "Korath Home" 1800
+	fleet "Korath Miners" 4000
+	fleet "Korath Civilian" 1800
 	object
 		sprite star/g0
 		period 10
@@ -13912,7 +13919,8 @@ system "Kor Fel'tar"
 	trade Metal 256
 	trade Plastic 478
 	fleet "Korath Raid" 1600
-	fleet "Korath Home" 900
+	fleet "Korath Miners" 4000
+	fleet "Korath Civilian" 900
 	object
 		sprite star/k0
 		period 10
@@ -13975,7 +13983,7 @@ system "Kor Men"
 	trade Metal 240
 	trade Plastic 497
 	fleet "Korath Raid" 1300
-	fleet "Korath Home" 600
+	fleet "Korath Civilian" 600
 	object
 		sprite star/f5-old
 		distance 33.3868
@@ -14034,7 +14042,7 @@ system "Kor Nor'peli"
 	trade Metal 517
 	trade Plastic 423
 	fleet "Korath Raid" 1000
-	fleet "Korath Home" 500
+	fleet "Korath Civilian" 500
 	object
 		sprite star/k0-old
 		distance 25.4857
@@ -14099,7 +14107,8 @@ system "Kor Tar'bei"
 	trade Metal 498
 	trade Plastic 402
 	fleet "Korath Raid" 1200
-	fleet "Korath Home" 600
+	fleet "Korath Miners" 3000
+	fleet "Korath Civilian" 600
 	object
 		sprite star/m0
 		period 10
@@ -14148,7 +14157,7 @@ system "Kor Zena'i"
 	trade Metal 478
 	trade Plastic 381
 	fleet "Korath Raid" 800
-	fleet "Korath Home" 1100
+	fleet "Korath Civilian" 1100
 	object
 		sprite star/g5-old
 		distance 8.94444
@@ -18638,7 +18647,7 @@ system Polaris
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 2000
 	fleet "Small Core Pirates" 1500
-	fleet "Korath Raid" 50000
+	fleet "Korath Planetary Raid" 50000
 	object
 		sprite star/k5
 		period 10
@@ -21349,7 +21358,7 @@ system Sheratan
 	fleet "Large Core Merchants" 1800
 	fleet "Small Core Pirates" 3000
 	fleet "Large Core Pirates" 5000
-	fleet "Korath Raid" 30000
+	fleet "Korath Planetary Raid" 30000
 	object
 		sprite star/f5
 		distance 21.0713

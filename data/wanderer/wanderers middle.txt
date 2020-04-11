@@ -748,18 +748,18 @@ mission "Wanderers: Kor Efret 3"
 		fleet
 			names "korath"
 			variant
-				"Korath World-Ship"
-				"Korath World-Ship B"
-				"Korath World-Ship C"
+				"Efret fi Zujaja"
+				"Efret fi Jara"
+				"Efret fi Iibriq"
 	npc
 		government "Kor Efret"
 		personality heroic
 		fleet
 			names "korath"
 			variant
-				"Korath World-Ship"
-				"Korath World-Ship B"
-				"Korath World-Ship C"
+				"Efret fi Zujaja"
+				"Efret fi Jara"
+				"Efret fi Iibriq"
 	npc
 		government "Quarg"
 		personality heroic staying entering
@@ -1396,7 +1396,7 @@ mission "Wanderers: Tour 2"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Efret fi Iibriq" "Asikimi Ko Cheska"
 
 
 
@@ -1425,7 +1425,7 @@ mission "Wanderers: Tour 3"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Efret fi Iibriq" "Asikimi Ko Cheska"
 
 
 
@@ -1447,7 +1447,7 @@ mission "Wanderers: Tour 4"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Efret fi Iibriq" "Asikimi Ko Cheska"
 
 
 
@@ -1476,7 +1476,7 @@ mission "Wanderers: Tour 5"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Efret fi Iibriq" "Asikimi Ko Cheska"
 	npc
 		system "Ap'arak"
 		government "Hai (Unfettered)"
@@ -1505,7 +1505,7 @@ mission "Wanderers: Tour 6"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Efret fi Iibriq" "Asikimi Ko Cheska"
 
 
 
@@ -1520,7 +1520,7 @@ mission "Wanderers: Tour 7"
 		has "Wanderers: Tour 6: done"
 	on offer
 		conversation
-			`You have escorted the Korath world-ship safely back to their home. Hopefully what they saw on their journey will make them more eager to be friends with the Wanderers, rather than less. Rek hands you a written report that she says is an account of the diplomatic mission and says, "Please deliver this to Sobari Tele'ek on <planet>."`
+			`You have escorted the Korath ship safely back to their home. Hopefully what they saw on their journey will make them more eager to be friends with the Wanderers, rather than less. Rek hands you a written report that she says is an account of the diplomatic mission and says, "Please deliver this to Sobari Tele'ek on <planet>."`
 			choice
 				`	"Okay, I'll do that."`
 					accept
@@ -3057,7 +3057,7 @@ event "wanderers: exiles peaceful"
 mission "Wanderers: Sestor: Exiles 3"
 	landing
 	name "Diplomacy with the exiles"
-	description "Escort these three Korath exile world-ships to <planet> for a diplomatic meeting with the Wanderers."
+	description "Escort the Korath Exile ship to <planet> for a diplomatic meeting with the Wanderers."
 	source "Far'en Lai"
 	destination "Desi Seledrak"
 	passengers 1
@@ -3081,23 +3081,21 @@ mission "Wanderers: Sestor: Exiles 3"
 				`	"What are they asking for in return?"`
 			`	Rek says, "They request a meeting with our leaders, to work out terms of trade for our mutual benefit. It is something we would certainly agree to with no difficulty."`
 			label end
-			`	Rek speaks with the Korath again, and then tells you, "They say that three of their 'world-ships' will travel with us to meet with the Wanderer leaders. If they are able to work out favorable terms, and are convinced that the Wanderers have peaceful intentions, they will go with us to the Sestor factory world and shut it down."`
+			`	Rek speaks with the Korath again, and then tells you, "They say that one of their 'world-ships' will travel with us to meet with the Wanderer leaders. If they are able to work out favorable terms, and are convinced that the Wanderers have peaceful intentions, they will go with us to the Sestor factory world and shut it down."`
 				accept
 	npc accompany save
 		government "Korath"
 		personality escort
-		ship "Korath World-Ship A (Jump)" "Seskerat Pratka"
-		ship "Korath World-Ship B (Jump)" "Eskretakfakta"
-		ship "Korath World-Ship C (Jump)" "Prekaprat Skata"
+		ship "Korath Refabricator" "Seskerat Pratka"
 	on visit
-		dialog `You have reached <planet>, but you're missing something! Either you've left one of the Korath ships behind, or your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
+		dialog `You have reached <planet>, but you're missing something! Either you've left the Korath ship behind, or your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
 mission "Wanderers: Sestor: Factory 1"
 	landing
 	name "Shut down the factory"
-	description "Escort these Korath ships to <planet>, where they will shut down the remaining Kor Sestor factories."
+	description "Escort the Korath ship to <planet>, where it will shut down the remaining Kor Sestor factories."
 	source "Desi Seledrak"
 	destination "Sestor Ikfar"
 	clearance
@@ -3114,17 +3112,15 @@ mission "Wanderers: Sestor: Factory 1"
 				`	"Are you sure that they really want peace? They aren't trying to trick you?"`
 			`	Rek says, "It is hard to be sure. Their culture is very different from the Kor Efret; even some of their language and gestures are new to me. But they have behaved peacefully toward us so far; we must hope that their peacefulness continues."`
 			label next
-			`	Tele'ek says, "You must bring the [exile, outcast] ships to <planet> and keep them from being destroyed by the drones [along the way?]. There, they will [attempt, accomplish] what they have promised, and shut down the factories. Your only role will be to [shield, protect] them, and we will give you some of our warships to [assist, accompany] you."`
+			`	Tele'ek says, "You must bring the [exile, outcast] ship to <planet> and keep it from being destroyed by the drones [along the way?]. There, it will [attempt, accomplish] what they have promised, and shut down the factories. Your only role will be to [shield, protect] it, and we will give you some of our warships to [assist, accompany] you."`
 			`	You return to your ship, and get ready for the trip to <planet>.`
 				accept
 	npc accompany save
 		government "Korath"
 		personality escort
-		ship "Korath World-Ship A (Jump)" "Seskerat Pratka"
-		ship "Korath World-Ship B (Jump)" "Eskretakfakta"
-		ship "Korath World-Ship C (Jump)" "Prekaprat Skata"
+		ship "Korath Refabricator" "Seskerat Pratka"
 	on visit
-		dialog `You have reached <planet>, but you're missing something! Either you've left one of the Korath ships behind, or your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
+		dialog `You have reached <planet>, but you're missing something! Either you've left the Korath ship behind, or your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -3167,7 +3163,7 @@ mission "Wanderers: Sestor: Factory 2"
 	on offer
 		event "wanderers: asikafarnut battle"
 		conversation
-			`The drones stop firing on the Korath world-ships the moment they enter the atmosphere, which is a good sign - it probably means that their command codes worked. While they begin scouting out the manufacturing center, the exiles tell you (through Rek) that they need you to return to orbit and keep the remaining drones from attacking them until they can be sure the factory is shut down for good; it might take them a while to accomplish that.`
+			`The drones stop firing on the Korath ship the moment they enter the atmosphere, which is a good sign - it probably means that their command codes worked. While they begin scouting out the manufacturing center, the exiles tell you (through Rek) that they need you to return to orbit and keep the remaining drones from attacking them until they can be sure the factory is shut down for good; it might take them a while to accomplish that.`
 			`	You fire up your engines and blast off for one last battle against the Kor Sestor...`
 				launch
 	npc evade

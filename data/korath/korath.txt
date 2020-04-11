@@ -191,28 +191,119 @@ phrase "kor mereti"
 
 
 fleet "Korath Raid"
+	# These are intended as solo fleets. The nova devices
+	# on some of them will result in too much collateral
+	# damage. Use Korath Planetary Raid for groups.
 	government "Korath"
 	names "korath"
 	fighters "korath"
 	cargo 1
 	personality
 		disables plunders opportunistic harvests
-	variant
+	variant 15
 		"Korath Raider"
 		"Korath Chaser" 2
+	variant 1
+		"Korath Dredger"
+		"Korath Chaser (Digger)" 2
+		"Korath Chaser" 3
+	variant 1
+		"Korath Dredger (Fast Inferno)"
+		"Korath Chaser (Expeller)" 2
+		"Korath Chaser" 3
+	variant 1
+		"Korath Ravager"
+	variant 1
+		"Korath Ravager (Grab-Strike Banisher)"
+	variant 1
+		"Korath Ravager (Grab-Strike Digger)"
 
-fleet "Korath Ember Waste Raid"
+fleet "Korath Miners"
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 0
+	personality
+		timid frugal mining harvests
+	variant 5
+		"Korath Dredger (Fast Inferno)"
+
+fleet "Korath Planetary Raid"
 	government "Korath"
 	names "korath"
 	fighters "korath"
 	cargo 1
 	personality
 		disables plunders opportunistic harvests
-	variant
+	variant 5
+		"Korath Raider" 2
+		"Korath Chaser (Digger)" 2
+		"Korath Chaser" 2
+	variant 2
+		"Korath Raider"
+		"Korath Chaser (Digger)" 2
+		"Korath Dredger"
+		"Korath Chaser (Digger)" 2
+		"Korath Chaser" 3
+	variant 2
+		"Korath Raider"
+		"Korath Chaser (Expeller)" 2
+		"Korath Dredger (Fast Inferno)"
+		"Korath Chaser (Expeller)" 2
+		"Korath Chaser" 3
+	variant 1
+		"Korath Ravager (Double Inferno)"
+		"Korath Raider"
+		"Korath Chaser (Expeller)" 2
+	variant 1
+		"Korath Ravager (Fast Inferno)"
+		"Korath Raider"
+		"Korath Chaser (Expeller)" 2
+	variant 1
+		"Korath Ravager (Fast 2-Heaver)"
+		"Korath Raider"
+		"Korath Chaser (Expeller)" 2
+	variant 1
+		"Korath Raider"
+		"Korath Chaser (Expeller)" 2
+		"Korath Ravager (Grab-Strike Banisher)"
+	variant 1
+		"Korath Ravager (Grab-Strike Banisher)" 2
+	variant 1
+		"Korath Ravager (Eight Diggers)"
+		"Korath Ravager (Fast 2-Heaver)"
+		
+
+fleet "Korath Ember Waste Raid"
+	# These are intended as solo fleets. The nova devices
+	# on some of them will result in too much collateral
+	# damage. Use Korath Planetary Raid for groups.
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests
+	variant 12
 		"Korath Raider (Ember)"
 		"Korath Chaser" 2
+	variant 2
+		"Korath Dredger"
+		"Korath Chaser (Expeller)" 5
+	variant 2
+		"Korath Dredger (Fast Inferno)"
+		"Korath Chaser (Digger)" 5
+	variant 1
+		"Korath Ravager (Double Inferno)"
+	variant 1
+		"Korath Ravager (Nova Heaver)"
+	variant 1
+		"Korath Ravager (Eight Diggers)"
+	variant 1
+		"Korath Ravager (Fast 2-Heaver)"
 
 fleet "Korath Home"
+	# This should never be used. It is present just to avoid breaking plug-ins.
 	government "Korath"
 	names "korath"
 	fighters "korath"
@@ -220,12 +311,53 @@ fleet "Korath Home"
 	personality
 		timid opportunistic
 	variant 12
-		"Korath World-Ship"
-	variant 12
-		"Korath World-Ship B"
-	variant 12
-		"Korath World-Ship C"
+		"Korath Dredger (Hyperdrive)"
 
+fleet "Korath Civilian"
+	government "Korath (Civilian)"
+	names "korath"
+	fighters "korath"
+	cargo 3
+	personality
+		# Mute avoids having them repair you during battle.
+		heroic frugal opportunistic mute
+	variant 2
+		"Korath Haven"
+		"Korath Chaser" 4
+		"Korath Chaser (Expeller)" 4
+		"Korath Chaser (Digger)" 4
+	variant 2
+		"Korath Haven (Kingslayer)"
+		"Korath Chaser" 6
+		"Korath Chaser (Digger)" 6
+	variant 2
+		"Korath Haven (Thrower)"
+		"Korath Chaser (Expeller)" 12
+	variant 2
+		"Korath Haven (Sciuridaeavore)"
+		"Korath Chaser (Digger)" 6
+		"Korath Chaser" 6
+	variant 3
+		"Korath Refabricator (Grab-Strike)"
+		"Korath Chaser" 2
+		"Korath Chaser (Expeller)" 2
+		"Korath Chaser (Digger)" 2
+	variant 3
+		"Korath Refabricator (Six Infernos)"
+		"Korath Chaser" 2
+		"Korath Chaser (Expeller)" 2
+		"Korath Chaser (Digger)" 2
+	variant 3
+		"Korath Refabricator"
+		"Korath Chaser" 2
+		"Korath Chaser (Expeller)" 2
+		"Korath Chaser (Digger)" 2
+	variant 5
+		"Korath Dredger" 2
+	variant 5
+		"Korath Dredger (Fast Inferno)" 2
+	variant 12
+		"Korath Refuge"
 
 fleet "Kor Efret Home"
 	government "Kor Efret"

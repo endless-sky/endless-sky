@@ -114,12 +114,12 @@ ship "Korath Refuge"
 		"bunks" 14000
 		"mass" 2100
 		"drag" 17.5
-		"heat dissipation" .55
+		"heat dissipation" .6
 		"fuel capacity" 1400
 		"cargo space" 451
-		"outfit space" 1190
+		"outfit space" 1230
 		"weapon capacity" 423
-		"engine capacity" 259
+		"engine capacity" 273
 		weapon
 			"blast radius" 600
 			"shield damage" 9000
@@ -133,15 +133,16 @@ ship "Korath Refuge"
 		"Nova Device" 56
 		
 		"Triple Plasma Core"
-		"Systems Core (Large)" 2
+		"Plasma Core"
+		"Systems Core (Large)"
+		"Systems Core (Medium)"
 		"Large Heat Shunt"
-		"Small Heat Shunt" 2
+		"Small Heat Shunt"
 		"Fuel Processor" 6
 		"Korath Repeater Rifle" 8500
 		
-		"Thruster (Stellar Class)"
+		"Grav-Thruster (Nebula Class)"
 		"Steering (Stellar Class)"
-		"Steering (Lunar Class)"
 		"Hyperdrive"
 	
 	turret 134 -198 "Korath Warder"
@@ -166,7 +167,7 @@ ship "Korath Refuge"
 	"final explode" "final explosion large"
 	description "Korath Refuges hold the must vulnerable of the Korath, those that would not survive a battle, even in a ship with armor and shields. Onboard, there are incubators, nurseries, hospitals, and vast stores of medicine. When Korath are attacked, these ships immediately flee; they're among the fastest ships the Korath have built."
 
-ship "Korath World-Ship"
+ship "Efret fi Zujaja"
 	sprite "ship/world-ship a"
 	thumbnail "thumbnail/world-ship a"
 	attributes
@@ -1042,7 +1043,7 @@ ship "Korath Ravager"
 		"cargo space" 110
 		"outfit space" 921
 		"weapon capacity" 415
-		"engine capacity" 208
+		"engine capacity" 240
 		weapon
 			"blast radius" 350
 			"shield damage" 6000
@@ -1069,19 +1070,19 @@ ship "Korath Ravager"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
 
-	turret -56.5 -103 "Korath Grab-Strike"
-	turret 56.5 -103 "Korath Grab-Strike"
-	turret -13 -60 "Korath Digger Turret"
-	turret 13 -60 "Korath Digger Turret"
-	turret -26 6 "Korath Digger Turret"
-	turret 26 6 "Korath Digger Turret"
-	turret -184 26 "Korath Warder"
-	turret 184 26 "Korath Warder"
-	turret -125 98 "Korath Inferno"
-	turret 125 98 "Nova Turret"
-	engine -37 90 0.7
-	engine 0 90 0.9
-	engine 37 90 0.7
+
+	turret -46 -85 "Korath Grab-Strike"
+	turret 46 -85 "Korath Grab-Strike"
+	turret -8 -45 "Korath Digger Turret"
+	turret 8 -45 "Korath Digger Turret"
+	turret -21 5 "Korath Digger Turret"
+	turret 21 5 "Korath Digger Turret"
+	turret -150 21.5 "Korath Warder"
+	turret 150 21.5 "Korath Warder"
+	turret -102 81.5 "Korath Inferno"
+	turret 102 81.5 "Nova Turret"
+	engine -27 73.5 0.9
+	engine 27 73.5 0.9
 	"final explode" "final explosion large"
 	description "Unlike other Korath Exile vessels, the Korath Ravager is designed for one purpose, and one alone: destruction. It flies into hostile territory to eliminate all opposition so the Raiders and Dredgers can feast on the remains."
 
@@ -1091,7 +1092,7 @@ ship "Korath Dredger"
 	attributes
 		category "Heavy Freighter"
 		"cost" 19370000
-		"shields" 35000
+		"shields" 48000
 		"hull" 37000
 		"required crew" 191
 		"bunks" 353
@@ -1165,14 +1166,14 @@ ship "Korath Refabricator"
 		"hull" 107000
 		"required crew" 2150
 		"bunks" 4785
-		"mass" 2280
-		"drag" 18.1
+		"mass" 2780
+		"drag" 21.4
 		"heat dissipation" .65
 		"fuel capacity" 2200
 		"cargo space" 2845
-		"outfit space" 1495
+		"outfit space" 1549
 		"weapon capacity" 576
-		"engine capacity" 208
+		"engine capacity" 240
 		
 		# Capabilities of huge built-in nanite factory:
 		"ramscoop" 12
@@ -1199,9 +1200,8 @@ ship "Korath Refabricator"
 		"Triple Plasma Core" 3
 		"Korath Repeater Rifle"  2600
 
-		"Steering (Lunar Class)"
-		"Steering (Stellar Class)"
-		"Thruster (Planetary Class)"
+		"Grav-Steering (Nebula Class)"
+		"Thruster (Stellar Class)"
 		"Jump Drive"
 
 	turret -78 -220 "Korath Digger Turret"
@@ -1233,13 +1233,13 @@ ship "Korath Haven"
 	thumbnail "thumbnail/korath haven"
 	attributes
 		category "Transport"
-		"cost" 131580000
-		"shields" 217000
-		"hull" 187000
+		"cost" 231580000
+		"shields" 237000
+		"hull" 197000
 		"required crew" 29500
 		"bunks" 35800
-		"mass" 3880
-		"drag" 25.1
+		"mass" 4880
+		"drag" 27.4
 		"heat dissipation" .65
 		"fuel capacity" 3000
 		"cargo space" 3910
@@ -1274,9 +1274,9 @@ ship "Korath Haven"
 		"Large Heat Shunt" 12
 		"Triple Plasma Core" 4
 
-		"Thruster (Stellar Class)" 2
-		"Steering (Stellar Class)"
-		"Steering (Planetary Class)"
+		"Grav-Thruster (Nebula Class)"
+		"Thruster (Planetary Class)"
+		"Grav-Steering (Nebula Class)"
 		"Jump Drive"
 
 
