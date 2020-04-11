@@ -256,7 +256,7 @@ fleet "Korath Planetary Raid"
 		"Korath Raider"
 		"Korath Chaser (Expeller)" 2
 	variant 1
-		"Korath Ravager (Fast Inferno)"
+		"Korath Ravager (Eight Diggers)"
 		"Korath Raider"
 		"Korath Chaser (Expeller)" 2
 	variant 1
