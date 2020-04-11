@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# Sets the application version in main.cpp to the first argument.
-# Example: 
-# $ ./utils/set_main_cpp_version.sh "my cool version"
-
-perl -p -i -e "s/(Endless Sky) [\d.]+/\$1 $1/ig" source/main.cpp
