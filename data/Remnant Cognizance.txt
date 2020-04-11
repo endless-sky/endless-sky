@@ -117,10 +117,10 @@ mission "Remnant: Cognizance 3"
 			label main
 			branch voidrifle
 				has "Remnant: Face to Maw 2B: done"
-			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are acustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites, and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. There are military implications of the Korath harvesting the void sprites, and we must take steps to prevent this from happening.`
+			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are accustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites, and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. There are military implications of the Korath harvesting the void sprites, and we must take steps to prevent this from happening.`
 				goto next
 			label voidrifle
-			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are acustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites, and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. You are aware of the potential military implications of the Korath harvesting the void sprites, and must realize the importance of stopping such discovery.`
+			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are accustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites, and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. You are aware of the potential military implications of the Korath harvesting the void sprites, and must realize the importance of stopping such discovery.`
 			label next
 			`	 "It is imperative that all the Korath involved in this exploration be located immediately. According to our surveillance, that ship was part of a fleet that recently passed through Parca. Locate the fleet, and report back."`
 				accept
@@ -153,7 +153,7 @@ mission "Remnant: Cognizance 4"
 		has "Remnant: Cognizance 3: done"
 	on offer
 		conversation
-			`When you arrive in the spaceport you find Prefect Chilia surrounded by a group of Remnant. He is in the midst of a briefing, and waves you forward as soon as you approach. "Everyone, this is Captian <last>. They have located the Korath hunters twice now, so they will take the lead on tracking for this mission."`
+			`When you arrive in the spaceport you find Prefect Chilia surrounded by a group of Remnant. He is in the midst of a briefing, and waves you forward as soon as you approach. "Everyone, this is Captain <last>. They have located the Korath hunters twice now, so they will take the lead on tracking for this mission."`
 			`	He turns to you. "These are the captains who will be following your lead. You will have two Albatrosses, two Ibises with full complements, and 6 starlings. One of the Albatrosses is outfitted to be a shield to take the brunt of attacks." He pauses, looking around at the group. "This task force would be overkill for the intended target, but we are not taking any chances: Make sure every Korath there is killed. Salvage is secondary, and there should be no escapees."`
 			`	He steps back and looks at the group. "May the Embers burn bright for you." With that, he gives the group a respectful nod and walks away. The captains all look around, make various signs you think are probably encouraging combat pilot slang, and variations on Prefect Chilia's parting words. As they disperse to their ships, one gestures to you. "Lead on, Captain."`
 				accept
@@ -250,7 +250,7 @@ mission "Remnant: Cognizance 6"
 		conversation
 			`The descent into the clouds of Nasqueron is becoming almost familiar to you. The whispy layers giving way to more volumous formations and the ocasional turbulent storm. Beside you, Plume is eagerly peering out the window, and you remind yourself that this may well be his first time actually seeing void spries on their world.`
 			`	You reach the altitude that has had the most void sprites on it in the past before activating the sensors. Plume looks around, peering out the windows. "Where are they? Aren't there usually some around? They always seemed plentiful in the recordings." You focus on the sensors, and after a few minutes pick up some distant contacts. You follow them down into the lower atmosphere and eventually start seeing more void sprites."`
-			`	"That's close enough, captain. I'll go outside and watch them from the hull." You help him into the pressure suit and cycle the airlock behind him. A brief feeling of dissapointment flares within you, but you quickly suppress it. "This is, after all, Plume's job" you say to yourself as you settle back into your chair to wait for Plume to return.`
+			`	"That's close enough, captain. I'll go outside and watch them from the hull." You help him into the pressure suit and cycle the airlock behind him. A brief feeling of disappointment  flares within you, but you quickly suppress it. "This is, after all, Plume's job" you say to yourself as you settle back into your chair to wait for Plume to return.`
 
 
 
