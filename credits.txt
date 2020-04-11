@@ -87,8 +87,9 @@ Beta Testers
 
 Special thanks to MCOfficer for
 creating, managing, and hosting
-the nightly builds that make
-so much of this work possible.
+the nightly & continuous builds 
+that make so much of this work 
+possible.
 
 Editors & Proofreaders
   Arrow2thekn33
@@ -220,6 +221,7 @@ contributed to Endless-Sky:
   Pointedstick
   pscamman
   Rakete1111
+  ravenshining
   realityforge
   redschalken
   reizbar
