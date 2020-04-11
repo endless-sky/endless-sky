@@ -111,8 +111,6 @@ namespace {
 	map<string, string> helpMessages;
 	map<string, string> plugins;
 	
-	map<string, double> whitelist;
-	
 	SpriteQueue spriteQueue;
 	
 	vector<string> sources;
@@ -858,13 +856,6 @@ const map<string, string> &GameData::PluginAboutText()
 
 
 
-const map<string, double> &GameData::Whitelist()
-{
-	return whitelist;
-}
-
-
-
 void GameData::LoadSources()
 {
 	sources.clear();
@@ -1013,11 +1004,6 @@ void GameData::LoadFile(const string &path, bool debugMode)
 				}
 				text += child.Token(0);
 			}
-		}
-		else if(key == "whitelist")
-		{
-			for(const DataNode &child : node)
-				whitelist[child.Token(0)] = child.Size() >= 2 ? child.Value(1) : 0.;
 		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");

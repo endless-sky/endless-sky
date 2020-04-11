@@ -25,6 +25,17 @@ using namespace std;
 
 namespace {
 	const double EPS = 0.0000000001;
+	
+	// A whitelist of attributes which do not have minimum values of 0.
+	// A value of 0 means that the attribute has no minimum.
+	const map<string, double> WHITELIST = {
+		{"hull energy", 0.},
+		{"hull fuel", 0.},
+		{"hull heat", 0.},
+		{"shield energy", 0.},
+		{"shield fuel", 0.},
+		{"shield heat", 0.}
+	};
 }
 
 const vector<string> Outfit::CATEGORIES = {
@@ -199,17 +210,16 @@ const Dictionary &Outfit::Attributes() const
 // not, return the maximum number that can be added.
 int Outfit::CanAdd(const Outfit &other, int count) const
 {
-	const auto &whitelist = GameData::Whitelist();
 	for(const auto &at : other.attributes)
 	{
 		double minimum = 0.;
 		// Check if this attribute is on the whitelist of attributes with
 		// a non-zero minimum.
-		if(whitelist.count(at.first))
+		if(WHITELIST.count(at.first))
 		{
-			minimum = whitelist.find(at.first)->second;
-			// Attributes on the whitelist without a listed minimum or a
-			// listed minimum of 0. can have any value.
+			minimum = WHITELIST.find(at.first)->second;
+			// Attributes on the whitelist with a listed minimum of 0
+			// can have any value.
 			if(!minimum)
 				continue;
 		}

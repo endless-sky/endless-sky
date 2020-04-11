@@ -140,8 +140,6 @@ public:
 	
 	static const std::map<std::string, std::string> &PluginAboutText();
 	
-	static const std::map<std::string, double> &Whitelist();
-	
 	
 private:
 	static void LoadSources();
