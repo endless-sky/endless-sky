@@ -3,8 +3,7 @@ name: CD
 on:
   push:
     branches:
-      - cd-publish-release
-
+      - master
 
 jobs:
 
