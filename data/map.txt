@@ -3146,7 +3146,7 @@ system Almach
 	fleet "Large Core Pirates" 1400
 	fleet "Large Syndicate" 6000
 	fleet "Korath Planetary Raid" 50000
-	fleet "Korath Miners" 50000
+	fleet "Korath Miners" 25000
 	object
 		sprite star/k5
 		period 10
@@ -8305,8 +8305,7 @@ system Durax
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 900
 	fleet "Large Syndicate" 2500
-	fleet "Korath Raid" 6000
-	fleet "Korath Miners" 25000
+	fleet "Korath Raid" 5000
 	object
 		sprite star/g0-old
 		period 10
@@ -13855,7 +13854,9 @@ system "Kor Ak'Mari"
 	trade Metal 217
 	trade Plastic 524
 	fleet "Korath Raid" 2800
-	fleet "Korath Miners" 15000
+	fleet "Korath Planetary Raid" 5000
+	fleet "Korath Civilian Miners" 5000
+	fleet "Korath Civilian" 1000
 	object
 		sprite star/wr
 		period 100
@@ -13911,8 +13912,9 @@ system "Kor En'lakfar"
 	trade Metal 236
 	trade Plastic 488
 	fleet "Korath Raid" 600
-	fleet "Korath Miners" 15000
-	fleet "Korath Civilian" 1800
+	fleet "Korath Planetary Raid" 1800
+	fleet "Korath Civilian Miners" 5000
+	fleet "Korath Civilian" 1000
 	object
 		sprite star/g0
 		period 10
@@ -13972,8 +13974,9 @@ system "Kor Fel'tar"
 	trade Metal 256
 	trade Plastic 478
 	fleet "Korath Raid" 1600
-	fleet "Korath Miners" 15000
-	fleet "Korath Civilian" 900
+	fleet "Korath Civilian Miners" 5000
+	fleet "Korath Planetary Raid" 5000
+	fleet "Korath Civilian" 1000
 	object
 		sprite star/k0
 		period 10
@@ -14036,7 +14039,9 @@ system "Kor Men"
 	trade Metal 240
 	trade Plastic 497
 	fleet "Korath Raid" 1300
-	fleet "Korath Civilian" 600
+	fleet "Korath Civilian" 1000
+	fleet "Korath Planetary Raid" 3000
+	fleet "Korath Civilian Miners" 10000
 	object
 		sprite star/f5-old
 		distance 33.3868
@@ -14095,7 +14100,8 @@ system "Kor Nor'peli"
 	trade Metal 517
 	trade Plastic 423
 	fleet "Korath Raid" 1000
-	fleet "Korath Civilian" 500
+	fleet "Korath Planetary Raid" 2000
+	fleet "Korath Civilian" 1000
 	object
 		sprite star/k0-old
 		distance 25.4857
@@ -14160,8 +14166,9 @@ system "Kor Tar'bei"
 	trade Metal 498
 	trade Plastic 402
 	fleet "Korath Raid" 1200
-	fleet "Korath Miners" 10000
-	fleet "Korath Civilian" 600
+	fleet "Korath Civilian Miners" 5000
+	fleet "Korath Planetary Raid" 5000
+	fleet "Korath Civilian" 1000
 	object
 		sprite star/m0
 		period 10
@@ -14210,7 +14217,8 @@ system "Kor Zena'i"
 	trade Metal 478
 	trade Plastic 381
 	fleet "Korath Raid" 800
-	fleet "Korath Civilian" 1100
+	fleet "Korath Planetary Raid" 3000
+	fleet "Korath Civilian" 1000
 	object
 		sprite star/g5-old
 		distance 8.94444
@@ -16622,6 +16630,7 @@ system Mirfak
 	link Menkar
 	link Bellatrix
 	link Moktar
+	link Misam
 	asteroids "small rock" 3 3.3592
 	asteroids "medium rock" 5 4.6436
 	asteroids "large rock" 5 3.5568
@@ -16728,6 +16737,73 @@ system Mirzam
 			sprite planet/rock17
 			distance 215
 			period 12.1447
+
+system Misam
+	pos -139 -80
+	government Uninhabited
+	habitable 993
+	belt 1091
+	link Mirfak
+	link Oblate
+	asteroids "small rock" 30 2.4918
+	asteroids "medium rock" 65 2.7068
+	asteroids "large rock" 1 2.561
+	asteroids "small metal" 8 1.2002
+	asteroids "medium metal" 10 2.7702
+	asteroids "large metal" 6 2.2562
+	minables copper 22 2.79651
+	minables silver 18 1.38539
+	minables neodymium 14 1.81077
+	trade Clothing 307
+	trade Electronics 741
+	trade Equipment 661
+	trade Food 168
+	trade "Heavy Metals" 851
+	trade Industrial 787
+	trade "Luxury Goods" 1002
+	trade Medical 688
+	trade Metal 288
+	trade Plastic 368
+	fleet "Small Core Pirates" 12000
+	fleet "Large Syndicate" 15000
+	fleet "Small Syndicate" 10000
+	fleet "Human Miners" 3000
+	fleet "Korath Miners" 20000
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/cloud8
+		distance 494.8
+		period 133.965
+		object
+			sprite planet/lava0-b
+			distance 159
+			period 24.2278
+	object
+		sprite planet/cloud3
+		distance 1010.56
+		period 391.013
+		object
+			sprite planet/luna
+			distance 166
+			period 21.8962
+	object
+		sprite planet/gas16
+		distance 2328.56
+		period 1831.03
+		object
+			sprite planet/io
+			distance 232
+			period 15.0975
+		object
+			sprite planet/callisto-b
+			distance 350
+			period 27.9753
+		object
+			sprite planet/ganymede
+			distance 498
+			period 47.4807
 
 system Mizar
 	pos -579 184
@@ -17482,6 +17558,7 @@ system Oblate
 	belt 1704
 	link Alcyone
 	link Moktar
+	link Misam
 	asteroids "small rock" 2 2.1
 	asteroids "medium rock" 7 1.3944
 	asteroids "large rock" 2 1.7976
@@ -21411,7 +21488,7 @@ system Sheratan
 	fleet "Large Core Merchants" 1800
 	fleet "Small Core Pirates" 3000
 	fleet "Large Core Pirates" 5000
-	fleet "Korath Planetary Raid" 30000
+	fleet "Korath Planetary Raid" 40000
 	object
 		sprite star/f5
 		distance 21.0713

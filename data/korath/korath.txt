@@ -222,7 +222,7 @@ fleet "Korath Raid"
 	variant 1
 		"Korath Ravager (Nova Heaver)"
 	variant 1
-		"Korath Ravager (Grav-Thrust Nova)"
+		"Korath Ravager (Turbo Nova)"
 	variant 1
 		"Korath Ravager (Dual Heaver)"
 	variant 1
@@ -239,6 +239,17 @@ fleet "Korath Miners"
 		timid disables plunders frugal mining harvests
 	variant 5
 		"Korath Dredger (Fast Inferno)"
+
+fleet "Korath Civilian Miners"
+	government "Korath (Civilian)"
+	names "korath"
+	fighters "korath"
+	cargo 0
+	personality
+		# Mute avoids having them repair you during battle.
+		heroic frugal mining harvests mute
+	variant 5
+		"Korath Dredger (Civilian)"
 
 fleet "Korath Planetary Raid"
 	government "Korath"
@@ -314,7 +325,7 @@ fleet "Korath Home"
 	personality
 		timid opportunistic
 	variant 12
-		"Korath Dredger (Hyperdrive)"
+		"Korath Dredger (Civilian)"
 
 fleet "Korath Civilian"
 	government "Korath (Civilian)"
@@ -356,9 +367,9 @@ fleet "Korath Civilian"
 		"Korath Chaser (Expeller)" 2
 		"Korath Chaser (Digger)" 2
 	variant 5
-		"Korath Dredger" 2
+		"Korath Dredger (Civilian)" 2
 	variant 5
-		"Korath Dredger (Fast Inferno)" 2
+		"Korath Dredger (Civilian)" 2
 	variant 12
 		"Korath Refuge"
 

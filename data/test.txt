@@ -86,6 +86,7 @@ shipyard "korath exile variant shipyard"
 	"Korath Chaser (Digger)"
 	
 	"Korath Dredger (Fast Inferno)"
+	"Korath Dredger (Civilian)"
 
 	"Korath Refabricator (Grab-Strike)"
 	"Korath Refabricator (Six Infernos)"
@@ -99,7 +100,7 @@ shipyard "korath exile variant shipyard"
 	"Korath Ravager (Eight Diggers)"
 	"Korath Ravager (Dual Inferno)"
 	"Korath Ravager (Nova Heaver)"
-	"Korath Ravager (Grav-Thrust Nova)"
+	"Korath Ravager (Turbo Nova)"
 	"Korath Ravager (Dual Heaver)"
 	"Korath Ravager (Grab-Strike Banisher)"
 	"Korath Ravager (Grab-Strike Inferno)"
@@ -111,9 +112,6 @@ shipyard "korath exile variant shipyard"
 	"Korath Ravager (Crippled Disarmed)"
 	"Korath Ravager (Big Raider)"
 	"Korath Ravager (Crippled Armed)"
-
-	# Stand-in for deprecated "Korath Home" fleets:
-	"Korath Dredger (Hyperdrive)"
 
 shipyard "korath exile test shipyard"
 	"Korath Raider"

@@ -717,7 +717,7 @@ outfit "Korath Heaver"
 		"firing heat" 190
 		"firing fuel" 12.5
 		"inaccuracy" 0.5
-	description `Korath Heavers raise to a fine art the age-old warfare method of, "Throw rocks at your enemy until they die." Small asteroids or other debris fly into an unstable hyperspace window, exiting a few seconds later. Within a range of 240, the weapon does no damage, but pushes with a force that makes a Banisher look like a light breeze. Beyond that, small chunks of matter exit hyperspace and travel a long distance at extreme velocity.`
+	description `Korath Heavers raise to a fine art the age-old warfare method of, "Throw rocks at your enemy until they die." Small asteroids or other debris fly into an unstable hyperspace window, exiting a few seconds later. Within a range of 240, the weapon does no damage, but pushes with a force that makes a Banisher feel like a light breeze. Beyond that, small chunks of matter exit hyperspace and travel a long distance at extreme velocity.`
 	description `This is a canonical example of modern Korath Exile engineering: jury-rigged, inefficient even by Korath standards, but cheap to produce. There are parts from a Hyperdrive, Fuel Processor, Banisher, and thruster, wrapped in steel, and mounted on the lower half of a Nova Turret. Despite the slap-shod design, the device is extremely effective.`
 
 effect "heaver hyperspace hit"
@@ -805,7 +805,7 @@ outfit "Korath Digger Turret"
 		sprite "projectile/korath digger"
 			"frame rate" 20
 		"hardpoint sprite" "hardpoint/digger turret"
-		sound "korath digger"
+		sound "korath digger loop"
 		"hit effect" "korath digger hit"
 		"inaccuracy" .5
 		"turret turn" 3
@@ -814,8 +814,8 @@ outfit "Korath Digger Turret"
 		"reload" 1
 		"firing energy" 3.6
 		"firing heat" 5.2
-		"shield damage" 1.1
-		"hull damage" 5.1
+		"shield damage" 2.1
+		"hull damage" 4.2
 		"disruption damage" .055
 	description `When the Korath Exiles needed a cheap mining laser for their large vessels, they turned to an ancient but robust design. Updated with modern engineering, the mild shield disruption lets it damage ships as well, when multiple Diggers are used at once. Despite this, the weapon is horrendously inefficient compared to modern alternatives.`
 
@@ -831,7 +831,7 @@ outfit "Korath Digger"
 	weapon
 		sprite "projectile/korath digger"
 			"frame rate" 20
-		sound "korath digger"
+		sound "korath digger loop"
 		"hit effect" "korath digger hit"
 		"inaccuracy" .5
 		"velocity" 480
@@ -839,8 +839,8 @@ outfit "Korath Digger"
 		"reload" 1
 		"firing energy" 3.6
 		"firing heat" 5.2
-		"shield damage" 1.1
-		"hull damage" 5.1
+		"shield damage" 2.1
+		"hull damage" 4.1
 		"disruption damage" .055
 	description `The basis for the design of a Korath Digger was an old turret. This one has been removed from its turret and supplemented with small batteries.`
 

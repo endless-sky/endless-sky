@@ -85,30 +85,6 @@ ship "Korath Chaser" "Korath Chaser (Digger)"
 		"Thruster (Asteroid Class)"
 		"Steering (Asteroid Class)"
 		
-ship "Efret fi Zujaja" "Efret fi Jara"
-	sprite "ship/world-ship b"
-	thumbnail "thumbnail/world-ship b"
-	turret -76 -219 "Korath Grab-Strike"
-	turret 76 -219 "Korath Grab-Strike"
-	turret -75 -112 "Korath Banisher"
-	turret 75 -112 "Korath Banisher"
-	turret 0 -92 "Korath Warder"
-	turret -83 165 "Korath Warder"
-	turret 83 165 "Korath Warder"
-	turret 0 277 "Korath Banisher"
-		
-ship "Efret fi Zujaja" "Efret fi Iibriq"
-	sprite "ship/world-ship c"
-	thumbnail "thumbnail/world-ship c"
-	turret -76 -219 "Korath Grab-Strike"
-	turret 76 -219 "Korath Grab-Strike"
-	turret -75 -112 "Korath Banisher"
-	turret 75 -112 "Korath Banisher"
-	turret 0 -92 "Korath Warder"
-	turret -83 165 "Korath Warder"
-	turret 83 165 "Korath Warder"
-	turret 0 277 "Korath Banisher"
-
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 	outfits
 		"Korath Piercer Launcher" 4
@@ -294,6 +270,32 @@ ship "Korath Dredger" "Korath Dredger (Fast Inferno)"
 		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
+
+	turret -37 -155 "Korath Digger Turret"
+	turret 0 -155 "Korath Digger Turret"
+	turret 37 -155 "Korath Digger Turret"
+	turret -96 0 "Korath Warder"
+	turret 96 0 "Korath Warder"
+	turret -80 130 "Korath Inferno"
+	turret 80 130 "Korath Inferno"
+
+# Civilian dredgers have the mining outfits but no jump drive.
+ship "Korath Dredger" "Korath Dredger (Civilian)"
+	outfits
+		"Korath Warder" 2
+		"Korath Inferno" 2
+		"Korath Digger Turret" 3
+		
+		"Large Heat Shunt" 3
+		"Systems Core (Medium)"
+		"Plasma Core"
+		"Triple Plasma Core"
+		"Korath Repeater Rifle" 190
+
+		"Engine (Meteor Class)" 2
+		"Steering (Planetary Class)"
+		"Thruster (Planetary Class)"
+		"Hyperdrive"
 
 	turret -37 -155 "Korath Digger Turret"
 	turret 0 -155 "Korath Digger Turret"
@@ -494,7 +496,7 @@ ship "Korath Ravager" "Korath Ravager (Quad Inferno)"
 		"Generator (Candle Class)"
 		"Large Heat Shunt" 3
 		"Small Heat Shunt"
-		"Korath Repeater Rifle" 338
+		"Korath Repeater Rifle" 219
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -522,7 +524,7 @@ ship "Korath Ravager" "Korath Ravager (Grab-Strike Digger)"
 		"Triple Plasma Core"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
-		"Korath Repeater Rifle" 338
+		"Korath Repeater Rifle" 219
 
 		"Engine (Meteor Class)"
 		"Steering (Comet Class)"
@@ -551,7 +553,7 @@ ship "Korath Ravager" "Korath Ravager (Eight Diggers)"
 		"Small Heat Shunt"
 		"Double Plasma Core"
 		"Triple Plasma Core"
-		"Korath Repeater Rifle" 338
+		"Korath Repeater Rifle" 219
 		
 		"Steering (Stellar Class)"
 		"Thruster (Stellar Class)"
@@ -580,7 +582,7 @@ ship "Korath Ravager" "Korath Ravager (Dual Inferno)"
 		"Triple Plasma Core"
 		"Large Heat Shunt" 3
 		"Small Heat Shunt" 2
-		"Korath Repeater Rifle" 338
+		"Korath Repeater Rifle" 219
 		
 		"Steering (Lunar Class)"
 		"Steering (Planetary Class)"
@@ -613,7 +615,7 @@ ship "Korath Ravager" "Korath Ravager (Nova Heaver)"
 		"Generator (Furnace Class)"
 		"Large Heat Shunt"
 		"Small Heat Shunt" 3
-		"Korath Repeater Rifle" 338
+		"Korath Repeater Rifle" 219
 		
 		"Thruster (Stellar Class)"
 		"Steering (Planetary Class)"
@@ -629,7 +631,7 @@ ship "Korath Ravager" "Korath Ravager (Nova Heaver)"
 	turret
 	turret
 
-ship "Korath Ravager" "Korath Ravager (Grav-Thrust Nova)"
+ship "Korath Ravager" "Korath Ravager (Turbo Nova)"
 	outfits
 		"Korath Warder" 2
 		"Nova Turret"
@@ -640,12 +642,15 @@ ship "Korath Ravager" "Korath Ravager (Grav-Thrust Nova)"
 		"Outfits Expansion" 2
 		"Systems Core (Large)"
 		"Plasma Core"
+		"Generator (Candle Class)"
 		"Triple Plasma Core"
 		"Large Heat Shunt" 2
-		"Korath Repeater Rifle" 338
+		"Small Heat Shunt" 3
+		"Korath Repeater Rifle" 219
 		
 		"Steering (Stellar Class)"
-		"Grav-Thruster (Nebula Class)"
+		"Thruster (Stellar Class)"
+		"Thruster (Comet Class)"
 		"Jump Drive"
 	turret "Korath Digger Turret"
 	turret "Korath Digger Turret"
@@ -671,7 +676,7 @@ ship "Korath Ravager" "Korath Ravager (Dual Heaver)"
 		"Generator (Candle Class)"
 		"Large Heat Shunt"
 		"Small Heat Shunt" 2
-		"Korath Repeater Rifle" 338
+		"Korath Repeater Rifle" 219
 		
 		"Steering (Planetary Class)"
 		"Thruster (Stellar Class)"
@@ -701,7 +706,7 @@ ship "Korath Ravager" "Korath Ravager (Grab-Strike Banisher)"
 		"Triple Plasma Core"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
-		"Korath Repeater Rifle" 338
+		"Korath Repeater Rifle" 219
 		
 		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
@@ -730,7 +735,7 @@ ship "Korath Ravager" "Korath Ravager (Grab-Strike Inferno)"
 		"Generator (Furnace Class)"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt" 2
-		"Korath Repeater Rifle" 338
+		"Korath Repeater Rifle" 219
 		
 		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
@@ -927,9 +932,9 @@ ship "Korath Dredger" "Korath Dredger (Crippled)"
 		"ramscoop" -2
 		"shield generation" -2.5
 		"shield energy" -3.4
-		"hull repair rate" -3.1
-		"hull energy" -3.1
-		"hull heat" -4.5
+		"hull repair rate" -1.6
+		"hull energy" -1.6
+		"hull heat" -2.1
 		"energy capacity" -1800
 	outfits
 		"Korath Grab-Strike" 2
@@ -961,36 +966,6 @@ ship "Korath Dredger" "Korath Dredger (Crippled)"
 
 # Backward-compatibility to avoid breaking plug-ins
 
-ship "Korath Dredger" "Korath Dredger (Hyperdrive)"
-	# Used to fill "Korath Home" fleets for backward-compatibility,
-	# to ensure Efret-specific ships are not present.
-	outfits
-		"Korath Grab-Strike" 2
-		"Korath Warder" 2
-		"Korath Digger Turret" 2
-		"Korath Heaver"
-		
-		"Systems Core (Medium)"
-		"Triple Plasma Core"
-		"Generator (Furnace Class)"
-		"Small Heat Shunt" 2
-		"Large Heat Shunt" 2
-		"Fuel Processor" 3
-		"Korath Repeater Rifle" 190
-		
-		"Thruster (Planetary Class)"
-		"Steering (Planetary Class)"
-		"Engine (Meteor Class)" 2
-		"Hyperdrive"
-
-	turret -37 -155 "Korath Digger Turret"
-	turret 0 -155 "Korath Warder"
-	turret 37 -155 "Korath Digger Turret"
-	turret -96 0 "Korath Grab-Strike"
-	turret 96 0 "Korath Grab-Strike"
-	turret -80 130 "Korath Warder"
-	turret 80 130 "Korath Heaver"
-
 ship "Efret fi Zujaja" "Korath World-Ship"
 	sprite "ship/world-ship a"
 	thumbnail "thumbnail/world-ship a"
@@ -1003,7 +978,7 @@ ship "Efret fi Zujaja" "Korath World-Ship"
 	turret -91 290 "Korath Banisher"
 	turret 91 290 "Korath Warder"
 	
-ship "Efret fi Zujaja" "Korath World-Ship B"
+ship "Efret fi Jara" "Korath World-Ship B"
 	sprite "ship/world-ship b"
 	thumbnail "thumbnail/world-ship b"
 	turret -76 -219 "Korath Grab-Strike"
@@ -1015,7 +990,7 @@ ship "Efret fi Zujaja" "Korath World-Ship B"
 	turret 83 165 "Korath Warder"
 	turret 0 277 "Korath Banisher"
 
-ship "Efret fi Zujaja" "Korath World-Ship C"
+ship "Efret fi Iibriq" "Korath World-Ship C"
 	sprite "ship/world-ship c"
 	thumbnail "thumbnail/world-ship c"
 	turret -45 -243 "Korath Warder"
@@ -1052,7 +1027,7 @@ ship "Efret fi Zujaja" "Korath World-Ship A (Jump)"
 	turret -66 210 "Korath Warder"
 	turret 66 210 "Korath Banisher"
 
-ship "Efret fi Zujaja" "Korath World-Ship B (Jump)"
+ship "Efret fi Jara" "Korath World-Ship B (Jump)"
 	sprite "ship/world-ship b"
 	outfits
 		"Korath Grab-Strike" 2
@@ -1078,7 +1053,7 @@ ship "Efret fi Zujaja" "Korath World-Ship B (Jump)"
 	turret 83 165 "Korath Warder"
 	turret 0 277 "Korath Banisher"
 
-ship "Efret fi Zujaja" "Korath World-Ship C (Jump)"
+ship "Efret fi Iibriq" "Korath World-Ship C (Jump)"
 	sprite "ship/world-ship c"
 	outfits
 		"Korath Grab-Strike" 2
@@ -1104,7 +1079,7 @@ ship "Efret fi Zujaja" "Korath World-Ship C (Jump)"
 	turret -91 286 "Korath Banisher"
 	turret 91 286 "Korath Warder"
 
-ship "Efret fi Zujaja" "Korath World-Ship B (Ember)"
+ship "Efret fi Jara" "Korath World-Ship B (Ember)"
 	sprite "ship/world-ship b"
 	outfits
 		"Korath Grab-Strike" 2
@@ -1132,7 +1107,7 @@ ship "Efret fi Zujaja" "Korath World-Ship B (Ember)"
 	turret 83 165 "Korath Warder"
 	turret 0 277 "Korath Banisher"
 
-ship "Efret fi Zujaja" "Korath World-Ship B (Crippled)"
+ship "Efret fi Jara" "Korath World-Ship B (Crippled)"
 	sprite "ship/world-ship b"
 	outfits
 		"Korath Banisher" 3
