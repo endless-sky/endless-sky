@@ -157,7 +157,6 @@ news "concerned merchant in Hai space"
 			"I hear Hai space wasn't peaceful a few centuries ago when some reptilian aliens were raiding the place. I wonder where they went?"
 			"These Hai are so creepy. What are they hiding? I can't wait to get back to human space."
 			"The Hai don't like my ship's armory of laser rifles, but I was once boarded by a pirate crew and I'm never letting that happen again! If some overgrown squirrel is going to take away my rifle, it'll have to be from my cold dead hands!"
-			"I met some young Hai pilots. It sounds like they start out as poor as we do."
 			"I hope nobody is smuggling Hai technology out of here. I don't want to think about what would happen if the pirates got their hands on this stuff."
 			"The Hai will pay you to rush cargo to human space and back. Don't die trying."
 
