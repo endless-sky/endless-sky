@@ -191,9 +191,6 @@ phrase "kor mereti"
 
 
 fleet "Korath Raid"
-	# These are intended as solo fleets. The nova devices
-	# on some of them will result in too much collateral
-	# damage. Use Korath Planetary Raid for groups.
 	government "Korath"
 	names "korath"
 	fighters "korath"
@@ -220,9 +217,9 @@ fleet "Korath Raid"
 	variant 1
 		"Korath Ravager (Dual Inferno)"
 	variant 1
-		"Korath Ravager (Nova Heaver)"
+		"Korath Ravager (Firestorm Heaver)"
 	variant 1
-		"Korath Ravager (Turbo Nova)"
+		"Korath Ravager (Turbo Firestorm)"
 	variant 1
 		"Korath Ravager (Dual Heaver)"
 	variant 1

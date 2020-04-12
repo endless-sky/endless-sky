@@ -115,11 +115,22 @@ ship "Korath Refuge"
 		"mass" 2100
 		"drag" 17.5
 		"heat dissipation" .6
-		"fuel capacity" 1400
+		"fuel capacity" 3000
+
+		# Capabilities of built-in nanite factory.
+		"ramscoop" 12
+		"shield generation" 9
+		"shield energy" 13.2
+		"hull repair rate" 10.2
+		"hull energy" 13.8
+		"hull heat" 19.1
+		"energy capacity" 4300
+		
+		
 		"cargo space" 451
-		"outfit space" 1230
-		"weapon capacity" 423
-		"engine capacity" 273
+		"outfit space" 1235
+		"weapon capacity" 431
+		"engine capacity" 309
 		weapon
 			"blast radius" 600
 			"shield damage" 9000
@@ -128,17 +139,13 @@ ship "Korath Refuge"
 	outfits
 		"Korath Heaver" 4
 		"Korath Warder" 4
-		"Nova Turret" 2
-		"Nova Device Rack" 3
-		"Nova Device" 56
+		"Firestorm Turret" 2
+		"Firestorm Torpedo Rack" 5
+		"Firestorm Torpedo" 180
 		
-		"Triple Plasma Core"
-		"Plasma Core"
-		"Systems Core (Large)"
-		"Systems Core (Medium)"
-		"Large Heat Shunt"
-		"Small Heat Shunt"
-		"Fuel Processor" 6
+		"Triple Plasma Core" 2
+		"Large Heat Shunt" 4
+		"Small Heat Shunt" 2
 		"Korath Repeater Rifle" 8500
 		
 		"Grav-Thruster (Nebula Class)"
@@ -150,9 +157,9 @@ ship "Korath Refuge"
 	turret -134 -198 "Korath Warder"
 	turret -158 -187 "Korath Heaver"
 	turret 104 30 "Korath Warder"
-	turret 104 60 "Nova Turret"
+	turret 104 60 "Firestorm Turret"
 	turret -104 30 "Korath Warder"
-	turret -104 60 "Nova Turret"
+	turret -104 60 "Firestorm Turret"
 	turret -17 181 "Korath Heaver"
 	turret 17 181 "Korath Heaver"
 	engine 43 244
@@ -166,6 +173,7 @@ ship "Korath Refuge"
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
 	description "Korath Refuges hold the must vulnerable of the Korath, those that would not survive a battle, even in a ship with armor and shields. Onboard, there are incubators, nurseries, hospitals, and vast stores of medicine. When Korath are attacked, these ships immediately flee; they're among the fastest ships the Korath have built."
+	description "Like other world-ships, the Refuge has built-in nanite factory. At peace, it manufactures parts, medicine, medical equipment, and sufficient food for bare sustenance. In battle, it repairs the hull, recharges shields, and provides significant ramscoop."
 
 ship "Efret fi Zujaja"
 	sprite "ship/world-ship a"
@@ -1170,9 +1178,9 @@ ship "Korath Ravager"
 		"Korath Inferno"
 		"Korath Digger Turret" 6
 		"Korath Warder" 2
-		"Nova Turret"
-		"Nova Device Rack"
-		"Nova Device" 24
+		"Firestorm Turret"
+		"Firestorm Torpedo Rack"
+		"Firestorm Torpedo" 60
 		
 		"Systems Core (Large)"
 		"Fuel Processor"
@@ -1197,7 +1205,7 @@ ship "Korath Ravager"
 	turret -150 21.5 "Korath Warder"
 	turret 150 21.5 "Korath Warder"
 	turret -102 81.5 "Korath Inferno"
-	turret 102 81.5 "Nova Turret"
+	turret 102 81.5 "Firestorm Turret"
 	engine -27 73.5 0.9
 	engine 27 73.5 0.9
 	explode "tiny explosion" 120
@@ -1207,7 +1215,7 @@ ship "Korath Ravager"
 	explode "huge explosion" 15
 	"final explode" "final explosion large"
 	description `The Ravager was the last crewed warship the Korath designed before they switched to drone ships. Neither side knows who originated the design; each kept capturing the others' ships and reverse-engineering improvements. This unending design competition bred a ship uncharacteristically efficient for the Korath. Armored heat sinks protect vulnerable areas of the ship, boosting hull strength and heat dissipation with minimal weight. Shields, weapon, and engine systems span the whole ship, to maximize all three. Mass is focused at the center, reducing drag.`
-	description `Unfortunately, this led to a vast crew requirement, leaving little space for passengers, cargo, or outfits. Ravagers can handle a phenominal arsenal and enough engines to out-maneuver the fastest drones, but not both at the same time. Optimists call that versatility. Pessimists prefer automated vessels: inefficient, durable, and numerous. The pessimists won.`
+	description `Unfortunately, this led to a vast crew requirement, leaving little space for passengers, cargo, or outfits. Ravagers can handle a phenominal arsenal and enough engines to out-maneuver the fastest drones, but not both at the same time. This led the Korath to automated ships: inefficient, uncrewed, and numerous.`
 
 
 ship "Korath Dredger"
@@ -1384,10 +1392,6 @@ ship "Korath Haven"
 		"outfit space" 2265
 		"weapon capacity" 940
 		"engine capacity" 380
-
-		"afterburner fuel" 0.5
-		"afterburner heat" 60
-		"afterburner thrust" 90
 		
 		# Capabilities of the two huge built-in nanite factories:
 		"ramscoop" 30
@@ -1470,5 +1474,5 @@ ship "Korath Haven"
 	explode "large explosion" 70
 	explode "huge explosion" 35
 	"final explode" "final explosion large"
-	description "The Korath Exiles built these vast havens as their main population centers. An estimated 80% of the Korath Exiles live on such ships. In addition to living space, each Korath Haven has industrial and hydroponics capacity sufficient for bare subsistence of its inhabitants."
+	description "The Korath Exiles built these vast havens as their main population centers. An estimated 80% of the Korath Exiles live on such ships. In addition to living space, each Korath Haven has industrial and hydroponics capacity sufficient for bare subsistence of its inhabitants. During battle, the built-in nanite factory repairs the ship, recharges shields, and provides significant ramscoop."
 	description "The exiles lacked resources to design a new vessel of this size, so they patched together other designs. A Korath Haven's wings and steering are from the incomplete Kor Metri Model 1024 world-ship drone. The body and thrusters are from the unfinished Kor Sestor Tek Ot Rah 681 world-ship drone. The nanite-run factories are from a Refabricator. The city buildings and hydroponics are modified from Refuge, Refabricator, and station parts. The resulting monstrosity is weak for a vessel of this size, but is sufficient for its purpose."

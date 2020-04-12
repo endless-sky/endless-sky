@@ -599,44 +599,44 @@ ship "Korath Ravager" "Korath Ravager (Dual Inferno)"
 	turret "Korath Inferno"
 	turret "Korath Inferno"
 
-ship "Korath Ravager" "Korath Ravager (Nova Heaver)"
+ship "Korath Ravager" "Korath Ravager (Firestorm Heaver)"
 	outfits
-		"Korath Banisher" 4
+		"Korath Digger Turret" 6
 		"Korath Warder" 2
 		"Korath Heaver"
-		"Nova Turret"
-		"Nova Device Rack"
-		"Nova Device" 24
+		"Firestorm Turret"
+		"Firestorm Torpedo Rack"
+		"Firestorm Torpedo" 60
 		
 		"Outfits Expansion"
 		"Systems Core (Large)"
-		"Fuel Processor" 3
+		"Fuel Processor" 4
 		"Triple Plasma Core"
-		"Generator (Furnace Class)"
-		"Large Heat Shunt"
-		"Small Heat Shunt" 3
+		"Plasma Core"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 1
 		"Korath Repeater Rifle" 219
 		
 		"Thruster (Stellar Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
-	turret "Korath Banisher"
-	turret "Korath Banisher"
-	turret "Korath Banisher"
-	turret "Korath Banisher"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
+	turret "Korath Digger Turret"
 	turret "Korath Heaver"
-	turret "Nova Turret"
+	turret "Firestorm Turret"
 	turret "Korath Warder"
 	turret "Korath Warder"
 	turret
 	turret
 
-ship "Korath Ravager" "Korath Ravager (Turbo Nova)"
+ship "Korath Ravager" "Korath Ravager (Turbo Firestorm)"
 	outfits
 		"Korath Warder" 2
-		"Nova Turret"
-		"Nova Device Rack" 4
-		"Nova Device" 48
+		"Firestorm Turret" 2
+		"Firestorm Torpedo Rack" 2
+		"Firestorm Torpedo" 120
 		"Korath Digger Turret" 4
 		
 		"Outfits Expansion" 2
@@ -645,7 +645,7 @@ ship "Korath Ravager" "Korath Ravager (Turbo Nova)"
 		"Generator (Candle Class)"
 		"Triple Plasma Core"
 		"Large Heat Shunt" 2
-		"Small Heat Shunt" 3
+		"Small Heat Shunt" 2
 		"Korath Repeater Rifle" 219
 		
 		"Steering (Stellar Class)"
@@ -656,8 +656,8 @@ ship "Korath Ravager" "Korath Ravager (Turbo Nova)"
 	turret "Korath Digger Turret"
 	turret "Korath Digger Turret"
 	turret "Korath Digger Turret"
-	turret
-	turret "Nova Turret"
+	turret "Firestorm Turret"
+	turret "Firestorm Turret"
 	turret "Korath Warder"
 	turret "Korath Warder"
 	turret

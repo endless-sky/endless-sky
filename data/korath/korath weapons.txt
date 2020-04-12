@@ -601,55 +601,55 @@ effect "slicer impact"
 	"random velocity" .1
 	"velocity scale" -.002
 
-outfit "Nova Device"
-	plural "Nova Devices"
+outfit "Firestorm Torpedo"
+	plural "Firestorm Torpedoes"
 	category "Ammunition"
 	cost 19800
-	thumbnail "outfit/nova device"
-	"mass" 2
-	"nova device capacity" -1
+	thumbnail "outfit/firestorm torpedo"
+	"mass" 0.7
+	"firestorm torpedo capacity" -1
 	description "This torpedo contains an augmented Korath Plasma Core reactor element, with no protective casing. When it activates, there is a tremendous explosion that heats up all ships in the vicinity, interferes with their generators, and imparts a large hit force."
 	description "Though the warhead is a Korath design, the torpedo casing and drive systems are distinctly not Korath in style. This may be a device the Korath discovered or pillaged, and have learned to reproduce."
 
-outfit "Nova Device Rack"
-	plural "Nova Device Racks"
+outfit "Firestorm Torpedo Rack"
+	plural "Firestorm Torpedo Racks"
 	category "Ammunition"
 	cost "135000"
-	thumbnail "outfit/nova rack"
-	"mass" 4
+	thumbnail "outfit/firestorm torpedo rack"
+	"mass" 6
 	"outfit space" -20
-	"nova device capacity" 8
-	ammo "Nova Device"
-	description "This appears to be a modified Korath Mine Rack, designed to carry Nova Devices."
+	"firestorm torpedo capacity" 20
+	ammo "Firestorm Torpedo"
+	description "This appears to be a modified Korath Mine Rack, designed to carry Firestorm Torpedoes."
 
-outfit "Nova Turret"
+outfit "Firestorm Turret"
 	category "Secondary Weapons"
 	cost 2383000
-	thumbnail "outfit/nova turret"
-	"mass" 17
-	# Small size is compensated by the need to dedicate hundreds of
-	# space to Nova Devices in order to have a good supply.
-	"outfit space" -49
-	"weapon capacity" -49
+	thumbnail "outfit/firestorm turret"
+	"mass" 20
+	# Small size is compensated by high energy and heat requirements which
+	# necessitate larger generators and more cooling.
+	"outfit space" -48
+	"weapon capacity" -48
 	"turret mounts" -1
 	"required crew" 1
-	"nova device capacity" 16
+	"firestorm torpedo capacity" 40
 	# Massive energy per shot; Korath don't have batteries and
 	# compensate using batteries in outfits.
 	"energy capacity" 1300
 	weapon
-		sprite "projectile/nova device"
+		sprite "projectile/firestorm torpedo"
 			"frame rate" 2
 			"no repeat"
-		"hardpoint sprite" "hardpoint/nova turret"
-		sound "nova"
-		ammo "Nova Device"
+		"hardpoint sprite" "hardpoint/firestorm torpedo"
+		sound "firestorm"
+		ammo "Firestorm Torpedo"
 		"turret turn" 2.7
-		icon "icon/nova device"
-		"hit effect" "nova ring" 40
+		icon "icon/firestorm torpedo"
+		"hit effect" "firestorm ring" 40
 		"die effect" "small explosion"
 		stream
-		"reload" 300
+		"reload" 210
 		"firing energy" 1235
 		"firing heat" 851
 		"inaccuracy" 3
@@ -661,26 +661,25 @@ outfit "Nova Turret"
 		"homing" 4
 		"infrared tracking" .7
 		"optical tracking" .9
-		"trigger radius" 30
-		"blast radius" 120
-		"shield damage" 2600
-		"hull damage" 2300
-		"ion damage" 28
+		"trigger radius" 20
+		"blast radius" 60
+		"shield damage" 2300
+		"hull damage" 2000
+		"ion damage" 35
 		"heat damage" 6000
 		"hit force" 3600
-		"missile strength" 245
-	description "This turret fires a Nova Device in any direction. Though you may dodge it for a while, the Nova Device's extremely long range and large blast radius will eventually catch up with you (or an innocent asteroid). The weapon's damage is small for its hefty requirements, but it has devastating side-effects. It heats ships, drains their generators, and pushes with a considerable force."
+		"missile strength" 285
+	description "This turret fires a Firestorm Torpedo in any direction. Though you may dodge it for a while, the Firestorm Torpedo's extremely long range and large blast radius will eventually catch up with you (or an innocent asteroid). The weapon's damage is small for its hefty requirements, but it has devastating side-effects. It heats ships, drains their generators, and pushes with a considerable force."
 	description "Though the warhead is a simple Korath design, the torpedo casing, launcher, and drive systems are distinctly not Korath in style. This may be a device the Korath discovered or pillaged, and have learned to reproduce."
 
-effect "nova ring"
-	sprite "effect/nova ring"
+effect "firestorm ring"
+	sprite "effect/firestorm ring"
 		"no repeat"
 		"frame rate" 12
-	"lifetime" 70
-	sound "nova hit"
+	"lifetime" 30
+	sound "firestorm hit"
 	"random angle" 360
-	"random frame rate" 6
-	"random velocity" 4
+	"random velocity" 2
 	"velocity scale" 0.1
 
 
@@ -718,7 +717,7 @@ outfit "Korath Heaver"
 		"firing fuel" 12.5
 		"inaccuracy" 0.5
 	description `Korath Heavers raise to a fine art the age-old warfare method of, "Throw rocks at your enemy until they die." Small asteroids or other debris fly into an unstable hyperspace window, exiting a few seconds later. Within a range of 240, the weapon does no damage, but pushes with a force that makes a Banisher feel like a light breeze. Beyond that, small chunks of matter exit hyperspace and travel a long distance at extreme velocity.`
-	description `This is a canonical example of modern Korath Exile engineering: jury-rigged, inefficient even by Korath standards, but cheap to produce. There are parts from a Hyperdrive, Fuel Processor, Banisher, and thruster, wrapped in steel, and mounted on the lower half of a Nova Turret. Despite the slap-shod design, the device is extremely effective.`
+	description `This is a canonical example of modern Korath Exile engineering: jury-rigged, inefficient even by Korath standards, but cheap to produce. There are parts from a Hyperdrive, Fuel Processor, Banisher, and thruster, wrapped in steel, and mounted on the lower half of a Firestorm Turret. Despite the slap-shod design, the device is extremely effective.`
 
 effect "heaver hyperspace hit"
 	sprite "effect/heaver hyperspace hit"
@@ -812,12 +811,12 @@ outfit "Korath Digger Turret"
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 3.6
+		"firing energy" 2.4
 		"firing heat" 5.2
 		"shield damage" 2.1
 		"hull damage" 4.2
 		"disruption damage" .055
-	description `When the Korath Exiles needed a cheap mining laser for their large vessels, they turned to an ancient but robust design. Updated with modern engineering, the mild shield disruption lets it damage ships as well, when multiple Diggers are used at once. Despite this, the weapon is horrendously inefficient compared to modern alternatives.`
+	description `When the Korath Exiles needed a cheap mining laser for their large vessels, they turned to an ancient but robust design. Updated with modern engineering, the mild shield disruption lets it damage ships as well, when multiple Diggers are used at once.`
 
 outfit "Korath Digger"
 	category "Guns"
