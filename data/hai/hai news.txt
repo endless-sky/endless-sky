@@ -31,6 +31,7 @@ news "food in Hai space"
 			"They make beer from fermented nuts here. I didn't know you could do that!"
 			"I just can't get enough acorn stew. These Hai cooks are amazing."
 			"Peanut this, walnut that, hazelnut icecream. What I wouldn't give for some good steak right now..."
+			"Back home, my favorite snack was pickled walnuts. Here, the pickled acorns are amazing!"
 
 
 # Visual suggestion: glasses, clean-cut attire, possibly scientific accoutrements
