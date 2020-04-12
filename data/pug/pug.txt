@@ -811,6 +811,7 @@ system "Over the Rainbow"
 	government Uninhabited
 	link "Terra Incognita"
 	habitable 1215
+	haze _menu/haze-blackbody
 	asteroids "small rock" 1 3.3098
 	asteroids "medium rock" 8 3.3345
 	asteroids "large rock" 2 2.1242
@@ -841,6 +842,7 @@ system "Terra Incognita"
 	pos 9921.5 7086.5
 	government Uninhabited
 	link "Over the Rainbow"
+	haze _menu/haze-full
 	habitable 455.625
 	asteroids "small rock" 8 1.8432
 	asteroids "medium rock" 1 1.8144
@@ -884,6 +886,7 @@ system "World's End"
 	pos 9966.5 7017.5
 	government Uninhabited
 	habitable 700
+	haze _menu/haze-full
 	object
 		sprite star/g5
 		period 10
