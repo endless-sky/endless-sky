@@ -1852,6 +1852,7 @@ system Achernar
 	government Syndicate
 	habitable 625
 	belt 1963
+	haze _menu/haze-blackbody
 	link "Al Dhanab"
 	link Alpheratz
 	link Schedar
@@ -2355,6 +2356,7 @@ system Alcyone
 	government Pirate
 	habitable 270
 	belt 1438
+	haze _menu/haze-blackbody
 	link Zaurak
 	link Oblate
 	link Durax
@@ -3076,6 +3078,7 @@ system Almaaz
 	government Pirate
 	habitable 1080
 	belt 1873
+	haze _menu/haze-stars
 	link Hatysa
 	link Mintaka
 	link Unagi
@@ -3121,6 +3124,7 @@ system Almach
 	government Pirate
 	habitable 320
 	belt 1914
+	haze _menu/haze-yellow
 	link Schedar
 	asteroids "small rock" 105 2.2763
 	asteroids "medium rock" 54 1.5028
@@ -3582,6 +3586,7 @@ system "Alpha Centauri"
 	government Republic
 	habitable 320
 	belt 1116
+	haze _menu/haze-stars
 	link Sol
 	asteroids "small rock" 1 1.944
 	asteroids "medium rock" 2 5.04
@@ -3643,6 +3648,7 @@ system "Alpha Hydri"
 	government Syndicate
 	habitable 1400
 	belt 1839
+	haze _menu/haze-yellow
 	link Ruchbah
 	asteroids "medium rock" 1 7.467
 	asteroids "large rock" 1 7.125
@@ -3875,6 +3881,7 @@ system Altair
 	government Republic
 	habitable 945
 	belt 1830
+	haze _menu/haze-stars
 	link Vega
 	link Sol
 	link "Delta Capricorni"
@@ -3936,6 +3943,7 @@ system Aludra
 	government Republic
 	habitable 455.625
 	belt 1511
+	haze _menu/haze-stars
 	link Naos
 	asteroids "small rock" 2 3.8394
 	asteroids "large rock" 7 2.4786
@@ -4119,6 +4127,7 @@ system Answer
 	government Coalition
 	habitable 425.92
 	belt 1636
+	haze _menu/haze-stars
 	link "Bright Void"
 	asteroids "medium rock" 2 6.279
 	asteroids "large rock" 3 6.578
@@ -4305,6 +4314,7 @@ system Ap'arak
 	government Wanderer
 	habitable 1080
 	belt 1385
+	haze _menu/haze-stars
 	link Chirr'ay'akai
 	link Sich'ka'ara
 	link Ka'ch'chrai
@@ -4857,6 +4867,7 @@ system Aya'k'k
 	government Wanderer
 	habitable 486.68
 	belt 1586
+	haze _menu/haze-blackbody
 	link Pik'ro'iyak
 	asteroids "small rock" 6 1.9152
 	asteroids "medium rock" 121 1.9404
@@ -5238,6 +5249,7 @@ system "Beta Lupi"
 	government Republic
 	habitable 625
 	belt 1261
+	haze _menu/haze-stars
 	link Pherkad
 	link "Kappa Centauri"
 	link Men
@@ -5970,6 +5982,7 @@ system Canopus
 	government Republic
 	habitable 214.375
 	belt 1530
+	haze _menu/haze-stars
 	link Phurad
 	link Mirzam
 	link Alheka
@@ -6821,7 +6834,7 @@ system Coluber
 	government Uninhabited
 	habitable 659.2
 	belt 1590
-	haze _menu/haze-red
+	haze _menu/haze-orange
 	link Parca
 	link Levana
 	link Lucina
@@ -7745,6 +7758,7 @@ system Denebola
 	government Republic
 	habitable 534.375
 	belt 1050
+	haze _menu/haze-stars
 	link Sol
 	link Merak
 	link Fingol
@@ -8235,6 +8249,7 @@ system Durax
 	government Pirate
 	habitable 1080
 	belt 1287
+	haze _menu/haze-yellow
 	link Alcyone
 	asteroids "small rock" 16 8.1744
 	asteroids "medium rock" 4 5.304
@@ -8542,6 +8557,7 @@ system Ek'kek'ru
 	government Wanderer
 	habitable 320
 	belt 1517
+	haze _menu/haze-stars
 	link Ka'ch'chrai
 	link Si'yak'ku
 	link Pik'ro'iyak
@@ -9120,6 +9136,7 @@ system Es'sprak'ai
 	government Wanderer
 	habitable 486.68
 	belt 1928
+	haze _menu/haze-stars
 	link Pik'ro'iyak
 	asteroids "small rock" 3 2.2275
 	asteroids "medium rock" 2 3.9875
@@ -9876,6 +9893,7 @@ system Fasitopfar
 	government Uninhabited
 	habitable 100
 	belt 1670
+	haze _menu/haze-blackbody
 	asteroids "small rock" 24 7.722
 	asteroids "medium rock" 58 6.75
 	asteroids "large rock" 25 3.348
@@ -10169,6 +10187,7 @@ system Feroteri
 	government Uninhabited
 	habitable 5425.92
 	belt 1419
+	haze _menu/haze-blackbody
 	link Farbutero
 	link Korsmanath
 	link Sepetrosk
@@ -10304,6 +10323,7 @@ system Fingol
 	government Republic
 	habitable 135
 	belt 1976
+	haze _menu/haze-stars
 	link Denebola
 	asteroids "small rock" 3 2.992
 	asteroids "medium rock" 8 3.74
@@ -11556,6 +11576,7 @@ system Hamal
 	government Syndicate
 	habitable 1080
 	belt 1241
+	haze _menu/haze-blackbody
 	link Ruchbah
 	asteroids "small rock" 3 2.7552
 	asteroids "medium rock" 3 3.9648
@@ -11667,6 +11688,7 @@ system Hassaleh
 	government Republic
 	habitable 670
 	belt 1924
+	haze _menu/haze-stars
 	link Rigel
 	link Sumar
 	link Danoa
@@ -11726,6 +11748,7 @@ system Hatysa
 	government Pirate
 	habitable 533.75
 	belt 1163
+	haze _menu/haze-blackbody
 	link Arneb
 	link Alnilam
 	link Almaaz
@@ -11785,6 +11808,7 @@ system "Heia Due"
 	government Hai
 	habitable 1215
 	belt 1079
+	haze _menu/haze-stars
 	link Waypoint
 	link "Due Yoot"
 	link "Io Lowe"
@@ -12374,6 +12398,7 @@ system Ik'kara'ka
 	government Wanderer
 	habitable 625
 	belt 1497
+	haze _menu/haze-stars
 	link Chy'chra
 	link Prakacha'a
 	asteroids "small rock" 1 7.3138
@@ -12434,6 +12459,7 @@ system Ildaria
 	government Republic
 	habitable 625
 	belt 1132
+	haze _menu/haze-blackbody
 	link Zubeneschamali
 	link Kochab
 	asteroids "medium rock" 1 3.159
@@ -12806,6 +12832,7 @@ system Iyech'yek
 	government Wanderer
 	habitable 320
 	belt 1613
+	haze _menu/haze-stars
 	link Ek'kek'ru
 	link Kiru'kichi
 	asteroids "small rock" 20 2.208
@@ -12921,6 +12948,7 @@ system Ka'ch'chrai
 	government Wanderer
 	habitable 425.92
 	belt 1745
+	haze _menu/haze-stars
 	link Ap'arak
 	link Ek'kek'ru
 	link Sko'karak
@@ -12977,6 +13005,7 @@ system Ka'pru
 	government Wanderer
 	habitable 1505.92
 	belt 1808
+	haze _menu/haze-blackbody
 	link Kiro'ku
 	asteroids "medium rock" 2 2.7573
 	asteroids "large rock" 1 2.7573
@@ -13046,6 +13075,7 @@ system Kaliptari
 	government Uninhabited
 	habitable 320
 	belt 1089
+	haze _menu/haze-stars
 	link Skeruto
 	link Fornarep
 	link Mekislepti
@@ -13247,6 +13277,7 @@ system Kasikfar
 	government Uninhabited
 	habitable 100
 	belt 1539
+	haze _menu/haze-blackbody
 	asteroids "small rock" 4 3.8019
 	asteroids "medium rock" 3 4.4689
 	asteroids "large rock" 1 4.002
@@ -13614,6 +13645,7 @@ system Kiro'ku
 	government Wanderer
 	habitable 1111.68
 	belt 1308
+	haze _menu/haze-stars
 	link Sich'ka'ara
 	link Ka'pru
 	asteroids "small rock" 32 4.9572
@@ -13689,6 +13721,7 @@ system Kiru'kichi
 	government Wanderer
 	habitable 2795
 	belt 1465
+	haze _menu/haze-stars
 	link Iyech'yek
 	asteroids "small rock" 11 5.032
 	asteroids "medium rock" 107 4.454
@@ -13789,6 +13822,7 @@ system "Kor Ak'Mari"
 	government Korath
 	habitable 625
 	belt 1606
+	haze _menu/haze-yellow
 	asteroids "small metal" 13 3.024
 	asteroids "medium metal" 99 3.0744
 	asteroids "large metal" 32 1.5624
@@ -13838,6 +13872,7 @@ system "Kor En'lakfar"
 	government Korath
 	habitable 1080
 	belt 1115
+	haze _menu/haze-yellow
 	link "Kor Men"
 	link "Kor Fel'tar"
 	asteroids "small rock" 7 0.84
@@ -13898,6 +13933,7 @@ system "Kor Fel'tar"
 	government Korath
 	habitable 455.625
 	belt 1444
+	haze _menu/haze-yellow
 	link "Kor En'lakfar"
 	link "Kor Men"
 	asteroids "small rock" 2 2.079
@@ -13962,6 +13998,7 @@ system "Kor Men"
 	government Korath
 	habitable 2340
 	belt 1260
+	haze _menu/haze-yellow
 	link "Kor En'lakfar"
 	link "Kor Fel'tar"
 	asteroids "small rock" 3 1.7442
@@ -14023,6 +14060,7 @@ system "Kor Nor'peli"
 	government Korath
 	habitable 590.625
 	belt 1213
+	haze _menu/haze-yellow
 	link "Kor Tar'bei"
 	asteroids "small rock" 2 3.7932
 	asteroids "medium rock" 14 4.0716
@@ -14086,6 +14124,7 @@ system "Kor Tar'bei"
 	government Korath
 	habitable 214.375
 	belt 1614
+	haze _menu/haze-yellow
 	link "Kor Nor'peli"
 	link "Kor Zena'i"
 	asteroids "small rock" 11 3.576
@@ -14141,6 +14180,7 @@ system "Kor Zena'i"
 	government Korath
 	habitable 703.125
 	belt 1866
+	haze _menu/haze-yellow
 	link "Kor Tar'bei"
 	asteroids "small rock" 5 6.2205
 	asteroids "large rock" 2 4.7415
@@ -14272,6 +14312,7 @@ system Korsmanath
 	government Uninhabited
 	habitable 486.68
 	belt 1775
+	haze _menu/haze-blackbody
 	link Feroteri
 	link Farbutero
 	asteroids "small rock" 2 2.4123
@@ -14643,7 +14684,7 @@ system Levana
 	government Uninhabited
 	habitable 2798.68
 	belt 1202
-	haze _menu/haze-red
+	haze _menu/haze-orange
 	link Coluber
 	asteroids "medium rock" 3 10.005
 	asteroids "large rock" 1 10.5125
@@ -14710,6 +14751,7 @@ system Limen
 	government Republic
 	habitable 1715
 	belt 1463
+	haze _menu/haze-stars
 	link Orbona
 	link Terminus
 	link Mora
@@ -15009,7 +15051,7 @@ system Lucina
 	government Uninhabited
 	habitable 320
 	belt 1466
-	haze _menu/haze-red
+	haze _menu/haze-orange
 	link Parca
 	link Coluber
 	asteroids "small rock" 1 4.59
@@ -15280,6 +15322,7 @@ system Markeb
 	government Republic
 	habitable 455.625
 	belt 1556
+	haze _menu/haze-stars
 	link Avior
 	asteroids "small rock" 23 5.0895
 	asteroids "medium rock" 4 2.2815
@@ -15456,6 +15499,7 @@ system Mebsuta
 	government Republic
 	habitable 670
 	belt 1740
+	haze _menu/haze-stars
 	link Mirzam
 	asteroids "small rock" 1 4.1412
 	asteroids "large rock" 2 3.7961
@@ -16040,6 +16084,7 @@ system Merak
 	government Republic
 	habitable 1080.62
 	belt 1769
+	haze _menu/haze-stars
 	link Phecda
 	link Porrima
 	link Denebola
@@ -16620,6 +16665,7 @@ system Mirzam
 	government Republic
 	habitable 1080
 	belt 1025
+	haze _menu/haze-stars
 	link Canopus
 	link Betelgeuse
 	link Mebsuta
@@ -16798,6 +16844,7 @@ system Mora
 	government Republic
 	habitable 320
 	belt 1176
+	haze _menu/haze-stars
 	link "Delta Velorum"
 	link "Tania Australis"
 	link Limen
@@ -16959,6 +17006,7 @@ system Naos
 	government Republic
 	habitable 625
 	belt 1045
+	haze _menu/haze-stars
 	link Regor
 	link Wezen
 	link Avior
@@ -17483,6 +17531,7 @@ system Orbona
 	government Republic
 	habitable 2859.44
 	belt 1507
+	haze _menu/haze-stars
 	link Limen
 	asteroids "small rock" 22 3.99
 	asteroids "medium rock" 34 3.57
@@ -17800,7 +17849,7 @@ system Parca
 	government Uninhabited
 	habitable 760
 	belt 1315
-	haze _menu/haze-red
+	haze _menu/haze-orange
 	link Coluber
 	link Lucina
 	asteroids "small rock" 41 4.408
@@ -18085,6 +18134,7 @@ system Peresedersi
 	government Uninhabited
 	habitable 100
 	belt 1065
+	haze _menu/haze-blackbody
 	asteroids "small rock" 49 1.403
 	asteroids "medium rock" 5 2.185
 	asteroids "large rock" 11 1.541
@@ -18518,6 +18568,7 @@ system Pik'ro'iyak
 	government Wanderer
 	habitable 233.28
 	belt 1279
+	haze _menu/haze-stars
 	link Si'yak'ku
 	link Ek'kek'ru
 	link Aya'k'k
@@ -18624,6 +18675,7 @@ system Polaris
 	government Syndicate
 	habitable 320
 	belt 1906
+	haze _menu/haze-yellow
 	link Achernar
 	asteroids "small rock" 1 7.67
 	asteroids "medium rock" 3 7.93
@@ -18792,6 +18844,7 @@ system Porrima
 	government Republic
 	habitable 760
 	belt 1636
+	haze _menu/haze-stars
 	link Muphrid
 	link Merak
 	asteroids "small rock" 20 4.7334
@@ -18935,6 +18988,7 @@ system Procyon
 	government Republic
 	habitable 455.625
 	belt 1763
+	haze _menu/haze-stars
 	link Sirius
 	link Pollux
 	link Capella
@@ -18990,6 +19044,7 @@ system "Pug Iyik"
 	government "Pug (Wanderer)"
 	habitable 625
 	belt 1286
+	haze _menu/haze-blackbody
 	asteroids "small rock" 35 7.6356
 	asteroids "medium rock" 5 6.9552
 	asteroids "large rock" 28 6.5016
@@ -19758,6 +19813,7 @@ system Regulus
 	government Republic
 	habitable 8640
 	belt 1605
+	haze _menu/haze-stars
 	link Merak
 	asteroids "small rock" 31 3.7752
 	asteroids "medium rock" 47 2.145
@@ -20111,6 +20167,7 @@ system Ruchbah
 	government Syndicate
 	habitable 2560
 	belt 1598
+	haze _menu/haze-blackbody
 	link Ankaa
 	link Alpheratz
 	link Sheratan
@@ -20532,6 +20589,7 @@ system "Sagittarius A*"
 	pos 112 22
 	government Uninhabited
 	habitable 10000
+	haze _menu/haze-blackbody
 	object
 		sprite "star/black-hole-core"
 		period 1
@@ -20544,6 +20602,7 @@ system Saiph
 	government Republic
 	habitable 320
 	belt 1690
+	haze _menu/haze-stars
 	link Rigel
 	link Alnitak
 	asteroids "small rock" 103 6.4974
@@ -20760,6 +20819,7 @@ system Sayaiban
 	government Drak
 	habitable 2035
 	belt 1803
+	haze _menu/haze-blackbody
 	asteroids "small rock" 13 2.106
 	asteroids "medium rock" 61 1.836
 	asteroids "large rock" 39 2.754
@@ -20869,6 +20929,7 @@ system Schedar
 	government Syndicate
 	habitable 1080
 	belt 1903
+	haze _menu/haze-blackbody
 	link Mirach
 	link Achernar
 	link Almach
@@ -21344,6 +21405,7 @@ system Sheratan
 	government Syndicate
 	habitable 2035
 	belt 1183
+	haze _menu/haze-yellow
 	link Ruchbah
 	link Zaurak
 	asteroids "large rock" 1 1.358
@@ -21402,6 +21464,7 @@ system Si'yak'ku
 	government Wanderer
 	habitable 1313.28
 	belt 1985
+	haze _menu/haze-stars
 	link Ek'kek'ru
 	link Pik'ro'iyak
 	asteroids "small rock" 19 3.78
@@ -21481,6 +21544,7 @@ system Sich'ka'ara
 	government Wanderer
 	habitable 1715
 	belt 1744
+	haze _menu/haze-stars
 	link Prakacha'a
 	link Ap'arak
 	link Kiro'ku
@@ -21782,6 +21846,7 @@ system Sirius
 	government Republic
 	habitable 1800
 	belt 1407
+	haze _menu/haze-stars
 	link Sol
 	link Procyon
 	link Eteron
@@ -22006,6 +22071,7 @@ system Sol
 	government Republic
 	habitable 1080
 	belt 1529
+	haze _menu/haze-stars
 	link Vega
 	link "Alpha Centauri"
 	link Altair
@@ -22363,6 +22429,7 @@ system Sospi
 	government Republic
 	habitable 1715
 	belt 1715
+	haze _menu/haze-stars
 	link Volax
 	link Nihal
 	asteroids "small rock" 1 2.8336
@@ -22685,6 +22752,7 @@ system Suhail
 	government Republic
 	habitable 1715
 	belt 1715
+	haze _menu/haze-stars
 	link Regor
 	asteroids "small rock" 2 2.8224
 	asteroids "medium rock" 1 4.48
@@ -23259,6 +23327,7 @@ system Terminus
 	government Republic
 	habitable 425.92
 	belt 1221
+	haze _menu/haze-stars
 	link Limen
 	asteroids "small rock" 29 4.046
 	asteroids "medium rock" 15 4.726
@@ -23710,6 +23779,7 @@ system Unagi
 	government Pirate
 	habitable 320
 	belt 1960
+	haze _menu/haze-stars
 	link Almaaz
 	asteroids "large rock" 1 3.102
 	asteroids "small metal" 2 2.772
@@ -24643,6 +24713,7 @@ system Zaurak
 	government Syndicate
 	habitable 625
 	belt 1130
+	haze _menu/haze-blackbody
 	link Sheratan
 	link Alcyone
 	link Menkar
