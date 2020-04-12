@@ -815,7 +815,7 @@ outfit "Korath Digger Turret"
 		"firing heat" 5.2
 		"shield damage" 2.1
 		"hull damage" 4.2
-		"disruption damage" .055
+		"disruption damage" .04
 	description `When the Korath Exiles needed a cheap mining laser for their large vessels, they turned to an ancient but robust design. Updated with modern engineering, the mild shield disruption lets it damage ships as well, when multiple Diggers are used at once.`
 
 outfit "Korath Digger"
@@ -839,7 +839,7 @@ outfit "Korath Digger"
 		"firing heat" 5.7
 		"shield damage" 2.1
 		"hull damage" 4.2
-		"disruption damage" .045
+		"disruption damage" .04
 	description `The basis for the design of a Korath Digger was an old turret. This modified version has no turret mount and is more accurate, but sacrifices efficiency and range.`
 
 effect "korath digger hit"
