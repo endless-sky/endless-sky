@@ -2356,7 +2356,6 @@ system Alcyone
 	government Pirate
 	habitable 270
 	belt 1438
-	haze _menu/haze-blackbody
 	link Zaurak
 	link Oblate
 	link Durax
@@ -3124,7 +3123,7 @@ system Almach
 	government Pirate
 	habitable 320
 	belt 1914
-	haze _menu/haze-yellow
+	haze _menu/haze-blackbody
 	link Schedar
 	asteroids "small rock" 105 2.2763
 	asteroids "medium rock" 54 1.5028
@@ -3648,7 +3647,7 @@ system "Alpha Hydri"
 	government Syndicate
 	habitable 1400
 	belt 1839
-	haze _menu/haze-yellow
+	haze _menu/haze-blackbody
 	link Ruchbah
 	asteroids "medium rock" 1 7.467
 	asteroids "large rock" 1 7.125
@@ -3815,6 +3814,7 @@ system Alpheratz
 	government Syndicate
 	habitable 1080.62
 	belt 1645
+	haze _menu/haze-blackbody
 	link "Al Dhanab"
 	link Ruchbah
 	link Achernar
@@ -6834,7 +6834,7 @@ system Coluber
 	government Uninhabited
 	habitable 659.2
 	belt 1590
-	haze _menu/haze-orange
+	haze _menu/haze-red
 	link Parca
 	link Levana
 	link Lucina
@@ -8249,7 +8249,7 @@ system Durax
 	government Pirate
 	habitable 1080
 	belt 1287
-	haze _menu/haze-yellow
+	haze _menu/haze-blackbody
 	link Alcyone
 	asteroids "small rock" 16 8.1744
 	asteroids "medium rock" 4 5.304
@@ -9893,7 +9893,7 @@ system Fasitopfar
 	government Uninhabited
 	habitable 100
 	belt 1670
-	haze _menu/haze-blackbody
+	haze _menu/haze-yellow
 	asteroids "small rock" 24 7.722
 	asteroids "medium rock" 58 6.75
 	asteroids "large rock" 25 3.348
@@ -12459,7 +12459,6 @@ system Ildaria
 	government Republic
 	habitable 625
 	belt 1132
-	haze _menu/haze-blackbody
 	link Zubeneschamali
 	link Kochab
 	asteroids "medium rock" 1 3.159
@@ -13075,7 +13074,6 @@ system Kaliptari
 	government Uninhabited
 	habitable 320
 	belt 1089
-	haze _menu/haze-stars
 	link Skeruto
 	link Fornarep
 	link Mekislepti
@@ -14684,7 +14682,7 @@ system Levana
 	government Uninhabited
 	habitable 2798.68
 	belt 1202
-	haze _menu/haze-orange
+	haze _menu/haze-red
 	link Coluber
 	asteroids "medium rock" 3 10.005
 	asteroids "large rock" 1 10.5125
@@ -17006,7 +17004,6 @@ system Naos
 	government Republic
 	habitable 625
 	belt 1045
-	haze _menu/haze-stars
 	link Regor
 	link Wezen
 	link Avior
@@ -20819,7 +20816,6 @@ system Sayaiban
 	government Drak
 	habitable 2035
 	belt 1803
-	haze _menu/haze-blackbody
 	asteroids "small rock" 13 2.106
 	asteroids "medium rock" 61 1.836
 	asteroids "large rock" 39 2.754
@@ -24064,6 +24060,7 @@ system Volax
 	government Republic
 	habitable 1715
 	belt 1424
+	haze _menu/haze-stars
 	link Cardax
 	link Nihal
 	link Sospi
