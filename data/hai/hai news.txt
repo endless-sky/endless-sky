@@ -66,7 +66,7 @@ news "trading in Hai space"
 			"Have you visited the Quarg ringworld here in Hai space? It's a humbling sight. There's probably more Quarg in there than there are humans anywhere. Makes you feel pretty insignificant."
 			"Did you see the stuff they sell on Icelake? Hai technology is amazing."
 			"I met some young Hai pilots. It sounds like they start out as poor as we do."
-			"I sold my entire stock of food at this port. I guess even Hai get tired of nuts."
+			"I sold my entire stock of food from human space at this port. I guess even Hai get tired of nuts."
 			"Some Hai were protesting the work week. They want to work only 32 hours a week instead of 40. I used to work 70 hours a week for the Syndicate!"
 
 
