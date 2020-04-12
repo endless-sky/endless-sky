@@ -154,7 +154,7 @@ news "concerned merchant in Hai space"
 		word
 			"Don't go too far north up here. The Hai have their own pirates, and they're much more powerful than anything we're used to in human space."
 			"I took a shortcut through Wah Ki with six ships. Just two seconds later, BAM! half my fleet is dust."
-			"I hear Hai space wasn't peaceful a few centuries ago when some reptiles were raiding the place. I wonder where they went?"
+			"I hear Hai space wasn't peaceful a few centuries ago when some reptilian aliens were raiding the place. I wonder where they went?"
 			"These Hai are so creepy. What are they hiding? I can't wait to get back to human space."
 			"The Hai don't like my ship's armory of laser rifles, but I was once boarded by a pirate crew and I'm never letting that happen again! If some overgrown squirrel is going to take away my rifle, it'll have to be from my cold dead hands!"
 			"I met some young Hai pilots. It sounds like they start out as poor as we do."
