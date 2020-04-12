@@ -248,6 +248,37 @@ fleet "Korath Civilian Miners"
 	variant 5
 		"Korath Dredger (Civilian)"
 
+fleet "Korath Home"
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 3
+	personality
+		timid opportunistic
+	variant 5
+		"Korath Ravager (Quad Inferno)"
+	variant 5
+		"Korath Ravager (Eight Diggers)"
+	variant 5
+		"Korath Ravager (Grab-Strike Digger)"
+	variant 5
+		"Korath Ravager (Dual Inferno)"
+	variant 5
+		"Korath Ravager (Grab-Strike Banisher)"
+	variant 5
+		"Korath Ravager (Grab-Strike Inferno)"
+	variant 7
+		"Korath Dredger (Fast Inferno)"
+		"Korath Chaser (Expeller)" 2
+		"Korath Chaser (Digger)" 3
+	variant 7
+		"Korath Dredger"
+		"Korath Chaser (Expeller)" 2
+		"Korath Chaser (Digger)" 3
+	variant 7
+		"Korath Dredger"
+		"Korath Chaser (Expeller)" 5
+
 fleet "Korath Planetary Raid"
 	government "Korath"
 	names "korath"
@@ -312,17 +343,6 @@ fleet "Korath Ember Waste Raid"
 	variant 12
 		"Korath Raider (Ember)"
 		"Korath Chaser (Digger)" 2
-
-fleet "Korath Home"
-	# This should never be used. It is present just to avoid breaking plug-ins.
-	government "Korath"
-	names "korath"
-	fighters "korath"
-	cargo 3
-	personality
-		timid opportunistic
-	variant 12
-		"Korath Dredger (Civilian)"
 
 fleet "Korath Civilian"
 	government "Korath (Civilian)"

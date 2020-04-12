@@ -781,6 +781,33 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 	turret "Korath Banisher"
 	turret "Korath Warder"
 
+
+ship "Korath Refabricator" "Korath Refabricator (Six Infernos Jump)"
+	outfits
+		"Korath Warder" 5
+		"Korath Inferno" 6
+
+		"Large Heat Shunt" 9
+		"Triple Plasma Core" 3
+		"Korath Repeater Rifle"  2600
+
+		"Grav-Steering (Nebula Class)"
+		"Thruster (Stellar Class)"
+		"Jump Drive"
+	turret -82 -202 "Korath Inferno"
+	turret 82 -202 "Korath Inferno"
+	turret -154 -122 "Korath Warder"
+	turret 154 -122 "Korath Warder"
+	turret 0 -114
+	turret -140 -23 "Korath Inferno"
+	turret 140 -23 "Korath Inferno"
+	turret 0 18.5
+	turret -189 119 "Korath Warder"
+	turret 189 119 "Korath Warder"
+	turret 0 180 "Korath Warder"
+	turret -173 248 "Korath Inferno"
+	turret 173 248 "Korath Inferno"
+
 # Special Refabricator for Wanderer escort mission. Half repair, only
 # 2 ramscoop, and a jump drive instead of hyperdrive.
 ship "Korath Refabricator" "Korath Refabricator (Weak Jump)"
