@@ -8313,7 +8313,8 @@ system Durax
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 900
 	fleet "Large Syndicate" 2500
-	fleet "Korath Raid" 5000
+	fleet "Korath Raid" 5500
+	fleet "Korath Miners" 25000
 	object
 		sprite star/g0-old
 		period 10

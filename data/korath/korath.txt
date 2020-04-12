@@ -197,13 +197,13 @@ fleet "Korath Raid"
 	cargo 1
 	personality
 		disables plunders opportunistic harvests
-	variant 20
+	variant 40
 		"Korath Raider"
 		"Korath Chaser" 2
-	variant 10
+	variant 25
 		"Korath Raider"
 		"Korath Chaser (Expeller)" 2
-	variant 10
+	variant 25
 		"Korath Raider"
 		"Korath Chaser (Digger)" 2
 	variant 1

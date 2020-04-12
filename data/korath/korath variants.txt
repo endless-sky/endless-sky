@@ -897,8 +897,8 @@ ship "Korath Ravager" "Korath Ravager (Crippled Armed)"
 		"ramscoop" -2
 	outfits
 		"Korath Grab-Strike" 4
-		"Korath Warder" 3
-		"Korath Banisher" 3
+		"Korath Warder" 4
+		"Korath Banisher" 2
 
 		"Generator (Furnace Class)" 2
 		"Triple Plasma Core"
@@ -912,7 +912,7 @@ ship "Korath Ravager" "Korath Ravager (Crippled Armed)"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Warder"
-	turret "Korath Banisher"
+	turret "Korath Warder"
 	turret "Korath Banisher"
 	turret "Korath Banisher"
 	turret "Korath Grab-Strike"

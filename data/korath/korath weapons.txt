@@ -663,13 +663,13 @@ outfit "Firestorm Turret"
 		"optical tracking" .9
 		"trigger radius" 20
 		"blast radius" 60
-		"shield damage" 2300
-		"hull damage" 2000
-		"ion damage" 35
-		"heat damage" 6000
+		"shield damage" 1900
+		"hull damage" 1900
+		"ion damage" 30
+		"heat damage" 5000
 		"hit force" 3600
 		"missile strength" 285
-	description "This turret fires a Firestorm Torpedo in any direction. Though you may dodge it for a while, the Firestorm Torpedo's extremely long range and large blast radius will eventually catch up with you (or an innocent asteroid). The weapon's damage is small for its hefty requirements, but it has devastating side-effects. It heats ships, drains their generators, and pushes with a considerable force."
+	description "This turret fires a Firestorm Torpedo in any direction. Though you may dodge it for a while, the Firestorm Torpedo's long range and blast radius will eventually catch up with you (or an innocent asteroid). The weapon's damage is small for its hefty requirements, but it has devastating side-effects. It heats ships, drains their generators, and pushes with a considerable force."
 	description "Though the warhead is a simple Korath design, the torpedo casing, launcher, and drive systems are distinctly not Korath in style. This may be a device the Korath discovered or pillaged, and have learned to reproduce."
 
 effect "firestorm ring"
@@ -806,7 +806,7 @@ outfit "Korath Digger Turret"
 		"hardpoint sprite" "hardpoint/digger turret"
 		sound "korath digger"
 		"hit effect" "korath digger hit"
-		"inaccuracy" .5
+		"inaccuracy" 1
 		"turret turn" 3
 		"velocity" 480
 		"lifetime" 1
@@ -823,25 +823,24 @@ outfit "Korath Digger"
 	cost 419000
 	thumbnail "outfit/korath digger"
 	"mass" 22
-	"outfit space" -22
-	"weapon capacity" -22
-	"energy capacity" 216
+	"outfit space" -18
+	"weapon capacity" -18
 	"gun ports" -1
 	weapon
-		sprite "projectile/korath digger"
+		sprite "projectile/korath digger short"
 			"frame rate" 20
 		sound "korath digger"
 		"hit effect" "korath digger hit"
-		"inaccuracy" .5
-		"velocity" 480
+		"inaccuracy" 0.4
+		"velocity" 400
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 3.6
-		"firing heat" 5.2
+		"firing energy" 3.8
+		"firing heat" 5.7
 		"shield damage" 2.1
-		"hull damage" 4.1
-		"disruption damage" .055
-	description `The basis for the design of a Korath Digger was an old turret. This one has been removed from its turret and supplemented with small batteries.`
+		"hull damage" 4.2
+		"disruption damage" .045
+	description `The basis for the design of a Korath Digger was an old turret. This modified version has no turret mount and is more accurate, but sacrifices efficiency and range.`
 
 effect "korath digger hit"
 	sprite "effect/korath digger hit"
