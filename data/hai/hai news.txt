@@ -121,7 +121,7 @@ news "cute story in Hai space"
 		word
 			"My little daughter loved her stuffed bear back in human space, but now she wants to hug every Hai she sees instead."
 			"These Hai are so fluffy I want to hug one every time I see them!"
-			"I saw the Hai-Human fusion band Nuclear Martini playing on Luna. Nobody realized the hairy drummer was really a Hai in disguise."
+			"I saw the Hai-human fusion band Nuclear Martini playing on Luna. Nobody realized the hairy drummer was really a Hai in disguise."
 			"I saw a Hai wearing the cutest bonnet the other day. When I get back to human space, I'm definitely getting a pet squirrel."
 			"Do you see that Hai woman carrying her baby? Doesn't it look like a long-tailed teddy-bear? The Hai are so cute."
 
