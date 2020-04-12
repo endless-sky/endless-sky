@@ -87,7 +87,7 @@ news "science in Hai space"
 		portrait/human83
 	message
 		word
-			"A while back, my Hai research partner was nearing a breakthrough, and then she vanished. I haven't seen her since. She probably joined the Unfettered."
+			"A while back, my Hai research partner was nearing a breakthrough, and then she vanished. I wonder where she went?"
 			"Can you believe these Hai? They're light-years ahead of us, right under our noses."
 			"Have you visited the Quarg ringworld here in Hai space? It's a humbling sight. There's probably more Quarg in there than there are humans anywhere. Makes you feel pretty insignificant."
 			"It's amazing how effective Hai fertilizer has become. If we had that technology, hunger would be a thing of the past."
