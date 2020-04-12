@@ -94,7 +94,7 @@ news "science in Hai space"
 			"Hai can terraform planets a hundred times faster than we can. I wonder why they didn't do that at Darkwaste?"
 			"Hai have the most amazing holographic technology. One of them put on a backpack holoprojector. When he turned it on, he looked like an elephant. The legs and tail even tracked his movements! I wonder if they can mimic humans too?"
 			"The Hai have an amazing grasp of quantum chromodynamics. It's why their shield generators are so effective."
-			"The alloys Hai use in their ships are way beyond our technology."
+			"The alloys Hai use in their ships are way beyond our technology. They're twice as strong with half the weight. No wonder their ships are so fast."
 
 # Visual suggestion: young, normal-looking, more female than male
 # or people with animals
