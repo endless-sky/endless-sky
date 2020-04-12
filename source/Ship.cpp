@@ -236,40 +236,39 @@ void Ship::Load(const DataNode &node)
 				// other childs move 1 position.
 				childOffset += 1;
 			}
-			if(BAY_TYPES.count(category) < 1)
+			if(!BAY_TYPES.count(category)){
 				child.PrintTrace("Warning: Invalid category defined for bay.");
-			else
-			{
-				if(!hasBays)
-				{
-					bays.clear();
-					hasBays = true;
-				}
-				bays.emplace_back(child.Value(1 + childOffset), child.Value(2 + childOffset), category);
-				Bay &bay = bays.back();
-				for(int i = 3 + childOffset; i < child.Size(); ++i)
-				{
-					for(unsigned j = 1; j < BAY_SIDE.size(); ++j)
-						if(child.Token(i) == BAY_SIDE[j])
-							bay.side = j;
-					for(unsigned j = 1; j < BAY_FACING.size(); ++j)
-						if(child.Token(i) == BAY_FACING[j])
-							bay.facing = j;
-				}
-				if(child.HasChildren())
-					for(const DataNode &grand : child)
-					{
-						// Load in the effect(s) to be displayed when the ship launches.
-						if(grand.Token(0) == "launch effect" && grand.Size() >= 2)
-						{
-							int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
-							const Effect *e = GameData::Effects().Get(grand.Token(1));
-							bay.launchEffects.insert(bay.launchEffects.end(), count, e);
-						}
-						else
-							grand.PrintTrace("Child nodes of \"bay\" tokens can only be \"launch effect\":");
-					}
+				continue;
 			}
+			if(!hasBays)
+			{
+				bays.clear();
+				hasBays = true;
+			}
+			bays.emplace_back(child.Value(1 + childOffset), child.Value(2 + childOffset), category);
+			Bay &bay = bays.back();
+			for(int i = 3 + childOffset; i < child.Size(); ++i)
+			{
+				for(unsigned j = 1; j < BAY_SIDE.size(); ++j)
+					if(child.Token(i) == BAY_SIDE[j])
+						bay.side = j;
+				for(unsigned j = 1; j < BAY_FACING.size(); ++j)
+					if(child.Token(i) == BAY_FACING[j])
+						bay.facing = j;
+			}
+			if(child.HasChildren())
+				for(const DataNode &grand : child)
+				{
+					// Load in the effect(s) to be displayed when the ship launches.
+					if(grand.Token(0) == "launch effect" && grand.Size() >= 2)
+					{
+						int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
+						const Effect *e = GameData::Effects().Get(grand.Token(1));
+						bay.launchEffects.insert(bay.launchEffects.end(), count, e);
+					}
+					else
+						grand.PrintTrace("Child nodes of \"bay\" tokens can only be \"launch effect\":");
+				}
 		}
 		else if(key == "leak" && child.Size() >= 2)
 		{
@@ -1769,7 +1768,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 		return;
 	
 	for(Bay &bay : bays)
-		if(bay.ship && ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * bay.ship->attributes.Get("automaton")))
+		if(bay.ship && ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * !bay.ship->attributes.Get("automaton")))
 				|| (ejecting && !Random::Int(6))))
 		{
 			// Resupply any ships launching of their own accord.
@@ -2782,7 +2781,7 @@ bool Ship::CanCarry(const Ship &ship) const
 {
 	if(!ship.CanBeCarried())
 		return false;
-	// Check only for the category that we are interrested in.
+	// Check only for the category that we are interested in.
 	const string &category = ship.attributes.Category();
 	
 	int free = BaysFree(category);

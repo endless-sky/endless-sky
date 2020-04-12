@@ -330,9 +330,9 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			if(ship->HasBays())
 			{
 				ship->UnloadBays();
-				for(string bayType : Ship::BAY_TYPES)
+				for(const string &bayType : Ship::BAY_TYPES)
 				{
-					int baysTotal=ship->BaysTotal(bayType);
+					int baysTotal = ship->BaysTotal(bayType);
 					if(baysTotal)
 						carriers[bayType][&*ship] = baysTotal;
 				}
@@ -355,7 +355,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			if(ship->CanBeCarried())
 			{
 				bool docked = false;
-				string bayType = ship->Attributes().Category();
+				const string &bayType = ship->Attributes().Category();
 				for(auto &it : carriers[bayType])
 					if(it.second && it.first->Carry(ship))
 					{
