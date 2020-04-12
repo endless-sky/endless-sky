@@ -13822,7 +13822,7 @@ system "Kor Ak'Mari"
 	government Korath
 	habitable 625
 	belt 1606
-	haze _menu/haze-yellow
+	haze _menu/haze-full
 	asteroids "small metal" 13 3.024
 	asteroids "medium metal" 99 3.0744
 	asteroids "large metal" 32 1.5624
@@ -20589,7 +20589,7 @@ system "Sagittarius A*"
 	pos 112 22
 	government Uninhabited
 	habitable 10000
-	haze _menu/haze-blackbody
+	haze _menu/haze-full
 	object
 		sprite "star/black-hole-core"
 		period 1
