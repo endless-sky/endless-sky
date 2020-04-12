@@ -805,7 +805,7 @@ outfit "Korath Digger Turret"
 		sprite "projectile/korath digger"
 			"frame rate" 20
 		"hardpoint sprite" "hardpoint/digger turret"
-		sound "korath digger loop"
+		sound "korath digger"
 		"hit effect" "korath digger hit"
 		"inaccuracy" .5
 		"turret turn" 3
@@ -831,7 +831,7 @@ outfit "Korath Digger"
 	weapon
 		sprite "projectile/korath digger"
 			"frame rate" 20
-		sound "korath digger loop"
+		sound "korath digger"
 		"hit effect" "korath digger hit"
 		"inaccuracy" .5
 		"velocity" 480
