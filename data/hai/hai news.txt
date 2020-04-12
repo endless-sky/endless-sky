@@ -61,7 +61,7 @@ news "trading in Hai space"
 	message
 		word
 			"Hai Tech is incredible compared to ours. Every time I add a ship to my fleet, I always make a trip up here to stock up on Hai tech."
-			"Have you tried out one of those Hai anti-missile systems? They'll waste any missile in Human space."
+			"Have you tried out one of those Hai anti-missile systems? They'll waste any missile in human space."
 			"Can you believe these Hai? They're light-years ahead of us, right under our noses."
 			"Have you visited the Quarg ringworld here in Hai space? It's a humbling sight. There's probably more Quarg in there than there are humans anywhere. Makes you feel pretty insignificant."
 			"Did you see the stuff they sell on Icelake? Hai technology is amazing."
