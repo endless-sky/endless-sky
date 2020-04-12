@@ -242,7 +242,7 @@ news "reformed pirate in Hai space"
 			"Hai are so forgiving here. I got into a fight with one and instead of pressing charges, he had a long talk with me about my choices in life."
 			"I always said I'd rethink my life, and now I have. I'm a farmer, not a killer."
 			"I used to hate myself for all the terrible crimes I did in human space. Here, the Hai have given me a fresh start."
-			"You have to re-invent yourself sometimes. I used to be a killer on a pirate ship, now I'm a canner in Hai factory."
+			"You have to re-invent yourself sometimes. I used to be a killer on a pirate ship, now I'm a canner in a Hai factory."
 			# Duplicated intentionally so pirates say it too:
 			"I hope nobody is smuggling Hai technology out of here. I don't want to think about what would happen if the pirates got their hands on that stuff."
 			"A Hai that lives near me went to sleep one night and woke up in a box on Prime. Isn't that weird?"
