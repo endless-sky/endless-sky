@@ -27,7 +27,7 @@ news "food in Hai space"
 	message
 		word
 			"This may sound odd, but the acorn cookies they sell here are the best cookies I've ever eaten."
-			"A Hai-Human fusion restaurant near here sells peanut pizza. It sounds gross, but the taste is heavenly."
+			"A Hai-human fusion restaurant near here sells peanut pizza. It sounds gross, but the taste is heavenly."
 			"They make beer from fermented nuts here. I didn't know you could do that!"
 			"I just can't get enough acorn stew. These Hai cooks are amazing."
 			"Peanut this, walnut that, hazelnut icecream. What I wouldn't give for some good steak right now..."
