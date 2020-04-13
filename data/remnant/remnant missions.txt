@@ -321,7 +321,7 @@ mission "Remnant: Defense 2"
 			names "korath"
 			cargo 3
 			variant
-				"Korath World-Ship B (Crippled)"
+				"Korath Ravager (Crippled Disarmed)"
 		dialog "You have destroyed the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -392,8 +392,8 @@ mission "Remnant: Defense 3"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Raider (Crippled)"
-				"Korath Chaser" 2
+				"Korath Dredger (Crippled)"
+				"Korath Chaser (Expeller)" 5
 		dialog "Now that you are alone, you are able to deploy the Remnant surveillance satellite unobserved. Time to report back to <planet>."
 	on visit
 		dialog `You have returned to <planet>, but you haven't deployed the surveillance satellite yet. Return to <waypoints> and make sure that all of the Korath there have been eliminated.`
@@ -1435,7 +1435,8 @@ mission "Remnant: Salvage 2"
 			names "korath"
 			cargo 3
 			variant
-				"Korath World-Ship B (Ember)"
+				# Ravager flagship is equipped like a sturdy slow Raider:
+				"Korath Ravager (Big Raider)"
 	on visit
 		dialog "There are still Korath raiders circling overhead. You should take off and help the Remnant ships to fight them."
 	on complete
@@ -1518,7 +1519,7 @@ mission "Remnant: Salvage 4"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Raider (Hyperdrive)"
+				"Korath Ravager (Crippled Armed)"
 		dialog "You have disabled the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
 	on fail
 		payment 350000

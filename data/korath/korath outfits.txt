@@ -179,6 +179,25 @@ outfit "Control Transceiver"
 
 
 
+outfit "Engine (Meteor Class)"
+	plural "Engine (Meteor Class)"
+	category "Engines"
+	"cost" 187000
+	thumbnail "outfit/tiny korath engine"
+	"mass" 21
+	"outfit space" -21
+	"engine capacity" -21
+	"thrust" 9.8
+	"turn" 240
+	"thrusting energy" 1.4
+	"thrusting heat" 3.3
+	"turning energy" 0.6
+	"turning heat" 1.8
+	"flare sprite" "effect/korath flare/tiny"
+		"frame rate" 8
+	"flare sound" "plasma tiny"
+	description "This old engine dates back to a distant era before the escalating Korath war dictated faster drones. The Korath Exiles resurrected these engines in recent years to allow their Chasers to carry larger weapons at the cost of some speed."
+
 outfit "Thruster (Asteroid Class)"
 	plural "Thrusters (Asteroid Class)"
 	category "Engines"
@@ -259,6 +278,25 @@ outfit "Thruster (Stellar Class)"
 	"flare sound" "plasma huge"
 	description "A legend among the Korath claims that when they were first testing out their latest generation of plasma thrusters, a concerned Quarg fleet approached and volunteered to help evacuate the Korath crew from what they assumed was a dying ship. The Quarg were surprised to learn that the flames shooting out the back of the ship were in fact its intended mode of propulsion."
 
+outfit "Grav-Thruster (Nebula Class)"
+	# In terms of stats, these are two banishers and a stellar-class thruster, minus the
+	# turret mounts (assumed to be 8 space each and 10% of the cost), and then tweaked
+	plural "Thrusters (Nebula Class)"
+	category "Engines"
+	"cost" 5430000
+	thumbnail "outfit/hybrid korath thruster"
+	"mass" 184
+	"outfit space" -184
+	"engine capacity" -184
+	"thrust" 248.4
+	"thrusting energy" 20.4
+	"thrusting heat" 49.4
+	"flare sprite" "effect/korath flare/huge"
+		"frame rate" 6
+	"flare sound" "plasma huge"
+	description "When the Kor Sestor designed their vast, unfinished, Tek Ot Rah 681 capital ship, they needed larger thrusters so it could catch up to prey held by its four Detainers. Any thrusters beyond Stellar Class simply melted themselves; the Korath could not manufacture a material to handle such high temperatures. Instead, they combined an anti-gravity field generator with massive plasma thrusters."
+	description "Although the Tek Ot Rah 681 was never completed, its engines still see service on Korath Exile world-ships. The technology behind them has become the basis for the Banisher and Expeller."
+
 outfit "Steering (Asteroid Class)"
 	plural "Steerings (Asteroid Class)"
 	category "Engines"
@@ -323,6 +361,29 @@ outfit "Steering (Stellar Class)"
 	"turning energy" 8.2
 	"turning heat" 26.7
 	description "After millennia of war, the Korath have developed some truly enormous warships. These steering systems give even their largest warships a reasonable amount of agility in combat."
+
+outfit "Grav-Steering (Nebula Class)"
+	# In terms of stats, these are 1.25 banishers and a stellar-class steering, minus the
+	# turret mounts (assumed to be 8 space per banisher and 10% of the cost). Banisher
+	# steering is calculated as sixty times the hit force.
+	plural "Grav-Steerings (Stellar Class)"
+	category "Engines"
+	"cost" 4496000
+	thumbnail "outfit/hybrid korath steering"
+	"mass" 122
+	"outfit space" -122
+	"engine capacity" -122
+	"turn" 7005
+	"turning energy" 12.3
+	"turning heat" 32
+	description "The Kor Metri were developing a new capital ship, the Model 1024, to counter a vast, new, battleship the Kor Sestor were preparing. Even Stellar-Class steering wasn't enough to turn the great beast. This steering system incorporates anti-gravity to accelerate the propelled plasma far beyond what the engine can manage on its own. The engine was first tested on a Model 256; the ship spun so fast its mines flew out of their racks and hit the hull."
+	description "Although the Model 1024 was never completed, its engines still see service on Korath Exile world-ships. The technology behind them has become the basis for the Banisher and Expeller."
+	
+	# Physics lesson: the more mass you move to the outer part of a turning object,
+	# the higher its moment of inertia becomes, and hence the harder it is to turn.
+	# The Model 512 has the highest moment of inertia possible since it's a circle.
+	# Enlarging the design (Model 1024) would make that worse. Thus the need for
+	# better steering.
 	
 outfit "Korath Repeater Rifle"
 	category "Hand to Hand"

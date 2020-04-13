@@ -1,0 +1,210 @@
+
+mission "Create Korath Emporium"
+	landing
+	source
+		not attributes uninhabited
+	on offer
+		conversation
+			`A strange-looking person, possibly a woman, walks towards you. She has the appearance of a mobile volcano, and speaks, "Do you want to enable the Korath Emporium test planet in the new Atik system? It will sell you any Korath ship or outfit and give you a trillion credits for free. This is a one-time deal, and is only for generous people that will help balance-test the new ships and outfits.`
+			choice
+				`	"Yes, I would love to have a trillion credits and the ability to buy Korath outfits."`
+					accept
+				`	"No, I'll play the game without that."`
+					decline
+	on accept
+		event "Korath Emporium"
+		payment 1000000000000
+
+event "Korath Emporium"
+	government "Escort"
+		swizzle 0
+	system Atik
+		pos -66 -52
+		government Uninhabited
+		habitable 371.071
+		belt 1240
+		link Zaurak
+		asteroids "small rock" 36 1.99
+		asteroids "medium rock" 44 1.57
+		asteroids "large rock" 12 1.08
+		asteroids "small metal" 36 1.26
+		asteroids "medium metal" 75 1.92
+		asteroids "large metal" 14 1.35
+		minables platinum 21 1.40315
+		minables tungsten 43 1.42935
+		minables gold 36 1.7943
+		minables uranium 22 1.71104
+		trade Clothing 381
+		trade Electronics 632
+		trade Equipment 605
+		trade Food 261
+		trade "Heavy Metals" 958
+		trade Industrial 738
+		trade "Luxury Goods" 1097
+		trade Medical 651
+		trade Metal 327
+		trade Plastic 416
+		fleet "Small Syndicate" 10000
+		fleet "Large Syndicate" 25000
+		fleet "Small Core Pirates" 10000
+		fleet "Large Core Pirates" 18000
+		fleet "Human Miners" 5000
+		fleet "Korath Miners" 15000
+		object
+			sprite star/b5
+			period 10
+		object
+			sprite planet/gas16-b
+			distance 1350.7
+			period 681.931
+			object
+				sprite planet/desert4-b
+				distance 304
+				period 26.126
+			object "Korath Emporium"
+				sprite planet/ice4
+				distance 481
+				period 38.374
+		object
+			sprite planet/europa
+			distance 1905.05
+			period 2681.16
+			
+	planet "Korath Emporium"
+		government "Parrot"
+		attributes core volcanic mining
+		landscape land/snow8
+		description `This is a test planet for the Korath Exiles expansion and should be removed before merging to the master. The Atik system should NOT be removed, however.`
+		spaceport `Oddly, there is nobody here.`
+		outfitter "korath exile test outfitter"
+		outfitter "Korath Basics"
+		shipyard "korath exile test shipyard"
+		shipyard "korath exile variant shipyard"
+		security 0.2
+		"required reputation" -10
+		tribute 1000000
+			threshold 0
+			fleet "Korath Civilian" 20
+
+outfitter "korath exile test outfitter"
+	"Jump Drive"
+	"Hyperdrive"
+	"Jump Drive (Broken)"
+	"Generator (Candle Class)"
+	"Generator (Furnace Class)"
+	"Generator (Inferno Class)"
+	"Plasma Core"
+	"Double Plasma Core"
+	"Triple Plasma Core"
+	"Small Heat Shunt"
+	"Large Heat Shunt"
+	"Systems Core (Small)"
+	"Systems Core (Medium)"
+	"Systems Core (Large)"
+	"Fuel Processor"
+	"Command Center"
+	"Reasoning Node"
+	"Control Transceiver"
+	"Engine (Meteor Class)"
+	"Thruster (Asteroid Class)"
+	"Thruster (Comet Class)"
+	"Thruster (Lunar Class)"
+	"Thruster (Planetary Class)"
+	"Thruster (Stellar Class)"
+	"Grav-Thruster (Nebula Class)"
+	"Steering (Asteroid Class)"
+	"Steering (Comet Class)"
+	"Steering (Lunar Class)"
+	"Steering (Planetary Class)"
+	"Steering (Stellar Class)"
+	"Grav-Steering (Nebula Class)"
+	"Korath Repeater Rifle"
+	"Korath Grab-Strike"
+	"Korath Banisher"
+	"Korath Expeller"
+	"Korath Warder"
+	"Korath Fire-Lance"
+	"Korath Repeater"
+	"Korath Repeater Turret"
+	"Korath Piercer"
+	"Korath Piercer Rack"
+	"Korath Piercer Launcher"
+	"Korath Detainer"
+	"Korath Mine"
+	"Korath Mine Rack"
+	"Korath Minelayer"
+	"Korath Disruptor"
+	"Korath Slicer"
+	"Korath Slicer Turret"
+	"Firestorm Torpedo"
+	"Firestorm Torpedo Rack"
+	"Firestorm Turret"
+	"Korath Heaver"
+	"Korath Inferno"
+	"Korath Digger Turret"
+	"Korath Digger"
+	"Outfits Expansion"
+	"Cargo Expansion"
+	"Cargo Scanner"
+	"Outfit Scanner"
+
+shipyard "korath exile variant shipyard"
+	"Korath Raider (Ember)"
+	"Korath Raider (Hyperdrive)"
+	
+	"Korath Chaser (Expeller)"
+	"Korath Chaser (Digger)"
+	
+	"Korath Dredger (Fast Inferno)"
+	"Korath Dredger (Civilian)"
+
+	"Korath Refabricator (Grab-Strike)"
+	"Korath Refabricator (Six Infernos)"
+	
+	"Korath Haven (Kingslayer)"
+	"Korath Haven (Thrower)"
+	"Korath Haven (Sciuridaeavore)"
+
+	"Korath Ravager (Quad Inferno)"
+	"Korath Ravager (Grab-Strike Digger)"
+	"Korath Ravager (Eight Diggers)"
+	"Korath Ravager (Dual Inferno)"
+	"Korath Ravager (Firestorm Heaver)"
+	"Korath Ravager (Turbo Firestorm)"
+	"Korath Ravager (Dual Heaver)"
+	"Korath Ravager (Grab-Strike Banisher)"
+	"Korath Ravager (Grab-Strike Inferno)"
+
+	# Special versions for missions:
+
+	"Korath Dredger (Crippled)"
+	"Korath Refabricator (Six Infernos Jump)"
+	"Korath Ravager (Crippled Disarmed)"
+	"Korath Ravager (Big Raider)"
+	"Korath Ravager (Crippled Armed)"
+
+shipyard "korath exile test shipyard"
+	"Korath Raider"
+	"Korath Chaser"
+	"Korath Refuge"
+	"Efret fi Zujaja"
+	"Efret fi Jara"
+	"Efret fi Iibriq"
+	"Kar Ik Vot 349"
+	"Tek Far 71 - Lek"
+	"Tek Far 78 - Osk"
+	"Tek Far 109"
+	"Met Par Tek 53"
+	"Far Lek 14"
+	"Far Osk 27"
+	"Model 8"
+	"Model 16"
+	"Model 32"
+	"Model 64"
+	"Model 128"
+	"Model 256"
+	"Model 512"
+	"Korath Ravager"
+	"Korath Dredger"
+	"Korath Refabricator"
+	"Korath Haven"

@@ -81,6 +81,30 @@ outfit "Korath Banisher"
 		"hit force" 40
 	description "The Korath like to keep their enemies close... but not too close."
 
+outfit "Korath Expeller"
+	category "Guns"
+	cost 819000
+	thumbnail "outfit/expeller"
+	"mass" 25
+	"outfit space" -25
+	"weapon capacity" -25
+	"gun ports" -1
+	weapon
+		sprite "projectile/expeller"
+			"frame rate" 60
+		sound "banisher"
+		"hit effect" "banisher impact"
+		"inaccuracy" .4
+		"velocity" 472
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 2.9
+		"firing heat" 3.6
+		"shield damage" 2.6
+		"hull damage" .85
+		"hit force" 25
+	description "This smaller version of the Banisher is designed for fighters to push vessels away from Korath carriers."
+
 effect "banisher impact"
 	sprite "effect/banisher impact"
 		"random start frame"
@@ -576,3 +600,252 @@ effect "slicer impact"
 	"random spin" 2
 	"random velocity" .1
 	"velocity scale" -.002
+
+outfit "Firestorm Torpedo"
+	plural "Firestorm Torpedoes"
+	category "Ammunition"
+	cost 19800
+	thumbnail "outfit/firestorm torpedo"
+	"mass" 0.7
+	"firestorm torpedo capacity" -1
+	description "This torpedo contains an augmented Korath Plasma Core reactor element, with no protective casing. When it activates, there is a tremendous explosion that heats up all ships in the vicinity, interferes with their generators, and imparts a large hit force."
+	description "Though the warhead is a Korath design, the torpedo casing and drive systems are distinctly not Korath in style. This may be a device the Korath discovered or pillaged, and have learned to reproduce."
+
+outfit "Firestorm Torpedo Rack"
+	plural "Firestorm Torpedo Racks"
+	category "Ammunition"
+	cost "135000"
+	thumbnail "outfit/firestorm torpedo rack"
+	"mass" 6
+	"outfit space" -20
+	"firestorm torpedo capacity" 20
+	ammo "Firestorm Torpedo"
+	description "This appears to be a modified Korath Mine Rack, designed to carry Firestorm Torpedoes."
+
+outfit "Firestorm Turret"
+	category "Secondary Weapons"
+	cost 2383000
+	thumbnail "outfit/firestorm turret"
+	"mass" 20
+	# Small size is compensated by high energy and heat requirements which
+	# necessitate larger generators and more cooling.
+	"outfit space" -48
+	"weapon capacity" -48
+	"turret mounts" -1
+	"required crew" 1
+	"firestorm torpedo capacity" 40
+	# Massive energy per shot; Korath don't have batteries and
+	# compensate using batteries in outfits.
+	"energy capacity" 1300
+	weapon
+		sprite "projectile/firestorm torpedo"
+			"frame rate" 2
+			"no repeat"
+		"hardpoint sprite" "hardpoint/firestorm torpedo"
+		sound "firestorm"
+		ammo "Firestorm Torpedo"
+		"turret turn" 2.7
+		icon "icon/firestorm torpedo"
+		"hit effect" "firestorm ring" 40
+		"die effect" "small explosion"
+		stream
+		"reload" 210
+		"firing energy" 1235
+		"firing heat" 851
+		"inaccuracy" 3
+		"lifetime" 1900
+		"velocity" 6.5
+		"acceleration" .6
+		"drag" .12
+		"turn" 1.6
+		"homing" 4
+		"infrared tracking" .7
+		"optical tracking" .9
+		"trigger radius" 20
+		"blast radius" 60
+		"shield damage" 1900
+		"hull damage" 1900
+		"ion damage" 30
+		"heat damage" 5000
+		"hit force" 3600
+		"missile strength" 285
+	description "This turret fires a Firestorm Torpedo in any direction. Though you may dodge it for a while, the Firestorm Torpedo's long range and blast radius will eventually catch up with you (or an innocent asteroid). The weapon's damage is small for its hefty requirements, but it has devastating side-effects. It heats ships, drains their generators, and pushes with a considerable force."
+	description "Though the warhead is a simple Korath design, the torpedo casing, launcher, and drive systems are distinctly not Korath in style. This may be a device the Korath discovered or pillaged, and have learned to reproduce."
+
+effect "firestorm ring"
+	sprite "effect/firestorm ring"
+		"no repeat"
+		"frame rate" 12
+	"lifetime" 30
+	sound "firestorm hit"
+	"random angle" 360
+	"random velocity" 2
+	"velocity scale" 0.1
+
+
+outfit "Korath Heaver"
+	category "Secondary Weapons"
+	cost 3450000
+	thumbnail "outfit/korath heaver"
+	"mass" 46
+	"outfit space" -46
+	"weapon capacity" -46
+	# Built-in fuel storage is a reservoir used during firing.
+	"fuel capacity" 100
+	# Fuel storage is a dismantled Fuel Processor, hence ramscoop:
+	"ramscoop" 1
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/heaver hyperspace"
+			"frame rate" 12
+			rewind
+		"hardpoint sprite" "hardpoint/korath heaver"
+		icon "icon/korath heaver"
+		velocity 30
+		lifetime 8
+		"hit force" 3600
+		"hit effect" "heaver hyperspace hit"
+		sound "heaver"
+		submunition "Heaver Shard" 20
+		"turret turn" 2.2
+		"reload" 40
+		"burst reload" 12
+		"burst count" 6
+		"firing energy" 31
+		"firing heat" 190
+		"firing fuel" 12.5
+		"inaccuracy" 0.5
+	description `Korath Heavers raise to a fine art the age-old warfare method of, "Throw rocks at your enemy until they die." Small asteroids or other debris fly into an unstable hyperspace window, exiting a few seconds later. Within a range of 240, the weapon does no damage, but pushes with a force that makes a Banisher feel like a light breeze. Beyond that, small chunks of matter exit hyperspace and travel a long distance at extreme velocity.`
+	description `This is a canonical example of modern Korath Exile engineering: jury-rigged, inefficient even by Korath standards, but cheap to produce. There are parts from a Hyperdrive, Fuel Processor, Banisher, and thruster, wrapped in steel, and mounted on the lower half of a Firestorm Turret. Despite the slap-shod design, the device is extremely effective.`
+
+effect "heaver hyperspace hit"
+	sprite "effect/heaver hyperspace hit"
+		"no repeat"
+		rewind
+		"frame rate" 60
+	lifetime 36
+	"velocity scale" .1
+	sound "heaver hyperspace hit"
+
+outfit "Heaver Shard"
+	weapon
+		sprite "projectile/heaver shard"
+			"frame rate" 12
+			"rewind"
+		"random velocity" 5
+		"velocity" 20
+		"lifetime" 55
+		"random lifetime" 10
+		"shield damage" 22
+		"hull damage" 24
+		"inaccuracy" 3.5
+		"hit force" 3
+		"heat damage" 30
+		"hit effect" "heaver shard hit" 5
+		"missile strength" 12
+
+effect "heaver shard hit"
+	sprite "effect/heaver shard hit"
+		"no repeat"
+		"frame rate" 12
+	lifetime 60
+	sound "heaver shard hit"
+	"velocity scale" .05
+	"random angle" 10
+
+outfit "Korath Inferno"
+	category "Turrets"
+	cost 1970000
+	thumbnail "outfit/korath inferno"
+	"mass" 40
+	"outfit space" -71
+	"weapon capacity" -71
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/korath inferno"
+			"frame rate" 20
+		"hardpoint sprite" "hardpoint/korath inferno"
+		sound "korath inferno"
+		"hit effect" "korath inferno hit"
+		"inaccuracy" 1
+		"turret turn" 2.2
+		"velocity" 720
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 7.5
+		"firing heat" 25
+		"shield damage" 8.2
+		"hull damage" 7.1
+		"heat damage" 71
+	description "The Korath Inferno was the crowning achievement of Kor Sestor weapon design before they were driven out of their territory. The Korath Exiles cannot build the original Kor Sestor design, but even this lesser version is devastatingly powerful."
+
+effect "korath inferno hit"
+	sprite "effect/korath inferno hit"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 360
+	"random spin" 1
+	"random velocity" 5
+	"velocity scale" .005
+
+outfit "Korath Digger Turret"
+	category "Turrets"
+	cost 509000
+	thumbnail "outfit/korath digger turret"
+	"mass" 21
+	"outfit space" -21
+	"weapon capacity" -21
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/korath digger"
+			"frame rate" 20
+		"hardpoint sprite" "hardpoint/digger turret"
+		sound "korath digger"
+		"hit effect" "korath digger hit"
+		"inaccuracy" 1
+		"turret turn" 3
+		"velocity" 480
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 2.4
+		"firing heat" 5.2
+		"shield damage" 2.1
+		"hull damage" 4.2
+		"disruption damage" .04
+	description `When the Korath Exiles needed a cheap mining laser for their large vessels, they turned to an ancient but robust design. Updated with modern engineering, the mild shield disruption lets it damage ships as well, when multiple Diggers are used at once.`
+
+outfit "Korath Digger"
+	category "Guns"
+	cost 419000
+	thumbnail "outfit/korath digger"
+	"mass" 22
+	"outfit space" -18
+	"weapon capacity" -18
+	"gun ports" -1
+	weapon
+		sprite "projectile/korath digger short"
+			"frame rate" 20
+		sound "korath digger"
+		"hit effect" "korath digger hit"
+		"inaccuracy" 0.4
+		"velocity" 400
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 3.8
+		"firing heat" 5.7
+		"shield damage" 2.1
+		"hull damage" 4.2
+		"disruption damage" .04
+	description `The basis for the design of a Korath Digger was an old turret. This modified version has no turret mount and is more accurate, but sacrifices efficiency and range.`
+
+effect "korath digger hit"
+	sprite "effect/korath digger hit"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 30
+	"velocity scale" .005

@@ -197,20 +197,56 @@ fleet "Korath Raid"
 	cargo 1
 	personality
 		disables plunders opportunistic harvests
-	variant
+	variant 40
 		"Korath Raider"
 		"Korath Chaser" 2
+	variant 25
+		"Korath Raider"
+		"Korath Chaser (Expeller)" 2
+	variant 25
+		"Korath Raider"
+		"Korath Chaser (Digger)" 2
+	variant 1
+		"Korath Ravager"
+	variant 1
+		"Korath Ravager (Quad Inferno)"
+	variant 1
+		"Korath Ravager (Grab-Strike Digger)"
+	variant 1
+		"Korath Ravager (Eight Diggers)"
+	variant 1
+		"Korath Ravager (Dual Inferno)"
+	variant 1
+		"Korath Ravager (Firestorm Heaver)"
+	variant 1
+		"Korath Ravager (Turbo Firestorm)"
+	variant 1
+		"Korath Ravager (Dual Heaver)"
+	variant 1
+		"Korath Ravager (Grab-Strike Banisher)"
+	variant 1
+		"Korath Ravager (Grab-Strike Inferno)"
 
-fleet "Korath Ember Waste Raid"
+fleet "Korath Miners"
 	government "Korath"
 	names "korath"
 	fighters "korath"
-	cargo 1
+	cargo 0
 	personality
-		disables plunders opportunistic harvests
-	variant
-		"Korath Raider (Ember)"
-		"Korath Chaser" 2
+		timid disables plunders frugal mining harvests
+	variant 5
+		"Korath Dredger (Fast Inferno)"
+
+fleet "Korath Civilian Miners"
+	government "Korath (Civilian)"
+	names "korath"
+	fighters "korath"
+	cargo 0
+	personality
+		# Mute avoids having them repair you during battle.
+		heroic frugal mining harvests mute
+	variant 5
+		"Korath Dredger (Civilian)"
 
 fleet "Korath Home"
 	government "Korath"
@@ -219,13 +255,140 @@ fleet "Korath Home"
 	cargo 3
 	personality
 		timid opportunistic
-	variant 12
-		"Korath World-Ship"
-	variant 12
-		"Korath World-Ship B"
-	variant 12
-		"Korath World-Ship C"
+	variant 5
+		"Korath Ravager (Quad Inferno)"
+	variant 5
+		"Korath Ravager (Eight Diggers)"
+	variant 5
+		"Korath Ravager (Grab-Strike Digger)"
+	variant 5
+		"Korath Ravager (Dual Inferno)"
+	variant 5
+		"Korath Ravager (Grab-Strike Banisher)"
+	variant 5
+		"Korath Ravager (Grab-Strike Inferno)"
+	variant 7
+		"Korath Dredger (Fast Inferno)"
+		"Korath Chaser (Expeller)" 2
+		"Korath Chaser (Digger)" 3
+	variant 7
+		"Korath Dredger"
+		"Korath Chaser (Expeller)" 2
+		"Korath Chaser (Digger)" 3
+	variant 7
+		"Korath Dredger"
+		"Korath Chaser (Expeller)" 5
 
+fleet "Korath Planetary Raid"
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests
+	variant 5
+		"Korath Ravager (Quad Inferno)"
+		"Korath Raider"
+		"Korath Chaser (Digger)" 2
+	variant 5
+		"Korath Ravager (Eight Diggers)"
+		"Korath Raider"
+		"Korath Chaser" 2
+	variant 5
+		"Korath Ravager (Grab-Strike Digger)"
+		"Korath Raider"
+		"Korath Chaser" 2
+	variant 5
+		"Korath Ravager (Dual Inferno)"
+		"Korath Raider"
+		"Korath Chaser (Digger)" 2
+	variant 5
+		"Korath Ravager (Grab-Strike Banisher)"
+		"Korath Raider"
+		"Korath Chaser (Expeller)" 2
+	variant 5
+		"Korath Ravager (Grab-Strike Inferno)"
+		"Korath Raider"
+		"Korath Chaser (Digger)" 2
+		
+	variant 5
+		"Korath Raider"
+		"Korath Dredger (Fast Inferno)"
+		"Korath Chaser (Expeller)" 2
+		"Korath Chaser (Digger)" 5
+	variant 5
+		"Korath Raider"
+		"Korath Dredger"
+		"Korath Chaser (Expeller)" 4
+		"Korath Chaser (Digger)" 3
+	variant 5
+		"Korath Ravager (Dual Heaver)"
+		"Korath Dredger"
+		"Korath Chaser (Expeller)" 5
+		
+
+fleet "Korath Ember Waste Raid"
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests
+	variant 12
+		"Korath Raider (Ember)"
+		"Korath Chaser" 2
+	variant 12
+		"Korath Raider (Ember)"
+		"Korath Chaser (Expeller)" 2
+	variant 12
+		"Korath Raider (Ember)"
+		"Korath Chaser (Digger)" 2
+
+fleet "Korath Civilian"
+	government "Korath (Civilian)"
+	names "korath"
+	fighters "korath"
+	cargo 3
+	personality
+		# Mute avoids having them repair you during battle.
+		heroic frugal opportunistic mute
+	variant 2
+		"Korath Haven"
+		"Korath Chaser" 4
+		"Korath Chaser (Expeller)" 4
+		"Korath Chaser (Digger)" 4
+	variant 2
+		"Korath Haven (Kingslayer)"
+		"Korath Chaser" 6
+		"Korath Chaser (Digger)" 6
+	variant 2
+		"Korath Haven (Thrower)"
+		"Korath Chaser (Expeller)" 12
+	variant 2
+		"Korath Haven (Sciuridaeavore)"
+		"Korath Chaser (Digger)" 6
+		"Korath Chaser" 6
+	variant 3
+		"Korath Refabricator (Grab-Strike)"
+		"Korath Chaser" 2
+		"Korath Chaser (Expeller)" 2
+		"Korath Chaser (Digger)" 2
+	variant 3
+		"Korath Refabricator (Six Infernos)"
+		"Korath Chaser" 2
+		"Korath Chaser (Expeller)" 2
+		"Korath Chaser (Digger)" 2
+	variant 3
+		"Korath Refabricator"
+		"Korath Chaser" 2
+		"Korath Chaser (Expeller)" 2
+		"Korath Chaser (Digger)" 2
+	variant 5
+		"Korath Dredger (Civilian)" 2
+	variant 5
+		"Korath Dredger (Civilian)" 2
+	variant 12
+		"Korath Refuge"
 
 fleet "Kor Efret Home"
 	government "Kor Efret"
@@ -235,11 +398,11 @@ fleet "Kor Efret Home"
 	personality
 		timid
 	variant
-		"Korath World-Ship"
+		"Efret fi Zujaja"
 	variant
-		"Korath World-Ship B"
+		"Efret fi Jara"
 	variant
-		"Korath World-Ship C"
+		"Efret fi Iibriq"
 
 
 fleet "Small Kor Sestor"
