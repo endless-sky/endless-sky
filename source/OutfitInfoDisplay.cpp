@@ -84,7 +84,7 @@ namespace {
 		{"repair delay", 4},
 		{"disabled repair delay", 4},
 		{"shield delay", 4},
-		{"disabled shield delay", 4}
+		{"depleted shield delay", 4}
 	};
 	
 	const map<string, string> BOOLEAN_ATTRIBUTES = {

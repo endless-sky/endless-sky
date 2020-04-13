@@ -245,7 +245,7 @@ tip "shields:"
 tip "shield delay:"
 	`How many seconds it takes for shield generation to begin after taking shield damage.`
 
-tip "disabled shield delay:"
+tip "depleted shield delay:"
 	`How many seconds it takes for shield generation to begin after the shields have been depleted.`
 
 tip "slowing resistance:"

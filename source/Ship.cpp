@@ -1577,7 +1577,7 @@ void Ship::DoGeneration()
 		const double hullFuel = attributes.Get("hull fuel") / hullAvailable;
 		const double hullHeat = attributes.Get("hull heat") / hullAvailable;
 		double hullRemaining = hullAvailable;
-		if(hullDelay == 0)
+		if(!hullDelay)
 			DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel);
 		
 		const double shieldsAvailable = attributes.Get("shield generation");
@@ -1585,7 +1585,7 @@ void Ship::DoGeneration()
 		const double shieldsFuel = attributes.Get("shield fuel") / shieldsAvailable;
 		const double shieldsHeat = attributes.Get("shield heat") / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
-		if(shieldDelay == 0)
+		if(!shieldDelay)
 			DoRepair(shields, shieldsRemaining, attributes.Get("shields"), energy, shieldsEnergy, fuel, shieldsFuel);
 		
 		if(!bays.empty())
@@ -1613,9 +1613,9 @@ void Ship::DoGeneration()
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
-				if(hullDelay == 0)
+				if(!hullDelay)
 					DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel);
-				if(shieldDelay == 0)
+				if(!shieldDelay)
 					DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"), energy, shieldsEnergy, fuel, shieldsFuel);
 			}
 			
@@ -2678,7 +2678,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	shields -= shieldDamage * shieldFraction;
 	if(shieldDamage && !isDisabled)
 	{
-		int disabledDelay = attributes.Get("disabled shield delay");
+		int disabledDelay = attributes.Get("depleted shield delay");
 		shieldDelay = max(shieldDelay, (shields <= 0. && disabledDelay) ? disabledDelay : attributes.Get("shield delay"));
 	}
 	hull -= hullDamage * (1. - shieldFraction);
@@ -2710,7 +2710,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	{
 		type |= ShipEvent::DISABLE;
 		int disabledDelay = attributes.Get("disabled repair delay")
-		hullDelay = max(hullDelay, disabledDelay ? disabledDelay : attributes.Get("repair delay"));
+		hullDelay = max(hullDelay, disabledDelay);
 	}
 	if(!wasDestroyed && IsDestroyed())
 		type |= ShipEvent::DESTROY;
