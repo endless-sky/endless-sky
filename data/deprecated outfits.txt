@@ -190,3 +190,37 @@ effect "big explosion"
 	"random spin" 4
 	"random velocity" .8
 	"velocity scale" .4
+
+# Deprecated to clarify their name as being part of the Navy, and not a general purpose license for cruiser type ships.
+outfit "Cruiser License"
+	category "Special"
+	thumbnail "outfit/navy cruiser license"
+	description "It is a very rare privilege to be permitted to purchase a Navy capital ship for private use - not just because of a Cruiser's firepower, but because it is a potent symbol of the Republic's strength."
+
+# Deprecated to clarify their name as being part of the Navy, and not a general purpose license for carrier type ships.
+outfit "Carrier License"
+	category "Special"
+	thumbnail "outfit/navy carrier license"
+	description "Only a handful of people in the past century have been given permission to purchase a Navy Carrier, even a decommissioned one, for private use."
+
+# Compatibility patch for those who use plug-ins that give all the licenses.
+# Each one checks for the presence of one of the two licenses, then replaces it.
+mission "Navy Cruiser License Compatibility"
+	landing
+	invisible
+	to offer
+		has "license: Cruiser"
+	on offer
+		set "license: Navy Cruiser"
+		fail
+
+
+
+mission "Navy Carrier License Compatibility"
+	landing
+	invisible
+	to offer
+		has "license: Carrier"
+	on offer
+		set "license: Navy Carrier"
+		fail

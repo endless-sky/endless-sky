@@ -60,11 +60,13 @@ namespace {
 		{"jump speed", 0},
 		{"reverse thrusting energy", 0},
 		{"reverse thrusting heat", 0},
+		{"scram drive", 0},
 		{"shield generation", 0},
 		{"shield energy", 0},
 		{"shield fuel", 0},
 		{"shield heat", 0},
 		{"solar collection", 0},
+		{"solar heat", 0},
 		{"thrusting energy", 0},
 		{"thrusting heat", 0},
 		{"turn", 0},
@@ -250,6 +252,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeLabels.emplace_back("ammo:");
 		attributeValues.emplace_back(outfit.Ammo()->Name());
 		attributesHeight += 20;
+		if(outfit.AmmoUsage() != 1)
+		{
+			attributeLabels.emplace_back("ammo usage:");
+			attributeValues.emplace_back(Format::Number(outfit.AmmoUsage()));
+			attributesHeight += 20;
+		}
 	}
 	
 	attributeLabels.emplace_back("range:");
