@@ -1641,8 +1641,8 @@ void Ship::DoGeneration()
 		
 		// Decrease the shield and hull delays by 1 now that shield generation
 		// and hull repair have been skipped over.
-		shieldDelay = max(0., shieldDelay - 1.);
-		hullDelay = max(0., hullDelay - 1.);
+		shieldDelay = max(0, shieldDelay - 1);
+		hullDelay = max(0, hullDelay - 1);
 	}
 	// Handle ionization effects, etc.
 	if(ionization)
