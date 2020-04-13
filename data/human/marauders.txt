@@ -78,7 +78,7 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 		
 	engine -10 57
 	engine 10 57
-	description "With a third engine mount, this Arrow seems more like an oversized missile than a ship. The beefed-up engines, a little extra outfit capacity, extra shield emitters, and thicker hull plating make this vessel a very competent interceptor."
+	description "With expanded engine mounts, this Arrow seems more like an oversized missile than a ship. The beefed-up engines, a little extra outfit capacity, extra shield emitters, and thicker hull plating make this vessel a very competent interceptor."
 
 
 ship "Marauder Arrow" "Marauder Arrow (Weapons)"
