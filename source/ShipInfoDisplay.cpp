@@ -161,11 +161,11 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	double hullRepair = attributes.Get("hull repair rate")
 		* (1. + attributes.Get("hull repair multiplier"));
 	bool hasHullRepair = hullRepair > 0.;
-	double hullHeat = attributes.Get("hull heat")
-		* (1. + attributes.Get("hull heat multiplier"))
-		* hasHullRepair;
 	double hullEnergy = attributes.Get("hull energy")
 		* (1. + attributes.Get("hull energy multiplier"))
+		* hasHullRepair;
+	double hullHeat = attributes.Get("hull heat")
+		* (1. + attributes.Get("hull heat multiplier"))
 		* hasHullRepair;
 	if(hasHullRepair)
 	{
