@@ -4721,6 +4721,7 @@ system Aspidiske
 		period 3727.76
 
 system Atik
+	# IMPORTANT: If you change this system, also update the test.txt
 	pos -66 -52
 	government Uninhabited
 	habitable 371.071
@@ -4752,6 +4753,7 @@ system Atik
 	fleet "Large Core Pirates" 18000
 	fleet "Human Miners" 5000
 	fleet "Korath Miners" 15000
+	# IMPORTANT: If you change this system, also update the test.txt
 	object
 		sprite star/b5
 		period 10
@@ -4763,8 +4765,7 @@ system Atik
 			sprite planet/desert4-b
 			distance 304
 			period 26.126
-		# NOTE: remove the Korath Emporium object name before merging
-		object "Korath Emporium"
+		object
 			sprite planet/ice4
 			distance 481
 			period 38.374

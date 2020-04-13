@@ -1,20 +1,90 @@
-# NOTE: Remember to update the Atik system when removing the Korath Emporium
 
-planet "Korath Emporium"
-	government "Parrot"
-	attributes core volcanic mining
-	landscape land/snow8
-	description `This is a test planet for the Korath Exiles expansion and should be removed before merging to the master. The Atik system should NOT be removed, however.`
-	spaceport `Oddly, there is nobody here.`
-	outfitter "korath exile test outfitter"
-	outfitter "Korath Basics"
-	shipyard "korath exile test shipyard"
-	shipyard "korath exile variant shipyard"
-	security 0.2
-	"required reputation" -10
-	tribute 1000000
-		threshold 0
-		fleet "Korath Civilian" 20
+mission "Create Korath Emporium"
+	landing
+	source
+		not attributes uninhabited
+	on offer
+		conversation
+			`A strange-looking person, possibly a woman, walks towards you. She has the appearance of a mobile volcano, and speaks, "Do you want to enable the Korath Emporium test planet in the new Atik system? It will sell you any Korath ship or outfit and give you a trillion credits for free. This is a one-time deal, and is only for generous people that will help balance-test the new ships and outfits.`
+			choice
+				`	"Yes, I would love to have a trillion credits and the ability to buy Korath outfits."`
+					accept
+				`	"No, I'll play the game without that."`
+					decline
+	on accept
+		event "Korath Emporium"
+		payment 1000000000000
+
+event "Korath Emporium"
+	government "Escort"
+		swizzle 0
+	system Atik
+		pos -66 -52
+		government Uninhabited
+		habitable 371.071
+		belt 1240
+		link Zaurak
+		asteroids "small rock" 36 1.99
+		asteroids "medium rock" 44 1.57
+		asteroids "large rock" 12 1.08
+		asteroids "small metal" 36 1.26
+		asteroids "medium metal" 75 1.92
+		asteroids "large metal" 14 1.35
+		minables platinum 21 1.40315
+		minables tungsten 43 1.42935
+		minables gold 36 1.7943
+		minables uranium 22 1.71104
+		trade Clothing 381
+		trade Electronics 632
+		trade Equipment 605
+		trade Food 261
+		trade "Heavy Metals" 958
+		trade Industrial 738
+		trade "Luxury Goods" 1097
+		trade Medical 651
+		trade Metal 327
+		trade Plastic 416
+		fleet "Small Syndicate" 10000
+		fleet "Large Syndicate" 25000
+		fleet "Small Core Pirates" 10000
+		fleet "Large Core Pirates" 18000
+		fleet "Human Miners" 5000
+		fleet "Korath Miners" 15000
+		object
+			sprite star/b5
+			period 10
+		object
+			sprite planet/gas16-b
+			distance 1350.7
+			period 681.931
+			object
+				sprite planet/desert4-b
+				distance 304
+				period 26.126
+			object "Korath Emporium"
+				sprite planet/ice4
+				distance 481
+				period 38.374
+		object
+			sprite planet/europa
+			distance 1905.05
+			period 2681.16
+			
+	planet "Korath Emporium"
+		government "Parrot"
+		attributes core volcanic mining
+		landscape land/snow8
+		description `This is a test planet for the Korath Exiles expansion and should be removed before merging to the master. The Atik system should NOT be removed, however.`
+		spaceport `Oddly, there is nobody here.`
+		outfitter "korath exile test outfitter"
+		outfitter "Korath Basics"
+		shipyard "korath exile test shipyard"
+		shipyard "korath exile variant shipyard"
+		security 0.2
+		"required reputation" -10
+		tribute 1000000
+			threshold 0
+			fleet "Korath Civilian" 20
 
 outfitter "korath exile test outfitter"
 	"Jump Drive"
