@@ -698,7 +698,7 @@ mission "Hai Rescue [C02] Escort to Arms Purchase"
 		dialog `The large fleet of human ships in this system fly the same flag, "Human Alliance," and appear to have outfits from all factions. The human authorities must be concerned about well-equipped Unfettered Hai Shield Beetles wandering through human space. Hopefully this human camaraderie will outlive the current crisis.`
 	on offer
 		conversation
-			`Teeneep comes to you wearing her fencing outfit, still stained with blood, though you notice there's more blood now, in different places than before. She departs from an eleventh Shield Beetle; you can see weapons sticking out that are not of Hai or human origin. It's thrusters are so hot they're still glowing red.`
+			`Teeneep comes to you wearing her fencing outfit, still stained with blood, though you notice there's more blood now, in different places than before. She departs from an eleventh Shield Beetle; you can see weapons sticking out that are not of Hai or human origin. Its thrusters are so hot they're still glowing red.`
 			`	She says, "I've had a good time with the Unfettered," probably referring to her blood stains, "but now we must advance our plans. We need to reach <destination> immediately. Neither the Fettered Hai nor the Republic want this fleet in their space for long. You'll be paid <payment> when we arrive."`
 				accept
 	npc save accompany
@@ -866,8 +866,8 @@ mission "Hai Rescue [C06] Freedom"
 		dialog `To finish this mission, you need to wait for General Choot'k's ship to arrive and land again.`
 	on offer
 		fail "Hai Rescue [B04Z] Guard"
-		log `Factions` `Philosopher's Paradise` `Formerly a pirate stronghold, this city of scientists is a hundred twenty years old now. Korath, Hai, and humans live peacefully, working side-by-side, and most have no desire to leave. They value their independence and have refused Republic membership. This city orbits a strange world that defies analysis in a region of space that has never been touched by civilization. Quarg refuse to go here, and Drak consider it outside their domain.`
-		log `Liberated Philosopher's Paradise. They said they have inventions that may be of use to me, but their facilities are damaged. As they repair the facilities, they'll make new technologies available.`
+		log `Factions` `Philosopher's Paradise` `Formerly a pirate stronghold, this city of scientists is a hundred twenty years old now. Korath, Hai, and Humans live peacefully, working side-by-side, and most have no desire to leave. They value their independence and have refused Republic membership. This city orbits a strange world that defies analysis in a region of space that has never been touched by civilization. Quarg refuse to go here, and Drak consider it outside their domain.`
+		log `Liberated Philosopher's Paradise. They said they have inventions that may be of use to me, but their facilities are damaged. As they repair the facilities, they'll make new technologies available to me as their friend.`
 		conversation
 			`General Choot'k cuts open the doors of a large hangar and your ships land. Two hundred operatives pour out. They're wearing exoskeletons with built-in shields. As they storm through the complex, you follow some of them.`
 			`	Their guns are able to literally melt away meter-thick walls in seconds. They have gas bombs that release an extremely powerful stun gas which knocks people out for hours. The pirates outnumber the Republic operatives twenty-five to one, but this huge advantage in equiupment, combined with training, gives the operatives a fighting chance.`
@@ -950,24 +950,11 @@ mission "Hai Rescue [C06] Freedom"
 			`	As you return to your ship, Teeneep interrupts you. "I need you to escort me one last time, Captain <last>. I must return to <destination> to resolve things with now that the threat is ended. You will be well-paid, of course."`
 			`	Anticipating your next question, she says, "The ships of the True Hai will be escorted back with us since the Philosophers are convinced they are at no risk, and still have a ship at their disposal. Some of the True Hai have chosen to remain here and join the philosophers. More than enough bunks have subsequently been freed to return those who have chosen to come home with us. We will have to transport the surviving operatives back to Foundry, the Republic should be able to look after them again from there."`
 				accept
+	on stopover
+		dialog "The operatives depart your ship into the arms of the human teams waiting there to see to their health and collect the dead."
 	on complete
 		payment 1000000
 		fail "Hai Rescue [B01A] Permanent Fleets"
-		event "hai-human treaty signed"
-		log `The Free Worlds, Republic, and Hai Elders, have signed an agreement to ensure safe passage for Hai in human space, on the condition that they register with a customs authority on Allhome. Any Hai sent against their will into human space will be recovered alive if possible, regardless of the risk to human soldiers. Human authorities will not change their approach towards regular human pirates and slavery though, citing "unsustainable loss of life."`
-		log `Teeneep and General Choot'k together, prominent leaders of the Fettered and Unfettered Hai, kissed in a romantic goodbye. They spoke of a future peaceful unification of the Hai.`
-		conversation
-			`When you land, you, Teeneep, and the Unfettered Hai are greeted as heroes. After a few hours of parades and parties, General Choot'k comes to you and Teeneep to bid farewell.`
-			`	He shakes your hand and says, "You're a fine warrior, Captain <last>. You are as much a True Hai as any human can be, and it was an honor to fight alongside you in battle.`
-			`	Then he turns to Teeneep and tells her, "You're the future leader of all our people, Teeneep. Come back with me to Darkcloak. Join the True Hai and lead us to victory."`
-			`	Teeneep smiles and says, "I have already joined the True Hai in spirit, but my fight is here. I fight for the hearts and minds of our Fettered brethren. One day they will know the True Hai as I do, and we will be one."`
-			`	The two come close and look into each other's eyes for a moment before kissing. You're surprised at how complicated open-mouth kissing is when both participants have finger-length incisors.`
-			choice
-				`	(Give them some privacy.)`
-			`	As you walk back towards the party, you notice a Carrier and a Dreadnought landing in the distance. You walk towards the landing site, and soon a high-speed Teeneep flies past you saying, "We'll be late! Hurry!"`
-			`	After a few minutes of running, you reach a conference hall and see the Prime Minister of the Republic and the President of the Free Worlds sitting at the head of a long table patiently awaiting Teeneep.`
-			`	The three sign a treaty granting safe passage to all Hai in human space, so long as they register with customs on Allhome before entering. Extensive surveillance fleets are posted on both sides of the wormhole to detect any kidnappings or other illegal travel. Now the only way for illicit transfers to happen is if a government employee is involved, but all three countries agreed to watch for that behavior and punish it severely.`
-			`	After another few parties, the celebrations end. The leaders of all three governments thank you for your help with sincere words, and <payment>.`
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic
