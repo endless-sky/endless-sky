@@ -2678,7 +2678,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	shields -= shieldDamage * shieldFraction;
 	if(shieldDamage && !isDisabled)
 	{
-		int disabledDelay = static_cast<int>((attributes.Get("depleted shield delay"));
+		int disabledDelay = static_cast<int>(attributes.Get("depleted shield delay"));
 		shieldDelay = max(shieldDelay, (shields <= 0. && disabledDelay) ? disabledDelay : static_cast<int>(attributes.Get("shield delay")));
 	}
 	hull -= hullDamage * (1. - shieldFraction);
