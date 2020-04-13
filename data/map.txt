@@ -4726,7 +4726,7 @@ system Atik
 	government Uninhabited
 	habitable 371.071
 	belt 1240
-	link Zaurak
+	link Durax
 	asteroids "small rock" 36 1.99
 	asteroids "medium rock" 44 1.57
 	asteroids "large rock" 12 1.08
@@ -8292,6 +8292,7 @@ system Durax
 	habitable 1080
 	belt 1287
 	link Alcyone
+	link Misam
 	asteroids "small rock" 7 3.1744
 	asteroids "medium rock" 4 2.304
 	asteroids "large rock" 6 3.6768
@@ -16749,12 +16750,11 @@ system Mirzam
 			period 12.1447
 
 system Misam
-	pos -139 -80
+	pos -9 -80
 	government Uninhabited
 	habitable 993
 	belt 1091
-	link Mirfak
-	link Oblate
+	link Durax
 	asteroids "small rock" 30 2.4918
 	asteroids "medium rock" 65 2.7068
 	asteroids "large rock" 1 2.561
