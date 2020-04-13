@@ -23,7 +23,7 @@ event "Korath Emporium"
 		government Uninhabited
 		habitable 371.071
 		belt 1240
-		link Zaurak
+		link Durax
 		asteroids "small rock" 36 1.99
 		asteroids "medium rock" 44 1.57
 		asteroids "large rock" 12 1.08
