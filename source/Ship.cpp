@@ -64,8 +64,8 @@ namespace {
 	}
 	
 	// Helper function to repair a given stat up to its maximum, limited by
-	// how much repair is available and how much energy and fuel are available.
-	// Updates the stat, the available amount, and the energy and fuel amounts.
+	// how much repair is available and how much energy, fuel, and heat are available.
+	// Updates the stat, the available amount, and the energy, fuel, and heat amounts.
 	void DoRepair(double &stat, double &available, double maximum, double &energy, double energyCost, double &fuel, double fuelCost, double &heat, double heatCost)
 	{
 		if(available <= 0. || stat >= maximum)
@@ -91,7 +91,7 @@ namespace {
 	}
 	
 	// Helper function to reduce a given status effect according 
-	// to its resistance, limited by how much energy and fuel are available.
+	// to its resistance, limited by how much energy, fuel, and heat are available.
 	// Updates the stat and the energy, fuel, and heat amounts.
 	void DoStatusEffect(bool isDisabled, bool isPassive, double &stat, double resistance, double &energy, double energyCost, double &fuel, double fuelCost, double &heat, double heatCost)
 	{
