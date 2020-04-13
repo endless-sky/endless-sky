@@ -119,11 +119,11 @@ ship "Korath Refuge"
 
 		# Capabilities of built-in nanite factory.
 		"ramscoop" 12
-		"shield generation" 9
-		"shield energy" 13.2
-		"hull repair rate" 10.2
-		"hull energy" 13.8
-		"hull heat" 19.1
+		"shield generation" 13
+		"shield energy" 18
+		"hull repair rate" 3.9
+		"hull energy" 3.7
+		"hull heat" 5.5
 		"energy capacity" 4300
 		
 		
@@ -1239,11 +1239,11 @@ ship "Korath Dredger"
 		
 		# Capabilities of built-in nanite factory:
 		"ramscoop" 2
-		"shield generation" 2.5
-		"shield energy" 3.4
-		"hull repair rate" 1.6
-		"hull energy" 1.6
-		"hull heat" 2.1
+		"shield generation" 1.1
+		"shield energy" 0.9
+		"hull repair rate" 1.1
+		"hull energy" 1.0
+		"hull heat" 1.4
 		"energy capacity" 1800
 		
 		weapon
@@ -1315,12 +1315,12 @@ ship "Korath Refabricator"
 		
 		# Capabilities of huge built-in nanite factory:
 		"ramscoop" 12
-		"shield generation" 21
-		"shield energy" 30.8
-		"hull repair rate" 27
-		"hull energy" 27
-		"hull heat" 36
-		"energy capacity" 9800
+		"shield generation" 27.6
+		"shield energy" 36.2
+		"hull repair rate" 9.1
+		"hull energy" 8.3
+		"hull heat" 13.5
+		"energy capacity" 10500
 		
 		weapon
 			"blast radius" 600
@@ -1395,12 +1395,12 @@ ship "Korath Haven"
 		
 		# Capabilities of the two huge built-in nanite factories:
 		"ramscoop" 30
-		"shield generation" 38
-		"shield energy" 50
-		"hull repair rate" 46
-		"hull energy" 46
-		"hull heat" 61
-		"energy capacity" 18300
+		"shield generation" 60.8
+		"shield energy" 50.3
+		"hull repair rate" 20.7
+		"hull energy" 15.2
+		"hull heat" 26.4
+		"energy capacity" 22500
 		
 		weapon
 			"blast radius" 900
@@ -1412,7 +1412,7 @@ ship "Korath Haven"
 		"Korath Inferno" 6
 		"Korath Warder" 6
 		"Korath Heaver" 4
-		
+
 		"Large Heat Shunt" 12
 		"Triple Plasma Core" 4
 
