@@ -2709,8 +2709,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	if(!wasDisabled && isDisabled)
 	{
 		type |= ShipEvent::DISABLE;
-		int disabledDelay = attributes.Get("disabled repair delay")
-		hullDelay = max(hullDelay, disabledDelay);
+		hullDelay = max(hullDelay, attributes.Get("disabled repair delay"));
 	}
 	if(!wasDestroyed && IsDestroyed())
 		type |= ShipEvent::DESTROY;
