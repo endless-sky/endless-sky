@@ -397,13 +397,15 @@ fleet "Kor Efret Home"
 	cargo 3
 	personality
 		timid
-	variant
+	variant 5
 		"Efret fi Zujaja"
-	variant
+	variant 5
 		"Efret fi Jara"
-	variant
+	variant 5
 		"Efret fi Iibriq"
-
+	variant 5
+		# This model can hold its own against groups of Kor Metri ships:
+		"Korath Refabricator (Six Infernos)"
 
 fleet "Small Kor Sestor"
 	government "Kor Sestor"

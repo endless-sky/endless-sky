@@ -4747,8 +4747,6 @@ system Atik
 	trade Medical 651
 	trade Metal 327
 	trade Plastic 416
-	fleet "Small Syndicate" 10000
-	fleet "Large Syndicate" 25000
 	fleet "Small Core Pirates" 10000
 	fleet "Large Core Pirates" 18000
 	fleet "Human Miners" 5000
@@ -16750,7 +16748,7 @@ system Mirzam
 
 system Misam
 	pos -9 -80
-	government Uninhabited
+	government Pirate
 	habitable 993
 	belt 1091
 	link Durax
@@ -16773,11 +16771,11 @@ system Misam
 	trade Medical 688
 	trade Metal 288
 	trade Plastic 368
-	fleet "Small Core Pirates" 12000
-	fleet "Large Syndicate" 15000
-	fleet "Small Syndicate" 10000
-	fleet "Human Miners" 3000
-	fleet "Korath Miners" 20000
+	fleet "Large Core Pirates" 8000
+	fleet "Small Core Pirates" 2000
+	fleet "Human Miners" 10000
+	fleet "Large Syndicate" 20000
+	fleet "Korath Miners" 15000
 	object
 		sprite star/k0
 		period 10
@@ -16789,8 +16787,8 @@ system Misam
 			sprite planet/lava0-b
 			distance 159
 			period 24.2278
-	object
-		sprite planet/cloud3
+	object "New Tortuga"
+		sprite planet/ocean3-b
 		distance 1010.56
 		period 391.013
 		object
@@ -27361,6 +27359,32 @@ planet "New Switzerland"
 	tribute 300
 		threshold 2000
 		fleet "Small Republic" 11
+
+planet "New Tortuga"
+	attributes pirate "core pirate" core religious factory
+	landscape land/fog6
+	description `A planet of violent storms and frequent earthquakes, New Tortuga would turn away anyone unless they have a reason to hide. The few settlements on the planet are subterranean cave cities far from any fault lines. Thick blast doors block all entrances, and vast pumping systems remove water after the frequent supertyphoon-strength tropical storms.`
+	description `Most of the inhabitants of this planet are Syndicate dissidents who support themselves through manufacturing. The Syndicate often destroys pirate factories at their borders, but their fleets cannot penetrate as far as New Tortuga. Here, shipyards, factories, and outfitters provide an uninterrupted supply.`
+	description `Surprisingly, many of the inhabitants are deeply religious. They're driven out by the atheist Syndicate management who frown on religion, viewing it as a source of inefficiency. Although the Syndicate does not officially ban religion, they treat devout employees poorly, and persecute religious leaders. Here, the pirates leave them alone as long as they keep manufacturing goods.`
+	outfitter "Basic Outfits"
+	outfitter "Ammo North"
+	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
+	outfitter "Syndicate Basics"
+	outfitter "Syndicate Advanced"
+	shipyard "Basic Ships"
+	shipyard "Core Pirates"
+	shipyard "Advanced Core Pirates"
+	shipyard "Southern Pirates"
+	shipyard "Northern Pirates"
+	shipyard "Megaparsec Basics"
+	bribe 0.03
+	security 0
+	"required reputation" -10
+	tribute 700
+		threshold 1000
+		fleet "Large Core Pirates" 8
+
 
 planet "New Tibet"
 	attributes "dirt belt" religious factory
