@@ -45,6 +45,8 @@ Version 0.9.12:
     * Negative shield/hull energy and shield/hull fuel will no longer block the ability to repair. (@Amazinite)
   * Under the hood:
     * Organized the game data into subfolders based off of factions and species. (@Amazinite)
+    * Generate downloadable continuous builds upon commit. (@MCOfficer)
+    * Make AppImage releases compatible with systems older than Ubuntu 18.04. (@MCOfficer)
     * Expanded the credits to acknowledge everyone who has contributed to the game on GitHub. (@Zitchas)
 
 Version 0.9.11:
