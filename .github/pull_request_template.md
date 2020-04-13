@@ -23,6 +23,9 @@ This save file can be used to play through the new mission content:
 ## Fix Details
 {{add details}}
 
+## Testing Done
+{{describe how you tested that the fix doesn't introduce other issues}}
+
 ## Save File
 This save file can be used to verify the bugfix. The bug will occur when using {{insert commit hash / version}}, and will not occur when using this branch's build.
 {{attach a save file that can be used to verify your bugfix. It MUST have no plugin requirements}}
@@ -39,3 +42,9 @@ This save file can be used to verify the bugfix. The bug will occur when using {
 
 ## Usage Examples
 {{if this feature is used in the data files, provide examples!}}
+
+## Testing Done
+{{describe how you tested the new feature}}
+
+## Performance Impact
+{{describe any performance impact (positive or negative). "N/A" if no performance-critical code is changed. }}
