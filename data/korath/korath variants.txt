@@ -781,7 +781,7 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 	turret "Korath Banisher"
 	turret "Korath Warder"
 
-
+# Refabricator for Wanderers escort mission:
 ship "Korath Refabricator" "Korath Refabricator (Six Infernos Jump)"
 	outfits
 		"Korath Warder" 5
@@ -807,44 +807,6 @@ ship "Korath Refabricator" "Korath Refabricator (Six Infernos Jump)"
 	turret 0 180 "Korath Warder"
 	turret -173 248 "Korath Inferno"
 	turret 173 248 "Korath Inferno"
-
-# Special Refabricator for Wanderer escort mission. Half repair, only
-# 2 ramscoop, and a jump drive instead of hyperdrive.
-ship "Korath Refabricator" "Korath Refabricator (Weak Jump)"
-	add attributes
-		"ramscoop" -10
-		"shield generation" -10.5
-		"shield energy" -15.4
-		"hull repair rate" -13.5
-		"hull energy" -13.5
-		"hull heat" -18
-	outfits
-		"Korath Warder" 4
-		"Korath Digger Turret" 2
-		"Korath Grab-Strike" 4
-		"Korath Inferno" 3
-
-		"Large Heat Shunt" 7
-		"Small Heat Shunt" 2
-		"Triple Plasma Core" 3
-		"Korath Repeater Rifle"  2600
-
-		"Grav-Steering (Nebula Class)"
-		"Thruster (Stellar Class)"
-		"Jump Drive"
-	turret -82 -202 "Korath Grab-Strike"
-	turret 82 -202 "Korath Grab-Strike"
-	turret -154 -122 "Korath Warder"
-	turret 154 -122 "Korath Warder"
-	turret 0 -114 "Korath Inferno"
-	turret -140 -23 "Korath Digger Turret"
-	turret 140 -23 "Korath Digger Turret"
-	turret 0 18.5 "Korath Inferno"
-	turret -189 119 "Korath Warder"
-	turret 189 119 "Korath Warder"
-	turret 0 180 "Korath Inferno"
-	turret -173 248 "Korath Grab-Strike"
-	turret 173 248 "Korath Grab-Strike"
 
 # Ravager for early boss fight. No repair nor ramscoop. Fast, with
 # excess cooling and power that ion and heat damage will be less effective.

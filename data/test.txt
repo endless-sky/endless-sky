@@ -108,7 +108,7 @@ shipyard "korath exile variant shipyard"
 	# Special versions for missions:
 
 	"Korath Dredger (Crippled)"
-	"Korath Refabricator (Weak Jump)"
+	"Korath Refabricator (Six Infernos Jump)"
 	"Korath Ravager (Crippled Disarmed)"
 	"Korath Ravager (Big Raider)"
 	"Korath Ravager (Crippled Armed)"

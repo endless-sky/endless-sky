@@ -3118,7 +3118,7 @@ mission "Wanderers: Sestor: Factory 1"
 	npc accompany save
 		government "Korath"
 		personality escort
-		ship "Korath Refabricator (Weak Jump)" "Seskerat Pratka"
+		ship "Korath Refabricator (Six Infernos Jump)" "Seskerat Pratka"
 	on visit
 		dialog `You have reached <planet>, but you're missing something! Either you've left the Korath ship behind, or your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 
