@@ -76,6 +76,10 @@ person "Michael Zahniser"
 		explode "medium explosion" 80
 		explode "large explosion" 120
 		explode "huge explosion" 60
+	ship "Finch" "Finch"
+		"never disabled"
+	ship "Finch" "Finch"
+		"never disabled"
 
 
 
