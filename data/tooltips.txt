@@ -72,10 +72,7 @@ tip "disabled:"
 	`Alters the hull strength value at which the ship will become disabled.`
 
 tip "disabled percentage:"
-	`Alters the hull strength percentage at which the ship will become disabled.`
-
-tip "disabled threshold:"
-	`The hull strength remaining at which this ship becomes disabled.`
+	`Alters the percentage of the remaining hull strength at which the ship will become disabled.`
 
 tip "disruption resistance:"
 	`How much shield disruption damage this ship can resist per second.`
