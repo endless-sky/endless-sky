@@ -16641,7 +16641,6 @@ system Mirfak
 	link Menkar
 	link Bellatrix
 	link Moktar
-	link Misam
 	asteroids "small rock" 3 3.3592
 	asteroids "medium rock" 5 4.6436
 	asteroids "large rock" 5 3.5568
@@ -17568,7 +17567,6 @@ system Oblate
 	belt 1704
 	link Alcyone
 	link Moktar
-	link Misam
 	asteroids "small rock" 2 2.1
 	asteroids "medium rock" 7 1.3944
 	asteroids "large rock" 2 1.7976
@@ -24787,7 +24785,6 @@ system Zaurak
 	link Sheratan
 	link Alcyone
 	link Menkar
-	link Atik
 	asteroids "small rock" 30 5.0232
 	asteroids "medium rock" 34 5.2052
 	asteroids "large rock" 11 1.82
