@@ -158,14 +158,14 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		attributeValues.push_back(Format::Number(attributes.Get("shields")));
 	}
 	attributesHeight += 20;
-	double hullEnergy = attributes.Get("hull energy")
-		* (1. + attributes.Get("hull energy multiplier"));
+	double hullRepair = attributes.Get("hull repair rate")
+		* (1. + attributes.Get("hull repair multiplier"));
 	bool hasHullRepair = hullRepair > 0.;
 	double hullHeat = attributes.Get("hull heat")
 		* (1. + attributes.Get("hull heat multiplier"))
 		* hasHullRepair;
-	double hullRepair = attributes.Get("hull repair rate")
-		* (1. + attributes.Get("hull repair multiplier"))
+	double hullEnergy = attributes.Get("hull energy")
+		* (1. + attributes.Get("hull energy multiplier"))
 		* hasHullRepair;
 	if(hasHullRepair)
 	{
