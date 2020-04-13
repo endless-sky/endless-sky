@@ -137,17 +137,15 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
-	double shieldEnergy = attributes.Get("shield energy")
-		* (1. + attributes.Get("shield energy multiplier"));
-	double shieldHeat = attributes.Get("shield heat")
-		* (1. + attributes.Get("shield heat multiplier"));
-	double shieldFuel = attributes.Get("shield fuel")
-		* (1. + attributes.Get("shield fuel multiplier"));
 	double shieldRegen = attributes.Get("shield generation")
 		* (1. + attributes.Get("shield generation multiplier"));
 	bool hasShieldRegen = shieldRegen > 0.;
-	shieldEnergy *= hasShieldRegen;
-	shieldHeat *= hasShieldRegen;
+	double shieldEnergy = attributes.Get("shield energy")
+		* (1. + attributes.Get("shield energy multiplier"))
+		* hasShieldRegen;
+	double shieldHeat = attributes.Get("shield heat")
+		* (1. + attributes.Get("shield heat multiplier"))
+		* hasShieldRegen;
 	if(hasShieldRegen)
 	{
 		attributeLabels.push_back("shields charge / max:");
@@ -162,15 +160,13 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributesHeight += 20;
 	double hullEnergy = attributes.Get("hull energy")
 		* (1. + attributes.Get("hull energy multiplier"));
-	double hullHeat = attributes.Get("hull heat")
-		* (1. + attributes.Get("hull heat multiplier"));
-	double hullFuel = attributes.Get("hull fuel")
-		* (1. + attributes.Get("hull fuel multiplier"));
-	double hullRepair = attributes.Get("hull repair rate")
-		* (1. + attributes.Get("hull repair multiplier"));
 	bool hasHullRepair = hullRepair > 0.;
-	hullEnergy *= hasHullRepair;
-	hullHeat *= hasHullRepair;
+	double hullHeat = attributes.Get("hull heat")
+		* (1. + attributes.Get("hull heat multiplier"))
+		* hasHullRepair;
+	double hullRepair = attributes.Get("hull repair rate")
+		* (1. + attributes.Get("hull repair multiplier"))
+		* hasHullRepair;
 	if(hasHullRepair)
 	{
 		attributeLabels.push_back("hull repair / max:");
