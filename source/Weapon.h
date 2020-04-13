@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 
 #include <map>
+#include <utility>
 
 class DataNode;
 class Effect;
@@ -58,6 +59,8 @@ public:
 	double BurstReload() const;
 	int BurstCount() const;
 	int Homing() const;
+	
+	int AmmoUsage() const;
 	
 	int MissileStrength() const;
 	int AntiMissile() const;
@@ -123,7 +126,9 @@ protected:
 	// default turnrate.
 	void SetTurretTurn(double rate);
 	
-	const Outfit *ammo = nullptr;
+	// A pair representing the outfit that is consumed as ammo and the number
+	// of that outfit consumed upon fire.
+	std::pair<const Outfit*, int> ammo;
 	
 	
 private:

@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.9.9
+version 0.9.11
 
 This game is open source.
 To report bugs, give feedback,
