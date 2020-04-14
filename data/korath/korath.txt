@@ -403,9 +403,6 @@ fleet "Kor Efret Home"
 		"Efret fi Jara"
 	variant 5
 		"Efret fi Iibriq"
-	variant 5
-		# This model can hold its own against groups of Kor Metri ships:
-		"Korath Refabricator (Six Infernos)"
 
 fleet "Small Kor Sestor"
 	government "Kor Sestor"
