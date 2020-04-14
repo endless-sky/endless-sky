@@ -136,7 +136,7 @@ mission "Hai Reveal [D02] Cleanup"
 			label kidnappers
 			`	"We were en route to somewhere after the ship left Hai space. We don't really know what happened but they received some kind of message that made them very concerned. They said something about hiding somewhere safe and they landed here."`
 			`	At this point he frowns in the way Hai do, "We were set down here for days and days, our kidnappers couldn't seem to work out what they should do. Eventually a woman came in this ship here."`
-			`	He gestures at the star barge, "She had them ferry us and all our stuff out to this ship, and then she took charge and flew off with them. That was when we sent the message. We were partly afraid it was some kind of elaborate trap when we saw that we could communicate to a Hai address directly, we never used to be able to communicate between human space and ours directly. I guess we were lucky this time."
+			`	He gestures at the star barge, "She had them ferry us and all our stuff out to this ship, and then she took charge and flew off with them. That was when we sent the message. We were partly afraid it was some kind of elaborate trap when we saw that we could communicate to a Hai address directly, we never used to be able to communicate between human space and ours directly. I guess we were lucky this time."`
 			choice
 				`	"Do you know where they went?"`
 				`	"What did this woman look like?"`
@@ -175,7 +175,7 @@ mission "Hai Reveal [D03] Cleanup"
 			choice
 				`	"There is something, but I'm not totally sure."`
 			`	They both frown and huddle in closer. "Do you think some of the kidnappers escaped, do you think they'll continue?" asks Sayari.`
-			`	"No," you say.
+			`	"No," you say.`
 			choice
 				`	"However, I think there's one thing I should check out."`
 			`	At this Xilin raises an eyebrow, "Is this something I'm going to have to report?"`
@@ -223,7 +223,7 @@ mission "Hai Reveal [D04] Cleanup"
 			`	She looks you in the eye for a long time, and then she bows her head and you think you catch sight of a tear glistening as she turns away."`
 			`	"If you have the means, point your scanners towards Mebsuta from here, seek out Aspiration."`
 			`	Her voice catches at the end and she looks back at you from the corner of her eye, "If you have it in your heart to do so, please, do not harm my great-grandaughter."`
-			`	She steps to a doorway and vanishes inside. Within seconds the windows are closed, the gates are open, and you are left alone in the alley with the bustle of the spaceport beyond again.
+			`	She steps to a doorway and vanishes inside. Within seconds the windows are closed, the gates are open, and you are left alone in the alley with the bustle of the spaceport beyond again.`
 	#This is a gamble. If you indicate in any way that you are overtly hostile, she'll kill you and deal with the consequences later.
 	#She also knows that if you go missing, someone else will come looking. Someone will eventually find her great-grandaughter, and she can't intercept everyone.
 	#She's acting as the gatekeeper, gambling that the one she chooses to let through will have compassion and understanding.
@@ -299,7 +299,7 @@ mission "Hai Reveal [D05] Cleanup"
 			`	"It was never meant to be like this," she forces out, "but the Philosophers were our only resource, and we weren't in control anymore."`
 			`	"We wanted to reform the government, make it better, make it work for the people instead of against them. We dealt with the devil to keep that dream alive I suppose. I guess I should have expected it to get us burnt eventually."`
 			choice
-				'	"Who is 'us'."`
+				`	"Who is 'us'?"`
 			`	She sighs, "My father and I, and a couple of the old survivors of the purge. It's only me left now though, just one Base Principle."`
 			`	You shake your head and ask, "Do you realise you nearly started a war that would have killed millions? Possibly ended human government entirely!"`
 			`	"I know," she says, calm now, "obviously not my intent, but maybe that would have been better in the long-run than the Republic and its corruption. There's no apology appropriate for it, and I can't pretend it would be totally sincere on that front. War changes things, sometimes some pain in the short term is needed for a better future."`
@@ -322,13 +322,13 @@ mission "Hai Reveal [D05] Cleanup"
 			`	You draw your weapon and point it at her, your thumb on the safety. When you look inside yourself though, you think maybe the future is worth the sacrifice made in the attempt.`
 			`	The holster clicks as you put the weapon away.`
 			apply
-				Hai Reveal [D05B] End Terry: fail
+				"Hai Reveal [D05B] End Terry: failed"
 			goto return
 			label end
 			`	You draw your weapon and point it at her, your thumb on the safety. Some prices are too high to pay for a better future.`
 			`	The retort of the weapon is taken away on the wind.`
 			apply
-				Hai Reveal [D05B] Spare Terry: fail
+				"Hai Reveal [D05B] Spare Terry: failed"
 			goto return
 			label judge
 			`	"You'd better be," she says, "you and I both know that this can't become public. If you take me to the Syndicate they will do away with me if they find out, and I doubt they could manage to not."`
@@ -352,6 +352,7 @@ mission "Hai Reveal [D05] Cleanup"
 
 mission "Hai Reveal [D05A] Spare Terry"
 	landing
+	invisible
 	source "Aspiration"
 	destination "Mountaintop"
 	to offer
@@ -359,8 +360,10 @@ mission "Hai Reveal [D05A] Spare Terry"
 	
 mission "Hai Reveal [D05B] End Terry"
 	landing
+	invisible
 	source "Aspiration"
 	destination "Mountaintop"
 	to offer
 		has "Hai Reveal [D04] Cleanup: done"
 	
+event "hai-human resolution announced"
