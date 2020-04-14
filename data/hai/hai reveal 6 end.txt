@@ -148,7 +148,7 @@ mission "Hai Reveal [D02] Cleanup"
 
 mission "Hai Reveal [D02A] Cleanup"
 	landing
-	invisble
+	invisible
 	source "Sunracer"
 	to offer
 		has "Hai Reveal [D02] Cleanup: active"
@@ -322,13 +322,13 @@ mission "Hai Reveal [D05] Cleanup"
 			`	You draw your weapon and point it at her, your thumb on the safety. When you look inside yourself though, you think maybe the future is worth the sacrifice made in the attempt.`
 			`	The holster clicks as you put the weapon away.`
 			apply
-				"Hai Reveal [D05B] End Terry: failed"
+				set "Hai Reveal [D05B] End Terry: failed"
 			goto return
 			label end
 			`	You draw your weapon and point it at her, your thumb on the safety. Some prices are too high to pay for a better future.`
 			`	The retort of the weapon is taken away on the wind.`
 			apply
-				"Hai Reveal [D05B] Spare Terry: failed"
+				set "Hai Reveal [D05B] Spare Terry: failed"
 			goto return
 			label judge
 			`	"You'd better be," she says, "you and I both know that this can't become public. If you take me to the Syndicate they will do away with me if they find out, and I doubt they could manage to not."`
