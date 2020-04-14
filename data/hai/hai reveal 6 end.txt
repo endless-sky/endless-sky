@@ -17,7 +17,7 @@ mission "Hai Reveal [D01] Cleanup"
 	source "Hai-home"
 	destination "Mountaintop"
 	passengers 4
-	blocked "You need <bunks> passenger spaces to transport Xilin, Alondo, Sayuri and Teeneep."
+	blocked "You need <bunks> passenger spaces to transport Xilin, Alondo, Sayari and Teeneep."
 	to offer
 		has "Hai Rescue [C06] Freedom: done"
 	on offer
@@ -32,7 +32,7 @@ mission "Hai Reveal [D01] Cleanup"
 			`	The two come close and look into each other's eyes for a moment before kissing. You're surprised at how complicated open-mouth kissing is when both participants have finger-length incisors.`
 			choice
 				`	(Give them some privacy.)`
-			`	You're nursing the warmth of a beverage after breakfast the next morning on far too little sleep when your communicator pings. When it turns out to be Sayuri looking at you from the screen you take a moment to thank your body clock for ensuring you were already decent today, despite the suffering over it.`
+			`	You're nursing the warmth of a beverage after breakfast the next morning on far too little sleep when your communicator pings. When it turns out to be Sayari looking at you from the screen you take a moment to thank your body clock for ensuring you were already decent today, despite the suffering over it.`
 			`	"So glad to see that you've pulled up alright this morning," she says, "as one final thing, we all need to go and meet the human leaders on Mountaintop and finally close the book on this chapter. We could take any ship at this point, but I thought you might like to see it through to the end."`
 			`	"We'll be ready to go in a couple of hours. What do you say?"`
 			choice
@@ -50,13 +50,13 @@ mission "Hai Reveal [D01] Cleanup"
 			`	This meeting will now turn into a multi-day summit to discuss and settle upon the appropriate terms of referencee and necessary criteria for a full resolution outlining a path to a formal treaty. This process will take a number of days.`
 			choice
 				`	Relax`
-			`Just when you thought that maybe you'd get on with your own life, there's a knock on the door of your station quarters just as you finish breakfast. A slightly sheepish looking Sayuri and Xilin are waiting for you when you open the door.`
+			`Just when you thought that maybe you'd get on with your own life, there's a knock on the door of your station quarters just as you finish breakfast. A slightly sheepish looking Sayari and Xilin are waiting for you when you open the door.`
 			`	"We need to talk."`
 			`	You feel the deepest of sighs settle into your bones, but at this point you just gesture them inside. It would have been too easy if it was all over wouldn't it?`
 			`	"It seems that somewhere along the way a shipload of kidnapped Hai that didn't make it to a processing area, or through the wormhole, got lost. The Hai have been left on Sunracer, and the ship appears to have disappeared," says Xilin.`
-			`	"For the moment," says Sayuri, "We're the only ones who know about it, the Hai are in hiding and tapped into a communication grid. I intercepted their transmission as it was routed through this station directly."`
+			`	"For the moment," says Sayari, "We're the only ones who know about it, the Hai are in hiding and tapped into a communication grid. I intercepted their transmission as it was routed through this station directly."`
 			`	Xilin looks at you pointedly, "We need you to go pick them up, bring them here, and while you're at it make sure the threat really is ended. If it's not, this resolution may not happen, despite everything we've achieved."`
-			`	You look from Xilin to Sayuri and do your best to look like this isn't totally ruining the lovely breakfast you just had.`
+			`	You look from Xilin to Sayari and do your best to look like this isn't totally ruining the lovely breakfast you just had.`
 			choice
 				`	"of course, I'll take care of it."`
 
@@ -169,12 +169,12 @@ mission "Hai Reveal [D03] Cleanup"
 		conversation
 			`An all-hai greeting party are waiting to provide aid and coordinate the safe return of those you've rescued from Sunracer when you return to Mountaintop. It appears to have avoided media attention, and the summit is progressing towards a resolution at an acceptable rate. It's been slow going, since the Hai and human legal systems are so different that establishing common legal terms of reference has been a long-winded exercise.`
 			`	You've had time to consider for a couple of days on the return the events that led to you hauling a group of spontaneously abandoned hai out of Syndicate space. The timing seems suspect, the individual seems familiar, and there's just something about what the Philosophers said that keeps niggling at your thoughts.`
-			`	While your passengers are quietly loaded onto a handful of transports to be quietly taken home, Sayuri and Xilin find you somewhere quiet.`
-			`	"Thankyou <Last>, you had all the necessary discretion at this sensitive time," says Sayuri.`
+			`	While your passengers are quietly loaded onto a handful of transports to be quietly taken home, Sayari and Xilin find you somewhere quiet.`
+			`	"Thankyou <Last>, you had all the necessary discretion at this sensitive time," says Sayari.`
 			`	Xilin is more direct, "I'll certainly thank you for saving me from another headache. Was there anything else you found? It seems so odd."`
 			choice
 				`	"There is something, but I'm not totally sure."`
-			`	They both frown and huddle in closer. "Do you think some of the kidnappers escaped, do you think they'll continue?" asks Sayuri.`
+			`	They both frown and huddle in closer. "Do you think some of the kidnappers escaped, do you think they'll continue?" asks Sayari.`
 			`	"No," you say.
 			choice
 				`	"However, I think there's one thing I should check out."`
@@ -267,7 +267,7 @@ event "lofty goals"
 mission "Hai Reveal [D05] Cleanup"
 	landing
 	name "Loose Ends"
-	description "Return to the summit and assure Sayuri and Xilin that there will be no further problems."
+	description "Return to the summit and assure Sayari and Xilin that there will be no further problems."
 	source "Aspiration"
 	destination "Mountaintop"
 	clearance
@@ -342,7 +342,7 @@ mission "Hai Reveal [D05] Cleanup"
 	on complete
 		event "hai-human resolution announced"
 		conversation
-			`When you return to mountaintop you reassure Sayuri and Xilin that there is nothing more to do. The danger is over, for good.`
+			`When you return to mountaintop you reassure Sayari and Xilin that there is nothing more to do. The danger is over, for good.`
 			`	As it happens the summit has functionally concluded by the time you return. The diplomats had been running interference to prolong things in fact, knowing that your return had critical consequences. Now that you're here, the remaining agenda items miraculously get resolved within hours, and late in the day you find yourself once again  Where Mountains Touch The Sky as the successful resolution is announced.`
 			`	The historic moment lays the groundwork for a future official treaty framework and governmental cooperation, and established Mountaintop as the principle diplomatic embassy for both peoples.`
 			`	Less publicly, extensive surveillance fleets are posted on both sides of the wormhole to detect any kidnappings or other illegal travel. Now the only way for illicit transfers to happen is if a government employee is involved, but all three countries have quietly agreed to watch for that behavior and punish it severely.`

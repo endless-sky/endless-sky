@@ -37,26 +37,26 @@ mission "building mountaintop 1"
 	on offer
 		event "role-play fleet deception"
 		conversation
-			`When you return to Hai-home you are directed now to a government hangar where you are met by Xilin and Sayuri, both looking very relieved.`
-			`	"I am very glad to see you returned Captain <last>, Sayuri said you were away on an important errand but I've been hoping for a day now you would appear, as I think you might be the solution to the current impasse."`
-			`	"You see," says Sayuri, "in the light of the recent civil war your species has had, some of the Elder's are less than keen with allowing a partisan observer to see the inner workings of a station in its earliest phases, especially when we haven't built one in so, so long."`
+			`When you return to Hai-home you are directed now to a government hangar where you are met by Xilin and Sayari, both looking very relieved.`
+			`	"I am very glad to see you returned Captain <last>, Sayari said you were away on an important errand but I've been hoping for a day now you would appear, as I think you might be the solution to the current impasse."`
+			`	"You see," says Sayari, "in the light of the recent civil war your species has had, some of the Elder's are less than keen with allowing a partisan observer to see the inner workings of a station in its earliest phases, especially when we haven't built one in so, so long."`
 			`	Now that she mentions it, you don't think you've seen a Hai station at all.`
 			`	"However, therein lies a problem," says Xilin.`
 			`	"The Republic will not allow the Hai to build a station this side of the wormhole without some oversight by someone we trust. This has now been a point of contention for some days, and multiple suggestions have been rejected."`
-			`	Sayuri chitters, "Honestly it's all very silly. Lots of old men who are meant to be friends concerned that the other might have been lying to them."`
+			`	Sayari chitters, "Honestly it's all very silly. Lots of old men who are meant to be friends concerned that the other might have been lying to them."`
 			`	In an oddly comical gesture they both shrug at the same time.`
 			`	"Anyway, thanks to a little Freedom of Information request to the Republic, I have been looking at things and I think I have the solution."`
 			choice
 				`	"Is it me?"`
-			`Sayuri winks at you, "Catch on quick don't you."`
+			`Sayari winks at you, "Catch on quick don't you."`
 			`	"The actions you're recorded as having taken show a certain conscience for the good of your species as a whole, despite your affiliations. I have convinced the other diplomats and the Elders that you might be a viable solution to this impasse. The human diplomats have already agreed, but the Elders wish to speak with you first."`
 			choice
 				`	"Who are these Elders?"`
 				`	"Of course, that's natural."`
 				goto main
-			`	Sayuri explains, "The Hai are ruled by an elected 'Council of Elders', they are not responsible for every administrative decision that occurs but they are the highest authority of our government. Their decisions are final, at least for the term of an election."`
+			`	Sayari explains, "The Hai are ruled by an elected 'Council of Elders', they are not responsible for every administrative decision that occurs but they are the highest authority of our government. Their decisions are final, at least for the term of an election."`
 			label main
-			'	"If you're willing, there will be a council meeting in an hour, I can put you first on the agenda. Will you do this?" asks Sayuri.`
+			'	"If you're willing, there will be a council meeting in an hour, I can put you first on the agenda. Will you do this?" asks Sayari.`
 			choice
 				`	"I suppose I must."`
 				`	"Someone better be paying me for this."`
@@ -65,13 +65,13 @@ mission "building mountaintop 1"
 	on accept
 		event "role-play station"
 		conversation
-			`Following Sayuri you pass beyond a security checkpoint where Xilin is prevented from following you. Sayuri speaks with another hai doing administrative work for a moment before gesturing you to a private antechamber.`
+			`Following Sayari you pass beyond a security checkpoint where Xilin is prevented from following you. Sayari speaks with another hai doing administrative work for a moment before gesturing you to a private antechamber.`
 			`	"We shouldn't have to wait very long, but while we're alone," she glances at the door as if faintly nervous for a second, "did you find anything on your investigation?"`
 			choice
 				`	"Yes, actually I found proof."`
 				`	"Unfortunately, I did find something."`
-			`	You hand Sayuri a data stick, "I have saved everything from my logs on there."`
-			`	Sayuri looks crestfallen and takes the data stick gingerly, looking at it as if it were some snake that might bite her at any moment.`
+			`	You hand Sayari a data stick, "I have saved everything from my logs on there."`
+			`	Sayari looks crestfallen and takes the data stick gingerly, looking at it as if it were some snake that might bite her at any moment.`
 			`	"I will have a look," is all she says.`
 			`	No sooner has she pocketed it than there is a knock at the door and an aide looks in, "The Council will see you now."`
 			`	The next twenty minutes prove to be an exercise in tedium as various members of the council interrogate you over apparently mundane details of your recent actions as recordsed in the FOI report. You're not really sure what most of it has to do with anything, but eventually one of the elders stands up.`
@@ -108,7 +108,7 @@ mission "building mountaintop 1"
 			`	You see several appreciative nods happening around the room out of the corner of your eyes.`
 			label end
 			`	"You may act as the oversight for the human governments in this project. Proposal D-86513-7P4 is approved. Council adjourned."`
-			`	When you meet Sayuri afterwards a touch of her usual enthusiasm has returned.`
+			`	When you meet Sayari afterwards a touch of her usual enthusiasm has returned.`
 			`	"This is fantastic news, now all that remains to be done is for you to escort the construction fleet from Makerplace to Ultima Thule and observe the initial stages. They'll be waiting for your arrival on Makerplace."`
 	on stopover
 		conversation
@@ -180,7 +180,7 @@ mission "building mountaintop 2"
 	on offer
 		conversation
 			`At Hai-home you are directed to a now familiar government hangar.`
-			`	Sayuri, Xilin, and Alondo all send you greeting pings, but are busy at the time of your landing. To your surprise though, Terry is banging on your airlock before too long.`
+			`	Sayari, Xilin, and Alondo all send you greeting pings, but are busy at the time of your landing. To your surprise though, Terry is banging on your airlock before too long.`
 			`	"Captain <last>, or should I call you <first>? Anyway, doesn't matter. How would you like to make some money?"`
 			`	The smile she gives you is something like you imagine a large cat giving the tasty morsel it just identified as its food.`
 			`	"Of course you do, everyone likes to make money," she says.`
@@ -235,10 +235,10 @@ mission "building mountaintop 3"
 	to offer
 		has "building mountaintop 2: done"
 	cargo "human furnishings" 600
-	blocked `Sayuri contacts you and says, "<first>, you're going to need six hundred tons of cargo space for this." You should return here after freeing up <capacity>.`
+	blocked `Sayari contacts you and says, "<first>, you're going to need six hundred tons of cargo space for this." You should return here after freeing up <capacity>.`
 	on offer
 		conversation
-			`As you and Terry offload her remaining supplies on Mountaintop where she intends to manage the arrivals and setup personally, you get a communication from Sayuri come to your personal device.`
+			`As you and Terry offload her remaining supplies on Mountaintop where she intends to manage the arrivals and setup personally, you get a communication from Sayari come to your personal device.`
 			`	"Captain <last>! Glad I could get a hold of you on the other side of the wormhole there, I see the new relays are working."`
 			`	"We've just discovered a problem, interest has soared in sign-ups for Mountaintop, but we've realised that most of our 'human' furnishings produced in Hai space aren't going to pass as having been manufactured with your technology. Mr Yang has pulled some strings, but now we urgently need someone to go pick them up from Prime in Betelgeuse."`
 			`	"Everything else should be ready on our end soon enough, if you can just handle that pick-up and delivery we'll be ok."`
@@ -247,7 +247,7 @@ mission "building mountaintop 3"
 	on complete
 		event "role-play station active" 12
 		conversation
-			`By the time you return you are shocked to notice that the station seems to be rapidly approaching a completed state. Some four thousand people have already arrived, though some are still on board ships docked at the station. Once you register your delivery amidst the station chaos it's only a few minutes later that you get a thankyou message from Sayuri, with a cryptic "P.S. you may get a message from a friend of mine soon."`
+			`By the time you return you are shocked to notice that the station seems to be rapidly approaching a completed state. Some four thousand people have already arrived, though some are still on board ships docked at the station. Once you register your delivery amidst the station chaos it's only a few minutes later that you get a thankyou message from Sayari, with a cryptic "P.S. you may get a message from a friend of mine soon."`
 
 event "role-play station active"
 	unvisit "Ultima Thule"
