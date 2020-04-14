@@ -69,7 +69,7 @@ mission "First Contact: Ka'het: Remnant 1B"
 					defer
 			`	You find Taely inside one of the outer hangars of the shipyard, apparently teaching a small group of people how to make basic repairs on an Albatross. You sit on a bench waiting for her to finish her lesson, after which she walks over to you. "Hello, <first>!" she says. "Is there something I can help you with?" `
 			`	"I'm here because I need to ask you a few questions," you reply.`
-			`	As she sits near you, you start explaining to her the area you reached, including the weird alien ships that attacked you with weapons similar to the ones the Remnant possess, although this doesn't seem to be news for her. "We know of the existence of the Ka'het, the aliens you encountered, since we first reached the Ember Wastes. We found many of their 'shells' within our planets, crashed there thousands, perhaps even tens of thousands of years before our arrival, but some of their outfits survived long enough for us to reverse engineer these advanced technonologies."`
+			`	As she sits near you, you start explaining to her the area you reached, including the weird alien ships that attacked you with weapons similar to the ones the Remnant possess, although this doesn't seem to be news for her. "We know of the existence of the Ka'het, the aliens you encountered, since we first reached the Ember Wastes. We found many of their shells within our planets, crashed there thousands, perhaps even tens of thousands of years before our arrival, but some of their outfits survived long enough for us to reverse engineer these advanced technonologies."`
 			`	"Then," she continues, "a few hundred years ago, a scout fleet arrived in a system where some Ka'het were still alive. They attacked our fleet instantly with EMP Torpedoes that quickly disabled two Starlings. The Starlings couldn't recover quickly enough to survive, and the only remaining ship could do nothing but flee as soon as possible."`
 			choice
 				`	"Which technology did you recover from the crashed Ka'het?"`
@@ -77,12 +77,12 @@ mission "First Contact: Ka'het: Remnant 1B"
 				`	"Wait, why did you call them 'shells' and not ships?"`
 					goto shells
 				`	"Have the Ka'het ever attacked the Remnant planets?"`
-			`	"Actually, we never met any living Ka'het in the Ember Waste at all. The 'shells' we found had similar capabilities to the quantum keystone, meaning they could pass through the wormholes, so we don't know for sure why they remained in the Graveyard. Perhaps they aren't aware of their skills, or maybe they lost them over time."`
+			`	"Actually, we never met any living Ka'het in the Ember Waste at all. The shells we found had similar capabilities to the quantum keystone, meaning they could pass through the wormholes, so we don't know for sure why they remained in the Graveyard. Perhaps they aren't aware of their skills, or maybe they lost them over time."`
 			choice
 				`	"Wait, why did you call them 'shells' and not ships?"`
 					goto shells
 			label tech
-			`	"Back then we found large numbers of their EMP torpedoes, most of which in almost pristine conditions; their internal mechanisms were also simple enough that we were able to reproduce them perfectly. We didn't find any other suriving systems in the 'shells' to do the same, but their tech have been our main inspiration point for centuries."`
+			`	"Back then we found large numbers of their EMP torpedoes, most of which were in nearly pristine condition; their internal mechanisms were also simple enough that we were able to reproduce them perfectly. We didn't find any other surviving systems in the shells to do the same, but their tech has been a source of inspiration for centuries."`
 			choice
 				`	"Wait, why did you call them 'shells' and not ships?"`
 			label shells
