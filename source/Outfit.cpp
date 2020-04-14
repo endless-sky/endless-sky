@@ -27,7 +27,11 @@ namespace {
 	const double EPS = 0.0000000001;
 	
 	// A whitelist of attributes which do not have minimum values of 0.
-	// A value of 0 means that the attribute has no minimum.
+	// The key is the attribute name and the value is the minimum value
+	// that the attribute is allowed to have. A value of 0 means that the
+	// attribute can have any value. Non-zero values mean that the attributes
+	// cannot be allowed to go below that value when installing or selling
+	// outfits.
 	const map<string, double> WHITELIST = {
 		{"hull energy", 0.},
 		{"hull fuel", 0.},
@@ -212,14 +216,14 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 {
 	for(const auto &at : other.attributes)
 	{
+		// The minimum allowed value of most attributes is 0. Some attributes
+		// have special functionality when negative, though, and are therefore
+		// allowed to have values less than 0.
 		double minimum = 0.;
-		// Check if this attribute is on the whitelist of attributes with
-		// a non-zero minimum.
 		if(WHITELIST.count(at.first))
 		{
 			minimum = WHITELIST.find(at.first)->second;
-			// Attributes on the whitelist with a listed minimum of 0
-			// can have any value.
+			// Whitelisted attributes with a value of 0 can have any value.
 			if(!minimum)
 				continue;
 		}
