@@ -748,18 +748,18 @@ mission "Wanderers: Kor Efret 3"
 		fleet
 			names "korath"
 			variant
-				"Efret fi Zujaja"
-				"Efret fi Jara"
-				"Efret fi Iibriq"
+				"Korath Transport"
+				"Korath Freighter"
+				"Korath Tanker"
 	npc
 		government "Kor Efret"
 		personality heroic
 		fleet
 			names "korath"
 			variant
-				"Efret fi Zujaja"
-				"Efret fi Jara"
-				"Efret fi Iibriq"
+				"Korath Transport"
+				"Korath Freighter"
+				"Korath Tanker"
 	npc
 		government "Quarg"
 		personality heroic staying entering
@@ -1396,7 +1396,7 @@ mission "Wanderers: Tour 2"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Efret fi Iibriq" "Asikimi Ko Cheska"
+		ship "Korath Tanker" "Asikimi Ko Cheska"
 
 
 
@@ -1425,7 +1425,7 @@ mission "Wanderers: Tour 3"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Efret fi Iibriq" "Asikimi Ko Cheska"
+		ship "Korath Tanker" "Asikimi Ko Cheska"
 
 
 
@@ -1447,7 +1447,7 @@ mission "Wanderers: Tour 4"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Efret fi Iibriq" "Asikimi Ko Cheska"
+		ship "Korath Tanker" "Asikimi Ko Cheska"
 
 
 
@@ -1476,7 +1476,7 @@ mission "Wanderers: Tour 5"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Efret fi Iibriq" "Asikimi Ko Cheska"
+		ship "Korath Tanker" "Asikimi Ko Cheska"
 	npc
 		system "Ap'arak"
 		government "Hai (Unfettered)"
@@ -1505,7 +1505,7 @@ mission "Wanderers: Tour 6"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Efret fi Iibriq" "Asikimi Ko Cheska"
+		ship "Korath Tanker" "Asikimi Ko Cheska"
 
 
 

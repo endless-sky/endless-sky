@@ -398,11 +398,11 @@ fleet "Kor Efret Home"
 	personality
 		timid
 	variant 5
-		"Efret fi Zujaja"
+		"Korath Transport"
 	variant 5
-		"Efret fi Jara"
+		"Korath Freighter"
 	variant 5
-		"Efret fi Iibriq"
+		"Korath Tanker"
 
 fleet "Small Kor Sestor"
 	government "Kor Sestor"
