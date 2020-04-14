@@ -190,8 +190,6 @@ news "human citizen in Hai space"
 		word
 			"Don't go too far north up here. The Hai have their own pirates, and they're much more powerful than anything we're used to in human space."
 			"I hear Hai space wasn't peaceful a few centuries ago when some reptilian aliens were raiding the place. I wonder where they went?"
-			"My Hai friend went on one of those prison cruises a while back, but it got lost in an ion storm near Allhome."
-			"One of my Hai co-workers went to Sunracer to formalize a business deal. I warned her that part of human space is dangerous. I hope I'll see her again."
 			"Where I lived in human space, pirates kidnapped dozens of people a month. Here there are no pirates, and people rarely disappear."
 			"One of my scientist friends told me the Hai can make wearable holographic projectors. I wonder if they're using those to hide in human space?"
 			"Hai scientists that live near me chartered a flight to Allhome, but it got lost and ended up all the way on Canyon. Some people have the worst sense of direction."
