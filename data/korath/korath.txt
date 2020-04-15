@@ -314,12 +314,12 @@ fleet "Korath Planetary Raid"
 	variant 5
 		"Korath Raider"
 		"Korath Dredger (Fast Inferno)"
-		"Korath Chaser (Fire-Lance)" 3
+		"Korath Chaser" 3
 		"Korath Chaser (Digger)" 3
 	variant 5
 		"Korath Raider"
 		"Korath Dredger"
-		"Korath Chaser (Fire-Lance)" 3
+		"Korath Chaser" 3
 		"Korath Chaser (Digger)" 3
 	variant 5
 		"Korath Ravager (Dual Heaver)"
