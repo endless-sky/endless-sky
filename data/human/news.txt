@@ -88,45 +88,6 @@ news "human merchant in human space"
 			"My first ship was a Shuttle. I kind of miss that glorified tour bus."
 			"I love doing Syndicate jobs. Easy money for not much work. I guess they're all so rich that they can afford to pay for the best."
 
-
-
-# Visual suggestion: a bit quirky or weird; expression is content, confident, or stoic
-news "human merchant in Hai space"
-	location
-		government "Hai"
-	name
-		word
-			"Merchant captain"
-	portrait
-		portrait/human02
-		portrait/human04
-		portrait/human06
-		portrait/human10
-		portrait/human15
-		portrait/human17
-		portrait/human31
-		portrait/human58
-		portrait/human63
-		portrait/human72
-		portrait/human73
-		portrait/human76
-		portrait/human79
-		portrait/human98
-		portrait/human108
-		portrait/human112
-		portrait/human125
-	message
-		word
-			"Can you believe these Hai? They're light-years ahead of us, right under our noses."
-			"Hai Tech is incredible compared to ours. Every time I add a ship to my fleet, I always make a trip up here to stock up on Hai tech."
-			"Have you tried out one of those Hai anti-missile systems? They'll waste any missile in Human space."
-			"These Hai are so creepy. What are they hiding? I can't wait to get back to human space."
-			"Don't go too far north up here. The Hai have their own pirates, and they're much more powerful than anything we're used to in human space."
-			"Have you visited the Quarg ringworld here in Hai space? It's a humbling sight. There's probably more Quarg in there than there are humans anywhere. Makes you feel pretty insignificant."
-			"The Hai don't like my ship's armory of laser rifles, but I was once boarded by a pirate crew and I'm never letting that happen again! If some overgrown squirrel is going to take away my rifle, it'll have to be from my cold dead hands!"
-
-
-
 # Visual suggestion: hard-bitten, tough, often dark-skinned and/or wearing a hat
 news "human farming"
 	location
